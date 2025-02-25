@@ -75,3 +75,10 @@
 	desc = "Mullets and cut-up jorts not included."
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "mississippiglass"
+
+/datum/glass_style/drinking_glass/milktea
+	required_drink_type = /datum/reagent/consumable/milktea
+	name = "奶茶"
+	desc = "无任何添加的普通奶茶，以红茶混合鲜奶调制而成，依然非常美味。"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "milktea"

@@ -35,3 +35,10 @@
 	name = "glass of coconut milk"
 	desc = "The essence of the tropics, contained safely within a glass."
 	icon = 'icons/obj/drinks/drinks.dmi'
+
+/datum/glass_style/has_foodtype/drinking_glass/hot_soymilk
+	required_drink_type = /datum/reagent/consumable/hot_soymilk
+	name = "豆浆"
+	desc = "热腾腾的豆浆，建议搭配油条食用。"
+	icon_state = "hot_soymilk"
+	drink_type = BREAKFAST

@@ -1026,3 +1026,10 @@
 	thermic_constant = 80
 	H_ion_release = 2
 	reaction_tags = REACTION_TAG_EASY
+
+/datum/chemical_reaction/hot_soymilk
+	results = list(/datum/reagent/consumable/hot_soymilk = 2)
+	required_reagents = list(/datum/reagent/consumable/soymilk = 1)
+	required_temp = 363
+	reaction_flags = REACTION_INSTANT
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRINK

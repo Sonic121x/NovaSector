@@ -1297,3 +1297,17 @@
 	var/obj/item/organ/stomach/ethereal/stomach = exposed_carbon.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(istype(stomach))
 		stomach.adjust_charge(reac_volume * 20 * ETHEREAL_DISCHARGE_RATE)
+
+/datum/reagent/consumable/milktea
+	name = "奶茶"
+	description = "无任何添加的普通奶茶，以红茶混合鲜奶调制而成，依然非常美味。"
+	color = "#ca885c"
+	taste_description = "浓郁的奶茶"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/hot_soymilk
+	name = "豆浆"
+	description = "热腾腾的豆浆，建议搭配油条食用。"
+	color = "#f5e6c6"
+	taste_description = "热豆浆"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
