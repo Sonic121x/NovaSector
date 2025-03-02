@@ -3,6 +3,7 @@ GLOBAL_LIST_INIT(crafting_category_food, list(
 	CAT_BREAD,
 	CAT_BURGER,
 	CAT_CAKE,
+	CAT_CHINESE,
 	CAT_EGG,
 	CAT_LIZARD,
 	CAT_MEAT,
