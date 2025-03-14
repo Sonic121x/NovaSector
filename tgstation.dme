@@ -8487,6 +8487,8 @@
 #include "modular_nova\modules\nanotrasen_naval_command\code\outfits.dm"
 #include "modular_nova\modules\nanotrasen_rep\code\clothing.dm"
 #include "modular_nova\modules\nanotrasen_rep\code\nanotrasen_consultant.dm"
+#include "modular_nova\modules\nanotrasen_rep\code\mod_theme.dm"
+#include "modular_nova\modules\nanotrasen_rep\code\mod_type.dm"
 #include "modular_nova\modules\new_cells\code\power_cell.dm"
 #include "modular_nova\modules\new_legion_types\code\modules\mob_spawn\corpses\mining_corpses.dm"
 #include "modular_nova\modules\new_legion_types\code\modules\mob_spawn\corpses\noid_corpses.dm"
