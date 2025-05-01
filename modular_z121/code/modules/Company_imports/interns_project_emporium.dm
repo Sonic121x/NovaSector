@@ -27,6 +27,10 @@
 /datum/armament_entry/company_import/intern_project/primary/crossbow
 	item_type = /obj/item/gun/ballistic/rifle/rebarxbow/crossbow
 
+/datum/armament_entry/company_import/intern_project/primary/aa12
+	item_type = /obj/item/gun/ballistic/automatic/aa12
+	cost = PAYCHECK_COMMAND * 23
+
 //	弹药
 /datum/armament_entry/company_import/intern_project/ammo
 	subcategory = "弹药"
@@ -34,6 +38,13 @@
 
 /datum/armament_entry/company_import/intern_project/ammo
 	item_type = /obj/item/ammo_casing/rebar/bolt
+
+/datum/armament_entry/company_import/intern_project/ammo/aa12_mag
+	item_type = /obj/item/ammo_box/magazine/aa12
+
+/datum/armament_entry/company_import/intern_project/ammo/aa12_drum
+	item_type = /obj/item/ammo_box/magazine/aa12/drum
+		cost = PAYCHECK_CREW * 3
 
 //	杂项
 /datum/armament_entry/company_import/intern_project/misc
