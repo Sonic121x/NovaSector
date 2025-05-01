@@ -29,7 +29,7 @@
 
 /datum/armament_entry/company_import/intern_project/primary/aa12
 	item_type = /obj/item/gun/ballistic/automatic/aa12
-	cost = PAYCHECK_COMMAND * 15
+	cost = PAYCHECK_COMMAND * 16
 
 //	弹药
 /datum/armament_entry/company_import/intern_project/ammo
