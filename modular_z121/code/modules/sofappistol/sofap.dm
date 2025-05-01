@@ -26,6 +26,7 @@
 	suppressor_y_offset = 0
 
 	fire_delay = 0.15 SECONDS
+	actions_types = list()//无法切换射击模式
 	spread = 5
 
 	//  0.4x 伤害修正
