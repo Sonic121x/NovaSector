@@ -66,3 +66,9 @@
 	icon_state = "magic_fur_pink"
 	icon_living = "magic_fur_pink"
 	icon_dead = "magic_fur_pink_dead"
+
+/mob/living/basic/pet/magicfur/miku
+	name = "魔法兽miku"
+	icon_state = "magic_fur_miku"
+	icon_living = "magic_fur_miku"
+	icon_dead = "magic_fur_miku_dead"
