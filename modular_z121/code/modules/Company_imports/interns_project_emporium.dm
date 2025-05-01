@@ -44,7 +44,7 @@
 
 /datum/armament_entry/company_import/intern_project/ammo/aa12_drum
 	item_type = /obj/item/ammo_box/magazine/aa12/drum
-		cost = PAYCHECK_CREW * 3
+	cost = PAYCHECK_CREW * 3
 
 //	杂项
 /datum/armament_entry/company_import/intern_project/misc
