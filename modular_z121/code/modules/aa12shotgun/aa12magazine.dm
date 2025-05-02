@@ -3,7 +3,7 @@
 	name = "\improper AA12弹匣"
 	desc = "可容纳8发霰弹的弹匣，对于非战斗人员已经足够了"
 
-	icon = 'modular_z121/icons/obj/guns/aa12magazine.dmi'
+	icon = 'modular_z121/icons/obj/guns/aa12.dmi'
 	icon_state = "aa12_mag"
 	base_icon_state = "aa12_mag"
 
@@ -22,7 +22,7 @@
 	name = "\improper AA12弹鼓"
 	desc = "可容纳20发霰弹的弹鼓，容量大的惊人，体积也大的惊人"
 
-	icon = 'modular_z121/icons/obj/guns/aa12magazine.dmi'
+	icon = 'modular_z121/icons/obj/guns/aa12.dmi'
 	icon_state = "aa12_mag_drum"
 	base_icon_state = "aa12_mag_drum"
 
