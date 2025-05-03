@@ -106,7 +106,7 @@
 /datum/market_item/misc/skysword
 	name = "天武剑"
 	desc = "这是天地文武大将军曾经的武器，剑身黑，泛银光，削铁如泥，千年不锈。祂曾经用这把利剑杀尽王侯，使天下太平。很遗憾，这把剑只能被蓝红球使用。"
-	item = /obj/item/gun/ballistic/automatic/toy
+	item = /obj/item/skysword
 	price_min = CARGO_CRATE_VALUE * 3
 	price_max = CARGO_CRATE_VALUE * 5
 	stock_max = 1
