@@ -3,9 +3,13 @@
 	desc = "一只充满魔法的毛茸茸小家伙，拥有使用魔法治疗其它生物的能力"
 	gender = NEUTER
 	icon = 'modular_z121/icons/mob/pets.dmi'
+	held_lh = 'modular_z121/icons/mob/pets_held_lh.dmi'
+	held_rh = 'modular_z121/icons/mob/pets_held_rh.dmi'
 	icon_state = "magic_fur_fox"
 	icon_living = "magic_fur_fox"
 	icon_dead = "magic_fur_fox_dead"
+	held_state = "magic_fur_fox"
+	can_be_held = TRUE
 	can_be_held = FALSE
 	see_in_dark = 6
 	pass_flags = PASSTABLE
@@ -54,21 +58,25 @@
 	icon_state = "magic_fur_white"
 	icon_living = "magic_fur_white"
 	icon_dead = "magic_fur_white_dead"
+	held_state = "magic_fur_white"
 
 /mob/living/basic/pet/magicfur/black
 	name = "黑魔法兽"
 	icon_state = "magic_fur_black"
 	icon_living = "magic_fur_black"
 	icon_dead = "magic_fur_black_dead"
+	held_state = "magic_fur_black"
 
 /mob/living/basic/pet/magicfur/pink
 	name = "粉魔法兽"
 	icon_state = "magic_fur_pink"
 	icon_living = "magic_fur_pink"
 	icon_dead = "magic_fur_pink_dead"
+	held_state = "magic_fur_pink"
 
 /mob/living/basic/pet/magicfur/miku
 	name = "魔法兽miku"
 	icon_state = "magic_fur_miku"
 	icon_living = "magic_fur_miku"
 	icon_dead = "magic_fur_miku_dead"
+	held_state = "magic_fur_miku"
