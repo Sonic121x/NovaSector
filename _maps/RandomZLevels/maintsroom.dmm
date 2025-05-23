@@ -3089,7 +3089,6 @@
 /turf/open/floor/holofloor/pure_white,
 /area/awaymission/caves/maintsroom)
 "lt" = (
-/obj/structure/closet/gimmick/tacticool,
 /obj/item/clothing/under/syndicate/nova/tactical,
 /obj/item/clothing/shoes/jackboots,
 /obj/effect/spawner/random/weapon/black_market_trader,
@@ -3098,6 +3097,7 @@
 /obj/item/clothing/head/helmet/swat,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/storage/backpack/security,
+/obj/structure/closet,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "lu" = (
@@ -10025,7 +10025,7 @@
 	pixel_x = -6;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/cup/rag{
+/obj/item/rag{
 	pixel_x = -10;
 	pixel_y = 4
 	},
@@ -11670,7 +11670,7 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "Tb" = (
-/obj/item/reagent_containers/cup/rag,
+/obj/item/rag,
 /obj/structure/table/wood,
 /obj/effect/mapping_helpers/broken_floor,
 /obj/item/storage/toolbox/electrical,
