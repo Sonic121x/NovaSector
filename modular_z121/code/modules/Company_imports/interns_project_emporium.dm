@@ -31,6 +31,14 @@
 	item_type = /obj/item/gun/ballistic/automatic/aa12
 	cost = PAYCHECK_COMMAND * 16
 
+/datum/armament_entry/company_import/intern_project/primary/hk5p
+	item_type = /obj/item/gun/ballistic/automatic/hk5p
+	cost = PAYCHECK_COMMAND * 10
+
+/datum/armament_entry/company_import/intern_project/primary/europa
+	item_type = /obj/item/gun/ballistic/automatic/europa
+	cost = PAYCHECK_COMMAND * 20
+
 //	弹药
 /datum/armament_entry/company_import/intern_project/ammo
 	subcategory = "弹药"
@@ -40,11 +48,15 @@
 	item_type = /obj/item/ammo_casing/rebar/bolt
 
 /datum/armament_entry/company_import/intern_project/ammo/aa12_mag
-	item_type = /obj/item/ammo_box/magazine/aa12
+	item_type = /obj/item/ammo_box/magazine/aa12/starts_empty
 
 /datum/armament_entry/company_import/intern_project/ammo/aa12_drum
-	item_type = /obj/item/ammo_box/magazine/aa12/drum
+	item_type = /obj/item/ammo_box/magazine/aa12/drum/starts_empty
 	cost = PAYCHECK_CREW * 3
+
+/datum/armament_entry/company_import/intern_project/ammo/europa_mag
+	item_type = /obj/item/ammo_box/magazine/europa/starts_empty
+	cost = PAYCHECK_CREW * 4
 
 //	杂项
 /datum/armament_entry/company_import/intern_project/misc
