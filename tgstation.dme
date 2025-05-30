@@ -9159,4 +9159,7 @@
 #include "modular_z121\code\modules\sprite_accessory\hair.dm"
 #include "modular_z121\code\modules\sprite_accessory\reptilian.dm"
 #include "modular_z121\code\modules\toys\plushes.dm"
+#include "modular_z121\code\modules\abductor_loadout/abductor_fail_clothing.dm"
+#include "modular_z121\code\modules\abductor_loadout/loadout.dm"
+#include "modular_z121\code\modules\job\job.dm"
 // END_INCLUDE
