@@ -36,10 +36,11 @@
 	suppressor_x_offset = 9
 	suppressor_y_offset = 0
 
-	burst_size = 1
-	fire_delay = 0.1 SECONDS //射速很快，如果实战很超模，可能要加伤害修正
+	burst_size = 3
+	burst_delay = 0.1 SECONDS
+	fire_delay = 0.5 SECONDS
 	actions_types = list()
-	spread = 20 //散射很大
+	spread = 5
 
 /obj/item/gun/ballistic/automatic/hk5p/Initialize(mapload)
 	. = ..()
