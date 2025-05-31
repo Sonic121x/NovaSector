@@ -1,7 +1,7 @@
 //  HK5P冲锋枪
 /obj/item/gun/ballistic/automatic/hk5p
 	name = "HK5P冲锋枪"
-	desc = "结构与二十世纪的MP5冲锋枪十分相似，据说当时这把枪是用于反恐的高精度冲锋枪，现在的这把复制品可以有效的把辛迪加和人质一起解决。这把枪使用Sol标准手枪弹匣"
+	desc = "结构与二十世纪的MP5冲锋枪十分相似，据说当时这把枪是用于反恐的高精度冲锋枪。这把枪使用Sol标准手枪弹匣"
 
 	icon = 'modular_z121/icons/obj/guns/hk5p.dmi'
 	icon_state = "hk5p"
