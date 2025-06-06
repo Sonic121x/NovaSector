@@ -28,13 +28,13 @@
 	slowdown = 1
 
 	burst_size = 1
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	recoil = 1
 	spread = 25
 
 	actions_types = list()
 
-	projectile_damage_multiplier = 0.75
+	projectile_damage_multiplier = 0.85
 
 	force = 15 //你也可以用这枪砸人，也挺疼的
 
@@ -63,7 +63,7 @@
 
 
 /obj/item/gun/ballistic/automatic/europa/process_fire(atom/target, mob/living/user, message, params, zone_override)
-	if(bipod_open && user.body_position == LYING_DOWN)
+	if(bipod_open && user.body_position == LYING_DOWN && user.has_gravity())
 		recoil = 0.25
 		spread = 7.5
 	else
