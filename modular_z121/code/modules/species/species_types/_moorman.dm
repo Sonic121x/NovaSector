@@ -68,18 +68,51 @@
 	return "他们的故乡在与Lavalran十分相似的Wasteland星，\
 	星球的残酷环境让他们进化出了将身体机能运作到极限的能力，以及粗糙且坚固的皮肤"
 
+//种族初始化
 /datum/species/Moorman/on_species_gain(mob/living/carbon/human/new_Moorman, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
-	RegisterSignal(new_Moorman, COMSIG_MOB_STATCHANGE , PROC_REF(stat_change))
 	new_Moorman.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
+	RegisterSignal(new_Moorman, COMSIG_MOB_STATCHANGE , PROC_REF(stat_change))
+	RegisterSignal(new_Moorman, COMSIG_MOVABLE_MOVED , PROC_REF(moving))
 
-/datum/species/Moorman/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+//移除信号
+datum/species/Moorman/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
 	UnregisterSignal(C, COMSIG_MOB_STATCHANGE)
+	UnregisterSignal(C, COMSIG_MOVABLE_MOVED)
 	C.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 
-/datum/species/Moorman/proc/stat_change(datum/source, new_stat, old_stat)
+datum/species/Moorman/proc/stat_change(datum/source, new_stat, old_stat)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/H = source
 	if(new_stat == SOFT_CRIT || new_stat == HARD_CRIT && old_stat != DEAD)
 		H.death()
+
+datum/species/Moorman/proc/moving(atom/movable/moved, atom/oldloc, direction, forced)
+	SIGNAL_HANDLER
+	//是否用双腿走路
+	if(forced || CHECK_MOVE_LOOP_FLAGS(moved, MOVEMENT_LOOP_OUTSIDE_CONTROL))
+		return
+	if(isliving(moved))
+		var/mob/living/living_moved = moved
+		if (living_moved.incapacitated || (living_moved.body_position == LYING_DOWN && !HAS_TRAIT(living_moved, TRAIT_FLOPPING)))
+			return
+		//是否处于重伤状态
+		if(living_moved.maxHealth - living_moved.health > 40)
+			// 获取腿部器官
+			var/obj/item/bodypart/left_leg = living_moved.get_bodypart(BODY_ZONE_L_LEG)
+			var/obj/item/bodypart/right_leg = living_moved.get_bodypart(BODY_ZONE_R_LEG)
+
+			//左腿损伤
+			if(left_leg && (left_leg.limb_id != SPECIES_MOORMAN))
+				left_leg.receive_damage(
+					brute = 1,
+					wound_bonus = CANT_WOUND,
+				)
+
+			//右腿损伤
+			if(right_leg && (right_leg.limb_id != SPECIES_MOORMAN))
+				right_leg.receive_damage(
+					brute = 1,
+					wound_bonus = CANT_WOUND,
+				)
