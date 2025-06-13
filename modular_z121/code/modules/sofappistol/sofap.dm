@@ -19,6 +19,7 @@
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol
 	special_mags = TRUE	//  不同的弹匣贴图
+	empty_indicator = TRUE  //弹药耗尽贴图
 
 	//  可安装消音器
 	can_suppress = TRUE
