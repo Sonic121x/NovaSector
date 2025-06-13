@@ -11,7 +11,8 @@
 	righthand_file = 'modular_z121/icons/mob/guns/sofap_righthand.dmi'
 	inhand_icon_state = "sofap"
 
-	fire_sound = 'modular_nova/modules/modular_weapons/sounds/pistol_light.ogg'
+	fire_sound = 'modular_z121/sound/guns/sofap/sofap_fire.ogg'
+	suppressed_sound = 'modular_z121/sound/guns/sofap/sofap_fire_suppressed.ogg'
 
 	//  中等物品大小
 	w_class = WEIGHT_CLASS_NORMAL
