@@ -24,7 +24,7 @@
 	//  可安装消音器
 	can_suppress = TRUE
 
-	suppressor_x_offset = 11
+	suppressor_x_offset = 6
 	suppressor_y_offset = 0
 
 	fire_delay = 0.15 SECONDS
