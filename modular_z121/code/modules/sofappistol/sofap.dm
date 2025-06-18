@@ -11,18 +11,20 @@
 	righthand_file = 'modular_z121/icons/mob/guns/sofap_righthand.dmi'
 	inhand_icon_state = "sofap"
 
-	fire_sound = 'modular_nova/modules/modular_weapons/sounds/pistol_light.ogg'
+	fire_sound = 'modular_z121/sound/guns/sofap/sofap_fire.ogg'
+	suppressed_sound = 'modular_z121/sound/guns/sofap/sofap_fire_suppressed.ogg'
 
 	//  中等物品大小
 	w_class = WEIGHT_CLASS_NORMAL
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol
 	special_mags = TRUE	//  不同的弹匣贴图
+	empty_indicator = TRUE  //弹药耗尽贴图
 
 	//  可安装消音器
 	can_suppress = TRUE
 
-	suppressor_x_offset = 11
+	suppressor_x_offset = 6
 	suppressor_y_offset = 0
 
 	fire_delay = 0.15 SECONDS
