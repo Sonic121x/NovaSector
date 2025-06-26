@@ -696,3 +696,93 @@
   - qol: '"Spawners Menu" and "Minigames Menu" are back as chat verbs for power users'
   - qol: report-issue is now a verb that can be used in chat to open the issue report
       prompt for power users
+2025-06-21:
+  RealWinterFrost:
+  - rscadd: Added new tarkon express console to tarkon industries
+  - map: Added new tarkon express console pad, sales pad, and budget card to their
+      base.
+2025-06-22:
+  A.C.M.O.:
+  - rscadd: Added a new surgery for Synthetic Humanoids called "Restart Neural Network
+      (Revival)".
+  - rscadd: Added Neuroware Chips, usable on synthetic humanoids. Can be obtained
+      via loadout, robotics wardrobe, Deluxe Silicate Selections vendor, cargo goodies,
+      and Donk/DeForest cargo imports.
+  - rscadd: Added Cybernetic Repair Paste which repairs robotic organs via organ manipulation
+      surgery. Obtained via robotics wardrobe, Nanomed Plus, and DeForest cargo import.
+  - balance: Disabled the effects of the Twitch reagent on synthetic humanoids.
+  - code_imp: Renamed the Synthetic Bio-Reactor to Synthetic Fuel Cell to more accurately
+      reflect its functions.
+  - refactor: Enabled mob reagents to process depending on liver type, instead of
+      depending on the mob's species. Reagent effects are still limited to specific
+      body types, bio types, and organ types.
+  - qol: Changed most Synthetic Humanoid surgeries, such as revival, to be more compatible
+      with organic limbs.
+  - qol: Renamed the surgery "Posibrain Reboot (Revival)" to "Chassis Restoration
+      (Repair + Revival)"
+  - qol: CPR is now possible via chest compressions, without requiring lungs. Rescue
+      breaths will only slightly increase CPR efficacy.
+  - qol: Added mindbreaker pills to users of the Reality Dissociation Syndrome quirk,
+      and synthetic humanoids get PosiBlaster64 neuroware chips.
+  - qol: Added bloodbag to users of the Blood Deficiency quirk.
+  - qol: Added SynapTuner Pro neuroware for synthetic humanoid users of the Narcolepsy
+      quirk.
+  - qol: Enabled Succubus Milk and Incubus Draft to process in synthetic humanoids.
+  - qol: Allowed Enriched Liquid Electricity to function as fuel for synth species,
+      which allows them to consume High Power Energy Bars and other similar foods.
+  - qol: Disabled digestion of fuel, CO2, and stable plasma for synths who lack the
+      default synthetic fuel cell stomach.
+  - qol: Enabled digestion of consumables into nutriment for synths who have both
+      a normal/cybernetic stomach and liver.
+  - qol: Updated the Brain Degeneration quirk medical flavortext to match each unique
+      synthetic brain type.
+  - bugfix: Fixed a bug that was causing humanized monkeys to retain their AI controller
+      after the AI Uplink Brain is inserted.
+  - bugfix: Fixed a bug that was preventing Liquid Solder from healing synthetic brain
+      damage.
+  - bugfix: Fixed a bug that was causing Crocin/Hexacrocin to bypass auto-emote preferences.
+  - bugfix: Re-added the Synthetic Charging Implant, or power cord implant, to the
+      science techweb.
+  - bugfix: Fixed instances of non-synthesizable reagents occurring in bees, such
+      as neuroware.
+  Hatterhat:
+  - rscadd: The Kolben-Keule enhanced combat shotgun is now in circulation in your
+      local deathmatch gun crate. Good luck, Underground Thunderdome participants!
+  TheSS13Melon:
+  - bugfix: fixed a issue on my donator items.
+  bigbakedbean:
+  - rscadd: commdrobe now has cc turtlenecks
+2025-06-23:
+  Hatterhat:
+  - balance: TWitch users can be attacked in melee range (including firing a gun at
+      them) to stagger them for 6 seconds, maxing out at 12 seconds, or have a damaging
+      item thrown at them to stagger them for 3 seconds, maxing out at 6 seconds.
+  - balance: Staggered and/or legcuffed TWitch users can no longer dodge bullets.
+      This doesn't stop the rest of the TWitch effects, though (speed, reduced clickdelay,
+      etc.).
+  Zergspower:
+  - rscadd: All  non-TG spiders sans Webslinger can now crawl on the ceiling, insert
+      'right behind you' memes
+  - rscadd: Spider Totem - will lay webs in an area similar to resin weeds. Killing
+      it up close however may haunt you for a while.
+  - rscadd: Spider Trauma - killing the spider totem will shatter your mind, causing
+      you to hallucinate a spider coming after you
+  - rscadd: Spider Fishing - you may want to avoid getting too close to a spider off
+      webs, it might just snatch you to get closer
+  - balance: Baron has been made a bit stronger, bigger bite and faster webbing
+  - qol: Butchering the Carrier spider will now make you second guess if you have
+      arachnophobia or not
+  - bugfix: cult AI mobs work again now that their brain has returned
+  realwinterfrost, vinylspiders:
+  - rscadd: added new accessibility feature vocal barks as an alternative to TTS,
+      porting it from bubberstation/fluffy-stg with our own implementation--accessible
+      through the Voice Settings menu
+2025-06-25:
+  A.C.M.O.:
+  - bugfix: Fixed head organ surgeries, which were not appearing in the surgery list.
+2025-06-26:
+  RealWinterFrost:
+  - image: Added new "gummy" sprites to the chem master 3000 (fish, slugcat, bear)
+  - image: Thanks to R&D Nanotrasen now has approved for less regulation on AI board
+      standards allowing for internal personnel to allow for custom designs, some
+      more unique than others! (You can find the new options in your Preferences!)
