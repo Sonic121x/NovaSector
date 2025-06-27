@@ -66,6 +66,11 @@
 	item_type = /obj/item/ammo_box/magazine/strzelec/starts_empty
 	cost = PAYCHECK_CREW
 
+//  模块
+/datum/armament_entry/company_import/intern_project/modules/popcorndispenser
+	item_type = /obj/item/mod/module/dispenser/popcorn
+	cost = PAYCHECK_CREW
+
 //	杂项
 /datum/armament_entry/company_import/intern_project/misc
 	subcategory = "杂项"
