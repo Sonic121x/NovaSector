@@ -15,7 +15,7 @@
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/machinegun/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.2 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 0.3 SECONDS)
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/machinegun/add_bayonet_point()
 	return
