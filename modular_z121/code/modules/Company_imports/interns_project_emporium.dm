@@ -39,6 +39,10 @@
 	item_type = /obj/item/gun/ballistic/automatic/europa
 	cost = PAYCHECK_COMMAND * 20
 
+/datum/armament_entry/company_import/intern_project/primary/strzelec
+	item_type = /obj/item/gun/ballistic/rifle/strzelec
+	cost = PAYCHECK_COMMAND * 15
+
 //	弹药
 /datum/armament_entry/company_import/intern_project/ammo
 	subcategory = "弹药"
@@ -57,6 +61,10 @@
 /datum/armament_entry/company_import/intern_project/ammo/europa_mag
 	item_type = /obj/item/ammo_box/magazine/europa/starts_empty
 	cost = PAYCHECK_CREW * 4
+
+/datum/armament_entry/company_import/intern_project/ammo/strzelec_mag
+	item_type = /obj/item/ammo_box/magazine/strzelec/starts_empty
+	cost = PAYCHECK_CREW
 
 //	杂项
 /datum/armament_entry/company_import/intern_project/misc
