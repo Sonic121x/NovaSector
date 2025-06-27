@@ -39,7 +39,6 @@
 	burst_size = 3
 	burst_delay = 0.1 SECONDS
 	fire_delay = 0.5 SECONDS
-	actions_types = list()
 	spread = 5
 
 /obj/item/gun/ballistic/automatic/hk5p/Initialize(mapload)
