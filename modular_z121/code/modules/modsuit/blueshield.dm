@@ -3,7 +3,7 @@
     name = "蓝盾投射模块"
     desc = "一个个人防护力场，在用户前方投射1x3的护盾，阻挡抛射物但不阻挡近战或投掷物。"
     icon_state = "energy_shield"
-    complexity = 3
+    complexity = 0
     idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.5
     use_energy_cost = DEFAULT_CHARGE_DRAIN * 2
     incompatible_modules = list(/obj/item/mod/module/energy_shield)
