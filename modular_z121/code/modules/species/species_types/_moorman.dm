@@ -39,8 +39,8 @@
 	safe_co2_max = 20
 	safe_plasma_max = 1
 
-	oxy_breath_dam_min = MIN_TOXIC_GAS_DAMAGE * 10
-	oxy_breath_dam_max = MAX_TOXIC_GAS_DAMAGE * 10
+	oxy_breath_dam_min = MIN_TOXIC_GAS_DAMAGE * 8
+	oxy_breath_dam_max = MAX_TOXIC_GAS_DAMAGE * 8
 
 	oxy_damage_type = TOX
 
