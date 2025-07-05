@@ -9203,6 +9203,4 @@
 #include "modular_nova\modules\xenoarchartifacts\obj\geosample.dm"
 #include "modular_nova\modules\xenoarchartifacts\obj\particle_battery.dm"
 #include "modular_nova\modules\xenoarchartifacts\obj\wave_scanner.dm"
-#include "modular_z121\code\modules\depolyable_healer\deployable_healer.dm"
-#include "modular_z121\code\modules\depolyable_healer\deployable_healer_machine.dm"
 // END_INCLUDE
