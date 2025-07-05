@@ -31,23 +31,36 @@
 	addtimer(CALLBACK(src, /obj/machinery/deployable_healer/proc/finished), duration)
 
 	//	让信标发出青绿色荧光
-	set_light(1, 3, "#88FFAA")
+	set_light(1, 3, "#36C5F4")
 
 //	获取目标的伤害类型
-/obj/machinery/deployable_healer/proc/get_damage_types(mob/living/carbon/M)
-	var/list/damage_types = list()
+/obj/machinery/deployable_healer/proc/get_priority_damage_type(mob/living/carbon/M)
+	// 获取所有伤害值
+	var/brute = M.getBruteLoss()
+	var/burn = M.getFireLoss()
+	var/tox = M.getToxLoss()
+	var/oxy = M.getOxyLoss()
 
-	//	根据是否存在伤害获取伤害类型
-	if(M.getBruteLoss() > 0)
-		damage_types += BRUTE
-	if(M.getFireLoss() > 0)
-		damage_types += BURN
-	if(M.getToxLoss() > 0)
-		damage_types += TOX
-	if(M.getOxyLoss() > 0)
-		damage_types += OXY
+	// 找出最大伤害值
+	var/max_damage = max(brute, burn, tox, oxy)
 
-	return damage_types
+	// 如果没有伤害，返回null
+	if(max_damage <= 0)
+		return null
+
+	// 收集所有达到最大伤害值的类型
+	var/list/priority_types = list()
+	if(brute == max_damage)
+		priority_types += BRUTE
+	if(burn == max_damage)
+		priority_types += BURN
+	if(tox == max_damage)
+		priority_types += TOX
+	if(oxy == max_damage)
+		priority_types += OXY
+
+	// 随机选择一个最高伤害类型（如果有多个相同值）
+	return pick(priority_types)
 
 //	每次间隔结束后，尝试对范围内的玩家进行治疗
 /obj/machinery/deployable_healer/proc/heal_pulse()
@@ -68,11 +81,11 @@
 
 		//	获取目标目前所有的伤害类型
 		//	若为空则不治疗
-		var/list/damage_types = get_damage_types(L)
-		if (!length(damage_types))
+		var/chosen_type = get_priority_damage_type(L)
+		if (!chosen_type)
 			continue
 
-		heal_mob(L, pick(damage_types))
+		heal_mob(L, chosen_type)
 
 	//	播放治疗音效
 	playsound(src, 'sound/items/healthanalyzer.ogg', 25, TRUE)
@@ -103,7 +116,8 @@
 
 	//	播放关闭音效并播放粒子动画
 	playsound(src, 'sound/machines/steam_hiss.ogg', 25, TRUE)
-	var/obj/effect/temp_visual/nano_smoke/S = new(get_turf(src))
+	new /obj/effect/temp_visual/nano_smoke(get_turf(src))
+
 	//	提示其他人纳米治疗仪已经用尽
 	visible_message(span_warning("[src]发出一阵柔和的嗡鸣声，化作纳米云消散在空气中..."))
 
@@ -121,4 +135,4 @@
     icon_state = "shieldsparkles"
     duration = 70
     layer = BELOW_MOB_LAYER
-    color = "#88FFAA"
+    color = "#36C5F4"
