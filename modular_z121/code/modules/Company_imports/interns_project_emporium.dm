@@ -66,6 +66,15 @@
 	item_type = /obj/item/ammo_box/magazine/strzelec/starts_empty
 	cost = PAYCHECK_CREW
 
+//	医疗用品
+/datum/armament_entry/company_import/intern_project/medical
+	subcategory = "医疗用品"
+	cost = PAYCHECK_CREW
+
+/datum/armament_entry/company_import/intern_project/medical/beacon
+	item_type = /obj/item/deployable_healer
+	cost = PAYCHECK_CREW * 20
+
 //  模块
 /datum/armament_entry/company_import/intern_project/modules/popcorndispenser
 	item_type = /obj/item/mod/module/dispenser/popcorn
