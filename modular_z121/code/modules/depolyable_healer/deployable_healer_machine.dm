@@ -5,8 +5,8 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 
-	icon = 'modular_nova/modules/medical/icons/obj/machinery.dmi'
-	icon_state = "breath_machine"
+	icon = 'modular_z121/icons/obj/deployable_healer.dmi'
+	icon_state = "machinery"
 
 	max_integrity = 25
 
