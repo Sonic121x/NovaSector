@@ -8,6 +8,8 @@
 	icon = 'modular_nova/modules/medical/icons/obj/machinery.dmi'
 	icon_state = "breath_machine"
 
+	max_integrity = 25
+
 	var/duration = 300 SECONDS
 	var/interval = 2 SECONDS
 
@@ -28,8 +30,8 @@
 	addtimer(CALLBACK(src, /obj/machinery/deployable_healer/proc/heal_pulse), interval)
 	addtimer(CALLBACK(src, /obj/machinery/deployable_healer/proc/finished), duration)
 
-	//	让信标发出绿色荧光
-	set_light(1, 1.5, LIGHT_COLOR_GREEN)
+	//	让信标发出青绿色荧光
+	set_light(1, 3, "#88FFAA")
 
 //	获取目标的伤害类型
 /obj/machinery/deployable_healer/proc/get_damage_types(mob/living/carbon/M)
@@ -99,15 +101,24 @@
 	if (QDELETED(src))
 		return
 
+	//	播放关闭音效并播放粒子动画
+	playsound(src, 'sound/machines/steam_hiss.ogg', 25, TRUE)
+	var/obj/effect/temp_visual/nano_smoke/S = new(get_turf(src))
 	//	提示其他人纳米治疗仪已经用尽
-	visible_message(span_warning("[src] 发出一阵嗡鸣声，化作纳米粉尘消散了！"))
+	visible_message(span_warning("[src]发出一阵柔和的嗡鸣声，化作纳米云消散在空气中..."))
 
-	//	播放销毁音效以及效果，并留下灰烬
-	playsound(src, 'sound/effects/sparks/sparks4.ogg', 25, TRUE)
-	do_admin_sparks(5, TRUE, src)
+	//	在原地留下灰烬
 	new /obj/effect/decal/cleanable/ash(get_turf(src))
 
 	qdel(src)
 
 /obj/machinery/deployable_healer/Destroy(force)
 	. = ..()
+
+//	销毁时释放的粒子动画
+/obj/effect/temp_visual/nano_smoke
+    icon = 'icons/effects/effects.dmi'
+    icon_state = "shieldsparkles"
+    duration = 70
+    layer = BELOW_MOB_LAYER
+    color = "#88FFAA"
