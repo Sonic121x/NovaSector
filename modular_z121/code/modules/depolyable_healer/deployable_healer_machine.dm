@@ -107,7 +107,7 @@
 			M.adjustOxyLoss(-heal_per_pulse)
 
 	//	播放治疗效果
-	new /obj/effect/temp_visual/heal(get_turf(M))
+	new /obj/effect/temp_visual/heal(get_turf(M)).color = "#36C5F4"
 	to_chat(M, span_notice("纳米机器人修复了你的[chosen_type]伤害"))
 
 /obj/machinery/deployable_healer/proc/finished()
