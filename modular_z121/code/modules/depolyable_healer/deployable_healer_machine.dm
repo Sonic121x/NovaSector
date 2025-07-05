@@ -30,7 +30,7 @@
 	addtimer(CALLBACK(src, /obj/machinery/deployable_healer/proc/heal_pulse), interval)
 	addtimer(CALLBACK(src, /obj/machinery/deployable_healer/proc/finished), duration)
 
-	//	让信标发出青绿色荧光
+	//	让信标发出蓝色荧光
 	set_light(1, 3, "#36C5F4")
 
 //	获取目标的伤害类型
