@@ -1,0 +1,4 @@
+author: "WitherVictor"
+delete-after: True
+changes:
+  - rscadd: "添加了治疗信标"
