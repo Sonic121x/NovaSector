@@ -7,7 +7,6 @@
 		/obj/item/mod/module/projectile_dampener,
 		/obj/item/mod/module/quick_carry,
 		/obj/item/mod/module/holster,
-		/obj/item/mod/module/blue_shield,
 	)
 
 /datum/mod_theme/blueshield
