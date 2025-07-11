@@ -76,9 +76,24 @@
 	cost = PAYCHECK_CREW * 20
 
 //  模块
+/datum/armament_entry/company_import/intern_project/modules
+	subcategory = "模块"
+	cost = PAYCHECK_CREW
+
 /datum/armament_entry/company_import/intern_project/modules/popcorndispenser
 	item_type = /obj/item/mod/module/dispenser/popcorn
+	cost = PAYCHECK_CREW * 5
+
+//  食物
+/datum/armament_entry/company_import/intern_project/food
+	subcategory = "食物"
 	cost = PAYCHECK_CREW
+
+/datum/armament_entry/company_import/intern_project/food/liverpocket
+	item_type = /obj/item/storage/box/donkpockets/donkpocketliver
+	cost = PAYCHECK_CREW * 2
+
+
 
 //	杂项
 /datum/armament_entry/company_import/intern_project/misc
