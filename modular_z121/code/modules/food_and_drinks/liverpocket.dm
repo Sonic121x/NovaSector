@@ -1,6 +1,6 @@
 /obj/item/food/donkpocket/liver
 	name = "\improper 肝口袋饼"
-	desc = "Donk 公司声明：本口袋饼生产过程中没有任何助手受到伤害"
+	desc = "Donk 公司声明：本口袋饼生产过程中没有任何肝脏受到伤害"
 	icon = 'modular_z121/icons/obj/food/liverpocket.dmi'
 	icon_state = "liverpocket"
 	food_reagents = list(
