@@ -33,6 +33,14 @@
 	//	让信标发出蓝色荧光
 	set_light(1, 3, "#36C5F4")
 
+/obj/machinery/deployable_healer/examine(mob/user)
+	. = ..()
+	. += span_notice("A digital display on it reads \"[seconds_remaining()]\".")
+	balloon_alert(user, "[seconds_remaining()]")
+
+/obj/machinery/deployable_healer/proc/seconds_remaining()
+	. = max(0, round((start_time + duration - world.time) / 10))
+
 //	获取目标的伤害类型
 /obj/machinery/deployable_healer/proc/get_priority_damage_type(mob/living/carbon/M)
 	// 获取所有伤害值
@@ -90,7 +98,7 @@
 	//	播放治疗音效
 	playsound(src, 'sound/items/healthanalyzer.ogg', 25, TRUE)
 
-	if (world.time < start_time + duration)
+	if (world.time + interval < start_time + duration)
 		//	（逻辑意义上的）链式调用
 		addtimer(CALLBACK(src, /obj/machinery/deployable_healer/proc/heal_pulse), interval)
 
