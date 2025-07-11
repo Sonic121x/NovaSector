@@ -23,7 +23,7 @@
 
 /obj/item/food/donkpocket/warm/liver
 	name = "温肝口袋饼"
-	desc = "冰冷的助手化为了温暖的口袋饼"
+	desc = "冰冷的肝脏化为了温暖的口袋饼"
 	icon = 'modular_z121/icons/obj/food/liverpocket.dmi'
 	icon_state = "warm_liverpocket"
 	food_reagents = list(
