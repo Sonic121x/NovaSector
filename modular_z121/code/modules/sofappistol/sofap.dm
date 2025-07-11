@@ -12,6 +12,7 @@
 	inhand_icon_state = "sofap"
 
 	fire_sound = 'modular_z121/sound/guns/sofap/sofap_fire.ogg'
+	fire_sound_volume = 80
 	suppressed_sound = 'modular_z121/sound/guns/sofap/sofap_fire_suppressed.ogg'
 
 	//  中等物品大小
@@ -19,7 +20,7 @@
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol
 	special_mags = TRUE	//  不同的弹匣贴图
-	empty_indicator = TRUE  //弹药耗尽贴图
+	empty_indicator = TRUE	//  弹药耗尽贴图
 
 	//  可安装消音器
 	can_suppress = TRUE
@@ -27,15 +28,14 @@
 	suppressor_x_offset = 6
 	suppressor_y_offset = 0
 
-	fire_delay = 0.15 SECONDS
-	actions_types = list()//无法切换射击模式
-	spread = 5
+	fire_delay = 0.1 SECONDS
+	bolt_type = BOLT_TYPE_STANDARD
+	actions_types = list()	//  无法切换射击模式
+	spread = 12.5
+	recoil = 0.5
 
 	//  0.4x 伤害修正
 	projectile_damage_multiplier = 0.4
-
-	//  开膛待击
-	bolt_type = BOLT_TYPE_OPEN
 
 //  SOFAP 可挂载战术手电
 /obj/item/gun/ballistic/automatic/pistol/sofap/add_seclight_point()
@@ -45,7 +45,9 @@
 		overlay_x = 0, \
 		overlay_y = 0)
 
-//  SOFAP 可以全自动开火
 /obj/item/gun/ballistic/automatic/pistol/sofap/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, fire_delay)
+	AddComponent(/datum/component/automatic_fire, fire_delay)//  全自动开火
+
+/obj/item/gun/ballistic/automatic/pistol/sofap/no_mag
+	spawnwithmagazine = FALSE
