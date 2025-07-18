@@ -11,7 +11,7 @@
 		/datum/reagent/medicine/higadrite = 4
 		)
 	tastes = list("earthly pungent" = 2, "iron" = 1)
-	foodtypes = MEAT/GORE
+	foodtypes = GORE | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_2
 	warm_type = /obj/item/food/donkpocket/warm/liver
 
@@ -35,7 +35,7 @@
 		/datum/reagent/medicine/higadrite = 4
 	)
 	tastes = list("meat" = 2, "iron" = 1)
-	foodtypes = MEAT
+	foodtypes = GRAIN | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/storage/box/donkpockets/donkpocketliver
@@ -43,3 +43,13 @@
 	icon = 'modular_z121/icons/obj/food/liverpocket.dmi'
 	icon_state = "donkpocketliver"
 	donktype = /obj/item/food/donkpocket/liver
+
+/datum/crafting_recipe/food/liverpocket
+	time = 15
+	name = "肝口袋饼"
+	reqs = list(
+		/obj/item/food/doughslice = 1,
+		/obj/item/organ/liver = 1
+	)
+	result = /obj/item/food/donkpocket/liver
+	category = CAT_PASTRY
