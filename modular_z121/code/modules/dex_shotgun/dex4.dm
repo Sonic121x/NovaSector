@@ -142,7 +142,7 @@
 	icon_state = "magazine"
 	base_icon_state = "magazine"
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
-	ammo_type = /obj/item/ammo_casing/shotgun
+	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 	caliber = CALIBER_SHOTGUN
 	max_ammo = 8
 
