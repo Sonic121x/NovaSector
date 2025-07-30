@@ -32,7 +32,7 @@
 	spawnwithmagazine = TRUE
 
 	burst_size = 1
-	fire_delay = 0.65 SECONDS
+	fire_delay = 0.6 SECONDS
 	actions_types = list()
 	spread = 0
 
