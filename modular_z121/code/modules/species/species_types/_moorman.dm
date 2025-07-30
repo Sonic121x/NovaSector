@@ -81,17 +81,25 @@
 			breather.apply_damage(clamp(ratio, oxy_breath_dam_min, oxy_breath_dam_max), oxy_damage_type, spread_damage = TRUE)
 
 	else
-		if(drunk_oxygen > drunk_oxygen_max * 0.25 && warn == 0)
-			to_chat(breather, span_warning("你觉得自己有点迷糊"))
-			warn = 1
+		if(drunk_oxygen > drunk_oxygen_max * 0.75)
+			breather.adjust_eye_blur(7 SECONDS)
+			if(warn == 2)
+				to_chat(breather, span_userdanger("你觉得自己快昏迷了………"))
+				warn = 3
 			return
-		if(drunk_oxygen > drunk_oxygen_max * 0.5 && warn == 1)
-			to_chat(breather, span_boldwarning("你开始觉得自己昏昏欲睡…"))
-			warn = 2
+
+		if(drunk_oxygen > drunk_oxygen_max * 0.5)
+			breather.adjust_eye_blur(5 SECONDS)
+			if(warn == 1)
+				to_chat(breather, span_boldwarning("你开始觉得自己昏昏欲睡…"))
+				warn = 2
 			return
-		if(drunk_oxygen > drunk_oxygen_max * 0.75 && warn == 2)
-			to_chat(breather, span_userdanger("你觉得自己快昏迷了………"))
-			warn = 3
+
+		if(drunk_oxygen > drunk_oxygen_max * 0.25)
+			breather.adjust_eye_blur(3 SECONDS)
+			if(warn == 0)
+				to_chat(breather, span_warning("你觉得自己有点迷糊"))
+				warn = 1
 			return
 
 /obj/item/organ/lungs/moorman/safe_oxygen(mob/living/carbon/breather, datum/gas_mixture/breath, old_o2_pp)
@@ -171,7 +179,7 @@
 /datum/species/moorman/proc/stat_change(datum/source, new_stat, old_stat)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/H = source
-	if(new_stat == SOFT_CRIT || new_stat == HARD_CRIT && old_stat != DEAD)
+	if(old_stat < SOFT_CRIT && (new_stat == SOFT_CRIT || new_stat == HARD_CRIT))
 		H.death()
 
 /datum/species/moorman/proc/moving(atom/movable/moved, atom/oldloc, direction, forced)
