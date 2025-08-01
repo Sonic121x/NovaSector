@@ -28,7 +28,7 @@
 	item_type = /obj/item/gun/ballistic/rifle/rebarxbow/crossbow
 
 /datum/armament_entry/company_import/intern_project/primary/aa12
-	item_type = /obj/item/gun/ballistic/automatic/aa12
+	item_type = /obj/item/gun/ballistic/shotgun/aa12
 	cost = PAYCHECK_COMMAND * 16
 
 /datum/armament_entry/company_import/intern_project/primary/hk5p
@@ -39,9 +39,9 @@
 	item_type = /obj/item/gun/ballistic/automatic/europa
 	cost = PAYCHECK_COMMAND * 20
 
-/datum/armament_entry/company_import/intern_project/primary/strzelec
-	item_type = /obj/item/gun/ballistic/rifle/strzelec
-	cost = PAYCHECK_COMMAND * 15
+/datum/armament_entry/company_import/intern_project/primary/dex4
+	item_type = /obj/item/gun/ballistic/shotgun/dex4
+	cost = PAYCHECK_COMMAND * 12
 
 //	弹药
 /datum/armament_entry/company_import/intern_project/ammo
@@ -62,8 +62,8 @@
 	item_type = /obj/item/ammo_box/magazine/europa/starts_empty
 	cost = PAYCHECK_CREW * 4
 
-/datum/armament_entry/company_import/intern_project/ammo/strzelec_mag
-	item_type = /obj/item/ammo_box/magazine/strzelec/starts_empty
+/datum/armament_entry/company_import/intern_project/ammo/dex4_mag
+	item_type = /obj/item/ammo_box/magazine/dex4/starts_empty
 	cost = PAYCHECK_CREW
 
 //	医疗用品

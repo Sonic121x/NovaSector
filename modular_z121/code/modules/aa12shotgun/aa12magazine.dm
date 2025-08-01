@@ -10,7 +10,7 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	w_class = WEIGHT_CLASS_SMALL
 
-	ammo_type = /obj/item/ammo_casing/shotgun
+	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 	caliber = CALIBER_SHOTGUN
 	max_ammo = 8
 
@@ -29,7 +29,7 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	w_class = WEIGHT_CLASS_NORMAL
 
-	ammo_type = /obj/item/ammo_casing/shotgun
+	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 	caliber = CALIBER_SHOTGUN
 	max_ammo = 20
 
