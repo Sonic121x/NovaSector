@@ -34,6 +34,12 @@
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
+/obj/item/melee/energy/esabre/on_exit_storage(datum/storage/container)
+	playsound(container.parent, 'sound/items/unsheath.ogg', 25, TRUE)
+
+/obj/item/melee/energy/esabre/on_enter_storage(datum/storage/container)
+	playsound(container.parent, 'sound/items/sheath.ogg', 25, TRUE)
+
 /obj/item/melee/energy/esabre/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] swings [src] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS|FIRELOSS)
