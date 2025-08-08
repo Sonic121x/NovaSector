@@ -1,6 +1,6 @@
 /datum/loadout_item/inhand/pet/lanhongqiu
 	name = "蓝红球"
-	item_path = /obj/item/clothing/head/mob_holder/pet/donator/lanhongqiu
+	item_path = /obj/item/mob_holder/pet/donator/lanhongqiu
 	ckeywhitelist = list("lanhongqiu")
 
 /obj/item/lanhongqiucore
@@ -38,7 +38,7 @@
 	obj_damage = 0
 	var/obj/item/skysword/weapon
 
-/obj/item/clothing/head/mob_holder/pet/donator/lanhongqiu
+/obj/item/mob_holder/pet/donator/lanhongqiu
 	name = "蓝红球"
 	desc = "克罗托生物，也许别人会认为是史莱姆的变种，实际是他们已经在当地建立了一个庞大的世界国家。别惹他！这是世界共和国的公民！"
 	icon = 'modular_z121/icons/mob/pets.dmi'
