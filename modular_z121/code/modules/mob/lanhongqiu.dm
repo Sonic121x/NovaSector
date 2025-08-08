@@ -24,7 +24,7 @@
 	melee_damage_upper = 0
 	can_be_held = TRUE
 	pass_flags = PASSTABLE
-	mob_size = MOB_SIZE_SMALL
+	mob_size = MOB_SIZE_HUMAN
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	minimum_survivable_temperature = NPC_DEFAULT_MIN_TEMP
 	maximum_survivable_temperature = NPC_DEFAULT_MAX_TEMP
@@ -111,3 +111,4 @@
 	price_max = CARGO_CRATE_VALUE * 5
 	stock_max = 1
 	availability_prob = 90
+
