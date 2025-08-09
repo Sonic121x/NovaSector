@@ -93,7 +93,7 @@
 	item_type = /obj/item/storage/box/donkpockets/donkpocketliver
 	cost = PAYCHECK_CREW * 2
 
-/datum/armament_entry/company_import/intern_project/food/liverpocket
+/datum/armament_entry/company_import/intern_project/food/ratpocket
 	item_type = /obj/item/storage/box/donkpockets/donkpocketrat
 	cost = PAYCHECK_CREW * 2
 
