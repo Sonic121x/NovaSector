@@ -34,7 +34,7 @@
 
 	actions_types = list()
 
-	projectile_damage_multiplier = 0.85
+	projectile_damage_multiplier = 0.75
 
 	force = 15 //你也可以用这枪砸人，也挺疼的
 
