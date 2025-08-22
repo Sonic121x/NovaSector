@@ -31,8 +31,8 @@
 	item_type = /obj/item/gun/ballistic/shotgun/aa12
 	cost = PAYCHECK_COMMAND * 16
 
-/datum/armament_entry/company_import/intern_project/primary/hk5p
-	item_type = /obj/item/gun/ballistic/automatic/hk5p
+/datum/armament_entry/company_import/intern_project/primary/evo
+	item_type = /obj/item/gun/ballistic/automatic/evo
 	cost = PAYCHECK_COMMAND * 10
 
 /datum/armament_entry/company_import/intern_project/primary/europa
@@ -61,6 +61,10 @@
 /datum/armament_entry/company_import/intern_project/ammo/europa_mag
 	item_type = /obj/item/ammo_box/magazine/europa/starts_empty
 	cost = PAYCHECK_CREW * 4
+
+/datum/armament_entry/company_import/intern_project/ammo/evo_mag
+	item_type = /obj/item/ammo_box/magazine/evo_c9mm/starts_empty
+	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/intern_project/ammo/dex4_mag
 	item_type = /obj/item/ammo_box/magazine/dex4/starts_empty
