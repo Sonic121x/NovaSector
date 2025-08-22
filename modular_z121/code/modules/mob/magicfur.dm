@@ -151,6 +151,7 @@
 	speech_chance = 4
 	speak = list("Aw~","嗷呜~")
 	emote_hear = list("绒毛细腻的摩擦声")
-	emote_see = list("悠闲的伸懒腰","低头看向地板","搭理自己毛发")
+	emote_see = list("悠闲的伸懒腰","低头看向地板","打理自己毛发")
+
 
 
