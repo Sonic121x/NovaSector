@@ -88,7 +88,7 @@
 //	抚摸反应
 /mob/living/basic/pet/magicfur/proc/on_pet(mob/living/basic/source, mob/living/petter, modifiers)
 	SIGNAL_HANDLER
-	src.spin(spintime = 1 SECONDS, speed = 1)
+	src.spin(spintime = 0.4 SECONDS, speed = 1)
 
 //	驯服反应
 /mob/living/basic/pet/magicfur/tamed(mob/living/tamer, atom/food)
@@ -148,8 +148,7 @@
 	)
 
 /datum/ai_planning_subtree/random_speech/magicfur
-	speech_chance = 10
+	speech_chance = 4
 	speak = list("Aw~","嗷呜~")
 	emote_hear = list("绒毛细腻的摩擦声")
 	emote_see = list("悠闲的伸懒腰","低头看向地板","打理自己毛发")
-
