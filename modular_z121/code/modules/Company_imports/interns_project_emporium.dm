@@ -15,6 +15,7 @@
 /datum/armament_entry/company_import/intern_project/sidearm
 	subcategory = "小型枪械"
 	cost = PAYCHECK_COMMAND * 4
+	restricted = TRUE
 
 /datum/armament_entry/company_import/intern_project/sidearm/sofap
 	item_type = /obj/item/gun/ballistic/automatic/pistol/sofap
@@ -30,18 +31,22 @@
 /datum/armament_entry/company_import/intern_project/primary/aa12
 	item_type = /obj/item/gun/ballistic/shotgun/aa12
 	cost = PAYCHECK_COMMAND * 16
+	restricted = TRUE
 
 /datum/armament_entry/company_import/intern_project/primary/evo
 	item_type = /obj/item/gun/ballistic/automatic/evo
 	cost = PAYCHECK_COMMAND * 10
+	restricted = TRUE
 
 /datum/armament_entry/company_import/intern_project/primary/europa
 	item_type = /obj/item/gun/ballistic/automatic/europa
 	cost = PAYCHECK_COMMAND * 20
+	restricted = TRUE
 
 /datum/armament_entry/company_import/intern_project/primary/dex4
 	item_type = /obj/item/gun/ballistic/shotgun/dex4
 	cost = PAYCHECK_COMMAND * 12
+	restricted = TRUE
 
 //	弹药
 /datum/armament_entry/company_import/intern_project/ammo
@@ -58,13 +63,13 @@
 	item_type = /obj/item/ammo_box/magazine/aa12/drum/starts_empty
 	cost = PAYCHECK_CREW * 3
 
-/datum/armament_entry/company_import/intern_project/ammo/europa_mag
-	item_type = /obj/item/ammo_box/magazine/europa/starts_empty
-	cost = PAYCHECK_CREW * 4
-
 /datum/armament_entry/company_import/intern_project/ammo/evo_mag
 	item_type = /obj/item/ammo_box/magazine/evo_c9mm/starts_empty
 	cost = PAYCHECK_CREW
+
+/datum/armament_entry/company_import/intern_project/ammo/europa_mag
+	item_type = /obj/item/ammo_box/magazine/europa/starts_empty
+	cost = PAYCHECK_CREW * 4
 
 /datum/armament_entry/company_import/intern_project/ammo/dex4_mag
 	item_type = /obj/item/ammo_box/magazine/dex4/starts_empty
