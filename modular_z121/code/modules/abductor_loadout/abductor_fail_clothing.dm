@@ -17,7 +17,7 @@
 	icon_state = "vest_combat"
 	inhand_icon_state = "armor"
 	blood_overlay_type = "armor"
-	only_functional = TRUE
+	only_functional = FALSE
 	armor_type = /datum/armor/abductor_fail
 	allowed = list(
 		/obj/item/abductor,
