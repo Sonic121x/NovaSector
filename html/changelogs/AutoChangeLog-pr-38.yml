@@ -1,0 +1,4 @@
+author: "Secai524"
+delete-after: True
+changes:
+  - bugfix: "绑架者背心不能非功能的问题"
