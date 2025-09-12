@@ -314,7 +314,7 @@
 	if(!isliving(target) || (damage > initial(damage)))
 		return ..()
 	var/mob/living/target_mob = target
-	if(target_mob.mob_biotypes & biotype_we_look_for || istype(target_mob, /mob/living/simple_animal/hostile/megafauna))
+	if(target_mob.mob_biotypes && biotype_we_look_for || istype(target_mob, /mob/living/simple_animal/hostile/megafauna))
 		damage *= biotype_damage_multiplier
 	return ..()
 
