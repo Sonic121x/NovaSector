@@ -15,12 +15,6 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 	warm_type = /obj/item/food/donkpocket/warm/liver
 
-/obj/item/food/donkpocket/dank/make_bakeable()
-	AddComponent(/datum/component/bakeable, warm_type, rand(baking_time_short, baking_time_long), TRUE, TRUE, child_added_reagents)
-
-/obj/item/food/donkpocket/dank/make_microwaveable()
-	AddElement(/datum/element/microwavable, warm_type, child_added_reagents)
-
 /obj/item/food/donkpocket/warm/liver
 	name = "温肝口袋饼"
 	desc = "冰冷的肝脏化为了温暖的口袋饼"
