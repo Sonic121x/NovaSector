@@ -10,8 +10,8 @@
 	category = CAT_CAKE
 
 /obj/item/food/cake/liquid_electric
-	name = "lecake"
-	desc = "abcd"
+	name = "液电蛋糕"
+	desc = "发光发热，充满能量。"
 	icon = 'modular_z121/icons/obj/food/food.dmi'
 	icon_state = "electriccake"
 	food_reagents = list(
@@ -33,8 +33,8 @@
 
 
 /obj/item/food/cakeslice/liquid_electric
-	name = "lecakeslice"
-	desc = "ababa"
+	name = "一块液电蛋糕"
+	desc = "发光发热，充满能量。"
 	icon = 'modular_z121/icons/obj/food/food.dmi'
 	icon_state = "electriccakeslice"
 	food_reagents = list(
@@ -60,3 +60,4 @@
 	to_chat(eater, "<font color='blue' size='5'>As you eat the cake slice, a small electric shock courses through your body!</font>")
 	if(eater != feeder)
 		log_combat(feeder, eater, "fed a liquid electric cake to", src)
+
