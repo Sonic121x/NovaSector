@@ -27,7 +27,7 @@
 	casing_ejector = TRUE
 	semi_auto = TRUE
 
-	pin = /obj/item/firing_pin/explorer
+	pin = /obj/item/firing_pin/wastes
 
 /obj/item/gun/ballistic/shotgun/mining/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
