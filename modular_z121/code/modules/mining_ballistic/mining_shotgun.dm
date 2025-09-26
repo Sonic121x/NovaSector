@@ -24,6 +24,8 @@
 	fire_delay = 0.8 SECONDS
 	fire_sound = 'modular_z121/sound/guns/mining_ballistic/mining_shotgun_fire.ogg'
 
+	projectile_damage_multiplier = 0.75
+
 	casing_ejector = TRUE
 	semi_auto = TRUE
 
