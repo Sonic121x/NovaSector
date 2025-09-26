@@ -109,6 +109,21 @@
 	item_path = /obj/item/clothing/under/pants/nova/big_pants
 	group = "Casualwear"
 
+/datum/loadout_item/under/miscellaneous/loose_pants
+	name = "Loose pants"
+	item_path = /obj/item/clothing/under/pants/nova/loose_pants
+	group = "Casualwear"
+
+/datum/loadout_item/under/miscellaneous/hakama
+	name = "Hakama"
+	item_path = /obj/item/clothing/under/pants/nova/hakama
+	group = "Casualwear"
+
+/datum/loadout_item/under/miscellaneous/double_skirt_dress
+	name = "Double Skirt Dress"
+	item_path = /obj/item/clothing/under/pants/nova/double_skirt_dress
+	group = "Casualwear"
+
 /datum/loadout_item/under/miscellaneous/slacks
 	name = "Pants - Slacks"
 	item_path = /obj/item/clothing/under/pants/slacks
@@ -231,14 +246,10 @@
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/sweater
-	name = "Turtleneck (Cableknit)" //Different than the Suit item ("Sweater")!!
+	name = "Cableknit Sweater" //Different than the Suit item ("Sweater")!!
 	item_path = /obj/item/clothing/under/sweater
 	group = "Casualwear"
-
-/datum/loadout_item/under/miscellaneous/keyhole
-	name = "Turtleneck (Keyhole)"
-	item_path = /obj/item/clothing/under/sweater/keyhole
-	group = "Casualwear"
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/under/jumpsuit/turtleneck
 	name = "Turtleneck w/ Pants"
