@@ -1,7 +1,6 @@
 /obj/item/gun/ballistic/shotgun/mining
 	name = "矿用霰弹枪"
 	desc = "一种特化的半自动霰弹枪，主要用于狩猎爱好者与矿工在拉瓦兰狩猎。为了防止有人滥用这把枪，它被设计成了只能装填狩猎独头弹"
-
 	icon = 'modular_z121/icons/obj/guns/mining_ballistic.dmi'
 	icon_state = "shot_gun"
 
@@ -23,9 +22,7 @@
 	can_suppress = FALSE
 	fire_delay = 0.8 SECONDS
 	fire_sound = 'modular_z121/sound/guns/mining_ballistic/mining_shotgun_fire.ogg'
-
 	projectile_damage_multiplier = 0.75
-
 	casing_ejector = TRUE
 	semi_auto = TRUE
 

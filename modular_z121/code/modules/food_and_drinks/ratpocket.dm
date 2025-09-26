@@ -1,7 +1,7 @@
 /obj/item/food/donkpocket/rat
 	name = "\improper 鼠口袋饼"
 	desc = "Donk 公司声明：本口袋饼生产过程中没有任何鼠鼠受到伤害"
-	icon = 'modular_z121/icons/obj/food/ratpocket.dmi'
+	icon = 'modular_z121/icons/obj/food/pocket/ratpocket.dmi'
 	icon_state = "ratpocket"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -16,7 +16,7 @@
 /obj/item/food/donkpocket/warm/rat
 	name = "温鼠口袋饼"
 	desc = "老实说，你不知道为什么加热鼠口袋饼会带来奶酪的味道。"
-	icon = 'modular_z121/icons/obj/food/ratpocket.dmi'
+	icon = 'modular_z121/icons/obj/food/pocket/ratpocket.dmi'
 	icon_state = "warm_ratpocket"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 9,
@@ -31,7 +31,7 @@
 
 /obj/item/storage/box/donkpockets/donkpocketrat
 	name = "一盒鼠口袋饼"
-	icon = 'modular_z121/icons/obj/food/ratpocket.dmi'
+	icon = 'modular_z121/icons/obj/food/pocket/ratpocket.dmi'
 	icon_state = "donkpocketrat"
 	donktype = /obj/item/food/donkpocket/rat
 
