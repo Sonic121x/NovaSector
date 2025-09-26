@@ -21,7 +21,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/mining
 
 	can_suppress = FALSE
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.8 SECONDS
 	fire_sound = 'modular_z121/sound/guns/mining_ballistic/mining_shotgun_fire.ogg'
 
 	casing_ejector = TRUE
@@ -38,5 +38,4 @@
 /obj/item/ammo_box/magazine/internal/shot/mining
 	ammo_type = /obj/item/ammo_casing/shotgun/hunter
 	caliber = null
-	max_ammo = 15
-	multiload = TRUE
+	max_ammo = 8
