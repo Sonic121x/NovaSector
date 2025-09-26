@@ -1,6 +1,6 @@
 /obj/item/bodypart/head/lizard/reptilian
 	icon_greyscale = 'modular_z121/icons/mob/sprite_accessory/reptilian/bodyparts.dmi'
-	head_flags = HEAD_ALL_FEATURES
+	head_flags = HEAD_DEFAULT_FEATURES
 
 /obj/item/bodypart/chest/lizard/reptilian
 	icon_greyscale = 'modular_z121/icons/mob/sprite_accessory/reptilian/bodyparts.dmi'
@@ -76,4 +76,5 @@
 	icon_state = "reptilian"
 	default_color = "#555555"
 	affected_bodyparts = HEAD | CHEST
+
 	gendered = FALSE

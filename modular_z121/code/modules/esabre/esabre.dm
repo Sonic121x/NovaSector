@@ -67,5 +67,5 @@
 
 /obj/structure/closet/secure_closet/captains/populate_contents_immediate()
 	new /obj/item/gun/energy/e_gun(src)
-	new /obj/item/storage/belt/sabre(src)
+	new /obj/item/storage/belt/sheath/sabre(src)
 	new /obj/item/weaponcrafting/swordkit/esabre(src)

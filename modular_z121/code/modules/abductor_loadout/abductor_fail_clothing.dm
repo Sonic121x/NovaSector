@@ -28,8 +28,6 @@
 
 /obj/item/clothing/head/helmet/abductor/fail
 	name = "失效的绑架者头盔"
-/obj/item/clothing/head/helmet/abductor/fail
-	name = "失效的绑架者头盔"
 	desc = "过数十年的时光，内部的先进防御系统已经失效。"
 	icon_state = "alienhelmet"
 	inhand_icon_state = null
