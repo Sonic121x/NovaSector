@@ -15,10 +15,13 @@
 /datum/armament_entry/company_import/intern_project/sidearm
 	subcategory = "小型枪械"
 	cost = PAYCHECK_COMMAND * 4
-	restricted = TRUE
 
 /datum/armament_entry/company_import/intern_project/sidearm/sofap
 	item_type = /obj/item/gun/ballistic/automatic/pistol/sofap
+	restricted = TRUE
+
+/datum/armament_entry/company_import/intern_project/sidearm/tac9
+	item_type = /obj/item/gun/ballistic/automatic/pistol/tac9
 
 //	大型枪械
 /datum/armament_entry/company_import/intern_project/primary
@@ -55,6 +58,9 @@
 
 /datum/armament_entry/company_import/intern_project/ammo
 	item_type = /obj/item/ammo_casing/rebar/bolt
+
+/datum/armament_entry/company_import/intern_project/ammo/tac9
+	item_type = /obj/item/ammo_box/magazine/tac9/starts_empty
 
 /datum/armament_entry/company_import/intern_project/ammo/aa12_mag
 	item_type = /obj/item/ammo_box/magazine/aa12/starts_empty
