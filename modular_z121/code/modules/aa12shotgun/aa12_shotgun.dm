@@ -47,7 +47,7 @@
 	AddComponent(/datum/component/automatic_fire, fire_delay)
 
 /obj/item/ammo_box/magazine/aa12
-	name = "\improper AA12 弹匣"
+	name = "AA12 弹匣"
 	desc = "可容纳5发霰弹的弹匣，它看上去有点大"
 
 	icon = 'modular_z121/icons/obj/guns/aa12magazine.dmi'
@@ -66,7 +66,7 @@
 
 
 /obj/item/ammo_box/magazine/aa12/drum
-	name = "\improper AA12 弹鼓"
+	name = "AA12 弹鼓"
 	desc = "可容纳15发霰弹的弹鼓，容量大的惊人，体积也大的惊人"
 
 	icon = 'modular_z121/icons/obj/guns/aa12magazine.dmi'
