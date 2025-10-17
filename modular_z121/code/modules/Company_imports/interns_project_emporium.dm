@@ -116,6 +116,10 @@
 	item_type = /obj/item/storage/box/donkpockets/donkpocketslime
 	cost = PAYCHECK_CREW * 2
 
+/datum/armament_entry/company_import/intern_project/food/minepocket
+	item_type = /obj/item/storage/box/donkpockets/donkpocketmine
+	cost = PAYCHECK_CREW * 2
+
 
 
 //	杂项
