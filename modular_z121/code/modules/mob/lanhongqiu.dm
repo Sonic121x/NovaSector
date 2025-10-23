@@ -1,6 +1,6 @@
 /datum/loadout_item/inhand/pet/lanhongqiu
-	name = "蓝红球"
-	item_path = /obj/item/mob_holder/pet/donator/lanhongqiu
+	name = "蓝红球召唤信标"
+	item_path = /obj/item/advanced_choice_beacon/donatepet/lanhongqiu
 	ckeywhitelist = list("lanhongqiu")
 
 /obj/item/lanhongqiucore
@@ -112,4 +112,8 @@
 	stock_max = 1
 	availability_prob = 90
 
+/obj/item/advanced_choice_beacon/donatepet/lanhongqiu
+	name = "蓝红球召唤信标"
+	desc = "Summons Pet!snack not included"
+	possible_choices = list(/mob/living/basic/pet/lanhongqiu)
 
