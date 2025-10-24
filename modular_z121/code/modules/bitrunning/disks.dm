@@ -4,6 +4,7 @@
 	selectable_items = list(
 		/obj/item/storage/toolbox/guncase/sofap,
 		/obj/item/storage/toolbox/guncase/tac9,
+		/obj/item/storage/toolbox/guncase/bfr500,
 		/obj/item/storage/toolbox/guncase/evo,
 		/obj/item/storage/toolbox/guncase/europa,
 		/obj/item/storage/toolbox/guncase/aa12,
@@ -25,6 +26,12 @@
 	name = "TAC-9 枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/tac9
 	extra_to_spawn = /obj/item/ammo_box/magazine/tac9
+
+//	BER-500
+/obj/item/storage/toolbox/guncase/bfr500
+	name = "BER-500 枪箱"
+	weapon_to_spawn = /obj/item/gun/ballistic/revolver/single
+	extra_to_spawn = /obj/item/ammo_box/bfr500
 
 //	EVO-13
 /obj/item/storage/toolbox/guncase/evo
