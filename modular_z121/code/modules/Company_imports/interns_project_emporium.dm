@@ -23,6 +23,10 @@
 /datum/armament_entry/company_import/intern_project/sidearm/tac9
 	item_type = /obj/item/gun/ballistic/automatic/pistol/tac9
 
+/datum/armament_entry/company_import/intern_project/sidearm/bfr500
+	item_type = /obj/item/gun/ballistic/revolver/single
+	cost = PAYCHECK_COMMAND * 6
+
 //	大型枪械
 /datum/armament_entry/company_import/intern_project/primary
 	subcategory = "大型枪械"
@@ -61,6 +65,9 @@
 
 /datum/armament_entry/company_import/intern_project/ammo/tac9
 	item_type = /obj/item/ammo_box/magazine/tac9/starts_empty
+
+/datum/armament_entry/company_import/intern_project/ammo/bfr500
+	item_type = /obj/item/ammo_box/bfr500
 
 /datum/armament_entry/company_import/intern_project/ammo/aa12_mag
 	item_type = /obj/item/ammo_box/magazine/aa12/starts_empty
