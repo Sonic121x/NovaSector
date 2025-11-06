@@ -13,7 +13,8 @@
 	inhand_icon_state = "evo"
 	SET_BASE_PIXEL(-8, 0)
 
-	fire_sound = 'sound/items/weapons/gun/smg/shot.ogg'
+	fire_sound = 'modular_z121/sound/guns/evo13/evo13_fire.ogg'
+	fire_sound_volume = 45
 	suppressed_sound = 'sound/items/weapons/gun/smg/shot_suppressed.ogg'
 
 	w_class = WEIGHT_CLASS_BULKY  // 很重
@@ -27,31 +28,16 @@
 	suppressor_x_offset = 4
 	suppressor_y_offset = 0
 
-	burst_size = 3
-	burst_delay = 0.1 SECONDS
-	fire_delay = 1.2 SECONDS
-	spread = 0
+	burst_size = 1
+	projectile_damage_multiplier = 0.3
+	fire_delay = 0.1 SECONDS
+	spread = 5
+
+	actions_types = list()
 
 /obj/item/gun/ballistic/automatic/evo/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.3 SECONDS)
-
-/obj/item/gun/ballistic/automatic/evo/burst_select()
-	var/mob/living/carbon/human/user = usr
-	burst_fire_selection = !burst_fire_selection
-	if(!burst_fire_selection)
-		burst_size = 1
-		fire_delay = 0.3
-		spread = 10
-		balloon_alert(user, "switched to semi-automatic")
-	else
-		burst_size = initial(burst_size)
-		fire_delay = initial(fire_delay)
-		spread = initial(spread)
-		balloon_alert(user, "switched to [burst_size]-round burst")
-	playsound(user, 'sound/items/weapons/empty.ogg', 100, TRUE)
-	update_appearance()
-	update_item_action_buttons()
+	AddComponent(/datum/component/automatic_fire, fire_delay)
 
 /obj/item/gun/ballistic/automatic/evo/no_mag
 	spawnwithmagazine = FALSE
@@ -69,3 +55,4 @@
 
 /obj/item/ammo_box/magazine/evo_c9mm/starts_empty
 	start_empty = TRUE
+
