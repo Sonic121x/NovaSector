@@ -35,7 +35,7 @@
 	recoil = 0.5
 
 	//  0.4x 伤害修正
-	projectile_damage_multiplier = 0.4
+	projectile_damage_multiplier = 0.6
 
 //  SOFAP 可挂载战术手电
 /obj/item/gun/ballistic/automatic/pistol/sofap/add_seclight_point()
