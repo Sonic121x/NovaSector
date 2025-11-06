@@ -34,7 +34,7 @@
 	spread = 12.5
 	recoil = 0.5
 
-	//  0.4x 伤害修正
+	//  0.6x 伤害修正
 	projectile_damage_multiplier = 0.6
 
 //  SOFAP 可挂载战术手电
