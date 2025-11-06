@@ -15,8 +15,7 @@
 	fire_sound = 'modular_z121/sound/guns/tac9/tac9_fire.ogg'
 	fire_sound_volume = 45
 
-	fire_delay = 0.5 SECONDS
-	recoil = 1
+	fire_delay = 0.8 SECONDS
 	force = 15		//	一些情况可以当近战武器使用
 	projectile_speed_multiplier = 1.5
 
@@ -26,7 +25,6 @@
 	AddComponent(/datum/component/seclite_attachable, \
 		starting_light = new /obj/item/flashlight/seclite(src), \
 		is_light_removable = FALSE, \
-	)
 
 // 	弹匣
 /obj/item/ammo_box/magazine/tac9
