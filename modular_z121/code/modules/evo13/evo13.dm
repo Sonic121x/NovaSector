@@ -29,7 +29,7 @@
 	suppressor_y_offset = 0
 
 	burst_size = 1
-	projectile_damage_multiplier = 0.3
+	projectile_damage_multiplier = 0.4
 	fire_delay = 0.1 SECONDS
 	spread = 5
 
