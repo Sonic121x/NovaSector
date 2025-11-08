@@ -8,7 +8,7 @@
 	inhand_icon_state = "bfr500"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/bfr500
 	fire_sound = 'modular_z121/sound/guns/bfr500/bfr500_fire.ogg'
-	fire_sound_volume = 50
+	fire_sound_volume = 40
 	semi_auto = FALSE
 	recoil = 2
 	fire_delay = 1 SECONDS
