@@ -1,8 +1,6 @@
 /obj/item/gun/energy/photon_sniper
 	name = "光子狙击步枪"
-	desc = "一把能量狙击枪，发射足以点燃目标的高能激光，好像不能烤肉\
-	建议使用年龄：18岁\
-	10岁以下禁止使用，否则可能在深度睡眠时产生尿道松弛，引发尿床！"
+	desc = "一把能量狙击枪，发射足以点燃目标的高能激光，且不能烤肉，建议使用年龄：18岁以上"
 	icon = 'modular_z121/icons/obj/guns/photon_sniper.dmi'
 	icon_state = "photon"
 	lefthand_file = 'modular_z121/icons/mob/guns/photon_sniper_lefthand.dmi'
