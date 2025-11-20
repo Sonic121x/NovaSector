@@ -55,6 +55,11 @@
 	cost = PAYCHECK_COMMAND * 12
 	restricted = TRUE
 
+/datum/armament_entry/company_import/intern_project/primary/photon_sniper
+	item_type = /obj/item/gun/energy/photon_sniper
+	cost = PAYCHECK_COMMAND * 8
+	restricted = TRUE
+
 //	弹药
 /datum/armament_entry/company_import/intern_project/ammo
 	subcategory = "弹药"
