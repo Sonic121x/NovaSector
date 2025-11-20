@@ -14,7 +14,7 @@
 	SET_BASE_PIXEL(-8, 0)
 
 	fire_sound = 'modular_z121/sound/guns/evo13/evo13_fire.ogg'
-	fire_sound_volume = 45
+	fire_sound_volume = 40
 	suppressed_sound = 'sound/items/weapons/gun/smg/shot_suppressed.ogg'
 
 	w_class = WEIGHT_CLASS_BULKY  // 很重
