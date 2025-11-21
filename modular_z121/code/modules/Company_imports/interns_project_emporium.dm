@@ -1,155 +1,132 @@
-#define CARGO_COMPANY_INTERN (1 << 31)
-#define INTERNS_PROJECT_NAME "Intern's Project Emporium"
-
-//	注册到货仓公司进口页面
-/datum/cargo_company/intern_project
-	name = INTERNS_PROJECT_NAME
-	company_flag = CARGO_COMPANY_INTERN
-
-//	公司售卖物品的基类
-/datum/armament_entry/company_import/intern_project
-	category = INTERNS_PROJECT_NAME
-	company_bitflag = CARGO_COMPANY_INTERN
-
 //	小型枪械
-/datum/armament_entry/company_import/intern_project/sidearm
-	subcategory = "小型枪械"
+/datum/supply_pack/companies/ballistics/intern_project/sidearm
 	cost = PAYCHECK_COMMAND * 4
 
-/datum/armament_entry/company_import/intern_project/sidearm/sofap
-	item_type = /obj/item/gun/ballistic/automatic/pistol/sofap
-	restricted = TRUE
+/datum/supply_pack/companies/ballistics/intern_project/sidearm/sofap
+	contains = /obj/item/gun/ballistic/automatic/pistol/sofap
+	//restricted = TRUE
 
-/datum/armament_entry/company_import/intern_project/sidearm/tac9
-	item_type = /obj/item/gun/ballistic/automatic/pistol/tac9
+/datum/supply_pack/companies/ballistics/intern_project/sidearm/tac9
+	contains = /obj/item/gun/ballistic/automatic/pistol/tac9
 
-/datum/armament_entry/company_import/intern_project/sidearm/bfr500
-	item_type = /obj/item/gun/ballistic/revolver/single
+/datum/supply_pack/companies/ballistics/intern_project/sidearm/bfr500
+	contains = /obj/item/gun/ballistic/revolver/single
 	cost = PAYCHECK_COMMAND * 6
 
 //	大型枪械
-/datum/armament_entry/company_import/intern_project/primary
-	subcategory = "大型枪械"
+/datum/supply_pack/companies/ballistics/intern_project/primary
 	cost = PAYCHECK_COMMAND * 6
 
-/datum/armament_entry/company_import/intern_project/primary/crossbow
-	item_type = /obj/item/gun/ballistic/rifle/rebarxbow/crossbow
+/datum/supply_pack/companies/ballistics/intern_project/primary/crossbow
+	contains = /obj/item/gun/ballistic/rifle/rebarxbow/crossbow
 
-/datum/armament_entry/company_import/intern_project/primary/aa12
-	item_type = /obj/item/gun/ballistic/shotgun/aa12
+/datum/supply_pack/companies/ballistics/intern_project/primary/aa12
+	contains = /obj/item/gun/ballistic/shotgun/aa12
 	cost = PAYCHECK_COMMAND * 16
-	restricted = TRUE
+	//restricted = TRUE
 
-/datum/armament_entry/company_import/intern_project/primary/evo
-	item_type = /obj/item/gun/ballistic/automatic/evo
+/datum/supply_pack/companies/ballistics/intern_project/primary/evo
+	contains = /obj/item/gun/ballistic/automatic/evo
 	cost = PAYCHECK_COMMAND * 10
-	restricted = TRUE
+	//restricted = TRUE
 
-/datum/armament_entry/company_import/intern_project/primary/europa
-	item_type = /obj/item/gun/ballistic/automatic/europa
+/datum/supply_pack/companies/ballistics/intern_project/primary/europa
+	contains = /obj/item/gun/ballistic/automatic/europa
 	cost = PAYCHECK_COMMAND * 20
-	restricted = TRUE
+	//restricted = TRUE
 
-/datum/armament_entry/company_import/intern_project/primary/dex4
-	item_type = /obj/item/gun/ballistic/shotgun/dex4
+/datum/supply_pack/companies/ballistics/intern_project/primary/dex4
+	contains = /obj/item/gun/ballistic/shotgun/dex4
 	cost = PAYCHECK_COMMAND * 12
-	restricted = TRUE
-
-/datum/armament_entry/company_import/intern_project/primary/photon_sniper
-	item_type = /obj/item/gun/energy/photon_sniper
-	cost = PAYCHECK_COMMAND * 8
-	restricted = TRUE
+	//restricted = TRUE
 
 //	弹药
-/datum/armament_entry/company_import/intern_project/ammo
-	subcategory = "弹药"
+/datum/supply_pack/companies/mags_and_ammo/intern_project
 	cost = PAYCHECK_CREW
 
-/datum/armament_entry/company_import/intern_project/ammo
-	item_type = /obj/item/ammo_casing/rebar/bolt
+/datum/supply_pack/companies/mags_and_ammo/intern_project/bolt
+	contains = /obj/item/ammo_casing/rebar/bolt
 
-/datum/armament_entry/company_import/intern_project/ammo/tac9
-	item_type = /obj/item/ammo_box/magazine/tac9/starts_empty
+/datum/supply_pack/companies/mags_and_ammo/intern_project/tac9
+	contains = /obj/item/ammo_box/magazine/tac9/starts_empty
 
-/datum/armament_entry/company_import/intern_project/ammo/bfr500
-	item_type = /obj/item/ammo_box/bfr500
+/datum/supply_pack/companies/mags_and_ammo/intern_project/bfr500
+	contains = /obj/item/ammo_box/bfr500
 
-/datum/armament_entry/company_import/intern_project/ammo/aa12_mag
-	item_type = /obj/item/ammo_box/magazine/aa12/starts_empty
+/datum/supply_pack/companies/mags_and_ammo/intern_project/aa12_mag
+	contains = /obj/item/ammo_box/magazine/aa12/starts_empty
 
-/datum/armament_entry/company_import/intern_project/ammo/aa12_drum
-	item_type = /obj/item/ammo_box/magazine/aa12/drum/starts_empty
+/datum/supply_pack/companies/mags_and_ammo/intern_project/aa12_drum
+	contains = /obj/item/ammo_box/magazine/aa12/drum/starts_empty
 	cost = PAYCHECK_CREW * 3
 
-/datum/armament_entry/company_import/intern_project/ammo/evo_mag
-	item_type = /obj/item/ammo_box/magazine/evo_c9mm/starts_empty
+/datum/supply_pack/companies/mags_and_ammo/intern_project/evo_mag
+	contains = /obj/item/ammo_box/magazine/evo_c9mm/starts_empty
 	cost = PAYCHECK_CREW
 
-/datum/armament_entry/company_import/intern_project/ammo/europa_mag
-	item_type = /obj/item/ammo_box/magazine/europa/starts_empty
+/datum/supply_pack/companies/mags_and_ammo/intern_project/europa_mag
+	contains = /obj/item/ammo_box/magazine/europa/starts_empty
 	cost = PAYCHECK_CREW * 4
 
-/datum/armament_entry/company_import/intern_project/ammo/dex4_mag
-	item_type = /obj/item/ammo_box/magazine/dex4/starts_empty
+/datum/supply_pack/companies/mags_and_ammo/intern_project/dex4_mag
+	contains = /obj/item/ammo_box/magazine/dex4/starts_empty
 	cost = PAYCHECK_CREW
 
 //	医疗用品
-/datum/armament_entry/company_import/intern_project/medical
-	subcategory = "医疗用品"
+/datum/supply_pack/companies/medical/intern_project
 	cost = PAYCHECK_CREW
 
-/datum/armament_entry/company_import/intern_project/medical/beacon
-	item_type = /obj/item/deployable_healer
+/datum/supply_pack/companies/medical/intern_project/beacon
+	contains = /obj/item/deployable_healer
 	cost = PAYCHECK_CREW * 20
 
 //  模块
-/datum/armament_entry/company_import/intern_project/modules
-	subcategory = "模块"
+/datum/supply_pack/companies/modsuits/mods/intern_project
 	cost = PAYCHECK_CREW
 
-/datum/armament_entry/company_import/intern_project/modules/popcorndispenser
-	item_type = /obj/item/mod/module/dispenser/popcorn
+/datum/supply_pack/companies/modsuits/mods/intern_project/popcorndispenser
+	contains = /obj/item/mod/module/dispenser/popcorn
 	cost = PAYCHECK_CREW * 5
-
+/*
 //  食物
 /datum/armament_entry/company_import/intern_project/food
-	subcategory = "食物"
+	//subcategory = "食物"
 	cost = PAYCHECK_CREW
-
-/datum/armament_entry/company_import/intern_project/food/liverpocket
-	item_type = /obj/item/storage/box/donkpockets/donkpocketliver
+*/
+/datum/supply_pack/companies/general/donk/liverpocket
+	contains = /obj/item/storage/box/donkpockets/donkpocketliver
 	cost = PAYCHECK_CREW * 2
 
-/datum/armament_entry/company_import/intern_project/food/ratpocket
-	item_type = /obj/item/storage/box/donkpockets/donkpocketrat
+/datum/supply_pack/companies/general/donk/ratpocket
+	contains = /obj/item/storage/box/donkpockets/donkpocketrat
 	cost = PAYCHECK_CREW * 2
 
-/datum/armament_entry/company_import/intern_project/food/slimepocket
-	item_type = /obj/item/storage/box/donkpockets/donkpocketslime
+/datum/supply_pack/companies/general/donk/slimepocket
+	contains = /obj/item/storage/box/donkpockets/donkpocketslime
 	cost = PAYCHECK_CREW * 2
 
-/datum/armament_entry/company_import/intern_project/food/mimepocket
-	item_type = /obj/item/storage/box/donkpockets/donkpocketmime
+/datum/supply_pack/companies/general/donk/mimepocket
+	contains = /obj/item/storage/box/donkpockets/donkpocketmime
 	cost = PAYCHECK_CREW * 2
 
 
 
 //	杂项
-/datum/armament_entry/company_import/intern_project/misc
-	subcategory = "杂项"
+/datum/supply_pack/companies/apparel/intern_project/pouch
+	//subcategory = "杂项"
 	cost = PAYCHECK_CREW * 6
 
-/datum/armament_entry/company_import/intern_project/misc/generic_pouch
-	item_type = /obj/item/storage/pouch/generic_pouch
+/datum/supply_pack/companies/apparel/intern_project/pouch/generic_pouch
+	contains = /obj/item/storage/pouch/generic_pouch
 
-/datum/armament_entry/company_import/intern_project/misc/expanded_pouch
-	item_type = /obj/item/storage/pouch/expanded_pouch
+/datum/supply_pack/companies/apparel/intern_project/pouch/expanded_pouch
+	contains = /obj/item/storage/pouch/expanded_pouch
 	cost = PAYCHECK_CREW * 6 * 1.5
 
-/datum/armament_entry/company_import/intern_project/misc/carrying_pouch
-	item_type = /obj/item/storage/pouch/carrying_pouch
+/datum/supply_pack/companies/apparel/intern_project/pouch/carrying_pouch
+	contains = /obj/item/storage/pouch/carrying_pouch
 	cost = PAYCHECK_CREW * 6 * 1.5
 
-/datum/armament_entry/company_import/intern_project/misc/plush_ghastling
-	item_type = /obj/item/toy/plush/ghastling
+/datum/supply_pack/companies/apparel/intern_project/pouch/plush_ghastling
+	contains = /obj/item/toy/plush/ghastling
 	cost = PAYCHECK_CREW * 4
