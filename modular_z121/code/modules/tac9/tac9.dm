@@ -25,6 +25,7 @@
 	AddComponent(/datum/component/seclite_attachable, \
 		starting_light = new /obj/item/flashlight/seclite(src), \
 		is_light_removable = FALSE, \
+	)
 
 // 	弹匣
 /obj/item/ammo_box/magazine/tac9
