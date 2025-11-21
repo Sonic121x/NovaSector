@@ -40,6 +40,11 @@
 	cost = PAYCHECK_COMMAND * 12
 	//restricted = TRUE
 
+/datum/supply_pack/companies/energy/intern_project/photon_sniper
+	contains = /obj/item/gun/energy/photon_sniper
+	cost = PAYCHECK_COMMAND * 8
+	//restricted = TRUE
+
 //	弹药
 /datum/supply_pack/companies/mags_and_ammo/intern_project
 	cost = PAYCHECK_CREW
