@@ -191,6 +191,7 @@
 		"Shark" = list(SKIN_ICON_STATE = "shark", SKIN_ICON = 'modular_z121/icons/mob/robots.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = -12),
 		"Junimo" = list(SKIN_ICON_STATE =  "juni", SKIN_ICON = 'modular_z121/icons/mob/robots.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = -12),
 		"Meka" = list(SKIN_ICON_STATE =  "mekajani", SKIN_ICON = 'modular_z121/icons/mob/robots_tall.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = 15),
+		"Apollo" = list(SKIN_ICON_STATE =  "apollo", SKIN_ICON = 'modular_z121/icons/mob/robots.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = -12),
 		"B.13" = list(SKIN_ICON_STATE =  "B.13", SKIN_ICON = 'modular_z121/icons/mob/robots.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = 4)
 		)
 	var/datum/weakref/night_vision_ref
