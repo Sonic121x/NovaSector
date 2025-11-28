@@ -35,7 +35,7 @@
 	armor_type = /datum/armor/none
 
 /obj/item/clothing/under/syndicate/syndibunny/fake
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/costume/playbunny/magician
 	name = "magician's bunny suit"
@@ -252,7 +252,7 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/rnd/geneticist/bunnysuit
-	desc = "The staple of any bunny themed geneticists. Doesn¡¯t go great with an abominable green muscled physique, but then again, what does?"
+	desc = "The staple of any bunny themed geneticists. DoesnÂ¡Â¯t go great with an abominable green muscled physique, but then again, what does?"
 	name = "geneticist's bunnysuit"
 	icon_state = "bunnysuit_genetics"
 	icon = 'modular_z121/icons/obj/clothing/bunny/under/bunnycostume.dmi'
@@ -346,7 +346,7 @@
 	has_sensor = LOCKED_SENSORS
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/rank/security/head_of_security/bunnysuit
 	desc = "The staple of any bunny themed security commanders. Includes kevlar weave stockings and a gilded tail."
@@ -535,4 +535,5 @@
 	worn_icon = 'modular_z121/icons/mob/clothing/bunny/under/bunnycostume.dmi'
 	worn_icon_digi = 'modular_z121/icons/mob/clothing/bunny/under/bunnycostume_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
+
 	alt_covers_chest = TRUE
