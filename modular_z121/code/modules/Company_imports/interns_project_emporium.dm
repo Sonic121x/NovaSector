@@ -8,10 +8,18 @@
 
 /datum/supply_pack/companies/ballistics/intern_project/sidearm/tac9
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/tac9)
+	access = FALSE
+	access_view = FALSE
+	express_lock = FALSE
+	departamental_goody = TRUE
 
 /datum/supply_pack/companies/ballistics/intern_project/sidearm/bfr500
 	contains = list(/obj/item/gun/ballistic/revolver/single)
 	cost = PAYCHECK_COMMAND * 6
+	access = FALSE
+	access_view = FALSE
+	express_lock = FALSE
+	departamental_goody = TRUE
 
 //	大型枪械
 /datum/supply_pack/companies/ballistics/intern_project/primary
@@ -19,6 +27,10 @@
 
 /datum/supply_pack/companies/ballistics/intern_project/primary/crossbow
 	contains = list(/obj/item/gun/ballistic/rifle/rebarxbow/crossbow)
+	access = FALSE
+	access_view = FALSE
+	express_lock = FALSE
+	departamental_goody = TRUE
 
 /datum/supply_pack/companies/ballistics/intern_project/primary/aa12
 	contains = list(/obj/item/gun/ballistic/shotgun/aa12)

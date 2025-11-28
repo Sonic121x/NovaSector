@@ -21,7 +21,7 @@
 	empty_indicator = TRUE
 	empty_alarm = TRUE
 	accepted_magazine_type = /obj/item/ammo_box/magazine/dex4
-	fire_delay = 0.8 SECONDS
+	fire_delay = 1 SECONDS
 
 	var/emp_malfunction = FALSE
 	var/obj/item/ammo_casing/casing

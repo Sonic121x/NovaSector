@@ -24,7 +24,7 @@
 	projectile_type = /obj/projectile/energy/photon_sniper
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 	fire_sound = "modular_z121/sound/guns/photon_sniper/photon_sniper_fire.ogg"
-	click_cooldown_override = 20
+	click_cooldown_override = 25
 	select_name = "burn"
 
 /obj/projectile/energy/photon_sniper
@@ -37,14 +37,37 @@
 	impact_effect_type = null
 	damage = 20
 	damage_type = BURN
-	armor_flag = LASER
+	armor_flag = ENERGY
 	reflectable = NONE
 	range = 50
-	var/fire_stacks = 4
+	var/temperature = 300
+	var/fire_stacks = 1
 
 /obj/projectile/energy/photon_sniper/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
 	if(iscarbon(target))
-		var/mob/living/carbon/M = target
-		M.adjust_fire_stacks(fire_stacks)
-		M.ignite_mob()
+		var/mob/living/carbon/hit_mob = target
+		var/thermal_protection = 1 - hit_mob.get_insulation_protection(hit_mob.bodytemperature + temperature)
+		var/how_hot_is_target = hit_mob.bodytemperature
+		var/danger_zone = hit_mob.dna.species.bodytemp_heat_damage_limit + 300
+
+		// The new body temperature is adjusted by the bullet's effect temperature
+		// Reduce the amount of the effect temperature change based on the amount of insulation the mob is wearing
+		hit_mob.adjust_bodytemperature((thermal_protection * temperature) + temperature)
+
+		if(how_hot_is_target > danger_zone)
+			hit_mob.adjust_fire_stacks(fire_stacks)
+			hit_mob.ignite_mob()
+
+	else if(isliving(target))
+		var/mob/living/L = target
+		// the new body temperature is adjusted by the bullet's effect temperature
+		L.adjust_bodytemperature((1 - blocked) * temperature)
+
+	if(isobj(target))
+		var/obj/objectification = target
+
+		if(objectification.reagents)
+			var/datum/reagents/reagents = objectification.reagents
+			reagents?.expose_temperature(temperature)
+
