@@ -8,11 +8,11 @@
 	inhand_icon_state = "bfr500"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/bfr500
 	fire_sound = 'modular_z121/sound/guns/bfr500/bfr500_fire.ogg'
-	fire_sound_volume = 40
+	fire_sound_volume = 35
 	semi_auto = FALSE
 	recoil = 2
 	fire_delay = 1 SECONDS
-	projectile_damage_multiplier = 0.9	//不能做到一枪打断腿
+	projectile_damage_multiplier = 0.75
 
 	var/hammer_back_sound = 'modular_z121/sound/guns/bfr500/hammer_back.ogg'
 	var/hammer_back_sound_volume = 50
