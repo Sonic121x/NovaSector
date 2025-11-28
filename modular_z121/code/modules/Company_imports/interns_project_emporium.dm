@@ -27,6 +27,10 @@
 
 /datum/supply_pack/companies/ballistics/intern_project/primary/crossbow
 	contains = list(/obj/item/gun/ballistic/rifle/rebarxbow/crossbow)
+	access = FALSE
+	access_view = FALSE
+	express_lock = FALSE
+	departamental_goody = TRUE
 
 /datum/supply_pack/companies/ballistics/intern_project/primary/aa12
 	contains = list(/obj/item/gun/ballistic/shotgun/aa12)
