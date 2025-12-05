@@ -44,10 +44,10 @@
 //	获取目标的伤害类型
 /obj/machinery/deployable_healer/proc/get_priority_damage_type(mob/living/carbon/M)
 	// 获取所有伤害值
-	var/brute = M.getBruteLoss()
-	var/burn = M.getFireLoss()
-	var/tox = M.getToxLoss()
-	var/oxy = M.getOxyLoss()
+	var/brute = M.get_brute_loss()
+	var/burn = M.get_fire_loss()
+	var/tox = M.get_tox_loss()
+	var/oxy = M.get_oxy_loss()
 
 	// 找出最大伤害值
 	var/max_damage = max(brute, burn, tox, oxy)
@@ -106,13 +106,13 @@
 /obj/machinery/deployable_healer/proc/heal_mob(mob/living/carbon/M, var/chosen_type)
 	switch(chosen_type)
 		if(BRUTE)
-			M.adjustBruteLoss(-heal_per_pulse)
+			M.adjust_brute_loss(-heal_per_pulse)
 		if(BURN)
-			M.adjustFireLoss(-heal_per_pulse)
+			M.adjust_fire_loss(-heal_per_pulse)
 		if(TOX)
-			M.adjustToxLoss(-heal_per_pulse, forced = TRUE)
+			M.adjust_tox_loss(-heal_per_pulse, forced = TRUE)
 		if(OXY)
-			M.adjustOxyLoss(-heal_per_pulse)
+			M.adjust_oxy_loss(-heal_per_pulse)
 
 	//	播放治疗效果
 	var/obj/effect/temp_visual/heal/heal_effect = new(get_turf(M))
