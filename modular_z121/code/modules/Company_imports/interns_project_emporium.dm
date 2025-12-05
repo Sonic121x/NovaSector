@@ -126,7 +126,9 @@
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketmime)
 	cost = PAYCHECK_CREW * 2
 
-
+/datum/supply_pack/companies/general/donk/caramel_medipen
+	contains = list(/obj/item/storage/box/caramel_medipen)
+	cost = PAYCHECK_CREW * 2
 
 //	杂项
 /datum/supply_pack/companies/apparel/intern_project/pouch
