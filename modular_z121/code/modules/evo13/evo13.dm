@@ -2,14 +2,14 @@
 	name = "EVO-13 冲锋枪"
 	desc = "这把枪是以21世纪的某把枪为原型，复原出来的产物，使用标准9mm子弹"
 
-	icon = 'modular_z121/icons/obj/guns/evo.dmi'
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns48x.dmi'
 	icon_state = "evo"
 
-	worn_icon = 'modular_z121/icons/mob/guns/evo_worn.dmi'
+	worn_icon = 'modular_z121/icons/mob/guns/weapon_addtion/guns_worn.dmi'
 	worn_icon_state = "evo"
 
-	lefthand_file = 'modular_z121/icons/mob/guns/evo_lefthand.dmi'
-	righthand_file = 'modular_z121/icons/mob/guns/evo_righthand.dmi'
+	lefthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_lefthand.dmi'
+	righthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_righthand.dmi'
 	inhand_icon_state = "evo"
 	SET_BASE_PIXEL(-8, 0)
 
@@ -17,9 +17,9 @@
 	fire_sound_volume = 40
 	suppressed_sound = 'sound/items/weapons/gun/smg/shot_suppressed.ogg'
 
-	w_class = WEIGHT_CLASS_BULKY  // 很重
-	weapon_weight = WEAPON_HEAVY //双手武器
-	slot_flags = ITEM_SLOT_BACK  // 背身上
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	slot_flags = ITEM_SLOT_BACK
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/evo_c9mm
 
@@ -45,9 +45,9 @@
 /obj/item/ammo_box/magazine/evo_c9mm
 	name = "EVO-13 冲锋枪弹匣"
 	desc = "EVO-13的专用弹匣，可容纳30发子弹"
-	icon = 'modular_z121/icons/obj/guns/evo_magazine.dmi'
-	icon_state = "magazine"
-	base_icon_state = "magazine"
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
+	icon_state = "evo"
+	base_icon_state = "evo"
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM

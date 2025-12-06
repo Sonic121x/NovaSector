@@ -8,14 +8,14 @@
 	name = "十字弩"
 	desc = "一把采用了现代工艺的十字弩，优势在于噪音很小，但威力欠佳。"
 
-	icon = 'modular_z121/icons/obj/guns/crossbow.dmi'
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi'
 	icon_state = "crossbow"
 
-	lefthand_file = 'modular_z121/icons/mob/guns/crossbow_lefthand.dmi'
-	righthand_file = 'modular_z121/icons/mob/guns/crossbow_righthand.dmi'
+	lefthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_lefthand.dmi'
+	righthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_righthand.dmi'
 	inhand_icon_state = "crossbow"
 
-	worn_icon = 'modular_z121/icons/mob/guns/crossbow_worn.dmi'
+	worn_icon = 'modular_z121/icons/mob/guns/weapon_addtion/guns_worn.dmi'
 	worn_icon_state = "crossbow"
 
 	empty_indicator = FALSE

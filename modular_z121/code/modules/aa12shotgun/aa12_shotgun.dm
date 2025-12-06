@@ -1,16 +1,16 @@
 //  AA12全自动霰弹枪
 /obj/item/gun/ballistic/shotgun/aa12
 	name = "AA12 全自动霰弹枪"
-	desc = "这是一把巨大且沉重的霰弹枪，它既没有霰弹枪的轻巧，也没有步枪的杀伤力。不过它可以全自动开火"
+	desc = "这是一把巨大且沉重的霰弹枪，与其它霰弹枪相比，它死沉死沉的。不过至少，它可以全自动开火"
 
-	icon = 'modular_z121/icons/obj/guns/aa12.dmi'
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns48x.dmi'
 	icon_state = "aa12"
 
-	worn_icon = 'modular_z121/icons/mob/guns/aa12_worn.dmi'
+	worn_icon = modular_z121/icons/mob/guns/weapon_addtion/guns_worn.dmi'
 	worn_icon_state = "aa12"
 
-	lefthand_file = 'modular_z121/icons/mob/guns/aa12_lefthand.dmi'
-	righthand_file = 'modular_z121/icons/mob/guns/aa12_righthand.dmi'
+	lefthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_lefthand.dmi'
+	righthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_righthand.dmi'
 	inhand_icon_state = "aa12"
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
@@ -24,7 +24,7 @@
 	internal_magazine = FALSE
 	tac_reloads = TRUE
 
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
 	slot_flags = ITEM_SLOT_BACK
 
@@ -50,9 +50,9 @@
 	name = "AA12 弹匣"
 	desc = "可容纳5发霰弹的弹匣，它看上去有点大"
 
-	icon = 'modular_z121/icons/obj/guns/aa12magazine.dmi'
-	icon_state = "standard"
-	base_icon_state = "standard"
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
+	icon_state = "aa12_standard"
+	base_icon_state = "aa12_standard"
 
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	w_class = WEIGHT_CLASS_SMALL
@@ -69,9 +69,9 @@
 	name = "AA12 弹鼓"
 	desc = "可容纳15发霰弹的弹鼓，容量大的惊人，体积也大的惊人"
 
-	icon = 'modular_z121/icons/obj/guns/aa12magazine.dmi'
-	icon_state = "drum"
-	base_icon_state = "drum"
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
+	icon_state = "aa12_drum"
+	base_icon_state = "aa12_drum"
 
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	w_class = WEIGHT_CLASS_NORMAL
