@@ -4,11 +4,11 @@
 	name = "\improper SOFAP 自动手枪"
 	desc = "一把可全自动开火的自动手枪，使用 .35 sol 制式弹匣，开火迅速，但伤害不高。枪口刻有可以固定消音器的螺纹，还配有一个可以挂载战术手电的导轨。"
 
-	icon = 'modular_z121/icons/obj/guns/sofap.dmi'
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi'
 	icon_state = "sofap"
 
-	lefthand_file = 'modular_z121/icons/mob/guns/sofap_lefthand.dmi'
-	righthand_file = 'modular_z121/icons/mob/guns/sofap_righthand.dmi'
+	lefthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_lefthand.dmi'
+	righthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_righthand.dmi'
 	inhand_icon_state = "sofap"
 
 	fire_sound = 'modular_z121/sound/guns/sofap/sofap_fire.ogg'
