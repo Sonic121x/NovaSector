@@ -4,7 +4,7 @@
 	它的握把坚固到可以把人砸成重伤，你可以试着用它逼供犯人或震慑你的人质"
 	w_class = WEIGHT_CLASS_NORMAL
 
-	icon = 'modular_z121/icons/obj/guns/tac9.dmi'
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi'
 	icon_state = "tac9"
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/tac9
@@ -31,9 +31,9 @@
 /obj/item/ammo_box/magazine/tac9
 	name = "TAC-9 弹匣"
 	desc = "可容纳15发9mm子弹的弹匣，TAC-9的专用弹匣，别弄丢了"
-	icon = 'modular_z121/icons/obj/guns/tac9.dmi'
-	icon_state = "magazine"
-	base_icon_state = "magazine"
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
+	icon_state = "tac"
+	base_icon_state = "tac"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 15
