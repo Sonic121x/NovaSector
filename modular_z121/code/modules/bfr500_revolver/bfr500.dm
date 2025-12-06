@@ -1,10 +1,10 @@
 /obj/item/gun/ballistic/revolver/single
 	name = "BFR-500 单动式左轮"
 	desc = "一把大口径左轮，它不一定不适合狩猎动物，不过用它狩猎两脚兽再适合不过了"
-	icon = 'modular_z121/icons/obj/guns/bfr500.dmi'
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi'
 	icon_state = "bfr500"
-	lefthand_file = 'modular_z121/icons/mob/guns/bfr500_lefthand.dmi'
-	righthand_file = 'modular_z121/icons/mob/guns/bfr500_righthand.dmi'
+	lefthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_lefthand.dmi'
+	righthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_righthand.dmi'
 	inhand_icon_state = "bfr500"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/bfr500
 	fire_sound = 'modular_z121/sound/guns/bfr500/bfr500_fire.ogg'
@@ -75,8 +75,8 @@
 /obj/item/ammo_box/bfr500
 	name = "BFR-500 快速装弹器"
 	desc = "BFR-500专用装弹器，它的大小非常大，就像是秤砣一样"
-	icon = 'modular_z121/icons/obj/guns/bfr500.dmi'
-	icon_state = "loader"
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
+	icon_state = "bfr_loader"
 	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = /obj/item/ammo_casing/c357
 	max_ammo = 5
