@@ -2,14 +2,14 @@
 	name = "\improper europa轻机枪"
 	desc = "一把沉重的.40Sol long口径机枪，自带两根用于稳定射击的脚架，只使用特制的50发大弹盒"
 
-	icon = 'modular_z121/icons/obj/guns/europa.dmi'
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns48x.dmi'
 	icon_state = "europa"
 
-	worn_icon = 'modular_z121/icons/mob/guns/europa_worn.dmi'
+	worn_icon = 'modular_z121/icons/mob/guns/weapon_addtion/guns_worn.dmi'
 	worn_icon_state = "europa"
 
-	lefthand_file = 'modular_z121/icons/mob/guns/europa_lefthand.dmi'
-	righthand_file = 'modular_z121/icons/mob/guns/europa_righthand.dmi'
+	lefthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_lefthand.dmi'
+	righthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_righthand.dmi'
 	inhand_icon_state = "europa"
 
 	fire_sound = 'modular_z121/sound/guns/europa/europa_fire.ogg'

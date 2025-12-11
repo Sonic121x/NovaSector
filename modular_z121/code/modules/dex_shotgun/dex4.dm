@@ -1,12 +1,12 @@
 /obj/item/gun/ballistic/shotgun/dex4
 	name = "DEX-4 智能霰弹枪"
 	desc = "这是把实验性半自动霰弹枪，刚上市不久。采用了电磁加速技术，能将各种霰弹给予足以穿透护甲动能"
-	icon = 'modular_z121/icons/obj/guns/dex4.dmi'
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns48x.dmi'
 	icon_state = "dex4"
 	inhand_icon_state = "dex4"
-	lefthand_file = 'modular_z121/icons/mob/guns/dex4_lefthand.dmi'
-	righthand_file = 'modular_z121/icons/mob/guns/dex4_righthand.dmi'
-	worn_icon = 'modular_z121/icons/mob/guns/dex4_worn.dmi'
+	lefthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_lefthand.dmi'
+	righthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_righthand.dmi'
+	worn_icon = 'modular_z121/icons/mob/guns/weapon_addtion/guns_worn.dmi'
 	worn_icon_state = "dex4"
 	SET_BASE_PIXEL(-8, 0)
 	fire_sound = 'modular_z121/sound/guns/dex4/dex4_fire.ogg'
@@ -138,9 +138,9 @@
 /obj/item/ammo_box/magazine/dex4
 	name = "DEX-4 弹匣"
 	desc = "可容纳8发霰弹的弹匣"
-	icon = 'modular_z121/icons/obj/guns/dex4_mag.dmi'
-	icon_state = "magazine"
-	base_icon_state = "magazine"
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
+	icon_state = "dex"
+	base_icon_state = "dex"
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 	caliber = CALIBER_SHOTGUN

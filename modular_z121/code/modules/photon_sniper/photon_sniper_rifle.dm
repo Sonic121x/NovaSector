@@ -1,12 +1,12 @@
 /obj/item/gun/energy/photon_sniper
 	name = "光子狙击步枪"
 	desc = "一把能量狙击枪，发射足以点燃目标的高能激光，且不能烤肉，建议使用年龄：18岁以上"
-	icon = 'modular_z121/icons/obj/guns/photon_sniper.dmi'
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns48x.dmi'
 	icon_state = "photon"
-	lefthand_file = 'modular_z121/icons/mob/guns/photon_sniper_lefthand.dmi'
-	righthand_file = 'modular_z121/icons/mob/guns/photon_sniper_righthand.dmi'
+	lefthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_lefthand.dmi'
+	righthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/guns_righthand.dmi'
 	inhand_icon_state = "photon"
-	worn_icon = 'modular_z121/icons/mob/guns/photon_sniper_worn.dmi'
+	worn_icon = 'modular_z121/icons/mob/guns/weapon_addtion/guns_worn.dmi'
 	worn_icon_state = "photon"
 	SET_BASE_VISUAL_PIXEL(-8, 0)
 	weapon_weight = WEAPON_HEAVY
