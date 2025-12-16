@@ -40,7 +40,7 @@
 //  SOFAP 可挂载战术手电
 /obj/item/gun/ballistic/automatic/pistol/sofap/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
-		light_overlay_icon = 'modular_z121/icons/obj/guns/sofap.dmi', \
+		light_overlay_icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi', \
 		light_overlay = "sofap_flashlight", \
 		overlay_x = 0, \
 		overlay_y = 0)
