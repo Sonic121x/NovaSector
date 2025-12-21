@@ -186,12 +186,13 @@
 	breakable_modules = FALSE
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
 	borg_skins = list(
-		"Unicorn" = list(SKIN_ICON_STATE = "unicorn", SKIN_ICON = 'modular_z121/icons/mob/robots_Vi.dmi', SKIN_FEATURES = list(TRAIT_R_TALL,TRAIT_R_UNIQUEWRECK,TRAIT_R_UNIQUETIP), SKIN_HAT_OFFSET = 4),
+		"Unicorn" = list(SKIN_ICON_STATE = "unicorn", SKIN_ICON = 'modular_z121/icons/mob/robots_Vi.dmi', SKIN_FEATURES = list(TRAIT_R_TALL,TRAIT_R_UNIQUEWRECK,TRAIT_R_UNIQUETIP), SKIN_HAT_OFFSET = list("north" = list(0, 4), "south" = list(0, 4), "east" = list(0, 4), "west" = list(0, 4))),
 		"Unicorn(Modest)" = list(SKIN_ICON_STATE = "mo-unicorn", SKIN_ICON = 'modular_z121/icons/mob/robots.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK,TRAIT_R_UNIQUETIP), SKIN_HAT_OFFSET = 4),
 		"Shark" = list(SKIN_ICON_STATE = "shark", SKIN_ICON = 'modular_z121/icons/mob/robots.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = -12),
 		"Junimo" = list(SKIN_ICON_STATE =  "juni", SKIN_ICON = 'modular_z121/icons/mob/robots.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = -12),
 		"Meka" = list(SKIN_ICON_STATE =  "mekajani", SKIN_ICON = 'modular_z121/icons/mob/robots_tall.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = 15),
 		"Apollo" = list(SKIN_ICON_STATE =  "apollo", SKIN_ICON = 'modular_z121/icons/mob/robots.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = -12),
+		"BigDragon" = list(SKIN_ICON_STATE =  "bigdragon", SKIN_ICON = 'modular_z121/icons/mob/robots_big.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK,TRAIT_R_TALL,TRAIT_R_WIDE), SKIN_HAT_OFFSET = list("north" = list(16, 32), "south" = list(16, 32), "east" = list(16, 32), "west" = list(16, 32))),
 		"B.13" = list(SKIN_ICON_STATE =  "B.13", SKIN_ICON = 'modular_z121/icons/mob/robots.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK), SKIN_HAT_OFFSET = 4)
 		)
 	var/datum/weakref/night_vision_ref
