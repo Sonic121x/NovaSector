@@ -97,6 +97,10 @@
 	contains = list(/obj/item/deployable_healer)
 	cost = PAYCHECK_CREW * 20
 
+/datum/supply_pack/companies/medical/intern_project/paramedic_jaws_kit
+	contains = list(/obj/item/crafting_conversion_kit/paramedic_jaws)
+	cost = PAYCHECK_CREW
+
 //  模块
 /datum/supply_pack/companies/modsuits/mods/intern_project
 	cost = PAYCHECK_CREW
