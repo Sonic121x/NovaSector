@@ -233,6 +233,21 @@
 
 //see code/module/crafting/table.dm
 
+/obj/item/food/popsicle/helmetpop
+	name = "巧克力脆皮头盔冰棒"
+	desc = "控制变量，百次研发。航天级冰棍模具。无菌密封包装。冷链物流，航空运输。试吃百分百好评。记忆中战友的味道!"
+	icon = 'modular_z121/icons/obj/food/food.dmi'
+	overlay_state = "helmetpop"
+	food_reagents = list(
+		/datum/reagent/iron = 4,
+		/datum/reagent/consumable/cream = 2,
+		/datum/reagent/consumable/coco = 4,
+		/datum/reagent/consumable/sugar = 2,
+	)
+	tastes = list("巧克力" = 1, "金属" = 1)
+	foodtypes = FRUIT | DAIRY | SUGAR
+	crafting_complexity = FOOD_COMPLEXITY_4
+
 ////////////////////////////////////////////////CHINESE FOOD RECIPE////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/zongzi
@@ -330,6 +345,17 @@ category = CAT_CHINESE
 	)
 	result = /obj/item/food/stinky_tofu
 	category = CAT_MARTIAN
+
+/datum/crafting_recipe/food/helmetpop
+	name = "巧克力脆皮头盔冰棒"
+	reqs = list(
+		/obj/item/popsicle_stick = 1,
+		/datum/reagent/iron = 4,
+		/datum/reagent/consumable/cream = 2,
+		/obj/item/food/chocolatebar = 1,
+	)
+	result = /obj/item/food/popsicle/helmetpop
+	category = CAT_ICE
 
 /datum/reagent/consumable/milktea
 	name = "奶茶"
