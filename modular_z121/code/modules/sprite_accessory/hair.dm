@@ -4,3 +4,7 @@
 /datum/sprite_accessory/hair/cn/brainslug
 	name = "Brainslug"
 	icon_state = "hair_tri_bun_long_brainslug"
+
+/datum/sprite_accessory/hair/cn/badlycutakula
+	name = "Shorter Long Bedhead-Akula"
+	icon_state = "hair_verybadlycut_akula"
