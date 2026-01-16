@@ -1,6 +1,6 @@
 /datum/loadout_item/inhand/pet/lanhongqiu
 	name = "蓝红球召唤信标"
-	item_path = /obj/item/advanced_choice_beacon/donatepet/lanhongqiu
+	item_path = /obj/item/summon_beacon/donatepet/lanhongqiu
 	ckeywhitelist = list("lanhongqiu")
 
 /obj/item/lanhongqiucore
@@ -116,3 +116,4 @@
 	name = "蓝红球召唤信标"
 	desc = "Summons Pet!snack not included"
 	selectable_atoms = list(/mob/living/basic/pet/lanhongqiu)
+
