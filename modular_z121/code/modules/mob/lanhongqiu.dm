@@ -112,8 +112,7 @@
 	stock_max = 1
 	availability_prob = 90
 
-/obj/item/advanced_choice_beacon/donatepet/lanhongqiu
+/obj/item/summon_beacon/donatepet/lanhongqiu
 	name = "蓝红球召唤信标"
 	desc = "Summons Pet!snack not included"
-	possible_choices = list(/mob/living/basic/pet/lanhongqiu)
-
+	selectable_atoms = list(/mob/living/basic/pet/lanhongqiu)
