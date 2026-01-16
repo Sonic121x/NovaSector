@@ -1,4 +1,4 @@
-/obj/item/bitrunning_disk/item/guns
+/obj/item/disk/bitrunning/item/guns
 	name = "比特运行装备：枪械"
 	desc = "一张包含源各种测试枪械的代码的软盘，内部存有各种枪械"
 	selectable_items = list(
