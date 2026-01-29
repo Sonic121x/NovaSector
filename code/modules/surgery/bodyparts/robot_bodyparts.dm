@@ -42,7 +42,7 @@
 	biological_state = (BIO_ROBOTIC|BIO_JOINTED)
 
 	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT)
-	disabling_threshold_percentage = 1
+	disabling_threshold_percentage = 0
 	bodypart_flags = BODYPART_UNHUSKABLE
 	butcher_replacement = null
 
@@ -66,7 +66,7 @@
 	brute_modifier = 0.8
 	burn_modifier = 0.8
 
-	disabling_threshold_percentage = 1
+	disabling_threshold_percentage = 0
 
 	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
 	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
@@ -102,7 +102,7 @@
 	brute_modifier = 0.8
 	burn_modifier = 0.8
 
-	disabling_threshold_percentage = 1
+	disabling_threshold_percentage = 0
 
 	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
 	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
@@ -152,7 +152,7 @@
 	brute_modifier = 0.8
 	burn_modifier = 0.8
 
-	disabling_threshold_percentage = 1
+	disabling_threshold_percentage = 0
 
 	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
 	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG

@@ -203,7 +203,7 @@
 		BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT,
 		BURN = ROBOTIC_BURN_EXAMINE_TEXT,
 	)
-	disabling_threshold_percentage = 1
+	disabling_threshold_percentage = 0
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 /datum/design/synth_l_arm
@@ -242,7 +242,7 @@
 	brute_modifier = SYNTH_BRUTE_MODIFIER
 	burn_modifier = SYNTH_BURN_MODIFIER
 
-	disabling_threshold_percentage = 1
+	disabling_threshold_percentage = 0
 
 	light_brute_msg = SYNTH_LIGHT_BRUTE_MSG
 	medium_brute_msg = SYNTH_MEDIUM_BRUTE_MSG
@@ -297,7 +297,7 @@
 	brute_modifier = SYNTH_BRUTE_MODIFIER
 	burn_modifier = SYNTH_BURN_MODIFIER
 
-	disabling_threshold_percentage = 1
+	disabling_threshold_percentage = 0
 
 	light_brute_msg = SYNTH_LIGHT_BRUTE_MSG
 	medium_brute_msg = SYNTH_MEDIUM_BRUTE_MSG
@@ -352,7 +352,7 @@
 	brute_modifier = SYNTH_BRUTE_MODIFIER
 	burn_modifier = SYNTH_BURN_MODIFIER
 
-	disabling_threshold_percentage = 1
+	disabling_threshold_percentage = 0
 
 	light_brute_msg = SYNTH_LIGHT_BRUTE_MSG
 	medium_brute_msg = SYNTH_MEDIUM_BRUTE_MSG
