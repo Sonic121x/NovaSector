@@ -963,6 +963,7 @@
 			if(owner.stat < UNCONSCIOUS)
 				INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 			last_maxed = TRUE
+		set_disabled(TRUE, update_limbs)
 		return
 
 	if(bodypart_disabled && total_damage < max_damage * disabling_threshold_percentage * 0.5) // reenable the limb at 50% of the threshold
