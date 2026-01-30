@@ -14,7 +14,7 @@
 	brute_modifier = 1.2
 	burn_modifier = 1.5
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
-	disabling_threshold_percentage = 0
+	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
 	biological_state = (BIO_WOOD|BIO_JOINTED)
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
@@ -40,7 +40,7 @@
 	brute_modifier = 1.2
 	burn_modifier = 1.5
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
-	disabling_threshold_percentage = 0
+	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
 	biological_state = (BIO_WOOD|BIO_JOINTED)
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
@@ -64,7 +64,7 @@
 	unarmed_effectiveness = 10
 	brute_modifier = 1.2
 	burn_modifier = 1.5
-	disabling_threshold_percentage = 0
+	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
 	biological_state = (BIO_WOOD|BIO_JOINTED)
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
@@ -88,7 +88,7 @@
 	unarmed_effectiveness = 10
 	brute_modifier = 1.2
 	burn_modifier = 1.5
-	disabling_threshold_percentage = 0
+	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
 	biological_state = (BIO_WOOD|BIO_JOINTED)
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
