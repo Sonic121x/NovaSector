@@ -188,3 +188,14 @@
 
       /:cl'
   - bugfix: fixes the sql schema revision being wrong in the code
+2026-02-02:
+  Happyowl93:
+  - rscadd: hair can glow now!
+  Hardly:
+  - rscadd: The Rapid Colony Fabricator now has the ability to fabricate factory boards.
+      The factory must grow.
+  MajManatee:
+  - bugfix: Synths now properly get notified of PDA messages like everyone else.
+  vinylspiders:
+  - bugfix: fixed a bug where choosing 'None' as your ear type using the polymorph
+      nif or alter form would just make you deaf
