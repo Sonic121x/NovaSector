@@ -1038,3 +1038,11 @@
 	name = "Jumper Conversation Kit Box"
 	item_path = /obj/item/mod/skin_applier/jumper
 	ckeywhitelist = list("bonkaitheroris")
+
+/datum/loadout_item/toys/plush/plushe_vethonk
+	name = "Veteran Clown Plushie"
+	item_path = /obj/item/toy/plush/nova/donator/vethonk
+
+/datum/loadout_item/toys/plush/plushe_percy
+	name = "Dr. Percival Plushie"
+	item_path = /obj/item/toy/plush/nova/donator/percy
