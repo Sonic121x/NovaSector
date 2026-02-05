@@ -1,8 +1,7 @@
 //	tac-9
 /obj/item/gun/ballistic/automatic/pistol/tac9
 	name = "TAC-9 战斗手枪"
-	desc = "一把附带了光学瞄具和手电筒的制式9mm手枪，使用了21世纪的闭锁式结构，简单牢靠。\
-	它的握把坚固到可以把人砸成重伤，你可以试着用它逼供犯人或震慑你的人质"
+	desc = "在枪械市场上最受欢迎的手枪之一，枪声清脆响亮，据说它的设计灵感来至于21世纪的9mm半自动手枪。这把枪使用15发弹匣"
 	w_class = WEIGHT_CLASS_NORMAL
 
 	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi'
@@ -10,19 +9,16 @@
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/tac9
 	can_suppress = TRUE
-	suppressor_x_offset = 11
+	suppressor_x_offset = 9
 	suppressor_y_offset = 0
 
 	fire_sound = 'modular_z121/sound/guns/tac9/tac9_fire.ogg'
 	fire_sound_volume = 45
 
-	fire_delay = 0.8 SECONDS
-	force = 15		//	一些情况可以当近战武器使用
-	projectile_speed_multiplier = 1.5
+	projectile_damage_multiplier = 0.8
 
 /obj/item/gun/ballistic/automatic/pistol/tac9/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/scope, range_modifier = 1.5)
 	AddComponent(/datum/component/seclite_attachable, \
 		starting_light = new /obj/item/flashlight/seclite(src), \
 		is_light_removable = FALSE, \
@@ -30,7 +26,7 @@
 
 /obj/item/ammo_box/magazine/tac9
 	name = "TAC-9 弹匣"
-	desc = "可容纳15发9mm子弹的弹匣，TAC-9的专用弹匣，别弄丢了"
+	desc = "可容纳15发9mm子弹的弹匣，容量不大不小，大小也适中"
 	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
 	icon_state = "tac"
 	base_icon_state = "tac"
@@ -39,12 +35,14 @@
 	max_ammo = 15
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
+/obj/item/ammo_box/magazine/tac9/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]-[round(ammo_count(), 3)]"
+
 /obj/item/ammo_box/magazine/tac9/starts_empty
 	start_empty = TRUE
 
 //	sofap
-//  SOFAP 自动手枪
-
 /obj/item/gun/ballistic/automatic/pistol/sofap
 	name = "\improper SOFAP 自动手枪"
 	desc = "一把可全自动开火的自动手枪，使用 .35 sol 制式弹匣，开火迅速，但伤害不高。枪口刻有可以固定消音器的螺纹，还配有一个可以挂载战术手电的导轨。"
