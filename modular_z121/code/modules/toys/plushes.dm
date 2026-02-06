@@ -24,3 +24,9 @@
 	desc = "一个可爱的悠魂宝宝毛绒玩偶。"
 	icon = 'modular_z121/icons/obj/toys/plushes.dmi'
 	icon_state = "ghastling"
+
+/obj/item/toy/plush/nannan
+	name = "楠楠玩偶"
+	desc = "太阳系最受欢迎up主的玩偶版本"
+	icon = 'modular_z121/icons/obj/toys/plushes.dmi'
+	icon_state = "nannan"
