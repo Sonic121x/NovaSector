@@ -285,3 +285,17 @@
   - map: swapped DS2's maintenance loot spawners to other, non maint loot spawners.
   - rscadd: Interdyne's lavaland shuttle now is much more protected against NT's Shaft
       Miner Rudeness
+2026-02-11:
+  Happyowl93:
+  - bugfix: Fixed typo on quaalude code, can be synthesized properly now
+  MacaroniCritter:
+  - rscadd: Added the security M.O.D. skinsuit
+  - image: resprited the security shorts
+  - image: resprited the security trousers
+  - image: resprited the high-vis jacket
+  Rilomatic:
+  - rscadd: Added Donor Item "Dated Espatier Holster"
+  - image: Obj and Worn icons for "Dated Espatier holster"
+  carpotoxin:
+  - qol: Adds a tracker to the main-menu, which updates you on when a late-join antag
+      role is queue'd for the taking. Click on it to update.
