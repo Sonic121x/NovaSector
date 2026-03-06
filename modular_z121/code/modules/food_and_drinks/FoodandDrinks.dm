@@ -248,6 +248,22 @@
 	foodtypes = FRUIT | DAIRY | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_4
 
+/obj/item/food/supercandy
+	name = "超物质糖"
+	desc = "一个看起来很危险的，由玉米糖做主体，薄荷糖点缀的漂亮糖果，有浓浓的超铌甜香。"
+	icon = 'modular_z121/icons/obj/food/food.dmi'
+	icon_state = "supercandy"
+	force = 1
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment = 4,
+		/datum/reagent/consumable/sugar = 2,
+		/datum/reagent/consumable/korta_milk = 5,
+		/datum/reagent/consumable/liquidelectricity/enriched = 5,
+	)
+	tastes = list("太阳" = 1, "超铌" = 1, "能量" = 1)
+	foodtypes = SUGAR
+	crafting_complexity = FOOD_COMPLEXITY_3
+
 ////////////////////////////////////////////////CHINESE FOOD RECIPE////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/zongzi
@@ -356,6 +372,17 @@ category = CAT_CHINESE
 	)
 	result = /obj/item/food/popsicle/helmetpop
 	category = CAT_ICE
+
+//SuperCandy
+/datum/crafting_recipe/food/supercandy
+	name = "超物质糖"
+	reqs = list(
+		/obj/item/food/candy_corn = 1,
+		/datum/reagent/consumable/korta_milk = 5,
+		/datum/reagent/consumable/liquidelectricity/enriched = 5,
+	)
+	result = /obj/item/food/supercandy
+	category = CAT_MISCFOOD
 
 /datum/reagent/consumable/milktea
 	name = "奶茶"
