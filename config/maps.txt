@@ -98,3 +98,7 @@ endmap
 map oceanpubby
     votable
 endmap
+
+map Blueshift2
+	votable
+endmap
