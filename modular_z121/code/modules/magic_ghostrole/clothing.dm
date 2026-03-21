@@ -71,3 +71,17 @@
 	icon = 'modular_z121/icons/obj/clothing/magic/armor.dmi'
 	worn_icon = 'modular_z121/icons/mob/clothing/magic/armor.dmi'
 	inhand_icon_state = null
+
+/obj/item/radio/headset/headset_cent/alt/scp
+	name = "\improper 机动特遣队战术耳机"
+	desc = "SCP基金会为作战人员设计的防噪安全耳机，其先进的信息传输系统保障交流不被干扰。"
+	icon_state = "scp_headset"
+	worn_icon_state = "scp_headset"
+	icon = 'modular_z121/icons/obj/clothing/magic/armor.dmi'
+	worn_icon = 'modular_z121/icons/mob/clothing/magic/armor.dmi'
+	keyslot2 = null
+
+/obj/item/radio/headset/headset_cent/alt/scp
+	name = "\improper 机动特遣队战术耳机"
+	desc = "SCP基金会为作战人员设计的防噪安全耳机，其先进的信息传输系统保障交流不被干扰。"
+	icon_state = "scp_headset"
