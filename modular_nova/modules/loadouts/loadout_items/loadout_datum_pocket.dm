@@ -362,7 +362,7 @@
 /*
 *	FLAGS
 */
-
+/*
 /datum/loadout_item/pocket_items/gay_pride_flag
 	name = "Pride Flag - Rainbow"
 	item_path = /obj/item/sign/flag/pride/gay
@@ -385,7 +385,7 @@
 
 /datum/loadout_item/pocket_items/trans_pride_flag
 	name = "Pride Flag - Transgender"
-	item_path = /obj/item/sign/flag/pride/trans
+	item_path = /obj/item/sign/flag/pride/trans */
 /*
 *	JOB-LOCKED
 */
