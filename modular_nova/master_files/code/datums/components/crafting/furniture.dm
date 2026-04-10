@@ -1,4 +1,4 @@
-/datum/crafting_recipe/gay_pride_flag
+/*/datum/crafting_recipe/gay_pride_flag
 	name = "LGBT Pride Flag"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
@@ -45,3 +45,4 @@
 	)
 	result = /obj/item/sign/flag/pride/trans
 	category = CAT_FURNITURE
+*/
