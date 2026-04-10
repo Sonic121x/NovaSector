@@ -71,7 +71,7 @@
 	applied_core = /obj/item/mod/core/infinite
 	applied_modules = list(
 		/obj/item/mod/module/storage/bluespace,
-		/obj/item/mod/module/headprotection,
+		/obj/item/mod/module/headprotector,
 		/obj/item/mod/module/emp_shield/advanced,
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/jetpack/advanced/nored,
