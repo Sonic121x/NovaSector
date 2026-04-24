@@ -47,8 +47,8 @@
 		/obj/item/organ/liver = 1
 	)
 	result = /obj/item/food/donkpocket/liver
-	category = CAT_PASTRY
-  
+	dish_category = DISH_PASTRY
+
 //默剧
 /obj/item/food/donkpocket/mime
 	name = "\improper 默剧口袋饼"
@@ -98,7 +98,7 @@
 		/datum/reagent/oxygen = 5
 	)
 	result = /obj/item/food/donkpocket/mime
-	category = CAT_PASTRY
+	dish_category = DISH_PASTRY
 
 //鼠鼠
 /obj/item/food/donkpocket/rat
@@ -146,7 +146,7 @@
 		/obj/item/food/deadmouse = 1
 	)
 	result = /obj/item/food/donkpocket/rat
-	category = CAT_PASTRY
+	dish_category = DISH_PASTRY
 
 //史莱姆
 /obj/item/food/donkpocket/slime
@@ -192,4 +192,4 @@
 		/obj/item/slime_extract/grey = 1
 	)
 	result = /obj/item/food/donkpocket/slime
-	category = CAT_PASTRY
+	dish_category = DISH_PASTRY
