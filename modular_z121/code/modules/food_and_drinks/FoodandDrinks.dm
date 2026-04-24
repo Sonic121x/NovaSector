@@ -302,13 +302,13 @@ result = /obj/item/food/qingtuan
 category = CAT_CHINESE
 */
 /datum/crafting_recipe/food/dumpling
-    name = "饺子"
-    reqs = list(
-        /obj/item/food/doughslice = 1,
-        /obj/item/food/raw_meatball = 1,
-        /obj/item/food/grown/corn = 1
-    )
-    result = /obj/item/food/dumpling_raw
+	name = "饺子"
+	reqs = list(
+		/obj/item/food/doughslice = 1,
+		/obj/item/food/raw_meatball = 1,
+		/obj/item/food/grown/corn = 1
+	)
+	result = /obj/item/food/dumpling_raw
 	cuisine_category = CUISINE_MARTIAN
 	meal_category = MEAL_MAIN_COURSE
 
