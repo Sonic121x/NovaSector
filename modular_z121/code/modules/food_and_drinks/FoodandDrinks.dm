@@ -309,7 +309,7 @@ category = CAT_CHINESE
         /obj/item/food/grown/corn = 1
     )
     result = /obj/item/food/dumpling_raw
-    cuisine_category = CUISINE_MARTIAN
+	cuisine_category = CUISINE_MARTIAN
 	meal_category = MEAL_MAIN_COURSE
 
 /datum/crafting_recipe/food/mooncake
