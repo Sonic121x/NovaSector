@@ -252,7 +252,7 @@
 	name = "超物质糖"
 	desc = "一个看起来很危险的，由玉米糖做主体，薄荷糖点缀的漂亮糖果，有浓浓的超铌甜香。"
 	icon = 'modular_z121/icons/obj/food/food.dmi'
-	icon_state = "supercandy"
+	icon_state = "SuperCandy"
 	force = 1
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -275,7 +275,9 @@
 		/obj/item/grown/log/bamboo = 1
 	)
 	result = /obj/item/food/zongzi
-	category = CAT_MARTIAN
+	cuisine_category = CUISINE_MARTIAN
+	dish_category = DISH_RICE
+	meal_category = MEAL_MAIN_COURSE
 
 /datum/crafting_recipe/food/tangyuan
 	name = "汤圆"
@@ -286,7 +288,8 @@
 
 	)
 	result = /obj/item/food/tangyuan
-	category = CAT_MARTIAN
+	cuisine_category = CUISINE_MARTIAN
+	meal_category = MEAL_SNACK
 /*
 /datum/crafting_recipe/food/qingtuan
 name = "青团"
@@ -306,7 +309,8 @@ category = CAT_CHINESE
         /obj/item/food/grown/corn = 1
     )
     result = /obj/item/food/dumpling_raw
-    category = CAT_MARTIAN
+    cuisine_category = CUISINE_MARTIAN
+	meal_category = MEAL_MAIN_COURSE
 
 /datum/crafting_recipe/food/mooncake
 	name = "月饼"
@@ -316,7 +320,8 @@ category = CAT_CHINESE
 		/datum/reagent/consumable/sugar = 2
 	)
 	result = /obj/item/food/mooncake
-	category = CAT_MARTIAN
+	cuisine_category = CUISINE_MARTIAN
+	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/baozi_raw
 	name = "包子"
@@ -325,7 +330,8 @@ category = CAT_CHINESE
 		/obj/item/food/raw_meatball = 1
 	)
 	result = /obj/item/food/baozi_raw
-	category = CAT_MARTIAN
+	cuisine_category = CUISINE_MARTIAN
+	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/roujiamo
 	name = "肉夹馍"
@@ -334,7 +340,8 @@ category = CAT_CHINESE
 		/obj/item/food/patty/plain = 1
 	)
 	result = /obj/item/food/roujiamo
-	category = CAT_MARTIAN
+	cuisine_category = CUISINE_MARTIAN
+	meal_category = MEAL_MAIN_COURSE
 
 /datum/crafting_recipe/food/wolf_tooth_potato
 	name = "狼牙土豆"
@@ -343,7 +350,8 @@ category = CAT_CHINESE
 		/obj/item/food/grown/chili = 1
 	)
 	result = /obj/item/food/wolf_tooth_potato
-	category = CAT_MARTIAN
+	cuisine_category = CUISINE_MARTIAN
+	meal_category = MEAL_SNACK
 
 /datum/crafting_recipe/food/youtiao
 	name = "油条"
@@ -351,7 +359,8 @@ category = CAT_CHINESE
 		/obj/item/food/doughslice = 1
 	)
 	result = /obj/item/food/youtiao
-	category = CAT_MARTIAN
+	cuisine_category = CUISINE_MARTIAN
+	meal_category = MEAL_SNACK
 
 /datum/crafting_recipe/food/stinky_tofu
 	name = "臭豆腐串"
@@ -360,7 +369,8 @@ category = CAT_CHINESE
 		/obj/item/food/grown/chili = 1
 	)
 	result = /obj/item/food/stinky_tofu
-	category = CAT_MARTIAN
+	cuisine_category = CUISINE_MARTIAN
+	meal_category = MEAL_SNACK
 
 /datum/crafting_recipe/food/helmetpop
 	name = "巧克力脆皮头盔冰棒"
@@ -371,7 +381,8 @@ category = CAT_CHINESE
 		/obj/item/food/chocolatebar = 1,
 	)
 	result = /obj/item/food/popsicle/helmetpop
-	category = CAT_ICE
+	dish_category = DISH_FROZEN
+	meal_category = MEAL_DESSERT
 
 //SuperCandy
 /datum/crafting_recipe/food/supercandy
@@ -382,7 +393,8 @@ category = CAT_CHINESE
 		/datum/reagent/consumable/liquidelectricity/enriched = 5,
 	)
 	result = /obj/item/food/supercandy
-	category = CAT_MISCFOOD
+	dish_category = DISH_FROZEN
+	meal_category = MEAL_DESSERT
 
 /datum/reagent/consumable/milktea
 	name = "奶茶"
