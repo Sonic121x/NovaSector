@@ -7,7 +7,8 @@
 	)
 	result = /obj/item/food/cake/liquid_electric
 	added_foodtypes = TOXIC
-	category = CAT_CAKE
+	dish_category = DISH_CAKE
+	meal_category = MEAL_DESSERT
 
 /obj/item/food/cake/liquid_electric
 	name = "液电蛋糕"
@@ -60,4 +61,3 @@
 	to_chat(eater, "<font color='blue' size='5'>As you eat the cake slice, a small electric shock courses through your body!</font>")
 	if(eater != feeder)
 		log_combat(feeder, eater, "fed a liquid electric cake to", src)
-
