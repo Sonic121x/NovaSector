@@ -27,7 +27,7 @@
 	var/mod_mult = 1 // Indicates to which value the damage modkit multiplicates its bonus, useful for multi proyectile pka's where the bonus is otherwise is applied to each proyectile and increases more than intended.
 
 /obj/projectile/kinetic/railgun
-	name = "hyper kinetic force"
+	name = "超强动能"
 	damage = 100
 	range = 7
 	pressure_decrease = 0.10
@@ -35,19 +35,19 @@
 	projectile_piercing = PASSMOB
 
 /obj/projectile/kinetic/repeater
-	name = "rapid kinetic force"
+	name = "高速动能"
 	damage = 20
 	range = 4
 	mod_mult = 0.5
 
 /obj/projectile/kinetic/shotgun
-	name = "split kinetic force"
+	name = "分裂动能"
 	damage = 20
 
 /obj/projectile/kinetic/glock
-	name = "light kinetic force"
+	name = "轻型动能"
 	damage = 10
 
 /obj/projectile/kinetic/shockwave
-	name = "concussive kinetic force"
+	name = "震荡动能"
 	range = 1

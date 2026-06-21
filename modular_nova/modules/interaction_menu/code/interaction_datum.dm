@@ -3,7 +3,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 
 /datum/interaction
 	/// The name to be displayed in the interaction menu for this interaction
-	var/name = "broken interaction"
+	var/name = "损坏的互动"
 	/// The description of the interacton.
 	var/description = "broken"
 	/// If it can be done at a distance.

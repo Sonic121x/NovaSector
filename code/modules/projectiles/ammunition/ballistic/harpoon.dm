@@ -1,5 +1,5 @@
 /obj/item/ammo_casing/harpoon
-	name = "harpoon"
+	name = "鱼叉"
 	caliber = CALIBER_HARPOON
 	icon_state = "magspear"
 	base_icon_state = "magspear"

@@ -157,17 +157,17 @@
 	icon = modular_additions_icon
 	switch(design_choice)
 		if("Grey")
-			desc = "A grey sack neatly crafted out of paper."
+			desc = "一个用纸精心制作的灰色袋子。"
 		if("Black")
-			desc = "A black sack neatly crafted out of paper."
+			desc = "一个用纸精心制作的黑色袋子。"
 		if("Sec")
-			desc = "A sturdy paper sack ideal to carry lunch on those lonely long patrols."
+			desc = "一个结实的纸袋，非常适合在那些漫长孤独的巡逻中携带午餐。"
 		if("Medical")
-			desc = "A Nitrile lined sack useful to carry sanitized snacks for both patients and medical staff alike."
+			desc = "一个内衬丁腈的袋子，可用于为患者和医疗人员携带消毒零食。"
 		if("Fox")
-			desc = "A paper sack with a prowling fox etched onto the side."
+			desc = "一个纸袋，侧面蚀刻着一只潜行的狐狸。"
 		if("Bunny")
-			desc = "A paper sack with a hopping bunny etched onto the side."
+			desc = "一个纸袋，侧面蚀刻着一只跳跃的兔子。"
 		else
 			icon = initial(icon)
 	return ..()

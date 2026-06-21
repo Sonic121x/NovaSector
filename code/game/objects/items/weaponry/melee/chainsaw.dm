@@ -1,8 +1,8 @@
 
 // CHAINSAW
 /obj/item/chainsaw
-	name = "chainsaw"
-	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
+	name = "链锯"
+	desc = "一种多功能电动工具。适用于修剪树枝和肢解人类。"
 	icon = 'icons/obj/weapons/chainsaw.dmi'
 	icon_state = "chainsaw"
 	base_icon_state = "chainsaw"
@@ -59,7 +59,7 @@
 /obj/item/chainsaw/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 
-	to_chat(user, span_notice("As you pull the starting cord dangling from [src], [active ? "it begins to whirr" : "the chain stops moving"]."))
+	to_chat(user, span_notice("当你拉动从[src]垂下的启动拉绳时，[active ? "it begins to whirr" : "the chain stops moving"]。"))
 	var/datum/component/butchering/butchering = GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = active
 	if (active)
@@ -87,14 +87,14 @@
 
 /obj/item/chainsaw/suicide_act(mob/living/carbon/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		user.visible_message(span_suicide("[user] smashes [src] into [user.p_their()] neck, destroying [user.p_their()] esophagus! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 将 [src] 砸进 [user.p_their()] 脖子，摧毁了 [user.p_their()] 食道！看起来 [user.p_theyre()] 试图自杀！"))
 		playsound(src, 'sound/items/weapons/genhit1.ogg', 100, TRUE)
 		return BRUTELOSS
 
 	user.visible_message(span_suicide("[user] begins to tear [user.p_their()] head off with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(!myhead)
-		visible_message(span_suicide("[user] realises that [user.p_they()] cannot cut off [user.p_their()] head because [user.p_they()] don't have one!"))
+		visible_message(span_suicide("[user] 意识到[user.p_they()]无法砍掉[user.p_their()]头，因为[user.p_they()]根本没有头！"))
 		return SHAME
 
 	playsound(src, 'sound/items/weapons/chainsawhit.ogg', 100, TRUE)
@@ -103,7 +103,7 @@
 
 	var/datum/wound/slash/crit_wound = new ()
 	crit_wound.apply_wound(myhead)
-	visible_message(span_suicide("[user] tries in vain to cut off [user.p_their()] head but perishes in the attempt!"))
+	visible_message(span_suicide("[user] 徒劳地试图砍掉[user.p_their()]的头，却在此过程中丧命！"))
 	return BRUTELOSS
 
 /obj/item/chainsaw/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -119,7 +119,7 @@
 
 	playsound(user, 'sound/items/weapons/slice.ogg', vol = 80, vary = TRUE)
 
-	target_mob.balloon_alert(user, "cutting off head...")
+	target_mob.balloon_alert(user, "砍下头颅中...")
 	if (!do_after(user, behead_time, target_mob, extra_checks = CALLBACK(src, PROC_REF(has_same_head), target_mob, head)))
 		return TRUE
 
@@ -139,18 +139,18 @@
  */
 
 /obj/item/chainsaw/doomslayer
-	name = "THE GREAT COMMUNICATOR"
-	desc = span_warning("VRRRRRRR!!!")
+	name = "伟大沟通者"
+	desc = span_warning("嗡————！！！")
 	armour_penetration = 100
 	force_on = 30
 	behead_time = 2 SECONDS
 
 /obj/item/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK)
-		owner.visible_message(span_danger("Ranged attacks just make [owner] angrier!"))
+		owner.visible_message(span_danger("远程攻击只会让[owner]更加愤怒！"))
 		playsound(src, SFX_BULLET_MISS, 75, TRUE)
 		return TRUE
 	return FALSE
 
 /datum/action/item_action/startchainsaw
-	name = "Pull The Starting Cord"
+	name = "拉动启动拉绳"

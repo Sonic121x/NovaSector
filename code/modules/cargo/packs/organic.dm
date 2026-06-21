@@ -7,7 +7,7 @@
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/organic/hydroponics/beekeeping_suits
-	name = "Beekeeper Suit Crate"
+	name = "养蜂人套装板条箱"
 	desc = "Bee business booming? Better be benevolent and boost botany by \
 		bestowing bi-Beekeeper-suits! Contains two beekeeper suits and matching headwear."
 	cost = CARGO_CRATE_VALUE * 2
@@ -42,8 +42,8 @@
 		new item(container)
 
 /datum/supply_pack/organic/randomized/chef
-	name = "Excellent Meat Crate"
-	desc = "The best cuts in the whole galaxy. Contains a random assortment of exotic meats."
+	name = "好味肉类板条箱"
+	desc = "包含了各种各样的异种肉，全银河系最好的刀工。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/obj/item/food/meat/slab/human/mutant/slime,
@@ -60,7 +60,7 @@
 	)
 
 /datum/supply_pack/organic/randomized/fruits
-	name = "Fruit Crate"
+	name = "水果板条箱"
 	desc = "Rich in vitamins. Contains a lime, orange, watermelon, apple, berries and a lemon."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
@@ -73,7 +73,7 @@
 	)
 
 /datum/supply_pack/organic/randomized/vegetables
-	name = "Vegetables Crate"
+	name = "蔬菜板条箱"
 	desc = "Grown in vats. Contains a chili, corn, tomato, potato, carrot, chanterelle, onion, pumpkin, and cucumber."
 	cost = CARGO_CRATE_VALUE * 1.8
 	contains = list(
@@ -132,7 +132,7 @@
 	crate_name = "food crate"
 
 /datum/supply_pack/organic/cream_piee
-	name = "High-yield Clown-grade Cream Pie Crate"
+	name = "高产小丑奶油派板条箱"
 	desc = "Designed by Aussec's Advanced Warfare Research Division, \
 		these high-yield, Clown-grade cream pies are powered by a synergy \
 		of performance and efficiency. Guaranteed to provide maximum results."
@@ -282,7 +282,7 @@
 
 /datum/supply_pack/organic/seeds
 	name = "Seeds Crate"
-	desc = "Big things have small beginnings. Contains fifteen different seeds."
+	desc = "伟大的事物往往起源于微小的开端。包含十五种不同的种子."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/seeds/chili,
 					/obj/item/seeds/cotton,
@@ -305,7 +305,7 @@
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/organic/grill
-	name = "Grilling Starter Kit"
+	name = "烧烤入门套件"
 	desc = "Hey dad I'm Hungry. Hi Hungry I'm THE NEW GRILLING STARTER KIT \
 		ONLY 5000 BUX GET NOW! Contains a grill and fuel."
 	cost = CARGO_CRATE_VALUE * 4
@@ -320,7 +320,7 @@
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/organic/grillfuel
-	name = "Grilling Fuel Kit"
+	name = "烧烤燃料套件"
 	desc = "Contains propane and propane accessories. \
 		(Note: doesn't contain any actual propane.)"
 	cost = CARGO_CRATE_VALUE * 4

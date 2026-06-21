@@ -7,7 +7,7 @@
 
 /mob/living/carbon/examine(mob/user)
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE) && !isobserver(user))
-		return list(span_warning("You're struggling to make out any details..."))
+		return list(span_warning("你很难看清任何细节..."))
 
 	var/t_He = p_They()
 	var/t_His = p_Their()
@@ -132,25 +132,25 @@
 			else if(temp < 50)
 				. += span_danger("[t_He] [t_has] <b>moderate</b> [damage_desc[BRUTE]]!")
 			else
-				. += span_bolddanger("[t_He] [t_has] severe [damage_desc[BRUTE]]!")
+				. += span_bolddanger("[t_He] [t_has] 严重的[damage_desc[BRUTE]]！")
 
 		temp = get_fire_loss()
 		if(temp)
 			if(temp < 25)
-				. += span_danger("[t_He] [t_has] minor [damage_desc[BURN]].")
+				. += span_danger("[t_He] [t_has] 轻微的[damage_desc[BURN]]。")
 			else if (temp < 50)
-				. += span_danger("[t_He] [t_has] <b>moderate</b> [damage_desc[BURN]]!")
+				. += span_danger("[t_He] [t_has] <b>中度</b>的[damage_desc[BURN]]！")
 			else
-				. += span_bolddanger("[t_He] [t_has] severe [damage_desc[BURN]]!")
+				. += span_bolddanger("[t_He] [t_has] 严重的[damage_desc[BURN]]！")
 
 	if(pulledby?.grab_state)
-		. += span_warning("[t_He] [t_is] restrained by [pulledby]'s grip.")
+		. += span_warning("[t_He] [t_is] 被[pulledby]的抓握束缚着。")
 
 	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
-		. += span_warning("[t_He] [t_is] severely malnourished.")
+		. += span_warning("[t_He] [t_is] 严重营养不良。")
 	else if(nutrition >= NUTRITION_LEVEL_FAT)
 		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
-			. += span_hypnophrase("[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.")
+			. += span_hypnophrase("[t_He] [t_is] 看起来丰满又美味——就像一只胖乎乎的小猪仔。一只美味的小猪仔。")
 		else
 			. += "<b>[t_He] [t_is] quite chubby.</b>"
 	switch(disgust)
@@ -168,11 +168,11 @@
 			apparent_blood_volume -= (BLOOD_VOLUME_NORMAL * 0.25) // knocks you down a few pegs
 	switch(apparent_blood_volume)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
-			. += span_warning("[t_He] [t_has] pale skin.")
+			. += span_warning("[t_He] [t_has] 苍白的皮肤。")
 		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
-			. += span_boldwarning("[t_He] look[p_s()] like pale death.")
+			. += span_boldwarning("[t_He] look[p_s()] 苍白如死。")
 		if(-INFINITY to BLOOD_VOLUME_BAD)
-			. += span_deadsay("<b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b>")
+			. += span_deadsay("<b>[t_He] resemble[p_s()] 一个被压扁的空果汁袋。</b>")
 
 	if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()
@@ -214,12 +214,12 @@
 					. += "[t_He] [t_is] holding [t_his] [grasped_part] to slow the bleeding!"
 
 	if(reagents.has_reagent(/datum/reagent/teslium, needs_metabolizing = TRUE))
-		. += span_smallnoticeital("[t_He] [t_is] emitting a gentle blue glow!") // this should be signalized
+		. += span_smallnoticeital("[t_He] [t_is] 正散发着柔和的蓝光！") // this should be signalized
 
 	var/mob/living/living_user = user
 	SEND_SIGNAL(living_user, COMSIG_CARBON_MID_EXAMINE, src, .) // Adds examine text after clothing and wounds but before death and scars
 	if(just_sleeping)
-		. += span_notice("[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.")
+		. += span_notice("[t_He] [t_is]没有对周围[t_him]的任何事物做出反应，看起来[p_s()]像是睡着了。")
 	else if(!appears_dead)
 		if(src != user)
 			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role && user != src)
@@ -228,9 +228,9 @@
 
 		switch(stat)
 			if(UNCONSCIOUS, HARD_CRIT)
-				. += span_notice("[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.")
+				. += span_notice("[t_He] [t_is]没有对周围[t_him]的任何事物做出反应，看起来[p_s()]像是睡着了。")
 			if(SOFT_CRIT)
-				. += span_notice("[t_He] [t_is] barely conscious.")
+				. += span_notice("[t_He] [t_is] 几乎失去意识。")
 			if(CONSCIOUS)
 				if(HAS_TRAIT(src, TRAIT_DUMB))
 					. += "[t_He] [t_has] a stupid expression on [t_his] face."
@@ -258,21 +258,21 @@
 		ADD_NEWLINE_IF_NECESSARY(.)
 		switch(scar_severity)
 			if(1 to 4)
-				. += span_tinynoticeital("[t_He] [t_has] visible scarring, you can look again to take a closer look...")
+				. += span_tinynoticeital("[t_He] [t_has] 可见的疤痕，你可以再观察一次来仔细看看……")
 			if(5 to 8)
-				. += span_smallnoticeital("[t_He] [t_has] several bad scars, you can look again to take a closer look...")
+				. += span_smallnoticeital("[t_He] [t_has] 几处严重的疤痕，你可以再观察一次来仔细看看……")
 			if(9 to 11)
-				. += span_notice("<i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i>")
+				. += span_notice("<i>[t_He] [t_has] 显著毁容的疤痕，你可以再观察一次来仔细看看……</i>")
 			if(12 to INFINITY)
-				. += span_notice("<b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b>")
+				. += span_notice("<b><i>[t_He] [t_is] 简直是一团糟，你可以再观察一次来仔细看看……</i></b>")
 
 	if(HAS_TRAIT(src, TRAIT_HUSK))
-		. += span_warning("This body has been reduced to a grotesque husk.")
+		. += span_warning("这具身体已变成一具怪诞的躯壳。")
 	if(HAS_MIND_TRAIT(user, TRAIT_MORBID))
 		if(HAS_TRAIT(src, TRAIT_DISSECTED))
-			. += span_notice("[t_He] appear[p_s()] to have been dissected. Useless for examination... <b><i>for now.</i></b>")
+			. += span_notice("[t_He] appear[p_s()] 被解剖过。目前无法用于检查……<b><i>暂时如此。</i></b>")
 		if(HAS_TRAIT(src, TRAIT_SURGICALLY_ANALYZED))
-			. += span_notice("A skilled hand has mapped this one's internal intricacies. It will be far easier to perform future experimentations upon [user.p_them()]. <b><i>Exquisite.</i></b>")
+			. += span_notice("一只熟练的手已经描绘出了这个个体的内部构造。未来在[user.p_them()]身上进行实验将会容易得多。<b><i>精妙绝伦。</i></b>")
 	if(isliving(user) && HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FITNESS))
 		. += compare_fitness(user)
 
@@ -337,7 +337,7 @@
 	if(client)
 		var/erp_status_pref = client.prefs.read_preference(/datum/preference/choiced/erp_status)
 		if(erp_status_pref && !CONFIG_GET(flag/disable_erp_preferences) && user.client.prefs.read_preference(/datum/preference/toggle/master_erp_preferences))
-			. += span_info("ERP Status: [span_revenboldnotice(erp_status_pref)]")
+			. += span_info("ERP 状态：[span_revenboldnotice(erp_status_pref)]")
 
 	if (!CONFIG_GET(flag/disable_antag_opt_in_preferences))
 		var/opt_in_status = mind?.get_effective_opt_in_level()
@@ -392,8 +392,8 @@
 	var/valid_ghost = ghost?.can_reenter_corpse && ghost?.client
 	var/valid_soul = brain || !HAS_TRAIT(src, TRAIT_FAKE_SOULLESS)
 	if((brain && client_like) || (valid_ghost && valid_soul))
-		return span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life...")
-	return span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has departed...")
+		return span_deadsay("[t_He] [t_is] 瘫软无力，毫无反应；没有任何生命迹象...")
+	return span_deadsay("[t_He] [t_is] 身体瘫软，毫无反应；没有任何生命迹象，[t_his] 灵魂已经离去……")
 
 /// Returns a list of "damtype" => damage description based off of which bodypart description is most common
 /mob/living/carbon/proc/get_majority_bodypart_damage_desc()
@@ -449,11 +449,11 @@
 		var/blood_descriptior = "blood"
 		if(istype(blood_type))
 			blood_descriptior = LOWER_TEXT(blood_type.get_blood_name())
-		. += span_warning("[t_He] [t_has] [num_hands > 1 ? "" : "a "][blood_descriptior]-stained hand[num_hands > 1 ? "s" : ""]!")
+		. += span_warning("[t_He] [t_has] [num_hands > 1 ? "" : "a "][blood_descriptior]沾血的手[num_hands > 1 ? "s" : ""]！")
 	//handcuffed?
 	if(handcuffed)
 		var/cables_or_cuffs = istype(handcuffed, /obj/item/restraints/handcuffs/cable) ? "restrained with cable" : "handcuffed"
-		. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] [cables_or_cuffs]!")
+		. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] [cables_or_cuffs]！")
 	//shoes
 	if(shoes && !(obscured_slots & HIDESHOES)  && !HAS_TRAIT(shoes, TRAIT_EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [shoes.examine_title(user)] on [t_his] feet."
@@ -467,9 +467,9 @@
 		if(glasses  && !HAS_TRAIT(glasses, TRAIT_EXAMINE_SKIP))
 			. += "[t_He] [t_has] [glasses.examine_title(user)] covering [t_his] eyes."
 		else if(HAS_TRAIT(src, TRAIT_UNNATURAL_RED_GLOWY_EYES))
-			. += span_warning("<B>[t_His] eyes are glowing with an unnatural red aura!</B>")
+			. += span_warning("<B>[t_His] 双眼正闪烁着不自然的红色光晕！</B>")
 		else if(HAS_TRAIT(src, TRAIT_BLOODSHOT_EYES))
-			. += span_warning("<B>[t_His] eyes are bloodshot!</B>")
+			. += span_warning("<B>[t_His] 眼睛布满血丝！</B>")
 	//ears
 	if(ears && !(obscured_slots & HIDEEARS) && !HAS_TRAIT(ears, TRAIT_EXAMINE_SKIP))
 		. += "[t_He] [t_has] [ears.examine_title(user)] on [t_his] ears."
@@ -508,9 +508,9 @@
 		if(glasses  && !HAS_TRAIT(glasses, TRAIT_EXAMINE_SKIP))
 			. += "[t_He] [t_has] [glasses.examine_title(user)] covering [t_his] eyes."
 		else if(HAS_TRAIT(src, TRAIT_UNNATURAL_RED_GLOWY_EYES))
-			. += span_warning("<B>[t_His] eyes are glowing with an unnatural red aura!</B>")
+			. += span_warning("<B>[t_His] 双眼正闪烁着不自然的红色光晕！</B>")
 		else if(HAS_TRAIT(src, TRAIT_BLOODSHOT_EYES))
-			. += span_warning("<B>[t_His] eyes are bloodshot!</B>")
+			. += span_warning("<B>[t_His]眼睛布满血丝！</B>")
 	//ears
 	if(ears && !(obscured_slots & HIDEEARS) && !HAS_TRAIT(ears, TRAIT_EXAMINE_SKIP))
 		. += "[t_He] [t_has] [ears.examine_title(user)] on [t_his] ears."
@@ -547,11 +547,11 @@
 		. += "[t_He] [t_has] [gloves.examine_title(user)] on [t_his] hands."
 	else if(GET_ATOM_BLOOD_DECAL_LENGTH(src) || blood_in_hands)
 		if(num_hands)
-			. += span_warning("[t_He] [t_has] [num_hands > 1 ? "" : "a "]blood-stained hand[num_hands > 1 ? "s" : ""]!")
+			. += span_warning("[t_He] [t_has] [num_hands > 1 ? "" : "a "]沾血的手[num_hands > 1 ? "s" : ""]！")
 	//handcuffed?
 	if(handcuffed)
 		var/cables_or_cuffs = istype(handcuffed, /obj/item/restraints/handcuffs/cable) ? "restrained with cable" : "handcuffed"
-		. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] [cables_or_cuffs]!")
+		. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] [cables_or_cuffs]！")
 	//belt
 	if(belt && !(obscured_slots & HIDEBELT) && !HAS_TRAIT(belt, TRAIT_EXAMINE_SKIP))
 		. += "[t_He] [t_has] [belt.examine_title(user)] about [t_his] waist."
@@ -650,7 +650,7 @@
 	if(istype(w_uniform, /obj/item/clothing/under) && !(obscured_slots & HIDEJUMPSUIT) && !HAS_TRAIT(w_uniform, TRAIT_EXAMINE_SKIP))
 		var/obj/item/clothing/under/undershirt = w_uniform
 		if(undershirt.has_sensor == BROKEN_SENSORS)
-			. += list(span_notice("\The [undershirt]'s medical sensors are sparking."))
+			. += list(span_notice("\The [undershirt]的医疗传感器正在冒火花。"))
 
 	if((HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN)) && !isobserver(user))
 		return
@@ -679,7 +679,7 @@
 		// but you can't see ex. cybernetic legs through clothes
 		if(part.bodyshape == initial(expected_part?.bodyshape) && (part.body_zone in covered))
 			continue
-		texts += span_notice("[p_They()] [p_have()] \a [part].")
+		texts += span_notice("[p_They()] [p_have()] \a [part]。")
 
 	return texts
 
@@ -711,7 +711,7 @@
 		if(101 to INFINITY)
 			age_text = "withering away"
 
-	return span_notice("[p_They()] appear[p_s()] to be [age_text].")
+	return span_notice("[p_They()] appear[p_s()] to be [age_text]。")
 
 #undef ADD_NEWLINE_IF_NECESSARY
 #undef CARBON_EXAMINE_EMBEDDING_MAX_DIST

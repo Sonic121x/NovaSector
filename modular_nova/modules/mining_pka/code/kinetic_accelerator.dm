@@ -12,26 +12,26 @@
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/borg/upgrade/modkit/chassis_mod))
-		to_chat(user, span_notice("This weapon doesn't have variant appearances."))
+		to_chat(user, span_notice("这把武器没有变体外型。"))
 	else
 		return ..()
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/nomod/crowbar_act(mob/living/user, obj/item/I)
-	to_chat(user, span_notice("This weapon cannot have its modifications removed."))
+	to_chat(user, span_notice("这把武器的模组无法被移除。"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/nomod/
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/nomod/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/borg/upgrade/modkit))
-		to_chat(user, span_notice("This weapon cannot have modifications applied."))
+		to_chat(user, span_notice("这把武器无法安装模组。"))
 	else
 		return ..()
 
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/railgun
-	name = "proto-kinetic railgun"
-	desc = parent_type::desc + " This variant seems to use all its energy into an hyper focused shoot, and needs two hands to use."
+	name = "原型动能轨道炮"
+	desc = parent_type::desc + "这种变体似乎将所有能量用于一次超聚焦射击，并且需要双手使用。"
 	special_desc = "Before the nice streamlined and modern day Proto-Kinetic Accelerator was created, multiple designs were drafted by the Mining Research and Development \
 	team. Many were failures, including this one, which came out too bulky and too ineffective. Well recently the MR&D Team got drunk and said 'fuck it we ball' and \
 	went back to the bulky design, overclocked it, and made it functional, turning it into what is essentially a literal man portable particle accelerator. \
@@ -55,8 +55,8 @@
 	return
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/repeater
-	name = "proto-kinetic repeater"
-	desc = parent_type::desc + " This variant seems to be specialized into firing thrice and has a longer barrel."
+	name = "原型动能连发枪"
+	desc = parent_type::desc + "这种变体似乎专精于三连发，并拥有更长的枪管。"
 	special_desc = "During the pizza party celebrating the release of the new crusher designs, the Mining Research and Development team members were only allowed one slice. \
 	One member exclaimed 'I wish we could have more than one slice' and another replied 'I wish we could shoot the accelerator more than once' and thus, the repeater \
 	on the spot. The repeater trades a bit of power for the ability to fire three shots before becoming empty, while retaining the ability to fully recharge in one \
@@ -73,8 +73,8 @@
 	AddComponent(/datum/component/automatic_fire, 0.2 SECONDS)
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/shotgun
-	name = "proto-kinetic shotgun"
-	desc = parent_type::desc + " This variant seems to have a prism that splits the ray in three."
+	name = "原型动能霰弹枪"
+	desc = parent_type::desc + "这种变体似乎有一个将射线分裂成三束的棱镜。"
 	special_desc = "During the crusher design pizza party, one member of the Mining Research and Development team brought out a real riot shotgun, and killed three \
 	other research members with one blast. The MR&D Director immediately thought of a genius idea, creating the proto-kinetic shotgun moments later, which he \
 	immediately used to execute the research member who brought the real shotgun. The proto-kinetic shotgun trades off some mod capacity and cooldown in favor \
@@ -90,8 +90,8 @@
 	randomspread = 0
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/glock
-	name = "proto-kinetic pistol"
-	desc = parent_type::desc + " This variant seems bare, but has a significant amount of mod slots."
+	name = "原型动能手枪"
+	desc = parent_type::desc + "这种变体看起来是基础型号，但拥有大量的模组插槽。"
 	special_desc = "During the pizza party for the Mining Research and Development team, one special snowflake researcher wanted a mini murphy instead of a regular \
 	pizza slice, so reluctantly the Director bought him his mini murphy, which the dumbass immediately dropped ontop of a PKA. Suddenly the idea to create \
 	a 'build your own PKA' design was created. The proto-kinetic pistol is arguably worse than the base PKA, sporting lower damage and range. But this lack \

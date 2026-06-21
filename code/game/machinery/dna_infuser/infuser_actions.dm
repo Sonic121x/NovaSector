@@ -1,7 +1,7 @@
 ///Action from the inky tongue, from fish with the ink production trait.
 /datum/action/cooldown/ink_spit
-	name = "Spit Ink"
-	desc = "Spits ink at someone, blinding them temporarily."
+	name = "喷射墨汁"
+	desc = "向某人喷射墨汁，使其暂时失明。"
 	button_icon = 'icons/hud/radial_fishing.dmi'
 	button_icon_state = "oil"
 	base_background_icon_state = "bg_default"
@@ -24,7 +24,7 @@
 	if(!.)
 		return
 
-	to_chat(on_who, span_notice("You prepare your ink glands. <B>Right-click to fire at a target!</B>"))
+	to_chat(on_who, span_notice("你准备好了你的墨腺。<B>右键点击向目标喷射！</B>"))
 	build_all_button_icons()
 
 /datum/action/cooldown/ink_spit/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
@@ -46,8 +46,8 @@
 
 	var/modifiers = params2list(params)
 	clicker.visible_message(
-		span_danger("[clicker] spits ink!"),
-		span_bold("You spit ink."),
+		span_danger("[clicker] 喷出了墨汁！"),
+		span_bold("你喷出了墨汁。"),
 	)
 	var/obj/projectile/ink_spit/ink = new /obj/projectile/ink_spit(clicker.loc)
 	ink.aim_projectile(target, clicker, modifiers)

@@ -144,7 +144,7 @@
 
 	//We're running just under the "worst disease", since we don't want these to be too strong
 	var/datum/disease/advance/random/rand_disease = new(rand(4 * strength * time_scaling), rand(strength * 5 * time_scaling))
-	rand_disease.name = "Unknown"
+	rand_disease.name = "未知"
 	react_to.ContactContractDisease(rand_disease, target_zone)
 
 #undef REAGENT_BLOCKER

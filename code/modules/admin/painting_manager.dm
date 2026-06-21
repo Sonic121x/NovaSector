@@ -50,12 +50,12 @@ ADMIN_VERB(painting_manager, R_ADMIN, "Paintings Manager", "View and redact pain
 					QDEL_NULL(painting.current_canvas)
 					painting.update_appearance()
 			log_admin("[key_name(user)] has deleted a persistent painting made by [chosen_painting.creator_ckey].")
-			message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [chosen_painting.creator_ckey]."))
+			message_admins(span_notice("[key_name_admin(user)] 删除了由 [chosen_painting.creator_ckey] 制作的持久性画作。"))
 			return TRUE
 		if("rename")
 			//Modify the metadata
 			var/old_title = chosen_painting.title
-			var/new_title = tgui_input_text(user, "New painting title?", "Painting Rename", chosen_painting.title, max_length = MAX_NAME_LEN)
+			var/new_title = tgui_input_text(user, "新的画作标题？", "画作重命名", chosen_painting.title, max_length = MAX_NAME_LEN)
 			if(!new_title)
 				return
 			chosen_painting.title = new_title
@@ -63,7 +63,7 @@ ADMIN_VERB(painting_manager, R_ADMIN, "Paintings Manager", "View and redact pain
 			return TRUE
 		if("rename_author")
 			var/old_name = chosen_painting.creator_name
-			var/new_name = tgui_input_text(user, "New painting author name?", "Painting Rename", chosen_painting.creator_name, max_length = MAX_NAME_LEN)
+			var/new_name = tgui_input_text(user, "新画作作者名？", "画作重命名", chosen_painting.creator_name, max_length = MAX_NAME_LEN)
 			if(!new_name)
 				return
 			chosen_painting.creator_name = new_name
@@ -83,7 +83,7 @@ ADMIN_VERB(painting_manager, R_ADMIN, "Paintings Manager", "View and redact pain
 			log_admin("[key_name(user)] has removed tag [params["tag"]] from persistent painting made by [chosen_painting.creator_ckey] with id [chosen_painting.md5].")
 			return TRUE
 		if("add_tag")
-			var/tag_name = tgui_input_text(user, "New tag name?", "Add Tag", max_length = MAX_NAME_LEN)
+			var/tag_name = tgui_input_text(user, "新标签名？", "添加标签", max_length = MAX_NAME_LEN)
 			if(!tag_name)
 				return
 			if(!chosen_painting.tags)

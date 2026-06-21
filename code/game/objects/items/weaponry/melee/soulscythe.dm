@@ -1,8 +1,8 @@
 #define MAX_BLOOD_LEVEL 100
 
 /obj/item/soulscythe
-	name = "soulscythe"
-	desc = "An old relic of hell created by devils to establish themselves as the leadership of hell over the demons. It grows stronger while it possesses a powerful soul."
+	name = "灵魂镰刀"
+	desc = "一件古老的地狱遗物，由魔鬼创造，用以确立他们在地狱中对恶魔的领导地位。当它拥有一个强大的灵魂时，会变得更强。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "soulscythe"
 	inhand_icon_state = "soulscythe"
@@ -43,7 +43,7 @@
 
 /obj/item/soulscythe/examine(mob/user)
 	. = ..()
-	. += soul.ckey ? span_nicegreen("There is a soul inhabiting it.") : span_danger("It's dormant.")
+	. += soul.ckey ? span_nicegreen("有一个灵魂寄居其中。") : span_danger("它处于休眠状态。")
 
 /obj/item/soulscythe/attack(mob/living/attacked, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -52,7 +52,7 @@
 
 /obj/item/soulscythe/attack_hand(mob/user, list/modifiers)
 	if(soul.ckey && !soul.faction_check_atom(user))
-		to_chat(user, span_warning("You can't pick up [src]!"))
+		to_chat(user, span_warning("你无法拾起[src]！"))
 		return
 	return ..()
 
@@ -70,10 +70,10 @@
 	if(using || soul.ckey || soul.stat)
 		return
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
-		balloon_alert(user, "you can't awaken the scythe!")
+		balloon_alert(user, "你无法唤醒这把镰刀！")
 		return
 	using = TRUE
-	balloon_alert(user, "you hold the scythe up...")
+	balloon_alert(user, "你举起了镰刀...")
 	ADD_TRAIT(src, TRAIT_NODROP, type)
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
 		check_jobban = ROLE_PAI,
@@ -89,7 +89,7 @@
 /// Ghost poll has concluded and a candidate has been chosen.
 /obj/item/soulscythe/proc/on_poll_concluded(mob/living/master, mob/dead/observer/ghost)
 	if(isnull(ghost))
-		balloon_alert(master, "the scythe is dormant!")
+		balloon_alert(master, "镰刀沉寂了！")
 		REMOVE_TRAIT(src, TRAIT_NODROP, type)
 		using = FALSE
 		return
@@ -98,7 +98,7 @@
 	soul.copy_languages(master, LANGUAGE_MASTER) //Make sure the sword can understand and communicate with the master.
 	soul.set_allies(list("[REF(master)]"))
 	soul.set_faction(null)
-	balloon_alert(master, "the scythe glows")
+	balloon_alert(master, "镰刀发出微光")
 	add_overlay("soulscythe_gem")
 	density = TRUE
 	if(!ismob(loc))
@@ -111,7 +111,7 @@
 	if(!COOLDOWN_FINISHED(src, move_cooldown) || charging)
 		return
 	if(!isturf(loc))
-		balloon_alert(user, "resist out!")
+		balloon_alert(user, "挣脱出去！")
 		COOLDOWN_START(src, move_cooldown, 1 SECONDS)
 		return
 	if(!use_blood(1, FALSE))
@@ -142,7 +142,7 @@
 /obj/item/soulscythe/proc/use_blood(amount = 0, message = TRUE)
 	if(amount > soul.get_blood_volume())
 		if(message)
-			to_chat(soul, span_warning("Not enough blood!"))
+			to_chat(soul, span_warning("血液不足！"))
 		return FALSE
 	soul.adjust_blood_volume(-amount)
 	return TRUE
@@ -160,11 +160,11 @@
 /obj/item/soulscythe/proc/break_out()
 	if(!use_blood(10))
 		return
-	balloon_alert(soul, "you resist...")
+	balloon_alert(soul, "你在抵抗...")
 	if(!do_after(soul, 5 SECONDS, target = src, timed_action_flags = IGNORE_TARGET_LOC_CHANGE))
-		balloon_alert(soul, "interrupted!")
+		balloon_alert(soul, "被打断了！")
 		return
-	balloon_alert(soul, "you break out")
+	balloon_alert(soul, "你挣脱了")
 	if(ismob(loc))
 		var/mob/holder = loc
 		holder.temporarilyRemoveItemFromInventory(src)
@@ -200,7 +200,7 @@
 	projectile.aim_projectile(attacked_atom, src)
 	projectile.firer = src
 	projectile.fire(null, attacked_atom)
-	visible_message(span_danger("[src] fires at [attacked_atom]!"), span_notice("You fire at [attacked_atom]!"))
+	visible_message(span_danger("[src]向[attacked_atom]开火！"), span_notice("你向[attacked_atom]开火！"))
 	playsound(src, 'sound/effects/magic/fireball.ogg', 50, TRUE)
 
 /obj/item/soulscythe/proc/slash_target(atom/attacked_atom)
@@ -209,7 +209,7 @@
 		if(attacked_mob.stat != DEAD)
 			give_blood(15)
 		attacked_mob.apply_damage(damage = force * (ismining(attacked_mob) ? 2 : 1), sharpness = SHARP_EDGED, exposed_wound_bonus = 5)
-		to_chat(attacked_mob, span_userdanger("You're slashed by [src]!"))
+		to_chat(attacked_mob, span_userdanger("你被[src]劈中了！"))
 	else if((ismachinery(attacked_atom) || isstructure(attacked_atom)) && use_blood(5))
 		var/obj/attacked_obj = attacked_atom
 		attacked_obj.take_damage(force, BRUTE, MELEE, FALSE)
@@ -219,7 +219,7 @@
 	animate(src)
 	SpinAnimation(5)
 	addtimer(CALLBACK(src, PROC_REF(reset_spin)), 1 SECONDS)
-	visible_message(span_danger("[src] slashes [attacked_atom]!"), span_notice("You slash [attacked_atom]!"))
+	visible_message(span_danger("[src]劈中了[attacked_atom]！"), span_notice("你劈中了[attacked_atom]！"))
 	playsound(src, 'sound/items/weapons/bladeslice.ogg', 50, TRUE)
 	do_attack_animation(attacked_atom, ATTACK_EFFECT_SLASH)
 
@@ -229,12 +229,12 @@
 	COOLDOWN_START(src, attack_cooldown, 5 SECONDS)
 	animate(src)
 	charging = TRUE
-	visible_message(span_danger("[src] starts charging..."))
-	balloon_alert(soul, "you start charging...")
+	visible_message(span_danger("[src]开始冲锋..."))
+	balloon_alert(soul, "你开始蓄力...")
 	if(!do_after(soul, 2 SECONDS, target = src, timed_action_flags = IGNORE_TARGET_LOC_CHANGE))
-		balloon_alert(soul, "interrupted!")
+		balloon_alert(soul, "被打断了！")
 		return
-	visible_message(span_danger("[src] charges at [attacked_atom]!"), span_notice("You charge at [attacked_atom]!"))
+	visible_message(span_danger("[src]向[attacked_atom]冲锋！"), span_notice("你向[attacked_atom]冲锋！"))
 	new /obj/effect/temp_visual/mook_dust(get_turf(src))
 	playsound(src, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE)
 	SpinAnimation(1)
@@ -252,7 +252,7 @@
 
 /// Soulscythe mob, just a way for players to control the scythe.
 /mob/living/basic/soulscythe
-	name = "mysterious spirit"
+	name = "神秘的灵魂"
 	maxHealth = 200
 	health = 200
 	gender = NEUTER
@@ -271,7 +271,7 @@
 
 /// Special projectile for the soulscythe.
 /obj/projectile/soulscythe
-	name = "soulslash"
+	name = "灵魂斩击"
 	icon_state = "soulslash"
 	armor_flag = MELEE //jokair
 	damage = 15

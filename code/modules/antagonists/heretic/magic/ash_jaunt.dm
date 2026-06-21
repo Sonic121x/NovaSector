@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
-	name = "Ashen Passage"
-	desc = "A short range spell that allows you to pass unimpeded through walls, removing restraints if empowered."
+	name = "灰烬通道"
+	desc = "一种短程法术，允许你无阻碍地穿过墙壁，若被强化则可解除束缚。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -78,12 +78,12 @@
 	return
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/long
-	name = "Ashen Walk"
-	desc = "A long range spell that allows you pass unimpeded through multiple walls."
+	name = "灰烬行者"
+	desc = "一个远程法术，可以让你无阻碍地穿过多面墙。"
 	jaunt_duration = 5 SECONDS
 
 /obj/effect/temp_visual/dir_setting/ash_shift
-	name = "ash_shift"
+	name = "灰烬移动"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "ash_shift2"
 	duration = 1.3 SECONDS

@@ -1,6 +1,6 @@
 /obj/effect/fun_balloon
-	name = "fun balloon"
-	desc = "This is going to be a laugh riot."
+	name = "趣味气球"
+	desc = "这将会是一场爆笑狂欢。"
 	icon = 'icons/obj/toys/balloons.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
@@ -28,14 +28,14 @@
 	return
 
 /obj/effect/fun_balloon/proc/pop()
-	visible_message(span_notice("[src] pops!"))
+	visible_message(span_notice("[src] 爆了！"))
 	playsound(get_turf(src), pop_sound_effect, 50, TRUE, -1)
 	qdel(src)
 
 // ----------- Sentience Balloon
 /obj/effect/fun_balloon/sentience
-	name = "sentience fun balloon"
-	desc = "When this pops, things are gonna get more aware around here."
+	name = "sentience fun balloon-自感知召唤气球"
+	desc = "当这个气球爆开时，周围的东西会变得更有意识。"
 	var/group_name = "a bunch of giant spiders"
 	var/effect_range = 3
 	var/antag_type = null
@@ -78,7 +78,7 @@
 
 		if("select_antag")
 			var/list/paths = subtypesof(/datum/antagonist)
-			antag_type = input(usr,"Select antag", "Antagonist selection") as null|anything in sort_list(paths)
+			antag_type = input(usr,"选择反派", "反派选择") as null|anything in sort_list(paths)
 			make_antag = TRUE
 
 		if("pop")
@@ -96,7 +96,7 @@
 			bodies += possessable
 
 	var/list/candidates = SSpolling.poll_ghosts_for_targets(
-		question = "Would you like to be [span_notice(group_name)]?",
+		question = "你愿意成为[span_notice(group_name)]吗？",
 		role = ROLE_SENTIENCE,
 		check_jobban = ROLE_SENTIENCE,
 		poll_time = 10 SECONDS,
@@ -120,7 +120,7 @@
 
 // ----------- Emergency Shuttle Balloon
 /obj/effect/fun_balloon/sentience/emergency_shuttle
-	name = "shuttle sentience fun balloon"
+	name = "穿梭机意识趣味气球"
 	var/trigger_time = 60
 
 /obj/effect/fun_balloon/sentience/emergency_shuttle/check()
@@ -130,8 +130,8 @@
 
 // ----------- Scatter Balloon
 /obj/effect/fun_balloon/scatter
-	name = "scatter fun balloon"
-	desc = "When this pops, you're not going to be around here anymore."
+	name = "散射趣味气球"
+	desc = "当这个气球爆开时，你就不会待在这里了。"
 	var/effect_range = 5
 
 /obj/effect/fun_balloon/scatter/effect()
@@ -139,13 +139,13 @@
 		var/turf/drop_off = find_safe_turf(z)
 		new /obj/effect/temp_visual/gravpush(get_turf(dispersed_mob))
 		dispersed_mob.forceMove(drop_off)
-		dispersed_mob.balloon_alert(dispersed_mob, "pop!")
+		dispersed_mob.balloon_alert(dispersed_mob, "砰！")
 
 // ----------- Station Crash
 // Can't think of anywhere better to put it right now
 /obj/effect/station_crash
-	name = "station crash"
-	desc = "With no survivors!"
+	name = "空间站事故"
+	desc = "没有幸存者！"
 	icon = 'icons/obj/toys/balloons.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
@@ -167,7 +167,7 @@
 			break
 
 /obj/effect/station_crash/devastating
-	name = "devastating station crash"
-	desc = "Absolute Destruction. Will crash the shuttle far into the station."
+	name = "毁灭性空间站事故"
+	desc = "绝对毁灭，将把穿梭机撞到空间站深处"
 	min_crash_strength = 15
 	max_crash_strength = 25

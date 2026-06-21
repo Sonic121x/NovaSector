@@ -24,13 +24,13 @@
 
 	// Create our list of humans, all adjacent to one another
 	alice = new(locate(run_loc_floor_bottom_left.x + 2, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
-	alice.name = "Alice"
+	alice.name = "爱丽丝"
 
 	bob = new(locate(run_loc_floor_bottom_left.x + 3, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
-	bob.name = "Bob"
+	bob.name = "鲍勃"
 
 	charlie = new(locate(run_loc_floor_bottom_left.x + 4, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
-	charlie.name = "Charlie"
+	charlie.name = "查理"
 
 /datum/unit_test/chain_pull_through_space/Destroy()
 	space_tile.ChangeTurf(claimed_tile)

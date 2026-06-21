@@ -52,13 +52,13 @@
 	if(!zipped_up)
 		return ..()
 
-	balloon_alert(user, "unzipping...")
+	balloon_alert(user, "正在拉开拉链...")
 	playsound(src, unzip_sfx, 100, FALSE)
 	var/datum/callback/can_unzip = CALLBACK(src, PROC_REF(zipper_matches), TRUE)
 	if(!do_after(user, unzip_duration, src, extra_checks = can_unzip))
-		user.balloon_alert(user, "unzip failed!")
+		user.balloon_alert(user, "拉开拉链失败！")
 		return
-	balloon_alert(user, "unzipped")
+	balloon_alert(user, "已拉开拉链")
 	set_zipper(FALSE)
 	return TRUE
 
@@ -69,13 +69,13 @@
 	if(zipped_up)
 		return SECONDARY_ATTACK_CALL_NORMAL
 
-	balloon_alert(user, "zipping...")
+	balloon_alert(user, "正在拉上拉链...")
 	playsound(src, zip_up_sfx, 100, FALSE)
 	var/datum/callback/can_zip = CALLBACK(src, PROC_REF(zipper_matches), FALSE)
 	if(!do_after(user, zip_up_duration, src, extra_checks = can_zip))
-		user.balloon_alert(user, "zip failed!")
+		user.balloon_alert(user, "拉上拉链失败！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	balloon_alert(user, "zipped")
+	balloon_alert(user, "已拉上拉链")
 	set_zipper(TRUE)
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 

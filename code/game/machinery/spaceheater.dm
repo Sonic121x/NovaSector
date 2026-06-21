@@ -11,8 +11,8 @@
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi'
 	icon_state = "sheater-off"
 	base_icon_state = "sheater"
-	name = "space heater"
-	desc = "Made by Space Amish using traditional space techniques, this heater/cooler is guaranteed not to set the station on fire. Warranty void if used in engines."
+	name = "太空加热器"
+	desc = "这款加热器/冷却器由Space Amish公司使用传统的太空技术制造，保证不会让空间站起火。如果用于发动机，保修无效。"
 	max_integrity = 250
 	armor_type = /datum/armor/machinery_space_heater
 	circuit = /obj/item/circuitboard/machine/space_heater
@@ -103,7 +103,7 @@
 		. += span_warning("There is no power cell installed.")
 	if(in_range(user, src) || isobserver(user))
 		. += heating_examine()
-		. += span_notice("<b>Right-click</b> to toggle [on ? "off" : "on"].")
+		. += span_notice("<b>右键点击</b>以切换[on ? "off" : "on"]。")
 
 ///Returns the heating power of this machine as an examine
 /obj/machinery/space_heater/proc/heating_examine()
@@ -220,7 +220,7 @@
 	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		add_fingerprint(user)
 		if(!panel_open)
-			to_chat(user, span_warning("The hatch must be open to insert a power cell!"))
+			to_chat(user, span_warning("舱门必须打开才能插入电池!"))
 			return ITEM_INTERACT_BLOCKING
 		if(cell)
 			to_chat(user, span_warning("There is already a power cell inside!"))
@@ -309,20 +309,20 @@
 	mode = HEATER_MODE_STANDBY
 	if(!isnull(user))
 		if(QDELETED(cell))
-			balloon_alert(user, "no cell!")
+			balloon_alert(user, "没有电池！")
 		else if(!cell.charge())
-			balloon_alert(user, "no charge!")
+			balloon_alert(user, "没有电量！")
 		else if(!is_operational)
-			balloon_alert(user, "not operational!")
+			balloon_alert(user, "无法运行！")
 		else
-			balloon_alert(user, "turned [on ? "on" : "off"]")
+			balloon_alert(user, "已[on ? "on" : "off"]")
 	update_appearance()
 	if(on)
 		SSair.start_processing_machine(src)
 
 ///For use with heating reagents in a ghetto way
 /obj/machinery/space_heater/improvised_chem_heater
-	name = "improvised chem heater"
+	name = "简易化学加热器"
 	desc = "A space heater fashioned to reroute heating to a water bath on top."
 	panel_open = TRUE //This is always open - since we've injected wires in the panel
 	//We inherit the cell from the heater prior
@@ -362,7 +362,7 @@
 	// Conducted energy per joule of thermal energy difference in a tick.
 	var/conduction_energy = beaker_conduction_power * (set_mode == HEATER_MODE_AUTO ? 0.5 : 1) * our_subsystem.wait / (1 SECONDS)
 	// This accounts for the timestep inaccuracy.
-	. += span_notice("Reagent conduction power: <b>[conduction_energy < 1 ? display_power(-log(1 - conduction_energy) SECONDS / our_subsystem.wait, convert = FALSE) : "∞W"]/J</b>")
+	. += span_notice("试剂传导功率：<b>[conduction_energy < 1 ? display_power(-log(1 - conduction_energy) SECONDS / our_subsystem.wait, convert = FALSE) : "∞W"]/J</b>")
 
 /obj/machinery/space_heater/improvised_chem_heater/toggle_power(user)
 	. = ..()
@@ -434,7 +434,7 @@
 		cell = item
 		item.add_fingerprint(usr)
 
-		user.visible_message(span_notice("\The [user] inserts a power cell into \the [src]."), span_notice("You insert the power cell into \the [src]."))
+		user.visible_message(span_notice("\The [user] 将一块能量电池插入了\the [src]。"), span_notice("你将能量电池插入了\the [src]。"))
 		SStgui.update_uis(src)
 	//reagent containers
 	if(is_reagent_container(item) && !(item.item_flags & ABSTRACT) && item.is_open_container())

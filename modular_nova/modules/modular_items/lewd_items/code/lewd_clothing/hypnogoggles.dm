@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/hypno
-	name = "hypnotic goggles"
-	desc = "An all-in-one mnemonic impression repeater and vision tinter, used to entrance the wearer with a programmed phrase. Foam inserts, to boot."
+	name = "催眠护目镜"
+	desc = "一个集记忆印象重复器和视觉着色器于一体的设备，用于通过预设短语使佩戴者着迷。还配有泡沫衬垫。"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_eyes.dmi'
 	greyscale_colors = "#383840#dc7ef4"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
@@ -24,7 +24,7 @@
 
 /obj/item/clothing/glasses/hypno/attack_self(mob/user)
 	. = ..()
-	var/new_codephrase = tgui_input_text(user, "Change The Hypnotic Phrase.", max_length = MAX_MESSAGE_LEN)
+	var/new_codephrase = tgui_input_text(user, "更改催眠短语。", max_length = MAX_MESSAGE_LEN)
 	if(!isnull(new_codephrase))
 		codephrase = new_codephrase
 
@@ -38,20 +38,20 @@
 		codephrase = initial(codephrase) // DIE
 	log_game("[key_name(user)] was hypnogoggled.")
 	to_chat(user, span_reallybig(span_hypnophrase(codephrase)))
-	to_chat(user, span_notice(pick("You feel your thoughts focusing on this phrase... you can't seem to get it out of your head.",
+	to_chat(user, span_notice(pick("你感觉自己的思绪正聚焦在这个短语上……你似乎无法将它从脑海中抹去。",
 									"Your head hurts, but this is all you can think of. It must be vitally important.",
 									"You feel a part of your mind repeating this over and over. You need to follow these words.",
 									"Something about this sounds... right, for some reason. You feel like you should follow these words.",
 									"These words keep echoing in your mind. You find yourself completely fascinated by them.")))
-	var/atom/movable/screen/alert/hypnosis/hypno_alert = user.throw_alert("hypnosis", /atom/movable/screen/alert/hypnosis, timeout_override = 30 SECONDS)
-	hypno_alert.desc = "\"[codephrase]\"... your mind seems to be fixated on this concept."
+	var/atom/movable/screen/alert/hypnosis/hypno_alert = user.throw_alert("催眠", /atom/movable/screen/alert/hypnosis, timeout_override = 30 SECONDS)
+	hypno_alert.desc = "\"[codephrase]\"……你的思维似乎正执着于这个概念。"
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/glasses/hypno/dropped(mob/living/user)
 	. = ..()
 	if(datum_flags & DF_ISPROCESSING)
 		log_game("[key_name(user)] is no longer hypnogoggled.")
-		to_chat(user, span_userdanger("You suddenly snap out of your hypnosis. The phrase '[codephrase]' no longer feels important to you."))
+		to_chat(user, span_userdanger("你突然从催眠状态中惊醒。短语'[codephrase]'对你来说不再重要了。"))
 		STOP_PROCESSING(SSobj, src)
 
 

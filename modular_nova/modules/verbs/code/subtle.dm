@@ -22,18 +22,18 @@
 
 /datum/emote/living/subtle/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't emote at this time."))
+		to_chat(user, span_warning("你现在无法进行表情动作。"))
 		return FALSE
 	var/subtle_message
 	var/subtle_emote = params
 	if(SSdbcore.IsConnected() && is_banned_from(user, "emote"))
-		to_chat(user, "You cannot send subtle emotes (banned).")
+		to_chat(user, "你无法发送隐秘表情（已被禁止）。")
 		return FALSE
 	else if(user.client?.prefs.muted & MUTE_IC)
-		to_chat(user, "You cannot send IC messages (muted).")
+		to_chat(user, "你无法发送IC消息（已被禁言）。")
 		return FALSE
 	else if(!params)
-		subtle_emote = tgui_input_text(user, "Choose an emote to display.", "Subtle", null, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+		subtle_emote = tgui_input_text(user, "选择一个要显示的表情动作。", "隐晦", null, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 		if(!subtle_emote)
 			return FALSE
 		subtle_message = subtle_emote
@@ -43,7 +43,7 @@
 	var/running_emote_type = type_override || emote_type
 
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't emote at this time."))
+		to_chat(user, span_warning("你现在无法进行表情动作。"))
 		return FALSE
 
 	user.log_message(subtle_message, LOG_SUBTLE)
@@ -93,7 +93,7 @@
 
 /datum/emote/living/subtler/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't emote at this time."))
+		to_chat(user, span_warning("你现在无法进行表情动作。"))
 		return FALSE
 	var/subtler_message
 	var/subtler_emote = params
@@ -101,13 +101,13 @@
 	var/subtler_range = SUBTLE_DEFAULT_DISTANCE
 
 	if(SSdbcore.IsConnected() && is_banned_from(user, "emote"))
-		to_chat(user, span_warning("You cannot send subtle emotes (banned)."))
+		to_chat(user, span_warning("你无法发送隐秘表情（已被禁止）。"))
 		return FALSE
 	else if(user.client?.prefs.muted & MUTE_IC)
-		to_chat(user, span_warning("You cannot send IC messages (muted)."))
+		to_chat(user, span_warning("你无法发送IC消息（已被禁言）。"))
 		return FALSE
 	else if(!subtler_emote)
-		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler" , max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+		subtler_emote = tgui_input_text(user, "选择一个要显示的表情动作。", "更隐晦" , max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 		if(!subtler_emote)
 			return FALSE
 
@@ -132,7 +132,7 @@
 			in_view.Remove(mob)
 
 		var/list/targets = list(SUBTLE_ONE_TILE_TEXT, SUBTLE_SAME_TILE_TEXT) + in_view
-		target = tgui_input_list(user, "Pick a target", "Target Selection", targets)
+		target = tgui_input_list(user, "选择一个目标", "目标选择", targets)
 		if(!target)
 			return FALSE
 
@@ -149,7 +149,7 @@
 	var/running_emote_type = type_override || emote_type
 
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't emote at this time."))
+		to_chat(user, span_warning("你现在无法进行表情动作。"))
 		return FALSE
 
 	user.log_message(subtler_message, LOG_SUBTLER)
@@ -170,7 +170,7 @@
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				target_mob.playsound_local(get_turf(target_mob), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 		else
-			to_chat(user, span_warning("Your emote was unable to be sent to your target: Too far away."))
+			to_chat(user, span_warning("你的表情无法发送给目标：距离太远。"))
 	else if(istype(target, /obj/effect/overlay/holo_pad_hologram))
 		var/obj/effect/overlay/holo_pad_hologram/hologram = target
 		if(hologram.Impersonation?.client)
@@ -218,7 +218,7 @@
 	set name = "Subtle"
 	set category = "IC"
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("发言当前已被管理员禁用。"))
 		return
 	usr.emote("subtle")
 
@@ -230,7 +230,7 @@
 	set name = "Subtler Anti-Ghost"
 	set category = "IC"
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("发言当前已被管理员禁用。"))
 		return
 	usr.emote("subtler")
 

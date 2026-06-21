@@ -1,12 +1,12 @@
 /proc/create_message(type, target_key, admin_ckey, text, timestamp, server, secret, logged = 1, browse, expiry, note_severity)
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	if(!type)
 		return
 	var/target_ckey = ckey(target_key)
 	if(!target_key && (type == "note" || type == "message" || type == "watchlist entry"))
-		var/new_key = input(usr,"Who would you like to create a [type] for?","Enter a key or ckey",null) as null|text
+		var/new_key = input(usr,"你想为谁创建 [type]？","输入一个键名或ckey",null) as null|text
 		if(!new_key)
 			return
 		var/new_ckey = ckey(new_key)
@@ -18,7 +18,7 @@
 			qdel(query_find_ckey)
 			return
 		if(!query_find_ckey.NextRow())
-			if(tgui_alert(usr, "[new_key]/([new_ckey]) has not been seen before, are you sure you want to create a [type] for them?", "Unknown ckey", list("Yes", "No", "Cancel")) != "Yes")
+			if(tgui_alert(usr, "[new_key]/([new_ckey]) 之前从未出现过，你确定要为他们创建 [type] 吗？", "未知的ckey", list("Yes", "No", "Cancel")) != "Yes")
 				qdel(query_find_ckey)
 				return
 		qdel(query_find_ckey)
@@ -35,7 +35,7 @@
 	if(!target_ckey)
 		target_ckey = admin_ckey
 	if(!text)
-		text = input(usr,"Write your [type]","Create [type]") as null|message
+		text = input(usr,"写下你的 [type]","创建 [type]") as null|message
 		if(!text)
 			return
 	if(!server)
@@ -43,7 +43,7 @@
 		if (ssqlname)
 			server = ssqlname
 	if(isnull(secret))
-		switch(tgui_alert(usr,"Hide note from being viewed by players?", "Secret note?",list("Yes","No","Cancel")))
+		switch(tgui_alert(usr,"对玩家隐藏此备注？", "秘密备注？",list("Yes","No","Cancel")))
 			if("Yes")
 				secret = 1
 			if("No")
@@ -51,8 +51,8 @@
 			else
 				return
 	if(isnull(expiry))
-		if(tgui_alert(usr, "Set an expiry time? Expired messages are hidden like deleted ones.", "Expiry time?", list("Yes", "No", "Cancel")) == "Yes")
-			var/expire_time = input("Set expiry time for [type] as format YYYY-MM-DD HH:MM:SS. All times in server time. HH:MM:SS is optional and 24-hour. Must be later than current time for obvious reasons.", "Set expiry time", ISOtime()) as null|text
+		if(tgui_alert(usr, "设置过期时间？过期的消息会像已删除的消息一样被隐藏。", "过期时间？", list("Yes", "No", "Cancel")) == "Yes")
+			var/expire_time = input("为 [type] 设置过期时间，格式为 YYYY-MM-DD HH:MM:SS。所有时间均为服务器时间。HH:MM:SS 为可选且为24小时制。出于显而易见的原因，必须晚于当前时间。", "设置过期时间", ISOtime()) as null|text
 			if(!expire_time)
 				return
 			var/datum/db_query/query_validate_expire_time = SSdbcore.NewQuery(
@@ -65,13 +65,13 @@
 			if(query_validate_expire_time.NextRow())
 				var/checktime = text2num(query_validate_expire_time.item[1])
 				if(!checktime)
-					to_chat(usr, "Datetime entered is improperly formatted or not later than current server time.", confidential = TRUE)
+					to_chat(usr, "输入的日期时间格式不正确，或早于当前服务器时间。", confidential = TRUE)
 					qdel(query_validate_expire_time)
 					return
 				expiry = query_validate_expire_time.item[1]
 			qdel(query_validate_expire_time)
 	if(type == "note" && isnull(note_severity))
-		note_severity = input("Set the severity of the note.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
+		note_severity = input("设置备注的严重性。", "严重性", null, null) as null|anything in list("高", "中", "低", "无")
 		if(!note_severity)
 			return
 	var/list/parameters = list(
@@ -110,7 +110,7 @@
 
 /proc/delete_message(message_id, logged = 1, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -153,7 +153,7 @@
 
 /proc/edit_message(message_id, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -179,7 +179,7 @@
 		var/target_key = query_find_edit_message.item[2]
 		var/admin_key = query_find_edit_message.item[3]
 		var/old_text = query_find_edit_message.item[4]
-		var/new_text = input("Input new [type]", "New [type]", "[old_text]") as null|message
+		var/new_text = input("输入新的 [type]", "新的 [type]", "[old_text]") as null|message
 		if(!new_text)
 			qdel(query_find_edit_message)
 			return
@@ -203,7 +203,7 @@
 
 /proc/edit_message_expiry(message_id, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -230,7 +230,7 @@
 		var/admin_key = query_find_edit_expiry_message.item[3]
 		var/old_expiry = query_find_edit_expiry_message.item[4]
 		var/new_expiry
-		var/expire_time = input("Set expiry time for [type] as format YYYY-MM-DD HH:MM:SS. All times in server time. HH:MM:SS is optional and 24-hour. Must be later than current time for obvious reasons. Enter -1 to remove expiry time.", "Set expiry time", old_expiry) as null|text
+		var/expire_time = input("为 [type] 设置过期时间，格式为 YYYY-MM-DD HH:MM:SS。所有时间均为服务器时间。HH:MM:SS 为可选且为24小时制。出于显而易见的原因，必须晚于当前时间。输入 -1 以移除过期时间。", "设置过期时间", old_expiry) as null|text
 		if(!expire_time)
 			qdel(query_find_edit_expiry_message)
 			return
@@ -247,7 +247,7 @@
 			if(query_validate_expire_time_edit.NextRow())
 				var/checktime = text2num(query_validate_expire_time_edit.item[1])
 				if(!checktime)
-					to_chat(usr, "Datetime entered is improperly formatted or not later than current server time.", confidential = TRUE)
+					to_chat(usr, "输入的日期时间格式不正确，或不晚于当前服务器时间。", confidential = TRUE)
 					qdel(query_validate_expire_time_edit)
 					qdel(query_find_edit_expiry_message)
 					return
@@ -274,7 +274,7 @@
 
 /proc/edit_message_severity(message_id)
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -302,7 +302,7 @@
 			old_severity = "NA"
 		var/editor_key = usr.key
 		var/editor_ckey = usr.ckey
-		var/new_severity = input("Set the severity of the note.", "Severity", null, null) as null|anything in list("high", "medium", "minor", "none") //lowercase for edit log consistency
+		var/new_severity = input("设置备注的严重性。", "严重性", null, null) as null|anything in list("high", "medium", "minor", "none") //lowercase for edit log consistency
 		if(!new_severity)
 			qdel(query_find_edit_note_severity)
 			return
@@ -325,7 +325,7 @@
 
 /proc/toggle_message_secrecy(message_id)
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -369,7 +369,7 @@
 
 /proc/browse_messages(type, target_ckey, index, linkless = FALSE, filter, agegate = FALSE)
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 
 	//Needs to be requested before url retrieval since you can view your notes before SSassets finishes initialization
@@ -644,7 +644,7 @@
 
 /proc/get_message_output(type, target_ckey, show_secret = TRUE, after_timestamp)
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	if(!type)
 		return

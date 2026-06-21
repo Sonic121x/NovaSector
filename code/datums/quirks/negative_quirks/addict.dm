@@ -82,10 +82,10 @@
 
 /datum/quirk/item_quirk/addict/junkie
 	name = "Junkie"
-	desc = "You can't get enough of hard drugs."
+	desc = "你对硬性毒品欲罢不能。"
 	icon = FA_ICON_PILLS
 	value = -6
-	gain_text = span_danger("You suddenly feel the craving for drugs.")
+	gain_text = span_danger("你突然感到一阵对毒品的渴望。")
 	medical_record_text = "Patient has a history of hard drugs."
 	hardcore_value = 4
 	mail_goodies = list(/obj/effect/spawner/random/contraband/narcotics)
@@ -109,11 +109,11 @@
 
 /datum/quirk/item_quirk/addict/smoker
 	name = "Smoker"
-	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
+	desc = "有时候你就是特别想抽根烟。这对你的肺可能不太好。"
 	icon = FA_ICON_SMOKING
 	value = -4
-	gain_text = span_danger("You could really go for a smoke right about now.")
-	lose_text = span_notice("You don't feel nearly as hooked to nicotine anymore.")
+	gain_text = span_danger("你现在真想抽根烟。")
+	lose_text = span_notice("你感觉对尼古丁的依赖没那么强了。")
 	medical_record_text = "Patient is a current smoker."
 	reagent_type = /datum/reagent/drug/nicotine
 	accessory_type = /obj/item/lighter/greyscale
@@ -167,11 +167,11 @@
 
 /datum/quirk/item_quirk/addict/alcoholic
 	name = "Alcoholic"
-	desc = "You just can't live without alcohol. Your liver is a machine that turns ethanol into acetaldehyde."
+	desc = "你离了酒精就活不下去。你的肝脏是把乙醇转化成乙醛的机器。"
 	icon = FA_ICON_WINE_GLASS
 	value = -4
-	gain_text = span_danger("You really need a drink.")
-	lose_text = span_notice("Alcohol doesn't seem nearly as enticing anymore.")
+	gain_text = span_danger("你真的需要喝一杯。")
+	lose_text = span_notice("酒精似乎没那么诱人了。")
 	medical_record_text = "Patient is an alcoholic."
 	reagent_type = /datum/reagent/consumable/ethanol
 	drug_container_type = /obj/item/reagent_containers/cup/glass/bottle/whiskey

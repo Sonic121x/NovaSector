@@ -7,8 +7,8 @@ I'd rather there be something than the clockwork ruin be entirely empty though s
 */
 
 /mob/living/simple_animal/hostile/megafauna/clockwork_defender
-	name = "clockwork defender"
-	desc = "A traitorous clockwork knight who lived on, despite its creators destruction."
+	name = "钟表守护者"
+	desc = "一个反叛的钟表骑士，尽管它的创造者已经毁灭了，但它仍然活了下来."
 	health = 300
 	maxHealth = 300
 	icon_state = "clockwork_defender"
@@ -48,8 +48,8 @@ I'd rather there be something than the clockwork ruin be entirely empty though s
 	return
 
 /obj/item/clockwork_alloy
-	name = "clockwork alloy"
-	desc = "The remains of the strongest clockwork knight."
+	name = "钟表合金"
+	desc = "最强大的钟表骑士的遗骸"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "clockwork_alloy"
 	w_class = WEIGHT_CLASS_TINY

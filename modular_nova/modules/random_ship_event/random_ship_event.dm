@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(random_ship_events, init_random_ship_events())
 ///Random ship datum that may approach the station.
 /datum/random_ship_event
 	///Name of this event, for spawning feedback.
-	var/name = "Random Ship Event"
+	var/name = "随机飞船事件"
 
 	///The random ship name chosen from pirates.json.
 	var/ship_name

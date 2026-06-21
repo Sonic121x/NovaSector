@@ -2,8 +2,8 @@
 #define THROW_MODE_LAUNCH "throw_mode_launch"
 
 /obj/item/cain_and_abel
-	name = "Cain & Abel"
-	desc = "I cry I pray mon Dieu."
+	name = "该隐与亚伯"
+	desc = "我哭泣，我祈祷，我的上帝。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
@@ -88,11 +88,11 @@
 		return NONE
 
 	if(!check_wield(user))
-		user.balloon_alert(user, "offhand busy!")
+		user.balloon_alert(user, "副手正忙！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!length(current_wisps))
-		user.balloon_alert(user, "no wisps!")
+		user.balloon_alert(user, "没有幽魂！")
 		return ITEM_INTERACT_BLOCKING
 
 	for(var/index in 0 to (length(current_wisps) - 1))
@@ -104,7 +104,7 @@
 	if (.)
 		return
 	if(!check_wield(user))
-		user.balloon_alert(user, "offhand busy!")
+		user.balloon_alert(user, "副手正忙！")
 		return TRUE
 
 /obj/item/cain_and_abel/attack(mob/living/target, mob/living/carbon/human/user)
@@ -125,7 +125,7 @@
 	if(.)
 		return TRUE
 	throw_mode = (throw_mode == THROW_MODE_CRYSTALS) ? THROW_MODE_LAUNCH : THROW_MODE_CRYSTALS
-	user.balloon_alert(user, "crystals [throw_mode == THROW_MODE_CRYSTALS ? "activated" : "deactivated"]")
+	user.balloon_alert(user, "水晶[throw_mode == THROW_MODE_CRYSTALS ? "activated" : "deactivated"]")
 	return TRUE
 
 /obj/item/cain_and_abel/proc/set_combo(new_value, mob/living/user, instant = FALSE)

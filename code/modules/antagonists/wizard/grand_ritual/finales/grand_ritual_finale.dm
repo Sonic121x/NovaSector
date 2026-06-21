@@ -60,7 +60,7 @@
 	wizard_murder.explanation_text = "Kill [wizard.current.name], the one who did this."
 	antag_datum.objectives += wizard_murder
 
-	to_chat(aggrieved_crewmate.current, span_warning("No! This isn't right!"))
+	to_chat(aggrieved_crewmate.current, span_warning("不！这不对！"))
 	aggrieved_crewmate.announce_objectives()
 
 /**
@@ -68,7 +68,7 @@
  * This doesn't preclude other people choosing to want to kill the wizard, just these people are rewarded for it.
  */
 /datum/antagonist/wizard_prank_vendetta
-	name = "\improper Wizard Prank Victim"
+	name = "\improper 巫师恶作剧受害者"
 	roundend_category = "wizard prank victims"
 	show_in_antagpanel = FALSE
 	antagpanel_category = ANTAG_GROUP_CREW
@@ -78,8 +78,8 @@
 
 /// Give everyone magic items, its so simple it feels pointless to give it its own file
 /datum/grand_finale/magic
-	name = "Evolution"
-	desc = "The ultimate use of your gathered power! Give the crew their own magic, they'll surely realise that right and wrong have no meaning when you hold ultimate power!"
+	name = "进化"
+	desc = "你聚集力量的终极用途！赋予船员他们自己的魔法，他们肯定会意识到，当你掌握终极力量时，对错毫无意义！"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "scroll"
 

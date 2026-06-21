@@ -1,5 +1,5 @@
 /datum/map_template/shuttle
-	name = "Base Shuttle Template"
+	name = "基础穿梭机模板"
 	var/prefix = "_maps/shuttles/"
 	var/suffix
 	/**

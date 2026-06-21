@@ -4,8 +4,8 @@ GLOBAL_VAR_INIT(station_was_nuked, FALSE)
 GLOBAL_VAR(station_nuke_source)
 
 /obj/machinery/nuclearbomb
-	name = "nuclear fission explosive"
-	desc = "You probably shouldn't stick around to see if this is armed."
+	name = "核裂变炸药"
+	desc = "你最好别在这里等着观察它是否处于武装状态。"
 	icon = 'icons/obj/machines/nuke.dmi'
 	icon_state = "nuclearbomb_base"
 	anchored = FALSE
@@ -680,7 +680,7 @@ GLOBAL_VAR(station_nuke_source)
 			priority_announce(
 				"Long Range Scanners indicate that the nuclear device has detonated on a previously unknown base, we assume \
 				the base to be of Syndicate Origin. Good work crew.",
-				"Nuclear Operations Command",
+				"核行动指挥部",
 			)
 
 			var/datum/turf_reservation/syndicate_base = SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_NUKIEBASE)
@@ -694,7 +694,7 @@ GLOBAL_VAR(station_nuke_source)
 			priority_announce(
 				"Long Range Scanners indicate that the nuclear device has detonated; however seismic activity on the station \
 				is minimal. We anticipate that the device has not detonated on the station itself.",
-				"Nuclear Operations Command",
+				"核行动指挥部",
 			)
 
 	if(drop_level)

@@ -1,6 +1,6 @@
 /datum/job/barber
 	title = JOB_BARBER
-	description = "Run your salon and meet the crews sanitary needs, such as hair cutting, massaging and more!"
+	description = "经营你的沙龙，满足船员的卫生需求，例如理发、按摩等等！"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -24,7 +24,7 @@
 
 
 /datum/outfit/job/barber
-	name = "Barber"
+	name = "理发师"
 	jobtype = /datum/job/barber
 
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -36,7 +36,7 @@
 	skillchips = list(/obj/item/skillchip/hair_expert)
 
 /obj/structure/closet/secure_closet/barber
-	name = "barber's locker"
+	name = "理发师的储物柜"
 	icon_state = "barber"
 	icon = 'modular_nova/master_files/icons/obj/closet.dmi'
 	req_access = list(ACCESS_BARBER)

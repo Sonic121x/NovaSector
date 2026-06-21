@@ -5,7 +5,7 @@
 	digitigrade_type = /obj/item/bodypart/leg/right/robot/digi
 
 /obj/item/bodypart/leg/right/robot/digi
-	name = "cyborg digitigrade right leg"
+	name = "机械人趾行式右腿"
 	icon_static = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	icon = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
@@ -15,14 +15,14 @@
 	digitigrade_type = /obj/item/bodypart/leg/left/robot/digi
 
 /obj/item/bodypart/leg/left/robot/digi
-	name = "cyborg digitigrade left leg"
+	name = "机械人趾行式左腿"
 	icon_static = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	icon = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
 	is_emissive = FALSE
 
 /obj/item/bodypart/leg/right/robot/surplus/digi
-	name = "prosthetic digitigrade right leg"
+	name = "假体趾行式右腿"
 	icon_static = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	icon = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
@@ -39,7 +39,7 @@
 	digitigrade_type = /obj/item/bodypart/leg/right/robot/advanced/digi
 
 /obj/item/bodypart/leg/right/robot/advanced/digi
-	name = "advanced digitigrade right leg"
+	name = "高级趾行式右腿"
 	icon_static = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	icon = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
@@ -49,7 +49,7 @@
 	digitigrade_type = /obj/item/bodypart/leg/left/robot/advanced/digi
 
 /obj/item/bodypart/leg/left/robot/advanced/digi
-	name = "advanced digitigrade right leg"
+	name = "高级趾行式右腿"
 	icon_static = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	icon = 'modular_nova/modules/digitigrade_cybernetics/icons/digitigrade_parts.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE

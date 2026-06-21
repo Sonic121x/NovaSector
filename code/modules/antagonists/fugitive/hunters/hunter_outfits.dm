@@ -1,5 +1,5 @@
 /datum/outfit/spacepol
-	name = "Spacepol Officer"
+	name = "太空警察警官"
 	uniform = /obj/item/clothing/under/rank/security/officer/spacepol
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt
 	belt = /obj/item/gun/ballistic/automatic/pistol/m1911
@@ -32,7 +32,7 @@
 	access = list(ACCESS_HUNTER)
 
 /datum/outfit/russian_hunter
-	name = "Russian Hunter"
+	name = "俄罗斯猎人"
 	uniform = /obj/item/clothing/under/costume/soviet
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	suit_store = /obj/item/gun/ballistic/rifle/boltaction
@@ -89,7 +89,7 @@
 		uniform.set_has_sensor(NO_SENSORS)
 
 /datum/outfit/russian_hunter/leader
-	name = "Russian Hunter Leader"
+	name = "俄罗斯猎人首领"
 	head = /obj/item/clothing/head/costume/ushanka
 	shoes = /obj/item/clothing/shoes/combat
 
@@ -97,7 +97,7 @@
 	return // None of the RNG russian equipment stuff.
 
 /datum/outfit/bountyarmor
-	name = "Bounty Hunter - Armored"
+	name = "赏金猎人 - 装甲型"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	back = /obj/item/storage/backpack
 	head = /obj/item/clothing/head/cowboy/bounty
@@ -127,7 +127,7 @@
 	W.update_icon()
 
 /datum/outfit/bountyhook
-	name = "Bounty Hunter - Hook"
+	name = "赏金猎人 - 钩爪型"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	back = /obj/item/storage/backpack
 	head = /obj/item/clothing/head/costume/scarecrow_hat
@@ -152,7 +152,7 @@
 	W.update_icon()
 
 /datum/outfit/bountysynth
-	name = "Bounty Hunter - Synth"
+	name = "赏金猎人 - 合成体型"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	back = /obj/item/storage/backpack
 	suit = /obj/item/clothing/suit/armor/riot
@@ -181,7 +181,7 @@
 	honorifics = list("Psyker-Shikari Seer")
 
 /datum/outfit/psyker/captain
-	name = "Psyker-Shikari Leader"
+	name = "灵能者-希卡里首领"
 
 	glasses = /obj/item/clothing/glasses/red
 	id_trim = /datum/id_trim/bounty_hunter/psykers/captain
@@ -189,7 +189,7 @@
 	uniform = /obj/item/clothing/under/pants/camo
 
 /datum/outfit/psyker
-	name = "Psyker-Shikari Hunter"
+	name = "灵能者-希卡里猎人"
 	glasses = null
 	head = null
 	glasses = /obj/item/clothing/glasses/trickblindfold
@@ -214,7 +214,7 @@
 	wearing.update_label()
 
 /datum/outfit/psyker_seer
-	name = "Psyker-Shikari Seer"
+	name = "灵能者-希卡里先知"
 	glasses = /obj/item/clothing/glasses/thermal/monocle
 	ears = /obj/item/radio/headset/psyker_seer
 	uniform = /obj/item/clothing/under/pants/jeans
@@ -236,7 +236,7 @@
 	wearing.update_label()
 
 /datum/outfit/mi13_hunter
-	name = "\improper MI13 Fugitive Retrieval Agent"
+	name = "\improper MI13逃犯追捕特工"
 	uniform = /obj/item/clothing/under/syndicate/sniper
 	back = /obj/item/storage/backpack/satchel/leather
 	ears = /obj/item/radio/headset/syndicate
@@ -280,7 +280,7 @@
 	wearing.update_label()
 
 /datum/outfit/mi13_hunter/chef
-	name = "\improper MI13 Fugitive Retrieval Agent - Chef Disguise"
+	name = "\improper MI13逃犯追捕特工 - 厨师伪装"
 	head = /obj/item/clothing/head/utility/chefhat
 	suit = /obj/item/clothing/suit/apron/chef
 	mask = /obj/item/clothing/mask/fakemoustache

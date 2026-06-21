@@ -666,7 +666,7 @@ SUBSYSTEM_DEF(dynamic)
 		if(!check_rights(R_ADMIN) || midround_admin_reroll)
 			return
 		if(COOLDOWN_FINISHED(src, midround_admin_cancel_period))
-			to_chat(usr, span_alert("Too late!"))
+			to_chat(usr, span_alert("太迟了！"))
 			return
 		midround_admin_reroll = TRUE
 		message_admins(span_adminnotice("[key_name_admin(usr)] rerolled the queued midround ruleset."))
@@ -677,7 +677,7 @@ SUBSYSTEM_DEF(dynamic)
 		if(!check_rights(R_ADMIN) || midround_admin_cancel)
 			return
 		if(COOLDOWN_FINISHED(src, midround_admin_cancel_period))
-			to_chat(usr, span_alert("Too late!"))
+			to_chat(usr, span_alert("太晚了！"))
 			return
 		midround_admin_cancel = TRUE
 		message_admins(span_adminnotice("[key_name_admin(usr)] cancelled the queued midround ruleset."))

@@ -6,8 +6,8 @@
 
 //Food items that aren't eaten normally and leave an empty container behind.
 /obj/item/reagent_containers/condiment
-	name = "condiment bottle"
-	desc = "Just your average condiment bottle."
+	name = "调味品瓶"
+	desc = "只是个普通的调味品瓶而已。"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "bottle"
 	inhand_icon_state = "beer" //Generic held-item sprite until unique ones are made.
@@ -37,7 +37,7 @@
 	return ..()
 
 /obj/item/reagent_containers/condiment/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is trying to eat the entire [src]! It looks like [user.p_they()] forgot how food works!"))
+	user.visible_message(span_suicide("[user]正试图吃掉整个[src]！看起来[user.p_they()]忘了食物是怎么运作的！"))
 	return OXYLOSS
 
 /obj/item/reagent_containers/condiment/proc/try_eat(atom/target, mob/living/user)
@@ -47,21 +47,21 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(target == user)
 		user.visible_message(
-			span_notice("[user] swallows some of the contents of \the [src]."),
-			span_notice("You swallow some of the contents of \the [src]."),
+			span_notice("[user] 吞下了一些\the [src]里的东西。"),
+			span_notice("你吞下了一些\the [src]里的东西。"),
 		)
 	else
 		target.visible_message(
-			span_warning("[user] attempts to feed [target] from [src]."),
-			span_warning("[user] attempts to feed you from [src]."),
+			span_warning("[user]试图用[src]喂食[target]。"),
+			span_warning("[user]试图用[src]喂食你。"),
 		)
 		if(!do_after(user, 3 SECONDS, target))
 			return ITEM_INTERACT_BLOCKING
 		if(!reagents || !reagents.total_volume)
 			return ITEM_INTERACT_BLOCKING // The condiment might be empty after the delay.
 		target.visible_message(
-			span_warning("[user] fed [target] from [src]."),
-			span_warning("[user] fed you from [src]."),
+			span_warning("[user] 用 [src] 喂食了 [target]。"),
+			span_warning("[user] 用 [src] 喂食了你。"),
 		)
 		log_combat(user, target, "fed", reagents.get_reagent_log_string())
 
@@ -100,8 +100,8 @@
 	return NONE
 
 /obj/item/reagent_containers/condiment/enzyme
-	name = "universal enzyme"
-	desc = "Used in cooking various dishes."
+	name = "通用酶"
+	desc = "用于烹饪多种菜品。"
 	icon_state = "enzyme"
 	list_reagents = list(/datum/reagent/consumable/enzyme = 50)
 	fill_icon_thresholds = null
@@ -111,12 +111,12 @@
 	var/datum/chemical_reaction/recipe = GLOB.chemical_reactions_list[/datum/chemical_reaction/food/cheesewheel]
 	var/milk_required = recipe.required_reagents[/datum/reagent/consumable/milk]
 	var/enzyme_required = recipe.required_catalysts[/datum/reagent/consumable/enzyme]
-	. += span_notice("[milk_required] milk, [enzyme_required] enzyme and you got cheese.")
-	. += span_warning("Remember, the enzyme isn't used up, so return it to the bottle, dingus!")
+	. += span_notice("[milk_required] 牛奶，[enzyme_required] 酶，然后你就得到了奶酪。")
+	. += span_warning("记住，酶不会被消耗掉，所以把它放回瓶子里去，笨蛋！")
 
 /obj/item/reagent_containers/condiment/sugar
-	name = "sugar sack"
-	desc = "Tasty spacey sugar!"
+	name = "糖袋"
+	desc = "美味的太空糖！"
 	icon_state = "sugar"
 	inhand_icon_state = "carton"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -133,11 +133,11 @@
 	var/eggwhite_required = standard_recipe.required_reagents[/datum/reagent/consumable/eggwhite]
 	var/sugar_required = standard_recipe.required_reagents[/datum/reagent/consumable/sugar]
 	var/soymilk_required = alt_recipe.required_reagents[/datum/reagent/consumable/soymilk]
-	. += span_notice("[flour_required] flour, [sugar_required] sugar, and either [eggyolk_required] egg yolk + [eggwhite_required] egg white or [soymilk_required] soy milk yields a cake dough. You can make pie dough from it.")
+	. += span_notice("[flour_required] 面粉，[sugar_required] 糖，再加上 [eggyolk_required] 蛋黄 + [eggwhite_required] 蛋清 或者 [soymilk_required] 豆奶，就能做出蛋糕面团。你可以用它来做馅饼面团。")
 
 /obj/item/reagent_containers/condiment/saltshaker //Separate from above since it's a small shaker rather then
-	name = "salt shaker" // a large one.
-	desc = "Salt. From space oceans, presumably."
+	name = "盐瓶" // a large one.
+	desc = "盐。大概是来自太空中的海洋。"
 	icon_state = "saltshakersmall"
 	icon_empty = "emptyshaker"
 	inhand_icon_state = ""
@@ -148,12 +148,12 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/saltshaker/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins to swap forms with the salt shaker! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始和盐瓶交换形态！看起来 [user.p_theyre()] 想自杀！"))
 	var/newname = "[name]"
 	name = "[user.name]"
 	user.name = newname
 	user.real_name = newname
-	desc = "Salt. From dead crew, presumably."
+	desc = "盐。想必是来自船员的。"
 	return TOXLOSS
 
 /obj/item/reagent_containers/condiment/saltshaker/interact_with_atom(atom/target, mob/living/user, list/modifiers)
@@ -162,17 +162,17 @@
 		return .
 	if(isturf(target))
 		if(!reagents.has_reagent(/datum/reagent/consumable/salt, 2))
-			to_chat(user, span_warning("You don't have enough salt to make a pile!"))
+			to_chat(user, span_warning("你的盐不够堆成一堆！"))
 			return
-		user.visible_message(span_notice("[user] shakes some salt onto [target]."), span_notice("You shake some salt onto [target]."))
+		user.visible_message(span_notice("[user] 往 [target] 上撒了些盐。"), span_notice("你往 [target] 上撒了些盐。"))
 		reagents.remove_reagent(/datum/reagent/consumable/salt, 2)
 		new/obj/effect/decal/cleanable/food/salt(target)
 		return ITEM_INTERACT_SUCCESS
 	return .
 
 /obj/item/reagent_containers/condiment/peppermill
-	name = "pepper mill"
-	desc = "Often used to flavor food or make people sneeze."
+	name = "胡椒研磨器"
+	desc = "通常用来给食物调味或使人打喷嚏。"
 	icon_state = "peppermillsmall"
 	icon_empty = "emptyshaker"
 	inhand_icon_state = ""
@@ -183,8 +183,8 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/milk
-	name = "space milk"
-	desc = "It's milk. White and nutritious goodness!"
+	name = "太空牛奶"
+	desc = "这是牛奶诶。颜色乳白、营养丰富的好东西哦！"
 	icon_state = "milk"
 	inhand_icon_state = "carton"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -197,12 +197,12 @@
 	var/datum/chemical_reaction/recipe = GLOB.chemical_reactions_list[/datum/chemical_reaction/food/cheesewheel]
 	var/milk_required = recipe.required_reagents[/datum/reagent/consumable/milk]
 	var/enzyme_required = recipe.required_catalysts[/datum/reagent/consumable/enzyme]
-	. += span_notice("[milk_required] milk, [enzyme_required] enzyme and you got cheese.")
-	. += span_warning("Remember, the enzyme isn't used up, so return it to the bottle, dingus!")
+	. += span_notice("[milk_required] 牛奶，[enzyme_required] 酶，然后你就得到了奶酪。")
+	. += span_warning("记住，酶不会被消耗掉，所以把它放回瓶子里去，笨蛋！")
 
 /obj/item/reagent_containers/condiment/flour
-	name = "flour sack"
-	desc = "A big bag of flour. Good for baking!"
+	name = "面粉袋"
+	desc = "一大袋面粉. 烘培的必需品之一！"
 	icon_state = "flour"
 	inhand_icon_state = "carton"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -220,12 +220,12 @@
 	var/cakebatter_eggyolk_required = recipe_cakebatter.required_reagents[/datum/reagent/consumable/eggyolk]
 	var/cakebatter_sugar_required = recipe_cakebatter.required_reagents[/datum/reagent/consumable/sugar]
 	. += "<b><i>You retreat inward and recall the teachings of... Making Dough...</i></b>"
-	. += span_notice("[dough_flour_required] flour, [dough_water_required] water makes normal dough. You can make flat dough from it.")
-	. += span_notice("[cakebatter_flour_required] flour, [cakebatter_eggyolk_required] egg yolk (or soy milk), [cakebatter_sugar_required] sugar makes cake dough. You can make pie dough from it.")
+	. += span_notice("[dough_flour_required] 面粉，[dough_water_required] 水可以做成普通面团。你可以用它来做扁平面团。")
+	. += span_notice("[cakebatter_flour_required] 面粉，[cakebatter_eggyolk_required] 蛋黄（或豆奶），[cakebatter_sugar_required] 糖可以做成蛋糕面团。你可以用它来做馅饼面团。")
 
 /obj/item/reagent_containers/condiment/soymilk
-	name = "soy milk"
-	desc = "It's soy milk. White and nutritious goodness!"
+	name = "豆奶"
+	desc = "这是豆奶。颜色乳白、营养丰富的好东西哦！"
 	icon_state = "soymilk"
 	inhand_icon_state = "carton"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -234,8 +234,8 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/rice
-	name = "rice sack"
-	desc = "A big bag of rice. Good for cooking!"
+	name = "米袋"
+	desc = "一大袋大米。非常适合用于烹饪！"
 	icon_state = "rice"
 	inhand_icon_state = "carton"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -244,8 +244,8 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/cornmeal
-	name = "cornmeal box"
-	desc = "A big box of cornmeal. Great for southern style cooking."
+	name = "麦片盒"
+	desc = "一大盒玉米粉。非常适合南方风格的烹饪。"
 	icon_state = "cornmeal"
 	inhand_icon_state = "carton"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -254,121 +254,121 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/bbqsauce
-	name = "bbq sauce"
-	desc = "Hand wipes not included."
+	name = "烧烤酱"
+	desc = "不包括消毒擦手巾。"
 	icon_state = "bbqsauce"
 	list_reagents = list(/datum/reagent/consumable/bbqsauce = 50)
 
 /obj/item/reagent_containers/condiment/soysauce
-	name = "soy sauce"
-	desc = "A salty soy-based flavoring."
+	name = "酱油"
+	desc = "一种以大豆为原料的咸味调味品."
 	icon_state = "soysauce"
 	list_reagents = list(/datum/reagent/consumable/soysauce = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/mayonnaise
-	name = "mayonnaise"
-	desc = "An oily condiment made from egg yolks."
+	name = "蛋黄酱"
+	desc = "一种用蛋黄做成的含油调味品。"
 	icon_state = "mayonnaise"
 	list_reagents = list(/datum/reagent/consumable/mayonnaise = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/vinegar
-	name = "vinegar"
-	desc = "Perfect for chips, if you're feeling Space British."
+	name = "醋"
+	desc = "如果你想在太空感受英式生活，那薯条沾醋就是完美搭配."
 	icon_state = "vinegar"
 	list_reagents = list(/datum/reagent/consumable/vinegar = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/vegetable_oil
-	name = "cooking oil"
-	desc = "For all your deep-frying needs."
+	name = "Cooking Oil-食用油"
+	desc = "满足你所有的油炸需求。"
 	icon_state = "cooking_oil"
 	list_reagents = list(/datum/reagent/consumable/nutriment/fat/oil = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/olive_oil
-	name = "quality oil"
-	desc = "For the fancy chef inside everyone."
+	name = "优质油"
+	desc = "给每个人心中的特级厨师。"
 	icon_state = "oliveoil"
 	list_reagents = list(/datum/reagent/consumable/nutriment/fat/oil/olive = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/yoghurt
-	name = "yoghurt carton"
-	desc = "Creamy and smooth."
+	name = "酸奶盒"
+	desc = "细腻绵软。"
 	icon_state = "yoghurt"
 	list_reagents = list(/datum/reagent/consumable/yoghurt = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/peanut_butter
-	name = "peanut butter"
-	desc = "Tasty, fattening processed peanuts in a jar."
+	name = "花生酱"
+	desc = "罐装的美味、高脂肪的加工花生."
 	icon_state = "peanutbutter"
 	list_reagents = list(/datum/reagent/consumable/peanut_butter = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/cherryjelly
-	name = "cherry jelly"
-	desc = "A jar of super-sweet cherry jelly."
+	name = "樱桃果冻"
+	desc = "一罐超甜的樱桃果冻。"
 	icon_state = "cherryjelly"
 	list_reagents = list(/datum/reagent/consumable/cherryjelly = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/honey
-	name = "honey"
-	desc = "A jar of sweet and viscous honey."
+	name = "Honey-蜂蜜"
+	desc = "一罐甜美粘稠的蜂蜜。"
 	icon_state = "honey"
 	list_reagents = list(/datum/reagent/consumable/honey = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/ketchup
-	name = "ketchup"
+	name = "番茄酱"
 	// At time of writing, "ketchup" mechanically, is just ground tomatoes,
 	// rather than // tomatoes plus vinegar plus sugar.
-	desc = "A tomato slurry in a tall plastic bottle. Somehow still vaguely American."
+	desc = "一个高塑料瓶里的番茄浆。不知为何仍然隐约带着美国味。"
 	icon_state = "ketchup"
 	list_reagents = list(/datum/reagent/consumable/ketchup = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/mustard
-	name = "mustard"
-	desc = "A spicy and tangy sauce made out of the mustard plant. Great on hotdogs!"
+	name = "芥末酱"
+	desc = "一种由芥菜植物制成的辛辣开胃酱汁。配热狗很棒！"
 	icon_state = "mustard"
 	list_reagents = list(/datum/reagent/consumable/mustard = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/worcestershire
-	name = "worcestershire sauce"
-	desc = "A fermented sauce of legend from old England. Makes almost anything better."
+	name = "伍斯特酱"
+	desc = "一种来自旧英格兰的传奇发酵酱汁。能让几乎所有东西变得更好吃。"
 	icon_state = "worcestershire"
 	list_reagents = list(/datum/reagent/consumable/worcestershire = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/red_bay
-	name = "\improper Red Bay seasoning"
-	desc = "Mars' favourite seasoning."
+	name = "\improper 红湾调味料"
+	desc = "火星最爱的调味料。"
 	icon_state = "red_bay"
 	list_reagents = list(/datum/reagent/consumable/red_bay = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/curry_powder
-	name = "curry powder"
-	desc = "It's this yellow magic that makes curry taste like curry."
+	name = "咖喱粉"
+	desc = "正是这种黄色魔法让咖喱尝起来像咖喱。"
 	icon_state = "curry_powder"
 	list_reagents = list(/datum/reagent/consumable/curry_powder = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/dashi_concentrate
-	name = "dashi concentrate"
-	desc = "A bottle of Amagi brand dashi concentrate. Simmer with water in a 1:8 ratio for a perfect dashi broth."
+	name = "Dashi Concentrate-出汁浓缩液"
+	desc = "一瓶天城牌出汁浓缩液。按1:8的比例与水慢炖，即可得到完美的出汁高汤。"
 	icon_state = "dashi_concentrate"
 	list_reagents = list(/datum/reagent/consumable/dashi_concentrate = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/coconut_milk
-	name = "coconut milk"
-	desc = "It's coconut milk. Toasty!"
+	name = "椰奶"
+	desc = "这是椰奶。很温暖！"
 	icon_state = "coconut_milk"
 	inhand_icon_state = "carton"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -377,14 +377,14 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/grounding_solution
-	name = "grounding solution"
-	desc = "A food-safe ionic solution designed to neutralise the enigmatic \"liquid electricity\" that is common to food from Sprout, forming harmless salt on contact."
+	name = "接地溶液"
+	desc = "一种食品安全的离子溶液，旨在中和斯普劳特食物中常见的谜之“液态电”，接触后会形成无害的盐。"
 	icon_state = "grounding_solution"
 	list_reagents = list(/datum/reagent/consumable/grounding_solution = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/protein
-	name = "protein powder"
+	name = "蛋白粉"
 	desc = "Fuel for your inner Hulk - because you can't spell 'swole' without 'whey'!"
 	icon_state = "protein"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 40)
@@ -393,37 +393,37 @@
 //technically condiment packs but they are non transparent
 
 /obj/item/reagent_containers/condiment/creamer
-	name = "coffee creamer pack"
-	desc = "Better not think about what they're making this from."
+	name = "咖啡奶精包"
+	desc = "最好别去想他们是用什么做的。"
 	icon_state = "condi_creamer"
 	volume = 5
 	list_reagents = list(/datum/reagent/consumable/creamer = 5)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/chocolate
-	name = "chocolate sprinkle pack"
-	desc= "The amount of sugar that's already there wasn't enough for you?"
+	name = "巧克力糖针包"
+	desc= "已有的糖分对你来说还不够吗？"
 	icon_state = "condi_chocolate"
 	list_reagents = list(/datum/reagent/consumable/choccyshake = 10)
 
 
 /obj/item/reagent_containers/condiment/hotsauce
-	name = "hotsauce bottle"
-	desc= "You can almost TASTE the stomach ulcers!"
+	name = "辣酱瓶"
+	desc= "你几乎能尝到胃溃疡的味道！"
 	icon_state = "hotsauce"
 	list_reagents = list(/datum/reagent/consumable/capsaicin = 50)
 
 /obj/item/reagent_containers/condiment/coldsauce
-	name = "coldsauce bottle"
-	desc= "Leaves the tongue numb from its passage."
+	name = "冷酱瓶"
+	desc= "经过之处，舌头都会变得麻木。"
 	icon_state = "coldsauce"
 	list_reagents = list(/datum/reagent/consumable/frostoil = 50)
 
 //Food packs. To easily apply deadly toxi... delicious sauces to your food!
 
 /obj/item/reagent_containers/condiment/pack
-	name = "condiment pack"
-	desc = "A small plastic pack with condiments to put on your food."
+	name = "调味品袋"
+	desc = "装有食物调味品的小塑料袋。"
 	icon_state = "condi_empty"
 	initial_reagent_flags = parent_type::initial_reagent_flags | NO_SPLASH
 	volume = 10
@@ -466,14 +466,14 @@
 	//You can tear the bag open above food to put the condiments on it, obviously.
 	if(IS_EDIBLE(target))
 		if(!reagents.total_volume)
-			to_chat(user, span_warning("You tear open [src], but there's nothing in it."))
+			to_chat(user, span_warning("你撕开了[src]，但里面什么也没有。"))
 			qdel(src)
 			return ITEM_INTERACT_BLOCKING
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, span_warning("You tear open [src], but [target] is stacked so high that it just drips off!") )
+			to_chat(user, span_warning("你撕开了[src]，但[target]堆得太高了，酱汁直接滴下去了！") )
 			qdel(src)
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You tear open [src] above [target] and the condiments drip onto it."))
+		to_chat(user, span_notice("你在[target]上方撕开[src]，调味料滴在了上面。"))
 		reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -485,7 +485,7 @@
 
 	if(!reagents.total_volume)
 		icon_state = "condi_empty"
-		desc = "A small condiment pack. It is empty."
+		desc = "一小包调味品。里面是空的。"
 		return
 	var/datum/reagent/main_reagent = reagents.get_master_reagent()
 
@@ -495,51 +495,51 @@
 		desc = temp_list[3]
 	else
 		icon_state = "condi_mixed"
-		desc = "A small condiment pack. The label says it contains [originalname]."
+		desc = "一小包调味品。标签上写着里面装有[originalname]。."
 
 //Ketchup
 /obj/item/reagent_containers/condiment/pack/ketchup
-	name = "ketchup pack"
+	name = "番茄酱包"
 	originalname = "ketchup"
 	list_reagents = list(/datum/reagent/consumable/ketchup = 10)
 
 //Hot sauce
 /obj/item/reagent_containers/condiment/pack/hotsauce
-	name = "hotsauce pack"
+	name = "辣酱包"
 	originalname = "hotsauce"
 	list_reagents = list(/datum/reagent/consumable/capsaicin = 10)
 
 /obj/item/reagent_containers/condiment/pack/astrotame
-	name = "astrotame pack"
+	name = "甜味剂包"
 	originalname = "astrotame"
 	volume = 5
 	list_reagents = list(/datum/reagent/consumable/astrotame = 5)
 
 /obj/item/reagent_containers/condiment/pack/bbqsauce
-	name = "bbq sauce pack"
+	name = "烧烤酱包"
 	originalname = "bbq sauce"
 	list_reagents = list(/datum/reagent/consumable/bbqsauce = 10)
 
 /obj/item/reagent_containers/condiment/pack/creamer
-	name = "creamer pack"
+	name = "奶精包"
 	originalname = "creamer"
 	volume = 5
 	list_reagents = list(/datum/reagent/consumable/cream = 5)
 
 /obj/item/reagent_containers/condiment/pack/sugar
-	name = "sugar pack"
+	name = "糖包"
 	originalname = "sugar"
 	volume = 5
 	list_reagents = list(/datum/reagent/consumable/sugar = 5)
 
 /obj/item/reagent_containers/condiment/pack/soysauce
-	name = "soy sauce pack"
+	name = "酱油包"
 	originalname = "soy sauce"
 	volume = 5
 	list_reagents = list(/datum/reagent/consumable/soysauce = 5)
 
 /obj/item/reagent_containers/condiment/pack/mayonnaise
-	name = "mayonnaise pack"
+	name = "蛋黄酱包"
 	originalname = "mayonnaise"
 	volume = 5
 	list_reagents = list(/datum/reagent/consumable/mayonnaise = 5)

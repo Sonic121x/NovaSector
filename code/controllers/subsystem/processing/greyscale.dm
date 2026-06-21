@@ -1,5 +1,5 @@
 PROCESSING_SUBSYSTEM_DEF(greyscale)
-	name = "Greyscale"
+	name = "灰度"
 	ss_flags = SS_BACKGROUND
 	wait = 3 SECONDS
 	init_stage = INITSTAGE_EARLY

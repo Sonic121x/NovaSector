@@ -57,7 +57,7 @@
 		ham.butcher_drops = string_list(ham.butcher_drops)
 
 /datum/outfit/job/warden
-	name = "Warden"
+	name = "典狱长"
 	jobtype = /datum/job/warden
 
 	id_trim = /datum/id_trim/job/warden

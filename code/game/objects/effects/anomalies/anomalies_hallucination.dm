@@ -1,6 +1,6 @@
 
 /obj/effect/anomaly/hallucination
-	name = "hallucination anomaly"
+	name = "幻觉异常"
 	icon_state = "hallucination"
 	anomaly_core = /obj/item/assembly/signaler/anomaly/hallucination
 	/// Time passed since the last effect, increased by seconds_per_tick of the SSobj
@@ -9,10 +9,10 @@
 	var/release_delay = 5
 	/// Messages sent to people feeling the pulses
 	var/static/list/messages = list(
-		span_warning("You feel your conscious mind fall apart!"),
-		span_warning("Reality warps around you!"),
-		span_warning("Something's whispering around you!"),
-		span_warning("You are going insane!"),
+		span_warning("你感觉自己的意识正在瓦解！"),
+		span_warning("现实在你周围扭曲！"),
+		span_warning("有什么东西在你周围低语！"),
+		span_warning("你正在发疯！"),
 	)
 	///Do we spawn misleading decoys?
 	var/spawn_decoys = TRUE
@@ -96,7 +96,7 @@
 #endif
 
 /obj/effect/anomaly/hallucination/decoy/analyzer_act(mob/living/user, obj/item/analyzer/tool)
-	to_chat(user, span_notice("You activate [tool]. [replacetext(report_text, "%TOOL%", "[tool]")]"))
+	to_chat(user, span_notice("你激活了[tool]。[replacetext(report_text, "%TOOL%", "[tool]")]"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/effect/anomaly/hallucination/decoy/detonate()

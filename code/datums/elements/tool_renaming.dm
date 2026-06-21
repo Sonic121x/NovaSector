@@ -38,18 +38,18 @@
 /datum/element/tool_renaming/proc/async_rename(mob/living/user, obj/renamed_obj, description_option)
 	if(!renamed_obj.rename_checks(user))
 		return
-	var/custom_choice = tgui_input_list(user, "What would you like to edit?", "Customization", list(OPTION_RENAME, description_option? OPTION_DESCRIPTION : null, OPTION_RESET))
+	var/custom_choice = tgui_input_list(user, "你想要编辑什么？", "自定义", list(OPTION_RENAME, description_option? OPTION_DESCRIPTION : null, OPTION_RESET))
 	if(QDELETED(renamed_obj) || !user.can_perform_action(renamed_obj) || isnull(custom_choice))
 		return
 
 	switch(custom_choice)
 		if(OPTION_RENAME)
 			var/old_name = renamed_obj.name
-			var/input = tgui_input_text(user, "What do you want to name [renamed_obj]?", "Object Name", "[old_name]", MAX_NAME_LEN)
+			var/input = tgui_input_text(user, "你想将[renamed_obj]命名为什么？", "对象名称", "[old_name]", MAX_NAME_LEN)
 			if(QDELETED(renamed_obj) || !user.can_perform_action(renamed_obj))
 				return
 			if(input == old_name || !input)
-				to_chat(user, span_notice("You changed [renamed_obj] to... well... [renamed_obj]."))
+				to_chat(user, span_notice("你把[renamed_obj]改成了……呃……还是[renamed_obj]。"))
 				return
 			renamed_obj.AddComponent(/datum/component/rename, renamed_obj.nameformat(input, user), renamed_obj.desc)
 			to_chat(user, span_notice("You have successfully renamed \the [old_name] to [renamed_obj]."))
@@ -57,14 +57,14 @@
 
 		if(OPTION_DESCRIPTION)
 			var/old_desc = renamed_obj.desc
-			var/input = tgui_input_text(user, "Describe [renamed_obj]", "Description", "[old_desc]", MAX_DESC_LEN)
+			var/input = tgui_input_text(user, "描述[renamed_obj]", "描述", "[old_desc]", MAX_DESC_LEN)
 			if(QDELETED(renamed_obj) || !user.can_perform_action(renamed_obj))
 				return
 			if(input == old_desc || !input)
-				to_chat(user, span_notice("You decide against changing [renamed_obj]'s description."))
+				to_chat(user, span_notice("你决定不更改[renamed_obj]的描述。"))
 				return
 			renamed_obj.AddComponent(/datum/component/rename, renamed_obj.name, renamed_obj.descformat(input, user))
-			to_chat(user, span_notice("You have successfully changed [renamed_obj]'s description."))
+			to_chat(user, span_notice("你已成功更改[renamed_obj]的描述。"))
 			renamed_obj.update_appearance(UPDATE_DESC)
 
 		if(OPTION_RESET)

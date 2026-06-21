@@ -1,9 +1,9 @@
 /obj/item/disk/nifsoft_uploader/scryer
-	name = "NIFSoft Scryer Uploader Disk"
+	name = "NIFSoft 窥视者上传磁盘"
 	loaded_nifsoft = /datum/nifsoft/scryer
 
 /datum/nifsoft/scryer
-	name = "NIFLink Holocaller"
+	name = "NIFLink 全息呼叫器"
 	program_desc = "This ubiquitous NIFSoft adds Scryer functionality similar to MODSuits to the user's NIF; allowing for real-time communication through AR hologlass screens from a hardlight projector sat around the wearer's neck"
 	active_mode = TRUE
 	active_cost = 1
@@ -41,7 +41,7 @@
 		return FALSE
 
 	if(linked_mob.handcuffed)
-		linked_mob.balloon_alert(linked_mob, "handcuffed")
+		linked_mob.balloon_alert(linked_mob, "被铐住了")
 		activate()
 		return FALSE
 
@@ -56,8 +56,8 @@
 	var/custom_examine_controls = FALSE
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft
-	name = "\improper NIFLink Holocaller"
-	desc = "A nanomachine construct working as a modified version of the MODlink scryer, conjured using a NIF; functionally the same, but able to carry out holocalls in a more portable format."
+	name = "\improper NIFLink 全息呼叫器"
+	desc = "一种纳米机器构造体，作为 MODlink 窥视器的改良版本，通过 NIF 召唤而成；功能相同，但能以更便携的格式进行全息通话。"
 	custom_examine_controls = TRUE
 	/// A weakref of the parent NIFSoft that the scryer belongs to.
 	var/datum/weakref/parent_nifsoft
@@ -79,8 +79,8 @@
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft/examine(mob/user)
 	. = ..()
-	. += span_notice("The MODlink ID is [mod_link.id], frequency is [mod_link.frequency || "unset"]. <b>Right-click</b> with a multitool to copy/imprint the frequency.")
-	. += span_notice("<b>Right-click</b> with an empty hand to change the name.")
+	. += span_notice("MODlink 的 ID 是 [mod_link.id]，频率是 [mod_link.frequency || "unset"]。<b>右键点击</b>用多功能工具来复制/刻印频率。")
+	. += span_notice("<b>右键点击</b>使用空手来更改名称。")
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft/equipped(mob/living/user, slot)
 	. = ..()
@@ -95,21 +95,21 @@
 	return TRUE
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft/screwdriver_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "cell non-removable!")
+	balloon_alert(user, "电池不可拆卸！")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft/attack_hand_secondary(mob/user, list/modifiers)
-	var/new_label = reject_bad_text(tgui_input_text(user, "Change the visible name", "Set Name", label, max_length = MAX_NAME_LEN))
+	var/new_label = reject_bad_text(tgui_input_text(user, "更改可见名称", "设置名称", label, max_length = MAX_NAME_LEN))
 	if(!new_label)
-		balloon_alert(user, "invalid name!")
+		balloon_alert(user, "无效的名称！")
 		return
 	label = new_label
-	balloon_alert(user, "name set!")
+	balloon_alert(user, "名称已设置！")
 	update_name()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /// This cell is only meant for use in items temporarily created by a NIF. Do not let players extract this from devices.
 /obj/item/stock_parts/power_store/cell/infinite/nif_cell
-	name = "Nanite Cell"
-	desc = "If you see this, please make an issue on GitHub."
+	name = "纳米电池"
+	desc = "如果你看到这个，请在 GitHub 上提交问题。"
 

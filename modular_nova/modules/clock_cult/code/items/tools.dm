@@ -1,8 +1,8 @@
 #define BRASS_TOOLSPEED_MOD 0.5
 
 /obj/item/wirecutters/brass
-	name = "brass wirecutters"
-	desc = "A pair of wirecutters made of brass. The handle feels faintly warm."
+	name = "黄铜线钳"
+	desc = "一把黄铜制成的线钳。手柄摸起来微微发热。"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'modular_nova/modules/clock_cult/icons/tools.dmi'
 	icon_state = "cutters_brass"
@@ -14,8 +14,8 @@
 	toolspeed = BRASS_TOOLSPEED_MOD
 
 /obj/item/screwdriver/brass
-	name = "brass screwdriver"
-	desc = "A screwdriver made of brass. The handle feels warm to the touch."
+	name = "黄铜螺丝刀"
+	desc = "一把黄铜制成的螺丝刀。手柄摸起来很温暖。"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'modular_nova/modules/clock_cult/icons/tools.dmi'
 	icon_state = "screwdriver_brass"
@@ -25,16 +25,16 @@
 	greyscale_config_inhand_right = null
 
 /obj/item/weldingtool/experimental/brass
-	name = "brass welding tool"
-	desc = "A brass welder that seems to constantly refuel itself. It is faintly warm to the touch."
+	name = "黄铜焊接工具"
+	desc = "一把似乎能不断自我补充燃料的黄铜焊枪。摸起来微微发热。"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'modular_nova/modules/clock_cult/icons/tools.dmi'
 	icon_state = "welder_brass"
 	toolspeed = BRASS_TOOLSPEED_MOD
 
 /obj/item/crowbar/brass
-	name = "brass crowbar"
-	desc = "A brass crowbar. It feels faintly warm to the touch."
+	name = "黄铜撬棍"
+	desc = "一把黄铜撬棍。摸起来微微发热。"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'modular_nova/modules/clock_cult/icons/tools.dmi'
 	icon_state = "crowbar_brass"
@@ -42,15 +42,15 @@
 	toolspeed = BRASS_TOOLSPEED_MOD
 
 /obj/item/wrench/brass
-	name = "brass wrench"
-	desc = "A brass wrench. It's faintly warm to the touch."
+	name = "黄铜扳手"
+	desc = "一把黄铜扳手。摸起来微微发热。"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'modular_nova/modules/clock_cult/icons/tools.dmi'
 	icon_state = "wrench_brass"
 	toolspeed = BRASS_TOOLSPEED_MOD
 
 /obj/item/storage/belt/utility/clock
-	name = "old toolbelt"
+	name = "旧工具带"
 	desc = "Holds tools. This one's seen better days, though. There's the outline of a cog roughly cut into the leather on one side."
 
 /obj/item/storage/belt/utility/clock/PopulateContents()

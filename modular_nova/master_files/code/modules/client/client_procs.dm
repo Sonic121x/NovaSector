@@ -11,7 +11,7 @@
 		var/qname = initial(applicable_quirk.name)
 		options[selected_mob.has_quirk(applicable_quirk) ? "[qname] (Remove)" : "[qname] (Add)"] = applicable_quirk
 
-	var/result = tgui_input_list(usr, "Choose quirk to add/remove", "Mob Quirks", options)
+	var/result = tgui_input_list(usr, "选择要添加/移除的怪癖", "生物怪癖", options)
 
 	if(QDELETED(selected_mob))
 		to_chat(usr, "Mob doesn't exist anymore")
@@ -39,7 +39,7 @@
 	for(var/martial_art_skill in artpaths)
 		var/datum/martial_art/martial_skill = martial_art_skill
 		artnames[initial(martial_skill.name)] = martial_skill
-	var/result = tgui_input_list(usr, "Choose the martial art to teach", "JUDO CHOP", artnames)
+	var/result = tgui_input_list(usr, "选择要教授的武术", "柔道劈砍", artnames)
 	if(isnull(result))
 		return
 
@@ -56,7 +56,7 @@
 ////  Sets species of the selected client
 /client/proc/set_species(mob/living/carbon/human/selected_mob)
 	if (istype(selected_mob))
-		var/result = tgui_input_list(usr, "Choose a new species","Species", GLOB.species_list)
+		var/result = tgui_input_list(usr, "选择一个新的物种","物种", GLOB.species_list)
 		if(QDELETED(selected_mob))
 			to_chat(usr, "Mob doesn't exist anymore")
 			return

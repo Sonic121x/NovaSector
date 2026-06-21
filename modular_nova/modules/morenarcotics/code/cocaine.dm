@@ -23,8 +23,8 @@
 		new /obj/item/reagent_containers/crack(location)
 
 /datum/reagent/drug/cocaine
-	name = "cocaine"
-	description = "A powerful stimulant extracted from coca leaves. Reduces stun times, but causes drowsiness and severe brain damage if overdosed."
+	name = "可卡因"
+	description = "一种从古柯叶中提取的强力兴奋剂。能缩短击晕时间，但过量使用会导致嗜睡和严重的脑损伤。"
 	color = "#ffffff"
 	overdose_threshold = 20
 	ph = 9
@@ -58,7 +58,7 @@
 		affected_mob.emote("shiver")
 
 /datum/reagent/drug/cocaine/overdose_start(mob/living/affected_mob, metabolization_ratio)
-	to_chat(affected_mob, span_userdanger("Your heart beats is beating so fast, it hurts..."))
+	to_chat(affected_mob, span_userdanger("你的心跳得如此之快，好痛..."))
 
 /datum/reagent/drug/cocaine/overdose_process(mob/living/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -69,20 +69,20 @@
 		affected_mob.emote(pick("twitch","drool"))
 	if(!HAS_TRAIT(affected_mob, TRAIT_FLOORED))
 		if(SPT_PROB(1.5, seconds_per_tick))
-			affected_mob.visible_message(span_danger("[affected_mob] collapses onto the floor!"))
+			affected_mob.visible_message(span_danger("[affected_mob] 瘫倒在地板上！"))
 			affected_mob.Paralyze(135,TRUE)
 			affected_mob.drop_all_held_items()
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/cocaine/freebase_cocaine
-	name = "freebase cocaine"
-	description = "A smokable form of cocaine."
+	name = "游离碱可卡因"
+	description = "一种可吸食形态的可卡因。"
 	color = "#f0e6bb"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/drug/cocaine/powder_cocaine
-	name = "powder cocaine"
-	description = "The powder form of cocaine."
+	name = "粉末可卡因"
+	description = "可卡因的粉末形态。"
 	color = "#ffffff"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

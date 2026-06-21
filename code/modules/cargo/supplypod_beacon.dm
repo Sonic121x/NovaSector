@@ -1,6 +1,6 @@
 /obj/item/supplypod_beacon
-	name = "Supply Pod Beacon"
-	desc = "A device that can be linked to an Express Supply Console for precision supply pod deliveries."
+	name = "补给舱信标"
+	desc = "一种可以与快速补给控制台链接，用于精确补给舱投送的设备。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "supplypod_beacon"
 	inhand_icon_state = "radio"
@@ -61,11 +61,11 @@
 
 /obj/item/supplypod_beacon/examine(user)
 	. = ..()
-	. += span_notice("It looks like it has a few anchoring bolts.")
+	. += span_notice("它看起来有几个锚定螺栓。")
 	if(!express_console)
-		. += span_notice("[src] is not currently linked to an Express Supply console.")
+		. += span_notice("[src] 当前未链接到快速补给控制台。")
 	else
-		. += span_notice("Alt-click to unlink it from the Express Supply console.")
+		. += span_notice("Alt-点击以将其从快速补给控制台解除链接。")
 
 /obj/item/supplypod_beacon/Destroy()
 	if(express_console)
@@ -96,11 +96,11 @@
 	update_status(SP_LINKED)
 	if (express_console.using_beacon)
 		update_status(SP_READY)
-	to_chat(user, span_notice("[src] linked to [C]."))
+	to_chat(user, span_notice("[src] 已链接到 [C]。"))
 
 /obj/item/supplypod_beacon/click_alt(mob/user)
 	if(!express_console)
-		to_chat(user, span_alert("There is no linked console."))
+		to_chat(user, span_alert("没有链接的控制台。"))
 		return CLICK_ACTION_BLOCKING
 	unlink_console()
 	return CLICK_ACTION_SUCCESS

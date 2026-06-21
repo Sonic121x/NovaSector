@@ -1,6 +1,6 @@
 /datum/action/cooldown/open_mob_commands
-	name = "Command Star Gazer"
-	desc = "Open the command menu for your star gazer."
+	name = "命令观星者"
+	desc = "为你的观星者打开命令菜单。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'

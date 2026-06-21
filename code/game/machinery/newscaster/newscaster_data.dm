@@ -226,7 +226,7 @@ GLOBAL_LIST_EMPTY(request_list)
 
 	if(chosen_channel.cross_sector)
 		// Newscaster articles could be huge, and usefulness of first 50 symbols is dubious
-		message_admins(span_adminnotice("Outgoing cross-sector newscaster article by [key_name(author_mob) || author] in channel [channel_name]."))
+		message_admins(span_adminnotice("由 [key_name(author_mob) || author] 在频道 [channel_name] 中发出的跨扇区新闻播报器文章。"))
 		var/list/payload = list(
 			"author" = author,
 			"author_ckey" = author_mob?.ckey,

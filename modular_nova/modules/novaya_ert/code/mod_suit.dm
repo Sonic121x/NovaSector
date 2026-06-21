@@ -161,7 +161,7 @@
 
 /obj/item/mod/module/auto_doc/on_active_process(seconds_per_tick)
 	if(!reagents.has_reagent(reagent_required, reagent_required_amount))
-		balloon_alert(mod.wearer, "not enough chems!")
+		balloon_alert(mod.wearer, "化学品不足！")
 		deactivate()
 		return FALSE
 
@@ -239,11 +239,11 @@
 	if(!attacking_item.is_open_container())
 		return FALSE
 	if(reagents.has_reagent(reagent_required, reagent_max_amount))
-		balloon_alert(mod.wearer, "already full!")
+		balloon_alert(mod.wearer, "已经满了！")
 		return FALSE
 	if(!attacking_item.reagents.trans_to(src, reagent_required_amount, target_id = reagent_required))
 		return FALSE
-	balloon_alert(mod.wearer, "charge reloaded!")
+	balloon_alert(mod.wearer, "充能已重载！")
 	return TRUE
 
 /obj/item/mod/module/auto_doc/on_install()
@@ -269,7 +269,7 @@
 	var/fault_chance = (reagents.maximum_volume/(reagents.total_volume ? reagents.total_volume : 20))*5 // 5% at max protozine, 20% at low-to-none protozine
 	if(prob(fault_chance) || forced == TRUE)
 		reagents.trans_to(affected_mob, min(15,reagents.total_volume))
-		balloon_alert(affected_mob, "protozine leak!")
+		balloon_alert(affected_mob, "Protozine泄漏！")
 		affected_mob.playsound_local(mod, 'sound/effects/spray3.ogg', 25, TRUE)
 
 /obj/item/reagent_containers/cup/glass/waterbottle/large/protozine

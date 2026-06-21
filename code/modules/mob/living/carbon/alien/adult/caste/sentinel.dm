@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/adult/sentinel
-	name = "alien sentinel"
+	name = "异形哨兵"
 	caste = "s"
 	maxHealth = 150
 	health = 150

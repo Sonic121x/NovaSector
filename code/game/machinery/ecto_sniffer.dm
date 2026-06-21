@@ -1,6 +1,6 @@
 /obj/machinery/ecto_sniffer
-	name = "ectoscopic sniffer"
-	desc = "A highly sensitive parascientific instrument calibrated to detect the slightest whiff of ectoplasm."
+	name = "探灵器"
+	desc = "一种高度灵敏的准科学仪器，经校准可探测最轻微的外质气味"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "ecto_sniffer"
 	base_icon_state = "ecto_sniffer"
@@ -43,7 +43,7 @@
 	. = ..()
 	add_fingerprint(user)
 	on = !on
-	balloon_alert(user, "sniffer turned [on ? "on" : "off"]")
+	balloon_alert(user, "嗅探器已[on ? "on" : "off"]")
 	update_appearance()
 
 /obj/machinery/ecto_sniffer/update_icon_state()
@@ -61,7 +61,7 @@
 /obj/machinery/ecto_sniffer/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 15)
 	set_anchored(!anchored)
-	balloon_alert(user, "sniffer [anchored ? "anchored" : "unanchored"]")
+	balloon_alert(user, "嗅探器已[anchored ? "anchored" : "unanchored"]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/ecto_sniffer/screwdriver_act(mob/living/user, obj/item/screwdrivertool)

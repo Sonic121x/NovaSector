@@ -14,7 +14,7 @@
 		qdel(src)
 
 /atom/movable/screen/alert/status_effect/neuroware
-	name = "Neuroware Active"
-	desc = "Software is executing in your brain."
+	name = "神经软件激活中"
+	desc = "软件正在你的大脑中执行。"
 	icon = 'modular_nova/modules/neuroware/icons/screen_alert.dmi'
 	icon_state = "neuroware"

@@ -1,6 +1,6 @@
 // Some moodlets involved in the sacrifice process.
 /datum/mood_event/shadow_realm
-	description = "Where am I?!"
+	description = "我在哪里？！"
 	mood_change = -15
 	timeout = 3 MINUTES
 
@@ -10,11 +10,11 @@
 	timeout = 5 MINUTES
 
 /datum/mood_event/shadow_realm_live_sad
-	description = "The hands! The horrible, horrific hands! I see them when I close my eyes!"
+	description = "那些手！那些可怕、恐怖的手！我一闭上眼睛就能看见它们！"
 	mood_change = -6
 	timeout = 10 MINUTES
 
 /datum/mood_event/shadow_realm_live_sad_heretic
-	description = "I've been humiliated! My knowledge sapped from my being! The world feels much duller again..."
+	description = "我受到了羞辱！我的知识被从存在中抽走了！世界再次变得如此乏味……"
 	mood_change = -8
 	timeout = 8 MINUTES

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(tts)
-	name = "Text To Speech"
+	name = "文本转语音"
 	wait = 0.05 SECONDS
 	priority = FIRE_PRIORITY_TTS
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME

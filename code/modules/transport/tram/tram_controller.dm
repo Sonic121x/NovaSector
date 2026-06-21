@@ -212,7 +212,7 @@
 	SIGNAL_HANDLER
 
 	travel_remaining = 0
-	bumped_atom.visible_message(span_userdanger("\The [bumped_atom] crashes into the field violently!"))
+	bumped_atom.visible_message(span_userdanger("\The [bumped_atom] 猛烈地撞入场中！"))
 	for(var/obj/structure/transport/linear/tram/transport_module as anything in transport_modules)
 		transport_module.set_travelling(FALSE)
 		for(var/explosive_target in transport_module.transport_contents)
@@ -509,7 +509,7 @@
  */
 /datum/transport_controller/linear/tram/proc/crash_fx()
 	playsound(source = nav_beacon, soundin = 'sound/vehicles/car_crash.ogg', vol = 100, vary = FALSE, falloff_distance = DEFAULT_TRAM_LENGTH)
-	nav_beacon.audible_message(span_userdanger("You hear metal grinding as the tram comes to a sudden, complete stop!"))
+	nav_beacon.audible_message(span_userdanger("你听到金属摩擦声，穿梭机突然完全停了下来！"))
 	for(var/mob/living/tram_passenger in range(DEFAULT_TRAM_LENGTH - 2, nav_beacon))
 		if(tram_passenger.stat != CONSCIOUS)
 			continue
@@ -660,7 +660,7 @@
 	log_transport("TC: [specific_transport_id] ending Tram Malfunction event.")
 
 /datum/transport_controller/linear/tram/proc/announce_malf_event()
-	priority_announce("Our automated control system has lost contact with the tram's onboard computer. Please stand by, engineering has been dispatched to the tram to perform a reset.", "[command_name()] Engineering Division")
+	priority_announce("我们的自动控制系统已与电车车载计算机失去联系。请稍候，工程部已派员前往电车执行重置操作。", "[command_name()] 工程部")
 
 /datum/transport_controller/linear/tram/proc/register_collision(points = 1)
 	tram_registration.collisions += points
@@ -772,7 +772,7 @@
 	//	xing.temp_malfunction()
 	priority_announce("In a turn of rather peculiar events, it appears that [GLOB.station_name] has struck an immovable rod. (Don't ask us where it came from.) This has led to a station brakes failure on one of the tram platforms.\n\n\
 		Our diligent team of engineers have been informed and they're rushing over - although not quite at the speed of our recently flying tram.\n\n\
-		So while we all look in awe at the universe's mysterious sense of humour, please stand clear of the tracks and remember to stand behind the yellow line.", "Braking News")
+		So while we all look in awe at the universe's mysterious sense of humour, please stand clear of the tracks and remember to stand behind the yellow line.", "制动新闻")
 	set_active(TRUE)
 	set_status_code(CONTROLS_LOCKED, TRUE)
 	dispatch_transport(destination_platform = push_destination)
@@ -786,7 +786,7 @@
  * The physical cabinet on the tram. Acts as the interface between players and the controller datum.
  */
 /obj/machinery/transport/tram_controller
-	name = "tram controller"
+	name = "有轨电车控制器"
 	desc = "Makes the tram go, or something. Holds the tram's electronics, controls, and maintenance panel. A sticker above the card reader says 'Engineering access only.'"
 	icon = 'icons/obj/tram/tram_controllers.dmi'
 	icon_state = "tram-controller"
@@ -862,7 +862,7 @@
 /obj/machinery/transport/tram_controller/examine(mob/user)
 	. = ..()
 	if(has_cover)
-		. += span_notice("The door appears to be [cover_locked ? "locked. Swipe an ID card to unlock" : "unlocked. Swipe an ID card to lock"].")
+		. += span_notice("这扇门似乎是[cover_locked ? "locked. Swipe an ID card to unlock" : "unlocked. Swipe an ID card to lock"]。")
 		if(panel_open)
 			. += span_notice("It is secured to the tram wall with [EXAMINE_HINT("bolts.")]")
 			. += span_notice("The maintenance panel can be closed with a [EXAMINE_HINT("screwdriver.")]")
@@ -872,9 +872,9 @@
 	if(cover_open || !has_cover)
 		. += span_notice("The [EXAMINE_HINT("yellow reset button")] resets the tram controller if a problem occurs or needs to be restarted.")
 		. += span_notice("The [EXAMINE_HINT("red stop button")] immediately stops the tram, requiring a reset afterwards.")
-		. += span_notice("The cabinet can be closed with a [EXAMINE_HINT("Right-click.")]")
+		. += span_notice("可以用[EXAMINE_HINT("Right-click.")]关闭机柜")
 	else
-		. += span_notice("The cabinet can be opened with a [EXAMINE_HINT("Left-click.")]")
+		. += span_notice("可以用[EXAMINE_HINT("Left-click.")]打开机柜")
 
 
 /obj/machinery/transport/tram_controller/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -894,7 +894,7 @@
 	if(cover_locked)
 		var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 		if(isnull(id_card))
-			balloon_alert(user, "access denied!")
+			balloon_alert(user, "访问被拒绝！")
 			return
 
 		try_toggle_lock(user, id_card)
@@ -910,7 +910,7 @@
 	if(!cover_open)
 		var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 		if(isnull(id_card))
-			balloon_alert(user, "access denied!")
+			balloon_alert(user, "访问被拒绝！")
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 		try_toggle_lock(user, id_card)
@@ -931,16 +931,16 @@
 	if(isnull(id_card))
 		id_card = user.get_idcard(TRUE)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "access controller damaged!")
+		balloon_alert(user, "访问控制器损坏！")
 		return FALSE
 
 	if(check_access(id_card))
 		cover_locked = !cover_locked
-		balloon_alert(user, "controls [cover_locked ? "locked" : "unlocked"]")
+		balloon_alert(user, "控制面板[cover_locked ? "locked" : "unlocked"]")
 		update_appearance()
 		return TRUE
 
-	balloon_alert(user, "access denied!")
+	balloon_alert(user, "访问被拒绝！")
 	return FALSE
 
 /obj/machinery/transport/tram_controller/wrench_act_secondary(mob/living/user, obj/item/tool)
@@ -949,12 +949,12 @@
 		return
 
 	if(panel_open && cover_open)
-		balloon_alert(user, "unsecuring...")
+		balloon_alert(user, "正在解除固定...")
 		tool.play_tool_sound(src)
 		if(!tool.use_tool(src, user, 6 SECONDS))
 			return
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, "unsecured")
+		balloon_alert(user, "已解除固定")
 		deconstruct(TRUE)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -1071,17 +1071,17 @@
 
 /obj/machinery/transport/tram_controller/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "already fried!")
+		balloon_alert(user, "已经烧坏了！")
 		return FALSE
 	obj_flags |= EMAGGED
 	cover_locked = FALSE
 	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "access controller shorted")
+	balloon_alert(user, "访问控制器短路")
 	return TRUE
 
 /obj/machinery/transport/tram_controller/ui_status(mob/user, datum/ui_state/state)
 	if(HAS_SILICON_ACCESS(user) && (controller_datum.controller_status & SYSTEM_FAULT || controller_datum.controller_status & COMM_ERROR || !is_operational))
-		to_chat(user, span_warning("An error code flashes: Communications fault! The [src] is not responding to remote inputs!"))
+		to_chat(user, span_warning("一个错误代码闪烁：通信故障！[src] 没有响应远程输入！"))
 		return UI_CLOSE
 
 	return ..()
@@ -1139,7 +1139,7 @@
 		return
 
 	if(machine_stat & NOPOWER)
-		visible_message(span_warning("The button doesn't appear to do anything, the [src]'s power failure status is flashing!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		visible_message(span_warning("按钮似乎没有任何反应，[src]的电源故障状态正在闪烁！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		return
 
 	switch(action)
@@ -1180,8 +1180,8 @@
 
 /// Controller that sits in the telecoms room
 /obj/machinery/transport/tram_controller/tcomms
-	name = "tram central controller"
-	desc = "This semiconductor is half of the brains controlling the tram and its auxiliary equipment."
+	name = "电车中央控制器"
+	desc = "这块半导体是控制有轨电车及其辅助设备的大脑的一半。"
 	icon_state = "home-controller"
 	base_icon_state = "home"
 	density = TRUE
@@ -1220,8 +1220,8 @@
 	RegisterSignal(SStransport, COMSIG_TRANSPORT_UPDATED, PROC_REF(sync_controller))
 
 /obj/item/wallframe/tram
-	name = "tram controller cabinet"
-	desc = "A box that contains the equipment to control a tram. Just secure to the tram wall."
+	name = "有轨电车控制器机柜"
+	desc = "一个装有控制有轨电车所需设备的盒子。只需将其固定到有轨电车墙壁上即可。"
 	icon = 'icons/obj/tram/tram_controllers.dmi'
 	icon_state = "tram-controller"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20)
@@ -1235,7 +1235,7 @@
 	var/turf/tram_turf = get_turf(user)
 	var/obj/structure/thermoplastic/tram_floor = locate() in tram_turf
 	if(!istype(tram_floor))
-		balloon_alert(user, "needs tram!")
+		balloon_alert(user, "需要电车！")
 		return FALSE
 
 	return ..()

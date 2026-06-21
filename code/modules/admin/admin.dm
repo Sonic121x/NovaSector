@@ -139,7 +139,7 @@ ADMIN_VERB(create_or_modify_area, R_DEBUG, "Create Or Modify Area", "Create of m
 		question = "This mob already has a user ([tomob.key]) in control of it! "
 	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
 
-	var/ask = tgui_alert(usr, question, "Place ghost in control of mob?", list("Yes", "No"))
+	var/ask = tgui_alert(usr, question, "将幽灵放入控制此生物？", list("Yes", "No"))
 	if (ask != "Yes")
 		return TRUE
 
@@ -154,7 +154,7 @@ ADMIN_VERB(create_or_modify_area, R_DEBUG, "Create Or Modify Area", "Create of m
 			if(tomob.mind == ghost.mind)
 				ghost.mind = null
 
-	message_admins(span_adminnotice("[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name]."))
+	message_admins(span_adminnotice("[key_name_admin(usr)] 已让 [frommob.key] 控制了 [tomob.name]。"))
 	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
 	BLACKBOX_LOG_ADMIN_VERB("Ghost Drag Control")
 

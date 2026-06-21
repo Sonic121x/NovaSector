@@ -1,5 +1,5 @@
 /obj/projectile/seedling
-	name = "solar energy"
+	name = "太阳能"
 	icon_state = "seedling"
 	damage = 10
 	damage_type = BURN
@@ -22,7 +22,7 @@
 	return ..()
 
 /obj/effect/temp_visual/solarbeam_killsat
-	name = "beam of solar energy"
+	name = "太阳能光束"
 	icon_state = "solar_beam"
 	icon = 'icons/effects/beam.dmi'
 	plane = LIGHTING_PLANE

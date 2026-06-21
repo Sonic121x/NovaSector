@@ -4,8 +4,8 @@
 ///////////////////////////Veil Render//////////////////////
 
 /obj/item/veilrender
-	name = "veil render"
-	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast city."
+	name = "帷幕渲染"
+	desc = "一把来自外星的邪恶弯刀，是从一座巨大城市的废墟中发现的。"
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "bone_blade"
 	inhand_icon_state = "bone_blade"
@@ -30,13 +30,13 @@
 	if(charges > 0)
 		new /obj/effect/rend(get_turf(user), spawn_type, spawn_amt, rend_desc, spawn_fast)
 		charges--
-		user.visible_message(span_bolddanger("[src] hums with power as [user] deals a blow to [activate_descriptor] itself!"))
+		user.visible_message(span_bolddanger("[src] 随着力量嗡嗡作响，[user] 对 [activate_descriptor] 本身发动了攻击！"))
 	else
-		to_chat(user, span_danger("The unearthly energies that powered the blade are now dormant."))
+		to_chat(user, span_danger("为刀刃供能的非尘世能量现已休眠。"))
 
 /obj/effect/rend
-	name = "tear in the fabric of reality"
-	desc = "You should run now."
+	name = "现实结构的撕裂"
+	desc = "你现在应该跑。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "rift"
 	density = TRUE
@@ -67,7 +67,7 @@
 	if(!HAS_TRAIT(tool, TRAIT_NULLROD_ITEM))
 		return NONE
 
-	user.visible_message(span_danger("[user] seals \the [src] with \the [tool]."))
+	user.visible_message(span_danger("[user] 用 \the [src] 封住了 \the [tool]。"))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -78,16 +78,16 @@
 	return
 
 /obj/item/veilrender/vealrender
-	name = "veal render"
-	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast farm."
+	name = "帷幕渲染"
+	desc = "一把来自外星的邪恶弯刀，是从一座巨大农场的废墟中发现的。"
 	spawn_type = /mob/living/basic/cow
 	spawn_amt = 20
 	activate_descriptor = "hunger"
 	rend_desc = "Reverberates with the sound of ten thousand moos."
 
 /obj/item/veilrender/honkrender
-	name = "honk render"
-	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast circus."
+	name = "honk渲染"
+	desc = "一把来自外星的邪恶弯刀，是从一座巨大马戏团的废墟中发现的。"
 	spawn_type = /mob/living/basic/clown
 	spawn_amt = 10
 	activate_descriptor = "depression"
@@ -97,8 +97,8 @@
 	worn_icon_state = "render"
 
 /obj/item/veilrender/honkrender/honkhulkrender
-	name = "superior honk render"
-	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast circus. This one gleams with a special light."
+	name = "高级honk效果"
+	desc = "一把造型诡异的弯刀，来自外星文明，是从一座巨大马戏团的废墟中发现的。这把刀闪烁着特殊的光芒。"
 	spawn_type = /mob/living/basic/clown/clownhulk
 	spawn_amt = 5
 	activate_descriptor = "depression"
@@ -109,8 +109,8 @@
 
 /// Tear in reality, spawned by the veil render
 /obj/tear_in_reality
-	name = "tear in the fabric of reality"
-	desc = "This isn't right."
+	name = "现实结构的撕裂"
+	desc = "这不对劲。"
 	icon = 'icons/effects/224x224.dmi'
 	icon_state = "reality"
 	pixel_x = -96
@@ -143,7 +143,7 @@
 	var/mob/living/carbon/jedi = user
 	if(jedi.mob_mood.sanity < 15)
 		return //they've already seen it and are about to die, or are just too insane to care
-	to_chat(jedi, span_userdanger("OH GOD! NONE OF IT IS REAL! NONE OF IT IS REEEEEEEEEEEEEEEEEEEEEEEEAL!"))
+	to_chat(jedi, span_userdanger("哦天哪！没有什么是真实的！没有什么是真真真真真真真真真真真真真真真真真真真真真真真真真真的！"))
 	jedi.mob_mood.sanity = 0
 	for(var/lore in typesof(/datum/brain_trauma/severe))
 		jedi.gain_trauma(lore)
@@ -163,8 +163,8 @@
 /////////////////////////////////////////Scrying///////////////////
 
 /obj/item/scrying
-	name = "scrying orb"
-	desc = "An incandescent orb of otherworldly energy, merely holding it gives you vision and hearing beyond mortal means, and staring into it lets you see the entire universe."
+	name = "占卜宝珠"
+	desc = "一个充满异世界能量的白炽球，仅仅握着它就能让你拥有超越凡人的视觉和听觉，而凝视它则能让你看到整个宇宙。"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state ="bluespace"
 	throw_speed = 3
@@ -188,7 +188,7 @@
 	var/mob/holder = get(loc, /mob)
 	if(current_owner && current_owner != holder)
 
-		to_chat(current_owner, span_notice("Your otherworldly vision fades..."))
+		to_chat(current_owner, span_notice("你的异界视野逐渐消退..."))
 
 		current_owner.remove_traits(list(TRAIT_SIXTHSENSE, TRAIT_XRAY_VISION), SCRYING_ORB)
 		current_owner.update_sight()
@@ -198,20 +198,20 @@
 	if(!current_owner && holder)
 		current_owner = holder
 
-		to_chat(current_owner, span_notice("You can see...everything!"))
+		to_chat(current_owner, span_notice("你能看见...一切！"))
 
 		current_owner.add_traits(list(TRAIT_SIXTHSENSE, TRAIT_XRAY_VISION), SCRYING_ORB)
 		current_owner.update_sight()
 
 /obj/item/scrying/attack_self(mob/user)
-	visible_message(span_danger("[user] stares into [src], their eyes glazing over."))
+	visible_message(span_danger("[user] 凝视着 [src]，他们的眼神变得呆滞。"))
 	user.ghostize(1)
 
 /////////////////////////////////////////Necromantic Stone///////////////////
 
 /obj/item/necromantic_stone
-	name = "necromantic stone"
-	desc = "A shard capable of resurrecting humans as skeleton thralls."
+	name = "亡灵石"
+	desc = "一种能够将人类复活为骷髅奴隶的碎片。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "necrostone"
 	inhand_icon_state = "electronic"
@@ -239,7 +239,7 @@
 		return
 
 	if(target.stat != DEAD)
-		to_chat(user, span_warning("This artifact can only affect the dead!"))
+		to_chat(user, span_warning("这件神器只能影响死者！"))
 		return
 
 	for(var/mob/dead/observer/ghost in GLOB.dead_mob_list) //excludes new players
@@ -248,19 +248,19 @@
 			break
 
 	if(!target.mind || !target.client)
-		to_chat(user, span_warning("There is no soul connected to this body..."))
+		to_chat(user, span_warning("这具躯体没有与之相连的灵魂..."))
 		return
 
 	check_spooky()//clean out/refresh the list
 	if(spooky_scaries.len >= max_thralls && !unlimited)
-		to_chat(user, span_warning("This artifact can only affect [convert_integer_to_words(max_thralls)] thralls at a time!"))
+		to_chat(user, span_warning("这件神器一次只能影响 [convert_integer_to_words(max_thralls)] 个仆从！"))
 		return
 	if(applied_species)
 		target.set_species(applied_species, icon_update=0)
 	target.revive(ADMIN_HEAL_ALL)
 	spooky_scaries |= target
-	to_chat(target, span_userdanger("You have been revived by <B>[user.real_name]</B>!"))
-	to_chat(target, span_userdanger("[user.p_Theyre()] your master now, assist [user.p_them()] even if it costs you your new life!"))
+	to_chat(target, span_userdanger("你已被 <B>[user.real_name]</B> 复活！"))
+	to_chat(target, span_userdanger("[user.p_Theyre()] 现在是你的主人了，协助 [user.p_them()]，即使这会让你付出新生命的代价！"))
 	var/datum/antagonist/wizard/antag_datum = user.mind.has_antag_datum(/datum/antagonist/wizard)
 	if(antag_datum)
 		if(!antag_datum.wiz_team)
@@ -272,7 +272,7 @@
 /obj/item/necromantic_stone/examine(mob/user)
 	. = ..()
 	if(!unlimited)
-		. += span_notice("[spooky_scaries.len]/[max_thralls] active thralls.")
+		. += span_notice("[spooky_scaries.len]/[max_thralls] 个活跃仆从。")
 
 /obj/item/necromantic_stone/proc/check_spooky()
 	if(unlimited) //no point, the list isn't used.
@@ -299,7 +299,7 @@
 
 //Funny gimmick, skeletons always seem to wear roman/ancient armour
 /datum/outfit/roman
-	name = "Roman"
+	name = "罗马人"
 	head = /obj/item/clothing/head/helmet/roman
 	uniform = /obj/item/clothing/under/costume/roman
 	shoes = /obj/item/clothing/shoes/roman
@@ -320,8 +320,8 @@
 
 ///Warp whistle, spawns a tornado that teleports you
 /obj/item/warp_whistle
-	name = "warp whistle"
-	desc = "Calls a cloud to come pick you up and drop you at a random location on the station."
+	name = "奇异口哨"
+	desc = "会召唤一辆出租车来接您，然后将您送到车站内的任意一个地点。"
 	icon = 'icons/obj/art/musician.dmi'
 	icon_state = "whistle"
 
@@ -330,7 +330,7 @@
 
 /obj/item/warp_whistle/attack_self(mob/user)
 	if(whistler)
-		to_chat(user, span_warning("[src] is on cooldown."))
+		to_chat(user, span_warning("[src] 正在冷却中。"))
 		return
 
 	whistler = user
@@ -341,8 +341,8 @@
 
 ///Teleporting tornado, spawned by warp whistle, teleports the user if they manage to pick them up.
 /obj/effect/temp_visual/teleporting_tornado
-	name = "tornado"
-	desc = "This thing sucks!"
+	name = "龙卷风"
+	desc = "这东西太糟糕了！"
 	icon = 'icons/effects/magic.dmi'
 	icon_state = "tornado"
 	layer = FLY_LAYER
@@ -398,8 +398,8 @@
 #define RUNIC_SCEPTER_MAX_RANGE 7
 
 /obj/item/runic_vendor_scepter
-	name = "scepter of runic vendormancy"
-	desc = "This scepter allows you to conjure, force push and detonate Runic Vendors. It can hold up to 3 charges that can be recovered with a simple magical channeling. A modern spin on the old Geomancy spells."
+	name = "符文贩售权杖"
+	desc = "这根权杖允许你召唤、力场推动并引爆符文贩售机。它可以储存最多3次充能，通过简单的魔法引导即可恢复。这是对旧式地脉法术的现代演绎。"
 	icon_state = "vendor_staff"
 	inhand_icon_state = "vendor_staff"
 	icon_angle = -45
@@ -438,7 +438,7 @@
 
 /obj/item/runic_vendor_scepter/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(scepter_is_busy_recharging)
-		user.balloon_alert(user, "busy!")
+		user.balloon_alert(user, "正忙！")
 		return ITEM_INTERACT_BLOCKING
 	if(!check_allowed_items(interacting_with, not_inside = TRUE))
 		return NONE
@@ -452,30 +452,30 @@
 		vendor_on_turf.runic_explosion()
 		return  ITEM_INTERACT_SUCCESS
 	if(!summon_vendor_charges)
-		user.balloon_alert(user, "no charges!")
+		user.balloon_alert(user, "没有充能了！")
 		return ITEM_INTERACT_BLOCKING
 	if(get_dist(afterattack_turf,src) > max_summon_range)
-		user.balloon_alert(user, "too far!")
+		user.balloon_alert(user, "太远了！")
 		return ITEM_INTERACT_BLOCKING
 	if(get_turf(src) == afterattack_turf)
-		user.balloon_alert(user, "too close!")
+		user.balloon_alert(user, "太近了！")
 		return ITEM_INTERACT_BLOCKING
 	if(scepter_is_busy_summoning)
-		user.balloon_alert(user, "already summoning!")
+		user.balloon_alert(user, "已在召唤中！")
 		return ITEM_INTERACT_BLOCKING
 	if(afterattack_turf.is_blocked_turf(TRUE))
-		user.balloon_alert(user, "blocked!")
+		user.balloon_alert(user, "被阻挡了！")
 		return ITEM_INTERACT_BLOCKING
 	if(summoning_time)
 		scepter_is_busy_summoning = TRUE
-		user.balloon_alert(user, "summoning...")
+		user.balloon_alert(user, "正在召唤...")
 		if(!do_after(user, summoning_time, target = interacting_with))
 			scepter_is_busy_summoning = FALSE
 			return ITEM_INTERACT_BLOCKING
 		scepter_is_busy_summoning = FALSE
 	if(summon_vendor_charges)
 		playsound(src,'sound/items/weapons/resonator_fire.ogg',50,TRUE)
-		user.visible_message(span_warning("[user] summons a runic vendor!"))
+		user.visible_message(span_warning("[user] 召唤了一个符文供应商！"))
 		new /obj/machinery/vending/runic_vendor(afterattack_turf)
 		summon_vendor_charges--
 		user.changeNext_move(CLICK_CD_MELEE)
@@ -484,12 +484,12 @@
 
 /obj/item/runic_vendor_scepter/attack_self(mob/user, modifiers)
 	. = ..()
-	user.balloon_alert(user, "recharging...")
+	user.balloon_alert(user, "正在充能...")
 	scepter_is_busy_recharging = TRUE
 	if(!do_after(user, 5 SECONDS))
 		scepter_is_busy_recharging = FALSE
 		return
-	user.balloon_alert(user, "fully charged")
+	user.balloon_alert(user, "已完全充能")
 	scepter_is_busy_recharging = FALSE
 	summon_vendor_charges = RUNIC_SCEPTER_MAX_CHARGES
 

@@ -268,7 +268,7 @@
 /// * attacker - The mob to notify about parry availability
 /datum/martial_art/blood_steal/proc/parry_availability(mob/living/attacker)
 	if(COOLDOWN_FINISHED(src, parry_cooldown_timer))
-		attacker.balloon_alert(holder, "parry refreshed!")
+		attacker.balloon_alert(holder, "格挡已刷新！")
 
 /// Displays help information about the Blood Steal martial art abilities
 /// This verb shows the user information about the Feedbacker and Knuckleblaster attacks,
@@ -279,8 +279,8 @@
 	set category = "Blood Steal"
 	to_chat(usr, "<b><i>You try to remember core Blood Steal protocols.</i></b>")
 
-	to_chat(usr, "[span_notice("Feedbacker")]: Punch. Deal extra damage and steal blood, converting some damage dealt as health.")
-	to_chat(usr, "[span_notice("Knuckleblaster")]: Shove. Knocks opponent away. Deals negligible brute and stamina damage.")
+	to_chat(usr, "[span_notice("Feedbacker")]：拳击。造成额外伤害并窃取血液，将部分造成的伤害转化为生命值。")
+	to_chat(usr, "[span_notice("Knuckleblaster")]：猛推。将对手击退。造成可忽略不计的钝击伤害和耐力伤害。")
 
 	to_chat(usr, "<b><i>In addition, by having your throw mode on when being shot at, you enter an active defense mode where you have a perfect, yet single-projectile parry with a moderately long refresh cooldown.</i></b>")
 

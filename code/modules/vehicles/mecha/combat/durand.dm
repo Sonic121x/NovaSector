@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/durand
-	desc = "An aging combat exosuit utilized by the Nanotrasen corporation. Originally developed to combat hostile alien lifeforms."
-	name = "\improper Durand"
+	desc = "纳米特拉森公司研发并使用的一台老式的战斗机甲。最初设计目的是为了对抗异形等外星生命体。"
+	name = "\improper 杜兰德"
 	icon_state = "durand"
 	base_icon_state = "durand"
 	movedelay = 4
@@ -137,7 +137,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 		. = ..()
 
 /datum/action/vehicle/sealed/mecha/mech_defense_mode
-	name = "Toggle an energy shield that blocks all attacks from the faced direction at a heavy power cost."
+	name = "开启能量护盾，消耗能量阻挡所有正面攻击。"
 	button_icon_state = "mech_defense_mode_off"
 
 /datum/action/vehicle/sealed/mecha/mech_defense_mode/Trigger(mob/clicker, trigger_flags, forced_state = FALSE)
@@ -159,7 +159,7 @@ attack is passed to the shield. The shield takes the damage, uses it to calculat
 own integrity back to max. Shield is automatically dropped if we run out of power or the user gets out.*/
 
 /obj/durand_shield //projectiles get passed to this when defense mode is enabled
-	name = "defense grid"
+	name = "防御网"
 	icon = 'icons/mob/effects/durand_shield.dmi'
 	icon_state = "shield_null"
 	invisibility = INVISIBILITY_MAXIMUM //no showing on right-click
@@ -218,12 +218,12 @@ own integrity back to max. Shield is automatically dropped if we run out of powe
 	if(switching && !signal_args[1])
 		return
 	if(!chassis.defense_mode && (!chassis.cell || chassis.cell.charge < 100)) //If it's off, and we have less than 100 units of power
-		chassis.balloon_alert(owner, "insufficient power")
+		chassis.balloon_alert(owner, "电力不足")
 		return
 	switching = TRUE
 	chassis.defense_mode = !chassis.defense_mode
 	if(!signal_args[1])
-		chassis.balloon_alert(owner, "shield [chassis.defense_mode?"enabled":"disabled"]")
+		chassis.balloon_alert(owner, "护盾 [chassis.defense_mode?"enabled":"disabled"]")
 		chassis.log_message("User has toggled defense mode -- now [chassis.defense_mode?"enabled":"disabled"].", LOG_MECHA)
 	else
 		chassis.log_message("defense mode state changed -- now [chassis.defense_mode?"enabled":"disabled"].", LOG_MECHA)

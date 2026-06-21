@@ -4,7 +4,7 @@
 // Circuitboard
 
 /obj/item/circuitboard
-	name = "circuit board"
+	name = "电路板"
 	/// extension that is applied after the initial name AKA (Computer/Machine Board)
 	var/name_extension = null
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
@@ -161,7 +161,7 @@ micro-manipulator, console screen, beaker, Microlaser, matter bin, power cells.
 /obj/item/circuitboard/machine/examine(mob/user)
 	. = ..()
 	if(!LAZYLEN(req_components))
-		. += span_info("It requires no components.")
+		. += span_info("它不需要更多组件了.")
 		return
 
 	var/list/nice_list = list()
@@ -201,4 +201,4 @@ micro-manipulator, console screen, beaker, Microlaser, matter bin, power cells.
 			stack_trace("[component_path] was an invalid component")
 		nice_list += list("[component_amount] [component_name]\s")
 
-	. += span_info("It requires [english_list(nice_list)].")
+	. += span_info("它需要 [english_list(nice_list)].")

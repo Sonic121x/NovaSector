@@ -1,8 +1,8 @@
 // A three-way junction that sorts objects based on check_sorting(H) proc
 // This is a base type, use subtypes on the map.
 /obj/structure/disposalpipe/sorting
-	name = "sorting disposal pipe"
-	desc = "An underfloor disposal pipe with a sorting mechanism."
+	name = "分类处理管道"
+	desc = "一条带有分类机制的地板下处理管道。"
 	icon_state = "pipe-j1s"
 	initialize_dirs = DISP_DIR_RIGHT | DISP_DIR_FLIP
 
@@ -62,10 +62,10 @@
 		if(O.currTag)// Tagger has a tag set
 			if(O.currTag in sortTypes)
 				sortTypes -= O.currTag
-				to_chat(user, span_notice("Removed \"[GLOB.TAGGERLOCATIONS[O.currTag]]\" filter."))
+				to_chat(user, span_notice("移除了\"[GLOB.TAGGERLOCATIONS[O.currTag]]\"过滤器。"))
 			else
 				sortTypes |= O.currTag
-				to_chat(user, span_notice("Added \"[GLOB.TAGGERLOCATIONS[O.currTag]]\" filter."))
+				to_chat(user, span_notice("添加了\"[GLOB.TAGGERLOCATIONS[O.currTag]]\"过滤器。"))
 			playsound(src, 'sound/machines/beep/twobeep_high.ogg', 100, TRUE)
 	else
 		return ..()
@@ -78,7 +78,7 @@
 
 // Wrap sorting junction, sorts objects destined for the mail office mail table (tomail = TRUE)
 /obj/structure/disposalpipe/sorting/wrap
-	desc = "An underfloor disposal pipe which sorts wrapped and unwrapped objects."
+	desc = "一种地下处理管道，用于分拣已包装和未包装的物品。"
 	flip_type = /obj/structure/disposalpipe/sorting/wrap/flip
 	initialize_dirs = DISP_DIR_RIGHT | DISP_DIR_FLIP
 

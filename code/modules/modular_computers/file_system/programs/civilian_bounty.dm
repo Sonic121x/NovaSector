@@ -58,7 +58,7 @@
 		return
 	if((id_account.civilian_bounty || id_account.bounties) && !COOLDOWN_FINISHED(id_account, bounty_timer))
 		var/time_left = DisplayTimeText(COOLDOWN_TIMELEFT(id_account, bounty_timer), round_seconds_to = 1)
-		computer.balloon_alert(user, "try again in [time_left]!")
+		computer.balloon_alert(user, "[time_left] 秒后再试！")
 		return FALSE
 	if(!computer.stored_id.trim)
 		computer.say("Requesting ID card has no job assignment registered!")

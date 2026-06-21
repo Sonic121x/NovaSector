@@ -1,6 +1,6 @@
 /datum/experiment/physical/meat_wall_explosion
-	name = "Extreme Cooking Experiment"
-	description = "There has been interest in using our engineering equipment to see what kind of new cooking appliances we can create"
+	name = "极端烹饪实验"
+	description = "有人提议利用我们的工程设备来探索可以创造出何种新型烹饪器具。"
 
 /datum/experiment/physical/meat_wall_explosion/register_events()
 	if(!iswallturf(currently_scanned_atom))
@@ -36,8 +36,8 @@
 	new /obj/item/food/meat/steak/plain(new_turf)
 
 /datum/experiment/physical/arcade_winner
-	name = "Playtesting Experiences"
-	description = "How do they make these arcade games so fun? Let's play one and win it to find out."
+	name = "游戏测试体验"
+	description = "他们是怎么把这些街机游戏做得这么有趣的？让我们玩一个并赢得它来一探究竟。"
 
 /datum/experiment/physical/arcade_winner/register_events()
 	if(!istype(currently_scanned_atom, /obj/machinery/computer/arcade))

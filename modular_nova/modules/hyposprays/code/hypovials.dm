@@ -9,7 +9,7 @@
 	. = ..()
 	if(isnull(user))
 		return
-	var/name_temp = tgui_input_text(user, "Input a vial label!", "Rename", apply_to.name)
+	var/name_temp = tgui_input_text(user, "输入药瓶标签！", "重命名", apply_to.name)
 	if(name_temp)
 		var/obj/item/applying_to = apply_to
 		applying_to.name = name_temp
@@ -63,8 +63,8 @@
 	update_greyscale = TRUE
 
 /obj/item/reagent_containers/cup/vial
-	name = "broken hypovial"
-	desc = "You probably shouldn't be seeing this. Shout at a coder."
+	name = "破损的注射药瓶"
+	desc = "你大概不该看到这个。对着程序员大喊吧。"
 	icon = 'modular_nova/modules/hyposprays/icons/vials.dmi'
 	icon_state = "hypovial"
 	greyscale_config = /datum/greyscale_config/hypovial
@@ -81,7 +81,7 @@
 
 /obj/item/reagent_containers/cup/vial/examine(mob/user)
 	. = ..()
-	. += span_notice("Ctrl-Click to reskin or set a custom color.")
+	. += span_notice("Ctrl-点击以更换皮肤或设置自定义颜色。")
 
 /obj/item/reagent_containers/cup/vial/click_ctrl_shift(mob/user)
 	greyscale_colors = null
@@ -107,8 +107,8 @@
 
 //Fit in all hypos
 /obj/item/reagent_containers/cup/vial/small
-	name = "hypovial"
-	desc = "A small, 60u capacity vial compatible with most hyposprays."
+	name = "注射药瓶"
+	desc = "一种小型、容量60单位的药瓶，兼容大多数注射器。"
 	volume = 60
 	possible_transfer_amounts = list(5,10,15,20,30,60)
 
@@ -175,10 +175,10 @@
 	update_greyscale = TRUE
 
 /obj/item/reagent_containers/cup/vial/large
-	name = "large hypovial"
+	name = "大型注射药瓶"
 	icon_state = "hypoviallarge"
 	fill_icon_state = "hypoviallarge_fill"
-	desc = "A large, 120u capacity vial that fits only in the most deluxe hyposprays."
+	desc = "一种大型、容量120单位的药瓶，仅适用于最豪华的注射器。"
 	volume = 120
 	possible_transfer_amounts = list(5,10,15,20,30,40,60,120)
 	type_suffix = "-l"
@@ -250,10 +250,10 @@
 	update_greyscale = TRUE
 
 /obj/item/reagent_containers/cup/vial/interdyne_medium
-	name = "medium mountable hypovial"
+	name = "中型可安装注射药瓶"
 	icon_state = "hypovial-interdyne"
 	fill_icon_state = "hypovial-interdyne_fill"
-	desc = "A medium-size, 90u capacity vial with special mounting clamps and an Interdyne stamp."
+	desc = "一种中等尺寸、容量90单位的药瓶，带有特殊安装夹和Interdyne公司印记。"
 	volume = 90
 	possible_transfer_amounts = list(1,2,5,10,15,20,30,60,90)
 	type_suffix = "-interdyne"
@@ -283,64 +283,64 @@
 
 //Hypos that are in the CMO's kit round start
 /obj/item/reagent_containers/cup/vial/large/deluxe
-	name = "deluxe hypovial"
+	name = "豪华注射药瓶"
 	icon_state = "hypoviallarge-buff"
 	list_reagents = list(/datum/reagent/medicine/omnizine = 15, /datum/reagent/medicine/leporazine = 15, /datum/reagent/medicine/atropine = 15)
 
 /obj/item/reagent_containers/cup/vial/large/salglu
-	name = "large green hypovial (salglu)"
+	name = "大型绿色注射药瓶（生理盐水葡萄糖）"
 	icon_state = "hypoviallarge-oxy"
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 50)
 
 /obj/item/reagent_containers/cup/vial/large/synthflesh
-	name = "large orange hypovial (synthflesh)"
+	name = "大型橙色注射药瓶（合成肉）"
 	icon_state = "hypoviallarge-crit"
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 50)
 
 /obj/item/reagent_containers/cup/vial/large/multiver
-	name = "large black hypovial (multiver)"
+	name = "大型黑色注射药瓶（多效解毒剂）"
 	icon_state = "hypoviallarge-tox"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 50)
 
 //Some bespoke helper types for preloaded combat medkits.
 /obj/item/reagent_containers/cup/vial/large/advbrute
-	name = "Brute Heal"
+	name = "创伤治疗剂"
 	icon_state = "hypoviallarge-brute"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 50, /datum/reagent/medicine/sal_acid = 50)
 
 /obj/item/reagent_containers/cup/vial/large/advburn
-	name = "Burn Heal"
+	name = "烧伤治疗剂"
 	icon_state = "hypoviallarge-burn"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 50, /datum/reagent/medicine/oxandrolone = 50)
 
 /obj/item/reagent_containers/cup/vial/large/advtox
-	name = "Toxin Heal"
+	name = "毒素治疗剂"
 	icon_state = "hypoviallarge-tox"
 	list_reagents = list(/datum/reagent/medicine/pen_acid = 100)
 
 /obj/item/reagent_containers/cup/vial/large/advoxy
-	name = "Oxy Heal"
+	name = "缺氧治疗剂"
 	icon_state = "hypoviallarge-oxy"
 	list_reagents = list(/datum/reagent/medicine/c2/tirimol = 50, /datum/reagent/medicine/salbutamol = 50)
 
 /obj/item/reagent_containers/cup/vial/large/advcrit
-	name = "Crit Heal"
+	name = "危重治疗剂"
 	icon_state = "hypoviallarge-crit"
 	list_reagents = list(/datum/reagent/medicine/atropine = 100)
 
 /obj/item/reagent_containers/cup/vial/large/advomni
-	name = "All-Heal"
+	name = "万能疗愈"
 	icon_state = "hypoviallarge-buff"
 	list_reagents = list(/datum/reagent/medicine/regen_jelly = 100)
 
 /obj/item/reagent_containers/cup/vial/large/numbing
-	name = "Numbing"
+	name = "麻醉剂"
 	icon_state = "hypoviallarge-generic"
 	list_reagents = list(/datum/reagent/medicine/mine_salve = 50, /datum/reagent/medicine/morphine = 50)
 
 //Some bespoke helper types for preloaded paramedic kits.
 /obj/item/reagent_containers/cup/vial/small/libital
-	name = "brute hypovial (libital)"
+	name = "钝伤注射瓶（利比妥）"
 	icon_state = "hypovial-brute"
 
 /obj/item/reagent_containers/cup/vial/small/libital/Initialize(mapload)
@@ -348,7 +348,7 @@
 	reagents.add_reagent(reagent_type = /datum/reagent/medicine/c2/libital, amount = volume, added_purity = 1)
 
 /obj/item/reagent_containers/cup/vial/small/lenturi
-	name = "burn hypovial (lenturi)"
+	name = "烧伤注射瓶（伦图里）"
 	icon_state = "hypovial-burn"
 
 /obj/item/reagent_containers/cup/vial/small/lenturi/Initialize(mapload)
@@ -356,7 +356,7 @@
 	reagents.add_reagent(reagent_type = /datum/reagent/medicine/c2/lenturi, amount = volume, added_purity = 1)
 
 /obj/item/reagent_containers/cup/vial/small/seiver
-	name = "tox hypovial (seiver)"
+	name = "毒素注射瓶（塞弗）"
 	icon_state = "hypovial-tox"
 
 /obj/item/reagent_containers/cup/vial/small/seiver/Initialize(mapload)
@@ -364,7 +364,7 @@
 	reagents.add_reagent(reagent_type = /datum/reagent/medicine/c2/seiver, amount = volume, reagtemp = 975, added_purity = 1)
 
 /obj/item/reagent_containers/cup/vial/small/convermol
-	name = "tox hypovial (convermol)"
+	name = "毒素注射瓶（康沃莫）"
 	icon_state = "hypovial-oxy"
 
 /obj/item/reagent_containers/cup/vial/small/convermol/Initialize(mapload)
@@ -372,7 +372,7 @@
 	reagents.add_reagent(reagent_type = /datum/reagent/medicine/c2/convermol, amount = volume, added_purity = 1)
 
 /obj/item/reagent_containers/cup/vial/small/atropine
-	name = "crit hypovial (atropine)"
+	name = "危重注射瓶（阿托品）"
 	icon_state = "hypovial-crit"
 
 /obj/item/reagent_containers/cup/vial/small/atropine/Initialize(mapload)

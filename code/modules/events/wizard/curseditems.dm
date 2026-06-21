@@ -12,12 +12,12 @@
 #define CATGIRLS_2015 "catgirls2015"
 
 /datum/round_event_control/wizard/cursed_items //fashion disasters
-	name = "Cursed Items"
+	name = "Cursed Items-诅咒物品"
 	weight = 3
 	typepath = /datum/round_event/wizard/cursed_items
 	max_occurrences = 3
 	earliest_start = 0 MINUTES
-	description = "Gives everyone a cursed item."
+	description = "给予每个人一件诅咒物品。"
 
 //Note about adding items to this: Because of how NODROP_1 works if an item spawned to the hands can also be equiped to a slot
 //it will be able to be put into that slot from the hand, but then get stuck there. To avoid this make a new subtype of any
@@ -78,7 +78,7 @@
 			target.equip_to_slot_or_del(new_item, slot_to_equip_to, indirect_action = TRUE)
 			ADD_TRAIT(new_item, TRAIT_NODROP, CURSED_ITEM_TRAIT(new_item))
 			new_item.item_flags |= DROPDEL
-			new_item.name = "cursed " + new_item.name
+			new_item.name = "cursed -诅咒" + new_item.name
 
 		victims += target
 

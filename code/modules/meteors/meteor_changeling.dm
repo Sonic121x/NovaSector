@@ -1,7 +1,7 @@
 
 /obj/effect/meteor/meaty/changeling
-	name = "unsettlingly meaty meteor"
-	desc = "A tightly packed knit of flesh and skin, pulsating with life."
+	name = "令人不安的肉状流星"
+	desc = "一团紧密编织的血肉与皮肤，随着生命脉动。"
 	icon_state = "changeling"
 	heavy = FALSE
 	hits = 1 //Instantly splatters apart when it hits anything.
@@ -38,7 +38,7 @@
 	for(var/atom/movable/changeling in contents)
 		changeling.forceMove(get_turf(src))
 		changeling.throw_at(landing_target, 2, 2)
-		changeling.visible_message(span_warning("[changeling] is launched out from inside of \the [src]!"), span_changeling("Sensing that something is terribly wrong, we forcibly eject ourselves from \the [src]!"))
+		changeling.visible_message(span_warning("[changeling]从\the [src]内部被发射出来了！"), span_changeling("察觉到情况严重不对，我们强制从\the [src]中弹射出来了！"))
 		playsound(changeling, 'sound/effects/splat.ogg', 50, pressure_affected = FALSE)
 
 	return ..()

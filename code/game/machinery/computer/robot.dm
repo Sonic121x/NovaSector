@@ -1,6 +1,6 @@
 /obj/machinery/computer/robotics
-	name = "robotics control console"
-	desc = "Used to remotely lockdown linked Cyborgs and Drones."
+	name = "机器人学控制台"
+	desc = "用于对已连线的赛博及无人机进行远程限制。"
 	icon_screen = "robot"
 	icon_keyboard = "rd_key"
 	req_access = list(ACCESS_ROBOTICS)
@@ -117,7 +117,7 @@
 						else
 							to_chat(usr, span_danger("You can lock down only one cyborg at a time."))
 			else
-				to_chat(usr, span_danger("Access Denied."))
+				to_chat(usr, span_danger("拒绝访问."))
 			if(!isnull(locked_down_borg))
 				use_power = ACTIVE_POWER_USE
 			else
@@ -156,7 +156,7 @@
 					message_admins("[ADMIN_LOOKUPFLW(usr)] detonated [key_name_admin(drone)] at [ADMIN_VERBOSEJMP(T)]!")
 					log_silicon("[key_name(usr)] detonated [key_name(drone)]!")
 					do_sparks(3, TRUE< drone)
-					drone.visible_message(span_danger("\the [drone] self-destructs!"))
+					drone.visible_message(span_danger("\the [drone] 自毁了！"))
 					drone.investigate_log("has been gibbed by a robotics console.", INVESTIGATE_DEATHS)
 					drone.gib()
 
@@ -166,13 +166,13 @@
 	if(R.lockcharge && locked_down_borg == R)
 		UnregisterSignal(locked_down_borg, COMSIG_QDELETING)
 		locked_down_borg = null
-	message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] [!R.lockcharge ? "locked down" : "released"] [ADMIN_LOOKUPFLW(R)]!"))
+	message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] [!R.lockcharge ? "locked down" : "released"]了[ADMIN_LOOKUPFLW(R)]！"))
 	log_silicon("[key_name(usr)] [!R.lockcharge ? "locked down" : "released"] [key_name(R)]!")
 	log_combat(usr, R, "[!R.lockcharge ? "locked down" : "released"] cyborg")
 	R.SetLockdown(!R.lockcharge)
-	to_chat(R, !R.lockcharge ? span_notice("Your lockdown has been lifted!") : span_alert("You have been locked down!"))
+	to_chat(R, !R.lockcharge ? span_notice("你的锁定已被解除！") : span_alert("你已被锁定！"))
 	if(!isnull(console_location))
-		to_chat(R, span_alert("The approximate location of the console that is keeping you locked down is [console_location]"))
+		to_chat(R, span_alert("将你锁定的控制台大致位置是[console_location]"))
 	if(R.connected_ai)
 		to_chat(R.connected_ai, "[!R.lockcharge ? span_notice("NOTICE - Cyborg lockdown lifted") : span_alert("ALERT - Cyborg lockdown detected")]: <a href='byond://?src=[REF(R.connected_ai)];track=[html_encode(R.name)]'>[R.name]</a><br>")
 

@@ -11,7 +11,7 @@
  */
 /obj/item/circuit_component/remotecam
 	display_name = "Camera Abstract Type"
-	desc = "This is the abstract parent type - do not use this directly!"
+	desc = "这是抽象父类型 - 不要直接使用这个！"
 	category = "Entity"
 	circuit_flags = CIRCUIT_NO_DUPLICATES
 
@@ -104,7 +104,7 @@
  * Initializes the camera
  */
 /obj/item/circuit_component/remotecam/proc/init_camera()
-	shell_camera.desc = "This camera belongs in a circuit. If you see this, tell a coder!"
+	shell_camera.desc = "这个摄像头属于一个电路。如果你看到这个，请告诉程序员！"
 	shell_camera.AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 	shell_camera.use_power = NO_POWER_USE
 	shell_camera.start_active = TRUE
@@ -228,7 +228,7 @@
 	for(var/mob/M as anything in GLOB.player_list)
 		if (M.client?.eye == shell_camera)
 			M.reset_perspective(null)
-			to_chat(M, span_warning("The screen bursts into static!"))
+			to_chat(M, span_warning("屏幕爆发出静电！"))
 
 /**
  * Restore emp'd camera
@@ -280,7 +280,7 @@
 
 /obj/item/circuit_component/remotecam/bci
 	display_name = "BCI Camera"
-	desc = "Digitizes user's sight for surveillance-on-the-go. User must have fully functional eyes for digitizer to work. Camera range input is either 0 (near) or 1 (far). Network field is used for camera network."
+	desc = "将用户的视线数字化，实现移动监控。用户必须拥有功能完好的眼睛，数字化器才能工作。摄像头范围输入为0（近）或1（远）。网络字段用于摄像头网络。"
 	category = "BCI"
 	camera_prefix = "BCI"
 	required_shells = list(/obj/item/organ/cyberimp/bci)
@@ -293,12 +293,12 @@
 
 /obj/item/circuit_component/remotecam/drone
 	display_name = "Remote Camera"
-	desc = "Capture the surrounding environment for surveillance-on-the-go. Camera range input is either 0 (near) or 1 (far). Network field is used for camera network."
+	desc = "捕捉周围环境，实现移动监控。摄像头范围输入为0（近）或1（远）。网络字段用于摄像头网络。"
 	camera_prefix = "Drone"
 
 /obj/item/circuit_component/remotecam/airlock
 	display_name = "Peephole Camera"
-	desc = "A peephole camera that captures both sides of the airlock. Network field is used for camera network."
+	desc = "一个窥视孔摄像头，可捕捉气闸门两侧的画面。网络字段用于摄像头网络。"
 	camera_prefix = "Airlock"
 
 	/// Hardcode camera to near range
@@ -307,7 +307,7 @@
 
 /obj/item/circuit_component/remotecam/polaroid
 	display_name = "Camera Stream Add-On"
-	desc = "Relays a polaroid camera's feed as a digital stream for surveillance-on-the-go. The camera stream will not work if stored inside of a container like a backpack/box. Network field is used for camera network."
+	desc = "将宝丽来相机的画面作为数字流中继，实现移动监控。如果存储在背包/盒子等容器内，摄像头流将无法工作。网络字段用于摄像头网络。"
 	camera_prefix = "Polaroid"
 
 	/// Hardcode camera to near range

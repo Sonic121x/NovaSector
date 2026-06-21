@@ -39,7 +39,7 @@
 			LOCATION_BACKPACK,
 			LOCATION_HANDS,
 		),
-		flavour_text = "This is a precious family heirloom, passed down from generation to generation. Keep it safe!",
+		flavour_text = "这是一件珍贵的家族传家宝，代代相传。务必保护好它！",
 		notify_player = TRUE,
 	)
 

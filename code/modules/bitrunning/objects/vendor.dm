@@ -1,6 +1,6 @@
 /obj/machinery/computer/order_console/bitrunning
-	name = "bitrunning supplies order console"
-	desc = "NexaCache(tm)! Dubiously authentic gear for the digital daredevil."
+	name = "比特运行物资订购控制台"
+	desc = "NexaCache(tm)！为数字冒险家提供的可疑正品装备。"
 	icon = 'icons/obj/machines/bitrunning.dmi'
 	icon_state = "vendor"
 	icon_keyboard = null
@@ -9,10 +9,10 @@
 	cooldown_time = 10 SECONDS
 	cargo_cost_multiplier = 0.65
 	express_cost_multiplier = 1
-	purchase_tooltip = @{"Your purchases will arrive at cargo,
-	and hopefully get delivered by them.
-	35% cheaper than express delivery."}
-	express_tooltip = @{"Sends your purchases instantly."}
+	purchase_tooltip = @{"您的购买物品将抵达货物处，
+并希望由他们派送。
+比快递便宜35%。"}
+	express_tooltip = @{"立即发送您的购买物品。"}
 	credit_type = MONEY_BITRUNNING_SYMBOL
 
 	order_categories = list(
@@ -71,7 +71,7 @@
 	return ..()
 
 /datum/supply_pack/bitrunning
-	name = "bitrunning order"
+	name = "比特运行订单"
 	order_flags = ORDER_INVISIBLE
 	crate_name = "bitrunning delivery crate"
 	access = list(ACCESS_BIT_DEN)
@@ -79,6 +79,6 @@
 
 /datum/supply_pack/bitrunning/New(purchaser, cost, list/contains)
 	. = ..()
-	name = "[purchaser]'s Bitrunning Order"
+	name = "[purchaser]的比特运行订单"
 	src.cost = cost
 	src.contains = contains

@@ -1,6 +1,6 @@
 /obj/item/circuit_component/compare/access
 	display_name = "Access Checker"
-	desc = "Performs a basic comparison between two lists of strings, with additional functions that help in using it to check access on IDs."
+	desc = "在两个字符串列表之间执行基本的比较，并使用其他函数帮助使用它来检查对id的访问。"
 	category = "ID"
 
 	/// A list of the accesses to check
@@ -58,7 +58,7 @@
 
 /obj/item/circuit_component/compare/access/ui_perform_action(mob/user, action)
 	if(LAZYLEN(required_accesses.connected_ports))
-		balloon_alert(user, "disconnect port before manually configuring!")
+		balloon_alert(user, "断开端口连接后再手动配置！")
 		return
 	interact(user)
 

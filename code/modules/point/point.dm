@@ -70,7 +70,7 @@
 	cut_overlay(thought_bubble)
 
 /obj/effect/temp_visual/point
-	name = "pointer"
+	name = "指针"
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "arrow"
 	plane = POINT_PLANE
@@ -125,7 +125,7 @@
 				//cooldown handled in the emote.
 				our_carbon.emote("point [pointing_at]")
 			else
-				to_chat(src, span_warning("You need to wait before pointing again!"))
+				to_chat(src, span_warning("你需要等待片刻才能再次指向！"))
 				return FALSE
 	point_at(pointing_at, TRUE)
 

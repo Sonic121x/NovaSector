@@ -1,7 +1,7 @@
 // Grants additional music instruments to synthetic humanoids
 /obj/item/disk/neuroware/synthesizer
-	name = "blank instruments neuroware"
-	desc = "A neuroware chip containing additional musical instruments to be played via a synthetic humanoid's built-in audio synthesizer."
+	name = "空白乐器神经软件"
+	desc = "一块神经软件芯片，包含可通过合成人形内置音频合成器演奏的额外乐器。"
 	icon_state = "/obj/item/disk/neuroware/synthesizer"
 	post_init_icon_state = "chip_nt"
 	success_message = "instruments upgraded"
@@ -13,12 +13,12 @@
 	var/datum/action/sing_tones/sing_action = locate(/datum/action/sing_tones) in target.actions
 	// Mob has robotic brain, but isn't synthetic humanoid species
 	if(isnull(sing_action))
-		balloon_alert(user, "chip incompatible!")
+		balloon_alert(user, "芯片不兼容！")
 		return FALSE
 	var/datum/song/song = sing_action.song
 	// Prevent installing multiple times
 	if(song.allowed_instrument_ids.Find(add_instrument_ids[1]))
-		balloon_alert(user, "already installed!")
+		balloon_alert(user, "已经安装了！")
 		return FALSE
 	// Add the new instrments
 	song.allowed_instrument_ids += add_instrument_ids
@@ -26,33 +26,33 @@
 	return TRUE
 
 /obj/item/disk/neuroware/synthesizer/brass
-	name = "brass & wind instruments neuroware"
-	desc = "A neuroware chip containing wind and brass synthesizer instruments to be played via a synthetic person's built-in audio synthesizer."
+	name = "铜管与木管乐器神经软件"
+	desc = "一块神经软件芯片，包含可通过合成人内置音频合成器演奏的管乐与铜管合成器乐器。"
 	add_instrument_ids = list("harmonica", "crharmony", "crbrass", "trombone", "saxophone", "crtrumpet", "trombone", "crtrombone")
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/disk/neuroware/synthesizer/guitar
-	name = "guitar & strings instruments neuroware"
-	desc = "A neuroware chip containing guitar and string synthesizer instruments to be played via a synthetic person's built-in audio synthesizer. Includes bonus banjo instrument!"
+	name = "吉他与弦乐器神经软件"
+	desc = "一块神经软件芯片，包含可通过合成人内置音频合成器演奏的吉他与弦乐合成器乐器。包含额外的班卓琴乐器！"
 	add_instrument_ids = list("banjo", "guitar", "eguitar", "csteelgt", "cnylongt", "ccleangt", "cmutedgt", "violin")
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/disk/neuroware/synthesizer/percussion
-	name = "percussion instruments neuroware"
-	desc = "A neuroware chip containing percussion synthesizer instruments to be played via a synthetic person's built-in audio synthesizer."
+	name = "打击乐器神经软件"
+	desc = "一块神经软件芯片，包含可通过合成人内置音频合成器演奏的打击乐合成器乐器。"
 	add_instrument_ids = list("xylophone", "glockenspiel", "crvibr", "sgmmbox", "r3celeste")
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/disk/neuroware/synthesizer/piano
-	name = "piano instruments neuroware"
-	desc = "A neuroware chip containing piano synthesizer instruments to be played via a synthetic person's built-in audio synthesizer."
+	name = "钢琴乐器神经软件"
+	desc = "一块神经软件芯片，包含可通过合成人内置音频合成器演奏的钢琴合成器乐器。"
 	add_instrument_ids = list("piano", "r3grand", "r3harpsi", "crharpsi", "crgrand1", "crbright1", "crichugan", "crihamgan", "crack")
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 ///Neuroware which spawns in maintenance and have random reagent contents
 /obj/item/disk/neuroware/maintenance
-	name = "unlabeled neuroware"
-	desc = "A strange neuroware chip found in the depths of maintenance."
+	name = "未标记神经软件"
+	desc = "一块在维护区深处发现的奇怪神经软件芯片。"
 	icon_state = "/obj/item/disk/neuroware/maintenance"
 	post_init_icon_state = "chip_generic"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC

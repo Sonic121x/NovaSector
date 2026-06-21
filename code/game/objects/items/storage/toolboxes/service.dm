@@ -1,5 +1,5 @@
 /obj/item/storage/toolbox/electrical
-	name = "electrical toolbox"
+	name = "电工工具箱"
 	icon_state = "yellow"
 	inhand_icon_state = "toolbox_yellow"
 	material_flags = NONE

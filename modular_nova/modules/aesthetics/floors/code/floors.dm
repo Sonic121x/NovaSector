@@ -155,8 +155,8 @@
 	)
 
 /turf/open/indestructible/cobble
-	name = "cobblestone path"
-	desc = "A simple but beautiful path made of various sized stones."
+	name = "鹅卵石小径"
+	desc = "一条由大小不一的石头铺成的简单而美丽的小径。"
 	icon = 'modular_nova/master_files/icons/turf/floors/floor.dmi'
 	icon_state = "cobble"
 	baseturfs = /turf/open/indestructible/cobble

@@ -190,14 +190,14 @@
 		return
 	var/mob/living/simple_animal/hostile/true_changeling/horrorform = owner
 	if(!horrorform.stored_changeling)
-		horrorform.balloon_alert(horrorform, "our only form!")
+		horrorform.balloon_alert(horrorform, "我们唯一的形态！")
 		return FALSE
 	if(horrorform.stored_changeling.stat == DEAD)
-		horrorform.balloon_alert(horrorform, "body is dead!")
+		horrorform.balloon_alert(horrorform, "身体已死亡！")
 		return FALSE
 	if(world.time - horrorform.transformed_time < TRUE_CHANGELING_REFORM_THRESHOLD)
 		var/timeleft = (horrorform.transformed_time + TRUE_CHANGELING_REFORM_THRESHOLD) - world.time
-		horrorform.balloon_alert(horrorform, "wait [round(timeleft/600)+1] minutes!")
+		horrorform.balloon_alert(horrorform, "等待 [round(timeleft/600)+1] 分钟！")
 		return FALSE
 	horrorform.visible_message(span_warning("[horrorform] suddenly crunches and twists into a smaller form!"), \
 						span_danger("We return to our lesser form."))
@@ -221,7 +221,7 @@
 		return
 	var/mob/living/simple_animal/hostile/true_changeling/horrorform = owner
 	if(horrorform.devouring)
-		horrorform.balloon_alert(horrorform, "already eating!")
+		horrorform.balloon_alert(horrorform, "已经在进食了！")
 		return FALSE
 	var/list/potential_targets = list()
 	for(var/mob/living/carbon/human/victim in range(1, usr))
@@ -229,13 +229,13 @@
 			continue
 		potential_targets.Add(victim)
 	if(!length(potential_targets))
-		horrorform.balloon_alert(horrorform, "no carbons!")
+		horrorform.balloon_alert(horrorform, "没有碳基生物！")
 		return FALSE
 	var/mob/living/carbon/human/lunch
 	if(length(potential_targets) == 1)
 		lunch = potential_targets[1]
 	else
-		lunch = tgui_input_list(horrorform, "Choose a human to devour.", "Lunch", potential_targets)
+		lunch = tgui_input_list(horrorform, "选择一个人类来吞噬。", "午餐", potential_targets)
 	if(!lunch && !ishuman(lunch))
 		return FALSE
 	if(lunch.get_brute_loss() + lunch.get_fire_loss() >= 200) //Overall physical damage, basically

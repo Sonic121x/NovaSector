@@ -8,7 +8,7 @@
  */
 /obj/item/circuit_component/radio
 	display_name = "Radio"
-	desc = "A component that can listen and send frequencies. If set to private, the component will only receive signals from other components attached to circuitboards with the same owner id."
+	desc = "一种能够监听并发送频率的组件。若将其设置为“私有”模式，则该组件仅能接收来自与同一“所有者标识”对应的电路板上其他组件发出的信号。"
 	category = "Action"
 
 	/// The publicity options. Controls whether it's public or private.
@@ -37,7 +37,7 @@
 /obj/item/circuit_component/radio/Initialize(mapload)
 	. = ..()
 	if(signal_cooldown_time > 0)
-		desc = "[desc] It has a [signal_cooldown_time * 0.1] second cooldown between sending signals."
+		desc = "[desc] 它在发送信号之间有 [signal_cooldown_time * 0.1] 秒的冷却时间。"
 
 /obj/item/circuit_component/radio/register_shell(atom/movable/shell)
 	parent_shell = shell

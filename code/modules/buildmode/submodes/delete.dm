@@ -26,14 +26,14 @@
 			if(isturf(object))
 				return
 			var/atom/deleting = object
-			var/action_type = tgui_alert(usr,"Strict type ([deleting.type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
+			var/action_type = tgui_alert(usr,"严格类型 ([deleting.type]) 还是类型及其所有子类型？",,list("Strict type","Type and subtypes","Cancel"))
 			if(action_type == "Cancel" || !action_type)
 				return
 
-			if(tgui_alert(usr,"Are you really sure you want to delete all instances of type [deleting.type]?",,list("Yes","No")) != "Yes")
+			if(tgui_alert(usr,"你确定要删除所有类型为 [deleting.type] 的实例吗？",,list("Yes","No")) != "Yes")
 				return
 
-			if(tgui_alert(usr,"Second confirmation required. Delete?",,list("Yes","No")) != "Yes")
+			if(tgui_alert(usr,"需要二次确认。删除吗？",,list("Yes","No")) != "Yes")
 				return
 
 			var/O_type = deleting.type
@@ -46,10 +46,10 @@
 							qdel(Obj)
 						CHECK_TICK
 					if(!i)
-						to_chat(usr, "No instances of this type exist")
+						to_chat(usr, "不存在此类型的实例")
 						return
 					log_admin("[key_name(usr)] deleted all instances of type [O_type] ([i] instances deleted) ")
-					message_admins(span_notice("[key_name(usr)] deleted all instances of type [O_type] ([i] instances deleted) "))
+					message_admins(span_notice("[key_name(usr)] 删除了所有类型为 [O_type] 的实例（已删除 [i] 个实例）"))
 				if("Type and subtypes")
 					var/i = 0
 					for(var/Obj in world)
@@ -58,7 +58,7 @@
 							qdel(Obj)
 						CHECK_TICK
 					if(!i)
-						to_chat(usr, "No instances of this type exist")
+						to_chat(usr, "不存在此类型的实例")
 						return
 					log_admin("[key_name(usr)] deleted all instances of type or subtype of [O_type] ([i] instances deleted) ")
-					message_admins(span_notice("[key_name(usr)] deleted all instances of type or subtype of [O_type] ([i] instances deleted) "))
+					message_admins(span_notice("[key_name(usr)] 删除了所有类型为 [O_type] 或其子类型的实例（已删除 [i] 个实例）"))

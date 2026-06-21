@@ -1,6 +1,6 @@
 /datum/job/clown
 	title = JOB_CLOWN
-	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
+	description = "娱乐船员，讲冷笑话，踏上寻找香蕉矿的神圣旅程，HONK！"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -47,7 +47,7 @@
 	return ..()
 
 /datum/outfit/job/clown
-	name = "Clown"
+	name = "小丑"
 	jobtype = /datum/job/clown
 
 	id = /obj/item/card/id/advanced/rainbow
@@ -77,7 +77,7 @@
 	skillchips = list(/obj/item/skillchip/job/clown)
 
 /datum/outfit/job/clown/mod
-	name = "Clown (MODsuit)"
+	name = "小丑 (模块服)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/cosmohonk

@@ -4,8 +4,8 @@
 
 /// A mannequin! A structure that can display clothing on itself.
 /obj/structure/mannequin
-	name = "mannequin"
-	desc = "Oh, so this is a dress-up game now."
+	name = "人体模型"
+	desc = "哦，所以现在这是个换装游戏了。"
 	icon = 'icons/mob/human/mannequin.dmi'
 	icon_state = "mannequin_wood_male"
 	density = TRUE
@@ -128,25 +128,25 @@
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
-	var/choice = tgui_input_list(user, "Underwear, Bra, Undershirt, or Socks?", "Changing", list("Underwear", "Bra", "Undershirt","Socks")) //NOVA EDIT ADDITION - Underwear and Bra split
+	var/choice = tgui_input_list(user, "内裤、胸罩、汗衫还是袜子？", "更换", list("Underwear", "Bra", "Undershirt","Socks")) //NOVA EDIT ADDITION - Underwear and Bra split
 	if(!Adjacent(user))
 		return
 	switch(choice)
 		if("Underwear")
-			var/new_undies = tgui_input_list(user, "Select the mannequin's underwear", "Changing", SSaccessories.underwear_list)
+			var/new_undies = tgui_input_list(user, "选择模特的内裤", "更换", SSaccessories.underwear_list)
 			if(new_undies)
 				underwear_name = new_undies
 		if("Undershirt")
-			var/new_undershirt = tgui_input_list(user, "Select the mannequin's undershirt", "Changing", SSaccessories.undershirt_list)
+			var/new_undershirt = tgui_input_list(user, "选择模特的汗衫", "更换", SSaccessories.undershirt_list)
 			if(new_undershirt)
 				undershirt_name = new_undershirt
 		if("Socks")
-			var/new_socks = tgui_input_list(user, "Select the mannequin's socks", "Changing", SSaccessories.socks_list)
+			var/new_socks = tgui_input_list(user, "选择模特的袜子", "更换", SSaccessories.socks_list)
 			if(new_socks)
 				socks_name = new_socks
 		//NOVA EDIT ADDITION BEGIN - Underwear and Bra split
 		if("Bra")
-			var/new_bra = tgui_input_list(user, "Select the mannequin's bra", "Changing", SSaccessories.bra_list)
+			var/new_bra = tgui_input_list(user, "选择模特的胸罩", "更换", SSaccessories.bra_list)
 			if(new_bra)
 				bra_name = new_bra
 		//NOVA EDIT END
@@ -161,8 +161,8 @@
 	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
 
 /obj/structure/mannequin/skeleton
-	name = "skeleton model"
-	desc = "Not to knock over."
+	name = "骨骼模型"
+	desc = "请勿推倒。"
 	material = MANNEQUIN_SKELETON
 	obj_flags = UNIQUE_RENAME
 	starting_items = list(
@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(strippable_mannequin_items, create_strippable_list(list(
 	if(!.)
 		return FALSE
 	if(!(equipping.slot_flags & item_slot))
-		to_chat(user, span_warning("[equipping] won't fit!"))
+		to_chat(user, span_warning("[equipping]不合适！"))
 		return FALSE
 	return TRUE
 

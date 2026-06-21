@@ -1,6 +1,6 @@
 /obj/item/organ/heart/synth
-	name = "hydraulic pump engine"
-	desc = "An electronic device that handles the hydraulic pumps, powering one's robotic limbs. Without this, synthetics are unable to move."
+	name = "液压泵引擎"
+	desc = "一种处理液压泵的电子设备，为机械肢体提供动力。没有它，合成人将无法移动。"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 	icon = 'modular_nova/master_files/icons/obj/surgery.dmi'
 	icon_state = "heart-ipc-on"
@@ -21,15 +21,15 @@
 
 	switch(severity)
 		if(EMP_HEAVY)
-			to_chat(owner, span_warning("Alert: Main hydraulic pump control has taken severe damage, seek maintenance immediately. Error code: HP300-10."))
+			to_chat(owner, span_warning("警报：主液压泵控制器遭受严重损坏，请立即前往维护区。错误代码：HP300-10。"))
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 		if(EMP_LIGHT)
-			to_chat(owner, span_warning("Alert: Main hydraulic pump control has taken light damage, seek maintenance immediately. Error code: HP300-05."))
+			to_chat(owner, span_warning("警报：主液压泵控制器遭受轻微损坏，请立即前往维护区。错误代码：HP300-05。"))
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 
 /datum/design/synth_heart
-	name = "Hydraulic Pump Engine"
-	desc = "An electronic device that handles the hydraulic pumps, powering one's robotic limbs. Without this, synthetics are unable to move."
+	name = "液压泵引擎"
+	desc = "一种处理液压泵的电子设备，为机械肢体提供动力。没有它，合成人将无法移动。"
 	id = "synth_heart"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS

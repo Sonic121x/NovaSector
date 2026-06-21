@@ -1,6 +1,6 @@
 /datum/supply_pack/costumes_toys/blastwave
-	name = "Blastwave Costume Crate"
-	desc = "Contains an outfit, which replicates the style of army clothing from the underrated video game \"Blastwave: Goners of the Lost City\"."
+	name = "冲击波服装箱"
+	desc = "包含一套服装，其风格模仿了被低估的视频游戏《冲击波：失落之城的亡魂》中的军队服饰。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
 		/obj/item/clothing/under/blastwave = 1,

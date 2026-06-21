@@ -3,8 +3,8 @@
 
 ///We take a constant input of reagents, and produce a pill once a set volume is reached
 /obj/machinery/plumbing/pill_press
-	name = "chemical press"
-	desc = "A press that makes pills, patches and bottles."
+	name = "化学压片机"
+	desc = "生产药片、贴片和瓶子的印刷机。"
 	icon_state = "pill_press"
 
 	/// selected size of the product

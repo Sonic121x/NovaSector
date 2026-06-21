@@ -45,7 +45,7 @@
 		if(living_pawn.has_ally(REF(potential_friend)))
 			continue
 		living_pawn.befriend(potential_friend)
-		to_chat(potential_friend, span_nicegreen("[living_pawn] looks at you with endearing eyes!"))
+		to_chat(potential_friend, span_nicegreen("[living_pawn] 用惹人怜爱的眼神看着你！"))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED

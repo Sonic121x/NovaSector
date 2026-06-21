@@ -336,16 +336,16 @@
 	//NOVA EDIT ADDITION BEGIN - ANTAG OPT IN
 	if (!CONFIG_GET(flag/disable_antag_opt_in_preferences))
 		if (isnum(minimum_opt_in_level) && minimum_opt_in_level > OPT_IN_NOT_TARGET)
-			info += span_bolddanger("This job forces a minimum opt-in setting of [GLOB.antag_opt_in_strings["[minimum_opt_in_level]"]].")
+			info += span_bolddanger("此职位强制要求最低的参与设置等级为 [GLOB.antag_opt_in_strings["[minimum_opt_in_level]"]]。")
 		if (heretic_sac_target)
-			info += span_bolddanger("This job can be sacrificed by heretics.")
+			info += span_bolddanger("此职位可被异教徒献祭。")
 		if (contractable)
-			info += span_bolddanger("This job can be targeted by contractors.")
+			info += span_bolddanger("此职位可被承包商锁定为目标。")
 	//NOVA EDIT ADDITION END
 	//NOVA EDIT ADDITION START - ALTERNATIVE_JOB_TITLES
 	if(alt_title != title)
-		info += span_warning("Remember that alternate titles are purely for flavor and roleplay.")
-		info += span_doyourjobidiot("Do not use your \"[alt_title]\" alt title as an excuse to forego your duties as a [title].")
+		info += span_warning("请记住，替代头衔纯粹是为了增添风味和角色扮演。")
+		info += span_doyourjobidiot("不要以你的 \"[alt_title]\" 替代头衔为借口，逃避你作为 [title] 的职责。")
 	//NOVA EDIT END
 	return info
 /// Returns information pertaining to this job's radio.
@@ -354,7 +354,7 @@
 		return "<b>Prefix your message with :h to speak on your department's radio. To see other prefixes, look closely at your headset.</b>"
 
 /datum/outfit/job
-	name = "Standard Gear"
+	name = "标准装配"
 
 	var/jobtype = null
 
@@ -667,7 +667,7 @@
 				return // Disconnected while checking the appearance ban.
 			organic_name = player_client.prefs.read_preference(/datum/preference/name/real_name)
 
-		mmi.name = "[initial(mmi.name)]: [organic_name]"
+		mmi.name = "[initial(mmi.name)]：[organic_name]"
 		if(mmi.brain)
 			mmi.brain.name = "[organic_name]'s brain"
 		if(mmi.brainmob)

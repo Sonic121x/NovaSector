@@ -1,7 +1,7 @@
 // Honeysuckle
 /obj/item/seeds/honeysuckle
-	name = "honeysuckle seed pack"
-	desc = "These seeds grow into honeysuckle flowers."
+	name = "金银花种子包"
+	desc = "这些种子会长成金银花。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-honeysuckle"
 	species = "honeysuckle"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/honeysuckle
 	seed = /obj/item/seeds/honeysuckle
-	name = "honeysuckle"
-	desc = "The conical end of this flower contains a sweet, honey-like nectar."
+	name = "金银花"
+	desc = "这种花朵的锥形末端含有一种类似蜂蜜的甜美花蜜。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "honeysuckle"
 	bite_consumption_mod = 2

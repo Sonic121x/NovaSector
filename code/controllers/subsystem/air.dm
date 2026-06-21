@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(air)
-	name = "Atmospherics"
+	name = "大气系统"
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
 		/datum/controller/subsystem/atoms,

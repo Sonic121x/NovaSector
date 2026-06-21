@@ -23,7 +23,7 @@
 
 /datum/deathmatch_controller/proc/create_new_lobby(mob/host)
 	lobbies[host.ckey] = new /datum/deathmatch_lobby(host)
-	deadchat_broadcast(" has opened a new deathmatch lobby. <a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(Join)</a>", "<B>[host]</B>")
+	deadchat_broadcast("开启了一个新的死亡竞赛大厅。<a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(加入)</a>", "<B>[host]</B>")
 
 /datum/deathmatch_controller/proc/remove_lobby(ckey)
 	var/lobby = lobbies[ckey]
@@ -77,18 +77,18 @@
 	switch (action)
 		if ("host")
 			if(!(GLOB.ghost_role_flags & GHOSTROLE_MINIGAME))
-				tgui_alert(usr, "Deathmatch has been temporarily disabled by admins.")
+				tgui_alert(usr, "死亡竞赛已被管理员暂时禁用。")
 				return
 			if (lobbies[usr.ckey])
 				return
 			if(!SSticker.HasRoundStarted())
-				tgui_alert(usr, "The round hasn't started yet!")
+				tgui_alert(usr, "回合尚未开始！")
 				return
 			ui.close()
 			create_new_lobby(usr)
 		if ("join")
 			if(!(GLOB.ghost_role_flags & GHOSTROLE_MINIGAME))
-				tgui_alert(usr, "Deathmatch has been temporarily disabled by admins.")
+				tgui_alert(usr, "死亡竞赛已被管理员暂时禁用。")
 				return
 			if (!lobbies[params["id"]])
 				return

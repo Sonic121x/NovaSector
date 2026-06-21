@@ -15,7 +15,7 @@
  */
 /datum/outfit
 	///Name of the outfit (shows up in the equip admin verb)
-	var/name = "Naked"
+	var/name = "赤裸"
 
 	/// Type path of item to go in the idcard slot
 	var/id = null

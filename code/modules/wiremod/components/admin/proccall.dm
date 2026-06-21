@@ -9,7 +9,7 @@
  */
 /obj/item/circuit_component/proccall
 	display_name = "Proc Call"
-	desc = "A component that calls a proc on an object."
+	desc = "一个调用对象上的某个过程的组件。"
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 

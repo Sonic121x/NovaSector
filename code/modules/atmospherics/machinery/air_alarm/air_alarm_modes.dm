@@ -32,8 +32,8 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 
 /// The default.
 /datum/air_alarm_mode/filtering
-	name = "Filtering"
-	desc = "Scrubs out contaminants"
+	name = "过滤"
+	desc = "清除污染物"
 	danger = FALSE
 
 /datum/air_alarm_mode/filtering/apply(area/applied)
@@ -51,8 +51,8 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 		scrubber.set_widenet(FALSE)
 
 /datum/air_alarm_mode/contaminated
-	name = "Contaminated"
-	desc = "Scrubs out ALL contaminants quickly"
+	name = "污染"
+	desc = "快速清除所有污染物"
 	danger = FALSE
 
 /datum/air_alarm_mode/contaminated/apply(area/applied)
@@ -72,8 +72,8 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 		scrubber.set_widenet(TRUE)
 
 /datum/air_alarm_mode/draught
-	name = "Draught"
-	desc = "Siphons out air while replacing"
+	name = "通风"
+	desc = "在替换空气时将其抽出"
 	danger = FALSE
 
 /datum/air_alarm_mode/draught/apply(area/applied)
@@ -90,8 +90,8 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 		scrubber.set_scrubbing(ATMOS_DIRECTION_SIPHONING)
 
 /datum/air_alarm_mode/refill
-	name = "Refill"
-	desc = "Triple vent output"
+	name = "补充"
+	desc = "三倍通风口输出"
 	danger = TRUE
 
 /datum/air_alarm_mode/refill/apply(area/applied)
@@ -110,8 +110,8 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 		scrubber.set_scrubbing(ATMOS_DIRECTION_SCRUBBING)
 
 /datum/air_alarm_mode/cycle
-	name = "Cycle"
-	desc = "Siphons air before replacing"
+	name = "循环"
+	desc = "在替换空气前先将其抽出"
 	danger = TRUE
 
 /// Same as [/datum/air_alarm_mode/siphon/apply]
@@ -145,8 +145,8 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 		scrubber.set_widenet(FALSE)
 
 /datum/air_alarm_mode/siphon
-	name = "Siphon"
-	desc = "Siphons air out of the room"
+	name = "抽吸"
+	desc = "将空气从房间中抽出"
 	danger = TRUE
 
 /datum/air_alarm_mode/siphon/apply(area/applied)
@@ -160,8 +160,8 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 		scrubber.set_scrubbing(ATMOS_DIRECTION_SIPHONING)
 
 /datum/air_alarm_mode/panic_siphon
-	name = "Panic Siphon"
-	desc = "Siphons air out of the room quickly"
+	name = "恐慌虹吸"
+	desc = "快速将房间内的空气抽空"
 	danger = TRUE
 
 /datum/air_alarm_mode/panic_siphon/apply(area/applied)
@@ -175,8 +175,8 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 		scrubber.set_scrubbing(ATMOS_DIRECTION_SIPHONING)
 
 /datum/air_alarm_mode/off
-	name = "Off"
-	desc = "Shuts off vents and scrubbers"
+	name = "关闭"
+	desc = "关闭通风口和洗涤器"
 	danger = FALSE
 
 /datum/air_alarm_mode/off/apply(area/applied)
@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 
 /datum/air_alarm_mode/flood
 	name = "Flood"
-	desc = "Shuts off scrubbers and opens vents"
+	desc = "关闭洗涤器并打开通风口"
 	danger = TRUE
 	emag = TRUE
 
@@ -207,8 +207,8 @@ GLOBAL_LIST_INIT(air_alarm_modes, init_air_alarm_modes())
 		scrubber.update_appearance(UPDATE_ICON)
 
 /datum/air_alarm_mode/vent_siphon
-	name = "Vent siphon"
-	desc = "Disables scrubbers and turns vents to siphon"
+	name = "通风口虹吸"
+	desc = "禁用洗涤器并将通风口转为虹吸模式"
 	danger = TRUE
 	emag = TRUE // siphoning things with vents can horribly fuck up distro, even if its surprisingly fast
 

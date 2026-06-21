@@ -2,7 +2,7 @@
 	hotkey_keys = list("ShiftF")
 	name = "toggle_safety"
 	full_name = "Toggle gun's safety mode"
-	description = "Toggles gun's safety mode in an active hand."
+	description = "切换主手枪支的保险模式。"
 	keybind_signal = COMSIG_KB_CARBON_TOGGLE_SAFETY
 
 /datum/keybinding/carbon/toggle_safety/down(client/user)

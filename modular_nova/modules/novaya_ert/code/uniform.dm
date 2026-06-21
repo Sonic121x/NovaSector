@@ -1,6 +1,6 @@
 /obj/item/clothing/under/costume/nri //Copied from the russian outfit
-	name = "advanced imperial fatigues"
-	desc = "The latest in tactical and comfortable russian military outfits."
+	name = "先进帝国作战服"
+	desc = "最新款战术舒适型俄式军服。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/uniform_digi.dmi'

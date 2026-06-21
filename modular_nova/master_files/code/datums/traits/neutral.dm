@@ -206,7 +206,7 @@
 	flipped = !flipped
 	update_static_data()
 
-	balloon_alert(user, "card flipped")
+	balloon_alert(user, "卡片已翻转")
 	return CLICK_ACTION_SUCCESS
 
 /datum/quirk/feline_aspect
@@ -370,4 +370,4 @@ GLOBAL_LIST_INIT(possible_snout_sensitivities, list(
 	. = ..()
 	if(HAS_TRAIT_FROM(owner, TRAIT_OFF_BALANCE_TACKLER, QUIRK_TRAIT))
 		mood_change = 0 // They are probably used to it, no reason to be viscerally upset about it.
-		description = "<b>I'm fat.</b>"
+		description = "<b>我太胖了。</b>"

@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	if(client && SSlag_switch.measures[SLOWMODE_SAY] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES) && !forced && src == usr)
 		if(!COOLDOWN_FINISHED(client, say_slowmode))
-			to_chat(src, span_warning("Message not sent due to slowmode. Please wait [SSlag_switch.slowmode_cooldown/10] seconds between messages.\n\"[message]\""))
+			to_chat(src, span_warning("消息因慢速模式未发送。请在消息之间等待[SSlag_switch.slowmode_cooldown/10]秒。\n\"[message]\""))
 			return
 		COOLDOWN_START(client, say_slowmode, SSlag_switch.slowmode_cooldown)
 
@@ -385,7 +385,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			return FALSE
 
 	if(speaker != src)
-		if(!radio_freq) //These checks have to be separate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
+		if(!radio_freq) //These checks have to be separate, else people talking on the radio will make "你听不到自己！" appear when hearing people over the radio while deaf.
 			deaf_message = "[speaker_name] [speaker.get_default_say_verb()] something but you cannot hear [speaker.p_them()]."
 			deaf_type = MSG_VISUAL
 	else
@@ -529,7 +529,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 /mob/living/proc/radio(message, list/message_mods = list(), list/spans, language)
 	//NOVA EDIT ADDITION BEGIN
 	if((message_mods[MODE_HEADSET] || message_mods[RADIO_EXTENSION]) && !(mobility_flags & MOBILITY_USE) && !isAI(src) && !ispAI(src) && !ismecha(loc)) // If can't use items, you can't press the button
-		to_chat(src, span_warning("You can't use the radio right now as you can't reach the button!"))
+		to_chat(src, span_warning("你现在无法使用无线电，因为你够不到按钮！"))
 		return ITALICS | REDUCE_RANGE
 	//NOVA EDIT END
 	var/obj/item/implant/radio/imp = locate() in src

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/compare/contains
 	display_name = "String Contains"
-	desc = "Checks if a string contains a word/letter"
+	desc = "检查一个字符串是否包含某个单词/字母"
 	category = "String"
 
 	var/datum/port/input/needle

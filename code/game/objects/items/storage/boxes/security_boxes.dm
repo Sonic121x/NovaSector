@@ -1,8 +1,8 @@
 // This file contains everything used by security, or in other combat applications.
 
 /obj/item/storage/box/flashbangs
-	name = "box of flashbangs (WARNING)"
-	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
+	name = "震撼弹盒（警告）"
+	desc = "<B>警告：这些装置极其危险，反复使用可能导致失明或失聪。</B>"
 	icon_state = "secbox"
 	illustration = "flashbang"
 
@@ -11,8 +11,8 @@
 		new /obj/item/grenade/flashbang(src)
 
 /obj/item/storage/box/stingbangs
-	name = "box of stingbangs (WARNING)"
-	desc = "<B>WARNING: These devices are extremely dangerous and can cause severe injuries or death in repeated use.</B>"
+	name = "刺痛弹盒（警告）"
+	desc = "<B>警告：这些装置极其危险，反复使用可能导致重伤或死亡。</B>"
 	icon_state = "secbox"
 	illustration = "flashbang"
 
@@ -21,8 +21,8 @@
 		new /obj/item/grenade/stingbang(src)
 
 /obj/item/storage/box/flashes
-	name = "box of flashbulbs"
-	desc = "<B>WARNING: Flashes can cause serious eye damage, protective eyewear is required.</B>"
+	name = "闪光灯泡盒"
+	desc = "<B>警告：闪光可能导致严重的眼部损伤，必须佩戴护目镜。</B>"
 	icon_state = "secbox"
 	illustration = "flash"
 
@@ -31,8 +31,8 @@
 		new /obj/item/assembly/flash/handheld(src)
 
 /obj/item/storage/box/wall_flash
-	name = "wall-mounted flash kit"
-	desc = "This box contains everything necessary to build a wall-mounted flash. <B>WARNING: Flashes can cause serious eye damage, protective eyewear is required.</B>"
+	name = "壁挂式闪光装置套件"
+	desc = "此盒包含构建壁挂式闪光装置所需的一切。<B>警告：闪光可能导致严重的眼部损伤，必须佩戴护目镜。</B>"
 	icon_state = "secbox"
 	illustration = "flash"
 
@@ -51,8 +51,8 @@
 
 
 /obj/item/storage/box/teargas
-	name = "box of tear gas grenades (WARNING)"
-	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness and skin irritation.</B>"
+	name = "催泪瓦斯手榴弹盒（警告）"
+	desc = "<B>警告：这些装置极其危险，可能导致失明和皮肤刺激。</B>"
 	icon_state = "secbox"
 	illustration = "grenade"
 
@@ -61,8 +61,8 @@
 		new /obj/item/grenade/chem_grenade/teargas(src)
 
 /obj/item/storage/box/emps
-	name = "box of emp grenades"
-	desc = "A box with 5 emp grenades."
+	name = "电磁脉冲手榴弹盒"
+	desc = "一个装有5枚电磁脉冲手榴弹的盒子。"
 	illustration = "emp"
 
 /obj/item/storage/box/emps/PopulateContents()
@@ -70,8 +70,8 @@
 		new /obj/item/grenade/empgrenade(src)
 
 /obj/item/storage/box/prisoner
-	name = "box of prisoner IDs"
-	desc = "Take away their last shred of dignity, their name."
+	name = "囚犯身份卡盒"
+	desc = "夺走他们最后一丝尊严——他们的名字。"
 	icon_state = "secbox"
 	illustration = "id"
 
@@ -86,8 +86,8 @@
 	new /obj/item/card/id/advanced/prisoner/seven(src)
 
 /obj/item/storage/box/seccarts
-	name = "box of PDA security cartridges"
-	desc = "A box full of PDA cartridges used by Security."
+	name = "PDA安保模块盒"
+	desc = "一个装满安保部门使用的PDA模块的盒子。"
 	icon_state = "secbox"
 	illustration = "pda"
 
@@ -96,8 +96,8 @@
 		new /obj/item/disk/computer/security(src)
 
 /obj/item/storage/box/firingpins
-	name = "box of standard firing pins"
-	desc = "A box full of standard firing pins, to allow newly-developed firearms to operate."
+	name = "标准撞针盒"
+	desc = "一个装满标准撞针的盒子，用于让新开发的枪械能够操作。"
 	icon_state = "secbox"
 	illustration = "firingpin"
 
@@ -106,24 +106,24 @@
 		new /obj/item/firing_pin(src)
 
 /obj/item/storage/box/firingpins/paywall
-	name = "box of paywall firing pins"
-	desc = "A box full of paywall firing pins, to allow newly-developed firearms to operate behind a custom-set paywall."
+	name = "付费墙撞针盒"
+	desc = "一个装满付费墙撞针的盒子，用于让新开发的枪械在自定义设置的付费墙后操作。"
 
 /obj/item/storage/box/firingpins/paywall/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/firing_pin/paywall(src)
 
 /obj/item/storage/box/firingpins/syndicate
-	name = "box of syndicate firing pins"
-	desc = "A box full of special syndicate firing pins which allow only syndicate operatives to use weapons with those firing pins."
+	name = "辛迪加撞针盒"
+	desc = "一个装满特殊辛迪加撞针的盒子，这些撞针只允许辛迪加特工使用装有此类撞针的武器。"
 
 /obj/item/storage/box/firingpins/syndicate/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/firing_pin/implant/pindicate(src)
 
 /obj/item/storage/box/lasertagpins
-	name = "box of laser tag firing pins"
-	desc = "A box full of laser tag firing pins, to allow newly-developed firearms to require wearing brightly coloured plastic armor before being able to be used."
+	name = "激光标签撞针盒"
+	desc = "一个装满激光标签撞针的盒子，用于让新开发的枪械要求使用者穿戴颜色鲜艳的塑料护甲后才能使用。"
 	illustration = "firingpin"
 
 /obj/item/storage/box/lasertagpins/PopulateContents()
@@ -132,8 +132,8 @@
 		new /obj/item/firing_pin/tag/blue(src)
 
 /obj/item/storage/box/handcuffs
-	name = "box of spare handcuffs"
-	desc = "A box full of handcuffs."
+	name = "备用束缚手铐盒"
+	desc = "一个装满束缚手铐的盒子。"
 	icon_state = "secbox"
 	illustration = "handcuff"
 
@@ -142,8 +142,8 @@
 		new /obj/item/restraints/handcuffs(src)
 
 /obj/item/storage/box/zipties
-	name = "box of spare zipties"
-	desc = "A box full of zipties."
+	name = "备用束线带盒"
+	desc = "一个装满束线带的盒子。"
 	icon_state = "secbox"
 	illustration = "handcuff"
 
@@ -152,8 +152,8 @@
 		new /obj/item/restraints/handcuffs/cable/zipties(src)
 
 /obj/item/storage/box/alienhandcuffs
-	name = "box of spare handcuffs"
-	desc = "A box full of handcuffs."
+	name = "备用束缚手铐盒"
+	desc = "一个装满束缚手铐的盒子。"
 	icon_state = "alienbox"
 	illustration = "handcuff"
 
@@ -162,8 +162,8 @@
 		new /obj/item/restraints/handcuffs/alien(src)
 
 /obj/item/storage/box/rubbershot
-	name = "box of shotgun shells (Less Lethal - Rubber Shot)"
-	desc = "A box full of rubber shot shotgun shells, designed for shotguns."
+	name = "霰弹枪弹盒（低致命性 - 橡胶弹）"
+	desc = "一个装满橡胶弹霰弹枪弹的盒子，专为霰弹枪设计。"
 	icon_state = "rubbershot_box"
 	illustration = null
 
@@ -172,8 +172,8 @@
 		new /obj/item/ammo_casing/shotgun/rubbershot(src)
 
 /obj/item/storage/box/lethalshot
-	name = "box of shotgun shells (Lethal)"
-	desc = "A box full of lethal shotgun shells, designed for shotguns."
+	name = "霰弹枪弹盒（致命性）"
+	desc = "一个装满致命性霰弹枪弹的盒子，专为霰弹枪设计。"
 	icon_state = "lethalshot_box"
 	illustration = null
 
@@ -188,8 +188,8 @@
 		new /obj/item/ammo_casing/shotgun/buckshot/old(src)
 
 /obj/item/storage/box/slugs
-	name = "box of shotgun shells (Lethal - Slugs)"
-	desc = "A box full of lethal shotgun slugs, designed for shotguns."
+	name = "霰弹枪弹盒（致命性 - 独头弹）"
+	desc = "一个装满致命性霰弹枪独头弹的盒子，专为霰弹枪设计。"
 	icon_state = "breacher_box"
 	illustration = null
 
@@ -198,8 +198,8 @@
 		new /obj/item/ammo_casing/shotgun(src)
 
 /obj/item/storage/box/beanbag
-	name = "box of shotgun shells (Less Lethal - Beanbag)"
-	desc = "A box full of beanbag shotgun shells, designed for shotguns."
+	name = "霰弹枪弹盒（低致命性 - 豆袋弹）"
+	desc = "一个装满豆袋弹的盒子，专为霰弹枪设计。"
 	icon_state = "beanbagshot_box"
 	illustration = null
 
@@ -208,8 +208,8 @@
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 
 /obj/item/storage/box/breacherslug
-	name = "box of breaching shotgun shells"
-	desc = "A box full of breaching slugs, designed for rapid entry, not very effective against anything else."
+	name = "破门霰弹盒"
+	desc = "一个装满破门独头弹的盒子，专为快速突入设计，对其他目标效果甚微。"
 	icon_state = "breacher_box"
 	illustration = null
 
@@ -218,8 +218,8 @@
 		new /obj/item/ammo_casing/shotgun/breacher(src)
 
 /obj/item/storage/box/large_dart
-	name = "box of XL shotgun darts"
-	desc = "A box full of shotgun darts with increased chemical storage capacity."
+	name = "XL霰弹镖盒"
+	desc = "一个装满化学储存容量提升的霰弹镖的盒子。"
 	icon_state = "shotdart_box"
 	illustration = null
 
@@ -228,7 +228,7 @@
 		new /obj/item/ammo_casing/shotgun/dart/large(src)
 
 /obj/item/storage/box/emptysandbags
-	name = "box of empty sandbags"
+	name = "空沙袋盒"
 	illustration = "sandbag"
 
 /obj/item/storage/box/emptysandbags/PopulateContents()
@@ -236,8 +236,8 @@
 		new /obj/item/emptysandbag(src)
 
 /obj/item/storage/box/holy_grenades
-	name = "box of holy hand grenades"
-	desc = "Contains several grenades used to rapidly purge heresy."
+	name = "圣手榴弹盒"
+	desc = "内含数枚用于快速净化异端的手榴弹。"
 	illustration = "grenade"
 
 /obj/item/storage/box/holy_grenades/PopulateContents()
@@ -245,8 +245,8 @@
 		new/obj/item/grenade/chem_grenade/holy(src)
 
 /obj/item/storage/box/fireworks
-	name = "box of fireworks"
-	desc = "Contains an assortment of fireworks."
+	name = "烟花盒"
+	desc = "内含各式烟花。"
 	illustration = "sparkler"
 
 /obj/item/storage/box/fireworks/PopulateContents()
@@ -256,7 +256,7 @@
 	new /obj/item/toy/snappop(src)
 
 /obj/item/storage/box/fireworks/dangerous
-	desc = "This box has a small label on it stating that it's from the Gorlex Marauders. Contains an assortment of \"fireworks\"."
+	desc = "这个盒子上有个小标签，标明它来自戈勒克斯掠夺者。内含各式“烟花”。"
 
 /obj/item/storage/box/fireworks/dangerous/PopulateContents()
 	for(var/i in 1 to 3)
@@ -268,8 +268,8 @@
 		new /obj/item/toy/snappop(src)
 
 /obj/item/storage/box/firecrackers
-	name = "box of firecrackers"
-	desc = "A box filled with illegal firecrackers. You wonder who still makes these."
+	name = "鞭炮盒"
+	desc = "一个装满非法鞭炮的盒子。你想知道现在还有谁在生产这些东西。"
 	icon_state = "syndiebox"
 	illustration = "firecracker"
 
@@ -278,8 +278,8 @@
 		new/obj/item/grenade/firecracker(src)
 
 /obj/item/storage/box/sparklers
-	name = "box of sparklers"
-	desc = "A box of Nanotrasen brand sparklers, burns hot even in the cold of space-winter."
+	name = "手持烟花盒"
+	desc = "一盒纳米传讯品牌的手持烟花，即使在太空寒冬的严寒中也能炽热燃烧。"
 	illustration = "sparkler"
 
 /obj/item/storage/box/sparklers/PopulateContents()
@@ -287,8 +287,8 @@
 		new/obj/item/sparkler(src)
 
 /obj/item/storage/box/evidence
-	name = "evidence bag box"
-	desc = "A box claiming to contain evidence bags."
+	name = "证物袋盒"
+	desc = "一个声称装有证物袋的盒子。"
 
 /obj/item/storage/box/evidence/PopulateContents()
 	for(var/i in 1 to 6)

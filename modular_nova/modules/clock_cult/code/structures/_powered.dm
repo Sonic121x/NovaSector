@@ -39,18 +39,18 @@
 		return ..()
 
 	if(!anchored)
-		balloon_alert(user, "not fastened!")
+		balloon_alert(user, "未固定！")
 		return
 
 	if(!has_power_toggle)
 		return
 
 	if(!update_power() && !enabled)
-		balloon_alert(user, "not enough power!")
+		balloon_alert(user, "能量不足！")
 		return
 
 	enabled = !enabled
-	balloon_alert(user, "turned [enabled ? "on" : "off"]")
+	balloon_alert(user, "已[enabled ? "on" : "off"]")
 
 	if(enabled)
 		turn_on()
@@ -105,7 +105,7 @@
 	if(!anchored)
 		turn_off()
 		update_icon_state()
-		visible_message("[src] powers down as it becomes unanchored from the ground.")
+		visible_message("[src] 因脱离地面固定而关闭电源。")
 		return FALSE
 
 	return TRUE

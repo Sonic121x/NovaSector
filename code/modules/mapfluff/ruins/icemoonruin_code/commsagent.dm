@@ -1,6 +1,6 @@
 /obj/item/tape/frozen
-	name = "frozen tape"
-	desc = "A frozen old tape. The cold has somewhat preserved the recording inside."
+	name = "冻结的磁带"
+	desc = "一卷冻结的旧磁带。寒冷在一定程度上保存了内部的录音。"
 	icon_state = "tape_white"
 	used_capacity = 10 MINUTES
 	storedinfo = list(

@@ -1,6 +1,6 @@
 /obj/structure/plasticflaps
-	name = "airtight plastic flaps"
-	desc = "Heavy duty, airtight, plastic flaps. Definitely can't get past those. No way."
+	name = "气密塑料挡板"
+	desc = "重型密封塑料挡板，绝对不可能越过这些，不可能。"
 	gender = PLURAL
 	icon = 'icons/obj/structures.dmi' //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "plasticflaps"
@@ -35,8 +35,8 @@
 	opacity = TRUE
 
 /obj/structure/plasticflaps/kitchen
-	name = "cold room plastic flaps"
-	desc = "Light and airtight plastic flaps made to keep the cold room cold and the warm room warm."
+	name = "冷藏室塑料门帘"
+	desc = "轻质且气密的塑料门帘，用于保持冷藏室低温与温暖房间的温度。"
 	armor_type = /datum/armor/structure_plasticflaps/kitchen
 	require_resting = FALSE
 	flaps_alpha = 150
@@ -97,12 +97,12 @@
 
 /obj/structure/plasticflaps/atom_break(damage_flag)
 	if(damage_flag == FIRE)
-		visible_message(span_warning("[src] start\s to melt from the heat!"))
+		visible_message(span_warning("[src] start\s 开始因高温而融化！"))
 	return ..()
 
 /obj/structure/plasticflaps/atom_destruction(damage_flag)
 	if(damage_flag == FIRE)
-		visible_message(span_warning("[src] melt\s away into plastic goo!"))
+		visible_message(span_warning("[src] melt\s 融化成塑料糊！"))
 	return ..()
 
 /obj/structure/plasticflaps/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
@@ -143,9 +143,9 @@
 /obj/structure/plasticflaps/examine(mob/user)
 	. = ..()
 	if(anchored)
-		. += span_notice("[src] are <b>screwed</b> to the floor.")
+		. += span_notice("[src] 被<b>螺丝固定</b>在地板上。")
 	else
-		. += span_notice("[src] are no longer <i>screwed</i> to the floor, and the flaps can be <b>cut</b> apart.")
+		. += span_notice("[src] 不再<i>被螺丝固定</i>在地板上，门帘可以被<b>切割</b>开。")
 
 /obj/structure/plasticflaps/screwdriver_act(mob/living/user, obj/item/W)
 	if(..())
@@ -153,13 +153,13 @@
 	add_fingerprint(user)
 	var/action = anchored ? "unscrews [src] from" : "screws [src] to"
 	var/uraction = anchored ? "unscrew [src] from" : "screw [src] to"
-	user.visible_message(span_warning("[user] [action] the floor."), span_notice("You start to [uraction] the floor..."), span_hear("You hear rustling noises."))
+	user.visible_message(span_warning("[user] [action] 地板。"), span_notice("你开始[uraction]地板..."), span_hear("你听到沙沙的响声。"))
 	if(!W.use_tool(src, user, 100, volume=100, extra_checks = CALLBACK(src, PROC_REF(check_anchored_state), anchored)))
 		return TRUE
 	set_anchored(!anchored)
 	update_atmos_behaviour()
 	air_update_turf(TRUE)
-	to_chat(user, span_notice("You [uraction] the floor."))
+	to_chat(user, span_notice("你[uraction]了地板。"))
 	return TRUE
 
 ///Update the flaps behaviour to gases, if not anchored will let air pass through
@@ -169,11 +169,11 @@
 /obj/structure/plasticflaps/wirecutter_act(mob/living/user, obj/item/W)
 	. = ..()
 	if(!anchored)
-		user.visible_message(span_warning("[user] cuts apart [src]."), span_notice("You start to cut apart [src]."), span_hear("You hear cutting."))
+		user.visible_message(span_warning("[user]切开了[src]。"), span_notice("你开始切开[src]。"), span_hear("你听到切割声。"))
 		if(W.use_tool(src, user, 50, volume=100))
 			if(anchored)
 				return TRUE
-			to_chat(user, span_notice("You cut apart [src]."))
+			to_chat(user, span_notice("你切开了[src]。"))
 			var/obj/item/stack/sheet/plastic/five/P = new(loc)
 			if (!QDELETED(P))
 				P.add_fingerprint(user)

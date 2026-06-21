@@ -1,8 +1,8 @@
 #define GET_RECIPE(input_thing) LAZYACCESS(processor_inputs[/obj/machinery/processor], input_thing.type)
 
 /obj/item/cutting_board
-	name = "cutting board"
-	desc = "Processing food before electricity was cool, because you can just do your regular cutting on the table next to this right?"
+	name = "砧板"
+	desc = "在电力普及前处理食物的方式，因为你完全可以在旁边的桌子上进行常规切割，对吧？"
 	icon = 'modular_nova/modules/primitive_cooking_additions/icons/cooking_structures.dmi'
 	icon_state = "cutting_board"
 	force = 5
@@ -48,11 +48,11 @@
 
 /obj/item/cutting_board/examine(mob/user)
 	. = ..()
-	. += span_notice("You can process food similar to a food processor by putting food on this and using a <b>knife</b> on it.")
-	. += span_notice("It can be (un)secured with <b>Right Click</b>")
-	. += span_notice("You can make it drop its item with <b>Alt Click</b>")
+	. += span_notice("你可以通过将食物放在这上面并用<b>刀</b>处理，来类似食品加工机那样加工食物。")
+	. += span_notice("可以用<b>右键点击</b>来（解）固定它")
+	. += span_notice("你可以用<b>Alt+点击</b>让它放下上面的物品")
 	if(length(contents))
-		. += span_notice("It has [contents[1]] sitting on it.")
+		. += span_notice("上面放着[contents[1]]。")
 
 /obj/item/cutting_board/Destroy()
 	drop_everything_contained()
@@ -60,11 +60,11 @@
 
 /obj/item/cutting_board/click_alt(mob/user)
 	if(!length(contents))
-		balloon_alert(user, "nothing on board")
+		balloon_alert(user, "砧板上没有东西")
 		return CLICK_ACTION_BLOCKING
 
 	drop_everything_contained()
-	balloon_alert(user, "cleared board")
+	balloon_alert(user, "清空了砧板")
 	return CLICK_ACTION_SUCCESS
 
 ///Drops all contents at the turf of the item
@@ -112,7 +112,7 @@
 
 	if(attacking_item.tool_behaviour == TOOL_KNIFE)
 		if(!length(contents))
-			balloon_alert(user, "nothing to process")
+			balloon_alert(user, "没有东西可处理")
 			return
 
 		var/datum/food_processor_process/item_process_recipe = GET_RECIPE(contents[1])
@@ -132,16 +132,16 @@
 	var/datum/food_processor_process/gotten_recipe = GET_RECIPE(attacking_item)
 	if(gotten_recipe)
 		if(length(contents))
-			balloon_alert(user, "board is full")
+			balloon_alert(user, "砧板已满")
 			return
 
 		attacking_item.forceMove(src)
-		balloon_alert(user, "placed [attacking_item] on board")
+		balloon_alert(user, "将[attacking_item]放到了砧板上")
 		update_appearance()
 		return
 
 	if(IS_EDIBLE(attacking_item)) //We may have failed but the user wants some feedback on why they can't put x food item on the board
-		balloon_alert(user, "[attacking_item] can't be processed")
+		balloon_alert(user, "[attacking_item]无法被处理")
 	return ..()
 
 #undef GET_RECIPE

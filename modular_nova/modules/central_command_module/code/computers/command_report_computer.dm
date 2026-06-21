@@ -2,8 +2,8 @@
 #define ANNOUNCEMENT_COOLDOWN (10 MINUTES)
 
 /obj/machinery/computer/centcom_announcement
-	name = "fleet announcement console"
-	desc = "A console used for making priority Nanotrasen Command Reports."
+	name = "舰队公告控制台"
+	desc = "用于发布纳米传讯指挥部优先报告的终端。"
 	icon_screen = "comm"
 	icon_keyboard = "tech_key"
 	req_access = list(ACCESS_CENT_CAPTAIN)
@@ -75,7 +75,7 @@
 
 	if(announce_contents)
 		priority_announce(command_report_content, command_report_title, report_sound, sender_override = command_name, has_important_message = TRUE)
-	print_command_report(command_report_content, "[announce_contents ? "" : "Classified "][command_name] Update", !announce_contents)
+	print_command_report(command_report_content, "[announce_contents ? "" : "Classified "][command_name] 更新", !announce_contents)
 
 	log_admin("[key_name(usr)] has created a command report: \"[command_report_content]\", sent from \"[command_name]\".")
 	message_admins("[key_name_admin(usr)] has created a command report, sent from \"[html_encode(command_name)]\".")
@@ -83,7 +83,7 @@
 	COOLDOWN_START(src, announcement_cooldown, ANNOUNCEMENT_COOLDOWN)
 
 /obj/item/circuitboard/computer/centcom_announcement
-	name = "Fleet Announcement (Computer Board)"
+	name = "舰队公告（电脑主板）"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/computer/centcom_announcement
 

@@ -1,6 +1,6 @@
 /datum/scripture/slab/hateful_manacles
-	name = "Hateful Manacles"
-	desc = "Forms replicant manacles around a target's wrists that function like handcuffs, restraining the target."
+	name = "憎恨镣铐"
+	desc = "在目标手腕周围形成复制镣铐，其功能类似手铐，用于束缚目标。"
 	tip = "Handcuff a target at close range to subdue them for vitality extraction."
 	button_icon_state = "Hateful Manacles"
 	power_cost = 50
@@ -18,12 +18,12 @@
 		return FALSE
 
 	if(target_carbon.handcuffed)
-		target_carbon.balloon_alert(invoker, "already restrained!")
+		target_carbon.balloon_alert(invoker, "已被束缚！")
 		return FALSE
 
 	playsound(target_carbon, 'sound/items/weapons/handcuffs.ogg', 30, TRUE, -2)
-	target_carbon.visible_message(span_danger("[invoker] forms a well of energy around [target_carbon], brass appearing at their wrists!"),\
-						span_userdanger("[invoker] is trying to restrain you!"))
+	target_carbon.visible_message(span_danger("[invoker]在[target_carbon]周围形成一个能量井，黄铜出现在他们的手腕上！"),\
+						span_userdanger("[invoker]正试图束缚你！"))
 
 	if(!do_after(invoker, 3 SECONDS, target = target_carbon))
 		return FALSE
@@ -38,7 +38,7 @@
 
 
 /obj/item/restraints/handcuffs/clockwork
-	name = "replicant manacles"
-	desc = "Heavy manacles made out of freezing-cold metal. It looks like brass, but feels much more solid."
+	name = "复制镣铐"
+	desc = "由冰冷金属制成的沉重镣铐。它看起来像黄铜，但感觉要坚固得多。"
 	icon_state = "brass_manacles"
 	item_flags = DROPDEL

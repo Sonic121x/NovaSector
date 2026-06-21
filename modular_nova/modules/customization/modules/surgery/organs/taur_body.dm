@@ -1,7 +1,7 @@
 #define LAYDOWN_COOLDOWN 1 SECONDS
 
 /obj/item/organ/taur_body
-	name = "taur body"
+	name = "半人马躯体"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_EXTERNAL_TAUR
 	external_bodyshapes = BODYSHAPE_TAUR
@@ -94,8 +94,8 @@
 	return ..()
 
 /datum/action/cooldown/spell/mermaid_toggle
-	name = "Grow Legs"
-	desc = "Grow legs and walk on land."
+	name = "长出双腿"
+	desc = "长出双腿以便在陆地上行走。"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "deactivate_wash"
 
@@ -112,8 +112,8 @@
 		name = initial(name)
 		desc = initial(desc)
 	else
-		name = "Mermaid Transform"
-		desc = "Return to your mermaid form."
+		name = "美人鱼变形"
+		desc = "变回你的美人鱼形态。"
 	return ..()
 
 /datum/action/cooldown/spell/mermaid_toggle/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force = FALSE)
@@ -269,10 +269,10 @@
 		new_right_leg = new /obj/item/bodypart/leg/right/synth/taur()
 
 	if(left_leg_name)
-		new_left_leg.name = "[left_leg_name] (Left leg)"
+		new_left_leg.name = "[left_leg_name] (左腿)"
 		new_left_leg.plaintext_zone = LOWER_TEXT(new_left_leg.name) // weird otherwise
 	if(right_leg_name)
-		new_right_leg.name = "[right_leg_name] (Right leg)"
+		new_right_leg.name = "[right_leg_name] (右腿)"
 		new_right_leg.plaintext_zone = LOWER_TEXT(new_right_leg.name)
 
 	var/obj/item/clothing/shoes/shoe = receiver.get_item_by_slot(ITEM_SLOT_FEET)
@@ -403,10 +403,10 @@
 	if(!overlay.can_lay_down)
 		return
 	if(owner.resting)
-		to_chat(owner, span_notice("You have to be standing up in order to lay down properly!"))
+		to_chat(owner, span_notice("你必须先站起来才能正常趴下！"))
 	if(overlay.laying_down)
 		// Rising up
-		to_chat(owner, span_notice("You start lifting your body up."))
+		to_chat(owner, span_notice("你开始抬起身体。"))
 		if(!do_after(owner, LAYDOWN_COOLDOWN))
 			return
 		if(!overlay.laying_down) // Prevent multiple standups at once
@@ -418,7 +418,7 @@
 
 		owner.SetImmobilized(0, TRUE)
 		REMOVE_TRAIT(owner, TRAIT_UNDENSE, TRAIT_TAUR_LOAF)
-		to_chat(owner, span_notice("You stand up."))
+		to_chat(owner, span_notice("你站了起来。"))
 	else
 		// And laying back down
 		overlay.laying_down = TRUE
@@ -428,7 +428,7 @@
 
 		owner.Immobilize(INFINITY, TRUE)
 		ADD_TRAIT(owner, TRAIT_UNDENSE, TRAIT_TAUR_LOAF)
-		to_chat(owner, span_notice("You lay down."))
+		to_chat(owner, span_notice("你趴了下来。"))
 		if(owner.has_gravity())
 			playsound(owner, "bodyfall", 50, TRUE)
 

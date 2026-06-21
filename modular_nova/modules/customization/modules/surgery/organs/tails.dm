@@ -50,7 +50,7 @@
 	wag_flags = WAG_ABLE // waggable monkey tails
 
 /obj/item/organ/tail/fluffy
-	name = "fluffy tail"
+	name = "毛茸茸的尾巴"
 
 /obj/item/organ/tail/fluffy/no_wag
 

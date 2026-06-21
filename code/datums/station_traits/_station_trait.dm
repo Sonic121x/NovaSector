@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(lobby_station_traits)
 	/// Trait should not be instantiated in a round if its type matches this type
 	abstract_type = /datum/station_trait
 	///Name of the trait
-	var/name = "unnamed station trait"
+	var/name = "未命名空间站特性"
 	///The type of this trait. Used to classify how this trait influences the station
 	var/trait_type = STATION_TRAIT_NEUTRAL
 	///Whether or not this trait uses process()

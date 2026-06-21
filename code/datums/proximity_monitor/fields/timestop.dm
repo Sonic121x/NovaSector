@@ -1,7 +1,7 @@
 
 /obj/effect/timestop
 	anchored = TRUE
-	name = "chronofield"
+	name = "时停力场"
 	desc = "ZA WARUDO"
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"

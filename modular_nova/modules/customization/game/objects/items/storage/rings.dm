@@ -3,8 +3,8 @@
  */
 
 /obj/item/storage/fancy/ringbox
-	name = "ring box"
-	desc = "A tiny box covered in soft red felt made for holding rings."
+	name = "戒指盒"
+	desc = "一个覆盖着柔软红色毛毡的小盒子，用于存放戒指。"
 	icon = 'modular_nova/master_files/icons/obj/ring.dmi'
 	icon_state = "gold ringbox"
 	base_icon_state = "gold ringbox"

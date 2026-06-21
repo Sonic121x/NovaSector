@@ -1,5 +1,5 @@
 /obj/effect/overlay
-	name = "overlay"
+	name = "覆盖物"
 
 /obj/effect/overlay/singularity_act()
 	return
@@ -8,7 +8,7 @@
 	return
 
 /obj/effect/overlay/beam//Not actually a projectile, just an effect.
-	name = "beam"
+	name = "光束"
 	icon = 'icons/effects/beam.dmi'
 	icon_state = "b_beam"
 	var/atom/BeamSource
@@ -19,14 +19,14 @@
 
 /obj/effect/overlay/sparkles
 	gender = PLURAL
-	name = "sparkles"
+	name = "闪耀"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldsparkles"
 	anchored = TRUE
 
 /obj/effect/overlay/thermite
-	name = "thermite"
-	desc = "Looks hot."
+	name = "铝热剂"
+	desc = "看起来真烫。"
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "medium" //what?
 	anchored = TRUE
@@ -44,7 +44,7 @@
 	var/cache_expiration = 2 MINUTES
 
 /obj/effect/overlay/atmos_excited
-	name = "excited group"
+	name = "激发组"
 	icon = null
 	icon_state = null
 	anchored = TRUE  // should only appear in vis_contents, but to be safe

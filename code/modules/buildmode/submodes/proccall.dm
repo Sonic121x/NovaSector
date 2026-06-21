@@ -15,7 +15,7 @@
 	if(!check_rights_for(target_client, R_DEBUG))
 		return
 
-	proc_name = input("Proc name, eg: fake_blood", "Proc:", null) as text|null
+	proc_name = input("过程名称，例如：fake_blood", "Proc:", null) as text|null
 	if(!proc_name)
 		return
 
@@ -25,15 +25,15 @@
 
 /datum/buildmode_mode/proccall/handle_click(client/target_client, params, datum/object as null|area|mob|obj|turf)
 	if(!proc_name || !proc_args)
-		tgui_alert(target_client, "Undefined ProcCall or arguments.")
+		tgui_alert(target_client, "未定义的过程调用或参数。")
 		return
 
 	if(!hascall(object, proc_name))
-		to_chat(target_client, span_warning("Error: callproc_datum(): type [object.type] has no proc named [proc_name]."), confidential = TRUE)
+		to_chat(target_client, span_warning("错误：callproc_datum()：类型 [object.type] 没有名为 [proc_name] 的过程。"), confidential = TRUE)
 		return
 
 	if(!is_valid_src(object))
-		to_chat(target_client, span_warning("Error: callproc_datum(): owner of proc no longer exists."), confidential = TRUE)
+		to_chat(target_client, span_warning("错误：callproc_datum()：过程的拥有者已不存在。"), confidential = TRUE)
 		return
 
 

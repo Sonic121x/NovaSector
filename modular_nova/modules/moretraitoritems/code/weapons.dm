@@ -1,5 +1,5 @@
 /obj/item/gun/ballistic/revolver/ocelot
-	name = "Colt Peacemaker revolver"
+	name = "柯尔特和平缔造者左轮手枪"
 	desc = "A modified Peacemaker revolver that chambers .357 ammo. Less powerful than the regular .357, but ricochets a lot more." // We need tension...conflict. The world today has become too soft. We're living in an age where true feelings are suppressed. So we're going to shake things up a bit. We'll create a world dripping with tension... ...a world filled with greed and suspicion, bravery and cowardice.
 	// this could probably be made funnier by reducing its damage multiplier but also making it so that every fired bullet has the wacky ricochets
 	// but that's a different plate of cookies for a different glass of milk
@@ -7,13 +7,13 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder
 
 /obj/item/ammo_casing/c357/peacemaker
-	name = ".357 Peacemaker bullet casing"
-	desc = "A .357 Peacemaker bullet casing."
+	name = ".357和平缔造者子弹弹壳"
+	desc = "一个.357和平缔造者子弹弹壳。"
 	caliber = CALIBER_357
 	projectile_type = /obj/projectile/bullet/a357/peacemaker
 
 /obj/projectile/bullet/a357/peacemaker
-	name = ".357 Peacemaker bullet"
+	name = ".357和平缔造者子弹"
 	damage = 25
 	wound_bonus = 0
 	ricochets_max = 6
@@ -24,7 +24,7 @@
 	ricochet_decay_chance = 1
 
 /datum/design/a357/peacemaker
-	name = "Speed Loader (.357 Peacemaker)"
+	name = "快速装弹器（.357和平缔造者）"
 	id = "a357PM"
 	build_type = AUTOLATHE
 	materials = list(
@@ -37,8 +37,8 @@
 	)
 
 /obj/item/ammo_box/speedloader/c357/peacemaker
-	name = "speed loader (.357 Peacemaker)"
-	desc = "Designed to quickly reload revolvers."
+	name = "快速装弹器（.357和平缔造者）"
+	desc = "设计用于快速装填左轮手枪。"
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/c357/peacemaker
 	max_ammo = 7
@@ -47,8 +47,8 @@
 
 
 /obj/item/clothing/head/hats/sus_bowler
-	name = "odd bowler"
-	desc = "A deep black bowler. Inside the hat, there is a sleek red S, with a smaller X insignia embroidered within. On closer inspection, the brim feels oddly weighted..."
+	name = "古怪圆顶礼帽"
+	desc = "一顶深黑色的圆顶礼帽。帽子内侧有一个光滑的红色S字母，里面绣着一个更小的X标志。仔细检查，帽檐感觉异常沉重……"
 	icon_state = "bowler"
 	force = 10
 	throwforce = 45
@@ -75,7 +75,7 @@
 
 //nullrod katana
 /obj/item/katana/weak/curator //This has the same stats as the curator's claymore
-	desc = "An ancient Katana. Forged by... Well, it doesn't really say, but surely it's authentic! And sharp to boot!"
+	desc = "一把古老的武士刀。由……锻造？嗯，上面没写，但肯定是真品！而且非常锋利！"
 	force = 15
 	block_chance = 30
 	armour_penetration = 5

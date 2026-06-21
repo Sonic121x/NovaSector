@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/magic
-	name = "magic casing"
-	desc = "I didn't even know magic needed ammo..."
+	name = "魔法弹壳"
+	desc = "我根本不知道，魔法居然还需要子弹……"
 	slot_flags = null
 	projectile_type = /obj/projectile/magic
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/magic

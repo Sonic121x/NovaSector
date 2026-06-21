@@ -24,7 +24,7 @@
 								[GLOB.manifest ? GLOB.manifest.get_html(0) : ""]
 								"}
 				if(!computer.print_text(contents, "crew manifest ([round_timestamp()])"))
-					to_chat(usr, span_notice("Printer is out of paper."))
+					to_chat(usr, span_notice("打印机缺纸。"))
 					return
 				else
-					computer.visible_message(span_notice("\The [computer] prints out a paper."))
+					computer.visible_message(span_notice("\The [computer] 打印出了一张纸。"))

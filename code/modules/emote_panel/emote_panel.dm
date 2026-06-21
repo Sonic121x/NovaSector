@@ -42,7 +42,7 @@
 			var/datum/emote/emote = GLOB.emote_list[emote_key][1]
 			var/emote_param
 			if(emote.message_param && use_params)
-				emote_param = tgui_input_text(ui.user, "Add params to the emote...", emote.message_param, max_length = MAX_MESSAGE_LEN)
+				emote_param = tgui_input_text(ui.user, "为表情添加参数...", emote.message_param, max_length = MAX_MESSAGE_LEN)
 			ui.user.emote(emote_key, message = emote_param, intentional = TRUE)
 		if("preview_sound")
 			var/emote_key = params["emote_key"]

@@ -1,6 +1,6 @@
 /datum/lazy_template/virtual_domain/breeze_bay
-	name = "Breeze Bay"
-	desc = "A beach front town with a large forest to the north."
+	name = "微风湾"
+	desc = "一个海滨小镇，北面有一片广阔的森林。"
 	help_text = "It's simple! Enjoy some rays, catch some fish, and have a good time! Don't get bit by the crabs, though."
 	key = "breeze_bay"
 	map_name = "breeze_bay"

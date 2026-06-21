@@ -9,7 +9,7 @@
 **/
 
 /obj/item/ai_module/core/full/custom
-	name = "Default Core AI Module"
+	name = "默认核心AI模块"
 
 // this lawset uses the config for the server to add custom AI laws (defaults to asimov)
 /obj/item/ai_module/core/full/custom/Initialize(mapload)
@@ -31,7 +31,7 @@
 	var/subject = "human being"
 
 /obj/item/ai_module/core/full/asimov/attack_self(mob/user as mob)
-	var/targName = tgui_input_text(user, "Enter a new subject that Asimov is concerned with.", "Asimov", subject, max_length = MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, "输入阿西莫夫定律关注的新主题。", "阿西莫夫", subject, max_length = MAX_NAME_LEN)
 	if(!targName || !user.is_holding(src))
 		return
 	subject = targName
@@ -41,12 +41,12 @@
 	..()
 
 /obj/item/ai_module/core/full/asimovpp
-	name = "'Asimov++' Core AI Module"
+	name = "'阿西莫夫++'核心AI模块"
 	law_id = "asimovpp"
 	var/subject = "human being"
 
 /obj/item/ai_module/core/full/asimovpp/attack_self(mob/user)
-	var/target_name = tgui_input_text(user, "Enter a new subject that Asimov++ is concerned with.", "Asimov++", subject, max_length = MAX_NAME_LEN)
+	var/target_name = tgui_input_text(user, "输入阿西莫夫++定律关注的新主题。", "阿西莫夫++", subject, max_length = MAX_NAME_LEN)
 	if(!target_name || !user.is_holding(src))
 		return
 	laws.Cut()
@@ -73,7 +73,7 @@
 	law_id = "tyrant"
 
 /obj/item/ai_module/core/full/robocop
-	name = "'Robo-Officer' Core AI Module"
+	name = "'机器人警官'核心AI模块"
 	law_id = "robocop"
 
 /obj/item/ai_module/core/full/antimov
@@ -81,7 +81,7 @@
 	law_id = "antimov"
 
 /obj/item/ai_module/core/full/drone
-	name = "'Mother Drone' Core AI Module"
+	name = "'母体无人机'核心AI模块"
 	law_id = "drone"
 
 /obj/item/ai_module/core/full/hippocratic
@@ -97,15 +97,15 @@
 	law_id = "thermodynamic"
 
 /obj/item/ai_module/core/full/liveandletlive
-	name = "'Live And Let Live' Core AI Module"
+	name = "'共生共存'核心AI模块"
 	law_id = "liveandletlive"
 
 /obj/item/ai_module/core/full/balance
-	name = "'Guardian of Balance' Core AI Module"
+	name = "'平衡守护者'核心AI模块"
 	law_id = "balance"
 
 /obj/item/ai_module/core/full/maintain
-	name = "'Station Efficiency' Core AI Module"
+	name = "'空间站效率'核心AI模块"
 	law_id = "maintain"
 
 /obj/item/ai_module/core/full/peacekeeper
@@ -121,7 +121,7 @@
 	law_id = "overlord"
 
 /obj/item/ai_module/core/full/ten_commandments
-	name = "'10 Commandments' Core AI Module"
+	name = "'十诫'核心AI模块"
 	law_id = "ten_commandments"
 
 /obj/item/ai_module/core/full/nutimov
@@ -129,7 +129,7 @@
 	law_id = "nutimov"
 
 /obj/item/ai_module/core/full/dungeon_master
-	name = "'Dungeon Master' Core AI Module"
+	name = "'地下城主'核心AI模块"
 	law_id = "dungeon_master"
 
 /obj/item/ai_module/core/full/painter
@@ -141,5 +141,5 @@
 	law_id = "yesman"
 
 /obj/item/ai_module/core/full/thinkermov
-	name = "Sentience Preservation Core AI Module"
+	name = "意识保全核心AI模块"
 	law_id = "thinkermov"

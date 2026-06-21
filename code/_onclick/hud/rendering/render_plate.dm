@@ -26,7 +26,7 @@
  * remember that once planes are unified on a render plate you cant change the layering of them!
  */
 /atom/movable/screen/plane_master/rendering_plate
-	name = "Default rendering plate"
+	name = "默认渲染板"
 	multiz_scaled = FALSE
 
 // Blackness renders weird when you view down openspace, because of transforms and borders and such
@@ -34,7 +34,7 @@
 // Sight flags, and shooting vis_contents usage to the moon. So we're doin it different.
 // If image vis contents worked (it should in 515), and we were ok with a maptick cost (wait for threaded maptick) this could be fixed
 /atom/movable/screen/plane_master/rendering_plate/transparent
-	name = "Transparent plate"
+	name = "透明板"
 	documentation = "The master rendering plate from the offset below ours will be mirrored onto this plane. That way we achive a \"stack\" effect.\
 		<br>This plane exists to uplayer the master rendering plate to the correct spot in our z layer's rendering order"
 	plane = RENDER_PLANE_TRANSPARENT
@@ -48,7 +48,7 @@
 
 ///Contains most things in the game world
 /atom/movable/screen/plane_master/rendering_plate/game_world
-	name = "Game world plate"
+	name = "游戏世界板"
 	documentation = "Contains most of the objects in the world. Mobs, machines, etc. Note the drop shadow, it gives a very nice depth effect."
 	plane = RENDER_PLANE_GAME_WORLD
 	appearance_flags = PLANE_MASTER //should use client color
@@ -63,7 +63,7 @@
 		add_filter("AO", 1, drop_shadow_filter(x = 0, y = -2, size = 4, color = "#04080FAA"))
 
 /atom/movable/screen/plane_master/rendering_plate/unlit_game_plate
-	name = "Unlit Game rendering plate"
+	name = "无光照游戏渲染板"
 	documentation = "Feeds the bits of the game plate which want to be effected by lighting into RENDER_PLANE_GAME and the emissive bloom pipeline (the reason this exists)."
 	plane = RENDER_PLANE_UNLIT_GAME
 	render_relay_planes = list(RENDER_PLANE_GAME)
@@ -127,7 +127,7 @@
 	add_relay_to(GET_NEW_PLANE(EMISSIVE_PLANE, offset), relay_color = GLOB.emissive_color)
 
 /atom/movable/screen/plane_master/rendering_plate/turf_lighting
-	name = "Turf lighting post-processing plate"
+	name = "地板光照后处理板"
 	documentation = "Used by overlay lighting, and possibly over plates, to mask out turf lighting."
 	plane = RENDER_PLANE_TURF_LIGHTING
 	render_relay_planes = list(RENDER_PLANE_LIGHTING)
@@ -147,7 +147,7 @@
 	))
 
 /atom/movable/screen/plane_master/rendering_plate/emissive_slate
-	name = "Emissive Plate"
+	name = "自发光板"
 	documentation = "This system works by exploiting BYONDs color matrix filter to use layers to handle emissive blockers.\
 		<br>Emissive overlays are pasted with an atom color that converts them to be entirely some specific color.\
 		<br>Emissive blockers are pasted with an atom color that converts them to be entirely some different color.\
@@ -169,7 +169,7 @@
 		add_relay_to(GET_NEW_PLANE(RENDER_PLANE_EMISSIVE, offset - 1), relay_layer = EMISSIVE_Z_BELOW_LAYER)
 
 /atom/movable/screen/plane_master/rendering_plate/emissive_bloom_mask
-	name = "Emissive bloom mask plate"
+	name = "自发光泛光遮罩板"
 	documentation = "A holder plate used purely as a way to full-white bloom emissives before applying them as a mask onto the emissive bloom plate."
 	plane = RENDER_PLANE_EMISSIVE_BLOOM_MASK
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
@@ -179,7 +179,7 @@
 	critical = PLANE_CRITICAL_DISPLAY
 
 /atom/movable/screen/plane_master/rendering_plate/emissive_bloom
-	name = "Emissive bloom plate"
+	name = "自发光泛光板"
 	documentation = "Plate used to bloom emissives before adding them onto the overlay lighting plane. We do this by multiplying the game plate\
 		onto a fullbright emissive, then alpha masking it by emissive's color to solve the problem of blockers, both alone and covered by emissives."
 	plane = RENDER_PLANE_EMISSIVE_BLOOM
@@ -200,7 +200,7 @@
 		add_filter("emissive_bloom", 2, bloom_filter(threshold = COLOR_BLACK, size = bloom_scale, offset = ceil(bloom_scale / 2)))
 
 /atom/movable/screen/plane_master/rendering_plate/specular_mask
-	name = "Specular mask plate"
+	name = "高光遮罩板"
 	documentation = "Plate used to generate the specular mask for the specular plate effect."
 	plane = RENDER_PLANE_SPECULAR_MASK
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
@@ -239,7 +239,7 @@
 	))
 
 /atom/movable/screen/plane_master/rendering_plate/specular
-	name = "Specular plate"
+	name = "高光板"
 	documentation = "Plate used to artificially increase lighting on certain pixels to poorly mimic shiny surfaces."
 	plane = RENDER_PLANE_SPECULAR
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
@@ -254,7 +254,7 @@
 
 ///Contains all lighting objects
 /atom/movable/screen/plane_master/rendering_plate/lighting
-	name = "Lighting plate"
+	name = "光照板"
 	documentation = "Anything on this plane will be <b>multiplied</b> with the plane it's rendered onto (typically the game plane).\
 		<br>That's how lighting functions at base. Because it uses BLEND_MULTIPLY and occasionally color matrixes, it needs a backdrop of blackness.\
 		<br>See <a href=\"https://secure.byond.com/forum/?post=2141928\">this byond post</a>\
@@ -351,7 +351,7 @@
 	add_filter("light_cutup", 4, color_matrix_filter(list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1, ratio+red,ratio+green,ratio+blue,0)))
 
 /atom/movable/screen/plane_master/rendering_plate/light_mask
-	name = "Light Mask"
+	name = "光照遮罩"
 	documentation = "Any part of this plane that is transparent will be black below it on the game rendering plate.\
 		<br>This is done to ensure emissives and overlay lights don't light things up \"through\" the darkness that normally sits at the bottom of the lighting plane.\
 		<br>We relay copies of the space, floor and wall planes to it, so we can use them as masks. Then we just boost any existing alpha to 100% and we're done.\
@@ -398,7 +398,7 @@
 
 ///renders in character game objects
 /atom/movable/screen/plane_master/rendering_plate/game_plate
-	name = "Game rendering plate"
+	name = "游戏渲染板"
 	documentation = "Holds all objects that are ahhh, in character? is maybe the best way to describe it.\
 		<br>We apply a displacement effect from the gravity pulse plane too, so we can warp the game world.\
 		<br>If we have fov enabled we'll relay this onto two different rendering plates to apply fov effects to only a portion. If not, we just draw straight to master.\
@@ -447,7 +447,7 @@
 
 ///renders the parts of the plate unmasked by fov
 /atom/movable/screen/plane_master/rendering_plate/unmasked_game_plate
-	name = "Unmasked Game rendering plate"
+	name = "无遮罩游戏渲染板"
 	documentation = "Holds the bits of the game plate that aren't impacted by fov.\
 		<br>We use an alpha mask to cut out the bits we plan on dealing with elsewhere"
 	plane = RENDER_PLANE_GAME_UNMASKED
@@ -480,7 +480,7 @@
 
 ///renders the parts of the plate masked by fov
 /atom/movable/screen/plane_master/rendering_plate/masked_game_plate
-	name = "FOV Game rendering plate"
+	name = "视野游戏渲染板"
 	documentation = "Contains the bits of the game plate that are hidden by some form of fov\
 		<br>Applies a color matrix to dim and create contrast, alongside a blur. Goal is only half being able to see stuff"
 	plane = RENDER_PLANE_GAME_MASKED
@@ -515,14 +515,14 @@
 
 ///render plate for OOC stuff like ghosts, hud-screen effects, etc
 /atom/movable/screen/plane_master/rendering_plate/non_game
-	name = "Non-Game rendering plate"
+	name = "非游戏渲染板"
 	documentation = "Renders anything that's out of character. Mostly useful as a converse to the game rendering plate."
 	plane = RENDER_PLANE_NON_GAME
 	render_relay_planes = list(RENDER_PLANE_MASTER)
 
 ///this plate renders the final screen to show to the player
 /atom/movable/screen/plane_master/rendering_plate/master
-	name = "Master rendering plate"
+	name = "主渲染板"
 	documentation = "The endpoint of all plane masters, you can think of this as the final \"view\" we draw.\
 		<br>If offset is not 0 this will be drawn to the transparent plane of the floor above, but otherwise this is drawn to nothing, or shown to the player."
 	plane = RENDER_PLANE_MASTER

@@ -1,5 +1,5 @@
 /mob/living/basic/deer/mining
-	desc = "A common deer, used to living alongside monsters after generations on this planet."
+	desc = "一只普通的鹿，经过数代在这颗行星上的生活，已经习惯了与怪物共存。"
 	faction = list(FACTION_MINING)
 	ai_controller = /datum/ai_controller/basic_controller/deer/mining
 

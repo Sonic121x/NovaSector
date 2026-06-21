@@ -1,5 +1,5 @@
 /datum/uplink_category/explosives
-	name = "Explosives"
+	name = "爆炸物"
 	weight = 6
 
 /datum/uplink_item/explosives
@@ -7,7 +7,7 @@
 
 /datum/uplink_item/explosives/soap_clusterbang
 	name = "Slipocalypse Clusterbang"
-	desc = "A traditional clusterbang grenade with a payload consisting entirely of Syndicate soap. Useful in any scenario!"
+	desc = "一种装药为辛迪肥皂的传统集束闪光弹。任何情况下都能用！"
 	item = /obj/item/grenade/clusterbuster/soap
 	cost = 1
 
@@ -31,7 +31,7 @@
 
 /datum/uplink_item/explosives/c4bag
 	name = "Bag of C-4 explosives"
-	desc = "Because sometimes quantity is quality. Contains 10 C-4 plastic explosives."
+	desc = "有时，数量就是质量. 含有10个C-4炸药"
 	item = /obj/item/storage/backpack/duffelbag/syndie/c4
 	cost = 5 // 50% discount!
 	cant_discount = TRUE
@@ -96,7 +96,7 @@
 
 /datum/uplink_item/explosives/syndicate_bomb/emp
 	name = "Syndicate EMP Bomb"
-	desc = "A variation of the syndicate bomb designed to produce a large EMP effect."
+	desc = "用于触发大规模电磁脉冲的一种辛迪加炸弹变体"
 	item = /obj/item/sbeacondrop/emp
 	cost = 7
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS /// Ops get their own version.

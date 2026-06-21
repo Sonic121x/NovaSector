@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(pollution)
-	name = "Pollution"
+	name = "污染"
 	dependents = list(
 		/datum/controller/subsystem/atoms,
 	) //Before atoms, because the emitters may need to know the singletons

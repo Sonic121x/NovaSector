@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/aoe/sacred_flame
-	name = "Sacred Flame"
-	desc = "Makes everyone around you more flammable, and lights yourself on fire."
+	name = "圣火"
+	desc = "会让周围的人变得易燃，而自己也会因此而陷入燃烧的状态。"
 	button_icon_state = "sacredflame"
 	sound = 'sound/effects/magic/fireball.ogg'
 
@@ -31,9 +31,9 @@
 	// Let people who got afflicted know they're suddenly a matchstick
 	// But skip the caster - they'll know anyways.
 	if(victim != caster)
-		to_chat(victim, span_warning("You suddenly feel very flammable."))
+		to_chat(victim, span_warning("你突然感觉自己非常易燃。"))
 
 /datum/action/cooldown/spell/aoe/sacred_flame/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.ignite_mob()
-	to_chat(cast_on, span_danger("You feel a roaring flame build up inside you!"))
+	to_chat(cast_on, span_danger("你感到体内燃起熊熊烈焰！"))

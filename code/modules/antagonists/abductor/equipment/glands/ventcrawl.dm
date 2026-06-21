@@ -8,5 +8,5 @@
 	mind_control_duration = 1800
 
 /obj/item/organ/heart/gland/ventcrawling/activate()
-	to_chat(owner, span_notice("You feel very stretchy."))
+	to_chat(owner, span_notice("你感觉身体非常有弹性。"))
 	ADD_TRAIT(owner, TRAIT_VENTCRAWLER_ALWAYS, type)

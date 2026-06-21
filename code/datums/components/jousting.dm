@@ -59,7 +59,7 @@
 
 /datum/component/jousting/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("It can be used on a vehicle for jousting, dealing potential knockdowns and additional damage.")
+	examine_list += span_notice("它可以用于载具上进行马上长矛比武，可能造成击倒和额外伤害。")
 
 /datum/component/jousting/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
@@ -113,7 +113,7 @@
 			if(target.buckled)
 				target.buckled.unbuckle_mob(target)
 			target.Paralyze(knockdown_time)
-		user.visible_message(span_danger("[msg]!"))
+		user.visible_message(span_danger("[msg]！"))
 
 		return usable_charge // NOVA EDIT ADDITION - Baton jousting
 /**

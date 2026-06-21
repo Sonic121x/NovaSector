@@ -1,7 +1,7 @@
 // Belts
 
 /datum/design/frontier_chest_rig
-	name = "Frontier Chest Rig"
+	name = "前沿胸挂"
 	id = "frontier_chest_rig"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -12,7 +12,7 @@
 	)
 
 /datum/design/frontier_med_belt
-	name = "Satchel Medical Kit"
+	name = "挎包医疗套件"
 	id = "frontier_med_belt"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 200)
@@ -23,7 +23,7 @@
 	)
 
 /datum/design/frontier_medtech_belt
-	name = "Medical Technician Kit"
+	name = "医疗技师套件"
 	id = "frontier_medtech_belt"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 200)
@@ -34,7 +34,7 @@
 	)
 
 /datum/design/frontier_medkit
-	name = "Frontier Medical Kit"
+	name = "边疆医疗包"
 	id = "frontier_medkit"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -47,7 +47,7 @@
 // Backpacks
 
 /datum/design/frontier_backpack
-	name = "Frontier Backpack"
+	name = "边疆背包"
 	id = "frontier_backpack"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -58,7 +58,7 @@
 	)
 
 /datum/design/frontier_satchel
-	name = "Frontier Satchel"
+	name = "边疆挎包"
 	id = "frontier_satchel"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -69,7 +69,7 @@
 	)
 
 /datum/design/frontier_messenger
-	name = "Frontier Messenger Bag"
+	name = "边疆信使包"
 	id = "frontier_messenger"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)

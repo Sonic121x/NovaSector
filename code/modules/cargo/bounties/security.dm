@@ -1,6 +1,6 @@
 ///Bounties that require you to perform documentation and inspection of your department to send to centcom.
 /datum/bounty/patrol
-	name = "Patrol Station"
+	name = "巡逻空间站"
 	description = "Perform a routine patrol of %AREA_NAME%. \
 		You must travel at least %AREA_COVERAGE% meters within the area. \
 		Your ID card will update you as you progress."
@@ -137,7 +137,7 @@
 		return
 
 /datum/bounty/patrol/supply
-	name = "Patrol Cargo"
+	name = "巡逻货舱"
 	allow_duplicate = FALSE
 
 /datum/bounty/patrol/supply/get_patrol_area_types()
@@ -160,7 +160,7 @@
 	)
 
 /datum/bounty/patrol/medical
-	name = "Patrol Medical"
+	name = "巡逻医疗部"
 	allow_duplicate = FALSE
 
 /datum/bounty/patrol/medical/get_patrol_area_types()
@@ -182,7 +182,7 @@
 	)
 
 /datum/bounty/patrol/science
-	name = "Patrol Science"
+	name = "巡逻科研部"
 	allow_duplicate = FALSE
 
 /datum/bounty/patrol/science/get_patrol_area_types()
@@ -201,7 +201,7 @@
 	)
 
 /datum/bounty/patrol/engineering
-	name = "Patrol Engineering"
+	name = "巡逻工程部"
 	allow_duplicate = FALSE
 
 /datum/bounty/patrol/engineering/get_patrol_area_types()
@@ -219,8 +219,8 @@
 	)
 
 /datum/bounty/item/contraband
-	name = "Confiscated Contraband"
-	description = "The Syndicate is constantly acting to subvert crewmates of Nanotrasen-affiliated stations. Ship us your latest batch of confiscated contraband."
+	name = "没收的违禁品"
+	description = "辛迪加一直在暗中策反纳米传讯旗下空间站的船员。请将你们最新一批没收的违禁品运送给我们。"
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 5
 	wanted_types = list(/obj/item = TRUE)

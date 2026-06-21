@@ -1,6 +1,6 @@
 /obj/machinery/spaceship_navigation_beacon
-	name = "radio navigation gigabeacon"
-	desc = "A device that constantly transmits its position over several different commonly used maritime navigation frequencies. Used to create shuttle navigation waypoints in unexplored or undeveloped areas."
+	name = "无线电导航巨型信标"
+	desc = "一种在多个常用海上导航频率上持续传输其位置的设备。用于在未探索或未开发区域创建穿梭机导航航点。"
 	icon = 'icons/obj/machines/navigation_beacon.dmi'
 	icon_state = "beacon_active"
 	base_icon_state = "beacon"
@@ -54,7 +54,7 @@
 /obj/machinery/spaceship_navigation_beacon/multitool_act(mob/living/user, obj/item/tool)
 	..()
 
-	var/chosen_tag = tgui_input_text(user, "Enter the custom name for this beacon", "Beacon Reclassification", max_length = MAX_NAME_LEN)
+	var/chosen_tag = tgui_input_text(user, "输入此信标的自定义名称", "信标重新分类", max_length = MAX_NAME_LEN)
 	if(!chosen_tag)
 		return
 
@@ -79,9 +79,9 @@
 	.=..()
 	. += span_notice("'[FREQ_RADIO_NAV_BEACON / 10] kHz' is printed on the side.")
 	if(locked)
-		. += span_warning("The blinking red light on the front indicates that this beacon is LOCKED.")
+		. += span_warning("前方的红色闪烁灯光表明此信标已被锁定。")
 	else
-		. += span_notice("The blinking green light on the front indicates that this beacon is operating normally.")
+		. += span_notice("前方闪烁的绿灯表明此信标运行正常。")
 
 /obj/machinery/spaceship_navigation_beacon/process(seconds_per_tick)
 	if(COOLDOWN_FINISHED(src, next_automatic_message_time) && radio)
@@ -94,8 +94,8 @@
 // Item used to actually make nav beacons
 
 /obj/item/folded_navigation_gigabeacon
-	name = "compact radio navigation gigabeacon"
-	desc = "A compact radio navigation gigabeacon, a device used to provide shuttle navigation waypoints in unexplored areas. Must be deployed before use."
+	name = "紧凑型无线电导航巨型信标"
+	desc = "一种紧凑型无线电导航巨型信标，用于在未探索区域提供穿梭机导航航点的设备。必须部署后才能使用。"
 	icon = 'icons/obj/machines/navigation_beacon.dmi'
 	icon_state = "beacon_folded"
 
@@ -105,5 +105,5 @@
 
 /obj/item/folded_navigation_gigabeacon/examine()
 	.=..()
-	. += span_notice("The backside has instructions in various galactic languages detailing how this can be deployed <b>in hand</b> without any special tools.")
+	. += span_notice("背面有用多种银河语言书写的说明，详细描述了如何<b>徒手</b>部署此设备，无需特殊工具。")
 	. += span_notice("'[FREQ_RADIO_NAV_BEACON / 10] kHz' is printed on the side.")

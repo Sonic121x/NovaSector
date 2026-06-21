@@ -1,6 +1,6 @@
 /obj/item/organ/skrell_hair
 	name = "skrell_hair"
-	desc = "Hair isn't really the best way to describe it, but you really can't think of any other word that makes sense."
+	desc = "用“头发”来形容它并不准确，但你也想不出其他更合适的词了。"
 
 	mutantpart_key = FEATURE_SKRELL_HAIR
 

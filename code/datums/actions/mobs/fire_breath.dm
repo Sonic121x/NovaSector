@@ -1,8 +1,8 @@
 /datum/action/cooldown/mob_cooldown/fire_breath
-	name = "Fire Breath"
+	name = "火焰吐息"
 	button_icon = 'icons/effects/magic.dmi'
 	button_icon_state = "fireball"
-	desc = "Breathe a line of flames towards the target."
+	desc = "向目标喷吐一道火焰。"
 	cooldown_time = 3 SECONDS
 	/// The range of the fire
 	var/fire_range = 15
@@ -74,15 +74,15 @@
 /datum/action/cooldown/mob_cooldown/fire_breath/proc/on_burn_mob(mob/living/barbecued, mob/living/source)
 	if(fire_temperature <= TCMB)
 		barbecued.apply_status_effect(/datum/status_effect/ice_block_talisman, 2 SECONDS)
-		to_chat(barbecued, span_userdanger("You're frozen solid by [source]'s icy breath!"))
+		to_chat(barbecued, span_userdanger("你被[source]的寒冰吐息冻僵了！"))
 	else
-		to_chat(barbecued, span_userdanger("You are burned by [source]'s fire breath!"))
+		to_chat(barbecued, span_userdanger("你被[source]的火焰吐息灼伤了！"))
 	barbecued.adjust_fire_loss(fire_damage)
 
 /// Shoot three lines of fire in a sort of fork pattern approximating a cone
 /datum/action/cooldown/mob_cooldown/fire_breath/cone
-	name = "Fire Cone"
-	desc = "Breathe several lines of fire directed at a target."
+	name = "火焰锥"
+	desc = "向目标喷吐数道火焰。"
 	/// The angles relative to the target that shoot lines of fire
 	var/list/angles = list(-40, 0, 40)
 
@@ -93,10 +93,10 @@
 
 /// Shoot fire in a whole bunch of directions
 /datum/action/cooldown/mob_cooldown/fire_breath/mass_fire
-	name = "Mass Fire"
+	name = "群体火焰"
 	button_icon = 'icons/effects/fire.dmi'
 	button_icon_state = "light"
-	desc = "Breathe flames in all directions."
+	desc = "向所有方向喷吐火焰。"
 	cooldown_time = 10.5 SECONDS
 	click_to_activate = FALSE
 	/// How many fire lines do we produce to turn a full circle?

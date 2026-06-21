@@ -1,26 +1,26 @@
 // Resurrection crystal
 
 /obj/item/resurrection_crystal
-	name = "resurrection crystal"
-	desc = "When used by anything holding it, this crystal gives them a second chance at life if they die."
+	name = "复活水晶"
+	desc = "当任何持有者使用它时，若其死亡，此水晶将给予他们第二次生命的机会。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "demonic_crystal"
 
 /obj/item/resurrection_crystal/attack_self(mob/living/user)
 	if(!iscarbon(user))
-		to_chat(user, span_notice("A dark presence stops you from absorbing the crystal."))
+		to_chat(user, span_notice("一股黑暗的存在阻止你吸收水晶。"))
 		return
 	forceMove(user)
-	to_chat(user, span_notice("You feel a bit safer... but a demonic presence lurks in the back of your head..."))
+	to_chat(user, span_notice("你感觉安全了一些……但一个恶魔般的存在潜伏在你的脑海深处……"))
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(resurrect))
 
 /// Resurrects the target when they die by moving them and dusting a clone in their place, one life for another
 /obj/item/resurrection_crystal/proc/resurrect(mob/living/carbon/user, gibbed)
 	SIGNAL_HANDLER
 	if(gibbed)
-		to_chat(user, span_notice("This power cannot be used if your entire mortal body is disintegrated..."))
+		to_chat(user, span_notice("如果你的整个凡人之躯都被彻底湮灭，此力量将无法使用……"))
 		return
-	user.visible_message(span_notice("You see [user]'s soul dragged out of their body!"), span_notice("You feel your soul dragged away to a fresh body!"))
+	user.visible_message(span_notice("你看到 [user] 的灵魂被从他们的身体里拖了出来！"), span_notice("你感觉自己的灵魂被拖向一具崭新的躯体！"))
 	var/typepath = user.type
 	var/mob/living/carbon/clone = new typepath(user.loc)
 	clone.real_name = user.real_name
@@ -30,15 +30,15 @@
 	user.forceMove(T)
 	user.revive(ADMIN_HEAL_ALL)
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob/living/carbon, set_species), /datum/species/shadow)
-	to_chat(user, span_notice("You blink and find yourself in [get_area_name(T)]... feeling a bit darker."))
+	to_chat(user, span_notice("你眨了眨眼，发现自己身处[get_area_name(T)]……感觉内心更阴暗了一些。"))
 	clone.dust()
 	qdel(src)
 
 // Cursed boots
 
 /obj/item/clothing/shoes/winterboots/ice_boots/ice_trail
-	name = "cursed ice hiking boots"
-	desc = "A pair of winter boots contractually made by a devil, they cannot be taken off once put on."
+	name = "受诅咒的冰地徒步靴"
+	desc = "一双由魔鬼按契约制作的冬靴，一旦穿上就无法脱下。"
 	actions_types = list(/datum/action/item_action/toggle)
 	var/on = FALSE
 	var/change_turf = /turf/open/misc/ice/icemoon/no_planet_atmos
@@ -60,11 +60,11 @@
 
 /obj/item/clothing/shoes/winterboots/ice_boots/ice_trail/ui_action_click(mob/user)
 	on = !on
-	to_chat(user, span_notice("You [on ? "activate" : "deactivate"] [src]."))
+	to_chat(user, span_notice("你 [on ? "activate" : "deactivate"] [src]。"))
 
 /obj/item/clothing/shoes/winterboots/ice_boots/ice_trail/examine(mob/user)
 	. = ..()
-	. += span_notice("The shoes are [on ? "enabled" : "disabled"].")
+	. += span_notice("这双鞋 [on ? "enabled" : "disabled"]。")
 
 /obj/item/clothing/shoes/winterboots/ice_boots/ice_trail/proc/on_step()
 	SIGNAL_HANDLER
@@ -79,8 +79,8 @@
 // Demonic jackhammer
 
 /obj/item/pickaxe/drill/jackhammer/demonic
-	name = "demonic jackhammer"
-	desc = "Cracks rocks at an inhuman speed, as well as being enhanced for combat purposes."
+	name = "恶魔风镐"
+	desc = "能以非人的速度凿开岩石，同时也为战斗目的进行了强化。"
 	toolspeed = 0
 
 /obj/item/pickaxe/drill/jackhammer/demonic/Initialize(mapload)
@@ -96,8 +96,8 @@
 // Ice energy crystal
 
 /obj/item/ice_energy_crystal
-	name = "ice energy crystal"
-	desc = "Remnants of the demonic frost miners ice energy."
+	name = "冰能水晶"
+	desc = "恶魔霜冻矿工冰之能量的残留物。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "ice_crystal"
 	w_class = WEIGHT_CLASS_TINY

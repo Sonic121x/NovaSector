@@ -1,5 +1,5 @@
 /obj/effect/mob_spawn
-	name = "Mob Spawner"
+	name = "生物生成器"
 	density = TRUE
 	anchored = TRUE
 	//So it shows up in the map editor
@@ -190,7 +190,7 @@
 	if(LAZYFIND(ckeys_trying_to_spawn, user.ckey))
 		return
 	if(uses <= 0 && !infinite_use)
-		to_chat(user, span_warning("This spawner is out of charges!"))
+		to_chat(user, span_warning("这个生成器的使用次数已耗尽！"))
 		return FALSE
 	if(!can_ghost_take(user))
 		return FALSE
@@ -200,7 +200,7 @@
 	LAZYADD(ckeys_trying_to_spawn, user_ckey)
 	// NOVA EDIT ADDITION START
 	if(restricted_species && !(user.client?.prefs?.read_preference(/datum/preference/choiced/species) in restricted_species))
-		var/incorrect_species = tgui_alert(user, "Current species preference incompatible, proceed with random appearance?", "Incompatible Species", list("Yes", "No"))
+		var/incorrect_species = tgui_alert(user, "当前物种偏好不兼容，是否继续使用随机外观？", "不兼容的物种", list("Yes", "No"))
 		if(incorrect_species != "Yes")
 			LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
 			return
@@ -209,7 +209,7 @@
 	var/prompt_fail = FALSE
 	var/apply_prefs = FALSE
 	if(prompt_ghost)
-		var/prompt = "Become [prompt_name]?"
+		var/prompt = "成为[prompt_name]？"
 		if(!temp_body && user.can_reenter_corpse && user.mind)
 			prompt += " (Warning, You can no longer be revived!)"
 		prompt_fail = tgui_alert(user, prompt, buttons = list("Yes", "No"), timeout = 10 SECONDS) != "Yes"
@@ -227,7 +227,7 @@
 	if(!prompt_fail && (allow_custom_character & GHOSTROLE_TAKE_PREFS_APPEARANCE) && user.client)
 		//if we have gotten to this point, they have already waived their species pref.-- they were told they need to use the specific species already
 		if(!apply_prefs && (restricted_species && (user.client?.prefs?.read_preference(/datum/preference/choiced/species) in restricted_species)) || !restricted_species)
-			apply_prefs = tgui_alert(user, "Use currently loaded character preferences?", "Appearance Type", list("Yes", "No"), 10 SECONDS) == "Yes"
+			apply_prefs = tgui_alert(user, "使用当前加载的角色偏好设置？", "外观类型", list("Yes", "No"), 10 SECONDS) == "Yes"
 	// NOVA EDIT ADDITION END
 
 	if(!prompt_fail && !pre_ghost_take(user))
@@ -246,15 +246,15 @@
 /// Checks if a ghost can take this ghost role.
 /obj/effect/mob_spawn/ghost_role/proc/can_ghost_take(mob/dead/observer/user)
 	if(is_banned_from(user.ckey, role_ban))
-		to_chat(user, span_warning("You are banned from this role!"))
+		to_chat(user, span_warning("你被禁止使用此角色！"))
 		return FALSE
 	// NOVA EDIT ADDITION START
 	if(is_banned_from(user.ckey, BAN_GHOST_ROLE_SPAWNER)) // Ghost role bans
-		to_chat(user, span_warning("Error, you are banned from playing ghost roles!"))
+		to_chat(user, span_warning("错误，你被禁止扮演幽灵角色！"))
 		return FALSE
 	// NOVA EDIT ADDITION END
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
-		to_chat(user, span_warning("An admin has temporarily disabled non-admin ghost roles!"))
+		to_chat(user, span_warning("管理员已暂时禁用了非管理员的幽灵角色！"))
 		return FALSE
 	if(QDELETED(src) || QDELETED(user))
 		return FALSE
@@ -432,8 +432,8 @@
 	brute_damage = 1000
 
 /obj/effect/mob_spawn/cockroach
-	name = "Cockroach Spawner"
-	desc = "A spawner for cockroaches, the most common vermin in the station. Small chance to spawn a bloodroach."
+	name = "蟑螂生成器"
+	desc = "一个蟑螂生成器，蟑螂是空间站最常见的害虫。有小概率生成血蟑螂。"
 	mob_type = /mob/living/basic/cockroach
 	var/bloodroach_chance = 1 // 1% chance to spawn a bloodroach
 

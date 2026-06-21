@@ -1,7 +1,7 @@
 /turf/open/misc/dirt
 	gender = PLURAL
-	name = "dirt"
-	desc = "Upon closer examination, it's still dirt."
+	name = "污物"
+	desc = "仔细一看，这依然是泥土"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "dirt"
 	base_icon_state = "dirt"
@@ -16,8 +16,8 @@
 	rust_resistance = RUST_RESISTANCE_ORGANIC
 
 /turf/open/misc/dirt/station
-	name = "dirt flooring" //FOR THE LOVE OF GOD USE THIS INSTEAD OF DIRT FOR STATION MAPS
-	desc = "You heard this place was dirty, but this is just absurd."
+	name = "泥土地板" //FOR THE LOVE OF GOD USE THIS INSTEAD OF DIRT FOR STATION MAPS
+	desc = "你听说这地方很脏，但这未免也太离谱了。"
 	baseturfs = /turf/open/floor/plating
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	planetary_atmos = FALSE
@@ -48,8 +48,8 @@
 	base_icon_state = "greenerdirt"
 
 /turf/open/misc/dirt/jungle/wasteland //Like a more fun version of living in Arizona.
-	name = "cracked earth"
-	desc = "Looks a bit dry."
+	name = "龟裂的大地"
+	desc = "看起来有点干巴巴的。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "wasteland"
 	base_icon_state = "wasteland"
@@ -66,8 +66,8 @@
 	icon_state = "[initial(icon_state)]0"
 
 /turf/open/misc/grass/jungle
-	name = "jungle grass"
-	desc = "Greener on the other side."
+	name = "丛林草地"
+	desc = "另一边更绿"
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/misc/dirt

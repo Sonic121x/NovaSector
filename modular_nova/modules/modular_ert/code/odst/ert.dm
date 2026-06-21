@@ -1,5 +1,5 @@
 /datum/antagonist/ert/odst
-	name = "Orbital Drop Shock Trooper"
+	name = "轨道空降突击队"
 	role = "Trooper"
 	outfit = /datum/outfit/centcom/ert/odst
 
@@ -15,5 +15,5 @@
 	return TRUE
 
 /datum/antagonist/ert/odst/leader
-	name = "Orbital Drop Shock Trooper Leader"
+	name = "轨道空降突击队队长"
 	role = "Commander"

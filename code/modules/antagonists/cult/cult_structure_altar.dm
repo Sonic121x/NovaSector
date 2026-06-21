@@ -6,11 +6,11 @@
 
 // Cult altar. Gives out consumable items.
 /obj/structure/destructible/cult/item_dispenser/altar
-	name = "altar"
-	desc = "A bloodstained altar dedicated to Nar'Sie."
+	name = "祭坛"
+	desc = "一个献给纳西血痕祭坛"
 	cult_examine_tip = "Can be used to create eldritch whetstones, construct shells, and flasks of unholy water."
 	icon_state = "talismanaltar"
-	break_message = span_warning("The altar shatters, leaving only the wailing of the damned!")
+	break_message = span_warning("祭坛碎裂，只留下受诅咒者的哀嚎！")
 	mansus_conversion_path = /obj/effect/heretic_rune
 	custom_materials = list(/datum/material/runedmetal = SHEET_MATERIAL_AMOUNT * 3)
 
@@ -53,7 +53,7 @@
 	)
 
 /obj/structure/destructible/cult/item_dispenser/altar/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cult_italic("You kneel before [src] and your faith is rewarded with [spawned_item]!"))
+	to_chat(user, span_cult_italic("你跪拜在[src]前，你的虔诚得到了回报，获得了[spawned_item]！"))
 
 #undef ELDRITCH_WHETSTONE
 #undef CONSTRUCT_SHELL

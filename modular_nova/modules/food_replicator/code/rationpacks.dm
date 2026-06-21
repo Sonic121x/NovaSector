@@ -18,7 +18,7 @@
 	if(preserved_food)
 		preserved_food = FALSE
 		icon_state = "[base_icon_state]_unwrapped"
-		to_chat(user, span_notice("You unpackage \the [src]."))
+		to_chat(user, span_notice("你拆开了 \the [src]。"))
 		playsound(user.loc, 'sound/items/foodcanopen.ogg', 50)
 
 /obj/item/food/colonial_course/attack(mob/living/target, mob/user, def_zone)
@@ -355,13 +355,13 @@
 		if(atom_storage.locked == TRUE)
 			atom_storage.locked = FALSE
 			icon_state = "fruit_dumplings_pouch_open"
-			balloon_alert(user, "unsealed!")
+			balloon_alert(user, "已开封！")
 			update_appearance()
 		else
 			atom_storage.locked = TRUE
 			atom_storage.close_all()
 			icon_state = "fruit_dumplings_pouch"
-			balloon_alert(user, "resealed!")
+			balloon_alert(user, "已重新密封！")
 			update_appearance()
 
 /obj/item/food/colonial_course/fruit_dumpling
@@ -559,13 +559,13 @@
 		if(atom_storage.locked == TRUE)
 			atom_storage.locked = FALSE
 			icon_state = "mre_package_open"
-			balloon_alert(user, "unsealed!")
+			balloon_alert(user, "已开封！")
 			return ..()
 		else
 			atom_storage.locked = TRUE
 			atom_storage.close_all()
 			icon_state = "mre_package"
-			balloon_alert(user, "resealed!")
+			balloon_alert(user, "已重新密封！")
 			return
 
 /obj/item/storage/box/colonial_rations/PopulateContents()

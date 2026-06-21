@@ -11,8 +11,8 @@
  * Filing Cabinets
  */
 /obj/structure/filingcabinet
-	name = "filing cabinet"
-	desc = "A large cabinet with drawers."
+	name = "文件柜"
+	desc = "一个带有抽屉的大型橱柜。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "filingcabinet"
 	density = TRUE
@@ -20,12 +20,12 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/filingcabinet/chestdrawer
-	name = "chest drawer"
+	name = "抽屉式储物柜"
 	icon_state = "chestdrawer"
 
 /obj/structure/filingcabinet/chestdrawer/wheeled
-	name = "rolling chest drawer"
-	desc = "A small cabinet with drawers. This one has wheels!"
+	name = "旋转式置物柜抽屉"
+	desc = "一个带抽屉的小柜子。这个还有轮子呢！"
 	anchored = FALSE
 
 /obj/structure/filingcabinet/white
@@ -45,19 +45,19 @@
 
 /obj/structure/filingcabinet/attackby(obj/item/P, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(P.tool_behaviour == TOOL_WRENCH && LAZYACCESS(modifiers, RIGHT_CLICK))
-		to_chat(user, span_notice("You begin to [anchored ? "unwrench" : "wrench"] [src]."))
+		to_chat(user, span_notice("你开始[anchored ? "unwrench" : "wrench"] [src]。"))
 		if(P.use_tool(src, user, 20, volume=50))
-			to_chat(user, span_notice("You successfully [anchored ? "unwrench" : "wrench"] [src]."))
+			to_chat(user, span_notice("你成功[anchored ? "unwrench" : "wrench"]了 [src]。"))
 			set_anchored(!anchored)
 	else if(P.w_class < WEIGHT_CLASS_NORMAL)
 		if(!user.transferItemToLoc(P, src))
 			return
-		to_chat(user, span_notice("You put [P] in [src]."))
+		to_chat(user, span_notice("你将[P]放入了[src]。"))
 		icon_state = "[initial(icon_state)]-open"
 		sleep(0.5 SECONDS)
 		icon_state = initial(icon_state)
 	else if(!user.combat_mode || (P.item_flags & NOBLUDGEON))
-		to_chat(user, span_warning("You can't put [P] in [src]!"))
+		to_chat(user, span_warning("你不能把[P]放进[src]里！"))
 	else
 		return ..()
 
@@ -113,7 +113,7 @@
 				step_rand(I)
 			to_chat(user, span_notice("You pull \a [I] out of [src] at random."))
 			return
-	to_chat(user, span_notice("You find nothing in [src]."))
+	to_chat(user, span_notice("你在[src]里什么都没找到。"))
 
 /*
  * Security Record Cabinets

@@ -26,7 +26,7 @@
 	base_lighting_color = null
 
 /area/misc/start
-	name = "start area"
+	name = "起始区域"
 	icon_state = "start"
 	requires_power = FALSE
 	static_lighting = FALSE
@@ -40,10 +40,10 @@
 	// Mobs should be able to see inside the testroom
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-	name = "Test Room"
+	name = "测试房间"
 	icon_state = "test_room"
 
 /area/misc/testroom/gateway_room
-	name = "Gateway Room"
+	name = "传送门房间"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "gateway"

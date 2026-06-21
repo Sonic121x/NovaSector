@@ -1,7 +1,7 @@
 // Accessories that mostly or entirely cover a shirt.
 /obj/item/clothing/accessory/waistcoat
-	name = "waistcoat"
-	desc = "For some classy, murderous fun."
+	name = "马甲"
+	desc = "为了某些优雅而致命的乐趣。"
 	icon = 'icons/map_icons/clothing/accessory.dmi'
 	icon_state = "/obj/item/clothing/accessory/waistcoat"
 	post_init_icon_state = "waistcoat"
@@ -32,8 +32,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/accessory/vest_sheriff
-	name = "sheriff vest"
-	desc = "Now you just have to pick your favourite deputy."
+	name = "警长马甲"
+	desc = "现在你只需要挑选你最喜欢的副手了。"
 	icon_state = "vest_sheriff"
 	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
@@ -42,8 +42,8 @@
 	attachment_slot = NONE
 
 /obj/item/clothing/accessory/maidapron
-	name = "maid apron"
-	desc = "The best part of a maid costume."
+	name = "女仆围裙"
+	desc = "女仆装最好的部分。"
 	icon_state = "maidapron"
 	inhand_icon_state = "maidapron"
 	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'

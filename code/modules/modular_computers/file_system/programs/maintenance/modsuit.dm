@@ -27,7 +27,7 @@
 		unsync_modsuit()
 	controlled_suit = new_modsuit
 	RegisterSignal(controlled_suit, COMSIG_QDELETING, PROC_REF(unsync_modsuit))
-	user?.balloon_alert(user, "suit updated")
+	user?.balloon_alert(user, "已更新套装")
 
 /datum/computer_file/program/maintenance/modsuit_control/proc/unsync_modsuit(atom/source)
 	SIGNAL_HANDLER

@@ -82,18 +82,18 @@
 	meal_category = MEAL_DESSERT
 
 /datum/crafting_recipe/food/reaction/chocolatebar
-	name = "Chocolate bar"
+	name = "巧克力棒"
 	reaction = /datum/chemical_reaction/food/chocolate_bar3
 	result = /obj/item/food/chocolatebar
 	dish_category = DISH_CANDY
 	meal_category = MEAL_DESSERT
 
 /datum/crafting_recipe/food/reaction/chocolatebar/chocomilk
-	name = "Chocolate bar (choco milk)"
+	name = "巧克力棒（巧克力牛奶）"
 	reaction = /datum/chemical_reaction/food/chocolate_bar2
 
 /datum/crafting_recipe/food/reaction/chocolatebar/vegan
-	name = "Chocolate bar (vegan)"
+	name = "巧克力棒（素食）"
 	reaction = /datum/chemical_reaction/food/chocolate_bar
 
 /datum/crafting_recipe/food/reaction/soysauce
@@ -129,13 +129,13 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/reaction/cakebatter
-	name = "Cake batter"
+	name = "蛋糕面糊"
 	reaction = /datum/chemical_reaction/food/cakebatter
 	result = /obj/item/food/cakebatter
 	dish_category = DISH_CAKE
 
 /datum/crafting_recipe/food/reaction/cakebatter/vegan
-	name = "Cake batter (vegan)"
+	name = "蛋糕面糊（素食）"
 	reaction = /datum/chemical_reaction/food/cakebatter/vegan
 	result = /obj/item/food/cakebatter/vegan
 

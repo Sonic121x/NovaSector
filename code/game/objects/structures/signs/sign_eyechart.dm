@@ -44,9 +44,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/eyechart, 32)
 
 	. += "<hr>You read through the chart, for old time's sake."
 	if(eye_goodness <= 0)
-		. += span_notice("\"E, F, P...\" Yep, you can read down to the [colorblind ? "brown - wait, isn't it supposed to be red? -" : "red"] line.")
+		. += span_notice("\"E, F, P...\" 是的，你可以读到[colorblind ? "brown - wait, isn't it supposed to be red? -" : "red"]那一行。")
 	else if(eye_goodness < little_bad)
-		. += span_notice("\"E, F, P...\" You can make out most of the letters, but it gets a bit difficult past the [colorblind ? "grey - wait, isn't it supposed to be green? -" : "green"] line.")
+		. += span_notice("\"E, F, P...\" 你能辨认出大部分字母，但过了[colorblind ? "grey - wait, isn't it supposed to be green? -" : "green"]那一行就有点困难了。")
 	else if(eye_goodness < very_bad)
 		. += span_warning("\"E, F, P..?\" You can make out the big letters, but the smaller ones are a bit of a blur.")
 	else

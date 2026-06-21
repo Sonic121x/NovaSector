@@ -39,8 +39,8 @@
 	blackbox_key = "mining_voucher_redeemed"
 
 /datum/voucher_set/mining/crusher_kit
-	name = "Crusher Kit"
-	description = "Contains a kinetic crusher, expanded pocket oxygen tank and a pocket fire extinguisher. Kinetic crusher is a versatile melee mining tool capable both of mining and fighting local fauna, however it is difficult to use effectively for anyone but most skilled and/or suicidal miners."
+	name = "破碎机套"
+	description = "包含一把动能粉碎者、一个扩展型便携氧气罐和一个便携灭火器。动能粉碎者是一种多用途近战采矿工具，既能采矿也能对抗当地生物，但除了最有经验和/或最不怕死的矿工外，其他人很难有效使用它。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "crusher"
 	set_items = list(
@@ -50,8 +50,8 @@
 	)
 
 /datum/voucher_set/mining/extraction_kit
-	name = "Extraction and Rescue Kit"
-	description = "Contains a fulton extraction pack and a beacon signaller, which allows you to send back home minerals, items and dead bodies without having to use the mining shuttle. And as a bonus, you get 30 marker beacons to help you better mark your path."
+	name = "提取和营救套"
+	description = "包含一套富尔顿提取包和一个信标信号器，让你无需使用采矿穿梭机就能将矿物、物品和尸体送回站内。作为额外奖励，你还获得30个标记信标，帮助你更好地标记路径。"
 	icon = 'icons/obj/fulton.dmi'
 	icon_state = "extraction_pack"
 	set_items = list(
@@ -61,8 +61,8 @@
 	)
 
 /datum/voucher_set/mining/resonator_kit
-	name = "Resonator Kit"
-	description = "Contains a resonator and a pocket fire extinguisher. Resonator is a handheld device that creates small fields of energy that resonate until they detonate, crushing rock. It does increased damage in low pressure."
+	name = "谐振器套"
+	description = "包含一个谐振器和一台便携灭火器。谐振器是一种手持设备，能产生小型能量场，这些能量场会共振直至爆炸，从而粉碎岩石。它在低压环境下会造成额外伤害。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "resonator"
 	set_items = list(
@@ -71,8 +71,8 @@
 	)
 
 /datum/voucher_set/mining/survival_capsule
-	name = "Survival Capsule and Explorer's Webbing"
-	description = "Contains an explorer's webbing, which allows you to carry even more mining equipment and already has a spare shelter capsule in it."
+	name = "庇护所胶囊和探险家携行具"
+	description = "包含一件探险家背带，让你能携带更多采矿装备，并且里面已经备有一个备用庇护所胶囊。"
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "explorer1"
 	set_items = list(
@@ -80,8 +80,8 @@
 	)
 
 /datum/voucher_set/mining/minebot_kit
-	name = "Minebot Kit"
-	description = "Contains a little minebot companion that helps you in storing ore and hunting wildlife. Also comes with an upgraded industrial welding tool (80u), a welding mask and a KA modkit that allows shots to pass through the minebot."
+	name = "挖矿机器人套"
+	description = "包含一个小型矿工机器人伙伴，它能帮助你储存矿石和狩猎野生动物。套装还附带一个升级版工业焊枪（80单位燃料）、一个焊接面罩以及一个能让射击穿透矿工机器人的KA改装套件。"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "mining_drone"
 	set_items = list(
@@ -92,8 +92,8 @@
 	)
 
 /datum/voucher_set/mining/conscription_kit
-	name = "Mining Conscription Kit"
-	description = "Contains a whole new mining starter kit for one crewmember, consisting of a proto-kinetic accelerator, a survival knife, a seclite, an explorer's suit, mesons, an automatic mining scanner, a mining satchel, a gas mask, a mining radio key and a special ID card with a basic mining access."
+	name = "采矿征兵包"
+	description = "包含一套全新的矿工入门装备，供一名船员使用，包括一把原型动能加速器、一把生存刀、一个手电筒、一套勘探服、透视眼镜、自动矿物扫描仪、一个矿工背包、一个防毒面具、一个矿工无线电钥匙以及一张带有基础矿工权限的特殊ID卡。"
 	icon = 'icons/obj/storage/backpack.dmi'
 	icon_state = "duffel-explorer"
 	set_items = list(
@@ -101,8 +101,8 @@
 	)
 
 /datum/voucher_set/mining/punching_mitts
-	name = "Punching Mitts"
-	description = "Contains a pair of punching mitts for turning the local wilderness into the local gravel pit with your BARE HANDS."
+	name = "拳击手套"
+	description = "包含一副拳击手套，让你用赤手空拳将当地荒野变成碎石坑。"
 	icon = 'icons/obj/clothing/gloves.dmi'
 	icon_state = "punch_mitts"
 	set_items = list(

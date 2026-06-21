@@ -152,15 +152,15 @@
 		disk_ban += "powers"
 
 	if(length(import_ban))
-		to_chat(neo, span_warning("This domain forbids the use of [english_list(import_ban)], your externally loaded [english_list(disk_ban)] will not be granted!"))
+		to_chat(neo, span_warning("此域禁止使用[english_list(import_ban)]，你外部加载的[english_list(disk_ban)]将不会被授予！"))
 
 	var/return_flags = NONE
 	return_flags = SEND_SIGNAL(neo, COMSIG_BITRUNNER_STOCKING_GEAR, avatar, domain_forbids_flags)
 
 	if(return_flags & BITRUNNER_GEAR_LOAD_FAILED)
-		to_chat(neo, span_warning("At least one of your external data sources has encountered a failure in its loading process. Check for overlapping or inactive disks."))
+		to_chat(neo, span_warning("你的至少一个外部数据源在其加载过程中遇到了故障。请检查是否存在重叠或未激活的磁盘。"))
 	if(return_flags & BITRUNNER_GEAR_LOAD_BLOCKED)
-		to_chat(neo, span_warning("At least one of your external data sources has been blocked from fully loading. Check domain restrictions."))
+		to_chat(neo, span_warning("至少有一个外部数据源被阻止完全加载。请检查域名限制。"))
 
 	var/obj/item/organ/brain/neo_brain = neo.get_organ_slot(ORGAN_SLOT_BRAIN)
 	for(var/obj/item/skillchip/skill_chip as anything in neo_brain?.skillchips)

@@ -20,7 +20,7 @@
  * minor hangs over and over again.
  */
 SUBSYSTEM_DEF(verb_manager)
-	name = "Verb Manager"
+	name = "指令管理器"
 	wait = 1
 	ss_flags = SS_TICKER | SS_NO_INIT
 	priority = FIRE_PRIORITY_DELAYED_VERBS

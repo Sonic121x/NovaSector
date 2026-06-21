@@ -1,6 +1,6 @@
 /obj/item/seeds/amauri
-	name = "amauri seed pack"
-	desc = "These seeds grow into amauri plants. Grows bulbs full of potent toxins."
+	name = "阿莫里种子包"
+	desc = "这些种子会长成阿莫里植株。结出充满强效毒素的球茎。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "amauri"
 	species = "amauri"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/amauri
 	seed = /obj/item/seeds/amauri
-	name = "amauri"
-	desc = "A toxic amauri bulb, you shouldn't eat this."
+	name = "阿莫里"
+	desc = "一个有毒的阿莫里球茎，你不该吃这个。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "amauri"
 	filling_color = "#FF4500"

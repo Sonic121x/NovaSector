@@ -163,7 +163,7 @@
 
 	if(isliving(source))
 		var/mob/living/owner = source
-		to_chat(owner, span_boldwarning("Your [network_name] breaks!"))
+		to_chat(owner, span_boldwarning("你的[network_name]断裂了！"))
 
 	qdel(src)
 
@@ -210,7 +210,7 @@
 	else
 		stack_trace("[type] was created without a valid linker_action_path. No one will be able to link to it.")
 
-	to_chat(owner, span_boldnotice("You establish a [network_name], allowing you to link minds to communicate telepathically."))
+	to_chat(owner, span_boldnotice("你建立了一个[network_name]，允许你链接心灵以进行心灵感应交流。"))
 
 /datum/component/mind_linker/active_linking/Destroy()
 	QDEL_NULL(linker_action)
@@ -229,9 +229,9 @@
 	RegisterSignal(to_link, COMSIG_MINDSHIELD_IMPLANTED, PROC_REF(sig_unlink_mob))
 	var/mob/living/owner = parent
 	to_chat(to_link, span_notice(link_message))
-	to_chat(owner, span_notice("You connect [to_link]'s mind to your [network_name]."))
+	to_chat(owner, span_notice("你将[to_link]的心灵连接到了你的[network_name]。"))
 	for(var/mob/living/other_link as anything in linked_mobs)
-		to_chat(other_link, span_notice("You feel a new presence within [owner.real_name]'s [network_name]."))
+		to_chat(other_link, span_notice("你感觉到[owner.real_name]的[network_name]中出现了一个新的存在。"))
 
 /datum/component/mind_linker/active_linking/unlink_mob(mob/living/to_unlink)
 	. = ..()
@@ -241,14 +241,14 @@
 	UnregisterSignal(to_unlink, COMSIG_MINDSHIELD_IMPLANTED)
 	var/mob/living/owner = parent
 	to_chat(to_unlink, span_warning(unlink_message))
-	to_chat(owner, span_warning("You feel someone disconnect from your [network_name]."))
+	to_chat(owner, span_warning("你感觉到有人从你的[network_name]中断开了连接。"))
 	for(var/mob/living/other_link as anything in linked_mobs)
-		to_chat(other_link, span_warning("You feel a pressence disappear from [owner.real_name]'s [network_name]."))
+		to_chat(other_link, span_warning("你感觉到一个存在从[owner.real_name]的[network_name]中消失了。"))
 
 // Used in mind linker to talk to everyone in the network.
 /datum/action/innate/linked_speech
-	name = "Mind Link Speech"
-	desc = "Send a psychic message to everyone connected to your Link."
+	name = "心灵链接传讯"
+	desc = "向所有连接到你的链接的人发送一条心灵讯息。"
 	button_icon_state = "link_speech"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
@@ -262,8 +262,8 @@
 		return
 
 	var/datum/component/mind_linker/linker = Target
-	name = "[linker.network_name] Speech"
-	desc = "Send a psychic message to everyone connected to your [linker.network_name]."
+	name = "[linker.network_name]传讯"
+	desc = "向所有连接到你的[linker.network_name]的人发送一条心灵感应信息。"
 	button_icon = linker.speech_action_icon
 	button_icon_state = linker.speech_action_icon_state
 	background_icon_state = linker.speech_action_background_icon_state
@@ -275,12 +275,12 @@
 	var/datum/component/mind_linker/linker = target
 	var/mob/living/linker_parent = linker.parent
 
-	var/message = tgui_input_text(owner, "Enter a message to transmit.", "[linker.network_name] Telepathy", max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(owner, "输入要发送的信息。", "[linker.network_name] 心灵感应", max_length = MAX_MESSAGE_LEN)
 	if(!message || QDELETED(src) || QDELETED(owner) || owner.stat == DEAD)
 		return
 
 	if(QDELETED(linker))
-		to_chat(owner, span_warning("The link seems to have been severed."))
+		to_chat(owner, span_warning("链接似乎已被切断。"))
 		return
 
 	var/formatted_message = "<i><font color=[linker.chat_color]>\[[linker_parent.real_name]'s [linker.network_name]\] <b>[owner]:</b> [message]</font></i>"

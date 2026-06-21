@@ -4,7 +4,7 @@
  * When upgraded, it can hold more boulders and process more at once.
  */
 /obj/machinery/bouldertech/refinery
-	name = "boulder refinery"
+	name = "巨石精炼机"
 	desc = "Accepts boulders and refines non-metallic ores into sheets using internal chemicals."
 	icon_state = "stacker"
 	base_icon_state = "stacker"
@@ -108,7 +108,7 @@
  * When upgraded, it can hold more boulders and process more at once.
  */
 /obj/machinery/bouldertech/refinery/smelter
-	name = "boulder smelter"
+	name = "巨石熔炼机"
 	desc = "Accept boulders and refines metallic ores into sheets."
 	icon_state = "smelter"
 	base_icon_state = "smelter"
@@ -162,6 +162,6 @@
 	update_light_value()
 
 /obj/machinery/bouldertech/refinery/smelter/maim_golem(mob/living/carbon/human/rockman)
-	rockman.visible_message(span_warning("[rockman] is processed by [src]!"), span_userdanger("You get melted into rock by [src]!"))
+	rockman.visible_message(span_warning("[rockman]被[src]处理了！"), span_userdanger("你被[src]熔化成岩石了！"))
 	rockman.investigate_log("was melted by [src] for being a golem", INVESTIGATE_DEATHS)
 	rockman.dust()

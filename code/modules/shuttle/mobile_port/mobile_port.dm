@@ -1,5 +1,5 @@
 /obj/docking_port/mobile
-	name = "shuttle"
+	name = "穿梭机"
 	icon_state = "mobile"
 
 	area_type = SHUTTLE_DEFAULT_SHUTTLE_AREA_TYPE
@@ -68,7 +68,7 @@
 	if(!shuttle_id)
 		shuttle_id = "shuttle"
 	if(!name)
-		name = "shuttle"
+		name = "穿梭机"
 	var/counter = 1
 	var/tmp_id = shuttle_id
 	var/tmp_name = name
@@ -188,7 +188,7 @@
 		shuttle_id = "shuttle"
 
 	if(!name)
-		name = "shuttle"
+		name = "穿梭机"
 
 	var/counter = SSshuttle.assoc_mobile[shuttle_id]
 	if(!replace || !counter)

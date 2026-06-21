@@ -1,7 +1,7 @@
 ///Used to make mobs from microbiological samples. Grow grow grow.
 /obj/machinery/vatgrower
-	name = "growing vat"
-	desc = "Tastes just like the chef's soup."
+	name = "生长罐"
+	desc = "味道就跟那位厨师做的汤一模一样。"
 	icon = 'icons/obj/science/vatgrowing.dmi'
 	icon_state = "growing_vat"
 	density = TRUE
@@ -51,7 +51,7 @@
 		if(!prob(10))
 			return
 		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
-		audible_message(pick(list(span_notice("[src] grumbles!"), span_notice("[src] makes a splashing noise!"), span_notice("[src] sloshes!"))))
+		audible_message(pick(list(span_notice("[src] 咕噜作响！"), span_notice("[src] 发出溅水声！"), span_notice("[src] 哗啦作响！"))))
 	use_energy(active_power_usage * seconds_per_tick)
 
 /obj/machinery/vatgrower/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -76,7 +76,7 @@
 	if(obj_flags & EMAGGED)
 		return
 	resampler_active = !resampler_active
-	balloon_alert(user, "resampler [resampler_active ? "activated" : "deactivated"]")
+	balloon_alert(user, "重采样器[resampler_active ? "activated" : "deactivated"]")
 	update_appearance()
 
 /obj/machinery/vatgrower/attack_hand_secondary(mob/user, list/modifiers)
@@ -85,29 +85,29 @@
 		return
 	if(!anchored)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	var/warning = tgui_alert(user, "Are you sure you want to empty the soup container?","Flush soup container?", list("Flush", "Cancel"))
+	var/warning = tgui_alert(user, "你确定要清空培养液容器吗？","清空培养液容器？", list("Flush", "Cancel"))
 	if(warning == "Flush" && user.can_perform_action(src))
 		reagents.clear_reagents()
 		if(biological_sample)
 			QDEL_NULL(biological_sample)
-		balloon_alert(user, "container empty")
+		balloon_alert(user, "容器已清空")
 	update_appearance()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 ///Creates a clone of the supplied sample and puts it in the vat
 /obj/machinery/vatgrower/proc/deposit_sample(mob/user, obj/item/petri_dish/petri)
 	if(!petri.sample)
-		balloon_alert(user, "dish empty")
+		balloon_alert(user, "培养皿为空")
 		return ITEM_INTERACT_FAILURE
 	if(biological_sample)
-		balloon_alert(user, "already has a sample")
+		balloon_alert(user, "已有样本")
 		return ITEM_INTERACT_FAILURE
 	biological_sample = new
 	for(var/datum/micro_organism/m in petri.sample.micro_organisms)
 		biological_sample.micro_organisms += new m.type()
 	biological_sample.sample_layers = petri.sample.sample_layers
 	biological_sample.sample_color = petri.sample.sample_color
-	balloon_alert(user, "added sample")
+	balloon_alert(user, "已添加样本")
 	playsound(src, 'sound/effects/bubbles/bubbles.ogg', 50, TRUE)
 	update_appearance()
 	RegisterSignal(biological_sample, COMSIG_SAMPLE_GROWTH_COMPLETED, PROC_REF(on_sample_growth_completed))
@@ -118,7 +118,7 @@
 	. = ..()
 	if(!biological_sample)
 		return
-	. += span_notice("It seems to have a sample in it!")
+	. += span_notice("它里面似乎有一个样本！")
 	for(var/i in biological_sample.micro_organisms)
 		var/datum/micro_organism/MO = i
 		. += MO.get_details(HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER))
@@ -159,7 +159,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "resampling circuit overloaded")
+	balloon_alert(user, "重采样电路过载")
 	flick("growing_vat_emagged", src)
 	return TRUE
 
@@ -173,8 +173,8 @@
 	update_appearance()
 
 /obj/machinery/vatgrower/small
-	name = "small growing vat"
-	desc = "Tastes just like the chef's soup. Fit for growing organ tissue samples."
+	name = "小型培养缸"
+	desc = "尝起来就像厨师的汤。适合培养器官组织样本。"
 	icon_state = "growing_vat_small"
 	density = FALSE
 	pass_flags_self = PASSMACHINE | LETPASSTHROW

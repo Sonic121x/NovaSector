@@ -94,12 +94,12 @@
 ///Proc to run on a successful taming attempt
 /mob/living/basic/pet/dog/tamed(mob/living/tamer, atom/food)
 	. = ..()
-	visible_message(span_notice("[src] licks at [tamer] in a friendly manner!"))
+	visible_message(span_notice("[src] 友好地舔了舔 [tamer]！"))
 
 /// A dog bone fully heals a dog, and befriends it if it's not your friend.
 /obj/item/dog_bone
-	name = "jumbo dog bone"
-	desc = "A tasty femur full of juicy marrow, the perfect gift for your best friend."
+	name = "巨型狗骨头"
+	desc = "一根充满美味骨髓的股骨，是送给你最好朋友的完美礼物。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "skeletonmeat"

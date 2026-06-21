@@ -2,8 +2,8 @@
 // So, in lieu of figuring out their resprite finally - weird compromise with an old sprite lol
 
 /obj/item/clothing/neck/collar/spike
-	name = "spiked collar"
-	desc = "A collar, fit with a locking clasp and a handful of dull spikes."
+	name = "尖刺项圈"
+	desc = "一个项圈，配有锁扣和一些钝刺。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/collar/spike"
 	post_init_icon_state = "spike"

@@ -1,18 +1,18 @@
 /obj/item/paper/pamphlet
-	name = "pamphlet"
+	name = "手册"
 	icon_state = "pamphlet"
 	show_written_words = FALSE
 
 /obj/item/paper/pamphlet/radstorm
-	name = "pamphlet - \'Radstorm Safety Measures and How to Not Become Monkey\'"
+	name = "小册子 - 《辐射风暴安全措施以及如何不变成猴子》"
 	default_raw_text = "Has your station's preemptive radstorm safety alarm gone off and you don't see a nearby maintenance hatch to escape to? Never fear, for NT truly thinks of everything! \
 		Several public-access shelters have been installed around the upper station with express purpose of protecting your fragile meaty bits from becoming the next medical disaster! \
 		Please see subsection 4.3 V2-3 in your employee handbook for appropriate procedures to deal with excessive radiation damage if you do not make it to a shelter in time."
 
 
 /obj/item/paper/pamphlet/violent_video_games
-	name = "pamphlet - \'Violent Video Games and You\'"
-	desc = "A pamphlet encouraging the reader to maintain a balanced lifestyle and take care of their mental health, while still enjoying video games in a healthy way. You probably don't need this..."
+	name = "小册子 - 《暴力视频游戏与你》"
+	desc = "一本小册子，鼓励读者保持均衡的生活方式并关注心理健康，同时仍能以健康的方式享受电子游戏。你可能并不需要它……"
 	default_raw_text = "They don't make you kill people. There, we said it. Now get back to work!"
 
 /obj/item/paper/pamphlet/gateway
@@ -62,7 +62,7 @@
 
 /obj/item/paper/pamphlet/cybernetics/update_desc(updates)
 	. = ..()
-	desc = "A pamphlet encouraging the reader to implant themselves.[sample ? " Has an attached \"sample\"..." : ""]"
+	desc = "一份鼓励读者给自己植入植入体的小册子。[sample ? " Has an attached \"sample\"..." : ""]"
 
 /obj/item/paper/pamphlet/cybernetics/Destroy()
 	QDEL_NULL(sample)
@@ -76,6 +76,6 @@
 
 /obj/item/paper/pamphlet/cybernetics/attack_self(mob/user, modifiers)
 	. = ..()
-	to_chat(user, span_notice("As you read the pamphlet, a free sample falls out!"))
+	to_chat(user, span_notice("当你阅读小册子时，一份免费样品掉了出来！"))
 	sample.forceMove(drop_location())
 	playsound(sample, 'sound/misc/splort.ogg', 50, vary = TRUE)

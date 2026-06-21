@@ -1,6 +1,6 @@
 /obj/item/clothing/head/hair_tie
-	name = "hair tie"
-	desc = "An elastic hair tie, made to hold your hair up!"
+	name = "发圈"
+	desc = "一个弹力发圈，用来束起你的头发！"
 	icon = 'modular_nova/modules/salon/icons/items.dmi'
 	icon_state = "hairtie"
 	worn_icon = 'modular_nova/modules/salon/icons/items.dmi'
@@ -22,19 +22,19 @@
 	var/projectile_aim_radius = 30
 
 /obj/item/clothing/head/hair_tie/scrunchie
-	name = "scrunchie"
-	desc = "An elastic hair tie, its fabric is velvet soft."
+	name = "发绳"
+	desc = "一个弹力发圈，其面料如天鹅绒般柔软。"
 	icon_state = "hairtie_scrunchie"
 
 /obj/item/clothing/head/hair_tie/plastic_beads
-	name = "colorful hair tie"
-	desc = "An elastic hair tie, adornished with colorful plastic beads."
+	name = "彩色发圈"
+	desc = "一个弹力发圈，装饰着彩色塑料珠。"
 	icon_state = "hairtie_beads"
 	custom_materials = (list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT))
 
 /obj/item/clothing/head/hair_tie/syndicate
-	name = "\improper Syndicate hair tie"
-	desc = "An elastic hair tie with a metal clip, brandishing the logo of the Syndicate."
+	name = "\improper 辛迪加发圈"
+	desc = "一个带有金属夹的弹力发圈，印有辛迪加的徽标。"
 	icon_state = "hairtie_syndie"
 	fire_speed = 1.5 SECONDS
 	projectile_to_fire = /obj/projectile/bullet/hair_tie/syndicate
@@ -43,9 +43,9 @@
 /obj/item/clothing/head/hair_tie/examine(mob/user)
 	. = ..()
 	if(picked_hairstyle)
-		. += span_notice("Wearing it will change your hairstyle to '[picked_hairstyle]'.")
-	. += span_notice("<b>Use in hand</b> to pick a new hairstyle.")
-	. += span_notice("<b>Alt-click</b> [src] to fling it.")
+		. += span_notice("佩戴它会将你的发型改为'[picked_hairstyle]'。")
+	. += span_notice("<b>在手中使用</b>以选择新发型。")
+	. += span_notice("<b>Alt-点击</b> [src] 将其甩出。")
 
 /obj/item/clothing/head/hair_tie/mob_can_equip(mob/living/carbon/human/user, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(user.hairstyle == "Bald") //could create a list of the bald hairstyles to check
@@ -53,9 +53,9 @@
 	return ..()
 
 /obj/item/clothing/head/hair_tie/attack_self(mob/user)
-	var/hair_id = tgui_input_list(user, "How does your hair look when it's up?", "Pick!", SSaccessories.hairstyles_list)
+	var/hair_id = tgui_input_list(user, "你的头发扎起来是什么样子？", "选择！", SSaccessories.hairstyles_list)
 	if(!hair_id || hair_id == "Bald")
-		balloon_alert(user, "error!")
+		balloon_alert(user, "错误！")
 		return
 	balloon_alert(user, "[hair_id]")
 	picked_hairstyle = hair_id
@@ -67,8 +67,8 @@
 	if(!picked_hairstyle)
 		return
 	user.visible_message(
-		span_notice("[user.name] ties up [user.p_their()] hair."),
-		span_notice("You tie up your hair!"),
+		span_notice("[user.name] 将 [user.p_their()] 头发扎了起来。"),
+		span_notice("你扎起了自己的头发！"),
 	)
 	actual_hairstyle = user.hairstyle
 	user.set_hairstyle(picked_hairstyle, update = TRUE)
@@ -80,19 +80,19 @@
 	if(!picked_hairstyle || !actual_hairstyle)
 		return
 	user.visible_message(
-		span_notice("[user.name] takes [src] out of [user.p_their()] hair."),
-		span_notice("You let down your hair!"),
+		span_notice("[user.name] 将 [src] 从 [user.p_their()] 头发上取了下来。"),
+		span_notice("你放下了头发！"),
 	)
 	user.set_hairstyle(actual_hairstyle, update = TRUE)
 	actual_hairstyle = null
 
 /obj/item/clothing/head/hair_tie/click_alt(mob/living/user)
 	if(!(user.get_slot_by_item(src) == ITEM_SLOT_HANDS))
-		balloon_alert(user, "hold in-hand!")
+		balloon_alert(user, "请拿在手上！")
 		return CLICK_ACTION_BLOCKING
 	user.visible_message(
-		span_danger("[user.name] puts [src] around [user.p_their()] fingers, beginning to flick it!"),
-		span_notice("You try to flick [src]!"),
+		span_danger("[user.name] 将 [src] 绕在 [user.p_their()] 手指上，开始弹它！"),
+		span_notice("你试图弹 [src]！"),
 	)
 	flick_hair_tie(user)
 	return CLICK_ACTION_SUCCESS

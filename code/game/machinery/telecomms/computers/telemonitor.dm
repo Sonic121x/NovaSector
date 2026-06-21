@@ -3,8 +3,8 @@
 #define MAX_NETWORK_ID_LENGTH 15
 
 /obj/machinery/computer/telecomms/monitor
-	name = "telecommunications monitoring console"
-	desc = "Monitors the details of the telecommunications network it's synced with."
+	name = "电信监控控制台"
+	desc = "监控与其同步的电信网络的详细信息。"
 	circuit = /obj/item/circuitboard/computer/comm_monitor
 
 	icon_screen = "comm_monitor"

@@ -1,7 +1,7 @@
 /// Generic reagent applicator type for pills and patches
 /obj/item/reagent_containers/applicator
-	name = "generic reagent applicator"
-	desc = "Report this please."
+	name = "通用试剂涂抹器"
+	desc = "请报告此问题。"
 	abstract_type = /obj/item/reagent_containers/applicator
 	has_variable_transfer_amount = FALSE
 	/// Action string displayed in vis_message
@@ -32,18 +32,18 @@
 
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(target_mob == user)
-		target_mob.visible_message(span_notice("[user] attempts to [apply_method] [src]."))
+		target_mob.visible_message(span_notice("[user]试图[apply_method][src]。"))
 		if(self_delay)
 			if(!do_after(user, self_delay, target_mob))
 				return ITEM_INTERACT_BLOCKING
-		to_chat(target_mob, span_notice("You [apply_method] [src]."))
+		to_chat(target_mob, span_notice("你[apply_method]了[src]。"))
 		on_consumption(user, user, modifiers)
 		return ITEM_INTERACT_SUCCESS
 
-	target_mob.visible_message(span_danger("[user] attempts to force [target_mob] to [apply_method] [src]."), span_userdanger("[user] attempts to force you to [apply_method] [src]."))
+	target_mob.visible_message(span_danger("[user]试图强迫[target_mob][apply_method][src]。"), span_userdanger("[user]试图强迫你[apply_method][src]。"))
 	if(!do_after(user, CHEM_INTERACT_DELAY(application_delay, user), target_mob))
 		return ITEM_INTERACT_BLOCKING
 
-	target_mob.visible_message(span_danger("[user] forces [target_mob] to [apply_method] [src]."), span_userdanger("[user] forces you to [apply_method] [src]."))
+	target_mob.visible_message(span_danger("[user]强迫[target_mob][apply_method][src]。"), span_userdanger("[user]强迫你[apply_method][src]。"))
 	on_consumption(target_mob, user, modifiers)
 	return ITEM_INTERACT_SUCCESS

@@ -1,6 +1,6 @@
 /obj/item/flashlight/sky_lantern
-	name = "sky lantern"
-	desc = "A delicate paper lantern designed to float and glow. Often released during festivals or rituals."
+	name = "天灯"
+	desc = "一种设计用于漂浮和发光的精致纸灯笼。通常在节日或仪式中放飞。"
 	icon = 'modular_nova/modules/holidays/sky_lanterns/icons/sky_lanterns.dmi'
 	icon_state = "sky_lantern" //Sprites by diltyrr on Nova's discord.
 	light_range = 4
@@ -65,7 +65,7 @@
 	update_floating_state_immediate()
 
 /datum/crafting_recipe/sky_lantern
-	name = "sky lantern"
+	name = "天灯"
 	result = /obj/item/flashlight/sky_lantern
 	reqs = list(/obj/item/paper = 2, /obj/item/flashlight/flare/candle = 1, /obj/item/stack/cable_coil = 1)
 	time = 5 SECONDS

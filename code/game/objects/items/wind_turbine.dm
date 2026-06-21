@@ -213,17 +213,17 @@
 /obj/item/portable_wind_turbine/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(charging)
-		user.balloon_alert(user, "remove the [charging] first!")
+		user.balloon_alert(user, "先把 [charging] 拆下来！")
 		return FALSE
 	if(cap)
 		tool.play_tool_sound(src, 50)
-		user.balloon_alert(user, "capacitor removed")
+		user.balloon_alert(user, "电容器已移除")
 		cap.forceMove(drop_location())
 		available_power = 0
 		cap = null
 		return TRUE
 	else
-		user.balloon_alert(user, "no capacitor!")
+		user.balloon_alert(user, "没有电容器！")
 		return FALSE
 
 /obj/item/portable_wind_turbine/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -246,24 +246,24 @@
 /obj/item/portable_wind_turbine/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/stock_parts/capacitor))
 		if (cap)
-			balloon_alert(user, "already has a capacitor!")
+			balloon_alert(user, "已经装有电容器了！")
 			return TRUE
 		user.transferItemToLoc(attacking_item, src)
 		cap = attacking_item
-		balloon_alert(user, "inserted the [attacking_item]")
+		balloon_alert(user, "插入了[attacking_item]")
 		return TRUE
 	if(!is_type_in_typecache(attacking_item, allowed_devices))
 		return ..()
 	if(isnull(cap))
-		balloon_alert(user, "no capacitor inserted!")
+		balloon_alert(user, "没有插入电容器！")
 		return TRUE
 	if(charging)
-		balloon_alert(user, "already charging something!")
+		balloon_alert(user, "已经在给某物充电了！")
 		return TRUE
 	if(istype(attacking_item, /obj/item/gun/energy))
 		var/obj/item/gun/energy/energy_gun = attacking_item
 		if(!energy_gun.can_charge)
-			balloon_alert(user, "not rechargable!")
+			balloon_alert(user, "不可充电！")
 			return TRUE
 	user.transferItemToLoc(attacking_item, src)
 	charging = attacking_item

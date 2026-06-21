@@ -1,7 +1,7 @@
 // Embedded signaller used in anomalies.
 /obj/item/assembly/signaler/anomaly
-	name = "anomaly core"
-	desc = "The neutralized core of an anomaly. It'd probably be valuable for research."
+	name = "异常核心"
+	desc = "异常的中和核心。这可能很有研究价值。"
 	icon_state = "anomaly_core"
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -24,7 +24,7 @@
 
 /obj/item/assembly/signaler/anomaly/manual_suicide(datum/mind/suicidee)
 	var/mob/living/user = suicidee.current
-	user.visible_message(span_suicide("[user]'s [name] is reacting to the radio signal, warping [user.p_their()] body!"))
+	user.visible_message(span_suicide("[user]的[name]正在对无线电信号产生反应，扭曲着[user.p_their()]的身体！"))
 	user.set_suicide(TRUE)
 	user.gib(DROP_ALL_REMAINS)
 
@@ -32,7 +32,7 @@
 	return
 
 /obj/item/assembly/signaler/anomaly/analyzer_act(mob/living/user, obj/item/analyzer/tool)
-	to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code]."))
+	to_chat(user, span_notice("分析中...[src]的稳定场正沿着频率[format_frequency(frequency)]波动，代码[code]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/assembly/signaler/anomaly/on_mail_unwrap(atom/source, mob/user, obj/item/mail/traitor/letter)
@@ -40,8 +40,8 @@
 
 //Anomaly cores
 /obj/item/assembly/signaler/anomaly/pyro
-	name = "\improper pyroclastic anomaly core"
-	desc = "The neutralized core of a pyroclastic anomaly. It feels warm to the touch. It'd probably be valuable for research."
+	name = "\improper 火成碎屑异常核心"
+	desc = "重力异常的火成碎屑异常核心。它摸起来很温暖。这可能很有研究价值。"
 	icon_state = "pyro_core"
 	anomaly_type = /obj/effect/anomaly/pyro
 
@@ -54,8 +54,8 @@
 		new /obj/effect/hotspot(turf)
 
 /obj/item/assembly/signaler/anomaly/grav
-	name = "\improper gravitational anomaly core"
-	desc = "The neutralized core of a gravitational anomaly. It feels much heavier than it looks. It'd probably be valuable for research."
+	name = "\improper 重力异常核心"
+	desc = "重力异常的中和核心。它摸起来比看上去重多了。这可能很有研究价值。"
 	icon_state = "grav_core"
 	anomaly_type = /obj/effect/anomaly/grav
 
@@ -68,8 +68,8 @@
 			step_towards(living,src)
 
 /obj/item/assembly/signaler/anomaly/flux
-	name = "\improper flux anomaly core"
-	desc = "The neutralized core of a flux anomaly. Touching it makes your skin tingle. It'd probably be valuable for research."
+	name = "\improper 磁波异常核心"
+	desc = "磁波异常的中和核心。触摸它会让你的皮肤刺痛。这可能很有研究价值。"
 	icon_state = "flux_core"
 	anomaly_type = /obj/effect/anomaly/flux
 
@@ -77,8 +77,8 @@
 	tesla_zap(get_turf(src), 0, 10 KILO JOULES, 5 KILO JOULES, ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE | ZAP_GENERATES_POWER)
 
 /obj/item/assembly/signaler/anomaly/bluespace
-	name = "\improper bluespace anomaly core"
-	desc = "The neutralized core of a bluespace anomaly. It keeps phasing in and out of view. It'd probably be valuable for research."
+	name = "\improper 蓝空异常核心"
+	desc = "蓝空异常的中和核心。它不断地在视野中出现和消失。这可能很有研究价值。"
 	icon_state = "anomaly_core"
 	anomaly_type = /obj/effect/anomaly/bluespace
 	activation_cooldown = 15 SECONDS // Slightly longer than reactive teleport armor cooldown
@@ -92,7 +92,7 @@
 	do_teleport(to_teleport, teleportable_turf, 4, channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/item/assembly/signaler/anomaly/vortex
-	name = "\improper vortex anomaly core"
+	name = "\improper 漩涡异常核心"
 	desc = "The neutralized core of a vortex anomaly. It won't sit still, as if some invisible force is acting on it. It'd probably be valuable for research."
 	icon_state = "vortex_core"
 	anomaly_type = /obj/effect/anomaly/bhole
@@ -134,7 +134,7 @@
 	new /obj/effect/temp_visual/circle_wave/vortex(our_turf)
 
 /obj/item/assembly/signaler/anomaly/bioscrambler
-	name = "\improper bioscrambler anomaly core"
+	name = "\improper 生物扰乱异常核心"
 	desc = "The neutralized core of a bioscrambler anomaly. It's squirming, as if moving. It'd probably be valuable for research."
 	icon_state = "bioscrambler_core"
 	anomaly_type = /obj/effect/anomaly/bioscrambler
@@ -146,7 +146,7 @@
 		nearby.bioscramble(name)
 
 /obj/item/assembly/signaler/anomaly/hallucination
-	name = "\improper hallucination anomaly core"
+	name = "\improper 幻惑异常核心"
 	desc = "The neutralized core of a hallucination anomaly. It seems to be moving, but it's probably your imagination. It'd probably be valuable for research."
 	icon_state = "hallucination_core"
 	anomaly_type = /obj/effect/anomaly/hallucination
@@ -156,7 +156,7 @@
 	visible_hallucination_pulse(get_turf(src), 2, 20 SECONDS, 1 MINUTES)
 
 /obj/item/assembly/signaler/anomaly/dimensional
-	name = "\improper dimensional anomaly core"
+	name = "\improper 维度异常核心"
 	desc = "The neutralized core of a dimensional anomaly. Objects reflected on its surface don't look quite right. It'd probably be valuable for research."
 	icon_state = "dimensional_core"
 	anomaly_type = /obj/effect/anomaly/dimensional
@@ -177,8 +177,8 @@
 	AddElement(/datum/element/slapcrafting, recipes)
 
 /obj/item/assembly/signaler/anomaly/ectoplasm
-	name = "\improper ectoplasm anomaly core"
-	desc = "The neutralized core of an ectoplasmic anomaly. When you hold it close, you can hear faint murmuring from inside. It'd probably be valuable for research."
+	name = "\improper 灵质异常核心"
+	desc = "一个被中和的灵质异常核心。当你把它拿近时，能听到内部传来微弱的低语声。它可能具有研究价值。"
 	icon_state = "dimensional_core"
 	anomaly_type = /obj/effect/anomaly/ectoplasm
 	activation_cooldown = 60 SECONDS // A bit longer than reactive posession armor cooldown
@@ -187,8 +187,8 @@
 	haunt_outburst(get_turf(src), 2, 33, 30 SECONDS)
 
 /obj/item/assembly/signaler/anomaly/weather
-	name = "\improper weather anomaly core"
-	desc = "The neutralized core of a weather anomaly. The sound of thunder can be heard in the distance. It'd probably be valuable for research."
+	name = "\improper 气象异常核心"
+	desc = "一个被中和的气象异常核心。远处传来雷鸣声。它可能具有研究价值。"
 	icon_state = "weather_core"
 	anomaly_type = /obj/effect/anomaly/weather
 

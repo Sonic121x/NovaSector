@@ -1,5 +1,5 @@
 /obj/effect/turf_decal/tile
-	name = "tile decal"
+	name = "瓷砖贴花"
 	icon_state = "tile_corner"
 	layer = TURF_PLATING_DECAL_LAYER
 	alpha = 110
@@ -43,14 +43,14 @@
 
 /// Blue tiles
 /obj/effect/turf_decal/tile/blue
-	name = "blue tile decal"
+	name = "蓝色瓷砖贴花"
 	color = "#52B4E9"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/blue)
 
 /// Dark blue tiles
 /obj/effect/turf_decal/tile/dark_blue
-	name = "dark blue tile decal"
+	name = "深蓝色瓷砖贴花"
 	color = "#486091"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark_blue)
@@ -58,7 +58,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark_blue)
 /// Green tiles
 
 /obj/effect/turf_decal/tile/green
-	name = "green tile decal"
+	name = "绿色瓷砖贴花"
 	color = "#9FED58"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/green)
@@ -66,7 +66,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/green)
 /// Dark green tiles
 
 /obj/effect/turf_decal/tile/dark_green
-	name = "dark green tile decal"
+	name = "深绿色瓷砖贴花"
 	color = "#439C1E"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark_green)
@@ -74,7 +74,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark_green)
 /// Yellow tiles
 
 /obj/effect/turf_decal/tile/yellow
-	name = "yellow tile decal"
+	name = "黄色瓷砖贴花"
 	color = "#EFB341"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/yellow)
@@ -82,7 +82,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/yellow)
 /// Red tiles
 
 /obj/effect/turf_decal/tile/red
-	name = "red tile decal"
+	name = "红色瓷砖贴花"
 	color = "#DE3A3A"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/red)
@@ -90,7 +90,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/red)
 /// Dark red tiles
 
 /obj/effect/turf_decal/tile/dark_red
-	name = "dark red tile decal"
+	name = "深红色瓷砖贴花"
 	color = "#B11111"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark_red)
@@ -98,7 +98,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark_red)
 /// Bar tiles
 
 /obj/effect/turf_decal/tile/bar
-	name = "bar tile decal"
+	name = "酒吧瓷砖贴花"
 	color = "#791500"
 	alpha = 130
 
@@ -107,7 +107,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/bar)
 /// Purple tiles
 
 /obj/effect/turf_decal/tile/purple
-	name = "purple tile decal"
+	name = "紫色瓷砖贴花"
 	color = "#D381C9"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/purple)
@@ -115,7 +115,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/purple)
 /// Brown tiles
 
 /obj/effect/turf_decal/tile/brown
-	name = "brown tile decal"
+	name = "棕色瓷砖贴花"
 	color = "#A46106"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/brown)
@@ -123,7 +123,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/brown)
 /// Neutral tiles
 
 /obj/effect/turf_decal/tile/neutral
-	name = "neutral tile decal"
+	name = "中性色瓷砖贴花"
 	color = "#D4D4D4"
 	alpha = 50
 
@@ -132,14 +132,14 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/neutral)
 /// Dark tiles
 
 /obj/effect/turf_decal/tile/dark
-	name = "dark tile decal"
+	name = "深色瓷砖贴花"
 	color = "#0e0f0f"
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark)
 
 /// Date-specific tiles
 /obj/effect/turf_decal/tile/holiday
-	name = "ERROR tile decal"
+	name = "错误瓷砖贴花"
 	color = COLOR_RED
 
 /obj/effect/turf_decal/tile/holiday/Initialize(mapload)
@@ -149,14 +149,14 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark)
 
 /// Pattern tiles
 /obj/effect/turf_decal/tile/holiday/rainbow
-	name = "rainbow tile decal"
+	name = "彩虹瓷砖贴花"
 	color = "#75C9EB" //bright blue as default for mapping
 	pattern = PATTERN_RAINBOW
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/holiday/rainbow)
 
 /obj/effect/turf_decal/tile/holiday/random // so many colors
-	name = "colorful tile decal"
+	name = "彩色瓷砖贴花"
 	color = "#E300FF" //bright pink as default for mapping
 	pattern = PATTERN_RANDOM
 

@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(elevator_doors)
 
 /obj/machinery/door/window/elevator
-	name = "elevator door"
-	desc = "Keeps idiots like you from walking into an open elevator shaft."
+	name = "电梯门"
+	desc = "防止像你这样的傻瓜走进敞开的电梯井。"
 	icon_state = "left"
 	base_state = "left"
 	can_atmos_pass = ATMOS_PASS_DENSITY // elevator shaft is airtight when closed

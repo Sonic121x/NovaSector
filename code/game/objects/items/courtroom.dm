@@ -4,7 +4,7 @@
 
 /obj/item/gavelhammer
 	name = "gavel"
-	desc = "Order, order! No bombs in my courthouse."
+	desc = "肃静，肃静！我的法庭里不准有炸弹。"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "gavelhammer"
 	icon_angle = -135
@@ -21,7 +21,7 @@
 	AddElement(/datum/element/kneejerk)
 
 /obj/item/gavelhammer/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] has sentenced [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]用[src]判处[user.p_them()]自己死刑！看起来[user.p_theyre()]试图自杀！"))
 	playsound(loc, 'sound/items/gavel.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -39,7 +39,7 @@
 /obj/item/gavelblock/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(I, /obj/item/gavelhammer))
 		playsound(loc, 'sound/items/gavel.ogg', 100, TRUE)
-		user.visible_message(span_warning("[user] strikes [src] with [I]."))
+		user.visible_message(span_warning("[user]用[I]敲击[src]。"))
 		user.changeNext_move(CLICK_CD_MELEE)
 	else
 		return ..()

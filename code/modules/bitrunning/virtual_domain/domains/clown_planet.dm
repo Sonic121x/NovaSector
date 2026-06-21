@@ -1,7 +1,7 @@
 /datum/lazy_template/virtual_domain/clown_planet
-	name = "Clown Planet"
+	name = "小丑星球"
 	cost = BITRUNNER_COST_LOW
-	desc = "In the deep, dark reaches of space, there is only Honk."
+	desc = "在深邃黑暗的太空深处，唯有 Honk 之声。"
 	difficulty = BITRUNNER_DIFFICULTY_LOW
 	completion_loot = list(/obj/item/bikehorn = 1)
 	forced_outfit = /datum/outfit/job/clown

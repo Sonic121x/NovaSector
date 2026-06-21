@@ -1,10 +1,10 @@
 /obj/item/mod/construction
-	desc = "A part used in MOD construction."
+	desc = "用于模块制作的一部分。"
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	inhand_icon_state = "rack_parts"
 
 /obj/item/mod/construction/helmet
-	name = "MOD helmet"
+	name = "模块服头盔"
 	icon_state = "helmet"
 
 /obj/item/mod/construction/helmet/examine(mob/user)
@@ -12,7 +12,7 @@
 	. += span_notice("You could insert it into a <b>MOD shell</b>...")
 
 /obj/item/mod/construction/chestplate
-	name = "MOD chestplate"
+	name = "模块服胸板"
 	icon_state = "chestplate"
 
 /obj/item/mod/construction/chestplate/examine(mob/user)
@@ -20,7 +20,7 @@
 	. += span_notice("You could insert it into a <b>MOD shell</b>...")
 
 /obj/item/mod/construction/gauntlets
-	name = "MOD gauntlets"
+	name = "模块服手套"
 	icon_state = "gauntlets"
 
 /obj/item/mod/construction/gauntlets/examine(mob/user)
@@ -28,7 +28,7 @@
 	. += span_notice("You could insert these into a <b>MOD shell</b>...")
 
 /obj/item/mod/construction/boots
-	name = "MOD boots"
+	name = "模块服靴"
 	icon_state = "boots"
 
 /obj/item/mod/construction/boots/examine(mob/user)
@@ -36,9 +36,9 @@
 	. += span_notice("You could insert these into a <b>MOD shell</b>...")
 
 /obj/item/mod/construction/broken_core
-	name = "broken MOD core"
+	name = "损坏的模块核心"
 	icon_state = "mod-core"
-	desc = "An internal power source for a Modular Outerwear Device. You don't seem to be able to source any power from this one, though."
+	desc = "一款模块服的内部电源。不过，从这个装置上似乎无法获取任何电力。"
 
 /obj/item/mod/construction/broken_core/examine(mob/user)
 	. = ..()
@@ -46,9 +46,9 @@
 
 /obj/item/mod/construction/broken_core/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "修复中...")
 	if(!tool.use_tool(src, user, 5 SECONDS, volume = 30))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
 	new /obj/item/mod/core/standard(drop_location())
 	qdel(src)
@@ -72,16 +72,16 @@
 		return ..()
 	if(!weapon.tool_start_check(user, amount=2))
 		return
-	balloon_alert(user, "installing wires...")
+	balloon_alert(user, "正在安装电线...")
 	if(!weapon.use_tool(src, user, 5 SECONDS, amount = 2, volume = 30))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
 	new /obj/item/mod/core/plasma/lavaland(drop_location())
 	qdel(src)
 
 /obj/item/mod/construction/plating
-	name = "MOD external plating"
-	desc = "External plating used to finish a MOD control unit."
+	name = "模块服外层电镀"
+	desc = "用于完成模块服组装的外层电镀."
 	icon_state = "standard-plating"
 	var/datum/mod_theme/theme = /datum/mod_theme
 
@@ -124,9 +124,9 @@
 #define SCREWED_ASSEMBLY_STEP "screwed_assembly"
 
 /obj/item/mod/construction/shell
-	name = "MOD shell"
+	name = "模块服外壳"
 	icon_state = "mod-construction_start"
-	desc = "A MOD shell."
+	desc = "一个模块服外壳."
 	var/obj/item/core
 	var/obj/item/helmet
 	var/obj/item/chestplate
@@ -165,115 +165,115 @@
 			if(!istype(part, /obj/item/mod/core))
 				return
 			if(!user.transferItemToLoc(part, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, "它卡住了！")
 				return
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "core inserted")
+			balloon_alert(user, "核心已插入")
 			core = part
 			step = CORE_STEP
 		if(CORE_STEP)
 			if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "core screwed")
+					balloon_alert(user, "核心已拧紧")
 				step = SCREWED_CORE_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					core.forceMove(drop_location())
-					balloon_alert(user, "core taken out")
+					balloon_alert(user, "核心已取出")
 				step = START_STEP
 		if(SCREWED_CORE_STEP)
 			if(istype(part, /obj/item/mod/construction/helmet)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "它卡住了！")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-				balloon_alert(user, "helmet added")
+				balloon_alert(user, "头盔已添加")
 				helmet = part
 				step = HELMET_STEP
 			else if(part.tool_behaviour == TOOL_SCREWDRIVER) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "core unscrewed")
+					balloon_alert(user, "核心已拧松")
 					step = CORE_STEP
 		if(HELMET_STEP)
 			if(istype(part, /obj/item/mod/construction/chestplate)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "卡住了！")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-				balloon_alert(user, "chestplate added")
+				balloon_alert(user, "胸甲已添加")
 				chestplate = part
 				step = CHESTPLATE_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					helmet.forceMove(drop_location())
-					balloon_alert(user, "helmet removed")
+					balloon_alert(user, "头盔已移除")
 					helmet = null
 					step = SCREWED_CORE_STEP
 		if(CHESTPLATE_STEP)
 			if(istype(part, /obj/item/mod/construction/gauntlets)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "卡住了！")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-				balloon_alert(user, "gauntlets added")
+				balloon_alert(user, "臂铠已添加")
 				gauntlets = part
 				step = GAUNTLETS_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					chestplate.forceMove(drop_location())
-					balloon_alert(user, "chestplate removed")
+					balloon_alert(user, "胸甲已移除")
 					chestplate = null
 					step = HELMET_STEP
 		if(GAUNTLETS_STEP)
 			if(istype(part, /obj/item/mod/construction/boots)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "卡住了！")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-				balloon_alert(user, "boots added")
+				balloon_alert(user, "靴子已添加")
 				boots = part
 				step = BOOTS_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					gauntlets.forceMove(drop_location())
-					balloon_alert(user, "gauntlets removed")
+					balloon_alert(user, "臂铠已移除")
 					gauntlets = null
 					step = CHESTPLATE_STEP
 		if(BOOTS_STEP)
 			if(part.tool_behaviour == TOOL_WRENCH) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "assembly secured")
+					balloon_alert(user, "组件已固定")
 					step = WRENCHED_ASSEMBLY_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					boots.forceMove(drop_location())
-					balloon_alert(user, "boots removed")
+					balloon_alert(user, "靴子已移除")
 					boots = null
 					step = GAUNTLETS_STEP
 		if(WRENCHED_ASSEMBLY_STEP)
 			if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "assembly screwed")
+					balloon_alert(user, "组件已拧紧")
 					step = SCREWED_ASSEMBLY_STEP
 			else if(part.tool_behaviour == TOOL_WRENCH) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "assembly unsecured")
+					balloon_alert(user, "组件已松开")
 					step = BOOTS_STEP
 		if(SCREWED_ASSEMBLY_STEP)
 			if(istype(part, /obj/item/mod/construction/plating)) //Construct
 				var/obj/item/mod/construction/plating/external_plating = part
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "卡住了！")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 				var/obj/item/mod = new /obj/item/mod/control(drop_location(), external_plating.theme, null, core)
 				core = null
 				qdel(src)
 				user.put_in_hands(mod)
-				mod.balloon_alert(user, "unit finished")
+				mod.balloon_alert(user, "单元完成")
 			else if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "assembly unscrewed")
+					balloon_alert(user, "组件已拧松")
 					step = SCREWED_ASSEMBLY_STEP
 	update_icon_state()
 

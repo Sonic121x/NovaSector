@@ -2,8 +2,8 @@
 	icon = 'icons/obj/signs.dmi'
 	icon_state = "picket"
 	inhand_icon_state = "picket"
-	name = "blank picket sign"
-	desc = "It's blank."
+	name = "空白抗议标语牌"
+	desc = "它是空白的。"
 	force = 5
 	obj_flags = UNIQUE_RENAME | RENAME_NO_DESC
 	w_class = WEIGHT_CLASS_BULKY
@@ -15,8 +15,8 @@
 	COOLDOWN_DECLARE(picket_sign_cooldown)
 
 /obj/item/picket_sign/cyborg
-	name = "metallic nano-sign"
-	desc = "A high tech picket sign used by silicons that can reprogram its surface at will. Probably hurts to get hit by, too."
+	name = "金属纳米标语牌"
+	desc = "一种硅基生命使用的高科技抗议标语牌，可以随意重新编程其表面。被打到可能也很疼。"
 	force = 13
 	resistance_flags = NONE
 	actions_types = list(/datum/action/item_action/nano_picket_sign)
@@ -54,20 +54,20 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 
 /datum/action/item_action/nano_picket_sign
-	name = "Retext Nano Picket Sign"
+	name = "重设纳米抗议标语牌文本"
 
 /datum/action/item_action/nano_picket_sign/do_effect(trigger_flags)
 	if(!istype(target, /obj/item/picket_sign))
 		return FALSE
 	var/obj/item/picket_sign/sign = target
-	var/input = tgui_input_text(owner, "What would you like to write on the sign?", "Sign Label", max_length = 30)
+	var/input = tgui_input_text(owner, "你想在牌子上写什么？", "标牌标签", max_length = 30)
 	if(input && owner.can_perform_action(sign))
 		sign.label = input
 		sign.AddComponent(/datum/component/rename, "[input] sign", "It reads: [input]")
 	return TRUE
 
 /datum/crafting_recipe/picket_sign
-	name = "Picket Sign"
+	name = "抗议标语牌"
 	result = /obj/item/picket_sign
 	reqs = list(/obj/item/stack/rods = 1,
 				/obj/item/stack/sheet/cardboard = 2)

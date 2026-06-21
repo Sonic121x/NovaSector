@@ -42,7 +42,7 @@
 	living.add_mood_event("hotspring", /datum/mood_event/hotspring/nerfed)
 
 /datum/mood_event/hotspring/nerfed
-	description = span_nicegreen("The water was enjoyably warm!\n")
+	description = span_nicegreen("这水温暖宜人！\n")
 	mood_change = 2
 
 // Fishing source for the above water turfs
@@ -60,4 +60,4 @@
 // The area
 
 /area/ruin/unpowered/primitive_catgirl_den
-	name = "\improper Icewalker Camp"
+	name = "\improper 冰行者营地"

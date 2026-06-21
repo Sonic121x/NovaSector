@@ -1,6 +1,6 @@
 /obj/item/seeds/vaporsac
-	name = "vaporsac seed pack"
-	desc = "These seeds grow into vaporsac plants. Normally vaporsac plants spread by floating through the air and exploding, but this strand of vaporsac thankfully does not."
+	name = "气雾囊种子包"
+	desc = "这些种子会长成气雾囊植物。通常气雾囊植物通过漂浮在空中并爆炸来传播，但幸好这种品系的气雾囊不会。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "vaporsac"
 	species = "vaporsac"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/vaporsac
 	seed = /obj/item/seeds/vaporsac
-	name = "vaporsac"
-	desc = "An buoyant vaporsac, full of aerosolized chemicals."
+	name = "气雾囊"
+	desc = "一个充满气溶胶化学物质的浮力气雾囊。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "vaporsac"
 	filling_color = "#FF4500"

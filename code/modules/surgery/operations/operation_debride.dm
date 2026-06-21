@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/debride
-	name = "debride infected flesh"
+	name = "清创感染组织"
 	rnd_name = "Debridement"
-	desc = "Remove infected or necrotic flesh from a patient's wound to promote healing."
+	desc = "切除患者伤口处的感染或坏死组织以促进愈合。"
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_SCALPEL = 1.25,

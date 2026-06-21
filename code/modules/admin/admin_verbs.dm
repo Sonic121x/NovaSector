@@ -207,7 +207,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", ADMIN_CATEGORY
 	BLACKBOX_LOG_ADMIN_VERB("Stealth Mode")
 
 /client/proc/enable_stealth_mode()
-	var/new_key = ckeyEx(stripped_input(usr, "Enter your desired display name.", "Fake Key", key, 26))
+	var/new_key = ckeyEx(stripped_input(usr, "输入您想要的显示名称。", "伪装密钥", key, 26))
 	if(!new_key)
 		return
 	holder.fakekey = new_key
@@ -246,7 +246,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", ADMIN_CATEGORY
 
 ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strength at your location", ADMIN_CATEGORY_FUN)
 	var/list/choices = list("Small Bomb (1, 2, 3, 3)", "Medium Bomb (2, 3, 4, 4)", "Big Bomb (3, 5, 7, 5)", "Maxcap", "Custom Bomb")
-	var/choice = tgui_input_list(user, "What size explosion would you like to produce? NOTE: You can do all this rapidly and in an IC manner (using cruise missiles!) with the Config/Launch Supplypod verb. WARNING: These ignore the maxcap", "Drop Bomb", choices)
+	var/choice = tgui_input_list(user, "你想产生多大威力的爆炸？注意：你可以使用配置/发射补给舱动词，以快速且符合IC的方式（使用巡航导弹！）完成这一切。警告：这些会忽略最大上限", "DropB-制造爆炸", choices)
 	if(isnull(choice))
 		return
 	var/turf/epicenter = user.mob.loc
@@ -261,20 +261,20 @@ ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strengt
 		if("Maxcap")
 			explosion(epicenter, devastation_range = GLOB.MAX_EX_DEVESTATION_RANGE, heavy_impact_range = GLOB.MAX_EX_HEAVY_RANGE, light_impact_range = GLOB.MAX_EX_LIGHT_RANGE, flash_range = GLOB.MAX_EX_FLASH_RANGE, adminlog = TRUE, ignorecap = TRUE, explosion_cause = user.mob)
 		if("Custom Bomb")
-			var/range_devastation = input(user, "Devastation range (in tiles):") as null|num
+			var/range_devastation = input(user, "毁灭范围（以格为单位）：") as null|num
 			if(range_devastation == null)
 				return
-			var/range_heavy = input(user, "Heavy impact range (in tiles):") as null|num
+			var/range_heavy = input(user, "重度冲击范围（以格为单位）：") as null|num
 			if(range_heavy == null)
 				return
-			var/range_light = input(user, "Light impact range (in tiles):") as null|num
+			var/range_light = input(user, "轻度冲击范围（以格为单位）：") as null|num
 			if(range_light == null)
 				return
-			var/range_flash = input(user, "Flash range (in tiles):") as null|num
+			var/range_flash = input(user, "闪光范围（以格为单位）：") as null|num
 			if(range_flash == null)
 				return
 			if(range_devastation > GLOB.MAX_EX_DEVESTATION_RANGE || range_heavy > GLOB.MAX_EX_HEAVY_RANGE || range_light > GLOB.MAX_EX_LIGHT_RANGE || range_flash > GLOB.MAX_EX_FLASH_RANGE)
-				if(tgui_alert(user, "Bomb is bigger than the maxcap. Continue?",,list("Yes","No")) != "Yes")
+				if(tgui_alert(user, "炸弹威力超过了最大上限。继续吗？",,list("Yes","No")) != "Yes")
 					return
 			epicenter = get_turf(user.mob) //We need to reupdate as they may have moved again
 			explosion(epicenter, devastation_range = range_devastation, heavy_impact_range = range_heavy, light_impact_range = range_light, flash_range = range_flash, adminlog = TRUE, ignorecap = TRUE, explosion_cause = user.mob)
@@ -283,7 +283,7 @@ ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strengt
 	BLACKBOX_LOG_ADMIN_VERB("Drop Bomb")
 
 ADMIN_VERB(drop_bomb_dynex, R_FUN, "Drop DynEx Bomb", "Cause an explosion of varying strength at your location.", ADMIN_CATEGORY_FUN)
-	var/ex_power = input(user, "Explosive Power:") as null|num
+	var/ex_power = input(user, "爆炸威力：") as null|num
 	var/turf/epicenter = get_turf(user.mob)
 	if(!ex_power || !epicenter)
 		return
@@ -293,21 +293,21 @@ ADMIN_VERB(drop_bomb_dynex, R_FUN, "Drop DynEx Bomb", "Cause an explosion of var
 	BLACKBOX_LOG_ADMIN_VERB("Drop Dynamic Bomb")
 
 ADMIN_VERB(get_dynex_range, R_FUN, "Get DynEx Range", "Get the estimated range of a bomb using explosive power.", ADMIN_CATEGORY_DEBUG)
-	var/ex_power = input(user, "Explosive Power:") as null|num
+	var/ex_power = input(user, "爆炸威力：") as null|num
 	if (isnull(ex_power))
 		return
 	var/range = round((2 * ex_power)**GLOB.DYN_EX_SCALE)
 	to_chat(user, "Estimated Explosive Range: (Devastation: [round(range*0.25)], Heavy: [round(range*0.5)], Light: [round(range)])", confidential = TRUE)
 
 ADMIN_VERB(get_dynex_power, R_FUN, "Get DynEx Power", "Get the estimated required power of a bomb to reach the given range.", ADMIN_CATEGORY_DEBUG)
-	var/ex_range = input(user, "Light Explosion Range:") as null|num
+	var/ex_range = input(user, "轻度爆炸范围：") as null|num
 	if (isnull(ex_range))
 		return
 	var/power = (0.5 * ex_range)**(1/GLOB.DYN_EX_SCALE)
 	to_chat(user, "Estimated Explosive Power: [power]", confidential = TRUE)
 
 ADMIN_VERB(set_dynex_scale, R_FUN, "Set DynEx Scale", "Set the scale multiplier on dynex explosions. Default 0.5.", ADMIN_CATEGORY_DEBUG)
-	var/ex_scale = input(user, "New DynEx Scale:") as null|num
+	var/ex_scale = input(user, "新动态爆炸比例：") as null|num
 	if(!ex_scale)
 		return
 	GLOB.DYN_EX_SCALE = ex_scale
@@ -338,12 +338,12 @@ ADMIN_VERB(test_cardpack_distribution, R_DEBUG, "Test Cardpack Distribution", "T
 	if(!SStrading_card_game.loaded)
 		message_admins("The card subsystem is not currently loaded")
 		return
-	var/pack = tgui_input_list(user, "Which pack should we test?", "You fucked it didn't you", sort_list(SStrading_card_game.card_packs))
+	var/pack = tgui_input_list(user, "我们要测试哪个卡包？", "你搞砸了，对吧？", sort_list(SStrading_card_game.card_packs))
 	if(!pack)
 		return
-	var/batch_count = tgui_input_number(user, "How many times should we open it?", "Don't worry, I understand")
-	var/batch_size = tgui_input_number(user, "How many cards per batch?", "I hope you remember to check the validation")
-	var/guar = tgui_input_number(user, "Should we use the pack's guaranteed rarity? If so, how many?", "We've all been there. Man you should have seen the old system")
+	var/batch_count = tgui_input_number(user, "我们要打开多少次？", "别担心，我懂")
+	var/batch_size = tgui_input_number(user, "每批多少张卡？", "希望你记得检查验证")
+	var/guar = tgui_input_number(user, "我们要使用卡包的保底稀有度吗？如果要，保底多少张？", "我们都经历过。老兄你真该看看旧系统")
 	SStrading_card_game.check_card_distribution(pack, batch_size, batch_count, guar)
 
 ADMIN_VERB(print_cards, R_DEBUG, "Print Cards", "Print all cards to chat.", ADMIN_CATEGORY_DEBUG)
@@ -356,33 +356,33 @@ ADMIN_VERB(give_mob_action, R_FUN, "Give Mob Action", ADMIN_VERB_NO_DESCRIPTION,
 		for (var/datum/action/cooldown/mob_cooldown as anything in all_mob_actions)
 			actions_by_name["[initial(mob_cooldown.name)] ([mob_cooldown])"] = mob_cooldown
 
-	var/ability = tgui_input_list(user, "Choose an ability", "Ability", actions_by_name)
+	var/ability = tgui_input_list(user, "选择一个能力", "能力", actions_by_name)
 	if(isnull(ability))
 		return
 
 	var/ability_type = actions_by_name[ability]
 	var/datum/action/cooldown/mob_cooldown/add_ability
 
-	var/make_sequence = tgui_alert(user, "Would you like this action to be a sequence of multiple abilities?", "Sequence Ability", list("Yes", "No"))
+	var/make_sequence = tgui_alert(user, "你希望这个动作是多个能力的序列吗？", "序列能力", list("Yes", "No"))
 	if(make_sequence == "Yes")
 		add_ability = new /datum/action/cooldown/mob_cooldown(ability_recipient)
 		add_ability.sequence_actions = list()
 		while(!isnull(ability_type))
-			var/ability_delay = tgui_input_number(user, "Enter the delay in seconds before the next ability in the sequence is used", "Ability Delay", 2)
+			var/ability_delay = tgui_input_number(user, "输入下一个能力在序列中使用前的延迟秒数", "能力延迟", 2)
 			if(isnull(ability_delay) || ability_delay < 0)
 				ability_delay = 0
 			add_ability.sequence_actions[ability_type] = ability_delay * 1 SECONDS
-			ability = tgui_input_list(user, "Choose a new sequence ability", "Sequence Ability", actions_by_name)
+			ability = tgui_input_list(user, "选择一个新的序列能力", "序列能力", actions_by_name)
 			ability_type = actions_by_name[ability]
-		var/ability_cooldown = tgui_input_number(user, "Enter the sequence abilities cooldown in seconds", "Ability Cooldown", 2)
+		var/ability_cooldown = tgui_input_number(user, "输入序列能力的冷却时间秒数", "能力冷却", 2)
 		if(isnull(ability_cooldown) || ability_cooldown < 0)
 			ability_cooldown = 2
 		add_ability.cooldown_time = ability_cooldown * 1 SECONDS
-		var/ability_melee_cooldown = tgui_input_number(user, "Enter the abilities melee cooldown in seconds", "Melee Cooldown", 2)
+		var/ability_melee_cooldown = tgui_input_number(user, "输入能力的近战冷却时间秒数", "近战冷却", 2)
 		if(isnull(ability_melee_cooldown) || ability_melee_cooldown < 0)
 			ability_melee_cooldown = 2
 		add_ability.melee_cooldown_time = ability_melee_cooldown * 1 SECONDS
-		add_ability.name = tgui_input_text(user, "Choose ability name", "Ability name", "Generic Ability", max_length = MAX_NAME_LEN)
+		add_ability.name = tgui_input_text(user, "选择能力名称", "能力名称", "通用能力", max_length = MAX_NAME_LEN)
 		add_ability.create_sequence_actions()
 	else
 		add_ability = new ability_type(ability_recipient)
@@ -403,7 +403,7 @@ ADMIN_VERB(remove_mob_action, R_FUN, "Remove Mob Action", ADMIN_VERB_NO_DESCRIPT
 	if(!length(target_abilities))
 		return
 
-	var/chosen_ability = tgui_input_list(user, "Choose the spell to remove from [removal_target]", "Depower", sort_list(target_abilities))
+	var/chosen_ability = tgui_input_list(user, "选择要从 [removal_target] 移除的法术", "移除能力", sort_list(target_abilities))
 	if(isnull(chosen_ability))
 		return
 	var/datum/action/cooldown/mob_cooldown/to_remove = target_abilities[chosen_ability]
@@ -416,7 +416,7 @@ ADMIN_VERB(remove_mob_action, R_FUN, "Remove Mob Action", ADMIN_VERB_NO_DESCRIPT
 	BLACKBOX_LOG_ADMIN_VERB("Remove Mob Ability")
 
 ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
-	var/which = tgui_alert(user, "Chose by name or by type path?", "Chose option", list("Name", "Typepath"))
+	var/which = tgui_alert(user, "按名称还是按类型路径选择？", "选择选项", list("Name", "Typepath"))
 	if(!which)
 		return
 	if(QDELETED(spell_recipient))
@@ -434,14 +434,14 @@ ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CAT
 		else
 			spell_list += to_add
 
-	var/chosen_spell = tgui_input_list(user, "Choose the spell to give to [spell_recipient]", "ABRAKADABRA", sort_list(spell_list))
+	var/chosen_spell = tgui_input_list(user, "选择要赋予 [spell_recipient] 的法术", "阿布拉卡达布拉", sort_list(spell_list))
 	if(isnull(chosen_spell))
 		return
 	var/datum/action/cooldown/spell/spell_path = which == "Typepath" ? chosen_spell : spell_list[chosen_spell]
 	if(!ispath(spell_path))
 		return
 
-	var/robeless = (tgui_alert(user, "Would you like to force this spell to be robeless?", "Robeless Casting?", list("Force Robeless", "Use Spell Setting")) == "Force Robeless")
+	var/robeless = (tgui_alert(user, "是否强制此法术为无袍施法？", "无袍施法？", list("Force Robeless", "Use Spell Setting")) == "Force Robeless")
 
 	if(QDELETED(spell_recipient))
 		to_chat(user, span_warning("The intended spell recipient no longer exists."))
@@ -470,7 +470,7 @@ ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN
 	if(!length(target_spell_list))
 		return
 
-	var/chosen_spell = tgui_input_list(user, "Choose the spell to remove from [removal_target]", "ABRAKADABRA", sort_list(target_spell_list))
+	var/chosen_spell = tgui_input_list(user, "选择要从[removal_target]中移除的法术", "阿布拉卡达布拉", sort_list(target_spell_list))
 	if(isnull(chosen_spell))
 		return
 	var/datum/action/cooldown/spell/to_remove = target_spell_list[chosen_spell]
@@ -483,7 +483,7 @@ ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN
 	BLACKBOX_LOG_ADMIN_VERB("Remove Spell")
 
 ADMIN_VERB(give_disease, R_FUN, "Give Disease", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/victim)
-	var/datum/disease/disease = tgui_input_list(user, "Choose the disease to give to that guy", "ACHOO", sort_list(SSdisease.diseases, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/datum/disease/disease = tgui_input_list(user, "选择要传给那家伙的疾病", "阿嚏", sort_list(SSdisease.diseases, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if(!disease)
 		return
 	victim.ForceContractDisease(new disease, FALSE, TRUE)
@@ -492,7 +492,7 @@ ADMIN_VERB(give_disease, R_FUN, "Give Disease", ADMIN_VERB_NO_DESCRIPTION, ADMIN
 	message_admins(span_adminnotice("[key_name_admin(user)] gave [key_name_admin(victim)] the disease [disease]."))
 
 ADMIN_VERB_AND_CONTEXT_MENU(object_say, R_FUN, "OSay", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, obj/speaker in world)
-	var/message = tgui_input_text(user, "What do you want the message to be?", "Make Sound", encode = FALSE)
+	var/message = tgui_input_text(user, "你想要消息内容是什么？", "制造声音", encode = FALSE)
 	if(!message)
 		return
 	speaker.say(message, sanitize = FALSE)
@@ -511,8 +511,8 @@ ADMIN_VERB(manage_sect, R_ADMIN, "Manage Religious Sect", "Manages the chaplain'
 	if (!isnull(GLOB.religious_sect))
 		var/you_sure = tgui_alert(
 			user,
-			"The Chaplain has already chosen [GLOB.religious_sect.name], override their selection?",
-			"Replace God?",
+			"牧师已经选择了[GLOB.religious_sect.name]，要覆盖他们的选择吗？",
+			"替换神明？",
 			list("Yes", "Cancel"),
 		)
 		if (you_sure != "Yes")
@@ -523,7 +523,7 @@ ADMIN_VERB(manage_sect, R_ADMIN, "Manage Religious Sect", "Manages the chaplain'
 		choices["nothing"] = null
 		for(var/datum/religion_sect/sect as anything in subtypesof(/datum/religion_sect))
 			choices[initial(sect.name)] = sect
-	var/choice = tgui_input_list(user, "Set new Chaplain sect", "God Picker", choices)
+	var/choice = tgui_input_list(user, "设置新的牧师教派", "神明选择器", choices)
 	if(isnull(choice))
 		return
 	if(choice == "nothing")
@@ -567,10 +567,10 @@ ADMIN_VERB(spawn_debug_full_crew, R_DEBUG, "Spawn Debug Full Crew", "Creates a f
 		return
 
 	// Two input checks here to make sure people are certain when they're using this.
-	if(tgui_alert(user, "This command will create a bunch of dummy crewmembers with minds, job, and datacore entries, which will take a while and fill the manifest.", "Spawn Crew", list("Yes", "Cancel")) != "Yes")
+	if(tgui_alert(user, "此命令将创建一批带有心智、职务和数据核心条目的虚拟船员，这需要一些时间并会填满人员名单。", "生成船员", list("Yes", "Cancel")) != "Yes")
 		return
 
-	if(!user.is_localhost() && tgui_alert(user, "You are not on localhost! Are you sure?", "Spawn Crew (Be certain)", list("Yes", "Cancel")) != "Yes")
+	if(!user.is_localhost() && tgui_alert(user, "你不在本地主机上！确定吗？", "生成船员（请确认）", list("Yes", "Cancel")) != "Yes")
 		return
 
 	// Find the observer spawn, so we have a place to dump the dummies.
@@ -656,8 +656,8 @@ ADMIN_VERB(debug_spell_requirements, R_DEBUG, "Debug Spell Requirements", "View 
 
 ADMIN_VERB(load_lazy_template, R_ADMIN, "Load/Jump Lazy Template", "Loads a lazy template and/or jumps to it.", ADMIN_CATEGORY_EVENTS)
 	var/list/choices = LAZY_TEMPLATE_KEY_LIST_ALL()
-	var/choice = tgui_input_list(user, "Key?", "Lazy Loader", choices)
-	var/teleport_to_template = tgui_input_list(user, "Jump to template after loading?", "Where to?", list("Yes", "No"))
+	var/choice = tgui_input_list(user, "Key?", "懒加载器", choices)
+	var/teleport_to_template = tgui_input_list(user, "加载后传送到模板位置？", "传送到哪？", list("Yes", "No"))
 	if(!choice)
 		return
 
@@ -668,7 +668,7 @@ ADMIN_VERB(load_lazy_template, R_ADMIN, "Load/Jump Lazy Template", "Loads a lazy
 
 	var/already_loaded = LAZYACCESS(SSmapping.loaded_lazy_templates, choice)
 	var/force_load = FALSE
-	if(already_loaded && (tgui_alert(user, "Template already loaded.", "", list("Jump", "Load Again")) == "Load Again"))
+	if(already_loaded && (tgui_alert(user, "模板已加载。", "", list("Jump", "Load Again")) == "Load Again"))
 		force_load = TRUE
 
 	var/datum/turf_reservation/reservation = SSmapping.lazy_load_template(choice, force = force_load)
@@ -698,8 +698,8 @@ ADMIN_VERB(create_mob_worm, R_FUN, "Create Mob Worm", "Attach a linked list of m
 
 	var/attempted_target_path = tgui_input_text(
 		user,
-		"Enter typepath of a mob you'd like to make your chain from.",
-		"Typepath",
+		"输入你想作为链条起点的生物的类型路径。",
+		"类型路径",
 		"[/mob/living/basic/pet/dog/corgi/ian]",
 	)
 
@@ -712,7 +712,7 @@ ADMIN_VERB(create_mob_worm, R_FUN, "Create Mob Worm", "Attach a linked list of m
 	if(isnull(desired_mob) || !ispath(desired_mob) || QDELETED(head))
 		return //The user pressed "Cancel"
 
-	var/amount = tgui_input_number(user, "How long should our tail be?", "Worm Configurator", default = 3, min_value = 1)
+	var/amount = tgui_input_number(user, "我们的尾巴应该有多长？", "蠕虫配置器", default = 3, min_value = 1)
 	if (isnull(amount) || amount < 1 || QDELETED(head))
 		return
 	head.AddComponent(/datum/component/mob_chain)
@@ -734,7 +734,7 @@ ADMIN_VERB(give_ai_controller, R_FUN, "Give AI Controller", ADMIN_VERB_NO_DESCRI
 		for (var/datum/admin_ai_template/template as anything in controllers)
 			controllers_by_name["[initial(template.name)]"] = template
 
-	var/chosen = tgui_input_list(user, "Which template should we apply?", "Select Template", controllers_by_name)
+	var/chosen = tgui_input_list(user, "我们应该应用哪个模板？", "选择模板", controllers_by_name)
 	if (isnull(chosen))
 		return
 
@@ -753,7 +753,7 @@ ADMIN_VERB(clear_legacy_asset_cache, R_DEBUG, "Clear Legacy Asset Cache", "Clear
 		var/datum/asset/asset_datum = GLOB.asset_datums[target_spritesheet]
 		asset_datum.regenerate()
 		regenerated++
-	to_chat(user, span_notice("Regenerated [regenerated] asset\s."))
+	to_chat(user, span_notice("已重新生成 [regenerated] asset\s 。"))
 
 ADMIN_VERB(clear_smart_asset_cache, R_DEBUG, "Clear Smart Asset Cache", "Clear the smart asset cache, causing it to regenerate next round.", ADMIN_CATEGORY_DEBUG)
 	if(!CONFIG_GET(flag/smart_cache_assets))
@@ -763,14 +763,14 @@ ADMIN_VERB(clear_smart_asset_cache, R_DEBUG, "Clear Smart Asset Cache", "Clear t
 	for(var/datum/asset/spritesheet_batched/target_spritesheet as anything in valid_subtypesof(/datum/asset/spritesheet_batched))
 		fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[initial(target_spritesheet.name)].json")
 		cleared++
-	to_chat(user, span_notice("Cleared [cleared] asset\s."))
+	to_chat(user, span_notice("已清除 [cleared] asset\s 。"))
 
 ADMIN_VERB(give_ai_speech, R_FUN, "Give Random AI Speech", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/my_guy)
 	if (isnull(my_guy.ai_controller))
-		var/create_controller = tgui_alert(user, "Target has no AI controller, add one?", "Give AI?", list("Yes", "No")) == "Yes"
+		var/create_controller = tgui_alert(user, "目标没有AI控制器，要添加一个吗？", "给予AI？", list("Yes", "No")) == "Yes"
 		if (!create_controller)
 			return
-		var/run_with_mind = tgui_alert(user, "Run AI controller while the target has a client?", "Override Client?", list("Yes", "No"))
+		var/run_with_mind = tgui_alert(user, "目标有客户端时也运行AI控制器？", "覆盖客户端？", list("Yes", "No"))
 		if (isnull(run_with_mind))
 			return
 		if (QDELETED(my_guy))
@@ -788,40 +788,40 @@ ADMIN_VERB(give_ai_speech, R_FUN, "Give Random AI Speech", ADMIN_VERB_NO_DESCRIP
 	var/list/visible_emotes
 	var/list/sounds
 
-	speech_chance = tgui_input_number(user, "Enter chance per second to say something", "Speech Chance", default = 2, min_value = 0, max_value = 100, round_value = FALSE)
+	speech_chance = tgui_input_number(user, "输入每秒说话的几率", "说话几率", default = 2, min_value = 0, max_value = 100, round_value = FALSE)
 	if (isnull(speech_chance))
 		return
 
 	var/add_another
 	var/next_line
 
-	add_another = tgui_alert(user, "Add [length(spoken_lines) ? "another" : "a"] spoken line?", "Spoken Lines", list("Yes", "No"))
+	add_another = tgui_alert(user, "添加[length(spoken_lines) ? "another" : "a"]说出的话？", "说出的话", list("Yes", "No"))
 	while (add_another  == "Yes")
-		next_line = tgui_input_text(user, "Enter [length(spoken_lines) ? "another" : "a"] thing spoken out loud.", "Spoken Lines")
+		next_line = tgui_input_text(user, "输入[length(spoken_lines) ? "another" : "a"]大声说出的内容。", "已说出的台词")
 		if (isnull(next_line))
 			return
 		LAZYADD(spoken_lines, next_line)
-		add_another = tgui_alert(user, "Add [length(spoken_lines) ? "another" : "a"] spoken line?", "Spoken Lines", list("Yes", "No"))
+		add_another = tgui_alert(user, "添加[length(spoken_lines) ? "another" : "a"]台词？", "台词", list("Yes", "No"))
 	if (isnull(add_another))
 		return
 
-	add_another = tgui_alert(user, "Add [length(spoken_lines) ? "another" : "a"] emote which people can hear?", "Audible Emotes", list("Yes", "No"))
+	add_another = tgui_alert(user, "添加[length(spoken_lines) ? "another" : "a"]他人能听到的表情动作？", "可听见的表情动作", list("Yes", "No"))
 	while (add_another == "Yes")
-		next_line = tgui_input_text(user, "Enter [length(spoken_lines) ? "another" : "an"] emote which people can hear.", "Audible Emotes")
+		next_line = tgui_input_text(user, "输入[length(spoken_lines) ? "another" : "an"]他人能听到的表情动作。", "可听见的表情动作")
 		if (isnull(next_line))
 			return
 		LAZYADD(audible_emotes, next_line)
-		add_another = tgui_alert(user, "Add [length(spoken_lines) ? "another" : "a"] emote which people can hear?", "Audible Emotes", list("Yes", "No"))
+		add_another = tgui_alert(user, "添加[length(spoken_lines) ? "another" : "a"]他人能听到的表情动作？", "可听见的表情动作", list("Yes", "No"))
 	if (isnull(add_another))
 		return
 
-	add_another = tgui_alert(user, "Add [length(spoken_lines) ? "another" : "a"] emote which people can see?", "Visible Emotes", list("Yes", "No"))
+	add_another = tgui_alert(user, "添加[length(spoken_lines) ? "another" : "a"]他人可见的表情？", "可见表情", list("Yes", "No"))
 	while (add_another == "Yes")
-		next_line = tgui_input_text(user, "Enter [length(spoken_lines) ? "another" : "an"] emote which people can see.", "Visible Emotes")
+		next_line = tgui_input_text(user, "输入[length(spoken_lines) ? "another" : "an"]他人能看见的表情动作。", "可见表情")
 		if (isnull(next_line))
 			return
 		LAZYADD(visible_emotes, next_line)
-		add_another = tgui_alert(user, "Add [length(spoken_lines) ? "another" : "a"] emote which people can see?", "Visible Emotes", list("Yes", "No"))
+		add_another = tgui_alert(user, "添加[length(spoken_lines) ? "another" : "a"]他人能看见的表情动作？", "可见的表情动作", list("Yes", "No"))
 	if (isnull(add_another))
 		return
 
@@ -829,13 +829,13 @@ ADMIN_VERB(give_ai_speech, R_FUN, "Give Random AI Speech", ADMIN_VERB_NO_DESCRIP
 		return // Well you didn't tell it to say anything...
 
 	if (length(spoken_lines) || length(audible_emotes))
-		add_another = tgui_alert(user, "Add [length(spoken_lines) ? "another" : "a"] sound to play when doing something audible?", "Sounds", list("Yes", "No"))
+		add_another = tgui_alert(user, "添加[length(spoken_lines) ? "another" : "a"]进行可听见动作时播放的音效？", "音效", list("Yes", "No"))
 		while (add_another == "Yes")
-			next_line = input("", "Select sound",) as null|sound
+			next_line = input("", "选择音效",) as null|sound
 			if (isnull(next_line))
 				return
 			LAZYADD(sounds, next_line)
-			add_another = tgui_alert(user, "Add [length(spoken_lines) ? "another" : "a"] sound to play when doing something audible?", "Sounds", list("Yes", "No"))
+			add_another = tgui_alert(user, "添加[length(spoken_lines) ? "another" : "a"]进行可听见动作时播放的音效？", "音效", list("Yes", "No"))
 		if (isnull(add_another))
 			return
 

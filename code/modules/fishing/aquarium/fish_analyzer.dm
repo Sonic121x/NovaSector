@@ -1,12 +1,12 @@
 ///An item that can be used to gather information on the fish, such as but not limited to: health, hunger and traits.
 /obj/item/fish_analyzer
-	name = "fish analyzer"
+	name = "鱼类分析仪"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "fish_analyzer_map"
 	base_icon_state = "fish_analyzer"
 	inhand_icon_state = "fish_analyzer"
 	worn_icon_state = "fish_analyzer"
-	desc = "A fish-shaped scanner used to monitor fish's status and evolutionary traits."
+	desc = "一个鱼形扫描仪，用于监测鱼类的状态和进化特征。"
 	obj_flags = CONDUCTS_ELECTRICITY
 	custom_price = PAYCHECK_CREW * 3
 	item_flags = NOBLUDGEON
@@ -49,7 +49,7 @@
 
 /obj/item/fish_analyzer/examine(mob/user)
 	. = ..()
-	. += span_notice("<b>Alt-Click</b> to access the Experiment Configuration UI")
+	. += span_notice("<b>Alt-点击</b>以访问实验配置界面")
 
 /obj/item/fish_analyzer/update_icon_state()
 	. = ..()
@@ -91,10 +91,10 @@
 
 /obj/item/fish_analyzer/ui_interact(mob/living/user, datum/tgui/ui)
 	if(isnull(scanned_object))
-		balloon_alert(user, "no specimen data!")
+		balloon_alert(user, "没有样本数据！")
 		return TRUE
 	if(istype(user) && !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items(INCLUDE_HELD))))
-		balloon_alert(user, "specimen data lost!")
+		balloon_alert(user, "样本数据丢失！")
 		unregister_scanned()
 		return TRUE
 
@@ -107,7 +107,7 @@
 	if(!istype(user)) //observers shouldn't disrupt things.
 		return ..()
 	if(!scanned_object || !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items(INCLUDE_HELD))))
-		balloon_alert(user, "specimen data lost!")
+		balloon_alert(user, "样本数据丢失！")
 		unregister_scanned()
 		return UI_CLOSE
 	return ..()

@@ -19,7 +19,7 @@
 	UnregisterSignal(owner, list(COMSIG_CARBON_PRE_BREATHE, COMSIG_ATOM_TOOL_ACT(TOOL_WIRECUTTER), COMSIG_CARBON_PRE_MISC_HELP))
 
 /datum/status_effect/strandling/get_examine_text()
-	return span_warning("[owner.p_They()] seem[owner.p_s()] to be being choked by some durathread strands. You may be able to <b>cut</b> them off.")
+	return span_warning("[owner.p_They()] 似乎[owner.p_s()]正被一些杜拉纤维线勒住。你或许可以<b>割断</b>它们。")
 
 /// Signal proc for [COMSIG_CARBON_PRE_BREATHE], causes losebreath whenever we're trying to breathe
 /datum/status_effect/strandling/proc/on_breathe(mob/living/source)
@@ -61,8 +61,8 @@
 		return
 
 	user.visible_message(
-		span_notice("[user] attempts to [tool ? "cut":"remove"] the strand from around [owner == user ? "[owner.p_their()]":"[owner]'s"] neck..."),
-		span_notice("You attempt to [tool ? "cut":"remove"] the strand from around [owner == user ? "your":"[owner]'s"] neck..."),
+		span_notice("[user] 试图[tool ? "cut":"remove"]绕在[owner == user ? "[owner.p_their()]":"[owner]'s"]脖子上的纤维线..."),
+		span_notice("你试图[tool ? "cut":"remove"]绕在[owner == user ? "your":"[owner]'s"]脖子上的纤维线..."),
 	)
 
 	// Play a sound if we have a tool
@@ -70,22 +70,22 @@
 
 	// Now try to remove the effect with a doafter. If we have a tool, we'll even remove it 60% faster.
 	if(!do_after(user, time_to_remove * (tool ? STRANGLING_TOOL_MULTIPLIER : 1), owner, interaction_key = REF(src)))
-		to_chat(user, span_warning("You fail to [tool ? "cut":"remove"] the strand from around [owner == user ? "your":"[owner]'s"] neck!"))
+		to_chat(user, span_warning("你未能[tool ? "cut":"remove"]绕在[owner == user ? "your":"[owner]'s"]脖子上的纤维线！"))
 		return FALSE
 
 	// Play another sound after we're done
 	tool?.play_tool_sound(owner)
 
 	user.visible_message(
-		span_notice("[user] successfully [tool ? "cut":"remove"] the strand from around [owner == user ? "[owner.p_their()]":"[owner]'s"] neck."),
-		span_notice("You successfully [tool ? "cut":"remove"] the strand from around [owner == user ? "your":"[owner]'s"] neck."),
+		span_notice("[user] 成功[tool ? "cut":"remove"]了绕在[owner == user ? "[owner.p_their()]":"[owner]'s"]脖子上的纤维线。"),
+		span_notice("你成功[tool ? "cut":"remove"]了绕在[owner == user ? "your":"[owner]'s"]脖子上的纤维线。"),
 	)
 	qdel(src)
 	return TRUE
 
 /atom/movable/screen/alert/status_effect/strandling
-	name = "Choking strand"
-	desc = "Strands of Durathread are wrapped around your neck, preventing you from breathing! Click this icon to remove the strand."
+	name = "窒息纤维线"
+	desc = "杜拉纤维线缠绕在你的脖子上，让你无法呼吸！点击此图标以移除纤维线。"
 	icon_state = "his_grace"
 	alerttooltipstyle = "hisgrace"
 	clickable_glow = TRUE

@@ -371,9 +371,9 @@
 	if (!target_tank)
 		return
 	if(internal || (is_external && external))
-		to_chat(src, span_notice("You switch your internals to [target_tank]."))
+		to_chat(src, span_notice("你将内部供气切换至[target_tank]。"))
 	else
-		to_chat(src, span_notice("You open [target_tank] valve."))
+		to_chat(src, span_notice("你打开了[target_tank]阀门。"))
 	return open_internals(target_tank, is_external)
 
 /**
@@ -387,14 +387,14 @@
 /mob/living/carbon/proc/toggle_close_internals(is_external = FALSE)
 	if (!internal && !external)
 		return
-	to_chat(src, span_notice("You close [is_external ? external : internal] valve."))
+	to_chat(src, span_notice("你关闭了[is_external ? external : internal]阀门。"))
 	return close_internals(is_external)
 
 /// Prepares emergency disconnect from open air tanks and notifies in chat. Usually called after mob suddenly unequips breathing apparatus.
 /mob/living/carbon/proc/cutoff_internals()
 	if (!external && !internal)
 		return
-	to_chat(src, span_notice("Your internals disconnect from [external || internal] and the valve closes."))
+	to_chat(src, span_notice("你的内部供气从[external || internal]断开，阀门关闭了。"))
 	close_all_airtanks()
 
 /**

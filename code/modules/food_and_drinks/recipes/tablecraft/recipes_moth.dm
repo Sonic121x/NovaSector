@@ -1,5 +1,5 @@
 /datum/crafting_recipe/food/herby_cheese
-	name = "Herby cheese"
+	name = "Herby cheese-香料奶酪"
 	reqs = list(
 		/obj/item/food/cheese/curd_cheese = 1,
 		/obj/item/food/grown/herbs = 4,
@@ -10,7 +10,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/mothic_salad
-	name = "Mothic salad"
+	name = "Mothic salad-蛾类沙拉"
 	reqs = list(
 		/obj/item/food/grown/cabbage = 1,
 		/obj/item/food/onion_slice/red = 2,
@@ -21,7 +21,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/toasted_seeds
-	name = "Toasted seeds"
+	name = "Toasted seeds-烤种子"
 	reqs = list(
 		/obj/item/seeds/sunflower = 1,
 		/obj/item/seeds/pumpkin = 1,
@@ -34,7 +34,7 @@
 	crafting_flags = parent_type::crafting_flags & ~CRAFT_CLEARS_REAGENTS // seeds don't have nutriment
 
 /datum/crafting_recipe/food/engine_fodder
-	name = "Engine fodder"
+	name = "Engine fodder-引擎饲料"
 	reqs = list(
 		/obj/item/food/toasted_seeds = 1,
 		/obj/item/food/cnds = 1,
@@ -47,7 +47,7 @@
 	meal_category = MEAL_SNACK
 
 /datum/crafting_recipe/food/squeaking_stir_fry
-	name = "Skeklitmischtpoppl (Squeaking stir fry)"
+	name = "Skeklitmischtpoppl (嘎吱嘎吱炒菜)"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/cheese/cheese_curds = 1,
@@ -63,7 +63,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/sweet_chili_cabbage_wrap
-	name = "Sweet chili cabbage wrap"
+	name = "Sweet chili cabbage wrap-甜辣白菜卷"
 	reqs = list(
 		/obj/item/food/grilled_cheese = 1,
 		/obj/item/food/mothic_salad = 1,
@@ -76,7 +76,7 @@
 	dish_category = DISH_BURRITO
 
 /datum/crafting_recipe/food/loaded_curds
-	name = "Ozlsettitæloskekllön ede pommes (Loaded curds and fries)"
+	name = "Ozlsettitæloskekllön ede pommes (满载凝乳薯条)"
 	reqs = list(
 		/datum/reagent/consumable/nutriment/soup/chili_sin_carne = 10,
 		/obj/item/food/cheese/cheese_curds = 1,
@@ -89,7 +89,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/baked_cheese_platter
-	name = "Stanntkraktælo (Baked cheese platter)"
+	name = "Stanntkraktælo (烤芝士拼盘)"
 	reqs = list(
 		/obj/item/food/baked_cheese = 1,
 		/obj/item/food/griddle_toast = 3
@@ -124,7 +124,7 @@
 	dish_category = DISH_RICE
 
 /datum/crafting_recipe/food/buttered_baked_corn
-	name = "Buttered baked corn"
+	name = "Buttered baked corn-黄油烤玉米"
 	reqs = list(
 		/obj/item/food/oven_baked_corn = 1,
 		/obj/item/food/butterslice = 1
@@ -133,7 +133,7 @@
 	cuisine_category = CUISINE_MOTHIC
 
 /datum/crafting_recipe/food/fiesta_corn_skillet
-	name = "Fiesta corn skillet"
+	name = "Fiesta corn skillet-嘉年华玉米锅"
 	reqs = list(
 		/obj/item/food/oven_baked_corn = 1,
 		/obj/item/food/cornchips = 1,
@@ -158,7 +158,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/mozzarella_sticks
-	name = "Mozzarella sticks"
+	name = "Mozzarella sticks-马苏里拉芝士条"
 	reqs = list(
 		/obj/item/food/cheese/mozzarella = 1,
 		/obj/item/food/breadslice/plain = 2,
@@ -179,7 +179,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/fueljacks_lunch
-	name = "Fueljack's lunch"
+	name = "Fueljack's lunch-燃油工人的便餐"
 	reqs = list(
 		/obj/item/food/grown/cabbage = 1,
 		/obj/item/food/grown/potato = 1,
@@ -191,7 +191,7 @@
 	cuisine_category = CUISINE_MOTHIC
 
 /datum/crafting_recipe/food/mac_balls
-	name = "Macheronirölen (Mac balls)"
+	name = "Macheronirölen (通心粉球)"
 	reqs = list(
 		/obj/item/food/ready_donk/warm/mac_n_cheese = 1,
 		/obj/item/food/tomato_sauce = 1,
@@ -204,7 +204,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/hua_mulan_congee
-	name = "Hua Mulan congee"
+	name = "Hua Mulan congee-花木兰粥"
 	reqs = list(
 		/datum/reagent/consumable/nutriment/soup/rice_porridge = 10,
 		/obj/item/food/meat/bacon = 1,
@@ -218,7 +218,7 @@
 	dish_category = DISH_RICE
 
 /datum/crafting_recipe/food/fried_eggplant_polenta
-	name = "Fried eggplant and polenta"
+	name = "Fried eggplant and polenta-炸茄子玉米糊"
 	reqs = list(
 		/datum/reagent/consumable/nutriment/soup/cornmeal_porridge = 10,
 		/obj/item/food/grown/eggplant = 1,
@@ -232,7 +232,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/caprese_salad
-	name = "Caprese salad"
+	name = "Caprese salad-卡普列塞沙拉"
 	reqs = list(
 		/obj/item/food/grown/tomato = 1,
 		/obj/item/food/cheese/mozzarella = 1,
@@ -245,7 +245,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/fleet_salad
-	name = "Lörtonknusksolt (Fleet salad)"
+	name = "Lörtonknusksolt (舰队沙拉)"
 	reqs = list(
 		/datum/reagent/consumable/nutriment/fat/oil/olive = 2,
 		/datum/reagent/consumable/vinegar = 2,
@@ -260,7 +260,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/cotton_salad
-	name = "Flöfrölenknusksolt (Cotton salad)"
+	name = "Flöfrölenknusksolt (棉花沙拉)"
 	reqs = list(
 		/datum/reagent/consumable/nutriment/fat/oil/olive = 2,
 		/datum/reagent/consumable/vinegar = 2,
@@ -275,7 +275,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/moth_kachumbari
-	name = "Kæniatknusksolt (Kenyan salad)"
+	name = "Kæniatknusksolt (香辣番茄圆葱沙拉)"
 	reqs = list(
 		/datum/reagent/consumable/limejuice = 2,
 		/obj/item/food/grown/chili = 1,
@@ -369,7 +369,7 @@
 	dish_category = DISH_PIZZA
 
 /datum/crafting_recipe/food/moth_cheese_cakes
-	name = "Ælorölen (Cheesecake balls)"
+	name = "Ælorölen (奶酪球)"
 	reqs = list(
 		/obj/item/food/cheese/curd_cheese = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -384,7 +384,7 @@
 	meal_category = MEAL_DESSERT
 
 /datum/crafting_recipe/food/mothmallow
-	name = "Mothmallows"
+	name = "蛾虫棉花糖"
 	reqs = list(
 		/obj/item/food/grown/soybeans = 1,
 		/datum/reagent/consumable/vanilla = 5,
@@ -397,7 +397,7 @@
 	meal_category = MEAL_DESSERT
 
 /datum/crafting_recipe/food/moffin
-	name = "Moffin"
+	name = "Moffin-玛芬"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/pastrybase = 1,
@@ -411,32 +411,32 @@
 // Soups
 
 /datum/crafting_recipe/food/reaction/soup/cottonball
-	name = "Flöfrölenmæsch (cottonball soup)"
+	name = "Flöfrölenmæsch (棉花汤)"
 	reaction = /datum/chemical_reaction/food/soup/cottonball
 	cuisine_category = CUISINE_MOTHIC
 
 /datum/crafting_recipe/food/reaction/soup/cheese
-	name = "Ælosterrmæsch (cheese soup)"
+	name = "Ælosterrmæsch (芝士汤)"
 	reaction = /datum/chemical_reaction/food/soup/cheese
 	cuisine_category = CUISINE_MOTHIC
 
 /datum/crafting_recipe/food/reaction/soup/seed
-	name = "Misklmæsch (seed soup)"
+	name = "Misklmæsch (种子汤)"
 	reaction = /datum/chemical_reaction/food/soup/seed
 	cuisine_category = CUISINE_MOTHIC
 
 /datum/crafting_recipe/food/reaction/soup/beans
-	name = "Prickeldröndolhaskl (spicy bean stew)"
+	name = "Prickeldröndolhaskl (炖豆子)"
 	reaction = /datum/chemical_reaction/food/soup/beans
 	cuisine_category = CUISINE_MOTHIC
 
 /datum/crafting_recipe/food/reaction/soup/moth_oats
-	name = "Häfmisklhaskl (oat stew)"
+	name = "Häfmisklhaskl (炖燕麦)"
 	reaction = /datum/chemical_reaction/food/soup/moth_oats
 	cuisine_category = CUISINE_MOTHIC
 
 /datum/crafting_recipe/food/reaction/soup/fire_soup
-	name = "Tömpröttkrakklmæsch (heartburn soup)"
+	name = "Tömpröttkrakklmæsch (烧心汤)"
 	reaction = /datum/chemical_reaction/food/soup/fire_soup
 	cuisine_category = CUISINE_MOTHIC
 
@@ -450,7 +450,7 @@
 	dish_category = DISH_RICE
 
 /datum/crafting_recipe/food/reaction/soup/red_porridge
-	name = "Eltsløsk ül a priktæolk (red porridge and yoghurt)"
+	name = "Eltsløsk ül a priktæolk (甜菜酸奶粥)"
 	reaction = /datum/chemical_reaction/food/soup/red_porridge
 	cuisine_category = CUISINE_MOTHIC
 
@@ -463,6 +463,6 @@
 	cuisine_category = CUISINE_MOTHIC
 
 /datum/crafting_recipe/food/reaction/soup/chili_sin_carne
-	name = "Chili Sin Carne (Vegetarian Chili)"
+	name = "Chili sin carne (亵渎之辣椒肉)"
 	reaction = /datum/chemical_reaction/food/soup/chili_sin_carne
 	cuisine_category = CUISINE_MOTHIC

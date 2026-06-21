@@ -1,6 +1,6 @@
 /obj/item/storage/box/flat/neuroware
-	name = "neuroware chip case"
-	desc = "A cheap cardboard case optimal for carrying up to five neuroware chips."
+	name = "神经软件芯片盒"
+	desc = "一个廉价的纸板盒，最适合携带最多五片神经软件芯片。"
 	icon = 'modular_nova/modules/neuroware/icons/box.dmi'
 	icon_state = "neuroware_case"
 	w_class = WEIGHT_CLASS_SMALL
@@ -19,35 +19,35 @@
 	))
 
 /obj/item/storage/box/flat/neuroware/happiness
-	name = "neuroware chips (SmileML)"
+	name = "神经软件芯片（微笑ML）"
 
 /obj/item/storage/box/flat/neuroware/happiness/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/disk/neuroware/happiness(src)
 
 /obj/item/storage/box/flat/neuroware/mindbreaker
-	name = "neuroware chips (PosiBlaster64)"
+	name = "神经芯片（PosiBlaster64）"
 
 /obj/item/storage/box/flat/neuroware/mindbreaker/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/disk/neuroware/mindbreaker(src)
 
 /obj/item/storage/box/flat/neuroware/space_drugs
-	name = "neuroware chips (Kaleido)"
+	name = "神经芯片（卡莱多）"
 
 /obj/item/storage/box/flat/neuroware/space_drugs/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/disk/neuroware/space_drugs(src)
 
 /obj/item/storage/box/flat/neuroware/synaptizine
-	name = "neuroware chips (SynapTuner)"
+	name = "神经芯片（突触调谐器）"
 
 /obj/item/storage/box/flat/neuroware/synaptizine/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/disk/neuroware/synaptizine(src)
 
 /obj/item/storage/box/flat/neuroware/thc
-	name = "neuroware chips (Mr.Stoned v1)"
+	name = "神经芯片（Mr.Stoned v1）"
 
 /obj/item/storage/box/flat/neuroware/thc/PopulateContents()
 	for(var/i in 1 to 5)
@@ -56,28 +56,28 @@
 // Lewd neurowares
 
 /obj/item/storage/box/flat/neuroware/crocin
-	name = "neuroware chips (EroStim)"
+	name = "神经软件芯片（情欲刺激）"
 
 /obj/item/storage/box/flat/neuroware/crocin/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/disk/neuroware/crocin(src)
 
 /obj/item/storage/box/flat/neuroware/hexacrocin
-	name = "neuroware chips (EroStim Deluxe)"
+	name = "神经芯片（情欲刺激豪华版）"
 
 /obj/item/storage/box/flat/neuroware/hexacrocin/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/disk/neuroware/hexacrocin(src)
 
 /obj/item/storage/box/flat/neuroware/camphor
-	name = "neuroware chips (AphroCalm)"
+	name = "神经芯片（安神剂）"
 
 /obj/item/storage/box/flat/neuroware/camphor/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/disk/neuroware/camphor(src)
 
 /obj/item/storage/box/flat/neuroware/pentacamphor
-	name = "neuroware chips (Nobido Xtreme)"
+	name = "神经芯片（诺比多极限版）"
 
 /obj/item/storage/box/flat/neuroware/pentacamphor/PopulateContents()
 	for(var/i in 1 to 5)

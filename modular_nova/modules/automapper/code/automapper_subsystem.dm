@@ -13,7 +13,7 @@
  */
 
 SUBSYSTEM_DEF(automapper)
-	name = "Automapper"
+	name = "自动地图生成器"
 	ss_flags = SS_NO_FIRE
 
 	/// The path to our TOML file

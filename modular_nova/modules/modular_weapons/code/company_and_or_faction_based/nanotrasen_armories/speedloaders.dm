@@ -1,6 +1,6 @@
 /obj/item/ammo_box/speedloader/c38/hicap
-	name = "expanded speed loader (.38)"
-	desc = "Designed to quickly reload eight-chamber .38 Special revolvers."
+	name = "扩容快速装弹器 (.38)"
+	desc = "专为快速装填八发弹巢的.38特种左轮手枪而设计。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_armories/magazines.dmi'
 	icon_state = "38hicap"
 	base_icon_state = "38hicap"

@@ -132,15 +132,15 @@
 		return
 
 	if(terror_buildup >= TERROR_BUILDUP_HEART_ATTACK)
-		examine_list += span_danger("[source.p_They()] [source.p_are()] seizing up, about to collapse in fear!")
+		examine_list += span_danger("[source.p_They()] [source.p_are()] 浑身僵硬，快要因恐惧而瘫倒了！")
 	else if(terror_buildup > TERROR_BUILDUP_PANIC)
-		examine_list += span_boldwarning("[source.p_They()] [source.p_are()] trembling and shaking, barely standing upright!")
+		examine_list += span_boldwarning("[source.p_They()] [source.p_are()] 浑身颤抖，几乎站不稳了！")
 	else if(terror_buildup >= TERROR_BUILDUP_TERROR)
-		examine_list += span_boldwarning("[source] is visibly trembling and twitching. [source.p_They()] [source.p_are()] clearly in distress!")
+		examine_list += span_boldwarning("[source] 明显在颤抖和抽搐。[source.p_They()] [source.p_are()] 显然处于极度痛苦中！")
 	else if(terror_buildup >= TERROR_BUILDUP_FEAR)
-		examine_list += span_warning("[source] looks very worried about something. [capitalize(source.p_are())] [source.p_they()] alright?")
+		examine_list += span_warning("[source] 看起来非常担忧某事。[capitalize(source.p_are())] [source.p_they()] 还好吗？")
 	else if (terror_buildup)
-		examine_list += span_smallnotice("[source] looks rather anxious. [source.p_They()] could probably use a hug...")
+		examine_list += span_smallnotice("[source]看起来相当焦虑。[source.p_They()]可能需要一个拥抱...")
 
 /datum/component/fearful/proc/comfort_owner(mob/living/carbon/source, mob/living/hugger)
 	SIGNAL_HANDLER
@@ -163,9 +163,9 @@
 			source.Knockdown(0.5 SECONDS)
 			terror_buildup += HUG_TERROR_AMOUNT
 			source.visible_message(
-				span_warning("[source] recoils in fear as [hugger] waves [hugger.p_their()] arms and shrieks at [source.p_them()]!"),
-				span_boldwarning("The shadows lash out at you, and you drop to the ground in fear!"),
-				span_hear("You hear someone shriek in fear. How embarassing!"),
+				span_warning("[source]惊恐地退缩，因为[hugger]挥舞着[hugger.p_their()]手臂并对[source.p_them()]尖叫！"),
+				span_boldwarning("阴影向你袭来，你因恐惧而瘫倒在地！"),
+				span_hear("你听到有人因恐惧而尖叫。真尴尬！"),
 				)
 			return COMPONENT_BLOCK_MISC_HELP
 
@@ -176,17 +176,17 @@
 	if (hug_buildup > 0)
 		terror_buildup += hug_buildup
 		source.visible_message(
-			span_warning("[source] recoils in fear as [hugger] attempts to hug [source.p_them()]!"),
-			span_boldwarning("You recoil in terror as [hugger] attempts to hug you!"),
-			span_hear("You hear someone shriek in fear. How embarassing!"),
+			span_warning("[source]惊恐地退缩，因为[hugger]试图拥抱[source.p_them()]！"),
+			span_boldwarning("当[hugger]试图拥抱你时，你惊恐地退缩了！"),
+			span_hear("你听到有人因恐惧而尖叫。真尴尬！"),
 			)
 		return COMPONENT_BLOCK_MISC_HELP
 
 	terror_buildup -= HUG_TERROR_AMOUNT
 	source.visible_message(
-		span_notice("[source] seems to relax as [hugger] gives [source.p_them()] a comforting hug."),
-		span_nicegreen("You feel yourself calm down as [hugger] gives you a reassuring hug."),
-		span_hear("You hear shuffling and a sigh of relief."),
+		span_notice("[source]似乎放松了下来，因为[hugger]给了[source.p_them()]一个安慰的拥抱。"),
+		span_nicegreen("当[hugger]给你一个安抚的拥抱时，你感觉自己平静了下来。"),
+		span_hear("你听到一阵拖沓声和一声如释重负的叹息。"),
 	)
 
 /// Remove all terror buildup when we become fearless
@@ -198,12 +198,12 @@
 	SIGNAL_HANDLER
 
 	if(terror_buildup >= TERROR_BUILDUP_HEART_ATTACK)
-		mood_list += span_boldwarning("You are about to collapse in fear!")
+		mood_list += span_boldwarning("你快要因恐惧而崩溃了！")
 	else if(terror_buildup > TERROR_BUILDUP_PANIC)
-		mood_list += span_boldwarning("You are shaking in fear!")
+		mood_list += span_boldwarning("你正因恐惧而颤抖！")
 	else if(terror_buildup >= TERROR_BUILDUP_TERROR)
-		mood_list += span_warning("You are trembling in fear.")
+		mood_list += span_warning("你正因恐惧而发抖。")
 	else if(terror_buildup >= TERROR_BUILDUP_FEAR)
-		mood_list += span_warning("You feel scared.")
+		mood_list += span_warning("你感到害怕。")
 	else if (terror_buildup)
-		mood_list += span_notice("You feel on the edge.")
+		mood_list += span_notice("你感到如履薄冰。")

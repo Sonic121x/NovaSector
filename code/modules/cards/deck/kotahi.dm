@@ -1,6 +1,6 @@
 /obj/item/toy/cards/deck/kotahi
-	name = "\improper KOTAHI deck"
-	desc = "A deck of kotahi cards. House rules to argue over not included."
+	name = "\improper KOTAHI牌组"
+	desc = "一副Kotahi牌。不包括可供争论的房屋规则。"
 	cardgame_desc = "KOTAHI game"
 	icon_state = "deck_kotahi_full"
 	deckstyle = "kotahi"

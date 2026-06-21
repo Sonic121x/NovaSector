@@ -1,8 +1,8 @@
 //Random seeds; stats, traits, and plant type are randomized for each seed.
 
 /obj/item/seeds/random
-	name = "strange seed pack"
-	desc = "Mysterious seeds as strange as their name implies. Spooky."
+	name = "奇怪种子包"
+	desc = "神秘的种子，正如其名字所暗示的那样充满诡异气息。令人毛骨悚然。"
 	icon_state = "seed-x"
 	species = "?????"
 	plantname = "strange plant"
@@ -25,7 +25,7 @@
 /obj/item/food/grown/random
 	seed = /obj/item/seeds/random
 	name = "strange plant"
-	desc = "What could this even be?"
+	desc = "它会长成什么呢？"
 	icon_state = "crunchy"
 
 /obj/item/food/grown/random/Initialize(mapload)

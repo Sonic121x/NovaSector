@@ -2,13 +2,13 @@
 #define TRAM_MALFUNCTION_TIME_LOWER 120
 
 /datum/round_event_control/tram_malfunction
-	name = "Tram Malfunction"
+	name = "电车故障"
 	typepath = /datum/round_event/tram_malfunction
 	weight = 30
 	max_occurrences = 3
 	earliest_start = 15 MINUTES
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Tram comes to an emergency stop, requiring engineering to reset."
+	description = "有轨电车紧急停车，需要工程部门重置。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 3
 

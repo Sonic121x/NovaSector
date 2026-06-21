@@ -1,5 +1,5 @@
 /datum/outfit/centcom/ert/pizza //da pizza for you and me
-	name = "Pizza Delivery Boy"
+	name = "披萨配送员"
 	id = /obj/item/card/id/advanced/centcom/ert
 	suit = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/pizza
 	glasses = /obj/item/clothing/glasses/regular/modern
@@ -15,7 +15,7 @@
 		)
 
 /datum/outfit/centcom/ert/pizza/leader //da pizza for you and me
-	name = "Pizza Delivery Manager"
+	name = "披萨配送经理"
 	id = /obj/item/card/id/advanced/centcom/ert
 	suit = /obj/item/clothing/suit/pizzaleader
 	uniform = /obj/item/clothing/under/pizza

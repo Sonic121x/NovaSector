@@ -3,6 +3,6 @@
 	alert_type = /atom/movable/screen/alert/status_effect/gravity_wellness
 
 /atom/movable/screen/alert/status_effect/gravity_wellness
-	name = "Gravity Wellness"
-	desc = "Your physiology thrives in low-gravity conditions: you catch your breath quicker and are more mobile."
+	name = "重力适应"
+	desc = "你的生理机能适应低重力环境：你能更快恢复呼吸，并且移动更灵活。"
 	icon_state = "negative"

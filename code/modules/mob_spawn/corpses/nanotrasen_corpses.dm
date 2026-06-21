@@ -2,11 +2,11 @@
 //generally nanotrasen themed corpses
 
 /obj/effect/mob_spawn/corpse/human/bridgeofficer
-	name = "Bridge Officer"
+	name = "舰桥军官"
 	outfit = /datum/outfit/nanotrasenbridgeofficer
 
 /datum/outfit/nanotrasenbridgeofficer
-	name = "Bridge Officer"
+	name = "舰桥军官"
 	ears = /obj/item/radio/headset/heads/hop
 	uniform = /obj/item/clothing/under/rank/centcom/officer
 	suit = /obj/item/clothing/suit/armor/bulletproof
@@ -16,11 +16,11 @@
 	id_trim = /datum/id_trim/centcom/corpse/bridge_officer
 
 /obj/effect/mob_spawn/corpse/human/commander
-	name = "Commander"
+	name = "指挥官"
 	outfit = /datum/outfit/nanotrasencommander
 
 /datum/outfit/nanotrasencommander
-	name = "\improper Nanotrasen Private Security Commander"
+	name = "\improper 纳米传讯私人安全指挥官"
 	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	ears = /obj/item/radio/headset/heads/captain
@@ -34,11 +34,11 @@
 	id_trim = /datum/id_trim/centcom/corpse/commander
 
 /obj/effect/mob_spawn/corpse/human/nanotrasensoldier
-	name = "\improper Nanotrasen Private Security Officer"
+	name = "\improper 纳米传讯私人安全官"
 	outfit = /datum/outfit/nanotrasensoldier
 
 /datum/outfit/nanotrasensoldier
-	name = "NT Private Security Officer"
+	name = "纳米传讯私人安全官"
 	uniform = /obj/item/clothing/under/rank/security/officer
 	suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/combat
@@ -50,7 +50,7 @@
 	id_trim = /datum/id_trim/centcom/corpse/private_security
 
 /obj/effect/mob_spawn/corpse/human/intern //this is specifically the comms intern from the event
-	name = "CentCom Intern"
+	name = "中央指挥部实习生"
 	outfit = /datum/outfit/centcom/centcom_intern/unarmed
 	mob_name = "Nameless Intern"
 

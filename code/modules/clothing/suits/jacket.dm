@@ -44,8 +44,8 @@
 	allowed += GLOB.personal_carry_allowed
 
 /obj/item/clothing/suit/toggle/jacket/sweater
-	name = "sweater jacket"
-	desc = "A sweater jacket."
+	name = "毛衣夹克"
+	desc = "一件毛衣夹克"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/sweater"
 	post_init_icon_state = "sweater"
@@ -55,8 +55,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/suit/toggle/jacket/trenchcoat
-	name = "trenchcoat"
-	desc = "A multi-purpose trenchcoat."
+	name = "风衣"
+	desc = "一件多功能风衣。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/trenchcoat"
 	post_init_icon_state = "trenchcoat"
@@ -73,8 +73,8 @@
 	allowed += GLOB.improvised_firearm_allowed
 
 /obj/item/clothing/suit/jacket/blazer
-	name = "blazer jacket"
-	desc = "A blazer jacket."
+	name = "西装外套"
+	desc = "一件西装外套。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/jacket/blazer"
 	post_init_icon_state = "blazer"
@@ -85,8 +85,8 @@
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/suit/jacket/oversized
-	name = "oversized jacket"
-	desc = "An oversized jacket."
+	name = "大号夹克"
+	desc = "一件大号夹克。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/jacket/oversized"
 	post_init_icon_state = "jacket_oversized"
@@ -96,8 +96,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/suit/jacket/fancy
-	name = "fancy fur coat"
-	desc = "Rated 10 out of 10 in Cosmo for best coat brand."
+	name = "漂亮的皮大衣"
+	desc = "在《时尚》杂志上被评为最佳大衣品牌，满分10分。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/jacket/fancy"
 	post_init_icon_state = "fancy_coat"
@@ -111,8 +111,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/suit/jacket/bomber
-	name = "bomber jacket"
-	desc = "Aviators not included."
+	name = "轰炸机夹克"
+	desc = "不包括飞行员。"
 	icon_state = "bomberjacket"
 	inhand_icon_state = "brownjsuit"
 
@@ -121,8 +121,8 @@
 	allowed += GLOB.improvised_firearm_allowed
 
 /obj/item/clothing/suit/jacket/leather
-	name = "leather jacket"
-	desc = "Pompadour not included."
+	name = "皮夹克"
+	desc = "不包括蓬帕杜尔发型。"
 	icon_state = "leatherjacket"
 	inhand_icon_state = "hostrench"
 	resistance_flags = NONE
@@ -133,13 +133,13 @@
 	allowed += GLOB.improvised_firearm_allowed
 
 /obj/item/clothing/suit/jacket/leather/biker
-	name = "biker jacket"
-	desc = "You think I'm not even worth a single dollar, but I feel like a millionare."
+	name = "骑行夹克"
+	desc = "你觉得我一文不值，但我觉得自己像个百万富翁。"
 	icon_state = "leatherjacket_biker"
 
 /obj/item/clothing/suit/jacket/puffer
-	name = "puffer jacket"
-	desc = "A thick jacket with a rubbery, water-resistant shell."
+	name = "羽绒服"
+	desc = "一件厚实的羽绒服，其外层采用橡胶材质，具有防水功能。"
 	icon_state = "pufferjacket"
 	inhand_icon_state = "hostrench"
 	armor_type = /datum/armor/jacket_puffer
@@ -148,8 +148,8 @@
 	bio = 50
 
 /obj/item/clothing/suit/jacket/puffer/vest
-	name = "puffer vest"
-	desc = "A thick vest with a rubbery, water-resistant shell."
+	name = "羽绒服马甲"
+	desc = "一件厚实的羽绒服马甲，其外层采用橡胶材质，具有防水功能。"
 	icon_state = "puffervest"
 	inhand_icon_state = "armor"
 	body_parts_covered = CHEST|GROIN
@@ -160,8 +160,8 @@
 	bio = 30
 
 /obj/item/clothing/suit/jacket/miljacket
-	name = "military jacket"
-	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
+	name = "军用夹克"
+	desc = "一种仿照美国古典军服设计的帆布夹克。手感结实，同时非常舒适。"
 	icon_state = "militaryjacket"
 	inhand_icon_state = null
 
@@ -170,8 +170,8 @@
 	allowed += GLOB.improvised_firearm_allowed
 
 /obj/item/clothing/suit/jacket/letterman
-	name = "letterman jacket"
-	desc = "A classic brown letterman jacket. Looks pretty hot and heavy."
+	name = "棒球夹克"
+	desc = "一件经典的棕色运动夹克。看起来性感又迷人。"
 	icon_state = "letterman"
 	inhand_icon_state = null
 	species_exception = list(/datum/species/golem)
@@ -181,8 +181,8 @@
 	allowed += GLOB.improvised_firearm_allowed
 
 /obj/item/clothing/suit/jacket/letterman_red
-	name = "red letterman jacket"
-	desc = "A letterman jacket in a sick red color. Radical."
+	name = "红色棒球夹克"
+	desc = "一件红色的运动夹克。相当前卫。"
 	icon_state = "letterman_red"
 	inhand_icon_state = null
 	species_exception = list(/datum/species/golem)
@@ -192,8 +192,8 @@
 	allowed += GLOB.improvised_firearm_allowed
 
 /obj/item/clothing/suit/jacket/letterman_syndie
-	name = "blood-red letterman jacket"
-	desc = "Oddly, this jacket seems to have a large S on the back..."
+	name = "血红棒球夹克"
+	desc = "奇怪的是，这件夹克的背面好像有一个大大的S。"
 	icon_state = "letterman_s"
 	inhand_icon_state = null
 	species_exception = list(/datum/species/golem)
@@ -203,8 +203,8 @@
 	allowed += GLOB.improvised_firearm_allowed
 
 /obj/item/clothing/suit/jacket/letterman_nanotrasen
-	name = "blue letterman jacket"
-	desc = "A blue letterman jacket with a proud Nanotrasen N on the back. The tag says that it was made in Space China."
+	name = "蓝色棒球夹克"
+	desc = "一件蓝色运动员夹克，背面印有一个纳米传讯的N子样。标签上写着太空中国制造。"
 	icon_state = "letterman_n"
 	inhand_icon_state = null
 	species_exception = list(/datum/species/golem)

@@ -1,7 +1,7 @@
 /// Item you use on a mob to make it bigger and stronger
 /obj/item/fugu_gland
-	name = "wumborian fugu gland"
-	desc = "The key to the wumborian fugu's ability to increase its mass arbitrarily, this disgusting remnant can apply the same effect to other creatures, giving them great strength."
+	name = "温博里安河豚腺体"
+	desc = "这是温博里安河豚能够任意增加其质量的关键，这个令人作呕的残留物可以将同样的效果施加于其他生物，赋予它们巨大的力量。"
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "fugu_gland"
 	item_flags = NOBLUDGEON
@@ -24,10 +24,10 @@
 	var/mob/living/animal = interacting_with
 
 	if(animal.stat == DEAD || HAS_TRAIT(animal, TRAIT_FAKEDEATH))
-		balloon_alert(user, "it's dead!")
+		balloon_alert(user, "它死了！")
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(animal, TRAIT_FUGU_GLANDED))
-		balloon_alert(user, "already large!")
+		balloon_alert(user, "已经够大了！")
 		return ITEM_INTERACT_BLOCKING
 
 	ADD_TRAIT(animal, TRAIT_FUGU_GLANDED, type)
@@ -38,6 +38,6 @@
 	animal.melee_damage_upper = max((animal.melee_damage_upper * 2), 10)
 	animal.update_transform(2)
 	animal.AddElement(/datum/element/wall_tearer)
-	to_chat(user, span_info("You increase the size of [animal], giving [animal.p_them()] a surge of strength!"))
+	to_chat(user, span_info("你增大了[animal]的体型，让[animal.p_them()]获得了力量激增！"))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

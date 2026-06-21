@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/decimal_conversion
 	display_name = "Decimal Conversion"
-	desc = "Merges an array of binary digits, or bits, represented as 1 or 0 and often used in boolean or binary operations, into a decimal number."
+	desc = "将一系列以 1 或 0 表示的二进制数字（常用于布尔运算或二进制操作）合并成一个十进制数。"
 	category = "Math"
 
 	/// One number

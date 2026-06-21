@@ -1,6 +1,6 @@
 /obj/structure/microscope
-	name = "Microscope"
-	desc = "A simple microscope, allowing you to examine micro-organisms."
+	name = "显微镜"
+	desc = "一台简易的显微镜，能让你观察微生物。"
 	icon = 'icons/obj/science/vatgrowing.dmi'
 	icon_state = "microscope"
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SHEET_MATERIAL_AMOUNT)
@@ -98,16 +98,16 @@
 	if(current_dish)
 		old_dish = current_dish
 	if(!user.transferItemToLoc(new_dish, src))
-		balloon_alert(user, "couldn't add!")
+		balloon_alert(user, "无法添加！")
 		return ITEM_INTERACT_FAILURE
 	current_dish = new_dish
 	update_static_data_for_all_viewers()
 	if(old_dish)
 		if(!user.put_in_hands(old_dish))
 			old_dish.forceMove(get_turf(src))
-		balloon_alert(user, "dish swapped")
+		balloon_alert(user, "培养皿已更换")
 	else
-		balloon_alert(user, "dish added")
+		balloon_alert(user, "培养皿已添加")
 	return ITEM_INTERACT_SUCCESS
 
 ///Take the inserted dish, or drop it on the floor
@@ -118,7 +118,7 @@
 		current_dish.forceMove(get_turf(src))
 	current_dish = null
 	update_static_data_for_all_viewers()
-	balloon_alert(user, "dish removed")
+	balloon_alert(user, "培养皿已移除")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/microscope/unanchored

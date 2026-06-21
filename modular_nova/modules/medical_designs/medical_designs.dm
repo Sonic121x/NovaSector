@@ -1,5 +1,5 @@
 /datum/design/surgical_gown
-	name = "Surgical Gown"
+	name = "手术袍"
 	id = "surgical_gown"
 	build_type = PROTOLATHE
 	materials = list(

@@ -1,6 +1,6 @@
 /mob/living/basic/axolotl
-	name = "axolotl"
-	desc = "Quite the colorful amphibian!"
+	name = "美西螈"
+	desc = "相当色彩斑斓的两栖动物！"
 	icon_state = "axolotl"
 	icon_living = "axolotl"
 	icon_dead = "axolotl_dead"

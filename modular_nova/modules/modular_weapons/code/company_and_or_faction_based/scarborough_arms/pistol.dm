@@ -1,5 +1,5 @@
 /obj/item/gun/ballistic/automatic/pistol/enforcer
-	name = "\improper Enforcer-TEN combat handgun"
+	name = "\improper 执法者-TEN 战斗手枪"
 	desc = "A robust, full-size combat handgun, chambered in 10mm. Lacks a threaded barrel, leaving it unable to be suppressed, \
 		but has enough heft to be used as a decent improvised weapon in a pinch."
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/scarborough_arms/pistol.dmi'
@@ -65,11 +65,11 @@
 		. += "[icon_state]_empty"
 
 /obj/item/storage/toolbox/guncase/traitor/enforcer
-	name = "enforcer gun case"
+	name = "执法者手枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/enforcer
 	extra_to_spawn = /obj/item/ammo_box/magazine/enforcer
 	ammo_box_to_spawn = /obj/item/ammo_box/c10mm/large
 
 /obj/item/storage/toolbox/guncase/traitor/enforcer/ammunition
-	name = "enforcer magazine case"
+	name = "执法者弹匣箱"
 	weapon_to_spawn = /obj/item/ammo_box/magazine/enforcer

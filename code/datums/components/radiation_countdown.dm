@@ -20,7 +20,7 @@
 
 	time_added = world.time
 
-	to_chat(parent, span_userdanger("The air around you feels warm...perhaps you should go somewhere else."))
+	to_chat(parent, span_userdanger("周围的空气感觉温热……也许你该去别的地方。"))
 
 	start_deletion_timer()
 
@@ -29,7 +29,7 @@
 
 /datum/component/radiation_countdown/proc/remove_self()
 	if (!HAS_TRAIT(parent, TRAIT_IRRADIATED))
-		to_chat(parent, span_notice("The air here feels safer."))
+		to_chat(parent, span_notice("这里的空气感觉安全些了。"))
 
 	qdel(src)
 

@@ -1,13 +1,13 @@
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl
-	name = "hole in the ground"
-	desc = "A clearly hand dug hole in the ground that appears to lead into a small cave of some kind? It's pretty dark in there."
-	prompt_name = "icemoon dweller"
+	name = "地上的洞"
+	desc = "一个明显是手工挖掘的地洞，似乎通向某种小洞穴？里面相当黑暗。"
+	prompt_name = "冰月住民"
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "hole"
 	mob_species = /datum/species/human/felinid/primitive
 	outfit = /datum/outfit/primitive_catgirl
 	density = FALSE
-	you_are_text = "You are an icemoon dweller."
+	you_are_text = "你是一名冰月住民。"
 	flavour_text = "For as long as you can remember, the icemoon has been your home. \
 		It's been the home of your ancestors, and their ancestors, and the ones before them. \
 		Currently, you and your kin live in uneasy tension with your nearby human-and-otherwise \
@@ -40,7 +40,7 @@
 	. = ..()
 	team = new /datum/team/primitive_catgirls()
 
-	important_text = "Read the full policy <a href=\"[CONFIG_GET(string/icecats_policy_link)]\">here</a>."
+	important_text = "在此处<a href=\"[CONFIG_GET(string/icecats_policy_link)]\">阅读完整政策</a>。"
 
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl/Destroy()
 	team = null
@@ -50,12 +50,12 @@
 	. = ..()
 
 	if(uses)
-		. += span_notice("You can see <b>[uses]</b> figures sound asleep down there.")
+		. += span_notice("你能看到<b>[uses]</b>个身影在下面熟睡着。")
 	else
-		. += span_notice("It looks pretty empty.")
+		. += span_notice("看起来相当空旷。")
 
 	if(isprimitivedemihuman(user) || isobserver(user))
-		. += span_notice("<i>You could examine it more thoroughly...</i>")
+		. += span_notice("<i>你可以更仔细地检查它...</i>")
 
 	return .
 
@@ -83,7 +83,7 @@
 		joined_player_names += joined_mind.name
 
 	if(!length(joined_player_names) && !length(went_back_to_sleep))
-		join_and_leave_log_cache = span_notice("Everyone still seems to be sleeping peacefully in the hole.")
+		join_and_leave_log_cache = span_notice("大家似乎都还在洞里安详地睡着。")
 		return join_and_leave_log_cache
 
 	var/nobody_joined = !length(joined_player_names)
@@ -105,7 +105,7 @@
 	if(!(user.ckey in team.players_spawned)) // One spawn per person
 		return TRUE
 	if(!silent)
-		to_chat(user, span_warning("It'd be weird if there were multiple of you in that cave, wouldn't it?"))
+		to_chat(user, span_warning("如果那个洞穴里有多个你，会很奇怪，不是吗？"))
 	return FALSE
 
 
@@ -133,47 +133,47 @@
 		return
 
 	if(target.stat == DEAD)
-		to_chat(user, span_danger("Dead kin cannot be put back to sleep."))
+		to_chat(user, span_danger("死去的族人无法被放回去睡觉。"))
 		return
 
 	if(target.ckey && target != user)
 		if(!target.get_organ_by_type(/obj/item/organ/brain) || (target.mind && !target.ssd_indicator))
-			to_chat(user, span_danger("Awake kin cannot be put back to sleep against their will."))
+			to_chat(user, span_danger("醒着的族人不能违背其意愿被放回去睡觉。"))
 			return
 
 		if(target.lastclienttime + ssd_time >= world.time)
-			to_chat(user, span_userdanger("You can't put [target] into [src] for another <b>[round(((ssd_time - (world.time - target.lastclienttime)) / (1 MINUTES)), 1)]</b> minutes."))
+			to_chat(user, span_userdanger("你还要等<b>[round(((ssd_time - (world.time - target.lastclienttime)) / (1 MINUTES)), 1)]</b>分钟才能把[target]放进[src]。"))
 			log_admin("[key_name(user)] has attempted to put [key_name(target)] back into [src], but they were only disconnected for [round(((world.time - target.lastclienttime) / (1 MINUTES)), 1)] minutes.")
 			message_admins("[key_name(user)] has attempted to put [key_name(target)] back into [src]. [ADMIN_JMP(src)]")
 			return
 
-		else if(tgui_alert(user, "Would you like to place [target] into [src]?", "Put back to sleep?", list("Yes", "No")) == "Yes")
+		else if(tgui_alert(user, "是否要将[target]放入[src]？", "放回去睡觉？", list("Yes", "No")) == "Yes")
 
-			visible_message(span_infoplain("[user] starts putting [target] into [src]..."))
+			visible_message(span_infoplain("[user]开始把[target]放进[src]..."))
 
 			if(!do_after(user, 3 SECONDS, target))
-				balloon_alert(user, "cancelled transfer!")
+				balloon_alert(user, "取消转移！")
 				return
 
-			to_chat(user, span_danger("You put [target] into [src]."))
+			to_chat(user, span_danger("你把[target]放进了[src]。"))
 			log_admin("[key_name(user)] has put [key_name(target)] back into [src].")
 			message_admins("[key_name(user)] has put [key_name(target)] back into [src]. [ADMIN_JMP(src)]")
 
 	if(target == user)
-		if(tgui_alert(target, "Would you like to go back to sleep?", "Go back to sleep?", list("Yes", "No")) != "Yes")
+		if(tgui_alert(target, "你想要回去睡觉吗？", "回去睡觉？", list("Yes", "No")) != "Yes")
 			return
 
-		visible_message(span_infoplain("[user] starts climbing down into [src]..."))
+		visible_message(span_infoplain("[user]开始爬进[src]..."))
 
 		if(!do_after(user, 3 SECONDS, target))
-			balloon_alert(user, "cancelled transfer!")
+			balloon_alert(user, "取消转移！")
 			return
 
 	if(LAZYLEN(target.buckled_mobs) > 0)
 		if(target == user)
-			to_chat(user, span_danger("You can't fit into [src] while someone is buckled to you."))
+			to_chat(user, span_danger("有人被绑在你身上时，你无法进入[src]。"))
 		else
-			to_chat(user, span_danger("You can't fit [target] into [src] while someone is buckled to them."))
+			to_chat(user, span_danger("当有人被绑在[target]身上时，你无法将其放入[src]。"))
 
 		return
 
@@ -182,9 +182,9 @@
 		return
 
 	if(target == user)
-		visible_message(span_infoplain("[user] climbs down into [src]."))
+		visible_message(span_infoplain("[user]爬进了[src]。"))
 	else
-		visible_message(span_infoplain("[user] puts [target] into [src]."))
+		visible_message(span_infoplain("[user] 将 [target] 放进了 [src]。"))
 
 	log_admin("[key_name(target)] returned to [src].")
 	message_admins("[key_name_admin(target)] returned to [src]. [ADMIN_JMP(src)]")
@@ -258,14 +258,14 @@
 // Antag and team datums
 
 /datum/team/primitive_catgirls
-	name = "Icewalkers"
+	name = "冰行者"
 	member_name = "Icewalker"
 	show_roundend_report = FALSE
 
 /datum/team/primitive_catgirls/roundend_report()
 	var/list/report = list()
 
-	report += span_header("An Ice Walker Tribe inhabited the wastes...</span><br>")
+	report += span_header("一个冰行者部族栖息在这片废土上...</span><br>")
 	if(length(members))
 		report += "The [member_name]s were:"
 		report += printplayerlist(members)
@@ -277,7 +277,7 @@
 // Antagonist datum
 
 /datum/antagonist/primitive_catgirl
-	name = "\improper Icewalker"
+	name = "\improper 冰行者"
 	pref_flag = ROLE_LAVALAND // If you're ashwalker banned you should also not be playing this, other way around as well
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE

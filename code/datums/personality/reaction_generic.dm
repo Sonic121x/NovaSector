@@ -1,7 +1,7 @@
 /datum/personality/apathetic
 	savefile_key = "apathetic"
-	name = "Apathetic"
-	desc = "I don't care about much. Not the good, nor the bad, and certainly not the ugly."
+	name = "冷漠"
+	desc = "我对大多数事情都不在乎。无论是好的、坏的，当然也包括丑陋的。"
 	neut_gameplay_desc = "All moodlets affect you less"
 	groups = list(PERSONALITY_GROUP_MOOD_POWER)
 
@@ -15,8 +15,8 @@
 
 /datum/personality/sensitive
 	savefile_key = "sensitive"
-	name = "Sensitive"
-	desc = "I am easily influenced by the world around me."
+	name = "敏感"
+	desc = "我很容易受到周围世界的影响。"
 	neut_gameplay_desc = "All moodlets affect you more"
 	groups = list(PERSONALITY_GROUP_MOOD_POWER)
 
@@ -30,8 +30,8 @@
 
 /datum/personality/resilient
 	savefile_key = "resilient"
-	name = "Resilient"
-	desc = "It's whatever. I can take it!"
+	name = "坚韧"
+	desc = "没什么大不了的。我能承受！"
 	pos_gameplay_desc = "Negative moodlets expire faster"
 	groups = list(PERSONALITY_GROUP_MOOD_LENGTH)
 
@@ -45,8 +45,8 @@
 
 /datum/personality/brooding
 	savefile_key = "brooding"
-	name = "Brooding"
-	desc = "Everything gets to me and I can't help but think about it."
+	name = "忧郁"
+	desc = "每件事都困扰着我，我忍不住要去思考它们。"
 	neg_gameplay_desc = "Negative moodlets last longer"
 	groups = list(PERSONALITY_GROUP_MOOD_LENGTH)
 
@@ -60,8 +60,8 @@
 
 /datum/personality/hopeful
 	savefile_key = "hopeful"
-	name = "Hopeful"
-	desc = "I believe things will always get better."
+	name = "乐观"
+	desc = "我相信事情总会变得更好。"
 	pos_gameplay_desc = "Positive moodlets last longer"
 	groups = list(PERSONALITY_GROUP_HOPE)
 
@@ -75,8 +75,8 @@
 
 /datum/personality/pessimistic
 	savefile_key = "pessimistic"
-	name = "Pessimistic"
-	desc = "I believe our best days are behind us."
+	name = "悲观"
+	desc = "我相信我们最好的日子已经过去了。"
 	neg_gameplay_desc = "Positive moodlets last shorter"
 	groups = list(PERSONALITY_GROUP_HOPE)
 
@@ -90,13 +90,13 @@
 
 /datum/personality/whimsical
 	savefile_key = "whimsical"
-	name = "Whimsical"
-	desc = "This station is too serious sometimes, lighten up!"
+	name = "异想天开"
+	desc = "这个空间站有时太严肃了，放轻松点！"
 	pos_gameplay_desc = "Likes ostensibly pointless but silly things, and does not mind clownish pranks"
 
 /datum/personality/snob
 	savefile_key = "snob"
-	name = "Snobbish"
-	desc = "I expect only the best out of this station - anything less is unacceptable!"
+	name = "势利"
+	desc = "我对这个空间站只抱有最高的期望——任何低于此标准的事情都是不可接受的！"
 	neut_gameplay_desc = "Room quality affects your mood"
 	personality_trait = TRAIT_SNOB

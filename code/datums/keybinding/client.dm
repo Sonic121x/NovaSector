@@ -7,7 +7,7 @@
 	hotkey_keys = list("F1")
 	name = "admin_help"
 	full_name = "Admin Help"
-	description = "Ask an admin for help."
+	description = "向管理员寻求帮助。"
 	keybind_signal = COMSIG_KB_CLIENT_GETHELP_DOWN
 
 /datum/keybinding/client/admin_help/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -55,7 +55,7 @@
 	hotkey_keys = list("F11")
 	name = "toggle_fullscreen"
 	full_name = "Toggle Fullscreen"
-	description = "Makes the game window fullscreen."
+	description = "使游戏窗口全屏显示。"
 	keybind_signal = COMSIG_KB_CLIENT_FULLSCREEN_DOWN
 
 /datum/keybinding/client/toggle_fullscreen/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -69,7 +69,7 @@
 	hotkey_keys = list("F12")
 	name = "minimal_hud"
 	full_name = "Minimal HUD"
-	description = "Hide most HUD features"
+	description = "隐藏大部分HUD功能"
 	keybind_signal = COMSIG_KB_CLIENT_MINIMALHUD_DOWN
 
 /datum/keybinding/client/minimal_hud/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -83,7 +83,7 @@
 	hotkey_keys = list("Northwest") // HOME key
 	name = "close_every_ui"
 	full_name = "Close Open UIs"
-	description = "Closes all UI windows you have open."
+	description = "关闭你打开的所有UI窗口。"
 	keybind_signal = COMSIG_KB_CLIENT_CLOSEUI_DOWN
 
 /datum/keybinding/client/close_every_ui/down(client/user, turf/target, mousepos_x, mousepos_y)

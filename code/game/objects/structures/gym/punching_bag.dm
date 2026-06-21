@@ -1,6 +1,6 @@
 /obj/structure/punching_bag
-	name = "punching bag"
-	desc = "A punching bag. Can you get to speed level 4???"
+	name = "沙袋"
+	desc = "一个沙袋。你能达到速度等级4吗？？？"
 	icon = 'icons/obj/fluff/gym_equipment.dmi'
 	icon_state = "punchingbag"
 	anchored = TRUE
@@ -72,16 +72,16 @@
 
 /obj/structure/punching_bag/wrench_act_secondary(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
-	balloon_alert(user, anchored ? "unsecured" : "secured")
+	balloon_alert(user, anchored ? "未固定" : "已固定")
 	anchored = !anchored
 	return TRUE
 
 /obj/structure/punching_bag/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	if(anchored)
-		balloon_alert(user, "still secured!")
+		balloon_alert(user, "仍然固定着！")
 		return FALSE
 	tool.play_tool_sound(src)
-	balloon_alert(user, "deconstructing...")
+	balloon_alert(user, "正在解构...")
 	if (!do_after(user, 10 SECONDS, target = src))
 		return FALSE
 	new /obj/item/stack/sheet/iron(get_turf(src), 2)

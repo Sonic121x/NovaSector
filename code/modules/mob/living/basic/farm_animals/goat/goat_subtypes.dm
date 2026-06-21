@@ -1,5 +1,5 @@
 /mob/living/basic/goat/pete // Pete!
-	name = "Pete"
+	name = "皮特"
 	gender = MALE
 
 /mob/living/basic/goat/pete/examine()

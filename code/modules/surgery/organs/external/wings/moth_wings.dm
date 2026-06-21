@@ -2,8 +2,8 @@
 
 ///Moth wings! They can flutter in low-grav and burn off in heat
 /obj/item/organ/wings/moth
-	name = "moth wings"
-	desc = "Spread your wings and FLOOOOAAAAAT!"
+	name = "蛾子翅膀"
+	desc = "展开你的翅膀，飘浮起来吧！"
 
 	// dna_block = /datum/dna_block/feature/accessory/moth_wing // NOVA EDIT REMOVAL - Customization
 
@@ -62,7 +62,7 @@
 	SIGNAL_HANDLER
 
 	if(!burnt && human.bodytemperature >= 800 && human.fire_stacks > 0) //do not go into the extremely hot light. you will not survive
-		to_chat(human, span_danger("Your precious wings burn to a crisp!"))
+		to_chat(human, span_danger("你珍贵的翅膀烧成了焦炭！"))
 		human.add_mood_event("burnt_wings", /datum/mood_event/burnt_wings)
 
 		burn_wings()

@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/wheelys
-	name = "Wheely-Heels"
-	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either." //Thanks Fel
+	name = "滑轮高跟鞋"
+	desc = "采用专利可伸缩滑轮技术。永远不要为了速度而牺牲风格——尽管这双鞋在两方面都不太出色。" //Thanks Fel
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	worn_icon = 'icons/mob/large-worn-icons/64x64/feet.dmi'
 	icon_state = "/obj/item/clothing/shoes/wheelys"
@@ -30,7 +30,7 @@
 	if(!isliving(user))
 		return
 	if(!istype(user.get_item_by_slot(ITEM_SLOT_FEET), /obj/item/clothing/shoes/wheelys))
-		balloon_alert(user, "must be worn!")
+		balloon_alert(user, "必须穿着！")
 		return
 	if(!(wheels.is_occupant(user)))
 		wheelToggle = FALSE
@@ -62,8 +62,8 @@
 	. = ..()
 
 /obj/item/clothing/shoes/wheelys/rollerskates
-	name = "roller skates"
-	desc = "An EightO brand pair of roller skates. The wheels are retractable, though're quite bulky to walk in."
+	name = "滑轮鞋"
+	desc = "一对八O牌滑轮鞋.上面的轮子是可伸缩的，但直接走会很笨拙."
 	icon = 'icons/obj/clothing/shoes.dmi'
 	icon_state = "rollerskates"
 	post_init_icon_state = null
@@ -77,8 +77,8 @@
 	custom_price = PAYCHECK_CREW * 5
 
 /obj/item/clothing/shoes/wheelys/skishoes
-	name = "ski shoes"
-	desc = "A pair of shoes equipped with foldable skis! Very handy to move in snowy environments unimpeded."
+	name = "滑雪鞋"
+	desc = "一双配备了可折叠滑雪板的鞋子！在雪地中行走非常方便，能毫无阻碍的前行。"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	icon_state = "skishoes"
 	post_init_icon_state = null

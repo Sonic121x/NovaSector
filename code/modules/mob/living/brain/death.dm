@@ -5,8 +5,8 @@
 
 	if(!gibbed && container)//If not gibbed but in a container.
 		var/obj/item/mmi = container
-		mmi.visible_message(span_warning("[src]'s MMI flatlines!"), \
-					span_hear("You hear something flatline."))
+		mmi.visible_message(span_warning("[src]的MMI变成了一条直线！"), \
+					span_hear("你听到什么东西变成了一条直线。"))
 		mmi.update_appearance()
 
 	return ..()

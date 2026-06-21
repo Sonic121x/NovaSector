@@ -1,9 +1,9 @@
 /// Player controlled mobs that rip and tear, typically summoned by wizards.
 /mob/living/basic/demon
-	name = "imp"
+	name = "小恶魔"
 	real_name = "imp"
 	unique_name = TRUE
-	desc = "A large, menacing creature covered in armored black scales."
+	desc = "一只庞大、充满威胁的生物，覆盖着装甲般的黑色鳞片。"
 
 	speak_emote = list("cackles","screeches")
 	response_help_continuous = "thinks better of touching"
@@ -72,4 +72,4 @@
 	mind.add_antag_datum(antag_type)
 
 	SEND_SOUND(src, 'sound/effects/magic/demon_dies.ogg')
-	to_chat(src, span_bold("You are currently not currently in the same plane of existence as the station. Use your Blood Crawl ability near a pool of blood to manifest and wreak havoc."))
+	to_chat(src, span_bold("你目前与空间站不在同一个存在位面。在血泊附近使用你的血行能力来显形并制造混乱。"))

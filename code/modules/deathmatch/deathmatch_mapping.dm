@@ -1,5 +1,5 @@
 /area/deathmatch
-	name = "Deathmatch Arena"
+	name = "死斗竞技场"
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
 	area_flags = LOCAL_TELEPORT | EVENT_PROTECTED | QUIET_LOGS | NO_DEATH_MESSAGE | BINARY_JAMMING
@@ -13,8 +13,8 @@
 
 // for the illusion of a moving train
 /turf/open/chasm/true/no_smooth/fake_motion_sand
-	name = "air"
-	desc = "Don't jump off, unless you want to fall a really long distance."
+	name = "空气"
+	desc = "别跳下去，除非你想体验一次超长的坠落。"
 	icon_state = "sandmoving"
 	base_icon_state = "sandmoving"
 	icon = 'icons/turf/floors.dmi'

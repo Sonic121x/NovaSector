@@ -26,7 +26,7 @@
 
 /obj/item/borg/stun/attack(mob/living/attacked_mob, mob/living/user)
 	if(cooldown_check > world.time)
-		user.balloon_alert(user, "still recharging!")
+		user.balloon_alert(user, "仍在充能中！")
 		return
 	if(ishuman(attacked_mob))
 		var/mob/living/carbon/human/human = attacked_mob
@@ -158,7 +158,7 @@
 					attacked_mob.set_resting(FALSE, TRUE)
 			else
 				user.visible_message(
-					span_warning("[user] bops [attacked_mob] on the head!"),
+					span_warning("[user] 轻敲了一下 [attacked_mob] 的头！"),
 					span_warning("You bop [attacked_mob] on the head!"),
 				)
 			playsound(loc, 'sound/items/weapons/tap.ogg', 50, TRUE, -1)
@@ -177,7 +177,7 @@
 				if(!iscyborg(attacked_mob))
 					attacked_mob.adjust_fire_loss(10)
 					user.visible_message(
-						span_userdanger("[user] shocks [attacked_mob]!"),
+						span_userdanger("[user]电击了[attacked_mob]！"),
 						span_danger("You shock [attacked_mob]!"),
 					)
 				else
@@ -198,8 +198,8 @@
 				)
 			else
 				user.visible_message(
-					span_userdanger("[user] crushes [attacked_mob]!"),
-						span_danger("You crush [attacked_mob]!"),
+					span_userdanger("[user]压碎了[attacked_mob]！"),
+						span_danger("你压碎了[attacked_mob]！"),
 				)
 			playsound(loc, 'sound/items/weapons/smash.ogg', 50, TRUE, -1)
 			attacked_mob.adjust_brute_loss(15)
@@ -347,9 +347,9 @@
 /obj/item/harmalarm/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "safeties shorted")
+		balloon_alert(user, "安全装置短路")
 	else
-		balloon_alert(user, "safeties reset")
+		balloon_alert(user, "安全协议已重置")
 	return TRUE
 
 /obj/item/harmalarm/attack_self(mob/user)
@@ -370,8 +370,8 @@
 	if(safety == TRUE)
 		user.visible_message(
 			"<font color='red' size='2'>[user] blares out a near-deafening siren from its speakers!</font>",
-			span_userdanger("Your siren blares around [iscyborg(user) ? "you" : "and confuses you"]!"),
-			span_danger("The siren pierces your hearing!"),
+			span_userdanger("你的警报器在[iscyborg(user) ? "you" : "and confuses you"]发出刺耳声响！"),
+			span_danger("警报声刺穿了你的听觉！"),
 		)
 		for(var/mob/living/carbon/carbon in get_hearers_in_view(9, user))
 			if(carbon.get_ear_protection() > 0)

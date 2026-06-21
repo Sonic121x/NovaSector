@@ -48,7 +48,7 @@
 	signaler.set_frequency(sanitize_frequency(rand(MIN_FREE_FREQ, MAX_FREE_FREQ)))
 	signaler.code = rand(1, 100)
 	buyer.put_in_hands(signaler)
-	to_chat(buyer, span_notice("A [signaler] appears [buyer.is_holding(signaler) ? "in your hands" : "at your feet"]!"))
+	to_chat(buyer, span_notice("一个 [signaler] 出现在 [buyer.is_holding(signaler) ? "in your hands" : "at your feet"]！"))
 
 /datum/market_item/hostage/proc/clear_signaler_ref(datum/source)
 	SIGNAL_HANDLER
@@ -58,7 +58,7 @@
 	var/mob/living/mob = item
 	UnregisterSignal(mob, COMSIG_LIVING_RETURN_FROM_CAPTURE)
 	if(!mob.IsUnconscious())
-		to_chat(mob, span_boldnicegreen("You have been <u>bought</u> back to the station. Be grateful to whoever got you out of the holding facility early."))
+		to_chat(mob, span_boldnicegreen("你已被<u>买</u>回空间站。感谢那个让你提前离开拘留设施的人。"))
 	if(!ishuman(item))
 		return ..()
 	var/mob/living/carbon/human/humie = item

@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/ants
-	name = "space ants"
-	desc = "A small colony of space ants. They're normally used to the vacuum of space, so they can't climb too well."
+	name = "太空蚂蚁"
+	desc = "一小群太空蚂蚁。它们通常适应太空真空环境，所以攀爬能力不太好。"
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "ants"
 	beauty = -150
@@ -77,8 +77,8 @@
 	qdel(src)
 
 /obj/effect/decal/cleanable/ants/fire
-	name = "space fire ants"
-	desc = "A small colony no longer. We are the fire nation."
+	name = "太空火蚁"
+	desc = "不再是小群体。我们是烈火之国。"
 	decal_reagent = /datum/reagent/ants/fire
 	icon_state = "fire_ants"
 	mergeable_decal = FALSE

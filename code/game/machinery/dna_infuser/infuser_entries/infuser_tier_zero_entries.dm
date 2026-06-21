@@ -6,9 +6,9 @@
  * basically just meme, cosmetic, and base species entries
 */
 /datum/infuser_entry/fly
-	name = "Rejected"
+	name = "排斥"
 	infuse_mob_name = "rejected creature"
-	desc = "For whatever reason, when the body rejects DNA, the DNA goes sour, ending up as some kind of fly-like DNA jumble."
+	desc = "无论出于何种原因，当身体排斥DNA时，DNA会变质，最终变成某种类似苍蝇的DNA混合物。"
 	threshold_desc = "the DNA mess takes over, and you become a full-fledged flyperson."
 	qualities = list(
 		"buzzy-like speech",
@@ -28,9 +28,9 @@
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/vulpini
-	name = "Fox"
+	name = "狐狸"
 	infuse_mob_name = "vulpini"
-	desc = "Foxes are now quite rare because of the \"fox ears\" craze back in 2555. I mean, also because we're spacefarers who destroyed foxes' natural habitats ages ago, but that applies to most animals."
+	desc = "狐狸现在相当稀有，因为2555年的“狐耳”热潮。我的意思是，也因为我们作为太空旅行者，早在很久以前就摧毁了狐狸的自然栖息地，但这适用于大多数动物。"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
 		"oh come on really",
@@ -47,9 +47,9 @@
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/mothroach
-	name = "Mothroach"
+	name = "蛾螂"
 	infuse_mob_name = "lepi-blattidae"
-	desc = "So first they mixed moth and roach DNA to make mothroaches, and now we mix mothroach DNA with humanoids to make mothmen hybrids?"
+	desc = "所以他们先是混合了飞蛾和蟑螂的DNA来制造蛾螂，现在我们又混合蛾螂DNA与人形生物来制造蛾人混种？"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
 		"eyes weak to bright lights",
@@ -70,9 +70,9 @@
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/lizard
-	name = "Lizard"
+	name = "蜥蜴"
 	infuse_mob_name = "lacertilia"
-	desc = "Turns out infusing most humanoids with lizard DNA creates features remarkably similar to those of lizardpeople. What a strange coincidence."
+	desc = "事实证明，将大多数类人生物与蜥蜴DNA融合后，会产生与蜥蜴人惊人相似的特征。多么奇怪的巧合。"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
 		"long tails",
@@ -94,9 +94,9 @@
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/felinid
-	name = "Cat"
+	name = "猫"
 	infuse_mob_name = "feline"
-	desc = "EVERYONE CALM DOWN! I'm not implying anything with this entry. Are we really so surprised that felinids are humans with mixed feline DNA?"
+	desc = "大家冷静！我并没有通过这个条目暗示任何东西。我们真的对猫人是混有猫科动物DNA的人类感到如此惊讶吗？"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
 		"oh, let me guess, you're a big fan of those Japanese tourist bots",

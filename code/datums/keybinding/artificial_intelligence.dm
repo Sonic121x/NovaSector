@@ -9,7 +9,7 @@
 	hotkey_keys = list("-")
 	name = "reconnect"
 	full_name = "Reconnect to shell"
-	description = "Reconnects you to your most recently used AI shell"
+	description = "将你重新连接到最近使用的人工智能外壳"
 	keybind_signal = COMSIG_KB_SILICON_RECONNECT_DOWN
 
 /datum/keybinding/artificial_intelligence/reconnect/down(client/user, turf/target, mousepos_x, mousepos_y)

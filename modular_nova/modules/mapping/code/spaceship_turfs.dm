@@ -42,8 +42,8 @@
 	T.transform = transform
 
 /obj/structure/window/reinforced/shuttle/spaceship
-	name = "spaceship window"
-	desc = "A pressure-resistant spaceship window."
+	name = "飞船舷窗"
+	desc = "一种耐压的飞船舷窗。"
 	icon = 'modular_nova/modules/mapping/icons/unique/spaceships/shipwindows.dmi'
 	icon_state = "pod_window-0"
 	base_icon_state = "pod_window"

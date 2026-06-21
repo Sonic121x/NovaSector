@@ -2,7 +2,7 @@
 #define PARALLAX_NONE "parallax_none"
 
 SUBSYSTEM_DEF(parallax)
-	name = "Parallax"
+	name = "视差"
 	wait = 2
 	ss_flags = SS_POST_FIRE_TIMING | SS_BACKGROUND | SS_NO_INIT
 	priority = FIRE_PRIORITY_PARALLAX

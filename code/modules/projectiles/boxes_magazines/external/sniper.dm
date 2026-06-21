@@ -33,12 +33,12 @@
 
 /obj/item/ammo_box/magazine/sniper_rounds/penetrator
 	name = "anti-materiel sniper rounds (.50 BMG penetrator)"
-	desc = parent_type::desc + " Loaded with extremely powerful penetrator rounds, capable of passing straight through cover and anyone unfortunate enough to be behind it."
+	desc = parent_type::desc + "装载了威力极强的穿甲弹，能够直接穿透掩体以及任何不幸躲在后面的人。"
 	base_icon_state = "penetrator"
 	ammo_type = /obj/item/ammo_casing/p50/penetrator
 
 /obj/item/ammo_box/magazine/sniper_rounds/marksman
-	name = "anti-materiel sniper rounds (.50 BMG marksman)"
+	name = "反器材狙击弹（.50 BMG 神射手弹）"
 	desc = parent_type::desc + " Loaded with extremely fast marksman rounds, able to pretty much instantly hit their targets."
 	base_icon_state = "marksman"
 	ammo_type = /obj/item/ammo_casing/p50/marksman
@@ -46,8 +46,8 @@
 // Lahti-L39 Magazine //
 
 /obj/item/ammo_box/magazine/lahtimagazine
-	name = "\improper Lahti sniper rounds (20x138mm)"
-	desc = "A 20x138mm magazine suitable ammo for anti kaiju-rifles."
+	name = "\improper 拉赫蒂狙击弹（20x138mm）"
+	desc = "一个20x138mm弹匣，适用于反怪兽步枪。"
 	icon_state = ".50mag"
 	base_icon_state = ".50mag"
 	ammo_type = /obj/item/ammo_casing/mm20x138

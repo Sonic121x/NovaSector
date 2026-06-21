@@ -1,5 +1,5 @@
 /datum/dynamic_ruleset/midround/from_ghosts/marauder
-	name = "Ghost Roll Traitor"
+	name = "幽灵轮盘叛徒"
 	config_tag = "Marauders"
 	preview_antag_datum = /datum/antagonist/traitor/marauder
 	midround_type = HEAVY_MIDROUND

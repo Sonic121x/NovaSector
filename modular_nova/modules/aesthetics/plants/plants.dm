@@ -13,8 +13,8 @@
 	)
 
 /obj/item/kirbyplants/monkey
-	name = "monkey plant"
-	desc = "Something that seems to have been made by the Nanotrasen science division, one might call it an abomination. Its heads seem... alive."
+	name = "猴子植物"
+	desc = "这似乎是纳米传讯科研部门的造物，有人可能会称其为畸形产物。它的头部看起来...是活的。"
 	icon_state = "monkeyplant"
 	icon = 'modular_nova/modules/aesthetics/plants/icons/plants.dmi'
 	trimmable = FALSE

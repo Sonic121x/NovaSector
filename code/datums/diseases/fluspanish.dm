@@ -1,5 +1,5 @@
 /datum/disease/fluspanish
-	name = "Spanish inquisition Flu"
+	name = "西班牙宗教裁判所流感"
 	max_stages = 3
 	spread_text = "Airborne"
 	cure_text = /datum/reagent/medicine/spaceacillin::name + " or common Flu antibodies"
@@ -32,7 +32,7 @@
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You're burning in your own skin!"))
+				to_chat(affected_mob, span_danger("你正在自己的皮肤里燃烧！"))
 				affected_mob.take_bodypart_damage(0, 5, updating_health = FALSE)
 
 		if(3)
@@ -42,5 +42,5 @@
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(2.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You're burning in your own skin!"))
+				to_chat(affected_mob, span_danger("你正在自己的皮肤里燃烧！"))
 				affected_mob.take_bodypart_damage(0, 5, updating_health = FALSE)

@@ -1,5 +1,5 @@
 /datum/objective/contractor_total
-	name = "contractor"
+	name = "合约工"
 	explanation_text = "Complete at least %CONTRACTNUM% contract%S%."
 	martyr_compatible = TRUE
 	/// How many contracts are needed, rand(1, 3)

@@ -1,12 +1,12 @@
 /// Makes the target's blood a beautiful rainbow
 /datum/smite/clownify_blood
-	name = "Clownify blood"
+	name = "小丑化血液"
 
 /datum/smite/clownify_blood/effect(client/user, mob/living/target)
 	. = ..()
 
 	if (!iscarbon(target))
-		to_chat(user, span_warning("This must be used on a carbon mob."), confidential = TRUE)
+		to_chat(user, span_warning("必须对碳基生物使用。"), confidential = TRUE)
 		return
 
 	var/mob/living/carbon/carbon_target = target

@@ -110,28 +110,28 @@ DEFINE_BITFIELD(surgery_state, list(
 #define SURGERY_STATE_READABLE list(\
 	"Skin is cut" = SURGERY_SKIN_CUT, \
 	"Skin is open" = SURGERY_SKIN_OPEN, \
-	"Blood vessels are unclamped" = SURGERY_VESSELS_UNCLAMPED, \
-	"Blood vessels are clamped" = SURGERY_VESSELS_CLAMPED, \
-	"Organs are cut" = SURGERY_ORGANS_CUT, \
-	"Bone is drilled" = SURGERY_BONE_DRILLED, \
-	"Bone is sawed" = SURGERY_BONE_SAWED, \
-	"Plastic is applied" = SURGERY_PLASTIC_APPLIED, \
-	"Prosthetic is unsecured" = SURGERY_PROSTHETIC_UNSECURED, \
-	"Cavity is opened wide" = SURGERY_CAVITY_WIDENED, \
+	"血管已松开" = SURGERY_VESSELS_UNCLAMPED, \
+	"血管已夹住" = SURGERY_VESSELS_CLAMPED, \
+	"器官已切开" = SURGERY_ORGANS_CUT, \
+	"骨骼已钻孔" = SURGERY_BONE_DRILLED, \
+	"骨骼已锯开" = SURGERY_BONE_SAWED, \
+	"已应用塑料" = SURGERY_PLASTIC_APPLIED, \
+	"义体已松开" = SURGERY_PROSTHETIC_UNSECURED, \
+	"腔体已扩大" = SURGERY_CAVITY_WIDENED, \
 )
 
 /// For use in translating bitfield to steps required for surgery. Keep in the correct order!
 #define SURGERY_STATE_GUIDES(must_must_not) list(\
-	"the skin [must_must_not] be cut" = SURGERY_SKIN_CUT, \
-	"the skin [must_must_not] be open" = SURGERY_SKIN_OPEN, \
-	"the blood vessels [must_must_not] be unclamped" = SURGERY_VESSELS_UNCLAMPED, \
-	"the blood vessels [must_must_not] be clamped" = SURGERY_VESSELS_CLAMPED, \
-	"the organs [must_must_not] be cut" = SURGERY_ORGANS_CUT, \
-	"the bone [must_must_not] be drilled" = SURGERY_BONE_DRILLED, \
-	"the bone [must_must_not] be sawed" = SURGERY_BONE_SAWED, \
-	"plastic [must_must_not] be applied" = SURGERY_PLASTIC_APPLIED, \
-	"the prosthetic [must_must_not] be unsecured" = SURGERY_PROSTHETIC_UNSECURED, \
-	"the chest cavity [must_must_not] be opened wide" = SURGERY_CAVITY_WIDENED, \
+	"皮肤[must_must_not]被切开" = SURGERY_SKIN_CUT, \
+	"皮肤[must_must_not]被打开" = SURGERY_SKIN_OPEN, \
+	"血管[must_must_not]松开" = SURGERY_VESSELS_UNCLAMPED, \
+	"血管[must_must_not]夹住" = SURGERY_VESSELS_CLAMPED, \
+	"器官[must_must_not]切开" = SURGERY_ORGANS_CUT, \
+	"骨骼[must_must_not]钻孔" = SURGERY_BONE_DRILLED, \
+	"骨骼[must_must_not]被锯开" = SURGERY_BONE_SAWED, \
+	"塑料[must_must_not]被应用" = SURGERY_PLASTIC_APPLIED, \
+	"假肢[must_must_not]被松开" = SURGERY_PROSTHETIC_UNSECURED, \
+	"胸腔[must_must_not]被撑开" = SURGERY_CAVITY_WIDENED, \
 )
 
 // Yes these are glorified bitflag manipulation macros, they're meant to make reading surgical operations a bit easier

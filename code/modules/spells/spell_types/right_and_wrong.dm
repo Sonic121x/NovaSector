@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 
 	to_chat(to_equip, span_warning("\A [spawned_magic] appears [in_hand ? "in your hand" : "at your feet"]!"))
 	if(magic_type in GLOB.summoned_special_magic)
-		to_chat(to_equip, span_notice("You feel incredibly lucky."))
+		to_chat(to_equip, span_notice("你感到无比幸运。"))
 
 /**
  * Triggers Summon Ghosts from [user].
@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 	var/datum/round_event_control/wizard/ghost/ghost_event = locate() in SSevents.control
 	if(ghost_event)
 		if(user)
-			to_chat(user, span_warning("You summoned ghosts!"))
+			to_chat(user, span_warning("你召唤了幽灵！"))
 			message_admins("[ADMIN_LOOKUPFLW(user)] summoned ghosts!")
 			user.log_message("summoned ghosts!", LOG_GAME)
 		else
@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 	else
 		stack_trace("Unable to run summon ghosts, due to being unable to locate the associated event.")
 		if(user)
-			to_chat(user, span_warning("You... try to summon ghosts, but nothing seems to happen. Shame."))
+			to_chat(user, span_warning("你……试图召唤幽灵，但似乎什么都没发生。真遗憾。"))
 
 /**
  * Triggers Summon Magic from [user].
@@ -217,7 +217,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
  */
 /proc/summon_magic(mob/user, survivor_probability = 0)
 	if(user)
-		to_chat(user, span_warning("You summoned magic!"))
+		to_chat(user, span_warning("你召唤了魔法！"))
 		message_admins("[ADMIN_LOOKUPFLW(user)] summoned magic!")
 		user.log_message("summoned magic!", LOG_GAME)
 	else
@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
  */
 /proc/summon_guns(mob/user, survivor_probability = 0)
 	if(user)
-		to_chat(user, span_warning("You summoned guns!"))
+		to_chat(user, span_warning("你召唤了枪械！"))
 		message_admins("[ADMIN_LOOKUPFLW(user)] summoned guns!")
 		user.log_message("summoned guns!", LOG_GAME)
 	else
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 		if(user)
 			message_admins("[ADMIN_LOOKUPFLW(user)] [ismob(user) ? "":"admin triggered "]intensified summon events!")
 			if(ismob(user))
-				to_chat(user, span_warning("You have intensified summon events, causing them to occur more often!"))
+				to_chat(user, span_warning("你强化了召唤事件，使其发生得更频繁！"))
 				user.log_message("intensified events!", LOG_GAME)
 			else //admin triggered
 				log_admin("[key_name(user)] intensified summon events.")
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 		if(user)
 			message_admins("[ADMIN_LOOKUPFLW(user)] [ismob(user) ? "summoned":"admin triggered summon"] events!")
 			if(ismob(user))
-				to_chat(user, span_warning("You have cast summon events!"))
+				to_chat(user, span_warning("你已施放了召唤事件！"))
 				user.log_message("summoned events!", LOG_GAME)
 			else //admin triggered
 				log_admin("[key_name(user)] summoned events.")

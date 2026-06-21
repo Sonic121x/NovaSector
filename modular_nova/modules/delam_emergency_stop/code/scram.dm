@@ -303,7 +303,7 @@
 		return
 
 	if(!COOLDOWN_FINISHED(src, scram_button))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "冷却中！")
 		return
 
 	if(!validate_suppression_status())
@@ -348,7 +348,7 @@
 
 /// Confirms with the user that they really want to push the red button. Do it, you won't!
 /obj/machinery/button/delam_scram/proc/confirm_action(mob/user, list/modifiers)
-	if(tgui_alert(usr, "Are you really sure that you want to push this?", "It looked scarier on HBO.", list("No", "Yes")) != "Yes")
+	if(tgui_alert(usr, "你真的确定要按下这个按钮吗？", "它在HBO上看起来更吓人。", list("No", "Yes")) != "Yes")
 		button_stage = BUTTON_AWAKE
 		visible_message(span_danger("[user] slowly closes the plastic cover on [src]!"))
 		update_appearance()

@@ -1,6 +1,6 @@
 /mob/living/basic/tree
-	name = "pine tree"
-	desc = "A pissed off tree-like alien. It seems annoyed with the festivities..."
+	name = "松树"
+	desc = "一个被激怒的树状外星人。它似乎对节庆活动感到恼火……"
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 	icon_living = "pine_1"
@@ -95,8 +95,8 @@
 	if(prob(paralyze_prob + boost))
 		victim.Paralyze(paralyze_value + boost)
 		victim.visible_message(
-			span_danger("[src] knocks down [victim]!"),
-			span_userdanger("[src] knocks you down!"),
+			span_danger("[src] 击倒了 [victim]！"),
+			span_userdanger("[src] 把你击倒了！"),
 		)
 
 /datum/ai_controller/basic_controller/tree

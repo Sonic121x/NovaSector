@@ -1,5 +1,5 @@
 /datum/design/survival_knife
-	name = "Survival Knife"
+	name = "生存刀"
 	id = "survival_knife"
 	build_type = COLONY_FABRICATOR
 	materials = list(

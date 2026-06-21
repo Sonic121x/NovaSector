@@ -1,5 +1,5 @@
 /area/ocean
-	name = "Ocean"
+	name = "海洋"
 	icon_state = "space"
 	icon = 'icons/area/areas_misc.dmi'
 	requires_power = TRUE
@@ -46,7 +46,7 @@
 	map_generator = /datum/map_generator/cave_generator/ocean/shallow/lagoon/hostile_mobs/wilderness
 
 /area/ocean/monestary
-	name = "\improper Monastery Isle"
+	name = "\improper 修道院岛"
 
 /area/station/solars/ocean
 	icon_state = "panels"
@@ -62,13 +62,13 @@
 	default_gravity = STANDARD_GRAVITY
 
 /area/station/solars/ocean/aisat
-	name = "\improper AI Satellite Solars"
+	name = "\improper AI卫星太阳能板"
 	icon_state = "panelsAI"
 
 /area/station/solars/ocean/starboard
-	name = "\improper Starboard Solar Array"
+	name = "\improper 右舷太阳能阵列"
 	icon_state = "panelsS"
 
 /area/station/solars/ocean/port
-	name = "\improper Port Solar Array"
+	name = "\improper 左舷太阳能阵列"
 	icon_state = "panelsP"

@@ -1,6 +1,6 @@
 /// Pings admins every (time chosen in config) for all open tickets/OPFOR applications
 SUBSYSTEM_DEF(ticket_ping)
-	name = "Ticket Ping"
+	name = "工单提醒"
 	ss_flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	wait = 3 MINUTES

@@ -4,7 +4,7 @@
  * A movable mob that can be fed inputs on which direction to travel.
  */
 /mob/living/circuit_drone
-	name = "drone"
+	name = "无人机"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_medium_med"
 	maxHealth = 300
@@ -39,7 +39,7 @@
 /mob/living/circuit_drone/welder_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(health == maxHealth)
-		balloon_alert(user, "already at maximum integrity!")
+		balloon_alert(user, "完整性已达最大值！")
 		return TRUE
 	if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
 		heal_overall_damage(50, 50)
@@ -47,7 +47,7 @@
 
 /obj/item/circuit_component/bot_circuit
 	display_name = "Drone"
-	desc = "Used to send movement output signals to the drone shell."
+	desc = "用于向无人机外壳发送运动输出信号。"
 
 	/// The inputs to allow for the drone to move
 	var/datum/port/input/north

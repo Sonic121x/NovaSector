@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/combat
-	name = "combat gloves"
-	desc = "These tactical gloves are fireproof and electrically insulated."
+	name = "战斗手套"
+	desc = "这双战术手套具有防火和绝缘效果。"
 	icon_state = "black"
 	greyscale_colors = "#2f2e31"
 	siemens_coefficient = 0
@@ -19,8 +19,8 @@
 	acid = 50
 
 /obj/item/clothing/gloves/combat/wizard
-	name = "enchanted gloves"
-	desc = "These gloves have been enchanted with a spell that makes them electrically insulated and fireproof."
+	name = "附魔手套"
+	desc = "这是一双附魔手套，因此，它具有了绝缘和防火的效果。"
 	icon_state = "wizard"
 	greyscale_colors = null
 	inhand_icon_state = null
@@ -30,8 +30,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -5) //something something wizard casting
 
 /obj/item/clothing/gloves/combat/floortile
-	name = "floortile camouflage gloves"
-	desc = "Is it just me or is there a pair of gloves on the floor?"
+	name = "地砖迷彩手套"
+	desc = "是我的错觉，还是地上真的有一副手套？"
 	icon_state = "ftc_gloves"
 	inhand_icon_state = "greyscale_gloves"
 

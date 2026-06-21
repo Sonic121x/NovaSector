@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/laceup
-	name = "laceup shoes"
-	desc = "The height of fashion, and they're pre-polished!"
+	name = "系带鞋"
+	desc = "这可是时尚的巅峰之作，而且它们都经过了精心打磨！"
 	icon_state = "laceups"
 	equip_delay_other = 5 SECONDS
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR

@@ -1,6 +1,6 @@
 /obj/machinery/vending/donksofttoyvendor
-	name = "\improper Donksoft Toy Vendor"
-	desc = "Ages 8 and up approved vendor that dispenses toys."
+	name = "\improper 杜松玩具售货机"
+	desc = "适合8岁及以上的儿童。"
 	icon_state = "nt-donk"
 	panel_type = "panel18"
 	product_slogans = "Get your cool toys today!;Trigger a valid hunter today!;Quality toy weapons for cheap prices!;Give them to HoPs for all access!;Give them to HoS to get permabrigged!"

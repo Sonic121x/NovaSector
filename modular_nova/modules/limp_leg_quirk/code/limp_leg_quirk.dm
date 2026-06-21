@@ -20,7 +20,7 @@
 		list(
 			LOCATION_HANDS,
 		),
-		flavour_text = "Your crutch is essential for moving at full speed. Don't lose it.",
+		flavour_text = "你的拐杖对于全速移动至关重要。别弄丢了。",
 		notify_player = TRUE,
 	)
 

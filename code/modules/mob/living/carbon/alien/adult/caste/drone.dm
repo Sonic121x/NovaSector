@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/adult/drone
-	name = "alien drone"
+	name = "异形工蜂"
 	caste = "d"
 	maxHealth = 125
 	health = 125
@@ -24,8 +24,8 @@
 	return ..()
 
 /datum/action/cooldown/alien/evolve_to_praetorian
-	name = "Evolve to Praetorian"
-	desc = "Praetorian"
+	name = "进化为禁卫"
+	desc = "禁卫"
 	button_icon_state = "alien_evolve_drone"
 	plasma_cost = 500
 

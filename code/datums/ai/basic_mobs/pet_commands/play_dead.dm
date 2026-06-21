@@ -20,7 +20,7 @@
 	var/mob/living/basic/basic_pawn = controller.pawn
 	if(QDELETED(basic_pawn) || basic_pawn.stat) // imagine actually dying while playing dead. hell, imagine being the kid waiting for your pup to get back up :(
 		return
-	basic_pawn.visible_message(span_notice("[basic_pawn] miraculously springs back to life!"))
+	basic_pawn.visible_message(span_notice("[basic_pawn] 奇迹般地活了过来！"))
 	REMOVE_TRAIT(basic_pawn, TRAIT_FAKEDEATH, BASIC_MOB_DEATH_TRAIT)
 	basic_pawn.look_alive()
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)

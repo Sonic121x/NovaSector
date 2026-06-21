@@ -1,7 +1,7 @@
 
 /obj/item/assembly
-	name = "assembly"
-	desc = "A small electronic device that should never exist."
+	name = "组装"
+	desc = "一个本不该存在的小型电子设备。"
 	icon = 'icons/obj/devices/new_assemblies.dmi'
 	icon_state = ""
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -73,7 +73,7 @@
 
 /obj/item/assembly/proc/is_secured(mob/user)
 	if(!secured)
-		to_chat(user, span_warning("\The [src] is unsecured!"))
+		to_chat(user, span_warning("\The [src] 未固定！"))
 		return FALSE
 	return TRUE
 
@@ -126,18 +126,18 @@
 		// Check both our's and their's assembly flags to see if either should not duplicate
 		// If so, and we match types, don't create a holder - block it
 		if(((new_assembly.assembly_flags|assembly_flags) & ASSEMBLY_NO_DUPLICATES) && istype(new_assembly, type))
-			balloon_alert(user, "can't attach another [new_assembly.name]!")
+			balloon_alert(user, "无法再附加另一个 [new_assembly.name]！")
 			return
 		if(new_assembly.secured)
-			balloon_alert(user, "[new_assembly.name] is not attachable!")
+			balloon_alert(user, "[new_assembly.name] 不可附加！")
 			return
 		if(secured)
-			balloon_alert(user, "[name] is not attachable!")
+			balloon_alert(user, "[name] 不可附加！")
 			return
 
 		holder = new /obj/item/assembly_holder(drop_location())
 		holder.assemble(src, new_assembly, user)
-		holder.balloon_alert(user, "parts combined")
+		holder.balloon_alert(user, "部件已组合")
 		return
 
 	if(istype(attacking_item, /obj/item/assembly_holder))
@@ -151,9 +151,9 @@
 	if(..())
 		return TRUE
 	if(toggle_secure())
-		to_chat(user, span_notice("\The [src] is ready!"))
+		to_chat(user, span_notice("\The [src] 已就绪！"))
 	else
-		to_chat(user, span_notice("\The [src] can now be attached!"))
+		to_chat(user, span_notice("\The [src] 现在可以附加了！"))
 	add_fingerprint(user)
 	return TRUE
 

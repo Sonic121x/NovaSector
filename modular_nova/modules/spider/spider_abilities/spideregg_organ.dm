@@ -1,8 +1,8 @@
 /// the actual organ that exists when made by the reagent
 // The organ that spawns spiderlings between 30 seconds and 1
 /obj/item/organ/body_egg/spideregg_infection
-	name = "spider egg"
-	desc = "wriggling balls with far too many eyes looking at you"
+	name = "蜘蛛卵"
+	desc = "扭动着的球体，上面有太多眼睛在盯着你"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "spidereggs"
 	food_reagents = list(/datum/reagent/spidereggs = 5)
@@ -19,7 +19,7 @@
 
 /// Reagent that injects it, similar to romerol
 /datum/reagent/spidereggs
-	name = "Spider Eggs"
+	name = "蜘蛛卵"
 	description = "Scary and seemingly a bioengineered reagent that metabolizes into \
 	physical eggs inside the host. Causing eggs to hatch within the host, causing \
 	spiders to dig their way out and flee to grow elsewhere."
@@ -37,7 +37,7 @@
 
 // Organ actions - mirrored to xeno parasites
 /obj/item/organ/body_egg/spideregg_infection/on_find(mob/living/finder)
-	to_chat(finder, span_warning("You found a growing bundle of spider eggs in [owner]'s [zone]!"))
+	to_chat(finder, span_warning("你在[owner]的[zone]里发现了一团正在生长的蜘蛛卵！"))
 
 /obj/item/organ/body_egg/spideregg_infection/Initialize(mapload)
 	. = ..()
@@ -92,7 +92,7 @@
 
 // activate the spoods!
 /obj/item/organ/body_egg/spideregg_infection/activate()
-	to_chat(owner, span_warning("You feel something burrowing out of your skin!"))
+	to_chat(owner, span_warning("你感觉有什么东西正从你的皮肤里钻出来！"))
 	var/mob/living/basic/spider/growing/spiderling/spider = new(owner.drop_location())
 	spider.directive = "Flee from [owner.real_name]'s nest. Kill anything in the way."
 

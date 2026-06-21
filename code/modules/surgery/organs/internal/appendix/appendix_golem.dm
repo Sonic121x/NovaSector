@@ -1,7 +1,7 @@
 
 /obj/item/organ/appendix/golem
-	name = "internal forge"
-	desc = "This expanded digestive chamber allows golems to smelt minerals, provided that they are immersed in lava."
+	name = "内部熔炉"
+	desc = "这个扩展的消化腔允许魔像熔炼矿物，前提是它们浸没在熔岩中。"
 	icon_state = "ethereal_heart-off"
 	color = COLOR_GOLEM_GRAY
 	organ_flags = ORGAN_MINERAL
@@ -36,8 +36,8 @@
 
 /// Lets golems smelt ore with their organs
 /datum/action/cooldown/internal_smelting
-	name = "Internal Forge"
-	desc = "While stood in lava you can use your internal forge to smelt ores into processed bars."
+	name = "内部熔炉"
+	desc = "当站在熔岩中时，你可以使用内部熔炉将矿石熔炼成加工好的金属锭。"
 	button_icon = 'icons/obj/stack_objects.dmi'
 	button_icon_state = "sheet-adamantine_2"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING | AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
@@ -54,7 +54,7 @@
 		return FALSE
 	if (!islava(owner.loc))
 		if (feedback)
-			owner.balloon_alert(owner, "requires lava!")
+			owner.balloon_alert(owner, "需要熔岩！")
 		return FALSE
 	return TRUE
 
@@ -67,16 +67,16 @@
 /datum/action/cooldown/internal_smelting/proc/smelt_held(mob/target)
 	var/obj/item/stack/ore/held_ore = locate(/obj/item/stack/ore) in target.held_items
 	if (!held_ore?.refined_type)
-		target.balloon_alert(target, "nothing to smelt!")
+		target.balloon_alert(target, "没有可熔炼的东西！")
 		return
-	target.balloon_alert(owner, "smelting...")
+	target.balloon_alert(owner, "熔炼中...")
 	if (!do_after(target, smelt_speed, target = held_ore, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(IsAvailable), FALSE), interaction_key = REF(src)))
 		return
 	var/obj/item/smelted = new held_ore.refined_type
 	held_ore.use(1)
 	target.put_in_hands(smelted)
 	if (!held_ore)
-		target.balloon_alert(target, "no ore left!")
+		target.balloon_alert(target, "矿石耗尽了！")
 		return
 	smelt_speed = max(smelt_speed - speed_up_interval, minimum_smelt_speed)
 	smelt_held(target)

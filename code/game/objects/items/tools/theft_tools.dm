@@ -42,7 +42,7 @@
 //nuke core box, for carrying the core
 /obj/item/nuke_core_container
 	name = "nuke core container"
-	desc = "Solid container for radioactive objects."
+	desc = "用于放射性物体的坚固容器。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "core_container_empty"
 	inhand_icon_state = "tile"
@@ -60,7 +60,7 @@
 	ncore.forceMove(src)
 	core = ncore
 	icon_state = "core_container_loaded"
-	to_chat(user, span_warning("Container is sealing..."))
+	to_chat(user, span_warning("容器正在密封..."))
 	addtimer(CALLBACK(src, PROC_REF(seal)), 5 SECONDS)
 	return TRUE
 
@@ -70,12 +70,12 @@
 		icon_state = "core_container_sealed"
 		playsound(src, 'sound/items/deconstruct.ogg', 60, TRUE)
 		if(ismob(loc))
-			to_chat(loc, span_warning("[src] is sealed, [core]'s radiation is contained."))
+			to_chat(loc, span_warning("[src] 已密封，[core] 的辐射被隔绝了。"))
 
 /obj/item/nuke_core_container/attackby(obj/item/nuke_core/core, mob/user)
 	if(istype(core))
 		if(!user.temporarilyRemoveItemFromInventory(core))
-			to_chat(user, span_warning("The [core] is stuck to your hand!"))
+			to_chat(user, span_warning("这 [core] 粘在你手上了！"))
 			return
 		else
 			load(core, user)
@@ -84,8 +84,8 @@
 
 //snowflake screwdriver, works as a key to start nuke theft, traitor only
 /obj/item/screwdriver/nuke
-	name = "screwdriver"
-	desc = "A screwdriver with an ultra thin tip that's carefully designed to boost screwing speed."
+	name = "螺丝刀"
+	desc = "一把拥有超薄尖端、精心设计以提升拧螺丝速度的螺丝刀。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "screwdriver_nuke"
 	post_init_icon_state = null
@@ -129,8 +129,8 @@
 	Do not disappoint us.<br>"
 
 /obj/item/disk/computer/hdd_theft
-	name = "r&d server hard disk drive"
-	desc = "For some reason, people really seem to want to steal this. The source code on this drive is probably used for something awful!"
+	name = "研发服务器硬盘驱动器"
+	desc = "不知为何，人们似乎真的很想偷走这东西。这个驱动器上的源代码很可能被用于某种可怕的事情！"
 	max_capacity = 512
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -152,8 +152,8 @@
 	</ul>"
 
 /obj/item/nuke_core/supermatter_sliver
-	name = "supermatter sliver"
-	desc = "A tiny, highly volatile sliver of a supermatter crystal. Do not handle without protection!"
+	name = "超物质碎片"
+	desc = "一小片极不稳定的超物质晶体碎片。没有防护切勿处理！"
 	icon_state = "supermatter_sliver"
 	inhand_icon_state = null //touching it dusts you, so no need for an inhand icon.
 	pulseicon = "supermatter_sliver_pulse"
@@ -181,16 +181,16 @@
 	if(istype(W, /obj/item/hemostat/supermatter))
 		var/obj/item/hemostat/supermatter/tongs = W
 		if (tongs.sliver)
-			to_chat(user, span_warning("\The [tongs] is already holding a supermatter sliver!"))
+			to_chat(user, span_warning("\The [tongs] 已经夹着一个超物质碎片了！"))
 			return FALSE
 		forceMove(tongs)
 		tongs.sliver = src
 		tongs.update_appearance()
-		to_chat(user, span_notice("You carefully pick up [src] with [tongs]."))
+		to_chat(user, span_notice("你小心地用[src]拾起了[tongs]。"))
 	else if(istype(W, /obj/item/scalpel/supermatter) || istype(W, /obj/item/nuke_core_container/supermatter/)) // we don't want it to dust
 		return
 	else
-		to_chat(user, span_notice("As it touches \the [src], both \the [src] and \the [W] burst into dust!"))
+		to_chat(user, span_notice("当它接触到\the [src]时，\the [src]和\the [W]都化为了尘埃！"))
 		radiation_pulse(user, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
 		playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 		qdel(W)
@@ -210,9 +210,9 @@
 	else
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)] via throw impact.")
 		investigate_log("has consumed [key_name(victim)] via throw impact.", INVESTIGATE_ENGINE)
-	victim.visible_message(span_danger("As [victim] is hit by [src], both flash into dust and silence fills the room..."),\
-		span_userdanger("You're hit by [src] and everything suddenly goes silent.\n[src] flashes into dust, and soon as you can register this, you do as well."),\
-		span_hear("Everything suddenly goes silent."))
+	victim.visible_message(span_danger("当[victim]被[src]击中时，两者都化为尘埃，寂静笼罩了房间……"),\
+		span_userdanger("你被[src]击中，一切突然陷入寂静。\n[src]化为尘埃，当你意识到这一点时，你也一样。"),\
+		span_hear("一切突然陷入寂静。"))
 	victim.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
 	victim.dust()
 	radiation_pulse(src, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
@@ -223,7 +223,7 @@
 	..()
 	if(!isliving(user) || HAS_TRAIT(user, TRAIT_GODMODE)) //try to keep this in sync with supermatter's consume fail conditions
 		return FALSE
-	user.visible_message(span_danger("[user] reaches out and tries to pick up [src]. [user.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
+	user.visible_message(span_danger("[user]伸出手试图捡起[src]。[user.p_their()]身体开始发光，燃起火焰，随后化为尘埃！"),\
 			span_userdanger("You reach for [src] with your hands. That was dumb."),\
 			span_hear("Everything suddenly goes silent."))
 	radiation_pulse(user, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
@@ -314,7 +314,7 @@
 /obj/item/hemostat/supermatter/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum) // no instakill supermatter javelins
 	if(sliver)
 		sliver.forceMove(loc)
-		visible_message(span_notice("\The [sliver] falls out of \the [src] as it hits the ground."))
+		visible_message(span_notice("\The [sliver] 从 \the [src] 中掉出，落在地上。"))
 		sliver = null
 		update_appearance()
 	return ..()
@@ -337,8 +337,8 @@
 		qdel(AM)
 	if (user)
 		log_combat(user, AM, "consumed", sliver, "via [src]")
-		user.visible_message(span_danger("As [user] touches [AM] with \the [src], both flash into dust and silence fills the room..."),\
-			span_userdanger("You touch [AM] with [src], and everything suddenly goes silent.\n[AM] and [sliver] flash into dust, and soon as you can register this, you do as well."),\
+		user.visible_message(span_danger("当 [user] 用 \the [AM] 触碰 [src] 时，两者都化为尘埃，寂静笼罩了房间..."),\
+			span_userdanger("你用 [AM] 触碰 [src]，一切突然陷入寂静。\n[AM] 和 [sliver] 化为尘埃，当你意识到这一点时，你也同样如此。"),\
 			span_hear("Everything suddenly goes silent."))
 		user.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
 		user.dust()

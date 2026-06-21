@@ -1,6 +1,6 @@
 /obj/machinery/rnd/production/protolathe
-	name = "protolathe"
-	desc = "Converts raw materials into useful objects."
+	name = "复合机"
+	desc = "将原材料转化为有用的物品。"
 	icon_state = "protolathe"
 	base_icon_state = "protolathe"
 	circuit = /obj/item/circuitboard/machine/protolathe
@@ -20,7 +20,7 @@
 
 /// Special subtype protolathe for offstation use. Has a more limited available design selection.
 /obj/machinery/rnd/production/protolathe/offstation
-	name = "ancient protolathe"
-	desc = "Converts raw materials into useful objects. Its ancient construction may limit its ability to print all known technology."
+	name = "古代的复合机"
+	desc = "将原材料转化为有用的物品。其古老的构造可能限制了其打印所有已知技术的能力。"
 	circuit = /obj/item/circuitboard/machine/protolathe/offstation
 	allowed_buildtypes = AWAY_LATHE

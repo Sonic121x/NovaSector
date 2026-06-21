@@ -1,6 +1,6 @@
 /obj/item/clothing/head/soft
-	name = "cargo cap"
-	desc = "It's a baseball hat in a tasteful brown colour."
+	name = "货舱帽"
+	desc = "这是一顶精致的棕色棒球帽。"
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "cargosoft"
@@ -36,91 +36,91 @@
 		flipped = !flipped
 		if(flipped)
 			icon_state = "[soft_type][soft_suffix]_flipped"
-			to_chat(user, span_notice("You flip the hat backwards."))
+			to_chat(user, span_notice("你把帽子翻转到后面。"))
 		else
 			icon_state = "[soft_type][soft_suffix]"
-			to_chat(user, span_notice("You flip the hat back in normal position."))
+			to_chat(user, span_notice("你把帽子翻回正常位置。"))
 		update_icon()
 		usr.update_worn_head() //so our mob-overlays update
 
 /obj/item/clothing/head/soft/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click the cap to flip it [flipped ? "forwards" : "backwards"].")
+	. += span_notice("Alt-点击帽子可以将其[flipped ? "forwards" : "backwards"]翻转。")
 
 /obj/item/clothing/head/soft/red
-	name = "red cap"
-	desc = "It's a baseball hat in a tasteless red colour."
+	name = "红色棒球帽"
+	desc = "这是一顶俗气的红色棒球帽。"
 	icon_state = "redsoft"
 	soft_type = "red"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/blue
-	name = "blue cap"
-	desc = "It's a baseball hat in a tasteless blue colour."
+	name = "蓝色棒球帽"
+	desc = "这是一顶俗气的蓝色棒球帽。"
 	icon_state = "bluesoft"
 	soft_type = "blue"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/green
-	name = "green cap"
-	desc = "It's a baseball hat in a tasteless green colour."
+	name = "绿色棒球帽"
+	desc = "这是一顶俗气的绿色棒球帽。"
 	icon_state = "greensoft"
 	soft_type = "green"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/yellow
-	name = "yellow cap"
-	desc = "It's a baseball hat in a tasteless yellow colour."
+	name = "黄色棒球帽"
+	desc = "这是一顶俗气的黄色棒球帽。"
 	icon_state = "yellowsoft"
 	soft_type = "yellow"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/grey
-	name = "grey cap"
-	desc = "It's a baseball hat in a tasteful grey colour."
+	name = "灰色棒球帽"
+	desc = "这是一顶诱人的灰色棒球帽。"
 	icon_state = "greysoft"
 	soft_type = "grey"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/orange
-	name = "orange cap"
-	desc = "It's a baseball hat in a tasteless orange colour."
+	name = "橙色棒球帽"
+	desc = "这是一顶俗气的橙色棒球帽。"
 	icon_state = "orangesoft"
 	soft_type = "orange"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/mime
-	name = "white cap"
-	desc = "It's a baseball hat in a tasteless white colour."
+	name = "白色棒球帽"
+	desc = "这是一顶俗气的白色棒球帽。"
 	icon_state = "mimesoft"
 	soft_type = "mime"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/purple
-	name = "purple cap"
-	desc = "It's a baseball hat in a tasteless purple colour."
+	name = "紫色棒球帽"
+	desc = "这是一顶俗气的紫色棒球帽。"
 	icon_state = "purplesoft"
 	soft_type = "purple"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/black
-	name = "black cap"
-	desc = "It's a baseball hat in a tasteless black colour."
+	name = "黑色棒球帽"
+	desc = "这是一顶俗气的黑色棒球帽。"
 	icon_state = "blacksoft"
 	soft_type = "black"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/rainbow
-	name = "rainbow cap"
-	desc = "It's a baseball hat in a bright rainbow of colors."
+	name = "七彩棒球帽"
+	desc = "这是一顶色彩艳丽的彩色棒球帽。"
 	icon_state = "rainbowsoft"
 	inhand_icon_state = "rainbow_softcap"
 	soft_type = "rainbow"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/sec
-	name = "security cap"
-	desc = "It's a robust baseball hat in tasteful red colour."
+	name = "安保人员棒球帽"
+	desc = "这是一顶强健的红色棒球帽。"
 	icon_state = "secsoft"
 	soft_type = "sec"
 	armor_type = /datum/armor/cosmetic_sec
@@ -128,8 +128,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/veteran
-	name = "veteran cap"
-	desc = "It's a robust baseball hat in tasteful black colour with a golden connotation to \"REMEMBER\"."
+	name = "老兵帽"
+	desc = "这是一顶坚固的棒球帽，采用雅致的黑色，并带有金色的“铭记”字样。"
 	icon_state = "veteransoft"
 	soft_type = "veteran"
 	armor_type = /datum/armor/cosmetic_sec
@@ -137,14 +137,14 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/paramedic
-	name = "paramedic cap"
-	desc = "It's a baseball hat with a dark turquoise color and a reflective cross on the top."
+	name = "急救员鸭舌帽"
+	desc = "这是一顶深蓝色的棒球帽，帽顶上有一个反光的十字标志。"
 	icon_state = "paramedicsoft"
 	soft_type = "paramedic"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/fishing_hat
-	name = "legendary fishing hat"
+	name = "传奇钓鱼帽"
 	desc = "An ancient relic of a bygone era of bountiful catches and endless rivers. Printed on the front is a poem:<i>\n\
 		Women Fear Me\n\
 		Fish Fear Me\n\
@@ -170,8 +170,8 @@
 #define PROPHAT_MOOD "prophat"
 
 /obj/item/clothing/head/soft/propeller_hat
-	name = "propeller hat"
-	desc = "A colorful hat with a spinning propeller sat on top."
+	name = "螺旋桨帽"
+	desc = "一顶色彩鲜艳的帽子，顶上有一个旋转的螺旋桨。"
 	icon_state = "propeller_hat"
 	soft_type = "propeller_hat"
 	inhand_icon_state = "rainbow_softcap"
@@ -187,7 +187,7 @@
 
 /obj/item/clothing/head/soft/propeller_hat/attack_self(mob/user)
 	active = !active
-	balloon_alert(user, (active ? "started propeller" : "stopped propeller"))
+	balloon_alert(user, (active ? "启动了螺旋桨" : "停止了螺旋桨"))
 	update_icon()
 	user.update_worn_head()
 	add_fingerprint(user)

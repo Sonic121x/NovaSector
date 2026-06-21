@@ -1,6 +1,6 @@
 /obj/item/wargame_projector
-	name = "holographic projector"
-	desc = "A handy-dandy holographic projector developed by Nanotrasen Naval Command for playing wargames with, this one seems broken."
+	name = "全息投影仪"
+	desc = "由纳米传讯海军司令部开发，用于进行兵棋推演的便捷全息投影仪，这个看起来坏了。"
 	inhand_icon_state = "electronic"
 	worn_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -58,10 +58,10 @@
 /obj/item/wargame_projector/examine(mob/user)
 	. = ..()
 	if(projections)
-		. += span_notice("It is currently maintaining <b>[projections.len]/[max_signs]</b> projections.")
-	. += span_notice("Use the projector <b>in hand</b> to change what type of hologram it creates.")
-	. += span_notice("<b>Alt clicking</b> the projector will let you change the color of the next hologram it makes.")
-	. += span_warning("<b>Control clicking</b> the projector will allow you to clear all active holograms.")
+		. += span_notice("它当前维持着 <b>[projections.len]/[max_signs]</b> 个投影。")
+	. += span_notice("将投影仪<b>持于手中</b>使用，可更改其创建的全息图类型。")
+	. += span_notice("<b>Alt 点击</b>投影仪可让你更改其下一个全息图的颜色。")
+	. += span_warning("<b>Control 点击</b>投影仪将允许你清除所有活动全息图。")
 
 /obj/item/wargame_projector/proc/populate_radial_choice_lists()
 	if(!length(radial_choices) || !length(projection_names_to_path))
@@ -88,18 +88,18 @@
 	select_hologram(user)
 
 /obj/item/wargame_projector/click_alt(mob/user)
-	var/selected_color = tgui_input_list(user, "Select a color", "Color Selection", color_options)
+	var/selected_color = tgui_input_list(user, "选择颜色", "颜色选择", color_options)
 	if(isnull(selected_color))
-		balloon_alert(user, "no color change")
+		balloon_alert(user, "颜色未更改")
 		return
 	var/color_to_set_to = color_options[selected_color]
 	holosign_color = color_to_set_to
-	balloon_alert(user, "color changed")
+	balloon_alert(user, "颜色已更改")
 	set_greyscale(holosign_color)
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/wargame_projector/item_ctrl_click(mob/user)
-	if(tgui_alert(usr,"Clear all currently active holograms?", "Hologram Removal", list("Yes", "No")) == "Yes")
+	if(tgui_alert(usr,"清除所有当前激活的全息影像？", "全息影像移除", list("Yes", "No")) == "Yes")
 		for(var/hologram in projections)
 			qdel(hologram)
 	return CLICK_ACTION_SUCCESS
@@ -112,7 +112,7 @@
 	if(target_turf.is_blocked_turf(TRUE))
 		return FALSE
 	if(LAZYLEN(projections) >= max_signs)
-		balloon_alert(user, "max capacity!")
+		balloon_alert(user, "已达最大容量！")
 		return FALSE
 	return TRUE
 
@@ -152,7 +152,7 @@ Actual projector types, split between the 'categories' of things they can projec
 */
 
 /obj/item/wargame_projector/ships
-	name = "holographic unit projector"
+	name = "全息单位投影仪"
 	desc = "A handy-dandy holographic projector developed by Nanotrasen Naval Command for playing wargames with, this one creates markers for 'units'."
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 	max_signs = 30
@@ -177,7 +177,7 @@ Actual projector types, split between the 'categories' of things they can projec
 	holosign_color = COLOR_RED_LIGHT
 
 /obj/item/wargame_projector/terrain
-	name = "holographic terrain projector"
+	name = "全息地形投影仪"
 	desc = "A handy-dandy holographic projector developed by Nanotrasen Naval Command for playing wargames with, this one creates markers for space 'terrain'."
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 	max_signs = 30

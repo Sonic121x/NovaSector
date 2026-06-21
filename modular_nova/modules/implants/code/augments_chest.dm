@@ -2,8 +2,8 @@
 // if someone updates that upstream, fix that here too, wouldja?
 
 /obj/item/organ/cyberimp/chest/scanner
-	name = "internal health analyzer"
-	desc = "An advanced health analyzer implant, designed to directly interface with a host's body and relay scan information to the brain on command."
+	name = "内置健康分析仪"
+	desc = "一种先进的健康分析仪植入体，设计用于直接与宿主体内接口，并按指令将扫描信息中继至大脑。"
 	slot = ORGAN_SLOT_SCANNER
 	icon = 'modular_nova/modules/implants/icons/chest_modular.dmi'
 	icon_state = "internal_HA"
@@ -14,7 +14,7 @@
 	var/advanced_scan_allowed = TRUE
 
 /datum/action/item_action/organ_action/use/internal_analyzer
-	desc = "LMB: Health scan. RMB: Chemical scan. Requires implanted analyzer to not be failing due to EMPs or other causes. Does not provide treatment assistance."
+	desc = "左键：健康扫描。右键：化学扫描。要求植入的分析仪未因电磁脉冲或其他原因失效。不提供治疗辅助。"
 
 /datum/action/item_action/organ_action/use/internal_analyzer/Trigger(trigger_flags)
 	. = ..()
@@ -22,7 +22,7 @@
 		return
 	var/obj/item/organ/cyberimp/chest/scanner/our_scanner = target
 	if(our_scanner.organ_flags & ORGAN_FAILING)
-		to_chat(owner, span_warning("Your health analyzer relays an error! It can't interface with your body in its current condition!"))
+		to_chat(owner, span_warning("你的健康分析仪报告了一个错误！它无法在你当前的身体状况下进行接口连接！"))
 		return
 	if(our_scanner.has_chem_scan && (trigger_flags & TRIGGER_SECONDARY_ACTION))
 		chemscan(owner, owner)
@@ -38,11 +38,11 @@
 	advanced_scan_allowed = FALSE
 
 /datum/action/item_action/organ_action/use/internal_analyzer/lite
-	desc = "LMB: Health scan. Requires implanted analyzer to not be failing due to EMPs or other causes. Does not provide treatment assistance."
+	desc = "左键：健康扫描。要求植入的分析仪未因电磁脉冲或其他原因失效。不提供治疗辅助。"
 
 /obj/item/organ/cyberimp/chest/opticalcamo
-	name = "optical camo implant"
-	desc = "An implant that bends light around the host's body, rendering them nearly invisible when activated."
+	name = "光学迷彩植入体"
+	desc = "一种植入体，能在激活时弯曲宿主身体周围的光线，使其近乎隐形。"
 	icon = 'modular_nova/modules/implants/icons/chest_modular.dmi'
 	icon_state = "opticalcamo"
 	slot = ORGAN_SLOT_SPINE
@@ -73,7 +73,7 @@
 		return
 	if(organ_flags & ORGAN_FAILING)
 		if(!silent)
-			to_chat(owner, span_warning("Your optical camo seems to be broken!"))
+			to_chat(owner, span_warning("你的光学迷彩似乎坏了！"))
 		return
 	if(bumpoff)
 		RegisterSignal(owner, COMSIG_LIVING_MOB_BUMP, PROC_REF(unstealth))
@@ -94,7 +94,7 @@
 	animate(owner, alpha = stealth_alpha, time = 15 SECONDS)
 	on = TRUE
 	if(!silent)
-		to_chat(owner, span_notice("You turn your optical camo on."))
+		to_chat(owner, span_notice("你开启了光学迷彩。"))
 
 /obj/item/organ/cyberimp/chest/opticalcamo/proc/deactivate(silent = FALSE)
 	if(!on)
@@ -116,13 +116,13 @@
 	animate(owner, alpha = 255, time = 1.5 SECONDS)
 	on = FALSE
 	if(!silent)
-		to_chat(owner, span_notice("You turn your optical camo off."))
+		to_chat(owner, span_notice("你关闭了光学迷彩。"))
 
 /// Handles removing their stealth when bump-off is triggered
 /obj/item/organ/cyberimp/chest/opticalcamo/proc/unstealth(datum/source)
 	SIGNAL_HANDLER
 
-	to_chat(owner, span_warning("[src] gets discharged from contact!"))
+	to_chat(owner, span_warning("[src] 因接触而放电了！"))
 	do_sparks(2, TRUE, src)
 	deactivate()
 
@@ -146,6 +146,6 @@
 		return
 	owner.reagents.add_reagent(/datum/reagent/drug/saturnx, poison_amount / severity)
 	owner.adjust_confusion(rand(8 SECONDS, 11 SECONDS))
-	to_chat(owner, span_warning("Your skin tingles, and the room feels like it's spinning!"))
+	to_chat(owner, span_warning("你的皮肤感到刺痛，房间仿佛在旋转！"))
 	unstealth()
 

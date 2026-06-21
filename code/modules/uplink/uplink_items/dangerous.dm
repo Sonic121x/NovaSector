@@ -1,6 +1,6 @@
 //All bundles and telecrystals
 /datum/uplink_category/dangerous
-	name = "Conspicuous Weapons"
+	name = "显眼武器"
 	weight = 9
 
 /datum/uplink_item/dangerous
@@ -63,7 +63,7 @@
 
 /datum/uplink_item/dangerous/rapid
 	name = "Gloves of the North Star"
-	desc = "These gloves let the user punch people very fast. Does not improve weapon attack speed or the meaty fists of a hulk."
+	desc = "这些手套能让使用者迅速对他人进行攻击。但它们既不会提高武器的攻击速度，也不会让使用者拥有像绿巨人的那样强壮有力的拳头。"
 	item = /obj/item/clothing/gloves/rapid
 	cost = 8
 
@@ -100,7 +100,7 @@
 
 /datum/uplink_item/dangerous/revolver
 	name = "Syndicate Revolver"
-	desc = "A brutally simple Syndicate revolver that fires .357 Magnum rounds and has 7 chambers."
+	desc = "一款极其简单的Syndicate左轮手枪，发射 .357 Magnum 子弹，有 7 个弹膛。"
 	item = /obj/item/gun/ballistic/revolver
 	cost = 13
 	surplus = 50

@@ -40,13 +40,13 @@
 			R.set_anchored(!R.anchored)
 		if(WIRE_RESETOWNER)
 			R.my_card = null
-			R.audible_message(span_warning("Owner reset!"))
+			R.audible_message(span_warning("所有者已重置！"))
 			R.locked = FALSE
 		if(WIRE_PRIZEVEND)
 			R.shock(usr, 70)
 			if(R.locked)
 				return
-			R.audible_message(span_warning("Unauthorized prize vend detected! Locking down machine!"))
+			R.audible_message(span_warning("检测到未经授权的奖品发放！机器锁定中！"))
 			R.prize_theft(0.20)
 
 /datum/wires/roulette/on_cut(wire, mend, source)
@@ -68,5 +68,5 @@
 			R.shock(usr, 75)
 			if(R.locked)
 				return
-			R.audible_message(span_warning("Unauthorized prize vend detected! Locking down machine!"))
+			R.audible_message(span_warning("检测到未经授权的奖品发放！机器锁定中！"))
 			R.prize_theft(0.10)

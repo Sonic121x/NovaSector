@@ -1,5 +1,5 @@
 /obj/projectile/beam/mindflayer
-	name = "flayer ray"
+	name = "剥蚀射线"
 
 /obj/projectile/beam/mindflayer/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()

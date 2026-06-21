@@ -1,7 +1,7 @@
 /**********************Kheiral Cuffs**********************/
 /// Acts as a GPS beacon & connects to station crew monitors from lavaland
 /obj/item/clothing/accessory/kheiral_cuffs
-	name = "\improper Kheiral cuffs"
+	name = "\improper 凯希尔手铐"
 	desc = "A prototype wrist communicator powered by Kheiral Matter. When both ends are clamped to one wrist, acts as a signal range booster for your suit sensors.\n\
 		A small engraving on the inside reads, \"NOT HANDCUFFS\"."
 	icon = 'icons/obj/mining.dmi'
@@ -36,7 +36,7 @@
 /obj/item/clothing/accessory/kheiral_cuffs/examine(mob/user)
 	. = ..()
 	if(gps_enabled)
-		. += span_notice("The cuff's GPS signal is on.")
+		. += span_notice("手环的GPS信号已开启。")
 
 /obj/item/clothing/accessory/kheiral_cuffs/equipped(mob/user, slot, initial)
 	. = ..()
@@ -64,7 +64,7 @@
 	if(id_card)
 		gps_name = id_card.registered_name
 	AddComponent(/datum/component/gps/kheiral_cuffs, "*[gps_name]'s Kheiral Link")
-	balloon_alert(user, "gps activated")
+	balloon_alert(user, "GPS已激活")
 	ADD_TRAIT(user, TRAIT_MULTIZ_SUIT_SENSORS, REF(src))
 	gps_enabled = TRUE
 
@@ -74,7 +74,7 @@
 		return
 	if(on_wrist && far_from_home)
 		return
-	balloon_alert(user, "gps de-activated") // GPS component deletes itself when we get on-Z
+	balloon_alert(user, "GPS已停用") // GPS component deletes itself when we get on-Z
 	REMOVE_TRAIT(user, TRAIT_MULTIZ_SUIT_SENSORS, REF(src))
 	gps_enabled = FALSE
 
@@ -114,14 +114,14 @@
 		return
 
 	var/mob/living/carbon/human/victim = user
-	victim.visible_message(span_suicide("[user] locks [src] around their neck, wrinkles forming across their face. It looks like [user.p_theyre()] trying to commit suicide!"))
+	victim.visible_message(span_suicide("[user]将[src]锁在脖子上，脸上皱纹浮现。看起来[user.p_theyre()]试图自杀！"))
 	for(var/mult in 1 to 5) // Rapidly age
 		if(!do_after(victim, 0.5 SECONDS)) // just to space out the aging, either way you still dust.
 			break
 		var/before_age = victim.age
 		victim.age = round((victim.age * 1.5),1)
-		to_chat(victim, span_danger("You age [(victim.age - before_age)] years!"))
+		to_chat(victim, span_danger("你衰老了[(victim.age - before_age)]岁！"))
 
-	to_chat(victim, span_danger("At the ripe age of [victim.age], your cells fail their cycle of mitosis, allowing the sands of time to wash over you."))
+	to_chat(victim, span_danger("在[victim.age]岁的高龄，你的细胞未能完成有丝分裂周期，任由时间之沙将你淹没。"))
 	victim.dust(TRUE, TRUE, TRUE)
 	return MANUAL_SUICIDE

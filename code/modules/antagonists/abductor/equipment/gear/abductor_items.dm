@@ -8,7 +8,7 @@
 	if (HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_TRAINING))
 		return TRUE
 
-	balloon_alert(user, "no idea how this works!")
+	balloon_alert(user, "完全搞不懂这玩意儿怎么用！")
 	return FALSE
 
 /obj/item/abductor/proc/ScientistCheck(mob/user)
@@ -47,7 +47,7 @@
 	else
 		mode = GIZMO_SCAN
 		icon_state = "gizmo_scan"
-	to_chat(user, span_notice("You switch the device to [mode == GIZMO_SCAN? "SCAN": "MARK"] MODE"))
+	to_chat(user, span_notice("你将设备切换到[mode == GIZMO_SCAN? "SCAN": "MARK"]模式"))
 
 /obj/item/abductor/gizmo/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!ScientistCheck(user))
@@ -160,7 +160,7 @@
 	else
 		mode = MIND_DEVICE_MESSAGE
 		icon_state = "mind_device_message"
-	to_chat(user, span_notice("You switch the device to [mode == MIND_DEVICE_MESSAGE? "TRANSMISSION": "COMMAND"] MODE"))
+	to_chat(user, span_notice("你将设备切换到[mode == MIND_DEVICE_MESSAGE? "TRANSMISSION": "COMMAND"]模式"))
 
 /obj/item/abductor/mind_device/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!ismob(interacting_with))
@@ -194,8 +194,8 @@
 
 		var/command = tgui_input_text(
 			user,
-			"Enter the command for your target to follow. Uses Left: [target_gland.mind_control_uses], Duration: [DisplayTimeText(target_gland.mind_control_duration)]",
-			"Enter command",
+			"输入要你的目标遵循的指令。剩余使用次数：[target_gland.mind_control_uses]，持续时间：[DisplayTimeText(target_gland.mind_control_duration)]",
+			"输入指令",
 			max_length = MAX_MESSAGE_LEN,
 			)
 
@@ -209,7 +209,7 @@
 			return
 
 		if(carbon_target.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-			user.balloon_alert(user, "foiled!")
+			user.balloon_alert(user, "被挫败了！")
 			to_chat(user, span_warning("Your target seems to have some sort of mental blockage, preventing the message from being sent! It seems you've been foiled."))
 			return
 
@@ -222,13 +222,13 @@
 		if(living_target.stat == DEAD)
 			to_chat(user, span_warning("Your target is dead!"))
 			return
-		var/message = tgui_input_text(user, "Message to send to your target's brain", "Enter message", max_length = MAX_MESSAGE_LEN)
+		var/message = tgui_input_text(user, "要发送到你目标大脑的消息", "输入消息", max_length = MAX_MESSAGE_LEN)
 		if(!message)
 			return
 		if(QDELETED(living_target) || living_target.stat == DEAD)
 			return
 
-		living_target.balloon_alert(living_target, "you hear a voice")
+		living_target.balloon_alert(living_target, "你听到一个声音")
 		to_chat(living_target, span_hear("You hear a voice in your head saying: [span_abductor(message)]"))
 		to_chat(user, span_notice("You send the message to your target."))
 		log_directed_talk(user, living_target, message, LOG_SAY, "abductor whisper")
@@ -461,7 +461,7 @@ Return to step 11 of normal process."}
 			else
 				to_chat(user, span_warning("You fail to restrain [carbon_victim]."))
 		else
-			to_chat(user, span_warning("[carbon_victim] doesn't have two hands..."))
+			to_chat(user, span_warning("[carbon_victim] 没有两只手..."))
 
 /obj/item/melee/baton/abductor/proc/ProbeAttack(mob/living/victim, mob/living/user)
 	victim.visible_message(span_danger("[user] probes [victim] with [src]!"), \
@@ -745,7 +745,7 @@ Return to step 11 of normal process."}
 		)
 		active_toolset = TOOLSET_HACKING
 		if(user)
-			balloon_alert(user, "hacking toolset selected")
+			balloon_alert(user, "已选择黑客工具组")
 	else
 		tool_list = list(
 			"Retractor" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "retractor"),
@@ -759,4 +759,4 @@ Return to step 11 of normal process."}
 		)
 		active_toolset = TOOLSET_MEDICAL
 		if(user)
-			balloon_alert(user, "medical toolset selected")
+			balloon_alert(user, "已选择医疗工具组")

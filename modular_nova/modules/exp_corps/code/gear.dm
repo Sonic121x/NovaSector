@@ -106,7 +106,7 @@
 		user.add_mood_event("morbid_dismemberment", /datum/mood_event/morbid_dismemberment)
 
 /obj/item/circular_saw/field_medic/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is cutting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在用 \the [user.p_them()] 切割 [src]自己！看起来 [user.p_theyre()] 想要自杀！"))
 	var/timer = 1 SECONDS
 	for(var/obj/item/bodypart/thing in user.bodyparts)
 		if(thing.body_part == CHEST)

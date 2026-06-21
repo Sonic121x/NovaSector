@@ -41,17 +41,17 @@
 
 /obj/structure/destructible/cult/examine_status(mob/user)
 	if(is_cultist_check(user) || isobserver(user))
-		return span_cult("It's at <b>[round(atom_integrity * 100 / max_integrity)]%</b> stability.")
+		return span_cult("它的稳定性为<b>[round(atom_integrity * 100 / max_integrity)]%</b>。")
 	return ..()
 
 /obj/structure/destructible/cult/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] is [anchored ? "secured to":"unsecured from"] the floor.")
+	. += span_notice("[src] [anchored ? "secured to":"unsecured from"] 地板。")
 	if(is_cultist_check(user) || isobserver(user))
 		if(cult_examine_tip)
 			. += span_cult(cult_examine_tip)
 		if(!COOLDOWN_FINISHED(src, use_cooldown_duration))
-			. += span_cult_italic("The magic in [src] is too weak, it will be ready to use again in <b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown_duration))]</b>.")
+			. += span_cult_italic("[src]中的魔力过于微弱，将在<b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown_duration))]</b>后准备就绪。")
 
 /obj/structure/destructible/cult/set_anchored(anchorvalue)
 	. = ..()
@@ -68,7 +68,7 @@
  */
 /obj/structure/destructible/cult/proc/conceal()
 	set_density(FALSE)
-	visible_message(span_danger("[src] fades away."))
+	visible_message(span_danger("[src]逐渐消逝。"))
 	SetInvisibility(INVISIBILITY_OBSERVER, id=type)
 	alpha = 100
 	set_light_power(0)
@@ -81,7 +81,7 @@
 /obj/structure/destructible/cult/proc/reveal()
 	set_density(initial(density))
 	RemoveInvisibility(type)
-	visible_message(span_danger("[src] suddenly appears!"))
+	visible_message(span_danger("[src]突然显现！"))
 	alpha = initial(alpha)
 	set_light_range(initial(light_range))
 	set_light_power(initial(light_power))
@@ -99,7 +99,7 @@
 	setup_options()
 
 /obj/structure/destructible/cult/item_dispenser/rust_heretic_act()
-	visible_message(span_notice("[src] crumbles to dust. In its midst, you spot \a [initial(mansus_conversion_path.name)]."))
+	visible_message(span_notice("[src] 化为尘埃。在尘埃之中，你发现了\a [initial(mansus_conversion_path.name)]。"))
 	var/turf/turfy = get_turf(src)
 	new mansus_conversion_path(turfy)
 	turfy.rust_heretic_act()
@@ -110,13 +110,13 @@
 	if(.)
 		return
 	if(!isliving(user) || !is_cultist_check(user))
-		to_chat(user, span_warning("You're pretty sure you know exactly what this is used for and you can't seem to touch it."))
+		to_chat(user, span_warning("你很清楚这东西是干什么用的，但你似乎无法触碰它。"))
 		return
 	if(!anchored)
-		to_chat(user, span_cult_italic("You need to anchor [src] to the floor first."))
+		to_chat(user, span_cult_italic("你需要先将[src]固定在地面上。"))
 		return
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
-		to_chat(user, span_cult_italic("The magic in [src] is too weak, it will be ready to use again in <b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown))]</b>."))
+		to_chat(user, span_cult_italic("[src]中的魔力过于微弱，将在<b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown))]</b>后准备就绪。"))
 		return
 
 	setup_options()
@@ -197,7 +197,7 @@
  * Override for unique feedback messages on item spawn.
  */
 /obj/structure/destructible/cult/item_dispenser/proc/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cult_italic("[src] produces a [spawned_item.name]."))
+	to_chat(user, span_cult_italic("[src]产生了一个[spawned_item.name]。"))
 
 /*
  * Simple proc intended for use in callbacks to determine if [user] can continue to use a radial menu.
@@ -209,8 +209,8 @@
 
 // Spooky looking door used in gateways. Or something.
 /obj/effect/gateway
-	name = "gateway"
-	desc = "You're pretty sure that abyss is staring back."
+	name = "星门"
+	desc = "深渊也在凝视你"
 	icon = 'icons/obj/antags/cult/structures.dmi'
 	icon_state = "hole"
 	density = TRUE

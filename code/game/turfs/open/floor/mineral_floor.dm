@@ -10,7 +10,7 @@
  */
 
 /turf/open/floor/mineral
-	name = "mineral floor"
+	name = "矿石地板"
 	icon_state = null
 	material_flags = MATERIAL_EFFECTS
 	rust_resistance = RUST_RESISTANCE_BASIC
@@ -34,7 +34,7 @@
 //PLASMA
 
 /turf/open/floor/mineral/plasma
-	name = "plasma floor"
+	name = "等离子地板"
 	icon_state = "plasma"
 	floor_tile = /obj/item/stack/tile/mineral/plasma
 	icons = list("plasma","plasma_dam")
@@ -50,7 +50,7 @@
 //GOLD
 
 /turf/open/floor/mineral/gold
-	name = "gold floor"
+	name = "金地板"
 	icon_state = "gold"
 	floor_tile = /obj/item/stack/tile/mineral/gold
 	icons = list("gold","gold_dam")
@@ -60,7 +60,7 @@
 //SILVER
 
 /turf/open/floor/mineral/silver
-	name = "silver floor"
+	name = "银地板"
 	icon_state = "silver"
 	floor_tile = /obj/item/stack/tile/mineral/silver
 	icons = list("silver","silver_dam")
@@ -69,7 +69,7 @@
 //TITANIUM (shuttle)
 
 /turf/open/floor/mineral/titanium
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	icon_state = "titanium"
 	floor_tile = /obj/item/stack/tile/mineral/titanium
 	custom_materials = list(/datum/material/titanium = SMALL_MATERIAL_AMOUNT*5)
@@ -117,7 +117,7 @@
 
 // OLD TITANIUM (titanium floor tiles before PR #50454)
 /turf/open/floor/mineral/titanium/tiled
-	name = "titanium tile"
+	name = "钛钢砖"
 	icon_state = "titanium_tiled"
 	floor_tile = /obj/item/stack/tile/mineral/titanium/tiled
 
@@ -157,7 +157,7 @@
 
 //PLASTITANIUM (syndieshuttle)
 /turf/open/floor/mineral/plastitanium
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	icon_state = "plastitanium"
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium
 	custom_materials = list(/datum/material/alloy/plastitanium = SMALL_MATERIAL_AMOUNT*5)
@@ -183,7 +183,7 @@
 //BANANIUM
 
 /turf/open/floor/mineral/bananium
-	name = "bananium floor"
+	name = "蕉矿地板"
 	icon_state = "bananium"
 	floor_tile = /obj/item/stack/tile/mineral/bananium
 	icons = list("bananium","bananium_dam")
@@ -230,7 +230,7 @@
 //DIAMOND
 
 /turf/open/floor/mineral/diamond
-	name = "diamond floor"
+	name = "钻石地板"
 	icon_state = "diamond"
 	floor_tile = /obj/item/stack/tile/mineral/diamond
 	icons = list("diamond","diamond_dam")
@@ -241,7 +241,7 @@
 
 /turf/open/floor/mineral/uranium
 	article = "a"
-	name = "uranium floor"
+	name = "铀地板"
 	icon_state = "uranium"
 	floor_tile = /obj/item/stack/tile/mineral/uranium
 	icons = list("uranium","uranium_dam")
@@ -291,7 +291,7 @@
 
 // ALIEN ALLOY
 /turf/open/floor/mineral/abductor
-	name = "alien floor"
+	name = "外星地板"
 	icon_state = "alienpod1"
 	floor_tile = /obj/item/stack/tile/mineral/abductor
 	icons = list("alienpod1", "alienpod2", "alienpod3", "alienpod4", "alienpod5", "alienpod6", "alienpod7", "alienpod8", "alienpod9")

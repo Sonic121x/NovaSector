@@ -4,8 +4,8 @@
 
 //blood-drunk hunter
 /obj/item/crusher_trophy/miner_eye
-	name = "eye of a blood-drunk hunter"
-	desc = "Its pupil is collapsed and turned to mush. Suitable as a trophy for a kinetic crusher."
+	name = "嗜血猎人之眼"
+	desc = "它的瞳孔已经塌陷并化为了糊状。适合作为动能粉碎机的战利品。"
 	icon_state = "hunter_eye"
 	trophy_id = TROPHY_MINER_EYE
 	denied_type = /obj/item/crusher_trophy/miner_eye
@@ -19,7 +19,7 @@
 
 //ash drake
 /obj/item/crusher_trophy/tail_spike
-	desc = "A spike taken from an ash drake's tail. Suitable as a trophy for a kinetic crusher."
+	desc = "一根取自灰烬龙尾部的尖刺。适合作为动能粉碎机的战利品。"
 	denied_type = /obj/item/crusher_trophy/tail_spike
 	trophy_id = TROPHY_TAIL_SPIKE
 	bonus_value = 5
@@ -43,8 +43,8 @@
 
 //bubblegum
 /obj/item/crusher_trophy/demon_claws
-	name = "demon claws"
-	desc = "A set of blood-drenched claws from a massive demon's hand. Suitable as a trophy for a kinetic crusher."
+	name = "恶魔利爪"
+	desc = "一副来自巨型恶魔之手的、浸满鲜血的利爪。适合作为动能粉碎机的战利品。"
 	icon_state = "demon_claws"
 	gender = PLURAL
 	denied_type = /obj/item/crusher_trophy/demon_claws
@@ -80,8 +80,8 @@
 
 //colossus
 /obj/item/crusher_trophy/blaster_tubes
-	name = "blaster tubes"
-	desc = "The blaster tubes from a colossus's arm. Suitable as a trophy for a kinetic crusher."
+	name = "爆破管"
+	desc = "来自巨像手臂的爆破管。适合作为动能粉碎机的战利品。"
 	icon_state = "blaster_tubes"
 	gender = PLURAL
 	denied_type = /obj/item/crusher_trophy/blaster_tubes
@@ -94,7 +94,7 @@
 
 /obj/item/crusher_trophy/blaster_tubes/on_projectile_fire(obj/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
-		marker.name = "deadly [marker.name]"
+		marker.name = "致命的[marker.name]"
 		marker.icon_state = "chronobolt"
 		marker.damage = bonus_value
 		marker.speed = 2
@@ -110,8 +110,8 @@
 
 //hierophant
 /obj/item/crusher_trophy/vortex_talisman
-	name = "vortex talisman"
-	desc = "A glowing trinket that was originally the Hierophant's beacon. Suitable as a trophy for a kinetic crusher."
+	name = "漩涡护符"
+	desc = "一个发光的饰品，原本是教皇的信标。适合作为动能粉碎机的战利品。"
 	icon_state = "vortex_talisman"
 	trophy_id = TROPHY_VORTEX
 	denied_type = /obj/item/crusher_trophy/vortex_talisman
@@ -129,8 +129,8 @@
 
 // Demonic frost miner
 /obj/item/crusher_trophy/ice_block_talisman
-	name = "ice block talisman"
-	desc = "A glowing trinket that a demonic miner had on him, it seems he couldn't utilize it for whatever reason."
+	name = "冰封护符"
+	desc = "一个发光的饰品，来自一个恶魔矿工身上，他似乎因某种原因无法使用它。"
 	icon_state = "ice_trap_talisman"
 	trophy_id = TROPHY_ICE_BLOCK
 	denied_type = /obj/item/crusher_trophy/ice_block_talisman
@@ -144,8 +144,8 @@
 
 // Wendigo
 /obj/item/crusher_trophy/wendigo_horn
-	name = "wendigo horn"
-	desc = "A gnarled horn ripped from the skull of a wendigo. Suitable as a trophy for a kinetic crusher."
+	name = "温迪戈之角"
+	desc = "从温迪戈头骨上扯下的扭曲犄角。适合作为动能粉碎机的战利品。"
 	icon_state = "wendigo_horn"
 	denied_type = /obj/item/crusher_trophy/wendigo_horn
 
@@ -168,8 +168,8 @@
 
 // Goliath Broodmother
 /obj/item/crusher_trophy/broodmother_tongue
-	name = "broodmother tongue"
-	desc = "The tongue of a broodmother. If attached a certain way, makes for a suitable crusher trophy.  It also feels very spongey, I wonder what would happen if you squeezed it?..."
+	name = "育母之舌"
+	desc = "育母的舌头。如果以某种方式安装，可以成为合适的粉碎机战利品。它摸起来非常柔软有弹性，我在想如果你捏一下会发生什么？..."
 	icon = 'icons/obj/mining_zones/elite_trophies.dmi'
 	icon_state = "broodmother_tongue"
 	denied_type = /obj/item/crusher_trophy/broodmother_tongue
@@ -191,20 +191,20 @@
 		return
 	var/mob/living/living_user = user
 	if(use_time > world.time)
-		to_chat(living_user, "<b>The tongue looks dried out. You'll need to wait longer to use it again.</b>")
+		to_chat(living_user, "<b>舌头看起来干枯了。你需要等待更长时间才能再次使用它。</b>")
 		return
 	else if(HAS_TRAIT(living_user, TRAIT_LAVA_IMMUNE))
-		to_chat(living_user, "<b>You stare at the tongue. You don't think this is any use to you.</b>")
+		to_chat(living_user, "<b>你盯着舌头看。你觉得这对你没什么用。</b>")
 		return
 	ADD_TRAIT(living_user, TRAIT_LAVA_IMMUNE, type)
-	to_chat(living_user, "<b>You squeeze the tongue, and some transluscent liquid shoots out all over you.</b>")
+	to_chat(living_user, "<b>你捏了捏舌头，一些半透明的液体喷了你一身。</b>")
 	addtimer(TRAIT_CALLBACK_REMOVE(user, TRAIT_LAVA_IMMUNE, type), 10 SECONDS)
 	use_time = world.time + 60 SECONDS
 
 // Legionnaire
 /obj/item/crusher_trophy/legionnaire_spine
-	name = "legionnaire spine"
-	desc = "The spine of a legionnaire. With some creativity, you could use it as a crusher trophy. Alternatively, shaking it might do something as well."
+	name = "军团士兵脊柱"
+	desc = "军团士兵的脊柱。发挥一点创意，你可以把它用作粉碎机战利品。或者，摇晃它可能也会发生些什么。"
 	icon = 'icons/obj/mining_zones/elite_trophies.dmi'
 	icon_state = "legionnaire_spine"
 	denied_type = /obj/item/crusher_trophy/legionnaire_spine
@@ -229,10 +229,10 @@
 		return
 	var/mob/living/LivingUser = user
 	if(next_use_time > world.time)
-		LivingUser.visible_message(span_warning("[LivingUser] shakes the [src], but nothing happens..."))
-		to_chat(LivingUser, "<b>You need to wait longer to use this again.</b>")
+		LivingUser.visible_message(span_warning("[LivingUser]摇晃着[src]，但什么都没发生..."))
+		to_chat(LivingUser, "<b>你需要等待更长时间才能再次使用这个。</b>")
 		return
-	LivingUser.visible_message(span_boldwarning("[LivingUser] shakes the [src] and summons a legion skull!"))
+	LivingUser.visible_message(span_boldwarning("[LivingUser]摇晃着[src]并召唤出了一个军团颅骨！"))
 
 	var/mob/living/basic/mining/legion_brood/minion = new (LivingUser.loc)
 	minion.assign_creator(LivingUser)
@@ -240,8 +240,8 @@
 
 //The Thing
 /obj/item/crusher_trophy/flesh_glob
-	name = "glob of shifting flesh"
-	desc = "A glob of shifting flesh, sealed shut permanently. Suitable as a trophy for a kinetic crusher."
+	name = "蠕动肉块"
+	desc = "一团被永久封存的蠕动血肉。适合作为动能粉碎机的战利品。"
 	icon_state = "glob"
 	denied_type = /obj/item/crusher_trophy/flesh_glob
 	bonus_value = 20

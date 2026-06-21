@@ -15,7 +15,7 @@
 	pickup_sound = 'sound/items/handling/gun/ballistics/smg/smg_pickup1.ogg'
 
 /obj/item/gun/ballistic/automatic/proto
-	name = "\improper Nanotrasen Saber SMG"
+	name = "\improper 纳米传讯骑兵冲锋枪"
 	desc = "A prototype full-auto 9mm submachine gun, designated 'SABR'. Has a threaded barrel for suppressors."
 	icon_state = "saber"
 	burst_size = 1
@@ -36,7 +36,7 @@
 
 /obj/item/gun/ballistic/automatic/c20r
 	name = "\improper C-20r SMG"
-	desc = "A bullpup three-round burst .45 SMG, designated 'C-20r'. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
+	desc = "一把三发连射式 .45冲锋枪，被命名为“C-20r”。其枪托上有一个“斯卡伯勒军备 - 按锋之形，依正直之规”的标识。"
 	icon_state = "c20r"
 	inhand_icon_state = "c20r"
 	selector_switch_icon = TRUE
@@ -119,7 +119,7 @@
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
-	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
+	desc = "一把轻便的连发冲锋枪，适合你真想杀人的时候。使用9毫米弹药。"
 	icon_state = "miniuzi"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/uzim9mm
 	burst_size = 2
@@ -189,8 +189,8 @@
 	return ..()
 
 /obj/item/gun/ballistic/automatic/tommygun
-	name = "\improper Thompson SMG"
-	desc = "Based on the classic 'Chicago Typewriter'."
+	name = "\improper 汤普森冲锋枪"
+	desc = "它的原型是经典的“芝加哥打字机”。"
 	icon_state = "tommygun"
 	inhand_icon_state = "shotgun"
 	selector_switch_icon = TRUE
@@ -226,7 +226,7 @@
 
 /obj/item/gun/ballistic/automatic/ar
 	name = "\improper NT-ARG 'Boarder'"
-	desc = "A robust assault rifle used by Nanotrasen fighting forces."
+	desc = "纳米传讯战斗部队使用的一种强健突击步枪。"
 	icon_state = "arg"
 	inhand_icon_state = "arg"
 	slot_flags = 0
@@ -295,7 +295,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/try_fire_gun(atom/target, mob/living/user, params)
 	if(cover_open)
-		balloon_alert(user, "close the cover!")
+		balloon_alert(user, "关上盖子！")
 		return FALSE
 
 	. = ..()
@@ -309,21 +309,21 @@
 		..()
 		return
 	if (!cover_open)
-		balloon_alert(user, "open the cover!")
+		balloon_alert(user, "打开盖子！")
 		return
 	..()
 
 /obj/item/gun/ballistic/automatic/l6_saw/attackby(obj/item/A, mob/user, list/modifiers, list/attack_modifiers)
 	if(!cover_open && istype(A, accepted_magazine_type))
-		balloon_alert(user, "open the cover!")
+		balloon_alert(user, "打开盖子！")
 		return
 	..()
 
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
-	name = "laser rifle"
-	desc = "Though sometimes mocked for the relatively weak firepower of their energy weapons, the logistic miracle of rechargeable ammunition has given Nanotrasen a decisive edge over many a foe."
+	name = "镭射步枪"
+	desc = "尽管他们的能量武器火力相对较弱而曾因此遭到过嘲笑，但可充电弹药的后勤保障能力却使纳米传讯公司取得了对众多敌方的压倒性优势。"
 	icon_state = "oldrifle"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "arg"
@@ -421,7 +421,7 @@
 		. += span_notice("[src] can fire [shots_before_degradation] more times before risking system degradation.")
 	else
 		. += span_notice("[src] is in the process of system degradation. It is currently at stage [degradation_stage] of [degradation_stage_max]. Use a multitool on [src] to recalibrate. Alternatively, insert it into a weapon recharger.")
-	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
+	. += span_notice("你可以 [EXAMINE_HINT("look closer")] 来了解更多关于 [src] 的信息。")
 
 
 
@@ -453,12 +453,12 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	projectile_damage_multiplier = emagged_projectile_damage_multiplier
-	balloon_alert(user, "heat distribution systems deactivated")
+	balloon_alert(user, "热量分配系统已停用")
 	return TRUE
 
 /obj/item/gun/ballistic/automatic/battle_rifle/multitool_act(mob/living/user, obj/item/tool)
 	if(!tool.use_tool(src, user, 20 SECONDS, volume = 50))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return ITEM_INTERACT_BLOCKING
 
 	emp_malfunction = FALSE
@@ -467,7 +467,7 @@
 	projectile_speed_multiplier = initial(projectile_speed_multiplier)
 	fire_delay = initial(fire_delay)
 	update_appearance()
-	balloon_alert(user, "system reset")
+	balloon_alert(user, "系统已重置")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/ballistic/automatic/battle_rifle/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
@@ -520,7 +520,7 @@
 
 /// Proc to handle the countdown for our detonation
 /obj/item/gun/ballistic/automatic/battle_rifle/proc/perform_extreme_malfunction(mob/living/user)
-	balloon_alert(user, "gun is exploding, throw it!")
+	balloon_alert(user, "枪要爆炸了，快扔掉！")
 	explosion_timer = addtimer(CALLBACK(src, PROC_REF(fucking_explodes_you)), 5 SECONDS, (TIMER_UNIQUE|TIMER_OVERRIDE))
 	playsound(src, 'sound/items/weapons/gun/general/empty_alarm.ogg', 50, FALSE)
 

@@ -12,11 +12,11 @@ GLOBAL_LIST_INIT(infuser_entries, prepare_infuser_entries())
 /datum/infuser_entry
 	//-- Vars for DNA Infusion Book --//
 	/// name of the mutant you become
-	var/name = "Mutant"
+	var/name = "突变体"
 	/// what you have to infuse to become it
 	var/infuse_mob_name = "some kind of mutant"
 	/// general desc
-	var/desc = "The ignorants call you a mutant. I prefer to think of mutants as the future of mankind! They could use a guy like you on their team."
+	var/desc = "无知者称你为突变体。我宁愿将突变体视为人类的未来！他们的团队正需要你这样的人。"
 	/// desc of what passing the threshold gets you. if this is empty, there is no threshold, so this is also really a tally of whether this is a "meme" mutant or not
 	var/threshold_desc = "the DNA mess takes over, and you turn into a mutant freak!"
 	/// List of personal attributes added by the mutation.

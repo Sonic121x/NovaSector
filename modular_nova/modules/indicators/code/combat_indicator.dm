@@ -30,7 +30,7 @@ GLOBAL_DATUM_INIT(combat_indicator_vis, /obj/effect/overlay/indicator/combat, ne
 			vehicle_next_combat_popup = world.time + COMBAT_NOTICE_COOLDOWN
 			playsound(src, 'sound/machines/chime.ogg', vol = 10, vary = FALSE, extrarange = -6, falloff_exponent = 4, frequency = null, channel = 0, pressure_affected = FALSE, ignore_walls = FALSE, falloff_distance = 1)
 			flick_emote_popup_on_obj("combat", 2 SECONDS)
-			visible_message(span_boldwarning("[src] prepares for combat!"))
+			visible_message(span_boldwarning("[src] 准备战斗！"))
 		combat_indicator_vehicle = TRUE
 		vis_contents |= GLOB.combat_indicator_vis
 	else
@@ -98,16 +98,16 @@ GLOBAL_DATUM_INIT(combat_indicator_vis, /obj/effect/overlay/indicator/combat, ne
 			if(istype(ciweapon, /obj/item/gun))
 				visible_message(span_boldwarning("[src] raises \the [ciweapon] with [p_their()] finger on the trigger, ready for combat!"))
 			else
-				visible_message(span_boldwarning("[src] readies \the [ciweapon] with a tightened grip and offensive stance, ready for combat!"))
+				visible_message(span_boldwarning("[src] 握紧了 \the [ciweapon]，摆出进攻姿态，准备战斗！"))
 		else
 			if(issilicon(src))
-				visible_message(span_boldwarning("<b>[src] shifts its armour plating into a defensive stance, ready for combat!"))
+				visible_message(span_boldwarning("<b>[src] 将装甲板调整为防御姿态，准备战斗！"))
 			if(ishuman(src))
-				visible_message(span_boldwarning("[src] raises [p_their()] fists in an offensive stance, ready for combat!"))
+				visible_message(span_boldwarning("[src] 举起 [p_their()] 的拳头摆出进攻姿态，准备战斗！"))
 			if(isalien(src))
-				visible_message(span_boldwarning("[src] hisses in a terrifying stance, claws raised and ready for combat!"))
+				visible_message(span_boldwarning("[src] 发出嘶嘶声，摆出骇人姿态，利爪扬起，准备战斗！"))
 			else
-				visible_message(span_boldwarning("[src] gets ready for combat!"))
+				visible_message(span_boldwarning("[src] 准备战斗！"))
 	combat_indicator = TRUE
 	apply_status_effect(/datum/status_effect/grouped/surrender, src)
 	log_message("<font color='red'>[src] has turned ON the combat indicator!</font>", LOG_ATTACK)
@@ -194,7 +194,7 @@ GLOBAL_DATUM_INIT(combat_indicator_vis, /obj/effect/overlay/indicator/combat, ne
 	hotkey_keys = list("C")
 	name = "combat_indicator"
 	full_name = "Combat Indicator"
-	description = "Indicates that you're escalating to mechanics. YOU NEED TO USE THIS"
+	description = "表明你正在升级到机制对抗。你必须使用这个功能"
 	keybind_signal = COMSIG_KB_LIVING_COMBAT_INDICATOR
 
 /datum/keybinding/living/combat_indicator/down(client/user)

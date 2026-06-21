@@ -1,6 +1,6 @@
 // A decorational representation of SSblackbox, usually placed alongside the message server. Also contains a traitor theft item.
 /obj/machinery/blackbox_recorder
-	name = "Blackbox Recorder"
+	name = "黑匣子记录仪"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "blackbox"
 	density = TRUE
@@ -27,20 +27,20 @@
 		if(Adjacent(user))
 			user.put_in_hands(stored)
 		stored = null
-		to_chat(user, span_notice("You remove the blackbox from [src]. The tapes stop spinning."))
+		to_chat(user, span_notice("你从[src]中取出了黑匣子。磁带停止了转动。"))
 		update_appearance()
 		return
 	else
-		to_chat(user, span_warning("It seems that the blackbox is missing..."))
+		to_chat(user, span_warning("看起来黑匣子不见了……"))
 		return
 
 /obj/machinery/blackbox_recorder/attackby(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/blackbox))
 		if(HAS_TRAIT(attacking_item, TRAIT_NODROP) || !user.transferItemToLoc(attacking_item, src))
-			to_chat(user, span_warning("[attacking_item] is stuck to your hand!"))
+			to_chat(user, span_warning("[attacking_item]粘在了你的手上！"))
 			return
-		user.visible_message(span_notice("[user] clicks [attacking_item] into [src]!"), \
-		span_notice("You press the device into [src], and it clicks into place. The tapes begin spinning again."))
+		user.visible_message(span_notice("[user]将[attacking_item]卡进了[src]！"), \
+		span_notice("你将设备按入[src]，它咔哒一声就位。磁带重新开始转动。"))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		stored = attacking_item
 		update_appearance()
@@ -58,8 +58,8 @@
 	return ..()
 
 /obj/item/blackbox
-	name = "\proper the blackbox"
-	desc = "A strange relic, capable of recording data on extradimensional vertices. It lives inside the blackbox recorder for safe keeping."
+	name = "\proper 黑匣子"
+	desc = "一个奇怪的遗物，能够记录超维度顶点的数据。它被保存在黑匣记录器中以确保安全。"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "blackcube"
 	inhand_icon_state = "blackcube"
@@ -76,8 +76,8 @@
  * require the message server.
  */
 /obj/machinery/telecomms/message_server
-	name = "Messaging Server"
-	desc = "A machine that processes and routes PDA and request console messages."
+	name = "通信服务器"
+	desc = "一种处理和路由PDA及请求控制台消息的机器。"
 	icon_state = "message_server"
 	telecomms_type = /obj/machinery/telecomms/message_server
 	density = TRUE
@@ -118,7 +118,7 @@
 /obj/machinery/telecomms/message_server/examine(mob/user)
 	. = ..()
 	if(calibrating)
-		. += span_warning("It's still calibrating.")
+		. += span_warning("它仍在校准中。")
 
 /obj/machinery/telecomms/message_server/process()
 	. = ..()

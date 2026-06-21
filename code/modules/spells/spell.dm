@@ -41,8 +41,8 @@
  * for use in updating the button name / spell name.
  */
 /datum/action/cooldown/spell
-	name = "Spell"
-	desc = "A wizard spell."
+	name = "魔咒"
+	desc = "巫师的魔咒。"
 	background_icon_state = "bg_spell"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "spell_default"
@@ -161,7 +161,7 @@
 	// Spells which require being on the station
 	if((spell_requirements & SPELL_REQUIRES_STATION) && !is_station_level(caster_turf.z))
 		if(feedback)
-			to_chat(owner, span_warning("You can't cast [src] here!"))
+			to_chat(owner, span_warning("你无法在此处施放[src]！"))
 		return FALSE
 
 	if((spell_requirements & SPELL_REQUIRES_MIND) && !owner.mind)
@@ -171,14 +171,14 @@
 	if((spell_requirements & SPELL_REQUIRES_MIME_VOW) && !HAS_MIND_TRAIT(owner, TRAIT_MIMING))
 		// In the future this can be moved out of spell checks exactly
 		if(feedback)
-			to_chat(owner, span_warning("You must dedicate yourself to silence first!"))
+			to_chat(owner, span_warning("你必须先献身于沉默！"))
 		return FALSE
 
 	// If the spell requires the user has no antimagic equipped, and they're holding antimagic
 	// that corresponds with the spell's antimagic, then they can't actually cast the spell
 	if((spell_requirements & SPELL_REQUIRES_NO_ANTIMAGIC) && !owner.can_cast_magic(antimagic_flags))
 		if(feedback)
-			to_chat(owner, span_warning("Some form of antimagic is preventing you from casting [src]!"))
+			to_chat(owner, span_warning("某种反魔法效果阻止你施放[src]！"))
 		return FALSE
 
 	if(!try_invoke(owner, feedback = feedback))
@@ -189,18 +189,18 @@
 			var/mob/living/carbon/human/human_owner = owner
 			if(!(human_owner.wear_suit?.clothing_flags & CASTING_CLOTHES) && !ismonkey(human_owner)) // Monkeys don't need robes to cast as they are inherently imbued with power from the banana dimension
 				if(feedback)
-					to_chat(owner, span_warning("You don't feel strong enough without your robe!"))
+					to_chat(owner, span_warning("不穿法袍你感觉不够强大！"))
 				return FALSE
 			if(!(astype(human_owner.head, /obj/item/clothing)?.clothing_flags & CASTING_CLOTHES) && !(human_owner.glasses?.clothing_flags & CASTING_CLOTHES))
 				if(feedback)
-					to_chat(owner, span_warning("You don't feel strong enough without your hat!"))
+					to_chat(owner, span_warning("没有帽子你感觉不够强大！"))
 				return FALSE
 
 	else
 		// If you strictly need to be a human, well, goodbye.
 		if(spell_requirements & SPELL_REQUIRES_HUMAN)
 			if(feedback)
-				to_chat(owner, span_warning("[src] can only be cast by humans!"))
+				to_chat(owner, span_warning("[src] 只能由人类施放！"))
 			return FALSE
 
 		// Otherwise, we can check for contents if they have wizardly apparel. This isn't *quite* perfect, but it'll do, especially since many of the edge cases (gorilla holding a wizard hat) still more or less make sense.
@@ -213,12 +213,12 @@
 
 			if(!any_casting)
 				if(feedback)
-					to_chat(owner, span_warning("You don't feel strong enough without your hat!"))
+					to_chat(owner, span_warning("没有帽子你感觉不够强大！"))
 				return FALSE
 
 		if(!(spell_requirements & SPELL_CASTABLE_AS_BRAIN) && isbrain(owner))
 			if(feedback)
-				to_chat(owner, span_warning("[src] can't be cast in this state!"))
+				to_chat(owner, span_warning("[src] 无法在当前状态下施放！"))
 			return FALSE
 
 	return TRUE
@@ -312,7 +312,7 @@
 			if(INVOCATION_WHISPER, INVOCATION_SHOUT)
 				if(!caster.get_organ_slot(ORGAN_SLOT_TONGUE))
 					invocation(caster)
-					to_chat(caster, span_warning("Your lack of tongue is making it difficult to say the correct words to cast [src]..."))
+					to_chat(caster, span_warning("你缺少舌头，难以念出施放 [src] 的正确咒语..."))
 					StartCooldown(2 SECONDS)
 					return SPELL_CANCEL_CAST
 
@@ -320,7 +320,7 @@
 				if(caster.usable_hands <= 0)
 					var/arm_describer = (caster.num_hands >= 2 ? "arms limply" : (caster.num_hands == 1 ? "arm wildly" : "arm stumps"))
 					caster.visible_message(
-						span_warning("[caster] wiggles around [caster.p_their()] [arm_describer]."),
+						span_warning("[caster] 扭动着 [caster.p_their()] [arm_describer]。"),
 						ignored_mobs = caster,
 					)
 					to_chat(caster, span_warning("You can't position your hands correctly to invoke [src][caster.num_hands > 0 ? "" : ", as you have none"]..."))
@@ -421,7 +421,7 @@
 	// If you want a spell usable by ghosts for some reason, it must be INVOCATION_NONE
 	if(!istype(invoker))
 		if(feedback)
-			to_chat(invoker, span_warning("You need to be living to invoke [src]!"))
+			to_chat(invoker, span_warning("你需要活着才能发动 [src]！"))
 		return FALSE
 
 	var/invoke_sig_return = SEND_SIGNAL(invoker, COMSIG_MOB_TRY_INVOKE_SPELL, src, feedback)
@@ -432,12 +432,12 @@
 
 	if(invocation_type == INVOCATION_EMOTE && HAS_TRAIT(invoker, TRAIT_EMOTEMUTE))
 		if(feedback)
-			to_chat(invoker, span_warning("You can't position your hands correctly to invoke [src]!"))
+			to_chat(invoker, span_warning("你无法正确摆出手势来发动 [src]！"))
 		return FALSE
 
 	if((invocation_type == INVOCATION_WHISPER || invocation_type == INVOCATION_SHOUT) && !invoker.can_speak())
 		if(feedback)
-			to_chat(invoker, span_warning("You can't get the words out to invoke [src]!"))
+			to_chat(invoker, span_warning("你念不出咒语来发动 [src]！"))
 		return FALSE
 
 	return TRUE

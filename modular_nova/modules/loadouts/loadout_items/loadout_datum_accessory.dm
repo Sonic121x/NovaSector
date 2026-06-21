@@ -22,15 +22,15 @@
 */
 
 /datum/loadout_item/accessory/chaps
-	name = "Chaps"
+	name = "皮护腿套裤"
 	item_path = /obj/item/clothing/accessory/chaps
 
 /datum/loadout_item/accessory/maidcorset_tactical
-	name = "Maid Apron - Tactical"
+	name = "女仆围裙 - 战术型"
 	item_path = /obj/item/clothing/accessory/maidcorset/syndicate/loadout_corset
 
 /datum/loadout_item/accessory/wetmaker
-	name = "Stardress Hydro-Vaporizer"
+	name = "星裙水汽蒸发器"
 	item_path = /obj/item/clothing/accessory/vaporizer
 
 /*
@@ -38,50 +38,50 @@
 */
 
 /datum/loadout_item/accessory/armband_medblue
-	name = "Armband (Blue-White)"
+	name = "臂章（蓝白）"
 	item_path = /obj/item/clothing/accessory/armband/medblue/nonsec
 
 /datum/loadout_item/accessory/armband_cargo
-	name = "Armband (Brown)"
+	name = "臂章（棕色）"
 	item_path = /obj/item/clothing/accessory/armband/cargo/nonsec
 
 /datum/loadout_item/accessory/armband_engineering
-	name = "Armband (Orange)"
+	name = "臂章（橙色）"
 	item_path = /obj/item/clothing/accessory/armband/engine/nonsec
 
 /datum/loadout_item/accessory/armband_science
-	name = "Armband (Purple)"
+	name = "臂章（紫色）"
 	item_path = /obj/item/clothing/accessory/armband/science/nonsec
 
 /datum/loadout_item/accessory/armband_security_nonsec
-	name = "Armband (Red)"
+	name = "臂章（红色）"
 	item_path = /obj/item/clothing/accessory/armband/nonsec
 
 /datum/loadout_item/accessory/armband_med
-	name = "Armband (White)"
+	name = "臂章（白色）"
 	item_path = /obj/item/clothing/accessory/armband/med/nonsec
 
 /datum/loadout_item/accessory/armband_security
-	name = "Armband - Security Deputy"
+	name = "臂章 - 安保副手"
 	item_path = /obj/item/clothing/accessory/armband/deputy
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/accessory/green_pin
-	name = "Green \"Newbie\" Pin"
+	name = "绿色“新手”徽章"
 	item_path = /obj/item/clothing/accessory/green_pin
 
 /datum/loadout_item/accessory/holobadge
-	name = "Holobadge"
+	name = "全息徽章"
 	item_path = /obj/item/clothing/accessory/badge/holo
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/accessory/holobadge/blue
-	name = "Holobadge (Blue)"
+	name = "全息徽章（蓝色）"
 	item_path = /obj/item/clothing/accessory/badge/holo/blue
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/accessory/holobadge/lanyard
-	name = "Holobadge (Lanyard)"
+	name = "全息徽章（挂绳式）"
 	item_path = /obj/item/clothing/accessory/badge/holo/cord
 	restricted_roles = list(ALL_JOBS_SEC)
 
@@ -90,7 +90,7 @@
 */
 
 /datum/loadout_item/accessory/bone_charm
-	name = "Heirloom Bone Talisman"
+	name = "传家宝骨制护符"
 	item_path = /obj/item/clothing/accessory/talisman/armourless
 
 /datum/loadout_item/accessory/bone_charm/get_item_information()
@@ -98,7 +98,7 @@
 	.[FA_ICON_SHIELD_ALT] = TOOLTIP_NO_ARMOR
 
 /datum/loadout_item/accessory/bone_codpiece
-	name = "Heirloom Skull Codpiece"
+	name = "传家宝颅骨护裆"
 	item_path = /obj/item/clothing/accessory/skullcodpiece/armourless
 
 /datum/loadout_item/accessory/bone_codpiece/get_item_information()
@@ -106,7 +106,7 @@
 	.[FA_ICON_SHIELD_ALT] = TOOLTIP_NO_ARMOR
 
 /datum/loadout_item/accessory/sinew_kilt
-	name = "Heirloom Sinew Skirt"
+	name = "传家宝筋腱短裙"
 	item_path = /obj/item/clothing/accessory/skilt/armourless
 
 /datum/loadout_item/accessory/sinew_kilt/get_item_information()
@@ -123,101 +123,101 @@
 	group = "Medals"
 
 /datum/loadout_item/accessory/medal/dogtags
-	name = "Dogtags"
+	name = "狗牌"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/dogtags
 
 /datum/loadout_item/accessory/medal/shield
-	name = "Medal - Shield"
+	name = "勋章 - 盾形"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/shield
 
 /datum/loadout_item/accessory/medal/shield_br
-	name = "Medal - Shield (Bar-Ribbon)"
+	name = "勋章 - 盾形（横条绶带）"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/shield/bar_ribbon
 
 /datum/loadout_item/accessory/medal/shield_h
-	name = "Medal - Shield (Hollow)"
+	name = "勋章 - 盾形（镂空）"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/shield/hollow
 
 /datum/loadout_item/accessory/medal/bar
-	name = "Medal - Bar"
+	name = "勋章 - 条形"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/bar
 
 /datum/loadout_item/accessory/medal/bar_br
-	name = "Medal - Bar (Bar-Ribbon)"
+	name = "勋章 - 条形（横条绶带）"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/bar/bar_ribbon
 
 /datum/loadout_item/accessory/medal/bar_h
-	name = "Medal - Bar (Hollow)"
+	name = "勋章 - 条形（镂空）"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/bar/hollow
 
 /datum/loadout_item/accessory/medal/circle
-	name = "Medal - Circle"
+	name = "勋章 - 圆形"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/circle
 
 /datum/loadout_item/accessory/medal/circle_br
-	name = "Medal - Circle (Bar-Ribbon)"
+	name = "勋章 - 圆形（横条绶带）"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/circle/bar_ribbon
 
 /datum/loadout_item/accessory/medal/circle_alt
-	name = "Medal - Circle (Alt)"
+	name = "勋章 - 圆形 (变体)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal
 	//This is actually the default setup for our medals!
 
 /datum/loadout_item/accessory/medal/circle_h
-	name = "Medal - Circle (Hollow)"
+	name = "勋章 - 圆形 (空心)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/circle/hollow
 
 /datum/loadout_item/accessory/medal/circle_h_br
-	name = "Medal - Circle (Hollow, Bar-Ribbon)"
+	name = "勋章 - 圆形 (空心, 条带绶带)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/circle/hollow/bar_ribbon
 
 /datum/loadout_item/accessory/medal/heart
-	name = "Medal - Heart"
+	name = "勋章 - 心形"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/heart
 
 /datum/loadout_item/accessory/medal/heart_br
-	name = "Medal - Heart (Bar-Ribbon)"
+	name = "勋章 - 心形 (条带绶带)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/heart/bar_ribbon
 
 /datum/loadout_item/accessory/medal/heart_s
-	name = "Medal - Heart (Special)"
+	name = "勋章 - 心形 (特殊)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/heart/special
 
 /datum/loadout_item/accessory/medal/heart_s_br
-	name = "Medal - Heart (Special, Bar-Ribbon)"
+	name = "勋章 - 心形 (特殊, 条带绶带)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/heart/special/bar_ribbon
 
 /datum/loadout_item/accessory/medal/crown
-	name = "Medal - Crown"
+	name = "勋章 - 王冠"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/crown
 
 /datum/loadout_item/accessory/medal/crown_br
-	name = "Medal - Crown (Bar-Ribbon)"
+	name = "勋章 - 王冠 (条带绶带)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/crown/bar_ribbon
 
 /datum/loadout_item/accessory/medal/crown_h
-	name = "Medal - Crown (Hollow)"
+	name = "勋章 - 王冠 (空心)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/crown/hollow
 
 /datum/loadout_item/accessory/medal/crown_h_br
-	name = "Medal - Crown (Hollow, Bar-Ribbon)"
+	name = "勋章 - 王冠 (空心, 条带绶带)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/crown/hollow/bar_ribbon
 
 /datum/loadout_item/accessory/medal/glow_crystal
-	name = "Glowcrystal necklace"
+	name = "发光水晶项链"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/glowcrystal
 	reskin_datum = /datum/atom_skin/glow_crystal_necklace
 
 /datum/loadout_item/accessory/medal/rankpin_star
-	name = "Rankpin (Star)"
+	name = "军衔徽章 (星形)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/rankpin
 
 /datum/loadout_item/accessory/medal/rankpin_bar
-	name = "Rankpin (Bar)"
+	name = "军衔徽章 (条形)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/rankpin/bar
 
 /datum/loadout_item/accessory/medal/rankpin_twobar
-	name = "Rankpin (Double Bars)"
+	name = "军衔徽章 (双条形)"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/rankpin/two_bar
 
 /*
@@ -225,16 +225,16 @@
 */
 
 /datum/loadout_item/accessory/medal/cc_pin
-	name = "Neckpin - CentCom"
+	name = "颈针 - 中央司令部"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/neckpin/centcom
 	restricted_roles = list(JOB_CAPTAIN, ALL_JOBS_CC)
 
 /datum/loadout_item/accessory/medal/nt_pin
-	name = "Neckpin - Nanotrasen"
+	name = "颈针 - 纳米传讯"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/neckpin
 
 /datum/loadout_item/accessory/medal/pt_pin
-	name = "Neckpin - Port Tarkon"
+	name = "颈针 - 塔尔孔港"
 	item_path = /obj/item/clothing/accessory/nova/acc_medal/neckpin/porttarkon
 
 /*
@@ -242,43 +242,43 @@
 */
 
 /datum/loadout_item/accessory/medal/ribbon_mil
-	name = "Ribbon - Military (1 Color)"
+	name = "绶带 - 军事 (单色)"
 	item_path = /obj/item/clothing/accessory/nova/military_ribbon
 
 /datum/loadout_item/accessory/medal/ribbon_mil_2
-	name = "Ribbon - Military (2 Color)"
+	name = "绶带 - 军事 (双色)"
 	item_path = /obj/item/clothing/accessory/nova/military_ribbon/two
 
 /datum/loadout_item/accessory/medal/ribbon_mil_3
-	name = "Ribbon - Military (3 Color)"
+	name = "绶带 - 军事（三色）"
 	item_path = /obj/item/clothing/accessory/nova/military_ribbon/three
 
 /datum/loadout_item/accessory/medal/ribbon
-	name = "Ribbon (Down Arrow)"
+	name = "绶带（下箭头）"
 	item_path = /obj/item/clothing/accessory/nova/ribbon
 
 /datum/loadout_item/accessory/medal/ribbon2
-	name = "Ribbon (Slash)"
+	name = "绶带（斜杠）"
 	item_path = /obj/item/clothing/accessory/nova/ribbon/ribbon_slash
 
 /datum/loadout_item/accessory/medal/ribbon3
-	name = "Ribbon (Up Arrow)"
+	name = "绶带（上箭头）"
 	item_path = /obj/item/clothing/accessory/nova/ribbon/ribbon_arrup
 
 /datum/loadout_item/accessory/medal/ribbon4
-	name = "Ribbon (Line)"
+	name = "绶带（线条）"
 	item_path = /obj/item/clothing/accessory/nova/ribbon/ribbon_line
 
 /datum/loadout_item/accessory/medal/ribbon5
-	name = "Ribbon (Dual)"
+	name = "绶带（双色）"
 	item_path = /obj/item/clothing/accessory/nova/ribbon/ribbon_dual
 
 /datum/loadout_item/accessory/medal/ribbon6
-	name = "Ribbon (Flat)"
+	name = "绶带（扁平）"
 	item_path = /obj/item/clothing/accessory/nova/ribbon/ribbon_flat
 
 /datum/loadout_item/accessory/medal/ribbon7
-	name = "Ribbon (Two-Tone)"
+	name = "绶带（双色调）"
 	item_path = /obj/item/clothing/accessory/nova/ribbon/ribbon_twotone
 
 /*
@@ -286,24 +286,24 @@
 */
 
 /datum/loadout_item/accessory/webbing
-	name = "Webbing - Basic"
+	name = "战术背带 - 基础型"
 	item_path = /obj/item/clothing/accessory/webbing
 
 /datum/loadout_item/accessory/colonial_webbing
-	name = "Webbing - Colonial"
+	name = "战术背带 - 殖民型"
 	item_path = /obj/item/clothing/accessory/webbing/colonial
 
 /datum/loadout_item/accessory/webbing_vest
-	name = "Webbing - Vest"
+	name = "战术背带 - 背心型"
 	item_path = /obj/item/clothing/accessory/webbing/vest
 	reskin_datum = /datum/atom_skin/webbing_vest
 
 /datum/loadout_item/accessory/webbing_pouch
-	name = "Webbing - Drop Pouches"
+	name = "战术背带 - 垂挂包型"
 	item_path = /obj/item/clothing/accessory/webbing/pouch
 	reskin_datum = /datum/atom_skin/drop_pouches
 
 /datum/loadout_item/accessory/webbing_pilot
-	name = "Webbing - Rigging"
+	name = "战术背带 - 索具型"
 	item_path = /obj/item/clothing/accessory/webbing/pilot
 	reskin_datum = /datum/atom_skin/storage_rigging

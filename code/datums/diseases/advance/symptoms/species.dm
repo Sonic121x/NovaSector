@@ -7,8 +7,8 @@
  * Bonus: Infected corpses spread disease and undead species are infectable
 */
 /datum/symptom/undead_adaptation
-	name = "Necrotic Metabolism"
-	desc = "The virus is able to thrive and act even within dead hosts."
+	name = "死灵代谢"
+	desc = "该病毒能够在已死亡的宿主体内存活并活动。"
 	stealth = 2
 	resistance = -2
 	stage_speed = 1
@@ -34,8 +34,8 @@
  * Bonus: Enables infection of mineral biotype species
 */
 /datum/symptom/inorganic_adaptation
-	name = "Inorganic Biology"
-	desc = "The virus can survive and replicate even in an inorganic environment, increasing its resistance and infection rate."
+	name = "无机生物学"
+	desc = "该病毒甚至能在无机环境中生存和复制，从而提高了其抗性和感染率。"
 	stealth = -1
 	resistance = 4
 	stage_speed = -2

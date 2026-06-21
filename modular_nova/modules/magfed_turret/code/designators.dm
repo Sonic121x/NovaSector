@@ -1,6 +1,6 @@
 /obj/item/target_designator/sniper
-	name = "\improper Shot Caller"
-	desc = "A target designator with a shorter acquisition duration and a singular turret limit, but capable of tagging targets at much further ranges."
+	name = "\improper 射手呼叫器"
+	desc = "一种目标指示器，具有更短的锁定时间和单一炮台控制上限，但能够在更远的距离上标记目标。"
 	icon = 'modular_nova/modules/magfed_turret/icons/designator.dmi'
 	icon_state = "shot_caller"
 	inhand_icon_state = "shot_caller"

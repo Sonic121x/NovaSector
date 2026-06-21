@@ -1,11 +1,11 @@
 /// Strikes the target with a lightning bolt
 /datum/smite/lightning
-	name = "Lightning Bolt"
+	name = "电击"
 
 /datum/smite/lightning/effect(client/user, mob/living/target)
 	. = ..()
 	lightningbolt(target)
-	to_chat(target, span_userdanger("The gods have punished you for your sins!"), confidential = TRUE)
+	to_chat(target, span_userdanger("众神已因你的罪孽而惩罚了你！"), confidential = TRUE)
 
 ///this is the actual bolt effect and damage, made into its own proc because it is used elsewhere
 /proc/lightningbolt(mob/living/user)
@@ -18,5 +18,5 @@
 		human_target.electrocution_animation(LIGHTNING_BOLT_ELECTROCUTION_ANIMATION_LENGTH)
 
 /datum/smite/lightning/divine
-	name = "Lightning Bolt (Divine)"
+	name = "闪电箭（神圣）"
 	smite_flags = SMITE_DIVINE

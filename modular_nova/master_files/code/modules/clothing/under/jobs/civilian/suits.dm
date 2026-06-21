@@ -12,8 +12,8 @@
 *	RECOLORABLE
 */
 /obj/item/clothing/under/suit/nova/recolorable
-	name = "recolorable suit"
-	desc = "A semi-formal suit, clean-cut with a matching vest and slacks."
+	name = "可重新着色西装"
+	desc = "一套半正式西装，剪裁利落，配有相配的马甲和西裤。"
 	can_adjust = FALSE
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/suit/nova/recolorable"
@@ -25,8 +25,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/suit/nova/recolorable/skirt
-	name = "recolorable suitskirt"
-	desc = "A semi-formal suitskirt, clean-cut with a matching vest and skirt."
+	name = "可重新着色西装裙"
+	desc = "一套半正式西装裙，剪裁利落，配有相配的马甲和短裙。"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON | CLOTHING_BIG_LEGS_MASK
 	gets_cropped_on_taurs = FALSE
@@ -39,8 +39,8 @@
 	greyscale_config_worn_digi = /datum/greyscale_config/recolorable_suitskirt/worn/digi
 
 /obj/item/clothing/under/suit/nova/recolorable/casual
-	name = "office casual suit"
-	desc = "A semi-formal suit, clean-cut with a matching vest and slacks."
+	name = "办公室休闲西装"
+	desc = "一套半正式西装，剪裁利落，配有相配的马甲和西裤。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/suit/nova/recolorable/casual"
 	post_init_icon_state = "fancysuit_casual"
@@ -50,8 +50,8 @@
 	greyscale_colors = "#37373e#ffffff"
 
 /obj/item/clothing/under/suit/nova/recolorable/executive
-	name = "executive casual suit"
-	desc = "A formal suit, clean-cut with a matching vest, undershirt, tie and slacks."
+	name = "行政休闲西装"
+	desc = "一套剪裁利落的正式西装，配有配套的马甲、内衬衣、领带和西裤。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/suit/nova/recolorable/executive"
 	post_init_icon_state = "fancysuit_executive"
@@ -61,8 +61,8 @@
 	greyscale_colors = "#37373e#37373e#ffffff#ac3232"
 
 /obj/item/clothing/under/suit/nova/pencil
-	name = "pencilskirt and shirt"
-	desc = "A clean shirt with a tight-fitting pencilskirt."
+	name = "铅笔裙与衬衫"
+	desc = "一件干净的衬衫搭配紧身铅笔裙。"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON | CLOTHING_BIG_LEGS_MASK
 	gets_cropped_on_taurs = FALSE
@@ -76,8 +76,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/suit/nova/pencil/noshirt
-	name = "pencilskirt"
-	desc = "A tight-fitting pencilskirt, perfect to augment an undershirt."
+	name = "铅笔裙"
+	desc = "一条紧身铅笔裙，非常适合搭配内衬衣。"
 	greyscale_colors = "#37373e"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/suit/nova/pencil/noshirt"
@@ -88,38 +88,38 @@
 	body_parts_covered = GROIN|LEGS
 
 /obj/item/clothing/under/suit/nova/pencil/charcoal
-	name = "charcoal pencilskirt"
-	desc = "A clean white shirt with a tight-fitting charcoal pencilskirt."
+	name = "炭灰色铅笔裙"
+	desc = "一件干净的白衬衫搭配紧身炭灰色铅笔裙。"
 	icon_state = "/obj/item/clothing/under/suit/nova/pencil/charcoal"
 	greyscale_colors = "#303030#ffffff"
 
 /obj/item/clothing/under/suit/nova/pencil/navy
-	name = "navy pencilskirt"
-	desc = "A clean white shirt with a tight-fitting navy-blue pencilskirt."
+	name = "海军蓝铅笔裙"
+	desc = "一件干净的白衬衫搭配紧身海军蓝铅笔裙。"
 	icon_state = "/obj/item/clothing/under/suit/nova/pencil/navy"
 	greyscale_colors = "#112334#ffffff"
 
 /obj/item/clothing/under/suit/nova/pencil/burgundy
-	name = "burgundy pencilskirt"
-	desc = "A clean white shirt with a tight-fitting burgandy-red pencilskirt."
+	name = "酒红色铅笔裙"
+	desc = "一件干净的白衬衫搭配紧身酒红色铅笔裙。"
 	icon_state = "/obj/item/clothing/under/suit/nova/pencil/burgundy"
 	greyscale_colors = "#3e1111#ffffff"
 
 /obj/item/clothing/under/suit/nova/pencil/tan
-	name = "tan pencilskirt"
-	desc = "A clean white shirt with a tight-fitting tan pencilskirt."
+	name = "棕褐色铅笔裙"
+	desc = "一件干净的白衬衫搭配紧身棕褐色铅笔裙。"
 	icon_state = "/obj/item/clothing/under/suit/nova/pencil/tan"
 	greyscale_colors = "#8b7458#ffffff"
 
 /obj/item/clothing/under/suit/nova/pencil/green
-	name = "green pencilskirt"
-	desc = "A clean white shirt with a tight-fitting green pencilskirt."
+	name = "绿色铅笔裙"
+	desc = "一件干净的白衬衫搭配紧身绿色铅笔裙。"
 	icon_state = "/obj/item/clothing/under/suit/nova/pencil/green"
 	greyscale_colors = "#113e20#ffffff"
 
 /obj/item/clothing/under/suit/nova/pencil/black_really
-	name = "executive pencilskirt"
-	desc = "A sleek suit with a tight-fitting pencilskirt."
+	name = "行政铅笔裙"
+	desc = "一套时尚的西装搭配紧身铅笔裙。"
 	greyscale_colors = "#37373e#37373e#ffffff#ac3232"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/suit/nova/pencil/black_really"
@@ -129,8 +129,8 @@
 	greyscale_config_worn_digi = /datum/greyscale_config/pencilskirt_withsuit/worn/digi
 
 /obj/item/clothing/under/suit/nova/pencil/checkered
-	name = "checkered pencilskirt and shirt"
-	desc = "A clean shirt with a tight-fitting checkered pencilskirt."
+	name = "格纹铅笔裙与衬衫"
+	desc = "一件干净的衬衫搭配紧身格纹铅笔裙。"
 	greyscale_colors = "#37373e#232323#ffffff"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/suit/nova/pencil/checkered"
@@ -140,8 +140,8 @@
 	greyscale_config_worn_digi = /datum/greyscale_config/pencilskirt_checkers_withshirt/worn/digi
 
 /obj/item/clothing/under/suit/nova/pencil/checkered/noshirt
-	name = "checkered pencilskirt"
-	desc = "A tight-fitting checkered pencilskirt."
+	name = "格纹铅笔裙"
+	desc = "一件紧身的格纹铅笔裙。"
 	greyscale_colors = "#37373e#232323"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/suit/nova/pencil/checkered/noshirt"
@@ -155,18 +155,18 @@
 *	STATIC SUITS (NO GAGS)
 */
 /obj/item/clothing/under/suit/nova/scarface
-	name = "cuban suit"
-	desc = "A yayo coloured silk suit with a crimson shirt. You just know how to hide, how to lie. Me, I don't have that problem. Me, I always tell the truth. Even when I lie."
+	name = "古巴西装"
+	desc = "一套可卡因色的丝绸西装，配深红色衬衫。你只知道如何隐藏，如何撒谎。我，我没有这个问题。我，我总是说实话。即使在我撒谎的时候。"
 	icon_state = "scarface"
 
 /obj/item/clothing/under/suit/nova/black_really_collared
-	name = "wide-collared executive suit"
-	desc = "A formal black suit with the collar worn wide, intended for the station's finest."
+	name = "宽领行政西装"
+	desc = "一件正式的黑色西装，领口敞开，专为空间站的精英设计。"
 	icon_state = "really_black_suit_collar"
 
 /obj/item/clothing/under/suit/nova/black_really_collared/skirt
-	name = "wide-collared executive suitskirt"
-	desc = "A formal black suit with the collar worn wide, intended for the station's finest."
+	name = "宽领行政西装裙"
+	desc = "一件正式的黑色西装，领口敞开，专为空间站的精英设计。"
 	icon_state = "really_black_suit_skirt_collar"
 	body_parts_covered = CHEST|GROIN|ARMS
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY|FEMALE_UNIFORM_NO_BREASTS
@@ -201,8 +201,8 @@
 	new_icon_state = "beeze"
 
 /obj/item/clothing/under/suit/nova/inferno
-	name = "inferno suit"
-	desc = "Stylish enough to impress the devil."
+	name = "地狱火西装"
+	desc = "时髦到足以打动魔鬼。"
 	icon_state = "lucifer"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	obj_flags = UNIQUE_RENAME
@@ -222,7 +222,7 @@
 	new_icon_state = "pande"
 
 /obj/item/clothing/under/suit/nova/inferno/skirt
-	name = "inferno suitskirt"
+	name = "地狱火西装裙"
 	icon_state = "modeus"
 	obj_flags = UNIQUE_RENAME
 	gets_cropped_on_taurs = FALSE

@@ -8,8 +8,8 @@
  * Save for the inhand, this does not actually have anything in common with /obj/item/paper.
 */
 /obj/item/documents
-	name = "secret documents"
-	desc = "\"Top Secret\" documents."
+	name = "机密文件"
+	desc = "\"绝密\"文件。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "docs_generic"
 	inhand_icon_state = "paper"
@@ -23,28 +23,28 @@
 
 ///Nanotrasen documents
 /obj/item/documents/nanotrasen
-	desc = "\"Top Secret\" Nanotrasen documents, filled with complex diagrams and lists of names, dates and coordinates."
+	desc = "\"绝密\"的纳能特拉森文件，充满了复杂的图表以及姓名、日期和坐标的列表。"
 	icon_state = "docs_verified"
 
 ///Syndicate documents
 /obj/item/documents/syndicate
-	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence."
+	desc = "\"绝密\"文件，详细说明了辛迪加敏感的作战情报。"
 
 ///Syndicate documents with a red seal
 /obj/item/documents/syndicate/red
-	name = "red secret documents"
-	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence. These documents are verified with a red wax seal."
+	name = "红色机密文件"
+	desc = "\"绝密\"文件，详细说明了辛迪加敏感的作战情报。这些文件盖有红色蜡封认证。"
 	icon_state = "docs_red"
 
 ///Syndicate documents with a blue seal
 /obj/item/documents/syndicate/blue
-	name = "blue secret documents"
-	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence. These documents are verified with a blue wax seal."
+	name = "蓝色机密文件"
+	desc = "\"绝密\"文件，详细说明了辛迪加敏感的作战情报。这些文件盖有蓝色蜡封认证。"
 	icon_state = "docs_blue"
 
 ///Syndicate mining documents
 /obj/item/documents/syndicate/mining
-	desc = "\"Top Secret\" documents detailing Syndicate plasma mining operations."
+	desc = "\"绝密\"文件，详细说明了辛迪加的等离子体采矿行动。"
 
 /**
  * # secret documents (photocopy)
@@ -52,7 +52,7 @@
  * Outcome of photocopying documents. Can be copied, and can have a blue/red seal forged.
 */
 /obj/item/documents/photocopy
-	desc = "A copy of some top-secret documents. Nobody will notice they aren't the originals... right?"
+	desc = "一些绝密文件的副本。没人会注意到它们不是原件……对吧？"
 	///What seal was forged on the documents (color name string)
 	var/forgedseal = 0
 	///What was copied
@@ -69,11 +69,11 @@
 /obj/item/documents/photocopy/attackby(obj/item/O, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(O, /obj/item/toy/crayon/red) || istype(O, /obj/item/toy/crayon/blue))
 		if (forgedseal)
-			to_chat(user, span_warning("You have already forged a seal on [src]!"))
+			to_chat(user, span_warning("你已经在 [src] 上伪造了印章！"))
 		else
 			var/obj/item/toy/crayon/C = O
-			name = "[C.crayon_color] secret documents"
+			name = "[C.crayon_color] 机密文件"
 			icon_state = "docs_[C.crayon_color]"
 			forgedseal = C.crayon_color
-			to_chat(user, span_notice("You forge the official seal with a [C.crayon_color] crayon. No one will notice... right?"))
+			to_chat(user, span_notice("你用一根 [C.crayon_color] 蜡笔伪造了官方印章。没人会注意到……对吧？"))
 			update_appearance()

@@ -37,7 +37,7 @@
 
 
 /datum/bounty/reagent/simple_drink
-	name = "Simple Drink"
+	name = "简单饮料"
 	reward = CARGO_CRATE_VALUE * 3
 
 /datum/bounty/reagent/simple_drink/New()
@@ -102,11 +102,11 @@
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "CentCom is thirsty! Send a shipment of [name] to CentCom to quench the company's thirst."
+	description = "中央司令部渴了！运送一批 [name] 到中央司令部，以解公司的干渴。"
 	reward += rand(0, 2) * 500
 
 /datum/bounty/reagent/complex_drink
-	name = "Complex Drink"
+	name = "复杂饮料"
 	reward = CARGO_CRATE_VALUE * 8
 
 /datum/bounty/reagent/complex_drink/New()
@@ -143,11 +143,11 @@
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "CentCom is offering a reward for talented mixologists. Ship a container of [name] to claim the prize."
+	description = "中央司令部正在为有才华的调酒师提供奖励。运送一容器 [name] 来领取奖品。"
 	reward += rand(0, 4) * 500
 
 /datum/bounty/reagent/chemical_simple
-	name = "Simple Chemical"
+	name = "简单化学物质"
 	reward = CARGO_CRATE_VALUE * 8
 	required_volume = 30
 
@@ -181,11 +181,11 @@
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "CentCom is in desperate need of the chemical [name]. Ship a container of it to be rewarded."
+	description = "中央司令部急需化学品 [name]。运送一容器来获得奖励。"
 	reward += rand(0, 4) * 500 //4000 to 6000 credits
 
 /datum/bounty/reagent/chemical_complex
-	name = "Rare Chemical"
+	name = "稀有化学物质"
 	reward = CARGO_CRATE_VALUE * 12
 	required_volume = 20
 
@@ -213,7 +213,7 @@
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "CentCom is paying premium for the chemical [name]. Ship a container of it to be rewarded."
+	description = "中央司令部正在高价收购化学品 [name]。运送一容器来获得奖励。"
 	reward += rand(0, 5) * 750 //6000 to 9750 credits
 
 /datum/bounty/pill
@@ -245,7 +245,7 @@
 	return TRUE
 
 /datum/bounty/pill/simple_pill
-	name = "Simple Pill"
+	name = "简易药丸"
 	reward = CARGO_CRATE_VALUE * 20
 
 /datum/bounty/pill/simple_pill/New()
@@ -270,8 +270,8 @@
 
 	var/datum/reagent/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
-	name = "[wanted_reagent.name] pills"
+	name = "[wanted_reagent.name]药丸"
 	required_ammount += rand(1,60)
 	wanted_vol += rand(1,20)
-	description = "CentCom requires [required_ammount] of [name] containing at least [wanted_vol] each. Ship a container of it to be rewarded."
+	description = "中央司令部需要 [required_ammount] 份 [name]，每份至少含有 [wanted_vol]。运送一容器来获得奖励。"
 	reward += rand(1, 5) * (CARGO_CRATE_VALUE * 6)

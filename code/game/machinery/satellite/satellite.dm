@@ -1,5 +1,5 @@
 /obj/machinery/satellite
-	name = "\improper Defunct Satellite"
+	name = "\improper 废弃卫星"
 	desc = ""
 	icon = 'icons/obj/machines/satellite.dmi'
 	icon_state = "sat_inactive"
@@ -43,10 +43,10 @@
 /obj/machinery/satellite/proc/toggle(mob/user)
 	if(!active && !isinspace())
 		if(user)
-			to_chat(user, span_warning("You can only activate [src] in space."))
+			to_chat(user, span_warning("你只能在太空中激活[src]。"))
 		return FALSE
 	if(user)
-		to_chat(user, span_notice("You [active ? "deactivate": "activate"] [src]."))
+		to_chat(user, span_notice("你[active ? "deactivate": "activate"]了[src]。"))
 	set_anchored(!anchored)
 	return TRUE
 
@@ -56,5 +56,5 @@
 
 /obj/machinery/satellite/multitool_act(mob/living/user, obj/item/I)
 	..()
-	to_chat(user, span_notice("// NTSAT-[id] // Mode : [active ? "PRIMARY" : "STANDBY"] //[(obj_flags & EMAGGED) ? "DEBUG_MODE //" : ""]"))
+	to_chat(user, span_notice("// NTSAT-[id] // 模式：[active ? "PRIMARY" : "STANDBY"] //[(obj_flags & EMAGGED) ? "DEBUG_MODE //" : ""]"))
 	return TRUE

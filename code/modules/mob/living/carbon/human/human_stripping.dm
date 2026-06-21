@@ -76,10 +76,10 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 			stack_trace("Unknown action key: [action_key] for [type]")
 
 /datum/strippable_item/mob_item_slot/jumpsuit/proc/do_adjust_jumpsuit(atom/source, mob/user, obj/item/clothing/under/jumpsuit)
-	to_chat(source, span_notice("[user] is trying to adjust your [jumpsuit]."))
+	to_chat(source, span_notice("[user] 正在尝试调整你的 [jumpsuit]。"))
 	if (!do_after(user, (jumpsuit.strip_delay * 0.5), source))
 		return
-	to_chat(source, span_notice("[user] successfully adjusted your [jumpsuit]."))
+	to_chat(source, span_notice("[user] 成功调整了你的 [jumpsuit]。"))
 	jumpsuit.toggle_jumpsuit_adjust()
 
 	if (!ismob(source))
@@ -106,21 +106,21 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 		"[SENSOR_COORDS]" = "Tracking",
 	)
 
-	var/new_mode_str = tgui_input_list(user, "Adjust suit sensors", "Adjust Sensors", sensor_mode_text_to_num, senor_mode_num_to_text["[jumpsuit.sensor_mode]"])
+	var/new_mode_str = tgui_input_list(user, "调整制服传感器", "调整传感器", sensor_mode_text_to_num, senor_mode_num_to_text["[jumpsuit.sensor_mode]"])
 	var/new_mode = sensor_mode_text_to_num[new_mode_str]
 	if(isnull(new_mode)) // also catches returning null
 		return
 
 	if(!user.Adjacent(source))
-		source.balloon_alert(user, "can't reach!")
+		source.balloon_alert(user, "够不着！")
 		return
 
-	to_chat(source, span_notice("[user] is trying to adjust your [jumpsuit.name]'s sensor."))
+	to_chat(source, span_notice("[user] 正试图调整你的 [jumpsuit.name] 传感器。"))
 	if(!do_after(user, jumpsuit.strip_delay * 0.5, source) || !jumpsuit.set_sensor_mode(new_mode)) // takes the same amount of time as adjusting it
-		source.balloon_alert(user, "failed!")
+		source.balloon_alert(user, "失败！")
 		return
-	source.balloon_alert(user, "changed sensors")
-	to_chat(source, span_notice("[user] successfully adjusted your [jumpsuit.name]'s sensor."))
+	source.balloon_alert(user, "已更改传感器")
+	to_chat(source, span_notice("[user] 成功调整了你的 [jumpsuit.name] 传感器。"))
 	user.log_message("changed suit sensors of [key_name(source)] to [new_mode_str]", LOG_ATTACK, color="red")
 	source.log_message("suit sensors changed to [new_mode_str] by [key_name(user)]", LOG_VICTIM, color="orange", log_globally=FALSE)
 
@@ -131,21 +131,21 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 			continue
 		accessory_choices[jumpsuit_accessory.name] += jumpsuit_accessory
 
-	var/chosen_accessory_name = tgui_input_list(user, "Select which accessory to strip", "Select Accessory", accessory_choices)
+	var/chosen_accessory_name = tgui_input_list(user, "选择要剥离的配件", "选择配件", accessory_choices)
 	var/obj/item/clothing/accessory/chosen_accessory = accessory_choices[chosen_accessory_name]
 	if(isnull(chosen_accessory))
 		return
 
 	if(!user.Adjacent(source))
-		source.balloon_alert(user, "can't reach!")
+		source.balloon_alert(user, "够不着！")
 		return
 
-	to_chat(source, span_notice("[user] is trying to take [chosen_accessory] off of [jumpsuit]!"))
+	to_chat(source, span_notice("[user] 正试图从 [chosen_accessory] 上取下 [jumpsuit]！"))
 	if(!do_after(user, chosen_accessory.strip_delay, source))
-		source.balloon_alert(user, "failed!")
+		source.balloon_alert(user, "失败！")
 		return
 
-	to_chat(source, span_notice("[user] has taken [chosen_accessory] off of [jumpsuit]."))
+	to_chat(source, span_notice("[user] 从 [chosen_accessory] 上取下了 [jumpsuit]。"))
 	jumpsuit.remove_accessory(chosen_accessory)
 	jumpsuit.update_appearance()
 	//NOVA EDIT CHANGE BEGIN - THIEVING GLOVES - ORIGINAL: chosen_accessory.forceMove(jumpsuit.drop_location())
@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	if (isnull(item))
 		return FALSE
 
-	to_chat(user, span_notice("You try to empty [source]'s [pocket_side] pocket."))
+	to_chat(user, span_notice("你试图清空 [source] 的 [pocket_side] 口袋。"))
 
 	user.log_message("is pickpocketing [key_name(source)] of [item] ([pocket_side])", LOG_ATTACK, color="red")
 	source.log_message("is being pickpocketed of [item] by [key_name(user)] ([pocket_side])", LOG_VICTIM, color="orange", log_globally=FALSE)
@@ -270,7 +270,7 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	return result
 
 /datum/strippable_item/mob_item_slot/pocket/proc/warn_owner(atom/owner)
-	to_chat(owner, span_warning("You feel your [pocket_side] pocket being fumbled with!"))
+	to_chat(owner, span_warning("你感觉到你的 [pocket_side] 口袋被人翻弄着！"))
 
 /datum/strippable_item/mob_item_slot/pocket/left
 	key = STRIPPABLE_ITEM_LPOCKET
@@ -306,12 +306,12 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 		return
 
 	carbon_source.visible_message(
-		span_danger("[user] tries to [(carbon_source.internal != item) ? "open" : "close"] the valve on [source]'s [item.name]."),
-		span_userdanger("[user] tries to [(carbon_source.internal != item) ? "open" : "close"] the valve on your [item.name]."),
+		span_danger("[user] 试图 [(carbon_source.internal != item) ? "open" : "close"] [source] 的 [item.name] 上的阀门。"),
+		span_userdanger("[user] 试图 [(carbon_source.internal != item) ? "open" : "close"] 你 [item.name] 上的阀门。"),
 		ignored_mobs = user,
 	)
 
-	to_chat(user, span_notice("You try to [(carbon_source.internal != item) ? "open" : "close"] the valve on [source]'s [item.name]..."))
+	to_chat(user, span_notice("你试图 [(carbon_source.internal != item) ? "open" : "close"] [source] 的 [item.name] 上的阀门..."))
 
 	if(!do_after(user, INTERNALS_TOGGLE_DELAY, carbon_source))
 		return
@@ -324,12 +324,12 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 			return
 
 	carbon_source.visible_message(
-		span_danger("[user] [isnull(carbon_source.internal) ? "closes": "opens"] the valve on [source]'s [item.name]."),
-		span_userdanger("[user] [isnull(carbon_source.internal) ? "closes": "opens"] the valve on your [item.name]."),
+		span_danger("[user] [isnull(carbon_source.internal) ? "closes": "opens"] 了 [source] 的 [item.name] 上的阀门。"),
+		span_userdanger("[user] [isnull(carbon_source.internal) ? "closes": "opens"] 了你 [item.name] 上的阀门。"),
 		ignored_mobs = user,
 	)
 
-	to_chat(user, span_notice("You [isnull(carbon_source.internal) ? "close" : "open"] the valve on [source]'s [item.name]."))
+	to_chat(user, span_notice("你 [isnull(carbon_source.internal) ? "close" : "open"] 了 [source] 的 [item.name] 上的阀门。"))
 
 #undef INTERNALS_TOGGLE_DELAY
 #undef POCKET_EQUIP_DELAY

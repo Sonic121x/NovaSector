@@ -87,7 +87,7 @@
 	hotkey_keys = list("CtrlZ")
 	name = "ctrl-activate_inhand"
 	full_name = "CTRL-Activate in-hand"
-	description = "Uses whatever item you have inhand"
+	description = "使用你手中持有的任何物品"
 	keybind_signal = COMSIG_KB_MOB_CTRL_ACTIVATEINHAND_DOWN
 
 /datum/keybinding/mob/ctrl_activate_inhand/down(client/user)

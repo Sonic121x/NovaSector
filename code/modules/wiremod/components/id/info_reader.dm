@@ -1,6 +1,6 @@
 /obj/item/circuit_component/id_info_reader
 	display_name = "Read ID Info"
-	desc = "A component that reads the name, job, and age on an ID."
+	desc = "一种能够读取身份证上的姓名、工作单位和年龄的组件。"
 	category = "ID"
 
 	/// The input port

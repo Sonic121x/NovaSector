@@ -1,5 +1,5 @@
 /datum/crafting_recipe/paperframes
-	name = "Paper Frames"
+	name = "纸制框架"
 	time = 1 SECONDS
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 5,
@@ -11,7 +11,7 @@
 	requirements_mats_blacklist = list(/obj/item/stack/sheet/mineral/wood)
 
 /datum/crafting_recipe/rib
-	name = "Colossal Rib"
+	name = "巨型肋骨"
 	reqs = list(
 		/obj/item/stack/sheet/bone = 10,
 		/datum/reagent/fuel/oil = 5,
@@ -21,7 +21,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/skull
-	name = "Skull Carving"
+	name = "颅骨雕刻"
 	reqs = list(
 		/obj/item/stack/sheet/bone = 6,
 		/datum/reagent/fuel/oil = 5,
@@ -31,7 +31,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/halfskull
-	name = "Cracked Skull Carving"
+	name = "开裂颅骨雕刻"
 	reqs = list(
 		/obj/item/stack/sheet/bone = 3,
 		/datum/reagent/fuel/oil = 5,
@@ -41,7 +41,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/firecabinet
-	name = "Fire Axe Cabinet"
+	name = "消防斧柜"
 	result = /obj/item/wallframe/fireaxecabinet
 	time = 8 SECONDS
 	reqs = list(
@@ -52,7 +52,7 @@
 	category = CAT_STRUCTURE
 
 /datum/crafting_recipe/mechcabinet
-	name = "Mech Removal Cabinet"
+	name = "机甲拆除柜"
 	result = /obj/item/wallframe/fireaxecabinet/mechremoval
 	time = 8 SECONDS
 	reqs = list(
@@ -63,7 +63,7 @@
 	category = CAT_STRUCTURE
 
 /datum/crafting_recipe/manucrate
-	name = "Manufacturing Storage Unit"
+	name = "制造存储单元"
 	result = /obj/machinery/power/manufacturing/storagebox
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER)
 	time = 6 SECONDS
@@ -74,7 +74,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY
 
 /datum/crafting_recipe/adam_pedestal
-	name = "Adamantine Pedestal"
+	name = "精金基座"
 	result = /obj/item/adamantine_pedestal
 	reqs = list(
 		/obj/item/stack/sheet/mineral/adamantine = 20,
@@ -84,7 +84,7 @@
 
 
 /datum/crafting_recipe/sm_small
-	name = "Small Supermatter Crystal"
+	name = "小型超物质晶体"
 	result = /obj/machinery/power/supermatter_crystal/small
 	reqs = list(
 		/obj/item/gun/magic/wand/shrink = 1,
@@ -97,7 +97,7 @@
 	category = CAT_STRUCTURE
 
 /datum/crafting_recipe/elder_atmosian_statue
-	name = "Elder Atmosian Statue"
+	name = "远古大气之神雕像"
 	result = /obj/structure/statue/elder_atmosian
 	time = 6 SECONDS
 	reqs = list(
@@ -108,7 +108,7 @@
 	category = CAT_STRUCTURE
 
 /datum/crafting_recipe/secure_safe
-	name = "Secure safe"
+	name = "保险箱"
 	result = /obj/item/wallframe/secure_safe
 	reqs = list(
 		/obj/item/stack/sheet/plasteel = 10,
@@ -128,7 +128,7 @@
 	category = CAT_STRUCTURE
 
 /datum/crafting_recipe/vault
-	name = "Vault"
+	name = "金库"
 	result = /obj/structure/safe/open
 	reqs = list(
 		/obj/item/stack/sheet/mineral/metal_hydrogen = 20,
@@ -151,7 +151,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND
 
 /datum/crafting_recipe/vault_floor
-	name = "Floor Vault"
+	name = "地板金库"
 	result = /obj/structure/safe/floor/open
 	reqs = list(
 		/obj/item/stack/sheet/mineral/metal_hydrogen = 20,

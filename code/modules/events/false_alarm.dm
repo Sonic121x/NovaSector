@@ -1,10 +1,10 @@
 /datum/round_event_control/falsealarm
-	name = "False Alarm"
+	name = "假警报"
 	typepath = /datum/round_event/falsealarm
 	weight = 20
 	max_occurrences = 5
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "Fakes an event announcement."
+	description = "伪造一次事件通告。"
 	admin_setup = list(/datum/event_admin_setup/listed_options/false_alarm)
 
 /datum/round_event_control/falsealarm/can_spawn_event(players_amt, allow_magic = FALSE)

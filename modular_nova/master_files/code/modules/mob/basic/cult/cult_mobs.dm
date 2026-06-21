@@ -1,7 +1,7 @@
 // Cult
 /mob/living/basic/cult
-	name = "Blood Cultist"
-	desc = "A follower of the Blood Mother."
+	name = "血教邪教徒"
+	desc = "血母的追随者。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "cult"
 	icon_living = "cult"
@@ -45,8 +45,8 @@
 */
 
 /mob/living/basic/cult/ghost
-	name = "Blood Ghost"
-	desc = "A ghostly follower of the Blood Mother."
+	name = "血之幽灵"
+	desc = "血母的幽灵追随者。"
 	icon_state = "cultghost"
 	icon_living = "cultghost"
 	maxHealth = 75
@@ -63,8 +63,8 @@
 */
 
 /mob/living/basic/cult/mannequin
-	name = "Runed Doll"
-	desc = "A construct of runed metal and red crystals, a living mannequin."
+	name = "符文人偶"
+	desc = "一个由符文金属和红色水晶构成的造物，一个活生生的人偶。"
 	icon_state = "mannequin_cult"
 	icon_living = "mannequin_cult"
 	maxHealth = 120
@@ -82,8 +82,8 @@
 */
 
 /mob/living/basic/cult/horror
-	name = "Malformed Cultist"
-	desc = "A follower of the Blood Mother, either experimented on or just devout enough to be turned into a monster."
+	name = "畸变邪教徒"
+	desc = "血母的信徒，要么是被实验改造，要么是虔诚到足以变成怪物。"
 	icon_state = "culthorror"
 	icon_living = "culthorror"
 	maxHealth = 150
@@ -100,8 +100,8 @@
 */
 
 /mob/living/basic/cult/warrior
-	name = "Cultist Warrior"
-	desc = "A follower of the Blood Mother, covered in thick armor and armed with a sword and shield."
+	name = "邪教徒战士"
+	desc = "血母的信徒，身披厚重盔甲，手持剑与盾。"
 	icon_state = "cultwarrior"
 	icon_living = "cultwarrior"
 	maxHealth = 180
@@ -118,8 +118,8 @@
 */
 
 /mob/living/basic/cult/spear
-	name = "Cultist Spearmen"
-	desc = "A follower of the Blood Mother, armed with a blood-spear."
+	name = "邪教徒矛兵"
+	desc = "血母的信徒，手持血矛。"
 	icon_state = "cultspear"
 	icon_living = "cultspear"
 	maxHealth = 125
@@ -136,8 +136,8 @@
 */
 
 /mob/living/basic/cult/assassin
-	name = "Cultist Assassin"
-	desc = "A follower of the Blood Mother, armed with two ritual daggers."
+	name = "邪教徒刺客"
+	desc = "血母的信徒，手持两把仪式匕首。"
 	icon_state = "cultliz"
 	icon_living = "cultliz"
 	maxHealth = 125
@@ -155,8 +155,8 @@
 
 // magic user
 /mob/living/basic/cult/magic
-	name = "Cult Blood Mage"
-	desc = "A cultist with command over blood magic."
+	name = "邪教血法师"
+	desc = "一名掌握血魔法的邪教徒。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "cultmage"
 	icon_living = "cultmage"
@@ -192,8 +192,8 @@
 */
 
 /mob/living/basic/cult/magic/elite
-	name = "Cult Master"
-	desc = "A cultist with powerful command over blood magic, seeming to be at a much higher rank in the cult."
+	name = "邪教大师"
+	desc = "一名对血魔法拥有强大掌控力的邪教徒，似乎在教派中地位更高。"
 	icon_state = "cultelite"
 	icon_living = "cultelite"
 	maxHealth = 200
@@ -211,8 +211,8 @@
 */
 
 /mob/living/basic/cult/magic/elite/fireball
-	name = "Cult Fire Master"
-	desc = "A cultist with powerful command over blood magic, seeming to be at a much higher rank in the cult."
+	name = "邪教火焰大师"
+	desc = "一名对血魔法拥有强大掌控力的邪教徒，似乎在教派中地位更高。"
 	icon_state = "cultelite"
 	icon_living = "cultelite"
 	maxHealth = 300
@@ -226,8 +226,8 @@
 */
 
 /mob/living/basic/cult/engorge
-	name = "Talon Demon"
-	desc = "A demonic creature that moves relatively fast, but doesn't do a lot of damage."
+	name = "利爪恶魔"
+	desc = "一种移动速度相对较快但伤害不高的恶魔生物。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs32x64.dmi'
 	icon_state = "engorgedemon"
 	icon_living = "engorgedemon"
@@ -255,8 +255,8 @@
 */
 
 /mob/living/basic/cult/engorge/devourdem
-	name = "Devour Lord"
-	desc = "This creature is terror itself, a manifestation of the raw hunger and avarice of mortals."
+	name = "吞噬领主"
+	desc = "这生物本身就是恐怖，是凡人原始饥饿与贪婪的具现。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs32x64.dmi'
 	icon_state = "devourdemon"
 	icon_living = "devourdemon"

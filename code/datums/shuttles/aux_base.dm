@@ -5,8 +5,8 @@
 
 /datum/map_template/shuttle/aux_base/default
 	suffix = "default"
-	name = "auxilliary base (Default)"
+	name = "辅助基地（默认）"
 
 /datum/map_template/shuttle/aux_base/small
 	suffix = "small"
-	name = "auxilliary base (Small)"
+	name = "辅助基地（小型）"

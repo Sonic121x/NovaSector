@@ -28,7 +28,7 @@
 
 /datum/element/shuttle_construction_lattice/proc/on_examined(obj/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("Cutting this [source.name] will <i>ruin the treatment that makes it suitable for shuttle construction</i>.")
+	examine_list += span_notice("切割此[source.name]将<i>破坏使其适用于飞船建造的特殊处理层</i>。")
 
 /datum/element/shuttle_construction_lattice/proc/on_moved(obj/source, atom/old_loc)
 	SIGNAL_HANDLER

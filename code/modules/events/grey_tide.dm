@@ -1,10 +1,10 @@
 /datum/round_event_control/grey_tide
-	name = "Grey Tide"
+	name = "灰潮"
 	typepath = /datum/round_event/grey_tide
 	max_occurrences = 2
 	min_players = 5
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Bolts open all doors in one or more departments."
+	description = "将一个或多个部门的所有门都螺栓打开。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
 
@@ -35,7 +35,7 @@
 /datum/round_event/grey_tide/announce(fake)
 	if(fake)
 		severity = rand(1,3)
-	priority_announce("Gr3y.T1d3 virus detected in [station_name()] secure locking encryption subroutines. Severity level of [severity]. Recommend station AI involvement.", "Security Alert")
+	priority_announce("在[station_name()]的安全锁定加密子程序中检测到Gr3y.T1d3病毒。严重等级为[severity]。建议空间站人工智能介入处理。", "安保警报")
 
 /datum/round_event/grey_tide/start()
 	if(!length(grey_tide_areas))

@@ -48,7 +48,7 @@
 	ascension = /datum/heretic_knowledge/ultimate/void_final
 
 /datum/heretic_knowledge/limited_amount/starting/base_void
-	name = "Glimmer of Winter"
+	name = "冬日微光"
 	desc = "Opens up the Path of Void to you. \
 		Allows you to transmute a knife in sub-zero temperatures into a Void Blade. \
 		You can only create five at a time." //NOVA EDIT two to five
@@ -63,12 +63,12 @@
 
 /datum/heretic_knowledge/limited_amount/starting/base_void/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	if(!isopenturf(loc))
-		loc.balloon_alert(user, "ritual failed, invalid location!")
+		loc.balloon_alert(user, "仪式失败，位置无效！")
 		return FALSE
 
 	var/turf/open/our_turf = loc
 	if(our_turf.GetTemperature() > T0C)
-		loc.balloon_alert(user, "ritual failed, not cold enough!")
+		loc.balloon_alert(user, "仪式失败，温度不够低！")
 		return FALSE
 
 	return ..()
@@ -84,7 +84,7 @@
 	carbon_target.apply_status_effect(/datum/status_effect/void_chill, 2)
 
 /datum/heretic_knowledge/spell/void_phase
-	name = "Void Phase"
+	name = "虚空相位"
 	desc = "Grants you Void Phase, a long range targeted teleport spell. \
 		Additionally causes damage to heathens around your original and target destination."
 	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like \
@@ -123,19 +123,19 @@
 
 /datum/heretic_knowledge/armor/void/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	if(!isopenturf(loc))
-		loc.balloon_alert(user, "ritual failed, invalid location!")
+		loc.balloon_alert(user, "仪式失败，位置无效！")
 		return FALSE
 
 	var/turf/open/our_turf = loc
 	if(our_turf.GetTemperature() > T0C)
-		loc.balloon_alert(user, "ritual failed, not cold enough!")
+		loc.balloon_alert(user, "仪式失败，温度不够低！")
 		return FALSE
 
 	return ..()
 
 /datum/heretic_knowledge/spell/void_pull
-	name = "Void Pull"
-	desc = "Grants you Void Pull, a spell that pulls all nearby heathens towards you, stunning them briefly."
+	name = "虚空扯"
+	desc = "一个将附近所有无信信扯向并短暂控制住他们的咒语"
 	gain_text = "All is fleeting, but what else stays? I'm close to ending what was started. \
 		The Aristocrat reveals themselves to me again. They tell me I am late. Their pull is immense, I cannot turn back."
 
@@ -144,7 +144,7 @@
 	research_tree_icon_frame = 6
 
 /datum/heretic_knowledge/blade_upgrade/void
-	name = "Seeking Blade"
+	name = "锋之追寻"
 	desc = "Your blade now freezes enemies. Additionally, you can now attack distant marked targets with your Void Blade, teleporting directly next to them."
 	gain_text = "Fleeting memories, fleeting feet. I mark my way with frozen blood upon the snow. Covered and forgotten."
 
@@ -181,7 +181,7 @@
 	is_final_knowledge = TRUE
 
 /datum/heretic_knowledge/ultimate/void_final
-	name = "Waltz at the End of Time"
+	name = "时尽的华尔兹"
 	desc = "The ascension ritual of the Path of Void. \
 		Bring 3 corpses to a transmutation rune in sub-zero temperatures to complete the ritual. \
 		When completed, causes a violent storm of void snow \
@@ -192,7 +192,7 @@
 		as the world is destroyed before our eyes. The void will return all to nothing, WITNESS MY ASCENSION!"
 
 	ascension_achievement = /datum/award/achievement/misc/void_ascension
-	announcement_text = "%SPOOKY% The nobleman of void %NAME% has arrived, stepping along the Waltz that ends worlds! %SPOOKY%"
+	announcement_text = "%SPOOKY% 虚空贵族 %NAME% 已降临，踏着终结世界的华尔兹而来！ %SPOOKY%"
 	announcement_sound = 'sound/music/antag/heretic/ascend_void.ogg'
 	///soundloop for the void theme
 	var/datum/looping_sound/void_loop/sound_loop
@@ -203,12 +203,12 @@
 
 /datum/heretic_knowledge/ultimate/void_final/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	if(!isopenturf(loc))
-		loc.balloon_alert(user, "ritual failed, invalid location!")
+		loc.balloon_alert(user, "仪式失败，位置无效！")
 		return FALSE
 
 	var/turf/open/our_turf = loc
 	if(our_turf.GetTemperature() > T0C)
-		loc.balloon_alert(user, "ritual failed, not cold enough!")
+		loc.balloon_alert(user, "仪式失败，温度不够低！")
 		return FALSE
 
 	return ..()

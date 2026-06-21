@@ -1,6 +1,6 @@
 /obj/machinery/stasissleeper
-	name = "lifeform stasis unit"
-	desc = "A somewhat comfortable looking bed with a cover over it. It will keep someone in stasis."
+	name = "生命体停滞装置"
+	desc = "一张看起来还算舒适的床，上面盖着罩子。它能让某人保持在停滞状态。"
 	icon = 'modular_nova/modules/stasisrework/icons/stasissleeper.dmi'
 	icon_state = "sleeper"
 	base_icon_state = "sleeper"
@@ -9,7 +9,7 @@
 	circuit = /obj/item/circuitboard/machine/stasissleeper
 	idle_power_usage = 40
 	active_power_usage = 340
-	var/enter_message = span_notice("<b>You feel cool air surround you. You go numb as your senses turn inward.<b>")
+	var/enter_message = span_notice("<b>你感到凉爽的空气包围着你。你的感官向内收缩，身体逐渐麻木。<b>")
 	var/last_stasis_sound = FALSE
 	fair_market_price = 10
 	payment_department = ACCOUNT_MED
@@ -17,9 +17,9 @@
 
 /obj/machinery/stasissleeper/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to [state_open ? "close" : "open"] the machine.")
-	. += span_notice("A light blinking on the side indicates that it is [occupant ? "occupied" : "vacant"].")
-	. += span_notice("It has a screen on the side displaying the vitals of the occupant. Interact to read it.")
+	. += span_notice("Alt-点击以[state_open ? "close" : "open"]机器。")
+	. += span_notice("侧面闪烁的指示灯表示它当前[occupant ? "occupied" : "vacant"]。")
+	. += span_notice("侧面有一个屏幕，显示着占用者的生命体征。与之交互以读取信息。")
 
 /obj/machinery/stasissleeper/open_machine(drop = TRUE, density_to_set = FALSE)
 	if(!state_open && !panel_open)
@@ -55,7 +55,7 @@
 	if(!panel_open)
 		user.visible_message(span_notice("\The [src] [state_open ? "hisses as it seals shut." : "hisses as it swings open."]."), \
 						span_notice("You [state_open ? "close" : "open"] \the [src]."), \
-						span_hear("You hear a nearby machine [state_open ? "seal shut." : "swing open."]."))
+						span_hear("你听到附近的机器[state_open ? "seal shut." : "swing open."]"))
 	if(state_open)
 		close_machine()
 	else
@@ -69,8 +69,8 @@
 	. = ..()
 
 /obj/machinery/stasissleeper/container_resist_act(mob/living/user)
-	visible_message(span_notice("[occupant] emerges from [src]!"),
-		span_notice("You climb out of [src]!"))
+	visible_message(span_notice("[occupant]从[src]里出来了！"),
+		span_notice("你从[src]里爬了出来！"))
 	open_machine()
 	if(HAS_TRAIT(user, TRAIT_STASIS))
 		thaw_them(user)
@@ -116,10 +116,10 @@
 
 /obj/machinery/stasissleeper/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src]当前已被占用！"))
 		return
 	if(state_open)
-		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
+		to_chat(user, span_warning("[src]必须关闭才能[panel_open ? "close" : "open"]其维护区舱门！"))
 		return
 	return default_deconstruction_screwdriver(user, tool)
 
@@ -141,7 +141,7 @@
 	. = !(state_open || panel_open) && crowbar.tool_behaviour == TOOL_CROWBAR
 	if(.)
 		crowbar.play_tool_sound(src, 50)
-		visible_message(span_notice("[usr] pries open [src]."), span_notice("You pry open [src]."))
+		visible_message(span_notice("[usr]撬开了[src]。"), span_notice("你撬开了[src]。"))
 		open_machine()
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
@@ -149,22 +149,22 @@
 /obj/machinery/stasissleeper/attack_hand(mob/user)
 	if(occupant)
 		if(occupant == user)
-			to_chat(user, span_notice("You read the vitals readout on the inside of the stasis unit."))
+			to_chat(user, span_notice("你读取了停滞单元内部的体征读数。"))
 		else
-			to_chat(user, span_notice("You read the vitals readout on the side of the stasis unit."))
+			to_chat(user, span_notice("你读取了停滞单元侧面的体征读数。"))
 		healthscan(user, occupant, SCANNER_VERBOSE, TRUE)
 	else
-		to_chat(user, span_warning("The vitals readout is blank, the stasis unit is unoccupied!"))
+		to_chat(user, span_warning("体征读数为空白，停滞单元内无人！"))
 
 /obj/machinery/stasissleeper/attack_hand_secondary(mob/user)
 	if(occupant)
 		if(occupant == user)
-			to_chat(user, span_notice("You read the bloodstream readout on the inside of the stasis unit."))
+			to_chat(user, span_notice("你读取了停滞单元内部的血液流读数。"))
 		else
-			to_chat(user, span_notice("You read the bloodstream readout on the side of the stasis unit."))
+			to_chat(user, span_notice("你读取了停滞单元侧面的血液流读数。"))
 		chemscan(user, occupant)
 	else
-		to_chat(user, span_warning("The bloodstream readout is blank, the stasis unit is unoccupied!"))
+		to_chat(user, span_warning("血液流读数为空白，停滞单元内无人！"))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/stasissleeper/attack_ai(mob/user)

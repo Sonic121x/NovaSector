@@ -96,6 +96,6 @@
 		if(201 to INFINITY)
 			cost_desc = "torrent"
 
-	to_chat(source, span_danger("You feel a [cost_desc] of your blood drained into the spell you just cast."))
+	to_chat(source, span_danger("你感觉到一股[cost_desc]的血液被抽入你刚刚施放的法术中。"))
 
 #undef COOLDOWN_TO_BLOOD_RATIO

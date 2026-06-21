@@ -15,7 +15,7 @@
 
 /// The heretic antagonist itself.
 /datum/antagonist/heretic
-	name = "\improper Heretic"
+	name = "\improper 异教徒"
 	roundend_category = "Heretics"
 	antagpanel_category = "Heretic"
 	ui_name = "AntagInfoHeretic"
@@ -299,8 +299,8 @@
 		return
 	var/confirmed = tgui_alert(
 		owner.current,
-		message = "Are you sure? You will no longer be able to Ascend.",
-		title = "Reject the call?",
+		message = "你确定吗？你将无法再完成升格。",
+		title = "拒绝召唤？",
 		buttons = list("Yes", "No"),
 	) == "Yes"
 	if (!confirmed)
@@ -335,7 +335,7 @@
 
 /datum/antagonist/heretic/farewell()
 	if(!silent && owner.current)
-		to_chat(owner.current, span_userdanger("Your mind begins to flare as the otherwordly knowledge escapes your grasp!"))
+		to_chat(owner.current, span_userdanger("你的意识开始燃烧，那些超凡知识正从你的掌控中流失！"))
 	return ..()
 
 /datum/antagonist/heretic/on_gain()
@@ -430,8 +430,8 @@
 		return
 	var/mob/heretic_mob = owner.current
 	unlimited_blades = TRUE
-	to_chat(heretic_mob, span_boldwarning("You have gained a lot of power, the mansus will no longer allow you to break your blades, but you can now make as many as you wish."))
-	heretic_mob.balloon_alert(heretic_mob, "blade breaking disabled!")
+	to_chat(heretic_mob, span_boldwarning("你已获得强大的力量，曼苏斯将不再允许你折断刀刃，但你现在可以随心所欲地制造它们。"))
+	heretic_mob.balloon_alert(heretic_mob, "刀刃破碎已禁用！")
 	update_heretic_aura()
 	var/datum/action/cooldown/spell/shadow_cloak/cloak_spell = locate() in heretic_mob.actions
 	cloak_spell.Remove(heretic_mob)
@@ -502,7 +502,7 @@
 		return
 
 	// We shouldn't be able to cast this! Cancel it.
-	source.balloon_alert(source, "you need a focus!")
+	source.balloon_alert(source, "你需要一个法器！")
 	return SPELL_CANCEL_CAST
 
 /*
@@ -538,15 +538,15 @@
 /datum/antagonist/heretic/proc/try_draw_rune(mob/living/user, turf/target_turf, drawing_time = 20 SECONDS, additional_checks)
 	for(var/turf/nearby_turf as anything in RANGE_TURFS(1, target_turf))
 		if(!isopenturf(nearby_turf) || is_type_in_typecache(nearby_turf, blacklisted_rune_turfs))
-			target_turf.balloon_alert(user, "invalid placement for rune!")
+			target_turf.balloon_alert(user, "此处无法绘制符文！")
 			return
 
 	if(locate(/obj/effect/heretic_rune) in range(3, target_turf))
-		target_turf.balloon_alert(user, "too close to another rune!")
+		target_turf.balloon_alert(user, "离另一个符文太近了！")
 		return
 
 	if(drawing_rune)
-		target_turf.balloon_alert(user, "already drawing a rune!")
+		target_turf.balloon_alert(user, "已经在绘制符文了！")
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(draw_rune), user, target_turf, drawing_time, additional_checks)
@@ -564,7 +564,7 @@
 	drawing_rune = TRUE
 
 	var/rune_colour = GLOB.heretic_path_to_color[heretic_path?.route || PATH_START]
-	target_turf.balloon_alert(user, "drawing rune...")
+	target_turf.balloon_alert(user, "正在绘制符文...")
 	var/obj/effect/temp_visual/drawing_heretic_rune/drawing_effect
 	if (drawing_time < (10 SECONDS))
 		drawing_effect = new /obj/effect/temp_visual/drawing_heretic_rune/fast(target_turf, rune_colour)
@@ -572,14 +572,14 @@
 		drawing_effect = new(target_turf, rune_colour)
 
 	if(!do_after(user, drawing_time, target_turf, extra_checks = additional_checks, hidden = TRUE))
-		target_turf.balloon_alert(user, "interrupted!")
+		target_turf.balloon_alert(user, "被打断了！")
 		new /obj/effect/temp_visual/drawing_heretic_rune/fail(target_turf, rune_colour)
 		qdel(drawing_effect)
 		drawing_rune = FALSE
 		return
 
 	qdel(drawing_effect)
-	target_turf.balloon_alert(user, "rune created")
+	target_turf.balloon_alert(user, "符文已创建")
 	new /obj/effect/heretic_rune/big(target_turf, rune_colour)
 	drawing_rune = FALSE
 
@@ -631,7 +631,7 @@
 	haunted_blade.gender_reveal(outline_color = null, ray_color = COLOR_HERETIC_GREEN)
 
 	for(var/mob/living/culto as anything in invokers)
-		to_chat(culto, span_cult_large("\"A follower of the forgotten gods! You must be rewarded for such a valuable sacrifice.\""))
+		to_chat(culto, span_cult_large("被遗忘之神的追随者！如此宝贵的祭品必须得到奖赏。"))
 
 	// Locate a cultist team (Is there a better way??)
 	var/mob/living/random_cultist = pick(invokers)
@@ -652,7 +652,7 @@
 		for(var/datum/mind/mind as anything in cult_team.members)
 			if(mind.current)
 				SEND_SOUND(mind.current, 'sound/effects/magic/clockwork/narsie_attack.ogg')
-				to_chat(mind.current, span_cult_large(span_warning("Arcane and forbidden knowledge floods your forges and archives. The cult has learned how to create the ")) + span_cult_large(span_hypnophrase("[result]!")))
+				to_chat(mind.current, span_cult_large(span_warning("神秘而禁忌的知识涌入你的熔炉与档案馆。教团已学会如何制造")) + span_cult_large(span_hypnophrase("[result]！")))
 
 	return SILENCE_SACRIFICE_MESSAGE|DUST_SACRIFICE
 
@@ -694,7 +694,7 @@
 
 	// Adding a cool ray effect
 	if(ray_color)
-		add_filter(name = "gender_reveal_ray", priority = 1, params = list(
+		add_filter(name = "性别揭示射线", priority = 1, params = list(
 				type = "rays",
 				size = 45,
 				color = ray_color,
@@ -862,12 +862,12 @@
  */
 /datum/antagonist/heretic/proc/give_living_heart(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning("You shouldn't be using this!"))
+		to_chat(admin, span_warning("你不应该使用这个！"))
 		return
 
 	var/datum/heretic_knowledge/living_heart/heart_knowledge = get_knowledge(/datum/heretic_knowledge/living_heart)
 	if(!heart_knowledge)
-		to_chat(admin, span_warning("The heretic doesn't have a living heart knowledge for some reason. What?"))
+		to_chat(admin, span_warning("异教徒不知为何没有活体心脏知识。怎么回事？"))
 		return
 
 	heart_knowledge.on_research(owner.current, src)
@@ -877,17 +877,17 @@
  */
 /datum/antagonist/heretic/proc/add_marked_as_target(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning("You shouldn't be using this!"))
+		to_chat(admin, span_warning("你不该使用这个！"))
 		return
 
 	var/mob/living/carbon/human/new_target = admin.client?.holder.marked_datum
 	if(!istype(new_target))
-		to_chat(admin, span_warning("You need to mark a human to do this!"))
+		to_chat(admin, span_warning("你需要标记一个人类才能执行此操作！"))
 		return
 
-	if(tgui_alert(admin, "Let them know their targets have been updated?", "Whispers of the Mansus", list("Yes", "No")) == "Yes")
-		to_chat(owner.current, span_danger("The Mansus has modified your targets. Go find them!"))
-		to_chat(owner.current, span_danger("[new_target.real_name], the [new_target.mind?.assigned_role?.title || "human"]."))
+	if(tgui_alert(admin, "要让他们知道目标已更新吗？", "曼苏斯的低语", list("Yes", "No")) == "Yes")
+		to_chat(owner.current, span_danger("曼苏斯已修改了你的目标。去找到他们！"))
+		to_chat(owner.current, span_danger("[new_target.real_name]，那个[new_target.mind?.assigned_role?.title || "human"]。"))
 
 	add_sacrifice_target(new_target)
 
@@ -896,14 +896,14 @@
  */
 /datum/antagonist/heretic/proc/remove_target(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning("You shouldn't be using this!"))
+		to_chat(admin, span_warning("你不该使用这个！"))
 		return
 
 	var/list/removable = list()
 	for(var/mob/living/carbon/human/old_target as anything in sac_targets)
 		removable[old_target.name] = old_target
 
-	var/name_of_removed = tgui_input_list(admin, "Choose a human to remove", "Who to Spare", removable)
+	var/name_of_removed = tgui_input_list(admin, "选择要移除的人类", "宽恕谁", removable)
 	if(QDELETED(src) || !admin.client?.holder || isnull(name_of_removed))
 		return
 	var/mob/living/carbon/human/chosen_target = removable[name_of_removed]
@@ -914,18 +914,18 @@
 		to_chat(admin, span_warning("Failed to remove [name_of_removed] from [owner]'s sacrifice list. Perhaps they're no longer in the list anyways."))
 		return
 
-	if(tgui_alert(admin, "Let them know their targets have been updated?", "Whispers of the Mansus", list("Yes", "No")) == "Yes")
-		to_chat(owner.current, span_danger("The Mansus has modified your targets."))
+	if(tgui_alert(admin, "Let them know their targets have been updated?", "曼苏斯的低语", list("Yes", "No")) == "Yes")
+		to_chat(owner.current, span_danger("曼苏斯已修改了你的目标。"))
 
 /**
  * Admin proc for easily adding / removing knowledge points.
  */
 /datum/antagonist/heretic/proc/admin_change_points(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning("You shouldn't be using this!"))
+		to_chat(admin, span_warning("你不该使用这个！"))
 		return
 
-	var/change_num = tgui_input_number(admin, "Add or remove knowledge points", "Points", 0, 100, -100)
+	var/change_num = tgui_input_number(admin, "添加或移除知识点数", "点数", 0, 100, -100)
 	if(!change_num || QDELETED(src))
 		return
 
@@ -936,12 +936,12 @@
  */
 /datum/antagonist/heretic/proc/admin_give_focus(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning("You shouldn't be using this!"))
+		to_chat(admin, span_warning("你不应该使用这个！"))
 		return
 
 	var/mob/living/pawn = owner.current
 	pawn.equip_to_slot_if_possible(new /obj/item/clothing/neck/heretic_focus(get_turf(pawn)), ITEM_SLOT_NECK, TRUE, TRUE)
-	to_chat(pawn, span_hypnophrase("The Mansus has manifested you a focus."))
+	to_chat(pawn, span_hypnophrase("曼苏斯为你显化了一个焦点。"))
 
 /datum/antagonist/heretic/antag_panel_data()
 	var/list/string_of_knowledge = list()
@@ -1117,7 +1117,7 @@
 
 /// Heretic's minor sacrifice objective. "Minor sacrifices" includes anyone.
 /datum/objective/minor_sacrifice
-	name = "minor sacrifice"
+	name = "少数牺牲"
 
 /datum/objective/minor_sacrifice/New(text)
 	. = ..()
@@ -1136,7 +1136,7 @@
 
 /// Heretic's major sacrifice objective. "Major sacrifices" are heads of staff.
 /datum/objective/major_sacrifice
-	name = "major sacrifice"
+	name = "多数牺牲"
 	target_amount = 1
 	explanation_text = "Sacrifice 1 head of staff."
 
@@ -1148,7 +1148,7 @@
 
 /// Heretic's research objective. "Research" is heretic knowledge nodes (You start with some).
 /datum/objective/heretic_research
-	name = "research"
+	name = "研究"
 	target_amount = 1 // You spawn with 1 point
 
 /datum/objective/heretic_research/New(text, list/heretic_research_tree = list())
@@ -1177,7 +1177,7 @@
 	return completed || (length(heretic_datum.researched_knowledge) >= target_amount)
 
 /datum/objective/heretic_summon
-	name = "summon monsters"
+	name = "召唤怪物"
 	target_amount = 2
 	explanation_text = "Summon 2 monsters from the Mansus into this realm."
 	/// The total number of summons the objective owner has done
@@ -1187,7 +1187,7 @@
 	return completed || (num_summoned >= target_amount)
 
 /datum/outfit/heretic
-	name = "Heretic (Preview only)"
+	name = "异端(预览)"
 
 	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch/rust
 	head = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/rust

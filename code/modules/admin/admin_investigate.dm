@@ -45,7 +45,7 @@ ADMIN_VERB(investigate_show, R_NONE, "Investigate", "Browse various detailed log
 
 	var/list/combined = sort_list(logs_present) + sort_list(logs_missing)
 
-	var/selected = tgui_input_list(user, "Investigate what?", "Investigation", combined)
+	var/selected = tgui_input_list(user, "调查什么？", "调查", combined)
 	if(isnull(selected))
 		return
 	if(!(selected in combined) || selected == "---")
@@ -59,7 +59,7 @@ ADMIN_VERB(investigate_show, R_NONE, "Investigate", "Browse various detailed log
 
 	var/F = file("[GLOB.log_directory]/[selected].html")
 	if(!fexists(F))
-		to_chat(user, span_danger("No [selected] logfile was found."), confidential = TRUE)
+		to_chat(user, span_danger("未找到[selected]日志文件。"), confidential = TRUE)
 		return
 
 	var/datum/browser/browser = new(user, "investigate[selected]", "Investigation of [selected]", 800, 300)

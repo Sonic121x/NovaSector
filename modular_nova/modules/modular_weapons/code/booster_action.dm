@@ -105,4 +105,4 @@
 /datum/action/item_action/booster
 	button_icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns32x.dmi'
 	button_icon_state = "hbarrel"
-	name = "Toggle Barrel Charger"
+	name = "切换枪管充能器"

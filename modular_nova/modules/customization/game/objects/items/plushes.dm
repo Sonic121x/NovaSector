@@ -8,80 +8,80 @@
 	inhand_icon_state = null
 
 /obj/item/toy/plush/nova/borbplushie
-	name = "borb plushie"
-	desc = "An adorable stuffed toy that resembles a round, fluffy looking bird. Not to be mistaken for his friend, the birb plushie."
+	name = "圆滚滚鸟毛绒玩具"
+	desc = "一个可爱的毛绒玩具，看起来像一只圆滚滚、毛茸茸的鸟。不要和他的朋友——小鸟毛绒玩具搞混了。"
 	icon_state = "plushie_borb"
 	attack_verb_continuous = list("pecks", "peeps")
 	attack_verb_simple = list("peck", "peep")
 	squeak_override = list('modular_nova/modules/emotes/sound/voice/peep_once.ogg' = 1)
 
 /obj/item/toy/plush/nova/deer
-	name = "deer plushie"
-	desc = "An adorable stuffed toy that resembles a deer."
+	name = "鹿毛绒玩具"
+	desc = "一个可爱的毛绒玩具，看起来像一只鹿。"
 	icon_state = "plushie_deer"
 	attack_verb_continuous = list("headbutts", "boops", "bapps", "bumps")
 	attack_verb_simple = list("headbutt", "boop", "bap", "bump")
 	squeak_override = list('modular_nova/modules/customization/game/objects/items/sound/deerplush.ogg' = 1)
 
 /obj/item/toy/plush/nova/sechound
-	name = "sec-hound plushie"
-	desc = "An adorable stuffed toy of a SecHound, the trusty Nanotrasen sponsored security borg!"
+	name = "安保猎犬毛绒玩具"
+	desc = "一个可爱的安保猎犬毛绒玩具，这是由纳米传讯赞助的可靠安保机器人！"
 	icon_state = "plushie_securityk9"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/nova/medihound
-	name = "medi-hound plushie"
-	desc = "An adorable stuffed toy of a medihound."
+	name = "医疗猎犬毛绒玩具"
+	desc = "一个可爱的医疗猎犬毛绒玩具。"
 	icon_state = "plushie_medihound"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/nova/engihound
-	name = "engi-hound plushie"
-	desc = "An adorable stuffed toy of a engihound."
+	name = "工程猎犬毛绒玩具"
+	desc = "一个可爱的工程猎犬毛绒玩具。"
 	icon_state = "plushie_engihound"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/nova/scrubpuppy
-	name = "scrub-puppy plushie"
-	desc = "An adorable stuffed toy of a Scrubpuppy, the hard-working pup who keeps the station clean!"
+	name = "清洁小狗毛绒玩具"
+	desc = "一个可爱的清洁小狗毛绒玩具，这是辛勤工作、保持空间站清洁的小狗！"
 	icon_state = "plushie_scrubpuppy"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/nova/meddrake
-	name = "medi-drake plushie"
-	desc = "An adorable stuffed toy of a Medidrake."
+	name = "医疗龙兽毛绒玩具"
+	desc = "一个可爱的医疗龙兽毛绒玩具。"
 	icon_state = "plushie_meddrake"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/nova/secdrake
-	name = "sec-drake plushie"
-	desc = "An adorable stuffed toy of a Secdrake."
+	name = "安保龙兽毛绒玩具"
+	desc = "一个可爱的安保龙玩偶。"
 	icon_state = "plushie_secdrake"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/nova/fox
-	name = "fox plushie"
-	desc = "An adorable stuffed toy of a Fox."
+	name = "狐狸玩偶"
+	desc = "一个可爱的狐狸玩偶。"
 	icon_state = "plushie_fox"
 	attack_verb_continuous = list("geckers", "boops", "nuzzles")
 	attack_verb_simple = list("gecker", "boop", "nuzzle")
 	squeak_override = list('modular_nova/modules/customization/game/objects/items/sound/deerplush.ogg' = 1)
 
 /obj/item/toy/plush/nova/ian
-	name = "plush corgi"
-	desc = "A plushie of an adorable corgi! Don't you just want to hug it and squeeze it and call it \"Ian\"?"
+	name = "柯基犬玩偶"
+	desc = "一个可爱的柯基犬玩偶！你难道不想抱抱它、捏捏它，然后叫它“伊恩”吗？"
 	icon_state = "ianplushie"
 	attack_verb_continuous = list("barks", "woofs", "wags his tail at")
 	attack_verb_simple = list("lick", "nuzzle", "bite")
@@ -89,69 +89,69 @@
 	young = TRUE //No.
 
 /obj/item/toy/plush/nova/ian/small
-	name = "small plush corgi"
-	desc = "A plushie of an adorable corgi! Don't you just want to hug it and squeeze it and call it \"Ian\"?"
+	name = "小型柯基犬玩偶"
+	desc = "一个可爱的柯基犬玩偶！你难道不想抱抱它、捏捏它，然后叫它“伊恩”吗？"
 	icon_state = "corgi"
 
 /obj/item/toy/plush/nova/ian/lisa
-	name = "plush girly corgi"
-	desc = "A plushie of an adorable corgi! Don't you just want to hug it and squeeze it and call it \"Lisa\"?"
+	name = "少女风柯基犬玩偶"
+	desc = "一个可爱的柯基犬玩偶！你难道不想抱抱它、捏捏它，然后叫它“丽莎”吗？"
 	icon_state = "girlycorgi"
 	attack_verb_continuous = list("barks", "woofs", "wags her tail at")
 	gender = FEMALE
 
 /obj/item/toy/plush/nova/cat
-	name = "cat plushie"
-	desc = "A small cat plushie with black beady eyes."
+	name = "猫咪玩偶"
+	desc = "一个有着黑色小圆眼睛的小猫咪玩偶。"
 	icon_state = "blackcat"
 	attack_verb_continuous = list("cuddles", "meows", "hisses")
 	attack_verb_simple = list("cuddle", "meow", "hiss")
 	squeak_override = list('modular_nova/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
 
 /obj/item/toy/plush/nova/cat/tux
-	name = "tux cat plushie"
+	name = "燕尾服猫咪玩偶"
 	icon_state = "tuxedocat"
 
 /obj/item/toy/plush/nova/cat/white
-	name = "white cat plushie"
+	name = "白色猫咪玩偶"
 	icon_state = "whitecat"
 
 /obj/item/toy/plush/lizard_plushie
 	squeak_override = list('modular_nova/modules/emotes/sound/voice/weh.ogg' = 1)
 
 /obj/item/toy/plush/nova/funniyellowrock
-	name = "squishy yellow rock"
-	desc = "A familiar looking yellow rock plushie. Touching it won't reduce you to dust. Probably."
+	name = "软乎乎的黄色石头"
+	desc = "一个看起来很眼熟的黄色石头玩偶。摸它应该不会让你化为灰烬。大概吧。"
 	icon_state = "plush_sm"
 	squeak_override = list('sound/machines/sm/accent/delam/1.ogg' = 1)
 
 /obj/item/toy/plush/nova/fkinbnuuy
-	name = "heckin bnuuy"
-	desc = "A small bunny plushie with black beady eyes. The nametag appears to be misspelled?"
+	name = "可恶的兔兔"
+	desc = "一个有着黑色小圆眼睛的小兔子玩偶。名牌上的名字好像拼错了？"
 	icon_state = "plush_bnuuy"
 	attack_verb_continuous = list("cuddles", "squeaks")
 	attack_verb_simple = list("cuddle", "squeak")
 	squeak_override = list('modular_nova/modules/customization/game/objects/items/sound/deerplush.ogg' = 1)
 
 /obj/item/toy/plush/nova/securifox
-	name = "securifox slushie"
-	desc = "An NT security branded fox plush. Wait. If it has more than one tail, doesn't that make it a kitsune? And why does it look so smug?"
+	name = "安保狐思乐冰"
+	desc = "一个印有NT安保标志的狐狸玩偶。等等。如果它不止一条尾巴，那它不就是妖狐了吗？而且它为什么看起来这么得意？"
 	icon_state = "plush_dee"
 	attack_verb_continuous = list("geckers", "boops", "nuzzles")
 	attack_verb_simple = list("gecker", "boop", "nuzzle")
 	squeak_override = list('sound/vehicles/mecha/justice_shield_broken.ogg' = 1)
 
 /obj/item/toy/plush/nova/towa
-	name = "tiny overwatch"
-	desc = "It invokes a certain comfort knowing its on your side when the chips are down."
+	name = "小小监视者"
+	desc = "当情况危急时，知道它在身边总能唤起一种特别的慰藉。"
 	icon_state = "plush_towa"
 	attack_verb_continuous = list("cuddles", "meows", "hisses")
 	attack_verb_simple = list("cuddle", "meow", "hiss")
 	squeak_override = list('modular_nova/modules/kahraman_equipment/sound/thumper_thump/punch_press_2.wav' = 1)
 
 /obj/item/toy/plush/nova/fushi
-	name = "fluffy dragon"
-	desc = "A rather adorable soft plush of a dragon, seems rather fluffy."
+	name = "毛茸茸的龙"
+	desc = "一个相当可爱的软绵绵的龙玩偶，看起来毛茸茸的。"
 	icon_state = "plush_fushi_hat"
 	attack_verb_continuous = list("cuddles", "nuzzles", "pats")
 	attack_verb_simple = list("cuddle", "nuzzle", "pat")
@@ -226,8 +226,8 @@
 	return ..()
 
 /obj/item/toy/plush/nova/expie
-	name = "experiment plushie"
-	desc = "A plushie of a canid of sorts, it yearns to be detonated on a landmine."
+	name = "实验品玩偶"
+	desc = "某种犬科动物的玩偶，它渴望在地雷上被引爆。"
 	icon_state = "plushie_expie"
 	attack_verb_continuous = list("whines at", "claws")
 	attack_verb_simple = list("whine at", "claw")

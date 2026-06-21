@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/contraband
-	name = "contraband loot spawner"
-	desc = "Pstttthhh! Pass it under the table."
+	name = "违禁品战利品生成器"
+	desc = "嘘——！从桌子底下传过去。"
 	icon_state = "prisoner"
 	loot = list(
 		/obj/item/poster/random_contraband = 40,
@@ -39,8 +39,8 @@
 	return made
 
 /obj/effect/spawner/random/contraband/plus
-	name = "contraband loot spawner plus"
-	desc = "Where'd ya find this?"
+	name = "违禁品战利品生成器 plus"
+	desc = "你从哪儿搞到这玩意的？"
 	loot = list(
 		/obj/item/clothing/under/syndicate = 20,
 		/obj/item/reagent_containers/cup/bottle/thermite = 20,
@@ -56,7 +56,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/armory
-	name = "armory loot spawner"
+	name = "军械库战利品生成器"
 	icon_state = "pistol"
 	loot = list(
 		/obj/item/gun/ballistic/automatic/pistol/contraband = 80,
@@ -70,7 +70,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/narcotics
-	name = "narcotics loot spawner"
+	name = "麻醉品战利品生成器"
 	icon_state = "pill"
 	loot = list(
 		/obj/item/reagent_containers/syringe/contraband/space_drugs,
@@ -90,7 +90,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/permabrig_weapon
-	name = "permabrig weapon spawner"
+	name = "永久禁闭武器生成器"
 	icon_state = "shiv"
 	loot = list(
 		/obj/item/knife/shiv = 5,
@@ -102,7 +102,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/permabrig_gear
-	name = "permabrig gear spawner"
+	name = "永久禁闭装备生成器"
 	icon_state = "handcuffs"
 	loot = list(
 		/obj/item/toy/crayon/spraycan,
@@ -117,7 +117,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/prison
-	name = "prison loot spawner"
+	name = "监狱战利品生成器"
 	icon_state = "prisoner_shoes"
 	loot = list(
 		/obj/effect/spawner/random/entertainment/cigarette = 20,
@@ -130,7 +130,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/cannabis
-	name = "Random Cannabis Spawner" //blasphemously overpowered, use extremely sparingly (if at all)
+	name = "随机大麻生成器" //blasphemously overpowered, use extremely sparingly (if at all)
 	icon_state = "cannabis"
 	loot = list(
 		/obj/item/food/grown/cannabis = 25,
@@ -150,7 +150,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/landmine
-	name = "landmine spawner"
+	name = "地雷生成器"
 	loot = list(
 		/obj/effect/mine/explosive/light = 10,
 		/obj/effect/mine/explosive/flame = 10,
@@ -161,14 +161,14 @@
 	)
 
 /obj/effect/spawner/random/contraband/qm_rocket
-	name = "QMs dud rocket spawner"
+	name = "QM的哑火箭生成器"
 	loot = list(
 		/obj/item/ammo_casing/rocket/reverse = 85,
 		/obj/item/ammo_casing/rocket = 15,
 	)
 
 /obj/effect/spawner/random/contraband/grenades
-	name = "grenades spawner"
+	name = "手榴弹生成器"
 	loot = list(
 		/obj/item/grenade/chem_grenade/metalfoam,
 		/obj/item/grenade/chem_grenade/cleaner,
@@ -180,7 +180,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/grenades/dangerous
-	name = "dangerous grenades spawner"
+	name = "危险手榴弹生成器"
 	loot = list(
 		/obj/item/grenade/flashbang = 3,
 		/obj/item/grenade/chem_grenade/teargas = 2,
@@ -192,7 +192,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/grenades/cluster
-	name = "clusterbusters spawner"
+	name = "集束炸弹生成器"
 	loot = list(
 		/obj/item/grenade/clusterbuster/smoke = 4,
 		/obj/item/grenade/clusterbuster/metalfoam = 4,
@@ -209,7 +209,7 @@
 	)
 
 /obj/effect/spawner/random/contraband/grenades/lethal
-	name = "lethal grenades spawner"
+	name = "致命手榴弹生成器"
 	loot = list(
 		/obj/item/grenade/chem_grenade/incendiary = 3,
 		/obj/item/grenade/chem_grenade/facid = 3,

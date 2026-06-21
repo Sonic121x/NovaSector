@@ -1,7 +1,7 @@
 // .223 (M-90gl Carbine)
 
 /obj/projectile/bullet/a223
-	name = ".223 bullet"
+	name = ".223子弹"
 	damage = 35
 	armour_penetration = 30
 	wound_bonus = -40
@@ -10,7 +10,7 @@
 	damage = 20
 
 /obj/projectile/bullet/a223/phasic
-	name = ".223 phasic bullet"
+	name = ".223相位子弹"
 	icon_state = "gaussphase"
 	damage = 30
 	armour_penetration = 100
@@ -19,30 +19,30 @@
 // .310 Strilka (Sakhno Rifle)
 
 /obj/projectile/bullet/strilka310
-	name = ".310 Strilka bullet"
+	name = ".310斯特里尔卡子弹"
 	damage = 60
 	armour_penetration = 10
 	wound_bonus = -45
 	wound_falloff_tile = 0
 
 /obj/projectile/bullet/strilka310/surplus
-	name = ".310 Strilka surplus bullet"
+	name = ".310斯特里尔卡剩余子弹"
 	weak_against_armour = TRUE //this is specifically more important for fighting carbons than fighting noncarbons. Against a simple mob, this is still a full force bullet
 	armour_penetration = 0
 
 /obj/projectile/bullet/strilka310/enchanted
-	name = "enchanted .310 bullet"
+	name = "附魔.310子弹"
 	damage = 20
 	stamina = 80
 
 /obj/projectile/bullet/strilka310/phasic
-	name = "phasic .310 bullet"
+	name = "相位.310子弹"
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 
 // Harpoons (Harpoon Gun)
 
 /obj/projectile/bullet/harpoon
-	name = "harpoon"
+	name = "鱼叉"
 	icon_state = "gauss"
 	damage = 60
 	armour_penetration = 50
@@ -64,7 +64,7 @@
 
 // Rebar (Rebar Crossbow)
 /obj/projectile/bullet/rebar
-	name = "rebar"
+	name = "钢筋"
 	icon_state = "rebar"
 	damage = 30
 	speed = 2.5
@@ -90,7 +90,7 @@
 /obj/projectile/bullet/rebar/proc/handle_drop(datum/source, obj/item/ammo_casing/rebar/newcasing)
 
 /obj/projectile/bullet/rebar/syndie
-	name = "rebar"
+	name = "钢筋"
 	icon_state = "rebar"
 	damage = 45
 	dismemberment = 2 //It's a budget sniper rifle.
@@ -112,7 +112,7 @@
 	rip_time = 1.4 SECONDS
 
 /obj/projectile/bullet/rebar/zaukerite
-	name = "zaukerite shard"
+	name = "扎克里特碎片"
 	icon_state = "rebar_zaukerite"
 	damage = 60
 	speed = 1.6
@@ -137,7 +137,7 @@
 	rip_time = 3 SECONDS
 
 /obj/projectile/bullet/rebar/hydrogen
-	name = "metallic hydrogen bolt"
+	name = "金属氢弩箭"
 	icon_state = "rebar_hydrogen"
 	damage = 35
 	speed = 1.6
@@ -168,7 +168,7 @@
 	return ..()
 
 /obj/projectile/bullet/rebar/healium
-	name = "healium bolt"
+	name = "治疗氦弩箭"
 	icon_state = "rebar_healium"
 	damage = 0
 	dismemberment = 0
@@ -191,7 +191,7 @@
 	rebar.heals_left = heals_left
 
 /obj/projectile/bullet/rebar/supermatter
-	name = "supermatter bolt"
+	name = "超物质弩箭"
 	icon_state = "rebar_supermatter"
 	damage = 0
 	dismemberment = 0
@@ -219,12 +219,12 @@
 	visible_message(span_danger("[target] is hit by [src], turning [target.p_them()] to dust in a brilliant flash of light!"))
 
 /obj/projectile/bullet/paperball
-	desc = "Doink!"
+	desc = "咚！"
 	damage = 1 // It's a damn toy.
 	range = 10
 	shrapnel_type = null
 	embed_type = null
-	name = "paper ball"
-	desc = "doink!"
+	name = "纸团"
+	desc = "咚！"
 	damage_type = BRUTE
 	icon_state = "paperball"

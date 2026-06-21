@@ -26,7 +26,7 @@
 		null,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You [atk_verb] [defender] with such inhuman strength that it sends [defender.p_them()] flying backwards!"))
+	to_chat(attacker, span_danger("你以如此非人的力量[atk_verb][defender]，以至于将[defender.p_them()]击飞了出去！"))
 	defender.apply_damage(final_damage, attacker.get_attack_type())
 	playsound(defender, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
 	var/throwtarget = get_edge_target_turf(attacker, get_dir(attacker, get_step_away(defender, attacker)))

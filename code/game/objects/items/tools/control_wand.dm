@@ -62,7 +62,7 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "restricted functions unlocked")
+	balloon_alert(user, "受限功能已解锁")
 	obj_flags |= EMAGGED
 	update_icon_state()
 	return TRUE
@@ -84,7 +84,7 @@
 		if(WAND_DEPOWER)
 			mode = WAND_OPEN
 	update_icon_state()
-	balloon_alert(user, "mode: [ops[mode]]")
+	balloon_alert(user, "模式：[ops[mode]]")
 	if(mode_switch_sound)
 		playsound(src, mode_switch_sound, 50, TRUE)
 
@@ -183,18 +183,18 @@
 			return ITEM_INTERACT_BLOCKING
 
 	if (!door.check_access_list(access_list) || !door.requiresID())
-		interacting_with.balloon_alert(user, "can't access!")
+		interacting_with.balloon_alert(user, "无法访问！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/area/door_area = get_area(door)
 	if(is_type_in_list(door_area, restricted_areas) && !is_my_domain(get_area(door)))
-		interacting_with.balloon_alert(user, "can't access!")
+		interacting_with.balloon_alert(user, "无法访问！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/machinery/door/airlock/airlock = door
 
 	if (!door.hasPower() || (istype(airlock) && !airlock.canAIControl()))
-		interacting_with.balloon_alert(user, mode == WAND_OPEN ? "it won't budge!" : "nothing happens!")
+		interacting_with.balloon_alert(user, mode == WAND_OPEN ? "它纹丝不动！" : "无事发生！")
 		return ITEM_INTERACT_BLOCKING
 
 	switch (mode)
@@ -206,7 +206,7 @@
 
 		if (WAND_BOLT)
 			if (!istype(airlock))
-				interacting_with.balloon_alert(user, "only airlocks!")
+				interacting_with.balloon_alert(user, "仅限气闸门！")
 				return ITEM_INTERACT_BLOCKING
 
 			if (airlock.locked)
@@ -218,7 +218,7 @@
 
 		if (WAND_EMERGENCY)
 			if (!istype(airlock))
-				interacting_with.balloon_alert(user, "only airlocks!")
+				interacting_with.balloon_alert(user, "仅限气闸门！")
 				return ITEM_INTERACT_BLOCKING
 
 			airlock.emergency = !airlock.emergency
@@ -226,20 +226,20 @@
 
 		if (WAND_SHOCK)
 			if (!istype(airlock))
-				interacting_with.balloon_alert(user, "only airlocks!")
+				interacting_with.balloon_alert(user, "仅限气闸门！")
 				return ITEM_INTERACT_BLOCKING
 			if (!COOLDOWN_FINISHED(src, shock_cooldown))
-				interacting_with.balloon_alert(user, "shock pulse resetting!")
+				interacting_with.balloon_alert(user, "电击脉冲重置中！")
 				return ITEM_INTERACT_BLOCKING
 			if (airlock.isElectrified())
-				interacting_with.balloon_alert(user, "already electrified!")
+				interacting_with.balloon_alert(user, "已经通电了！")
 			else
 				airlock.set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME, user)
 				COOLDOWN_START(src, shock_cooldown, 10 SECONDS)
 
 		if (WAND_DEPOWER)
 			if (!istype(airlock))
-				interacting_with.balloon_alert(user, "only airlocks!")
+				interacting_with.balloon_alert(user, "仅限气闸门！")
 				return ITEM_INTERACT_BLOCKING
 			// First hit disrupts main power, backup comes back in ten seconds, if you stick around you can hit backup for 60 more seconds of downtime.
 			if (!airlock.main_power_timer)

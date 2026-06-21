@@ -8,29 +8,29 @@
 	requires_power = FALSE
 
 /area/awaymission/mothership_astrum/halls
-	name = "Mothership Astrum Hallways"
+	name = "母舰星宿号走廊"
 	icon_state = "away1"
 
 /area/awaymission/mothership_astrum/deck1
-	name = "Mothership Astrum Combat Holodeck"
+	name = "母舰星宿号战斗全息甲板"
 	icon_state = "away2"
 
 /area/awaymission/mothership_astrum/deck2
-	name = "Mothership Astrum Recreation Holodeck"
+	name = "母舰星宿号娱乐全息甲板"
 	icon_state = "away3"
 
 /area/awaymission/mothership_astrum/deck3
-	name = "Mothership Astrum Frozen Holodeck"
+	name = "母舰星宿号冰冻全息甲板"
 	icon_state = "away4"
 
 /area/awaymission/mothership_astrum/deck4
-	name = "Mothership Astrum Xeno Studies Holodeck"
+	name = "母舰星宿号异形研究全息甲板"
 	icon_state = "away4"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	base_lighting_color = COLOR_WHITE
 
 /area/awaymission/mothership_astrum/deck5
-	name = "Mothership Astrum Beach Holodeck"
+	name = "母舰星宿号海滩全息甲板"
 	icon_state = "away5"
 	static_lighting = FALSE

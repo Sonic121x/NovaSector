@@ -1,6 +1,6 @@
 /obj/item/weldingtool/electric
-	name = "electrical welding tool"
-	desc = "An experimental welding tool capable of welding functionality through the use of electricity. The flame seems almost cold."
+	name = "电焊工具"
+	desc = "一种实验性的焊接工具，能够通过电力实现焊接功能。火焰看起来几乎是冷的。"
 	icon = 'modular_nova/modules/aesthetics/tools/icons/tools.dmi'
 	icon_state = "elwelder"
 	light_power = 1
@@ -26,10 +26,10 @@
 	powered = !powered
 	playsound(src, 'sound/effects/sparks/sparks4.ogg', 100, TRUE)
 	if(powered)
-		to_chat(user, span_notice("You turn [src] on."))
+		to_chat(user, span_notice("你打开了[src]。"))
 		switched_on()
 		return
-	to_chat(user, span_notice("You turn [src] off."))
+	to_chat(user, span_notice("你关闭了[src]。"))
 	switched_off()
 
 /obj/item/weldingtool/electric/switched_on(mob/user)

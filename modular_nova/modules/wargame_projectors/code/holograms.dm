@@ -1,6 +1,6 @@
 /obj/structure/wargame_hologram
-	name = "broken holographic wargame marker"
-	desc = "You have a feeling like this is supposed to be telling you something, but the hologram must have broken."
+	name = "损坏的全息战争游戏标记"
+	desc = "你感觉这东西本该告诉你些什么，但全息影像肯定坏了。"
 	icon = 'modular_nova/modules/wargame_projectors/icons/projectors_and_holograms.dmi'
 	icon_state = "broke"
 	anchored = TRUE
@@ -31,38 +31,38 @@ Projections for 'moving vessels' in order from smallest to largest representatio
 */
 
 /obj/structure/wargame_hologram/strike_craft
-	name = "strike craft marker"
-	desc = "The NT wargame standard representation for a singular strike craft of some kind."
+	name = "打击机标记"
+	desc = "纳米传讯战争游戏标准中，用于表示某种单一打击机的标识。"
 	icon_state = "strikesingle"
 
 /obj/structure/wargame_hologram/strike_craft/wing
-	name = "strike craft wing marker"
-	desc = "The NT wargame standard representation for a wing of strike craft of some sort."
+	name = "打击机中队标记"
+	desc = "纳米传讯战争游戏标准中，用于表示某种打击机中队的标识。"
 	icon_state = "strikewing"
 
 /obj/structure/wargame_hologram/ship_marker
-	name = "small vessel marker"
-	desc = "The NT wargame standard representation of a smaller sized vessel, usually used for corvette sized ships."
+	name = "小型舰船标记"
+	desc = "NT兵棋推演标准中较小尺寸舰船的表示，通常用于护卫舰级别的舰船。"
 	icon_state = "smallship"
 
 /obj/structure/wargame_hologram/ship_marker/medium
-	name = "medium vessel marker"
-	desc = "The NT wargame standard representation of an average sized vessel, usually used for destroyer sized ships."
+	name = "中型舰船标记"
+	desc = "NT兵棋推演标准中平均尺寸舰船的表示，通常用于驱逐舰级别的舰船。"
 	icon_state = "mediumship"
 
 /obj/structure/wargame_hologram/ship_marker/large
-	name = "large vessel marker"
-	desc = "The NT wargame standard representation of a larger sized vessel, usually used for cruiser sized ships."
+	name = "大型舰船标记"
+	desc = "NT兵棋推演标准中较大尺寸舰船的表示，通常用于巡洋舰级别的舰船。"
 	icon_state = "bigship"
 
 /obj/structure/wargame_hologram/ship_marker/large/alternate
-	name = "alternate large vessel marker"
-	desc = "The NT wargame alternative representation of a larger sized vessel, usually used for special vessels like carriers."
+	name = "替代大型舰船标记"
+	desc = "NT兵棋推演中较大尺寸舰船的替代表示，通常用于特殊舰船，如航空母舰。"
 	icon_state = "bigship_alternate"
 
 /obj/structure/wargame_hologram/unidentified
-	name = "unidentified contact marker"
-	desc = "The NT wargame standard representation for a contact that has not yet been identified."
+	name = "未识别接触标记"
+	desc = "NT兵棋推演标准中用于表示尚未识别的接触。"
 	icon_state = "unidentified"
 
 /*
@@ -70,23 +70,23 @@ Projections for misc stuff, like stations, scout probes, or incoming missiles
 */
 
 /obj/structure/wargame_hologram/missile_warning
-	name = "in-flight missile marker"
-	desc = "The NT wargame standard representation for a missile or torpedo that is currently en route to its target."
+	name = "飞行中导弹标记"
+	desc = "NT兵棋推演标准中用于表示正在飞向目标的导弹或鱼雷。"
 	icon_state = "missile"
 
 /obj/structure/wargame_hologram/probe
-	name = "probe marker"
-	desc = "The NT wargame standard representation for a probe-sized vessel or structure."
+	name = "探测器标记"
+	desc = "NT兵棋推演标准中用于表示探测器尺寸的舰船或结构。"
 	icon_state = "probe"
 
 /obj/structure/wargame_hologram/stationary_structure
-	name = "station marker"
-	desc = "The NT wargame standard representation for a space stations of all sizes."
+	name = "空间站标记"
+	desc = "NT兵棋推演标准中用于表示各种尺寸的空间站。"
 	icon_state = "station"
 
 /obj/structure/wargame_hologram/stationary_structure/platform
-	name = "platform marker"
-	desc = "The NT wargame standard representation for platforms, armed or not, of all sizes."
+	name = "平台标记"
+	desc = "NT兵棋推演标准中用于表示各种尺寸的平台，无论是否武装。"
 	icon_state = "platform"
 
 /*
@@ -94,26 +94,26 @@ Projections for space 'terrain' like asteroids and dust clouds
 */
 
 /obj/structure/wargame_hologram/dust
-	name = "dust field marker"
-	desc = "The NT wargame standard representation for a large cloud of stellar dust."
+	name = "星尘场标记"
+	desc = "NT兵棋推演标准中用于表示一大片星尘云。"
 	icon_state = "dustcloud"
 
 /obj/structure/wargame_hologram/asteroid
-	name = "small asteroid marker"
-	desc = "The NT wargame standard representation for a small to medium sized asteroid."
+	name = "小型小行星标记"
+	desc = "纳米传讯兵棋推演标准中，用于表示中小型小行星的标识。"
 	icon_state = "asteroidsmall"
 
 /obj/structure/wargame_hologram/asteroid/large
-	name = "large asteroid marker"
-	desc = "The NT wargame standard representation for a medium to large sized asteroid."
+	name = "大型小行星标记"
+	desc = "纳米传讯兵棋推演标准中，用于表示中大型小行星的标识。"
 	icon_state = "asteroidlarge"
 
 /obj/structure/wargame_hologram/asteroid/cluster
-	name = "asteroid cluster marker"
-	desc = "The NT wargame standard representation for a cluster of smaller asteroids."
+	name = "小行星群标记"
+	desc = "纳米传讯兵棋推演标准中，用于表示小型小行星群的标识。"
 	icon_state = "asteroidcluster"
 
 /obj/structure/wargame_hologram/planet
-	name = "planetary body marker"
-	desc = "The NT wargame standard representation for planetary bodies of all sizes."
+	name = "行星体标记"
+	desc = "纳米传讯兵棋推演标准中，用于表示各种尺寸行星体的标识。"
 	icon_state = "planet"

@@ -1,6 +1,6 @@
 /obj/machinery/abductor/experiment
-	name = "experimentation machine"
-	desc = "A large man-sized tube sporting a complex array of surgical machinery."
+	name = "实验机器"
+	desc = "一个和人差不多大的管子，上面有一系列复杂的手术器械。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "experiment-open"
 	density = FALSE
@@ -44,19 +44,19 @@
 		return
 	if(message_cooldown <= world.time)
 		message_cooldown = world.time + 50
-		to_chat(user, span_warning("[src]'s door won't budge!"))
+		to_chat(user, span_warning("[src] 的门纹丝不动！"))
 
 /obj/machinery/abductor/experiment/container_resist_act(mob/living/user)
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
-		span_hear("You hear a metallic creaking from [src]."))
+	user.visible_message(span_notice("你看到 [user] 在猛踢 [src] 的门！"), \
+		span_notice("你靠在 [src] 的背面，开始推开门...（这大约需要 [DisplayTimeText(breakout_time)]。）"), \
+		span_hear("你听到 [src] 传来金属的嘎吱声。"))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
 			return
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user] 成功从 [src] 中挣脱出来了！"), \
+			span_notice("你成功从 [src] 中挣脱出来了！"))
 		open_machine()
 
 /obj/machinery/abductor/experiment/ui_status(mob/user, datum/ui_state/state)
@@ -149,11 +149,11 @@
 		sleep(0.5 SECONDS)
 		switch(text2num(type))
 			if(1)
-				to_chat(occupant, span_warning("You feel violated."))
+				to_chat(occupant, span_warning("你感到被侵犯了。"))
 			if(2)
-				to_chat(occupant, span_warning("You feel yourself being sliced apart and put back together."))
+				to_chat(occupant, span_warning("你感觉自己被切碎又重组了起来。"))
 			if(3)
-				to_chat(occupant, span_warning("You feel intensely watched."))
+				to_chat(occupant, span_warning("你感到被强烈地注视着。"))
 		sleep(0.5 SECONDS)
 		user_abductor.team.abductees += occupant.mind
 		occupant.mind.add_antag_datum(/datum/antagonist/abductee)

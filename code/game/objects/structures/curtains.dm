@@ -2,8 +2,8 @@
  * Shower Curtains
  */
 /obj/structure/curtain
-	name = "curtain"
-	desc = "Contains less than 1% mercury."
+	name = "窗帘"
+	desc = "汞含量低于1%。"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "bathroom-open"
 	color = "#ACD1E9" //Default color, didn't bother hardcoding other colors, mappers can and should easily change it.
@@ -58,10 +58,10 @@
 	if(anchored)
 		return TRUE
 
-	user.visible_message(span_warning("[user] cuts apart [src]."),
-		span_notice("You start to cut apart [src]."), span_hear("You hear cutting."))
+	user.visible_message(span_warning("[user] 剪开了 [src]。"),
+		span_notice("你开始剪开 [src]。"), span_hear("你听到剪东西的声音。"))
 	if(I.use_tool(src, user, 50, volume=100) && !anchored)
-		to_chat(user, span_notice("You cut apart [src]."))
+		to_chat(user, span_notice("你剪开了 [src]。"))
 		deconstruct()
 
 	return TRUE

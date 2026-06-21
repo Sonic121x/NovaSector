@@ -1,8 +1,8 @@
 // Badnana Spider
 
 /datum/reagent/toxin/laughjuice
-	name = "Laughin' Juice"
-	description = "Don't drink too much or it you might die of laughter!"
+	name = "笑料汁"
+	description = "别喝太多，否则你可能会笑死！"
 	color = "#FF4DD2"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	toxpwr = 1
@@ -13,7 +13,7 @@
 /datum/reagent/toxin/laughjuice/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(affected_mob.adjust_oxy_loss(1 * seconds_per_tick * metabolization_ratio, FALSE, updating_health = FALSE, required_biotype = affected_biotype, required_respiration_type = affected_respiration_type))
-		affected_mob.visible_message(span_danger("[affected_mob] bursts out into a fit of uncontrollable laughter!"), span_userdanger("You burst out in a fit of uncontrollable laughter!"))
+		affected_mob.visible_message(span_danger("[affected_mob] 突然爆发出一阵无法控制的大笑！"), span_userdanger("你突然爆发出一阵无法控制的大笑！"))
 		affected_mob.Stun(5)
 		affected_mob.emote("laugh")
 		affected_mob.add_mood_event("chemical_laughter", /datum/mood_event/chemical_laughter)

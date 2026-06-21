@@ -120,7 +120,7 @@
 		user.balloon_alert(user, "already exploding!")
 		return
 
-	var/i_dont_even_think_once_about_blowing_stuff_up = tgui_alert(user, "Would you like to activate the evidence disposal bomb now?", "BYE BYE", list("Yes","No"))
+	var/i_dont_even_think_once_about_blowing_stuff_up = tgui_alert(user, "要现在激活证据销毁炸弹吗？", "BYE BYE", list("Yes","No"))
 
 	if(i_dont_even_think_once_about_blowing_stuff_up != "Yes" || currently_exploding || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING))
 		return
@@ -328,11 +328,11 @@
 		return NONE
 	if(!tool.toolspeed)
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "constructing...")
+	balloon_alert(user, "正在构造...")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 20))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "constructed!")
+	balloon_alert(user, "已组装！")
 	user.visible_message(
 		span_danger("[user] bashes [src] with [tool]!"),
 		span_danger("You bash [src] with [tool]!"),

@@ -14,18 +14,18 @@
 #define BM_TRADER_MAX_CASH 2000
 
 /obj/effect/mob_spawn/ghost_role/human/blackmarket
-	name = "Black Market Trader"
-	prompt_name = "a blackmarket dealer"
-	desc = "A humming cryo pod. The machine is attempting to wake up its occupant."
+	name = "黑市商人"
+	prompt_name = "一名黑市商人"
+	desc = "一个嗡嗡作响的低温舱。机器正试图唤醒其内的乘员。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_species = /datum/species/human
-	you_are_text = "You are a black market dealer, with shop set up in Nanotrasen Space."
+	you_are_text = "你是一名黑市商人，在纳米传讯太空区域开设了店铺。"
 	flavour_text = "FTU, Independent.. whatever, whoever you are. It doesn't matter out here. \
 	You've set up shop in a slightly shady, yet functional little asteroid for your dealings. \
 	Explore space, setup shop and find valuable artifacts and nice loot - and pawn it off to those stooges at NT. \
 	Or perhaps more exotic customers are in local space...?"
-	important_text = "You are not an antagonist."
+	important_text = "你不是反派角色。"
 	outfit = /datum/outfit/black_market
 	spawner_job_path = /datum/job/blackmarket
 	quirks_enabled = TRUE
@@ -33,7 +33,7 @@
 	loadout_enabled = TRUE
 
 /datum/outfit/black_market
-	name = "Black Market Trader"
+	name = "黑市商人"
 	uniform = /obj/item/clothing/under/rank/cargo/tech
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/advanced/chameleon/elite/black/blackmarket
@@ -61,11 +61,11 @@
 	remote.computer_ref = WEAKREF(console)
 
 /obj/item/gun/energy/laser/cybersun/black_market_trader
-	desc = "A laser gun primarily used by syndicate security guards. It fires a rapid spray of low-power plasma beams. This one seems to have had its firing pin replaced."
+	desc = "一种主要由辛迪加安保人员使用的激光枪。它能快速发射低功率等离子光束。这把枪的撞针似乎被更换过。"
 	pin = /obj/item/firing_pin
 
 /obj/effect/spawner/random/weapon/black_market_trader
-	name = "black market trader weapon spawner"
+	name = "黑市商人武器生成器"
 	icon_state = "pistol"
 	loot = list(
 		/obj/item/gun/energy/laser/cybersun/black_market_trader = 80,
@@ -81,22 +81,22 @@
 #undef BM_TRADER_MAX_CASH
 
 /obj/effect/mob_spawn/ghost_role/human/ds2
-	name = "DS2 personnel"
+	name = "DS2 人员"
 	use_outfit_name = TRUE
 	prompt_name = "DS2 personnel"
-	you_are_text = "You are a Syndicate operative, employed in a top secret research facility developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Continue operating as best you can, and try to keep a low profile."
+	you_are_text = "你是一名辛迪加特工，受雇于一个研发生物武器的绝密研究设施。"
+	flavour_text = "不幸的是，你们憎恨的敌人纳米传讯已开始在这个星区采矿。尽你所能继续运作，并尽量保持低调。"
 	quirks_enabled = TRUE
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 	computer_area = /area/ruin/space/has_grav/nova/des_two/service/dorms
 	spawner_job_path = /datum/job/ds2
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/prisoner
-	name = "Syndicate Prisoner"
-	prompt_name = "a Syndicate prisoner"
-	you_are_text = "You are a Syndicate prisoner aboard an unknown ship."
-	flavour_text = "Unaware of where you are, all you know is you are a prisoner. The plastitanium should clue you into who your captors are... as for why you're here? That's for you to know, and for us to find out."
-	important_text = "You are still subject to standard prisoner policy and must Adminhelp before antagonizing DS2."
+	name = "辛迪加囚犯"
+	prompt_name = "一名辛迪加囚犯"
+	you_are_text = "你是一艘未知飞船上的辛迪加囚犯。"
+	flavour_text = "你不知道自己身在何处，只知道自己是囚犯。塑钛合金应该能让你猜到抓你的人是谁……至于你为什么在这里？那是你该知道的，也是我们要弄清楚的。"
+	important_text = "你仍需遵守标准囚犯政策，在敌对 DS2 前必须向管理员求助。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	computer_area = /area/ruin/space/has_grav/nova/des_two/security/prison
@@ -105,13 +105,13 @@
 	allow_mechanical_loadout_items = FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate
-	name = "Syndicate Operative"
-	prompt_name = "a Syndicate operative"
+	name = "辛迪加特工"
+	prompt_name = "一名辛迪加特工"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	you_are_text = "You are a Syndicate operative, employed onboard the Deep Space 2 FOB for reasons that are yours."
+	you_are_text = "你是一名辛迪加特工，因个人原因受雇于深空 2 号前哨基地。"
 	flavour_text = "The Syndicate has found it fit to send a forward operating base to Sector 13 to monitor NT's operations. Your orders are maintaining the ship's integrity and keeping a low profile as well as possible."
-	important_text = "You are not an antagonist. Adminhelp before antagonizing station crew."
+	important_text = "你不是敌对角色。在对抗空间站船员之前，请先向管理员求助。"
 	outfit = /datum/outfit/ds2/syndicate
 	computer_area = /area/ruin/space/has_grav/nova/des_two/halls
 	spawner_job_path = /datum/job/ds2
@@ -119,13 +119,13 @@
 	allow_mechanical_loadout_items = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate_command
-	name = "Syndicate Command Operative"
-	prompt_name = "a Syndicate leader"
+	name = "辛迪加指挥特工"
+	prompt_name = "一位辛迪加指挥官"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	you_are_text = "You are a Syndicate command operative, employed onboard the Deep Space 2 FOB to guide it forward in its goals."
-	flavour_text = "The Syndicate has found it fit to send you to help command the forward operating base in Sector 13. Your orders are commanding the crew of DS-2 while keeping a low profile as well as possible."
-	important_text = "Keep yourself to the same standards as Command Policy. You are not an antagonist and must Adminhelp before antagonizing station crew."
+	you_are_text = "你是一名辛迪加指挥特工，受雇于深空2号前沿作战基地，负责引导其实现目标。"
+	flavour_text = "辛迪加认为有必要派遣你前往第13扇区协助指挥前沿作战基地。你的任务是指挥DS-2的船员，同时尽可能保持低调。"
+	important_text = "请遵守与指挥政策相同的标准。你不是敌对角色，在对抗空间站船员之前必须向管理员求助。"
 	outfit = /datum/outfit/ds2/syndicate_command
 	computer_area = /area/ruin/space/has_grav/nova/des_two/halls
 	spawner_job_path = /datum/job/ds2/command
@@ -171,18 +171,18 @@
 	outfit = /datum/outfit/ds2/syndicate_command/admiral
 
 /obj/effect/mob_spawn/ghost_role/robot/ds2
-	name = "\improper Syndicate Robotic Storage"
-	desc = "A suspicious specialized container marked 'cyborg storage'."
-	prompt_name = "a syndicate deepspace robot"
+	name = "\improper 辛迪加机器人存储"
+	desc = "一个可疑的特制容器，标有'机械人存储'。"
+	prompt_name = "一位辛迪加深空机器人"
 	deletes_on_zero_uses_left = TRUE
 	icon = 'modular_nova/modules/ghostcafe/icons/robot_storage.dmi'
 	icon_state = "syndi_robostor"
 	anchored = TRUE
 	density = TRUE
 	uses = 1
-	you_are_text = "You are a DS-2 Cyborg!"
-	flavour_text = "You are a cyborg on a ship in deep space... what kind of hell is this?"
-	important_text = "Keep yourself to the same standards as Silicon Policy. You are not an antagonist. Adminhelp before antagonizing station crew."
+	you_are_text = "你是一名DS-2机械人！"
+	flavour_text = "你是一艘深空飞船上的机械人……这到底是什么鬼地方？"
+	important_text = "请遵守与硅基政策相同的标准。你不是敌对角色。在对抗空间站船员之前，请先向管理员求助。"
 	loadout_enabled = TRUE
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 	spawner_job_path = /datum/job/ds2
@@ -220,18 +220,18 @@
 	laws.associate(src)
 
 /obj/effect/mob_spawn/ghost_role/robot/interdyne
-	name = "\improper Interdyne Robotic Storage"
-	desc = "A specialized container marked 'cyborg storage', stamped with the Interdyne Pharmaceuticals logo."
-	prompt_name = "an Interdyne Pharmaceuticals robot"
+	name = "\improper Interdyne机器人存储"
+	desc = "一个标有'机械人存储'的特制容器，上面印有Interdyne Pharmaceuticals的徽标。"
+	prompt_name = "一位英特戴恩制药机器人"
 	deletes_on_zero_uses_left = TRUE
 	icon = 'modular_nova/modules/ghostcafe/icons/robot_storage.dmi'
 	icon_state = "dyne_robostorage"
 	anchored = TRUE
 	density = TRUE
 	uses = 1
-	you_are_text = "You are an Interdyne Pharmaceuticals Cyborg!"
-	flavour_text = "You are a cyborg produced and utilized by the Interdyne Pharmaceuticals company."
-	important_text = "Keep yourself to the same standards as Silicon Policy. You are not an antagonist. Adminhelp before antagonizing station crew."
+	you_are_text = "你是一名英特戴恩制药机械人！"
+	flavour_text = "你是由英特戴恩制药公司生产并使用的机械人。"
+	important_text = "请遵守与硅基政策相同的标准。你不是反派。在对抗空间站船员前，请先向管理员求助。"
 	loadout_enabled = TRUE
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 	spawner_job_path = /datum/job/ds2
@@ -274,10 +274,10 @@
 	loadout_enabled = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/hotel_staff/manager
-	name = "staff manager sleeper"
+	name = "员工经理休眠舱"
 	outfit = /datum/outfit/hotelstaff/manager
-	you_are_text = "You are the manager of a top-of-the-line space hotel!"
-	flavour_text = "You are the manager of a top-of-the-line space hotel! Make sure the guests are looked after, the hotel is advertised, and your employees aren't slacking off!"
+	you_are_text = "你是一家顶级太空酒店的经理！"
+	flavour_text = "你是一家顶级太空酒店的经理！确保照顾好客人，宣传好酒店，并且你的员工没有偷懒！"
 
 /obj/effect/mob_spawn/corpse/human/damaged/ashwalker
 	mob_type = /mob/living/carbon/human/species/lizard/ashwalker;
@@ -293,7 +293,7 @@
 	id_trim = /datum/id_trim/syndicom/nova/captain
 
 /datum/outfit/ds2
-	name = "default ds2 outfit"
+	name = "默认ds2套装"
 
 /datum/outfit/ds2/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
 	var/obj/item/card/id/id_card = syndicate.wear_id
@@ -307,7 +307,7 @@
 
 //DS-2 Hostage
 /datum/outfit/ds2/prisoner
-	name = "Syndicate Prisoner"
+	name = "辛迪加囚犯"
 	uniform = /obj/item/clothing/under/rank/prisoner/syndicate
 	shoes = /obj/item/clothing/shoes/sneakers/crimson
 	id = /obj/item/card/id/advanced/prisoner/ds2
@@ -315,7 +315,7 @@
 
 //DS-2 Crew
 /datum/outfit/ds2/syndicate
-	name = "DS-2 Operative"
+	name = "DS-2特工"
 	uniform = /obj/item/clothing/under/syndicate/nova/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne
@@ -330,7 +330,7 @@
 	id_trim = /datum/id_trim/syndicom/nova/ds2
 
 /datum/outfit/ds2/syndicate/miner
-	name = "DS-2 Mining Officer"
+	name = "DS-2采矿官"
 	uniform = /obj/item/clothing/under/syndicate/nova/overalls
 	belt = /obj/item/storage/bag/ore
 	back = /obj/item/storage/backpack/satchel/explorer
@@ -348,7 +348,7 @@
 	head = /obj/item/clothing/head/soft/black
 
 /datum/outfit/ds2/syndicate/service
-	name = "DS-2 General Staff"
+	name = "DS-2普通职员"
 	uniform = /obj/item/clothing/under/syndicate/nova/tactical
 	id_trim = /datum/id_trim/syndicom/nova/ds2/syndicatestaff
 	back = /obj/item/storage/backpack/satchel
@@ -359,7 +359,7 @@
 	head = /obj/item/clothing/head/soft/mime
 
 /datum/outfit/ds2/syndicate/enginetech
-	name = "DS-2 Engine Technician"
+	name = "DS-2引擎技术员"
 	uniform = /obj/item/clothing/under/syndicate/nova/overalls
 	head = /obj/item/clothing/head/soft/sec/syndicate
 	backpack_contents = list(
@@ -372,7 +372,7 @@
 	gloves = /obj/item/clothing/gloves/combat
 
 /datum/outfit/ds2/syndicate/researcher
-	name = "DS-2 Researcher"
+	name = "DS-2研究员"
 	uniform = /obj/item/clothing/under/rank/rnd/scientist/nova/utility/syndicate
 	id_trim = /datum/id_trim/syndicom/nova/ds2/researcher
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
@@ -384,7 +384,7 @@
 	)
 
 /datum/outfit/ds2/syndicate/stationmed
-	name = "DS-2 Medical Officer"
+	name = "DS-2医疗官"
 	uniform = /obj/item/clothing/under/syndicate/scrubs
 	id_trim = /datum/id_trim/syndicom/nova/ds2/medicalofficer
 	suit = /obj/item/clothing/suit/toggle/labcoat/interdyne
@@ -399,7 +399,7 @@
 		)
 
 /datum/outfit/ds2/syndicate/brigoff
-	name = "DS-2 Brig Officer"
+	name = "DS-2监狱官"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	id_trim = /datum/id_trim/syndicom/nova/ds2/brigofficer
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
@@ -422,7 +422,7 @@
 
 //DS-2 Command
 /datum/outfit/ds2/syndicate_command
-	name = "DS-2 Command Operative"
+	name = "DS-2指挥特工"
 	uniform = /obj/item/clothing/under/syndicate/nova/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne/command
@@ -437,7 +437,7 @@
 	id_trim = /datum/id_trim/syndicom/nova/ds2
 
 /datum/outfit/ds2/syndicate_command/masteratarms
-	name = "DS-2 Master At Arms"
+	name = "DS-2总军士长"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	id_trim = /datum/id_trim/syndicom/nova/ds2/masteratarms
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
@@ -455,7 +455,7 @@
 		)
 
 /datum/outfit/ds2/syndicate_command/corporateliaison
-	name = "DS-2 Corporate Liasion"
+	name = "DS-2企业联络员"
 	uniform = /obj/item/clothing/under/syndicate/sniper
 	head = /obj/item/clothing/head/fedora
 	shoes = /obj/item/clothing/shoes/laceup
@@ -466,7 +466,7 @@
 	id_trim = /datum/id_trim/syndicom/nova/ds2/corporateliasion
 
 /datum/outfit/ds2/syndicate_command/admiral
-	name = "DS-2 Admiral"
+	name = "DS-2 上将"
 	uniform = /obj/item/clothing/under/rank/captain/nova/utility/syndicate
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	back = /obj/item/storage/backpack/satchel
@@ -496,7 +496,7 @@
 	return ..()
 
 /datum/outfit/hotelstaff/manager
-	name = "Hotel Staff Manager"
+	name = "酒店员工经理"
 	uniform = /obj/item/clothing/under/suit/red
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/radio/off
@@ -511,23 +511,23 @@
 //Lost Space Truckers: Six people stranded in deep space aboard a cargo freighter. They must survive their marooning and cooperate.
 
 /obj/effect/mob_spawn/ghost_role/human/lostcargo
-	name = "freighter cryo crew pod"
-	prompt_name = "a lost cargo tech"
-	desc = "A humming cryo pod. There's a freight hauler inside."
+	name = "货船低温船员舱"
+	prompt_name = "一名迷途的货物技术员"
+	desc = "一个嗡嗡作响的低温舱。里面有一名货运员。"
 	outfit = /datum/outfit/freighter_crew
 	spawner_job_path = /datum/job/freighter_crew
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_species = /datum/species/human
-	you_are_text = "You were running cargo, a typical freight job until pirates attacked. You and your crewmates just barely made it, but the engines are shot. You're trapped in space now, only able to work together to survive this nightmare."
-	flavour_text = "You were running cargo, a typical freight job until pirates attacked. You and your crewmates just barely made it, but the engines are shot. You're trapped in space now, only able to work together to survive this nightmare."
+	you_are_text = "你原本在运送货物，一次普通的货运工作，直到海盗来袭。你和你的船员们勉强逃脱，但引擎被击毁了。你现在被困在太空中，只能齐心协力在这噩梦中生存下去。"
+	flavour_text = "你原本在运送货物，一次普通的货运工作，直到海盗来袭。你和你的船员们勉强逃脱，但引擎被击毁了。你现在被困在太空中，只能齐心协力在这噩梦中生存下去。"
 	important_text = "Work with your crew and don't abandon them. You are not directly working with NT, you are an independent freighter crew for the ship's Chief. Your job was merely being a deckhand doing freight work and helping with kitchen prep."
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 	quirks_enabled = TRUE
 	loadout_enabled = TRUE
 
 /datum/outfit/freighter_crew
-	name = "Freighter Crew"
+	name = "货船船员"
 	uniform = /obj/item/clothing/under/rank/cargo/tech/nova/casualman
 	shoes = /obj/item/clothing/shoes/workboots
 	back = /obj/item/storage/backpack
@@ -544,23 +544,23 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/lostminer
-	name = "freighter cryo excavator pod"
-	prompt_name = "a lost miner"
-	desc = "A humming cryo pod. There's an excavation worker inside."
+	name = "货船低温挖掘工舱"
+	prompt_name = "一名迷途的矿工"
+	desc = "一个嗡嗡作响的低温舱。里面有一名挖掘工人。"
 	outfit = /datum/outfit/freighter_excavator
 	spawner_job_path = /datum/job/freighter_crew
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_species = /datum/species/human
-	you_are_text = "You were running cargo, a typical freight job until pirates attacked. You and your crewmates just barely made it, but the engines are shot. You're trapped in space now, only able to work together to survive this nightmare."
-	flavour_text = "You were running cargo, a typical freight job until pirates attacked. You and your crewmates just barely made it, but the engines are shot. You're trapped in space now, only able to work together to survive this nightmare."
-	important_text = "Work with your crew and don't abandon them. You are not directly working with NT, you are an independent freighter crew working under the ship Chief. Your role was to be an excavation and salvage worker for the ship."
+	you_are_text = "你原本在运送货物，一次普通的货运工作，直到海盗来袭。你和你的船员们勉强逃脱，但引擎被击毁了。你现在被困在太空中，只能齐心协力在这噩梦中生存下去。"
+	flavour_text = "你原本在跑货运，一份普通的货运工作，直到海盗来袭。你和你的船员们勉强逃过一劫，但引擎被打坏了。你现在被困在太空中，只能齐心协力在这噩梦中生存下去。"
+	important_text = "与你的船员合作，不要抛弃他们。你并非直接为NT工作，你是一支独立的货船船员，在船长的领导下工作。你的角色是负责飞船的挖掘和打捞工作。"
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 	quirks_enabled = TRUE
 	loadout_enabled = TRUE
 
 /datum/outfit/freighter_excavator
-	name = "Freighter Excavator"
+	name = "货船挖掘工"
 	uniform = /obj/item/clothing/under/rank/cargo/tech/nova/gorka
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	back = /obj/item/storage/backpack
@@ -585,23 +585,23 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/lostcargoqm
-	name = "freighter cryo boss pod"
-	prompt_name = "a lost Quartermaster"
-	desc = "A humming cryo pod. You see someone who looks In Charge inside."
+	name = "货船低温老板舱"
+	prompt_name = "一位失踪的军需官"
+	desc = "一个嗡嗡作响的低温舱。你看到里面有个看起来是管事的人。"
 	outfit = /datum/outfit/freighter_boss
 	spawner_job_path = /datum/job/freighter_crew
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_species = /datum/species/human
-	you_are_text = "You and your crew were running a normal freight haul until a pirate attack knocked out the engines. All you can do now is try and survive and keep your crew alive."
-	flavour_text = "You and your crew were running a normal freight haul until a pirate attack knocked out the engines. All you can do now is try and survive and keep your crew alive."
-	important_text = "Do not abandon your crew, lead them and work with them to survive. You are not directly working with NT, you are an independent freighter crew. You are the captain of the ship, which you purchased a while ago, and are in charge of the crew."
+	you_are_text = "你和你的船员原本在进行一次普通的货运航行，直到一次海盗袭击摧毁了引擎。你现在能做的只有努力生存，并让你的船员活下去。"
+	flavour_text = "你和你的船员原本在进行一次普通的货运航行，直到一次海盗袭击摧毁了引擎。你现在能做的只有努力生存，并让你的船员活下去。"
+	important_text = "不要抛弃你的船员，带领他们并与他们合作以求生存。你并非直接为NT工作，你是一支独立的货船船员。你是这艘船的舰长（这艘船是你不久前买下的），负责管理全体船员。"
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 	quirks_enabled = TRUE
 	loadout_enabled = TRUE
 
 /datum/outfit/freighter_boss
-	name = "Freighter Boss"
+	name = "货船老板"
 	uniform = /obj/item/clothing/under/rank/cargo/tech/nova/turtleneck
 	shoes = /obj/item/clothing/shoes/workboots
 	neck = /obj/item/clothing/neck/cloak/qm
@@ -638,8 +638,8 @@
 	keyslot = new /obj/item/encryptionkey/headset_syndicate/cybersun
 
 /obj/item/radio/headset/cybersun/captain
-	name = "cybersun captain headset"
-	desc = "The headset of the boss."
+	name = "赛博阳光舰长耳机"
+	desc = "老板的耳机。"
 	command = TRUE
 
 
@@ -651,13 +651,13 @@
 //IDS//
 
 /obj/item/card/id/away/silver
-	name = "old silver identification card"
-	desc = "A perfectly generic identification card. Looks like it could use some flavor. This one looks like it belonged to someone important."
+	name = "旧银色ID卡"
+	desc = "一张完全通用的ID卡。看起来需要加点特色。这张看起来曾属于某个重要人物。"
 	wildcard_slots = WILDCARD_LIMIT_SILVER
 
 /obj/item/card/id/advanced/chameleon/elite/black/blackmarket
-	name = "scuffed ID card"
-	desc = "A faded, scuffed, plastic ID card. You can make out the rank \"Deck Crewman\"."
+	name = "磨损的ID卡"
+	desc = "一张褪色、磨损的塑料ID卡。你能辨认出“甲板船员”这个职位。"
 	trim = /datum/id_trim/away/blackmarket
 
 /datum/id_trim/away/blackmarket
@@ -665,22 +665,22 @@
 	assignment = "Deck Crewman"
 
 /obj/item/card/id/away/freightcrew
-	name = "Freighter ID"
-	desc = "An ID card marked with the rank of Freight Hauler."
+	name = "货船ID卡"
+	desc = "一张标有“货运员”职位的ID卡。"
 	trim = /datum/id_trim/job/cargo_technician
 
 /obj/item/card/id/away/freightmine
-	name = "Freighter ID"
-	desc = "An ID card marked with the rank of Freight Ship Excavator."
+	name = "货船ID卡"
+	desc = "一张标有货运飞船挖掘者职级的ID卡。"
 	trim = /datum/id_trim/job/shaft_miner
 
 /obj/item/card/id/away/silver/freightqm
-	name = "Freighter Deck Chief ID"
-	desc = "An ID card marked with the rank of Freight Deck Chief."
+	name = "货船甲板主管ID"
+	desc = "一张标有货运甲板主管职级的ID卡。"
 	trim = /datum/id_trim/job/quartermaster
 
 /obj/item/card/id/away/hotel/manager
-	name = "Manager ID"
+	name = "经理ID"
 	trim = /datum/id_trim/away/hotel/manager
 
 /datum/id_trim/away/hotel
@@ -697,14 +697,14 @@
 
 //film studio space ruins, actors and such.
 /obj/effect/mob_spawn/ghost_role/human/actor /// Overrides the /TG/ actor pod
-	name = "Actor's cryogenics pod"
+	name = "演员的低温休眠舱"
 	mob_species = null
 	quirks_enabled = TRUE
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 	loadout_enabled = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/director
-	name = "Director's cryogenics pod"
+	name = "导演的低温休眠舱"
 	mob_species = null
 	quirks_enabled = TRUE
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE

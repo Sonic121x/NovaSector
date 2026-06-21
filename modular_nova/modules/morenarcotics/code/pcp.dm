@@ -22,7 +22,7 @@
 
 /datum/reagent/drug/pcp //to an extent this is pretty much just super bath salts
 	name = "PCP"
-	description = "Pure rage put into chemical form."
+	description = "纯粹的愤怒化成的化学形态。"
 	color = "#ffea2e"
 	overdose_threshold = 10 //really low overdose to keep people from abusing it too much
 	ph = 8
@@ -72,7 +72,7 @@
 		QDEL_NULL(pcp_rage)
 	if(pcp_tenacity)
 		QDEL_NULL(pcp_tenacity)
-	affected_mob.visible_message(span_danger("[affected_mob] collapses onto the floor!")) //you pretty much pass out
+	affected_mob.visible_message(span_danger("[affected_mob]瘫倒在地板上！")) //you pretty much pass out
 	affected_mob.Paralyze(pcp_lifetime,TRUE)
 	affected_mob.drop_all_held_items()
 
@@ -85,7 +85,7 @@
 	if(SPT_PROB(2.5, seconds_per_tick))
 		affected_mob.emote(pick("twitch","drool"))
 	if(SPT_PROB(1.5, seconds_per_tick))
-		affected_mob.visible_message(span_danger("[affected_mob] flails their arms around everywhere!"))
+		affected_mob.visible_message(span_danger("[affected_mob]到处挥舞着手臂！"))
 		affected_mob.drop_all_held_items()
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
@@ -93,7 +93,7 @@
 //precursor chemical
 /datum/reagent/pcc
 	name = "PCC"
-	description = "A chemical precursor to PCP."
+	description = "PCP的一种化学前体。"
 	color = "#ffea2e" // rgb: 128, 128, 128
 	taste_description = "satiated rage"
 	ph = 7.3

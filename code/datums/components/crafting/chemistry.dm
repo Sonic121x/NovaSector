@@ -1,5 +1,5 @@
 /datum/crafting_recipe/improv_explosive
-	name = "Improvised Explosive"
+	name = "简易爆炸装置"
 	result = /obj/item/grenade/iedcasing/spawned
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	reqs = list(
@@ -12,7 +12,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/molotov
-	name = "Molotov"
+	name = "莫洛托夫鸡尾酒"
 	result = /obj/item/reagent_containers/cup/glass/bottle/molotov
 	reqs = list(
 		/obj/item/rag = 1,
@@ -22,7 +22,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/chemical_payload
-	name = "Chemical Payload (C4)"
+	name = "化学载荷（C4）"
 	result = /obj/item/bombcore/chemical
 	reqs = list(
 		/obj/item/stock_parts/matter_bin = 1,
@@ -33,7 +33,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/chemical_payload2
-	name = "Chemical Payload (Gibtonite)"
+	name = "化学载荷（吉布顿岩）"
 	result = /obj/item/bombcore/chemical
 	reqs = list(
 		/obj/item/stock_parts/matter_bin = 1,
@@ -45,7 +45,7 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY //there are two ways to make a chem bombcore. We go with the first one for mats check
 
 /datum/crafting_recipe/alcohol_burner
-	name = "Burner (Ethanol)"
+	name = "燃烧器（乙醇）"
 	result = /obj/item/burner
 	time = 5 SECONDS
 	reqs = list(
@@ -56,7 +56,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/oil_burner
-	name = "Burner (Oil)"
+	name = "燃烧器（油）"
 	result = /obj/item/burner/oil
 	time = 5 SECONDS
 	reqs = list(
@@ -67,7 +67,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/fuel_burner
-	name = "Burner (Fuel)"
+	name = "燃烧器（燃料）"
 	result = /obj/item/burner/fuel
 	time = 5 SECONDS
 	reqs = list(
@@ -78,7 +78,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/thermometer
-	name = "Thermometer"
+	name = "温度计"
 	tool_behaviors = list(TOOL_WELDER)
 	result = /obj/item/thermometer
 	time = 5 SECONDS
@@ -89,7 +89,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/thermometer_alt
-	name = "Thermometer"
+	name = "温度计"
 	result = /obj/item/thermometer/pen
 	time = 5 SECONDS
 	reqs = list(
@@ -99,7 +99,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/ph_booklet
-	name = "pH booklet"
+	name = "pH试纸册"
 	result = /obj/item/ph_booklet
 	time = 5 SECONDS
 	reqs = list(
@@ -109,7 +109,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/dropper //Maybe make a glass pipette icon?
-	name = "Dropper"
+	name = "滴管"
 	result = /obj/item/reagent_containers/dropper
 	tool_behaviors = list(TOOL_WELDER)
 	time = 5 SECONDS
@@ -120,7 +120,7 @@
 
 
 /datum/crafting_recipe/chem_separator
-	name = "chemical separator"
+	name = "化学分离器"
 	result = /obj/structure/chem_separator
 	tool_behaviors = list(TOOL_WELDER)
 	time = 5 SECONDS
@@ -133,7 +133,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/improvised_chem_heater
-	name = "Improvised chem heater"
+	name = "简易化学加热器"
 	result = /obj/machinery/space_heater/improvised_chem_heater
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
 	time = 15 SECONDS
@@ -148,7 +148,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/improvised_coolant
-	name = "Improvised cooling spray"
+	name = "简易冷却喷雾"
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	result = /obj/item/extinguisher/crafted
 	time = 10 SECONDS

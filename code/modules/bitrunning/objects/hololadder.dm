@@ -1,8 +1,8 @@
 /obj/structure/hololadder
-	name = "hololadder"
+	name = "全息梯"
 
 	anchored = TRUE
-	desc = "An abstract representation of the means to disconnect from the virtual domain."
+	desc = "一种从虚拟域断开连接的抽象表示方式。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder11"
 	obj_flags = BLOCK_Z_OUT_DOWN
@@ -30,14 +30,14 @@
 	. = ..()
 
 	if(isnull(server_ref.resolve()))
-		. += span_infoplain("It's not connected to anything.")
+		. += span_infoplain("它没有连接到任何东西。")
 		return
 
 	if(isobserver(user))
-		. += span_notice("Left click to view the server that this ladder is connected to.")
+		. += span_notice("左键点击查看此梯子连接的服务器。")
 		return
 
-	. += span_infoplain("This ladder is connected to a server. You can click on it or walk over it to disconnect.")
+	. += span_infoplain("此梯子已连接到服务器。你可以点击它或走过它来断开连接。")
 
 
 /obj/structure/hololadder/attack_hand(mob/user, list/modifiers)
@@ -73,10 +73,10 @@
 				return
 
 	if(!HAS_TRAIT(user, TRAIT_TEMPORARY_BODY))
-		balloon_alert(user, "no connection detected")
+		balloon_alert(user, "未检测到连接")
 		return
 
-	balloon_alert(user, "disconnecting...")
+	balloon_alert(user, "断开连接中...")
 	if(do_after(user, travel_time, src))
 		SEND_SIGNAL(user, COMSIG_BITRUNNER_LADDER_SEVER)
 

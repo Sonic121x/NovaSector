@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/spray/waterflower/lube
-	name = "water flower"
-	desc = "A seemingly innocent sunflower...with a twist. A <i>slippery</i> twist."
+	name = "水花"
+	desc = "一朵看似无害的向日葵……却带有一点变化。一个<i>滑溜溜的</i>变化。"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "sunflower"
 	inhand_icon_state = "sunflower"
@@ -13,7 +13,7 @@
 //BANANIUM SWORD
 
 /obj/item/melee/energy/sword/bananium
-	name = "bananium sword"
+	name = "蕉矿剑"
 	icon_state = "e_sword"
 	attack_verb_continuous = list("hits", "taps", "pokes")
 	attack_verb_simple = list("hit", "tap", "poke")
@@ -65,7 +65,7 @@
 /obj/item/melee/energy/sword/bananium/attackby(obj/item/weapon, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(COOLDOWN_FINISHED(src, next_trombone_allowed) && istype(weapon, /obj/item/melee/energy/sword/bananium))
 		COOLDOWN_START(src, next_trombone_allowed, 5 SECONDS)
-		to_chat(user, span_warning("You slap the two swords together. Sadly, they do not seem to fit!"))
+		to_chat(user, span_warning("你将两把剑拍在一起。可惜，它们似乎无法组合！"))
 		playsound(src, 'sound/misc/sadtrombone.ogg', 50)
 		return TRUE
 	return ..()
@@ -73,7 +73,7 @@
 /obj/item/melee/energy/sword/bananium/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		attack_self(user)
-	user.visible_message(span_suicide("[user] is [pick("slitting [user.p_their()] stomach open with", "falling on")] [src]! It looks like [user.p_theyre()] trying to commit seppuku, but the blade slips off of [user.p_them()] harmlessly!"))
+	user.visible_message(span_suicide("[user]正在[pick("slitting [user.p_their()] stomach open with", "falling on")][src]！看起来[user.p_theyre()]试图切腹自尽，但刀刃从[user.p_them()]身上无害地滑开了！"))
 	var/datum/component/slippery/slipper = GetComponent(/datum/component/slippery)
 	slipper.Slip(src, user)
 	return SHAME
@@ -81,8 +81,8 @@
 //BANANIUM SHIELD
 
 /obj/item/shield/energy/bananium
-	name = "bananium energy shield"
-	desc = "A shield that stops most melee attacks, protects user from almost all energy projectiles, and can be thrown to slip opponents."
+	name = "蕉矿光盾"
+	desc = "一个可以挡住大部分近战攻击的盾牌，能保护使用者免受几乎所有能量投射物的伤害，并且可以投掷以滑倒对手。"
 	icon_state = "bananaeshield"
 	inhand_icon_state = "bananaeshield"
 	throw_speed = 1
@@ -123,8 +123,8 @@
 //BOMBANANA
 
 /obj/item/seeds/banana/bombanana
-	name = "bombanana seed pack"
-	desc = "They're seeds that grow into bombanana trees. When grown, give to the clown."
+	name = "炸弹香蕉种子包"
+	desc = "它们是可以长成爆炸香蕉树的种子。种好后，请交给小丑。"
 	plantname = "Bombanana Tree"
 	product = /obj/item/food/grown/banana/bombanana
 
@@ -152,7 +152,7 @@
 	return NONE
 
 /obj/item/grown/bananapeel/bombanana
-	desc = parent_type::desc + " Why is it beeping?"
+	desc = parent_type::desc + "为什么它在哔哔响？"
 	seed = /obj/item/seeds/banana/bombanana
 	/// How long we have until we explode.
 	var/det_time = 5 SECONDS
@@ -163,12 +163,12 @@
 	. = ..()
 	AddComponent(/datum/component/slippery, det_time)
 	bomb = new /obj/item/grenade/syndieminibomb(src)
-	bomb.name = "bombanana peel"
+	bomb.name = "炸弹香蕉皮"
 	bomb.det_time = det_time
 
 	var/potential_user = null
 	if(iscarbon(loc))
-		to_chat(loc, span_danger("[src] begins to beep."))
+		to_chat(loc, span_danger("[src]开始发出哔哔声。"))
 		potential_user = loc // just for fingerprint diagnosis in explosion logging, the on_consumed proc will have provided the necessary context already
 
 	bomb.arm_grenade(potential_user, msg = FALSE)
@@ -178,7 +178,7 @@
 	QDEL_NULL(bomb)
 
 /obj/item/grown/bananapeel/bombanana/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is deliberately slipping on \the [src]! It looks like \he's trying to commit suicide."))
+	user.visible_message(span_suicide("[user] 故意踩上了 \the [src]！看起来 \he 想自杀。"))
 	playsound(loc, 'sound/misc/slip.ogg', 50, TRUE, -1)
 	bomb.arm_grenade(user, 0, FALSE)
 	return BRUTELOSS
@@ -186,8 +186,8 @@
 //TEARSTACHE GRENADE
 
 /obj/item/grenade/chem_grenade/teargas/moustache
-	name = "tear-stache grenade"
-	desc = "A handsomely-attired teargas grenade."
+	name = "催泪胡子手榴弹"
+	desc = "一颗衣着华丽的催泪手榴弹。"
 	icon_state = "moustacheg"
 	clumsy_check = GRENADE_NONCLUMSY_FUMBLE
 

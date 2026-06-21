@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT_TYPED(random_hallucination_weighted_list, /list, generate_hallu
 		for(var/datum/hallucination/hallucination_type as anything in GLOB.random_hallucination_weighted_list[tier])
 			total_weight += GLOB.random_hallucination_weighted_list[tier][hallucination_type]
 
-	to_chat(usr, span_boldnotice("The total weight of the hallucination weighted list is [total_weight]."))
+	to_chat(usr, span_boldnotice("幻觉加权列表的总权重为[total_weight]。"))
 	return total_weight
 
 ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucination Weights", "View the weight of each hallucination subtype in the random weighted list.", ADMIN_CATEGORY_DEBUG)
@@ -250,17 +250,17 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucinat
 			if(initial(delusion_type.abstract_hallucination_parent) == delusion_type)
 				delusions -= delusion_type
 
-	var/chosen = tgui_input_list(user, "Select a delusion type. Custom will allow for custom icon entry.", "Select Delusion", delusions)
+	var/chosen = tgui_input_list(user, "选择一种幻觉类型。自定义类型允许输入自定义图标。", "选择幻觉", delusions)
 	if(!chosen || !ispath(chosen, /datum/hallucination/delusion))
 		return
 
 	var/list/delusion_args = list()
 	var/static/list/options = list("Yes", "No")
-	var/duration = tgui_input_number(user, "How long should it last in seconds?", "Delusion: Duration", max_value = INFINITY, min_value = 1, default = 30)
-	var/affects_us = (tgui_alert(user, "Should they see themselves as the delusion?", "Delusion: Affects us", options) == "Yes")
-	var/affects_others = (tgui_alert(user, "Should they see everyone else delusion?", "Delusion: Affects others", options) == "Yes")
-	var/skip_nearby = (tgui_alert(user, "Should the delusion only affect people outside of their view?", "Delusion: Skip in view", options) == "Yes")
-	var/play_wabbajack = (tgui_alert(user, "Play the wabbajack sound when it happens?", "Delusion: Wabbajack sound", options) == "Yes")
+	var/duration = tgui_input_number(user, "它应该持续多少秒？", "幻觉：持续时间", max_value = INFINITY, min_value = 1, default = 30)
+	var/affects_us = (tgui_alert(user, "他们应该将自己视为幻觉吗？", "幻觉：影响自身", options) == "Yes")
+	var/affects_others = (tgui_alert(user, "他们应该将其他所有人都视为幻觉吗？", "幻觉：影响他人", options) == "Yes")
+	var/skip_nearby = (tgui_alert(user, "幻觉是否只影响他们视野之外的人？", "幻觉：跳过视野内目标", options) == "Yes")
+	var/play_wabbajack = (tgui_alert(user, "发生时播放变形法杖音效？", "幻觉：变形法杖音效", options) == "Yes")
 
 	delusion_args = list(
 		chosen,
@@ -273,15 +273,15 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucinat
 	)
 
 	if(ispath(chosen, /datum/hallucination/delusion/custom))
-		var/custom_icon_file = input(user, "Pick file for custom delusion:", "Custom Delusion: File") as null|file
+		var/custom_icon_file = input(user, "选择自定义幻觉图标文件：", "自定义幻觉：文件") as null|file
 		if(!custom_icon_file)
 			return
 
-		var/custom_icon_state = tgui_input_text(user, "What icon state do you wanna use from the file?", "Custom Delusion: Icon State")
+		var/custom_icon_state = tgui_input_text(user, "你想使用文件中的哪个图标状态？", "自定义幻觉：图标状态")
 		if(!custom_icon_state)
 			return
 
-		var/custom_name = tgui_input_text(user, "What name should it show up as? (Can be empty)", "Custom Delusion: Name", max_length = MAX_NAME_LEN)
+		var/custom_name = tgui_input_text(user, "它应显示为什么名称？（可为空）", "自定义幻觉：名称", max_length = MAX_NAME_LEN)
 
 		delusion_args += list(
 			custom_icon_file = custom_icon_file,
@@ -293,9 +293,9 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucinat
 
 /// Lines the bubblegum hallucinatoin uses when it pops up
 #define BUBBLEGUM_HALLUCINATION_LINES list( \
-		"I AM IMMORTAL.", \
-		"I SHALL TAKE YOUR WORLD.", \
-		"I SEE YOU.", \
-		"YOU CANNOT ESCAPE ME FOREVER.", \
-		"NOTHING CAN HOLD ME.", \
+		"我是不朽的。", \
+		"我将夺取你的世界。", \
+		"我看见你了。", \
+		"你无法永远逃避我。", \
+		"没有什么能困住我。", \
 	)

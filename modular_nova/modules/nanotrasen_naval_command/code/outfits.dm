@@ -1,5 +1,5 @@
 /datum/outfit/centcom/naval
-	name = "Nanotrasen Naval Command - Default"
+	name = "纳米传讯海军指挥部 - 默认"
 	uniform = /obj/item/clothing/under/rank/centcom/nova/naval
 	id = /obj/item/card/id/advanced/centcom
 	l_pocket = /obj/item/melee/baton/telescopic
@@ -19,7 +19,7 @@
 	..()
 
 /datum/outfit/centcom/naval/ensign
-	name = "Nanotrasen Naval Command - Ensign"
+	name = "纳米传讯海军指挥部 - 少尉"
 
 	id_trim = /datum/id_trim/centcom/naval
 
@@ -35,7 +35,7 @@
 	)
 
 /datum/outfit/centcom/naval/lieutenant
-	name = "Nanotrasen Naval Command - Lieutenant"
+	name = "纳米传讯海军司令部 - 中尉"
 
 	id_trim = /datum/id_trim/centcom/naval/lieutenant
 
@@ -53,7 +53,7 @@
 	)
 
 /datum/outfit/centcom/naval/lieutenant_commander
-	name = "Nanotrasen Naval Command - Lieutenant Commander"
+	name = "纳米传讯海军指挥部 - 海军少校"
 
 	id_trim = /datum/id_trim/centcom/naval/ltcr
 
@@ -73,7 +73,7 @@
 	)
 
 /datum/outfit/centcom/naval/commander
-	name = "Nanotrasen Naval Command - Commander"
+	name = "纳米传讯海军指挥部 - 指挥官"
 
 	id_trim = /datum/id_trim/centcom/naval/commander
 
@@ -93,7 +93,7 @@
 	)
 
 /datum/outfit/centcom/naval/captain
-	name = "Nanotrasen Naval Command - Captain"
+	name = "纳米传讯海军指挥部 - 舰长"
 
 	id_trim = /datum/id_trim/centcom/naval/captain
 
@@ -113,7 +113,7 @@
 	)
 
 /datum/outfit/centcom/naval/rear_admiral
-	name = "Nanotrasen Naval Command - Rear Admiral"
+	name = "纳米传讯海军司令部 - 海军少将"
 
 	id_trim = /datum/id_trim/centcom/naval/rear_admiral
 
@@ -129,7 +129,7 @@
 	)
 
 /datum/outfit/centcom/naval/admiral
-	name = "Nanotrasen Naval Command - Admiral"
+	name = "纳米传讯海军司令部 - 上将"
 
 	id_trim = /datum/id_trim/centcom/naval/admiral
 
@@ -147,7 +147,7 @@
 	)
 
 /datum/outfit/centcom/naval/fleet_admiral
-	name = "Nanotrasen Naval Command - Fleet Admiral"
+	name = "纳米传讯海军指挥部 - 舰队上将"
 
 	id_trim = /datum/id_trim/centcom/naval/fleet_admiral
 

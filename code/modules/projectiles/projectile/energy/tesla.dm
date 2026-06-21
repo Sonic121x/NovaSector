@@ -1,5 +1,5 @@
 /obj/projectile/energy/tesla
-	name = "tesla bolt"
+	name = "锁死的特斯拉"
 	icon_state = "tesla_projectile"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	damage = 10 //A worse lasergun
@@ -18,15 +18,15 @@
 	tesla_zap(source = src, zap_range = zap_range, power = power, cutoff = 1e3, zap_flags = zap_flags)
 
 /obj/projectile/energy/tesla/revolver
-	name = "energy orb"
+	name = "能量宝珠"
 
 /obj/projectile/energy/tesla/cannon
-	name = "tesla orb"
+	name = "特斯拉电球"
 	power = 2e4
 	damage = 15 //Mech man big
 
 /obj/projectile/energy/tesla_cannon
-	name = "tesla bolt"
+	name = "锁死的特斯拉"
 	icon_state = null
 	hitscan = TRUE
 	impact_effect_type = null

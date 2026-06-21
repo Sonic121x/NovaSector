@@ -36,8 +36,8 @@ GLOBAL_DATUM(mech_drop_alert_handler, /datum/mech_drop_alert_handler)
 
 
 /obj/item/mecha_summon_remote
-	name = "mech drop beacon"
-	desc = "base for solfed mech beacons, (yell at whoever gave you this one.)"
+	name = "机甲空投信标"
+	desc = "太阳联邦机甲信标的基础型号，（谁给你这个就冲谁嚷嚷。）"
 	icon = 'modular_nova/modules/solfed_mechs/icons/grenades.dmi'
 	icon_state = "mech_beacon"
 	///What mech should this beacon spawn?
@@ -52,40 +52,40 @@ GLOBAL_DATUM(mech_drop_alert_handler, /datum/mech_drop_alert_handler)
 	transform = matrix(0.6, MATRIX_SCALE)
 
 /obj/item/mecha_summon_remote/aegis
-	name = "Aegis Orbital Deployment Beacon"
-	desc = "A throwable beacon that designates a SolFed mech drop zone. Calls for the deployment of a riot-control mech. Rumored to have been field-tested in Sector 7G."
+	name = "埃癸斯轨道部署信标"
+	desc = "一种可投掷的信标，用于标记太阳联邦机甲空投区。呼叫部署一台防暴机甲。据传曾在7G扇区进行过实地测试。"
 	spawn_type = /obj/vehicle/sealed/mecha/solfed/aegis
 
 /obj/item/mecha_summon_remote/atlas
-	name = "Atlas Orbital Deployment Beacon"
-	desc = "A throwable beacon that designates a SolFed mech drop zone. Calls in a support mech based on terraforming schematics from a defunct, ethically dubious conglomerate."
+	name = "擎天神轨道部署信标"
+	desc = "一种可投掷的信标，用于标记太阳联邦机甲空投区。呼叫一台基于一家已倒闭、伦理可疑的集团的地形改造方案设计的支援机甲。"
 	spawn_type = /obj/vehicle/sealed/mecha/solfed/atlas
 
 /obj/item/mecha_summon_remote/hermes
-	name = "Hermes Orbital Deployment Beacon"
-	desc = "A throwable beacon that designates a SolFed mech drop zone. Summons a recon mech inspired by a prototype courier drone known for vanishing from radar—codenamed HMX-2001."
+	name = "赫尔墨斯轨道部署信标"
+	desc = "一种可投掷的信标，用于标记太阳联邦机甲空投区。召唤一台侦察机甲，其灵感来源于一架以从雷达上消失而闻名的原型快递无人机——代号HMX-2001。"
 	spawn_type = /obj/vehicle/sealed/mecha/solfed/hermes
 
 /obj/item/mecha_summon_remote/prometheus
-	name = "Prometheus Orbital Deployment Beacon"
-	desc = "A throwable beacon that designates a SolFed mech drop zone. Deploys a breach-assault mech equipped with incendiary ordnance. Engineers joke that Prometheus is 'hot-headed' in more ways than one."
+	name = "普罗米修斯轨道部署信标"
+	desc = "一种可投掷的信标，用于标记太阳联邦机甲空投区。部署一台配备燃烧弹药的突袭机甲。工程师们开玩笑说普罗米修斯在不止一个方面都'头脑发热'。"
 	spawn_type = /obj/vehicle/sealed/mecha/solfed/prometheus
 
 /obj/item/mecha_summon_remote/thanatos
-	name = "Thanatos Orbital Deployment Beacon"
+	name = "塔纳托斯轨道部署信标"
 	desc = "A throwable beacon that designates a SolFed mech drop zone. Authorizes launch of a heavy assault mech optimized for suppression fire. Nicknamed 'Thanatos' after a design committee insisted it sounded cooler than 'Model-X.'"
 	spawn_type = /obj/vehicle/sealed/mecha/solfed/thanatos
 
 /obj/effect/temp_visual/solfed_drop_warning
-	name = "Orbital Drop Beacon"
-	desc = "A shimmering holographic marker designating a SolFed orbital deployment zone."
+	name = "轨道空投信标"
+	desc = "一个闪烁的全息标记，标示着太阳联邦轨道部署区。"
 	icon = 'modular_nova/modules/solfed_mechs/icons/hologram.dmi'
 	icon_state = "drop_warn"
 	duration = 34
 
 /obj/structure/closet/supplypod/mech_drop
-	name = "SolFed Mech Drop Pod"
-	desc = "A specialized orbital pod used to deliver SolFed mechs directly to the station surface."
+	name = "太阳联邦机甲空投舱"
+	desc = "一种专用轨道舱，用于将太阳联邦机甲直接投送至空间站表面。"
 	bluespace = TRUE
 	create_sparks = FALSE
 	effectStealth = TRUE
@@ -122,12 +122,12 @@ GLOBAL_DATUM(mech_drop_alert_handler, /datum/mech_drop_alert_handler)
 	if(activated)
 		return
 
-	user.visible_message(span_emote("[user] inputs ↑ ↑ ↓ → on the beacon interface."))
+	user.visible_message(span_emote("[user] 在信标界面上输入了 ↑ ↑ ↓ →。"))
 	if(do_after(user, 1 SECONDS, user))
 		icon_state = "mech_beacon_on"
 		activated = TRUE
 		activation_time = world.time
-		desc = "[desc]\nThis one is active, a blue light beams up from its top."
+		desc = "[desc]\nThis 这个信标处于激活状态，一道蓝光从其顶部向上射出。"
 		say(pick(
 			"Orbital drop beacon activated. Recommend throwing unless you enjoy being crushed.",
 			"Deployment sequence initiated. Toss me unless you're feeling brave.",
@@ -228,4 +228,4 @@ GLOBAL_DATUM(mech_drop_alert_handler, /datum/mech_drop_alert_handler)
 	if (prob(1))
 		sound_to_play = ANNOUNCER_ANIMES
 
-	priority_announce(text, "Nanotrasen traffic control", sound_to_play, ANNOUNCEMENT_TYPE_PRIORITY)
+	priority_announce(text, "纳米传讯交通管制", sound_to_play, ANNOUNCEMENT_TYPE_PRIORITY)

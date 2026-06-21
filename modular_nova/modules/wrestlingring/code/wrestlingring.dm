@@ -1,6 +1,6 @@
 /obj/structure/railing/wrestling
 	name = "wrestling ropes"
-	desc = "Ropes that are meant to go around a wrestling ring."
+	desc = "用于环绕摔跤台的绳索。"
 	icon = 'modular_nova/modules/wrestlingring/icons/wrestling.dmi'
 	icon_state = "ropes"
 	climbable = FALSE
@@ -99,18 +99,18 @@
 			if(!attacking_item.tool_start_check(user, amount=0))
 				return
 
-			to_chat(user, span_notice("You begin repairing [src]..."))
+			to_chat(user, span_notice("你开始修理[src]..."))
 			if(attacking_item.use_tool(src, user, 40, volume=50))
 				atom_integrity = max_integrity
-				to_chat(user, span_notice("You repair [src]."))
+				to_chat(user, span_notice("你修好了[src]。"))
 		else
-			to_chat(user, span_warning("[src] is already in good condition!"))
+			to_chat(user, span_warning("[src]已经处于良好状态！"))
 		return
 
 /obj/structure/wrestling_corner/wirecutter_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!anchored)
-		to_chat(user, span_warning("You cut apart the turnbuckle."))
+		to_chat(user, span_warning("你剪开了角柱。"))
 		tool.play_tool_sound(src, 100)
 		deconstruct()
 		return TRUE

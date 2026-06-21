@@ -1,6 +1,6 @@
 /obj/item/bong
-	name = "bong"
-	desc = "Technically known as a water pipe."
+	name = "水烟枪"
+	desc = "技术上称为水烟管。"
 	icon = 'modular_nova/modules/bongs/icons/bong.dmi'
 	lefthand_file = 'modular_nova/modules/bongs/icons/lefthand.dmi'
 	righthand_file = 'modular_nova/modules/bongs/icons/righthand.dmi'
@@ -39,12 +39,12 @@
 	if(istype(attacking_item, /obj/item/food/grown))
 		var/obj/item/food/grown/grown_item = attacking_item
 		if(packed_item)
-			balloon_alert(user, "already packed!")
+			balloon_alert(user, "已经装填好了！")
 			return
 		if(!HAS_TRAIT(grown_item, TRAIT_DRIED))
-			balloon_alert(user, "needs to be dried!")
+			balloon_alert(user, "需要先烘干！")
 			return
-		to_chat(user, span_notice("You stuff [grown_item] into [src]."))
+		to_chat(user, span_notice("你将[grown_item]塞进了[src]。"))
 		bong_hits = max_hits
 		packed_item = TRUE
 		if(grown_item.reagents)
@@ -54,9 +54,9 @@
 
 	else if(istype(attacking_item, /obj/item/reagent_containers/hash)) //for hash/dabs
 		if(packed_item)
-			balloon_alert(user, "already packed!")
+			balloon_alert(user, "已经装填好了！")
 			return
-		to_chat(user, span_notice("You stuff [attacking_item] into [src]."))
+		to_chat(user, span_notice("你将[attacking_item]塞进了[src]。"))
 		bong_hits = max_hits
 		packed_item = TRUE
 		if(attacking_item.reagents)
@@ -68,20 +68,20 @@
 		if(!lighting_text)
 			return ..()
 		if(bong_hits <= 0)
-			balloon_alert(user, "nothing to smoke!")
+			balloon_alert(user, "没有东西可抽！")
 			return ..()
 		light(lighting_text)
-		name = "lit [initial(name)]"
+		name = "点燃的[initial(name)]"
 
 /obj/item/bong/attack_self(mob/user)
 	var/turf/location = get_turf(user)
 	if(lit)
-		user.visible_message(span_notice("[user] puts out [src]."), span_notice("You put out [src]."))
+		user.visible_message(span_notice("[user]熄灭了[src]。"), span_notice("你熄灭了[src]。"))
 		lit = FALSE
 		icon_state = icon_off
 		inhand_icon_state = icon_off
 	else if(!lit && bong_hits > 0)
-		to_chat(user, span_notice("You empty [src] onto [location]."))
+		to_chat(user, span_notice("你将[src]倒在了[location]上。"))
 		new /obj/effect/decal/cleanable/ash(location)
 		packed_item = FALSE
 		bong_hits = 0
@@ -91,11 +91,11 @@
 /obj/item/bong/attack(mob/hit_mob, mob/user, def_zone)
 	if(!packed_item || !lit)
 		return
-	hit_mob.visible_message(span_notice("[user] starts [hit_mob == user ? "taking a hit from [src]." : "forcing [hit_mob] to take a hit from [src]!"]"), hit_mob == user ? span_notice("You start taking a hit from [src].") : span_userdanger("[user] starts forcing you to take a hit from [src]!"))
+	hit_mob.visible_message(span_notice("[user] starts [hit_mob == user ? "taking a hit from [src]." : "forcing [hit_mob] to take a hit from [src]!"]"), hit_mob == user ? span_notice("你开始从[src]吸一口。") : span_userdanger("[user]开始强迫你从[src]吸一口！"))
 	playsound(src, 'sound/effects/chemistry/heatdam.ogg', 50, TRUE)
 	if(!do_after(user, 40))
 		return
-	to_chat(hit_mob, span_notice("You finish taking a hit from the [src]."))
+	to_chat(hit_mob, span_notice("你吸完了[src]的一口。"))
 	if(reagents.total_volume)
 		reagents.trans_to(hit_mob, reagent_transfer_per_use, transferred_by = user, methods = VAPOR)
 		bong_hits--
@@ -111,7 +111,7 @@
 			playsound(hit_mob, pick('modular_nova/master_files/sound/effects/lungbust_cough1.ogg','modular_nova/master_files/sound/effects/lungbust_cough2.ogg'), 50, TRUE)
 			hit_mob.emote("cough")
 	if(bong_hits <= 0)
-		balloon_alert(hit_mob, "out of uses!")
+		balloon_alert(hit_mob, "使用次数耗尽！")
 		lit = FALSE
 		packed_item = FALSE
 		icon_state = icon_off
@@ -127,7 +127,7 @@
 		inhand_icon_state = icon_on
 		return
 	lit = TRUE
-	name = "lit [name]"
+	name = "点燃的[name]"
 
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
 		var/datum/effect_system/reagents_explosion/explosion = new(get_turf(src), round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) * 0.4, 1))
@@ -177,8 +177,8 @@
 		spread_stage--
 
 /obj/item/bong/lungbuster
-	name = "lungbuster"
-	desc = "30 inches of doom."
+	name = "肺爆者"
+	desc = "30英寸的毁灭。"
 	icon_state = "lungbusteroff"
 	inhand_icon_state = "lungbusteroff"
 	icon_on = "lungbusteron"
@@ -240,7 +240,7 @@
 #undef STAGE_DOWN_TIME
 
 /datum/crafting_recipe/bong
-	name = "Bong"
+	name = "水烟枪"
 	result = /obj/item/bong
 	reqs = list(/obj/item/stack/sheet/iron = 5,
 				/obj/item/stack/sheet/glass = 10)
@@ -248,7 +248,7 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/lungbuster
-	name = "The Lungbuster"
+	name = "肺爆者"
 	result = /obj/item/bong/lungbuster
 	reqs = list(/obj/item/stack/sheet/iron = 10,
 				/obj/item/stack/sheet/glass = 20)

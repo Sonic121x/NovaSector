@@ -1,7 +1,7 @@
 ///A bluespace input pipe for plumbing
 /obj/machinery/plumbing/sender
-	name = "chemical beacon"
-	desc = "A bluespace anchor for chemicals. Does not require power. Use a multitool linked to a Chemical Recipient on this machine to start teleporting reagents."
+	name = "化学信标"
+	desc = "一个化学品蓝空锚点。无需供电。使用已连接至另一化学接收装置的多功能工具配置此机器，即可开始传输试剂。"
 	icon_state = "beacon"
 	density = FALSE
 
@@ -44,7 +44,7 @@
 
 ///A bluespace output pipe for plumbing. Supports multiple recipients. Must be constructed with a circuit board
 /obj/machinery/plumbing/receiver
-	name = "chemical recipient"
+	name = "化学品接收器"
 	desc = "Receives chemicals from one or more chemical beacons. Use a multitool on this machine and then all subsequent chemical beacons. Reset by opening the \
 	panel and cutting the main wire."
 	icon_state = "recipient"
@@ -65,7 +65,7 @@
 
 /obj/machinery/plumbing/receiver/multitool_act(mob/living/user, obj/item/multitool/M)
 	M.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/plumbing/receiver/process(seconds_per_tick)

@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/embedpocalypse
-	name = "Make Everything Embeddable"
+	name = "Make Everything Embeddable-使一切均可嵌入使用"
 	weight = 2
 	typepath = /datum/round_event/wizard/embedpocalypse
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "Everything becomes pointy enough to embed in people when thrown."
+	description = "所有物品在投掷时都会变得足够尖锐，能嵌入人体。"
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 
@@ -22,12 +22,12 @@
 	GLOB.global_funny_embedding = new /datum/global_funny_embedding/pointy
 
 /datum/round_event_control/wizard/embedpocalypse/sticky
-	name = "Make Everything Sticky"
+	name = "Make Everything Sticky-让所有东西都有粘性"
 	weight = 6
 	typepath = /datum/round_event/wizard/embedpocalypse/sticky
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "Everything becomes sticky enough to be glued to people when thrown."
+	description = "所有物品在投掷时都会变得足够粘稠，能粘在人身上。"
 
 /datum/round_event/wizard/embedpocalypse/sticky/start()
 	GLOB.global_funny_embedding = new /datum/global_funny_embedding/sticky

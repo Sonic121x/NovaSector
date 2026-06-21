@@ -3,7 +3,7 @@
 
 ///A lavaland geyser that spawns chems and can be mining scanned for points. Made to work with the plumbing pump to extract that sweet rare nectar
 /obj/structure/geyser
-	name = "geyser"
+	name = "间歇泉"
 	icon = 'icons/obj/mining_zones/terrain.dmi'
 	icon_state = "geyser"
 	anchored = TRUE
@@ -68,10 +68,10 @@
 		return ..() //this runs the plunger code
 
 	if(discovered)
-		to_chat(user, span_warning("This geyser has already been discovered!"))
+		to_chat(user, span_warning("这个间歇泉已经被发现了！"))
 		return
 
-	to_chat(user, span_notice("You discovered the geyser and mark it on the GPS system!"))
+	to_chat(user, span_notice("你发现了间歇泉，并将其标记在GPS系统上！"))
 	playsound(src, 'sound/machines/beep/twobeep_high.ogg', 30)
 	SEND_SIGNAL(user, COMSIG_LIVING_DISCOVERED_GEYSER, src)
 	if(discovery_message)
@@ -88,7 +88,7 @@
 
 		var/obj/item/card/id/card = living.get_idcard()
 		if(card)
-			to_chat(user, span_notice("[point_value] mining points have been paid out!"))
+			to_chat(user, span_notice("已支付[point_value]点采矿点数！"))
 			card.registered_account.mining_points += point_value
 
 /obj/structure/geyser/wittel
@@ -129,8 +129,8 @@
 
 ///A wearable tool that lets you empty plumbing machinery and some other stuff
 /obj/item/plunger
-	name = "plunger"
-	desc = "It's a plunger for plunging."
+	name = "柱塞泵"
+	desc = "这是用来排液体的皮搋子。"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "plunger"
 	worn_icon_state = "plunger"
@@ -166,7 +166,7 @@
 		var/mob/living/carbon/H = hit_atom
 		if(!H.wear_mask)
 			H.equip_to_slot_if_possible(src, ITEM_SLOT_MASK)
-			H.visible_message(span_warning("The plunger slams into [H]'s face!"), span_warning("The plunger suctions to your face!"))
+			H.visible_message(span_warning("皮搋子猛地砸在[H]的脸上！"), span_warning("皮搋子吸在了你的脸上！"))
 
 /obj/item/plunger/attack_self(mob/user)
 	. = ..()
@@ -175,15 +175,15 @@
 
 	if(!layer_mode)
 		icon_state = initial(icon_state)
-		to_chat(user, span_notice("You set the plunger to 'Plunger Mode'."))
+		to_chat(user, span_notice("你将皮搋子设置为‘疏通模式’。"))
 	else
 		icon_state = layer_mode_sprite
-		to_chat(user, span_notice("You set the plunger to 'Layer Mode'."))
+		to_chat(user, span_notice("你将皮搋子设置为‘分层模式’。"))
 
 	playsound(src, 'sound/machines/click.ogg', 10, TRUE)
 
 /obj/item/plunger/click_alt(mob/user)
-	var/new_layer = tgui_input_list(user, "Select a layer", "Layer", GLOB.plumbing_layers)
+	var/new_layer = tgui_input_list(user, "选择层级", "层级", GLOB.plumbing_layers)
 	if(isnull(new_layer) || !user.can_perform_action(src))
 		return CLICK_ACTION_BLOCKING
 	target_layer = GLOB.plumbing_layers[new_layer]
@@ -191,8 +191,8 @@
 
 ///A faster reinforced plunger
 /obj/item/plunger/reinforced
-	name = "reinforced plunger"
-	desc = "It's an M. 7 Reinforced Plunger© for heavy duty plunging."
+	name = "加固柱塞泵"
+	desc = "这是一把 M.7 加固皮搋子©，专为繁重工作而生！"
 	icon_state = "reinforced_plunger"
 	worn_icon_state = "reinforced_plunger"
 	reinforced = TRUE

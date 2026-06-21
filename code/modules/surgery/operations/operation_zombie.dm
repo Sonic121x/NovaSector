@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/bionecrosis
-	name = "induce bionecrosis"
+	name = "诱导生物坏死"
 	rnd_name = "Bionecroplasty (Necrotic Revival)"
-	desc = "Inject reagents that stimulate the growth of a Romerol tumor inside the patient's brain."
+	desc = "注射刺激罗梅罗肿瘤在患者大脑内生长的试剂。"
 	rnd_desc = "An experimental procedure which induces the growth of a Romerol tumor inside the patient's brain."
 	implements = list(
 		/obj/item/reagent_containers/syringe = 1,
@@ -21,16 +21,16 @@
 
 /datum/surgery_operation/limb/bionecrosis/all_required_strings()
 	. = ..()
-	. += "the limb must have a brain present"
+	. += "肢体中必须存在大脑"
 
 /datum/surgery_operation/limb/bionecrosis/any_required_strings()
 	. = ..()
 	for(var/datum/reagent/chem as anything in zombie_chems)
-		. += "the patient or tool must contain >1u [chem::name]"
+		. += "患者或工具中必须含有 >1u [chem::name]"
 
 /datum/surgery_operation/limb/bionecrosis/all_blocked_strings()
 	. = ..()
-	. += "the limb must not already have a Romerol tumor"
+	. += "肢体中不能已有罗梅罗肿瘤"
 
 /datum/surgery_operation/limb/bionecrosis/state_check(obj/item/bodypart/limb)
 	if(locate(/obj/item/organ/zombie_infection) in limb)

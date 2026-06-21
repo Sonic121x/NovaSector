@@ -1,5 +1,5 @@
 /obj/item/circuitboard/machine/artifact_harvester
-	name = "Exotic Particle Harvester"
+	name = "奇异粒子收集器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/artifact_harvester
 	req_components = list(
@@ -11,8 +11,8 @@
 	)
 
 /obj/machinery/artifact_harvester
-	name = "Exotic Particle Harvester"
-	desc = "It is used to drain the energy out of the artifacts."
+	name = "奇异粒子收集器"
+	desc = "用于从遗物中抽取能量。"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/machinery.dmi'
 	icon_state = "harvester"
 	anchored = TRUE
@@ -49,7 +49,7 @@
 		user.visible_message(
 			span_notice("[user] inserts [tool] into [src]."),
 			span_notice("You insert [tool] into [src]."),
-			blind_message = span_hear("You hear click."),
+			blind_message = span_hear("你听见了咔哒声。"),
 		)
 		playsound(src, 'sound/machines/crate/crate_open.ogg', 30, 10)
 		src.inserted_battery = tool
@@ -57,7 +57,7 @@
 		ui_interact(user)
 		return ITEM_INTERACT_SUCCESS
 	else
-		to_chat(user, span_warning("There is already a battery in [src]."))
+		to_chat(user, span_warning("[src] 里已经有一个电池了。"))
 		return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/artifact_harvester/ui_interact(mob/user)
@@ -294,7 +294,7 @@
 			return
 		if(!inserted_battery.battery_effect)
 			return
-		if(tgui_alert(usr, "This action will dump all charge, safety gear is recommended before proceeding", "Warning", list("Continue", "Cancel")) != "Continue")
+		if(tgui_alert(usr, "此操作将释放所有电荷，建议在继续前穿戴好安全装备", "警告", list("Continue", "Cancel")) != "Continue")
 			return
 
 		if(!inserted_battery.battery_effect.activated)

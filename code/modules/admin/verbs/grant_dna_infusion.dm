@@ -12,7 +12,7 @@
 		var/str = "[initial(path.name)] ([path])"
 		infusions[str] = path
 
-	var/datum/infuser_entry/picked_infusion = tgui_input_list(usr, "Select infusion", "Apply DNA Infusion", infusions)
+	var/datum/infuser_entry/picked_infusion = tgui_input_list(usr, "选择注入", "应用 DNA 注入", infusions)
 
 	if(isnull(picked_infusion))
 		return FALSE
@@ -29,7 +29,7 @@
 		var/obj/item/organ/new_organ = new infusion_organ()
 		new_organ.replace_into(target)
 		if(new_organ.owner != target)
-			to_chat(usr, span_notice("[target] is unable to carry [new_organ]!"))
+			to_chat(usr, span_notice("[target] 无法承载 [new_organ]！"))
 			qdel(new_organ)
 			. = FALSE
 			continue

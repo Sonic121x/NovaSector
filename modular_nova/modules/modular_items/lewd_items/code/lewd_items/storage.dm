@@ -1,6 +1,6 @@
 /obj/item/storage/box/erp
-	name = "box of love"
-	desc = "A discrete box full of mysteries."
+	name = "爱之盒"
+	desc = "一个装满秘密的隐秘盒子。"
 	icon_state = "hugbox"
 	illustration = "heart"
 	foldable_result = /obj/item/stack/sheet/cardboard

@@ -11,8 +11,8 @@
 
 //Default
 /obj/structure/chair/sofa/bench/color
-	name = "bench"
-	desc = "Perfectly designed to be comfortable to sit on, and hellish to sleep on."
+	name = "长凳"
+	desc = "设计完美，坐着舒适，但睡上去简直是地狱。"
 	icon = 'icons/map_icons/objects.dmi'
 	icon_state = "/obj/structure/chair/sofa/bench/color"
 	post_init_icon_state = "bench_middle"

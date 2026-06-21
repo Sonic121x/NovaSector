@@ -101,7 +101,7 @@
 	parts_list = reverse_range(sortTim(parts_list, GLOBAL_PROC_REF(cmp_rped_sort)))
 	current_lowest_tier = parts_list[1].get_part_rating()
 	if(ismob(parent.loc))
-		parent.balloon_alert(parent.loc, "dropping lowest rated parts...")
+		parent.balloon_alert(parent.loc, "正在丢弃评级最低的零件...")
 
 	var/dump_loc = user.drop_location()
 	for(var/obj/item/part in parts_list)

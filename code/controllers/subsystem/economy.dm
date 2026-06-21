@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(economy)
-	name = "Economy"
+	name = "经济"
 	wait = 5 MINUTES
 	runlevels = RUNLEVEL_GAME
 	///How many paychecks should players start out the round with?

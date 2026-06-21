@@ -1,6 +1,6 @@
 /obj/item/lighter
-	name = "\improper Zippo lighter"
-	desc = "The zippo."
+	name = "\improper Zippo打火机"
+	desc = "芝宝打火机。"
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "zippo"
 	inhand_icon_state = "zippo"
@@ -71,9 +71,9 @@
 /obj/item/lighter/examine(mob/user)
 	. = ..()
 	if(get_fuel() <= 0)
-		. += span_warning("It is out of lighter fluid! Refill it with welder fuel.")
+		. += span_warning("它没有打火机油了！用焊接燃料补充。")
 	else
-		. += span_notice("It contains [get_fuel()] units of fuel out of [maximum_fuel].")
+		. += span_notice("它含有 [get_fuel()] 单位的燃料，最大容量为 [maximum_fuel]。")
 
 /obj/item/lighter/proc/light_updated(datum/source)
 	SIGNAL_HANDLER
@@ -81,7 +81,7 @@
 
 /// Destroy the lighter when it's shot by a bullet
 /obj/item/lighter/proc/on_intercepted_bullet(mob/living/victim, obj/projectile/bullet)
-	victim.visible_message(span_warning("\The [bullet] shatters on [victim]'s lighter!"))
+	victim.visible_message(span_warning("\The [bullet] 在 [victim] 的打火机上碎裂了！"))
 	playsound(victim, SFX_RICOCHET, 100, TRUE)
 	new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
 	do_sparks(1, TRUE, src)
@@ -95,11 +95,11 @@
 
 /obj/item/lighter/suicide_act(mob/living/carbon/user)
 	if (lit)
-		user.visible_message(span_suicide("[user] begins holding \the [src]'s flame up to [user.p_their()] face! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 开始将 \the [src] 的火焰举到 [user.p_their()] 脸前！看起来 [user.p_theyre()] 试图自杀！"))
 		playsound(src, 'sound/items/tools/welder.ogg', 50, TRUE)
 		return FIRELOSS
 	else
-		user.visible_message(span_suicide("[user] begins whacking [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 开始用 \the [src] 猛击 [user.p_them()] 自己！看起来 [user.p_theyre()] 试图自杀！"))
 		return BRUTELOSS
 
 /obj/item/lighter/update_icon_state()
@@ -116,7 +116,7 @@
 
 /obj/item/lighter/ignition_effect(atom/A, mob/user)
 	if(get_temperature())
-		. = span_infoplain(span_rose("With a single flick of [user.p_their()] wrist, [user] smoothly lights [A] with [src]. Damn [user.p_theyre()] cool."))
+		. = span_infoplain(span_rose("随着 [user.p_their()] 手腕轻轻一甩，[user] 流畅地用 [src] 点燃了 [A]。真 [user.p_theyre()] 酷。"))
 
 /obj/item/lighter/proc/set_lit(new_lit)
 	if(lit == new_lit)
@@ -164,13 +164,13 @@
 		set_lit(FALSE)
 		if(fancy)
 			user.visible_message(
-				span_notice("You hear a quiet click, as [user] shuts off [src] without even looking at what [user.p_theyre()] doing. Wow."),
-				span_notice("You quietly shut off [src] without even looking at what you're doing. Wow.")
+				span_notice("你听到一声轻响，[user] 甚至没看 [user.p_theyre()] 在做什么就关掉了 [src]。哇哦。"),
+				span_notice("你甚至没看自己在做什么就安静地关掉了 [src]。哇哦。")
 			)
 		else
 			user.visible_message(
-				span_notice("[user] quietly shuts off [src]."),
-				span_notice("You quietly shut off [src].")
+				span_notice("[user] 安静地关掉了 [src]。"),
+				span_notice("你安静地关掉了 [src]。")
 			)
 		return
 
@@ -181,8 +181,8 @@
 
 	if(fancy)
 		user.visible_message(
-			span_notice("Without even breaking stride, [user] flips open and lights [src] in one smooth movement."),
-			span_notice("Without even breaking stride, you flip open and light [src] in one smooth movement.")
+			span_notice("甚至没有放慢脚步，[user] 流畅地单手翻开并点燃了 [src]。"),
+			span_notice("甚至没有放慢脚步，你流畅地单手翻开并点燃了 [src]。")
 		)
 		return
 
@@ -199,16 +199,16 @@
 
 	if(hand_protected || prob(75))
 		user.visible_message(
-			span_notice("After a few attempts, [user] manages to light [src]."),
-			span_notice("After a few attempts, you manage to light [src].")
+			span_notice("经过几次尝试，[user] 成功点燃了 [src]。"),
+			span_notice("经过几次尝试，你成功点燃了 [src]。")
 		)
 		return
 
 	var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 	user.apply_damage(5, BURN, hitzone)
 	user.visible_message(
-		span_warning("After a few attempts, [user] manages to light [src] - however, [user.p_they()] burn[user.p_s()] [user.p_their()] finger in the process."),
-		span_warning("You burn yourself while lighting the lighter!")
+		span_warning("经过几次尝试，[user]终于点燃了[src]——然而，在这个过程中[user.p_they()]烧[user.p_s()]了[user.p_their()]手指。"),
+		span_warning("你在点燃打火机时烧伤了自己！")
 	)
 	user.add_mood_event("burnt_thumb", /datum/mood_event/burnt_thumb)
 
@@ -223,23 +223,23 @@
 		return ..()
 
 	if(cig.lit)
-		to_chat(user, span_warning("\The [cig] is already lit!"))
+		to_chat(user, span_warning("\The [cig] 已经点燃了！"))
 	if(target_mob == user)
 		cig.attackby(src, user)
 		return
 
 	if(fancy)
-		cig.light(span_rose("[user] whips \the [src] out and holds it for [target_mob]. [user.p_Their()] arm is as steady as the unflickering flame [user.p_they()] light[user.p_s()] \the [cig] with."))
+		cig.light(span_rose("[user]唰地抽出\the [src]，为[target_mob]举着。[user.p_Their()]手臂稳如那不曾摇曳的火焰，[user.p_they()]就是用这火焰点燃[user.p_s()]\the [cig]的。"))
 	else
-		cig.light(span_notice("[user] holds \the [src] out for [target_mob], and lights [target_mob.p_their()] [cig.name]."))
+		cig.light(span_notice("[user] 为 [target_mob] 举起 \the [src]，并点燃了 [target_mob.p_their()] [cig.name]。"))
 
 ///Checks if the lighter is able to perform a welding task.
 /obj/item/lighter/tool_use_check(mob/living/user, amount, heat_required)
 	if(!lit)
-		to_chat(user, span_warning("[src] has to be on to complete this task!"))
+		to_chat(user, span_warning("[src] 必须处于开启状态才能完成此任务！"))
 		return FALSE
 	if(get_fuel() < amount)
-		to_chat(user, span_warning("You need more welding fuel to complete this task!"))
+		to_chat(user, span_warning("你需要更多焊接燃料来完成这个任务！"))
 		return FALSE
 	if(heat < heat_required)
 		return FALSE
@@ -279,8 +279,8 @@
 	return reagents.get_reagent_amount(/datum/reagent/fuel) + reagents.get_reagent_amount(/datum/reagent/toxin/plasma)
 
 /obj/item/lighter/greyscale
-	name = "cheap lighter"
-	desc = "A cheap lighter."
+	name = "廉价打火机"
+	desc = "一个廉价打火机。"
 	icon_state = "lighter"
 	maximum_fuel = 3
 	fancy = FALSE
@@ -326,12 +326,12 @@
 
 /obj/item/lighter/greyscale/ignition_effect(atom/A, mob/user)
 	if(get_temperature())
-		. = span_notice("After some fiddling, [user] manages to light [A] with [src].")
+		. = span_notice("经过一番摆弄，[user]成功用[src]点燃了[A]。")
 
 
 /obj/item/lighter/slime
-	name = "slime zippo"
-	desc = "A specialty zippo made from slimes and industry. Has a much hotter flame than normal."
+	name = "史莱姆芝宝"
+	desc = "一种由史莱姆和工业制品制成的特殊芝宝打火机。火焰温度比普通打火机高得多。"
 	icon_state = "slighter"
 	heat_while_on = parent_type::heat_while_on + 1000 //Blue flame is hotter, this means this does act as a welding tool.
 	light_color = LIGHT_COLOR_CYAN
@@ -341,13 +341,13 @@
 	return list(/datum/reagent/iron = 1, /datum/reagent/fuel = 5, /datum/reagent/medicine/pyroxadone = 5)
 
 /obj/item/lighter/skull
-	name = "badass zippo"
-	desc = "An absolutely badass zippo lighter. Just look at that skull!"
+	name = "酷炫芝宝"
+	desc = "一个绝对酷炫的芝宝打火机。看看那个骷髅头！"
 	overlay_state = "skull"
 
 /obj/item/lighter/mime
-	name = "pale zippo"
-	desc = "In lieu of fuel, performative spirit can be used to light cigarettes."
+	name = "苍白芝宝"
+	desc = "在没有燃料的情况下，可以用表演精神来点燃香烟。"
 	icon_state = "mlighter" //These ones don't show a flame.
 	light_color = LIGHT_COLOR_HALOGEN
 	heat_while_on = TCMB //I swear it's a real lighter dude you just can't see the flame dude I promise
@@ -360,11 +360,11 @@
 	return list(/datum/reagent/iron = 1, /datum/reagent/toxin/mutetoxin = 5, /datum/reagent/consumable/nothing = 10)
 
 /obj/item/lighter/mime/ignition_effect(atom/A, mob/user)
-	. = span_infoplain("[user] lifts \the [src] to the [A], which miraculously lights!")
+	. = span_infoplain("[user]将\the [src]举到[A]旁，它奇迹般地燃了起来！")
 
 /obj/item/lighter/bright
-	name = "illuminative zippo"
-	desc = "Sustains an incredibly bright chemical reaction when you spark it. Avoid looking directly at the igniter when lit."
+	name = "照明芝宝"
+	desc = "点火时会维持极其明亮的化学反应。点燃时请避免直视点火器。"
 	icon_state = "slighter"
 	light_color = LIGHT_COLOR_ELECTRIC_CYAN
 	overlay_state = "bright"
@@ -384,12 +384,12 @@
 
 /obj/item/lighter/bright/ignition_effect(atom/A, mob/user)
 	if(get_temperature())
-		. = span_infoplain(span_rose("[user] lifts the [src] to the [A], igniting it with a brilliant flash of light!"))
+		. = span_infoplain(span_rose("[user]将[src]举到[A]旁，用一道耀眼的闪光将其点燃！"))
 		var/mob/living/current_viewer = user
 		current_viewer.flash_act(4)
 
 /obj/effect/spawner/random/special_lighter
-	name = "special lighter spawner"
+	name = "特殊打火机生成器"
 	icon_state = "lighter"
 	loot = list(
 		/obj/item/lighter/skull,

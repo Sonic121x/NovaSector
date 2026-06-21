@@ -1,9 +1,9 @@
 /obj/item/disk/nifsoft_uploader/job/money_sense
-	name = "Automatic Apprasial"
+	name = "自动估价"
 	loaded_nifsoft = /datum/nifsoft/money_sense
 
 /datum/nifsoft/money_sense
-	name = "Automatic Appraisal"
+	name = "自动估价"
 	program_desc = "Connects the user's brain to a database containing the current monetary values for most items, allowing them to determine their value in realtime"
 	active_mode = TRUE
 	active_cost = 0.5
@@ -51,8 +51,8 @@
 	for(var/x in export.total_amount)
 		price += export.total_value[x]
 	if(price)
-		export_text = span_noticealien("This item has an export value of: <b>[price] credits.")
+		export_text = span_noticealien("此物品的出口价值为：<b>[price]信用点。")
 	else
-		export_text = span_warning("This item has no export value.")
+		export_text = span_warning("此物品没有出口价值。")
 
 	to_chat(parent, export_text)

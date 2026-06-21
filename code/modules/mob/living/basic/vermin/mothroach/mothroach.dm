@@ -1,6 +1,6 @@
 /mob/living/basic/mothroach
-	name = "mothroach"
-	desc = "This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches."
+	name = "蛾螂"
+	desc = "这是多次尝试将蛾族人与蟑螂进行基因混合后产生的可爱副产品。"
 	icon_state = "mothroach"
 	icon_living = "mothroach"
 	icon_dead = "mothroach_dead"
@@ -19,10 +19,10 @@
 	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_HEAD
 
-	verb_say = "flutters"
-	verb_ask = "flutters inquisitively"
-	verb_exclaim = "flutters loudly"
-	verb_yell = "flutters loudly"
+	verb_say = "扑腾着说"
+	verb_ask = "好奇地扑腾着"
+	verb_exclaim = "大声扑腾"
+	verb_yell = "大声扑腾"
 	response_disarm_continuous = "shoos"
 	response_disarm_simple = "shoo"
 	response_harm_continuous = "hits"
@@ -93,8 +93,8 @@
 		playsound(loc, 'sound/mobs/humanoids/moth/scream_moth.ogg', 50, TRUE)
 
 /mob/living/basic/mothroach/bar
-	name = "mothroach bartender"
-	desc = "A mothroach serving drinks. Look at him go."
+	name = "蛾蟑酒保"
+	desc = "一只正在提供饮品的蛾蟑。看它忙活的样子。"
 	icon_state = "barroach"
 	icon_living = "barroach"
 	icon_dead = "barroach_dead"

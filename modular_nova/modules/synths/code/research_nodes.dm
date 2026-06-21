@@ -1,7 +1,7 @@
 /datum/techweb_node/improved_robotic_tend_wounds
 	id = TECHWEB_NODE_ROBOTIC_SURGERY
 	display_name = "Improved Robotic Repair Surgeries"
-	description = "As it turns out, you don't actually need to cut out entire support rods if it's just scratched!"
+	description = "事实证明，如果只是划伤，你其实不需要切掉整个支撑杆！"
 	prereq_ids = list(TECHWEB_NODE_CONSTRUCTION)
 	design_ids = list(
 		"synthetic_surgery_heal_combo",
@@ -14,7 +14,7 @@
 /datum/techweb_node/advanced_robotic_tend_wounds
 	id = TECHWEB_NODE_ROBOTIC_SURGERY_ADVANCED
 	display_name = "Advanced Robotic Surgeries"
-	description = "Did you know Hephaestus actually has a free online tutorial for synthetic trauma repairs? It's true!"
+	description = "你知道吗，赫菲斯托斯公司实际上有一个免费的合成创伤修复在线教程？这是真的！"
 	prereq_ids = list(TECHWEB_NODE_ROBOTIC_SURGERY)
 	design_ids = list(
 		"synthetic_surgery_heal_combo_upgrade",
@@ -69,7 +69,7 @@
 /datum/techweb_node/robotic_surgery_exp
 	id = TECHWEB_NODE_ROBOTIC_SURGERY_EXPERIMENTAL
 	display_name = "Experimental Synthetic Surgery"
-	description = "When robotics gets a little greedy."
+	description = "当机器人学变得有点贪婪时。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTIC_SURGERY)
 	design_ids = list(
 		"surgery_subsystem_upgrade_cortex_folding",

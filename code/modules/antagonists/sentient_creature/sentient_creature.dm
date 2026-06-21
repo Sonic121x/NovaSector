@@ -1,5 +1,5 @@
 /datum/antagonist/sentient_creature
-	name = "\improper Sentient Creature"
+	name = "\improper 自感知生物"
 	show_in_antagpanel = FALSE
 	show_in_roundend = FALSE
 	antag_flags = ANTAG_FAKE|ANTAG_SKIP_GLOBAL_LIST

@@ -1,6 +1,6 @@
 /obj/item/choice_beacon/job_locker
-	name = "job locker beacon"
-	desc = "A beacon which summons a locker with a job's items, what more is there to tell."
+	name = "职业储物柜信标"
+	desc = "一个能召唤装有某职业物品储物柜的信标，还有什么好说的呢。"
 	company_source = "Nanotrasen"
 	var/locker_path = list()
 
@@ -13,7 +13,7 @@
 	return locker_list
 
 /obj/item/choice_beacon/job_locker/debug
-	name = "debug job locker beacon"
+	name = "调试职业储物柜信标"
 	company_source = /obj/item/choice_beacon::company_source
 
 /obj/item/choice_beacon/job_locker/debug/generate_display_names()

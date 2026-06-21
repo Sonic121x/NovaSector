@@ -132,32 +132,32 @@
 		dispense_type = new_dispense_type
 
 /obj/item/mod/module/dispenser/ancient_milsim/mechanic
-	name = "MOD alien tools-cable dispenser module"
-	desc = "This module can create set of advanced tools and additional cable coils at the user's liking."
+	name = "MOD外星工具-电缆分发器模块"
+	desc = "该模块可以根据使用者的喜好创建一套高级工具和额外的电缆卷。"
 	dispense_type = /obj/item/storage/belt/military/abductor/full
 	cooldown_time = 5 SECONDS
 	new_dispense_type = /obj/item/stack/cable_coil
 	new_cooldown_time = 15 SECONDS
 
 /obj/item/mod/module/dispenser/ancient_milsim/trapper
-	name = "MOD chameleon projector-stealth landmines dispenser module"
-	desc = "This module can create a chameleon projector and additional stealth landmines at the user's liking."
+	name = "MOD变色龙投影仪-隐形地雷分发器模块"
+	desc = "该模块可以根据使用者的喜好创建一个变色龙投影仪和额外的隐形地雷。"
 	dispense_type = /obj/item/chameleon
 	cooldown_time = 10 SECONDS
 	new_dispense_type = /obj/item/minespawner/ancient_milsim
 	new_cooldown_time = 10 SECONDS
 
 /obj/item/mod/module/dispenser/ancient_milsim/marksman
-	name = "MOD barricade box-throwing knives dispenser module"
-	desc = "This module can create a box of barricades and additional throwing knives at the user's liking."
+	name = "MOD路障箱-投掷飞刀分发器模块"
+	desc = "该模块可以根据使用者的喜好创建一箱路障和额外的投掷飞刀。"
 	dispense_type = /obj/item/storage/barricade
 	cooldown_time = 15 SECONDS
 	new_dispense_type = /obj/item/knife/combat/throwing
 	new_cooldown_time = 5 SECONDS
 
 /obj/item/mod/module/dispenser/ancient_milsim/medic
-	name = "MOD custom hypospray-hypospray vials dispenser module"
-	desc = "This module can create a single combat hypospray and additional cartridges at the user's liking."
+	name = "MOD定制注射器-注射器药瓶分发器模块"
+	desc = "该模块可以根据使用者的喜好创建一个单兵战斗注射器和额外的药筒。"
 	dispense_type = /obj/item/hypospray/mkii/deluxe/cmo/combat/ancient_milsim
 	cooldown_time = 5 SECONDS
 	new_dispense_type = /obj/item/reagent_containers/cup/vial/large/ancient_milsim
@@ -167,7 +167,7 @@
 	start_vial = /obj/item/reagent_containers/cup/vial/large/ancient_milsim
 
 /obj/item/reagent_containers/cup/vial/large/ancient_milsim
-	name = "All-Heal-Virtual"
+	name = "全愈-虚拟"
 	icon_state = "hypoviallarge-buff"
 	list_reagents = list(
 		/datum/reagent/medicine/muscle_stimulant = 15,
@@ -178,8 +178,8 @@
 	)
 
 /obj/item/mod/module/dispenser/ancient_milsim/saboteur
-	name = "MOD Binyat implanter-EMP grenade dispenser module"
-	desc = "This module can create a single Binyat deck implanter and additional EMP grenades at the user's liking."
+	name = "MOD比尼亚特植入器-EMP手榴弹分发器模块"
+	desc = "该模块可以根据使用者的喜好创建一个比尼亚特牌组植入器和额外的EMP手榴弹。"
 	dispense_type = /obj/item/autosurgeon/syndicate/binyat
 	cooldown_time = 15 SECONDS
 	new_dispense_type = /obj/item/grenade/empgrenade
@@ -189,16 +189,16 @@
 	starting_organ = /obj/item/organ/cyberimp/hackerman_deck
 
 /obj/item/mod/module/dispenser/ancient_milsim/sentinel
-	name = "MOD stationary machinegun-machinegun ammo box module"
-	desc = "This module can create a single disassembled heavy machinegun and additional ammo boxes at the user's liking."
+	name = "MOD固定机枪-机枪弹药箱模块"
+	desc = "该模块可以根据使用者的喜好创建一个拆解的重机枪和额外的弹药箱。"
 	dispense_type = /obj/item/mounted_machine_gun_folded
 	cooldown_time = 15 SECONDS
 	new_dispense_type = /obj/item/ammo_box/magazine/mmg_box
 	new_cooldown_time = 15 SECONDS
 
 /obj/item/mod/module/dispenser/ancient_milsim/trooper
-	name = "MOD Sol rifle-Sol rifle magazine dispenser module"
-	desc = "This module can create a single .40 Sol caliber assault rifle and additional magazines at the user's liking."
+	name = "MOD索尔步枪-索尔步枪弹匣分发器模块"
+	desc = "该模块可以根据使用者的喜好创建一个.40索尔口径突击步枪和额外的弹匣。"
 	dispense_type = /obj/item/gun/ballistic/automatic/sol_rifle/evil
 	cooldown_time = 25 SECONDS
 	new_dispense_type = /obj/item/ammo_box/magazine/c40sol_rifle/standard

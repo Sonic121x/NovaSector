@@ -6,8 +6,8 @@
 #define BEE_FOODGROUPS RAW | MEAT | GORE | BUGS //! the bee food contents
 
 /mob/living/basic/bee
-	name = "bee"
-	desc = "Buzzy buzzy bee, stingy sti- Ouch!"
+	name = "蜜蜂"
+	desc = "嗡嗡嗡的小蜜蜂，蜇人蜇人蜇——哎哟！"
 	icon_state = ""
 	icon_living = ""
 	icon = 'icons/mob/simple/bees.dmi'
@@ -351,7 +351,7 @@
 /obj/item/trash/bee/proc/use_lazarus(datum/source, obj/item/lazarus_injector/injector, mob/user)
 	SIGNAL_HANDLER
 	if(injector.revive_type != SENTIENCE_ORGANIC)
-		balloon_alert(user, "invalid creature!")
+		balloon_alert(user, "无效的生物！")
 		return
 	var/mob/living/basic/bee/revived_bee = new bee_type (drop_location())
 	if(beegent)

@@ -3,22 +3,22 @@
 
 //Cere-class Salvage Cruiser
 /obj/item/paper/fluff/ruins/whiteship/cere/cargo_vent
-	name = "note"
-	default_raw_text = "Remember to depressurise the cargo bay BEFORE opening it into space. On a related note, inform the crew while you are doing so to avoid venting the crew quarters or bar."
+	name = "便条"
+	default_raw_text = "记住，在将货运舱向太空打开之前，务必先进行减压。另外，在你操作时通知船员，以免将船员宿舍或酒吧的气体排空。"
 
 /obj/item/paper/fluff/ruins/whiteship/cere/comical_foreshadowing
-	name = "journal entry"
-	default_raw_text = "These salvage operations are going to get us killed at some point. I swear it."
+	name = "日志条目"
+	default_raw_text = "这些打捞行动迟早会要了我们的命。我发誓。"
 
 /obj/item/paper/crumpled/bloody/ruins/whiteship/cere/captain_suicide
-	name = "suicide note"
-	default_raw_text = "Those... Things got on. My crew are dead, I have bolted myself in. I hear slithering outside, and I am starving. Goodbye."
+	name = "遗书"
+	default_raw_text = "那些……东西上船了。我的船员都死了，我把自己反锁在里面。我听到外面有滑行的声音，而且我快饿死了。永别了。"
 
 /obj/item/paper/crumpled/bloody/ruins/whiteship/cere/told_you_so
-	name = "frantically-scrawled note"
-	default_raw_text = "Would you look at that. Just like I predicted, this shit was going to backfire."
+	name = "潦草写就的便条"
+	default_raw_text = "你看看。就像我预测的那样，这破事要搞砸了。"
 
 /obj/item/paper/crumpled/bloody/ruins/whiteship/cere/firedoor_glitch
-	name = "firelock circuitry malfunctions"
-	desc = "Looks like whoever was writing this got interrupted by something bloody."
-	default_raw_text = "Due to ongoing issues with the firedoor circuitry, only the Bar has firedoors to preve-"
+	name = "防火门电路故障"
+	desc = "看起来写这东西的人被什么血淋淋的东西打断了。"
+	default_raw_text = "由于防火门电路持续存在问题，只有酒吧安装了防火门以防-"

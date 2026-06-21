@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(augury)
-	name = "Augury"
+	name = "占卜"
 	ss_flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(augury)
 			O.ManualFollow(biggest_doom)
 
 /datum/action/innate/augury
-	name = "Auto Follow Debris"
+	name = "自动跟随碎片"
 	button_icon = 'icons/obj/meteor.dmi'
 	button_icon_state = "flaming"
 
@@ -69,10 +69,10 @@ SUBSYSTEM_DEF(augury)
 
 /datum/action/innate/augury/Activate()
 	SSaugury.watchers += owner
-	to_chat(owner, span_notice("You are now auto-following debris."))
+	to_chat(owner, span_notice("你现在正在自动跟随碎片。"))
 	active = TRUE
 
 /datum/action/innate/augury/Deactivate()
 	SSaugury.watchers -= owner
-	to_chat(owner, span_notice("You are no longer auto-following debris."))
+	to_chat(owner, span_notice("你不再自动跟随碎片。"))
 	active = FALSE

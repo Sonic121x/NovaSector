@@ -107,19 +107,19 @@
 	reading_requirements = (READING_CHECK_LITERACY | READING_CHECK_LIGHT)
 
 /datum/mood_event/traitor_poster_antag
-	description = "I am doing the right thing."
+	description = "我在做正确的事。"
 	mood_change = 2
 	timeout = 2 MINUTES
 	hidden = TRUE
 
 /datum/mood_event/traitor_poster_crew
-	description = "That poster made me feel bad about my job..."
+	description = "那张海报让我对自己的工作感到糟糕..."
 	mood_change = -2
 	timeout = 2 MINUTES
 	hidden = TRUE
 
 /datum/mood_event/traitor_poster_auth
-	description = "That poster better not be giving the crew any funny ideas..."
+	description = "那张海报最好别给船员任何奇怪的想法..."
 	mood_change = -3
 	timeout = 2 MINUTES
 	hidden = TRUE
@@ -134,19 +134,19 @@
 	authority_mood = /datum/mood_event/traitor_graffiti_auth
 
 /datum/mood_event/traitor_graffiti_antag
-	description = "The Syndicate logo? How delightfully bold."
+	description = "辛迪加的标志？多么令人愉悦的大胆。"
 	mood_change = 2
 	timeout = 2 MINUTES
 	hidden = TRUE
 
 /datum/mood_event/traitor_graffiti_crew
-	description = "The Syndicate logo? Am I safe here?"
+	description = "辛迪加的标志？我在这里安全吗？"
 	mood_change = -2
 	timeout = 2 MINUTES
 	hidden = TRUE
 
 /datum/mood_event/traitor_graffiti_auth
-	description = "Which of these layabouts drew that Syndicate logo?!"
+	description = "是哪个懒鬼画了那个辛迪加标志？！"
 	mood_change = -3
 	timeout = 2 MINUTES
 	hidden = TRUE
@@ -162,19 +162,19 @@
 	reading_requirements = (READING_CHECK_LIGHT)
 
 /datum/mood_event/traitor_module_antag
-	description = "I think I'll cause problems on purpose."
+	description = "我想我会故意制造麻烦。"
 	mood_change = 1
 	timeout = 2 MINUTES
 	hidden = TRUE
 
 /datum/mood_event/traitor_module_crew
-	description = "They're on the station! I know it! They're going to get me!"
+	description = "他们就在空间站上！我知道！他们会来抓我的！"
 	mood_change = -4
 	timeout = 2 MINUTES
 	hidden = TRUE
 
 /datum/mood_event/traitor_module_auth
-	description = "Nobody on this station is on my side, and the enemy could be anyone! I have to take more drastic measures..."
+	description = "这个空间站上没人站在我这边，敌人可能是任何人！我必须采取更极端的措施..."
 	mood_change = -5
 	timeout = 2 MINUTES
 	hidden = TRUE

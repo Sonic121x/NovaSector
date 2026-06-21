@@ -21,8 +21,8 @@
 //Teshari normal
 
 /obj/item/bodypart/arm/left/robot/teshari
-	name = "cybernetic left raptoral forelimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "机械左猛禽前肢"
+	desc = "一个由伪肌肉和膜状羽毛包裹的骨骼肢体，配有低导电性外壳。"
 	icon = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon_static = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -35,8 +35,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/arm/right/robot/teshari
-	name = "cybernetic right raptoral forelimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "机械右猛禽前肢"
+	desc = "一个由伪肌肉和膜状羽毛包裹的骨骼肢体，配有低导电性外壳。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -49,8 +49,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/leg/left/robot/teshari
-	name = "cybernetic left raptoral hindlimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "机械左猛禽后肢"
+	desc = "一个由伪肌肉和膜状羽毛包裹的骨骼肢体，配有低导电性外壳。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -64,8 +64,8 @@
 	speed_modifier = -0.1
 
 /obj/item/bodypart/leg/right/robot/teshari
-	name = "cybernetic right raptoral hindlimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "机械右猛禽后肢"
+	desc = "一个由伪肌肉和膜状羽毛包裹的骨骼肢体，配有低导电性外壳。"
 	icon_static =  'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -79,8 +79,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/chest/robot/teshari
-	name = "cybernetic raptoral torso"
-	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell, covered in a layer of membranous feathers."
+	name = "机械猛禽躯干"
+	desc = "一个包含机械人逻辑板的重型加固外壳，留有标准电源单元的空间，表面覆盖着一层膜状羽毛。"
 	icon_static =  'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -92,8 +92,8 @@
 	robotic_emp_paralyze_damage_percent_threshold = 0.5
 
 /obj/item/bodypart/head/robot/teshari
-	name = "cybernetic raptoral head"
-	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals. A layer of membranous feathers covers the stark metal."
+	name = "机械猛禽头部"
+	desc = "一个标准的强化脑壳，带有脊柱插接式神经接口和传感器万向节。一层膜状羽毛覆盖着裸露的金属。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -111,8 +111,8 @@
 // teshari_ surplus
 
 /obj/item/bodypart/arm/left/robot/teshari_surplus
-	name = "prosthetic left raptoral forelimb"
-	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "左猛禽前肢义体"
+	desc = "一副骨架般的机械翼。已经过时且脆弱，但总比没有强。一层膜状羽毛掩盖了廉价的组装。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -130,8 +130,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/right/robot/teshari_surplus
-	name = "prosthetic right raptoral forelimb"
-	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "右猛禽前肢义体"
+	desc = "一副骨架般的机械翼。已经过时且脆弱，但总比没有强。一层膜状羽毛掩盖了廉价的组装。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -149,8 +149,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/left/robot/teshari_surplus
-	name = "prosthetic left raptoral hindlimb"
-	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "左猛禽后肢义体"
+	desc = "一副骨架般的机械后肢。已经过时且脆弱，但总比没有强。一层膜状羽毛掩盖了廉价的组装。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -169,8 +169,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/right/robot/teshari_surplus
-	name = "prosthetic right raptoral hindlimb"
-	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "右猛禽后肢义体"
+	desc = "一副骨架般的机械后肢。已经过时且脆弱，但总比没有强。一层膜状羽毛掩盖了廉价的组装。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -189,8 +189,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/left/robot/teshari_surplus
-	name = "prosthetic left raptoral forelimb"
-	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "左猛禽前肢义体"
+	desc = "一副骨架般的机械翼。已经过时且脆弱，但总比没有强。一层膜状羽毛掩盖了廉价的组装。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -208,8 +208,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/right/robot/teshari_surplus
-	name = "prosthetic right raptoral forelimb"
-	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "右猛禽前肢义体"
+	desc = "一副骨架般的机械翼。已经过时且脆弱，但总比没有强。一层膜状羽毛掩盖了廉价的组装。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -229,8 +229,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/left/robot/teshari_surplus
-	name = "prosthetic left raptoral hindlimb"
-	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "左猛禽后肢义体"
+	desc = "一副骨架般的机械后肢。已经过时且脆弱，但总比没有强。一层膜状羽毛掩盖了廉价的组装。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -250,8 +250,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/right/robot/teshari_surplus
-	name = "prosthetic right raptoral hindlimb"
-	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "右猛禽后肢义体"
+	desc = "一副骨架般的机械后肢。已经过时且脆弱，但总比没有强。一层膜状羽毛掩盖了廉价的组装。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -272,8 +272,8 @@
 // teshari_ advanced
 
 /obj/item/bodypart/arm/left/robot/teshari_advanced
-	name = "advanced left raptoral forelimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "高级左猛禽前肢"
+	desc = "一个先进的机器人后肢。这些设计通常为那些仍在寻找阿瓦隆的人保留。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -291,8 +291,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/right/robot/teshari_advanced
-	name = "advanced right raptoral forelimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "高级右猛禽前肢"
+	desc = "一个先进的机器人后肢。这些设计通常为那些仍在寻找阿瓦隆的人保留。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -310,8 +310,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/left/robot/teshari_advanced
-	name = "advanced left raptoral hindlimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "先进左猛禽后肢"
+	desc = "一个先进的机器人后肢。这些设计通常为那些仍在寻找阿瓦隆的人保留。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -330,8 +330,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/right/robot/teshari_advanced
-	name = "advanced right raptoral hindlimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "先进右猛禽后肢"
+	desc = "一个高级机械后肢。这类设计通常专为那些仍在寻找阿瓦隆的人保留。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -350,8 +350,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/left/robot/teshari_advanced
-	name = "advanced left raptoral forelimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "高级左猛禽前肢"
+	desc = "一个先进的机器人后肢。这些设计通常为那些仍在寻找阿瓦隆的人保留。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -369,8 +369,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/right/robot/teshari_advanced
-	name = "advanced right raptoral forelimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "高级右猛禽前肢"
+	desc = "一个先进的机器人后肢。这些设计通常为那些仍在寻找阿瓦隆的人保留。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -388,8 +388,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/left/robot/teshari_advanced
-	name = "advanced left raptoral hindlimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "先进左猛禽后肢"
+	desc = "一个先进的机器人后肢。这些设计通常为那些仍在寻找阿瓦隆的人保留。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -408,8 +408,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/right/robot/teshari_advanced
-	name = "advanced right raptoral hindlimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "先进右猛禽后肢"
+	desc = "一个高级机械后肢。这类设计通常专为那些仍在寻找阿瓦隆的人保留。"
 	icon_static = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_nova/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/module
 	display_name = "Module"
-	desc = "A component that has other components within it, acting like a function. Use it in your hand to control the amount of input and output ports it has, as well as being able to access the integrated circuit contained inside."
+	desc = "在其中包含其他组件的组件，其作用类似于函数。用它在你的手中来控制输入和输出端口的数量，以及访问包含在里面的集成电路。"
 	category = "Abstract"
 
 	var/obj/item/integrated_circuit/module/internal_circuit
@@ -33,7 +33,7 @@
 /obj/item/integrated_circuit/module/set_display_name(new_name)
 	. = ..()
 	attached_module.display_name = new_name
-	attached_module.name = "module ([new_name])"
+	attached_module.name = "([new_name])模块"
 
 /obj/item/integrated_circuit/module/load_component(type)
 	if(!attached_module)
@@ -49,7 +49,7 @@
 
 /obj/item/integrated_circuit/module/add_component(obj/item/circuit_component/to_add, mob/living/user)
 	if(to_add.circuit_flags & CIRCUIT_FLAG_REFUSE_MODULE)
-		balloon_alert(user, "doesn't fit into module!")
+		balloon_alert(user, "无法装入模块！")
 		return
 	. = ..()
 	if(attached_module)
@@ -66,7 +66,7 @@
 
 /obj/item/circuit_component/module_input
 	display_name = "Input"
-	desc = "A component that receives data from the module it is attached to"
+	desc = "一种从其所连接的模块中接收数据的组件"
 
 	removable = FALSE
 
@@ -79,7 +79,7 @@
 
 /obj/item/circuit_component/module_output
 	display_name = "Output"
-	desc = "A component that outputs data to the module it is attached to."
+	desc = "一种能够向其所连接的模块输出数据的组件。"
 
 	removable = FALSE
 

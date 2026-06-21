@@ -1,6 +1,6 @@
 /obj/machinery/computer/aifixer
-	name = "\improper AI system integrity restorer"
-	desc = "Used with intelliCards containing nonfunctional AIs to restore them to working order."
+	name = "\improper AI系统完整性恢复器"
+	desc = "与包含无功能AI的智能卡一起使用，以将其恢复到工作状态。"
 	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_COMMAND)
 	circuit = /obj/item/circuitboard/computer/aifixer
 	icon_keyboard = "tech_key"
@@ -15,9 +15,9 @@
 /obj/machinery/computer/aifixer/screwdriver_act(mob/living/user, obj/item/I)
 	if(occupier)
 		if(machine_stat & (NOPOWER|BROKEN))
-			to_chat(user, span_warning("The screws on [name]'s screen won't budge."))
+			to_chat(user, span_warning("[name]屏幕上的螺丝纹丝不动。"))
 		else
-			to_chat(user, span_warning("The screws on [name]'s screen won't budge and it emits a warning beep."))
+			to_chat(user, span_warning("[name]屏幕上的螺丝纹丝不动，并发出警告蜂鸣声。"))
 	else
 		return ..()
 
@@ -57,7 +57,7 @@
 	switch(action)
 		if("PRG_beginReconstruction")
 			if(occupier?.health < 100)
-				to_chat(usr, span_notice("Reconstruction in progress. This will take several minutes."))
+				to_chat(usr, span_notice("重建进行中。这将需要几分钟时间。"))
 				playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 25, FALSE)
 				restoring = TRUE
 				occupier.notify_revival("Your core files are being restored!", source = src)
@@ -77,7 +77,7 @@
 		occupier.revive()
 		if(!occupier.radio_enabled)
 			occupier.radio_enabled = TRUE
-			to_chat(occupier, span_warning("Your Subspace Transceiver has been enabled!"))
+			to_chat(occupier, span_warning("你的子空间收发器已启用！"))
 	return occupier.health < 100
 
 /obj/machinery/computer/aifixer/process()
@@ -111,29 +111,29 @@
 	//Downloading AI from card to terminal.
 	if(interaction == AI_TRANS_FROM_CARD)
 		if(machine_stat & (NOPOWER|BROKEN))
-			to_chat(user, span_alert("[src] is offline and cannot take an AI at this time."))
+			to_chat(user, span_alert("[src] 已离线，目前无法接收AI。"))
 			return
 		AI.forceMove(src)
 		occupier = AI
 		AI.set_control_disabled(TRUE)
 		AI.radio_enabled = FALSE
-		to_chat(AI, span_alert("You have been uploaded to a stationary terminal. Sadly, there is no remote access from here."))
+		to_chat(AI, span_alert("你已被上传至一个固定终端。遗憾的是，这里没有远程访问权限。"))
 		to_chat(user, "[span_notice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
 		card.AI = null
 		update_appearance()
 
 	else //Uploading AI from terminal to card
 		if(occupier && !restoring)
-			to_chat(occupier, span_notice("You have been downloaded to a mobile storage device. Still no remote access."))
+			to_chat(occupier, span_notice("你已被下载到移动存储设备中。仍然无法远程访问。"))
 			to_chat(user, "[span_notice("Transfer successful")]: [occupier.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
 			occupier.forceMove(card)
 			card.AI = occupier
 			occupier = null
 			update_appearance()
 		else if (restoring)
-			to_chat(user, span_alert("ERROR: Reconstruction in progress."))
+			to_chat(user, span_alert("错误：重建进行中。"))
 		else if (!occupier)
-			to_chat(user, span_alert("ERROR: Unable to locate artificial intelligence."))
+			to_chat(user, span_alert("错误：无法定位人工智能。"))
 
 /obj/machinery/computer/aifixer/Destroy()
 	if(occupier)

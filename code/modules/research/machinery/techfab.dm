@@ -1,6 +1,6 @@
 /obj/machinery/rnd/production/techfab
-	name = "technology fabricator"
-	desc = "Produces researched prototypes with raw materials and energy."
+	name = "复合机"
+	desc = "利用原材料和能源生产经过研究的原型产品。"
 	icon_state = "protolathe"
 	base_icon_state = "protolathe"
 	circuit = /obj/item/circuitboard/machine/techfab

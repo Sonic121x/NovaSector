@@ -1,5 +1,5 @@
 /datum/reagent/drug/methamphetamine/borer_version
-	name = "Unknown Methamphetamine Isomer"
+	name = "未知甲基苯丙胺异构体"
 	overdose_threshold = 40
 
 /datum/reagent/drug/methamphetamine/borer_version/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)

@@ -8,7 +8,7 @@
  */
 /obj/item/circuit_component/signal_handler
 	display_name = "Signal Handler"
-	desc = "A component that listens for signals on an object."
+	desc = "一种能够监听对象上的信号的组件。"
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_ADMIN|CIRCUIT_FLAG_INSTANT
 

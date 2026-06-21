@@ -1,14 +1,14 @@
 /obj/item/wallframe/clocktrap/delay
-	name = "clockwork timer"
-	desc = "A small, detached timer."
+	name = "发条计时器"
+	desc = "一个独立的小型计时器。"
 	icon_state = "delayer"
 	result_path = /obj/structure/destructible/clockwork/trap/delay
 	clockwork_desc = "A device that can be attached to walls. When input is received, it will send an output signal a configurable (with multitool) time later."
 
 
 /obj/structure/destructible/clockwork/trap/delay
-	name = "clockwork timer"
-	desc = "A small timer attatched to the wall."
+	name = "发条计时器"
+	desc = "一个安装在墙上的小型计时器。"
 	icon_state = "delayer"
 	component_datum = /datum/component/clockwork_trap/delay
 	unwrench_path = /obj/item/wallframe/clocktrap/delay
@@ -19,7 +19,7 @@
 
 
 /obj/structure/destructible/clockwork/trap/delay/multitool_act(mob/living/user, obj/item/tool)
-	delay_time = tgui_input_number(user, "Input delay time", "Clockwork Timer", 1 SECONDS, 120 SECONDS, 1 SECONDS)
+	delay_time = tgui_input_number(user, "输入延迟时间", "发条计时器", 1 SECONDS, 120 SECONDS, 1 SECONDS)
 	return TRUE
 
 

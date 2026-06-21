@@ -1,6 +1,6 @@
 /obj/item/binoculars
-	name = "binoculars"
-	desc = "Used for long-distance surveillance."
+	name = "双筒望远镜"
+	desc = "用于远距离监视。"
 	inhand_icon_state = "binoculars"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "binoculars"
@@ -16,14 +16,14 @@
 	AddComponent(/datum/component/scope, range_modifier = 4, zoom_method = ZOOM_METHOD_WIELD)
 
 /obj/item/binoculars/proc/on_wield(obj/item/source, mob/user)
-	user.visible_message(span_notice("[user] holds [src] up to [user.p_their()] eyes."), span_notice("You hold [src] up to your eyes."))
+	user.visible_message(span_notice("[user]将[src]举到[user.p_their()]眼前。"), span_notice("你将[src]举到眼前。"))
 	inhand_icon_state = "binoculars_wielded"
 	user.regenerate_icons()
 	//Have you ever tried running with binocs on? It takes some willpower not to stop as things appear way too close than they're.
 	user.add_movespeed_modifier(/datum/movespeed_modifier/binocs_wielded)
 
 /obj/item/binoculars/proc/on_unwield(obj/item/source, mob/user)
-	user.visible_message(span_notice("[user] lowers [src]."), span_notice("You lower [src]."))
+	user.visible_message(span_notice("[user]放下了[src]。"), span_notice("你放下了[src]。"))
 	inhand_icon_state = "binoculars"
 	user.regenerate_icons()
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/binocs_wielded)

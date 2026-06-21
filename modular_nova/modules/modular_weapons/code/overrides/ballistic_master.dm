@@ -24,13 +24,13 @@
 /obj/item/gun/ballistic/proc/handle_box_reload(mob/user, obj/item/ammo, num_loaded)
 	SEND_SIGNAL(src, COMSIG_UPDATE_AMMO_HUD)
 	if(!istype(ammo, /obj/item/ammo_box))
-		balloon_alert(user, "[num_loaded] [cartridge_wording]\s loaded")
+		balloon_alert(user, "[num_loaded] [cartridge_wording]\s 已装填")
 		return
 	var/obj/item/ammo_box/reloader = ammo
 	if(reloader.reload_delay)
 		var/penalty = reloader.reload_delay
 		user.changeNext_move(penalty) // cooldown to simulate having to fumble for another round
-		balloon_alert(user, "[num_loaded] [cartridge_wording]\s loaded (delayed [penalty * 0.1]s)!")
+		balloon_alert(user, "[num_loaded] [cartridge_wording]\s 已装填（延迟 [penalty * 0.1] 秒）！")
 
 /obj/effect/temp_visual/dir_setting/firing_effect
 	light_system = OVERLAY_LIGHT

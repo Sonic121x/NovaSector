@@ -8,79 +8,79 @@
 	volume_multiplier = 1 //not as loud as synth'd
 
 /datum/instrument/hardcoded/accordion
-	name = "Accordion"
+	name = "手风琴"
 	id = "accordion"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "accordion"
 
 /datum/instrument/hardcoded/bikehorn
-	name = "Bike Horn"
+	name = "自行车喇叭"
 	id = "bikehorn"
 	legacy_instrument_ext = "ogg"
 	legacy_instrument_path = "bikehorn"
 
 /datum/instrument/hardcoded/eguitar
-	name = "Electric Guitar"
+	name = "电吉他"
 	id = "eguitar"
 	legacy_instrument_ext = "ogg"
 	legacy_instrument_path = "electric_guitar"
 
 /datum/instrument/hardcoded/glockenspiel
-	name = "Glockenspiel"
+	name = "钟琴"
 	id = "glockenspiel"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "glockenspiel"
 
 /datum/instrument/hardcoded/guitar
-	name = "Guitar"
+	name = "吉他"
 	id = "guitar"
 	legacy_instrument_ext = "ogg"
 	legacy_instrument_path = "guitar"
 
 /datum/instrument/hardcoded/harmonica
-	name = "Harmonica"
+	name = "口琴"
 	id = "harmonica"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "harmonica"
 
 /datum/instrument/hardcoded/piano
-	name = "Piano"
+	name = "钢琴"
 	id = "piano"
 	legacy_instrument_ext = "ogg"
 	legacy_instrument_path = "piano"
 
 /datum/instrument/hardcoded/recorder
-	name = "Recorder"
+	name = "竖笛"
 	id = "recorder"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "recorder"
 
 /datum/instrument/hardcoded/saxophone
-	name = "Saxophone"
+	name = "萨克斯"
 	id = "saxophone"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "saxophone"
 
 /datum/instrument/hardcoded/trombone
-	name = "Trombone"
+	name = "长号"
 	id = "trombone"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "trombone"
 
 /datum/instrument/hardcoded/violin
-	name = "Violin"
+	name = "小提琴"
 	id = "violin"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "violin"
 
 /datum/instrument/hardcoded/xylophone
-	name = "Xylophone"
+	name = "木琴"
 	id = "xylophone"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "xylophone"
 
 /datum/instrument/hardcoded/banjo
-	name = "Banjo"
+	name = "班卓琴"
 	id = "banjo"
 	legacy_instrument_ext = "ogg"
 	legacy_instrument_path = "banjo"

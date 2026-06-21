@@ -1,38 +1,38 @@
 /// Paper Fluff Lore
 /obj/item/paper/fluff/ruins/dangerous_research/manifest
-	name = "ASRC Manifest"
-	default_raw_text = "<B>Alternate Sciences Research Center</B><BR><BR>Doctor Elias Valentin - Head Occultist<BR>Researcher Mike R. Smith - Chemist<BR>Researcher Jexa Armstrong - Esotericist<BR>Doctor Dreams-of-Beaches - Medical Assistant<BR>Doctor Whitner Jay Greyham - Surgeon<BR>Officer Brianna Simes - Outpost Protection Agent<BR>John Doe - Research Volunteer"
+	name = "ASRC 人员名单"
+	default_raw_text = "<B>替代科学研究中心</B><BR><BR>伊莱亚斯·瓦伦丁博士 - 首席神秘学家<BR>研究员 迈克·R·史密斯 - 化学家<BR>研究员 杰克萨·阿姆斯特朗 - 秘术师<BR>梦境海滩博士 - 医疗助手<BR>惠特纳·杰伊·格雷厄姆博士 - 外科医生<BR>警官 布里安娜·赛姆斯 - 前哨保护特工<BR>约翰·多伊 - 研究志愿者"
 
 /obj/item/paper/fluff/ruins/dangerous_research/head_occultist_note
-	name = "Frantically Scrawled Note"
+	name = "潦草涂写的便条"
 	default_raw_text = "John's been speaking to me recently, so I had Greyham take his tongue.<BR> He was looking at me, so the Doctor took his eyes.<BR>He won't stop talking and staring. He just wants a few things, he says.<BR>All the research, so close to fruition, would it be wrong to let him finish the rune?"
 
 /obj/item/paper/fluff/ruins/dangerous_research/smith
-	name = "A Traitor's Memo"
+	name = "一名叛徒的备忘录"
 	default_raw_text = "The Syndicate is up to something strange here; they've hired these people, most totally unaware of their true employers.<BR>I've sent the collected data to Nanotrasen, and I'm going to try to disrupt the test tomorrow, allowing this to continue isn't right.<BR>They're keeping the patient semi-lucid, so some stims should wake him up."
 	///Dream-Of-Beaches Journal
 /obj/item/paper/fluff/ruins/dangerous_research/beaches_journal_1
-	name = "Journal of Dreams-Of-Beaches - Day 1"
-	default_raw_text = "Well, the food is greasy, there's one bathroom for six of us to share, and I think the Head Occultist is a little crazy, but I'm finally off Tizira!<BR> Not much of a believer in this occult nonsense, but the pay is good and aside from the boss, everyone is really friendly!<BR> Doctor Grey(Gray?)Ham will be my partner for keeping the patient safe."
+	name = "海滩之梦的日记 - 第1天"
+	default_raw_text = "好吧，食物很油腻，六个人共用一个浴室，而且我觉得首席邪教徒有点疯，但我终于离开提兹拉了！<BR>不太相信这些神秘学的胡言乱语，但薪水不错，而且除了老板，每个人都很友好！<BR>格雷（格雷？）汉姆医生将是我的搭档，负责保护病人的安全。"
 
 /obj/item/paper/fluff/ruins/dangerous_research/beaches_journal_2
-	name = "Journal of Dreams-Of-Beaches - Day 33"
+	name = "海滩之梦的日记 - 第33天"
 	default_raw_text = "Something odd is going on. John has been blinded and muted for a time now but he's still moving around in that central chamber, drawing something. Elias, Smith, and Whitner seem to have some idea about what's going on and won't answer my questions.<BR>I'm going to sneak into the lab tonight to get a look at those drawings."
 
 /obj/item/paper/fluff/ruins/dangerous_research/beaches_journal_3
-	name = "Journal of Dreams-Of-Beaches - Day 52"
+	name = "海滩之梦的日记 - 第52天"
 	default_raw_text = "Smith was in the chamber, gone in an instant.<BR> I don't know what happened to the doctor or Elias, I just heard flesh tearing and glass shattering.<BR> When my eyes opened, the room was painted in red and rust.<BR>Simes was there, but she just flashed away, all that was left was the gun.<BR>Armstrong grabbed me and we somehow made it out, boarded it up with the tables in the lobby.<BR>Took two of the suits, we'll send out a distress signal when we're out there."
 	/// Armstrong Memos
 /obj/item/paper/fluff/ruins/dangerous_research/armstrong_memo_1
-	name = "Jexa Armstrong's Notes - Day 18"
+	name = "杰克莎·阿姆斯特朗的笔记 - 第18天"
 	default_raw_text = "I wasn't excited to hear that Interdyne would be sticking me on this rock, but this John Doe absolutely has me interested.<BR>He's the only other person I've met with a link to the Mansus, and theirs is <B>astoundingly</B> strong.<BR>Here I thought I was a freak of nature for being able to draw a few working runes. The subject is capable of achieving a perfect link to the Mansus, even <B>with</B> Elias ordering all of those surgeries."
 
 /obj/item/paper/fluff/ruins/dangerous_research/armstrong_memo_2
-	name = "Jexa Armstrong's Notes - Day 47"
+	name = "杰克莎·阿姆斯特朗的笔记 - 第47天"
 	default_raw_text = "Elias is going to get us all killed, I swear. The surgeries have been intensifying, he's pushing the subject WAY past what's safe.<BR>Greyham's a loyal mutt, Smith doesn't give a shit, and Beaches is a coward. Nobody else was going to tell the HO that fucking with the pineal gland was dangerous.<BR>Apparently, tests are now going faster but I'm also locked in my room for the next few days. He doesn't know what he's messing with."
 
 /obj/item/paper/fluff/ruins/dangerous_research/armstrong_memo_3
-	name = "Containment Memo - Safety"
+	name = "收容备忘录 - 安全"
 	default_raw_text = "<B>DO NOT:</B><BR>-Allow the subject out of their cell at any point without the HO's approval<BR>-Stay by the subject for extended periods of time. Dr Greyham and I have confirmed that long-term exposure can lead to headaches, anemia, and loss of sleep.<BR>-Forget to keep the patient's sedative supply constant. Ensure their IV drip (3:3:1 ratio of B Negative Blood, Saline, and Morphine) is topped up whenever they're not in a test.<BR><BR>Elias, the radio in the patient's room stays ON, and the toy stays in there. I know its not protocol but he starts crying if we remove them, and we all need to sleep."
 /// Lore Terminals
 /obj/machinery/computer/terminal/dangerous_research/front_desk
@@ -77,11 +77,11 @@
 
 // Lore ID cards
 /obj/item/card/id/away/dangerous_research
-	name = "Mike R. Smith"
-	desc = "An older ID card, it has a label reading \"Researcher\"."
+	name = "迈克·R·史密斯"
+	desc = "一张旧ID卡，上面有一个标签写着“研究员”。"
 	trim = /datum/id_trim/away/dangerous_research
 
 /obj/item/card/id/away/dangerous_research/head_occultist
-	name = "Elias Valentin"
-	desc = "An older ID card, it has a label reading \"Head Occultist\". It's smeared with dried blood."
+	name = "伊莱亚斯·瓦伦丁"
+	desc = "一张旧ID卡，上面有一个标签写着“首席邪教徒”。上面沾有干涸的血迹。"
 	trim = /datum/id_trim/away/dangerous_research/head_occultist

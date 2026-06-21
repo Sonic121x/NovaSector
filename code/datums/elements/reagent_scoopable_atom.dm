@@ -20,7 +20,7 @@
 /datum/element/reagent_scoopable_atom/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_info("Some <b>[reagent_to_extract::name]</b> could probably be scooped up with a <b>container</b>.")
+	examine_list += span_info("或许可以用<b>容器</b>舀起一些<b>[reagent_to_extract::name]</b>。")
 
 /datum/element/reagent_scoopable_atom/proc/on_item_interaction(atom/source, mob/living/user, obj/item/tool, list/modifiers)
 	SIGNAL_HANDLER
@@ -32,6 +32,6 @@
 	if(!reagent_to_extract)
 		return ITEM_INTERACT_BLOCKING
 	if(!container.reagents.add_reagent(reagent_to_extract, rand(5, 10)))
-		to_chat(user, span_warning("[container] is full."))
+		to_chat(user, span_warning("[container] 已满。"))
 	user.visible_message(span_notice("[user] scoops [LOWER_TEXT(reagent_to_extract::name)] from [source] with [container]."), span_notice("You scoop out [LOWER_TEXT(reagent_to_extract::name)] from [source] using [container]."))
 	return ITEM_INTERACT_SUCCESS

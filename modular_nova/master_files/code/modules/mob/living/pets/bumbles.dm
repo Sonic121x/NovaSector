@@ -1,6 +1,6 @@
 /mob/living/basic/pet/bumbles
-	name = "Bumbles"
-	desc = "Bumbles, the very humble bumblebee."
+	name = "邦布斯"
+	desc = "邦布斯，一只非常谦逊的大黄蜂。"
 	icon = 'modular_nova/master_files/icons/mob/pets.dmi'
 	icon_state = "bumbles"
 	icon_living = "bumbles"
@@ -23,10 +23,10 @@
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	gold_core_spawnable = FRIENDLY_SPAWN
-	verb_say = "buzzs"
-	verb_ask = "buzzes inquisitively"
-	verb_exclaim = "buzzes intensely"
-	verb_yell = "buzzes intensely"
+	verb_say = "嗡嗡作响"
+	verb_ask = "好奇地嗡嗡作响"
+	verb_exclaim = "激烈地嗡嗡作响"
+	verb_yell = "激烈地嗡嗡作响"
 	unique_name = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/bumbles
 

@@ -1,6 +1,6 @@
 /obj/projectile/bullet/foam_dart
-	name = "foam dart"
-	desc = "I hope you're wearing eye protection."
+	name = "泡沫飞镖"
+	desc = "希望你戴了护目镜。"
 	damage = 0 // It's a damn toy.
 	damage_type = OXY
 	icon = 'icons/obj/weapons/guns/toy.dmi'
@@ -35,7 +35,7 @@
 	newdart.update_appearance()
 
 /obj/projectile/bullet/foam_dart/riot
-	name = "riot foam dart"
+	name = "防暴泡沫飞镖"
 	icon_state = "foamdart_riot_proj"
 	base_icon_state = "foamdart_riot"
 	shrapnel_type = /obj/item/ammo_casing/foam_dart/riot

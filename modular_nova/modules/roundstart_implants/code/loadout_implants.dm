@@ -3,8 +3,8 @@
 // EYE IMPLANTS
 
 /obj/item/organ/eyes/robotic/binoculars
-	name = "digital magnification optics"
-	desc = "Commonly used on frontier worlds with comparatively vast overland distances to aid in visual acquisition of coworkers and targets."
+	name = "数字放大光学器件"
+	desc = "常用于视野相对开阔的边疆世界，以辅助视觉识别同事和目标。"
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	var/zoomed = FALSE
 	var/range_power = 2 // what kind of range modifier do we feed to the scope component?
@@ -26,7 +26,7 @@
 	else
 		//check if they're blind
 		if (user.is_blind())
-			user.balloon_alert(user, "can't activate magnification while blind!")
+			user.balloon_alert(user, "失明时无法激活放大功能！")
 			return
 
 		zoom.zoom(user)
@@ -44,7 +44,7 @@
 			do_nothing_chance = 10
 	if(prob(do_nothing_chance))
 		return
-	to_chat(owner, span_warning("Your vision magnification glitches erratically!"))
+	to_chat(owner, span_warning("你的视觉放大功能发生剧烈故障！"))
 	// Apply static vision overlay
 	owner.overlay_fullscreen("emp_static", /atom/movable/screen/fullscreen/flash/static)
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, clear_fullscreen), "emp_static"), severity == EMP_LIGHT ? 0.75 SECONDS : 1.5 SECONDS)
@@ -52,8 +52,8 @@
 
 // ARM IMPLANTS
 /obj/item/organ/cyberimp/arm/toolkit/adjuster
-	name = "adjuster arm implant"
-	desc = "A miniaturized toolset implant containing a simple fingertip-mounted universal screwdriver bit with an inverted torque-wrench head. Most commonly used when rearranging furniture or other station machinery."
+	name = "调节臂植入体"
+	desc = "一个微型工具组植入体，包含一个安装在指尖的通用螺丝刀头，带有反向扭矩扳手头。最常用于重新布置家具或其他空间站机械。"
 	items_to_create = list(/obj/item/wrench/integrated, /obj/item/screwdriver/integrated)
 
 /obj/item/organ/cyberimp/arm/toolkit/adjuster/emp_act(severity)
@@ -68,8 +68,8 @@
 			effect_chance = 30
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger("[owner]'s [active_item] suddenly spins and vibrates wildly!"),
-			span_warning("Your adjuster implant malfunctions, making your arm shake uncontrollably!")
+			span_danger("[owner]的[active_item]突然疯狂旋转并振动！"),
+			span_warning("你的调节器植入体发生故障，导致手臂不受控制地颤抖！")
 		)
 		if(active_item)
 			Retract()
@@ -82,8 +82,8 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_NAKAMURA)
 
 /obj/item/organ/cyberimp/arm/toolkit/electrical_toolset
-	name = "electrical toolset implant"
-	desc = "Bereft of any kind of insulation to speak of, this aug has a very distinct nickname amongst frontier outpost crews: 'the sizzler'. Often used in high verticality environments where loadout space is at a premium."
+	name = "电工工具组植入体"
+	desc = "这种植入体没有任何绝缘可言，在边疆前哨人员中有个非常独特的绰号：'滋滋作响者'。常用于垂直高度大、负载空间宝贵的环境。"
 	items_to_create = list(/obj/item/screwdriver/integrated, /obj/item/multitool/integrated, /obj/item/wirecutters/integrated)
 
 /obj/item/organ/cyberimp/arm/toolkit/electrical_toolset/emp_act(severity)
@@ -98,8 +98,8 @@
 			effect_chance = 50
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger("[owner]'s electrical toolset crackles with arcing electricity!"),
-			span_warning("Your electrical toolset sparks wildly, making your arm tingle!")
+			span_danger("[owner]的电工工具组迸发出电弧！"),
+			span_warning("你的电工工具组剧烈迸出火花，使你的手臂感到刺痛！")
 		)
 		if(active_item)
 			Retract()
@@ -112,7 +112,7 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_NAKAMURA)
 
 /obj/item/organ/cyberimp/arm/toolkit/arc_welder
-	name = "shipbreaker's toolset implant"
+	name = "拆船工工具组植入体"
 	desc = "A specialized salvage-grade implant that houses an arc welder, miniaturized crowbar within the bearer's arm, plus a fingertip torque-wrench rated for enough newtons to get the job done. Renowned across the frontier for being the 'trashy tattoo' equivalent of someone's first aug."
 	items_to_create = list(/obj/item/wrench/integrated, /obj/item/crowbar/integrated, /obj/item/weldingtool/electric/arc_welder/integrated)
 
@@ -128,8 +128,8 @@
 			effect_chance = 40
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger("[owner]'s arc welder discharges with a shower of sparks!"),
-			span_warning("Your arc welder implant short circuits, temporarily blinding you!")
+			span_danger("[owner]的电弧焊枪迸发出一阵火花！"),
+			span_warning("你的电弧焊枪植入体短路了，暂时致盲了你！")
 		)
 		if(active_item)
 			Retract()
@@ -143,8 +143,8 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
 /obj/item/organ/cyberimp/arm/toolkit/emt_triage
-	name = "triage actuator implant"
-	desc = "Pioneered by Interdyne Pharmaceuticals for use in their frontier postings, this set of in-arm augments allows medical staff to perform basic life-saving surgeries out on the field with the assistance of a bladed instrument."
+	name = "分诊执行器植入体"
+	desc = "由Interdyne制药公司为其边疆驻地首创，这套手臂内增强装置允许医疗人员在现场借助带刃器械进行基本的救生手术。"
 	items_to_create = list(/obj/item/surgical_drapes/integrated, /obj/item/retractor/integrated, /obj/item/hemostat/integrated)
 
 /obj/item/organ/cyberimp/arm/toolkit/emt_triage/emp_act(severity)
@@ -159,8 +159,8 @@
 			effect_chance = 25
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger("[owner]'s triage implant's actuators twitch erratically!"),
-			span_warning("Your triage implant malfunctions, making your hand shake!")
+			span_danger("[owner]的分诊植入体执行器不规则地抽搐着！"),
+			span_warning("你的分诊植入体发生故障，导致你的手颤抖！")
 		)
 		if(active_item)
 			Retract()
@@ -172,8 +172,8 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_INTERDYNE)
 
 /obj/item/organ/cyberimp/arm/toolkit/civilian_barstaff
-	name = "waitstaff implant"
-	desc = "The galactic service industry demands only the finest from its (underpaid) employees, leading to the development of this sordid piece of technology which substitutes a user's organic arm for a food storage space and an integrated chamois cleaning cloth. Why?"
+	name = "侍者植入体"
+	desc = "银河系服务业对其（低薪）员工要求苛刻，催生了这项可悲的技术，它用食物存储空间和集成的麂皮清洁布取代了使用者的有机手臂。为什么？"
 	items_to_create = list(/obj/item/storage/bag/tray/integrated, /obj/item/rag/integrated)
 
 /obj/item/organ/cyberimp/arm/toolkit/civilian_barstaff/emp_act(severity)
@@ -200,16 +200,16 @@
 				spilled_items = TRUE
 			if(spilled_items)
 				owner.visible_message(
-					span_danger("[owner]'s serving tray violently ejects its contents!"),
-					span_warning("Your serving tray implant malfunctions, spilling everything!")
+					span_danger("[owner]的餐盘猛烈地弹出了里面的东西！"),
+					span_warning("你的餐盘植入体发生故障，洒出了所有东西！")
 				)
 				do_sparks(2, TRUE, owner)
 				playsound(owner, 'sound/items/trayhit/trayhit1.ogg', 50, TRUE)
 			break
 
 /obj/item/organ/cyberimp/arm/toolkit/civilian_lighter
-	name = "thumbtip lighter implant"
-	desc = "This extraordinarily useless implant was a product of market demand, and it exists because the galactic diaspora apparently craves the ability to light things with their thumbtips."
+	name = "拇指尖打火机植入体"
+	desc = "这个极其无用的植入体是市场需求下的产物，它的存在是因为银河系流散族群显然渴望能用拇指尖点燃东西的能力。"
 	items_to_create = list(/obj/item/lighter/integrated)
 
 /obj/item/organ/cyberimp/arm/toolkit/civilian_lighter/emp_act(severity)
@@ -224,8 +224,8 @@
 			effect_chance = 30
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger("[owner]'s thumbtip lighter sparks repeatedly!"),
-			span_warning("Your thumbtip lighter malfunctions, sparking uncontrollably!")
+			span_danger("[owner]的拇指尖打火机反复迸出火花！"),
+			span_warning("你的拇指尖打火机发生故障，不受控制地迸出火花！")
 		)
 		do_sparks(3, TRUE, owner)
 		owner.adjust_fire_stacks(1)
@@ -233,7 +233,7 @@
 
 /obj/item/organ/cyberimp/arm/toolkit/blacksteel_forging
 	name = "Blacksteel 'Starforge' metalworking toolset implant"
-	desc = "A galactic favorite amongst burgeoning starfarer races with a fascination for basic metallurgy or mundane weaponry, this unlikely toolset augmentation is one of the Foundation's most popular products."
+	desc = "这款不太可能的工具组增强体是基金会最受欢迎的产品之一，深受那些对基础冶金学或普通武器着迷的新兴星际种族喜爱。"
 	items_to_create = list(/obj/item/forging/hammer/integrated, /obj/item/forging/tongs/integrated, /obj/item/forging/billow/integrated)
 
 /obj/item/organ/cyberimp/arm/toolkit/blacksteel_forging/emp_act(severity)
@@ -248,8 +248,8 @@
 			effect_chance = 35
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger("[owner]'s forging implant hisses and steams!"),
-			span_warning("Your forging implant overheats uncomfortably!")
+			span_danger("[owner]的锻造植入体嘶嘶作响并冒出蒸汽！"),
+			span_warning("你的锻造植入体过热，令人不适！")
 		)
 		if(active_item)
 			Retract()
@@ -263,7 +263,7 @@
 
 /obj/item/organ/cyberimp/arm/toolkit/bureaucracy
 	name = "bureaucrat's 'Jacent' toolset implant"
-	desc = "Popular amongst coreworld corporates, this integrated toolset includes a wrist-sheathed four-colour pen, a special motorized sheaf hollow for holding up to ten pieces of galactic-standard A4 paper and a set of two fingertip stamps for approving and denying things. Does not replenish."
+	desc = "在核心世界企业人士中颇受欢迎，这套集成工具组包含一支腕鞘式四色笔、一个可容纳最多十张银河标准A4纸的特殊电动纸夹中空槽，以及一套用于批准和否决事务的双指尖印章。无法补充。"
 	items_to_create = list(/obj/item/pen/fourcolor/integrated, /obj/item/paper_bin/integrated, /obj/item/stamp/granted/integrated, /obj/item/stamp/denied/integrated)
 
 /obj/item/organ/cyberimp/arm/toolkit/bureaucracy/emp_act(severity)
@@ -289,15 +289,15 @@
 			papers_spat_out++
 		if(papers_spat_out > 0)
 			owner.visible_message(
-				span_warning("[owner]'s arm suddenly spews out paper in all directions!"),
-				span_warning("Your bureaucracy implant malfunctions, spewing papers everywhere!")
+				span_warning("[owner]的手臂突然向四面八方喷出纸张！"),
+				span_warning("你的官僚主义植入体发生故障，纸张喷得到处都是！")
 			)
 			playsound(owner, 'sound/items/poster/poster_ripped.ogg', 50, TRUE)
 		break
 
 /obj/item/organ/cyberimp/arm/toolkit/cargo
 	name = "FTU 'Deckhand' toolset implant"
-	desc = "Containing a fingertip-mounted universal scanner and a boxcutter, deck workers across the sector favor this cheap and effective implant as both a means of self-defense from irate consumers and for keeping a set of handy scanners quite literally, close at hand."
+	desc = "包含一个指尖安装的通用扫描仪和一个开箱刀，该星区的甲板工人青睐这种廉价而有效的植入体，既可作为应对愤怒消费者的自卫手段，又能将一套便捷的扫描仪真正地保持在手边。"
 	items_to_create = list(/obj/item/universal_scanner/integrated, /obj/item/boxcutter/extended/integrated)
 
 /obj/item/organ/cyberimp/arm/toolkit/cargo/emp_act(severity)
@@ -312,8 +312,8 @@
 			effect_chance = 25
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger("[owner]'s cargo implant sparks and malfunctions!"),
-			span_warning("Your cargo implant shorts out briefly!")
+			span_danger("[owner]的货运植入体迸出火花并发生故障！"),
+			span_warning("你的货运植入体短暂短路了！")
 		)
 		do_sparks(3, TRUE, owner)
 		if(active_item)

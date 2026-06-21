@@ -4,8 +4,8 @@
 #define TEMPERATURE_RESISTANCE (1000 + T0C)
 
 /obj/machinery/portable_atmospherics/canister
-	name = "canister"
-	desc = "A canister for the storage of gas."
+	name = "气罐"
+	desc = "用于储存气体的气罐。"
 	icon = 'icons/map_icons/objects.dmi'
 	icon_state = "/obj/machinery/portable_atmospherics/canister"
 	post_init_icon_state = ""
@@ -66,7 +66,7 @@
 		create_gas()
 
 	if(ispath(gas_type, /datum/gas))
-		desc = "[GLOB.meta_gas_info[gas_type][META_GAS_NAME]]. [GLOB.meta_gas_info[gas_type][META_GAS_DESC]]"
+		desc = "[GLOB.meta_gas_info[gas_type][META_GAS_NAME]]。[GLOB.meta_gas_info[gas_type][META_GAS_DESC]]"
 
 	update_window()
 
@@ -81,7 +81,7 @@
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
 	. = ..()
 	if(!allowed(user))
-		to_chat(user, span_alert("Error - Unauthorized User."))
+		to_chat(user, span_alert("错误 - 未授权用户。"))
 		playsound(src, 'sound/machines/compiler/compiler-failure.ogg', 50, TRUE)
 		return
 
@@ -108,29 +108,29 @@
 /obj/machinery/portable_atmospherics/canister/examine(user)
 	. = ..()
 	if(atom_integrity < max_integrity)
-		. += span_notice("Integrity compromised, repair hull with a welding tool.")
-	. += span_notice("A sticker on its side says <b>MAX SAFE PRESSURE: [siunit_pressure(initial(pressure_limit), 0)]; MAX SAFE TEMPERATURE: [siunit(temp_limit, "K", 0)]</b>.")
-	. += span_notice("The hull is <b>welded</b> together and can be cut apart.")
+		. += span_notice("完整性受损，请使用焊接工具修复外壳。")
+	. += span_notice("侧面贴纸上写着<b>最大安全压力：[siunit_pressure(initial(pressure_limit), 0)]；最大安全温度：[siunit(temp_limit, "K", 0)]</b>。")
+	. += span_notice("外壳通过<b>焊接</b>连接，可以切割开来。")
 	if(internal_cell)
-		. += span_notice("The internal cell has [internal_cell.percent()]% of its total charge.")
+		. += span_notice("内部电池剩余电量为[internal_cell.percent()]%。")
 	else
-		. += span_notice("Warning, no cell installed, use a screwdriver to open the hatch and insert one.")
+		. += span_notice("警告，未安装电池，请使用螺丝刀打开舱口并安装一个。")
 	if(panel_open)
-		. += span_notice("Hatch open, close it with a screwdriver.")
+		. += span_notice("舱口已打开，请使用螺丝刀将其关闭。")
 
 // Please keep the canister types sorted
 // Basic canister per gas below here
 
 /obj/machinery/portable_atmospherics/canister/air
-	name = "Air canister"
-	desc = "Pre-mixed air."
+	name = "空气罐"
+	desc = "预混空气。"
 	icon_state = "/obj/machinery/portable_atmospherics/canister/air"
 	post_init_icon_state = ""
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#c6c0b5"
 
 /obj/machinery/portable_atmospherics/canister/antinoblium
-	name = "Antinoblium canister"
+	name = "反铌罐"
 	gas_type = /datum/gas/antinoblium
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/antinoblium"
@@ -139,7 +139,7 @@
 	greyscale_colors = "#333333#fefb30"
 
 /obj/machinery/portable_atmospherics/canister/bz
-	name = "\improper BZ canister"
+	name = "\improper BZ气罐"
 	gas_type = /datum/gas/bz
 	icon_state = "/obj/machinery/portable_atmospherics/canister/bz"
 	post_init_icon_state = ""
@@ -147,7 +147,7 @@
 	greyscale_colors = "#9b5d7f#d0d2a0"
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
-	name = "Carbon dioxide canister"
+	name = "二氧化碳罐"
 	gas_type = /datum/gas/carbon_dioxide
 	icon_state = "/obj/machinery/portable_atmospherics/canister/carbon_dioxide"
 	post_init_icon_state = ""
@@ -155,7 +155,7 @@
 	greyscale_colors = "#4e4c48#eaeaea"
 
 /obj/machinery/portable_atmospherics/canister/freon
-	name = "Freon canister"
+	name = "氟利昂气罐"
 	gas_type = /datum/gas/freon
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/freon"
@@ -164,7 +164,7 @@
 	greyscale_colors = "#6696ee#fefb30"
 
 /obj/machinery/portable_atmospherics/canister/halon
-	name = "Halon canister"
+	name = "哈龙气罐"
 	gas_type = /datum/gas/halon
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/halon"
@@ -173,7 +173,7 @@
 	greyscale_colors = "#9b5d7f#368bff"
 
 /obj/machinery/portable_atmospherics/canister/healium
-	name = "Healium canister"
+	name = "疗气罐"
 	gas_type = /datum/gas/healium
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/healium"
@@ -182,7 +182,7 @@
 	greyscale_colors = "#009823#ff0e00"
 
 /obj/machinery/portable_atmospherics/canister/helium
-	name = "Helium canister"
+	name = "氦气罐"
 	gas_type = /datum/gas/helium
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/helium"
@@ -191,7 +191,7 @@
 	greyscale_colors = "#9b5d7f#368bff"
 
 /obj/machinery/portable_atmospherics/canister/hydrogen
-	name = "Hydrogen canister"
+	name = "氢气罐"
 	gas_type = /datum/gas/hydrogen
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/hydrogen"
@@ -200,7 +200,7 @@
 	greyscale_colors = "#eaeaea#be3455"
 
 /obj/machinery/portable_atmospherics/canister/miasma
-	name = "Miasma canister"
+	name = "瘴气罐"
 	gas_type = /datum/gas/miasma
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/miasma"
@@ -209,7 +209,7 @@
 	greyscale_colors = "#009823#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
-	name = "Nitrogen canister"
+	name = "氮气罐"
 	gas_type = /datum/gas/nitrogen
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nitrogen"
 	post_init_icon_state = ""
@@ -217,7 +217,7 @@
 	greyscale_colors = "#e9ff5c#f4fce8"
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide
-	name = "Nitrous oxide canister"
+	name = "一氧化二氮罐"
 	gas_type = /datum/gas/nitrous_oxide
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nitrous_oxide"
 	post_init_icon_state = ""
@@ -225,7 +225,7 @@
 	greyscale_colors = "#c63e3b#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/nitrium
-	name = "Nitrium canister"
+	name = "亚硝基兴奋气罐"
 	gas_type = /datum/gas/nitrium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nitrium"
 	post_init_icon_state = ""
@@ -233,7 +233,7 @@
 	greyscale_colors = "#7b4732"
 
 /obj/machinery/portable_atmospherics/canister/nob
-	name = "Hyper-noblium canister"
+	name = "超铌罐"
 	gas_type = /datum/gas/hypernoblium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nob"
 	post_init_icon_state = ""
@@ -241,7 +241,7 @@
 	greyscale_colors = "#6399fc#b2b2b2"
 
 /obj/machinery/portable_atmospherics/canister/oxygen
-	name = "Oxygen canister"
+	name = "氧气罐"
 	gas_type = /datum/gas/oxygen
 	icon_state = "/obj/machinery/portable_atmospherics/canister/oxygen"
 	post_init_icon_state = ""
@@ -249,7 +249,7 @@
 	greyscale_colors = "#2786e5#e8fefe"
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
-	name = "Pluoxium canister"
+	name = "钚罗索仑气罐"
 	gas_type = /datum/gas/pluoxium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/pluoxium"
 	post_init_icon_state = ""
@@ -257,7 +257,7 @@
 	greyscale_colors = "#2786e5"
 
 /obj/machinery/portable_atmospherics/canister/proto_nitrate
-	name = "Proto Nitrate canister"
+	name = "原硝酸罐"
 	gas_type = /datum/gas/proto_nitrate
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/proto_nitrate"
@@ -266,7 +266,7 @@
 	greyscale_colors = "#008200#33cc33"
 
 /obj/machinery/portable_atmospherics/canister/plasma
-	name = "Plasma canister"
+	name = "等离子体气罐"
 	gas_type = /datum/gas/plasma
 	icon_state = "/obj/machinery/portable_atmospherics/canister/plasma"
 	post_init_icon_state = ""
@@ -274,7 +274,7 @@
 	greyscale_colors = "#f62800#000000"
 
 /obj/machinery/portable_atmospherics/canister/tritium
-	name = "Tritium canister"
+	name = "氚气罐"
 	gas_type = /datum/gas/tritium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/tritium"
 	post_init_icon_state = ""
@@ -282,7 +282,7 @@
 	greyscale_colors = "#3fcd40#000000"
 
 /obj/machinery/portable_atmospherics/canister/water_vapor
-	name = "Water vapor canister"
+	name = "水蒸气气罐"
 	gas_type = /datum/gas/water_vapor
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/water_vapor"
@@ -291,7 +291,7 @@
 	greyscale_colors = "#4c4e4d#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/zauker
-	name = "Zauker canister"
+	name = "祖克气罐"
 	gas_type = /datum/gas/zauker
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/zauker"
@@ -302,8 +302,8 @@
 // Special canisters below here
 
 /obj/machinery/portable_atmospherics/canister/fusion_test
-	name = "fusion test canister"
-	desc = "Don't be a badmin."
+	name = "聚变测试气罐"
+	desc = "别当坏管理员。"
 	temp_limit = 1e12
 	pressure_limit = 1e14
 
@@ -314,8 +314,8 @@
 	SSair.start_processing_machine(src)
 
 /obj/machinery/portable_atmospherics/canister/anesthetic_mix
-	name = "Anesthetic mix"
-	desc = "A mixture of N2O and Oxygen"
+	name = "麻醉混合气"
+	desc = "一氧化二氮（N2O）和氧气的混合气体"
 	icon_state = "/obj/machinery/portable_atmospherics/canister/anesthetic_mix"
 	post_init_icon_state = ""
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
@@ -416,15 +416,15 @@
 	if(istype(item, /obj/item/stock_parts/power_store/cell))
 		var/obj/item/stock_parts/power_store/cell/active_cell = item
 		if(!panel_open)
-			balloon_alert(user, "open hatch first!")
+			balloon_alert(user, "先打开舱口！")
 			return TRUE
 		if(!user.transferItemToLoc(active_cell, src))
 			return TRUE
 		if(internal_cell)
 			user.put_in_hands(internal_cell)
-			balloon_alert(user, "you replace the cell")
+			balloon_alert(user, "你更换了电池")
 		else
-			balloon_alert(user, "you install the cell")
+			balloon_alert(user, "你安装了电池")
 		internal_cell = active_cell
 		return TRUE
 	return ..()
@@ -437,7 +437,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	internal_cell.forceMove(drop_location())
-	balloon_alert(user, "cell removed")
+	balloon_alert(user, "电池已移除")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/portable_atmospherics/canister/welder_act_secondary(mob/living/user, obj/item/I)
@@ -446,12 +446,12 @@
 
 	var/pressure = air_contents.return_pressure()
 	if(pressure > 300)
-		to_chat(user, span_alert("The pressure gauge on [src] indicates a high pressure inside... maybe you want to reconsider?"))
+		to_chat(user, span_alert("[src]上的压力表显示内部压力很高……也许你应该再考虑一下？"))
 		message_admins("[src] deconstructed by [ADMIN_LOOKUPFLW(user)]")
 		user.log_message("deconstructed [src] with a welder.", LOG_GAME)
-	to_chat(user, span_notice("You begin cutting [src] apart..."))
+	to_chat(user, span_notice("你开始切割[src]..."))
 	if(I.use_tool(src, user, 3 SECONDS, volume=50))
-		to_chat(user, span_notice("You cut [src] apart."))
+		to_chat(user, span_notice("你切开了[src]。"))
 		deconstruct(TRUE)
 
 	return ITEM_INTERACT_SUCCESS
@@ -617,7 +617,7 @@
 
 	switch(action)
 		if("relabel")
-			var/label = tgui_input_list(usr, "New canister label", "Canister", GLOB.gas_id_to_canister)
+			var/label = tgui_input_list(usr, "新气罐标签", "气罐", GLOB.gas_id_to_canister)
 			if(isnull(label))
 				return
 			var/newtype = GLOB.gas_id_to_canister[label]
@@ -643,7 +643,7 @@
 				pressure = CAN_MAX_RELEASE_PRESSURE
 				. = TRUE
 			else if(pressure == "input")
-				pressure = tgui_input_number(usr, message = "New release pressure", title = "Canister Pressure", default = release_pressure, max_value = CAN_MAX_RELEASE_PRESSURE, min_value = CAN_MIN_RELEASE_PRESSURE, round_value = FALSE)
+				pressure = tgui_input_number(usr, message = "新释放压力", title = "气罐压力", default = release_pressure, max_value = CAN_MAX_RELEASE_PRESSURE, min_value = CAN_MIN_RELEASE_PRESSURE, round_value = FALSE)
 				if(!isnull(pressure))
 					. = TRUE
 			else if(text2num(pressure) != null)
@@ -743,8 +743,8 @@
 	if(!holding)
 		return FALSE
 	if(valve_open)
-		message_admins("[ADMIN_LOOKUPFLW(user)] removed [holding] from [src] with valve still open [wire_pulsed ? "via wire pulse" : ""] at [ADMIN_VERBOSEJMP(src)] releasing contents into the [span_bolddanger("air")].")
-		user.investigate_log("removed the [holding] [wire_pulsed ? "via wire pulse" : ""], leaving the valve open and transferring into the [span_bolddanger("air")].", INVESTIGATE_ATMOS)
+		message_admins("[ADMIN_LOOKUPFLW(user)] 从 [holding] 中移除了 [src]，阀门仍处于打开状态 [wire_pulsed ? "via wire pulse" : ""] 于 [ADMIN_VERBOSEJMP(src)]，将内容物释放到 [span_bolddanger("air")]。")
+		user.investigate_log("移除了 [holding] [wire_pulsed ? "via wire pulse" : ""]，让阀门保持打开并将内容物转移到 [span_bolddanger("air")]。", INVESTIGATE_ATMOS)
 	replace_tank(user, FALSE)
 	return TRUE
 

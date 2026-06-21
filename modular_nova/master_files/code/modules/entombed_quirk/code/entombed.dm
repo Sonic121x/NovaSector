@@ -37,7 +37,7 @@
 				life_support_timer = addtimer(CALLBACK(src, PROC_REF(life_support_failure), human_holder), life_support_failure_threshold, TIMER_STOPPABLE | TIMER_DELETE_ME)
 
 				to_chat(human_holder, span_danger("Your physiology begins to erratically seize and twitch, bereft of your MODsuit's vital support. <b>Turn it back on as soon as you can!</b>"))
-				human_holder.balloon_alert(human_holder, "suit life support warning!")
+				human_holder.balloon_alert(human_holder, "防护服生命支持警告！")
 				human_holder.set_jitter_if_lower(life_support_failure_threshold) //give us some foley jitter
 				return
 		else
@@ -48,7 +48,7 @@
 				life_support_failed = FALSE
 
 				to_chat(human_holder, span_notice("Relief floods your frame as your suit begins sustaining your life once more."))
-				human_holder.balloon_alert(human_holder, "suit life support restored!")
+				human_holder.balloon_alert(human_holder, "防护服生命支持已恢复！")
 				human_holder.adjust_jitter(-(life_support_failure_threshold / 2)) // clear half of it, wow, that was unpleasant
 
 /// Proteans already have their own built-in modsuit, so they cannot take the entombed quirk.
@@ -62,7 +62,7 @@
 	var/mob/living/carbon/human/human_holder = quirk_holder
 
 	human_holder.visible_message(span_danger("[human_holder] suddenly staggers, a dire pallor overtaking [human_holder.p_their()] features as a feeble 'breep' emanates from their suit..."), span_userdanger("Terror descends as your suit's life support system breeps feebly, and then goes horrifyingly silent."))
-	human_holder.balloon_alert(human_holder, "suit life support failing!")
+	human_holder.balloon_alert(human_holder, "防护服生命支持即将失效！")
 	playsound(human_holder, 'sound/effects/alert.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE) // OH GOD THE STRESS NOISE
 	life_support_failed = TRUE
 

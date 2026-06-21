@@ -3,8 +3,8 @@ Prismatic extracts:
 	Becomes an infinite-use paintbrush.
 */
 /obj/item/slimecross/prismatic
-	name = "prismatic extract"
-	desc = "It's constantly wet with a semi-transparent, colored goo."
+	name = "炫彩提取物"
+	desc = "它一直是湿的，带有半透明的彩色粘稠物。"
 	effect = "prismatic"
 	effect_desc = "When used it paints whatever it hits."
 	icon_state = "prismatic"
@@ -20,7 +20,7 @@ Prismatic extracts:
 
 /obj/item/slimecross/prismatic/grey
 	colour = SLIME_TYPE_GREY
-	desc = "It's constantly wet with a pungent-smelling, clear chemical."
+	desc = "该物体表面持续湿润，附着一层气味刺鼻的无色化学品。"
 
 /obj/item/slimecross/prismatic/grey/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(isturf(interacting_with) && interacting_with.color != initial(interacting_with.color))

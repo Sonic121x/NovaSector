@@ -1,6 +1,6 @@
 /// Defers MouseEntered inputs to only apply to the most recently hovered over atom in the tick
 SUBSYSTEM_DEF(mouse_entered)
-	name = "MouseEntered"
+	name = "鼠标进入"
 	wait = 1
 	ss_flags = SS_NO_INIT | SS_TICKER
 	priority = FIRE_PRIORITY_MOUSE_ENTERED

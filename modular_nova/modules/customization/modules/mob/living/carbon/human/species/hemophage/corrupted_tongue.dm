@@ -28,8 +28,8 @@
 
 
 /datum/action/cooldown/hemophage/drain_victim
-	name = "Drain Victim"
-	desc = "Leech blood from any carbon victim you are passively grabbing."
+	name = "吸取受害者"
+	desc = "从你被动抓取的任何碳基受害者身上吸取血液。"
 
 
 /datum/action/cooldown/hemophage/drain_victim/Activate(atom/target)
@@ -55,34 +55,34 @@
  */
 /datum/action/cooldown/hemophage/drain_victim/proc/has_valid_target(mob/living/carbon/hemophage)
 	if(!hemophage.pulling || !iscarbon(hemophage.pulling) || isalien(hemophage.pulling))
-		hemophage.balloon_alert(hemophage, "not pulling any valid target!")
+		hemophage.balloon_alert(hemophage, "没有拉住任何有效目标！")
 		return FALSE
 
 	var/mob/living/carbon/victim = hemophage.pulling
 	if(hemophage.get_blood_volume() >= BLOOD_VOLUME_MAXIMUM)
-		hemophage.balloon_alert(hemophage, "already full!")
+		hemophage.balloon_alert(hemophage, "已经饱了！")
 		return FALSE
 
 	if(victim.stat == DEAD)
-		hemophage.balloon_alert(hemophage, "needs a living victim!")
+		hemophage.balloon_alert(hemophage, "需要一个活着的受害者！")
 		return FALSE
 
 	if(!victim.get_blood_volume() || (victim.dna && ((HAS_TRAIT(victim, TRAIT_NOBLOOD)) || (victim.get_blood_reagent() != hemophage.get_blood_reagent()))))
-		hemophage.balloon_alert(hemophage, "[victim] doesn't have suitable blood!")
+		hemophage.balloon_alert(hemophage, "[victim]没有合适的血液！")
 		return FALSE
 
 	if(victim.can_block_magic(MAGIC_RESISTANCE_HOLY, charge_cost = 0))
-		victim.show_message(span_warning("[hemophage] tries to bite you, but stops before touching you!"))
-		to_chat(hemophage, span_warning("[victim] is blessed! You stop just in time to avoid catching fire."))
+		victim.show_message(span_warning("[hemophage] 试图咬你，但在碰到你之前停住了！"))
+		to_chat(hemophage, span_warning("[victim] 受到了祝福！你及时停住，避免了引火上身。"))
 		return FALSE
 
 	if(victim.has_reagent(/datum/reagent/consumable/garlic))
-		victim.show_message(span_warning("[hemophage] tries to bite you, but recoils in disgust!"))
-		to_chat(hemophage, span_warning("[victim] reeks of garlic! You can't bring yourself to drain such tainted blood."))
+		victim.show_message(span_warning("[hemophage] 试图咬你，但厌恶地退缩了！"))
+		to_chat(hemophage, span_warning("[victim] 散发着大蒜味！你无法让自己去吸取这种被污染的血液。"))
 		return FALSE
 
 	if(ismonkey(victim) && (hemophage.get_blood_volume() >= BLOOD_VOLUME_NORMAL))
-		hemophage.balloon_alert(hemophage, "their inferior blood cannot sate you any further!")
+		hemophage.balloon_alert(hemophage, "他们低劣的血液无法再满足你了！")
 		return FALSE
 
 	return TRUE
@@ -120,7 +120,7 @@
 	StartCooldown()
 
 	if(!do_after(hemophage, 3 SECONDS, target = victim))
-		hemophage.balloon_alert(hemophage, "stopped feeding")
+		hemophage.balloon_alert(hemophage, "停止进食")
 		return
 
 	var/drained_blood = min(victim.get_blood_volume(), HEMOPHAGE_DRAIN_AMOUNT, blood_volume_difference)
@@ -138,13 +138,13 @@
 	hemophage.adjust_blood_volume(drained_blood * drained_multiplier, 0, BLOOD_VOLUME_MAXIMUM)
 
 	log_combat(hemophage, victim, "drained [drained_blood]u of blood from", addition = " (NEW BLOOD VOLUME: [victim.get_blood_volume()] cL)")
-	victim.show_message(span_danger("[hemophage] drains some of your blood!"))
+	victim.show_message(span_danger("[hemophage] 吸取了你的一些血液！"))
 
 	if(horrible_feeding)
 		if(istype(victim, /mob/living/carbon/human/species/monkey))
-			to_chat(hemophage, span_notice("You take tentative draws of blood from [victim], each mouthful awash with the taste of ozone and a strange artificial twinge."))
+			to_chat(hemophage, span_notice("你试探性地从 [victim] 身上吸取血液，每一口都充满了臭氧味和一种奇怪的人工刺激感。"))
 		else
-			to_chat(hemophage, span_warning("You choke back tepid mouthfuls of foul blood from [victim]. The taste is absolutely vile."))
+			to_chat(hemophage, span_warning("你强咽下从 [victim] 身上吸取的几口温热的恶臭血液。那味道简直令人作呕。"))
 	else
 		to_chat(hemophage, span_notice("You pull greedy gulps of precious lifeblood from [victim]'s veins![is_target_human_with_client ? " That tasted particularly good!" : ""]"))
 
@@ -152,11 +152,11 @@
 
 	// just let the hemophage know they're capped out on blood if they're trying to go for an exsanguinate and wondering why it isn't working
 	if(drained_blood != HEMOPHAGE_DRAIN_AMOUNT && hemophage.get_blood_volume() >= (BLOOD_VOLUME_MAXIMUM - HEMOPHAGE_DRAIN_AMOUNT))
-		to_chat(hemophage, span_boldnotice("Your thirst is temporarily slaked, and you can digest no more new blood for the moment."))
+		to_chat(hemophage, span_boldnotice("你的饥渴暂时得到了缓解，目前无法再消化更多新鲜血液。"))
 
 	if(victim.get_blood_volume() <= BLOOD_VOLUME_OKAY)
-		to_chat(hemophage, span_warning("That definitely left them looking pale..."))
-		to_chat(victim, span_warning("A groaning lethargy creeps into your muscles as you begin to feel slightly clammy...")) //let the victim know too
+		to_chat(hemophage, span_warning("这肯定让他们看起来脸色苍白..."))
+		to_chat(victim, span_warning("一阵呻吟般的倦怠感悄然渗入你的肌肉，你开始感到皮肤有些湿冷...")) //let the victim know too
 
 	if(is_target_human_with_client)
 		hemophage.apply_status_effect(/datum/status_effect/blood_thirst_satiated)
@@ -166,9 +166,9 @@
 
 	// for this to ever occur, the hemophage actually has to be decently hungry, otherwise they'll cap their own blood reserves and be unable to pull it off.
 	if(!victim.get_blood_volume() || victim.get_blood_volume() <= BLOOD_VOLUME_SURVIVE)
-		to_chat(hemophage, span_boldwarning("A final sputter of blood trickles from [victim]'s collapsing veins as your terrible hunger drains them almost completely dry."))
+		to_chat(hemophage, span_boldwarning("随着你可怕的饥渴几乎将他们彻底榨干，[victim]萎缩的血管中淌出了最后一丝微弱的血流。"))
 	else if((victim.get_blood_volume() - HEMOPHAGE_DRAIN_AMOUNT) <= BLOOD_VOLUME_SURVIVE)
-		to_chat(hemophage, span_warning("A sense of hesitation gnaws: you know for certain that taking much more blood from [victim] WILL kill them. <b>...but another part of you sees only opportunity.</b>"))
+		to_chat(hemophage, span_warning("一股犹豫感啃噬着你：你确切地知道，再从[victim]身上抽取更多血液，他们必死无疑。<b>……但你的另一部分只看到了机会。</b>"))
 
 
 #undef HEMOPHAGE_DRAIN_AMOUNT

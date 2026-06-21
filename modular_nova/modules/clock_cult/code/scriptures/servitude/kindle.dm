@@ -4,8 +4,8 @@
 // Reworked to be a slightly stronger version of the mansus hand, except with the 1s windup required to invoke.
 
 /datum/scripture/slab/kindle
-	name = "Kindle"
-	desc = "Stuns and mutes a target from a short range."
+	name = "点燃"
+	desc = "从短距离内击晕并禁言一个目标。"
 	tip = "Stuns and mutes a target from a short range."
 	button_icon_state = "Kindle"
 	power_cost = 125
@@ -36,8 +36,8 @@
 		hit_mob.add_overlay(forbearance)
 		addtimer(CALLBACK(hit_mob, TYPE_PROC_REF(/atom, cut_overlay), forbearance), 10 SECONDS)
 
-		hit_mob.visible_message(span_warning("[hit_mob] stares blankly, as a field of energy flows around them."), \
-									   span_userdanger("You feel a slight shock as a wave of energy flows past you."))
+		hit_mob.visible_message(span_warning("[hit_mob]茫然地凝视着，一股能量场在他们周围流动。"), \
+									   span_userdanger("你感到一阵轻微的冲击，一股能量波从你身边流过。"))
 
 		playsound(invoker, 'sound/effects/magic/mm_hit.ogg', 50, TRUE)
 		return TRUE
@@ -55,8 +55,8 @@
 
 		hit_mob.say("Fwebar uloft'gib mirlig yro'fara!")
 
-		to_chat(invoker, span_warning("Some force greater than you intervenes! [hit_mob] is protected by Nar'sie!"))
-		to_chat(hit_mob, span_warning("You are protected by your faith to Nar'sie!"))
+		to_chat(invoker, span_warning("某种比你更强大的力量介入了！[hit_mob]受到Nar'sie的保护！"))
+		to_chat(hit_mob, span_warning("你因对Nar'sie的信仰而受到保护！"))
 
 		playsound(invoker, 'sound/effects/magic/mm_hit.ogg', 50, TRUE)
 		return TRUE

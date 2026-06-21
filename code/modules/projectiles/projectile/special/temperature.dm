@@ -1,5 +1,5 @@
 /obj/projectile/temp
-	name = "freeze beam"
+	name = "冰冻光线"
 	icon_state = "ice_2"
 	damage = 0
 	damage_type = BURN
@@ -32,7 +32,7 @@
 			reagents?.expose_temperature(temperature)
 
 /obj/projectile/temp/hot
-	name = "heat beam"
+	name = "热射束"
 	icon_state = "lava"
 	temperature = 100 // Raise the body temp by 100 points
 
@@ -44,7 +44,7 @@
 		living_target.adjust_wet_stacks(-10)
 
 /obj/projectile/temp/cryo
-	name = "cryo beam"
+	name = "低温射束"
 	range = 9
 	temperature = -350 // Single slow shot reduces temp greatly
 
@@ -63,7 +63,7 @@
 	return ..()
 
 /obj/projectile/temp/pyro
-	name = "hot beam"
+	name = "高温射束"
 	icon_state = "firebeam" // sets on fire, diff sprite!
 	range = 9
 	temperature = 350

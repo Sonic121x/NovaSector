@@ -3,9 +3,9 @@
 
 /obj/machinery/syndicatebomb
 	icon = 'icons/obj/devices/assemblies.dmi'
-	name = "syndicate bomb"
+	name = "辛迪加炸弹"
 	icon_state = "syndicate-bomb"
-	desc = "A large and menacing device. Can be bolted down with a wrench."
+	desc = "一个巨大而危险的装置。可以用扳手固定。"
 
 	anchored = FALSE
 	density = FALSE
@@ -120,11 +120,11 @@
 	if(istype(payload))
 		. += "A small window reveals some information about the payload: [payload.desc]."
 	if(examinable_countdown)
-		. += span_notice("A digital display on it reads \"[seconds_remaining()]\".")
+		. += span_notice("上面的数字显示屏显示着\"[seconds_remaining()]\"。")
 		if(active)
 			balloon_alert(user, "[seconds_remaining()]")
 	else
-		. += span_notice({"The digital display on it is inactive."})
+		. += span_notice({"上面的数字显示屏没有激活。"})
 
 /obj/machinery/syndicatebomb/update_icon_state()
 	icon_state = "[initial(icon_state)][active ? "-active" : "-inactive"][open_panel ? "-wires" : ""]"
@@ -142,20 +142,20 @@
 		return FALSE
 	if(!anchored)
 		if(!isturf(loc) || isspaceturf(loc))
-			to_chat(user, span_notice("The bomb must be placed on solid ground to attach it."))
+			to_chat(user, span_notice("炸弹必须放置在坚实的地面上才能固定。"))
 		else
-			to_chat(user, span_notice("You firmly wrench the bomb to the floor."))
+			to_chat(user, span_notice("你用力将炸弹用扳手固定在地板上。"))
 			tool.play_tool_sound(src)
 			set_anchored(TRUE)
 			if(active)
-				to_chat(user, span_notice("The bolts lock in place."))
+				to_chat(user, span_notice("螺栓锁定了位置。"))
 	else
 		if(!active)
-			to_chat(user, span_notice("You wrench the bomb from the floor."))
+			to_chat(user, span_notice("你用扳手将炸弹从地板上卸下。"))
 			tool.play_tool_sound(src)
 			set_anchored(FALSE)
 		else
-			to_chat(user, span_warning("The bolts are locked down!"))
+			to_chat(user, span_warning("螺栓被锁死了！"))
 
 	return TRUE
 
@@ -163,7 +163,7 @@
 	tool.play_tool_sound(src, 50)
 	open_panel = !open_panel
 	update_appearance()
-	to_chat(user, span_notice("You [open_panel ? "open" : "close"] the wire panel."))
+	to_chat(user, span_notice("你[open_panel ? "open" : "close"]了电线面板。"))
 	return TRUE
 
 /obj/machinery/syndicatebomb/crowbar_act(mob/living/user, obj/item/tool)
@@ -171,15 +171,15 @@
 	if(open_panel && wires.is_all_cut())
 		if(payload)
 			tool.play_tool_sound(src, 25) // sshhh
-			to_chat(user, span_notice("You carefully pry out [payload]."))
+			to_chat(user, span_notice("你小心地撬出了 [payload]。"))
 			payload.forceMove(drop_location())
 			payload = null
 		else
-			to_chat(user, span_warning("There isn't anything in here to remove!"))
+			to_chat(user, span_warning("这里面没有任何东西可以移除！"))
 	else if (open_panel)
-		to_chat(user, span_warning("The wires connecting the shell to the explosives are holding it down!"))
+		to_chat(user, span_warning("连接外壳和炸药的导线把它固定住了！"))
 	else
-		to_chat(user, span_warning("The cover is screwed on, it won't pry off!"))
+		to_chat(user, span_warning("盖子被螺丝固定住了，撬不开！"))
 
 /obj/machinery/syndicatebomb/welder_act(mob/living/user, obj/item/tool)
 	if(payload || !wires.is_all_cut() || !open_panel)
@@ -188,9 +188,9 @@
 	if(!tool.tool_start_check(user, amount=1))
 		return TRUE
 
-	to_chat(user, span_notice("You start to cut [src] apart..."))
+	to_chat(user, span_notice("你开始切割 [src]..."))
 	if(tool.use_tool(src, user, 20, volume=50))
-		to_chat(user, span_notice("You cut [src] apart."))
+		to_chat(user, span_notice("你切开了 [src]。"))
 		new /obj/item/stack/sheet/plasteel(loc, 5)
 		qdel(src)
 	return TRUE
@@ -206,14 +206,14 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			payload = I
-			to_chat(user, span_notice("You place [payload] into [src]."))
+			to_chat(user, span_notice("你将 [payload] 放入了 [src]。"))
 		else
-			to_chat(user, span_warning("[payload] is already loaded into [src]! You'll have to remove it first."))
+			to_chat(user, span_warning("[payload] 已经装载进 [src] 了！你得先把它取出来。"))
 	else
 		var/old_integ = atom_integrity
 		. = ..()
 		if((old_integ > atom_integrity) && active && (payload in src))
-			to_chat(user, span_warning("That seems like a really bad idea..."))
+			to_chat(user, span_warning("这看起来是个非常糟糕的主意..."))
 
 /obj/machinery/syndicatebomb/interact(mob/user)
 	wires.interact(user)
@@ -221,7 +221,7 @@
 		if(!active)
 			settings(user)
 		else if(anchored)
-			to_chat(user, span_warning("The bomb is bolted to the floor!"))
+			to_chat(user, span_warning("炸弹被螺栓固定在地板上了！"))
 
 /obj/machinery/syndicatebomb/proc/activate()
 	active = TRUE
@@ -262,18 +262,18 @@
 /obj/machinery/syndicatebomb/proc/settings(mob/user)
 	if(!user.can_perform_action(src, ALLOW_SILICON_REACH) || !user.can_interact_with(src))
 		return
-	var/new_timer = tgui_input_number(user, "Set the timer[add_boom_wires ? " (the longer the timer, the harder to defuse!)" : ""]", "Countdown", timer_set, maximum_timer, minimum_timer)
+	var/new_timer = tgui_input_number(user, "设置计时器[add_boom_wires ? " (the longer the timer, the harder to defuse!)" : ""]", "倒计时", timer_set, maximum_timer, minimum_timer)
 	if(!new_timer || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	timer_set = new_timer
-	visible_message(span_notice("[icon2html(src, viewers(src))] timer set for [timer_set] seconds."))
-	var/choice = tgui_alert(user, "Would you like to start the countdown now?", "Bomb Timer", list("Yes","No"))
+	visible_message(span_notice("[icon2html(src, viewers(src))] 计时器设定为 [timer_set] 秒。"))
+	var/choice = tgui_alert(user, "要现在开始倒计时吗？", "炸弹计时器", list("Yes","No"))
 	if(choice != "Yes" || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	if(active)
-		to_chat(user, span_warning("The bomb is already active!"))
+		to_chat(user, span_warning("炸弹已激活！"))
 		return
-	visible_message(span_danger("[icon2html(src, viewers(loc))] [timer_set] seconds until detonation, please clear the area."))
+	visible_message(span_danger("[icon2html(src, viewers(loc))] 距离引爆还有 [timer_set] 秒，请清空该区域。"))
 	activate()
 	add_fingerprint(user)
 	// We don't really concern ourselves with duds or fakes after this
@@ -293,32 +293,32 @@
 ///Bomb Subtypes///
 
 /obj/machinery/syndicatebomb/training
-	name = "training bomb"
+	name = "训练炸弹"
 	icon_state = "training-bomb"
-	desc = "A salvaged syndicate device gutted of its explosives to be used as a training aid for aspiring bomb defusers."
+	desc = "一个被回收的辛迪加装置，其爆炸物已被掏空，用作给有抱负的拆弹手训练的辅助工具。"
 	payload = /obj/item/bombcore/training
 
 /obj/machinery/syndicatebomb/emp
-	name = "EMP Bomb"
-	desc = "A modified bomb designed to release a crippling electromagnetic pulse instead of explode"
+	name = "电磁脉冲炸弹"
+	desc = "一种改装过的炸弹，设计用来释放危险的电磁脉冲而不是爆炸"
 	payload = /obj/item/bombcore/emp
 
 /obj/machinery/syndicatebomb/badmin
-	name = "generic summoning badmin bomb"
-	desc = "Oh god what is in this thing?"
+	name = "通用召唤管理员炸弹"
+	desc = "哦，老天，这玩意里装的是什么？"
 	payload = /obj/item/bombcore/badmin/summon
 
 /obj/machinery/syndicatebomb/badmin/clown
-	name = "clown bomb"
+	name = "小丑炸弹"
 	icon_state = "clown-bomb"
 	desc = "HONK."
 	payload = /obj/item/bombcore/badmin/summon/clown
 	beepsound = 'sound/items/bikehorn.ogg'
 
 /obj/machinery/syndicatebomb/empty
-	name = "bomb"
+	name = "炸弹"
 	icon_state = "base-bomb"
-	desc = "An ominous looking device designed to detonate an explosive payload. Can be bolted down using a wrench."
+	desc = "一种设计用来引爆爆炸物的不祥的装置。可使用扳手拧紧。"
 	payload = null
 	open_panel = TRUE
 	timer_set = 120
@@ -328,8 +328,8 @@
 	wires.cut_all()
 
 /obj/machinery/syndicatebomb/nukie/empty
-	name = "syndicate bomb"
-	desc = "An menancing looking device designed to detonate an explosive payload. Can be botled down using a wrench."
+	name = "辛迪加炸弹"
+	desc = "一个设计用于引爆爆炸载荷的、看起来充满威胁的装置。可以用扳手将其固定在地面上。"
 	payload = null
 	open_panel = TRUE
 	timer_set = 120
@@ -339,16 +339,16 @@
 	wires.cut_all()
 
 /obj/machinery/syndicatebomb/self_destruct
-	name = "self-destruct device"
-	desc = "Do not taunt. Warranty invalid if exposed to high temperature. Not suitable for agents under 3 years of age."
+	name = "自毁装置"
+	desc = "请勿刺激。若暴露在高温下，则保修无效。不适用于3岁以下的特工。"
 	payload = /obj/item/bombcore/syndicate/large
 	can_unanchor = FALSE
 
 ///Bomb Cores///
 
 /obj/item/bombcore
-	name = "bomb payload"
-	desc = "A powerful secondary explosive of syndicate design and unknown composition, it should be stable under normal conditions..."
+	name = "装药"
+	desc = "一种辛迪加设计且成分不明的强力二级炸药，在正常条件下应该是稳定的…"
 	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "bombcore"
 	inhand_icon_state = "eshield"
@@ -391,23 +391,23 @@
 
 /// Subtype for the bomb cores found inside syndicate bombs, which will not detonate due to explosion/burning.
 /obj/item/bombcore/syndicate
-	name = "Donk Co. Super-Stable Bomb Payload"
-	desc = "After a string of unwanted detonations, this payload has been specifically redesigned to not explode unless triggered electronically by a bomb shell."
+	name = "唐克公司超稳定炸弹载荷"
+	desc = "在一系列意外爆炸之后，此载荷经过专门重新设计，除非由炸弹外壳电子触发，否则不会爆炸。"
 	explodes_when_burnt = FALSE
 
 /obj/item/bombcore/syndicate/ex_act(severity, target)
 	return FALSE
 
 /obj/item/bombcore/syndicate/large
-	name = "Donk Co. Super-Stable Bomb Payload XL"
+	name = "唐克公司超稳定炸弹载荷 XL"
 	range_heavy = 5
 	range_medium = 10
 	range_light = 20
 	range_flame = 20
 
 /obj/item/bombcore/training
-	name = "dummy payload"
-	desc = "A Nanotrasen replica of a syndicate payload. It's not intended to explode but to announce that it WOULD have exploded, then rewire itself to allow for more training."
+	name = "训练装药"
+	desc = "由纳米传讯制作的辛迪加装药复制品。并不会爆炸，而是会宣称它已爆炸，而后重新布线以用于再次训练。"
 	var/defusals = 0
 	var/attempts = 0
 
@@ -427,7 +427,7 @@
 	var/obj/machinery/syndicatebomb/holder = loc
 	if(istype(holder))
 		attempts++
-		holder.loc.visible_message(span_danger("[icon2html(holder, viewers(holder))] Alert: Bomb has detonated. Your score is now [defusals] for [attempts]. Resetting wires..."))
+		holder.loc.visible_message(span_danger("[icon2html(holder, viewers(holder))] 警报：炸弹已引爆。你的当前得分是 [defusals] / [attempts]。正在重置导线..."))
 		reset()
 	else
 		qdel(src)
@@ -437,12 +437,12 @@
 	if(istype(holder))
 		attempts++
 		defusals++
-		holder.loc.visible_message(span_notice("[icon2html(holder, viewers(holder))] Alert: Bomb has been defused. Your score is now [defusals] for [attempts]! Resetting wires in 5 seconds..."))
+		holder.loc.visible_message(span_notice("[icon2html(holder, viewers(holder))] 警报：炸弹已被拆除。你的当前得分是 [defusals] / [attempts]！将在 5 秒后重置导线..."))
 		addtimer(CALLBACK(src, PROC_REF(reset)), 5 SECONDS) //Just in case someone is trying to remove the bomb core this gives them a little window to crowbar it out
 
 /obj/item/bombcore/badmin
-	name = "badmin payload"
-	desc = "If you're seeing this someone has either made a mistake or gotten dangerously savvy with var editing!"
+	name = "坏管理装药"
+	desc = "如果你看到这一点，有人可能犯了错误，或者对var编辑有了危险的理解！"
 
 /obj/item/bombcore/badmin/defuse() //because we wouldn't want them being harvested by players
 	var/obj/machinery/syndicatebomb/B = loc
@@ -461,8 +461,8 @@
 	qdel(src)
 
 /obj/item/bombcore/badmin/summon/clown
-	name = "bananium payload"
-	desc = "Clowns delivered fast and cheap!"
+	name = "香蕉矿弹头"
+	desc = "小丑送货，又快又便宜！"
 	summon_path = /mob/living/basic/clown
 	amt_summon = 50
 
@@ -471,14 +471,14 @@
 	..()
 
 /obj/item/bombcore/large
-	name = "large bomb payload"
+	name = "大当量炸弹装药"
 	range_heavy = 5
 	range_medium = 10
 	range_light = 20
 	range_flame = 20
 
 /obj/item/bombcore/miniature
-	name = "small bomb core"
+	name = "小型炸弹核心"
 	w_class = WEIGHT_CLASS_SMALL
 	range_heavy = 1
 	range_medium = 2
@@ -486,8 +486,8 @@
 	range_flame = 2
 
 /obj/item/bombcore/chemical
-	name = "chemical payload"
-	desc = "An explosive payload designed to spread chemicals, dangerous or otherwise, across a large area. Properties of the core may vary with grenade casing type, and must be loaded before use."
+	name = "化学装药"
+	desc = "一种爆炸性大当量炸药，设计用于将危险或其他化学品散布到大片区域。弹芯的性能可能因弹壳类型而异，必须在使用前装填。"
 	icon_state = "chemcore"
 	/// The initial volume of the reagent holder the bombcore has.
 	var/core_holder_volume = 1000
@@ -566,9 +566,9 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			beakers += I
-			to_chat(user, span_notice("You load [src] with [I]."))
+			to_chat(user, span_notice("你将[src]装入了[I]。"))
 		else
-			to_chat(user, span_warning("[I] won't fit! \The [src] can only hold up to [max_beakers] containers."))
+			to_chat(user, span_warning("[I] 装不进去！\The [src] 最多只能容纳 [max_beakers] 个容器。"))
 			return
 	..()
 
@@ -614,8 +614,8 @@
 	max_beakers = 5
 
 /obj/item/bombcore/emp
-	name = "EMP payload"
-	desc = "A set of superconducting electromagnetic coils designed to release a powerful pulse to destroy electronics and scramble circuits"
+	name = "EMP装药"
+	desc = "一组超导电磁线圈，设计用于释放强大的脉冲以破坏电子设备和扰乱电路。"
 	range_heavy = 15
 	range_medium = 25
 
@@ -631,8 +631,8 @@
 #define DIMENSION_CHOICE_RANDOM "None/Randomized"
 
 /obj/item/bombcore/dimensional
-	name = "multi-dimensional payload"
-	desc = "A wicked payload meant to wildly transmutate terrain over a wide area, a power no mere human should wield."
+	name = "多维有效载荷"
+	desc = "一种邪恶的载荷，旨在广阔区域内疯狂地改变地形，这种力量绝非凡人所能掌控。"
 	range_heavy = 17
 	var/datum/dimension_theme/chosen_theme
 
@@ -657,7 +657,7 @@
 
 /obj/item/bombcore/dimensional/examine(mob/user)
 	. = ..()
-	. += span_notice("Use in hand to change the linked dimension. Current dimension: [chosen_theme?.name || "None, output will be random"].")
+	. += span_notice("在手中使用以更改链接的维度。当前维度：[chosen_theme?.name || "None, output will be random"]。")
 
 /obj/item/bombcore/dimensional/attack_self(mob/user)
 	. = ..()
@@ -678,7 +678,7 @@
 		chosen_theme = null
 	else
 		chosen_theme = picked
-	balloon_alert(user, "set to [chosen_theme?.name || DIMENSION_CHOICE_RANDOM]")
+	balloon_alert(user, "设置为 [chosen_theme?.name || DIMENSION_CHOICE_RANDOM]")
 
 /obj/item/bombcore/dimensional/proc/check_menu(mob/user)
 	if(!user.is_holding(src) || user.incapacitated)
@@ -710,7 +710,7 @@
 ///Syndicate Detonator (aka the big red button)///
 
 /obj/item/syndicatedetonator
-	name = "big red button"
+	name = "红色大按钮"
 	desc = "Your standard issue bomb synchronizing button. Five second safety delay to prevent 'accidents'."
 	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "bigred"
@@ -730,7 +730,7 @@
 				detonated++
 			existent++
 		playsound(user, 'sound/machines/click.ogg', 20, TRUE)
-		to_chat(user, span_notice("[existent] found, [detonated] triggered."))
+		to_chat(user, span_notice("找到[existent]，触发[detonated]。"))
 		if(detonated)
 			detonated--
 			log_bomber(user, "remotely detonated [detonated ? "syndicate bombs" : "a syndicate bomb"] using a", src)

@@ -184,8 +184,8 @@
 
 
 /obj/item/ammo_box/c40sol/incendiary
-	name = "ammo box (.40 Sol Long incendiary)"
-	desc = "A box of .40 Sol Long rifle rounds, holds thirty bullets. The orange stripe indicates this should hold incendiary ammunition."
+	name = "弹药盒（.40索尔长弹燃烧弹）"
+	desc = "一盒.40索尔长弹步枪弹，内装三十发子弹。橙色条纹表明此盒应装有燃烧弹药。"
 
 	icon_state = "40box_flame"
 

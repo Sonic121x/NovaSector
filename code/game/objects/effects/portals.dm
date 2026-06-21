@@ -13,8 +13,8 @@
 	return list(P1, P2)
 
 /obj/effect/portal
-	name = "portal"
-	desc = "Looks unstable. Best to test it with the clown."
+	name = "传送门"
+	desc = "看起来不是很稳定。最好让小丑去测试一下它的性能。"
 	icon = 'icons/obj/anomaly.dmi'
 	icon_state = "portal"
 	anchored = TRUE
@@ -49,7 +49,7 @@
 	var/wibbles = TRUE
 
 /obj/effect/portal/anom
-	name = "wormhole"
+	name = "虫洞"
 	icon = 'icons/obj/anomaly.dmi'
 	icon_state = "anom"
 	layer = RIPPLE_LAYER
@@ -181,8 +181,8 @@
 	return real_target
 
 /obj/effect/portal/permanent
-	name = "permanent portal"
-	desc = "An unwavering portal that will never fade."
+	name = "永久传送门"
+	desc = "一个永远不会消失不可移动的传送门"
 	hardlinked = FALSE // dont qdel my portal nerd
 	force_teleport = TRUE // force teleports because they're a mapmaker tool
 	var/id // var edit or set id in map editor
@@ -201,8 +201,8 @@
 	. = ..()
 
 /obj/effect/portal/permanent/one_way // doesn't have a return portal, can have multiple exits, /obj/effect/landmark/portal_exit to mark them
-	name = "one-way portal"
-	desc = "You get the feeling that this might not be the safest thing you've ever done."
+	name = "单向传送门"
+	desc = "你会觉得这是你做过最不安全的事情。"
 
 /obj/effect/portal/permanent/one_way/set_linked()
 	if(!id)
@@ -217,8 +217,8 @@
 		hard_target = pick(possible_turfs)
 
 /obj/effect/portal/permanent/one_way/one_use
-	name = "one-use portal"
-	desc = "This is probably the worst decision you'll ever make in your life."
+	name = "一次性传送门"
+	desc = "这可能是你这辈子做出的最糟的决定。"
 
 /obj/effect/portal/permanent/one_way/one_use/teleport(atom/movable/moving, force = FALSE)
 	. = ..()

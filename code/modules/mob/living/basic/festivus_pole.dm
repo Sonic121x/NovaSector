@@ -2,8 +2,8 @@
 #define FESTIVUS_RECHARGE_VALUE (0.075 * STANDARD_CELL_CHARGE)
 
 /mob/living/basic/festivus
-	name = "festivus pole"
-	desc = "Serenity now... SERENITY NOW!"
+	name = "节庆柱"
+	desc = "平静下来……立刻平静下来！"
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "festivus_pole"
 	icon_living = "festivus_pole"
@@ -69,7 +69,7 @@
 	. = ..()
 	if(user.combat_mode)
 		return
-	visible_message(span_warning("[src] crackles with static electricity!"))
+	visible_message(span_warning("[src] 噼啪作响，闪烁着静电！"))
 	for(var/atom/affected in range(2, get_turf(src)))
 		if(istype(affected, /obj/item/stock_parts/power_store/cell))
 			var/obj/item/stock_parts/power_store/cell/cell = affected

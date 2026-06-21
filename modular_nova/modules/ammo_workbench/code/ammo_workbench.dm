@@ -391,7 +391,7 @@
 
 /datum/design/board/ammo_workbench
 	name = "Ammunition Workbench"
-	desc = "A machine made specifically for manufacturing ammunition."
+	desc = "一台专门用于制造弹药的机器。"
 	id = "ammo_workbench"
 	build_path = /obj/item/circuitboard/machine/ammo_workbench
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_FAB)
@@ -492,7 +492,7 @@
 				deltimer(timer_id)
 				timer_id = null
 		loaded_magazine = inserted
-		to_chat(user, span_notice("You insert [inserted] into [src]'s reciprocal."))
+		to_chat(user, span_notice("你将[inserted]放入了[src]的回收口。"))
 		flick("h_lathe_load", src)
 		update_appearance()
 		update_ammotypes()
@@ -513,7 +513,7 @@
 				timer_id = null
 		loaded_module = inserted
 		ammo_categories = loaded_module.ammo_categories
-		to_chat(user, span_notice("You insert [inserted] into [src]'s module port."))
+		to_chat(user, span_notice("你将[inserted]放入了[src]的模块插槽。"))
 		flick("h_lathe_load", src)
 		update_appearance()
 		update_ammotypes()
@@ -523,16 +523,16 @@
 
 /obj/machinery/ammo_workbench/proc/is_insertion_ready(mob/user, obj/item/inserted)
 	if(panel_open)
-		to_chat(user, span_warning("You can't load [src] while it's opened!"))
+		to_chat(user, span_warning("你不能在它打开的时候装入[src]！"))
 		return FALSE
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning("[src] is broken."))
+		to_chat(user, span_warning("[src]坏了。"))
 		return FALSE
 	if(machine_stat & NOPOWER)
-		to_chat(user, span_warning("[src] has no power."))
+		to_chat(user, span_warning("[src]没有电力。"))
 		return FALSE
 	return TRUE
 
 /obj/item/flatpack/ammo_workbench
-	name = "flatpacked ammunition workbench"
+	name = "打包弹药工作台"
 	board = /obj/item/circuitboard/machine/ammo_workbench

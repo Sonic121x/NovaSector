@@ -3,8 +3,8 @@
 */
 
 /obj/item/clothing/sextoy/eggvib
-	name = "vibrating egg"
-	desc = "A simple, vibrating sex toy."
+	name = "震动蛋"
+	desc = "一个简单的振动情趣玩具。"
 	icon_state = "eggvib_pink_off"
 	base_icon_state = "eggvib"
 	inhand_icon_state = "eggvib_pink"
@@ -51,13 +51,13 @@
 		toggle_mode()
 		switch(vibration_mode)
 			if("low")
-				to_chat(user, span_notice("You set the vibration mode to low. Bzzz..."))
+				to_chat(user, span_notice("你将振动模式设为低档。嗡…"))
 			if("medium")
-				to_chat(user, span_notice("You set the vibration mode to medium. Bzzzz!"))
+				to_chat(user, span_notice("你将振动模式设为中档。嗡嗡嗡！"))
 			if("high")
-				to_chat(user, span_notice("You set the vibration mode to high. Careful with that thing."))
+				to_chat(user, span_notice("你将振动模式设为高档。小心点用那玩意儿。"))
 			if("off")
-				to_chat(user, span_notice("You turn off the vibrating egg. Fun time's over."))
+				to_chat(user, span_notice("你关掉了振动蛋。欢乐时光结束了。"))
 		update_icon()
 		update_icon_state()
 	return CLICK_ACTION_SUCCESS
@@ -140,8 +140,8 @@
 */
 
 /obj/item/clothing/sextoy/eggvib/signalvib
-	name = "signal vibrating egg"
-	desc = "A vibrating sex toy with remote control capability. Use a signaller to turn it on."
+	name = "信号振动蛋"
+	desc = "一个具备遥控功能的振动情趣玩具。使用信号器来开启它。"
 	icon_state = "signalvib_pink_low_off"
 	base_icon_state = "signalvib"
 	inhand_icon_state = "signalvib_pink"
@@ -163,7 +163,7 @@
 		if(ISMULTIPLE(frequency, 2))//signaller frequencies are always uneven!
 			frequency++
 	if(freq_in_name)
-		name = initial(name) + " - freq: [frequency/10] code: [code]"
+		name = initial(name) + "- 频率: [frequency/10] 代码: [code]"
 	set_frequency(frequency)
 	. = ..()
 
@@ -198,7 +198,7 @@
 		color_changed = TRUE
 	else
 		if(!toy_on)
-			to_chat(user, span_notice("You can't switch modes while the vibrating egg is turned off!"))
+			to_chat(user, span_notice("振动蛋关闭时无法切换模式！"))
 			return CLICK_ACTION_BLOCKING
 		toggle_mode()
 		soundloop1.stop()
@@ -206,13 +206,13 @@
 		soundloop3.stop()
 		switch(vibration_mode)
 			if("low")
-				to_chat(user, span_notice("You set the vibration mode to low. Bzzz..."))
+				to_chat(user, span_notice("你将振动模式设为低档。嗡…"))
 				soundloop1.start()
 			if("medium")
-				to_chat(user, span_notice("You set the vibration mode to medium. Bzzzz!"))
+				to_chat(user, span_notice("你将振动模式设为中档。嗡嗡嗡！"))
 				soundloop2.start()
 			if("high")
-				to_chat(user, span_notice("You set the vibration mode to high. Careful with that thing!"))
+				to_chat(user, span_notice("你将振动模式设为高档。小心点用那玩意儿！"))
 				soundloop3.start()
 		update_icon()
 		update_icon_state()
@@ -247,11 +247,11 @@
 		return
 	if(toy_on)
 		if(src == vibrated.penis || src == vibrated.vagina || src == vibrated.anus)
-			to_chat(vibrated, span_purple("You feel pleasant vibrations deep below..."))
+			to_chat(vibrated, span_purple("你感到深处传来愉悦的振动…"))
 		else if(src == vibrated.nipples)
-			to_chat(vibrated, span_purple("You feel pleasant stimulation in your nipples."))
+			to_chat(vibrated, span_purple("你感到乳头传来愉悦的刺激。"))
 	else if(!toy_on && is_inside_lewd_slot(vibrated))
-		to_chat(vibrated, span_purple("The vibrating toy no longer drives you mad."))
+		to_chat(vibrated, span_purple("振动玩具不再让你意乱情迷。"))
 
 	if(!master)
 		return
@@ -304,12 +304,12 @@
 		if("freq")
 			var/new_frequency = sanitize_frequency(unformat_frequency(params["freq"]), TRUE)
 			set_frequency(new_frequency)
-			name = initial(name) + " - freq: [frequency/10] code: [code]"
+			name = initial(name) + "- 频率: [frequency/10] 代码: [code]"
 			. = TRUE
 		if("code")
 			code = text2num(params["code"])
 			code = round(code)
-			name = initial(name) + " - freq: [frequency/10] code: [code]"
+			name = initial(name) + "- 频率: [frequency/10] 代码: [code]"
 			. = TRUE
 		if("reset")
 			if(params["reset"] == "freq")

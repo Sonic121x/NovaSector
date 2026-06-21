@@ -96,7 +96,7 @@
 
 //---- Screen alert
 /atom/movable/screen/alert/status_effect/void_chill
-	name = "Void Chill"
+	name = "虚空寒颤"
 	desc = "There's something freezing you from within and without. You've never felt cold this oppressive before..."
 	icon_state = "heretic_template"
 	overlay_state = "void_chill_minor"
@@ -115,4 +115,4 @@
 		return
 	var/datum/status_effect/void_chill/chill_effect = attached_effect
 	if(chill_effect.stacks >= 5)
-		desc = "You had your chance to run, now it's too late. You may never feel warmth again..."
+		desc = "你曾有机会逃跑，现在为时已晚。你可能再也感受不到温暖了……"

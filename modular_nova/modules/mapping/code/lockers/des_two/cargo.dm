@@ -1,11 +1,11 @@
 /obj/structure/closet/secure_closet/des_two/mining_locker
 	icon_door = "mining"
 	icon_state = "mining"
-	name = "mining gear locker"
+	name = "采矿装备储物柜"
 
 /obj/item/clothing/accessory/armband/cargo/syndicate
-	name = "mining officer armband"
-	desc = "An armband, worn by the FOB's operatives to display which department they're assigned to."
+	name = "采矿长官臂章"
+	desc = "一条臂章，由前沿作战基地（FOB）的特工佩戴，以显示他们被分配到的部门。"
 
 /obj/structure/closet/secure_closet/des_two/mining_locker/PopulateContents()
 	..()

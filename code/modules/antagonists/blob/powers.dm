@@ -3,8 +3,8 @@
 /** Simple price check */
 /mob/eye/blob/proc/can_buy(cost = 15)
 	if(blob_points < cost)
-		to_chat(src, span_warning("You cannot afford this, you need at least [cost] resources!"))
-		balloon_alert(src, "need [cost-blob_points] more resource\s!")
+		to_chat(src, span_warning("你负担不起这个，你至少需要[cost]点资源！"))
+		balloon_alert(src, "还需要 [cost-blob_points] 点resource\s ！")
 		return FALSE
 	add_points(-cost)
 	return TRUE
@@ -19,15 +19,15 @@
 			return
 		var/turf/placement = get_turf(src)
 		if(placement.density)
-			to_chat(src, span_warning("This spot is too dense to place a blob core on!"))
+			to_chat(src, span_warning("这个位置太密集，无法放置菌核！"))
 			return
 		if(!is_valid_turf(placement))
-			to_chat(src, span_warning("You cannot place your core here!"))
+			to_chat(src, span_warning("你不能在这里放置菌核！"))
 			return
 		if(!check_objects_tile(placement))
 			return
 		if(!pop_override && world.time <= manualplace_min_time && world.time <= autoplace_max_time)
-			to_chat(src, span_warning("It is too early to place your blob core!"))
+			to_chat(src, span_warning("现在放置菌核还为时过早！"))
 			return
 	else
 		if(placement_override == BLOB_RANDOM_PLACEMENT)
@@ -53,14 +53,14 @@
 		if(player.has_faction(ROLE_BLOB))
 			continue
 		if(player.client)
-			to_chat(src, span_warning("There is someone too close to place your blob core!"))
+			to_chat(src, span_warning("有人离得太近，无法放置菌核！"))
 			return FALSE
 
 	for(var/mob/living/player in view(13, src))
 		if(player.has_faction(ROLE_BLOB))
 			continue
 		if(player.client)
-			to_chat(src, span_warning("Someone could see your blob core from here!"))
+			to_chat(src, span_warning("有人可能从这里看到你的菌核！"))
 			return FALSE
 
 	return TRUE
@@ -73,11 +73,11 @@
 			if(istype(object, /obj/structure/blob/normal))
 				qdel(object)
 			else
-				to_chat(src, span_warning("There is already a blob here!"))
+				to_chat(src, span_warning("这里已经有菌毯了！"))
 				return FALSE
 		else
 			if(object.density)
-				to_chat(src, span_warning("This spot is too dense to place a blob core on!"))
+				to_chat(src, span_warning("这个位置太密集，无法放置菌核！"))
 				return FALSE
 
 	return TRUE
@@ -97,7 +97,7 @@
 		var/obj/structure/blob/special/node/blob = GLOB.blob_nodes[index]
 		nodes["Blob Node #[index] ([get_area_name(blob)])"] = blob
 
-	var/node_name = tgui_input_list(src, "Choose a node to jump to", "Node Jump", nodes)
+	var/node_name = tgui_input_list(src, "选择一个节点进行传送", "节点传送", nodes)
 	if(isnull(node_name) || isnull(nodes[node_name]))
 		return
 
@@ -111,28 +111,28 @@
 		tile = get_turf(src)
 	var/obj/structure/blob/blob = (locate(/obj/structure/blob) in tile)
 	if(!blob)
-		to_chat(src, span_warning("There is no blob here!"))
-		balloon_alert(src, "no blob here!")
+		to_chat(src, span_warning("这里没有菌毯！"))
+		balloon_alert(src, "此处没有母巢！")
 		return
 	if(!istype(blob, /obj/structure/blob/normal))
-		to_chat(src, span_warning("Unable to use this blob, find a normal one."))
-		balloon_alert(src, "need normal blob!")
+		to_chat(src, span_warning("无法使用这个菌毯，找一个普通的。"))
+		balloon_alert(src, "需要普通菌毯！")
 		return
 	if(needs_node)
 		var/area/area = get_area(src)
 		if(!(area.area_flags & BLOBS_ALLOWED)) //factory and resource blobs must be legit
-			to_chat(src, span_warning("This type of blob must be placed on the station!"))
-			balloon_alert(src, "can't place off-station!")
+			to_chat(src, span_warning("这种菌毯必须放置在空间站上！"))
+			balloon_alert(src, "不能放置在空间站外！")
 			return
 		if(nodes_required && !(locate(/obj/structure/blob/special/node) in orange(BLOB_NODE_PULSE_RANGE, tile)) && !(locate(/obj/structure/blob/special/core) in orange(BLOB_CORE_PULSE_RANGE, tile)))
-			to_chat(src, span_warning("You need to place this blob closer to a node or core!"))
-			balloon_alert(src, "too far from node or core!")
+			to_chat(src, span_warning("你需要将这个菌毯放置在更靠近节点或菌核的位置！"))
+			balloon_alert(src, "离节点或核心太远！")
 			return
 	if(min_separation)
 		for(var/obj/structure/blob/other_blob in orange(min_separation, tile))
 			if(other_blob.type == blobstrain)
-				to_chat(src, span_warning("There is a similar blob nearby, move more than [min_separation] tiles away from it!"))
-				other_blob.balloon_alert(src, "too close!")
+				to_chat(src, span_warning("附近有相似的菌毯，请移动到离它超过 [min_separation] 格的位置！"))
+				other_blob.balloon_alert(src, "太近了！")
 				return
 	if(!can_buy(price))
 		return
@@ -143,16 +143,16 @@
 /mob/eye/blob/proc/toggle_node_req()
 	nodes_required = !nodes_required
 	if(nodes_required)
-		to_chat(src, span_warning("You now require a nearby node or core to place factory and resource blobs."))
+		to_chat(src, span_warning("你现在需要附近有节点或菌核才能放置工厂和资源菌毯。"))
 	else
-		to_chat(src, span_warning("You no longer require a nearby node or core to place factory and resource blobs."))
+		to_chat(src, span_warning("你不再需要附近有节点或菌核就能放置工厂和资源菌毯。"))
 
 /** Creates a shield to reflect projectiles */
 /mob/eye/blob/proc/create_shield(turf/tile)
 	var/obj/structure/blob/shield/shield = locate(/obj/structure/blob/shield) in tile
 	if(!shield)
 		shield = create_special(BLOB_UPGRADE_STRONG_COST, /obj/structure/blob/shield, 0, FALSE, tile)
-		shield?.balloon_alert(src, "upgraded to [shield.name]!")
+		shield?.balloon_alert(src, "已升级为[shield.name]！")
 		return
 
 	if(istype(shield, /obj/structure/blob/shield/reflective))
@@ -160,34 +160,34 @@
 		return
 
 	if(shield.get_integrity() < shield.max_integrity * 0.5)
-		to_chat(src, span_warning("This shield blob is too damaged to be modified properly!"))
+		to_chat(src, span_warning("这个护盾团块受损过重，无法正常修改！"))
 		return
 
 	if(!can_buy(BLOB_UPGRADE_REFLECTOR_COST))
 		return
 
-	to_chat(src, span_warning("You secrete a reflective ooze over the shield blob, allowing it to reflect projectiles at the cost of reduced integrity."))
+	to_chat(src, span_warning("你在护盾团块上分泌出反射性粘液，使其能够反射抛射物，但代价是降低了完整性。"))
 	shield = shield.change_to(/obj/structure/blob/shield/reflective, src)
-	shield.balloon_alert(src, "upgraded to [shield.name]!")
+	shield.balloon_alert(src, "已升级为[shield.name]！")
 
 /** Preliminary check before polling ghosts. */
 /mob/eye/blob/proc/create_blobbernaut()
 	var/turf/current_turf = get_turf(src)
 	var/obj/structure/blob/special/factory/factory = locate(/obj/structure/blob/special/factory) in current_turf
 	if(!factory)
-		to_chat(src, span_warning("You must be on a factory blob!"))
+		to_chat(src, span_warning("你必须位于工厂菌斑上！"))
 		return
 	if(factory.blobbernaut || factory.is_creating_blobbernaut) //if it already made or making a blobbernaut, it can't do it again
-		to_chat(src, span_warning("This factory blob is already sustaining a blobbernaut."))
+		to_chat(src, span_warning("这个工厂胞体已经在维持一个胞噬体了。"))
 		return
 	if(factory.get_integrity() < factory.max_integrity * 0.5)
-		to_chat(src, span_warning("This factory blob is too damaged to sustain a blobbernaut."))
+		to_chat(src, span_warning("这个工厂胞体受损过重，无法维持一个胞体巨怪。"))
 		return
 	if(!can_buy(BLOBMOB_BLOBBERNAUT_RESOURCE_COST))
 		return
 
 	factory.is_creating_blobbernaut = TRUE
-	to_chat(src, span_notice("You attempt to produce a blobbernaut."))
+	to_chat(src, span_notice("你尝试制造一个吞噬者。"))
 	pick_blobbernaut_candidate(factory)
 
 /// Polls ghosts to get a blobbernaut candidate.
@@ -212,7 +212,7 @@
 /// Called when the ghost poll concludes
 /mob/eye/blob/proc/on_poll_concluded(obj/structure/blob/special/factory/factory, mob/dead/observer/ghost)
 	if(isnull(ghost))
-		to_chat(src, span_warning("You could not conjure a sentience for your blobbernaut. Your points have been refunded. Try again later."))
+		to_chat(src, span_warning("你无法为你的团块巨像召唤意识。点数已退还。请稍后再试。"))
 		add_points(BLOBMOB_BLOBBERNAUT_RESOURCE_COST)
 		factory.assign_blobbernaut(null)
 		return
@@ -229,16 +229,16 @@
 	var/obj/structure/blob/special/node/blob = locate(/obj/structure/blob/special/node) in tile
 
 	if(!blob)
-		to_chat(src, span_warning("You must be on a blob node!"))
+		to_chat(src, span_warning("你必须位于一个菌毯节点上！"))
 		return
 
 	if(!blob_core)
-		to_chat(src, span_userdanger("You have no core and are about to die! May you rest in peace."))
+		to_chat(src, span_userdanger("你没有核心，即将死亡！愿你安息。"))
 		return
 
 	var/area/area = get_area(tile)
 	if(isspaceturf(tile) || area && !(area.area_flags & BLOBS_ALLOWED))
-		to_chat(src, span_warning("You cannot relocate your core here!"))
+		to_chat(src, span_warning("你无法将核心迁移到这里！"))
 		return
 
 	if(!can_buy(BLOB_POWER_RELOCATE_COST))
@@ -256,15 +256,15 @@
 	var/obj/structure/blob/blob = locate() in tile
 
 	if(!blob)
-		to_chat(src, span_warning("There is no blob there!"))
+		to_chat(src, span_warning("那里没有菌斑！"))
 		return
 
 	if(blob.point_return < 0)
-		to_chat(src, span_warning("Unable to remove this blob."))
+		to_chat(src, span_warning("无法移除这个菌毯。"))
 		return
 
 	if(max_blob_points < blob.point_return + blob_points)
-		to_chat(src, span_warning("You have too many resources to remove this blob!"))
+		to_chat(src, span_warning("你的资源太多了，无法移除这个菌毯！"))
 		return
 
 	if(blob.point_return)
@@ -284,7 +284,7 @@
 		possible_blobs += blob
 
 	if(!length(possible_blobs))
-		to_chat(src, span_warning("There is no blob adjacent to the target tile!"))
+		to_chat(src, span_warning("目标格位附近没有菌毯！"))
 		return
 
 	if(!can_buy(BLOB_EXPAND_COST))
@@ -307,7 +307,7 @@
 			blob.blob_attack_animation(tile, src)
 			add_points(BLOB_ATTACK_REFUND)
 		else
-			to_chat(src, span_warning("There is a blob there!"))
+			to_chat(src, span_warning("那里已经有菌毯了！"))
 			add_points(BLOB_EXPAND_COST) //otherwise, refund all of the cost
 	else
 		directional_attack(tile, possible_blobs, attack_success)
@@ -346,7 +346,7 @@
 
 /** Rally spores to a location */
 /mob/eye/blob/proc/rally_spores(turf/tile)
-	to_chat(src, "You rally your spores.")
+	to_chat(src, "你召集了你的孢子。")
 	var/list/surrounding_turfs = TURF_NEIGHBORS(tile)
 	if(!length(surrounding_turfs))
 		return
@@ -359,7 +359,7 @@
 /** Opens the reroll menu to change strains */
 /mob/eye/blob/proc/strain_reroll()
 	if (!free_strain_rerolls && blob_points < BLOB_POWER_REROLL_COST)
-		to_chat(src, span_warning("You need at least [BLOB_POWER_REROLL_COST] resources to reroll your strain again!"))
+		to_chat(src, span_warning("你需要至少 [BLOB_POWER_REROLL_COST] 点资源才能再次重选你的菌株！"))
 		return
 
 	open_reroll_menu()

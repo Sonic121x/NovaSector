@@ -7,9 +7,9 @@
 	var/damage = rand(1, 9)
 	if (prob(90))
 		playsound(loc, SFX_PUNCH, 25, TRUE, -1)
-		visible_message(span_danger("[user] kicks [src]!"), \
-						span_userdanger("[user] kicks you!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger("You kick [src]!"))
+		visible_message(span_danger("[user]踢了[src]！"), \
+						span_userdanger("[user]踢了你！"), span_hear("你听到肉体撞击的恶心声响！"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger("你踢了[src]！"))
 		if ((stat != DEAD) && (damage > 4.9))
 			Unconscious(rand(100,200))
 
@@ -18,9 +18,9 @@
 		log_combat(user, src, "attacked")
 	else
 		playsound(loc, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
-		visible_message(span_danger("[user]'s kick misses [src]!"), \
-						span_danger("You avoid [user]'s kick!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_warning("Your kick misses [src]!"))
+		visible_message(span_danger("[user]的踢击没有命中[src]！"), \
+						span_danger("你躲开了[user]的踢击！"), span_hear("你听到一阵呼啸声！"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_warning("你的踢击没有命中[src]！"))
 		log_combat(user, src, "attacked and missed")
 
 /mob/living/carbon/alien/larva/attack_hulk(mob/living/carbon/human/user)

@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/adult/royal/praetorian
-	name = "alien praetorian"
+	name = "异形禁卫"
 	caste = "p"
 	maxHealth = 250
 	health = 250
@@ -34,8 +34,8 @@
 	return ..()
 
 /datum/action/cooldown/alien/evolve_to_queen
-	name = "Evolve"
-	desc = "Produce an internal egg sac capable of spawning children. Only one queen can exist at a time."
+	name = "进化"
+	desc = "在体内生成一个能够孵化后代的卵囊。同一时间只能存在一位女王。"
 	button_icon_state = "alien_evolve_praetorian"
 	plasma_cost = 500
 

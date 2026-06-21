@@ -4,7 +4,7 @@
 #define ARC_FURNACE_ORE_MULTIPLIER 1.5
 
 /obj/machinery/arc_furnace
-	name = "arc furnace"
+	name = "电弧熔炉"
 	desc = "An arc furnace, a specialist machine that can rapidly smelt ores using, as the name implies, massive \
 		amounts of electricity. While not nearly as fast and efficient as other ore refining methods, the arc furnace is \
 		capable of returning <b>larger amounts of refined material</b> than a standard refining process can. \
@@ -43,7 +43,7 @@
 /obj/machinery/arc_furnace/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		. += span_notice("It has <b>[contents[1]]</b> sitting in it.")
+		. += span_notice("里面有<b>[contents[1]]</b>。")
 	AddElement(/datum/element/tool_blocker, TOOL_SCREWDRIVER)
 	AddElement(/datum/element/tool_blocker, TOOL_CROWBAR)
 
@@ -64,16 +64,16 @@
 
 /obj/machinery/arc_furnace/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(operating)
-		balloon_alert(user, "furnace busy")
+		balloon_alert(user, "熔炉正忙")
 		return TRUE
 
 	if(length(contents))
-		balloon_alert(user, "furnace full")
+		balloon_alert(user, "熔炉已满")
 		return TRUE
 
 	if(istype(attacking_item, /obj/item/stack/ore))
 		attacking_item.forceMove(src)
-		balloon_alert(user, "ore added")
+		balloon_alert(user, "矿石已添加")
 		update_appearance()
 		return TRUE
 
@@ -88,7 +88,7 @@
 		return
 
 	if(!length(contents))
-		balloon_alert(user, "it's empty!")
+		balloon_alert(user, "它是空的！")
 		return
 
 	var/choice = show_radial_menu(user, src, radial_options, require_near = !issilicon(user))
@@ -122,15 +122,15 @@
 /// Starts the smelting process, checking if the machine has power or if it's broken at all
 /obj/machinery/arc_furnace/proc/smelt_it_up(mob/user)
 	if(machine_stat & (NOPOWER|BROKEN))
-		balloon_alert(user, "button doesn't respond")
+		balloon_alert(user, "按钮没有反应")
 		return
 	if(operating)
-		balloon_alert(user, "already smelting")
+		balloon_alert(user, "已在熔炼中")
 		return
 
 	var/obj/item/stack/ore/ore_to_smelt = contents[1]
 	if(!istype(ore_to_smelt))
-		balloon_alert(user, "nothing to smelt")
+		balloon_alert(user, "没有可熔炼的东西")
 
 	operating = TRUE
 	/// How long the smelting is going to take based off the stack size
@@ -209,7 +209,7 @@
 // Item for creating the arc furnace or carrying it around
 
 /obj/item/flatpacked_machine/arc_furnace
-	name = "flat-packed arc furnace"
+	name = "扁平包装电弧熔炉"
 	desc = /obj/machinery/arc_furnace::desc
 	icon_state = "arc_furnace_folded"
 	type_to_deploy = /obj/machinery/arc_furnace

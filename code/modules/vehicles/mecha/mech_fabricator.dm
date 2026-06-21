@@ -2,8 +2,8 @@
 	icon = 'icons/obj/machines/robotics.dmi'
 	icon_state = "fab-idle"
 	base_icon_state = "fab"
-	name = "exosuit fabricator"
-	desc = "Nothing is being built."
+	name = "外骨骼机甲加工厂"
+	desc = "未在建造任何物品。"
 	density = TRUE
 	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/machine/mechfab
@@ -136,20 +136,20 @@
 /obj/machinery/mecha_part_fabricator/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
-		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
+		. += span_notice("状态显示屏显示：最多可存储<b>[rmat.local_size]</b>个材料单位。<br>材料消耗率为<b>[component_coeff*100]%</b>。<br>建造时间减少<b>[100-time_coeff*100]%</b>。")
+		. += span_notice("当前配置为将打印物体投放到<b>[dir2text(drop_direction)]</b>方向。")
 
 /obj/machinery/mecha_part_fabricator/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
 	if(!can_interact(user) || (!HAS_SILICON_ACCESS(user) && !isAdminGhostAI(user)) && !Adjacent(user))
 		return
 	if(being_built)
-		balloon_alert(user, "printing started!")
+		balloon_alert(user, "打印已开始！")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+	balloon_alert(user, "正在丢弃 [dir2text(drop_direction)]")
 
 /**
  * Updates the `final_sets` and `buildable_parts` for the current mecha fabricator.
@@ -291,7 +291,7 @@
 	var/turf/exit = get_step(src, drop_direction)
 	if(exit.density)
 		say("Error! The part outlet is obstructed.")
-		desc = "It's trying to dispense the fabricated [dispensed_design.name], but the part outlet is obstructed."
+		desc = "它正试图分发已制造的[dispensed_design.name]，但零件出口被阻塞了。"
 		stored_part = built_part
 		return FALSE
 
@@ -505,14 +505,14 @@
 
 /obj/machinery/mecha_part_fabricator/screwdriver_act(mob/living/user, obj/item/I)
 	if(being_built)
-		to_chat(user, span_warning("\The [src] is currently processing! Please wait until completion."))
+		to_chat(user, span_warning("\The [src] 正在处理中！请等待完成。"))
 		return NONE
 
 	return default_deconstruction_screwdriver(user, I)
 
 /obj/machinery/mecha_part_fabricator/crowbar_act(mob/living/user, obj/item/I)
 	if(being_built)
-		to_chat(user, span_warning("\The [src] is currently processing! Please wait until completion."))
+		to_chat(user, span_warning("\The [src] 正在处理中！请等待完成。"))
 		return NONE
 
 	return default_deconstruction_crowbar(user, I)

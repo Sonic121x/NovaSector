@@ -1,7 +1,7 @@
 
 /datum/action/cooldown/spell/pointed/sword_fling
-	name = "Sword Fling"
-	desc = "Try to fling yourself around."
+	name = "飞剑术"
+	desc = "尝试将自己抛掷出去。"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_cult_border"
@@ -73,7 +73,7 @@
 
 	if(isitem(sword_loc))
 		flinged_sword.forceMove(get_turf(sword_loc))
-		flinged_sword.visible_message(span_alert("\the [flinged_sword] yanks itself out of [sword_loc]!"))
+		flinged_sword.visible_message(span_alert("\the [flinged_sword] 将自己从 [sword_loc] 中猛地拔出！"))
 		// flung by later code
 
 	if(iscloset(sword_loc))

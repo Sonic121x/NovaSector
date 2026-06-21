@@ -1,5 +1,5 @@
 PROCESSING_SUBSYSTEM_DEF(pollution_emitters)
-	name = "Pollution Emitters"
+	name = "污染排放器"
 	priority = FIRE_PRIORITY_OBJ
 	ss_flags = SS_NO_INIT
 	wait = 10 SECONDS

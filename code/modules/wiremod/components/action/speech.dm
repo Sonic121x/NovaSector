@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/speech
 	display_name = "Speech"
-	desc = "A component that sends a message. Requires a shell."
+	desc = "一种发送消息的组件。需要一个外壳。"
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

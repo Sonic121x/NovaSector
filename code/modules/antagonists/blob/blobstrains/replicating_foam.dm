@@ -1,6 +1,6 @@
 /datum/blobstrain/reagent/replicating_foam
-	name = "Replicating Foam"
-	description = "will do medium brute damage and occasionally expand again when expanding."
+	name = "复制孔沫"
+	description = "会造成中等钝击伤害，并在扩张时偶尔再次扩张。"
 	shortdesc = "will do medium brute damage."
 	effectdesc = "will also expand when attacked with burn damage, but takes more brute damage."
 	color = "#7B5A57"
@@ -26,7 +26,7 @@
 		newB.expand(null, null, 0) //do it again!
 
 /datum/reagent/blob/replicating_foam
-	name = "Replicating Foam"
+	name = "复制孔沫"
 	taste_description = "duplication"
 	color = "#7B5A57"
 

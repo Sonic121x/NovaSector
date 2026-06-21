@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(monkey_recyclers)
 
 /obj/machinery/monkey_recycler
-	name = "monkey recycler"
-	desc = "A machine used for recycling dead monkeys into monkey cubes."
+	name = "猴子再循环器"
+	desc = "一种用于将死去的猴子加工成猴形立方体的机器。"
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grinder"
 	base_icon_state = "grinder"
@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 /obj/machinery/monkey_recycler/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Producing <b>[cube_production]</b> cubes for every monkey inserted.")
+		. += span_notice("状态显示屏显示：每投入一只猴子可生产 <b>[cube_production]</b> 个方块。")
 
 /obj/machinery/monkey_recycler/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -63,35 +63,35 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	if(!istype(target))
 		return
 	if(target.stat == CONSCIOUS)
-		to_chat(user, span_warning("The monkey is struggling far too much to put it in the recycler."))
+		to_chat(user, span_warning("这只猴子挣扎得太厉害，无法放入回收机。"))
 		return
 	if(target.buckled || target.has_buckled_mobs())
-		to_chat(user, span_warning("The monkey is attached to something."))
+		to_chat(user, span_warning("这只猴子附着在什么东西上。"))
 		return
 	qdel(target)
-	to_chat(user, span_notice("You stuff the monkey into the machine."))
+	to_chat(user, span_notice("你将猴子塞进了机器。"))
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	var/offset = prob(50) ? -2 : 2
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
 	use_energy(active_power_usage)
 	stored_matter += cube_production
 	addtimer(VARSET_CALLBACK(src, pixel_x, base_pixel_x))
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), user, span_notice("The machine now has [stored_matter] monkey\s worth of material stored.")))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), user, span_notice("机器现在储存了[stored_matter] monkey\s 的材料。")))
 
 /obj/machinery/monkey_recycler/interact(mob/user)
 	if(stored_matter >= 1)
-		to_chat(user, span_notice("The machine hisses loudly as it condenses the ground monkey meat. After a moment, it dispenses a brand new monkey cube."))
+		to_chat(user, span_notice("机器在压缩研磨后的猴子肉时发出响亮的嘶嘶声。片刻之后，它吐出了一块全新的猴子方块。"))
 		playsound(src.loc, 'sound/machines/hiss.ogg', 50, TRUE)
 		for(var/i in 1 to floor(stored_matter))
 			new /obj/item/food/monkeycube(src.loc)
 			stored_matter--
-		to_chat(user, span_notice("The machine's display flashes that it has [stored_matter] monkeys worth of material left."))
+		to_chat(user, span_notice("机器的显示屏闪烁，显示还剩 [stored_matter] 只猴子价值的材料。"))
 	else
-		to_chat(user, span_danger("The machine needs at least 1 monkey worth of material to produce a monkey cube. It currently has [stored_matter]."))
+		to_chat(user, span_danger("机器需要至少相当于1只猴子的材料才能生产一个猴子方块。当前有 [stored_matter]。"))
 
 /obj/machinery/monkey_recycler/multitool_act(mob/living/user, obj/item/multitool/I)
 	. = ..()
 	if(istype(I))
 		I.set_buffer(src)
-		balloon_alert(user, "saved to multitool buffer")
+		balloon_alert(user, "已保存到多功能工具缓冲区")
 		return TRUE

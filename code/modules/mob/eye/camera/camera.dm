@@ -3,7 +3,7 @@
  * As it moves, it makes requests to the network to update what the user can and cannot see.
  */
 /mob/eye/camera
-	name = "Inactive Camera Eye"
+	name = "未激活的摄像头视野"
 	icon = 'icons/mob/eyemob.dmi'
 	icon_state = "generic_camera"
 

@@ -64,7 +64,7 @@
 	user.changeNext_move(CLICK_CD_MELEE) // Ugh. Ideally we shouldn't be setting cooldowns outside of click code.
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	playsound(loc, 'sound/items/weapons/tap.ogg', 40, TRUE, -1)
-	user.visible_message(span_danger("[user] hits [src]. Nothing happens."), null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_danger("[user]击打了[src]。无事发生。"), null, null, COMBAT_MESSAGE_RANGE)
 	log_message("Attack by hand/paw (no damage). Attacker - [user].", LOG_MECHA, color="red")
 
 /obj/vehicle/sealed/mecha/attack_paw(mob/user, list/modifiers)
@@ -198,7 +198,7 @@
 			qdel(tracker)
 
 	if(!equipment_disabled && LAZYLEN(occupants)) //prevent spamming this message with back-to-back EMPs
-		to_chat(occupants, span_warning("Error -- Connection to equipment control unit has been lost."))
+		to_chat(occupants, span_warning("错误——与设备控制单元的连接已丢失。"))
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
@@ -242,7 +242,7 @@
 			balloon_alert(user, "initialization of MMI failed!")
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "initialized MMI")
+		balloon_alert(user, "已初始化MMI")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/mecha_ammo))
@@ -255,9 +255,9 @@
 	if(tool.GetID())
 		if(!allowed(user))
 			if(mecha_flags & ID_LOCK_ON)
-				balloon_alert(user, "access denied!")
+				balloon_alert(user, "访问被拒绝！")
 			else
-				balloon_alert(user, "unable to set id lock!")
+				balloon_alert(user, "无法设置ID锁！")
 			return ITEM_INTERACT_BLOCKING
 		mecha_flags ^= ID_LOCK_ON
 		balloon_alert(user, "[mecha_flags & ID_LOCK_ON ? "enabled" : "disabled"] id lock!")
@@ -281,19 +281,19 @@
 /// Try to insert a stock part into the mech
 /obj/vehicle/sealed/mecha/proc/try_insert_part(obj/item/stock_parts/tool, mob/living/user)
 	if(!(mecha_flags & PANEL_OPEN))
-		balloon_alert(user, "open the panel first!")
+		balloon_alert(user, "先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(cell)
-			balloon_alert(user, "already installed!")
+			balloon_alert(user, "已经安装了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src, silent = FALSE))
 			return  ITEM_INTERACT_BLOCKING
 
 		cell = tool
-		balloon_alert(user, "installed power cell")
+		balloon_alert(user, "已安装能量电池")
 		diag_hud_set_mechcell()
 		playsound(src, 'sound/items/tools/screwdriver2.ogg', 50, FALSE)
 		log_message("Power cell installed", LOG_MECHA)
@@ -301,14 +301,14 @@
 
 	if(istype(tool, /obj/item/stock_parts/scanning_module))
 		if(scanmod)
-			balloon_alert(user, "already installed!")
+			balloon_alert(user, "已经安装了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src, silent = FALSE))
 			return ITEM_INTERACT_BLOCKING
 
 		scanmod = tool
-		balloon_alert(user, "installed scanning module")
+		balloon_alert(user, "已安装扫描模块")
 		playsound(src, 'sound/items/tools/screwdriver2.ogg', 50, FALSE)
 		log_message("[tool] installed", LOG_MECHA)
 		update_part_values()
@@ -316,14 +316,14 @@
 
 	if(istype(tool, /obj/item/stock_parts/capacitor))
 		if(capacitor)
-			balloon_alert(user, "already installed!")
+			balloon_alert(user, "已经安装了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src, silent = FALSE))
 			return ITEM_INTERACT_BLOCKING
 
 		capacitor = tool
-		balloon_alert(user, "installed capacitor")
+		balloon_alert(user, "已安装电容器")
 		playsound(src, 'sound/items/tools/screwdriver2.ogg', 50, FALSE)
 		log_message("[tool] installed", LOG_MECHA)
 		update_part_values()
@@ -331,14 +331,14 @@
 
 	if(istype(tool, /obj/item/stock_parts/servo))
 		if(servo)
-			balloon_alert(user, "already installed!")
+			balloon_alert(user, "已经安装了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src, silent = FALSE))
 			return ITEM_INTERACT_BLOCKING
 
 		servo = tool
-		balloon_alert(user, "installed servo")
+		balloon_alert(user, "已安装伺服器")
 		playsound(src, 'sound/items/tools/screwdriver2.ogg', 50, FALSE)
 		log_message("[tool] installed", LOG_MECHA)
 		update_part_values()
@@ -358,7 +358,7 @@
 	user.visible_message(
 		span_danger("[user] [hit_verb][plural_s(hit_verb)] [src] with [attacking_item][damage_taken ? "." : ", without leaving a mark!"]"),
 		span_danger("You [hit_verb] [src] with [attacking_item][damage_taken ? "." : ", without leaving a mark!"]"),
-		span_hear("You hear a [hit_verb]."),
+		span_hear("你听到一声 [hit_verb]。"),
 		COMBAT_MESSAGE_RANGE,
 	)
 
@@ -375,20 +375,20 @@
 /obj/vehicle/sealed/mecha/examine(mob/user)
 	. = ..()
 	if(mecha_flags & PANEL_OPEN)
-		. += span_notice("The panel is open. You could use a <b>crowbar</b> to eject parts or lock the panel back with a <b>screwdriver</b>.")
+		. += span_notice("面板已打开。你可以用<b>撬棍</b>弹出部件，或用<b>螺丝刀</b>将面板重新锁上。")
 	else
-		. += span_notice("You could unlock the maintenance cover with a <b>screwdriver</b>.")
+		. += span_notice("你可以用<b>螺丝刀</b>解锁维护区盖板。")
 
 /obj/vehicle/sealed/mecha/screwdriver_act(mob/living/user, obj/item/tool)
 	..()
 	. = TRUE
 
 	if(LAZYLEN(occupants))
-		balloon_alert(user, "panel blocked")
+		balloon_alert(user, "面板被阻挡")
 		return
 
 	mecha_flags ^= PANEL_OPEN
-	balloon_alert(user, (mecha_flags & PANEL_OPEN) ? "panel open" : "panel closed")
+	balloon_alert(user, (mecha_flags & PANEL_OPEN) ? "面板已打开" : "面板已关闭")
 	tool.play_tool_sound(src)
 
 /obj/vehicle/sealed/mecha/crowbar_act(mob/living/user, obj/item/tool)
@@ -399,15 +399,15 @@
 		remover.empty_mech(src, user)
 		return
 	if(!(mecha_flags & PANEL_OPEN))
-		balloon_alert(user, "open the panel first!")
+		balloon_alert(user, "先打开面板！")
 		return
 	if(dna_lock && user.has_dna())
 		var/mob/living/carbon/user_carbon = user
 		if(user_carbon.dna.unique_enzymes != dna_lock)
-			balloon_alert(user, "access with this DNA denied!")
+			balloon_alert(user, "此DNA访问被拒绝！")
 			return
 	if((mecha_flags & ID_LOCK_ON) && !allowed(user))
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "访问被拒绝！")
 		return
 
 	var/list/stock_parts = list()
@@ -421,7 +421,7 @@
 		stock_parts += servo
 
 	if(length(stock_parts))
-		var/obj/item/stock_parts/part_to_remove = tgui_input_list(user, "Which part to remove?", "Part Removal", stock_parts)
+		var/obj/item/stock_parts/part_to_remove = tgui_input_list(user, "要移除哪个部件？", "部件移除", stock_parts)
 		if(!(locate(part_to_remove) in contents))
 			return
 		user.put_in_hands(part_to_remove)
@@ -429,28 +429,28 @@
 		diag_hud_set_mechcell()
 		tool.play_tool_sound(src)
 		return
-	balloon_alert(user, "no parts!")
+	balloon_alert(user, "没有部件！")
 
 /obj/vehicle/sealed/mecha/welder_act(mob/living/user, obj/item/W)
 	if(user.combat_mode)
 		return
 	. = TRUE
 	if(DOING_INTERACTION(user, src))
-		balloon_alert(user, "you're already repairing this!")
+		balloon_alert(user, "你已经在修理这个了！")
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it's not damaged!")
+		balloon_alert(user, "它没有损坏！")
 		return
 	if(!W.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
 	user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
-	audible_message(span_hear("You hear welding."))
+	audible_message(span_hear("你听到焊接声。"))
 	var/did_the_thing
 	while(atom_integrity < max_integrity)
 		if(W.use_tool(src, user, 2.5 SECONDS, volume=50))
 			did_the_thing = TRUE
 			repair_damage(10)
-			audible_message(span_hear("You hear welding."))
+			audible_message(span_hear("你听到焊接声。"))
 		else
 			break
 	if(did_the_thing)
@@ -495,7 +495,7 @@
 /obj/vehicle/sealed/mecha/proc/ammo_resupply(obj/item/mecha_ammo/A, mob/user,fail_chat_override = FALSE)
 	if(!A.rounds)
 		if(!fail_chat_override)
-			balloon_alert(user, "the box is empty!")
+			balloon_alert(user, "箱子是空的！")
 		return FALSE
 	var/ammo_needed
 	var/found_gun
@@ -518,7 +518,7 @@
 			else
 				gun.projectiles_cache = gun.projectiles_cache + ammo_needed
 			playsound(get_turf(user),A.load_audio,50,TRUE)
-			to_chat(user, span_notice("You add [ammo_needed] [A.ammo_type][ammo_needed > 1?"s":""] to \the [gun]"))
+			to_chat(user, span_notice("你将[ammo_needed] [A.ammo_type][ammo_needed > 1?"s":""]装填到\the [gun]中"))
 			A.rounds = A.rounds - ammo_needed
 			if(A.custom_materials)	//Change material content of the ammo box according to the amount of ammo deposited into the weapon
 				/// list of materials contained in the ammo box after we put it through the equation so we can stick this list into set_custom_materials()
@@ -547,9 +547,9 @@
 		return TRUE
 	if(!fail_chat_override)
 		if(found_gun)
-			balloon_alert(user, "ammo storage is full!")
+			balloon_alert(user, "弹药储存已满！")
 		else
-			balloon_alert(user, "can't use this ammo!")
+			balloon_alert(user, "无法使用这种弹药！")
 	return FALSE
 
 ///Upgrades any attached RCD equipment.

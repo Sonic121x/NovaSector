@@ -3,7 +3,7 @@
 ///Subsystem exists so we can separately log init time costs from the costs of general operation
 ///Hopefully this makes sorting out what causes problems when easier
 SUBSYSTEM_DEF(init_profiler)
-	name = "Init Profiler"
+	name = "初始化性能分析器"
 	init_stage = INITSTAGE_LAST
 	ss_flags = SS_NO_FIRE
 

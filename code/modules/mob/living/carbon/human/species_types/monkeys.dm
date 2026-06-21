@@ -134,7 +134,7 @@
 	return to_add
 
 /obj/item/organ/brain/primate //Ook Ook
-	name = "Primate Brain"
+	name = "灵长类动物脑"
 	desc = "This wad of meat is small, but has enlarged occipital lobes for spotting bananas."
 	organ_traits = list(TRAIT_CAN_STRIP, TRAIT_PRIMITIVE, TRAIT_GUN_NATURAL) // No literacy or advanced tool usage.
 	actions_types = list(/datum/action/item_action/organ_action/toggle_trip)

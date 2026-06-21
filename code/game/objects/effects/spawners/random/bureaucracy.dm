@@ -1,9 +1,9 @@
 /obj/effect/spawner/random/bureaucracy
-	name = "bureaucracy loot spawner"
-	desc = "For the exotic art of paper shuffling."
+	name = "官僚主义战利品生成器"
+	desc = "为了那门整理文件的奇特艺术。"
 
 /obj/effect/spawner/random/bureaucracy/pen
-	name = "pen spawner"
+	name = "笔生成器"
 	icon_state = "pen"
 	loot = list(
 		/obj/item/pen = 30,
@@ -16,7 +16,7 @@
 	)
 
 /obj/effect/spawner/random/bureaucracy/stamp
-	name = "stamp spawner"
+	name = "印章生成器"
 	icon_state = "stamp"
 	loot = list(
 		/obj/item/stamp/granted = 3,
@@ -25,7 +25,7 @@
 	)
 
 /obj/effect/spawner/random/bureaucracy/crayon
-	name = "crayon spawner"
+	name = "蜡笔生成器"
 	icon_state = "crayon"
 	loot = list(
 		/obj/item/toy/crayon/red,
@@ -39,7 +39,7 @@
 	)
 
 /obj/effect/spawner/random/bureaucracy/paper
-	name = "paper spawner"
+	name = "纸张生成器"
 	icon_state = "paper"
 	loot = list(
 		/obj/item/paper = 20,
@@ -52,7 +52,7 @@
 	)
 
 /obj/effect/spawner/random/bureaucracy/briefcase
-	name = "briefcase spawner"
+	name = "公文包生成器"
 	icon_state = "briefcase"
 	loot = list(
 		/obj/item/storage/briefcase = 3,
@@ -60,7 +60,7 @@
 	)
 
 /obj/effect/spawner/random/bureaucracy/folder
-	name = "folder spawner"
+	name = "文件夹生成器"
 	icon_state = "folder"
 	loot = list(
 		/obj/item/folder/blue,
@@ -71,7 +71,7 @@
 	)
 
 /obj/effect/spawner/random/bureaucracy/birthday_wrap
-	name = "additional wrapping paper spawner"
+	name = "额外包装纸生成器"
 	icon_state = "wrapping_paper"
 	spawn_all_loot = TRUE
 	loot = list(

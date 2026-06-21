@@ -1,7 +1,7 @@
 // Starfruit
 /obj/item/seeds/starfruit
-	name = "starfruit seed pack"
-	desc = "These seeds grow into starfruit plants, which bear a sugary and delicious fruit."
+	name = "杨桃种子包"
+	desc = "这些种子会长成杨桃植株，结出甜美可口的果实。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-starfruit"
 	species = "starfruit"
@@ -22,8 +22,8 @@
 
 /obj/item/food/grown/starfruit
 	seed = /obj/item/seeds/starfruit
-	name = "starfruit"
-	desc = "The rare Primidine Starfruit was formerly one of the most commonly harvested fruits on Primidine, grown during the autumn and primary harvest season."
+	name = "杨桃"
+	desc = "稀有的普里米丁杨桃曾是普里米丁星上最常收获的水果之一，在秋季和主要收获季节种植。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "starfruit"
 	bite_consumption_mod = 2
@@ -46,8 +46,8 @@
 	mix_message = "The ingredients combine into fizzy soda."
 
 /datum/reagent/consumable/ethanol/starfruit_soda //starfruit juice 2, rum 2, cognac 1, soda water 1
-	name = "Stellar Twist"
-	description = "A drink over tired moms could hide in their thermos."
+	name = "星旋"
+	description = "一种疲惫的妈妈们可以藏在保温杯里的饮料。"
 	boozepwr = 35
 	color = "#434294"
 	quality = DRINK_VERYGOOD
@@ -56,8 +56,8 @@
 
 /datum/glass_style/drinking_glass/starfruit_soda
 	required_drink_type = /datum/reagent/consumable/ethanol/starfruit_soda
-	name = "Stellar Twist"
-	desc = "An alcoholic starfruit soda, you can see the carbination in the glass"
+	name = "星旋"
+	desc = "一种含酒精的杨桃汽水，你能看到玻璃杯中的气泡。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "starsoda"
 
@@ -70,8 +70,8 @@
 	mix_message = "The ingredients combine into a fizzy soda."
 
 /datum/reagent/consumable/ethanol/starfruit_lubricant //starfruit juice 1, Synthanol 1
-	name = "Stellar Lubricant"
-	description = "A drink over tired moms could hide in their thermos. Now for Synths!"
+	name = "星尘润滑剂"
+	description = "一种疲惫的妈妈们可以藏在保温杯里的饮料。现在合成人也能喝了！"
 	boozepwr = 35
 	color = "#45b33b"
 	quality = DRINK_VERYGOOD
@@ -80,8 +80,8 @@
 
 /datum/glass_style/drinking_glass/starfruit_lubricant
 	required_drink_type = /datum/reagent/consumable/ethanol/starfruit_lubricant
-	name = "Stellar Lubricant"
-	desc = "An alcoholic synth friendly starfruit soda, you can see the carination in the glass."
+	name = "星尘润滑剂"
+	desc = "一种对合成人友好的含酒精杨桃苏打水，你能在杯中看到气泡。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "starsodasynth"
 
@@ -93,8 +93,8 @@
 	)
 
 /datum/reagent/consumable/starfruit_latte //starfruit juice 1, coffee 1
-	name = "Starlit Latte"
-	description = "A subtly sweet coffee seemingly out of this world."
+	name = "星光拿铁"
+	description = "一种微甜、仿佛来自另一个世界的咖啡。"
 	nutriment_factor = 8
 	color = "#361329"
 	quality = DRINK_VERYGOOD
@@ -103,8 +103,8 @@
 
 /datum/glass_style/drinking_glass/starfruit_latte
 	required_drink_type = /datum/reagent/consumable/starfruit_latte
-	name = "mug of starlit latte"
-	desc = "A simple coffe flavored with sweet starfruit juice. It takes you on a journey to a place you’ve never been, yet somehow know by heart."
+	name = "一杯星光拿铁"
+	desc = "一种用甜杨桃汁调味的简单咖啡。它带你踏上一段旅程，前往一个你从未到过，却又莫名熟悉的地方。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "starfruit_latte"
 
@@ -117,8 +117,8 @@
 	)
 
 /datum/reagent/consumable/starbeam_shake
-	name = "starbeam shake"
-	description = "A delightful shake made with a rare starfruit."
+	name = "星束奶昔"
+	description = "一种用稀有杨桃制成的美味奶昔。"
 	color = "#a551be"
 	nutriment_factor = 0
 	quality = DRINK_VERYGOOD
@@ -127,8 +127,8 @@
 
 /datum/glass_style/drinking_glass/starbeam_shake
 	required_drink_type = /datum/reagent/consumable/starbeam_shake
-	name = "starbeam shake"
-	desc = "A thick and creamy drink that takes you for a journey in the stars."
+	name = "星束奶昔"
+	desc = "一种浓稠顺滑的饮品，带你踏上星际之旅。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "voidshake"
 
@@ -144,8 +144,8 @@
 	mix_message = "The ingredients combine into a shooting star."
 
 /datum/reagent/consumable/ethanol/forgotten_star //starfruit juice 1, creme de coconut 1, white russian 1, pineapple juice 1, bitters 1
-	name = "Forgotten Star"
-	description = "A cosmic cry of a bygone era."
+	name = "被遗忘的星辰"
+	description = "一个逝去时代的宇宙之泣。"
 	boozepwr = 55
 	color = "#434294"
 	quality = DRINK_VERYGOOD
@@ -154,8 +154,8 @@
 
 /datum/glass_style/drinking_glass/forgotten_star
 	required_drink_type = /datum/reagent/consumable/ethanol/forgotten_star
-	name = "Forgotten Star"
-	desc = "An alcoholic starfruit coctail, you can almost make out a distant star system in the glass."
+	name = "被遗忘的星辰"
+	desc = "一种含酒精的杨桃鸡尾酒，你几乎能在杯中辨认出一个遥远的星系。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "forgottenstar"
 
@@ -171,8 +171,8 @@
 	mix_message = "The ingredients morph into a an enticing smell"
 
 /datum/reagent/consumable/ethanol/astral_flame //starfruit juice 1, navy rum 1, lime juice 1, soda water 1, menthol 1
-	name = "Astral Flame"
-	description = "Enticing flames."
+	name = "星界火焰"
+	description = "诱人的火焰。"
 	boozepwr = 55
 	color = "#6b3481"
 	quality = DRINK_VERYGOOD
@@ -181,8 +181,8 @@
 
 /datum/glass_style/drinking_glass/astral_flame
 	required_drink_type = /datum/reagent/consumable/ethanol/astral_flame
-	name = "Astral Flame"
-	desc = "An alcoholic starfruit mojito, the flame in the glass tempts you closer."
+	name = "星界火焰"
+	desc = "一种含酒精的杨桃莫吉托，杯中的火焰引诱着你靠近。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "astralflame"
 
@@ -196,8 +196,8 @@
 	mix_message = "The mixture gives a soft crackling snap."
 
 /datum/reagent/consumable/ethanol/space_muse //starfruit juice 1, creme de menthe, 1 vodka
-	name = "Space Muse"
-	description = "A snapshot straight from your local telescope."
+	name = "太空缪斯"
+	description = "一张直接从你本地望远镜拍摄的快照。"
 	boozepwr = 35
 	color = "#7cb1e2"
 	quality = DRINK_VERYGOOD
@@ -206,15 +206,15 @@
 
 /datum/glass_style/drinking_glass/space_muse
 	required_drink_type = /datum/reagent/consumable/ethanol/space_muse
-	name = "Space Muse"
-	desc = "An alcoholic coctail that draws you in with sybtle bites of mint and starfruit."
+	name = "太空缪斯"
+	desc = "一种含酒精的鸡尾酒，以薄荷和杨桃的微妙刺激感吸引着你。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "spacemuse"
 
 //Starfruit dishes
 
 /datum/crafting_recipe/food/glazed_ribs
-	name = "Starfruit Glazed Ribs"
+	name = "杨桃釉烤肋排"
 	reqs = list(
 		/obj/item/food/bbqribs = 1,
 		/obj/item/food/grown/starfruit = 2,
@@ -225,8 +225,8 @@
 	meal_category = MEAL_MAIN_COURSE
 
 /obj/item/food/glazed_ribs
-	name = "starfruit glazed ribs"
-	desc = "Tender BBQ ribs, glazed with a sweet Starfruit sauce. Garinished with a carmalized starfruit on the side. The sweetest least vegan thing this side of the frontier."
+	name = "杨桃釉烤肋排"
+	desc = "鲜嫩多汁的烧烤肋排，淋上甜美的杨桃酱汁。配以焦糖化杨桃作为装饰。这是边境地带最甜、最不素食的美味。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "glazedchops"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -242,7 +242,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /datum/crafting_recipe/food/meatplatter
-	name = "BBQ Meat Platter"
+	name = "烧烤肉类拼盘"
 	reqs = list(
 		/obj/item/food/bbqribs = 1,
 		/obj/item/food/glazed_ribs = 1,
@@ -253,8 +253,8 @@
 	meal_category = MEAL_MAIN_COURSE
 
 /obj/item/food/meatplatter
-	name = "BBQ meat platter"
-	desc = "An elaborate BBQ platter adorned with several BBQ favorites on this side of the galaxy. Garnished with some rosted pepper."
+	name = "烧烤肉类拼盘"
+	desc = "一个精致的烧烤拼盘，装饰着银河系这边最受欢迎的几种烧烤美食。配以一些烤辣椒作为点缀。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "meatdisc"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -270,7 +270,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_5
 
 /datum/crafting_recipe/food/chicken_alfredo
-	name = "Starfruit Chicken Alfredo"
+	name = "杨桃鸡肉阿尔弗雷多意面"
 	reqs = list(
 		/obj/item/food/meat/slab/chicken = 1,
 		/obj/item/food/grown/starfruit = 2,
@@ -283,8 +283,8 @@
 	meal_category = MEAL_MAIN_COURSE
 
 /obj/item/food/chicken_alfredo
-	name = "starfruit chicken alfredo"
-	desc = "A chicken alfredo dish with a starfruit cream sauce. Not for the faint of heart."
+	name = "杨桃鸡肉阿尔弗雷多意面"
+	desc = "一道用杨桃奶油酱调制的鸡肉阿尔弗雷多意面。不适合胆小的人。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "alfredo"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -299,7 +299,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/crafting_recipe/food/starfruitsushiroll
-	name = "Starfruit Sushi Roll"
+	name = "杨桃寿司卷"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -311,8 +311,8 @@
 	meal_category = MEAL_APPETIZER
 
 /obj/item/food/starfruitsushiroll
-	name = "starfruit sushi roll"
-	desc = "A roll of simple sushi with delicious starfruit sashimi. Sliceable into pieces!"
+	name = "杨桃寿司卷"
+	desc = "一卷简单的寿司，内含美味的杨桃生鱼片。可以切成小块！"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "sashimiroll"
 	food_reagents = list(
@@ -328,8 +328,8 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/starfruitsushislice, 4, screentip_verb = "Chop")
 
 /obj/item/food/starfruitsushislice
-	name = "starfruit sushi slice"
-	desc = "A slice of starfruit sushi with rice, fish, and cradled in a seaweed sheat."
+	name = "杨桃寿司片"
+	desc = "一片杨桃寿司，包含米饭、鱼肉，包裹在海苔卷中。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "sashimirollslice"
 	food_reagents = list(
@@ -342,7 +342,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/crafting_recipe/food/starfruit_sashimi
-	name = "Starfruit Sashimi"
+	name = "杨桃生鱼片"
 	reqs = list(
 		/obj/item/food/fishmeat = 2,
 		/datum/reagent/consumable/soysauce = 10,
@@ -353,8 +353,8 @@
 	meal_category = MEAL_APPETIZER
 
 /obj/item/food/starfruit_sashimi
-	name = "starfruit sashimi"
-	desc = "Delicately slished sashimi made with a starfruit reduced soy sauce."
+	name = "杨桃生鱼片"
+	desc = "用杨桃浓缩酱油精心制作的生鱼片。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "sashimi"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -368,7 +368,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /datum/crafting_recipe/food/eggplantfry
-	name = "Starfruit Eggplant Stir Fry"
+	name = "杨桃茄子炒菜"
 	reqs = list(
 		/obj/item/food/grown/bell_pepper = 1,
 		/obj/item/food/grown/cabbage = 1,
@@ -380,8 +380,8 @@
 	meal_category = MEAL_MAIN_COURSE
 
 /obj/item/food/eggplantfry
-	name = "starfruit eggplant stir fry"
-	desc = "Eggplant stir fry with a reduced starfruit sauce, carrot, peppers, and cabbage. The starfruit has absolutely covered the dish."
+	name = "杨桃茄子炒菜"
+	desc = "茄子炒菜，配以浓缩杨桃酱汁、胡萝卜、辣椒和卷心菜。杨桃的味道完全覆盖了这道菜。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "eggplantfry"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -395,7 +395,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/crafting_recipe/food/tofubeef
-	name = "Starfruit Tofu Beef Ramen"
+	name = "杨桃豆腐牛肉拉面"
 	reqs = list(
 		/obj/item/food/tofu = 1,
 		/obj/item/food/meat/cutlet = 2,
@@ -407,8 +407,8 @@
 	meal_category = MEAL_MAIN_COURSE
 
 /obj/item/food/tofubeef
-	name = "starfruit tofu beef ramen"
-	desc = "A delightful ramen dish steeped in beef, tofu and starfruit. The uncanny combination of ingredients results in a suprisingly tangy dish with a subtly sweet aftertaste."
+	name = "杨桃豆腐牛肉拉面"
+	desc = "一道令人愉悦的拉面菜肴，浸透着牛肉、豆腐和杨桃。食材的奇异组合造就了一种出奇酸爽、回味微甜的佳肴。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "tofubeef"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -423,7 +423,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/crafting_recipe/food/starfruitplate
-	name = "Starfruit Noodle Pasta"
+	name = "杨桃面条意面"
 	reqs = list(
 		/obj/item/food/meatball = 2,
 		/obj/item/food/meat/cutlet = 2,
@@ -435,8 +435,8 @@
 	meal_category = MEAL_MAIN_COURSE
 
 /obj/item/food/starfruitplate
-	name = "starfruit noodle pasta"
-	desc = "Savory boiled pasta with a rich and creamy reduced starfruit meat sauce."
+	name = "杨桃面条意面"
+	desc = "美味的煮意面，配以浓郁奶油般的浓缩杨桃肉酱。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "starfruitplate"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -451,7 +451,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/crafting_recipe/food/starfruitcake
-	name = "Starfruit Cake"
+	name = "杨桃蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/starfruit = 5
@@ -461,8 +461,8 @@
 	meal_category = MEAL_DESSERT
 
 /obj/item/food/cake/starfruit
-	name = "starfruit cake"
-	desc = "An elaborately decorated cake with a starfruit filling. Pairs well with a starlit latte."
+	name = "杨桃蛋糕"
+	desc = "一款精心装饰、内填杨桃的蛋糕。与星光拿铁是绝配。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "starcake"
 	food_reagents = list(
@@ -475,8 +475,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/cakeslice/starfruit
-	name = "starfruit cake slice"
-	desc = "A slice of starfruit cake, you got a slice with extra frosting! Lucky you!"
+	name = "杨桃蛋糕切片"
+	desc = "一片杨桃蛋糕，你分到的这片额外多了一层糖霜！真走运！"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "starcake_slice"
 	tastes = list("cake" = 3, "astral sweetness" = 2, "unbearable longing" = 2)
@@ -484,8 +484,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/reagent/consumable/starfruitjelly
-	name = "Starfruit Jelly"
-	description = "A rare sweet fruit jelly "
+	name = "杨桃果冻"
+	description = "一种稀有的甜味水果果冻"
 	nutriment_factor = 10
 	color = "#6d3890"
 	taste_description = "starfruit"
@@ -493,15 +493,15 @@
 	default_container = /obj/item/reagent_containers/condiment/starfruitjelly
 
 /obj/item/reagent_containers/condiment/starfruitjelly
-	name = "starfruit jelly"
-	desc = "A jar of super-sweet starfruit jelly."
+	name = "杨桃果冻"
+	desc = "一罐超甜的杨桃果冻。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "spacejam"
 	list_reagents = list(/datum/reagent/consumable/starfruitjelly = 50)
 	fill_icon_thresholds = null
 
 /datum/crafting_recipe/bottled/starfruitjelly
-	name = "Starfruit Jelly"
+	name = "杨桃果冻"
 	reqs = list(
 		/obj/item/food/grown/starfruit = 10,
 		/datum/reagent/water = 25,
@@ -510,14 +510,14 @@
 	result = /obj/item/reagent_containers/condiment/starfruitjelly
 
 /obj/item/food/cookie/macaron/starfruit
-	name = "starfruit macaron"
-	desc = "A sandwich-like confectionary with a soft cookie shell and a creamy starfruit jelly meringue center."
+	name = "杨桃马卡龙"
+	desc = "一种三明治状的甜点，有着柔软的饼干外壳和奶油般的杨桃果冻蛋白霜夹心。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "macaron_4"
 	tastes = list("wafer" = 2, "sweet starfruit" = 2, "creamy meringue" = 3)
 
 /datum/crafting_recipe/food/macaron/starfruit
-	name = "Starfruit Macaron"
+	name = "杨桃马卡龙"
 	reqs = list(
 		/datum/reagent/consumable/eggwhite = 2,
 		/datum/reagent/consumable/cream = 5,
@@ -529,7 +529,7 @@
 	meal_category = MEAL_DESSERT
 
 /datum/crafting_recipe/food/starfruitcobbler
-	name = "Starfruit Cobbler"
+	name = "杨桃酥皮水果馅饼"
 	reqs = list(
 		/obj/item/food/pastrybase = 2,
 		/obj/item/food/grown/starfruit = 2,
@@ -540,8 +540,8 @@
 	meal_category = MEAL_DESSERT
 
 /obj/item/food/pie/starfruitcobbler
-	name = "starfruit cobbler"
-	desc = "A tasty cobbler packed with sweet starfruit in a buttery pastry crust. Topped with a small amount of sweet cream."
+	name = "杨桃酥皮水果馅饼"
+	desc = "美味的馅饼，内馅是甜美的杨桃，包裹在黄油酥皮中。顶部点缀着少量甜奶油。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "cobbler"
 	bite_consumption = 3
@@ -553,7 +553,7 @@
 	foodtypes = GRAIN | FRUIT | FRUIT | DAIRY | SUGAR
 
 /datum/crafting_recipe/food/starfruit_toast
-	name = "Starfruit Jellied Toast"
+	name = "杨桃果酱吐司"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 1,
 		/datum/reagent/consumable/starfruitjelly = 5,
@@ -564,8 +564,8 @@
 	meal_category = MEAL_APPETIZER
 
 /obj/item/food/starfruit_toast
-	name = "starfruit jellied toast"
-	desc = "A slice of toast covered with delicious starfruit jam."
+	name = "杨桃果酱吐司"
+	desc = "一片涂满美味杨桃果酱的吐司。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "spacejamtoast"
 	food_reagents = list(
@@ -580,7 +580,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/crafting_recipe/food/starfruitpie
-	name = "Starfruit Pie"
+	name = "杨桃派"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/grown/starfruit = 2,
@@ -590,8 +590,8 @@
 	meal_category = MEAL_DESSERT
 
 /obj/item/food/pie/starfruitpie
-	name = "starfruit pie"
-	desc = "Deceptively simple, yet flavor intensive."
+	name = "杨桃派"
+	desc = "看似简单，实则风味浓郁。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "starfruitpie"
 	food_reagents = list(
@@ -604,8 +604,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/starfruitpie
-	name = "starfruit pie slice"
-	desc = "Takes you on a journey though space!"
+	name = "杨桃派切片"
+	desc = "带你开启一场穿越太空的旅程！"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "starfruitpie_slice"
 	tastes = list("pie" = 1, "starfruit" = 1, "cosmic longing" = 1)
@@ -613,7 +613,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/crafting_recipe/food/starfruitcompote
-	name = "Starfruit Compote"
+	name = "杨桃蜜饯"
 	reqs = list(
 		/obj/item/food/grown/starfruit = 5,
 		/datum/reagent/consumable/sugar = 10,
@@ -623,8 +623,8 @@
 	meal_category = MEAL_DESSERT
 
 /obj/item/food/starfruitcompote
-	name = "starfruit compote"
-	desc = "An irresistibly sweet dish of starfruit boiled down in cognac and sugar."
+	name = "杨桃蜜饯"
+	desc = "一道用杨桃在白兰地和糖中熬煮而成的、令人无法抗拒的甜点。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "compote"
 	food_reagents = list(
@@ -638,7 +638,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/crafting_recipe/food/starfruitbrulee
-	name = "Starfruit Creme Brulee"
+	name = "杨桃焦糖布丁"
 	reqs = list(
 		/datum/reagent/consumable/starfruit_juice = 10,
 		/datum/reagent/consumable/sugar = 10,
@@ -650,8 +650,8 @@
 	meal_category = MEAL_DESSERT
 
 /obj/item/food/starfruitbrulee
-	name = "starfruit creme brulee"
-	desc = "A delightful pudding dish made from primarily caramel, starfruit, and egg whites."
+	name = "杨桃焦糖布丁"
+	desc = "一道主要由焦糖、杨桃和蛋清制成的美味布丁甜点。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "cremebrulee"
 	food_reagents = list(
@@ -664,7 +664,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /datum/crafting_recipe/food/starcupcake
-	name = "Starfruit Cupcake"
+	name = "杨桃纸杯蛋糕"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/obj/item/food/grown/starfruit = 2
@@ -674,8 +674,8 @@
 	meal_category = MEAL_DESSERT
 
 /obj/item/food/starcupcake
-	name = "starfruit cupcake"
-	desc = "A sweet cupcake with a starfruit frosting."
+	name = "杨桃纸杯蛋糕"
+	desc = "一个带有杨桃糖霜的甜味纸杯蛋糕。"
 	icon = 'modular_nova/master_files/icons/obj/food/starfruit.dmi'
 	icon_state = "cupcakestar"
 	food_reagents = list(
@@ -689,7 +689,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/book/manual/starfruit
-	name = "Starfruit preperation and you!"
+	name = "杨桃制备与你！"
 	icon = 'modular_nova/master_files/icons/obj/starfruitbook.dmi'
 	icon_state = "cookbook"
 	lefthand_file = 'modular_nova/master_files/icons/mob/inhands/starfruitbook_lhand.dmi'

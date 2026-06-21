@@ -1,9 +1,9 @@
 /obj/effect/spawner/random/food_or_drink
-	name = "food or drink loot spawner"
-	desc = "Nom nom nom"
+	name = "吃的喝的生成器"
+	desc = "我踏马吃吃吃"
 
 /obj/effect/spawner/random/food_or_drink/donkpockets
-	name = "donk pocket box spawner"
+	name = "口袋饼生成器"
 	icon_state = "donkpocket"
 	loot = list(
 		/obj/item/storage/box/donkpockets,
@@ -15,7 +15,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/donkpockets_single
-	name = "single donk pocket spawner"
+	name = "单个唐克口袋生成器"
 	icon_state = "donkpocket_single"
 	loot = list(
 		/obj/item/food/donkpocket,
@@ -27,7 +27,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/seed
-	name = "seed spawner"
+	name = "种子生成器"
 	icon_state = "seed"
 	loot = list( // The same seeds in the Supply "Seeds Crate"
 		/obj/item/seeds/chili,
@@ -49,7 +49,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/seed_flowers
-	name = "flower seed spawner"
+	name = "花卉种子生成器"
 	icon_state = "seed"
 	spawn_all_loot = TRUE
 	loot = list( // Just some random flowers you can usually find and doesn't take away from mutated plants uniqueness
@@ -83,7 +83,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/plant_produce
-	name = "plant produce spawner"
+	name = "植物产物生成器"
 	icon_state = "seed"
 	spawn_loot_count = 8 // will select 8 random produce
 	loot = list( // Just some random grown basic plants
@@ -123,7 +123,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/soup
-	name = "soup spawner"
+	name = "汤羹生成器"
 	icon_state = "soup"
 	loot = list(
 		/obj/item/reagent_containers/cup/bowl/soup/hotchili,
@@ -135,7 +135,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/salad
-	name = "salad spawner"
+	name = "沙拉生成器"
 	icon_state = "soup"
 	loot = list(
 		/obj/item/food/salad/herbsalad,
@@ -146,7 +146,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/dinner
-	name = "dinner spawner"
+	name = "晚餐生成器"
 	icon_state = "soup"
 	loot = list(
 		/obj/item/food/bearsteak,
@@ -158,7 +158,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/three_course_meal
-	name = "three course meal spawner"
+	name = "一餐三菜生成器"
 	icon_state = "soup"
 	spawn_all_loot = TRUE
 	loot = list(
@@ -168,7 +168,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/refreshing_beverage
-	name = "good soda spawner"
+	name = "汽水生成器"
 	icon_state = "can"
 	loot = list(
 		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/nuka_cola = 3,
@@ -187,7 +187,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/booze
-	name = "booze spawner"
+	name = "酒品生成器"
 	icon_state = "beer"
 	loot = list(
 		/obj/item/reagent_containers/cup/glass/bottle/beer = 75,
@@ -224,7 +224,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/pizzaparty
-	name = "pizza bomb spawner"
+	name = "披萨炸弹生成器"
 	icon_state = "pizzabox"
 	loot = list(
 		/obj/item/pizzabox/margherita = 2,
@@ -237,7 +237,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/seed_vault
-	name = "seed vault seeds"
+	name = "来自种子库的种子"
 	icon_state = "seed"
 	loot = list(
 		/obj/item/seeds/gatfruit = 10,
@@ -247,7 +247,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/snack
-	name = "snack spawner"
+	name = "零食生成器"
 	icon_state = "chips"
 	loot = list(
 		/obj/item/food/spacetwinkie = 5,
@@ -272,7 +272,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/snack/lizard
-	name = "lizard snack spawner"
+	name = "蜥蜴零食生成器"
 	loot = list(
 		/obj/item/food/brain_pate = 5,
 		/obj/item/food/bread/root = 1,
@@ -285,7 +285,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/condiment
-	name = "condiment spawner"
+	name = "调味品生成器"
 	icon_state = "condiment"
 	loot = list(
 		/obj/item/reagent_containers/condiment/saltshaker = 3,
@@ -303,7 +303,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/cups
-	name = "cup spawner"
+	name = "杯子生成器"
 	icon_state = "box_small"
 	loot = list(
 		/obj/item/storage/box/drinkingglasses,
@@ -313,7 +313,7 @@
 
 ///Used for the employee birthday station trait
 /obj/effect/spawner/random/food_or_drink/cake_ingredients
-	name = "cake ingredients spawner"
+	name = "蛋糕原料生成器"
 	icon_state = "cake"
 	spawn_all_loot = TRUE
 	loot = list(
@@ -329,7 +329,7 @@
 	return ..()
 
 /obj/effect/spawner/random/food_or_drink/donuts
-	name = "donut spawner"
+	name = "甜甜圈生成器"
 	icon_state = "donut"
 	loot = list(
 		/obj/item/food/donut/apple = 3,
@@ -347,7 +347,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/jelly_donuts
-	name = "jelly donut spawner"
+	name = "果冻甜甜圈生成器"
 	icon_state = "jelly_donut"
 	loot = list(
 		/obj/item/food/donut/jelly/apple = 3,
@@ -363,7 +363,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/slime_jelly_donuts
-	name = "slime jelly donut spawner"
+	name = "史莱姆果冻甜甜圈生成器"
 	icon_state = "slime_jelly_donut"
 	loot = list(
 		/obj/item/food/donut/jelly/slimejelly/apple = 3,
@@ -379,7 +379,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/any_snack_or_beverage
-	name = "any snack or beverage spawner"
+	name = "任意零食或饮料生成器"
 	icon_state = "slime_jelly_donut"
 	loot = list(
 		/obj/effect/spawner/random/food_or_drink/snack = 6,

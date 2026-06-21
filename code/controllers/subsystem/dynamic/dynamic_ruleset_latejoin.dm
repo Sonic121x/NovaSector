@@ -21,7 +21,7 @@
 	return ..()
 
 /datum/dynamic_ruleset/latejoin/traitor
-	name = "Traitor"
+	name = "叛徒"
 	config_tag = "Latejoin Traitor"
 	preview_antag_datum = /datum/antagonist/traitor
 	pref_flag = ROLE_SYNDICATE_INFILTRATOR
@@ -36,7 +36,7 @@
 	candidate.add_antag_datum(/datum/antagonist/traitor)
 
 /datum/dynamic_ruleset/latejoin/changeling
-	name = "Changeling"
+	name = "变色龙"
 	config_tag = "Latejoin Changeling"
 	preview_antag_datum = /datum/antagonist/changeling
 	pref_flag = ROLE_STOWAWAY_CHANGELING
@@ -51,7 +51,7 @@
 	candidate.add_antag_datum(/datum/antagonist/changeling)
 
 /datum/dynamic_ruleset/latejoin/revolution
-	name = "Revolution"
+	name = "革命"
 	config_tag = "Latejoin Revolution"
 	preview_antag_datum = /datum/antagonist/rev/head
 	pref_flag = ROLE_PROVOCATEUR

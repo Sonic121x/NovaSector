@@ -1,5 +1,5 @@
 /datum/uplink_category/species
-	name = "Species Restricted"
+	name = "特殊物种限定"
 	weight = 1
 
 /datum/uplink_item/species_restricted

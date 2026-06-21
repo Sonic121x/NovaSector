@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 		return FALSE
 
 	if(invoker.get_active_held_item() != invoking_slab && !iscyborg(invoker))
-		to_chat(invoker, span_brass("You fail to invoke [name]."))
+		to_chat(invoker, span_brass("你未能成功咏唱[name]。"))
 		return FALSE
 
 	var/invokers = 0
@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 			break
 
 	if(invokers < invokers_required)
-		to_chat(invoker, span_brass("You need [invokers_required] servants to channel [name]!"))
+		to_chat(invoker, span_brass("你需要[invokers_required]名仆从才能引导[name]！"))
 		return FALSE
 
 	return TRUE
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 /// Start invoking a scripture, calling end_invoke() if it doesn't finish
 /datum/scripture/proc/begin_invoke(mob/living/invoking_mob, obj/item/clockwork/clockwork_slab/slab, bypass_unlock_checks = FALSE)
 	if(invoking_mob.get_active_held_item() != slab && !iscyborg(invoking_mob))
-		to_chat(invoking_mob, span_brass("You need to have the [slab.name] in your active hand to recite scriptures."))
+		to_chat(invoking_mob, span_brass("你需要将[slab.name]持于手中才能诵读经文。"))
 		return
 
 	slab.invoking_scripture = src
@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 	if(do_after(invoking_mob, invocation_time, target = invoking_mob, extra_checks = CALLBACK(src, PROC_REF(check_special_requirements), invoking_mob)))
 		invoke()
 
-		to_chat(invoking_mob, span_brass("You invoke <b>[name]</b>."))
+		to_chat(invoking_mob, span_brass("你咏唱了<b>[name]</b>。"))
 
 		if(end_on_invocation)
 			end_invoke()
@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 		if(istype(clockwork_struct, /obj/structure/destructible/clockwork/trap))
 			continue
 
-		invoker.balloon_alert(invoker, "structure already on tile!")
+		invoker.balloon_alert(invoker, "该格已有结构！")
 		return FALSE
 
 	return TRUE
@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 //For scriptures that charge the slab, and the slab will affect something
 //(stunning etc.)
 /datum/scripture/slab
-	name = "Charge Slab"
+	name = "充能石板"
 	end_on_invocation = FALSE
 	/// Time to perform this
 	var/use_time = 1 SECONDS
@@ -335,7 +335,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 		loop_timer_id = null
 
 	if(!silent)
-		to_chat(invoker, span_brass("You are no longer invoking <b>[name]</b>."))
+		to_chat(invoker, span_brass("你已停止咏唱<b>[name]</b>。"))
 	qdel(progress)
 
 	pointed_spell.unset_click_ability(invoker)

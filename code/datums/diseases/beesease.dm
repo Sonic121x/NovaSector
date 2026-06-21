@@ -1,5 +1,5 @@
 /datum/disease/beesease
-	name = "Beesease"
+	name = "蜂群症"
 	form = "Parasite"
 	max_stages = 4
 	spread_text = "Skin contact"
@@ -21,21 +21,21 @@
 	switch(stage)
 		if(2) //also changes say, see say.dm
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_notice("You taste honey in your mouth."))
+				to_chat(affected_mob, span_notice("你尝到了嘴里的蜂蜜味。"))
 		if(3)
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_notice("Your stomach rumbles."))
+				to_chat(affected_mob, span_notice("你的肚子咕咕作响。"))
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your stomach stings painfully."))
+				to_chat(affected_mob, span_danger("你的胃部传来刺痛。"))
 				if(prob(20))
 					affected_mob.adjust_tox_loss(2)
 		if(4)
 			if(SPT_PROB(5, seconds_per_tick))
-				affected_mob.visible_message(span_danger("[affected_mob] buzzes."), \
-												span_userdanger("Your stomach buzzes violently!"))
+				affected_mob.visible_message(span_danger("[affected_mob] 嗡嗡作响。"), \
+												span_userdanger("你的胃部剧烈地嗡嗡震动！"))
 			if(SPT_PROB(2.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel something moving in your throat."))
+				to_chat(affected_mob, span_danger("你感觉喉咙里有东西在动。"))
 			if(SPT_PROB(0.5, seconds_per_tick))
-				affected_mob.visible_message(span_danger("[affected_mob] coughs up a swarm of bees!"), \
-													span_userdanger("You cough up a swarm of bees!"))
+				affected_mob.visible_message(span_danger("[affected_mob] 咳出了一群蜜蜂！"), \
+													span_userdanger("你咳出了一群蜜蜂！"))
 				new /mob/living/basic/bee(affected_mob.loc)

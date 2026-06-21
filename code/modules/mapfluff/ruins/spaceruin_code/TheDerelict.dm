@@ -3,25 +3,25 @@
 /////////// thederelict items
 
 /obj/item/paper/fluff/ruins/thederelict/equipment
-	default_raw_text = "If the equipment breaks there should be enough spare parts in our engineering storage near the north east solar array."
-	name = "Equipment Inventory"
+	default_raw_text = "如果设备坏了，我们东北太阳能阵列附近的工程储物区应该有足够的备用零件。"
+	name = "设备清单"
 
 /obj/item/paper/fluff/ruins/thederelict/syndie_mission
-	name = "Mission Objectives"
-	default_raw_text = "The Syndicate have cunningly disguised a Syndicate Uplink as your PDA. Simply enter the code \"678 Bravo\" into the ringtone select to unlock its hidden features. <br><br><b>Objective #1</b>. Kill the God damn AI in a fire blast that it rocks the station. <b>Success!</b>  <br><b>Objective #2</b>. Escape alive. <b>Failed.</b>"
+	name = "任务目标"
+	default_raw_text = "辛迪加狡猾地将一个辛迪加上行链路伪装成了你的PDA。只需在铃声选择中输入代码\"678 Bravo\"即可解锁其隐藏功能。<br><br><b>目标 #1</b>。用一场震撼空间站的爆炸干掉那个该死的AI。<b>成功！</b> <br><b>目标 #2</b>。活着逃脱。<b>失败。</b>"
 
 /obj/item/paper/fluff/ruins/thederelict/nukie_objectives
-	name = "Objectives of a Nuclear Operative"
-	default_raw_text = "<b>Objective #1</b>: Destroy the station with a nuclear device."
+	name = "核行动队目标"
+	default_raw_text = "<b>目标 #1</b>：用核装置摧毁空间站。"
 
 /obj/item/paper/crumpled/bloody/ruins/thederelict/unfinished
-	name = "unfinished paper scrap"
-	desc = "Looks like someone started shakily writing a will in space common, but were interrupted by something bloody..."
-	default_raw_text = "I, Victor Belyakov, do hereby leave my _- "
+	name = "未完成的废纸"
+	desc = "看起来有人开始艰难地在太空中写遗嘱，但被一些血腥的东西打断了……"
+	default_raw_text = "我，维克多·别利亚科夫，特此留下我的_-"
 
 /obj/item/paper/fluff/ruins/thederelict/vaultraider
-	name = "Vault Raider Objectives"
-	default_raw_text = "<b>Objectives #1</b>: Find out what is hidden in Kosmicheskaya Stantsiya 13s Vault"
+	name = "金库大盗任务"
+	default_raw_text = "<b>目标 #1</b>：找出Kosmicheskaya Stantsiya 13号空间站金库中隐藏的东西"
 
 ///The Derelict Terminals
 /obj/machinery/computer/terminal/derelict/bridge
@@ -43,8 +43,8 @@
 
 /// Vault controller for use on the derelict/KS13.
 /obj/machinery/computer/vaultcontroller
-	name = "vault controller"
-	desc = "It seems to be powering and controlling the vault locks."
+	name = "金库控制器"
+	desc = "它似乎能控制金库的锁。"
 	icon_screen = "power"
 	icon_keyboard = "power_key"
 	light_color = LIGHT_COLOR_DIM_YELLOW
@@ -61,7 +61,7 @@
 
 /obj/machinery/computer/monitor/examine(mob/user)
 	. = ..()
-	. += span_notice("It appears to be powered via a cable connector.")
+	. += span_notice("它似乎是通过电缆连接器供电的。")
 
 //Checks for cable connection, charges if possible.
 /obj/machinery/computer/vaultcontroller/process()
@@ -169,12 +169,12 @@
 
 ///Overrides screwdriver act to prevent all deconstruction and hacking. Override for extra tuff fluff
 /obj/machinery/door/airlock/vault/derelict/screwdriver_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_danger("The robust make of [src] makes it impossible to access the panel in any way!"))
+	to_chat(user, span_danger("[src]的坚固构造使得无法以任何方式接触到面板！"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/fluff/oldturret
-	name = "broken turret"
-	desc = "An obsolete model of turret, long non-functional."
+	name = "损毁的炮塔"
+	desc = "一个过时的炮塔模型，早已不能使用。"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "turretCover"
 	density = TRUE
@@ -185,8 +185,8 @@
 /// https://www.youtube.com/watch?v=7M-JPH5SOmI (old video)
 /// https://www.youtube.com/watch?v=FHH1vfY6HTA (new video)
 /obj/item/tape/captains_log
-	name = "captain's log"
-	desc = "A dusty old tape."
+	name = "舰长记录"
+	desc = "满是灰尘的旧磁带。"
 	icon_state = "tape_blue"
 	used_capacity = 10 MINUTES // so the tape is full and can't be recorded over
 	storedinfo = list( // the captain recorded this in several segements

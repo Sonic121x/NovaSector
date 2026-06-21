@@ -3,8 +3,8 @@
  * Has a variant which takes damage when away from blob tiles
  */
 /mob/living/basic/blob_minion/blobbernaut
-	name = "blobbernaut"
-	desc = "A hulking, mobile chunk of blobmass."
+	name = "凝胶巨怪"
+	desc = "一大块可移动的凝胶团块。"
 	icon_state = "blobbernaut"
 	base_icon_state = "blobbernaut"
 	icon_living = "blobbernaut"
@@ -19,10 +19,10 @@
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
 	attack_sound = 'sound/effects/blob/blobattack.ogg'
-	verb_say = "gurgles"
-	verb_ask = "demands"
-	verb_exclaim = "roars"
-	verb_yell = "bellows"
+	verb_say = "咕噜着说"
+	verb_ask = "要求"
+	verb_exclaim = "咆哮"
+	verb_yell = "怒吼"
 	pressure_resistance = 50
 	mob_size = MOB_SIZE_LARGE
 	ai_controller = /datum/ai_controller/basic_controller/blobbernaut
@@ -167,10 +167,10 @@
 	health = maxHealth / 2 // Start out injured to encourage not beelining away from the blob
 	SEND_SOUND(src, sound('sound/effects/blob/blobattack.ogg'))
 	SEND_SOUND(src, sound('sound/effects/blob/attackblob.ogg'))
-	to_chat(src, span_infoplain("You are powerful, hard to kill, and slowly regenerate near nodes and cores, [span_cult_large("but will slowly die if not near the blob")] or if the factory that made you is killed."))
-	to_chat(src, span_infoplain("You can communicate with other blobbernauts and overminds <b>telepathically</b> by attempting to speak normally"))
-	to_chat(src, span_infoplain("Your overmind's blob reagent is: <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>!"))
-	to_chat(src, span_infoplain("The <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> reagent [blobstrain.shortdesc ? "[blobstrain.shortdesc]" : "[blobstrain.description]"]"))
+	to_chat(src, span_infoplain("你强大、难以杀死，并且在节点和核心附近会缓慢再生，[span_cult_large("but will slowly die if not near the blob")]或者如果制造你的工厂被摧毁。"))
+	to_chat(src, span_infoplain("你可以通过尝试正常说话，<b>心灵感应</b>地与其他凝胶巨怪和主宰意识交流"))
+	to_chat(src, span_infoplain("你主宰的凝胶试剂是：<b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>！"))
+	to_chat(src, span_infoplain("这种 <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> 试剂 [blobstrain.shortdesc ? "[blobstrain.shortdesc]" : "[blobstrain.description]"]"))
 
 /// Called by our factory to inform us that it's not going to support us financially any more
 /mob/living/basic/blob_minion/blobbernaut/minion/on_factory_destroyed()

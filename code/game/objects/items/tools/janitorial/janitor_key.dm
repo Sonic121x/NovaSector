@@ -2,8 +2,8 @@
 #define ACCESS_TIMER_LIMIT (10 MINUTES)
 
 /obj/item/access_key
-	name = "access key ring"
-	desc = "A key ring with a beeper, allowing the keys to change shape depending on which department it has access to."
+	name = "门禁钥匙环"
+	desc = "一个带蜂鸣器的钥匙环，钥匙可根据其拥有权限的部门改变形状。"
 	icon_state = "access_key"
 	inhand_icon_state = "access_key"
 	icon = 'icons/obj/service/janitor.dmi'
@@ -11,9 +11,9 @@
 	righthand_file = 'icons/mob/inhands/items/keys_righthand.dmi'
 	hitsound = 'sound/items/rattling_keys_attack.ogg'
 	force = 2
-	verb_say = "beeps" //it has a beeper
-	verb_ask = "questionably beeps"
-	verb_exclaim = "beeps loudly"
+	verb_say = "蜂鸣" //it has a beeper
+	verb_ask = "可疑地蜂鸣"
+	verb_exclaim = "大声蜂鸣"
 	w_class = WEIGHT_CLASS_TINY
 
 	///The departmental access given to the key.
@@ -35,8 +35,8 @@
 
 /obj/item/access_key/examine_more(mob/user)
 	. = ..()
-	. += span_notice("Access can be granted through a Keycard Authentication Device.")
-	. += span_notice("This access is limited to one department at a time.")
+	. += span_notice("可通过钥匙卡认证设备授予访问权限。")
+	. += span_notice("此访问权限一次仅限一个部门使用。")
 
 /**
  * Called when attempting to open an airlock.
@@ -53,7 +53,7 @@
 	if(!do_after(user, 3 SECONDS, airlock))
 		return FALSE
 	if(!department_access || !airlock.check_access_list(SSid_access.accesses_by_region[department_access]))
-		airlock.balloon_alert(user, "no access!")
+		airlock.balloon_alert(user, "没有权限！")
 		return FALSE
 	return airlock.try_to_activate_door(user, access_bypass = TRUE)
 

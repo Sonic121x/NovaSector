@@ -40,8 +40,8 @@
 
 	var/turf/destination_turf = zlevels ? find_safe_turf(zlevels) : get_safe_random_station_turf_equal_weight()
 	if(!destination_turf)
-		source.balloon_alert(user, "uh oh...")
-		to_chat(user, span_warning("Nothing happens. You feel like this is a bad sign."))
+		source.balloon_alert(user, "呃哦...")
+		to_chat(user, span_warning("什么都没发生。你觉得这是个不祥之兆。"))
 		return
 
 	var/turf/user_turf = get_turf(user)
@@ -54,7 +54,7 @@
 		user.start_pulling(dragged, force = TRUE)
 		dragged_turf.balloon_alert_to_hearers("*pop*")
 
-	to_chat(list(user, dragged), span_notice("You blink and find yourself in <b>[get_area_name(destination_turf)]</b>."))
+	to_chat(list(user, dragged), span_notice("你眨了眨眼，发现自己已身处<b>[get_area_name(destination_turf)]</b>。"))
 	user.emote("blink")
 	astype(dragged, /mob)?.emote("blink") // shhhhh just let it happen
 

@@ -147,22 +147,22 @@
 	living_target.add_mood_event("minor_effect_good", /datum/mood_event/artifact_effect_good_minor)
 
 /datum/mood_event/artifact_effect_good_major
-	description = span_nicegreen("Wooo! What is going on?")
+	description = span_nicegreen("喔！发生什么事了？")
 	mood_change = 10
 	timeout = 10 MINUTES
 
 /datum/mood_event/artifact_effect_good_minor
-	description = span_nicegreen("I feel strange, but also very relaxed...")
+	description = span_nicegreen("我感觉很奇怪，但也很放松...")
 	mood_change = 5
 	timeout = 5 MINUTES
 
 /datum/mood_event/artifact_effect_bad_major
-	description = span_warning("It feels like a gaggle of geese are pecking at my skull...")
+	description = span_warning("感觉像是一群鹅在啄我的头骨...")
 	mood_change = -10
 	timeout = 10 MINUTES
 
 /datum/mood_event/artifact_effect_bad_minor
-	description = span_warning("I feel strange and uneasy...")
+	description = span_warning("我感觉很奇怪且不安...")
 	mood_change = -5
 	timeout = 5 MINUTES
 

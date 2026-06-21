@@ -1,6 +1,6 @@
 /mob/living/basic/faithless
-	name = "The Faithless"
-	desc = "The Wish Granter's faith in humanity, incarnate."
+	name = "背信者"
+	desc = "许愿者对人类信仰的化身。"
 	icon_state = "faithless"
 	icon_living = "faithless"
 	icon_dead = "faithless_dead"
@@ -50,8 +50,8 @@
 	var/mob/living/living_target = target
 	if (prob(paralyze_chance))
 		living_target.Paralyze(paralyze_duration)
-		living_target.visible_message(span_danger("\The [src] knocks \the [target] down!"), \
-			span_userdanger("\The [src] knocks you down!"))
+		living_target.visible_message(span_danger("\The [src] 将 \the [target] 击倒在地！"), \
+			span_userdanger("\The [src] 把你击倒了！"))
 
 /datum/ai_controller/basic_controller/faithless
 	blackboard = list(

@@ -7,8 +7,8 @@
 
 //Lipolicide - Impure Version
 /datum/reagent/impurity/ipecacide
-	name = "Ipecacide"
-	description = "An extremely gross substance that induces vomiting. It is produced when Lipolicide reactions are impure."
+	name = "Ipecacide-恶呕素"
+	description = "一种极其恶心的物质，会诱发呕吐。它是脂溶灭反应不纯时的产物。"
 	ph = 7
 	liver_damage = 0
 
@@ -20,8 +20,8 @@
 
 //Formaldehyde - Impure Version
 /datum/reagent/impurity/methanol
-	name = "Methanol"
-	description = "A light, colourless liquid with a distinct smell. Ingestion can lead to blindness. It is a byproduct of organisms processing impure Formaldehyde."
+	name = "Methanol-甲醇"
+	description = "一种轻盈、无色、带有特殊气味的液体。摄入可导致失明。它是生物体处理不纯甲醛时的副产品。"
 	color = "#aae7e4"
 	ph = 7
 	liver_damage = 0
@@ -34,8 +34,8 @@
 
 //Chloral Hydrate - Impure Version
 /datum/reagent/impurity/chloralax
-	name = "Chloralax"
-	description = "An oily, colorless and slightly toxic liquid. It is produced when impure choral hydrate is broken down inside an organism."
+	name = "Chloralax-三氯乙醛"
+	description = "一种油状、无色、略有毒性的液体。当不纯的水合氯醛在生物体内分解时产生。"
 	color = "#387774"
 	ph = 7
 	liver_damage = 0
@@ -47,8 +47,8 @@
 
 //Mindbreaker Toxin - Impure Version
 /datum/reagent/impurity/rosenol
-	name = "Rosenol"
-	description = "A strange, blue liquid that is produced during impure mindbreaker toxin reactions. Historically it has been abused to write poetry."
+	name = "Rosenol-高雅油"
+	description = "一种奇怪的蓝色液体，产生于不纯的致幻毒素反应过程中。历史上曾被滥用于写诗。"
 	color = "#0963ad"
 	ph = 7
 	liver_damage = 0

@@ -102,7 +102,7 @@
 	consumed.forceMove(get_turf(consumer))
 	new_hand.held_gibtonite = null
 	qdel(new_hand)
-	consumer.visible_message(span_warning("[consumer] can't keep [consumed] down, and coughs it onto the ground!"))
+	consumer.visible_message(span_warning("[consumer] 无法咽下 [consumed]，把它咳到了地上！"))
 
 /datum/golem_food_buff/bluespace
 	exclusive = FALSE
@@ -118,4 +118,4 @@
 			consumer.dropItemToGround(stack)
 	if (consumer.put_in_hands(new_hand, del_on_fail = TRUE))
 		return
-	consumer.balloon_alert(consumer, "no free hands!")
+	consumer.balloon_alert(consumer, "没有空闲的手！")

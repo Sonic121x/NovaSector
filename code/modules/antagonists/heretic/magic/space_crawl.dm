@@ -6,8 +6,8 @@
  * Lets the caster enter and exit tiles of space or misc turfs.
  */
 /datum/action/cooldown/spell/jaunt/space_crawl
-	name = "Space Phase"
-	desc = "Allows you to phase in and out of existence while in space or a low-pressure, outdoor area."
+	name = "空间相位"
+	desc = "允许你在太空或低气压的户外区域中进出相位状态。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -41,7 +41,7 @@
 	if(is_valid_turf())
 		return TRUE
 	if(feedback)
-		to_chat(owner, span_warning("You must stand in space, or an outdoor area with low pressure!"))
+		to_chat(owner, span_warning("你必须站在太空，或低气压的户外区域！"))
 	return FALSE
 
 
@@ -74,7 +74,7 @@
 
 	if(!.)
 		reset_spell_cooldown()
-		to_chat(jaunter, span_warning("You are unable to space crawl!"))
+		to_chat(jaunter, span_warning("你无法进行空间爬行！"))
 
 /**
  * Attempts to enter the passed space or misc turfs.
@@ -105,7 +105,7 @@
 
 	jaunter.add_traits(jaunting_traits, SPACE_PHASING)
 	playsound(our_turf, 'sound/effects/magic/cosmic_energy.ogg', 50, TRUE, -1)
-	our_turf.visible_message(span_warning("[jaunter] sinks into [our_turf]!"))
+	our_turf.visible_message(span_warning("[jaunter]沉入了[our_turf]！"))
 	new /obj/effect/temp_visual/space_explosion(our_turf)
 	jaunter.extinguish_mob()
 
@@ -117,13 +117,13 @@
  */
 /datum/action/cooldown/spell/jaunt/space_crawl/proc/try_exit_jaunt(turf/our_turf, mob/living/jaunter, force = FALSE)
 	if(!force && HAS_TRAIT_FROM(jaunter, TRAIT_NO_TRANSFORM, REF(src)))
-		to_chat(jaunter, span_warning("You cannot exit yet!!"))
+		to_chat(jaunter, span_warning("你还不能出来！！"))
 		return FALSE
 
 	if(!exit_jaunt(jaunter, our_turf))
 		return FALSE
 	jaunter.remove_traits(jaunting_traits, SPACE_PHASING)
-	our_turf.visible_message(span_boldwarning("[jaunter] rises out of [our_turf]!"))
+	our_turf.visible_message(span_boldwarning("[jaunter]从[our_turf]中升起！"))
 	return TRUE
 
 /datum/action/cooldown/spell/jaunt/space_crawl/on_jaunt_exited(obj/effect/dummy/phased_mob/jaunt, mob/living/unjaunter)
@@ -139,8 +139,8 @@
 
 /// Spacecrawl "hands", prevent the user from holding items in spacecrawl
 /obj/item/space_crawl
-	name = "space crawl"
-	desc = "You are unable to hold anything while in this form."
+	name = "空间爬行"
+	desc = "在此形态下你无法持有任何物品。"
 	icon = 'icons/obj/antags/eldritch.dmi'
 	item_flags = ABSTRACT | DROPDEL
 

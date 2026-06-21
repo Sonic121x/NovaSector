@@ -250,7 +250,7 @@
 	// Checks if we still have a host since setBruteLoss() can kill us, causing us to leave our host.
 	if (!already_ejecting && cached_blood_volume <= get_eject_volume_threshold())
 		// Sent before leave_host() for the correct message order in chat
-		to_chat_self(span_userdanger("You run out of blood to control your host with!"))
+		to_chat_self(span_userdanger("你耗尽血液，无法再控制宿主了！"))
 
 		leave_host()
 
@@ -271,8 +271,8 @@
 	icon_state = "invade-[effect_name]"
 
 /mob/living/basic/blood_worm/hatchling
-	name = "hatchling blood worm"
-	desc = "A freshly hatched blood worm. It looks hungry and weak, requiring blood to grow further."
+	name = "血蠕虫幼体"
+	desc = "一只刚孵化的血蠕虫。它看起来饥饿而虚弱，需要血液来继续成长。"
 
 	icon_state = "hatchling"
 	icon_living = "hatchling"
@@ -313,8 +313,8 @@
 	AddComponent(/datum/component/slide_under_doors, slide_in_delay = 3 SECONDS)
 
 /mob/living/basic/blood_worm/juvenile
-	name = "juvenile blood worm"
-	desc = "A mid-sized blood worm. It looks bloodthirsty and has numerous long and extremely sharp teeth."
+	name = "血蠕虫幼年体"
+	desc = "一只中等大小的血蠕虫。它看起来嗜血成性，长有许多又长又极其锋利的牙齿。"
 
 	icon_state = "juvenile"
 	icon_living = "juvenile"
@@ -356,8 +356,8 @@
 	AddComponent(/datum/component/slide_under_doors, slide_in_delay = 5 SECONDS)
 
 /mob/living/basic/blood_worm/adult
-	name = "adult blood worm"
-	desc = "A monstrosity of a blood worm. It'd probably be better to put your head in an industrial shredder rather than its maw."
+	name = "成年血蠕虫"
+	desc = "一只血蠕虫怪物。与其被它咬住，不如把头伸进工业碎纸机里。"
 
 	icon = 'icons/mob/nonhuman-player/blood_worm_32x48.dmi'
 

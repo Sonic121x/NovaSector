@@ -1,7 +1,7 @@
 // Apple
 /obj/item/seeds/apple
-	name = "apple seed pack"
-	desc = "These seeds grow into apple trees."
+	name = "苹果种子包"
+	desc = "能长成苹果树的种子。"
 	icon_state = "seed-apple"
 	species = "apple"
 	plantname = "Apple Tree"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/apple
 	seed = /obj/item/seeds/apple
-	name = "apple"
-	desc = "It's a little piece of Eden."
+	name = "苹果"
+	desc = "这是伊甸园的一小部分。"
 	icon_state = "apple"
 	foodtypes = FRUIT
 	tastes = list("apple" = 1)
@@ -63,8 +63,8 @@
 
 // Gold Apple
 /obj/item/seeds/apple/gold
-	name = "golden apple seed pack"
-	desc = "These seeds grow into golden apple trees. Good thing there are no firebirds in space."
+	name = "金苹果种子包"
+	desc = "能长成金苹果树的种子。好在太空中没有火鸟。"
 	icon_state = "seed-goldapple"
 	species = "goldapple"
 	plantname = "Golden Apple Tree"
@@ -81,7 +81,7 @@
 
 /obj/item/food/grown/apple/gold
 	seed = /obj/item/seeds/apple/gold
-	name = "golden apple"
+	name = "金苹果"
 	desc = "Emblazoned upon the apple is the word 'Kallisti'."
 	icon_state = "goldapple"
 	distill_reagent = null

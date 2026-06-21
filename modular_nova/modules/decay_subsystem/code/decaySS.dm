@@ -15,7 +15,7 @@ These procs are incredibly expensive and should only really be run once. That's 
 #define LIGHT_FLICKER_PERCENT_CHANCE 10
 
 SUBSYSTEM_DEF(decay)
-	name = "Decay System"
+	name = "衰变系统"
 	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_LAST
 

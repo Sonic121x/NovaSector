@@ -24,7 +24,7 @@
 			LOCATION_BACKPACK,
 			LOCATION_HANDS,
 		),
-		flavour_text = "You remember to keep close hold of your ticket book, it can't be replaced if lost and all of your ration tickets are placed there!",
+		flavour_text = "你记得要保管好你的票证簿，如果丢失无法补办，而且你所有的配给票证都放在里面！",
 		notify_player = TRUE,
 	)
 	account.tracked_ticket_book = WEAKREF(new_ticket_book)

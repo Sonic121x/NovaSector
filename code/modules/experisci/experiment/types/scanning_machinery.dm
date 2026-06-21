@@ -2,8 +2,8 @@
 ///Pretend to upgrade security's techfab but in reality apply only one better matter bin!
 ///Note that a stock part in a machine can either be an object, or a datum.
 /datum/experiment/scanning/points/machinery_tiered_scan
-	name = "Upgraded Machinery Scanning Experiment"
-	description = "Base experiment for scanning machinery with upgraded parts"
+	name = "升级后的机器扫描实验"
+	description = "扫描带有升级部件的机械的基础实验"
 	exp_tag = "Scan"
 	///What tier of parts is required for the experiment
 	var/required_tier = 1
@@ -31,8 +31,8 @@
 
 //This experiment type will turn up TRUE if there is a specific part in the scanned machine
 /datum/experiment/scanning/points/machinery_pinpoint_scan
-	name = "Machinery Pinpoint Stock Parts Scanning Experiment"
-	description = "Base experiment for scanning machinery with specific parts"
+	name = "机器精准定位库存零件扫描实验"
+	description = "扫描具有特定部件的机械的基础实验"
 	exp_tag = "Scan"
 	///Which stock part are we looking for in the machine.
 	///We use obj instead of datum here, as some stock parts aren't datumised, and in datumised ones

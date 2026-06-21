@@ -1,7 +1,7 @@
 /datum/lazy_template/virtual_domain/abductor_ship
-	name = "Abductor Ship"
+	name = "绑架者飞船"
 	cost = BITRUNNER_COST_MEDIUM
-	desc = "Board an abductor ship and take their goodies."
+	desc = "登上一艘绑架者飞船，夺取他们的好东西。"
 	difficulty = BITRUNNER_DIFFICULTY_MEDIUM
 	completion_loot = list(/obj/item/toy/plush/abductor/agent = 1)
 	help_text = "An abductor mothership unknowingly entered a hostile environment. \

@@ -1,7 +1,7 @@
 #define PROB_SPIDER_REPLACEMENT 50
 
 SUBSYSTEM_DEF(minor_mapping)
-	name = "Minor Mapping"
+	name = "次要地图系统"
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
 		/datum/controller/subsystem/atoms,

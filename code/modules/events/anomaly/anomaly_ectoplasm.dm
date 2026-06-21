@@ -3,8 +3,8 @@
 #define ANOMALY_INTENSITY_MAJOR "Major Intensity"
 
 /datum/round_event_control/anomaly/anomaly_ectoplasm
-	name = "Anomaly: Ectoplasmic Outburst"
-	description = "Anomaly that produces an effect of varying intensity based on how many ghosts are orbiting it."
+	name = "异常：灵质爆发"
+	description = "一种异常，其产生的效果强度取决于环绕它的幽灵数量。"
 	typepath = /datum/round_event/anomaly/anomaly_ectoplasm
 	min_players = 30
 	max_occurrences = 2
@@ -41,7 +41,7 @@
 /datum/round_event/anomaly/anomaly_ectoplasm/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("Paranormal ectoplasmic outburst detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert", ANNOUNCER_ANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Paranormal ectoplasmic outburst detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在[ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name]检测到超自然灵质爆发。", "异常警报", ANNOUNCER_ANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Paranormal ectoplasmic outburst detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")
 
 /datum/event_admin_setup/anomaly_ectoplasm
 	///The admin-selected intensity
@@ -50,13 +50,13 @@
 	var/ghost_override
 
 /datum/event_admin_setup/anomaly_ectoplasm/prompt_admins()
-	if(tgui_alert(usr, "Override the anomaly effect and power?", "You'll be ruining the authenticity.", list("Yes", "No")) == "Yes")
+	if(tgui_alert(usr, "覆盖异常效果和能量？", "你会破坏其真实性。", list("Yes", "No")) == "Yes")
 		var/list/power_values = list(ANOMALY_INTENSITY_MINOR, ANOMALY_INTENSITY_MODERATE, ANOMALY_INTENSITY_MAJOR)
-		chosen_effect = tgui_input_list(usr, "Provide effect override", "Criiiiinge.", power_values)
+		chosen_effect = tgui_input_list(usr, "提供效果覆盖", "太尬了。", power_values)
 		if(!chosen_effect)
 			return ADMIN_CANCEL_EVENT
 
-		ghost_override = tgui_input_number(usr, "How many ghosts do you want simulate orbiting your anomaly? (determines the effect radius).", "Seriously, CRINGE.", 0, 20, 1)
+		ghost_override = tgui_input_number(usr, "你想模拟多少鬼魂围绕你的异常？（决定效果半径）。", "说真的，太尬了。", 0, 20, 1)
 		if(!ghost_override)
 			return ADMIN_CANCEL_EVENT
 

@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/costume/ghost_sheet
-	name = "ghost sheet"
-	desc = "The hands float by themselves, so it's extra spooky."
+	name = "幽灵罩布"
+	desc = "那双手自行漂浮着，所以特别诡异。"
 	icon_state = "ghost_sheet"
 	inhand_icon_state = null
 	throwforce = 0
@@ -24,8 +24,8 @@
 		. += emissive_appearance('icons/mob/simple/mob.dmi', "ghost", offset_spokesman = src, alpha = src.alpha)
 
 /obj/item/clothing/suit/spooky_ghost_sheet
-	name = "spooky ghost"
-	desc = "This is obviously just a bedsheet, but maybe try it on?"
+	name = "恐怖的幽灵"
+	desc = "这显然只是一张床单，但也许你可以试试？"
 	icon = 'icons/obj/clothing/suits/costume.dmi'
 	worn_icon = 'icons/mob/clothing/suits/costume.dmi'
 	icon_state = "ghost_sheet"

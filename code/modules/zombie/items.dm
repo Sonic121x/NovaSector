@@ -1,5 +1,5 @@
 /obj/item/mutant_hand/zombie
-	name = "zombie claw"
+	name = "僵尸爪"
 	desc = "A zombie's claw is its primary tool, capable of infecting \
 		humans, butchering all other living things to \
 		sustain the zombie, smashing open airlock doors and opening \
@@ -68,10 +68,10 @@
 	if(!infection)
 		infection = new()
 		infection.Insert(target)
-		to_chat(user, span_alien("You see [target] twitch for a moment as [target.p_their()] head is covered in \a [infection] - [target.p_Theyve()] been infected."))
+		to_chat(user, span_alien("你看见 [target] 抽搐了一下，因为 [target.p_their()] 头被 \a [infection] 覆盖了 - [target.p_Theyve()] 已被感染。"))
 
 /obj/item/mutant_hand/zombie/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is ripping [user.p_their()] brains out! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在把 [user.p_their()] 的脑子扯出来！看起来 [user.p_theyre()] 试图自杀！"))
 	var/obj/item/bodypart/head = user.get_bodypart(BODY_ZONE_HEAD)
 	if(head)
 		head.dismember()

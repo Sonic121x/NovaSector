@@ -1,7 +1,7 @@
 //This one's from bay12
 /obj/machinery/vending/robotics
-	name = "\improper Robotech Deluxe"
-	desc = "All the tools you need to create your own robot army."
+	name = "\improper 机兵入门售货机"
+	desc = "打造你自己的机器人大军所需的一切工具。"
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	panel_type = "panel14"

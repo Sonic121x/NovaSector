@@ -47,7 +47,7 @@
 	if(IS_CULTIST(equipper_living))
 		power_multiplier = CULTIST_PICKUP_MOD
 
-	to_chat(equipper_living, span_warning("As you [slot == ITEM_SLOT_HANDS ? "touch" : "equip"] [source], you feel a jolt course through you!"))
+	to_chat(equipper_living, span_warning("当你 [slot == ITEM_SLOT_HANDS ? "touch" : "equip"] [source] 时，你感到一阵电流穿过身体！"))
 
 	equipper_living.dropItemToGround(source, TRUE)
 	equipper_living.electrocute_act(PICKUP_SHOCK_DAMAGE * power_multiplier, src, 1, SHOCK_NOGLOVES|SHOCK_SUPPRESS_MESSAGE)

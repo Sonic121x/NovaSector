@@ -177,8 +177,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/list/loadout = manager.get_current_loadout()// NOVA EDIT CHANGE - Multiple loadout presets - ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	var/input_name = tgui_input_text(
 		user = user,
-		message = "What name do you want to give the [name]? Leave blank to clear.",
-		title = "[name] name",
+		message = "你想给这个 [name] 起什么名字？留空以清除。",
+		title = "[name] 名称",
 		default = loadout?[item_path]?[INFO_NAMED], // plop in existing name (if any)
 		max_length = MAX_NAME_LEN,
 	)

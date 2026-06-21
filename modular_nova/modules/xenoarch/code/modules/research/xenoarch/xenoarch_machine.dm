@@ -53,7 +53,7 @@
 	. = ..()
 
 	toggle_panel_open()
-	to_chat(user, span_notice("You [panel_open ? "open":"close"] the maintenance panel of [src]."))
+	to_chat(user, span_notice("你[panel_open ? "open":"close"]了[src]的维护区面板。"))
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -63,8 +63,8 @@
 	return default_deconstruction_crowbar(user, tool)
 
 /obj/machinery/xenoarch/researcher
-	name = "xenoarch researcher"
-	desc = "A machine that is used to condense strange rocks, useless relics, and broken objects into bigger artifacts."
+	name = "异星考古研究员"
+	desc = "一台用于将奇异岩石、无用遗物和破损物品压缩成更大文物的机器。"
 	icon_state = "researcher"
 	circuit = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_researcher
 	/// the amount of research that is currently done
@@ -80,46 +80,46 @@
 /obj/machinery/xenoarch/researcher/examine(mob/user)
 	. = ..()
 
-	. += span_notice("<br>[current_research]/[max_research] research available.")
-	. += span_notice("L-Click to insert items or take out all the strange rocks. R-Click to use research points.")
+	. += span_notice("<br>可用研究点数：[current_research]/[max_research]。")
+	. += span_notice("左键点击插入物品或取出所有奇异岩石。右键点击使用研究点数。")
 
 /obj/machinery/xenoarch/researcher/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/storage/bag/xenoarch))
 		for(var/obj/strange_rocks in attacking_item.contents)
 			strange_rocks.forceMove(storage_unit)
 
-		balloon_alert(user, "rocks inserted!")
+		balloon_alert(user, "岩石已插入！")
 		return
 
 	if(is_type_in_list(attacking_item, accepted_types))
 		attacking_item.forceMove(storage_unit)
-		balloon_alert(user, "item inserted!")
+		balloon_alert(user, "物品已插入！")
 		return
 
 	return ..()
 
 /obj/machinery/xenoarch/researcher/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	var/choice = tgui_input_list(user, "Remove the rocks from [src]?", "Rock Removal", list("Yes", "No"))
+	var/choice = tgui_input_list(user, "要从[src]中移除岩石吗？", "岩石移除", list("Yes", "No"))
 	if(choice != "Yes")
 		return
 	var/turf/src_turf = get_turf(src)
 	for(var/obj/item/removed_item in storage_unit.contents)
 		removed_item.forceMove(src_turf)
 
-	balloon_alert(user, "items removed!")
+	balloon_alert(user, "物品已移除！")
 
 /obj/machinery/xenoarch/researcher/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	var/turf/src_turf = get_turf(src)
-	var/choice = tgui_input_list(user, "Choose which reward you would like!", "Reward Choice", list("Lavaland Chest (100)", "Anomalous Crystal (100)", "Bepis Tech (60)"))
+	var/choice = tgui_input_list(user, "选择你想要哪种奖励！", "奖励选择", list("Lavaland Chest (100)", "Anomalous Crystal (100)", "Bepis Tech (60)"))
 	if(!choice)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	switch(choice)
 		if("Lavaland Chest (100)")
 			if(current_research < 100)
-				balloon_alert(user, "insufficient research!")
+				balloon_alert(user, "研究点数不足！")
 				return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 			current_research -= 100
@@ -128,7 +128,7 @@
 
 		if("Anomalous Crystal (100)")
 			if(current_research < 100)
-				balloon_alert(user, "insufficient research!")
+				balloon_alert(user, "研究点数不足！")
 				return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 			current_research -= 100
@@ -138,7 +138,7 @@
 
 		if("Bepis Tech (60)")
 			if(current_research < 60)
-				balloon_alert(user, "insufficient research!")
+				balloon_alert(user, "研究点数不足！")
 				return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 			current_research -= 60
@@ -159,8 +159,8 @@
 	qdel(first_item)
 
 /obj/machinery/xenoarch/scanner
-	name = "xenoarch scanner"
-	desc = "A machine that is used to scan strange rocks, making it easier to extract the item inside."
+	name = "异星考古扫描仪"
+	desc = "一台用于扫描奇异岩石的机器，使其内部的物品更容易被提取出来。"
 	icon_state = "scanner"
 	circuit = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_scanner
 
@@ -169,44 +169,44 @@
 		for(var/obj/item/xenoarch/strange_rock/chosen_rocks in attacking_item.contents)
 			chosen_rocks.get_scanned(TRUE)
 
-		balloon_alert(user, "scan complete!")
+		balloon_alert(user, "扫描完成！")
 		return
 
 	if(istype(attacking_item, /obj/item/xenoarch/strange_rock))
 		var/obj/item/xenoarch/strange_rock/chosen_rock = attacking_item
 		if(chosen_rock.get_scanned(TRUE))
-			balloon_alert(user, "scan complete!")
+			balloon_alert(user, "扫描完成！")
 			return
 
-		to_chat(user, span_warning("[chosen_rock] was unable to be scanned, perhaps it was already scanned?"))
+		to_chat(user, span_warning("[chosen_rock] 无法被扫描，或许它已经被扫描过了？"))
 		return
 
 	return ..()
 
 /obj/machinery/xenoarch/digger
-	name = "xenoarch digger"
-	desc = "A machine that is used to slowly uncover items within strange rocks."
+	name = "异星考古挖掘机"
+	desc = "一台用于缓慢发掘奇异岩石内部物品的机器。"
 	icon_state = "digger"
 	circuit = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_digger
 
 /obj/machinery/xenoarch/digger/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>L-Click to remove all items inside [src].")
+	. += span_notice("<br>左键点击以移除 [src] 内的所有物品。")
 
 /obj/machinery/xenoarch/digger/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/storage/bag/xenoarch))
 		for(var/obj/strange_rocks in attacking_item.contents)
 			strange_rocks.forceMove(storage_unit)
-		balloon_alert(user, "rocks inserted!")
+		balloon_alert(user, "岩石已插入！")
 		return
 
 	if(istype(attacking_item, /obj/item/xenoarch/strange_rock))
 		attacking_item.forceMove(storage_unit)
-		balloon_alert(user, "rock inserted!")
+		balloon_alert(user, "岩石已插入！")
 		return
 
 /obj/machinery/xenoarch/digger/attack_hand(mob/living/user, list/modifiers)
-	var/choice = tgui_input_list(user, "Remove the rocks from [src]?", "Rock Removal", list("Yes", "No"))
+	var/choice = tgui_input_list(user, "从[src]中移除岩石？", "岩石移除", list("Yes", "No"))
 	if(choice != "Yes")
 		return
 
@@ -214,7 +214,7 @@
 	for(var/obj/item/removed_item in storage_unit.contents)
 		removed_item.forceMove(src_turf)
 
-	balloon_alert(user, "items removed!")
+	balloon_alert(user, "物品已移除！")
 
 /obj/machinery/xenoarch/digger/xenoarch_process()
 	var/turf/src_turf = get_turf(src)

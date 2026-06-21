@@ -116,7 +116,7 @@
 						continue
 					player.body.forceMove(get_turf(player.assigned_landmark))
 				if(failed.len)
-					to_chat(usr, "List of players who no longer had a body (if you see this, the game is runtiming anyway so just hit \"New Game\" to end it)")
+					to_chat(usr, "已失去角色的玩家列表（如果你看到这条消息，说明游戏正在运行时出错，直接点击“新游戏”来结束它即可）")
 					for(var/datum/mafia_role/fail as anything in failed)
 						to_chat(usr, fail.player_key || fail.player_pda)
 			if("debug_setup")
@@ -125,8 +125,8 @@
 				var/done = FALSE
 
 				while(!done)
-					to_chat(usr, "You have a total player count of [counterlist_sum(debug_setup)] in this setup.")
-					var/chosen_role_name = tgui_input_list(usr, "Select a role!", "Custom Setup Creation", rolelist_dict)
+					to_chat(usr, "你在此配置中的总玩家数为 [counterlist_sum(debug_setup)]。")
+					var/chosen_role_name = tgui_input_list(usr, "选择一个角色！", "自定义配置创建", rolelist_dict)
 					if(!chosen_role_name)
 						return
 					switch(chosen_role_name)
@@ -138,7 +138,7 @@
 							break
 						else
 							var/found_path = rolelist_dict[chosen_role_name]
-							var/role_count = tgui_input_number(usr, "How many? Zero to cancel.", "Custom Setup Creation", 0, 12)
+							var/role_count = tgui_input_number(usr, "要多少？输入零取消。", "自定义配置创建", 0, 12)
 							if(role_count > 0)
 								debug_setup[found_path] = role_count
 				custom_setup = debug_setup
@@ -156,30 +156,30 @@
 			if("vote_to_start")
 				var/client/ghost_client = ui.user.client
 				if(phase != MAFIA_PHASE_SETUP)
-					to_chat(usr, span_notice("You cannot vote to start while a game is underway!"))
+					to_chat(usr, span_notice("游戏正在进行时，你不能投票开始！"))
 					return
 				if(isnull(modpc))
 					if(!GLOB.mafia_signup[ghost_client.ckey])
-						to_chat(usr, span_notice("You must be signed up for this game to vote!"))
+						to_chat(usr, span_notice("你必须报名参加此游戏才能投票！"))
 						return
 					if(GLOB.mafia_early_votes[ghost_client.ckey])
 						GLOB.mafia_early_votes -= ghost_client.ckey
-						to_chat(usr, span_notice("You are no longer voting to start the game early."))
+						to_chat(usr, span_notice("你已不再投票要求提前开始游戏。"))
 					else
 						GLOB.mafia_early_votes[ghost_client.ckey] = ghost_client
-						to_chat(usr, span_notice("You vote to start the game early ([length(GLOB.mafia_early_votes)] out of [max(round(length(GLOB.mafia_signup + GLOB.pda_mafia_signup) / 2), round(MAFIA_MIN_PLAYER_COUNT / 2))])."))
+						to_chat(usr, span_notice("你投票要求提前开始游戏（[length(GLOB.mafia_early_votes)] / [max(round(length(GLOB.mafia_signup + GLOB.pda_mafia_signup) / 2), round(MAFIA_MIN_PLAYER_COUNT / 2))]）。"))
 						if(check_start_votes()) //See if we have enough votes to start
 							forced_setup()
 				else
 					if(!GLOB.pda_mafia_signup[modpc])
-						to_chat(usr, span_notice("You must be signed up for this game to vote!"))
+						to_chat(usr, span_notice("你必须报名参加此游戏才能投票！"))
 						return
 					if(GLOB.mafia_early_votes[modpc])
 						GLOB.mafia_early_votes -= modpc
-						to_chat(usr, span_notice("You are no longer voting to start the game early."))
+						to_chat(usr, span_notice("你已不再投票要求提前开始游戏。"))
 					else
 						GLOB.mafia_early_votes[modpc] = modpc
-						to_chat(usr, span_notice("You vote to start the game early ([length(GLOB.mafia_early_votes)] out of [max(round(length(GLOB.mafia_signup + GLOB.pda_mafia_signup) / 2), round(MAFIA_MIN_PLAYER_COUNT / 2))])."))
+						to_chat(usr, span_notice("你投票要求提前开始游戏（[length(GLOB.mafia_early_votes)] / [max(round(length(GLOB.mafia_signup + GLOB.pda_mafia_signup) / 2), round(MAFIA_MIN_PLAYER_COUNT / 2))]）。"))
 						if(check_start_votes()) //See if we have enough votes to start
 							forced_setup()
 		return TRUE

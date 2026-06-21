@@ -172,8 +172,8 @@ Difficulty: Medium
 
 	changeNext_move(CLICK_CD_MELEE)
 	victim.visible_message(
-		span_danger("[src] slashes at [victim] with [p_their()] cleaving saw!"),
-		span_userdanger("You are slashed at by [src]'s cleaving saw!"),
+		span_danger("[src]用[victim]劈裂锯砍向[p_their()]！"),
+		span_userdanger("[src]的劈裂锯向你砍来！"),
 	)
 
 	var/delay = HAS_TRAIT(miner_saw, TRAIT_TRANSFORM_ACTIVE) ? 0.5 SECONDS : 0.3 SECONDS

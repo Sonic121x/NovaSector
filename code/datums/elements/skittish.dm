@@ -46,7 +46,7 @@
 	scooby.forceMove(closet_turf)
 
 	if(!closet.close(scooby))
-		to_chat(scooby, span_warning("You can't get [closet] to close!"))
+		to_chat(scooby, span_warning("你没法让[closet]关上！"))
 		if(closet.horizontal)
 			scooby.set_resting(FALSE, silent = TRUE)
 		return
@@ -56,6 +56,6 @@
 	if(closet.horizontal)
 		scooby.set_resting(FALSE, silent = TRUE)
 
-	closet_turf.visible_message(span_warning("[scooby] dives into [closet]!"))
+	closet_turf.visible_message(span_warning("[scooby]猛地钻进了[closet]！"))
 	// If you run into a locker, you don't want to run out immediately
 	scooby.Immobilize(0.5 SECONDS)

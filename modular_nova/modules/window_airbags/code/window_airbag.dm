@@ -60,7 +60,7 @@
 /datum/element/airbag/proc/disarm_airbag(atom/movable/clicked_atom, mob/living/clicker)
 	var/empty_hand = LAZYACCESS(clicker.get_empty_held_indexes(), 1)
 	if(!empty_hand)
-		clicked_atom.balloon_alert(clicker, "no empty hand!")
+		clicked_atom.balloon_alert(clicker, "没有空手！")
 		return
 	clicked_atom.balloon_alert_to_viewers("disarming airbag...")
 	if(do_after(clicker, DISARM_TIME, clicked_atom))
@@ -120,7 +120,7 @@
 	if(!loc.Adjacent(target) || !istype(target, /obj/structure/window))
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_AIRBAGGED))
-		user.balloon_alert(user, "already airbagged!")
+		user.balloon_alert(user, "已经安装气囊了！")
 		return FALSE
 	return TRUE
 
@@ -180,7 +180,7 @@
 
 /datum/design/airbag
 	name = "Airbag"
-	desc = "Keep that vacuum of space from sucking!"
+	desc = "防止太空的真空把你吸走！"
 	id = "airbag"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | COLONY_FABRICATOR
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 5)
@@ -192,7 +192,7 @@
 
 /obj/structure/inflatable/window_airbag
 	name = "window airbag"
-	desc = "A quick deploying airbag that seals holes when a window is broken!"
+	desc = "一种快速部署的气囊，可在窗户破碎时封堵破口！"
 	icon_state = "airbag_wall"
 	torn_type = null // No debris left behind!
 	deflated_type = /obj/item/airbag

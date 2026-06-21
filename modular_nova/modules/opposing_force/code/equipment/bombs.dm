@@ -3,38 +3,38 @@
 
 /datum/opposing_force_equipment/bomb_chemical/c4
 	item_type = /obj/item/grenade/c4
-	description = "A brick of plastic explosives, for breaking open walls, doors, and optionally people."
+	description = "一块塑胶炸药，用于炸开墙壁、门，或者必要时炸人。"
 
 /datum/opposing_force_equipment/bomb_chemical/x4
 	item_type = /obj/item/grenade/c4/x4
-	description = "Similar to C4, but with a stronger blast that is directional instead of circular."
+	description = "与C4类似，但爆炸威力更强，且是定向而非圆形爆炸。"
 
 /datum/opposing_force_equipment/bomb_chemical/minibomb
-	name = "Syndicate Minibomb"
+	name = "辛迪加微型炸弹"
 	item_type = /obj/item/grenade/syndieminibomb
-	description = "The minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small hull breach in addition to dealing high amounts of damage to nearby personnel."
+	description = "迷你炸弹是一枚五秒引信的手榴弹。引爆时，除了对附近人员造成高额伤害外，还会造成一个小型船体破口。"
 
 /datum/opposing_force_equipment/bomb_chemical/minibomb_cluster
-	name = "Syndicate Minibomb Cluster-Grenade"
+	name = "辛迪加微型炸弹集束手雷"
 	admin_note = "Devastating payload, equal explosion size to the average command bridge."
 	item_type = /obj/item/grenade/clusterbuster/syndieminibomb
 
 /datum/opposing_force_equipment/bomb_chemical/fragnade
 	item_type = /obj/item/grenade/frag
-	description = "A fragmentation grenade that looses pieces of shrapnel after detonating for maximum injury."
+	description = "一枚破片手榴弹，引爆后会释放弹片，造成最大程度的伤害。"
 
 /datum/opposing_force_equipment/bomb_chemical/fire
-	name = "Incendiary Grenade"
+	name = "燃烧手雷"
 	admin_note = "Very mid despite having a scary name."
 	item_type = /obj/item/grenade/chem_grenade/incendiary
 
 /datum/opposing_force_equipment/bomb_chemical/fire_cluster
-	name = "Incendiary Cluster-Grenade"
+	name = "燃烧集束手雷"
 	admin_note = "Room-filling plasmafire that lasts for about 10 seconds."
 	item_type = /obj/item/grenade/clusterbuster/inferno
 
 /datum/opposing_force_equipment/bomb_chemical/clf3
-	name = "Trifluoride Grenade"
+	name = "三氟化物手雷"
 	admin_note = "In most cases you want to refer the player to the 'incendiary grenade' instead. This grenade has a huge scale, and spaces non-floored tiles."
 	item_type = /obj/item/grenade/chem_grenade/clf3
 /*
@@ -44,7 +44,7 @@
 	item_type = /obj/item/grenade/clusterbuster/clf3
 */
 /datum/opposing_force_equipment/bomb_chemical/facid
-	name = "Acid grenade"
+	name = "酸液手雷"
 	admin_note = "This thing will remove most player's clothing."
 	item_type = /obj/item/grenade/chem_grenade/facid
 /*
@@ -54,90 +54,90 @@
 */
 /datum/opposing_force_equipment/bomb_chemical/radnade
 	item_type = /obj/item/grenade/gluon
-	description = "A prototype grenade that freezes the target area and unleashes a wave of deadly radiation."
+	description = "一种原型手榴弹，能冻结目标区域并释放致命的辐射波。"
 
 /datum/opposing_force_equipment/bomb_chemical/henade
 	item_type = /obj/item/grenade/syndieminibomb/concussion
-	description = "A grenade intended to concuss and incapacitate enemies. Still rather explosive."
+	description = "一种旨在击晕和制服敌人的手榴弹。仍然相当具有爆炸性。"
 
 /datum/opposing_force_equipment/bomb_chemical/anti_grav
-	name = "Anti-Gravity Grenade"
+	name = "反重力手榴弹"
 	item_type = /obj/item/grenade/antigravity
 
 /datum/opposing_force_equipment/bomb_chemical/emp
-	name = "EMP Grenade"
+	name = "EMP手榴弹"
 	item_type = /obj/item/grenade/empgrenade
 
 /datum/opposing_force_equipment/bomb_chemical/flashbang
-	name = "Flashbang"
+	name = "闪光弹"
 	item_type = /obj/item/grenade/flashbang
-	description = "A flash-and-sonic stun grenade, useful for non-lethally incapacitating crowds."
+	description = "一枚闪光震撼弹，可用于非致命性地制服人群。"
 
 /datum/opposing_force_equipment/bomb_chemical/smoke
-	name = "Smoke Grenade"
+	name = "烟雾弹"
 	item_type = /obj/item/grenade/smokebomb
 
 /datum/opposing_force_equipment/bomb_chemical/soap
-	name = "Soap cluster-Grenade"
+	name = "肥皂集束手榴弹"
 	item_type = /obj/item/grenade/clusterbuster/soap
 
 /datum/opposing_force_equipment/bomb_chemical/moustache
-	name = "Tearstache Grenade"
+	name = "催泪胡子手榴弹"
 	item_type = /obj/item/grenade/chem_grenade/teargas/moustache
 	admin_note = "Puts mustaches on their victims that last for ten minutes."
 
 /datum/opposing_force_equipment/bomb_chemical/carp
-	name = "Carp Grenade"
+	name = "鲤鱼手榴弹"
 	item_type = /obj/item/grenade/spawnergrenade/spesscarp
 
 /datum/opposing_force_equipment/bomb_chemical/carp_cluster
-	name = "Carp Cluster-Grenade"
+	name = "鲤鱼集束手榴弹"
 	item_type = /obj/item/grenade/clusterbuster/spawner_spesscarp
 
 /datum/opposing_force_equipment/bomb_chemical/viscerator
-	name = "Viscerator Delivery Grenade"
+	name = "内脏切割机投送手榴弹"
 	item_type = /obj/item/grenade/spawnergrenade/manhacks
-	description = "A unique grenade that deploys a swarm of viscerators upon activation, which will chase down and shred any non-operatives in the area."
+	description = "一种独特的手榴弹，激活后会部署一群切割者，它们会追捕并撕碎该区域内所有非特工人员。"
 
 /datum/opposing_force_equipment/bomb_chemical/viscerator_cluster
-	name = "Viscerator Delivery cluster-Grenade"
+	name = "内脏切割机投送集束手榴弹"
 	item_type = /obj/item/grenade/clusterbuster/spawner_manhacks
 
 /datum/opposing_force_equipment/bomb_chemical/nukedelivery
-	name = "Nuclear Delivery Grenade"
+	name = "核弹投送手榴弹"
 	item_type = /obj/item/grenade/spawnergrenade/therealnuke
-	description = "A very confusing grenade containing 2 dehydrated nuclear operatives. Stand back when primed."
+	description = "一枚非常令人困惑的手榴弹，内含2名脱水的核弹特工。引爆时请退后。"
 
 /datum/opposing_force_equipment/bomb_chemical/buzzkill
-	name = "Buzzkill Grenade"
+	name = "扫兴手榴弹"
 	item_type = /obj/item/grenade/spawnergrenade/buzzkill
-	description = "A grenade that release a swarm of angry bees upon activation. These bees indiscriminately attack friend or foe with random toxins. Courtesy of the BLF and Tiger Cooperative."
+	description = "一枚激活后会释放一群愤怒蜜蜂的手榴弹。这些蜜蜂会无差别地用随机毒素攻击友军或敌人。由BLF和老虎合作社提供。"
 	admin_note = "WARNING: The bee's from this grenade can have almost anything chem-wise into them, and just a few can make a massive swarm of bees(10 bees per!!)"
 
 /datum/opposing_force_equipment/bomb_chemical/pizza
-	name = "Pizza Bomb"
+	name = "披萨炸弹"
 	item_type = /obj/item/pizzabox/bomb
-	description = "A pizza box with a bomb cunningly attached to the lid. The timer needs to be set by opening the box; afterwards,	opening the box again will trigger the detonation after the timer has elapsed. Comes with free pizza, for you or your target!"
+	description = "一个披萨盒，盒盖上巧妙地附着一枚炸弹。计时器需要通过打开盒子来设置；之后，在计时结束后再次打开盒子将触发爆炸。附赠免费披萨，供你或你的目标享用！"
 
 /datum/opposing_force_equipment/bomb_payload
 	category = OPFOR_EQUIPMENT_CATEGORY_BOMB_PAYLOAD
 
 /datum/opposing_force_equipment/bomb_payload/syndicate
-	name = "Syndicate Bomb"
+	name = "辛迪加炸弹"
 	item_type = /obj/item/sbeacondrop/bomb
-	description = "A large, powerful bomb that can be wrenched down and armed with a variable timer."
+	description = "一个大型、威力强大的炸弹，可以用扳手固定并设置可变计时器来武装。"
 	admin_note = "WARNING: This is a pretty big bomb, it can take out entire rooms."
 
 /datum/opposing_force_equipment/bomb_payload/syndicate_emp
-	name = "Syndicate EMP Bomb"
+	name = "辛迪加EMP炸弹"
 	item_type = /obj/item/sbeacondrop/emp
-	description = "A modified version of the Syndicate Bomb that releases a large EMP instead."
+	description = "辛迪加炸弹的改良版本，会释放一个大型电磁脉冲。"
 
 /datum/opposing_force_equipment/bomb_payload/syndicate_sink
-	name = "Syndicate Power Sink"
+	name = "辛迪加电力虹吸器"
 	item_type = /obj/item/sbeacondrop/powersink
 
 /datum/opposing_force_equipment/bomb_payload/syndicate_clown_bomb
-	name = "Syndicate Clown Bomb"
+	name = "辛迪加小丑炸弹"
 	item_type = /obj/item/sbeacondrop/clownbomb
 	admin_note = "Does not deal any damage, just spawns twenty passive simplemob clowns."

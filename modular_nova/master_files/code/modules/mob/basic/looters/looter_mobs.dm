@@ -1,7 +1,7 @@
 // Lootas
 /mob/living/basic/looter
-	name = "Looter"
-	desc = "One of the many random looters or bandits of the frontiers. This one is carrying a pipe."
+	name = "掠夺者"
+	desc = "边境地区众多随机掠夺者或土匪之一。这个家伙拿着一根管子。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "scavpipe"
 	icon_living = "scavpipe"
@@ -53,8 +53,8 @@
 */
 
 /mob/living/basic/looter/big
-	name = "Big Looter"
-	desc = "One of the many random looters of the frontiers. This guy is big, fat, and angry."
+	name = "大型掠夺者"
+	desc = "边境地区众多随机掠夺者之一。这家伙体型庞大、肥胖且愤怒。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "fatscav"
 	icon_living = "fatscav"
@@ -75,8 +75,8 @@
 */
 
 /mob/living/basic/looter/crusher
-	name = "Looter Heavy"
-	desc = "One of the many random looters or bandits of the frontiers. This one is carrying a PKC."
+	name = "掠夺者重装兵"
+	desc = "边境地区众多随机掠夺者或土匪之一。这个家伙携带了一把PKC。"
 	icon_state = "scavcrush"
 	icon_living = "scavcrush"
 	maxHealth = 110
@@ -97,8 +97,8 @@
 */
 
 /mob/living/basic/looter/ranged
-	name = "Looter Gunman"
-	desc = "He's got a shotgun, holy shit!!"
+	name = "掠夺者枪手"
+	desc = "他有把霰弹枪，我靠！！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "scavshotgun"
 	icon_living = "scavshotgun"
@@ -127,8 +127,8 @@
 */
 
 /mob/living/basic/looter/ranged/space
-	name = "Looter Shipbreaker"
-	desc = "A scavenger with an outdated spacesuit, likely out here to get salvage."
+	name = "掠夺者拆船工"
+	desc = "一名穿着过时太空服的拾荒者，很可能在这里寻找残骸。"
 	icon_state = "scavsmg"
 	icon_living = "scavsmg"
 	projectilesound = 'sound/items/weapons/gun/pistol/shot.ogg'
@@ -146,8 +146,8 @@
 */
 
 /mob/living/basic/looter/ranged/space/laser
-	name = "Looter Heavy"
-	desc = "A shipbreaker scavenger, carrying a laser gun."
+	name = "掠夺者重装兵"
+	desc = "一名拆船工拾荒者，携带了一把激光枪。"
 	icon_state = "scavlaser"
 	icon_living = "scavlaser"
 	ai_controller = /datum/ai_controller/basic_controller/looter/ranged

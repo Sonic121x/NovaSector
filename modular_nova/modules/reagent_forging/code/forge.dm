@@ -39,8 +39,8 @@
 #define SMOKE_STATE_NOT_COOKING 4
 
 /obj/structure/reagent_forge
-	name = "forge"
-	desc = "A structure built out of bricks, for heating up metal, or glass, or ceramic, or food, or anything really."
+	name = "熔炉"
+	desc = "一种用砖块搭建的结构，用于加热金属、玻璃、陶瓷、食物，或者任何东西。"
 	icon = 'modular_nova/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "forge_inactive"
 
@@ -116,53 +116,53 @@
 	. = ..()
 
 	if(used_tray)
-		. += span_notice("It has [used_tray] in it, which can be removed with an <b>empty hand</b>.")
+		. += span_notice("它里面有一个 [used_tray]，可以用<b>空手</b>取出。")
 	else
-		. += span_notice("You can place an <b>oven tray</b> in this to <b>bake</b> any items on it.")
+		. += span_notice("你可以将一个<b>烤箱托盘</b>放入其中来<b>烘烤</b>上面的任何物品。")
 
 	if(forge_level < FORGE_LEVEL_LEGENDARY)
-		. += span_notice("Using an <b>empty hand</b> on [src] will upgrade it, if your forging skill level is above the current upgrade's level.")
+		. += span_notice("如果你的锻造技能等级高于当前升级等级，用<b>空手</b>操作 [src] 可以升级它。")
 
 	switch(forge_level)
 		if(FORGE_LEVEL_YOU_PLAY_LIKE_A_NOOB)
-			. += span_notice("This forge has not been upgraded yet.")
+			. += span_notice("这个熔炉尚未升级。")
 
 		if(FORGE_LEVEL_NOVICE)
-			. += span_notice("This forge has been upgraded by a novice smith.")
+			. += span_notice("这个熔炉已被一位新手铁匠升级。")
 
 		if(FORGE_LEVEL_APPRENTICE)
-			. += span_notice("This forge has been upgraded by an apprentice smith.")
+			. += span_notice("这个熔炉已被一位学徒铁匠升级。")
 
 		if(FORGE_LEVEL_JOURNEYMAN)
-			. += span_notice("This forge has been upgraded by a journeyman smith.")
+			. += span_notice("这座熔炉已被一位熟练工匠升级过。")
 
 		if(FORGE_LEVEL_EXPERT)
-			. += span_notice("This forge has been upgraded by an expert smith.")
+			. += span_notice("这座熔炉已被一位专家铁匠升级过。")
 
 		if(FORGE_LEVEL_MASTER)
-			. += span_notice("This forge has been upgraded by a master smith.")
+			. += span_notice("这座熔炉已被一位大师铁匠升级过。")
 
 		if(FORGE_LEVEL_LEGENDARY)
-			. += span_hierophant("This forge has been upgraded by a legendary smith.") // Legendary skills give you the greatest gift of all, cool text
+			. += span_hierophant("这座熔炉已被一位传奇铁匠升级过。") // Legendary skills give you the greatest gift of all, cool text
 
 	switch(temperature_loss_reduction)
 		if(0)
-			. += span_notice("[src] will lose heat at a normal rate.")
+			. += span_notice("[src]将以正常速率散失热量。")
 		if(1)
-			. += span_notice("[src] will lose heat slightly slower than usual.")
+			. += span_notice("[src]散失热量的速度会比平常稍慢一些。")
 		if(2)
-			. += span_notice("[src] will lose heat a bit slower than usual.")
+			. += span_notice("[src]散失热量的速度会比平常慢一点。")
 		if(3)
-			. += span_notice("[src] will lose heat much slower than usual.")
+			. += span_notice("[src]散失热量的速度会比平常慢得多。")
 		if(4)
-			. += span_notice("[src] will lose heat signficantly slower than usual.")
+			. += span_notice("[src]散失热量的速度会比平常显著减慢。")
 		if(5)
-			. += span_notice("[src] will lose heat at a practically negligible rate.")
+			. += span_notice("[src]散失热量的速率几乎可以忽略不计。")
 
-	. += span_notice("<br>[src] is currently [forge_temperature] degrees hot, going towards [target_temperature] degrees.<br>")
+	. += span_notice("<br>[src]当前温度为[forge_temperature]度，正朝向[target_temperature]度变化。<br>")
 
 	if(reagent_forging && (is_species(user, /datum/species/lizard/ashwalker) || is_species(user, /datum/species/human/felinid/primitive)))
-		. += span_warning("[src] has a fine gold trim, it is ready to imbue chemicals into reagent objects.")
+		. += span_warning("[src]带有精美的金边装饰，已准备好将化学品注入试剂物品。")
 
 	return .
 
@@ -265,7 +265,7 @@
 /// Spawns a piece of coal at the forge and renames it to charcoal
 /obj/structure/reagent_forge/proc/spawn_coal()
 	var/obj/item/stack/sheet/mineral/coal/spawn_coal = new(get_turf(src))
-	spawn_coal.name = "charcoal"
+	spawn_coal.name = "木炭"
 
 /obj/structure/reagent_forge/process(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, forging_cooldown))
@@ -314,7 +314,7 @@
 			for(var/mob/cannot_smell in asomnia_havers)
 				if(!HAS_TRAIT(cannot_smell, TRAIT_ANOSMIA))
 					asomnia_havers -= cannot_smell
-			visible_message(span_danger("You smell a burnt smell coming from [src]!"), ignored_mobs = asomnia_havers)
+			visible_message(span_danger("你闻到从[src]传来一股焦糊味！"), ignored_mobs = asomnia_havers)
 			// Give indication that something is burning in the oven
 	set_smoke_state(worst_cooked_food_state)
 
@@ -369,44 +369,44 @@
 		level_to_upgrade_to = user.mind.get_skill_level(/datum/skill/smithing)
 
 	if((forge_level == level_to_upgrade_to) && !forced)
-		to_chat(user, span_notice("[src] was already upgraded by your level of expertise!"))
+		to_chat(user, span_notice("[src]已经被你的专业水平升级过了！"))
 		return
 
 	switch(level_to_upgrade_to) // Remember to carry things over from past levels in case someone skips levels in upgrading
 		if(SKILL_LEVEL_NONE)
 			if(!forced)
-				to_chat(user, span_notice("You'll need some forging skills to really understand how to upgrade [src]."))
+				to_chat(user, span_notice("你需要一些锻造技能才能真正理解如何升级[src]。"))
 			return
 
 		if(SKILL_LEVEL_NOVICE)
 			if(!forced)
-				to_chat(user, span_notice("With some experience, you've come to realize there are some easily fixable spots with poor insulation..."))
+				to_chat(user, span_notice("凭借一些经验，你意识到有几个隔热不良的地方很容易修复……"))
 			temperature_loss_reduction = 1
 			forge_level = FORGE_LEVEL_NOVICE
 
 		if(SKILL_LEVEL_APPRENTICE)
 			if(!forced)
-				to_chat(user, span_notice("Further insulation and protection of the thinner areas means [src] will lose heat just that little bit slower."))
+				to_chat(user, span_notice("对薄弱区域的进一步隔热处理意味着[src]散失热量的速度会再慢那么一点。"))
 			temperature_loss_reduction = 2
 			forge_level = FORGE_LEVEL_APPRENTICE
 
 		if(SKILL_LEVEL_JOURNEYMAN)
 			if(!forced)
-				to_chat(user, span_notice("Some careful placement and stoking of the flame will allow you to keep at least the embers burning..."))
+				to_chat(user, span_notice("通过精心的火焰布置和拨弄，你至少能让余烬保持燃烧……"))
 			minimum_target_temperature = 25 // Will allow quicker reheating from having no fuel
 			temperature_loss_reduction = 3
 			forge_level = FORGE_LEVEL_JOURNEYMAN
 
 		if(SKILL_LEVEL_EXPERT)
 			if(!forced)
-				to_chat(user, span_notice("[src] has become nearly perfect, able to hold heat for long enough that even a piece of wood can outmatch the longevity of lesser forges."))
+				to_chat(user, span_notice("[src]已近乎完美，其保温时间之长，甚至能让一块木头的持久力都胜过那些次等熔炉。"))
 			temperature_loss_reduction = 4
 			minimum_target_temperature = 25
 			forge_level = FORGE_LEVEL_EXPERT
 
 		if(SKILL_LEVEL_MASTER)
 			if(!forced)
-				to_chat(user, span_notice("The perfect forge for a perfect metalsmith, with your knowledge it should bleed heat so slowly, that not even you will live to see [src] cool."))
+				to_chat(user, span_notice("完美熔炉配完美铁匠，以你的学识，它的热量散失将如此缓慢，恐怕连你也活不到看见[src]冷却的那天。"))
 			temperature_loss_reduction = MAX_TEMPERATURE_LOSS_DECREASE
 			minimum_target_temperature = 25
 			forge_level = FORGE_LEVEL_MASTER
@@ -414,10 +414,10 @@
 		if(SKILL_LEVEL_LEGENDARY)
 			if(!forced)
 				if(is_species(user, /datum/species/lizard/ashwalker) || is_species(user, /datum/species/human/felinid/primitive))
-					to_chat(user, span_notice("With just the right heat treating technique, metal could be made to accept reagents..."))
+					to_chat(user, span_notice("只需恰当的热处理技术，金属就能接纳试剂……"))
 					create_reagent_forge()
 				if(forge_level == FORGE_LEVEL_MASTER)
-					to_chat(user, span_warning("It is impossible to further improve the forge!"))
+					to_chat(user, span_warning("无法进一步改进熔炉！"))
 			temperature_loss_reduction = MAX_TEMPERATURE_LOSS_DECREASE
 			minimum_target_temperature = 25 // This won't matter except in a few cases here, but we still need to cover those few cases
 			forge_level = FORGE_LEVEL_LEGENDARY
@@ -431,8 +431,8 @@
 
 	if(in_use) // If the forge is currently in use by someone (or there is a tray in it) then we cannot use it
 		if(used_tray)
-			balloon_alert(user, "remove [used_tray] first")
-		balloon_alert(user, "forge busy")
+			balloon_alert(user, "先移除 [used_tray]")
+		balloon_alert(user, "熔炉正忙")
 		return TRUE
 
 	if(istype(attacking_item, /obj/item/stack/sheet/mineral/wood)) // Wood is a weak fuel, and will only get the forge up to 50 temperature
@@ -532,11 +532,11 @@
 	else
 		forge_fuel_weak += 5 MINUTES
 	in_use = FALSE
-	balloon_alert(user, "fueled [src]")
+	balloon_alert(user, "已为 [src] 添加燃料")
 	user.mind.adjust_experience(/datum/skill/smithing, 5) // You gain small amounts of experience from useful fueling
 
 	if(prob(CHARCOAL_CHANCE) && !is_strong_fuel)
-		to_chat(user, span_notice("[src]'s fuel is packed densely enough to have made some charcoal!"))
+		to_chat(user, span_notice("[src]的燃料被压得足够密实，已经产生了一些木炭！"))
 		addtimer(CALLBACK(src, PROC_REF(spawn_coal)), 1 MINUTES)
 
 /// Takes given ore and smelts it, possibly producing extra sheets if upgraded
@@ -574,12 +574,12 @@
 /obj/structure/reagent_forge/proc/handle_weapon_imbue(obj/attacking_item, mob/living/user)
 	//This code will refuse all non-ashwalkers & non-icecats from imbuing
 	if(!ishuman(user))
-		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
+		to_chat(user, span_danger("你无法进行灌注！")) //maybe remove (ashwalkers & icecats only) after some time
 		return
 
 	var/mob/living/carbon/human/human_user = user
 	if(!is_species(human_user, /datum/species/lizard/ashwalker) && !is_species(human_user, /datum/species/human/felinid/primitive))
-		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
+		to_chat(user, span_danger("你无法进行灌注！")) //maybe remove (ashwalkers & icecats only) after some time
 		return
 
 	in_use = TRUE
@@ -606,7 +606,7 @@
 			continue
 
 		if(is_type_in_typecache(weapon_reagent, disallowed_reagents))
-			balloon_alert(user, "cannot imbue with [weapon_reagent.name]")
+			balloon_alert(user, "无法用 [weapon_reagent.name] 附魔")
 			attacking_weapon.reagents.remove_reagent(weapon_reagent.type, include_subtypes = TRUE)
 			continue
 
@@ -624,12 +624,12 @@
 /obj/structure/reagent_forge/proc/handle_clothing_imbue(obj/attacking_item, mob/living/user)
 	//This code will refuse all non-ashwalkers & non-icecats from imbuing
 	if(!ishuman(user))
-		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
+		to_chat(user, span_danger("你无法进行灌注！")) //maybe remove (ashwalkers & icecats only) after some time
 		return
 
 	var/mob/living/carbon/human/human_user = user
 	if(!is_species(human_user, /datum/species/lizard/ashwalker) && !is_species(human_user, /datum/species/human/felinid/primitive))
-		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
+		to_chat(user, span_danger("你无法进行灌注！")) //maybe remove (ashwalkers & icecats only) after some time
 		return
 
 	in_use = TRUE
@@ -656,7 +656,7 @@
 			continue
 
 		if(is_type_in_typecache(clothing_reagent, disallowed_reagents))
-			balloon_alert(user, "cannot imbue with [clothing_reagent.name]")
+			balloon_alert(user, "无法用 [clothing_reagent.name] 进行灌注")
 			attacking_clothing.reagents.remove_reagent(clothing_reagent.type, include_subtypes = TRUE)
 			continue
 
@@ -691,7 +691,7 @@
 		fail_message(user, "stopped setting [ceramic_item]")
 		return
 
-	balloon_alert(user, "finished setting [ceramic_item]")
+	balloon_alert(user, "已完成设置 [ceramic_item]")
 	var/obj/item/ceramic/spawned_ceramic = new ceramic_item.forge_item(get_turf(src))
 	user.mind.adjust_experience(/datum/skill/production, 50)
 	spawned_ceramic.color = ceramic_item.color
@@ -816,7 +816,7 @@
 		user.mind.adjust_experience(/datum/skill/smithing, 5) // Billowing, like fueling, gives you some experience in forging
 
 	in_use = FALSE
-	balloon_alert(user, "successfully heated [src]")
+	balloon_alert(user, "成功加热了 [src]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_forge/tong_act(mob/living/user, obj/item/tool)
@@ -854,7 +854,7 @@
 		in_use = FALSE
 		forge_item.in_use = FALSE
 		user.mind.adjust_experience(/datum/skill/smithing, 5) // Heating up forge items grants some experience
-		balloon_alert(user, "successfully heated [search_incomplete]")
+		balloon_alert(user, "成功加热了 [search_incomplete]")
 		return ITEM_INTERACT_SUCCESS
 
 	// Here we check the item used on us (tongs) for a stack of some kind to create an object from
@@ -898,7 +898,7 @@
 		COOLDOWN_START(incomplete_item, heating_remainder, FORGE_HEATING_DURATION)
 		in_use = FALSE
 		forge_item.in_use = FALSE
-		balloon_alert(user, "prepared [search_incomplete] into [user_choice]")
+		balloon_alert(user, "已将 [search_incomplete] 准备成 [user_choice]")
 		search_stack = locate(/obj/item/stack) in forge_item.contents
 
 		if(!search_stack)
@@ -915,7 +915,7 @@
 	var/glassblowing_amount = BASELINE_HEATING_DURATION / user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER)
 
 	if(in_use)
-		to_chat(user, span_warning("You cannot do multiple things at the same time!"))
+		to_chat(user, span_warning("你不能同时做多件事！"))
 		return ITEM_INTERACT_SUCCESS
 	in_use = TRUE
 
@@ -932,7 +932,7 @@
 		fail_message(user, "[find_glass] is still has remaining heat.")
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice("You begin heating up [blowing_item]."))
+	to_chat(user, span_notice("你开始加热[blowing_item]。"))
 
 	if(!do_after(user, glassblowing_speed, target = src))
 		fail_message(user, "[blowing_item] is interrupted in its heating process.")
@@ -940,7 +940,7 @@
 
 	COOLDOWN_START(find_glass, remaining_heat, glassblowing_amount)
 	find_glass.total_time = glassblowing_amount
-	to_chat(user, span_notice("You finish heating up [blowing_item]."))
+	to_chat(user, span_notice("你完成了对[blowing_item]的加热。"))
 	user.mind.adjust_experience(/datum/skill/smithing, 5)
 	user.mind.adjust_experience(/datum/skill/production, 10)
 	in_use = FALSE

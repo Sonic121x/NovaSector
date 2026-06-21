@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/sombrero
-	name = "sombrero"
-	desc = "You can practically taste the fiesta."
+	name = "宽边帽"
+	desc = "你简直能感受到这场庆典的氛围了。"
 	icon = 'icons/obj/clothing/head/sombrero.dmi'
 	icon_state = "sombrero"
 	inhand_icon_state = "sombrero"
@@ -9,8 +9,8 @@
 	dog_fashion = /datum/dog_fashion/head/sombrero
 
 /obj/item/clothing/head/costume/sombrero/green
-	name = "green sombrero"
-	desc = "As elegant as a dancing cactus."
+	name = "绿色宽边帽"
+	desc = "优雅如一支舞动的仙人掌。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/costume/sombrero/green"
 	post_init_icon_state = "sombrero"
@@ -24,8 +24,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/head/costume/sombrero/shamebrero
-	name = "shamebrero"
-	desc = "Once it's on, it never comes off."
+	name = "羞耻帽"
+	desc = "一旦戴上，就再也摘不下来了。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/costume/sombrero/shamebrero"
 	post_init_icon_state = "shamebrero"

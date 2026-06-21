@@ -1,6 +1,6 @@
 /datum/action/cooldown/lunatic_track
-	name = "Moonlight Echo"
-	desc = "Track your ringleader."
+	name = "月光回响"
+	desc = "追踪你的首领。"
 	check_flags = AB_CHECK_CONSCIOUS
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
@@ -17,14 +17,14 @@
 	var/datum/antagonist/lunatic/lunatic_datum = IS_LUNATIC(owner)
 	var/mob/living/carbon/human/ascended_heretic = lunatic_datum.ascended_body
 	if(!(ascended_heretic))
-		owner.balloon_alert(owner, "what cruel fate, your master is gone...")
+		owner.balloon_alert(owner, "多么残酷的命运，你的主人已逝...")
 		StartCooldown(1 SECONDS)
 		return FALSE
 	playsound(owner, 'sound/effects/singlebeat.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	owner.balloon_alert(owner, get_balloon_message(ascended_heretic))
 
 	if(ascended_heretic.stat == DEAD)
-		to_chat(owner, span_hierophant("[ascended_heretic] is dead. Weep for the lie has struck out."))
+		to_chat(owner, span_hierophant("[ascended_heretic] 死了。为谎言已被揭穿而哭泣吧。"))
 
 	StartCooldown()
 	return TRUE

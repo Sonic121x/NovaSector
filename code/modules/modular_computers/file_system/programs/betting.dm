@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 	. = ..()
 	var/mob/user = ui.user
 	if(isnull(computer.stored_id))
-		to_chat(user, span_danger("\The [computer] flashes an \"RFID Error - Unable to scan ID\" warning."))
+		to_chat(user, span_danger("\The [computer]闪烁“RFID错误 - 无法扫描ID”警告。"))
 		return
 	switch(action)
 		if("create_bet")
@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 				options += option
 				option = reject_bad_name(option, allow_numbers = TRUE, max_length = MAX_LENGTH_TITLE, cap_after_symbols = FALSE)
 			if(length(options) < 2)
-				to_chat(user, span_danger("2 options minimum required to start a bet."))
+				to_chat(user, span_danger("至少需要2个选项才能开始投注。"))
 				return
 			created_bet = new(user, title, description, options)
 			return TRUE
@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 			if(isnull(bet_placed_on))
 				return
 			if(bet_placed_on == created_bet)
-				to_chat(user, span_danger("You can't bet on your own poll!"))
+				to_chat(user, span_danger("你不能对自己的投票下注！"))
 				return
 			var/money_betting = params["money_betting"]
 			if(!isnum(money_betting))

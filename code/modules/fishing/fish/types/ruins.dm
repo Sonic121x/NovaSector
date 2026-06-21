@@ -2,7 +2,7 @@
 /obj/item/fish/mastodon
 	name = "unmarine mastodon"
 	fish_id = "mastodon"
-	desc = "A monster of exposed muscles and innards, wrapped in a fish-like skeleton. You don't remember ever seeing it on the catalog."
+	desc = "一个由暴露的肌肉和内脏构成的怪物，包裹在鱼骨般的骨架中。你不记得在目录上见过它。"
 	icon = 'icons/obj/aquarium/wide.dmi'
 	icon_state = "mastodon"
 	base_pixel_w = -16
@@ -65,7 +65,7 @@
 /obj/item/fish/soul
 	name = "soulfish"
 	fish_id = "soulfish"
-	desc = "A distant yet vaguely close critter, like a long lost relative. You feel your soul rejuvenated just from looking at it... Also, what the fuck is this shit?!"
+	desc = "一个遥远却又似曾相识的生物，如同失散已久的亲人。光是看着它，你就感觉灵魂焕然一新……还有，这他妈到底是什么玩意儿？！"
 	icon_state = "soulfish"
 	sprite_width = 7
 	sprite_height = 6
@@ -96,7 +96,7 @@
 	return list("cooked meat" = 2)
 
 /obj/item/fish/soul/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swallows [src] whole! It looks like [user.p_theyre()] trying to commit soulcide!"))
+	user.visible_message(span_suicide("[user]将[src]整个吞了下去！看起来[user.p_theyre()]想进行灵魂自杀！"))
 	src.forceMove(user)
 	addtimer(CALLBACK(src, PROC_REF(good_ending), user), 2.5 SECONDS)
 	for(var/i in 1 to 7)
@@ -106,11 +106,11 @@
 /obj/item/fish/soul/proc/good_ending(mob/living/user)
 	var/mob/living/basic/spaceman/soulman = new(get_turf(user))
 	soulman.fully_replace_character_name(user.real_name)
-	addtimer(CALLBACK(soulman, TYPE_PROC_REF(/atom, visible_message), span_notice("[soulman] was too pure for this world...")), 5 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(soulman, TYPE_PROC_REF(/atom, visible_message), span_notice("[soulman]对这个世界来说太过纯洁了...")), 5 SECONDS, TIMER_DELETE_ME)
 	addtimer(CALLBACK(soulman, TYPE_PROC_REF(/mob/living, death)), 5 SECONDS, TIMER_DELETE_ME)
 	if(prob(80)) // the percentage is important.
 		soulman.PossessByPlayer(user.ckey)
-		to_chat(soulman, span_notice("You finally feel at peace."))
+		to_chat(soulman, span_notice("你终于感到了平静。"))
 	user.gib()
 	qdel(src)
 
@@ -130,9 +130,9 @@
 
 ///From the cursed spring
 /obj/item/fish/skin_crab
-	name = "skin crab"
+	name = "皮蟹"
 	fish_id = "skin_crab"
-	desc = "<i>\"And on the eighth day, a demential mockery of both humanity and crabity was made.\"<i> Fascinating."
+	desc = "<i>\"在第八天，一个对人类与蟹类都进行疯狂嘲弄的造物诞生了。\"<i> 真有趣。"
 	icon_state = "skin_crab"
 	sprite_width = 7
 	sprite_height = 6
@@ -157,13 +157,13 @@
 	return list("cooked crab" = 2)
 
 /obj/item/fish/skin_crab/suicide_act(mob/living/carbon/human/user)
-	user.visible_message(span_suicide("[user] puts [user.p_their()] hand on [src] and focuses intently! It looks like [user.p_theyre()] trying to transfer [user.p_their()] skin to [src]!"))
+	user.visible_message(span_suicide("[user]将[user.p_their()]手放在[src]上并全神贯注！看起来[user.p_theyre()]正试图将[user.p_their()]的皮肤转移到[src]上！"))
 	if(!ishuman(user) || HAS_TRAIT(user, TRAIT_UNHUSKABLE))
-		user.visible_message(span_suicide("[user] has no skin! How embarrassing!"))
+		user.visible_message(span_suicide("[user]没有皮肤！多么尴尬！"))
 		return SHAME
 
 	if(status == FISH_DEAD)
-		user.visible_message(span_suicide("[src] is dead! [user] just looks like a doofus!"))
+		user.visible_message(span_suicide("[src]死了！[user]看起来就像个傻瓜！"))
 		return SHAME
 
 	var/skin_tone
@@ -178,7 +178,7 @@
 
 	// skin crab grows powerful
 	color = skin_tone //skintone2hex(skin_tone) //wait til smartkar's recolorwork
-	visible_message(span_danger("[user] starts glowing eerily..."))
+	visible_message(span_danger("[user]开始诡异地发光..."))
 	AddElement(/datum/element/haunted, haunt_color = skin_tone)
 
 	return BRUTELOSS

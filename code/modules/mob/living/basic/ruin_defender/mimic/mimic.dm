@@ -40,8 +40,8 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	if(!. || !knockdown_people || !prob(15) || !istype(target))
 		return
 	target.Paralyze(4 SECONDS)
-	target.visible_message(span_danger("\The [src] knocks down \the [target]!"), \
-		span_userdanger("\The [src] knocks you down!"))
+	target.visible_message(span_danger("\The [src] 击倒了 \the [target]！"), \
+		span_userdanger("\The [src] 把你击倒了！"))
 
 
 // ****************************
@@ -50,8 +50,8 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 
 // Aggro when you try to open them. Will also pickup loot when spawns and drop it when dies.
 /mob/living/basic/mimic/crate
-	name = "crate"
-	desc = "A very hostile rectangular steel crate."
+	name = "板条箱"
+	desc = "一个充满敌意的长方形钢制板条箱。"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "crate"
 	base_icon_state = "crate"
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	if(user.combat_mode)
 		return ..()
 	if(trigger())
-		to_chat(user, span_danger("As you try to open [src] it [length(contents) ? "stiffens up and " : ""]nearly clamps down on your fingers!"))
+		to_chat(user, span_danger("当你试图打开[src]时，它[length(contents) ? "stiffens up and " : ""]差点夹住你的手指！"))
 		return TRUE
 	toggle_open(user)
 	return TRUE
@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 		return FALSE
 	if(ai_controller.ai_status != AI_STATUS_OFF)
 		return FALSE
-	visible_message(span_danger("[src] starts to move!"))
+	visible_message(span_danger("[src]开始移动了！"))
 	REMOVE_TRAIT(src, TRAIT_AI_PAUSED, INNATE_TRAIT)
 	ai_controller.set_ai_status(AI_STATUS_ON)
 	if(length(contents))
@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 /mob/living/basic/mimic/crate/proc/toggle_open(mob/user)
 	if(locked)
 		if(user)
-			balloon_alert(user, "too stiff!")
+			balloon_alert(user, "太僵硬了！")
 		return
 	if(!opened)
 		ADD_TRAIT(src, TRAIT_UNDENSE, MIMIC_TRAIT)
@@ -236,8 +236,8 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	gold_core_spawnable = HOSTILE_SPAWN
 
 /datum/action/innate/mimic_lock
-	name = "Lock/Unlock"
-	desc = "Toggle preventing yourself from being opened or closed."
+	name = "锁定/解锁"
+	desc = "切换阻止自己被打开或关闭的状态。"
 	button_icon = 'icons/hud/radial.dmi'
 	button_icon_state = "radial_lock"
 	background_icon_state = "bg_default"
@@ -247,9 +247,9 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	var/mob/living/basic/mimic/crate/mimic = owner
 	mimic.locked = !mimic.locked
 	if(!mimic.locked)
-		to_chat(mimic, span_warning("You loosen up, allowing yourself to be opened and closed."))
+		to_chat(mimic, span_warning("你放松下来，允许自己被打开和关闭。"))
 	else
-		to_chat(mimic, span_warning("You stiffen up, preventing anyone from opening or closing you."))
+		to_chat(mimic, span_warning("你变得僵硬，阻止任何人打开或关闭你。"))
 
 // ****************************
 // COPYING (actually imitates target object) MIMIC
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	return ..()
 
 /mob/living/basic/mimic/copy/wabbajack(what_to_randomize, change_flags = WABBAJACK)
-	visible_message(span_warning("[src] resists polymorphing into a new creature!"))
+	visible_message(span_warning("[src]抵抗了变形为新生物！"))
 
 /mob/living/basic/mimic/copy/animate_atom_living(mob/living/owner)
 	change_owner(owner)

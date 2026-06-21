@@ -17,14 +17,14 @@
 		if(machine_stat & (NOPOWER|BROKEN|MAINT))
 			return
 		if(!current)
-			to_chat(user, span_alert("You haven't selected anything to transmit laws to!"))
+			to_chat(user, span_alert("你还没有选择任何目标来传输法律！"))
 			return
 		if(!can_upload_to(current))
-			to_chat(user, span_alert("Upload failed! Check to make sure [current.name] is functioning properly."))
+			to_chat(user, span_alert("上传失败！请检查以确保[current.name]运行正常。"))
 			current = null
 			return
 		if(!is_valid_z_level(get_turf(current), get_turf(user)))
-			to_chat(user, span_alert("Upload failed! Unable to establish a connection to [current.name]. You're too far away!"))
+			to_chat(user, span_alert("上传失败！无法与[current.name]建立连接。你离得太远了！"))
 			current = null
 			return
 		M.install(current.laws, user)
@@ -38,8 +38,8 @@
 	return TRUE
 
 /obj/machinery/computer/upload/ai
-	name = "\improper AI upload console"
-	desc = "Used to upload laws to the AI."
+	name = "\improper AI上传控制台"
+	desc = "用于将法律上传至AI。"
 	circuit = /obj/item/circuitboard/computer/aiupload
 
 /obj/machinery/computer/upload/ai/Initialize(mapload)
@@ -51,9 +51,9 @@
 	current = select_active_ai(user, z, TRUE)
 
 	if (!current)
-		to_chat(user, span_alert("No active AIs detected!"))
+		to_chat(user, span_alert("未检测到活跃的AI！"))
 	else
-		to_chat(user, span_notice("[current.name] selected for law changes."))
+		to_chat(user, span_notice("已选择 [current.name] 进行法律修改。"))
 
 /obj/machinery/computer/upload/ai/can_upload_to(mob/living/silicon/ai/A)
 	if(!A || !isAI(A))
@@ -64,17 +64,17 @@
 
 
 /obj/machinery/computer/upload/borg
-	name = "cyborg upload console"
-	desc = "Used to upload laws to Cyborgs."
+	name = "赛博上传控制台"
+	desc = "用于向赛博格上传法律。"
 	circuit = /obj/item/circuitboard/computer/borgupload
 
 /obj/machinery/computer/upload/borg/interact(mob/user)
 	current = select_active_free_borg(user)
 
 	if(!current)
-		to_chat(user, span_alert("No active unslaved cyborgs detected."))
+		to_chat(user, span_alert("未检测到未被奴役的活跃赛博"))
 	else
-		to_chat(user, span_notice("[current.name] selected for law changes."))
+		to_chat(user, span_notice("已选择 [current.name] 进行法律修改。"))
 
 /obj/machinery/computer/upload/borg/can_upload_to(mob/living/silicon/robot/B)
 	if(!B || !iscyborg(B))

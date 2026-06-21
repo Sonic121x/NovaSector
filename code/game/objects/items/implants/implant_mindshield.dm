@@ -1,6 +1,6 @@
 /obj/item/implant/mindshield
-	name = "mindshield implant"
-	desc = "Protects against brainwashing."
+	name = "思维护盾植入物"
+	desc = "防止洗脑。"
 	actions_types = null
 
 	implant_info = "Automatically activates upon implantation. Provides protection against brainwashing."
@@ -16,7 +16,7 @@
 	if(target.mind)
 		if((SEND_SIGNAL(target.mind, COMSIG_PRE_MINDSHIELD_IMPLANT, user) & COMPONENT_MINDSHIELD_RESISTED))
 			if(!silent)
-				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
+				target.visible_message(span_warning("[target] 似乎在抵抗植入物！"), span_warning("你感觉到有什么东西在干扰你的精神调节，但你抵抗住了它！"))
 			removed(target, TRUE)
 			qdel(src)
 			return TRUE
@@ -27,7 +27,7 @@
 	target.add_traits(list(TRAIT_MINDSHIELD, TRAIT_UNCONVERTABLE), IMPLANT_TRAIT)
 	target.sec_hud_set_implants()
 	if(!silent)
-		to_chat(target, span_notice("You feel a sense of peace and security. You are now protected from brainwashing."))
+		to_chat(target, span_notice("你感到一种平静与安全感。你现在已受到保护，不会受到洗脑。"))
 	return TRUE
 
 /obj/item/implant/mindshield/removed(mob/target, silent = FALSE, special = FALSE)
@@ -39,14 +39,14 @@
 		target.remove_traits(list(TRAIT_MINDSHIELD, TRAIT_UNCONVERTABLE), IMPLANT_TRAIT)
 		L.sec_hud_set_implants()
 	if(target.stat != DEAD && !silent)
-		to_chat(target, span_boldnotice("Your mind suddenly feels terribly vulnerable. You are no longer safe from brainwashing."))
+		to_chat(target, span_boldnotice("你的思维突然感到极度脆弱。你不再安全，可能受到洗脑。"))
 	return TRUE
 
 /obj/item/implanter/mindshield
-	name = "implanter (mindshield)"
+	name = "植入器（思维盾）"
 	imp_type = /obj/item/implant/mindshield
 
 /obj/item/implantcase/mindshield
 	name = "implant case - 'Mindshield'"
-	desc = "A glass case containing a mindshield implant."
+	desc = "一个装有思维盾植入体的玻璃盒。"
 	imp_type = /obj/item/implant/mindshield

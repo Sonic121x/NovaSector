@@ -1,5 +1,5 @@
 /obj/machinery/portable_atmospherics/canister/goblin
-	name = "G-081-N canister"
+	name = "G-081-N气罐"
 	gas_type = /datum/gas/goblin
 	icon_state = "/obj/machinery/portable_atmospherics/canister/goblin"
 	post_init_icon_state = ""

@@ -15,7 +15,7 @@
 	starting_programs = list(/datum/computer_file/program/contract_uplink)
 
 /obj/item/disk/computer/black_market
-	desc = "Removable disk used to store data. This one has a smudged piece of paper glued to it, reading \"PC softwarez\"."
+	desc = "用于存储数据的可移动磁盘。这张磁盘上粘着一张污迹斑斑的纸条，上面写着\"PC软件\"。"
 
 /obj/item/disk/computer/black_market/Initialize(mapload)
 	. = ..()

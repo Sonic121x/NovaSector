@@ -3,8 +3,8 @@
  */
 
 /obj/item/gun/energy/alien/zeta
-	name = "Zeta Blaster"
-	desc = "Having this too close to your face makes you start to taste blood, is this safe?"
+	name = "泽塔爆破枪"
+	desc = "把这东西拿得太靠近脸会让你开始尝到血腥味，这安全吗？"
 	icon = 'modular_nova/modules/awaymissions_nova/icons/alienblaster.dmi'
 	lefthand_file = 'modular_nova/modules/awaymissions_nova/icons/alienhand.dmi'
 	righthand_file = 'modular_nova/modules/awaymissions_nova/icons/alienhand2.dmi'
@@ -14,8 +14,8 @@
 	selfcharge = TRUE
 
 /obj/item/gun/energy/alien/astrum
-	name = "alien energy pistol"
-	desc = "A seemingly complicated gun, that isn't so complicated after all."
+	name = "外星能量手枪"
+	desc = "一把看似复杂，但其实也没那么复杂的枪。"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser)
 	pin = /obj/item/firing_pin
 	icon_state = "alienpistol"
@@ -28,8 +28,8 @@
  */
 
 /obj/item/clothing/suit/armor/abductor/astrum
-	name = "agent vest"
-	desc = "You feel like you're wearing the suit wrong, and you have no idea how to operate its systems."
+	name = "特工背心"
+	desc = "你感觉你穿错了这套衣服，而且完全不知道如何操作它的系统。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "vest_combat"
 	inhand_icon_state = "armor"
@@ -49,8 +49,8 @@
 	acid = 90
 
 /obj/item/clothing/head/helmet/astrum
-	name = "agent headgear"
-	desc = "An exceptionally robust helmet. For alien standards, that is."
+	name = "特工头具"
+	desc = "一顶异常坚固的头盔。当然，是以外星标准而言。"
 	icon_state = "alienhelmet"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	armor_type = /datum/armor/helmet_astrum

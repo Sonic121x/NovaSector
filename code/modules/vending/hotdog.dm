@@ -1,7 +1,7 @@
 ///A special hotdog vending machine found in the cafeteria at the museum away mission, or during the hotdog holiday.
 /obj/machinery/vending/hotdog
-	name = "\improper Hotdoggo-Vend"
-	desc = "An outdated hotdog vending machine, its prices stuck to those of 20 or so years ago."
+	name = "\improper 热狗贩售机"
+	desc = "一台过时的热狗售货机，其价格还停留在大约20年前的水平。"
 	icon_state = "hotdog-vendor"
 	icon_deny = "hotdog-vendor-deny"
 	panel_type = "panel17"
@@ -24,7 +24,7 @@
 			),
 		),
 		list(
-			name = "Sausages",
+			name = "香肠",
 			"icon" = FA_ICON_BACON,
 			"products" = list(
 				/obj/item/food/sausage = 8,

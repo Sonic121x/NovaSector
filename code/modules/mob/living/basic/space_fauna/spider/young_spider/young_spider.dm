@@ -6,8 +6,8 @@
  * All spiders can produce webbing.
  */
 /mob/living/basic/spider/growing/young
-	name = "young spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
+	name = "幼年蜘蛛"
+	desc = "毛茸茸的黑色身躯，看着它就让你不寒而栗。这一只有着深红色的眼睛。"
 	icon_state = "young_guard"
 	icon_living = "young_guard"
 	icon_dead = "young_guard_dead"

@@ -79,7 +79,7 @@
 	if(faction)
 		summoned.set_faction(faction)
 	RegisterSignals(summoned, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), PROC_REF(on_spawned_death))
-	spawn_location.visible_message(span_danger("[summoned] [spawn_text]!"))
+	spawn_location.visible_message(span_danger("[summoned] [spawn_text]！"))
 
 /// When a spawned thing dies, remove it from our list
 /datum/component/summoning/proc/on_spawned_death(mob/killed, gibbed)

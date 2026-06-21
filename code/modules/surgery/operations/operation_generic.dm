@@ -1,7 +1,7 @@
 // Basic operations for moving back and forth between surgery states
 /// First step of every surgery, makes an incision in the skin
 /datum/surgery_operation/limb/incise_skin
-	name = "make skin incision"
+	name = "切开皮肤"
 	// rnd_name = "Laparotomy / Craniotomy / Myotomy (Make Incision)" // Maybe we keep this one simple
 	desc = "Make an incision in the patient's skin to access internal organs. \
 		Causes \"cut skin\" surgical state."
@@ -26,7 +26,7 @@
 	var/biostate_blacklist = BIO_CHITIN
 
 /datum/surgery_operation/limb/incise_skin/get_any_tool()
-	return "Any sharp edged item"
+	return "任何锋利的物品"
 
 /datum/surgery_operation/limb/incise_skin/get_default_radial_image()
 	return image('icons/hud/surgery_radial.dmi', "make_incision")
@@ -47,9 +47,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to make an incision in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to make an incision in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to make an incision in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始在[FORMAT_LIMB_OWNER(limb)]上切开一个口子..."),
+		span_notice("[surgeon]开始在[FORMAT_LIMB_OWNER(limb)]上切开一个口子。"),
+		span_notice("[surgeon]开始在[FORMAT_LIMB_OWNER(limb)]上切开一个口子。"),
 	)
 	display_pain(limb.owner, "You feel a stabbing in your [limb.plaintext_zone].")
 
@@ -69,14 +69,14 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("[blood_name] pools around the incision in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[blood_name] pools around the incision in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[blood_name] pools around the incision in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("[blood_name]在[FORMAT_LIMB_OWNER(limb)]的切口周围积聚。"),
+		span_notice("[blood_name]在[FORMAT_LIMB_OWNER(limb)]的切口周围积聚。"),
+		span_notice("[blood_name]在[FORMAT_LIMB_OWNER(limb)]的切口周围积聚。"),
 	)
 
 /// Subtype for thick skinned creatures (Xenomorphs)
 /datum/surgery_operation/limb/incise_skin/thick
-	name = "make thick skin incision"
+	name = "切开厚皮肤"
 	implements = list(
 		TOOL_SAW = 1,
 		/obj/item/melee/energy/sword = 1.25,
@@ -87,7 +87,7 @@
 	biostate_blacklist = BIO_FLESH|BIO_METAL
 
 /datum/surgery_operation/limb/incise_skin/thick/get_any_tool()
-	return "Any sharp edged item with decent force"
+	return "任何具有足够力量的锋利物品"
 
 /datum/surgery_operation/limb/incise_skin/thick/tool_check(obj/item/tool)
 	return ..() && tool.force >= 10
@@ -99,7 +99,7 @@
 
 /// Pulls the skin back to access internals
 /datum/surgery_operation/limb/retract_skin
-	name = "retract skin"
+	name = "牵开皮肤"
 	desc = "Retract the patient's skin to access their internal organs. \
 		Causes \"skin open\" surgical state."
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
@@ -125,9 +125,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to retract the skin in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to retract the skin in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to retract the skin in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始牵开[FORMAT_LIMB_OWNER(limb)]的皮肤..."),
+		span_notice("[surgeon] 开始收缩 [FORMAT_LIMB_OWNER(limb)] 的皮肤。"),
+		span_notice("[surgeon] 开始收缩 [FORMAT_LIMB_OWNER(limb)] 的皮肤。"),
 	)
 	display_pain(limb.owner, "You feel a severe stinging pain spreading across your [limb.plaintext_zone] as the skin is pulled back.")
 
@@ -144,7 +144,7 @@
 
 /// Closes the skin
 /datum/surgery_operation/limb/close_skin
-	name = "mend skin incision"
+	name = "缝合皮肤切口"
 	desc = "Mend the incision in the patient's skin, closing it up. \
 		Clears most surgical states."
 	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = ~BODYTYPE_ROBOTIC
@@ -170,13 +170,13 @@
 	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/close_skin/get_any_tool()
-	return "Any heat source"
+	return "任何热源"
 
 /datum/surgery_operation/limb/close_skin/get_default_radial_image()
 	return image('icons/hud/surgery_radial.dmi', "mend_incision")
 
 /datum/surgery_operation/limb/close_skin/all_required_strings()
-	return ..() + list("the limb must have skin")
+	return ..() + list("该肢体必须有皮肤")
 
 /datum/surgery_operation/limb/close_skin/state_check(obj/item/bodypart/limb)
 	return LIMB_HAS_SKIN(limb)
@@ -195,9 +195,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to mend the incision in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to mend the incision in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to mend the incision in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始缝合 [FORMAT_LIMB_OWNER(limb)] 的切口..."),
+		span_notice("[surgeon] 开始缝合 [FORMAT_LIMB_OWNER(limb)] 的切口。"),
+		span_notice("[surgeon] 开始缝合 [FORMAT_LIMB_OWNER(limb)] 的切口。"),
 	)
 	display_pain(limb.owner, "Your [limb.plaintext_zone] is being [istype(tool, /obj/item/stack/medical/suture) ? "pinched" : "burned"]!")
 
@@ -213,7 +213,7 @@
 
 /// Clamps bleeding blood vessels to prevent blood loss
 /datum/surgery_operation/limb/clamp_bleeders
-	name = "clamp bleeders"
+	name = "夹住出血点"
 	desc = "Clamp bleeding blood vessels in the patient's body to prevent blood loss. \
 		Causes \"vessels clamped\" surgical state."
 	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = ~BODYTYPE_ROBOTIC
@@ -237,9 +237,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to clamp bleeders in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to clamp bleeders in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to clamp bleeders in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始夹住 [FORMAT_LIMB_OWNER(limb)] 的出血点..."),
+		span_notice("[surgeon] 开始夹住 [FORMAT_LIMB_OWNER(limb)] 的出血点。"),
+		span_notice("[surgeon] 开始夹住 [FORMAT_LIMB_OWNER(limb)] 的出血点。"),
 	)
 	display_pain(limb.owner, "You feel a pinch as the bleeding in your [limb.plaintext_zone] is slowed.")
 
@@ -257,7 +257,7 @@
 
 /// Unclamps blood vessels to allow blood flow again
 /datum/surgery_operation/limb/unclamp_bleeders
-	name = "unclamp bleeders"
+	name = "松开止血钳"
 	desc = "Unclamp blood vessels in the patient's body to allow blood flow again. \
 		Clears \"vessels clamped\" surgical state."
 	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = ~BODYTYPE_ROBOTIC
@@ -278,7 +278,7 @@
 	return image('icons/hud/surgery_radial.dmi', "unclamp_bleeders")
 
 /datum/surgery_operation/limb/unclamp_bleeders/all_required_strings()
-	return ..() + list("the limb must have blood vessels")
+	return ..() + list("该肢体必须有血管")
 
 /datum/surgery_operation/limb/unclamp_bleeders/state_check(obj/item/bodypart/limb)
 	return LIMB_HAS_VESSELS(limb)
@@ -287,9 +287,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to unclamp bleeders in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to unclamp bleeders in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to unclamp bleeders in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始松开[FORMAT_LIMB_OWNER(limb)]的止血钳..."),
+		span_notice("[surgeon]开始松开[FORMAT_LIMB_OWNER(limb)]的止血钳。"),
+		span_notice("[surgeon]开始松开[FORMAT_LIMB_OWNER(limb)]的止血钳。"),
 	)
 	display_pain(limb.owner, "You feel a pressure release as blood starts flowing in your [limb.plaintext_zone] again.")
 
@@ -304,7 +304,7 @@
 
 /// Saws through bones to access organs
 /datum/surgery_operation/limb/saw_bones
-	name = "saw limb bone"
+	name = "锯开肢体骨骼"
 	desc = "Saw through the patient's bones to access their internal organs. \
 		Causes \"bone sawed\" surgical state."
 	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = ~BODYTYPE_ROBOTIC
@@ -333,7 +333,7 @@
 	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/saw_bones/get_any_tool()
-	return "Any sharp edged item with decent force"
+	return "任何具有足够力量的锋利边缘物品"
 
 /datum/surgery_operation/limb/saw_bones/get_default_radial_image()
 	return image('icons/hud/surgery_radial.dmi', "saw_bones")
@@ -346,9 +346,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to saw through the bone in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to saw through the bone in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to saw through the bone in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始锯开[FORMAT_LIMB_OWNER(limb)]的骨骼..."),
+		span_notice("[surgeon]开始锯开[FORMAT_LIMB_OWNER(limb)]的骨骼。"),
+		span_notice("[surgeon]开始锯开[FORMAT_LIMB_OWNER(limb)]的骨骼。"),
 	)
 	display_pain(limb.owner, "You feel a horrid ache spread through the inside of your [limb.plaintext_zone]!")
 
@@ -359,15 +359,15 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You saw [FORMAT_LIMB_OWNER(limb)] open."),
-		span_notice("[surgeon] saws [FORMAT_LIMB_OWNER(limb)] open!"),
-		span_notice("[surgeon] saws [FORMAT_LIMB_OWNER(limb)] open!"),
+		span_notice("你锯开了[FORMAT_LIMB_OWNER(limb)]。"),
+		span_notice("[surgeon] 锯开了 [FORMAT_LIMB_OWNER(limb)]！"),
+		span_notice("[surgeon]锯开了[FORMAT_LIMB_OWNER(limb)]！"),
 	)
 	display_pain(limb.owner, "It feels like something just broke in your [limb.plaintext_zone]!")
 
 /// Fixes sawed bones back together
 /datum/surgery_operation/limb/fix_bones
-	name = "fix limb bone"
+	name = "修复肢体骨骼"
 	desc = "Repair a patient's cut or broken bones. \
 		Clears \"bone sawed\" and \"bone drilled\" surgical states."
 	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = ~BODYTYPE_ROBOTIC
@@ -393,7 +393,7 @@
 	return image('icons/hud/surgery_radial.dmi', "fix_bones")
 
 /datum/surgery_operation/limb/fix_bones/all_required_strings()
-	return ..() + list("the limb must have bones")
+	return ..() + list("该肢体必须有骨骼")
 
 /datum/surgery_operation/limb/fix_bones/state_check(obj/item/bodypart/limb)
 	if(!LIMB_HAS_BONES(limb))
@@ -410,9 +410,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to fix the bones in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to fix the bones in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to fix the bones in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始修复 [FORMAT_LIMB_OWNER(limb)] 的骨骼..."),
+		span_notice("[surgeon] 开始修复 [FORMAT_LIMB_OWNER(limb)] 的骨骼。"),
+		span_notice("[surgeon] 开始修复 [FORMAT_LIMB_OWNER(limb)] 的骨骼。"),
 	)
 	display_pain(limb.owner, "You feel a grinding sensation in your [limb.plaintext_zone] as the bones are set back in place.")
 
@@ -422,7 +422,7 @@
 	limb.heal_damage(40)
 
 /datum/surgery_operation/limb/drill_bones
-	name = "drill limb bone"
+	name = "钻入肢体骨骼"
 	desc = "Drill through a patient's bones. \
 		Causes \"bone drilled\" surgical state."
 	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = ~BODYTYPE_ROBOTIC
@@ -443,7 +443,7 @@
 	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/drill_bones/get_any_tool()
-	return "Any sharp pointed item with decent force"
+	return "任何具有足够力度的尖锐带尖物品"
 
 /datum/surgery_operation/limb/drill_bones/get_default_radial_image()
 	return image('icons/hud/surgery_radial.dmi', "drill_bones")
@@ -456,9 +456,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to drill into the bone in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to drill into the bone in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to drill into the bone in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始钻入 [FORMAT_LIMB_OWNER(limb)] 的骨骼..."),
+		span_notice("[surgeon] 开始钻入 [FORMAT_LIMB_OWNER(limb)] 的骨骼。"),
+		span_notice("[surgeon] 开始钻入 [FORMAT_LIMB_OWNER(limb)] 的骨骼。"),
 	)
 	display_pain(limb.owner, "You feel a horrible piercing pain in your [limb.plaintext_zone]!")
 
@@ -468,13 +468,13 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You drill into [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] drills into [FORMAT_LIMB_OWNER(limb)]!"),
-		span_notice("[surgeon] drills into [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你钻入了 [FORMAT_LIMB_OWNER(limb)]。"),
+		span_notice("[surgeon] 钻入了 [FORMAT_LIMB_OWNER(limb)]！"),
+		span_notice("[surgeon] 钻入了 [FORMAT_LIMB_OWNER(limb)]！"),
 	)
 
 /datum/surgery_operation/limb/incise_organs
-	name = "incise organs"
+	name = "切开器官"
 	desc = "Make an incision in the patient's internal organ tissue to allow for manipulation or repair. \
 		Causes \"organs cut\" surgical state."
 	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = ~BODYTYPE_ROBOTIC
@@ -496,7 +496,7 @@
 	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/incise_organs/get_any_tool()
-	return "Any sharp edged item"
+	return "任何带锋利边缘的物品"
 
 /datum/surgery_operation/limb/incise_organs/get_default_radial_image()
 	return image('icons/hud/surgery_radial.dmi', "incise_organs")
@@ -509,9 +509,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to make an incision in the organs within [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to make an incision in the organs within [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to make an incision in the organs within [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始在 [FORMAT_LIMB_OWNER(limb)] 内的器官上做切口..."),
+		span_notice("[surgeon] 开始在 [FORMAT_LIMB_OWNER(limb)] 内的器官上做切口。"),
+		span_notice("[surgeon] 开始在 [FORMAT_LIMB_OWNER(limb)] 内的器官上做切口。"),
 	)
 	display_pain(limb.owner, "You feel a stabbing in your [limb.plaintext_zone].")
 
@@ -522,9 +522,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You make an incision in the organs within [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] makes an incision in the organs within [FORMAT_LIMB_OWNER(limb)]!"),
-		span_notice("[surgeon] makes an incision in the organs within [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你在 [FORMAT_LIMB_OWNER(limb)] 内的器官上切开了口子。"),
+		span_notice("[surgeon] 在 [FORMAT_LIMB_OWNER(limb)] 内的器官上切开了口子！"),
+		span_notice("[surgeon] 在 [FORMAT_LIMB_OWNER(limb)] 内的器官上切开了口子！"),
 	)
 	display_pain(limb.owner, "You feel a sharp pain from inside your [limb.plaintext_zone]!")
 

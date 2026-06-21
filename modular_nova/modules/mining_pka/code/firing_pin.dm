@@ -1,6 +1,6 @@
 /obj/item/firing_pin/wastes
-	name = "\improper Wastes firing pin"
-	desc = "This safety firing pin allows weapons to be fired only on areas away from the station."
+	name = "\improper 废土击针"
+	desc = "这种安全击针只允许武器在远离空间站的区域开火。"
 	fail_message = "Wastes check failed! - Try getting further from the station first."
 	pin_hot_swappable = FALSE
 	pin_removable = FALSE

@@ -17,8 +17,8 @@
 	crate_name = "cargo supplies crate"
 
 /datum/supply_pack/service/noslipfloor
-	name = "High-traction Floor Tiles"
-	desc = "Make slipping a thing of the past with thirty industrial-grade anti-slip floor tiles!"
+	name = "高牵引力地砖"
+	desc = "使用三十块工业级防滑地砖，让滑倒成为过去式！"
 	cost = CARGO_CRATE_VALUE * 4
 	access_view = ACCESS_JANITOR
 	contains = list(/obj/item/stack/tile/noslip/thirty)
@@ -43,7 +43,7 @@
 	crate_name = "janitorial supplies crate"
 
 /datum/supply_pack/service/janitor/janicart
-	name = "Janitorial Cart and Galoshes Crate"
+	name = "清洁推车和套鞋板条箱"
 	desc = "The keystone to any successful janitor. As long as you have feet, this pair \
 		of galoshes will keep them firmly planted on the ground. Also contains a janitorial cart."
 	cost = CARGO_CRATE_VALUE * 4
@@ -73,7 +73,7 @@
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/service/party
-	name = "Party Equipment"
+	name = "派对准备品"
 	desc = "Celebrate both life and death on the station with Nanotrasen's Party Essentials™! \
 		Contains seven colored glowsticks, six beers, six sodas, two ales, and a bottle of patron, \
 		goldschlager, and shaker!"
@@ -123,7 +123,7 @@
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/service/carpet_neon
-	name = "Simple Neon Carpet Crate"
+	name = "朴素霓虹地毯板条箱"
 	desc = "Simple rubbery mats with phosphorescent lining. Contains 120 tiles \
 		each of 13 color variants. Limited edition release."
 	cost = CARGO_CRATE_VALUE * 15
@@ -166,7 +166,7 @@
 	crate_type = /obj/structure/closet/crate/secure/cargo/mining
 
 /datum/supply_pack/service/survivalknives
-	name = "Survival Knives Crate"
+	name = "生存刀板条箱"
 	desc = "Contains three sharpened survival knives. Each knife guaranteed to fit snugly \
 		inside any Nanotrasen-standard boot."
 	cost = CARGO_CRATE_VALUE * 3
@@ -210,14 +210,14 @@
 	crate_name = "silver id card crate"
 
 /datum/supply_pack/service/emptycrate
-	name = "Empty Crate"
-	desc = "It's an empty crate, for all your storage needs."
+	name = "空板条箱"
+	desc = "这是个空的板条箱，可以用来存放你的各种东西."
 	cost = CARGO_CRATE_VALUE * 1.4 //Net Zero Profit.
 	contains = list()
 	crate_name = "crate"
 
 /datum/supply_pack/service/randomized/donkpockets
-	name = "Donk Pocket Variety Crate"
+	name = "多口味口袋饼板条箱"
 	desc = "Featuring a line up of Donk Co.'s most popular pastry! Contains \
 		a random assortment of Donk Pocket boxes."
 	cost = CARGO_CRATE_VALUE * 4

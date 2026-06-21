@@ -12,7 +12,7 @@
 		pew.fire(angle)
 
 /datum/shuttle_event/simple_spawner/projectile/fireball //bap bap bapaba bap
-	name = "Fireball Burst (Surprisingly safe!)"
+	name = "火球连射（意外地安全！）"
 	activation_fraction = 0.5 // this doesn't matter for hijack events but just in case its forced
 
 	spawning_list = list(/obj/projectile/magic/fireball = 1)

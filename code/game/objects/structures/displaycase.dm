@@ -1,8 +1,8 @@
 /obj/structure/displaycase
-	name = "display case"
+	name = "陈列柜"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "glassbox"
-	desc = "A display case for prized possessions."
+	desc = "贵重物品的陈列柜。"
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = ACID_PROOF
@@ -64,9 +64,9 @@
 /obj/structure/displaycase/examine(mob/user)
 	. = ..()
 	if(alert)
-		. += span_notice("Hooked up with an anti-theft system.")
+		. += span_notice("已连接防盗系统。")
 	if(showpiece)
-		. += span_notice("There's \a [showpiece] inside.")
+		. += span_notice("里面有一个 \a [showpiece]。")
 
 ///Removes the showpiece from the displaycase
 /obj/structure/displaycase/proc/dump()
@@ -131,26 +131,26 @@
 			to_chat(user, span_notice("You [open ? "close":"open"] [src]."))
 			toggle_lock(user)
 		else
-			to_chat(user, span_alert("Access denied."))
+			to_chat(user, span_alert("拒绝访问."))
 	else if(attacking_item.tool_behaviour == TOOL_WELDER && !user.combat_mode && !broken)
 		if(atom_integrity < max_integrity)
 			if(!attacking_item.tool_start_check(user, amount=1))
 				return
 
-			to_chat(user, span_notice("You begin repairing [src]..."))
+			to_chat(user, span_notice("你开始修理[src]..."))
 			if(attacking_item.use_tool(src, user, 40, volume=50))
 				atom_integrity = max_integrity
 				update_appearance()
-				to_chat(user, span_notice("You repair [src]."))
+				to_chat(user, span_notice("你修理了[src]."))
 		else
-			to_chat(user, span_warning("[src] is already in good condition!"))
+			to_chat(user, span_warning("[src]已经处于良好状态！"))
 		return
 	else if(!alert && attacking_item.tool_behaviour == TOOL_CROWBAR) //Only applies to the lab cage and player made display cases
 		if(broken)
 			if(showpiece)
-				to_chat(user, span_warning("Remove the displayed object first!"))
+				to_chat(user, span_warning("先移除展示的物品！"))
 			else
-				to_chat(user, span_notice("You remove the destroyed case."))
+				to_chat(user, span_notice("你移除了损坏的展柜。"))
 				qdel(src)
 		else
 			to_chat(user, span_notice("You start to [open ? "close":"open"] [src]..."))
@@ -163,9 +163,9 @@
 	else if(glass_fix && broken && istype(attacking_item, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/glass_sheet = attacking_item
 		if(glass_sheet.get_amount() < 2)
-			to_chat(user, span_warning("You need two glass sheets to fix the case!"))
+			to_chat(user, span_warning("你需要两块玻璃板来修复展柜！"))
 			return
-		to_chat(user, span_notice("You start fixing [src]..."))
+		to_chat(user, span_notice("你开始修理[src]..."))
 		if(do_after(user, 2 SECONDS, target = src))
 			glass_sheet.use(2)
 			broken = FALSE
@@ -177,11 +177,11 @@
 ///Handles placing an item into the display case. Returns TRUE if the item failed to be placed inside the container, useful for descendants
 /obj/structure/displaycase/proc/insert_showpiece(obj/item/new_showpiece, mob/user)
 	if(showpiece_type && !istype(new_showpiece, showpiece_type))
-		to_chat(user, span_notice("This doesn't belong in this kind of display."))
+		to_chat(user, span_notice("这不属于这类展示品。"))
 		return TRUE
 	if(user.transferItemToLoc(new_showpiece, src))
 		showpiece = new_showpiece
-		to_chat(user, span_notice("You put [new_showpiece] on display."))
+		to_chat(user, span_notice("你将[new_showpiece]放上展示。"))
 		update_appearance()
 
 ///Opens and closes the display case
@@ -199,7 +199,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (showpiece && (broken || open))
-		to_chat(user, span_notice("You deactivate the hover field built into the case."))
+		to_chat(user, span_notice("你关闭了展柜内置的悬浮场。"))
 		log_combat(user, src, "deactivates the hover field of")
 		dump()
 		add_fingerprint(user)
@@ -214,14 +214,14 @@
 			if(!user.is_blind())
 				user.examinate(src)
 			return
-		user.visible_message(span_danger("[user] kicks the display case."), null, null, COMBAT_MESSAGE_RANGE)
+		user.visible_message(span_danger("[user] 踢了展示柜一脚。"), null, null, COMBAT_MESSAGE_RANGE)
 		log_combat(user, src, "kicks")
 		user.do_attack_animation(src, ATTACK_EFFECT_KICK)
 		take_damage(2)
 
 /obj/structure/displaycase_chassis
-	name = "display case chassis"
-	desc = "The wooden base of a display case."
+	name = "陈列柜底盘"
+	desc = "陈列柜的木底座。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "glassbox_chassis"
 	resistance_flags = FLAMMABLE
@@ -262,7 +262,7 @@
 
 /obj/structure/displaycase_chassis/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "disassembling...")
+	balloon_alert(user, "正在拆卸...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 3 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -275,15 +275,15 @@
 
 /obj/structure/displaycase_chassis/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/electronics/airlock))
-		balloon_alert(user, "installing electronics...")
+		balloon_alert(user, "正在安装电子元件...")
 		if(do_after(user, 3 SECONDS, target = src) && user.transferItemToLoc(attacking_item, src))
 			electronics = attacking_item
-			balloon_alert(user, "electronics installed")
+			balloon_alert(user, "电子元件已安装")
 		return
 
 	if(istype(attacking_item, /obj/item/stock_parts/card_reader))
 		var/obj/item/stock_parts/card_reader/card_reader = attacking_item
-		balloon_alert(user, "adding [card_reader]...")
+		balloon_alert(user, "正在添加[card_reader]...")
 		if(do_after(user, 2 SECONDS, target = src))
 			qdel(card_reader)
 			make_final_result(display_type = /obj/structure/displaycase/forsale)
@@ -292,9 +292,9 @@
 	if(istype(attacking_item, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/glass_sheets = attacking_item
 		if(glass_sheets.get_amount() < 10)
-			balloon_alert(user, "need 10 sheets!")
+			balloon_alert(user, "需要10张板材！")
 			return
-		balloon_alert(user, "adding glass...")
+		balloon_alert(user, "正在添加玻璃...")
 		if(do_after(user, 2 SECONDS, target = src))
 			glass_sheets.use(10)
 			make_final_result(display_type = /obj/structure/displaycase/noalert)
@@ -319,8 +319,8 @@
 	req_access = list(ACCESS_CAPTAIN)	//NOVA EDIT CHANGE - ORIGINAL: req_access = list(ACCESS_CENT_SPECOPS) //this was intentional, presumably to make it slightly harder for caps to grab their gun roundstart
 
 /obj/structure/displaycase/labcage
-	name = "lab cage"
-	desc = "A glass lab container for storing interesting creatures."
+	name = "实验室笼子"
+	desc = "一个用来储存有趣生物的玻璃制实验室容器。"
 	start_showpiece_type = /obj/item/clothing/mask/facehugger/lamarr
 	req_access = list(ACCESS_RD)
 
@@ -328,8 +328,8 @@
 	alert = FALSE
 
 /obj/structure/displaycase/trophy
-	name = "trophy display case"
-	desc = "Store your trophies of accomplishment in here, and they will stay forever."
+	name = "奖杯展示盒"
+	desc = "把你的成就奖杯放在这里，它们将永远留在这里。"
 	integrity_failure = 0
 	req_access = list(ACCESS_LIBRARY)
 	autoexamine_while_closed = FALSE
@@ -369,7 +369,7 @@
 /obj/structure/displaycase/trophy/dump()
 	if (showpiece)
 		if(holographic_showpiece)
-			visible_message(span_danger("[showpiece] fizzles and vanishes!"))
+			visible_message(span_danger("[showpiece] 嘶嘶作响并消失了！"))
 			do_sparks(number = 1, cardinal_only = FALSE, source = src)
 			QDEL_NULL(showpiece)
 			holographic_showpiece = FALSE
@@ -387,7 +387,7 @@
 ///Toggles the mode that shows the historian panel on the UI, enabling saving the looks and the trophy message of the current trophy
 /obj/structure/displaycase/trophy/proc/toggle_historian_mode(mob/user)
 	historian_mode = !historian_mode
-	balloon_alert(user, "[historian_mode ? "enabled" : "disabled"] historian mode.")
+	balloon_alert(user, "[historian_mode ? "enabled" : "disabled"]历史学家模式。")
 	playsound(src, 'sound/machines/beep/twobeep.ogg', 10, vary = 50)
 	SStgui.update_uis(src)
 
@@ -427,7 +427,7 @@
 			return
 		if("change_message")
 			if(showpiece && !holographic_showpiece)
-				var/new_trophy_message = tgui_input_text(usr, "Let's make history!", "Trophy Message", trophy_message, max_length = MAX_PLAQUE_LEN)
+				var/new_trophy_message = tgui_input_text(usr, "让我们创造历史！", "奖杯信息", trophy_message, max_length = MAX_PLAQUE_LEN)
 				if(!new_trophy_message)
 					return
 				trophy_message = new_trophy_message
@@ -452,11 +452,11 @@
 		ui.open()
 
 /obj/item/key/displaycase
-	name = "curator key"
-	desc = "The key to the curator's display cases and arcade cabinets."
+	name = "馆长钥匙"
+	desc = "馆长展示柜和街机柜的钥匙。"
 
 /obj/item/showpiece_dummy
-	name = "holographic replica"
+	name = "全息复制品"
 
 /obj/item/showpiece_dummy/Initialize(mapload, path)
 	. = ..()
@@ -467,11 +467,11 @@
 	icon_state = initial(item_path.icon_state)
 
 /obj/structure/displaycase/forsale
-	name = "vend-a-tray"
+	name = "自动售货机"
 	icon = 'icons/obj/machines/display.dmi'
 	icon_state = "laserbox"
 	custom_glass_overlay = TRUE
-	desc = "A display case with an ID-card swiper. Use your ID to purchase the contents."
+	desc = "带有身份证刷卡器的展示柜，使用您的ID卡购买内容物。"
 	density = FALSE
 	max_integrity = 100
 	req_access = null
@@ -538,32 +538,32 @@
 	switch(action)
 		if("Buy")
 			if(!showpiece)
-				to_chat(usr, span_notice("There's nothing for sale."))
+				to_chat(usr, span_notice("没有商品在售。"))
 				return TRUE
 			if(broken)
-				to_chat(usr, span_notice("[src] appears to be broken."))
+				to_chat(usr, span_notice("[src] 似乎损坏了。"))
 				return TRUE
 			if(!payments_acc)
-				to_chat(usr, span_notice("[src] hasn't been registered yet."))
+				to_chat(usr, span_notice("[src] 尚未注册。"))
 				return TRUE
 			if(!usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 				return TRUE
 			if(!potential_acc)
-				to_chat(usr, span_notice("No ID card detected."))
+				to_chat(usr, span_notice("未检测到ID卡."))
 				return
 			var/datum/bank_account/account = potential_acc.registered_account
 			if(!account)
-				to_chat(usr, span_notice("[potential_acc] has no account registered!"))
+				to_chat(usr, span_notice("[potential_acc] 没有注册账户！"))
 				return
 			if(!account.has_money(sale_price))
-				to_chat(usr, span_notice("You do not possess the funds to purchase this."))
+				to_chat(usr, span_notice("你没有足够的资金购买此物品。"))
 				return TRUE
 			else
 				account.adjust_money(-sale_price, "Display Case: [capitalize(showpiece.name)]")
 				if(payments_acc)
 					payments_acc.adjust_money(sale_price, "Display Case: [capitalize(showpiece.name)]")
 				usr.put_in_hands(showpiece)
-				to_chat(usr, span_notice("You purchase [showpiece] for [sale_price] [MONEY_NAME]."))
+				to_chat(usr, span_notice("你以 [sale_price] [MONEY_NAME] 的价格购买了 [showpiece]。"))
 				playsound(src, 'sound/effects/cashregister.ogg', 40, TRUE)
 				flick("[initial(icon_state)]_vend", src)
 				showpiece = null
@@ -572,7 +572,7 @@
 				return TRUE
 		if("Open")
 			if(!payments_acc)
-				to_chat(usr, span_notice("[src] hasn't been registered yet."))
+				to_chat(usr, span_notice("[src] 尚未注册。"))
 				return TRUE
 			if(!potential_acc || !potential_acc.registered_account)
 				return
@@ -595,17 +595,17 @@
 				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 				return
 
-			var/new_price_input = tgui_input_number(usr, "Sale price for this vend-a-tray", "New Price", 10, 1000)
+			var/new_price_input = tgui_input_number(usr, "此自动售货盘的售价", "新价格", 10, 1000)
 			if(!new_price_input || QDELETED(usr) || QDELETED(src))
 				return
 			if(payments_acc != potential_acc.registered_account)
-				to_chat(usr, span_warning("[src] rejects your new price."))
+				to_chat(usr, span_warning("[src] 拒绝了你的新价格。"))
 				return
 			if(!usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
-				to_chat(usr, span_warning("You need to get closer!"))
+				to_chat(usr, span_warning("你需要靠得更近！"))
 				return
 			sale_price = new_price_input
-			to_chat(usr, span_notice("The cost is now set to [sale_price]."))
+			to_chat(usr, span_notice("价格现已设为 [sale_price]。"))
 			SStgui.update_uis(src)
 			return TRUE
 	. = TRUE
@@ -615,7 +615,7 @@
 		//Card Registration
 		var/obj/item/card/id/potential_acc = attacking_item
 		if(!potential_acc.registered_account)
-			to_chat(user, span_warning("This ID card has no account registered!"))
+			to_chat(user, span_warning("ID卡没有注册账户！"))
 			return
 		if(payments_acc == potential_acc.registered_account)
 			toggle_lock()
@@ -628,7 +628,7 @@
 /obj/structure/displaycase/forsale/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(atom_integrity <= (integrity_failure * max_integrity))
-		to_chat(user, span_notice("You start recalibrating [src]'s hover field..."))
+		to_chat(user, span_notice("你开始重新校准 [src] 的悬浮场..."))
 		if(do_after(user, 2 SECONDS, target = src))
 			broken = FALSE
 			atom_integrity = max_integrity
@@ -639,36 +639,36 @@
 	. = ..()
 	if(open && !user.combat_mode)
 		if(anchored)
-			to_chat(user, span_notice("You start unsecuring [src]..."))
+			to_chat(user, span_notice("你开始解除固定[src]..."))
 		else
-			to_chat(user, span_notice("You start securing [src]..."))
+			to_chat(user, span_notice("你开始固定[src]..."))
 		if(I.use_tool(src, user, 16, volume=50))
 			if(QDELETED(I))
 				return
 			if(anchored)
-				to_chat(user, span_notice("You unsecure [src]."))
+				to_chat(user, span_notice("你解除固定了[src]."))
 			else
-				to_chat(user, span_notice("You secure [src]."))
+				to_chat(user, span_notice("你固定了[src]."))
 			set_anchored(!anchored)
 			return TRUE
 	else if(!open && !user.combat_mode)
-		to_chat(user, span_notice("[src] must be open to move it."))
+		to_chat(user, span_notice("移动 [src] 前必须将其打开。"))
 		return
 
 /obj/structure/displaycase/forsale/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	payments_acc = null
 	req_access = list()
-	balloon_alert(user, "account owner reset")
-	to_chat(user, span_warning("[src]'s card reader fizzles and smokes."))
+	balloon_alert(user, "账户所有者已重置")
+	to_chat(user, span_warning("[src] 的读卡器发出嘶嘶声并冒出烟雾。"))
 	return TRUE
 
 /obj/structure/displaycase/forsale/examine(mob/user)
 	. = ..()
 	if(showpiece && !open)
-		. += span_notice("[showpiece] is for sale for [sale_price] [MONEY_NAME].")
+		. += span_notice("[showpiece] 正在出售，价格为 [sale_price] [MONEY_NAME]。")
 	if(broken)
-		. += span_notice("[src] is sparking and the hover field generator seems to be overloaded. Use a multitool to fix it.")
+		. += span_notice("[src] 正在冒火花，悬浮场发生器似乎过载了。使用多功能工具修复它。")
 
 /obj/structure/displaycase/forsale/atom_break(damage_flag)
 	. = ..()
@@ -679,5 +679,5 @@
 		trigger_alarm() //In case it's given an alarm anyway.
 
 /obj/structure/displaycase/forsale/kitchen
-	desc = "A display case with an ID-card swiper. Use your ID to purchase the contents. Meant for the bartender and chef."
+	desc = "一个带身份证刷卡器的陈列柜，使用您的ID购买，是为调酒师和厨师准备的。"
 	req_one_access = list(ACCESS_KITCHEN, ACCESS_BAR)

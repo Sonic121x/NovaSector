@@ -2,8 +2,8 @@
 #define MAX_VOTES 255
 
 /obj/structure/votebox
-	name = "voting box"
-	desc = "An automatic voting box."
+	name = "投票箱"
+	desc = "自动投票箱。"
 
 	icon = 'icons/obj/storage/box.dmi'
 	icon_state = "votebox_maint"
@@ -28,7 +28,7 @@
 		if(voting_active)
 			apply_vote(I,user)
 		else
-			to_chat(user,span_warning("[src] is in maintenance mode. Voting is not possible at the moment."))
+			to_chat(user,span_warning("[src]处于维护模式。目前无法投票。"))
 		return
 	return ..()
 
@@ -64,7 +64,7 @@
 	if(!can_interact(user))
 		return
 	if(!is_operator(user))
-		to_chat(user,span_warning("Voting box operator authorization required!"))
+		to_chat(user,span_warning("需要投票箱操作员授权！"))
 		return
 
 	if(href_list["act"])
@@ -77,7 +77,7 @@
 			if("reset_voted")
 				if(voted)
 					voted.Cut()
-				to_chat(user,span_notice("You reset the voter buffer. Everyone can vote again."))
+				to_chat(user,span_notice("你重置了投票者缓冲区。每个人都可以再次投票了。"))
 			if("raffle")
 				raffle(user)
 			if("shred")
@@ -90,11 +90,11 @@
 
 /obj/structure/votebox/proc/register_owner(obj/item/card/id/I,mob/living/user)
 	owner = I
-	to_chat(user,span_notice("You register [src] to your ID card."))
+	to_chat(user,span_notice("你将[src]注册到了你的ID卡上。"))
 	ui_interact(user)
 
 /obj/structure/votebox/proc/set_description(mob/user)
-	var/new_description = tgui_input_text(user, "Enter a new description", "Vote Description", vote_description, multiline = TRUE, max_length = MAX_DESC_LEN)
+	var/new_description = tgui_input_text(user, "输入新的描述", "投票描述", vote_description, multiline = TRUE, max_length = MAX_DESC_LEN)
 	if(new_description)
 		vote_description = new_description
 
@@ -105,16 +105,16 @@
 	var/obj/item/card/id/voter_card = user.get_idcard()
 	if(id_auth)
 		if(!voter_card)
-			to_chat(user,span_warning("[src] requires a valid ID card to vote!"))
+			to_chat(user,span_warning("[src]需要一张有效的ID卡才能投票！"))
 			return
 		if(voted && (voter_card in voted))
-			to_chat(user,span_warning("[src] allows only one vote per person."))
+			to_chat(user,span_warning("[src]只允许每人投一票。"))
 			return
 	if(user.transferItemToLoc(I,src))
 		if(!voted)
 			voted = list()
 		voted += voter_card
-		to_chat(user,span_notice("You cast your vote."))
+		to_chat(user,span_notice("你投出了你的选票。"))
 
 /obj/structure/votebox/proc/valid_vote(obj/item/paper/voting_slip)
 	if(voting_slip.get_total_length() > VOTE_TEXT_LIMIT)
@@ -128,7 +128,7 @@
 /obj/structure/votebox/proc/shred(mob/user)
 	for(var/obj/item/paper/P in contents)
 		qdel(P)
-	to_chat(user,span_notice("You shred the current votes."))
+	to_chat(user,span_notice("你粉碎了当前的选票。"))
 
 /obj/structure/votebox/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -138,10 +138,10 @@
 /obj/structure/votebox/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(voting_active)
-		to_chat(user,span_warning("You can only retrieve votes if maintenance mode is active!"))
+		to_chat(user,span_warning("只有在维护模式激活时才能取回选票！"))
 		return FALSE
 	dump_contents()
-	to_chat(user,span_notice("You open vote retrieval hatch and dump all the votes."))
+	to_chat(user,span_notice("你打开选票回收口，倒出了所有选票。"))
 	return TRUE
 
 /obj/structure/votebox/dump_contents()
@@ -157,11 +157,11 @@
 	for(var/obj/item/paper/P in contents)
 		options += P
 	if(!length(options))
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src]是空的！"))
 	else
 		var/obj/item/paper/P = pick(options)
 		user.put_in_hands(P)
-		to_chat(user, span_notice("[src] pops out random vote."))
+		to_chat(user, span_notice("[src]弹出了一张随机选票。"))
 
 /obj/structure/votebox/proc/print_tally(mob/user)
 	var/list/results = list()
@@ -211,10 +211,10 @@
 	tally += "</ol>"
 
 	vote_tally_paper.add_raw_text(tally.Join())
-	vote_tally_paper.name = "Voting Results"
+	vote_tally_paper.name = "投票结果"
 	vote_tally_paper.update_appearance()
 	user.put_in_hands(vote_tally_paper)
-	to_chat(user,span_notice("[src] prints out the voting tally."))
+	to_chat(user,span_notice("[src]打印出了投票统计结果。"))
 
 /obj/structure/votebox/update_icon_state()
 	icon_state = "votebox_[voting_active ? "active" : "maint"]"

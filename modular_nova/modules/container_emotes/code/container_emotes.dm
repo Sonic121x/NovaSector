@@ -5,7 +5,7 @@
 	set category = "IC"
 
 	if (isturf(src.loc))
-		to_chat(src, span_danger("You are not within anything!"))
+		to_chat(src, span_danger("你不在任何东西里面！"))
 		return
 	if (loc && (!src.IsUnconscious())) // If user's location is a turf, if it is not null, and if the user is not unconcious, continue.
 		usr.emote("exme")
@@ -23,10 +23,10 @@
 	if(QDELETED(user))
 		return FALSE
 	if(is_banned_from(user, "emote"))
-		tgui_alert(user, "You cannot send emotes (banned).")
+		tgui_alert(user, "你无法发送表情（已被封禁）。")
 		return FALSE
 	else if(user.client?.prefs?.muted & MUTE_IC)
-		tgui_alert(user, "You cannot send IC messages (muted).")
+		tgui_alert(user, "你无法发送IC消息（已被禁言）。")
 		return FALSE
 
 	var/times_searched = 0
@@ -50,21 +50,21 @@
 		can_use = FALSE
 
 	if (!can_use)
-		to_chat(user, span_danger("You are not within anything!")) // If user is banned from chat, emotes, or the user is not within anything (ex. a locker) return.
+		to_chat(user, span_danger("你不在任何东西里面！")) // If user is banned from chat, emotes, or the user is not within anything (ex. a locker) return.
 		return FALSE //im keeping this to_chat because this seems like a really common use case and i dont want to annoy players
 	else if(!params) // User didn't put anything after *exme when using the say hotkey, or just used the emote raw? Open a window.
-		container_emote = tgui_input_text(user, "What would you like to emote?", "Container Emote", max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+		container_emote = tgui_input_text(user, "你想要发送什么表情？", "容器表情", max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 		if(!container_emote)
 			return FALSE
 		var/list/choices = list("Visible","Audible")
-		var/type = tgui_input_list(user, "Is this a visible or audible emote?", "Container Emote", choices, FALSE)
+		var/type = tgui_input_list(user, "这是一个可见的还是可听的表情？", "容器表情", choices, FALSE)
 		switch(type)
 			if("Visible")
 				emote_type = EMOTE_VISIBLE
 			if("Audible")
 				emote_type = EMOTE_AUDIBLE
 			else
-				tgui_alert(user, "Unable to use this emote, must be either audible or visible.")
+				tgui_alert(user, "无法使用此表情，必须是可听或可见的。")
 				return
 		container_message = container_emote //Ill be honest I dont know why this is a thing but I'm too afraid to remove it.
 	else
@@ -91,7 +91,7 @@
 	if (length(locs_we_can_use) == 1)
 		picked_loc = pick(locs_we_can_use)
 	else
-		picked_loc = tgui_input_list(user, "Which container would you like your emote to originate from?", "Container emote", locs_we_can_use, FALSE)
+		picked_loc = tgui_input_list(user, "你希望你的表情从哪个容器发出？", "容器表情", locs_we_can_use, FALSE)
 
 	// Since the tgui input sleeps, we can no longer trust the status of any variable after this point
 	// Ex. we cannot assume the user exists anymore

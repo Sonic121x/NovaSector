@@ -67,6 +67,6 @@
 	if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_BUMP_ATTACK))
 		TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, attack_cooldown)
 		INVOKE_ASYNC(target, TYPE_PROC_REF(/atom, attackby), our_weapon, bumper)
-		bumper.visible_message(span_danger("[bumper] charges into [target], attacking with [our_weapon]!"), span_danger("You charge into [target], attacking with [our_weapon]!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		bumper.visible_message(span_danger("[bumper]冲向[target]，用[our_weapon]发动攻击！"), span_danger("你冲向[target]，用[our_weapon]发动攻击！"), vision_distance = COMBAT_MESSAGE_RANGE)
 
 #undef COOLDOWN_BUMP_ATTACK

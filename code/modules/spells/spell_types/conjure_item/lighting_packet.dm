@@ -1,6 +1,6 @@
 
 /datum/action/cooldown/spell/conjure_item/spellpacket
-	name = "Thrown Lightning"
+	name = "投掷闪电"
 	desc = "Forged from eldrich energies, a packet of pure power, \
 		known as a spell packet will appear in your hand, that - when thrown - will stun the target."
 	button_icon_state = "thrownlightning"
@@ -16,8 +16,8 @@
 	cast_on.throw_mode_on(THROW_MODE_TOGGLE)
 
 /obj/item/spellpacket/lightningbolt
-	name = "\improper Lightning bolt Spell Packet"
-	desc = "Some birdseed wrapped in cloth that crackles with electricity."
+	name = "\improper 闪电符咒包"
+	desc = "一些用布包裹着的鸟食，上面还带着噼里啪啦作响的电火花。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "snappop"
 	w_class = WEIGHT_CLASS_TINY

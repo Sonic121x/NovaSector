@@ -1,6 +1,6 @@
 // Species trait debuffs
 /datum/mood_event/dry_skin
-	description = "My skin feels awfully dry...\n"
+	description = "我的皮肤感觉非常干燥……\n"
 	mood_change = -2
 
 // Surgery mood debuffs

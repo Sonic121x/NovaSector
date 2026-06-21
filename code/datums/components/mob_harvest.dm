@@ -97,11 +97,11 @@
 	SIGNAL_HANDLER
 
 	if(amount_ready < 1)
-		examine_list += span_notice("[parent] seems like they could use a bit more time.")
+		examine_list += span_notice("[parent]看起来还需要一点时间。")
 	if(amount_ready > 1)
-		examine_list += span_notice("[parent] looks like they can be harvested about [amount_ready] times.")
+		examine_list += span_notice("[parent]看起来大约可以收获[amount_ready]次。")
 	if(amount_ready == 1)
-		examine_list += span_notice("[parent] looks ready to be harvested.")
+		examine_list += span_notice("[parent]看起来已经可以收获了。")
 
 ///signal called on parent being attacked with an item
 /datum/component/mob_harvest/proc/on_attackby(datum/source, obj/item/used_item, mob/user)
@@ -138,10 +138,10 @@
  */
 /datum/component/mob_harvest/proc/remove_wait_time(mob/user)
 	if(amount_ready >= max_ready)
-		to_chat(user, span_warning("[parent] looks too full to keep feeding!"))
+		to_chat(user, span_warning("[parent]看起来太饱了，不能再喂食了！"))
 		return
 	item_generation_time -= item_reduction_time
-	to_chat(user, span_notice("You feed [parent]."))
+	to_chat(user, span_notice("你喂食了[parent]。"))
 	return
 
 /**
@@ -152,12 +152,12 @@
  */
 /datum/component/mob_harvest/proc/harvest_item(mob/user)
 	if(amount_ready < 1)
-		to_chat(user, span_warning("[parent] doesn't seem to have enough [produced_item_desc] to harvest."))
+		to_chat(user, span_warning("[parent]似乎没有足够的[produced_item_desc]可供收获。"))
 		return
-	to_chat(user, span_notice("You start to harvest [produced_item_desc] from [parent]..."))
+	to_chat(user, span_notice("你开始从[parent]收获[produced_item_desc]..."))
 	if(do_after(user, item_harvest_time, target = parent))
 		playsound(parent, item_harvest_sound, 20, TRUE)
-		to_chat(user, span_notice("You harvest some [produced_item_desc] from [parent]."))
+		to_chat(user, span_notice("你从[parent]收获了一些[produced_item_desc]。"))
 		amount_ready--
 		if(!iscarbon(parent))
 			var/mob/living/living_parent = parent

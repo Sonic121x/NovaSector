@@ -51,7 +51,7 @@
 	ascension = /datum/heretic_knowledge/ultimate/rust_final
 
 /datum/heretic_knowledge/limited_amount/starting/base_rust
-	name = "Blacksmith's Tale"
+	name = "匠之叙事"
 	desc = "Opens up the Path of Rust to you. \
 		Allows you to transmute a knife with any trash item into a Rusty Blade. \
 		You can only create two at a time."
@@ -135,7 +135,7 @@
 	)
 
 /datum/heretic_knowledge/spell/area_conversion
-	name = "Aggressive Spread"
+	name = "侵略性播散"
 	desc = "Grants you Aggressive Spread, a spell that spreads rust to nearby surfaces. \
 		Already rusted surfaces are destroyed \ Also improves the rusting abilities of non rust-heretics."
 	gain_text = "All wise men know well not to visit the Rusted Hills... Yet the Blacksmith's tale was inspiring."
@@ -144,8 +144,8 @@
 	research_tree_icon_frame = 5
 
 /datum/heretic_knowledge/blade_upgrade/rust
-	name = "Toxic Blade"
-	desc = "Your Rusty Blade now disgusts enemies on attack \ Allows you to rust Titanium and Plastitanium.."
+	name = "毒素刃"
+	desc = "你的锈蚀之刃现在在攻击时会使敌人感到恶心。允许你锈蚀钛和塑钢钛。"
 	gain_text = "The Blacksmith hands you their blade. \"The Blade will guide you through the flesh, should you let it.\" \
 		The heavy rust weights it down. You stare deeply into it. The Rusted Hills call for you, now."
 	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'
@@ -160,7 +160,7 @@
 	. = ..()
 
 /datum/heretic_knowledge/spell/entropic_plume
-	name = "Entropic Plume"
+	name = "熵之金辉"
 	desc = "Grants you Entropic Plume, a spell that releases a vexing wave of Rust. \
 		Blinds, poisons, and inflicts Amok on any heathen it hits, causing them to strike \
 		at friend or foe wildly. Also rusts and destroys and surfaces it hits and improves the rusting abilities of non-rust heretics."
@@ -172,7 +172,7 @@
 	drafting_tier = 5
 
 /datum/heretic_knowledge/ultimate/rust_final
-	name = "Rustbringer's Oath"
+	name = "锈之领主的誓言"
 	desc = "The ascension ritual of the Path of Rust. \
 		Bring 3 corpses to a transmutation rune on the bridge of the station to complete the ritual. \
 		When completed, the ritual site will endlessly spread rust onto any surface, stopping for nothing. \
@@ -182,7 +182,7 @@
 		The Blacksmith forges ahead! Rusted Hills, CALL MY NAME! WITNESS MY ASCENSION!"
 
 	ascension_achievement = /datum/award/achievement/misc/rust_ascension
-	announcement_text = "%SPOOKY% Fear the decay, for the Rustbringer, %NAME% has ascended! None shall escape the corrosion! %SPOOKY%"
+	announcement_text = "%SPOOKY% 畏惧腐朽吧，因为锈蚀使者，%NAME% 已经飞升！无人能逃脱腐蚀！%SPOOKY%"
 	announcement_sound = 'sound/music/antag/heretic/ascend_rust.ogg'
 	/// If TRUE, then immunities are currently active.
 	var/immunities_active = FALSE
@@ -217,7 +217,7 @@
 	if(ritual_location)
 		var/area/our_area = get_area(loc)
 		if(!istype(our_area, ritual_location))
-			loc.balloon_alert(user, "ritual failed, must be in [initial(ritual_location.name)]!") // "must be in bridge"
+			loc.balloon_alert(user, "仪式失败，必须在[initial(ritual_location.name)]中！") // "must be in bridge"
 			return FALSE
 
 	return ..()

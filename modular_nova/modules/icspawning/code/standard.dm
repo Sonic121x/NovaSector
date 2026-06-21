@@ -7,8 +7,8 @@
 	e_cost = LASER_SHOTS(1000, STANDARD_CELL_CHARGE)
 
 /obj/item/clothing/suit/armor/vest/debug
-	name = "Bluespace Tech vest"
-	desc = "A sleek piece of armour designed for Bluespace agents."
+	name = "蓝空技术背心"
+	desc = "一件为蓝空特工设计的流线型护甲。"
 	armor_type = /datum/armor/vest_debug
 	w_class = WEIGHT_CLASS_TINY
 
@@ -26,10 +26,10 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/storage/belt/utility/full/powertools/debug
-	name = "\improper Bluespace Tech's belt"
+	name = "\improper 蓝空技术腰带"
 	w_class = WEIGHT_CLASS_TINY
 	storage_type = /datum/storage/debug
-	desc = "Can hold a boatload of things...  Why do you have this?!"
+	desc = "能装下一大堆东西…… 你为什么会有这个？！"
 	icon = 'modular_nova/modules/bluespace_admin/icons/obj/belt.dmi'
 	icon_state = "admeme_satchel"
 	worn_icon = 'modular_nova/modules/bluespace_admin/icons/mob/belt.dmi'
@@ -43,7 +43,7 @@
 
 
 /datum/outfit/debug/bst //Debug objs
-	name = "Bluespace Tech"
+	name = "蓝空技术员"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	belt = /obj/item/storage/belt/utility/full/powertools/debug
 	shoes = /obj/item/clothing/shoes/combat/debug
@@ -63,7 +63,7 @@
 	)
 
 /datum/outfit/admin/bst //Debug objs plus modsuit
-	name = "Bluespace Tech (MODsuit)"
+	name = "蓝空技术员（MOD防护服）"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	belt = /obj/item/storage/belt/utility/full/powertools/debug
 	shoes = /obj/item/clothing/shoes/combat/debug
@@ -83,8 +83,8 @@
 	)
 
 /obj/item/storage/part_replacer/bluespace/tier4/bst
-	name = "\improper Bluespace Tech RPED"
-	desc = "A specialized bluespace RPED for technicians that can manufacture stock parts on the fly. Alt-Right-Click to manufacture parts, change settings, or clear its internal storage."
+	name = "\improper 蓝空技术RPED"
+	desc = "一种为技术员设计的专用蓝空RPED，可以即时制造标准零件。Alt+右键点击以制造零件、更改设置或清空其内部存储。"
 	storage_type = /datum/storage/rped/bluespace/silly
 	/// Whether or not auto-clear is enabled
 	var/auto_clear = TRUE
@@ -236,12 +236,12 @@
 
 		// If it's not a /datum/stock_part subtype either, something has gone wrong and devs should probably be alerted.
 		if(found_matching < parts_amount_required)
-			to_chat(user, span_notice("Something went wrong manufacturing [req_component]. Alert the devs, and let them know what machine it was!"))
+			to_chat(user, span_notice("制造[req_component]时出了点问题。通知开发者，并告诉他们是什么机器！"))
 
 /// BSTs' special Bluespace RPED can manufacture parts on Alt-RMB, either cables, glass, machine boards, or stock parts.
 /obj/item/storage/part_replacer/bluespace/tier4/bst/click_alt_secondary(mob/user)
 	// Ask the user what they want to make, or if they want to clear the storage.
-	var/spawn_selection = tgui_input_list(user, "Pick a part, or clear storage", "RPED Manufacture", list("Clear All Items", "Toggle Auto-Clear", "Cables", "Glass", "Spare T4s", "Machine Board", "Stock Part", "Beaker"))
+	var/spawn_selection = tgui_input_list(user, "选择一个部件，或清空存储", "RPED制造", list("Clear All Items", "Toggle Auto-Clear", "Cables", "Glass", "Spare T4s", "Machine Board", "Stock Part", "Beaker"))
 	// If they didn't cancel out of the list selection, we do things.  Clear-all removes all items, auto-clear destroys left-overs after upgrades, and everything else is pretty self-explanatory.
 	// Machine boards and stock parts use a recursive subtype selector.
 	if(isnull(spawn_selection))
@@ -252,7 +252,7 @@
 			qdel(stored_item)
 	else if(spawn_selection == "Toggle Auto-Clear")
 		auto_clear = !auto_clear
-		to_chat(user, span_notice("The RPED will now [(auto_clear ? "destroy" : "keep")] items left-over after upgrades."))
+		to_chat(user, span_notice("该RPED现在将在升级后[(auto_clear ? "destroy" : "keep")]剩余物品。"))
 	else if(spawn_selection == "Cables")
 		atom_storage.attempt_insert(new /obj/item/stack/cable_coil(src), user, TRUE)
 	else if(spawn_selection == "Glass")
@@ -309,7 +309,7 @@
 			items_temp["[initial(path_as_obj.name)]: [path]"] = path
 
 	// Finally, once the listed is generated, ask the user what they want to spawn.
-	var/target_item = tgui_input_list(user, "Select Subtype", "RPED Manufacture", sort_list(items_temp))
+	var/target_item = tgui_input_list(user, "选择子类型", "RPED 制造", sort_list(items_temp))
 	if(target_item)
 		// If they select something, and the name:path binding is valid, then either spawn it, OR, if it has subtypes, and isn't the parent type, recurse to let them pick a subtype.
 		if(items_temp[target_item])

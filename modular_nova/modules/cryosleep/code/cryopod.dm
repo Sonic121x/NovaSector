@@ -17,8 +17,8 @@ GLOBAL_LIST_EMPTY(valid_cryopods)
 //Main cryopod console.
 
 /obj/machinery/computer/cryopod
-	name = "cryogenic oversight console"
-	desc = "An interface between crew and the cryogenic storage oversight systems."
+	name = "低温监管控制台"
+	desc = "船员与低温储存监控系统之间的交互界面。"
 	icon = 'modular_nova/modules/cryosleep/icons/cryogenics.dmi'
 	icon_state = "cellconsole_1"
 	icon_keyboard = null
@@ -27,9 +27,9 @@ GLOBAL_LIST_EMPTY(valid_cryopods)
 	density = FALSE
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE
 	req_one_access = list(ACCESS_COMMAND, ACCESS_ARMORY) // Heads of staff or the warden can go here to claim recover items from their department that people went were cryodormed with.
-	verb_say = "coldly states"
-	verb_ask = "queries"
-	verb_exclaim = "alarms"
+	verb_say = "冷冷地说道"
+	verb_ask = "查询"
+	verb_exclaim = "警报"
 
 	connectable = FALSE
 
@@ -164,8 +164,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 
 // Cryopods themselves.
 /obj/machinery/cryopod
-	name = "cryogenic freezer"
-	desc = "Suited for Cyborgs and Humanoids, the pod is a safe place for personnel affected by the Space Sleep Disorder to get some rest."
+	name = "低温冷冻舱"
+	desc = "该舱室适用于机械人和类人生物，是为受太空睡眠障碍影响的人员提供休息的安全场所。"
 	icon = 'modular_nova/modules/cryosleep/icons/cryogenics.dmi'
 	icon_state = "cryopod-open"
 	base_icon_state = "cryopod"
@@ -242,7 +242,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	..()
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant && mob_occupant.stat != DEAD)
-		to_chat(occupant, span_notice("<b>You feel cool air surround you. You go numb as your senses turn inward.</b>"))
+		to_chat(occupant, span_notice("<b>你感到冰冷的空气包围了你。随着感官向内收缩，你逐渐麻木。</b>"))
 
 	var/mob/living/carbon/human/human_occupant = occupant
 	if(istype(human_occupant) && human_occupant.mind)
@@ -282,8 +282,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	tucked = FALSE
 
 /obj/machinery/cryopod/container_resist_act(mob/living/user)
-	visible_message(span_notice("[occupant] emerges from [src]!"),
-		span_notice("You climb out of [src]!"))
+	visible_message(span_notice("[occupant] 从 [src] 中出来了！"),
+		span_notice("你从[src]里爬了出来！"))
 	open_machine()
 
 /obj/machinery/cryopod/relaymove(mob/user)
@@ -435,7 +435,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		if(!quiet)
 			control_computer.announce("CRYO_LEAVE", mob_occupant.real_name, announce_rank, occupant_job)
 
-	visible_message(span_notice("[src] hums and hisses as it moves [mob_occupant.real_name] into storage."))
+	visible_message(span_notice("[src] 发出嗡嗡声和嘶嘶声，将 [mob_occupant.real_name] 移入存储。"))
 
 	if(!HAS_TRAIT_FROM(mob_occupant, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)) // Don't let ghost cafe people store items
 		for(var/obj/item/item_content in mob_occupant)
@@ -492,17 +492,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		return
 
 	if(occupant)
-		to_chat(user, span_notice("[src] is already occupied!"))
+		to_chat(user, span_notice("[src] 已被占用！"))
 		return
 
 	if(target.stat == DEAD)
-		to_chat(user, span_notice("Dead people can not be put into cryo."))
+		to_chat(user, span_notice("死者不能被放入低温休眠舱。"))
 		return
 
 // Allows admins to enable players to override SSD Time check.
 	if(allow_timer_override)
-		if(tgui_alert(user, "Would you like to place [target] into [src]?", "Place into Cryopod?", list("Yes", "No")) != "No")
-			to_chat(user, span_danger("You put [target] into [src]. [target.p_Theyre()] in the cryopod."))
+		if(tgui_alert(user, "你想要将[target]放入[src]吗？", "放入低温休眠舱？", list("Yes", "No")) != "No")
+			to_chat(user, span_danger("你将 [target] 放入 [src]。[target.p_Theyre()] 在低温休眠舱里了。"))
 			log_admin("[key_name(user)] has put [key_name(target)] into a overridden stasis pod.")
 			message_admins("[key_name(user)] has put [key_name(target)] into a overridden stasis pod. [ADMIN_JMP(src)]")
 
@@ -516,14 +516,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		if (target.get_organ_by_type(/obj/item/organ/brain) ) //Target the Brain
 			if(!target.mind || target.ssd_indicator ) // Is the character empty / AI Controlled
 				if(target.lastclienttime + ssd_time >= world.time)
-					to_chat(user, span_notice("You can't put [target] into [src] for another [round(((ssd_time - (world.time - target.lastclienttime)) / (1 MINUTES)), 1)] minutes."))
+					to_chat(user, span_notice("你无法在接下来的 [round(((ssd_time - (world.time - target.lastclienttime)) / (1 MINUTES)), 1)] 分钟内将 [target] 放入 [src]。"))
 					log_admin("[key_name(user)] has attempted to put [key_name(target)] into a stasis pod, but they were only disconnected for [round(((world.time - target.lastclienttime) / (1 MINUTES)), 1)] minutes.")
 					message_admins("[key_name(user)] has attempted to put [key_name(target)] into a stasis pod. [ADMIN_JMP(src)]")
 					return
-				else if(tgui_alert(user, "Would you like to place [target] into [src]?", "Place into Cryopod?", list("Yes", "No")) == "Yes")
+				else if(tgui_alert(user, "你是否要将[target]放入[src]？", "放入低温休眠舱？", list("Yes", "No")) == "Yes")
 					if(target.mind.assigned_role.req_admin_notify)
-						tgui_alert(user, "They are an important role! [AHELP_FIRST_MESSAGE]")
-					to_chat(user, span_danger("You put [target] into [src]. [target.p_Theyre()] in the cryopod."))
+						tgui_alert(user, "他们担任着重要职务！[AHELP_FIRST_MESSAGE]")
+					to_chat(user, span_danger("你将 [target] 放入 [src]。[target.p_Theyre()] 在低温休眠舱里了。"))
 					log_admin("[key_name(user)] has put [key_name(target)] into a stasis pod.")
 					message_admins("[key_name(user)] has put [key_name(target)] into a stasis pod. [ADMIN_JMP(src)]")
 
@@ -533,30 +533,30 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 					name = "[name] ([target.name])"
 
 		else if(iscyborg(target))
-			to_chat(user, span_danger("You can't put [target] into [src]. [target.p_Theyre()] online."))
+			to_chat(user, span_danger("你无法将 [target] 放入 [src]。[target.p_Theyre()] 在线。"))
 		else
-			to_chat(user, span_danger("You can't put [target] into [src]. [target.p_Theyre()] conscious."))
+			to_chat(user, span_danger("你无法将 [target] 放入 [src]。[target.p_Theyre()] 意识清醒。"))
 		return
 
 	if(target == user)
 		var/fridge_text = "Enter cryosleep?"
 		if(!despawn_to_ghostcafe || !quiet)
 			fridge_text += " ([CONFIG_GET(string/cryo_policy)])"
-		if(tgui_alert(target, fridge_text, "Enter Cryopod?", list("Yes", "No")) != "Yes")
+		if(tgui_alert(target, fridge_text, "进入低温舱？", list("Yes", "No")) != "Yes")
 			return
 
 	if(target == user)
 		if(target.mind.assigned_role.req_admin_notify)
-			tgui_alert(target, "You're an important role! [AHELP_FIRST_MESSAGE]")
+			tgui_alert(target, "你担任着重要职务！[AHELP_FIRST_MESSAGE]")
 		var/datum/antagonist/antag = target.mind.has_antag_datum(/datum/antagonist)
 		if(antag)
 			tgui_alert(target, "You're \a [antag.name]! [AHELP_FIRST_MESSAGE]")
 
 	if(LAZYLEN(target.buckled_mobs) > 0)
 		if(target == user)
-			to_chat(user, span_danger("You can't fit into the cryopod while someone is buckled to you."))
+			to_chat(user, span_danger("当有人被绑在你身上时，你无法进入低温休眠舱。"))
 		else
-			to_chat(user, span_danger("You can't fit [target] into the cryopod while someone is buckled to them."))
+			to_chat(user, span_danger("当有人被绑在 [target] 身上时，你无法将其放入低温休眠舱。"))
 		return
 
 	if(!istype(target) || !can_interact(user) || !target.Adjacent(user) || !ismob(target) || isanimal(target) || !istype(user.loc, /turf) || target.buckled)
@@ -564,15 +564,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		// rerun the checks in case of shenanigans
 
 	if(occupant)
-		to_chat(user, span_notice("[src] is already occupied!"))
+		to_chat(user, span_notice("[src] 已被占用！"))
 		return
 
 	if(target == user)
-		visible_message(span_infoplain("[user] starts climbing into the cryo pod."))
+		visible_message(span_infoplain("[user] 开始爬入低温休眠舱。"))
 	else
-		visible_message(span_infoplain("[user] starts putting [target] into the cryo pod."))
+		visible_message(span_infoplain("[user] 开始将 [target] 放入低温休眠舱。"))
 
-	to_chat(target, span_warning("<b>If you remain in the pod for [time_till_despawn /10] seconds or ghost, your character will be permanently removed from the round.</b>"))
+	to_chat(target, span_warning("<b>如果你在舱内停留 [time_till_despawn /10] 秒或灵魂出窍，你的角色将从本轮游戏中永久移除。</b>"))
 
 	log_admin("[key_name(target)] entered a stasis pod.")
 	message_admins("[key_name_admin(target)] entered a stasis pod. [ADMIN_JMP(src)]")
@@ -591,9 +591,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		if(!occupant || !istype(occupant, /mob/living))
 			return
 		if(tucked)
-			to_chat(user, span_warning("[occupant.name] already looks pretty comfortable!"))
+			to_chat(user, span_warning("[occupant.name] 看起来已经很舒服了！"))
 			return
-		to_chat(user, span_notice("You tuck [occupant.name] into their pod!"))
+		to_chat(user, span_notice("你把 [occupant.name] 塞进了他们的休眠舱！"))
 		qdel(attacking_item)
 		user.add_mood_event("tucked", /datum/mood_event/tucked_in, occupant)
 		tucked = TRUE
@@ -603,8 +603,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	return ..()
 
 /obj/machinery/cryopod/despawn_to_ghostcafe
-	name = "Ghost Cafe Pod"
-	desc = parent_type::desc + " This one is primed to ship its occupant to the ghost cafe."
+	name = "幽灵咖啡馆休眠舱"
+	desc = parent_type::desc + "这个休眠舱已准备就绪，可将乘员送往幽灵咖啡馆。"
 	icon_state = "ghostcafepod-open"
 	base_icon_state = "ghostcafepod"
 	open_icon_state = "ghostcafepod-open"
@@ -680,14 +680,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/cryopod/prison, 18)
 	computer_area = /area/ruin/syndicate_lava_base/dormitories
 
 /datum/aas_config_entry/cryopod_announcement
-	name = "Departmental Alert: Cryogenic Sleeper Announcement"
+	name = "部门警报：低温休眠者通知"
 	announcement_lines_map = list(
-		"Awakening" = "%PERSON, %RANK has woken up from cryo storage.",
-		"Removing" = "%PERSON, %RANK has been moved to cryo storage.",
+		"Awakening" = "%PERSON, %RANK 已从低温储存中醒来。",
+		"Removing" = "%PERSON，%RANK 已被移入低温储存。",
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with their name.",
-		"RANK" = "with their job."
+		"PERSON" = "将被替换为其姓名。",
+		"RANK" = "将被替换为其工作。"
 	)
 
 #undef AHELP_FIRST_MESSAGE

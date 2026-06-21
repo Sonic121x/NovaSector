@@ -40,7 +40,7 @@
 
 
 /datum/outfit/job/paramedic
-	name = "Paramedic"
+	name = "急救员"
 	jobtype = /datum/job/paramedic
 
 	id = /obj/item/card/id/advanced
@@ -69,7 +69,7 @@
 	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/doctor/mod
-	name = "Paramedic (MODsuit)"
+	name = "护理员 (MOD防护服)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/medical

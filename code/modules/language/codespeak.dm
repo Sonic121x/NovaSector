@@ -1,6 +1,6 @@
 /datum/language/codespeak
-	name = "Codespeak"
-	desc = "Syndicate operatives can use a series of codewords to convey complex information, while sounding like random concepts and drinks to anyone listening in."
+	name = "密语"
+	desc = "辛迪加操作员可以使用一系列暗语来传递复杂的信息，而对于任何监听者来说，这些暗语听起来就像是随机的概念和饮料。"
 	key = "t"
 	default_priority = 0
 	flags = TONGUELESS_SPEECH | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD

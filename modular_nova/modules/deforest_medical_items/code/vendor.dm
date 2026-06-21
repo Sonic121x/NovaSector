@@ -1,6 +1,6 @@
 /obj/machinery/vending/deforest_medvend
-	name = "\improper DeForest Med-Vend"
-	desc = "A vending machine providing a selection of medical supplies."
+	name = "\improper 德福雷斯特医疗贩卖机"
+	desc = "一台提供多种医疗用品的贩卖机。"
 	icon = 'modular_nova/modules/deforest_medical_items/icons/vendor.dmi'
 	icon_state = "medvend"
 	panel_type = "panel15"

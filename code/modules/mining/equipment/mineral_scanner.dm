@@ -1,7 +1,7 @@
 /**********************Mining Scanners**********************/
 /obj/item/mining_scanner
-	desc = "A scanner that checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations."
-	name = "manual mining scanner"
+	desc = "一个用于探测周围岩石中有用矿物的手动式扫描仪；它也可以用来阻止爆裂闪矿的爆炸反应."
+	name = "手动矿物扫描仪"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "manual_mining"
 	inhand_icon_state = "analyzer"
@@ -34,8 +34,8 @@
 	qdel(src)
 
 /obj/item/t_scanner/adv_mining_scanner
-	desc = "A scanner that automatically checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations. This one has an extended range."
-	name = "advanced automatic mining scanner"
+	desc = "一个用于探测周围岩石中有用矿物的自动扫描仪；它也可以用来阻止爆裂闪矿的爆炸反应.这个型号有更大的探测范围."
+	name = "先进自动矿物扫描仪"
 	icon_state = "advmining0"
 	inhand_icon_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -59,8 +59,8 @@
 	toggle_on()
 
 /obj/item/t_scanner/adv_mining_scanner/lesser
-	name = "automatic mining scanner"
-	desc = "A scanner that automatically checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations."
+	name = "自动矿物扫描仪"
+	desc = "一个用于探测周围岩石中有用矿物的自动扫描仪；它也可以用来阻止爆裂闪矿的爆炸反应."
 	icon_state = "mining0"
 	range = 4
 	cooldown = 50

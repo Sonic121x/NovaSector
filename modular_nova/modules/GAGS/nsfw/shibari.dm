@@ -1,17 +1,17 @@
 //shibari
 
 /datum/greyscale_config/shibari_rope
-	name = "Shibari Rope"
+	name = "缚绳"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/items/shibari.json'
 
 /datum/greyscale_config/shibari_rope_inhand_left
-	name = "Shibari Rope (Inhand, Left)"
+	name = "缚绳（手持，左手）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/items/shibari_inhands.json'
 
 /datum/greyscale_config/shibari_rope_inhand_right
-	name = "Shibari Rope (Inhand, Right)"
+	name = "缚绳（手持，右手）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_right.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/items/shibari_inhands.json'
 
@@ -22,138 +22,138 @@
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/items/shibari_high.json'
 
 /datum/greyscale_config/shibari
-	name = "Shibari"
+	name = "缚绳"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_uniform.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/worn
-	name = "Shibari (Worn)"
+	name = "缚绳（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/worn/digi
-	name = "Shibari (Worn, Digi)"
+	name = "绳缚（已穿着，趾行）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-digi.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/worn/taur_snake
-	name = "Shibari (Worn, Taur Snake)"
+	name = "绳缚（已穿着，蛇形半人马）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-snake.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/worn/taur_paw
-	name = "Shibari (Worn, Taur Paw)"
+	name = "绳缚（已穿着，爪行半人马）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/worn/taur_hoof
-	name = "Shibari (Worn, Taur Hoof)"
+	name = "绳缚（已穿着，蹄行半人马）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-hoof.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 //body
 
 /datum/greyscale_config/shibari/body
-	name = "Shibari Body"
+	name = "绳缚躯干"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/body/worn
-	name = "Shibari Body (Worn)"
+	name = "绳缚躯干（已穿着）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/body/worn/digi
-	name = "Shibari Body (Worn, Digi)"
+	name = "绳缚躯干（已穿着，趾行）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/body/worn/taur_snake
-	name = "Shibari Body (Worn, Taur Snake)"
+	name = "绳缚躯干（已穿着，蛇形半人马）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/body/worn/taur_paw
-	name = "Shibari Body (Worn, Taur Paw)"
+	name = "绳缚躯干（已穿着，爪行半人马）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 /datum/greyscale_config/shibari/body/worn/taur_hoof
-	name = "Shibari Body (Worn, Taur Hoof)"
+	name = "绳缚躯干（已穿着，蹄行半人马）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/body.json'
 
 //groin
 
 /datum/greyscale_config/shibari/groin
-	name = "Shibari Groin"
+	name = "绳缚胯部"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn
-	name = "Shibari Groin (Worn)"
+	name = "绳缚胯部（已穿着）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/digi
-	name = "Shibari Groin (Worn, Digi)"
+	name = "绳缚胯部（已穿着，趾行）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/taur_snake
-	name = "Shibari Groin (Worn, Taur Snake)"
+	name = "绳缚胯部（已穿着，蛇形半人马）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/taur_paw
-	name = "Shibari Groin (Worn, Taur Paw)"
+	name = "绳缚胯部（已穿着，爪行半人马）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/taur_hoof
-	name = "Shibari Groin (Worn, Taur Hoof)"
+	name = "绳缚胯部（已穿着，蹄行半人马）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/groin.json'
 
 //fullbody
 
 /datum/greyscale_config/shibari/fullbody
-	name = "Shibari Fullbody"
+	name = "绳缚全身"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/fullbody.json'
 
 /datum/greyscale_config/shibari/worn/fullbody
-	name = "Shibari Fullbody (Worn)"
+	name = "绳缚全身（已穿着）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/digi
-	name = "Shibari Fullbody (Worn, Digi)"
+	name = "绳缚全身（已穿着，趾行）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/taur_snake
-	name = "Shibari Fullbody (Worn, Taur Snake)"
+	name = "绳缚全身（已穿着，蛇形半人马）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/taur_paw
-	name = "Shibari Fullbody (Worn, Taur Paw)"
+	name = "绳缚全身装（已穿着，兽足爪型）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/taur_hoof
-	name = "Shibari Fullbody (Worn, Taur Hoof)"
+	name = "绳缚全身装（已穿着，兽足蹄型）"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/fullbody.json'
 
 //hands
 
 /datum/greyscale_config/shibari/hands
-	name = "Shibari Hands"
+	name = "绳缚手部"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_gloves.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/hands.json'
 
 /datum/greyscale_config/shibari/hands/worn
-	name = "Shibari Hands (Worn)"
+	name = "绳缚手部（已穿着）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/hands.json'
 
 //legs
 
 /datum/greyscale_config/shibari/legs
-	name = "Shibari Legs"
+	name = "绳缚腿部"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_shoes.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/legs.json'
 
 /datum/greyscale_config/shibari/legs/worn
-	name = "Shibari Legs (Worn)"
+	name = "绳缚腿部（已穿着）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/legs.json'
 
 /datum/greyscale_config/shibari/legs/worn/digi
-	name = "Shibari Legs Digi (Worn, Digi)"
+	name = "绳缚腿部数字型（已穿着，数字型）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_digi.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/shibari/legs.json'

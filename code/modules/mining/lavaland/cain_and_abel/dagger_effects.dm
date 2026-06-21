@@ -18,7 +18,7 @@
 
 //flames we collect around our body
 /obj/effect/overlay/blood_wisp
-	name = "Blood Wisp"
+	name = "血之精魄"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 	vis_flags = VIS_INHERIT_PLANE
@@ -30,7 +30,7 @@
 
 //blade we hurl
 /obj/projectile/dagger
-	name = "Cain"
+	name = "该隐"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "cain_abel_attack"
 	damage = 10
@@ -191,7 +191,7 @@
 
 //wisp we hurl at monsters
 /obj/projectile/dagger_wisp
-	name = "dagger wisp"
+	name = "匕首精魄"
 	damage = 25
 	armor_flag = BOMB
 	light_power = 2

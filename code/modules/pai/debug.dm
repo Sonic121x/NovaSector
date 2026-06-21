@@ -7,16 +7,16 @@
 	for(var/mob/player as anything in GLOB.player_list)
 		if(player.client && player.key)
 			available.Add(player)
-	var/mob/choice = tgui_input_list(usr, "Choose a player to play the pAI", "Spawn pAI", sort_names(available))
+	var/mob/choice = tgui_input_list(usr, "选择一名玩家来扮演pAI", "生成pAI", sort_names(available))
 	if(isnull(choice))
 		return
 
-	var/chosen_name = input(choice, "Enter your pAI name:", "pAI Name", "Personal AI") as text|null
+	var/chosen_name = input(choice, "输入你的pAI名称：", "pAI名称", "个人AI") as text|null
 	if (isnull(chosen_name))
 		return
 
 	if(!isobserver(choice))
-		var/confirm = tgui_alert(usr, "[choice.key] isn't ghosting right now. Are you sure you want to yank them out of their body and place them in this pAI?", "Spawn pAI Confirmation", list("Yes", "No"))
+		var/confirm = tgui_alert(usr, "[choice.key]目前并非幽灵状态。你确定要将他们从其身体中拽出并放入这个pAI中吗？", "生成pAI确认", list("Yes", "No"))
 		if(confirm != "Yes")
 			return
 	var/obj/item/pai_card/card = new(target)

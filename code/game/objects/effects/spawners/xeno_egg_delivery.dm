@@ -1,5 +1,5 @@
 /obj/effect/spawner/xeno_egg_delivery
-	name = "xeno egg delivery"
+	name = "异形卵递送"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	icon_state = "egg_growing"
 
@@ -23,8 +23,8 @@
 	GLOB.communications_controller.command_report_footnotes += footnote
 
 /obj/structure/alien/egg/delivery
-	name = "xenobiological specimen egg"
-	desc = "A large mottled egg, sent as a part of a Xenobiological Research Initiative by the higher-ups. Handle with care!"
+	name = "异种生物样本卵"
+	desc = "一个巨大的斑驳卵，作为上级异种生物研究计划的一部分发送。小心处理！"
 	max_integrity = 300
 
 /obj/structure/alien/egg/delivery/Initialize(mapload)

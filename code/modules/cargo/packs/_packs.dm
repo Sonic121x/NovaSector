@@ -124,7 +124,7 @@
  * This is for adding custom orders to the Cargo console (like order consoles)
  */
 /datum/supply_pack/custom
-	name = "mining order"
+	name = "采矿订单"
 	order_flags = ORDER_INVISIBLE
 	crate_name = "shaft mining delivery crate"
 	access = ACCESS_MINING
@@ -132,19 +132,19 @@
 
 /datum/supply_pack/custom/New(purchaser, cost, list/contains)
 	. = ..()
-	name = "[purchaser]'s Mining Order"
+	name = "[purchaser]的采矿订单"
 	src.cost = cost
 	src.contains = contains
 
 /datum/supply_pack/custom/minerals
-	name = "materials order"
+	name = "材料订单"
 	crate_name = "galactic materials market delivery crate"
 	access = FALSE
 	crate_type = /obj/structure/closet/crate/cargo/mining
 
 /datum/supply_pack/custom/minerals/New(purchaser, cost, list/contains)
 	. = ..()
-	name = "[purchaser]'s Materials Order"
+	name = "[purchaser]的材料订单"
 	src.cost = cost
 	src.contains = contains
 

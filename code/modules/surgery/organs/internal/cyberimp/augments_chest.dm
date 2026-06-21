@@ -327,10 +327,10 @@
 		return NONE
 
 	if(core_applied)
-		user.balloon_alert(user, "core already installed!")
+		user.balloon_alert(user, "核心已安装！")
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert(user, "core installed")
+	user.balloon_alert(user, "核心已安装")
 	name = /obj/item/organ/cyberimp/chest/spine/atlas::name
 	desc = /obj/item/organ/cyberimp/chest/spine/atlas::desc
 	athletics_boost_multiplier = /obj/item/organ/cyberimp/chest/spine/atlas::athletics_boost_multiplier

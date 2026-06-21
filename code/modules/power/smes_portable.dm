@@ -1,8 +1,8 @@
 // idea inspired by vgstation, original pr on github vgstation-coders/vgstation13#4555
 
 /obj/machinery/power/smes/connector
-	name = "power connector"
-	desc = "A user-safe high-current contact port, used for connecting and interfacing with portable power storage units. Practically useless without one."
+	name = "电源连接器"
+	desc = "一个用户安全的高电流接触端口，用于连接便携式电力储存单元并与之交互。没有便携单元的话几乎没用。"
 	icon_state = "battery_port"
 	base_icon_state = "battery_port"
 	circuit = /obj/item/circuitboard/machine/smes/connector
@@ -67,7 +67,7 @@
 	PRIVATE_PROC(TRUE)
 
 	if(connected_smes)
-		balloon_alert(user, "disconnect SMES first!")
+		balloon_alert(user, "先断开SMES连接！")
 		return FALSE
 	return TRUE
 
@@ -97,7 +97,7 @@
 
 /obj/machinery/power/smes/connector/ui_interact(mob/user, datum/tgui/ui)
 	if(!connected_smes)
-		balloon_alert(user, "no power bank!")
+		balloon_alert(user, "没有电源组！")
 		return FALSE
 
 	return ..()
@@ -107,8 +107,8 @@
 
 /// The actual portable part of the portable SMES system. Pretty useless without an actual connector.
 /obj/machinery/smesbank
-	name = "portable power storage unit"
-	desc = "A portable, high-capacity superconducting magnetic energy storage (SMES) unit. Requires a separate power connector port to actually interface with power networks."
+	name = "便携式电力储存单元"
+	desc = "一台便携式、高容量的超导磁能储存（SMES）单元。需要一个独立的电源连接器端口才能实际接入电网。"
 	icon = 'icons/obj/machines/engine/other.dmi'
 	icon_state = "port_smes"
 	base_icon_state = "port_smes"
@@ -175,13 +175,13 @@
 
 /obj/machinery/smesbank/examine(user)
 	. = ..()
-	. += span_notice("its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("其维护面板可以[EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"]。")
 	if(connected_port)
-		. += span_notice("You need to [EXAMINE_HINT("unwrench")] from the port before deconstructing.")
+		. += span_notice("在解构前，你需要从端口[EXAMINE_HINT("unwrench")]。")
 	else
 		if(panel_open)
-			. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
-		. += span_notice("It should be [EXAMINE_HINT("wrenched")] onto a connector port to operate.")
+			. += span_notice("它可以被[EXAMINE_HINT("pried")]。")
+		. += span_notice("它应该被[EXAMINE_HINT("wrenched")]到连接器端口上才能运行。")
 
 /obj/machinery/smesbank/Destroy()
 	disconnect_port()
@@ -210,8 +210,8 @@
 			return ITEM_INTERACT_BLOCKING
 		user.visible_message( \
 			"[user] disconnects [src].", \
-			span_notice("You unfasten [src] from [connected_port]."), \
-			span_hear("You hear a ratchet."))
+			span_notice("你将 [src] 从 [connected_port] 上松开。"), \
+			span_hear("你听到棘轮声。"))
 		investigate_log("was disconnected from [connected_port] by [key_name(user)].", INVESTIGATE_ENGINE)
 		disconnect_port()
 		update_appearance(UPDATE_OVERLAYS)
@@ -224,8 +224,8 @@
 		return ITEM_INTERACT_BLOCKING
 	user.visible_message( \
 		"[user] connects [src].", \
-		span_notice("You fasten [src] to [possible_connector]."), \
-		span_hear("You hear a ratchet."))
+		span_notice("你将 [src] 固定到 [possible_connector] 上。"), \
+		span_hear("你听到棘轮声。"))
 	update_appearance(UPDATE_OVERLAYS)
 	investigate_log("was connected to [possible_connector] by [key_name(user)].", INVESTIGATE_ENGINE)
 	return ITEM_INTERACT_SUCCESS
@@ -239,7 +239,7 @@
 
 /obj/machinery/smesbank/crowbar_act(mob/living/user, obj/item/tool)
 	if(connected_port)
-		balloon_alert(user, "disconnect from [connected_port] first!")
+		balloon_alert(user, "先断开与[connected_port]的连接！")
 		return ITEM_INTERACT_FAILURE
 
 	return default_deconstruction_crowbar(user, tool)
@@ -257,13 +257,13 @@
 
 	if(QDELETED(possible_connector))
 		if(user)
-			balloon_alert(user, "no connector!")
+			balloon_alert(user, "没有连接器！")
 		return FALSE
 
 	//Make sure not already connected to something else
 	if(possible_connector.panel_open)
 		if(user)
-			balloon_alert(user, "close connector panel!")
+			balloon_alert(user, "关闭连接器面板！")
 		return FALSE
 
 	//Perform the connection
@@ -300,8 +300,8 @@
 			break
 
 /obj/machinery/smesbank/super
-	name = "super capacity power storage unit"
-	desc = "A portable, super-capacity, superconducting magnetic energy storage (SMES) unit. Relatively rare, and typically installed in long-range outposts where minimal maintenance is expected."
+	name = "超级容量电力储存单元"
+	desc = "一个便携式、超大容量的超导磁能储存（SMES）单元。相对稀有，通常安装在预期维护需求极少的远程前哨站。"
 	circuit = /obj/item/circuitboard/machine/smesbank/super
 
 /obj/machinery/smesbank/super/full

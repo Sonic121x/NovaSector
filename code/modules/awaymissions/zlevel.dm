@@ -9,10 +9,10 @@ GLOBAL_LIST_INIT(potentialConfigRandomZlevels, generate_map_list_from_directory(
 	else if(GLOB.potentialRandomZlevels?.len)
 		map = pick_n_take(GLOB.potentialRandomZlevels)
 	else
-		return to_chat(world, span_boldannounce("No valid away mission files, loading aborted."))
-	to_chat(world, span_boldannounce("Loading away mission..."))
+		return to_chat(world, span_boldannounce("未找到有效的远征任务文件，加载已中止。"))
+	to_chat(world, span_boldannounce("正在加载远征任务..."))
 	var/loaded = load_new_z_level(map, "Away Mission", config_gateway)
-	to_chat(world, span_boldannounce("Away mission [loaded ? "loaded" : "aborted due to errors"]."))
+	to_chat(world, span_boldannounce("远征任务 [loaded ? "loaded" : "aborted due to errors"]。"))
 	if(!loaded)
 		message_admins("Away mission [map] loading failed due to errors.")
 		log_admin("Away mission [map] loading failed due to errors.")
@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(potentialConfigRandomZlevels, generate_map_list_from_directory(
 
 /obj/effect/landmark/awaystart
 	name = "away mission spawn"
-	desc = "Randomly picked away mission spawn points."
+	desc = "随机选取的远征任务生成点。"
 	var/id
 	var/delay = TRUE // If the generated destination should be delayed by configured gateway delay
 

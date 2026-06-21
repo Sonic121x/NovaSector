@@ -2,7 +2,7 @@
 	title = ROLE_GLITCH
 
 /datum/antagonist/bitrunning_glitch
-	name = "Generic Bitrunning Glitch"
+	name = "通用比特运行故障"
 	antagpanel_category = ANTAG_GROUP_GLITCH
 	pref_flag = ROLE_GLITCH
 	preview_outfit = /datum/outfit/cyber_police

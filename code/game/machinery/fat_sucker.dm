@@ -1,6 +1,6 @@
 /obj/machinery/fat_sucker
-	name = "lipid extractor"
-	desc = "Safely and efficiently extracts excess fat from a subject."
+	name = "脂质提取器"
+	desc = "安全有效地从受试者体内提取多余脂肪"
 	icon = 'icons/obj/machines/fat_sucker.dmi'
 	icon_state = "fat"
 	circuit = /obj/item/circuitboard/machine/fat_sucker
@@ -52,7 +52,7 @@
 
 /obj/machinery/fat_sucker/close_machine(mob/user, density_to_set = TRUE)
 	if(panel_open)
-		to_chat(user, span_warning("You need to close the maintenance hatch first!"))
+		to_chat(user, span_warning("需要先关闭维修舱口."))
 		return
 	..()
 	playsound(src, 'sound/machines/click.ogg', 50)
@@ -74,18 +74,18 @@
 
 /obj/machinery/fat_sucker/container_resist_act(mob/living/user)
 	if(!free_exit || state_open)
-		to_chat(user, span_notice("The emergency release is not responding! You start pushing against the hull!"))
+		to_chat(user, span_notice("紧急释放没有响应！你开始推动船体！"))
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
 		user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
 			span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
-			span_hear("You hear a metallic creaking from [src]."))
+			span_hear("你听到 [src] 发出金属吱吱声。"))
 		if(do_after(user, breakout_time, target = src, hidden = TRUE))
 			if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
 				return
 			free_exit = TRUE
 			user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-				span_notice("You successfully break out of [src]!"))
+				span_notice("你成功逃离了 [src]！"))
 			open_machine()
 		return
 	open_machine()
@@ -96,17 +96,17 @@
 	else if(!processing || free_exit)
 		open_machine()
 	else
-		to_chat(user, span_warning("The safety hatch has been disabled!"))
+		to_chat(user, span_warning("安全舱口已禁用！"))
 
 /obj/machinery/fat_sucker/click_alt(mob/living/user)
 	if(user == occupant)
-		to_chat(user, span_warning("You can't reach the controls from inside!"))
+		to_chat(user, span_warning("您无法从内部访问控件！"))
 		return CLICK_ACTION_BLOCKING
 	if(!(obj_flags & EMAGGED) && !allowed(user))
-		to_chat(user, span_warning("You lack the required access."))
+		to_chat(user, span_warning("你缺少必要的权限。"))
 		return CLICK_ACTION_BLOCKING
 	free_exit = !free_exit
-	to_chat(user, span_notice("Safety hatch [free_exit ? "unlocked" : "locked"]."))
+	to_chat(user, span_notice("安全气闸 [free_exit ? "unlocked" : "locked"]."))
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/fat_sucker/update_overlays()
@@ -192,10 +192,10 @@
 
 /obj/machinery/fat_sucker/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src] 当前已被占用！"))
 		return ITEM_INTERACT_BLOCKING
 	if(state_open)
-		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
+		to_chat(user, span_warning("[src] 必须关闭才能[panel_open ? "close" : "open"]其维护区舱门！"))
 		return ITEM_INTERACT_BLOCKING
 	return default_deconstruction_screwdriver(user, tool)
 
@@ -207,6 +207,6 @@
 		return FALSE
 	start_at = 100
 	stop_at = 0
-	to_chat(user, span_notice("You remove the access restrictions and lower the automatic ejection threshold!"))
+	to_chat(user, span_notice("您可以删除访问限制并降低自动弹出阈值！"))
 	obj_flags |= EMAGGED
 	return TRUE

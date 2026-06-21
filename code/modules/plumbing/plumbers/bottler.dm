@@ -1,6 +1,6 @@
 /obj/machinery/plumbing/bottler
-	name = "chemical bottler"
-	desc = "Puts reagents into containers, like bottles and beakers in the tile facing the green light spot, they will exit on the red light spot if successfully filled."
+	name = "化学品分装机"
+	desc = "它会将试剂放入容器中，比如瓶状容器和烧杯之类的，放置在朝向绿色指示灯的区域。如果容器装满后，它们就会从红色指示灯处排出。"
 	icon_state = "bottler"
 	reagents = /datum/reagents
 	layer = ABOVE_ALL_MOB_LAYER
@@ -26,9 +26,9 @@
 
 /obj/machinery/plumbing/bottler/examine(mob/user)
 	. = ..()
-	. += span_notice("A small screen indicates that it will fill for [wanted_amount]u.")
+	. += span_notice("一个小屏幕显示它将填充 [wanted_amount]u。")
 	if(!valid_output_configuration)
-		. += span_warning("A flashing notification on the screen reads: \"Output location error!\"")
+		. += span_warning("屏幕上闪烁着一则通知：“输出位置错误！”")
 
 ///changes the tile array
 /obj/machinery/plumbing/bottler/setDir(newdir)
@@ -61,13 +61,13 @@
 /obj/machinery/plumbing/bottler/interact(mob/user)
 	. = ..()
 	if(!valid_output_configuration)
-		to_chat(user, span_warning("A flashing notification on the screen reads: \"Output location error!\""))
+		to_chat(user, span_warning("屏幕上闪烁着一则通知：“输出位置错误！”"))
 		return .
-	var/new_amount = tgui_input_number(user, "Set Amount to Fill", "Desired Amount", max_value = reagents.maximum_volume, round_value = TRUE)
+	var/new_amount = tgui_input_number(user, "设置填充量", "期望量", max_value = reagents.maximum_volume, round_value = TRUE)
 	if(!new_amount || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return .
 	wanted_amount = new_amount
-	to_chat(user, span_notice(" The [src] will now fill for [wanted_amount]u."))
+	to_chat(user, span_notice("该 [src] 现在将填充 [wanted_amount]u。"))
 
 /obj/machinery/plumbing/bottler/process(seconds_per_tick)
 	if(!is_operational)

@@ -1,6 +1,6 @@
 /obj/machinery/rnd/production
-	name = "technology fabricator"
-	desc = "Makes researched and prototype items with materials and energy."
+	name = "复合机"
+	desc = "利用原材料和能源进行研发并制作原型产品。"
 	/// Energy cost per full stack of materials spent. Material insertion is 40% of this.
 	active_power_usage = 0.05 * STANDARD_CELL_RATE
 	interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_MOUSEDROP_IGNORE_CHECKS
@@ -73,10 +73,10 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice("Material usage cost at <b>[efficiency_coeff * 100]%</b>.")
-	. += span_notice("Build time at <b>[efficiency_coeff * 100]%</b>.")
+	. += span_notice("材料使用成本为 <b>[efficiency_coeff * 100]%</b>。")
+	. += span_notice("建造时间为 <b>[efficiency_coeff * 100]%</b>。")
 	if(drop_direction)
-		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
+		. += span_notice("当前配置为将打印物体掉落至<b>[dir2text(drop_direction)]</b>方向。")
 		. += span_notice("[EXAMINE_HINT("Alt-click")] to reset.")
 	else
 		. += span_notice("[EXAMINE_HINT("Drag")] towards a direction (while next to it) to change drop direction.")
@@ -469,21 +469,21 @@
 	if(!can_interact(user) || (!HAS_SILICON_ACCESS(user) && !isAdminGhostAI(user)) && !Adjacent(user))
 		return
 	if(busy)
-		balloon_alert(user, "busy printing!")
+		balloon_alert(user, "正忙打印！")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+	balloon_alert(user, "掉落方向：[dir2text(drop_direction)]")
 
 /obj/machinery/rnd/production/click_alt(mob/user)
 	if(drop_direction == 0)
 		return CLICK_ACTION_BLOCKING
 	if(busy)
-		balloon_alert(user, "busy printing!")
+		balloon_alert(user, "正忙打印！")
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, "drop direction reset")
+	balloon_alert(user, "掉落方向已重置")
 	drop_direction = 0
 	return CLICK_ACTION_SUCCESS
 

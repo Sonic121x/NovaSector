@@ -1,11 +1,11 @@
 /obj/item/pai_card
 	custom_premium_price = PAYCHECK_COMMAND * 1.25
-	desc = "Downloads personal AI assistants to accompany its owner or others."
+	desc = "下载个人人工智能助手以便陪伴其主人或其他人。"
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "pai"
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
-	name = "personal AI device"
+	name = "个人AI设备"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
@@ -34,10 +34,10 @@
 /obj/item/pai_card/attackby(obj/item/used, mob/user, list/modifiers, list/attack_modifiers)
 	if(pai && istype(used, /obj/item/encryptionkey))
 		if(!pai.encrypt_mod)
-			to_chat(user, span_alert("Encryption Key ports not configured."))
+			to_chat(user, span_alert("加密密钥端口未配置。"))
 			return
 		pai.radio.attackby(used, user, modifiers)
-		to_chat(user, span_notice("You insert [used] into the [src]."))
+		to_chat(user, span_notice("你将[used]插入[src]。"))
 		return
 	return ..()
 
@@ -79,7 +79,7 @@
 		return pai.on_saboteur(source, disrupt_duration)
 
 /obj/item/pai_card/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is staring sadly at [src]! [user.p_They()] can't keep living without real human intimacy!"))
+	user.visible_message(span_suicide("[user]悲伤地凝视着[src]！[user.p_They()]无法在没有真实人类亲密关系的情况下继续生活！"))
 	return OXYLOSS
 
 /obj/item/pai_card/update_overlays()
@@ -200,7 +200,7 @@
 	add_alert()
 	addtimer(CALLBACK(src, PROC_REF(remove_alert)), 5 SECONDS)
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-	visible_message(span_notice("[src] flashes a message across its screen: New personalities available for download!"), blind_message = span_notice("[src] vibrates with an alert."))
+	visible_message(span_notice("[src] 屏幕上闪过一条信息：有新的人格可供下载！"), blind_message = span_notice("[src] 因警报而振动。"))
 
 /**
  * Downloads a candidate from the list and removes them from SSpai.candidates
@@ -214,7 +214,7 @@
 		return FALSE
 	var/datum/pai_candidate/candidate = SSpai.candidates[ckey]
 	if(!candidate?.check_ready())
-		balloon_alert(user, "download interrupted")
+		balloon_alert(user, "下载中断")
 		return FALSE
 	var/mob/living/silicon/pai/new_pai = new(src)
 	new_pai.name = candidate.name || pick(GLOB.ninja_names)
@@ -235,14 +235,14 @@
 	if(pai)
 		return FALSE
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SILICONS))
-		balloon_alert(user, "unavailable: NT blacklisted")
+		balloon_alert(user, "不可用：NT已列入黑名单")
 		return FALSE
 	if(request_spam)
-		balloon_alert(user, "request sent too recently")
+		balloon_alert(user, "请求发送过于频繁")
 		return FALSE
 	request_spam = TRUE
 	playsound(src, 'sound/machines/ping.ogg', 20, TRUE)
-	balloon_alert(user, "pAI assistance requested")
+	balloon_alert(user, "已请求pAI协助")
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/aicards.dmi', "pai")
 
 	notify_ghosts(

@@ -3,8 +3,8 @@
 */
 
 /turf/closed/indestructible/titanium
-	name = "wall"
-	desc = "A light-weight titanium wall used in shuttles."
+	name = "墙壁"
+	desc = "一种用于穿梭机的轻质钛合金墙壁。"
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
 	icon_state = "shuttle_wall-0"
 	base_icon_state = "shuttle_wall"

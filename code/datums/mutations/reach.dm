@@ -1,10 +1,10 @@
 ///Telekinesis lets you interact with objects from range, and gives you a light blue halo around your head.
 /datum/mutation/telekinesis
-	name = "Telekinesis"
-	desc = "A strange mutation that allows the holder to interact with objects through thought."
+	name = "心灵传动"
+	desc = "一种奇特的突变，允许持有者通过意念与物体互动。"
 	quality = POSITIVE
 	difficulty = 18
-	text_gain_indication = span_notice("You feel smarter!")
+	text_gain_indication = span_notice("你感觉更聪明了！")
 	limb_req = BODY_ZONE_HEAD
 	instability = POSITIVE_INSTABILITY_MAJOR
 	///Typecache of atoms that TK shouldn't interact with
@@ -40,12 +40,12 @@
 	return target.attack_tk(source)
 
 /datum/mutation/elastic_arms
-	name = "Elastic Arms"
-	desc = "Subject's arms have become elastic, allowing them to stretch up to a meter away. However, this elasticity makes it difficult to wear gloves, handle complex tasks, or grab large objects."
+	name = "弹性手臂"
+	desc = "受试者的手臂变得具有弹性，可以伸展至一米远。然而，这种弹性使得佩戴手套、处理复杂任务或抓取大型物体变得困难。"
 	quality = POSITIVE
 	instability = POSITIVE_INSTABILITY_MAJOR
-	text_gain_indication = span_warning("You feel armstrong!")
-	text_lose_indication = span_warning("Your arms stop feeling so saggy all the time.")
+	text_gain_indication = span_warning("你感觉手臂很强壮！")
+	text_lose_indication = span_warning("你的手臂不再感觉总是那么松垮了。")
 	difficulty = 32
 	mutation_traits = list(TRAIT_CHUNKYFINGERS, TRAIT_NO_TWOHANDING)
 
@@ -68,7 +68,7 @@
 /datum/mutation/elastic_arms/proc/on_owner_equipping_item(mob/living/carbon/human/owner, obj/item/pick_item)
 	SIGNAL_HANDLER
 	if((pick_item.w_class > WEIGHT_CLASS_BULKY) && !(pick_item.item_flags & (ABSTRACT|HAND_ITEM))) // cant decide if i should limit to huge or bulky.
-		pick_item.balloon_alert(owner, "arms too floppy to wield!")
+		pick_item.balloon_alert(owner, "手臂太软了，无法挥舞！")
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
 /// signal sent when owner tries to pull
@@ -77,10 +77,10 @@
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target.mob_size > MOB_SIZE_HUMAN)
-			living_target.balloon_alert(owner, "arms too floppy to pull this!")
+			living_target.balloon_alert(owner, "手臂太软了，拉不动这个！")
 			return COMSIG_LIVING_CANCEL_PULL
 	if(isitem(target))
 		var/obj/item/item_target = target
 		if(item_target.w_class > WEIGHT_CLASS_BULKY)
-			item_target.balloon_alert(owner, "arms too floppy to pull this!")
+			item_target.balloon_alert(owner, "手臂太软了，拉不动这个！")
 			return COMSIG_LIVING_CANCEL_PULL

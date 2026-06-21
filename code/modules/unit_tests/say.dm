@@ -152,13 +152,13 @@
 /datum/unit_test/speech/Run()
 	speaker = allocate(/mob/living/carbon/human/consistent)
 	// Name changes to make understanding breakpoints easier
-	speaker.name = "SPEAKER"
+	speaker.name = "发言者"
 	listener = allocate(/mob/living/carbon/human/consistent)
-	listener.name = "LISTENER"
+	listener.name = "聆听者"
 	speaker_radio = allocate(/obj/item/radio)
-	speaker_radio.name = "SPEAKER RADIO"
+	speaker_radio.name = "发言者无线电"
 	listener_radio = allocate(/obj/item/radio)
-	listener_radio.name = "LISTENER RADIO"
+	listener_radio.name = "聆听者无线电"
 	// Hear() requires a client otherwise it will early return
 	var/datum/client_interface/mock_client = new()
 	listener.mock_client = mock_client

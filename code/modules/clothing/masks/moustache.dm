@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/fakemoustache
-	name = "fake moustache"
-	desc = "Warning: moustache is fake."
+	name = "假胡子"
+	desc = "警告：胡子是假的。"
 	icon_state = "fake-moustache"
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
 	w_class = WEIGHT_CLASS_TINY
@@ -8,8 +8,8 @@
 	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/mask/fakemoustache/italian
-	name = "italian moustache"
-	desc = "Made from authentic Italian moustache hairs. Gives the wearer an irresistible urge to gesticulate wildly."
+	name = "意式胡子"
+	desc = "由正宗的意大利胡须毛制成。佩戴者会产生一种无法抗拒的、想要疯狂打手势的冲动。"
 
 /obj/item/clothing/mask/fakemoustache/italian/Initialize(mapload)
 	. = ..()

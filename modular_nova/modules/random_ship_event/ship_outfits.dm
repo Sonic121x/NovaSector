@@ -1,5 +1,5 @@
 /datum/outfit/ship_crew
-	name = "Ship Crew"
+	name = "飞船船员"
 
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/ship
@@ -27,7 +27,7 @@
 	crew_uniform?.set_sensor_mode(SENSOR_OFF)
 
 /datum/outfit/ship_crew/captain
-	name = "Ship Captain"
+	name = "飞船舰长"
 
 	id_trim = /datum/id_trim/ship/captain
 	head = /obj/item/clothing/head/hats/caphat/parade
@@ -36,7 +36,7 @@
 	l_pocket = /obj/item/melee/energy/sword/saber/purple
 
 /datum/outfit/ship_crew/rogue_trader
-	name = "Rogue Trader"
+	name = "浪迹商人"
 
 	id_trim = /datum/id_trim/ship/rogue
 	uniform = /obj/item/clothing/under/costume/pirate

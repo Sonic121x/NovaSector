@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/soundemitter
 	display_name = "Sound Emitter"
-	desc = "A component that emits a sound when it receives an input. The frequency is a multiplier which determines the speed at which the sound is played"
+	desc = "一种在接收到输入时会发出声音的组件。其频率是一个乘数，用于决定声音播放的速度。"
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

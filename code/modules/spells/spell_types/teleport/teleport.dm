@@ -1,7 +1,7 @@
 /// The wizard's teleport SPELL
 /datum/action/cooldown/spell/teleport/area_teleport/wizard
-	name = "Teleport"
-	desc = "This spell teleports you to an area of your selection."
+	name = "传送"
+	desc = "这个咒语将你传送到你所选择的区域。"
 	button_icon_state = "teleport"
 	sound = 'sound/effects/magic/teleport_diss.ogg'
 
@@ -20,7 +20,7 @@
 
 // Santa's teleport, themed as such
 /datum/action/cooldown/spell/teleport/area_teleport/wizard/santa
-	name = "Santa Teleport"
+	name = "圣诞传送术"
 
 	invocation = "HO HO HO!"
 	spell_requirements = NONE
@@ -30,7 +30,7 @@
 
 /// Used by the wizard's teleport scroll
 /datum/action/cooldown/spell/teleport/area_teleport/wizard/scroll
-	name = "Teleport (scroll)"
+	name = "传送（滚动条）"
 	cooldown_time = 0 SECONDS
 
 	invocation = null

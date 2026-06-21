@@ -1,6 +1,6 @@
 /datum/design/ai_uplink_upload
-	name = "AI Uplink Brain"
-	desc = "A synthetic brain with capability to let AI control bodies directly."
+	name = "AI 上行链路大脑"
+	desc = "一种合成大脑，具备让 AI 直接控制身体的能力。"
 	id = "ai_uplink_brain"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(

@@ -328,7 +328,7 @@
 		if("deny")
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, "Denial Reason", "Enter a reason for denying this application:", max_length = MAX_MESSAGE_LEN)
+			var/denied_reason = tgui_input_text(usr, "拒绝理由", "输入拒绝此申请的理由：", max_length = MAX_MESSAGE_LEN)
 			// Checking to see if the user is spamming the button, async and all.
 			if((status == OPFOR_STATUS_DENIED) || !denied_reason)
 				return
@@ -348,7 +348,7 @@
 		if("deny_objective")
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, "Denial Reason", "Enter a reason for denying this objective:", max_length = MAX_NAME_LEN)
+			var/denied_reason = tgui_input_text(usr, "拒绝理由", "输入拒绝此目标的理由：", max_length = MAX_NAME_LEN)
 			if(!denied_reason)
 				return
 			deny_objective(usr, edited_objective, denied_reason)
@@ -365,7 +365,7 @@
 				return
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, "Denial Reason", "Enter a reason for denying this objective:", max_length = MAX_NAME_LEN)
+			var/denied_reason = tgui_input_text(usr, "拒绝理由", "输入拒绝此目标的理由：", max_length = MAX_NAME_LEN)
 			if(!denied_reason)
 				return
 			deny_equipment(usr, equipment, denied_reason)
@@ -383,7 +383,7 @@
 
 /datum/opposing_force/proc/handle(mob/user)
 	if(handling_admin)
-		var/choice = tgui_alert(user, "Another admin is currently handling this application, do you want to override them?", "Admin Handling", list("Yes", "No"))
+		var/choice = tgui_alert(user, "另一名管理员正在处理此申请，您要覆盖他们吗？", "管理员处理", list("Yes", "No"))
 		if(choice == "No")
 			return
 	handling_admin = get_admin_ckey(user)
@@ -528,7 +528,7 @@
 /datum/opposing_force/proc/modify_request(mob/user)
 	if(status == OPFOR_STATUS_CHANGES_REQUESTED)
 		return
-	var/choice = tgui_alert(user, "Are you sure you want to request changes? This will unapprove all objectives.", "Confirm", list("Yes", "No"))
+	var/choice = tgui_alert(user, "你确定要请求修改吗？这将使所有目标变为未批准状态。", "确认", list("Yes", "No"))
 	if(choice != "Yes")
 		return
 	if(status == OPFOR_STATUS_CHANGES_REQUESTED) // The alert is not async, so this could change, thus being spammed.
@@ -556,9 +556,9 @@
 		opfor.status = OPFOR_OBJECTIVE_STATUS_DENIED
 	SEND_SOUND(mind_reference.current, sound('modular_nova/modules/opposing_force/sound/denied.ogg'))
 	add_log(denier.ckey, "Denied application")
-	to_chat(mind_reference.current, boxed_message(span_redtext("Your OPFOR application has been denied by [denier ? get_admin_ckey(denier) : "the OPFOR subsystem"]!")))
+	to_chat(mind_reference.current, boxed_message(span_redtext("你的OPFOR申请已被[denier ? get_admin_ckey(denier) : "the OPFOR subsystem"]拒绝！")))
 	send_system_message(get_admin_ckey(denier) + " has denied the application with the following reason: [reason]")
-	send_admins_opfor_message("[span_red("DENIED")]: [ADMIN_LOOKUPFLW(denier)] has denied [ckey]'s application([reason ? reason : "No reason specified"])")
+	send_admins_opfor_message("[span_red("DENIED")]: [ADMIN_LOOKUPFLW(denier)] 已拒绝了 [ckey] 的申请([reason ? reason : "No reason specified"])")
 	ticket_counter_add_handled(denier.key, 1)
 
 /datum/opposing_force/proc/approve(mob/approver)
@@ -575,15 +575,15 @@
 			continue
 		objective_denied = TRUE
 		break
-	to_chat(mind_reference.current, boxed_message(span_greentext("Your OPFOR application has been [objective_denied ? span_bold("partially approved (please view your OPFOR for details)") : span_bold("fully approved")] by [approver ? get_admin_ckey(approver) : "the OPFOR subsystem"]!")))
+	to_chat(mind_reference.current, boxed_message(span_greentext("你的OPFOR申请已被[objective_denied ? span_bold("partially approved (please view your OPFOR for details)") : span_bold("fully approved")]由[approver ? get_admin_ckey(approver) : "the OPFOR subsystem"]批准！")))
 	send_system_message("[approver ? get_admin_ckey(approver) : "The OPFOR subsystem"] has approved the application")
-	send_admins_opfor_message("[span_green("APPROVED")]: [ADMIN_LOOKUPFLW(approver)] has approved [ckey]'s application")
+	send_admins_opfor_message("[span_green("APPROVED")]: [ADMIN_LOOKUPFLW(approver)] 已批准了 [ckey] 的申请")
 	ticket_counter_add_handled(approver.key, 1)
 
 /datum/opposing_force/proc/close_application(mob/user)
 	if(status == OPFOR_STATUS_NOT_SUBMITTED)
 		return
-	var/choice = tgui_alert(user, "Are you sure you want withdraw your application?", "Confirm", list("Yes", "No"))
+	var/choice = tgui_alert(user, "你确定要撤回你的申请吗？", "确认", list("Yes", "No"))
 	if(choice != "Yes")
 		return
 	if(status == OPFOR_STATUS_NOT_SUBMITTED) // The alert is not async, so this could change, thus being spammed.
@@ -691,13 +691,13 @@
 	opposing_force_objective.denied_reason = deny_reason
 	add_log(user.ckey, "Denied objective([opposing_force_objective.title]) WITH REASON: [deny_reason]")
 	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has denied objective '[opposing_force_objective.title]' with the reason '[deny_reason]'")
-	to_chat(mind_reference?.current, span_warning("Your OPFOR objective [span_bold("[opposing_force_objective.title]")] has been denied."))
+	to_chat(mind_reference?.current, span_warning("你的OPFOR目标 [span_bold("[opposing_force_objective.title]")] 已被拒绝。"))
 
 /datum/opposing_force/proc/approve_objective(mob/user, datum/opposing_force_objective/opposing_force_objective)
 	opposing_force_objective.status = OPFOR_OBJECTIVE_STATUS_APPROVED
 	add_log(user.ckey, "Approved objective([opposing_force_objective.title])")
 	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has approved objective '[opposing_force_objective.title]'")
-	to_chat(mind_reference?.current, span_warning("Your OPFOR objective [span_bold("[opposing_force_objective.title]")] has been approved."))
+	to_chat(mind_reference?.current, span_warning("你的OPFOR目标 [span_bold("[opposing_force_objective.title]")] 已被批准。"))
 
 /**
  * System procs
@@ -896,7 +896,7 @@
 
 /// Allows a user to import an OPFOR from json
 /datum/opposing_force/proc/json_import(mob/importer)
-	var/file_uploaded = input(importer, "Choose a .json file to upload. (This WILL override your inputted data)", "Upload JSON template") as null|file
+	var/file_uploaded = input(importer, "选择一个要上传的.json文件。（这将覆盖你已输入的数据）", "上传JSON模板") as null|file
 	if(!file_uploaded)
 		return
 	if(copytext("[file_uploaded]", -5) != ".json") //5 == length(".json")

@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/enforcer
-	name = "\improper Enforcer magazine (10mm)"
-	desc = "A robust magazine for a robust handgun."
+	name = "\improper 执法者弹匣 (10mm)"
+	desc = "一把坚固手枪的坚固弹匣。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/scarborough_arms/ammo.dmi'
 	icon_state = "baypistol"
 	base_icon_state = "baypistol"
@@ -16,22 +16,22 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/enforcer/rubber
-	name = "\improper Enforcer magazine (10mm rubber)"
+	name = "\improper 执法者弹匣（10毫米橡胶弹）"
 	ammo_type = /obj/item/ammo_casing/c10mm/rubber
-	desc = parent_type::desc + "<br>Carries rubber rounds, which are less-lethal, dealing primarily stamina damage.";
+	desc = parent_type::desc + "<br>装载橡胶弹，属于低致命性弹药，主要造成耐力伤害。";
 	ammo_band_color = COLOR_AMMO_RUBBER
 
 /obj/item/ammo_box/magazine/enforcer/ap
-	name = "\improper Enforcer magazine (10mm AP)"
+	name = "\improper 执法者弹匣 (10mm 穿甲弹)"
 	MAGAZINE_TYPE_ARMORPIERCE
 	ammo_type = /obj/item/ammo_casing/c10mm/ap
 
 /obj/item/ammo_box/magazine/enforcer/hp
-	name = "\improper Enforcer magazine (10mm HP)"
+	name = "\improper 执法者弹匣 (10mm 空尖弹)"
 	MAGAZINE_TYPE_HOLLOWPOINT
 	ammo_type = /obj/item/ammo_casing/c10mm/hp
 
 /obj/item/ammo_box/magazine/enforcer/fire
-	name = "\improper Enforcer magazine (10mm incendiary)"
+	name = "\improper 执法者弹匣（10毫米燃烧弹）"
 	MAGAZINE_TYPE_INCENDIARY
 	ammo_type = /obj/item/ammo_casing/c10mm/fire

@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/pointed/projectile/furious_steel
-	name = "Furious Steel"
+	name = "狂怒钢"
 	desc = "Summon three silver blades which orbit you. \
 		While orbiting you, these blades will protect you from attacks, but will be consumed on use. \
 		Additionally, you can click to fire the blades at a target, dealing damage and causing bleeding."
@@ -115,7 +115,7 @@
 	current_amount--
 
 /obj/projectile/floating_blade
-	name = "blade"
+	name = "剑刃"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "dio_knife"
 	speed = 0.5
@@ -144,13 +144,13 @@
 				return PROJECTILE_PIERCE_PHASE
 
 		if(victim.can_block_magic(MAGIC_RESISTANCE))
-			visible_message(span_warning("[src] drops to the ground and melts on contact [victim]!"))
+			visible_message(span_warning("[src] 掉在地上，在接触[victim]时融化了！"))
 			return PROJECTILE_DELETE_WITHOUT_HITTING
 
 	return ..()
 
 /obj/projectile/floating_blade/haunted
-	name = "ritual blade"
+	name = "仪式刀刃"
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "render"
 	damage = 35
@@ -158,14 +158,14 @@
 	outline_color = "#D7CBCA"
 
 /datum/action/cooldown/spell/pointed/projectile/furious_steel/solo
-	name = "Lesser Furious Steel"
+	name = "次级狂怒钢刃"
 	cooldown_time = 20 SECONDS
 	projectile_amount = 1
 	active_msg = "You summon forth a blade of furious silver."
 	deactive_msg = "You conceal the blade of furious silver."
 
 /datum/action/cooldown/spell/pointed/projectile/furious_steel/haunted
-	name = "Cursed Steel"
+	name = "诅咒钢刃"
 	desc = "Summon two cursed blades which orbit you. \
 		While orbiting you, these blades will protect you from attacks, but will be consumed on use. \
 		Additionally, you can click to fire the blades at a target, dealing damage and causing bleeding."

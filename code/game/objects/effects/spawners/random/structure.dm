@@ -1,10 +1,10 @@
 /obj/effect/spawner/random/structure
-	name = "structure spawner"
-	desc = "Now you see me, now you don't..."
+	name = "结构生成器"
+	desc = "现在你可以看见我，而现在又不能了..."
 
 ///12% chance to spawn a ouija board, or a potted plant. Btw, Wawastation has a guaranteed board.
 /obj/effect/spawner/random/structure/twelve_percent_spirit_board
-	name = "12% spirit board"
+	name = "12% 通灵板"
 	icon_state = "spirit_board"
 	loot = list(
 		/obj/structure/spirit_board = 3,
@@ -12,7 +12,7 @@
 	)
 
 /obj/effect/spawner/random/structure/crate
-	name = "crate spawner"
+	name = "板条箱生成器"
 	icon_state = "crate_secure"
 	loot = list(
 		/obj/effect/spawner/random/structure/crate_loot = 744,
@@ -29,13 +29,13 @@
 	)
 
 /obj/effect/spawner/random/structure/crate_abandoned
-	name = "locked crate spawner"
+	name = "上锁板条箱生成器"
 	icon_state = "crate_secure"
 	spawn_loot_chance = 20
 	loot = list(/obj/structure/closet/crate/secure/loot)
 
 /obj/effect/spawner/random/structure/girder
-	name = "girder spawner"
+	name = "工字梁生成器"
 	icon_state = "girder"
 	spawn_loot_chance = 90
 	loot = list( // 80% chance normal girder, 10% chance of displaced, 10% chance of nothing
@@ -44,7 +44,7 @@
 	)
 
 /obj/effect/spawner/random/structure/grille
-	name = "grille spawner"
+	name = "格栅生成器"
 	icon_state = "grille"
 	spawn_loot_chance = 90
 	loot = list( // 80% chance normal grille, 10% chance of broken, 10% chance of nothing
@@ -53,7 +53,7 @@
 	)
 
 /obj/effect/spawner/random/structure/furniture_parts
-	name = "furniture parts spawner"
+	name = "家具部件生成器"
 	icon_state = "table_parts"
 	loot = list(
 		/obj/structure/table_frame,
@@ -62,7 +62,7 @@
 	)
 
 /obj/effect/spawner/random/structure/table_or_rack
-	name = "table or rack spawner"
+	name = "桌子或货架生成器"
 	icon_state = "rack_parts"
 	loot = list(
 		/obj/effect/spawner/random/structure/table,
@@ -70,7 +70,7 @@
 	)
 
 /obj/effect/spawner/random/structure/table
-	name = "table spawner"
+	name = "桌子生成器"
 	icon_state = "table"
 	loot = list(
 		/obj/structure/table = 40,
@@ -81,13 +81,13 @@
 	)
 
 /obj/effect/spawner/random/structure/table_fancy
-	name = "table spawner"
+	name = "桌子生成器"
 	icon_state = "table_fancy"
 	loot_type_path = /obj/structure/table/wood/fancy
 	loot = list()
 
 /obj/effect/spawner/random/structure/tank_holder
-	name = "tank holder spawner"
+	name = "储罐架生成器"
 	icon_state = "tank_holder"
 	loot = list(
 		/obj/structure/tank_holder/oxygen = 40,
@@ -97,7 +97,7 @@
 	)
 
 /obj/effect/spawner/random/structure/closet_empty
-	name = "empty closet spawner"
+	name = "空储物柜生成器"
 	icon_state = "locker"
 	loot = list(
 		/obj/structure/closet = 850,
@@ -113,7 +113,7 @@
 	return peek_a_boo
 
 /obj/effect/spawner/random/structure/closet_empty/crate
-	name = "empty crate spawner"
+	name = "空板条箱生成器"
 	icon_state = "crate"
 	loot = list(
 		/obj/structure/closet/crate = 20,
@@ -130,7 +130,7 @@
 	)
 
 /obj/effect/spawner/random/structure/closet_empty/crate/with_loot
-	name = "crate spawner with maintenance loot"
+	name = "带维护战利品的板条箱生成器"
 	icon_state = "crate"
 
 /obj/effect/spawner/random/structure/closet_empty/crate/with_loot/make_item(spawn_loc, type_path_to_make)
@@ -140,7 +140,7 @@
 	return closet_to_fill
 
 /obj/effect/spawner/random/structure/crate_loot
-	name = "lootcrate spawner"
+	name = "战利品箱生成器"
 	icon_state = "crate"
 	loot = list(
 		/obj/effect/spawner/random/structure/closet_empty/crate/with_loot = 15,
@@ -149,7 +149,7 @@
 	)
 
 /obj/effect/spawner/random/structure/closet_private
-	name = "private closet spawner"
+	name = "私人储物柜生成器"
 	icon_state = "cabinet"
 	loot = list(
 		/obj/structure/closet/secure_closet/personal,
@@ -157,7 +157,7 @@
 	)
 
 /obj/effect/spawner/random/structure/closet_maintenance
-	name = "maintenance closet spawner"
+	name = "维护储物柜生成器"
 	icon_state = "locker"
 	loot = list( // use these for maintenance areas
 		/obj/effect/spawner/random/structure/closet_empty = 10,
@@ -171,7 +171,7 @@
 	)
 
 /obj/effect/spawner/random/structure/chair_flipped
-	name = "flipped chair spawner"
+	name = "翻倒椅子生成器"
 	icon_state = "chair"
 	loot = list(
 		/obj/item/chair/wood,
@@ -181,13 +181,13 @@
 	)
 
 /obj/effect/spawner/random/structure/chair_comfy
-	name = "comfy chair spawner"
+	name = "舒适椅子生成器"
 	icon_state = "chair"
 	loot_type_path = /obj/structure/chair/comfy
 	loot = list()
 
 /obj/effect/spawner/random/structure/chair_maintenance
-	name = "maintenance chair spawner"
+	name = "维护椅子生成器"
 	icon_state = "chair"
 	loot = list(
 		/obj/structure/chair = 200,
@@ -203,7 +203,7 @@
 	)
 
 /obj/effect/spawner/random/structure/barricade
-	name = "barricade spawner"
+	name = "路障生成器"
 	icon_state = "barricade"
 	spawn_loot_chance = 80
 	loot = list(
@@ -212,12 +212,12 @@
 	)
 
 /obj/effect/spawner/random/structure/barricade/crude
-	name = "crude barricade spawner"
+	name = "粗糙路障生成器"
 	icon_state = "barricade_crude"
 	loot = list(/obj/structure/barricade/wooden/crude)
 
 /obj/effect/spawner/random/structure/billboard
-	name = "billboard spawner"
+	name = "广告牌生成器"
 	icon = 'icons/obj/fluff/billboard.dmi'
 	icon_state = "billboard_random"
 	loot = list(
@@ -229,21 +229,21 @@
 	)
 
 /obj/effect/spawner/random/structure/billboard/nanotrasen //useful for station maps- NT isn't the sort to advertise for competitors
-	name = "\improper Nanotrasen billboard spawner"
+	name = "\improper 纳能信广告牌生成器"
 	loot = list(
 		/obj/structure/billboard/nanotrasen = 35,
 		/obj/structure/billboard/nanotrasen/defaced = 15,
 	)
 
 /obj/effect/spawner/random/structure/billboard/lizardsgas //for the space ruin, The Lizard's Gas. I don't see much use for the sprites below anywhere else since they're unifunctional.
-	name = "\improper The Lizards Gas billboard spawner"
+	name = "\improper 蜥蜴燃气广告牌生成器"
 	loot = list(
 		/obj/structure/billboard/lizards_gas = 75,
 		/obj/structure/billboard/lizards_gas/defaced = 25,
 	)
 
 /obj/effect/spawner/random/structure/billboard/roadsigns //also pretty much only unifunctionally useful for gas stations
-	name = "\improper Gas Station billboard spawner"
+	name = "\improper 加油站广告牌生成器"
 	loot = list(
 		/obj/structure/billboard/roadsign/two,
 		/obj/structure/billboard/roadsign/twothousand,
@@ -252,14 +252,14 @@
 	)
 
 /obj/effect/spawner/random/structure/steam_vent
-	name = "steam vent spawner"
+	name = "蒸汽通风口生成器"
 	loot = list(
 		/obj/structure/steam_vent,
 		/obj/structure/steam_vent/fast,
 	)
 
 /obj/effect/spawner/random/structure/musician/piano/random_piano
-	name = "random piano spawner"
+	name = "随机钢琴生成器"
 	icon_state = "piano"
 	loot = list(
 		/obj/structure/musician/piano,
@@ -267,7 +267,7 @@
 	)
 
 /obj/effect/spawner/random/structure/shipping_container
-	name = "random shipping container spawner"
+	name = "随机货运集装箱生成器"
 	icon = 'icons/obj/fluff/containers.dmi'
 	icon_state = "random_container"
 	loot = list(
@@ -313,7 +313,7 @@
 	)
 
 /obj/effect/spawner/random/structure/shipping_container/blank
-	name = "random blank shipping container spawner"
+	name = "随机空白货运集装箱生成器"
 	loot = list(
 		/obj/structure/shipping_container = 3,
 		/obj/structure/shipping_container/blue = 3,
@@ -326,7 +326,7 @@
 	)
 
 /obj/effect/spawner/random/structure/syndicate //syndicate containers only
-	name = "random syndicate shipping container spawner"
+	name = "随机辛迪加货运集装箱生成器"
 	loot = list(
 		/obj/structure/shipping_container/biosustain = 3,
 		/obj/structure/shipping_container/cybersun = 2,
@@ -344,7 +344,7 @@
 	)
 
 /obj/effect/spawner/random/structure/shipping_container/station_appropriate //places extra emphasis on NT containers, excludes syndicate companies (except Donk. Co.) entirely
-	name = "station-appropriate shipping container spawner"
+	name = "空间站适用货运集装箱生成器"
 	loot = list(
 		/obj/structure/shipping_container/nanotrasen = 5,
 		/obj/structure/shipping_container/nthi = 1,
@@ -364,7 +364,7 @@
 	)
 
 /obj/effect/spawner/random/structure/shipping_container/reefer //reefers only
-	name = "random reefer container spawner"
+	name = "随机冷藏集装箱生成器"
 	loot = list(
 		/obj/structure/shipping_container/reefer = 3,
 		/obj/structure/shipping_container/reefer/biosustain = 3,
@@ -373,7 +373,7 @@
 	)
 
 /obj/effect/spawner/random/structure/shipping_container/gas //gas cisterns only
-	name = "random gas cistern spawner"
+	name = "随机燃气罐生成器"
 	loot = list(
 		/obj/structure/shipping_container/gas = 3,
 		/obj/structure/shipping_container/gas/apda = 3,

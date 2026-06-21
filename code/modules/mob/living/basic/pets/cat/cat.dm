@@ -1,6 +1,6 @@
 /mob/living/basic/pet/cat
-	name = "cat"
-	desc = "Kitty!!"
+	name = "猫"
+	desc = "小猫咪！！"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "cat2"
 	icon_living = "cat2"
@@ -168,8 +168,8 @@
 	)
 
 /mob/living/basic/pet/cat/space
-	name = "space cat"
-	desc = "They're a cat... in space!"
+	name = "太空猫"
+	desc = "他们是只猫……在太空里！"
 	icon_state = "spacecat"
 	icon_living = "spacecat"
 	icon_dead = "spacecat_dead"
@@ -179,8 +179,8 @@
 	held_state = "spacecat"
 
 /mob/living/basic/pet/cat/breadcat
-	name = "bread cat"
-	desc = "They're a cat... with a bread!"
+	name = "面包猫"
+	desc = "他们是只猫……还带着面包！"
 	icon_state = "breadcat"
 	icon_living = "breadcat"
 	icon_dead = "breadcat_dead"
@@ -201,8 +201,8 @@
 	return
 
 /mob/living/basic/pet/cat/original
-	name = "Batsy"
-	desc = "The product of alien DNA and bored geneticists."
+	name = "蝙蝠西"
+	desc = "外星DNA与无聊遗传学家的产物。"
 	gender = FEMALE
 	icon_state = "original"
 	icon_living = "original"
@@ -214,8 +214,8 @@
 	return
 
 /mob/living/basic/pet/cat/kitten
-	name = "kitten"
-	desc = "D'aaawwww."
+	name = "小猫"
+	desc = "好可爱啊啊啊。"
 	icon_state = "kitten"
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"
@@ -232,14 +232,14 @@
 	AddElement(/datum/element/basic_eating, food_types = huntable_items)
 
 /mob/living/basic/pet/cat/_proc
-	name = "Proc"
+	name = "普罗克"
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 
 /mob/living/basic/pet/cat/jerry //Holy shit we left jerry on donut ~ Arcane ~Fikou
-	name = "Jerry"
-	desc = "Tom is VERY amused."
+	name = "杰瑞"
+	desc = "汤姆觉得非常有趣。"
 	gender = MALE
 
 /mob/living/basic/pet/cat/tabby

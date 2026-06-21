@@ -1,12 +1,12 @@
 /obj/machinery/doppler_array
-	name = "tachyon-doppler array"
-	desc = "A highly precise directional sensor array which measures the release of quants from decaying tachyons. The doppler shifting of the mirror-image formed by these quants can reveal the size, location and temporal affects of energetic disturbances within a large radius ahead of the array.\n"
+	name = "速子多普勒效应阵列"
+	desc = "一台高精确的定向传感器阵列，用于测量衰变快子释放的量子量。这些量子形成的镜像多普勒频移可以揭示阵列前方大半径内能量扰动的大小、位置和时间影响。\n"
 	circuit = /obj/item/circuitboard/machine/doppler_array
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "tdoppler"
 	base_icon_state = "tdoppler"
 	density = TRUE
-	verb_say = "states coldly"
+	verb_say = "冷冷地说道"
 	var/cooldown = 10
 	var/next_announce = 0
 	var/max_dist = 150
@@ -34,7 +34,7 @@
 	AddElement(/datum/element/simple_rotation)
 
 /datum/data/tachyon_record
-	name = "Log Recording"
+	name = "日志记录"
 	var/timestamp
 	var/coordinates = ""
 	var/displacement = 0
@@ -46,14 +46,14 @@
 
 /obj/machinery/doppler_array/examine(mob/user)
 	. = ..()
-	. += span_notice("It is currently facing [dir2text(dir)]")
+	. += span_notice("它当前朝向 [dir2text(dir)]")
 
 /obj/machinery/doppler_array/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/disk/computer))
 		return NONE
 	eject_disk(user)
 	if(!user.transferItemToLoc(tool, src))
-		balloon_alert(user, "it's stuck to your hand!")
+		balloon_alert(user, "它粘在你手上了！")
 		return ITEM_INTERACT_BLOCKING
 	inserted_disk = tool
 	return ITEM_INTERACT_SUCCESS
@@ -168,7 +168,7 @@
 		return FALSE
 
 	var/datum/data/tachyon_record/new_record = new /datum/data/tachyon_record()
-	new_record.name = "Log Recording #[record_number]"
+	new_record.name = "日志记录 #[record_number]"
 	new_record.timestamp = "[server_timestamp(ic_time = TRUE)] (PT: [round_timestamp()])"
 	new_record.coordinates = "[epicenter.x], [epicenter.y]"
 	new_record.displacement = took

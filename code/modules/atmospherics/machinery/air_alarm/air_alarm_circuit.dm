@@ -1,6 +1,6 @@
 /obj/item/circuit_component/air_alarm_general
 	display_name = "Air Alarm"
-	desc = "Outputs basic information that the air alarm has recorded"
+	desc = "输出空气警报器已记录的基本信息"
 
 	var/obj/machinery/airalarm/connected_alarm
 
@@ -100,7 +100,7 @@
 
 /obj/item/circuit_component/air_alarm
 	display_name = "Air Alarm Core Control"
-	desc = "Controls levels of gases and their temperature as well as all vents and scrubbers in the room."
+	desc = "控制室内气体浓度、温度以及所有通风口和洗涤器的运作。"
 
 	var/datum/port/input/option/air_alarm_options
 
@@ -236,7 +236,7 @@
 
 /obj/item/circuit_component/air_alarm_scrubbers
 	display_name = "Air Alarm Scrubber Core Control"
-	desc = "Controls the scrubbers in the room."
+	desc = "控制室内的洗涤器。"
 
 	var/datum/port/input/option/scrubbers
 
@@ -445,7 +445,7 @@
 
 /obj/item/circuit_component/air_alarm_vents
 	display_name = "Air Alarm Vent Core Control"
-	desc = "Controls the vents in the room."
+	desc = "控制室内的通风口。"
 
 	var/datum/port/input/option/vents
 

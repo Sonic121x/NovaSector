@@ -103,7 +103,7 @@
 		qdel(src)
 
 /atom/movable/screen/alert/status_effect/ghoul
-	name = "Flesh Servant"
-	desc = "You are a Ghoul!"
+	name = "血肉仆从"
+	desc = "你则是食尸鬼"
 	icon_state = "heretic_template"
 	overlay_state = "mind_control"

@@ -18,4 +18,4 @@
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 	if (isliving(parent))
 		var/mob/living/living_parent = parent
-		living_parent.balloon_alert(living_parent, "can't move there!")
+		living_parent.balloon_alert(living_parent, "无法移动到那里！")

@@ -1,11 +1,11 @@
 /obj/machinery/teleport
-	name = "teleport"
+	name = "传送器"
 	icon = 'icons/obj/machines/teleporter.dmi'
 	density = TRUE
 
 /obj/machinery/teleport/hub
-	name = "teleporter hub"
-	desc = "It's the hub of a teleporting machine."
+	name = "传送机枢纽"
+	desc = "它是传送机的枢纽。"
 	icon_state = "tele0"
 	base_icon_state = "tele"
 	circuit = /obj/item/circuitboard/machine/teleporter_hub
@@ -33,7 +33,7 @@
 /obj/machinery/teleport/hub/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Success chance is <b>[70 + (accuracy * 10)]%</b>.")
+		. += span_notice("状态显示屏显示：成功率为<b>[70 + (accuracy * 10)]%</b>。")
 
 /obj/machinery/teleport/hub/proc/link_power_station()
 	if(power_station)
@@ -47,7 +47,7 @@
 
 /obj/machinery/teleport/hub/Bumped(atom/movable/AM)
 	if(is_centcom_level(z))
-		to_chat(AM, span_warning("You can't use this here!"))
+		to_chat(AM, span_warning("你不能在这里使用这个！"))
 		return
 	if(is_ready())
 		teleport(AM)
@@ -72,7 +72,7 @@
 		target = com.target_ref.resolve()
 	if (!target)
 		com.target_ref = null
-		visible_message(span_alert("Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."))
+		visible_message(span_alert("无法验证坐标锁定。请重新建立坐标矩阵。"))
 		return
 	if(!ismovable(M))
 		return
@@ -96,7 +96,7 @@
 		*/ //NOVA EDIT REMOVAL END
 		// NOVA EDIT ADDITION START
 		if(!HAS_TRAIT(human, TRAIT_NODISMEMBER))
-			to_chat(human, span_danger("Your limbs lose molecular cohesion as you teleport!"))
+			to_chat(human, span_danger("传送时，你的肢体失去了分子凝聚力！"))
 			var/list/bodyparts_dismember = list()
 			var/rad_mod = 0
 			for(var/obj/item/bodypart/BP in human.bodyparts)
@@ -128,8 +128,8 @@
 	RefreshParts()
 
 /obj/machinery/teleport/station
-	name = "teleporter station"
-	desc = "The power control station for a bluespace teleporter. Used for toggling power, and can activate a test-fire to prevent malfunctions."
+	name = "传送站"
+	desc = "蓝空传送机的电源控制站。用于切换电源，并可以测试发射以防止故障。"
 	icon_state = "controller"
 	base_icon_state = "controller"
 	circuit = /obj/item/circuitboard/machine/teleporter_station
@@ -153,11 +153,11 @@
 /obj/machinery/teleport/station/examine(mob/user)
 	. = ..()
 	if(!panel_open)
-		. += span_notice("The panel is <i>screwed</i> in, obstructing the linking device and wiring panel.")
+		. += span_notice("面板被<i>螺丝</i>固定，挡住了连接装置和接线面板。")
 	else
-		. += span_notice("The <i>linking</i> device is now able to be <i>scanned</i> with a multitool.")
+		. += span_notice("<i>连接</i>装置现在可以用多功能工具<i>扫描</i>了。")
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: This station can be linked to <b>[efficiency]</b> other station(s).")
+		. += span_notice("状态显示屏显示：此站点可连接到<b>[efficiency]</b>个其他站点。")
 
 /obj/machinery/teleport/station/proc/link_console_and_hub()
 	for(var/direction in GLOB.cardinals)
@@ -188,7 +188,7 @@
 
 	if(panel_open)
 		tool.set_buffer(src)
-		balloon_alert(user, "saved to multitool buffer")
+		balloon_alert(user, "已保存到多功能工具缓冲区")
 		return ITEM_INTERACT_SUCCESS
 
 	if(!istype(tool.buffer, /obj/machinery/teleport/station) || tool.buffer == src)
@@ -197,7 +197,7 @@
 	if(linked_stations.len < efficiency)
 		linked_stations.Add(tool.buffer)
 		tool.set_buffer(null)
-		balloon_alert(user, "data uploaded from buffer")
+		balloon_alert(user, "数据已从缓冲区上传")
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/teleport/station/screwdriver_act(mob/living/user, obj/item/tool)
@@ -214,14 +214,14 @@
 		return
 	if (teleporter_console.target_ref?.resolve())
 		if(teleporter_hub.panel_open || teleporter_hub.machine_stat & (BROKEN|NOPOWER))
-			to_chat(user, span_alert("The teleporter hub isn't responding."))
+			to_chat(user, span_alert("传送枢纽没有响应."))
 		else
 			engaged = !engaged
 			use_energy(active_power_usage)
-			to_chat(user, span_notice("Teleporter [engaged ? "" : "dis"]engaged!"))
+			to_chat(user, span_notice("传送器[engaged ? "" : "dis"]开连接！"))
 	else
 		teleporter_console.target_ref = null
-		to_chat(user, span_alert("No target detected."))
+		to_chat(user, span_alert("未检测到目标。"))
 		engaged = FALSE
 	teleporter_hub.update_appearance()
 	add_fingerprint(user)

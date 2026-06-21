@@ -48,7 +48,7 @@
 	icon_state = "Telecomms Specialist"
 
 /datum/outfit/job/telecomms_specialist
-	name = "Telecomms Specialist"
+	name = "电信专家"
 	jobtype = /datum/job/telecomms_specialist
 
 	id_trim = /datum/id_trim/job/telecomms_specialist
@@ -78,7 +78,7 @@
 	)
 
 /obj/item/modular_computer/pda/telecomms
-	name = "telecomms PDA"
+	name = "电信PDA"
 	icon_state = "/obj/item/modular_computer/pda/telecomms"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_split
 	greyscale_colors = "#3267B1#3D83E3#D99A2E"

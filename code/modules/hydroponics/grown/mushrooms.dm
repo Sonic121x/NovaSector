@@ -1,5 +1,5 @@
 /obj/item/food/grown/mushroom
-	name = "mushroom"
+	name = "蘑菇"
 	abstract_type = /obj/item/food/grown/mushroom
 	// This is a prototype that should never be spawned
 	// but we'll default it to SOME seed if it does end up spawning just so we don't runtime horribly
@@ -12,8 +12,8 @@
 
 // Reishi
 /obj/item/seeds/reishi
-	name = "reishi mycelium pack"
-	desc = "This mycelium grows into something medicinal and relaxing."
+	name = "灵芝菌丝包"
+	desc = "这灵芝菌丝体(reishi mycelium)会长成某种药用的、令人放松的东西。"
 	icon_state = "mycelium-reishi"
 	species = "reishi"
 	plantname = "Reishi"
@@ -34,13 +34,13 @@
 /obj/item/food/grown/mushroom/reishi
 	seed = /obj/item/seeds/reishi
 	name = "reishi"
-	desc = "<I>Ganoderma lucidum</I>: A special fungus known for its medicinal and stress relieving properties."
+	desc = "<I>Ganoderma lucidum 灵芝</I>: 一种特殊的真菌，以其药用和缓解压力的特性而闻名。"
 	icon_state = "reishi"
 
 // Fly Amanita
 /obj/item/seeds/amanita
-	name = "fly amanita mycelium pack"
-	desc = "This mycelium grows into something horrible."
+	name = "毒蝇伞菌丝包"
+	desc = "这种毒蝇鹅膏菌丝体(fly amanita mycelium)会长成可怕的东西。"
 	icon_state = "mycelium-amanita"
 	species = "amanita"
 	plantname = "Fly Amanitas"
@@ -60,14 +60,14 @@
 
 /obj/item/food/grown/mushroom/amanita
 	seed = /obj/item/seeds/amanita
-	name = "fly amanita"
-	desc = "<I>Amanita Muscaria</I>: Learn poisonous mushrooms by heart. Only pick mushrooms you know."
+	name = "毒蝇鹅膏菌"
+	desc = "<I>Amanita Muscaria 毒蝇鹅膏菌</I>: 熟记有毒蘑菇，只采摘你知道的蘑菇。"
 	icon_state = "amanita"
 
 // Destroying Angel
 /obj/item/seeds/angel
-	name = "destroying angel mycelium pack"
-	desc = "This mycelium grows into something devastating."
+	name = "毁灭天使菌丝包"
+	desc = "这种菌丝体会形成一种极具破坏力的物质。"
 	icon_state = "mycelium-angel"
 	species = "angel"
 	plantname = "Destroying Angels"
@@ -87,15 +87,15 @@
 
 /obj/item/food/grown/mushroom/angel
 	seed = /obj/item/seeds/angel
-	name = "destroying angel"
-	desc = "<I>Amanita Virosa</I>: Deadly poisonous basidiomycete fungus filled with alpha amatoxins."
+	name = "毁灭天使菌"
+	desc = "<I>毁灭天使菌</I>：一种致命的有毒菌类含有鹅膏菌毒素。"
 	icon_state = "angel"
 	wine_power = 60
 
 // Liberty Cap
 /obj/item/seeds/liberty
-	name = "liberty-cap mycelium pack"
-	desc = "This mycelium grows into liberty-cap mushrooms."
+	name = "自由帽菌丝包"
+	desc = "这种菌丝体生长成自由帽蘑菇。"
 	icon_state = "mycelium-liberty"
 	species = "liberty"
 	plantname = "Liberty-Caps"
@@ -113,15 +113,15 @@
 
 /obj/item/food/grown/mushroom/libertycap
 	seed = /obj/item/seeds/liberty
-	name = "liberty-cap"
-	desc = "<I>Psilocybe Semilanceata</I>: Liberate yourself!"
+	name = "自由帽菌"
+	desc = "<I>Psilocybe Semilanceata</I>：释放自我！"
 	icon_state = "libertycap"
 	wine_power = 80
 
 // Plump Helmet
 /obj/item/seeds/plump
-	name = "plump-helmet mycelium pack"
-	desc = "This mycelium grows into helmets... maybe."
+	name = "胖头盔菌丝包"
+	desc = "这种菌丝体会长成头盔状的结构……也许会这样。"
 	icon_state = "mycelium-plump"
 	species = "plump"
 	plantname = "Plump-Helmet Mushrooms"
@@ -139,15 +139,15 @@
 
 /obj/item/food/grown/mushroom/plumphelmet
 	seed = /obj/item/seeds/plump
-	name = "plump-helmet"
-	desc = "<I>Plumus Hellmus</I>: Plump, soft and s-so inviting~"
+	name = "肉盔菇"
+	desc = "<I>赫尔穆斯·普卢姆斯</I>：圆润、柔软且极具吸引力~"
 	icon_state = "plumphelmet"
 	distill_reagent = /datum/reagent/consumable/ethanol/manly_dorf
 
 // Walking Mushroom
 /obj/item/seeds/plump/walkingmushroom
-	name = "walking mushroom mycelium pack"
-	desc = "This mycelium will grow into huge stuff!"
+	name = "行走蘑菇菌丝包"
+	desc = "这种菌丝体将会长成巨大的东西！"
 	icon_state = "mycelium-walkingmushroom"
 	species = "walkingmushroom"
 	plantname = "Walking Mushrooms"
@@ -165,15 +165,15 @@
 
 /obj/item/food/grown/mushroom/walkingmushroom
 	seed = /obj/item/seeds/plump/walkingmushroom
-	name = "walking mushroom"
-	desc = "<I>Plumus Locomotus</I>: The beginning of the great walk."
+	name = "行走菇"
+	desc = "<I>Plumus Locomotus</I>:伟大的旅程的开端。"
 	icon_state = "walkingmushroom"
 	can_distill = FALSE
 
 // Chanterelle
 /obj/item/seeds/chanter
-	name = "chanterelle mycelium pack"
-	desc = "This mycelium grows into chanterelle mushrooms."
+	name = "鸡油菌菌丝包"
+	desc = "这种菌丝体会长成鸡油菌。"
 	icon_state = "mycelium-chanter"
 	species = "chanter"
 	plantname = "Chanterelle Mushrooms"
@@ -194,8 +194,8 @@
 
 /obj/item/food/grown/mushroom/chanterelle
 	seed = /obj/item/seeds/chanter
-	name = "chanterelle cluster"
-	desc = "<I>Cantharellus Cibarius</I>: These jolly yellow little shrooms sure look tasty!"
+	name = "鸡油菌丛"
+	desc = "<I>Cantharellus Cibarius</I>：这些欢快的黄色小蘑菇看起来真好吃！"
 	icon_state = "chanterelle"
 
 /obj/item/food/grown/mushroom/chanterelle/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
@@ -204,7 +204,7 @@
 	if(seed.potency < 95)
 		return ..()
 
-	to_chat(user, span_notice("You hollow up the chanterelle with [I]."))
+	to_chat(user, span_notice("你用[I]将鸡油菌挖空了。"))
 	remove_item_from_storage(user)
 	if(seed.resistance_flags & FIRE_PROOF)
 		user.put_in_hands(new /obj/item/clothing/head/wizard/chanterelle/fr())
@@ -214,8 +214,8 @@
 
 //Jupiter Cup
 /obj/item/seeds/chanter/jupitercup
-	name = "jupiter cup mycelium pack"
-	desc = "This mycelium grows into jupiter cups. Zeus would be envious at the power at your fingertips."
+	name = "木星杯菌丝包"
+	desc = "这种菌丝体会长成“朱庇特杯”的形状。宙斯要是看到你手中掌握着如此强大的力量，定会心生羡慕之情。"
 	icon_state = "mycelium-jupitercup"
 	species = "jupitercup"
 	plantname = "Jupiter Cups"
@@ -233,14 +233,14 @@
 
 /obj/item/food/grown/mushroom/jupitercup
 	seed = /obj/item/seeds/chanter/jupitercup
-	name = "jupiter cup"
-	desc = "A strange red mushroom, its surface is moist and slick. You wonder how many tiny worms have met their fate inside."
+	name = "木星帽菌"
+	desc = "一株奇特的红色蘑菇，其表面湿润且光滑。你不禁好奇，在其内部究竟有多少微小的虫子遭遇了厄运。"
 	icon_state = "jupitercup"
 
 // Glowshroom
 /obj/item/seeds/glowshroom
-	name = "glowshroom mycelium pack"
-	desc = "This mycelium -glows- into mushrooms!"
+	name = "荧光菇菌丝包"
+	desc = "这种菌丝体——会变成蘑菇！"
 	icon_state = "mycelium-glowshroom"
 	species = "glowshroom"
 	plantname = "Glowshrooms"
@@ -262,8 +262,8 @@
 
 /obj/item/food/grown/mushroom/glowshroom
 	seed = /obj/item/seeds/glowshroom
-	name = "glowshroom cluster"
-	desc = "<I>Mycena Bregprox</I>: This species of mushroom glows in the dark."
+	name = "荧光菇丛"
+	desc = "<I>Mycena Bregprox</I>：这种蘑菇会在黑暗中发光。"
 	icon_state = "glowshroom"
 	var/effect_path = /obj/structure/glowshroom
 	wine_power = 50
@@ -272,7 +272,7 @@
 	if(isspaceturf(user.loc))
 		return FALSE
 	if(!isturf(user.loc))
-		to_chat(user, span_warning("You need more space to plant [src]."))
+		to_chat(user, span_warning("你需要更多空间来种植[src]。"))
 		return FALSE
 	var/count = 0
 	var/maxcount = 1
@@ -283,10 +283,10 @@
 	for(var/obj/structure/glowshroom/G in user.loc)
 		count++
 	if(count >= maxcount)
-		to_chat(user, span_warning("There are too many shrooms here to plant [src]."))
+		to_chat(user, span_warning("这里的蘑菇太多了，无法种植[src]。"))
 		return FALSE
 	new effect_path(user.loc, seed)
-	to_chat(user, span_notice("You plant [src]."))
+	to_chat(user, span_notice("你种下了[src]。"))
 	seed = null // We pass our seed to our planted shroom, null it here
 	qdel(src)
 	return TRUE
@@ -294,8 +294,8 @@
 
 // Glowcap
 /obj/item/seeds/glowshroom/glowcap
-	name = "glowcap mycelium pack"
-	desc = "This mycelium -powers- into mushrooms!"
+	name = "光帽菇菌丝包"
+	desc = "这种菌丝体会发育成蘑菇！"
 	icon_state = "mycelium-glowcap"
 	species = "glowcap"
 	icon_harvest = "glowcap-harvest"
@@ -309,7 +309,7 @@
 
 /obj/item/food/grown/mushroom/glowshroom/glowcap
 	seed = /obj/item/seeds/glowshroom/glowcap
-	name = "glowcap cluster"
+	name = "发光帽丛"
 	desc = "<I>Mycena Ruthenia</I>: This species of mushroom glows in the dark, but isn't actually bioluminescent. They're warm to the touch..."
 	icon_state = "glowcap"
 	effect_path = /obj/structure/glowshroom/glowcap
@@ -318,8 +318,8 @@
 
 //Shadowshroom
 /obj/item/seeds/glowshroom/shadowshroom
-	name = "shadowshroom mycelium pack"
-	desc = "This mycelium will grow into something shadowy."
+	name = "暗影菇菌丝包"
+	desc = "这种菌丝体将会长成一片幽暗的景象。"
 	icon_state = "mycelium-shadowshroom"
 	species = "shadowshroom"
 	icon_grow = "shadowshroom-grow"
@@ -334,8 +334,8 @@
 
 /obj/item/food/grown/mushroom/glowshroom/shadowshroom
 	seed = /obj/item/seeds/glowshroom/shadowshroom
-	name = "shadowshroom cluster"
-	desc = "<I>Mycena Umbra</I>: This species of mushroom emits shadow instead of light."
+	name = "暗影菇丛"
+	desc = "<I>Mycena Umbra</I>：这种蘑菇散发的是阴影而非光芒。"
 	icon_state = "shadowshroom"
 	effect_path = /obj/structure/glowshroom/shadowshroom
 	tastes = list("shadow" = 1, "mushroom" = 1)
@@ -347,8 +347,8 @@
 		investigate_log("was planted by [key_name(user)] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
 
 /obj/item/seeds/odious_puffball
-	name = "odious pullball spore pack"
-	desc = "These spores reek! Disgusting."
+	name = "恶臭马勃孢子包"
+	desc = "这些孢子散发出难闻的气味！真恶心。"
 	icon_state = "seed-odiouspuffball"
 	species = "odiouspuffball"
 	growing_icon = 'icons/obj/service/hydroponics/growing_mushrooms.dmi'
@@ -369,8 +369,8 @@
 
 /obj/item/food/grown/mushroom/odious_puffball
 	seed = /obj/item/seeds/odious_puffball
-	name = "odious puffball"
-	desc = "<I>Lycoperdon Faetidus</I>: This puffball is considered a great nuisance not only because of the highly irritating nature of its spores, but also because of its considerable size and unsightly appearance."
+	name = "恶球菌"
+	desc = "<I>恶球菌</I>：这种球形菌类被视为一大害物，不仅是因为其孢子具有强烈的刺激性，还因为其体积庞大且外观难看。"
 	icon_state = "odious_puffball"
 	tastes = list("rotten garlic" = 2, "mushroom" = 1, "spores" = 1)
 	wine_power = 50

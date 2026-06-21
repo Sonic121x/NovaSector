@@ -2,16 +2,16 @@
 #define MODULAR_EYES_WORN_ICON 'modular_nova/master_files/icons/mob/clothing/eyes.dmi'
 
 /obj/item/clothing/glasses/eyepatch/wrap
-	name = "eye wrap"
-	desc = "A glorified bandage. At least this one's actually made for your head..."
+	name = "眼部绷带"
+	desc = "一个美化了的绷带。至少这个是真正为你的头部设计的……"
 	icon = MODULAR_EYES_ICON
 	worn_icon = MODULAR_EYES_WORN_ICON
 	icon_state = "eyewrap"
 	base_icon_state = "eyewrap"
 
 /obj/item/clothing/glasses/eyepatch/white
-	name = "white eyepatch"
-	desc = "This is what happens when a pirate gets a PhD."
+	name = "白色眼罩"
+	desc = "这就是海盗获得博士学位后的样子。"
 	icon = MODULAR_EYES_ICON
 	worn_icon = MODULAR_EYES_WORN_ICON
 	icon_state = "eyepatch_white"
@@ -31,8 +31,8 @@
 	new_icon_state = "glasses_alt_t"
 
 /obj/item/clothing/glasses/regular/modern
-	name = "modern glasses"
-	desc = "After Nerd. Co went bankrupt for tax evasion and invasion, they were bought out by Dork.Co, who revamped their classic design."
+	name = "现代眼镜"
+	desc = "在Nerd. Co公司因逃税和入侵而破产后，他们被Dork.Co收购，后者彻底改造了他们的经典设计。"
 	icon = MODULAR_EYES_ICON
 	worn_icon = MODULAR_EYES_WORN_ICON
 	icon_state = "glasses_alt"
@@ -42,16 +42,16 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/modern_glasses)
 
 /obj/item/clothing/glasses/trickblindfold/hamburg
-	name = "thief visor"
-	desc = "Perfect for stealing hamburgers from innocent multinational capitalist monopolies."
+	name = "窃贼面罩"
+	desc = "非常适合从无辜的跨国资本主义垄断企业那里偷汉堡。"
 	icon = MODULAR_EYES_ICON
 	worn_icon = MODULAR_EYES_WORN_ICON
 	icon_state = "thiefmask"
 
 ///GOGGLES
 /obj/item/clothing/glasses/biker
-	name = "biker goggles"
-	desc = "Brown leather riding gear, You can leave, just give us the gas."
+	name = "机车护目镜"
+	desc = "棕色皮革骑行装备，你可以离开，只要把汽油给我们。"
 	icon = MODULAR_EYES_ICON
 	worn_icon = MODULAR_EYES_WORN_ICON
 	icon_state = "biker"
@@ -60,8 +60,8 @@
 
 // Like sunglasses, but without any protection
 /obj/item/clothing/glasses/fake_sunglasses
-	name = "low-UV sunglasses"
-	desc = "A cheaper brand of sunglasses rated for much lower UV levels. Offers the user no protection against bright lights."
+	name = "低紫外线太阳镜"
+	desc = "一种更便宜的太阳镜品牌，其紫外线防护等级要低得多。无法为用户提供任何针对强光的保护。"
 	icon_state = "sun"
 	inhand_icon_state = "sunglasses"
 

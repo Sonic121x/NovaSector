@@ -2,8 +2,8 @@
 GLOBAL_LIST_EMPTY_TYPED(tracked_implants, /obj/item/implant)
 
 /obj/machinery/computer/prisoner/management
-	name = "prisoner management console"
-	desc = "Used to modify prisoner IDs, as well as manage security implants placed inside convicts and parolees."
+	name = "囚犯管理控制台"
+	desc = "用于修改囚犯ID，以及管理植入囚犯和假释犯体内的安保植入物。"
 	icon_screen = "explosive"
 	icon_keyboard = "security_key"
 	req_access = list(ACCESS_BRIG)
@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY_TYPED(tracked_implants, /obj/item/implant)
 			return TRUE
 
 		if("set_id_goal")
-			var/num = tgui_input_number(usr, "Enter the prisoner's goal", "Prisoner Management", 100, 1000, 1)
+			var/num = tgui_input_number(usr, "输入囚犯的目标", "囚犯管理", 100, 1000, 1)
 			if(!isnum(num) || QDELETED(src) || QDELETED(contained_id) || QDELETED(usr))
 				return TRUE
 			if(!is_operational || !usr.can_perform_action(src, NEED_DEXTERITY|ALLOW_SILICON_REACH))

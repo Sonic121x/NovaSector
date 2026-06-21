@@ -24,11 +24,11 @@
 			to_chat(usr, "This can only be used on instances of type /mob", confidential = TRUE)
 			return
 
-		var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
+		var/new_name = stripped_input(usr,"你想给这个生物起什么名字？","输入名字",M.real_name,MAX_NAME_LEN)
 
 		// If the new name is something that would be restricted by IC chat filters,
 		// give the admin a warning but allow them to do it anyway if they want.
-		if(is_ic_filtered(new_name) || is_soft_ic_filtered(new_name) && tgui_alert(usr, "Your selected name contains words restricted by IC chat filters. Confirm this new name?", "IC Chat Filter Conflict", list("Confirm", "Cancel")) == "Cancel")
+		if(is_ic_filtered(new_name) || is_soft_ic_filtered(new_name) && tgui_alert(usr, "你选择的名字包含被IC聊天过滤器限制的词语。确认使用这个新名字吗？", "IC聊天过滤器冲突", list("Confirm", "Cancel")) == "Cancel")
 			return
 
 		if( !new_name || !M )
@@ -62,7 +62,7 @@
 
 		var/Text = href_list["adjustDamage"]
 
-		var/amount = input("Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0) as num|null
+		var/amount = input("对生物造成多少伤害？（负值在此处为治疗）","调整 [Text]损失",0) as num|null
 
 		if (isnull(amount))
 			return
@@ -123,9 +123,9 @@
 
 		var/new_val
 		if(href_list["var_tweak"] == "damtype")
-			new_val = input("Enter the new damage type for [editing]","Set Damtype", existing_val) in list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN)
+			new_val = input("为 [editing] 输入新的伤害类型","设置伤害类型", existing_val) in list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN)
 		else
-			new_val = input("Enter the new value for [editing]'s [href_list["var_tweak"]]","Set [href_list["var_tweak"]]", existing_val) as num|null
+			new_val = input("为 [editing] 的 [href_list["var_tweak"]] 输入新值","设置 [href_list["var_tweak"]]", existing_val) as num|null
 		if(isnull(new_val) || new_val == existing_val || QDELETED(editing) || !check_rights(R_VAREDIT))
 			return
 

@@ -5,8 +5,8 @@
 #define SPIKES_ABILITY_TYPEPATH /datum/action/cooldown/mob_cooldown/chasing_spikes
 
 /mob/living/basic/meteor_heart
-	name = "meteor heart"
-	desc = "A pulsing lump of flesh and bone growing directly out of the ground."
+	name = "陨石之心"
+	desc = "一团直接从地面长出的、搏动着的血肉与骨骼。"
 	icon = 'icons/mob/simple/meteor_heart.dmi'
 	icon_state = "heart"
 	icon_living = "heart"
@@ -87,10 +87,10 @@
 
 /// Dramatic death animation for the meteor heart mob
 /obj/effect/temp_visual/meteor_heart_death
-	name = "meteor heart"
+	name = "陨石之心"
 	icon = 'icons/mob/simple/meteor_heart.dmi'
 	icon_state = "heart_dying"
-	desc = "You've killed this innocent asteroid, I hope you feel happy."
+	desc = "你杀死了这颗无辜的小行星，希望你感到开心。"
 	duration = 3 SECONDS
 	/// Looping heartbeat sound
 	var/datum/looping_sound/heartbeat/soundloop

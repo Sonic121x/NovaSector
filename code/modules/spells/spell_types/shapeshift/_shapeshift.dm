@@ -49,7 +49,7 @@
 		// However, we don't really want people casting shapeshift A to un-shapeshift from shapeshift B,
 		// as it could cause bugs or unintended behavior. So we'll just stop them here.
 		if(is_shifted(cast_on) && !is_type_in_list(cast_on, possible_shapes))
-			to_chat(cast_on, span_warning("This spell won't un-shapeshift you from this form!"))
+			to_chat(cast_on, span_warning("这个法术无法将你从这个形态中解除变形！"))
 			return . | SPELL_CANCEL_CAST
 
 		return
@@ -123,7 +123,7 @@
 	else
 		our_pipeline = pipenets
 
-	to_chat(cast_on, span_userdanger("Casting [src] inside of [pipe_you_die_in] quickly turns you into a bloody mush!"))
+	to_chat(cast_on, span_userdanger("在[pipe_you_die_in]内部施放[src]会迅速将你变成一团血肉模糊的浆糊！"))
 	var/obj/effect/gib_type = cast_on.get_gibs_type()
 
 	for(var/obj/machinery/atmospherics/components/unary/possible_vent in range(10, get_turf(cast_on)))
@@ -131,7 +131,7 @@
 			new gib_type(get_turf(possible_vent))
 			playsound(possible_vent, 'sound/mobs/non-humanoids/frog/reee.ogg', 75, TRUE)
 
-	priority_announce("We detected a pipe blockage around [get_area(get_turf(cast_on))], please dispatch someone to investigate.", "[command_name()]")
+	priority_announce("我们在[get_area(get_turf(cast_on))]附近检测到管道堵塞，请派人调查。", "[command_name()]")
 	// Gib our caster, and make sure to leave nothing behind
 	// (If we leave something behind, it'll drop on the turf of the pipe, which is kinda wrong.)
 	cast_on.investigate_log("has been gibbed by shapeshifting while ventcrawling.", INVESTIGATE_DEATHS)
@@ -153,7 +153,7 @@
 	if(!shapechange)
 		// We failed to shift, maybe because we were already shapeshifted?
 		// Whatver the case, this shouldn't happen, so throw a stack trace.
-		to_chat(caster, span_warning("You can't shapeshift in this form!"))
+		to_chat(caster, span_warning("你无法在这个形态下变形！"))
 		stack_trace("[type] do_shapeshift was called when the mob was already shapeshifted (from a spell).")
 		return
 
@@ -177,7 +177,7 @@
 	var/datum/status_effect/shapechange_mob/shapechange = caster.has_status_effect(shapechange_type)
 	if(!shapechange)
 		// We made it to do_unshapeshift without having a shapeshift status effect, this shouldn't happen.
-		to_chat(caster, span_warning("You can't un-shapeshift from this form!"))
+		to_chat(caster, span_warning("你无法从这个形态中解除变形！"))
 		stack_trace("[type] do_unshapeshift was called when the mob wasn't even shapeshifted (from a spell).")
 		return
 

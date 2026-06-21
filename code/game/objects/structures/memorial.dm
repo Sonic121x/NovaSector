@@ -12,7 +12,7 @@ This memorial has been designed for him and any future coders to perish.
 */
 
 /obj/structure/fluff/arc
-	name = "Tomb of the Unknown Employee"
+	name = "无名员工之墓"
 	desc = "Here rests an unknown employee\nUnknown by name or rank\nWhose acts will not be forgotten"
 	icon = 'icons/obj/fluff/tomb.dmi'
 	icon_state = "memorial"
@@ -38,8 +38,8 @@ So should you read this and should you get the chance, raise a glass in his memo
 That’s how he would have wanted it.
 */
 /obj/item/clothing/accessory/medal/gold/ordom
-	name = "\proper The OrdoM Memorial Medal For Excellence in Paperwork"
-	desc = "Awarded for outstanding excellence in paperwork, administration, and bureaucracy."
+	name = "\proper OrdoM 文书工作卓越纪念奖章"
+	desc = "因在文书工作、行政管理和官僚作风方面表现卓越而获奖。"
 	icon_state = "medal_paperwork"
 	medaltype = "medal-gold"
 	custom_materials = list(/datum/material/gold=HALF_SHEET_MATERIAL_AMOUNT)

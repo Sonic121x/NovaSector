@@ -1,5 +1,5 @@
 /datum/disease/magnitis
-	name = "Magnitis"
+	name = "磁力症"
 	max_stages = 4
 	spread_text = "Airborne"
 	cure_text = /datum/reagent/iron
@@ -24,7 +24,7 @@
 	switch(stage)
 		if(2)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your skin tingles with energy."))
+				to_chat(affected_mob, span_danger("你的皮肤因能量而刺痛。"))
 			if(SPT_PROB(1, seconds_per_tick))
 				for(var/obj/nearby_object in orange(2, affected_mob))
 					if(nearby_object.anchored || !(nearby_object.obj_flags & CONDUCTS_ELECTRICITY))
@@ -38,9 +38,9 @@
 					nearby_silicon.Move(get_step(nearby_silicon, move_dir), move_dir)
 		if(3)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your hair stands on end."))
+				to_chat(affected_mob, span_danger("你的头发竖了起来。"))
 			if(SPT_PROB(2, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel a light shock course through your body."))
+				to_chat(affected_mob, span_danger("你感到一阵轻微的电流穿过身体。"))
 				for(var/obj/nearby_object in orange(4, affected_mob))
 					if(nearby_object.anchored || !(nearby_object.obj_flags & CONDUCTS_ELECTRICITY))
 						continue
@@ -53,9 +53,9 @@
 						nearby_silicon.throw_at(affected_mob, 4, 3)
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You query upon the nature of miracles."))
+				to_chat(affected_mob, span_danger("你开始思考奇迹的本质。"))
 			if(SPT_PROB(4, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel a powerful shock course through your body."))
+				to_chat(affected_mob, span_danger("你感到一股强大的电流穿过身体。"))
 				for(var/obj/nearby_object in orange(6, affected_mob))
 					if(nearby_object.anchored || !(nearby_object.obj_flags & CONDUCTS_ELECTRICITY))
 						continue

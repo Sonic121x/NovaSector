@@ -60,13 +60,13 @@
 	user.do_attack_animation(target)
 	if (target == user)
 		user.visible_message(
-			span_danger("[user] stabs [user.p_them()]self in the eye with [item]!"),
-			span_userdanger("You stab yourself in the eye with [item]!"),
+			span_danger("[user] 用 [user.p_them()] 刺伤了 [item]自己的眼睛！"),
+			span_userdanger("你用[item]刺中了自己的眼睛！"),
 		)
 	else
 		target.visible_message(
-			span_danger("[user] stabs [target] in the eye with [item]!"),
-			span_userdanger("[user] stabs you in the eye with [item]!"),
+			span_danger("[user] 用 [target] 刺中了 [item] 的眼睛！"),
+			span_userdanger("[user] 用 [item] 刺中了你的眼睛！"),
 		)
 
 	if (target_limb)
@@ -90,7 +90,7 @@
 	// At over 10 damage we apply a lot of eye blur
 	target.adjust_eye_blur_up_to(30 SECONDS, EYESTAB_MAX_BLUR)
 	if (target.stat != DEAD && started_bleeding)
-		to_chat(target, span_danger("Your eyes start to bleed profusely!"))
+		to_chat(target, span_danger("你的眼睛开始大量出血！"))
 
 	// At over 10 damage, we cause at least enough eye damage to force nearsightedness
 	if (!target.is_nearsighted_from(EYE_DAMAGE) && eyes.damage <= eyes.low_threshold)
@@ -100,7 +100,7 @@
 	if (prob(50) && target.stat != DEAD)
 		var/list/dropped = target.drop_all_held_items()
 		if(length(dropped))
-			to_chat(target, span_danger("You drop what you're holding and clutch at your eyes!"))
+			to_chat(target, span_danger("你丢下手中的东西，捂住了眼睛！"))
 		target.adjust_eye_blur_up_to(20 SECONDS, EYESTAB_MAX_BLUR)
 		target.Unconscious(2 SECONDS)
 		target.Paralyze(4 SECONDS)
@@ -114,7 +114,7 @@
 			valid_sides += LEFT_EYE_SCAR
 		if (length(valid_sides))
 			var/picked_side = pick(valid_sides)
-			to_chat(target, span_userdanger("You feel searing pain shoot though your [picked_side == RIGHT_EYE_SCAR ? "right" : "left"] eye!"))
+			to_chat(target, span_userdanger("你感到一阵灼痛穿过你的[picked_side == RIGHT_EYE_SCAR ? "right" : "left"]眼睛！"))
 			// oof ouch my eyes
 			var/datum/wound/pierce/bleed/severe/eye/eye_puncture = new
 			eye_puncture.apply_wound(eyes.bodypart_owner, wound_source = "eye stab", right_side = picked_side)

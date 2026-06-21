@@ -1,8 +1,8 @@
 
 
 /obj/machinery/computer/order_console/mining
-	name = "mining equipment order console"
-	desc = "An equipment shop for miners, points collected at an ore redemption machine can be spent here."
+	name = "采矿设备订购台"
+	desc = "为矿工准备的设备商店，在矿石回收机收集的点数可以在这里消费。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "mining"
 	icon_keyboard = null
@@ -11,10 +11,10 @@
 	cooldown_time = 10 SECONDS //just time to let you know your order went through.
 	cargo_cost_multiplier = 0.65
 	express_cost_multiplier = 1
-	purchase_tooltip = @{"Your purchases will arrive at cargo,
-	and hopefully get delivered by them.
-	35% cheaper than express delivery."}
-	express_tooltip = @{"Sends your purchases instantly."}
+	purchase_tooltip = @{"您购买的商品将送达货物处，
+并希望由他们派送。
+比快递便宜35%。"}
+	express_tooltip = @{"立即发送您购买的商品。"}
 	credit_type = MONEY_MINING_SYMBOL
 
 	order_categories = list(
@@ -79,8 +79,8 @@
 /**********************Mining Equipment Voucher**********************/
 
 /obj/item/mining_voucher
-	name = "mining voucher"
-	desc = "A token to redeem a piece of equipment. Use it on a mining equipment vendor."
+	name = "采矿代金券"
+	desc = "用于兑换一件设备的代币。在采矿设备供应商处使用它。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "mining_voucher"
 	w_class = WEIGHT_CLASS_TINY
@@ -91,8 +91,8 @@
 #define TO_POINT_CARD "ID → Transfer Card"
 
 /obj/item/card/mining_point_card
-	name = "mining point transfer card"
-	desc = "A small, reusable card for transferring mining points. Swipe your ID card over it to start the process."
+	name = "矿点转移卡"
+	desc = "一张可重复使用的小卡片，用于转移矿点。将您的ID卡划过它以开始转移过程。"
 	icon_state = "data_1"
 
 	///Amount of points this card contains.
@@ -100,17 +100,17 @@
 
 /obj/item/card/mining_point_card/examine(mob/user)
 	. = ..()
-	. += span_notice("There's [points] point\s on the card.")
+	. += span_notice("卡上有[points] point\s 。")
 
 /obj/item/card/mining_point_card/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(!isidcard(attacking_item))
 		return ..()
 	var/obj/item/card/id/attacking_id = attacking_item
-	balloon_alert(user, "starting transfer")
-	var/point_movement = tgui_alert(user, "To ID (from card) or to card (from ID)?", "Mining Points Transfer", list(TO_USER_ID, TO_POINT_CARD))
+	balloon_alert(user, "开始转移")
+	var/point_movement = tgui_alert(user, "转给ID（从卡中）还是转给卡（从ID中）？", "采矿点数转移", list(TO_USER_ID, TO_POINT_CARD))
 	if(!point_movement)
 		return
-	var/amount = tgui_input_number(user, "How much do you want to transfer? ID Balance: [attacking_id.registered_account.mining_points], Card Balance: [points]", "Transfer Points", min_value = 0, round_value = 1)
+	var/amount = tgui_input_number(user, "你想转移多少？ID余额：[attacking_id.registered_account.mining_points]，卡余额：[points]", "转移点数", min_value = 0, round_value = 1)
 	if(!amount)
 		return
 	switch(point_movement)
@@ -119,13 +119,13 @@
 				amount = points
 			attacking_id.registered_account.mining_points += amount
 			points -= amount
-			to_chat(user, span_notice("You transfer [amount] mining points from [src] to [attacking_id]."))
+			to_chat(user, span_notice("你从 [src] 向 [attacking_id] 转移了 [amount] 矿点。"))
 		if(TO_POINT_CARD)
 			if(amount > attacking_id.registered_account.mining_points)
 				amount = attacking_id.registered_account.mining_points
 			attacking_id.registered_account.mining_points -= amount
 			points += amount
-			to_chat(user, span_notice("You transfer [amount] mining points from [attacking_id] to [src]."))
+			to_chat(user, span_notice("你从 [attacking_id] 向 [src] 转移了 [amount] 矿点。"))
 
 #undef TO_POINT_CARD
 #undef TO_USER_ID

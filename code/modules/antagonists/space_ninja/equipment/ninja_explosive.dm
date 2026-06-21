@@ -7,8 +7,8 @@
  *
  */
 /obj/item/grenade/c4/ninja
-	name = "spider charge"
-	desc = "A modified C-4 charge supplied by the Spider Clan. It has great explosive power, but is keyed to only work in one specific area."
+	name = "蜘蛛炸药"
+	desc = "由蜘蛛氏族提供的改良型C-4炸药。它具有强大的爆炸威力，但被设定为只能在特定区域起爆。"
 	icon_state = "ninja-explosive0"
 	inhand_icon_state = "ninja-explosive"
 	boom_sizes = list(4, 8, 12)
@@ -27,9 +27,9 @@
 	if (!IS_SPACE_NINJA(user))
 		return
 	if (isnull(detonation_area))
-		. += span_notice("This one was provided with no destination set, and cannot be used.")
+		. += span_notice("这个炸药没有设定目的地，无法使用。")
 	else
-		. += span_notice("This device will only function in [detonation_area].")
+		. += span_notice("此装置仅在[detonation_area]区域内有效。")
 
 /**
  * set_detonation_area
@@ -89,10 +89,10 @@
  */
 /obj/item/grenade/c4/ninja/proc/check_loc(atom/bomb_target, mob/user)
 	if(isnull(detonation_area))
-		balloon_alert(user, "no location set!")
+		balloon_alert(user, "未设置位置！")
 		return FALSE
 	if(get_area(bomb_target) != detonation_area)
 		if (!active)
-			balloon_alert(user, "wrong location!")
+			balloon_alert(user, "位置错误！")
 		return FALSE
 	return TRUE

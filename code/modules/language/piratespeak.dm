@@ -1,6 +1,6 @@
 /datum/language/piratespeak
-	name = "Piratespeak"
-	desc = "The language of space pirates."
+	name = "海盗语"
+	desc = "太空海盗所用的语言。"
 	key = "p"
 	space_chance = 100
 	sentence_chance = 10

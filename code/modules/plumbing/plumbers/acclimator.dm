@@ -6,8 +6,8 @@
 #define TEMP_DIFF 0.5
 
 /obj/machinery/plumbing/acclimator
-	name = "chemical acclimator"
-	desc = "An efficient cooler and heater for the perfect showering temperature or illicit chemical factory."
+	name = "化学调节剂"
+	desc = "一款高效冷热调节器，可用于获得完美的淋浴温度，或搭建非法的化学工厂。"
 	icon_state = "acclimator"
 	base_icon_state = "acclimator"
 	buffer = 200

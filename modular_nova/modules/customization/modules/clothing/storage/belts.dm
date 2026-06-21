@@ -1,8 +1,8 @@
 /obj/item/storage/belt/crusader	//Belt + sheath combination - still only holds one sword at a time though
 	icon = 'modular_nova/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/belt.dmi'
-	name = "crusader belt"
-	desc = "Holds an assortment of equipment for whatever situation an adventurer may encounter, as well as having an attached sheath."
+	name = "十字军腰带"
+	desc = "容纳各种装备以应对冒险者可能遇到的任何情况，并附有一个鞘。"
 	icon_state = "crusader_belt"
 	worn_icon_state = "crusader_belt"
 	inhand_icon_state = "utility"
@@ -60,10 +60,10 @@
 		return
 	var/obj/item/storage/belt/storage_pouch/pouch = locate() in real_location
 	if(!pouch)
-		pouch.balloon_alert(user, "no pouch!")
+		pouch.balloon_alert(user, "没有小包！")
 		return //oopsie!! If we don't have a pouch! You're fucked!
 	if(locked)
-		pouch.balloon_alert(user, "locked!")
+		pouch.balloon_alert(user, "已锁定！")
 		return
 	pouch.atom_storage.dump_content_at(dest_object, user = user)
 
@@ -78,13 +78,13 @@
 		add_fingerprint(user)
 		playsound(src, 'sound/items/unsheath.ogg', 50, TRUE, -5)
 		if(!user.put_in_hands(drawn_item))
-			to_chat(user, span_notice("You fumble for [drawn_item] and it falls on the floor."))
+			to_chat(user, span_notice("你笨拙地摸索着 [drawn_item]，结果它掉在了地上。"))
 			update_appearance()
 			return CLICK_ACTION_SUCCESS
-		user.visible_message(span_notice("[user] takes [drawn_item] out of [src]."), span_notice("You take [drawn_item] out of [src]."))
+		user.visible_message(span_notice("[user] 从 [src] 中取出了 [drawn_item]。"), span_notice("你从 [src] 中取出了 [drawn_item]。"))
 		update_appearance()
 	else
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/storage/belt/crusader/update_icon(updates)
@@ -98,9 +98,9 @@
 
 /obj/item/storage/belt/crusader/examine(mob/user)
 	. = ..()
-	.+= span_notice("Ctrl-click it to easily open its inventory.")
+	.+= span_notice("Ctrl-点击它可以轻松打开其物品栏。")
 	if(contents.len == 2)	//If there's no sword/rod in the sheath slot it doesnt display the alt-click instruction
-		. += span_notice("Alt-click it to quickly draw the blade.")
+		. += span_notice("Alt-点击它可以快速拔出刀刃。")
 		return
 
 
@@ -111,8 +111,8 @@
 /obj/item/storage/belt/storage_pouch	//seperate mini-storage inside the belt, leaving room for only one sword. Inspired by a (very poorly implemented) belt on Desert Rose
 	icon = 'modular_nova/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/belt.dmi'
-	name = "storage pouch"
-	desc = span_notice("Click on this to open your belt's inventory!")
+	name = "储物袋"
+	desc = span_notice("点击此处打开你的腰带物品栏！")
 	icon_state = "storage_pouch_icon"
 	worn_icon_state = "storage_pouch_icon"
 	w_class = WEIGHT_CLASS_BULKY //Still cant put it in your bags, it's technically a belt
@@ -128,8 +128,8 @@
 	atom_storage.show_contents(user)
 
 /obj/item/storage/belt/holster/thigh
-	name = "thigh holster"
-	desc = "A fine leather holster, fastened to the hip and attached to a belt. Can hold a handgun and some ammo."
+	name = "大腿枪套"
+	desc = "一个精致的皮革枪套，固定在臀部并连接在腰带上。可以容纳一把手枪和一些弹药。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/storage/belt/holster/thigh"
 	post_init_icon_state = "cowboy_belt"
@@ -144,8 +144,8 @@
 /obj/item/storage/belt/medbandolier
 	icon = 'modular_nova/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/belt.dmi'
-	name = "medical bandolier"
-	desc = "A pocketed, pine green belt slung like a sash over the shoulder. Features numerous pockets for medicines and poisons alike. Now is coward healing time."
+	name = "医疗弹带"
+	desc = "一条带口袋的松绿色腰带，像肩带一样斜挎在肩上。设有多个口袋，可存放药品和毒药。现在是懦夫治疗时间。"
 	icon_state = "med_bandolier"
 	worn_icon_state = "med_bandolier"
 	storage_type = /datum/storage/med_bandolier

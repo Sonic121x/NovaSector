@@ -83,7 +83,7 @@
 /datum/component/unobserved_actor/proc/check_if_seen(mob/living/source)
 	var/observed = can_be_seen(source)
 	if (observed && COOLDOWN_FINISHED(src, message_cooldown))
-		source.balloon_alert(source, "something can see you!")
+		source.balloon_alert(source, "有东西能看见你！")
 		COOLDOWN_START(src, message_cooldown, 1 SECONDS)
 	return observed
 

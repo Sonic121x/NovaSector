@@ -79,7 +79,7 @@
 		to_chat(carbon_owner, span_warning("Your body is too damaged to be healed with hemokinesis!"))
 		return
 
-	carbon_owner.balloon_alert(carbon_owner, "hemokinetic regen activated!")
+	carbon_owner.balloon_alert(carbon_owner, "血动再生已激活！")
 	return ..()
 
 

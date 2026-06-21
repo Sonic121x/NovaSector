@@ -4,16 +4,16 @@
 //Golem shells: Spawns in Free Golem ships in lavaland. Ghosts become mineral golems and are advised to spread personal freedom.
 /obj/effect/mob_spawn/ghost_role/human/golem
 	name = "inert free golem shell"
-	desc = "A humanoid shape, empty, lifeless, and full of potential."
+	desc = "一个类似人类的身形，空洞无物、毫无生机，但却蕴含着无限的潜力。"
 	icon = 'icons/mob/shells.dmi'
 	icon_state = "shell_complete"
 	mob_species = /datum/species/golem
 	anchored = FALSE
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
-	prompt_name = "a free golem"
-	you_are_text = "You are a Free Golem. Your family worships The Liberator."
-	flavour_text = "In his infinite and divine wisdom, he set your clan free to travel the stars with a single declaration: \"Yeah go do whatever.\""
+	prompt_name = "一名自由魔像"
+	you_are_text = "你是一名自由魔像。你的家族崇拜解放者。"
+	flavour_text = "以其无限而神圣的智慧，他只用一句话就解放了你的氏族，让你们得以遨游星海：\"嗯，随便干点啥都行。\""
 	spawner_job_path = /datum/job/free_golem
 	/// Typepath to a material to feed to the golem as soon as it is built
 	var/initial_type
@@ -68,9 +68,9 @@
 
 // Subtype which can yell at other golems
 /obj/effect/mob_spawn/ghost_role/human/golem/adamantine
-	name = "dust-caked free golem shell"
-	desc = "A humanoid shape, empty, lifeless, and full of potential."
-	prompt_name = "a free golem"
+	name = "布满灰尘的傀儡外壳"
+	desc = "一个类似人类的身形，空洞无物、毫无生机，但却蕴含着无限的潜力。"
+	prompt_name = "一名自由魔像"
 
 /obj/effect/mob_spawn/ghost_role/human/golem/adamantine/special(mob/living/new_spawn, mob/mob_possessor, apply_prefs)
 	. = ..()
@@ -83,9 +83,9 @@
 // Subtype which follows orders
 /obj/effect/mob_spawn/ghost_role/human/golem/servant
 	name = "inert servant golem shell"
-	prompt_name = "a servant golem"
-	you_are_text = "You are a golem."
-	flavour_text = "You are highly resistant to heat and cold as well as blunt trauma. You must consume minerals to maintain motion. You are unable to wear clothes, but can still use most tools."
+	prompt_name = "一名仆从魔像"
+	you_are_text = "你是一个魔像。"
+	flavour_text = "你对高温、低温以及钝器伤害有极高的抵抗力。你必须消耗矿物来维持行动。你无法穿戴衣物，但仍可使用大多数工具。"
 	spawner_job_path = /datum/job/servant_golem
 	/// Weakref to the creator of this golem shell.
 	var/datum/weakref/owner_ref

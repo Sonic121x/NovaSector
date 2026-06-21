@@ -1,6 +1,6 @@
 /obj/machinery/mass_driver
-	name = "mass driver"
-	desc = "The finest in spring-loaded piston toy technology, now on a space station near you."
+	name = "质量发射器"
+	desc = "它采用最先进的弹簧活塞玩具技术，现在就在你附近的空间站上。"
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "mass_driver"
 	base_icon_state = "mass_driver"
@@ -16,7 +16,7 @@
 	wires = new /datum/wires/mass_driver(src)
 
 /obj/machinery/mass_driver/chapelgun
-	name = "holy driver"
+	name = "神圣的司机"
 	id = MASSDRIVER_CHAPEL
 
 /obj/machinery/mass_driver/ordnance
@@ -49,7 +49,7 @@
 				continue
 			O_limit++
 			if(O_limit >= 20)
-				audible_message(span_notice("[src] lets out a screech, it doesn't seem to be able to handle the load."))
+				audible_message(span_notice("[src] 发出一声尖叫，它似乎无法处理负载。"))
 				break
 			use_energy(power_per_obj)
 			O.throw_at(target, drive_range * power, power)

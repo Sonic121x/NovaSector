@@ -3,7 +3,7 @@
 	alert = FALSE
 
 /obj/item/freeze_cube
-	name = "freeze cube"
+	name = "冰冻立方体"
 	desc = "A block of semi-clear ice treated with chemicals to behave as a throwable weapon. \
 		Somehow, it does not transfer its freezing temperatures until it comes into contact with a living creature."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'

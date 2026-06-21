@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt
-	name = "Ethereal Jaunt"
-	desc = "This spell turns your form ethereal, temporarily making you invisible and able to pass through walls."
+	name = "空灵穿梭"
+	desc = "这个法术使你的形态变得飘渺，暂时使你隐形并能穿墙而过。"
 	button_icon_state = "jaunt"
 	sound = 'sound/effects/magic/ethereal_enter.ogg'
 
@@ -86,7 +86,7 @@
 	if(!found_exit)
 		// It's possible no exit was found, because we literally didn't even move
 		if(get_turf(cast_on) != start_point)
-			to_chat(cast_on, span_danger("Unable to find an unobstructed space, you find yourself ripped back to where you started."))
+			to_chat(cast_on, span_danger("无法找到无障碍空间，你发现自己被拽回了起点。"))
 		// Either way, default to where we started
 		found_exit = start_point
 
@@ -170,8 +170,8 @@
 
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/shift
-	name = "Phase Shift"
-	desc = "This spell allows you to pass through walls."
+	name = "Phase Shift-相位移动"
+	desc = "这个咒语能让你穿墙而过。"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
 
@@ -191,17 +191,17 @@
 	return
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/shift/angelic
-	name = "Purified Phase Shift"
+	name = "纯化相移"
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/wraith/angelic
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/wraith/out/angelic
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/shift/mystic
-	name = "Mystic Phase Shift"
+	name = "神秘相移"
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/wraith/mystic
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/wraith/out/mystic
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/shift/golem
-	name = "Runic Phase Shift"
+	name = "符文相移"
 	cooldown_time = 80 SECONDS
 	jaunt_type = /obj/effect/dummy/phased_mob/spell_jaunt/red
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/cult/phase
@@ -221,7 +221,7 @@
 	if(!.)
 		return
 	if (locate(/obj/effect/blessing) in .)
-		to_chat(user, span_warning("Holy energies block your path!"))
+		to_chat(user, span_warning("神圣能量阻挡了你的去路！"))
 		return null
 
 /// Red coloured variant

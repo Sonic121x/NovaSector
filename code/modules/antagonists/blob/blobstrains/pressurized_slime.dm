@@ -1,7 +1,7 @@
 //does low brute damage, oxygen damage, and stamina damage and wets tiles when damaged
 /datum/blobstrain/reagent/pressurized_slime
-	name = "Pressurized Slime"
-	description = "will do low brute and oxygen damage, high stamina damage, and makes tiles under targets very slippery."
+	name = "加压史莱姆"
+	description = "会造成低额钝击和缺氧伤害，高额耐力伤害，并使目标脚下的地砖变得非常滑。"
 	effectdesc = "will also make tiles slippery near attacked blobs."
 	analyzerdescdamage = "Does low brute and oxygen damage, high stamina damage, and makes tiles under targets very slippery, extinguishing them. Is resistant to brute attacks."
 	analyzerdesceffect = "When attacked or killed, lubricates nearby tiles, extinguishing anything on them."
@@ -21,7 +21,7 @@
 
 /datum/blobstrain/reagent/pressurized_slime/death_reaction(obj/structure/blob/B, damage_flag)
 	if(damage_flag == MELEE || damage_flag == BULLET || damage_flag == LASER)
-		B.visible_message(span_boldwarning("The blob ruptures, spraying the area with liquid!"))
+		B.visible_message(span_boldwarning("菌毯破裂，向周围喷洒液体！"))
 		extinguisharea(B, 50)
 
 /datum/blobstrain/reagent/pressurized_slime/proc/extinguisharea(obj/structure/blob/B, probchance)
@@ -35,7 +35,7 @@
 				L.extinguish_mob()
 
 /datum/reagent/blob/pressurized_slime
-	name = "Pressurized Slime"
+	name = "加压史莱姆"
 	taste_description = "a sponge"
 	color = "#AAAABB"
 

@@ -137,30 +137,30 @@
 /// Tries to remove the canister, if any is inserted.
 /obj/item/inhaler/proc/try_remove_canister(mob/living/user, modifiers)
 	if (isnull(canister))
-		balloon_alert(user, "no canister inserted!")
+		balloon_alert(user, "未插入罐体！")
 		return FALSE
 
 	if (canister.removal_time > 0)
-		balloon_alert(user, "removing canister...")
+		balloon_alert(user, "正在移除罐体...")
 		if (!do_after(user, canister.removal_time, src))
 			return FALSE
 
-	balloon_alert(user, "canister removed")
+	balloon_alert(user, "罐体已移除")
 	playsound(src, canister.post_insert_sound, canister.post_insert_volume)
 	set_canister(null, user)
 
 // Tries to insert a canister, if none is already inserted.
 /obj/item/inhaler/proc/try_insert_canister(obj/item/reagent_containers/inhaler_canister/new_canister, mob/living/user, params)
 	if (!isnull(canister))
-		balloon_alert(user, "remove the existing canister!")
+		balloon_alert(user, "请先移除现有罐体！")
 		return FALSE
 
-	balloon_alert(user, "inserting canister...")
+	balloon_alert(user, "正在插入罐体...")
 	playsound(src, new_canister.pre_insert_sound, new_canister.pre_insert_volume)
 	if (!do_after(user, new_canister.insertion_time, src))
 		return FALSE
 	playsound(src, new_canister.post_insert_sound, new_canister.post_insert_volume)
-	balloon_alert(user, "canister inserted")
+	balloon_alert(user, "罐体已插入")
 	set_canister(new_canister, user)
 
 	return TRUE
@@ -182,29 +182,29 @@
 /obj/item/inhaler/proc/can_puff(mob/living/target_mob, mob/living/user, silent = FALSE)
 	if (isnull(canister))
 		if (!silent)
-			balloon_alert(user, "no canister!")
+			balloon_alert(user, "没有罐体！")
 		return FALSE
 	if (isnull(canister.reagents) || canister.reagents.total_volume <= 0)
 		if (!silent)
-			balloon_alert(user, "canister is empty!")
+			balloon_alert(user, "罐体是空的！")
 		return FALSE
 	if (!iscarbon(target_mob)) // maybe mix this into a general has mouth check
 		if (!silent)
-			balloon_alert(user, "not breathing!")
+			balloon_alert(user, "没有呼吸！")
 		return FALSE
 	var/mob/living/carbon/carbon_target = target_mob
 	if (carbon_target.is_mouth_covered())
 		if (!silent)
-			balloon_alert(user, "expose the mouth!")
+			balloon_alert(user, "露出嘴巴！")
 		return FALSE
 	if (HAS_TRAIT(carbon_target, TRAIT_NOBREATH))
 		if (!silent)
-			balloon_alert(user, "not breathing!")
+			balloon_alert(user, "没有呼吸！")
 		return FALSE
 	var/obj/item/organ/lungs/lungs = carbon_target.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if (isnull(lungs) || lungs.received_pressure_mult <= 0)
 		if (!silent)
-			balloon_alert(user, "not breathing!")
+			balloon_alert(user, "没有呼吸！")
 		return FALSE
 
 	return TRUE

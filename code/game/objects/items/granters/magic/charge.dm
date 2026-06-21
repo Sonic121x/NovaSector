@@ -2,7 +2,7 @@
 	granted_action = /datum/action/cooldown/spell/charge
 	action_name = "charge"
 	icon_state ="bookcharge"
-	desc = "This book is made of 100% postconsumer wizard."
+	desc = "这本书由100%回收巫师制成。"
 	remarks = list(
 		"I feel ALIVE!",
 		"I CAN TASTE THE MANA!",
@@ -16,6 +16,6 @@
 
 /obj/item/book/granter/action/spell/charge/recoil(mob/living/user)
 	. = ..()
-	to_chat(user,span_warning("[src] suddenly feels very warm!"))
+	to_chat(user,span_warning("[src]突然变得温暖!"))
 	empulse(src, 1, 1, emp_source = src)
 

@@ -1,6 +1,6 @@
 /obj/item/throwing_star
-	name = "throwing star"
-	desc = "An ancient weapon still used to this day, due to its ease of lodging itself into its victim's body parts."
+	name = "手里剑"
+	desc = "一种至今仍在使用的古老武器，因为它能轻易地嵌入受害者的身体部位。"
 	icon = 'icons/obj/weapons/thrown.dmi'
 	icon_state = "throwingstar"
 	inhand_icon_state = "eshield"
@@ -25,8 +25,8 @@
 	fall_chance = 0
 
 /obj/item/throwing_star/stamina
-	name = "shock throwing star"
-	desc = "An aerodynamic disc designed to cause excruciating pain when stuck inside fleeing targets, hopefully without causing fatal harm."
+	name = "电击手里剑"
+	desc = "一种空气动力学飞盘，旨在当卡在逃跑目标体内时造成剧烈疼痛，希望不会造成致命伤害。"
 	throwforce = 5
 	embed_type = /datum/embedding/throwing_star/stamina
 
@@ -37,8 +37,8 @@
 	jostle_pain_mult = 3
 
 /obj/item/throwing_star/toy
-	name = "toy throwing star"
-	desc = "An aerodynamic disc strapped with adhesive for sticking to people, good for playing pranks and getting yourself killed by security."
+	name = "玩具手里剑"
+	desc = "一种带有粘合剂的空气动力学飞盘，用于粘在人身上，适合恶作剧和让自己被安保干掉。"
 	sharpness = NONE
 	force = 0
 	throwforce = 0

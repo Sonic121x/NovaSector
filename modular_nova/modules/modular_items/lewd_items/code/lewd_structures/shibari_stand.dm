@@ -1,6 +1,6 @@
 /obj/structure/chair/shibari_stand
-	name = "shibari stand"
-	desc = "A stand for buckling people with ropes."
+	name = "绳缚架"
+	desc = "一个用于用绳索固定人的架子。"
 	max_integrity = 75
 	layer = 4
 	item_chair = null
@@ -50,24 +50,24 @@
 /obj/structure/chair/shibari_stand/examine(mob/user)
 	. = ..()
 	if(!has_buckled_mobs() && can_buckle)
-		. += span_notice("They need to be wearing <b>full-body shibari</b>, and you need to be <b>holding ropes</b>!")
+		. += span_notice("他们需要穿着<b>全身绳缚装</b>，并且你需要<b>手持绳索</b>！")
 
 /obj/structure/chair/shibari_stand/user_unbuckle_mob(mob/living/buckled_mob, mob/living/user)
 	var/mob/living/buckled = buckled_mob
 	if(buckled)
 		if(buckled != user)
-			buckled.visible_message(span_notice("[user] starts unbuckling [buckled] from [src]."),\
-				span_notice("[user] tries to unbuckle you from [src]."),\
-				span_hear("You hear loose ropes."))
+			buckled.visible_message(span_notice("[user]开始将[buckled]从[src]上解开。"),\
+				span_notice("[user]试图将你从[src]上解开。"),\
+				span_hear("你听到松开的绳索声。"))
 			if(!do_after(user, HAS_TRAIT(user, TRAIT_RIGGER) ? 5 SECONDS : 10 SECONDS, buckled))
 				return FALSE
-			buckled.visible_message(span_notice("[user] unbuckles [buckled] from [src]."),\
-				span_notice("[user] unbuckles you from [src]."),\
-				span_hear("You hear loose ropes."))
+			buckled.visible_message(span_notice("[user]将[buckled]从[src]上解开了。"),\
+				span_notice("[user]将你从[src]上解开了。"),\
+				span_hear("你听到松开的绳索声。"))
 		else
-			user.visible_message(span_notice("[user] starts unbuckling themselves from [src]."),\
-				span_notice("[user] unbuckles themselves from [src]."),\
-				span_hear("You hear loose ropes."))
+			user.visible_message(span_notice("[user]开始将自己从[src]上解开。"),\
+				span_notice("[user]将自己从[src]上解开了。"),\
+				span_hear("你听到松开的绳索声。"))
 		add_fingerprint(user)
 		if(isliving(buckled.pulledby))
 			var/mob/living/living_mob = buckled.pulledby
@@ -78,7 +78,7 @@
 /obj/structure/chair/shibari_stand/user_buckle_mob(mob/living/buckled, mob/user, check_loc = TRUE)
 
 	if(!buckled.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("Looks like [buckled] doesn't want you to do that."))
+		to_chat(user, span_danger("看起来[buckled]不想让你这么做。"))
 		return FALSE
 
 	if(!is_user_buckle_possible(buckled, user, check_loc))
@@ -90,16 +90,16 @@
 
 	var/mob/living/carbon/human/hooman = buckled
 	if(!(istype(hooman.w_uniform, /obj/item/clothing/under/shibari/full)))
-		to_chat(user, span_warning("You'll need to completely tie their body!"))
+		to_chat(user, span_warning("你需要完全绑住他们的身体！"))
 		return FALSE
 	if(!istype(user.get_active_held_item(), /obj/item/stack/shibari_rope))
-		to_chat(user, span_warning("You'll need to be holding shibari ropes to tie them to the stand!!"))
+		to_chat(user, span_warning("你需要手持绳缚绳索才能将他们绑到架子上！！"))
 		return FALSE
 
 	if(buckled != user)
-		buckled.visible_message(span_warning("[user] starts tying [buckled] to \the [src]!"),\
-			span_userdanger("[user] starts tying you to \the [src]!"),\
-			span_hear("You hear ropes being tightened."))
+		buckled.visible_message(span_warning("[user] 开始将 [buckled] 绑到 \the [src] 上！"),\
+			span_userdanger("[user] 开始把你绑到 \the [src] 上！"),\
+			span_hear("你听到绳索被拉紧的声音。"))
 		if(!do_after(user, HAS_TRAIT(user, TRAIT_RIGGER) ? 5 SECONDS : 10 SECONDS, buckled))
 			return FALSE
 
@@ -107,10 +107,10 @@
 			return FALSE
 
 		if(!(istype(hooman.w_uniform, /obj/item/clothing/under/shibari/full)))
-			to_chat(user, span_warning("You'll need to completely tie their body!"))
+			to_chat(user, span_warning("你需要完全绑住他们的身体！"))
 			return FALSE
 		if(!istype(user.get_active_held_item(), /obj/item/stack/shibari_rope))
-			to_chat(user, span_warning("You'll need to be holding shibari ropes to tie them to the stand!"))
+			to_chat(user, span_warning("你需要手持绳缚绳索才能将他们绑到架子上！"))
 			return FALSE
 
 		if(buckle_mob(buckled, check_loc = check_loc))
@@ -120,14 +120,14 @@
 			rope.use(1)
 			add_overlay(shibari_shadow_overlay)
 			add_rope_overlays(ropee.greyscale_colors, hooman?.dna?.mutant_bodyparts[FEATURE_TAUR])
-			buckled.visible_message(span_warning("[user] tied [buckled] to \the [src]!"),\
-				span_userdanger("[user] tied you to \the [src]!"),\
-				span_hear("You hear ropes being completely tightened."))
+			buckled.visible_message(span_warning("[user] 把 [buckled] 绑到了 \the [src] 上！"),\
+				span_userdanger("[user] 把你绑到了 \the [src] 上！"),\
+				span_hear("你听到绳索被完全收紧的声音。"))
 			return TRUE
 		else
 			return FALSE
 	else
-		to_chat(user, span_warning("You cannot buckle yourself to this stand, there is no way that level of self-bondage exists!"))
+		to_chat(user, span_warning("你无法将自己绑在这个架子上，那种程度的自我束缚根本不可能存在！"))
 		return FALSE
 
 /obj/structure/chair/shibari_stand/atom_deconstruct(disassembled)
@@ -183,18 +183,18 @@
 	current_mob = null
 
 /obj/item/restraints/handcuffs/milker/shibari
-	name = "ropes"
-	desc = "A shibari rope for restraining hands."
+	name = "绳索"
+	desc = "一根用于束缚双手的缚绳。"
 	breakouttime = 2 MINUTES
 
 //Disassembling shibari stand
 /obj/structure/chair/shibari_stand/click_ctrl_shift(mob/user)
-	to_chat(user, span_notice("You begin unfastening the frame of \the [src]..."))
+	to_chat(user, span_notice("你开始拆卸 \the [src] 的框架..."))
 	if(!do_after(user, 8 SECONDS, src))
-		to_chat(user, span_warning("You fail to disassemble \the [src]."))
+		to_chat(user, span_warning("你未能拆解 \the [src]。"))
 		return FALSE
 
-	to_chat(user, span_notice("You disassemble \the [src]."))
+	to_chat(user, span_notice("你拆解了 \the [src]。"))
 	var/obj/item/construction_kit/bdsm/shibari/kit = new(get_turf(src))
 	kit.set_greyscale(greyscale_colors)
 	unbuckle_all_mobs()
@@ -212,10 +212,10 @@
 		starting_colors = greyscale_colors
 	)
 	menu.ui_interact(usr)
-	to_chat(user, span_notice("You switch the frame's plastic fittings color."))
+	to_chat(user, span_notice("你切换了框架塑料配件的颜色。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/chair/shibari_stand/examine(mob/user)
 	. = ..()
-	. += span_purple("[src] can be disassembled by using <b>Ctrl+Shift+Click<b>")
-	. += span_purple("[src]'s color can be customized with <b>Ctrl+Click</b>.")
+	. += span_purple("[src] 可以通过使用 <b>Ctrl+Shift+点击<b> 来拆解。")
+	. += span_purple("[src] 的颜色可以通过 <b>Ctrl+点击</b> 来自定义。")

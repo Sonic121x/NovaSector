@@ -2,8 +2,8 @@
 /////////////////// Yes i know these aren't machines ///////////////////
 
 /obj/machinery/door/window/brigdoor/tarkon
-	name = "reinforced glass door"
-	desc = "For keeping a secure view."
+	name = "强化玻璃门"
+	desc = "用于保持安全的视野。"
 	req_access = list(ACCESS_TARKON)
 
 /obj/machinery/door/window/brigdoor/tarkon/right

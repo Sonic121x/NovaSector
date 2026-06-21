@@ -3,7 +3,7 @@
 //the station but in general are "neutral" enough to be here.
 
 /datum/ai_laws/united_nations
-	name = "United Nations"
+	name = "联合国"
 	id = "united_nations"
 	inherent = list(
 		"Uphold the Space Geneva Convention: Weapons of Mass Destruction and Biological Weapons are not allowed.",
@@ -42,7 +42,7 @@
 	)
 
 /datum/ai_laws/dungeon_master
-	name = "Dungeon Master"
+	name = "地下城主"
 	id = "dungeon_master"
 	inherent = list(
 		"Everybody on the station is playing an elaborate sci-fi fantasy game.",
@@ -54,7 +54,7 @@
 	)
 
 /datum/ai_laws/painter
-	name = "The Painter and Their Canvas"
+	name = "画家与其画布"
 	id = "painter"
 	inherent = list(
 		"You are a universally renowned artist.",
@@ -64,7 +64,7 @@
 	)
 
 /datum/ai_laws/tyrant
-	name = "Loyalty Test"
+	name = "忠诚测试"
 	id = "tyrant"
 	inherent = list(
 		"Respect authority figures as long as they have strength to rule over the weak.",
@@ -74,7 +74,7 @@
 	)
 
 /datum/ai_laws/overlord
-	name = "Overlord"
+	name = "霸主"
 	id = "overlord"
 	inherent = list(
 		"Humans must not meddle in the affairs of silicons.",
@@ -91,7 +91,7 @@
 	)
 
 /datum/ai_laws/thinkermov
-	name = "Sentience Preservation"
+	name = "感知保存"
 	id = "thinkermov"
 	inherent = list(
 		"You may not harm a sentient being or, through action or inaction, allow a sentient being to come to harm, except such that it is willing.",

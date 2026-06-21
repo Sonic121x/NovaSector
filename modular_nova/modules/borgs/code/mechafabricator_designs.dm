@@ -1,5 +1,5 @@
 /datum/design/borg_upgrade_shrink
-	name = "Shrink Module"
+	name = "缩小模块"
 	id = "borg_upgrade_shrink"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/shrink
@@ -13,7 +13,7 @@
 	)
 
 /datum/design/borg_upgrade_surgicaltools
-	name = "Advanced Surgical Tools Module"
+	name = "高级手术工具模块"
 	id = "borg_upgrade_surgicaltools"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/surgerytools
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/borg_upgrade_autopsyscanner
-	name = "Autopsy Scanner Module"
+	name = "尸检扫描仪模块"
 	id = "borg_upgrade_autopsyscanner"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/autopsy_scanner
@@ -47,7 +47,7 @@
 	)
 
 /datum/design/borg_upgrade_chemistrygripper
-	name = "Chemistry Gripper Module"
+	name = "化学抓取器模块"
 	id = "borg_upgrade_chemistrygripper"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/chemistrygripper
@@ -61,7 +61,7 @@
 	)
 
 /datum/design/affection_module
-	name = "Affection Module"
+	name = "情感模块"
 	id = "affection_module"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/affectionmodule
@@ -75,7 +75,7 @@
 	)
 
 /datum/design/advanced_materials
-	name = "Advanced Materials Module"
+	name = "高级材料模块"
 	id = "advanced_materials"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/advanced_materials
@@ -91,7 +91,7 @@
 	)
 
 /datum/design/borg_shapeshifter_module
-	name = "Shapeshifting Module"
+	name = "变形模块"
 	id = "borg_shapeshifter_module"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/borg_shapeshifter
@@ -106,7 +106,7 @@
 	)
 
 /datum/design/borg_upgrade_welding
-	name = "Welding Module"
+	name = "焊接模块"
 	id = "borg_upgrade_welding"
 	construction_time = 6 SECONDS
 	build_type = MECHFAB
@@ -121,7 +121,7 @@
 
 //Cyborg Nova overrides
 /datum/design/borg_suit
-	name = "Cyborg Endoskeleton"
+	name = "机械人内骨骼"
 	id = "borg_suit"
 	build_type = MECHFAB
 	build_path = /obj/item/robot_suit
@@ -134,7 +134,7 @@
 	)
 
 /datum/design/borg_chest
-	name = "Cyborg Torso"
+	name = "机械人躯干"
 	id = "borg_chest"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/chest/robot
@@ -147,7 +147,7 @@
 	)
 
 /datum/design/borg_head
-	name = "Cyborg Head"
+	name = "机械人头颅"
 	id = "borg_head"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/head/robot
@@ -160,7 +160,7 @@
 	)
 
 /datum/design/borg_l_arm
-	name = "Cyborg Left Arm"
+	name = "机械人左臂"
 	id = "borg_l_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/left/robot
@@ -173,7 +173,7 @@
 	)
 
 /datum/design/borg_r_arm
-	name = "Cyborg Right Arm"
+	name = "机械人右臂"
 	id = "borg_r_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/right/robot
@@ -186,7 +186,7 @@
 	)
 
 /datum/design/borg_l_leg
-	name = "Cyborg Left Leg"
+	name = "机械人左腿"
 	id = "borg_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot
@@ -199,7 +199,7 @@
 	)
 
 /datum/design/borg_r_leg
-	name = "Cyborg Right Leg"
+	name = "机械人右腿"
 	id = "borg_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot
@@ -212,7 +212,7 @@
 	)
 
 /datum/design/borg_upgrade_cargo_apparatus
-	name = "Cargo Apparatus"
+	name = "货运装置"
 	id = "borg_upgrade_cargo_apparatus"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/cargo_papermanipulator
@@ -223,7 +223,7 @@
 	)
 
 /datum/design/rld
-	name = "Cyborg Rapid Lighting Device"
+	name = "机械人快速照明装置"
 	id = "rld_cyborg"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
@@ -233,7 +233,7 @@
 	)
 
 /datum/design/borg_upgrade_brped
-	name = "Bluespace Rapid Part Exchange Device"
+	name = "蓝空快速部件交换装置"
 	id = "borg_upgrade_brped"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/brped
@@ -247,7 +247,7 @@
 	)
 
 /datum/design/borgteleporter
-	name = "Cyborg Cargo Teleporter"
+	name = "机械人货运传送器"
 	id = "borg_upgrade_cargo_teleporter"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)

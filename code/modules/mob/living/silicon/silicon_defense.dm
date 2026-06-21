@@ -12,18 +12,18 @@
 	var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
 	if (prob(90))
 		playsound(loc, 'sound/items/weapons/slash.ogg', 25, TRUE, -1)
-		visible_message(span_danger("[user] slashes at [src]!"), \
-						span_userdanger("[user] slashes at you!"), null, null, user)
-		to_chat(user, span_danger("You slash at [src]!"))
+		visible_message(span_danger("[user]向[src]挥爪！"), \
+						span_userdanger("[user]向你挥爪！"), null, null, user)
+		to_chat(user, span_danger("你向[src]挥爪！"))
 		if(prob(8))
 			flash_act(affect_silicon = 1)
 		adjust_brute_loss(damage)
 		log_combat(user, src, "attacked")
 	else
 		playsound(loc, 'sound/items/weapons/slashmiss.ogg', 25, TRUE, -1)
-		visible_message(span_danger("[user]'s swipe misses [src]!"),
-						span_danger("You avoid [user]'s swipe!"), null, null, user)
-		to_chat(user, span_warning("Your swipe misses [src]!"))
+		visible_message(span_danger("[user]的挥击未能命中[src]！"),
+						span_danger("你躲开了[user]的挥击！"), null, null, user)
+		to_chat(user, span_warning("你的挥击未能命中[src]！"))
 		log_combat(user, src, "attacked and missed")
 
 /mob/living/silicon/attack_animal(mob/living/simple_animal/user, list/modifiers)
@@ -34,18 +34,18 @@
 			buckled.Paralyze(2 SECONDS)
 			unbuckle_mob(buckled)
 			buckled.visible_message(
-				span_danger("[buckled] is knocked off of [src] by [user]!"),
-				span_userdanger("You're knocked off of [src] by [user]!"),
+				span_danger("[buckled]被[user]从[src]身上撞了下来！"),
+				span_userdanger("你被[user]从[src]身上撞了下来！"),
 				ignored_mobs = user,
 			)
-			to_chat(user, span_danger("You knock [buckled] off of [src]!"))
+			to_chat(user, span_danger("你将[buckled]从[src]身上撞了下来！"))
 
 /mob/living/silicon/attack_paw(mob/living/user, list/modifiers)
 	return attack_hand(user, modifiers)
 
 /mob/living/silicon/attack_larva(mob/living/carbon/alien/larva/L, list/modifiers)
 	if(!L.combat_mode)
-		visible_message(span_notice("[L.name] rubs its head against [src]."))
+		visible_message(span_notice("[L.name]用头蹭了蹭[src]。"))
 
 /mob/living/silicon/attack_hulk(mob/living/carbon/human/user)
 	. = ..()
@@ -53,9 +53,9 @@
 		return
 	adjust_brute_loss(rand(10, 15))
 	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
-	visible_message(span_danger("[user] punches [src]!"), \
-					span_userdanger("[user] punches you!"), null, COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_danger("You punch [src]!"))
+	visible_message(span_danger("[user]猛击[src]！"), \
+					span_userdanger("[user]猛击了你！"), null, COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger("你猛击了[src]！"))
 
 /mob/living/silicon/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	. = ..()
@@ -72,18 +72,18 @@
 	if(user.combat_mode)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 		playsound(src.loc, 'sound/effects/bang.ogg', 10, TRUE)
-		visible_message(span_danger("[user] punches [src], but doesn't leave a dent!"), \
-						span_warning("[user] punches you, but doesn't leave a dent!"), null, COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger("You punch [src], but don't leave a dent!"))
+		visible_message(span_danger("[user]猛击了[src]，但没留下任何凹痕！"), \
+						span_warning("[user] 打了你一拳，但没留下凹痕！"), null, COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger("你打了 [src] 一拳，但没留下凹痕！"))
 		return TRUE
 	else
 		// NOVA EDIT ADDITION START
 		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-			visible_message(span_warning("[user] tries to pet [src], but it moves out of the way."))
+			visible_message(span_warning("[user] 试图抚摸 [src]，但它躲开了。"))
 			return TRUE
 		// NOVA EDIT ADDITION END
-		visible_message(span_notice("[user] pets [src]."), span_notice("[user] pets you."), null, null, user)
-		to_chat(user, span_notice("You pet [src]."))
+		visible_message(span_notice("[user] 抚摸着 [src]。"), span_notice("[user] 抚摸着你。"), null, null, user)
+		to_chat(user, span_notice("你抚摸着 [src]。"))
 		SEND_SIGNAL(user, COMSIG_MOB_PAT_BORG)
 		return TRUE
 
@@ -93,7 +93,7 @@
 		return SUCCESSFUL_BLOCK
 	if(damage_type == BRUTE && attack_type == UNARMED_ATTACK && attack_flag == MELEE && damage <= 10)
 		playsound(src, 'sound/effects/bang.ogg', 10, TRUE)
-		visible_message(span_danger("[attack_text] doesn't leave a dent on [src]!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		visible_message(span_danger("[attack_text] 在 [src] 上没留下凹痕！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		return SUCCESSFUL_BLOCK
 	return FAILED_BLOCK
 
@@ -109,7 +109,7 @@
 
 /mob/living/silicon/emp_act(severity)
 	. = ..()
-	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
+	to_chat(src, span_danger("警告：检测到电磁脉冲。"))
 	if(. & EMP_PROTECT_SELF || QDELETED(src))
 		return
 	switch(severity)
@@ -117,12 +117,12 @@
 			src.take_bodypart_damage(burn = 20)
 		if(2)
 			src.take_bodypart_damage(burn = 10)
-	to_chat(src, span_userdanger("*BZZZT*"))
+	to_chat(src, span_userdanger("*哔滋滋*"))
 	for(var/mob/living/M in buckled_mobs)
 		if(prob(severity*50))
 			unbuckle_mob(M)
 			M.Paralyze(40)
-			M.visible_message(span_boldwarning("[M] is thrown off of [src]!"))
+			M.visible_message(span_boldwarning("[M] 被从 [src] 上甩了下来！"))
 	flash_act(affect_silicon = 1)
 
 /mob/living/silicon/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
@@ -140,7 +140,7 @@
 
 	if(prob(prob_of_knocking_dudes_off))
 		for(var/mob/living/buckled in buckled_mobs)
-			buckled.visible_message(span_boldwarning("[buckled] is knocked off of [src] by [hitting_projectile]!"))
+			buckled.visible_message(span_boldwarning("[buckled] 被 [hitting_projectile] 从 [src] 上击落！"))
 			unbuckle_mob(buckled)
 			buckled.Paralyze(4 SECONDS)
 

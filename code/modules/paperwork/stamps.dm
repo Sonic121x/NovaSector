@@ -1,6 +1,6 @@
 /obj/item/stamp
-	name = "rubber stamp"
-	desc = "A rubber stamp for stamping important documents."
+	name = "橡皮图章"
+	desc = "一枚用来盖重要文件的橡皮章."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	abstract_type = /obj/item/stamp
 	worn_icon_state = "nothing"
@@ -29,7 +29,7 @@
 	)
 
 /obj/item/stamp/law
-	name = "law office's rubber stamp"
+	name = "律师事务所的橡皮章"
 	icon_state = "stamp-law"
 	dye_color = DYE_LAW
 
@@ -42,56 +42,56 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, INFINITY)
 
 /obj/item/stamp/head/captain
-	name = "captain's rubber stamp"
+	name = "舰长的橡皮章"
 	icon_state = "stamp-cap"
 	dye_color = DYE_CAPTAIN
 
 /obj/item/stamp/head/hop
-	name = "head of personnel's rubber stamp"
+	name = "人事部长的橡皮章"
 	icon_state = "stamp-hop"
 	dye_color = DYE_HOP
 
 /obj/item/stamp/head/hos
-	name = "head of security's rubber stamp"
+	name = "安保部长的橡皮章"
 	icon_state = "stamp-hos"
 	dye_color = DYE_HOS
 
 /obj/item/stamp/head/ce
-	name = "chief engineer's rubber stamp"
+	name = "工程部长的橡皮图章"
 	icon_state = "stamp-ce"
 	dye_color = DYE_CE
 
 /obj/item/stamp/head/rd
-	name = "research director's rubber stamp"
+	name = "科研部长的橡皮章"
 	icon_state = "stamp-rd"
 	dye_color = DYE_RD
 
 /obj/item/stamp/head/cmo
-	name = "chief medical officer's rubber stamp"
+	name = "医疗部长的橡皮章"
 	icon_state = "stamp-cmo"
 	dye_color = DYE_CMO
 
 /obj/item/stamp/head/qm
-	name = "quartermaster's rubber stamp"
+	name = "军需官的橡皮章"
 	icon_state = "stamp-qm"
 	dye_color = DYE_QM
 
 /obj/item/stamp/granted
-	name = "\improper GRANTED rubber stamp"
+	name = "\improper \"批准\"橡皮章"
 	icon_state = "stamp-ok"
 	dye_color = DYE_GREEN
 
 /obj/item/stamp/denied
-	name = "\improper DENIED rubber stamp"
+	name = "\improper “否决”橡皮章"
 	icon_state = "stamp-deny"
 	dye_color = DYE_REDCOAT
 
 /obj/item/stamp/void
-	name = "VOID rubber stamp"
+	name = "“作废”橡皮章"
 	icon_state = "stamp-void"
 
 /obj/item/stamp/clown
-	name = "clown's rubber stamp"
+	name = "小丑的橡皮章"
 	icon_state = "stamp-clown"
 	dye_color = DYE_CLOWN
 
@@ -101,22 +101,22 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0)
 
 /obj/item/stamp/mime
-	name = "mime's rubber stamp"
+	name = "默剧的橡皮章"
 	icon_state = "stamp-mime"
 	dye_color = DYE_MIME
 
 /obj/item/stamp/chap
-	name = "chaplain's rubber stamp"
+	name = "牧师的橡皮章"
 	icon_state = "stamp-chap"
 	dye_color = DYE_CHAP
 
 /obj/item/stamp/centcom
-	name = "CentCom rubber stamp"
+	name = "中央指挥部的橡皮章"
 	icon_state = "stamp-centcom"
 	dye_color = DYE_CENTCOM
 
 /obj/item/stamp/syndicate
-	name = "Syndicate rubber stamp"
+	name = "辛迪加的橡皮章"
 	icon_state = "stamp-syndicate"
 	dye_color = DYE_SYNDICATE
 

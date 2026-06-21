@@ -46,8 +46,8 @@
  * Debug item because it took less time to code this than it did to roll ONE toolbox bounty.
  */
 /obj/item/bounty_voucher
-	name = "bounty voucher"
-	desc = "A certificate for ONE FREE BOUNTY of your choice! Wow!"
+	name = "赏金凭证"
+	desc = "一张可兑换任意一项免费赏金的证书！哇！"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "paperslip_words"
 
@@ -59,10 +59,10 @@
 	var/obj/item/card/id/id = living_user.get_idcard()
 	if(!id?.registered_account)
 		return
-	var/choice = tgui_input_list(living_user, "Choose a bounty.", "New Bounty", subtypesof(/datum/bounty))
+	var/choice = tgui_input_list(living_user, "选择一个悬赏任务。", "新悬赏任务", subtypesof(/datum/bounty))
 	var/datum/bounty/new_chore = text2path("[choice]")
 	id.registered_account.set_bounty(new new_chore, id)
-	balloon_alert(user, "new bounty acquired!")
+	balloon_alert(user, "新悬赏已获取！")
 	playsound(src, 'sound/effects/coin2.ogg', 30, TRUE)
 	qdel(src)
 

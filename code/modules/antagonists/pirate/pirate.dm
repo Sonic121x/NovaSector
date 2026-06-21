@@ -1,5 +1,5 @@
 /datum/antagonist/pirate
-	name = "\improper Space Pirate"
+	name = "\improper 太空海盗"
 	pref_flag = ROLE_TRAITOR
 	roundend_category = "space pirates"
 	antagpanel_category = ANTAG_GROUP_PIRATES
@@ -13,7 +13,7 @@
 
 /datum/antagonist/pirate/greet()
 	. = ..()
-	to_chat(owner, "<B>The station refused to pay for your protection. Protect the ship, siphon the [MONEY_NAME] from the station, and raid it for even more loot.</B>")
+	to_chat(owner, "<B>空间站拒绝支付你们的保护费。保护好你们的飞船，从空间站榨取[MONEY_NAME]，并突袭它以掠夺更多战利品。</B>")
 	owner.announce_objectives()
 
 /datum/antagonist/pirate/get_team()
@@ -53,7 +53,7 @@
 	owner_mob.remove_language(/datum/language/piratespeak, source = LANGUAGE_PIRATE)
 
 /datum/team/pirate
-	name = "\improper Pirate crew"
+	name = "\improper 海盗船员"
 
 /datum/team/pirate/proc/forge_objectives()
 	var/datum/objective/loot/getbooty = new()
@@ -105,7 +105,7 @@
 /datum/team/pirate/roundend_report()
 	var/list/parts = list()
 
-	parts += span_header("Space Pirates were:")
+	parts += span_header("太空海盗是：")
 
 	var/all_dead = TRUE
 	for(var/datum/mind/M in members)

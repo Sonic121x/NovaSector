@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/foreach
 	display_name = "For Each"
-	desc = "A component that loops through each element in a list."
+	desc = "一个能够遍历列表中每个元素的组件。"
 	category = "List"
 
 	/// The list type

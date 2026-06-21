@@ -13,7 +13,7 @@
 /datum/techweb_node/tarkon
 	id = TECHWEB_NODE_TARKON
 	display_name = "Tarkon Industries Technology"
-	description = "Tools used by Tarkon Industries."
+	description = "Tarkon工业使用的工具。"
 	required_items_to_unlock = list(
 		/obj/item/mod/construction/plating/tarkon,
 		/obj/item/construction/rcd/tarkon,
@@ -32,7 +32,7 @@
 /datum/techweb_node/tarkonturret //Yes. Tarkon does not start with this unlocked.
 	id = TECHWEB_NODE_TARKON_DEFENSE
 	display_name = "Tarkon Industries Automated Turrets"
-	description = "Tarkon Industries Blackrust Salvage division's defense designs."
+	description = "Tarkon工业黑锈打捞部门的防御设计。"
 	prereq_ids = list(TECHWEB_NODE_TARKON, TECHWEB_NODE_BASIC_ARMS, TECHWEB_NODE_AI)
 	design_ids = list(
 		"hoplite_assembly",
@@ -42,7 +42,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 
 /datum/design/mod_plating/tarkon
-	name = "MOD Tarkon Plating"
+	name = "MOD Tarkon护甲板"
 	id = "mod_plating_tarkon"
 	build_path = /obj/item/mod/construction/plating/tarkon
 	materials = list(
@@ -55,7 +55,7 @@
 	research_icon = 'modular_nova/master_files/icons/obj/clothing/modsuit/mod_construction.dmi'
 
 /datum/design/arcs
-	name = "A.R.C.S Resonator"
+	name = "A.R.C.S共振器"
 	id = "arcs"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(
@@ -71,7 +71,7 @@
 	)
 
 /datum/design/tarkonbsc
-	name = "Tarkon BSC Refinery Box"
+	name = "Tarkon BSC精炼箱"
 	id = "tarkonbsc"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(
@@ -86,8 +86,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/tarkonrcd
-	name = "Tarkon R.C.D"
-	desc = "A Rapid Construction Device made by Tarkon Industries. Capable of ranged construction."
+	name = "塔康快速建造装置"
+	desc = "由塔康工业制造的快速建造装置。能够进行远程建造。"
 	id = "rcd_tarkon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -103,8 +103,8 @@
 	)
 
 /datum/design/hoplite_assembly
-	name = "Hoplite Turret Assembly"
-	desc = "A deployable turret kit designed for basic construct defense. This one makes the \"Hoplite\" model."
+	name = "重装步兵炮塔组件"
+	desc = "一种为基本构造体防御设计的可部署炮塔套件。这个型号制造的是\"Hoplite\"模型。"
 	id = "hoplite_assembly"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -120,8 +120,8 @@
 	)
 
 /datum/design/cerberus_assembly
-	name = "Cerberus Turret Assembly"
-	desc = "A deployable turret kit designed for basic construct defense. This one makes the \"Cerberus\" model."
+	name = "刻耳柏洛斯炮塔组件"
+	desc = "一种为基本构造体防御设计的可部署炮塔套件。这个制造的是\"刻耳柏洛斯\"型号。"
 	id = "cerberus_assembly"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -137,8 +137,8 @@
 	)
 
 /datum/design/target_designator
-	name = "Turret Target Designator"
-	desc = "A basic target designator designed to control magazine-fed turrets."
+	name = "炮塔目标指示器"
+	desc = "一种用于控制弹匣供弹炮塔的基本目标指示器。"
 	id = "target_designator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -157,11 +157,11 @@
 ///// Now we make the physical server /////
 
 /obj/item/circuitboard/machine/rdserver/tarkon
-	name = "Tarkon Industries R&D Server"
+	name = "塔康工业研发服务器"
 	build_path = /obj/machinery/rnd/server/tarkon
 
 /obj/machinery/rnd/server/tarkon
-	name = "\improper Tarkon Industries R&D Server"
+	name = "\improper 塔康工业研发服务器"
 	circuit = /obj/item/circuitboard/machine/rdserver/tarkon
 	req_access = list(ACCESS_AWAY_SCIENCE)
 
@@ -172,7 +172,7 @@
 
 /obj/machinery/rnd/server/tarkon/examine(mob/user)
 	. = ..()
-	. += span_notice("You can use <b>research notes</b> on this to generate research points.")
+	. += span_notice("你可以将<b>研究笔记</b>用在这上面来生成研究点数。")
 
 /obj/machinery/rnd/server/tarkon/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/research_notes) && stored_research)
@@ -185,12 +185,12 @@
 	return ..()
 
 /obj/machinery/rnd/production/protolathe/tarkon
-	name = "Tarkon Industries Protolathe"
-	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
+	name = "塔康工业原型机"
+	desc = "将原材料转化为有用的物品。经过翻新和升级，摆脱了先前有限的功能。"
 	circuit = /obj/item/circuitboard/machine/protolathe/tarkon
 	stripe_color = "#350f04"
 
 /obj/item/circuitboard/machine/protolathe/tarkon
-	name = "Tarkon Industries Protolathe"
+	name = "塔康工业原型机"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/rnd/production/protolathe/tarkon

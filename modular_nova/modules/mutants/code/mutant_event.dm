@@ -1,5 +1,5 @@
 /datum/dynamic_ruleset/midround/mutant_infestation
-	name = "HNZ-1 Pathogen Outbreak"
+	name = "HNZ-1 病原体爆发"
 	config_tag = "Mutant Infestation"
 	preview_antag_datum = /datum/antagonist/mutant
 	midround_type = HEAVY_MIDROUND
@@ -19,7 +19,7 @@
 
 /datum/dynamic_ruleset/midround/mutant_infestation/proc/announce_mutant_infestation()
 	alert_sound_to_playing(sound('modular_nova/modules/alerts/sound/alerts/alert2.ogg'), override_volume = TRUE)
-	priority_announce("Automated air filtration screeing systems have flagged an unknown pathogen in the ventilation systems, quarantine is in effect.", "Level-1 Viral Biohazard Alert", ANNOUNCER_MUTANTS)
+	priority_announce("自动空气过滤筛查系统已在通风系统中标记出未知病原体，现已实施隔离。", "一级病毒生物危害警报", ANNOUNCER_MUTANTS)
 
 /datum/dynamic_ruleset/midround/mutant_infestation/false_alarm()
 	announce_mutant_infestation()

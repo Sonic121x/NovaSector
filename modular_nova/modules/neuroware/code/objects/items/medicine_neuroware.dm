@@ -1,7 +1,7 @@
 // Removes all reagents which were added by neuroware chips.
 /obj/item/disk/neuroware/reset
-	name = "system reset neuroware"
-	desc = "A neuroware chip containing a system reset program which stops and deletes all installed neuroware. Multi-user license included."
+	name = "系统重置神经软件"
+	desc = "一块包含系统重置程序的神经软件芯片，能停止并删除所有已安装的神经软件。包含多用户许可。"
 	icon_state = "/obj/item/disk/neuroware/reset"
 	post_init_icon_state = "chip_deforest"
 	greyscale_colors = "#474747"
@@ -11,8 +11,8 @@
 	uses = 3
 
 /obj/item/disk/neuroware/brain
-	name = "corruption repair neuroware"
-	desc = "A neuroware chip containing a corruption-repairing program which attempts to fix minor brain traumas. Multi-user license included."
+	name = "损坏修复神经软件"
+	desc = "一块包含损坏修复程序的神经软件芯片，能尝试修复轻微的脑部创伤。包含多用户许可。"
 	icon_state = "/obj/item/disk/neuroware/brain"
 	post_init_icon_state = "chip_super"
 	greyscale_colors = "#474747"
@@ -21,8 +21,8 @@
 	uses = 3
 
 /obj/item/disk/neuroware/synaptizine
-	name = "\improper SynapTuner Pro neuroware"
-	desc = "A neuroware chip containing SynapTuner Pro, which reduces drowsiness and hallucinations while increasing resistance to stuns. Multi-user license included."
+	name = "\improper 突触调谐专家版神经软件"
+	desc = "一块包含突触调谐专家版的神经软件芯片，能减少困倦和幻觉，同时增强对击晕的抗性。包含多用户许可。"
 	icon_state = "/obj/item/disk/neuroware/synaptizine"
 	post_init_icon_state = "chip_zenghu"
 	greyscale_colors = "#474747"
@@ -31,8 +31,8 @@
 	uses = 2
 
 /obj/item/disk/neuroware/psicodine
-	name = "\improper Zen-First-Aid neuroware"
-	desc = "A neuroware chip containing Zen-First-Aid, an \"emotional first-aid kit\" which suppresses anxiety and mental distress. Multi-user license included."
+	name = "\improper 禅意急救神经软件"
+	desc = "一块包含禅意急救的神经软件芯片，这是一种“情绪急救包”，能抑制焦虑和精神困扰。包含多用户许可。"
 	icon_state = "/obj/item/disk/neuroware/psicodine"
 	post_init_icon_state = "chip_zenghu"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
@@ -41,8 +41,8 @@
 	uses = 2
 
 /obj/item/disk/neuroware/morphine
-	name = "\improper AnaSynthic neuroware"
-	desc = "A neuroware chip containing AnaSynthic, a general anasthetic program which blocks pain and causes unconsciousness. Multi-user license included."
+	name = "\improper 麻醉合成神经软件"
+	desc = "一块包含麻醉合成的神经软件芯片，这是一种通用的麻醉程序，能阻断疼痛并导致昏迷。包含多用户许可。"
 	icon_state = "/obj/item/disk/neuroware/morphine"
 	post_init_icon_state = "chip_bishop"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
@@ -51,8 +51,8 @@
 	uses = 3
 
 /obj/item/disk/neuroware/lidocaine
-	name = "\improper NGesic neuroware"
-	desc = "A neuroware chip containing NGesic, a \"painkiller\" analgesic program which blocks pain signals. Multi-user license included."
+	name = "\improper NGesic神经软件"
+	desc = "一块包含NGesic的神经软件芯片，这是一种“止痛药”镇痛程序，能阻断疼痛信号。包含多用户许可证。"
 	icon_state = "/obj/item/disk/neuroware/lidocaine"
 	post_init_icon_state = "chip_bishop"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL

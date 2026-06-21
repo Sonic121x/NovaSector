@@ -6,7 +6,7 @@
  */
 /obj/item/circuit_component/format
 	display_name = "Format List"
-	desc = "A component that formats lists, replacing %n in the format string with corresponding nth list item."
+	desc = "一种用于格式化列表的组件，它会在格式字符串中将“%n”替换为相应的第 n 个列表项。"
 	category = "List"
 
 	var/static/regex/format_component/list_param_regex = new(@"%([0-9]+)", "g")

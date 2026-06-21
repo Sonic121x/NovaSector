@@ -1,8 +1,8 @@
 // Short wooden fences, oh me oh my
 
 /obj/structure/railing/wooden_fencing
-	name = "wooden fence"
-	desc = "A basic wooden fence meant to prevent people like you either in or out of somewhere."
+	name = "木栅栏"
+	desc = "一道基本的木栅栏，旨在将像你这样的人挡在某处之外或困在某处之内。"
 	icon = 'modular_nova/modules/primitive_structures/icons/wooden_fence.dmi'
 	icon_state = "fence"
 	resistance_flags = FLAMMABLE
@@ -29,7 +29,7 @@
 
 /obj/structure/railing/wooden_fencing/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
-	to_chat(user, span_warning("You pry apart the railing."))
+	to_chat(user, span_warning("你撬开了栏杆。"))
 	tool.play_tool_sound(src, 100)
 	deconstruct()
 	return TRUE
@@ -37,8 +37,8 @@
 // Fence gates for the above mentioned fences
 
 /obj/structure/railing/wooden_fencing/gate
-	name = "wooden fence gate"
-	desc = "A basic wooden gate meant to prevent animals like you escaping."
+	name = "木栅栏门"
+	desc = "一道基本的木门，旨在防止像你这样的动物逃跑。"
 	icon_state = "gate"
 	random_icons = FALSE
 	/// Has the gate been opened or not?
@@ -54,7 +54,7 @@
 /// Proc that checks if the gate is open or not, then closes/opens the gate repsectively
 /obj/structure/railing/wooden_fencing/gate/proc/open_or_close(mob/user)
 	if(!user.can_interact_with(src))
-		balloon_alert(user, "can't interact")
+		balloon_alert(user, "无法互动")
 		return
 	opened = !opened
 	set_density(!opened)
@@ -70,7 +70,7 @@
 // Large wooden gate, used for big doors or entrances to camps
 
 /obj/structure/mineral_door/wood/large_gate
-	name = "large wooden gate"
+	name = "大型木门"
 	icon = 'modular_nova/modules/primitive_structures/icons/wooden_gate.dmi'
 	icon_state = "gate"
 	openSound = 'sound/machines/closet/wooden_closet_open.ogg'

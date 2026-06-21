@@ -1,8 +1,8 @@
 #define OCULAR_WARDEN_PLACE_RANGE 3
 
 /datum/scripture/create_structure/ocular_warden
-	name = "Ocular Warden"
-	desc = "An eye turret that will fire upon nearby targets."
+	name = "守望之眼"
+	desc = "一个会向附近目标开火的眼球炮塔。"
 	tip = "Place these around to prevent crew from rushing past your defenses."
 	button_icon_state = "Ocular Warden"
 	power_cost = 400
@@ -18,7 +18,7 @@
 		return FALSE
 
 	if(locate(/obj/structure/destructible/clockwork/gear_base/powered/ocular_warden) in range(OCULAR_WARDEN_PLACE_RANGE))
-		user.balloon_alert(user, "too close to another warden!")
+		user.balloon_alert(user, "距离另一座守望者太近！")
 		return FALSE
 
 	return TRUE

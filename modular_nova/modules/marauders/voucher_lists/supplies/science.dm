@@ -1,8 +1,8 @@
 /datum/voucher_set/traitor/supplies/science
 
 /datum/voucher_set/traitor/supplies/science/posibrain
-	name = "Syndicate positronic brain"
-	description = "A device to download a Syndicate silicon companion, can be stuffed into a cyborg or mech."
+	name = "辛迪加正电子脑"
+	description = "一个用于下载辛迪加硅基同伴的设备，可以装入机械人或机甲中。"
 	icon = /obj/item/mmi/posibrain/circuit/disk/syndie::icon
 	icon_state = /obj/item/mmi/posibrain/circuit/disk/syndie::icon_state
 	set_items = list(

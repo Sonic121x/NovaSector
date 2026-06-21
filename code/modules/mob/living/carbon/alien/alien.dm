@@ -1,12 +1,12 @@
 /mob/living/carbon/alien
 	abstract_type = /mob/living/carbon/alien
-	name = "alien"
+	name = "异形"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	gender = FEMALE //All xenos are girls!!
 	dna = null
 	faction = list(ROLE_ALIEN)
 	sight = SEE_MOBS
-	verb_say = "hisses"
+	verb_say = "嘶嘶作响"
 	initial_language_holder = /datum/language_holder/alien
 	bubble_icon = "alien"
 	type_of_meat = /obj/item/food/meat/slab/xeno
@@ -58,7 +58,7 @@
 	LoadComponent( \
 		/datum/component/itempicky, \
 		xeno_allowed_items, \
-		span_alien("Your claws lack the dexterity to hold %TARGET."), \
+		span_alien("你的爪子不够灵巧，无法握住%TARGET。"), \
 		CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_has_trait), src, TRAIT_ADVANCEDTOOLUSER))
 
 /mob/living/carbon/alien/proc/create_internal_organs()
@@ -135,8 +135,8 @@ Des: Removes all infected images from the alien.
 
 /mob/living/carbon/alien/proc/alien_evolve(mob/living/carbon/alien/new_xeno)
 	visible_message(
-		span_alertalien("[src] begins to twist and contort!"),
-		span_noticealien("You begin to evolve!"),
+		span_alertalien("[src]开始扭曲变形！"),
+		span_noticealien("你开始进化了！"),
 	)
 
 	new_xeno.setDir(dir)

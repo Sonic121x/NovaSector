@@ -11,8 +11,8 @@
  * Pens
  */
 /obj/item/pen
-	name = "pen"
-	desc = "It's a normal black ink pen."
+	name = "笔"
+	desc = "这是一支普通的黑色墨水笔。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "pen"
 	inhand_icon_state = "pen"
@@ -78,7 +78,7 @@
 	SIGNAL_HANDLER
 
 	if(user)
-		balloon_alert(user, "clicked")
+		balloon_alert(user, "点击")
 	playsound(src, 'sound/items/pen_click.ogg', 30, TRUE, -3)
 	icon_state = initial(icon_state) + (active ? "_retracted" : "")
 	update_appearance(UPDATE_ICON)
@@ -107,24 +107,24 @@
 	return BRUTELOSS
 
 /obj/item/pen/blue
-	desc = "It's a normal blue ink pen."
+	desc = "这是一支普通的蓝色墨水笔。"
 	icon_state = "pen_blue"
 	colour = COLOR_BLUE
 
 /obj/item/pen/red
-	desc = "It's a normal red ink pen."
+	desc = "这是一支普通的红色墨水笔。"
 	icon_state = "pen_red"
 	colour = COLOR_RED
 	throw_speed = 4 // red ones go faster (in this case, fast enough to embed!)
 
 /obj/item/pen/invisible
-	desc = "It's an invisible pen marker."
+	desc = "这是一个看不见的记号笔。"
 	icon_state = "pen"
 	colour = COLOR_WHITE
 
 /obj/item/pen/fourcolor
-	desc = "It's a fancy four-color ink pen, set to black."
-	name = "four-color pen"
+	desc = "这是一支漂亮的四色墨水笔，颜色已经调成了黑色。"
+	name = "四色笔"
 	icon_state = "pen_4color"
 	colour = COLOR_BLACK
 	can_click = FALSE
@@ -146,14 +146,14 @@
 			chosen_color = "blue"
 		else
 			colour = COLOR_BLACK
-	to_chat(user, span_notice("\The [src] will now write in [chosen_color]."))
-	desc = "It's a fancy four-color ink pen, set to [chosen_color]."
-	balloon_alert(user, "clicked")
+	to_chat(user, span_notice("\The [src] 现在将以[chosen_color]颜色书写。"))
+	desc = "这是一支漂亮的四色墨水笔，颜色已经调成了[chosen_color]。"
+	balloon_alert(user, "已点击")
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE, -3)
 
 /obj/item/pen/fountain
-	name = "fountain pen"
-	desc = "It's a common fountain pen, with a faux wood body. Rumored to work in zero gravity situations."
+	name = "钢笔"
+	desc = "这是一支常见的钢笔，外观采用了仿木材质.据说在零重力环境中也能正常使用."
 	icon_state = "pen-fountain"
 	font = FOUNTAIN_PEN_FONT
 	requires_gravity = FALSE // fancy spess pens
@@ -162,8 +162,8 @@
 	can_click = FALSE
 
 /obj/item/pen/charcoal
-	name = "charcoal stylus"
-	desc = "It's just a wooden stick with some compressed ash on the end. At least it can write."
+	name = "炭笔"
+	desc = "这不过是一根木棍，末端压着一些烟灰罢了。但至少它能写字呢。"
 	icon_state = "pen-charcoal"
 	colour = "#696969"
 	font = CHARCOAL_FONT
@@ -187,7 +187,7 @@
 
 /datum/atom_skin/cap_pen/apply(atom/apply_to, mob/user)
 	. = ..()
-	apply_to.desc = "It's an expensive [preview_name] fountain pen. The nib is quite sharp."
+	apply_to.desc = "这是一支昂贵的[preview_name]钢笔。笔尖相当锋利。"
 	apply_to.update_desc()
 
 /datum/atom_skin/cap_pen/clear_skin(atom/clear_from, mob/user)
@@ -215,8 +215,8 @@
 	new_icon_state = "pen-fountain-cb"
 
 /obj/item/pen/fountain/captain
-	name = "captain's fountain pen"
-	desc = "It's an expensive Oak fountain pen. The nib is quite sharp."
+	name = "舰长的钢笔"
+	desc = "这是一支昂贵的橡木制钢笔。笔尖相当锋利。"
 	icon_state = "pen-fountain-o"
 	force = 5
 	throwforce = 5
@@ -260,13 +260,13 @@
 
 /obj/item/pen/item_ctrl_click(mob/living/carbon/user)
 	if(loc != user)
-		to_chat(user, span_warning("You must be holding the pen to continue!"))
+		to_chat(user, span_warning("你必须手持这支笔才能继续！"))
 		return CLICK_ACTION_BLOCKING
-	var/deg = tgui_input_number(user, "What angle would you like to rotate the pen head to? (0-360)", "Rotate Pen Head", max_value = 360)
+	var/deg = tgui_input_number(user, "你想将笔头旋转到什么角度？（0-360）", "旋转笔头", max_value = 360)
 	if(isnull(deg) || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH) || loc != user)
 		return CLICK_ACTION_BLOCKING
 	degrees = deg
-	to_chat(user, span_notice("You rotate the top of the pen to [deg] degrees."))
+	to_chat(user, span_notice("你将笔帽旋转至[deg]度。"))
 	SEND_SIGNAL(src, COMSIG_PEN_ROTATED, deg, user)
 	return CLICK_ACTION_SUCCESS
 
@@ -275,8 +275,8 @@
 		return ..()
 	if(!M.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))
 		return FALSE
-	to_chat(user, span_warning("You stab [M] with the pen."))
-	to_chat(M, span_danger("You feel a tiny prick!"))
+	to_chat(user, span_warning("你用钢笔刺了[M]。"))
+	to_chat(M, span_danger("你感到一阵轻微的刺痛！"))
 	log_combat(user, M, "stabbed", src)
 	return TRUE
 
@@ -426,17 +426,17 @@
 	playsound(source, 'sound/items/weapons/saberoff.ogg', 5, TRUE)
 	UnregisterSignal(source, list(COMSIG_ITEM_UNEMBEDDED, COMSIG_ITEM_FAILED_EMBED))
 	victim.visible_message(
-		message = span_warning("The blade of the [hidden_name] retracts as \the [source] is removed from [victim]!"),
-		self_message = span_warning("The blade of the [hidden_name] retracts as \the [source] is removed from you!"),
-		blind_message = span_warning("You hear an energy blade retract!"),
+		message = span_warning("当\the [hidden_name] 从[source]身上取出时，[victim]的刀刃缩回了！"),
+		self_message = span_warning("当\the [hidden_name] 从你身上取出时，[source]的刀刃缩回了！"),
+		blind_message = span_warning("你听到能量刀刃缩回的声音！"),
 		vision_distance = 1
 	)
 
 /obj/item/pen/edagger/suicide_act(mob/living/user)
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		user.visible_message(span_suicide("[user] forcefully rams the pen into their mouth!"))
+		user.visible_message(span_suicide("[user]用力将钢笔塞进了自己的嘴里！"))
 	else
-		user.visible_message(span_suicide("[user] is holding a pen up to their mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正将一支钢笔举到嘴边！看起来[user.p_theyre()]试图自杀！"))
 		attack_self(user)
 	return BRUTELOSS
 
@@ -479,8 +479,8 @@
 	entry.add_data_entry(DETSCAN_CATEGORY_ILLEGAL, "Hard-light generator detected.")
 
 /obj/item/pen/survival
-	name = "survival pen"
-	desc = "The latest in portable survival technology, this pen was designed as a miniature diamond pickaxe. Watchers find them very desirable for their diamond exterior."
+	name = "生存笔"
+	desc = "最新的便携式生存科技，这支笔被设计成一个迷你钻石镐子.观察者非常喜欢上面外端的钻石。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "digging_pen"
 	inhand_icon_state = "pen"
@@ -518,8 +518,8 @@
 		mineral_turf.gets_drilled(firer, 1)
 
 /obj/item/pen/destroyer
-	name = "Fine Tipped Pen"
-	desc = "A pen with an infinitely-sharpened tip. Capable of striking the weakest point of a strucutre or robot and annihilating it instantly. Good at putting holes in people too."
+	name = "细尖笔"
+	desc = "一支拥有无限锋利笔尖的钢笔。能够击中结构或机器人的最弱点并将其瞬间摧毁。也很擅长在人身上开洞。"
 	force = 5
 	wound_bonus = 100
 	demolition_mod = 9000
@@ -527,7 +527,7 @@
 // screwdriver pen!
 
 /obj/item/pen/screwdriver
-	desc = "A pen with an extendable screwdriver tip. This one has a yellow cap."
+	desc = "一支带有可伸缩螺丝刀头的钢笔。这支的笔帽是黄色的。"
 	icon_state = "pendriver"
 	toolspeed = 1.2  // gotta have some downside
 	dart_insert_projectile_icon_state = "overlay_pendriver"
@@ -550,7 +550,7 @@
 
 /obj/item/pen/screwdriver/on_transform(obj/item/source, mob/user, active)
 	if(user)
-		balloon_alert(user, active ? "extended" : "retracted")
+		balloon_alert(user, active ? "已伸出" : "已缩回")
 	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 
 	if(!active)
@@ -570,19 +570,19 @@
 
 //The Security holopen
 /obj/item/pen/red/security
-	name = "security pen"
-	desc = "This is a red ink pen exclusively provided to members of the Security Department. Its opposite end features a built-in holographic projector designed for issuing arrest prompts to individuals."
+	name = "安保钢笔"
+	desc = "这是一支专供安保部门成员使用的红色墨水笔。其另一端内置了一个全息投影仪，用于向个人发出逮捕提示。"
 	icon_state = "pen_sec"
 	COOLDOWN_DECLARE(holosign_cooldown)
 
 /obj/item/pen/red/security/examine(mob/user)
 	. = ..()
-	. += span_notice("To initiate the surrender prompt, simply click on an individual within your proximity.")
+	. += span_notice("要启动投降提示，只需点击您附近的个人即可。")
 
 //Code from the medical penlight
 /obj/item/pen/red/security/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, holosign_cooldown))
-		balloon_alert(user, "not ready!")
+		balloon_alert(user, "还没准备好！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/turf/target_turf = get_turf(interacting_with)
@@ -592,14 +592,14 @@
 		return ITEM_INTERACT_BLOCKING
 
 	living_target.apply_status_effect(/datum/status_effect/surrender_timed)
-	to_chat(living_target, span_userdanger("[user] requests your immediate surrender! You are given 30 seconds to comply!"))
+	to_chat(living_target, span_userdanger("[user] 要求你立即投降！你有30秒时间服从！"))
 	new /obj/effect/temp_visual/security_holosign(target_turf, user) //produce a holographic glow
 	COOLDOWN_START(src, holosign_cooldown, 30 SECONDS)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/effect/temp_visual/security_holosign
-	name = "security holosign"
-	desc = "A small holographic glow that indicates you're under arrest."
+	name = "安保全息标志"
+	desc = "一个表明你已被逮捕的小型全息光晕。"
 	icon_state = "sec_holo"
 	duration = 60
 
@@ -607,4 +607,4 @@
 	. = ..()
 	playsound(loc, 'sound/machines/chime.ogg', 50, FALSE) //make some noise!
 	if(creator)
-		visible_message(span_danger("[creator] created a security hologram!"))
+		visible_message(span_danger("[creator] 创建了一个安保全息图！"))

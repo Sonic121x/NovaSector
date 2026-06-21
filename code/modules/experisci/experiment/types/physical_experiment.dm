@@ -1,6 +1,6 @@
 /datum/experiment/physical
-	name = "Physical Experiment"
-	description = "An experiment requiring a physical reaction to continue"
+	name = "物理实验"
+	description = "一项需要物理反应才能继续的实验"
 	exp_tag = "Physical Experiment"
 	performance_hint = "To perform physical experiments you must use a hand-held scanner unit to track objects in our world relevant to \
 		your experiment. Activate the experiment on your scanner, scan the object to track, and then complete the objective."

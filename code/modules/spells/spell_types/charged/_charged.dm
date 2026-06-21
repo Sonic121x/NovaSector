@@ -33,7 +33,7 @@
 /datum/action/cooldown/spell/charged/New(Target, original)
 	. = ..()
 	if(!channel_message)
-		channel_message = span_notice("You start chanelling [src]...")
+		channel_message = span_notice("你开始引导 [src]...")
 
 	if(charge_sound)
 		charge_sound_instance = sound(charge_sound, channel = CHANNEL_CHARGED_SPELL)
@@ -62,7 +62,7 @@
 		return FALSE
 	if(currently_channeling)
 		if(feedback)
-			to_chat(owner, span_warning("You're already channeling [src]!"))
+			to_chat(owner, span_warning("你已经在引导[src]了！"))
 		return FALSE
 
 	return TRUE
@@ -130,7 +130,7 @@
 
 	initial_target = get_target(cast_on)
 	if(isnull(initial_target))
-		cast_on.balloon_alert(cast_on, "no targets nearby!")
+		cast_on.balloon_alert(cast_on, "附近没有目标！")
 		stop_channel_effect(cast_on)
 		return . | SPELL_CANCEL_CAST
 

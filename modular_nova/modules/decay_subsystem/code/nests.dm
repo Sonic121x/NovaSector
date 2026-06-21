@@ -1,6 +1,6 @@
 /obj/structure/mob_spawner
-	name = "nest"
-	desc = "A nasty looking pile of sticks and debris."
+	name = "巢穴"
+	desc = "一堆由树枝和碎片组成的恶心玩意儿。"
 	icon = 'modular_nova/modules/decay_subsystem/icons/nests.dmi'
 	icon_state = "nest"
 	density = FALSE
@@ -107,7 +107,7 @@
 
 	RegisterSignal(spawned_mob, COMSIG_LIVING_DEATH, PROC_REF(mob_death))
 
-	visible_message(span_danger("[spawned_mob] emerges from [src]."))
+	visible_message(span_danger("[spawned_mob]从[src]中钻了出来。"))
 
 /obj/structure/mob_spawner/proc/mob_death(mob/living/dead_guy, gibbed)
 	SIGNAL_HANDLER
@@ -118,47 +118,47 @@
 	. = ..()
 	do_jiggle_nova()
 	if(!retaliated)
-		visible_message(span_danger("[src] grubbles angrily!"))
+		visible_message(span_danger("[src]愤怒地发出咕噜声！"))
 		var/chosen_mob_type = pick(monster_types)
 		var/mob/living/simple_animal/L = new chosen_mob_type(loc)
-		visible_message(span_danger("[L] emerges from [src]."))
+		visible_message(span_danger("[L]从[src]中钻了出来。"))
 		retaliated = TRUE
 		addtimer(CALLBACK(src, PROC_REF(ready_retaliate)), retaliate_cooldown)
 
 /obj/structure/mob_spawner/proc/ready_retaliate()
 	retaliated = FALSE
-	visible_message(span_danger("[src] calms down."))
+	visible_message(span_danger("[src]平静了下来。"))
 
 /*
 *	CUSTOM SPAWNERS
 */
 
 /obj/structure/mob_spawner/spiders
-	name = "sticky cobwebs"
-	desc = "A mush of sticky cobwebs and nasty looking eggs..."
+	name = "粘性蛛网"
+	desc = "一团粘稠的蛛网和看起来恶心的卵..."
 	icon_state = "nest_spider"
 	light_color = LIGHT_COLOR_BLOOD_MAGIC
 	monster_types = list(/mob/living/basic/spider/giant/hunter, /mob/living/basic/spider/giant/)
 	loot = list(/obj/item/spider_egg = 4)
 
 /obj/item/spider_egg
-	name = "spider egg"
-	desc = "A white egg with something crawling around inside. Looks... fragile."
+	name = "蜘蛛卵"
+	desc = "一颗白色的卵，里面有东西在蠕动。看起来...很脆弱。"
 	icon = 'modular_nova/modules/decay_subsystem/icons/loot.dmi'
 	icon_state = "spider_egg"
 
 /obj/item/spider_egg/attack_self(mob/user, modifiers)
 	. = ..()
-	to_chat(user, span_danger("You begin to crack open [src]..."))
+	to_chat(user, span_danger("你开始撬开[src]..."))
 	if(do_after(user, 3 SECONDS, src))
-		to_chat(user, span_userdanger("You crack [src] open, something monsterous crawls out!"))
+		to_chat(user, span_userdanger("你撬开了[src]，有什么怪物般的东西爬了出来！"))
 		playsound(src, 'sound/effects/blob/blobattack.ogg', 100)
 		new /mob/living/basic/spider/giant/ (user.loc)
 		qdel(src)
 
 /obj/structure/mob_spawner/bush
-	name = "bloody bush"
-	desc = "A bush... oozing blood?"
+	name = "血淋淋的灌木丛"
+	desc = "一丛灌木...在渗血？"
 	icon_state = "nest_grass"
 	light_color = LIGHT_COLOR_GREEN
 	monster_types = list(/mob/living/basic/killer_tomato)
@@ -166,8 +166,8 @@
 	max_mobs = 6
 
 /obj/structure/mob_spawner/beehive
-	name = "beehive"
-	desc = "Filled with little beings that exist only to make your life a living hell."
+	name = "蜂巢"
+	desc = "里面充满了只为让你的生活变成人间地狱的小生物。"
 	icon_state = "nest_bee"
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
 	monster_types = list(/mob/living/basic/bee)
@@ -180,22 +180,22 @@
 	. = ..()
 	if(!swarmed)
 		playsound(src, 'sound/mobs/non-humanoids/bee/bee.ogg', 100)
-		visible_message(span_userdanger("[src] buzzes violently as bees pour out!"))
+		visible_message(span_userdanger("[src]剧烈地嗡嗡作响，蜜蜂倾巢而出！"))
 		for(var/i=1, i<max_mobs, ++i)
 			new /mob/living/basic/bee (loc)
 		swarmed = TRUE
 
 /obj/structure/mob_spawner/beehive/toxic
-	name = "oozing beehive"
-	desc = "A beehive... it looks off however, it's oozing some kind of green glowing goop."
+	name = "渗液蜂巢"
+	desc = "一个蜂巢……但它看起来不对劲，正渗出某种发着绿光的粘稠物。"
 	icon_state = "nest_bee_toxic"
 	monster_types = list(/mob/living/basic/bee/toxin)
 	max_mobs = 6
 	color = LIGHT_COLOR_ELECTRIC_GREEN
 
 /obj/structure/mob_spawner/snake
-	name = "disgusting eggs"
-	desc = "These pulsating eggs are oozing out a puss like substance..."
+	name = "恶心的卵"
+	desc = "这些搏动着的卵正渗出脓液般的物质……"
 	icon_state = "nest_eggs"
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
 	monster_types = list(/mob/living/basic/snake)
@@ -203,8 +203,8 @@
 	spawn_cooldown = 5 SECONDS
 
 /obj/structure/mob_spawner/rats
-	name = "nasty nest"
-	desc = "A nest crawling with... something!"
+	name = "肮脏的巢穴"
+	desc = "一个爬满了……某种东西的巢穴！"
 	icon_state = "nest_rats"
 	light_color = LIGHT_COLOR_GREEN
 	max_mobs = 8
@@ -213,8 +213,8 @@
 	loot = list(/obj/item/seeds/replicapod = 2)
 
 /obj/structure/mob_spawner/grapes
-	name = "grapevine"
-	desc = "A grapevine... with... eggs?"
+	name = "葡萄藤"
+	desc = "一根葡萄藤……上面有……卵？"
 	icon_state = "nest_grapes"
 	light_color = LIGHT_COLOR_PURPLE
 	monster_types = list(/mob/living/simple_animal/hostile/ooze/grapes)

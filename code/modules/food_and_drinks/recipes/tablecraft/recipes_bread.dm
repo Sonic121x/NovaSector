@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////BREAD////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/meatbread
-	name = "Meat bread"
+	name = "Meat bread-肉面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/meat/cutlet/plain = 3,
@@ -14,7 +14,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/xenomeatbread
-	name = "Xenomeat bread"
+	name = "Xenomeat bread-异形肉面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/meat/cutlet/xeno = 3,
@@ -24,7 +24,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/spidermeatbread
-	name = "Spidermeat bread"
+	name = "Spidermeat bread-蜘蛛肉面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/meat/cutlet/spider = 3,
@@ -34,7 +34,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/sausagebread
-	name = "Sausage bread"
+	name = "Sausage bread-香肠面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/sausage = 2,
@@ -44,7 +44,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/banananutbread
-	name = "Banana nut bread"
+	name = "Banana nut bread-香蕉坚果面包"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/bread/plain = 1,
@@ -56,7 +56,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/tofubread
-	name = "Tofu bread"
+	name = "Tofu bread-豆腐面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/tofu = 3,
@@ -66,7 +66,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/creamcheesebread
-	name = "Cream cheese bread"
+	name = "Cream cheese bread-奶油芝士面包"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/bread/plain = 1,
@@ -76,7 +76,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/mimanabread
-	name = "Mimana bread"
+	name = "Mimana bread-默蕉面包"
 	reqs = list(
 		/datum/reagent/consumable/soymilk = 5,
 		/obj/item/food/bread/plain = 1,
@@ -87,7 +87,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/garlicbread
-	name = "Garlic Bread"
+	name = "Garlic Bread-蒜蓉面包"
 	time = 4 SECONDS
 	reqs = list(/obj/item/food/grown/garlic = 1,
 				/obj/item/food/breadslice/plain = 1,
@@ -98,7 +98,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/butterbiscuit
-	name = "Butter Biscuit"
+	name = "Butter Biscuit-黄油饼干"
 	reqs = list(
 		/obj/item/food/bun = 1,
 		/obj/item/food/butterslice = 1
@@ -108,7 +108,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/butterdog
-	name = "Butterdog"
+	name = "Butterdog-黄油狗"
 	reqs = list(
 		/obj/item/food/bun = 1,
 		/obj/item/food/butter = 1,
@@ -117,7 +117,7 @@
 	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/baguette
-	name = "Baguette"
+	name = "Baguette-法式长棍"
 	time = 4 SECONDS
 	reqs = list(/datum/reagent/consumable/salt = 1,
 		/datum/reagent/consumable/blackpepper = 1,
@@ -128,7 +128,7 @@
 	meal_category = MEAL_SNACK
 
 /datum/crafting_recipe/food/raw_breadstick
-	name = "Raw breadstick"
+	name = "Raw breadstick-生面包棒"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/datum/reagent/consumable/salt = 1,
@@ -139,7 +139,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/raw_croissant
-	name = "Raw croissant"
+	name = "生可颂"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/datum/reagent/consumable/sugar = 1,
@@ -150,7 +150,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/throwing_croissant
-	name = "Throwing croissant"
+	name = "投掷可颂"
 	reqs = list(
 		/obj/item/food/croissant = 1,
 		/obj/item/stack/rods = 1,
@@ -160,7 +160,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/food/breaddog
-	name = "Living dog/bread hybrid"
+	name = "活体狗/面包混合体"
 	reqs = list(
 		/obj/item/organ/brain = 1,
 		/obj/item/organ/heart = 1,
@@ -181,7 +181,7 @@
 ////////////////////////////////////////////////TOAST////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/slimetoast
-	name = "Slime toast"
+	name = "Slime toast-史莱姆吐司"
 	reqs = list(
 		/datum/reagent/toxin/slimejelly = 5,
 		/obj/item/food/breadslice/plain = 1
@@ -191,7 +191,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/jelliedyoast
-	name = "Jellied toast"
+	name = "Jellied toast-果酱吐司"
 	reqs = list(
 		/datum/reagent/consumable/cherryjelly = 5,
 		/obj/item/food/breadslice/plain = 1
@@ -201,7 +201,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/butteredtoast
-	name = "Buttered Toast"
+	name = "Buttered Toast-黄油吐司"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 1,
 		/obj/item/food/butterslice = 1
@@ -211,7 +211,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/twobread
-	name = "Two bread"
+	name = "Two bread-两片面包"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/wine = 5,
 		/obj/item/food/breadslice/plain = 2
@@ -220,7 +220,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/moldybread // why would you make this?
-	name = "Moldy Bread"
+	name = "Moldy Bread-发霉的面包"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 1,
 		/obj/item/food/grown/mushroom/amanita = 1
@@ -231,7 +231,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/breadcat
-	name = "Bread cat/bread hybrid"
+	name = "面包猫/面包混合体"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/organ/ears/cat = 1,
@@ -245,7 +245,7 @@
 	meal_category = MEAL_UNCATEGORIZED
 
 /datum/crafting_recipe/food/frenchtoast
-	name = "Raw french toast"
+	name = "Raw french toast-生法式吐司"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 1,
 		/obj/item/food/egg = 2,

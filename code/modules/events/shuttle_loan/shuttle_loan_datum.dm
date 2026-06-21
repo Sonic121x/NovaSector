@@ -3,13 +3,13 @@
 	/// Who sent the shuttle
 	var/sender = "Centcom"
 	/// What they said about it.
-	var/announcement_text = "Unset announcement text"
+	var/announcement_text = "未设置的公告文本"
 	/// What the shuttle says about it.
 	var/shuttle_transit_text = "Unset transit text"
 	/// Supply points earned for taking the deal.
 	var/bonus_points = CARGO_CRATE_VALUE * 50
 	/// Response for taking the deal.
-	var/thanks_msg = "The cargo shuttle should return in five minutes. Have some supply points for your trouble."
+	var/thanks_msg = "货船穿梭机将在五分钟后返回。为您的麻烦提供一些补给点。"
 	/// Small description of the loan for easier log reading.
 	var/logging_desc
 
@@ -27,7 +27,7 @@
 
 /datum/shuttle_loan_situation/antidote
 	sender = "CentCom Research Initiatives"
-	announcement_text = "Your station has been chosen for an epidemiological research project. Send us your cargo shuttle to receive your research samples."
+	announcement_text = "贵空间站已被选为流行病学研究项目地点。请将您的货船穿梭机派来接收研究样本。"
 	shuttle_transit_text = "Virus samples incoming."
 	logging_desc = "Virus shuttle"
 
@@ -52,9 +52,9 @@
 
 /datum/shuttle_loan_situation/department_resupply
 	sender = "CentCom Supply Department"
-	announcement_text = "Seems we've ordered doubles of our department resupply packages this month. Can we send them to you?"
+	announcement_text = "看来我们这个月的部门补给包订多了。能寄给你们吗？"
 	shuttle_transit_text = "Department resupply incoming."
-	thanks_msg = "The cargo shuttle should return in five minutes."
+	thanks_msg = "货船穿梭机将在五分钟后返回。"
 	bonus_points = 0
 	logging_desc = "Resupply packages"
 
@@ -80,7 +80,7 @@
 
 /datum/shuttle_loan_situation/syndiehijacking
 	sender = "CentCom Counterintelligence"
-	announcement_text = "The syndicate are trying to infiltrate your station. If you let them hijack your cargo shuttle, you'll save us a headache."
+	announcement_text = "辛迪加正试图渗透你们的空间站。如果你们让他们劫持你们的货船穿梭机，将为我们省去不少麻烦。"
 	shuttle_transit_text = "Syndicate hijack team incoming."
 	logging_desc = "Syndicate boarding party"
 
@@ -97,7 +97,7 @@
 
 /datum/shuttle_loan_situation/lots_of_bees
 	sender = "CentCom Janitorial Division"
-	announcement_text = "One of our freighters carrying a bee shipment has been attacked by eco-terrorists. Can you clean up the mess for us?"
+	announcement_text = "我们一艘运送蜜蜂的货船遭到了生态恐怖分子的袭击。你们能帮我们收拾残局吗？"
 	shuttle_transit_text = "Biohazard cleanup incoming."
 	bonus_points = CARGO_CRATE_VALUE * 100 //Toxin bees can be unbeelievably lethal
 	logging_desc = "Shuttle full of bees"
@@ -132,9 +132,9 @@
 
 /datum/shuttle_loan_situation/jc_a_bomb
 	sender = "CentCom Security Division"
-	announcement_text = "We have discovered an active Syndicate bomb near our VIP shuttle's fuel lines. If you feel up to the task, we will pay you for defusing it."
+	announcement_text = "我们在贵宾穿梭机的燃料管线附近发现了一枚活跃的辛迪加炸弹。如果你觉得有能力处理，我们将支付报酬请你拆除它。"
 	shuttle_transit_text = "Live explosive ordnance incoming. Exercise extreme caution."
-	thanks_msg = "Live explosive ordnance incoming via supply shuttle. Evacuating cargo bay is recommended."
+	thanks_msg = "活体爆炸物正通过补给穿梭机送达。建议疏散货舱。"
 	bonus_points = CARGO_CRATE_VALUE * 225 //If you mess up, people die and the shuttle gets turned into swiss cheese
 	logging_desc = "Shuttle with a ticking bomb"
 
@@ -147,9 +147,9 @@
 
 /datum/shuttle_loan_situation/papers_please
 	sender = "CentCom Paperwork Division"
-	announcement_text = "A neighboring station needs some help handling some paperwork. Could you help process it for us?"
+	announcement_text = "邻近空间站需要一些帮助来处理文书工作。你能帮我们处理一下吗？"
 	shuttle_transit_text = "Paperwork incoming."
-	thanks_msg = "The cargo shuttle should return in five minutes. Payment will be rendered when the paperwork is processed and returned."
+	thanks_msg = "货运穿梭机应在五分钟后返回。文书处理完毕并归还后，我们将支付报酬。"
 	bonus_points = 0 //Payout is made when the stamped papers are returned
 	logging_desc = "Paperwork shipment"
 
@@ -158,9 +158,9 @@
 
 /datum/shuttle_loan_situation/pizza_delivery
 	sender = "CentCom Spacepizza Division"
-	announcement_text = "It looks like a neighbouring station accidentally delivered their pizza to you instead."
+	announcement_text = "看起来邻近空间站不小心把他们的披萨送到你们那里了。"
 	shuttle_transit_text = "Pizza delivery!"
-	thanks_msg = "The cargo shuttle should return in five minutes."
+	thanks_msg = "货运穿梭机应在五分钟后返回。"
 	bonus_points = 0
 	logging_desc = "Pizza delivery"
 
@@ -172,7 +172,7 @@
 
 /datum/shuttle_loan_situation/russian_party
 	sender = "CentCom Russian Outreach Program"
-	announcement_text = "A group of angry Russians want to have a party. Can you send them your cargo shuttle then make them disappear?"
+	announcement_text = "一群愤怒的俄罗斯人想开派对。你能把货运穿梭机送给他们，然后让他们消失吗？"
 	shuttle_transit_text = "Partying Russians incoming."
 	logging_desc = "Russian party squad"
 
@@ -190,7 +190,7 @@
 
 /datum/shuttle_loan_situation/spider_gift
 	sender = "CentCom Diplomatic Corps"
-	announcement_text = "The Spider Clan has sent us a mysterious gift. Can we ship it to you to see what's inside?"
+	announcement_text = "蜘蛛氏族给我们送了一份神秘的礼物。我们能把它运给你们看看里面是什么吗？"
 	shuttle_transit_text = "Spider Clan gift incoming."
 	logging_desc = "Shuttle full of spiders"
 
@@ -228,9 +228,9 @@
  */
 /datum/shuttle_loan_situation/mail_strike
 	sender = "Spinward Mail Workers Union"
-	announcement_text = "The Mail Workers Union wants to borrow your cargo shuttle to employ \"advanced union strike tactics\" with. Payment is strictly in mails."
+	announcement_text = "邮件工人工会想借用你们的货运穿梭机来实施\"先进的工会罢工策略\"。报酬严格以邮件形式支付。"
 	bonus_points = 0
-	thanks_msg = "The cargo shuttle should return in five minutes."
+	thanks_msg = "货运穿梭机应在五分钟后返回。"
 	shuttle_transit_text = "Nothing stops the mail."
 	logging_desc = "Shuttle full of shady mail"
 

@@ -1,6 +1,6 @@
 /// Eye mob, used by cameras and overminds such as blobs.
 /mob/eye
-	name = "eye mob"
+	name = "视野实体"
 	density = FALSE
 	move_force = INFINITY
 	move_resist = INFINITY
@@ -28,11 +28,11 @@
 
 /mob/eye/up()
 	if(zMove(UP, z_move_flags = ZMOVE_FEEDBACK))
-		to_chat(src, span_notice("You move upwards."))
+		to_chat(src, span_notice("你向上移动。"))
 
 /mob/eye/down()
 	if(zMove(DOWN, z_move_flags = ZMOVE_FEEDBACK))
-		to_chat(src, span_notice("You move down."))
+		to_chat(src, span_notice("你向下移动。"))
 
 /mob/eye/can_z_move(direction, turf/start, turf/destination, z_move_flags = NONE, mob/living/rider)
 	z_move_flags |= ZMOVE_IGNORE_OBSTACLES  //cameras do not respect these FLOORS you speak so much of

@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves/fingerless/punch_mitts
-	name = "punching mitts"
+	name = "拳击手套"
 	desc = "Fingerless gloves with nasty spikes attached. Allows the wearer to utilize the ill-reputed fighting technique known as Hunter Boxing. The style \
 		allows the user to rapidly punch wildlife into smithereens. Great workout. Extremely ill-advised for ensuring your own personal survival."
 	icon_state = "punch_mitts"

@@ -1,6 +1,6 @@
 /obj/item/holocigarette
-	name = "Holocigarette"
-	desc = "A cigarette created using holodeck technology. Want to smoke without all the downsides? Try Holocigarettes!"
+	name = "全息香烟"
+	desc = "一种使用全息甲板技术制造的香烟。想吸烟又不想承受所有副作用？试试全息香烟吧！"
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigoff"
 	throw_speed = 0.5
@@ -16,15 +16,15 @@
 	actions_types = list(/datum/action/item_action/toggle_lit)
 
 /obj/item/holocigarette/cigar
-	name = "Bright Cosmos cigar"
-	desc = "A fancy cigar created using holodeck technology. They look like they have a \"Bright Cosmos\" branding on their wrap."
+	name = "璀璨宇宙雪茄"
+	desc = "一种使用全息甲板技术制造的精致雪茄。看起来它们的包装上印有“璀璨宇宙”的品牌标识。"
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
 	icon_off = "cigar2off"
 
 /datum/action/item_action/toggle_lit
-	name = "Light"
-	desc = "Light or extinguish the holocigarette"
+	name = "点燃"
+	desc = "点燃或熄灭全息香烟"
 
 /datum/action/item_action/toggle_lit/Trigger(trigger_flags)
 	. = ..()
@@ -37,7 +37,7 @@
 		smoked.worn_icon_state = smoked.icon_on
 		smoked.inhand_icon_state = smoked.icon_on
 		smoked.lit = TRUE
-		smoked.name = "lit [smoked.name]"
+		smoked.name = "点燃的 [smoked.name]"
 	else
 		smoked.icon_state = smoked.icon_off
 		smoked.worn_icon_state = smoked.icon_off

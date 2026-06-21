@@ -98,7 +98,7 @@
 			return TRUE
 
 		if("rename_room")
-			var/new_room_name = tgui_input_text(user,"Choose a new name for the room", name, target_room.name, max_length = MAX_NAME_LEN)
+			var/new_room_name = tgui_input_text(user,"为房间选择一个新名称", name, target_room.name, max_length = MAX_NAME_LEN)
 			if(!new_room_name)
 				return FALSE
 
@@ -106,7 +106,7 @@
 			return TRUE
 
 		if("redescribe_room")
-			var/new_room_desc = tgui_input_text(user,"Choose a new description for the room", name, target_room.room_description, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+			var/new_room_desc = tgui_input_text(user,"为房间选择一个新的描述", name, target_room.room_description, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 			if(!new_room_desc)
 				return FALSE
 
@@ -127,7 +127,7 @@
 			return TRUE
 
 		if("modify_name")
-			var/new_name = tgui_input_text(user,"Choose a new name to send messages as", name, target_room.outside_voice, max_length = MAX_NAME_LEN, multiline = TRUE)
+			var/new_name = tgui_input_text(user,"选择发送消息时使用的新名称", name, target_room.outside_voice, max_length = MAX_NAME_LEN, multiline = TRUE)
 			if(!new_name)
 				return FALSE
 
@@ -161,7 +161,7 @@
 					for(var/datum/soulcatcher_room/room in soulcatcher_component.soulcatcher_rooms)
 						available_rooms += room
 
-			var/datum/soulcatcher_room/transfer_room = tgui_input_list(user, "Choose a room to transfer to", name, available_rooms)
+			var/datum/soulcatcher_room/transfer_room = tgui_input_list(user, "选择要转移到的房间", name, available_rooms)
 			if(!(transfer_room in available_rooms))
 				return FALSE
 
@@ -212,7 +212,7 @@
 			return TRUE
 
 		if("change_name")
-			var/new_name = tgui_input_text(user, "Enter a new name for [target_soul]", "Soulcatcher", target_soul, max_length = MAX_NAME_LEN)
+			var/new_name = tgui_input_text(user, "为 [target_soul] 输入新名称", "灵魂捕捉器", target_soul, max_length = MAX_NAME_LEN)
 			if(!new_name)
 				return FALSE
 
@@ -220,7 +220,7 @@
 			return TRUE
 
 		if("reset_name")
-			if(tgui_alert(user, "Do you wish to reset [target_soul]'s name to default?", "Soulcatcher", list("Yes", "No")) != "Yes")
+			if(tgui_alert(user, "是否要将 [target_soul] 的名称重置为默认值？", "灵魂捕捉器", list("Yes", "No")) != "Yes")
 				return FALSE
 
 			target_soul.reset_name()
@@ -232,7 +232,7 @@
 			if(params["narration"])
 				message_sender = FALSE
 
-			message_to_send = tgui_input_text(user, "Input the message you want to send", name, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+			message_to_send = tgui_input_text(user, "输入你想要发送的消息", name, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 
 			if(!message_to_send)
 				return FALSE
@@ -241,7 +241,7 @@
 			return TRUE
 
 		if("delete_self")
-			if(tgui_alert(user, "Are you sure you want to detach the soulcatcher?", parent, list("Yes", "No")) != "Yes")
+			if(tgui_alert(user, "你确定要分离灵魂捕捉器吗？", parent, list("Yes", "No")) != "Yes")
 				return FALSE
 
 			remove_self()
@@ -330,7 +330,7 @@
 
 	switch(action)
 		if("change_name")
-			var/new_name = tgui_input_text(user, "Enter a new name", "Soulcatcher", user_soul.name, max_length = MAX_NAME_LEN)
+			var/new_name = tgui_input_text(user, "输入新名称", "灵魂捕捉器", user_soul.name, max_length = MAX_NAME_LEN)
 			if(!new_name)
 				return FALSE
 
@@ -338,7 +338,7 @@
 			return TRUE
 
 		if("reset_name")
-			if(tgui_alert(user, "Do you wish to reset your name to default?", "Soulcatcher", list("Yes", "No")) != "Yes")
+			if(tgui_alert(user, "是否要将你的名称重置为默认值？", "灵魂捕捉器", list("Yes", "No")) != "Yes")
 				return FALSE
 
 			user_soul.reset_name()

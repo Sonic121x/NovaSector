@@ -1,6 +1,6 @@
 /datum/job/bitrunner
 	title = JOB_BITRUNNER
-	description = "Surf the virtual domain for gear and loot, decrypt your rewards on station."
+	description = "在虚拟领域中冲浪获取装备和战利品，在空间站上解密你的奖励。"
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3
@@ -31,7 +31,7 @@
 	job_flags = STATION_JOB_FLAGS
 
 /datum/outfit/job/bitrunner
-	name = "Bitrunner"
+	name = "比特行者"
 	jobtype = /datum/job/bitrunner
 
 	id_trim = /datum/id_trim/job/bitrunner

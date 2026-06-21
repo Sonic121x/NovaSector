@@ -25,13 +25,13 @@ DEFINE_BITFIELD(turret_flags, list(
 ))
 
 /obj/machinery/porta_turret
-	name = "turret"
+	name = "炮塔"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "turretCover"
 	layer = OBJ_LAYER
 	invisibility = INVISIBILITY_OBSERVER //the turret is invisible if it's inside its cover
 	density = TRUE
-	desc = "A covered turret that shoots at its enemies."
+	desc = "一个可以向敌人开火的有盖炮塔。"
 	req_access = list(ACCESS_SECURITY) /// Only people with Security access
 	power_channel = AREA_USAGE_EQUIP //drains power from the EQUIPMENT channel
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.15
@@ -283,7 +283,7 @@ DEFINE_BITFIELD(turret_flags, list(
 				toggle_on(!on)
 				return TRUE
 			else
-				to_chat(usr, span_warning("It has to be secured first!"))
+				to_chat(usr, span_warning("必须先固定它！"))
 		if("authweapon")
 			turret_flags ^= TURRET_FLAG_AUTH_WEAPONS
 			return TRUE
@@ -331,7 +331,7 @@ DEFINE_BITFIELD(turret_flags, list(
 		return
 
 	tool.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret/crowbar_act(mob/living/user, obj/item/tool)
@@ -340,20 +340,20 @@ DEFINE_BITFIELD(turret_flags, list(
 
 	//If the turret is destroyed, you can remove it with a crowbar to
 	//try and salvage its components
-	to_chat(user, span_notice("You begin prying the metal coverings off..."))
+	to_chat(user, span_notice("你开始撬开金属外壳..."))
 	if(!tool.use_tool(src, user, 20))
 		return ITEM_INTERACT_BLOCKING
 	if(prob(70))
 		if(stored_gun)
 			stored_gun.forceMove(loc)
 			stored_gun = null
-		to_chat(user, span_notice("You remove the turret and salvage some components."))
+		to_chat(user, span_notice("你移除了炮塔并回收了一些组件。"))
 		if(prob(50))
 			new /obj/item/stack/sheet/iron(loc, rand(1,4))
 		if(prob(50))
 			new /obj/item/assembly/prox_sensor(loc)
 	else
-		to_chat(user, span_notice("You remove the turret but did not manage to salvage anything."))
+		to_chat(user, span_notice("你移除了炮塔但未能回收任何东西。"))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -366,13 +366,13 @@ DEFINE_BITFIELD(turret_flags, list(
 		set_anchored(TRUE)
 		RemoveInvisibility(id=type)
 		update_appearance()
-		to_chat(user, span_notice("You secure the exterior bolts on the turret."))
+		to_chat(user, span_notice("你拧紧了炮塔的外部螺栓。"))
 		if(has_cover)
 			cover = new /obj/machinery/porta_turret_cover(loc) //create a new turret. While this is handled in process(), this is to workaround a bug where the turret becomes invisible for a split second
 			cover.parent_turret = src //make the cover's parent src
 	else if(anchored)
 		set_anchored(FALSE)
-		to_chat(user, span_notice("You unsecure the exterior bolts on the turret."))
+		to_chat(user, span_notice("你松开了炮塔的外部螺栓。"))
 		power_change()
 		SetInvisibility(INVISIBILITY_NONE, id=type)
 		qdel(cover) //deletes the cover, and the turret instance itself becomes its own cover.
@@ -384,17 +384,17 @@ DEFINE_BITFIELD(turret_flags, list(
 
 	//Behavior lock/unlock mangement
 	if(!allowed(user))
-		to_chat(user, span_alert("Access denied."))
+		to_chat(user, span_alert("访问被拒绝。"))
 		return ITEM_INTERACT_BLOCKING
 	locked = !locked
-	to_chat(user, span_notice("Controls are now [locked ? "locked" : "unlocked"]."))
+	to_chat(user, span_notice("控制面板现已[locked ? "locked" : "unlocked"]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "threat assessment circuits shorted")
-	audible_message(span_hear("[src] hums oddly..."))
+	balloon_alert(user, "威胁评估电路短路")
+	audible_message(span_hear("[src]发出奇怪的嗡鸣声..."))
 	obj_flags |= EMAGGED
 	controllock = TRUE
 	set_disabled(6 SECONDS)
@@ -690,7 +690,7 @@ DEFINE_BITFIELD(turret_flags, list(
 	power_change()
 
 /datum/action/turret_toggle
-	name = "Toggle Mode"
+	name = "切换模式"
 	button_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_cycle_equip_off"
 
@@ -704,7 +704,7 @@ DEFINE_BITFIELD(turret_flags, list(
 	P.setState(P.on,!P.mode)
 
 /datum/action/turret_quit
-	name = "Release Control"
+	name = "释放控制"
 	button_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_eject"
 
@@ -739,7 +739,7 @@ DEFINE_BITFIELD(turret_flags, list(
 		return FALSE
 	if(remote_controller)
 		if(warning_message)
-			to_chat(remote_controller, span_warning("Your uplink to [src] has been severed!"))
+			to_chat(remote_controller, span_warning("你与[src]的上行链路已被切断！"))
 		quit_action.Remove(remote_controller)
 		toggle_action.Remove(remote_controller)
 		remote_controller.click_intercept = null
@@ -776,7 +776,7 @@ DEFINE_BITFIELD(turret_flags, list(
 	base_icon_state = "syndie"
 	faction = list(ROLE_SYNDICATE)
 	turret_flags = TURRET_FLAG_SHOOT_CRIMINALS | TURRET_FLAG_SHOOT_ANOMALOUS | TURRET_FLAG_SHOOT_BORGS
-	desc = "A ballistic machine gun auto-turret."
+	desc = "弹道机枪自动炮塔"
 
 /obj/machinery/porta_turret/syndicate/Initialize(mapload)
 	. = ..()
@@ -809,7 +809,7 @@ DEFINE_BITFIELD(turret_flags, list(
 	stun_projectile_sound = 'sound/items/weapons/taser.ogg'
 	lethal_projectile = /obj/projectile/beam/laser
 	lethal_projectile_sound = 'sound/items/weapons/laser.ogg'
-	desc = "An energy blaster auto-turret."
+	desc = "一种能量发射自动炮塔。"
 	armor_type = /datum/armor/syndicate_turret
 
 /obj/machinery/porta_turret/syndicate/energy/ruin/assess_perp(mob/living/carbon/human/perp)
@@ -889,8 +889,8 @@ DEFINE_BITFIELD(turret_flags, list(
 	return 10 //AI turrets shoot at everything not in their faction
 
 /obj/machinery/porta_turret/aux_base
-	name = "perimeter defense turret"
-	desc = "A plasma beam turret calibrated to defend outposts against non-humanoid fauna. It is more effective when exposed to the environment."
+	name = "边界防御炮塔"
+	desc = "一种等离子束炮塔，经过特殊校准，用于保护前哨基地免受非人类生物的攻击。在与环境接触时，其效果会更加显著。"
 	installation = null
 	uses_stored = FALSE
 	lethal_projectile = /obj/projectile/plasma/turret
@@ -941,14 +941,14 @@ DEFINE_BITFIELD(turret_flags, list(
 /obj/machinery/porta_turret/centcom_shuttle/weak
 	max_integrity = 120
 	integrity_failure = 0.5
-	name = "Old Laser Turret"
-	desc = "A turret built with substandard parts and run down further with age. Still capable of delivering lethal lasers to the odd space carp, but not much else."
+	name = "陈旧的激光炮塔"
+	desc = "用不合格的零件建造的炮塔，随着使用年限的增长，炮塔会逐渐老化。仍然能够向太空鲤鱼发射致命的激光，但也就仅此而已了。"
 	stun_projectile = /obj/projectile/beam/weak/penetrator
 	lethal_projectile = /obj/projectile/beam/weak/penetrator
 	faction = list(FACTION_NEUTRAL,FACTION_SILICON,FACTION_TURRET)
 
 /obj/machinery/porta_turret/centcom_shuttle/weak/mining
-	name = "Old Mining Turret"
+	name = "旧式采矿炮塔"
 	lethal_projectile = /obj/projectile/kinetic/miner
 	lethal_projectile_sound = 'sound/items/weapons/kinetic_accel.ogg'
 	stun_projectile = /obj/projectile/kinetic/miner

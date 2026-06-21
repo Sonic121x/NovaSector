@@ -222,8 +222,8 @@ GLOBAL_VAR_INIT(all_autodrobe_items, (autodrobe_costumes_items +\
 ))
 
 /obj/machinery/vending/autodrobe
-	name = "\improper AutoDrobe"
-	desc = "A vending machine for costumes."
+	name = "\improper 戏服售货机"
+	desc = "一个提供大量花样时髦的服装售货机"
 	icon_state = "theater"
 	icon_deny = "theater-deny"
 	panel_type = "panel16"

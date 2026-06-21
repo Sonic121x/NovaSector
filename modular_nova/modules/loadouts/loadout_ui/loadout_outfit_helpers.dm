@@ -2,7 +2,7 @@
 
 /// An empty outfit we fill in with our loadout items to dress our dummy.
 /datum/outfit/player_loadout
-	name = "Player Loadout"
+	name = "玩家装备配置"
 
 /datum/outfit/player_loadout/equip(mob/living/carbon/human/user, visualsOnly)
 	. = ..()
@@ -62,7 +62,7 @@
 					continue
 				new item.item_path(briefcase)
 
-		briefcase.name = "[preference_source.read_preference(/datum/preference/name/real_name)]'s travel suitcase"
+		briefcase.name = "[preference_source.read_preference(/datum/preference/name/real_name)]的旅行手提箱"
 		equipOutfit(equipped_outfit, visuals_only)
 		INVOKE_ASYNC(src, PROC_REF(put_in_hands), briefcase)
 	else
@@ -222,13 +222,13 @@
 	if (!Adjacent(user))
 		return
 
-	balloon_alert(user, "picking up hat...")
+	balloon_alert(user, "拾取帽子中...")
 	if (!do_after(user, 3 SECONDS, src))
 		return
 	if (QDELETED(src) || !Adjacent(user) || user.incapacitated)
 		return
 	user.place_on_head(src)
-	balloon_alert(user, "picked up hat")
+	balloon_alert(user, "已拾取帽子")
 
 // if a borg right clicks themself, they try to drop their hat
 /mob/living/silicon/robot/attack_robot_secondary(mob/user, list/modifiers)
@@ -239,7 +239,7 @@
 	if (user != src || isnull(hat))
 		return
 
-	balloon_alert(user, "dropping hat...")
+	balloon_alert(user, "放下帽子中...")
 	if (!do_after(user, 3 SECONDS, src))
 		return
 	if (QDELETED(src) || !Adjacent(user) || user.incapacitated || isnull(hat))
@@ -247,4 +247,4 @@
 	hat.forceMove(get_turf(src))
 	hat = null
 	update_icons()
-	balloon_alert(user, "dropped hat")
+	balloon_alert(user, "已放下帽子")

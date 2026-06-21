@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/toy
-	name = "foam force SMG"
-	desc = "A prototype three-round burst toy submachine gun. Ages 8 and up."
+	name = "泡沫动力SMG"
+	desc = "一种原型三连发玩具冲锋枪。适合8岁及以上儿童使用。"
 	icon_state = "saber"
 	selector_switch_icon = TRUE
 	inhand_icon_state = "gun"
@@ -20,8 +20,8 @@
 	spawn_magazine_type = /obj/item/ammo_box/magazine/toy/smg/riot
 
 /obj/item/gun/ballistic/automatic/pistol/toy
-	name = "foam force pistol"
-	desc = "A small, easily concealable toy handgun. Ages 8 and up."
+	name = "泡沫动力手枪"
+	desc = "一个小巧、易于隐藏的玩具手枪。适合8岁及以上儿童。"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/toy/pistol
 	fire_sound = 'sound/items/syringeproj.ogg'
 	gun_flags = TOY_FIREARM_OVERLAY | NOT_A_REAL_GUN
@@ -37,8 +37,8 @@
 	projectile_damage_multiplier = 1.4
 
 /obj/item/gun/ballistic/shotgun/toy
-	name = "foam force shotgun"
-	desc = "A toy shotgun with wood furniture and a four-shell capacity underneath. Ages 8 and up."
+	name = "泡沫动力猎枪"
+	desc = "一把带木质配件的玩具霰弹枪，底部可装四发子弹。适合8岁及以上儿童使用。"
 	force = 0
 	throwforce = 0
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/toy
@@ -61,8 +61,8 @@
 	spawn_magazine_type = /obj/item/ammo_box/magazine/internal/shot/toy/riot
 
 /obj/item/gun/ballistic/shotgun/toy/crossbow
-	name = "foam force crossbow"
-	desc = "A weapon favored by many overactive children. Ages 8 and up."
+	name = "泡沫动力弩"
+	desc = "许多过度活跃的孩子都喜欢的玩具武器。适合 8 岁及以上儿童使用。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "foamcrossbow"
 	inhand_icon_state = "crossbow"
@@ -83,8 +83,8 @@
 	spawn_magazine_type =  /obj/item/ammo_box/magazine/internal/shot/toy/crossbow/riot
 
 /obj/item/gun/ballistic/automatic/c20r/toy //This is the syndicate variant with syndicate firing pin and riot darts.
-	name = "donksoft SMG"
-	desc = "A bullpup three-round burst toy SMG, designated 'C-20r'. Ages 8 and up."
+	name = "'杜松' SMG"
+	desc = "一款名为“C-20r”的三发连射冲锋式玩具手枪，属于后置式设计，适合 8 岁及以上儿童使用。"
 	can_suppress = TRUE
 	item_flags = NONE
 	accepted_magazine_type = /obj/item/ammo_box/magazine/toy/smgm45
@@ -102,8 +102,8 @@
 	spawn_magazine_type = /obj/item/ammo_box/magazine/toy/smgm45/riot
 
 /obj/item/gun/ballistic/automatic/l6_saw/toy //This is the syndicate variant with syndicate firing pin and riot darts.
-	name = "donksoft LMG"
-	desc = "A heavily modified toy light machine gun, designated 'L6 SAW'. Ages 8 and up."
+	name = "'杜松' LMG"
+	desc = "一把经过大量改装的玩具轻机枪，型号为“L6 SAW”。适合8岁及以上儿童使用。"
 	fire_sound = 'sound/items/syringeproj.ogg'
 	can_suppress = FALSE
 	item_flags = NONE

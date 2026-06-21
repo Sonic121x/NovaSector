@@ -9,8 +9,8 @@
 
 // Relays don't handle any actual communication. Global NTNet datum does that, relays only tell the datum if it should or shouldn't work.
 /obj/machinery/ntnet_relay
-	name = "NTNet Quantum Relay"
-	desc = "A very complex router and transmitter capable of connecting electronic devices together. Looks fragile."
+	name = "NTNet量子中继"
+	desc = "一台非常复杂的路由器和发射器，能够将电子设备连接在一起。看起来却很脆弱。"
 	use_power = ACTIVE_POWER_USE
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 10 //10kW, apropriate for machine that keeps massive cross-Zlevel wireless network operational. Used to be 20 but that actually drained the smes one round
 	icon = 'icons/obj/machines/telecomms.dmi'

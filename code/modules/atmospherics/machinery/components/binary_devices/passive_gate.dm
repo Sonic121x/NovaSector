@@ -9,8 +9,8 @@ Passive gate is similar to the regular pump except:
 
 /obj/machinery/atmospherics/components/binary/passive_gate
 	icon_state = "passgate_map-3"
-	name = "passive gate"
-	desc = "A one-way air valve that does not require power. Passes gas when the output pressure is lower than the target pressure."
+	name = "被动阀门"
+	desc = "一种无需电源的单向气阀。当输出压力低于目标压力时，该阀会通气。"
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
@@ -33,7 +33,7 @@ Passive gate is similar to the regular pump except:
 /obj/machinery/atmospherics/components/binary/passive_gate/click_ctrl(mob/user)
 	if(is_operational)
 		set_on(!on)
-		balloon_alert(user, "turned [on ? "on" : "off"]")
+		balloon_alert(user, "已[on ? "on" : "off"]")
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
@@ -44,7 +44,7 @@ Passive gate is similar to the regular pump except:
 
 	target_pressure = MAX_OUTPUT_PRESSURE
 	investigate_log("was set to [target_pressure] kPa by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, "pressure output set to [target_pressure] kPa")
+	balloon_alert(user, "压力输出设置为[target_pressure] kPa")
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS
 
@@ -108,7 +108,7 @@ Passive gate is similar to the regular pump except:
 /obj/machinery/atmospherics/components/binary/passive_gate/can_unwrench(mob/user)
 	. = ..()
 	if(. && on)
-		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
+		to_chat(user, span_warning("你无法拆下[src]，请先关闭它！"))
 		return FALSE
 
 

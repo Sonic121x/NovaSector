@@ -1,5 +1,5 @@
 /datum/nifsoft/hud
-	name = "Scrying Lens"
+	name = "窥视透镜"
 	program_desc = "An umbrella term for all sorts of NIFsofts dealing with heads-up displays, this sort of technology dates back almost to the beginning of NIFsoft development. These 'softs are commonly used in the civilian field for integration with all sorts of activities; piloting, swordplay, scientific research, or even AI copiloting for important social interactions. While normally the nanomachines involved in the program's operation are used as a sort of artificial contact lens over the user's visual organs, Nanotrasen regulations have bid these particular forks to instead integrate with glasses the user's already wearing."
 	compatible_nifs = list(/obj/item/organ/cyberimp/brain/nif/standard)
 	active_mode = TRUE
@@ -45,7 +45,7 @@
 /datum/nifsoft/hud/activate()
 	var/obj/item/clothing/glasses/worn_glasses = linked_mob.get_item_by_slot(ITEM_SLOT_EYES)
 	if(eyewear_check && !active && (!istype(worn_glasses) || !HAS_TRAIT(worn_glasses, TRAIT_NIFSOFT_HUD_GRANTER)))
-		linked_mob.balloon_alert(linked_mob, "no compatible eyewear!")
+		linked_mob.balloon_alert(linked_mob, "没有兼容的护目镜！")
 		return FALSE
 
 	. = ..() // active = !active
@@ -80,7 +80,7 @@
 /datum/element/nifsoft_hud/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 
-	examine_text += span_cyan_nova("Wearing this item in your glasses slot will allow you to use NIFSoft HUDs.")
+	examine_text += span_cyan_nova("将此物品佩戴在眼镜槽位将允许你使用 NIFSoft HUD。")
 
 /datum/element/nifsoft_hud/Detach(datum/target)
 	UnregisterSignal(target, COMSIG_ATOM_EXAMINE)
@@ -96,32 +96,32 @@
 //
 
 /datum/nifsoft/hud/job/medical
-	name = "Medical Scrying Lens"
+	name = "医疗窥视透镜"
 	ui_icon = "staff-snake"
 	hud_traits = list(TRAIT_MEDICAL_HUD)
 
 /datum/nifsoft/hud/job/diagnostic
-	name = "Diagnostic Scrying Lens"
+	name = "诊断窥视透镜"
 	ui_icon = "robot"
 	hud_traits = list(TRAIT_DIAGNOSTIC_HUD)
 
 /datum/nifsoft/hud/job/security
-	name = "Security Scrying Lens"
+	name = "安保窥视透镜"
 	ui_icon = "shield"
 	hud_traits = list(TRAIT_SECURITY_HUD)
 
 /datum/nifsoft/hud/job/cargo_tech
-	name = "Permit Scrying Lens"
+	name = "许可证窥视透镜"
 	ui_icon = "gun"
 	hud_traits = list(TRAIT_PERMIT_HUD)
 
 /datum/nifsoft/hud/job/science
-	name = "Science Scrying Lens"
+	name = "科研窥视透镜"
 	ui_icon = "flask"
 	added_eyewear_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
 
 /datum/nifsoft/hud/job/meson
-	name = "Meson Scrying Lens"
+	name = "介子窥视透镜"
 	ui_icon = "radiation"
 	added_eyewear_traits = list(TRAIT_MADNESS_IMMUNE, TRAIT_MESON_VISION)
 
@@ -130,27 +130,27 @@
 //
 
 /obj/item/disk/nifsoft_uploader/job/med_hud
-	name = "Medical Scrying Lens"
+	name = "医疗窥视透镜"
 	loaded_nifsoft = /datum/nifsoft/hud/job/medical
 
 /obj/item/disk/nifsoft_uploader/job/diag_hud
-	name = "Diagnostic Scrying Lens"
+	name = "诊断窥视镜片"
 	loaded_nifsoft = /datum/nifsoft/hud/job/diagnostic
 
 /obj/item/disk/nifsoft_uploader/job/sec_hud
-	name = "Security Scrying Lens"
+	name = "安保窥视镜片"
 	loaded_nifsoft = /datum/nifsoft/hud/job/security
 
 /obj/item/disk/nifsoft_uploader/job/permit_hud
-	name = "Permit Scrying Lens"
+	name = "许可窥视镜片"
 	loaded_nifsoft = /datum/nifsoft/hud/job/cargo_tech
 
 /obj/item/disk/nifsoft_uploader/job/sci_hud
-	name = "Science Scrying Lens"
+	name = "科研窥视镜片"
 	loaded_nifsoft = /datum/nifsoft/hud/job/science
 
 /obj/item/disk/nifsoft_uploader/job/meson_hud
-	name = "Meson Scrying Lens"
+	name = "介子窥视镜片"
 	loaded_nifsoft = /datum/nifsoft/hud/job/meson
 
 //
@@ -158,8 +158,8 @@
 //
 
 /obj/item/clothing/glasses/trickblindfold/obsolete/nif
-	name = "modernized fake blindfold"
-	desc = "A restored version of the obsolete fake blindfold, retrofitted with the proper electronics to work as a NIF HUD."
+	name = "现代化假眼罩"
+	desc = "一种经过修复的旧式假眼罩版本，经过改装配备了适当的电子元件，可作为NIF平视显示器使用。"
 
 /obj/item/clothing/glasses/trickblindfold/obsolete/nif/Initialize(mapload)
 	. = ..()

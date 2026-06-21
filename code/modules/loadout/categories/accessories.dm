@@ -64,11 +64,11 @@
 	return . | ITEM_SLOT_OCLOTHING | ITEM_SLOT_ICLOTHING
 
 /datum/loadout_item/accessory/maid_apron
-	name = "Maid Apron"
+	name = "女仆围裙"
 	item_path = /obj/item/clothing/accessory/maidapron
 
 /datum/loadout_item/accessory/waistcoat
-	name = "Waistcoat"
+	name = "西装马甲"
 	item_path = /obj/item/clothing/accessory/waistcoat
 
 /datum/loadout_item/accessory/sweatervest
@@ -76,14 +76,14 @@
 	item_path = /obj/item/clothing/accessory/sweatervest
 
 /datum/loadout_item/accessory/pocket_protector
-	name = "Pocket Protector"
+	name = "口袋保护套"
 	item_path = /obj/item/clothing/accessory/pocketprotector
 
 /datum/loadout_item/accessory/full_pocket_protector
-	name = "Pocket Protector (Filled)"
+	name = "口袋保护套（已装满）"
 	item_path = /obj/item/clothing/accessory/pocketprotector/full
 
 /datum/loadout_item/accessory/pride
-	name = "Pride Pin"
+	name = "骄傲徽章"
 	item_path = /obj/item/clothing/accessory/pride
 	reskin_datum = /datum/atom_skin/pride_pin

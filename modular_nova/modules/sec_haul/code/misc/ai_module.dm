@@ -1,9 +1,9 @@
 /obj/item/ai_module/core/full/armadyne_safeguard
-	name = "'Armadyne OS Safeguard V1.0"
+	name = "'Armadyne OS 安全防护 V1.0"
 	law_id = "armadyne_safeguard"
 
 /datum/ai_laws/armadyne_safeguard
-	name = "Armadyne OS Safeguard V1.0"
+	name = "Armadyne OS 安全防护 V1.0"
 	id = "armadyne_safeguard"
 	inherent = list(
 		"Safeguard: Protect your assigned space station and its assets without unduly endangering its crew.",

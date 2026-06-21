@@ -16,7 +16,7 @@
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/mob/living/owner = parent
-	owner.balloon_alert(owner, "started tilting!")
+	owner.balloon_alert(owner, "开始倾斜！")
 
 /datum/component/pixel_tilt/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(pre_move_check))
@@ -52,7 +52,7 @@
 	animate(owner, transform = transform_to_reset, time = 0.2 SECONDS)
 
 	if(!QDELETED(owner))
-		owner.balloon_alert(owner, "stopped tilting!")
+		owner.balloon_alert(owner, "停止倾斜！")
 
 	qdel(src)
 
@@ -112,7 +112,7 @@
 	hotkey_keys = list("N")
 	name = "pixel_tilt"
 	full_name = "Pixel Tilt"
-	description = "Rotate your character's sprite. Hold and use arrow keys."
+	description = "旋转你的角色精灵图。按住并使用方向键。"
 	category = CATEGORY_MOVEMENT
 	keybind_signal = COMSIG_KB_MOB_PIXEL_TILT_DOWN
 

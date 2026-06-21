@@ -8,6 +8,6 @@
 	if(HAS_TRAIT_FROM(user, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE))
 		if(ui)
 			ui.close()
-		balloon_alert(user, "ghost cafe visitors can't use this!")
+		balloon_alert(user, "幽灵咖啡馆访客无法使用此设备！")
 		return
 	return ..()

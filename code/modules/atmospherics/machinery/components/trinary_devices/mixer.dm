@@ -2,8 +2,8 @@
 	icon_state = "mixer_off-0"
 	density = FALSE
 
-	name = "gas mixer"
-	desc = "Very useful for mixing gasses."
+	name = "气体混合器"
+	desc = "适用于混合气体。"
 
 	can_unwrench = TRUE
 	construction_type = /obj/item/pipe/trinary/flippable
@@ -33,7 +33,7 @@
 /obj/machinery/atmospherics/components/trinary/mixer/click_ctrl(mob/user)
 	if(is_operational)
 		set_on(!on)
-		balloon_alert(user, "turned [on ? "on" : "off"]")
+		balloon_alert(user, "已[on ? "on" : "off"]")
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
@@ -44,7 +44,7 @@
 
 	target_pressure = MAX_OUTPUT_PRESSURE
 	investigate_log("was set to [target_pressure] kPa by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, "pressure output on set to [target_pressure] kPa")
+	balloon_alert(user, "输出压力设置为[target_pressure] kPa")
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/atmospherics/components/trinary/mixer/update_overlays()
@@ -186,7 +186,7 @@
 /obj/machinery/atmospherics/components/trinary/mixer/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
+		to_chat(user, span_warning("你无法拆下 [src]，请先关闭它！"))
 		return FALSE
 
 // mapping
@@ -232,7 +232,7 @@
 	icon_state = "mixer_on_f_map-4"
 
 /obj/machinery/atmospherics/components/trinary/mixer/airmix //For standard airmix to distro
-	name = "air mixer"
+	name = "空气混合器"
 	icon_state = "mixer_on-0"
 	node1_concentration = N2STANDARD
 	node2_concentration = O2STANDARD

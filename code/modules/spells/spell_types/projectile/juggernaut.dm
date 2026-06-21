@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/basic_projectile/juggernaut
-	name = "Gauntlet Echo"
-	desc = "Channels energy into your gauntlet - firing its essence forward in a slow moving, yet devastating, attack."
+	name = "Gauntlet Echo-长手回响"
+	desc = "将能量注入你的护手之中——使其核心力量缓慢释放，从而发动一场威力巨大的攻击。"
 	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "cultfist"
 	background_icon_state = "bg_demon"

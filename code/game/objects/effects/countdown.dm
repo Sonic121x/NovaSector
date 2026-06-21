@@ -1,5 +1,5 @@
 /obj/effect/countdown
-	name = "countdown"
+	name = "倒计时"
 	desc = "We're leaving together\n\
 		But still it's farewell\n\
 		And maybe we'll come back\n\
@@ -80,7 +80,7 @@
 	return
 
 /obj/effect/countdown/syndicatebomb
-	name = "syndicate bomb countdown"
+	name = "辛迪加炸弹倒计时"
 
 /obj/effect/countdown/syndicatebomb/get_value()
 	var/obj/machinery/syndicatebomb/S = attached_to
@@ -90,7 +90,7 @@
 		return S.seconds_remaining()
 
 /obj/effect/countdown/nuclearbomb
-	name = "nuclear bomb countdown"
+	name = "核弹倒计时"
 	color = "#81FF14"
 
 /obj/effect/countdown/nuclearbomb/get_value()
@@ -101,7 +101,7 @@
 		return round(N.get_time_left(), 1)
 
 /obj/effect/countdown/supermatter
-	name = "supermatter damage"
+	name = "超物质伤害"
 	color = "#00ff80"
 	pixel_y = 8
 
@@ -117,7 +117,7 @@
 	return "<div align='center' valign='bottom' style='position:relative; top:0px; left:0px'>[round(S.get_integrity_percent())]%</div>"
 
 /obj/effect/countdown/transformer
-	name = "transformer countdown"
+	name = "变压器倒计时"
 	color = "#4C5866"
 
 /obj/effect/countdown/transformer/get_value()
@@ -129,7 +129,7 @@
 		return "[round(seconds_left)]"
 
 /obj/effect/countdown/doomsday
-	name = "doomsday countdown"
+	name = "末日倒计时"
 
 /obj/effect/countdown/doomsday/get_value()
 	var/obj/machinery/doomsday_device/DD = attached_to
@@ -139,7 +139,7 @@
 		return "<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[DD.seconds_remaining()]</div>"
 
 /obj/effect/countdown/anomaly
-	name = "anomaly countdown"
+	name = "异常的倒计时"
 
 /obj/effect/countdown/anomaly/get_value()
 	var/obj/effect/anomaly/A = attached_to
@@ -152,7 +152,7 @@
 		return round(time_left)
 
 /obj/effect/countdown/hourglass
-	name = "hourglass countdown"
+	name = "沙漏倒计时"
 
 /obj/effect/countdown/hourglass/get_value()
 	var/obj/item/hourglass/H = attached_to
@@ -163,7 +163,7 @@
 		return round(time_left)
 
 /obj/effect/countdown/flower_bud
-	name = "flower bud countdown"
+	name = "花苞倒计时"
 
 /obj/effect/countdown/flower_bud/get_value()
 	var/obj/structure/alien/resin/flower_bud/bud = attached_to

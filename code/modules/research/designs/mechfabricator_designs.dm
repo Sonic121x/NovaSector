@@ -82,7 +82,7 @@
 //Advanced Robotic Limbs
 
 /datum/design/advanced_l_arm
-	name = "Advanced Left Arm"
+	name = "高级左臂"
 	id = "advanced_l_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/left/robot/advanced
@@ -97,7 +97,7 @@
 	)
 
 /datum/design/advanced_r_arm
-	name = "Advanced Right Arm"
+	name = "高级右臂"
 	id = "advanced_r_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/right/robot/advanced
@@ -112,7 +112,7 @@
 	)
 
 /datum/design/advanced_l_leg
-	name = "Advanced Left Leg"
+	name = "高级左腿"
 	id = "advanced_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/advanced
@@ -127,7 +127,7 @@
 	)
 
 /datum/design/advanced_r_leg
-	name = "Advanced Right Leg"
+	name = "高级右腿"
 	id = "advanced_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/advanced
@@ -143,7 +143,7 @@
 
 //Ripley
 /datum/design/ripley_chassis
-	name = "Exosuit Chassis (APLU \"Ripley\")"
+	name = "机甲骨架（APLU \"雷普利\"）"
 	id = "ripley_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/ripley
@@ -154,7 +154,7 @@
 	)
 
 /datum/design/ripley_torso
-	name = "Exosuit Torso (APLU \"Ripley\")"
+	name = "机甲躯干（APLU \"雷普利\"）"
 	id = "ripley_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_torso
@@ -168,7 +168,7 @@
 	)
 
 /datum/design/ripley_left_arm
-	name = "Exosuit Left Arm (APLU \"Ripley\")"
+	name = "机甲左臂（APLU \"雷普利\"）"
 	id = "ripley_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_left_arm
@@ -179,7 +179,7 @@
 	)
 
 /datum/design/ripley_right_arm
-	name = "Exosuit Right Arm (APLU \"Ripley\")"
+	name = "机甲右臂（APLU \"雷普利\"）"
 	id = "ripley_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_right_arm
@@ -190,7 +190,7 @@
 	)
 
 /datum/design/ripley_left_leg
-	name = "Exosuit Left Leg (APLU \"Ripley\")"
+	name = "机甲左腿（APLU \"雷普利\"）"
 	id = "ripley_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_left_leg
@@ -201,7 +201,7 @@
 	)
 
 /datum/design/ripley_right_leg
-	name = "Exosuit Right Leg (APLU \"Ripley\")"
+	name = "机甲右腿（APLU \"雷普利\"）"
 	id = "ripley_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_right_leg
@@ -213,7 +213,7 @@
 
 //Odysseus
 /datum/design/odysseus_chassis
-	name = "Exosuit Chassis (\"Odysseus\")"
+	name = "机甲骨架(\"Odysseus-奥德修斯\")"
 	id = "odysseus_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/odysseus
@@ -224,7 +224,7 @@
 	)
 
 /datum/design/odysseus_torso
-	name = "Exosuit Torso (\"Odysseus\")"
+	name = "机甲躯干(\"Odysseus-奥德修斯\")"
 	id = "odysseus_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_torso
@@ -235,7 +235,7 @@
 	)
 
 /datum/design/odysseus_head
-	name = "Exosuit Head (\"Odysseus\")"
+	name = "机甲头部(\"Odysseus-奥德修斯\")"
 	id = "odysseus_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_head
@@ -249,7 +249,7 @@
 	)
 
 /datum/design/odysseus_left_arm
-	name = "Exosuit Left Arm (\"Odysseus\")"
+	name = "机甲左臂(\"Odysseus-奥德修斯\")"
 	id = "odysseus_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_left_arm
@@ -260,7 +260,7 @@
 	)
 
 /datum/design/odysseus_right_arm
-	name = "Exosuit Right Arm (\"Odysseus\")"
+	name = "机甲右臂(\"Odysseus-奥德修斯\")"
 	id = "odysseus_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_right_arm
@@ -271,7 +271,7 @@
 	)
 
 /datum/design/odysseus_left_leg
-	name = "Exosuit Left Leg (\"Odysseus\")"
+	name = "机甲左腿(\"Odysseus-奥德修斯\")"
 	id = "odysseus_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_left_leg
@@ -282,7 +282,7 @@
 	)
 
 /datum/design/odysseus_right_leg
-	name = "Exosuit Right Leg (\"Odysseus\")"
+	name = "机甲右腿(\"Odysseus-奥德修斯\")"
 	id = "odysseus_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_right_leg
@@ -294,7 +294,7 @@
 
 //Gygax
 /datum/design/gygax_chassis
-	name = "Exosuit Chassis (\"Gygax\")"
+	name = "机甲骨架 (\"Gygax-吉加斯\")"
 	id = "gygax_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/gygax
@@ -305,7 +305,7 @@
 	)
 
 /datum/design/gygax_torso
-	name = "Exosuit Torso (\"Gygax\")"
+	name = "机甲躯干 (\"Gygax-吉加斯\")"
 	id = "gygax_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_torso
@@ -321,7 +321,7 @@
 	)
 
 /datum/design/gygax_head
-	name = "Exosuit Head (\"Gygax\")"
+	name = "机甲头部 (\"Gygax-吉加斯\")"
 	id = "gygax_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_head
@@ -337,7 +337,7 @@
 	)
 
 /datum/design/gygax_left_arm
-	name = "Exosuit Left Arm (\"Gygax\")"
+	name = "机甲左臂 (\"Gygax-吉加斯\")"
 	id = "gygax_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_left_arm
@@ -352,7 +352,7 @@
 	)
 
 /datum/design/gygax_right_arm
-	name = "Exosuit Right Arm (\"Gygax\")"
+	name = "机甲右臂 (\"Gygax-吉加斯\")"
 	id = "gygax_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_right_arm
@@ -367,7 +367,7 @@
 	)
 
 /datum/design/gygax_left_leg
-	name = "Exosuit Left Leg (\"Gygax\")"
+	name = "机甲左腿 (\"Gygax-吉加斯\")"
 	id = "gygax_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_left_leg
@@ -382,7 +382,7 @@
 	)
 
 /datum/design/gygax_right_leg
-	name = "Exosuit Right Leg (\"Gygax\")"
+	name = "机甲右腿 (\"Gygax-吉加斯\")"
 	id = "gygax_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_right_leg
@@ -397,7 +397,7 @@
 	)
 
 /datum/design/gygax_armor
-	name = "Exosuit Armor (\"Gygax\")"
+	name = "机甲装甲 (\"Gygax-吉加斯\")"
 	id = "gygax_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_armor
@@ -414,7 +414,7 @@
 
 //Durand
 /datum/design/durand_chassis
-	name = "Exosuit Chassis (\"Durand\")"
+	name = "机甲骨架 (\"Durand-杜兰德\")"
 	id = "durand_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/durand
@@ -425,7 +425,7 @@
 	)
 
 /datum/design/durand_torso
-	name = "Exosuit Torso (\"Durand\")"
+	name = "机甲躯干 (\"Durand-杜兰德\")"
 	id = "durand_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_torso
@@ -440,7 +440,7 @@
 	)
 
 /datum/design/durand_head
-	name = "Exosuit Head (\"Durand\")"
+	name = "机甲头部 (\"Durand-杜兰德\")"
 	id = "durand_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_head
@@ -455,7 +455,7 @@
 	)
 
 /datum/design/durand_left_arm
-	name = "Exosuit Left Arm (\"Durand\")"
+	name = "机甲左臂 (\"Durand-杜兰德\")"
 	id = "durand_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_left_arm
@@ -469,7 +469,7 @@
 	)
 
 /datum/design/durand_right_arm
-	name = "Exosuit Right Arm (\"Durand\")"
+	name = "机甲右臂 (\"Durand-杜兰德\")"
 	id = "durand_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_right_arm
@@ -483,7 +483,7 @@
 	)
 
 /datum/design/durand_left_leg
-	name = "Exosuit Left Leg (\"Durand\")"
+	name = "机甲左腿 (\"Durand-杜兰德\")"
 	id = "durand_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_left_leg
@@ -497,7 +497,7 @@
 	)
 
 /datum/design/durand_right_leg
-	name = "Exosuit Right Leg (\"Durand\")"
+	name = "机甲右腿 (\"Durand-杜兰德\")"
 	id = "durand_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_right_leg
@@ -511,7 +511,7 @@
 	)
 
 /datum/design/durand_armor
-	name = "Exosuit Armor (\"Durand\")"
+	name = "机甲装甲 (\"Durand-杜兰德\")"
 	id = "durand_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_armor
@@ -527,7 +527,7 @@
 
 //H.O.N.K
 /datum/design/honk_chassis
-	name = "Exosuit Chassis (\"H.O.N.K\")"
+	name = "机甲骨架 (\"H.O.N.K\")"
 	id = "honk_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/honker
@@ -538,7 +538,7 @@
 	)
 
 /datum/design/honk_torso
-	name = "Exosuit Torso (\"H.O.N.K\")"
+	name = "机甲躯干 (\"H.O.N.K\")"
 	id = "honk_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_torso
@@ -553,7 +553,7 @@
 	)
 
 /datum/design/honk_head
-	name = "Exosuit Head (\"H.O.N.K\")"
+	name = "机甲头部 (\"H.O.N.K\")"
 	id = "honk_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_head
@@ -568,7 +568,7 @@
 	)
 
 /datum/design/honk_left_arm
-	name = "Exosuit Left Arm (\"H.O.N.K\")"
+	name = "机甲左臂 (\"H.O.N.K\")"
 	id = "honk_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_left_arm
@@ -582,7 +582,7 @@
 	)
 
 /datum/design/honk_right_arm
-	name = "Exosuit Right Arm (\"H.O.N.K\")"
+	name = "机甲右臂 (\"H.O.N.K\")"
 	id = "honk_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_right_arm
@@ -596,7 +596,7 @@
 	)
 
 /datum/design/honk_left_leg
-	name = "Exosuit Left Leg (\"H.O.N.K\")"
+	name = "机甲左腿"
 	id = "honk_left_leg"
 	build_type = MECHFAB
 	build_path =/obj/item/mecha_parts/part/honker_left_leg
@@ -610,7 +610,7 @@
 	)
 
 /datum/design/honk_right_leg
-	name = "Exosuit Right Leg (\"H.O.N.K\")"
+	name = "机甲右腿 (\"H.O.N.K\")"
 	id = "honk_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_right_leg
@@ -625,7 +625,7 @@
 
 //Phazon
 /datum/design/phazon_chassis
-	name = "Exosuit Chassis (\"Phazon\")"
+	name = "机甲骨架 (\"Phazon-法宗\")"
 	id = "phazon_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/phazon
@@ -636,7 +636,7 @@
 	)
 
 /datum/design/phazon_torso
-	name = "Exosuit Torso (\"Phazon\")"
+	name = "机甲躯干 (\"Phazon-法宗\")"
 	id = "phazon_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_torso
@@ -651,7 +651,7 @@
 	)
 
 /datum/design/phazon_head
-	name = "Exosuit Head (\"Phazon\")"
+	name = "机甲头部 (\"Phazon-法宗\")"
 	id = "phazon_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_head
@@ -666,7 +666,7 @@
 	)
 
 /datum/design/phazon_left_arm
-	name = "Exosuit Left Arm (\"Phazon\")"
+	name = "机甲左臂 (\"Phazon-法宗\")"
 	id = "phazon_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_left_arm
@@ -680,7 +680,7 @@
 	)
 
 /datum/design/phazon_right_arm
-	name = "Exosuit Right Arm (\"Phazon\")"
+	name = "机甲右臂 (\"Phazon-法宗\")"
 	id = "phazon_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_right_arm
@@ -694,7 +694,7 @@
 	)
 
 /datum/design/phazon_left_leg
-	name = "Exosuit Left Leg (\"Phazon\")"
+	name = "机甲左腿 (\"Phazon-法宗\")"
 	id = "phazon_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_left_leg
@@ -708,7 +708,7 @@
 	)
 
 /datum/design/phazon_right_leg
-	name = "Exosuit Right Leg (\"Phazon\")"
+	name = "机甲右腿 (\"Phazon-法宗\")"
 	id = "phazon_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_right_leg
@@ -722,7 +722,7 @@
 	)
 
 /datum/design/phazon_armor
-	name = "Exosuit Armor (\"Phazon\")"
+	name = "机甲装甲 (\"Phazon-法宗\")"
 	id = "phazon_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_armor
@@ -868,7 +868,7 @@
 	)
 
 /datum/design/savannah_ivanov_left_leg
-	name = "Exosuit Left Leg (\"Savannah-Ivanov\")"
+	name = "机甲左腿 (\"Savannah-Ivanov-萨凡纳-伊万诺夫\")"
 	id = "savannah_ivanov_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_left_leg
@@ -882,7 +882,7 @@
 	)
 
 /datum/design/savannah_ivanov_right_leg
-	name = "Exosuit Right Leg (\"Savannah-Ivanov\")"
+	name = "机甲右腿 (\"Savannah-Ivanov-萨凡纳-伊万诺夫\")"
 	id = "savannah_ivanov_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_right_leg
@@ -896,7 +896,7 @@
 	)
 
 /datum/design/savannah_ivanov_armor
-	name = "Exosuit Armor (\"Savannah-Ivanov\")"
+	name = "机甲装甲 (\"Savannah-Ivanov-萨凡纳-伊万诺夫\")"
 	id = "savannah_ivanov_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_armor
@@ -912,7 +912,7 @@
 
 //Clarke
 /datum/design/clarke_chassis
-	name = "Exosuit Chassis (\"Clarke\")"
+	name = "机甲骨架 (\"Clarke-克拉克\")"
 	id = "clarke_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/clarke
@@ -923,7 +923,7 @@
 	)
 
 /datum/design/clarke_torso
-	name = "Exosuit Torso (\"Clarke\")"
+	name = "机甲躯干 (\"Clarke-克拉克\")"
 	id = "clarke_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/clarke_torso
@@ -937,7 +937,7 @@
 	)
 
 /datum/design/clarke_head
-	name = "Exosuit Head (\"Clarke\")"
+	name = "机甲头部 (\"Clarke-克拉克\")"
 	id = "clarke_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/clarke_head
@@ -951,7 +951,7 @@
 	)
 
 /datum/design/clarke_left_arm
-	name = "Exosuit Left Arm (\"Clarke\")"
+	name = "机甲左臂 (\"Clarke-克拉克\")"
 	id = "clarke_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/clarke_left_arm
@@ -962,7 +962,7 @@
 	)
 
 /datum/design/clarke_right_arm
-	name = "Exosuit Right Arm (\"Clarke\")"
+	name = "机甲右臂 (\"Clarke-克拉克\")"
 	id = "clarke_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/clarke_right_arm
@@ -974,7 +974,7 @@
 
 //Exosuit Equipment
 /datum/design/ripleyupgrade
-	name = "Ripley MK-I to MK-II Conversion Kit"
+	name = "Ripley MK-I>MK-II转换组件"
 	id = "ripleyupgrade"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/ripleyupgrade
@@ -989,7 +989,7 @@
 	)
 
 /datum/design/paddyupgrade
-	name = "Ripley MK-I to Paddy Conversion Kit"
+	name = "里普利MK-I至帕迪转换套件"
 	id = "paddyupgrade"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/ripleyupgrade/paddy
@@ -1005,7 +1005,7 @@
 	)
 
 /datum/design/mech_hydraulic_clamp
-	name = "Hydraulic Clamp"
+	name = "液动压板"
 	id = "mech_hydraulic_clamp"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp
@@ -1017,7 +1017,7 @@
 	)
 
 /datum/design/mech_hydraulic_claw
-	name = "Hydraulic Claw"
+	name = "液压爪"
 	id = "mech_hydraulic_claw"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/paddy_claw
@@ -1029,7 +1029,7 @@
 	)
 
 /datum/design/mech_drill
-	name = "Mining Drill"
+	name = "采矿钻"
 	id = "mech_drill"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/drill
@@ -1048,7 +1048,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mech_mining_scanner
-	name = "Mining Scanner"
+	name = "采矿扫描仪"
 	id = "mech_mscanner"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/mining_scanner
@@ -1064,7 +1064,7 @@
 	)
 
 /datum/design/mech_extinguisher
-	name = "Extinguisher"
+	name = "灭火器"
 	id = "mech_extinguisher"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/extinguisher
@@ -1077,7 +1077,7 @@
 	)
 
 /datum/design/mech_generator
-	name = "Plasma Generator"
+	name = "等离子发电机"
 	id = "mech_generator"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/generator
@@ -1101,7 +1101,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mech_mousetrap_mortar
-	name = "Mousetrap Mortar"
+	name = "老鼠夹迫击炮"
 	id = "mech_mousetrap_mortar"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar
@@ -1117,7 +1117,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mech_banana_mortar
-	name = "Banana Mortar"
+	name = "香蕉迫击炮"
 	id = "mech_banana_mortar"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar
@@ -1149,7 +1149,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mech_punching_glove
-	name = "Oingo Boingo Punch-face"
+	name = "艺术就是打你脸"
 	id = "mech_punching_face"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove
@@ -1165,7 +1165,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mech_radio
-	name = "Mech Radio"
+	name = "机甲无线电"
 	id = "mech_radio"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/radio
@@ -1184,7 +1184,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mech_air_tank
-	name = "Mech Air Tank"
+	name = "机甲空气罐"
 	id = "mech_air_tank"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/air_tank
@@ -1207,7 +1207,7 @@
 /////////////////////////////////////////
 
 /datum/design/borg_upgrade_rename
-	name = "Rename Board"
+	name = "重命名电路板"
 	id = "borg_upgrade_rename"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/rename
@@ -1218,7 +1218,7 @@
 	)
 
 /datum/design/borg_upgrade_restart
-	name = "Emergency Reboot Board"
+	name = "格紧急重启模块"
 	id = "borg_upgrade_restart"
 	build_type = MECHFAB
 	build_path = /obj/item/borg_restart_board
@@ -1232,7 +1232,7 @@
 	)
 
 /datum/design/borg_upgrade_thrusters
-	name = "Ion Thrusters"
+	name = "离子推进器"
 	id = "borg_upgrade_thrusters"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/thrusters
@@ -1248,7 +1248,7 @@
 	)
 
 /datum/design/borg_upgrade_disablercooler
-	name = "Rapid Disabler Cooling Module"
+	name = "快速镇暴光枪冷却模块"
 	id = "borg_upgrade_disablercooler"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/disablercooler
@@ -1264,7 +1264,7 @@
 	)
 
 /datum/design/borg_upgrade_diamonddrill
-	name = "Diamond Drill"
+	name = "钻石钻"
 	id = "borg_upgrade_diamonddrill"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/diamond_drill
@@ -1279,7 +1279,7 @@
 	)
 
 /datum/design/borg_upgrade_holding
-	name = "Ore Satchel of Holding"
+	name = "蓝空矿石袋"
 	id = "borg_upgrade_holding"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/soh
@@ -1294,7 +1294,7 @@
 	)
 
 /datum/design/borg_upgrade_lavaproof
-	name = "Lavaproof Tracks"
+	name = "熔岩防护履带"
 	id = "borg_upgrade_lavaproof"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/lavaproof
@@ -1309,7 +1309,7 @@
 	)
 
 /datum/design/borg_syndicate_module
-	name = "Illegal Modules"
+	name = "违法模块"
 	id = "borg_syndicate_module"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/syndicate
@@ -1324,7 +1324,7 @@
 	)
 
 /datum/design/borg_transform_clown
-	name = "Clown Module"
+	name = "小丑模块"
 	id = "borg_transform_clown"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/clown
@@ -1339,7 +1339,7 @@
 	)
 
 /datum/design/borg_upgrade_selfrepair
-	name = "Self-Repair Module"
+	name = "自修复模块"
 	id = "borg_upgrade_selfrepair"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/selfrepair
@@ -1353,7 +1353,7 @@
 	)
 
 /datum/design/borg_upgrade_expandedsynthesiser
-	name = "Expanded Hypospray Synthesiser"
+	name = "拓展无针注射器合成器"
 	id = "borg_upgrade_expandedsynthesiser"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/hypospray/expanded
@@ -1369,7 +1369,7 @@
 	)
 
 /datum/design/borg_upgrade_piercinghypospray
-	name = "Piercing Hypospray"
+	name = "穿刺型无针注射器"
 	id = "borg_upgrade_piercinghypospray"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/piercing_hypospray
@@ -1385,7 +1385,7 @@
 	)
 
 /datum/design/borg_upgrade_defibrillator
-	name = "Defibrillator"
+	name = "除颤器"
 	id = "borg_upgrade_defibrillator"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/defib
@@ -1401,7 +1401,7 @@
 	)
 
 /datum/design/borg_upgrade_surgicalprocessor
-	name = "Surgical Processor"
+	name = "外科处理器"
 	id = "borg_upgrade_surgicalprocessor"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/processor
@@ -1416,7 +1416,7 @@
 	)
 
 /datum/design/borg_upgrade_surgicalomnitool
-	name = "Advanced Surgical Omnitool Upgrade"
+	name = "高级外科万能工具升级"
 	id = "borg_upgrade_surgicalomnitool"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/surgery_omnitool
@@ -1431,7 +1431,7 @@
 	)
 
 /datum/design/borg_upgrade_engineeringomnitool
-	name = "Advanced Engineering Omnitool Upgrade"
+	name = "高级工程万能工具升级"
 	id = "borg_upgrade_engineeringomnitool"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/engineering_omnitool
@@ -1446,7 +1446,7 @@
 	)
 
 /datum/design/borg_upgrade_trashofholding
-	name = "Trash Bag of Holding"
+	name = "蓝空垃圾袋"
 	id = "borg_upgrade_trashofholding"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tboh
@@ -1460,7 +1460,7 @@
 	)
 
 /datum/design/borg_upgrade_advancedmop
-	name = "Advanced Mop"
+	name = "先进拖把"
 	id = "borg_upgrade_advancedmop"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/amop
@@ -1474,7 +1474,7 @@
 	)
 
 /datum/design/borg_upgrade_prt
-	name = "Plating Repair Tool"
+	name = "电镀修复工具"
 	id = "borg_upgrade_prt"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/prt
@@ -1488,7 +1488,7 @@
 	)
 
 /datum/design/borg_upgrade_plunger
-	name = "Integrated Plunger"
+	name = "集成式皮搋子"
 	id = "borg_upgrade_plunger"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/plunger
@@ -1502,7 +1502,7 @@
 	)
 
 /datum/design/borg_upgrade_high_capacity_replacer
-	name = "High Capacity Light Replacer"
+	name = "高容量灯泡更换器"
 	id = "borg_upgrade_high_capacity_replacer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/high_capacity_light_replacer
@@ -1516,7 +1516,7 @@
 	)
 
 /datum/design/borg_upgrade_rolling_table
-	name = "Rolling Table Dock"
+	name = "滚轮手术台坞站"
 	id = "borg_upgrade_rolling_table"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/rolling_table
@@ -1530,7 +1530,7 @@
 	)
 
 /datum/design/borg_upgrade_condiment_synthesizer
-	name = "Condiment Synthesizer"
+	name = "调味品合成器"
 	id = "borg_upgrade_condiment_synthesizer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/condiment_synthesizer
@@ -1546,7 +1546,7 @@
 	)
 
 /datum/design/borg_upgrade_silicon_knife
-	name = "Kitchen Toolset"
+	name = "厨房工具套装"
 	id = "borg_upgrade_silicon_knife"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/silicon_knife
@@ -1561,7 +1561,7 @@
 	)
 
 /datum/design/borg_upgrade_botany
-	name = "Botany Tools"
+	name = "植物学工具"
 	id = "borg_upgrade_botany"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/botany_upgrade
@@ -1576,7 +1576,7 @@
 
 
 /datum/design/borg_upgrade_drink_apparatus
-	name = "Drink Apparatus"
+	name = "饮品装置"
 	id = "borg_upgrade_drink_apparatus"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/drink_app
@@ -1590,7 +1590,7 @@
 	)
 
 /datum/design/borg_upgrade_service_apparatus
-	name = "Service Apparatus"
+	name = "服务装置"
 	id = "borg_upgrade_service_apparatus"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/service_apparatus
@@ -1601,7 +1601,7 @@
 	)
 
 /datum/design/borg_upgrade_service_cookbook
-	name = "Service Cookbook"
+	name = "服务食谱"
 	id = "borg_upgrade_service_cookbook"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/service_cookbook
@@ -1615,7 +1615,7 @@
 	)
 
 /datum/design/borg_upgrade_shuttle_blueprints
-	name = "Engineering Shuttle Blueprints"
+	name = "工程穿梭机蓝图"
 	id = "borg_upgrade_engineering_shuttle_blueprints"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/shuttle_blueprints
@@ -1629,7 +1629,7 @@
 	)
 
 /datum/design/borg_upgrade_expand
-	name = "Expand Module"
+	name = "扩展模块"
 	id = "borg_upgrade_expand"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/expand
@@ -1643,7 +1643,7 @@
 	)
 
 /datum/design/boris_ai_controller
-	name = "B.O.R.I.S. AI-Cyborg Remote Control"
+	name = "B.O.R.I.S. AI-赛博遥控模块"
 	id = "borg_ai_control"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/ai
@@ -1675,7 +1675,7 @@
 	)
 */ // NOVA EDIT REMOVAL END
 /datum/design/borg_upgrade_inducer
-	name = "Cyborg inducer"
+	name = "机械人感应器"
 	id = "borg_upgrade_inducer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/inducer
@@ -1686,7 +1686,7 @@
 	)
 
 /datum/design/borg_upgrade_engineering_app
-	name = "Engineering Apparatus"
+	name = "工程装置"
 	id = "borg_upgrade_engineeringapp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/engineering_app
@@ -1700,7 +1700,7 @@
 	)
 
 /datum/design/borg_upgrade_beaker_app
-	name = "Secondary Beaker Storage"
+	name = "二级烧杯存储"
 	id = "borg_upgrade_beakerapp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/beaker_app
@@ -1714,7 +1714,7 @@
 	)
 
 /datum/design/borg_upgrade_pinpointer
-	name = "Crew Pinpointer"
+	name = "船员追踪器"
 	id = "borg_upgrade_pinpointer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/pinpointer
@@ -1728,7 +1728,7 @@
 	)
 
 /datum/design/borg_upgrade_syringe
-	name = "Advanced Syringe"
+	name = "高级注射器"
 	id = "borg_upgrade_syringe"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/bs_syringe
@@ -1744,7 +1744,7 @@
 	)
 
 /datum/design/borg_upgrade_broomer
-	name = "Experimental Push Broom"
+	name = "实验性长柄扫帚"
 	id = "borg_upgrade_broomer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/broomer
@@ -1758,8 +1758,8 @@
 	)
 
 /datum/design/mmi
-	name = "Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
+	name = "人机界面"
+	desc = "那毫无特色的缩写“人机接口”，掩盖了这怪物的真正恐怖之处，然而它却已在纳米传讯的各个站点成为了标配设备。"
 	id = "mmi"
 	build_type = MECHFAB
 	materials = list(
@@ -1782,8 +1782,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/posibrain
-	name = "Positronic Brain"
-	desc = "The latest in Artificial Intelligences."
+	name = "正电子脑"
+	desc = "最新的人工智能技术。"
 	id = "mmi_posi"
 	build_type = MECHFAB
 	materials = list(
@@ -1800,7 +1800,7 @@
 
 //Misc
 /datum/design/mecha_tracking
-	name = "Exosuit Tracking Beacon"
+	name = "机甲追踪信标"
 	id = "mecha_tracking"
 	build_type = MECHFAB
 	build_path =/obj/item/mecha_parts/mecha_tracking
@@ -1819,7 +1819,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mecha_tracking_ai_control
-	name = "AI Control Beacon"
+	name = "AI控制信标"
 	id = "mecha_tracking_ai_control"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_tracking/ai_control
@@ -1842,8 +1842,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mecha_camera
-	name = "Exosuit External Camera Kit"
-	desc = "A durable CCTV camera designed for exosuit operations."
+	name = "外骨骼外部摄像头套件"
+	desc = "一款专为外骨骼操作设计的耐用闭路电视摄像头。"
 	id = "mecha_camera"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/camera_kit
@@ -1867,8 +1867,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/synthetic_flash
-	name = "Flash"
-	desc = "When a problem arises, SCIENCE is the solution."
+	name = "闪光"
+	desc = "当问题出现时，科学就是解决办法。"
 	id = "sflash"
 	build_type = MECHFAB
 	materials = list(
@@ -1888,8 +1888,8 @@
 //MODsuit construction
 
 /datum/design/mod_shell
-	name = "MOD Shell"
-	desc = "A 'Nakamura Engineering' designed shell for a Modular Suit."
+	name = "模块服外壳"
+	desc = "一款由Nakamura工程公司设计的模块化航天服外壳。"
 	id = "mod_shell"
 	build_type = MECHFAB
 	materials = list(
@@ -1903,8 +1903,8 @@
 	)
 
 /datum/design/mod_helmet
-	name = "MOD Helmet"
-	desc = "A 'Nakamura Engineering' designed helmet for a Modular Suit."
+	name = "模块服头盔"
+	desc = "一款由Nakamura工程公司设计的模块化航天服头盔。"
 	id = "mod_helmet"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
@@ -1915,8 +1915,8 @@
 	)
 
 /datum/design/mod_chestplate
-	name = "MOD Chestplate"
-	desc = "A 'Nakamura Engineering' designed chestplate for a Modular Suit."
+	name = "模块服胸板"
+	desc = "一款由Nakamura工程公司设计的模块化航天服胸板。"
 	id = "mod_chestplate"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
@@ -1927,8 +1927,8 @@
 	)
 
 /datum/design/mod_gauntlets
-	name = "MOD Gauntlets"
-	desc = "'Nakamura Engineering' designed gauntlets for a Modular Suit."
+	name = "模块服手套"
+	desc = "一款由Nakamura工程公司设计的模块化航天服手套。"
 	id = "mod_gauntlets"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
@@ -1939,8 +1939,8 @@
 	)
 
 /datum/design/mod_boots
-	name = "MOD Boots"
-	desc = "'Nakamura Engineering' designed boots for a Modular Suit."
+	name = "模块服靴"
+	desc = "一款由Nakamura工程公司设计的模块化航天服靴子。"
 	id = "mod_boots"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
@@ -1951,8 +1951,8 @@
 	)
 
 /datum/design/mod_plating
-	name = "MOD External Plating"
-	desc = "External plating for a MODsuit."
+	name = "模块服外层电镀"
+	desc = "用于模块服的外部涂层。"
 	id = "mod_plating_standard"
 	build_type = MECHFAB
 	materials = list(
@@ -1972,10 +1972,10 @@
 	. = ..()
 	var/obj/item/mod/construction/plating/armor_type = build_path
 	var/datum/mod_theme/theme = GLOB.mod_themes[initial(armor_type.theme)]
-	desc = "External plating for a MODsuit. [theme.desc]"
+	desc = "用于模块服的外层电镀. [theme.desc]"
 
 /datum/design/mod_plating/civilian
-	name = "MOD Civilian Plating"
+	name = "MOD民用护甲"
 	id = "mod_plating_civilian"
 	build_path = /obj/item/mod/construction/plating/civilian
 	materials = list(
@@ -1986,7 +1986,7 @@
 	research_icon_state = "civilian-plating"
 
 /datum/design/mod_plating/portable_suit
-	name = "MOD Portable Suit Plating"
+	name = "MOD便携式套装护甲"
 	id = "mod_plating_portable_suit"
 	build_path = /obj/item/mod/construction/plating/portable_suit
 	materials = list(
@@ -1998,7 +1998,7 @@
 	research_icon_state = "psuit-plating"
 
 /datum/design/mod_plating/engineering
-	name = "MOD Engineering Plating"
+	name = "MOD工程电镀"
 	id = "mod_plating_engineering"
 	build_path = /obj/item/mod/construction/plating/engineering
 	materials = list(
@@ -2011,7 +2011,7 @@
 	research_icon_state = "engineering-plating"
 
 /datum/design/mod_plating/atmospheric
-	name = "MOD Atmospheric Plating"
+	name = "MOD大气电镀"
 	id = "mod_plating_atmospheric"
 	build_path = /obj/item/mod/construction/plating/atmospheric
 	materials = list(
@@ -2024,7 +2024,7 @@
 	research_icon_state = "atmospheric-plating"
 
 /datum/design/mod_plating/medical
-	name = "MOD Medical Plating"
+	name = "MOD医疗电镀"
 	id = "mod_plating_medical"
 	build_path = /obj/item/mod/construction/plating/medical
 	materials = list(
@@ -2037,7 +2037,7 @@
 	research_icon_state = "medical-plating"
 
 /datum/design/mod_plating/cosmohonk
-	name = "MOD Cosmohonk Plating"
+	name = "MOD宇宙喇叭电镀"
 	id = "mod_plating_cosmohonk"
 	build_path = /obj/item/mod/construction/plating/cosmohonk
 	materials = list(
@@ -2050,8 +2050,8 @@
 	research_icon_state = "cosmohonk-plating"
 
 /datum/design/mod_paint_kit
-	name = "MOD Paint Kit"
-	desc = "A paint kit for Modular Suits."
+	name = "模块服绘制套件"
+	desc = "一套用于模块服的油漆套装。"
 	id = "mod_paint_kit"
 	build_type = MECHFAB
 	materials = list(
@@ -2065,8 +2065,8 @@
 	)
 
 /datum/design/modlink_scryer
-	name = "MODlink Scryer"
-	desc = "A neck-worn piece of gear that can call with another MODlink-compatible device."
+	name = "MODlink窥视器"
+	desc = "一款佩戴于颈部的装备，可与另一台兼容MODlink的设备进行呼叫。"
 	id = "modlink_scryer"
 	build_type = MECHFAB
 	materials = list(
@@ -2083,7 +2083,7 @@
 //MODsuit modules
 
 /datum/design/module
-	name = "MOD Module"
+	name = "MOD模块"
 	build_type = MECHFAB
 	construction_time = 1 SECONDS
 	materials = list(
@@ -2098,10 +2098,10 @@
 /datum/design/module/New()
 	. = ..()
 	var/obj/item/mod/module/module = build_path
-	desc = "[initial(module.desc)] It uses [initial(module.complexity)] complexity."
+	desc = "[initial(module.desc)] 它占用 [initial(module.complexity)]复杂度"
 
 /datum/design/module/mod_storage
-	name = "Compact Storage Module"
+	name = "紧凑型存储模块"
 	id = "mod_storage"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
@@ -2110,7 +2110,7 @@
 	build_path = /obj/item/mod/module/storage
 
 /datum/design/module/mod_storage_expanded
-	name = "Storage Module"
+	name = "存储模块"
 	id = "mod_storage_expanded"
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5,
@@ -2119,7 +2119,7 @@
 	build_path = /obj/item/mod/module/storage/large_capacity
 
 /datum/design/module/mod_storage_holding
-	name = "Storage Module of Holding"
+	name = "次元存储模块"
 	id = "mod_storage_holding"
 	materials = list(
 		/datum/material/gold =SHEET_MATERIAL_AMOUNT * 1.5,
@@ -2130,7 +2130,7 @@
 	build_path = /obj/item/mod/module/storage/holding
 
 /datum/design/module/mod_visor_medhud
-	name = "Medical Visor Module"
+	name = "医疗目镜模块"
 	id = "mod_visor_medhud"
 	materials = list(
 		/datum/material/silver =SMALL_MATERIAL_AMOUNT*5,
@@ -2142,7 +2142,7 @@
 	)
 
 /datum/design/module/mod_visor_diaghud
-	name = "Diagnostic Visor Module"
+	name = "诊断目镜模块"
 	id = "mod_visor_diaghud"
 	materials = list(
 		/datum/material/gold =SMALL_MATERIAL_AMOUNT*5,
@@ -2153,7 +2153,7 @@
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SCIENCE
 	)
 /datum/design/module/mod_visor_sechud
-	name = "Security Visor Module"
+	name = "安保目镜模块"
 	id = "mod_visor_sechud"
 	materials = list(
 		/datum/material/titanium =SMALL_MATERIAL_AMOUNT*5,
@@ -2164,7 +2164,7 @@
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
 	)
 /datum/design/module/mod_visor_meson
-	name = "Meson Visor Module"
+	name = "介子目镜模块"
 	id = "mod_visor_meson"
 	materials = list(
 		/datum/material/uranium =SMALL_MATERIAL_AMOUNT*5,
@@ -2175,7 +2175,7 @@
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SUPPLY
 	)
 /datum/design/module/mod_visor_welding
-	name = "Welding Protection Module"
+	name = "焊接保护模块"
 	id = "mod_welding"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
@@ -2186,7 +2186,7 @@
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
 /datum/design/module/mod_head_protection
-	name = "Safety-First Head Protection Module"
+	name = "安全第一头部防护模块"
 	id = "mod_safety"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
@@ -2197,7 +2197,7 @@
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
 /datum/design/module/mod_t_ray
-	name = "T-Ray Scanner Module"
+	name = "T-ray扫描仪模块"
 	id = "mod_t_ray"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
@@ -2208,7 +2208,7 @@
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
 /datum/design/module/mod_health_analyzer
-	name = "Health Analyzer Module"
+	name = "健康分析仪模块"
 	id = "mod_health_analyzer"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
@@ -2220,7 +2220,7 @@
 	)
 
 /datum/design/module/mod_stealth
-	name = "Cloak Module"
+	name = "隐身模块"
 	id = "mod_stealth"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2231,13 +2231,13 @@
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
 	)
 /datum/design/module/mod_jetpack
-	name = "Ion Jetpack Module"
+	name = "离子喷气背包模块"
 	id = "mod_jetpack"
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/mod/module/jetpack
 
 /datum/design/module/mod_magboot
-	name = "Magnetic Stabilizator Module"
+	name = "磁稳定模块"
 	id = "mod_magboot"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2249,7 +2249,7 @@
 	)
 
 /datum/design/module/mod_mag_harness
-	name = "Magnetic Harness Module"
+	name = "磁力枪束模块"
 	id = "mod_mag_harness"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5,
@@ -2261,7 +2261,7 @@
 	)
 
 /datum/design/module/mod_tether
-	name = "Emergency Tether Module"
+	name = "应急立体机动模块"
 	id = "mod_tether"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2273,13 +2273,13 @@
 	)
 
 /datum/design/module/mod_mouthhole
-	name = "Eating Apparatus Module"
+	name = "进食模块"
 	id = "mod_mouthhole"
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	build_path = /obj/item/mod/module/mouthhole
 
 /datum/design/module/mod_rad_protection
-	name = "Radiation Protection Module"
+	name = "防辐射保护模块"
 	id = "mod_rad_protection"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2290,7 +2290,7 @@
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
 /datum/design/module/mod_emp_shield
-	name = "EMP Shield Module"
+	name = "抗电磁脉冲模块"
 	id = "mod_emp_shield"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2299,7 +2299,7 @@
 	build_path = /obj/item/mod/module/emp_shield
 
 /datum/design/module/mod_flashlight
-	name = "Flashlight Module"
+	name = "闪光灯模组"
 	id = "mod_flashlight"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
@@ -2308,7 +2308,7 @@
 	build_path = /obj/item/mod/module/flashlight
 
 /datum/design/module/mod_reagent_scanner
-	name = "Reagent Scanner Module"
+	name = "成分扫描仪模块"
 	id = "mod_reagent_scanner"
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/mod/module/reagent_scanner
@@ -2317,7 +2317,7 @@
 	)
 
 /datum/design/module/mod_gps
-	name = "Internal GPS Module"
+	name = "内置GPS模块"
 	id = "mod_gps"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
@@ -2329,7 +2329,7 @@
 	)
 
 /datum/design/module/mod_constructor
-	name = "Constructor Module"
+	name = "构造器模块"
 	id = "mod_constructor"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2340,7 +2340,7 @@
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
 /datum/design/module/mod_quick_carry
-	name = "Quick Carry Module"
+	name = "速运模块"
 	id = "mod_quick_carry"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2352,13 +2352,13 @@
 	)
 
 /datum/design/module/mod_longfall
-	name = "Longfall Module"
+	name = "长落模块"
 	id = "mod_longfall"
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/mod/module/longfall
 
 /datum/design/module/mod_thermal_regulator
-	name = "Thermal Regulator Module"
+	name = "恒温模块"
 	id = "mod_thermal_regulator"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
@@ -2367,7 +2367,7 @@
 	build_path = /obj/item/mod/module/thermal_regulator
 
 /datum/design/module/mod_injector
-	name = "Injector Module"
+	name = "注射器模块"
 	id = "mod_injector"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2379,7 +2379,7 @@
 	)
 
 /datum/design/module/mod_bikehorn
-	name = "Bike Horn Module"
+	name = "喇叭模块"
 	id = "mod_bikehorn"
 	materials = list(
 		/datum/material/plastic =SMALL_MATERIAL_AMOUNT*5,
@@ -2391,7 +2391,7 @@
 	)
 
 /datum/design/module/mod_microwave_beam
-	name = "Microwave Beam Module"
+	name = "微波束模块"
 	id = "mod_microwave_beam"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2403,7 +2403,7 @@
 	)
 
 /datum/design/module/mod_waddle
-	name = "Waddle Module"
+	name = "颠摆模块"
 	id = "mod_waddle"
 	materials = list(
 		/datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2415,7 +2415,7 @@
 	)
 
 /datum/design/module/mod_clamp
-	name = "Crate Clamp Module"
+	name = "板条箱压板模块"
 	id = "mod_clamp"
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/mod/module/clamp
@@ -2424,7 +2424,7 @@
 	)
 
 /datum/design/module/mod_drill
-	name = "Drill Module"
+	name = "钻机模块"
 	id = "mod_drill"
 	materials = list(
 		/datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2436,7 +2436,7 @@
 	)
 
 /datum/design/module/mod_orebag
-	name = "Ore Bag Module"
+	name = "矿袋模块"
 	id = "mod_orebag"
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	build_path = /obj/item/mod/module/orebag
@@ -2445,7 +2445,7 @@
 	)
 
 /datum/design/module/mod_organizer
-	name = "Organizer Module"
+	name = "整理模块"
 	id = "mod_organizer"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2457,7 +2457,7 @@
 	)
 
 /datum/design/module/mod_pathfinder
-	name = "Pathfinder Module"
+	name = "探路者模块"
 	id = "mod_pathfinder"
 	materials = list(
 		/datum/material/uranium =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2466,7 +2466,7 @@
 	build_path = /obj/item/mod/module/pathfinder
 
 /datum/design/module/mod_dna_lock
-	name = "DNA Lock Module"
+	name = "DNA锁模块"
 	id = "mod_dna_lock"
 	materials = list(
 		/datum/material/diamond =SMALL_MATERIAL_AMOUNT*5,
@@ -2475,7 +2475,7 @@
 	build_path = /obj/item/mod/module/dna_lock
 
 /datum/design/module/mod_plasma_stabilizer
-	name = "Plasma Stabilizer Module"
+	name = "等离子稳定器模块"
 	id = "mod_plasma"
 	materials = list(
 		/datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2484,7 +2484,7 @@
 	build_path = /obj/item/mod/module/plasma_stabilizer
 
 /datum/design/module/mod_glove_translator
-	name = "Glove Translator Module"
+	name = "手套传输模块"
 	id = "mod_sign_radio"
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7.5,
@@ -2493,7 +2493,7 @@
 	build_path = /obj/item/mod/module/signlang_radio
 
 /datum/design/module/mister_atmos
-	name = "Resin Mister Module"
+	name = "树脂喷雾器模块"
 	id = "mod_mister_atmos"
 	materials = list(
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2505,7 +2505,7 @@
 	)
 
 /datum/design/module/mod_holster
-	name = "Holster Module"
+	name = "枪套模块"
 	id = "mod_holster"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5,
@@ -2517,7 +2517,7 @@
 	)
 
 /datum/design/module/mod_sonar
-	name = "Active Sonar Module"
+	name = "主动式声纳"
 	id = "mod_sonar"
 	materials = list(
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5,
@@ -2531,7 +2531,7 @@
 	)
 
 /datum/design/module/projectile_dampener
-	name = "Projectile Dampener Module"
+	name = "发射物阻尼模块"
 	id = "mod_projectile_dampener"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2543,7 +2543,7 @@
 	)
 
 /datum/design/module/surgicalprocessor
-	name = "Surgical Processor Module"
+	name = "外科处理器模块"
 	id = "mod_surgicalprocessor"
 	materials = list(
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5,
@@ -2556,7 +2556,7 @@
 	)
 
 /datum/design/module/threadripper
-	name = "Thread Ripper Module"
+	name = "织物缝割模块"
 	id = "mod_threadripper"
 	materials = list(
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5,
@@ -2569,7 +2569,7 @@
 	)
 
 /datum/design/module/defibrillator
-	name = "Defibrillator Module"
+	name = "除颤器模块"
 	id = "mod_defib"
 	materials = list(
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5,
@@ -2582,7 +2582,7 @@
 	)
 
 /datum/design/module/statusreadout
-	name = "Status Readout Module"
+	name = "状态读数模块"
 	id = "mod_statusreadout"
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
@@ -2595,7 +2595,7 @@
 	)
 
 /datum/design/module/patienttransport
-	name = "Patient Transport Module"
+	name = "伤员运输模块"
 	id = "mod_patienttransport"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2607,7 +2607,7 @@
 	)
 
 /datum/design/module/criminalcapture
-	name = "Criminal Capture Module"
+	name = "犯人捕获模块"
 	id = "mod_criminalcapture"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2619,7 +2619,7 @@
 	)
 
 /datum/design/module/mirage
-	name = "Mirage Grenade Dispenser Module"
+	name = "幻影手榴弹发射器模块"
 	id = "mod_mirage_grenade"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2632,7 +2632,7 @@
 
 //MODsuit bepis modules
 /datum/design/module/disposal
-	name = "Disposal Connector Module"
+	name = "处理器选择模块"
 	id = "mod_disposal"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
@@ -2644,7 +2644,7 @@
 	)
 
 /datum/design/module/joint_torsion
-	name = "Joint Torsion Ratchet Module"
+	name = "关节扭力棘轮模块"
 	id = "mod_joint_torsion"
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -2657,7 +2657,7 @@
 	)
 
 /datum/design/module/recycler
-	name = "Recycler Module"
+	name = "回收模块"
 	id = "mod_recycler"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
@@ -2670,7 +2670,7 @@
 	)
 
 /datum/design/module/shooting_assistant
-	name = "Shooting Assistant Module"
+	name = "射击助手模块"
 	id = "mod_shooting"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
@@ -2685,7 +2685,7 @@
 
 //MODsuit anomalock modules
 /datum/design/module/mod_antigrav
-	name = "Anti-Gravity Module"
+	name = "反重力模块"
 	id = "mod_antigrav"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
@@ -2698,7 +2698,7 @@
 	)
 
 /datum/design/module/mod_teleporter
-	name = "Teleporter Module"
+	name = "传送器模块"
 	id = "mod_teleporter"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
@@ -2711,7 +2711,7 @@
 	)
 
 /datum/design/module/mod_kinesis
-	name = "Kinesis Module"
+	name = "念力模块"
 	id = "mod_kinesis"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
@@ -2725,7 +2725,7 @@
 	)
 
 /datum/design/module/fishing_glove
-	name = "MOD Fishing Glove Module"
+	name = "MOD钓鱼手套模块"
 	id = "mod_fishing"
 	materials = list(
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
@@ -2736,8 +2736,8 @@
 	build_path = /obj/item/mod/module/fishing_glove
 
 /datum/design/posisphere
-	name = "Positronic Sphere"
-	desc = "The latest in Artificial Pesterance."
+	name = "正电子球体"
+	desc = "人工烦扰技术的最新成果。"
 	id = "posisphere"
 	build_type = MECHFAB
 	materials = list(
@@ -2753,7 +2753,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/module/mister_janitor
-	name = "Cleaning Mister Module"
+	name = "清洁喷雾器模块"
 	id = "mod_mister_janitor"
 	materials = list(
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,

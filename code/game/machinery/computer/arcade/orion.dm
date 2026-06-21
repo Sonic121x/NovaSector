@@ -1,8 +1,8 @@
 #define ORION_TRAIL_WINTURN 9
 
 /obj/machinery/computer/arcade/orion_trail
-	name = "The Orion Trail"
-	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
+	name = "猎户座小径"
+	desc = "了解我们的先辈是如何到达猎户座的，并在这个过程中获得乐趣！"
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/orion_trail
 
@@ -49,8 +49,8 @@
 	return ..()
 
 /obj/machinery/computer/arcade/orion_trail/kobayashi
-	name = "Kobayashi Maru control computer"
-	desc = "A test for cadets."
+	name = "'小林丸号'导航计算机"
+	desc = "用于学员测试."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_keyboard = null
 	icon_screen = null
@@ -347,16 +347,16 @@
 			reason = "You ran out of food and starved."
 			if(obj_flags & EMAGGED)
 				gamer.set_nutrition(0) //yeah you pretty hongry
-				to_chat(gamer, span_userdanger("Your body instantly contracts to that of one who has not eaten in months. Agonizing cramps seize you as you fall to the floor."))
+				to_chat(gamer, span_userdanger("你的身体瞬间萎缩，如同数月未进食一般。剧烈的痉挛攫住了你，你倒在了地上。"))
 		if(fuel <= 0)
 			reason = "You ran out of fuel, and drift, slowly, into a star."
 			if(obj_flags & EMAGGED)
 				gamer.adjust_fire_stacks(5)
 				gamer.ignite_mob() //flew into a star, so you're on fire
-				to_chat(gamer, span_userdanger("You feel an immense wave of heat emanate from the arcade machine. Your skin bursts into flames."))
+				to_chat(gamer, span_userdanger("你感到一股巨大的热浪从街机中涌出。你的皮肤瞬间燃起火焰。"))
 
 	if(obj_flags & EMAGGED)
-		to_chat(gamer, span_userdanger("You're never going to make it to Orion..."))
+		to_chat(gamer, span_userdanger("你永远也到不了猎户座了……"))
 		gamer.investigate_log("has been killed by an emagged Orion Trail game.", INVESTIGATE_DEATHS)
 		gamer.death()
 		obj_flags &= ~EMAGGED //removes the emagged status after you lose
@@ -479,23 +479,23 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 
-	name = "The Orion Trail: Realism Edition"
-	desc = "Learn how our ancestors got to Orion, and try not to die in the process!"
+	name = "猎户座之路：现实版"
+	desc = "了解我们的先辈是如何到达猎户座的，并尽量不要在这个过程中死去！"
 	obj_flags |= EMAGGED
 
 	if (!user)
 		return TRUE
 
 	user.log_message("emagged [src], activating Realism Mode.", LOG_GAME)
-	balloon_alert(user, "realism mode enabled")
-	to_chat(user, span_notice("You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Realism Mode."))
+	balloon_alert(user, "写实模式已启用")
+	to_chat(user, span_notice("你绕过了作弊码菜单，直接跳到了作弊码#[rand(1, 50)]：写实模式。"))
 	newgame(user)
 	return TRUE
 
 ///A minibomb achieved from winning at emagged Orion.
 /obj/item/orion_ship
-	name = "model settler ship"
-	desc = "A model spaceship, it looks like those used back in the day when travelling to Orion! It even has a miniature FX-293 reactor, which was renowned for its instability and tendency to explode..."
+	name = "殖民船模型"
+	desc = "这是一艘宇宙飞船模型，看起来就像当年去猎户座旅行时用的那种!它甚至配有一台小型FX-293反应堆，该反应堆以不稳定和易爆炸而闻名…"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "ship"
 	w_class = WEIGHT_CLASS_SMALL
@@ -516,7 +516,7 @@
 		return
 
 	log_bomber(user, "primed an explosive", src, "for detonation")
-	to_chat(user, span_warning("You flip the switch on the underside of [src]."))
+	to_chat(user, span_warning("你拨动了[src]底部的小开关。"))
 	active = TRUE
 	addtimer(CALLBACK(src, PROC_REF(commit_explosion)), 1 SECONDS)
 
@@ -535,7 +535,7 @@
 			playsound(loc, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE)
 			time_for_next_level = 0.36 SECONDS
 		if(3 to INFINITY)
-			visible_message(span_userdanger("[src] explodes!"))
+			visible_message(span_userdanger("[src]爆炸了！"))
 			explosion(src, devastation_range = 2, heavy_impact_range = 4, light_impact_range = 8, flame_range = 16)
 			qdel(src)
 			return
@@ -546,15 +546,15 @@
 
 /datum/aas_config_entry/orion_violent_behavior_alert
 	// Well we don't want to show that only Orion Trails reports violent behavior, eh-h?
-	name = "Global: Violent Behavior Alert"
+	name = "全局：暴力行为警报"
 	announcement_lines_map = list(
-		RADIO_CHANNEL_SECURITY = "SECURITY ALERT: Crewmember %PERSON recorded displaying antisocial tendencies in %LOCATION by %SOURCE. Please watch for violent behavior.",
-		RADIO_CHANNEL_MEDICAL = "PSYCH ALERT: Crewmember %PERSON recorded displaying antisocial tendencies in %LOCATION by %SOURCE. Please schedule psych evaluation.",
+		RADIO_CHANNEL_SECURITY = "安全频道警报：船员 %PERSON 在 %LOCATION 被 %SOURCE 记录到表现出反社会倾向。请注意观察其暴力行为。",
+		RADIO_CHANNEL_MEDICAL = "医疗频道警报：船员 %PERSON 在 %LOCATION 被 %SOURCE 记录到表现出反社会倾向。请安排心理评估。",
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with the crewmember reported",
-		"LOCATION" = "with the area of violent behavior",
-		"SOURCE" = "with the reporter",
+		"PERSON" = "将被替换为被报告的船员",
+		"LOCATION" = "将被替换为暴力行为发生区域",
+		"SOURCE" = "将被替换为报告者",
 	)
 
 #undef ORION_TRAIL_WINTURN

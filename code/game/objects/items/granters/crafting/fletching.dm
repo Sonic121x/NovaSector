@@ -1,7 +1,7 @@
 
 /obj/item/book/granter/crafting_recipe/fletching
-	name = "Whittle Me This: Fletching for the Modern Spacer"
-	desc = "A how-to guide to crafting and maintaining wooden bows, fletching arrows, and... making violins?"
+	name = "《为我削制：现代太空人的箭羽制作》"
+	desc = "一本关于制作和维护木弓、为箭矢装羽以及……制作小提琴的指南？"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/arrow,
 		/datum/crafting_recipe/plastic_arrow,

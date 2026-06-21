@@ -1,7 +1,7 @@
 /mob/living/basic/heretic_summon/fire_shark
-	name = "\improper Fire Shark"
+	name = "\improper 火焰鲨鱼"
 	real_name = "Fire Shark"
-	desc = "It is a eldritch dwarf space shark, also known as a fire shark."
+	desc = "这是一只来自异界的矮小太空鲨鱼，也被称为火焰鲨鱼。"
 	icon_state = "fire_shark"
 	icon_living = "fire_shark"
 	pass_flags = PASSTABLE | PASSMOB

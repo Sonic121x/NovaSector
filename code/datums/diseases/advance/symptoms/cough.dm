@@ -7,8 +7,8 @@
  * Bonus: Spreads the virus in a small square around the host. Can force the affected mob to drop small items!
 */
 /datum/symptom/cough
-	name = "Cough"
-	desc = "The virus irritates the throat of the host, causing occasional coughing. Each cough will try to infect bystanders who are within 1 tile of the host with the virus."
+	name = "咳嗽"
+	desc = "该病毒刺激宿主喉咙，引发间歇性咳嗽。每次咳嗽都会尝试感染宿主1格范围内的旁观者。"
 	illness = "Jest Infection"
 	stealth = -1
 	resistance = 3

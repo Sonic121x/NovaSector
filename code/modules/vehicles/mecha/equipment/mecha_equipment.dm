@@ -3,7 +3,7 @@
  * All mech equippables are currently childs of this
  */
 /obj/item/mecha_parts/mecha_equipment
-	name = "mecha equipment"
+	name = "机甲装备部件"
 	icon = 'icons/obj/devices/mecha_equipment.dmi'
 	abstract_type = /obj/item/mecha_parts/mecha_equipment
 	icon_state = "mecha_equip"
@@ -57,7 +57,7 @@
 		if(special_attaching_interaction(attach_right, M, user))
 			return ITEM_INTERACT_SUCCESS //The rest is handled in the special interactions proc
 		attach(M, attach_right)
-		user.visible_message(span_notice("[user] attaches [src] to [M]."), span_notice("You attach [src] to [M]."))
+		user.visible_message(span_notice("[user] 将 [src] 安装到 [M] 上。"), span_notice("你将 [src] 安装到 [M] 上。"))
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
@@ -77,11 +77,11 @@
 			. = TRUE
 		if("repair")
 			ui.close() // allow watching for baddies and the ingame effects
-			chassis.balloon_alert(usr, "starting repair")
+			chassis.balloon_alert(usr, "开始修复")
 			while(do_after(usr, 1 SECONDS, chassis) && get_integrity() < max_integrity)
 				repair_damage(30)
 			if(get_integrity() == max_integrity)
-				balloon_alert(usr, "repair complete")
+				balloon_alert(usr, "修复完成")
 			. = FALSE
 	var/result = handle_ui_act(action,params,ui,state)
 	if(result) //if handle_ui_act returned anything at all lets just return that instead
@@ -109,10 +109,10 @@
 	if(chassis.is_currently_ejecting)
 		return FALSE
 	if(chassis.equipment_disabled)
-		to_chat(chassis.occupants, span_warning("Error -- Equipment control unit is unresponsive."))
+		to_chat(chassis.occupants, span_warning("错误——设备控制单元无响应。"))
 		return FALSE
 	if(get_integrity() <= 1)
-		to_chat(chassis.occupants, span_warning("Error -- Equipment critically damaged."))
+		to_chat(chassis.occupants, span_warning("错误——设备严重损坏。"))
 		return FALSE
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return FALSE
@@ -161,7 +161,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/default_can_attach(obj/vehicle/sealed/mecha/mech, attach_right = FALSE, mob/user)
 	if(!(mech_flags & mech.mech_type))
-		to_chat(user, span_warning("\The [src] is incompatible with [mech]!"))
+		to_chat(user, span_warning("\The [src] 与 [mech] 不兼容！"))
 		return FALSE
 	if(equipment_slot == MECHA_WEAPON)
 		if(attach_right)
@@ -178,11 +178,11 @@
 		var/list/obj/item/mecha_parts/mecha_equipment/contents = mech.equip_by_category[equipment_slot]
 		for(var/obj/equipment as anything in contents)
 			if(src.type == equipment.type)
-				to_chat(user, span_warning("You can't stack more of this item ontop itself!"))
+				to_chat(user, span_warning("你不能将更多此物品堆叠在它自己上面！"))
 				return FALSE
 
 	if(length(mech.equip_by_category[equipment_slot]) == mech.max_equip_by_category[equipment_slot])
-		to_chat(user, span_warning("This equipment slot is already full!"))
+		to_chat(user, span_warning("这个设备槽位已经满了！"))
 		return FALSE
 	return TRUE
 

@@ -1,6 +1,6 @@
 /obj/machinery/plumbing/buffer
-	name = "automatic buffer"
-	desc = "A chemical holding tank that waits for neighbouring automatic buffers to complete before allowing a withdrawal. Connect/reset by screwdrivering"
+	name = "自动缓冲器"
+	desc = "一个化学储存罐，它会等待相邻的自动缓冲器完成工作后才允许提取。使用螺丝刀连接/重置。"
 	icon_state = "buffer"
 	pass_flags_self = PASSMACHINE | LETPASSTHROW // It looks short enough.
 	buffer = 200

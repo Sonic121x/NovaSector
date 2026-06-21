@@ -41,7 +41,7 @@
 		to_chat(user, span_notice("You push against the back of \the [src]'s trunk to try and get out."))
 		if(!do_after(user, escape_time, target = src))
 			return FALSE
-	to_chat(user,span_danger("[user] gets out of [src]."))
+	to_chat(user,span_danger("[user]从[src]里出来了。"))
 	mob_exit(future_pedestrian, silent)
 	return TRUE
 
@@ -49,14 +49,14 @@
 	. = ..()
 	if(!(car_traits & CAN_KIDNAP))
 		return
-	to_chat(user, span_notice("You start opening [src]'s trunk."))
+	to_chat(user, span_notice("你开始打开[src]的后备箱。"))
 	if(!do_after(user, 30))
 		return
 	if(return_amount_of_controllers_with_flag(VEHICLE_CONTROL_KIDNAPPED))
-		to_chat(user, span_notice("The people stuck in [src]'s trunk all come tumbling out."))
+		to_chat(user, span_notice("被困在[src]后备箱里的人全都滚了出来。"))
 		dump_specific_mobs(VEHICLE_CONTROL_KIDNAPPED)
 		return
-	to_chat(user, span_notice("It seems [src]'s trunk was empty."))
+	to_chat(user, span_notice("看来[src]的后备箱是空的。"))
 
 ///attempts to force a mob into the car
 /obj/vehicle/sealed/car/proc/mob_try_forced_enter(mob/forcer, mob/kidnapped, silent = FALSE)

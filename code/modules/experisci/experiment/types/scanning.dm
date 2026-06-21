@@ -7,8 +7,8 @@
  * procs should be extended where necessary.
  */
 /datum/experiment/scanning
-	name = "Scanning Experiment"
-	description = "Base experiment for scanning atoms"
+	name = "扫描实验"
+	description = "扫描原子的基础实验"
 	exp_tag = "Scan"
 	allowed_experimentors = list(/obj/item/experi_scanner, /obj/machinery/destructive_scanner)
 	performance_hint = "Perform scanning experiments using a handheld experi-scanner, or the stationary experimental destructive scanner. \

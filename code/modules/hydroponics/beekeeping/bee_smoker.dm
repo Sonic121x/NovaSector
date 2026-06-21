@@ -2,8 +2,8 @@
 #define WEED_WINE_MULTIPLIER 0.2
 
 /obj/item/bee_smoker
-	name = "bee smoker"
-	desc = "A device which can be used to hypnotize bees!"
+	name = "蜜蜂熏烟器"
+	desc = "一种可以用来催眠蜜蜂的设备！"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "bee_smoker"
 	inhand_icon_state = "bee_smoker"
@@ -34,7 +34,7 @@
 	if(.)
 		return TRUE
 	if(!activated && current_herb_fuel <= 0)
-		user.balloon_alert(user, "no fuel!")
+		user.balloon_alert(user, "没有燃料！")
 		return TRUE
 	alter_state()
 	user.balloon_alert(user, "[activated ? "activated" : "deactivated"]")
@@ -46,11 +46,11 @@
 
 	. = ITEM_INTERACT_BLOCKING
 	if(!activated)
-		user.balloon_alert(user, "not activated!")
+		user.balloon_alert(user, "未激活！")
 		return .
 
 	if(current_herb_fuel < single_use_cost)
-		user.balloon_alert(user, "not enough fuel!")
+		user.balloon_alert(user, "燃料不足！")
 		return .
 
 	current_herb_fuel -= single_use_cost
@@ -85,11 +85,11 @@
 	if(isnull(weed.wine_power))
 		return TRUE
 	if(current_herb_fuel == max_herb_fuel)
-		user.balloon_alert(user, "already at maximum fuel!")
+		user.balloon_alert(user, "燃料已达上限！")
 		return TRUE
 	var/fuel_worth = weed.wine_power * WEED_WINE_MULTIPLIER
 	current_herb_fuel = (current_herb_fuel + fuel_worth > max_herb_fuel) ? max_herb_fuel : current_herb_fuel + fuel_worth
-	user.balloon_alert(user, "fuel added")
+	user.balloon_alert(user, "燃料已添加")
 	qdel(weed)
 	return TRUE
 

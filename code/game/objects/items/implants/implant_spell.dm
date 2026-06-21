@@ -1,6 +1,6 @@
 /obj/item/implant/spell
-	name = "spell implant"
-	desc = "Allows you to cast a spell as if you were a wizard."
+	name = "法术植入体"
+	desc = "让你能像巫师一样施放法术。"
 	actions_types = null
 
 	/// Whether to make the spell robeless
@@ -56,14 +56,14 @@
 	if(spell_to_give)
 		spell_to_give.Remove(source)
 		if(source.stat != DEAD && !silent)
-			to_chat(source, span_boldnotice("The knowledge of how to cast [spell_to_give] slips out from your mind."))
+			to_chat(source, span_boldnotice("施放[spell_to_give]的知识从你脑海中溜走了。"))
 	return TRUE
 
 /obj/item/implanter/spell
-	name = "implanter (spell)"
+	name = "植入器（法术）"
 	imp_type = /obj/item/implant/spell
 
 /obj/item/implantcase/spell
 	name = "implant case - 'Wizardry'"
-	desc = "A glass case containing an implant that can teach the user the arts of Wizardry."
+	desc = "一个玻璃盒，内含一个能教授使用者巫术技艺的植入体。"
 	imp_type = /obj/item/implant/spell

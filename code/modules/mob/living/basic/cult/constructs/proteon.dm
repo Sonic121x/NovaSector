@@ -1,6 +1,6 @@
 /// Proteon - a very weak construct that only appears in NPC form in various ruins.
 /mob/living/basic/construct/proteon
-	name = "Proteon"
+	name = "普洛提恩"
 	real_name = "Proteon"
 	desc = "A weaker construct meant to scour ruins for objects of Nar'Sie's affection. Those barbed claws are no joke."
 	icon_state = "proteon"
@@ -13,7 +13,7 @@
 	attack_verb_simple = "pinch"
 	smashes_walls = TRUE
 	attack_sound = 'sound/items/weapons/punch2.ogg'
-	playstyle_string = span_bold("You are a Proteon. Your abilities in combat are outmatched by most combat constructs, but you are still fast and nimble. Run metal and supplies, and cooperate with your fellow cultists.")
+	playstyle_string = span_bold("你是普洛提恩。你的战斗能力不及大多数战斗构造体，但你依然迅捷灵活。负责运送金属和补给，并与你的邪教徒同伴合作。")
 
 /// Hostile NPC version
 /mob/living/basic/construct/proteon/hostile

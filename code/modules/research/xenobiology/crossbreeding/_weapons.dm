@@ -6,8 +6,8 @@ Slimecrossing Weapons
 
 //Boneblade - Burning Green
 /obj/item/melee/arm_blade/slime
-	name = "slimy boneblade"
-	desc = "What remains of the bones in your arm. Incredibly sharp, and painful for both you and your opponents."
+	name = "黏滑骨刃"
+	desc = "你手臂上残留的骨头。这些骨头极其锋利，对你和你的对手来说都极其疼痛。"
 	force = 15
 	force_string = "painful"
 
@@ -18,8 +18,8 @@ Slimecrossing Weapons
 
 //Rainbow knife - Burning Rainbow
 /obj/item/knife/rainbowknife
-	name = "rainbow knife"
-	desc = "A strange, transparent knife which constantly shifts color. It hums slightly when moved."
+	name = "彩虹刀"
+	desc = "一把奇异的透明小刀，其颜色会不断变化。当移动这把刀时，它会发出轻微的嗡嗡声。"
 	icon = 'icons/obj/weapons/stabby.dmi'
 	icon_state = "rainbowknife"
 	inhand_icon_state = "rainbowknife"
@@ -50,8 +50,8 @@ Slimecrossing Weapons
 
 //Adamantine shield - Chilling Adamantine
 /obj/item/shield/adamantineshield
-	name = "adamantine shield"
-	desc = "A gigantic shield made of solid adamantium."
+	name = "精金盾"
+	desc = "一块由纯精金打造的巨大护盾。"
 	icon = 'icons/obj/weapons/shields.dmi'
 	icon_state = "adamshield"
 	inhand_icon_state = "adamshield"
@@ -82,8 +82,8 @@ Slimecrossing Weapons
 
 //Bloodchiller - Chilling Green
 /obj/item/gun/magic/bloodchill
-	name = "blood chiller"
-	desc = "A horrifying weapon made of your own bone and blood vessels. It shoots slowing globules of your own blood. Ech."
+	name = "血教冷冻机"
+	desc = "一种由你自己的骨头和血管制成的可怕武器。它会射出减速的血球。啊哦。"
 	icon = 'icons/obj/science/slimecrossing.dmi'
 	icon_state = "bloodgun"
 	inhand_icon_state = "bloodgun"
@@ -125,7 +125,7 @@ Slimecrossing Weapons
 	projectile_type = /obj/projectile/magic/bloodchill
 
 /obj/projectile/magic/bloodchill
-	name = "blood ball"
+	name = "血球"
 	icon_state = "pulse0_bl"
 	hitsound = 'sound/effects/splat.ogg'
 

@@ -1,5 +1,5 @@
 /datum/fantasy_affix/cosmetic_suffixes
-	name = "purely cosmetic suffix"
+	name = "纯装饰性后缀"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD | AFFIX_EVIL
 
@@ -55,7 +55,7 @@
 
 //////////// Good suffixes
 /datum/fantasy_affix/bane
-	name = "of <mobtype> slaying (random species, carbon or simple animal)"
+	name = "屠<mobtype>者（随机物种、碳基或简单动物）"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
@@ -86,7 +86,7 @@
 	return "[newName] of [initial(picked_mobtype.name)] slaying"
 
 /datum/fantasy_affix/summoning
-	name = "of <mobtype> summoning (dangerous, can pick all but megafauna tier stuff)"
+	name = "召唤<mobtype>（危险，可选除巨型生物等级外的所有类型）"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 	weight = 5
@@ -128,7 +128,7 @@
 	return "[newName] of [initial(picked_mobtype.name)] summoning"
 
 /datum/fantasy_affix/shrapnel
-	name = "shrapnel"
+	name = "破片"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
@@ -164,7 +164,7 @@
 	return "[newName] of [initial(picked_projectiletype.name)] shrapnel"
 
 /datum/fantasy_affix/strength
-	name = "of strength (knockback)"
+	name = "力量（击退）"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
@@ -181,7 +181,7 @@
 //////////// Bad suffixes
 
 /datum/fantasy_affix/fool
-	name = "of the fool (honking)"
+	name = "愚者（鸣响）"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_EVIL
 
@@ -192,7 +192,7 @@
 	return "[newName] of the fool"
 
 /datum/fantasy_affix/curse_of_hunger
-	name = "curse of hunger"
+	name = "饥饿诅咒"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_EVIL
 	weight = 5
@@ -218,7 +218,7 @@
 	master.RemoveElement(/datum/element/curse_announcement) //just in case
 
 /datum/fantasy_affix/curse_of_polymorph
-	name = "curse of polymorph"
+	name = "变形诅咒"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_EVIL
 
@@ -252,7 +252,7 @@
 	master.RemoveElement(/datum/element/curse_announcement) //just in case
 
 /datum/fantasy_affix/speed
-	name = "of speed"
+	name = "迅捷"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
@@ -272,7 +272,7 @@
 	master.slowdown = initial(master.slowdown)
 
 /datum/fantasy_affix/doot
-	name = "of dooting"
+	name = "嘟嘟之"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 	weight = 1
@@ -287,7 +287,7 @@
 
 // On hitting a mob their click cd is slowed marginally
 /datum/fantasy_affix/windseeker
-	name = "of the Windseeker"
+	name = "追风者之"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 	weight = 3

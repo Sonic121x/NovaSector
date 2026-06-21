@@ -10,20 +10,20 @@
 
 	switch(grill_time) //no 0-20 to prevent spam
 		if(20 SECONDS to 30 SECONDS)
-			this_food.name = "lightly-grilled [this_food.name]"
+			this_food.name = "微烤的 [this_food.name]"
 			this_food.desc += " It's been lightly grilled."
 
 		if(30 SECONDS to 80 SECONDS)
-			this_food.name = "grilled [this_food.name]"
+			this_food.name = "烤制的 [this_food.name]"
 			this_food.desc += " It's been grilled."
 
 		if(80 SECONDS to 100 SECONDS)
-			this_food.name = "heavily grilled [this_food.name]"
+			this_food.name = "深度烤制的 [this_food.name]"
 			this_food.desc += " It's been heavily grilled."
 
 		if(100 SECONDS to INFINITY) //grill marks reach max alpha
-			this_food.name = "Powerfully Grilled [this_food.name]"
-			this_food.desc = "A [this_food.name]. Reminds you of your wife, wait, no, it's prettier!"
+			this_food.name = "强力烤制的 [this_food.name]"
+			this_food.desc = "一个 [this_food.name]。让你想起了你的妻子，等等，不对，它更漂亮！"
 
 	if(grill_time > 30 SECONDS && isnull(this_food.GetComponent(/datum/component/edible)))
 		this_food.AddComponentFrom(SOURCE_EDIBLE_GRILLED, /datum/component/edible, foodtypes = FRIED)

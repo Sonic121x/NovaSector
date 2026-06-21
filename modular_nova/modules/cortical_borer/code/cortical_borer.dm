@@ -40,8 +40,8 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 
 //borers also create an organ, so you dont need to debrain someone
 /obj/item/organ/borer_body
-	name = "engorged cortical borer"
-	desc = "the body of a cortical borer, full of human viscera, blood, and more."
+	name = "饱胀的皮质钻孔虫"
+	desc = "一只皮质钻孔虫的身体，充满了人类的内脏、血液等等。"
 	zone = BODY_ZONE_HEAD
 	/// Ref to the borer who this organ belongs to
 	var/mob/living/basic/cortical_borer/borer
@@ -77,8 +77,8 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	volume = 100
 
 /mob/living/basic/cortical_borer
-	name = "cortical borer"
-	desc = "A slimy creature that is known to go into the ear canal of unsuspecting victims."
+	name = "皮质钻虫"
+	desc = "一种黏滑的生物，已知会进入毫无戒心的受害者的耳道。"
 	icon = 'modular_nova/modules/cortical_borer/icons/animal.dmi'
 	icon_state = "brainslug"
 	icon_living = "brainslug"
@@ -230,9 +230,9 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 		var/switching = rand(1,2)
 		switch(switching)
 			if(1)
-				name = "cortical boner ([generation]-[rand(100,999)])"
+				name = "皮质勃起虫 ([generation]-[rand(100,999)])"
 			if(2)
-				name = "cortical vorer ([generation]-[rand(100,999)])"
+				name = "皮质吞噬虫 ([generation]-[rand(100,999)])"
 
 	GLOB.cortical_borers += src
 	reagent_holder = new /obj/item/reagent_containers/borer(src)
@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	if(!deathgasp_once)
 		deathgasp_once = TRUE
 		for(var/borers in GLOB.cortical_borers)
-			to_chat(borers, span_boldwarning("[src] has left the hivemind forcibly!"))
+			to_chat(borers, span_boldwarning("[src] 已被强制逐出蜂巢思维！"))
 	if(gibbed)
 		QDEL_NULL(reagent_holder)
 	return ..()
@@ -332,13 +332,13 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 		return
 	if(stat == DEAD)
 		return
-	var/choice = tgui_input_list(usr, "Do you want to control [src]?", "Confirmation", list("Yes", "No"))
+	var/choice = tgui_input_list(usr, "你想要控制[src]吗？", "确认", list("Yes", "No"))
 	if(choice != "Yes")
 		return
 	if(ckey || key)
 		return
-	to_chat(user, span_warning("As a borer, you have the option to be friendly or not. Note that how you act will determine how a host responds!"))
-	to_chat(user, span_warning("You are a cortical borer! You can fear someone to make them stop moving, but make sure to inhabit them! You only grow/heal/talk when inside a host!"))
+	to_chat(user, span_warning("作为钻虫，你可以选择友善与否。请注意，你的行为将决定宿主的反应！"))
+	to_chat(user, span_warning("你是一只皮质钻虫！你可以恐吓某人使其停止移动，但务必寄生他们！你只有在宿主体内才能成长/治疗/说话！"))
 	ckey = user.ckey
 	if(mind)
 		mind.add_antag_datum(/datum/antagonist/cortical_borer)
@@ -389,7 +389,7 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 
 //borers shouldnt be able to whisper...
 /mob/living/basic/cortical_borer/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language, ignore_spam = FALSE, forced, filterproof)
-	to_chat(src, span_warning("You are not able to whisper!"))
+	to_chat(src, span_warning("你无法进行耳语！"))
 	return FALSE
 
 //previously had borers unable to emote... but that means less RP, and we want that
@@ -409,7 +409,7 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	list/message_mods = list(),
 )
 	if(!inside_human())
-		to_chat(src, span_warning("You are not able to speak without a host!"))
+		to_chat(src, span_warning("没有宿主时你无法说话！"))
 		return
 	if(host_sugar())
 		message = scramble_message_replace_chars(message, 10)
@@ -420,26 +420,26 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	if(split_message[1] == ";")
 		message = copytext(message, 2)
 		for(var/borer in GLOB.cortical_borers)
-			to_chat(borer, span_purple("<b>Cortical Hivemind: [src] sings, \"[message]\"</b>"))
+			to_chat(borer, span_purple("<b>皮质蜂巢思维：[src] 吟唱道，\"[message]\"</b>"))
 		for(var/mob/dead_mob in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(dead_mob, src)
-			to_chat(dead_mob, span_purple("[link] <b>Cortical Hivemind: [src] sings, \"[message]\"</b>"))
+			to_chat(dead_mob, span_purple("[link] <b>皮质蜂巢思维：[src] 吟唱道，\"[message]\"</b>"))
 		var/logging_textone = "[key_name(src)] spoke into the hivemind: [message]"
 		log_say(logging_textone)
 		return
 
 	//this is when they speak normally
-	to_chat(human_host, span_purple("Cortical Link: [src] sings, \"[message]\""))
+	to_chat(human_host, span_purple("皮质链接：[src] 吟唱道，\"[message]\""))
 	var/logging_texttwo = "[key_name(src)] spoke to [key_name(human_host)]: [message]"
 	log_say(logging_texttwo)
-	to_chat(src, span_purple("Cortical Link: [src] sings, \"[message]\""))
+	to_chat(src, span_purple("皮质链接：[src] 吟唱道，\"[message]\""))
 	for(var/mob/dead_mob in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(dead_mob, src)
-		to_chat(dead_mob, span_purple("[link] Cortical Hivemind: [src] sings to [human_host], \"[message]\""))
+		to_chat(dead_mob, span_purple("[link] 皮质蜂巢思维：[src] 对 [human_host] 吟唱道，\"[message]\""))
 
 //borers should not be able to pull anything
 /mob/living/basic/cortical_borer/start_pulling(atom/movable/AM, state, force, supress_message)
-	to_chat(src, span_warning("You cannot pull things!"))
+	to_chat(src, span_warning("你无法拖拽物品！"))
 	return
 
 /// Called on Life() for the borer to age a bit
@@ -462,15 +462,15 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	if(maturity_age == maturity_threshold)
 		if(chemical_evolution < limited_borer) //you can only have a default of 10 at a time
 			chemical_evolution++
-			to_chat(src, span_notice("You gain a chemical evolution point. Spend it to learn a new chemical!"))
+			to_chat(src, span_notice("你获得了一个化学进化点。用它来学习一种新的化学物质！"))
 		else
-			to_chat(src, span_warning("You were unable to gain a chemical evolution point due to having the max!"))
+			to_chat(src, span_warning("你因已达到上限而无法获得化学进化点！"))
 	if(maturity_age >= (maturity_threshold * 2))
 		if(stat_evolution < limited_borer)
 			stat_evolution++
-			to_chat(src, span_notice("You gain a stat evolution point. Spend it to become stronger!"))
+			to_chat(src, span_notice("你获得了一个属性进化点。用它来变得更强！"))
 		else
-			to_chat(src, span_warning("You were unable to gain a stat evolution point due to having the max!"))
+			to_chat(src, span_warning("你因已达到上限而无法获得属性进化点！"))
 		maturity_age = 0
 
 /// Use to recalculate a borer's health and chemical stats when something retroactively affects them

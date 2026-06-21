@@ -1,7 +1,7 @@
 // FOOD ITEMS
 /obj/item/food/mince_pie
-	name = "mince pie"
-	desc = "The edible embodiment of christmas cheer."
+	name = "百果馅饼"
+	desc = "圣诞欢乐的可食用化身。"
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'modular_nova/modules/modular_items/icons/pastries.dmi'
 	icon_state = "mince_pie"
@@ -12,8 +12,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/mimce_pie
-	name = "mimce pie"
-	desc = "A pastry with a star-shaped lid, filled with Nothing."
+	name = "虚无馅饼"
+	desc = "一种带有星形盖子的糕点，里面空无一物。"
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'modular_nova/modules/modular_items/icons/pastries.dmi'
 	icon_state = "mimce_pie"
@@ -26,7 +26,7 @@
 // RECIPE
 
 /datum/crafting_recipe/food/mince_pie
-	name = "Mince pie"
+	name = "百果馅饼"
 	reqs = list(
 		/obj/item/food/no_raisin = 1,
 		/obj/item/food/grown/apple = 1,
@@ -38,7 +38,7 @@
 	meal_category = MEAL_DESSERT
 
 /datum/crafting_recipe/food/mimce_pie
-	name = "Mimce pie"
+	name = "默剧演员派"
 	reqs = list(
 		/obj/item/food/no_raisin = 1,
 		/obj/item/food/grown/apple = 1,

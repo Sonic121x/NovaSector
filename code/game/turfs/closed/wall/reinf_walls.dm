@@ -1,6 +1,6 @@
 /turf/closed/wall/r_wall
-	name = "reinforced wall"
-	desc = "A huge chunk of reinforced metal used to separate rooms."
+	name = "加固墙"
+	desc = "用来分隔房间的一大块加固金属。"
 	icon = 'icons/turf/walls/reinforced_wall.dmi' //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "reinforced_wall-0"
 	base_icon_state = "reinforced_wall"
@@ -26,19 +26,19 @@
 /turf/closed/wall/r_wall/deconstruction_hints(mob/user)
 	switch(d_state)
 		if(INTACT)
-			return span_notice("The outer <b>grille</b> is fully intact.")
+			return span_notice("外层的<b>格栅</b>完好无损。")
 		if(SUPPORT_LINES)
-			return span_notice("The outer <i>grille</i> has been cut, and the support lines are <b>screwed</b> securely to the outer cover.")
+			return span_notice("外层的<i>格栅</i>已被切断，支撑线已用<b>螺丝</b>牢固地固定在外罩上。")
 		if(COVER)
-			return span_notice("The support lines have been <i>unscrewed</i>, and the metal cover is <b>welded</b> firmly in place.")
+			return span_notice("支撑线已被<i>拧松</i>，金属盖被<b>焊接</b>牢固就位。")
 		if(CUT_COVER)
-			return span_notice("The metal cover has been <i>sliced through</i>, and is <b>connected loosely</b> to the girder.")
+			return span_notice("金属盖已被<i>切开</i>，<b>松散地连接</b>在梁上。")
 		if(ANCHOR_BOLTS)
-			return span_notice("The outer cover has been <i>pried away</i>, and the bolts anchoring the support rods are <b>wrenched</b> in place.")
+			return span_notice("外罩已被<i>撬开</i>，固定支撑杆的螺栓已用<b>扳手</b>拧紧就位。")
 		if(SUPPORT_RODS)
-			return span_notice("The bolts anchoring the support rods have been <i>loosened</i>, but are still <b>welded</b> firmly to the girder.")
+			return span_notice("固定支撑杆的螺栓已被<i>拧松</i>，但仍<b>焊接</b>牢固在梁上。")
 		if(SHEATH)
-			return span_notice("The support rods have been <i>sliced through</i>, and the outer sheath is <b>connected loosely</b> to the girder.")
+			return span_notice("支撑杆已被<i>切断</i>，外护套<b>松散地连接</b>在梁上。")
 
 /turf/closed/wall/r_wall/devastate_wall()
 	new sheet_type(src, sheet_amount)
@@ -55,138 +55,138 @@
 				W.play_tool_sound(src, 100)
 				d_state = SUPPORT_LINES
 				update_appearance()
-				to_chat(user, span_notice("You cut the outer grille."))
+				to_chat(user, span_notice("你切断了外层格栅。"))
 				return TRUE
 
 		if(SUPPORT_LINES)
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				to_chat(user, span_notice("You begin unsecuring the support lines..."))
+				to_chat(user, span_notice("你开始松开支撑线..."))
 				if(W.use_tool(src, user, 40, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SUPPORT_LINES)
 						return TRUE
 					d_state = COVER
 					update_appearance()
-					to_chat(user, span_notice("You unsecure the support lines."))
+					to_chat(user, span_notice("你松开了支撑线。"))
 				return TRUE
 
 			else if(W.tool_behaviour == TOOL_WIRECUTTER)
 				W.play_tool_sound(src, 100)
 				d_state = INTACT
 				update_appearance()
-				to_chat(user, span_notice("You repair the outer grille."))
+				to_chat(user, span_notice("你修复了外层格栅。"))
 				return TRUE
 
 		if(COVER)
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(!W.tool_start_check(user, amount=2, heat_required = HIGH_TEMPERATURE_REQUIRED))
 					return
-				to_chat(user, span_notice("You begin slicing through the metal cover..."))
+				to_chat(user, span_notice("你开始切割金属盖..."))
 				if(W.use_tool(src, user, 60, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != COVER)
 						return TRUE
 					d_state = CUT_COVER
 					update_appearance()
-					to_chat(user, span_notice("You press firmly on the cover, dislodging it."))
+					to_chat(user, span_notice("你用力按压盖子，使其脱落。"))
 				return TRUE
 
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				to_chat(user, span_notice("You begin securing the support lines..."))
+				to_chat(user, span_notice("你开始固定支撑线..."))
 				if(W.use_tool(src, user, 40, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != COVER)
 						return TRUE
 					d_state = SUPPORT_LINES
 					update_appearance()
-					to_chat(user, span_notice("The support lines have been secured."))
+					to_chat(user, span_notice("支撑线已固定。"))
 				return TRUE
 
 		if(CUT_COVER)
 			if(W.tool_behaviour == TOOL_CROWBAR)
-				to_chat(user, span_notice("You struggle to pry off the cover..."))
+				to_chat(user, span_notice("你费力地撬开盖板..."))
 				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != CUT_COVER)
 						return TRUE
 					d_state = ANCHOR_BOLTS
 					update_appearance()
-					to_chat(user, span_notice("You pry off the cover."))
+					to_chat(user, span_notice("你撬开了盖板。"))
 				return TRUE
 
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(!W.tool_start_check(user, amount=2, heat_required = HIGH_TEMPERATURE_REQUIRED))
 					return
-				to_chat(user, span_notice("You begin welding the metal cover back to the frame..."))
+				to_chat(user, span_notice("你开始将金属盖板焊回框架..."))
 				if(W.use_tool(src, user, 60, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != CUT_COVER)
 						return TRUE
 					d_state = COVER
 					update_appearance()
-					to_chat(user, span_notice("The metal cover has been welded securely to the frame."))
+					to_chat(user, span_notice("金属盖板已牢固地焊接到框架上。"))
 				return TRUE
 
 		if(ANCHOR_BOLTS)
 			if(W.tool_behaviour == TOOL_WRENCH)
-				to_chat(user, span_notice("You start loosening the anchoring bolts which secure the support rods to their frame..."))
+				to_chat(user, span_notice("你开始拧松将支撑杆固定在框架上的锚固螺栓..."))
 				if(W.use_tool(src, user, 40, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != ANCHOR_BOLTS)
 						return TRUE
 					d_state = SUPPORT_RODS
 					update_appearance()
-					to_chat(user, span_notice("You remove the bolts anchoring the support rods."))
+					to_chat(user, span_notice("你移除了固定支撑杆的螺栓。"))
 				return TRUE
 
 			if(W.tool_behaviour == TOOL_CROWBAR)
-				to_chat(user, span_notice("You start to pry the cover back into place..."))
+				to_chat(user, span_notice("你开始将盖板撬回原位..."))
 				if(W.use_tool(src, user, 20, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != ANCHOR_BOLTS)
 						return TRUE
 					d_state = CUT_COVER
 					update_appearance()
-					to_chat(user, span_notice("The metal cover has been pried back into place."))
+					to_chat(user, span_notice("金属盖板已被撬回原位。"))
 				return TRUE
 
 		if(SUPPORT_RODS)
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(!W.tool_start_check(user, amount=2, heat_required = HIGH_TEMPERATURE_REQUIRED))
 					return
-				to_chat(user, span_notice("You begin slicing through the support rods..."))
+				to_chat(user, span_notice("你开始切割支撑杆..."))
 				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SUPPORT_RODS)
 						return TRUE
 					d_state = SHEATH
 					update_appearance()
-					to_chat(user, span_notice("You slice through the support rods."))
+					to_chat(user, span_notice("你切断了支撑杆。"))
 				return TRUE
 
 			if(W.tool_behaviour == TOOL_WRENCH)
-				to_chat(user, span_notice("You start tightening the bolts which secure the support rods to their frame..."))
+				to_chat(user, span_notice("你开始拧紧将支撑杆固定在框架上的螺栓..."))
 				W.play_tool_sound(src, 100)
 				if(W.use_tool(src, user, 40))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SUPPORT_RODS)
 						return TRUE
 					d_state = ANCHOR_BOLTS
 					update_appearance()
-					to_chat(user, span_notice("You tighten the bolts anchoring the support rods."))
+					to_chat(user, span_notice("你拧紧了固定支撑杆的螺栓。"))
 				return TRUE
 
 		if(SHEATH)
 			if(W.tool_behaviour == TOOL_CROWBAR)
-				to_chat(user, span_notice("You struggle to pry off the outer sheath..."))
+				to_chat(user, span_notice("你费力地撬开外层护套..."))
 				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SHEATH)
 						return TRUE
-					to_chat(user, span_notice("You pry off the outer sheath."))
+					to_chat(user, span_notice("你撬开了外层护套。"))
 					dismantle_wall()
 				return TRUE
 
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(!W.tool_start_check(user, amount=0, heat_required = HIGH_TEMPERATURE_REQUIRED))
 					return
-				to_chat(user, span_notice("You begin welding the support rods back together..."))
+				to_chat(user, span_notice("你开始将支撑杆重新焊接在一起..."))
 				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SHEATH)
 						return TRUE
 					d_state = SUPPORT_RODS
 					update_appearance()
-					to_chat(user, span_notice("You weld the support rods back together."))
+					to_chat(user, span_notice("你将支撑杆重新焊接在一起。"))
 				return TRUE
 	return FALSE
 
@@ -237,7 +237,7 @@
 
 /turf/closed/wall/r_wall/plastitanium
 	name = /turf/closed/wall/mineral/plastitanium::name
-	desc = "An extra durable wall made of an alloy of plasma and titanium, reinforced with plasteel rods."
+	desc = "一种由等离子体和钛合金制成的超耐用墙壁，并用塑钢杆加固。"
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "plastitanium_wall-0"
 	base_icon_state = "plastitanium_wall"
@@ -260,8 +260,8 @@
 	fixed_underlay = list("space" = TRUE)
 
 /turf/closed/wall/r_wall/plastitanium/syndicate
-	name = "hull"
-	desc = "The armored hull of an ominous looking ship."
+	name = "船体"
+	desc = "一艘外形不详的舰船所覆盖的装甲外壳"
 	explosive_resistance = 20
 
 /turf/closed/wall/r_wall/plastitanium/syndicate/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)

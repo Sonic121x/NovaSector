@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/tackler
-	name = "enhanced retrieval gloves"
-	desc = "Special gloves that manipulate the blood vessels in the wearer's hands, granting them the ability to launch headfirst into walls and tackle fleeing criminals in a single bound."
+	name = "增强型回收手套"
+	desc = "能够操纵佩戴者手部血管的特殊手套，赋予他们一头撞向墙壁并一跃扑倒逃跑罪犯的能力。"
 	icon_state = "tackle"
 	inhand_icon_state = null
 	cold_protection = HANDS
@@ -51,8 +51,8 @@
 		QDEL_NULL(tackler)
 
 /obj/item/clothing/gloves/tackler/dolphin
-	name = "dolphin gloves"
-	desc = "Sleek, aerodynamic gripper gloves that are less effective at actually performing takedowns, but more effective at letting the user sail through the hallways and cause accidents."
+	name = "海豚手套"
+	desc = "流线型的抓握手套，在施展擒拿技巧方面效果较差，但能更有效的让使用者在走廊上一路滑行和制造事故."
 	icon_state = "tackledolphin"
 	inhand_icon_state = null
 
@@ -65,8 +65,8 @@
 	fishing_modifier = -10
 
 /obj/item/clothing/gloves/tackler/combat
-	name = "gorilla gloves"
-	desc = "Premium quality combative gloves, heavily reinforced to give the user an edge in close combat tackles, though they are more taxing to use than normal gripper gloves. Fireproof to boot!"
+	name = "大猩猩手套"
+	desc = "经过大量加固的高质量战斗手套，能让使用者在近身搏斗中占有优势，虽然用起来比普通的抓握手套还要费力.这款手套还防火！"
 	icon_state = "gorilla"
 	inhand_icon_state = null
 
@@ -82,8 +82,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/gloves/tackler/combat/insulated
-	name = "guerrilla gloves"
-	desc = "Superior quality combative gloves, good for performing tackle takedowns as well as absorbing electrical shocks."
+	name = "游击队手套"
+	desc = "优质的战斗手套，适合执行扑击擒拿和抵御电击."
 	icon_state = "guerrilla"
 	siemens_coefficient = 0
 	armor_type = /datum/armor/combat_insulated
@@ -92,8 +92,8 @@
 	bio = 50
 
 /obj/item/clothing/gloves/tackler/rocket
-	name = "rocket gloves"
-	desc = "The ultimate in high risk, high reward, perfect for when you need to stop a criminal from fifty feet away or die trying. Banned in most Spinward gridiron football and rugby leagues."
+	name = "火箭手套"
+	desc = "高风险高回报的终极选择，非常适合在需要在五十英尺的距离内阻止犯罪分子或不惜一头撞死墙上的情况下使用.被大多数顺向的烤盘足球和橄榄球联赛禁止使用。"
 	icon_state = "tacklerocket"
 	inhand_icon_state = null
 
@@ -105,8 +105,8 @@
 	skill_mod = 7
 
 /obj/item/clothing/gloves/tackler/offbrand
-	name = "improvised gripper gloves"
-	desc = "Ratty looking fingerless gloves wrapped with sticky tape. Beware anyone wearing these, for they clearly have no shame and nothing to lose."
+	name = "简易抓握手套"
+	desc = "外观破旧的无指手套，用胶带包裹着.小心戴着这些手套的人，因为他们显然毫无羞耻心，也没有任何可失去的东西."
 	icon_state = "fingerless"
 	inhand_icon_state = null
 	clothing_traits = list(TRAIT_FINGERPRINT_PASSTHROUGH)
@@ -117,8 +117,8 @@
 	fishing_modifier = -5
 
 /obj/item/clothing/gloves/tackler/football
-	name = "football gloves"
-	desc = "Gloves for football players! Teaches them how to tackle like a pro."
+	name = "足球手套"
+	desc = "足球运动员的手套！教他们如何像专业人士一样铲球。"
 	icon_state = "tackle_gloves"
 	inhand_icon_state = null
 	fishing_modifier = -4

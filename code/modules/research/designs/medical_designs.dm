@@ -26,7 +26,7 @@
 
 /datum/design/bluespacebeaker
 	name = "Bluespace Beaker"
-	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
+	desc = "蓝空烧杯，由蓝空实验技术与复合材料结合而成。最多可容纳300u。"
 	id = "bluespacebeaker"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/plastic =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/diamond =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =HALF_SHEET_MATERIAL_AMOUNT)
@@ -38,7 +38,7 @@
 
 /datum/design/noreactbeaker
 	name = "Cryostasis Beaker"
-	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
+	desc = "一个低温存储烧杯，可实现无化学反应的化学物质储存。最大容量为50单位。"
 	id = "splitbeaker"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -71,7 +71,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/meta_beaker
-	name = "Metamaterial Beaker"
+	name = "超材料烧杯-Beaker"
 	id = "meta_beaker"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT*2.5, /datum/material/plastic =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT)
@@ -93,8 +93,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/bluespacesyringe
-	name = "Bluespace Syringe"
-	desc = "An advanced syringe that can hold 60 units of chemicals"
+	name = "蓝空注射器-Syringe"
+	desc = "一支可容纳60单位化学品的高级注射器。"
 	id = "bluespacesyringe"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT*5)
@@ -106,7 +106,7 @@
 
 /datum/design/dna_disk
 	name = "Genetic Data Disk"
-	desc = "Produce additional disks for storing genetic data."
+	desc = "生产用于存储遗传学数据的额外磁盘。"
 	id = "dna_disk"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT, /datum/material/silver =SMALL_MATERIAL_AMOUNT*0.5)
@@ -117,8 +117,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/piercesyringe
-	name = "Piercing Syringe"
-	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
+	name = "穿刺型注射器-Syringe"
+	desc = "一种带有金刚石尖头的注射器，发射时能够穿透盔甲。它最多可容纳 10 个u的药物。"
 	id = "piercesyringe"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =HALF_SHEET_MATERIAL_AMOUNT)
@@ -153,8 +153,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/bluespacebodybag
-	name = "Bluespace Body Bag"
-	desc = "A bluespace body bag, powered by experimental bluespace technology. It can hold loads of bodies and the largest of creatures."
+	name = "蓝空裹尸袋-Body Bag"
+	desc = "蓝空裹尸袋，由蓝空实验技术驱动。它可以容纳大量的尸体和最大的生物。"
 	id = "bluespacebodybag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SMALL_MATERIAL_AMOUNT*5, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT*5)
@@ -179,8 +179,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/plasmarefiller
-	name = "Plasmaman Jumpsuit Refill"
-	desc = "A refill pack for the auto-extinguisher on Plasma-man suits."
+	name = "等离子人灭火服补充包"
+	desc = "等离子人服装上的自动灭火器的补充包。"
 	id = "plasmarefiller" //Why did this have no plasmatech
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT)
@@ -192,7 +192,7 @@
 
 /datum/design/crewpinpointer
 	name = "Crew Pinpointer"
-	desc = "Allows tracking of someone's location if their suit sensors are turned to tracking beacon."
+	desc = "如果某人的服装上的传感器被设置为追踪模式，就能对其进行位置追踪。"
 	id = "crewpinpointer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/gold =SMALL_MATERIAL_AMOUNT*5)
@@ -203,8 +203,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/defibrillator_mount
-	name = "Defibrillator Wall Mount"
-	desc = "A mounted frame for holding defibrillators, providing easy security."
+	name = "壁挂式除颤器"
+	desc = "放置除颤器的安装框架，提供简单的安全性。"
 	id = "defibmountdefault"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -215,8 +215,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/defibrillator_mount_charging
-	name = "PENLITE Defibrillator Wall Mount"
-	desc = "An all-in-one mounted frame for holding defibrillators, complete with ID-locked clamps and recharging cables. The PENLITE version also allows for slow recharging of the defib's battery."
+	name = "PENLITE型壁挂式除颤器"
+	desc = "一款一体化的安装支架，用于固定除颤器，配有带锁扣的夹子和充电线。PENLITE版本还支持除颤器电池的缓慢充电。"
 	id = "defibmount"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
@@ -228,7 +228,7 @@
 
 /datum/design/genescanner
 	name = "Genetic Sequence Analyzer"
-	desc = "A handy hand-held analyzers for quickly determining mutations and collecting the full sequence."
+	desc = "一种便捷的手持式分析仪，可快速检测突变并获取完整的序列信息。"
 	id = "genescanner"
 	build_path = /obj/item/sequence_scanner
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -240,7 +240,7 @@
 
 /datum/design/healthanalyzer_advanced
 	name = "Advanced Health Analyzer"
-	desc = "A hand-held body scanner able to distinguish vital signs of the subject with high accuracy."
+	desc = "一种手持式身体扫描仪，能够高精度地分析受试者的生命体征。"
 	id = "healthanalyzer_advanced"
 	build_path = /obj/item/healthanalyzer/advanced
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -252,7 +252,7 @@
 
 /datum/design/medigel
 	name = "Medical Gel"
-	desc = "A medical gel applicator bottle, designed for precision application, with an unscrewable cap."
+	desc = "一款医用凝胶涂抹瓶，设计用于精准施药，配有可旋开的瓶盖。"
 	id = "medigel"
 	build_path = /obj/item/reagent_containers/medigel
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -275,7 +275,7 @@
 
 /datum/design/laserscalpel
 	name = "Laser Scalpel"
-	desc = "A laser scalpel used for precise cutting."
+	desc = "一种精确切割的激光手术刀"
 	id = "laserscalpel"
 	build_path = /obj/item/scalpel/advanced
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -287,7 +287,7 @@
 
 /datum/design/mechanicalpinches
 	name = "Mechanical Pinches"
-	desc = "These pinches can be either used as retractor or hemostat."
+	desc = "这些夹子既可以作为牵开器使用，也可以作为止血器使用。"
 	id = "mechanicalpinches"
 	build_path = /obj/item/retractor/advanced
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -299,7 +299,7 @@
 
 /datum/design/searingtool
 	name = "Searing Tool"
-	desc = "Used to mend tissue together. Or drill tissue away."
+	desc = "用于将组织缝合在一起。或者用于将组织钻除掉。"
 	id = "searingtool"
 	build_path = /obj/item/cautery/advanced
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -311,7 +311,7 @@
 
 /datum/design/medical_spray_bottle
 	name = "Medical Spray Bottle"
-	desc = "A traditional spray bottle used to generate a fine mist. Not to be confused with a medspray."
+	desc = "一种传统的喷雾瓶，用于产生细小的雾状物。请勿将其与药物喷雾混淆。"
 	id = "med_spray_bottle"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SHEET_MATERIAL_AMOUNT)
@@ -323,7 +323,7 @@
 
 /datum/design/chem_pack
 	name = "Intravenous Medicine Bag"
-	desc = "A plastic pressure bag for IV administration of drugs."
+	desc = "一种用于静脉给药的塑料压力袋。"
 	id = "chem_pack"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
@@ -336,7 +336,7 @@
 
 /datum/design/blood_pack
 	name = "Blood Pack"
-	desc = "Is used to contain blood used for transfusion. Must be attached to an IV drip."
+	desc = "用于盛装用于输血的血液。必须与静脉输液装置相连。"
 	id = "blood_pack"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
@@ -348,8 +348,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/portable_chem_mixer
-	name = "Portable Chemical Mixer"
-	desc = "A portable device that dispenses and mixes chemicals. Reagents have to be supplied with beakers."
+	name = "便携式化学混合器"
+	desc = "一种可携带的化学品调配与混合装置。需使用烧杯供应试剂。"
 	id = "portable_chem_mixer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
@@ -430,7 +430,7 @@
 
 /datum/design/cyberimp_breather
 	name = "Breathing Tube Implant"
-	desc = "This simple implant adds an internals connector to your back, allowing you to use internals without a mask and protecting you from being choked."
+	desc = "这个简单的植入物在你的背部添加了一个呼吸配件连接器，可以让你在没有佩戴面罩的情况下使用呼吸配件并防止你窒息。"
 	id = "ci-breather"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 3.5 SECONDS
@@ -443,7 +443,7 @@
 
 /datum/design/cyberimp_surgical
 	name = "Surgical Arm Implant"
-	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
+	desc = "一套手术用具，收纳于使用者手臂上的隐蔽嵌板。"
 	id = "ci-surgery"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	materials = list(
@@ -460,7 +460,7 @@
 
 /datum/design/cyberimp_toolset
 	name = "Toolset Arm Implant"
-	desc = "A stripped-down version of engineering cyborg toolset, designed to be installed on subject's arm."
+	desc = "一套精简版的工程赛博工具组，可安装在对象的手臂上。"
 	id = "ci-toolset"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	materials = list(
@@ -477,7 +477,7 @@
 
 /datum/design/cyberimp_medical_hud
 	name = "Medical HUD Implant"
-	desc = "These cybernetic eyes will display a medical HUD over everything you see. Wiggle eyes to control."
+	desc = "这对电子眼会在你视野内的一切活物上显示医疗HUD.转动眼球来控制."
 	id = "ci-medhud"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 5 SECONDS
@@ -495,7 +495,7 @@
 
 /datum/design/cyberimp_security_hud
 	name = "Security HUD Implant"
-	desc = "These cybernetic eyes will display a security HUD over everything you see. Wiggle eyes to control."
+	desc = "这对电子眼会在你视野内的一切东西上显示安保HUD.转动眼球来控制."
 	id = "ci-sechud"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 5 SECONDS
@@ -513,7 +513,7 @@
 
 /datum/design/cyberimp_diagnostic_hud
 	name = "Diagnostic HUD Implant"
-	desc = "These cybernetic eyes will display a diagnostic HUD over everything you see. Wiggle eyes to control."
+	desc = "这对电子眼会在你视野内的一切活物上显示诊断HUD.转动眼球来控制."
 	id = "ci-diaghud"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 5 SECONDS
@@ -531,7 +531,7 @@
 
 /datum/design/cyberimp_xray
 	name = "X-ray Eyes"
-	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
+	desc = "这对电子眼球会带给你X射线视觉.眨眼变得毫无意义."
 	id = "ci-xray"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 6 SECONDS
@@ -558,7 +558,7 @@
 
 /datum/design/cyberimp_thermals
 	name = "Thermal Eyes"
-	desc = "These cybernetic eyes will give you Thermal vision. Vertical slit pupil included."
+	desc = "这对电子眼球会带给你热视觉.带有缝状竖瞳."
 	id = "ci-thermals"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 6 SECONDS
@@ -601,8 +601,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cyberimp_antidrop
-	name = "Anti-Drop Implant"
-	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ear to toggle."
+	name = "Anti-Drop-防掉落植入物"
+	desc = "这个脑部电子植入物能够让你的手部肌肉强制收缩，以防止物品从手中掉落。抽动耳朵来切换。"
 	id = "ci-antidrop"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 6 SECONDS
@@ -620,7 +620,7 @@
 
 /datum/design/cyberimp_antistun
 	name = "CNS Rebooter Implant"
-	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	desc = "这个植入物将自动恢复你对中枢神经系统的控制，减少晕眩的恢复时间。"
 	id = "ci-antistun"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 6 SECONDS
@@ -708,7 +708,7 @@
 
 /datum/design/cyberimp_reviver
 	name = "Reviver Implant"
-	desc = "This implant will attempt to revive you if you lose consciousness. For the faint of heart!"
+	desc = "这个植入物在你失去意识时会尝试唤醒你。适合那些胆小的人！"
 	id = "ci-reviver"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 6 SECONDS
@@ -726,7 +726,7 @@
 
 /datum/design/cyberimp_thrusters
 	name = "Thrusters Set Implant"
-	desc = "This implant will allow you to use gas from environment or your internals for propulsion in zero-gravity areas."
+	desc = "这个植入物可以让你在零重力条件下使用环境气体或呼吸配件内的气体来推进。"
 	id = "ci-thrusters"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 8 SECONDS
@@ -764,8 +764,8 @@
 /////////////////////////////////////////
 
 /datum/design/implanter
-	name = "Implanter"
-	desc = "A sterile automatic implant injector."
+	name = "植入器"
+	desc = "一个无菌自动植入物注射器。"
 	id = "implanter"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*6, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
@@ -776,8 +776,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/implantcase
-	name = "Implant Case"
-	desc = "A glass case for containing an implant."
+	name = "植入物盒"
+	desc = "一个用来装植入物的玻璃盒。"
 	id = "implantcase"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -788,8 +788,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/implant_sadtrombone
-	name = "Sad Trombone Implant Case"
-	desc = "Makes death amusing."
+	name = "悲伤长号植入物盒"
+	desc = "令死亡也能引人发笑。"
 	id = "implant_trombone"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/bananium =SMALL_MATERIAL_AMOUNT*5)
@@ -800,7 +800,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/implant_chem
-	name = "Chemical Implant Case"
+	name = "化合物植入物盒"
 	desc = "A glass case containing a chemical implant."
 	id = "implant_chem"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -812,7 +812,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/implant_tracking
-	name = "Tracking Implant Case"
+	name = "跟踪植入物盒"
 	desc = "A glass case containing a tracking implant."
 	id = "implant_tracking"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -863,7 +863,7 @@
 
 /datum/design/cybernetic_liver
 	name = "Basic Cybernetic Liver"
-	desc = "A basic cybernetic liver."
+	desc = "一块初级电子肝。"
 	id = "cybernetic_liver"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -876,7 +876,7 @@
 
 /datum/design/cybernetic_liver/tier2
 	name = "Cybernetic Liver"
-	desc = "A cybernetic liver."
+	desc = "一块电子肝"
 	id = "cybernetic_liver_tier2"
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/liver/cybernetic/tier2
@@ -887,7 +887,7 @@
 
 /datum/design/cybernetic_liver/tier3
 	name = "Upgraded Cybernetic Liver"
-	desc = "An upgraded cybernetic liver."
+	desc = "一块升级的电子肝脏"
 	id = "cybernetic_liver_tier3"
 	construction_time = 5 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver=SMALL_MATERIAL_AMOUNT*5)
@@ -899,7 +899,7 @@
 
 /datum/design/cybernetic_heart
 	name = "Basic Cybernetic Heart"
-	desc = "A basic cybernetic heart."
+	desc = "一颗初级电子心"
 	id = "cybernetic_heart"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -912,7 +912,7 @@
 
 /datum/design/cybernetic_heart/tier2
 	name = "Cybernetic Heart"
-	desc = "A cybernetic heart."
+	desc = "一颗电子心"
 	id = "cybernetic_heart_tier2"
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/heart/cybernetic/tier2
@@ -923,7 +923,7 @@
 
 /datum/design/cybernetic_heart/tier3
 	name = "Upgraded Cybernetic Heart"
-	desc = "An upgraded cybernetic heart."
+	desc = "一块升级的电子心脏"
 	id = "cybernetic_heart_tier3"
 	construction_time = 5 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver=SMALL_MATERIAL_AMOUNT*5)
@@ -952,7 +952,7 @@
 
 /datum/design/cybernetic_lungs
 	name = "Basic Cybernetic Lungs"
-	desc = "A basic pair of cybernetic lungs."
+	desc = "一对基础电子肺"
 	id = "cybernetic_lungs"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -965,7 +965,7 @@
 
 /datum/design/cybernetic_lungs/tier2
 	name = "Cybernetic Lungs"
-	desc = "A pair of cybernetic lungs."
+	desc = "一对电子肺"
 	id = "cybernetic_lungs_tier2"
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/lungs/cybernetic/tier2
@@ -976,7 +976,7 @@
 
 /datum/design/cybernetic_lungs/tier3
 	name = "Upgraded Cybernetic Lungs"
-	desc = "A pair of upgraded cybernetic lungs."
+	desc = "一对升级的电子肺"
 	id = "cybernetic_lungs_tier3"
 	construction_time = 5 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
@@ -988,7 +988,7 @@
 
 /datum/design/cybernetic_stomach
 	name = "Basic Cybernetic Stomach"
-	desc = "A basic cybernetic stomach."
+	desc = "一块初级电子胃。"
 	id = "cybernetic_stomach"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -1001,7 +1001,7 @@
 
 /datum/design/cybernetic_stomach/tier2
 	name = "Cybernetic Stomach"
-	desc = "A cybernetic stomach."
+	desc = "一块电子胃。"
 	id = "cybernetic_stomach_tier2"
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/stomach/cybernetic/tier2
@@ -1012,7 +1012,7 @@
 
 /datum/design/cybernetic_stomach/tier3
 	name = "Upgraded Cybernetic Stomach"
-	desc = "An upgraded cybernetic stomach."
+	desc = "一个升级的电子胃"
 	id = "cybernetic_stomach_tier3"
 	construction_time = 5 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
@@ -1037,7 +1037,7 @@
 
 /datum/design/cybernetic_ears_u
 	name = "Cybernetic Ears"
-	desc = "A pair of cybernetic ears."
+	desc = "一对电子耳。"
 	id = "cybernetic_ears_u"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -1135,7 +1135,7 @@
 
 /datum/design/cybernetic_eyes
 	name = "Basic Cybernetic Eyes"
-	desc = "A basic pair of cybernetic eyes."
+	desc = "一对基础电子眼."
 	id = "cybernetic_eyes"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 3 SECONDS
@@ -1153,7 +1153,7 @@
 
 /datum/design/cybernetic_eyes/improved
 	name = "Cybernetic Eyes"
-	desc = "A pair of cybernetic eyes."
+	desc = "一对电子眼."
 	id = "cybernetic_eyes_improved"
 	build_path = /obj/item/organ/eyes/robotic
 	category = list(
@@ -1168,7 +1168,7 @@
 
 /datum/design/cyberimp_welding
 	name = "Welding Shield Eyes"
-	desc = "These reactive micro-shields will protect you from welders and flashes without obscuring your vision."
+	desc = "这些反应式微型屏障会保护你的眼睛免受焊光和闪光弹的伤害，并且不会减弱你的视力."
 	id = "ci-welding"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -1186,7 +1186,7 @@
 
 /datum/design/cyberimp_gloweyes
 	name = "Luminescent Eyes"
-	desc = "A pair of cybernetic eyes that can emit multicolored light"
+	desc = "一对能发出多彩荧光的电子眼."
 	id = "ci-gloweyes"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -1307,7 +1307,7 @@
 	surgery = /datum/surgery_operation/organ/brainwash/mechanic
 
 /datum/design/surgery/nerve_splicing
-	desc = "A surgical procedure which splices the patient's nerves, making them more resistant to stuns."
+	desc = "一种将神经拼接起来的增强手术，使得躯体更能抵抗眩晕"
 	id = "surgery_nerve_splice"
 	surgery = /datum/surgery_operation/limb/bioware/nerve_splicing
 	research_icon_state = "surgery_chest"
@@ -1318,7 +1318,7 @@
 	surgery = /datum/surgery_operation/limb/bioware/nerve_splicing/mechanic
 
 /datum/design/surgery/nerve_grounding
-	desc = "A surgical procedure which makes the patient's nerves act as grounding rods, protecting them from electrical shocks."
+	desc = "一种将神经充当为接地棒的增强手术，使得躯体免受电击"
 	id = "surgery_nerve_ground"
 	surgery = /datum/surgery_operation/limb/bioware/nerve_grounding
 	research_icon_state = "surgery_chest"
@@ -1329,7 +1329,7 @@
 	surgery = /datum/surgery_operation/limb/bioware/nerve_grounding/mechanic
 
 /datum/design/surgery/vein_threading
-	desc = "A surgical procedure which severely reduces the amount of blood lost in case of injury."
+	desc = "一种能大大减少伤口出血量的增强手术。"
 	id = "surgery_vein_thread"
 	surgery = /datum/surgery_operation/limb/bioware/vein_threading
 	research_icon_state = "surgery_chest"
@@ -1377,7 +1377,7 @@
 	surgery = /datum/surgery_operation/limb/bioware/ligament_reinforcement/mechanic
 
 /datum/design/surgery/cortex_imprint
-	desc = "A surgical procedure which modifies the cerebral cortex into a redundant neural pattern, making the brain able to bypass damage caused by minor brain traumas."
+	desc = "一种将大脑皮层改造为冗余神经模式的增强手术，使大脑能够避免较微脑损伤带来的不必要麻烦"
 	id = "surgery_cortex_imprint"
 	surgery = /datum/surgery_operation/limb/bioware/cortex_imprint
 	research_icon_state = "surgery_head"
@@ -1388,7 +1388,7 @@
 	surgery = /datum/surgery_operation/limb/bioware/cortex_imprint/mechanic
 
 /datum/design/surgery/cortex_folding
-	desc = "A surgical procedure which modifies the cerebral cortex into a complex fold, giving space to non-standard neural patterns."
+	desc = "一种将大脑皮层折叠成复杂褶皱的增强手术，为非标准神经模式提供了更多空间"
 	id = "surgery_cortex_folding"
 	surgery = /datum/surgery_operation/limb/bioware/cortex_folding
 	research_icon_state = "surgery_head"

@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves
-	name = "gloves"
+	name = "手套"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
@@ -41,7 +41,7 @@
 		. |= COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP
 
 /obj/item/clothing/gloves/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("\the [src] are forcing [user]'s hands around [user.p_their()] neck! It looks like the gloves are possessed!"))
+	user.visible_message(span_suicide("\the [src] 正迫使 [user] 的双手掐住 [user.p_their()] 自己的脖子！这手套像是被附身了！"))
 	return OXYLOSS
 
 /obj/item/clothing/gloves/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
@@ -80,11 +80,11 @@
 		return
 	if (!can_cut_with(tool))
 		return
-	balloon_alert(user, "cutting off fingertips...")
+	balloon_alert(user, "剪掉指尖...")
 
 	if(!do_after(user, 3 SECONDS, target=src, extra_checks = CALLBACK(src, PROC_REF(can_cut_with), tool)))
 		return
-	balloon_alert(user, "cut fingertips off")
+	balloon_alert(user, "剪掉了指尖")
 	qdel(src)
 	user.put_in_hands(new cut_type)
 	return TRUE

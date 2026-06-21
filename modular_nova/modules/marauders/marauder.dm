@@ -1,6 +1,6 @@
 //antag
 /datum/antagonist/traitor/marauder
-	name = "Marauder"
+	name = "掠夺者"
 	pref_flag = ROLE_MARAUDER
 	roundend_category = "Marauders"
 	preview_outfit = /datum/outfit/marauder_preview
@@ -9,7 +9,7 @@
 	stinger_sound = 'modular_nova/modules/moretraitoritems/sound/wakeup.ogg'
 
 /datum/outfit/marauder_preview
-	name = "Marauder (Preview only)"
+	name = "掠夺者（仅预览）"
 	glasses = /obj/item/clothing/glasses/eyepatch
 	uniform = /obj/item/clothing/under/dress/skirt/nova/lone_skirt
 	belt = /obj/item/storage/belt/military
@@ -103,7 +103,7 @@
 	vox_outfit = /datum/outfit/marauder/vox
 
 /datum/outfit/marauder
-	name = "Marauder"
+	name = "掠夺者"
 	uniform = /obj/item/clothing/under/misc/pj/red
 	head = /obj/item/clothing/head/costume/nightcap/red
 
@@ -125,7 +125,7 @@
 	uniform.set_sensor_mode(SENSOR_OFF)
 
 /datum/outfit/marauder/plasmaman
-	name = "Marauder (Plasmaman)"
+	name = "掠夺者（等离子人）"
 	head = /obj/item/clothing/head/helmet/space/plasmaman/syndie
 	uniform = /obj/item/clothing/under/plasmaman/syndicate
 	gloves = /obj/item/clothing/gloves/color/plasmaman/black
@@ -133,11 +133,11 @@
 	internals_slot = ITEM_SLOT_BELT
 
 /datum/outfit/marauder/akula
-	name = "Marauder (Akula)"
+	name = "掠夺者（阿库拉）"
 	r_pocket = /obj/item/clothing/accessory/vaporizer
 
 /datum/outfit/marauder/vox
-	name = "Marauder (Vox)"
+	name = "掠夺者（沃克斯）"
 	mask = /obj/item/clothing/mask/breath/vox
 	belt = /obj/item/tank/internals/nitrogen/belt/full
 	internals_slot = ITEM_SLOT_BELT

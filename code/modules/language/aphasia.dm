@@ -1,6 +1,6 @@
 /datum/language/aphasia
-	name = "Gibbering"
-	desc = "It is theorized that any sufficiently brain-damaged person can speak this language."
+	name = "语无伦次"
+	desc = "有一种理论认为，任何大脑受损程度足够严重的人都能够使用这种语言进行交流。"
 	flags = LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
 	key = "i"
 	syllables = list("m","n","gh","h","l","s","r","a","e","i","o","u")

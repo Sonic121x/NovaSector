@@ -1,6 +1,6 @@
 /mob/living/basic/kiwi
-	name = "kiwi"
-	desc = "It's a kiwi!"
+	name = "几维鸟"
+	desc = "是只几维鸟！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "kiwi"
 	icon_living = "kiwi"
@@ -22,10 +22,10 @@
 	response_harm_simple = "smack"
 	friendly_verb_continuous = "boops"
 	friendly_verb_simple = "boop"
-	verb_say = "cheep"
-	verb_ask = "cheeps inquisitively"
-	verb_exclaim = "cheeps loudly"
-	verb_yell = "screeches"
+	verb_say = "叽叽叫"
+	verb_ask = "好奇地叽叽叫"
+	verb_exclaim = "大声叽叽叫"
+	verb_yell = "尖声鸣叫"
 
 	ai_controller = /datum/ai_controller/basic_controller/kiwi
 

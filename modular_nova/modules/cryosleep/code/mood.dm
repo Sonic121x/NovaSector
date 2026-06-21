@@ -1,9 +1,9 @@
 /datum/mood_event/tucked_in
-	description = "I feel better having tucked someone in for a good night's rest!"
+	description = "把某人安顿好睡个好觉让我感觉好多了！"
 	mood_change = 3
 	timeout = 2 MINUTES
 
 /datum/mood_event/tucked_in/add_effects(mob/tuckee)
 	if(!tuckee)
 		return
-	description = "I feel better having tucked in [tuckee.name] for a good night's rest!"
+	description = "把[tuckee.name]安顿好睡个好觉让我感觉好多了！"

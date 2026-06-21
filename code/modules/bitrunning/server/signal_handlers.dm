@@ -59,8 +59,8 @@
 /obj/machinery/quantum_server/proc/on_goal_turf_examined(datum/source, mob/examiner, list/examine_text)
 	SIGNAL_HANDLER
 
-	examine_text += span_info("Beneath your gaze, the floor pulses subtly with streams of encoded data.")
-	examine_text += span_info("It seems to be part of the location designated for retrieving encrypted payloads.")
+	examine_text += span_info("在你的注视下，地面微微脉动着编码数据流。")
+	examine_text += span_info("它似乎是用于检索加密载荷的指定位置的一部分。")
 
 
 /// Scans over the inbound created_atoms from lazy templates

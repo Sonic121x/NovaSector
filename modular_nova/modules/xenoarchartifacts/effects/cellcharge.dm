@@ -9,7 +9,7 @@
 	for(var/obj/item/stock_parts/power_store/cell in user.contents)
 		cell.give(1e5)
 	if(issilicon(user))
-		to_chat(user, span_notice("SYSTEM ALERT: Energy boost detected!"))
+		to_chat(user, span_notice("系统警报：检测到能量提升！"))
 
 /datum/artifact_effect/cellcharge/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -58,7 +58,7 @@
 	else if(issilicon(receiver_atmon))
 		for(var/obj/item/stock_parts/power_store/cell in receiver_atmon.contents)
 			cell.give(power)
-		to_chat(receiver_atmon, span_warning("SYSTEM ALERT: Energy drain detected!"))
+		to_chat(receiver_atmon, span_warning("系统警报：检测到能量流失！"))
 
 /**
  * Tries to charge every rechargable item in artifact range

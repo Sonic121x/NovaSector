@@ -3,7 +3,7 @@
  * Bitrunning tech disks which let you load full loadouts into the vdom on first avatar generation.
  */
 /obj/item/disk/bitrunning/gimmick
-	desc = "A disk containing source code. It can be used to preload gimmick loadouts into the virtual domain."
+	desc = "一张包含源代码的磁盘。可用于将趣味预设装备预载入虚拟领域。"
 	/// The selected loadout that this grants
 	var/datum/bitrunning_gimmick/granted_loadout
 	/// The list of loadouts that this can grant
@@ -28,7 +28,7 @@
 	for(var/datum/bitrunning_gimmick/loadout as anything in selectable_loadouts)
 		names += initial(loadout.name)
 
-	var/choice = tgui_input_list(user, message = "Select a gimmick loadout",  title = "Bitrunning Program", items = names)
+	var/choice = tgui_input_list(user, message = "选择一个噱头配置",  title = "比特奔跑程序", items = names)
 	if(isnull(choice) || !user.is_holding(src))
 		return
 
@@ -36,7 +36,7 @@
 		if(initial(loadout.name) == choice)
 			granted_loadout = new loadout()
 
-	balloon_alert(user, "selected")
+	balloon_alert(user, "已选择")
 	playsound(user, 'sound/items/click.ogg', 50, TRUE)
 	choice_made = choice
 
@@ -46,7 +46,7 @@
  */
 /datum/bitrunning_gimmick
 	/// Player readable name of the gimmick loadout
-	var/name = "Gimmick Loadout"
+	var/name = "趣味预设装备"
 	/// The list of actions that this will grant
 	var/list/datum/action/granted_actions
 	/// The list of items that this will grant
@@ -72,7 +72,7 @@
 
 	var/obj/item/container_item = new container_item_type()
 	if(prefix_container_name)
-		container_item.name = "[LOWER_TEXT(name)]'s [initial(container_item.name)]"
+		container_item.name = "[LOWER_TEXT(name)]的[initial(container_item.name)]"
 
 	for(var/obj/item/granted_item as anything in granted_items)
 		new granted_item(container_item)

@@ -21,8 +21,8 @@
 	ADD_TRAIT(src, TRAIT_APC_SHOCKING, INNATE_TRAIT)
 
 /obj/item/kitchen/fork
-	name = "fork"
-	desc = "Pointy."
+	name = "叉子"
+	desc = "尖锐。"
 	icon_state = "fork"
 	icon_angle = -90
 	force = 4
@@ -62,10 +62,10 @@
 
 	if(forkload)
 		if(M == user)
-			M.visible_message(span_notice("[user] eats a delicious forkful of omelette!"))
+			M.visible_message(span_notice("[user] 享用了一叉美味的煎蛋卷！"))
 			M.reagents.add_reagent(forkload.type, 1)
 		else
-			M.visible_message(span_notice("[user] feeds [M] a delicious forkful of omelette!"))
+			M.visible_message(span_notice("[user] 喂给 [M] 一叉美味的煎蛋卷！"))
 			M.reagents.add_reagent(forkload.type, 1)
 		icon_state = "fork"
 		forkload = null
@@ -73,8 +73,8 @@
 		return ..()
 
 /obj/item/kitchen/fork/plastic
-	name = "plastic fork"
-	desc = "Really takes you back to highschool lunch."
+	name = "塑料叉子"
+	desc = "瞬间将你带回高中午餐时光。"
 	icon_state = "plastic_fork"
 	force = 0
 	w_class = WEIGHT_CLASS_TINY
@@ -89,14 +89,14 @@
 	AddElement(/datum/element/easily_fragmented, PLASTIC_BREAK_PROBABILITY)
 
 /obj/item/knife/kitchen
-	name = "kitchen knife"
-	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
+	name = "厨房刀"
+	desc = "一把由太空烹饪公司制造的多用途厨师刀。保证多年锋利如新。"
 
 /obj/item/knife/plastic
-	name = "plastic knife"
+	name = "塑料刀"
 	icon_state = "plastic_knife"
 	inhand_icon_state = "knife"
-	desc = "A very safe, barely sharp knife made of plastic. Good for cutting food and not much else."
+	desc = "一把非常安全、几乎不锋利的塑料刀。适合切食物，其他用途有限。"
 	force = 0
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
@@ -114,11 +114,11 @@
 	AddElement(/datum/element/easily_fragmented, PLASTIC_BREAK_PROBABILITY)
 
 /obj/item/knife/kitchen/silicon
-	name = "Kitchen Toolset"
+	name = "厨房工具套装"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "sili_knife"
 	icon_angle = 0
-	desc = "A breakthrough in synthetic engineering, this tool is a knife programmed to dull when not used for cooking purposes, and can exchange the blade for a rolling pin"
+	desc = "合成工程学的突破性成果，这把刀被编程为在非烹饪用途时会变钝，并且可以将刀片更换为擀面杖"
 	force = 0
 	throwforce = 0
 	sharpness = SHARP_EDGED
@@ -138,7 +138,7 @@
 	playsound(get_turf(user), 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_ROLLINGPIN)
 		tool_behaviour = TOOL_ROLLINGPIN
-		to_chat(user, span_notice("You attach the rolling pin bit to the [src]."))
+		to_chat(user, span_notice("你将擀面杖组件安装到[src]上。"))
 		icon_state = "sili_rolling_pin"
 		force = 8
 		sharpness = NONE
@@ -148,7 +148,7 @@
 
 	else
 		tool_behaviour = TOOL_KNIFE
-		to_chat(user, span_notice("You attach the knife bit to the [src]."))
+		to_chat(user, span_notice("你将刀具组件安装到[src]上。"))
 		icon_state = "sili_knife"
 		force = 0
 		sharpness = SHARP_EDGED
@@ -157,8 +157,8 @@
 		attack_verb_simple = list("prod", "whiff", "scratch", "poke")
 
 /obj/item/kitchen/rollingpin
-	name = "rolling pin"
-	desc = "Used to knock out the Bartender."
+	name = "擀面杖"
+	desc = "用来敲晕酒保。"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "rolling_pin"
 	worn_icon_state = "rolling_pin"
@@ -181,8 +181,8 @@
 
 
 /obj/item/kitchen/rollingpin/illegal
-	name = "metal rolling pin"
-	desc = "A heavy metallic rolling pin used to bash in those annoying ingredients."
+	name = "金属擀面杖"
+	desc = "一根沉重的金属擀面杖，用来砸碎那些烦人的食材。"
 	icon_state = "metal_rolling_pin"
 	inhand_icon_state = "metal_rolling_pin"
 	force = 12
@@ -192,13 +192,13 @@
 	exposed_wound_bonus = 14
 
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始用\the [user.p_their()] 拍扁[src] 的头！看起来[user.p_theyre()] 想自杀！"))
 	return BRUTELOSS
 /* Trays  moved to /obj/item/storage/bag */
 
 /obj/item/kitchen/spoon
-	name = "spoon"
-	desc = "Just be careful your food doesn't melt the spoon first."
+	name = "勺子"
+	desc = "小心别让你的食物先把勺子给熔化了。"
 	icon_state = "spoon"
 	base_icon_state = "spoon"
 	icon_angle = -90
@@ -258,28 +258,28 @@
 
 	if(target_mob.is_mouth_covered(ITEM_SLOT_HEAD) || target_mob.is_mouth_covered(ITEM_SLOT_MASK))
 		if(target_mob == user)
-			target_mob.balloon_alert(user, "can't eat with mouth covered!")
+			target_mob.balloon_alert(user, "嘴被遮住了，没法吃！")
 		else
-			target_mob.balloon_alert(user, "[target_mob.p_their()] mouth is covered!")
+			target_mob.balloon_alert(user, "[target_mob.p_their()] 嘴被遮住了！")
 		return TRUE
 
 	if(target_mob == user)
 		user.visible_message(
-			span_notice("[user] scoops a spoonful into [user.p_their()] mouth."),
-			span_notice("You scoop a spoonful into your mouth.")
+			span_notice("[user]舀了一勺送进[user.p_their()]嘴里。"),
+			span_notice("你舀了一勺送进自己嘴里。")
 		)
 
 	else
-		to_chat(target_mob, span_userdanger("[target_mob.is_blind() ? "Someone" : "[user]"] forces a spoon into your face!"))
-		target_mob.balloon_alert(user, "feeding spoonful...")
+		to_chat(target_mob, span_userdanger("[target_mob.is_blind() ? "Someone" : "[user]"] 把勺子塞进你脸上！"))
+		target_mob.balloon_alert(user, "正在喂食一勺...")
 		if(!do_after(user, 3 SECONDS, target_mob))
-			target_mob.balloon_alert(user, "interrupted!")
+			target_mob.balloon_alert(user, "被打断了！")
 			return TRUE
 
-		to_chat(target_mob, span_userdanger("[target_mob.is_blind() ? "You are forced to" : "[user] forces you to"] swallow a spoonful of something!"))
+		to_chat(target_mob, span_userdanger("[target_mob.is_blind() ? "You are forced to" : "[user] forces you to"] 吞下了一勺东西！"))
 		user.visible_message(
-			span_danger("[user] scoops a spoonful into [target_mob]'s mouth."),
-			span_notice("You scoop a spoonful into [target_mob]'s mouth.")
+			span_danger("[user] 舀了一勺塞进 [target_mob] 的嘴里。"),
+			span_notice("你舀了一勺塞进 [target_mob] 的嘴里。")
 		)
 
 	playsound(target_mob, 'sound/items/drink.ogg', rand(10,50), vary = TRUE)
@@ -299,11 +299,11 @@
 
 	var/amount_given = reagents.trans_to(attacked_atom, reagents.maximum_volume)
 	if(amount_given >= reagents.total_volume)
-		attacked_atom.balloon_alert(user, "spoon emptied")
+		attacked_atom.balloon_alert(user, "勺子清空了")
 	else if(amount_given > 0)
-		attacked_atom.balloon_alert(user, "spoon partially emptied")
+		attacked_atom.balloon_alert(user, "勺子部分清空")
 	else
-		attacked_atom.balloon_alert(user, "it's full!")
+		attacked_atom.balloon_alert(user, "已经满了！")
 	return TRUE
 
 /obj/item/kitchen/spoon/pre_attack_secondary(atom/attacked_atom, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -319,13 +319,13 @@
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	if(attacked_atom.reagents.trans_to(src, reagents.maximum_volume))
-		attacked_atom.balloon_alert(user, "grabbed spoonful")
+		attacked_atom.balloon_alert(user, "舀了一勺")
 	else
-		attacked_atom.balloon_alert(user, "spoon is full!")
+		attacked_atom.balloon_alert(user, "勺子已经满了！")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/kitchen/spoon/plastic
-	name = "plastic spoon"
+	name = "塑料勺"
 	icon_state = "plastic_spoon"
 	force = 0
 	custom_materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 1.2)
@@ -343,8 +343,8 @@
 	AddElement(/datum/element/easily_fragmented, PLASTIC_BREAK_PROBABILITY)
 
 /obj/item/kitchen/spoon/soup_ladle
-	name = "ladle"
-	desc = "What is a ladle but a comically large spoon?"
+	name = "长柄勺"
+	desc = "长柄勺不就是个滑稽的大勺子吗？"
 	icon_state = "ladle"
 	base_icon_state = "ladle"
 	inhand_icon_state = "spoon"
@@ -358,8 +358,8 @@
 
 /// Tongs, let you pick up and feed people food from further away.
 /obj/item/kitchen/tongs
-	name = "tongs"
-	desc = "So you never have to touch anything with your dirty, unwashed hands."
+	name = "夹子"
+	desc = "这样你就不用用你那脏兮兮、没洗过的手去碰任何东西了。"
 	reach = 2
 	icon_state = "tongs"
 	base_icon_state = "tongs"
@@ -383,7 +383,7 @@
 /obj/item/kitchen/tongs/examine(mob/user)
 	. = ..()
 	if (!isnull(tonged))
-		. += span_notice("It is holding [tonged].")
+		. += span_notice("它正夹着 [tonged]。")
 
 /obj/item/kitchen/tongs/dropped(mob/user, silent)
 	. = ..()
@@ -398,7 +398,7 @@
 		return TRUE
 	if (!COOLDOWN_FINISHED(src, clack_cooldown))
 		return TRUE
-	user.visible_message(span_notice("[user] clacks [user.p_their()] [name] together like a crab. Click clack!"))
+	user.visible_message(span_notice("[user] 像螃蟹一样咔哒咔哒地敲击着 [user.p_their()] 的 [name]。咔嚓咔嚓！"))
 	click_clack()
 	return TRUE
 
@@ -406,7 +406,7 @@
 /obj/item/kitchen/tongs/proc/drop_tonged()
 	if (isnull(tonged))
 		return
-	visible_message(span_notice("[tonged] falls to the ground!"))
+	visible_message(span_notice("[tonged] 掉到了地上！"))
 	var/turf/location = drop_location()
 	tonged.forceMove(location)
 	tonged.do_drop_animation(location)

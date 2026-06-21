@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 ///datum for a pirate team that is spawning to attack the station.
 /datum/pirate_gang
 	///name of this gang, for spawning feedback
-	var/name = "Space Bugs"
+	var/name = "太空虫群"
 
 	///Whether or not this pirate crew is a heavy-level threat
 	var/is_heavy_threat = FALSE
@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 
 ///classic FTL-esque space pirates.
 /datum/pirate_gang/rogues
-	name = "Rogues"
+	name = "无赖帮"
 
 	ship_template_id = "default"
 	ship_name_pool = "rogue_names"
@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 
 ///aristocrat lizards looking to hunt the serfs
 /datum/pirate_gang/silverscales
-	name = "Silverscales"
+	name = "银鳞帮"
 
 	ship_template_id = "silverscale"
 	ship_name_pool = "silverscale_names"
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 
 ///undead skeleton crew looking for booty
 /datum/pirate_gang/skeletons
-	name = "Skeleton Pirates"
+	name = "骷髅海盗"
 
 	is_heavy_threat = TRUE
 	ship_template_id = "dutchman"
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 
 ///Expirienced formed employes of Interdyne Pharmaceutics now in a path of thievery and reckoning
 /datum/pirate_gang/interdyne
-	name = "Restless Ex-Pharmacists"
+	name = "不安分的药剂师"
 
 	is_heavy_threat = TRUE
 	ship_template_id = "ex_interdyne"
@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 
 ///Previous Nanotrasen Assitant workers fired for many reasons now looking for revenge and your bank account.
 /datum/pirate_gang/grey
-	name = "The Grey Tide"
+	name = "灰色浪潮"
 
 	ship_template_id = "grey"
 	ship_name_pool = "grey_names"
@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 
 ///Agents from the space I.R.S. heavily armed to stea- I mean, collect the station's tax dues
 /datum/pirate_gang/irs
-	name = "Space IRS Agents"
+	name = "太空国税局特工"
 
 	is_heavy_threat = TRUE
 	ship_template_id = "irs"
@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 
 //Mutated Ethereals who have adopted bluespace technology in all the wrong ways.
 /datum/pirate_gang/lustrous
-	name = "Geode Scavengers"
+	name = "晶洞拾荒者"
 
 	ship_template_id = "geode"
 	ship_name_pool = "geode_names"
@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 
 //medieval militia, from OUTER SPACE!
 /datum/pirate_gang/medieval
-	name = "Medieval Warmongers"
+	name = "中世纪战争贩子"
 
 	is_heavy_threat = TRUE
 	ship_template_id = "medieval"

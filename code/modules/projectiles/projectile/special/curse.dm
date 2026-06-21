@@ -1,8 +1,8 @@
 /obj/effect/ebeam/curse_arm
-	name = "curse arm"
+	name = "诅咒手臂"
 
 /obj/projectile/curse_hand
-	name = "curse hand"
+	name = "诅咒头"
 	icon_state = "cursehand0"
 	base_icon_state = "cursehand"
 	hitsound = 'sound/effects/curse/curse4.ogg'
@@ -66,7 +66,7 @@
 		finale()
 
 /obj/projectile/curse_hand/hel //Used in helbital's impure reagent
-	name = "Hel's grasp"
+	name = "冥之握"
 	damage = 5
 	paralyze = 0 //Lets not stun people!
 	speed = 1

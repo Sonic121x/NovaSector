@@ -1,6 +1,6 @@
 /// Custom computer for synth brains
 /obj/item/modular_computer/pda/synth
-	name = "virtual persocom"
+	name = "虚拟个人电脑"
 	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "posibrain"
 	base_icon_state = "posibrain"
@@ -26,8 +26,8 @@
 	return TRUE
 
 /datum/action/item_action/synth/open_internal_computer
-	name = "Open persocom emulation"
-	desc = "Accesses your built-in virtual machine."
+	name = "打开个人电脑模拟"
+	desc = "访问你内置的虚拟机。"
 	check_flags = AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/synth/open_internal_computer/Trigger(trigger_flags)
@@ -124,24 +124,24 @@
 		return
 	if(isnull(id_item))
 		if(stored_id)
-			to_chat(synth, span_notice("Persocom RFID link disconnected."))
+			to_chat(synth, span_notice("个人电脑RFID链接已断开。"))
 		stored_id = null
 		return
 	if(istype(id_item, /obj/item/card/id))
 		stored_id = id_item
-		to_chat(synth, span_notice("Persocom establishing new RFID link with [id_item]."))
+		to_chat(synth, span_notice("个人电脑正在与[id_item]建立新的RFID链接。"))
 		RegisterSignal(id_item, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_id_item_unequipped))
 	else if(istype(id_item, /obj/item/modular_computer))
 		var/obj/item/modular_computer/pda = id_item
 		stored_id = pda.stored_id
-		to_chat(synth, span_notice("Persocom establishing new RFID link with [pda]."))
+		to_chat(synth, span_notice("个人电脑正在与[pda]建立新的RFID链接。"))
 		RegisterSignal(pda, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_id_item_unequipped))
 		RegisterSignal(pda, COMSIG_MODULAR_COMPUTER_INSERTED_ID, PROC_REF(on_id_item_stored))
 		RegisterSignal(pda.stored_id, COMSIG_MOVABLE_MOVED, PROC_REF(on_id_item_moved))
 	else if(istype(id_item, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/your_wallet = id_item
 		stored_id = your_wallet.GetID()
-		to_chat(synth, span_notice("Persocom establishing new RFID link with [your_wallet]."))
+		to_chat(synth, span_notice("个人电脑正在与[your_wallet]建立新的RFID链接。"))
 		RegisterSignal(your_wallet, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_id_item_unequipped))
 		RegisterSignal(your_wallet, COMSIG_STORAGE_STORED_ITEM, PROC_REF(on_id_item_stored))
 		RegisterSignal(your_wallet.GetID(), COMSIG_ITEM_UNSTORED, PROC_REF(on_id_item_moved))
@@ -166,10 +166,10 @@
 	var/obj/item/organ/brain/synth/robotbrain = targetmachine.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(robotbrain))
 		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
-			balloon_alert(user, "establishing SSH login with persocom...")
+			balloon_alert(user, "正在与个人电脑建立SSH登录...")
 			if(do_after(user, 5 SECONDS))
-				balloon_alert(user, "connection established")
-				to_chat(targetmachine, span_notice("[user] establishes an SSH connection between [src] and your persocom emulation."))
+				balloon_alert(user, "连接已建立")
+				to_chat(targetmachine, span_notice("[user]在[src]和你的个人电脑模拟之间建立了SSH连接。"))
 				robotbrain.internal_computer.interact(user)
 			return
 
@@ -177,10 +177,10 @@
 	var/obj/item/organ/brain/cybernetic/cortical/cortbrain = targetmachine.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(cortbrain))
 		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
-			balloon_alert(user, "establishing SSH login with persocom...")
+			balloon_alert(user, "正在与个人电脑建立SSH登录...")
 			if(do_after(user, 5 SECONDS))
-				balloon_alert(user, "connection established")
-				to_chat(targetmachine, span_notice("[user] establishes an SSH connection between [src] and your persocom emulation."))
+				balloon_alert(user, "连接已建立")
+				to_chat(targetmachine, span_notice("[user]在[src]和你的个人电脑模拟之间建立了SSH连接。"))
 				cortbrain.internal_computer.interact(user)
 			return
 	return ..()

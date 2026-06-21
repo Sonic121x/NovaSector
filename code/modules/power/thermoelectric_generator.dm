@@ -1,8 +1,8 @@
 #define TEG_EFFICIENCY 0.65
 
 /obj/machinery/power/thermoelectric_generator
-	name = "thermoelectric generator"
-	desc = "It's a high efficiency thermoelectric generator."
+	name = "热电发电机"
+	desc = "这是一台高效热电发电机。"
 	icon_state = "teg"
 	base_icon_state = "teg"
 	density = TRUE
@@ -58,7 +58,7 @@
 
 /obj/machinery/power/thermoelectric_generator/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open the panel!")
+		balloon_alert(user, "打开面板！")
 		return
 	set_anchored(!anchored)
 	tool.play_tool_sound(src)
@@ -74,16 +74,16 @@
 	if(!anchored)
 		return
 	find_circulators()
-	balloon_alert(user, "circulators updated")
+	balloon_alert(user, "循环器已更新")
 	return TRUE
 
 /obj/machinery/power/thermoelectric_generator/screwdriver_act(mob/user, obj/item/tool)
 	if(!anchored)
-		balloon_alert(user, "anchor it down!")
+		balloon_alert(user, "先固定好！")
 		return
 	toggle_panel_open()
 	tool.play_tool_sound(src)
-	balloon_alert(user, "panel [panel_open ? "open" : "closed"]")
+	balloon_alert(user, "面板[panel_open ? "open" : "closed"]")
 	return TRUE
 
 /obj/machinery/power/thermoelectric_generator/crowbar_act(mob/living/user, obj/item/tool)

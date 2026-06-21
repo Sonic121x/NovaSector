@@ -6,8 +6,8 @@
 #define BOX_WALL_AMOUNT 14
 
 /obj/structure/inflatable
-	name = "inflatable wall"
-	desc = "An inflated plastic membrane. Do not puncture."
+	name = "充气墙"
+	desc = "一个充气的塑料薄膜。请勿刺破。"
 	layer = CLOSED_TURF_LAYER
 	can_atmos_pass = ATMOS_PASS_DENSITY
 	opacity = TRUE
@@ -81,14 +81,14 @@
 		atom_destruction(damage_flag)
 
 /obj/structure/inflatable/atom_destruction(damage_flag)
-	visible_message(span_warning("[src] pop\s!"))
+	visible_message(span_warning("[src] pop\s ！"))
 	deflate()
 	return ..()
 
 /obj/structure/inflatable/attacked_by(obj/item/item, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(item.get_sharpness())
 		LAZYSET(attack_modifiers, SILENCE_DEFAULT_MESSAGES, TRUE)
-		visible_message(span_danger("<b>[user] pierces [src] with [item]!</b>"))
+		visible_message(span_danger("<b>[user] 用 [item] 刺穿了 [src]！</b>"))
 		deflate()
 	return ..()
 
@@ -123,7 +123,7 @@
 	qdel(src)
 
 /obj/structure/inflatable/door
-	name = "inflatable door"
+	name = "充气门"
 	can_atmos_pass = ATMOS_PASS_DENSITY
 	icon = 'modular_nova/modules/inflatables/icons/inflatable.dmi'
 	icon_state = "door_closed"
@@ -142,7 +142,7 @@
 	if(!user.can_interact_with(src))
 		return
 	toggle_door()
-	to_chat(user, span_notice("You [door_state ? "close" : "open"] [src]!"))
+	to_chat(user, span_notice("你[door_state ? "close" : "open"] [src]了！"))
 
 /obj/structure/inflatable/door/update_icon_state()
 	. = ..()
@@ -162,8 +162,8 @@
 
 // The deployable item
 /obj/item/inflatable
-	name = "inflatable wall"
-	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
+	name = "充气墙"
+	desc = "一种折叠的薄膜，激活后可迅速膨胀成大型立方体形状。"
 	icon = 'modular_nova/modules/inflatables/icons/inflatable.dmi'
 	icon_state = "folded_wall"
 	base_icon_state = "folded_wall"
@@ -183,13 +183,13 @@
 /obj/item/inflatable/attack_self(mob/user)
 	. = ..()
 	if(torn)
-		to_chat(user, span_warning("[src] is too damaged to function!"))
+		to_chat(user, span_warning("[src] 损坏过于严重，无法使用！"))
 		return
 	if(locate(structure_type) in get_turf(user))
-		to_chat(user, span_warning("There is already a wall here!"))
+		to_chat(user, span_warning("这里已经有一堵墙了！"))
 		return
 	playsound(loc, 'sound/items/zip/zip.ogg', 75, TRUE)
-	to_chat(user, span_notice("You inflate [src]."))
+	to_chat(user, span_notice("你给 [src] 充了气。"))
 	if(do_after(user, 1 SECONDS, src))
 		new structure_type(get_turf(user))
 		qdel(src)
@@ -198,16 +198,16 @@
 	if(!istype(attacking_item, /obj/item/stack/medical/wrap/sticky_tape))
 		return ..()
 	if(!torn)
-		to_chat(user, span_notice("[src] does not need repairing!"))
+		to_chat(user, span_notice("[src]不需要修理！"))
 		return
 	var/obj/item/stack/medical/wrap/sticky_tape/attacking_tape = attacking_item
 	if(attacking_tape.use(TAPE_REQUIRED_TO_FIX, check = TRUE))
-		to_chat(user, span_danger("There is not enough of [attacking_tape]! You need at least [TAPE_REQUIRED_TO_FIX] pieces!"))
+		to_chat(user, span_danger("[attacking_tape]不够！你至少需要[TAPE_REQUIRED_TO_FIX]片！"))
 		return
 	if(!do_after(user, 2 SECONDS, src))
 		return
 	playsound(user, 'modular_nova/modules/inflatables/sound/ducttape1.ogg', 50, TRUE)
-	to_chat(user, span_notice("You fix [src] using [attacking_tape]!"))
+	to_chat(user, span_notice("你用[attacking_tape]修好了[src]！"))
 	attacking_tape.use(TAPE_REQUIRED_TO_FIX)
 	torn = FALSE
 	update_appearance()
@@ -219,18 +219,18 @@
 /obj/item/inflatable/examine(mob/user)
 	. = ..()
 	if(torn)
-		. += span_warning("It is badly torn, and cannot be used! The damage looks like it could be repaired with some <b>tape</b>.")
+		. += span_warning("它被严重撕裂，无法使用！看起来可以用一些<b>胶带</b>修复。")
 
 /obj/item/inflatable/suicide_act(mob/living/user)
-	visible_message(user, span_danger("[user] starts shoving the [src] up [user.p_their()] ass! It looks like [user.p_their()] going to pull the cord, oh shit!"))
+	visible_message(user, span_danger("[user]开始把[src]塞进[user.p_their()]屁股里！看起来[user.p_their()]要拉绳子了，哦该死！"))
 	playsound(user.loc, 'sound/machines/hiss.ogg', 75, TRUE)
 	new structure_type(user.loc)
 	user.gib()
 	return BRUTELOSS
 
 /obj/item/inflatable/door
-	name = "inflatable door"
-	desc = "A folded membrane which rapidly expands into a simple door on activation."
+	name = "充气门"
+	desc = "一种折叠膜，激活后可迅速展开成一扇简易的门。"
 	icon = 'modular_nova/modules/inflatables/icons/inflatable.dmi'
 	icon_state = "folded_door"
 	base_icon_state = "folded_door"
@@ -253,8 +253,8 @@
 /// The box full of inflatables
 /obj/item/storage/inflatable
 	icon = 'modular_nova/modules/more_briefcases/icons/briefcases.dmi'
-	name = "inflatable barrier box"
-	desc = "Contains inflatable walls and doors."
+	name = "充气屏障箱"
+	desc = "内含充气墙和门。"
 	icon_state = "briefcase_inflate"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/inflatables_box

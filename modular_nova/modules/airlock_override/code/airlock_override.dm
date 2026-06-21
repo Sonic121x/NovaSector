@@ -150,7 +150,7 @@ GLOBAL_VAR_INIT(force_eng_override, FALSE)
 		SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("engineer override access", "enabled"))
 	else
 		GLOB.force_eng_override = FALSE
-		minor_announce("Expanded engineering access has been revoked.", "Engineering Emergency")
+		minor_announce("工程扩展访问权限已被撤销。", "工程紧急状态")
 		var/level = SSsecurity_level.get_current_level_as_number()
 		SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("engineer override access", "disabled"))
 		if(level == SEC_LEVEL_ORANGE)

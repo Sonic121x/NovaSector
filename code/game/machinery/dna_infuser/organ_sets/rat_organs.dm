@@ -7,14 +7,14 @@
 /datum/status_effect/organ_set_bonus/rat
 	id = "organ_set_bonus_rat"
 	organs_needed = 4
-	bonus_activate_text = span_notice("Rodent DNA is deeply infused with you! You've learned how to traverse ventilation!")
-	bonus_deactivate_text = span_notice("Your DNA is no longer majority rat, and so fades your ventilation skills...")
+	bonus_activate_text = span_notice("啮齿动物的DNA已深深融入你的体内！你学会了如何在通风管道中穿行！")
+	bonus_deactivate_text = span_notice("你的DNA中啮齿动物的成分不再占主导，因此你的通风管道穿行技能也随之消逝……")
 	bonus_traits = list(TRAIT_VENTCRAWLER_NUDE)
 
 ///way better night vision, super sensitive. lotta things work like this, huh?
 /obj/item/organ/eyes/night_vision/rat
-	name = "mutated rat-eyes"
-	desc = "Rat DNA infused into what was once a normal pair of eyes."
+	name = "变异鼠眼"
+	desc = "曾经是一双普通的眼睛，现已注入了老鼠的DNA。"
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
 	eye_color_left = COLOR_BLACK
 	eye_color_right = COLOR_BLACK
@@ -36,8 +36,8 @@
 
 ///increases hunger, disgust recovers quicker, expands what is defined as "food"
 /obj/item/organ/stomach/rat
-	name = "mutated rat-stomach"
-	desc = "Rat DNA infused into what was once a normal stomach."
+	name = "变异鼠胃"
+	desc = "曾经是一个普通的胃，现已注入了老鼠的DNA。"
 	disgust_metabolism = 3
 
 	icon = 'icons/map_icons/items/_item.dmi'
@@ -54,8 +54,8 @@
 
 /// makes you smaller, walk over tables, and take 1.5x damage
 /obj/item/organ/heart/rat
-	name = "mutated rat-heart"
-	desc = "Rat DNA infused into what was once a normal heart."
+	name = "变异鼠心"
+	desc = "曾经是一颗普通的心脏，现已注入了老鼠的DNA。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/heart/rat"
 	post_init_icon_state = "heart"
@@ -87,8 +87,8 @@
 
 /// you occasionally squeak, and have some rat related verbal tics
 /obj/item/organ/tongue/rat
-	name = "mutated rat-tongue"
-	desc = "Rat DNA infused into what was once a normal tongue."
+	name = "变异鼠舌"
+	desc = "曾经是一条普通的舌头，现已注入了老鼠的DNA。"
 	say_mod = "squeaks"
 	modifies_speech = TRUE
 	icon = 'icons/map_icons/items/_item.dmi'

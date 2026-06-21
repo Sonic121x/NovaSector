@@ -4,8 +4,8 @@
 	crate_type = /obj/structure/closet/crate/medical/department
 
 /datum/supply_pack/medical/bloodpacks
-	name = "Blood Pack Variety Crate"
-	desc = "Contains ten different blood packs for reintroducing blood to patients."
+	name = "多血型血袋板条箱"
+	desc = "包含十包不同的血袋，用于给患者重新输血。"
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(
 		/obj/item/reagent_containers/blood = 2,
@@ -23,7 +23,7 @@
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/medical/medipen_variety
-	name = "Medipen Variety-Pak"
+	name = "多类医疗笔盒板条箱"
 	desc = "Contains eight different medipens in three different varieties, \
 		to assist in quickly treating seriously injured patients."
 	cost = CARGO_CRATE_VALUE * 3.5
@@ -45,8 +45,8 @@
 	crate_name = "autopsy kit crate"
 
 /datum/supply_pack/medical/chemical
-	name = "Chemical Starter Kit Crate"
-	desc = "Contains thirteen different chemicals, for all the fun experiments you can make."
+	name = "化学入门套装板条箱"
+	desc = "包含13种不同的化学品，你可以进行所有有趣的实验。"
 	cost = CARGO_CRATE_VALUE * 2.6
 	contains = list(
 		/obj/item/reagent_containers/cup/bottle/hydrogen,
@@ -70,7 +70,7 @@
 
 /datum/supply_pack/medical/defibs
 	name = "Defibrillator Crate"
-	desc = "Contains two defibrillators for bringing the recently deceased back to life."
+	desc = "里面装有两个让人起死回生的除颤器。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/defibrillator/loaded = 2)
 	crate_name = null
@@ -78,7 +78,7 @@
 
 /datum/supply_pack/medical/iv_drip
 	name = "IV Drip Crate"
-	desc = "Contains a single IV drip for administering blood to patients."
+	desc = "包含一个给病人输血的静脉滴注装置。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/machinery/iv_drip)
 	crate_name = null
@@ -86,7 +86,7 @@
 
 /datum/supply_pack/medical/supplies
 	name = "Medical Supplies Crate"
-	desc = "Contains a random assortment of medical supplies. German doctor not included."
+	desc = "装有各类医疗物资。不包含德国医生。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/obj/item/reagent_containers/cup/bottle/multiver,
@@ -146,7 +146,7 @@
 	crate_type = /obj/structure/closet/crate/deforest
 
 /datum/supply_pack/medical/salglucanister
-	name = "Heavy-Duty Saline Canister"
+	name = "重型生理盐水罐"
 	desc = "Contains a bulk supply of saline-glucose condensed into a single canister that \
 		should last several days, with a large pump to fill containers with. Direct injection \
 		of saline should be left to medical professionals as the pump is capable of overdosing \
@@ -182,7 +182,7 @@
 	order_flags = ORDER_DANGEROUS
 
 /datum/supply_pack/medical/cmoturtlenecks
-	name = "Chief Medical Officer Turtlenecks"
+	name = "医疗部长高领毛衣"
 	desc = "Contains the CMO's turtleneck and turtleneck skirt."
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_CMO

@@ -1,14 +1,14 @@
 //The effect when you wrap a dead body in gift wrap
 /obj/effect/spresent
-	name = "strange present"
-	desc = "It's a ... present?"
+	name = "奇怪的礼物"
+	desc = "这是个……礼物吗？"
 	icon = 'icons/obj/storage/wrapping.dmi'
 	icon_state = "strangepresent"
 	density = TRUE
 	anchored = FALSE
 
 /obj/effect/beam
-	name = "beam"
+	name = "光线"
 	var/def_zone
 	pass_flags = PASSTABLE
 
@@ -19,7 +19,7 @@
 	return
 
 /obj/effect/spawner
-	name = "object spawner"
+	name = "对象生成器"
 
 // Brief explanation:
 // Rather then setting up and then deleting spawners, we block all atomlike setup
@@ -56,7 +56,7 @@
 	return TRUE
 
 /obj/effect/list_container
-	name = "list container"
+	name = "列表容器"
 
 /obj/effect/list_container/mobl
 	name = "mobl"
@@ -74,7 +74,7 @@
 	luminosity = 1
 
 /obj/effect/abstract/marker
-	name = "marker"
+	name = "标记"
 	icon = 'icons/effects/effects.dmi'
 	anchored = TRUE
 	icon_state = "wave3"
@@ -90,14 +90,14 @@
 	. = ..()
 
 /obj/effect/abstract/marker/at
-	name = "active turf marker"
+	name = "活动地盘标记"
 
 /obj/effect/abstract/marker/intercom
-	name = "intercom range marker"
+	name = "对讲机范围标记"
 	color = COLOR_YELLOW
 
 /obj/effect/abstract/marker/powernet
-	name = "powernet run marker"
+	name = "电网运行标记"
 	var/powernet_owner
 
 /// Used by RangedReachCheck

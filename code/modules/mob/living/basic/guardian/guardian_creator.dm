@@ -11,8 +11,8 @@ GLOBAL_LIST_INIT(guardian_radial_images, setup_guardian_radial())
 
 /// An item which grants you your very own soul buddy
 /obj/item/guardian_creator
-	name = "enchanted deck of tarot cards"
-	desc = "An enchanted deck of tarot cards, rumored to be a source of unimaginable power."
+	name = "附魔塔罗牌组"
+	desc = "一副附魔的塔罗牌组，据说是难以想象的力量之源。"
 	icon = 'icons/obj/toys/playing_cards.dmi'
 	icon_state = "deck_tarot_full"
 	/// Are we used or in the process of being used? If yes, then we can't be used.
@@ -22,19 +22,19 @@ GLOBAL_LIST_INIT(guardian_radial_images, setup_guardian_radial())
 	/// The name of the guardian, for UI/message stuff.
 	var/mob_name = "Guardian Spirit"
 	/// Message sent when you use it.
-	var/use_message = span_holoparasite("You shuffle the deck...")
+	var/use_message = span_holoparasite("你洗了洗牌组...")
 	/// Message sent when it's already used.
-	var/used_message = span_holoparasite("All the cards seem to be blank now.")
+	var/used_message = span_holoparasite("现在所有的牌似乎都是空白的了。")
 	/// Examine description if the creator is unused
 	var/unused_description = span_holoparasite("You feel beckoned to draw one...")
 	/// Examine description if the creator is used.
 	var/used_description = span_holoparasite("They seem rather uninteresting.")
 	/// Failure message if no ghost picks the holopara.
-	var/failure_message = span_boldholoparasite("..And draw a card! It's... blank? Maybe you should try again later.")
+	var/failure_message = span_boldholoparasite("……抽张牌！是……空白的？也许你该稍后再试。")
 	/// Failure message if we don't allow lings.
-	var/ling_failure = span_boldholoparasite("The deck refuses to respond to a soulless creature such as you.")
+	var/ling_failure = span_boldholoparasite("这副牌拒绝回应像你这样没有灵魂的生物。")
 	/// Message sent if we successfully get a guardian.
-	var/success_message = span_holoparasite("<b>%GUARDIAN</b> has been summoned!")
+	var/success_message = span_holoparasite("<b>%GUARDIAN</b>已被召唤！")
 	/// If true, you are given a random guardian rather than picking from a selection.
 	var/random = FALSE
 	/// If true, you can have multiple guardians at the same time.
@@ -68,11 +68,11 @@ GLOBAL_LIST_INIT(guardian_radial_images, setup_guardian_radial())
 
 /obj/item/guardian_creator/attack_self(mob/living/user)
 	if(isguardian(user) && !allow_guardian)
-		balloon_alert(user, "can't do that!")
+		balloon_alert(user, "无法做到！")
 		return
 	var/list/guardians = user.get_all_linked_holoparasites()
 	if(length(guardians) && !allow_multiple)
-		balloon_alert(user, "already have one!")
+		balloon_alert(user, "已经有一个了！")
 		return
 	if(IS_CHANGELING(user) && !allow_changeling)
 		to_chat(user, ling_failure)
@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(guardian_radial_images, setup_guardian_radial())
 	to_chat(user, use_message)
 	var/guardian_type_name = random ? "Random" : capitalize(initial(guardian_path.creator_name))
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates(
-		"Do you want to play as [span_danger("[user.real_name]'s")] [span_notice("[guardian_type_name] [mob_name]")]?",
+		"你想扮演[span_danger("[user.real_name]'s")] [span_notice("[guardian_type_name] [mob_name]")]吗？",
 		check_jobban = ROLE_PAI,
 		poll_time = 10 SECONDS,
 		ignore_category = POLL_IGNORE_HOLOPARASITE,
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(guardian_radial_images, setup_guardian_radial())
 		return
 	var/list/guardians = user.get_all_linked_holoparasites()
 	if(length(guardians) && !allow_multiple)
-		balloon_alert(user, "already got one!")
+		balloon_alert(user, "已经有一个了！")
 		used = FALSE
 		return
 	var/datum/guardian_fluff/guardian_theme = GLOB.guardian_themes[theme]
@@ -188,50 +188,50 @@ GLOBAL_LIST_INIT(guardian_radial_images, setup_guardian_radial())
 
 /// Guardian creator available in the traitor uplink. All but dextrous are available, you can pick which you want, and changelings cannot use it.
 /obj/item/guardian_creator/tech
-	name = "holoparasite injector"
-	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel."
+	name = "全息寄生体注射器"
+	desc = "它包含一种来源不明的外星纳米集群。尽管能够通过使用硬光全息图和纳米机器实现近乎魔法的壮举，但它需要一个有机宿主作为家园和能量来源。"
 	icon = 'icons/obj/medical/syringe.dmi'
 	icon_state = "combat_hypo"
 	theme = GUARDIAN_THEME_TECH
 	allow_changeling = FALSE
-	use_message = span_holoparasite("You start to power on the injector...")
-	used_message = span_holoparasite("The injector has already been used.")
+	use_message = span_holoparasite("你开始启动注射器……")
+	used_message = span_holoparasite("注射器已被使用过。")
 	unused_description = span_holoparasite("Its vial is filled with a violent storm of color.")
 	used_description = span_holoparasite("Nothing seems to be loaded in the injector.")
-	failure_message = span_boldholoparasite("...ERROR. BOOT SEQUENCE ABORTED. AI FAILED TO INTIALIZE. PLEASE CONTACT SUPPORT OR TRY AGAIN LATER.")
-	ling_failure = span_boldholoparasite("The holoparasites recoil in horror. They want nothing to do with a creature like you.")
-	success_message = span_holoparasite("<b>%GUARDIAN</b> is now online!")
+	failure_message = span_boldholoparasite("……错误。启动序列中止。人工智能初始化失败。请联系支持或稍后重试。")
+	ling_failure = span_boldholoparasite("全息寄生体惊恐地退缩。它们不想与像你这样的生物有任何关系。")
+	success_message = span_holoparasite("<b>%GUARDIAN</b>现已上线！")
 
 /// Guardian creator only spawned by admins, which creates a holographic fish. You can have several of them.
 /obj/item/guardian_creator/carp
-	name = "holocarp fishsticks"
-	desc = "Using the power of Carp'sie, you can catch a carp from byond the veil of Carpthulu, and bind it to your fleshy flesh form."
+	name = "全息鲤鱼鱼条"
+	desc = "利用鲤鱼之神的伟力，你可以从鲤鱼之神的帷幕之外捕获一条鲤鱼，并将其绑定到你血肉之躯的形态上。"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "fishfingers"
 	theme = GUARDIAN_THEME_CARP
-	use_message = span_holoparasite("You put the fishsticks in your mouth...")
-	used_message = span_holoparasite("Someone's already taken a bite out of these fishsticks! Ew.")
+	use_message = span_holoparasite("你把鱼条放进嘴里……")
+	used_message = span_holoparasite("已经有人咬过这些鱼条了！噫。")
 	unused_description = span_holoparasite("They look hot and ready to eat!")
 	used_description = span_holoparasite("They look soggy and old...")
-	failure_message = span_boldholoparasite("You couldn't catch any carp spirits from the seas of Lake Carp. Maybe there are none, maybe you fucked up.")
+	failure_message = span_boldholoparasite("你无法从鲤鱼之湖的海域中捕获任何鲤鱼精魂。也许那里没有，也许是你搞砸了。")
 	ling_failure = span_boldholoparasite("Carp'sie seems to not have taken you as the chosen one. Maybe it's because of your horrifying origin.")
-	success_message = span_holoparasite("<b>%GUARDIAN</b> has been caught!")
+	success_message = span_holoparasite("<b>%GUARDIAN</b> 已被捕获！")
 	allow_multiple = TRUE
 
 /// Guardian creator available to miners from chests, very limited selection and randomly assigned.
 /obj/item/guardian_creator/miner
-	name = "dusty shard"
-	desc = "Seems to be a very old rock, may have originated from a strange meteor."
+	name = "尘封碎片"
+	desc = "看起来是一块非常古老的岩石，可能源自一颗奇怪的陨石。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "dustyshard"
 	theme = GUARDIAN_THEME_MINER
-	use_message = span_holoparasite("You pierce your skin with the shard...")
-	used_message = span_holoparasite("This shard seems to have lost all its power...")
+	use_message = span_holoparasite("你用碎片刺穿了自己的皮肤...")
+	used_message = span_holoparasite("这块碎片似乎已失去所有能量...")
 	unused_description = span_holoparasite("It glows with an otherwordly power...")
 	used_description = span_holoparasite("It looks dull, with dried blood on the tip.")
-	failure_message = span_boldholoparasite("The shard hasn't reacted at all. Maybe try again later...")
-	ling_failure = span_boldholoparasite("The power of the shard seems to not react with your horrifying, mutated body.")
-	success_message = span_holoparasite("<b>%GUARDIAN</b> has appeared!")
+	failure_message = span_boldholoparasite("碎片完全没有反应。也许稍后再试试...")
+	ling_failure = span_boldholoparasite("碎片的力量似乎与你那恐怖、突变的身体不发生反应。")
+	success_message = span_holoparasite("<b>%GUARDIAN</b> 出现了！")
 	random = TRUE
 	//limited to ones which are plausibly useful on lavaland
 	possible_guardians = list(

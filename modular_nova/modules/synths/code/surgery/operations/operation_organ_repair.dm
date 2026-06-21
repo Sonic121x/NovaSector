@@ -8,9 +8,9 @@
 
 /// Hydraulic Pump Surgery - Heart
 /datum/surgery_operation/organ/repair/coronary_bypass/mechanic/synth
-	name = "access hydraulic pump internals"
+	name = "访问液压泵内部"
 	rnd_name = "Hydraulic Pump Maintenance"
-	desc = "A mechanical surgery procedure designed to repair an androids internal hydraulic pump."
+	desc = "一种旨在修复仿生人内部液压泵的机械手术程序。"
 	implements = list(
 		TOOL_CROWBAR = 0.8,
 		TOOL_SCALPEL = 1.5,
@@ -73,9 +73,9 @@
 
 /// Reagent Processor Repair surgery start
 /datum/surgery_operation/organ/repair/hepatectomy/mechanic/synth
-	name = "perform reagent processor maintenance"
+	name = "执行试剂处理器维护"
 	rnd_name = "Reagent Processor Maintenance (Reagent Processor Repair)"
-	desc = "A mechanical surgery procedure designed to repair an android's reagent processor."
+	desc = "一种旨在修复仿生人试剂处理器的机械手术程序。"
 	implements = list(
 		TOOL_WRENCH = 0.8,
 		TOOL_SCALPEL = 1.5,
@@ -137,9 +137,9 @@
 
 /// Heatsink Repair Surgery start
 /datum/surgery_operation/organ/repair/lobectomy/mechanic/synth
-	name = "heatsink maintenance"
+	name = "散热器维护"
 	rnd_name = "Heatsink Diagnostic (Heatsink Repair)"
-	desc = "A mechanical surgery procedure designed to repair an android's internal heatsink."
+	desc = "一种旨在修复仿生人内部散热器的机械手术程序。"
 	implements = list(
 		TOOL_WRENCH = 1.05,
 		TOOL_RETRACTOR = 1.5,
@@ -198,9 +198,9 @@
 
 /// Fuel Cell Maintenance - Start
 /datum/surgery_operation/organ/repair/gastrectomy/mechanic/synth
-	name = "fuel cell maintenance"
+	name = "燃料电池维护"
 	rnd_name = "Fuel Cell Diagnostic (Fuel Cell Repair)"
-	desc = "A mechanical surgery procedure designed to repair an android's internal fuel cell."
+	desc = "一种旨在修复仿生人内部燃料电池的机械手术程序。"
 	implements = list(
 		TOOL_SCREWDRIVER = 1.05,
 		TOOL_SCALPEL = 1.5,
@@ -263,9 +263,9 @@
 
 /// Reset Logic Core - Start
 /datum/surgery_operation/organ/repair/brain/mechanic/synth
-	name = "perform neural debugging"
+	name = "执行神经调试"
 	rnd_name = "Reset Logic Core (Posi Repair)"
-	desc = "A surgical procedure that restores the default behavior logic and personality matrix of an synthetic humanoid's neural network."
+	desc = "一种外科手术，用于恢复合成人形神经网络默认的行为逻辑与人格矩阵。"
 	implements = list(
 		TOOL_MULTITOOL = 1.05,
 		TOOL_SCREWDRIVER = 4.85,
@@ -351,9 +351,9 @@
 
 /// Repair Auditory Microphones - Start
 /datum/surgery_operation/organ/repair/ears/synth
-	name = "ear repair"
+	name = "耳朵修复"
 	rnd_name = "Repair Auditory Microphones (Hearing Repair)" // source: i made it up
-	desc = "Repair a patient's damaged ears to restore hearing."
+	desc = "修复患者受损的耳朵以恢复听力。"
 	implements = list(
 		TOOL_MULTITOOL = 1.15,
 		TOOL_SCREWDRIVER = 4.85,
@@ -370,7 +370,7 @@
 	requires_organ_damage = 1
 
 /datum/surgery_operation/organ/repair/ears/synth/all_blocked_strings()
-	return ..() + list("if the limb has bones, they must be intact")
+	return ..() + list("如果肢体有骨骼，则骨骼必须完好无损")
 
 /datum/surgery_operation/organ/repair/ears/synth/state_check(obj/item/organ/ears/organ)
 	// If bones are sawed, prevent the operation (unless we're operating on a limb with no bones)

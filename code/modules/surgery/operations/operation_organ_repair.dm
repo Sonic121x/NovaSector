@@ -1,8 +1,8 @@
 /// Repairing specific organs
 /datum/surgery_operation/organ/repair
 	abstract_type = /datum/surgery_operation/organ/repair
-	name = "repair organ"
-	desc = "Repair a patient's damaged organ."
+	name = "修复器官"
+	desc = "修复病人受损的器官。"
 	required_organ_flag = ORGAN_TYPE_FLAGS & ~ORGAN_ROBOTIC & ~ORGAN_SYNTHETIC_FROM_SPECIES
 	operation_flags = OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_BONE_SAWED
@@ -29,12 +29,12 @@
 /datum/surgery_operation/organ/repair/all_required_strings()
 	. = ..()
 	if(!repeatable)
-		. += "the organ must be moderately damaged"
+		. += "器官必须受到中度损伤"
 
 /datum/surgery_operation/organ/repair/all_blocked_strings()
 	. = ..()
 	if(!repeatable)
-		. += "the organ must not have been surgically repaired prior"
+		. += "器官之前不得接受过手术修复"
 
 /datum/surgery_operation/organ/repair/on_success(obj/item/organ/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	organ.set_organ_damage(organ.maxHealth * heal_to_percent)
@@ -45,9 +45,9 @@
 	organ.apply_organ_damage(organ.maxHealth * failure_damage_percent)
 
 /datum/surgery_operation/organ/repair/lobectomy
-	name = "excise damaged lung lobe"
+	name = "切除受损肺叶"
 	rnd_name = "Lobectomy (Lung Surgery)"
-	desc = "Perform repairs to a patient's damaged lung by excising the most damaged lobe."
+	desc = "通过切除受损最严重的肺叶来修复病人受损的肺部。"
 	implements = list(
 		TOOL_SCALPEL = 1.05,
 		/obj/item/melee/energy/sword = 1.5,
@@ -94,7 +94,7 @@
 	display_pain(organ.owner, "You feel a sharp stab in your chest; the wind is knocked out of you and it hurts to catch your breath!")
 
 /datum/surgery_operation/organ/repair/lobectomy/mechanic
-	name = "perform maintenance"
+	name = "执行维护区"
 	rnd_name = "Air Filtration Diagnostic (Lung Surgery)"
 	implements = list(
 		TOOL_WRENCH = 1.05,
@@ -111,7 +111,7 @@
 /datum/surgery_operation/organ/repair/hepatectomy
 	name = "remove damaged liver section"
 	rnd_name = "Hepatectomy (Liver Surgery)"
-	desc = "Perform repairs to a patient's damaged liver by removing the most damaged section."
+	desc = "通过切除受损最严重的部分来修复患者受损的肝脏。"
 	implements = list(
 		TOOL_SCALPEL = 1.05,
 		/obj/item/melee/energy/sword = 1.5,
@@ -159,7 +159,7 @@
 	display_pain(organ.owner, "The pain in your abdomen intensifies!")
 
 /datum/surgery_operation/organ/repair/hepatectomy/mechanic
-	name = "perform maintenance"
+	name = "执行维护区"
 	rnd_name = "Impurity Management System Diagnostic (Liver Surgery)"
 	implements = list(
 		TOOL_WRENCH = 1.05,
@@ -176,7 +176,7 @@
 /datum/surgery_operation/organ/repair/coronary_bypass
 	name = "graft coronary bypass"
 	rnd_name = "Coronary Artery Bypass Graft (Heart Surgery)"
-	desc = "Graft a bypass onto a patient's damaged heart to restore proper blood flow."
+	desc = "在患者受损的心脏上移植一条旁路，以恢复正常的血液流动。"
 	implements = list(
 		TOOL_HEMOSTAT = 1.05,
 		TOOL_WIRECUTTER = 2.85,
@@ -224,7 +224,7 @@
 	display_pain(organ.owner, "Your chest burns; you feel like you're going insane!")
 
 /datum/surgery_operation/organ/repair/coronary_bypass/mechanic
-	name = "access engine internals"
+	name = "访问引擎内部"
 	rnd_name = "Engine Diagnostic (Heart Surgery)"
 	implements = list(
 		TOOL_CROWBAR = 1.05,
@@ -239,9 +239,9 @@
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/organ/repair/gastrectomy
-	name = "remove damaged stomach section"
+	name = "切除受损胃部区域"
 	rnd_name = "Gastrectomy (Stomach Surgery)"
-	desc = "Perform repairs to a patient's stomach by removing a damaged section."
+	desc = "通过切除受损区域来修复患者的胃部。"
 	implements = list(
 		TOOL_SCALPEL = 1.05,
 		/obj/item/melee/energy/sword = 1.5,
@@ -258,7 +258,7 @@
 	failure_damage_percent = 0.15
 
 /datum/surgery_operation/organ/repair/gastrectomy/get_any_tool()
-	return "Any sharp edged item"
+	return "任何锋利的物品"
 
 /datum/surgery_operation/organ/repair/gastrectomy/tool_check(obj/item/tool)
 	// Require edged sharpness OR a tool behavior match
@@ -297,7 +297,7 @@
 	display_pain(organ.owner, "The pain in your gut intensifies!")
 
 /datum/surgery_operation/organ/repair/gastrectomy/mechanic
-	name = "perform maintenance"
+	name = "执行维护区"
 	rnd_name = "Nutrient Processing System Diagnostic (Stomach Surgery)"
 	implements = list(
 		TOOL_WRENCH = 1.05,
@@ -313,9 +313,9 @@
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/organ/repair/ears
-	name = "ear surgery"
+	name = "耳部手术"
 	rnd_name = "Ototomy (Ear surgery)" // source: i made it up
-	desc = "Repair a patient's damaged ears to restore hearing."
+	desc = "修复患者受损的耳朵以恢复听力。"
 	operation_flags = parent_type::operation_flags & ~OPERATION_AFFECTS_MOOD
 	implements = list(
 		TOOL_HEMOSTAT = 1.05,
@@ -330,7 +330,7 @@
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
 
 /datum/surgery_operation/organ/repair/ears/all_blocked_strings()
-	return ..() + list("if the limb has bones, they must be intact")
+	return ..() + list("如果肢体有骨骼，则骨骼必须完好")
 
 /datum/surgery_operation/organ/repair/ears/state_check(obj/item/organ/ears/organ)
 	// If bones are sawed, prevent the operation (unless we're operating on a limb with no bones)
@@ -386,7 +386,7 @@
 /datum/surgery_operation/organ/repair/eyes
 	name = "eye surgery"
 	rnd_name = "Vitrectomy (Eye Surgery)"
-	desc = "Repair a patient's damaged eyes to restore vision."
+	desc = "修复患者受损的眼睛以恢复视力。"
 	operation_flags = parent_type::operation_flags & ~OPERATION_AFFECTS_MOOD
 	implements = list(
 		TOOL_HEMOSTAT = 1.05,
@@ -401,7 +401,7 @@
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
 
 /datum/surgery_operation/organ/repair/eyes/all_blocked_strings()
-	return ..() + list("if the limb has bones, they must be intact")
+	return ..() + list("如果肢体有骨骼，骨骼必须完好无损")
 
 /datum/surgery_operation/organ/repair/eyes/state_check(obj/item/organ/organ)
 	// If bones are sawed, prevent the operation (unless we're operating on a limb with no bones)
@@ -460,7 +460,7 @@
 /datum/surgery_operation/organ/repair/brain
 	name = "brain surgery"
 	rnd_name = "Neurosurgery (Brain Surgery)"
-	desc = "Repair a patient's damaged brain tissue to restore cognitive function."
+	desc = "修复患者受损的脑组织以恢复认知功能。"
 	implements = list(
 		TOOL_HEMOSTAT = 1.05,
 		TOOL_SCREWDRIVER = 2.85,
@@ -522,7 +522,7 @@
 	organ.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 
 /datum/surgery_operation/organ/repair/brain/mechanic
-	name = "perform neural debugging"
+	name = "执行神经调试"
 	rnd_name = "Wetware OS Diagnostics (Brain Surgery)"
 	implements = list(
 		TOOL_MULTITOOL = 1.15,

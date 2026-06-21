@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/hypospray
-	name = "hypospray"
-	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	name = "无针注射器"
+	desc = "德福雷斯特医疗公司的无针注射器是一种无菌的空气针式自动注射器，用于快速向患者注射药物。"
 	icon = 'icons/obj/medical/syringe.dmi'
 	inhand_icon_state = "hypo"
 	worn_icon_state = "hypo"
@@ -56,7 +56,7 @@
 ///Handles all injection checks, injection and logging.
 /obj/item/reagent_containers/hypospray/proc/inject(mob/living/affected_mob, mob/user)
 	if(used_up)
-		to_chat(user, span_warning("[src] tip is broken and is now unusable!"))
+		to_chat(user, span_warning("[src]的针头坏了，现在无法使用！"))
 		return FALSE
 	if(!iscarbon(affected_mob))
 		return FALSE
@@ -70,8 +70,8 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	if(!used_up && (ignore_flags || affected_mob.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))) // Ignore flag should be checked first or there will be an error message.
-		to_chat(affected_mob, span_warning("You feel a tiny prick!"))
-		to_chat(user, span_notice("You inject [affected_mob] with [src]."))
+		to_chat(affected_mob, span_warning("你感到一阵轻微的刺痛！"))
+		to_chat(user, span_notice("你用[src]给[affected_mob]注射了。"))
 		if(!stealthy)
 			playsound(affected_mob, 'sound/items/hypospray.ogg', 50, TRUE)
 		var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
@@ -84,7 +84,7 @@
 			else
 				reagents.expose(affected_mob, INJECT, fraction)
 				trans = reagents.trans_to(affected_mob, amount_per_transfer_from_this, methods = INJECT, copy_only = TRUE)
-			to_chat(user, span_notice("[trans] unit\s injected. [reagents.total_volume] unit\s remaining in [src]."))
+			to_chat(user, span_notice("已注入[trans] unit\s 。[reagents.total_volume] unit\s 剩余在[src]中。"))
 			log_combat(user, affected_mob, "injected", src, "([contained])")
 		return TRUE
 	return FALSE
@@ -99,8 +99,8 @@
 //combat
 
 /obj/item/reagent_containers/hypospray/combat
-	name = "combat stimulant injector"
-	desc = "A modified air-needle autoinjector, used by support operatives to quickly heal injuries in combat."
+	name = "战斗兴奋剂注射器"
+	desc = "一种改进的空气针式自动注射器，用于支援人员在战斗中快速治疗伤员。"
 	amount_per_transfer_from_this = 10
 	inhand_icon_state = "combat_hypo"
 	icon_state = "combat_hypo"
@@ -113,8 +113,8 @@
 	list_reagents = null
 
 /obj/item/reagent_containers/hypospray/combat/nanites
-	name = "experimental combat stimulant injector"
-	desc = "A modified air-needle autoinjector for use in combat situations. Prefilled with experimental medical nanites and a stimulant for rapid healing and a combat boost."
+	name = "实验用战斗兴奋剂注射器"
+	desc = "一种经过改造的空针自动注射器，适用于战斗场合。预装了实验性医疗纳米机器人及兴奋剂，可实现快速治疗并提升战斗能力。"
 	inhand_icon_state = "nanite_hypo"
 	icon_state = "nanite_hypo"
 	base_icon_state = "nanite_hypo"
@@ -126,8 +126,8 @@
 	return ..()
 
 /obj/item/reagent_containers/hypospray/combat/heresypurge
-	name = "holy water piercing injector"
-	desc = "A modified air-needle autoinjector for use in combat situations. Prefilled with 5 doses of a holy water and pacifier mixture. Not for use on your teammates."
+	name = "圣水穿刺注射器"
+	desc = "一种用于战斗情况的改进空气针式自动喷射器。预先装满5剂圣水和安抚剂的混合物。此物品不得用在队友身上。"
 	inhand_icon_state = "holy_hypo"
 	icon_state = "holy_hypo"
 	volume = 250
@@ -138,8 +138,8 @@
 //MediPens
 
 /obj/item/reagent_containers/hypospray/medipen
-	name = "epinephrine medipen"
-	desc = "A rapid and safe way to stabilize patients in critical condition for personnel without advanced medical knowledge. Contains a powerful preservative that can delay decomposition when applied to a dead body, and stop the production of histamine during an allergic reaction."
+	name = "肾上腺素医疗笔"
+	desc = "一种可以快速而安全地稳定危重病人体征的方案，适用于没有专业医疗知识的人员.含有强效防腐剂，可以延迟尸体的腐败过程，并在过敏反应中阻止身体组织产生组胺."
 	icon_state = "medipen"
 	inhand_icon_state = "medipen"
 	worn_icon_state = "medipen"
@@ -159,7 +159,7 @@
 	var/label_text
 
 /obj/item/reagent_containers/hypospray/medipen/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to choke on \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始被\the [src]呛到！看起来[user.p_theyre()]试图自杀！"))
 	return OXYLOSS//ironic. he could save others from oxyloss, but not himself.
 
 /obj/item/reagent_containers/hypospray/medipen/inject(mob/living/affected_mob, mob/user)
@@ -179,20 +179,20 @@
 
 /obj/item/reagent_containers/hypospray/medipen/Initialize(mapload)
 	. = ..()
-	label_text = span_notice("There is a sticker pasted onto the side which reads, 'WARNING: This medipen contains [pretty_string_from_reagent_list(reagents.reagent_list, names_only = TRUE, join_text = ", ", final_and = TRUE, capitalize_names = TRUE)], do not use if allergic to any listed chemicals.")
+	label_text = span_notice("侧面贴着一张标签，上面写着：'警告：此医疗笔含有[pretty_string_from_reagent_list(reagents.reagent_list, names_only = TRUE, join_text = ", ", final_and = TRUE, capitalize_names = TRUE)]，若对所列化学品过敏请勿使用。")
 
 /obj/item/reagent_containers/hypospray/medipen/examine()
 	. = ..()
 	if (label_examine)
 		. += label_text
 	if(length(reagents?.reagent_list))
-		. += span_notice("It is loaded.")
+		. += span_notice("它已装载。")
 	else
-		. += span_notice("It is spent.")
+		. += span_notice("它已耗尽。")
 
 /obj/item/reagent_containers/hypospray/medipen/stimpack //goliath kiting
-	name = "stimpack medipen"
-	desc = "A rapid way to stimulate your body's adrenaline, allowing for freer movement in restrictive armor."
+	name = "亢奋笔"
+	desc = "快速刺激身体肾上腺素分泌，使穿着束缚性盔甲也能活动自如。"
 	icon_state = "stimpen"
 	inhand_icon_state = "stimpen"
 	base_icon_state = "stimpen"
@@ -201,13 +201,13 @@
 	list_reagents = list(/datum/reagent/medicine/ephedrine = 10, /datum/reagent/consumable/coffee = 10)
 
 /obj/item/reagent_containers/hypospray/medipen/stimpack/traitor
-	desc = "A modified stimulants autoinjector for use in combat situations. Has a mild healing effect."
+	desc = "一种改良型兴奋剂自动注射器，适用于战斗情况。具有轻微的治疗效果。"
 	list_reagents = list(/datum/reagent/medicine/stimulants = 10, /datum/reagent/medicine/omnizine = 10)
 	volume = 20
 
 /obj/item/reagent_containers/hypospray/medipen/stimulants
-	name = "stimulant medipen"
-	desc = "Contains a very large amount of an incredibly powerful stimulant, vastly increasing your movement speed and reducing stuns by a very large amount for around five minutes. Do not take if pregnant."
+	name = "兴奋笔"
+	desc = "含有非常大量的令人难以置信的强大兴奋剂，在大约5分钟时间内极大地提高你的移动速度，减少眩晕，。孕妇请勿服用。"
 	icon_state = "syndipen"
 	inhand_icon_state = "tbpen"
 	base_icon_state = "syndipen"
@@ -216,15 +216,15 @@
 	list_reagents = list(/datum/reagent/medicine/stimulants = 50)
 
 /obj/item/reagent_containers/hypospray/medipen/methamphetamine
-	name = "methamphetamine medipen"
+	name = "甲基苯丙胺医疗笔"
 	volume = 24
 	amount_per_transfer_from_this = 24
-	desc = "Contains a relatively safe quantity of methamphetamine, along with mannitol to ensure that brain damage is kept at a minimum."
+	desc = "含有相对安全的甲基苯丙胺剂量，以及甘露醇以确保将脑损伤降至最低。"
 	list_reagents = list(/datum/reagent/drug/methamphetamine = 10, /datum/reagent/medicine/mannitol = 14)
 
 /obj/item/reagent_containers/hypospray/medipen/morphine
-	name = "morphine medipen"
-	desc = "A rapid way to get you out of a tight situation and fast! You'll feel rather drowsy, though."
+	name = "吗啡医疗笔"
+	desc = "能让你迅速摆脱困境！不过，你会感到有点昏昏欲睡。"
 	icon_state = "morphen"
 	inhand_icon_state = "morphen"
 	base_icon_state = "morphen"
@@ -232,8 +232,8 @@
 	volume = 10
 
 /obj/item/reagent_containers/hypospray/medipen/oxandrolone
-	name = "oxandrolone medipen"
-	desc = "An autoinjector containing oxandrolone, used to treat severe burns."
+	name = "氧雄龙医疗笔"
+	desc = "一种含有氧雄龙的自动注射器，用于治疗严重烧伤."
 	icon_state = "oxapen"
 	inhand_icon_state = "oxapen"
 	base_icon_state = "oxapen"
@@ -241,8 +241,8 @@
 	volume = 10
 
 /obj/item/reagent_containers/hypospray/medipen/penacid
-	name = "pentetic acid medipen"
-	desc = "An autoinjector containing pentetic acid, used to reduce high levels of radiations and moderate toxins."
+	name = "喷替酸医疗笔"
+	desc = "一种含有喷替酸的自动注射器，用于降低高水平的辐射和适量的毒素."
 	icon_state = "penacid"
 	inhand_icon_state = "penacid"
 	base_icon_state = "penacid"
@@ -250,8 +250,8 @@
 	volume = 10
 
 /obj/item/reagent_containers/hypospray/medipen/salacid
-	name = "salicylic acid medipen"
-	desc = "An autoinjector containing salicylic acid, used to treat severe brute damage."
+	name = "水杨酸医疗笔"
+	desc = "一种含有水杨酸的自动注射器，用于治疗严重创伤."
 	icon_state = "salacid"
 	inhand_icon_state = "salacid"
 	base_icon_state = "salacid"
@@ -259,8 +259,8 @@
 	volume = 10
 
 /obj/item/reagent_containers/hypospray/medipen/salbutamol
-	name = "salbutamol medipen"
-	desc = "An autoinjector containing salbutamol, used to heal oxygen damage quickly."
+	name = "舒喘宁医疗笔"
+	desc = "一种含有舒喘宁的自动注射器，用于快速治疗窒息伤."
 	icon_state = "salpen"
 	inhand_icon_state = "salpen"
 	base_icon_state = "salpen"
@@ -268,8 +268,8 @@
 	volume = 10
 
 /obj/item/reagent_containers/hypospray/medipen/tuberculosiscure
-	name = "BVAK autoinjector"
-	desc = "Bio Virus Antidote Kit autoinjector. Has a two use system for yourself, and someone else. Inject when infected."
+	name = "BVAK(真菌性结核病疫苗)自动注射器"
+	desc = "生物病毒解毒剂套装自动注射器。包含两份使用量，一份供自己使用，一份供他人使用。感染时注射。"
 	icon_state = "tbpen"
 	inhand_icon_state = "tbpen"
 	base_icon_state = "tbpen"
@@ -285,8 +285,8 @@
 	icon_state = "[base_icon_state][(reagents.total_volume > 0) ? 1 : 0]"
 
 /obj/item/reagent_containers/hypospray/medipen/survival
-	name = "survival emergency medipen"
-	desc = "A medipen for surviving in the harsh environments, heals most common damage sources. WARNING: May cause organ damage."
+	name = "生存急救医疗笔"
+	desc = "一种用于恶劣环境中生存的医疗笔，治疗最常见的伤害类型。警告:可能导致器官损伤."
 	icon_state = "stimpen"
 	inhand_icon_state = "stimpen"
 	base_icon_state = "stimpen"
@@ -300,10 +300,10 @@
 		return ..()
 
 	if(DOING_INTERACTION(user, DOAFTER_SOURCE_SURVIVALPEN))
-		to_chat(user,span_notice("You are too busy to use \the [src]!"))
+		to_chat(user,span_notice("你太忙了，无法使用\the [src]！"))
 		return
 
-	to_chat(user,span_notice("You start manually releasing the low-pressure gauge..."))
+	to_chat(user,span_notice("你开始手动释放低压表..."))
 	if(!do_after(user, 10 SECONDS, affected_mob, interaction_key = DOAFTER_SOURCE_SURVIVALPEN))
 		return
 
@@ -312,8 +312,8 @@
 
 
 /obj/item/reagent_containers/hypospray/medipen/survival/luxury
-	name = "luxury medipen"
-	desc = "Cutting edge bluespace technology allowed Nanotrasen to compact 60u of volume into a single medipen. Contains rare and powerful chemicals used to aid in exploration of very hard environments. WARNING: DO NOT MIX WITH EPINEPHRINE OR ATROPINE."
+	name = "奢华医疗笔"
+	desc = "尖端的蓝空技术使纳米传讯能将60单位的容量压缩进一支医疗笔中。含有用于辅助探索极端恶劣环境的稀有且强效的化学品。警告：请勿与肾上腺素或阿托品混合使用。"
 	icon_state = "luxpen"
 	inhand_icon_state = "atropen"
 	base_icon_state = "luxpen"
@@ -322,8 +322,8 @@
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 10, /datum/reagent/medicine/c2/penthrite = 10, /datum/reagent/medicine/oxandrolone = 10, /datum/reagent/medicine/sal_acid = 10 ,/datum/reagent/medicine/omnizine = 10 ,/datum/reagent/medicine/leporazine = 10)
 
 /obj/item/reagent_containers/hypospray/medipen/atropine
-	name = "atropine autoinjector"
-	desc = "A rapid way to save a person from a critical injury state! Additionally contains a powerful coagulant to prevent blood loss."
+	name = "阿托品自动注射器"
+	desc = "一种将人从重伤状态中快速拯救出来的方法！此外还含有强效凝血剂以防止失血。"
 	icon_state = "atropen"
 	inhand_icon_state = "atropen"
 	base_icon_state = "atropen"
@@ -331,8 +331,8 @@
 	volume = 12
 
 /obj/item/reagent_containers/hypospray/medipen/snail
-	name = "snail shot"
-	desc = "All-purpose snail medicine! Do not use on non-snails!"
+	name = "snail shot-蜗牛药"
+	desc = "万能蜗牛药！请勿用于非蜗牛动物！"
 	icon_state = "snail"
 	inhand_icon_state = "snail"
 	base_icon_state = "snail"
@@ -341,8 +341,8 @@
 	volume = 10
 
 /obj/item/reagent_containers/hypospray/medipen/magillitis
-	name = "experimental autoinjector"
-	desc = "A custom-frame needle injector with a small single-use reservoir, containing an experimental serum. Unlike the more common medipen frame, it cannot pierce through protective armor or space suits, nor can the chemical inside be extracted."
+	name = "实验性自动注射器"
+	desc = "一种定制框架的自动注射器，带有一次性小型储液器，内含实验性血清.与更常见的医疗笔不同，它无法穿透装甲或太空服，也无法提取内部的化学物质."
 	icon_state = "gorillapen"
 	inhand_icon_state = "gorillapen"
 	base_icon_state = "gorillapen"
@@ -351,8 +351,8 @@
 	list_reagents = list(/datum/reagent/magillitis = 5)
 
 /obj/item/reagent_containers/hypospray/medipen/pumpup
-	name = "maintenance pump-up"
-	desc = "A ghetto looking autoinjector filled with a cheap adrenaline shot... Great for shrugging off the effects of stunbatons."
+	name = "维修兴奋剂"
+	desc = "一个看起来像贫民区的自动注射器，里面装满了廉价的肾上腺素注射剂，对于摆脱警棍的影响非常有用。"
 	volume = 15
 	amount_per_transfer_from_this = 15
 	list_reagents = list(/datum/reagent/drug/pumpup = 15)
@@ -361,8 +361,8 @@
 	label_examine = FALSE
 
 /obj/item/reagent_containers/hypospray/medipen/ekit
-	name = "emergency first-aid autoinjector"
-	desc = "An epinephrine medipen with extra coagulant and antibiotics to help stabilize bad cuts and burns."
+	name = "紧急急救自动注射器"
+	desc = "一支含有额外凝血剂和抗生素的肾上腺素医疗笔，能够帮助稳定严重的创伤和烧伤."
 	icon_state = "firstaid"
 	base_icon_state = "firstaid"
 	volume = 15
@@ -370,8 +370,8 @@
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/coagulant = 2.5, /datum/reagent/medicine/spaceacillin = 0.5)
 
 /obj/item/reagent_containers/hypospray/medipen/blood_loss
-	name = "hypovolemic-response autoinjector"
-	desc = "A medipen designed to stabilize and rapidly reverse severe bloodloss."
+	name = "低血容应答自动注射器"
+	desc = "一种用于稳定和快速逆转严重失血的医疗笔。"
 	icon_state = "hypovolemic"
 	base_icon_state = "hypovolemic"
 	volume = 15
@@ -379,8 +379,8 @@
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 5, /datum/reagent/medicine/coagulant = 2.5, /datum/reagent/iron = 3.5, /datum/reagent/medicine/salglu_solution = 4)
 
 /obj/item/reagent_containers/hypospray/medipen/mutadone
-	name = "mutadone autoinjector"
-	desc = "A mutadone medipen to assist in curing genetic errors in one single injector."
+	name = "突变定自动注射器"
+	desc = "一种突变矫正素医疗笔，用于在一个注射器中辅助治愈基因错误。"
 	icon_state = "penacid"
 	inhand_icon_state = "penacid"
 	base_icon_state = "penacid"
@@ -389,8 +389,8 @@
 	list_reagents = list(/datum/reagent/medicine/mutadone = 15)
 
 /obj/item/reagent_containers/hypospray/medipen/penthrite
-	name = "penthrite autoinjector"
-	desc = "Experimental heart medication."
+	name = "季戊四醇四硝酸酯自动注射器"
+	desc = "实验性心脏药物。"
 	icon_state = "atropen"
 	inhand_icon_state = "atropen"
 	base_icon_state = "atropen"

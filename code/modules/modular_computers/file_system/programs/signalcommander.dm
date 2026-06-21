@@ -72,12 +72,12 @@
 
 	if(!COOLDOWN_FINISHED(src, signal_cooldown))
 		if(user)
-			computer.balloon_alert(user, "cooling down!")
+			computer.balloon_alert(user, "冷却中！")
 		return
 
 	COOLDOWN_START(src, signal_cooldown, signal_cooldown_time)
 	if(user)
-		computer.balloon_alert(user, "signaled")
+		computer.balloon_alert(user, "已发送信号")
 
 	var/time = time2text(world.realtime,"hh:mm:ss", TIMEZONE_UTC)
 	var/turf/T = get_turf(computer)

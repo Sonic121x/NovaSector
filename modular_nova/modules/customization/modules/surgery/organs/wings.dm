@@ -138,7 +138,7 @@
 /obj/item/climbing_moth_wings/examine(mob/user)
 	. = ..()
 	var/list/look_binds = user.client.prefs.key_bindings["look up"]
-	. += span_notice("Firstly, look upwards by holding <b>[english_list(look_binds, nothing_text = "(nothing bound)", and_text = " or ", comma_text = ", or ")]!</b>")
+	. += span_notice("首先，按住<b>[english_list(look_binds, nothing_text = "(nothing bound)", and_text = " or ", comma_text = ", or ")]！</b>向上看！")
 	. += span_notice("Then, click solid ground adjacent to the hole above you.")
 
 /obj/item/climbing_moth_wings/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -157,7 +157,7 @@
 		to_chat(user, span_warning("There's far too little air for your wings to work against!"))
 		return ITEM_INTERACT_BLOCKING
 	if(!isopenspaceturf(above) || !above.Adjacent(target)) //are we below a hole, is the target blocked, is the target adjacent to our hole
-		user.balloon_alert(user, "blocked!")
+		user.balloon_alert(user, "被挡住了！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/away_dir = get_dir(above, target)

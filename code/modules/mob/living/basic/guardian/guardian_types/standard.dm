@@ -8,7 +8,7 @@
 	wound_bonus = -5 //you can wound!
 	obj_damage = 80
 	environment_smash = ENVIRONMENT_SMASH_WALLS
-	playstyle_string = span_holoparasite("As a <b>standard</b> type you have no special abilities, but have a high damage resistance and a powerful attack capable of smashing through walls.")
+	playstyle_string = span_holoparasite("作为<b>标准</b>类型，你没有特殊能力，但拥有高伤害抗性以及能击穿墙壁的强大攻击。")
 	creator_name = "Standard"
 	creator_desc = "Devastating close combat attacks and high damage resistance. Can smash through weak walls."
 	creator_icon = "standard"
@@ -40,8 +40,8 @@
 
 /// Action to change our battlecry
 /datum/action/select_guardian_battlecry
-	name = "Select Battlecry"
-	desc = "Update the really cool thing you shout whenever you attack."
+	name = "选择战吼"
+	desc = "更新你每次攻击时喊出的超酷台词。"
 	button_icon = 'icons/obj/clothing/gloves.dmi'
 	button_icon_state = "boxing"
 	background_icon = 'icons/hud/guardian.dmi'
@@ -59,7 +59,7 @@
 	if (!.)
 		return
 	var/mob/living/basic/guardian/standard/stand = owner
-	var/input = tgui_input_text(owner, "What do you want your battlecry to be?", "Battle Cry", max_length = max_length)
+	var/input = tgui_input_text(owner, "你希望你的战吼是什么？", "战吼", max_length = max_length)
 	if(!input)
 		return
 	stand.battlecry = input

@@ -1,10 +1,10 @@
 /obj/item/modular_computer/pda/expeditionary_corps
 	greyscale_colors = "#891417#000099"
-	name = "surplus military PDA"
+	name = "军用剩余物资PDA"
 
 /obj/item/storage/box/expeditionary_survival
-	name = "expedition survival pack"
-	desc = "A box filled with useful items for your expedition!"
+	name = "远征生存包"
+	desc = "一个装满远征实用物品的盒子！"
 	icon_state = "survival_pack"
 	icon = 'modular_nova/modules/exp_corps/icons/survival_pack.dmi'
 	illustration = null

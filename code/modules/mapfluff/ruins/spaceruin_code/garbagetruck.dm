@@ -1,6 +1,6 @@
 /obj/item/eyesnatcher
-	name = "portable eyeball extractor"
-	desc = "An overly complicated device that can pierce target's skull and extract their eyeballs if enough brute force is applied."
+	name = "便携式眼球提取器"
+	desc = "一个过于复杂的装置，如果施加足够的蛮力，可以刺穿目标的头骨并提取其眼球。"
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "eyesnatcher"
 	base_icon_state = "eyesnatcher"
@@ -32,13 +32,13 @@
 		eye_snatch_enthusiasm *= 0.7
 	user.do_attack_animation(target, used_item = src)
 	target.visible_message(
-		span_warning("[user] presses [src] against [target]'s skull!"),
-		span_userdanger("[user] presses [src] against your skull!"))
+		span_warning("[user]将[src]按在[target]的头骨上！"),
+		span_userdanger("[user]将[src]按在你的头骨上！"))
 	if(!do_after(user, eye_snatch_enthusiasm, target = target, extra_checks = CALLBACK(src, PROC_REF(eyeballs_exist), eyeballies, head, target)))
 		return
 
-	to_chat(target, span_userdanger("You feel something forcing its way into your skull!"))
-	balloon_alert(user, "applying pressure...")
+	to_chat(target, span_userdanger("你感觉到有什么东西正强行钻入你的头骨！"))
+	balloon_alert(user, "施加压力中...")
 	if(!do_after(user, eye_snatch_enthusiasm, target = target, extra_checks = CALLBACK(src, PROC_REF(eyeballs_exist), eyeballies, head, target)))
 		return
 
@@ -47,9 +47,9 @@
 
 	target.apply_damage(20, BRUTE, BODY_ZONE_HEAD, wound_bonus = rand(min_wound, max_wound + 10), attacking_item = src)
 	target.visible_message(
-		span_danger("[src] pierces through [target]'s skull, horribly mutilating their eyes!"),
-		span_userdanger("Something penetrates your skull, horribly mutilating your eyes! Holy fuck!"),
-		span_hear("You hear a sickening sound of metal piercing flesh!")
+		span_danger("[src]刺穿了[target]的头骨，严重损毁了他们的眼睛！"),
+		span_userdanger("有什么东西刺穿了你的头骨，严重损毁了你的眼睛！我操！"),
+		span_hear("你听到金属刺穿血肉的恶心声响！")
 	)
 	eyeballies.apply_organ_damage(eyeballies.maxHealth)
 	target.emote("scream")
@@ -60,13 +60,13 @@
 		return
 
 	if(!target.is_blind())
-		to_chat(target, span_userdanger("You suddenly go blind!"))
+		to_chat(target, span_userdanger("你突然失明了！"))
 	if(prob(1))
-		to_chat(target, span_notice("At least you got a new pirate-y look out of it..."))
+		to_chat(target, span_notice("至少你因此获得了一副新的海盗造型..."))
 		var/obj/item/clothing/glasses/eyepatch/new_patch = new(target.loc)
 		target.equip_to_slot_if_possible(new_patch, ITEM_SLOT_EYES, disable_warning = TRUE)
 
-	to_chat(user, span_notice("You successfully extract [target]'s eyeballs."))
+	to_chat(user, span_notice("你成功取出了[target]的眼球。"))
 	playsound(target, 'sound/items/handling/surgery/retractor2.ogg', 100, TRUE)
 	playsound(target, 'sound/effects/pop.ogg', 100, TRAIT_MUTE)
 	eyeballies.Remove(target)
@@ -85,7 +85,7 @@
 /obj/item/eyesnatcher/examine(mob/user)
 	. = ..()
 	if(used)
-		. += span_notice("It has been used up.")
+		. += span_notice("它已被用尽。")
 
 /obj/item/eyesnatcher/proc/eyeballs_exist(obj/item/organ/eyes/eyeballies, obj/item/bodypart/head/head, mob/living/carbon/human/target)
 	if(!eyeballies || QDELETED(eyeballies))

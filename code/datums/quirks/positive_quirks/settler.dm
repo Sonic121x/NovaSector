@@ -3,8 +3,8 @@
 	desc = "You are from a lineage of the earliest space settlers! While your family's generational exposure to varying gravity \
 		has resulted in a ... smaller height than is typical for your species, you make up for it by being much better at outdoorsmanship and \
 		carrying heavy equipment. You also get along great with animals. However, you are a bit on the slow side due to your small legs."
-	gain_text = span_bold("You feel like the world is your oyster!")
-	lose_text = span_danger("You think you might stay home today.")
+	gain_text = span_bold("你觉得整个世界都任你驰骋！")
+	lose_text = span_danger("你觉得今天还是待在家里比较好。")
 	icon = FA_ICON_HOUSE
 	value = 4
 	mob_trait = TRAIT_SETTLER

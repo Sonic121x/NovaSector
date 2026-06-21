@@ -4,9 +4,9 @@
  */
 /datum/guardian_fluff
 	/// What name do we apply before one has been selected?
-	var/name = "Guardian Spirit"
+	var/name = "守护灵"
 	/// Mob description to apply
-	var/desc = "A mysterious being that stands by its charge, ever vigilant."
+	var/desc = "一个神秘的存在，守护在其主人身边，时刻保持警惕。"
 	/// Are we magical or technological? Mostly just used to pick a surname
 	var/fluff_type = GUARDIAN_MAGIC
 	/// What speech bubble do we use?
@@ -58,11 +58,11 @@
 
 /// Output an appropriate fluff string for our guardian when it is created
 /datum/guardian_fluff/proc/get_fluff_string(guardian_type)
-	return span_holoparasite(guardian_fluff[guardian_type] || "You bring forth a glitching abomination, something which should not be! Please contact a coder about it.")
+	return span_holoparasite(guardian_fluff[guardian_type] || "你召唤出了一个故障的异常存在，一个本不该出现的东西！请就此联系一位程序员。")
 
 /// Used by holoparasites in the Traitor uplink
 /datum/guardian_fluff/tech
-	name = "Holoparasite"
+	name = "全息寄生体"
 	fluff_type = GUARDIAN_TECH
 	bubble_icon = "holo"
 	icon_state = "techbase"
@@ -83,7 +83,7 @@
 
 /// Used by powerminers found in necropolis chests
 /datum/guardian_fluff/miner
-	name = "Power Miner"
+	name = "能量矿工"
 	icon_state = "minerbase"
 	overlay_state = "miner"
 	guardian_fluff = list(
@@ -102,9 +102,9 @@
 
 /// Used by holocarp spawned by admins
 /datum/guardian_fluff/carp
-	name = "Holocarp"
+	name = "全息鲤鱼"
 	fluff_type = GUARDIAN_TECH
-	desc = "A mysterious fish that swims by its charge, ever fingilant."
+	desc = "一条神秘的鱼，游弋在其主人身边，时刻保持警惕。"
 	icon_state = null // Handled entirely by the overlay
 	bubble_icon = "holo"
 	overlay_state = "carp"

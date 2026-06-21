@@ -80,7 +80,7 @@
 	tick_interval = 1 SECONDS
 
 /datum/status_effect/corrosion_curse/on_apply()
-	to_chat(owner, span_userdanger("Your body starts to break apart!"))
+	to_chat(owner, span_userdanger("你的身体开始崩解！"))
 	return TRUE
 
 /datum/status_effect/corrosion_curse/tick(seconds_between_ticks)
@@ -135,8 +135,8 @@
 	var/datum/weakref/spell_caster
 
 /atom/movable/screen/alert/status_effect/star_mark
-	name = "Star Mark"
-	desc = "A ring above your head prevents you from entering cosmic fields or teleporting through cosmic runes..."
+	name = "星之印记"
+	desc = "你头顶的光环阻止你进入星界领域或通过星界符文传送..."
 	icon_state = "star_mark"
 
 /datum/status_effect/star_mark/on_creation(mob/living/new_owner, mob/living/new_spell_caster)
@@ -193,8 +193,8 @@
 	var/effect_icon_state = "moon_insanity_overlay"
 
 /atom/movable/screen/alert/status_effect/moon_converted
-	name = "Moon Converted"
-	desc = "THEY LIE, THEY ALL LIE!!! SLAY THEM!!! BURN THEM!!! MAKE THEM SEE THE TRUTH!!!"
+	name = "月之转化"
+	desc = "他们在撒谎，他们全都在撒谎！！！杀了他们！！！烧死他们！！！让他们看清真相！！！"
 	icon_state = "lastresort"
 
 /datum/status_effect/moon_converted/on_creation()
@@ -211,8 +211,8 @@
 	owner.adjust_brute_loss(-150 + owner.mob_mood.sanity)
 	owner.adjust_fire_loss(-150 + owner.mob_mood.sanity)
 
-	to_chat(owner, span_hypnophrase(("THE MOON SHOWS YOU THE TRUTH AND THE LIARS WISH TO COVER IT, SLAY THEM ALL!!!</span>")))
-	owner.balloon_alert(owner, "they lie..THEY ALL LIE!!!")
+	to_chat(owner, span_hypnophrase(("月亮向你揭示了真相，而说谎者想要掩盖它，把他们全杀光！！！</span>")))
+	owner.balloon_alert(owner, "他们在说谎..他们全都在说谎！！！")
 	owner.SetUnconscious(60 SECONDS, ignore_canstun = FALSE)
 	ADD_TRAIT(owner, TRAIT_MUTE, TRAIT_STATUS_EFFECT(id))
 	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
@@ -240,7 +240,7 @@
 
 /datum/status_effect/moon_converted/on_remove()
 	// Span warning and unconscious so they realize they aren't evil anymore
-	to_chat(owner, span_warning("Your mind is cleared from the effect of the mansus, your alligiences are as they were before"))
+	to_chat(owner, span_warning("你的心智已从曼苏斯的影响中清醒，你的效忠对象已恢复如初"))
 	REMOVE_TRAIT(owner, TRAIT_MUTE, TRAIT_STATUS_EFFECT(id))
 	owner.AdjustUnconscious(5 SECONDS, ignore_canstun = FALSE)
 	owner.log_message("[owner] is no longer insane.", LOG_GAME)
@@ -260,13 +260,13 @@
 /datum/status_effect/moon_slept/on_apply()
 	. = owner.SetUnconscious(duration * 0.5, ignore_canstun = FALSE)
 	if(!.)
-		owner.balloon_alert(owner, "sleep resisted!")
-	to_chat(owner, span_hypnophrase(("THE MOON SHOWS YOU THE TRUTH AND THE LIARS WISH TO COVER IT, w-wait no that's not right</span>")))
-	owner.balloon_alert(owner, "they lie..wait-what are they lying about?")
+		owner.balloon_alert(owner, "抵抗了睡眠！")
+	to_chat(owner, span_hypnophrase(("月亮向你揭示了真相，而说谎者想要掩盖它，等-等等不对，不是这样的</span>")))
+	owner.balloon_alert(owner, "他们在说谎..等等——他们在说谎什么？")
 
 /atom/movable/screen/alert/status_effect/moon_converted
-	name = "Moon Converted"
-	desc = "They LIE, SLAY ALL OF THE THEM!!! THE LIARS OF THE SUN MUST FALL!!!"
+	name = "月之转化"
+	desc = "他们在撒谎，杀光他们所有人！！！太阳的谎言者必须倒下！！！"
 	icon_state = "moon_insanity"
 
 // Status effects that eldritch paintings apply
@@ -301,11 +301,11 @@
 	return
 
 /atom/movable/screen/alert/status_effect/eldritch_painting
-	name = "Rick Roll'd"
-	desc = "Fucking coders are at it again."
+	name = "瑞克摇摆"
+	desc = "该死的程序员们又开始了。"
 	icon_state = "eldritch_painting_debug"
 
-//"The Sister and He Who Wept": /obj/structure/sign/painting/eldritch
+//"姐妹与哭泣者": /obj/structure/sign/painting/eldritch
 /datum/status_effect/eldritch_painting/weeping
 	id = "painting_weeping"
 	alert_type = /atom/movable/screen/alert/status_effect/eldritch_painting/weeping
@@ -320,7 +320,7 @@
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/weeping
 	name = "The Sister and He Who Wept"
-	desc = "The weeping echos through your mind like an echo, undoing your psyche! Maybe if you look at the painting again, it won't hurt so badly..."
+	desc = "哭泣声如同回声般在你脑海中回荡，瓦解着你的心智！也许再看一眼那幅画，就不会那么痛苦了..."
 	icon_state = "eldritch_painting_weeping"
 
 //"The First Desire": /obj/structure/sign/painting/eldritch/desire
@@ -347,7 +347,7 @@
 	// Causes them to need to eat at 10x the normal rate
 	owner.adjust_nutrition(-hunger_rate * HUNGER_FACTOR)
 	if(SPT_PROB(10, seconds_between_ticks))
-		to_chat(owner, span_notice(pick("You can't stop thinking about raw meat...", "You **NEED** to eat someone.", "The hunger pangs are back...", "You hunger for flesh.", "You are starving!")))
+		to_chat(owner, span_notice(pick("你无法停止思考生肉...", "你**必须**吃掉某人。", "饥饿的阵痛又回来了...", "你渴求着血肉。", "你快要饿死了！")))
 	owner.overeatduration = max(owner.overeatduration - 200 SECONDS, 0)
 
 /datum/status_effect/eldritch_painting/desire/on_remove()
@@ -356,8 +356,8 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/desire
-	name = "The First Desire"
-	desc = "Your are struck with a ravenous hunger! SATIATE IT AT ANY COST! Or maybe just go stare at the painting and long for the excellent meal it promises..."
+	name = "最初之欲"
+	desc = "你被一种贪婪的饥饿感击中！不惜一切代价满足它！或者，也许只是去凝视那幅画，渴望它所承诺的美餐..."
 	icon_state = "eldritch_painting_desire"
 
 /datum/status_effect/eldritch_painting/desire/permanent
@@ -385,11 +385,11 @@
 		return
 
 	owner.apply_damage(scratch_damage, BRUTE, bodypart)
-	to_chat(owner, span_notice("You scratch furiously at your clothed [bodypart.plaintext_zone]!"))
+	to_chat(owner, span_notice("你疯狂地抓挠着被衣物覆盖的[bodypart.plaintext_zone]！"))
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/beauty
-	name = "Lady Out of Gates"
-	desc = "Your clothing obscures the beauty beneath. Remove it, and reach perfection. Or behold perfect for a brief moment of clarity in the painting you saw your ideal image in."
+	name = "门扉之外的女士"
+	desc = "你的衣物遮蔽了内在之美。褪去它们，臻至完美。或者，在你所见理想形象的画作中，凝视那完美的一瞬清明。"
 	icon_state = "eldritch_painting_beauty"
 
 // "Climb over the rusted mountain": /obj/structure/sign/painting/eldritch/rust
@@ -403,17 +403,17 @@
 	if(isnull(tile))
 		return
 
-	to_chat(owner, span_notice("You feel the decay..."))
+	to_chat(owner, span_notice("你感受到腐朽..."))
 	tile.rust_heretic_act()
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/rusting
-	name = "Climb Over the Rusted Mountain"
-	desc = "Your every footfall erodes the ground beneath you! Everything crumbles away! Maybe if you looked closer at the mountain in that painting, the path might be clearer..."
+	name = "攀越锈蚀之山"
+	desc = "你的每一步都在侵蚀脚下的大地！万物都在崩解！或许，如果你更仔细地观察那幅画中的山峦，道路会变得更清晰..."
 	icon_state = "eldritch_painting_rust"
 
 /atom/movable/screen/alert/status_effect/eldritch_parade
-	name = "Lunar Parade"
-	desc = "You MUST ENTER THE LUNAR PARADE! FOLLOW THE LIGHTS! LET THEM GUIDE YOU!"
+	name = "月之巡游"
+	desc = "你必须加入月之巡游！追随光芒！让它们指引你！"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "lunar_parade"
 
@@ -439,7 +439,7 @@
 /datum/status_effect/moon_parade/on_apply()
 	if(!istype(leashed_to))
 		return FALSE
-	owner.balloon_alert(owner, "you feel unable to move away from the [leashed_to]!")
+	owner.balloon_alert(owner, "你感觉无法远离[leashed_to]！")
 	leash_component = owner.AddComponent(/datum/component/leash, leashed_to, distance = 1)
 	RegisterSignal(leashed_to, COMSIG_QDELETING, PROC_REF(delete_self))
 	RegisterSignal(owner, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(block_move))
@@ -463,7 +463,7 @@
 		return
 	damage_received += damage_amount
 	if(damage_received >= damage_release_threshold)
-		owner.balloon_alert(owner, "you are free!")
+		owner.balloon_alert(owner, "你自由了！")
 		qdel(src)
 
 // Blocks movement in order to make it appear like the character is transfixed to the projectile and wandering after it

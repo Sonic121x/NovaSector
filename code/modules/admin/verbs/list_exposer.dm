@@ -2,7 +2,7 @@
 
 /datum/admins/proc/list_bombers()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr, "The game hasn't started yet!")
+		tgui_alert(usr, "游戏尚未开始！")
 		return
 	var/data = "<b>Bombing List</b><hr>"
 	for(var/entry in GLOB.bombers)
@@ -11,7 +11,7 @@
 
 /datum/admins/proc/list_signalers()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr, "The game hasn't started yet!")
+		tgui_alert(usr, "游戏尚未开始！")
 		return
 	var/data = "<b>Showing last [length(GLOB.investigate_signaler)] signalers.</b><hr>"
 	for(var/entry in GLOB.investigate_signaler)
@@ -20,7 +20,7 @@
 
 /datum/admins/proc/list_law_changes()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr, "The game hasn't started yet!")
+		tgui_alert(usr, "游戏尚未开始！")
 		return
 	var/data = "<b>Showing last [length(GLOB.lawchanges)] law changes.</b><hr>"
 	for(var/entry in GLOB.lawchanges)
@@ -58,7 +58,7 @@
 
 /datum/admins/proc/show_manifest()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr, "The game hasn't started yet!")
+		tgui_alert(usr, "游戏尚未开始！")
 		return
 	GLOB.manifest.ui_interact(usr)
 
@@ -89,4 +89,4 @@
 		to_chat(usr, message, confidential = TRUE)
 
 	if(!law_bound_entities)
-		to_chat(usr, "<b>No law bound entities located</b>", confidential = TRUE)
+		to_chat(usr, "<b>未找到受定律约束的实体</b>", confidential = TRUE)

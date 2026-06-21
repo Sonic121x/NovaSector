@@ -1,6 +1,6 @@
 /obj/structure/wall_torch
-	name = "mounted torch"
-	desc = "A simple torch mounted to the wall, for lighting and such."
+	name = "壁挂火把"
+	desc = "一个简单的壁挂火把，用于照明等用途。"
 	icon = 'modular_nova/modules/primitive_structures/icons/lighting.dmi'
 	icon_state = "walltorch"
 	base_icon_state = "walltorch"
@@ -42,12 +42,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch, 28)
 
 /obj/structure/wall_torch/update_name(updates)
 	. = ..()
-	name = mounted_torch ? "mounted torch" : "torch mount"
+	name = mounted_torch ? "壁挂火把" : "火把架"
 
 
 /obj/structure/wall_torch/update_desc(updates)
 	. = ..()
-	desc = mounted_torch ? "A simple torch mounted to the wall, for lighting and such." : "A simple torch mount, torches go here."
+	desc = mounted_torch ? "一个简单的壁挂火把，用于照明等用途。" : "一个简单的火把架，火把就放在这里。"
 
 
 /obj/structure/wall_torch/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
@@ -134,7 +134,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch, 28)
 
 /obj/structure/wall_torch/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice("You detach [src] from its place."))
+	to_chat(user, span_notice("你将[src]从它的位置上拆了下来。"))
 
 	remove_torch(user)
 
@@ -164,7 +164,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch, 28)
 
 
 /obj/structure/wall_torch/mount_only
-	name = "torch mount"
+	name = "火把架"
 	mounted_torch = null
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/mount_only, 28)
@@ -177,8 +177,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
 
 
 /obj/item/wallframe/torch_mount
-	name = "torch mount"
-	desc = "Used to attach torches to walls."
+	name = "火把架"
+	desc = "用于将火把固定在墙上。"
 	icon = 'modular_nova/modules/primitive_structures/icons/lighting.dmi'
 	icon_state = "walltorch_mount"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
@@ -188,18 +188,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
 
 /obj/item/wallframe/torch_mount/try_build(turf/on_wall, mob/user)
 	if(get_dist(on_wall,user) > 1)
-		balloon_alert(user, "you are too far!")
+		balloon_alert(user, "你离得太远了！")
 		return
 
 	var/floor_to_wall = get_dir(user, on_wall)
 	if(!(floor_to_wall in GLOB.cardinals))
-		balloon_alert(user, "stand in line with wall!")
+		balloon_alert(user, "请与墙壁对齐！")
 		return
 
 	var/turf/user_turf = get_turf(user)
 
 	if(check_wall_item(user_turf, floor_to_wall, wall_external))
-		balloon_alert(user, "already something here!")
+		balloon_alert(user, "这里已经有东西了！")
 		return
 
 	return TRUE

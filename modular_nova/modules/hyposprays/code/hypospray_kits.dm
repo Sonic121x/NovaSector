@@ -1,6 +1,6 @@
 /obj/item/storage/hypospraykit
-	name = "hypospray kit"
-	desc = "A hypospray kit with foam insets for hypovials and a mounting point on the bottom."
+	name = "注射器套件"
+	desc = "一个带有注射瓶泡沫内衬和底部安装点的注射器套件。"
 	worn_icon_state = "healthanalyzer" // Get a better sprite later
 	inhand_icon_state = "medkit"
 	icon = 'modular_nova/modules/hyposprays/icons/hypokits.dmi'
@@ -28,11 +28,11 @@
 //Code to give hypospray kits selectable paterns.
 /obj/item/storage/hypospraykit/examine(mob/living/user)
 	. = ..()
-	. += span_notice("Ctrl-Shift-Click to reskin this")
+	. += span_notice("Ctrl-Shift-点击以更换皮肤")
 	if(attached_hypo)
-		. += span_notice("[attached_hypo] is mounted on the bottom. Alt-Right-Click to take it off.")
+		. += span_notice("[attached_hypo] 安装在底部。Alt-右键点击将其取下。")
 	else
-		. += span_notice("Right-Click with a hypospray to mount it.")
+		. += span_notice("右键点击注射器以安装。")
 
 /obj/item/storage/hypospraykit/Initialize(mapload)
 	. = ..()
@@ -112,25 +112,25 @@
 	if(!istype(tool, /obj/item/hypospray/mkii) || !LAZYACCESS(modifiers, RIGHT_CLICK))
 		return ..()
 	if(!isnull(attached_hypo))
-		balloon_alert(user, "mount point full!  Remove [attached_hypo] first!")
+		balloon_alert(user, "安装点已满！请先移除[attached_hypo]！")
 		return ITEM_INTERACT_BLOCKING
 	tool.moveToNullspace()
 	attached_hypo = tool
 	RegisterSignal(tool, COMSIG_QDELETING, PROC_REF(on_attached_hypo_qdel))
-	balloon_alert(user, "attached [attached_hypo].")
+	balloon_alert(user, "已安装[attached_hypo]。")
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/storage/hypospraykit/click_alt_secondary(mob/user)
 	if(attached_hypo != null)
 		if(user.put_in_hands(attached_hypo))
-			balloon_alert(user, "removed [attached_hypo].")
+			balloon_alert(user, "已移除[attached_hypo]。")
 			UnregisterSignal(attached_hypo, COMSIG_QDELETING)
 			attached_hypo = null
 			update_appearance()
 			// Ditto here.
 		else
-			balloon_alert(user, "couldn't pull the hypo!")
+			balloon_alert(user, "无法拉出注射器！")
 
 /obj/item/storage/hypospraykit/proc/on_attached_hypo_qdel()
 	if(attached_hypo)
@@ -204,8 +204,8 @@
 
 /// Deluxe hypokit: more storage, but you can't pocket it.
 /obj/item/storage/hypospraykit/cmo
-	name = "deluxe hypospray kit"
-	desc = "An extended hypospray kit with foam insets for hypovials & a mounting point on the bottom."
+	name = "豪华型注射器套件"
+	desc = "一个扩展型注射器套件，带有注射瓶泡沫内衬和底部安装点。"
 	icon_state = "cmo-mini"
 	current_case = "cmo"
 	is_xl = TRUE
@@ -218,15 +218,15 @@
 	new /obj/item/hypospray/mkii/deluxe/cmo(src)
 
 /obj/item/storage/hypospraykit/cmo/empty
-	desc = "An extended hypospray kit with foam insets for hypovials & a mounting point on the bottom."
+	desc = "一个扩展型注射器套件，带有注射瓶泡沫内衬和底部安装点。"
 	icon_state = "emt-mini"
 	current_case = "emt"
 	empty = TRUE
 
 /// Preloaded version: this is what goes in the locker.
 /obj/item/storage/hypospraykit/cmo/preloaded
-	name = "CMO's deluxe hypospray kit"
-	desc = "The CMO's precious extended hypospray kit, preloaded with a deluxe hypospray & a handful of vials.  Retains the usual insets and mounting point of smaller hypokits."
+	name = "医疗主管的豪华型注射器套件"
+	desc = "医疗主管珍贵的扩展型注射器套件，预装了豪华注射器和少量药瓶。保留了较小注射器套件通常的内衬和安装点。"
 
 /obj/item/storage/hypospraykit/cmo/preloaded/PopulateContents()
 	if(empty)
@@ -239,8 +239,8 @@
 
 /// Combat hypokit
 /obj/item/storage/hypospraykit/cmo/combat
-	name = "combat hypospray kit"
-	desc = "A larger tactical hypospray kit containing a combat-focused deluxe hypospray and vials."
+	name = "战斗注射器套件"
+	desc = "一个更大的战术注射器套件，内含一个专注于战斗的豪华注射器和药瓶。"
 	icon_state = "tactical-mini"
 	current_case = "tactical"
 
@@ -273,7 +273,7 @@
 
 /// Boxes of empty hypovials, coming in every style.
 /obj/item/storage/box/vials
-	name = "box of hypovials"
+	name = "盒装注射小瓶"
 
 /obj/item/storage/box/vials/PopulateContents()
 	for(var/vialpath in subtypesof(/obj/item/reagent_containers/cup/vial/small/style))
@@ -281,7 +281,7 @@
 
 // Ditto, just large vials.
 /obj/item/storage/box/vials/deluxe
-	name = "box of deluxe hypovials"
+	name = "盒装豪华注射小瓶"
 
 /obj/item/storage/box/vials/deluxe/PopulateContents()
 	for(var/vialpath in subtypesof(/obj/item/reagent_containers/cup/vial/large/style))
@@ -289,7 +289,7 @@
 
 // A box of small hypospray kits, pre-skinned to each variant to remind people what styles are available.
 /obj/item/storage/box/hypospray
-	name = "box of hypospray kits"
+	name = "盒装注射器套件"
 
 /obj/item/storage/box/hypospray/PopulateContents()
 	var/list/case_designs = list("firstaid", "brute", "burn", "toxin", "oxy", "advanced", "buffs")

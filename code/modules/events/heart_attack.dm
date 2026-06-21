@@ -1,11 +1,11 @@
 /datum/round_event_control/heart_attack
-	name = "Random Heart Attack"
+	name = "随机心脏病"
 	typepath = /datum/round_event/heart_attack
 	weight = 20
 	max_occurrences = 2
 	min_players = 40 // To avoid shafting lowpop
 	category = EVENT_CATEGORY_HEALTH
-	description = "A random crewmember's heart gives out."
+	description = "一名随机船员的心脏停止跳动。"
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 	admin_setup = list(/datum/event_admin_setup/minimum_candidate_requirement/heart_attack, /datum/event_admin_setup/input_number/heart_attack)
@@ -72,7 +72,7 @@
 	var/fitness_protection_probability = winner.mind?.get_skill_modifier(/datum/skill/athletics, SKILL_RANDS_MODIFIER)
 
 	if(prob(fitness_protection_probability * 2)) //Stuff that should "block" a heart attack rather than just deny eligibility for one goes here.
-		winner.visible_message(span_warning("[winner] grunts and clutches their chest for a moment, catching [winner.p_their()] breath."), span_medal("Your chest lurches in pain for a brief moment, which quickly fades. \
+		winner.visible_message(span_warning("[winner] 咕哝了一声，捂住胸口片刻，缓过 [winner.p_their()] 气来。"), span_medal("Your chest lurches in pain for a brief moment, which quickly fades. \
 								You feel like you've just avoided a serious health disaster."), span_hear("You hear someone's breathing sharpen for a moment, followed by a sigh of relief."), 4)
 		winner.playsound_local(get_turf(winner), 'sound/effects/health/slowbeat.ogg', 40, 0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
 		winner.Stun(3 SECONDS)

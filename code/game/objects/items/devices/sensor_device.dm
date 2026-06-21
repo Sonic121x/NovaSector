@@ -1,6 +1,6 @@
 /obj/item/sensor_device
-	name = "handheld crew monitor" //Thanks to Gun Hog for the name!
-	desc = "A miniature machine that tracks suit sensors across the station."
+	name = "手持式船员监视器" //Thanks to Gun Hog for the name!
+	desc = "一种追踪空间站内所有防护服传感器信号的小型机器。"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "crew_monitor"
 	inhand_icon_state = "electronic"

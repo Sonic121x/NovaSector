@@ -24,13 +24,13 @@
  */
 
 /datum/round_event_control/supermatter_surge
-	name = "Supermatter Surge"
+	name = "超物质能量激增"
 	typepath = /datum/round_event/supermatter_surge
 	category = EVENT_CATEGORY_ENGINEERING
 	weight = 15
 	max_occurrences = 1
 	earliest_start = 20 MINUTES
-	description = "The supermatter will increase in power and heat by a random amount, and announce it."
+	description = "超物质将随机增加能量和热量，并发出公告。"
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 	admin_setup = list(
@@ -105,17 +105,17 @@
 	sm_gas.powerloss_inhibition = initial(sm_gas.powerloss_inhibition)
 	sm_gas.heat_power_generation = initial(sm_gas.heat_power_generation)
 	sm_gas.heat_modifier = initial(sm_gas.heat_modifier)
-	priority_announce("The supermatter surge has dissipated, crystal output readings have normalized.", "Anomaly Cleared")
+	priority_announce("超物质涌动已消散，晶体输出读数已恢复正常。", "异常已清除")
 	engine = null
 	sm_gas = null
 
 /datum/round_event_control/supermatter_surge/poly
-	name = "Supermatter Surge: Poly's Revenge"
+	name = "超物质能量激增：波利的复仇"
 	typepath = /datum/round_event/supermatter_surge/poly
 	category = EVENT_CATEGORY_ENGINEERING
 	weight = 0
 	max_occurrences = 0
-	description = "For when Poly is sacrificed to the SM. Not really useful to run manually."
+	description = "用于波利被献祭给超物质时。手动运行通常没什么用。"
 	min_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	max_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	admin_setup = null

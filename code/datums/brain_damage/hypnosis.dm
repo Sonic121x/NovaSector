@@ -1,6 +1,6 @@
 /datum/brain_trauma/hypnosis
-	name = "Hypnosis"
-	desc = "Patient's unconscious is completely enthralled by a word or sentence, focusing their thoughts and actions on it."
+	name = "催眠"
+	desc = "患者的潜意识完全被某个词或句子所吸引，使其思想和行动都聚焦于此。"
 	scan_desc = "looping thought pattern"
 	symptoms = "Fixates on a specific word or phrase. This fixation can lead to altered behavior, \
 		such as prioritizing actions related to the phrase over other tasks while neglecting work, needs, or social interactions."
@@ -48,13 +48,13 @@
 	fixation.completed = TRUE
 	antagonist.objectives = list(fixation)
 
-	hypno_alert.desc = "\"[hypnotic_phrase]\"... your mind seems to be fixated on this concept."
+	hypno_alert.desc = "\"[hypnotic_phrase]\"...你的思维似乎被这个概念牢牢占据了。"
 	. = ..()
 
 /datum/brain_trauma/hypnosis/on_lose()
 	message_admins("[ADMIN_LOOKUPFLW(owner)] is no longer hypnotized with the phrase '[hypnotic_phrase]'.")
 	owner.log_message("is no longer hypnotized with the phrase '[hypnotic_phrase]'.", LOG_GAME)
-	to_chat(owner, span_userdanger("You suddenly snap out of your hypnosis. The phrase '[hypnotic_phrase]' no longer feels important to you."))
+	to_chat(owner, span_userdanger("你突然从催眠状态中清醒过来。短语'[hypnotic_phrase]'对你来说不再重要了。"))
 	owner.clear_alert(ALERT_HYPNOSIS)
 	..()
 	if (!isnull(antagonist))

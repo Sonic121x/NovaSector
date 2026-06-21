@@ -1,7 +1,7 @@
 /// Materials made from other materials.
 /datum/material/alloy
-	name = "alloy"
-	desc = "A material composed of two or more other materials."
+	name = "合金"
+	desc = "一种由两种或更多其他材料组成的材料。"
 	abstract_type = /datum/material/alloy
 	/// The materials this alloy is made from weighted by their ratios.
 	var/list/composition = null
@@ -25,8 +25,8 @@
  * Applies a significant slowdown effect to any and all items that contain it.
  */
 /datum/material/alloy/plasteel
-	name = "plasteel"
-	desc = "The heavy duty result of infusing iron with plasma."
+	name = "塑钢"
+	desc = "将铁与等离子体融合后产生的重型材料。"
 	color = "#706374"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -59,8 +59,8 @@
  * An alloy of titanium and plasma.
  */
 /datum/material/alloy/plastitanium
-	name = "plastitanium"
-	desc = "The extremely heat resistant result of infusing titanium with plasma."
+	name = "塑钛"
+	desc = "将钛与等离子体融合后产生的极端耐热材料。"
 	color = "#3a313a"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -93,8 +93,8 @@
  * An alloy of silicate and plasma.
  */
 /datum/material/alloy/plasmaglass
-	name = "plasmaglass"
-	desc = "Plasma-infused silicate. It is much more durable and heat resistant than either of its component materials."
+	name = "等离子玻璃"
+	desc = "等离子体注入的硅酸盐。它比其组成材料中的任何一种都更加耐用和耐热。"
 	color = "#ff80f4"
 	alpha = 150
 	starlight_color = COLOR_STRONG_MAGENTA
@@ -120,8 +120,8 @@
  * An alloy of glass and titanium.
  */
 /datum/material/alloy/titaniumglass
-	name = "titanium glass"
-	desc = "A specialized silicate-titanium alloy that is commonly used in shuttle windows."
+	name = "钛玻璃"
+	desc = "一种常用于穿梭机窗户的硅酸盐-钛特种合金。"
 	color = "#cfbee0"
 	alpha = 150
 	starlight_color = COLOR_COMMAND_BLUE
@@ -147,8 +147,8 @@
  * An alloy of plastitanium and glass.
  */
 /datum/material/alloy/plastitaniumglass
-	name = "plastitanium glass"
-	desc = "A specialized silicate-plastitanium alloy."
+	name = "塑钛玻璃"
+	desc = "一种硅酸盐-塑钛特种合金。"
 	color = "#5d3369"
 	starlight_color = COLOR_CENTCOM_BLUE
 	alpha = 150
@@ -176,8 +176,8 @@
  * Anything constructed from it can slowly regenerate.
  */
 /datum/material/alloy/alien
-	name = "alien alloy"
-	desc = "An extremely dense alloy similar to plasteel in composition. It requires exotic metallurgical processes to create."
+	name = "外星合金"
+	desc = "一种成分与塑钢相似的极高密度合金。其制造需要特殊的冶金工艺。"
 	color = "#6041aa"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(

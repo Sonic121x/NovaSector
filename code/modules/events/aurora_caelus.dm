@@ -1,11 +1,11 @@
 /datum/round_event_control/aurora_caelus
-	name = "Aurora Caelus"
+	name = "太空极光"
 	typepath = /datum/round_event/aurora_caelus
 	max_occurrences = 1
 	weight = 1
 	earliest_start = 5 MINUTES
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "A colourful display can be seen through select windows. And the kitchen."
+	description = "可以通过特定的窗户看到多彩的展示。还有厨房。"
 
 /datum/round_event_control/aurora_caelus/can_spawn_event(players, allow_magic = FALSE)
 	if(!SSmapping.empty_space)
@@ -18,9 +18,9 @@
 	end_when = 80
 
 /datum/round_event/aurora_caelus/announce(fake)
-	priority_announce("[station_name()]: A harmless cloud of ions is approaching your station, and will exhaust their energy battering the hull. Nanotrasen has approved a short break for all employees to relax and observe this very rare event. During this time, starlight will be bright but gentle, shifting between quiet green and blue colors. Any staff who would like to view these lights for themselves may proceed to the area nearest to them with viewing ports to open space. We hope you enjoy the lights.",
+	priority_announce("[station_name()]：一团无害的离子云正在接近您的空间站，其能量将在撞击船体时耗尽。纳米传讯已批准所有员工短暂休息，放松并观察这一非常罕见的事件。在此期间，星光将明亮而柔和，在静谧的绿色和蓝色之间变换。任何希望亲自观赏这些光效的员工，可以前往离自己最近、有面向开放空间舷窗的区域。我们希望您喜欢这些光。",
 	sound = 'sound/announcer/notice/notice2.ogg',
-	sender_override = "Nanotrasen Meteorology Division")
+	sender_override = "纳米传讯气象部门")
 	if (fake)
 		return
 	for(var/V in GLOB.player_list)
@@ -66,9 +66,9 @@
 /datum/round_event/aurora_caelus/end()
 	fade_space()
 	fade_kitchen()
-	priority_announce("The aurora caelus event is now ending. Starlight conditions will slowly return to normal. When this has concluded, please return to your workplace and continue work as normal. Have a pleasant shift, [station_name()], and thank you for watching with us.",
+	priority_announce("极光天象事件现已结束。星光条件将缓慢恢复正常。事件结束后，请返回您的工作岗位并照常工作。祝您在[station_name()]度过愉快的轮班，感谢您与我们一同观赏。",
 	sound = 'sound/announcer/notice/notice2.ogg',
-	sender_override = "Nanotrasen Meteorology Division")
+	sender_override = "纳米传讯气象部门")
 
 /datum/round_event/aurora_caelus/proc/fade_space(fade_in = FALSE)
 	set waitfor = FALSE

@@ -1,7 +1,7 @@
 
 /////RESTAURANT/////
 /datum/venue/restaurant
-	name = "restaurant"
+	name = "餐厅"
 	req_access = ACCESS_KITCHEN
 	venue_type = VENUE_RESTAURANT
 	min_time_between_visitor = 80 SECONDS
@@ -48,8 +48,8 @@
 		return
 
 	customer_pawn.visible_message(
-		span_danger("[customer_pawn] pushes [order_item] into their mouth-shaped hole!"),
-		span_danger("You push [order_item] into your mouth-shaped hole."),
+		span_danger("[customer_pawn] 将 [order_item] 塞进了他们嘴形的洞里！"),
+		span_danger("你将 [order_item] 塞进了自己嘴形的洞里。"),
 	)
 	playsound(customer_pawn, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	qdel(order_item)
@@ -58,18 +58,18 @@
 	linked_venue = /datum/venue/restaurant
 
 /obj/item/holosign_creator/robot_seat/restaurant
-	name = "restaurant seating indicator placer"
+	name = "餐厅座位指示放置器"
 	holosign_type = /obj/structure/holosign/robot_seat/restaurant
 
 /obj/structure/holosign/robot_seat/restaurant
 	gender = PLURAL
-	name = "restaurant seating"
+	name = "餐厅座位"
 	linked_venue = /datum/venue/restaurant
 
 
 /////BAR/////
 /datum/venue/bar
-	name = "bar"
+	name = "酒吧"
 	req_access = ACCESS_BAR
 	venue_type = VENUE_BAR
 	min_time_between_visitor = 40 SECONDS
@@ -87,14 +87,14 @@
 	)
 
 /obj/machinery/restaurant_portal/bar
-	name = "bar portal"
+	name = "酒吧传送门"
 	linked_venue = /datum/venue/bar
 
 /obj/item/holosign_creator/robot_seat/bar
-	name = "bar seating indicator placer"
+	name = "酒吧座位指示器放置器"
 	holosign_type = /obj/structure/holosign/robot_seat/bar
 
 /obj/structure/holosign/robot_seat/bar
 	gender = PLURAL
-	name = "bar seating"
+	name = "酒吧座位"
 	linked_venue = /datum/venue/bar

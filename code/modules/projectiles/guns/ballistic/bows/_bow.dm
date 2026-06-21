@@ -3,8 +3,8 @@
 	icon = 'icons/obj/weapons/bows/bows.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/bows_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/bows_righthand.dmi'
-	name = "bow"
-	desc = "Seems out-of-place in this day and age, but at least it's reliable."
+	name = "弓"
+	desc = "在这个时代似乎有些格格不入，但至少它很可靠。"
 	icon_state = "bow"
 	inhand_icon_state = "bow"
 	base_icon_state = "bow"
@@ -69,7 +69,7 @@
 
 /obj/item/gun/ballistic/bow/attack_self(mob/user)
 	if(!chambered)
-		balloon_alert(user, "no arrow nocked!")
+		balloon_alert(user, "没有搭箭！")
 		return
 	balloon_alert(user, "[drawn ? "string released" : "string drawn"]")
 	drawn = !drawn
@@ -80,7 +80,7 @@
 	if(!chambered)
 		return FALSE
 	if(!drawn)
-		to_chat(user, span_warning("Without drawing the bow, the arrow uselessly falls to the ground."))
+		to_chat(user, span_warning("不拉弓的话，箭只会无力地掉在地上。"))
 		drop_arrow()
 		return FALSE
 	return ..() //fires, removing the arrow
@@ -93,7 +93,7 @@
 /obj/item/gun/ballistic/bow/equipped(mob/user, slot, initial)
 	. = ..()
 	if(slot != ITEM_SLOT_HANDS && chambered)
-		balloon_alert(user, "the arrow falls out!")
+		balloon_alert(user, "箭掉出来了！")
 		if(drawn)
 			playsound(src, 'sound/items/weapons/gun/bow/bow_fire.ogg', 25, TRUE)
 		drop_arrow()
@@ -114,7 +114,7 @@
 	return //no clicking sounds please
 
 /obj/item/ammo_box/magazine/internal/bow
-	name = "bowstring"
+	name = "弓弦"
 	ammo_type = /obj/item/ammo_casing/arrow
 	max_ammo = 1
 	start_empty = TRUE

@@ -2,7 +2,7 @@
 #define PARTY_COOLDOWN_LENGTH_MAX (12 MINUTES)
 
 /datum/station_trait/lucky_winner
-	name = "Lucky winner"
+	name = "幸运赢家"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 1
 	show_in_report = TRUE
@@ -42,7 +42,7 @@
 #undef PARTY_COOLDOWN_LENGTH_MAX
 
 /datum/station_trait/galactic_grant
-	name = "Galactic grant"
+	name = "银河补助金"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -53,7 +53,7 @@
 	cargo_bank.adjust_money(rand(2000, 5000))
 
 /datum/station_trait/premium_internals_box
-	name = "Premium internals boxes"
+	name = "高级内部设备箱"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -61,7 +61,7 @@
 	trait_to_give = STATION_TRAIT_PREMIUM_INTERNALS
 
 /datum/station_trait/bountiful_bounties
-	name = "Bountiful bounties"
+	name = "丰厚悬赏"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
@@ -73,7 +73,7 @@
 
 ///A positive station trait that scatters a bunch of lit glowsticks throughout maintenance
 /datum/station_trait/glowsticks
-	name = "Glowsticks party"
+	name = "荧光棒派对"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 2
 	show_in_report = TRUE
@@ -120,7 +120,7 @@
 			stick.turn_on()
 
 /datum/station_trait/strong_supply_lines
-	name = "Strong supply lines"
+	name = "强大补给线"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -131,7 +131,7 @@
 	SSeconomy.pack_price_modifier *= 0.8
 
 /datum/station_trait/filled_maint
-	name = "Filled up maintenance"
+	name = "满载维护区"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
@@ -144,7 +144,7 @@
 	can_revert = FALSE
 
 /datum/station_trait/quick_shuttle
-	name = "Quick Shuttle"
+	name = "快速穿梭机"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -156,7 +156,7 @@
 	SSshuttle.supply.callTime *= 0.5
 
 /datum/station_trait/deathrattle_department
-	name = "deathrattled department"
+	name = "死亡回响部门"
 	trait_type = STATION_TRAIT_POSITIVE
 	show_in_report = TRUE
 	abstract_type = /datum/station_trait/deathrattle_department
@@ -186,49 +186,49 @@
 
 
 /datum/station_trait/deathrattle_department/service
-	name = "Deathrattled Service"
+	name = "死亡回响服务部"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_SERVICE
 	department_name = "Service"
 
 /datum/station_trait/deathrattle_department/cargo
-	name = "Deathrattled Cargo"
+	name = "死亡回响货运部"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_CARGO
 	department_name = "Cargo"
 
 /datum/station_trait/deathrattle_department/engineering
-	name = "Deathrattled Engineering"
+	name = "死亡回响工程部"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_ENGINEERING
 	department_name = "Engineering"
 
 /datum/station_trait/deathrattle_department/command
-	name = "Deathrattled Command"
+	name = "死亡回响指挥部"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_COMMAND
 	department_name = "Command"
 
 /datum/station_trait/deathrattle_department/science
-	name = "Deathrattled Science"
+	name = "死亡回响科学部"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_SCIENCE
 	department_name = "Science"
 
 /datum/station_trait/deathrattle_department/security
-	name = "Deathrattled Security"
+	name = "死亡回响安保部"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_SECURITY
 	department_name = "Security"
 
 /datum/station_trait/deathrattle_department/medical
-	name = "Deathrattled Medical"
+	name = "死亡回响医疗部"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_MEDICAL
 	department_name = "Medical"
 
 /datum/station_trait/deathrattle_all
-	name = "Deathrattled Station"
+	name = "死亡回响空间站"
 	trait_type = STATION_TRAIT_POSITIVE
 	show_in_report = TRUE
 	weight = 1
@@ -249,7 +249,7 @@
 	implant_to_give.implant(spawned, spawned, TRUE, TRUE)
 
 /datum/station_trait/cybernetic_revolution
-	name = "Cybernetic Revolution"
+	name = "赛博革命"
 	trait_type = STATION_TRAIT_POSITIVE
 	show_in_report = TRUE
 	weight = 1
@@ -329,7 +329,7 @@
 	cybernetic.Insert(spawned, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/station_trait/luxury_escape_pods
-	name = "Luxury Escape Pods"
+	name = "豪华逃生舱"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -338,7 +338,7 @@
 	blacklist = list(/datum/station_trait/cramped_escape_pods)
 
 /datum/station_trait/medbot_mania
-	name = "Advanced Medbots"
+	name = "高级医疗机器人"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
@@ -347,7 +347,7 @@
 	trait_to_give = STATION_TRAIT_MEDBOT_MANIA
 
 /datum/station_trait/random_event_weight_modifier/shuttle_loans
-	name = "Loaner Shuttle"
+	name = "租借穿梭机"
 	report_message = "Due to an uptick in pirate attacks around your sector, there are few supply vessels in nearby space willing to assist with special requests. Expect to receive more shuttle loan opportunities, with slightly higher payouts."
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 4
@@ -357,7 +357,7 @@
 	trait_to_give = STATION_TRAIT_LOANER_SHUTTLE
 
 /datum/station_trait/random_event_weight_modifier/wise_cows
-	name = "Wise Cow Invasion"
+	name = "智慧奶牛入侵"
 	report_message = "Bluespace harmonic readings show unusual interpolative signals between your sector and agricultural sector MMF-D-02. Expect an increase in cow encounters. Encownters, if you will."
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 1
@@ -371,7 +371,7 @@
 	return advisory_string
 
 /datum/station_trait/bright_day
-	name = "Bright Day"
+	name = "明亮白昼"
 	report_message = "The stars shine bright and the clouds are scarcer than usual. It's a bright day here on the Ice Moon's surface."
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
@@ -380,7 +380,7 @@
 	trait_to_give = STATION_TRAIT_BRIGHT_DAY
 
 /datum/station_trait/shuttle_sale
-	name = "Shuttle Firesale"
+	name = "穿梭机清仓甩卖"
 	report_message = "The Nanotrasen Emergency Dispatch team is celebrating a record number of shuttle calls in the recent quarter. Some of your emergency shuttle options have been discounted!"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 4
@@ -388,7 +388,7 @@
 	show_in_report = TRUE
 
 /datum/station_trait/missing_wallet
-	name = "Misplaced Wallet"
+	name = "遗失的钱包"
 	report_message = "A repair technician left their wallet in a locker somewhere. They would greatly appreciate if you could locate and return it to them when the shift has ended."
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
@@ -415,8 +415,8 @@
 	message_admins("A missing wallet has been placed in the [locker_to_fill] locker, in the [get_area_name(locker_to_fill)] area.")
 
 /obj/item/card/id/advanced/technician_id
-	name = "Repair Technician ID"
-	desc = "Repair Technician? We don't have those in this sector, just a bunch of lazy engineers! This must have been from the between-shift crew..."
+	name = "维修技师ID卡"
+	desc = "维修技师？我们这片区域可没有这种职位，只有一群懒散的工程师！这肯定是轮班间隙的船员留下的..."
 	registered_name = "Pluoxium LXVII"
 	registered_age = 67
 	trim = /datum/id_trim/technician_id
@@ -429,7 +429,7 @@
 
 /// Spawns assistants with some gear, either gimmicky or functional. Maybe, one day, it will inspire an assistant to do something productive or fun
 /datum/station_trait/assistant_gimmicks
-	name = "Geared Assistants Pilot"
+	name = "装备齐全的助理试点"
 	report_message = "The Nanotrassen Assistant Affairs division is performing a pilot to see if different assistant equipment helps improve productivity!"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 3

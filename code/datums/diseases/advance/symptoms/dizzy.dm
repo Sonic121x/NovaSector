@@ -8,8 +8,8 @@
  */
 
 /datum/symptom/dizzy // Not the egg
-	name = "Dizziness"
-	desc = "The virus causes inflammation of the vestibular system, leading to bouts of dizziness."
+	name = "眩晕"
+	desc = "该病毒会引起前庭系统发炎，导致眩晕发作。"
 	illness = "Motion Sickness"
 	stealth = 1
 	resistance = 0
@@ -46,7 +46,7 @@
 			if(prob(base_message_chance) && !suppress_warning)
 				to_chat(M, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
 		else
-			to_chat(M, span_userdanger("A wave of dizziness washes over you!"))
+			to_chat(M, span_userdanger("一阵眩晕感席卷了你！"))
 			M.adjust_dizzy_up_to(1 MINUTES, 140 SECONDS)
 			if(power >= 2)
 				M.set_drugginess(80 SECONDS)

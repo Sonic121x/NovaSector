@@ -6,8 +6,8 @@
 #define DEFAULT_MODIFIED_COLOR "#1db327"
 
 /obj/machinery/trading_card_holder
-	name = "card slot"
-	desc = "A slot for placing Tactical Game Cards."
+	name = "卡牌插槽"
+	desc = "一个用于放置战术游戏卡牌的插槽。"
 	icon = 'icons/obj/toys/tcgmisc.dmi'
 	icon_state = "card_holder_inactive"
 	use_power = NO_POWER_USE
@@ -31,7 +31,7 @@
 		if(card_template.cardtype == "Creature")
 			if(!user.transferItemToLoc(current_card, src))
 				return
-			to_chat(user, span_notice("You put the [current_card] card in [src]."))
+			to_chat(user, span_notice("你将[current_card]卡牌放入了[src]。"))
 			icon_state = "card_holder_active"
 			update_appearance()
 			current_summon = new(locate(x + summon_offset_x, y + summon_offset_y, z))
@@ -40,7 +40,7 @@
 			current_summon.team_color = team_color
 			current_summon.load_model()
 		else
-			to_chat(user, span_notice("The [src] smartly rejects the non-creature card."))
+			to_chat(user, span_notice("[src]巧妙地拒绝了这张非生物卡牌。"))
 			current_card = null
 			return ..()
 	else
@@ -67,10 +67,10 @@ GLOBAL_LIST_EMPTY(tcgcard_machine_radial_choices)
 			if("Pickup")
 				if(current_card)
 					user.put_in_hands(current_card)
-					to_chat(user, span_notice("You take the [current_card] card out of [src]."))
+					to_chat(user, span_notice("你从[src]中取出了[current_card]卡牌。"))
 					current_card = null
 				else
-					to_chat(user, span_notice("The blank card dematerializes."))
+					to_chat(user, span_notice("空白卡牌消散了。"))
 				card_template = null
 				icon_state = "card_holder_inactive"
 				update_appearance()
@@ -84,13 +84,13 @@ GLOBAL_LIST_EMPTY(tcgcard_machine_radial_choices)
 			if(null)
 				return
 	else
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src]是空的！"))
 	add_fingerprint(user)
 	return ..()
 
 /obj/machinery/trading_card_holder/attack_hand_secondary(mob/user)
 	if(isnull(current_summon))
-		var/card_name = tgui_input_text(user, "Insert card name", "Blank Card Naming", "blank card", max_length = MAX_NAME_LEN)
+		var/card_name = tgui_input_text(user, "输入卡牌名称", "空白卡牌命名", "空白卡牌", max_length = MAX_NAME_LEN)
 		if(isnull(card_name) || !user.can_perform_action(src))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		current_summon = new /obj/structure/trading_card_summon/blank(locate(x + summon_offset_x, y + summon_offset_y, z))
@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(tcgcard_machine_radial_choices)
 		current_summon.team_color = team_color
 		current_summon.load_model()
 	else
-		to_chat(user, span_notice("The [src] already contains a card."))
+		to_chat(user, span_notice("[src]里已经有一张卡牌了。"))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/trading_card_holder/proc/check_menu(mob/living/user)
@@ -117,19 +117,19 @@ GLOBAL_LIST_EMPTY(tcgcard_machine_radial_choices)
 /obj/machinery/trading_card_holder/examine(mob/user)
 	. = ..()
 	if(card_template)
-		. += span_notice("There is currently a [card_template.name] card inserted.")
+		. += span_notice("当前插入了一张[card_template.name]卡牌。")
 	else
 		if(current_summon)
-			. += span_notice("There is currently a blank card inserted.")
+			. += span_notice("当前插入了一张空白卡牌。")
 		else
-			. += span_notice("There is no card currently inserted.")
+			. += span_notice("当前没有插入卡牌。")
 
 /obj/machinery/trading_card_holder/red
 	summon_offset_y = -1
 	team_color = "#ff7777"
 
 /obj/structure/trading_card_summon
-	name = "coder"
+	name = "编码器"
 	icon = 'icons/obj/toys/tcgsummons.dmi'
 	icon_state = "hologram"
 	anchored = TRUE
@@ -230,12 +230,12 @@ GLOBAL_LIST_EMPTY(tcgcard_machine_radial_choices)
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/structure/trading_card_summon/proc/modify_stats(mob/living/user)
-	summon_power = num2text(tgui_input_number(user, "Please input power value", "Stat Modification", text2num(template.power), 25))
+	summon_power = num2text(tgui_input_number(user, "请输入力量值", "属性修改", text2num(template.power), 25))
 	if(summon_power == template.power)
 		power_color = DEFAULT_POWER_COLOR
 	else
 		power_color = modified_color
-	summon_resolve = num2text(tgui_input_number(user, "Please input resolve value", "Stat Modification", text2num(template.resolve), 25))
+	summon_resolve = num2text(tgui_input_number(user, "请输入决心值", "属性修改", text2num(template.resolve), 25))
 	if(summon_resolve == template.resolve)
 		resolve_color = DEFAULT_RESOLVE_COLOR
 	else
@@ -248,8 +248,8 @@ GLOBAL_LIST_EMPTY(tcgcard_machine_radial_choices)
 	return ..()
 
 /obj/structure/trading_card_summon/blank
-	name = "blank card"
-	desc = "A blank card used to represent cards summoned by other cards."
+	name = "空白卡牌"
+	desc = "一张用于代表由其他卡牌召唤出的卡牌的空白卡牌。"
 	summon_power = 1
 	summon_resolve = 1
 	power_color = DEFAULT_MODIFIED_COLOR
@@ -270,8 +270,8 @@ GLOBAL_LIST_EMPTY(tcgcard_machine_radial_choices)
 	return name_chaser
 
 /obj/structure/trading_card_summon/blank/modify_stats(mob/living/user)
-	summon_power = num2text(tgui_input_number(user, "Please input power value", "Stat Modification", text2num(summon_power), 25))
-	summon_resolve = num2text(tgui_input_number(user, "Please input resolve value", "Stat Modification", text2num(summon_resolve), 25))
+	summon_power = num2text(tgui_input_number(user, "请输入力量值", "属性修改", text2num(summon_power), 25))
+	summon_resolve = num2text(tgui_input_number(user, "请输入决心值", "属性修改", text2num(summon_resolve), 25))
 	update_overlays()
 
 #undef STAT_Y
@@ -286,8 +286,8 @@ GLOBAL_LIST_EMPTY(tcgcard_machine_radial_choices)
 
 ///A button that generates a player manipulable bar of icons, in this case a mana bar.
 /obj/machinery/trading_card_button
-	name = "mana control panel"
-	desc = "A set of buttons that lets you keep track of your mana when playing Tactical Game Cards."
+	name = "法力控制面板"
+	desc = "一套按钮，让你在玩战术游戏卡牌时能追踪自己的法力值。"
 	icon = 'icons/obj/toys/tcgmisc.dmi'
 	icon_state = "mana_buttons"
 	use_power = NO_POWER_USE
@@ -341,11 +341,11 @@ GLOBAL_LIST_EMPTY(tcgcard_mana_bar_radial_choices)
 	var/input_value
 	switch(choice)
 		if("Set Mana")
-			input_value = tgui_input_number(user, "Please input total mana", "Set mana", display_panel_ref.gems, display_panel_ref.gem_slots, 0)
+			input_value = tgui_input_number(user, "请输入总法力值", "设置法力", display_panel_ref.gems, display_panel_ref.gem_slots, 0)
 			if(!isnull(input_value))
 				display_panel_ref.gems = input_value
 		if("Set Mana Slots")
-			input_value = tgui_input_number(user, "Please input total mana slots", "Set mana slots", display_panel_ref.gem_slots, 10, 1)
+			input_value = tgui_input_number(user, "请输入总法力槽位", "设置法力槽位", display_panel_ref.gem_slots, 10, 1)
 			if(input_value)
 				display_panel_ref.gem_slots = input_value
 		if("Next Turn")
@@ -361,8 +361,8 @@ GLOBAL_LIST_EMPTY(tcgcard_mana_bar_radial_choices)
 	return TRUE
 
 /obj/machinery/trading_card_button/health
-	name = "life control panel"
-	desc = "A set of buttons that lets you keep track of your life shards when playing Tactical Game Cards."
+	name = "生命控制面板"
+	desc = "一套按钮，让你在玩战术游戏卡牌时能追踪自己的生命碎片。"
 	icon_state = "health_buttons"
 	display_panel_type = /obj/effect/trading_card_panel/health
 	panel_offset_x = -1
@@ -385,15 +385,15 @@ GLOBAL_LIST_EMPTY(tcgcard_health_bar_radial_choices)
 	var/input_value
 	switch(choice)
 		if("Set Life")
-			input_value = tgui_input_number(user, "Please input total life", "Set life", display_panel_ref.gems, display_panel_ref.gem_slots, 0)
+			input_value = tgui_input_number(user, "请输入总生命值", "设置生命", display_panel_ref.gems, display_panel_ref.gem_slots, 0)
 			if(!isnull(input_value))
 				display_panel_ref.gems = input_value
 		if("Inflict Damage")
-			display_panel_ref.gems -= tgui_input_number(user, "Please input total damage", "Inflict damage", 1, display_panel_ref.gem_slots, 0)
+			display_panel_ref.gems -= tgui_input_number(user, "请输入总伤害值", "造成伤害", 1, display_panel_ref.gem_slots, 0)
 
 ///A display panel that renders a set of icons (in this case mana crystals), this is generated by /obj/machinery/trading_card_button and can be manipulated by the button which generates it.
 /obj/effect/trading_card_panel
-	name = "mana panel"
+	name = "魔力面板"
 	icon = 'icons/obj/toys/tcgmisc_large.dmi'
 	icon_state = "display_panel"
 	pixel_x = -10
@@ -447,11 +447,11 @@ GLOBAL_LIST_EMPTY(tcgcard_health_bar_radial_choices)
 
 /obj/effect/trading_card_panel/examine(mob/user)
 	. = ..()
-	. += span_notice("It is currently showing [gems] out of [gem_slots] [gem_title].")
+	. += span_notice("它当前显示着 [gems] / [gem_slots] 个[gem_title]。")
 
 ///A variant of the display panel for life shards, this one is set up to display two columns.
 /obj/effect/trading_card_panel/health
-	name = "life shard panel"
+	name = "生命碎片面板"
 	pixel_x = 9
 
 	gems = 20

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(lighting)
-	name = "Lighting"
+	name = "光照"
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
 		/datum/controller/subsystem/mapping,

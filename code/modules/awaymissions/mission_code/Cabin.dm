@@ -1,13 +1,13 @@
 
 /*Cabin areas*/
 /area/awaymission/cabin
-	name = "Cabin"
+	name = "小舱"
 	icon_state = "away2"
 	requires_power = TRUE
 	static_lighting = TRUE
 
 /area/awaymission/cabin/snowforest
-	name = "Snow Forest"
+	name = "被雪覆盖的森林"
 	icon_state = "away"
 
 /area/awaymission/cabin/snowforest/sovietsurface
@@ -16,26 +16,26 @@
 	requires_power = FALSE
 
 /area/awaymission/cabin/lumbermill
-	name = "Lumbermill"
+	name = "伐木场"
 	icon_state = "away3"
 	requires_power = FALSE
 
 /area/awaymission/cabin/caves/sovietcave
-	name = "Soviet Bunker"
+	name = "苏联碉堡"
 	icon_state = "awaycontent4"
 
 /area/awaymission/cabin/caves
-	name = "North Snowdin Caves"
+	name = "北部雪地洞穴"
 	icon_state = "awaycontent15"
 	static_lighting = TRUE
 
 /area/awaymission/cabin/caves/mountain
-	name = "North Snowdin Mountains"
+	name = "北雪顶山脉"
 	icon_state = "awaycontent24"
 
 /obj/structure/firepit
-	name = "firepit"
-	desc = "Warm and toasty."
+	name = "火坑"
+	desc = "温暖又舒适。"
 	icon = 'icons/obj/fluff/fireplace.dmi'
 	icon_state = "firepit-active"
 	density = FALSE
@@ -87,8 +87,8 @@
 //other Cabin Stuff//
 
 /obj/machinery/recycler/lumbermill
-	name = "lumbermill saw"
-	desc = "Faster then the cartoons!"
+	name = "伐木锯"
+	desc = "比动画片还要快！"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	item_recycle_sound = 'sound/items/weapons/chainsawhit.ogg'
 
@@ -101,8 +101,8 @@
 		new L.plank_type(src.loc, 1 + round(potency / 25))
 
 /obj/structure/ladder/unbreakable/rune
-	name = "\improper Teleportation Rune"
-	desc = "Could lead anywhere."
+	name = "\improper 传送符文"
+	desc = "可以传送到任何地方。"
 	icon = 'icons/obj/antags/cult/rune.dmi'
 	icon_state = "1"
 	color = rgb(0,0,255)
@@ -122,7 +122,7 @@
 	user.balloon_alert_to_viewers("activating...")
 
 /obj/structure/ladder/unbreakable/rune/show_final_fluff_message(mob/user, going_up)
-	visible_message(span_notice("[user] activates [src] and teleports away."))
+	visible_message(span_notice("[user] 激活了 [src] 并传送走了。"))
 	user.balloon_alert_to_viewers("warped in")
 
 /obj/structure/ladder/unbreakable/rune/use(mob/user, going_up = TRUE)

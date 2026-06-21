@@ -14,8 +14,8 @@
 	worn_icon = 'icons/mob/clothing/suits/utility.dmi'
 
 /obj/item/clothing/suit/utility/fire
-	name = "emergency firesuit"
-	desc = "A suit that helps protect against fire and heat."
+	name = "应急消防服"
+	desc = "一件用来抵御火焰和高温的防护服"
 	icon_state = "fire"
 	inhand_icon_state = "ro_suit"
 	w_class = WEIGHT_CLASS_BULKY
@@ -67,15 +67,15 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 
 /obj/item/clothing/suit/utility/fire/heavy
-	name = "heavy firesuit"
-	desc = "An old, bulky thermal protection suit."
+	name = "重型消防服"
+	desc = "一件又旧又笨重的热防护服。"
 	icon_state = "thermal"
 	inhand_icon_state = "ro_suit"
 	slowdown = 1.5
 
 /obj/item/clothing/suit/utility/fire/atmos
-	name = "atmospheric firesuit"
-	desc = "An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame."
+	name = "大气消防服"
+	desc = "一套昂贵的防火服，能够抵御空间站上最危险的火灾。即使穿着者被点燃也能起到保护作用。"
 	icon_state = "atmos_firesuit"
 	inhand_icon_state = "firefighter_atmos"
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -88,8 +88,8 @@
  * Bomb protection
  */
 /obj/item/clothing/head/utility/bomb_hood
-	name = "bomb hood"
-	desc = "Use in case of bomb."
+	name = "防爆头罩"
+	desc = "如遇炸弹时使用。"
 	icon_state = "bombsuit"
 	clothing_flags = THICKMATERIAL | SNUG_FIT
 	armor_type = /datum/armor/utility_bomb_hood
@@ -120,8 +120,8 @@
 	acid = 50
 
 /obj/item/clothing/suit/utility/bomb_suit
-	name = "bomb suit"
-	desc = "A suit designed for safety when handling explosives."
+	name = "防爆服"
+	desc = "为处理爆炸物而设计的安全防护服。"
 	icon_state = "bombsuit"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_BULKY
@@ -173,7 +173,7 @@
 */
 
 /obj/item/clothing/head/utility/radiation
-	name = "radiation hood"
+	name = "防辐射头罩"
 	icon_state = "rad"
 	desc = "A hood with radiation protective properties. The label reads, 'Made with lead. Please do not consume insulation.'"
 	clothing_flags = THICKMATERIAL | SNUG_FIT
@@ -197,7 +197,7 @@
 	acid = 30
 
 /obj/item/clothing/suit/utility/radiation
-	name = "radiation suit"
+	name = "防辐射服"
 	desc = "A suit that protects against radiation. The label reads, 'Made with lead. Please do not consume insulation.'"
 	icon_state = "rad"
 	inhand_icon_state = "rad_suit"

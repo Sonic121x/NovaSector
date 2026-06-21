@@ -1,7 +1,7 @@
 //Baseline portable generator. Has all the default handling. Not intended to be used on its own (since it generates unlimited power).
 /obj/machinery/power/port_gen
-	name = "portable generator"
-	desc = "A portable generator for emergency backup power."
+	name = "便携发电机"
+	desc = "一款用于应急备用电源的便携式发电机。"
 	icon = 'icons/obj/machines/engine/other.dmi'
 	icon_state = "portgen0_0"
 	base_icon_state = "portgen0"
@@ -79,7 +79,7 @@
 // P.A.C.M.A.N //
 /////////////////
 /obj/machinery/power/port_gen/pacman
-	name = "\improper P.A.C.M.A.N.-type portable generator"
+	name = "\improper P.A.C.M.A.N.-便携发电机"
 	circuit = /obj/item/circuitboard/machine/pacman
 	power_gen = 10 KILO JOULES
 	var/sheets = 0
@@ -114,9 +114,9 @@
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()
-	. += span_notice("The generator has [sheets] units of [sheet_name] fuel left, producing [display_power(power_gen)].")
+	. += span_notice("发电机还剩 [sheets] 单位的 [sheet_name] 燃料，正在产生 [display_power(power_gen)]。")
 	if(anchored)
-		. += span_notice("It is anchored to the ground.")
+		. += span_notice("它被固定在地面上。")
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)
@@ -180,9 +180,9 @@
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
-			to_chat(user, span_notice("\The [src] is full!"))
+			to_chat(user, span_notice("\The [src] 已满！"))
 			return
-		to_chat(user, span_notice("You add [amount] sheets to \the [src]."))
+		to_chat(user, span_notice("你将[amount]张板材添加到\the [src]。"))
 		sheets += amount
 		addstack.use(amount)
 		return
@@ -190,10 +190,10 @@
 		if(O.tool_behaviour == TOOL_WRENCH)
 			if(!anchored && !isinspace())
 				set_anchored(TRUE)
-				to_chat(user, span_notice("You secure the generator to the floor."))
+				to_chat(user, span_notice("你将发电机固定在地板上。"))
 			else if(anchored)
 				set_anchored(FALSE)
-				to_chat(user, span_notice("You unsecure the generator from the floor."))
+				to_chat(user, span_notice("你将发电机从地板上解除了固定。"))
 
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			return
@@ -201,9 +201,9 @@
 			toggle_panel_open()
 			O.play_tool_sound(src)
 			if(panel_open)
-				to_chat(user, span_notice("You open the access panel."))
+				to_chat(user, span_notice("你打开了检修面板。"))
 			else
-				to_chat(user, span_notice("You close the access panel."))
+				to_chat(user, span_notice("你关上了检修面板。"))
 			return
 		else if(default_deconstruction_crowbar(user, O))
 			return
@@ -213,7 +213,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "maximum power output unlocked")
+	balloon_alert(user, "最大功率输出已解锁")
 	emp_act(EMP_HEAVY)
 	return TRUE
 

@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves/plate/larp
-	desc = "They're like gloves, but made of metal. Better not touch any live wires!"
+	desc = "它们就像手套，不过是金属做的。最好别碰任何带电的电线！"
 	siemens_coefficient = 1
 	armor_type = /datum/armor/plate_larp
 	body_parts_covered = HANDS|ARMS
@@ -30,8 +30,8 @@
 	icon_state = "crusader-blue"
 
 /obj/item/clothing/suit/armor/riot/knight/larp
-	name = "plate armour"
-	desc = "A heavy replica suit of plate armour, highly effective at stopping melee attacks."
+	name = "板甲"
+	desc = "一套沉重的板甲复制品，在阻挡近战攻击方面非常有效。"
 	slowdown = 0.7
 
 /obj/item/clothing/suit/armor/riot/knight/larp/blue

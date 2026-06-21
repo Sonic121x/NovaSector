@@ -1,7 +1,7 @@
 /// Manipulator hand. Effect we animate to show that the manipulator is working and moving something.
 /obj/effect/big_manipulator_arm
-	name = "mechanical claw"
-	desc = "Takes and drops objects."
+	name = "机械爪"
+	desc = "拾取和放置物品。"
 	icon = 'icons/obj/machines/big_manipulator_parts/big_manipulator_hand.dmi'
 	icon_state = "hand"
 	layer = LOW_ITEM_LAYER

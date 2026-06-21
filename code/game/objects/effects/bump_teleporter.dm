@@ -1,7 +1,7 @@
 /// Abstract effect, that when a mob touches it, it will forceMove them to the teleporter-exit point (that matches the ID set map-side).
 /obj/effect/bump_teleporter
-	name = "bump teleporter (forceMove)"
-	desc = "Use me when you want to move every single mob without any exceptions."
+	name = "碰撞传送器（强制移动）"
+	desc = "当你想要移动每一个生物且没有任何例外时使用我。"
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "x2"
 	invisibility = INVISIBILITY_ABSTRACT //nope, can't see this
@@ -61,8 +61,8 @@
 
 /// Subtype that uses do_teleport instead, to leverage any NO_TELEPORT traits that you might need to add in a given map
 /obj/effect/bump_teleporter/filtering
-	name = "bump teleporter (do_teleport)"
-	desc = "Use me for when you want to avoid moving mobs with certain traits, like NO_TELEPORT."
+	name = "碰撞传送器（传送执行）"
+	desc = "当你想要避免移动具有某些特性的生物时使用我，例如NO_TELEPORT。"
 	icon_state = "x4"
 
 /// As promised in the name of this subtype, use do_teleport to leverage all of the filtering checks that it does.

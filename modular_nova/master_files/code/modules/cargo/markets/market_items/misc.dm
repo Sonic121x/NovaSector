@@ -1,6 +1,6 @@
 /datum/market_item/misc/shotglasses
-	name = "Extra Large Syndicate Shotglasses"
-	desc = "A box of shotglasses designed to hold more liquid than they truly seem to..."
+	name = "特大号辛迪加子弹杯"
+	desc = "一盒子弹杯，其设计容量远超其外观所能容纳的液体量..."
 	item = /obj/item/storage/box/syndieshotglasses
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE
@@ -8,8 +8,8 @@
 	availability_prob = 80
 
 /datum/market_item/clothing/no_slip_MOD
-	name = "MOD anti slip module"
-	desc = "Honk.co really doesn't like you having these."
+	name = "MOD防滑模块"
+	desc = "Honk.co 真的不想让你拥有这些东西。"
 	item = /obj/item/mod/module/noslip
 	price_min = CARGO_CRATE_VALUE * 2
 	price_max = CARGO_CRATE_VALUE * 4
@@ -17,8 +17,8 @@
 	availability_prob = 65
 
 /datum/market_item/misc/sticker_box
-	name = "Syndie Sticker Box"
-	desc = "Contains 8 random stickers precisely engineered to resemble suspicious objects, which may or may not be useful for fooling crew."
+	name = "辛迪加贴纸盒"
+	desc = "内含8张随机贴纸，经过精密设计以模仿可疑物品，可能（也可能不）对愚弄船员有用。"
 	item = /obj/item/storage/box/stickers/syndie_kit
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE
@@ -26,8 +26,8 @@
 	availability_prob = 50
 
 /datum/market_item/misc/cardboard_cutout
-	name = "Adaptive Cardboard Cutout Box"
-	desc = "Highly advanced clown tech allowing you to mask your identity behind a cardboard cutout."
+	name = "自适应纸板人像盒"
+	desc = "高度先进的小丑科技，允许你躲在纸板人像后面隐藏身份。"
 	item = /obj/item/storage/box/syndie_kit/cutouts
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE
@@ -35,8 +35,8 @@
 	availability_prob = 50
 
 /datum/market_item/misc/dehydrated_carp
-	name = "Dehydrated Space Carp"
-	desc = "A plushie of a space carp, the seller states it's too mean for their son - so now it's for sale."
+	name = "脱水太空鲤鱼"
+	desc = "一个太空鲤鱼的毛绒玩具，卖家称它对其儿子来说太凶了——所以现在出售。"
 	item = /obj/item/toy/plush/carpplushie/dehy_carp
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE
@@ -45,8 +45,8 @@
 
 
 /datum/market_item/misc/foam_smg
-	name = "Foam Force SMG"
-	desc = "A Foam Force SMG that someone is selling on the black market. Don't ask why. Foam Force magazines sold separately."
+	name = "泡沫部队冲锋枪"
+	desc = "有人在黑市上出售的一把泡沫部队冲锋枪。别问为什么。泡沫部队弹匣需单独购买。"
 	item = /obj/item/gun/ballistic/automatic/toy
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE
@@ -54,8 +54,8 @@
 	availability_prob = 80
 
 /datum/market_item/misc/foam_smg_riotmag
-	name = "Foam Force SMG Magazine"
-	desc = "A magazine for a Foam Force SMG, filled with riot darts. Foam Force SMG sold separately."
+	name = "泡沫部队冲锋枪弹匣"
+	desc = "一个泡沫部队冲锋枪的弹匣，装满了防暴飞镖。泡沫部队冲锋枪需单独购买。"
 	item = /obj/item/ammo_box/magazine/toy/smg/riot
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE
@@ -63,8 +63,8 @@
 	availability_prob = 80
 
 /datum/market_item/misc/engineer_chip
-	name = "Engineer skillchip"
-	desc = "A skillchip that was crudely taken out of an engineer, still stained in blood."
+	name = "工程师技能芯片"
+	desc = "一块从工程师身上粗暴取出的技能芯片，仍沾有血迹。"
 	item = /obj/item/skillchip/job/engineer
 	price_min = CARGO_CRATE_VALUE * 2
 	price_max = CARGO_CRATE_VALUE * 3
@@ -72,8 +72,8 @@
 	availability_prob = 35
 
 /datum/market_item/misc/leadacid
-	name = "Lead-acid Battery"
-	desc = "A primitive battery. It is quite large and feels unexpectedly heavy."
+	name = "铅酸电池"
+	desc = "一块原始的电池。它相当大，而且感觉异常沉重。"
 	item = /obj/item/stock_parts/power_store/cell/lead
 	stock = 2
 	price_min = CARGO_CRATE_VALUE * 4

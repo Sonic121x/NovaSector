@@ -1,6 +1,6 @@
 /obj/vehicle/ridden/wheelchair //ported from Hippiestation (by Jujumatic)
-	name = "wheelchair"
-	desc = "A chair with big wheels. It looks like you can move in this on your own."
+	name = "轮椅"
+	desc = "一把带有大轮子的椅子。看起来你能够自己推着它移动。"
 	icon = 'icons/mob/rideables/vehicles.dmi'
 	icon_state = "wheelchair"
 	layer = OBJ_LAYER
@@ -70,10 +70,10 @@
 
 /obj/vehicle/ridden/wheelchair/wrench_act(mob/living/user, obj/item/tool) //Attackby should stop it attacking the wheelchair after moving away during decon
 	..()
-	balloon_alert(user, "disassembling")
+	balloon_alert(user, "正在拆卸")
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=50))
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_notice("You detach the wheels and deconstruct the chair."))
+	to_chat(user, span_notice("你拆下车轮并解构了椅子。"))
 	deconstruct(disassembled = TRUE)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -104,7 +104,7 @@
 		return FALSE
 	remove_bell()
 	remove_bomb()
-	user.visible_message(span_notice("[user] collapses [src]."), span_notice("You collapse [src]."))
+	user.visible_message(span_notice("[user] 折叠了 [src]。"), span_notice("你折叠了 [src]。"))
 	var/obj/vehicle/ridden/wheelchair/wheelchair_folded = new foldabletype(get_turf(src))
 	user.put_in_hands(wheelchair_folded)
 	qdel(src)
@@ -129,13 +129,13 @@
 	if(bell_attached)
 		. += span_notice("There is \a [bell_attached] attached to the handle.")
 	if(bomb_attached)
-		. += span_warning("There are a pair of gas tanks attached to the frame.")
+		. += span_warning("有一对气罐附着在框架上。")
 
 /obj/vehicle/ridden/wheelchair/proc/remove_bell()
 	if (!bell_attached)
 		return
 	bell_attached.forceMove(get_turf(src))
-	visible_message(span_notice("[bell_attached] falls off!"))
+	visible_message(span_notice("[bell_attached] 掉了下来！"))
 	bell_attached = null
 	update_appearance()
 
@@ -143,14 +143,14 @@
 	if (!bomb_attached)
 		return
 	bomb_attached.forceMove(get_turf(src))
-	visible_message(span_notice("[bomb_attached] falls off!"))
+	visible_message(span_notice("[bomb_attached] 掉了下来！"))
 	bomb_attached = null
 	update_appearance()
 
 /// A reward item for obtaining 5K hardcore random points. Do not use for anything else
 /obj/vehicle/ridden/wheelchair/gold
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_AFFECT_STATISTICS
-	desc = "Damn, must've been through a lot."
+	desc = "该死，这玩意儿肯定经历了不少。"
 	icon_state = "gold_wheelchair"
 	overlay_icon = "gold_wheelchair_overlay"
 	max_integrity = 200
@@ -160,8 +160,8 @@
 
 /// Handheld wheelchair item
 /obj/item/wheelchair
-	name = "wheelchair"
-	desc = "A collapsed wheelchair that can be carried around."
+	name = "轮椅"
+	desc = "一个可折叠的轮椅，便于携带。"
 	icon = 'icons/mob/rideables/vehicles.dmi'
 	icon_state = "wheelchair_folded"
 	inhand_icon_state = "wheelchair_folded"
@@ -190,8 +190,8 @@
 
 ///A reward item for obtaining 5K hardcore random points. Do not use for anything else
 /obj/item/wheelchair/gold
-	name = "gold wheelchair"
-	desc = "A collapsed, shiny wheelchair that can be carried around."
+	name = "金轮椅"
+	desc = "一个可折叠且表面光滑的轮椅，便于携带。"
 	icon = 'icons/mob/rideables/vehicles.dmi'
 	icon_state = "wheelchair_folded_gold"
 	inhand_icon_state = "wheelchair_folded_gold"

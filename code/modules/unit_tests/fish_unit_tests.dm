@@ -163,8 +163,8 @@
 	incompatible_traits = list(/datum/fish_trait/dummy)
 
 /datum/reagent/fishdummy
-	name = "fish test reagent"
-	description = "It smells fishy."
+	name = "鱼类测试试剂"
+	description = "闻起来有鱼腥味。"
 
 /obj/structure/aquarium/traits
 	var/obj/item/fish/testdummy/crossbreeder/crossbreeder

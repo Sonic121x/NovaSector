@@ -19,18 +19,18 @@
 				var/obj/item/bodypart/affecting = src.get_bodypart(BODY_ZONE_HEAD)
 				if(affecting?.receive_damage(PERSONAL_SPACE_DAMAGE))
 					src.update_damage_overlays()
-				visible_message(span_danger("[src] tried slapping [target]'s ass, but they were slapped instead!"),
-				span_danger("You tried slapping [target]'s ass, but they hit you back, ouch!"),
+				visible_message(span_danger("[src] 想拍 [target] 的屁股，结果自己反而被扇了！"),
+				span_danger("你想拍 [target] 的屁股，结果他们反击了，哎哟！"),
 				"You hear a slap.", ignored_mobs = list(target))
 				playsound(target.loc, 'sound/effects/snap.ogg', 50, TRUE, ASS_SLAP_EXTRA_RANGE)
-				to_chat(target, span_danger("[src] tried slapping your ass, but you hit them back!"))
+				to_chat(target, span_danger("[src] 想拍你的屁股，但你反击了他们！"))
 				return
 			else
-				visible_message(span_danger("[src] tried slapping [target]'s ass, but they were blocked!"),
-				span_danger("You tried slapping [target]'s ass, but they blocked you!"),
+				visible_message(span_danger("[src] 想拍 [target] 的屁股，但被挡住了！"),
+				span_danger("你想拍 [target] 的屁股，但他们挡住了你！"),
 				"You hear a slap.", ignored_mobs = list(target))
 				playsound(target.loc, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, ASS_SLAP_EXTRA_RANGE)
-				to_chat(target, span_danger("[src] tried slapping your ass, but you blocked them!"))
+				to_chat(target, span_danger("[src] 想拍你的屁股，但你挡住了他们！"))
 				return
 		else
 			do_ass_slap_animation(target)

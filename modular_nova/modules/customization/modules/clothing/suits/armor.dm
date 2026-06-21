@@ -2,8 +2,8 @@
 
 // WARDEN
 /obj/item/clothing/suit/armor/vest/warden/syndicate
-	name = "master at arms' vest"
-	desc = "Stunning. Menacing. Perfect for the man who gets bullied for leaving the brig."
+	name = "军械长背心"
+	desc = "令人惊叹。充满威胁。非常适合那个因为离开禁闭室而被欺负的家伙。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "warden_syndie"
@@ -11,8 +11,8 @@
 
 // HEAD OF PERSONNEL
 /obj/item/clothing/suit/armor/vest/hop/hop_formal
-	name = "head of personnel's parade jacket"
-	desc = "A luxurious deep blue jacket for the Head of Personnel, woven with a red trim. It smells of bureaucracy."
+	name = "人事主管的阅兵夹克"
+	desc = "一件为人事主管准备的奢华深蓝色夹克，饰有红色镶边。散发着官僚主义的气息。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hopformal"
@@ -23,8 +23,8 @@
 
 // CAPTAIN
 /obj/item/clothing/suit/armor/vest/capcarapace/jacket
-	name = "captain's jacket"
-	desc = "A lightweight armored jacket in the Captain's colors. For when you want something sleeker."
+	name = "舰长夹克"
+	desc = "一件采用舰长配色的轻便装甲夹克。适合当你想要更时尚的款式时。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "capjacket_casual"

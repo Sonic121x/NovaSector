@@ -1,6 +1,6 @@
 /datum/action/item_action/berserk_mode
-	name = "Berserk"
-	desc = "Increase your movement and melee speed while also increasing your melee armor for a short amount of time."
+	name = "狂暴"
+	desc = "短时间内提升你的移动速度和近战速度，同时增加近战护甲。"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "berserk_mode"
 	background_icon_state = "bg_demon"
@@ -21,10 +21,10 @@
 	var/obj/item/clothing/head/hooded/berserker/berserk = target
 	if(berserk.berserk_active)
 		if(feedback)
-			to_chat(owner, span_warning("You are already berserk!"))
+			to_chat(owner, span_warning("你已经处于狂暴状态了！"))
 		return FALSE
 	if(berserk.berserk_charge < 100)
 		if(feedback)
-			to_chat(owner, span_warning("You don't have a full charge."))
+			to_chat(owner, span_warning("你没有充满能量。"))
 		return FALSE
 	return TRUE

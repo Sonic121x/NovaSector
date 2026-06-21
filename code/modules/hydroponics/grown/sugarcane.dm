@@ -1,8 +1,8 @@
 
 // Sugarcane
 /obj/item/seeds/sugarcane
-	name = "sugarcane seed pack"
-	desc = "These seeds grow into sugarcane."
+	name = "甘蔗种子包"
+	desc = "能长成甘蔗的种子。"
 	icon_state = "seed-sugarcane"
 	species = "sugarcane"
 	plantname = "Sugarcane"
@@ -20,7 +20,7 @@
 /obj/item/food/grown/sugarcane
 	seed = /obj/item/seeds/sugarcane
 	name = "sugarcane"
-	desc = "Sickly sweet."
+	desc = "甜到死。"
 	icon_state = "sugarcane"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES | SUGAR
@@ -28,8 +28,8 @@
 
 ///and bamboo!
 /obj/item/seeds/bamboo
-	name = "bamboo seed pack"
-	desc = "A plant known for its flexible and resistant logs."
+	name = "竹子种子包"
+	desc = "一种可产出柔韧性和抗性很高的木材的植物。"
 	icon_state = "seed-bamboo"
 	species = "bamboo"
 	plantname = "Bamboo"
@@ -48,8 +48,8 @@
 
 /obj/item/grown/log/bamboo
 	seed = /obj/item/seeds/bamboo
-	name = "bamboo log"
-	desc = "A long and resistant bamboo log."
+	name = "竹木"
+	desc = "长度长，抗性强的竹木。"
 	icon_state = "bamboo"
 	plank_type = /obj/item/stack/sheet/mineral/bamboo
 	plank_name = "bamboo sticks"
@@ -59,8 +59,8 @@
 
 //Saltcane - Gross, salty shafts!
 /obj/item/seeds/sugarcane/saltcane
-	name = "saltcane seed pack"
-	desc = "These seeds grow into saltcane."
+	name = "盐藤种子包"
+	desc = "这些种子会长成盐藤。"
 	icon_state = "seed-saltcane"
 	species = "saltcane"
 	plantname = "Saltcane"
@@ -71,8 +71,8 @@
 
 /obj/item/food/grown/sugarcane/saltcane
 	seed = /obj/item/seeds/sugarcane/saltcane
-	name = "saltcane"
-	desc = "Ungodly salty, bane of slugs, treasure of horses."
+	name = "盐藤"
+	desc = "咸得离谱，蛞蝓的克星，马匹的珍宝。"
 	icon_state = "saltcane"
 	foodtypes = VEGETABLES | GROSS
 

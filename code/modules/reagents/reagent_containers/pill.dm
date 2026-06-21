@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/applicator/pill
-	name = "pill"
-	desc = "A tablet or capsule."
+	name = "药丸"
+	desc = "一枚药片或一颗胶囊。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pill"
 	inhand_icon_state = "pill"
@@ -22,9 +22,9 @@
 /obj/item/reagent_containers/applicator/pill/proc/reagent_special_examine(datum/source, mob/user, list/examine_list, can_see_insides = FALSE)
 	SIGNAL_HANDLER
 	if (layers_remaining)
-		examine_list += span_notice("Its sugary shell will last approximately [layers_remaining] seconds in a human stomach.")
+		examine_list += span_notice("它的糖衣在人体胃中大约能维持 [layers_remaining] 秒。")
 	else
-		examine_list += span_warning("Its shell is completely dissolved!")
+		examine_list += span_warning("它的外壳已经完全溶解了！")
 
 ///Runs the consumption code, can be overriden for special effects
 /obj/item/reagent_containers/applicator/pill/on_consumption(mob/living/consumer, mob/giver, list/modifiers)
@@ -58,14 +58,14 @@
 		return NONE
 
 	if(target.is_drainable() && !target.reagents.total_volume)
-		to_chat(user, span_warning("[target] is empty! There's nothing to dissolve [src] in."))
+		to_chat(user, span_warning("[target] 是空的！没有东西可以溶解 [src]。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(target.reagents.holder_full())
-		to_chat(user, span_warning("[target] is full."))
+		to_chat(user, span_warning("[target] 是满的。"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_warning("[user] slips something into [target]!"), span_notice("You dissolve [src] in [target]."), null, 2)
+	user.visible_message(span_warning("[user] 往 [target] 里塞了什么东西！"), span_notice("你将 [src] 溶解在 [target] 中。"), null, 2)
 	reagents.trans_to(target, reagents.total_volume, transferred_by = user)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -83,7 +83,7 @@
 	else if (istype(tool, /obj/item/reagent_containers/cup))
 		container = tool
 		if (!container.is_drainable())
-			to_chat(user, span_warning("You cannot pour [container]'s contents onto [src]!"))
+			to_chat(user, span_warning("你不能将 [container] 里的东西倒在 [src] 上！"))
 			return ITEM_INTERACT_BLOCKING
 		use_verb = "pour"
 
@@ -93,12 +93,12 @@
 	var/datum/reagent/consumable/sugar/sugar = container.reagents.has_reagent(/datum/reagent/consumable/sugar)
 	if (sugar)
 		if (layers_remaining >= PILL_MAX_LAYERS) // Full minute
-			to_chat(user, span_warning("[src]'s coating is too thick for you to cover it in any more sugar!"))
+			to_chat(user, span_warning("[src] 的涂层太厚了，你无法再给它裹上更多糖了！"))
 			return ITEM_INTERACT_BLOCKING
 		var/to_apply = floor(min(container.amount_per_transfer_from_this, sugar.volume, PILL_MAX_LAYERS - layers_remaining))
 		container.reagents.remove_reagent(/datum/reagent/consumable/sugar, to_apply)
 		layers_remaining += to_apply
-		to_chat(user, span_notice("You [use_verb] some of [container]'s contents onto [src], thickening its sugary shell."))
+		to_chat(user, span_notice("你将 [container] 里的一些东西[use_verb]到 [src] 上，加厚了它的糖衣。"))
 		return ITEM_INTERACT_SUCCESS
 
 	var/datum/reagent/water/water = container.reagents.has_reagent(/datum/reagent/water)
@@ -106,13 +106,13 @@
 		return ..()
 
 	if (!layers_remaining) // No coating
-		to_chat(user, span_warning("[src] doesn't have any more external layers to dissolve!"))
+		to_chat(user, span_warning("[src] 已经没有更多外部涂层可以溶解了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/to_apply = floor(min(container.amount_per_transfer_from_this, water.volume, layers_remaining))
 	container.reagents.remove_reagent(/datum/reagent/water, to_apply)
 	layers_remaining -= to_apply
-	to_chat(user, span_notice("You [use_verb] some of [container]'s contents onto [src], dissolving its sugary shell."))
+	to_chat(user, span_notice("你将 [container] 里的一些东西[use_verb]到 [src] 上，溶解了它的糖衣。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/applicator/pill/proc/on_digestion(datum/source, obj/item/organ/stomach/stomach, mob/living/carbon/owner, seconds_per_tick)
@@ -159,199 +159,199 @@
 	return FALSE
 
 /obj/item/reagent_containers/applicator/pill/tox
-	name = "toxins pill"
-	desc = "Highly toxic."
+	name = "毒素丸-'toxins'"
+	desc = "剧毒无比。"
 	icon_state = "pill5"
 	list_reagents = list(/datum/reagent/toxin = 50)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/cyanide
-	name = "cyanide pill"
-	desc = "Don't swallow this."
+	name = "氰化物药丸"
+	desc = "千万别吃。"
 	icon_state = "pill5"
 	list_reagents = list(/datum/reagent/toxin/cyanide = 50)
 
 /obj/item/reagent_containers/applicator/pill/adminordrazine
-	name = "adminordrazine pill"
+	name = "管理氨药丸"
 	desc = "It's magic. We don't have to explain it."
 	icon_state = "pill16"
 	list_reagents = list(/datum/reagent/medicine/adminordrazine = 50)
 
 /obj/item/reagent_containers/applicator/pill/morphine
-	name = "morphine pill"
-	desc = "Commonly used to treat insomnia."
+	name = "吗啡丸-'morphine'"
+	desc = "常用于治疗失眠。"
 	icon_state = "pill8"
 	list_reagents = list(/datum/reagent/medicine/morphine = 30)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/spaceacillin
-	name = "spaceacillin pill"
-	desc = "Increases resistance to viruses, bacteria, and parasites."
+	name = "太空青霉素药丸"
+	desc = "增强对病毒、细菌和寄生虫的抵抗力。"
 	icon_state = "pill17"
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 1.5) //1 minute since 0.05 every tick.
 
 /obj/item/reagent_containers/applicator/pill/stimulant
-	name = "stimulant pill"
-	desc = "Often taken by overworked employees, athletes, and the inebriated. You'll snap to attention immediately!"
+	name = "兴奋剂药丸"
+	desc = "通常被过度劳累的员工、运动员和醉酒者服用。服用后你会立刻精神抖擞！"
 	icon_state = "pill19"
 	list_reagents = list(/datum/reagent/medicine/ephedrine = 10, /datum/reagent/medicine/antihol = 10, /datum/reagent/consumable/coffee = 30)
 
 /obj/item/reagent_containers/applicator/pill/prescription_stimulant
-	name = "prescription stimulant pill"
-	desc = "Used to treat symptoms of drowsiness and sudden loss of consciousness."
+	name = "处方兴奋剂药片"
+	desc = "用于治疗嗜睡和突发意识丧失的症状。"
 	list_reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/synaptizine = 5, /datum/reagent/medicine/modafinil = 3)
 	icon_state = "pill15"
 
 /obj/item/reagent_containers/applicator/pill/salbutamol
-	name = "salbutamol pill"
-	desc = "Used to treat oxygen deprivation."
+	name = "舒喘宁药丸"
+	desc = "用于治疗缺氧。"
 	icon_state = "pill16"
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 30)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/multiver
-	name = "multiver pill"
-	desc = "Neutralizes many common toxins and scales with unique medicine in the system. Diluted with granibitaluri."
+	name = "木太尔丸-'Multiver'pill"
+	desc = "能中和体内多种常见毒素，并利用独特的药物成分清除体内毒素。用格拉尼比塔鲁里稀释。"
 	icon_state = "pill17"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 5, /datum/reagent/medicine/granibitaluri = 5)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/epinephrine
-	name = "epinephrine pill"
-	desc = "Used to stabilize patients."
+	name = "肾上腺素药丸-'epinephrine'"
+	desc = "用于稳定患者状况。"
 	icon_state = "pill5"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 15)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/mannitol
-	name = "mannitol pill"
-	desc = "Used to treat brain damage."
+	name = "甘露醇药丸-'mannitol'"
+	desc = "用于治疗脑损伤。"
 	icon_state = "pill17"
 	list_reagents = list(/datum/reagent/medicine/mannitol = 15)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/sansufentanyl
-	name = "sansufentanyl pill"
-	desc = "Used to treat Hereditary Manifold Sickness. Temporary side effects include - nausea, dizziness, impaired motor coordination."
+	name = "三苏芬太尼药片"
+	desc = "用于治疗遗传性多重疾病。暂时的副作用包括 - 恶心、头晕、运动协调能力受损。"
 	icon_state = "pill19"
 	list_reagents = list(/datum/reagent/medicine/sansufentanyl = 10) // NOVA EDIT CHANGE - ORIGINAL: list_reagents = list(/datum/reagent/medicine/sansufentanyl = 5)
 
 //Lower quantity mannitol pills (50u pills heal 250 brain damage, 5u pills heal 25)
 /obj/item/reagent_containers/applicator/pill/mannitol/braintumor
-	desc = "Used to treat symptoms for brain tumors."
+	desc = "用于治疗脑瘤的相关症状。"
 	list_reagents = list(/datum/reagent/medicine/mannitol = 5)
 
 /obj/item/reagent_containers/applicator/pill/mutadone
-	name = "mutadone pill"
-	desc = "Used to treat genetic damage."
+	name = "突变定药丸"
+	desc = "用于治疗基因损伤。"
 	icon_state = "pill20"
 	list_reagents = list(/datum/reagent/medicine/mutadone = 5)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/salicylic
-	name = "salicylic acid pill"
-	desc = "Used to dull pain."
+	name = "水杨酸药丸-'salicylic acid'"
+	desc = "用于缓解疼痛。"
 	icon_state = "pill9"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 24)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/oxandrolone
-	name = "oxandrolone pill"
-	desc = "Used to stimulate burn healing."
+	name = "氧雄龙药丸-'oxandrolone'"
+	desc = "用于促进烧伤愈合"
 	icon_state = "pill11"
 	list_reagents = list(/datum/reagent/medicine/oxandrolone = 24)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/insulin
-	name = "insulin pill"
-	desc = "Handles hyperglycaemic coma."
+	name = "胰岛素丸-'Insulin'"
+	desc = "用于治疗高血糖昏迷。"
 	icon_state = "pill18"
 	list_reagents = list(/datum/reagent/medicine/insulin = 50)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/psicodine
-	name = "psicodine pill"
-	desc = "Used to treat mental instability and phobias."
+	name = "定神素药丸-'psicodine'"
+	desc = "用于治疗精神状态不稳定及恐惧症。"
 	list_reagents = list(/datum/reagent/medicine/psicodine = 10)
 	icon_state = "pill22"
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/penacid
-	name = "pentetic acid pill"
-	desc = "Used to expunge radiation and toxins."
+	name = "喷替酸药丸"
+	desc = "用来清除辐射和毒素。"
 	list_reagents = list(/datum/reagent/medicine/pen_acid = 10)
 	icon_state = "pill22"
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/neurine
-	name = "neurine pill"
-	desc = "Used to treat non-severe mental traumas."
+	name = "神经碱药丸-'neurine'"
+	desc = "用于治疗非严重性精神创伤。"
 	list_reagents = list(/datum/reagent/medicine/neurine = 10)
 	icon_state = "pill22"
 	rename_with_volume = TRUE
 
 ///////////////////////////////////////// this pill is used only in a legion mob drop
 /obj/item/reagent_containers/applicator/pill/shadowtoxin
-	name = "black pill"
-	desc = "I wouldn't eat this if I were you."
+	name = "黑色药丸"
+	desc = "如果我是你，我肯定不会吃它的。"
 	icon_state = "pill9"
 	color = "#454545"
 	list_reagents = list(/datum/reagent/mutationtoxin/shadow = 10)
 
 ///////////////////////////////////////// Psychologist inventory pills
 /obj/item/reagent_containers/applicator/pill/happinesspsych
-	name = "mood stabilizer pill"
-	desc = "Used to temporarily alleviate anxiety and depression, take only as prescribed."
+	name = "情绪稳定药丸"
+	desc = "用于暂时缓解焦虑和抑郁，请严格按照医嘱服用。"
 	list_reagents = list(/datum/reagent/drug/happiness = 5)
 	icon_state = "pill_happy"
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/paxpsych
-	name = "pacification pill"
-	desc = "Used to temporarily suppress violent, homicidal, or suicidal behavior in patients."
+	name = "和平素药丸-'pacification'"
+	desc = "用于暂时抑制病人的暴力、杀人或自杀行为。"
 	list_reagents = list(/datum/reagent/pax = 5)
 	icon_state = "pill12"
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/lsdpsych
-	name = "antipsychotic pill"
-	desc = "Talk to your healthcare provider immediately if hallucinations worsen or new hallucinations emerge."
+	name = "抗精神病药丸-'antipsychotic pill'"
+	desc = "如果幻觉加重或出现新的幻觉，请立即与您的医疗保健提供者联系。"
 	list_reagents = list(/datum/reagent/toxin/mindbreaker = 5)
 	icon_state = "pill14"
 	rename_with_volume = TRUE
 
 //////////////////////////////////////// drugs
 /obj/item/reagent_containers/applicator/pill/zoom
-	name = "yellow pill"
-	desc = "A poorly made canary-yellow pill; it is slightly crumbly."
+	name = "黄色药丸"
+	desc = "一颗做工粗糙的淡黄色药片；略微易碎。"
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/drug/nicotine = 10, /datum/reagent/drug/methamphetamine = 1)
 	icon_state = "pill7"
 
 
 /obj/item/reagent_containers/applicator/pill/happy
-	name = "happy pill"
-	desc = "They have little happy faces on them, and they smell like marker pens."
+	name = "快乐药丸"
+	desc = "它们上面有笑脸图案，闻起来像记号笔。"
 	list_reagents = list(/datum/reagent/consumable/sugar = 10, /datum/reagent/drug/space_drugs = 10)
 	icon_state = "pill_happy"
 
 
 /obj/item/reagent_containers/applicator/pill/lsd
-	name = "sunshine pill"
-	desc = "Engraved on this split-coloured pill is a half-sun, half-moon."
+	name = "阳光药丸"
+	desc = "这颗双色药丸上刻着半日半月的图案。"
 	list_reagents = list(/datum/reagent/drug/mushroomhallucinogen = 15, /datum/reagent/toxin/mindbreaker = 15)
 	icon_state = "pill14"
 
 
 /obj/item/reagent_containers/applicator/pill/aranesp
-	name = "smooth pill"
-	desc = "This blue pill feels slightly moist."
+	name = "平滑药丸"
+	desc = "这颗蓝色药丸摸起来有点湿润。"
 	list_reagents = list(/datum/reagent/drug/aranesp = 10)
 	icon_state = "pill3"
 
 ///Black and white pills that spawn in maintenance and have random reagent contents
 /obj/item/reagent_containers/applicator/pill/maintenance
-	name = "maintenance pill"
-	desc = "A strange pill found in the depths of maintenance."
+	name = "维修管道药丸"
+	desc = "在维修管道深处发现了一颗奇怪的药丸。"
 	icon_state = "pill21"
 	/// From which randomisation pool to pull reagents from
 	var/random_reagent_flag = REAGENT_SPAWN_RANDOM_PRODUCERS
@@ -400,36 +400,36 @@
 	count_towards_achievement = FALSE
 
 /obj/item/reagent_containers/applicator/pill/potassiodide
-	name = "potassium iodide pill"
-	desc = "Used to reduce low radiation damage very effectively."
+	name = "碘化钾药丸"
+	desc = "可有效降低低辐射所造成的伤害。"
 	icon_state = "pill11"
 	list_reagents = list(/datum/reagent/medicine/potass_iodide = 15)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/probital
-	name = "Probital pill"
-	desc = "Used to treat brute damage of minor and moderate severity.The carving in the pill says 'Eat before ingesting'. Causes fatigue and diluted with granibitaluri."
+	name = "普罗比妥片"
+	desc = "用于治疗轻度至中度的外伤。药丸上刻有“先食用后服用”的字样。会引起疲劳，需用格拉尼比塔鲁里稀释后服用。"
 	icon_state = "pill12"
 	list_reagents = list(/datum/reagent/medicine/c2/probital = 5, /datum/reagent/medicine/granibitaluri = 10)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/iron
-	name = "iron pill"
-	desc = "Used to reduce bloodloss slowly."
+	name = "铁药丸"
+	desc = "用于缓慢减少出血量。"
 	icon_state = "pill8"
 	list_reagents = list(/datum/reagent/iron = 30)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/gravitum
-	name = "gravitum pill"
-	desc = "Used in weight loss. In a way."
+	name = "引力素药片"
+	desc = "用于减肥。从某种意义上来说。"
 	icon_state = "pill8"
 	list_reagents = list(/datum/reagent/gravitum = 5)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/ondansetron
-	name = "ondansetron pill"
-	desc = "Alleviates nausea. May cause drowsiness."
+	name = "昂丹司琼药片"
+	desc = "缓解恶心。可能导致嗜睡。"
 	icon_state = "pill11"
 	list_reagents = list(/datum/reagent/medicine/ondansetron = 10)
 

@@ -105,9 +105,9 @@
 	cut_overlay("penguin_egg_overlay")
 
 /mob/living/basic/pet/penguin/emperor
-	name = "emperor penguin"
+	name = "帝企鹅"
 	real_name = "penguin"
-	desc = "Emperor of all she surveys."
+	desc = "她所巡视的一切的帝王。"
 	icon_state = "penguin"
 	icon_living = "penguin"
 	icon_dead = "penguin_dead"
@@ -117,7 +117,7 @@
 	can_lay_eggs = FALSE
 
 /mob/living/basic/pet/penguin/emperor/shamebrero
-	name = "shamebrero penguin"
+	name = "羞耻帽企鹅"
 	icon_state = "penguin_shamebrero"
 	icon_living = "penguin_shamebrero"
 	gold_core_spawnable = NO_SPAWN
@@ -127,9 +127,9 @@
 	can_lay_eggs = FALSE
 
 /mob/living/basic/pet/penguin/baby
-	name = "penguin chick"
+	name = "企鹅幼崽"
 	real_name = "penguin"
-	desc = "Can't fly and barely waddles, yet the prince of all chicks."
+	desc = "不会飞，蹒跚而行，却是所有雏鸟中的王子。"
 	icon_state = "penguin_baby"
 	icon_living = "penguin_baby"
 	icon_dead = "penguin_baby_dead"

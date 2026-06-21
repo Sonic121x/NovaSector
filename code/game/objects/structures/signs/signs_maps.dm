@@ -1,8 +1,8 @@
 //map and direction signs
 
 /obj/structure/sign/map
-	name = "station map"
-	desc = "A navigational chart of the station."
+	name = "空间站地图"
+	desc = "一份空间站的导航图。"
 	max_integrity = 500
 
 /obj/structure/sign/map/left
@@ -27,85 +27,85 @@
 	icon_state = "map-pubby"
 
 /obj/structure/sign/directions/science
-	name = "science department sign"
-	desc = "A direction sign, pointing out which way the Science department is."
+	name = "科研部路标"
+	desc = "指明科研部方向的指示牌。"
 	icon_state = "direction_sci"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/science, 32)
 
 /obj/structure/sign/directions/engineering
-	name = "engineering department sign"
-	desc = "A direction sign, pointing out which way the Engineering department is."
+	name = "工程部路标"
+	desc = "指明工程部方向的指示牌。"
 	icon_state = "direction_eng"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/engineering, 32)
 
 /obj/structure/sign/directions/security
-	name = "security department sign"
-	desc = "A direction sign, pointing out which way the Security department is."
+	name = "安保部路标"
+	desc = "指明安保部方向的指示牌。"
 	icon_state = "direction_sec"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/security, 32)
 
 /obj/structure/sign/directions/medical
-	name = "medbay sign"
-	desc = "A direction sign, pointing out which way the Medbay is."
+	name = "医疗部标识"
+	desc = "指明医疗部方向的指示牌。"
 	icon_state = "direction_med"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/medical, 32)
 
 /obj/structure/sign/directions/evac
-	name = "evacuation sign"
-	desc = "A direction sign, pointing out which way the escape shuttle dock is."
+	name = "撤离点标识"
+	desc = "指明撤离点方向的指示牌。"
 	icon_state = "direction_evac"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/evac, 32)
 
 /obj/structure/sign/directions/supply
-	name = "cargo sign"
-	desc = "A direction sign, pointing out which way the Cargo Bay is."
+	name = "货舱路标"
+	desc = "指明货舱方向的指示牌。"
 	icon_state = "direction_supply"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/supply, 32)
 
 /obj/structure/sign/directions/command
-	name = "command department sign"
-	desc = "A direction sign, pointing out which way the Command department is."
+	name = "指挥部路标"
+	desc = "指明指挥部方向的指示牌。"
 	icon_state = "direction_bridge"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/command, 32)
 
 /obj/structure/sign/directions/vault
-	name = "vault sign"
-	desc = "A direction sign, pointing out which way the station's Vault is."
+	name = "金库路标"
+	desc = "指明空间站金库方向的指示牌。"
 	icon_state = "direction_vault"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/vault, 32)
 
 /obj/structure/sign/directions/upload
-	name = "upload sign"
-	desc = "A direction sign, pointing out which way the station's AI Upload is."
+	name = "上传标识"
+	desc = "指明AI上传方向的指示牌。"
 	icon_state = "direction_upload"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/upload, 32)
 
 /obj/structure/sign/directions/dorms
-	name = "dormitories sign"
-	desc = "A direction sign, pointing out which way the dormitories are."
+	name = "宿舍路标"
+	desc = "指明宿舍方向的指示牌。"
 	icon_state = "direction_dorms"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/dorms, 32)
 
 /obj/structure/sign/directions/lavaland
-	name = "lava sign"
-	desc = "A direction sign, pointing out which way the hot stuff is."
+	name = "岩浆标识"
+	desc = "指明滚烫岩浆所在位置的指示牌。"
 	icon_state = "direction_lavaland"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/lavaland, 32)
 
 /obj/structure/sign/directions/arrival
-	name = "arrivals sign"
-	desc = "A direction sign, pointing out which way the arrivals shuttle dock is."
+	name = "撤离点标志"
+	desc = "指明接送站方向的指示牌。"
 	icon_state = "direction_arrival"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/arrival, 32)

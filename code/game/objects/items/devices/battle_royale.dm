@@ -43,21 +43,21 @@ GLOBAL_LIST_INIT(battle_royale_regions, list(
 		remote.link_implanter(src, user)
 		return ITEM_INTERACT_SUCCESS
 	if (!linked)
-		balloon_alert(user, "no linked remote!")
+		balloon_alert(user, "未链接遥控器！")
 		return ITEM_INTERACT_BLOCKING
 	if (DOING_INTERACTION_WITH_TARGET(user, interacting_with))
-		balloon_alert(user, "busy!")
+		balloon_alert(user, "正忙！")
 		return ITEM_INTERACT_BLOCKING
 	var/mob/living/potential_winner = interacting_with
 	if (potential_winner.stat != CONSCIOUS)
-		balloon_alert(user, "target unconscious!")
+		balloon_alert(user, "目标已失去意识！")
 		return ITEM_INTERACT_BLOCKING
 	if (!potential_winner.mind)
-		balloon_alert(user, "target too boring!")
+		balloon_alert(user, "目标太无聊了！")
 		return ITEM_INTERACT_BLOCKING
 	log_combat(user, potential_winner, "tried to implant a battle royale implant into")
 	if (!do_after(user, 1.5 SECONDS, potential_winner))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/implant/explosive/battle_royale/encouragement_implant = new
@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(battle_royale_regions, list(
 		qdel(encouragement_implant) // no balloon alert - feedback is usually provided by the implant
 		return ITEM_INTERACT_BLOCKING
 
-	potential_winner.balloon_alert(user, "implanted")
+	potential_winner.balloon_alert(user, "已植入")
 	SEND_SIGNAL(src, COMSIG_ROYALE_IMPLANTED, encouragement_implant)
 	return ITEM_INTERACT_SUCCESS
 
@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(battle_royale_regions, list(
 		return
 	var/contestant_count = length(implanted_implants)
 	if (contestant_count < required_contestants)
-		balloon_alert(user, "[required_contestants - contestant_count] contestants needed!")
+		balloon_alert(user, "还需要[required_contestants - contestant_count]名参赛者！")
 		return
 
 	GLOB.battle_royale_master.start_battle(implanted_implants)
@@ -115,11 +115,11 @@ GLOBAL_LIST_INIT(battle_royale_regions, list(
 /obj/item/royale_remote/proc/link_implanter(obj/item/royale_implanter/implanter, mob/user)
 	if (implanter in linked_implanters)
 		if (user)
-			balloon_alert(user, "already linked!")
+			balloon_alert(user, "已经链接过了！")
 		return
 
 	if (user)
-		balloon_alert(user, "link established")
+		balloon_alert(user, "链接已建立")
 
 	implanter.linked = TRUE
 	linked_implanters += implanter
@@ -237,10 +237,10 @@ GLOBAL_DATUM_INIT(battle_royale_master, /datum/battle_royale_master, new)
 			If they don't make it in five minutes, they'll be disqualified. If you see one of our players struggling to get in, do lend them a hand... or don't, if you can live with the consequences!  \n\
 			As a gesture of gratitude, we will be providing our premium broadcast to your entertainment monitors at no cost so that you can watch the excitement. \n\
 			Bystanders are advised not to intervene... but if you do, make it look good for the camera!",
-		title = "Rumble Royale Beginning",
+		title = "皇家大乱斗开始",
 		sound = 'sound/announcer/alarm/nuke_alarm.ogg',
 		has_important_message = TRUE,
-		sender_override = "Rumble Royale Pirate Broadcast Station",
+		sender_override = "大乱斗海盗广播站",
 		color_override = "red",
 	)
 
@@ -267,10 +267,10 @@ GLOBAL_DATUM_INIT(battle_royale_master, /datum/battle_royale_master, new)
 			message = "[implant.imp_in.real_name] [pick(euphemisms)] [pick(condolences)]"
 		priority_announce(
 			text = message,
-			title = "Rumble Royale Casualty Report",
+			title = "大乱斗伤亡报告",
 			sound = 'sound/announcer/notice/notice1.ogg',
 			has_important_message = TRUE,
-			sender_override = "Rumble Royale Pirate Broadcast Station",
+			sender_override = "大乱斗海盗广播站",
 			color_override = "red",
 		)
 
@@ -301,10 +301,10 @@ GLOBAL_DATUM_INIT(battle_royale_master, /datum/battle_royale_master, new)
 
 	priority_announce(
 		text = message,
-		title = "Rumble Royale Winner",
+		title = "大乱斗胜者",
 		sound = 'sound/announcer/notice/notice1.ogg',
 		has_important_message = TRUE,
-		sender_override = "Rumble Royale Pirate Broadcast Station",
+		sender_override = "大乱斗海盗广播站",
 		color_override = "red",
 	)
 
@@ -315,11 +315,11 @@ GLOBAL_DATUM_INIT(battle_royale_master, /datum/battle_royale_master, new)
 /// Called halfway through the battle, if you've not made it to the designated battle zone we kill you
 /datum/battle_royale_controller/proc/limit_area()
 	priority_announce(
-		text = "We're halfway done folks! And bad news to anyone who hasn't made it to the [chosen_area]... you're out!",
-		title = "Rumble Royale Update",
+		text = "大伙们，我们已经完成一半了！对于还没赶到[chosen_area]的人来说有个坏消息……你出局了！",
+		title = "大乱斗更新",
 		sound = 'sound/announcer/notice/notice1.ogg',
 		has_important_message = TRUE,
-		sender_override = "Rumble Royale Pirate Broadcast Station",
+		sender_override = "皇家大乱斗海盗广播站",
 		color_override = "red",
 	)
 
@@ -334,10 +334,10 @@ GLOBAL_DATUM_INIT(battle_royale_master, /datum/battle_royale_master, new)
 		text = "Sorry remaining contestants, your time is up. \
 			We're sorry to announce that this edition of Royal Rumble has no winner. \n\
 			Better luck next time!",
-		title = "Rumble Royale Concluded",
+		title = "皇家大乱斗结束",
 		sound = 'sound/announcer/notice/notice1.ogg',
 		has_important_message = TRUE,
-		sender_override = "Rumble Royale Pirate Broadcast Station",
+		sender_override = "皇家大乱斗海盗广播站",
 		color_override = "red",
 	)
 

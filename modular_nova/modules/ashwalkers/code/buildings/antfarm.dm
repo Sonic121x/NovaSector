@@ -1,6 +1,6 @@
 /obj/structure/antfarm
-	name = "ant farm"
-	desc = "Though it may look natural, this was not made by ants."
+	name = "蚂蚁农场"
+	desc = "虽然看起来是天然的，但这并非蚂蚁所造。"
 	icon = 'modular_nova/modules/ashwalkers/icons/structures.dmi'
 	icon_state = "anthill"
 	density = TRUE
@@ -69,18 +69,18 @@
 
 /obj/structure/antfarm/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>There are currently [has_ants ? "" : "no "]ants in the farm.")
+	. += span_notice("<br>农场里目前有[has_ants ? "" : "no "]蚂蚁。")
 	if(!has_ants)
-		. += span_notice("To add ants, feed the farm some <b>food</b>.")
+		. += span_notice("要添加蚂蚁，请给农场喂一些<b>食物</b>。")
 
 /obj/structure/antfarm/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/food))
 		if(has_ants)
-			balloon_alert(user, "ants block the way!")
+			balloon_alert(user, "蚂蚁挡住了路！")
 			return ITEM_INTERACT_BLOCKING
 
 		qdel(tool)
-		balloon_alert(user, "food has been placed")
+		balloon_alert(user, "已放置食物")
 		user.mind?.adjust_experience(/datum/skill/primitive, 2)
 		ant_chance++
 		if(prob(user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
@@ -89,10 +89,10 @@
 
 	if(istype(tool, /obj/item/storage/bag/plants))
 		if(has_ants)
-			balloon_alert(user, "ants block the way!")
+			balloon_alert(user, "蚂蚁挡住了路！")
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "feeding the ants")
+		balloon_alert(user, "喂食蚂蚁")
 		for(var/obj/item/food/selected_food in tool.contents)
 			var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 			if(has_ants || !do_after(user, 1 SECONDS * skill_modifier, src))

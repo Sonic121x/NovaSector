@@ -1,6 +1,6 @@
 /obj/structure/ore_container/food_trough/raptor_trough
-	name = "raptor trough"
-	desc = "The raptors will eat out of it!"
+	name = "迅猛龙食槽"
+	desc = "迅猛龙会从里面吃东西！"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "raptor_trough"
 	x_offsets = list(-5, 5)

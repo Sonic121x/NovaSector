@@ -1,7 +1,7 @@
 //Hydroponics tank and base code
 /obj/item/watertank
-	name = "backpack water tank"
-	desc = "A S.U.N.S.H.I.N.E. brand water tank backpack with a nozzle to water plants."
+	name = "背包式水箱"
+	desc = "一个S.U.N.S.H.I.N.E.品牌的水箱背包，带有用于浇灌植物的喷嘴。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "waterbackpack"
 	inhand_icon_state = "waterbackpack"
@@ -42,7 +42,7 @@
 	if(!istype(user))
 		return
 	if(user.get_item_by_slot(user.getBackSlot()) != src)
-		to_chat(user, span_warning("The watertank must be worn properly to use!"))
+		to_chat(user, span_warning("必须正确穿戴水箱才能使用！"))
 		return
 	if(user.incapacitated)
 		return
@@ -53,7 +53,7 @@
 	if(noz in src)
 		//Detach the nozzle into the user's hands
 		if(!user.put_in_hands(noz))
-			to_chat(user, span_warning("You need a free hand to hold the mister!"))
+			to_chat(user, span_warning("你需要一只空手来握住喷雾器！"))
 			return
 	else
 		//Remove from their hands and put back "into" the tank
@@ -69,7 +69,7 @@
 /obj/item/watertank/proc/noz_move(atom/movable/mover, atom/oldloc, direction)
 	if(mover.loc == src || mover.loc == loc)
 		return
-	balloon_alert(loc, "nozzle snaps back")
+	balloon_alert(loc, "喷嘴弹回")
 	mover.forceMove(src)
 
 /obj/item/watertank/equipped(mob/user, slot)
@@ -106,8 +106,8 @@
 // the watertank backpack. Allowing it to be placed elsewhere or created without a parent
 // watertank object will likely lead to weird behaviour or runtimes.
 /obj/item/reagent_containers/spray/mister
-	name = "water mister"
-	desc = "A mister nozzle attached to a water tank."
+	name = "水雾喷雾器"
+	desc = "一个连接到水箱的喷雾喷嘴。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "mister"
 	inhand_icon_state = "mister"
@@ -134,8 +134,8 @@
 
 //Janitor tank
 /obj/item/watertank/janitor
-	name = "backpack cleaner tank"
-	desc = "A janitorial cleaner backpack with nozzle to clean blood and graffiti."
+	name = "背包式清洁剂箱"
+	desc = "一个带有喷嘴的清洁工清洁背包，用于清洁血迹和涂鸦。"
 	icon_state = "waterbackpackjani"
 	inhand_icon_state = "waterbackpackjani"
 	custom_price = PAYCHECK_CREW * 5
@@ -145,8 +145,8 @@
 	reagents.add_reagent(/datum/reagent/space_cleaner, 500)
 
 /obj/item/reagent_containers/spray/mister/janitor
-	name = "janitor spray nozzle"
-	desc = "A janitorial spray nozzle attached to a watertank, designed to clean up large messes."
+	name = "清洁工喷雾喷嘴"
+	desc = "一个连接到水箱的清洁工喷雾喷嘴，设计用于清理大面积污渍。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "misterjani"
 	inhand_icon_state = "misterjani"
@@ -160,12 +160,12 @@
 	return new /obj/item/reagent_containers/spray/mister/janitor(src)
 
 /obj/item/reagent_containers/spray/mister/janitor/mode_change_message(mob/user)
-	to_chat(user, span_notice("You [amount_per_transfer_from_this == 10 ? "remove" : "affix"] the nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
+	to_chat(user, span_notice("你[amount_per_transfer_from_this == 10 ? "remove" : "affix"]了喷嘴。现在每次喷射将使用[amount_per_transfer_from_this]单位。"))
 
 //Security tank
 /obj/item/watertank/pepperspray
-	name = "ANTI-TIDER-2500 suppression backpack"
-	desc = "The ultimate crowd-control device; this tool allows the user to quickly and efficiently pacify groups of hostile targets."
+	name = "ANTI-TIDER-2500镇压背包"
+	desc = "终极人群控制设备；此工具允许使用者快速有效地制服成群的敌对目标。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "pepperbackpacksec"
 	inhand_icon_state = "pepperbackpacksec"
@@ -177,8 +177,8 @@
 	reagents.add_reagent(/datum/reagent/consumable/condensedcapsaicin, 1000)
 
 /obj/item/reagent_containers/spray/mister/pepperspray
-	name = "security spray nozzle"
-	desc = "A pacifying spray nozzle attached to a pepperspray tank, designed to silence perps."
+	name = "安保喷雾喷嘴"
+	desc = "一个连接到辣椒喷雾罐的镇静喷雾喷嘴，设计用于让嫌犯闭嘴。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "mistersec"
 	inhand_icon_state = "mistersec"
@@ -192,12 +192,12 @@
 	return new /obj/item/reagent_containers/spray/mister/pepperspray(src)
 
 /obj/item/reagent_containers/spray/mister/pepperspray/mode_change_message(mob/user)
-	to_chat(user, span_notice("You [amount_per_transfer_from_this == 10 ? "remove" : "affix"] the nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
+	to_chat(user, span_notice("你[amount_per_transfer_from_this == 10 ? "remove" : "affix"]了喷嘴。现在每次喷射将使用[amount_per_transfer_from_this]单位。"))
 
 //ATMOS FIRE FIGHTING BACKPACK
 /obj/item/watertank/atmos
-	name = "backpack firefighter tank"
-	desc = "A refrigerated and pressurized backpack tank with extinguisher nozzle, intended to fight fires. Swaps between extinguisher, resin launcher and a smaller scale resin foamer."
+	name = "背包式消防水箱"
+	desc = "一个冷藏加压的背包水箱，配有灭火喷嘴，用于扑灭火灾。可在灭火器、树脂发射器和较小规模的树脂泡沫发生器之间切换。"
 	inhand_icon_state = "waterbackpackatmos"
 	icon_state = "waterbackpackatmos"
 	worn_icon_state = "waterbackpackatmos"
@@ -219,8 +219,8 @@
 		N.nozzle_mode = 0
 
 /obj/item/extinguisher/mini/nozzle
-	name = "extinguisher nozzle"
-	desc = "A heavy duty nozzle attached to a firefighter's backpack tank."
+	name = "灭火器喷嘴"
+	desc = "连接到消防员背包水箱的重型喷嘴。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "atmos_nozzle"
 	inhand_icon_state = "nozzleatmos"
@@ -261,19 +261,19 @@
 			nozzle_mode = RESIN_LAUNCHER
 			if(uses_pack)
 				tank.icon_state = "waterbackpackatmos_1"
-			balloon_alert(user, "switched to resin launcher")
+			balloon_alert(user, "已切换至树脂发射器")
 			return
 		if(RESIN_LAUNCHER)
 			nozzle_mode = RESIN_FOAM
 			if(uses_pack)
 				tank.icon_state = "waterbackpackatmos_2"
-			balloon_alert(user, "switched to resin foam")
+			balloon_alert(user, "已切换至树脂泡沫")
 			return
 		if(RESIN_FOAM)
 			nozzle_mode = EXTINGUISHER
 			if(uses_pack)
 				tank.icon_state = "waterbackpackatmos_0"
-			balloon_alert(user, "switched to fire extinguisher")
+			balloon_alert(user, "切换为灭火器")
 			return
 	return
 
@@ -292,10 +292,10 @@
 			return ITEM_INTERACT_SKIP_TO_ATTACK
 		var/datum/reagents/R = reagents
 		if(R.total_volume < 100)
-			balloon_alert(user, "not enough water!")
+			balloon_alert(user, "水量不足！")
 			return ITEM_INTERACT_BLOCKING
 		if(!COOLDOWN_FINISHED(src, resin_cooldown))
-			balloon_alert(user, "still recharging!")
+			balloon_alert(user, "仍在充能中！")
 			return ITEM_INTERACT_BLOCKING
 		COOLDOWN_START(src, resin_cooldown, 10 SECONDS)
 		R.remove_all(100)
@@ -312,11 +312,11 @@
 		if(!isturf(interacting_with))
 			return NONE
 		if(!Adj)
-			balloon_alert(user, "too far!")
+			balloon_alert(user, "太远了！")
 			return ITEM_INTERACT_BLOCKING
 		for(var/thing in interacting_with)
 			if(istype(thing, /obj/effect/particle_effect/fluid/foam/metal/resin) || istype(thing, /obj/structure/foamedmetal/resin))
-				balloon_alert(user, "already has resin!")
+				balloon_alert(user, "已有树脂！")
 				return ITEM_INTERACT_BLOCKING
 		if(metal_synthesis_cooldown < 5)
 			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(interacting_with))
@@ -325,7 +325,7 @@
 			addtimer(CALLBACK(src, PROC_REF(reduce_metal_synth_cooldown)), 10 SECONDS)
 			return ITEM_INTERACT_SUCCESS
 
-		balloon_alert(user, "still being synthesized!")
+		balloon_alert(user, "仍在合成中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE
@@ -348,8 +348,8 @@
 	metal_synthesis_cooldown--
 
 /obj/effect/resin_container
-	name = "resin container"
-	desc = "A compacted ball of expansive resin, used to repair the atmosphere in a room, or seal off breaches."
+	name = "树脂容器"
+	desc = "一个压缩的膨胀树脂球，用于修复房间大气或密封破口。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "frozen_smoke_capsule"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -370,8 +370,8 @@
 #undef RESIN_FOAM
 
 /obj/item/reagent_containers/chemtank
-	name = "backpack chemical injector"
-	desc = "A chemical autoinjector that can be carried on your back."
+	name = "背包式化学注射器"
+	desc = "一种可以背在背上的化学自动注射器。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "waterbackpackchem"
 	inhand_icon_state = "waterbackpackchem"
@@ -401,7 +401,7 @@
 	if(!istype(user))
 		return
 	if (user.get_item_by_slot(ITEM_SLOT_BACK) != src)
-		to_chat(user, span_warning("The chemtank needs to be on your back before you can activate it!"))
+		to_chat(user, span_warning("化学背包需要背在背上才能激活！"))
 		return
 	if(on)
 		turn_off()
@@ -432,13 +432,13 @@
 	on = TRUE
 	START_PROCESSING(SSobj, src)
 	if(ismob(loc))
-		to_chat(loc, span_notice("[src] turns on."))
+		to_chat(loc, span_notice("[src] 已启动。"))
 
 /obj/item/reagent_containers/chemtank/proc/turn_off()
 	on = FALSE
 	STOP_PROCESSING(SSobj, src)
 	if(ismob(loc))
-		to_chat(loc, span_notice("[src] turns off."))
+		to_chat(loc, span_notice("[src] 已关闭。"))
 
 /obj/item/reagent_containers/chemtank/process(seconds_per_tick)
 	if(!ishuman(loc))
@@ -459,4 +459,4 @@
 	user.update_worn_back() //for overlays update
 
 /datum/action/item_action/activate_injector
-	name = "Activate Injector"
+	name = "激活注射器"

@@ -1,7 +1,7 @@
 // Starthistle
 /obj/item/seeds/starthistle
-	name = "starthistle seed pack"
-	desc = "A robust species of weed that often springs up in-between the cracks of spaceship parking lots."
+	name = "星蓟种子包"
+	desc = "一种强健的杂草，常常会在宇宙飞船停车场的缝隙中生长出来。"
 	icon_state = "seed-starthistle"
 	plant_icon_offset = 3
 	species = "starthistle"
@@ -33,8 +33,8 @@
 
 // Corpse flower
 /obj/item/seeds/starthistle/corpse_flower
-	name = "corpse flower seed pack"
-	desc = "A species of plant that emits a horrible odor. The odor stops being produced in difficult atmospheric conditions."
+	name = "尸花种子包"
+	desc = "一种会散发难闻的气味的植物。在恶劣的环境条件下，这种气味就会停止产生。"
 	icon_state = "seed-corpse-flower"
 	species = "corpse-flower"
 	plantname = "Corpse flower"
@@ -46,8 +46,8 @@
 
 //Galaxy Thistle
 /obj/item/seeds/galaxythistle
-	name = "galaxythistle seed pack"
-	desc = "An impressive species of weed that is thought to have evolved from the simple milk thistle. Contains flavolignans that can help repair a damaged liver."
+	name = "银河蓟种子包"
+	desc = "一种令人瞩目的植物，据信是由简单的紫锥菊进化而来的。它含有黄烷醇类化合物，能够帮助修复受损的肝脏。"
 	icon_state = "seed-galaxythistle"
 	species = "galaxythistle"
 	plantname = "Galaxythistle"
@@ -68,8 +68,8 @@
 
 /obj/item/food/grown/galaxythistle
 	seed = /obj/item/seeds/galaxythistle
-	name = "galaxythistle flower head"
-	desc = "This spiny cluster of florets reminds you of the highlands."
+	name = "星系蓟花头"
+	desc = "这一簇带刺的花蕾让你联想到那片高地。"
 	icon_state = "galaxythistle"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES

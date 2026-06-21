@@ -8,8 +8,8 @@
 */
 
 /datum/symptom/voice_change
-	name = "Voice Change"
-	desc = "The virus alters the pitch and tone of the host's vocal cords, changing how their voice sounds."
+	name = "声音改变"
+	desc = "该病毒会改变宿主声带的音高和音调，从而改变其声音。"
 	illness = "Mime Crisis"
 	stealth = 2
 	resistance = -1

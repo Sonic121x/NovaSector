@@ -1,6 +1,6 @@
 /datum/job/corrections_officer
 	title = JOB_CORRECTIONS_OFFICER
-	description = "Guard the permabrig, stand around looking imposing, get fired for abusing the prisoners"
+	description = "看守永久禁闭室，四处站着摆出威严的样子，然后因为虐待囚犯而被解雇"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 1
@@ -39,7 +39,7 @@
 
 // OUTFIT
 /datum/outfit/job/corrections_officer
-	name = "Corrections Officer"
+	name = "惩教官员"
 	jobtype = /datum/job/corrections_officer
 	uniform = /obj/item/clothing/under/rank/security/corrections_officer/sweater
 	suit = /obj/item/clothing/suit/toggle/jacket/nova/corrections_officer

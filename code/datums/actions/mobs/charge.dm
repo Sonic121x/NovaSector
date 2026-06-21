@@ -1,8 +1,8 @@
 /datum/action/cooldown/mob_cooldown/charge
-	name = "Charge"
+	name = "冲锋"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	desc = "Allows you to charge at a chosen position."
+	desc = "允许你向选定位置发起冲锋。"
 	cooldown_time = 1.5 SECONDS
 	/// Delay before the charge actually occurs
 	var/charge_delay = 0.3 SECONDS
@@ -174,14 +174,14 @@
 
 /// Actually hit someone
 /datum/action/cooldown/mob_cooldown/charge/proc/hit_target(atom/movable/source, mob/living/target, damage_dealt)
-	target.visible_message(span_danger("[source] slams into [target]!"), span_userdanger("[source] tramples you into the ground!"))
+	target.visible_message(span_danger("[source] 猛撞在 [target] 身上！"), span_userdanger("[source] 将你践踏进地里！"))
 	target.apply_damage(damage_dealt, BRUTE, wound_bonus = CANT_WOUND)
 	playsound(get_turf(target), 'sound/effects/meteorimpact.ogg', 100, TRUE)
 	shake_camera(target, 4, 3)
 	shake_camera(source, 2, 3)
 
 /datum/action/cooldown/mob_cooldown/charge/basic_charge
-	name = "Basic Charge"
+	name = "基础冲锋"
 	cooldown_time = 6 SECONDS
 	charge_delay = 1.5 SECONDS
 	charge_distance = 4
@@ -211,7 +211,7 @@
 		living_source = source
 
 	if(!isliving(target))
-		source.visible_message(span_danger("[source] smashes into [target]!"))
+		source.visible_message(span_danger("[source] 猛击在 [target] 身上！"))
 		if (recoil_duration >= 0) // Because 0 stun/knockdown is still a valid value
 			living_source?.Stun(recoil_duration, ignore_canstun = TRUE)
 		return
@@ -224,7 +224,7 @@
 				living_source.Stun(recoil_duration, ignore_canstun = TRUE)
 			return
 
-	living_target.visible_message(span_danger("[source] charges into [living_target]!"), span_userdanger("[source] charges into you!"))
+	living_target.visible_message(span_danger("[source] 向 [living_target] 发起冲锋！"), span_userdanger("[source] 向你冲来！"))
 	if (knockdown_duration >= 0)
 		living_target.Knockdown(knockdown_duration)
 
@@ -247,8 +247,8 @@
 	tired_movespeed = /datum/movespeed_modifier/status_effect/tired_post_charge/lesser
 
 /datum/action/cooldown/mob_cooldown/charge/triple_charge
-	name = "Triple Charge"
-	desc = "Allows you to charge three times at a chosen position."
+	name = "三重冲锋"
+	desc = "允许你向选定位置发起三次冲锋。"
 	charge_delay = 0.6 SECONDS
 
 /datum/action/cooldown/mob_cooldown/charge/triple_charge/charge_sequence(atom/movable/charger, atom/target_atom, delay, past)
@@ -256,10 +256,10 @@
 		do_charge(owner, target_atom, charge_delay - 2 * i, charge_past)
 
 /datum/action/cooldown/mob_cooldown/charge/hallucination_charge
-	name = "Hallucination Charge"
+	name = "幻觉冲锋"
 	button_icon = 'icons/effects/bubblegum.dmi'
 	button_icon_state = "smack ya one"
-	desc = "Allows you to create hallucinations that charge around your target."
+	desc = "允许你创造围绕目标冲锋的幻觉。"
 	cooldown_time = 2 SECONDS
 	charge_delay = 0.6 SECONDS
 	/// The damage the hallucinations in our charge do
@@ -300,7 +300,7 @@
 			continue
 		var/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/our_clone = new /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination(place)
 		our_clone.appearance = owner.appearance
-		our_clone.name = "[owner]'s hallucination"
+		our_clone.name = "[owner]的幻觉"
 		our_clone.alpha = 127.5
 		our_clone.move_through_mob = owner
 		our_clone.spawn_blood = spawn_blood
@@ -315,10 +315,10 @@
 	. = ..(source, A, applied_damage)
 
 /datum/action/cooldown/mob_cooldown/charge/hallucination_charge/hallucination_surround
-	name = "Surround Target"
+	name = "包围目标"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "expand"
-	desc = "Allows you to create hallucinations that charge around your target."
+	desc = "允许你创造围绕目标冲锋的幻觉。"
 	charge_delay = 0.6 SECONDS
 	charge_past = 2
 

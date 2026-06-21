@@ -67,7 +67,7 @@
 	crate_name = "\improper RPED crate"
 
 /datum/supply_pack/science/shieldwalls
-	name = "Shield Generator Crate"
+	name = "能量墙生成器板条箱"
 	desc = "These high powered Shield Wall Generators are guaranteed to keep any unwanted \
 		lifeforms on the outside, where they belong! Contains four shield wall generators."
 	cost = CARGO_CRATE_VALUE * 4
@@ -89,7 +89,7 @@
 	order_flags = ORDER_DANGEROUS
 
 /datum/supply_pack/science/monkey_helmets
-	name = "Monkey Mind Magnification Helmet crate"
+	name = "猴子心灵增幅头盔板条箱"
 	desc = "Some research is best done with monkeys, yet sometimes they're \
 		just too dumb to complete more complicated tasks. These two helmets should help."
 	cost = CARGO_CRATE_VALUE * 3
@@ -114,7 +114,7 @@
 
 /datum/supply_pack/science/mod_core
 	name = "MOD core Crate"
-	desc = "Three cores, perfect for any MODsuit construction! Naturally Harvested™, of course."
+	desc = "三个核心，非常适合模块服组装！当然是采用 自然的收获™ 技术生产的。"
 	cost = CARGO_CRATE_VALUE * 3
 	access = ACCESS_ROBOTICS
 	access_view = ACCESS_ROBOTICS

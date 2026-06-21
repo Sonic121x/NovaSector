@@ -1,7 +1,7 @@
 /// Computer which starts the experimental cloning process
 /obj/machinery/computer/experimental_cloner
-	name = "experimental cloner control console"
-	desc = "It scans DNA structures."
+	name = "实验性克隆器控制台"
+	desc = "它能扫描DNA结构。"
 	circuit = /obj/item/circuitboard/computer/experimental_cloner
 	icon_screen = "crew"
 	icon_keyboard = "med_key"
@@ -44,13 +44,13 @@
 	if (istype(multi_tool.buffer, /obj/machinery/experimental_cloner_scanner))
 		unlink_scanner()
 		link_scanner(multi_tool.buffer)
-		balloon_alert(user, "scanner linked")
+		balloon_alert(user, "扫描仪已链接")
 		to_chat(user, span_notice("You link \the [multi_tool.buffer] with \the [src]."))
 		return ITEM_INTERACT_SUCCESS
 	if (istype(multi_tool.buffer, /obj/machinery/experimental_cloner))
 		unlink_pod()
 		link_pod(multi_tool.buffer)
-		balloon_alert(user, "pod linked")
+		balloon_alert(user, "培养舱已链接")
 		to_chat(user, span_notice("You link \the [multi_tool.buffer] with \the [src]."))
 		return ITEM_INTERACT_SUCCESS
 
@@ -127,24 +127,24 @@
 			return TRUE
 		if ("start_scan")
 			if (isnull(input))
-				balloon_alert(ui.user, "no linked scanner!")
+				balloon_alert(ui.user, "未链接扫描仪！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (isnull(input.occupant))
-				balloon_alert(ui.user, "scanner empty!")
+				balloon_alert(ui.user, "扫描仪为空！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (!iscarbon(input.occupant))
-				balloon_alert(ui.user, "invalid subject!")
+				balloon_alert(ui.user, "无效对象！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			var/mob/living/carbon/carbon_occupant = input.occupant
 			if (!carbon_occupant.has_dna())
-				balloon_alert(ui.user, "invalid subject!")
+				balloon_alert(ui.user, "无效对象！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (input.scanning)
-				balloon_alert(ui.user, "scanner busy!")
+				balloon_alert(ui.user, "扫描仪正忙！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 
@@ -153,15 +153,15 @@
 			return TRUE
 		if ("start_clone")
 			if (isnull(output))
-				balloon_alert(ui.user, "no linked pod!")
+				balloon_alert(ui.user, "未链接培养舱！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (output.running)
-				balloon_alert(ui.user, "pod busy!")
+				balloon_alert(ui.user, "培养舱正忙！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (isnull(stored_record))
-				balloon_alert(ui.user, "no stored DNA!")
+				balloon_alert(ui.user, "无存储的DNA！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 

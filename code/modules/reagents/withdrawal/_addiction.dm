@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT_TYPED(addictions, /datum/addiction, init_subtypes_w_path_keys(/
 	///Name of this addiction
 	var/name = "cringe code"
 	///Description of this addiction
-	var/description = "A harmful dependence on cringe code."
+	var/description = "对糟糕代码的有害依赖。"
 	///Medical symptoms of this addiction
 	var/symptoms = "Wants more cringe code."
 	///Higher threshold, when you start being addicted
@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT_TYPED(addictions, /datum/addiction, init_subtypes_w_path_keys(/
 /datum/addiction/proc/lose_addiction(datum/mind/victim_mind)
 	victim_mind.current.clear_mood_event("[type]_addiction")
 	SEND_SIGNAL(victim_mind.current, COMSIG_CARBON_LOSE_ADDICTION, victim_mind)
-	to_chat(victim_mind.current, span_notice("You feel like you've gotten over your need for drugs."))
+	to_chat(victim_mind.current, span_notice("你感觉自己已经克服了对药物的需求。"))
 	end_withdrawal(victim_mind.current)
 	LAZYREMOVE(victim_mind.active_addictions, type)
 

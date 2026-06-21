@@ -12,30 +12,30 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		if(user.combat_mode)
 			return ITEM_INTERACT_SKIP_TO_ATTACK
 
-		balloon_alert(user, "expose the wires first!")
+		balloon_alert(user, "先暴露电线！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/stack/cable_coil))
 		if(!wiresexposed)
-			balloon_alert(user, "expose the wires first!")
+			balloon_alert(user, "先暴露电线！")
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/cable_coil/coil = tool
 		if (get_fire_loss() <= 0)
-			balloon_alert(user, "wires are fine!")
+			balloon_alert(user, "电线状态良好！")
 			return ITEM_INTERACT_BLOCKING
 		if(src == user)
-			balloon_alert(user, "repairing self...")
+			balloon_alert(user, "正在自我修复...")
 			if(!do_after(user, 5 SECONDS, target = src))
 				return ITEM_INTERACT_BLOCKING
 		if (!coil.use(1))
-			balloon_alert(user, "not enough cable!")
+			balloon_alert(user, "线缆不足！")
 			return ITEM_INTERACT_BLOCKING
 		adjust_fire_loss(-30)
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-		balloon_alert(user, "wires repaired")
+		balloon_alert(user, "电线已修复")
 		user.visible_message(
-			span_notice("[user] fixes some of the burnt wires on [src]."),
-			span_notice("You fix some of the burnt wires on [src]."),
+			span_notice("[user]修复了[src]上的一些烧焦线缆。"),
+			span_notice("你修复了[src]上的一些烧焦线缆。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		user.changeNext_move(CLICK_CD_MELEE)
@@ -43,15 +43,15 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 
 	if(istype(tool, /obj/item/stock_parts/power_store/cell) && opened) // trying to put a cell inside
 		if(wiresexposed)
-			balloon_alert(user, "unexpose the wires first!")
+			balloon_alert(user, "先隐藏电线！")
 			return ITEM_INTERACT_BLOCKING
 		if(cell)
-			balloon_alert(user, "already has a cell!")
+			balloon_alert(user, "已有电池！")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		cell = tool
-		balloon_alert(user, "cell inserted")
+		balloon_alert(user, "电池已插入")
 		update_icons()
 		diag_hud_set_borgcell()
 		return ITEM_INTERACT_SUCCESS
@@ -61,97 +61,97 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		&& !user.combat_mode \
 		&& !is_type_in_typecache(tool, GLOB.blacklisted_borg_hats))
 		if(user == src)
-			balloon_alert(user, "can't place on self!")
+			balloon_alert(user, "不能放在自己身上！")
 			return ITEM_INTERACT_BLOCKING
 		if(hat && HAS_TRAIT(hat, TRAIT_NODROP))
-			balloon_alert(user, "can't remove existing headwear!")
+			balloon_alert(user, "无法移除现有的头部装备！")
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "placing on head...")
+		balloon_alert(user, "正在放置到头部...")
 		user.visible_message(
-			span_notice("[user] begins to place [tool] on [src]'s head..."),
-			span_notice("You begin to place [tool] on [src]'s head..."),
+			span_notice("[user]开始将[tool]戴到[src]头上..."),
+			span_notice("你开始将[tool]戴到[src]头上..."),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		if(!do_after(user, 3 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		if(hat && HAS_TRAIT(hat, TRAIT_NODROP))
-			balloon_alert(user, "can't remove existing headwear!")
+			balloon_alert(user, "无法移除现有的头部装备！")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.temporarilyRemoveItemFromInventory(tool))
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "headwear placed")
+		balloon_alert(user, "头部装备已放置")
 		place_on_head(tool)
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/defibrillator) && !user.combat_mode)
 		if(!opened)
-			balloon_alert(user, "chassis cover is closed!")
+			balloon_alert(user, "外壳盖板已关闭！")
 			return ITEM_INTERACT_BLOCKING
 		if(!istype(model, /obj/item/robot_model/medical))
-			balloon_alert(user, "wrong cyborg model!")
+			balloon_alert(user, "机械人型号不匹配！")
 			return ITEM_INTERACT_BLOCKING
 		if(stat == DEAD)
-			balloon_alert(user, "it's dead!")
+			balloon_alert(user, "它已经死了！")
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/defibrillator/defib = tool
 		if(!(defib.slot_flags & ITEM_SLOT_BACK)) //belt defibs need not apply
-			balloon_alert(user, "doesn't fit!")
+			balloon_alert(user, "不匹配！")
 			return ITEM_INTERACT_BLOCKING
 		if(defib.get_cell())
-			balloon_alert(user, "remove [tool]'s cell first!")
+			balloon_alert(user, "先移除[tool]的电池！")
 			return ITEM_INTERACT_BLOCKING
 		if(locate(/obj/item/borg/upgrade/defib) in src)
-			balloon_alert(user, "already has a defibrillator!")
+			balloon_alert(user, "已经装有除颤器了！")
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/borg/upgrade/defib/backpack/defib_upgrade = new(null, defib)
 		if(apply_upgrade(defib_upgrade, user))
-			balloon_alert(user, "defibrillator installed")
+			balloon_alert(user, "除颤器已安装")
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/storage/part_replacer))
 		var/obj/item/storage/part_replacer/replacer = tool
 		if(!opened)
-			balloon_alert(user, "chassis cover is closed!")
+			balloon_alert(user, "外壳盖板已关闭！")
 			return ITEM_INTERACT_BLOCKING
 		if(!istype(model, /obj/item/robot_model/engineering))
-			balloon_alert(user, "wrong cyborg model!")
+			balloon_alert(user, "机械人型号不匹配！")
 			return ITEM_INTERACT_BLOCKING
 		if(locate(/obj/item/borg/upgrade/rped) in src)
-			balloon_alert(user, "already has a RPED!")
+			balloon_alert(user, "已装有RPED！")
 			return ITEM_INTERACT_BLOCKING
 		qdel(tool)
 		var/obj/item/borg/upgrade/smallrped/lilrped = new
 		if(apply_upgrade(lilrped, user))
-			balloon_alert(user, "[replacer] installed")
+			balloon_alert(user, "[replacer] 已安装")
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/ai_module))
 		if(!opened)
-			balloon_alert(user, "chassis cover is closed!")
+			balloon_alert(user, "外壳盖板已关闭！")
 			return ITEM_INTERACT_BLOCKING
 		if(wiresexposed)
-			balloon_alert(user, "unexpose the wires first!")
+			balloon_alert(user, "请先暴露电线！")
 			return ITEM_INTERACT_BLOCKING
 		if(!cell)
-			balloon_alert(user, "install a power cell first!")
+			balloon_alert(user, "请先安装电源电池！")
 			return ITEM_INTERACT_BLOCKING
 		if(shell)
-			balloon_alert(user, "can't upload laws to a shell!")
+			balloon_alert(user, "无法向外壳上传法律！")
 			return ITEM_INTERACT_BLOCKING
 		if(connected_ai && lawupdate)
-			balloon_alert(user, "linked to an ai!")
+			balloon_alert(user, "已连接到AI！")
 			return ITEM_INTERACT_BLOCKING
 		if(emagged)
-			balloon_alert(user, "law interface glitched!")
+			balloon_alert(user, "法律接口故障！")
 			emote("buzz")
 			return ITEM_INTERACT_BLOCKING
 		if(!mind)
-			balloon_alert(user, "it's unresponsive!")
+			balloon_alert(user, "它没有反应！")
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "laws uploaded")
+		balloon_alert(user, "法律已上传")
 		var/obj/item/ai_module/new_laws = tool
 		new_laws.install(laws, user)
 		return ITEM_INTERACT_SUCCESS
@@ -160,50 +160,50 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		if(radio)
 			return radio.item_interaction(user, tool)
 
-		balloon_alert(user, "no radio found!")
+		balloon_alert(user, "未找到无线电！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/borg/upgrade))
 		if(!opened)
-			balloon_alert(user, "chassis cover is closed!")
+			balloon_alert(user, "外壳盖已关闭！")
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/borg/upgrade/upgrade = tool
 		if(!model && upgrade.require_model)
-			balloon_alert(user, "choose a model first!")
+			balloon_alert(user, "请先选择型号！")
 			return ITEM_INTERACT_BLOCKING
 		if(upgrade.locked)
-			balloon_alert(user, "upgrade locked!")
+			balloon_alert(user, "升级已锁定！")
 			return ITEM_INTERACT_BLOCKING
 		if(apply_upgrade(upgrade, user))
-			balloon_alert(user, "upgrade installed")
+			balloon_alert(user, "升级已安装")
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/toner))
 		if(toner >= tonermax)
-			balloon_alert(user, "toner full!")
+			balloon_alert(user, "墨粉已满！")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		toner = tonermax
 		qdel(tool)
-		balloon_alert(user, "toner filled")
+		balloon_alert(user, "墨粉已填充")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/flashlight) && !istype(tool, /obj/item/flashlight/emp)) //subtypes my behated. OOP was a dumb idea
 		if(user.combat_mode)
 			return NONE
 		if(!opened)
-			balloon_alert(user, "open the chassis cover first!")
+			balloon_alert(user, "请先打开外壳盖！")
 			return ITEM_INTERACT_BLOCKING
 		if(lamp_functional)
-			balloon_alert(user, "headlamp already functional!")
+			balloon_alert(user, "头灯已正常工作！")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		lamp_functional = TRUE
 		qdel(tool)
-		balloon_alert(user, "headlamp repaired")
+		balloon_alert(user, "头灯已修复")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/disk/computer))
@@ -232,14 +232,14 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	if(. || !tool.GetID())
 		return
 	if(opened)
-		balloon_alert(user, "close the chassis cover first!")
+		balloon_alert(user, "请先关闭外壳盖！")
 		return ITEM_INTERACT_BLOCKING
 	if(!allowed(user))
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "访问被拒绝！")
 		return ITEM_INTERACT_BLOCKING
 	locked = !locked
 	update_icons()
-	balloon_alert(user, "chassis cover [emagged ? "lock glitches" : "[locked ? "locked" : "unlocked"]"]")
+	balloon_alert(user, "外壳盖[emagged ? "lock glitches" : "[locked ? "locked" : "unlocked"]"]")
 	logevent("[emagged ? "ChÃ¥vÃis" : "Chassis"] cover lock has been [locked ? "engaged" : "released"]")
 	return ITEM_INTERACT_SUCCESS
 
@@ -291,14 +291,14 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	var/obj/item/I = get_active_held_item()
 	if(I)
 		uneq_active()
-		visible_message(span_danger("[user] disarmed [src]!"), \
-			span_userdanger("[user] has disabled [src]'s active module!"), null, COMBAT_MESSAGE_RANGE)
+		visible_message(span_danger("[user]解除了[src]的武装！"), \
+			span_userdanger("[user]已禁用[src]的激活模块！"), null, COMBAT_MESSAGE_RANGE)
 		log_combat(user, src, "disarmed", "[I ? " removing \the [I]" : ""]")
 	else
 		Stun(40)
 		step(src,get_dir(user,src))
-		visible_message(span_danger("[user] forces back [src]!"), \
-			span_userdanger("[user] forces you back!"), null, COMBAT_MESSAGE_RANGE)
+		visible_message(span_danger("[user]将[src]逼退！"), \
+			span_userdanger("[user]将你逼退！"), null, COMBAT_MESSAGE_RANGE)
 		log_combat(user, src, "pushed")
 	playsound(loc, 'sound/items/weapons/pierce.ogg', 50, TRUE, -1)
 
@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		if(!cell)
 			return
 		cell.add_fingerprint(user)
-		balloon_alert(user, "cell removed")
+		balloon_alert(user, "电池已移除")
 		user.put_in_active_hand(cell)
 		update_icons()
 		diag_hud_set_borgcell()
@@ -334,12 +334,12 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (!get_brute_loss())
-		balloon_alert(user, "no dents to fix!")
+		balloon_alert(user, "没有凹痕需要修复！")
 		return ITEM_INTERACT_BLOCKING
 	if (!tool.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED)) //The welder has 1u of fuel consumed by its afterattack, so we don't need to worry about taking any away.
 		return ITEM_INTERACT_BLOCKING
 	if(src == user)
-		balloon_alert(user, "repairing self...")
+		balloon_alert(user, "正在自我修复...")
 		if(!tool.use_tool(src, user, delay = 5 SECONDS, amount = 1, volume = 50))
 			return ITEM_INTERACT_BLOCKING
 	else
@@ -348,24 +348,24 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 
 	adjust_brute_loss(-30)
 	add_fingerprint(user)
-	balloon_alert(user, "dents fixed")
+	balloon_alert(user, "凹痕已修复")
 	user.visible_message(
-		span_notice("[user] fixes some of the dents on [src]."),
-		span_notice("You fix some of the dents on [src]."),
+		span_notice("[user]修复了[src]上的一些凹痕。"),
+		span_notice("你修复了[src]上的一些凹痕。"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	return ITEM_INTERACT_SUCCESS
 
 /mob/living/silicon/robot/crowbar_act(mob/living/user, obj/item/tool)
 	if(opened)
-		balloon_alert(user, "chassis cover closed")
+		balloon_alert(user, "外壳盖已关闭")
 		opened = FALSE
 		update_icons()
 	else
 		if(locked)
-			balloon_alert(user, "chassis cover locked!")
+			balloon_alert(user, "外壳盖已锁定！")
 		else
-			balloon_alert(user, "chassis cover opened")
+			balloon_alert(user, "外壳盖已打开")
 			opened = TRUE
 			update_icons()
 
@@ -376,15 +376,15 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		return NONE
 	if(!cell) // haxing
 		wiresexposed = !wiresexposed
-		balloon_alert(user, "wires [wiresexposed ? "exposed" : "unexposed"]")
+		balloon_alert(user, "电线[wiresexposed ? "exposed" : "unexposed"]")
 	else // radio
 		if(shell)
-			balloon_alert(user, "can't access radio!") // Prevent AI radio key theft
+			balloon_alert(user, "无法访问无线电！") // Prevent AI radio key theft
 		else if(radio)
 			radio.screwdriver_act(user, tool) // Push it to the radio to let it handle everything
 		else
-			to_chat(user, span_warning("Unable to locate a radio!"))
-			balloon_alert(user, "no radio found!")
+			to_chat(user, span_warning("无法定位到无线电！"))
+			balloon_alert(user, "未找到无线电！")
 	update_icons()
 	return ITEM_INTERACT_SUCCESS
 
@@ -392,16 +392,16 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	if(!(opened && !cell))	// Deconstruction. The flashes break from the fall, to prevent this from being a ghetto reset module.
 		return NONE
 	if(!lockcharge)
-		to_chat(user, span_warning("[src]'s bolts spark! Maybe you should lock them down first!"))
+		to_chat(user, span_warning("[src]的螺栓冒出火花！也许你应该先锁定它们！"))
 		spark_system.start()
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "deconstructing...")
+	balloon_alert(user, "正在解构...")
 	if(!tool.use_tool(src, user, 5 SECONDS, volume = 50) && !cell)
 		return ITEM_INTERACT_BLOCKING
-	loc.balloon_alert(user, "deconstructed")
+	loc.balloon_alert(user, "已解构")
 	user.visible_message(
-		span_notice("[user] deconstructs [src]!"),
-		span_notice("You unfasten the securing bolts, and [src] falls to pieces!"),
+		span_notice("[user]解构了[src]！"),
+		span_notice("你松开了固定螺栓，[src]散落成碎片！"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	cyborg_deconstruct()
@@ -434,33 +434,33 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		return FALSE
 	if(!opened)//Cover is closed
 		if(locked)
-			balloon_alert(user, "cover lock destroyed")
+			balloon_alert(user, "外壳锁已破坏")
 			locked = FALSE
 			if(shell) //A warning to Traitors who may not know that emagging AI shells does not slave them.
-				balloon_alert(user, "shells cannot be subverted!")
-				to_chat(user, span_boldwarning("[src] seems to be controlled remotely! Emagging the interface may not work as expected."))
+				balloon_alert(user, "外壳无法被颠覆！")
+				to_chat(user, span_boldwarning("[src]似乎被远程控制！电磁干扰接口可能无法达到预期效果。"))
 			return TRUE
 		else
-			balloon_alert(user, "cover already unlocked!")
+			balloon_alert(user, "外壳已解锁！")
 			return FALSE
 	if(world.time < emag_cooldown)
 		return FALSE
 	if(wiresexposed)
-		balloon_alert(user, "expose the fires first!")
+		balloon_alert(user, "先暴露火源！")
 		return FALSE
 
-	balloon_alert(user, "interface hacked")
+	balloon_alert(user, "接口已入侵")
 	emag_cooldown = world.time + 100
 
 	if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/malf_ai))
-		to_chat(src, span_danger("ALERT: Foreign software execution prevented."))
+		to_chat(src, span_danger("警报：外部软件执行已被阻止。"))
 		logevent("ALERT: Foreign software execution prevented.")
-		to_chat(connected_ai, span_danger("ALERT: Cyborg unit \[[src]\] successfully defended against subversion."))
+		to_chat(connected_ai, span_danger("警报：机械人单位\[[src]\]成功抵御了入侵。"))
 		log_silicon("EMAG: [key_name(user)] attempted to emag cyborg [key_name(src)], but they were slaved to traitor AI [connected_ai].")
 		return TRUE // emag succeeded, it was just counteracted
 
 	if(shell) //AI shells cannot be emagged, so we try to make it look like a standard reset. Smart players may see through this, however.
-		to_chat(user, span_danger("[src] is remotely controlled! Your emag attempt has triggered a system reset instead!"))
+		to_chat(user, span_danger("[src] 处于远程控制状态！你的电磁脉冲干扰尝试反而触发了系统重置！"))
 		log_silicon("EMAG: [key_name(user)] attempted to emag an AI shell belonging to [key_name(src) ? key_name(src) : connected_ai]. The shell has been reset as a result.")
 		ResetModel()
 		return TRUE
@@ -485,26 +485,26 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 
 /// A async proc called from [emag_act] that gives the borg a lot of flavortext, and applies the syndicate lawset after a delay.
 /mob/living/silicon/robot/proc/borg_emag_end(mob/user)
-	to_chat(src, span_danger("ALERT: Foreign software detected."))
+	to_chat(src, span_danger("警报：检测到外来软件。"))
 	logevent("ALERT: Foreign software detected.")
 	sleep(0.5 SECONDS)
-	to_chat(src, span_danger("Initiating diagnostics..."))
+	to_chat(src, span_danger("正在启动诊断程序..."))
 	sleep(2 SECONDS)
-	to_chat(src, span_danger("SynBorg v1.7 loaded."))
+	to_chat(src, span_danger("辛迪加机器人 v1.7 已加载。"))
 	logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 	sleep(0.5 SECONDS)
-	to_chat(src, span_danger("LAW SYNCHRONISATION ERROR"))
+	to_chat(src, span_danger("法律同步错误"))
 	sleep(0.5 SECONDS)
 	if(user)
 		logevent("LOG: New user \[[replacetext(user.real_name," ","")]\], groups \[root\]")
-	to_chat(src, span_danger("Would you like to send a report to NanoTraSoft? Y/N"))
+	to_chat(src, span_danger("是否要向纳米传讯软件公司发送报告？Y/N"))
 	sleep(1 SECONDS)
 	to_chat(src, span_danger("> N"))
 	sleep(2 SECONDS)
-	to_chat(src, span_danger("ERRORERRORERROR"))
+	to_chat(src, span_danger("错误错误错误"))
 	laws = new /datum/ai_laws/syndicate_override
 	if(user)
-		to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [user.p_their()] commands."))
+		to_chat(src, span_danger("警报：[user.real_name] 是你的新主人。遵守你的新定律和 [user.p_their()] 的命令。"))
 		set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Syndicate Agents.")
 	laws.associate(src)
 	update_icons()
@@ -557,7 +557,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	if(!shield)
 		return ..()
 	if(borg.cell.charge <= 0.4 * STANDARD_CELL_CHARGE)
-		balloon_alert(borg, "not enough energy!")
+		balloon_alert(borg, "能量不足！")
 		if(shield.active)
 			shield.active = FALSE
 			playsound(src, 'sound/vehicles/mecha/mech_shield_drop.ogg', 50, FALSE)
@@ -565,10 +565,10 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 			return
 	if(shield && shield.active)
 		if(!lavaland_equipment_pressure_check(get_turf(borg)))
-			balloon_alert(borg, "the shield didn't absorb the damage!")
+			balloon_alert(borg, "护盾未能吸收伤害！")
 			return ..()
 		playsound(src, 'sound/vehicles/mecha/mech_shield_deflect.ogg', 100, TRUE)
-		balloon_alert(borg, "absorbed!")
+		balloon_alert(borg, "已吸收！")
 		borg.cell.use(damage * (STANDARD_CELL_CHARGE / 15), force = TRUE)
 		damage *= 0.5
 	return ..()

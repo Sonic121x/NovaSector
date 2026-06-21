@@ -1,6 +1,6 @@
 /mob/living/basic/blankbody
-	name = "blank body"
-	desc = "This looks human enough, but its flesh has an ashy texture, and it's face is featureless save an eerie smile."
+	name = "空白躯体"
+	desc = "这东西看起来足够像人，但它的肉体有着灰烬般的质感，脸上除了诡异的微笑外没有任何特征。"
 	icon_state = "blank-body"
 	icon_living = "blank-body"
 	icon_dead = "blank-dead"

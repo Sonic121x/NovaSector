@@ -2,13 +2,13 @@
 #define POWER_PER_PERSON 5
 
 /obj/structure/destructible/clockwork/gear_base/powered/interdiction_lens
-	name = "interdiction lens"
-	desc = "A mesmerizing light that flashes to a rhythm that you just can't stop tapping to."
+	name = "禁制透镜"
+	desc = "一道令人着迷的光芒，以你无法停止跟随的节奏闪烁。"
 	clockwork_desc = "A small device which will slow down nearby attackers and projectiles at a large power cost, both active and passive."
 	icon_state = "interdiction_lens"
 	base_icon_state = "interdiction_lens"
 	anchored = TRUE
-	break_message = span_warning("The interdiction lens breaks into multiple fragments, which gently float to the ground.")
+	break_message = span_warning("禁制透镜碎裂成多个碎片，缓缓飘落地面。")
 	max_integrity = 150
 	minimum_power = POWER_PER_PERSON
 	passive_consumption = 25

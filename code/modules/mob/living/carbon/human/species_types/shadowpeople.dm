@@ -98,8 +98,8 @@
 	return to_add
 
 /obj/item/organ/eyes/shadow
-	name = "burning red eyes"
-	desc = "Even without their shadowy owner, looking at these eyes gives you a sense of dread."
+	name = "通红的眼睛"
+	desc = "即便没有那神秘的主人在旁边，只是看着这些眼睛，也会让人感到一阵恐惧。"
 	icon = 'icons/obj/medical/organs/shadow_organs.dmi'
 	iris_overlay = null
 	color_cutoffs = list(20, 10, 40)
@@ -108,8 +108,8 @@
 
 /// the key to none of their powers
 /obj/item/organ/brain/shadow
-	name = "shadowling tumor"
-	desc = "Something that was once a brain, before being remolded by a shadowling. It has adapted to the dark, irreversibly."
+	name = "暗影脑"
+	desc = "曾经是一颗大脑，后来被暗影生物重塑了形态。它已经完全适应了黑暗环境，且这种适应是不可逆转的。"
 	icon = 'icons/obj/medical/organs/shadow_organs.dmi'
 	shade_color = "grey-ish"
 

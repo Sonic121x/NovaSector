@@ -1,5 +1,5 @@
 /datum/design/organic_plastic
-	name = "Plastic Sheet"
+	name = "塑料板"
 	id = "oganic_plastic"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/organic_cloth
-	name = "Cloth"
+	name = "布料"
 	id = "oganic_cloth"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 10)

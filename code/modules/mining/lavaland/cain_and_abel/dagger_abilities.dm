@@ -1,6 +1,6 @@
 /datum/action/cooldown/dagger_swing
-	name = "Dagger swing"
-	desc = "Swing your daggers around."
+	name = "匕首挥击"
+	desc = "挥舞你的匕首。"
 	button_icon = 'icons/obj/mining_zones/artefacts.dmi'
 	button_icon_state = "cain_and_abel"
 	background_icon_state = "bg_default"
@@ -13,11 +13,11 @@
 	var/obj/item/cain_and_abel/cain_and_abel = target
 
 	if(!living_owner.is_holding(cain_and_abel))
-		owner.balloon_alert(owner, "must be held")
+		owner.balloon_alert(owner, "必须手持")
 		return FALSE
 
 	if(!cain_and_abel.check_wield(owner))
-		owner.balloon_alert(owner, "offhand busy!")
+		owner.balloon_alert(owner, "副手正忙！")
 		return TRUE
 
 	living_owner.apply_status_effect(/datum/status_effect/dagger_swinging)

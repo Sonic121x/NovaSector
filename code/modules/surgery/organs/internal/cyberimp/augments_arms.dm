@@ -259,14 +259,14 @@
 	items_to_create = list(/obj/item/gun/energy/laser/mounted/augment)
 
 /obj/item/organ/cyberimp/arm/toolkit/gun/taser
-	name = "arm-mounted taser implant"
-	desc = "A variant of the arm cannon implant that fires electrodes and disabler shots. The cannon emerges from the subject's arm and remains inside when not in use."
+	name = "手臂泰瑟枪植入物"
+	desc = "手臂炮植入物的一种变体，可发射电极和眩晕弹。炮管从受试者的手臂中伸出，不使用时缩回体内。"
 	icon_state = "arm_taser"
 	items_to_create = list(/obj/item/gun/energy/e_gun/advtaser/mounted)
 
 /obj/item/organ/cyberimp/arm/toolkit/toolset
-	name = "integrated toolset implant"
-	desc = "A stripped-down version of the engineering cyborg toolset, designed to be installed on subject's arm. Contain advanced versions of every tool."
+	name = "集成工具组植入物"
+	desc = "工程机械人工具组的精简版本，设计用于安装在受试者的手臂上。包含每种工具的高级版本。"
 	icon_state = "toolkit_engineering"
 	aug_overlay = "toolkit_engi"
 	actions_types = list(/datum/action/item_action/organ_action/toggle/toolkit)
@@ -281,8 +281,8 @@
 
 //The order of the item list for this implant is not alphabetized due to it actually affecting how it shows up playerside when opening the implant
 /obj/item/organ/cyberimp/arm/toolkit/paperwork
-	name = "integrated paperwork implant"
-	desc = "A highly sought out implant among heads of personnel, and other high up command staff in Nanotrasen. This implant allows the user to always have the tools necessary for paperwork handy"
+	name = "集成文书植入体"
+	desc = "这是纳米传讯公司人事主管及其他高层指挥人员梦寐以求的植入体。该植入体让使用者总能方便地获取处理文书工作所需的工具。"
 	icon_state = "toolkit_engineering"
 	aug_overlay = "toolkit_engi"
 	actions_types = list(/datum/action/item_action/organ_action/toggle/toolkit)
@@ -296,7 +296,7 @@
 	)
 
 /obj/item/stamp/mod/toolkit
-	name = "integrated electronic stamp"
+	name = "集成电子印章"
 
 /obj/item/organ/cyberimp/arm/toolkit/paperwork/emag_act(mob/user, obj/item/card/emag/emag_card)
 	for(var/datum/weakref/created_item in items_list)
@@ -304,7 +304,7 @@
 		if(istype(potential_tool, /obj/item/stamp/chameleon))
 			return FALSE
 
-	balloon_alert(user, "experimental stamp unlocked")
+	balloon_alert(user, "实验性印章已解锁")
 	items_list += WEAKREF(new /obj/item/stamp/chameleon(src))
 	return TRUE
 
@@ -314,25 +314,25 @@
 		if(istype(potential_knife, /obj/item/knife/combat/cyborg))
 			return FALSE
 
-	balloon_alert(user, "integrated knife unlocked")
+	balloon_alert(user, "集成刀具已解锁")
 	items_list += WEAKREF(new /obj/item/knife/combat/cyborg(src))
 	return TRUE
 
 /obj/item/organ/cyberimp/arm/toolkit/esword
-	name = "arm-mounted energy blade"
-	desc = "An illegal and highly dangerous cybernetic implant that can project a deadly blade of concentrated energy."
+	name = "臂载能量刃"
+	desc = "一种非法且极其危险的赛博植入体，能够投射出致命的浓缩能量刀刃。"
 	items_to_create = list(/obj/item/melee/energy/blade/hardlight)
 
 /obj/item/organ/cyberimp/arm/toolkit/medibeam
-	name = "integrated medical beamgun"
-	desc = "A cybernetic implant that allows the user to project a healing beam from their hand."
+	name = "集成医疗射线枪"
+	desc = "一种赛博植入体，允许使用者从手中投射出治疗射线。"
 	icon_state = "toolkit_surgical"
 	aug_overlay = "toolkit_med"
 	items_to_create = list(/obj/item/gun/medbeam)
 
 /obj/item/organ/cyberimp/arm/toolkit/flash
-	name = "integrated high-intensity photon projector" //Why not
-	desc = "An integrated projector mounted onto a user's arm that is able to be used as a powerful flash."
+	name = "集成高强度光子投射器" //Why not
+	desc = "一种安装在用户手臂上的集成投射器，可用作强力闪光灯。"
 	aug_overlay = "toolkit"
 	items_to_create = list(/obj/item/assembly/flash/armimplant)
 
@@ -356,14 +356,14 @@
 	return ..()
 
 /obj/item/organ/cyberimp/arm/toolkit/baton
-	name = "arm electrification implant"
-	desc = "An illegal combat implant that allows the user to administer disabling shocks from their arm."
+	name = "手臂电击植入体"
+	desc = "一种非法的战斗植入体，允许使用者从手臂释放致残电击。"
 	aug_overlay = "toolkit"
 	items_to_create = list(/obj/item/borg/stun)
 
 /obj/item/organ/cyberimp/arm/toolkit/combat
-	name = "combat cybernetics implant"
-	desc = "A powerful cybernetic implant that contains combat modules built into the user's arm."
+	name = "战斗义体植入体"
+	desc = "一种强大的赛博植入体，包含内置于使用者手臂的战斗模块。"
 	aug_overlay = "toolkit"
 	items_to_create = list(
 		/obj/item/melee/energy/blade/hardlight,
@@ -382,7 +382,7 @@
 		flash.arm = WEAKREF(src)
 
 /obj/item/organ/cyberimp/arm/toolkit/surgery
-	name = "surgical toolset implant"
+	name = "外科手术工具组植入体"
 	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
 	icon_state = "toolkit_surgical"
 	aug_overlay = "toolkit_med"
@@ -503,13 +503,13 @@
 	. = ..()
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
-	owner.balloon_alert(owner, "your arm spasms wildly!")
+	owner.balloon_alert(owner, "你的手臂剧烈痉挛！")
 	organ_flags |= ORGAN_FAILING
 	addtimer(CALLBACK(src, PROC_REF(reboot)), 90 / severity)
 
 /obj/item/organ/cyberimp/arm/strongarm/proc/reboot()
 	organ_flags &= ~ORGAN_FAILING
-	owner.balloon_alert(owner, "your arm stops spasming!")
+	owner.balloon_alert(owner, "你的手臂停止痉挛了！")
 
 /obj/item/organ/cyberimp/arm/strongarm/proc/on_attack_hand(mob/living/carbon/human/source, atom/target, proximity, modifiers)
 	SIGNAL_HANDLER
@@ -586,14 +586,14 @@
 
 	// Some mobs gib when killed, so we're logging early. At this point, we're definitely hitting, so...
 	living_target.visible_message(
-		span_danger("[source] [picked_hit_type]ed [living_target][ground_bounce ? " into [target_turf]" : ""]!"),
-		span_userdanger("You're [picked_hit_type]ed by [source][ground_bounce ? " into [target_turf]" : ""]!"),
+		span_danger("[source] [picked_hit_type]ed [living_target][ground_bounce ? " into [target_turf]" : ""]！"),
+		span_userdanger("你被[picked_hit_type][source] [ground_bounce ? " into [target_turf]" : ""]ed了！"),
 		span_hear("You hear a sickening sound of flesh hitting flesh!"),
 		COMBAT_MESSAGE_RANGE,
 		source,
 	)
 
-	to_chat(source, span_danger("You [picked_hit_type] [target][ground_bounce ? " into [target_turf]" : ""]!"))
+	to_chat(source, span_danger("你[picked_hit_type]了[target][ground_bounce ? " into [target_turf]" : ""]！"))
 
 	log_combat(source, target, "[picked_hit_type]ed", "muscle implant")
 

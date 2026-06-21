@@ -40,7 +40,7 @@
 
 
 /datum/outfit/job/engineer
-	name = "Station Engineer"
+	name = "工程师"
 	jobtype = /datum/job/station_engineer
 
 	id_trim = /datum/id_trim/job/station_engineer
@@ -66,12 +66,12 @@
 	skillchips = list(/obj/item/skillchip/job/engineer)
 
 /datum/outfit/job/engineer/gloved
-	name = "Station Engineer (Gloves)"
+	name = "工程师（手套）"
 
 	gloves = /obj/item/clothing/gloves/color/yellow
 
 /datum/outfit/job/engineer/mod
-	name = "Station Engineer (MODsuit)"
+	name = "工程师 (模块服)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/engineering

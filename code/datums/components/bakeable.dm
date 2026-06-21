@@ -114,15 +114,15 @@
 
 	if(positive_result)
 		used_oven.visible_message(
-			span_notice("You smell something great coming from [used_oven]."),
-			blind_message = span_notice("You smell something great..."),
+			span_notice("你闻到[used_oven]传来一阵美妙的香气。"),
+			blind_message = span_notice("你闻到了很棒的味道..."),
 			ignored_mobs = asomnia_hadders,
 		)
 		BLACKBOX_LOG_FOOD_MADE(baked_result.type)
 	else
 		used_oven.visible_message(
-			span_warning("You smell a burnt smell coming from [used_oven]."),
-			blind_message = span_warning("You smell a burnt smell..."),
+			span_warning("你闻到从[used_oven]传来一股烧焦的气味。"),
+			blind_message = span_warning("你闻到了一股烧焦的味道..."),
 			ignored_mobs = asomnia_hadders,
 		)
 	SEND_SIGNAL(parent, COMSIG_ITEM_BAKED, baked_result)
@@ -136,15 +136,15 @@
 	if(!current_bake_time) //Not baked yet
 		if(positive_result)
 			if(initial(bake_result.gender) == PLURAL)
-				examine_list += span_notice("[parent] can be [span_bold("baked")] into some [initial(bake_result.name)].")
+				examine_list += span_notice("[parent] 可以 [span_bold("baked")] 成一些 [initial(bake_result.name)]。")
 			else
-				examine_list += span_notice("[parent] can be [span_bold("baked")] into \a [initial(bake_result.name)].")
+				examine_list += span_notice("[parent] 可以 [span_bold("baked")] 成 \a [initial(bake_result.name)]。")
 		return
 
 	if(positive_result)
 		if(current_bake_time <= required_bake_time * 0.75)
-			examine_list += span_notice("[parent] probably needs to be baked a bit longer!")
+			examine_list += span_notice("[parent] 可能需要再烤一会儿！")
 		else if(current_bake_time <= required_bake_time)
-			examine_list += span_notice("[parent] seems to be almost finished baking!")
+			examine_list += span_notice("[parent] 看起来快要烤好了！")
 	else
-		examine_list += span_danger("[parent] should probably not be put in the oven.")
+		examine_list += span_danger("[parent] 大概不应该放进烤箱里。")

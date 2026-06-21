@@ -1,7 +1,7 @@
 #define NO_MAXVOTES_CAP -1
 
 SUBSYSTEM_DEF(autotransfer)
-	name = "Autotransfer Vote"
+	name = "自动转移投票"
 	ss_flags = SS_KEEP_TIMING | SS_BACKGROUND
 	wait = 1 MINUTES
 	dependencies = list(

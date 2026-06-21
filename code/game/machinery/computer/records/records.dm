@@ -52,11 +52,11 @@
 				return FALSE
 			// Don't let people off station futz with the station network.
 			if(!is_station_level(z))
-				balloon_alert(user, "out of range!")
+				balloon_alert(user, "超出范围！")
 				return TRUE
 
 			expunge_record_info(target)
-			balloon_alert(user, "record expunged")
+			balloon_alert(user, "记录已删除")
 			playsound(src, 'sound/machines/terminal/terminal_eject.ogg', 70, TRUE)
 			investigate_log("[key_name(user)] expunged the record of [target.name].", INVESTIGATE_RECORDS)
 
@@ -68,7 +68,7 @@
 			return TRUE
 
 		if("logout")
-			balloon_alert(user, "logged out")
+			balloon_alert(user, "已登出")
 			playsound(src, 'sound/machines/terminal/terminal_off.ogg', 70, TRUE)
 			authenticated = FALSE
 
@@ -77,7 +77,7 @@
 		if("purge_records")
 			// Don't let people off station futz with the station network.
 			//NOVA EDIT BEGIN: disable record purging/expunging to stop people messing around with the AI effortlessly
-			balloon_alert(usr, "access denied!")
+			balloon_alert(usr, "访问被拒绝！")
 			return TRUE
 			/*
 			if(!is_station_level(z))
@@ -145,23 +145,23 @@
 		return FALSE
 
 	if(!authenticated && !allowed(user))
-		balloon_alert(user, "access denied")
+		balloon_alert(user, "访问被拒绝")
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 70, TRUE)
 		return FALSE
 
 	if(mugshot.picture.psize_x > ICON_SIZE_X || mugshot.picture.psize_y > ICON_SIZE_Y)
-		balloon_alert(user, "photo too large!")
+		balloon_alert(user, "照片太大！")
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 70, TRUE)
 		return FALSE
 
 	var/trimmed = copytext(mugshot.name, 9, MAX_NAME_LEN) // Remove "photo - "
-	var/name = tgui_input_text(user, "Enter the name of the new record.", "New Record", trimmed, max_length = MAX_NAME_LEN)
+	var/name = tgui_input_text(user, "输入新记录的名称。", "新记录", trimmed, max_length = MAX_NAME_LEN)
 	if(!name || !is_operational || !user.can_perform_action(src, ALLOW_SILICON_REACH) || !mugshot || QDELETED(mugshot) || QDELETED(src))
 		return FALSE
 
 	new /datum/record/crew(name = name, character_appearance = mugshot.picture.picture_image)
 
-	balloon_alert(user, "record created")
+	balloon_alert(user, "记录已创建")
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 70, TRUE)
 
 	qdel(mugshot)
@@ -174,11 +174,11 @@
 		return FALSE
 
 	if(!allowed(user))
-		balloon_alert(user, "access denied")
+		balloon_alert(user, "访问被拒绝")
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 70, TRUE)
 		return FALSE
 
-	balloon_alert(user, "logged in")
+	balloon_alert(user, "已登录")
 	playsound(src, 'sound/machines/terminal/terminal_on.ogg', 70, TRUE)
 
 	return TRUE

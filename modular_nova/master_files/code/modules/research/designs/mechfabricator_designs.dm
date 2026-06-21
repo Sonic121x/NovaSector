@@ -3,7 +3,7 @@
 	build_path = /obj/item/clothing/neck/link_scryer/loaded
 
 /datum/design/mod_plating/security
-	name = "MOD Security Plating"
+	name = "MOD安保电镀"
 	id = "mod_plating_security"
 	build_path = /obj/item/mod/construction/plating/security
 	materials = list(
@@ -16,7 +16,7 @@
 	research_icon_state = "security-plating"
 
 /datum/design/module/mod_tether_grounded
-	name = "Grounded Apprehension Module"
+	name = "接地拘束模块"
 	id = "mod_tether_grounded"
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,

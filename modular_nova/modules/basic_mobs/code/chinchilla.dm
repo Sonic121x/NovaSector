@@ -1,6 +1,6 @@
 /mob/living/basic/pet/chinchilla
-	name = "chinchilla"
-	desc = "They're like a mouse, but Australian."
+	name = "龙猫"
+	desc = "它们像老鼠，不过是澳大利亚版的。"
 
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	held_lh = 'modular_nova/master_files/icons/mob/inhands/pets_held_lh.dmi'
@@ -81,7 +81,7 @@
 	hunt_cooldown = 20 SECONDS
 
 /datum/ai_behavior/hunt_target/dust_roll/target_caught(mob/living/basic/pet/hunter, obj/effect/decal/cleanable/dust)
-	hunter.visible_message(span_notice("[hunter] starts taking a dust bath in [dust]."))
+	hunter.visible_message(span_notice("[hunter]开始在[dust]里洗沙浴。"))
 	hunter.spin(10, 1)
 	qdel(dust)
 

@@ -1,6 +1,6 @@
 /obj/item/storage/toolbox/emergency/turret/mag_fed/toy
-	name = "toy turret kit"
-	desc = "A deployable turret designed for office warfare. Throw it in the neighboring cubicle and take cover as it does the rest. Made with a flexible, recolourable material."
+	name = "玩具炮塔套件"
+	desc = "一种为办公室战争设计的可部署炮塔。把它扔进隔壁的隔间，然后找掩护，剩下的交给它。由一种柔韧、可重新着色的材料制成。"
 	inhand_icon_state = "smoke" //I was originally gonna leave it spriteless here but after doing this for the other quick_deploy, why not.
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
@@ -30,8 +30,8 @@
 	new /obj/item/ammo_box/magazine/toy/smg(src)
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/toy
-	name = "\improper Cubicle Point-Defense Turret"
-	desc = "A small deployable turret designed to expand after being thrown. Chambered inside of it are the most frightening of rounds: foam darts."
+	name = "\improper 隔间点防御炮塔"
+	desc = "一种小型可部署炮塔，设计为在投掷后展开。其内部装填着最可怕的弹药：泡沫飞镖。"
 	max_integrity = 10 //small weak thing
 	base_icon_state = "toy"
 	flags_1 = IS_PLAYER_COLORABLE_1

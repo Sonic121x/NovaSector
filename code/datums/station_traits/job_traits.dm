@@ -71,7 +71,7 @@
 
 /// Adds a gorilla to the cargo department, replacing the sloth and the mech
 /datum/station_trait/job/cargorilla
-	name = "Cargo Gorilla"
+	name = "货舱大猩猩"
 	button_desc = "Sign up to become the Cargo Gorilla, a peaceful shepherd of boxes."
 	weight = 1
 	show_in_report = FALSE // Selective attention test. Did you spot the gorilla?
@@ -102,7 +102,7 @@
 		qdel(GLOB.cargo_ripley)
 
 /datum/station_trait/job/bridge_assistant
-	name = "Bridge Assistant"
+	name = "舰桥助理"
 	button_desc = "Sign up to become the Bridge Assistant and watch over the Bridge."
 	weight = 2
 	report_message = "We have installed a Bridge Assistant on your station."
@@ -155,7 +155,7 @@
 	new /obj/item/storage/box/coffeepack(picked_turf)
 
 /datum/station_trait/job/veteran_advisor
-	name = "Veteran Advisor"
+	name = "老兵顾问"
 	button_desc = "Sign up to become a DISABLED but hard boiled Veteran Advisor of Nanotrasen Security Force. Advise HoS and Captain, train Officers, all while fighting your PTSD."
 	weight = 2
 	report_message = "Veteran Security Advisor has been assigned to your station to help with Security matters."
@@ -167,7 +167,7 @@
 	overlays += "veteran_advisor"
 
 /datum/station_trait/job/human_ai
-	name = "Human AI"
+	name = "人类AI"
 	button_desc = "Sign up to become the \"AI\"."
 	weight = 1
 	trait_flags = parent_type::trait_flags | STATION_TRAIT_REQUIRES_AI
@@ -233,7 +233,7 @@
 	new /obj/machinery/fax/auto_name(picked_turf)
 
 /datum/station_trait/job/pun_pun
-	name = "Pun Pun is a Crewmember"
+	name = "Pun Pun是船员"
 	button_desc = "Ook ook ah ah, sign up to play as the bartender's monkey."
 	weight = 0 //Unrollable by default, available all day during monkey day.
 	report_message = "We've evaluated the bartender's monkey to have the mental capacity of the average crewmember. As such, we made them one."

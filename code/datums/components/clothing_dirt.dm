@@ -176,8 +176,8 @@
 	remove_tint(FALSE)
 	dirtiness = min(3, dirtiness + rand(2, 3))
 	apply_tint(TRUE)
-	user.visible_message(span_danger("[user] sprays [spraycan] into the face of [wearer]!"))
-	to_chat(wearer, span_userdanger("[user] sprays [spraycan] into your face!"))
+	user.visible_message(span_danger("[user] 将 [spraycan] 喷进了 [wearer] 的脸里！"))
+	to_chat(wearer, span_userdanger("[user] 将 [spraycan] 喷进了你的脸里！"))
 	return COMPONENT_CANCEL_SPRAYPAINT
 
 /datum/component/clothing_dirt/proc/on_clean(obj/item/clothing/source, clean_types)

@@ -1,6 +1,6 @@
 /obj/structure/flora
-	name = "flora"
-	desc = "Some sort of plant."
+	name = "植物"
+	desc = "某种植物。"
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
 	anchored = TRUE
@@ -53,25 +53,25 @@
 	if(user.combat_mode)
 		return ..()
 	if(flags_1 & HOLOGRAM_1)
-		balloon_alert(user, "it goes right through!")
+		balloon_alert(user, "它直接穿过去了！")
 		return ..()
 	if(can_uproot && used_item.tool_behaviour == TOOL_SHOVEL)
 		if(uprooted)
-			user.visible_message(span_notice("[user] starts to replant [src]..."),
-				span_notice("You start to replant [src]..."))
+			user.visible_message(span_notice("[user]开始重新种植[src]..."),
+				span_notice("你开始重新种植[src]..."))
 		else
-			user.visible_message(span_notice("[user] starts to uproot [src]..."),
-				span_notice("You start to uproot [src]..."))
+			user.visible_message(span_notice("[user]开始将[src]连根拔起..."),
+				span_notice("你开始将[src]连根拔起..."))
 		used_item.play_tool_sound(src, 50)
 		if(!do_after(user, harvest_time, src))
 			return
 		if(uprooted)
-			user.visible_message(span_notice("[user] replants [src]."),
-				span_notice("You replant [src]."))
+			user.visible_message(span_notice("[user]重新种植了[src]。"),
+				span_notice("你重新种植了[src]。"))
 			replant(user)
 		else
-			user.visible_message(span_notice("[user] uproots [src]."),
-				span_notice("You uproot [src]."))
+			user.visible_message(span_notice("[user] 将 [src] 连根拔起。"),
+				span_notice("你将 [src] 连根拔起。"))
 			uproot(user)
 		used_item.play_tool_sound(src, 50)
 		return
@@ -79,12 +79,12 @@
 	if(!can_harvest(user, used_item))
 		return ..()
 
-	user.visible_message(span_notice("[user] starts to [harvest_verb] [src]..."),
-		span_notice("You start to [harvest_verb] [src] with [used_item]..."))
+	user.visible_message(span_notice("[user] 开始[harvest_verb] [src]..."),
+		span_notice("你开始用 [used_item] [harvest_verb] [src]..."))
 	play_attack_sound(used_item.force)
 	if(!do_after(user, harvest_time * used_item.toolspeed, src))
 		return
-	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix] [src]."),
+	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix]了 [src]。"),
 		ignored_mobs = list(user))
 	play_attack_sound(used_item.force)
 
@@ -98,12 +98,12 @@
 	if(!can_harvest(user))
 		return
 
-	user.visible_message(span_notice("[user] starts to [harvest_verb] [src]..."),
-		span_notice("You start to [harvest_verb] [src]..."))
+	user.visible_message(span_notice("[user] 开始[harvest_verb] [src]..."),
+		span_notice("你开始[harvest_verb] [src]..."))
 	play_attack_sound()
 	if(!do_after(user, harvest_time, src))
 		return
-	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix] [src]."),
+	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix]了 [src]。"),
 		ignored_mobs = list(user))
 	play_attack_sound()
 
@@ -288,8 +288,8 @@
 //Can *you* speak their language?
 
 /obj/structure/flora/tree
-	name = "tree"
-	desc = "A large tree."
+	name = "树"
+	desc = "一棵大树"
 	density = TRUE
 	max_integrity = 150
 	pixel_x = -16
@@ -323,27 +323,27 @@
 	var/turf/my_turf = get_turf(src)
 	playsound(my_turf, 'sound/effects/meteorimpact.ogg', 100 , FALSE, FALSE)
 	var/obj/structure/flora/tree/stump/new_stump = new stump_type(my_turf) // NOVA EDIT CHANGE - Variable tree stumps - ORIGINAL: var/obj/structure/flora/tree/stump/new_stump = new(my_turf)
-	new_stump.name = "[name] stump"
+	new_stump.name = "[name]残肢"
 
 /obj/structure/flora/tree/uproot(mob/living/user)
 	..()
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , FALSE, FALSE)
 
 /obj/structure/flora/tree/stump
-	name = "stump"
-	desc = "This represents our promise to the crew, and the station itself, to cut down as many trees as possible." //running naked through the trees
+	name = "树墩"
+	desc = "这意味着我们对船员与空间站本身的承诺 - 砍尽可能多的树" //running naked through the trees
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "tree_stump"
 	density = FALSE
 	delete_on_harvest = TRUE
 
 /obj/structure/flora/tree/stump/harvest(mob/living/user, product_amount_multiplier)
-	to_chat(user, span_notice("You manage to remove [src]."))
+	to_chat(user, span_notice("你设法移除了 [src]。"))
 	qdel(src)
 
 /obj/structure/flora/tree/stump/uproot(mob/living/user)
 	..()
-	to_chat(user, span_notice("You manage to remove [src]."))
+	to_chat(user, span_notice("你设法移除了 [src]。"))
 	qdel(src)
 
 /obj/structure/flora/tree/stump/get_seethrough_map()
@@ -351,7 +351,7 @@
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/fluff/flora/deadtrees.dmi'
-	desc = "A dead tree. How it died, you know not."
+	desc = "一颗死树. 要说它怎么死的？你并不知道."
 	icon_state = "tree_1"
 	harvest_amount_low = 2
 	harvest_amount_high = 6
@@ -378,7 +378,7 @@
 	update_appearance()
 
 /obj/structure/flora/tree/jungle
-	desc = "It's seriously hampering your view of the jungle."
+	desc = "它真的严重影响了你对丛林的视野。"
 	icon = 'icons/obj/fluff/flora/jungletrees.dmi'
 	icon_state = "tree1"
 	pixel_x = -48
@@ -441,8 +441,8 @@
  **************/
 
 /obj/structure/flora/tree/pine
-	name = "pine tree"
-	desc = "A coniferous pine tree."
+	name = "松树"
+	desc = "一棵针叶松树。"
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 
@@ -461,17 +461,17 @@
 	update_appearance()
 
 /obj/structure/flora/tree/pine/xmas
-	name = "\improper Christmas tree"
-	desc = "A wondrous decorated Christmas tree."
+	name = "\improper 圣诞树"
+	desc = "一棵装饰精美的圣诞树。"
 	icon_state = "pine_c"
 
 /obj/structure/flora/tree/pine/xmas/presentless
 	icon_state = "pinepresents"
-	desc = "A wondrous decorated Christmas tree. It has presents, though none of them seem to have your name on them."
+	desc = "一棵装饰精美的圣诞树。树下有礼物，但似乎没有一件写着你的名字。"
 
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
-	desc = "A wondrous decorated Christmas tree. It has presents!"
+	desc = "一棵装饰精美的圣诞树。树上有礼物诶！"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //protected by the christmas spirit
 	var/gift_type = /obj/item/gift/anything
 	var/unlimited = FALSE
@@ -490,9 +490,9 @@
 		return
 
 	if(took_presents[user.ckey] && !unlimited)
-		to_chat(user, span_warning("There are no presents with your name on."))
+		to_chat(user, span_warning("没有写着你名字的礼物。"))
 		return
-	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
+	to_chat(user, span_warning("翻找了一会儿，你找到了一个写着你名字的礼物！"))
 
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE
@@ -501,18 +501,18 @@
 	user.put_in_hands(G)
 
 /obj/structure/flora/tree/pine/xmas/presents/unlimited
-	desc = "A wonderous decorated Christmas tree. It has a seemly endless supply of presents!"
+	desc = "一棵装饰精美的圣诞树。它有源源不断的礼物！"
 	unlimited = TRUE
 
 /obj/structure/festivus
-	name = "festivus pole"
-	desc = "During last year's Feats of Strength the Research Director was able to suplex this passing immobile rod into a planter."
+	name = "节日杆"
+	desc = "在去年的体能挑战赛中，研究主管成功地将这根不动杆背摔进了花盆。"
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "festivus_pole"
 
 /obj/structure/festivus/anchored
-	name = "suplexed rod"
-	desc = "A true feat of strength, almost as good as last year."
+	name = "被背摔杆"
+	desc = "一次对力量的真正展现，几乎和去年那次一样好。"
 	icon_state = "anchored_rod"
 	anchored = TRUE
 
@@ -522,13 +522,13 @@
 
 /obj/structure/flora/coconuts
 	gender = PLURAL
-	name = "coconuts"
+	name = "椰子"
 	icon = 'icons/obj/fluff/beach.dmi'
 	icon_state = "coconuts"
 
 /obj/structure/flora/tree/palm
-	name = "palm tree"
-	desc = "A tree straight from the tropics."
+	name = "棕榈树"
+	desc = "来自热带地区的一棵树。"
 	icon = 'icons/obj/fluff/beach2.dmi'
 	icon_state = "palm1"
 	pixel_x = 0
@@ -545,8 +545,8 @@
  * Grass *
  *********/
 /obj/structure/flora/grass
-	name = "grass"
-	desc = "A patch of overgrown grass."
+	name = "草"
+	desc = "一片杂草丛生的草地。"
 	icon = 'icons/obj/fluff/flora/snowflora.dmi'
 	gender = PLURAL //"this is grass" not "this is a grass"
 	harvest_with_hands = TRUE
@@ -604,8 +604,8 @@
 	update_appearance()
 
 /obj/structure/flora/grass/jungle
-	name = "jungle grass"
-	desc = "Thick alien flora."
+	name = "丛林草"
+	desc = "浓密的外星杂草"
 	icon = 'icons/obj/fluff/flora/jungleflora.dmi'
 	icon_state = "grassa1"
 
@@ -651,8 +651,8 @@
  **********/
 
 /obj/structure/flora/bush
-	name = "bush"
-	desc = "Some type of shrubbery. Known for causing considerable economic stress on designers."
+	name = "灌木"
+	desc = "某种灌木。众所周知，它给设计师带来了相当大的经济压力。"
 	icon = 'icons/obj/fluff/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
 	flora_flags = FLORA_HERBAL
@@ -924,7 +924,7 @@
 	update_appearance()
 
 /obj/structure/flora/bush/jungle
-	desc = "A wild plant that is found in jungles."
+	desc = "丛林中的一种野生植物。"
 	icon = 'icons/obj/fluff/flora/jungleflora.dmi'
 	icon_state = "busha1"
 	flora_flags = FLORA_HERBAL
@@ -988,8 +988,8 @@
 	update_appearance()
 
 /obj/structure/flora/lunar_plant
-	name = "lunar plant"
-	desc= "This seemingly dead plant is actually quite alive, hibernating until sensing living things."
+	name = "月球植物"
+	desc= "这株看似死去的植物实际上还活着，它处于休眠状态，直到感知到生命体。"
 	icon_state = "lunar_plant"
 	icon = 'icons/obj/fluff/flora/xenoflora.dmi'
 	density = FALSE
@@ -1015,9 +1015,9 @@
 // (I know these aren't plants)
 
 /obj/structure/flora/rock
-	name = "large rock"
+	name = "巨大的岩石"
 	icon_state = "basalt1"
-	desc = "A volcanic rock. Pioneers used to ride these babies for miles."
+	desc = "火山岩。拓荒者曾经骑着这些小玩意走好几英里。"
 	icon = 'icons/obj/fluff/flora/rocks.dmi'
 	density = TRUE
 	resistance_flags = FIRE_PROOF
@@ -1047,8 +1047,8 @@
 	update_appearance()
 
 /obj/structure/flora/rock/pile
-	name = "rock pile"
-	desc = "A pile of rocks."
+	name = "岩石堆"
+	desc = "一堆岩石。"
 	icon_state = "lavarocks1"
 	harvest_amount_low = 5
 	harvest_amount_high = 10
@@ -1161,7 +1161,7 @@
 	update_appearance()
 
 /obj/structure/flora/rock/pile/jungle/large
-	name = "pile of large rocks"
+	name = "大岩石堆"
 	icon_state = "rocks1"
 	icon = 'icons/obj/fluff/flora/largejungleflora.dmi'
 	pixel_x = -16
@@ -1182,7 +1182,7 @@
 
 //TODO: Make new sprites for these. the pallete in the icons are grey, and a white color here still makes them grey
 /obj/structure/flora/rock/icy
-	name = "icy rock"
+	name = "冰岩"
 	icon_state = "basalt1"
 	color = rgb(204,233,235)
 
@@ -1198,7 +1198,7 @@
 	update_appearance()
 
 /obj/structure/flora/rock/pile/icy
-	name = "icy rocks"
+	name = "冰岩"
 	icon_state = "lavarocks1"
 	color = rgb(204,233,235)
 

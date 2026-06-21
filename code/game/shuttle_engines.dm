@@ -5,8 +5,8 @@
 #define ENGINE_WELDTIME (20 SECONDS)
 
 /obj/machinery/power/shuttle_engine
-	name = "engine"
-	desc = "A bluespace engine used to make shuttles move."
+	name = "引擎"
+	desc = "一种用于驱动穿梭机的蓝移引擎。"
 	icon = 'icons/turf/shuttle.dmi'
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	smoothing_groups = SMOOTH_GROUP_SHUTTLE_PARTS
@@ -72,11 +72,11 @@
 	. = ..()
 	switch(engine_state)
 		if(ENGINE_UNWRENCHED)
-			. += span_notice("\The [src] is unbolted from the floor. It needs to be wrenched to the floor to be installed.")
+			. += span_notice("\The [src] 未用螺栓固定在地板上。需要用扳手将其固定在地板上才能完成安装。")
 		if(ENGINE_WRENCHED)
-			. += span_notice("\The [src] is bolted to the floor and can be unbolted with a wrench. It needs to be welded to the floor to finish installation.")
+			. += span_notice("\The [src] 已用螺栓固定在地板上，可以用扳手松开。需要将其焊接到地板上才能完成安装。")
 		if(ENGINE_WELDED)
-			. += span_notice("\The [src] is welded to the floor and can be unwelded. It is currently fully installed.")
+			. += span_notice("\The [src] 已焊接到地板上，可以将其焊开。目前它已完全安装完毕。")
 
 /obj/machinery/power/shuttle_engine/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(held_item?.tool_behaviour == TOOL_WELDER && engine_state == ENGINE_WRENCHED)
@@ -102,7 +102,7 @@
 /obj/machinery/power/shuttle_engine/can_be_unfasten_wrench(mob/user, silent)
 	if(engine_state == ENGINE_WELDED)
 		if(!silent)
-			to_chat(user, span_warning("[src] is welded to the floor!"))
+			to_chat(user, span_warning("[src]被焊接在了地板上！"))
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -131,31 +131,31 @@
 	. = ..()
 	switch(engine_state)
 		if(ENGINE_UNWRENCHED)
-			to_chat(user, span_warning("\The [src] needs to be wrenched to the floor!"))
+			to_chat(user, span_warning("\The [src] 需要用扳手固定在地板上！"))
 		if(ENGINE_WRENCHED)
 			if(!tool.tool_start_check(user, heat_required = HIGH_TEMPERATURE_REQUIRED))
 				return TRUE
 
-			user.visible_message(span_notice("[user.name] starts to weld \the [src] to the floor."), \
-				span_notice("You start to weld \the [src] to the floor..."), \
+			user.visible_message(span_notice("[user.name] 开始将 \the [src] 焊接到地板上。"), \
+				span_notice("你开始将\the [src]焊接到地板上..."), \
 				span_hear("You hear welding."))
 
 			if(tool.use_tool(src, user, ENGINE_WELDTIME, volume = 50))
 				engine_state = ENGINE_WELDED
-				to_chat(user, span_notice("You weld \the [src] to the floor."))
+				to_chat(user, span_notice("你将\the [src]焊接到地板上。"))
 				alter_engine_power(engine_power)
 
 		if(ENGINE_WELDED)
 			if(!tool.tool_start_check(user, heat_required = HIGH_TEMPERATURE_REQUIRED))
 				return TRUE
 
-			user.visible_message(span_notice("[user.name] starts to cut \the [src] free from the floor."), \
-				span_notice("You start to cut \the [src] free from the floor..."), \
+			user.visible_message(span_notice("[user.name]开始将\the [src]从地板上切割下来。"), \
+				span_notice("你开始将\the [src]从地板上切割下来..."), \
 				span_hear("You hear welding."))
 
 			if(tool.use_tool(src, user, ENGINE_WELDTIME, volume = 50))
 				engine_state = ENGINE_WRENCHED
-				to_chat(user, span_notice("You cut \the [src] free from the floor."))
+				to_chat(user, span_notice("你将\the [src]从地板上切割下来。"))
 				alter_engine_power(-engine_power)
 	return TRUE
 
@@ -165,44 +165,44 @@
 		connected_ship.alter_engines(mod)
 
 /obj/machinery/power/shuttle_engine/heater
-	name = "engine heater"
-	desc = "Directs energy into compressed particles in order to power engines."
+	name = "引擎加热器"
+	desc = "将能量导向压缩粒子以为引擎提供动力。"
 	icon_state = "heater"
 	circuit = /obj/item/circuitboard/machine/engine/heater
 	engine_power = 0 // todo make these into 2x1 parts
 
 /obj/machinery/power/shuttle_engine/propulsion
-	name = "propulsion engine"
+	name = "推进引擎"
 	icon_state = "propulsion"
-	desc = "A standard reliable bluespace engine used by many forms of shuttles."
+	desc = "一种标准可靠的蓝空间引擎，被多种穿梭艇使用。"
 	circuit = /obj/item/circuitboard/machine/engine/propulsion
 	opacity = TRUE
 
 /obj/machinery/power/shuttle_engine/propulsion/left
-	name = "left propulsion engine"
+	name = "左侧推进引擎"
 	icon_state = "propulsion_l"
 
 /obj/machinery/power/shuttle_engine/propulsion/right
-	name = "right propulsion engine"
+	name = "右侧推进引擎"
 	icon_state = "propulsion_r"
 
 /obj/machinery/power/shuttle_engine/propulsion/burst
-	name = "burst engine"
-	desc = "An engine that releases a large bluespace burst to propel it."
+	name = "爆发引擎"
+	desc = "一种通过释放大量蓝空间爆发来推进的引擎。"
 
 /obj/machinery/power/shuttle_engine/propulsion/burst/left
-	name = "left burst engine"
+	name = "左侧爆发引擎"
 	icon_state = "burst_l"
 
 /obj/machinery/power/shuttle_engine/propulsion/burst/right
-	name = "right burst engine"
+	name = "右侧爆发引擎"
 	icon_state = "burst_r"
 
 /obj/machinery/power/shuttle_engine/large
-	name = "engine"
+	name = "引擎"
 	icon = 'icons/obj/fluff/2x2.dmi'
 	icon_state = "large_engine"
-	desc = "A very large bluespace engine used to propel very large ships."
+	desc = "一个非常庞大的蓝空间引擎，用于推进非常庞大的飞船。"
 	circuit = null
 	opacity = TRUE
 	bound_width = 64
@@ -210,10 +210,10 @@
 	appearance_flags = LONG_GLIDE
 
 /obj/machinery/power/shuttle_engine/huge
-	name = "engine"
+	name = "引擎"
 	icon = 'icons/obj/fluff/3x3.dmi'
 	icon_state = "huge_engine"
-	desc = "An extremely large bluespace engine used to propel extremely large ships."
+	desc = "一个极其庞大的蓝空间引擎，用于推进极其庞大的飞船。"
 	circuit = null
 	opacity = TRUE
 	bound_width = 96

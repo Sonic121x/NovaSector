@@ -2,7 +2,7 @@
 	granted_action = /datum/action/cooldown/spell/pointed/barnyardcurse
 	action_name = "barnyard"
 	icon_state ="bookhorses"
-	desc = "This book is more horse than your mind has room for."
+	desc = "这本书里的马匹知识多到你的大脑装不下。"
 	remarks = list(
 		"Moooooooo!",
 		"Moo!",
@@ -31,4 +31,4 @@
 		user.equip_to_slot_if_possible(magic_mask, ITEM_SLOT_MASK, TRUE, TRUE)
 		qdel(src)
 	else
-		to_chat(user,span_notice("I say thee neigh")) //It still lives here
+		to_chat(user,span_notice("我对你说：嘶")) //It still lives here

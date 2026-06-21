@@ -1,21 +1,21 @@
 /obj/item/clothing/neck/chaplain
-	name = "bishop's cloak"
-	desc = "Become the space pope."
+	name = "主教斗篷"
+	desc = "成为太空教皇。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "bishopcloak"
 
 /obj/item/clothing/neck/chaplain/black
-	name = "black bishop's cloak"
+	name = "黑色主教斗篷"
 	icon_state = "blackbishopcloak"
 
 /obj/item/clothing/neck/cloak/qm/nova/interdyne
-	name = "deck officer's cloak"
-	desc = "A cloak that represents the eternal Cargonia. There's little Mosin Nagant emblems woven into the fabric."
+	name = "甲板军官斗篷"
+	desc = "一件象征着永恒货运王国的斗篷。织物上织有小小的莫辛-纳甘步枪纹章。"
 
 /obj/item/clothing/neck/cowboylea
-	name = "green cowboy poncho"
-	desc = "A sand covered cloak, there seems to be a small deer head with antlers embroidered inside."
+	name = "绿色牛仔披风"
+	desc = "一件沾满沙尘的斗篷，内侧似乎绣着一个带鹿角的小鹿头。"
 	body_parts_covered = NECK
 	slot_flags = ITEM_SLOT_NECK
 	icon = 'modular_nova/master_files/icons/obj/clothing/neck.dmi'
@@ -29,8 +29,8 @@
 
 //This one is greyscale :)
 /obj/item/clothing/neck/ranger_poncho
-	name = "ranger poncho"
-	desc = "Aim for the Heart, Ramon."
+	name = "游骑兵披风"
+	desc = "瞄准心脏，拉蒙。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/ranger_poncho"
 	post_init_icon_state = "ranger_poncho"
@@ -45,8 +45,8 @@
 	AddComponent(/datum/component/toggle_icon, "over shoulder")
 
 /obj/item/clothing/neck/long_cape
-	name = "long cape"
-	desc = "A graceful cloak that carefully surrounds your body."
+	name = "长斗篷"
+	desc = "一件优雅的斗篷，精心地包裹着你的身体。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/long_cape"
 	post_init_icon_state = "long_cape"
@@ -61,8 +61,8 @@
 	AddComponent(/datum/component/toggle_icon, "cover arm")
 
 /obj/item/clothing/neck/wide_cape
-	name = "wide cape"
-	desc = "A proud, broad-shouldered cloak with which you can protect the honor of your back."
+	name = "宽斗篷"
+	desc = "一件骄傲的、宽肩的斗篷，你可以用它来守护你后背的荣誉。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/wide_cape"
 	post_init_icon_state = "wide_cape"

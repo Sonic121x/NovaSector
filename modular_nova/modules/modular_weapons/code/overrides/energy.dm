@@ -108,7 +108,7 @@
 
 /obj/item/gun/energy/laser/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The Allstar SC-1 laser gun, typically referred to as the SC-1, laser gun, or \"ol' reliable\", \
 			is one of Allstar's greatest successes in energy weapon development, proving itself as a workhorse.<br>\
 			<br>\
@@ -123,7 +123,7 @@
 
 /obj/item/gun/energy/laser/retro/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The Allstar SC-1 laser gun, typically referred to as the SC-1, laser gun, or \"ol' reliable\", \
 			is one of Allstar's greatest successes in energy weapon development, proving itself as a workhorse. \
 			Especially this one, which uses a casing pattern that hasn't been in active use for... who knows how long.<br>\
@@ -140,7 +140,7 @@
 
 /obj/item/gun/energy/laser/soulful/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The Allstar SC-1 laser gun, typically referred to as the SC-1, laser gun, or \"ol' reliable\", \
 			is one of Allstar's greatest successes in energy weapon development, proving itself as a workhorse.<br>\
 			<br>\
@@ -159,7 +159,7 @@
 
 /obj/item/gun/energy/laser/hellgun/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The Allstar SC-H heavy laser gun, typically referred to as the SC-H, hellfire laser gun, or \"ol' inhumane\", \
 			is one of Allstar's less-great successes in energy weapon development, proving itself to be a little too effective. \
 			It's considered a notable example of Allstar flying too close to the sun for its own good.<br>\
@@ -184,7 +184,7 @@
 
 /obj/item/gun/energy/laser/captain/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "For a brief period, Allstar produced a series of custom-made SC-H laser guns for a select group of \
 			clients, mainly consisting of various wealthy starship captains, politicians and military leaders looking to demonstrate prestige before \
 			the common folk.<br>\
@@ -212,7 +212,7 @@
 
 /obj/item/gun/energy/laser/xray/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The NT Type 6 Heat Delivery System (sometimes referred to as the HDS6 in research notes) is a breakthrough in the \
 			development of directed energy weaponry, using modified Allstar SC-1s as a base.<br>\
 			<br>\

@@ -1,9 +1,9 @@
 /obj/item/disk/nifsoft_uploader/summoner/book
-	name = "Grimoire Akasha"
+	name = "阿卡夏魔典"
 	loaded_nifsoft = /datum/nifsoft/summoner/book
 
 /datum/nifsoft/summoner/book
-	name = "Grimoire Akasha"
+	name = "阿卡夏魔典"
 	program_desc = "Grimoire Akasha is a fork of the Grimoire Caeruleam NIFSoft that is designed around giving the user access to various educational hardlight books. \
 	Due to its educational nature and miniscule size, Grimoire Akasha is typically provided for free at most NIFSoft marketplaces."
 	summonable_items = list()
@@ -30,7 +30,7 @@
 
 /obj/item/book/carving_act(mob/living/user, obj/item/tool)
 	if(cannot_carve)
-		balloon_alert(user, "can't carve!")
+		balloon_alert(user, "无法雕刻！")
 		return ITEM_INTERACT_BLOCKING
 
 	return ..()

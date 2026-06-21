@@ -1,6 +1,6 @@
 /mob/living/basic/skeleton
-	name = "reanimated skeleton"
-	desc = "A real bonefied skeleton, doesn't seem like it wants to socialize."
+	name = "复生骷髅"
+	desc = "一具货真价实的骷髅，看起来它并不想社交。"
 	gender = NEUTER
 	icon = 'icons/mob/simple/simple_human.dmi'
 	mob_biotypes = MOB_UNDEAD|MOB_HUMANOID|MOB_SKELETAL
@@ -55,8 +55,8 @@
 	ai_controller?.set_blackboard_key(BB_BASIC_FOODS, typecacheof(foods_list))
 
 /mob/living/basic/skeleton/settler
-	name = "undead settler"
-	desc = "The reanimated remains of some poor settler."
+	name = "亡灵定居者"
+	desc = "某个可怜定居者的复生遗骸。"
 	maxHealth = 55
 	health = 55
 	melee_damage_lower = 17
@@ -76,13 +76,13 @@
 	held_item = /obj/item/spear
 
 /datum/outfit/settler
-	name = "Settler"
+	name = "定居者"
 	suit = /obj/item/clothing/suit/hooded/wintercoat
 	shoes = /obj/item/clothing/shoes/winterboots
 
 /mob/living/basic/skeleton/templar
-	name = "undead templar"
-	desc = "The reanimated remains of a holy templar knight."
+	name = "亡灵圣殿骑士"
+	desc = "一位神圣圣殿骑士的复生遗骸。"
 	maxHealth = 150
 	health = 150
 	speed = 2
@@ -99,19 +99,19 @@
 		/obj/effect/decal/remains/human,
 		/obj/item/clothing/suit/chaplainsuit/armor/templar,
 		/obj/item/clothing/head/helmet/chaplain,
-		/obj/item/claymore/weak{name = "holy sword"}
+		/obj/item/claymore/weak{name = "神圣之剑"}
 	)
 	outfit = /datum/outfit/templar
 
 /datum/outfit/templar
-	name = "Templar"
+	name = "圣殿骑士"
 	head = /obj/item/clothing/head/helmet/chaplain
 	suit = /obj/item/clothing/suit/chaplainsuit/armor/templar
 	r_hand = /obj/item/claymore/weak
 
 /mob/living/basic/skeleton/ice
-	name = "ice skeleton"
-	desc = "A reanimated skeleton protected by a thick sheet of natural ice armor. Looks slow, though."
+	name = "冰霜骷髅"
+	desc = "一具复生的骷髅，被一层厚厚的天然冰甲保护着。不过看起来行动迟缓。"
 	speed = 5
 	maxHealth = 75
 	health = 75
@@ -119,8 +119,8 @@
 	loot = list(/obj/effect/decal/remains/human{color = rgb(114,228,250)})
 
 /mob/living/basic/skeleton/plasmaminer
-	name = "shambling miner"
-	desc = "A plasma-soaked miner, their exposed limbs turned into a grossly incandescent bone seemingly made of plasma."
+	name = "蹒跚的矿工"
+	desc = "一个浸透了等离子体的矿工，其暴露的肢体变成了看似由等离子体构成的、发出刺眼光芒的骨头。"
 	icon_state = "plasma_miner"
 	icon_living = "plasma_miner"
 	icon_dead = "plasma_miner"
@@ -136,7 +136,7 @@
 	species = /datum/species/plasmaman
 
 /mob/living/basic/skeleton/plasmaminer/jackhammer
-	desc = "A plasma-soaked miner, their exposed limbs turned into a grossly incandescent bone seemingly made of plasma. They seem to still have their mining tool in their hand, gripping tightly."
+	desc = "一个浸透了等离子体的矿工，其暴露的肢体变成了看似由等离子体构成的、发出刺眼光芒的骨头。他们手里似乎还紧握着采矿工具。"
 	icon_state = "plasma_miner_tool"
 	icon_living = "plasma_miner_tool"
 	icon_dead = "plasma_miner_tool"
@@ -152,7 +152,7 @@
 	held_item = /obj/item/pickaxe/drill/jackhammer
 
 /datum/outfit/plasma_miner
-	name = "Plasma Miner"
+	name = "等离子矿工"
 	uniform = /obj/item/clothing/under/rank/cargo/miner/lavaland
 	suit = /obj/item/clothing/suit/hooded/explorer
 	mask = /obj/item/clothing/mask/gas/explorer

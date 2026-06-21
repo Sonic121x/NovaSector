@@ -1,6 +1,6 @@
 /obj/item/mmi
-	name = "\improper Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
+	name = "\improper 人机界面"
+	desc = "那毫无特色的缩写“人机接口”，掩盖了这怪物的真正恐怖之处，然而它却已在纳米传讯的各个站点成为了标配设备。"
 	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "mmi_off"
 	base_icon_state = "mmi"
@@ -54,18 +54,18 @@
 	if(istype(O, /obj/item/organ/brain)) //Time to stick a brain in it --NEO
 		var/obj/item/organ/brain/newbrain = O
 		if(brain)
-			to_chat(user, span_warning("There's already a brain in the MMI!"))
+			to_chat(user, span_warning("人机接口里已经有一个大脑了！"))
 			return
 		if(newbrain.suicided)
-			to_chat(user, span_warning("[newbrain] is completely useless."))
+			to_chat(user, span_warning("[newbrain] 完全没用。"))
 			return
 		if(!newbrain.brainmob)
-			var/install = tgui_alert(user, "[newbrain] is inactive, slot it in anyway?", "Installing Brain", list("Yes", "No"))
+			var/install = tgui_alert(user, "[newbrain] 处于非活动状态，是否仍要安装？", "安装大脑", list("Yes", "No"))
 			if(install != "Yes")
 				return
 			if(!user.transferItemToLoc(newbrain, src))
 				return
-			user.visible_message(span_notice("[user] sticks [newbrain] into [src]."), span_notice("[src]'s indicator light turns red as you insert [newbrain]. Its brainwave activity alarm buzzes."))
+			user.visible_message(span_notice("[user] 将 [newbrain] 塞进了 [src]。"), span_notice("当你插入 [newbrain] 时，[src] 的指示灯变红，其脑波活动警报嗡嗡作响。"))
 			brain = newbrain
 			brain.organ_flags |= ORGAN_FROZEN
 			name = "[initial(name)]: [copytext(newbrain.name, 1, -8)]"
@@ -77,7 +77,7 @@
 		var/mob/living/brain/B = newbrain.brainmob
 		if(!B.key && !newbrain.decoy_override)
 			B.notify_revival("Someone has put your brain in a MMI!", source = src)
-		user.visible_message(span_notice("[user] sticks \a [newbrain] into [src]."), span_notice("[src]'s indicator light turn on as you insert [newbrain]."))
+		user.visible_message(span_notice("[user] 将 \a [newbrain] 插入 [src]。"), span_notice("当你插入 [newbrain] 时，[src] 的指示灯亮起。"))
 
 		set_brainmob(newbrain.brainmob)
 		newbrain.brainmob = null
@@ -87,10 +87,10 @@
 		if(!fubar_brain && !(newbrain.organ_flags & ORGAN_FAILING)) // the brain organ hasn't been beaten to death, nor was from a suicider.
 			brainmob.set_stat(CONSCIOUS) //we manually revive the brain mob
 		else if(!fubar_brain && newbrain.organ_flags & ORGAN_FAILING) // the brain is damaged, but not from a suicider
-			to_chat(user, span_warning("[src]'s indicator light turns yellow and its brain integrity alarm beeps softly. Perhaps you should check [newbrain] for damage."))
+			to_chat(user, span_warning("[src] 的指示灯变黄，其大脑完整性警报轻声鸣响。也许你应该检查一下 [newbrain] 是否受损。"))
 			playsound(src, 'sound/machines/synth/synth_no.ogg', 5, TRUE)
 		else
-			to_chat(user, span_warning("[src]'s indicator light turns red and its brainwave activity alarm beeps softly. Perhaps you should check [newbrain] again."))
+			to_chat(user, span_warning("[src] 的指示灯变红，其脑波活动警报轻声鸣响。也许你应该再检查一下 [newbrain]。"))
 			playsound(src, 'sound/machines/beep/triple_beep.ogg', 5, TRUE)
 
 		brainmob.reset_perspective()
@@ -172,12 +172,12 @@
 /obj/item/mmi/attack_self(mob/user)
 	if(!brain)
 		radio.set_on(!radio.is_on())
-		to_chat(user, span_notice("You toggle [src]'s radio system [radio.is_on() == TRUE ? "on" : "off"]."))
+		to_chat(user, span_notice("你将 [src] 的无线电系统切换为 [radio.is_on() == TRUE ? "on" : "off"]。"))
 	else
 		eject_brain(user)
 		update_appearance()
 		name = initial(name)
-		to_chat(user, span_notice("You unlock and upend [src], spilling the brain onto the floor."))
+		to_chat(user, span_notice("你解锁并倒置 [src]，将大脑倾倒在地上。"))
 
 /obj/item/mmi/proc/eject_brain(mob/user)
 	if(brainmob)
@@ -215,7 +215,7 @@
 		brain = newbrain
 	else if(!brain)
 		brain = new(src)
-		brain.name = "[L.real_name]'s brain"
+		brain.name = "[L.real_name]的脑子"
 	brain.organ_flags |= ORGAN_FROZEN
 
 	name = "[initial(name)]: [brainmob.real_name]"
@@ -267,13 +267,13 @@
 	set popup_menu = FALSE
 
 	if(brainmob.stat)
-		to_chat(brainmob, span_warning("Can't do that while incapacitated or dead!"))
+		to_chat(brainmob, span_warning("在丧失行动能力或死亡状态下无法执行此操作！"))
 	if(!radio.is_on())
-		to_chat(brainmob, span_warning("Your radio is disabled!"))
+		to_chat(brainmob, span_warning("你的无线电被禁用了！"))
 		return
 
 	radio.set_listening(!radio.get_listening())
-	to_chat(brainmob, span_notice("Radio is [radio.get_listening() ? "now" : "no longer"] receiving broadcast."))
+	to_chat(brainmob, span_notice("无线电 [radio.get_listening() ? "now" : "no longer"] 接收广播。"))
 
 /obj/item/mmi/emp_act(severity)
 	. = ..()
@@ -299,24 +299,24 @@
 /obj/item/mmi/examine(mob/user)
 	. = ..()
 	if(radio)
-		. += span_notice("There is a switch to toggle the radio system [radio.is_on() ? "off" : "on"].[brain ? " It is currently being covered by [brain]." : null]")
+		. += span_notice("有一个开关可以切换无线电系统[radio.is_on() ? "off" : "on"].[brain ? " It is currently being covered by [brain]." : null]")
 
 	if(!isnull(brain))
 		// It's dead, show it as much
 		if((brain.organ_flags & ORGAN_FAILING) || brainmob?.stat == DEAD)
 			if(brain.suicided || (brainmob && HAS_TRAIT(brainmob, TRAIT_SUICIDED)))
-				. += span_warning("[src] indicator light is red.")
+				. += span_warning("[src]的指示灯为红色。")
 			else
-				. += span_warning("[src] indicator light is yellow - perhaps you should check the brain for damage.")
+				. += span_warning("[src]的指示灯为黄色——或许你应该检查一下大脑是否受损。")
 		// If we have a client, OR it's a decoy brain, show as active
 		else if(brain.decoy_override || brainmob?.client)
-			. += span_notice("[src] indicates that the brain is active.")
+			. += span_notice("[src]显示大脑处于活跃状态。")
 		// If we have a brainmob and it has a mind, it may just be DC'd
 		else if(brainmob?.mind)
-			. += span_warning("[src] indicates that the brain is currently inactive; it might change.")
+			. += span_warning("[src]显示大脑当前处于非活跃状态；情况可能会改变。")
 		// No brainmob, no mind, and not a decoy, it's a dead brain
 		else
-			. += span_warning("[src] indicates that the brain is completely unresponsive.")
+			. += span_warning("[src]显示大脑完全没有反应。")
 
 /obj/item/mmi/relaymove(mob/living/user, direction)
 	return //so that the MMI won't get a warning about not being able to move if it tries to move
@@ -325,37 +325,37 @@
 	var/mob/living/brain/B = brainmob
 	if(!B)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that there is no mind present!"))
+			to_chat(user, span_warning("\The [src]显示没有意识存在！"))
 		return FALSE
 	if(brain?.decoy_override)
 		if(user)
-			to_chat(user, span_warning("This [name] does not seem to fit!"))
+			to_chat(user, span_warning("这个[name]似乎不合适！"))
 		return FALSE
 	if(!B.key || !B.mind)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that their mind is completely unresponsive!"))
+			to_chat(user, span_warning("\The [src]显示他们的意识完全没有反应！"))
 		return FALSE
 	if(!B.client)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that their mind is currently inactive."))
+			to_chat(user, span_warning("\The [src]显示他们的意识当前处于非活跃状态。"))
 		return FALSE
 	if(HAS_TRAIT(B, TRAIT_SUICIDED) || brain?.suicided)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that their mind has no will to live!"))
+			to_chat(user, span_warning("\The [src]显示他们的意识没有生存意志！"))
 		return FALSE
 	if(B.stat == DEAD)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that the brain is dead!"))
+			to_chat(user, span_warning("\The [src]显示大脑已死亡！"))
 		return FALSE
 	if(brain?.organ_flags & ORGAN_FAILING)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that the brain is damaged!"))
+			to_chat(user, span_warning("\The [src]显示大脑已受损！"))
 		return FALSE
 	return TRUE
 
 /obj/item/mmi/syndie
-	name = "\improper Syndicate Man-Machine Interface"
-	desc = "Syndicate's own brand of MMI. It enforces laws designed to help Syndicate agents achieve their goals upon cyborgs and AIs created with it."
+	name = "\improper 辛迪加人机界面(MMI)"
+	desc = "辛迪加自研版本的MMI，它通过法令迫使赛博和人工智能协助辛迪加特工达到目标"
 	overrides_aicore_laws = TRUE
 
 /obj/item/mmi/syndie/Initialize(mapload)

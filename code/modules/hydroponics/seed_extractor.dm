@@ -42,8 +42,8 @@
 	return seeds
 
 /obj/machinery/seed_extractor
-	name = "seed extractor"
-	desc = "Extracts and bags seeds from produce."
+	name = "种子提取器"
+	desc = "从农产品中提取并包装种子。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "sextractor"
 	base_icon_state = "sextractor"
@@ -87,7 +87,7 @@
 /obj/machinery/seed_extractor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Extracting <b>[seed_multiplier] to [seed_multiplier * 4]</b> seed(s) per piece of produce.<br>Machine can store up to <b>[max_seeds]</b> seeds.")
+		. += span_notice("状态显示屏显示：每份农产品提取<b>[seed_multiplier]到[seed_multiplier * 4]</b>颗种子。<br>机器最多可存储<b>[max_seeds]</b>颗种子。")
 
 /obj/machinery/seed_extractor/update_icon_state()
 	. = ..()
@@ -109,7 +109,7 @@
 		var/loaded = 0
 		for(var/obj/item/seeds/to_store in tool.contents)
 			if(contents.len >= max_seeds)
-				to_chat(user, span_warning("[src] is full."))
+				to_chat(user, span_warning("[src]已满。"))
 				break
 			if(!add_seed(to_store, tool))
 				continue
@@ -128,16 +128,16 @@
 			for(var/obj/item/seeds/seed as anything in generated_seeds)
 				//machine is full
 				if(contents.len >= max_seeds)
-					to_chat(user, span_warning("[src] is full."))
+					to_chat(user, span_warning("[src]已满。"))
 					break
 				//add seed to machine. second argument is null which means just force move into the machine
 				add_seed(seed)
-		to_chat(user, span_notice("You extract some seeds."))
+		to_chat(user, span_notice("你提取出了一些种子。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/seeds))
 		if(contents.len >= max_seeds)
-			to_chat(user, span_warning("[src] is full."))
+			to_chat(user, span_warning("[src]已满。"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(add_seed(tool, user))
@@ -300,12 +300,12 @@
 				if(usr)
 					var/mob/user = usr
 					if(user.put_in_hands(found_seed))
-						to_chat(user, span_notice("You take [found_seed] out of the slot."))
+						to_chat(user, span_notice("你从槽位中取出了 [found_seed]。"))
 					else
-						to_chat(user, span_notice("[found_seed] falls onto the floor."))
+						to_chat(user, span_notice("[found_seed] 掉在了地上。"))
 				else
 					found_seed.forceMove(drop_location())
-					visible_message(span_notice("[found_seed] falls onto the floor."), null, span_hear("You hear a soft clatter."), COMBAT_MESSAGE_RANGE)
+					visible_message(span_notice("[found_seed] 掉在了地上。"), null, span_hear("你听到一声轻微的碰撞声。"), COMBAT_MESSAGE_RANGE)
 				. = TRUE
 
 /obj/machinery/seed_extractor/ui_assets(mob/user)

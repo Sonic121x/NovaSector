@@ -8,8 +8,8 @@
 	)
 
 /obj/machinery/rodstopper
-	name = "rodstopper"
-	desc = "An advanced machine which can halt immovable rods."
+	name = "杆止器"
+	desc = "一种可以阻止不可移动之杆的先进机器。"
 	icon = 'modular_nova/modules/rod-stopper/icons/rodstopper.dmi'
 	icon_state = "rodstopper"
 	density = TRUE
@@ -19,7 +19,7 @@
 
 /obj/machinery/rodstopper/examine(mob/user)
 	. = ..()
-	. += span_warning("It will create a localized reality-collapse when stopping a rod, keep your distance!")
+	. += span_warning("它在阻止杆时会引发局部现实坍缩，请保持距离！")
 
 /obj/machinery/rodstopper/Initialize(mapload)
 	. = ..()

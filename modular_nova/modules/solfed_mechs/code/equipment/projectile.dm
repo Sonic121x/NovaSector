@@ -1,5 +1,5 @@
 /obj/projectile/bullet/c85x20mm/rubber
-	name = "85x20mm rubber slug"
+	name = "85x20mm 橡胶弹头"
 	damage = 20
 	ricochets_max = 8
 	ricochet_chance = 150
@@ -13,7 +13,7 @@
 	//knockback?
 
 /obj/projectile/bullet/rocket/c250x40mm
-	name = "250x40mm sabot slug"
+	name = "250x40mm 脱壳穿甲弹"
 	icon_state = "gaussstrong"
 	damage = 60
 	anti_armour_damage = 120
@@ -43,5 +43,5 @@
 		return
 
 /obj/projectile/ion/small
-	name = "small ion bolt"
+	name = "小型离子束"
 	emp_radius = 0

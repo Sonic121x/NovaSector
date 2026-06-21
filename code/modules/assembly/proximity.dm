@@ -1,6 +1,6 @@
 /obj/item/assembly/prox_sensor
-	name = "proximity sensor"
-	desc = "Used for scanning and alerting when someone enters a certain proximity."
+	name = "距离传感器"
+	desc = "用于扫描和在有人进入特定范围时发出警报。"
 	icon_state = "prox"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*8, /datum/material/glass=SMALL_MATERIAL_AMOUNT * 2)
 	assembly_behavior = ASSEMBLY_TOGGLEABLE_INPUT
@@ -26,7 +26,7 @@
 
 /obj/item/assembly/prox_sensor/examine(mob/user)
 	. = ..()
-	. += span_notice("The proximity sensor is [timing ? "arming" : (scanning ? "armed" : "disarmed")].")
+	. += span_notice("接近传感器处于 [timing ? "arming" : (scanning ? "armed" : "disarmed")] 状态。")
 
 /obj/item/assembly/prox_sensor/activate()
 	if(!..())

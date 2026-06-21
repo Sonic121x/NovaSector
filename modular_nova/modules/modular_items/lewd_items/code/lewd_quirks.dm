@@ -174,7 +174,7 @@
 
 //Mood boost
 /datum/mood_event/bimbo
-	description = span_purple("So-o... Help..less... Lo-ve it!\n")
+	description = span_purple("好...好...无...助...好...喜...欢！\n")
 
 /*
 *	MASOCHISM
@@ -332,7 +332,7 @@
 	var/mob/living/carbon/human/affected_mob = quirk_holder
 	REMOVE_TRAIT(affected_mob, TRAIT_RIGGER, TRAIT_LEWDQUIRK)
 /datum/mood_event/sadistic
-	description = span_purple("Others' suffering makes me happier.\n")
+	description = span_purple("他人的痛苦让我更快乐。\n")
 
 /*
 *	EMPATH BONUS
@@ -352,7 +352,7 @@
 			if(AROUSAL_LOW to AROUSAL_MEDIUM)
 				arousal_message = span_purple("[p_They()] [p_are()] quite aroused and seems to be stirring up lewd thoughts in [p_their()] head.") + "\n"
 			if(AROUSAL_HIGH to AROUSAL_AUTO_CLIMAX_THRESHOLD)
-				arousal_message = span_purple("[p_They()] [p_are()] aroused as hell.") + "\n"
+				arousal_message = span_purple("[p_They()] [p_are()] 欲火焚身。") + "\n"
 			if(AROUSAL_AUTO_CLIMAX_THRESHOLD to INFINITY)
 				arousal_message = span_purple("[p_They()] [p_are()] extremely excited, exhausted from intolerable desire.") + "\n"
 		if(arousal_message)

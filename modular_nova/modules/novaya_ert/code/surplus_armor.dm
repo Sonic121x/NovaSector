@@ -34,8 +34,8 @@
 // Hats
 
 /obj/item/clothing/head/helmet/cin_surplus_helmet
-	name = "\improper GZ-03 combat helmet"
-	desc = "An outdated service helmet previously used by CIN military forces. The design dates back to the years leading up to CIN - SolFed border war, and was in service until the advent of VOSKHOD powered armor becoming standard issue."
+	name = "\improper GZ-03 作战头盔"
+	desc = "一款曾被CIN军事力量使用的过时勤务头盔。其设计可追溯至CIN-太阳联邦边境战争爆发前的年代，并一直服役至VOSKHOD动力装甲成为标准装备为止。"
 	worn_icon = 'modular_nova/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/helmet/cin_surplus_helmet"
@@ -113,8 +113,8 @@
 // Undersuits
 
 /obj/item/clothing/under/syndicate/rus_army/cin_surplus
-	name = "\improper CIN combat uniform"
-	desc = "A CIN designed combat uniform that can come in any number of camouflauge variations. Despite this particular design being developed in the years leading up to the CIN-SolFed border war, the uniform is still in use by many member states to this day."
+	name = "\improper CIN作战制服"
+	desc = "一款CIN设计的作战制服，可以有多种迷彩变体。尽管这款特定设计是在CIN-太阳联邦边境战争爆发前几年开发的，但至今仍被许多成员国使用。"
 	worn_icon = 'modular_nova/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/syndicate/rus_army/cin_surplus"
@@ -152,8 +152,8 @@
 // Vests
 
 /obj/item/clothing/suit/armor/vest/cin_surplus_vest
-	name = "\improper GZ-03 armor vest"
-	desc = "An outdated armor vest previously used by CIN military forces. The design dates back to the years leading up to CIN - SolFed border war, and was in service until the advent of VOSKHOD powered armor becoming standard issue."
+	name = "\improper GZ-03 防弹背心"
+	desc = "一件曾被CIN军事力量使用的过时防弹背心。其设计可追溯到CIN-太阳联邦边境战争爆发前的年代，并一直服役至VOSKHOD动力装甲成为标准装备为止。"
 	worn_icon = 'modular_nova/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
 	icon = 'modular_nova/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 	icon_state = "vest_basic"
@@ -194,7 +194,7 @@
 // Chest Rig
 
 /obj/item/storage/belt/military/cin_surplus
-	desc = "A tactical webbing often used by the CIN's military forces."
+	desc = "一种战术携行带，常被CIN军事部队使用。"
 	worn_icon = 'modular_nova/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 	worn_icon_state = "chestrig"
 	icon = 'icons/map_icons/items/_item.dmi'
@@ -236,8 +236,8 @@
 // Backpack
 
 /obj/item/storage/backpack/industrial/cin_surplus
-	name = "\improper CIN military backpack"
-	desc = "A rugged backpack often used by the CIN's military forces."
+	name = "\improper CIN军用背包"
+	desc = "一种坚固的背包，常被CIN的军事部队使用。"
 	worn_icon = 'modular_nova/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/storage/backpack/industrial/cin_surplus"

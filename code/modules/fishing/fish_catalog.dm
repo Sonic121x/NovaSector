@@ -1,7 +1,7 @@
 ///Book detailing where to get the fish and their properties.
 /obj/item/book/manual/fish_catalog
-	name = "Fish Encyclopedia"
-	desc = "Indexes all fish known to mankind (and related species)."
+	name = "钓鱼百科全书"
+	desc = "涵盖了人类已知的所有鱼类（及其相关物种）。"
 	icon_state = "fishbook"
 	custom_price = PAYCHECK_CREW * 2
 	starting_content = "Lot of fish stuff" //book wrappers could use cleaning so this is not necessary

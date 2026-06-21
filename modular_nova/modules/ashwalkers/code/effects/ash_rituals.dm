@@ -1,6 +1,6 @@
 /datum/ash_ritual
 	/// the name of the ritual
-	var/name = "Summon Coders"
+	var/name = "召唤程序员"
 	/// the description of the ritual
 	var/desc
 
@@ -96,8 +96,8 @@
 
 /// Staff Summon
 /datum/ash_ritual/summon_staff
-	name = "Summon Ash Staff"
-	desc = "Summon a staff that is imbued with the power of the tendril. Requires permission from the mother tendril."
+	name = "召唤灰烬法杖"
+	desc = "召唤一根灌注了触须力量的法杖。需要母体触须的许可。"
 	required_components = list(
 		"north" = /obj/item/stack/sheet/mineral/wood,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
@@ -112,8 +112,8 @@
 
 /// Translation Necklace
 /datum/ash_ritual/summon_necklace
-	name = "Summon Draconic Necklace"
-	desc = "Summons a necklace that imbues the wearer with the knowledge of our tongue."
+	name = "召唤龙形项链"
+	desc = "召唤一条赋予佩戴者我们语言知识的项链。"
 	required_components = list(
 		"north" = /obj/item/stack/sheet/bone,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
@@ -131,8 +131,8 @@
 
 /// Skeleton Key
 /datum/ash_ritual/summon_key
-	name = "Summon Skeleton Key"
-	desc = "Summons a key that opens the chests from fallen tendrils."
+	name = "召唤骷髅钥匙"
+	desc = "召唤一把能打开来自陨落触须的箱子的钥匙。"
 	required_components = list(
 		"north" = /obj/item/stack/sheet/bone,
 		"south" = /obj/item/stack/sheet/bone,
@@ -148,8 +148,8 @@
 
 /// THIS IS A KNOIF
 /datum/ash_ritual/summon_cursed_knife
-	name = "Summon Cursed Ash Knife"
-	desc = "Summons a knife that places a tracking curse on unsuspecting miners who destroy our marked tendrils."
+	name = "召唤诅咒灰烬匕首"
+	desc = "召唤一把能在摧毁我们标记触须的毫无戒心的矿工身上施加追踪诅咒的匕首。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/forging/reagent_weapon/dagger,
@@ -168,8 +168,8 @@
 
 /// Impregnate the ground with a Tendril
 /datum/ash_ritual/summon_tendril_seed
-	name = "Summon Tendril Seed"
-	desc = "Summons a seed that, when used in the hand, will cause a tendril to come through at your location."
+	name = "召唤触须种子"
+	desc = "召唤一颗种子，当在手中使用时，会在你的位置召唤出一根触须。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/cursed_dagger,
@@ -188,8 +188,8 @@
 
 /// Spawns a new megafauna randomly in the ashen wastes
 /datum/ash_ritual/incite_megafauna
-	name = "Incite Megafauna"
-	desc = "Causes a horrible, unrecognizable sound that will attract the large fauna from around the planet."
+	name = "激怒巨型生物"
+	desc = "发出一种可怕、难以辨认的声音，将吸引星球各处的大型生物。"
 	required_components = list(
 		"north" = /obj/item/organ/legion_tumour,
 		"south" = /obj/item/ash_seed/tendril,
@@ -207,7 +207,7 @@
 		if(select_mob.z != success_rune.z)
 			continue
 
-		to_chat(select_mob, span_userdanger("The planet stirs... another monster has arrived!"))
+		to_chat(select_mob, span_userdanger("星球在骚动……又一头怪物降临了！"))
 		playsound(get_turf(select_mob), 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
 		flash_color(select_mob, flash_color = "#FF0000", flash_time = 3 SECONDS)
 
@@ -237,8 +237,8 @@
 
 /// Age specific buffs - 20 minutes per 'maturation' period
 /datum/ash_ritual/ash_ceremony
-	name = "Ashen Age Ceremony"
-	desc = "Those who partake in the ceremony and are ready will age, increasing their value to the kin."
+	name = "灰烬时代仪式"
+	desc = "参与仪式并做好准备者将衰老，从而提升其对族人的价值。"
 	required_components = list(
 		"north" = /obj/item/organ/legion_tumour,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
@@ -259,8 +259,8 @@
 
 /// Summon specific lavaland critter
 /datum/ash_ritual/summon_lavaland_creature
-	name = "Summon Lavaland Creature"
-	desc = "Summons two random, wild monsters from another region in space."
+	name = "召唤熔岩地生物"
+	desc = "从太空的另一区域召唤两只随机的野生怪物。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/stack/sheet/animalhide/ashdrake,
@@ -287,8 +287,8 @@
 
 /// Colder versions of critters to summon
 /datum/ash_ritual/summon_icemoon_creature
-	name = "Summon Icemoon Creature"
-	desc = "Summons two random, wild monsters from another region in space."
+	name = "召唤冰月生物"
+	desc = "从太空的另一区域召唤两只随机的野生怪物。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/food/grown/surik,
@@ -314,8 +314,8 @@
 
 /// Xenobio Ritual
 /datum/ash_ritual/uncover_rocks
-	name = "Uncover Strange Rocks"
-	desc = "All the mysterious rocks that are in the center of the rune will try to uncover themselves."
+	name = "发掘奇异岩石"
+	desc = "符文中心所有神秘的岩石都将试图自行显露。"
 	required_components = list(
 		"north" = /obj/item/stack/ore/bluespace_crystal,
 		"south" = /obj/item/stack/sheet/animalhide/goliath_hide,
@@ -337,8 +337,8 @@
 		found_rock.try_uncover()
 
 /datum/ash_ritual/share_damage
-	name = "Share Victim's Damage"
-	desc = "The damage from the central victim will be shared amongst the rest of the surrounding, living kin."
+	name = "分担受害者伤害"
+	desc = "中心受害者的伤害将被分摊给周围其他存活的族人。"
 	required_components = list(
 		"north" = /obj/item/stack/sheet/bone,
 		"south" = /obj/item/stack/sheet/sinew,
@@ -378,8 +378,8 @@
 
 /// Bye Felicia
 /datum/ash_ritual/banish_kin
-	name = "Banish Kin"
-	desc = "Some kin are not fit for the tribe, this can solve that issue through democracy."
+	name = "放逐族人"
+	desc = "有些族人不适合部落，这可以通过民主方式解决该问题。"
 	required_components = list()
 	consumed_components = list()
 
@@ -423,8 +423,8 @@
 
 /// Friend : )
 /datum/ash_ritual/revive_animal
-	name = "Revive Animal"
-	desc = "Revives a simple animal that will then become friendly."
+	name = "复活动物"
+	desc = "复活一只简单的动物，之后它将变得友好。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
@@ -486,8 +486,8 @@
 
 /// Pacification
 /datum/ash_ritual/pacification
-	name = "Attune your body to the land"
-	desc = "Pacifies creatures in the wastes to come to your aide instead, the tradeoff being your ability to fight."
+	name = "让你的身体与大地共鸣"
+	desc = "安抚荒原中的生物，使其转而前来援助你，代价是你的战斗能力。"
 	required_components = list(
 		"north" = /obj/item/food/grown/ash_flora/fireblossom,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
@@ -508,8 +508,8 @@
 
 /// Summon Ore Seed
 /datum/ash_ritual/summon_ore_seed
-	name = "Summon Ore Seed"
-	desc = "Summons a seed that, when used in the hand, will cause a tendril to dig through the crust of the surface causing an ore vent to appear."
+	name = "召唤矿石种子"
+	desc = "召唤一颗种子，当握在手中使用时，将导致一条触须钻穿地表外壳，形成一个矿石喷口。"
 	required_components = list(
 		"north" = /obj/item/crusher_trophy/legion_skull,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
@@ -528,8 +528,8 @@
 
 /// Summon Tunneling Worm
 /datum/ash_ritual/summon_tunneling_worm
-	name = "Summon Tunneling Worm"
-	desc = "Summons a worm that has the ability to create deep tunnels that connect to one another."
+	name = "召唤掘地蠕虫"
+	desc = "召唤一条能够创造相互连接的深层隧道的蠕虫。"
 	required_components = list(
 		"north" = /obj/item/crusher_trophy/bileworm_spewlet,
 		"south" = /obj/item/organ/monster_core/regenerative_core,

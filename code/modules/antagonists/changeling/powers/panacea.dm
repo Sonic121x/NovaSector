@@ -1,6 +1,6 @@
 /datum/action/changeling/panacea
-	name = "Anatomic Panacea"
-	desc = "Expels impurities from our form: curing diseases, removing parasites, sobering us, purging toxins and radiation, curing traumas and brain damage, and resetting our genetic code completely. Costs 20 chemicals."
+	name = "组织万能药"
+	desc = "从我们的形态中排出杂质：治愈疾病、移除寄生虫、使我们清醒、净化毒素与辐射、治愈创伤与脑损伤，并完全重置我们的遗传密码。消耗20点化学物质。"
 	helptext = "Can be used while unconscious."
 	button_icon_state = "anatomic_panacea"
 	category = "utility"
@@ -10,7 +10,7 @@
 
 //Heals the things that the other regenerative abilities don't.
 /datum/action/changeling/panacea/sting_action(mob/user)
-	to_chat(user, span_notice("We cleanse impurities from our form."))
+	to_chat(user, span_notice("我们净化了自身形态中的杂质。"))
 	..()
 	var/list/bad_organs = list(
 		user.get_organ_by_type(/obj/item/organ/empowered_borer_egg), // NOVA EDIT ADDITION

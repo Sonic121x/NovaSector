@@ -1,6 +1,6 @@
 /mob/living/basic/trooper/cin_soldier
-	name = "Coalition Operative"
-	desc = "Death to SolFed."
+	name = "联盟特工"
+	desc = "太阳联邦必亡。"
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	ai_controller = /datum/ai_controller/basic_controller/trooper/calls_reinforcements/ancient_milsim
@@ -42,7 +42,7 @@
 
 /mob/living/basic/trooper/cin_soldier/melee/bullet_act(obj/projectile/projectile)
 	if(prob(projectile_deflect_chance))
-		visible_message(span_danger("[src] blocks [projectile] with their shield!"))
+		visible_message(span_danger("[src]用他们的盾牌挡住了[projectile]！"))
 		return BULLET_ACT_BLOCK
 	return ..()
 
@@ -83,7 +83,7 @@
 
 /mob/living/basic/trooper/cin_soldier/ranged/shotgun_revolver/bullet_act(obj/projectile/projectile)
 	if(prob(projectile_deflect_chance))
-		visible_message(span_danger("[src] blocks [projectile] with their shield!"))
+		visible_message(span_danger("[src]用他们的盾牌挡住了[projectile]！"))
 		return BULLET_ACT_BLOCK
 	return ..()
 
@@ -96,7 +96,7 @@
 	)
 
 /obj/effect/mob_spawn/corpse/human/cin_soldier
-	name = "Coalition Operative"
+	name = "联盟特工"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/cin_soldier_corpse

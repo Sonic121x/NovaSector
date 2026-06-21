@@ -1,6 +1,6 @@
 /obj/item/organ/tongue/synth
-	name = "synthetic voicebox"
-	desc = "A fully-functional synthetic tongue, encased in soft silicone. Features include high-resolution vocals and taste receptors."
+	name = "合成发声盒"
+	desc = "一个功能齐全的合成舌头，包裹在柔软的硅胶中。特点包括高分辨率发声和味觉感受器。"
 	icon = 'modular_nova/modules/organs/icons/cyber_tongue.dmi'
 	icon_state = "cybertongue"
 	say_mod = "beeps"
@@ -22,8 +22,8 @@
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /datum/design/synth_tongue
-	name = "Synthetic Tongue"
-	desc = "A fully-functional synthetic tongue, encased in soft silicone. Features include high-resolution vocals and taste receptors."
+	name = "合成舌头"
+	desc = "一个功能齐全的合成舌头，包裹在柔软的硅胶中。特点包括高分辨率发声和味觉感受器。"
 	id = "synth_tongue"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS

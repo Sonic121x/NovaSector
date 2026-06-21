@@ -17,14 +17,14 @@
 *	LOPLAND (On the chopping block)
 */
 /obj/item/clothing/under/rank/centcom/nova/lopland
-	name = "\improper Contractor corporate uniform"
-	desc = "A sleek jumpsuit worn by a PMC corporate. Its surprisingly well padded."
+	name = "\improper 承包商企业制服"
+	desc = "一件由PMC公司人员穿着的修身连体服。它出人意料地衬垫良好。"
 	icon_state = "lopland_shirt"
 	worn_icon_state = "lopland_shirt"
 
 /obj/item/clothing/under/rank/centcom/nova/lopland/instructor
-	name = "\improper Contractor instructor's uniform"
-	desc = "A over-the-top, militaristic jumpsuit worn by PMC-certified instructors, with a big PMC logo slapped on the back. The amount of pockets could make a space marine cry."
+	name = "\improper 承包商教官制服"
+	desc = "一件由PMC认证教官穿着的、极其夸张的军国主义连体服，背后印着一个巨大的PMC标志。其口袋数量多到足以让一名星际陆战队员落泪。"
 	icon_state = "lopland_tac"
 	worn_icon_state = "lopland_tac"
 

@@ -1,7 +1,7 @@
 /// Totally NOT a Rod of Discord
 /// Teleports you to where you click!
 /obj/item/teleport_rod
-	name = "Telegram Scepter"
+	name = "电报权杖"
 	desc = "A magical rod that teleports you to the location you point it. \
 		Using it puts you in a state of flux, removing some of your reagents and \
 		causing you to take damage from further uses until you stabilize once more."
@@ -28,8 +28,8 @@
 
 // Admin only version which just teleports you, so spam it all you want
 /obj/item/teleport_rod/admin
-	name = "Harmonious " + parent_type::name
-	desc = "A magical rod that teleports you anywhere, no questions asked."
+	name = "和谐" + parent_type::name
+	desc = "一根能把你传送到任何地方的魔法杖，无需多问。"
 	apply_debuffs = FALSE
 	max_tp_range = INFINITY
 
@@ -60,15 +60,15 @@
 	var/turf/start_turf = get_turf(user)
 	var/turf/target_turf = get_turf(interacting_with)
 	if(get_dist(start_turf, target_turf) > max_tp_range)
-		user.balloon_alert(user, "too far!")
+		user.balloon_alert(user, "太远了！")
 		return .
 
 	if(!(target_turf in view(user, user.client?.view || world.view)))
-		user.balloon_alert(user, "out of view!")
+		user.balloon_alert(user, "超出视野！")
 		return .
 
 	if(target_turf.is_blocked_turf(exclude_mobs = TRUE, source_atom = user))
-		user.balloon_alert(user, "obstructed!")
+		user.balloon_alert(user, "被阻挡了！")
 		return .
 
 	var/tp_result = do_teleport(
@@ -80,7 +80,7 @@
 	)
 
 	if(!tp_result)
-		user.balloon_alert(user, "teleport failed!")
+		user.balloon_alert(user, "传送失败！")
 		return .
 
 	. = ITEM_INTERACT_SUCCESS
@@ -109,7 +109,7 @@
 
 	if(user.has_status_effect(/datum/status_effect/teleport_flux))
 		// The status effect handles the damage, but we'll add a special pop up for rod usage specifically
-		user.balloon_alert(user, "too soon!")
+		user.balloon_alert(user, "太快了！")
 
 	user.apply_status_effect(/datum/status_effect/teleport_flux)
 	return .
@@ -212,14 +212,14 @@
 
 /// Alert for the Teleport Flux status effect
 /atom/movable/screen/alert/status_effect/teleport_flux
-	name = "Teleport Flux"
-	desc = "Your body exists in a state of flux, making further teleportation dangerous."
+	name = "传送通量"
+	desc = "你的身体处于一种通量状态，进一步传送会很危险。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "flux"
 
 /atom/movable/screen/alert/status_effect/teleport_flux/perma
-	name = "Permanent " + parent_type::name
-	desc = "Your lack of magical talent has left you in a state of flux, making further teleportation dangerous."
+	name = "永久" + parent_type::name
+	desc = "你缺乏魔法天赋，使你处于一种不稳定状态，进一步传送会很危险。"
 
 /// Particles for Teleport Flux and other similar effects
 /particles/teleport_flux

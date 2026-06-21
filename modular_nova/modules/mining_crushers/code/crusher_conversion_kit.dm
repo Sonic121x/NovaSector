@@ -7,8 +7,8 @@
  * which allows them to choose one of the variants.
  */
 /obj/item/crusher_conversion_kit
-	name = "crusher conversion kit"
-	desc = "A tool designed to adapt to a shaft miner's needs. Upon activation, this kit allows the user to select and transform the base kit into one of several kinetic crusher variants. Use in hand to activate."
+	name = "破碎者转换套件"
+	desc = "一种为适应竖井矿工需求而设计的工具。激活后，此套件允许用户选择并将基础套件转换为多种动能破碎者变体之一。在手中使用以激活。"
 	icon = 'modular_nova/modules/mining_crushers/icons/crusher_conversion_kit.dmi'
 	icon_state = "crusher_kit"
 	lefthand_file = 'modular_nova/modules/mining_crushers/icons/kit_lefthand.dmi'

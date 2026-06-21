@@ -1,6 +1,6 @@
 /obj/item/book
-	name = "book"
-	desc = "Crack it open, inhale the musk of its pages, and learn something new."
+	name = "书"
+	desc = "打开它，吸入书页的香气，学习新的东西。"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state ="book"
 	worn_icon_state = "book"
@@ -98,11 +98,11 @@
 		return FALSE
 
 	if(carved)
-		balloon_alert(user, "book is carved out!")
+		balloon_alert(user, "书被掏空了！")
 		return FALSE
 
 	if(!length(book_data.get_content()))
-		balloon_alert(user, "book is blank!")
+		balloon_alert(user, "书是空白的！")
 		return FALSE
 
 	return TRUE
@@ -177,7 +177,7 @@
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
 
-	var/choice = tgui_input_list(usr, "What would you like to change?", "Book Alteration", list("Title", "Contents", "Author", "Cancel"))
+	var/choice = tgui_input_list(usr, "你想修改什么？", "书籍修改", list("Title", "Contents", "Author", "Cancel"))
 	if(isnull(choice))
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
@@ -194,12 +194,12 @@
 	return NONE
 
 /obj/item/book/proc/vandalize_title(mob/living/user, obj/item/tool)
-	var/newtitle = reject_bad_text(tgui_input_text(user, "Write a new title", "Book Title", max_length = 30))
+	var/newtitle = reject_bad_text(tgui_input_text(user, "写下新标题", "书籍标题", max_length = 30))
 	if(!newtitle)
-		balloon_alert(user, "invalid input!")
+		balloon_alert(user, "无效输入！")
 		return ITEM_INTERACT_BLOCKING
 	if(length_char(newtitle) > 30)
-		balloon_alert(user, "too long!")
+		balloon_alert(user, "太长了！")
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
@@ -210,9 +210,9 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/book/proc/vandalize_contents(mob/living/user, obj/item/tool)
-	var/content = tgui_input_text(user, "Write your book's contents (HTML NOT allowed)", "Book Contents", max_length = MAX_PAPER_LENGTH, multiline = TRUE)
+	var/content = tgui_input_text(user, "写下书籍内容（不允许使用HTML）", "书籍内容", max_length = MAX_PAPER_LENGTH, multiline = TRUE)
 	if(!content)
-		balloon_alert(user, "invalid input!")
+		balloon_alert(user, "无效输入！")
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
@@ -222,9 +222,9 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/book/proc/vandalize_author(mob/living/user, obj/item/tool)
-	var/author = tgui_input_text(user, "Write the author's name", "Author Name", max_length = MAX_NAME_LEN)
+	var/author = tgui_input_text(user, "写下作者姓名", "作者姓名", max_length = MAX_NAME_LEN)
 	if(!author)
-		balloon_alert(user, "invalid input!")
+		balloon_alert(user, "无效输入！")
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
@@ -236,15 +236,15 @@
 /// Called when user clicks on the book with a carving utensil. Attempts to carve the book.
 /obj/item/book/proc/carving_act(mob/living/user, obj/item/tool)
 	if(carved)
-		balloon_alert(user, "already carved!")
+		balloon_alert(user, "已经雕刻过了！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "carving out...")
+	balloon_alert(user, "正在雕刻...")
 	if(!do_after(user, 3 SECONDS, target = src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "carved out")
+	balloon_alert(user, "雕刻完成")
 	playsound(src, 'sound/effects/cloth_rip.ogg', vol = 75, vary = TRUE)
 	carve_out()
 	return ITEM_INTERACT_SUCCESS
@@ -262,7 +262,7 @@
 /// Does not inherit from /obj/item/book because the only similarities between the two are the concept of "being a book"
 /// When designing a UI book you can send a "play_flip_sound" act to play the page turn sound
 /obj/item/tgui_book
-	name = "book"
+	name = "书"
 	desc = "Must be one of those new fangled electronic books."
 	icon = 'icons/obj/service/library.dmi'
 	icon_state ="book"
@@ -359,7 +359,7 @@
 			var/list/trauma_data = list()
 			trauma_data["full_name"] = phobia_name
 			trauma_data["scan_name"] = "[/datum/brain_trauma/mild/phobia::scan_desc] of [phobia_type]"
-			trauma_data["desc"] = "Patient is irrationally afraid of [phobia_type]."
+			trauma_data["desc"] = "患者对[phobia_type]存在非理性恐惧。"
 			trauma_data["symptoms"] = /datum/brain_trauma/mild/phobia::symptoms
 			trauma_data["id"] = "[/datum/brain_trauma/mild/phobia]/[phobia_type]"
 			trauma_info += list(trauma_data)
@@ -372,7 +372,7 @@
 			ASSERT_DATA(trauma_data, "id")
 			// these start as null, so there is a chance they are missing
 			if(!trauma_data["desc"])
-				trauma_data["desc"] = "No description recorded - this is an error. Report this lack of research."
+				trauma_data["desc"] = "未记录描述——这是一个错误。请报告此项研究的缺失。"
 				stack_trace("[type] - [trauma_data["id"]] lacks a description!")
 			if(!trauma_data["symptoms"])
 				trauma_data["symptoms"] = "No symptoms recorded - this is an error. Report this lack of research."

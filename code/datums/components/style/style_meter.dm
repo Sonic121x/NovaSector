@@ -43,7 +43,7 @@
 	RegisterSignal(interacting_with, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(interacting_with, COMSIG_CLICK_ALT, PROC_REF(on_click_alt))
 	RegisterSignal(interacting_with, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(redirect_multitool))
-	balloon_alert(user, "style meter attached")
+	balloon_alert(user, "风格计量表已安装")
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	if(!iscarbon(interacting_with.loc))
 		return .
@@ -106,7 +106,7 @@
 
 /obj/item/style_meter/multitool_act(mob/living/user, obj/item/tool)
 	multitooled = !multitooled
-	balloon_alert(user, "meter [multitooled ? "" : "un"]hacked")
+	balloon_alert(user, "计量表已[multitooled ? "" : "un"]破解")
 	style_meter?.multitooled = multitooled
 	return ITEM_INTERACT_SUCCESS
 

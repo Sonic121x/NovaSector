@@ -2,7 +2,7 @@
 
 //this item is intended to give the effect of entering the mine, so that light gradually fades. we also use the base effect for certain lighting effects while mapping.
 /obj/effect/light_emitter
-	name = "light emitter"
+	name = "光信号发射器"
 	icon_state = "lighting_marker"
 	anchored = TRUE
 	invisibility = INVISIBILITY_ABSTRACT
@@ -33,7 +33,7 @@
 /**********************Miner Lockers**************************/
 
 /obj/structure/closet/wardrobe/miner
-	name = "mining wardrobe"
+	name = "采矿衣柜"
 	icon_door = "mining_wardrobe"
 
 /obj/structure/closet/wardrobe/miner/PopulateContents()
@@ -55,7 +55,7 @@
 	new /obj/item/clothing/suit/hooded/wintercoat/miner(src)
 
 /obj/structure/closet/secure_closet/miner
-	name = "miner's equipment locker"
+	name = "矿工装备储物柜"
 	icon_state = "mining"
 	req_access = list(ACCESS_MINING)
 
@@ -91,8 +91,8 @@
 /**********************Shuttle Computer**************************/
 
 /obj/machinery/computer/shuttle/mining
-	name = "mining shuttle console"
-	desc = "Used to call and send the mining shuttle."
+	name = "矿业穿梭机控制台"
+	desc = "用来呼叫和发送采矿穿梭机。"
 	circuit = /obj/item/circuitboard/computer/mining_shuttle
 	shuttleId = "mining"
 	possible_destinations = "mining_home;mining_away;landing_zone_dock"
@@ -101,31 +101,31 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/computer/shuttle/mining/attack_hand(mob/user, list/modifiers)
 	if(is_station_level(user.z) && user.mind && IS_HEAD_REVOLUTIONARY(user) && !(user.mind in dumb_rev_heads))
-		to_chat(user, span_warning("You get a feeling that leaving the station might be a REALLY dumb idea..."))
+		to_chat(user, span_warning("你感觉离开空间站可能是个非常愚蠢的主意..."))
 		dumb_rev_heads += user.mind
 		return
 
 	if (HAS_TRAIT(user, TRAIT_FORBID_MINING_SHUTTLE_CONSOLE_OUTSIDE_STATION) && !is_station_level(user.z))
-		to_chat(user, span_warning("You get the feeling you shouldn't mess with this."))
+		to_chat(user, span_warning("你觉得不应该乱动这个东西。"))
 		return
 
 	if(isliving(user))
 		var/mob/living/living_user = user
 		for(var/obj/item/implant/exile/exile_implant in living_user.implants)
-			to_chat(living_user, span_warning("A warning flashes across the screen, and the shuttle controls lock in response to your exile implant."))
+			to_chat(living_user, span_warning("屏幕上闪过一条警告，穿梭机控制装置因你的流放植入体而锁定。"))
 			return
 
 	return ..()
 
 /obj/machinery/computer/shuttle/mining/common
-	name = "lavaland shuttle console"
-	desc = "Used to call and send the lavaland shuttle."
+	name = "拉瓦兰穿梭机控制台"
+	desc = "用来呼叫和发送拉瓦兰穿梭机。"
 	circuit = /obj/item/circuitboard/computer/mining_shuttle/common
 	shuttleId = "mining_common"
 	possible_destinations = "commonmining_home;lavaland_common_away;landing_zone_dock;mining_public"
 
 /obj/docking_port/stationary/mining_home
-	name = "SS13: Mining Dock"
+	name = "SS13：采矿码头"
 	shuttle_id = "mining_home"
 	roundstart_template = /datum/map_template/shuttle/mining/delta
 	width = 7
@@ -145,7 +145,7 @@
 	height = 10
 
 /obj/docking_port/stationary/mining_home/common
-	name = "SS13: Common Mining Dock"
+	name = "SS13：公共采矿码头"
 	shuttle_id = "commonmining_home"
 	roundstart_template = /datum/map_template/shuttle/mining_common/meta
 
@@ -156,8 +156,8 @@
 	roundstart_template = /datum/map_template/shuttle/mining_common/northstar
 
 /obj/structure/closet/crate/miningcar
-	name = "mine cart"
-	desc = "A cart for use on rails. Or off rails, if you're so inclined."
+	name = "矿车"
+	desc = "一辆用于在轨道上行驶的矿车。当然，如果你愿意，也可以把它拖离轨道使用。"
 	icon_state = "miningcar"
 	base_icon_state = "miningcar"
 	drag_slowdown = 2
@@ -181,9 +181,9 @@
 /obj/structure/closet/crate/miningcar/examine(mob/user)
 	. = ..()
 	if(on_rails)
-		. += span_notice("You can give this a bump to send it on its way, or drag it off the rails to drag it around.")
+		. += span_notice("你可以推它一下让它自己前进，或者把它拖离轨道来拖着走。")
 	else
-		. += span_notice("Drag this onto a mine cart rail to set it on its way.")
+		. += span_notice("把它拖到矿车轨道上，它就会沿着轨道前进。")
 
 // We don't want the locked crate overlay show up.
 /obj/structure/closet/crate/miningcar/closet_update_overlays(list/new_overlays)
@@ -249,16 +249,16 @@
 		return
 	if(get_integrity() <= max_integrity * 0.05)
 		smacked.visible_message(
-			span_danger("[src] smashes into [smacked], breaking into pieces!"),
-			span_userdanger("You are smacked by [src] as it breaks into pieces!"),
+			span_danger("[src]撞上了[smacked]，撞得粉碎！"),
+			span_userdanger("你被[src]撞到，它在你面前撞得粉碎！"),
 		)
 		playsound(src, 'sound/effects/break_stone.ogg', 50, vary = TRUE)
 		momentum = 0
 
 	else
 		smacked.visible_message(
-			span_danger("[src] smashes into [smacked]!"),
-			span_userdanger("You are smacked by [src]!"),
+			span_danger("[src]撞上了[smacked]！"),
+			span_userdanger("你被[src]撞到了！"),
 		)
 	playsound(src, 'sound/effects/bang.ogg', 50, vary = TRUE)
 	take_damage(max_integrity * 0.05)
@@ -325,7 +325,7 @@
  * * new_destination - The turf the cart will be moved to.
  */
 /obj/structure/closet/crate/miningcar/proc/try_take_off_rails(mob/living/user, turf/open/new_destination)
-	balloon_alert(user, "removing from rails...")
+	balloon_alert(user, "正在从轨道上移除...")
 	if(!do_after(user, 2 SECONDS, src))
 		return
 	update_rail_state(FALSE)
@@ -341,7 +341,7 @@
  * * new_destination - The turf the cart will be moved to.
  */
 /obj/structure/closet/crate/miningcar/proc/try_put_on_rails(mob/living/user, turf/open/new_destination)
-	balloon_alert(user, "putting on rails...")
+	balloon_alert(user, "正在放置到轨道上...")
 	if(!do_after(user, 2 SECONDS, src))
 		return
 	var/obj/structure/minecart_rail/set_rail = locate() in new_destination
@@ -388,7 +388,7 @@
 			return
 		if(DOING_INTERACTION_WITH_TARGET(bumper, src))
 			return
-		balloon_alert(bumper, "setting off...")
+		balloon_alert(bumper, "准备出发...")
 		if(!do_after(bumper, 1.5 SECONDS, src))
 			return
 		if(QDELETED(rail) || !on_rails || !can_travel_on_turf(next_turf, movedir))
@@ -441,10 +441,10 @@
 	// Can't go straight and cant turn = STOP
 	GLOB.move_manager.stop_looping(src, SSconveyors)
 	if(momentum >= 8)
-		visible_message(span_warning("[src] comes to a halt!"))
+		visible_message(span_warning("[src]停了下来！"))
 		throw_contents()
 	else
-		visible_message(span_notice("[src] comes to a slow stop."))
+		visible_message(span_notice("[src]缓缓停了下来。"))
 	momentum = 0
 	return MOVELOOP_SKIP_STEP
 
@@ -457,9 +457,9 @@
 		// There is a break and it is powered, so STOP
 		if(stop_break && cable?.avail(10 KILO JOULES))
 			if(momentum >= 8)
-				visible_message(span_notice("[src] comes to a sudden stop."))
+				visible_message(span_notice("[src]突然停了下来。"))
 			else
-				visible_message(span_notice("[src] comes to a stop."))
+				visible_message(span_notice("[src]停了下来。"))
 			momentum = 0
 			GLOB.move_manager.stop_looping(src, SSconveyors)
 			cable.add_delayedload(10 KILO JOULES)
@@ -480,7 +480,7 @@
 	// No more momentum = STOP
 	if(momentum <= 0)
 		GLOB.move_manager.stop_looping(src, SSconveyors)
-		visible_message(span_notice("[src] comes to a slow stop."))
+		visible_message(span_notice("[src]缓缓停了下来。"))
 		return
 
 	// Handles slowing down the move loop / cart
@@ -514,7 +514,7 @@
 
 	if(!length(to_yeet))
 		if(!was_open)
-			visible_message(span_warning("[src] breaks open!"))
+			visible_message(span_warning("[src]撞开了！"))
 		return
 
 	var/throw_distance = clamp(ceil(momentum / 3) - 4, 1, 5)
@@ -523,14 +523,14 @@
 		yeeten.throw_at(some_distant_turf, throw_distance, 3, quickstart = TRUE)
 
 	if(was_open)
-		visible_message(span_warning("[src] spills its contents!"))
+		visible_message(span_warning("[src]里面的东西洒了出来！"))
 	else
 		// Update this message if someone allows multiple people to ride one minecart
-		visible_message(span_warning("[src] breaks open, spilling its contents[yeet_rider ? " and throwing its rider":""]!"))
+		visible_message(span_warning("[src]破裂开来，里面的东西洒了出来[yeet_rider ? " and throwing its rider":""]！"))
 
 /obj/structure/minecart_rail
-	name = "cart rail"
-	desc = "Carries carts along the track."
+	name = "矿车轨道"
+	desc = "沿着轨道运送矿车。"
 	icon = 'icons/obj/track.dmi'
 	icon_state = "track"
 	layer = TRAM_RAIL_LAYER
@@ -550,15 +550,15 @@
 	. += rail_examine()
 
 /obj/structure/minecart_rail/proc/rail_examine()
-	return span_notice("Run a powered cable underneath it to power carts as they travel, maintaining their speed.")
+	return span_notice("在下方铺设通电电缆，为行驶中的矿车供电，以维持其速度。")
 
 /obj/structure/minecart_rail/railbreak
-	name = "cart rail brake"
-	desc = "Stops carts in their tracks. On the tracks. You get what I mean."
+	name = "矿车轨道制动器"
+	desc = "能让矿车在轨道上停下来。就在轨道上。你懂我意思吧。"
 	icon_state = "track_break"
 	can_buckle = TRUE
 	buckle_requires_restraints = TRUE
 	buckle_lying = NO_BUCKLE_LYING
 
 /obj/structure/minecart_rail/railbreak/rail_examine()
-	return span_notice("Run a powered cable underneath it to stop carts that pass over it.")
+	return span_notice("在它下方铺设一根通电电缆，以阻止矿车通过。")

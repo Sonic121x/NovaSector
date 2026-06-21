@@ -1,5 +1,5 @@
 /obj/item/mecha_parts/mecha_equipment/weapon
-	name = "mecha weapon"
+	name = "机甲武器"
 	abstract_type = /obj/item/mecha_parts/mecha_equipment/weapon
 	range = MECHA_RANGED
 	equipment_slot = MECHA_WEAPON
@@ -38,7 +38,7 @@
 	bay.detach()
 	bay.forceMove(src) //for later detaching
 	attach(mech, attach_right)
-	user.visible_message(span_notice("[user] inserts something into [src]."), span_notice("You attach the [initial(name)] into the concealed weapon bay."))
+	user.visible_message(span_notice("[user]将某物插入[src]。"), span_notice("你将[initial(name)]安装进隐蔽武器舱。"))
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/detach(atom/moveto)
@@ -89,13 +89,13 @@
 
 //Base energy weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
-	name = "general energy weapon"
+	name = "通用能量武器"
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/red
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	equip_cooldown = 8
-	name = "\improper CH-PS \"Immolator\" laser"
-	desc = "A weapon for combat exosuits. Shoots basic lasers."
+	name = "\improper CH-PS \"献祭者\"镭射"
+	desc = "一种用于作战的机甲装备，能够发射轻激光。"
 	icon_state = "mecha_laser"
 	energy_drain = 3 KILO JOULES
 	projectile = /obj/projectile/beam/laser
@@ -104,8 +104,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler
 	equip_cooldown = 1.5 SECONDS
-	name = "\improper CH-DS \"Peacemaker\" disabler"
-	desc = "A weapon for combat exosuits. Shoots a bunch of weak disabler beams."
+	name = "\improper CH-DS\"和平捍卫者\"骑兵镇暴光枪"
+	desc = "一种用于战斗动力装甲的武器。发射多束弱效镇暴光束。"
 	icon_state = "mecha_disabler"
 	energy_drain = 10 KILO JOULES
 	projectile = /obj/projectile/beam/disabler/weak
@@ -116,8 +116,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	equip_cooldown = 15
-	name = "\improper CH-LC \"Solaris\" laser cannon"
-	desc = "A weapon for combat exosuits. Shoots heavy lasers."
+	name = "\improper CH-LC\"索利斯\"激光加农"
+	desc = "一种用于作战的机甲装备，能够发射重激光。"
 	icon_state = "mecha_laser"
 	energy_drain = 6 KILO JOULES
 	projectile = /obj/projectile/beam/laser/heavylaser
@@ -125,8 +125,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
 	equip_cooldown = 20
-	name = "\improper MKIV ion heavy cannon"
-	desc = "A weapon for combat exosuits. Shoots technology-disabling ion beams. Don't catch yourself in the blast!"
+	name = "\improper MKIV 重型离子加农"
+	desc = "一种用于作战的机甲装备，能够发射破坏敌方电子设备的离子束，切勿让自己处于影响范围！"
 	icon_state = "mecha_ion"
 	energy_drain = 1.2 KILO JOULES
 	projectile = /obj/projectile/ion
@@ -134,8 +134,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/tesla
 	equip_cooldown = 35
-	name = "\improper MKI Tesla Cannon"
-	desc = "A weapon for combat exosuits. Fires bolts of electricity similar to the experimental tesla engine."
+	name = "\improper MKI特斯拉加农"
+	desc = "一种用于作战的机甲装备，它能发射类似特斯拉引擎一样的电流。"
 	icon_state = "mecha_ion"
 	energy_drain = 5 KILO JOULES
 	projectile = /obj/projectile/energy/tesla/cannon
@@ -144,8 +144,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
 	equip_cooldown = 30
-	name = "eZ-13 MK2 heavy pulse rifle"
-	desc = "A weapon for combat exosuits. Shoots powerful destructive blasts capable of demolishing obstacles."
+	name = "eZ-13 MK2 重型脉冲步枪"
+	desc = "一件用于机甲的战斗装备，能够发射威力巨大的脉冲,足以摧毁任何敢于阻挡之物。"
 	icon_state = "mecha_pulse"
 	energy_drain = 1.2 KILO JOULES
 	projectile = /obj/projectile/beam/pulse/heavy
@@ -154,8 +154,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma
 	equip_cooldown = 10
-	name = "217-D Heavy Plasma Cutter"
-	desc = "A device that shoots resonant plasma bursts at extreme velocity. The blasts are capable of crushing rock and demolishing solid obstacles."
+	name = "217-D 重型等离子切割机"
+	desc = "一种能以极高速度发射共振等离子体脉冲的装置。这些脉冲能够粉碎岩石以及坚固的障碍物。"
 	icon_state = "mecha_plasmacutter"
 	inhand_icon_state = "plasmacutter"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -170,8 +170,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal
 	equip_cooldown = 20
-	name = "\improper Prototype -I 'Thermal Cannon'"
-	desc = "A special prototype of a heavy thermal weapon designed for use on exosuits. This one is debug-chambered."
+	name = "\improper 原型-I型'热能炮'"
+	desc = "一种专为动力装甲设计的重型热能武器特殊原型。此型号为调试用版本。"
 	icon_state = "mecha_laser"
 	energy_drain = 5 KILO JOULES
 	projectile = /obj/item/ammo_casing/energy/nanite
@@ -179,14 +179,14 @@
 	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo
-	name = "\improper Prototype I 'Cryo Thermal Cannon'"
-	desc = "A special prototype of a heavy thermal weapon designed for use on exosuits. This one is cryo-chambered."
+	name = "\improper 原型 I 型 '低温热能炮'"
+	desc = "一款专为外骨骼设计的重型热能武器特殊原型。此型号为低温弹膛式。"
 	icon_state = "mecha_cryogun"
 	projectile = /obj/projectile/energy/cryo
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno
-	name = "\improper Prototype II 'Pyro Thermal Cannon'"
-	desc = "A special prototype of a heavy thermal weapon designed for use on exosuits. This one is molten-chambered."
+	name = "\improper 原型 II 型 '高温热能炮'"
+	desc = "一款专为外骨骼设计的重型热能武器特殊原型。此型号为熔融弹膛式。"
 	icon_state = "mecha_pyrogun"
 	projectile = /obj/projectile/energy/inferno
 
@@ -194,7 +194,7 @@
 	var/has_molten = FALSE
 	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
 		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
-			to_chat(user, span_warning("[themech] already has [thegun] installed!"))
+			to_chat(user, span_warning("[themech] 已经安装了 [thegun]！"))
 			return ITEM_INTERACT_BLOCKING
 		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
 			has_molten = TRUE
@@ -209,7 +209,7 @@
 	var/has_cryo = FALSE
 	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
 		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
-			to_chat(user, span_warning("[themech] already has [thegun] installed!"))
+			to_chat(user, span_warning("[themech] 已经安装了 [thegun]！"))
 			return ITEM_INTERACT_BLOCKING
 		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
 			has_cryo = TRUE
@@ -227,8 +227,8 @@
 
 //Exosuit-mounted kinetic accelerator
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
-	name = "Exosuit Proto-kinetic Accelerator"
-	desc = "An exosuit-mounted mining tool that does increased damage in low pressure. Drawing from an onboard power source allows it to project further than the handheld version."
+	name = "机甲原动能空气炮"
+	desc = "一种安装在机甲上的采矿工具，在低压下会增加伤害。依靠内部供电充能，因此比手持版射击更远。"
 	icon_state = "mecha_kineticgun"
 	energy_drain = 0.3 KILO JOULES
 	projectile = /obj/projectile/kinetic/mech
@@ -238,8 +238,8 @@
 	mech_flags = EXOSUIT_MODULE_COMBAT | EXOSUIT_MODULE_WORKING
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
-	name = "\improper PBT \"Pacifier\" mounted taser"
-	desc = "A weapon for combat exosuits. Shoots non-lethal stunning electrodes."
+	name = "\improper PBT \"调解人\" 安装式泰瑟枪"
+	desc = "一种用于非致命的机甲装备，能够发射非致命的电击装置造成麻痹效果。"
 	icon_state = "mecha_taser"
 	energy_drain = 2 KILO JOULES
 	equip_cooldown = 8
@@ -249,8 +249,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/weapon/honker
-	name = "\improper HoNkER BlAsT 5000"
-	desc = "Equipment for clown exosuits. Spreads fun and joy to everyone around. Honk!"
+	name = "\improper 轰克儿 爆破 5000"
+	desc = "小丑机甲装备，它将欢乐和喜悦传递给每个人。HONK!"
 	icon_state = "mecha_honker"
 	energy_drain = 2 KILO JOULES
 	equip_cooldown = 150
@@ -291,7 +291,7 @@
 
 //Base ballistic weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic
-	name = "general ballistic weapon"
+	name = "通用弹道武器"
 	fire_sound = 'sound/items/weapons/gun/smg/shot.ogg'
 	var/projectiles
 	var/projectiles_cache //ammo to be loaded in, if possible.
@@ -347,8 +347,8 @@
 	projectiles -= projectiles_per_shot
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
-	name = "\improper FNX-99 \"Hades\" Carbine"
-	desc = "A weapon for combat exosuits. Shoots incendiary bullets."
+	name = "\improper FNX-99 \"地狱\" 卡宾枪"
+	desc = "一种用于作战的机甲装备，能够发射燃烧弹。"
 	icon_state = "mecha_carbine"
 	equip_cooldown = 10
 	projectile = /obj/projectile/bullet/incendiary/fnx99
@@ -359,8 +359,8 @@
 	ammo_type = MECHA_AMMO_INCENDIARY
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/silenced
-	name = "\improper S.H.H. \"Quietus\" Carbine"
-	desc = "A weapon for combat exosuits. A mime invention, field tests have shown that targets cannot even scream before going down."
+	name = "\improper S.H.H. \"寂灭\" 卡宾枪"
+	desc = "一种用于作战的机甲装备，一种被哑剧发明的武器，实战测试表明，目标在倒下之前根本无法发出叫声。"
 	fire_sound = 'sound/items/weapons/gun/general/heavy_shot_suppressed.ogg'
 	icon_state = "mecha_mime"
 	equip_cooldown = 30
@@ -371,8 +371,8 @@
 	mech_flags = EXOSUIT_MODULE_RETICENCE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
-	name = "\improper LBX AC 10 \"Scattershot\""
-	desc = "A weapon for combat exosuits. Shoots a spread of pellets."
+	name = "\improper LBX AC 10 \"霰弹\""
+	desc = "一种用于作战的机甲装备，可以打出一大片弹丸。"
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
 	projectile = /obj/projectile/bullet/scattershot
@@ -385,8 +385,8 @@
 	ammo_type = MECHA_AMMO_BUCKSHOT
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
-	name = "\improper Ultra AC 2"
-	desc = "A weapon for combat exosuits. Shoots a rapid, three shot burst."
+	name = "\improper AC-2 轻机枪"
+	desc = "一种用于作战的机甲装备，能够一次快速发射三发子弹。"
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
 	projectile = /obj/projectile/bullet/lmg
@@ -403,8 +403,8 @@
 /// Missiles
 /// SRM-8 Missile Rack - Used by Nuclear Operatives - Explodes when it hits anything
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
-	name = "\improper SRM-8 missile rack"
-	desc = "A weapon for combat exosuits. Launches short range missiles."
+	name = "\improper SRM-8 导弹架"
+	desc = "一种用于战斗外骨骼的武器。发射短程导弹。"
 	icon_state = "mecha_missilerack"
 	projectile = /obj/projectile/bullet/rocket/srm
 	fire_sound = 'sound/items/weapons/gun/general/rocket_launch.ogg'
@@ -418,8 +418,8 @@
 
 /// PEP-6 Missile Rack - Used by Robotics - Explodes only when it hits dense objects like walls, borgs and mechs
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/breaching
-	name = "\improper PEP-6 missile rack"
-	desc = "A weapon for combat exosuits. Launches precision explosive projectiles designed to explode only when striking a structured target, including walls, exosuits and cyborgs."
+	name = "\improper PEP-6 导弹发射架"
+	desc = "一种用于战斗外骨骼的武器。发射精密爆破弹，设计为仅在击中结构化目标（包括墙壁、外骨骼和机械人）时引爆。"
 	icon_state = "mecha_missilerack_six"
 	projectile = /obj/projectile/bullet/rocket/pep
 	fire_sound = 'sound/items/weapons/gun/general/rocket_launch.ogg'
@@ -459,8 +459,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
-	name = "\improper SGL-6 grenade launcher"
-	desc = "A weapon for combat exosuits. Launches primed flashbangs."
+	name = "\improper SGL-6 榴弹发射器"
+	desc = "一种用于作战的机甲装备，可以发射闪光弹。"
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/flashbang
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
@@ -480,8 +480,8 @@
 	addtimer(CALLBACK(F, TYPE_PROC_REF(/obj/item/grenade/flashbang, detonate)), det_time)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang //Because I am a heartless bastard -Sieve //Heartless? for making the poor man's honkblast? - Kaze
-	name = "\improper SOB-3 grenade launcher"
-	desc = "A weapon for combat exosuits. Launches primed clusterbangs. You monster."
+	name = "\improper SOB-3 榴弹发射器"
+	desc = "一种用于作战的机甲装备，能够发射预先准备好的连环爆炸弹。你这个畜生。"
 	projectiles = 3
 	projectiles_cache = 0
 	projectiles_cache_max = 0
@@ -491,8 +491,8 @@
 	ammo_type = MECHA_AMMO_CLUSTERBANG
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar
-	name = "banana mortar"
-	desc = "Equipment for clown exosuits. Launches banana peels."
+	name = "香蕉迫击炮"
+	desc = "小丑机甲的装备，可以发射香蕉皮"
 	icon_state = "mecha_bananamrtr"
 	projectile = /obj/item/grown/bananapeel
 	fire_sound = 'sound/items/bikehorn.ogg'
@@ -505,8 +505,8 @@
 	ammo_type = MECHA_AMMO_BANANA_PEEL
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar
-	name = "mousetrap mortar"
-	desc = "Equipment for clown exosuits. Launches armed mousetraps."
+	name = "老鼠夹迫击炮"
+	desc = "小丑机甲的装备。可以发射武装捕鼠器。"
 	icon_state = "mecha_mousetrapmrtr"
 	projectile = /obj/item/assembly/mousetrap/armed
 	fire_sound = 'sound/items/bikehorn.ogg'
@@ -523,8 +523,8 @@
 
 //Classic extending punching glove, but weaponised!
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove
-	name = "\improper Oingo Boingo Punch-face"
-	desc = "Equipment for clown exosuits. Delivers fun right to your face!"
+	name = "\improper 艺术就是打你脸"
+	desc = "小丑外骨骼机甲，把乐趣糊你脸上！"
 	icon_state = "mecha_punching_glove"
 	energy_drain = 250
 	equip_cooldown = 20
@@ -574,8 +574,8 @@
 	chassis.Beam(PG, icon_state = "chain", time = missile_range * 20, maxdistance = missile_range + 2)
 
 /obj/item/punching_glove
-	name = "punching glove"
-	desc = "INCOMING HONKS"
+	name = "拳击手套"
+	desc = "HONK来袭"
 	throwforce = 35
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "punching_glove"
@@ -590,8 +590,8 @@
 ///dark honk weapons
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar/bombanana
-	name = "bombanana mortar"
-	desc = "Equipment for clown exosuits. Launches exploding banana peels."
+	name = "香蕉炸弹迫击炮"
+	desc = "用于小丑机甲的装备。能发射爆炸的香蕉皮。"
 	icon_state = "mecha_bananamrtr"
 	projectile = /obj/item/grown/bananapeel/bombanana
 	projectiles = 8
@@ -599,8 +599,8 @@
 	mech_flags = EXOSUIT_MODULE_HONK
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/tearstache
-	name = "\improper HONKeR-6 grenade launcher"
-	desc = "A weapon for combat exosuits. Launches primed tear-stache grenades."
+	name = "\improper HONKeR-6榴弹发射器"
+	desc = "一种用于作战的机甲装备，可以发射催泪弹。"
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/chem_grenade/teargas/moustache
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
@@ -613,8 +613,8 @@
 
 ///long claw of the law
 /obj/item/mecha_parts/mecha_equipment/weapon/paddy_claw
-	name = "hydraulic claw"
-	desc = "A modified hydraulic clamp, for use exclusively with the Paddy exosuit. Non-lethally apprehends suspects."
+	name = "液压爪"
+	desc = "一种经过改装的液压夹钳，专为帕迪外骨骼设计。用于非致命性拘捕嫌疑人。"
 	icon_state = "paddy_claw"
 	equip_cooldown = 15
 	energy_drain = 10
@@ -650,14 +650,14 @@
 		. = ..()
 		var/mob/living/mobtarget = target
 		if(mobtarget.move_resist == MOVE_FORCE_OVERPOWERING) //No megafauna or bolted AIs, please.
-			balloon_alert(source, "too strong!")
+			balloon_alert(source, "太强了！")
 			return
 		if(secmech.cargo_hold.contents.len >= secmech.cargo_hold.cargo_capacity)
-			balloon_alert(source, "no room!")
+			balloon_alert(source, "没空间了！")
 			return
 
 		playsound(chassis, clampsound, 50, FALSE, -6)
-		mobtarget.visible_message(span_notice("[chassis] lifts [mobtarget] into its internal holding cell."),span_userdanger("[chassis] grips you with [src] and prepares to load you into [secmech.cargo_hold]!"))
+		mobtarget.visible_message(span_notice("[chassis]将[mobtarget]抬入其内部拘留舱。"),span_userdanger("[chassis]用[src]抓住你，准备将你装入[secmech.cargo_hold]！"))
 		if(!do_after_cooldown(mobtarget, source, flags = MECH_DO_AFTER_DIR_CHANGE_FLAG|MECH_DO_AFTER_ADJACENCY_FLAG))
 			return
 		mobtarget.forceMove(secmech.cargo_hold)

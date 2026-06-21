@@ -5,9 +5,9 @@
  * - might serve a job purpose for others (goliath) and thus should be gainable early enough
 */
 /datum/infuser_entry/goliath
-	name = "Goliath"
+	name = "歌利亚"
 	infuse_mob_name = "goliath"
-	desc = "The guy who said 'Whoever fights monsters should see to it that in the process he does not become a monster' clearly didn't see what a goliath miner can do!"
+	desc = "那个说‘与怪物战斗的人，要小心自己不要变成怪物’的家伙，显然没见过歌利亚矿工能做什么！"
 	threshold_desc = "you can walk on lava!"
 	qualities = list(
 		"can breathe both the station and lavaland air, but be careful around pure oxygen",
@@ -29,9 +29,9 @@
 	status_effect_type = /datum/status_effect/organ_set_bonus/goliath
 
 /datum/infuser_entry/carp
-	name = "Carp"
+	name = "鲤鱼"
 	infuse_mob_name = "space-cyprinidae"
-	desc = "Carp-mutants are very well-prepared for long term deep space exploration. In fact, they can't stand not doing it!"
+	desc = "鲤鱼突变体非常适合长期的深空探索。事实上，它们无法忍受不这么做！"
 	threshold_desc = "you learn how to propel yourself through space. Like a fish!"
 	qualities = list(
 		"big jaws, big teeth",
@@ -53,7 +53,7 @@
 	status_effect_type = /datum/status_effect/organ_set_bonus/carp
 
 /datum/infuser_entry/rat
-	name = "Rat"
+	name = "老鼠"
 	infuse_mob_name = "rodent"
 	desc = "Frail, small, positively cheesed to face the world. Easy to stuff yourself full of rat DNA, but perhaps not the best choice?"
 	threshold_desc = "you become lithe enough to crawl through ventilation."

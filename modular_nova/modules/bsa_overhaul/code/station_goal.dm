@@ -5,7 +5,7 @@
  */
 
 /datum/station_goal/bluespace_cannon
-	name = "Bluespace Artillery"
+	name = "蓝空火炮"
 
 /datum/station_goal/bluespace_cannon/get_report()
 	return list(

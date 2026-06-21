@@ -10,7 +10,7 @@
 /datum/component/uplink
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	/// Name of the uplink
-	var/name = "syndicate uplink"
+	var/name = "辛迪加上行链路"
 	/// Whether the uplink is currently active or not
 	var/active = FALSE
 	/// Whether this uplink can be locked or not
@@ -107,7 +107,7 @@
 
 /datum/component/uplink/proc/load_tc(mob/user, obj/item/stack/telecrystal/telecrystals, silent = FALSE)
 	if(!silent)
-		to_chat(user, span_notice("You slot [telecrystals] into [parent] and charge its internal uplink."))
+		to_chat(user, span_notice("你将[telecrystals]插入[parent]并为其内部上行链路充能。"))
 	var/amt = telecrystals.amount
 	uplink_handler.add_telecrystals(amt)
 	telecrystals.use(amt)
@@ -135,7 +135,7 @@
 		[unlock_code ? ", the code to unlock it is [span_boldwarning(unlock_code)]" : null].")
 
 	if(failsafe_code)
-		examine_list += span_warning("The failsafe code is [span_boldwarning(failsafe_code)].")
+		examine_list += span_warning("故障保护代码是[span_boldwarning(failsafe_code)]。")
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -257,7 +257,7 @@
 		if("buy_raw_tc")
 			if (uplink_handler.telecrystals <= 0)
 				return
-			var/desired_amount = tgui_input_number(ui.user, "How many raw telecrystals to buy?", "Buy Raw TC", default = uplink_handler.telecrystals, max_value = uplink_handler.telecrystals)
+			var/desired_amount = tgui_input_number(ui.user, "要购买多少原始心灵水晶？", "购买原始心灵水晶", default = uplink_handler.telecrystals, max_value = uplink_handler.telecrystals)
 			if(!desired_amount || desired_amount < 1)
 				return
 			uplink_handler.purchase_raw_tc(ui.user, desired_amount, parent)
@@ -321,7 +321,7 @@
 	locked = FALSE
 	if(ismob(user))
 		interact(null, user)
-		to_chat(user, span_hear("The computer softly beeps."))
+		to_chat(user, span_hear("电脑发出轻柔的哔哔声。"))
 	return COMPONENT_STOP_RINGTONE_CHANGE
 
 /datum/component/uplink/proc/check_detonate()
@@ -356,7 +356,7 @@
 		return
 	locked = FALSE
 	interact(null, user)
-	to_chat(user, "As you whisper the code into your headset, a soft chime fills your ears.")
+	to_chat(user, "当你对着耳机低语代码时，一阵轻柔的铃声充满了你的耳朵。")
 	return COMPONENT_CANNOT_USE_RADIO
 
 // Pen signal responses
@@ -374,7 +374,7 @@
 		previous_attempts.Cut()
 		master.degrees = 0
 		interact(null, user)
-		to_chat(user, span_warning("Your pen makes a clicking noise, before quickly rotating back to 0 degrees!"))
+		to_chat(user, span_warning("你的笔发出咔哒声，然后迅速转回0度！"))
 
 	else if(compare_list(previous_attempts, failsafe_code))
 		failsafe(user)

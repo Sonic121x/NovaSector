@@ -1,7 +1,7 @@
 /////////// Oldstation items
 
 /obj/item/paper/fluff/ruins/oldstation
-	name = "Cryo Awakening Report"
+	name = "低温苏醒报告"
 	default_raw_text = "Catastrophic damage sustained to station. Powernet exhausted to reawaken crew.<br><br> \
 		Immediate Objectives: \
 		<ol> \
@@ -11,7 +11,7 @@
 		</ol>"
 
 /obj/item/paper/fluff/ruins/oldstation/damagereport
-	name = "Damage Report"
+	name = "损坏报告"
 	default_raw_text = "<h2>WARNING</h2> \
 		<ul> \
 		<li>Shields down. Space Carp invasion imminent.</li> \
@@ -34,7 +34,7 @@
 		</ol>"
 
 /obj/item/paper/fluff/ruins/oldstation/protosuit
-	name = "B01-MOD modular suit Report"
+	name = "B01-MOD模块化防护服报告"
 	default_raw_text = "<b>*Prototype MODsuit*</b><br><br>This is a prototype powered exoskeleton, a design not seen in hundreds of years, \
 		the first post-void war era modular suit to ever be safely utilized by an operator. \
 		This ancient clunker is still functional, though it's missing several modern-day luxuries from \
@@ -45,13 +45,13 @@
 		monochromatic cyan, leaving the user unable to see long distances. However, the way the helmet retracts is pretty cool."
 
 /obj/item/paper/fluff/ruins/oldstation/protohealth
-	name = "Health Analyzer Report"
+	name = "健康分析仪报告"
 	default_raw_text = "<b>*Health Analyzer*</b><br><br>The portable Health Analyzer is essentially a handheld variant of a health analyzer. Years of research have concluded with this device which is \
 	capable of diagnosing even the most critical, obscure or technical injuries any humanoid entity is suffering in an easy to understand format that even a non-trained health professional \
 	can understand.<br><br>The health analyzer is expected to go into full production as standard issue medical kit."
 
 /obj/item/paper/fluff/ruins/oldstation/protogun
-	name = "K14 Energy Gun Report"
+	name = "K14能量枪报告"
 	default_raw_text = "<b>*K14-Multiphase Energy Gun*</b><br><br>The K14 Prototype Energy Gun is the first Energy Rifle that has been successfully been able to not only hold a larger ammo charge \
 	than other gun models, but is capable of swapping between different energy projectile types on command with no incidents.<br><br>The weapon still suffers several drawbacks, its alternative, \
 	non laser fire mode, can only fire one round before exhausting the energy cell, the weapon also remains prohibitively expensive, nonetheless NT Market Research fully believe this weapon \
@@ -62,27 +62,27 @@
  * Supermatter crystal fluff paper used in Charlie station ruin
  */
 /obj/item/paper/fluff/ruins/oldstation/protosupermatter
-	name = "Supermatter Crystal Generator"
+	name = "超物质晶体发电机"
 	default_raw_text = "<b>*Supermatter Crystal Shard*</b><br><br>Modern power generation typically comes in two forms, a Fusion Generator or a Fission Generator. Fusion provides the best space to power \
 	ratio, and is typically seen on military or high security ships and stations, however Fission reactors require the usage of expensive and rare materials in its construction. \
 	Fission generators are massive and bulky, and require a large reserve of uranium to power, however they are extremely cheap to operate and need little maintenance once \
 	\noperational.<br><br>The Supermatter aims to alter this, a functional Supermatter is essentially a gas producer that generates far more radiation than Fusion or Fission generators can ever hope to produce. "
 
 /obj/item/paper/fluff/ruins/oldstation/protoinv
-	name = "Laboratory Inventory"
+	name = "实验室库存清单"
 	default_raw_text = "<b>*Inventory*</b><br><br>(1)Prototype MODsuit<br><br>(1)Health Analyser<br><br>(1)Prototype Energy Gun<br><br>(1)Supermatter Crystal Shard<br><br><b>DO NOT REMOVE WITHOUT \
 	THE CAPTAIN AND RESEARCH DIRECTOR'S AUTHORISATION</b>"
 
 /obj/item/paper/fluff/ruins/oldstation/generator_manual
-	name = "S.U.P.E.R.P.A.C.M.A.N.-type portable generator manual"
-	default_raw_text = "Wrench down the generator on top of a wire node connected to either a SMES input terminal or the power grid."
+	name = "S.U.P.E.R.P.A.C.M.A.N.型便携式发电机手册"
+	default_raw_text = "用扳手将发电机固定在连接至SMES输入终端或电网的电缆节点上。"
 
 /obj/item/paper/fluff/ruins/oldstation/protosleep
-	name = "Prototype Delivery"
-	default_raw_text = "<b>*Prototype Sleeper*</b><br><br>We have delivered the lastest in medical technology to the medical bay: circuitry for a new prototype sleeper. Looks like it didn't come with the parts to actually build it figures. Get engineering on this."
+	name = "原型设备交付单"
+	default_raw_text = "<b>*原型休眠舱*</b><br><br>我们已将最新的医疗技术送达医疗舱：一套新型原型休眠舱的电路。看起来它没有附带实际建造所需的零件。让工程部处理此事。"
 
 /obj/item/paper/fluff/ruins/oldstation/survivor_note
-	name = "To those who find this"
+	name = "致发现此信者"
 	default_raw_text = "I was on a mission of an exploration drone reclamation, when I lost the signal. I've had just enough pressure to make it back to the station.... But this is really bad... <br><br> \
 	Beta looks like a smashed tin can, and Alpha is gone completely. I didn't manage to find anyone except those sleeping beauties and something I don't even know how to explain. The blood and gore is everywhere, those things took out the entire R&D. \
 	They're hissing and crawling behind the maintenance hatch that I welded off to not let them in.<br><br> \

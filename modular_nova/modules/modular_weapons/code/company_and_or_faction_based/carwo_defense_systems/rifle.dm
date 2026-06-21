@@ -2,7 +2,7 @@
 
 /obj/item/gun/ballistic/automatic/sol_rifle
 	name = "\improper MMR-2543E"
-	desc = "A heavy assault rifle chambered in .40 Sol Long, with a decent rate of fire for weapons of its class. Accepts any standard SolFed rifle magazine."
+	desc = "一款发射.40索尔长弹的重型突击步枪，在其同类武器中拥有不错的射速。可接受任何标准的索尔联邦步枪弹匣。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns48x.dmi'
 	icon_state = "infanterie"
@@ -69,7 +69,7 @@
 
 /obj/item/gun/ballistic/automatic/sol_rifle/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细检查</b>来了解更多关于这把武器的信息。")
 
 /obj/item/gun/ballistic/automatic/sol_rifle/get_lore_blurb()
 	return lore_blurb + "<br><br>" + model_specific_lore
@@ -81,7 +81,7 @@
 
 /obj/item/gun/ballistic/automatic/sol_rifle/marksman
 	name = "\improper MMR-2543I"
-	desc = "A heavy marksman rifle chambered in .40 Sol Long, commonly seen in the hands of SolFed military types. Accepts any standard SolFed rifle magazine."
+	desc = "一把重型精确射手步枪，使用.40索尔长弹，常见于索尔联邦军方人员手中。可接受任何标准的索尔联邦步枪弹匣。"
 
 	icon_state = "elite"
 	worn_icon_state = "elite"
@@ -120,8 +120,8 @@
 // Machinegun based on the base Sol rifle
 
 /obj/item/gun/ballistic/automatic/sol_rifle/machinegun
-	name = "\improper Trekpaard Light Machine Gun"
-	desc = "A hefty, previous-gen machine gun chambered in .40 Sol Long, somehow still seen in the hands of SolFed military types. Accepts any standard SolFed rifle magazine."
+	name = "\improper 特雷克帕德轻机枪"
+	desc = "一把笨重的上一代机枪，使用.40索尔长弹，不知为何仍能在索尔联邦军人手中见到。可接受任何标准的索尔联邦步枪弹匣。"
 
 	icon_state = "qarad"
 	worn_icon_state = "qarad"
@@ -154,7 +154,7 @@
 // Evil version of the rifles (nothing different it's just black)
 
 /obj/item/gun/ballistic/automatic/sol_rifle/evil
-	desc = parent_type::desc + " This one is painted in a tacticool black."
+	desc = parent_type::desc + "这把涂成了战术酷黑色。"
 
 	icon_state = "infanterie_evil"
 	worn_icon_state = "infanterie_evil"
@@ -164,7 +164,7 @@
 	spawnwithmagazine = FALSE
 
 /obj/item/gun/ballistic/automatic/sol_rifle/marksman/evil
-	desc = parent_type::desc + " This one is painted in a tacticool black."
+	desc = parent_type::desc + "这把枪被涂成了战术黑色。"
 
 	icon_state = "elite_evil"
 	worn_icon_state = "elite_evil"

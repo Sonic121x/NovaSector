@@ -1,8 +1,8 @@
 //Originally coded by ISaidNo, later modified by Kelenius. Ported from Baystation12.
 
 /obj/structure/closet/crate/secure/loot
-	name = "abandoned crate"
-	desc = "What could be inside?"
+	name = "废弃板条箱"
+	desc = "里面会有什么呢？"
 	icon_state = "securecrate"
 	base_icon_state = "securecrate"
 	integrity_failure = 0 //no breaking open the crate
@@ -122,7 +122,7 @@
 	if(!user.can_perform_action(src))
 		return
 
-	var/input = tgui_input_text(user, title = "Deca-code lock", message = "Enter [code_length] digits. All digits must be unique.", max_length = code_length)
+	var/input = tgui_input_text(user, title = "十位密码锁", message = "输入[code_length]位数字。所有数字必须唯一。", max_length = code_length)
 
 	if(input == code)
 		if(!spawned_loot)
@@ -133,10 +133,10 @@
 		return
 
 	if(!validate_input(input))
-		to_chat(user, span_notice("You leave the crate alone."))
+		to_chat(user, span_notice("你放过了这个板条箱。"))
 		return
 
-	to_chat(user, span_warning("A red light flashes."))
+	to_chat(user, span_warning("红灯闪烁。"))
 	previous_attempts += list(bulls_and_cows(input))
 	attempts--
 

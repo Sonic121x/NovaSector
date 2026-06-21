@@ -1,11 +1,11 @@
 /datum/round_event_control/bitrunning_glitch
-	name = "Spawn Bitrunning Glitch"
+	name = "生成比特运行故障"
 	admin_setup = list(
 		/datum/event_admin_setup/minimum_candidate_requirement/bitrunning_glitch,
 		/datum/event_admin_setup/listed_options/bitrunning_glitch,
 	)
 	category = EVENT_CATEGORY_INVASION
-	description = "Causes a short term antagonist to spawn in the virtual domain."
+	description = "在虚拟域中生成一个短期敌对实体。"
 	min_players = 1
 	max_occurrences = 0
 	typepath = /datum/round_event/ghost_role/bitrunning_glitch

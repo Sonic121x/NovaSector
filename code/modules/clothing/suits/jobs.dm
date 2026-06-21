@@ -4,8 +4,8 @@
 
 //Botanist
 /obj/item/clothing/suit/apron
-	name = "apron"
-	desc = "A basic blue apron."
+	name = "围裙"
+	desc = "一条普通的蓝色围裙。"
 	icon_state = "apron"
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	worn_icon = 'icons/mob/clothing/suits/utility.dmi'
@@ -35,15 +35,15 @@
 	bio = 50
 
 /obj/item/clothing/suit/apron/waders
-	name = "horticultural waders"
-	desc = "A pair of heavy duty leather waders, perfect for insulating your soft flesh from spills, soil and thorns."
+	name = "园艺防水靴"
+	desc = "一双重型皮革防水靴，完美地将你柔软的肉体与尖刺、泥土和荆棘隔绝开来."
 	icon_state = "hort_waders"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|LEGS
 
 /obj/item/clothing/suit/apron/overalls
-	name = "coveralls"
-	desc = "A set of overalls, good for protecting thinner clothes from the elements."
+	name = "连体工作服"
+	desc = "一套连体工作服，适合保护较薄的衣服免受环境影响。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/apron/overalls"
 	post_init_icon_state = "overalls"
@@ -62,8 +62,8 @@
 
 //Captain
 /obj/item/clothing/suit/jacket/capjacket
-	name = "captain's parade jacket"
-	desc = "Worn by a Captain to show their class."
+	name = "舰长检阅夹克"
+	desc = "舰长为展示他们的身份而穿。"
 	icon_state = "capjacket"
 	inhand_icon_state = "bio_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -84,8 +84,8 @@
 
 //Chef
 /obj/item/clothing/suit/toggle/chef
-	name = "chef's apron"
-	desc = "An apron-jacket used by a high class chef."
+	name = "主厨围裙"
+	desc = "高级厨师用的围裙。"
 	icon_state = "chef"
 	inhand_icon_state = "chef"
 	icon = 'icons/obj/clothing/suits/jacket.dmi'
@@ -105,8 +105,8 @@
 	bio = 50
 
 /obj/item/clothing/suit/apron/chef
-	name = "cook's apron"
-	desc = "A basic, dull, white chef's apron."
+	name = "厨师围裙"
+	desc = "一条普通的、颜色单调的白色主厨围裙。"
 	icon_state = "apronchef"
 	inhand_icon_state = null
 	blood_overlay_type = "armor"
@@ -119,8 +119,8 @@
 
 //Detective
 /obj/item/clothing/suit/toggle/jacket/det_trench
-	name = "brown trenchcoat"
-	desc = "A 18th-century multi-purpose trenchcoat. Someone who wears this means serious business."
+	name = "棕色风衣"
+	desc = "18世纪的多功能风衣。穿这个的人一定是在干正经活。"
 	icon_state = "det_trenchcoat"
 	inhand_icon_state = "det_suit"
 	blood_overlay_type = "coat"
@@ -139,14 +139,14 @@
 	allowed = GLOB.detective_vest_allowed
 
 /obj/item/clothing/suit/toggle/jacket/det_trench/noir
-	name = "noir trenchcoat"
-	desc = "A hard-boiled private investigator's dark trenchcoat."
+	name = "黑色风衣"
+	desc = "一件冷硬的私家侦探黑色风衣。"
 	icon_state = "noir_trenchcoat"
 	inhand_icon_state = null
 
 /obj/item/clothing/suit/jacket/det_suit
-	name = "brown blazer jacket"
-	desc = "A suit jacket perfect for dinner dates and criminal investigations."
+	name = "棕色西装外套"
+	desc = "一件非常适合约会晚餐和刑事调查的西装外套。"
 	icon_state = "det_blazer"
 	armor_type = /datum/armor/jacket_det_suit
 	inhand_icon_state = null
@@ -156,24 +156,24 @@
 	allowed = GLOB.detective_vest_allowed
 
 /obj/item/clothing/suit/jacket/det_suit/noir
-	name = "noir blazer jacket"
-	desc = "A dapper private investigator's dark suit jacket."
+	name = "黑色电影风格西装外套"
+	desc = "一位时髦私家侦探的深色西装外套。"
 	icon_state = "noir_blazer"
 
 /obj/item/clothing/suit/jacket/det_suit/kim
-	name = "aerostatic bomber jacket"
-	desc = "A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses."
+	name = "航空轰炸手夹克"
+	desc = "革命航空旅在百年革命期间穿过的夹克。里面有很多口袋，主要用来放笔记本和指南针。"
 	icon_state = "aerostatic_bomber_jacket"
 
 /obj/item/clothing/suit/jacket/det_suit/disco
-	name = "disco ass blazer"
-	desc = "Looks like someone skinned this blazer off some long extinct disco-animal. It has an enigmatic white rectangle on the back and the right sleeve."
+	name = "disco背带夹克"
+	desc = "看起来这件衣服是由早已灭绝的disco动物的皮料制作而成。背面和右袖上有一个神秘的白色矩形。"
 	icon_state = "jamrock_blazer"
 
 //Engineering
 /obj/item/clothing/suit/hazardvest
-	name = "hazard vest"
-	desc = "A high-visibility vest used in work zones."
+	name = "工作背心"
+	desc = "在工作区域使用的高能见度背心。"
 	icon_state = "hazard"
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	worn_icon = 'icons/mob/clothing/suits/utility.dmi'
@@ -200,14 +200,14 @@
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
 
 /obj/item/clothing/suit/hazardvest/press // Variant used by the Curator
-	name = "press hazard vest"
-	desc = "A blue high-visibility vest used to distinguish <i>non-combatant</i> \"PRESS\" members, like if anyone cares."
+	name = "记者反光背心"
+	desc = "一件蓝色的高能见度背心，用于区分<i>非战斗人员</i>的“记者”成员，好像有人在乎似的。"
 	icon_state = "hazard_press"
 
 //Lawyer
 /obj/item/clothing/suit/toggle/lawyer
-	name = "blue formal suit jacket"
-	desc = "A professional suit jacket."
+	name = "蓝色正式西装外套"
+	desc = "一件职业性的西装外套。"
 	icon_state = "suitjacket_blue"
 	icon = 'icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
@@ -218,20 +218,20 @@
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/suit/toggle/lawyer/purple
-	name = "purple formal suit jacket"
+	name = "紫色正式西装外套"
 	icon_state = "suitjacket_purp"
 	inhand_icon_state = null
 
 /obj/item/clothing/suit/toggle/lawyer/black
-	name = "black formal suit jacket"
+	name = "黑色正式西装外套"
 	icon_state = "suitjacket_black"
 	inhand_icon_state = "ro_suit"
 
 // Cargo
 
 /obj/item/clothing/suit/toggle/cargo_tech
-	name = "cargo gorka"
-	desc = "A brown and black puffy jacket; made from synthetic fabric. Inspired by old Eastern European designs."
+	name = "货运戈尔卡夹克"
+	desc = "一件棕黑相间的蓬松夹克；由合成面料制成。灵感源自古老的东欧设计。"
 	icon_state = "cargo_jacket"
 	icon = 'icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
@@ -251,8 +251,8 @@
 // Quartermaster
 
 /obj/item/clothing/suit/jacket/quartermaster
-	name = "quartermaster's overcoat"
-	desc = "A luxury, brown double-breasted overcoat made from kangaroo skin. Its gold cuffs are linked and styled on the credits symbol. It makes you feel more important than you probably are."
+	name = "物资处长的长大衣"
+	desc = "一件奢华的棕色双排扣长大衣，由袋鼠皮制成。其金色袖口相互连接，并设计成信用点符号的样式。它让你感觉自己比实际可能的重要得多。"
 	icon_state = "qm_coat"
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
@@ -267,7 +267,7 @@
 	)
 
 /obj/item/clothing/suit/toggle/lawyer/greyscale
-	name = "formal suit jacket"
+	name = "正式西装外套"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/lawyer/greyscale"
 	post_init_icon_state = "jacket_lawyer"
@@ -279,8 +279,8 @@
 
 //Mime
 /obj/item/clothing/suit/toggle/suspenders
-	name = "suspenders"
-	desc = "They suspend the illusion of the mime's play."
+	name = "吊带裤"
+	desc = "他们中止了默剧表演的幻觉。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/suspenders"
 	post_init_icon_state = "suspenders"
@@ -296,51 +296,51 @@
 
 //Security
 /obj/item/clothing/suit/jacket/officer/blue
-	name = "security officer's jacket"
-	desc = "This jacket is for those special occasions when a security officer isn't required to wear their armor."
+	name = "安保人员夹克"
+	desc = "这件夹克是为那些不需要安保人员穿盔甲的特殊场合准备的。"
 	icon_state = "officerbluejacket"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/jacket/officer/tan
-	name = "security officer's jacket"
-	desc = "This jacket is for those special occasions when a security officer isn't required to wear their armor."
+	name = "安保人员夹克"
+	desc = "这件夹克是为那些不需要安保人员穿盔甲的特殊场合准备的。"
 	icon_state = "officertanjacket"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/jacket/warden/blue
-	name = "warden's jacket"
-	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
+	name = "典狱长的夹克"
+	desc = "非常适合想给参观禁闭室的人留下有格调印象的典狱长。"
 	icon_state = "wardenbluejacket"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/jacket/warden/tan
-	name = "warden's jacket"
-	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
+	name = "典狱长的夹克"
+	desc = "非常适合想给参观禁闭室的人留下有格调印象的典狱长。"
 	icon_state = "wardentanjacket"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/jacket/hos/blue
-	name = "head of security's jacket"
-	desc = "This piece of clothing was specifically designed for asserting superior authority."
+	name = "安保部长夹克"
+	desc = "这件衣服是专门为维护上级权威而设计的。"
 	icon_state = "hosbluejacket"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/jacket/hos/tan
-	name = "head of security's jacket"
-	desc = "This piece of clothing was specifically designed for asserting superior authority."
+	name = "安保部长夹克"
+	desc = "这件衣服是专门为维护上级权威而设计的。"
 	icon_state = "hostanjacket"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|ARMS
 
 //Surgeon
 /obj/item/clothing/suit/apron/surgical
-	name = "surgical apron"
-	desc = "A sterile blue surgical apron."
+	name = "手术围裙"
+	desc = "一条无菌的蓝色外科围裙。"
 	icon_state = "surgical"
 	allowed = list(
 		/obj/item/bonesetter,
@@ -368,8 +368,8 @@
 
 //Curator
 /obj/item/clothing/suit/jacket/curator
-	name = "treasure hunter's coat"
-	desc = "Both fashionable and lightly armoured, this jacket is favoured by treasure hunters the galaxy over."
+	name = "赏金猎手大衣"
+	desc = "这款夹克既时尚又轻巧的装甲，深受银河各地赏金猎手的喜爱。"
 	icon_state = "curator"
 	inhand_icon_state = null
 	blood_overlay_type = "coat"
@@ -392,8 +392,8 @@
 
 //Robotocist
 /obj/item/clothing/suit/hooded/techpriest
-	name = "techpriest robes"
-	desc = "For those who REALLY love their toasters."
+	name = "机械长袍"
+	desc = "给那些真的爱烤面包机的人."
 	icon_state = "techpriest"
 	icon = 'icons/obj/clothing/suits/costume.dmi'
 	worn_icon = 'icons/mob/clothing/suits/costume.dmi'
@@ -402,10 +402,10 @@
 	hoodtype = /obj/item/clothing/head/hooded/techpriest
 
 /obj/item/clothing/head/hooded/techpriest
-	name = "techpriest's hood"
+	name = "机械兜帽"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
-	desc = "A hood for those who REALLY love their toasters."
+	desc = "一个给那些真的爱烤面包机的人的兜帽."
 	icon_state = "techpriesthood"
 	inhand_icon_state = null
 	body_parts_covered = HEAD
@@ -413,8 +413,8 @@
 
 // Atmos
 /obj/item/clothing/suit/atmos_overalls
-	name = "atmospherics overalls"
-	desc = "A set of fireproof overalls, good for protecting thinner clothes from gas leaks."
+	name = "大气处理工装裤"
+	desc = "一套防火工装裤，能有效保护较薄衣物免受气体泄漏影响。"
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	worn_icon = 'icons/mob/clothing/suits/utility.dmi'
 	icon_state = "atmos_overalls"

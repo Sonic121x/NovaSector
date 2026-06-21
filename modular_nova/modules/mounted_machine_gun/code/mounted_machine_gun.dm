@@ -3,8 +3,8 @@
 #define REPAIR_WELDER_COST 10
 
 /obj/machinery/mounted_machine_gun
-	name = "\improper T90 Mounted Machine Gun"
-	desc = "A high calibre mounted machine gun capable of laying down copious amounts of suppressive fire."
+	name = "\improper T90 车载机枪"
+	desc = "一门大口径的固定式机枪，能够倾泻大量火力进行压制。"
 	icon = 'modular_nova/modules/mounted_machine_gun/icons/turret.dmi'
 	icon_state = "mmg"
 	base_icon_state = "mmg"
@@ -90,24 +90,24 @@
 /obj/machinery/mounted_machine_gun/examine(mob/user)
 	. = ..()
 	if(ammo_box)
-		. += span_notice("It has [ammo_box] loaded, with [ammo_box.ammo_count()] rounds remaining.")
+		. += span_notice("它已装填了[ammo_box]，还剩[ammo_box.ammo_count()]发子弹。")
 	else
-		. += span_danger("It does not have an ammo box loaded!")
-	. += span_notice("The cover is [cover_open ? "open" : "closed"]. <b>Alt+click</b> to [cover_open ? "close" : "open"] it.")
-	. += span_notice("Use a welder to repair it.")
+		. += span_danger("它没有装填弹药箱！")
+	. += span_notice("盖子目前是[cover_open ? "open" : "closed"]。<b>Alt+点击</b>来[cover_open ? "close" : "open"]它。")
+	. += span_notice("使用焊枪来修复它.")
 	switch(barrel_heat)
 		if(BARREL_HEAT_THRESHOLD_LOW to BARREL_HEAT_THRESHOLD_HIGH)
-			. += span_warning("The barrel looks hot.")
+			. += span_warning("枪管看起来很烫.")
 		if(BARREL_HEAT_THRESHOLD_HIGH to INFINITY)
-			. += span_warning("The barrel looks moulten!")
+			. += span_warning("枪管看起来熔化了！")
 	if(overheated)
-		. += span_danger("It is heatlocked!")
+		. += span_danger("它因过热而锁死了！")
 
 /obj/machinery/mounted_machine_gun/welder_act(mob/living/user, obj/item/tool)
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "它不需要修理！")
 		return TRUE
 	balloon_alert_to_viewers("repairing...")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = REPAIR_WELDER_COST, volume = 100))
@@ -176,7 +176,7 @@
 	if(!can_interact(user))
 		return
 	if(!cover_open)
-		balloon_alert(user, "cover closed!")
+		balloon_alert(user, "盖子已关闭！")
 		return
 	if(!ammo_box)
 		return
@@ -187,24 +187,24 @@
 	if(!istype(attacking_item, ammo_box_type))
 		return
 	if(ammo_box)
-		balloon_alert(user, "already loaded!")
+		balloon_alert(user, "已经装填了！")
 		return
 	ammo_box = attacking_item
 	attacking_item.forceMove(src)
 	playsound(src, 'modular_nova/modules/mounted_machine_gun/sound/insert_ammobox.ogg', 100)
-	balloon_alert(user, "ammo box inserted!")
+	balloon_alert(user, "弹药箱已插入！")
 
 /obj/machinery/mounted_machine_gun/proc/remove_ammo_box(mob/living/user)
 	ammo_box.forceMove(drop_location())
 	user.put_in_hands(ammo_box)
 	ammo_box = null
 	playsound(src, 'modular_nova/modules/mounted_machine_gun/sound/remove_ammobox.ogg', 100)
-	balloon_alert(user, "ammo box removed!")
+	balloon_alert(user, "弹药箱已移除！")
 	update_appearance()
 
 /obj/machinery/mounted_machine_gun/proc/toggle_cover(mob/user)
 	cover_open = !cover_open
-	balloon_alert(user, "cover [cover_open ? "opened" : "closed"]!")
+	balloon_alert(user, "盖子[cover_open ? "opened" : "closed"]！")
 	playsound(src, cover_open ? 'modular_nova/modules/mounted_machine_gun/sound/open_lid.ogg' : 'modular_nova/modules/mounted_machine_gun/sound/close_lid.ogg', 100)
 
 /// Registers all the required signals and sets up the client to work with the turret.
@@ -444,8 +444,8 @@
 			user.pixel_y = -8
 
 /obj/item/mounted_machine_gun_folded
-	name = "\improper folded T-90 mounted machine gun"
-	desc = "A folded and unloaded mounted machine gun, ready to be deployed and used."
+	name = "\improper 折叠式 T-90 架设机枪"
+	desc = "一把折叠且未装弹的架设机枪，随时可以部署使用."
 	icon = 'modular_nova/modules/mounted_machine_gun/icons/turret_objects.dmi'
 	icon_state = "folded_hmg"
 	max_integrity = 250

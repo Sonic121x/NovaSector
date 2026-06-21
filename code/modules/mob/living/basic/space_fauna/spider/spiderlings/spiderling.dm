@@ -6,8 +6,8 @@
  *
  */
 /mob/living/basic/spider/growing/spiderling
-	name = "spiderling"
-	desc = "It never stays still for long."
+	name = "幼蛛"
+	desc = "它从来不会长时间保持静止。"
 	icon_state = "spiderling"
 	icon_dead = "spiderling_dead"
 	density = FALSE

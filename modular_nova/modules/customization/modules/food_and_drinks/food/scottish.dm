@@ -1,6 +1,6 @@
 /obj/item/food/snacks/store/bread/haggis
-	name = "haggis"
-	desc = "A savoury pudding containing intestines."
+	name = "哈吉斯"
+	desc = "一种含有内脏的咸味布丁。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "haggis"
 	food_reagents = list(
@@ -14,8 +14,8 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/snacks/breadslice/haggis, 5, 30, screentip_verb = "Slice")
 
 /obj/item/food/snacks/breadslice/haggis
-	name = "haggis chunk"
-	desc = "A chunk of delicious haggis."
+	name = "哈吉斯块"
+	desc = "一块美味的哈吉斯。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "haggis_chunk"
 	food_reagents = list(
@@ -27,8 +27,8 @@
 
 
 /obj/item/food/snacks/neep_tatty_haggis
-	name = "haggis neeps and tatties "
-	desc = "Oi mate! No neeps, but double beets! SCAM!!!"
+	name = "哈吉斯配芜菁甘蓝和土豆"
+	desc = "喂，伙计！没有芜菁甘蓝，只有双份甜菜！骗人的！！！"
 	icon_state = "neep_tatty_haggis"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	food_reagents = list(
@@ -40,8 +40,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_5
 
 /obj/item/food/raw_sausage/battered
-	name = "raw battered sausage"
-	desc = "A raw sausage coated in thick beer batter. Mix oil, beer, and flour in equal parts to make the batter."
+	name = "生面糊香肠"
+	desc = "一根裹着厚厚啤酒面糊的生香肠。将油、啤酒和面粉等量混合即可制成面糊。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "batteredsausage"
 	food_reagents = list(
@@ -55,8 +55,8 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/sausage/battered, rand(60 SECONDS, 75 SECONDS), TRUE)
 
 /obj/item/food/sausage/battered
-	name = "battered sausage"
-	desc = "A sausage coated in thick beer batter, best served with a portion of chips wrapped in a newspaper, it however, is pure cholesterol, Scottish people eat it. Few of them make it to 60."
+	name = "裹面炸香肠"
+	desc = "一种裹着厚啤酒面糊的香肠，最好搭配用报纸包裹的薯条一起享用。然而，它纯粹是胆固醇，苏格兰人吃这个。他们中很少有人能活到60岁。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "grilled_batteredsausage"
 	food_reagents = list(
@@ -72,8 +72,8 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/salami, 6, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice")
 
 /obj/item/food/cookie/shortbread
-	name = "shortbread"
-	desc = "A rectangular piece of cooked flour. Said to control the sun during Hogmanay."
+	name = "酥饼"
+	desc = "一块长方形的熟面粉制品。据说在苏格兰除夕夜能控制太阳。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "shortbread"
 	food_reagents = list(

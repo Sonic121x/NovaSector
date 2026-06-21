@@ -1,7 +1,7 @@
 // Jumpsuit
 
 /datum/design/frontier_jumpsuit
-	name = "Frontier Jumpsuit"
+	name = "前沿连体服"
 	id = "frontier_jumpsuit"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 75)
@@ -14,7 +14,7 @@
 // Boots
 
 /datum/design/frontier_boots
-	name = "Heavy Frontier Boots"
+	name = "重型前沿靴"
 	id = "frontier_boots"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -27,7 +27,7 @@
 // Gloves
 
 /datum/design/frontier_gloves
-	name = "Frontier Gloves"
+	name = "前沿手套"
 	id = "frontier_gloves"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -40,7 +40,7 @@
 // Suit items
 
 /datum/design/frontier_trench
-	name = "Frontier Trenchcoat"
+	name = "前沿风衣"
 	id = "frontier_trench"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -51,7 +51,7 @@
 	)
 
 /datum/design/frontier_jacket
-	name = "Frontier Jacket"
+	name = "前沿夹克"
 	id = "frontier_jacket"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -62,7 +62,7 @@
 	)
 
 /datum/design/frontier_med_jacket
-	name = "Frontier Medical Jacket"
+	name = "前沿医疗夹克"
 	id = "frontier_med_jacket"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 125)
@@ -73,7 +73,7 @@
 	)
 
 /datum/design/frontier_flak
-	name = "Frontier Flak Jacket"
+	name = "前沿防弹夹克"
 	id = "frontier_flak_jacket"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -84,7 +84,7 @@
 	)
 
 /datum/design/frontier_tanker_helmet
-	name = "Frontier Soft Helmet"
+	name = "前沿软质头盔"
 	id = "frontier_tanker_helmet"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -97,7 +97,7 @@
 // Hats
 
 /datum/design/frontier_cap
-	name = "Frontier Soft Cap"
+	name = "前沿软帽"
 	id = "frontier_cap"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 75)
@@ -108,7 +108,7 @@
 	)
 
 /datum/design/frontier_cap_med
-	name = "Frontier Medical Cap"
+	name = "前沿医疗帽"
 	id = "frontier_cap_med"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -121,7 +121,7 @@
 // That one gas mask
 
 /datum/design/frontier_mask
-	name = "Frontier Gas Mask"
+	name = "前沿防毒面具"
 	id = "frontier_mask"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)

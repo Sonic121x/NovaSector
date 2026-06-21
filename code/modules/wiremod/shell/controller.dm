@@ -5,7 +5,7 @@
  * In game, this translates to having different signals for normal usage, alt-clicking, and ctrl-clicking when in your hand.
  */
 /obj/item/controller
-	name = "controller"
+	name = "控制器"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_small_calc"
 	inhand_icon_state = "electronic"
@@ -24,7 +24,7 @@
 
 /obj/item/circuit_component/controller
 	display_name = "Controller"
-	desc = "Used to receive inputs from the controller shell. Use the shell in hand to trigger the output signal."
+	desc = "用于接收来自控制器外壳的输入。手持外壳以触发输出信号。"
 	desc_controls = "Alt-click for the alternate signal. Right click for the extra signal."
 	/// The three separate buttons that are called in attack_hand on the shell.
 	var/datum/port/output/signal
@@ -53,7 +53,7 @@
 	))
 
 /obj/item/circuit_component/controller/proc/handle_trigger(atom/source, user, port_name, datum/port/output/port_signal)
-	source.balloon_alert(user, "clicked [port_name] button")
+	source.balloon_alert(user, "点击了[port_name]按钮")
 	playsound(source, SFX_KEYBOARD_CLICKS, 25, FALSE)
 	entity.set_output(user)
 	port_signal.set_output(COMPONENT_SIGNAL)

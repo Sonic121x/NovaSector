@@ -1,13 +1,13 @@
 ADMIN_VERB_VISIBILITY(set_server_fps, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(set_server_fps, R_DEBUG, "Set Server FPS", "Sets game speed in frames-per-second. Can potentially break the game", ADMIN_CATEGORY_DEBUG)
 	var/cfg_fps = CONFIG_GET(number/fps)
-	var/new_fps = round(input(user, "Sets game frames-per-second. Can potentially break the game (default: [cfg_fps])","FPS", world.fps) as num|null)
+	var/new_fps = round(input(user, "设置游戏帧率。可能会破坏游戏（默认：[cfg_fps]）","FPS", world.fps) as num|null)
 
 	if(new_fps <= 0)
-		to_chat(user, span_danger("Error: set_server_fps(): Invalid world.fps value. No changes made."), confidential = TRUE)
+		to_chat(user, span_danger("错误：set_server_fps()：无效的 world.fps 值。未进行任何更改。"), confidential = TRUE)
 		return
 	if(new_fps > cfg_fps * 1.5)
-		if(tgui_alert(user, "You are setting fps to a high value:\n\t[new_fps] frames-per-second\n\tconfig.fps = [cfg_fps]","Warning!",list("Confirm","ABORT-ABORT-ABORT")) != "Confirm")
+		if(tgui_alert(user, "您正在将帧率设置为一个高值：\n\t[new_fps] 帧每秒\n\tconfig.fps = [cfg_fps]","警告！",list("Confirm","ABORT-ABORT-ABORT")) != "Confirm")
 			return
 
 	var/msg = "[key_name(user)] has modified world.fps to [new_fps]"

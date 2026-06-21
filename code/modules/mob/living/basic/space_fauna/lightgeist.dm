@@ -5,8 +5,8 @@
  *
  */
 /mob/living/basic/lightgeist
-	name = "lightgeist"
-	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
+	name = "光灵"
+	desc = "这种小型漂浮生物是一种完全未知的生命形式……靠近它会让你充满宁静感。"
 	icon_state = "lightgeist"
 	icon_living = "lightgeist"
 	icon_dead = "butterfly_dead"
@@ -29,10 +29,10 @@
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	gold_core_spawnable = HOSTILE_SPAWN
-	verb_say = "warps"
-	verb_ask = "floats inquisitively"
-	verb_exclaim = "zaps"
-	verb_yell = "bangs"
+	verb_say = "扭曲"
+	verb_ask = "好奇地漂浮"
+	verb_exclaim = "电击"
+	verb_yell = "撞击"
 	initial_language_holder = /datum/language_holder/lightbringer
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 1, OXY = 0)
 	light_range = 4

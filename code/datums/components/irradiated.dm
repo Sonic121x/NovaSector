@@ -133,12 +133,12 @@
 
 	var/obj/item/bodypart/affected_limb = human_parent.get_bodypart(human_parent.get_random_valid_zone())
 	human_parent.visible_message(
-		span_boldwarning("[human_parent]'s [affected_limb.plaintext_zone] bubbles unnaturally, then bursts into blisters!"),
-		span_boldwarning("Your [affected_limb.plaintext_zone] bubbles unnaturally, then bursts into blisters!"),
+		span_boldwarning("[human_parent]的[affected_limb.plaintext_zone]不自然地冒泡，随后爆发出水疱！"),
+		span_boldwarning("你的[affected_limb.plaintext_zone]不自然地冒泡，随后爆发出水疱！"),
 	)
 
 	if(human_parent.is_blind())
-		to_chat(human_parent, span_boldwarning("Your [affected_limb.plaintext_zone] feels like it's bubbling, then burns like hell!"))
+		to_chat(human_parent, span_boldwarning("你的[affected_limb.plaintext_zone]感觉像是在冒泡，随后灼痛如地狱！"))
 
 	human_parent.apply_damage(RADIATION_BURN_SPLOTCH_DAMAGE, BURN, affected_limb, wound_clothing = FALSE)
 	playsound(
@@ -181,10 +181,10 @@
 
 	if (isliving(source))
 		var/mob/living/living_source = source
-		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated. Contamination traces back to roughly [DisplayTimeText(world.time - beginning_of_irradiation, 5)] ago. Current toxin levels: [living_source.get_tox_loss()]."))
+		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] 目标受到辐射污染。污染可追溯至大约 [DisplayTimeText(world.time - beginning_of_irradiation, 5)] 前。当前毒素水平：[living_source.get_tox_loss()]。"))
 	else
 		// In case the green wasn't obvious enough...
-		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Target is irradiated."))
+		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] 目标受到辐射污染。"))
 
 	return COMSIG_GEIGER_COUNTER_SCAN_SUCCESSFUL
 
@@ -196,8 +196,8 @@
 	render_list += "</span><br>"
 
 /atom/movable/screen/alert/irradiated
-	name = "Irradiated"
-	desc = "You're irradiated! Heal your toxins quick, and stand under a shower to halt the incoming damage."
+	name = "辐射污染"
+	desc = "你受到了辐射！快速治疗你的毒素，并站在淋浴下以阻止即将到来的伤害。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "irradiated"
 

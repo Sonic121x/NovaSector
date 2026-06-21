@@ -8,7 +8,7 @@
  */
 /obj/item/circuit_component/textcase
 	display_name = "Text Case"
-	desc = "A component that makes its input uppercase or lowercase."
+	desc = "一种能够将输入内容转换为大写或小写的组件。"
 	category = "String"
 
 	var/datum/port/input/option/textcase_options

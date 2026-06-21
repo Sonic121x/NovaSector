@@ -1,6 +1,6 @@
 /obj/machinery/power/energy_accumulator/tesla_coil
-	name = "tesla coil"
-	desc = "For the union!"
+	name = "特斯拉感应线圈"
+	desc = "为了联盟！"
 	icon = 'icons/obj/machines/engine/tesla_coil.dmi'
 	icon_state = "coil0"
 	base_icon_state = "coil"
@@ -57,7 +57,7 @@
 /obj/machinery/power/energy_accumulator/tesla_coil/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:<br>" + \
+		. += span_notice("状态显示屏显示：<br>" + \
 		  "Power generation at <b>[input_power_multiplier*100]%</b>.<br>" + \
 			"Shock interval at <b>[zap_cooldown*0.1]</b> seconds.<br>" + \
 			"Stored <b>[display_energy(get_stored_joules())]</b>.<br>" + \
@@ -114,8 +114,8 @@
 	zap_buckle_check(power)
 
 /obj/machinery/power/energy_accumulator/grounding_rod
-	name = "grounding rod"
-	desc = "Keeps an area from being fried by Edison's Bane."
+	name = "避雷针"
+	desc = "能防止该区域受到爱迪生之“魔力”的侵害。"
 	icon = 'icons/obj/machines/engine/tesla_coil.dmi'
 	icon_state = "grounding_rod0"
 	base_icon_state = "grounding_rod"
@@ -135,7 +135,7 @@
 /obj/machinery/power/energy_accumulator/grounding_rod/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:<br>" + \
+		. += span_notice("状态显示屏显示：<br>" + \
 			"Recently grounded <b>[display_energy(get_stored_joules())]</b>.<br>" + \
 			"This energy would sustainably release <b>[display_power(calculate_sustainable_power(), convert = FALSE)]</b>.")
 

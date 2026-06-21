@@ -57,7 +57,7 @@
 	return
 
 /obj/effect/client_image_holder/hallucination/danger/lava
-	name = "lava"
+	name = "岩浆"
 	image_icon = 'icons/turf/floors/lava.dmi'
 
 /obj/effect/client_image_holder/hallucination/danger/lava/generate_image()
@@ -70,7 +70,7 @@
 	afflicted.cause_hallucination(/datum/hallucination/fire, "fake lava hallucination")
 
 /obj/effect/client_image_holder/hallucination/danger/chasm
-	name = "chasm"
+	name = "深渊"
 	image_icon = 'icons/turf/floors/chasms.dmi'
 
 /obj/effect/client_image_holder/hallucination/danger/chasm/generate_image()
@@ -79,14 +79,14 @@
 	return ..()
 
 /obj/effect/client_image_holder/hallucination/danger/chasm/on_hallucinator_entered(mob/living/afflicted)
-	to_chat(afflicted, span_userdanger("You fall into the chasm!"))
-	afflicted.visible_message(span_warning("[afflicted] falls to the ground suddenly!"), ignored_mobs = afflicted)
+	to_chat(afflicted, span_userdanger("你掉进了裂隙！"))
+	afflicted.visible_message(span_warning("[afflicted] 突然摔倒在地！"), ignored_mobs = afflicted)
 	afflicted.Paralyze(4 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), afflicted, span_notice("...It's surprisingly shallow.")), 1.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), afflicted, span_notice("...它出乎意料地浅。")), 1.5 SECONDS)
 	QDEL_IN(src, 3 SECONDS)
 
 /obj/effect/client_image_holder/hallucination/danger/anomaly
-	name = "flux wave anomaly"
+	name = "磁波异常"
 	image_icon = 'icons/effects/anomalies.dmi'
 	image_state = "flux"
 	image_layer = OBJ_LAYER + 0.01

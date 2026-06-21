@@ -28,7 +28,7 @@
 /datum/techweb_node/cyber/night_vision_implants
 	id = TECHWEB_NODE_NIGHT_VISION_IMPLANTS
 	display_name = "Night Vision Implants"
-	description = "Now you can work all night, even if you lost your glasses!"
+	description = "现在你可以整夜工作，即使丢了眼镜也没关系！"
 	prereq_ids = list(TECHWEB_NODE_NIGHT_VISION, TECHWEB_NODE_CYBER_IMPLANTS)
 	design_ids = list(
 		"ci-nv",
@@ -39,7 +39,7 @@
 /datum/techweb_node/cyber/implants_nova
 	id = TECHWEB_NODE_CYBERNETICS_ILLEGAL_NOVA
 	display_name = "Illegal Cybernetics Implants"
-	description = "So, hypothetically, if we didn't care about the formalities of ethics..."
+	description = "那么，假设我们不在乎那些形式上的伦理规范……"
 	prereq_ids = list(TECHWEB_NODE_COMBAT_IMPLANTS)
 	design_ids = list(
 		"combat_implant_hackerman",

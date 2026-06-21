@@ -15,7 +15,7 @@
 
 /datum/orderable_item/consumables/medkit_fire
 	purchase_path = /obj/item/storage/medkit/fire
-	desc = "For emergency magmatic burn relief."
+	desc = "用于紧急岩浆灼伤救治。"
 	cost_per_order = 500
 
 /datum/orderable_item/consumables/whiskey
@@ -48,11 +48,11 @@
 
 /datum/orderable_item/consumables/space_cash
 	purchase_path = /obj/item/stack/spacecash/c1000
-	desc = "A stack of space cash worth 1000 credits."
+	desc = "一叠价值1000信用点的太空现金。"
 	cost_per_order = 2000
 
 /datum/orderable_item/consumables/rescue_hook
-	name = "Rescue Fishing Rod"
+	name = "救援鱼竿"
 	purchase_path = /obj/item/fishing_rod/rescue
-	desc = "For when your fellow miner has inevitably fallen into a chasm, and it's up to you to save them."
+	desc = "当你的矿工同伴不可避免地掉进裂隙，而需要你去拯救他们时使用。"
 	cost_per_order = 600

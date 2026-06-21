@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(title)
-	name = "Title Screen"
+	name = "标题屏幕"
 	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_FIRST
 
@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(title)
 /datum/controller/subsystem/title/Initialize()
 	var/dat
 	if(!fexists("[global.config.directory]/nova/title_html.txt"))
-		to_chat(world, span_boldwarning("CRITICAL ERROR: Unable to read title_html.txt, reverting to backup title html, please check your server config and ensure this file exists."))
+		to_chat(world, span_boldwarning("严重错误：无法读取 title_html.txt，正在恢复为备用标题HTML，请检查你的服务器配置并确保此文件存在。"))
 		dat = DEFAULT_TITLE_HTML
 	else
 		dat = file2text("[global.config.directory]/nova/title_html.txt")

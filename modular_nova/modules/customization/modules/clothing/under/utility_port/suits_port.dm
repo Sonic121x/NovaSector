@@ -2,8 +2,8 @@
 /obj/item/clothing/suit/toggle/jacket/nova
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
-	name = "bomber jacket"
-	desc = "A warm bomber jacket, with synthetic-wool lining to keep you nice and warm in the depths of space. Aviators not included."
+	name = "轰炸机夹克"
+	desc = "一件温暖的轰炸机夹克，内衬人造羊毛，让你在太空深处也能保持舒适温暖。飞行员墨镜不包含在内。"
 	icon_state = "bomberalt"
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 	body_parts_covered = CHEST|ARMS|GROIN
@@ -15,8 +15,8 @@
 //Job Jackets
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber
-	name = "non-departmental jacket"
-	desc = "A comfortable jacket in a neutral black"
+	name = "非部门夹克"
+	desc = "一件中性黑色的舒适夹克"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber"
 	post_init_icon_state = "jacket"
@@ -28,8 +28,8 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/engi
-	name = "engineering jacket"
-	desc = "A comfortable jacket in engineering yellow."
+	name = "工程夹克"
+	desc = "一件舒适的工程黄色夹克。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/engi"
 	greyscale_colors = "#f8d860#eae3ce#17161f#f8d860"
 	flags_1 = null
@@ -38,8 +38,8 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter)
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/tcomm
-	name = "telecomms jacket"
-	desc = "A comfortable jacket in engineering yellow with blue telecomms trim."
+	name = "电信夹克"
+	desc = "一件舒适的工程黄色夹克，带有蓝色电信镶边。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/tcomm"
 	greyscale_colors = "#f8d860#eae3ce#5c97e6#5c97e6"
 	post_init_icon_state = "jacket_armband"
@@ -62,8 +62,8 @@
 	acid = 45
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/sci
-	name = "science jacket"
-	desc = "A comfortable jacket in science purple."
+	name = "科研夹克"
+	desc = "一件舒适的科研紫色夹克。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/sci"
 	greyscale_colors = "#7e1980#eae3ce#17161f#7e1980"
 	flags_1 = null
@@ -74,8 +74,8 @@
 	bomb = 10
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/med
-	name = "medbay jacket"
-	desc = "A comfortable jacket in medical blue."
+	name = "医疗部夹克"
+	desc = "一件舒适的医疗蓝色夹克。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/med"
 	greyscale_colors = "#becace#eae3ce#17161f#becace"
 	flags_1 = null
@@ -86,22 +86,22 @@
 	acid = 45
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/supply
-	name = "cargo jacket"
-	desc = "A comfortable jacket in supply brown."
+	name = "货运夹克"
+	desc = "一件舒适的补给棕色夹克。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/supply"
 	greyscale_colors = "#b7793d#eae3ce#17161f#b7793d"
 	flags_1 = null
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/supply/head
-	name = "quartermaster's jacket"
-	desc = "Even if people refuse to recognize you as a head, they can recognize you as a badass."
+	name = "军需官夹克"
+	desc = "即使人们拒绝承认你是部门主管，他们也能认出你是个狠角色。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/supply/head"
 	greyscale_colors = "#292929#eae3ce#b7793d#b7793d"
 	post_init_icon_state = "jacket_armband"
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/sec
-	name = "security jacket"
-	desc = "A comfortable jacket in security red. Probably against uniform regulations."
+	name = "安保夹克"
+	desc = "一件舒适的安保红色夹克。可能违反制服规定。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/sec"
 	greyscale_colors = "#a52f29#eae3ce#17161f#a52f29"
 	flags_1 = null
@@ -121,27 +121,27 @@
 	acid = 45
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/sec/blue
-	desc = "An outdated jacket in blue. Probably against uniform regulations."
+	desc = "一件过时的蓝色夹克。可能违反制服规定。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/sec/blue"
 	greyscale_colors = "#3f6e9e#eae3ce#17161f#3f6e9e"
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/bridge_officer
-	name = "bridge officer's jacket"
-	desc = "It's a blue and silver jacket indicating that of a \"Bridge Officer\"."
+	name = "舰桥军官夹克"
+	desc = "这是一件蓝银相间的夹克，表明穿着者是“舰桥军官”。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/bridge_officer"
 	greyscale_colors = "#41579a#eae3ce#ffffff#4d4d4d"
 	flags_1 = null
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/interdyne
-	name = "Interdyne Bomber Jacket"
-	desc = "Its a black and green bomber jacket, looking to be the colors of Interdyne Pharmaceuticals"
+	name = "英特戴恩轰炸机夹克"
+	desc = "这是一件黑绿相间的轰炸机夹克，看起来是英特戴恩制药公司的配色。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/interdyne"
 	greyscale_colors = "#333333#eae3ce#33cc33#33cc33"
 	flags_1 = null
 
 /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/syndicate
-	name = "syndicate auxillary jacket"
-	desc = "A rather suspicious looking jacket, its colors being black and red."
+	name = "辛迪加辅助夹克"
+	desc = "一件看起来相当可疑的夹克，颜色为黑色和红色。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/syndicate"
 	post_init_icon_state = "jacket_armband"
 	greyscale_colors = "#333333#eae3ce#ff0000#ff0000"
@@ -151,27 +151,27 @@
 /obj/item/clothing/suit/toggle/jacket/nova/flannel
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
-	name = "flannel jacket"
-	desc = "A cozy and warm plaid flannel jacket. Praised by Lumberjacks and Truckers alike."
+	name = "法兰绒夹克"
+	desc = "一件舒适温暖的格子法兰绒夹克。深受伐木工和卡车司机的喜爱。"
 	icon_state = "flannel"
 	body_parts_covered = CHEST|ARMS //Being a bit shorter, flannels dont cover quite as much as the rest of the woolen jackets (- GROIN)
 	cold_protection = CHEST|ARMS
 	heat_protection = CHEST|ARMS	//As a plus side, they're more insulating, protecting a bit from the heat as well
 
 /obj/item/clothing/suit/toggle/jacket/nova/flannel/red
-	name = "red flannel jacket"
+	name = "红色法兰绒夹克"
 	icon_state = "flannel_red"
 
 /obj/item/clothing/suit/toggle/jacket/nova/flannel/aqua
-	name = "aqua flannel jacket"
+	name = "水绿色法兰绒夹克"
 	icon_state = "flannel_aqua"
 
 /obj/item/clothing/suit/toggle/jacket/nova/flannel/brown
-	name = "brown flannel jacket"
+	name = "棕色法兰绒夹克"
 	icon_state = "flannel_brown"
 
 /obj/item/clothing/suit/toggle/jacket/nova/flannel/gags
-	name = "flannel shirt"
+	name = "法兰绒衬衫"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/nova/flannel/gags"
 	post_init_icon_state = "flannelgags"
@@ -183,8 +183,8 @@
 /// Placed in here for now until a better solution is found.
 
 /obj/item/clothing/suit/nova/furred_trenchcoat
-	name = "furred trenchcoat"
-	desc = "A warm trenchcoat lined with fur, made for the cold, dark, and desperate winter nights."
+	name = "毛皮衬里风衣"
+	desc = "一件内衬毛皮的温暖风衣，专为寒冷、黑暗、绝望的冬夜而制。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/nova/furred_trenchcoat"
 	post_init_icon_state = "coat"
@@ -198,8 +198,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/nova/overcoat
-	name = "regal overcoat"
-	desc = "An overcoat of regalness, it looks quite fancy."
+	name = "华贵大衣"
+	desc = "一件华贵的大衣，看起来相当精致。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/nova/overcoat"
 	post_init_icon_state = "overcoat"
@@ -211,8 +211,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/nova/sweater
-	name = "big sweater"
-	desc = "A big'ol sweater! Makes for an improvised blanket with how huge this thing is."
+	name = "大号毛衣"
+	desc = "一件超大号毛衣！这东西大得可以当临时毯子用。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/nova/sweater"
 	post_init_icon_state = "sweater"
@@ -224,8 +224,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	
 /obj/item/clothing/suit/nova/sweater/bow
-	name = "big sweater with bow"
-	desc = "A big'ol sweater with an equally big ribbon bow! Makes for an improvised blanket with how huge this thing is."
+	name = "带蝴蝶结的大号毛衣"
+	desc = "一件带有同样大蝴蝶结的超大号毛衣！这东西大得可以当临时毯子用。"
 	icon_state = "/obj/item/clothing/suit/nova/sweater/bow"
 	post_init_icon_state = "sweaterbow"
 	greyscale_config = /datum/greyscale_config/sweater_nova_2

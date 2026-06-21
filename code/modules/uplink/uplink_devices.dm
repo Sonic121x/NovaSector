@@ -4,12 +4,12 @@
 // used for nuke ops, for whom opening the radio GUI and the uplink GUI
 // simultaneously is an annoying distraction.
 /obj/item/uplink
-	name = "station bounced radio"
+	name = "手持无线电"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "radio"
 	inhand_icon_state = "radio"
 	worn_icon_state = "radio"
-	desc = "A basic handheld radio that communicates with local telecommunication networks."
+	desc = "一种与本地电信网络通信的基本手持无线电。"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	dog_fashion = /datum/dog_fashion/back
@@ -39,25 +39,25 @@
 	)
 
 /obj/item/uplink/debug
-	name = "debug uplink"
+	name = "debug链路"
 
 /obj/item/uplink/debug/Initialize(mapload, owner, tc_amount = 9000, datum/uplink_handler/uplink_handler_override = null)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
-	hidden_uplink.name = "debug uplink"
+	hidden_uplink.name = "debug链路"
 	hidden_uplink.uplink_handler.debug_mode = TRUE
 
 /obj/item/uplink/nuclear
 	uplink_flag = UPLINK_NUKE_OPS
 
 /obj/item/uplink/nuclear/debug
-	name = "debug nuclear uplink"
+	name = "Debug核队链路"
 	uplink_flag = UPLINK_ALL_SYNDIE_OPS
 
 /obj/item/uplink/nuclear/debug/Initialize(mapload, owner, tc_amount = 9000, datum/uplink_handler/uplink_handler_override = null)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
-	hidden_uplink.name = "debug nuclear uplink"
+	hidden_uplink.name = "Debug核队链路"
 	hidden_uplink.uplink_handler.debug_mode = TRUE
 
 /obj/item/uplink/nuclear_restricted
@@ -76,13 +76,13 @@
 	uplink_flag = UPLINK_CLOWN_OPS
 
 /obj/item/uplink/old
-	name = "dusty radio"
-	desc = "A dusty looking radio."
+	name = "布满灰尘的无线电"
+	desc = "一台看起来满是灰尘的无线电。"
 
 /obj/item/uplink/old/Initialize(mapload, owner, tc_amount = 10, datum/uplink_handler/uplink_handler_override = null)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
-	hidden_uplink.name = "dusty radio"
+	hidden_uplink.name = "布满灰尘的无线电"
 
 // Multitool uplink
 ////obj/item/multitool/uplink/Initialize(mapload, owner, tc_amount = 20, datum/uplink_handler/uplink_handler_override = null) //ORIGINAL

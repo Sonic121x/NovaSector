@@ -246,20 +246,20 @@
 		return FALSE
 
 	if(!(user.mobility_flags & MOBILITY_USE) || (user != owner && !owner.IsReachableBy(user)))
-		owner.balloon_alert(user, "can't do it right now!")
+		owner.balloon_alert(user, "现在做不到！")
 		return FALSE
 
 	if(user != owner)
-		owner.visible_message(span_notice("[user] tries to remove [cuffs] binding [cuffed] to [owner]"), span_warning("[user] is trying to remove [cuffs] binding [cuffed] to you."))
+		owner.visible_message(span_notice("[user]试图取下将[cuffed]绑在[owner]身上的[cuffs]"), span_warning("[user]正试图取下将[cuffed]绑在你身上的[cuffs]"))
 
-	owner.balloon_alert(user, "removing cuffs...")
+	owner.balloon_alert(user, "正在移除手铐...")
 	playsound(owner, cuffs.cuffsound, 30, TRUE, -2)
 	if(!do_after(user, cuffs.get_handcuff_time(user) * 1.5, owner, interaction_key = interaction_key) || QDELETED(src))
-		owner.balloon_alert(user, "interrupted!")
+		owner.balloon_alert(user, "被打断了！")
 		return FALSE
 
 	if(user != owner)
-		owner.visible_message(span_notice("[user] removes [cuffs] binding [cuffed] to [owner]"), span_warning("[user] removes [cuffs] binding [cuffed] to you."))
+		owner.visible_message(span_notice("[user]取下了将[cuffed]绑在[owner]身上的[cuffs]"), span_warning("[user]取下了将[cuffed]绑在你身上的[cuffs]"))
 
 	log_combat(user, owner, "removed restraints binding [cuffed] to")
 
@@ -267,7 +267,7 @@
 	var/mob/living/ref_owner = owner
 	ref_cuffs.forceMove(owner.drop_location()) //This will cause the status effect to delete itself, which unsets the 'cuffs' var
 	user.put_in_hands(ref_cuffs)
-	ref_owner.balloon_alert(user, "cuffs removed from item")
+	ref_owner.balloon_alert(user, "手铐已从物品上移除")
 
 	return TRUE
 
@@ -278,7 +278,7 @@
 
 ///The status alert linked to the cuffed_item status effect
 /atom/movable/screen/alert/status_effect/cuffed_item
-	name = "Cuffed Item"
+	name = "被铐住的物品"
 	desc = "You've an item firmly cuffed to your arm. You probably won't be accidentally dropping it somewhere anytime soon."
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	clickable_glow = TRUE

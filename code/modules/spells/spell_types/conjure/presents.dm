@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure/presents
-	name = "Conjure Presents!"
-	desc = "This spell lets you reach into S-space and retrieve presents! Yay!"
+	name = "魔幻特展！"
+	desc = "这个咒语能让你进入超空间并获取礼物！太棒了！"
 
 	school = SCHOOL_CONJURATION
 	cooldown_time = 1 MINUTES

@@ -1,6 +1,6 @@
 /datum/language/draconic
-	name = "Draconic"
-	desc = "The common language of lizard-people, composed of sibilant hisses and rattles."
+	name = "龙语"
+	desc = "蜥蜴族的共同语言，由嘶嘶声和嘎嘎声组成。"
 	key = "o"
 	flags = TONGUELESS_SPEECH
 	space_chance = 12

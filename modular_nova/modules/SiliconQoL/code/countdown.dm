@@ -1,5 +1,5 @@
 /obj/effect/countdown/transformer_rp
-	name = "transformer countdown"
+	name = "变形器倒计时"
 	color = "#4C5866"
 
 /obj/effect/countdown/transformer_rp/get_value()

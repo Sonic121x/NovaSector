@@ -62,28 +62,28 @@
 /datum/computer_file/program/nt_pay/proc/_pay(token, money_to_send, mob/user)
 	var/area/user_area = get_area(user)
 	if(user_area && is_area_virtual(user_area))
-		to_chat(user, span_notice("You cannot send virtual money to real accounts."))
+		to_chat(user, span_notice("您无法向真实账户发送虚拟货币。"))
 		return NT_PAY_STATUS_NO_ACCOUNT
 
 	money_to_send = round(money_to_send)
 
 	if(IS_DEPARTMENTAL_ACCOUNT(current_user))
 		if(user)
-			to_chat(user, span_notice("The app is unable to withdraw from that card."))
+			to_chat(user, span_notice("应用程序无法从该卡中提款。"))
 		return NT_PAY_STATUS_DEPT_ACCOUNT
 
 	var/datum/bank_account/recipient
 	if(!token)
 		if(user)
-			to_chat(user, span_notice("You need to enter your transfer target's pay token."))
+			to_chat(user, span_notice("您需要输入转账目标的支付令牌。"))
 		return NT_PAY_STATUS_INVALID_TOKEN
 	if(money_to_send <= 0)
 		if(user)
-			to_chat(user, span_notice("You need to specify how much you're sending."))
+			to_chat(user, span_notice("你需要指定发送的金额。"))
 		return NT_PAY_STATUS_INVALID_MONEY
 	if(token == current_user.pay_token)
 		if(user)
-			to_chat(user, span_notice("You can't send [MONEY_NAME] to yourself."))
+			to_chat(user, span_notice("你不能向自己发送[MONEY_NAME]。"))
 		return NT_PAY_SATUS_SENDER_IS_RECEIVER
 
 	for(var/account in SSeconomy.bank_accounts_by_id)
@@ -94,7 +94,7 @@
 
 	if(!recipient)
 		if(user)
-			to_chat(user, span_notice("The app can't find who you're trying to pay. Did you enter the pay token right?"))
+			to_chat(user, span_notice("应用找不到你要付款的对象。你输入的支付令牌正确吗？"))
 		return NT_PAY_STATUS_INVALID_TOKEN
 	if(!current_user.has_money(money_to_send) || money_to_send < 1)
 		current_user.bank_card_talk("You cannot afford it.")

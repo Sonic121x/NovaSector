@@ -8,8 +8,8 @@
 */
 
 /datum/symptom/hallucigen
-	name = "Hallucigen"
-	desc = "The virus stimulates the brain, causing occasional hallucinations."
+	name = "幻觉原"
+	desc = "该病毒刺激大脑，导致间歇性幻觉。"
 	illness = "Paranoyance"
 	stealth = 1
 	resistance = -2

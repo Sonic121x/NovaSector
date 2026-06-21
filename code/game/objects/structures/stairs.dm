@@ -12,7 +12,7 @@
 // multiple stair objects can be chained together; the Z level transition will happen on the final stair object in the chain
 
 /obj/structure/stairs
-	name = "stairs"
+	name = "楼梯"
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	base_icon_state = "stairs"
@@ -329,7 +329,7 @@
 	for(var/mob/living/guy in falling_movables)
 		if(!can_fall_down_stairs(guy))
 			continue
-		to_chat(guy, span_warning("You fall down [src]!"))
+		to_chat(guy, span_warning("你从[src]上摔下去了！"))
 		on_fall(guy)
 	. |= FALL_INTERCEPTED | FALL_NO_MESSAGE | FALL_RETAIN_PULL
 
@@ -367,8 +367,8 @@
 	return TRUE
 
 /obj/structure/stairs_frame
-	name = "stairs frame"
-	desc = "Everything you need to call something a staircase, aside from the stuff you actually step on."
+	name = "楼梯框架"
+	desc = "除了你真正踩踏的部分之外，构成一个楼梯所需的一切都在这里了。"
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs_frame"
 	density = FALSE
@@ -380,8 +380,8 @@
 	var/frame_stack_amount = 10
 
 /obj/structure/stairs_frame/wood
-	name = "wooden stairs frame"
-	desc = "Everything you need to build a staircase, minus the actual stairs. This one is made of wood."
+	name = "木制楼梯框架"
+	desc = "建造楼梯所需的一切，除了楼梯本身。这个是木制的。"
 	frame_stack = /obj/item/stack/sheet/mineral/wood
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 10)
 
@@ -392,9 +392,9 @@
 /obj/structure/stairs_frame/examine(mob/living/carbon/human/user)
 	. = ..()
 	if(anchored)
-		. += span_notice("The frame is anchored and can be made into proper stairs with 10 sheets of material.")
+		. += span_notice("框架已固定，可以用10张材料制成完整的楼梯。")
 	else
-		. += span_notice("The frame will need to be secured with a wrench before it can be completed.")
+		. += span_notice("框架需要用扳手固定后才能完成。")
 
 /obj/structure/stairs_frame/wrench_act(mob/living/user, obj/item/used_tool)
 	user.balloon_alert_to_viewers("securing stairs frame", "securing frame")
@@ -410,7 +410,7 @@
 	return TRUE
 
 /obj/structure/stairs_frame/wrench_act_secondary(mob/living/user, obj/item/used_tool)
-	to_chat(user, span_notice("You start disassembling [src]..."))
+	to_chat(user, span_notice("你开始拆解[src]..."))
 	used_tool.play_tool_sound(src)
 	if(!used_tool.use_tool(src, user, 3 SECONDS))
 		return TRUE
@@ -425,12 +425,12 @@
 	if(!isstack(attacked_by))
 		return ..()
 	if(!anchored)
-		user.balloon_alert(user, "secure frame first")
+		user.balloon_alert(user, "先固定框架")
 		return TRUE
 	var/obj/item/stack/material = attacked_by
 	if(material.stairs_type)
 		if(material.get_amount() < 10)
-			to_chat(user, span_warning("You need ten [material.name] sheets to do this!"))
+			to_chat(user, span_warning("你需要十张[material.name]来做这件事！"))
 			return
 		if(locate(/obj/structure/stairs) in loc)
 			to_chat(user, span_warning("There's already stairs built here!"))
@@ -441,7 +441,7 @@
 		make_new_stairs(material.stairs_type)
 	else if(istype(material, /obj/item/stack/sheet))
 		if(material.get_amount() < 10)
-			to_chat(user, span_warning("You need ten sheets to do this!"))
+			to_chat(user, span_warning("你需要十张材料来做这件事！"))
 			return
 		if(locate(/obj/structure/stairs) in loc)
 			to_chat(user, span_warning("There's already stairs built here!"))

@@ -2,12 +2,12 @@
 
 
 /datum/round_event_control/wizard/shuffleloc //Somewhere an AI is crying
-	name = "Change Places!"
+	name = "交换位置！"
 	weight = 2
 	typepath = /datum/round_event/wizard/shuffleloc
 	max_occurrences = 5
 	earliest_start = 0 MINUTES
-	description = "Shuffles everyone around on the station."
+	description = "将空间站上的所有人随机打乱位置。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
 
@@ -39,12 +39,12 @@
 //---//
 
 /datum/round_event_control/wizard/shufflenames //Face/off joke
-	name = "Change Faces!"
+	name = "交换面貌！"
 	weight = 0 //NOVA EDIT CHANGE - WIZARD CHANGE - ORIGINAL weight = 4
 	typepath = /datum/round_event/wizard/shufflenames
 	max_occurrences = 5
 	earliest_start = 0 MINUTES
-	description = "Shuffles the names of everyone around the station."
+	description = "打乱空间站上所有人的名字。"
 
 /datum/round_event/wizard/shufflenames/start()
 	var/list/mobnames = list()
@@ -72,12 +72,12 @@
 //---//
 
 /datum/round_event_control/wizard/shuffleminds //Basically Mass Ranged Mindswap
-	name = "Change Minds!"
+	name = "交换思想！"
 	weight = 0 //NOVA EDIT CHANGE - WIZARD CHANGE - ORIGINAL weight = 1
 	typepath = /datum/round_event/wizard/shuffleminds
 	max_occurrences = 3
 	earliest_start = 0 MINUTES
-	description = "Shuffles the minds of everyone around the station, except for the wizard."
+	description = "打乱空间站上所有人的意识，巫师除外。"
 
 /datum/round_event/wizard/shuffleminds/start()
 	var/list/mobs_to_swap = list()

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/pathfind
 	display_name = "Pathfinder"
-	desc = "When triggered, the next step to the target's location as an entity. This can be used with the direction component and the drone shell to make it move on its own. The Id Card input port is for considering ID access when pathing, it does not give the shell actual access."
+	desc = "当被触发时，该实体将按照设定路径前往目标位置。此功能可与方向组件以及无人机壳结合使用，使壳自行移动。身份证输入端口是为了路径规划时考虑身份验证，但它并不会赋予壳实际的访问权限。"
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

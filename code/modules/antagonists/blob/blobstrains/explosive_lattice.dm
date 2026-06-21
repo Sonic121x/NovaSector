@@ -1,7 +1,7 @@
 //does aoe brute damage when hitting targets, is immune to explosions
 /datum/blobstrain/reagent/explosive_lattice
-	name = "Explosive Lattice"
-	description = "will attack with small explosions, dealing a medium mix of brute and burn damage to everyone nearby. Spores explode on death."
+	name = "爆炸格子"
+	description = "会使用小型爆炸攻击，对附近所有人造成中等混合的钝击和燃烧伤害。孢子死亡时会爆炸。"
 	effectdesc = "will also resist explosions, but takes increased damage from fire and other energy sources."
 	analyzerdescdamage = "Does a medium mix of brute and burn damage in a small explosion around its targets.  Spores explode on death."
 	analyzerdesceffect = "Is highly resistant to explosions, but takes increased damage from fire and other energy sources."
@@ -31,7 +31,7 @@
 		playsound(dead_spore , 'sound/effects/explosion/explosion2.ogg', 20 + 20 * death_cloud_size, TRUE)
 
 /datum/reagent/blob/explosive_lattice
-	name = "Explosive Lattice"
+	name = "爆炸格子"
 	taste_description = "the bomb"
 	color = "#8B2500"
 

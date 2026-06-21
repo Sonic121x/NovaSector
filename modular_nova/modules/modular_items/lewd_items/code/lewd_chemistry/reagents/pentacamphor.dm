@@ -1,7 +1,7 @@
 // Pentacamphor. Used to purge crocin and hexacrocin. Can permanently disable arousal or cure bimbofication on overdose.
 /datum/reagent/drug/aphrodisiac/camphor/pentacamphor
-	name = "Pentacamphor"
-	description = "Chemically condensed camphor. Causes an extreme reduction in libido and a permanent one if overdosed. Non-addictive."
+	name = "五倍樟脑"
+	description = "化学浓缩的樟脑。会导致性欲极度降低，过量服用则会造成永久性降低。无成瘾性。"
 	taste_description = "tranquil celibacy"
 	color = "#D9D9D9"//rgb(255, 255, 255)
 	overdose_threshold = 20
@@ -21,11 +21,11 @@
 /datum/reagent/drug/aphrodisiac/camphor/pentacamphor/overdose_start(mob/living/carbon/human/exposed_mob, metabolization_ratio)
 	if(HAS_TRAIT(exposed_mob, TRAIT_BIMBO))
 		exposed_mob.cure_trauma_type(/datum/brain_trauma/very_special/bimbo, TRAUMA_RESILIENCE_ABSOLUTE)
-		to_chat(exposed_mob, span_notice("Your mind is free. Your thoughts are pure and innocent once more."))
+		to_chat(exposed_mob, span_notice("你的心灵自由了。你的思想再次变得纯洁而天真。"))
 		REMOVE_TRAIT(exposed_mob, TRAIT_BIMBO, TRAIT_LEWDCHEM)
 		return
 	if(!HAS_TRAIT(exposed_mob, TRAIT_NEVERBONER))
-		to_chat(exposed_mob, span_notice("You feel like you'll never feel aroused again..."))
+		to_chat(exposed_mob, span_notice("你觉得你再也感觉不到兴奋了……"))
 		ADD_TRAIT(exposed_mob, TRAIT_NEVERBONER, TRAIT_LEWDCHEM)
 
 /datum/chemical_reaction/pentacamphor

@@ -3,17 +3,17 @@
 	recommended_species = null
 
 /datum/body_marking/secondary/synthliz/scutes
-	name = "Synth Scutes"
+	name = "合成鳞甲"
 	icon_state = "synthlizscutes"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/secondary/synthliz/lights
-	name = "Synth Lights"
+	name = "合成光带"
 	icon_state = "synthlizlights"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/secondary/synthliz/pecs
-	name = "Synth Pecs"
+	name = "合成胸甲"
 	icon_state = "synthlizpecs"
 	affected_bodyparts = CHEST
 
@@ -22,16 +22,16 @@
 	recommended_species = null
 
 /datum/body_marking/tertiary/synthliz/plates
-	name = "Synth Plates"
+	name = "合成板甲"
 	icon_state = "synthlizplates"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tertiary/synthliz/chestlights
-	name = "Synth Chest Lights"
+	name = "合成胸灯"
 	icon_state = "synthlizlights"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tertiary/synthliz/collarlights
-	name = "Synth Collar Lights"
+	name = "合成颈灯"
 	icon_state = "synthlizpecslight"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT

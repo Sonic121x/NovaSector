@@ -1,6 +1,6 @@
 /datum/surgery_operation/limb/repair_puncture
 	name = "realign blood vessels"
-	desc = "Realign a patient's torn blood vessels to prepare for sealing."
+	desc = "重整患者撕裂的血管，为后续密封做准备。"
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_SCALPEL = 1.15,
@@ -21,7 +21,7 @@
 	return image(/obj/item/hemostat)
 
 /datum/surgery_operation/limb/repair_puncture/all_required_strings()
-	return list("the limb must have an unoperated puncture wound") + ..()
+	return list("肢体必须有一处未经处理的穿刺伤") + ..()
 
 /datum/surgery_operation/limb/repair_puncture/state_check(obj/item/bodypart/limb)
 	var/datum/wound/pierce/bleed/pierce_wound = locate() in limb.wounds
@@ -74,9 +74,9 @@
 	limb.receive_damage(rand(4, 8), wound_bonus = 10, sharpness = SHARP_EDGED, damage_source = tool)
 
 /datum/surgery_operation/limb/seal_veins
-	name = "seal blood vessels"
+	name = "缝合血管"
 	// rnd_name = "Anastomosis (Seal Blood Vessels)" // doctor says this is the term to use but it fits awkwardly
-	desc = "Seal a patient's now-realigned blood vessels."
+	desc = "缝合病人已重新对齐的血管。"
 	implements = list(
 		TOOL_CAUTERY = 1,
 		/obj/item/gun/energy/laser = 1.12,
@@ -98,10 +98,10 @@
 	return image(/obj/item/cautery)
 
 /datum/surgery_operation/limb/seal_veins/get_any_tool()
-	return "Any heat source"
+	return "任何热源"
 
 /datum/surgery_operation/limb/seal_veins/all_required_strings()
-	return list("the limb must have an operated puncture wound") + ..()
+	return list("该肢体必须有一个已处理的穿刺伤口") + ..()
 
 /datum/surgery_operation/limb/seal_veins/tool_check(obj/item/tool)
 	if(istype(tool, /obj/item/gun/energy/laser))

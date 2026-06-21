@@ -1,6 +1,6 @@
 /obj/effect/blessing
-	name = "holy blessing"
-	desc = "Holy energies interfere with ethereal travel at this location."
+	name = "神圣赐福"
+	desc = "神圣的能量干扰了这个地方的电气人旅行。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = null
 	anchored = TRUE

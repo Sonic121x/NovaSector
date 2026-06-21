@@ -30,7 +30,7 @@
 		. += span_infoplain("- Its domain vulnerability scanners permit for up to [max_anchors] domain anchors to be used.")
 	. += span_notice("Any preloaded SNPC patterns, 'ghastly Resonance apparitions', or connected bitrunners can leave a custom-written message on the quantum server, \
 	causing a small, audible blip and sending a department message, indicating their activity to on-station bitrunners.")
-	. += span_notice("Its <b>messaging protection</b> is currently: <b>[message_protected ? "enabled" : "disabled"]</b>")
+	. += span_notice("其<b>消息保护</b>当前状态为：<b>[message_protected ? "enabled" : "disabled"]</b>")
 
 /obj/machinery/quantum_server/RefreshParts()
 	. = ..()
@@ -48,12 +48,12 @@
 		return
 
 	if(message_protected)
-		balloon_alert(user, "message protected!")
+		balloon_alert(user, "消息保护已启用！")
 		return
 
 	for(var/player_key in spam_queue)
 		if(player_key == user.ckey)
-			balloon_alert(user, "spam protection active!")
+			balloon_alert(user, "垃圾信息防护已激活！")
 			return
 	ghost_mark(user)
 
@@ -63,17 +63,17 @@
 		return
 
 	message_protected = !message_protected
-	balloon_alert(user, "message protection [message_protected ? "enabled" : "disabled"]!")
+	balloon_alert(user, "消息保护[message_protected ? "enabled" : "disabled"]！")
 
 /// 'Marks' the server with the ghost's presence: their custom-written message, and the ckey added to the spam-prevention list.
 /obj/machinery/quantum_server/proc/ghost_mark(mob/activator)
 	if(message_protected)
-		balloon_alert(activator, "message protected!")
+		balloon_alert(activator, "消息受保护！")
 		return
-	var/messenger = tgui_input_text(activator, "Set your username", "Holonet Gaming Network", max_length = MAX_NAME_LEN)
+	var/messenger = tgui_input_text(activator, "设置你的用户名", "全息网游戏网络", max_length = MAX_NAME_LEN)
 	if(!messenger)
 		messenger = pick(GLOB.hacker_aliases)
-	var/message = tgui_input_text(activator, "Write your message", "Holonet Gaming Network", max_length = MAX_PLAQUE_LEN)
+	var/message = tgui_input_text(activator, "写下你的消息", "全息网游戏网络", max_length = MAX_PLAQUE_LEN)
 	if(!message)
 		return
 	playsound(loc, 'sound/machines/ectoscope_beep.ogg', 75)

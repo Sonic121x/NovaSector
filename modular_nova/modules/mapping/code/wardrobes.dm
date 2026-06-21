@@ -2,8 +2,8 @@
 	return (I.type in products)
 
 /obj/machinery/vending/wardrobe/syndie_wardrobe
-	name = "\improper SynDrobe"
-	desc = "A vending machine for our boys in red, now in brand new crimson!"
+	name = "\improper 辛迪衣橱"
+	desc = "为我们身着红衣的伙计们准备的自动贩卖机，现已换上全新的深红色！"
 	icon = 'modular_nova/modules/mapping/icons/obj/vending.dmi'
 	icon_state = "syndrobe"
 	product_ads = "Put a Donk on it!;Aim, Style, Shoot!;Brigged for wearing the best!"
@@ -51,7 +51,7 @@
 	machine_name = "SynDrobe"
 
 /obj/item/circuitboard/machine/vending/syndie_wardrobe
-	name = "SynDrobe Vendor"
+	name = "辛迪衣橱贩卖机"
 	build_path = /obj/machinery/vending/wardrobe/syndie_wardrobe
 	req_components = list(
 		/obj/item/stack/sheet/glass = 1,
@@ -60,8 +60,8 @@
 
 /// This is essentially just a copy paste of the holy beacon, but with all options unlocked regardless of the global religion
 /obj/item/choice_beacon/unholy
-	name = "armaments beacon"
-	desc = "Contains a set of armaments for those who would unlock their power."
+	name = "军备信标"
+	desc = "内含一套军备，供那些渴望解锁自身力量之人使用。"
 
 /obj/item/choice_beacon/unholy/open_options_menu(mob/living/user)
 	var/list/armament_names_to_images = list()
@@ -109,8 +109,8 @@
 
 //Interdyne Wardrobe
 /obj/machinery/vending/wardrobe/syndie_wardrobe/interdyne
-	name = "\improper InterDrobe"
-	desc = "A vending machine for Interdyne Pharmaceutics employees."
+	name = "\improper 英特衣橱"
+	desc = "为英特戴恩制药公司员工准备的自动贩卖机。"
 	icon = 'modular_nova/modules/mapping/icons/obj/vending.dmi'
 	icon_state = "ipdrobe"
 	product_ads = "Producing bioweapons with style!;What's the point in violating the hippocractic oath if you don't look good doing it?"

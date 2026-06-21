@@ -2,11 +2,11 @@
 	Vending machine refills can be found at /code/modules/vending/ within each vending machine's respective file
 */
 /obj/item/vending_refill
-	name = "resupply canister"
+	name = "补给罐"
 	icon = 'icons/obj/vending_restock.dmi'
 	icon_state = "refill_snack"
 	inhand_icon_state = "restock_unit"
-	desc = "A vending machine restock cart."
+	desc = "一台自动售货机补货推车。"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -33,18 +33,18 @@
 
 /obj/item/vending_refill/Initialize(mapload)
 	. = ..()
-	name = "\improper [machine_name] restocking unit"
+	name = "\improper [machine_name] 补货单元"
 
 /obj/item/vending_refill/examine(mob/user)
 	. = ..()
 
 	var/num = get_part_rating()
 	if (!num)
-		. += span_notice("It's empty!")
+		. += span_notice("它是空的！")
 	else if(num == INFINITY)
-		. += span_notice("It's full of supplies!")
+		. += span_notice("它装满了补给品！")
 	else
-		. += span_notice("It can restock [num] item\s.")
+		. += span_notice("它可以补充[num] item\s 。")
 
 /obj/item/vending_refill/get_part_rating()
 	. = 0

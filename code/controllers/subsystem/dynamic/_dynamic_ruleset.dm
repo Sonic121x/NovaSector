@@ -132,11 +132,11 @@
 		var/tier_value = text2num(tier)
 		if (tier_value > DYNAMIC_TIER_HIGH)
 			stack_trace("Dynamic config for [name] encountered a tier value exceeding DYNAMIC_TIER_HIGH!")
-			message_admins(span_boldannounce("Dynamic config for [name] encountered a tier value exceeding DYNAMIC_TIER_HIGH!"))
+			message_admins(span_boldannounce("[name]的动态配置遇到了超过DYNAMIC_TIER_HIGH的等级值！"))
 			tier_value = DYNAMIC_TIER_HIGH
 		else if (tier_value < DYNAMIC_TIER_GREEN)
 			stack_trace("Dynamic config for [name] encountered a negative tier value, below DYNAMIC_TIER_GREEN!")
-			message_admins(span_boldannounce("Dynamic config for [name] encountered a negative tier value, below DYNAMIC_TIER_GREEN!"))
+			message_admins(span_boldannounce("[name]的动态配置遇到了低于DYNAMIC_TIER_GREEN的负等级值！"))
 			tier_value = DYNAMIC_TIER_GREEN
 		tier_list[tier_value] = incoming_list[tier]
 

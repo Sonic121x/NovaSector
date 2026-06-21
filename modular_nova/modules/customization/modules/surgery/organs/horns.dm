@@ -1,5 +1,5 @@
 /obj/item/organ/horns
-	desc = "Why do some people even have horns? Well, this one obviously doesn't."
+	desc = "为什么有些人会长角？好吧，这个显然没有。"
 	mutantpart_key = FEATURE_HORNS
 
 /datum/bodypart_overlay/mutant/horns

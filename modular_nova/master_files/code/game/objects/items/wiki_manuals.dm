@@ -1,8 +1,8 @@
 /obj/item/book/manual/wiki/security_space_law
-	name = "Corporate Regulations"
-	desc = "A set of Nanotrasen regulations for keeping law, order, and procedure followed within their space stations."
+	name = "公司规章"
+	desc = "一套纳米传讯公司用于在其空间站内维持法律、秩序和程序遵循的规章制度。"
 	starting_title = "Corporate Regulations"
 	page_link = "Corporate_Regulations"
 
 /datum/objective_item/steal/traitor/space_law
-	name = "a book on corporate regulations"
+	name = "一本关于公司规章制度的书"

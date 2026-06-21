@@ -170,7 +170,7 @@
 	if(reward_path != FISHING_RANDOM_SEED)
 		var/mob/living/created_reward = ..()
 		if(istype(created_reward))
-			created_reward.name = "small [created_reward.name]"
+			created_reward.name = "小型 [created_reward.name]"
 			created_reward.update_transform(0.75)
 		return created_reward
 

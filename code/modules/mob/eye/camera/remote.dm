@@ -67,7 +67,7 @@
 	if(new_user)
 		new_user.remote_control = src
 		new_user.reset_perspective(src)
-		name = "Camera Eye ([new_user.name])"
+		name = "摄像头视野 ([new_user.name])"
 
 		var/client/new_user_client = GetViewerClient()
 		if(user_image && new_user_client)

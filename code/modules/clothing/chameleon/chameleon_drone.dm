@@ -1,5 +1,5 @@
 /datum/action/item_action/chameleon/drone/randomise
-	name = "Randomise Headgear"
+	name = "随机化头饰"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "random"
 
@@ -11,7 +11,7 @@
 // Allows a drone to turn their hat into a mask
 // This action's existence is very silly can be replaced with just, a hat with a chameleon action that can be both hats and masks.
 /datum/action/item_action/chameleon/drone/togglehatmask
-	name = "Toggle Headgear Mode"
+	name = "切换头饰模式"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "drone_camogear_helm"
 
@@ -39,7 +39,7 @@
 	else if(istype(old_headgear, /obj/item/clothing/mask/chameleon/drone))
 		new_headgear = new /obj/item/clothing/head/chameleon/drone(droney)
 	else
-		to_chat(owner, span_warning("You shouldn't be able to toggle a camogear helmetmask if you're not wearing it."))
+		to_chat(owner, span_warning("如果你没有戴着它，就不应该能切换迷彩头盔面罩。"))
 		return FALSE
 	droney.dropItemToGround(target, force = TRUE)
 	droney.equip_to_slot_or_del(new_headgear, ITEM_SLOT_HEAD)

@@ -2,47 +2,47 @@
 // Defensive wizard spells
 /datum/spellbook_entry/magicm
 	name = "Magic Missile"
-	desc = "Fires several, slow moving, magic projectiles at nearby targets."
+	desc = "向附近目标发射若干缓慢移动的魔法投射物。"
 	spell_type = /datum/action/cooldown/spell/aoe/magic_missile
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/disabletech
 	name = "Disable Tech"
-	desc = "Disables all weapons, cameras and most other technology in range."
+	desc = "封印射程范围内的所有武器、摄像机和大多数其他技术造物。"
 	spell_type = /datum/action/cooldown/spell/emp/disable_tech
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/repulse
 	name = "Repulse"
-	desc = "Throws everything around the user away."
+	desc = "将施法者周围的所有东西都抛出去。"
 	spell_type = /datum/action/cooldown/spell/aoe/repulse/wizard
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/lightning_packet
-	name = "Thrown Lightning"
+	name = "投掷闪电"
 	desc = "Forged from eldrich energies, a packet of pure power, \
 		known as a spell packet will appear in your hand, that when thrown will stun the target."
 	spell_type = /datum/action/cooldown/spell/conjure_item/spellpacket
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/timestop
-	name = "Time Stop"
+	name = "时停"
 	desc = "Stops time for everyone except for you, allowing you to move freely \
 		while your enemies and even projectiles are frozen."
 	spell_type = /datum/action/cooldown/spell/timestop
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/smoke
-	name = "Smoke"
-	desc = "Spawns a cloud of choking smoke at your location."
+	name = "烟雾"
+	desc = "在你的位置生成一团窒息烟雾。"
 	spell_type = /datum/action/cooldown/spell/smoke
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/forcewall
-	name = "Force Wall"
-	desc = "Create a magical barrier that only you can pass through."
+	name = "力墙"
+	desc = "创造一个只有你能通过的魔法屏障。"
 	spell_type = /datum/action/cooldown/spell/forcewall
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
@@ -72,21 +72,21 @@
 	cost = 1
 
 /datum/spellbook_entry/the_traps
-	name = "The Traps!"
-	desc = "Summon a number of traps around you. They will damage and enrage any enemies that step on them."
+	name = "陷阱！"
+	desc = "在你周围召唤一些陷阱。任何踩到它们的敌人都会受到伤害并被激怒。"
 	spell_type = /datum/action/cooldown/spell/conjure/the_traps
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/bees
-	name = "Lesser Summon Bees"
+	name = "召唤小蜜蜂"
 	desc = "This spell magically kicks a transdimensional beehive, \
 		instantly summoning a swarm of bees to your location. These bees are NOT friendly to anyone."
 	spell_type = /datum/action/cooldown/spell/conjure/bee
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/duffelbag
-	name = "Bestow Cursed Duffel Bag"
+	name = "赐予被诅咒的旅行袋"
 	desc = "A curse that firmly attaches a demonic duffel bag to the target's back. \
 		The duffel bag will make the person it's attached to take periodical damage \
 		if it is not fed regularly, and regardless of whether or not it's been fed, \
@@ -96,26 +96,26 @@
 	cost = 1
 
 /datum/spellbook_entry/item/staffhealing
-	name = "Staff of Healing"
-	desc = "An altruistic staff that can heal the lame and raise the dead."
+	name = "治疗法杖"
+	desc = "一根利他主义的法杖，可以治疗瘸腿的人并复活死者。"
 	item_path = /obj/item/gun/magic/staff/healing
 	cost = 1
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/item/lockerstaff
-	name = "Staff of the Locker"
-	desc = "A staff that shoots lockers. It eats anyone it hits on its way, leaving a welded locker with your victims behind."
+	name = "锁柜法杖"
+	desc = "一根可以射出储物柜的法杖。它会吞噬途中击中的任何人，只留下带着你受害者遗体的焊接储物柜。"
 	item_path = /obj/item/gun/magic/staff/locker
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/item/scryingorb
-	name = "Scrying Orb"
-	desc = "An incandescent orb of crackling energy. Using it will allow you to release your ghost while alive, allowing you to spy upon the station and talk to the deceased. In addition, buying it will permanently grant you X-ray vision."
+	name = "占卜宝珠"
+	desc = "一个闪烁着能量的白炽球。使用它可以让你在活着的时候释放幽灵，从而监视空间站并与已故者交谈。此外，购买它将永久赋予你透视能力。"
 	item_path = /obj/item/scrying
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/item/wands
-	name = "Wand Assortment"
+	name = "魔杖精选"
 	desc = "A collection of wands that allow for a wide variety of utility. \
 		Wands have a limited number of charges, so be conservative with their use. \
 		Comes in a handy belt, or a fancy bandolier if you are already wearing one."
@@ -125,7 +125,7 @@
 /datum/spellbook_entry/item/wands/try_equip_item(mob/living/carbon/human/user, obj/item/to_equip)
 	if (!istype(user.belt, /obj/item/storage/belt/wands))
 		var/was_equipped = user.equip_to_slot_if_possible(to_equip, ITEM_SLOT_BELT, disable_warning = TRUE)
-		to_chat(user, span_notice("\A [to_equip.name] has been summoned [was_equipped ? "on your waist" : "at your feet"]."))
+		to_chat(user, span_notice("\A [to_equip.name] 已被召唤 [was_equipped ? "on your waist" : "at your feet"]。"))
 		return
 
 	// If you already have a wand belt you get a cool bandolier instead for your copious amount of wands
@@ -149,7 +149,7 @@
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/item/armor
-	name = "Mastercrafted Armor Set"
+	name = "大师级护甲套装"
 	desc = "An artefact suit of armor that allows you to cast spells \
 		while providing more protection against attacks and the void of space. \
 		Also grants a battlemage shield."

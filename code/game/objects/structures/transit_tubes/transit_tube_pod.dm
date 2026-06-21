@@ -74,9 +74,9 @@
 	if(!moving)
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
-		to_chat(user, span_notice("You start trying to escape from the pod..."))
+		to_chat(user, span_notice("你开始尝试从舱体中逃脱..."))
 		if(do_after(user, 1 MINUTES, target = src))
-			to_chat(user, span_notice("You manage to open the pod."))
+			to_chat(user, span_notice("你设法打开了舱体。"))
 			empty_pod()
 
 /obj/structure/transit_tube_pod/proc/empty_pod(atom/location)
@@ -154,7 +154,7 @@
 	var/list/savedcontents = contents.Copy()
 	var/saveddir = dir
 	var/turf/destination = get_edge_target_turf(src,saveddir)
-	visible_message(span_warning("[src] ejects its insides out!"))
+	visible_message(span_warning("[src]将其内部的东西弹射了出来！"))
 	deconstruct(FALSE)//we automatically deconstruct the pod
 	for(var/i in savedcontents)
 		var/atom/movable/AM = i
@@ -206,8 +206,8 @@
 //special pod made by the dispenser, it fizzles away when reaching a station.
 
 /obj/structure/transit_tube_pod/dispensed
-	name = "temporary transit tube pod"
-	desc = "Hits the skrrrt (tube station), then hits the dirt (nonexistence). You know how it is."
+	name = "临时运输管舱"
+	desc = "撞上呦（管道站），又撞到土（哪有）。你知道怎么回事。"
 	icon_state = "temppod"
 	occupied_icon_state = "temppod_occupied"
 

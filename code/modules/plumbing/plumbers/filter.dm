@@ -1,7 +1,7 @@
 ///chemical plumbing filter. If it's not filtered by left and right, it goes straight.
 /obj/machinery/plumbing/filter
-	name = "chemical filter"
-	desc = "A chemical filter for filtering chemicals. The left and right outputs appear to be from the perspective of the input port."
+	name = "化学品过滤器"
+	desc = "一个用于过滤化学品的化学过滤器。左右输出端口的方向是以输入端口为参照的。"
 	icon_state = "filter"
 	density = FALSE
 	reagents = /datum/reagents/plumbing/filter
@@ -42,7 +42,7 @@
 		if("add")
 			var/which = params["which"]
 
-			var/selected_reagent = tgui_input_list(usr, "Select [which] reagent", "Reagent", GLOB.name2reagent)
+			var/selected_reagent = tgui_input_list(usr, "选择[which]试剂", "试剂", GLOB.name2reagent)
 			if(!selected_reagent)
 				return
 			if(QDELETED(ui) || ui.status != UI_INTERACTIVE)

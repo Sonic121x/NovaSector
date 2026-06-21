@@ -189,8 +189,8 @@
 
 /datum/custom_order/reagent/drink/handle_get_order(mob/living/basic/robot_customer/customer_pawn, obj/item/order_item)
 	customer_pawn.visible_message(
-		span_danger("[customer_pawn] slurps up [order_item] in one go!"),
-		span_danger("You slurp up [order_item] in one go."),
+		span_danger("[customer_pawn] 一口气吸干了 [order_item]！"),
+		span_danger("你一口气吸干了 [order_item]。"),
 	)
 	return ..()
 
@@ -215,7 +215,7 @@
 
 /datum/custom_order/reagent/soup/handle_get_order(mob/living/basic/robot_customer/customer_pawn, obj/item/order_item)
 	customer_pawn.visible_message(
-		span_danger("[customer_pawn] pours [order_item] right down [customer_pawn.p_their()] hatch!"),
-		span_danger("You pour [order_item] down your hatch in one go."),
+		span_danger("[customer_pawn] 将 [order_item] 直接倒进了 [customer_pawn.p_their()] 的进料口！"),
+		span_danger("你一口气将 [order_item] 倒进了自己的进料口。"),
 	)
 	return ..()

@@ -1,7 +1,7 @@
 ///unique items that spawn at the mook village
 /obj/structure/ore_container/material_stand
-	name = "material stand"
-	desc = "Is everyone free to use this thing?"
+	name = "材料台"
+	desc = "这东西是免费给大家用的吗？"
 	icon = 'icons/mob/simple/jungle/mook.dmi'
 	icon_state = "material_stand"
 	density = TRUE

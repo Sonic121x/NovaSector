@@ -1,7 +1,7 @@
 ///Special job, active during monkey day.
 /datum/job/pun_pun
 	title = JOB_PUN_PUN
-	description = "Assist the service department by serving drinks and food and entertaining the crew."
+	description = "协助服务部门提供饮品和食物，并娱乐船员。"
 	faction = FACTION_STATION
 	total_positions = 0
 	spawn_positions = 0
@@ -39,7 +39,7 @@
 	monkey.crewlike_monkify()
 
 /datum/outfit/job/pun_pun
-	name = "Pun Pun"
+	name = "潘潘"
 	jobtype = /datum/job/pun_pun
 
 	id_trim = /datum/id_trim/job/pun_pun

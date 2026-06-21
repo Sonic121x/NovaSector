@@ -1,7 +1,7 @@
 ///Tool capable of taking biological samples from mobs
 /obj/item/biopsy_tool
-	name = "biopsy tool"
-	desc = "Used to retrieve cell lines from organisms. Don't worry, it won't sting."
+	name = "活组织采样器"
+	desc = "用于从生物体获取细胞系。别担心，不会疼的。"
 	icon = 'icons/obj/science/vatgrowing.dmi'
 	icon_state = "biopsy"
 	worn_icon_state = "biopsy"
@@ -21,8 +21,8 @@
 		icon_state = base_icon_state
 
 /obj/item/biopsy_tool/organ
-	name = "tissue biopsy tool"
-	desc = "Used to retrieve cell lines from organ tissue and organisms. Don't worry, it won't sting."
+	name = "组织活检工具"
+	desc = "用于从器官组织和生物体获取细胞系。别担心，不会疼的。"
 	icon_state = "biopsy_organ"
 	base_icon_state = "biopsy_organ"
 

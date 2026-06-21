@@ -1,6 +1,6 @@
 /mob/living/basic/ant
-	name = "giant ant"
-	desc = "A writhing mass of ants, glued together to make an adorable pet!"
+	name = "巨型蚂蚁"
+	desc = "一团蠕动的蚂蚁，粘在一起组成了一个可爱的宠物！"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "ant"
 	icon_living = "ant"

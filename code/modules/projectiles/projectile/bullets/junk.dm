@@ -1,7 +1,7 @@
 // Junk (Pipe Pistols and Pipeguns)
 
 /obj/projectile/bullet/junk
-	name = "junk bullet"
+	name = "垃圾子弹"
 	icon_state = "trashball"
 	damage = 30
 	embed_type = /datum/embedding/bullet/junk
@@ -40,18 +40,18 @@
 	stealthy_embed = FALSE
 
 /obj/projectile/bullet/incendiary/fire/junk
-	name = "burning oil"
+	name = "燃烧的油"
 	damage = 30
 	fire_stacks = 5
 	suppressed = SUPPRESSED_NONE
 
 /obj/projectile/bullet/junk/phasic
-	name = "junk phasic bullet"
+	name = "垃圾相位子弹"
 	icon_state = "gaussphase"
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 
 /obj/projectile/bullet/junk/shock
-	name = "bundle of live electrical parts"
+	name = "一捆带电的电子零件"
 	icon_state = "tesla_projectile"
 	damage = 15
 	embed_type = null
@@ -66,14 +66,14 @@
 		victim.electrocute_act(damage, src, siemens_coeff = 1, flags = SHOCK_NOSTUN)
 
 /obj/projectile/bullet/junk/hunter
-	name = "junk hunter bullet"
+	name = "垃圾猎人子弹"
 	icon_state = "gauss"
 	extra_damage_mob_biotypes = MOB_ROBOTIC | MOB_BEAST | MOB_SPECIAL | MOB_MINING
 	extra_damage_multiplier = 0
 	extra_damage_added_damage = 50
 
 /obj/projectile/bullet/junk/ripper
-	name = "junk ripper bullet"
+	name = "垃圾撕裂弹"
 	icon_state = "redtrac"
 	damage = 10
 	embed_type = /datum/embedding/bullet/junk/ripper
@@ -91,7 +91,7 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/junk/reaper
-	name = "junk reaper bullet"
+	name = "垃圾收割者子弹"
 	icon_state = null
 	tracer_type = /obj/effect/projectile/tracer/sniper
 	impact_type = /obj/effect/projectile/impact/sniper

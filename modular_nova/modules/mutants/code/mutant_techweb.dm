@@ -11,15 +11,15 @@
 /datum/techweb_node/mutanttech
 	id = TECHWEB_NODE_MUTANT_TECH
 	display_name = "Advanced Nanotrasen Viral Bioweapons Technology"
-	description = "Research devices from the Nanotrasen viral bioweapons division! Got a virus problem? This'll save your day."
+	description = "研究来自纳米传讯病毒生物武器部门的设备！有病毒问题？这个能救你的命。"
 	prereq_ids = list(TECHWEB_NODE_SURGERY_TOOLS, TECHWEB_NODE_CYTOLOGY)
 	design_ids = list("rna_vial", "rna_extractor", "rna_recombinator")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)
 
 /datum/design/rna_vial
-	name = "Empty RNA vial"
-	desc = "An empty RNA vial for storing genetic information."
+	name = "空 RNA 样本瓶"
+	desc = "一个用于储存遗传信息的空 RNA 样本瓶。"
 	id = "rna_vial"
 	build_type = PROTOLATHE
 	materials = list(
@@ -34,8 +34,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/rna_extractor
-	name = "RNA Extractor Device"
-	desc = "An RNA extraction device, use this on any subect you'd like to extract RNA data from, needs RNA vials to work."
+	name = "RNA 提取装置"
+	desc = "一种 RNA 提取装置，可用于从任何目标提取 RNA 数据，需要 RNA 样本瓶才能工作。"
 	id = "rna_extractor"
 	build_type = PROTOLATHE
 	materials = list(
@@ -52,7 +52,7 @@
 
 /datum/design/board/rna_recombinator
 	name = "RNA Recombinator Board"
-	desc = "The MRNA Recombinator is one of Nanotrasens most advanced technologies and allows the exact recombination of virus RNA."
+	desc = "MRNA 重组器是纳米传讯最先进的技术之一，能够精确重组病毒 RNA。"
 	id = "rna_recombinator"
 	build_path = /obj/item/circuitboard/machine/rna_recombinator
 	category = list(

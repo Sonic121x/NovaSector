@@ -1,5 +1,5 @@
 /datum/antagonist/slaughter
-	name = "\improper Slaughter Demon"
+	name = "\improper 屠杀恶魔"
 	roundend_category = "demons"
 	show_name_in_check_antagonists = TRUE
 	ui_name = "AntagInfoDemon"
@@ -20,7 +20,7 @@
 /datum/antagonist/slaughter/greet()
 	. = ..()
 	owner.announce_objectives()
-	to_chat(owner, span_warning("You have a powerful alt-attack that slams people backwards that you can activate by right-clicking your target!"))
+	to_chat(owner, span_warning("你拥有一个强力的副攻击，可以将人向后猛击，通过右键点击目标来激活！"))
 
 /datum/antagonist/slaughter/forge_objectives()
 	if(summoner)
@@ -54,9 +54,9 @@
 		report += printobjectives(objectives)
 
 	if(consume_count > 0)
-		report += span_greentext("The [name] consumed a total of [consume_count] bodies!")
+		report += span_greentext("这个[name]总共吞噬了[consume_count]具尸体！")
 	else
-		report += span_redtext("The [name] did not consume anyone! Shame!!")
+		report += span_redtext("这个[name]谁都没吞噬！真丢脸！！")
 
 	if(isnull(owner.current) || owner.current.stat == DEAD) //demons delete on death but if someone makes like a subtype that doesnt we also check for stat
 		report += "<span class='redtext big'>The [name] was vanquished!</span>"
@@ -66,6 +66,6 @@
 	return report.Join("<br>")
 
 /datum/antagonist/slaughter/laughter
-	name = "Laughter demon"
+	name = "欢笑恶魔"
 	objective_verb = "Hug and tickle"
 	fluff = "You're a Demon of Envy, sometimes dragged into reality by wizards as a way to cause wanton chaos."

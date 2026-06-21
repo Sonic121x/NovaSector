@@ -35,8 +35,8 @@ Difficulty: Hard
 */
 
 /mob/living/simple_animal/hostile/megafauna/hierophant
-	name = "hierophant"
-	desc = "A massive metal club that hangs in the air as though waiting. It'll make you dance to its beat."
+	name = "教皇"
+	desc = "一把悬浮在空中仿佛在等待着的巨大金属棍棒。它会让你跟着它的节拍起舞。"
 	health = 2500
 	maxHealth = 2500
 	attack_verb_continuous = "clubs"
@@ -109,31 +109,31 @@ Difficulty: Hard
 	return ..()
 
 /datum/action/innate/megafauna_attack/blink
-	name = "Blink To Target"
+	name = "闪烁至目标"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	chosen_message = span_colossus("You are now blinking to your target.")
+	chosen_message = span_colossus("你正在闪烁至你的目标。")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/chaser_swarm
-	name = "Chaser Swarm"
+	name = "追猎者集群"
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "hierophant_squares_indefinite"
-	chosen_message = span_colossus("You are firing a chaser swarm at your target.")
+	chosen_message = span_colossus("你正在向目标发射追猎者集群。")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/cross_blasts
-	name = "Cross Blasts"
+	name = "交叉爆破"
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "hierophant_blast_indefinite"
-	chosen_message = span_colossus("You are now firing cross blasts at your target.")
+	chosen_message = span_colossus("你正在向目标发射交叉爆破。")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/blink_spam
-	name = "Blink Chase"
+	name = "闪烁追击"
 	button_icon = 'icons/obj/mining_zones/artefacts.dmi'
 	button_icon_state = "hierophant_club_ready_beacon"
-	chosen_message = span_colossus("You are now repeatedly blinking at your target.")
+	chosen_message = span_colossus("你正在向目标连续闪烁。")
 	chosen_attack_num = 4
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/update_cooldowns(list/cooldown_updates, ignore_staggered = FALSE)
@@ -230,7 +230,7 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/blink_spam(blink_counter, target_slowness, cross_counter)
 	update_cooldowns(list(COOLDOWN_UPDATE_SET_RANGED = max(0.5 SECONDS, major_attack_cooldown - anger_modifier * 0.75)))
 	if(health < maxHealth * 0.5 && blink_counter > 1)
-		visible_message(span_hierophant("\"Mx ampp rsx iwgeti.\""))
+		visible_message(span_hierophant("Mx ampp rsx iwgeti."))
 		var/oldcolor = color
 		animate(src, color = "#660099", time = 6)
 		SLEEP_CHECK_DEATH(6, src)
@@ -251,7 +251,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/cross_blast_spam(blink_counter, target_slowness, cross_counter)
 	update_cooldowns(list(COOLDOWN_UPDATE_SET_RANGED = max(0.5 SECONDS, major_attack_cooldown - anger_modifier * 0.75)))
-	visible_message(span_hierophant("\"Piezi mx rsalivi xs vyr.\""))
+	visible_message(span_hierophant("Piezi mx rsalivi xs vyr."))
 	blinking = TRUE
 	var/oldcolor = color
 	animate(src, color = "#660099", time = 6)
@@ -271,7 +271,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/chaser_swarm(blink_counter, target_slowness, cross_counter)
 	update_cooldowns(list(COOLDOWN_UPDATE_SET_RANGED = max(0.5 SECONDS, major_attack_cooldown - anger_modifier * 0.75)))
-	visible_message(span_hierophant("\"Mx gerrsx lmhi.\""))
+	visible_message(span_hierophant("Mx gerrsx lmhi."))
 	blinking = TRUE
 	var/oldcolor = color
 	animate(src, color = "#660099", time = 6)
@@ -368,7 +368,7 @@ Difficulty: Hard
 		B.damage = 30
 	animate(src, alpha = 0, time = 2, easing = SINE_EASING|EASE_OUT) //fade out
 	SLEEP_CHECK_DEATH(1, src)
-	visible_message(span_hierophant_warning("[src] fades out!"))
+	visible_message(span_hierophant_warning("[src] 逐渐淡出！"))
 	ADD_TRAIT(src, TRAIT_UNDENSE, VANISHING_TRAIT)
 	SLEEP_CHECK_DEATH(2, src)
 	forceMove(T)
@@ -376,7 +376,7 @@ Difficulty: Hard
 	animate(src, alpha = 255, time = 2, easing = SINE_EASING|EASE_IN) //fade IN
 	SLEEP_CHECK_DEATH(1, src)
 	REMOVE_TRAIT(src, TRAIT_UNDENSE, VANISHING_TRAIT)
-	visible_message(span_hierophant_warning("[src] fades in!"))
+	visible_message(span_hierophant_warning("[src] 逐渐显现！"))
 	SLEEP_CHECK_DEATH(1, src) //at this point the blasts we made detonate
 	blinking = FALSE
 
@@ -425,14 +425,14 @@ Difficulty: Hard
 	if(!beacon || client)
 		return
 	sitting_at_center = TRUE
-	visible_message(span_hierophant_warning("\"Vixyvrmrk xs fewi...\""))
+	visible_message(span_hierophant_warning("Vixyvrmrk xs fewi..."))
 	blink(beacon)
 	adjustHealth(min((health - maxHealth) * 0.5, -250)) //heal for 50% of our missing health, minimum 10% of maximum health
 	wander = FALSE
 	if(health > maxHealth * 0.9)
-		visible_message(span_hierophant("\"Vitemvw gsqtpixi. Stivexmrk ex qebmqyq ijjmgmirgc.\""))
+		visible_message(span_hierophant("Vitemvw gsqtpixi. Stivexmrk ex qebmqyq ijjmgmirgc."))
 	else
-		visible_message(span_hierophant("\"Vitemvw gsqtpixi. Stivexmsrep ijjmgmirgc gsqtvsqmwih.\""))
+		visible_message(span_hierophant("Vitemvw gsqtpixi. Stivexmsrep ijjmgmirgc gsqtvsqmwih."))
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/death()
 	if(health > 0 || stat == DEAD)
@@ -440,15 +440,15 @@ Difficulty: Hard
 
 	set_stat(DEAD)
 	blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
-	visible_message(span_hierophant("\"Mrmxmexmrk wipj-hiwxvygx wiuyirgi...\""))
-	visible_message(span_hierophant_warning("[src] shrinks, releasing a massive burst of energy!"))
+	visible_message(span_hierophant("Mrmxmexmrk wipj-hiwxvygx wiuyirgi..."))
+	visible_message(span_hierophant_warning("[src] 收缩，释放出巨大的能量爆发！"))
 	hierophant_burst(null, get_turf(src), 10)
 	set_stat(CONSCIOUS) // deathgasp won't run if dead, stupid
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/celebrate_kill(mob/living/L)
-	visible_message(span_hierophant_warning("\"[pick(kill_phrases)]\""))
-	visible_message(span_hierophant_warning("[src] absorbs [L]'s life force!"),span_userdanger("You absorb [L]'s life force, restoring your health!"))
+	visible_message(span_hierophant_warning("[pick(kill_phrases)]"))
+	visible_message(span_hierophant_warning("[src] 吸收了 [L] 的生命力！"),span_userdanger("你吸收了 [L] 的生命力，恢复了健康！"))
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/CanAttack(atom/the_target)
 	. = ..()
@@ -459,7 +459,7 @@ Difficulty: Hard
 	var/targets_the_same = (new_target == target)
 	. = ..()
 	if(. && target && !targets_the_same)
-		visible_message(span_hierophant_warning("\"[pick(target_phrases)]\""))
+		visible_message(span_hierophant_warning("[pick(target_phrases)]"))
 		var/obj/effect/hierophant/beacon = spawned_beacon_ref.resolve()
 		if(beacon && loc == beacon.loc && sitting_at_center)
 			arena_trap(src)
@@ -520,7 +520,7 @@ Difficulty: Hard
 
 //Hierophant overlays
 /obj/effect/temp_visual/hierophant
-	name = "vortex energy"
+	name = "涡流能量"
 	layer = BELOW_MOB_LAYER
 	plane = GAME_PLANE
 	var/mob/living/caster //who made this, anyway
@@ -543,7 +543,7 @@ Difficulty: Hard
 		M.gets_drilled(caster)
 
 /obj/effect/temp_visual/hierophant/wall //smoothing and pooling were not friends, but pooling is dead.
-	name = "vortex wall"
+	name = "漩涡墙"
 	icon = 'icons/turf/walls/hierophant_wall_temp.dmi'
 	icon_state = "hierophant_wall_temp-0"
 	base_icon_state = "hierophant_wall_temp"
@@ -664,10 +664,10 @@ Difficulty: Hard
 
 /obj/effect/temp_visual/hierophant/blast
 	icon_state = "hierophant_blast"
-	name = "vortex blast"
+	name = "涡流冲击"
 	light_range = 2
 	light_power = 2
-	desc = "Get out of the way!"
+	desc = "快让开！"
 	duration = 9
 
 /obj/effect/temp_visual/hierophant/blast/damaging
@@ -717,7 +717,7 @@ Difficulty: Hard
 		if(L.client)
 			flash_color(L.client, "#660099", 1)
 		playsound(L,'sound/items/weapons/sear.ogg', 50, TRUE, -4)
-		to_chat(L, span_userdanger("You're struck by a [name]!"))
+		to_chat(L, span_userdanger("你被一道[name]击中了！"))
 		var/limb_to_hit = L.get_bodypart(L.get_random_valid_zone(even_weights = TRUE))
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, "Your armor absorbs [src]!", "Your armor blocks part of [src]!", FALSE, 50, "Your armor was penetrated by [src]!")
 		L.apply_damage(damage, BURN, limb_to_hit, armor, wound_bonus=CANT_WOUND)
@@ -739,13 +739,13 @@ Difficulty: Hard
 			var/mob/living/occupant = O
 			if(friendly_fire_check && caster?.faction_check_atom(occupant))
 				continue
-			to_chat(occupant, span_userdanger("Your [M.name] is struck by a [name]!"))
+			to_chat(occupant, span_userdanger("你的[M.name]被一道[name]击中了！"))
 			playsound(M,'sound/items/weapons/sear.ogg', 50, TRUE, -4)
 			M.take_damage(damage, BURN, 0, 0)
 
 /obj/effect/temp_visual/hierophant/blast/visual
 	icon_state = "hierophant_blast"
-	name = "vortex blast"
+	name = "涡流冲击"
 	light_range = 2
 	light_power = 2
 	desc = "Get out of the way!"
@@ -757,8 +757,8 @@ Difficulty: Hard
 	playsound(src_turf,'sound/effects/magic/blind.ogg', 65, TRUE, -5)
 
 /obj/effect/hierophant
-	name = "hierophant beacon"
-	desc = "A strange beacon, allowing mass teleportation for those able to use it."
+	name = "教皇信标"
+	desc = "一个奇特的信标，能够让那些使用它的人进行大范围的传送."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "hierophant_tele_off"
 	light_range = 2
@@ -769,16 +769,16 @@ Difficulty: Hard
 	if(istype(attacking_item, /obj/item/hierophant_club))
 		var/obj/item/hierophant_club/club = attacking_item
 		if(club.beacon == src)
-			to_chat(user, span_notice("You start removing your hierophant beacon..."))
+			to_chat(user, span_notice("你开始移除你的圣像信标..."))
 			if(do_after(user, 5 SECONDS, target = src))
 				playsound(src,'sound/effects/magic/blind.ogg', 100, TRUE, -4)
 				new /obj/effect/temp_visual/hierophant/telegraph/teleport(get_turf(src), user)
-				to_chat(user, span_hierophant_warning("You collect [src], reattaching it to the club!"))
+				to_chat(user, span_hierophant_warning("你收集了[src]，将其重新附着到权杖上！"))
 				club.beacon = null
 				club.update_appearance(UPDATE_ICON_STATE)
 				user.update_mob_action_buttons()
 				qdel(src)
 		else
-			to_chat(user, span_hierophant_warning("You touch the beacon with the club, but nothing happens."))
+			to_chat(user, span_hierophant_warning("你用权杖触碰了信标，但什么也没发生。"))
 	else
 		return ..()

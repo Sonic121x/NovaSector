@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/neck_gaiter
-	name = "neck gaiter"
-	desc = "A cloth for covering your neck, and usually part of your face too, but that part's optional. Has a small respirator to be used with internals."
+	name = "颈套"
+	desc = "一块用于遮盖颈部的布料，通常也能遮住部分脸部，但这部分是可选的。配有一个小型呼吸器，可与内部供气系统配合使用。"
 	actions_types = list(/datum/action/item_action/adjust)
 	alternate_worn_layer = BODY_FRONT_UNDER_CLOTHES
 	worn_icon = 'modular_nova/modules/GAGS/icons/masks.dmi'
@@ -33,10 +33,10 @@
 /obj/item/clothing/mask/neck_gaiter/click_alt_secondary(mob/user)
 	alternate_worn_layer = (alternate_worn_layer == initial(alternate_worn_layer) ? NONE : initial(alternate_worn_layer))
 	user.update_clothing(ITEM_SLOT_MASK)
-	balloon_alert(user, "wearing [alternate_worn_layer == initial(alternate_worn_layer) ? "below" : "above"] suits")
+	balloon_alert(user, "穿戴在套装[alternate_worn_layer == initial(alternate_worn_layer) ? "below" : "above"]")
 
 /obj/item/clothing/mask/neck_gaiter/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] can be worn above or below your suit. Alt-Right-click to toggle.")
-	. += span_notice("Alt-click [src] to adjust it.")
+	. += span_notice("[src] 可以穿在服装外面或里面。按住Alt键并右键点击切换。")
+	. += span_notice("按住Alt键点击 [src] 来调整它。")
 

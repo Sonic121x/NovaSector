@@ -1,6 +1,6 @@
 /obj/machinery/vending/wallmed
-	name = "\improper Emergency NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser, Meant to be used in medical emergencies."
+	name = "\improper 紧急纳米医疗"
+	desc = "壁挂式医疗设备分发器，旨在用于医疗紧急情况。"
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	panel_type = "wallmed-panel"

@@ -53,7 +53,7 @@
 	return GLOB.fire_appearances[fire_key]
 
 /mob/living/carbon/alien/adult/royal/queen
-	name = "alien queen"
+	name = "异形女王"
 	caste = "q"
 	maxHealth = 500
 	health = 500
@@ -88,25 +88,25 @@
 
 /mob/living/carbon/alien/adult/royal/queen/set_name()
 	if(get_alien_type(/mob/living/carbon/alien/adult/royal/queen, ignored = src))
-		name = "alien princess"
+		name = "异形公主"
 	return ..()
 
 //Queen verbs
 /datum/action/cooldown/alien/make_structure/lay_egg
-	name = "Lay Egg"
-	desc = "Lay an egg to produce huggers to impregnate prey with."
+	name = "产卵"
+	desc = "产下一枚卵，以孵化抱脸虫来感染猎物。"
 	button_icon_state = "alien_egg"
 	plasma_cost = 75
 	made_structure_type = /obj/structure/alien/egg
 
 /datum/action/cooldown/alien/make_structure/lay_egg/Activate(atom/target)
 	. = ..()
-	owner.visible_message(span_alertalien("[owner] lays an egg!"))
+	owner.visible_message(span_alertalien("[owner] 产下了一颗卵！"))
 
 //Button to let queen choose her praetorian.
 /datum/action/cooldown/alien/promote
-	name = "Create Royal Parasite"
-	desc = "Produce a royal parasite to grant one of your children the honor of being your Praetorian."
+	name = "创造皇家寄生虫"
+	desc = "产出一个皇家寄生虫，授予你的一个子嗣成为禁卫军的荣耀。"
 	button_icon_state = "alien_queen_promote"
 	/// The promotion only takes plasma when completed, not on activation.
 	var/promotion_plasma_cost = 500
@@ -134,26 +134,26 @@
 /datum/action/cooldown/alien/promote/Activate(atom/target)
 	var/obj/item/queen_promotion/existing_promotion = locate() in owner.held_items
 	if(existing_promotion)
-		to_chat(owner, span_noticealien("You discard [existing_promotion]."))
+		to_chat(owner, span_noticealien("你丢弃了[existing_promotion]。"))
 		owner.temporarilyRemoveItemFromInventory(existing_promotion)
 		qdel(existing_promotion)
 		return TRUE
 
 	if(!owner.get_empty_held_indexes())
-		to_chat(owner, span_warning("You must have an empty hand before preparing the parasite."))
+		to_chat(owner, span_warning("你必须空出一只手才能准备寄生虫。"))
 		return FALSE
 
 	var/obj/item/queen_promotion/new_promotion = new(owner.loc)
 	if(!owner.put_in_hands(new_promotion, del_on_fail = TRUE))
-		to_chat(owner, span_noticealien("You fail to prepare a parasite."))
+		to_chat(owner, span_noticealien("你未能准备好一个寄生虫。"))
 		return FALSE
 
-	to_chat(owner, span_noticealien("Use [new_promotion] on one of your children to promote her to a Praetorian!"))
+	to_chat(owner, span_noticealien("使用[new_promotion]在你的一个子嗣身上，将她晋升为禁卫！"))
 	return TRUE
 
 /obj/item/queen_promotion
-	name = "\improper royal parasite"
-	desc = "Inject this into one of your grown children to promote her to a Praetorian!"
+	name = "\improper 皇家寄生体"
+	desc = "将此注射剂注入你的一名成年子嗣体内，将她晋升为禁卫！"
 	icon_state = "alien_medal"
 	item_flags = NOBLUDGEON | ABSTRACT | DROPDEL
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
@@ -168,11 +168,11 @@
 		CRASH("[type] was created and handled by a mob ([queen]) that didn't have a promotion action associated.")
 
 	if(!isalienadult(to_promote) || isalienroyal(to_promote))
-		to_chat(queen, span_noticealien("You may only use this with your adult, non-royal children!"))
+		to_chat(queen, span_noticealien("你只能对你的成年、非皇族子嗣使用这个！"))
 		return
 
 	if(!promotion.IsAvailable())
-		to_chat(queen, span_noticealien("You cannot promote a child right now!"))
+		to_chat(queen, span_noticealien("你现在无法晋升幼体！"))
 		return
 
 	if(to_promote.stat != CONSCIOUS || !to_promote.mind || !to_promote.key)
@@ -180,10 +180,10 @@
 
 	queen.adjustPlasma(-promotion.promotion_plasma_cost)
 
-	to_chat(queen, span_noticealien("You have promoted [to_promote] to a Praetorian!"))
+	to_chat(queen, span_noticealien("你已将[to_promote]晋升为禁卫！"))
 	to_promote.visible_message(
-		span_alertalien("[to_promote] begins to expand, twist and contort!"),
-		span_noticealien("The queen has granted you a promotion to Praetorian!"),
+		span_alertalien("[to_promote] 开始膨胀、扭曲和变形！"),
+		span_noticealien("女王已授予你晋升为禁卫军！"),
 	)
 
 	var/mob/living/carbon/alien/lucky_winner = to_promote
@@ -193,10 +193,10 @@
 	return TRUE
 
 /obj/item/queen_promotion/attack_self(mob/user)
-	to_chat(user, span_noticealien("You discard [src]."))
+	to_chat(user, span_noticealien("你丢弃了[src]。"))
 	qdel(src)
 
 /obj/item/queen_promotion/dropped(mob/user, silent)
 	if(!silent)
-		to_chat(user, span_noticealien("You discard [src]."))
+		to_chat(user, span_noticealien("你丢弃了[src]。"))
 	return ..()

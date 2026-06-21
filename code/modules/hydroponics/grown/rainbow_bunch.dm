@@ -1,6 +1,6 @@
 /obj/item/seeds/rainbow_bunch
-	name = "rainbow bunch seed pack"
-	desc = "A pack of seeds that'll grow into a beautiful bush of various colored flowers."
+	name = "彩虹束种子包"
+	desc = "一包种子，它们会长成一丛色彩斑斓的美丽灌木。"
 	icon_state = "seed-rainbowbunch"
 	species = "rainbowbunch"
 	plantname = "Rainbow Flowers"
@@ -21,8 +21,8 @@
 
 /obj/item/food/grown/rainbow_flower
 	seed = /obj/item/seeds/rainbow_bunch
-	name = "rainbow flower"
-	desc = "A beautiful flower capable of being used for most dyeing processes."
+	name = "彩虹花"
+	desc = "一朵美丽的花朵，可用于多种染色工艺。"
 	slot_flags = ITEM_SLOT_HEAD
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
 	force = 0

@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 	heat_modifier = 1
 	heat_power_generation = 1
 	powerloss_inhibition = 1
-	desc = "When absorbed by the Supermatter and exposed to oxygen, Pluoxium will be generated."
+	desc = "当被超物质吸收并与氧气接触时，钚罗索仑就会生成。"
 
 /// Can be on Oxygen or CO2, but better lump it here since CO2 is rarer.
 /datum/sm_gas/carbon_dioxide/extra_effects(obj/machinery/power/supermatter_crystal/sm)
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 	heat_modifier = 4
 	power_transmission = -0.2
 	heat_power_generation = 1
-	desc = "Will emit nuclear particles at compositions above 40%"
+	desc = "在成分含量高于 40% 时会释放出核粒子。"
 
 /// Start to emit radballs at a maximum of 30% chance per tick
 /datum/sm_gas/bz/extra_effects(obj/machinery/power/supermatter_crystal/sm)
@@ -167,7 +167,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 /datum/sm_gas/miasma
 	gas_path = /datum/gas/miasma
 	heat_power_generation = 0.5
-	desc = "Will be consumed by the Supermatter to generate power."
+	desc = "将被超物质吸收以产生能量。"
 
 ///Miasma is really just microscopic particulate. It gets consumed like anything else that touches the crystal.
 /datum/sm_gas/miasma/extra_effects(obj/machinery/power/supermatter_crystal/sm)
@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 	heat_modifier = 7
 	power_transmission = 2
 	heat_power_generation = 1
-	desc = "Will generate electrical zaps."
+	desc = "会释放电击能量。"
 
 /datum/sm_gas/zauker/extra_effects(obj/machinery/power/supermatter_crystal/sm)
 	if(!prob(sm.gas_percentage[/datum/gas/zauker] * 100))

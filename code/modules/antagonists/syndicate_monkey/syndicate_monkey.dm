@@ -1,5 +1,5 @@
 /datum/antagonist/syndicate_monkey
-	name = "\improper Syndicate Monkey"
+	name = "\improper 辛迪加猴子"
 	antagpanel_category = ANTAG_GROUP_SYNDICATE
 	show_in_roundend = TRUE
 	show_in_antagpanel = TRUE

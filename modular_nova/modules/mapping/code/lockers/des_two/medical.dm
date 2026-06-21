@@ -1,10 +1,10 @@
 /obj/structure/closet/secure_closet/des_two/medical
 	icon_state = "med_secure"
-	name = "medical gear locker"
+	name = "医疗装备储物柜"
 
 /obj/item/storage/bag/garment/syndicate_medical
-	name = "medical garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to medical."
+	name = "医疗衣物袋"
+	desc = "一个用于存放额外衣物和鞋子的袋子。这个属于医疗部门。"
 
 /obj/item/storage/bag/garment/syndicate_medical/PopulateContents()
 	new /obj/item/clothing/gloves/latex/nitrile/ntrauma(src)

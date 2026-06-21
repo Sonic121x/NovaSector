@@ -1,6 +1,6 @@
 /// Chilling projectile, hurts and slows you down
 /obj/projectile/temp/watcher
-	name = "chilling blast"
+	name = "寒霜冲击"
 	icon_state = "ice_2"
 	damage = 10
 	damage_type = BURN
@@ -23,7 +23,7 @@
 
 /// Lava projectile, ignites you
 /obj/projectile/temp/watcher/magma_wing
-	name = "scorching blast"
+	name = "灼热冲击"
 	icon_state = "lava"
 	damage = 5
 	temperature = 200
@@ -34,7 +34,7 @@
 
 /// Freezing projectile, freezes you
 /obj/projectile/temp/watcher/ice_wing
-	name = "freezing blast"
+	name = "冰冻冲击"
 	damage = 5
 
 /obj/projectile/temp/watcher/ice_wing/apply_status(mob/living/target)

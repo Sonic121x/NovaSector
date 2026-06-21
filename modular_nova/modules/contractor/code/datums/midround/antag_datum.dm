@@ -1,6 +1,6 @@
 // USED FOR THE MIDROUND
 /datum/antagonist/contractor
-	name = "Drifting Contractor"
+	name = "游荡合约工"
 	antagpanel_category = "DriftingContractor"
 	preview_outfit = /datum/outfit/contractor_preview
 	pref_flag = ROLE_DRIFTING_CONTRACTOR

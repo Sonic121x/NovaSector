@@ -17,8 +17,8 @@
  * Used by the station, cyborgs, and golems.
  */
 /obj/item/blueprints
-	name = "station blueprints"
-	desc = "Blueprints of the station. There is a \"Classified\" stamp and several coffee stains on it."
+	name = "空间站蓝图"
+	desc = "空间站的蓝图。上面盖有“机密”印章，还有几处咖啡渍。"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "blueprints"
 	inhand_icon_state = "blueprints"
@@ -214,32 +214,32 @@
 /obj/item/blueprints/proc/edit_area(mob/user)
 	var/area/area_editing = get_area(src)
 	var/prevname = "[area_editing.name]"
-	var/new_name = tgui_input_text(user, "New area name", "Area Creation", max_length = MAX_NAME_LEN)
+	var/new_name = tgui_input_text(user, "新区域名称", "区域创建", max_length = MAX_NAME_LEN)
 	if(isnull(new_name) || !length(new_name) || new_name == prevname)
 		return
 
 	rename_area(area_editing, new_name)
-	user.balloon_alert(user, "area renamed to [new_name]")
+	user.balloon_alert(user, "区域已重命名为[new_name]")
 	user.log_message("has renamed [prevname] to [new_name]", LOG_GAME)
 	return TRUE
 
 ///Cyborg blueprints - The same as regular but with a different fluff text.
 /obj/item/blueprints/cyborg
-	name = "station schematics"
-	desc = "A digital copy of the station blueprints stored in your memory."
+	name = "空间站示意图"
+	desc = "一份存储在你记忆中的空间站蓝图数字副本。"
 	fluffnotice = "Intellectual Property of Nanotrasen. For use in engineering cyborgs only. Wipe from memory upon departure from the station."
 
 ///Golem blueprints - Used to make golem areas that won't give the hazardous area debuffs.
 /obj/item/blueprints/golem
-	name = "land claim"
-	desc = "Use it to build new structures in the wastes."
+	name = "土地所有权"
+	desc = "用它来在废土上建造新建筑。"
 	fluffnotice = "In memory of the Liberator's brother, Delaminator, and his Scarlet Macaw-iathan, from which this artifact was stolen."
 	new_area_type = /area/golem
 
 ///Slime blueprints - Makes areas colored and compatible with xenobiology camera consoles, one time use.
 /obj/item/blueprints/slime
-	name = "cerulean prints"
-	desc = "A one use yet of blueprints made of jelly like organic material. Extends the reach of the management console."
+	name = "蔚蓝图纸"
+	desc = "一种由果冻状有机材料制成的单次使用蓝图。扩展了管理控制台的覆盖范围。"
 	fluffnotice = "Copyright by Science Inc. Renaming areas will allow for management consoles to traverse them."
 	color = "#2956B2"
 

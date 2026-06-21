@@ -1,7 +1,7 @@
 //GUNCASES//
 /obj/structure/guncase
-	name = "gun locker"
-	desc = "A locker that holds guns."
+	name = "枪柜"
+	desc = "装有枪的储柜。"
 	icon = 'icons/obj/storage/closet.dmi'
 	icon_state = "shotguncase"
 	anchored = FALSE
@@ -38,10 +38,10 @@
 		if(LAZYLEN(contents) < capacity)
 			if(!user.transferItemToLoc(I, src))
 				return
-			to_chat(user, span_notice("You place [I] in [src]."))
+			to_chat(user, span_notice("你将[I]放入了[src]。"))
 			update_appearance()
 		else
-			to_chat(user, span_warning("[src] is full."))
+			to_chat(user, span_warning("[src]已满."))
 		return
 
 	else if(!user.combat_mode)
@@ -122,18 +122,18 @@
 			SSexplosions.low_mov_atom += contents
 
 /obj/structure/guncase/shotgun
-	name = "shotgun locker"
-	desc = "A locker that holds shotguns."
+	name = "霰弹枪柜"
+	desc = "装有霰弹枪的储柜。"
 	case_type = "shotgun"
 	gun_category = /obj/item/gun/ballistic/shotgun
 
 /obj/structure/guncase/ecase
-	name = "energy gun locker"
-	desc = "A locker that holds energy guns."
+	name = "能量枪柜"
+	desc = "装有能量枪的储柜。"
 	case_type = "egun"
 	gun_category = /obj/item/gun/energy/e_gun
 
 /obj/structure/guncase/wt550
-	name = "WT-550 gun locker"
-	desc = "A locker that holds WT-550 rifles."
+	name = "WT-550枪柜"
+	desc = "一个存放WT-550步枪的柜子。"
 	case_type = "wt550"

@@ -9,8 +9,8 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
  * Has a limited amount of power.
  */
 /obj/item/integrated_circuit
-	name = "integrated circuit"
-	desc = "By inserting components and a cell into this, wiring them up, and putting them into a shell, anyone can pretend to be a programmer."
+	name = "集成电路"
+	desc = "通过将组件和单元插入其中，将它们连接起来，并将它们放入外壳中，任何人都可以假装是程序员。"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "integrated_circuit"
 	inhand_icon_state = "electronic"
@@ -118,9 +118,9 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 /obj/item/integrated_circuit/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += span_notice("The charge meter reads [cell ? round(cell.percent(), 1) : 0]%.")
+		. += span_notice("电量表显示为 [cell ? round(cell.percent(), 1) : 0]%。")
 	else
-		. += span_notice("There is no power cell installed.")
+		. += span_notice("未安装电源电池。")
 
 /obj/item/integrated_circuit/drop_location()
 	if(shell)
@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 
 	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(cell)
-			balloon_alert(user, "there already is a cell inside!")
+			balloon_alert(user, "里面已经有一个电池了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 
 		set_cell(tool)
 		tool.add_fingerprint(user)
-		user.visible_message(span_notice("[user] inserts a power cell into [src]."), span_notice("You insert the power cell into [src]."))
+		user.visible_message(span_notice("[user] 将一个电源电池插入 [src]。"), span_notice("你将电源电池插入了[src]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(isidcard(tool))
@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 		return ITEM_INTERACT_BLOCKING
 
 	tool.play_tool_sound(src)
-	user.visible_message(span_notice("[user] unscrews the power cell from [src]."), span_notice("You unscrew the power cell from [src]."))
+	user.visible_message(span_notice("[user]从[src]上拧下了电源电池。"), span_notice("你从[src]上拧下了电源电池。"))
 	cell.forceMove(drop_location())
 	set_cell(null)
 	return ITEM_INTERACT_SUCCESS
@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 
 	if(to_add.circuit_flags & CIRCUIT_NO_DUPLICATES)
 		if(is_duplicate(to_add))
-			to_chat(user, span_danger("You can't insert multiple instances of this component into the same circuit!"))
+			to_chat(user, span_danger("你不能在同一电路中插入多个此组件的实例！"))
 			return FALSE
 
 	var/success = FALSE
@@ -551,7 +551,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 					if(!marked_atom)
 						return TRUE
 					port.set_input(marked_atom)
-					balloon_alert(usr, "updated [port.name]'s value to marked object.")
+					balloon_alert(usr, "已将 [port.name] 的值更新为标记对象。")
 					return TRUE
 				if(!marker.marked_atom)
 					port.set_input(null)
@@ -584,7 +584,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			var/string_form = copytext("[value]", 1, PORT_MAX_STRING_DISPLAY)
 			if(length(string_form) >= PORT_MAX_STRING_DISPLAY-1)
 				string_form += "..."
-			balloon_alert(usr, "[port.name] value: [string_form]")
+			balloon_alert(usr, "[port.name] 值：[string_form]")
 			. = TRUE
 		if("set_display_name")
 			var/new_name = params["display_name"]
@@ -648,7 +648,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			. = TRUE
 		if("add_setter_or_getter")
 			if(setter_and_getter_count >= max_setters_and_getters)
-				balloon_alert(usr, "setter and getter count at maximum capacity")
+				balloon_alert(usr, "设置器和获取器数量已达上限")
 				return
 			var/designated_type = /obj/item/circuit_component/variable/getter
 			if(params["is_setter"])
@@ -679,11 +679,11 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			if((!admin_only && !isAdminGhostAI(ui.user)) || !check_rights_for(ui.user.client, R_SPAWN))
 				var/obj/machinery/component_printer/printer = linked_component_printer?.resolve()
 				if(!printer)
-					balloon_alert(ui.user, "linked printer not found!")
+					balloon_alert(ui.user, "未找到已连接的打印机！")
 					return
 				component = printer.print_component(component_path, user_data = ID_DATA(usr))
 				if(!component)
-					balloon_alert(ui.user, "failed to make the component!")
+					balloon_alert(ui.user, "组件制作失败！")
 					return
 			else
 				if(!ispath(component_path, /obj/item/circuit_component))
@@ -712,7 +712,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 
 /obj/item/integrated_circuit/proc/on_atom_usb_cable_try_attach(datum/source, obj/item/usb_cable/usb_cable, mob/user)
 	SIGNAL_HANDLER
-	usb_cable.balloon_alert(user, "circuit needs to be in a compatible shell")
+	usb_cable.balloon_alert(user, "电路需要置于兼容的外壳中")
 	return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 /// Sets the display name that appears on the shell.
@@ -764,7 +764,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 	return TRUE
 
 /obj/item/integrated_circuit/admin
-	name = "administrative circuit"
-	desc = "The components installed in here are far beyond your comprehension."
+	name = "管理电路"
+	desc = "这里安装的组件远远超出了你的理解范围。"
 
 	admin_only = TRUE

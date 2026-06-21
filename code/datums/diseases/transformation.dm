@@ -138,33 +138,33 @@
 	switch(stage)
 		if(2)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_notice("Your [pick("arm", "back", "elbow", "head", "leg")] itches."))
+				to_chat(affected_mob, span_notice("你的[pick("arm", "back", "elbow", "head", "leg")]发痒。"))
 		if(3)
 			if(SPT_PROB(2, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
+				to_chat(affected_mob, span_danger("你感到头部一阵刺痛。"))
 				affected_mob.adjust_confusion(10 SECONDS)
 		if(4)
 			if(SPT_PROB(1.5, seconds_per_tick))
 				affected_mob.say(pick("Eeee!", "Eeek, ook ook!", "Eee-eeek!", "Ungh, ungh."), forced = "jungle fever")
 
 /datum/disease/transformation/robot
-	name = "Robotic Transformation"
+	name = "机械转化"
 	cure_text = /datum/reagent/copper::name
 	cures = list(/datum/reagent/copper)
 	cure_chance = 2.5
 	agent = "R2D2 Nanomachines"
-	desc = "This disease, actually acute nanomachine infection, converts the victim into a cyborg."
+	desc = "这种疾病，实际上是急性纳米机械感染，会将受害者转化为机械人。"
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = NONE
 	stage1 = list()
-	stage2 = list(span_danger("Beep...boop.."), "Your joints feel stiff.")
+	stage2 = list(span_danger("哔...嘟.."), "你的关节感觉僵硬。")
 	stage3 = list(
-		span_danger("You can feel something move...inside."),
-		span_danger("Your joints feel very stiff."),
-		span_warning("Your skin feels loose."),
+		span_danger("你能感觉到有什么东西在……体内移动。"),
+		span_danger("你的关节感觉非常僵硬。"),
+		span_warning("你的皮肤感觉松垮垮的。"),
 	)
-	stage4 = list(span_danger("You can feel... something...inside you."), span_danger("Your skin feels very loose."),)
-	stage5 = list(span_danger("Your skin feels as if it's about to burst off!"))
+	stage4 = list(span_danger("你能感觉到……有什么东西……在你体内。"), span_danger("你的皮肤感觉非常松垮。"),)
+	stage5 = list(span_danger("你的皮肤感觉快要爆开了！"))
 	new_form = /mob/living/silicon/robot
 	infectable_biotypes = MOB_ORGANIC|MOB_UNDEAD|MOB_ROBOTIC
 	bantype = JOB_CYBORG
@@ -179,7 +179,7 @@
 			if (SPT_PROB(4, seconds_per_tick))
 				affected_mob.say(pick("beep, beep!", "Beep, boop", "Boop...bop"), forced = "robotic transformation")
 			if (SPT_PROB(2, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
+				to_chat(affected_mob, span_danger("你感到头部一阵刺痛。"))
 				affected_mob.Unconscious(40)
 		if(4)
 			if (SPT_PROB(10, seconds_per_tick))
@@ -188,12 +188,12 @@
 
 /datum/disease/transformation/xeno
 
-	name = "Xenomorph Transformation"
+	name = "异形转化"
 	cure_text = /datum/reagent/medicine/spaceacillin::name + " & " + /datum/reagent/glycerol::name
 	cures = list(/datum/reagent/medicine/spaceacillin, /datum/reagent/glycerol)
 	cure_chance = 2.5
 	agent = "Rip-LEY Alien Microbes"
-	desc = "This disease changes the victim into a xenomorph."
+	desc = "这种疾病会将受害者转变为异形。"
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = NONE
 	stage1 = list()

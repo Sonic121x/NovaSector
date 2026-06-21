@@ -1,6 +1,6 @@
 /obj/machinery/auto_cloner
-	name = "mysterious pod"
-	desc = "It's full of a viscous liquid, but appears dark and silent. Also surprisingly lightweight."
+	name = "神秘舱体"
+	desc = "它装满了粘稠的液体，但看起来黑暗而寂静。同时也出人意料地轻。"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/artifacts_64x32.dmi'
 	icon_state = "autocloner_off"
 	/// What mob are we spawning
@@ -91,15 +91,15 @@
 			previous_power_state = 1
 			icon_state = "autocloner_on"
 			visible_message(
-				span_notice("[src] suddenly comes to life!"),
-				blind_message = span_hear("You can hear fluid sloshing nearby."),
+				span_notice("[src] 突然活过来了！"),
+				blind_message = span_hear("你听见附近有液体晃动的声音。"),
 			)
 
 		// slowly grow a mob
 		if(SPT_PROB(2.5, seconds_per_tick))
 			visible_message(
-				span_notice("[src] [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]."),
-				blind_message = span_hear("Something nearby [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]."),
+				span_notice("[src] [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]。"),
+				blind_message = span_hear("附近有什么东西[pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]。"),
 			)
 
 		// if we've finished growing...
@@ -107,11 +107,11 @@
 			time_spent_spawning = 0
 			update_use_power(IDLE_POWER_USE)
 			visible_message(
-				span_notice("[src] pings!"),
-				blind_message = span_hear("You hear ping."),
+				span_notice("[src] 发出哔哔声！"),
+				blind_message = span_hear("你听到哔哔声。"),
 			)
 			icon_state = "autocloner_on"
-			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
+			desc = "它装满了冒泡的粘稠液体，并被一道神秘的光芒照亮。"
 			if(spawn_type)
 				new spawn_type(get_turf(src))
 
@@ -119,11 +119,11 @@
 		if(time_spent_spawning / time_per_spawn > 0.75)
 			update_use_power(ACTIVE_POWER_USE)
 			icon_state = "autocloner_process"
-			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow. A dark shape appears to be forming inside..."
+			desc = "它装满了冒泡的粘稠液体，并被一道神秘的光芒照亮。一个黑暗的形体似乎正在内部成形……"
 		else
 			update_use_power(IDLE_POWER_USE)
 			icon_state = "autocloner_on"
-			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
+			desc = "它装满了冒泡的粘稠液体，并被一道神秘的光芒照亮。"
 
 		time_spent_spawning = time_spent_spawning + world.time - last_process
 	else
@@ -131,8 +131,8 @@
 			previous_power_state = 0
 			icon_state = "autocloner_off"
 			visible_message(
-				span_notice("[src] suddenly shuts down."),
-				blind_message = span_hear("Something nearby shuts down and stops making noise."),
+				span_notice("[src] 突然关闭了。"),
+				blind_message = span_hear("附近有什么东西关闭并停止了噪音。"),
 			)
 
 		// cloned mob slowly breaks down

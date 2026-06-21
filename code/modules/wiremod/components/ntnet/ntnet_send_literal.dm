@@ -8,7 +8,7 @@
  */
 /obj/item/circuit_component/list_literal/ntnet_send
 	display_name = "NTNet Transmitter List Literal"
-	desc = "Creates a list literal data package and sends it through NTNet. If Encryption Key is set then transmitted data will be only picked up by receivers with the same Encryption Key."
+	desc = "创建一个列表字面量数据包并通过NTNet发送。如果设置了加密密钥，则传输的数据将只能被具有相同加密密钥的接收器接收。"
 	category = "NTNet"
 
 	/// Encryption key

@@ -1,11 +1,11 @@
 /turf/open/misc/ashplanet
 	icon = 'icons/turf/mining.dmi'
 	gender = PLURAL
-	name = "ash"
+	name = "灰"
 	icon_state = "ash"
 	base_icon_state = "ash"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-	desc = "The ground is covered in volcanic ash."
+	desc = "地面上盖满了火山灰。"
 	baseturfs = /turf/open/misc/ashplanet/wateryrock //I assume this will be a chasm eventually, once this becomes an actual surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
@@ -41,7 +41,7 @@
 
 /turf/open/misc/ashplanet/rocky
 	gender = PLURAL
-	name = "rocky ground"
+	name = "岩石地面"
 	icon_state = "rockyash"
 	base_icon_state = "rocky_ash"
 	smooth_icon = 'icons/turf/floors/rocky_ash.dmi'
@@ -55,7 +55,7 @@
 
 /turf/open/misc/ashplanet/wateryrock
 	gender = PLURAL
-	name = "wet rocky ground"
+	name = "潮湿的岩石地面"
 	smoothing_flags = NONE
 	icon_state = "wateryrock"
 	base_icon_state = "wateryrock"

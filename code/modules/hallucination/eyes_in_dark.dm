@@ -28,7 +28,7 @@
 		return FALSE
 
 	if(prob(5))
-		to_chat(hallucinator, span_warning("You feel like you're being watched..."))
+		to_chat(hallucinator, span_warning("你感觉有人在注视着你..."))
 
 	var/turf/selected = pick(valid)
 	feedback_details += "Eye coords: [selected.x], [selected.y], [selected.z]"

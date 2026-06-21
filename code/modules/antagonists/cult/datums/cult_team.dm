@@ -1,5 +1,5 @@
 /datum/team/cult
-	name = "\improper Cult"
+	name = "\improper 邪教"
 
 	///The blood mark target
 	var/atom/blood_target
@@ -56,7 +56,7 @@
 		for(var/datum/mind/mind as anything in members)
 			if(mind.current)
 				SEND_SOUND(mind.current, 'sound/music/antag/bloodcult/bloodcult_eyes.ogg')
-				to_chat(mind.current, span_cult_large(span_warning("The veil weakens as your cult grows, your eyes begin to glow...")))
+				to_chat(mind.current, span_cult_large(span_warning("随着你的教派壮大，帷幕逐渐削弱，你的双眼开始发光...")))
 				mind.current.AddElement(/datum/element/cult_eyes)
 		cult_risen = TRUE
 		log_game("The blood cult has risen with [cultplayers] players.")
@@ -65,7 +65,7 @@
 		for(var/datum/mind/mind as anything in members)
 			if(mind.current)
 				SEND_SOUND(mind.current, 'sound/music/antag/bloodcult/bloodcult_halos.ogg')
-				to_chat(mind.current, span_cult_large(span_warning("Your cult is ascendant and the red harvest approaches - you cannot hide your true nature for much longer!!")))
+				to_chat(mind.current, span_cult_large(span_warning("你的教派已然崛起，血色收割即将来临——你无法再长久隐藏自己的真实本性了！！")))
 				mind.current.AddElement(/datum/element/cult_halo)
 		cult_ascendent = TRUE
 		log_game("The blood cult has ascended with [cultplayers] players.")
@@ -125,7 +125,7 @@
 			count++
 
 	if(members.len)
-		parts += span_header("The cultists were:")
+		parts += span_header("邪教徒成员：")
 		if(length(true_cultists))
 			parts += printplayerlist(true_cultists)
 		else
@@ -165,7 +165,7 @@
 		if(cultist.current.stat == DEAD || !cultist.current.client)
 			continue
 
-		to_chat(cultist.current, span_bold(span_cult_large("[marker] has marked [blood_target] in \the [target_area] as the cult's top priority, get there immediately!")))
+		to_chat(cultist.current, span_bold(span_cult_large("[marker] 已将 [blood_target] 在 \the [target_area] 标记为邪教最高优先级目标，立即前往！")))
 		SEND_SOUND(cultist.current, sound(SFX_HALLUCINATION_OVER_HERE, 0, 1, 75))
 		cultist.current.client.images += blood_target_image
 		if (cultist.current.hud_used)
@@ -187,9 +187,9 @@
 			continue
 
 		if(QDELETED(blood_target))
-			to_chat(cultist.current, span_bold(span_cult_large("The blood mark's target is lost!")))
+			to_chat(cultist.current, span_bold(span_cult_large("血印目标已丢失！")))
 		else
-			to_chat(cultist.current, span_bold(span_cult_large("The blood mark has expired!")))
+			to_chat(cultist.current, span_bold(span_cult_large("血印已失效！")))
 		cultist.current.client.images -= blood_target_image
 
 	UnregisterSignal(blood_target, COMSIG_QDELETING)

@@ -54,8 +54,8 @@
 		if(!weakness)
 			return
 		to_chat(human_mob, pick(
-			span_notice("You feel like your guts are rearranging themself right now."),
-			span_notice("You dont feel so good."),
-			span_notice("Your stomach aches."),
+			span_notice("你感觉自己的内脏正在重新排列。"),
+			span_notice("你感觉不太舒服。"),
+			span_notice("你的胃在痛。"),
 		))
 		human_mob.adjust_disgust(power)

@@ -138,34 +138,34 @@
 
 ADMIN_VERB(debug_nature_map_generator, R_DEBUG, "Test Nature Map Generator", "Test the nature map generator", ADMIN_CATEGORY_DEBUG)
 	var/datum/map_generator/nature/N = new()
-	var/startInput = input(user, "Start turf of Map, (X;Y;Z)", "Map Gen Settings", "1;1;1") as text|null
+	var/startInput = input(user, "地图起始图块，(X;Y;Z)", "地图生成设置", "1;1;1") as text|null
 
 	if (isnull(startInput))
 		return
 
-	var/endInput = input(user, "End turf of Map (X;Y;Z)", "Map Gen Settings", "[world.maxx];[world.maxy];[user.mob.z]") as text|null
+	var/endInput = input(user, "地图结束图块 (X;Y;Z)", "地图生成设置", "[world.maxx];[world.maxy];[user.mob.z]") as text|null
 	if (isnull(endInput))
 		return
 
 	//maxx maxy and current z so that if you fuck up, you only fuck up one entire z level instead of the entire universe
 	if(!startInput || !endInput)
-		to_chat(user, "Missing Input")
+		to_chat(user, "缺少输入")
 		return
 
 	var/list/startCoords = splittext(startInput, ";")
 	var/list/endCoords = splittext(endInput, ";")
 	if(!startCoords || !endCoords)
-		to_chat(user, "Invalid Coords")
-		to_chat(user, "Start Input: [startInput]")
-		to_chat(user, "End Input: [endInput]")
+		to_chat(user, "坐标无效")
+		to_chat(user, "起始输入：[startInput]")
+		to_chat(user, "结束输入：[endInput]")
 		return
 
 	var/turf/Start = locate(text2num(startCoords[1]),text2num(startCoords[2]),text2num(startCoords[3]))
 	var/turf/End = locate(text2num(endCoords[1]),text2num(endCoords[2]),text2num(endCoords[3]))
 	if(!Start || !End)
-		to_chat(user, "Invalid Turfs")
-		to_chat(user, "Start Coords: [startCoords[1]] - [startCoords[2]] - [startCoords[3]]")
-		to_chat(user, "End Coords: [endCoords[1]] - [endCoords[2]] - [endCoords[3]]")
+		to_chat(user, "地块无效")
+		to_chat(user, "起始坐标：[startCoords[1]] - [startCoords[2]] - [startCoords[3]]")
+		to_chat(user, "结束坐标：[endCoords[1]] - [endCoords[2]] - [endCoords[3]]")
 		return
 
 	var/static/list/clusters = list(
@@ -181,13 +181,13 @@ ADMIN_VERB(debug_nature_map_generator, R_DEBUG, "Test Nature Map Generator", "Te
 		"All atoms" = CLUSTER_CHECK_ALL_ATOMS,
 	)
 
-	var/moduleClusters = input("Cluster Flags (Cancel to leave unchanged from defaults)","Map Gen Settings") as null|anything in clusters
+	var/moduleClusters = input("集群标志（取消则保留默认设置）","地图生成设置") as null|anything in clusters
 	//null for default
 
 	var/theCluster = 0
 	if(moduleClusters != "None")
 		if(!clusters[moduleClusters])
-			to_chat(user, "Invalid Cluster Flags")
+			to_chat(user, "集群标志无效")
 			return
 		theCluster = clusters[moduleClusters]
 	else
@@ -198,9 +198,9 @@ ADMIN_VERB(debug_nature_map_generator, R_DEBUG, "Test Nature Map Generator", "Te
 			M.clusterCheckFlags = theCluster
 
 
-	to_chat(user, "Defining Region")
+	to_chat(user, "正在定义区域")
 	N.defineRegion(Start, End)
-	to_chat(user, "Region Defined")
-	to_chat(user, "Generating Region")
+	to_chat(user, "区域已定义")
+	to_chat(user, "正在生成区域")
 	N.generate()
-	to_chat(user, "Generated Region")
+	to_chat(user, "区域已生成")

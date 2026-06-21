@@ -9,8 +9,8 @@
  */
 
 /obj/item/dna_probe
-	name = "DNA Sampler"
-	desc = "Can be used to take chemical and genetic samples of pretty much anything. Needs to be linked with a DNA vault first."
+	name = "DNA采样器"
+	desc = "可用于采集几乎所有物体的化学与基因样本。需要先与DNA保险库链接。"
 	icon = 'icons/obj/medical/syringe.dmi'
 	inhand_icon_state = "sampler"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -54,7 +54,7 @@
 	var/obj/machinery/dna_vault/our_vault = dna_vault_ref?.resolve()
 	if(!our_vault)
 		dna_vault_ref = WEAKREF(target)//linking the dna vault with the probe
-		balloon_alert(user, "vault linked")
+		balloon_alert(user, "保险库已链接")
 		playsound(src, 'sound/machines/terminal/terminal_success.ogg', 50)
 		return TRUE
 	return FALSE
@@ -81,14 +81,14 @@
 		stored_dna_animal.Cut()
 	target.check_goal()
 	playsound(target, 'sound/machines/compiler/compiler-stage1.ogg', 50)
-	to_chat(user, span_notice("[uploaded] new datapoints uploaded."))
+	to_chat(user, span_notice("[uploaded] 个新数据点已上传。"))
 	return uploaded
 
 /obj/item/dna_probe/proc/scan_dna(atom/target, mob/user)
 	var/obj/machinery/dna_vault/our_vault = dna_vault_ref?.resolve()
 	if(!our_vault)
 		playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 50)
-		balloon_alert(user, "need database!")
+		balloon_alert(user, "需要数据库！")
 		return FALSE
 	if(istype(target, /obj/machinery/hydroponics))
 		var/obj/machinery/hydroponics/hydro_tray = target
@@ -105,7 +105,7 @@
 			return FALSE
 		stored_dna_plants[hydro_tray.myseed.type] = TRUE
 		playsound(src, 'sound/machines/compiler/compiler-stage2.ogg', 50)
-		balloon_alert(user, "data added")
+		balloon_alert(user, "数据已添加")
 		return TRUE
 
 	if(ishuman(target) && !ismonkey(target))
@@ -140,7 +140,7 @@
 
 	stored_dna_animal[target.type] = TRUE
 	playsound(src, 'sound/machines/compiler/compiler-stage2.ogg', 50)
-	balloon_alert(user, "data added")
+	balloon_alert(user, "数据已添加")
 	return TRUE
 
 /obj/item/dna_probe/proc/valid_scan_target(atom/target)
@@ -156,20 +156,20 @@
 
 ///Used for scanning carps, and then turning yourself into one.
 /obj/item/dna_probe/carp_scanner
-	name = "Carp DNA Sampler"
-	desc = "Can be used to take chemical and genetic samples of animals."
+	name = "鲤鱼DNA采样器"
+	desc = "可用于采集动物的化学和基因样本。"
 	///Whether we have Carp DNA
 	var/carp_dna_loaded = FALSE
 
 /obj/item/dna_probe/carp_scanner/examine_more(mob/user)
 	. = ..()
-	. = list(span_notice("Using this on a Space Carp will harvest its DNA. Use it in-hand once complete to mutate it with yourself."))
+	. = list(span_notice("对太空鲤鱼使用此设备将采集其DNA。完成后在手中使用，可将其与自身进行突变融合。"))
 
 /obj/item/dna_probe/carp_scanner/scan_dna(atom/target, mob/user)
 	if(istype(target, /mob/living/basic/carp))
 		carp_dna_loaded = TRUE
 		playsound(src, 'sound/machines/compiler/compiler-stage2.ogg', 50)
-		balloon_alert(user, "dna scanned")
+		balloon_alert(user, "DNA已扫描")
 	else
 		return ..()
 
@@ -181,15 +181,15 @@
 /obj/item/dna_probe/carp_scanner/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!carp_dna_loaded)
-		to_chat(user, span_notice("Space carp DNA is required to use the self-mutation mechanism!"))
+		to_chat(user, span_notice("需要使用太空鲤鱼DNA才能启动自我突变机制！"))
 		return
-	to_chat(user, span_notice("You pull out the needle from [src] and flip the switch, and start injecting yourself with it."))
+	to_chat(user, span_notice("你从[src]中抽出针头，拨动开关，开始将其注射进自己体内。"))
 	if(!do_after(user, CARP_MIX_DNA_TIMER))
 		return
 	var/mob/living/basic/space_dragon/new_dragon = user.change_mob_type(/mob/living/basic/space_dragon, location = loc, delete_old_mob = TRUE)
 	new_dragon.add_filter("anger_glow", 3, list("type" = "outline", "color" = COLOR_CARP_RIFT_RED, "size" = 5))
 	new_dragon.add_movespeed_modifier(/datum/movespeed_modifier/dragon_rage)
-	priority_announce("A large organic energy flux has been recorded near of [station_name()], please stand-by.", "Lifesign Alert")
+	priority_announce("在[station_name()]附近记录到巨大的有机能量通量，请待命。", "生命信号警报")
 	qdel(src)
 
 #undef CARP_MIX_DNA_TIMER

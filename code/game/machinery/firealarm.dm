@@ -1,10 +1,10 @@
 /obj/item/electronics/firealarm
-	name = "fire alarm electronics"
-	desc = "A fire alarm circuit. Can handle heat levels up to 40 degrees celsius."
+	name = "火灾警报器电路板"
+	desc = "一个火灾警报电路。能承受高达40摄氏度的高温。"
 
 /obj/item/wallframe/firealarm
 	name = "fire alarm frame"
-	desc = "Used for building fire alarms."
+	desc = "用于制造火灾警报器。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "fire_bitem"
 	result_path = /obj/machinery/firealarm
@@ -13,13 +13,13 @@
 /obj/item/wallframe/firealarm/try_build(atom/support, mob/user)
 	var/area/A = get_area(user)
 	if(A.always_unpowered)
-		balloon_alert(user, "cannot place in this area!")
+		balloon_alert(user, "无法在此区域放置！")
 		return FALSE
 	return ..()
 
 /obj/machinery/firealarm
-	name = "fire alarm"
-	desc = "Pull this in case of emergency. Thus, keep pulling it forever."
+	name = "火灾报警器"
+	desc = "紧急情况时请拉动此杆。因此，请永远不停地拉动它。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "fire0"
 	max_integrity = 250
@@ -219,9 +219,9 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	update_appearance()
-	visible_message(span_warning("Sparks fly out of [src]!"))
+	visible_message(span_warning("火花从 [src] 中飞出！"))
 	if(user)
-		balloon_alert(user, "circuitry fried")
+		balloon_alert(user, "电路烧毁")
 		user.log_message("emagged [src].", LOG_ATTACK)
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	set_status()
@@ -255,7 +255,7 @@
 		firelock.activate(FIRELOCK_ALARM_TYPE_GENERIC)
 	if(user)
 		if(!silent)
-			balloon_alert(user, "triggered alarm!")
+			balloon_alert(user, "触发警报！")
 		user.log_message("triggered a fire alarm.", LOG_GAME)
 	my_area.fault_status = AREA_FAULT_MANUAL
 	my_area.fault_location = name
@@ -279,7 +279,7 @@
 		firelock.crack_open()
 	if(user)
 		if(!silent)
-			balloon_alert(user, "reset alarm")
+			balloon_alert(user, "重置警报")
 		user.log_message("reset a fire alarm.", LOG_GAME)
 	soundloop.stop()
 	SEND_SIGNAL(src, COMSIG_FIREALARM_ON_RESET)
@@ -375,7 +375,7 @@
 	if(!panel_open)
 		return NONE
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "already in good condition!")
+		balloon_alert(user, "已经处于良好状态！")
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.tool_start_check(user, amount = 1))
 		return ITEM_INTERACT_BLOCKING
@@ -390,7 +390,7 @@
 	if(!panel_open)
 		return NONE
 	if(buildstage != FIRE_ALARM_BUILD_SECURED)
-		balloon_alert(user, "no wires to cut!")
+		balloon_alert(user, "没有电线可剪！")
 		return ITEM_INTERACT_BLOCKING
 
 	tool.play_tool_sound(src)
@@ -426,7 +426,7 @@
 	if(!panel_open)
 		return NONE
 	if(buildstage != FIRE_ALARM_BUILD_NO_CIRCUIT)
-		balloon_alert(user, "remove [buildstage == FIRE_ALARM_BUILD_SECURED ? "wires" : "circuit"] first!")
+		balloon_alert(user, "先移除[buildstage == FIRE_ALARM_BUILD_SECURED ? "wires" : "circuit"]！")
 		return ITEM_INTERACT_BLOCKING
 
 	loc.balloon_alert_to_viewers("[/obj/item/wallframe/firealarm::name] removed")
@@ -445,7 +445,7 @@
 	if(!is_wire_tool(tool))
 		return NONE
 	if(!panel_open)
-		balloon_alert(user, "expose wires first!")
+		balloon_alert(user, "先暴露电线！")
 		return ITEM_INTERACT_BLOCKING
 	wires.interact(user)
 	return ITEM_INTERACT_SUCCESS
@@ -454,7 +454,7 @@
 	if(buildstage != FIRE_ALARM_BUILD_NO_WIRES)
 		return NONE
 	if(!coil.use(5))
-		balloon_alert(user, "need 5 cables!")
+		balloon_alert(user, "需要5根电缆！")
 		return ITEM_INTERACT_BLOCKING
 
 	balloon_alert_to_viewers("wires installed")
@@ -466,7 +466,7 @@
 	if(buildstage != FIRE_ALARM_BUILD_NO_CIRCUIT)
 		return NONE
 	if(!user.transferItemToLoc(circuit, src))
-		balloon_alert(user, "can't install!")
+		balloon_alert(user, "无法安装！")
 		return ITEM_INTERACT_BLOCKING
 
 	balloon_alert_to_viewers("circuit installed")
@@ -580,7 +580,7 @@
 
 /obj/machinery/firealarm/AICtrlClick(mob/living/silicon/robot/user)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "control circuitry malfunctioning!")
+		balloon_alert(user, "控制电路故障！")
 		return
 	toggle_fire_detect(user)
 
@@ -588,14 +588,14 @@
 /obj/machinery/firealarm/proc/toggle_fire_detect(mob/user, silent = FALSE)
 	if(!can_toggle_detection)
 		if(user && !silent)
-			balloon_alert(user, "thermal sensors unresponsive!")
+			balloon_alert(user, "热传感器无响应！")
 		return
 	if(my_area.fire_detect)
 		disable_fire_detect(user)
 	else
 		enable_fire_detect(user)
 	if (user && !silent)
-		balloon_alert(user, "thermal sensors [my_area.fire_detect ? "enabled" : "disabled"]")
+		balloon_alert(user, "热传感器 [my_area.fire_detect ? "enabled" : "disabled"]")
 
 /// Stops the area from automatically activating firelocks
 /obj/machinery/firealarm/proc/disable_fire_detect(mob/user)
@@ -631,8 +631,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, 26)
 	var/party = FALSE
 
 /obj/machinery/firealarm/partyalarm
-	name = "\improper PARTY BUTTON"
-	desc = "Cuban Pete is in the house!"
+	name = "\improper 派对按钮"
+	desc = "由DJ古巴皮特为您带来！"
 	var/static/party_overlay
 
 /obj/machinery/firealarm/partyalarm/reset(mob/user, silent = FALSE)
@@ -652,7 +652,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, 26)
 
 /obj/item/circuit_component/firealarm
 	display_name = "Fire Alarm"
-	desc = "Allows you to interface with the Fire Alarm."
+	desc = "让你可以和火灾报警器交互。"
 
 	var/datum/port/input/alarm_trigger
 	var/datum/port/input/reset_trigger

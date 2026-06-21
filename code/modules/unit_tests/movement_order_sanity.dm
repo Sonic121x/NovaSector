@@ -19,7 +19,7 @@
 	TEST_ASSERT(findtext(movement_cache[4], "Moved from"),"Movement step 4 was not a Moved() call.\nMovement Log\n[jointext(movement_cache, "\n")]")
 
 /obj/movement_tester
-	name = "movement debugger"
+	name = "移动调试器"
 	var/list/movement_order = list()
 
 /obj/movement_tester/Move(atom/newloc, direct, glide_size_override, z_movement_flags)
@@ -35,7 +35,7 @@
 	return ..()
 
 /obj/movement_interceptor
-	name = "movement interceptor"
+	name = "移动拦截器"
 
 /obj/movement_interceptor/Initialize(mapload)
 	. = ..()

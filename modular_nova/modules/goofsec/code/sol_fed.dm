@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			announcer = "Sol Federation Marshal Department"
 			poll_question = "The station has called for the Marshals. Will you respond?"
 		if(EMERGENCY_RESPONSE_ATMOS)
-			team_size = tgui_input_number(usr, "How many techs would you like dispatched?", "How badly did you screw up?", 3, 3, 1)
+			team_size = tgui_input_number(usr, "您希望派遣多少名技术员？", "您搞砸得有多严重？", 3, 3, 1)
 			cops_to_send = /datum/antagonist/ert/request_911/atmos
 			announcement_message = "Crewmembers of [station_name()]. this is the Sol Federation's 811 dispatch. We've received a report of stationwide structural damage, atmospherics loss, fire, or otherwise, and we are \
 				sending an Advanced Atmospherics team to support your station.\n\n\
@@ -257,11 +257,11 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	var/call_solfed_check1 = "Are you sure you want to message the Sol Federation? Un-necessary communications may result in a \
 		large fine or 25 years in federal prison."
 	/// Boolean for Solfed message
-	if(tgui_input_list(user, call_solfed_check1, "Call 911", list("Yes", "No")) != "Yes")
+	if(tgui_input_list(user, call_solfed_check1, "呼叫911", list("Yes", "No")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the faulty SolFed call consequences.")
 	/// Variable for reason in calling the feeds
-	var/reason_to_call_da_feds = stripped_input(user, "What do you wish to call the Federation for?", "Call the Federation", null, MAX_MESSAGE_LEN)
+	var/reason_to_call_da_feds = stripped_input(user, "你希望因何事呼叫联邦？", "呼叫联邦", null, MAX_MESSAGE_LEN)
 	if(!reason_to_call_da_feds)
 		to_chat(user, "You decide not to call the Federation.")
 		return
@@ -275,38 +275,38 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	to_chat(GLOB.admins, reason_to_call_da_feds, type = MESSAGE_TYPE_PRAYER, confidential = TRUE)
 
 	log_game("[key_name(user)] has called the Sol Federation for the following reason:\n[GLOB.fedmessage]")
-	deadchat_broadcast(" has called the Sol Federation for the following reason:\n[GLOB.fedmessage]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("已因以下原因呼叫太阳联邦：\n[GLOB.fedmessage]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
 
-	to_chat(user, span_notice("Authorization confirmed. SolFed Intervention request sent, standby for official instructions."))
+	to_chat(user, span_notice("授权确认。太阳联邦干预请求已发送，请等待官方指示。"))
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 /obj/machinery/computer/communications/proc/calling_911(mob/user, called_group_pretty = "EMTs", called_group = EMERGENCY_RESPONSE_EMT)
 	message_admins("[ADMIN_LOOKUPFLW(user)] is considering calling the Sol Federation [called_group_pretty].")
 	var/call_911_msg_are_you_sure = "Are you sure you want to call 911? Faulty 911 calls results in a $20,000 fine and a 5 year superjail \
 		sentence."
-	if(tgui_input_list(user, call_911_msg_are_you_sure, "Call 911", list("Yes", "No")) != "Yes")
+	if(tgui_input_list(user, call_911_msg_are_you_sure, "呼叫911", list("Yes", "No")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the faulty 911 call consequences.")
-	if(tgui_input_list(user, GLOB.call911_do_and_do_not[called_group], "Call [called_group_pretty]", list("Yes", "No")) != "Yes")
+	if(tgui_input_list(user, GLOB.call911_do_and_do_not[called_group], "呼叫[called_group_pretty]", list("Yes", "No")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has read and acknowleged the recommendations for what to call and not call [called_group_pretty] for.")
-	var/reason_to_call_911 = stripped_input(user, "What do you wish to call 911 [called_group_pretty] for?", "Call 911", null, MAX_MESSAGE_LEN)
+	var/reason_to_call_911 = stripped_input(user, "你希望因何事呼叫911[called_group_pretty]？", "呼叫911", null, MAX_MESSAGE_LEN)
 	if(!reason_to_call_911)
-		to_chat(user, "You decide not to call 911.")
+		to_chat(user, "你决定不呼叫911。")
 		return
 	GLOB.cops_arrived = TRUE
 	GLOB.call_911_msg = reason_to_call_911
 	GLOB.caller_of_911 = user.name
 	log_game("[key_name(user)] has called the Sol Federation [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]")
 	message_admins("[ADMIN_LOOKUPFLW(user)] has called the Sol Federation [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]")
-	deadchat_broadcast(" has called the Sol Federation [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("已呼叫太阳联邦[called_group_pretty]，原因如下：\n[GLOB.call_911_msg]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
 
 	call_911(called_group)
-	to_chat(user, span_notice("Authorization confirmed. 911 call dispatched to the Sol Federation [called_group_pretty]."))
+	to_chat(user, span_notice("授权确认。911呼叫已派发至太阳联邦[called_group_pretty]。"))
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 /datum/antagonist/ert/request_911
-	name = "911 Responder"
+	name = "911响应者"
 	antag_hud_name = "hud_spacecop"
 	suicide_cry = "FOR THE SOL FEDERATION!!"
 	var/department = "Some stupid shit"
@@ -330,7 +330,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	greeted_mob.playsound_local(greeted_mob, 'sound/effects/families_police.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
 /datum/outfit/request_911
-	name = "911 Response: Base"
+	name = "911响应：基础"
 	back = /obj/item/storage/backpack/duffelbag/cops
 	backpack_contents = list(/obj/item/solfed_reporter/swat_caller = 1)
 
@@ -355,13 +355,13 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 */
 
 /datum/antagonist/ert/request_911/police
-	name = "Marshal"
+	name = "执法官"
 	role = "Marshal"
 	department = "Marshal"
 	outfit = /datum/outfit/request_911/police
 
 /datum/outfit/request_911/police
-	name = "911 Response: Marshal"
+	name = "911响应：执法官"
 	back = /obj/item/storage/backpack/satchel
 	uniform = /obj/item/clothing/under/solfed
 	suit = /obj/item/clothing/suit/armor/vest/sol
@@ -390,13 +390,13 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 */
 
 /datum/antagonist/ert/request_911/atmos
-	name = "Adv. Atmos Tech"
+	name = "高级大气技术员"
 	role = "Adv. Atmospherics Technician"
 	department = "Advanced Atmospherics"
 	outfit = /datum/outfit/request_911/atmos
 
 /datum/outfit/request_911/atmos
-	name = "811 Response: Advanced Atmospherics"
+	name = "811响应：高级大气处理"
 	back = /obj/item/mod/control/pre_equipped/advanced/atmos
 	uniform = /obj/item/clothing/under/solfed/emergencyfire
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -416,7 +416,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id_trim = /datum/id_trim/solfed/atmos
 
 /obj/item/radio/headset/headset_solfed/atmos
-	name = "\improper SolFed adv. atmos headset"
+	name = "\improper 太阳联邦高级大气处理耳机"
 	desc = "A headset used by the Solar Federation response teams."
 	icon_state = "med_headset"
 	keyslot = /obj/item/encryptionkey/headset_solfed/atmos
@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	icon = 'icons/map_icons/items/_item.dmi'
 
 /obj/item/encryptionkey/headset_solfed/atmos
-	name = "\improper SolFed adv. atmos encryption key"
+	name = "\improper 太阳联邦高级大气处理加密密钥"
 	special_channels = RADIO_SPECIAL_CENTCOM
 	channels = list(RADIO_CHANNEL_SOLFED = 1, RADIO_CHANNEL_ENGINEERING = 1, RADIO_CHANNEL_COMMAND = 1)
 	icon_state = "/obj/item/encryptionkey/headset_solfed/atmos"
@@ -436,14 +436,14 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	greyscale_colors = "#ebebeb#2b2793"
 
 /obj/item/radio/headset/headset_solfed/sec
-	name = "\improper SolFed adv. Security headset"
-	desc = "A headset used by the Solar Federation response teams."
+	name = "\improper 太阳联邦高级安保耳机"
+	desc = "太阳联邦响应小组使用的耳机。"
 	icon_state = "med_headset"
 	keyslot = /obj/item/encryptionkey/headset_solfed/sec
 	radio_talk_sound = 'modular_nova/modules/radiosound/sound/radio/security.ogg'
 
 /obj/item/encryptionkey/headset_solfed/sec
-	name = "\improper SolFed adv. Security encryption key"
+	name = "\improper 太阳联邦高级安保加密密钥"
 	special_channels = RADIO_SPECIAL_CENTCOM
 	channels = list(RADIO_CHANNEL_SOLFED = 1, RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_COMMAND = 1)
 	icon_state = "/obj/item/encryptionkey/headset_solfed/sec"
@@ -452,8 +452,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	greyscale_colors = "#ebebeb#2b2793"
 
 /obj/item/radio/headset/headset_solfed/med
-	name = "\improper SolFed adv. Medical headset"
-	desc = "A headset used by the Solar Federation response teams."
+	name = "\improper 太阳联邦高级医疗耳机"
+	desc = "太阳联邦响应小组使用的耳机。"
 	icon_state = "med_headset"
 	keyslot = /obj/item/encryptionkey/headset_solfed/med
 	radio_talk_sound = 'modular_nova/modules/radiosound/sound/radio/security.ogg'
@@ -727,7 +727,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /obj/item/solfed_reporter/swat_caller/questions(mob/user)
 	var/question = "Does the situation require additional S.W.A.T. backup, involve the station impeding you from doing your job, \
 		or involve the station making a fraudulent 911 call and needing an arrest made on the caller?"
-	if(tgui_input_list(user, question, "S.W.A.T. Backup Caller", list("Yes", "No")) != "Yes")
+	if(tgui_input_list(user, question, "S.W.A.T. 支援呼叫器", list("Yes", "No")) != "Yes")
 		to_chat(user, "You decide not to request S.W.A.T. backup.")
 		return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon S.W.A.T backup.")
@@ -763,7 +763,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			administrative action against your account."
 	)
 	for(var/question in list_of_questions)
-		if(tgui_input_list(user, question, "Treason Reporter", list("Yes", "No")) != "Yes")
+		if(tgui_input_list(user, question, "叛国报告器", list("Yes", "No")) != "Yes")
 			to_chat(user, "You decide not to declare the station as treasonous.")
 			return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the consequences of a false claim of Treason administratively, \
@@ -790,7 +790,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	cell_phone_number = "Dogginos"
 
 /obj/item/solfed_reporter/pizza_managers/questions(mob/user)
-	if(tgui_input_list(user, "Is the station refusing to pay their bill of $35,000, including a fifteen percent tip for delivery drivers?", "Dogginos Uncompliant Customer Reporter", list("Yes", "No")) != "Yes")
+	if(tgui_input_list(user, "空间站是否拒绝支付 35,000 美元的账单，包括给配送司机百分之十五的小费？", "Dogginos 不合作顾客举报器", list("Yes", "No")) != "Yes")
 		to_chat(user, "You decide not to request management assist you with the delivery.")
 		return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon Dogginos management to resolve the lack of payment.")
@@ -865,7 +865,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			do_sparks(10, TRUE, user_turf, spark_type = /datum/effect_system/basic/spark_spread/quantum)
 			qdel(user)
 	else
-		user.balloon_alert(user, "beam-out cancelled")
+		user.balloon_alert(user, "传送取消")
 
 #undef SOLFED_AMT
 #undef SOLFED_VOTES

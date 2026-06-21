@@ -2,7 +2,7 @@
  * Photo
  */
 /obj/item/photo
-	name = "photo"
+	name = "照片"
 	icon = 'icons/obj/art/camera.dmi'
 	icon_state = "photo"
 	inhand_icon_state = "paper"
@@ -43,7 +43,7 @@
 		if(name_override)
 			name = P.picture_name
 		else
-			name = "photo - [P.picture_name]"
+			name = "照片 - [P.picture_name]"
 	if(setdesc && P.picture_desc)
 		desc = P.picture_desc
 
@@ -69,7 +69,7 @@
 	return ..()
 
 /obj/item/photo/suicide_act(mob/living/carbon/human/user)
-	user.visible_message(span_suicide("[user] is taking one last look at \the [src]! It looks like [user.p_theyre()] giving in to death!"))//when you wanna look at photo of waifu one last time before you die...
+	user.visible_message(span_suicide("[user] 正在最后看一眼 \the [src]！看起来[user.p_theyre()]向死亡屈服了！"))//when you wanna look at photo of waifu one last time before you die...
 	if (!ishuman(user) || user.physique == MALE)
 		playsound(user, 'sound/mobs/humanoids/human/laugh/manlaugh1.ogg', 50, TRUE)//EVERY TIME I DO IT MAKES ME LAUGH
 	else
@@ -83,7 +83,7 @@
 	if(IS_WRITING_UTENSIL(P))
 		if(!user.can_write(P))
 			return
-		var/txt = tgui_input_text(user, "What would you like to write on the back?", "Photo Writing", max_length = 128)
+		var/txt = tgui_input_text(user, "你想在背面写些什么？", "照片题字", max_length = 128)
 		if(txt && user.can_perform_action(src))
 			playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 			scribble = txt
@@ -96,11 +96,11 @@
 	if(in_range(src, user) || isobserver(user))
 		show(user)
 	else
-		. += span_warning("You need to get closer to get a good look at this photo!")
+		. += span_warning("你需要凑近些才能看清这张照片！")
 
 /obj/item/photo/proc/show(mob/user)
 	if(!istype(picture) || !picture.picture_image)
-		to_chat(user, span_warning("[src] seems to be blank..."))
+		to_chat(user, span_warning("[src] 似乎是空白的..."))
 		return
 	var/width_height = "width"
 	if(picture.psize_y > picture.psize_x)
@@ -118,7 +118,7 @@
 	set name = "Rename photo"
 	set src in usr
 
-	var/n_name = tgui_input_text(usr, "What would you like to label the photo?", "Photo Labelling", max_length = MAX_NAME_LEN)
+	var/n_name = tgui_input_text(usr, "你想给这张照片贴上什么标签？", "照片标签", max_length = MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(n_name && (loc == usr || loc.loc && loc.loc == usr) && usr.stat == CONSCIOUS && !usr.incapacitated)
 		name = "photo[(n_name ? "- '[n_name]'" : null)]"

@@ -1,6 +1,6 @@
 /mob/living/basic/mothroach/pet
-	name = "pet mothroach"
-	desc = "A domestic mothroach that has learnt commands."
+	name = "宠物蛾螂"
+	desc = "一只学会了指令的家养蛾螂。"
 
 	ai_controller = /datum/ai_controller/basic_controller/mothroach/pet
 
@@ -21,8 +21,8 @@
 
 /// == DONATOR PET: Mr. Fluff, Central's Mothroach, ckey centralsmith ==
 /mob/living/basic/mothroach/pet/mr_fluff
-	name = "Mr. Fluff"
-	desc = "Central's beloved pet mothroach, Mr. Fluff. He looks so happy to be here!"
+	name = "绒毛先生"
+	desc = "中央司令部心爱的宠物蛾螂，绒毛先生。他看起来很高兴来到这里！"
 	gender = MALE
 	icon = 'modular_nova/master_files/icons/mob/donator_pets.dmi'
 	icon_state = "mr_fluff"
@@ -30,8 +30,8 @@
 	icon_dead = "mr_fluff_dead"
 
 /obj/item/mob_holder/pet/donator/centralsmith
-	name = "Mr. Fluff"
-	desc = "Central's beloved pet mothroach, Mr. Fluff. He looks so happy to be here!"
+	name = "绒毛先生"
+	desc = "中央司令部心爱的宠物蛾螂，绒毛先生。他看起来很高兴来到这里！"
 	icon = 'modular_nova/master_files/icons/mob/donator_pets.dmi'
 	icon_state = "mr_fluff"
 

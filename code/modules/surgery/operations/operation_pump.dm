@@ -1,7 +1,7 @@
 /datum/surgery_operation/organ/stomach_pump
-	name = "pump stomach"
+	name = "洗胃"
 	rnd_name = "Gastric Lavage (Stomach Pump)"
-	desc = "Manually pump a patient's stomach to induce vomiting and expel harmful chemicals."
+	desc = "手动为患者洗胃以诱导呕吐并排出有害化学物质。"
 	operation_flags = OPERATION_NOTABLE
 	implements = list(
 		IMPLEMENT_HAND = 1,
@@ -15,7 +15,7 @@
 	return image(/atom/movable/screen/alert/disgusted::overlay_icon, /atom/movable/screen/alert/disgusted::overlay_state)
 
 /datum/surgery_operation/organ/stomach_pump/all_required_strings()
-	return ..() + list("the patient must not be husked")
+	return ..() + list("患者不能是干尸状态")
 
 /datum/surgery_operation/organ/stomach_pump/state_check(obj/item/organ/stomach/organ)
 	return !HAS_TRAIT(organ.owner, TRAIT_HUSK)
@@ -52,7 +52,7 @@
 	organ.bodypart_owner.receive_damage(5)
 
 /datum/surgery_operation/organ/stomach_pump/mechanic
-	name = "purge nutrient processor"
+	name = "清空营养处理器"
 	rnd_name = "Nutrient Processor Purge (Stomach Pump)"
 	required_organ_flag = ORGAN_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC

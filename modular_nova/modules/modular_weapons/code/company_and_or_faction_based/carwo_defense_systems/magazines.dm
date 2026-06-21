@@ -1,8 +1,8 @@
 // .35 Sol pistol magazines
 
 /obj/item/ammo_box/magazine/c35sol_pistol
-	name = "\improper Sol pistol magazine"
-	desc = "A standard size magazine for SolFed pistols, holds twelve rounds."
+	name = "\improper 索尔手枪弹匣"
+	desc = "一个太阳联邦手枪的标准尺寸弹匣，可容纳十二发子弹。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "pistol_35_standard"
@@ -19,8 +19,8 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo
-	name = "\improper Sol extended pistol magazine"
-	desc = "An extended magazine for SolFed pistols, holds twenty-four rounds."
+	name = "\improper 索尔加长型手枪弹匣"
+	desc = "一个用于太阳联邦手枪的加长弹匣，可容纳二十四发子弹。"
 
 	icon_state = "pistol_35_stended"
 
@@ -70,8 +70,8 @@
 // .40 Sol rifle magazines
 
 /obj/item/ammo_box/magazine/c40sol_rifle
-	name = "\improper Sol rifle short magazine"
-	desc = "A shortened magazine for SolFed rifles, holds fifteen rounds."
+	name = "\improper 索尔步枪短弹匣"
+	desc = "一种为太阳联邦步枪设计的短弹匣，可容纳十五发子弹。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "rifle_short"
@@ -89,8 +89,8 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/c40sol_rifle/standard
-	name = "\improper Sol rifle magazine"
-	desc = "A standard size magazine for SolFed rifles, holds thirty rounds."
+	name = "\improper 索尔步枪弹匣"
+	desc = "一个太阳联邦步枪的标准尺寸弹匣，可容纳三十发子弹。"
 
 	icon_state = "rifle_standard"
 
@@ -104,8 +104,8 @@
 // .980 grenade magazines
 
 /obj/item/ammo_box/magazine/c980_grenade
-	name = "\improper Kiboko grenade box"
-	desc = "A standard size box for .980 grenades, holds four shells."
+	name = "\improper 基博科榴弹盒"
+	desc = "一个标准尺寸的.980榴弹弹匣，可容纳四发。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "granata_standard"
@@ -134,8 +134,8 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/c980_grenade/drum
-	name = "\improper Kiboko grenade drum"
-	desc = "A drum for .980 grenades, holds six shells."
+	name = "\improper 基博科榴弹鼓"
+	desc = "一个用于.980榴弹的弹鼓，可容纳六发。"
 
 	icon_state = "granata_drum"
 

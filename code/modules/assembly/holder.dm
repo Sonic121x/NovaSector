@@ -1,5 +1,5 @@
 /obj/item/assembly_holder
-	name = "Assembly"
+	name = "装配"
 	icon = 'icons/obj/devices/new_assemblies.dmi'
 	icon_state = "assembly_holder"
 	inhand_icon_state = "assembly"
@@ -48,20 +48,20 @@
 
 /obj/item/assembly_holder/proc/try_add_assembly(obj/item/assembly/attached_assembly, mob/user)
 	if(attached_assembly.secured)
-		balloon_alert(user, "not attachable!")
+		balloon_alert(user, "无法附加！")
 		return FALSE
 
 	if(LAZYLEN(assemblies) >= HOLDER_MAX_ASSEMBLIES)
-		balloon_alert(user, "too many assemblies!")
+		balloon_alert(user, "组件太多了！")
 		return FALSE
 
 	if(attached_assembly.assembly_flags & ASSEMBLY_NO_DUPLICATES)
 		if(locate(attached_assembly.type) in assemblies)
-			balloon_alert(user, "can't attach another of that!")
+			balloon_alert(user, "不能附加另一个相同的组件！")
 			return FALSE
 
 	add_assembly(attached_assembly, user)
-	balloon_alert(user, "part attached")
+	balloon_alert(user, "组件已附加")
 	return TRUE
 
 /**
@@ -143,7 +143,7 @@
 
 
 /obj/item/assembly_holder/screwdriver_act(mob/user, obj/item/tool)
-	loc.balloon_alert(user, "disassembled")
+	loc.balloon_alert(user, "已拆解")
 
 	deconstruct(TRUE)
 
@@ -157,7 +157,7 @@
 /obj/item/assembly_holder/attack_self(mob/user)
 	src.add_fingerprint(user)
 	if(LAZYLEN(assemblies) == 1)
-		balloon_alert(user, "part missing!")
+		balloon_alert(user, "部件缺失！")
 		return
 
 	for(var/obj/item/assembly/assembly as anything in assemblies)

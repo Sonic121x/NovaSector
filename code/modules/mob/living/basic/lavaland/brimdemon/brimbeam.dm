@@ -1,7 +1,7 @@
 /// Fires a bloody beam. Brimdemon Blast!
 /datum/action/cooldown/mob_cooldown/brimbeam
-	name = "Brimstone Blast"
-	desc = "Unleash a barrage of infernal energies in the targeted direction."
+	name = "硫磺冲击"
+	desc = "向目标方向释放一连串地狱能量。"
 	button_icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "brimdemon_firing"
 	background_icon_state = "bg_demon"
@@ -78,7 +78,7 @@
 
 /// Create a laser in the direction we are facing
 /datum/action/cooldown/mob_cooldown/brimbeam/proc/fire_laser()
-	owner.visible_message(span_danger("[owner] fires a brimbeam!"))
+	owner.visible_message(span_danger("[owner] 发射了一道狱炎光束！"))
 	playsound(owner, 'sound/mobs/non-humanoids/brimdemon/brimdemon.ogg', 150, FALSE, 0, 3)
 	var/turf/target_turf = get_ranged_target_turf(owner, owner.dir, beam_range)
 	var/turf/origin_turf = get_turf(owner)
@@ -99,7 +99,7 @@
 		new_brimbeam.assign_creator(owner)
 		for(var/mob/living/hit_mob in affected_turf)
 			hit_mob.apply_damage(25, BURN, blocked = hit_mob.run_armor_check(null, LASER, silent = TRUE), wound_bonus = CANT_WOUND)
-			to_chat(hit_mob, span_userdanger("You're blasted by [owner]'s brimbeam!"))
+			to_chat(hit_mob, span_userdanger("你被 [owner] 的狱炎光束击中了！"))
 		RegisterSignal(new_brimbeam, COMSIG_QDELETING, PROC_REF(extinguish_laser)) // In case idk a singularity eats it or something
 	if(!length(beam_parts))
 		return FALSE
@@ -125,7 +125,7 @@
 
 /// Segments of the actual beam, these hurt if you stand in them
 /obj/effect/brimbeam
-	name = "brimbeam"
+	name = "狱炎光束"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "brimbeam_mid"
 	layer = ABOVE_MOB_LAYER

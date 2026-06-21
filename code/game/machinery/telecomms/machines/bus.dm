@@ -9,9 +9,9 @@
  * of a server, at the cost of some added latency.
  */
 /obj/machinery/telecomms/bus
-	name = "bus mainframe"
+	name = "总线主机"
 	icon_state = "bus"
-	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
+	desc = "一种强大的硬件，用于快速传输大量数据。"
 	telecomms_type = /obj/machinery/telecomms/bus
 	density = TRUE
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.01
@@ -83,6 +83,6 @@
 		freq_listening |= i
 
 /obj/machinery/telecomms/bus/preset_one/birdstation
-	name = "Bus"
+	name = "公交车"
 	autolinkers = list("processor1", "common", "messaging")
 	freq_listening = list()

@@ -1,6 +1,6 @@
 /datum/action/cooldown/mob_cooldown/blood_worm/invade
-	name = "Invade Corpse"
-	desc = "Invade a humanoid corpse, taking it as your host."
+	name = "入侵尸体"
+	desc = "入侵一具类人尸体，将其作为你的宿主。"
 
 	button_icon_state = "invade_corpse"
 
@@ -40,10 +40,10 @@
 	var/mob/living/carbon/human/victim = target
 
 	if (!worm.Adjacent(victim))
-		victim.balloon_alert(worm, "too far away!")
+		victim.balloon_alert(worm, "距离太远！")
 		return FALSE
 	if (!victim.IsReachableBy(worm))
-		victim.balloon_alert(worm, "can't reach!")
+		victim.balloon_alert(worm, "够不着！")
 		return FALSE
 
 	unset_click_ability(worm, refund_cooldown = FALSE) // If you fail after this point, it's because your attempt got interrupted or because the victim is invalid.
@@ -52,9 +52,9 @@
 		return TRUE // Don't bite the victim.
 
 	worm.visible_message(
-		message = span_danger("\The [worm] starts entering \the [victim]!"),
+		message = span_danger("\The [worm] 开始进入 \the [victim]！"),
 		self_message = span_notice("You start entering \the [victim]."),
-		blind_message = span_hear("You hear squeezing.")
+		blind_message = span_hear("你听到了挤压声。")
 	)
 
 	if (!do_after(worm, 5 SECONDS, victim, extra_checks = CALLBACK(src, PROC_REF(invade_check), worm, victim)))
@@ -68,18 +68,18 @@
 /datum/action/cooldown/mob_cooldown/blood_worm/invade/proc/invade_check(mob/living/basic/blood_worm/worm, mob/living/carbon/human/victim, feedback = FALSE)
 	if (HAS_TRAIT(victim, TRAIT_BLOOD_WORM_HOST))
 		if (feedback)
-			victim.balloon_alert(worm, "already a host!")
+			victim.balloon_alert(worm, "已有宿主！")
 		return FALSE
 	if (victim.stat != DEAD)
 		if (feedback)
-			victim.balloon_alert(worm, "still alive!")
+			victim.balloon_alert(worm, "还活着！")
 		return FALSE
 	if (!CAN_HAVE_BLOOD(victim))
 		if (feedback)
-			victim.balloon_alert(worm, "no blood!")
+			victim.balloon_alert(worm, "没有血液！")
 		return FALSE
 	if (victim.get_blood_volume() + worm.health * BLOOD_WORM_HEALTH_TO_BLOOD <= worm.get_eject_volume_threshold())
 		if (feedback)
-			victim.balloon_alert(worm, "not enough blood for control!")
+			victim.balloon_alert(worm, "血液不足以控制！")
 		return FALSE
 	return TRUE

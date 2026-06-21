@@ -1,7 +1,7 @@
 /datum/surgery_operation/basic/viral_bonding
-	name = "viral bonding"
+	name = "病毒结合"
 	rnd_name = "Viroplasty (Viral Bonding)"
-	desc = "Force a symbiotic relationship between a patient and a virus it is infected with."
+	desc = "强制在患者与其感染的病毒之间建立共生关系。"
 	rnd_desc = "A surgical procedure that forces a symbiotic relationship between a virus and its host. \
 		The patient will be completely immune to the effects of the virus, but will carry and spread it to others."
 	implements = list(
@@ -21,13 +21,13 @@
 	)
 
 /datum/surgery_operation/basic/viral_bonding/get_any_tool()
-	return "Any heat source"
+	return "任何热源"
 
 /datum/surgery_operation/basic/viral_bonding/all_required_strings()
 	. = ..()
-	. += "the patient must have a virus to bond"
+	. += "患者必须携带可结合的病毒"
 	for(var/datum/reagent/chem as anything in required_chems)
-		. += "the patient must be dosed with >=1u [chem::name]"
+		. += "患者必须摄入 >=1u [chem::name]"
 
 /datum/surgery_operation/basic/viral_bonding/get_default_radial_image()
 	return image(/obj/item/clothing/mask/surgical)

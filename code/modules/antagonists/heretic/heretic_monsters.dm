@@ -1,6 +1,6 @@
 ///Tracking reasons
 /datum/antagonist/heretic_monster
-	name = "\improper Eldritch Horror"
+	name = "\improper 异畏之怖"
 	roundend_category = "Heretics"
 	antagpanel_category = ANTAG_GROUP_HORRORS
 	antag_moodlet = /datum/mood_event/heretics
@@ -15,10 +15,10 @@
 /datum/antagonist/heretic_monster/on_removal()
 	if(!silent)
 		if(master?.current)
-			to_chat(master.current, span_warning("The essence of [owner], your servant, fades from your mind."))
+			to_chat(master.current, span_warning("[owner]——你仆从的本质，正从你的意识中消逝。"))
 		if(owner.current)
 			to_chat(owner.current, span_deconversion_message("Your mind begins to fill with haze - your master is no longer[master ? " [master]":""], you are free!"))
-			owner.current.visible_message(span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] been freed from the chains of the Mansus!"), ignored_mobs = owner.current)
+			owner.current.visible_message(span_deconversion_message("[owner.current]看起来[owner.current.p_theyve()]已从曼苏斯的锁链中解放！"), ignored_mobs = owner.current)
 
 	master = null
 	return ..()
@@ -48,4 +48,4 @@
 	objectives += master_obj
 	owner.announce_objectives()
 	to_chat(owner, span_boldnotice("You are a [ishuman(owner.current) ? "shambling corpse returned":"horrible creation brought"] to this plane through the Gates of the Mansus."))
-	to_chat(owner, span_notice("Your master is [master]. Assist them to all ends."))
+	to_chat(owner, span_notice("你的主人是[master]。不惜一切代价协助他们。"))

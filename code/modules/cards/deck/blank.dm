@@ -1,6 +1,6 @@
 /obj/item/toy/cards/deck/blank
-	name = "custom deck of cards"
-	desc = "A deck of playing cards that can be customized with writing."
+	name = "自定义牌组"
+	desc = "一套可以进行个性化书写装饰的扑克牌。"
 	cardgame_desc = "custom card game"
 	icon_state = "deck_white_full"
 	deckstyle = "white"
@@ -17,7 +17,7 @@
 		initial_cards += /datum/deck_card/blank
 
 /datum/deck_card/blank
-	name = "blank card"
+	name = "空白卡牌"
 
 /datum/deck_card/blank/update_card(obj/item/toy/singlecard/card)
 	card.blank = TRUE

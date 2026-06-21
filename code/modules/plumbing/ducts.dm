@@ -1,5 +1,5 @@
 /obj/machinery/duct
-	name = "fluid duct"
+	name = "流体管道"
 	icon = 'icons/obj/pipes_n_cables/hydrochem/fluid_ducts.dmi'
 	icon_state = "nduct"
 	layer = PLUMBING_PIPE_VISIBILE_LAYER
@@ -222,8 +222,8 @@
 
 /obj/machinery/duct/examine(mob/user)
 	. = ..()
-	. += span_notice("Its current color and layer are [GLOB.pipe_color_name[duct_color]] and [GLOB.plumbing_layer_names["[duct_layer]"]]. Use in-hand to change.")
-	. += span_notice("It can be [EXAMINE_HINT("wrenched")] apart.")
+	. += span_notice("它当前的颜色和层级是[GLOB.pipe_color_name[duct_color]]和[GLOB.plumbing_layer_names["[duct_layer]"]]. 拿在手上使用以更改。")
+	. += span_notice("它可以被[EXAMINE_HINT("wrenched")]拆开。")
 
 /obj/machinery/duct/update_icon_state()
 	var/temp_icon = initial(icon_state)
@@ -251,15 +251,15 @@
 
 	user.visible_message( \
 	"[user] ununfastens \the [src].", \
-	span_notice("You unfasten \the [src]."), \
-	span_hear("You hear ratcheting."))
+	span_notice("你松开了\the [src]。"), \
+	span_hear("你听到棘轮声。"))
 
 	deconstruct()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/ducts
-	name = "stack of duct"
-	desc = "A stack of fluid ducts."
+	name = "一排通风管"
+	desc = "一排流体管道。"
 	singular_name = "duct"
 	icon = 'icons/obj/pipes_n_cables/hydrochem/fluid_ducts.dmi'
 	icon_state = "ducts"
@@ -298,16 +298,16 @@
 
 /obj/item/stack/ducts/examine(mob/user)
 	. = ..()
-	. += span_notice("Its current color and layer are [GLOB.pipe_color_name[duct_color]] and [GLOB.plumbing_layer_names["[duct_layer]"]]. Use in-hand to change.")
-	. += span_notice("Place on ground & [EXAMINE_HINT("wrench")] to create duct.")
+	. += span_notice("它当前的颜色和层级是[GLOB.pipe_color_name[duct_color]]和[GLOB.plumbing_layer_names["[duct_layer]"]]. 拿在手上使用以更改。")
+	. += span_notice("放置在地面并用[EXAMINE_HINT("wrench")]来创建管道。")
 
 /obj/item/stack/ducts/attack_self(mob/user)
-	var/new_layer = tgui_input_list(user, "Select a layer", "Layer", GLOB.plumbing_layers, GLOB.plumbing_layer_names["[duct_layer]"])
+	var/new_layer = tgui_input_list(user, "选择层级", "层级", GLOB.plumbing_layers, GLOB.plumbing_layer_names["[duct_layer]"])
 	if(!user.is_holding(src))
 		return
 	if(new_layer)
 		duct_layer = GLOB.plumbing_layers[new_layer]
-	var/new_color = tgui_input_list(user, "Select a color", "Color", GLOB.pipe_paint_colors, GLOB.pipe_color_name[duct_color])
+	var/new_color = tgui_input_list(user, "选择颜色", "颜色", GLOB.pipe_paint_colors, GLOB.pipe_color_name[duct_color])
 	if(!user.is_holding(src))
 		return
 	if(new_color)
@@ -321,7 +321,7 @@
 	// Turn into a duct stack and then merge to the in-hand stack.
 	if(istype(interacting_with, /obj/machinery/duct))
 		if(amount == max_amount)
-			balloon_alert(user, "stack full!")
+			balloon_alert(user, "堆叠已满！")
 			return ITEM_INTERACT_FAILURE
 		qdel(interacting_with)
 		add(1)
@@ -335,7 +335,7 @@
 		var/datum/overlap = ducting_layer_check(open_turf, duct_layer)
 		if(!isnull(overlap))
 			if(user)
-				open_turf.balloon_alert(user, "overlapping [istype(overlap, /obj/machinery/duct) ? "duct" : "machine"] detected!")
+				open_turf.balloon_alert(user, "检测到重叠的 [istype(overlap, /obj/machinery/duct) ? "duct" : "machine"]！")
 			return ITEM_INTERACT_FAILURE
 
 		new /obj/machinery/duct(open_turf, duct_color, duct_layer)

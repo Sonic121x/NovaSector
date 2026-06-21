@@ -1,8 +1,8 @@
 /datum/action/cooldown/mob_cooldown/chase_target
-	name = "Chase Target"
+	name = "追击目标"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	desc = "Gain a burst of speed to chase down a target."
+	desc = "获得一阵爆发速度来追击目标。"
 	cooldown_time = 6 SECONDS
 	/// Affects volume of the charge tell depending on the size of the mob charging
 	var/size = 1
@@ -19,7 +19,7 @@
 	var/mob/living/living_mob = target
 	if(istype(living_mob) && living_mob.stat == DEAD)
 		return
-	owner.visible_message(span_boldwarning("[owner] charges!"))
+	owner.visible_message(span_boldwarning("[owner]发起了冲锋！"))
 	owner.SpinAnimation(speed = 20, loops = 3, parallel = FALSE)
 	if(ishostile(owner))
 		var/mob/living/simple_animal/hostile/hostile_mob = owner

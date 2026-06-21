@@ -26,8 +26,8 @@
 #define COSMIC_BLUE "cosmic_blue"
 
 /datum/mod_theme/paragon
-	name = "paragon"
-	desc = "This semi-artisanal, bleeding edge MODsuit is a symbol of exemplary performance, amplifying the speciality of the user through its durable carapace and a wide variety of utilities, both offensive and defensive."
+	name = "典范"
+	desc = "这款半手工、尖端前沿的MOD防护服是卓越性能的象征，通过其坚固的外壳和种类繁多的攻防两用工具，放大了使用者的专长。"
 	extended_desc = "A semi-artisanal, bleeding-edge MODsuit produced by the DeForest Medical Corporation, built upon foundational work by Nakamura Engineering. \
 		Designed as a symbol of exemplary performance, the suit amplifies the wearer’s specialty through a durable, \
 		acid-resistant carapace and a broad suite of integrated utilities, both offensive and defensive. \
@@ -92,14 +92,14 @@
 
 /datum/mod_theme/jumper
 	name = "jumper"
-	desc = "An Apadyne Technologies security suit, offering quicker speed at the cost of carrying capacity."
+	desc = "一款Apadyne Technologies的安保防护服，以牺牲携带容量为代价提供更快的速度。"
 	extended_desc = "An Apadyne Technologies classic, this model of MODsuit has been designed for quick response to \
 		hostile situations. These suits have been layered with plating worthy enough for fires or corrosive environments, \
 		and come with composite cushioning and an advanced honeycomb structure underneath the hull to ensure protection \
 		against broken bones or possible avulsions. The suit's legs have been given more rugged actuators, \
 		allowing the suit to do more work in carrying the weight. However, the systems used in these suits are more than \
 		a few years out of date, leading to an overall lower capacity for modules."
-	default_skin = "jumper"
+	default_skin = "跳跃者"
 	armor_type = /datum/mod_theme/civilian::armor_type
 	complexity_max = DEFAULT_MAX_COMPLEXITY - 2
 	slowdown_deployed = 0.5

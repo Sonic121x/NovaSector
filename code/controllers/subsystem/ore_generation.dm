@@ -1,6 +1,6 @@
 
 SUBSYSTEM_DEF(ore_generation)
-	name = "Ore Generation"
+	name = "矿石生成"
 	wait = 60 SECONDS
 	dependencies = list(
 		/datum/controller/subsystem/atoms,

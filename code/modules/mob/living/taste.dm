@@ -76,7 +76,7 @@
 	if(tastes_text == last_taste_text && last_taste_time + 100 >= world.time)
 		return
 
-	to_chat(src, span_notice("You can taste [tastes_text]."))
+	to_chat(src, span_notice("你尝到了[tastes_text]。"))
 	// "something indescribable" -> too many tastes, not enough flavor.
 
 	last_taste_time = world.time
@@ -154,7 +154,7 @@
 	if(!prob(chance))
 		return FALSE
 	if(ForceContractDisease(new /datum/disease/anaphylaxis(), make_copy = FALSE, del_on_fail = TRUE))
-		to_chat(src, span_warning("You feel your throat start to itch."))
+		to_chat(src, span_warning("你感觉喉咙开始发痒。"))
 		add_mood_event("allergic_food", /datum/mood_event/allergic_food)
 	else if(histamine_add)
 		reagents.add_reagent(/datum/reagent/toxin/histamine, histamine_add)

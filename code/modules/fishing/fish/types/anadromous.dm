@@ -1,7 +1,7 @@
 /obj/item/fish/sockeye_salmon
-	name = "sockeye salmon"
+	name = "红鲑"
 	fish_id = "sockeye_salmon"
-	desc = "A fairly common and iconic salmon endemic of the Pacific Ocean. At some point imported into outer space, where we're now."
+	desc = "一种相当常见且标志性的鲑鱼，原产于太平洋。不知何时被引入了外太空，也就是我们现在所在的地方。"
 	icon_state = "sockeye"
 	sprite_width = 6
 	sprite_height = 4
@@ -18,9 +18,9 @@
 	return return_list
 
 /obj/item/fish/arctic_char
-	name = "arctic char"
+	name = "北极红点鲑"
 	fish_id = "arctic_char"
-	desc = "A cold-water anadromous fish widespread around the Northern Hemisphere of Earth, yet it has somehow found a way here."
+	desc = "一种广泛分布于地球北半球的冷水性溯河产卵鱼类，但它不知怎地找到了来这里的方法。"
 	icon_state = "arctic_char"
 	sprite_width = 7
 	sprite_height = 4
@@ -33,9 +33,9 @@
 	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
 
 /obj/item/fish/pike
-	name = "pike"
+	name = "狗鱼"
 	fish_id = "pike"
-	desc = "A long-bodied predator with a snout that almost looks like a beak. Definitely not a weapon to swing around."
+	desc = "一种长身体的捕食者，吻部看起来几乎像鸟喙。绝对不适合拿来当武器挥舞。"
 	icon = 'icons/obj/aquarium/wide.dmi'
 	icon_state = "pike"
 	inhand_icon_state = "pike"

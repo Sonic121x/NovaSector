@@ -38,8 +38,8 @@
 #define BATTLE_ARCADE_PLAYER_DEFEND "Defend"
 
 /obj/machinery/computer/arcade/battle
-	name = "battle arcade"
-	desc = "Explore vast worlds and conquer."
+	name = "战斗街机"
+	desc = "探索广阔世界并征服。"
 	icon_state = "arcade"
 	icon_screen = "fighters"
 	circuit = /obj/item/circuitboard/computer/arcade/battle
@@ -124,8 +124,8 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "hard mode enabled")
-	to_chat(user, span_warning("A mesmerizing Rhumba beat starts playing from the arcade machine's speakers!"))
+	balloon_alert(user, "困难模式已启用")
+	to_chat(user, span_warning("街机扬声器开始播放迷人的伦巴节奏！"))
 	setup_new_opponent(user)
 	feedback_message = "If you die in the game, you die for real!"
 	SStgui.update_uis(src)

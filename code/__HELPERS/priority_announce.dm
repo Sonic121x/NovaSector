@@ -96,7 +96,7 @@
  *
  * * text - the text of the report to print
  * * title - the title of the report, which is also the name of the printed paper.
- * If null, defaults to "Classified [command_name()] Update"
+ * If null, defaults to "机密[command_name()]更新"
  * * announce - whether or not to send an announcement to players about the report being printed.
  * Defaults to TRUE.
  * * contains_advanced_html - whether or not the text contains advanced HTML that should be rendered on the paper.
@@ -110,8 +110,8 @@
 
 	if(announce)
 		priority_announce(
-			text = "A report has been downloaded and printed out at all communications consoles.",
-			title = "Incoming Classified Message",
+			text = "一份报告已下载并在所有通讯控制台打印出来。",
+			title = "机密信息传入",
 			sound = SSstation.announcer.get_rand_report_sound(),
 			has_important_message = TRUE,
 		)

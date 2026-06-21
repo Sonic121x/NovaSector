@@ -14,7 +14,7 @@
  */
 
 SUBSYSTEM_DEF(armaments)
-	name = "Armaments"
+	name = "武器装备"
 	ss_flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/atoms,

@@ -5,7 +5,7 @@
 	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, STAMINA = 0, OXY = 0.7)
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	playstyle_string = span_holoparasite("As a <b>support</b> type, you may right-click to heal targets. In addition, alt-clicking on an adjacent object or mob will warp them to your bluespace beacon after a short delay.")
+	playstyle_string = span_holoparasite("作为<b>支援</b>类型，你可以右键点击治疗目标。此外，对相邻物体或生物按住Alt键点击，可在短暂延迟后将其传送至你的蓝空信标。")
 	creator_name = "Support"
 	creator_desc = "Does medium damage, but can heal its targets and create beacons to teleport people and things to."
 	creator_icon = "support"
@@ -41,19 +41,19 @@
 /mob/living/basic/guardian/support/proc/after_healed(mob/living/healed)
 	do_attack_animation(healed, ATTACK_EFFECT_PUNCH)
 	healed.visible_message(
-		message = span_notice("[src] heals [healed]!"),
-		self_message = span_userdanger("[src] heals you!"),
+		message = span_notice("[src] 治疗了 [healed]！"),
+		self_message = span_userdanger("[src] 治疗了你！"),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		ignored_mobs = src,
 	)
-	to_chat(src, span_notice("You heal [healed]!"))
+	to_chat(src, span_notice("你治疗了 [healed]！"))
 	playsound(healed, attack_sound, 50, TRUE, TRUE, frequency = -1) // play punch sound in REVERSE
 
 
 /// Place a beacon and then listen for clicks to teleport people to it
 /datum/action/cooldown/mob_cooldown/guardian_bluespace_beacon
-	name = "Place Bluespace Beacon"
-	desc = "Mark the ground under your feet as a teleportation point. Alt-click things to teleport them to your beacon."
+	name = "放置蓝空信标"
+	desc = "将你脚下的地面标记为传送点。按住Alt键点击物体可将它们传送到你的信标处。"
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "the_freezer"
 	background_icon = 'icons/hud/guardian.dmi'
@@ -78,11 +78,11 @@
 /datum/action/cooldown/mob_cooldown/guardian_bluespace_beacon/Activate(atom/movable/target)
 	var/turf/beacon_loc = owner.loc
 	if(!isfloorturf(beacon_loc))
-		owner.balloon_alert(owner, "no room!")
+		owner.balloon_alert(owner, "没有空间！")
 		return FALSE
 
 	if (!isnull(beacon))
-		beacon.visible_message("[beacon] vanishes!")
+		beacon.visible_message("[beacon] 消失了！")
 		new /obj/effect/temp_visual/guardian/phase/out(beacon.loc)
 		qdel(beacon)
 
@@ -91,7 +91,7 @@
 		var/mob/living/basic/guardian/guardian_owner = owner
 		beacon.add_atom_colour(guardian_owner.guardian_colour, FIXED_COLOUR_PRIORITY)
 	RegisterSignal(beacon, COMSIG_QDELETING, PROC_REF(on_beacon_deleted))
-	to_chat(src, span_bolddanger("Beacon placed! You may now warp targets and objects to it, including your user, via Alt+Click."))
+	to_chat(src, span_bolddanger("信标已放置！你现在可以通过Alt+点击将目标和物体（包括你的使用者）传送至该处。"))
 	StartCooldown()
 	return TRUE
 
@@ -115,21 +115,21 @@
 	if(!istype(target)) // Turfs
 		return FALSE
 	if (isnull(beacon))
-		source.balloon_alert(source, "no beacon!")
+		source.balloon_alert(source, "没有信标！")
 		return FALSE
 	if (isguardian(source))
 		var/mob/living/basic/guardian/guardian_mob = source
 		if (!guardian_mob.is_deployed())
-			source.balloon_alert(source, "manifest yourself!")
+			source.balloon_alert(source, "显形！")
 			return FALSE
 	if (!source.can_perform_action(target))
-		target.balloon_alert(source, "too far!")
+		target.balloon_alert(source, "太远了！")
 		return FALSE
 	if (target.anchored)
-		target.balloon_alert(source, "it won't budge!")
+		target.balloon_alert(source, "它纹丝不动！")
 		return FALSE
 	if((beacon.z != target.z) && !(target.z in SSmapping.get_connected_levels(beacon.z)))
-		target.balloon_alert(source, "too far from beacon!")
+		target.balloon_alert(source, "离信标太远了！")
 		return FALSE
 	return TRUE
 
@@ -137,10 +137,10 @@
 /datum/action/cooldown/mob_cooldown/guardian_bluespace_beacon/proc/perform_teleport(mob/living/source, atom/target)
 	source.do_attack_animation(target)
 	playsound(target, 'sound/items/weapons/punch1.ogg', 50, TRUE, TRUE, frequency = -1)
-	source.balloon_alert(source, "teleporting...")
+	source.balloon_alert(source, "传送中...")
 	target.visible_message(
-		span_danger("[target] starts to glow faintly!"), \
-		span_userdanger("You start to faintly glow, and you feel strangely weightless!"))
+		span_danger("[target] 开始微微发光！"), \
+		span_userdanger("你开始微微发光，并感到一种奇异的失重感！"))
 	if(!do_after(source, teleport_time, target))
 		return
 	new /obj/effect/temp_visual/guardian/phase/out(target.loc)
@@ -148,8 +148,8 @@
 		var/mob/living/living_target = target
 		living_target.flash_act()
 	target.visible_message(
-		span_danger("[target] disappears in a flash of light!"), \
-		span_userdanger("Your vision is obscured by a flash of light!"), \
+		span_danger("[target] 在一道闪光中消失了！"), \
+		span_userdanger("一道闪光遮蔽了你的视线！"), \
 	)
 	do_teleport(target, beacon, precision = 0, channel = TELEPORT_CHANNEL_BLUESPACE)
 	new /obj/effect/temp_visual/guardian/phase(get_turf(target))
@@ -157,9 +157,9 @@
 
 /// Structure which acts as the landing point for a support guardian's teleportation effects
 /obj/structure/guardian_beacon
-	name = "guardian beacon"
+	name = "守护者信标"
 	icon = 'icons/turf/floors.dmi'
-	desc = "A glowing zone which acts as a beacon for teleportation."
+	desc = "一个发光的区域，作为传送信标使用。"
 	icon_state = "light_on-8"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	density = FALSE

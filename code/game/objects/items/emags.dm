@@ -137,7 +137,7 @@
 	desc = /obj/item/card/emag::desc
 	obj_flags |= EMAGGED
 	if(user)
-		balloon_alert(user, "rigged to blow")
+		balloon_alert(user, "已设置引爆")
 		log_bomber(user, "rigged to blow", src, "(emagging)")
 	return TRUE
 
@@ -192,7 +192,7 @@
 
 /obj/item/card/emag/doorjack/proc/use_charge(mob/user)
 	charges --
-	to_chat(user, span_notice("You use [src]. It now has [charges] charge[charges == 1 ? "" : "s"] remaining."))
+	to_chat(user, span_notice("你使用了[src]。它现在还剩[charges]次充能[charges == 1 ? "" : "s"]。"))
 	charge_timers.Add(addtimer(CALLBACK(src, PROC_REF(recharge)), charge_time, TIMER_STOPPABLE))
 
 /obj/item/card/emag/doorjack/proc/recharge(mob/user)
@@ -212,7 +212,7 @@
 
 /obj/item/card/emag/doorjack/can_emag(atom/target, mob/user)
 	if (charges <= 0)
-		to_chat(user, span_warning("[src] is recharging!"))
+		to_chat(user, span_warning("[src]充能."))
 		return FALSE
 	for (var/list/subtypelist in type_whitelist)
 		if (target.type in subtypelist)

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/health
 	display_name = "Get Health"
-	desc = "A component that returns the health of an organism."
+	desc = "一种能够反映生物体健康状况的组件。"
 	category = "Entity"
 
 	/// The input port

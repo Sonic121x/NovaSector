@@ -4,8 +4,8 @@
 GLOBAL_LIST_EMPTY(clockwork_marauders)
 
 /mob/living/basic/clockwork_marauder
-	name = "clockwork marauder"
-	desc = "A brass machine of destruction."
+	name = "发条掠夺者"
+	desc = "一台黄铜的毁灭机器。"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_mobs.dmi'
 	icon_state = "clockwork_marauder"
 	icon_living = "clockwork_marauder"
@@ -62,10 +62,10 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 /mob/living/basic/clockwork_marauder/examine(mob/user)
 	. = ..()
 	if(IS_CLOCK(user))
-		. += span_brass("[src]'s shield is at [shield_health] / [MARAUDER_SHIELD_MAX] charges.")
+		. += span_brass("[src]的护盾能量为 [shield_health] / [MARAUDER_SHIELD_MAX]。")
 
 		if(shield_health < MARAUDER_SHIELD_MAX)
-			. += span_brass("It can be repaired with a <b>welding tool</b>.")
+			. += span_brass("可以用<b>焊接工具</b>修复它。")
 
 /mob/living/basic/clockwork_marauder/attacked_by(obj/item/attacking_item, mob/living/user)
 	if(shield_health)
@@ -84,7 +84,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 
 	if(shield_health)
 		damage_shield()
-		visible_message(span_warning("[src]'s shield blocks the attack!"))
+		visible_message(span_warning("[src]的护盾挡住了攻击！"))
 		return COMPONENT_BULLET_BLOCKED
 	return NONE
 
@@ -94,8 +94,8 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 	shield_health--
 	playsound(src, 'modular_nova/modules/clock_cult/sound/magic/anima_fragment_attack.ogg', 60, TRUE)
 	if(!shield_health)
-		to_chat(src, span_userdanger("Your shield breaks!"))
-		to_chat(src, span_brass("You require a <b>welding tool</b> to repair your damaged shield!"))
+		to_chat(src, span_userdanger("你的护盾破碎了！"))
+		to_chat(src, span_brass("你需要一个<b>焊接工具</b>来修复受损的护盾！"))
 
 
 /mob/living/basic/clockwork_marauder/welder_act(mob/living/user, obj/item/tool)
@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 		return TRUE
 
 	health = min(health + WELDER_REPAIR_AMOUNT, maxHealth)
-	to_chat(user, span_notice("You repair some of [src]'s damage."))
+	to_chat(user, span_notice("你修复了[src]的一些损伤。"))
 	if(shield_health < MARAUDER_SHIELD_MAX)
 		shield_health++
 		playsound(src, 'sound/effects/magic/charge.ogg', 60, TRUE)

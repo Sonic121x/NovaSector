@@ -4,163 +4,163 @@
 */
 
 /datum/loadout_item/under/miscellaneous/cargo_skirtle
-	name = "Cargo Skirtleneck"
+	name = "货运裙领衫"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/nova/turtleneck/skirt
 	group = "Workwear"
 
 /datum/loadout_item/under/miscellaneous/cargo_casual
-	name = "Cargo Tech Casualwear"
+	name = "货运技工便服"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/nova/casualman
 	group = "Workwear"
 
 /datum/loadout_item/under/miscellaneous/cargo_shorts
-	name = "Cargo Tech Shorts"
+	name = "货运技工短裤"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/alt
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/cargo
-	name = "Cargo Technician's Jumpsuit"
+	name = "货运技工连体服"
 	item_path = /obj/item/clothing/under/rank/cargo/tech
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/cargo/skirt
-	name = "Cargo Technician's Skirt"
+	name = "货运技工裙装"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/skirt
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/cargo/skirt/alt
-	name = "Cargo Technician's Skirt (Short)"
+	name = "货运技工裙装（短款）"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/skirt/alt
 	group = "Workwear"
 
 /datum/loadout_item/under/miscellaneous/cargo_turtle
-	name = "Cargo Turtleneck"
+	name = "货运高领衫"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/nova/turtleneck
 	group = "Workwear"
 
 /datum/loadout_item/under/miscellaneous/cargo_black
-	name = "Cargo Uniform (Black)"
+	name = "货运制服（黑色）"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/nova/evil
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/utility_cargo
-	name = "Cargo Utility Uniform"
+	name = "货运实用制服"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/nova/utility
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/chemist_formal_skirt
-	name = "Chemist's Formal Jumpskirt"
+	name = "化学家正装连体裙"
 	item_path = /obj/item/clothing/under/rank/medical/chemist/nova/formal/skirt
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/chemist_formal
-	name = "Chemist's Formal Jumpsuit"
+	name = "化学家正装连体服"
 	item_path = /obj/item/clothing/under/rank/medical/chemist/nova/formal
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/cin_surplus_uniform
-	name = "CIN Combat Uniform"
+	name = "CIN作战制服"
 	item_path = /obj/item/clothing/under/syndicate/rus_army/cin_surplus
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/colonial_uniform
-	name = "Colonial Uniform"
+	name = "殖民制服"
 	item_path = /obj/item/clothing/under/colonial
 	group = "Workwear"
 	species_blacklist = list(SPECIES_TESHARI)
 
 /datum/loadout_item/under/jumpsuit/colonial_uniform/coalition_police_uniform
-	name = "Coalition Police Uniform"
+	name = "联盟警用制服"
 	item_path = /obj/item/clothing/under/colonial/hc_police
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/colonial_uniform/coalition_police_skirt
-	name = "Coalition Police Skirt"
+	name = "联盟警察裙装"
 	item_path = /obj/item/clothing/under/colonial/hc_police/skirt
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/utility_eng
-	name = "Engineering Utility Uniform"
+	name = "工程实用制服"
 	item_path = /obj/item/clothing/under/rank/engineering/engineer/nova/utility
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/medical_uniform_skirt
-	name = "Medical Doctor's Jumpskirt"
+	name = "医疗医生连身裙"
 	item_path = /obj/item/clothing/under/rank/medical/doctor/skirt
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/medical_uniform
-	name = "Medical Doctor's Jumpsuit"
+	name = "医疗医生连身服"
 	item_path = /obj/item/clothing/under/rank/medical/doctor
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/utility_med
-	name = "Medical Utility Uniform"
+	name = "医疗实用制服"
 	item_path = /obj/item/clothing/under/rank/medical/doctor/nova/utility
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/officersnaval
-	name = "Officer's Naval Jumpsuit"
+	name = "军官海军连身服"
 	item_path = /obj/item/clothing/under/imperial
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/officersnavalskirt
-	name = "Officer's Naval Jumpskirt"
+	name = "军官海军连身裙"
 	item_path = /obj/item/clothing/under/imperialskirt
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/paramed_light_skirt
-	name = "Paramedic Skirt (Light)"
+	name = "急救员裙装（浅色）"
 	item_path = /obj/item/clothing/under/rank/medical/paramedic/nova/light/skirt
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/paramed_light
-	name = "Paramedic Uniform (Light)"
+	name = "急救员制服（浅色）"
 	item_path = /obj/item/clothing/under/rank/medical/paramedic/nova/light
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/utility_sci
-	name = "Science Utility Uniform"
+	name = "科研实用制服"
 	item_path = /obj/item/clothing/under/rank/rnd/scientist/nova/utility
 	group = "Workwear"
 
 /datum/loadout_item/under/miscellaneous/redscrubs
-	name = "Scrubs (Red)"
+	name = "手术服（红色）"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/nova/red
 	group = "Workwear"
 
 /datum/loadout_item/under/miscellaneous/bluescrubs
-	name = "Scrubs (Blue)"
+	name = "手术服（蓝色）"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/blue
 	group = "Workwear"
 
 /datum/loadout_item/under/miscellaneous/greenscrubs
-	name = "Scrubs (Green)"
+	name = "手术服（绿色）"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/green
 	group = "Workwear"
 
 /datum/loadout_item/under/miscellaneous/purplescrubs
-	name = "Scrubs (Purple)"
+	name = "手术服（紫色）"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/purple
 	group = "Workwear"
 
 /datum/loadout_item/under/miscellaneous/whitescrubs
-	name = "Scrubs (White)"
+	name = "手术服（白色）"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/nova/white
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/sol_emt
-	name = "Sol Emergency Medical Uniform"
+	name = "太阳系紧急医疗制服"
 	item_path = /obj/item/clothing/under/sol_emt
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/sol_peacekeeper
-	name = "Sol Peacekeeper Uniform"
+	name = "太阳系维和部队制服"
 	item_path = /obj/item/clothing/under/sol_peacekeeper
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/utility
-	name = "Utility Uniform"
+	name = "实用制服"
 	item_path = /obj/item/clothing/under/misc/nova/utility
 	group = "Workwear"
 
@@ -170,33 +170,33 @@
 */
 
 /datum/loadout_item/under/jumpsuit/tarkon //Not alphabetical because this is a base-entry for Tarkon blacklisted_roles
-	name = "Tarkon Deck Jumpsuit"
+	name = "塔康甲板连身服"
 	item_path = /obj/item/clothing/under/tarkon/general
 	blacklisted_roles = list(ALL_JOBS_COM, ALL_JOBS_SEC)
 	group = "Workwear"
 
 /datum/loadout_item/under/jumpsuit/tarkon/cargo
-	name = "Tarkon Cargo Jumpsuit"
+	name = "塔康货运连身服"
 	item_path = /obj/item/clothing/under/tarkon
 
 /datum/loadout_item/under/jumpsuit/tarkon/com
-	name = "Tarkon Command Jumpsuit"
+	name = "塔康指挥连体服"
 	item_path = /obj/item/clothing/under/tarkon/com
 
 /datum/loadout_item/under/jumpsuit/tarkon/eng
-	name = "Tarkon Engineer Jumpsuit"
+	name = "塔康工程连体服"
 	item_path = /obj/item/clothing/under/tarkon/eng
 
 /datum/loadout_item/under/jumpsuit/tarkon/sec
-	name = "Tarkon Guard Jumpsuit"
+	name = "塔康警卫连体服"
 	item_path = /obj/item/clothing/under/tarkon/sec
 
 /datum/loadout_item/under/jumpsuit/tarkon/med
-	name = "Tarkon Medical Jumpsuit"
+	name = "塔康医疗连体服"
 	item_path = /obj/item/clothing/under/tarkon/med
 
 /datum/loadout_item/under/jumpsuit/tarkon/sci
-	name = "Tarkon Science Jumpsuit"
+	name = "塔康科研连体服"
 	item_path = /obj/item/clothing/under/tarkon/sci
 
 /*
@@ -206,7 +206,7 @@
 
 //COM
 /datum/loadout_item/under/jumpsuit/utility_com
-	name = "Command Utility Uniform"
+	name = "指挥实用制服"
 	item_path = /obj/item/clothing/under/rank/captain/nova/utility
 	restricted_roles = list(ALL_JOBS_COM)
 	group = "Job-Locked"
@@ -220,13 +220,13 @@
 
 //SERV
 /datum/loadout_item/under/jumpsuit/imphop
-	name = "Head of Personnel's Naval Jumpsuit"
+	name = "人事主管的海军连体服"
 	item_path = /obj/item/clothing/under/imperial/hop
 	restricted_roles = list(JOB_HEAD_OF_PERSONNEL, JOB_NT_REP)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/imphopskirt
-	name = "Head of Personnel's Naval Jumpskirt"
+	name = "人事主管的海军连体裙"
 	item_path = /obj/item/clothing/under/imperialskirt/hop
 	restricted_roles = list(JOB_HEAD_OF_PERSONNEL, JOB_NT_REP)
 	group = "Job-Locked"
@@ -254,13 +254,13 @@
 
 //MED
 /datum/loadout_item/under/jumpsuit/impcmo
-	name = "Chief Medical Officer's Naval Uniform"
+	name = "首席医疗官的海军制服"
 	item_path = /obj/item/clothing/under/imperial/cmo
 	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/impcmoskirt
-	name = "Chief Medical Officer's Naval Skirt"
+	name = "首席医疗官的海军裙装"
 	item_path = /obj/item/clothing/under/imperialskirt/cmo
 	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 	group = "Job-Locked"
@@ -310,13 +310,13 @@
 
 //ENGI
 /datum/loadout_item/under/jumpsuit/impce
-	name = "Chief Engineer's Naval Uniform"
+	name = "首席工程师的海军制服"
 	item_path = /obj/item/clothing/under/imperial/ce
 	restricted_roles = list(JOB_CHIEF_ENGINEER)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/impceskirt
-	name = "Chief Engineer's Naval Skirt"
+	name = "首席工程师的海军裙装"
 	item_path = /obj/item/clothing/under/imperialskirt/ce
 	restricted_roles = list(JOB_CHIEF_ENGINEER)
 	group = "Job-Locked"
@@ -344,13 +344,13 @@
 
 //SCI
 /datum/loadout_item/under/jumpsuit/imprd
-	name = "Research Director's Naval Uniform"
+	name = "研究主管的海军制服"
 	item_path = /obj/item/clothing/under/imperial/rd
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/imprdskirt
-	name = "Research Director's Naval Skirt"
+	name = "研究主管的海军裙装"
 	item_path = /obj/item/clothing/under/imperialskirt/rd
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
 	group = "Job-Locked"
@@ -385,19 +385,19 @@
 
 //CARGO
 /datum/loadout_item/under/miscellaneous/qm_gorka
-	name = "Quartermaster's Gorka Uniform"
+	name = "军需官的戈尔卡制服"
 	item_path = /obj/item/clothing/under/rank/cargo/qm/nova/gorka
 	restricted_roles = list(JOB_QUARTERMASTER)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/miscellaneous/qm_skirtle
-	name = "Quartermaster's Skirtleneck"
+	name = "军需官的裙领衫"
 	item_path = /obj/item/clothing/under/rank/cargo/qm/nova/turtleneck/skirt
 	restricted_roles = list(JOB_QUARTERMASTER)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/cargo/qm
-	name = "Quartermaster's Uniform"
+	name = "军需官制服"
 	item_path = /obj/item/clothing/under/rank/cargo/qm
 	restricted_roles = list(JOB_QUARTERMASTER)
 	group = "Job-Locked"
@@ -418,91 +418,91 @@
 
 //SEC
 /datum/loadout_item/under/jumpsuit/imphos
-	name = "Head of Security's Naval Uniform"
+	name = "安全主管的海军制服"
 	item_path = /obj/item/clothing/under/imperialvest/hos
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/imphosskirt
-	name = "Head of Security's Naval Skirt"
+	name = "安全主管的海军裙装"
 	item_path = /obj/item/clothing/under/imperialskirtvest/hos
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_dress
-	name = "Security Battle Dress"
+	name = "安保战斗服"
 	item_path = /obj/item/clothing/under/rank/security/nova/dress
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_dress_blue
-	name = "Security Battle Dress (Blue)"
+	name = "安保战斗服（蓝色）"
 	item_path = /obj/item/clothing/under/rank/security/nova/dress/blue
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_formal
-	name = "Security Formal Uniform"
+	name = "安保正装制服"
 	item_path = /obj/item/clothing/under/rank/security/nova/formal
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_plain_skirt
-	name = "Security Jumpskirt (Blue, Plain)"
+	name = "安保连身裙（蓝色，素色）"
 	item_path = /obj/item/clothing/under/rank/security/nova/skirt/plain
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_jumpskirt_blue
-	name = "Security Jumpskirt (Blue, Turtleneck)"
+	name = "安保连身裙（蓝色，高领）"
 	item_path = /obj/item/clothing/under/rank/security/nova/skirt
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_jumpsuit_black
-	name = "Security Jumpsuit"
+	name = "安保连身服"
 	item_path = /obj/item/clothing/under/rank/security/nova/officer
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_miniskirt
-	name = "Security Miniskirt"
+	name = "安保迷你裙"
 	item_path = /obj/item/clothing/under/rank/security/nova/skirt/mini
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_miniskirt_blue
-	name = "Security Miniskirt (Blue)"
+	name = "安保迷你裙（蓝色）"
 	item_path = /obj/item/clothing/under/rank/security/nova/skirt/mini/blue
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_shorts
-	name = "Security Shorts"
+	name = "安保短裤"
 	item_path = /obj/item/clothing/under/rank/security/nova/trousers/shorts
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_trousers
-	name = "Security Trousers"
+	name = "安保长裤"
 	item_path = /obj/item/clothing/under/rank/security/nova/trousers
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_turtleneck
-	name = "Security Turtleneck"
+	name = "安保高领衫"
 	item_path = /obj/item/clothing/under/rank/security/nova/turtleneck
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/security_turtleneck_blue
-	name = "Security Turtleneck (Blue)"
+	name = "安保高领衫（蓝色）"
 	item_path = /obj/item/clothing/under/rank/security/nova/turtleneck/blue
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 	group = "Job-Locked"
 
 /datum/loadout_item/under/jumpsuit/utility_sec
-	name = "Security Utility Uniform"
+	name = "安保实用制服"
 	item_path = /obj/item/clothing/under/rank/security/nova/utility
 	restricted_roles = list(ALL_JOBS_SEC)
 	group = "Job-Locked"

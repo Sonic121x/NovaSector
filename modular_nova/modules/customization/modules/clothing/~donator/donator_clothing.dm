@@ -131,16 +131,16 @@
 		var/list/selects = colors.Copy()
 		selects["Save"] = "Save"
 		selects["Delete"] = "Delete"
-		var/selection = input(user, "", "Color Menu", currentcolor) as null|anything in selects
+		var/selection = input(user, "", "颜色菜单", currentcolor) as null|anything in selects
 		if(QDELETED(src) || !user.can_perform_action(src))
 			return
 		switch(selection)
 			if("Save")
-				var/name = input(user, "", "Name the color!", "Pastel Purple") as text|null
+				var/name = input(user, "", "命名颜色！", "淡紫色") as text|null
 				if(name)
 					colors[name] = currentcolor
 			if("Delete")
-				var/delet = input(user, "", "Color Menu", currentcolor) as null|anything in colors
+				var/delet = input(user, "", "颜色菜单", currentcolor) as null|anything in colors
 				if(delet)
 					colors.Remove(delet)
 			if(null)
@@ -148,7 +148,7 @@
 			else
 				currentcolor = colors[selection]
 	else if(istype(action, /datum/action/item_action/dtcleargrid))
-		var/yesnomaybe = tgui_alert(user, "Are you sure you wanna clear the canvas?", "", list("Yes", "No", "Maybe"))
+		var/yesnomaybe = tgui_alert(user, "你确定要清空画布吗？", "", list("Yes", "No", "Maybe"))
 		if(QDELETED(src) || !user.can_perform_action(src))
 			return
 		switch(yesnomaybe)
@@ -659,7 +659,7 @@
 /obj/item/clothing/gloves/ring/hypno/ui_action_click(mob/living/user, action)
 	if(!isliving(user) || !can_use(user))
 		return
-	var/message = input(user, "Speak with a hypnotic whisper", "Whisper")
+	var/message = input(user, "用催眠般的低语说话", "低语")
 	if(QDELETED(src) || QDELETED(user) || !message || !user.can_speak())
 		return
 	user.whisper(message, spans = spans)
@@ -749,7 +749,7 @@
 		new treat_path(src)
 
 /obj/item/clothing/neck/inferno_collar/attack_self(mob/user)
-	tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", "Kiara", MAX_NAME_LEN)
+	tagname = stripped_input(user, "你想要更改标签上的名字吗？", "给你的新宠物起个名字", "Kiara", MAX_NAME_LEN)
 	if(tagname)
 		name = "[initial(name)] - [tagname]"
 
@@ -1084,7 +1084,7 @@
 		to_chat(user, span_warning("You must hold the [src] in your hand to do this!"))
 		return CLICK_ACTION_BLOCKING
 	voice_filter = voice_filter ? null : initial(voice_filter)
-	to_chat(user, span_notice("Mask voice muffling [voice_filter ? "enabled" : "disabled"]."))
+	to_chat(user, span_notice("面罩语音模糊功能 [voice_filter ? "enabled" : "disabled"]。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/mask/gas/psycho_malice/Initialize(mapload)
@@ -1105,10 +1105,10 @@
 		wear_hair_over = !wear_hair_over
 		if(wear_hair_over)
 			alternate_worn_layer = BACK_LAYER
-			to_chat(user, "You [is_worn ? "" : "will "]sweep your hair over the mask.")
+			to_chat(user, "你[is_worn ? "" : "will "]把头发拨到面罩上方。")
 		else
 			alternate_worn_layer = initial(alternate_worn_layer)
-			to_chat(user, "You [is_worn ? "" : "will "]sweep your hair under the mask.")
+			to_chat(user, "你[is_worn ? "" : "will "]把头发拨到面罩下方。")
 
 		user.update_worn_mask()
 
@@ -1367,7 +1367,7 @@
 // Donation reward for gamerguy14948
 /obj/item/clothing/under/occult
 	name = "occult collector's outfit"
-	desc = "A set of clothes fit for someone dapper that isn't afraid of getting dirty."
+	desc = "一套适合那些不怕弄脏的体面人士穿着的衣服。"
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/uniform.dmi'
 	icon_state = "occultoutfit"
@@ -1375,8 +1375,8 @@
 
 // Donation reward for gamerguy14948
 /obj/item/clothing/head/hooded/occult
-	name = "hood"
-	desc = "Certainly makes you look more ominous."
+	name = "兜帽"
+	desc = "肯定让你看起来更不祥。"
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "occulthood"
@@ -1384,8 +1384,8 @@
 
 // Donation reward for gamerguy14948
 /obj/item/clothing/suit/hooded/occult
-	name = "occult collector's coat"
-	desc = "A big, heavy coat lined with leather and ivory cloth, adorned with a hood. It looks dusty."
+	name = "神秘收藏家大衣"
+	desc = "一件用皮革和象牙色布料衬里、带有兜帽的厚重长大衣。看起来满是灰尘。"
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "occultcoat"
@@ -1394,8 +1394,8 @@
 
 // Donation reward for Octus
 /obj/item/clothing/mask/breath/vox/octus
-	name = "sinister visor"
-	desc = "Skrektastic."
+	name = "险恶面罩"
+	desc = "斯克雷克塔斯蒂克。"
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/mask.dmi'
 	worn_icon_vox = 'modular_nova/master_files/icons/donator/mob/clothing/mask_vox.dmi'
@@ -1403,16 +1403,16 @@
 
 // Donation reward for 1ceres
 /obj/item/clothing/glasses/rosecolored
-	name = "rose-colored glasses"
-	desc = "Goggle-shaped glasses that seem to have a HUD-like feed in some odd line-based script. It doesn’t look like they were made by NT."
+	name = "玫瑰色眼镜"
+	desc = "一副护目镜形状的眼镜，似乎带有某种基于线条的奇怪脚本的HUD式显示。看起来不像是纳米传讯制造的。"
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/eyes.dmi'
 	icon_state = "rose"
 
 // Donation reward for Fuzlet
 /obj/item/card/fuzzy_license
-	name = "license to hug"
-	desc = "A very official looking license. Not actually endorsed by Nanotrasen."
+	name = "拥抱许可证"
+	desc = "一份看起来非常正式的许可证。实际上并未得到纳米传讯的认可。"
 	icon = 'modular_nova/master_files/icons/donator/obj/custom.dmi'
 	icon_state = "license"
 
@@ -1436,7 +1436,7 @@
 
 /obj/item/card/fuzzy_license/attack_self(mob/user)
 	if(Adjacent(user))
-		user.visible_message(span_notice("[user] shows you: [icon2html(src, viewers(user))] [src.name]."), span_notice("You show \the [src.name]."))
+		user.visible_message(span_notice("[user] 向你展示：[icon2html(src, viewers(user))] [src.name]。"), span_notice("You show \the [src.name]."))
 	add_fingerprint(user)
 
 /obj/item/card/fuzzy_license/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
@@ -1444,28 +1444,28 @@
 		return
 
 	if(istype(attacking_item, /obj/item/pen) || istype(attacking_item, /obj/item/toy/crayon))
-		var/choice = input(user, "Select the license type", "License Type Selection") as null|anything in possible_types
+		var/choice = input(user, "选择许可证类型", "许可证类型选择") as null|anything in possible_types
 		if(!isnull(choice))
-			name = "license to [choice]"
+			name = "[choice] 许可证"
 
 // Donation reward for 1ceres
 /obj/item/clothing/suit/jacket/gorlex_harness
-	name = "engine technician harness"
-	desc = "A blood-red engineering technician harness. You can't seem to figure out a use to it, but it seems to seal magnetically in some places."
+	name = "引擎技术员背带"
+	desc = "一件血红色的工程技术人员背带。你似乎想不出它有什么用处，但某些地方似乎能通过磁性密封。"
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "gorlexharness"
 
 // Donation reward for 1ceres
 /obj/item/poster/korpstech
-	name = "\improper Empire Enhancements poster"
+	name = "\improper 帝国增强海报"
 	poster_type = /obj/structure/sign/poster/contraband/korpstech
 	icon = 'modular_nova/modules/aesthetics/posters/icons/contraband.dmi'
 	icon_state = "rolled_poster"
 
 /obj/structure/sign/poster/contraband/korpstech
-	name = "Empire Enhancements"
-	desc = "This poster bears a huge, pink helix on it, with smaller text underneath it that mentions some alleged genetic advancements from a long time ago."
+	name = "帝国增强"
+	desc = "这张海报上印着一个巨大的粉色螺旋，下方较小的文字提及了一些据称是许久以前的基因进展。"
 	icon = 'modular_nova/modules/aesthetics/posters/icons/contraband.dmi'
 	icon_state = "korpsposter"
 	never_random = TRUE
@@ -1474,7 +1474,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Kay-Nite
 /obj/item/clothing/glasses/eyepatch/rosecolored
-	name = "rose-colored eyepatch"
+	name = "玫瑰色眼罩"
 	desc = "A customized eyepatch with a bright pink HUD floating in front of it. It looks like there's more to it than just an eyepatch, considering the materials it's made of."
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/eyes.dmi'
@@ -1626,7 +1626,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 /obj/item/clothing/accessory/hypno_watch/ui_action_click(mob/living/user, action)
 	if(!isliving(user) || !can_use(user))
 		return
-	var/message = input(user, "Speak with a hypnotic whisper", "Whisper")
+	var/message = input(user, "用催眠般的低语说话", "低语")
 	if(QDELETED(src) || QDELETED(user) || !message || !user.can_speak())
 		return
 	user.whisper(message, spans = spans)
@@ -2026,7 +2026,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 //  Donation reward for vexcint
 /obj/item/clothing/head/anubite
-	name = "\improper Anubite headpiece"
+	name = "\improper 阿努比斯头饰"
 	desc = "A dark coloured headpiece with golden accents. Its features seem reminiscent of the god Anubis."
 	icon = 'modular_nova/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "anubite_headpiece"
@@ -2157,7 +2157,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	AddComponent(/datum/component/toggle_icon) // Open and close buttons
 
 /obj/item/clothing/under/rank/civilian/curator/treasure_hunter/noble_enforcer
-	name = "\proper the <i><b>Noble Swashbuckler</i></b> Suit"
+	name = "\proper 那套<i><b>贵族冒险家</i></b>西装"
 	desc = "A suit tailored for a man who dines in ballrooms and vanishes into alleyways. The red tie is a warning for the walking red-flag the wearer is. Smells like wood and a lemon-y cologne."
 	special_desc = "<center><b><u>White Button-Down:</b></u> <i><u>Undoubtly Crisp</i></u>, the cuffs are <i><u>double-stitched</i></u> to withstand grappling. The collar stays impeccably upright, \
 		hiding a thin, monogrammed wire (for garrotes or lockpicks) sewn into the seam.<br><b><u>Black Dress Pants:</b></u> Tailored for <i><u>motion, not restraint</i></u>. \
@@ -2172,7 +2172,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // donator reward for ignari
 /obj/item/clothing/under/rem
-	name = "\improper M.I.A. limiter"
+	name = "\improper M.I.A. 限制服"
 	desc = "Manufactured from durable synthetic threads, this outfit seems to be very poor at transmitting physical stimuli to the wearer. \
 		The material appears to be extremely compressive, possibly aiding in masking any features underneath."
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/uniform.dmi'
@@ -2181,7 +2181,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	can_adjust = FALSE
 
 /obj/item/clothing/shoes/rem_shoes
-	name = "\improper M.I.A. heels"
+	name = "\improper M.I.A. 高跟鞋"
 	desc = "A pair of form fitting heels. They appear to bear no distinguishing identifiers."
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/feet.dmi'
@@ -2192,7 +2192,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	AddComponent(/datum/component/squeak, list('modular_nova/master_files/sound/effects/footstep/highheel1.ogg' = 1, 'modular_nova/master_files/sound/effects/footstep/highheel2.ogg' = 1), 70)
 
 /obj/item/clothing/under/bwake
-	name = "\improper Compression bodysuit"
+	name = "\improper 压缩紧身衣"
 	desc = "A bodysuit made of weaved bluespace threads and latex. The suit appears to be exceptionally insulating, and seals quite neatly around the wearer's body."
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -2281,7 +2281,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon_state = "seva_melon"
 
 /obj/item/clothing/suit/chokha
-	name = "\improper Iseurian chokha"
+	name = "\improper 伊瑟里安乔卡外套"
 	desc = "A ceremonial woolen coat sporting a high neck and decorative gunpowder cases on the breast. The label on this one bears the Iseurian Revolutionary flag."
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/chokha"
@@ -2495,7 +2495,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/gabeny
-	name = "\improper Triumvirate officer's cap"
+	name = "\improper 三巨头军官帽"
 	desc = "A militaristic, dark grey cap with a of gold badge on the front. The emblem depicts the triangular fox-faced emblem of Triumvirate Textiles."
 	icon_state = "gabeny_cap"
 	worn_icon_state = "gabeny_cap"
@@ -2503,7 +2503,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/head.dmi'
 
 /obj/item/clothing/under/gabeny
-	name = "\improper Triumvirate officer's formal uniform"
+	name = "\improper 三巨头军官礼服"
 	desc = "A dark grey military-style uniform with golden cuffs and epaulet on the right shoulder. The top of this uniform is double-breasted with navy blue buttons and highlights."
 	icon_state = "gabeny_jumpsuit"
 	worn_icon_state = "gabeny_jumpsuit"
@@ -2512,7 +2512,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	worn_icon_digi = 'modular_nova/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 
 /obj/item/clothing/suit/toggle/labcoat/gabeny
-	name = "\improper Triumvirate medsci officer's labcoat"
+	name = "\improper 三巨头医疗科学官实验袍"
 	desc = "A dark grey labcoat with navy blue accents and the fox-faced emblem of Triumvirate Textiles on the right breast pocket. Despite having a spot on the right sleeve for a company patch, there doesn't seem to be one. \
 		The materials used to make this coat make it perfectly sanitary for any medical or research needs."
 	icon_state = "gabeny_labcoat"
@@ -2521,7 +2521,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/suit.dmi'
 
 /obj/item/clothing/suit/jacket/gabeny
-	name = "\improper Triumvirate officer's great coat"
+	name = "\improper 三巨头军官长大衣"
 	desc = "A dark grey great coat with navy blue accents and gold buttons with a patch of the Sol Federation flag on the right shoulder. \
 		There's a few other patches across the chest, and left sleeve, most recognizable being the fox-faced emblem of Triumvirate Textiles on the left breast pocket."
 	icon_state = "gabeny_greatcoat"
@@ -2532,7 +2532,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Kaynite Donor Items
 /obj/item/clothing/suit/hooded/merctac_hoodie
-	name = "\improper MercTac hoodie"
+	name = "\improper 佣兵战术连帽衫"
 	desc = "A custom tailored hoodie with rash guard, and a sleeveless option for the opposite arm. \
 		A vest with a traditional steel inserts for the front and back woven with cordura and a breathable mesh padding sits comfortably on the chest, \
 		coupled with traditional molle rigging systems for pouches. Together the pieces create a comfortable, tactical fit."

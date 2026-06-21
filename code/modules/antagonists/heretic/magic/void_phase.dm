@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/pointed/void_phase
-	name = "Void Phase"
+	name = "虚空相位"
 	desc = "Lets you blink to your pointed destination, causes 3x3 aoe damage bubble \
 		around your pointed destination and your current location. \
 		It has a minimum range of 3 tiles and a maximum range of 9 tiles."
@@ -28,7 +28,7 @@
 		return
 
 	if(owner && get_dist(get_turf(owner), get_turf(cast_on)) < min_cast_range)
-		cast_on.balloon_alert(owner, "too close!")
+		cast_on.balloon_alert(owner, "太近了！")
 		return . | SPELL_CANCEL_CAST
 
 /datum/action/cooldown/spell/pointed/void_phase/cast(atom/cast_on)

@@ -51,10 +51,10 @@
 	var/datum/status_effect/surgery_prepped/prep = target_mob.has_status_effect(__IMPLIED_TYPE__)
 	if(isnull(prep) || !(body_zone in prep.zones))
 		target_mob.apply_status_effect(/datum/status_effect/surgery_prepped, body_zone, aid_name)
-		target_mob.balloon_alert(surgeon, "[parse_zone(body_zone)] surgery prepared")
+		target_mob.balloon_alert(surgeon, "[parse_zone(body_zone)] 手术准备就绪")
 		return
 	prep.untrack_surgery(body_zone)
-	target_mob.balloon_alert(surgeon, "surgery cleared")
+	target_mob.balloon_alert(surgeon, "手术已清除")
 
 /// Tracks which body zones have been prepped for surgery
 /datum/status_effect/surgery_prepped
@@ -114,7 +114,7 @@
 	if(movement_counter < 4)
 		return
 	// "The surgical drapes and bedsheets adorning John fall off!"
-	owner.visible_message(span_warning("The [english_list(surgical_aids)] adorning [owner] fall off!"))
+	owner.visible_message(span_warning("装饰在 [owner] 身上的 [english_list(surgical_aids)] 掉落了！"))
 	qdel(src)
 
 /datum/status_effect/surgery_prepped/proc/on_attach_limb(datum/source, obj/item/bodypart/limb)

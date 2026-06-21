@@ -1,7 +1,7 @@
 ///Essentially, just turns the implantee into a teleport beacon.
 /obj/item/implant/beacon
-	name = "beacon implant"
-	desc = "Teleports things."
+	name = "信标植入物"
+	desc = "传送物品。"
 	actions_types = null
 	implant_flags = IMPLANT_TYPE_SECURITY
 	hud_icon_state = "hud_imp_beacon"
@@ -38,5 +38,5 @@
 
 /obj/item/implantcase/beacon
 	name = "implant case - 'Beacon'"
-	desc = "A glass case containing a beacon implant."
+	desc = "一个装有信标植入物的玻璃盒。"
 	imp_type = /obj/item/implant/beacon

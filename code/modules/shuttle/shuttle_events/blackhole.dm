@@ -1,6 +1,6 @@
 ///Sensors indicate that a black hole's gravitational field is affecting the region of space we were headed through
 /datum/shuttle_event/simple_spawner/black_hole
-	name = "Black Hole (Oh no!)"
+	name = "黑洞（哦不！）"
 	event_probability = 0 // only admin spawnable
 	spawn_probability_per_process = 10
 	activation_fraction = 0.35
@@ -12,7 +12,7 @@
 
 ///Kobayashi Maru version
 /datum/shuttle_event/simple_spawner/black_hole/adminbus
-	name = "Black Holes (OH GOD!)"
+	name = "黑洞群（天啊！）"
 	spawn_probability_per_process = 50
 	activation_fraction = 0.2
 	spawning_list = list(/obj/singularity/shuttle_event = 10)
@@ -20,7 +20,7 @@
 
 /// No Escape traitor final objective
 /datum/shuttle_event/simple_spawner/black_hole/no_escape
-	name = "Black Hole Massive (is not admin spawnable)"
+	name = "巨型黑洞（不可由管理员生成）"
 	spawn_probability_per_process = -1.875 // starts in the negative but increases over time
 	activation_fraction = 0 // no delay
 	spawning_list = list(/obj/singularity/shuttle_event/no_escape = 1)
@@ -34,11 +34,11 @@
 
 /datum/shuttle_event/simple_spawner/black_hole/no_escape/proc/announcement()
 	priority_announce(
-		text = "Sensors indicate that a black hole's gravitational field is affecting the region of space we are heading through.",
-		title = "The Orion Trail",
+		text = "传感器显示一个黑洞的引力场正在影响我们穿行的太空区域。",
+		title = "猎户座之路",
 		sound = 'sound/announcer/notice/notice1.ogg',
 		has_important_message = TRUE,
-		sender_override = "Emergency Shuttle",
+		sender_override = "紧急穿梭机",
 		color_override = "red",
 	)
 

@@ -30,7 +30,7 @@ GLOBAL_PROTECT(poll_options)
 	if(!poll)
 		return
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger("Failed to establish database connection."))
+		to_chat(src, span_danger("无法建立数据库连接。"))
 		return
 	switch(poll.poll_type)
 		if(POLLTYPE_OPTION)
@@ -320,15 +320,15 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_handler(datum/poll_question/poll, href_list)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger("Failed to establish database connection."))
+		to_chat(src, span_danger("无法建立数据库连接。"))
 		return
 	if(!poll || !href_list)
 		return
 	if(IsAdminAdvancedProcCall())
 		usr.log_message("attempted to rig the vote by voting as [key].", LOG_ADMIN)
 		message_admins("[key_name_admin(usr)] attempted to rig the vote by voting as [key].")
-		to_chat(usr, span_danger("You don't seem to be [key]."))
-		to_chat(src, span_danger("Something went horribly wrong processing your vote. Please contact an administrator, they should have gotten a message about this."))
+		to_chat(usr, span_danger("你似乎不是[key]。"))
+		to_chat(src, span_danger("处理你的投票时出现了严重错误。请联系管理员，他们应该已收到相关消息。"))
 		return
 	var/admin_rank
 	if(client.holder)
@@ -356,11 +356,11 @@ GLOBAL_PROTECT(poll_options)
 	if(query_validate_poll_vote.NextRow())
 		vote_id = text2num(query_validate_poll_vote.item[1])
 		if(vote_id && !poll.allow_revoting)
-			to_chat(usr, span_danger("Poll revoting is disabled and you've already replied to this poll."))
+			to_chat(usr, span_danger("投票重投功能已禁用，您已回复过此投票。"))
 			qdel(query_validate_poll_vote)
 			return
 	else
-		to_chat(usr, span_danger("Selected poll is not open."))
+		to_chat(usr, span_danger("所选投票未开放。"))
 		qdel(query_validate_poll_vote)
 		return
 	qdel(query_validate_poll_vote)
@@ -379,7 +379,7 @@ GLOBAL_PROTECT(poll_options)
 	if(vote_success)
 		if(!vote_id)
 			poll.poll_votes++
-		to_chat(usr, span_notice("Vote successful."))
+		to_chat(usr, span_notice("投票成功。"))
 
 /**
  * Processes vote form data and saves results to the database for an option type poll.
@@ -387,13 +387,13 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_option(datum/poll_question/poll, href_list, admin_rank, sql_poll_id, vote_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger("Failed to establish database connection."))
+		to_chat(src, span_danger("无法建立数据库连接。"))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
 	var/datum/poll_option/option = locate(href_list["voteoptionref"]) in poll.options
 	if(!option)
-		to_chat(src, span_danger("No option was selected."))
+		to_chat(src, span_danger("未选择任何选项。"))
 		return
 	var/datum/db_query/query_vote_option = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("poll_vote")] (id, datetime, pollid, optionid, ckey, ip, adminrank)
@@ -419,13 +419,13 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_text(href_list, admin_rank, sql_poll_id, vote_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger("Failed to establish database connection."))
+		to_chat(src, span_danger("无法建立数据库连接。"))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
 	var/reply_text = href_list["replytext"]
 	if(!reply_text || (length(reply_text) > 2048))
-		to_chat(src, span_danger("The text you entered was blank or too long. Please correct the text and submit again."))
+		to_chat(src, span_danger("您输入的文本为空或过长。请修正文本后重新提交。"))
 		return
 	var/datum/db_query/query_vote_text = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("poll_textreply")] (id, datetime, pollid, ckey, ip, replytext, adminrank)
@@ -451,7 +451,7 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_rating(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger("Failed to establish database connection."))
+		to_chat(src, span_danger("无法建立数据库连接。"))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
@@ -494,14 +494,14 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_multi(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger("Failed to establish database connection."))
+		to_chat(src, span_danger("无法建立数据库连接。"))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
 	if(length(href_list) > 2)
 		href_list.Cut(1,3) //first two values aren't options
 	else
-		to_chat(src, span_danger("No options were selected."))
+		to_chat(src, span_danger("未选择任何选项。"))
 
 	var/special_columns = list(
 		"datetime" = "NOW()",
@@ -512,7 +512,7 @@ GLOBAL_PROTECT(poll_options)
 	var/vote_count = 0
 	for(var/h in href_list)
 		if(vote_count == poll.options_allowed)
-			to_chat(src, span_danger("Allowed option count exceeded, only the first [poll.options_allowed] selected options have been saved."))
+			to_chat(src, span_danger("超出允许的选项数量，仅保存了前 [poll.options_allowed] 个选中的选项。"))
 			break
 		vote_count++
 		var/datum/poll_option/option = locate(h) in poll.options
@@ -541,13 +541,13 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_irv(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger("Failed to establish database connection."))
+		to_chat(src, span_danger("无法建立数据库连接。"))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
 	var/list/votelist = splittext(href_list["IRVdata"], ",")
 	if(!length(votelist))
-		to_chat(src, span_danger("No ordering data found. Please try again or contact an administrator."))
+		to_chat(src, span_danger("未找到排序数据。请重试或联系管理员。"))
 
 	var/list/special_columns = list(
 		"datetime" = "NOW()",
@@ -559,7 +559,7 @@ GLOBAL_PROTECT(poll_options)
 	for(var/o in votelist)
 		var/datum/poll_option/option = locate(o) in option_copy
 		if (!option)
-			to_chat(src, span_warning("invalid votes were trimmed from your ballot, please revote ."))
+			to_chat(src, span_warning("无效投票已从您的选票中移除，请重新投票。"))
 		sql_votes += list(list(
 			"pollid" = sql_poll_id,
 			"optionid" = option.option_id,

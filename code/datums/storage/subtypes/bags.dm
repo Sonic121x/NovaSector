@@ -17,8 +17,8 @@
 
 /datum/storage/bag/trash/remove_single(mob/removing, obj/item/thing, atom/remove_to_loc, silent)
 	real_location.visible_message(
-		span_notice("[removing] starts fishing around inside [parent]."),
-		span_notice("You start digging around in [parent] to try and pull something out."),
+		span_notice("[removing] 开始在 [parent] 里面翻找。"),
+		span_notice("你开始在[parent]里翻找，试图拿出什么东西。"),
 	)
 	if(!do_after(removing, 1.5 SECONDS, parent))
 		return FALSE
@@ -288,7 +288,7 @@
 
 	if(istype(to_insert, /obj/item/storage/backpack) && length(to_insert.contents))
 		if(messages && user)
-			parent.balloon_alert(user, "can't store filled backpacks!")
+			parent.balloon_alert(user, "无法存放已装满的背包！")
 		return FALSE
 
 	return TRUE
@@ -313,7 +313,7 @@
 	SIGNAL_HANDLER
 
 	if(user && messages)
-		parent.balloon_alert(user, "garment bag is in the way!")
+		parent.balloon_alert(user, "衣物袋挡住了！")
 	return BLOCK_STORAGE_INSERT
 
 ///Quiver bag

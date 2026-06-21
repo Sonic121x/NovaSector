@@ -1,13 +1,13 @@
 /obj/effect/decal/cleanable/generic
-	name = "clutter"
-	desc = "Someone should clean that up."
+	name = "杂物"
+	desc = "应该有人来清理一下。"
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "shards"
 	beauty = -50
 
 /obj/effect/decal/cleanable/ash
-	name = "ashes"
-	desc = "Ashes to ashes, dust to dust, and into space."
+	name = "灰烬"
+	desc = "尘归尘，土归土，归于太空。"
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "ash"
 	plane = GAME_PLANE
@@ -26,15 +26,15 @@
 	return !istype(here_turf, /obj/structure/bodycontainer/crematorium) && ..()
 
 /obj/effect/decal/cleanable/ash/large
-	name = "large pile of ashes"
+	name = "大堆灰烬"
 	icon_state = "big_ash"
 	beauty = -100
 	decal_reagent = /datum/reagent/ash
 	reagent_amount = 60
 
 /obj/effect/decal/cleanable/glass
-	name = "tiny shards"
-	desc = "Back to sand."
+	name = "细小碎片"
+	desc = "回归沙土。"
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "tiny"
 	beauty = -100
@@ -58,12 +58,12 @@
 
 //Screws that are dropped on the Z level below when deconstructing a reinforced floor plate.
 /obj/effect/decal/cleanable/glass/plastitanium/screws //I don't know how to sprite scattered screws, this can work until a spriter gets their hands on it.
-	name = "pile of screws"
-	desc = "Looks like they fell from the ceiling"
+	name = "一堆螺丝"
+	desc = "看起来像是从天花板上掉下来的"
 
 /obj/effect/decal/cleanable/dirt
-	name = "dirt"
-	desc = "Someone should clean that up."
+	name = "污垢"
+	desc = "应该有人来清理一下。"
 	icon = 'icons/effects/dirt_misc.dmi'
 	icon_state = "dirt-flat-0"
 	base_icon_state = "dirt"
@@ -96,8 +96,8 @@
 	return ..()
 
 /obj/effect/decal/cleanable/dirt/dust
-	name = "dust"
-	desc = "A thin layer of dust coating the floor."
+	name = "灰尘"
+	desc = "覆盖在地板上的一层薄灰。"
 	icon_state = "dust"
 	base_icon_state = "dust"
 	is_tileable = FALSE
@@ -107,8 +107,8 @@
 	icon_state = base_icon_state
 
 /obj/effect/decal/cleanable/greenglow
-	name = "glowing goo"
-	desc = "Jeez. I hope that's not for lunch."
+	name = "发光的粘液"
+	desc = "天啊。希望这不是午餐。"
 	icon_state = "greenglow"
 	light_power = 3
 	light_range = 2
@@ -127,13 +127,13 @@
 	. = ..()
 
 /obj/effect/decal/cleanable/greenglow/ecto
-	name = "ectoplasmic puddle"
-	desc = "You know who to call."
+	name = "灵质水坑"
+	desc = "你知道该找谁。"
 	light_power = 2
 
 /obj/effect/decal/cleanable/greenglow/radioactive
-	name = "radioactive goo"
-	desc = "Holy crap, stop looking at this and move away immediately! It's radioactive!"
+	name = "放射性粘液"
+	desc = "我靠，别看这个了，赶紧离远点！这是放射性的！"
 	light_power = 5
 	light_range = 3
 	light_color = LIGHT_COLOR_NUCLEAR
@@ -149,8 +149,8 @@
 
 /obj/effect/decal/cleanable/cobweb
 	SET_BASE_PIXEL(0, 24)
-	name = "cobweb"
-	desc = "Somebody should remove that."
+	name = "蜘蛛网"
+	desc = "应该有人清理掉它。"
 	gender = NEUTER
 	plane = GAME_PLANE
 	layer = WALL_OBJ_LAYER
@@ -165,8 +165,8 @@
 	icon_state = "cobweb2"
 
 /obj/effect/decal/cleanable/molten_object
-	name = "gooey grey mass"
-	desc = "It looks like a melted... something."
+	name = "粘稠的灰色团块"
+	desc = "看起来像是融化了的……什么东西。"
 	gender = NEUTER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "molten"
@@ -177,14 +177,14 @@
 	clean_type = CLEAN_TYPE_HARD_DECAL
 
 /obj/effect/decal/cleanable/molten_object/large
-	name = "big gooey grey mass"
+	name = "大块粘稠的灰色团块"
 	icon_state = "big_molten"
 	beauty = -300
 
 //Vomit (sorry)
 /obj/effect/decal/cleanable/vomit
-	name = "vomit"
-	desc = "Gosh, how unpleasant."
+	name = "呕吐物"
+	desc = "天哪，真恶心。"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
@@ -199,7 +199,7 @@
 	if(!istype(user_tongue, /obj/item/organ/tongue/fly))
 		return
 	playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
-	as_human.visible_message(span_alert("[as_human] extends a small proboscis into the vomit pool, sucking it with a slurping sound."))
+	as_human.visible_message(span_alert("[as_human] 将一根小喙管伸进呕吐物池中，发出吮吸声将其吸走。"))
 	lazy_init_reagents()?.trans_to(as_human, reagents.total_volume, transferred_by = user, methods = INGEST)
 	qdel(src)
 
@@ -212,8 +212,8 @@
 	random_icon_states = list("vomitpurp_1", "vomitpurp_2", "vomitpurp_3", "vomitpurp_4")
 
 /obj/effect/decal/cleanable/vomit/nanites
-	name = "nanite-infested vomit"
-	desc = "Gosh, you can see something moving in there."
+	name = "纳米虫感染的呕吐物"
+	desc = "天哪，你能看到里面有东西在动。"
 	icon_state = "vomitnanite_1"
 	random_icon_states = list("vomitnanite_1", "vomitnanite_2", "vomitnanite_3", "vomitnanite_4")
 
@@ -221,8 +221,8 @@
 GLOBAL_LIST_EMPTY(nebula_vomits)
 
 /obj/effect/decal/cleanable/vomit/nebula
-	name = "nebula vomit"
-	desc = "Gosh, how... beautiful."
+	name = "星云呕吐物"
+	desc = "天哪，多么……美丽。"
 	icon_state = "vomitnebula_1"
 	random_icon_states = list("vomitnebula_1", "vomitnebula_2", "vomitnebula_3", "vomitnebula_4")
 	beauty = 10
@@ -250,8 +250,8 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 		new /mob/living/basic/hivelord_brood(loc)
 
 /obj/effect/decal/cleanable/vomit/old
-	name = "crusty dried vomit"
-	desc = "You try not to look at the chunks, and fail."
+	name = "结痂的干呕吐物"
+	desc = "你试图不去看那些块状物，但失败了。"
 
 /obj/effect/decal/cleanable/vomit/old/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
@@ -259,13 +259,13 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SLUDGE, CELL_VIRUS_TABLE_GENERIC, rand(2,4), 10)
 
 /obj/effect/decal/cleanable/vomit/old/black_bile
-	name = "black bile"
-	desc = "There's something wiggling in there..."
+	name = "黑色胆汁"
+	desc = "里面有东西在蠕动..."
 	color = COLOR_DARK
 
 /obj/effect/decal/cleanable/chem_pile
-	name = "chemical pile"
-	desc = "A pile of chemicals. You can't quite tell what's inside it."
+	name = "化学物质堆"
+	desc = "一堆化学物质。你不太能分辨里面是什么。"
 	gender = NEUTER
 	plane = GAME_PLANE
 	layer = CLEANABLE_OBJECT_LAYER
@@ -273,8 +273,8 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	icon_state = "ash"
 
 /obj/effect/decal/cleanable/shreds
-	name = "shreds"
-	desc = "The shredded remains of what appears to be clothing."
+	name = "碎屑"
+	desc = "看起来像是衣物的破碎残骸。"
 	icon_state = "shreds"
 	gender = PLURAL
 	mergeable_decal = FALSE
@@ -294,8 +294,8 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	. = ..()
 
 /obj/effect/decal/cleanable/glitter
-	name = "generic glitter pile"
-	desc = "The herpes of arts and crafts."
+	name = "普通亮片堆"
+	desc = "艺术与手工的疱疹。"
 	icon = 'icons/effects/glitter.dmi'
 	icon_state = "glitter"
 	gender = NEUTER
@@ -306,45 +306,45 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	add_overlay(mutable_appearance('icons/effects/glitter.dmi', "glitter_sparkle[rand(1,9)]", appearance_flags = EMISSIVE_APPEARANCE_FLAGS))
 
 /obj/effect/decal/cleanable/plasma
-	name = "stabilized plasma"
-	desc = "A puddle of stabilized plasma."
+	name = "稳定等离子体"
+	desc = "一滩稳定等离子体。"
 	icon_state = "flour"
 	icon = 'icons/effects/tomatodecal.dmi'
 	color = "#2D2D2D"
 
 /obj/effect/decal/cleanable/insectguts
-	name = "insect guts"
-	desc = "One bug squashed. Four more will rise in its place."
+	name = "昆虫内脏"
+	desc = "一只虫子被压扁了。还有四只会从它的位置冒出来。"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	color = BLOOD_COLOR_XENO
 
 /obj/effect/decal/cleanable/confetti
-	name = "confetti"
-	desc = "Tiny bits of colored paper thrown about for the janitor to enjoy!"
+	name = "五彩纸屑"
+	desc = "散落各处的彩色小纸片，供清洁工享用！"
 	icon = 'icons/effects/confetti_and_decor.dmi'
 	icon_state = "confetti"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT //the confetti itself might be annoying enough
 
 /obj/effect/decal/cleanable/plastic
-	name = "plastic shreds"
-	desc = "Bits of torn, broken, worthless plastic."
+	name = "塑料碎屑"
+	desc = "一些被撕碎、破损、毫无价值的塑料片。"
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "shards"
 	color = "#c6f4ff"
 
 /obj/effect/decal/cleanable/wrapping
-	name = "wrapping shreds"
-	desc = "Torn pieces of cardboard and paper, left over from a package."
+	name = "包装碎屑"
+	desc = "从包裹上撕下来的硬纸板和纸片。"
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "paper_shreds"
 	plane = GAME_PLANE
 	layer = CLEANABLE_OBJECT_LAYER
 
 /obj/effect/decal/cleanable/wrapping/pinata
-	name = "pinata shreds"
-	desc = "Torn pieces of papier-mâché, left over from a pinata"
+	name = "皮纳塔碎屑"
+	desc = "从皮纳塔上撕下来的纸浆碎片"
 	icon_state = "pinata_shreds"
 
 /obj/effect/decal/cleanable/wrapping/pinata/syndie
@@ -354,8 +354,8 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	icon_state = "donk_pinata_shreds"
 
 /obj/effect/decal/cleanable/garbage
-	name = "decomposing garbage"
-	desc = "A split open garbage bag, its stinking content seems to be partially liquified. Yuck!"
+	name = "腐烂的垃圾"
+	desc = "一个裂开的垃圾袋，里面恶臭的内容物似乎已经部分液化。真恶心！"
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "garbage"
 	plane = GAME_PLANE
@@ -368,8 +368,8 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SLUDGE, CELL_VIRUS_TABLE_GENERIC, rand(2,4), 15)
 
 /obj/effect/decal/cleanable/rubble
-	name = "rubble"
-	desc = "A pile of rubble."
+	name = "瓦砾"
+	desc = "一堆瓦砾。"
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "rubble"
 	mergeable_decal = FALSE
@@ -386,5 +386,5 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	update_appearance(UPDATE_ICON_STATE)
 
 /obj/effect/decal/cleanable/can_bits
-	name = "shredded can"
-	desc = "This story doesn't hold water anymore."
+	name = "撕碎的罐头"
+	desc = "这个故事已经站不住脚了。"

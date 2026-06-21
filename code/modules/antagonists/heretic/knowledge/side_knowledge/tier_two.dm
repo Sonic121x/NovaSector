@@ -161,5 +161,5 @@
 		)
 		return TRUE
 
-	user.balloon_alert(user, "no additional atom present!")
+	user.balloon_alert(user, "没有额外的原子存在！")
 	return FALSE

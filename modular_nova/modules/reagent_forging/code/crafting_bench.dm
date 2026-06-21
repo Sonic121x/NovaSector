@@ -5,8 +5,8 @@
 #define BAD_HIT_PENALTY 3
 
 /obj/structure/reagent_crafting_bench
-	name = "forging workbench"
-	desc = "A crafting bench fitted with tools, securing mechanisms, and a steady surface for blacksmithing."
+	name = "锻造工作台"
+	desc = "一个配备了工具、固定装置和稳定表面的锻造工作台，用于铁匠作业。"
 	icon = 'modular_nova/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "crafting_bench_empty"
 
@@ -77,25 +77,25 @@
 		if(istype(contents[1], /obj/item/forging/complete))
 			var/obj/item/forging/complete/contained_forge_item = contents[1]
 
-			. += span_notice("[src] has a <b>[initial(contained_forge_item.name)]</b> sitting on it, awaiting completion. <br>")
+			. += span_notice("[src]上放着一个<b>[initial(contained_forge_item.name)]</b>，等待完成。<br>")
 			var/obj/item/completion_item = contained_forge_item.spawning_item
-			. += span_notice("With <b>[WEAPON_COMPLETION_WOOD_AMOUNT]</b> sheets of <b>wood</b> nearby, and some <b>hammering</b>, it could be completed into a <b>[initial(completion_item.name)]</b>.")
+			. += span_notice("在附近准备好<b>[WEAPON_COMPLETION_WOOD_AMOUNT]</b>张<b>木材</b>，并进行一些<b>锤击</b>，即可将其完成制作成<b>[initial(completion_item.name)]</b>。")
 			return // We don't want to show any selected recipes if there's weapon head on the bench
 
 	if(!selected_recipe)
 		return
 
 	var/obj/resulting_item = selected_recipe.resulting_item
-	. += span_notice("The selected recipe's resulting item is: <b>[initial(resulting_item.name)]</b> <br>")
-	. += span_notice("Gather the required materials, listed below, <b>near the bench</b>, then start <b>hammering</b> to complete it! <br>")
+	. += span_notice("所选配方最终将制作出：<b>[initial(resulting_item.name)]</b><br>")
+	. += span_notice("收集下方列出的所需材料，将其置于<b>工作台附近</b>，然后开始<b>锤击</b>以完成制作！<br>")
 
 	if(!length(selected_recipe.recipe_requirements))
-		. += span_boldwarning("Somehow, this recipe has no requirements, report this as this shouldn't happen.")
+		. += span_boldwarning("不知为何，此配方没有需求，请报告此问题，因为这不应该发生。")
 		return
 
 	for(var/obj/requirement_item as anything in selected_recipe.recipe_requirements)
 		if(!selected_recipe.recipe_requirements[requirement_item])
-			. += span_boldwarning("[requirement_item] does not have an amount required set, this should not happen, report it.")
+			. += span_boldwarning("[requirement_item]未设置所需数量，这不应该发生，请报告此问题。")
 			continue
 
 		. += span_notice("<b>[selected_recipe.recipe_requirements[requirement_item]]</b> - [initial(requirement_item.name)]")
@@ -115,7 +115,7 @@
 /obj/structure/reagent_crafting_bench/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(in_use)
-		balloon_alert(user, "already in use")
+		balloon_alert(user, "已在被使用")
 		return
 
 	update_appearance()
@@ -123,7 +123,7 @@
 	if(length(contents))
 		var/obj/item/contained_item = contents[1]
 		user.put_in_hands(contained_item)
-		balloon_alert(user, "[contained_item] retrieved")
+		balloon_alert(user, "[contained_item] 已取出")
 		update_appearance()
 		return
 
@@ -136,13 +136,13 @@
 	var/chosen_recipe = show_radial_menu(user, src, radial_choice_list, radius = 38, require_near = TRUE, tooltips = TRUE)
 
 	if(!chosen_recipe)
-		balloon_alert(user, "no recipe choice")
+		balloon_alert(user, "未选择配方")
 		return
 
 	var/datum/crafting_bench_recipe/recipe_to_use = recipe_names_to_path[chosen_recipe]
 	selected_recipe = new recipe_to_use
 
-	balloon_alert(user, "recipe chosen")
+	balloon_alert(user, "配方已选定")
 	update_appearance()
 
 /// Clears the current recipe and sets hits to completion to zero
@@ -152,12 +152,12 @@
 
 /obj/structure/reagent_crafting_bench/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(in_use)
-		balloon_alert(user, "already in use")
+		balloon_alert(user, "已在被使用")
 		return
 
 	if(istype(attacking_item, /obj/item/forging/complete))
 		if(length(contents))
-			balloon_alert(user, "already full")
+			balloon_alert(user, "已经满了")
 			return TRUE
 
 		attacking_item.forceMove(src)
@@ -169,7 +169,7 @@
 
 /obj/structure/reagent_crafting_bench/wrench_act(mob/living/user, obj/item/tool)
 	if(in_use)
-		balloon_alert(user, "it's currently in use!")
+		balloon_alert(user, "它当前正在被使用！")
 		return
 
 	user.balloon_alert_to_viewers("disassembling...")
@@ -184,18 +184,18 @@
 
 /obj/structure/reagent_crafting_bench/hammer_act(mob/living/user, obj/item/tool)
 	if(in_use)
-		balloon_alert(user, "already in use")
+		balloon_alert(user, "已在被使用")
 		return ITEM_INTERACT_SUCCESS
 
 	if(length(contents))
 		if(!istype(contents[1], /obj/item/forging/complete))
-			balloon_alert(user, "invalid item")
+			balloon_alert(user, "无效物品")
 			return ITEM_INTERACT_SUCCESS
 
 		var/obj/item/forging/complete/weapon_to_finish = contents[1]
 
 		if(!weapon_to_finish.spawning_item)
-			balloon_alert(user, "[weapon_to_finish] cannot be completed")
+			balloon_alert(user, "[weapon_to_finish] 无法完成")
 			return ITEM_INTERACT_SUCCESS
 
 		var/list/wood_required_for_weapons = list(
@@ -203,7 +203,7 @@
 		)
 
 		if(!can_we_craft_this(wood_required_for_weapons))
-			balloon_alert(user, "not enough wood")
+			balloon_alert(user, "木材不足")
 			return ITEM_INTERACT_SUCCESS
 
 		var/list/things_to_use = can_we_craft_this(wood_required_for_weapons, TRUE)
@@ -220,11 +220,11 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(!selected_recipe)
-		balloon_alert(user, "no recipe selected")
+		balloon_alert(user, "未选择配方")
 		return ITEM_INTERACT_SUCCESS
 
 	if(!can_we_craft_this(selected_recipe.recipe_requirements))
-		balloon_alert(user, "missing ingredients")
+		balloon_alert(user, "缺少材料")
 		return ITEM_INTERACT_SUCCESS
 
 	in_use = TRUE
@@ -239,12 +239,12 @@
 		var/skill_modifier = user.mind.get_skill_modifier(selected_recipe.relevant_skill, SKILL_SPEED_MODIFIER) * 1 SECONDS
 
 		if(!do_after(user, skill_modifier, src))
-			balloon_alert(user, "stopped hammering")
+			balloon_alert(user, "已停止锤击")
 			in_use = FALSE
 			return ITEM_INTERACT_SUCCESS
 
 		if(!can_we_craft_this(selected_recipe.recipe_requirements))
-			balloon_alert(user, "missing ingredients")
+			balloon_alert(user, "缺少材料")
 			in_use = FALSE
 			return ITEM_INTERACT_SUCCESS
 

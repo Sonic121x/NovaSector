@@ -3,7 +3,7 @@
 	keyslot2 = new /obj/item/encryptionkey/headset_cent
 
 /datum/outfit/prison_transport_officer
-	name = "Prisoner Transport Officer"
+	name = "囚犯押运官"
 
 	ears = /obj/item/radio/headset/headset_cent/alt/with_key
 	glasses = /obj/item/clothing/glasses/sunglasses/big

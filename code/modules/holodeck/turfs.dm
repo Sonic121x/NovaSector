@@ -22,11 +22,11 @@
 	return //you can't break a hologram!
 
 /turf/open/floor/holofloor/plating
-	name = "holodeck projector floor"
+	name = "全息投影仪地板"
 	icon_state = "engine"
 
 /turf/open/floor/holofloor/chapel
-	name = "chapel floor"
+	name = "教堂地板"
 	icon_state = "chapel"
 
 /turf/open/floor/holofloor/chapel/bottom_left
@@ -46,22 +46,22 @@
 		setDir(direction)
 
 /turf/open/floor/holofloor/white
-	name = "white floor"
+	name = "白色地板"
 	icon_state = "white"
 
 /turf/open/floor/holofloor/pure_white
-	name = "white floor"
-	desc = "Hey look, it's the inside of a greytiders mind!"
+	name = "白色地板"
+	desc = "嘿，看啊，这是一个灰潮玩家的内心世界！"
 	icon_state = "pure_white"
 
 /turf/open/floor/holofloor/plating/burnmix
-	name = "burn-mix floor"
+	name = "燃烧混合地板"
 	initial_gas_mix = BURNMIX_ATMOS
 
 /turf/open/floor/holofloor/grass
 	gender = PLURAL
-	name = "lush grass"
-	desc = "Looking at the luscious field, you suddenly feel homesick."
+	name = "茂盛草地"
+	desc = "望着这片葱郁的田野，你突然感到一阵思乡之情。"
 	icon_state = "grass0"
 	bullet_bounce_sound = null
 	tiled_turf = FALSE
@@ -72,8 +72,8 @@
 
 /turf/open/floor/holofloor/beach
 	gender = PLURAL
-	name = "sand"
-	desc = "This is better than a vacation, since you're still getting paid."
+	name = "沙子"
+	desc = "这比度假还好，因为你还能领到工资。"
 	icon = 'icons/turf/sand.dmi'
 	icon_state = "sand"
 	bullet_bounce_sound = null
@@ -89,8 +89,8 @@
 	icon_state = "beach-corner"
 
 /turf/open/floor/holofloor/beach/water
-	name = "water"
-	desc = "Gives the impression you can walk on water. Chaplains love it."
+	name = "Water-水"
+	desc = "给人一种你能在水上行走的错觉。牧师们很喜欢它。"
 	icon = 'icons/turf/beach.dmi'
 	icon_state = "water"
 	bullet_sizzle = TRUE
@@ -101,8 +101,8 @@
 
 /turf/open/floor/holofloor/asteroid
 	gender = PLURAL
-	name = "asteroid sand"
-	desc = "The sand crunches beneath your feet, though it feels soft to the touch."
+	name = "小行星沙地"
+	desc = "脚下的沙子发出嘎吱声，但摸起来却很柔软。"
 	icon_state = "asteroid"
 	tiled_turf = FALSE
 
@@ -112,8 +112,8 @@
 
 /turf/open/floor/holofloor/basalt
 	gender = PLURAL
-	name = "basalt"
-	desc = "You still feel hot, despite the cool walls of the holodeck."
+	name = "玄武岩"
+	desc = "尽管全息甲板的墙壁很凉爽，你仍然感到炎热。"
 	icon_state = "basalt0"
 	tiled_turf = FALSE
 
@@ -128,16 +128,16 @@
 				set_light(BASALT_LIGHT_RANGE_DIM, BASALT_LIGHT_POWER, LIGHT_COLOR_LAVA)
 
 /turf/open/floor/holofloor/space
-	name = "\proper space"
-	desc = "Space-looking floor. Thankfully, the deadly aspects of space are not emulated here."
+	name = "\proper 太空"
+	desc = "看起来像太空的地板。幸好，太空的致命特性在这里没有被模拟出来。"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "space"
 	layer = SPACE_LAYER
 	plane = PLANE_SPACE
 
 /turf/open/floor/holofloor/hyperspace
-	name = "\proper hyperspace"
-	desc = "Gives the impression of moving at hyper-speed, without moving. May induce motion sickness."
+	name = "\proper 超空间"
+	desc = "给人一种以超高速移动的错觉，而实际上并没有移动。可能会引起晕动症。"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "speedspace_ns_1"
 	bullet_bounce_sound = null
@@ -152,8 +152,8 @@
 	icon_state = "speedspace_ns_[(x + 5*y + (y%2+1)*7)%15+1]"
 
 /turf/open/floor/holofloor/carpet
-	name = "carpet"
-	desc = "Electrically inviting."
+	name = "地毯"
+	desc = "电光般诱人。"
 	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet-255"
 	base_icon_state = "carpet"
@@ -175,13 +175,13 @@
 
 /turf/open/floor/holofloor/wood
 	icon_state = "wood"
-	desc = "Makes you feel at home."
+	desc = "让你感觉像在家里一样。"
 	tiled_turf = FALSE
 
 /turf/open/floor/holofloor/snow
 	gender = PLURAL
-	name = "snow"
-	desc = "The puffy snow clumps together to make a solid-looking floor, though it sinks beneath your feet."
+	name = "雪"
+	desc = "蓬松的雪团簇在一起，形成了看似坚实的地板，尽管它在你脚下会下沉。"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow"
 	slowdown = 2
@@ -191,10 +191,10 @@
 
 /turf/open/floor/holofloor/dark
 	icon_state = "darkfull"
-	desc = "The surrounding enviroment is so dark you can hardly see yourself."
+	desc = "周围环境如此黑暗，你几乎看不清自己。"
 
 /turf/open/floor/holofloor/stairs
-	name = "stairs"
+	name = "楼梯"
 	icon_state = "stairs"
 	tiled_turf = FALSE
 

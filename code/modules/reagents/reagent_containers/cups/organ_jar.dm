@@ -31,7 +31,7 @@
 // Alt click lets you take the organ out, if it's present
 /obj/item/reagent_containers/cup/beaker/organ_jar/click_alt(mob/user)
 	if(held_organ)
-		balloon_alert(user, "removed [held_organ]")
+		balloon_alert(user, "移除了[held_organ]")
 		user.put_in_hands(held_organ)
 		held_organ.organ_flags &= ~ORGAN_FROZEN
 		held_organ = null
@@ -47,12 +47,12 @@
 	if(!istype(tool, /obj/item/organ))
 		return ..()
 	if(held_organ)
-		balloon_alert(user, "the jar already contains [held_organ]")
+		balloon_alert(user, "罐子里已经有[held_organ]了")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "inserted [tool]")
+	balloon_alert(user, "插入了[tool]")
 	held_organ = tool
 	name = "[tool.name] in a jar"
 	desc = "A jar with \the [tool] inside it."

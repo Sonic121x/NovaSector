@@ -188,19 +188,19 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 
 	parent_integrity -= seconds_per_tick
 	if(parent_integrity <= 0)
-		target_turf.visible_message(span_warning("[target_turf] collapses under its own weight into a puddle of goop and undigested debris!"))
+		target_turf.visible_message(span_warning("target_turf.visible_message(span_warning(\"[target_turf] 在其自身重量下坍塌成一滩粘液和未消化的残渣！\"))"))
 		target_turf.acid_melt()
 	else if(parent_integrity <= 4 && stage <= 3)
-		target_turf.visible_message(span_warning("[target_turf] begins to crumble under the acid!"))
+		target_turf.visible_message(span_warning("target_turf.visible_message(span_warning(\"[target_turf] 开始在酸蚀下碎裂！\"))"))
 		stage = 4
 	else if(parent_integrity <= 8 && stage <= 2)
-		target_turf.visible_message(span_warning("[target_turf] is struggling to withstand the acid!"))
+		target_turf.visible_message(span_warning("[target_turf]正在艰难地抵抗酸液的侵蚀！"))
 		stage = 3
 	else if(parent_integrity <= 16 && stage <= 1)
-		target_turf.visible_message(span_warning("[target_turf] is being melted by the acid!"))
+		target_turf.visible_message(span_warning("[target_turf]正在被酸液融化！"))
 		stage = 2
 	else if(parent_integrity <= 24 && stage == 0)
-		target_turf.visible_message(span_warning("[target_turf] is holding up against the acid!"))
+		target_turf.visible_message(span_warning("[target_turf]正在抵抗酸液的侵蚀！"))
 		stage = 1
 
 /// Used to maintain the acid overlay on the parent [/atom].
@@ -214,7 +214,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 /datum/component/acid/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_danger("[source.p_Theyre()] covered in a corrosive liquid!")
+	examine_list += span_danger("[source.p_Theyre()]覆盖着腐蚀性液体！")
 
 /// Makes it possible to clean acid off of objects.
 /datum/component/acid/proc/on_clean(atom/source, clean_types)

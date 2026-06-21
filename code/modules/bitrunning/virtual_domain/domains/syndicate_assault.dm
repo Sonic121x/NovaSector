@@ -1,8 +1,8 @@
 /datum/lazy_template/virtual_domain/syndicate_assault
-	name = "Syndicate Assault"
+	name = "辛迪加突袭"
 	announce_to_ghosts = TRUE
 	cost = BITRUNNER_COST_MEDIUM
-	desc = "Board the enemy ship and recover the stolen cargo."
+	desc = "登上敌舰，夺回被盗货物。"
 	difficulty = BITRUNNER_DIFFICULTY_MEDIUM
 	completion_loot = list(/obj/item/toy/plush/nukeplushie = 1)
 	help_text = "A group of Syndicate operatives have stolen valuable cargo from the station. \

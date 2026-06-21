@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/gps
 	display_name = "Internal GPS"
-	desc = "A component that returns the xyz co-ordinates of itself."
+	desc = "一个能返回自身 xyz 坐标值的组件。"
 	category = "Entity"
 
 	/// The result from the output

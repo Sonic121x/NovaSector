@@ -1,6 +1,6 @@
 /obj/item/implant/kaza_ruk
-	name = "kaza ruk implant"
-	desc = "Teaches you the Tiziran martial arts of Kaza Ruk in 5 short instructional videos beamed directly into your eyeballs."
+	name = "卡扎·鲁克植入物"
+	desc = "通过直接投射到您眼球中的5个简短教学视频，教授您提兹兰武术卡扎·鲁克。"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state ="scroll2"
 	/// The martial art style this implant teaches.
@@ -30,10 +30,10 @@
 	style.teach(imp_in)
 
 /obj/item/implanter/kaza_ruk
-	name = "implanter (kaza ruk)"
+	name = "植入器（卡扎·鲁克）"
 	imp_type = /obj/item/implant/kaza_ruk
 
 /obj/item/implantcase/kaza_ruk
-	name = "implant case - 'Kaza Ruk'"
-	desc = "A glass case containing an implant that can teach the user the Tiziran martial arts of Kaza Ruk."
+	name = "植入物盒 - '卡扎·鲁克'"
+	desc = "一个装有可教授使用者提兹兰武术卡扎·鲁克的植入物的玻璃盒。"
 	imp_type = /obj/item/implant/kaza_ruk

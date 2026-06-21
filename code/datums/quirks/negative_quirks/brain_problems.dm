@@ -29,7 +29,7 @@
 			LOCATION_BACKPACK,
 			LOCATION_HANDS,
 		),
-		flavour_text = "These will keep you alive until you can secure a supply of medication. Don't rely on them too much!",
+		flavour_text = "这些药能让你活到搞到稳定药品供应为止。别太依赖它们！",
 		notify_player = TRUE,
 	)
 

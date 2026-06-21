@@ -1,6 +1,6 @@
 /obj/structure/closet/wardrobe
-	name = "wardrobe"
-	desc = "It's a storage unit for standard-issue Nanotrasen attire."
+	name = "衣柜"
+	desc = "这是一个标准版纳米传讯服装的存储单元。"
 	icon_door = "blue"
 
 /obj/structure/closet/wardrobe/PopulateContents()
@@ -14,7 +14,7 @@
 	return
 
 /obj/structure/closet/wardrobe/pink
-	name = "pink wardrobe"
+	name = "粉色衣柜"
 	icon_door = "pink"
 
 /obj/structure/closet/wardrobe/pink/PopulateContents()
@@ -27,7 +27,7 @@
 	return
 
 /obj/structure/closet/wardrobe/black
-	name = "black wardrobe"
+	name = "黑色衣柜"
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/black/PopulateContents()
@@ -52,7 +52,7 @@
 	return
 
 /obj/structure/closet/wardrobe/green
-	name = "green wardrobe"
+	name = "绿色衣柜"
 	icon_door = "green"
 
 /obj/structure/closet/wardrobe/green/PopulateContents()
@@ -67,8 +67,8 @@
 	return
 
 /obj/structure/closet/wardrobe/orange
-	name = "prison wardrobe"
-	desc = "It's a storage unit for Nanotrasen-regulation prisoner attire."
+	name = "监狱衣柜"
+	desc = "这是一个储存纳米传讯标准囚犯服装的储藏柜。"
 	icon_door = "orange"
 
 /obj/structure/closet/wardrobe/orange/PopulateContents()
@@ -81,7 +81,7 @@
 	return
 
 /obj/structure/closet/wardrobe/yellow
-	name = "yellow wardrobe"
+	name = "黄色衣柜"
 	icon_door = "yellow"
 
 /obj/structure/closet/wardrobe/yellow/PopulateContents()
@@ -96,7 +96,7 @@
 	return
 
 /obj/structure/closet/wardrobe/white
-	name = "white wardrobe"
+	name = "白色衣柜"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/white/PopulateContents()
@@ -113,7 +113,7 @@
 	return
 
 /obj/structure/closet/wardrobe/pjs
-	name = "pajama wardrobe"
+	name = "睡衣柜"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/pjs/PopulateContents()
@@ -130,7 +130,7 @@
 	return
 
 /obj/structure/closet/wardrobe/grey
-	name = "grey wardrobe"
+	name = "灰色衣柜"
 	icon_door = "grey"
 
 /obj/structure/closet/wardrobe/grey/PopulateContents()
@@ -159,7 +159,7 @@
 	return
 
 /obj/structure/closet/wardrobe/mixed
-	name = "mixed wardrobe"
+	name = "混合衣柜"
 	icon_door = "mixed"
 
 /obj/structure/closet/wardrobe/mixed/PopulateContents()

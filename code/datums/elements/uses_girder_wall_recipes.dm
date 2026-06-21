@@ -17,7 +17,7 @@
 	if (!isstack(stack))
 		return NONE
 	if (!stack.usable_for_construction)
-		structure.balloon_alert(user, "unusable material!")
+		structure.balloon_alert(user, "材料无法使用！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/girder_wall_recipe/main_recipe = get_main_recipe(structure, stack)
@@ -27,7 +27,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if (stack.has_unique_girder)
-		structure.balloon_alert(user, "needs a different girder!")
+		structure.balloon_alert(user, "需要不同的梁！")
 		return ITEM_INTERACT_BLOCKING
 
 	// Plasteel is used for reinforcing girders.
@@ -74,9 +74,9 @@
 		return
 
 	user.visible_message(
-		message = span_notice("\The [user] start[user.p_s()] building a wall on \the [structure]."),
-		self_message = span_notice("You start building a wall on \the [structure]."),
-		blind_message = span_hear("You hear a series of clangs."),
+		message = span_notice("\The [user] start[user.p_s()] 在 \the [structure] 上建造墙壁。"),
+		self_message = span_notice("你开始在 \the [structure] 上建造墙壁。"),
+		blind_message = span_hear("你听到一连串的叮当声。"),
 	)
 
 	structure.add_fingerprint(user)
@@ -97,8 +97,8 @@
 		CRASH("Attempted a girder wall recipe with an invalid wall type ([recipe.wall_type])")
 
 	user.visible_message(
-		message = span_notice("\The [user] finish[user.p_es()] building \a [wall] on \the [structure]."),
-		self_message = span_notice("You finish building \a [wall] on \the [structure]."),
+		message = span_notice("\The [user] finish[user.p_es()] 在 \the [wall] 上建造 \a [structure]。"),
+		self_message = span_notice("你完成了在 \the [structure] 上建造 \a [wall]。"),
 	)
 
 	structure.transfer_fingerprints_to(wall)
@@ -111,14 +111,14 @@
 /// Checks if the user can do the wall recipe.
 /datum/element/uses_girder_wall_recipes/proc/check_recipe(obj/structure/structure, mob/living/user, datum/girder_wall_recipe/recipe)
 	if(iswallturf(structure.loc) || (locate(/obj/structure/falsewall) in structure.loc.contents))
-		structure.balloon_alert(user, "wall already present!")
+		structure.balloon_alert(user, "墙壁已存在！")
 		return FALSE
 	if (!ispath(recipe.wall_type, /obj/structure/tram))
 		if (!isfloorturf(structure.loc))
-			structure.balloon_alert(user, "need floor!")
+			structure.balloon_alert(user, "需要地板！")
 			return FALSE
 	else if (!(locate(/obj/structure/transport/linear/tram) in structure.loc.contents))
-		structure.balloon_alert(user, "need tram floor!")
+		structure.balloon_alert(user, "需要电车地板！")
 		return FALSE
 	if (!check_girder_state(structure, recipe))
 		return FALSE

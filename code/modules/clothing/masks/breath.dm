@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/breath
-	desc = "A close-fitting mask that can be connected to an air supply."
-	name = "breath mask"
+	desc = "一种可以与气罐相连的高贴合面罩。"
+	name = "呼吸面罩"
 	icon_state = "breath"
 	inhand_icon_state = "m_mask"
 	body_parts_covered = 0
@@ -20,7 +20,7 @@
 	bio = 50
 
 /obj/item/clothing/mask/breath/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is wrapping \the [src]'s tube around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正把\the [src]的管子绕在[user.p_their()]脖子上！看起来[user.p_theyre()]想自杀！"))
 	return OXYLOSS
 
 /obj/item/clothing/mask/breath/attack_self(mob/user)
@@ -36,11 +36,11 @@
 /obj/item/clothing/mask/breath/examine(mob/user)
 	. = ..()
 	if(adjustable)
-		. += span_notice("Alt-click [src] to adjust it.")
+		. += span_notice("Alt-点击[src]来调整它。")
 
 /obj/item/clothing/mask/breath/medical
-	desc = "A close-fitting sterile mask that can be connected to an air supply."
-	name = "medical mask"
+	desc = "一种紧密贴合的无菌口罩，可以连接到空气供应设备上。"
+	name = "医用面具"
 	icon_state = "medical"
 	inhand_icon_state = "m_mask"
 	armor_type = /datum/armor/breath_medical
@@ -50,8 +50,8 @@
 	bio = 90
 
 /obj/item/clothing/mask/breath/muzzle
-	name = "surgery mask"
-	desc = "To silence those pesky patients before putting them under."
+	name = "手术口罩"
+	desc = "在让那些烦人的病人昏过去之前，先让他们闭嘴。"
 	icon_state = "breathmuzzle"
 	inhand_icon_state = "breathmuzzle"
 	lefthand_file = 'icons/mob/inhands/clothing/masks_lefthand.dmi'
@@ -71,7 +71,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/carbon_user = user
 		if(src == carbon_user.wear_mask)
-			to_chat(user, span_warning("You need help taking this off!"))
+			to_chat(user, span_warning("你需要帮忙才能取下这个！"))
 			return
 	return ..()
 

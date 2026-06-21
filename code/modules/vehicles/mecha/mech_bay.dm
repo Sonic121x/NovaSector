@@ -1,6 +1,6 @@
 /obj/machinery/mech_bay_recharge_port
-	name = "mech bay power port"
-	desc = "This port recharges a mech's internal power cell."
+	name = "机甲湾电源接口"
+	desc = "这个电源接口可以为机甲内部电池充电。"
 	icon = 'icons/obj/machines/mech_bay.dmi'
 	icon_state = "recharge_port"
 	base_icon_state = "recharge_port"
@@ -52,7 +52,7 @@
 /obj/machinery/mech_bay_recharge_port/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Recharge power <b>[siunit(recharge_power, "W", 1)]</b>.")
+		. += span_notice("状态显示屏显示：充电功率 <b>[siunit(recharge_power, "W", 1)]</b>。")
 
 /obj/machinery/mech_bay_recharge_port/process(seconds_per_tick)
 	if(machine_stat & NOPOWER || !recharge_console)
@@ -92,8 +92,8 @@
 	return .
 
 /obj/machinery/computer/mech_bay_power_console
-	name = "mech bay power control console"
-	desc = "Displays the status of mechs connected to the recharge station."
+	name = "机甲湾电源控制台"
+	desc = "显示与充电站连接的机甲状态"
 	icon_screen = "recharge_comp"
 	icon_keyboard = "rd_key"
 	circuit = /obj/item/circuitboard/computer/mech_bay_power_console

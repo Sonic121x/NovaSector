@@ -1,7 +1,7 @@
 // Pineapple!
 /obj/item/seeds/pineapple
-	name = "pineapple seed pack"
-	desc = "Oooooooooooooh!"
+	name = "菠萝种子包"
+	desc = "哦哦哦哦哦哦哦哦哦哦！"
 	icon_state = "seed-pineapple"
 	species = "pineapple"
 	plantname = "Pineapple Plant"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/pineapple
 	seed = /obj/item/seeds/pineapple
-	name = "pineapples"
-	desc = "Blorble."
+	name = "菠萝"
+	desc = "噗噜噜。"
 	icon_state = "pineapple"
 	bite_consumption_mod = 2
 	force = 4

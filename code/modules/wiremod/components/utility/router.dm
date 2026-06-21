@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/router
 	display_name = "Router"
-	desc = "Copies the input chosen by \"Input Selector\" to the output chosen by \"Output Selector\"."
+	desc = "将“输入选择器”所选定的输入内容复制到“输出选择器”所选定的输出位置。"
 	category = "Utility"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -70,7 +70,7 @@
 
 /obj/item/circuit_component/router/multiplexer
 	display_name = "Multiplexer"
-	desc = "Copies the input chosen by \"Input Selector\" to the output."
+	desc = "将“输入选择器”所选定的输入内容复制到输出端。"
 	output_port_amount = 1
 
 #undef WRAPACCESS

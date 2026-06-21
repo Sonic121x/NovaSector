@@ -1,6 +1,6 @@
 /obj/item/clothing/neck/collar/leather
-	name = "leather collar"
-	desc = "A firm collar made of leather; fit with a locking clasp. There's a little metallic ring on the front."
+	name = "皮革项圈"
+	desc = "一个由皮革制成的坚固项圈；配有锁扣。前面有一个小金属环。"
 	greyscale_colors = "#2d2d33#9b111e"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/collar/leather"
@@ -10,7 +10,7 @@
 
 
 /obj/item/clothing/neck/collar/leather/bell
-	name = "leather bell collar"
+	name = "皮革铃铛项圈"
 	desc = /obj/item/clothing/neck/collar/bell::desc
 	greyscale_colors = "#2d2d33#9b111e#dead39"
 	icon = 'icons/map_icons/clothing/neck.dmi'
@@ -26,7 +26,7 @@
 
 
 /obj/item/clothing/neck/collar/leather/cowbell // I'd give this jingling too but it's harder to source a good sample
-	name = "leather cowbell collar"
+	name = "皮革牛铃项圈"
 	desc = /obj/item/clothing/neck/collar/thick/cowbell::desc
 	icon_state = "/obj/item/clothing/neck/collar/leather/cowbell"
 	post_init_icon_state = "leather_cowbell_collar"
@@ -36,7 +36,7 @@
 
 
 /obj/item/clothing/neck/collar/leather/cross
-	name = "leather cross collar"
+	name = "皮革十字项圈"
 	desc = /obj/item/clothing/neck/collar/cross::desc
 	greyscale_colors = /obj/item/clothing/neck/collar/leather/bell::greyscale_colors
 	icon = 'icons/map_icons/clothing/neck.dmi'
@@ -47,7 +47,7 @@
 
 
 /obj/item/clothing/neck/collar/leather/tagged
-	name = "leather tagged collar"
+	name = "皮革标签项圈"
 	desc = /obj/item/clothing/neck/collar/tagged::desc
 	greyscale_colors = /obj/item/clothing/neck/collar/leather/bell::greyscale_colors
 	icon = 'icons/map_icons/clothing/neck.dmi'
@@ -58,7 +58,7 @@
 
 
 /obj/item/clothing/neck/collar/leather/holocollar
-	name = "leather holocollar"
+	name = "皮革全息项圈"
 	desc = /obj/item/clothing/neck/collar/holocollar::desc
 	greyscale_colors = /obj/item/clothing/neck/collar/leather/bell::greyscale_colors
 	icon = 'icons/map_icons/clothing/neck.dmi'

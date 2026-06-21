@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/nice_goggles
-	name = "surprisingly nice looking goggles"
-	desc = "It has an inscription engraved on the handle. Kubic. How strange."
+	name = "出奇好看的护目镜"
+	desc = "手柄上刻有一段铭文。Kubic。真奇怪。"
 	icon_state = "nice_goggles"
 	inhand_icon_state = "nice_goggles"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_eyes.dmi'

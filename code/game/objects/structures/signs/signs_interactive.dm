@@ -1,5 +1,5 @@
 /obj/structure/sign/clock
-	name = "wall clock"
+	name = "挂钟"
 	desc = "It's your run-of-the-mill wall clock showing both the local Nanotrasen Standard Time and the galactic Treaty Coordinated Time. Perfect for staring at instead of working."
 	icon_state = "clock"
 
@@ -12,7 +12,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/clock, 32)
 		. += span_info("That means it is currently [round_timestamp()] into the shift.")
 
 /obj/structure/sign/calendar
-	name = "wall calendar"
+	name = "挂历"
 	desc = "It's an old-school wall calendar. Sure, it might be obsolete with modern technology, but it's still hard to imagine an office without one."
 	icon_state = "calendar"
 
@@ -20,7 +20,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/calendar, 32)
 
 /obj/structure/sign/calendar/examine(mob/user)
 	. = ..()
-	. += span_info("The current date is: [time2text(world.realtime, "DDD, MMM DD", world.timezone)], [CURRENT_STATION_YEAR].")
+	. += span_info("当前日期是：[time2text(world.realtime, "DDD, MMM DD", world.timezone)], [CURRENT_STATION_YEAR]。")
 	if(length(GLOB.holidays))
 		. += span_info("Events:")
 		for(var/holidayname in GLOB.holidays)

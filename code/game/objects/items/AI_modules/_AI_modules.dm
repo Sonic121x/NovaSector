@@ -2,13 +2,13 @@
 #define SHOULD_QDEL_MODULE 1
 
 /obj/item/ai_module
-	name = "\improper AI module"
+	name = "\improper AI模块"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "std_mod"
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	desc = "An AI Module for programming laws to an AI."
+	desc = "一个用于为AI编程定律的AI模块。"
 	obj_flags = CONDUCTS_ELECTRICITY
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -57,7 +57,7 @@
 //The proc other things should be calling
 /obj/item/ai_module/proc/install(datum/ai_laws/law_datum, mob/user)
 	if(!bypass_law_amt_check && (!laws.len || laws[1] == "")) //So we don't loop trough an empty list and end up with runtimes.
-		to_chat(user, span_warning("ERROR: No laws found on board."))
+		to_chat(user, span_warning("错误：未在控制板上找到任何定律。"))
 		return
 
 	var/overflow = FALSE
@@ -77,17 +77,17 @@
 					tot_laws++
 
 		if(tot_laws > CONFIG_GET(number/silicon_max_law_amount) && !bypass_law_amt_check)//allows certain boards to avoid this check, eg: reset
-			to_chat(user, span_alert("Not enough memory allocated to [law_datum.owner ? law_datum.owner : "the AI core"]'s law processor to handle this amount of laws."))
+			to_chat(user, span_alert("[law_datum.owner ? law_datum.owner : "the AI core"]的法律处理器没有分配足够的内存来处理这么多法律。"))
 			message_admins("[ADMIN_LOOKUPFLW(user)] tried to upload laws to [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "an AI core"] that would exceed the law cap.")
 			log_silicon("[key_name(user)] tried to upload laws to [law_datum.owner ? key_name(law_datum.owner) : "an AI core"] that would exceed the law cap.")
 			overflow = TRUE
 
 	var/law2log = transmitInstructions(law_datum, user, overflow) //Freeforms return something extra we need to log
 	if(law_datum.owner)
-		to_chat(user, span_notice("Upload complete. [law_datum.owner]'s laws have been modified."))
+		to_chat(user, span_notice("上传完成。[law_datum.owner]的定律已被修改。"))
 		law_datum.owner.law_change_counter++
 	else
-		to_chat(user, span_notice("Upload complete."))
+		to_chat(user, span_notice("上传完毕."))
 
 	var/time = round_timestamp()
 	var/ainame = law_datum.owner ? law_datum.owner.name : "empty AI core"
@@ -111,15 +111,15 @@
 	log_silicon("LAW: [key_name(user)] used [src.name] on [key_name(law_datum.owner)] from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""], [length(affected_cyborgs) ? ", impacting synced borgs [borg_txt]" : ""]")
 	message_admins("[ADMIN_LOOKUPFLW(user)] used [src.name] on [ADMIN_LOOKUPFLW(law_datum.owner)] from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""] , [length(affected_cyborgs) ? ", impacting synced borgs [borg_flw.Join()]" : ""]")
 	if(law_datum.owner)
-		deadchat_broadcast("<b> changed [span_name("[ainame]")]'s laws at [get_area_name(user, TRUE)].</b>", span_name("[user]"), follow_target=user, message_type=DEADCHAT_LAWCHANGE)
+		deadchat_broadcast("<b> 在 [span_name("[ainame]")].</b> 更改了 [get_area_name(user, TRUE)] 的定律", span_name("[user]"), follow_target=user, message_type=DEADCHAT_LAWCHANGE)
 
 //The proc that actually changes the silicon's laws.
 /obj/item/ai_module/proc/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow = FALSE)
 	if(law_datum.owner)
-		to_chat(law_datum.owner, span_userdanger("[sender] has uploaded a change to the laws you must follow using a [name]."))
+		to_chat(law_datum.owner, span_userdanger("[sender]使用一个[name]上传了你必须遵守的定律变更。"))
 
 /obj/item/ai_module/core
-	desc = "An AI Module for programming core laws to an AI."
+	desc = "一个用于为AI编程核心定律的AI模块。"
 
 /obj/item/ai_module/core/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	for(var/templaw in laws)
@@ -163,7 +163,7 @@
 	return SHOULD_QDEL_MODULE
 
 /obj/effect/spawner/round_default_module
-	name = "ai default lawset spawner"
+	name = "AI默认定律集生成器"
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "x2"
 	color = COLOR_VIBRANT_LIME

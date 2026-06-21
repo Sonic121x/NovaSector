@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/assoc_literal
 	display_name = "Associative List Literal"
-	desc = "A component that returns an associative list consisting of the inputs."
+	desc = "一个能返回一个由输入项组成的关联列表的组件。"
 	category = "List"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -65,7 +65,7 @@
 	for(var/index in 1 to length(entry_ports))
 		// To prevent people from infinitely making lists to crash the server
 		if(islist(entry_ports[index].value) && get_list_count(entry_ports[index].value, max_list_count) >= max_list_count)
-			visible_message("[src] begins to overheat!")
+			visible_message("[src] 开始过热！")
 			return
 		var/value_to_add = value_handler.convert_value(port, entry_ports[index].value)
 		if(isdatum(value_to_add))

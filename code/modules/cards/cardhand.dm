@@ -1,6 +1,6 @@
 /obj/item/toy/cards/cardhand
-	name = "hand of cards"
-	desc = "A number of cards not in a deck, customarily held in ones hand."
+	name = "一副牌"
+	desc = "一些不在牌组中的卡片，通常被握在手中。"
 	icon = 'icons/obj/toys/playing_cards.dmi'
 	icon_state = "nothing"
 	w_class = WEIGHT_CLASS_TINY
@@ -13,26 +13,26 @@
 	update_appearance()
 
 /obj/item/toy/cards/cardhand/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is slitting [user.p_their()] wrists with \the [src]! It looks like [user.p_they()] [user.p_have()] a crummy hand!"))
+	user.visible_message(span_suicide("[user] 正用 \the [user.p_their()] 割开 [src] 的手腕！看起来 [user.p_they()] [user.p_have()] 一手烂牌！"))
 	playsound(src, 'sound/items/cards/cardshuffle.ogg', 50, TRUE)
 	return BRUTELOSS
 
 /obj/item/toy/cards/cardhand/examine(mob/user)
 	. = ..()
-	. += span_notice("There are [count_cards()] cards.")
+	. += span_notice("共有[count_cards()]张牌。")
 	var/broadcast_check = FALSE
 	for(var/obj/item/toy/singlecard/card in fetch_card_atoms())
 		if(user.is_holding(src) || card.flipped)
-			. += span_notice("The hand contains a: [card.cardname]")
+			. += span_notice("手牌包含一张：[card.cardname]")
 			if(!card.flipped)
 				broadcast_check = TRUE
 		else if(HAS_TRAIT(user, TRAIT_XRAY_VISION))
-			. += span_notice("You scan the cardhand with your x-ray vision and there is a: [card.cardname]")
+			. += span_notice("你用X光视力扫描这副手牌，发现其中有一张：[card.cardname]")
 		var/marked_color = card.getMarkedColor(user)
 		if(marked_color)
-			. += span_notice("There is a [marked_color] mark on the corner of a card in the cardhand!")
+			. += span_notice("这副手牌里有张牌的角落有个[marked_color]标记！")
 	if(broadcast_check)
-		user.visible_message(span_notice("[user] checks [user.p_their()] cards."))
+		user.visible_message(span_notice("[user]查看了[user.p_their()]的牌。"))
 
 
 /obj/item/toy/cards/cardhand/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -91,7 +91,7 @@
 				user.balloon_alert_to_viewers("puts card in deck")
 				return ITEM_INTERACT_SUCCESS
 
-			to_chat(user, span_warning("\The [dealer_deck] is stacked too high!"))
+			to_chat(user, span_warning("\The [dealer_deck]堆得太高了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		card = dealer_deck.get_top_card(user)
@@ -108,7 +108,7 @@
 			dealer_deck.draw(user)
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_warning("You can't hold any more cards in your hand!"))
+	to_chat(user, span_warning("你的手牌已经拿不下了！"))
 	return ITEM_INTERACT_BLOCKING
 
 #define CARDS_MAX_DISPLAY_LIMIT 5 // the amount of cards that are displayed in a hand

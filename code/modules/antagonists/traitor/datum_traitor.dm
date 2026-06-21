@@ -4,7 +4,7 @@
 #define FLAVOR_FACTION_NANOTRASEN "nanotrasen"
 
 /datum/antagonist/traitor
-	name = "\improper Traitor"
+	name = "\improper 叛徒"
 	roundend_category = "traitors"
 	antagpanel_category = "Traitor"
 	pref_flag = ROLE_TRAITOR
@@ -290,9 +290,9 @@
 	var/special_role_text = LOWER_TEXT(name)
 
 	if(traitor_won)
-		result += span_greentext("The [special_role_text] was successful!")
+		result += span_greentext("这位[special_role_text]成功了！")
 	else
-		result += span_redtext("The [special_role_text] has failed!")
+		result += span_redtext("这个[special_role_text]失败了！")
 		SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
 
 	return result.Join("<br>")
@@ -324,7 +324,7 @@
 	return message
 
 /datum/outfit/traitor
-	name = "Traitor (Preview only)"
+	name = "叛徒(预览)"
 
 	uniform = /obj/item/clothing/under/color/grey
 	suit = /obj/item/clothing/suit/hooded/ablative

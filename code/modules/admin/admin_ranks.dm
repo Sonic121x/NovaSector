@@ -6,7 +6,7 @@ GLOBAL_PROTECT(protected_ranks)
 
 /datum/admin_rank
 	/// Rank name, key'd to the db
-	var/name = "NoRank"
+	var/name = "无职业"
 	/// Rank source, see RANK_SOURCE_TXT and friends
 	var/source = null
 	/// Our functional rights, these are what we actually use in game
@@ -21,7 +21,7 @@ GLOBAL_PROTECT(protected_ranks)
 /datum/admin_rank/New(init_name, init_source, init_rights, init_exclude_rights, init_edit_rights)
 	if(IsAdminAdvancedProcCall())
 		alert_to_permissions_elevation_attempt(usr)
-		if (name == "NoRank") //only del if this is a true creation (and not just a New() proc call), other wise trialmins/coders could abuse this to deadmin other admins
+		if (name == "无职业") //only del if this is a true creation (and not just a New() proc call), other wise trialmins/coders could abuse this to deadmin other admins
 			QDEL_IN(src, 0)
 			CRASH("Admin proc call creation of admin datum")
 		return
@@ -138,7 +138,7 @@ GLOBAL_PROTECT(protected_ranks)
 ///	Return a list containing the backup data if they were loaded from the database backup json
 /proc/load_admin_ranks(dbfail, no_update)
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin Reload blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("管理员重载被阻止：检测到高级过程调用。"), confidential = TRUE)
 		return
 	GLOB.admin_ranks.Cut()
 	GLOB.protected_ranks.Cut()
@@ -340,7 +340,7 @@ GLOBAL_PROTECT(protected_ranks)
 	set waitfor = FALSE
 
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin rank DB Sync blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("管理员等级数据库同步被阻止：检测到高级过程调用。"), confidential = TRUE)
 		return
 
 	var/list/sql_ranks = list()
@@ -384,7 +384,7 @@ GLOBAL_PROTECT(protected_ranks)
 
 /proc/sync_admins_with_db()
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin rank DB Sync blocked: Advanced ProcCall detected."))
+		to_chat(usr, span_adminprefix("管理员等级数据库同步被阻止：检测到高级过程调用。"))
 		return
 
 	if(CONFIG_GET(flag/admin_legacy_system) || !SSdbcore.IsConnected()) //we're already using legacy system so there's nothing to save
@@ -402,7 +402,7 @@ GLOBAL_PROTECT(protected_ranks)
 
 /proc/save_admin_backup()
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin rank DB Sync blocked: Advanced ProcCall detected."))
+		to_chat(usr, span_adminprefix("管理员等级数据库同步被阻止：检测到高级过程调用。"))
 		return
 
 	if(CONFIG_GET(flag/admin_legacy_system)) //we're already using legacy system so there's nothing to save

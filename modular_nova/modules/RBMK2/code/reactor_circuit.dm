@@ -1,5 +1,5 @@
 /obj/item/circuitboard/machine/rbmk2
-	name = "RB-MK2 reactor"
+	name = "RB-MK2 反应堆"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/rbmk2
 	req_components = list(

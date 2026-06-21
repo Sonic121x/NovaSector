@@ -11,8 +11,8 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 #define ANNOUNCEMENT_COOLDOWN_TIME (30 SECONDS)
 
 /obj/machinery/requests_console
-	name = "requests console"
-	desc = "A console intended to send requests to different departments on the station."
+	name = "请求控制台"
+	desc = "一种控制台，用于向车站上的不同部门发送请求。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "req_comp_off"
 	base_icon_state = "req_comp"
@@ -70,12 +70,12 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 /obj/machinery/requests_console/examine(mob/user)
 	. = ..()
 	if(!open)
-		. += span_notice("It looks like you can pry open the panel with <b>a crowbar</b>.")
+		. += span_notice("看起来你可以用<b>撬棍</b>撬开面板。")
 	else
-		. += span_warning("The panel was pried open, you can close it with <b>a crowbar</b>.")
+		. += span_warning("面板已被撬开，你可以用<b>撬棍</b>将其关闭。")
 
 	if(hack_state)
-		. += span_warning("The console seems to have been tampered with!")
+		. += span_warning("这台控制台似乎被篡改过！")
 
 /obj/machinery/requests_console/update_overlays()
 	. = ..()
@@ -109,15 +109,15 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	// Naming and department sets
 	if(auto_name) // If autonaming, just pick department and name from the area code.
 		department = "[get_area_name(area, TRUE)]"
-		name = "\improper [department] requests console"
+		name = "\improper [department] 请求控制台"
 	else
 		if(!(department) && (name != "requests console")) // if we have a map-set name, let's default that for the department.
 			department = name
 		else if(!(department)) // if we have no department and no name, we'll have to be Unknown.
 			department = "Unknown"
-			name = "\improper [department] requests console"
+			name = "\improper [department] 请求控制台"
 		else
-			name = "\improper [department] requests console" // and if we have a 'department', our name should reflect that.
+			name = "\improper [department] 请求控制台" // and if we have a 'department', our name should reflect that.
 
 	GLOB.req_console_all += src
 
@@ -192,12 +192,12 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			// Check if user can call this emergency (prevent self-calls) RETA
 			var/user_dept = reta_get_user_department(usr)
 			if(user_dept == target_dept && !isAdminGhostAI(usr))
-				to_chat(usr, span_alert("You cannot call your own department for emergency assistance."))
+				to_chat(usr, span_alert("你不能向自己的部门请求紧急援助。"))
 				return
 
 			// Check cooldown RETA
 			if(origin_dept && target_dept && reta_on_cooldown(origin_dept, target_dept))
-				to_chat(usr, span_alert("Emergency calls to [target_dept] are on cooldown."))
+				to_chat(usr, span_alert("对 [target_dept] 的紧急呼叫正在冷却中。"))
 				return
 
 			emergency = emergency_type
@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			return TRUE
 		if("send_announcement")
 			if(!COOLDOWN_FINISHED(src, announcement_cooldown))
-				to_chat(usr, span_alert("Intercomms recharging. Please stand by."))
+				to_chat(usr, span_alert("内部通讯正在充电。请稍候。"))
 				return
 			if(!can_send_announcements)
 				return
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 			var/message = reject_bad_text(trim(html_encode(params["message"]), MAX_MESSAGE_LEN), ascii_only = FALSE)
 			if(!message)
-				to_chat(usr, span_alert("Invalid message."))
+				to_chat(usr, span_alert("无效消息。"))
 				return
 			if(isliving(usr))
 				var/mob/living/L = usr
@@ -309,7 +309,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			GLOB.news_network.submit_article(message, department, NEWSCASTER_STATION_ANNOUNCEMENTS, null)
 			usr.log_talk(message, LOG_SAY, tag="station announcement from [src]")
 			message_admins("[ADMIN_LOOKUPFLW(usr)] has made a station announcement from [src] at [AREACOORD(usr)].")
-			deadchat_broadcast(" made a station announcement from [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type=DEADCHAT_ANNOUNCEMENT)
+			deadchat_broadcast("在 [span_name("[get_area_name(usr, TRUE)]")] 发布了一条空间站公告。", span_name("[usr.real_name]"), usr, message_type=DEADCHAT_ANNOUNCEMENT)
 
 			COOLDOWN_START(src, announcement_cooldown, ANNOUNCEMENT_COOLDOWN_TIME)
 			announcement_authenticated = FALSE
@@ -317,7 +317,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		if("quick_reply")
 			var/recipient = params["reply_recipient"]
 
-			var/reply_message = reject_bad_text(tgui_input_text(usr, "Write a quick reply to [recipient]", "Awaiting Input"), ascii_only = FALSE)
+			var/reply_message = reject_bad_text(tgui_input_text(usr, "给 [recipient] 写一条快速回复", "等待输入"), ascii_only = FALSE)
 			if(QDELETED(ui) || ui.status != UI_INTERACTIVE)
 				return
 			if(!reply_message)
@@ -336,7 +336,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 				return
 			var/message = reject_bad_text(trim(html_encode(params["message"]), MAX_MESSAGE_LEN), ascii_only = FALSE)
 			if(!message)
-				to_chat(usr, span_alert("Invalid message."))
+				to_chat(usr, span_alert("无效消息。"))
 				has_mail_send_error = TRUE
 				return TRUE
 			var/request_type = params["request_type"]
@@ -496,10 +496,10 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 /obj/machinery/requests_console/crowbar_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	if(open)
-		to_chat(user, span_notice("You close the maintenance panel."))
+		to_chat(user, span_notice("你关闭维修面板."))
 		open = FALSE
 	else
-		to_chat(user, span_notice("You open the maintenance panel."))
+		to_chat(user, span_notice("你打开了维修面板."))
 		open = TRUE
 	update_appearance()
 	return TRUE
@@ -508,13 +508,13 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	if(open)
 		hack_state = !hack_state
 		if(hack_state)
-			to_chat(user, span_notice("You modify the wiring."))
+			to_chat(user, span_notice("你对线路进行了修改."))
 		else
-			to_chat(user, span_notice("You reset the wiring."))
+			to_chat(user, span_notice("你重置了线路."))
 		update_appearance()
 		tool.play_tool_sound(src, 50)
 	else
-		to_chat(user, span_warning("You must open the maintenance panel first!"))
+		to_chat(user, span_warning("需要先打开维修面板！"))
 	return TRUE
 
 /obj/machinery/requests_console/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
@@ -541,8 +541,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console, 30)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console/auto_name, 30)
 
 /obj/item/wallframe/requests_console
-	name = "requests console"
-	desc = "An unmounted requests console. Attach it to a wall to use."
+	name = "请求控制台"
+	desc = "一个未安装的请求控制台。将其安装在墙上以使用。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "req_comp_off"
 	result_path = /obj/machinery/requests_console/auto_name
@@ -550,16 +550,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console/auto_name, 30)
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7)
 
 /datum/aas_config_entry/rc_emergency
-	name = "RC Alert: Emergency Request"
+	name = "RC 警报：紧急请求"
 	announcement_lines_map = list(
-		REQ_EMERGENCY_SECURITY = "SECURITY EMERGENCY in %LOCATION %CALLER!!!",
-		REQ_EMERGENCY_ENGINEERING = "ENGINEERING EMERGENCY in %LOCATION %CALLER!!!",
-		REQ_EMERGENCY_MEDICAL = "MEDICAL EMERGENCY in %LOCATION %CALLER!!!",
+		REQ_EMERGENCY_SECURITY = "安全部门紧急情况在 %LOCATION %CALLER！！！",
+		REQ_EMERGENCY_ENGINEERING = "工程部门紧急情况在 %LOCATION %CALLER！！！",
+		REQ_EMERGENCY_MEDICAL = "医疗部门紧急情况在 %LOCATION %CALLER！！！",
 	)
 
 	vars_and_tooltips_map = list(
-		"LOCATION" = "will be replaced with the department name",
-		"CALLER" = "with caller name and job if applicable",
+		"LOCATION" = "将被替换为部门名称",
+		"CALLER" = "附带呼叫者姓名与职位（如适用）",
 	)
 
 /datum/aas_config_entry/rc_emergency/New()
@@ -568,26 +568,26 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console/auto_name, 30)
 	if(CONFIG_GET(flag/reta_enabled))
 		// Non sec/engi/med personnel may be called by CC or AI (I hope) for anomaly removal and etc. Mostly admin triggered calls
 		announcement_lines_map = list(
-			"RETA Granted" = "- RETA door access granted to responders",
-			"RETA Failed" = "- no RETA access provided",
-			"Security" = "SECURITY EMERGENCY in %LOCATION %CALLER %RETA!!!",
-			"Engineering" = "ENGINEERING EMERGENCY in %LOCATION %CALLER %RETA!!!",
-			"Medical" = "MEDICAL EMERGENCY in %LOCATION %CALLER, %RETA!!!",
-			"Science" = "Science personnel was requested in %LOCATION %CALLER %RETA.",
-			"Service" = "Service personnel was requested in %LOCATION %CALLER %RETA.",
-			"Command" = "Command personnel was requested in %LOCATION %CALLER %RETA.",
-			"Cargo" = "Cargo personnel was requested in %LOCATION %CALLER %RETA.",
-			"Mining" = "Miners were requested in %LOCATION %CALLER %RETA.",
+			"RETA Granted" = "- 已向响应者授予RETA门禁权限",
+			"RETA Failed" = "- 未提供RETA权限",
+			"Security" = "安全紧急事件发生于%LOCATION %CALLER %RETA！！！",
+			"Engineering" = "工程紧急事件发生于%LOCATION %CALLER %RETA！！！",
+			"Medical" = "医疗紧急事件发生于%LOCATION %CALLER，%RETA！！！",
+			"Science" = "科学人员被请求前往%LOCATION %CALLER %RETA。",
+			"Service" = "服务人员被请求前往%LOCATION %CALLER %RETA。",
+			"Command" = "指挥人员被请求前往%LOCATION %CALLER %RETA。",
+			"Cargo" = "货舱人员被请求前往%LOCATION %CALLER %RETA。",
+			"Mining" = "已在%LOCATION %CALLER %RETA请求矿工。",
 		)
 		vars_and_tooltips_map = list(
-			"LOCATION" = "will be replaced with the department name",
-			"CALLER" = "with caller name and job if applicable",
-			"RETA" = "with RETA Granted or RETA Failed lines depending on RETA system report",
+			"LOCATION" = "将被替换为部门名称",
+			"CALLER" = "附带呼叫者姓名与职位（如适用）",
+			"RETA" = "根据RETA系统报告，包含RETA已批准或RETA失败行",
 		)
 
 /datum/aas_config_entry/rc_emergency/compile_announce(list/variables_map, announcement_line)
 	if (!variables_map["CALLER"])
-		variables_map["CALLER"] = "(Caller placeholder)"
+		variables_map["CALLER"] = "（呼叫者占位符）"
 
 	variables_map["RETA"] = variables_map["RETARESPONDERS"] ? announcement_lines_map["RETA Granted"] : announcement_lines_map["RETA Failed"]
 	. = ..()
@@ -595,7 +595,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console/auto_name, 30)
 	if (!announcement_lines_map[announcement_line])
 		. = "ERROR: UNKNOWN DEPARTMENT \[[announcement_line]\] CALLED IN [variables_map["LOCATION"] || "\[NO DATA\]"] [variables_map["CALLER"]]. PLEASE REPORT THIS TO NT TECH SUPPORT."
 
-	var/list/exploded_string = splittext_char(., "(Caller placeholder)")
+	var/list/exploded_string = splittext_char(., "（呼叫者占位符）")
 	var/list/trimed_message = list()
 	for (var/line in exploded_string)
 		line = trim(line)
@@ -605,28 +605,28 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console/auto_name, 30)
 	. = trimed_message.Join(" ")
 
 /datum/aas_config_entry/rc_reta_announcement
-	name = "RC Alert: RETA Granted"
+	name = "RC警报：RETA已授权"
 	announcement_lines_map = list(
-		"Message" = "RETA activated %CALLER. %GRANTEE personnel now have temporary access to your areas."
+		"Message" = "RETA已由%CALLER激活。%GRANTEE人员现在拥有您区域的临时访问权限。"
 	)
 
 	vars_and_tooltips_map = list(
-		"CALLER" = "will be replaced with caller info if applicable",
-		"GRANTEE" = "with who may now access targeted areas",
+		"CALLER" = "如果适用，将被替换为呼叫者信息",
+		"GRANTEE" = "指明现在可以访问目标区域的人员",
 	)
 
 /datum/aas_config_entry/rc_reta_announcement/New()
 	. = ..()
 	// If RETA disabled - we should be down
 	if(!CONFIG_GET(flag/reta_enabled))
-		announcement_lines_map["Message"] = "RETA system is disabled."
+		announcement_lines_map["消息"] = "RETA系统已禁用。"
 		enabled = FALSE
 		modifiable = FALSE
 
 /datum/aas_config_entry/rc_reta_announcement/compile_announce(list/variables_map, announcement_line)
 	if (!variables_map["CALLER"])
-		variables_map["CALLER"] = "(Caller placeholder)"
-	var/list/exploded_string = splittext_char(..(), "(Caller placeholder)")
+		variables_map["CALLER"] = "（呼叫者占位符）"
+	var/list/exploded_string = splittext_char(..(), "（呼叫者占位符）")
 	var/list/trimed_message = list()
 	for (var/line in exploded_string)
 		line = trim(line)
@@ -636,18 +636,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console/auto_name, 30)
 	. = trimed_message.Join(" ")
 
 /datum/aas_config_entry/rc_new_message
-	name = "RC Alert: New Message"
+	name = "RC警报：新消息"
 	// Yes, players can't use html tags, however they can use speech mods like | or +, but sh-sh-sh, don't tell them!
 	announcement_lines_map = list(
-		"Unauthenticated" = "Message from %SENDER to %RECEIVER: <i>%MESSAGE</i>",
-		"Verified with ID" = "Message from %SENDER to %RECEIVER, Verified by %AUTHENTICATION (Authenticated): <i>%MESSAGE</i>",
-		"Stamped with stamp" = "Message from %SENDER to %RECEIVER, Stamped by %AUTHENTICATION (Authenticated): <i>%MESSAGE</i>",
+		"Unauthenticated" = "来自%SENDER给%RECEIVER的消息：<i>%MESSAGE</i>",
+		"Verified with ID" = "来自%SENDER给%RECEIVER的消息，由%AUTHENTICATION验证（已验证）：<i>%MESSAGE</i>",
+		"Stamped with stamp" = "来自 %SENDER 发送给 %RECEIVER 的消息，由 %AUTHENTICATION 盖章（已验证）：<i>%MESSAGE</i>",
 	)
 	vars_and_tooltips_map = list(
-		"AUTHENTICATION" = "will be replaced with ID or stamp, if present",
-		"SENDER" = "with the sender department ",
-		"RECEIVER" = "with the receiver department",
-		"MESSAGE" = "with the message content",
+		"AUTHENTICATION" = "将被替换为ID或印章（如果存在）",
+		"SENDER" = "附带发送部门",
+		"RECEIVER" = "与接收部门",
+		"MESSAGE" = "包含消息内容",
 	)
 
 #undef REQ_EMERGENCY_SECURITY

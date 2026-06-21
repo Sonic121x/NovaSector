@@ -106,12 +106,12 @@
 
 		// Deliberately the same message framing as ghost deathrattle
 		var/mob/living/recipient = implant.imp_in
-		to_chat(recipient, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("<b>[name]</b> has died at <b>[area_name]</b>.")]\"")
+		to_chat(recipient, "<i>你脑海中响起一个奇怪的机械声音...</i> \"[span_robot("<b>[name]</b> has died at <b>[area_name]</b>.")]\"")
 		recipient.playsound_local(get_turf(recipient), sound, vol = 75, vary = FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
 /obj/item/implant/deathrattle
-	name = "deathrattle implant"
-	desc = "Hope no one else dies, prepare for when they do."
+	name = "死亡宣告植入物"
+	desc = "希望无人死亡，并为死亡做好准备。"
 
 	actions_types = null
 	allow_multiple = TRUE
@@ -133,13 +133,13 @@
 
 /obj/item/implant/deathrattle/can_be_implanted_in(mob/living/target)
 	if(!current_group)
-		balloon_alert(target, "deathrattle needs configuration!")
+		balloon_alert(target, "死亡宣告需要配置！")
 		return FALSE
 	// Can be implanted in anything that's a mob. Syndicate cyborgs, talking fish, humans...
 	return TRUE
 
 /obj/item/implant/deathrattle/lavaland
-	name = "expeditionary deathrattle implant"
+	name = "远征队死亡宣告植入物"
 
 	deathrattle_group_type = /datum/deathrattle_group/lavaland
 
@@ -149,12 +149,12 @@
 
 /obj/item/implantcase/deathrattle
 	name = "implant case - 'Deathrattle'"
-	desc = "A glass case containing a deathrattle implant."
+	desc = "一个装有死亡回响植入物的玻璃盒。"
 	imp_type = /obj/item/implant/deathrattle
 
 /obj/item/implantcase/deathrattle/lavaland
-	name = "implant case - 'Expeditionary Deathrattle'"
-	desc = "A glass case containing an expeditionary deathrattle implant. Only alerts to deaths that occur on Lavaland."
+	name = "植入物盒 - '远征死亡回响'"
+	desc = "一个装有远征死亡回响植入物的玻璃盒。仅对发生在熔岩地带的死亡发出警报。"
 	imp_type = /obj/item/implant/deathrattle/lavaland
 
 #undef DEATHRATTLE_AREA_NOLIST

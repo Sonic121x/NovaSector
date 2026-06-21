@@ -10,13 +10,13 @@ If you make a derivative work from this code, you must include this notification
 	set desc = "Remember how to wrestle."
 	set category = "Wrestling"
 
-	to_chat(usr, "<b><i>You flex your muscles and have a revelation...</i></b>")
+	to_chat(usr, "<b><i>你绷紧肌肉，灵光一闪...</i></b>")
 	to_chat(usr, "[span_notice("Clinch")]: Grab. Passively gives you a chance to immediately aggressively grab someone. Not always successful.")
 	to_chat(usr, "[span_notice("Suplex")]: Shove someone you are grabbing. Suplexes your target to the floor. Greatly injures them and leaves both you and your target on the floor.")
 	to_chat(usr, "[span_notice("Advanced grab")]: Grab. Passively causes stamina damage when grabbing someone.")
 
 /datum/martial_art/wrestling
-	name = "Wrestling"
+	name = "摔跤"
 	id = MARTIALART_WRESTLING
 	VAR_PRIVATE/datum/action/slam/slam
 	VAR_PRIVATE/datum/action/throw_wrassle/throw_wrassle
@@ -68,7 +68,7 @@ If you make a derivative work from this code, you must include this notification
 	return FALSE
 
 /datum/action/slam
-	name = "Slam (Cinch) - Slam a grappled opponent into the floor."
+	name = "猛摔（压制） - 将受制的对手猛摔在地板上。"
 	button_icon_state = "wrassle_slam"
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_HANDS_BLOCKED|AB_CHECK_CONSCIOUS
 
@@ -77,11 +77,11 @@ If you make a derivative work from this code, you must include this notification
 	if(!.)
 		return
 	var/datum/martial_art/source = target
-	owner.visible_message(span_danger("[owner] prepares to BODY SLAM!"), "<b><i>Your next attack will be a BODY SLAM.</i></b>")
+	owner.visible_message(span_danger("[owner] 准备使出抱摔！"), "<b><i>你的下一次攻击将是抱摔。</i></b>")
 	source.streak = "slam"
 
 /datum/action/throw_wrassle
-	name = "Throw (Cinch) - Spin a cinched opponent around and throw them."
+	name = "投掷（压制） - 旋转受制的对手并将其投掷出去。"
 	button_icon_state = "wrassle_throw"
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_HANDS_BLOCKED|AB_CHECK_CONSCIOUS
 
@@ -90,11 +90,11 @@ If you make a derivative work from this code, you must include this notification
 	if(!.)
 		return
 	var/datum/martial_art/source = target
-	owner.visible_message(span_danger("[owner] prepares to THROW!"), "<b><i>Your next attack will be a THROW.</i></b>")
+	owner.visible_message(span_danger("[owner] 准备使出投掷！"), "<b><i>你的下一次攻击将是投掷。</i></b>")
 	source.streak = "throw"
 
 /datum/action/kick
-	name = "Kick - A powerful kick, sends people flying away from you. Also useful for escaping from bad situations."
+	name = "踢击 - 一记强力的踢击，能将人从你身边踢飞。也适用于从不利局面中脱身。"
 	button_icon_state = "wrassle_kick"
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS // This is supposed to be usable while cuffed but it probably isn't
 
@@ -103,11 +103,11 @@ If you make a derivative work from this code, you must include this notification
 	if(!.)
 		return
 	var/datum/martial_art/source = target
-	owner.visible_message(span_danger("[owner] prepares to KICK!"), "<b><i>Your next attack will be a KICK.</i></b>")
+	owner.visible_message(span_danger("[owner] 准备使出踢击！"), "<b><i>你的下一次攻击将是踢击。</i></b>")
 	source.streak = "kick"
 
 /datum/action/strike
-	name = "Strike - Hit a neaby opponent with a quick attack."
+	name = "打击 - 快速攻击附近的对手。"
 	button_icon_state = "wrassle_strike"
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_HANDS_BLOCKED|AB_CHECK_CONSCIOUS
 
@@ -116,11 +116,11 @@ If you make a derivative work from this code, you must include this notification
 	if(!.)
 		return
 	var/datum/martial_art/source = target
-	owner.visible_message(span_danger("[owner] prepares to STRIKE!"), "<b><i>Your next attack will be a STRIKE.</i></b>")
+	owner.visible_message(span_danger("[owner] 准备使出打击！"), "<b><i>你的下一次攻击将是打击。</i></b>")
 	source.streak = "strike"
 
 /datum/action/drop
-	name = "Drop - Smash down onto an opponent."
+	name = "下砸 - 猛力砸向对手。"
 	button_icon_state = "wrassle_drop"
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_HANDS_BLOCKED
 
@@ -129,13 +129,13 @@ If you make a derivative work from this code, you must include this notification
 	if(!.)
 		return
 	var/datum/martial_art/source = target
-	owner.visible_message(span_danger("[owner] prepares to LEG DROP!"), "<b><i>Your next attack will be a LEG DROP.</i></b>")
+	owner.visible_message(span_danger("[owner] 准备使出下砸！"), "<b><i>你的下一次攻击将是下砸。</i></b>")
 	source.streak = "drop"
 
 /datum/martial_art/wrestling/activate_style(mob/living/new_holder)
 	. = ..()
-	to_chat(new_holder, span_userdanger("SNAP INTO A THIN TIM!"))
-	to_chat(new_holder, span_danger("Place your cursor over a move at the top of the screen to see what it does."))
+	to_chat(new_holder, span_userdanger("立刻进入状态！"))
+	to_chat(new_holder, span_danger("将光标悬停在屏幕顶部的招式上以查看其作用。"))
 	drop.Grant(new_holder)
 	kick.Grant(new_holder)
 	slam.Grant(new_holder)
@@ -143,7 +143,7 @@ If you make a derivative work from this code, you must include this notification
 	strike.Grant(new_holder)
 
 /datum/martial_art/wrestling/deactivate_style(mob/living/remove_from)
-	to_chat(remove_from, span_userdanger("You no longer feel that the tower of power is too sweet to be sour..."))
+	to_chat(remove_from, span_userdanger("你不再觉得力量之塔甜得发腻了……"))
 	drop?.Remove(remove_from)
 	kick?.Remove(remove_from)
 	slam?.Remove(remove_from)
@@ -158,15 +158,15 @@ If you make a derivative work from this code, you must include this notification
 	if(!defender)
 		return
 	if(!attacker.pulling || attacker.pulling != defender)
-		to_chat(attacker, span_warning("You need to have [defender] in a cinch!"))
+		to_chat(attacker, span_warning("你需要将[defender]置于锁技中！"))
 		return
 	defender.forceMove(attacker.loc)
 	defender.setDir(get_dir(defender, attacker))
 
 	defender.Stun(8 SECONDS)
-	defender.visible_message(span_danger("[attacker] starts spinning around with [defender]!"), \
-					span_userdanger("You're spun around by [attacker]!"), span_hear("You hear aggressive shuffling!"), null, attacker)
-	to_chat(attacker, span_danger("You start spinning around with [defender]!"))
+	defender.visible_message(span_danger("[attacker]开始带着[defender]旋转！"), \
+					span_userdanger("你被[attacker]旋转了起来！"), span_hear("你听到一阵激烈的拖拽声！"), null, attacker)
+	to_chat(attacker, span_danger("你开始带着[defender]旋转！"))
 	attacker.emote("scream")
 
 	for (var/i in 1 to 20)
@@ -186,11 +186,11 @@ If you make a derivative work from this code, you must include this notification
 		if (attacker && defender)
 
 			if (get_dist(attacker, defender) > 1)
-				to_chat(attacker, span_warning("[defender] is too far away!"))
+				to_chat(attacker, span_warning("[defender]距离太远了！"))
 				return
 
 			if (!isturf(attacker.loc) || !isturf(defender.loc))
-				to_chat(attacker, span_warning("You can't throw [defender] from here!"))
+				to_chat(attacker, span_warning("你无法从这里扔出[defender]！"))
 				return
 
 			attacker.setDir(turn(attacker.dir, 90))
@@ -209,18 +209,18 @@ If you make a derivative work from this code, you must include this notification
 		// These are necessary because of the sleep call.
 
 		if (get_dist(attacker, defender) > 1)
-			to_chat(attacker, span_warning("[defender] is too far away!"))
+			to_chat(attacker, span_warning("[defender]距离太远了！"))
 			return
 
 		if (!isturf(attacker.loc) || !isturf(defender.loc))
-			to_chat(attacker, span_warning("You can't throw [defender] from here!"))
+			to_chat(attacker, span_warning("你无法从这里扔出[defender]！"))
 			return
 
 		defender.forceMove(attacker.loc) // Maybe this will help with the wallthrowing bug.
 
-		defender.visible_message(span_danger("[attacker] throws [defender]!"), \
-						span_userdanger("You're thrown by [attacker]!"), span_hear("You hear aggressive shuffling and a loud thud!"), null, attacker)
-		to_chat(attacker, span_danger("You throw [defender]!"))
+		defender.visible_message(span_danger("[attacker]扔出了[defender]！"), \
+						span_userdanger("你被[attacker]扔了出去！"), span_hear("你听到激烈的拖拽声和一声巨响！"), null, attacker)
+		to_chat(attacker, span_danger("你扔出了[defender]！"))
 		playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
 		var/turf/T = get_edge_target_turf(attacker, attacker.dir)
 		if (T && isturf(T))
@@ -242,15 +242,15 @@ If you make a derivative work from this code, you must include this notification
 	if(!defender)
 		return
 	if(!attacker.pulling || attacker.pulling != defender)
-		to_chat(attacker, span_warning("You need to have [defender] in a cinch!"))
+		to_chat(attacker, span_warning("你需要将[defender]置于锁技中！"))
 		return
 	defender.forceMove(attacker.loc)
 	attacker.setDir(get_dir(attacker, defender))
 	defender.setDir(get_dir(defender, attacker))
 
-	defender.visible_message(span_danger("[attacker] lifts [defender] up!"), \
-					span_userdanger("You're lifted up by [attacker]!"), span_hear("You hear aggressive shuffling!"), null, attacker)
-	to_chat(attacker, span_danger("You lift [defender] up!"))
+	defender.visible_message(span_danger("[attacker]将[defender]举了起来！"), \
+					span_userdanger("你被[attacker]举了起来！"), span_hear("你听到一阵激烈的拖拽声！"), null, attacker)
+	to_chat(attacker, span_danger("你将[defender]举了起来！"))
 
 	FlipAnimation()
 
@@ -272,7 +272,7 @@ If you make a derivative work from this code, you must include this notification
 					defender.pixel_x = attacker.pixel_x + 8
 
 			if (get_dist(attacker, defender) > 1)
-				to_chat(attacker, span_warning("[defender] is too far away!"))
+				to_chat(attacker, span_warning("[defender] 距离太远了！"))
 				attacker.pixel_x = attacker.base_pixel_x
 				attacker.pixel_y = attacker.base_pixel_y
 				defender.pixel_x = defender.base_pixel_x
@@ -280,7 +280,7 @@ If you make a derivative work from this code, you must include this notification
 				return
 
 			if (!isturf(attacker.loc) || !isturf(defender.loc))
-				to_chat(attacker, span_warning("You can't slam [defender] here!"))
+				to_chat(attacker, span_warning("你不能在这里摔[defender]！"))
 				attacker.pixel_x = attacker.base_pixel_x
 				attacker.pixel_y = attacker.base_pixel_y
 				defender.pixel_x = defender.base_pixel_x
@@ -304,11 +304,11 @@ If you make a derivative work from this code, you must include this notification
 		defender.pixel_y = defender.base_pixel_y
 
 		if (get_dist(attacker, defender) > 1)
-			to_chat(attacker, span_warning("[defender] is too far away!"))
+			to_chat(attacker, span_warning("[defender] 距离太远了！"))
 			return
 
 		if (!isturf(attacker.loc) || !isturf(defender.loc))
-			to_chat(attacker, span_warning("You can't slam [defender] here!"))
+			to_chat(attacker, span_warning("你不能在这里摔[defender]！"))
 			return
 
 		defender.forceMove(attacker.loc)
@@ -320,9 +320,9 @@ If you make a derivative work from this code, you must include this notification
 			if (3)
 				fluff = "atomic [fluff]"
 
-		defender.visible_message(span_danger("[attacker] [fluff] [defender]!"), \
-						span_userdanger("You're [fluff]ed by [attacker]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
-		to_chat(attacker, span_danger("You [fluff] [defender]!"))
+		defender.visible_message(span_danger("[attacker] [fluff]了[defender]！"), \
+						span_userdanger("你被[attacker][fluff]了！"), span_hear("你听到肉体撞击的恶心声响！"), COMBAT_MESSAGE_RANGE, attacker)
+		to_chat(attacker, span_danger("你[fluff]了[defender]！"))
 		playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
 		if (!defender.stat)
 			defender.emote("scream")
@@ -365,9 +365,9 @@ If you make a derivative work from this code, you must include this notification
 		attacker.forceMove(defender.loc)
 		addtimer(CALLBACK(src, PROC_REF(CheckStrikeTurf), attacker, T), 0.4 SECONDS)
 
-		defender.visible_message(span_danger("[attacker] headbutts [defender]!"), \
-						span_userdanger("You're headbutted by [attacker]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
-		to_chat(attacker, span_danger("You headbutt [defender]!"))
+		defender.visible_message(span_danger("[attacker] 一头撞向[defender]！"), \
+						span_userdanger("你被[attacker]一头撞中！"), span_hear("你听到肉体撞击的恶心声响！"), COMBAT_MESSAGE_RANGE, attacker)
+		to_chat(attacker, span_danger("你一头撞向[defender]！"))
 		defender.adjust_brute_loss(rand(10,20))
 		playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
 		defender.Unconscious(2 SECONDS)
@@ -380,9 +380,9 @@ If you make a derivative work from this code, you must include this notification
 	attacker.emote("flip")
 	attacker.setDir(turn(attacker.dir, 90))
 
-	defender.visible_message(span_danger("[attacker] roundhouse-kicks [defender]!"), \
-					span_userdanger("You're roundhouse-kicked by [attacker]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
-	to_chat(attacker, span_danger("You roundhouse-kick [defender]!"))
+	defender.visible_message(span_danger("[attacker] 一记回旋踢踹向[defender]！"), \
+					span_userdanger("你被[attacker]一记回旋踢踹中！"), span_hear("你听到肉体撞击的恶心声响！"), COMBAT_MESSAGE_RANGE, attacker)
+	to_chat(attacker, span_danger("你一记回旋踢踹向[defender]！"))
 	playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
 	defender.adjust_brute_loss(rand(10,20))
 
@@ -414,8 +414,8 @@ If you make a derivative work from this code, you must include this notification
 
 	if (surface && (ST && isturf(ST)))
 		attacker.forceMove(ST)
-		attacker.visible_message(span_danger("[attacker] climbs onto [surface]!"), \
-						span_danger("You climb onto [surface]!"))
+		attacker.visible_message(span_danger("[attacker] 爬上了[surface]！"), \
+						span_danger("你爬上了[surface]！"))
 		attacker.pixel_y = attacker.base_pixel_y + 10
 		falling = 1
 		sleep(1 SECONDS)
@@ -426,16 +426,16 @@ If you make a derivative work from this code, you must include this notification
 		if ((falling == 0 && get_dist(attacker, defender) > 1) || (falling == 1 && get_dist(attacker, defender) > 2)) // We climbed onto stuff.
 			attacker.pixel_y = attacker.base_pixel_y
 			if (falling == 1)
-				attacker.visible_message(span_danger("...and dives head-first into the ground, ouch!"), \
-								span_userdanger("...and dive head-first into the ground, ouch!"))
+				attacker.visible_message(span_danger("……然后一头栽进地里，哎哟！"), \
+								span_userdanger("……然后一头栽进地里，哎哟！"))
 				attacker.adjust_brute_loss(rand(10,20))
 				attacker.Paralyze(60)
-			to_chat(attacker, span_warning("[defender] is too far away!"))
+			to_chat(attacker, span_warning("[defender] 距离太远了！"))
 			return
 
 		if (!isturf(attacker.loc) || !isturf(defender.loc))
 			attacker.pixel_y = attacker.base_pixel_y
-			to_chat(attacker, span_warning("You can't drop onto [defender] from here!"))
+			to_chat(attacker, span_warning("你无法从这里对 [defender] 使用坠击！"))
 			return
 
 		if(attacker)
@@ -446,9 +446,9 @@ If you make a derivative work from this code, you must include this notification
 
 		attacker.forceMove(defender.loc)
 
-		defender.visible_message(span_danger("[attacker] leg-drops [defender]!"), \
-						span_userdanger("You're leg-dropped by [attacker]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, attacker)
-		to_chat(attacker, span_danger("You leg-drop [defender]!"))
+		defender.visible_message(span_danger("[attacker] 对 [defender] 使出了腿部坠击！"), \
+						span_userdanger("[attacker] 对你使出了腿部坠击！"), span_hear("你听到肉体撞击的恶心声响！"), null, attacker)
+		to_chat(attacker, span_danger("你对 [defender] 使出了腿部坠击！"))
 		playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
 		attacker.emote("scream")
 
@@ -482,19 +482,19 @@ If you make a derivative work from this code, you must include this notification
 		return MARTIAL_ATTACK_FAIL
 	attacker.start_pulling(defender)
 	defender.visible_message(
-		span_danger("[attacker] gets [defender] in a cinch!"),
-		span_userdanger("You're put into a cinch by [attacker]!"),
-		span_hear("You hear aggressive shuffling!"),
+		span_danger("[attacker] 用锁喉技抓住了 [defender]！"),
+		span_userdanger("[attacker] 对你使出了锁喉技！"),
+		span_hear("你听到激烈的扭打声！"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You get [defender] in a cinch!"))
+	to_chat(attacker, span_danger("你对 [defender] 使出了锁喉技！"))
 	defender.Stun(rand(6 SECONDS, 10 SECONDS))
 	log_combat(attacker, defender, "cinched")
 	return MARTIAL_ATTACK_SUCCESS
 
 /obj/item/storage/belt/champion/wrestling
-	name = "Wrestling Belt"
+	name = "摔跤腰带"
 
 /obj/item/storage/belt/champion/wrestling/Initialize(mapload)
 	. = ..()

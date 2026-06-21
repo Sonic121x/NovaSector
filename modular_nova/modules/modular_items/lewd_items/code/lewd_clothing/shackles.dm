@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/straight_jacket/shackles
-	name = "shackles"
-	desc = "A set of shackles designed for intimate encounters. There's a release switch just under the wrist."
+	name = "镣铐"
+	desc = "一套为亲密接触设计的镣铐。手腕下方有一个释放开关。"
 	body_parts_covered = NONE
 	flags_inv = NONE
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_suit/lewd_suits.dmi'
@@ -46,7 +46,7 @@
 		var/obj/item/clothing/suit/straight_jacket/shackles/reinforced/shackles = new()
 		remove_item_from_storage(user)
 		user.put_in_hands(shackles)
-		to_chat(user, span_notice("You reinforce the locks on [src] with [tool]."))
+		to_chat(user, span_notice("你用[tool]加固了[src]上的锁。"))
 		qdel(tool)
 		qdel(src)
 		return TRUE
@@ -55,8 +55,8 @@
 
 /// Reinforced Version
 /obj/item/clothing/suit/straight_jacket/shackles/reinforced
-	name = "reinforced shackles"
-	desc = "A set of sturdy shackles, with a heavy lock."
+	name = "强化镣铐"
+	desc = "一套坚固的镣铐，配有一把沉重的锁。"
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 	clothing_flags = DANGEROUS_OBJECT
 	equip_delay_self = 10 SECONDS

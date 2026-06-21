@@ -84,7 +84,7 @@
 	description = pick_list(scar_file, scar_keyword)
 	if (!description)
 		stack_trace("no valid description found for scar! file: [scar_file] keyword: [scar_keyword] wound: [W.type]")
-		description = "general disfigurement"
+		description = "整体毁容"
 
 	precise_location = pick_list_replacements(SCAR_LOC_FILE, limb.body_zone)
 	switch(W.severity)

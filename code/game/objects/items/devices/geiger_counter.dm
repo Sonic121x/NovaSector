@@ -1,6 +1,6 @@
 /obj/item/geiger_counter //DISCLAIMER: I know nothing about how real-life Geiger counters work. This will not be realistic. ~Xhuis
-	name = "\improper Geiger counter"
-	desc = "A handheld device used for detecting and measuring radiation pulses."
+	name = "\improper 盖革计数器"
+	desc = "一种用于探测和测量辐射脉冲的手持设备。"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "geiger_off"
 	inhand_icon_state = "multitool"
@@ -25,18 +25,18 @@
 	. = ..()
 	if(!scanning)
 		return
-	. += span_info("Alt-click it to clear stored radiation levels.")
+	. += span_info("Alt-点击以清除存储的辐射等级。")
 	switch(last_perceived_radiation_danger)
 		if(null)
-			. += span_notice("Ambient radiation level count reports that all is well.")
+			. += span_notice("环境辐射等级计数报告一切正常。")
 		if(PERCEIVED_RADIATION_DANGER_LOW)
-			. += span_alert("Ambient radiation levels slightly above average.")
+			. += span_alert("环境辐射水平略高于平均值。")
 		if(PERCEIVED_RADIATION_DANGER_MEDIUM)
-			. += span_warning("Ambient radiation levels above average.")
+			. += span_warning("环境辐射等级高于平均水平。")
 		if(PERCEIVED_RADIATION_DANGER_HIGH)
-			. += span_danger("Ambient radiation levels highly above average.")
+			. += span_danger("环境辐射等级远高于平均水平。")
 		if(PERCEIVED_RADIATION_DANGER_EXTREME)
-			. += span_suicide("Ambient radiation levels reaching critical level!")
+			. += span_suicide("环境辐射等级即将达到临界水平！")
 
 /obj/item/geiger_counter/update_icon_state()
 	if(!scanning)
@@ -65,7 +65,7 @@
 		qdel(GetComponent(/datum/component/geiger_sound))
 
 	update_appearance(UPDATE_ICON)
-	balloon_alert(user, "switch [scanning ? "on" : "off"]")
+	balloon_alert(user, "开关 [scanning ? "on" : "off"]")
 
 /obj/item/geiger_counter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(SHOULD_SKIP_INTERACTION(interacting_with, src, user))
@@ -76,7 +76,7 @@
 	if(!CAN_IRRADIATE(interacting_with))
 		return NONE
 
-	user.visible_message(span_notice("[user] scans [interacting_with] with [src]."), span_notice("You scan [interacting_with]'s radiation levels with [src]..."))
+	user.visible_message(span_notice("[user] 用 [src] 扫描了 [interacting_with]。"), span_notice("你正在用 [src] 扫描 [interacting_with] 的辐射水平..."))
 	addtimer(CALLBACK(src, PROC_REF(scan), interacting_with, user), 20, TIMER_UNIQUE) // Let's not have spamming GetAllContents
 	return ITEM_INTERACT_SUCCESS
 
@@ -108,13 +108,13 @@
 	if (SEND_SIGNAL(target, COMSIG_GEIGER_COUNTER_SCAN, user, src) & COMSIG_GEIGER_COUNTER_SCAN_SUCCESSFUL)
 		return
 
-	to_chat(user, span_notice("[icon2html(src, user)] [isliving(target) ? "Subject" : "Target"] is free of radioactive contamination."))
+	to_chat(user, span_notice("[icon2html(src, user)] [isliving(target) ? "Subject" : "Target"] 没有放射性污染。"))
 
 /obj/item/geiger_counter/click_alt(mob/living/user)
 	if(!scanning)
-		to_chat(user, span_warning("[src] must be on to reset its radiation level!"))
+		to_chat(user, span_warning("[src] 必须处于开启状态才能重置其辐射水平！"))
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice("You flush [src]'s radiation counts, resetting it to normal."))
+	to_chat(user, span_notice("你清除了 [src] 的辐射计数，将其重置为正常状态。"))
 	last_perceived_radiation_danger = null
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS

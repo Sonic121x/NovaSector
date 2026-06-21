@@ -1,6 +1,6 @@
 /mob/living/basic/eyeball
-	name = "eyeball"
-	desc = "An odd looking creature, it won't stop staring..."
+	name = "眼球怪"
+	desc = "一种长相奇特的生物，它一直盯着看..."
 	icon = 'icons/mob/simple/carp.dmi'
 	icon_state = "eyeball"
 	icon_living = "eyeball"
@@ -73,7 +73,7 @@
 
 	if(istype(attack_target, /obj/item/food/grown/carrot))
 		adjust_brute_loss(-5)
-		to_chat(src, span_warning("You eat [attack_target]! It restores some health!"))
+		to_chat(src, span_warning("你吃掉了[attack_target]！它恢复了一些生命值！"))
 		qdel(attack_target)
 		return TRUE
 
@@ -110,7 +110,7 @@
 /mob/living/basic/eyeball/proc/heal_eye_damage(mob/living/target, obj/item/organ/eyes/eyes)
 	if(!COOLDOWN_FINISHED(src, eye_healing))
 		return
-	to_chat(target, span_warning("[src] seems to be healing your [eyes.zone]!"))
+	to_chat(target, span_warning("[src] 似乎在治疗你的 [eyes.zone]！"))
 	eyes.apply_organ_damage(-1 * healing_factor)
 	new /obj/effect/temp_visual/heal(get_turf(target), COLOR_HEALING_CYAN)
 	befriend(target)

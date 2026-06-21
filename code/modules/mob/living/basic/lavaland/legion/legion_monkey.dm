@@ -1,7 +1,7 @@
 /// Weak mob spawned if a legion infests a monkey
 /mob/living/basic/mining/legion/monkey
-	name = "rabble"
-	desc = "You can see what was once a monkey under the shifting mass of corruption. It doesn't have enough biomass to reproduce."
+	name = "乌合之众"
+	desc = "你能看出，在这团蠕动的腐败物质之下，曾经是一只猴子。它没有足够的生物质来繁殖。"
 	icon_state = "legion_monkey"
 	pass_flags = PASSTABLE
 	speed = 5
@@ -30,8 +30,8 @@
 
 /// Icebox variant
 /mob/living/basic/mining/legion/monkey/snow
-	name = "snow rabble"
-	desc = "You can see what was once a monkey under the densely packed snow. It doesn't look friendly."
+	name = "雪原乌合之众"
+	desc = "你能看到厚厚积雪下曾经是一只猴子的轮廓。它看起来并不友好。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "snow_monkey"
 	has_emissive = FALSE

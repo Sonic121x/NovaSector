@@ -13,8 +13,8 @@
 
 /// The classically famous compadre to the Chief Engineer, Poly.
 /mob/living/basic/parrot/poly
-	name = "Poly"
-	desc = "Poly the Parrot. An expert on quantum cracker theory."
+	name = "波利"
+	desc = "波利鹦鹉。量子饼干理论的专家。"
 	gold_core_spawnable = NO_SPAWN
 	speech_probability_rate = 6
 
@@ -188,8 +188,8 @@
 	ears = new /obj/item/radio/headset/headset_eng(src)
 
 /mob/living/basic/parrot/poly/ghost
-	name = "The Ghost of Poly"
-	desc = "Doomed to squawk the Earth."
+	name = "波利之魂"
+	desc = "注定要在地球上聒噪不休。"
 	color = "#FFFFFF77"
 	sentience_type = SENTIENCE_BOSS //This is so players can't mindswap into ghost poly to become a literal god
 	incorporeal_move = INCORPOREAL_MOVE_BASIC
@@ -212,7 +212,7 @@
 		forceMove(get_turf(target))
 		return FALSE
 	if(ishuman(loc))
-		balloon_alert(src, "already possessing!")
+		balloon_alert(src, "已经附身了！")
 		return FALSE
 	forceMove(target)
 	return TRUE

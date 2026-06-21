@@ -1,7 +1,7 @@
 /obj/item/lipstick
 	gender = PLURAL
-	name = "red lipstick"
-	desc = "A generic brand of lipstick."
+	name = "红色唇膏"
+	desc = "一款普通品牌的唇膏。"
 	icon = 'icons/obj/cosmetic.dmi'
 	icon_state = "lipstick"
 	base_icon_state = "lipstick"
@@ -76,38 +76,38 @@
 	return TRUE
 
 /obj/item/lipstick/purple
-	name = "purple lipstick"
+	name = "紫色唇膏"
 	lipstick_color = COLOR_PURPLE
 
 /obj/item/lipstick/jade
-	name = "jade lipstick"
+	name = "翡翠色唇膏"
 	lipstick_color = COLOR_JADE
 
 /obj/item/lipstick/blue
-	name = "blue lipstick"
+	name = "蓝色唇膏"
 	lipstick_color = COLOR_BLUE
 
 /obj/item/lipstick/green
-	name = "green lipstick"
+	name = "绿色唇膏"
 	lipstick_color = COLOR_GREEN
 
 /obj/item/lipstick/white
-	name = "white lipstick"
+	name = "白色唇膏"
 	lipstick_color = COLOR_WHITE
 
 /obj/item/lipstick/black
-	name = "black lipstick"
+	name = "黑色唇膏"
 	lipstick_color = COLOR_BLACK
 
 /obj/item/lipstick/black/death
-	name = "\improper Kiss of Death"
-	desc = "An incredibly potent tube of lipstick made from the venom of the dreaded Yellow Spotted Space Lizard, as deadly as it is chic. Try not to smear it!"
+	name = "\improper 死亡之吻"
+	desc = "一支由可怕的黄斑太空蜥蜴毒液制成的强效唇膏，既致命又时髦。小心别弄花了！"
 	lipstick_trait = TRAIT_KISS_OF_DEATH
 	random_spawn = FALSE
 
 /obj/item/lipstick/syndie
-	name = "syndie lipstick"
-	desc = "Syndicate branded lipstick with a killer dose of kisses. Observe safety regulations!"
+	name = "辛迪加唇膏"
+	desc = "辛迪加品牌唇膏，带有致命剂量的亲吻。请遵守安全规定！"
 	icon_state = "slipstick"
 	base_icon_state = "slipstick"
 	lipstick_color = COLOR_SYNDIE_RED
@@ -115,7 +115,7 @@
 	random_spawn = FALSE
 
 /obj/item/lipstick/random
-	name = "lipstick"
+	name = "唇膏"
 	icon_state = "random_lipstick"
 
 /obj/item/lipstick/random/Initialize(mapload)
@@ -133,7 +133,7 @@
 	update_appearance()
 
 /obj/item/lipstick/attack_self(mob/user)
-	to_chat(user, span_notice("You twist [src] [open ? "closed" : "open"]."))
+	to_chat(user, span_notice("你把 [src] 拧 [open ? "closed" : "open"]。"))
 	open = !open
 	update_appearance(UPDATE_ICON)
 
@@ -142,29 +142,29 @@
 		return
 
 	if(!ishuman(M))
-		to_chat(user, span_warning("Where are the lips on that?"))
+		to_chat(user, span_warning("那东西的嘴唇在哪儿？"))
 		return
 
 	var/mob/living/carbon/human/target = M
 	if(target.is_mouth_covered())
-		to_chat(user, span_warning("Remove [ target == user ? "your" : "[target.p_their()]" ] mask!"))
+		to_chat(user, span_warning("把 [ target == user ? "your" : "[target.p_their()]" ] 面具摘掉！"))
 		return
 	if(target.lip_style) //if they already have lipstick on
-		to_chat(user, span_warning("You need to wipe off the old lipstick first!"))
+		to_chat(user, span_warning("你需要先擦掉旧的唇膏！"))
 		return
 
 	if(target == user)
-		user.visible_message(span_notice("[user] does [user.p_their()] lips with \the [src]."), \
-			span_notice("You take a moment to apply \the [src]. Perfect!"))
+		user.visible_message(span_notice("[user] 用 \the [user.p_their()] 涂了 [src] 的嘴唇。"), \
+			span_notice("你花了一点时间涂上 \the [src]。完美！"))
 		target.update_lips(style, lipstick_color, lipstick_trait)
 		return
 
-	user.visible_message(span_warning("[user] begins to do [target]'s lips with \the [src]."), \
-		span_notice("You begin to apply \the [src] on [target]'s lips..."))
+	user.visible_message(span_warning("[user] 开始用 \the [target] 给 [src] 涂嘴唇。"), \
+		span_notice("你开始给 [src] 的嘴唇涂上 \the [target]..."))
 	if(!do_after(user, 2 SECONDS, target = target))
 		return
-	user.visible_message(span_notice("[user] does [target]'s lips with \the [src]."), \
-		span_notice("You apply \the [src] on [target]'s lips."))
+	user.visible_message(span_notice("[user] 用 \the [target] 给 [src] 涂了嘴唇。"), \
+		span_notice("你给 [src] 的嘴唇涂上了 \the [target]。"))
 	target.update_lips(style, lipstick_color, lipstick_trait)
 
 //you can wipe off lipstick with paper!
@@ -174,16 +174,16 @@
 
 	var/mob/living/carbon/human/target = M
 	if(target == user)
-		to_chat(user, span_notice("You wipe off the lipstick with [src]."))
+		to_chat(user, span_notice("你用[src]擦掉了口红。"))
 		target.update_lips(null)
 		return
 
-	user.visible_message(span_warning("[user] begins to wipe [target]'s lipstick off with \the [src]."), \
-		span_notice("You begin to wipe off [target]'s lipstick..."))
+	user.visible_message(span_warning("[user] 开始用\the [target]擦掉[src]的口红。"), \
+		span_notice("你开始擦掉[target]的口红..."))
 	if(!do_after(user, 1 SECONDS, target = target))
 		return
-	user.visible_message(span_notice("[user] wipes [target]'s lipstick off with \the [src]."), \
-		span_notice("You wipe off [target]'s lipstick."))
+	user.visible_message(span_notice("[user] 用\the [target]擦掉了[src]的口红。"), \
+		span_notice("你擦掉了[target]的口红。"))
 	target.update_lips(null)
 
 /* NOVA EDIT REMOVAL
@@ -339,8 +339,8 @@
 */
 
 /obj/item/razor/surgery
-	name = "surgical razor"
-	desc = "A medical grade razor. Its precision blades provide a clean shave for surgical preparation."
+	name = "手术剃刀"
+	desc = "一把医用级剃刀。其精密刀片可为手术准备提供干净的剃须效果。"
 	icon = 'icons/obj/cosmetic.dmi'
 	icon_state = "medrazor"
 

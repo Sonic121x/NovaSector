@@ -1,6 +1,6 @@
 /turf/open/floor/glass
-	name = "glass floor"
-	desc = "Don't jump on it, or do, I'm not your mom."
+	name = "玻璃地板"
+	desc = "别往上跳，或者跳也行，我又不是你妈。"
 	icon = 'icons/turf/floors/glass.dmi'
 	icon_state = "glass-0"
 	base_icon_state = "glass"
@@ -66,8 +66,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/glass/reinforced
-	name = "reinforced glass floor"
-	desc = "Do jump on it, it can take it."
+	name = "强化玻璃地板"
+	desc = "在上面随便跳吧，它能撑得住。"
 	icon = 'icons/turf/floors/reinf_glass.dmi'
 	icon_state = "reinf_glass-0"
 	base_icon_state = "reinf_glass"
@@ -84,8 +84,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/glass/plasma
-	name = "plasma glass floor"
-	desc = "Studies by the Nanotrasen Materials Safety Division have not yet determined if this is safe to jump on, do so at your own risk."
+	name = "等离子玻璃地板"
+	desc = "纳米传讯材料安全部门的研究尚未确定跳上此物是否安全，请自行承担风险。"
 	icon = 'icons/turf/floors/plasma_glass.dmi'
 	icon_state = "plasma_glass-0"
 	base_icon_state = "plasma_glass"
@@ -100,8 +100,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/glass/reinforced/plasma
-	name = "reinforced plasma glass floor"
-	desc = "Do jump on it, jump on it while in a mecha, it can take it."
+	name = "强化等离子玻璃地板"
+	desc = "尽管跳上去吧，当你在机甲里时跳上去，它能承受得住。"
 	icon = 'icons/turf/floors/reinf_plasma_glass.dmi'
 	icon_state = "reinf_plasma_glass-0"
 	base_icon_state = "reinf_plasma_glass"

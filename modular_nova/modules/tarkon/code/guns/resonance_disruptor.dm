@@ -1,8 +1,8 @@
 /// Yes. This is a lot of code frankensteining. I am not proud of my work but damned am i proud it works... Atleast if you're seeing this it works.
 
 /obj/item/gun/energy/recharge/resonant_system
-	name = "A.R.C.S Resonator"
-	desc = "The \"Advanced Resonance Control System\" or \"A.R.C.S\" is an advanced, ranged version of a mining resonator. While its main case looks nothing more fancy than a modified proto-kinetic accelerator... One could guess that's not far off the truth. The lugs for a bayonet are missing, but at least you can play with the new adjustment dial on the side."
+	name = "A.R.C.S 谐振器"
+	desc = "“先进谐振控制系统”或“A.R.C.S”是采矿谐振器的先进远程版本。虽然它的主体外壳看起来不过是一个改装过的原动能加速器……人们可能会猜测这离事实不远。刺刀卡榫不见了，但至少你可以摆弄侧面的新调节旋钮。"
 	icon = 'modular_nova/modules/tarkon/icons/misc/ARCS.dmi'
 	righthand_file = 'modular_nova/modules/tarkon/icons/mob/inhands/righthand.dmi'
 	lefthand_file = 'modular_nova/modules/tarkon/icons/mob/inhands/lefthand.dmi'
@@ -27,10 +27,10 @@
 
 /obj/item/gun/energy/recharge/resonant_system/attack_self(mob/user)
 	if(mode == RESONATOR_MODE_AUTO)
-		to_chat(user, span_info("You set the resonator's fields to detonate only after you hit one with it."))
+		to_chat(user, span_info("你将谐振器的力场设置为仅在击中目标后引爆。"))
 		mode = RESONATOR_MODE_MANUAL
 	else
-		to_chat(user, span_info("You set the resonator's fields to automatically detonate after 2 seconds."))
+		to_chat(user, span_info("你将谐振器的力场设置为2秒后自动引爆。"))
 		mode = RESONATOR_MODE_AUTO
 
 /obj/item/gun/energy/recharge/resonant_system/proc/modify_projectile(obj/projectile/resonant_bolt/bolt) //Allows for the resonator mode to activate with the resonator blast. Also copied from PKA code. This is butchered code.
@@ -49,7 +49,7 @@
 		firer.modify_projectile(loaded_projectile)
 
 /obj/projectile/resonant_bolt
-	name = "resonating pulse"
+	name = "谐振脉冲"
 	icon_state = "pulse1"
 	damage = 0 //Damage will be done via delayed blast
 	damage_type = BRUTE
@@ -146,7 +146,7 @@
 	if(creator)
 		log_combat(creator, owner, "used a resonator field on", "resonator")
 		SEND_SIGNAL(creator, COMSIG_LIVING_RESONATOR_BURST, creator, owner)
-	to_chat(owner, span_userdanger("[src] detonated with you in it!"))
+	to_chat(owner, span_userdanger("[src] 在你身处其中时引爆了！"))
 	owner.apply_damage(resonance_damage, BRUTE)
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/resonance)
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/resonance), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_DELETE_ME)

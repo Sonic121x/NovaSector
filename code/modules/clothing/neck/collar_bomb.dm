@@ -1,6 +1,6 @@
 ///Special neckwear that kills its wearer if triggered, by either its specific remote or assemblies.
 /obj/item/clothing/neck/collar_bomb
-	name = "collar bomb"
+	name = "项圈炸弹"
 	desc = "A cumbersome collar of some sort, filled with just enough explosive to rip one's head off... at least that's what it reads on the front tag."
 	icon_state = "collar_bomb"
 	icon = 'icons/obj/clothing/neck.dmi'
@@ -36,7 +36,7 @@
 	. = ..()
 	if(user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		return
-	. += span_tinynotice("It has a [EXAMINE_HINT("wire")] panel that could be interacted with...")
+	. += span_tinynotice("它有一个[EXAMINE_HINT("wire")]面板，或许可以与之互动...")
 
 /obj/item/clothing/neck/collar_bomb/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
 	if(is_wire_tool(item))
@@ -72,7 +72,7 @@
 		balloon_alert_to_viewers("dud...")
 		active = FALSE
 		return
-	visible_message(span_warning("[src] goes off, outright decapitating [brian]!"), span_hear("You hear a fleshy boom!"))
+	visible_message(span_warning("[src] 爆炸了，直接将[brian]斩首！"), span_hear("你听到一声血肉爆裂的巨响！"))
 	playsound(src, SFX_EXPLOSION, 30, TRUE)
 	brian.apply_damage(200, BRUTE, BODY_ZONE_HEAD)
 	var/obj/item/bodypart/head/myhead = brian.get_bodypart(BODY_ZONE_HEAD)
@@ -83,8 +83,8 @@
 
 ///The button that detonates the collar.
 /obj/item/collar_bomb_button
-	name = "big yellow button"
-	desc = "It looks like a big red button, except it's yellow. It comes with a heavy trigger, to avoid accidents."
+	name = "大黄按钮"
+	desc = "它看起来像个红色的大按钮，但其实是黄色的。它配有一个沉重的触发器，以防意外。"
 	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "bigyellow"
 	inhand_icon_state = "electronic"

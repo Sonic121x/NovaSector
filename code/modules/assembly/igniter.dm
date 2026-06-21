@@ -4,8 +4,8 @@
 #define MAX_FREEZE_TEMP 1000000
 
 /obj/item/assembly/igniter
-	name = "igniter"
-	desc = "A small electronic device able to ignite combustible substances."
+	name = "点火器"
+	desc = "一种能够点燃可燃物的小型电子设备。"
 	icon_state = "igniter"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*5, /datum/material/glass=SMALL_MATERIAL_AMOUNT*0.5)
 	var/datum/effect_system/basic/spark_spread/sparks
@@ -48,14 +48,14 @@
 	add_fingerprint(user)
 
 /obj/item/assembly/igniter/ignition_effect(atom/A, mob/user)
-	. = span_notice("[user] fiddles with [src], and manages to light [A].")
+	. = span_notice("[user] 摆弄着 [src]，成功点燃了 [A]。")
 	activate()
 	add_fingerprint(user)
 
 //For the Condenser, which functions like the igniter but makes things colder.
 /obj/item/assembly/igniter/condenser
-	name = "condenser"
-	desc = "A small electronic device able to chill their surroundings."
+	name = "冷凝器"
+	desc = "一个能够给周围降温的小型电子设备。"
 	icon_state = "freezer"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2.5, /datum/material/glass=SMALL_MATERIAL_AMOUNT * 3)
 	heat = MIN_FREEZE_TEMP

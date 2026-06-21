@@ -1,6 +1,6 @@
 /obj/item/mod/core
-	name = "MOD core"
-	desc = "A non-functional MOD core. Inform the admins if you see this."
+	name = "模块核心"
+	desc = "一个无效的 MOD 核心。如发现此类情况，请告知管理员。"
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "mod-core"
 	inhand_icon_state = "electronic"
@@ -66,7 +66,7 @@
 		([round((100 * charge_amount) / max_charge_amount, 1)]%)"
 
 /obj/item/mod/core/infinite
-	name = "MOD infinite core"
+	name = "模块无限核心"
 	icon_state = "mod-core-infinite"
 	desc = "A fusion core using the rare Fixium to sustain enough energy for the lifetime of the MOD's user. \
 		This might be because of the slowly killing poison inside, but those are just rumors."
@@ -99,7 +99,7 @@
 	return "Infinite"
 
 /obj/item/mod/core/standard
-	name = "MOD standard core"
+	name = "模块标准核心"
 	icon_state = "mod-core-standard"
 	desc = "Growing in the most lush, fertile areas of the planet Sprout, there is a crystal known as the Heartbloom. \
 		These rare, organic piezoelectric crystals are of incredible cultural significance to the artist castes of the \
@@ -236,13 +236,13 @@
 
 /obj/item/mod/core/standard/proc/mod_uninstall_cell(mob/living/user)
 	if(!cell)
-		mod.balloon_alert(user, "no cell!")
+		mod.balloon_alert(user, "没有电池！")
 		return
-	mod.balloon_alert(user, "removing cell...")
+	mod.balloon_alert(user, "正在取出电池...")
 	if(!do_after(user, 1.5 SECONDS, target = mod))
-		mod.balloon_alert(user, "interrupted!")
+		mod.balloon_alert(user, "已中断！")
 		return
-	mod.balloon_alert(user, "cell removed")
+	mod.balloon_alert(user, "电池已取出")
 	playsound(mod, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	var/obj/item/cell_to_move = cell
 	cell_to_move.forceMove(drop_location())
@@ -260,15 +260,15 @@
 	if(!istype(attacking_item, /obj/item/stock_parts/power_store/cell))
 		return FALSE
 	if(!mod.open)
-		mod.balloon_alert(user, "cover closed!")
+		mod.balloon_alert(user, "盖板已关闭！")
 		playsound(mod, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(cell)
-		mod.balloon_alert(user, "already has cell!")
+		mod.balloon_alert(user, "已有电池！")
 		playsound(mod, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	install_cell(attacking_item)
-	mod.balloon_alert(user, "cell installed")
+	mod.balloon_alert(user, "电池已安装")
 	playsound(mod, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -295,7 +295,7 @@
 		mod.update_charge_alert()
 
 /obj/item/mod/core/ethereal
-	name = "MOD ethereal core"
+	name = "模块电气核心"
 	icon_state = "mod-core-ethereal"
 	desc = "A reverse engineered core of a Modular Outerwear Device. Using natural liquid electricity from Ethereals, \
 		preventing the need to use external sources to convert electric charge. As the suits are naturally charged by \
@@ -360,7 +360,7 @@
 #define PLASMA_CORE_SHEET_CHARGE (2 * STANDARD_CELL_CHARGE)
 
 /obj/item/mod/core/plasma
-	name = "MOD plasma core"
+	name = "模块等离子核心"
 	icon_state = "mod-core-plasma"
 	desc = "Nanotrasen's attempt at capitalizing on their plasma research. These plasma cores are refueled \
 		through plasma fuel, allowing for easy continued use by their mining squads."
@@ -438,7 +438,7 @@
 	if(uses_needed <= 0 || !plasma.use(uses_needed))
 		return FALSE
 	add_charge(uses_needed * charge_given)
-	balloon_alert(user, "core refueled")
+	balloon_alert(user, "核心已补充燃料")
 	return TRUE
 
 #undef PLASMA_CORE_ORE_CHARGE
@@ -642,20 +642,20 @@
 		update_greyscale()
 
 /datum/mood_event/soul_core_torment
-	description = "IT BURNS!! IT BURNS!! THE DEEPEST DEPTHS OF MY BEING!! IT BURNS!!"
+	description = "它在燃烧！！它在燃烧！！我存在的最深处！！它在燃烧！！"
 	mood_change = -20
 	timeout = 10 SECONDS
 
 /datum/mood_event/soul_core_torment/heretic
-	description = "GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD!!"
+	description = "滚出我的脑袋滚出我的脑袋滚出我的脑袋！！"
 
 /datum/mood_event/soul_core_discomfort
-	description = "I'm no fan of these divine powers breathing down my neck."
+	description = "我可不喜欢这些神性力量在我背后盯着我。"
 	mood_change = -3
 	timeout = 10 SECONDS
 
 /datum/mood_event/soul_core_warning
-	description = "I can feel my modsuit siphoning my energy. I'd better keep my spirits high."
+	description = "我能感觉到我的模组服在汲取我的能量。我最好保持高昂的情绪。"
 	mood_change = 0
 	timeout = 10 SECONDS
 

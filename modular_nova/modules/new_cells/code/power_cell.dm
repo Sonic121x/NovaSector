@@ -1,6 +1,6 @@
 /obj/item/stock_parts/power_store/cell/crank
-	name = "crank cell"
-	desc = "Go ahead, wind it up to charge it."
+	name = "手摇电池"
+	desc = "来吧，摇动它来充电。"
 	icon = 'modular_nova/modules/new_cells/icons/power.dmi'
 	icon_state = "crankcell"
 	charge_light_type = "old"
@@ -14,7 +14,7 @@
 
 /obj/item/stock_parts/power_store/cell/crank/examine(mob/user)
 	. = ..()
-	. += span_notice("Click to start cranking the cell.")
+	. += span_notice("点击开始摇动电池。")
 
 /obj/item/stock_parts/power_store/cell/crank/Initialize(mapload, override_maxcharge)
 	. = ..()
@@ -35,8 +35,8 @@
 		playsound(src, 'modular_nova/modules/new_cells/sound/crank.ogg', 25, FALSE)
 
 /obj/item/stock_parts/power_store/cell/self_charge
-	name = "charging cell"
-	desc = "A special cell that will recharge itself over time."
+	name = "充电电池"
+	desc = "一种特殊的电池，会随时间自行充电。"
 	icon = 'modular_nova/modules/new_cells/icons/power.dmi'
 	icon_state = "chargecell"
 	maxcharge = STANDARD_CELL_CHARGE * 5

@@ -1,6 +1,6 @@
 /obj/item/dnainjector
-	name = "\improper DNA injector"
-	desc = "A cheap single use autoinjector that injects the user with DNA."
+	name = "\improper DNA注射器"
+	desc = "一种廉价的单次使用自动注射器，可为使用者注入DNA。"
 	icon = 'icons/obj/medical/syringe.dmi'
 	icon_state = "dnainjector"
 	inhand_icon_state = "dnainjector"
@@ -60,7 +60,7 @@
 	if(!target.can_mutate())
 		return FALSE
 	if(target.stat == DEAD) //prevents dead people from having their DNA changed
-		to_chat(user, span_notice("You can't modify [target]'s DNA while [target.p_theyre()] dead."))
+		to_chat(user, span_notice("你没法在[target.p_theyre()]死了的时候调整[target]的DNA."))
 		return FALSE
 	for(var/removed_mutation in remove_mutations)
 		target.dna.remove_mutation(removed_mutation, GLOB.standard_mutation_sources)
@@ -83,10 +83,10 @@
 
 /obj/item/dnainjector/attack(mob/target, mob/user)
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("你没有足够的灵巧度来做这件事！"))
 		return
 	if(used)
-		to_chat(user, span_warning("This injector is used up!"))
+		to_chat(user, span_warning("这个注射器用光了!"))
 		return
 	if(ishuman(target))
 		var/mob/living/carbon/human/humantarget = target
@@ -95,20 +95,20 @@
 	log_combat(user, target, "attempted to inject", src)
 
 	if(target != user)
-		target.visible_message(span_danger("[user] is trying to inject [target] with [src]!"), \
-			span_userdanger("[user] is trying to inject you with [src]!"))
+		target.visible_message(span_danger("[user]尝试向[target]注射[src]!"), \
+			span_userdanger("[user]尝试向你注射[src]."))
 		if(!do_after(user, 3 SECONDS, target) || used)
 			return
-		target.visible_message(span_danger("[user] injects [target] with the syringe with [src]!"), \
-						span_userdanger("[user] injects you with the syringe with [src]!"))
+		target.visible_message(span_danger("[user]用含有[src]的注射器注射[target]"), \
+						span_userdanger("[user]用含有[src]的注射器向你注射."))
 
 	else
-		to_chat(user, span_notice("You inject yourself with [src]."))
+		to_chat(user, span_notice("你给自己注射了[src]."))
 
 	log_combat(user, target, "injected", src)
 
 	if(!inject(target, user)) //Now we actually do the heavy lifting.
-		to_chat(user, span_notice("It appears that [target] does not have compatible DNA."))
+		to_chat(user, span_notice("[target]看起来没有可兼容的DNA。"))
 		return
 
 	used = TRUE
@@ -118,18 +118,18 @@
 	duration = 60 SECONDS
 
 /obj/item/dnainjector/timed/hulk
-	name = "\improper DNA injector (Hulk)"
-	desc = "This will make you big and strong, but give you a bad skin condition."
+	name = "\improper DNA注射器（浩克）"
+	desc = "这会让你变得又大又壮，但也会让你患上严重的皮肤病。"
 	add_mutations = list(/datum/mutation/hulk)
 
 /obj/item/dnainjector/timed/h2m
-	name = "\improper DNA injector (Human > Monkey)"
-	desc = "Will make you a flea bag."
+	name = "\improper DNA注射器（人类 > 猴子）"
+	desc = "会让你变成个跳蚤包。"
 	add_mutations = list(/datum/mutation/race)
 
 /obj/item/dnainjector/activator
-	name = "\improper DNA activator"
-	desc = "Activates the current mutation on injection, if the subject has it."
+	name = "\improper DNA激活器"
+	desc = "注射时激活当前突变，如果受试者拥有该突变。"
 	var/force_mutate = FALSE
 	var/research = FALSE //Set to true to get expended and filled injectors for chromosomes
 	var/filled = FALSE
@@ -157,395 +157,395 @@
 /// DNA INJECTORS
 
 /obj/item/dnainjector/acidflesh
-	name = "\improper DNA injector (Acid Flesh)"
+	name = "\improper DNA注射器（酸蚀血肉）"
 	add_mutations = list(/datum/mutation/acidflesh)
 
 /obj/item/dnainjector/antiacidflesh
-	name = "\improper DNA injector (Acid Flesh)"
+	name = "\improper DNA注射器（酸蚀血肉）"
 	remove_mutations = list(/datum/mutation/acidflesh)
 
 /obj/item/dnainjector/antenna
-	name = "\improper DNA injector (Antenna)"
+	name = "\improper DNA注射器（触角）"
 	add_mutations = list(/datum/mutation/antenna)
 
 /obj/item/dnainjector/antiantenna
-	name = "\improper DNA injector (Anti-Antenna)"
+	name = "\improper DNA注射器（抗触角）"
 	remove_mutations = list(/datum/mutation/antenna)
 
 /obj/item/dnainjector/antiglow
-	name = "\improper DNA injector (Antiglowy)"
+	name = "\improper DNA注射器（抗发光）"
 	add_mutations = list(/datum/mutation/glow/anti)
 
 /obj/item/dnainjector/removeantiglow
-	name = "\improper DNA injector (Anti-Antiglowy)"
+	name = "\improper DNA注射器（抗抗发光）"
 	remove_mutations = list(/datum/mutation/glow/anti)
 
 /obj/item/dnainjector/blindmut
-	name = "\improper DNA injector (Blind)"
-	desc = "Makes you not see anything."
+	name = "\improper DNA注射器（失明）"
+	desc = "让你什么都看不见。"
 	add_mutations = list(/datum/mutation/blind)
 
 /obj/item/dnainjector/antiblind
-	name = "\improper DNA injector (Anti-Blind)"
-	desc = "IT'S A MIRACLE!!!"
+	name = "\improper DNA注射器（抗失明）"
+	desc = "这真是个奇迹！！！"
 	remove_mutations = list(/datum/mutation/blind)
 
 /obj/item/dnainjector/chameleonmut
-	name = "\improper DNA injector (Chameleon)"
+	name = "\improper DNA注射器（变色龙）"
 	add_mutations = list(/datum/mutation/chameleon)
 
 /obj/item/dnainjector/antichameleon
-	name = "\improper DNA injector (Anti-Chameleon)"
+	name = "\improper DNA注射器（抗变色龙）"
 	remove_mutations = list(/datum/mutation/chameleon)
 
 /obj/item/dnainjector/chavmut
-	name = "\improper DNA injector (Chav)"
+	name = "\improper DNA注射器（小混混）"
 	add_mutations = list(/datum/mutation/chav)
 
 /obj/item/dnainjector/antichav
-	name = "\improper DNA injector (Anti-Chav)"
+	name = "\improper DNA注射器（抗小混混）"
 	remove_mutations = list(/datum/mutation/chav)
 
 /obj/item/dnainjector/clumsymut
-	name = "\improper DNA injector (Clumsy)"
-	desc = "Makes clown minions."
+	name = "\improper DNA注射器（笨拙）"
+	desc = "制造小丑仆从。"
 	add_mutations = list(/datum/mutation/clumsy)
 
 /obj/item/dnainjector/anticlumsy
-	name = "\improper DNA injector (Anti-Clumsy)"
-	desc = "Apply this for Security Clown."
+	name = "\improper DNA注射器（抗笨拙）"
+	desc = "给安保小丑使用。"
 	remove_mutations = list(/datum/mutation/clumsy)
 
 /obj/item/dnainjector/coughmut
-	name = "\improper DNA injector (Cough)"
-	desc = "Will bring forth a sound of horror from your throat."
+	name = "\improper DNA注射器（咳嗽）"
+	desc = "会从你的喉咙里发出恐怖的声音。"
 	add_mutations = list(/datum/mutation/cough)
 
 /obj/item/dnainjector/anticough
-	name = "\improper DNA injector (Anti-Cough)"
-	desc = "Will stop that awful noise."
+	name = "\improper DNA注射器（抗咳嗽）"
+	desc = "会停止那可怕的声音。"
 	remove_mutations = list(/datum/mutation/cough)
 
 /obj/item/dnainjector/cryokinesis
-	name = "\improper DNA injector (Cryokinesis)"
+	name = "\improper DNA注射器（低温操控）"
 	add_mutations = list(/datum/mutation/cryokinesis)
 
 /obj/item/dnainjector/anticryokinesis
-	name = "\improper DNA injector (Anti-Cryokinesis)"
+	name = "\improper DNA注射器（抗低温操控）"
 	remove_mutations = list(/datum/mutation/cryokinesis)
 
 /obj/item/dnainjector/deafmut
-	name = "\improper DNA injector (Deaf)"
-	desc = "Sorry, what did you say?"
+	name = "\improper DNA注射器（耳聋）"
+	desc = "抱歉，你刚才说什么？"
 	add_mutations = list(/datum/mutation/deaf)
 
 /obj/item/dnainjector/antideaf
-	name = "\improper DNA injector (Anti-Deaf)"
-	desc = "Will make you hear once more."
+	name = "\improper DNA注射器（抗耳聋）"
+	desc = "将让你重获听力。"
 	remove_mutations = list(/datum/mutation/deaf)
 
 /obj/item/dnainjector/dwarf
-	name = "\improper DNA injector (Dwarfism)"
-	desc = "It's a small world after all."
+	name = "\improper DNA注射器（侏儒症）"
+	desc = "毕竟是个小世界。"
 	add_mutations = list(/datum/mutation/dwarfism)
 
 /obj/item/dnainjector/antidwarf
-	name = "\improper DNA injector (Anti-Dwarfism)"
-	desc = "Helps you grow big and strong."
+	name = "\improper DNA注射器（抗侏儒症）"
+	desc = "助你长得高大强壮。"
 	remove_mutations = list(/datum/mutation/dwarfism)
 
 /obj/item/dnainjector/elvismut
-	name = "\improper DNA injector (Elvis)"
+	name = "\improper DNA注射器（猫王）"
 	add_mutations = list(/datum/mutation/elvis)
 
 /obj/item/dnainjector/antielvis
-	name = "\improper DNA injector (Anti-Elvis)"
+	name = "\improper DNA注射器（抗猫王）"
 	remove_mutations = list(/datum/mutation/elvis)
 
 /obj/item/dnainjector/epimut
-	name = "\improper DNA injector (Epi.)"
-	desc = "Shake shake shake the room!"
+	name = "\improper DNA注射器（癫痫）"
+	desc = "摇啊摇啊摇动房间！"
 	add_mutations = list(/datum/mutation/epilepsy)
 
 /obj/item/dnainjector/antiepi
-	name = "\improper DNA injector (Anti-Epi.)"
-	desc = "Will fix you up from shaking the room."
+	name = "\improper DNA注射器（抗癫痫）"
+	desc = "将把你从摇动房间的状态中修复。"
 	remove_mutations = list(/datum/mutation/epilepsy)
 
 /obj/item/dnainjector/geladikinesis
-	name = "\improper DNA injector (Geladikinesis)"
+	name = "\improper DNA注射器（凝冰术）"
 	add_mutations = list(/datum/mutation/geladikinesis)
 
 /obj/item/dnainjector/antigeladikinesis
-	name = "\improper DNA injector (Anti-Geladikinesis)"
+	name = "\improper DNA注射器（抗凝冰术）"
 	remove_mutations = list(/datum/mutation/geladikinesis)
 
 /obj/item/dnainjector/gigantism
-	name = "\improper DNA injector (Gigantism)"
+	name = "\improper DNA注射器（巨人症）"
 	add_mutations = list(/datum/mutation/gigantism)
 
 /obj/item/dnainjector/antigigantism
-	name = "\improper DNA injector (Anti-Gigantism)"
+	name = "\improper DNA注射器（抗巨人症）"
 	remove_mutations = list(/datum/mutation/gigantism)
 
 /obj/item/dnainjector/glassesmut
-	name = "\improper DNA injector (Glasses)"
-	desc = "Will make you need dorkish glasses."
+	name = "\improper DNA注射器（眼镜）"
+	desc = "会让你需要书呆子眼镜。"
 	add_mutations = list(/datum/mutation/nearsight)
 
 /obj/item/dnainjector/antiglasses
-	name = "\improper DNA injector (Anti-Glasses)"
-	desc = "Toss away those glasses!"
+	name = "\improper DNA注射器（抗眼镜）"
+	desc = "丢掉那些眼镜吧！"
 	remove_mutations = list(/datum/mutation/nearsight)
 
 /obj/item/dnainjector/glow
-	name = "\improper DNA injector (Glowy)"
+	name = "\improper DNA注射器（发光）"
 	add_mutations = list(/datum/mutation/glow)
 
 /obj/item/dnainjector/removeglow
-	name = "\improper DNA injector (Anti-Glowy)"
+	name = "\improper DNA注射器（抗发光）"
 	remove_mutations = list(/datum/mutation/glow)
 
 /obj/item/dnainjector/hulkmut
-	name = "\improper DNA injector (Hulk)"
-	desc = "This will make you big and strong, but give you a bad skin condition."
+	name = "\improper DNA注射器（浩克）"
+	desc = "这会让你变得高大强壮，但也会让你患上严重的皮肤病。"
 	add_mutations = list(/datum/mutation/hulk)
 
 /obj/item/dnainjector/antihulk
-	name = "\improper DNA injector (Anti-Hulk)"
-	desc = "Cures green skin."
+	name = "\improper DNA注射器（抗浩克）"
+	desc = "治愈绿皮肤。"
 	remove_mutations = list(/datum/mutation/hulk)
 
 /obj/item/dnainjector/h2m
-	name = "\improper DNA injector (Human > Monkey)"
-	desc = "Will make you a flea bag."
+	name = "\improper DNA注射器（人类 > 猴子）"
+	desc = "会让你变成跳蚤袋。"
 	add_mutations = list(/datum/mutation/race)
 
 /obj/item/dnainjector/m2h
-	name = "\improper DNA injector (Monkey > Human)"
-	desc = "Will make you...less hairy."
+	name = "\improper DNA注射器（猴子 > 人类）"
+	desc = "会让你……毛发少一些。"
 	remove_mutations = list(/datum/mutation/race)
 
 /obj/item/dnainjector/illiterate
-	name = "\improper DNA injector (Illiterate)"
+	name = "\improper DNA注射器（文盲）"
 	add_mutations = list(/datum/mutation/illiterate)
 
 /obj/item/dnainjector/antiilliterate
-	name = "\improper DNA injector (Anti-Illiterate)"
+	name = "\improper DNA注射器（抗文盲）"
 	remove_mutations = list(/datum/mutation/illiterate)
 
 /obj/item/dnainjector/insulated
-	name = "\improper DNA injector (Insulated)"
+	name = "\improper DNA注射器（绝缘）"
 	add_mutations = list(/datum/mutation/insulated)
 
 /obj/item/dnainjector/antiinsulated
-	name = "\improper DNA injector (Anti-Insulated)"
+	name = "\improper DNA注射器（抗绝缘）"
 	remove_mutations = list(/datum/mutation/insulated)
 
 /obj/item/dnainjector/lasereyesmut
-	name = "\improper DNA injector (Laser Eyes)"
+	name = "\improper DNA注射器（激光眼）"
 	add_mutations = list(/datum/mutation/laser_eyes)
 
 /obj/item/dnainjector/antilasereyes
-	name = "\improper DNA injector (Anti-Laser Eyes)"
+	name = "\improper DNA注射器（抗激光眼）"
 	remove_mutations = list(/datum/mutation/laser_eyes)
 
 /obj/item/dnainjector/mindread
-	name = "\improper DNA injector (Mindread)"
+	name = "\improper DNA注射器（读心）"
 	add_mutations = list(/datum/mutation/mindreader)
 
 /obj/item/dnainjector/antimindread
-	name = "\improper DNA injector (Anti-Mindread)"
+	name = "\improper DNA注射器（抗读心）"
 	remove_mutations = list(/datum/mutation/mindreader)
 
 /obj/item/dnainjector/mutemut
-	name = "\improper DNA injector (Mute)"
+	name = "\improper DNA注射器（失声）"
 	add_mutations = list(/datum/mutation/mute)
 
 /obj/item/dnainjector/antimute
-	name = "\improper DNA injector (Anti-Mute)"
+	name = "\improper DNA注射器（抗失声）"
 	remove_mutations = list(/datum/mutation/mute)
 
 /obj/item/dnainjector/olfaction
-	name = "\improper DNA injector (Olfaction)"
+	name = "\improper DNA注射器（嗅觉强化）"
 	add_mutations = list(/datum/mutation/olfaction)
 
 /obj/item/dnainjector/antiolfaction
-	name = "\improper DNA injector (Anti-Olfaction)"
+	name = "\improper DNA注射器（抗嗅觉强化）"
 	remove_mutations = list(/datum/mutation/olfaction)
 
 /obj/item/dnainjector/piglatinmut
-	name = "\improper DNA injector (Pig Latin)"
+	name = "\improper DNA注射器（猪拉丁语）"
 	add_mutations = list(/datum/mutation/piglatin)
 
 /obj/item/dnainjector/antipiglatin
-	name = "\improper DNA injector (Anti-Pig Latin)"
+	name = "\improper DNA注射器（抗猪拉丁语）"
 	remove_mutations = list(/datum/mutation/piglatin)
 
 /obj/item/dnainjector/paranoia
-	name = "\improper DNA injector (Paranoia)"
+	name = "\improper DNA注射器（偏执狂）"
 	add_mutations = list(/datum/mutation/paranoia)
 
 /obj/item/dnainjector/antiparanoia
-	name = "\improper DNA injector (Anti-Paranoia)"
+	name = "\improper DNA注射器（抗偏执狂）"
 	remove_mutations = list(/datum/mutation/paranoia)
 
 /obj/item/dnainjector/pressuremut
-	name = "\improper DNA injector (Pressure Adaptation)"
-	desc = "Gives you fire."
+	name = "\improper DNA注射器（压力适应）"
+	desc = "赋予你火焰抗性。"
 	add_mutations = list(/datum/mutation/adaptation/pressure)
 
 /obj/item/dnainjector/antipressure
-	name = "\improper DNA injector (Anti-Pressure Adaptation)"
-	desc = "Cures fire."
+	name = "\improper DNA注射器（抗压力适应）"
+	desc = "治愈火焰伤害。"
 	remove_mutations = list(/datum/mutation/adaptation/pressure)
 
 /obj/item/dnainjector/radioactive
-	name = "\improper DNA injector (Radioactive)"
+	name = "\improper DNA注射器（放射性）"
 	add_mutations = list(/datum/mutation/radioactive)
 
 /obj/item/dnainjector/antiradioactive
-	name = "\improper DNA injector (Anti-Radioactive)"
+	name = "\improper DNA注射器（抗放射性）"
 	remove_mutations = list(/datum/mutation/radioactive)
 
 /obj/item/dnainjector/shock
-	name = "\improper DNA injector (Shock Touch)"
+	name = "\improper DNA注射器（电击触摸）"
 	add_mutations = list(/datum/mutation/shock)
 
 /obj/item/dnainjector/antishock
-	name = "\improper DNA injector (Anti-Shock Touch)"
+	name = "\improper DNA注射器（抗电击触摸）"
 	remove_mutations = list(/datum/mutation/shock)
 
 /obj/item/dnainjector/spastic
-	name = "\improper DNA injector (Spastic)"
+	name = "\improper DNA注射器（痉挛症）"
 	add_mutations = list(/datum/mutation/spastic)
 
 /obj/item/dnainjector/antispastic
-	name = "\improper DNA injector (Anti-Spastic)"
+	name = "\improper DNA注射器（抗痉挛症）"
 	remove_mutations = list(/datum/mutation/spastic)
 
 /obj/item/dnainjector/spatialinstability
-	name = "\improper DNA injector (Spatial Instability)"
+	name = "\improper DNA注射器（空间失稳）"
 	add_mutations = list(/datum/mutation/badblink)
 
 /obj/item/dnainjector/antispatialinstability
-	name = "\improper DNA injector (Anti-Spatial Instability)"
+	name = "\improper DNA注射器（抗空间失稳）"
 	remove_mutations = list(/datum/mutation/badblink)
 
 /obj/item/dnainjector/stuttmut
-	name = "\improper DNA injector (Stutt.)"
-	desc = "Makes you s-s-stuttterrr."
+	name = "\improper DNA注射器（口吃症）"
+	desc = "让你变-变-变成结巴。"
 	add_mutations = list(/datum/mutation/nervousness)
 
 /obj/item/dnainjector/antistutt
-	name = "\improper DNA injector (Anti-Stutt.)"
-	desc = "Fixes that speaking impairment."
+	name = "\improper DNA注射器（抗口吃）"
+	desc = "修复那种语言障碍。"
 	remove_mutations = list(/datum/mutation/nervousness)
 
 /obj/item/dnainjector/swedishmut
-	name = "\improper DNA injector (Swedish)"
+	name = "\improper DNA注射器（瑞典语）"
 	add_mutations = list(/datum/mutation/swedish)
 
 /obj/item/dnainjector/antiswedish
-	name = "\improper DNA injector (Anti-Swedish)"
+	name = "\improper DNA注射器（抗瑞典语）"
 	remove_mutations = list(/datum/mutation/swedish)
 
 /obj/item/dnainjector/telemut
-	name = "\improper DNA injector (Tele.)"
-	desc = "Super brain TK!"
+	name = "\improper DNA注射器（心灵传动）"
+	desc = "超级大脑念力！"
 	add_mutations = list(/datum/mutation/telekinesis)
 
 /obj/item/dnainjector/telemut/darkbundle
-	name = "\improper DNA injector"
-	desc = "Good. Let the hate flow through you."
+	name = "\improper DNA注射器"
+	desc = "很好。让仇恨在你体内流淌。"
 
 /obj/item/dnainjector/antitele
-	name = "\improper DNA injector (Anti-Tele.)"
-	desc = "Will make you not able to control your mind."
+	name = "\improper DNA注射器（抗心灵传动）"
+	desc = "将使你无法控制自己的心智。"
 	remove_mutations = list(/datum/mutation/telekinesis)
 
 /obj/item/dnainjector/firemut
-	name = "\improper DNA injector (Temp Adaptation)"
-	desc = "Gives you fire."
+	name = "\improper DNA注射器（温度适应）"
+	desc = "赋予你火焰。"
 	add_mutations = list(/datum/mutation/adaptation/thermal)
 
 /obj/item/dnainjector/antifire
-	name = "\improper DNA injector (Anti-Temp Adaptation)"
-	desc = "Cures fire."
+	name = "\improper DNA注射器（抗温度适应）"
+	desc = "治愈火焰。"
 	remove_mutations = list(/datum/mutation/adaptation/thermal)
 
 /obj/item/dnainjector/thermal
-	name = "\improper DNA injector (Thermal Vision)"
+	name = "\improper DNA注射器（热视觉）"
 	add_mutations = list(/datum/mutation/thermal)
 
 /obj/item/dnainjector/antithermal
-	name = "\improper DNA injector (Anti-Thermal Vision)"
+	name = "\improper DNA注射器（抗热视觉）"
 	remove_mutations = list(/datum/mutation/thermal)
 
 /obj/item/dnainjector/tourmut
-	name = "\improper DNA injector (Tour.)"
-	desc = "Gives you a nasty case of Tourette's."
+	name = "\improper DNA注射器（秽语症）"
+	desc = "让你患上严重的秽语症。"
 	add_mutations = list(/datum/mutation/tourettes)
 
 /obj/item/dnainjector/antitour
-	name = "\improper DNA injector (Anti-Tour.)"
-	desc = "Will cure Tourette's."
+	name = "\improper DNA注射器（抗秽语症）"
+	desc = "将治愈秽语症。"
 	remove_mutations = list(/datum/mutation/tourettes)
 
 /obj/item/dnainjector/twoleftfeet
-	name = "\improper DNA injector (Two Left Feet)"
+	name = "\improper DNA注射器（同手同脚）"
 	add_mutations = list(/datum/mutation/extrastun)
 
 /obj/item/dnainjector/antitwoleftfeet
-	name = "\improper DNA injector (Anti-Two Left Feet)"
+	name = "\improper DNA注射器（抗同手同脚）"
 	remove_mutations = list(/datum/mutation/extrastun)
 
 /obj/item/dnainjector/unintelligiblemut
-	name = "\improper DNA injector (Unintelligible)"
+	name = "\improper DNA注射器（语无伦次）"
 	add_mutations = list(/datum/mutation/unintelligible)
 
 /obj/item/dnainjector/antiunintelligible
-	name = "\improper DNA injector (Anti-Unintelligible)"
+	name = "\improper DNA注射器（抗语无伦次）"
 	remove_mutations = list(/datum/mutation/unintelligible)
 
 /obj/item/dnainjector/void
-	name = "\improper DNA injector (Void)"
+	name = "\improper DNA注射器（虚空）"
 	add_mutations = list(/datum/mutation/void)
 
 /obj/item/dnainjector/antivoid
-	name = "\improper DNA injector (Anti-Void)"
+	name = "\improper DNA注射器（抗虚空）"
 	remove_mutations = list(/datum/mutation/void)
 
 /obj/item/dnainjector/xraymut
-	name = "\improper DNA injector (X-ray)"
-	desc = "Finally you can see what the Captain does."
+	name = "\improper DNA注射器（X射线）"
+	desc = "终于能看见船长在干什么了。"
 	add_mutations = list(/datum/mutation/xray)
 
 /obj/item/dnainjector/antixray
-	name = "\improper DNA injector (Anti-X-ray)"
-	desc = "It will make you see harder."
+	name = "\improper DNA注射器（抗X射线）"
+	desc = "它会让你看得更清楚。"
 	remove_mutations = list(/datum/mutation/xray)
 
 /obj/item/dnainjector/wackymut
-	name = "\improper DNA injector (Wacky)"
+	name = "\improper DNA注射器（古怪）"
 	add_mutations = list(/datum/mutation/wacky)
 
 /obj/item/dnainjector/antiwacky
-	name = "\improper DNA injector (Anti-Wacky)"
+	name = "\improper DNA注射器（抗古怪）"
 	remove_mutations = list(/datum/mutation/wacky)
 
 /obj/item/dnainjector/webbing
-	name = "\improper DNA injector (Webbing)"
+	name = "\improper DNA注射器（蹼化）"
 	add_mutations = list(/datum/mutation/webbing)
 
 /obj/item/dnainjector/antiwebbing
-	name = "\improper DNA injector (Anti-Webbing)"
+	name = "\improper DNA注射器（抗蹼化）"
 	remove_mutations = list(/datum/mutation/webbing)
 
 /obj/item/dnainjector/clever
-	name = "\improper DNA injector (Clever)"
+	name = "\improper DNA注射器（聪慧）"
 	add_mutations = list(/datum/mutation/clever)
 
 /obj/item/dnainjector/anticlever
-	name = "\improper DNA injector (Anti-Clever)"
+	name = "\improper DNA注射器（抗聪慧）"
 	remove_mutations = list(/datum/mutation/clever)

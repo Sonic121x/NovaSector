@@ -1,9 +1,9 @@
 //Biosuit complete with shoes (in the item sprite)
 /obj/item/clothing/head/bio_hood
-	name = "bio hood"
+	name = "生物防化头罩"
 	icon_state = "bio"
 	inhand_icon_state = "bio_hood"
-	desc = "A hood that protects the head and face from biological contaminants."
+	desc = "一种保护头部和面部免受生物污染的头罩。"
 	icon = 'icons/obj/clothing/head/bio.dmi'
 	worn_icon = 'icons/mob/clothing/head/bio.dmi'
 	icon_state = "bio"
@@ -29,8 +29,8 @@
 	acid = 100
 
 /obj/item/clothing/suit/bio_suit
-	name = "bio suit"
-	desc = "A suit that protects against biological contamination."
+	name = "生物防化服"
+	desc = "防止生物污染的衣服。"
 	icon = 'icons/obj/clothing/suits/bio.dmi'
 	icon_state = "bio"
 	worn_icon = 'icons/mob/clothing/suits/bio.dmi'
@@ -133,8 +133,8 @@
 
 //Plague Dr mask can be found in clothing/masks/gasmask.dm
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit
-	name = "plague doctor suit"
-	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against viruses."
+	name = "瘟疫医生服"
+	desc = "在过去，它保护医生免受黑死病的侵害。这肯定也能帮你对抗病毒。"
 	icon_state = "plaguedoctor"
 	inhand_icon_state = "bio_suit"
 	strip_delay = 4 SECONDS

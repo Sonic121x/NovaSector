@@ -10,9 +10,9 @@
 
 
 /obj/machinery/netpod/container_resist_act(mob/living/user)
-	user.visible_message(span_notice("[occupant] emerges from [src]!"),
-		span_notice("You climb out of [src]!"),
-		span_notice("With a hiss, you hear a machine opening."))
+	user.visible_message(span_notice("[occupant]从[src]中出来了！"),
+		span_notice("你爬出了[src]！"),
+		span_notice("伴随着嘶嘶声，你听到机器打开了。"))
 	open_machine()
 
 
@@ -49,8 +49,8 @@
 
 	user.visible_message(
 		span_danger("[user] starts prying open [src]!"),
-		span_notice("You start to pry open [src]."),
-		span_notice("You hear loud prying on metal.")
+		span_notice("你开始撬开[src]。"),
+		span_notice("你听到金属被撬动的巨响。")
 	)
 	playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
 

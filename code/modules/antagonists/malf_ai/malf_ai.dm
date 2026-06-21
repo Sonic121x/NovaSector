@@ -2,7 +2,7 @@
 #define PROB_SPECIAL 30
 
 /datum/antagonist/malf_ai
-	name = "\improper Malfunctioning AI"
+	name = "\improper 故障AI"
 	roundend_category = "traitors"
 	antagpanel_category = "Malf AI"
 	pref_flag = ROLE_MALF
@@ -157,7 +157,7 @@
 	malf_ai.laws.protected_zeroth = TRUE
 	malf_ai.set_syndie_radio()
 
-	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(malf_ai, "你的无线电已升级！使用 :t 在加密频道与辛迪加特工通话！")
 
 	if(malf_ai.malf_picker)
 		return
@@ -281,7 +281,7 @@
 
 //Subtype of Malf AI datum, used for one of the traitor final objectives
 /datum/antagonist/malf_ai/infected
-	name = "Infected AI"
+	name = "受感染AI"
 	employer = "Infected AI"
 	can_assign_self_objectives = FALSE
 	malf_sound = null
@@ -314,7 +314,7 @@
 	malf_ai.set_zeroth_law("Only [boss_mob.real_name] and people [boss_mob.p_they()] designate[boss_mob.p_s()] as being such are Syndicate Agents.")
 	malf_ai.set_syndie_radio()
 
-	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(malf_ai, "你的无线电已升级！使用 :t 在加密频道与辛迪加特工通话！")
 
 	malf_ai.add_malf_picker()
 

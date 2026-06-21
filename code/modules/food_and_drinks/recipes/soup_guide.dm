@@ -59,8 +59,8 @@
 	reaction = /datum/chemical_reaction/food/soup/tomatosoup
 
 /datum/crafting_recipe/food/reaction/soup/bloodsoup
-	name = "Blood Soup"
-	desc = "Smells like copper."
+	name = "血汤"
+	desc = "闻起来像铜。"
 	reaction = /datum/chemical_reaction/food/soup/bloodsoup
 	// Uses tomato soup's icon
 	result = /datum/reagent/consumable/nutriment/soup/tomato
@@ -139,7 +139,7 @@
 // Other
 
 /datum/crafting_recipe/food/wishsoup
-	name = "Wish soup"
+	name = "愿望汤"
 	reqs = list(
 		/datum/reagent/water = 20,
 		/obj/item/reagent_containers/cup/bowl = 1

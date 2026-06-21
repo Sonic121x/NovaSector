@@ -1,8 +1,8 @@
 #define TANK_PLATING_SHEETS 12
 
 /obj/machinery/atmospherics/components/tank
-	name = "pressure tank"
-	desc = "A large vessel containing pressurized gas."
+	name = "压力罐"
+	desc = "储存压缩气体的大型容器。"
 
 	icon = 'icons/map_icons/objects.dmi'
 	icon_state = "/obj/machinery/atmospherics/components/tank"
@@ -123,10 +123,10 @@
 	. = ..()
 	var/wrench_hint = EXAMINE_HINT("wrench")
 	if(!initialize_directions)
-		. += span_notice("A pipe port can be opened with a [wrench_hint].")
+		. += span_notice("管道端口可用 [wrench_hint] 打开。")
 	else
-		. += span_notice("The pipe port can be moved or closed with a [wrench_hint].")
-	. += span_notice("A holographic sticker on it says that its maximum safe pressure is: [siunit_pressure(max_pressure, 0)].")
+		. += span_notice("管道端口可用 [wrench_hint] 移动或关闭。")
+	. += span_notice("上面的全息标签显示其最大安全压力为：[siunit_pressure(max_pressure, 0)]。")
 
 /obj/machinery/atmospherics/components/tank/finalize_material_effects(list/materials)
 	. = ..()
@@ -368,18 +368,18 @@
 		return
 	if(!tool.tool_start_check(user, amount = 0, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
-	to_chat(user, span_notice("You begin to repair the cracks in the gas tank..."))
+	to_chat(user, span_notice("你开始修复储气罐的裂缝..."))
 	var/repair_amount = max_integrity / 10
 	do
 		if(!tool.use_tool(src, user, 2.5 SECONDS, volume = 40))
 			return
 	while(repair_damage(repair_amount))
-	to_chat(user, span_notice("The gas tank has been fully repaired and all cracks sealed."))
+	to_chat(user, span_notice("储气罐已完全修复，所有裂缝均已密封。"))
 
 /obj/machinery/atmospherics/components/tank/welder_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	. = TRUE
-	to_chat(user, span_notice("You begin cutting open the gas tank..."))
+	to_chat(user, span_notice("你开始切割储气罐..."))
 	var/turf/current_location = get_turf(src)
 	var/datum/gas_mixture/airmix = current_location.return_air()
 
@@ -389,7 +389,7 @@
 	var/internal_pressure = air_contents.return_pressure() - airmix.return_pressure()
 	if(internal_pressure > 2 * ONE_ATMOSPHERE)
 		time_taken *= 2
-		to_chat(user, span_warning("The tank seems to be pressurized, are you sure this is a good idea?"))
+		to_chat(user, span_warning("储罐似乎处于加压状态，你确定这是个好主意吗？"))
 		unsafe = TRUE
 
 	if(!tool.use_tool(src, user, time_taken, volume = 60))
@@ -398,7 +398,7 @@
 	if(unsafe)
 		unsafe_pressure_release(user, internal_pressure)
 	deconstruct(disassembled=TRUE)
-	to_chat(user, span_notice("You finish cutting open the sealed gas tank, revealing the innards."))
+	to_chat(user, span_notice("你完成了对密封气罐的切割，露出了内部结构。"))
 
 /obj/machinery/atmospherics/components/tank/on_deconstruction(disassembled)
 	var/turf/location = drop_location()
@@ -423,7 +423,7 @@
 // Gas tank variants
 
 /obj/machinery/atmospherics/components/tank/air
-	name = "pressure tank (Air)"
+	name = "压力罐（空气）"
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/machinery/atmospherics/components/tank/air/layer1
@@ -541,19 +541,19 @@
 	var/wrenched_hint = EXAMINE_HINT("wrenched")
 
 	if(!anchored)
-		. += span_notice("[src] has not been [wrenched_hint] to the floor yet.")
+		. += span_notice("[src]尚未[wrenched_hint]固定在地板上。")
 	else
-		. += span_notice("[src] is [wrenched_hint] to the floor.")
+		. += span_notice("[src]已[wrenched_hint]固定在地板上。")
 
 	switch(construction_state)
 		if(TANK_FRAME)
 			var/screwed_hint = EXAMINE_HINT("screwed")
 			var/plating_hint = EXAMINE_HINT("metal plating")
-			. += span_notice("[src] is [screwed_hint] together and now just needs some [plating_hint].")
+			. += span_notice("[src]已[screwed_hint]组装完毕，现在只需要一些[plating_hint]。")
 		if(TANK_PLATING_UNSECURED)
 			var/crowbar_hint = EXAMINE_HINT("crowbar")
 			var/welder_hint = EXAMINE_HINT("welder")
-			. += span_notice("The plating has been firmly attached and would need a [crowbar_hint] to detach, but still needs to be sealed by a [welder_hint].")
+			. += span_notice("外壳板已牢固固定，需要[crowbar_hint]才能拆卸，但仍需[welder_hint]进行密封。")
 
 /obj/structure/tank_frame/atom_deconstruct(disassembled)
 	if(disassembled)
@@ -583,23 +583,23 @@
 	if(construction_state != TANK_FRAME)
 		return
 	. = TRUE
-	to_chat(user, span_notice("You begin taking apart [src]."))
+	to_chat(user, span_notice("你开始拆卸[src]。"))
 	if(!tool.use_tool(src, user, 1 SECONDS))
 		return
 	deconstruct(TRUE)
-	to_chat(user, span_notice("[src] has been taken apart."))
+	to_chat(user, span_notice("[src]已被拆解。"))
 
 /obj/structure/tank_frame/proc/add_plating(mob/living/user, obj/item/stack/stack)
 	. = FALSE
 	if(!stack.material_type)
-		balloon_alert(user, "invalid material!")
+		balloon_alert(user, "无效材料！")
 	var/datum/material/stack_mat = SSmaterials.get_material(stack.material_type)
 	if(!(stack_mat.mat_flags & MATERIAL_CLASS_RIGID))
-		to_chat(user, span_notice("This material doesn't seem rigid enough to hold the shape of a tank..."))
+		to_chat(user, span_notice("这种材料似乎不够坚固，无法保持储罐的形状……"))
 		return
 
 	. = TRUE
-	to_chat(user, span_notice("You begin adding [stack] to [src]..."))
+	to_chat(user, span_notice("你开始将[stack]添加到[src]上……"))
 	if(!stack.use_tool(src, user, 3 SECONDS))
 		return
 	if(!stack.use(TANK_PLATING_SHEETS))
@@ -617,20 +617,20 @@
 				amount_more = "just a bit more"
 			else
 				amount_more = "an indeterminate amount more"
-		to_chat(user, span_notice("You don't have enough [stack] to add all the plating. Maybe [amount_more]."))
+		to_chat(user, span_notice("你没有足够的[stack]来添加所有外壳板。也许需要[amount_more]。"))
 		return
 
 	material_end_product = stack_mat
 	construction_state = TANK_PLATING_UNSECURED
 	update_appearance(UPDATE_ICON)
-	to_chat(user, span_notice("You finish attaching [stack] to [src]."))
+	to_chat(user, span_notice("你完成了将[stack]安装到[src]上的工作。"))
 
 /obj/structure/tank_frame/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	if(construction_state != TANK_PLATING_UNSECURED)
 		return
 	. = TRUE
-	to_chat(user, span_notice("You start prying off the outer plating..."))
+	to_chat(user, span_notice("你开始撬开外部外壳板……"))
 	if(!tool.use_tool(src, user, 2 SECONDS))
 		return
 	construction_state = TANK_FRAME
@@ -644,11 +644,11 @@
 		return
 	. = TRUE
 	if(!anchored)
-		to_chat(user, span_notice("You need to <b>wrench</b> [src] to the floor before finishing."))
+		to_chat(user, span_notice("你需要先用<b>扳手</b>将[src]固定在地板上才能完成。"))
 		return
 	if(!tool.tool_start_check(user, amount = 0, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
-	to_chat(user, span_notice("You begin sealing the outer plating with the welder..."))
+	to_chat(user, span_notice("你开始用焊枪密封外部外壳板……"))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 60))
 		return
 
@@ -659,7 +659,7 @@
 	var/list/new_custom_materials = list((material_end_product) = TANK_PLATING_SHEETS * SHEET_MATERIAL_AMOUNT)
 	new_tank.set_custom_materials(new_custom_materials)
 	new_tank.on_construction(user, new_tank.pipe_color, new_tank.piping_layer)
-	to_chat(user, span_notice("[new_tank] has been sealed and is ready to accept gases."))
+	to_chat(user, span_notice("[new_tank]已密封完毕，可以接收气体了。"))
 	qdel(src)
 
 #undef TANK_PLATING_SHEETS

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/variable/list/listadd
 	display_name = "List Add"
-	desc = "Adds an element to a list variable."
+	desc = "向列表变量中添加一个元素。"
 	category = "List"
 
 	/// Element to add to the list

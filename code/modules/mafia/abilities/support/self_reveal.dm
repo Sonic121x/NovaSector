@@ -5,7 +5,7 @@
  * however it will additionally make you unable to be protected.
  */
 /datum/mafia_ability/self_reveal
-	name = "Reveal"
+	name = "揭示"
 	ability_action = "reveal your role"
 	action_priority = null
 	valid_use_period = MAFIA_PHASE_DAY

@@ -12,7 +12,7 @@
 #define VAULT_QUICK "Arm Muscle Stimulus"
 
 /datum/station_goal/dna_vault
-	name = "DNA Vault"
+	name = "DNA库"
 	var/animal_count
 	var/human_count
 	var/plant_count
@@ -61,8 +61,8 @@
 	return FALSE
 
 /obj/machinery/dna_vault
-	name = "DNA Vault"
-	desc = "Break glass in case of apocalypse."
+	name = "DNA库"
+	desc = "打破玻璃以防止世界毁灭。"
 	icon = 'icons/obj/machines/dna_vault.dmi'
 	icon_state = "vault"
 	density = TRUE

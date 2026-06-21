@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/marauder
-	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations. Its bleeding edge armour ensures maximum usability and protection at the cost of some modularity."
-	name = "\improper Marauder"
+	desc = "重型战斗外骨骼，在杜兰德型号之后开发。在平民中极为罕见。其尖端装甲确保了最大的可用性和防护性，但牺牲了一定的模块化能力。"
+	name = "\improper 掠夺者"
 	icon_state = "marauder"
 	base_icon_state = "marauder"
 	movedelay = 5
@@ -55,7 +55,7 @@
 	update_part_values()
 
 /datum/action/vehicle/sealed/mecha/mech_smoke
-	name = "Smoke"
+	name = "烟雾"
 	button_icon_state = "mech_smoke"
 
 /datum/action/vehicle/sealed/mecha/mech_smoke/Trigger(mob/clicker, trigger_flags)
@@ -70,7 +70,7 @@
 		TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_SMOKE, chassis.smoke_cooldown)
 
 /datum/action/vehicle/sealed/mecha/mech_zoom
-	name = "Zoom"
+	name = "变焦"
 	button_icon_state = "mech_zoom_off"
 
 /datum/action/vehicle/sealed/mecha/mech_zoom/Trigger(mob/clicker, trigger_flags)
@@ -91,8 +91,8 @@
 	build_all_button_icons()
 
 /obj/vehicle/sealed/mecha/marauder/seraph
-	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."
-	name = "\improper Seraph"
+	desc = "重型指挥外骨骼机甲。这是定制产品，仅限高级军事人员使用。"
+	name = "\improper 六翼天使"
 	icon_state = "seraph"
 	base_icon_state = "seraph"
 	accesses = list(ACCESS_CENT_SPECOPS)
@@ -127,8 +127,8 @@
 
 
 /obj/vehicle/sealed/mecha/marauder/mauler
-	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model, its hardened exterior prevents the use of add-on armor packages."
-	name = "\improper Mauler"
+	desc = "重型战斗外骨骼，基于现有掠夺者型号开发，其加固的外部结构阻止了附加装甲包的使用。"
+	name = "\improper 毛勒"
 	ui_theme = "syndicate"
 	icon_state = "mauler"
 	base_icon_state = "mauler"

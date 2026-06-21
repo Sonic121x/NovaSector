@@ -1,9 +1,9 @@
 /datum/round_event_control/mice_migration
-	name = "Mice Migration"
+	name = "老鼠迁移"
 	typepath = /datum/round_event/mice_migration
 	weight = 10
 	category = EVENT_CATEGORY_ENTITIES
-	description = "A horde of mice arrives, and perhaps even the Rat King themselves."
+	description = "一大群老鼠抵达，甚至可能包括鼠王本尊。"
 
 /datum/round_event/mice_migration
 	var/minimum_mice = 5
@@ -15,14 +15,14 @@
 		"bad luck")
 	var/plural = pick("a number of", "a horde of", "a pack of", "a swarm of",
 		"a whoop of", "not more than [maximum_mice]")
-	var/name = pick("rodents", "mice", "squeaking things",
+	var/name = pick("啮齿动物", "老鼠", "吱吱叫的东西",
 		"wire eating mammals", "\[REDACTED\]", "energy draining parasites")
 	var/movement = pick("migrated", "swarmed", "stampeded", "descended")
 	var/location = pick("maintenance tunnels", "maintenance areas",
 		"\[REDACTED\]", "place with all those juicy wires")
 
 	priority_announce("Due to [cause], [plural] [name] have [movement] \
-		into the [location].", "Migration Alert",
+		into the [location].", "迁徙警报",
 		'sound/mobs/non-humanoids/mouse/mousesqueek.ogg')
 
 /datum/round_event/mice_migration/start()

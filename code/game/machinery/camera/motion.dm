@@ -51,7 +51,7 @@
 		return FALSE
 	if(camera_enabled)
 		if(alarm_manager.send_alarm(ALARM_MOTION, src, src))
-			visible_message(span_warning("A red light flashes on [src]!"))
+			visible_message(span_warning("[src]上闪过一道红光！"))
 	detectTime = -1
 	return TRUE
 
@@ -62,7 +62,7 @@
 			new_target(AM)
 
 /obj/machinery/camera/motion/thunderdome
-	name = "entertainment camera"
+	name = "娱乐摄像机"
 	network = list(CAMERANET_NETWORK_THUNDERDOME)
 	c_tag = "Arena"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF

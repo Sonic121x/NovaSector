@@ -363,7 +363,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	message = span_deadsay("[source][span_linkify(message)]")
 
 	if(admin_only)
-		message += span_deadsay(" (This is viewable to admins only).")
+		message += span_deadsay("（仅管理员可见）。")
 
 	for(var/mob/M in GLOB.player_list)
 		var/chat_toggles = TOGGLES_DEFAULT_CHAT
@@ -545,7 +545,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	var/list/borgs = active_free_borgs()
 	if(borgs.len)
 		if(user)
-			. = input(user,"Unshackled cyborg signals detected:", "Cyborg Selection", borgs[1]) in sort_list(borgs)
+			. = input(user,"检测到未受束缚的机械人信号：", "机械人选择", borgs[1]) in sort_list(borgs)
 		else
 			. = pick(borgs)
 	return .
@@ -554,7 +554,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	var/list/ais = active_ais(FALSE, z, skip_syndicate, only_syndicate)
 	if(ais.len)
 		if(user)
-			. = input(user,"AI signals detected:", "AI Selection", ais[1]) in sort_list(ais)
+			. = input(user,"检测到AI信号：", "AI选择", ais[1]) in sort_list(ais)
 		else
 			. = pick(ais)
 	return .
@@ -809,7 +809,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	GLOB.dview_mob.loc = null
 
 /mob/dview
-	name = "INTERNAL DVIEW MOB"
+	name = "内部DVIEW生物"
 	invisibility = INVISIBILITY_ABSTRACT
 	density = FALSE
 	move_resist = INFINITY

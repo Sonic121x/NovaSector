@@ -53,8 +53,8 @@ GLOBAL_LIST_INIT(magicarp_spell_colours, list(
  * Come in 'does one thing' and 'does random things' varieties.
  */
 /mob/living/basic/carp/magic
-	name = "magicarp"
-	desc = "50% magic, 50% carp, 100% horrible."
+	name = "魔法鲤鱼"
+	desc = "50% 魔法，50% 鲤鱼，100% 恐怖。"
 	icon_gib = "magicarp_gib"
 	maxHealth = 50
 	health = 50
@@ -123,8 +123,8 @@ GLOBAL_LIST_INIT(magicarp_spell_colours, list(
  * They trade off for this with a tendency to fireball themselves.
  */
 /mob/living/basic/carp/magic/chaos
-	name = "chaos magicarp"
-	desc = "50% carp, 100% magic, 150% horrible."
+	name = "混沌魔法鲤鱼"
+	desc = "50% 鲤鱼，100% 魔法，150% 恐怖。"
 	maxHealth = 75
 	health = 75
 

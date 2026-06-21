@@ -1,6 +1,6 @@
 /obj/item/electropack
-	name = "electropack"
-	desc = "Dance my monkeys! DANCE!!!"
+	name = "电击项圈"
+	desc = "跳舞吧，我的猴子们！跳起来！！！"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "electropack0"
 	inhand_icon_state = "electropack"
@@ -28,7 +28,7 @@
 	return ..()
 
 /obj/item/electropack/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] hooks [user.p_them()]self to the electropack and spams the trigger! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 把[user.p_them()]自己接到电击项圈上并狂按触发器！看起来[user.p_theyre()]想自杀！"))
 	return FIRELOSS
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
@@ -36,7 +36,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(src == C.back)
-			to_chat(user, span_warning("You need help taking this off!"))
+			to_chat(user, span_warning("你需要别人帮忙才能取下这个！"))
 			return
 	return ..()
 
@@ -46,7 +46,7 @@
 		A.icon = 'icons/obj/devices/assemblies.dmi'
 
 		if(!user.transferItemToLoc(W, A))
-			to_chat(user, span_warning("[W] is stuck to your hand, you cannot attach it to [src]!"))
+			to_chat(user, span_warning("[W]粘在你手上了，你无法把它装到[src]上！"))
 			return
 		W.master = A
 		A.helmet_part = W
@@ -71,7 +71,7 @@
 		var/mob/living/L = loc
 		step(L, pick(GLOB.cardinals))
 
-		to_chat(L, span_danger("You feel a sharp shock!"))
+		to_chat(L, span_danger("你感到一阵剧烈的电击！"))
 		do_sparks(3, TRUE, L)
 		L.Paralyze(100)
 

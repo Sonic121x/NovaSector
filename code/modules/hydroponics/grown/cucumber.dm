@@ -1,7 +1,7 @@
 // CUCUMBERS YEAH
 /obj/item/seeds/cucumber
-	name = "cucumber seed pack"
-	desc = "These seeds grow into cucumber plants."
+	name = "黄瓜种子包"
+	desc = "能长成黄瓜植株的种子。"
 	icon_state = "seed-cucumber"
 	species = "cucumber"
 	plantname = "Cucumber Plant"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/cucumber
 	seed = /obj/item/seeds/cucumber
-	name = "cucumber"
-	desc = "Oblong and green, with pimples, the standard of salads."
+	name = "黄瓜"
+	desc = "长椭圆形和绿色，有疙瘩，这是沙拉的标准。"
 	icon_state = "cucumber"
 	foodtypes = VEGETABLES
 	tastes = list("cucumber" = 1)

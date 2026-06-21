@@ -1,6 +1,6 @@
 /datum/language/ramatae
-	name = "Move-Speak"
-	desc = "A primarily nonverbal language comprised of body movements, gesticulation, and sign language, with only intermittent warbles & other vocalizations. It's almost completely incomprehensible without its somatic components."
+	name = "动作语"
+	desc = "一种主要由身体动作、手势和手语构成，仅偶尔夹杂鸣叫或其他发声的非语言。如果没有其肢体动作部分，几乎完全无法理解。"
 	key = "M"
 	flags = TONGUELESS_SPEECH
 	space_chance = 30

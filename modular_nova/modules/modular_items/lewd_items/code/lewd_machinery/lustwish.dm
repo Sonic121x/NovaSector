@@ -1,6 +1,6 @@
 /obj/machinery/vending/dorms
-	name = "LustWish"
-	desc = "A vending machine with various toys. Not for the faint of heart."
+	name = "欲望祈愿"
+	desc = "一台售卖各种玩具的自动售货机。不适合胆小的人。"
 	icon_state = "lustwish"
 	base_icon_state = "lustwish"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/lustwish.dmi'
@@ -204,7 +204,7 @@
 	if(!istype(attacking_item, /obj/item/lustwish_discount))
 		return ..()
 
-	user.visible_message(span_boldnotice("Something changes in [src] with a loud clunk."))
+	user.visible_message(span_boldnotice("[src]内部随着一声响亮的咔哒声发生了变化。"))
 	card_used = !card_used
 
 	if(card_used)

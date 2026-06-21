@@ -73,7 +73,7 @@
 	return ..()
 
 /atom/movable/screen/alert/radioactive_area
-	name = "Radioactive Area"
-	desc = "This place is no good! We need to get some protection or get out fast!"
+	name = "辐射区域"
+	desc = "这地方不对劲！我们需要找些防护措施或者赶紧离开！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "radioactive_area"

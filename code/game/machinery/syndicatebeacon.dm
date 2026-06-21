@@ -2,15 +2,15 @@
 //Singularity beacon
 ////////////////////////////////////////
 /obj/machinery/power/singularity_beacon
-	name = "ominous beacon"
-	desc = "This looks suspicious..."
+	name = "不祥的信标"
+	desc = "这个看起来很可疑..."
 	icon = 'icons/obj/machines/engine/singularity.dmi'
 	icon_state = "beacon0"
 
 	anchored = FALSE
 	density = TRUE
 	layer = BELOW_MOB_LAYER //so people can't hide it and it's REALLY OBVIOUS
-	verb_say = "states"
+	verb_say = "声明"
 	/// Cooldown each time singularity is pulled in our direction
 	COOLDOWN_DECLARE(singularity_beacon_cd)
 
@@ -22,12 +22,12 @@
 /obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
 	if(surplus() < 1500)
 		if(user)
-			to_chat(user, span_notice("The connected wire doesn't have enough current."))
+			to_chat(user, span_notice("连接的导线电流不足。"))
 		return
 	icon_state = "[icontype]1"
 	active = TRUE
 	if(user)
-		to_chat(user, span_notice("You activate the beacon."))
+		to_chat(user, span_notice("你激活信标。"))
 
 
 /obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
@@ -37,7 +37,7 @@
 	icon_state = "[icontype]0"
 	active = FALSE
 	if(user)
-		to_chat(user, span_notice("You deactivate the beacon."))
+		to_chat(user, span_notice("你把信标关掉。"))
 
 /obj/machinery/power/singularity_beacon/attack_ai(mob/user)
 	return
@@ -54,22 +54,22 @@
 /obj/machinery/power/singularity_beacon/wrench_act(mob/living/user, obj/item/tool)
 	. = TRUE
 	if(active)
-		to_chat(user, span_warning("You need to deactivate \the [src] first!"))
+		to_chat(user, span_warning("你需要先停用\the [src]！"))
 		return
 
 	if(anchored)
 		tool.play_tool_sound(src, 50)
 		set_anchored(FALSE)
-		to_chat(user, span_notice("You unbolt \the [src] from the floor and detach it from the cable."))
+		to_chat(user, span_notice("你将\the [src]从地板上卸下螺栓，并将其与电缆分离。"))
 		disconnect_from_network()
 		return
 	else
 		if(!connect_to_network())
-			to_chat(user, span_warning("\The [src] must be placed over an exposed, powered cable node!"))
+			to_chat(user, span_warning("\The [src]必须放置在裸露且通电的电缆节点上！"))
 			return
 		tool.play_tool_sound(src, 50)
 		set_anchored(TRUE)
-		to_chat(user, span_notice("You bolt \the [src] to the floor and attach it to the cable."))
+		to_chat(user, span_notice("你将\the [src]用螺栓固定在地板上，并将其连接到电缆。"))
 		return
 
 /obj/machinery/power/singularity_beacon/screwdriver_act(mob/living/user, obj/item/tool)
@@ -104,8 +104,8 @@
 // Used for the No Escape final objective that attracts a singularity to the escape shuttle
 // needs to be charged with an inducer to work
 /obj/machinery/power/singularity_beacon/syndicate/no_escape
-	name = "ominous beacon"
-	desc = "This looks very suspicious..."
+	name = "不祥的信标"
+	desc = "这看起来非常可疑……"
 	processing_flags = START_PROCESSING_MANUALLY
 	/// The cell we spawn with
 	var/obj/item/stock_parts/power_store/cell/cell = /obj/item/stock_parts/power_store/cell/super/empty
@@ -145,14 +145,14 @@
 	active = TRUE
 	begin_processing()
 	if(user)
-		to_chat(user, span_notice("You activate the beacon."))
+		to_chat(user, span_notice("你激活信标。"))
 
 /obj/machinery/power/singularity_beacon/syndicate/no_escape/Deactivate(mob/user = null)
 	icon_state = "[icontype]0"
 	active = FALSE
 	end_processing()
 	if(user)
-		to_chat(user, span_notice("You deactivate the beacon."))
+		to_chat(user, span_notice("你把信标关掉。"))
 
 /obj/machinery/power/singularity_beacon/syndicate/no_escape/wrench_act(mob/living/user, obj/item/tool)
 	. = TRUE
@@ -160,11 +160,11 @@
 	tool.play_tool_sound(src, 50)
 	if(anchored)
 		set_anchored(FALSE)
-		to_chat(user, span_notice("You unbolt \the [src] from the floor."))
+		to_chat(user, span_notice("你将\the [src]从地板上卸下螺栓。"))
 		return
 	else
 		set_anchored(TRUE)
-		to_chat(user, span_notice("You bolt \the [src] to the floor."))
+		to_chat(user, span_notice("你将\the [src]用螺栓固定在地板上。"))
 		return
 
 /obj/machinery/power/singularity_beacon/syndicate/no_escape/screwdriver_act(mob/living/user, obj/item/tool)
@@ -197,44 +197,44 @@
 
 // SINGULO BEACON SPAWNER
 /obj/item/sbeacondrop
-	name = "suspicious beacon"
+	name = "可疑的信标"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "beacon"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	desc = "A label on it reads: <i>Warning: Activating this device will send a special beacon to your location</i>."
+	desc = "上面的标签上写着：<i>警告：激活此设备将向您的位置投放一个特殊信标</i>。"
 	w_class = WEIGHT_CLASS_SMALL
 	var/droptype = /obj/machinery/power/singularity_beacon/syndicate
 
 
 /obj/item/sbeacondrop/attack_self(mob/user)
 	if(user)
-		to_chat(user, span_notice("Locked In."))
+		to_chat(user, span_notice("锁定"))
 		new droptype( user.loc )
 		playsound(src, 'sound/effects/pop.ogg', 100, TRUE, TRUE)
 		qdel(src)
 	return
 
 /obj/item/sbeacondrop/no_escape
-	name = "very suspicious beacon"
+	name = "非常可疑的信标"
 	droptype = /obj/machinery/power/singularity_beacon/syndicate/no_escape
 
 /obj/item/sbeacondrop/bomb
-	desc = "A label on it reads: <i>Warning: Activating this device will send a high-ordinance explosive to your location</i>."
+	desc = "上面的标签上写着：<i>警告：激活此设备将向您的位置投放一枚烈性炸药</i>。"
 	droptype = /obj/machinery/syndicatebomb
 
 /obj/item/sbeacondrop/emp
-	desc = "A label on it reads: <i>Warning: Activating this device will send a high-powered electromagnetic device to your location</i>."
+	desc = "上面的标签上写着：<i>警告：激活此设备将向您的位置投放一个高功率电磁设备</i>。"
 	droptype = /obj/machinery/syndicatebomb/emp
 
 /obj/item/sbeacondrop/powersink
-	desc = "A label on it reads: <i>Warning: Activating this device will send a power draining device to your location</i>."
+	desc = "上面的标签上写着：<i>警告：激活此设备将向您所在的位置投送一台放电设备</i>。"
 	droptype = /obj/item/powersink
 
 /obj/item/sbeacondrop/clownbomb
-	desc = "A label on it reads: <i>Warning: Activating this device will send a silly explosive to your location</i>."
+	desc = "上面的标签上写着：<i>警告：激活此设备将向您的位置投送一枚愚蠢的爆炸物</i>。"
 	droptype = /obj/machinery/syndicatebomb/badmin/clown
 
 /obj/item/sbeacondrop/horse
-	desc = "A label on it reads: <i>Warning: Activating this device will send a live horse to your location.</i>"
+	desc = "上面贴着一个标签：<i>警告：激活此设备会将一匹活马传送到你的位置。</i>"
 	droptype = /mob/living/basic/pony/syndicate

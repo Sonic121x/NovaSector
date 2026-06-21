@@ -1,5 +1,5 @@
 /obj/projectile/energy/inferno
-	name = "molten nanite bullet"
+	name = "熔融纳米子弹"
 	icon_state = "infernoshot"
 	damage = 20
 	damage_type = BURN
@@ -27,7 +27,7 @@
 		playsound(cold_target, 'sound/items/weapons/sear.ogg', 30, TRUE, -1)
 
 /obj/projectile/energy/cryo
-	name = "frozen nanite bullet"
+	name = "冷冻纳米子弹"
 	icon_state = "cryoshot"
 	damage = 20
 	damage_type = BRUTE

@@ -1,6 +1,6 @@
 /obj/item/transfer_valve
 	icon = 'icons/obj/devices/assemblies.dmi'
-	name = "tank transfer valve"
+	name = "储罐传输阀"
 	icon_state = "valve_1"
 	base_icon_state = "valve"
 	inhand_icon_state = "ttv"
@@ -8,7 +8,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/bombs_righthand.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	worn_icon_state = "ttv"
-	desc = "Regulates the transfer of air between two tanks."
+	desc = "调节两个储罐之间的空气传输。"
 	w_class = WEIGHT_CLASS_BULKY
 
 	var/obj/item/tank/tank_one
@@ -97,9 +97,9 @@
 		var/obj/vehicle/ridden/wheelchair/chair = interacting_with
 
 		if (chair.bomb_attached)
-			user.balloon_alert(user, "already has a TTV!")
+			user.balloon_alert(user, "已经有一个TTV了！")
 			return ITEM_INTERACT_FAILURE
-		user.balloon_alert(user, "attaching TTV...")
+		user.balloon_alert(user, "正在安装TTV...")
 		if (!do_after(user, 0.5 SECONDS, chair))
 			return ITEM_INTERACT_FAILURE
 
@@ -127,17 +127,17 @@
 	else if(istype(item, /obj/item/stack/cable_coil) && !wired)
 		var/obj/item/stack/cable_coil/coil = item
 		if (coil.get_amount() < 15)
-			to_chat(user, span_warning("You need fifteen lengths of coil for this!"))
+			to_chat(user, span_warning("你需要十五段线圈才能这样做！"))
 			return
 		coil.use(15)
-		to_chat(user, span_notice("You add some cables, not being really sure why. Looks like <i>backpack</i> straps."))
+		to_chat(user, span_notice("你加了些电缆，不太确定为什么。看起来像<i>背包</i>背带。"))
 		wired = TRUE
 		slot_flags |= ITEM_SLOT_BACK
 		update_appearance()
 
 	else if(item.tool_behaviour == TOOL_WIRECUTTER && wired)
 		item.play_tool_sound(src)
-		to_chat(user, span_notice("You remove the cables."))
+		to_chat(user, span_notice("你移除了电缆。"))
 		wired = FALSE
 		slot_flags &= ~ITEM_SLOT_BACK
 		Move(drop_location())
@@ -158,7 +158,7 @@
 		tank_two = new_tank
 		to_chat(user, span_notice("You attach the [new_tank] to the transfer valve's secondary port."))
 	else
-		to_chat(user, span_warning("There are already two tanks attached, remove one first!"))
+		to_chat(user, span_warning("已经连接了两个储罐，请先移除一个！"))
 		return FALSE
 
 	update_appearance()
@@ -169,7 +169,7 @@
 		to_chat(user, span_notice("The [A] is secured; unsecure it first."))
 		return FALSE
 	if(attached_device)
-		to_chat(user, span_warning("There is already a device attached to the valve, remove it first!"))
+		to_chat(user, span_warning("阀上已经安装了一个装置，请先将其取下！"))
 		return FALSE
 	if(!user.transferItemToLoc(A, src))
 		return FALSE

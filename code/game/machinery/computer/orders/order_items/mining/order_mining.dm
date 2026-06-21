@@ -19,7 +19,7 @@
 
 /datum/orderable_item/mining/mining_modsuit
 	purchase_path = /obj/item/mod/control/pre_equipped/mining
-	desc = "A mining-themed MODsuit that works best when in a mining environment."
+	desc = "一款采矿主题的MOD防护服，在采矿环境中表现最佳。"
 	cost_per_order = 2500
 
 /datum/orderable_item/mining/mining_belt
@@ -72,7 +72,7 @@
 
 /datum/orderable_item/mining/conscription_kit
 	purchase_path = /obj/item/storage/backpack/duffelbag/mining_conscript
-	desc = "A kit containing everything a crewmember needs to support a shaft miner in the field."
+	desc = "一个包含船员在野外支援竖井矿工所需一切物品的套件。"
 	cost_per_order = 1200
 
 /datum/orderable_item/mining/capsule
@@ -117,7 +117,7 @@
 
 /datum/orderable_item/mining/boulder_processing
 	purchase_path = /obj/item/boulder_beacon
-	desc = "A Bouldertech brand all-in-one boulder processing beacon. Each use will teleport in a component of a full boulder processing assembly line. Good for when you need to process additional boulders."
+	desc = "一款Bouldertech品牌的一体化巨石处理信标。每次使用都会传送来一个完整巨石处理流水线的组件。适用于需要处理额外巨石时。"
 	cost_per_order = 875
 
 /datum/orderable_item/mining/grapple_gun

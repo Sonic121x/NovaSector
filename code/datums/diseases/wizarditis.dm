@@ -71,16 +71,16 @@
 	switch(stage)
 		if(2)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel [pick("that you don't have enough mana", "that the winds of magic are gone", "an urge to summon familiar")]."))
+				to_chat(affected_mob, span_danger("你感觉[pick("that you don't have enough mana", "that the winds of magic are gone", "an urge to summon familiar")]。"))
 
 		if(3)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel [pick("the magic bubbling in your veins", "that this location gives you a +1 to INT", "an urge to summon familiar")]."))
+				to_chat(affected_mob, span_danger("你感觉[pick("the magic bubbling in your veins", "that this location gives you a +1 to INT", "an urge to summon familiar")]。"))
 				spawn_wizard_clothes(10)
 
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel [pick("the tidal wave of raw power building inside", "that this location gives you a +2 to INT and +1 to WIS", "an urge to teleport")]."))
+				to_chat(affected_mob, span_danger("你感觉[pick("the tidal wave of raw power building inside", "that this location gives you a +2 to INT and +1 to WIS", "an urge to teleport")]。"))
 				spawn_wizard_clothes(50)
 
 			if(SPT_PROB(0.2, seconds_per_tick))

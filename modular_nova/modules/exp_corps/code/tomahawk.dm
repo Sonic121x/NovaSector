@@ -1,6 +1,6 @@
 /obj/item/melee/tomahawk
-	name = "expeditionary tomahawk"
-	desc = "A decently sharp axe blade upon a short fibremetal handle. "
+	name = "远征队战斧"
+	desc = "一把装在短纤维金属手柄上的、相当锋利的斧刃。"
 	icon = 'modular_nova/modules/exp_corps/icons/tomahawk.dmi'
 	icon_state = "tomahawk"
 	inhand_icon_state = "tomahawk"

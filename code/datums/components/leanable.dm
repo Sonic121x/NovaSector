@@ -38,7 +38,7 @@
 	for (var/mob/living/leaner as anything in leaning_mobs)
 		leaner.stop_leaning()
 		if(fall)
-			to_chat(leaner, span_danger("You lose balance!"))
+			to_chat(leaner, span_danger("你失去平衡了！"))
 			leaner.Paralyze(0.5 SECONDS)
 	leaning_mobs.Cut()
 
@@ -96,8 +96,8 @@
 	add_offsets(LEANING_TRAIT, x_add = new_x, y_add = new_y)
 	add_traits(list(TRAIT_UNDENSE, TRAIT_EXPANDED_FOV), LEANING_TRAIT)
 	visible_message(
-		span_notice("[src] leans against [lean_target]."),
-		span_notice("You lean against [lean_target]."),
+		span_notice("[src] 靠在了 [lean_target] 上。"),
+		span_notice("你靠在了 [lean_target] 上。"),
 	)
 	RegisterSignals(src, list(
 		COMSIG_MOB_CLIENT_PRE_MOVE,
@@ -116,7 +116,7 @@
 	// Make sure we unregister signal handlers and reset animation
 	stop_leaning()
 	// -1000 aura
-	visible_message(span_notice("[src] falls flat on [p_their()] face from losing [p_their()] balance!"), span_warning("You fall suddenly as the object you were leaning on vanishes from contact with you!"))
+	visible_message(span_notice("[src] falls flat on [p_their()] face from losing [p_their()] balance!"), span_warning("你倚靠的物体突然从接触中消失，让你摔倒了！"))
 	Knockdown(3 SECONDS)
 
 /mob/living/proc/stop_leaning()

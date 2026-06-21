@@ -1,6 +1,6 @@
 /obj/structure/closet/infinite
-	name = "infinite closet"
-	desc = "It's closets, all the way down."
+	name = "无穷衣橱"
+	desc = "全都是壁橱，一路延伸下去。"
 	var/replicating_type
 	var/stop_replicating_at = 4
 	var/auto_close_time = 15 SECONDS // Set to 0 to disable auto-closing.
@@ -30,4 +30,4 @@
 
 /obj/structure/closet/infinite/proc/close_on_my_own()
 	if(close())
-		visible_message(span_notice("\The [src] closes on its own."))
+		visible_message(span_notice("\The [src]自行关上了。"))

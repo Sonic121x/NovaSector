@@ -1,7 +1,7 @@
 // Grass
 /obj/item/seeds/grass
-	name = "grass seed pack"
-	desc = "These seeds grow into grass. Yummy!"
+	name = "草籽包"
+	desc = "这些种子能长成草。美味！"
 	icon_state = "seed-grass"
 	species = "grass"
 	plantname = "Grass"
@@ -23,7 +23,7 @@
 /obj/item/food/grown/grass
 	seed = /obj/item/seeds/grass
 	name = "grass"
-	desc = "Green and lush."
+	desc = "郁郁葱葱。"
 	icon_state = "grassclump"
 	bite_consumption_mod = 0.5 // Grazing on grass
 	var/stacktype = /obj/item/stack/tile/grass
@@ -31,7 +31,7 @@
 	wine_power = 15
 
 /obj/item/food/grown/grass/attack_self(mob/user)
-	to_chat(user, span_notice("You prepare the astroturf."))
+	to_chat(user, span_notice("你准备好了人造草皮。"))
 	var/grassAmt = 1 + round(seed.potency * tile_coefficient) // The grass we're holding
 	for(var/obj/item/food/grown/grass/G in user.loc) // The grass on the floor
 		if(G.type != type)
@@ -46,8 +46,8 @@
 
 //Fairygrass
 /obj/item/seeds/grass/fairy
-	name = "fairygrass seed pack"
-	desc = "These seeds grow into a more mystical grass."
+	name = "仙灵草种子包"
+	desc = "这些种子长成了一种更加神秘的草。"
 	icon_state = "seed-fairygrass"
 	species = "fairygrass"
 	plantname = "Fairygrass"
@@ -62,15 +62,15 @@
 /obj/item/food/grown/grass/fairy
 	seed = /obj/item/seeds/grass/fairy
 	name = "fairygrass"
-	desc = "Blue, glowing, and smells faintly of mushrooms."
+	desc = "蓝色，发光，并带有淡淡的蘑菇气味。"
 	icon_state = "fairygrassclump"
 	bite_consumption_mod = 1
 	stacktype = /obj/item/stack/tile/fairygrass
 
 // Carpet
 /obj/item/seeds/grass/carpet
-	name = "carpet seed pack"
-	desc = "These seeds grow into stylish carpet samples."
+	name = "地毯草种子包"
+	desc = "这些种子长成了一款款美观的地毯样品。"
 	icon_state = "seed-carpet"
 	species = "carpet"
 	plantname = "Carpet"
@@ -81,7 +81,7 @@
 /obj/item/food/grown/grass/carpet
 	seed = /obj/item/seeds/grass/carpet
 	name = "carpet"
-	desc = "The textile industry's dark secret."
+	desc = "纺织业的隐秘真相。"
 	icon_state = "carpetclump"
 	stacktype = /obj/item/stack/tile/carpet
 	can_distill = FALSE

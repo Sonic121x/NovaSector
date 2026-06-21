@@ -5,8 +5,8 @@ Charged extracts:
 	normal extract effect.
 */
 /obj/item/slimecross/charged
-	name = "charged extract"
-	desc = "It sparks with electric power."
+	name = "充电提取物"
+	desc = "它散发着强大的电能。"
 	effect = "charged"
 	icon_state = "charged"
 
@@ -16,10 +16,10 @@ Charged extracts:
 
 /obj/item/slimecross/charged/attack_self(mob/user)
 	if(!reagents.has_reagent(/datum/reagent/toxin/plasma, 10))
-		to_chat(user, span_warning("This extract needs to be full of plasma to activate!"))
+		to_chat(user, span_warning("这个提取物需要充满等离子体才能激活！"))
 		return
 	reagents.remove_reagent(/datum/reagent/toxin/plasma, 10)
-	to_chat(user, span_notice("You squeeze the extract, and it absorbs the plasma!"))
+	to_chat(user, span_notice("你挤压提取物，它吸收了等离子体！"))
 	playsound(src, 'sound/effects/bubbles/bubbles.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/light_flicker.ogg', 50, TRUE)
 	do_effect(user)
@@ -34,7 +34,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/grey/do_effect(mob/user)
 	new /obj/item/slimepotion/slime_reviver(get_turf(user))
-	user.visible_message(span_notice("[src] distills into a potion!"))
+	user.visible_message(span_notice("[src]蒸馏成了一瓶药水！"))
 	..()
 
 /obj/item/slimecross/charged/orange
@@ -54,7 +54,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/purple/do_effect(mob/user)
 	new /obj/item/slimecrossbeaker/omnizine(get_turf(user))
-	user.visible_message(span_notice("[src] sparks, and floods with a regenerative solution!"))
+	user.visible_message(span_notice("[src] 迸发出火花，并涌出再生溶液！"))
 	..()
 
 /obj/item/slimecross/charged/blue
@@ -63,7 +63,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/blue/do_effect(mob/user)
 	new /obj/item/slimepotion/slime/chargedstabilizer(get_turf(user))
-	user.visible_message(span_notice("[src] distills into a potion!"))
+	user.visible_message(span_notice("[src] 蒸馏成了一瓶药水！"))
 	..()
 
 /obj/item/slimecross/charged/metal
@@ -73,7 +73,7 @@ Charged extracts:
 /obj/item/slimecross/charged/metal/do_effect(mob/user)
 	new /obj/item/stack/sheet/iron(get_turf(user), 25)
 	new /obj/item/stack/sheet/plasteel(get_turf(user), 10)
-	user.visible_message(span_notice("[src] grows into a plethora of metals!"))
+	user.visible_message(span_notice("[src] 生长出大量金属！"))
 	..()
 
 /obj/item/slimecross/charged/yellow
@@ -82,7 +82,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/yellow/do_effect(mob/user)
 	new /obj/item/stock_parts/power_store/cell/high/slime_hypercharged(get_turf(user))
-	user.visible_message(span_notice("[src] sparks violently, and swells with electric power!"))
+	user.visible_message(span_notice("[src] 剧烈地迸发火花，并充满了电能！"))
 	..()
 
 /obj/item/slimecross/charged/darkpurple
@@ -91,7 +91,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/darkpurple/do_effect(mob/user)
 	new /obj/item/stack/sheet/mineral/plasma(get_turf(user), 10)
-	user.visible_message(span_notice("[src] produces a large amount of plasma!"))
+	user.visible_message(span_notice("[src] 产生了大量等离子体！"))
 	..()
 
 /obj/item/slimecross/charged/darkblue
@@ -100,7 +100,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/darkblue/do_effect(mob/user)
 	new /obj/item/slimepotion/spaceproof(get_turf(user))
-	user.visible_message(span_notice("[src] distills into a potion!"))
+	user.visible_message(span_notice("[src] 蒸馏成了一瓶药水！"))
 	..()
 
 /obj/item/slimecross/charged/silver
@@ -112,7 +112,7 @@ Charged extracts:
 	for(var/i in 1 to 10)
 		var/drink_type = get_random_drink()
 		new drink_type(get_turf(user))
-	user.visible_message(span_notice("[src] produces a party's worth of cake and drinks!"))
+	user.visible_message(span_notice("[src] 变出了足够开派对的蛋糕和饮料！"))
 	..()
 
 /obj/item/slimecross/charged/bluespace
@@ -121,7 +121,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/bluespace/do_effect(mob/user)
 	new /obj/item/stack/sheet/bluespace_crystal(get_turf(user), 10)
-	user.visible_message(span_notice("[src] produces several sheets of polycrystal!"))
+	user.visible_message(span_notice("[src] 产生了数张多晶板材！"))
 	..()
 
 /obj/item/slimecross/charged/sepia
@@ -130,7 +130,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/sepia/do_effect(mob/user)
 	new /obj/item/camera/spooky(get_turf(user))
-	user.visible_message(span_notice("[src] flickers in a strange, ethereal manner, and produces a camera!"))
+	user.visible_message(span_notice("[src] 以一种奇异、空灵的方式闪烁，并变出了一台相机！"))
 	..()
 
 /obj/item/slimecross/charged/cerulean
@@ -139,7 +139,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/cerulean/do_effect(mob/user)
 	new /obj/item/slimepotion/enhancer/max(get_turf(user))
-	user.visible_message(span_notice("[src] distills into a potion!"))
+	user.visible_message(span_notice("[src] 蒸馏成了一瓶药水！"))
 	..()
 
 /obj/item/slimecross/charged/pyrite
@@ -148,7 +148,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/pyrite/do_effect(mob/user)
 	new /obj/item/stack/sheet/mineral/bananium(get_turf(user), 10)
-	user.visible_message(span_warning("[src] solidifies with a horrifying banana stench!"))
+	user.visible_message(span_warning("[src] 凝固了，并散发出可怕的香蕉臭味！"))
 	..()
 
 /obj/item/slimecross/charged/red
@@ -157,7 +157,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/red/do_effect(mob/user)
 	new /obj/item/slimepotion/lavaproof(get_turf(user))
-	user.visible_message(span_notice("[src] distills into a potion!"))
+	user.visible_message(span_notice("[src] 蒸馏成了一瓶药水！"))
 	..()
 
 /obj/item/slimecross/charged/green
@@ -167,19 +167,19 @@ Charged extracts:
 /obj/item/slimecross/charged/green/do_effect(mob/user)
 	var/mob/living/carbon/human/human_user = user
 	if(!istype(human_user))
-		to_chat(user, span_warning("You must be a humanoid to use this!"))
+		to_chat(user, span_warning("你必须是人形生物才能使用这个！"))
 		return
 	var/list/choice_list = list()
 	for(var/datum/species/species_type as anything in subtypesof(/datum/species/jelly))
 		choice_list[initial(species_type.name)] = species_type
-	var/racechoice = tgui_input_list(human_user, "Choose your slime subspecies", "Slime Selection", sort_list(choice_list))
+	var/racechoice = tgui_input_list(human_user, "选择你的史莱姆亚种", "史莱姆选择", sort_list(choice_list))
 	if(isnull(racechoice))
-		to_chat(user, span_notice("You decide not to become a slime for now."))
+		to_chat(user, span_notice("你决定暂时不变成史莱姆。"))
 		return
 	if(!user.can_perform_action(src))
 		return
 	human_user.set_species(choice_list[racechoice], icon_update=1)
-	human_user.visible_message(span_warning("[human_user] suddenly shifts form as [src] dissolves into [human_user.p_their()] skin!"))
+	human_user.visible_message(span_warning("[human_user] 的形态突然转变，同时 [src] 溶解进了 [human_user.p_their()] 的皮肤！"))
 	..()
 
 /obj/item/slimecross/charged/pink
@@ -188,7 +188,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/pink/do_effect(mob/user)
 	new /obj/item/slimepotion/lovepotion(get_turf(user))
-	user.visible_message(span_notice("[src] distills into a potion!"))
+	user.visible_message(span_notice("[src] 蒸馏成了一瓶药水！"))
 	..()
 
 /obj/item/slimecross/charged/gold
@@ -198,20 +198,20 @@ Charged extracts:
 	var/spawned = 0
 
 /obj/item/slimecross/charged/gold/do_effect(mob/user)
-	user.visible_message(span_warning("[src] starts shuddering violently!"))
+	user.visible_message(span_warning("[src] 开始剧烈地震动！"))
 	addtimer(CALLBACK(src, PROC_REF(startTimer)), 5 SECONDS)
 
 /obj/item/slimecross/charged/gold/proc/startTimer()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/slimecross/charged/gold/process()
-	visible_message(span_warning("[src] lets off a spark, and produces a living creature!"))
+	visible_message(span_warning("[src] 迸发出一道火花，并创造出了一个活生生的生物！"))
 	new /obj/effect/particle_effect/sparks(get_turf(src))
 	playsound(get_turf(src), SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	create_random_mob(get_turf(src), HOSTILE_SPAWN)
 	spawned++
 	if(spawned >= max_spawn)
-		visible_message(span_warning("[src] collapses into a puddle of goo."))
+		visible_message(span_warning("[src] 坍缩成了一滩粘液。"))
 		qdel(src)
 
 /obj/item/slimecross/charged/gold/Destroy()
@@ -223,7 +223,7 @@ Charged extracts:
 	effect_desc = "Creates an explosion after a few seconds."
 
 /obj/item/slimecross/charged/oil/do_effect(mob/user)
-	user.visible_message(span_danger("[src] begins to shake with rapidly increasing force!"))
+	user.visible_message(span_danger("[src] 开始以迅速增强的力量震动！"))
 	addtimer(CALLBACK(src, PROC_REF(boom)), 5 SECONDS)
 
 /obj/item/slimecross/charged/oil/proc/boom()
@@ -237,7 +237,7 @@ Charged extracts:
 /obj/item/slimecross/charged/black/do_effect(mob/user)
 	var/mob/living/carbon/human/experiment_subject = user
 	if(!istype(experiment_subject))
-		balloon_alert(experiment_subject, "incompatible biology!")
+		balloon_alert(experiment_subject, "生物结构不兼容！")
 		return
 	var/list/allowed_species = list()
 	for(var/stype in subtypesof(/datum/species))
@@ -247,10 +247,10 @@ Charged extracts:
 
 	var/datum/species/changed = pick(allowed_species)
 	if(isnull(changed))
-		visible_message(span_notice("[src] fizzes uselessly."))
+		visible_message(span_notice("[src] 发出无用的嘶嘶声。"))
 		return
 	experiment_subject.set_species(changed, icon_update = TRUE)
-	to_chat(experiment_subject, span_danger("You feel very different!"))
+	to_chat(experiment_subject, span_danger("你感觉非常不同！"))
 	return ..()
 
 /obj/item/slimecross/charged/lightpink
@@ -259,7 +259,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/lightpink/do_effect(mob/user)
 	new /obj/item/slimepotion/peacepotion(get_turf(user))
-	user.visible_message(span_notice("[src] distills into a potion!"))
+	user.visible_message(span_notice("[src] 蒸馏成了一瓶药水！"))
 	..()
 
 /obj/item/slimecross/charged/adamantine
@@ -267,7 +267,7 @@ Charged extracts:
 	effect_desc = "Creates a completed golem shell."
 
 /obj/item/slimecross/charged/adamantine/do_effect(mob/user)
-	user.visible_message(span_notice("[src] produces a fully formed golem shell!"))
+	user.visible_message(span_notice("[src] 产生了一个完全成型的魔像外壳！"))
 	new /obj/effect/mob_spawn/ghost_role/human/golem/servant(get_turf(src), /datum/species/golem, user)
 	..()
 
@@ -276,7 +276,7 @@ Charged extracts:
 	effect_desc = "Produces three living slimes of random colors."
 
 /obj/item/slimecross/charged/rainbow/do_effect(mob/user)
-	user.visible_message(span_warning("[src] swells and splits into three new slimes!"))
+	user.visible_message(span_warning("[src] 膨胀并分裂成三个新的史莱姆！"))
 	for(var/i in 1 to 3)
 		new /mob/living/basic/slime/random(get_turf(user))
 	return ..()

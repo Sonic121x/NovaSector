@@ -1,5 +1,5 @@
 /area/station/command
-	name = "Command"
+	name = "指挥区"
 	icon_state = "command"
 	ambientsounds = list(
 		'sound/ambience/misc/signal.ogg',
@@ -9,47 +9,47 @@
 	tacmap_color = TACMAP_AREA_COMMAND
 
 /area/station/command/bridge
-	name = "\improper Bridge"
+	name = "\improper 舰桥"
 	icon_state = "bridge"
 
 /area/station/command/meeting_room
-	name = "\improper Heads of Staff Meeting Room"
+	name = "\improper 部门主管会议室"
 	icon_state = "meeting"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/station/command/meeting_room/council
-	name = "\improper Council Chamber"
+	name = "\improper 议会厅"
 	icon_state = "meeting"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/station/command/corporate_showroom
-	name = "\improper Corporate Showroom"
+	name = "\improper 企业展示厅"
 	icon_state = "showroom"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/station/command/corporate_suite
-	name = "\improper Corporate Guest Suite"
+	name = "\improper 企业宾客套房"
 	icon_state = "command"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/command/emergency_closet
-	name = "\improper Corporate Emergency Closet"
+	name = "\improper 公司应急储物间"
 	icon_state = "command"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 // Monitored areas
 
 /area/station/command/eva
-	name = "EVA Storage"
+	name = "EVA 存储区"
 	icon_state = "eva"
 	ambience_index = AMBIENCE_DANGER
 	motion_monitored = TRUE
 
 /area/station/command/eva/upper
-	name = "Upper EVA Storage"
+	name = "上层 EVA 存储区"
 
 /area/station/command/vault
-	name = "\improper Vault"
+	name = "\improper 金库"
 	icon_state = "nuke_storage" // someone should change this, not me though
 	motion_monitored = TRUE
 
@@ -61,37 +61,37 @@
 	icon_state = "heads_quarters"
 
 /area/station/command/heads_quarters/captain
-	name = "\improper Captain's Office"
+	name = "\improper 舰长办公室"
 	icon_state = "captain"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/command/heads_quarters/captain/private
-	name = "\improper Captain's Quarters"
+	name = "\improper 舰长宿舍"
 	icon_state = "captain_private"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/command/heads_quarters/ce
-	name = "\improper Chief Engineer's Office"
+	name = "\improper 总工程师办公室"
 	icon_state = "ce_office"
 
 /area/station/command/heads_quarters/cmo
-	name = "\improper Chief Medical Officer's Office"
+	name = "\improper 首席医疗官办公室"
 	icon_state = "cmo_office"
 
 /area/station/command/heads_quarters/hop
-	name = "\improper Head of Personnel's Office"
+	name = "\improper 人事主管办公室"
 	icon_state = "hop_office"
 
 /area/station/command/heads_quarters/hos
-	name = "\improper Head of Security's Office"
+	name = "\improper 安保主管办公室"
 	icon_state = "hos_office"
 
 /area/station/command/heads_quarters/rd
-	name = "\improper Research Director's Office"
+	name = "\improper 研究主管办公室"
 	icon_state = "rd_office"
 
 /area/station/command/heads_quarters/qm
-	name = "\improper Quartermaster's Office"
+	name = "\improper 军需官办公室"
 	icon_state = "qm_office"
 
 /*
@@ -99,12 +99,12 @@
 */
 
 /area/station/command/teleporter
-	name = "\improper Teleporter Room"
+	name = "\improper 传送室"
 	icon_state = "teleporter"
 	ambience_index = AMBIENCE_ENGI
 
 /area/station/command/gateway
-	name = "\improper Gateway"
+	name = "\improper 星门"
 	icon_state = "gateway"
 	ambience_index = AMBIENCE_ENGI
 
@@ -113,6 +113,6 @@
 */
 
 /area/station/command/corporate_dock
-	name = "\improper Corporate Private Dock"
+	name = "\improper 公司私人泊位"
 	icon_state = "command"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR

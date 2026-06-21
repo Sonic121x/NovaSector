@@ -13,14 +13,14 @@
 		return NONE
 	var/obj/item/organ/monster_core/target_core = interacting_with
 	if (!istype(target_core))
-		balloon_alert(user, "invalid target!")
+		balloon_alert(user, "无效目标！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (!target_core.preserve())
-		balloon_alert(user, "organ decayed!")
+		balloon_alert(user, "器官已衰变！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "organ stabilized")
+	balloon_alert(user, "器官已稳定")
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -170,16 +170,16 @@
  */
 /obj/item/organ/monster_core/proc/try_apply(atom/target, mob/user)
 	if (!isliving(target))
-		balloon_alert(user, "invalid target!")
+		balloon_alert(user, "无效目标！")
 		return
 	if (inert)
-		balloon_alert(user, "organ decayed!")
+		balloon_alert(user, "器官已腐烂！")
 		return
 	var/mob/living/live_target = target
 	if (live_target.stat == DEAD)
-		balloon_alert(user, "they're dead!")
+		balloon_alert(user, "他们已经死了！")
 		return
-	balloon_alert(user, "applied organ")
+	balloon_alert(user, "已应用器官")
 	apply_to(target, user)
 
 /**

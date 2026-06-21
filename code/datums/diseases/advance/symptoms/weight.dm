@@ -6,8 +6,8 @@
  * Bonus: Drains nutrition from the host
 */
 /datum/symptom/weight_loss
-	name = "Weight Loss"
-	desc = "The virus mutates the host's metabolism, making it almost unable to gain nutrition from food."
+	name = "体重减轻"
+	desc = "病毒改变了宿主的代谢，使其几乎无法从食物中获取营养。"
 	illness = "Placid Reflux"
 	stealth = 0
 	resistance = 2

@@ -302,22 +302,22 @@
 
 /datum/supply_pack/imports/dreadnog
 	name = "Dreadnog Carton Crate"
-	desc = "I have eggnog and I must soda."
+	desc = "我有蛋奶酒，我必须喝汽水。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/reagent_containers/cup/glass/bottle/juice/dreadnog = 3)
 	crate_name = "dreadnog crate"
 
 /datum/supply_pack/imports/giant_wrench_parts
-	name = "Big Slappy parts"
-	desc = "Illegal Big Slappy parts. The fastest and statistically most dangerous wrench."
+	name = "大拍击零件"
+	desc = "非法的大拍击零件。最快且统计上最危险的扳手。"
 	cost = CARGO_CRATE_VALUE * 22
 	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/weaponcrafting/giant_wrench)
 	crate_name = "unknown parts crate"
 
 /datum/supply_pack/imports/materials_market
-	name = "Galactic Materials Market Crate"
-	desc = "A circuit board to build your own materials market for use by certified market traders. Warning: Losses are not covered by insurance."
+	name = "银河材料市场板条箱"
+	desc = "一块用于建造你自己的材料市场的电路板，供持证市场交易员使用。警告：损失不在保险范围内。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
 		/obj/item/circuitboard/machine/materials_market = 1,
@@ -330,7 +330,7 @@
 	crate_type = /obj/structure/closet/crate/cargo
 
 /datum/supply_pack/imports/floortilecamo
-	name = "Floor-tile Camouflage Uniform"
+	name = "地板砖迷彩制服"
 	desc = "Hey there, looking to surprise somebody? Spy? Steal? Then you're lucky, meet our newest \
 		floor-tile 'NT SCUM' styled camouflage fatigues. This is the ultimate \
 		espionage uniform used by the very best. Providing the best \
@@ -355,7 +355,7 @@
  * It can also be used to restock it, if you hit it with enough credits.
  */
 /datum/supply_pack/imports/blackmarket_telepad
-	name = "Black Market LTSRBT"
+	name = "黑市长短程蓝空收发器"
 	desc = "Need a faster and better way of transporting your illegal goods from and to the \
 		station? Fear not, the Long-To-Short-Range-Bluespace-Transceiver (LTSRBT for short) \
 		is here to help. Contains a LTSRBT circuit, two bluespace crystals, and one ansible."

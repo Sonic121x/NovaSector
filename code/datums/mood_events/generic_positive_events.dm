@@ -1,20 +1,20 @@
 /datum/mood_event/hug
-	description = "Hugs are nice."
+	description = "拥抱的感觉真好。"
 	mood_change = 1
 	timeout = 2 MINUTES
 
 /datum/mood_event/hug/add_effects()
 	if(HAS_PERSONALITY(owner, /datum/personality/aloof))
 		mood_change = -1
-		description = "I would prefer not to be touched."
+		description = "我宁愿不被碰触。"
 		return
 	if(HAS_PERSONALITY(owner, /datum/personality/callous))
 		mood_change = 0
-		description = "I hate hugs."
+		description = "我讨厌拥抱。"
 		return
 
 /datum/mood_event/bear_hug
-	description = "I got squeezed very tightly, but it was quite nice."
+	description = "我被抱得很紧，但感觉相当不错。"
 	mood_change = 1
 	timeout = 2 MINUTES
 
@@ -23,60 +23,60 @@
 		|| HAS_PERSONALITY(owner, /datum/personality/callous) \
 	)
 		mood_change = -2
-		description = "They're squeezing me too tightly!"
+		description = "他们抱得太紧了！"
 		return
 
 /datum/mood_event/betterhug
-	description = "Someone was very nice to me."
+	description = "有人对我非常好。"
 	mood_change = 3
 	timeout = 4 MINUTES
 
 /datum/mood_event/betterhug/add_effects(mob/friend)
 	if(HAS_PERSONALITY(owner, /datum/personality/aloof))
 		mood_change = 1
-		description = "[friend.name] is nice, but I wish they'd stop touching me."
+		description = "[friend.name] 人不错，但我希望他们别再碰我了。"
 		return
 	if(HAS_PERSONALITY(owner, /datum/personality/callous))
 		mood_change = 0
-		description = "[friend.name] is way too nice for this station."
+		description = "[friend.name] 对这个空间站来说也太好了。"
 		return
 
-	description = "[friend.name] was very nice to me."
+	description = "[friend.name] 对我非常好。"
 
 /datum/mood_event/besthug
-	description = "Someone is great to be around, they make me feel so happy!"
+	description = "和某人在一起很棒，他们让我感到非常快乐！"
 	mood_change = 5
 	timeout = 4 MINUTES
 
 /datum/mood_event/besthug/add_effects(mob/friend)
 	if(HAS_PERSONALITY(owner, /datum/personality/aloof))
 		mood_change = 2
-		description = "[friend.name] is great to be around, but I wish they'd stop touching me."
+		description = "[friend.name] 是个很好的伙伴，但我希望他们别再碰我了。"
 		return
 	if(HAS_PERSONALITY(owner, /datum/personality/callous))
 		mood_change = 0
-		description = "[friend.name] is way too nice for this station."
+		description = "[friend.name] 对这个空间站来说太好了。"
 		return
 
-	description = "[friend.name] is great to be around, [friend.p_they()] makes me feel so happy!"
+	description = "[friend.name] 是个很好的伙伴，[friend.p_they()] 让我感到非常快乐！"
 
 /datum/mood_event/warmhug
-	description = "Warm cozy hugs are the best!"
+	description = "温暖舒适的拥抱最棒了！"
 	mood_change = 1
 	timeout = 2 MINUTES
 
 /datum/mood_event/warmhug/add_effects()
 	if(HAS_PERSONALITY(owner, /datum/personality/aloof))
 		mood_change = 0
-		description = "I would prefer not to be touched, but the warmth is nice...."
+		description = "我宁愿不被触碰，但温暖的感觉还不错……"
 		return
 	if(HAS_PERSONALITY(owner, /datum/personality/callous))
 		mood_change = 0
-		description = "I hate hugs. I can warm myself up."
+		description = "我讨厌拥抱。我自己能暖和起来。"
 		return
 
 /datum/mood_event/tailpulled
-	description = "I love getting my tail pulled!"
+	description = "我喜欢被拉尾巴！"
 	mood_change = 1
 	timeout = 2 MINUTES
 
@@ -85,10 +85,10 @@
 		|| HAS_PERSONALITY(owner, /datum/personality/callous) \
 	)
 		mood_change = -2
-		description = "Who the hell is touching my tail?"
+		description = "到底是谁在碰我的尾巴？"
 
 /datum/mood_event/arcade
-	description = "I beat the arcade game!"
+	description = "我打赢了街机游戏！"
 	mood_change = 3
 	timeout = 8 MINUTES
 	event_flags = MOOD_EVENT_GAMING
@@ -96,10 +96,10 @@
 /datum/mood_event/arcade/add_effects()
 	if(HAS_PERSONALITY(owner, /datum/personality/industrious) || HAS_PERSONALITY(owner, /datum/personality/slacking/diligent))
 		mood_change = -1
-		description = "Wow, I beat the game. I could've been doing anything productive instead."
+		description = "哇，我打赢了游戏。我本可以做任何更有意义的事的。"
 
 /datum/mood_event/blessing
-	description = "I've been blessed."
+	description = "我受到了祝福。"
 	mood_change = 1
 	timeout = 8 MINUTES
 	event_flags = MOOD_EVENT_SPIRITUAL
@@ -108,36 +108,36 @@
 	mood_change = 8
 
 /datum/mood_event/maintenance_adaptation/add_effects()
-	description = "[GLOB.deity] has helped me adapt to the maintenance shafts!"
+	description = "[GLOB.deity] 帮助我适应了维护区管道！"
 
 /datum/mood_event/book_nerd
-	description = "I have recently read a book."
+	description = "我最近读了一本书。"
 	mood_change = 1
 	timeout = 5 MINUTES
 
 /datum/mood_event/book_nerd/add_effects()
 	if(HAS_PERSONALITY(owner, /datum/personality/erudite))
 		mood_change = 2
-		description = "I love reading books!"
+		description = "我爱读书！"
 	if(HAS_PERSONALITY(owner, /datum/personality/uneducated))
 		mood_change = -1
-		description = "Who cares about books?"
+		description = "谁在乎书啊？"
 
 /datum/mood_event/exercise
-	description = "Working out releases those endorphins!"
+	description = "锻炼释放了那些内啡肽！"
 	mood_change = 1
 
 /datum/mood_event/exercise/add_effects(fitness_level)
 	mood_change = fitness_level // the more fit you are, the more you like to work out
 	if(HAS_PERSONALITY(owner, /datum/personality/slacking/lazy))
 		mood_change *= -0.5
-		description = "Working out, what a chore!"
+		description = "锻炼，真是件苦差事！"
 	else if(!HAS_PERSONALITY(owner, /datum/personality/athletic))
 		mood_change *= 0.5
-		description = "Working out is a bit of a chore, but it is pretty fulfilling."
+		description = "锻炼是有点麻烦，但相当有成就感。"
 
 /datum/mood_event/pet_animal
-	description = "Animals are adorable! I can't stop petting them!"
+	description = "动物真可爱！我忍不住要抚摸它们！"
 	timeout = 5 MINUTES
 	/// Tracks the typepath of animal we last petted
 	var/animal_type
@@ -147,7 +147,7 @@
 
 	if(HAS_PERSONALITY(owner, /datum/personality/animal_disliker))
 		mood_change = -1
-		description = "Ewww, [animal] is so dirty! I don't want to touch it!"
+		description = "呃，[animal] 太脏了！我不想碰它！"
 		return
 
 	var/dog_fan = HAS_PERSONALITY(owner, /datum/personality/dog_fan)
@@ -156,19 +156,19 @@
 	var/iscat = istype(animal, /mob/living/basic/pet/cat)
 	if((dog_fan && isdog) || (cat_fan && iscat) || HAS_PERSONALITY(owner, /datum/personality/animal_friend))
 		mood_change = 3
-		description = "I love [animal] so much, [animal.p_theyre()] so adorable! I can't stop petting [animal.p_them()]!"
+		description = "我太爱[animal]了，[animal.p_theyre()]这么可爱！我忍不住要抚摸[animal.p_them()]！"
 		return
 	if(dog_fan && iscat)
 		mood_change = -1
-		description = "I don't like [animal]! I prefer dogs!"
+		description = "我不喜欢[animal]！我更喜欢狗！"
 		return
 	if(cat_fan && isdog)
 		mood_change = -1
-		description = "I don't like [animal]! I prefer cats!"
+		description = "我不喜欢[animal]！我更喜欢猫！"
 		return
 
 	mood_change = 1
-	description = "[animal] is adorable!"
+	description = "[animal]真可爱！"
 
 // Change the moodlet if we get refreshed (we may have pet another type of animal)
 /datum/mood_event/pet_animal/be_refreshed(datum/mood/home, mob/animal)
@@ -178,7 +178,7 @@
 	add_effects(animal)
 
 /datum/mood_event/honk
-	description = "I've been honked!"
+	description = "我被按喇叭了！"
 	mood_change = 2
 	timeout = 4 MINUTES
 	special_screen_obj = "honked_nose"
@@ -186,29 +186,29 @@
 	event_flags = MOOD_EVENT_WHIMSY
 
 /datum/mood_event/saved_life
-	description = "It feels good to save a life."
+	description = "拯救生命的感觉真好。"
 	mood_change = 6
 	timeout = 8 MINUTES
 
 /datum/mood_event/saved_life/add_effects()
 	if(HAS_PERSONALITY(owner, /datum/personality/callous))
 		mood_change = 0
-		description = "I don't care much for saving lives."
+		description = "我对拯救生命没什么兴趣。"
 	if(HAS_PERSONALITY(owner, /datum/personality/misanthropic))
 		mood_change = -1
-		description = "Saving lives is a waste of time."
+		description = "拯救生命是浪费时间。"
 
 /datum/mood_event/oblivious
-	description = "What a lovely day."
+	description = "多么美好的一天。"
 	mood_change = 3
 
 /datum/mood_event/jolly
-	description = "I feel happy for no particular reason."
+	description = "我无缘无故地感到开心。"
 	mood_change = 6
 	timeout = 2 MINUTES
 
 /datum/mood_event/focused
-	description = "I have a goal, and I will reach it, whatever it takes!" //Used for syndies, nukeops etc so they can focus on their goals
+	description = "我有一个目标，无论付出什么代价，我都要实现它！" //Used for syndies, nukeops etc so they can focus on their goals
 	mood_change = 8
 	hidden = TRUE
 
@@ -220,138 +220,138 @@
 	special_screen_replace = FALSE
 
 /datum/mood_event/ling
-	description = "We have a goal, and we will reach it, whatever it takes!"
+	description = "我们有一个目标，无论付出什么代价，我们都要实现它！"
 	mood_change = 12
 	hidden = TRUE
 
 /datum/mood_event/creeping
-	description = "The voices have released their hooks on my mind! I feel free again!" //creeps get it when they are around their obsession
+	description = "那些声音已经从我脑海中松开了钩子！我又感到自由了！" //creeps get it when they are around their obsession
 	mood_change = 18
 	timeout = 3 SECONDS
 	hidden = TRUE
 
 /datum/mood_event/revolution
-	description = "VIVA LA REVOLUTION!"
+	description = "革命万岁！"
 	mood_change = 3
 	hidden = TRUE
 
 /datum/mood_event/cult
-	description = "I have seen the truth, praise the almighty one!"
+	description = "我已目睹真相，赞美全能之主！"
 	mood_change = 12 //maybe being a cultist isn't that bad after all
 	hidden = TRUE
 
 /datum/mood_event/heretics
-	description = "THE HIGHER I RISE, THE MORE I SEE."
+	description = "我攀升得越高，所见便越多。"
 	mood_change = 12 //maybe being a heretic isnt that bad after all
 	hidden = TRUE
 
 /datum/mood_event/rift_fishing
-	description = "THE MORE I FISH, THE HIGHER I RISE."
+	description = "我钓得越多，攀升得越高。"
 	mood_change = 6
 	timeout = 5 MINUTES
 
 /datum/mood_event/blood_worm
-	description = "KILL, CONSUME, MULTIPLY, CONQUER."
+	description = "杀戮，吞噬，繁衍，征服。"
 	mood_change = 999 // Makes it bold green and gives the special obj a higher priority. Blood worm hosts are apathetic, so this is otherwise meaningless.
 	hidden = TRUE
 
 /datum/mood_event/family_heirloom
-	description = "My family heirloom is safe with me."
+	description = "我的家族传家宝在我这里很安全。"
 	mood_change = 1
 
 /datum/mood_event/clown_enjoyer_pin
-	description = "I love showing off my clown pin!"
+	description = "我喜欢炫耀我的小丑徽章！"
 	mood_change = 1
 
 /datum/mood_event/mime_fan_pin
-	description = "I love showing off my mime pin!"
+	description = "我喜欢炫耀我的默剧演员徽章！"
 	mood_change = 1
 
 /datum/mood_event/goodmusic
-	description = "There is something soothing about this music."
+	description = "这音乐有种令人平静的东西。"
 	mood_change = 3
 	timeout = 60 SECONDS
 	event_flags = MOOD_EVENT_ART
 
 /datum/mood_event/chemical_euphoria
-	description = "Heh...hehehe...hehe..."
+	description = "呵……呵呵呵……呵呵……"
 	mood_change = 4
 
 /datum/mood_event/chemical_laughter
-	description = "Laughter really is the best medicine! Or is it?"
+	description = "欢笑真的是最好的良药！还是说不是呢？"
 	mood_change = 4
 	timeout = 3 MINUTES
 
 /datum/mood_event/chemical_superlaughter
-	description = "*WHEEZE*"
+	description = "*喘气*"
 	mood_change = 12
 	timeout = 3 MINUTES
 
 /datum/mood_event/religiously_comforted
-	description = "I feel comforted by the presence of a holy person."
+	description = "一位圣洁之人的存在让我感到安慰。"
 	mood_change = 3
 	timeout = 5 MINUTES
 	event_flags = MOOD_EVENT_SPIRITUAL
 
 /datum/mood_event/clownshoes
-	description = "The shoes are a clown's legacy, I never want to take them off!"
+	description = "这双鞋是小丑的遗产，我永远不想脱下它们！"
 	mood_change = 3
 
 /datum/mood_event/sacrifice_good
-	description = "The gods are pleased with this offering!"
+	description = "众神对这个祭品很满意！"
 	mood_change = 5
 	timeout = 3 MINUTES
 	event_flags = MOOD_EVENT_SPIRITUAL
 
 /datum/mood_event/artok
-	description = "It's nice to see people are making art around here."
+	description = "看到人们在这里创作艺术真好。"
 	mood_change = 2
 	timeout = 5 MINUTES
 	event_flags = MOOD_EVENT_ART
 
 /datum/mood_event/artgood
-	description = "What a thought-provoking piece of art. I'll remember that for a while."
+	description = "多么发人深省的艺术品。我会记住它一阵子。"
 	mood_change = 4
 	timeout = 5 MINUTES
 	event_flags = MOOD_EVENT_ART
 
 /datum/mood_event/artgreat
-	description = "That work of art was so great it made me believe in the goodness of humanity. Says a lot in a place like this."
+	description = "那件艺术品太棒了，让我相信了人性的善良。在这种地方，这意义重大。"
 	mood_change = 6
 	timeout = 5 MINUTES
 	event_flags = MOOD_EVENT_ART
 
 /datum/mood_event/bottle_flip
-	description = "The bottle landing like that was satisfying."
+	description = "瓶子那样落地真让人满足。"
 	mood_change = 2
 	timeout = 3 MINUTES
 
 /datum/mood_event/hope_lavaland
-	description = "What a peculiar emblem. It makes me feel hopeful for my future."
+	description = "多么奇特的徽记。它让我对自己的未来充满希望。"
 	mood_change = 6
 
 /datum/mood_event/hope_lavaland/add_effects(...)
 	if(HAS_PERSONALITY(owner, /datum/personality/pessimistic))
 		mood_change = 0
-		description = "This emblem is a lie. There is no hope for me."
+		description = "这个徽记是个谎言。对我来说没有希望。"
 		return
 
 /datum/mood_event/confident_mane
-	description = "I'm feeling confident with a head full of hair."
+	description = "一头浓密的头发让我充满自信。"
 	mood_change = 2
 
 /datum/mood_event/holy_consumption
-	description = "Truly, that was the food of the Divine!"
+	description = "这真是神圣的食物！"
 	mood_change = 1 // 1 + 5 from it being liked food makes it as good as jolly
 	timeout = 3 MINUTES
 
 /datum/mood_event/high_five
-	description = "I love getting high fives!"
+	description = "我喜欢击掌！"
 	mood_change = 2
 	timeout = 45 SECONDS
 
 /datum/mood_event/helped_up
-	description = "Helping them up felt good!"
+	description = "扶他们起来感觉真好！"
 	timeout = 45 SECONDS
 
 /datum/mood_event/helped_up/can_effect_mob(datum/mood/home, mob/living/who, ...)
@@ -369,40 +369,40 @@
 	if(HAS_PERSONALITY(owner, /datum/personality/callous) || HAS_PERSONALITY(owner, /datum/personality/misanthropic))
 		mood_change = -2
 		if(helper)
-			description = "They should have helped themselves."
+			description = "他们应该自己起来的。"
 		else
-			description = "I could've gotten up myself."
+			description = "我自己也能起来。"
 
 	else if(HAS_PERSONALITY(owner, /datum/personality/compassionate))
 		mood_change = 2
 		if(helper)
-			description = "Helping [other_person] up felt good!"
+			description = "扶[other_person]起来感觉真好！"
 		else
-			description = "[other_person] helped me up, how nice of [other_person.p_them()]!"
+			description = "[other_person]扶我起来了，[other_person.p_them()]真好！"
 
 /datum/mood_event/high_ten
-	description = "AMAZING! A HIGH-TEN!"
+	description = "太棒了！一个击掌十连！"
 	mood_change = 3
 	timeout = 45 SECONDS
 	event_flags = MOOD_EVENT_WHIMSY
 
 /datum/mood_event/down_low
-	description = "HA! What a rube, they never stood a chance..."
+	description = "哈！真是个傻瓜，他们毫无胜算……"
 	mood_change = 4
 	timeout = 90 SECONDS
 	event_flags = MOOD_EVENT_WHIMSY
 
 /datum/mood_event/aquarium_positive
-	description = "Watching fish in an aquarium is calming."
+	description = "看着水族箱里的鱼让人平静。"
 	mood_change = 3
 	timeout = 90 SECONDS
 
 /datum/mood_event/gondola
-	description = "I feel at peace and feel no need to make any sudden or rash actions."
+	description = "我感到内心平和，不想做出任何突然或鲁莽的举动。"
 	mood_change = 6
 
 /datum/mood_event/kiss
-	description = "Someone blew a kiss at me, I must be a real catch!"
+	description = "有人对我飞吻，我一定是个抢手货！"
 	mood_change = 1.5
 	timeout = 2 MINUTES
 
@@ -410,26 +410,26 @@
 	if(!beau)
 		return
 	if(direct)
-		description = "[beau.name] gave me a kiss, ahh!!"
+		description = "[beau.name]给了我一个吻，啊！！"
 	else
-		description = "[beau.name] blew a kiss at me, I must be a real catch!"
+		description = "[beau.name]给了我一个飞吻，我肯定是个抢手货！"
 
 /datum/mood_event/honorbound
-	description = "Following my honorbound code is fulfilling!"
+	description = "遵循我的荣誉准则令人满足！"
 	mood_change = 4
 
 /datum/mood_event/et_pieces
-	description = "Mmm... I love peanut butter..."
+	description = "嗯……我爱花生酱……"
 	mood_change = 50
 	timeout = 10 MINUTES
 
 /datum/mood_event/memories_of_home
-	description = "This taste seems oddly nostalgic..."
+	description = "这味道有种奇怪的怀旧感……"
 	mood_change = 3
 	timeout = 5 MINUTES
 
 /datum/mood_event/observed_soda_spill
-	description = "Ahaha! It's always funny to see someone get sprayed by a can of soda."
+	description = "啊哈哈！看到有人被汽水罐喷到总是很好笑。"
 	mood_change = 2
 	timeout = 30 SECONDS
 	event_flags = MOOD_EVENT_WHIMSY
@@ -438,10 +438,10 @@
 	if(!spilled_mob)
 		return
 
-	description = "Ahaha! [spilled_mob] spilled [spilled_mob.p_their()] [soda_can ? soda_can.name : "soda"] all over [spilled_mob.p_them()]self! Classic."
+	description = "啊哈哈！[spilled_mob]把[spilled_mob.p_their()] [soda_can ? soda_can.name : "soda"]洒了[spilled_mob.p_them()]自己一身！经典场面。"
 
 /datum/mood_event/gaming
-	description = "I'm enjoying a nice gaming session!"
+	description = "我正在享受愉快的游戏时光！"
 	mood_change = 2
 	timeout = 30 SECONDS
 	event_flags = MOOD_EVENT_GAMING
@@ -449,35 +449,35 @@
 /datum/mood_event/gaming/add_effects()
 	if(HAS_PERSONALITY(owner, /datum/personality/industrious) || HAS_PERSONALITY(owner, /datum/personality/slacking/diligent))
 		mood_change = -1
-		description = "Is now really the time to be playing games? I should be working."
+		description = "现在真的是玩游戏的时候吗？我应该在工作。"
 
 /datum/mood_event/gamer_won
-	description = "I love winning video games!"
+	description = "我爱赢电子游戏！"
 	mood_change = 6
 	timeout = 5 MINUTES
 	event_flags = MOOD_EVENT_GAMING
 
 /datum/mood_event/love_reagent
-	description = "This food reminds me of the good ol' days."
+	description = "这食物让我想起了美好的旧时光。"
 	mood_change = 5
 
 /datum/mood_event/love_reagent/add_effects(duration)
 	if(HAS_PERSONALITY(owner, /datum/personality/pessimistic))
 		mood_change = 0
-		description = "This food is okay, I guess."
+		description = "这食物还行吧，我觉得。"
 		return
 
 	if(isnum(duration))
 		timeout = duration
 
 /datum/mood_event/won_52_card_pickup
-	description = "HA! That loser will be picking cards up for a long time!"
+	description = "哈！那个输家可有得捡牌了！"
 	mood_change = 3
 	timeout = 3 MINUTES
 	event_flags = MOOD_EVENT_WHIMSY | MOOD_EVENT_GAMING
 
 /datum/mood_event/playing_cards
-	description = "I'm enjoying playing cards with other people!"
+	description = "我喜欢和别人一起打牌！"
 	mood_change = 2
 	timeout = 3 MINUTES
 	event_flags = MOOD_EVENT_GAMING
@@ -495,11 +495,11 @@
 	return ..()
 
 /datum/mood_event/garland
-	description = "These flowers are rather soothing."
+	description = "这些花让人相当平静。"
 	mood_change = 1
 
 /datum/mood_event/russian_roulette_win
-	description = "I gambled my life and won! I'm lucky to be alive..."
+	description = "我赌上了性命并且赢了！能活下来真是幸运……"
 	mood_change = 2
 	timeout = 5 MINUTES
 
@@ -508,26 +508,26 @@
 	mood_change = round(base ** loaded_rounds, 1)
 
 /datum/mood_event/fishing
-	description = "Fishing is relaxing."
+	description = "钓鱼很放松。"
 	mood_change = 4
 	timeout = 3 MINUTES
 
 /datum/mood_event/fish_released
-	description = "Go, fish, swim and be free!"
+	description = "去吧，鱼儿，游向自由！"
 	mood_change = 1
 	timeout = 2 MINUTES
 
 /datum/mood_event/fish_released/add_effects(morbid, obj/item/fish/fish)
 	if(!morbid)
-		description = "Go, [fish.name], swim and be free!"
+		description = "去吧，[fish.name]，游向自由！"
 		return
 	if(fish.status == FISH_DEAD)
-		description = "Some scavenger will surely find a use for the remains of [fish.name]. How pragmatic."
+		description = "总会有拾荒者能找到[fish.name]遗骸的用处的。多么务实啊。"
 	else
-		description = "Returned to the burden of the deep. But is this truly a mercy, [fish.name]? There will always be bigger fish..."
+		description = "回归深海的负担。但这真的是仁慈吗，[fish.name]？总会有更大的鱼……"
 
 /datum/mood_event/fish_petting
-	description = "It felt nice to pet the fish."
+	description = "抚摸鱼儿的感觉很好。"
 	mood_change = 2
 	timeout = 2 MINUTES
 	event_flags = MOOD_EVENT_WHIMSY
@@ -539,60 +539,60 @@
 		description = "I caress \the [fish] as [fish.p_they()] squirms under my touch, blissfully unaware of how cruel this world is."
 
 /datum/mood_event/kobun
-	description = "You are all loved by the Universe. I’m not alone, and you aren’t either."
+	description = "你们都被宇宙所爱。我并不孤单，你也不是。"
 	mood_change = 14
 	timeout = 10 SECONDS
 
 /datum/mood_event/sabrage_success
-	description = "I pulled that sabrage stunt off! Feels good to be a show-off."
+	description = "我成功完成了那个军刀开瓶的绝活！炫耀的感觉真好。"
 	mood_change = 2
 	timeout = 4 MINUTES
 
 /datum/mood_event/sabrage_witness
-	description = "I saw someone pop the cork off a champagne bottle in quite a radical fashion."
+	description = "我看到有人用一种相当激进的方式打开了香槟瓶塞。"
 	mood_change = 1
 	timeout = 2 MINUTES
 
 /datum/mood_event/it_was_on_the_mouse
-	description = "Heh heh. \"It's on the mouse\". What a play on words."
+	description = "嘿嘿。\"It's on the mouse\"。真是双关妙语。"
 	mood_change = 1
 	timeout = 2 MINUTES
 
 /datum/mood_event/birthday
-	description = "It's my birthday!"
+	description = "今天是我的生日！"
 	mood_change = 2
 	special_screen_obj = "birthday"
 	special_screen_replace = FALSE
 
 /datum/mood_event/basketball_score
-	description = "Swish! Nothing but net."
+	description = "唰！空心入网。"
 	mood_change = 2
 	timeout = 5 MINUTES
 	event_flags = MOOD_EVENT_WHIMSY | MOOD_EVENT_GAMING
 
 /datum/mood_event/basketball_dunk
-	description = "Slam dunk! Boom, shakalaka!"
+	description = "大力灌篮！砰，沙卡拉卡！"
 	mood_change = 2
 	timeout = 5 MINUTES
 	event_flags = MOOD_EVENT_WHIMSY | MOOD_EVENT_GAMING
 
 /datum/mood_event/moon_smile
-	description = "THE MOON SHOWS ME THE TRUTH AND ITS SMILE IS FACED TOWARDS ME!!!"
+	description = "月亮向我展示了真相，它的微笑正对着我！！！"
 	mood_change = 10
 	timeout = 2 MINUTES
 
 ///Wizard cheesy grand finale - what the wizard gets
 /datum/mood_event/madness_elation
-	description = "Madness truly is the greatest of blessings..."
+	description = "疯狂确实是最大的恩赐……"
 	mood_change = 200
 
 /datum/mood_event/prophat
-	description = "This hat fills me with whimsical joy!"
+	description = "这顶帽子让我充满了奇思妙想的快乐！"
 	mood_change = 2
 	event_flags = MOOD_EVENT_WHIMSY
 
 /datum/mood_event/slots
-	description = "Let's go gambling!"
+	description = "让我们去赌博吧！"
 	mood_change = 1
 	timeout = 1 MINUTES
 	event_flags = MOOD_EVENT_GAMING
@@ -602,11 +602,11 @@
 		mood_change *= 2
 	else if(HAS_PERSONALITY(owner, /datum/personality/industrious) || HAS_PERSONALITY(owner, /datum/personality/slacking/diligent))
 		mood_change *= -1
-		description = "Why am I gambling my time and money away?"
+		description = "我为什么要把时间和金钱浪费在赌博上？"
 
 
 /datum/mood_event/slots/win
-	description = "Aw yeah I won!"
+	description = "噢耶，我赢了！"
 	mood_change = 2
 	timeout = 5 MINUTES
 	event_flags = MOOD_EVENT_GAMING
@@ -623,7 +623,7 @@
 	timeout = 10 MINUTES
 
 /datum/mood_event/slots/win/jackpot
-	description = "JACKPOT! AW YEAH!"
+	description = "头奖！噢耶！"
 	mood_change = 4
 
 /datum/mood_event/slots/all_gone
@@ -638,39 +638,39 @@
 	return BLOCK_NEW_MOOD
 
 /datum/mood_event/empathetic_happy
-	description = "Seeing happy people makes me happy."
+	description = "看到别人开心，我也开心。"
 	mood_change = 2
 	timeout = 2 MINUTES
 
 /datum/mood_event/misanthropic_happy
-	description = "Seeing sad people makes me glad."
+	description = "看到别人难过，我就高兴。"
 	mood_change = 2
 	timeout = 2 MINUTES
 
 /datum/mood_event/paranoid/alone
-	description = "Peace and quiet, no one around to threaten me."
+	description = "和平与宁静，周围没人能威胁我。"
 	mood_change = 1
 
 /datum/mood_event/paranoid/small_group
-	description = "I feel safer in this small group. We've got each other's backs."
+	description = "在这个小团体里我感觉更安全。我们互相照应。"
 	mood_change = 2
 
 /datum/mood_event/nt_loyalist
-	description = "I feel proud to be part of the NT™ family!"
+	description = "身为NT™大家庭的一员，我感到自豪！"
 	mood_change = 2
 
 /datum/mood_event/loyalist_revs_lost
-	description = "The revolution was defeated! Long live the Nanotrasen!"
+	description = "革命被击败了！纳米传讯万岁！"
 	mood_change = 4
 	timeout = 10 MINUTES
 
 /datum/mood_event/disillusioned_revs_win
-	description = "The revolution was a success! Viva la revolution!"
+	description = "革命成功了！革命万岁！"
 	mood_change = 4
 	timeout = 10 MINUTES
 
 /datum/mood_event/enjoying_department_area
-	description = "I love my job."
+	description = "我爱我的工作。"
 	mood_change = 1
 
 /datum/mood_event/slacking_off_lazy
@@ -678,32 +678,32 @@
 	mood_change = 1
 
 /datum/mood_event/working_diligent
-	description = "Working hard is its own reward."
+	description = "努力工作本身就是一种回报。"
 	mood_change = 1
 
 /datum/mood_event/creative_patronage
-	description = "Support artists!"
+	description = "支持艺术家！"
 	mood_change = 2
 	timeout = 5 MINUTES
 
 /datum/mood_event/creative_framing
-	description = "Hanging up art really ties the room together."
+	description = "挂上艺术品真的让房间变得完整了。"
 	mood_change = 2
 	timeout = 5 MINUTES
 
 /datum/mood_event/creative_sculpting
-	description = "Sculpting is a great creative outlet."
+	description = "雕塑是一种绝佳的创意表达方式。"
 	mood_change = 2
 	timeout = 5 MINUTES
 
 /datum/mood_event/whimsical_slip
-	description = "Haha! That guy fell over!"
+	description = "哈哈！那家伙摔倒了！"
 	mood_change = 3
 	timeout = 2 MINUTES
 	event_flags = MOOD_EVENT_WHIMSY
 
 /datum/mood_event/bibulous_hangover
-	description = "What a night! I can't wait to do it all again!"
+	description = "多么美妙的夜晚！我已经等不及再来一次了！"
 	mood_change = 2
 	timeout = 10 MINUTES
 

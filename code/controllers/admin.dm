@@ -1,6 +1,6 @@
 // Clickable stat() button.
 /obj/effect/statclick
-	name = "Initializing..."
+	name = "正在初始化..."
 	blocks_emissive = EMISSIVE_BLOCK_NONE
 	var/target
 
@@ -66,7 +66,7 @@ ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various per
 		controllers[controller.name] = controller //we use an associated list to ensure clients can't hold references to controllers
 		controller_choices += controller.name
 
-	var/datum/controller/controller_string = input("Select controller to debug", "Debug Controller") as null|anything in controller_choices
+	var/datum/controller/controller_string = input("选择要调试的控制器", "调试控制器") as null|anything in controller_choices
 	var/datum/controller/controller = controllers[controller_string]
 
 	if (!istype(controller))

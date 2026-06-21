@@ -1,5 +1,5 @@
 /obj/effect/spawner/costume
-	name = "costume spawner"
+	name = "服装生成器"
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "x2"
 	color = COLOR_VIBRANT_LIME
@@ -13,7 +13,7 @@
 			new path(loc)
 
 /obj/effect/spawner/costume/chicken
-	name = "chicken costume spawner"
+	name = "小鸡服装生成器"
 	items = list(
 		/obj/item/clothing/suit/costume/chickensuit,
 		/obj/item/clothing/head/costume/chicken,
@@ -21,14 +21,14 @@
 	)
 
 /obj/effect/spawner/costume/gladiator
-	name = "gladiator costume spawner"
+	name = "角斗士服装生成器"
 	items = list(
 		/obj/item/clothing/under/costume/gladiator,
 		/obj/item/clothing/head/helmet/gladiator,
 	)
 
 /obj/effect/spawner/costume/madscientist
-	name = "mad scientist costume spawner"
+	name = "疯狂科学家服装生成器"
 	items = list(
 		/obj/item/clothing/under/costume/captain,
 		/obj/item/clothing/head/flatcap,
@@ -36,7 +36,7 @@
 	)
 
 /obj/effect/spawner/costume/elpresidente
-	name = "el presidente costume spawner"
+	name = "总统服装生成器"
 	items = list(
 		/obj/item/clothing/under/costume/captain,
 		/obj/item/clothing/head/flatcap,
@@ -45,7 +45,7 @@
 	)
 
 /obj/effect/spawner/costume/nyangirl
-	name = "nyangirl costume spawner"
+	name = "猫娘服装生成器"
 	items = list(
 		/obj/item/clothing/under/costume/seifuku,
 		/obj/item/clothing/head/costume/kitty,
@@ -53,7 +53,7 @@
 	)
 
 /obj/effect/spawner/costume/maid
-	name = "maid costume spawner"
+	name = "女仆装生成器"
 	items = list(
 		/obj/item/clothing/under/dress/skirt,
 		/obj/effect/spawner/random/clothing/beret_or_rabbitears,
@@ -62,7 +62,7 @@
 
 
 /obj/effect/spawner/costume/butler
-	name = "butler costume spawner"
+	name = "管家服装生成器"
 	items = list(
 		/obj/item/clothing/accessory/waistcoat,
 		/obj/item/clothing/under/costume/buttondown/slacks/service,
@@ -71,7 +71,7 @@
 	)
 
 /obj/effect/spawner/costume/referee
-	name = "referee costume spawner"
+	name = "裁判服装生成器"
 	items = list(
 		/obj/item/clothing/mask/whistle,
 		/obj/item/clothing/gloves/latex,
@@ -81,14 +81,14 @@
 	)
 
 /obj/effect/spawner/costume/highlander
-	name = "highlander costume spawner"
+	name = "高地人服装生成器"
 	items = list(
 		/obj/item/clothing/under/costume/kilt,
 		/obj/item/clothing/head/beret,
 	)
 
 /obj/effect/spawner/costume/prig
-	name = "prig costume spawner"
+	name = "古板者服装生成器"
 	items = list(
 		/obj/item/clothing/accessory/waistcoat,
 		/obj/item/clothing/glasses/monocle,
@@ -100,7 +100,7 @@
 	)
 
 /obj/effect/spawner/costume/plaguedoctor
-	name = "plague doctor costume spawner"
+	name = "瘟疫医生服装生成器"
 	items = list(
 		/obj/item/clothing/suit/bio_suit/plaguedoctorsuit,
 		/obj/item/clothing/head/bio_hood/plague,
@@ -108,7 +108,7 @@
 	)
 
 /obj/effect/spawner/costume/nightowl
-	name = "night owl costume spawner"
+	name = "夜猫子服装生成器"
 	items = list(
 		/obj/item/clothing/suit/toggle/owlwings,
 		/obj/item/clothing/under/costume/owl,
@@ -116,7 +116,7 @@
 	)
 
 /obj/effect/spawner/costume/griffin
-	name = "griffin costume spawner"
+	name = "狮鹫服装生成器"
 	items = list(
 		/obj/item/clothing/suit/toggle/owlwings/griffinwings,
 		/obj/item/clothing/shoes/griffin,
@@ -125,7 +125,7 @@
 	)
 
 /obj/effect/spawner/costume/waiter
-	name = "waiter costume spawner"
+	name = "侍者服装生成器"
 	items = list(
 		/obj/item/clothing/under/suit/waiter,
 		/obj/effect/spawner/random/clothing/kittyears_or_rabbitears,
@@ -133,7 +133,7 @@
 	)
 
 /obj/effect/spawner/costume/pirate
-	name = "pirate costume spawner"
+	name = "海盗服装生成器"
 	items = list(
 		/obj/item/clothing/under/costume/pirate,
 		/obj/item/clothing/suit/costume/pirate,
@@ -142,25 +142,25 @@
 	)
 
 /obj/effect/spawner/costume/commie
-	name = "commie costume spawner"
+	name = "同志服装生成器"
 	items = list(
 		/obj/item/clothing/under/costume/soviet,
 		/obj/item/clothing/head/costume/ushanka,
 	)
 
 /obj/effect/spawner/costume/imperium_monk
-	name = "imperium monk costume spawner"
+	name = "帝国僧侣服装生成器"
 	items = list(
 		/obj/item/clothing/suit/costume/imperium_monk,
 		/obj/effect/spawner/random/clothing/twentyfive_percent_cyborg_mask,
 	)
 
 /obj/effect/spawner/costume/holiday_priest
-	name = "holiday priest costume spawner"
+	name = "节日牧师服装生成器"
 	items = list(/obj/item/clothing/suit/chaplainsuit/holidaypriest)
 
 /obj/effect/spawner/costume/marisawizard
-	name = "marisa wizard costume spawner"
+	name = "雾雨魔理沙巫师服装生成器"
 	items = list(
 		/obj/item/clothing/shoes/sneakers/marisa,
 		/obj/item/clothing/head/wizard/marisa/fake,
@@ -168,7 +168,7 @@
 	)
 
 /obj/effect/spawner/costume/tape_wizard
-	name = "tape wizard costume spawner"
+	name = "胶带巫师服装生成器"
 	items = list(
 		/obj/item/clothing/head/wizard/tape/fake,
 		/obj/item/clothing/suit/wizrobe/tape/fake,
@@ -176,7 +176,7 @@
 	)
 
 /obj/effect/spawner/costume/cutewitch
-	name = "cute witch costume spawner"
+	name = "可爱女巫服装生成器"
 	items = list(
 		/obj/item/clothing/under/dress/sundress,
 		/obj/item/clothing/head/costume/witchwig,
@@ -184,7 +184,7 @@
 	)
 
 /obj/effect/spawner/costume/wizard
-	name = "wizard costume spawner"
+	name = "巫师服装生成器"
 	items = list(
 		/obj/item/clothing/shoes/sandal,
 		/obj/item/clothing/suit/wizrobe/fake,
@@ -193,21 +193,21 @@
 	)
 
 /obj/effect/spawner/costume/sexyclown
-	name = "sexy clown costume spawner"
+	name = "性感小丑服装生成器"
 	items = list(
 		/obj/item/clothing/mask/gas/sexyclown,
 		/obj/item/clothing/under/rank/civilian/clown/sexy,
 	)
 
 /obj/effect/spawner/costume/sexymime
-	name = "sexy mime costume spawner"
+	name = "性感默剧演员服装生成器"
 	items = list(
 		/obj/item/clothing/mask/gas/sexymime,
 		/obj/item/clothing/under/rank/civilian/mime/sexy,
 	)
 
 /obj/effect/spawner/costume/mafia
-	name = "black mafia outfit spawner"
+	name = "黑色黑手党套装生成器"
 	items = list(
 		/obj/item/clothing/head/fedora,
 		/obj/item/clothing/under/suit/black,
@@ -215,7 +215,7 @@
 	)
 
 /obj/effect/spawner/costume/mafia/white
-	name = "white mafia outfit spawner"
+	name = "白色黑手党套装生成器"
 	items = list(
 		/obj/item/clothing/head/fedora/white,
 		/obj/item/clothing/under/suit/white,
@@ -223,7 +223,7 @@
 	)
 
 /obj/effect/spawner/costume/mafia/checkered
-	name = "checkered mafia outfit spawner"
+	name = "方格纹黑手党套装生成器"
 	items = list(
 		/obj/item/clothing/head/fedora,
 		/obj/item/clothing/under/suit/checkered,
@@ -231,7 +231,7 @@
 	)
 
 /obj/effect/spawner/costume/mafia/beige
-	name = "beige mafia outfit spawner"
+	name = "米色黑手党套装生成器"
 	items = list(
 		/obj/item/clothing/head/fedora/beige,
 		/obj/item/clothing/under/suit/beige,

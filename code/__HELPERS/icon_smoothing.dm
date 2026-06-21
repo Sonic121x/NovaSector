@@ -471,7 +471,7 @@ xxx xxx xxx
 
 //Example smooth wall
 /turf/closed/wall/smooth
-	name = "smooth wall"
+	name = "平滑墙壁"
 	icon = 'icons/turf/smooth_wall.dmi'
 	icon_state = "smooth_wall-0"
 	base_icon_state = "smooth_wall"

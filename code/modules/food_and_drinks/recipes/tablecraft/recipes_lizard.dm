@@ -1,5 +1,5 @@
 /datum/crafting_recipe/food/tiziran_sausage
-	name = "Raw Tiziran blood sausage"
+	name = "Raw Tiziran blood sausage-生蜥蜴式血肠"
 	reqs = list(
 		/obj/item/food/meat/rawcutlet = 1,
 		/obj/item/food/meat/rawbacon = 1,
@@ -11,7 +11,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/headcheese
-	name = "Raw headcheese"
+	name = "Raw headcheese-生头肉冻"
 	reqs = list(
 		/obj/item/food/meat/slab = 1,
 		/datum/reagent/consumable/salt = 10,
@@ -23,7 +23,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/shredded_lungs
-	name = "Crispy shredded lung stirfry"
+	name = "Crispy shredded lung stirfry-香脆肺丝"
 	reqs = list(
 		/obj/item/food/grown/carrot = 1,
 		/obj/item/food/grown/chili = 1,
@@ -54,7 +54,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/liver_pate
-	name = "Liver pate"
+	name = "Liver pate-肝酱"
 	reqs = list(
 		/obj/item/organ/liver = 1,
 		/obj/item/food/meat/rawcutlet = 1,
@@ -66,7 +66,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/moonfish_caviar
-	name = "Moonfish caviar paste"
+	name = "Moonfish caviar paste-月鱼鱼子酱"
 	reqs = list(
 		/obj/item/food/moonfish_eggs = 1,
 		/datum/reagent/consumable/salt = 2
@@ -76,7 +76,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/lizard_escargot
-	name = "Desert snail cocleas"
+	name = "Desert snail cocleas-椰香沙漠蜗牛"
 	reqs = list(
 		/obj/item/food/canned/desert_snails = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -91,7 +91,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/fried_blood_sausage
-	name = "Fried blood sausage"
+	name = "Fried blood sausage-香煎血肠"
 	reqs = list(
 		/obj/item/food/raw_tiziran_sausage = 1,
 		/datum/reagent/consumable/korta_flour = 5,
@@ -104,7 +104,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/lizard_fries
-	name = "Loaded poms-franzisks"
+	name = "Loaded poms-franzisks-加好料的肉酱薯条"
 	reqs = list(
 		/obj/item/food/fries = 1,
 		/obj/item/food/meat/cutlet = 2,
@@ -116,7 +116,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/brain_pate
-	name = "Eyeball-and-brain pate"
+	name = "Eyeball-and-brain pate-眼脑肉酱"
 	reqs = list(
 		/obj/item/organ/brain = 1,
 		/obj/item/organ/eyes = 1,
@@ -129,7 +129,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/crispy_headcheese
-	name = "Crispy breaded headcheese"
+	name = "Crispy breaded headcheese-酥脆的头肉冻"
 	reqs = list(
 		/obj/item/food/headcheese_slice = 1,
 		/obj/item/food/breadslice/root = 1
@@ -139,7 +139,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/picoss_skewers
-	name = "Picoss skewers"
+	name = "Picoss 烤串"
 	reqs = list(
 		/obj/item/food/fishmeat/armorfish = 2,
 		/obj/item/food/grown/onion = 1,
@@ -152,7 +152,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/nectar_larvae
-	name = "Nectar larvae"
+	name = "Nectar larvae-花蜜腌虫"
 	reqs = list(
 		/obj/item/food/canned/larvae = 1,
 		/obj/item/food/grown/tomato = 1,
@@ -164,7 +164,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/mushroomy_stirfry
-	name = "Mushroomy Stirfry"
+	name = "Mushroomy Stirfry-爆炒蘑菇"
 	reqs = list(
 		/obj/item/food/steeped_mushrooms = 1,
 		/obj/item/food/grown/mushroom/plumphelmet = 1,
@@ -176,7 +176,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/moonfish_demiglace
-	name = "Moonfish demiglace"
+	name = "Moonfish demiglace-月鱼半冰沙司"
 	reqs = list(
 		/obj/item/food/grilled_moonfish = 1,
 		/obj/item/food/grown/potato = 1,
@@ -189,7 +189,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/lizard_surf_n_turf
-	name = "Zagosk surf n turf smorgasbord"
+	name = "Zagosk surf n turf smorgasbord-蜥蜴自助盛宴"
 	reqs = list(
 		/obj/item/food/grilled_moonfish = 1,
 		/obj/item/food/kebab/picoss_skewers = 2,
@@ -202,7 +202,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/rootdough
-	name = "Rootdough (Without Eggs)"
+	name = "根茎面团（无蛋）"
 	reqs = list(
 		/obj/item/food/grown/potato = 2,
 		/datum/reagent/consumable/soymilk = 15,
@@ -216,7 +216,7 @@
 	crafting_flags = parent_type::crafting_flags & ~CRAFT_TRANSFERS_REAGENT_COMPONENTS // prevents water from reacting immediately, clearing the dish
 
 /datum/crafting_recipe/food/rootdough/with_eggs
-	name = "Rootdough (With Eggs)"
+	name = "根茎面团（含蛋）"
 	reqs = list(
 		/obj/item/food/grown/potato = 2,
 		/obj/item/food/egg = 1,
@@ -242,7 +242,7 @@
 	crafting_flags = parent_type::crafting_flags & ~CRAFT_TRANSFERS_REAGENT_COMPONENTS // prevents water from reacting immediately, clearing the dish
 
 /datum/crafting_recipe/food/snail_nizaya
-	name = "Desert snail nizaya"
+	name = "Desert snail nizaya-沙漠蜗牛千层面"
 	reqs = list(
 		/obj/item/food/canned/desert_snails = 1,
 		/obj/item/food/spaghetti/nizaya = 1,
@@ -255,7 +255,7 @@
 	dish_category = DISH_NOODLES
 
 /datum/crafting_recipe/food/garlic_nizaya
-	name = "Garlic nizaya"
+	name = "Garlic nizaya-蒜香千层面"
 	reqs = list(
 		/obj/item/food/spaghetti/nizaya = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -267,7 +267,7 @@
 	dish_category = DISH_NOODLES
 
 /datum/crafting_recipe/food/demit_nizaya
-	name = "Demit nizaya"
+	name = "Demit nizaya-解脱千层面"
 	reqs = list(
 		/obj/item/food/spaghetti/nizaya = 1,
 		/obj/item/food/grown/carrot = 1,
@@ -282,7 +282,7 @@
 	dish_category = DISH_NOODLES
 
 /datum/crafting_recipe/food/mushroom_nizaya
-	name = "Mushroom nizaya"
+	name = "Mushroom nizaya-蘑菇千层面"
 	reqs = list(
 		/obj/item/food/spaghetti/nizaya = 1,
 		/obj/item/food/steeped_mushrooms = 1,
@@ -294,7 +294,7 @@
 	dish_category = DISH_NOODLES
 
 /datum/crafting_recipe/food/rustic_flatbread
-	name = "Rustic flatbread"
+	name = "Rustic flatbread-乡村烤饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -306,7 +306,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/italic_flatbread
-	name = "Italic flatbread"
+	name = "Italic flatbread-意大利烤饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -319,7 +319,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/imperial_flatbread
-	name = "Imperial flatbread"
+	name = "Imperial flatbread-帝国烤饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/liver_pate = 1,
@@ -331,7 +331,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/rawmeat_flatbread
-	name = "Meatlovers flatbread"
+	name = "肉食爱好者扁面包"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/meat/slab = 1
@@ -341,7 +341,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/stinging_flatbread
-	name = "Stinging flatbread"
+	name = "刺舌扁面包"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/canned/larvae = 1,
@@ -352,7 +352,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/zmorgast_flatbread
-	name = "Zmorgast flatbread"
+	name = "Zmorgast 扁面包"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/grown/cucumber = 2,
@@ -365,7 +365,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/fish_flatbread
-	name = "BBQ fish flatbread"
+	name = "烧烤鱼扁面包"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/fishmeat = 2,
@@ -376,7 +376,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/mushroom_flatbread
-	name = "Mushroom and tomato flatbread"
+	name = "蘑菇番茄扁面包"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/grown/tomato = 1,
@@ -388,7 +388,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/nutty_flatbread
-	name = "Nut paste flatbread"
+	name = "坚果酱扁面包"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/datum/reagent/consumable/korta_flour = 5,
@@ -400,7 +400,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/emperor_roll
-	name = "Emperor roll"
+	name = "Emperor roll-君主卷饼"
 	reqs = list(
 		/obj/item/food/rootroll = 1,
 		/obj/item/food/liver_pate = 1,
@@ -412,7 +412,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/honey_sweetroll
-	name = "Honey sweetroll"
+	name = "Honey sweetroll-蜜香甜卷"
 	reqs = list(
 		/obj/item/food/rootroll = 1,
 		/obj/item/food/grown/berries = 1,
@@ -424,7 +424,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/black_eggs
-	name = "Black scrambled eggs"
+	name = "Black scrambled eggs-黑色的炒鸡蛋"
 	reqs = list(
 		/obj/item/food/egg = 2,
 		/datum/reagent/blood = 5,
@@ -451,7 +451,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/korta_brittle
-	name = "Korta brittle slab"
+	name = "Korta brittle slab-科尔塔脆糖"
 	reqs = list(
 		/obj/item/food/grown/korta_nut = 2,
 		/datum/reagent/consumable/korta_nectar = 5,
@@ -465,7 +465,7 @@
 	meal_category = MEAL_DESSERT
 
 /datum/crafting_recipe/food/korta_ice
-	name = "Korta ice"
+	name = "Korta ice-科尔塔冰激凌"
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,
@@ -478,7 +478,7 @@
 	dish_category = DISH_FROZEN
 
 /datum/crafting_recipe/food/candied_mushrooms
-	name = "Candied mushrooms"
+	name = "Candied mushrooms-蘑菇蜜饯"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/steeped_mushrooms = 1,
@@ -492,7 +492,7 @@
 	meal_category = MEAL_DESSERT
 
 /datum/crafting_recipe/food/sauerkraut
-	name = "Sauerkraut"
+	name = "酸菜"
 	reqs = list(
 		/obj/item/food/grown/cabbage = 2,
 		/datum/reagent/consumable/salt = 10
@@ -503,7 +503,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/lizard_dumplings
-	name = "Tiziran dumplings"
+	name = "Tiziran dumplings-泰泽拉饺子"
 	reqs = list(
 		/obj/item/food/grown/potato = 1,
 		/datum/reagent/consumable/korta_flour = 5
@@ -514,7 +514,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/steeped_mushrooms
-	name = "Steeped mushrooms"
+	name = "Steeped mushrooms-浸渍蘑菇"
 	reqs = list(
 		/obj/item/food/grown/ash_flora/seraka = 1,
 		/datum/reagent/lye = 5
@@ -524,7 +524,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/rootbreadpbj
-	name = "Peanut butter and jelly rootwich"
+	name = "花生酱果酱根茎三明治"
 	reqs = list(
 		/obj/item/food/breadslice/root = 2,
 		/datum/reagent/consumable/peanut_butter = 5,
@@ -536,7 +536,7 @@
 	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/rootbreadpbb
-	name = "Peanut butter and banana rootwich"
+	name = "花生酱香蕉根茎三明治"
 	reqs = list(
 		/obj/item/food/breadslice/root = 2,
 		/datum/reagent/consumable/peanut_butter = 5,

@@ -1,8 +1,8 @@
 #define DEFAULT_MAP_SIZE 15
 
 /obj/machinery/computer/security
-	name = "security camera console"
-	desc = "Used to access the various cameras on the station."
+	name = "安保摄像头控制台"
+	desc = "用于访问空间站上的各种摄像头。"
 	icon_screen = "cameras"
 	icon_keyboard = "security_key"
 	circuit = /obj/item/circuitboard/computer/security
@@ -188,42 +188,42 @@
 
 // SECURITY MONITORS
 /obj/machinery/computer/security/wooden_tv
-	name = "security camera monitor"
-	desc = "An old TV hooked into the station's camera network."
+	name = "安保摄像头监控器"
+	desc = "一台老式电视接入了空间站的监控网络。"
 	icon_state = "television"
 	icon_keyboard = null
 	icon_screen = "detective_tv"
 	pass_flags = PASSTABLE
 
 /obj/machinery/computer/security/mining
-	name = "outpost camera console"
-	desc = "Used to access the various cameras on the outpost."
+	name = "前哨摄像头控制台"
+	desc = "用于访问前哨站上的各种摄像头。"
 	icon_screen = "mining"
 	icon_keyboard = "mining_key"
 	network = list(CAMERANET_NETWORK_MINE, CAMERANET_NETWORK_AUXBASE)
 	circuit = /obj/item/circuitboard/computer/mining
 
 /obj/machinery/computer/security/research
-	name = "research camera console"
-	desc = "Used to access the various cameras in science."
+	name = "研究摄像头控制台"
+	desc = "用于访问科研部上的各种摄像头。"
 	network = list(CAMERANET_NETWORK_RD)
 	circuit = /obj/item/circuitboard/computer/research
 
 /obj/machinery/computer/security/hos
-	name = "\improper Head of Security's camera console"
-	desc = "A custom security console with added access to the labor camp network."
+	name = "\improper 安保部长的摄像头控制台"
+	desc = "一个定制的安保控制台，可以访问劳改营网络。"
 	network = list(CAMERANET_NETWORK_SS13, CAMERANET_NETWORK_LABOR)
 	circuit = null
 
 /obj/machinery/computer/security/labor
-	name = "labor camp monitoring"
-	desc = "Used to access the various cameras on the labor camp."
+	name = "劳改营监控器"
+	desc = "用于访问劳改营的各种摄像头。"
 	network = list(CAMERANET_NETWORK_LABOR)
 	circuit = null
 
 /obj/machinery/computer/security/qm
-	name = "\improper Quartermaster's camera console"
-	desc = "A console with access to the mining, auxiliary base and vault camera networks."
+	name = "\improper 军需官摄像头控制台"
+	desc = "可访问采矿基地、辅助基地和保险库摄像头网络的控制台。"
 	network = list(CAMERANET_NETWORK_MINE, CAMERANET_NETWORK_AUXBASE, CAMERANET_NETWORK_VAULT)
 	circuit = null
 

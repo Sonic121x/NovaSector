@@ -1,6 +1,6 @@
 /obj/machinery/door/firedoor
-	name = "emergency shutter"
-	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This one has a glass panel. It has a mechanism to open it with just your hands."
+	name = "紧急防火闸"
+	desc = "紧急气密防火闸，能够封堵破损区域。这个防火闸带有玻璃面板。它有一个可以用手直接打开的机制。"
 	icon = 'modular_nova/modules/aesthetics/firedoor/icons/firedoor_glass.dmi'
 	var/door_open_sound = 'modular_nova/modules/aesthetics/firedoor/sound/firedoor_open.ogg'
 	var/door_close_sound = 'modular_nova/modules/aesthetics/firedoor/sound/firedoor_open.ogg'
@@ -22,8 +22,8 @@
 	return ..()
 
 /obj/machinery/door/firedoor/heavy
-	name = "heavy emergency shutter"
-	desc = "Emergency air-tight shutter, capable of sealing off breached areas. It has a mechanism to open it with just your hands."
+	name = "重型紧急防火闸"
+	desc = "紧急气密防火闸，能够封堵破损区域。它有一个可以用手直接打开的机制。"
 	icon = 'modular_nova/modules/aesthetics/firedoor/icons/firedoor.dmi'
 
 /obj/effect/spawner/structure/window/reinforced/no_firelock

@@ -1,10 +1,10 @@
 /obj/item/radio/headset/tarkon
-	name = "tarkon headset"
+	name = "tarkon耳机"
 	freerange = TRUE
 	freqlock = TRUE
 	keyslot = new /obj/item/encryptionkey/headset_cargo/tarkon
 
 /obj/item/radio/headset/tarkon/command //spoiler for upcoming update
-	name = "tarkon command headset"
-	desc = "A headset personally handed to trusted crew of Tarkon. It fills you with the will to do... something."
+	name = "tarkon指挥耳机"
+	desc = "一个亲自交给Tarkon可信船员的耳机。它让你充满去做……某事的意志。"
 	command = TRUE

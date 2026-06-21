@@ -1,6 +1,6 @@
 /obj/item/clothing/under/tearaway_garments
-	name = "tearaway attire"
-	desc = "A two-piece set that leaves little to the imagination."
+	name = "可撕式服装"
+	desc = "一套几乎不留想象空间的两件套。"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi'
 	greyscale_colors = "#383840#dc7ef4"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'

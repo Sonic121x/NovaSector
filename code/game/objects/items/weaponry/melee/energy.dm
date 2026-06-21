@@ -75,7 +75,7 @@
 /obj/item/melee/energy/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		attack_self(user)
-	user.visible_message(span_suicide("[user] is [pick("slitting [user.p_their()] stomach open with", "falling on")] [src]! It looks like [user.p_theyre()] trying to commit seppuku!"))
+	user.visible_message(span_suicide("[user]正在[pick("slitting [user.p_their()] stomach open with", "falling on")][src]！看起来[user.p_theyre()]试图切腹自尽！"))
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/melee/energy/process(seconds_per_tick)
@@ -91,7 +91,7 @@
 		var/mob/living/carbon/carbon_user = user
 		if(carbon_user.wear_mask)
 			in_mouth = ", barely missing [carbon_user.p_their()] nose"
-	. = span_rose("[user] swings [user.p_their()] [name][in_mouth]. [user.p_They()] light[user.p_s()] [user.p_their()] [atom.name] in the process.")
+	. = span_rose("[user]挥舞着[user.p_their()][name][in_mouth]。[user.p_They()]顺便点燃了[user.p_s()][user.p_their()][atom.name]。")
 	playsound(loc, hitsound, get_clamped_volume(), TRUE, -1)
 	add_fingerprint(user)
 
@@ -128,7 +128,7 @@
 
 	tool_behaviour = (active ? TOOL_SAW : NONE) //Lets energy weapons cut trees. Also lets them do bonecutting surgery, which is kinda metal!
 	if(user)
-		balloon_alert(user, "[name] [active ? "enabled":"disabled"]")
+		balloon_alert(user, "[name][active ? "enabled":"disabled"]")
 	playsound(src, active ? 'sound/items/weapons/saberon.ogg' : 'sound/items/weapons/saberoff.ogg', 35, TRUE)
 	set_light_on(active)
 	update_appearance(UPDATE_ICON_STATE)
@@ -490,16 +490,16 @@
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	if(DOING_INTERACTION(user, DOAFTER_SOURCE_CHARGING_ESWORD))
-		user.balloon_alert(user, "busy!")
+		user.balloon_alert(user, "正忙！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(charge <= max_charge)
-		user.balloon_alert(user, "attempting recharge...")
+		user.balloon_alert(user, "尝试充能中...")
 		if(!do_after(user, charge_time, target = src, extra_checks = CALLBACK(src, PROC_REF(do_jiggle), user), interaction_key = DOAFTER_SOURCE_CHARGING_ESWORD, iconstate = "beat_the_heat"))
-			user.balloon_alert(user, "interrupted!")
+			user.balloon_alert(user, "被打断了！")
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	charge = max_charge
-	user.balloon_alert(user, "recharge successful")
+	user.balloon_alert(user, "充能成功")
 	playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -529,14 +529,14 @@
 
 	charge--
 	if(charge <= 0)
-		user.balloon_alert(user, "out of charge!")
+		user.balloon_alert(user, "能量耗尽！")
 		attack_self(user)
 
 /obj/item/melee/energy/sword/surplus/proc/check_power(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 
 	if(charge <= 0 && !HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		balloon_alert(user, "no charge!")
+		balloon_alert(user, "没有能量！")
 		return COMPONENT_BLOCK_TRANSFORM
 
 /obj/item/melee/energy/sword/surplus/proc/do_jiggle(mob/user)

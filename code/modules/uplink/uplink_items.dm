@@ -60,11 +60,11 @@
 **/
 /datum/uplink_item
 	/// Name of the uplink item
-	var/name = "item name"
+	var/name = "物品名称"
 	/// Category of the uplink
 	var/datum/uplink_category/category
 	/// Description of the uplink
-	var/desc = "item description"
+	var/desc = "物品描述"
 	/// Path to the item to spawn.
 	var/item = null
 	/// Cost of the item.
@@ -175,9 +175,9 @@
 			ADD_TRAIT(contained, TRAIT_CONTRABAND, INNATE_TRAIT)
 	var/mob/living/carbon/human/human_user = user
 	if(istype(human_user) && isitem(spawned_item) && human_user.put_in_hands(spawned_item))
-		to_chat(human_user, span_boldnotice("[spawned_item] materializes into your hands!"))
+		to_chat(human_user, span_boldnotice("[spawned_item] 在你手中具现化！"))
 	else
-		to_chat(user, span_boldnotice("[spawned_item] materializes onto the floor!"))
+		to_chat(user, span_boldnotice("[spawned_item] 在地板上具现化！"))
 	SEND_SIGNAL(uplink_handler, COMSIG_ON_UPLINK_PURCHASE, spawned_item, user)
 	return spawned_item
 
@@ -219,15 +219,15 @@
 	return TRUE
 
 /datum/uplink_category/discounts
-	name = "Discounted Gear"
+	name = "折扣装备"
 	weight = -1
 
 /datum/uplink_category/discount_team_gear
-	name = "Discounted Team Gear"
+	name = "折扣团队装备"
 	weight = -1
 
 /datum/uplink_category/limited_discount_team_gear
-	name = "Limited Stock Team Gear"
+	name = "限购团队装备"
 	weight = -2
 
 //Discounts (dynamically filled above)
@@ -236,14 +236,14 @@
 	purchasable_from = parent_type::purchasable_from & ~UPLINK_SPY // Probably not necessary but just in case
 
 /datum/uplink_category/objective_special
-	name = "Objective-Specific Equipment"
+	name = "特殊限定装备"
 	weight = -3
 
 // Special equipment (Dynamically fills in uplink component)
 /datum/uplink_item/special_equipment
 	category = /datum/uplink_category/objective_special
-	name = "Objective-Specific Equipment"
-	desc = "Equipment necessary for accomplishing specific objectives. If you are seeing this, something has gone wrong."
+	name = "特殊限定装备"
+	desc = "完成特定目标所需的装备。如果你看到这条信息，说明出了些问题。"
 	limited_stock = 1
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 	purchasable_from = parent_type::purchasable_from & ~UPLINK_SPY // Ditto

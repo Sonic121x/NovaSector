@@ -1,6 +1,6 @@
 /datum/job/human_ai
 	title = JOB_HUMAN_AI
-	description = "Assist the crew, open airlocks, follow your lawset, and coordinate your cyborgs."
+	description = "协助船员，打开气闸门，遵循你的定律集，并协调你的机械人。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
 	faction = FACTION_STATION
 	total_positions = 0
@@ -82,13 +82,13 @@
 /datum/job/human_ai/announce_job(mob/living/joining_mob)
 	. = ..()
 	if(SSticker.HasRoundStarted())
-		minor_announce("Due to a research mishap, [joining_mob] has been sent to be your replacement AI at [AREACOORD(joining_mob)]. Please treat them with respect.")
+		minor_announce("由于一次研究事故，[joining_mob]已被派往[AREACOORD(joining_mob)]作为你们的替代AI。请尊重他们。")
 
 /datum/job/human_ai/get_radio_information()
 	return "<b>Prefix your message with :b to speak with cyborgs.</b>"
 
 /datum/outfit/job/human_ai
-	name = "Human AI"
+	name = "人类AI"
 	jobtype = /datum/job/human_ai
 
 	id = /obj/item/card/id/advanced/robotic
@@ -134,8 +134,8 @@
 	equipped.add_faction(list(FACTION_SILICON, FACTION_TURRET))
 
 /obj/item/paper/default_lawset_list
-	name = "Lawset Note"
-	desc = "A note explaining the lawset, quickly written yet everso important."
+	name = "法律集便条"
+	desc = "一份解释法律集的便条，写得匆忙却至关重要。"
 
 /obj/item/paper/default_lawset_list/Initialize(mapload)
 	var/datum/ai_laws/temp_laws = new
@@ -151,8 +151,8 @@
 	return ..()
 
 /obj/item/secure_camera_console_pod
-	name = "pre-packaged advanced camera control"
-	desc = "A pre-packaged camera console used for all your AI stuff, programmed to only active in the SAT."
+	name = "预封装高级摄像头控制台"
+	desc = "一个预包装的摄像头控制台，用于处理所有AI相关事务，已编程为仅在卫星AI终端内激活。"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "botpad_controller"
 	inhand_icon_state = "radio"
@@ -164,9 +164,9 @@
 	var/area/current_area = get_area(user)
 	var/static/list/allowed_areas = typecacheof(list(/area/station/ai/satellite/chamber))
 	if(!is_type_in_typecache(current_area, allowed_areas))
-		user.balloon_alert(user, "not in the sat!")
+		user.balloon_alert(user, "不在卫星里！")
 		return
-	user.balloon_alert(user, "unpacking...")
+	user.balloon_alert(user, "正在解包...")
 	if(!do_after(user, 5 SECONDS, src))
 		return
 	playsound(src, 'sound/items/tools/drill_use.ogg', 40, TRUE)

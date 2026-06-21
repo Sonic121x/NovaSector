@@ -7,8 +7,8 @@
 	window_flash(player_client)
 	switch(tgui_alert(
 			player,
-			"Do you wish to take on an alias?",
-			"Change Name?",
+			"你希望使用一个化名吗？",
+			"更改名字？",
 			list("Operative alias", "Random alias", "Keep current name"),
 			1 MINUTES,
 		))

@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/touch/smite
-	name = "Smite"
+	name = "惩罚"
 	desc = "This spell charges your hand with an unholy energy \
 		that can be used to cause a touched victim to violently explode."
 	button_icon_state = "gib"
@@ -27,8 +27,8 @@
 	var/obj/item/bodypart/to_dismember = caster.get_holding_bodypart_of_item(hand)
 	var/did_dismember = to_dismember?.dismember()
 	caster.visible_message(
-		span_warning(did_dismember ? "The feedback blows [caster]'s arm off!" : "The feedback releases a bright flash of light!"),
-		span_userdanger("The spell bounces from [victim]'s skin back into your arm!"),
+		span_warning(did_dismember ? "反噬炸掉了[caster]的手臂！" : "反噬释放出一道明亮的闪光！"),
+		span_userdanger("法术从[victim]的皮肤反弹回你的手臂！"),
 	)
 	// And do the blind (us included)
 	caster.flash_act()
@@ -41,7 +41,7 @@
 		var/mob/living/carbon/human/human_victim = victim
 		var/obj/item/clothing/suit/worn_suit = human_victim.wear_suit
 		if(istype(worn_suit, /obj/item/clothing/suit/hooded/bloated_human))
-			human_victim.visible_message(span_danger("[victim]'s [worn_suit] explodes off of them into a puddle of gore!"))
+			human_victim.visible_message(span_danger("[victim]的[worn_suit]从他们身上炸开，变成一滩血肉！"))
 			human_victim.dropItemToGround(worn_suit)
 			qdel(worn_suit)
 			new /obj/effect/gibspawner(get_turf(victim))
@@ -52,15 +52,15 @@
 	return TRUE
 
 /obj/item/melee/touch_attack/smite
-	name = "\improper smiting touch"
-	desc = "This hand of mine glows with an awesome power!"
+	name = "\improper 惩戒之触"
+	desc = "我这只手散发着令人敬畏的力量!"
 	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "disintegrate"
 	inhand_icon_state = "disintegrate"
 
 /obj/item/melee/touch_attack/smite/suicide_act(mob/living/user)
 
-	user.visible_message(span_suicide("[user] spreads [user.p_their()] arms apart, lightning arcing between them! It looks like [user.p_theyre()] going out with a bang!"))
+	user.visible_message(span_suicide("[user]张开[user.p_their()]双臂，闪电在双臂间跃动！看起来[user.p_theyre()]要来个轰轰烈烈的退场了！"))
 	user.say("SHIA KAZING!!", forced = "smite suicide")
 	do_sparks(4, FALSE, get_turf(user))
 	explosion(user, heavy_impact_range = 2, explosion_cause = src) //Cheap explosion imitation because putting detonate() here causes runtimes

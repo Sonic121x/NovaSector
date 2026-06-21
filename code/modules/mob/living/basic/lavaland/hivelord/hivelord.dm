@@ -1,7 +1,7 @@
 /// Mob which retreats and spawns annoying sub-mobs to attack you
 /mob/living/basic/mining/hivelord
-	name = "hivelord"
-	desc = "A levitating swarm of tiny creatures which act as a single individual. When threatened or hunting they rapidly replicate additional short-lived bodies."
+	name = "蜂巢领主"
+	desc = "一群微小的生物悬浮聚集，作为一个整体行动。当受到威胁或捕猎时，它们会迅速复制出额外的短命个体。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "hivelord"
 	icon_living = "hivelord"
@@ -68,8 +68,8 @@
 
 /// Attack worms spawned by the hivelord
 /mob/living/basic/hivelord_brood
-	name = "hivelord brood"
-	desc = "Short-lived attack form of the hivelord. One isn't much of a threat, but..."
+	name = "蜂巢领主幼体"
+	desc = "蜂巢领主的短命攻击形态。一个或许威胁不大，但是……"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "hivelord_brood"
 	icon_living = "hivelord_brood"

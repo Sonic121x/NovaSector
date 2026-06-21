@@ -19,11 +19,11 @@
 	var/position = skillsofts_name_paths.Find(build_path, skillsofts_name_paths)
 	position = (position == length(skillsofts_name_paths)) ? 1 : (position + 1)
 	build_path = skillsofts_name_paths[position]
-	to_chat(user, span_notice("You register [skillsofts_name_paths[build_path]] chamber material with the board."))
+	to_chat(user, span_notice("你已向电路板注册了[skillsofts_name_paths[build_path]]舱室材料。"))
 	return TRUE
 
 /obj/item/circuitboard/machine/skill_station/examine(mob/user)
 	. = ..()
 	if(is_special_type)
 		return
-	. += span_info("[src] is registered for [skillsofts_name_paths[build_path]] chamber material. You can use a screwdriver to reconfigure it.")
+	. += span_info("[src]已注册用于[skillsofts_name_paths[build_path]]舱室材料。你可以使用螺丝刀重新配置它。")

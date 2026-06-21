@@ -1,6 +1,6 @@
 /mob/living/basic/migo
-	name = "mi-go"
-	desc = "A pinkish, fungoid crustacean-like creature with clawed appendages and a head covered with waving antennae."
+	name = "米-戈"
+	desc = "一种粉红色、真菌状、类似甲壳类的生物，长着带爪的附肢，头部覆盖着摆动的触须。"
 	icon_state = "mi-go"
 	icon_living = "mi-go"
 	icon_dead = "mi-go-dead"
@@ -87,8 +87,8 @@
 
 /// The special hatsune miku themed mi-go.
 /mob/living/basic/migo/hatsune
-	name = "hatsune mi-go"
-	desc = parent_type::desc + " This one is wearing a bright blue wig."
+	name = "初音米-戈"
+	desc = parent_type::desc + "这只戴着一顶亮蓝色的假发。"
 	icon_state = "mi-go-h"
 	icon_living = "mi-go-h"
 

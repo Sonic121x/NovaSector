@@ -6,7 +6,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/nif/open_menu
-	name = "Open NIF Menu"
+	name = "打开 NIF 菜单"
 	button_icon_state = "user"
 
 /datum/action/item_action/nif/open_menu/Trigger(trigger_flags)

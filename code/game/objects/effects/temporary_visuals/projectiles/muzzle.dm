@@ -1,5 +1,5 @@
 /obj/effect/projectile/muzzle
-	name = "muzzle flash"
+	name = "枪口焰光"
 	icon = 'icons/obj/weapons/guns/projectiles_muzzle.dmi'
 
 /obj/effect/projectile/muzzle/laser
@@ -30,27 +30,27 @@
 	icon_state = "wormhole_g"
 
 /obj/effect/projectile/muzzle/laser/emitter/psy
-	name = "psychosiphoning flash"
+	name = "精神虹吸闪光"
 	icon_state = "muzzle_greyscale"
 	color = COLOR_PINK
 
 /obj/effect/projectile/muzzle/laser/emitter/magnetic
-	name = "magnetogenerative flash"
+	name = "磁生闪光"
 	icon_state = "muzzle_greyscale"
 	color = COLOR_SILVER
 
 /obj/effect/projectile/muzzle/laser/emitter/quake
-	name = "seismodisintegrating flash"
+	name = "震解闪光"
 	icon_state = "muzzle_greyscale"
 	color = COLOR_BROWNER_BROWN
 
 /obj/effect/projectile/muzzle/laser/emitter/blast
-	name = "hyperconcussive flash"
+	name = "超震荡闪光"
 	icon_state = "muzzle_greyscale"
 	color = COLOR_ORANGE
 
 /obj/effect/projectile/muzzle/laser/emitter
-	name = "emitter flash"
+	name = "发射器闪光"
 	icon_state = "muzzle_emitter"
 
 /obj/effect/projectile/muzzle/solar

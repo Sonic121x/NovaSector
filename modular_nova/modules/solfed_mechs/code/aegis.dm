@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/solfed/aegis
-	desc = "A rugged riot-control platform deployed by Solfed SWAT forces. Designed for crowd suppression and defensive escort in high-risk zones."
-	name = "\improper MRC-2544D1 \"Aegis\""
+	desc = "一款由太阳联邦特警部队部署的坚固防暴控制平台。专为高风险区域的群体压制和防御性护送而设计。"
+	name = "\improper MRC-2544D1 \"埃癸斯\""
 	icon_state = "aegis" //Sprite by diltyrr on discord
 	base_icon_state = "aegis"
 	movedelay = 4.5
@@ -49,8 +49,8 @@
 	update_part_values()
 
 /obj/structure/mecha_wreckage/solfed/aegis
-	name = "\improper Aegis wreckage"
-	desc = "A mangled husk of an Aegis-class mech. Its armor is torn and scorched, limbs twisted at unnatural angles. Whatever brought it down, it wasn't gentle."
+	name = "\improper 埃癸斯残骸"
+	desc = "一具埃癸斯级机甲的扭曲残骸。其装甲撕裂烧焦，肢体以不自然的角度扭曲。无论是什么击毁了它，过程都绝不温和。"
 	icon = 'modular_nova/modules/solfed_mechs/icons/solfed_mechs.dmi'
 	icon_state = "aegis-broken"
 	welder_salvage = list(/obj/item/stack/sheet/iron, /obj/item/stack/rods)

@@ -1,6 +1,6 @@
 /datum/action/changeling/void_adaption
-	name = "Void Adaption"
-	desc = "We prepare our cells to resist the hostile environment outside of the station. We may freely travel wherever we wish."
+	name = "虚空适应"
+	desc = "我们让细胞做好准备，以抵抗空间站外的恶劣环境。我们可以自由前往任何想去的地方。"
 	helptext = "This ability is passive, and will automatically protect us in situations of extreme cold or vacuum, \
 		as well as removing our need to breathe oxygen, although we will still be affected by hazardous gases. \
 		While it is actively protecting us from temperature or pressure it reduces our chemical regeneration rate."
@@ -58,7 +58,7 @@
 		on_removed_adaption(void_adapted, "Our cells relax in safer air.")
 		return
 	var/datum/antagonist/changeling/changeling_data = IS_CHANGELING(void_adapted)
-	to_chat(void_adapted, span_changeling("Our cells harden themselves against the [pick(active_reasons)]."))
+	to_chat(void_adapted, span_changeling("我们的细胞针对[pick(active_reasons)]强化了自身。"))
 	changeling_data?.chem_recharge_slowdown -= recharge_slowdown
 	currently_active = TRUE
 

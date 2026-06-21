@@ -1,7 +1,7 @@
 //does brute damage, bonus damage for each nearby blob, and spreads damage out
 /datum/blobstrain/reagent/synchronous_mesh
-	name = "Synchronous Mesh"
-	description = "will do low brute damage, but each blob nearby attacks the target as well with stacking damage."
+	name = "同步网路"
+	description = "会造成低额钝击伤害，但附近的每个团状物也会攻击目标，伤害可叠加。"
 	effectdesc = "will also spread damage between each blob near the attacked blob."
 	analyzerdescdamage = "Does low brute damage, increasing for each blob near the target."
 	analyzerdesceffect = "When attacked, spreads damage between all blobs near the attacked blob."
@@ -26,7 +26,7 @@
 		return damage * 1.25
 
 /datum/reagent/blob/synchronous_mesh
-	name = "Synchronous Mesh"
+	name = "同步网路"
 	taste_description = "toxic mold"
 	color = "#65ADA2"
 

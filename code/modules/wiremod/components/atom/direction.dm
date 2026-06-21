@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/direction
 	display_name = "Get Direction"
-	desc = "A component that returns the direction of itself and an entity."
+	desc = "一个能返回自身方向以及与之相关实体方向的组件。"
 	category = "Entity"
 
 	/// The input port

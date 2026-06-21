@@ -1,7 +1,7 @@
 
 
 /datum/outfit/echolocator
-	name = "Bitrunning Echolocator"
+	name = "比特行者回声定位员"
 	glasses = /obj/item/clothing/glasses/blindfold
 	ears = /obj/item/radio/headset/psyker //Navigating without these is horrible.
 	uniform = /obj/item/clothing/under/abductor
@@ -17,14 +17,14 @@
 
 
 /datum/outfit/bitductor
-	name = "Bitrunning Abductor"
+	name = "比特行者绑架者"
 	uniform = /obj/item/clothing/under/abductor
 	gloves = /obj/item/clothing/gloves/fingerless
 	shoes = /obj/item/clothing/shoes/jackboots
 
 
 /datum/outfit/beachbum_combat
-	name = "Beachbum: Island Combat"
+	name = "Beachbum：岛屿作战"
 	id = /obj/item/card/id/advanced
 	l_pocket = null
 	r_pocket = null

@@ -31,8 +31,8 @@
 // REAGENTS FOR SYNTHS
 
 /datum/reagent/medicine/system_cleaner
-	name = "System Cleaner"
-	description = "Neutralizes harmful chemical compounds inside synthetic systems and refreshes system software."
+	name = "System Cleaner-系统清洁剂"
+	description = "中和合成系统内的有害化合物并刷新系统软件。"
 	color = "#F1C40F"
 	taste_description = "ethanol"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -53,8 +53,8 @@
 	return ..() || .
 
 /datum/reagent/medicine/liquid_solder
-	name = "Liquid Solder"
-	description = "Repairs brain damage in synthetics."
+	name = "Liquid Solder-液态焊锡"
+	description = "修复合成人的脑损伤。"
 	color = "#727272"
 	taste_description = "metal"
 	// Processes in organics too but only functions on synthetic brains
@@ -72,7 +72,7 @@
 
 /datum/reagent/medicine/nanite_slurry
 	name = "Nanite Slurry"
-	description = "A localized swarm of nanomachines specialized in repairing mechanical parts. Due to the nanites needing to interface with the host's systems to repair them, a surplus of them will cause them to overheat, or for the swarm to forcefully eject out of the mouth of organics for safety."
+	description = "一种专门修复机械部件的局部纳米机器集群。由于纳米机器人需要与宿主的系统交互才能进行修复，过量会导致它们过热，或者为了安全起见，集群会从有机体的口中强行排出。"
 	color = "#cccccc"
 	overdose_threshold = 20
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM

@@ -1,5 +1,5 @@
 /datum/outfit/hc_officer
-	name = "HC Inspector"
+	name = "HC 巡检员"
 
 	head = /obj/item/clothing/head/hats/colonial/hc_police
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -45,7 +45,7 @@
 	handlebank(equipped)
 
 /obj/item/modular_computer/pda/hc_police
-	name = "\improper HC police PDA"
+	name = "\improper HC 警务 PDA"
 	device_theme = PDA_THEME_TERMINAL
 	greyscale_colors = "#363655#7878f7"
 	comp_light_luminosity = 6.3 //Matching a flashlight
@@ -58,8 +58,8 @@
 	inserted_item = /obj/item/pen/fourcolor
 
 /obj/item/card/id/advanced/hc_police
-	name = "\improper HC police identification card"
-	desc = "A retro-looking card model modified to work with the modern identification systems."
+	name = "\improper HC 警务身份卡"
+	desc = "一款外观复古的卡片模型，经过改造可与现代身份识别系统兼容。"
 	icon = 'modular_nova/master_files/icons/obj/card.dmi'
 	icon_state = "card_hc_police"
 	assigned_icon_state = "assigned_hc_police"
@@ -82,7 +82,7 @@
 	), src)
 
 /obj/item/storage/box/nri_survival_pack/inspector
-	desc = "A box filled with useful inspection items, supplied by the HC."
+	desc = "一个装满实用巡检物品的箱子，由 HC 提供。"
 
 /obj/item/storage/box/nri_survival_pack/inspector/PopulateContents()
 	new /obj/item/oxygen_candle(src)
@@ -94,7 +94,7 @@
 	new /obj/item/crowbar/red(src)
 
 /obj/item/folder/blue/hc_cop
-	name = "HC police SOPs"
+	name = "HC 警务标准作业程序"
 
 /obj/item/folder/blue/hc_cop/Initialize(mapload)
 	. = ..()

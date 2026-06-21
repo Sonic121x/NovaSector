@@ -97,7 +97,7 @@
 	if(istype(user))
 		user.add_traits(list(TRAIT_CHUNKYFINGERS), REF(src))
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.balloon_alert(user, "next attack delayed!")
+	user.balloon_alert(user, "下次攻击延迟！")
 
 /**
  * Removes all glove-related bonuses, effects, and traits.
@@ -231,7 +231,7 @@
 				log_combat(attacker, defender, "knocked down (boxing) ")
 	else
 		defender.visible_message(
-			span_danger("[attacker] staggers [defender] with a haymaker!"),
+			span_danger("[attacker]用一记重拳打得[defender]踉跄后退！"),
 			span_userdanger("You're nearly knocked off your feet by [attacker]!"),
 			span_hear("You hear a sickening sound of flesh hitting flesh!"),
 			COMBAT_MESSAGE_RANGE,

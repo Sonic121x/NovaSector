@@ -6,7 +6,7 @@
  */
 /obj/item/circuit_component/list_pick/assoc
 	display_name = "Associative List Pick"
-	desc = "A component that lets a user pick 1 element from an associative list. Returns the selected element."
+	desc = "一个允许用户从关联列表中选择1个元素的组件。返回所选元素。"
 	category = "List"
 
 /obj/item/circuit_component/list_pick/assoc/populate_options()

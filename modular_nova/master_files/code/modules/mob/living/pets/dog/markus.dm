@@ -1,6 +1,6 @@
 /mob/living/basic/pet/dog/markus
-	name = "\proper Markus"
-	desc = "The supply department's overfed yet still beloved dog."
+	name = "\proper 马库斯"
+	desc = "供应部门那只吃得过饱却依然备受宠爱的狗。"
 	icon = 'modular_nova/master_files/icons/mob/pets.dmi'
 	icon_state = "markus"
 	icon_dead = "markus_dead"

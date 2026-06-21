@@ -1,6 +1,6 @@
 /obj/machinery/button/door/indestructible/ancient_milsim
-	name = "SNPC Zone Entry Control"
-	desc = "A special button that, when pushed, deletes itself. Hopefully prevents unintended or malicious softlocks; and equalises the encounter hidden behind the fog."
+	name = "静态非玩家角色区域入口控制"
+	desc = "一个特殊的按钮，按下后会删除自身。希望能防止意外或恶意的软锁定；并平衡隐藏在战争迷雾后的遭遇。"
 	id = "engagement_control"
 	var/obj/item/radio/radio
 
@@ -29,7 +29,7 @@
 	qdel(src)
 
 /obj/machinery/door/poddoor/ancient_milsim
-	name = "fog of war"
+	name = "战争迷雾"
 	desc = "'Best' game mechanic ever. At least it keeps you protected, you know? Deletes itself when the button is pushed."
 	icon = 'icons/effects/anomalies.dmi'
 	icon_state = "pyroclastic"

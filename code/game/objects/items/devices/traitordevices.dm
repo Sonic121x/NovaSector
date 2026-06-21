@@ -246,14 +246,14 @@ effective or pretty fucking useless.
 	apply_wibbly_filters(owner)
 	stealth_engaged = TRUE
 	build_all_button_icons(UPDATE_BUTTON_STATUS|UPDATE_BUTTON_BACKGROUND)
-	owner.balloon_alert(owner, "stealth mode engaged")
+	owner.balloon_alert(owner, "潜行模式已启动")
 
 /datum/action/item_action/stealth_mode/proc/stealth_off()
 	owner.alpha = initial(owner.alpha)
 	remove_wibbly_filters(owner)
 	stealth_engaged = FALSE
 	build_all_button_icons(UPDATE_BUTTON_STATUS|UPDATE_BUTTON_BACKGROUND)
-	owner.balloon_alert(owner, "stealth mode disengaged")
+	owner.balloon_alert(owner, "潜行模式已关闭")
 
 /datum/action/item_action/stealth_mode/proc/get_alpha()
 	return clamp(255 - (255 * charge / max_charge), min_alpha, 255)
@@ -350,10 +350,10 @@ effective or pretty fucking useless.
 /obj/item/jammer/attack_self(mob/user, modifiers)
 	. = ..()
 	if (!COOLDOWN_FINISHED(src, jam_cooldown))
-		user.balloon_alert(user, "on cooldown!")
+		user.balloon_alert(user, "冷却中！")
 		return
 
-	user.balloon_alert(user, "disruptor wave released!")
+	user.balloon_alert(user, "干扰波已释放！")
 	to_chat(user, span_notice("You release a disruptor wave, disabling all nearby radio devices."))
 	for (var/atom/potential_owner in view(disruptor_range, user))
 		disable_radios_on(potential_owner, ignore_syndie = TRUE)
@@ -363,8 +363,8 @@ effective or pretty fucking useless.
 	. = ..()
 	if(.)
 		return
-	to_chat(user, span_notice("You [active ? "deactivate" : "activate"] [src]."))
-	user.balloon_alert(user, "[active ? "deactivated" : "activated"] the jammer")
+	to_chat(user, span_notice("你[active ? "deactivate" : "activate"]了[src]。"))
+	user.balloon_alert(user, "[active ? "deactivated" : "activated"]了干扰器")
 	active = !active
 	if(active)
 		GLOB.active_jammers |= src
@@ -380,10 +380,10 @@ effective or pretty fucking useless.
 		return
 
 	if (!(interacting_with in view(disruptor_range, user)))
-		user.balloon_alert(user, "out of reach!")
+		user.balloon_alert(user, "够不着！")
 		return
 
-	interacting_with.balloon_alert(user, "radio disrupted!")
+	interacting_with.balloon_alert(user, "无线电已干扰！")
 	to_chat(user, span_notice("You release a directed disruptor wave, disabling all radio devices on [interacting_with]."))
 	disable_radios_on(interacting_with)
 
@@ -450,27 +450,27 @@ effective or pretty fucking useless.
 		return
 
 	if(user.combat_mode)
-		balloon_alert(user, "deconstructing...")
+		balloon_alert(user, "正在解构...")
 		if(!attacking_item.use_tool(src, user, 5 SECONDS, volume = 20))
 			return
 
 		deconstruct(TRUE)
 		attacking_item.play_tool_sound(src, 50)
-		balloon_alert(user, "deconstructed!")
+		balloon_alert(user, "已解构！")
 
 	else
 		if(atom_integrity == max_integrity)
-			balloon_alert(user, "already repaired!")
+			balloon_alert(user, "已经修复了！")
 			return
 
-		balloon_alert(user, "repairing...")
+		balloon_alert(user, "正在修复...")
 		while(atom_integrity != max_integrity)
 			if(!attacking_item.use_tool(src, user, 2 SECONDS, volume = 20))
 				return
 
 			repair_damage(10)
 
-		balloon_alert(user, "repaired!")
+		balloon_alert(user, "已修复！")
 
 /obj/machinery/porta_turret/syndicate/toolbox/on_deconstruction(disassembled)
 	if(disassembled)

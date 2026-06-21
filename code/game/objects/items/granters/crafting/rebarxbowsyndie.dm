@@ -1,6 +1,6 @@
 /obj/item/book/granter/crafting_recipe/dusting/rebarxbowsyndie_ammo
-	name = "SYNDICATE REBAR CROSSBOW AMMO CRAFTING MANUAL"
-	desc = "This book will self destruct upon being read a second time."
+	name = "辛迪加钢筋弩箭制作手册"
+	desc = "这本书在第二次阅读时会自毁。"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/rebarsyndie
 	)

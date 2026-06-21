@@ -13,8 +13,8 @@
 
 // ===== ENGINEERING CONSOLE =====
 /obj/machinery/modular_computer/preset/engineering
-	name = "engineering console"
-	desc = "A stationary computer. This one comes preloaded with engineering programs."
+	name = "工程控制台"
+	desc = "一台固定式计算机。此设备预装了工程程序。"
 	starting_programs = list(
 		/datum/computer_file/program/power_monitor,
 		/datum/computer_file/program/alarm_monitor,
@@ -23,8 +23,8 @@
 
 // ===== RESEARCH CONSOLE =====
 /obj/machinery/modular_computer/preset/research
-	name = "research director's console"
-	desc = "A stationary computer. This one comes preloaded with research programs."
+	name = "研究主管控制台"
+	desc = "一台固定的计算机。这台电脑已预先安装了各类研究程序。"
 	starting_programs = list(
 		/datum/computer_file/program/ntnetmonitor,
 		/datum/computer_file/program/chatclient,
@@ -34,8 +34,8 @@
 	)
 
 /obj/machinery/modular_computer/preset/research/away
-	name = "old research console"
-	desc = "An old computer used for writing research papers."
+	name = "旧研究控制台"
+	desc = "一台用于撰写研究论文的旧电脑。"
 	starting_programs = list(
 		/datum/computer_file/program/scipaper_program,
 	)
@@ -46,8 +46,8 @@
 
 // ===== COMMAND CONSOLE =====
 /obj/machinery/modular_computer/preset/command
-	name = "command console"
-	desc = "A stationary computer. This one comes preloaded with command programs."
+	name = "指挥控制台"
+	desc = "一台固定的计算机。这台计算机预装了命令程序。"
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
 		/datum/computer_file/program/card_mod,
@@ -55,8 +55,8 @@
 
 // ===== IDENTIFICATION CONSOLE =====
 /obj/machinery/modular_computer/preset/id
-	name = "identification console"
-	desc = "A stationary computer. This one comes preloaded with identification modification programs."
+	name = "身份识别控制台"
+	desc = "一台固定式计算机.这台计算机预装了身份修改程序."
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
 		/datum/computer_file/program/card_mod,
@@ -65,7 +65,7 @@
 	)
 
 /obj/machinery/modular_computer/preset/id/centcom
-	desc = "A stationary computer. This one comes preloaded with CentCom identification modification programs."
+	desc = "一台固定式计算机。这台设备预装了中央指挥部的身份识别修改程序。"
 
 /obj/machinery/modular_computer/preset/id/centcom/Initialize(mapload)
 	. = ..()
@@ -74,8 +74,8 @@
 
 // ===== CIVILIAN CONSOLE =====
 /obj/machinery/modular_computer/preset/civilian
-	name = "civilian console"
-	desc = "A stationary computer. This one comes preloaded with generic programs."
+	name = "民用控制台"
+	desc = "一台固定式计算机。这台电脑已预先安装了通用程序。"
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
 		/datum/computer_file/program/arcade,
@@ -83,16 +83,16 @@
 
 // curator
 /obj/machinery/modular_computer/preset/curator
-	name = "curator console"
-	desc = "A stationary computer. This one comes preloaded with art programs."
+	name = "馆长控制台"
+	desc = "一台固定式计算机。这台计算机预装了文学及艺术程序。"
 	starting_programs = list(
 		/datum/computer_file/program/portrait_printer,
 	)
 
 // ===== CARGO CHAT CONSOLES =====
 /obj/machinery/modular_computer/preset/cargochat
-	name = "cargo interfacing console"
-	desc = "A stationary computer that comes pre-loaded with software to interface with the cargo department."
+	name = "货运交互控制台"
+	desc = "一台预装了与货运部门交互软件的固定式电脑。"
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
 	)
@@ -141,8 +141,8 @@
 
 /obj/machinery/modular_computer/preset/cargochat/cargo
 	department_type = /datum/job_department/cargo
-	name = "departmental interfacing console"
-	desc = "A stationary computer that comes pre-loaded with software to interface with incoming departmental cargo requests."
+	name = "部门交互控制台"
+	desc = "一台预装了用于处理各部门货运请求交互软件的固定式电脑。"
 
 /obj/machinery/modular_computer/preset/cargochat/cargo/add_starting_software()
 	starting_programs += /datum/computer_file/program/bounty_board

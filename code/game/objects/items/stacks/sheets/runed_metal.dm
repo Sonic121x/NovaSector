@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 		req_amount = 3, \
 		time = 4 SECONDS, \
 		crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, \
-		desc = span_cult_bold("Altar: Can make Eldritch Whetstones, Construct Shells, and Flasks of Unholy Water."), \
+		desc = span_cult_bold("祭坛：可以制作邪神磨刀石、构造体外壳和不洁圣水瓶。"), \
 		required_noun = "runed metal sheet", \
 		category = CAT_CULT, \
 	), \
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 		result_type = /obj/machinery/door/airlock/cult, \
 		time = 5 SECONDS, \
 		crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, \
-		desc = span_cult_bold("Runed Door: A weak door which stuns non-blood cultists who touch it."), \
+		desc = span_cult_bold("符文门：一扇脆弱的门，会击晕触碰它的非血教徒。"), \
 		required_noun = "runed metal sheet", \
 		category = CAT_CULT, \
 	), \
@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 
 /obj/item/stack/sheet/runed_metal/interact(mob/user)
 	if(!IS_CULTIST(user))
-		to_chat(user, span_warning("Only one with forbidden knowledge could hope to work this metal..."))
+		to_chat(user, span_warning("唯有掌握禁忌知识者，方能锻造此金属……"))
 		return FALSE
 
 	var/turf/user_turf = get_turf(user)
@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 	var/is_valid_area = user_area && (user_area.area_flags & CULT_PERMITTED)
 
 	if(!is_valid_turf || !is_valid_area)
-		to_chat(user, span_warning("The veil is not weak enough here."))
+		to_chat(user, span_warning("此处的帷幕还不够薄弱。"))
 		return FALSE
 
 	return ..()

@@ -24,8 +24,8 @@
 
 /// Base statue, do not the statue please
 /obj/structure/statue/silver/nova
-	name = "heart statue"
-	desc = "A small statue depicting a heart..."
+	name = "心脏雕像"
+	desc = "一座描绘心脏的小雕像..."
 	icon = 'modular_nova/master_files/icons/obj/art/statue.dmi'
 	icon_state = "statue_heart"
 
@@ -34,8 +34,8 @@
 */
 
 /obj/structure/statue/silver/nova/small
-	name = "letter statue"
-	desc = "a statue depicting a letter"
+	name = "字母雕像"
+	desc = "一座描绘字母的雕像"
 	icon_state = "statue_a"
 
 /obj/structure/statue/silver/nova/small/b
@@ -118,8 +118,8 @@
 */
 
 /obj/structure/statue/silver/nova/small/glow
-	name = "Statue of Curiosity"
-	desc = "A statue, depicting ancient humans and their system of sol, its past showing how little they once knew and how their determination helped them ascend to the stars."
+	name = "好奇雕像"
+	desc = "一座描绘古人类及其太阳系的雕像，它的过去展示了他们曾经所知甚少，以及他们的决心如何帮助他们升入星空。"
 	icon_state = "statue_curiosity"
 
 /*
@@ -127,8 +127,8 @@
 */
 
 /obj/structure/statue/silver/nova/large
-	name = "Sol Federation Memorium"
-	desc = "To all the soldiers, whom have fallen bravely in the line of duty protecting this beautiful galaxy..."
+	name = "太阳联邦纪念像"
+	desc = "献给所有英勇牺牲、在保卫这美丽银河系的职责中倒下的士兵们..."
 	icon = 'modular_nova/master_files/icons/obj/art/statuelarge.dmi'
 	icon_state = "obelisk_solfed"
 
@@ -137,8 +137,8 @@
 	custom_materials = list(/datum/material/silver=SHEET_MATERIAL_AMOUNT*10)
 
 /obj/structure/statue/silver/nova/large/obelisk
-	name = "Obelisk"
-	desc = "You're not sure why it's here... it's just a block of iron, but yet... it is menacing... like a pillar... so cleanly cut... its corners looking too sharp to touch..."
+	name = "方尖碑"
+	desc = "你不确定它为何在此……它只是一块铁块，然而……它却充满威胁……如同一根立柱……切割得如此干净利落……它的棱角看起来锋利得无法触碰……"
 	icon_state = "obelisk_base"
 
 /obj/structure/statue/silver/nova/large/obelisk/dark
@@ -149,42 +149,42 @@
 */
 
 /obj/structure/statue/silver/nova/large/glow
-	name = "statue of ancient twins"
-	desc = "A statue of twin sisters, giving life to the flame of the universe, keeping the universe alive and well kept... each ember a star, in its infinite chaos."
+	name = "远古双子雕像"
+	desc = "一座描绘双生姐妹的雕像，她们为宇宙的火焰赋予生命，维系着宇宙的生机与秩序……每一颗余烬都是一颗星辰，处于其无限的混沌之中。"
 	icon_state = "twins"
 
 /obj/structure/statue/silver/nova/large/glow/twins_light
 	icon_state = "twins_light"
 
 /obj/structure/statue/silver/nova/large/glow/telekenesis
-	name = "Statue of Telekinesis"
-	desc = "A statue, depicting telekinetic behaviour... but yet it feels like your mind is being invaded by the statue..."
+	name = "念力雕像"
+	desc = "一座描绘念力行为的雕像……然而你却感觉自己的思想正被这座雕像入侵……"
 	icon_state = "telekenesis"
 
 /obj/structure/statue/silver/nova/large/glow/honor
-	name = "Statue of the Honourbound"
-	desc = "An elaborately made statue, depicting that of honour, dignity, and solitude, in which one's own honour must never be broken."
+	name = "荣耀誓约者雕像"
+	desc = "一座精心制作的雕像，描绘了荣誉、尊严与孤独，其中个人的荣誉绝不容玷污。"
 	icon_state = "honour"
 
 /obj/structure/statue/silver/nova/large/glow/honor_lights
 	icon_state = "honour_light"
 
 /obj/structure/statue/silver/nova/large/glow/truelight
-	name = "Statue of Light"
-	desc = "An iron statue made depicting darkness, yet it stirs a faint sense that following the light will guide you home."
+	name = "光明雕像"
+	desc = "一座描绘黑暗的铁制雕像，然而它却激起一丝微弱的感觉，仿佛追随光明将指引你归家。"
 	icon_state = "light_statue"
 
 /obj/structure/statue/silver/nova/large/glow/order
-	name = "Statue of Order"
-	desc = "A statue, with a great feeling of order, and community, through unity aand order."
+	name = "秩序雕像"
+	desc = "一座雕像，散发着强烈的秩序感与社群感，通过团结与秩序得以体现。"
 	icon_state = "order"
 
 /obj/structure/statue/silver/nova/large/glow/love
-	name = "Statue of Love"
-	desc = "A faint feeling of affection and care, seems present in your mind as you look at the statue... but yet... you feel nothing..."
+	name = "爱之雕像"
+	desc = "当你凝视这座雕像时，一种微弱的喜爱与关怀之情似乎浮现在你脑海中……然而……你却感觉不到任何东西……"
 	icon_state = "statue_love"
 
 /obj/structure/statue/silver/nova/large/glow/curiosity
-	name = "Statue of Curiosity"
-	desc = "A statue, depicting ancient humans and their system of sol, its past showing how little they once knew and how their determination helped them ascend to the stars"
+	name = "好奇雕像"
+	desc = "一座描绘古人类及其太阳系的雕像，它的过往展示了他们曾经所知甚少，以及他们的决心如何帮助他们飞升至星辰之间"
 	icon_state = "curiosity"

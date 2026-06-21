@@ -1,7 +1,7 @@
 /datum/award
 	///Name of the achievement, If null it won't show up in the achievement browser. (Handy for inheritance trees)
 	var/name
-	var/desc = "You did it."
+	var/desc = "你做到了。"
 	///The dmi icon file that holds the award's icon state.
 	var/icon = ACHIEVEMENTS_SET
 	///The icon state for this award.
@@ -82,7 +82,7 @@
 
 ///Achievements are one-off awards for usually doing cool things.
 /datum/award/achievement
-	desc = "Achievement for epic people"
+	desc = "史诗级人物的成就"
 	icon_state = "" // This should warn contributors that do not declare an icon when contributing new achievements.
 	///How many players have earned this achievement
 	var/times_achieved = 0
@@ -92,7 +92,7 @@
 		return
 	holder.data[type] = TRUE
 
-	to_chat(user, span_greenannounce("<B>Achievement unlocked: [name]!</B>"))
+	to_chat(user, span_greenannounce("<B>成就已解锁：[name]！</B>"))
 	var/sound/sound_to_send = LAZYACCESS(GLOB.achievement_sounds, user.client.prefs.read_preference(/datum/preference/choiced/sound_achievement))
 	if(sound_to_send)
 		SEND_SOUND(user, sound_to_send)
@@ -135,7 +135,7 @@
 
 ///Scores are for leaderboarded things, such as killcount of a specific boss
 /datum/award/score
-	desc = "you did it sooo many times."
+	desc = "你做了好多次。"
 	category = "Scores"
 
 	var/track_high_scores = TRUE
@@ -180,8 +180,8 @@
 
 ///Defining this here 'cause it's the first score a player should see in the Scores category.
 /datum/award/score/achievements_score
-	name = "Achievements Unlocked"
-	desc = "Don't worry, metagaming is all that matters."
+	name = "已解锁成就"
+	desc = "别担心，元游戏才是最重要的。"
 	icon_state = "elephant" //Obey the reference
 	database_id = ACHIEVEMENTS_SCORE
 
@@ -286,7 +286,7 @@
 
 ///Compose the string to send to the user's chat when the progress is made. This one here is generic, but you should override it really.
 /datum/award/score/progress/proc/get_progress_string(progress_string)
-	return span_greenannounce("New progress made for [name]: <B>[progress_string]!</B>")
+	return span_greenannounce("[name] 取得新进展：<B>[progress_string]！</B>")
 
 /datum/award/score/progress/load(datum/achievement_data/holder)
 	var/list/results = ..()

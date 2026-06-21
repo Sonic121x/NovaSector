@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure_item/snowball
-	name = "Snowball"
-	desc = "Concentrates cryokinetic forces to create snowballs, useful for throwing at people."
+	name = "雪球"
+	desc = "集中冰冻动能以制造雪球，这种雪球可用于向他人投掷。"
 	button_icon = 'icons/obj/toys/toy.dmi'
 	button_icon_state = "snowball"
 

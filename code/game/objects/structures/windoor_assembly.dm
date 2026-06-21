@@ -2,9 +2,9 @@
 /obj/structure/windoor_assembly
 	icon = 'icons/obj/doors/windoor.dmi'
 
-	name = "windoor Assembly"
+	name = "玻璃门组件"
 	icon_state = "l_windoor_assembly01"
-	desc = "A small glass and wire assembly for windoors."
+	desc = "一块玻璃与线缆混合的组件，用于组成玻璃门。"
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
@@ -107,11 +107,11 @@
 				if(!W.tool_start_check(user, amount=1))
 					return
 
-				user.visible_message(span_notice("[user] disassembles the windoor assembly."),
-					span_notice("You start to disassemble the windoor assembly..."))
+				user.visible_message(span_notice("[user]拆解了窗户组件."),
+					span_notice("你开始拆解窗户组件..."))
 
 				if(W.use_tool(src, user, 40, volume=50))
-					to_chat(user, span_notice("You disassemble the windoor assembly."))
+					to_chat(user, span_notice("你拆解了窗户组件."))
 					var/obj/item/stack/sheet/rglass/RG = new (get_turf(src), 5)
 					if (!QDELETED(RG))
 						RG.add_fingerprint(user)
@@ -126,19 +126,19 @@
 			if(W.tool_behaviour == TOOL_WRENCH && !anchored)
 				for(var/obj/machinery/door/window/WD in loc)
 					if(WD.dir == dir)
-						to_chat(user, span_warning("There is already a windoor in that location!"))
+						to_chat(user, span_warning("该位置已有一扇风门！"))
 						return
-				user.visible_message(span_notice("[user] secures the windoor assembly to the floor."),
-					span_notice("You start to secure the windoor assembly to the floor..."))
+				user.visible_message(span_notice("[user]将风门组件固定在地板上。"),
+					span_notice("你开始将风门组件固定在地板上..."))
 
 				if(W.use_tool(src, user, 40, volume=100))
 					if(anchored)
 						return
 					for(var/obj/machinery/door/window/WD in loc)
 						if(WD.dir == dir)
-							to_chat(user, span_warning("There is already a windoor in that location!"))
+							to_chat(user, span_warning("该位置已有一扇风门！"))
 							return
-					to_chat(user, span_notice("You secure the windoor assembly."))
+					to_chat(user, span_notice("你固定了风门组件。"))
 					set_anchored(TRUE)
 					if(secure)
 						name = "secure anchored windoor assembly"
@@ -147,33 +147,33 @@
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
 			else if(W.tool_behaviour == TOOL_WRENCH && anchored)
-				user.visible_message(span_notice("[user] unsecures the windoor assembly to the floor."),
-					span_notice("You start to unsecure the windoor assembly to the floor..."))
+				user.visible_message(span_notice("[user]将风门组件从地板上松开。"),
+					span_notice("你开始将风门组件从地板上松开..."))
 
 				if(W.use_tool(src, user, 40, volume=100))
 					if(!anchored)
 						return
-					to_chat(user, span_notice("You unsecure the windoor assembly."))
+					to_chat(user, span_notice("你松开了风门组件。"))
 					set_anchored(FALSE)
 					if(secure)
 						name = "secure windoor assembly"
 					else
-						name = "windoor assembly"
+						name = "玻璃门组件"
 
 			//Adding plasteel makes the assembly a secure windoor assembly. Step 2 (optional) complete.
 			else if(istype(W, /obj/item/stack/sheet/plasteel) && !secure)
 				var/obj/item/stack/sheet/plasteel/P = W
 				if(P.get_amount() < 2)
-					to_chat(user, span_warning("You need more plasteel to do this!"))
+					to_chat(user, span_warning("你需要更多等离子铁来做这件事！"))
 					return
-				to_chat(user, span_notice("You start to reinforce the windoor with plasteel..."))
+				to_chat(user, span_notice("你开始用塑钢加固风门..."))
 
 				if(do_after(user,40, target = src))
 					if(!src || secure || P.get_amount() < 2)
 						return
 
 					P.use(2)
-					to_chat(user, span_notice("You reinforce the windoor."))
+					to_chat(user, span_notice("你加固了风门。"))
 					secure = TRUE
 					if(anchored)
 						name = "secure anchored windoor assembly"
@@ -182,19 +182,19 @@
 
 			//Adding cable to the assembly. Step 5 complete.
 			else if(istype(W, /obj/item/stack/cable_coil) && anchored)
-				user.visible_message(span_notice("[user] wires the windoor assembly."), span_notice("You start to wire the windoor assembly..."))
+				user.visible_message(span_notice("[user]给风门组件接线。"), span_notice("你开始给风门组件接线..."))
 
 				if(do_after(user, 4 SECONDS, target = src))
 					if(!src || !anchored || src.state != "01")
 						return
 					var/obj/item/stack/cable_coil/CC = W
 					if(!CC.use(1))
-						to_chat(user, span_warning("You need more cable to do this!"))
+						to_chat(user, span_warning("你需要更多电缆才能这么做！"))
 						return
-					to_chat(user, span_notice("You wire the windoor."))
+					to_chat(user, span_notice("你给风门接上了电线。"))
 					state = "02"
 					if(secure)
-						name = "secure wired windoor assembly"
+						name = "拧紧且接好电线的玻璃门组件"
 					else
 						name = "wired windoor assembly"
 			else
@@ -204,13 +204,13 @@
 
 			//Removing wire from the assembly. Step 5 undone.
 			if(W.tool_behaviour == TOOL_WIRECUTTER)
-				user.visible_message(span_notice("[user] cuts the wires from the airlock assembly."), span_notice("You start to cut the wires from airlock assembly..."))
+				user.visible_message(span_notice("[user] 切断了气闸门组件的电线。"), span_notice("你开始从气闸门组件上剪断电线..."))
 
 				if(W.use_tool(src, user, 40, volume=100))
 					if(state != "02")
 						return
 
-					to_chat(user, span_notice("You cut the windoor wires."))
+					to_chat(user, span_notice("你切断了风门电线。"))
 					new/obj/item/stack/cable_coil(get_turf(user), 1)
 					state = "01"
 					if(secure)
@@ -222,8 +222,8 @@
 			else if(istype(W, /obj/item/electronics/airlock))
 
 				W.play_tool_sound(src, 100)
-				user.visible_message(span_notice("[user] installs the electronics into the airlock assembly."),
-					span_notice("You start to install electronics into the airlock assembly..."))
+				user.visible_message(span_notice("[user] 将电子元件安装到气闸门组件中。"),
+					span_notice("你开始将电子元件安装进气闸门组件..."))
 
 				if(do_after(user, 4 SECONDS, target = src))
 
@@ -232,8 +232,8 @@
 					if(!src || electronics)
 						W.forceMove(drop_location())
 						return
-					to_chat(user, span_notice("You install the airlock electronics."))
-					name = "near finished windoor assembly"
+					to_chat(user, span_notice("你安装了气闸门电子元件。"))
+					name = "马上完工的玻璃门组件"
 					electronics = W
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
@@ -241,11 +241,11 @@
 				if(!electronics)
 					return
 
-				user.visible_message(span_notice("[user] removes the electronics from the airlock assembly."),
-					span_notice("You start to uninstall electronics from the airlock assembly..."))
+				user.visible_message(span_notice("[user] 从气闸门组件中取出了电子元件。"),
+					span_notice("你开始从气闸门组件上拆下电子元件..."))
 
 				if(W.use_tool(src, user, 40, volume=100) && electronics)
-					to_chat(user, span_notice("You remove the airlock electronics."))
+					to_chat(user, span_notice("你拆下了气闸门电子元件。"))
 					name = "wired windoor assembly"
 					var/obj/item/electronics/airlock/ae
 					ae = electronics
@@ -255,14 +255,14 @@
 			//Crowbar to complete the assembly, Step 7 complete.
 			else if(W.tool_behaviour == TOOL_CROWBAR)
 				if(!electronics)
-					to_chat(usr, span_warning("The assembly is missing electronics!"))
+					to_chat(usr, span_warning("这个组件缺少电子元件！"))
 					return
-				user.visible_message(span_notice("[user] pries the windoor into the frame."),
-					span_notice("You start prying the windoor into the frame..."))
+				user.visible_message(span_notice("[user] 将风门撬入框架。"),
+					span_notice("你开始将风门撬入框架..."))
 
 				if(W.use_tool(src, user, 40, volume=100) && electronics)
 					set_density(TRUE) //Shouldn't matter but just incase
-					to_chat(user, span_notice("You finish the windoor."))
+					to_chat(user, span_notice("你完成了这扇风门。"))
 					finish_door()
 
 			else
@@ -274,17 +274,17 @@
 /obj/structure/windoor_assembly/examine(mob/user)
 	. = ..()
 	if(!anchored)
-		. += span_notice("\The [src] can be [span_boldnotice("wrenched")] down.")
-		. += span_notice("\The [src] could also be [span_boldnotice("cut apart")] with a [span_boldnotice("welder")].")
+		. += span_notice("\The [src] 可以[span_boldnotice("wrenched")]拆下。")
+		. += span_notice("\The [src] 也可以用[span_boldnotice("cut apart")][span_boldnotice("welder")]开来。")
 		return
 	switch(state)
 		if("01")
-			. += span_notice("\The [src] needs [span_boldnotice("wiring")], or could be [span_boldnotice("un-wrenched")] from the floor.")
+			. += span_notice("\The [src] 需要[span_boldnotice("wiring")]，或者可以从地板上[span_boldnotice("un-wrenched")]。")
 		if("02")
 			if(!electronics)
-				. += span_notice("\The [src] needs [span_boldnotice("airlock electronics")] to continue installation, or [span_boldnotice("wirecutters")] to take apart.")
+				. += span_notice("\The [src] 需要[span_boldnotice("airlock electronics")]来继续安装，或者用[span_boldnotice("wirecutters")]拆开。")
 			else
-				. += span_notice("\The [src] is ready to be [span_boldnotice("levered")] into place with a [span_boldnotice("crowbar")].")
+				. += span_notice("\The [src] 已准备好用[span_boldnotice("levered")][span_boldnotice("crowbar")]到位。")
 
 /obj/structure/windoor_assembly/proc/finish_door()
 	var/obj/machinery/door/window/windoor
@@ -348,11 +348,11 @@
 			return
 
 	if(facing == "l")
-		to_chat(usr, span_notice("The windoor will now slide to the right."))
+		to_chat(usr, span_notice("滑动门现在将向右滑动。"))
 		facing = "r"
 	else
 		facing = "l"
-		to_chat(usr, span_notice("The windoor will now slide to the left."))
+		to_chat(usr, span_notice("滑动门现在将向左滑动。"))
 
 	update_appearance()
 	return

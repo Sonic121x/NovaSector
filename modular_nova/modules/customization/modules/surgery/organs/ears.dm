@@ -1,6 +1,6 @@
 /obj/item/organ/ears_external
-	name = "fluffy ears"
-	desc = "Wait, there's two pairs of these?"
+	name = "毛茸茸的耳朵"
+	desc = "等等，这玩意儿有两对？"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "kitty"
 	mutantpart_key = FEATURE_EARS

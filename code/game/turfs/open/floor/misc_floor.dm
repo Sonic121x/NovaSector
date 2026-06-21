@@ -85,10 +85,10 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/circuit/telecomms/mainframe
-	name = "mainframe base"
+	name = "主机基座"
 
 /turf/open/floor/circuit/telecomms/server
-	name = "server base"
+	name = "服务器基座"
 
 /turf/open/floor/circuit/green
 	icon_state = "gcircuit"
@@ -111,7 +111,7 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/circuit/green/telecomms/mainframe
-	name = "mainframe base"
+	name = "主机基座"
 
 /turf/open/floor/circuit/red
 	icon_state = "rcircuit"
@@ -137,7 +137,7 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/pod
-	name = "pod floor"
+	name = "吊舱地板"
 	icon_state = "podfloor"
 	floor_tile = /obj/item/stack/tile/pod
 
@@ -150,7 +150,7 @@
 	floor_tile = /obj/item/stack/tile/pod/dark
 
 /turf/open/floor/noslip
-	name = "high-traction floor"
+	name = "高牵引力地板"
 	icon_state = "noslip"
 	floor_tile = /obj/item/stack/tile/noslip
 	slowdown = -0.3
@@ -180,20 +180,20 @@
 /turf/open/floor/bluespace
 	slowdown = -1
 	icon_state = "bluespace"
-	desc = "Through a series of micro-teleports these tiles let people move at incredible speeds."
+	desc = "通过一系列微观传送，这些地砖能让人们以惊人的速度移动。"
 	floor_tile = /obj/item/stack/tile/bluespace
 
 
 /turf/open/floor/sepia
 	slowdown = 2
 	icon_state = "sepia"
-	desc = "Time seems to flow very slowly around these tiles."
+	desc = "时间在这些瓷砖周围似乎流动得非常缓慢。"
 	floor_tile = /obj/item/stack/tile/sepia
 
 
 /turf/open/floor/bronze
-	name = "bronze floor"
-	desc = "Some heavy bronze tiles."
+	name = "青铜地板"
+	desc = "一些沉重的青铜地砖。"
 	icon_state = "clockwork_floor"
 	floor_tile = /obj/item/stack/tile/bronze
 
@@ -214,12 +214,12 @@
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /turf/open/floor/white
-	name = "white floor"
-	desc = "A tile in a pure white color."
+	name = "白色地板"
+	desc = "一块纯白的地砖。"
 	icon_state = "pure_white"
 
 /turf/open/floor/black
-	name = "black floor"
+	name = "黑色地板"
 	icon_state = "black"
 
 /turf/open/floor/greenscreen
@@ -227,8 +227,8 @@
 	icon_state = "green"
 
 /turf/open/floor/plastic
-	name = "plastic floor"
-	desc = "Cheap, lightweight flooring. Melts easily."
+	name = "塑料地板"
+	desc = "重量轻而且廉价的地板。很容易就会熔化掉。"
 	icon_state = "plastic"
 	thermal_conductivity = 0.1
 	heat_capacity = 900
@@ -239,8 +239,8 @@
 	return list("plastic-damaged1","plastic-damaged2")
 
 /turf/open/floor/eighties
-	name = "retro floor"
-	desc = "This one takes you back."
+	name = "复古地板"
+	desc = "这地板可以带你回到过去。"
 	icon_state = "eighties"
 	floor_tile = /obj/item/stack/tile/eighties
 	rust_resistance = RUST_RESISTANCE_BASIC
@@ -249,8 +249,8 @@
 	return list("eighties_damaged")
 
 /turf/open/floor/eighties/red
-	name = "red retro floor"
-	desc = "Totally RED-ICAL!"
+	name = "红色复古地板"
+	desc = "绝对红色警报！"
 	icon_state = "eightiesred"
 	floor_tile = /obj/item/stack/tile/eighties/red
 
@@ -288,7 +288,7 @@
 	AddElement(/datum/element/rust)
 
 /turf/open/floor/stone
-	name = "stone brick floor"
+	name = "石砖地板"
 	desc = "Odd, really, how it looks exactly like the iron walls yet is stone instead of iron. Now, if that's really more of a complaint about\
 		the ironness of walls or the stoneness of the floors, that's really up to you. But have you really ever seen iron that dull? I mean, it\
 		makes sense for the station to have dull metal walls but we're talking how a rudimentary iron wall would be. Medieval ages didn't even\
@@ -309,26 +309,26 @@
 	icon_state = "stone_floor"
 
 /turf/open/floor/vault
-	name = "strange floor"
-	desc = "You feel a strange nostalgia from looking at this..."
+	name = "怪异的地板"
+	desc = "凝视此物，你心中涌起一股莫名的怀旧之情……"
 	icon_state = "rockvault"
 	base_icon_state = "rockvault"
 
 /turf/open/floor/vault/rock
-	name = "rocky floor"
+	name = "岩石地板"
 
 /turf/open/floor/vault/alien
-	name = "alien floor"
+	name = "外星地板"
 	icon_state = "alienvault"
 	base_icon_state = "alienvault"
 
 /turf/open/floor/vault/sandstone
-	name = "sandstone floor"
+	name = "砂岩地板"
 	icon_state = "sandstonevault"
 	base_icon_state = "sandstonevault"
 
 /turf/open/floor/cult
-	name = "engraved floor"
+	name = "刻花地板"
 	icon_state = "cult"
 	base_icon_state = "cult"
 	floor_tile = /obj/item/stack/tile/cult

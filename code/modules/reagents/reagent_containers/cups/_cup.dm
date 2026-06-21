@@ -57,9 +57,9 @@
 		. += span_notice("The label says it contains [LOWER_TEXT(english_list(types))] ingredients.")
 	if(can_lid)
 		if(has_lid)
-			. += span_notice("Its sealed with a bright orange rubber lid[!isnull(lid_assembly) ? "with an assembly attached ontop of it" : ""].")
+			. += span_notice("它被一个亮橙色的橡胶盖子密封着[!isnull(lid_assembly) ? "with an assembly attached ontop of it" : ""]。")
 		else
-			. += span_notice("It can be sealed with a lid using [EXAMINE_HINT("Alt-Click")].")
+			. += span_notice("可以使用 [EXAMINE_HINT("Alt-Click")] 来用盖子密封它。")
 
 /**
  * Checks if the mob actually liked drinking this cup.
@@ -198,7 +198,7 @@
 
 	if (lid_assembly && istype(tool, /obj/item/stock_parts/power_store/cell))
 		if (attached_cell)
-			to_chat(user, span_warning("[src] already has \a [attached_cell] attached to it!"))
+			to_chat(user, span_warning("[src] 已经装上了 \a [attached_cell]！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if (isnull(locate(/obj/item/assembly/igniter) in lid_assembly))
@@ -299,7 +299,7 @@
 		return NONE
 
 	if (cell_wired)
-		balloon_alert(user, "cut the wiring first!")
+		balloon_alert(user, "先切断线缆！")
 		return CLICK_ACTION_BLOCKING
 
 	if (attached_cell)
@@ -307,7 +307,7 @@
 		// Exited() automatically clears it
 		our_cell.forceMove(drop_location())
 		user.put_in_hands(our_cell)
-		balloon_alert(user, "cell detached")
+		balloon_alert(user, "电池已分离")
 		update_appearance()
 		return CLICK_ACTION_SUCCESS
 
@@ -315,13 +315,13 @@
 		var/obj/item/our_assembly = lid_assembly
 		our_assembly.forceMove(drop_location())
 		user.put_in_hands(our_assembly)
-		balloon_alert(user, "assembly detached")
+		balloon_alert(user, "组件已分离")
 		update_appearance()
 		return CLICK_ACTION_SUCCESS
 
 	has_lid = !has_lid
 	update_appearance()
-	balloon_alert(user, "lid [has_lid ? "sealed" : "unsealed"]")
+	balloon_alert(user, "盖子[has_lid ? "sealed" : "unsealed"]")
 	if (has_lid)
 		add_container_flags(SEALED_CONTAINER)
 	else
@@ -335,7 +335,7 @@
 	new /obj/item/stack/cable_coil(drop_location(), 5)
 	cell_wired = FALSE
 	update_appearance()
-	balloon_alert(user, "wiring cut")
+	balloon_alert(user, "线路已切断")
 	tool.play_tool_sound(src, 50)
 	return ITEM_INTERACT_SUCCESS
 
@@ -387,7 +387,7 @@
 		reagents.expose_temperature(igniter_temp)
 
 /obj/item/reagent_containers/cup/beaker
-	name = "beaker"
+	name = "烧杯"
 	desc = "A beaker. It can hold up to 50 units."
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "beaker"
@@ -411,14 +411,14 @@
 	return reagents.maximum_volume
 
 /obj/item/reagent_containers/cup/beaker/jar
-	name = "honey jar"
-	desc = "A jar for honey. It can hold up to 50 units of sweet delight."
+	name = "蜂蜜罐"
+	desc = "一罐蜂蜜。可以装下50单位的甜蜜。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "vapour"
 	can_lid = FALSE
 
 /obj/item/reagent_containers/cup/beaker/large
-	name = "large beaker"
+	name = "大烧杯"
 	desc = "A large beaker. Can hold up to 100 units."
 	icon_state = "beakerlarge"
 	custom_materials = list(/datum/material/glass= SHEET_MATERIAL_AMOUNT*1.25)
@@ -429,7 +429,7 @@
 	assembly_pixel_y = 8
 
 /obj/item/reagent_containers/cup/beaker/plastic
-	name = "x-large beaker"
+	name = "X-大烧杯"
 	desc = "An extra-large beaker. Can hold up to 120 units."
 	icon_state = "beakerwhite"
 	inhand_icon_state = "beaker_white"
@@ -441,8 +441,8 @@
 	assembly_pixel_y = 8
 
 /obj/item/reagent_containers/cup/beaker/meta
-	name = "metamaterial beaker"
-	desc = "A large beaker. Can hold up to 180 units."
+	name = "超材料烧杯"
+	desc = "一个大烧杯。可以装下180单位。"
 	icon_state = "beakergold"
 	inhand_icon_state = "beaker_gold"
 	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plastic=SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/gold=HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium=HALF_SHEET_MATERIAL_AMOUNT)
@@ -453,7 +453,7 @@
 	assembly_pixel_y = 10
 
 /obj/item/reagent_containers/cup/beaker/noreact
-	name = "cryostasis beaker"
+	name = "冷冻烧杯"
 	desc = "A cryostasis beaker that allows for chemical storage without \
 		reactions. Can hold up to 50 units."
 	icon_state = "beakernoreact"
@@ -465,7 +465,7 @@
 	can_lid = FALSE
 
 /obj/item/reagent_containers/cup/beaker/bluespace
-	name = "bluespace beaker"
+	name = "蓝空烧杯"
 	desc = "A bluespace beaker, powered by experimental bluespace technology \
 		and Element Cuban combined with the Compound Pete. Can hold up to \
 		300 units."
@@ -508,19 +508,19 @@
 	list_reagents = list(/datum/reagent/toxin/slimejelly = 50)
 
 /obj/item/reagent_containers/cup/beaker/large/libital
-	name = "libital reserve tank (diluted)"
+	name = "利比特 'libital' 储罐 (稀释)"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 10,/datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/aiuri
-	name = "aiuri reserve tank (diluted)"
+	name = "艾尤里 'aiuri' 储罐 (稀释)"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 10, /datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/multiver
-	name = "multiver reserve tank (diluted)"
+	name = "木太尔 'multiver' 储罐 (稀释)"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 10, /datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/epinephrine
-	name = "epinephrine reserve tank (diluted)"
+	name = "肾上腺素 'epinephrine' 储罐 (稀释)"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 50)
 
 /obj/item/reagent_containers/cup/beaker/synthflesh
@@ -530,7 +530,7 @@
 	name = "synthflesh beaker"
 
 /obj/item/reagent_containers/cup/bucket
-	name = "bucket"
+	name = "水桶"
 	desc = "It's a bucket."
 	icon = 'icons/obj/service/janitor.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
@@ -570,7 +570,7 @@
 	acid = 50
 
 /obj/item/reagent_containers/cup/bucket/wooden
-	name = "wooden bucket"
+	name = "木制桶"
 	icon_state = "woodbucket"
 	inhand_icon_state = "woodbucket"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3)
@@ -587,21 +587,21 @@
 		var/is_right_clicking = LAZYACCESS(modifiers, RIGHT_CLICK)
 		if(is_right_clicking)
 			if(tool.reagents.total_volume == 0)
-				user.balloon_alert(user, "[tool] is dry!")
+				user.balloon_alert(user, "[tool]是干的！")
 				return ITEM_INTERACT_BLOCKING
 			if(reagents.total_volume == reagents.maximum_volume)
-				user.balloon_alert(user, "[tool] is full!")
+				user.balloon_alert(user, "[tool]满了！")
 				return ITEM_INTERACT_BLOCKING
 			tool.reagents.remove_all(tool.reagents.total_volume * SQUEEZING_DISPERSAL_RATIO)
 			tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
-			user.balloon_alert(user, "[tool] squeezed")
+			user.balloon_alert(user, "[tool]已挤压")
 			return ..()
 		// NOVA EDIT ADDITION END
 		if(reagents.total_volume < 1)
-			user.balloon_alert(user, "empty!")
+			user.balloon_alert(user, "空的！")
 			return ITEM_INTERACT_BLOCKING
 		reagents.trans_to(tool, 5, transferred_by = user)
-		user.balloon_alert(user, "doused [tool]")
+		user.balloon_alert(user, "浇湿了[tool]")
 		playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
 		return ITEM_INTERACT_SUCCESS
 	if(isprox(tool)) //This works with wooden buckets for now. Somewhat unintended, but maybe someone will add sprites for it soon(TM)
@@ -636,8 +636,8 @@
 	return ..()
 
 /obj/item/pestle
-	name = "pestle"
-	desc = "An ancient, simple tool used in conjunction with a mortar to grind or juice items."
+	name = "杵"
+	desc = "一种古老而简单的工具，与研钵一起使用，可以研磨或榨汁。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pestle"
@@ -645,7 +645,7 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/reagent_containers/cup/mortar
-	name = "mortar"
+	name = "研钵"
 	desc = "A specially formed bowl of ancient design. It is possible to crush or juice items placed in it using a pestle; however the process, unlike modern methods, is slow and physically exhausting."
 	desc_controls = "Alt click to eject the item."
 	icon_state = "mortar"
@@ -662,7 +662,7 @@
 		return CLICK_ACTION_BLOCKING
 	grinded.forceMove(drop_location())
 	grinded = null
-	balloon_alert(user, "ejected")
+	balloon_alert(user, "已弹出")
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/reagent_containers/cup/mortar/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -739,15 +739,15 @@
 //Coffeepots: for reference, a standard cup is 30u, to allow 20u for sugar/sweetener/milk/creamer
 /obj/item/reagent_containers/cup/coffeepot
 	name = "coffeepot"
-	desc = "A large pot for dispensing that ambrosia of corporate life known to mortals only as coffee. Contains 4 standard cups."
+	desc = "一种大壶，用来配制只有普通人知道的企业生活的咖啡，包含4个标准杯。"
 	volume = 120
 	icon_state = "coffeepot"
 	fill_icon_state = "coffeepot"
 	fill_icon_thresholds = list(0, 1, 30, 60, 100)
 
 /obj/item/reagent_containers/cup/coffeepot/bluespace
-	name = "bluespace coffeepot"
-	desc = "The most advanced coffeepot the eggheads could cook up: sleek design; graduated lines; connection to a pocket dimension for coffee containment; yep, it's got it all. Contains 8 standard cups."
+	name = "蓝空咖啡壶"
+	desc = "书呆子们能做出的最先进的咖啡壶：时尚的设计；渐变的刻度线；连接到用于咖啡容器的口袋尺寸；是的，它应有尽有，包含8个标准杯。"
 	volume = 240
 	icon_state = "coffeepot_bluespace"
 	fill_icon_thresholds = null

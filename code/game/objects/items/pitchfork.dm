@@ -11,8 +11,8 @@
 	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "pitchfork"
-	desc = "A simple tool used for moving hay."
+	name = "干草叉"
+	desc = "一种用于搬运干草的简单工具。"
 	force = 7
 	throwforce = 15
 	w_class = WEIGHT_CLASS_BULKY

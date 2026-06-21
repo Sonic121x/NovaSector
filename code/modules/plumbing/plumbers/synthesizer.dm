@@ -1,7 +1,7 @@
 ///A single machine that produces a single chem. Can be placed in unison with others through plumbing to create chemical factories
 /obj/machinery/plumbing/synthesizer
-	name = "chemical synthesizer"
-	desc = "Produces a single chemical at a given volume. Must be plumbed. Most effective when working in unison with other chemical synthesizers, heaters and filters."
+	name = "化学品合成器"
+	desc = "一种按设定体积生产单一化学品的设备。必须接入管道系统。与其他化学合成器、加热器和过滤器协同工作时效率最高。"
 	icon_state = "synthesizer"
 	icon = 'icons/obj/pipes_n_cables/hydrochem/plumbers.dmi'
 
@@ -117,8 +117,8 @@
 	. += r_overlay
 
 /obj/machinery/plumbing/synthesizer/soda
-	name = "soda synthesizer"
-	desc = "Produces a single chemical at a given volume. Must be plumbed."
+	name = "汽水合成器"
+	desc = "按设定产量生产单一化学品的化工合成模块。必须接入管道系统。"
 	icon_state = "synthesizer_soda"
 
 	//Copied from soda dispenser
@@ -154,8 +154,8 @@
 	dispensable_reagents = soda_reagents
 
 /obj/machinery/plumbing/synthesizer/beer
-	name = "beer synthesizer"
-	desc = "Produces a single chemical at a given volume. Must be plumbed."
+	name = "啤酒合成器"
+	desc = "按设定产量生产单一化学品的化工合成模块。必须接入管道系统。"
 
 	icon_state = "synthesizer_booze"
 

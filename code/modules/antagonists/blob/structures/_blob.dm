@@ -1,9 +1,9 @@
 //I will need to recode parts of this but I am way too tired atm //I don't know who left this comment but they never did come back
 /obj/structure/blob
-	name = "blob"
+	name = "孢子"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	light_range = 2
-	desc = "A thick wall of writhing tendrils."
+	desc = "一堵卷须缠绕的厚壁。"
 	density = TRUE
 	opacity = FALSE
 	anchored = TRUE
@@ -190,7 +190,7 @@
 	if(isspaceturf(T) && !(locate(/obj/structure/lattice) in T) && prob(80))
 		make_blob = FALSE
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, TRUE) //Let's give some feedback that we DID try to spawn in space, since players are used to it
-		balloon_alert(controller, "failed to expand!")
+		balloon_alert(controller, "扩张失败！")
 
 	ConsumeTile() //hit the tile we're in, making sure there are no border objects blocking us
 	if(!T.CanPass(src, get_dir(T, src))) //is the target turf impassable
@@ -216,7 +216,7 @@
 			if(Ablob.area_flags & BLOBS_ALLOWED) //Is this area allowed for winning as blob?
 				overmind.blobs_legit += B
 			else if(controller)
-				B.balloon_alert(overmind, "off-station, won't count!")
+				B.balloon_alert(overmind, "在空间站外，不计入！")
 			B.update_appearance()
 			if(B.overmind && expand_reaction)
 				B.overmind.blobstrain.expand_reaction(src, B, T, controller)
@@ -263,7 +263,7 @@
 		to_chat(user, "<b>The analyzer beeps once, then reports:</b><br>")
 		SEND_SOUND(user, sound('sound/machines/ping.ogg'))
 		if(overmind)
-			to_chat(user, "<b>Progress to Critical Mass:</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
+			to_chat(user, "<b>临界质量进度：</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
 			to_chat(user, chemeffectreport(user).Join("\n"))
 		else
 			to_chat(user, "<b>Blob core neutralized. Critical mass no longer attainable.</b>")
@@ -275,17 +275,17 @@
 	RETURN_TYPE(/list)
 	. = list()
 	if(overmind)
-		. += list("<b>Material: <font color=\"[overmind.blobstrain.color]\">[overmind.blobstrain.name]</font>[span_notice(".")]</b>",
-		"<b>Material Effects:</b> [span_notice("[overmind.blobstrain.analyzerdescdamage]")]",
-		"<b>Material Properties:</b> [span_notice("[overmind.blobstrain.analyzerdesceffect || "N/A"]")]")
+		. += list("<b>材质：<font color=\"[overmind.blobstrain.color]\">[overmind.blobstrain.name]</font>[span_notice(".")]</b>",
+		"<b>材质效果：</b> [span_notice("[overmind.blobstrain.analyzerdescdamage]")]",
+		"<b>材质属性：</b> [span_notice("[overmind.blobstrain.analyzerdesceffect || "N/A"]")]")
 	else
 		. += "<b>No Material Detected!</b>"
 
 /obj/structure/blob/proc/typereport(mob/user)
 	RETURN_TYPE(/list)
-	return list("<b>Blob Type:</b> [span_notice("[uppertext(initial(name))]")]",
-							"<b>Health:</b> [span_notice("[atom_integrity]/[max_integrity]")]",
-							"<b>Effects:</b> [span_notice("[scannerreport()]")]")
+	return list("<b>凝胶类型：</b> [span_notice("[uppertext(initial(name))]")]",
+							"<b>生命值：</b> [span_notice("[atom_integrity]/[max_integrity]")]",
+							"<b>效果：</b> [span_notice("[scannerreport()]")]")
 
 
 /obj/structure/blob/attack_animal(mob/living/simple_animal/user, list/modifiers)
@@ -364,7 +364,7 @@
 	return "some kind of organic tissue"
 
 /obj/structure/blob/normal
-	name = "normal blob"
+	name = "普通孢子"
 	icon_state = "blob"
 	light_range = 0
 	max_integrity = BLOB_REGULAR_MAX_HP
@@ -388,11 +388,11 @@
 /obj/structure/blob/normal/update_desc()
 	. = ..()
 	if(atom_integrity <= 15)
-		desc = "A thin lattice of slightly twitching tendrils."
+		desc = "一种由微微抽动的卷须组成的薄格子。"
 	else if(overmind)
 		desc = "A thick wall of writhing tendrils."
 	else
-		desc = "A thick wall of lifeless tendrils."
+		desc = "一堵厚厚的没有生命的卷须墙。"
 
 /obj/structure/blob/normal/update_icon_state()
 	icon_state = "blob[(atom_integrity <= 15) ? "_damaged" : null]"

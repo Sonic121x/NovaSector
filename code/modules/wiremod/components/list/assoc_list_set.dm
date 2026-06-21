@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/variable/assoc_list/list_set
 	display_name = "Associative List Set"
-	desc = "Sets a string key on an associative list to a specific value."
+	desc = "将关联列表中的一个字符串键设置为特定值。"
 	category = "List"
 
 	/// Key to set

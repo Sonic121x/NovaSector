@@ -662,7 +662,7 @@
 		return FALSE
 
 	to_chat(src, span_notice("You start feeling around for something..."))
-	visible_message(span_notice(" [name] begins feeling around for \the [examined_thing.name]..."))
+	visible_message(span_notice("[name]开始摸索着寻找\the [examined_thing.name]..."))
 
 	/// how long it takes for the blind person to find the thing they're examining
 	var/examine_delay_length = rand(1 SECONDS, 2 SECONDS)
@@ -828,7 +828,7 @@
 
 	switch(CONFIG_GET(flag/allow_respawn))
 		if(RESPAWN_FLAG_NEW_CHARACTER)
-			if(tgui_alert(usr, "Note, respawning is only allowed as another character. If you don't have another free slot you may not be able to respawn.", "Respawn", list("Ok", "Nevermind")) != "Ok")
+			if(tgui_alert(usr, "注意，重生仅允许作为另一个角色进行。如果你没有其他空闲槽位，你可能无法重生。", "Respawn", list("Ok", "Nevermind")) != "Ok")
 				return
 
 		if(RESPAWN_FLAG_FREE)
@@ -838,7 +838,7 @@
 			if (!check_rights_for(usr.client, R_ADMIN))
 				to_chat(usr, span_boldnotice("Respawning is not enabled!"))
 				return
-			if (tgui_alert(usr, "Respawning is currently disabled, do you want to use your permissions to circumvent it?", "Respawn", list("Yes", "No")) != "Yes")
+			if (tgui_alert(usr, "重生功能当前已禁用，你是否要使用你的权限来绕过此限制？", "重生", list("Yes", "No")) != "Yes")
 				return
 
 	if (stat != DEAD)
@@ -862,7 +862,7 @@
 	//Check if the ghost is tied to a body; if so, after confirming they want to abandon it, set the body DNR
 	//(Respawn already detaches them from the body permanently... just doesn't actually make the body itself unrevivable)
 	if(user_ghost.can_reenter_corpse)
-		if(tgui_alert(usr, "Are you sure you want to Respawn? Your old body will become unrevivable!", "Respawn", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "你确定要重生吗？你的旧身体将变得无法复活！", "重生", list("Yes", "No")) != "Yes")
 			return
 		user_ghost.stay_dead()
 	//NOVA EDIT ADDITION END
@@ -902,7 +902,7 @@
 			to_chat(usr, "You have been dead for [DisplayTimeText(death_time, 1)].")
 			to_chat(usr, span_warning("You must wait [DisplayTimeText(required_delay, 1)] to respawn!"))
 			return FALSE
-		if(tgui_alert(usr, "You have been dead for [DisplayTimeText(death_time, 1)] out of required [DisplayTimeText(required_delay, 1)]. Do you want to use your permissions to circumvent it?", "Respawn", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "你已死亡 [DisplayTimeText(death_time, 1)]，而要求时间为 [DisplayTimeText(required_delay, 1)]。是否要使用你的权限绕过此限制？", "重生", list("Yes", "No")) != "Yes")
 			return FALSE
 	return TRUE
 
@@ -1076,7 +1076,7 @@
 	if(magic_flags & MAGIC_RESISTANCE)
 		visible_message(
 			span_warning("[src] pulses red as [ismob(antimagic_source) ? p_they() : antimagic_source] absorbs magic energy!"),
-			span_userdanger("An intense magical aura pulses around [ismob(antimagic_source) ? "you" : antimagic_source] as it dissipates into the air!"),
+			span_userdanger("一股强烈的魔法灵光在[ismob(antimagic_source) ? "you" : antimagic_source]周围脉动，随后消散在空气中！"),
 		)
 		antimagic_effect = mutable_appearance('icons/effects/effects.dmi', "shield-red", MOB_SHIELD_LAYER)
 		antimagic_color = LIGHT_COLOR_BLOOD_MAGIC
@@ -1085,7 +1085,7 @@
 	else if(magic_flags & MAGIC_RESISTANCE_HOLY)
 		visible_message(
 			span_warning("[src] starts to glow as [ismob(antimagic_source) ? p_they() : antimagic_source] emits a halo of light!"),
-			span_userdanger("A feeling of warmth washes over [ismob(antimagic_source) ? "you" : antimagic_source] as rays of light surround your body and protect you!"),
+			span_userdanger("一股暖流涌过[ismob(antimagic_source) ? "you" : antimagic_source]，光芒环绕着你的身体并保护着你！"),
 		)
 		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 		antimagic_color = LIGHT_COLOR_HOLY_MAGIC
@@ -1093,8 +1093,8 @@
 
 	else if(magic_flags & MAGIC_RESISTANCE_MIND)
 		visible_message(
-			span_warning("[src] forehead shines as [ismob(antimagic_source) ? p_they() : antimagic_source] repulses magic from their mind!"),
-			span_userdanger("A feeling of cold splashes on [ismob(antimagic_source) ? "you" : antimagic_source] as your forehead reflects magic usering your mind!"),
+			span_warning("[src]的额头闪耀着光芒，因为[ismob(antimagic_source) ? p_they() : antimagic_source]从他们的脑海中排斥了魔法！"),
+			span_userdanger("一股寒意溅在[ismob(antimagic_source) ? "you" : antimagic_source]身上，因为你的额头反射了魔法，扰乱了你的思维！"),
 		)
 		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "telekinesishead", MOB_SHIELD_LAYER)
 		antimagic_color = LIGHT_COLOR_DARK_BLUE
@@ -1348,7 +1348,7 @@
 	var/obj/item/pen/pen = writing_instrument
 
 	if(istype(pen) && pen.requires_gravity)
-		to_chat(src, span_warning("You try to write, but \the [writing_instrument] doesn't work in zero gravity!"))
+		to_chat(src, span_warning("你试图书写，但\the [writing_instrument] 在零重力下无法工作！"))
 		return FALSE
 
 	return TRUE

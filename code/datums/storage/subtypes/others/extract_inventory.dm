@@ -36,6 +36,6 @@
 	var/cores = rand(1,4)
 	playsound(parentSlimeExtract, 'sound/effects/splat.ogg', 40, TRUE)
 	parentSlimeExtract.last_produce = world.time
-	to_chat(user, span_notice("[parentSlimeExtract] briefly swells to a massive size, and expels [cores] extract[cores > 1 ? "s":""]!"))
+	to_chat(user, span_notice("[parentSlimeExtract] 短暂地膨胀到巨大尺寸，并排出 [cores] 个提取物[cores > 1 ? "s":""]！"))
 	for(var/i in 1 to cores)
 		new parentSlimeExtract.extract_type(parentSlimeExtract.drop_location())

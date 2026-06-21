@@ -10,7 +10,7 @@ GLOBAL_DATUM_INIT(temporary_flavor_text_vis, /obj/effect/overlay/indicator/tempo
 	set desc = "Allows you to set a temporary flavor text."
 
 	if(stat != CONSCIOUS)
-		to_chat(usr, span_warning("You can't set your temporary flavor text now..."))
+		to_chat(usr, span_warning("你现在无法设置临时描述文本……"))
 		return
 
 	var/msg = tgui_input_text(usr, "Set the temporary flavor text in your 'examine' verb. This is for describing what people can tell by looking at your character.", "Temporary Flavor Text", html_decode(temporary_flavor_text), max_length = MAX_FLAVOR_LEN, multiline = TRUE)

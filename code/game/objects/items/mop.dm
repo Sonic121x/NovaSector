@@ -1,6 +1,6 @@
 /obj/item/mop
-	desc = "The world of janitalia wouldn't be complete without a mop."
-	name = "mop"
+	desc = "没有拖把，清洁工的世界就不完整。"
+	name = "拖把"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "mop"
 	inhand_icon_state = "mop"
@@ -49,7 +49,7 @@
 	if(clean_blacklist[atom_to_clean.type])
 		return CLEAN_BLOCKED|CLEAN_DONT_BLOCK_INTERACTION
 	if(reagents.total_volume < 0.1)
-		cleaner.balloon_alert(cleaner, "mop is dry!")
+		cleaner.balloon_alert(cleaner, "拖把是干的！")
 		return CLEAN_BLOCKED
 	if(reagents.has_reagent(amount = 1, chemical_flags = REAGENT_CLEANS))
 		return CLEAN_ALLOWED
@@ -73,8 +73,8 @@
 	reagents.remove_all(val2remove) //reaction() doesn't use up the reagents
 
 /obj/item/mop/advanced
-	desc = "The most advanced tool in a custodian's arsenal, complete with a condenser for self-wetting! Just think of all the viscera you will clean up with this! Due to the self-wetting technology, it proves very inefficient for cleaning up spills." //NOVA EDIT
-	name = "advanced mop"
+	desc = "清洁工军械库中最先进的工具，配有自润湿冷凝器！想想你将用它清理掉多少内脏吧！由于自润湿技术，它在清理溢出物时效率非常低。" //NOVA EDIT
+	name = "高级拖把"
 	max_reagent_volume = 100 // NOVA EDIT - ORIGINAL: 10
 	icon_state = "advmop"
 	inhand_icon_state = "advmop"
@@ -99,7 +99,7 @@
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj,src)
-	user.balloon_alert(user, "condenser switch [refill_enabled ? "on" : "off"]")
+	user.balloon_alert(user, "冷凝器开关 [refill_enabled ? "on" : "off"]")
 	playsound(user, 'sound/machines/click.ogg', 30, TRUE)
 
 /obj/item/mop/advanced/process(seconds_per_tick)
@@ -109,7 +109,7 @@
 
 /obj/item/mop/advanced/examine(mob/user)
 	. = ..()
-	. += span_notice("The condenser switch is set to <b>[refill_enabled ? "ON" : "OFF"]</b>.")
+	. += span_notice("冷凝器开关设置为 <b>[refill_enabled ? "ON" : "OFF"]</b>。")
 
 /obj/item/mop/advanced/Destroy()
 	STOP_PROCESSING(SSobj, src)

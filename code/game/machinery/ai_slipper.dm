@@ -1,6 +1,6 @@
 /obj/machinery/ai_slipper
-	name = "foam dispenser"
-	desc = "A remotely-activatable dispenser for crowd-controlling foam."
+	name = "泡沫分配机"
+	desc = "一个用于控制人群的远程遥控泡沫分配机"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "ai-slipper0"
 	base_icon_state = "ai-slipper"
@@ -24,7 +24,7 @@
 
 /obj/machinery/ai_slipper/examine(mob/user)
 	. = ..()
-	. += span_notice("It has <b>[uses]</b> uses of foam remaining.")
+	. += span_notice("它还有<b>[uses]</b>次的泡沫量够使用")
 
 /obj/machinery/ai_slipper/update_icon_state()
 	if(machine_stat & BROKEN)
@@ -37,18 +37,18 @@
 
 /obj/machinery/ai_slipper/interact(mob/user)
 	if(!allowed(user))
-		to_chat(user, span_danger("Access denied."))
+		to_chat(user, span_danger("拒绝访问."))
 		return
 	if(!uses)
-		to_chat(user, span_warning("[src] is out of foam and cannot be activated!"))
+		to_chat(user, span_warning("[src]已经耗光了泡沫量且无法被启动!"))
 		return
 	if(!COOLDOWN_FINISHED(src, foam_cooldown))
-		to_chat(user, span_warning("[src] cannot be activated for <b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, foam_cooldown))]</b>!"))
+		to_chat(user, span_warning("[src]在<b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, foam_cooldown))]</b>内不能再被使用!"))
 		return
 	var/datum/effect_system/fluid_spread/foam/foam = new(loc, 4, holder = src)
 	foam.start()
 	uses--
-	to_chat(user, span_notice("You activate [src]. It now has <b>[uses]</b> uses of foam remaining."))
+	to_chat(user, span_notice("你启用了[src]. 它现在还有<b>[uses]</b>次的泡沫量够使用"))
 	COOLDOWN_START(src, foam_cooldown,cooldown_time)
 	power_change()
 	addtimer(CALLBACK(src, PROC_REF(power_change)), cooldown_time)

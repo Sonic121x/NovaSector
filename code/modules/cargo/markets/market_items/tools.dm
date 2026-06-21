@@ -15,8 +15,8 @@
 	availability_prob = 100
 
 /datum/market_item/tool/caravan_wrench
-	name = "Experimental Wrench"
-	desc = "The extra fast and handy wrench you always wanted!"
+	name = "实验性扳手"
+	desc = "您一直渴望拥有那种速度更快，使用更便捷的扳手！"
 	item = /obj/item/wrench/caravan
 	stock = 1
 
@@ -25,8 +25,8 @@
 	availability_prob = 20
 
 /datum/market_item/tool/caravan_wirecutters
-	name = "Experimental Wirecutters"
-	desc = "The extra fast and handy wirecutters you always wanted!"
+	name = "实验性剪线钳"
+	desc = "您一直渴望拥有那种速度更快，使用更便捷的剪线钳！"
 	item = /obj/item/wirecutters/caravan
 	stock = 1
 
@@ -35,8 +35,8 @@
 	availability_prob = 20
 
 /datum/market_item/tool/caravan_screwdriver
-	name = "Experimental Screwdriver"
-	desc = "The extra fast and handy screwdriver you always wanted!"
+	name = "实验性螺丝刀"
+	desc = "您一直渴望拥有那种速度更快，使用更便捷的螺丝刀！"
 	item = /obj/item/screwdriver/caravan
 	stock = 1
 
@@ -45,8 +45,8 @@
 	availability_prob = 20
 
 /datum/market_item/tool/caravan_crowbar
-	name = "Experimental Crowbar"
-	desc = "The extra fast and handy crowbar you always wanted!"
+	name = "实验性撬棍"
+	desc = "您一直渴望拥有那种速度更快，使用更便捷的撬棍！"
 	item = /obj/item/crowbar/red/caravan
 	stock = 1
 
@@ -55,8 +55,8 @@
 	availability_prob = 20
 
 /datum/market_item/tool/binoculars
-	name = "Binoculars"
-	desc = "Increase your sight by 150% with this handy Tool!"
+	name = "望远镜"
+	desc = "这个实用的小工具可以将你的视力提升150％！"
 	item = /obj/item/binoculars
 	stock = 1
 
@@ -65,8 +65,8 @@
 	availability_prob = 30
 
 /datum/market_item/tool/riot_shield
-	name = "Riot Shield"
-	desc = "Protect yourself from an unexpected Riot at your local Police department!"
+	name = "防暴盾牌"
+	desc = "保护自己在当地警察局里免受意外骚乱!"
 	item = /obj/item/shield/riot
 
 	price_min = CARGO_CRATE_VALUE * 2.25
@@ -75,7 +75,7 @@
 	availability_prob = 50
 
 /datum/market_item/tool/thermite_bottle
-	name = "Thermite Bottle"
+	name = "铝热剂瓶"
 	desc = "50u of Thermite to assist in creating a quick access point or get away!"
 	item = /obj/item/reagent_containers/cup/bottle/thermite
 

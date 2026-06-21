@@ -1,5 +1,5 @@
 /datum/crafting_recipe/gold_horn
-	name = "Golden Bike Horn"
+	name = "金色自行车喇叭"
 	result = /obj/item/bikehorn/golden
 	time = 2 SECONDS
 	reqs = list(
@@ -9,7 +9,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/bonfire
-	name = "Bonfire"
+	name = "篝火"
 	time = 6 SECONDS
 	reqs = list(/obj/item/grown/log = 5)
 	parts = list(/obj/item/grown/log = 5) //Will be returned if the bonfire is dismantled
@@ -19,7 +19,7 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/boneshovel
-	name = "Serrated Bone Shovel"
+	name = "锯齿骨铲"
 	reqs = list(
 		/obj/item/stack/sheet/bone = 4,
 		/datum/reagent/fuel/oil = 5,
@@ -30,7 +30,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/lasso
-	name = "Bone Lasso"
+	name = "骨套索"
 	reqs = list(
 		/obj/item/stack/sheet/bone = 1,
 		/obj/item/stack/sheet/sinew = 5,
@@ -39,7 +39,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/ipickaxe
-	name = "Improvised Pickaxe"
+	name = "临时镐"
 	reqs = list(
 		/obj/item/crowbar = 1,
 		/obj/item/knife = 1,
@@ -49,7 +49,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/bandage
-	name = "Makeshift Bandage"
+	name = "临时绷带"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 		/datum/reagent/medicine/c2/libital = 10,
@@ -58,7 +58,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/bone_rod
-	name = "Bone Fishing Rod"
+	name = "骨制鱼竿"
 	result = /obj/item/fishing_rod/bone
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 1,
@@ -67,21 +67,21 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/sinew_line
-	name = "Sinew Fishing Line Reel"
+	name = "筋制鱼线卷轴"
 	result = /obj/item/fishing_line/sinew
 	reqs = list(/obj/item/stack/sheet/sinew = 2)
 	time = 2 SECONDS
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/bone_hook
-	name = "Goliath Bone Hook"
+	name = "巨兽骨钩"
 	result = /obj/item/fishing_hook/bone
 	reqs = list(/obj/item/stack/sheet/bone = 1)
 	time = 2 SECONDS
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/shuttle_blueprints
-	name = "Crude Shuttle Blueprints"
+	name = "简陋穿梭机蓝图"
 	result = /obj/item/shuttle_blueprints/crude
 	reqs = list(
 		/obj/item/paper = 1,
@@ -110,7 +110,7 @@
 	return FALSE
 
 /datum/crafting_recipe/makeshift_radio_jammer
-	name = "Makeshift Radio Jammer"
+	name = "临时无线电干扰器"
 	result = /obj/item/jammer/makeshift
 	reqs = list(
 		/obj/item/universal_scanner = 1,
@@ -120,8 +120,8 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/jaws_of_recovery
-	name = "Modified Jaws of Recovery"
-	desc = "This one acts like regular jaws of life, letting you pry any door and doesn't announce doors you're prying open."
+	name = "改装版救援钳"
+	desc = "这把工具的功能与标准救援钳相同，可以撬开任何门，并且不会广播你正在撬门的行为。"
 	time = 10 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER)
 	result = /obj/item/crowbar/power/paramedic/silent
@@ -136,7 +136,7 @@
 	return ..()
 
 /datum/crafting_recipe/lantern
-	name = "Lantern"
+	name = "提灯"
 	result = /obj/item/flashlight/lantern
 	reqs = list(
 		/obj/item/flashlight/flare/candle = 1,

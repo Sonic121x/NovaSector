@@ -1,6 +1,6 @@
 /mob/living/basic/mining/stillcap
-	name = "stillcap"
-	desc = "A strange, elusive creature that always seems to come out of nowhere."
+	name = "静帽菇"
+	desc = "一种奇怪、难以捉摸的生物，似乎总是凭空出现。"
 	icon = 'modular_nova/modules/serenitystation/icons/newfauna_wide.dmi'
 	icon_state = "stillcap_red"
 	icon_living = "stillcap_red"
@@ -39,8 +39,8 @@
 	AddElement(/datum/element/ai_retaliate)
 
 /mob/living/basic/mining/stillcap/red
-	name = "red stillcap"
-	desc = parent_type::desc + " This one appears to be red."
+	name = "红色静帽菇"
+	desc = parent_type::desc + "这只看起来是红色的。"
 	icon_state = "stillcap_red"
 	icon_living = "stillcap_red"
 	base_icon_state = "stillcap_red"
@@ -48,8 +48,8 @@
 
 
 /mob/living/basic/mining/stillcap/blue
-	name = "blue stillcap"
-	desc = parent_type::desc + " This one appears to be blue."
+	name = "蓝色静帽菇"
+	desc = parent_type::desc + "这只看起来是蓝色的。"
 	icon_state = "stillcap_blue"
 	icon_living = "stillcap_blue"
 	base_icon_state = "stillcap_blue"
@@ -57,8 +57,8 @@
 
 
 /mob/living/basic/mining/stillcap/green
-	name = "green stillcap"
-	desc = parent_type::desc + " This one appears to be green."
+	name = "绿色静帽菇"
+	desc = parent_type::desc + "这只看起来是绿色的。"
 	icon_state = "stillcap_green"
 	icon_living = "stillcap_green"
 	base_icon_state = "stillcap_green"

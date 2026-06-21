@@ -1,5 +1,5 @@
 /obj/item/keyboard_shell
-	name = "Keyboard Shell"
+	name = "键盘外壳"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_small_keyboard"
 	inhand_icon_state = "electronic"
@@ -18,7 +18,7 @@
 
 /obj/item/circuit_component/keyboard_shell
 	display_name = "Keyboard Shell"
-	desc = "A handheld shell that allows the user to input a string. Use the shell in hand to open the input panel."
+	desc = "一款手持式的外壳装置，可让用户输入字符串。将该外壳装置握在手中即可打开输入面板。"
 
 	/// Called when the input window is closed
 	var/datum/port/output/signal
@@ -46,10 +46,10 @@
 
 /obj/item/circuit_component/keyboard_shell/proc/use_keyboard(mob/user)
 	if(HAS_TRAIT(user, TRAIT_ILLITERATE))
-		to_chat(user, span_warning("You start mashing keys at random!"))
+		to_chat(user, span_warning("你开始胡乱敲击按键！"))
 		return
 
-	var/message = tgui_input_text(user, "Input your text", "Keyboard", max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(user, "输入你的文本", "键盘", max_length = MAX_MESSAGE_LEN)
 	entity.set_output(user)
 	output.set_output(message)
 	signal.set_output(COMPONENT_SIGNAL)

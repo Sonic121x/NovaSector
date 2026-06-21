@@ -53,7 +53,7 @@
 
 /obj/item/melee/baton/security/stun_gun/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The 'Kopřiva' is the current flagship model of a stun gun standard-issued to coreworld Zvirdnyn officers \
 			- as you would not expect any more than an occasional rare drunkard coming for you around the capital planets. \
 			Its newly integrated neural receptors allow for unprecedented level of pacification through pain responses to one's brain, \
@@ -98,7 +98,7 @@
 
 /datum/crafting_recipe/knife_and_shocky
 	name = "Makeshift Stunknife"
-	desc = "Cobble together an abomination against both man and god."
+	desc = "拼凑出一个既亵渎人类又亵渎神明的畸形造物。"
 	result = /obj/item/melee/baton/security/stun_gun/stun_knife/loaded // Only because crafting it is going to be a bit of a hassle already, and it will absolutely eat the cell your stun gun might've had in it.
 	reqs = list(
 		/obj/item/knife/combat/survival = 1,

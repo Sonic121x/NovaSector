@@ -1,7 +1,7 @@
 //ASH WEAPON
 /obj/item/melee/macahuitl
-	name = "ash macahuitl"
-	desc = "A weapon that looks like it will leave really bad marks."
+	name = "灰烬马夸威特"
+	desc = "一件看起来会造成非常严重伤痕的武器。"
 	icon = 'modular_nova/modules/ashwalkers/icons/ashwalker_clothing.dmi'
 	lefthand_file = 'modular_nova/modules/ashwalkers/icons/ashwalker_clothing_left.dmi'
 	righthand_file = 'modular_nova/modules/ashwalkers/icons/ashwalker_clothing_right.dmi'
@@ -21,7 +21,7 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/ash_recipe/macahuitl
-	name = "Ash Macahuitl"
+	name = "灰烬马夸威特"
 	result = /obj/item/melee/macahuitl
 	reqs = list(
 		/obj/item/stack/sheet/bone = 2,

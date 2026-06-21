@@ -1,6 +1,6 @@
 /obj/item/borg/apparatus
-	name = "unknown storage apparatus"
-	desc = "This device seems nonfunctional."
+	name = "未知存储装置"
+	desc = "该设备似乎无法运作。"
 	icon = 'icons/mob/silicon/robot_items.dmi'
 	icon_state = "hugmodule"
 	/// The item stored inside of this apparatus
@@ -98,8 +98,8 @@
 	return ..()
 
 /obj/item/borg/apparatus/beaker
-	name = "beaker storage apparatus"
-	desc = "A special apparatus for carrying beakers, bottles, and test tubes without spilling their contents."
+	name = "烧杯存储装置"
+	desc = "一种用于携带烧杯、瓶子和试管而不洒出内容物的特殊装置。"
 	icon_state = "borg_beaker_apparatus"
 	storable = list(
 		/obj/item/reagent_containers/cup/beaker,
@@ -131,7 +131,7 @@
 		else
 			. += "Nothing."
 
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored beaker. ")
+	. += span_notice("<i>Alt+点击</i>将丢弃当前存储的烧杯。")
 
 /obj/item/borg/apparatus/beaker/update_overlays()
 	. = ..()
@@ -150,12 +150,12 @@
 	. += arm
 
 /obj/item/borg/apparatus/beaker/extra
-	name = "secondary beaker storage apparatus"
-	desc = "A supplementary beaker storage apparatus."
+	name = "次级烧杯存储装置"
+	desc = "一个补充性的烧杯存储装置。"
 
 /obj/item/borg/apparatus/beaker/service
-	name = "beverage storage apparatus"
-	desc = "A special apparatus for carrying drinks and condiment packets without spilling their contents. Will resynthesize any drinks (or other nutritional liquids) you pour out of glasses!"
+	name = "饮品存储装置"
+	desc = "一种用于携带饮品和调味包而不洒出内容物的特殊装置。会重新合成你从杯中倒出的任何饮品（或其他营养液体）！"
 	icon_state = "borg_beaker_apparatus"
 	storable = list(
 		/obj/item/reagent_containers/cup/glass,
@@ -185,8 +185,8 @@
 
 ///Used by the service borg drink apparatus upgrade, holds drink-related items
 /obj/item/borg/apparatus/beaker/drink
-	name = "secondary beverage storage apparatus"
-	desc = "A special apparatus for carrying drinks and condiment packets without spilling their contents. Will NOT resynthesize drinks unlike your standard apparatus."
+	name = "次级饮品存储装置"
+	desc = "一种特殊的装置，用于携带饮品和调味料包而不会洒出内容物。与你的标准装置不同，它不会重新合成饮品。"
 	icon_state = "borg_beaker_apparatus"
 	storable = list(
 		/obj/item/reagent_containers/cup/glass,
@@ -201,8 +201,8 @@
 
 /// allows medical cyborgs to manipulate organs without hands
 /obj/item/borg/apparatus/organ_storage
-	name = "organ storage bag"
-	desc = "A container for holding body parts."
+	name = "器官存储袋"
+	desc = "一个用于存放身体部位的容器。"
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "evidenceobj"
 	item_flags = SURGICAL_TOOL
@@ -234,22 +234,22 @@
 		. += organ.name
 	else
 		. += "Nothing."
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored organ. ")
+	. += span_notice("<i>Alt+点击</i>将丢弃当前存储的器官。")
 
 /obj/item/borg/apparatus/organ_storage/click_alt(mob/living/silicon/robot/user)
 	if(!stored)
-		to_chat(user, span_notice("[src] is empty."))
+		to_chat(user, span_notice("[src]是空的。"))
 		return CLICK_ACTION_BLOCKING
 
 	var/obj/item/organ = stored
-	user.visible_message(span_notice("[user] dumps [organ] from [src]."), span_notice("You dump [organ] from [src]."))
+	user.visible_message(span_notice("[user]从[src]中倒出了[organ]。"), span_notice("你将[organ]从[src]中倒出。"))
 	organ.forceMove(drop_location())
 	return CLICK_ACTION_SUCCESS
 
 ///Apparatus to allow Engineering/Sabo borgs to manipulate any material sheets.
 /obj/item/borg/apparatus/sheet_manipulator
-	name = "material manipulation apparatus"
-	desc = "An apparatus for carrying, deploying, and manipulating sheets of material. The device can also carry custom floor tiles and various rods."
+	name = "材料操控装置"
+	desc = "一种用于携带、部署和操作材料板材的装置。该设备也能携带定制地板砖和各种杆状物。"
 	icon_state = "borg_stack_apparatus"
 	storable = list(/obj/item/stack/sheet,
 					/obj/item/stack/tile,
@@ -280,12 +280,12 @@
 	. = ..()
 	if(stored)
 		. += "The apparatus currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored sheets. ")
+	. += span_notice("<i>Alt-点击</i> 将丢弃当前储存的板材。")
 
 ///Apparatus allowing Engineer/Sabo borgs to manipulate circuit boards and more
 /obj/item/borg/apparatus/engineering
-	name = "engineering apparatus"
-	desc = "A special apparatus for carrying and manipulating circuit boards, lights and power cells."
+	name = "工程装置"
+	desc = "一种用于携带和操作电路板、灯具和电源的特殊装置。"
 	icon_state = "borg_hardware_apparatus"
 	storable = list(
 		/obj/item/circuitboard,
@@ -330,7 +330,7 @@
 	. = ..()
 	if(stored)
 		. += "The apparatus currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored item. ")
+	. += span_notice("<i>Alt-点击</i> 将丢弃当前存放的物品。")
 
 /obj/item/borg/apparatus/engineering/pre_attack(atom/atom, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(atom, /obj/item/ai_module) && !stored) //If an admin wants a borg to upload laws, who am I to stop them? Otherwise, we can hint that it fails
@@ -340,12 +340,12 @@
 // stops them from cell interactions with other borgos
 /obj/item/borg/apparatus/engineering/interact_with_atom(atom/movable/interacting_with, mob/living/user, list/modifiers)
 	if(iscyborg(user) && iscyborg(interacting_with))
-		balloon_alert(user, "your manipulator isn't dexterous enough to interact with this properly.")
+		balloon_alert(user, "你的机械臂不够灵巧，无法正常操作这个。")
 		return ITEM_INTERACT_FAILURE
 
 /obj/item/borg/apparatus/service
-	name = "service apparatus"
-	desc = "A special apparatus for carrying food, seeds, grafts, bowls, plates, oven trays, soup pots and paper."
+	name = "服务设备"
+	desc = "一种用于携带食物、种子、嫁接物、碗、盘子、烤箱托盘、汤锅和纸张的特殊装置。"
 	icon_state = "borg_service_apparatus"
 	storable = list(
 		/obj/item/food,
@@ -380,4 +380,4 @@
 	. = ..()
 	if(stored)
 		. += "The apparatus currently has [stored] secured."
-	. += span_notice("<i>Alt-click</i> will drop the currently secured item.")
+	. += span_notice("<i>Alt-点击</i>将丢弃当前固定的物品。")

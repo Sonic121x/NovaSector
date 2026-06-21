@@ -35,7 +35,7 @@
 	. += span_notice("The design looks modular - it's possible you might be able to find additional pieces to attach.")
 	for(var/found_fragment in fragments)
 		var/obj/item/luna_fragment/fragment = found_fragment
-		. += span_notice("\a [fragment] has been attached, allowing for Luna to [fragment.effect_desc]")
+		. += span_notice("\a [fragment] 已被安装，使露娜能够 [fragment.effect_desc]")
 
 /obj/item/claymore/cutlass/luna/Destroy()
 	QDEL_LIST(fragments)
@@ -47,14 +47,14 @@
 
 /obj/item/claymore/cutlass/luna/crowbar_act(mob/living/user, obj/item/tool)
 	if(LAZYLEN(fragments))
-		to_chat(user, span_notice("You remove [src]'s array of addons."))
+		to_chat(user, span_notice("你移除了 [src] 的附加组件阵列。"))
 		tool.play_tool_sound(src)
 		for(var/found_fragment in fragments)
 			var/obj/item/luna_fragment/Fragment = found_fragment
 			Fragment.remove_upgrade(src, user)
 			Fragment.forceMove(get_turf(src))
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_warning("[src] is bare of any additional baubles."))
+	to_chat(user, span_warning("[src] 没有任何额外的装饰品。"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/claymore/cutlass/luna/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -71,7 +71,7 @@
 	if(!can_bloodbeam)
 		return
 	if(interacting_with == user)
-		balloon_alert(user, "can't aim at yourself!")
+		balloon_alert(user, "不能瞄准自己！")
 		return ITEM_INTERACT_BLOCKING
 	send_sword_laser(interacting_with, user, modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -97,8 +97,8 @@
 /// Upgrades ///
 
 /obj/item/luna_fragment
-	name = "coder's bane"
-	desc = "report this on github! unless you got this from a christmas present!"
+	name = "程序员的克星"
+	desc = "请在GitHub上报告此问题！除非你是从圣诞礼物里得到的！"
 	icon = 'modular_nova/modules/mapping/icons/obj/items/jungle_items.dmi'
 	/// What does this fragment do?
 	var/effect_desc = "Does literally nothing."
@@ -114,13 +114,13 @@
 	var/obj/item/claymore/cutlass/luna/upgrade_appliable = our_sord
 	for(var/obj/item/luna_fragment/found_fragment as anything in upgrade_appliable.fragments)
 		if(istype(src, found_fragment))
-			to_chat(user, span_warning("You can't seem to attach [src] to [upgrade_appliable]."))
+			to_chat(user, span_warning("你似乎无法将[src]安装到[upgrade_appliable]上。"))
 			return FALSE
 	if(!user.transferItemToLoc(src, upgrade_appliable))
 		return
 	upgrade_appliable.fragments += src
-	balloon_alert(user, "upgrade applied")
-	to_chat(user, span_notice("You attach [src] to [upgrade_appliable]."))
+	balloon_alert(user, "升级已应用")
+	to_chat(user, span_notice("你将[src]安装到了[upgrade_appliable]上。"))
 	if(!has_spoken)
 		var/mob/taylor = user
 		taylor.playsound_local(src.loc, hallucination_sound, 30, FALSE, 3)
@@ -134,7 +134,7 @@
 
 /obj/item/luna_fragment/examine(mob/living/user)
 	. = ..()
-	. += span_notice("This device looks rather.. \"home cooked\". You'll likely need a specific sword in order to make use of it.")
+	. += span_notice("这个装置看起来相当.. \"手工制作\"。你可能需要一把特定的剑才能使用它。")
 	if(has_spoken)
 		. += span_blue(hallucination_text) // If you're gonna take it back outta the sword, you should at least be able to revisit the text.
 
@@ -160,7 +160,7 @@
 /// Energy Retrofit
 /// Sets LUNA's stats to be on par with a standard energy blade - for better and worse.
 /obj/item/luna_fragment/energy_retrofit
-	name = "\improper energy projection matrix"
+	name = "\improper 能量投射矩阵"
 	desc = "A small, egg-shaped device - kitbashed from a hardlight projector, a x-ray focused laser diode, and, of all things - a flashlight; to be applied directly against the grip of a sword - trading \
 	the comfort of your thumb for a hardlight blade."
 	icon_state = "energy_retrofit"

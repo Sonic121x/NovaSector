@@ -1,6 +1,6 @@
 /obj/machinery/big_manipulator
-	name = "big manipulator"
-	desc = "Operates different objects. Truly, a groundbreaking innovation..."
+	name = "大型操纵器"
+	desc = "操作不同的物体。确实，这是一项开创性的创新……"
 	icon = 'icons/obj/machines/big_manipulator_parts/big_manipulator_core.dmi'
 	icon_state = "core"
 	post_init_icon_state = "core"
@@ -239,7 +239,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 
-	balloon_alert(user, "overloaded")
+	balloon_alert(user, "过载")
 	obj_flags |= EMAGGED
 
 	for(var/datum/manipulator_task/cargo/cargo_task in tasks)
@@ -254,7 +254,7 @@
 
 /obj/machinery/big_manipulator/can_be_unfasten_wrench(mob/user, silent)
 	if(on || stopping)
-		to_chat(user, span_warning("[src] is activated!"))
+		to_chat(user, span_warning("[src]已激活！"))
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -299,25 +299,25 @@
 
 /obj/machinery/big_manipulator/mouse_drop_dragged(atom/drop_point, mob/user, src_location, over_location, params)
 	if(on || stopping)
-		balloon_alert(user, "turn it off first!")
+		balloon_alert(user, "先把它关掉！")
 		return
 
 	var/mob/living/carbon/human/species/monkey/poor_monkey = monkey_worker?.resolve()
 	if(!poor_monkey)
 		return
 
-	balloon_alert(user, "trying to unbuckle...")
+	balloon_alert(user, "正在尝试解绑...")
 	if(!do_after(user, 3 SECONDS, src))
-		balloon_alert(user, "interrupted")
+		balloon_alert(user, "已中断")
 		return
 
-	balloon_alert(user, "unbuckled")
+	balloon_alert(user, "已解绑")
 	poor_monkey.drop_all_held_items()
 	poor_monkey.forceMove(drop_point)
 
 /obj/machinery/big_manipulator/mouse_drop_receive(atom/monkey, mob/user, params)
 	if(on || stopping)
-		balloon_alert(user, "turn it off first!")
+		balloon_alert(user, "先关掉它！")
 		return
 
 	if(monkey_worker?.resolve())
@@ -328,15 +328,15 @@
 
 	var/mob/living/carbon/human/species/monkey/poor_monkey = monkey
 	if(poor_monkey.mind)
-		balloon_alert(user, "too smart!")
+		balloon_alert(user, "太聪明了！")
 		return
 
-	poor_monkey.balloon_alert(user, "trying to buckle...")
+	poor_monkey.balloon_alert(user, "正在尝试绑定...")
 	if(!do_after(user, 3 SECONDS, poor_monkey))
-		poor_monkey.balloon_alert(user, "interrupted")
+		poor_monkey.balloon_alert(user, "已中断")
 		return
 
-	balloon_alert(user, "buckled")
+	balloon_alert(user, "已绑定")
 	monkey_worker = WEAKREF(poor_monkey)
 	poor_monkey.drop_all_held_items()
 	poor_monkey.forceMove(src)
@@ -357,14 +357,14 @@
 
 	if(!id_lock)
 		id_lock = WEAKREF(clicked_by_this_id)
-		balloon_alert(user, "successfully locked")
+		balloon_alert(user, "锁定成功")
 		return
 	var/obj/item/card/id/resolve_id = id_lock.resolve()
 	if(clicked_by_this_id != resolve_id)
-		balloon_alert(user, "locked by another id")
+		balloon_alert(user, "已被其他ID锁定")
 		return
 	id_lock = null
-	balloon_alert(user, "successfully unlocked")
+	balloon_alert(user, "解锁成功")
 
 /// Attaching the arm effect to the core.
 /obj/machinery/big_manipulator/proc/create_manipulator_arm()
@@ -381,11 +381,11 @@
 
 	if(newly_on)
 		if(!powered())
-			balloon_alert(user, "no power!")
+			balloon_alert(user, "没有电力！")
 			return
 
 		if(!anchored)
-			balloon_alert(user, "anchor first!")
+			balloon_alert(user, "先固定住！")
 			return
 
 		validate_all_tasks()
@@ -417,26 +417,26 @@
 /// Attempts to press the power button.
 /obj/machinery/big_manipulator/proc/try_press_on(mob/living/carbon/human/user)
 	if(power_access_wire_cut)
-		balloon_alert(user, "unresponsive!")
+		balloon_alert(user, "无响应！")
 		return
 
 	if(stopping)
-		balloon_alert(user, "stopping in progress!")
+		balloon_alert(user, "正在停止中！")
 		return
 
 	toggle_power_state(user)
 	if(on)
-		balloon_alert(user, "activated")
+		balloon_alert(user, "已激活")
 	else
-		balloon_alert(user, "deactivated")
+		balloon_alert(user, "已停用")
 
 /obj/machinery/big_manipulator/ui_interact(mob/user, datum/tgui/ui)
 	if(id_lock)
-		to_chat(user, span_warning("[src] is locked behind ID authentication!"))
+		to_chat(user, span_warning("[src] 已通过ID验证锁定！"))
 		ui?.close()
 		return
 	if(!anchored)
-		to_chat(user, span_warning("[src] isn't attached to the ground!"))
+		to_chat(user, span_warning("[src] 未固定在地面上！"))
 		ui?.close()
 		return
 	ui = SStgui.try_update_ui(user, src, ui)

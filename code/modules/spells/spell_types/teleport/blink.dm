@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/teleport/radius_turf/blink
-	name = "Blink"
-	desc = "This spell randomly teleports you a short distance."
+	name = "闪烁"
+	desc = "这个咒语会随机将你传送一小段距离。"
 	button_icon_state = "blink"
 	sound = 'sound/effects/magic/blink.ogg'
 
@@ -19,6 +19,6 @@
 	post_teleport_sound = 'sound/effects/magic/blink.ogg'
 
 /datum/action/cooldown/spell/teleport/radius_turf/blink/slow
-	name = "Minor Blink"
-	desc = "This spell randomly teleports you a short distance, you're still practising doing it quickly."
+	name = "次级闪烁"
+	desc = "这个法术会将你随机传送到短距离外，你仍在练习如何快速施放。"
 	cooldown_time = 8 SECONDS

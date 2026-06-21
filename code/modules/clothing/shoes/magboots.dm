@@ -2,8 +2,8 @@
 	bio = 90
 
 /obj/item/clothing/shoes/magboots
-	name = "magboots"
-	desc = "Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle."
+	name = "磁力靴"
+	desc = "一双磁力靴，通常在飞船外活动时使用，可确保使用者安全地附着在船体上."
 	icon_state = "magboots0"
 	base_icon_state = "magboots"
 	inhand_icon_state = "magboots"
@@ -71,7 +71,7 @@
 		slowdown -= slowdown_active
 
 	update_appearance()
-	balloon_alert(user, "mag-pulse [magpulse ? "enabled" : "disabled"]")
+	balloon_alert(user, "磁力脉冲 [magpulse ? "enabled" : "disabled"]")
 	//we want to update our speed so we arent running at max speed in regular magboots
 	user.update_equipment_speed_mods()
 
@@ -84,8 +84,8 @@
 	icon_state = "[base_icon_state][magpulse]"
 
 /obj/item/clothing/shoes/magboots/advance
-	name = "advanced magboots"
-	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
+	name = "高级磁力靴"
+	desc = "先进的磁靴，具有较轻的磁拉力，能够减轻穿戴者的负担。"
 	icon_state = "advmag0"
 	base_icon_state = "advmag"
 	slowdown_active = 0 // ZERO active slowdown
@@ -94,8 +94,8 @@
 	fishing_modifier = 0
 
 /obj/item/clothing/shoes/magboots/syndie
-	name = "blood-red magboots"
-	desc = "Reverse-engineered magnetic boots that have a heavy magnetic pull. Property of Gorlex Marauders."
+	name = "血红磁力靴"
+	desc = "逆向工程制成的磁力靴，具有强效磁吸力。此为格掠斯掠夺者的财产。"
 	icon_state = "syndiemag0"
 	base_icon_state = "syndiemag"
 	magpulse_fishing_modifier = 6

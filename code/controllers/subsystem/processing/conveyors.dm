@@ -1,2 +1,2 @@
 MOVEMENT_SUBSYSTEM_DEF(conveyors)
-	name = "Conveyor Belts"
+	name = "传送带"

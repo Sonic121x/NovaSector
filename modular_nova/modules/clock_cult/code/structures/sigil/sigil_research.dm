@@ -1,8 +1,8 @@
 #define DISAPPEAR_REAPPEAR_TIME (2 SECONDS)
 
 /obj/structure/destructible/clockwork/sigil/research
-	name = "large sigil"
-	desc = "A very large, glowing sigil."
+	name = "大型印记"
+	desc = "一个非常巨大、发光的印记。"
 	max_integrity = 10
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_effects_96.dmi'
 	icon_state = "research_sigil"

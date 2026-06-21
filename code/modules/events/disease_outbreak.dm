@@ -24,7 +24,7 @@
 #define ADV_SPREAD_FORCED_HIGH 90
 
 /datum/round_event_control/disease_outbreak
-	name = "Disease Outbreak: Classic"
+	name = "疾病爆发：经典"
 	typepath = /datum/round_event/disease_outbreak
 	max_occurrences = 1
 	min_players = 10
@@ -124,7 +124,7 @@
 		)
 		var/datum/disease/fake_virus = pick(virus_candidates)
 		illness_type = initial(fake_virus.name)
-	priority_announce("Confirmed outbreak of level 7 viral biohazard aboard [station_name()]. All personnel must contain the outbreak.", "[illness_type] Alert", ANNOUNCER_OUTBREAK7)
+	priority_announce("已确认在[station_name()]上爆发7级病毒生物危害。所有人员必须控制疫情。", "[illness_type]警报", ANNOUNCER_OUTBREAK7)
 
 	// Set status displays to biohazard alert
 	send_status_display_biohazard_alert()
@@ -170,7 +170,7 @@
 		log_game("Event Disease Outbreak: Classic attempted to start, but failed to find a candidate target")
 
 /datum/round_event_control/disease_outbreak/advanced
-	name = "Disease Outbreak: Advanced"
+	name = "疾病爆发：高级"
 	typepath = /datum/round_event/disease_outbreak/advanced
 	category = EVENT_CATEGORY_HEALTH
 	weight = 15
@@ -239,7 +239,7 @@
 	min_value = 1
 
 /datum/event_admin_setup/input_number/disease_outbreak_advanced/prompt_admins()
-	var/customize_number_of_symptoms = tgui_alert(usr, "Select number of symptoms?", event_control.name, list("Default", "Custom"))
+	var/customize_number_of_symptoms = tgui_alert(usr, "选择症状数量？", event_control.name, list("Default", "Custom"))
 	switch(customize_number_of_symptoms)
 		if("Custom")
 			return ..()
@@ -307,7 +307,7 @@
 		log_game("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
 
 /datum/disease/advance/random/event
-	name = "Event Disease"
+	name = "事件疾病"
 	copy_type = /datum/disease/advance
 
 /datum/round_event/disease_outbreak/advance/setup()
@@ -446,7 +446,7 @@
 
 	//If we have an advanced (high stage) disease, add it to the name.
 	if(properties["stage_rate"] >= 7)
-		name = "Advanced [name]"
+		name = "高级 [name]"
 
 	cure_text = "If you can see this, something has gone wrong."
 

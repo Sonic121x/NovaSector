@@ -1,7 +1,7 @@
 #define OXY_CANDLE_RELEASE_TEMP (T20C + 10) // 30 celsius, it's hot. Will be even hotter with hotspot expose
 
 /obj/item/oxygen_candle
-	name = "oxygen candle"
+	name = "氧气蜡烛"
 	desc = "A steel tube with the words 'OXYGEN - PULL CORD TO IGNITE' stamped on the side.\nA small label reads <span class='warning'>'WARNING: NOT FOR LIGHTING USE. WILL IGNITE FLAMMABLE GASSES'</span>"
 	icon = 'modular_nova/master_files/icons/obj/oxygen_candle.dmi'
 	icon_state = "oxycandle"
@@ -14,7 +14,7 @@
 /obj/item/oxygen_candle/attack_self(mob/user)
 	if(!pulled)
 		playsound(src, 'sound/effects/fuse.ogg', 75, 1)
-		balloon_alert(user, "cord pulled")
+		balloon_alert(user, "拉绳已拉动")
 		icon_state = "oxycandle_burning"
 		pulled = TRUE
 		processing = TRUE
@@ -32,7 +32,7 @@
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 		processing = FALSE
-		name = "burnt oxygen candle"
+		name = "烧尽的氧气蜡烛"
 		icon_state = "oxycandle_burnt"
 		desc += "\nThis tube has exhausted its chemicals."
 

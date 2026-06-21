@@ -50,7 +50,7 @@
 	in every street. What's a little more distance to someone like you? The only mystery you won't be able to solve is how nanites form a clear surface to gaze through."
 
 /obj/item/toy/crayon/white/nanite
-	name = "actual asphalt grafitter"
+	name = "真实沥青涂鸦笔"
 	desc = "Everyone dreams of making a mark in the world, something that lasts longer than they do. \
 	You're a dream maker, but it sure feels like a nightmare. A little memorial, the outline of their body, not for their body or who they were, \
 	but a solemn reminder of their last seconds, how it all fell apart. Let the flappers mourn the stiff, you're here for the case. \

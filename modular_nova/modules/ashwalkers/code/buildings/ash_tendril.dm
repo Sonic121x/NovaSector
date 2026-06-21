@@ -7,16 +7,16 @@
 		return ..()
 
 	if(!user.mind.has_antag_datum(/datum/antagonist/ashwalker))
-		balloon_alert(user, "must be an ashwalker!")
+		balloon_alert(user, "必须是灰烬行者！")
 		return
 
 	var/obj/item/organ/monster_core/regenerative_core/regen_core = attacking_item
 
 	if(!regen_core.decay_timer)
-		balloon_alert(user, "organ already revitalized!")
+		balloon_alert(user, "器官已经恢复活力了！")
 		return
 	if(!regen_core.preserve())
-		balloon_alert(user, "organ decayed!")
+		balloon_alert(user, "器官已腐烂！")
 		return
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	balloon_alert_to_viewers("[src] revitalizes [regen_core]!")
@@ -62,7 +62,7 @@
 
 	else
 		balloon_alert_to_viewers("[src] reaches out to [human_user]...")
-		var/choice = tgui_alert(human_user, "Become an Ashwalker? You will abandon your previous life and body.", "Major Choice", list("Yes", "No"))
+		var/choice = tgui_alert(human_user, "成为灰烬行者？你将抛弃你之前的生活和身体。", "重大抉择", list("Yes", "No"))
 
 		if(choice != "Yes")
 			balloon_alert_to_viewers("[src] feels rejected and punishes [human_user]!")
@@ -116,7 +116,7 @@
 
 		//there is a 40% chance that the Lava Lizard unlocks their respawn with each sacrifice
 		if(delivery_mob && (delivery_mob.mind?.has_antag_datum(/datum/antagonist/ashwalker)) && (delivery_key in ashies.players_spawned) && prob(40))
-			to_chat(delivery_mob, span_boldwarning("The Necropolis is pleased with your sacrifice. You feel confident your existence after death is secure."))
+			to_chat(delivery_mob, span_boldwarning("死灵圣殿对你的献祭感到满意。你确信自己死后的存在是安稳的。"))
 			ashies.players_spawned -= delivery_key
 
 		viewable_living.investigate_log("has been gibbed via ashwalker sacrifice.", INVESTIGATE_DEATHS)
@@ -139,11 +139,11 @@
 /obj/structure/lavaland/ash_walker/proc/revive_ashwalker(mob/living/carbon/human/revived_ashwalker)
 	var/obj/structure/reviving_ashwalker_egg/spawned_egg = new(get_step(loc, pick(GLOB.alldirs)))
 	revived_ashwalker.forceMove(spawned_egg)
-	to_chat(revived_ashwalker, span_warning("The tendril has decided to be merciful and revive you within a minute, have patience."))
+	to_chat(revived_ashwalker, span_warning("触须决定仁慈一些，将在一分钟内复活你，请耐心等待。"))
 
 /obj/structure/reviving_ashwalker_egg
-	name = "occupied ashwalker egg"
-	desc = "Past the typical appearance of the yellow, man-sized egg, there seems to be a body floating within!"
+	name = "已被占据的灰烬行者卵"
+	desc = "除了通常那种黄色的、人一般大小的卵的外观之外，里面似乎还漂浮着一具躯体！"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | FREEZE_PROOF

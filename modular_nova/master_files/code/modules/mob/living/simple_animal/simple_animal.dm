@@ -22,13 +22,13 @@
 	if(key || stat)
 		return
 	if(is_banned_from(user.ckey, BAN_MOB_CONTROL))
-		to_chat(user, "Error, you are banned from taking control of player controlled mobs!")
+		to_chat(user, "错误，你已被禁止控制玩家控制的生物！")
 		return
-	var/query = tgui_alert(user, "Become [src]?", "Take mob control", list("Yes", "No"))
+	var/query = tgui_alert(user, "成为[src]？", "接管生物控制", list("Yes", "No"))
 	if(!query || query == "No" || !src || QDELETED(src))
 		return
 	if(key)
-		to_chat(user, span_warning("Someone else already took this mob!"))
+		to_chat(user, span_warning("这个生物已经被别人占用了！"))
 		return
 	key = user.key
 	var/string_to_send = CONFIG_GET(string/pc_mob_text)

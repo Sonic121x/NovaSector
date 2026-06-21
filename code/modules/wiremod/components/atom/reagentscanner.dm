@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/reagentscanner
 	display_name = "Reagents Scanner"
-	desc = "Outputs the reagents found inside the inputted entity."
+	desc = "输出输入实体内部所包含的试剂信息。"
 	category = "Entity"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

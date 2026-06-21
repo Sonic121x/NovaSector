@@ -1,6 +1,6 @@
 /// Subsystem for managing all POIs.
 SUBSYSTEM_DEF(points_of_interest)
-	name = "Points of Interest"
+	name = "兴趣点"
 
 	ss_flags = SS_NO_FIRE | SS_NO_INIT
 

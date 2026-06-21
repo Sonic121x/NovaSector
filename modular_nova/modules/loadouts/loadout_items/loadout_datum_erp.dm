@@ -36,27 +36,27 @@
 */
 
 /datum/loadout_item/erp/buttplug
-	name = "Buttplug"
+	name = "肛塞"
 	item_path = /obj/item/clothing/sextoy/buttplug
 
 /datum/loadout_item/erp/clamps
-	name = "Nipple Clamps"
+	name = "乳头夹"
 	item_path = /obj/item/clothing/sextoy/nipple_clamps
 
 /datum/loadout_item/erp/egg
-	name = "Vibrating Egg"
+	name = "震动蛋"
 	item_path = /obj/item/clothing/sextoy/eggvib
 
 /datum/loadout_item/erp/egg/signal
-	name = "Signal Vibrating Egg"
+	name = "信号震动蛋"
 	item_path = /obj/item/clothing/sextoy/eggvib/signalvib
 
 /datum/loadout_item/erp/signaler
-	name = "Signaler"
+	name = "信号器"
 	item_path = /obj/item/assembly/signaler
 
 /datum/loadout_item/erp/vibroring
-	name = "Vibrating Ring"
+	name = "震动环"
 	item_path = /obj/item/clothing/sextoy/vibroring
 
 /*
@@ -64,27 +64,27 @@
 */
 
 /datum/loadout_item/erp/dildo
-	name = "Dildo"
+	name = "按摩棒"
 	item_path = /obj/item/clothing/sextoy/dildo
 
 /datum/loadout_item/erp/dildo/custom
-	name = "Custom Dildo"
+	name = "自定义按摩棒"
 	item_path = /obj/item/clothing/sextoy/dildo/custom_dildo
 
 /datum/loadout_item/erp/dildo/double
-	name = "Double Dildo"
+	name = "双头按摩棒"
 	item_path = /obj/item/clothing/sextoy/dildo/double_dildo
 
 /datum/loadout_item/erp/fleshlight
-	name = "Fleshlight"
+	name = "飞机杯"
 	item_path = /obj/item/clothing/sextoy/fleshlight
 
 /datum/loadout_item/erp/magic_wand
-	name = "Magic Wand"
+	name = "魔法棒"
 	item_path = /obj/item/clothing/sextoy/magic_wand
 
 /datum/loadout_item/erp/vibrator
-	name = "Vibrator"
+	name = "震动棒"
 	item_path = /obj/item/clothing/sextoy/vibrator
 
 /*
@@ -92,7 +92,7 @@
 */
 
 /datum/loadout_item/erp/strapon
-	name = "Strap-On"
+	name = "穿戴式假阳具"
 	item_path = /obj/item/clothing/strapon
 
 /*
@@ -100,31 +100,31 @@
 */
 
 /datum/loadout_item/erp/kinky_shocker
-	name = "Kinky Shocker"
+	name = "情趣电击器"
 	item_path = /obj/item/kinky_shocker
 
 /datum/loadout_item/erp/whip
-	name = "Whip"
+	name = "鞭子"
 	item_path = /obj/item/clothing/mask/leatherwhip
 
 /datum/loadout_item/erp/candle
-	name = "Soy Candle"
+	name = "大豆蜡烛"
 	item_path = /obj/item/bdsm_candle
 
 /datum/loadout_item/erp/spanking_pad
-	name = "Spanking Pad"
+	name = "拍打垫"
 	item_path = /obj/item/spanking_pad
 
 /datum/loadout_item/erp/feather
-	name = "Tickling Feather"
+	name = "搔痒羽毛"
 	item_path = /obj/item/tickle_feather
 
 /datum/loadout_item/erp/borg_dom
-	name = "Borg Dominatrix Module"
+	name = "博格女主人模块"
 	item_path = /obj/item/borg/upgrade/dominatrixmodule
 
 /datum/loadout_item/erp/holosign
-	name = "Personal Holosign Projector"
+	name = "个人全息标志投影仪"
 	item_path = /obj/item/holosign_creator/privacy
 
 /*
@@ -132,89 +132,89 @@
 */
 
 /datum/loadout_item/erp/handcuffs_lewd
-	name = "Kinky Handcuffs"
+	name = "情趣手铐"
 	item_path = /obj/item/restraints/handcuffs/lewd
 
 /datum/loadout_item/erp/shibari
-	name = "Shibari Ropes"
+	name = "缚绳"
 	item_path = /obj/item/stack/shibari_rope/full
 
 /datum/loadout_item/erp/shibari/glow
-	name = "Glowy Shibari Ropes"
+	name = "发光缚绳"
 	item_path = /obj/item/stack/shibari_rope/glow/full
 
 /datum/loadout_item/erp/ballgag
-	name = "Ball Gag"
+	name = "口球"
 	item_path = /obj/item/clothing/mask/muzzle/ballgag
 
 /datum/loadout_item/erp/ballgag/choking
-	name = "Phallic Ball Gag"
+	name = "阴茎状口球"
 	item_path = /obj/item/clothing/mask/muzzle/ballgag/choking
 	reskin_datum = /datum/atom_skin/ballgag
 
 /datum/loadout_item/erp/muzzle_ring
-	name = "Ring Gag"
+	name = "环形口塞"
 	item_path = /obj/item/clothing/mask/muzzle/ring
 
 /datum/loadout_item/erp/deprivation_helmet
-	name = "Deprivation Helmet"
+	name = "感官剥夺头盔"
 	item_path = /obj/item/clothing/head/deprivation_helmet
 	reskin_datum = /datum/atom_skin/deprivation_helmet
 
 /datum/loadout_item/erp/blindfold
-	name = "Luxury Blindfold"
+	name = "奢华眼罩"
 	item_path = /obj/item/clothing/glasses/blindfold/dorms
 
 /datum/loadout_item/erp/kinky_headphones
-	name = "Padded Headphones"
+	name = "加厚耳机"
 	item_path = /obj/item/clothing/ears/dorms_headphones
 
 /datum/loadout_item/erp/lewd_filter
-	name = "Crocin Filter"
+	name = "克罗辛过滤器"
 	item_path = /obj/item/reagent_containers/cup/lewd_filter
 
 /datum/loadout_item/erp/hypno_glasses
-	name = "Suspicious Glasses"
+	name = "可疑眼镜"
 	item_path = /obj/item/clothing/glasses/hypno
 
 /datum/loadout_item/erp/leash
-	name = "Leash"
+	name = "牵绳"
 	item_path = /obj/item/clothing/erp_leash
 
 /datum/loadout_item/erp/ball_mittens
-	name = "Ball Mittens"
+	name = "球形连指手套"
 	item_path = /obj/item/clothing/gloves/ball_mittens
 
 /datum/loadout_item/erp/collar_shock
-	name = "Shock Collar"
+	name = "电击项圈"
 	item_path = /obj/item/electropack/shockcollar
 
 /datum/loadout_item/erp/collar_mind
-	name = "Mind Collar"
+	name = "心智项圈"
 	item_path = /obj/item/clothing/neck/mind_collar
 
 /datum/loadout_item/erp/collar_size
-	name = "Size Collar (Interlink Only)"
+	name = "尺寸项圈（仅限互联）"
 	item_path = /obj/item/clothing/neck/size_collar
 
 /datum/loadout_item/erp/collar_key
-	name = "Collar Key"
+	name = "项圈钥匙"
 	item_path = /obj/item/key/collar
 
 /datum/loadout_item/erp/latex_straight_jacket
-	name = "Latex Straight Jacket"
+	name = "乳胶束缚衣"
 	item_path = /obj/item/clothing/suit/straight_jacket/latex_straight_jacket
 
 /datum/loadout_item/erp/shackles
-	name = "Shackles"
+	name = "镣铐"
 	item_path = /obj/item/clothing/suit/straight_jacket/shackles
 
 /datum/loadout_item/erp/kinky_sleepbag
-	name = "Latex Sleeping Bag"
+	name = "乳胶睡袋"
 	item_path = /obj/item/clothing/suit/straight_jacket/kinky_sleepbag
 
 /datum/loadout_item/erp/libidine
-	name = "Libidine Contract"
+	name = "力比多契约"
 	item_path = /obj/item/disk/nifsoft_uploader/dorms/contract
 
 /*
@@ -222,85 +222,85 @@
 */
 
 /datum/loadout_item/erp/condom
-	name = "Condom Pack"
+	name = "安全套包"
 	item_path = /obj/item/condom_pack
 
 /datum/loadout_item/erp/serviette_pack
-	name = "Serviette Pack"
+	name = "湿巾包"
 	item_path = /obj/item/serviette_pack
 
 /datum/loadout_item/erp/pillow
-	name = "Fancy Pillow"
+	name = "精美枕头"
 	item_path = /obj/item/fancy_pillow
 
 /datum/loadout_item/erp/crocin
-	name = "Crocin Bottle"
+	name = "克罗辛瓶"
 	item_path = /obj/item/reagent_containers/cup/bottle/crocin
 
 /datum/loadout_item/erp/camphor
-	name = "Camphor Bottle"
+	name = "樟脑瓶"
 	item_path = /obj/item/reagent_containers/cup/bottle/camphor
 
 /datum/loadout_item/erp/hexacrocin
-	name = "Hexacrocin Bottle"
+	name = "六克罗辛瓶"
 	item_path = /obj/item/reagent_containers/cup/bottle/hexacrocin
 
 /datum/loadout_item/erp/pentacamphor
-	name = "Pentacamphor Bottle"
+	name = "五樟脑瓶"
 	item_path = /obj/item/reagent_containers/cup/bottle/pentacamphor
 
 /datum/loadout_item/erp/crocin/pill
-	name = "Crocin Pill"
+	name = "克罗辛药片"
 	item_path = /obj/item/reagent_containers/applicator/pill/crocin
 
 /datum/loadout_item/erp/camphor/pill
-	name = "Camphor Pill"
+	name = "樟脑药片"
 	item_path = /obj/item/reagent_containers/applicator/pill/camphor
 
 /datum/loadout_item/erp/hexacrocin/pill
-	name = "Hexacrocin Pill"
+	name = "六克罗辛药片"
 	item_path = /obj/item/reagent_containers/applicator/pill/hexacrocin
 
 /datum/loadout_item/erp/pentacamphor/pill
-	name = "Pentacamphor Pill"
+	name = "五樟脑药片"
 	item_path = /obj/item/reagent_containers/applicator/pill/pentacamphor
 
 /datum/loadout_item/erp/succubus_milk
-	name = "Succubus Milk Bottle"
+	name = "魅魔乳汁瓶"
 	item_path = /obj/item/reagent_containers/cup/bottle/succubus_milk
 
 /datum/loadout_item/erp/incubus_draft
-	name = "Incubus Draft Bottle"
+	name = "梦魇精粹瓶"
 	item_path = /obj/item/reagent_containers/cup/bottle/incubus_draft
 
 /datum/loadout_item/erp/crocin_neuroware
-	name = "EroStim Neuroware Chip"
+	name = "情欲刺激神经芯片"
 	item_path = /obj/item/disk/neuroware/crocin
 
 /datum/loadout_item/erp/hexacrocin_neuroware
-	name = "EroStim Deluxe Neuroware Chip"
+	name = "情欲刺激豪华神经芯片"
 	item_path = /obj/item/disk/neuroware/hexacrocin
 
 /datum/loadout_item/erp/camphor_neuroware
-	name = "AphroCalm Neuroware Chip"
+	name = "爱神镇静神经芯片"
 	item_path = /obj/item/disk/neuroware/camphor
 
 /datum/loadout_item/erp/pentacamphor_neuroware
-	name = "Nobido Xtreme Neuroware Chip"
+	name = "诺比多极限神经芯片"
 	item_path = /obj/item/disk/neuroware/pentacamphor
 
 /datum/loadout_item/erp/crocin_neuroware_box
-	name = "Neuroware Chips Box (EroStim)"
+	name = "神经芯片盒（情欲刺激）"
 	item_path = /obj/item/storage/box/flat/neuroware/crocin
 
 /datum/loadout_item/erp/hexacrocin_neuroware_box
-	name = "Neuroware Chips Box (EroStim Deluxe)"
+	name = "神经芯片盒（情欲刺激豪华版）"
 	item_path = /obj/item/storage/box/flat/neuroware/hexacrocin
 
 /datum/loadout_item/erp/camphor_neuroware_box
-	name = "Neuroware Chips Box (AphroCalm)"
+	name = "神经芯片盒（爱神镇静）"
 	item_path = /obj/item/storage/box/flat/neuroware/camphor
 
 /datum/loadout_item/erp/pentacamphor_neuroware_box
-	name = "Neuroware Chips Box (Nobido Xtreme)"
+	name = "神经芯片盒（诺比多极限）"
 	item_path = /obj/item/storage/box/flat/neuroware/pentacamphor

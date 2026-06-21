@@ -53,7 +53,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 //Contains the target item datums for Steal objectives.
 /datum/objective_item
 	/// How the item is described in the objective
-	var/name = "a silly bike horn! Honk!"
+	var/name = "一个傻乎乎的自行车喇叭！叭叭！"
 	/// Typepath of item
 	var/targetitem = /obj/item/bikehorn
 	/// Valid containers that the target item can be in.
@@ -132,7 +132,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 // Unique-ish low risk objectives
 /datum/objective_item/steal/traitor/bartender_shotgun
-	name = "the bartender's shotgun"
+	name = "酒保的霰弹枪"
 	targetitem = /obj/item/gun/ballistic/shotgun/doublebarrel
 	excludefromjob = list(JOB_BARTENDER)
 	item_owner = list(JOB_BARTENDER)
@@ -144,7 +144,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/gun/ballistic/shotgun/doublebarrel)
 
 /datum/objective_item/steal/traitor/fireaxe
-	name = "a fire axe"
+	name = "一把消防斧"
 	targetitem = /obj/item/fireaxe
 	excludefromjob = list(
 		JOB_ATMOSPHERIC_TECHNICIAN,
@@ -166,7 +166,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/fireaxe)
 
 /datum/objective_item/steal/traitor/big_crowbar
-	name = "a mech removal tool"
+	name = "一个机甲移除工具"
 	targetitem = /obj/item/crowbar/mechremoval
 	excludefromjob = list(
 		JOB_RESEARCH_DIRECTOR,
@@ -182,7 +182,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/crowbar/mechremoval)
 
 /datum/objective_item/steal/traitor/nullrod
-	name = "the chaplain's null rod"
+	name = "牧师的无效权杖"
 	targetitem = /obj/item/nullrod
 	excludefromjob = list(JOB_CHAPLAIN)
 	item_owner = list(JOB_CHAPLAIN)
@@ -195,7 +195,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/nullrod)
 
 /datum/objective_item/steal/traitor/clown_shoes
-	name = "the clown's shoes"
+	name = "小丑的鞋子"
 	targetitem = /obj/item/clothing/shoes/clown_shoes
 	excludefromjob = list(JOB_CLOWN, JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 	item_owner = list(JOB_CLOWN)
@@ -207,7 +207,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/clothing/shoes/clown_shoes)
 
 /datum/objective_item/steal/traitor/mime_mask
-	name = "the mime's mask"
+	name = "默剧演员的面具"
 	targetitem = /obj/item/clothing/mask/gas/mime
 	excludefromjob = list(JOB_MIME, JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 	item_owner = list(JOB_MIME)
@@ -219,7 +219,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/clothing/mask/gas/mime)
 
 /datum/objective_item/steal/traitor/pka
-	name = "a protokinetic accelerator"
+	name = "一台原动加速器"
 	targetitem = /obj/item/gun/energy/recharge/kinetic_accelerator
 	excludefromjob = list(JOB_SHAFT_MINER, JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 	item_owner = list(JOB_SHAFT_MINER)
@@ -232,7 +232,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /datum/objective_item/steal/traitor/chef_moustache
-	name = "a fancy fake moustache"
+	name = "一副精致的假胡子"
 	targetitem = /obj/item/clothing/mask/fakemoustache/italian
 	excludefromjob = list(JOB_COOK, JOB_HEAD_OF_PERSONNEL, JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 	item_owner = list(JOB_COOK)
@@ -244,7 +244,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/clothing/mask/fakemoustache/italian)
 
 /datum/objective_item/steal/traitor/det_revolver
-	name = "detective's revolver"
+	name = "侦探的左轮手枪"
 	targetitem = /obj/item/gun/ballistic/revolver/c38/detective
 	excludefromjob = list(JOB_DETECTIVE)
 	exists_on_map = TRUE
@@ -256,7 +256,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/gun/ballistic/revolver/c38/detective)
 
 /datum/objective_item/steal/traitor/lawyers_badge
-	name = "the lawyer's badge"
+	name = "律师的徽章"
 	targetitem = /obj/item/clothing/accessory/lawyers_badge
 	excludefromjob = list(JOB_LAWYER)
 	item_owner = list(JOB_LAWYER)
@@ -268,7 +268,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/clothing/accessory/lawyers_badge)
 
 /datum/objective_item/steal/traitor/chief_engineer_belt
-	name = "the chief engineer's belt"
+	name = "总工程师的腰带"
 	targetitem = /obj/item/storage/belt/utility/chief
 	excludefromjob = list(JOB_CHIEF_ENGINEER)
 	exists_on_map = TRUE
@@ -279,7 +279,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/storage/belt/utility/chief)
 
 /datum/objective_item/steal/traitor/telebaton
-	name = "a head of staff's telescopic baton"
+	name = "一位部门主管的伸缩警棍"
 	targetitem = /obj/item/melee/baton/telescopic
 	excludefromjob = list(
 		JOB_RESEARCH_DIRECTOR,
@@ -301,7 +301,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/melee/baton/telescopic)
 
 /datum/objective_item/steal/traitor/cargo_budget
-	name = "cargo's departmental budget"
+	name = "货舱部门的预算"
 	targetitem = /obj/item/card/id/departmental_budget/car
 	excludefromjob = list(JOB_QUARTERMASTER, JOB_CARGO_TECHNICIAN)
 	item_owner = list(JOB_QUARTERMASTER)
@@ -314,7 +314,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/card/id/departmental_budget/car)
 
 /datum/objective_item/steal/traitor/captain_modsuit
-	name = "the captain's magnate MOD control unit"
+	name = "船长的磁石MOD控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/magnate
 	excludefromjob = list(JOB_CAPTAIN)
 	exists_on_map = TRUE
@@ -326,7 +326,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/magnate)
 
 /datum/objective_item/steal/traitor/captain_spare
-	name = "the captain's spare ID"
+	name = "船长的备用ID卡"
 	targetitem = /obj/item/card/id/advanced/gold/captains_spare
 	excludefromjob = list(
 		JOB_RESEARCH_DIRECTOR,
@@ -350,7 +350,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 // Will always generate even with no Captain due to its security and temptation to use it
 /datum/objective_item/steal/caplaser
-	name = "the captain's antique laser gun"
+	name = "船长的古董激光枪"
 	targetitem = /obj/item/gun/energy/laser/captain
 	excludefromjob = list(JOB_CAPTAIN)
 	exists_on_map = TRUE
@@ -362,7 +362,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/gun/energy/laser/captain)
 
 /datum/objective_item/steal/hoslaser
-	name = "the head of security's personal laser gun"
+	name = "安全主管的个人激光枪"
 	targetitem = /obj/item/gun/energy/e_gun/hos
 	excludefromjob = list(JOB_HEAD_OF_SECURITY)
 	item_owner = list(JOB_HEAD_OF_SECURITY)
@@ -375,7 +375,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/gun/energy/e_gun/hos)
 
 /datum/objective_item/steal/compactshotty
-	name = "the warden's personal compact shotgun"
+	name = "典狱长的个人紧凑型霰弹枪"
 	targetitem = /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	excludefromjob = list(JOB_WARDEN)
 	item_owner = list(JOB_WARDEN)
@@ -387,7 +387,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/gun/ballistic/shotgun/automatic/combat/compact)
 
 /datum/objective_item/steal/handtele
-	name = "a hand teleporter"
+	name = "一台手持传送器"
 	targetitem = /obj/item/hand_tele
 	excludefromjob = list(JOB_CAPTAIN, JOB_RESEARCH_DIRECTOR, JOB_HEAD_OF_PERSONNEL)
 	item_owner = list(JOB_CAPTAIN, JOB_RESEARCH_DIRECTOR)
@@ -400,7 +400,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/hand_tele)
 
 /datum/objective_item/steal/jetpack
-	name = "the Captain's jetpack"
+	name = "船长的喷气背包"
 	targetitem = /obj/item/tank/jetpack/captain
 	excludefromjob = list(JOB_CAPTAIN)
 	item_owner = list(JOB_CAPTAIN)
@@ -412,7 +412,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/tank/jetpack/captain)
 
 /datum/objective_item/steal/magboots
-	name = "the chief engineer's advanced magnetic boots"
+	name = "总工程师的高级磁力靴"
 	targetitem = /obj/item/clothing/shoes/magboots/advance
 	excludefromjob = list(JOB_CHIEF_ENGINEER)
 	item_owner = list(JOB_CHIEF_ENGINEER)
@@ -425,7 +425,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/clothing/shoes/magboots/advance)
 
 /datum/objective_item/steal/capmedal
-	name = "the medal of captaincy"
+	name = "船长勋章"
 	targetitem = /obj/item/clothing/accessory/medal/gold/captain
 	excludefromjob = list(JOB_CAPTAIN)
 	item_owner = list(JOB_CAPTAIN)
@@ -439,7 +439,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 /datum/objective_item/steal/hypo
 	//name = "the hypospray" // ORIGINAL
-	name = "the Chief Medical Officer's hypospray" // NOVA EDIT CHANGE
+	name = "首席医疗官的注射器" // NOVA EDIT CHANGE
 	//targetitem = /obj/item/reagent_containers/hypospray/cmo // ORIGINAL
 	targetitem = /obj/item/hypospray/mkii/deluxe/cmo // NOVA EDIT CHANGE
 	excludefromjob = list(JOB_CHIEF_MEDICAL_OFFICER)
@@ -453,7 +453,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/hypospray/mkii/deluxe/cmo) // NOVA EDIT CHANGE
 
 /datum/objective_item/steal/nukedisc
-	name = "the nuclear authentication disk"
+	name = "核认证磁盘"
 	targetitem = /obj/item/disk/nuclear
 	excludefromjob = list(JOB_CAPTAIN)
 	difficulty = 5
@@ -467,7 +467,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return !N.fake
 
 /datum/objective_item/steal/ablative
-	name = "an ablative trenchcoat"
+	name = "一件消能风衣"
 	targetitem = /obj/item/clothing/suit/hooded/ablative
 	excludefromjob = list(JOB_HEAD_OF_SECURITY, JOB_WARDEN)
 	item_owner = list(JOB_HEAD_OF_SECURITY)
@@ -479,7 +479,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/clothing/suit/hooded/ablative)
 
 /datum/objective_item/steal/reactive
-	name = "the reactive teleport armor"
+	name = "那套反应式传送装甲"
 	targetitem = /obj/item/clothing/suit/armor/reactive/teleport
 	excludefromjob = list(JOB_RESEARCH_DIRECTOR)
 	item_owner = list(JOB_RESEARCH_DIRECTOR)
@@ -492,7 +492,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/clothing/suit/armor/reactive/teleport)
 
 /datum/objective_item/steal/documents
-	name = "any set of secret documents of any organization"
+	name = "任何组织的任何一套机密文件"
 	valid_containers = list(/obj/item/folder)
 	targetitem = /obj/item/documents
 	exists_on_map = TRUE
@@ -506,7 +506,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/documents) //Any set of secret documents. Doesn't have to be NT's
 
 /datum/objective_item/steal/nuke_core
-	name = "the heavily radioactive plutonium core from the onboard self-destruct"
+	name = "舰载自毁装置中高度放射性的钚核心"
 	valid_containers = list(/obj/item/nuke_core_container)
 	targetitem = /obj/item/nuke_core
 	exists_on_map = TRUE
@@ -521,7 +521,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	..()
 
 /datum/objective_item/steal/hdd_extraction
-	name = "the source code for Project Goon from the master R&D server mainframe"
+	name = "主研发服务器主机中“Project Goon”的源代码"
 	targetitem = /obj/item/disk/computer/hdd_theft
 	excludefromjob = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_ROBOTICIST, JOB_GENETICIST)
 	item_owner = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST)
@@ -538,7 +538,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 
 /datum/objective_item/steal/supermatter
-	name = "a sliver of a supermatter crystal"
+	name = "一片超物质水晶碎片"
 	targetitem = /obj/item/nuke_core/supermatter_sliver
 	valid_containers = list(/obj/item/nuke_core_container/supermatter)
 	difficulty = 5
@@ -553,7 +553,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 // Doesn't need item_owner = (JOB_AI) because this handily functions as a murder objective if there isn't one
 /datum/objective_item/steal/functionalai
-	name = "a functional AI"
+	name = "一个功能正常的AI"
 	targetitem = /obj/item/aicard
 	difficulty = 5
 	steal_hint = "An intellicard (or MODsuit) containing an active, functional AI."
@@ -584,7 +584,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return FALSE
 
 /datum/objective_item/steal/blueprints
-	name = "the station blueprints"
+	name = "空间站蓝图"
 	targetitem = /obj/item/blueprints
 	excludefromjob = list(JOB_CHIEF_ENGINEER)
 	item_owner = list(JOB_CHIEF_ENGINEER)
@@ -606,7 +606,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return FALSE
 
 /datum/objective_item/steal/blackbox
-	name = "the Blackbox"
+	name = "黑匣子"
 	targetitem = /obj/item/blackbox
 	excludefromjob = list(JOB_CHIEF_ENGINEER, JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 	exists_on_map = TRUE
@@ -621,7 +621,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 // A number of special early-game steal objectives intended to be used with the steal-and-destroy objective.
 // They're basically items of utility or emotional value that may be found on many players or lying around the station.
 /datum/objective_item/steal/traitor/insuls
-	name = "some insulated gloves"
+	name = "一些绝缘手套"
 	targetitem = /obj/item/clothing/gloves/color/yellow
 	excludefromjob = list(JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER)
 	item_owner = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER)
@@ -633,7 +633,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/clothing/gloves/color/yellow)
 
 /datum/objective_item/steal/traitor/moth_plush
-	name = "a cute moth plush toy"
+	name = "一个可爱的飞蛾毛绒玩具"
 	targetitem = /obj/item/toy/plush/moth
 	excludefromjob = list(JOB_PSYCHOLOGIST, JOB_PARAMEDIC, JOB_CHEMIST, JOB_MEDICAL_DOCTOR, JOB_VIROLOGIST, JOB_CHIEF_MEDICAL_OFFICER, JOB_CORONER) // Nova Edit Addition: Virologist
 	exists_on_map = TRUE
@@ -644,7 +644,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/toy/plush/moth)
 
 /datum/objective_item/steal/traitor/lizard_plush
-	name = "a cute lizard plush toy"
+	name = "一个可爱的蜥蜴毛绒玩具"
 	targetitem = /obj/item/toy/plush/lizard_plushie
 	exists_on_map = TRUE
 	difficulty = 1
@@ -654,7 +654,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/toy/plush/lizard_plushie)
 
 /datum/objective_item/steal/traitor/denied_stamp
-	name = "cargo's denied stamp"
+	name = "货物部的“拒绝”印章"
 	targetitem = /obj/item/stamp/denied
 	excludefromjob = list(JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER, JOB_SHAFT_MINER)
 	exists_on_map = TRUE
@@ -665,7 +665,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/stamp/denied)
 
 /datum/objective_item/steal/traitor/granted_stamp
-	name = "cargo's granted stamp"
+	name = "货物部的“批准”印章"
 	targetitem = /obj/item/stamp/granted
 	excludefromjob = list(JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER, JOB_SHAFT_MINER)
 	exists_on_map = TRUE
@@ -676,7 +676,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/stamp/granted)
 
 /datum/objective_item/steal/traitor/space_law
-	name = "a book on space law"
+	name = "一本太空法书籍"
 	targetitem = /obj/item/book/manual/wiki/security_space_law
 	excludefromjob = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_LAWYER, JOB_DETECTIVE)
 	exists_on_map = TRUE
@@ -688,7 +688,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/book/manual/wiki/security_space_law)
 
 /datum/objective_item/steal/traitor/rpd
-	name = "a rapid pipe dispenser"
+	name = "一个快速管道分发器"
 	targetitem = /obj/item/pipe_dispenser
 	excludefromjob = list(
 		JOB_ATMOSPHERIC_TECHNICIAN,
@@ -708,7 +708,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/pipe_dispenser)
 
 /datum/objective_item/steal/traitor/donut_box
-	name = "a box of prized donuts"
+	name = "一盒珍贵的甜甜圈"
 	targetitem = /obj/item/storage/fancy/donut_box
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -734,7 +734,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	objective_type = OBJECTIVE_ITEM_TYPE_SPY
 
 /datum/objective_item/steal/spy/lamarr
-	name = "the Research Director's pet headcrab"
+	name = "研究主管的宠物头蟹"
 	targetitem = /obj/item/clothing/mask/facehugger/lamarr
 	excludefromjob = list(JOB_RESEARCH_DIRECTOR)
 	exists_on_map = TRUE
@@ -745,7 +745,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/clothing/mask/facehugger/lamarr)
 
 /datum/objective_item/steal/spy/disabler
-	name = "a disabler"
+	name = "一把眩晕枪"
 	targetitem = /obj/item/gun/energy/disabler
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -759,7 +759,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	steal_hint = "A hand-held disabler, often found in the possession of Security Officers."
 
 /datum/objective_item/steal/spy/energy_gun
-	name = "an energy gun"
+	name = "一把能量枪"
 	targetitem = /obj/item/gun/energy/e_gun
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -785,7 +785,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		return add_item_to_steal(src, /obj/item/gun/energy/e_gun)
 
 /datum/objective_item/steal/spy/laser_gun
-	name = "a laser gun"
+	name = "一把激光枪"
 	targetitem = /obj/item/gun/energy/laser
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -811,7 +811,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		return add_item_to_steal(src, /obj/item/gun/energy/laser)
 
 /datum/objective_item/steal/spy/shotgun
-	name = "a riot shotgun"
+	name = "一把防暴霰弹枪"
 	targetitem = /obj/item/gun/ballistic/shotgun/riot
 	excludefromjob = list(
 		JOB_DETECTIVE,
@@ -828,7 +828,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/gun/ballistic/shotgun/riot)
 
 /datum/objective_item/steal/spy/temp_gun
-	name = "security's temperature gun"
+	name = "安保的温度枪"
 	targetitem = /obj/item/gun/energy/temperature/security
 	excludefromjob = list(
 		JOB_DETECTIVE,
@@ -845,7 +845,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/gun/energy/temperature/security)
 
 /datum/objective_item/steal/spy/stamp
-	name = "a head of staff's stamp"
+	name = "一位部门主管的印章"
 	targetitem = /obj/item/stamp/head
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -864,7 +864,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/stamp/head)
 
 /datum/objective_item/steal/spy/sunglasses
-	name = "some sunglasses"
+	name = "一副太阳镜"
 	targetitem = /obj/item/clothing/glasses/sunglasses
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -883,7 +883,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		You can also obtain a pair from dissassembling hudglasses."
 
 /datum/objective_item/steal/spy/ce_modsuit
-	name = "the chief engineer's advanced MOD control unit"
+	name = "总工程师的高级MOD控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/advanced
 	excludefromjob = list(JOB_CHIEF_ENGINEER)
 	exists_on_map = TRUE
@@ -894,7 +894,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/advanced)
 
 /datum/objective_item/steal/spy/rd_modsuit
-	name = "the research director's research MOD control unit"
+	name = "研究主管的研究型MOD控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/research
 	excludefromjob = list(JOB_RESEARCH_DIRECTOR)
 	exists_on_map = TRUE
@@ -905,7 +905,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/research)
 
 /datum/objective_item/steal/spy/cmo_modsuit
-	name = "the chief medical officer's rescure MOD control unit"
+	name = "首席医疗官的救援型MOD控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/rescue
 	excludefromjob = list(JOB_CHIEF_MEDICAL_OFFICER)
 	exists_on_map = TRUE
@@ -916,7 +916,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/rescue)
 
 /datum/objective_item/steal/spy/cmo_defib
-	name = "Chief Medical Officer's Compact Defibrillator"
+	name = "首席医疗官的便携式除颤器"
 	targetitem = /obj/item/defibrillator/compact/loaded/cmo
 	excludefromjob = list(JOB_CHIEF_MEDICAL_OFFICER)
 	exists_on_map = TRUE
@@ -927,7 +927,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/defibrillator/compact/loaded/cmo)
 
 /datum/objective_item/steal/spy/hos_modsuit
-	name = "the head of security's safeguard MOD control unit"
+	name = "安保主管的防护型MOD控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/safeguard
 	excludefromjob = list(JOB_HEAD_OF_SECURITY)
 	exists_on_map = TRUE
@@ -938,7 +938,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/safeguard)
 
 /datum/objective_item/steal/spy/stun_baton
-	name = "a stun baton"
+	name = "一根电击警棍"
 	targetitem = /obj/item/melee/baton/security
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -955,7 +955,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return !istype(thing, /obj/item/melee/baton/security/cattleprod)
 
 /datum/objective_item/steal/spy/det_baton
-	name = "the detective's baton"
+	name = "侦探的警棍"
 	targetitem = /obj/item/melee/baton
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -977,7 +977,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		return add_item_to_steal(src, /obj/item/melee/baton)
 
 /datum/objective_item/steal/spy/captain_sabre_sheathe
-	name = "the captain's sabre sheathe"
+	name = "船长的军刀鞘"
 	targetitem = /obj/item/storage/belt/sheath/sabre
 	excludefromjob = list(JOB_CAPTAIN)
 	exists_on_map = TRUE

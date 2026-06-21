@@ -112,7 +112,7 @@
  * This happens when a non-heretic fails the minigame. Their arm is ripped straight off and thrown into the rift.
  */
 /datum/fish_source/dimensional_rift/proc/on_epic_fail(mob/user, datum/fishing_challenge/challenge, success)
-	challenge.location.visible_message(span_danger("[challenge.location]'s tendrils lash out and pull on [user]'s [user.get_active_hand()], ripping it clean off and throwing it towards itself!"))
+	challenge.location.visible_message(span_danger("[challenge.location]的触须猛然抽出，拽住[user]的[user.get_active_hand()]，将其齐根扯断并抛向自身！"))
 	var/obj/item/bodypart/random_arm = user.get_active_hand()
 	if (random_arm.dismember(BRUTE, FALSE))
 		random_arm.forceMove(user.drop_location())
@@ -130,12 +130,12 @@
 		if(!is_type_in_list(thingy, list(/obj/item/bodypart, /obj/item/fishing_rod)) && (thingy != used_rod))
 			continue
 		thingy.forceMove(location)
-		location.visible_message(span_danger("Tendrils lash out from [location] and greedily drag [thingy] inwards. You're probably never seeing [thingy] again."))
+		location.visible_message(span_danger("触须从[location]中猛烈抽出，贪婪地将[thingy]拖入内部。你大概再也见不到[thingy]了。"))
 
 /datum/fish_source/dimensional_rift/proc/arm_fished(atom/spawn_location)
 	var/obj/item/bodypart/arm/random_arm = pick(subtypesof(/obj/item/bodypart/arm))
 	random_arm = new random_arm(spawn_location)
-	spawn_location.visible_message(span_notice("A [random_arm] is snatched up from beneath the eldritch depths of [spawn_location]!"))
+	spawn_location.visible_message(span_notice("一只[random_arm]从[spawn_location]那不可名状的深渊之下被猛地拽了上来！"))
 	return random_arm
 
 /datum/fish_source/dimensional_rift/proc/influence_fished(mob/user, datum/fishing_challenge/challenge)
@@ -145,14 +145,14 @@
 	if(ishuman(user))
 		human_user = user
 
-	user.visible_message(span_danger("[user] reels [user.p_their()] [challenge.used_rod] in, catching a glimpse into the world beyond!"), span_notice("You catch.. a glimpse into the workings of the Mansus itself!"))
+	user.visible_message(span_danger("[user]收回了[user.p_their()]的[challenge.used_rod]，瞥见了彼世的光景！"), span_notice("你瞥见了……灵界本身的运作！"))
 	// Heretics that fish in the rift gain knowledge.
 	if(IS_HERETIC(user))
 		human_user?.add_mood_event("rift fishing", /datum/mood_event/rift_fishing)
 		var/obj/effect/heretic_influence/fishfluence = challenge.location
 		// But only if it's an open rift
 		if(!istype(fishfluence))
-			to_chat(user, span_notice("You glimpse something fairly uninteresting."))
+			to_chat(user, span_notice("你瞥见了一些相当无趣的东西。"))
 			return
 		fishfluence.after_drain(user)
 		var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
@@ -162,7 +162,7 @@
 			// They can also gain an extra influence point if they infused their rod.
 			if(HAS_TRAIT(challenge.used_rod, TRAIT_ROD_MANSUS_INFUSED))
 				heretic_datum.adjust_knowledge_points(1)
-			to_chat(user, span_boldnotice("Your infused rod improves your knowledge gain!"))
+			to_chat(user, span_boldnotice("你的灌注鱼竿提升了知识获取效率！"))
 		return
 
 	// Non-heretics instead go crazy

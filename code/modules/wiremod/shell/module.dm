@@ -1,6 +1,6 @@
 /obj/item/mod/module/circuit
-	name = "MOD circuit adapter module"
-	desc = "A module shell that allows a circuit to be inserted into, and interface with, a MODsuit."
+	name = "MOD电路适配器模块"
+	desc = "一种模块外壳，能够将电路插入其中，并与模块服进行连接。"
 	module_type = MODULE_USABLE
 	complexity = 1
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.5
@@ -125,7 +125,7 @@
 		return FALSE
 	if(!mod.active || mod.activating)
 		if(mod.wearer)
-			module.balloon_alert(mod.wearer, "not active!")
+			module.balloon_alert(mod.wearer, "未激活！")
 		return FALSE
 	circuit_component.user.set_output(owner)
 	circuit_component.signal.set_output(COMPONENT_SIGNAL)
@@ -137,7 +137,7 @@
 
 /obj/item/circuit_component/mod_adapter_core
 	display_name = "MOD circuit adapter core"
-	desc = "Provides a reference to the MODsuit's occupant and allows the circuit to toggle the MODsuit."
+	desc = "为模块服的使用者提供一个参考，并允许电路切换模块服。"
 
 	/// The MODsuit module this circuit is associated with
 	var/obj/item/mod/module/attached_module

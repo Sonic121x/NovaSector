@@ -31,7 +31,7 @@
 	var/treatment_delay = base_treat_time * self_penalty_mult * scanned_mult
 
 	if(victim == user)
-		victim.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] realigning [victim.p_their()] [limb.plaintext_zone] with [I]."), span_warning("You begin realigning your [limb.plaintext_zone] with [I][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
+		victim.visible_message(span_danger("[user] 开始[scanned ? "expertly" : ""]用[victim.p_their()]重新对齐[limb.plaintext_zone]的[I]。"), span_warning("你开始用[limb.plaintext_zone][I]重新对齐你的[scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
 	else
 		user.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] realigning [victim]'s [limb.plaintext_zone] with [I]."), span_notice("You begin realigning [victim]'s [limb.plaintext_zone] with [I][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
 
@@ -40,7 +40,7 @@
 
 	if(victim == user)
 		limb.receive_damage(brute=25, wound_bonus=CANT_WOUND)
-		victim.visible_message(span_danger("[user] finishes realigning [victim.p_their()] [limb.plaintext_zone] with a disturbing <b>crunch</b>!"), span_userdanger("You reset your [limb.plaintext_zone] with a disturbing <b>crunch</b>!"))
+		victim.visible_message(span_danger("[user]以一声令人不安的<b>咔嚓</b>声重新固定了[victim.p_their()]的[limb.plaintext_zone]！"), span_userdanger("You reset your [limb.plaintext_zone] with a disturbing <b>crunch</b>!"))
 	else
 		limb.receive_damage(brute=20, wound_bonus=CANT_WOUND)
 		user.visible_message(span_danger("[user] finishes realigning [victim]'s [limb.plaintext_zone] with a disturbing <b>crunch</b>!"), span_nicegreen("You finish realigning [victim]'s [limb.plaintext_zone] with a disturbing <b>crunch</b>!"), ignored_mobs=victim)
@@ -63,7 +63,7 @@
 	var/treatment_delay = base_treat_time * self_penalty_mult * scanned_mult
 
 	if(victim == user)
-		victim.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] realigning [victim.p_their()] [limb.plaintext_zone] with [I]."), span_warning("You begin realigning your [limb.plaintext_zone] with [I][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
+		victim.visible_message(span_danger("[user]开始[scanned ? "expertly" : ""]用[victim.p_their()]重新对齐[limb.plaintext_zone]的[I]。"), span_warning("你开始用[limb.plaintext_zone][I]重新对齐你的[scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
 	else
 		user.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] realigning [victim]'s [limb.plaintext_zone] with [I]."), span_notice("You begin realigning [victim]'s [limb.plaintext_zone] with [I][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
 
@@ -72,7 +72,7 @@
 
 	if(victim == user)
 		limb.receive_damage(brute=45, wound_bonus=CANT_WOUND)
-		victim.visible_message(span_danger("[user] finishes realigning [victim.p_their()] [limb.plaintext_zone] with a disturbing <b>crunch</b>!"), span_userdanger("You reset your [limb.plaintext_zone] with a disturbing <b>crunch</b>!"))
+		victim.visible_message(span_danger("[user]以一声令人不安的<b>咔嚓</b>声完成了对[victim.p_their()] [limb.plaintext_zone]的复位！"), span_userdanger("You reset your [limb.plaintext_zone] with a disturbing <b>crunch</b>!"))
 	else
 		limb.receive_damage(brute=40, wound_bonus=CANT_WOUND)
 		user.visible_message(span_danger("[user] finishes realigning [victim]'s [limb.plaintext_zone] with a disturbing <b>crunch</b>!"), span_nicegreen("You finish realigning [victim]'s [limb.plaintext_zone] with a disturbing <b>crunch</b>!"), ignored_mobs=victim)
@@ -169,7 +169,7 @@
 	SIGNAL_HANDLER
 
 	tool_behaviour = (active ? TOOL_BONESET : TOOL_BLOODFILTER)
-	balloon_alert(user, "tools set to [active ? "set bones" : "filter blood"]")
+	balloon_alert(user, "工具设置为[active ? "set bones" : "filter blood"]")
 	playsound(user ? user : src, 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 

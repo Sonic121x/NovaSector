@@ -1,7 +1,7 @@
 //Look Sir, free crabs!
 /mob/living/basic/crab
-	name = "crab"
-	desc = "Free crabs!"
+	name = "螃蟹"
+	desc = "免费螃蟹！"
 	icon_state = "crab"
 	icon_living = "crab"
 	icon_dead = "crab_dead"
@@ -39,29 +39,29 @@
 
 //COFFEE! SQUEEEEEEEEE!
 /mob/living/basic/crab/coffee
-	name = "Coffee"
+	name = "咖啡"
 	real_name = "Coffee"
-	desc = "It's Coffee, the other pet!"
+	desc = "这是咖啡，另一只宠物！"
 	gender = FEMALE
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/crab/jon //holodeck crab
-	name = "Jon"
+	name = "乔恩"
 	real_name = "Jon"
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/crab/evil
-	name = "Evil Crab"
+	name = "邪恶螃蟹"
 	real_name = "Evil Crab"
-	desc = "Unnerving, isn't it? It has to be planning something nefarious..."
+	desc = "令人不安，不是吗？它肯定在策划什么邪恶的勾当..."
 	icon_state = "evilcrab"
 	icon_living = "evilcrab"
 	icon_dead = "evilcrab_dead"
 	gold_core_spawnable = FRIENDLY_SPAWN
 
 /mob/living/basic/crab/kreb
-	name = "Kreb"
-	desc = "This is a real crab. The other crabs are simply gubbucks in disguise!"
+	name = "克雷布"
+	desc = "这是一只真正的螃蟹。其他螃蟹都只是伪装起来的嘎巴克！"
 	real_name = "Kreb"
 	icon_state = "kreb"
 	icon_living = "kreb"
@@ -69,7 +69,7 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/crab/evil/kreb
-	name = "Evil Kreb"
+	name = "邪恶克雷布"
 	real_name = "Evil Kreb"
 	icon_state = "evilkreb"
 	icon_living = "evilkreb"

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(mapping)
-	name = "Mapping"
+	name = "地图系统"
 	dependencies = list(
 		/datum/controller/subsystem/job,
 		/datum/controller/subsystem/processing/station,
@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(mapping)
 		var/datum/map_config/old_config = current_map
 		current_map = config.defaultmap
 		if(!current_map || current_map.defaulted)
-			to_chat(world, span_boldannounce("Unable to load next or default map config, defaulting to [old_config.map_name]."))
+			to_chat(world, span_boldannounce("无法加载下一个或默认地图配置，回退到[old_config.map_name]。"))
 			current_map = old_config
 	plane_offset_to_true = list()
 	true_to_offset_planes = list()
@@ -587,23 +587,23 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away mission for the station.", ADMIN_CATEGORY_EVENTS)
 	if(!GLOB.the_gateway)
-		if(tgui_alert(user, "There's no home gateway on the station. You sure you want to continue ?", "Uh oh", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "空间站上没有主网关。你确定要继续吗？", "呃哦", list("Yes", "No")) != "Yes")
 			return
 
 	var/list/possible_options = GLOB.potentialRandomZlevels + "Custom"
 	var/away_name
 	var/datum/space_level/away_level
 	var/secret = FALSE
-	if(tgui_alert(user, "Do you want your mission secret? (This will prevent ghosts from looking at your map in any way other than through a living player's eyes.)", "Are you $$$ekret?", list("Yes", "No")) == "Yes")
+	if(tgui_alert(user, "你希望你的任务保密吗？（这将阻止幽灵以任何方式查看你的地图，除非通过活着的玩家的视角。）", "你是$$$秘密吗？", list("Yes", "No")) == "Yes")
 		secret = TRUE
-	var/answer = input(user, "What kind?","Away") as null|anything in possible_options
+	var/answer = input(user, "哪种类型？","远征") as null|anything in possible_options
 	switch(answer)
 		if("Custom")
-			var/mapfile = input(user, "Pick file:", "File") as null|file
+			var/mapfile = input(user, "选择文件：", "文件") as null|file
 			if(!mapfile)
 				return
 			away_name = "[mapfile] custom"
-			to_chat(user, span_notice("Loading [away_name]..."), MESSAGE_TYPE_DEBUG)
+			to_chat(user, span_notice("正在加载[away_name]..."), MESSAGE_TYPE_DEBUG)
 			var/datum/map_template/template = new(mapfile, "Away Mission")
 			away_level = template.load_new_z(secret)
 		else
@@ -893,12 +893,12 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 		if(!check_rights(R_DEBUG))
 			return
 		var/confirmation_string = "This will load every single away mission in the [map_directory] directory. This might cause a bit of lag that can only be cleared on a world restart. Are you sure you want to do this?"
-		confirmation_alert_result = tgui_alert(usr, confirmation_string, "DEBUG ONLY!!!", list("Yes", "Cancel"))
+		confirmation_alert_result = tgui_alert(usr, confirmation_string, "仅限调试！！！", list("Yes", "Cancel"))
 		if(confirmation_alert_result != "Yes")
 			return
 
 		var/current_wait_time = CONFIG_GET(number/gateway_delay)
-		switch(tgui_alert(usr, "Do you want to zero out the cooldown for access to these maps? Currently [DisplayTimeText(current_wait_time)]", "OH FUCK!!!", list("Yes", "No", "Cancel")))
+		switch(tgui_alert(usr, "你想要将这些地图的访问冷却时间清零吗？当前为 [DisplayTimeText(current_wait_time)]", "卧槽！！！", list("Yes", "No", "Cancel")))
 			if("No")
 				new_wait = current_wait_time
 			if("Cancel")

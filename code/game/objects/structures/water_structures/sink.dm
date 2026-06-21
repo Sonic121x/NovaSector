@@ -113,8 +113,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 		washing_face = TRUE
 
 	playsound(src, 'sound/machines/sink-faucet.ogg', 50)
-	user.visible_message(span_notice("[user] starts washing [user.p_their()] [washing_face ? "face" : "hands"]..."), \
-						span_notice("You start washing your [washing_face ? "face" : "hands"]..."))
+	user.visible_message(span_notice("[user]开始清洗[user.p_their()] [washing_face ? "face" : "hands"]..."), \
+						span_notice("你开始清洗你的[washing_face ? "face" : "hands"]..."))
 	busy = TRUE
 
 	if(!do_after(user, 4 SECONDS, target = src))
@@ -130,47 +130,47 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 	else if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		if(!human_user.wash_hands(CLEAN_WASH))
-			to_chat(user, span_warning("Your hands are covered by something!"))
+			to_chat(user, span_warning("你的手被什么东西盖住了！"))
 			return
 	else
 		user.wash(CLEAN_WASH)
 
-	user.visible_message(span_notice("[user] washes [user.p_their()] [washing_face ? "face" : "hands"] using [src]."), \
-						span_notice("You wash your [washing_face ? "face" : "hands"] using [src]."))
+	user.visible_message(span_notice("[user] 用 [user.p_their()] 清洗了 [washing_face ? "face" : "hands"] [src]。"), \
+						span_notice("你用 [washing_face ? "face" : "hands"] 清洗了你的 [src]。"))
 
 /obj/structure/sink/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = NONE
 	if(busy)
-		to_chat(user, span_warning("Someone's already washing here!"))
+		to_chat(user, span_warning("已经有人在这里清洗了！"))
 		return ITEM_INTERACT_FAILURE
 
 	if(is_reagent_container(tool))
 		var/obj/item/reagent_containers/RG = tool
 		if(!reagents.total_volume)
-			to_chat(user, span_notice("\The [src] is dry."))
+			to_chat(user, span_notice("\The [src] 是干的。"))
 			return ITEM_INTERACT_FAILURE
 		if(RG.is_refillable())
 			if(!RG.reagents.holder_full())
 				reagents.trans_to(RG, RG.amount_per_transfer_from_this, transferred_by = user)
 				START_PROCESSING(SSobj, src)
-				to_chat(user, span_notice("You fill [RG] from [src]."))
+				to_chat(user, span_notice("你从 [RG] 装满了 [src]。"))
 				return ITEM_INTERACT_SUCCESS
-			to_chat(user, span_notice("\The [RG] is full."))
+			to_chat(user, span_notice("\The [RG] 已经满了。"))
 		return ITEM_INTERACT_FAILURE
 
 	if(istype(tool, /obj/item/mop) || astype(tool, /obj/item/rag)?.blood_level == 0)
 		if(!reagents.total_volume)
-			to_chat(user, span_notice("\The [src] is dry."))
+			to_chat(user, span_notice("\The [src] 是干的。"))
 			return ITEM_INTERACT_FAILURE
 		reagents.trans_to(tool, 5, transferred_by = user)
 		START_PROCESSING(SSobj, src)
-		to_chat(user, span_notice("You wet [tool] in [src]."))
+		to_chat(user, span_notice("你在 [tool] 中弄湿了 [src]。"))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stock_parts/water_recycler))
 		if(has_water_reclaimer)
-			to_chat(user, span_warning("There is already has a water recycler installed."))
+			to_chat(user, span_warning("已经安装了一个水循环器了。"))
 			return ITEM_INTERACT_FAILURE
 
 		playsound(src, 'sound/machines/click.ogg', 20, TRUE)
@@ -181,19 +181,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 
 	if(istype(tool, /obj/item/storage/fancy/pickles_jar))
 		if(tool.contents.len)
-			to_chat(user, span_notice("Looks like there's something left in the jar"))
+			to_chat(user, span_notice("看起来罐子里还剩下一些东西"))
 			return ITEM_INTERACT_FAILURE
 		qdel(tool)
-		to_chat(user, span_notice("You washed the jar, ridding it of the brine."))
+		to_chat(user, span_notice("你清洗了罐子，去除了里面的盐水。"))
 		user.put_in_active_hand(new /obj/item/reagent_containers/cup/beaker/large(loc))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!user.combat_mode || (tool.item_flags & NOBLUDGEON))
 		if(reagents.total_volume < 5)
-			to_chat(user, span_warning("The sink is dry!"))
+			to_chat(user, span_warning("水槽是干的！"))
 			return ITEM_INTERACT_FAILURE
 
-		to_chat(user, span_notice("You start washing [tool]..."))
+		to_chat(user, span_notice("你开始清洗[tool]..."))
 		playsound(src, 'sound/machines/sink-faucet.ogg', 50)
 
 		var/obj/item/melee/baton/security/baton = tool
@@ -201,7 +201,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 			flick("baton_active", src)
 			user.Paralyze(baton.knockdown_time)
 			user.set_stutter(baton.knockdown_time)
-			user.visible_message(span_warning("[user] shocks [user.p_them()]self while attempting to wash the active [baton.name]!"), \
+			user.visible_message(span_warning("[user]在试图清洗仍在开启状态的[user.p_them()]时电到了[baton.name]自己！"), \
 								span_userdanger("You unwisely attempt to wash [baton] while it's still on."))
 			playsound(src, baton.on_stun_sound, 50, TRUE)
 			return ITEM_INTERACT_FAILURE
@@ -291,9 +291,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink/kitchen, (-16))
 /obj/item/wallframe/sinkframe/examine(mob/user)
 	. = ..()
 	if(result_path == /obj/structure/sink/greyscale/filled)
-		. += span_notice("It has a [EXAMINE_HINT("water recycler")] installed.")
+		. += span_notice("它已安装了[EXAMINE_HINT("water recycler")]。")
 	else
-		. += span_notice("It can be fitted with a [EXAMINE_HINT("water recycler")].")
+		. += span_notice("它可以安装一个[EXAMINE_HINT("water recycler")]。")
 
 /obj/item/wallframe/sinkframe/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = NONE

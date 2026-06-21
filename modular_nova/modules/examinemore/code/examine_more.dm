@@ -33,7 +33,7 @@ would only be recognisable with someone that had the syndicate trait.
 /obj/item/examine(mob/user)
 	. = ..()
 	if(special_desc_requirement == EXAMINE_CHECK_NONE && special_desc)
-		. += span_notice("This item could be examined further...")
+		. += span_notice("此物品可进一步检视...")
 
 /obj/item/examine_more(mob/user)
 	. = ..()
@@ -107,7 +107,7 @@ would only be recognisable with someone that had the syndicate trait.
 			if(EXAMINE_CHECK_CONTRACTOR)
 				var/mob/living/carbon/human/human_user = user
 				if(ROLE_DRIFTING_CONTRACTOR in human_user.mind.special_roles)
-					composed_message = "You note the following because of your [span_red("<b>Contractor Status</b>")]: <br>"
+					composed_message = "你因自己的[span_red("<b>Contractor Status</b>")]注意到以下信息：<br>"
 					composed_message += special_desc
 					. += composed_message
 				else if(HAS_TRAIT(human_user, TRAIT_DETECTIVE))  //Useful detective!
@@ -124,7 +124,7 @@ would only be recognisable with someone that had the syndicate trait.
 */
 
 /obj/item/storage/backpack/duffelbag/syndie
-	name = "duffel bag"
-	desc = "A large duffel bag for holding extra supplies."
+	name = "行李袋"
+	desc = "一个用于存放额外补给的大型行李袋。"
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
 	special_desc = "This bag is used to store tactical equipment and is manufactured by the syndicate."

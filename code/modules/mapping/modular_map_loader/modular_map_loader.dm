@@ -38,7 +38,7 @@ INITIALIZE_IMMEDIATE(/obj/modular_map_root)
 	qdel(src, force=TRUE)
 
 /datum/map_template/map_module
-	name = "Base Map Module Template"
+	name = "基础地图模块模板"
 
 	var/x_offset = 0
 	var/y_offset = 0

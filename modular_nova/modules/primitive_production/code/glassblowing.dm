@@ -9,8 +9,8 @@
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 
 /obj/item/glassblowing/glass_globe
-	name = "glass globe"
-	desc = "A glass bowl that is capable of carrying things."
+	name = "玻璃球"
+	desc = "一个能够盛放物品的玻璃碗。"
 	icon_state = "glass_globe"
 	material_flags = MATERIAL_COLOR
 	custom_materials = list(
@@ -32,36 +32,36 @@
 	return ..()
 
 /obj/item/glassblowing/glass_lens
-	name = "glass lens"
-	desc = "A convex glass lens that would make an excellent magnifying glass if it were attached to a handle."
+	name = "玻璃透镜"
+	desc = "一个凸面玻璃透镜，如果装上把手，就能成为一个绝佳的放大镜。"
 	icon_state = "glass_lens"
 
 /obj/item/reagent_containers/cup/bowl/blowing_glass
-	name = "glass bowl"
-	desc = "A glass bowl that is capable of carrying things."
+	name = "玻璃碗"
+	desc = "一个能够盛放物品的玻璃碗。"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "glass_bowl"
 	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT)
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
 
 /obj/item/reagent_containers/cup/beaker/large/blowing_glass
-	name = "glass cup"
-	desc = "A glass cup that is capable of carrying liquids."
+	name = "玻璃杯"
+	desc = "一个能够盛放液体的玻璃杯。"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "glass_cup"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
 
 /obj/item/plate/blowing_glass
-	name = "glass plate"
-	desc = "A glass plate that is capable of carrying things."
+	name = "玻璃盘"
+	desc = "一个能够盛放物品的玻璃盘。"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "glass_plate"
 	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT)
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
 
 /obj/item/glassblowing/molten_glass
-	name = "molten glass"
-	desc = "A glob of molten glass, ready to be shaped into art."
+	name = "熔融玻璃"
+	desc = "一团熔融的玻璃，已准备好被塑造成艺术品。"
 	icon_state = "molten_glass"
 	///the cooldown if it's still molten / requires heating up
 	COOLDOWN_DECLARE(remaining_heat)
@@ -96,7 +96,7 @@
  */
 /obj/item/glassblowing/molten_glass/proc/try_burn_user(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, remaining_heat))
-		to_chat(user, span_warning("You burn your hands trying to pick up [src]!"))
+		to_chat(user, span_warning("你试图捡起[src]时烫伤了手！"))
 		user.emote("scream")
 		user.dropItemToGround(src)
 		var/obj/item/bodypart/affecting = user.get_active_hand()
@@ -104,8 +104,8 @@
 		return affecting?.receive_damage(0, 15, wound_bonus = CANT_WOUND)
 
 /obj/item/glassblowing/blowing_rod
-	name = "blowing rod"
-	desc = "A tool that is used to hold the molten glass as well as help shape it."
+	name = "吹制杆"
+	desc = "一种用于固定熔融玻璃并帮助塑形的工具。"
 	icon_state = "blow_pipe_empty"
 	tool_behaviour = TOOL_BLOWROD
 	/// Whether the rod is in use currently; will try to prevent many other actions on it
@@ -136,7 +136,7 @@
  */
 /obj/item/glassblowing/proc/get_examine_message(obj/item/glassblowing/molten_glass/glass)
 	if(COOLDOWN_FINISHED(glass, remaining_heat))
-		. += span_warning("The glass has cooled down and will require reheating to modify! ")
+		. += span_warning("玻璃已经冷却，需要重新加热才能修改！")
 	if(!length(glass.steps_remaining))
 		return
 	if(glass.steps_remaining[STEP_BLOW])
@@ -156,12 +156,12 @@
 		return NONE
 
 	if(glass_ref?.resolve())
-		to_chat(user, span_warning("[src] already has some glass on it!"))
+		to_chat(user, span_warning("[src]上面已经有玻璃了！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(attacking_glass, src))
 		return ITEM_INTERACT_BLOCKING
 	glass_ref = WEAKREF(attacking_glass)
-	to_chat(user, span_notice("[src] picks up [attacking_glass]."))
+	to_chat(user, span_notice("[src] 拾起了 [attacking_glass]。"))
 	icon_state = "blow_pipe_full"
 	return ITEM_INTERACT_SUCCESS
 
@@ -171,12 +171,12 @@
 
 	if(istype(attacking_item, /obj/item/glassblowing/molten_glass))
 		if(glass)
-			to_chat(user, span_warning("[src] already has some glass on it still!"))
+			to_chat(user, span_warning("[src] 上面还有一些玻璃！"))
 			return
 		if(!user.transferItemToLoc(attacking_item, src))
 			return
 		glass_ref = WEAKREF(attacking_item)
-		to_chat(user, span_notice("[src] picks up [attacking_item]."))
+		to_chat(user, span_notice("[src] 拾起了 [attacking_item]。"))
 		icon_state = "blow_pipe_full"
 		return
 
@@ -288,7 +288,7 @@
 				glass.chosen_item = null
 				glass.steps_remaining = null
 				glass.is_finished = FALSE
-				to_chat(usr, span_notice("You start over with the [src]."))
+				to_chat(usr, span_notice("你开始重新处理 [src]。"))
 
 
 /**
@@ -365,7 +365,7 @@
 		return
 
 	if(COOLDOWN_FINISHED(glass, remaining_heat))
-		balloon_alert(user, "glass too cool!")
+		balloon_alert(user, "玻璃太凉了！")
 		return FALSE
 
 	if(in_use)
@@ -382,7 +382,7 @@
 		in_use = FALSE
 		return FALSE
 
-	to_chat(user, span_notice("You begin to [step_id] [src]."))
+	to_chat(user, span_notice("你开始 [step_id] [src]。"))
 	if(!do_after(user, actioning_speed, target = src))
 		fail_message("You interrupt an action!", user)
 		REMOVE_TRAIT(tool_to_use, TRAIT_CURRENTLY_GLASSBLOWING, TRAIT_GLASSBLOWING)
@@ -398,7 +398,7 @@
 	REMOVE_TRAIT(tool_to_use, TRAIT_CURRENTLY_GLASSBLOWING, TRAIT_GLASSBLOWING)
 	in_use = FALSE
 
-	to_chat(user, span_notice("You finish trying to [step_id] [src]."))
+	to_chat(user, span_notice("你完成了对 [src] 的 [step_id] 尝试。"))
 	user.mind.adjust_experience(/datum/skill/production, 10)
 
 
@@ -437,7 +437,7 @@
 
 	if(step_id == STEP_BLOW || step_id == STEP_SPIN)
 		if(HAS_TRAIT(user, TRAIT_CURRENTLY_GLASSBLOWING))
-			balloon_alert(user, "already glassblowing!")
+			balloon_alert(user, "已经在吹制玻璃了！")
 			return FALSE
 
 		ADD_TRAIT(user, TRAIT_CURRENTLY_GLASSBLOWING, TRAIT_GLASSBLOWING)
@@ -453,11 +453,11 @@
 			used_tool = user.is_holding_item_of_type(/obj/item/glassblowing/jacks)
 
 	if(!used_tool)
-		balloon_alert(user, "need the right tool!")
+		balloon_alert(user, "需要正确的工具！")
 		return FALSE
 
 	if(HAS_TRAIT(used_tool, TRAIT_CURRENTLY_GLASSBLOWING))
-		balloon_alert(user, "already in use!")
+		balloon_alert(user, "已在使用了！")
 		return FALSE
 
 	ADD_TRAIT(used_tool, TRAIT_CURRENTLY_GLASSBLOWING, TRAIT_GLASSBLOWING)
@@ -484,48 +484,48 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/glassblowing_recipe/glass_blowing_rod
-	name = "Glass-blowing Blowing Rod"
+	name = "玻璃吹制吹管"
 	result = /obj/item/glassblowing/blowing_rod
 
 /obj/item/glassblowing/jacks
-	name = "jacks"
-	desc = "A tool that helps shape glass during the art process."
+	name = "夹钳"
+	desc = "一种在艺术加工过程中帮助塑造玻璃的工具。"
 	icon_state = "jacks"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /datum/crafting_recipe/glassblowing_recipe/glass_jack
-	name = "Glass-blowing Jacks"
+	name = "玻璃吹制夹钳"
 	result = /obj/item/glassblowing/jacks
 
 /obj/item/glassblowing/paddle
-	name = "paddle"
-	desc = "A tool that helps shape glass during the art process."
+	name = "拍板"
+	desc = "一种在艺术加工过程中帮助塑造玻璃的工具。"
 	icon_state = "paddle"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /datum/crafting_recipe/glassblowing_recipe/glass_paddle
-	name = "Glass-blowing Paddle"
+	name = "玻璃吹制拍板"
 	result = /obj/item/glassblowing/paddle
 
 /obj/item/glassblowing/shears
-	name = "shears"
-	desc = "A tool that helps shape glass during the art process."
+	name = "剪刀"
+	desc = "一种在玻璃艺术加工过程中帮助塑形的工具。"
 	icon_state = "shears"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /datum/crafting_recipe/glassblowing_recipe/glass_shears
-	name = "Glass-blowing Shears"
+	name = "玻璃吹制剪"
 	result = /obj/item/glassblowing/shears
 
 /obj/item/glassblowing/metal_cup
-	name = "metal cup"
-	desc = "A tool that helps shape glass during the art process."
+	name = "金属杯"
+	desc = "一种在玻璃艺术加工过程中帮助塑形的工具。"
 	icon_state = "metal_cup_empty"
 	var/has_sand = FALSE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /datum/crafting_recipe/glassblowing_recipe/glass_metal_cup
-	name = "Glass-blowing Metal Cup"
+	name = "玻璃吹制金属杯"
 	result = /obj/item/glassblowing/metal_cup
 
 /obj/item/glassblowing/metal_cup/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)

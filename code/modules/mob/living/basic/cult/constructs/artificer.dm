@@ -1,5 +1,5 @@
 /mob/living/basic/construct/artificer
-	name = "Artificer"
+	name = "工匠"
 	real_name = "Artificer"
 	desc = "A bulbous construct dedicated to building and maintaining the Cult of Nar'Sie's armies."
 	icon_state = "artificer"
@@ -44,7 +44,7 @@
 
 // Alternate artificer themes
 /mob/living/basic/construct/artificer/angelic
-	desc = "A bulbous construct dedicated to building and maintaining holy armies."
+	desc = "一个球状的构装体，致力于建造和维护神圣军队。"
 	faction = list(FACTION_HOLY)
 	theme = THEME_HOLY
 	construct_spells = list(

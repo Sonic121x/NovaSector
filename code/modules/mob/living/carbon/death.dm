@@ -24,7 +24,7 @@
 	var/atom/Tsec = drop_location()
 	for(var/mob/M in src)
 		M.forceMove(Tsec)
-		visible_message(span_danger("[M] bursts out of [src]!"))
+		visible_message(span_danger("[M]从[src]体内爆裂而出！"))
 	return ..()
 
 /mob/living/carbon/get_gibs_type(drop_bitflags = NONE)
@@ -105,6 +105,6 @@
 	if(!..())
 		return FALSE
 	if(!(mobility_flags & MOBILITY_USE)) //just while I finish up the new 'fun' suiciding verb. This is to prevent metagaming via suicide
-		to_chat(src, span_warning("You can't commit suicide whilst immobile! (You can type Ghost instead however)."))
+		to_chat(src, span_warning("你无法在无法动弹时自杀！（不过你可以输入Ghost指令）。"))
 		return FALSE
 	return TRUE

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(profiler)
-	name = "Profiler"
+	name = "性能分析器"
 	init_stage = INITSTAGE_FIRST
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 	wait = 300 SECONDS

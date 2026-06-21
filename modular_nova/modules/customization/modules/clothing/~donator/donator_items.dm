@@ -1,11 +1,11 @@
 //In the event someone needs one.
 /obj/item/storage/box/donator
-	name = "personal items box"
-	desc = "It's full of things you brought from home."
+	name = "个人物品箱"
+	desc = "里面装满了你从家里带来的东西。"
 
 //Donator reward for UltramariFox
 /obj/item/cigarette/khi
-	name = "\improper Kitsuhana Singularity cigarette"
+	name = "\improper 北狐奇点香烟"
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "khioff"
@@ -19,7 +19,7 @@
 	icon_state = "khibutt"
 
 /obj/item/storage/fancy/cigarettes/khi
-	name = "\improper Kitsuhana Singularity packet"
+	name = "\improper 北狐奇点烟盒"
 	icon = 'modular_nova/master_files/icons/obj/cigarettes_khi.dmi'
 	icon_state = "khi_cig_packet"
 	base_icon_state = "khi_cig_packet"
@@ -27,11 +27,11 @@
 
 //Donator reward for Stonetear
 /obj/item/hairbrush/switchblade
-	name = "switchcomb"
+	name = "弹簧梳"
 	icon = 'modular_nova/master_files/icons/donator/obj/custom.dmi'
 	icon_state = "switchblade"
 	base_icon_state = "switchblade"
-	desc = "A sharp, concealable, spring-loaded comb."
+	desc = "一把锋利、可隐藏的弹簧式梳子。"
 	hitsound = 'sound/items/weapons/genhit.ogg'
 	resistance_flags = FIRE_PROOF
 	var/extended = FALSE
@@ -51,11 +51,11 @@
 /// This makes it so you have to extend it.
 /obj/item/hairbrush/switchblade/attack(mob/target, mob/user)
 	if(!extended)
-		to_chat(user, span_warning("Try extending the blade first, silly!"))
+		to_chat(user, span_warning("先试试把刀刃弹出来啊，笨蛋！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(target.stat == DEAD)
-		to_chat(user, span_warning("There isn't much point brushing someone who can't appreciate it!"))
+		to_chat(user, span_warning("给一个不懂得欣赏的人梳头没什么意义！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	brush(target, user)
@@ -71,7 +71,7 @@
 
 //Donation reward for Thedragmeme, avalible to craft publicly
 /datum/crafting_recipe/stellar_bouquet
-	name = "stellar bouquet"
+	name = "星辰花束"
 	result = /obj/item/bouquet/stellar
 	reqs = list(
 		/obj/item/food/grown/poppy/lily = 2,
@@ -82,8 +82,8 @@
 	category = CAT_ENTERTAINMENT
 
 /obj/item/donator/transponder
-	name = "broken Helian transponder"
-	desc = "Used by Helians to communicate with their mothership, the screen is cracked and its edges scuffed. This one has seen better days."
+	name = "损坏的赫利安应答器"
+	desc = "被赫利安人用来与母舰通信，屏幕碎裂，边缘磨损。这东西已经风光不再了。"
 	icon = 'modular_nova/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	lefthand_file = 'modular_nova/master_files/icons/donator/mob/inhands/donator_left.dmi'
@@ -181,8 +181,8 @@
 	new /obj/item/clothing/glasses/hud/ar/projector/science/sqn(src)
 
 /obj/vehicle/ridden/wheelchair/hardlight
-	name = "hardlight wheelchair"
-	desc = "A wheelchair made out of hardlight, propulsed by miniaturized bluespace technology."
+	name = "硬光轮椅"
+	desc = "一把由硬光制成的轮椅，由微型化的蓝空技术驱动。"
 	alpha = 150 // Just to help differentiate it from a real wheelchair, and to show that it's a bit squishier.
 	max_integrity = 10 //standard wheelchairs have 100, motorized 150
 	/// The projector associated with this wheelchair.
@@ -209,7 +209,7 @@
 /obj/vehicle/ridden/wheelchair/hardlight/post_unbuckle_mob()
 	. = ..()
 
-	visible_message(span_notice("[src] flickers and disappears as the hardlight emitters disengage."))
+	visible_message(span_notice("[src] 闪烁并随着硬光发射器关闭而消失。"))
 	qdel(src)
 
 
@@ -229,8 +229,8 @@
 
 // The actual item they will be using.
 /obj/item/holosign_creator/hardlight_wheelchair
-	name = "hardlight wheelchair emitter"
-	desc = "An emitter which projects a ridable but fragile wheelchair made out of hardlight."
+	name = "硬光轮椅发射器"
+	desc = "一个能投射出可骑乘但脆弱的硬光轮椅的发射器。"
 	icon_state = "signmaker_med"
 	holosign_type = /obj/vehicle/ridden/wheelchair/hardlight
 	max_signs = 1
@@ -238,18 +238,18 @@
 
 /obj/item/holosign_creator/hardlight_wheelchair/examine(mob/user)
 	. = ..()
-	. += span_tinynoticeital("\n<i>There's something etched on the underside of the handle, you can look again to take a closer look...</i>")
+	. += span_tinynoticeital("\n<i>手柄下方似乎刻着什么，你可以再仔细看看……</i>")
 
 
 /obj/item/holosign_creator/hardlight_wheelchair/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<i>Etched underneath the handle is the following message:</i>\n")
-	. += span_smallnoticeital("\"I told you I would find a way to make it all easier.\" - A.H.")
+	. += span_notice("<i>手柄下方刻有如下信息：</i>\n")
+	. += span_smallnoticeital("\"我告诉过你我会找到让这一切都变简单的方法。\" - A.H.")
 
 
 /datum/action/innate/nanite_leg_reinforcement
-	name = "Toggle Leg Reinforcement"
-	desc = "Gain the ability to stand temporarily."
+	name = "切换腿部强化"
+	desc = "获得暂时站立的能力。"
 	button_icon = 'icons/obj/clothing/shoes.dmi'
 	button_icon_state = "jackboots"
 	/// Type of the quirk we want to stash away.
@@ -270,8 +270,8 @@
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /obj/item/nanite_leg_reinforcement
-	name = "nanite leg reinforcement"
-	desc = "Gives you the ability to channel your nanites into letting you stand for a time."
+	name = "纳米腿部强化装置"
+	desc = "让你能够引导纳米机器人，使你能够站立一段时间。"
 	icon = 'modular_nova/modules/modular_implants/icons/obj/nifs.dmi'
 	icon_state = "base_nif"
 	/// Which action this item grants you.
@@ -281,26 +281,26 @@
 	. = ..()
 	var/mob/living/living_user = user
 	if(!istype(user) || !living_user.has_quirk(/datum/quirk/paraplegic))
-		to_chat(user, "You feel like [src] wouldn't be very helpful to you.")
+		to_chat(user, "你觉得[src]对你没什么帮助。")
 		return
 	var/datum/action/action = new action_to_grant(user)
 	action.Grant(user)
-	to_chat(user, "[src] vanishes in a puff of smoke!")
+	to_chat(user, "[src] 在一阵烟雾中消失了！")
 	qdel(src)
 
 /obj/item/lipstick/quantum/sqn
-	name = "\improper SW:10KK lipstick"
-	desc = "Starlight Wanderers brand Ten Thousand Kisses lipstick with adjustable pigmentation. Guaranteed not to smudge, stain, or leave lip prints unless you want it to. This tube looks heavily used."
+	name = "\improper SW:10KK 唇膏"
+	desc = "星光漫游者牌万吻口红，可调节色素。保证不晕染、不沾色、不留唇印，除非您希望如此。这支口红看起来使用痕迹很重。"
 
 /obj/item/clothing/glasses/hud/ar/projector/science/sqn
-	name = "micro-retinal display"
-	desc = "A retinal display so small, it's invisible to everyone but you."
+	name = "微视网膜显示器"
+	desc = "一个如此微小的视网膜显示器，除了你之外对所有人都不可见。"
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/misc.dmi'
 	worn_icon_state = "gear_harness"
 
 /obj/item/instrument/piano_synth/headphones/catear_headphone
-	name = "Cat-Ear Headphones"
-	desc = "Merch of their Electric Guitarist Demi Galgan from the Singularity Shredders. It's heavily customizable and even comes with a holographic tail!"
+	name = "猫耳耳机"
+	desc = "奇点撕裂者乐队电吉他手黛米·加尔甘的周边商品。它高度可定制，甚至还带有一条全息尾巴！"
 	worn_icon = 'modular_nova/modules/GAGS/icons/head/catear_headphone.dmi'
 	lefthand_file = 'modular_nova/modules/GAGS/icons/head/catear_headphone_inhand.dmi'
 	righthand_file = 'modular_nova/modules/GAGS/icons/head/catear_headphone_inhand.dmi'
@@ -345,8 +345,8 @@
 	. += emissive_appearance('modular_nova/modules/GAGS/icons/head/catear_headphone.dmi', "catearphones_obj_lights_emissive", src, alpha = src.alpha)
 
 /obj/item/clothing/head/cone_of_shame
-	name = "collar cone"
-	desc = "A protective guard used to prevent infections. Its advertisement claims it is: \"used to prevent unnecessary scratching, biting or licking of wounds to better facilitate healing. Works on people and pets alike!\" You question its efficacy, while also feeling a mild sense of shame while wearing it."
+	name = "项圈锥"
+	desc = "一种用于防止感染的防护罩。其广告宣称它：“用于防止不必要的抓挠、啃咬或舔舐伤口，以更好地促进愈合。对人和宠物同样有效！”你质疑它的功效，同时佩戴时也感到一丝轻微的羞耻。"
 	base_icon_state = "cone"
 	icon_state = "cone"
 	worn_icon_state = "cone_close"
@@ -410,8 +410,8 @@
 
 // Kaynite Donor Item
 /obj/item/storage/backpack/merctac_backpack
-	name = "\improper Xplore Go! bag"
-	desc = "A versatile, single strap backpack from the survival outfitter Xplore. A 20 litre pack coupled with a detachable thermal water bottle and O2 cannister, for trekking amongst the stars."
+	name = "\improper Xplore Go! 背包"
+	desc = "来自生存装备商Xplore的多功能单肩背包。一个20升的背包，配有一个可拆卸的保温水瓶和氧气罐，用于星际徒步旅行。"
 	icon_state = "xplore_go_bag"
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/back.dmi'
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/back.dmi'
@@ -419,14 +419,14 @@
 
 // Latinfishy & HollandaiseSauce Donor Item
 /obj/item/device/custom_kit/ak105
-	name = "\improper AK-105 modernization kit"
-	desc = "Old gun parts to convert the Miezc into an AK-105."
+	name = "\improper AK-105 现代化改装套件"
+	desc = "用于将米耶茨步枪改装为AK-105的旧枪械零件。"
 	from_obj = /obj/item/gun/ballistic/automatic/miecz
 	to_obj = /obj/item/gun/ballistic/automatic/miecz/ak105
 
 /obj/item/gun/ballistic/automatic/miecz/ak105
-	name = "\improper AK-105 SBR"
-	desc = "A light-weight assault rifle modernized to be chambered in .27-54 Cesarzowa with a high rate of fire."
+	name = "\improper AK-105 短管步枪"
+	desc = "一款经过现代化改造的轻型突击步枪，使用.27-54 Cesarzowa弹药，射速高。"
 	lore_blurb = "An ancient design that has routes in the old sol nation of the Russian Federation, this rifle has been heavily modified with a modified barrel for extended firefights \
 		alongside a modified grip allowing it to be used most form of combat gloves alongside being able to have a good grip with wet hands, the stock has been swapped for a completely \
 		polymer design giving it a good form."

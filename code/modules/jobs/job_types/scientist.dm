@@ -1,6 +1,6 @@
 /datum/job/scientist
 	title = JOB_SCIENTIST
-	description = "Do experiments, perform research, feed the slimes, make bombs."
+	description = "做实验，进行研究，喂食史莱姆，制造炸弹。"
 	faction = FACTION_STATION
 	total_positions = 5
 	spawn_positions = 3
@@ -37,7 +37,7 @@
 
 
 /datum/outfit/job/scientist
-	name = "Scientist"
+	name = "科学家"
 	jobtype = /datum/job/scientist
 
 	id_trim = /datum/id_trim/job/scientist
@@ -66,7 +66,7 @@
 
 /// A version of the scientist outfit that is guaranteed to be the same every time
 /datum/outfit/job/scientist/consistent
-	name = "Scientist - Consistent"
+	name = "科学家 - 通用"
 
 /datum/outfit/job/scientist/consistent/try_giving_horrible_tie()
 	return

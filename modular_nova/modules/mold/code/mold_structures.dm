@@ -77,7 +77,7 @@
  * The core
  */
 /obj/structure/mold/structure/core
-	name = "core"
+	name = "核心"
 	icon = 'modular_nova/modules/mold/icons/blob_core.dmi'
 	icon_state = "blob_core"
 	layer = TABLE_LAYER
@@ -148,8 +148,8 @@
  * Mold resin
  */
 /obj/structure/mold/resin
-	name = "mold"
-	desc = "It looks like mold, but it seems alive."
+	name = "霉菌"
+	desc = "它看起来像霉菌，但似乎有生命。"
 	icon = 'modular_nova/modules/mold/icons/blob_resin.dmi'
 	icon_state = "blob_floor"
 	density = FALSE
@@ -237,7 +237,7 @@
  * Bulbs
  */
 /obj/structure/mold/structure/bulb
-	name = "bulb"
+	name = "球茎"
 	icon = 'modular_nova/modules/mold/icons/blob_bulb.dmi'
 	icon_state = "blob_bulb_empty"
 	density = FALSE
@@ -325,8 +325,8 @@
  * Wall
  */
 /obj/structure/mold/structure/wall
-	name = "mold wall"
-	desc = "Looks like some kind of thick resin."
+	name = "霉菌墙"
+	desc = "看起来像是某种厚厚的树脂。"
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "resin_wall-0"
 	base_icon_state = "resin_wall"
@@ -348,8 +348,8 @@
  * Conditioner
  */
 /obj/structure/mold/structure/conditioner
-	name = "pulsating vent"
-	desc = "An unsightly vent, it appears to be puffing something out."
+	name = "脉动通风口"
+	desc = "一个难看的通风口，它似乎在向外喷出什么东西。"
 	density = FALSE
 	icon = 'modular_nova/modules/mold/icons/blob_spawner.dmi'
 	icon_state = "blob_vent"
@@ -389,7 +389,7 @@
  * Hatchery
  */
 /obj/structure/mold/structure/spawner
-	name = "hatchery"
+	name = "孵化场"
 	icon = 'modular_nova/modules/mold/icons/blob_spawner.dmi'
 	icon_state = "blob_spawner"
 	density = FALSE

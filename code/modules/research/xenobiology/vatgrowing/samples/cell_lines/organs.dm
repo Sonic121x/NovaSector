@@ -1,6 +1,6 @@
 /// Cell lines for organ cytology, letting you duplicate or grow new mutant strains!
 /datum/micro_organism/cell_line/organs
-	desc = "dense tissue"
+	desc = "致密组织"
 	growth_rate = 1
 	consumption_rate = REAGENTS_METABOLISM
 
@@ -13,7 +13,7 @@
 		organ.maxHealth *= .
 
 /datum/micro_organism/cell_line/organs/heart
-	desc = "dense heart tissue"
+	desc = "致密心脏组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue)
 
@@ -30,7 +30,7 @@
 	resulting_atom = /obj/item/organ/heart
 
 /datum/micro_organism/cell_line/organs/heart/evolved
-	desc = "dense evolved heart tissue"
+	desc = "致密进化心脏组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue)
 
@@ -44,7 +44,7 @@
 	resulting_atom = /obj/item/organ/heart/evolved
 
 /datum/micro_organism/cell_line/organs/heart/sacred
-	desc = "dense sacred heart tissue"
+	desc = "致密神圣心脏组织"
 	growth_rate = parent_type::growth_rate * 0.5
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue, /datum/reagent/water/holywater)
@@ -58,7 +58,7 @@
 	resulting_atom = /obj/item/organ/heart/evolved/sacred
 
 /datum/micro_organism/cell_line/organs/heart/corrupt
-	desc = "dense corrupted heart tissue"
+	desc = "致密腐化心脏组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue)
 
@@ -75,7 +75,7 @@
 	resulting_atom = /obj/item/organ/heart/corrupt
 
 /datum/micro_organism/cell_line/organs/lungs
-	desc = "dense lung tissue"
+	desc = "致密肺组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue)
 
@@ -92,7 +92,7 @@
 	resulting_atom = /obj/item/organ/lungs
 
 /datum/micro_organism/cell_line/organs/lungs/evolved
-	desc = "dense evolved lung tissue"
+	desc = "致密进化肺组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue)
 
@@ -106,7 +106,7 @@
 	resulting_atom = /obj/item/organ/lungs/evolved
 
 /datum/micro_organism/cell_line/organs/liver
-	desc = "dense liver tissue"
+	desc = "致密肝脏组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue)
 
@@ -123,7 +123,7 @@
 	resulting_atom = /obj/item/organ/liver
 
 /datum/micro_organism/cell_line/organs/liver/evolved
-	desc = "dense evolved liver tissue"
+	desc = "致密进化肝脏组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue)
 
@@ -137,7 +137,7 @@
 	resulting_atom = /obj/item/organ/liver/evolved
 
 /datum/micro_organism/cell_line/organs/liver/bloody
-	desc = "spongy liver tissue"
+	desc = "海绵状肝脏组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue, /datum/reagent/blood)
 
@@ -150,7 +150,7 @@
 	resulting_atom = /obj/item/organ/liver/bloody
 
 /datum/micro_organism/cell_line/organs/liver/distillery
-	desc = "alcoholic liver tissue"
+	desc = "酒精性肝脏组织"
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue, /datum/reagent/consumable/ethanol)
 
 	supplementary_reagents = list(
@@ -166,7 +166,7 @@
 	resulting_atom = /obj/item/organ/liver/distillery
 
 /datum/micro_organism/cell_line/organs/stomach
-	desc = "dense stomach tissue"
+	desc = "致密的胃组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue/stomach_lining)
 
@@ -183,7 +183,7 @@
 	resulting_atom = /obj/item/organ/stomach
 
 /datum/micro_organism/cell_line/organs/stomach/evolved
-	desc = "dense evolved stomach tissue"
+	desc = "致密的进化胃组织"
 
 	required_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue/stomach_lining)
 

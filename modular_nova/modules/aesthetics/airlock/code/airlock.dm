@@ -420,7 +420,7 @@
 //TRAM
 
 /obj/machinery/door/airlock/tram
-	name = "tram door"
+	name = "轨道车门"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/tram/tram.dmi'
 	overlays_file = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/tram/tram_overlays.dmi'
 	doorOpen = 'sound/machines/tram/tramopen.ogg'
@@ -530,62 +530,62 @@
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/station/wood.dmi'
 
 /obj/structure/door_assembly/door_assembly_corporate
-	name = "corporate airlock assembly"
+	name = "企业气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/station/corporate.dmi'
 	glass_type = /obj/machinery/door/airlock/corporate/glass
 	airlock_type = /obj/machinery/door/airlock/corporate
 
 /obj/structure/door_assembly/door_assembly_service
-	name = "service airlock assembly"
+	name = "服务气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/station/service.dmi'
 	base_name = "service airlock"
 	glass_type = /obj/machinery/door/airlock/service/glass
 	airlock_type = /obj/machinery/door/airlock/service
 
 /obj/structure/door_assembly/door_assembly_captain
-	name = "captain airlock assembly"
+	name = "舰长气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/cap.dmi'
 	glass_type = /obj/machinery/door/airlock/command/glass
 	airlock_type = /obj/machinery/door/airlock/captain
 
 /obj/structure/door_assembly/door_assembly_hop
-	name = "head of personnel airlock assembly"
+	name = "人事主管气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/hop.dmi'
 	glass_type = /obj/machinery/door/airlock/command/glass
 	airlock_type = /obj/machinery/door/airlock/hop
 
 /obj/structure/door_assembly/hos
-	name = "head of security airlock assembly"
+	name = "安全主管气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/hos.dmi'
 	glass_type = /obj/machinery/door/airlock/hos/glass
 	airlock_type = /obj/machinery/door/airlock/hos
 
 /obj/structure/door_assembly/door_assembly_cmo
-	name = "chief medical officer airlock assembly"
+	name = "首席医疗官气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/cmo.dmi'
 	glass_type = /obj/machinery/door/airlock/cmo/glass
 	airlock_type = /obj/machinery/door/airlock/cmo
 
 /obj/structure/door_assembly/door_assembly_ce
-	name = "chief engineer airlock assembly"
+	name = "首席工程师气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/ce.dmi'
 	glass_type = /obj/machinery/door/airlock/ce/glass
 	airlock_type = /obj/machinery/door/airlock/ce
 
 /obj/structure/door_assembly/door_assembly_rd
-	name = "research director airlock assembly"
+	name = "研究主管气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/rd.dmi'
 	glass_type = /obj/machinery/door/airlock/rd/glass
 	airlock_type = /obj/machinery/door/airlock/rd
 
 /obj/structure/door_assembly/door_assembly_qm
-	name = "quartermaster airlock assembly"
+	name = "军需官气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/qm.dmi'
 	glass_type = /obj/machinery/door/airlock/qm/glass
 	airlock_type = /obj/machinery/door/airlock/qm
 
 /obj/structure/door_assembly/door_assembly_psych
-	name = "psychologist airlock assembly"
+	name = "心理学家气闸门组件"
 	icon = 'modular_nova/modules/aesthetics/airlock/icons/airlocks/psych.dmi'
 	glass_type = /obj/machinery/door/airlock/medical/glass
 	airlock_type = /obj/machinery/door/airlock/psych

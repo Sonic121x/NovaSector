@@ -1,5 +1,5 @@
 /datum/crafting_recipe/shutters
-	name = "Shutters"
+	name = "百叶窗"
 	reqs = list(
 		/obj/item/stack/sheet/plasteel = 5,
 		/obj/item/stack/cable_coil = 5,
@@ -12,7 +12,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF
 
 /datum/crafting_recipe/blast_doors
-	name = "Blast Door"
+	name = "防爆门"
 	reqs = list(
 		/obj/item/stack/sheet/plasteel = 15,
 		/obj/item/stack/cable_coil = 15,

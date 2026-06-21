@@ -1,8 +1,8 @@
 #define OPERATION_OBJECTIVE "objective"
 
 /datum/surgery_operation/organ/brainwash
-	name = "brainwash"
-	desc = "Implant a directive into the patient's brain, making it their absolute priority."
+	name = "洗脑"
+	desc = "向患者大脑植入一条指令，使其成为其绝对优先事项。"
 	rnd_name = "Neural Brainwashing (Brainwash)"
 	rnd_desc = "A surgical procedure which directly implants a directive into the patient's brain, \
 		making it their absolute priority. It can be cleared using a mindshield implant."
@@ -76,7 +76,7 @@
 	organ.apply_organ_damage(40)
 
 /datum/surgery_operation/organ/brainwash/mechanic
-	name = "reprogram"
+	name = "重新编程"
 	rnd_name = "Neural Reprogramming (Brainwash)"
 	rnd_desc = "Install malware which directly implants a directive into the robotic patient's operating system, \
 		making it their absolute priority. It can be cleared using a mindshield implant."
@@ -93,7 +93,7 @@
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/organ/brainwash/sleeper
-	name = "install sleeper agent directive"
+	name = "安装休眠特工指令"
 	rnd_name = "Sleeper Agent Implantation (Brainwash)"
 	preop_sound = 'sound/items/handling/surgery/hemostat1.ogg'
 	success_sound = 'sound/items/handling/surgery/hemostat1.ogg'
@@ -133,7 +133,7 @@
 	brainwashed.gain_trauma(new /datum/brain_trauma/mild/phobia/conspiracies(), TRAUMA_RESILIENCE_LOBOTOMY)
 
 /datum/surgery_operation/organ/brainwash/sleeper/mechanic
-	name = "install sleeper agent programming"
+	name = "安装休眠特工程序"
 	rnd_name = "Sleeper Agent Programming (Brainwash)"
 	implements = list(
 		TOOL_MULTITOOL = 1.15,

@@ -367,9 +367,9 @@
 		total_step_added += step_add
 
 	#ifdef REAGENTS_TESTING //Kept in so that people who want to write fermireactions can contact me with this log so I can help them
-	debug_admins(span_green("Reaction step active for:[reaction.type]"))
+	debug_admins(span_green("反应步骤激活：[reaction.type]"))
 	debug_admins(span_notice("|Reaction conditions| Temp: [holder.chem_temp], pH: [holder.ph], reactions: [length(holder.reaction_list)], no. reagents:[length(holder.reagent_list)]"))
-	debug_admins(span_warning("Reaction vars: PreReacted:[reacted_vol] of [step_target_vol] of total [target_vol]. delta_t [delta_t], multiplier [multiplier], delta_chem_factor [delta_chem_factor] Pfactor [product_ratio], purity of [purity] from a delta_ph of [delta_ph]. DeltaTime: [seconds_per_tick]"))
+	debug_admins(span_warning("反应变量：预反应体积：[reacted_vol] / [step_target_vol]，总量：[target_vol]。Δt [delta_t]，乘数 [multiplier]，Δ化学因子 [delta_chem_factor] 产物因子 [product_ratio]，纯度 [purity]（ΔpH [delta_ph]）。时间增量：[seconds_per_tick]"))
 	#endif
 
 	//Apply thermal output of reaction to beaker

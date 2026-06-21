@@ -1,7 +1,7 @@
 #define SHAPESHIFTER_ACTIONS_ICON_FILE 'modular_nova/modules/shapeshifter_quirk/icons/actions_shapeshift.dmi'
 
 /datum/action/innate/alter_form/quirk
-	name = "Shapeshift"
+	name = "变形"
 	slime_restricted =  FALSE
 	button_icon = 'modular_nova/master_files/icons/mob/actions/actions_slime.dmi'
 	button_icon_state = "dna"

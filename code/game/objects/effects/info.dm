@@ -1,6 +1,6 @@
 /// An info button that, when clicked, puts some text in the user's chat
 /obj/effect/abstract/info
-	name = "info"
+	name = "信息"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "info"
 

@@ -31,8 +31,8 @@
 	update_greyscale()
 
 /obj/item/clothing/shoes/sneakers/black
-	name = "black shoes"
-	desc = "A pair of black shoes."
+	name = "黑帆布鞋"
+	desc = "一双黑鞋"
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1 // same icon/color as base type
 	custom_price = PAYCHECK_CREW
 
@@ -42,13 +42,13 @@
 	max_heat_protection_temperature = SHOES_MAX_TEMP_PROTECT
 
 /obj/item/clothing/shoes/sneakers/brown
-	name = "brown shoes"
-	desc = "A pair of brown shoes."
+	name = "棕帆布鞋"
+	desc = "一双棕鞋"
 	icon_state = "/obj/item/clothing/shoes/sneakers/brown"
 	greyscale_colors = "#472c21#ffffff"
 
 /obj/item/clothing/shoes/sneakers/blue
-	name = "blue shoes"
+	name = "蓝帆布鞋"
 	icon_state = "/obj/item/clothing/shoes/sneakers/blue"
 	greyscale_colors = "#4f88df#ffffff"
 	armor_type = /datum/armor/sneakers_blue
@@ -57,28 +57,28 @@
 	bio = 95
 
 /obj/item/clothing/shoes/sneakers/green
-	name = "green shoes"
+	name = "绿帆布鞋"
 	icon_state = "/obj/item/clothing/shoes/sneakers/green"
 	greyscale_colors = "#3bca5a#ffffff"
 
 /obj/item/clothing/shoes/sneakers/yellow
-	name = "yellow shoes"
+	name = "黄帆布鞋"
 	icon_state = "/obj/item/clothing/shoes/sneakers/yellow"
 	greyscale_colors = "#deb63d#ffffff"
 
 /obj/item/clothing/shoes/sneakers/purple
-	name = "purple shoes"
+	name = "紫帆布鞋"
 	icon_state = "/obj/item/clothing/shoes/sneakers/purple"
 	greyscale_colors = "#7e1980#ffffff"
 
 /obj/item/clothing/shoes/sneakers/red
-	name = "red shoes"
-	desc = "Stylish red shoes."
+	name = "红帆布鞋"
+	desc = "时尚的红色帆布鞋。"
 	icon_state = "/obj/item/clothing/shoes/sneakers/red"
 	greyscale_colors = "#a52f29#ffffff"
 
 /obj/item/clothing/shoes/sneakers/white
-	name = "white shoes"
+	name = "白帆布鞋"
 	icon_state = "/obj/item/clothing/shoes/sneakers/white"
 	greyscale_colors = "#ffffff#ffffff"
 	armor_type = /datum/armor/sneakers_white
@@ -87,8 +87,8 @@
 	bio = 95
 
 /obj/item/clothing/shoes/sneakers/rainbow
-	name = "rainbow shoes"
-	desc = "Very gay shoes."
+	name = "彩虹鞋"
+	desc = "很GAY鞋"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	icon_state = "rain_bow"
 	post_init_icon_state = null
@@ -102,7 +102,7 @@
 	flags_1 = NONE
 
 /obj/item/clothing/shoes/sneakers/orange
-	name = "orange shoes"
+	name = "橘帆布鞋"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/sneakers/orange"
 	post_init_icon_state = "sneakers"
@@ -148,7 +148,7 @@
 
 /obj/item/clothing/shoes/sneakers/orange/attack_self(mob/user)
 	if(attached_cuffs)
-		to_chat(user, span_notice("You remove [attached_cuffs] from [src]."))
+		to_chat(user, span_notice("你将[attached_cuffs]从[src]上取下。"))
 		if(Adjacent(user)) //tk is love, tk is life.
 			user.put_in_hands(attached_cuffs)
 		else
@@ -169,7 +169,7 @@
 
 /obj/item/clothing/shoes/sneakers/orange/can_mob_unequip(mob/user)
 	if(user.get_item_by_slot(slot_flags) == src && attached_cuffs)
-		to_chat(user, span_warning("You need help taking these off!"))
+		to_chat(user, span_warning("你需要别人帮忙才能脱下这些！"))
 		return FALSE
 	return ..()
 
@@ -177,18 +177,18 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/c = user
 		if(c.shoes == src && attached_cuffs)
-			to_chat(c, span_warning("You need help taking these off!"))
+			to_chat(c, span_warning("你需要别人帮忙才能脱下这些！"))
 			return
 	return ..()
 
 /obj/item/clothing/shoes/sneakers/mime
-	name = "mime shoes"
+	name = "默剧鞋"
 	icon_state = "/obj/item/clothing/shoes/sneakers/mime"
 	greyscale_colors = "#ffffff#ffffff"
 
 /obj/item/clothing/shoes/sneakers/marisa
-	desc = "A pair of magic black shoes."
-	name = "magic shoes"
+	desc = "一双拥有魔力的黑帆布鞋。"
+	name = "魔法鞋"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/sneakers/marisa"
 	post_init_icon_state = "sneakers"
@@ -201,7 +201,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/sneakers/cyborg
-	name = "cyborg boots"
-	desc = "Shoes for a cyborg costume."
+	name = "赛博靴"
+	desc = "与赛博服配套的鞋。"
 	icon_state = "/obj/item/clothing/shoes/sneakers/cyborg"
 	greyscale_colors = "#4e4e4e#4e4e4e"

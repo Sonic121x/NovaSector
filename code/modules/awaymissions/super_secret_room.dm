@@ -1,7 +1,7 @@
 /obj/structure/speaking_tile
-	name = "strange tile"
-	desc = "A weird tile that beckons you towards it. Maybe it can help you get out of this mess..."
-	verb_say = "intones"
+	name = "奇怪的瓷砖"
+	desc = "一块奇特的瓷砖，仿佛在召唤着你走向它。也许它能帮你摆脱这困境……"
+	verb_say = "吟诵"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "speaking_tile"
 	layer = FLY_LAYER
@@ -70,8 +70,8 @@
 		if(251)
 			SpeakPeace(list("Anyway, here.", "I can't give you anything that would impact the progression of the round.","But you've earned this at least."))
 			var/obj/item/reagent_containers/cup/glass/trophy/silver_cup/the_ride = new(get_turf(user))
-			the_ride.name = "Overextending The Joke: Second Place"
-			the_ride.desc = "There's a point where this needed to stop, and we've clearly passed it."
+			the_ride.name = "过度炒作的笑话：第二名"
+			the_ride.desc = "总会有这样一个时刻，此时这种行为就应该停止了，而我们显然已经超越了这个界限。"
 		if(252)
 			SpeakPeace(list("You know what this means right?", "Of course it's not over!", "The question becomes now is it more impressive to solider on to an unknown finish, or to have to common sense to stop here?"))
 		if(666)
@@ -81,8 +81,8 @@
 		if(5643)
 			user.client.give_award(/datum/award/achievement/misc/time_waste, user)
 			var/obj/item/reagent_containers/cup/glass/trophy/gold_cup/never_ends = new(get_turf(user))
-			never_ends.name = "Overextending The Joke: First Place"
-			never_ends.desc = "And so we are left alone with our regrets."
+			never_ends.name = "过度炒作的笑话：第一名"
+			never_ends.desc = "于是我们独自与悔恨相伴。"
 		else
 			y += 2
 	speaking = FALSE
@@ -114,8 +114,8 @@
 			sleep(3 SECONDS)
 
 /obj/item/rupee
-	name = "weird crystal"
-	desc = "Your excitement boils away as you realize it's just colored glass. Why would someone hoard these things?"
+	name = "奇怪的晶体"
+	desc = "当你意识到这些不过是彩色玻璃时，你的兴奋劲儿就消退了。真不明白为什么有人会把这些东西囤积起来呢？"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "rupee"
 	w_class = WEIGHT_CLASS_SMALL

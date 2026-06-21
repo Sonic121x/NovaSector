@@ -4,43 +4,43 @@ they get called in files like interdyne_crates.dm and interdyne_kits.dm
 */
 
 /obj/item/reagent_containers/cup/beaker/omnizine
-	name = "Omnizine Beaker"
+	name = "Omnizine烧杯"
 	list_reagents = list(/datum/reagent/medicine/omnizine = 60)
 
 /obj/item/reagent_containers/cup/beaker/sal_acid
-	name = "Salicylic-Acid Beaker"
+	name = "水杨酸烧杯"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 60)
 
 /obj/item/reagent_containers/cup/beaker/dyne_brutemix
-	name = "Sal-Acid/Lib Beaker (BRUTE)"
+	name = "水杨酸/利比烧杯（钝伤）"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 30, /datum/reagent/medicine/c2/libital = 30)
 
 /obj/item/reagent_containers/cup/beaker/dyne_burnmix
-	name = "Lent/Oxan Beaker (BURN)"
+	name = "伦特/奥克桑烧杯（烧伤）"
 	list_reagents = list(/datum/reagent/medicine/c2/lenturi = 30, /datum/reagent/medicine/oxandrolone = 30)
 
 /obj/item/reagent_containers/cup/beaker/dyne_oxytox
-	name = "Con/Seiv Beaker (OXY/TOX)"
+	name = "康/赛弗烧杯（缺氧/毒素）"
 	list_reagents = list(/datum/reagent/medicine/c2/convermol = 30, /datum/reagent/medicine/c2/seiver = 30)
 
 /obj/item/reagent_containers/cup/beaker/oxandrolone
-	name = "Oxandrolone Beaker"
+	name = "奥沙雄龙烧杯"
 	list_reagents = list(/datum/reagent/medicine/oxandrolone = 60)
 
 /obj/item/reagent_containers/cup/beaker/pen_acid
-	name = "Pentetic Acid Beaker"
+	name = "喷替酸烧杯"
 	list_reagents = list(/datum/reagent/medicine/pen_acid = 60)
 
 /obj/item/reagent_containers/cup/beaker/atropine
-	name = "Atropine Beaker"
+	name = "阿托品烧杯"
 	list_reagents = list(/datum/reagent/medicine/atropine = 60)
 
 /obj/item/reagent_containers/cup/beaker/salbutamol
-	name = "Salbutamol Beaker"
+	name = "沙丁胺醇烧杯"
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 60)
 
 /obj/item/reagent_containers/cup/beaker/rezadone
-	name = "Rezadone Beaker"
+	name = "雷扎酮烧杯"
 	list_reagents = list(/datum/reagent/medicine/rezadone = 60)
 
 /obj/item/reagent_containers/cup/beaker/rezadone/less
@@ -51,25 +51,25 @@ they get called in files like interdyne_crates.dm and interdyne_kits.dm
 */
 
 /obj/item/reagent_containers/applicator/patch/pen_acid
-	name = "\improper Pentetic Acid Patch"
+	name = "\improper 喷替酸贴片"
 	icon_state = "bandaid_toxin"
 	list_reagents = list(/datum/reagent/medicine/pen_acid = 10)
 	list_reagents_purity = 1
 
 /obj/item/reagent_containers/applicator/patch/oxandrolone
-	name = "\improper Oxandrolone Patch"
+	name = "\improper 奥沙雄龙贴片"
 	icon_state = "bandaid_burn_2"
 	list_reagents = list(/datum/reagent/medicine/oxandrolone = 10)
 	list_reagents_purity = 1
 
 /obj/item/reagent_containers/applicator/patch/salbutamol
-	name = "\improper Salbutamol Patch"
+	name = "\improper 沙丁胺醇贴片"
 	icon_state = "bandaid_suffocation_2"
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 10)
 	list_reagents_purity = 1
 
 /obj/item/reagent_containers/applicator/patch/sal_acid
-	name = "\improper Salicylic Acid Patch"
+	name = "\improper 水杨酸贴片"
 	icon_state = "bandaid_brute"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 10)
 	list_reagents_purity = 1
@@ -79,7 +79,7 @@ they get called in files like interdyne_crates.dm and interdyne_kits.dm
 */
 
 /obj/item/paper/fluff/interdyne/medicines
-	name = "Note From Corporate"
+	name = "公司便条"
 	default_raw_text = "Please rememember to heat up your siever oxy/tox mix for maximum effectiveness elsewise we may have a lawsuit.\n\n \
 		Interdyne leadership is not to be held responsible for the malpractice of the individual doctor."
 
@@ -88,8 +88,8 @@ they get called in files like interdyne_crates.dm and interdyne_kits.dm
 */
 
 /obj/item/storage/box/bandages/interdyne
-	name = "\improper interdyne brute bandage box"
-	desc = "An Interdyne box filled with first aid medical patches, produced for brute purposes"
+	name = "\improper interdyne钝伤绷带盒"
+	desc = "一个Interdyne盒子，装满了用于钝伤急救的医疗贴片"
 	icon_state = "dynebox"
 	base_icon_state = "dynebox"
 	icon = 'modular_nova/master_files/icons/obj/storage/medkit.dmi'
@@ -99,32 +99,32 @@ they get called in files like interdyne_crates.dm and interdyne_kits.dm
 		new /obj/item/reagent_containers/applicator/patch/sal_acid(src)
 
 /obj/item/storage/box/bandages/interdyne/burn
-	name = "\improper interdyne burn bandage box"
-	desc = "An Interdyne box filled with first aid medical patches, produced for burn purposes"
+	name = "\improper interdyne烧伤绷带盒"
+	desc = "一个Interdyne盒子，装满了用于烧伤急救的医疗贴片"
 
 /obj/item/storage/box/bandages/interdyne/burn/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/applicator/patch/oxandrolone(src)
 
 /obj/item/storage/box/bandages/interdyne/synthflesh
-	name = "\improper interdyne burn synthflesh box"
-	desc = "An Interdyne box filled with first aid medical patches, produced for burn and brute purposes"
+	name = "\improper 英特戴恩烧伤合成肉盒"
+	desc = "一个装满急救医疗贴片的英特戴恩盒子，用于处理烧伤和钝器伤"
 
 /obj/item/storage/box/bandages/interdyne/synthflesh/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/applicator/patch/synthflesh(src)
 
 /obj/item/storage/box/bandages/interdyne/toxin
-	name = "\improper interdyne toxins bandage box"
-	desc = "An Interdyne box filled with first aid medical patches, produced for toxins purposes"
+	name = "\improper 英特戴恩毒素绷带盒"
+	desc = "一个装满急救医疗贴片的英特戴恩盒子，用于处理毒素伤害"
 
 /obj/item/storage/box/bandages/interdyne/toxin/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/applicator/patch/pen_acid(src)
 
 /obj/item/storage/box/bandages/interdyne/oxygen
-	name = "\improper interdyne oxygen bandage box"
-	desc = "An Interdyne box filled with first aid medical patches, produced for oxy-loss purposes"
+	name = "\improper 英特戴恩氧气绷带盒"
+	desc = "一个装满急救医疗贴片的英特戴恩盒子，用于处理缺氧损伤"
 
 /obj/item/storage/box/bandages/interdyne/toxin/PopulateContents()
 	for(var/i in 1 to 5)

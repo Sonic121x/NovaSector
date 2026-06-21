@@ -1,5 +1,5 @@
 /obj/docking_port/stationary/cyborg_mothership
-	name = "Cyborg Mothership"
+	name = "机械人母舰"
 	shuttle_id = "cyborg_mothership"
 	roundstart_template = /datum/map_template/shuttle/ruin/cyborg_mothership
 	dir = SOUTH
@@ -8,7 +8,7 @@
 	dwidth = 11
 
 /obj/docking_port/mobile/cyborg_mothership
-	name = "Cyborg Mothership"
+	name = "机械人母舰"
 	shuttle_id = "cyborg_mothership"
 	dir = SOUTH
 	dwidth = 11
@@ -24,21 +24,21 @@
 	build_path = /obj/machinery/computer/shuttle/cyborg_mothership
 
 /obj/item/circuitboard/computer/cyborg_mothership/bridge
-	name = "#101011 Bridge"
+	name = "#101011 舰桥"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/computer/shuttle/cyborg_mothership/bridge
 
 /obj/machinery/computer/shuttle/cyborg_mothership
-	name = "#101011 Console"
-	desc = "Used to control the Cyborg Mothership."
+	name = "#101011 控制台"
+	desc = "用于控制机械人母舰。"
 	circuit = /obj/item/circuitboard/computer/cyborg_mothership
 	shuttleId = "cyborg_mothership"
 	possible_destinations = "whiteship_away;whiteship_home;whiteship_z4;whiteship_lavaland;cyborg_mothership"
 
 /// Console used on the cyborg_mothership bridge. Comes with GPS pre-baked.
 /obj/machinery/computer/shuttle/cyborg_mothership/bridge
-	name = "#101011 Bridge Console"
-	desc = "Used to control the Cyborg Mothership. Emits a faint GPS signal."
+	name = "#101011 舰桥控制台"
+	desc = "用于控制机械人母舰。会发出微弱的GPS信号。"
 	circuit = /obj/item/circuitboard/computer/cyborg_mothership/bridge
 
 /obj/machinery/computer/shuttle/cyborg_mothership/bridge/Initialize(mapload, obj/item/circuitboard/C)
@@ -46,8 +46,8 @@
 	AddComponent(/datum/component/gps, SPACE_SIGNAL_GPSTAG)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/cyborg_mothership
-	name = "#101011 Navigation Computer"
-	desc = "Used to designate a precise transit location for the Cyborg Mothership."
+	name = "#101011 导航计算机"
+	desc = "用于为机械人母舰指定精确的传送位置。"
 	shuttleId = "cyborg_mothership"
 	lock_override = NONE
 	shuttlePortId = "cyborg_mothership"
@@ -65,8 +65,8 @@
 	return ..()
 
 /obj/item/disk/holodisk/ruin/cyborg_mothership
-	name = "Blackbox Print-out #101011"
-	desc = "A rusty holodisk containing the last moments of #101011."
+	name = "黑匣子打印输出 #101011"
+	desc = "一个生锈的全息磁盘，内含 #101011 的最后时刻。"
 	preset_image_type = /datum/preset_holoimage/ai
 	preset_record_text = {"
 		NAME Mothership

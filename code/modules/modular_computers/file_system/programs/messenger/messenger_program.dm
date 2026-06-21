@@ -164,9 +164,9 @@
 	switch(action)
 		if("PDA_ringSet")
 			var/mob/living/user = usr
-			var/new_ringtone = tgui_input_text(user, "Enter a new ringtone", "Ringtone", ringtone, max_length = MAX_MESSAGE_LEN, encode = FALSE)
+			var/new_ringtone = tgui_input_text(user, "输入新铃声", "铃声", ringtone, max_length = MAX_MESSAGE_LEN, encode = FALSE)
 			if(!computer.can_interact(user))
-				computer.balloon_alert(user, "can't reach!")
+				computer.balloon_alert(user, "无法连接！")
 				return FALSE
 			return set_ringtone(new_ringtone, user)
 
@@ -221,11 +221,11 @@
 
 		if("PDA_sendEveryone")
 			if(!sending_and_receiving)
-				to_chat(usr, span_notice("ERROR: This device has sending disabled."))
+				to_chat(usr, span_notice("错误：此设备已禁用发送功能。"))
 				return FALSE
 
 			if(!spam_mode)
-				to_chat(usr, span_notice("ERROR: This device does not have mass-messaging perms."))
+				to_chat(usr, span_notice("错误：此设备没有群发消息权限。"))
 				return FALSE
 
 			if(!can_send_everyone_message())
@@ -259,7 +259,7 @@
 
 		if("PDA_sendMessage")
 			if(!sending_and_receiving)
-				to_chat(usr, span_notice("ERROR: This device has sending disabled."))
+				to_chat(usr, span_notice("错误：此设备已禁用发送功能。"))
 				return FALSE
 
 			// target ref, can either be a chat in saved_chats
@@ -286,7 +286,7 @@
 					var/datum/pda_chat/target_chat = target
 					target_messenger = target_chat.recipient?.resolve()
 					if(!istype(target_messenger))
-						to_chat(usr, span_notice("ERROR: Recipient no longer exists."))
+						to_chat(usr, span_notice("错误：收件人已不存在。"))
 						return FALSE
 				else if(istype(target, /datum/computer_file/program/messenger))
 					target_messenger = target
@@ -396,12 +396,12 @@
 		return
 	var/datum/computer_file/program/messenger/target = chat.recipient?.resolve()
 	if(!istype(target) || !istype(target.computer))
-		to_chat(user, span_notice("ERROR: Recipient no longer exists."))
+		to_chat(user, span_notice("错误：收件人已不存在。"))
 		chat.recipient = null
 		chat.can_reply = FALSE
 		return
 	var/target_name = target.computer.saved_identification
-	var/input_message = tgui_input_text(user, "Enter [mime_mode ? "emojis":"a message"]", "NT Messaging[target_name ? " ([target_name])" : ""]", max_length = MAX_MESSAGE_LEN, encode = FALSE)
+	var/input_message = tgui_input_text(user, "输入 [mime_mode ? "emojis":"a message"]", "NT 通讯[target_name ? " ([target_name])" : ""]", max_length = MAX_MESSAGE_LEN, encode = FALSE)
 	send_message(user, input_message, list(chat), subtle = subtle) // NOVA EDIT CHANGE - ORIGINAL: send_message(user, input_message, list(chat))
 
 /// Helper proc that sends a message to everyone
@@ -510,21 +510,21 @@
 
 			if(!target_chat.can_reply)
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient has receiving disabled."))
+					to_chat(sender, span_notice("错误：收件人已禁用接收功能。"))
 				continue
 
 			target_messenger = target_chat.recipient?.resolve()
 
 			if(!istype(target_messenger))
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient no longer exists."))
+					to_chat(sender, span_notice("错误：收件人已不存在。"))
 				target_chat.can_reply = FALSE
 				target_chat.recipient = null
 				continue
 
 			if(!target_messenger.sending_and_receiving)
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient has receiving disabled."))
+					to_chat(sender, span_notice("错误：收件人已禁用接收功能。"))
 				continue
 
 		else if(istype(target, /datum/computer_file/program/messenger))
@@ -532,7 +532,7 @@
 
 			if(!target_messenger.sending_and_receiving)
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient has receiving disabled."))
+					to_chat(sender, span_notice("错误：收件人已禁用接收功能。"))
 				continue
 
 			target_chat = find_chat_by_recipient(REF(target))
@@ -595,7 +595,7 @@
 	if(is_within_radio_jammer_range(computer) && !rigged)
 		// different message so people know it's a radio jammer
 		if(sender)
-			to_chat(sender, span_notice("ERROR: Network unavailable, please try again later."))
+			to_chat(sender, span_notice("错误：网络不可用，请稍后再试。"))
 		if(alert_able && !alert_silenced)
 			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 15, TRUE)
 		return FALSE
@@ -634,14 +634,14 @@
 	// If it didn't reach, note that fact
 	if (!signal.data["done"])
 		if(sender)
-			to_chat(sender, span_notice("ERROR: Server is not responding."))
+			to_chat(sender, span_notice("错误：服务器无响应。"))
 		if(alert_able && !alert_silenced)
 			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 15, TRUE)
 		return FALSE
 
 
 	// NOVA EDIT BEGIN - PDA messages show a visible message; again!
-	sender.visible_message(span_notice("[sender]'s PDA rings out with the soft sound of keypresses"), vision_distance = COMBAT_MESSAGE_RANGE)
+	sender.visible_message(span_notice("[sender]的PDA响起轻柔的按键声"), vision_distance = COMBAT_MESSAGE_RANGE)
 	// NOVA EDIT END
 	var/shell_addendum = ""
 	if(istype(source, /obj/item/circuit_component))
@@ -654,7 +654,7 @@
 		log_bomber(sender, "sent a rigged PDA message (Name: [fake_name]. Job: [fake_job]) to [english_list(stringified_targets)] [sender.is_antag() ? "" : "(SENT BY NON-ANTAG)"]")
 
 	// Show it to ghosts
-	var/ghost_message = span_game_say("[span_name(signal.format_sender())] [rigged ? "(as [span_name(fake_name)]) Rigged " : ""]PDA Message --> [span_name("[signal.format_target()]")]: \"[signal.format_message()]\"")
+	var/ghost_message = span_game_say("[span_name(signal.format_sender())] [rigged ? "(as [span_name(fake_name)]) Rigged " : ""]PDA 消息 --> [span_name("[signal.format_target()]")]：\"[signal.format_message()]\"")
 	var/list/message_listeners = GLOB.dead_player_list + GLOB.current_observers_list
 	/** NOVA EDIT CHANGE BEGIN - ORIGINAL:
 	//	for(var/mob/listener as anything in message_listeners)
@@ -670,7 +670,7 @@
 	// NOVA EDIT CHANGE END
 
 	if(sender)
-		to_chat(sender, span_info("PDA message sent to [signal.format_target()]: \"[message]\""))
+		to_chat(sender, span_info("PDA消息已发送至[signal.format_target()]: \"[message]\""))
 
 	if (alert_able && !alert_silenced)
 		computer.send_sound()
@@ -748,7 +748,7 @@
 		var/inbound_message = "[signal.format_message()]"
 
 		var/photo_message = signal.data["photo"] ? " (<a href='byond://?src=[REF(src)];choice=[photo_href];skiprefresh=1;target=[REF(chat)]'>Photo Attached</a>)" : ""
-		to_chat(messaged_mob, span_infoplain("[icon2html(computer, messaged_mob)] <b>PDA message from [sender_title], </b>\"[inbound_message]\"[photo_message] [reply]"))
+		to_chat(messaged_mob, span_infoplain("[icon2html(computer, messaged_mob)] <b>PDA消息来自[sender_title]，</b>\"[inbound_message]\"[photo_message] [reply]"))
 
 		SEND_SIGNAL(computer, COMSIG_COMPUTER_RECEIVED_MESSAGE, sender_title, inbound_message, photo_message)
 

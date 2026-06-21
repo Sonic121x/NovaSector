@@ -148,6 +148,6 @@
 		effect_description = "<span class='heavy_brass'>shimmering golden glow</span>"
 	else
 		span = "<span class='danger'>"
-		effect_description = span_bold("mottled black glow")
+		effect_description = span_bold("斑驳的黑色光芒")
 
-	location.visible_message("[span]The [originalName] is covered by a [effect_description] and then transforms into [parent]!</span>")
+	location.visible_message("[span]The [originalName] 被一层 [effect_description] 覆盖，然后变成了 [parent]！</span>")

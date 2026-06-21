@@ -3,7 +3,7 @@
 
 /obj/effect/mob_spawn/corpse/human/skeleton
 	//these are also fished in chasms so it wouldn't hurt giving them an apter name than "mob spawner"
-	name = "skeleton"
+	name = "骷髅"
 	mob_species = /datum/species/skeleton
 
 /obj/effect/mob_spawn/corpse/human/zombie
@@ -19,6 +19,6 @@
 	outfit = /datum/outfit/abductorcorpse
 
 /datum/outfit/abductorcorpse
-	name = "Abductor Corpse"
+	name = "劫持者尸体"
 	uniform = /obj/item/clothing/under/color/grey
 	shoes = /obj/item/clothing/shoes/combat

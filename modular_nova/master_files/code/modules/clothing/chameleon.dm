@@ -1,5 +1,5 @@
 /datum/action/chameleon_slowdown
-	name = "Toggle Chameleon Slowdown"
+	name = "切换变色龙减速"
 	button_icon_state = "chameleon_outfit"
 	var/savedslowdown = 0
 

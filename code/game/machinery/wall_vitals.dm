@@ -153,7 +153,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vitals_reader/advanced, 32)
 		set_patient(connected_table.patient)
 
 /obj/machinery/vitals_reader/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "detaching...")
+	balloon_alert(user, "正在拆卸...")
 	if(tool.use_tool(src, user, 6 SECONDS, volume = 50))
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
@@ -165,16 +165,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vitals_reader/advanced, 32)
 
 	if(isnull(connected))
 		if(find_machine())
-			balloon_alert(user, "connected to [connected.name]")
+			balloon_alert(user, "已连接到[connected.name]")
 		else
-			balloon_alert(user, "no connectable machines nearby!")
+			balloon_alert(user, "附近没有可连接的机器！")
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, "disconnecting...")
+	balloon_alert(user, "正在断开连接...")
 	if(!do_after(user, 2 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "disconnected from [connected.name]")
+	balloon_alert(user, "已从[connected.name]断开连接")
 	set_connection(null)
 	return ITEM_INTERACT_SUCCESS
 

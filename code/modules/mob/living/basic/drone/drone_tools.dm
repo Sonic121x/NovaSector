@@ -1,6 +1,6 @@
 /obj/item/storage/drone_tools
-	name = "built-in tools"
-	desc = "Access your built-in tools."
+	name = "内置工具"
+	desc = "访问你的内置工具。"
 	icon = 'icons/hud/screen_drone.dmi'
 	icon_state = "tool_storage"
 	storage_type = /datum/storage/drone
@@ -29,8 +29,8 @@
 		tool.AddComponent(/datum/component/holderloving, src)
 
 /obj/item/crowbar/drone
-	name = "built-in crowbar"
-	desc = "A crowbar built into your chassis."
+	name = "内置撬棍"
+	desc = "集成在你底盘内的撬棍。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_crowbar"
 	inhand_icon_state = "crowbar"
@@ -38,8 +38,8 @@
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/screwdriver/drone
-	name = "built-in screwdriver"
-	desc = "A screwdriver built into your chassis."
+	name = "内置螺丝刀"
+	desc = "集成在你底盘内的螺丝刀。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_screwdriver"
 	post_init_icon_state = null
@@ -56,8 +56,8 @@
 	. += mutable_appearance(icon_file, "screwdriver_head", appearance_flags = RESET_COLOR)
 
 /obj/item/wrench/drone
-	name = "built-in wrench"
-	desc = "A wrench built into your chassis."
+	name = "内置扳手"
+	desc = "集成在你底盘内的扳手。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_wrench"
 	inhand_icon_state = "wrench"
@@ -65,15 +65,15 @@
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/weldingtool/drone
-	name = "built-in welding tool"
-	desc = "A welding tool built into your chassis."
+	name = "内置焊接工具"
+	desc = "集成在你底盘内的焊接工具。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "indwelder_cyborg"
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/wirecutters/drone
-	name = "built-in wirecutters"
-	desc = "Wirecutters built into your chassis."
+	name = "内置钢丝钳"
+	desc = "集成在你底盘内的钢丝钳。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_cutters"
 	inhand_icon_state = "cutters"
@@ -83,8 +83,8 @@
 	greyscale_colors = null
 
 /obj/item/multitool/drone
-	name = "built-in multitool"
-	desc = "A multitool built into your chassis."
+	name = "内置多功能工具"
+	desc = "集成在你底盘内的多功能工具。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_multitool"
 	icon_angle = 0
@@ -92,16 +92,16 @@
 	toolspeed = 0.5
 
 /obj/item/analyzer/drone
-	name = "digital gas analyzer"
-	desc = "A gas analyzer built into your chassis."
+	name = "数字气体分析仪"
+	desc = "集成在你底盘内的气体分析仪。"
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/t_scanner/drone
-	name = "digital T-ray scanner"
-	desc = "A T-ray scanner built into your chassis."
+	name = "数字T射线扫描仪"
+	desc = "一个内置在你底盘中的T射线扫描仪。"
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/pipe_dispenser/drone
-	name = "built-in rapid pipe dispenser"
-	desc = "A rapid pipe dispenser built into your chassis."
+	name = "内置快速管道分发器"
+	desc = "一个内置在你底盘中的快速管道分发器。"
 	item_flags = NO_MAT_REDEMPTION

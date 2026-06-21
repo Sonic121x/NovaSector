@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/hooded/seva
-	name = "SEVA suit"
-	desc = "A fire-proof suit for exploring hot environments. Its design doesn't allow for upgrading with goliath plates."
+	name = "SEVA防护服"
+	desc = "一件用于探索高温环境的防火服。其设计不允许使用歌利亚板进行升级。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	worn_icon_muzzled = 'modular_nova/master_files/icons/mob/clothing/suit_digi.dmi'
@@ -34,8 +34,8 @@
 	wound = 10
 
 /obj/item/clothing/head/hooded/seva
-	name = "SEVA hood"
-	desc = "A fire-proof hood for exploring hot environments. Its design doesn't allow for upgrading with goliath plates."
+	name = "SEVA头罩"
+	desc = "一个用于探索高温环境的防火头罩。其设计不允许使用歌利亚板进行升级。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	worn_icon_muzzled = 'modular_nova/master_files/icons/mob/clothing/head_muzzled.dmi'
@@ -52,8 +52,8 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION //I can't find the snout sprite so I'm just gonna force it to do this
 
 /obj/item/clothing/mask/gas/seva
-	name = "SEVA mask"
-	desc = "A head-covering mask that can be connected to an external air supply. Intended for use with the SEVA Suit."
+	name = "SEVA面罩"
+	desc = "一种可连接外部供气系统的全覆盖式面罩。专为配合SEVA防护服使用而设计。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
 	worn_icon_teshari = 'modular_nova/master_files/icons/mob/clothing/species/teshari/mask.dmi'

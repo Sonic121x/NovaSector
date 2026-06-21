@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
  */
 /datum/component/soulcatcher
 	/// What is the name of the soulcatcher?
-	var/name = "soulcatcher"
+	var/name = "灵魂捕捉器"
 	/// What rooms are linked to this soulcatcher
 	var/list/soulcatcher_rooms = list()
 	/// What soulcatcher room are verbs sending messages to?
@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	if(!soulcatcher_owner)
 		return FALSE
 
-	if(tgui_alert(soulcatcher_owner, "Do you wish to allow [joiner_name] into your soulcatcher?", name, list("Yes", "No"), autofocus = FALSE) != "Yes")
+	if(tgui_alert(soulcatcher_owner, "你希望允许[joiner_name]进入你的灵魂捕捉器吗？", name, list("Yes", "No"), autofocus = FALSE) != "Yes")
 		return FALSE
 
 	return TRUE
@@ -135,13 +135,13 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 
 	var/signal_result = SEND_SIGNAL(parent_body, COMSIG_SOULCATCHER_SCAN_BODY, parent_body)
 	if(!signal_result)
-		to_chat(user, span_warning("[parent_body] has already been scanned!"))
+		to_chat(user, span_warning("[parent_body] 已被扫描过！"))
 		return FALSE
 
 	if(istype(parent, /obj/item/handheld_soulcatcher))
 		var/obj/item/handheld_soulcatcher/parent_device = parent
 		playsound(parent_device, 'modular_nova/modules/modular_implants/sounds/default_good.ogg', 50, FALSE, ignore_walls = FALSE)
-		parent_device.visible_message(span_notice("[parent_device] beeps: [parent_body] is now scanned."))
+		parent_device.visible_message(span_notice("[parent_device] 发出哔哔声：[parent_body] 现已扫描完成。"))
 
 	return TRUE
 
@@ -180,7 +180,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
  */
 /datum/soulcatcher_room
 	/// What is the name of the room?
-	var/name = "Default Room"
+	var/name = "默认房间"
 	/// What is the description of the room?
 	var/room_description = "An orange platform suspended in space orbited by reflective cubes of various sizes. There really isn't much here at the moment."
 	/// What souls are currently inside of the room?
@@ -245,11 +245,11 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 		if(!new_soul.body_scan_needed)
 			new_soul.soul_desc = preferences.read_preference(/datum/preference/text/flavor_text)
 
-	to_chat(new_soul, span_cyan_nova("You find yourself now inside of: [name]"))
+	to_chat(new_soul, span_cyan_nova("你发现自己现在身处：[name]"))
 	to_chat(new_soul, span_notice(room_description))
-	to_chat(new_soul, span_doyourjobidiot("You have entered a soulcatcher, do not share any information you have received while a ghost. If you have died within the round, you do not know your identity until your body has been scanned, standard blackout policy also applies."))
-	to_chat(new_soul, span_notice("While inside of a soulcatcher, you are able to speak and emote by using the normal hotkeys and verbs, unless disabled by the owner."))
-	to_chat(new_soul, span_notice("You may use the leave soulcatcher verb to leave the soulcatcher and return to your body at any time."))
+	to_chat(new_soul, span_doyourjobidiot("你已进入一个灵魂捕获器，请勿分享你在幽灵状态下获得的任何信息。如果你在本回合内死亡，在你的身体被扫描之前，你并不知道自己的身份，标准的记忆抹除政策同样适用。"))
+	to_chat(new_soul, span_notice("在灵魂捕获器内，除非被所有者禁用，否则你可以使用正常的热键和动词进行说话和表情动作。"))
+	to_chat(new_soul, span_notice("你可以随时使用“离开灵魂捕获器”动词来离开灵魂捕获器并返回你的身体。"))
 
 	var/atom/parent_atom = parent_object
 	if(istype(parent_atom))
@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	current_souls -= target_soul
 	target_room.current_souls += target_soul
 
-	to_chat(target_soul, span_cyan_nova("you've been transferred to [target_room]!"))
+	to_chat(target_soul, span_cyan_nova("你已被转移到 [target_room]！"))
 	to_chat(target_soul, span_notice(target_room.room_description))
 
 	return TRUE
@@ -377,7 +377,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	return ..()
 
 /atom/movable/screen/ghost/join_soulcatcher
-	name = "Enter Soulcatcher"
+	name = "进入灵魂捕获器"
 	icon = 'modular_nova/master_files/icons/hud/screen_ghost.dmi'
 	icon_state = "soulcatcher"
 	screen_loc = ui_ghost_soulcatcher
@@ -438,10 +438,10 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 		joinable_soulcatchers += soulcatcher
 
 	if(!length(joinable_soulcatchers))
-		to_chat(src, span_warning("No soulcatchers are joinable."))
+		to_chat(src, span_warning("没有可加入的灵魂捕获器。"))
 		return FALSE
 
-	var/datum/component/soulcatcher/soulcatcher_to_join = tgui_input_list(src, "Choose a soulcatcher to join", "Enter a soulcatcher", joinable_soulcatchers)
+	var/datum/component/soulcatcher/soulcatcher_to_join = tgui_input_list(src, "选择一个灵魂捕捉器加入", "进入一个灵魂捕捉器", joinable_soulcatchers)
 	if(!soulcatcher_to_join || !(soulcatcher_to_join in joinable_soulcatchers))
 		return FALSE
 
@@ -454,17 +454,17 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 
 	var/datum/soulcatcher_room/room_to_join
 	if(length(rooms_to_join) < 1)
-		to_chat(src, span_warning("There no rooms that you can join."))
+		to_chat(src, span_warning("没有你可以加入的房间。"))
 		return FALSE
 
 	if(length(rooms_to_join) == 1)
 		room_to_join = rooms_to_join[1]
 
 	else
-		room_to_join = tgui_input_list(src, "Choose a room to enter", "Enter a room", rooms_to_join)
+		room_to_join = tgui_input_list(src, "选择一个房间进入", "进入一个房间", rooms_to_join)
 
 	if(!room_to_join)
-		to_chat(src, span_warning("There no rooms that you can join."))
+		to_chat(src, span_warning("没有你可以加入的房间。"))
 		return FALSE
 
 	if(soulcatcher_to_join.require_approval)
@@ -473,7 +473,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 			ghost_name = "unknown"
 
 		if(!soulcatcher_to_join.get_approval(ghost_name))
-			to_chat(src, span_warning("The owner of [soulcatcher_to_join.name] declined your request to join."))
+			to_chat(src, span_warning("[soulcatcher_to_join.name] 的所有者拒绝了你的加入请求。"))
 			return FALSE
 
 	room_to_join.add_soul_from_ghost(src)

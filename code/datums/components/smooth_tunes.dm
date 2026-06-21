@@ -47,7 +47,7 @@
 	if(starting_song.lines.len * starting_song.tempo > FESTIVAL_SONG_LONG_ENOUGH)
 		viable_for_final_effect = TRUE
 	else
-		to_chat(parent, span_warning("This song is too short, so it won't include the song finishing effect."))
+		to_chat(parent, span_warning("这首歌太短了，因此不会包含歌曲结束效果。"))
 
 	START_PROCESSING(SSobj, src) //even though WE aren't an object, our parent is!
 	if(linked_songtuner_rite.song_start_message)
@@ -76,7 +76,7 @@
 /datum/component/smooth_tunes/proc/tempo_change(datum/source, datum/song/modified_song)
 	SIGNAL_HANDLER
 	if(modified_song.playing && viable_for_final_effect)
-		to_chat(parent, span_warning("Modifying the song mid-performance has removed your ability to perform the song finishing effect."))
+		to_chat(parent, span_warning("在表演中途修改歌曲已移除了你执行歌曲结束效果的能力。"))
 		viable_for_final_effect = FALSE
 
 ///Ends the effect when the song is no longer playing.
@@ -91,7 +91,7 @@
 
 				linked_songtuner_rite.finish_effect(listener, parent)
 		else
-			to_chat(parent, span_warning("The song was interrupted, you cannot activate the finishing ability!"))
+			to_chat(parent, span_warning("歌曲被打断了，你无法激活终结能力！"))
 
 	linked_song.parent?.remove_filter("smooth_tunes_outline")
 	UnregisterSignal(linked_song.parent, list(

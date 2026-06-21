@@ -3,52 +3,52 @@
 ///Generic Nova Sector Ruins
 
 /area/ruin/space/has_grav/powered/nova/smugglies
-	name = "Suspicious Cargo Installation"
+	name = "可疑货运设施"
 
 /area/ruin/space/has_grav/powered/nova/clothing_facility
-	name = "Abandoned Research Station"
+	name = "废弃研究空间站"
 
 /area/ruin/space/has_grav/nova/blackmarket
-	name = "Shady Market"
+	name = "黑市"
 
 /area/ruin/space/has_grav/powered/nova/alien_tool_lab
-	name = "Alien Tool Lab"
+	name = "外星工具实验室"
 
 /area/ruin/space/has_grav/powered/nova/scrapheap
-	name = "Scrap Heap"
+	name = "废料堆"
 
 /area/ruin/space/has_grav/shuttle8532engineering
-	name = "Shuttle 8532 Engine Room"
+	name = "8532号穿梭机引擎室"
 
 /area/ruin/space/has_grav/shuttle8532researchbay
-	name = "Shuttle 8532 Research Bay"
+	name = "8532号穿梭机研究舱"
 
 /area/ruin/space/has_grav/shuttle8532cargohall
-	name = "Shuttle 8532 Cargo Hall"
+	name = "8532号穿梭机货运大厅"
 
 /area/ruin/space/has_grav/shuttle8532crewquarters
-	name = "Shuttle 8532 Crew Quarters"
+	name = "8532号穿梭机船员宿舍"
 
 /area/ruin/space/has_grav/shuttle8532bridge
-	name = "Shuttle 8532 Bridge"
+	name = "8532号穿梭机舰桥"
 
 /area/ruin/space/has_grav/vaulttango
-	name = "ARBORLINK Vault Tango"
+	name = "ARBORLINK 金库探戈"
 
 /area/ruin/space/has_grav/waypoint
-	name = "Abandoned Station"
+	name = "废弃空间站"
 
 /area/ruin/space/has_grav/powered/toy_store
-	name = "Toy Store"
+	name = "玩具商店"
 
 /area/ruin/space/has_grav/powered/prison_shuttle
-	name = "Prison Shuttle"
+	name = "监狱穿梭机"
 
 /area/ruin/space/has_grav/powered/posterpandamonium
-	name = "Strange Shuttle"
+	name = "奇异穿梭机"
 
 /area/ruin/space/has_grav/powered/turretfactory //give it vague mechanical sounds
-	name = "Turret Factory"
+	name = "炮塔工厂"
 	ambientsounds = list('sound/ambience/maintenance/ambimaint.ogg','sound/ambience/maintenance/ambimaint1.ogg','sound/ambience/maintenance/ambimaint3.ogg', 'sound/ambience/maintenance/ambimaint5.ogg', 'sound/ambience/maintenance/ambimaint6.ogg')
 
 //// Port Tarkon
@@ -57,7 +57,7 @@
 	outdoors = TRUE
 
 /area/solars/tarkon
-	name = "P-T Solar Array"
+	name = "P-T太阳能阵列"
 	icon_state = "space_near"
 	default_gravity = STANDARD_GRAVITY
 	outdoors = TRUE
@@ -65,143 +65,143 @@
 // crew/service areas
 
 /area/ruin/space/has_grav/port_tarkon
-	name = "P-T Cryo-Storage"
+	name = "P-T低温储存室"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "cryo"
 
 /area/ruin/space/has_grav/port_tarkon/kitchen
-	name = "P-T Kitchen"
+	name = "P-T厨房"
 	icon_state = "cafeteria"
 
 /area/ruin/space/has_grav/port_tarkon/garden
-	name = "P-T Garden"
+	name = "P-T花园"
 	icon_state = "garden"
 
 /area/ruin/space/has_grav/port_tarkon/toolstorage
-	name = "P-T Tool Storage"
+	name = "P-T工具储藏室"
 	icon_state = "tool_storage"
 
 /area/ruin/space/has_grav/port_tarkon/dorms
-	name = "P-T Dorms"
+	name = "P-T宿舍"
 	icon_state = "dorms"
 
 /area/ruin/space/has_grav/port_tarkon/sauna
-	name = "P-T Sauna"
+	name = "P-T桑拿房"
 	icon_state = "dorms"
 
 /area/ruin/space/has_grav/port_tarkon/lockerroom
-	name = "P-T Locker Storage"
+	name = "P-T储物柜储藏室"
 	icon_state = "locker"
 
 /area/ruin/space/has_grav/port_tarkon/lounge
-	name = "P-T Bar Lounge"
+	name = "P-T酒吧休息室"
 	icon_state = "bar"
 
 /area/ruin/space/has_grav/port_tarkon/restroom
-	name = "P-T Washroom"
+	name = "P-T盥洗室"
 	icon_state = "laundry_room"
 
 // Halls
 
 /area/ruin/space/has_grav/port_tarkon/afthall
-	name = "P-T Aft Hallway"
+	name = "P-T船尾走廊"
 	icon_state = "afthall"
 
 /area/ruin/space/has_grav/port_tarkon/forehall
-	name = "P-T Fore Hallway"
+	name = "P-T船首走廊"
 	icon_state = "forehall"
 
 /area/ruin/space/has_grav/port_tarkon/starboardhall
-	name = "P-T Starboard Hallway"
+	name = "P-T右舷走廊"
 	icon_state = "starboardhall"
 
 /area/ruin/space/has_grav/port_tarkon/porthall
-	name = "P-T Port Hallway"
+	name = "P-T 港口走廊"
 	icon_state = "porthall"
 
 /area/ruin/space/has_grav/port_tarkon/centerhall
-	name = "P-T Central Hallway"
+	name = "P-T 中央走廊"
 	icon_state = "centralhall"
 
 /area/ruin/space/has_grav/port_tarkon/sciencehall
-	name = "P-T Research Hall"
+	name = "P-T 研究大厅"
 	icon_state = "science"
 
 /area/ruin/space/has_grav/port_tarkon/medhall
-	name = "P-T Medical Hall"
+	name = "P-T 医疗大厅"
 	icon_state = "med_central"
 
 // Engineering
 
 /area/ruin/space/has_grav/port_tarkon/atmos
-	name = "P-T Atmospheric Center"
+	name = "P-T 大气控制中心"
 	icon_state = "atmos"
 
 /area/ruin/space/has_grav/port_tarkon/power1
-	name = "P-T Solar Control"
+	name = "P-T 太阳能控制室"
 	icon_state = "engine"
 
 /area/ruin/space/has_grav/port_tarkon/backuppower
-	name = "P-T Backup Power Storage"
+	name = "P-T 备用电力储存室"
 	icon_state = "engie"
 
 // Command
 
 /area/ruin/space/has_grav/port_tarkon/comms
-	name = "P-T Communication Center"
+	name = "P-T 通讯中心"
 	icon_state = "command"
 
 /area/ruin/space/has_grav/port_tarkon/comlobby
-	name = "P-T Communications Lobby"
+	name = "P-T 通讯大厅"
 	icon_state = "command"
 
 /area/ruin/space/has_grav/port_tarkon/apartment
-	name = "P-T Director's Apartment"
+	name = "P-T 主管公寓"
 	icon_state = "head_quarters"
 // Cargo
 
 /area/ruin/space/has_grav/port_tarkon/cargo
-	name = "P-T Cargo Center"
+	name = "P-T 货运中心"
 	icon_state = "cargo_office"
 
 /area/ruin/space/has_grav/port_tarkon/mining
-	name = "P-T Mining Office"
+	name = "P-T 采矿办公室"
 	icon_state = "mining_dock"
 
 /area/ruin/space/has_grav/port_tarkon/storage
-	name = "P-T Warehouse"
+	name = "P-T 仓库"
 	icon_state = "cargo_warehouse"
 
 /area/ruin/space/has_grav/port_tarkon/cargoexpand
-	name = "P-T Project Room"
+	name = "P-T 项目室"
 	icon_state = "engie"
 
 // Lesser Departments
 
 /area/ruin/space/has_grav/port_tarkon/trauma
-	name = "P-T Trauma Center"
+	name = "P-T 创伤中心"
 	icon_state = "medbay"
 
 /area/ruin/space/has_grav/port_tarkon/morgue
-	name = "P-T Morgue"
+	name = "P-T 停尸房"
 	icon_state = "morgue"
 
 /area/ruin/space/has_grav/port_tarkon/developement
-	name = "P-T Developement Center"
+	name = "P-T 研发中心"
 	icon_state = "science"
 	area_flags = XENOBIOLOGY_COMPATIBLE
 
 /area/ruin/space/has_grav/port_tarkon/xenology //A bit beyond just normal xenobiology in scope, But basically xenobiology
-	name = "P-T Xenology Lab"
+	name = "P-T 外星生物学实验室"
 	icon_state = "science"
 	area_flags = XENOBIOLOGY_COMPATIBLE
 
 /area/ruin/space/has_grav/port_tarkon/secoff
-	name = "P-T Security Office"
+	name = "P-T 安保办公室"
 	icon_state = "security"
 
 /area/ruin/space/has_grav/port_tarkon/park
-	name = "P-T Park"
+	name = "P-T 公园"
 	icon_state = "garden"
 
 /**
@@ -214,156 +214,156 @@
 
 //Cargo
 /area/ruin/space/has_grav/nova/des_two/cargo
-	name = "DS-2 Warehouse"
+	name = "DS-2 仓库"
 
 /area/ruin/space/has_grav/nova/des_two/cargo/hangar
-	name = "DS-2 Hangar"
+	name = "DS-2 机库"
 
 /area/ruin/space/has_grav/nova/des_two/cargo/storage
-	name = "DS-2 Deep Storage"
+	name = "DS-2 深层存储区"
 
 //Bridge
 /area/ruin/space/has_grav/nova/des_two/bridge
-	name = "DS-2 Bridge"
+	name = "DS-2 舰桥"
 	icon_state = "syndie-control"
 
 /area/ruin/space/has_grav/nova/des_two/bridge/cl
-	name = "DS-2 Corporate Liaison's Office"
+	name = "DS-2 企业联络官办公室"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/ruin/space/has_grav/nova/des_two/bridge/admiral
-	name = "DS-2 Station Admiral's Office"
+	name = "DS-2 空间站上将办公室"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/ruin/space/has_grav/nova/des_two/bridge/vault
-	name = "DS-2 Vault"
+	name = "DS-2 金库"
 
 /area/ruin/space/has_grav/nova/des_two/bridge/vault
-	name = "DS-2 Intel Center"
+	name = "DS-2 情报中心"
 
 /area/ruin/space/has_grav/nova/des_two/bridge/eva
 	name = "DS-2 E.V.A."
 
 //Security
 /area/ruin/space/has_grav/nova/des_two/security
-	name = "DS-2 Security"
+	name = "DS-2 安保"
 	ambience_index = AMBIENCE_DANGER
 
 /area/ruin/space/has_grav/nova/des_two/security/intel
-	name = "DS-2 Intelligence Office"
+	name = "DS-2 情报办公室"
 
 /area/ruin/space/has_grav/nova/des_two/security/armory
-	name = "DS-2 Armory"
+	name = "DS-2 军械库"
 
 /area/ruin/space/has_grav/nova/des_two/security/maa
-	name = "DS-2 Master At Arms Office"
+	name = "DS-2 军械长办公室"
 
 /area/ruin/space/has_grav/nova/des_two/security/lawyer
-	name = "DS-2 Interrogation Office"
+	name = "DS-2 审讯办公室"
 
 /area/ruin/space/has_grav/nova/des_two/security/prison
-	name = "DS-2 Long-Term Brig"
+	name = "DS-2 长期禁闭室"
 
 //Service
 /area/ruin/space/has_grav/nova/des_two/service
-	name = "DS-2 Service Wing"
+	name = "DS-2 服务区"
 
 /area/ruin/space/has_grav/nova/des_two/service/diner
-	name = "DS-2 Diner"
+	name = "DS-2 小餐馆"
 
 /area/ruin/space/has_grav/nova/des_two/service/dorms
-	name = "DS-2 Dormitories"
+	name = "DS-2 宿舍区"
 
 /area/ruin/space/has_grav/nova/des_two/service/dorms/fitness
-	name = "DS-2 Fitness Room"
+	name = "DS-2 健身房"
 
 /area/ruin/space/has_grav/nova/des_two/service/lounge
-	name = "DS-2 Lounge"
+	name = "DS-2 休息室"
 
 /area/ruin/space/has_grav/nova/des_two/service/changing_room
-	name = "DS-2 Changing Room"
+	name = "DS-2 更衣室"
 
 /area/ruin/space/has_grav/nova/des_two/service/sauna
-	name = "DS-2 Sauna"
+	name = "DS-2 桑拿房"
 
 /area/ruin/space/has_grav/nova/des_two/service/restroom
-	name = "DS-2 Restroom"
+	name = "DS-2 洗手间"
 
 /area/ruin/space/has_grav/nova/des_two/service/library
-	name = "DS-2 Library"
+	name = "DS-2 图书馆"
 
 /area/ruin/space/has_grav/nova/des_two/service/hydroponics
-	name = "DS-2 Hydroponics"
+	name = "DS-2 水培室"
 
 //Hallways
 /area/ruin/space/has_grav/nova/des_two/halls
-	name = "DS-2 Central Halls"
+	name = "DS-2 中央大厅"
 
 //Engineering
 /area/ruin/space/has_grav/nova/des_two/engineering
-	name = "DS-2 Engineering"
+	name = "DS-2 工程部"
 
 //Research
 /area/ruin/space/has_grav/nova/des_two/research
-	name = "DS-2 Research"
+	name = "DS-2 研究部"
 
 /area/ruin/space/has_grav/nova/des_two/research/robotics
-	name = "DS-2 Robotics Bay"
+	name = "DS-2 机器人舱"
 
 //Medbay
 /area/ruin/space/has_grav/nova/des_two/medbay
-	name = "DS-2 Medical Bay"
+	name = "DS-2 医疗舱"
 
 /area/ruin/space/has_grav/nova/des_two/medbay/chem
-	name = "DS-2 Chemistry"
+	name = "DS-2 化学实验室"
 
 /**
  * Cargodise Lost Freighter defines
  */
 
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall
-	name = "Freighter Primary Hall"
+	name = "货船主厅"
 
 /area/ruin/space/has_grav/cargodise_freighter/trauma
-	name = "Freighter Trauma Center"
+	name = "货船创伤中心"
 
 /area/ruin/space/has_grav/cargodise_freighter/utility
-	name = "Freighter Utility Room"
+	name = "货船工具间"
 
 /area/ruin/space/has_grav/cargodise_freighter/kitchen
-	name = "Freighter Kitchen"
+	name = "货船厨房"
 
 /area/ruin/space/has_grav/cargodise_freighter/bridge
-	name = "Freighter Bridge"
+	name = "货船舰桥"
 
 /area/ruin/space/has_grav/cargodise_freighter/cargo
-	name = "Freighter Cargo Bay"
+	name = "货船货运舱"
 
 /area/ruin/space/has_grav/cargodise_freighter/mining
-	name = "Freighter Mining Office"
+	name = "货船采矿办公室"
 
 /area/ruin/space/has_grav/cargodise_freighter/quarters
-	name = "Freighter Crew Quarters"
+	name = "货船船员宿舍"
 
 /area/ruin/space/has_grav/cargodise_freighter/hydroponics
-	name = "Freighter Hydroponics"
+	name = "货船水培区"
 
 /area/ruin/space/has_grav/cargodise_freighter/vault
-	name = "Freighter Vault"
+	name = "货船金库"
 
 /area/ruin/space/has_grav/cargodise_freighter/exterior
-	name = "Freighter Exterior"
+	name = "货船外部"
 
 // Nova Sector's Space Hotel
 
 /area/ruin/space/has_grav/hotel/sauna
-	name = "Hotel Sauna Room"
+	name = "酒店桑拿房"
 
 /area/ruin/space/has_grav/hotel/workroom/quarters
-	name = "Hotel Staff Quarters"
+	name = "酒店员工宿舍"
 
 /area/ruin/solars/hotel/solars
-	name = "\improper Hotel Solar Array"
+	name = "\improper 酒店太阳能阵列"
 	requires_power = FALSE
 	area_flags = NONE
 	sound_environment = SOUND_AREA_SPACE

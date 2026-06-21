@@ -1,7 +1,7 @@
 ///Wing base type. doesn't really do anything
 /obj/item/organ/wings
-	name = "wings"
-	desc = "Spread your wings and FLLLLLLLLYYYYY!"
+	name = "翅膀"
+	desc = "展开你的翅膀，飞起来吧！"
 
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_EXTERNAL_WINGS

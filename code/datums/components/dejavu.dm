@@ -82,7 +82,7 @@
 	//comes after healing so new limbs comically drop to the floor
 	if(starting_turf)
 		if(!check_teleport_valid(parent, starting_turf))
-			to_chat(parent, span_warning("For some reason, your head aches and fills with mental fog when you try to think of where you were... It feels like you're now going against some dull, unstoppable universal force."))
+			to_chat(parent, span_warning("不知为何，当你试图回想自己身在何处时，你的头开始疼痛并充满了精神迷雾……感觉你正在对抗某种沉闷、不可阻挡的宇宙力量。"))
 		else
 			var/atom/movable/master = parent
 			master.forceMove(starting_turf)

@@ -64,7 +64,7 @@
 	if(!forced)
 		if(!check_teleport_valid(teleatom, destturf, channel, original_destination = destination))
 			if(ismob(teleatom))
-				teleatom.balloon_alert(teleatom, "something holds you back!")
+				teleatom.balloon_alert(teleatom, "有什么东西把你拉住了！")
 			return FALSE
 
 	if(SEND_SIGNAL(teleatom, COMSIG_MOVABLE_TELEPORTING, destination, channel))
@@ -106,7 +106,7 @@
 				continue
 
 			if(get_turf(rider) != destturf) //precision made them teleport somewhere else
-				to_chat(rider, span_warning("As you reorient your senses, you realize you aren't riding [teleatom] anymore!"))
+				to_chat(rider, span_warning("当你重新调整感知时，你意识到你不再骑着[teleatom]了！"))
 				continue
 
 			// [mob/living].forceMove() forces mobs to unbuckle, so we need to buckle them again

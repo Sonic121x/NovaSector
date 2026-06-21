@@ -15,27 +15,27 @@
 */
 
 /datum/loadout_item/pocket_items/soap
-	name = "Bar of Soap"
+	name = "肥皂块"
 	item_path = /obj/item/soap
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/tapeplayer
-	name = "Cassette Recorder"
+	name = "卡带录音机"
 	item_path = /obj/item/taperecorder
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/tape
-	name = "Cassette Tape"
+	name = "卡式录音带"
 	item_path = /obj/item/tape/random
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/cheaplighter
-	name = "Lighter - Cheap"
+	name = "打火机 - 廉价"
 	item_path = /obj/item/lighter/greyscale
 	group = "Smoking"
 
 /datum/loadout_item/pocket_items/lighter
-	name = "Lighter - Zippo"
+	name = "打火机 - Zippo"
 	group = "Smoking"
 
 /datum/loadout_item/pocket_items/cigarettes
@@ -94,118 +94,118 @@
 	group = "Smoking"
 
 /datum/loadout_item/pocket_items/matches
-	name = "Matchbox"
+	name = "火柴盒"
 	item_path = /obj/item/storage/box/matches
 	group = "Smoking"
 
 /datum/loadout_item/pocket_items/cigar
-	name = "Cigar"
+	name = "雪茄"
 	item_path = /obj/item/cigarette/cigar
 	group = "Smoking"
 
 /datum/loadout_item/pocket_items/folder
-	name = "Folder"
+	name = "文件夹"
 	item_path = /obj/item/folder
 	group = "Comfort"
 
 
 /datum/loadout_item/pocket_items/link_scryer
-	name = "MODlink Scryer"
+	name = "MODlink 窥探器"
 	item_path = /obj/item/clothing/neck/link_scryer/loaded
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/modular_laptop
-	name = "Modular Laptop"
+	name = "模块化笔记本电脑"
 	item_path = /obj/item/modular_computer/laptop/preset/civilian/closed
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/newspaper
-	name = "Newspaper"
+	name = "报纸"
 	item_path = /obj/item/newspaper
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/cross
-	name = "Ornate Cross"
+	name = "华丽十字架"
 	item_path = /obj/item/crucifix
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/gum_pack
-	name = "Pack of Gum"
+	name = "口香糖包"
 	item_path = /obj/item/storage/box/gum
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/gum_pack_nicotine
-	name = "Pack of Gum - Nicotine"
+	name = "口香糖包 - 尼古丁"
 	item_path = /obj/item/storage/box/gum/nicotine
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/gum_pack_hp
-	name = "Pack of Gum - HP+"
+	name = "口香糖包 - HP+"
 	item_path = /obj/item/storage/box/gum/happiness
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/multipen
-	name = "Pen - Multicolored"
+	name = "笔 - 多色"
 	item_path = /obj/item/pen/fourcolor
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/fountainpen
-	name = "Pen - Fancy"
+	name = "笔 - 高级"
 	item_path = /obj/item/pen/fountain
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/paicard
-	name = "Personal AI Device"
+	name = "个人AI设备"
 	item_path = /obj/item/pai_card
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/rag
-	name = "Rag"
+	name = "抹布"
 	item_path = /obj/item/rag
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/razor
-	name = "Razor"
+	name = "剃须刀"
 	item_path = /obj/item/razor
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/ttsdevice
-	name = "Text-to-Speech Device"
+	name = "文本转语音设备"
 	item_path = /obj/item/ttsdevice
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/ringbox_diamond
-	name = "Ring Box - Diamond"
+	name = "戒指盒 - 钻石"
 	item_path = /obj/item/storage/fancy/ringbox/diamond
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/ringbox_gold
-	name = "Ring Box - Gold"
+	name = "戒指盒 - 黄金"
 	item_path = /obj/item/storage/fancy/ringbox
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/ringbox_silver
-	name = "Ring Box - Silver"
+	name = "戒指盒 - 白银"
 	item_path = /obj/item/storage/fancy/ringbox/silver
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/paperbin
-	name = "Paperbin - Paper"
+	name = "纸盒 - 纸张"
 	item_path = /obj/item/paper_bin
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/paperbin_carbon
-	name = "Paperbin - Carbon"
+	name = "纸盒 - 复写纸"
 	item_path = /obj/item/paper_bin/carbon
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/paperbin_construction
-	name = "Paperbin - Construction"
+	name = "纸盒 - 工程用纸"
 	item_path = /obj/item/paper_bin/construction
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/paperbin_natural
-	name = "Paperbin - Natural"
+	name = "纸盒 - 天然纸"
 	item_path = /obj/item/paper_bin/bundlenatural
 	group = "Comfort"
 
@@ -214,127 +214,127 @@
 */
 
 /datum/loadout_item/pocket_items/medkit_pouch
-	name = "Colonial First Aid Pouch (Empty)"
+	name = "殖民地急救包（空）"
 	item_path = /obj/item/storage/pouch/cin_medkit
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/general_pouch
-	name = "Colonial General Purpose Pouch (Empty)"
+	name = "殖民地通用包（空）"
 	item_path = /obj/item/storage/pouch/cin_general
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/medipen_pouch
-	name = "Colonial Medipen Pouch (Empty)"
+	name = "殖民地医疗笔包（空）"
 	item_path = /obj/item/storage/pouch/cin_medipens
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/deforest_cheesekit
-	name = "Medical Kit - Civil Defense"
+	name = "医疗包 - 民防"
 	item_path = /obj/item/storage/medkit/civil_defense/stocked
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/medkit
-	name = "Medical Kit - First-Aid"
+	name = "医疗包 - 急救"
 	item_path = /obj/item/storage/medkit/regular
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/deforest_frontiermedkit
-	name = "Medical Kit - Frontier"
+	name = "医疗包 - 边疆"
 	item_path = /obj/item/storage/medkit/frontier/stocked
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/synthetic_medkit
-	name = "Medical Kit - Robotics"
+	name = "医疗包 - 机器人学"
 	item_path = /obj/item/storage/medkit/robotic_repair/stocked
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/mini_extinguisher
-	name = "Mini Fire Extinguisher"
+	name = "迷你灭火器"
 	item_path = /obj/item/extinguisher/mini
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/neuroware_spacedrugs
-	name = "Neuroware Chips Box (Kaleido)"
+	name = "神经芯片盒（万花筒）"
 	item_path = /obj/item/storage/box/flat/neuroware/space_drugs
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/neuroware_thc
-	name = "Neuroware Chips Box (Mr.Stoned)"
+	name = "神经芯片盒（石头先生）"
 	item_path = /obj/item/storage/box/flat/neuroware/thc
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/neuroware_mindbreaker
-	name = "Neuroware Chips Box (PosiBlaster64)"
+	name = "神经芯片盒（正极冲击64）"
 	item_path = /obj/item/storage/box/flat/neuroware/mindbreaker
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/binoculars
-	name = "Pair of Binoculars"
+	name = "双筒望远镜"
 	item_path = /obj/item/binoculars
 	group = "Gear"
 
 /datum/loadout_item/pocket_items/drugs_happy
-	name = "Pillbottle - Happy Pills"
+	name = "药瓶 - 快乐丸"
 	item_path = /obj/item/storage/pill_bottle/happy
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/drugs_lsd
-	name = "Pillbottle - Mindbreaker"
+	name = "药瓶 - 心智崩解剂"
 	item_path = /obj/item/storage/pill_bottle/lsd
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/random_pizza
-	name = "Random Pizza Box"
+	name = "随机披萨盒"
 	item_path = /obj/item/pizzabox/random
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/moth_mre
-	name = "Rations - Mothic"
+	name = "口粮 - 蛾族"
 	item_path = /obj/item/storage/box/mothic_rations
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/colonial_mre
-	name = "Rations - Colonial"
+	name = "口粮 - 殖民者"
 	item_path = /obj/item/storage/box/colonial_rations
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/drugs_weed
-	name = "Seeds - Cannabis"
+	name = "种子 - 大麻"
 	item_path = /obj/item/seeds/cannabis
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/drugs_liberty
-	name = "Seeds - Liberty Cap"
+	name = "种子 - 自由帽菇"
 	item_path = /obj/item/seeds/liberty
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/drugs_reishi
-	name = "Seeds - Reishi"
+	name = "种子 - 灵芝"
 	item_path = /obj/item/seeds/reishi
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/six_beer
-	name = "Six-Pack - Beer"
+	name = "六罐装 - 啤酒"
 	item_path = /obj/item/storage/cans/sixbeer
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/six_soda
-	name = "Six-Pack - Soda"
+	name = "六罐装 - 汽水"
 	item_path = /obj/item/storage/cans/sixsoda
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/power_cell
-	name = "Standard Power Cell"
+	name = "标准电源单元"
 	item_path = /obj/item/stock_parts/power_store/cell
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/cloth_ten
-	name = "Ten Cloth Sheets"
+	name = "十张布料"
 	item_path = /obj/item/stack/sheet/cloth/ten
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/ingredients
-	name = "Wildcard Ingredient Box"
+	name = "万能食材盒"
 	item_path = /obj/item/storage/box/ingredients/wildcard
 	group = "Comfort"
 
@@ -367,17 +367,17 @@
 */
 
 /datum/loadout_item/pocket_items/hairbrush
-	name = "Brush"
+	name = "发刷"
 	item_path = /obj/item/hairbrush
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/comb
-	name = "Comb"
+	name = "梳子"
 	item_path = /obj/item/hairbrush/comb
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/hairbrush
-	name = "Brush"
+	name = "发刷"
 	item_path = /obj/item/hairbrush
 	group = "Cosmetics"
 
@@ -385,22 +385,22 @@
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/hair_tie
-	name = "Hair Tie"
+	name = "发圈"
 	item_path = /obj/item/clothing/head/hair_tie
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/hair_tie_scrunchie
-	name = "Hair Tie - Scrunchie"
+	name = "发圈 - 发绳"
 	item_path = /obj/item/clothing/head/hair_tie/scrunchie
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/hair_tie_plastic_beads
-	name = "Hair Tie - Plastic"
+	name = "发圈 - 塑料珠"
 	item_path = /obj/item/clothing/head/hair_tie/plastic_beads
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/hhmirror
-	name = "Handheld Mirror"
+	name = "手持镜"
 	item_path = /obj/item/hhmirror
 	group = "Cosmetics"
 
@@ -409,83 +409,83 @@
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/lipstick_black
-	name = "Lipstick (Black)"
+	name = "唇膏（黑色）"
 	item_path = /obj/item/lipstick/black
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/lipstick_blue
-	name = "Lipstick (Blue)"
+	name = "唇膏（蓝色）"
 	item_path = /obj/item/lipstick/blue
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/lipstick_green
-	name = "Lipstick (Green)"
+	name = "口红（绿色）"
 	item_path = /obj/item/lipstick/green
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/lipstick_jade
-	name = "Lipstick (Jade)"
+	name = "口红（玉色）"
 	item_path = /obj/item/lipstick/jade
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/lipstick_purple
-	name = "Lipstick (Purple)"
+	name = "口红（紫色）"
 	item_path = /obj/item/lipstick/purple
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/lipstick_white
-	name = "Lipstick (White)"
+	name = "口红（白色）"
 	item_path = /obj/item/lipstick/white
 	group = "Cosmetics"
 
 //PERFUME
 /datum/loadout_item/pocket_items/fragrance_amber
-	name = "Perfume (Amber)"
+	name = "香水（琥珀）"
 	item_path = /obj/item/perfume/amber
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/fragrance_cherry
-	name = "Perfume (Cherry)"
+	name = "香水（樱桃）"
 	item_path = /obj/item/perfume/cherry
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/fragrance_jasmine
-	name = "Perfume (Jasmine)"
+	name = "香水（茉莉）"
 	item_path = /obj/item/perfume/jasmine
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/fragrance_mint
-	name = "Perfume (Mint)"
+	name = "香水（薄荷）"
 	item_path = /obj/item/perfume/mint
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/fragrance_pear
-	name = "Perfume (Pear)"
+	name = "香水（梨）"
 	item_path = /obj/item/perfume/pear
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/fragrance_rose
-	name = "Perfume (Rose)"
+	name = "香水（玫瑰）"
 	item_path = /obj/item/perfume/rose
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/fragrance_strawberry
-	name = "Perfume (Strawberry)"
+	name = "香水（草莓）"
 	item_path = /obj/item/perfume/strawberry
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/fragrance_vanilla
-	name = "Perfume (Vanilla)"
+	name = "香水（香草）"
 	item_path = /obj/item/perfume/vanilla
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/fragrance_wood
-	name = "Perfume (Wood)"
+	name = "香水（木质）"
 	item_path = /obj/item/perfume/wood
 	group = "Cosmetics"
 
 /datum/loadout_item/pocket_items/fragrance_cologne
-	name = "Perfume - Cologne"
+	name = "香水 - 古龙水"
 	item_path = /obj/item/perfume/cologne
 	group = "Cosmetics"
 /*
@@ -532,7 +532,7 @@
 // No group (groups should be ~5+ items)
 
 /datum/loadout_item/pocket_items/crusher_sword_kit
-	name = "Crusher Retool Kit"
+	name = "粉碎者改装套件"
 	item_path = /obj/item/crusher_trophy/retool_kit
 	restricted_roles = list(JOB_SHAFT_MINER)
 
@@ -545,16 +545,16 @@
 	donator_only = TRUE
 
 /datum/loadout_item/pocket_items/donator/coin
-	name = "Iron Coin"
+	name = "铁币"
 	item_path = /obj/item/coin/iron
 	group = "Comfort"
 
 /datum/loadout_item/pocket_items/donator/havana_cigar_case
-	name = "Havanian Cigars"
+	name = "哈瓦那雪茄"
 	item_path = /obj/item/storage/fancy/cigarettes/cigars/havana
 	group = "Smoking"
 
 /datum/loadout_item/pocket_items/donator/vape
-	name = "E-Cigarette"
+	name = "电子烟"
 	item_path = /obj/item/vape
 	group = "Smoking"

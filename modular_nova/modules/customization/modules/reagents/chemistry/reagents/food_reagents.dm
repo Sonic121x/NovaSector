@@ -1,14 +1,14 @@
 /datum/reagent/consumable/piru_flour
-	name = "Piru Flour"
-	description = "Flour made from ground piru fronds, it seems to clump together with itself."
+	name = "皮鲁面粉"
+	description = "由磨碎的皮鲁蕨叶制成的面粉，它似乎会自行结块。"
 	nutriment_factor = 4 * REAGENTS_METABOLISM
 	color = "#c499bc"
 	taste_description = "chalky, sweet flour"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/kiri_jelly
-	name = "Kiri Jelly"
-	description = "Sticky, sweet jelly from ground kiri fruits. It almost seems to sparkle by itself."
+	name = "奇里果冻"
+	description = "由磨碎的基里果制成的粘稠、甜美的果冻。它本身似乎就在闪闪发光。"
 	nutriment_factor = 10 * REAGENTS_METABOLISM
 	color = "#993c5c"
 	taste_mult = 2
@@ -16,8 +16,8 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/muli_juice
-	name = "Muli Juice"
-	description = "A pale-blue liquid contained inside muli pods. Widely used in teshari cuisine."
+	name = "木梨汁"
+	description = "一种淡蓝色液体，储存在穆利豆荚中。广泛用于特莎莉料理。"
 	nutriment_factor = 4 * REAGENTS_METABOLISM
 	color = "#6f83a6"
 	taste_mult = 2
@@ -25,8 +25,8 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/nakati_spice
-	name = "Nakati Spice"
-	description = "A coarse brown powder ground from nakati bark which serves as a staple in teshari cooking. The aroma is delightful, but extremely potent."
+	name = "纳卡蒂香料"
+	description = "一种由纳卡蒂树皮研磨而成的粗糙棕色粉末，是特莎莉烹饪的主料。香气宜人，但极其浓烈。"
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#735c45"
 	taste_mult = 3
@@ -34,8 +34,8 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/starfruit_juice
-	name = "Starfruit Juice"
-	description = "The raw essence of a starfruit."
+	name = "杨桃汁"
+	description = "杨桃的原始精华。"
 	color = "#6d3890"
 	taste_description = "lush cosmic sugar"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

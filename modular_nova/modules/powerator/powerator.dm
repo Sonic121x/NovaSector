@@ -2,8 +2,8 @@
 #define TECHWEB_NODE_POWERATOR "powerator"
 
 /obj/item/circuitboard/machine/powerator
-	name = "Powerator"
-	desc = "The powerator is a machine that allows stations to sell their power to other stations that require additional sources."
+	name = "能量转换器"
+	desc = "电力交易器是一种允许空间站将电力出售给需要额外电源的其他空间站的机器。"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/powerator
 	req_components = list(
@@ -16,8 +16,8 @@
 	needs_anchored = TRUE
 
 /datum/supply_pack/engineering/powerator
-	name = "Powerator"
-	desc = "We know the feeling of losing power and Central sending power, it is our time to do the same. All proceeds go to the engineering budget."
+	name = "能量转换器"
+	desc = "我们深知断电之苦，也明白中央供电的珍贵，现在轮到我们做同样的事了。所有收益将归入工程预算。"
 	cost = CARGO_CRATE_VALUE * 50 // 10,000
 	contains = list(/obj/item/circuitboard/machine/powerator)
 	crate_name = "Powerator Circuitboard Crate"
@@ -25,7 +25,7 @@
 
 /datum/design/board/powerator
 	name = "Powerator Board"
-	desc = "Allows for the construction of circuit boards used to build a powerator."
+	desc = "允许建造用于制造能量转换器的电路板。"
 	id = "powerator"
 	build_path = /obj/item/circuitboard/machine/powerator
 	category = list(
@@ -36,7 +36,7 @@
 /datum/techweb_node/powerator
 	id = TECHWEB_NODE_POWERATOR
 	display_name = "Powerator"
-	description = "We've been saved by it in the past, we should send some power ourselves!"
+	description = "我们过去曾被它拯救过，我们也应该输送一些电力！"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
 	hidden = TRUE
@@ -48,8 +48,8 @@
 
 // This produces 62 per 2 seconds, taxed to 49, which gives us 24-25 per second.
 /obj/machinery/powerator
-	name = "\improper Nanotrasen Powerator"
-	desc = "Beyond the ridiculous name, it is the standard for transporting and selling energy to power networks that require additional sources!"
+	name = "\improper 纳米传讯能量转换器"
+	desc = "除了这个可笑的名字，它是为需要额外能源的电网运输和出售能量的标准设备！"
 	icon = 'modular_nova/modules/powerator/icons/machines.dmi'
 	icon_state = "powerator"
 
@@ -103,29 +103,29 @@
 	. = ..()
 	. += "<br>"
 	if(panel_open)
-		. += span_warning("The maintenance panel is currently open, preventing [src] from working!")
+		. += span_warning("维护面板目前处于打开状态，导致[src]无法工作！")
 	else
-		. += span_notice("The maintenance panel is closed.")
+		. += span_notice("维护面板已关闭。")
 
 	if(!anchored)
-		. += span_warning("The anchors are not bolted to the floor, preventing [src] from working!")
+		. += span_warning("锚点没有固定在地板上，导致[src]无法工作！")
 	else
-		. += span_notice("The anchors are bolted to the floor.")
+		. += span_notice("锚点已用螺栓固定在地板上。")
 
 	if(machine_stat & (NOPOWER | BROKEN))
-		. += span_warning("There is either damage or no power being supplied, preventing [src] from working!")
+		. += span_warning("存在损坏或没有电力供应，导致[src]无法工作！")
 	else
-		. += span_notice("There is no damage and power is being supplied.")
+		. += span_notice("没有损坏，正在供电。")
 
 	if(isnull(attached_cable))
-		. += span_warning("There is no power cable underneath, preventing [src] from working!")
+		. += span_warning("下方没有电源线，导致[src]无法工作！")
 	else
-		. += span_notice("There is a power cable underneath.")
+		. += span_notice("下面有一根电源线。")
 
-	. += span_notice("Current Power: [display_power(current_power, FALSE)]/[display_power(max_power, FALSE)]")
-	. += span_notice("This machine has made [credits_made] credits from selling power so far.")
-	. += span_notice("This machine makes 1 credit every two seconds per [display_power(divide_ratio, FALSE)] sent outward.")
-	. += span_notice("This machine is taxed [tax]% credits by the SolFed Power Ministry.")
+	. += span_notice("当前能量：[display_power(current_power, FALSE)]/[display_power(max_power, FALSE)]")
+	. += span_notice("这台机器通过出售电力已赚取了[credits_made]信用点。")
+	. += span_notice("这台机器每向外发送[display_power(divide_ratio, FALSE)]，每两秒就能赚取1信用点。")
+	. += span_notice("这台机器被太阳联邦能源部征收[tax]%的信用点税。")
 
 /obj/machinery/powerator/RefreshParts()
 	. = ..()
@@ -182,7 +182,7 @@
 
 /obj/machinery/powerator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	current_power = tgui_input_number(user, "How much power (in Watts) would you like to draw? Max: [display_power(max_power, FALSE)]", "Power Draw", current_power, max_power, 0)
+	current_power = tgui_input_number(user, "你想要抽取多少电力（以瓦特为单位）？最大值：[display_power(max_power, FALSE)]", "电力抽取", current_power, max_power, 0)
 	if(isnull(current_power))
 		return
 
@@ -235,20 +235,20 @@
 	attached_cable = null
 
 /obj/item/circuitboard/machine/powerator/syndicate
-	name = "\improper Syndicate Powerator"
+	name = "\improper 辛迪加能源机"
 	build_path = /obj/machinery/powerator/syndicate
 
 /obj/item/circuitboard/machine/powerator/interdyne
-	name = "\improper Interdyne Powerator"
+	name = "\improper 英特戴恩能源机"
 	build_path = /obj/machinery/powerator/interdyne
 
 /obj/item/circuitboard/machine/powerator/tarkon
-	name = "\improper Tarkon Powerator"
+	name = "\improper 塔肯能源机"
 	build_path = /obj/machinery/powerator/tarkon
 
 // This produces 25 per 2 seconds, no tax, so around 12 per second.
 /obj/machinery/powerator/syndicate
-	name = "\improper Syndicate Powerator"
+	name = "\improper 辛迪加能源机"
 	credits_account = ACCOUNT_DS2
 	power_cap = 2500 KILO WATTS
 	divide_ratio = 100 KILO WATTS
@@ -258,7 +258,7 @@
 
 // This produces 25 per 2 seconds, taxed to 22-23, which gives us 11 per second.
 /obj/machinery/powerator/interdyne
-	name = "\improper Interdyne Powerator"
+	name = "\improper 英特戴恩能源机"
 	credits_account = ACCOUNT_INT
 	power_cap = 1000 KILO WATTS
 	divide_ratio = 40 KILO WATTS
@@ -268,7 +268,7 @@
 
 // This produces 40 per 2 seconds, taxed to 28, which gives us 14 per second.
 /obj/machinery/powerator/tarkon
-	name = "\improper Tarkon Powerator"
+	name = "\improper 塔肯能源机"
 	credits_account = ACCOUNT_TI
 	power_cap = 6000 KILO WATTS
 	divide_ratio = 150 KILO WATTS

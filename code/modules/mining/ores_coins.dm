@@ -3,7 +3,7 @@
 /**********************Mineral ores**************************/
 
 /obj/item/stack/ore
-	name = "rock"
+	name = "岩石"
 	icon = 'icons/obj/ore.dmi'
 	icon_state = "ore"
 	inhand_icon_state = null
@@ -90,7 +90,7 @@
 	qdel(src)
 
 /obj/item/stack/ore/uranium
-	name = "uranium ore"
+	name = "铀矿石"
 	icon_state = "uranium"
 	singular_name = "uranium ore chunk"
 	points = 30
@@ -107,7 +107,7 @@
 	max_vein_size = 3
 
 /obj/item/stack/ore/iron
-	name = "iron ore"
+	name = "金属矿"
 	icon_state = "iron"
 	singular_name = "iron ore chunk"
 	points = 1
@@ -158,12 +158,12 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		return
 	var/mob/living/carbon/human/C = hit_atom
 	if(C.is_eyes_covered())
-		C.visible_message(span_danger("[C]'s eye protection blocks the sand!"), span_warning("Your eye protection blocks the sand!"))
+		C.visible_message(span_danger("[C]的护目镜挡住了沙子！"), span_warning("你的眼部防护挡住了沙粒！"))
 		return
 	C.adjust_eye_blur(12 SECONDS)
 	C.adjust_stamina_loss(15) //the pain from your eyes burning does stamina damage
 	C.adjust_confusion(5 SECONDS)
-	to_chat(C, span_userdanger("\The [src] gets into your eyes! The pain, it burns!"))
+	to_chat(C, span_userdanger("\The [src] 进了你的眼睛！好痛，它在灼烧！"))
 	qdel(src)
 
 /obj/item/stack/ore/glass/ex_act(severity, target)
@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	amount = 30
 
 /obj/item/stack/ore/glass/basalt
-	name = "volcanic ash"
+	name = "火山灰"
 	icon_state = "volcanic_sand"
 	singular_name = "volcanic ash pile"
 	mine_experience = 0
@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	merge_type = /obj/item/stack/ore/glass/siderite
 
 /obj/item/stack/ore/plasma
-	name = "plasma ore"
+	name = "等离子矿石"
 	icon_state = "plasma"
 	singular_name = "plasma ore chunk"
 	points = 15
@@ -205,11 +205,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	max_vein_size = 4
 
 /obj/item/stack/ore/plasma/welder_act(mob/living/user, obj/item/I)
-	to_chat(user, span_warning("You can't hit a high enough temperature to smelt [src] properly!"))
+	to_chat(user, span_warning("你无法达到足够高的温度来正确熔炼[src]！"))
 	return TRUE
 
 /obj/item/stack/ore/silver
-	name = "silver ore"
+	name = "银矿石"
 	icon_state = "silver"
 	singular_name = "silver ore chunk"
 	points = 16
@@ -224,7 +224,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	max_vein_size = 2
 
 /obj/item/stack/ore/gold
-	name = "gold ore"
+	name = "金矿石"
 	icon_state = "gold"
 	singular_name = "gold ore chunk"
 	points = 18
@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	max_vein_size = 2
 
 /obj/item/stack/ore/diamond
-	name = "diamond ore"
+	name = "钻石矿石"
 	icon_state = "diamond"
 	singular_name = "diamond ore chunk"
 	points = 50
@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	amount = 5
 
 /obj/item/stack/ore/bananium
-	name = "bananium ore"
+	name = "蕉矿矿石"
 	icon_state = "bananium"
 	singular_name = "bananium ore chunk"
 	points = 60
@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	max_vein_size = 2
 
 /obj/item/stack/ore/titanium
-	name = "titanium ore"
+	name = "钛钢矿石"
 	icon_state = "titanium"
 	singular_name = "titanium ore chunk"
 	points = 50
@@ -293,15 +293,15 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	max_vein_size = 2
 
 /obj/item/stack/ore/slag
-	name = "slag"
-	desc = "Completely useless."
+	name = "矿渣"
+	desc = "完全无用"
 	icon_state = "slag"
 	singular_name = "slag chunk"
 	merge_type = /obj/item/stack/ore/slag
 
 /obj/item/gibtonite
-	name = "gibtonite ore"
-	desc = "Extremely explosive if struck with mining equipment, Gibtonite is often used by miners to speed up their work by using it as a mining charge. This material is illegal to possess by unauthorized personnel under space law."
+	name = "爆裂闪矿"
+	desc = "如果被采矿设备击中，爆裂闪矿就会爆炸，矿工经常使用爆裂闪矿作为采矿炸药来加快工作速度。根据太空法，未经授权的人员持有这种材料是非法的。"
 	icon = 'icons/obj/ore.dmi'
 	icon_state = "gibtonite"
 	inhand_icon_state = "Gibtonite ore"
@@ -330,9 +330,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/gibtonite/examine(mob/user)
 	. = ..()
 	if(rig)
-		. += span_warning("There is some kind of device <b>rigged</b> to it!")
+		. += span_warning("上面<b>连接着</b>某种装置！")
 	else
-		. += span_notice("You could <b>rig</b> something to it.")
+		. += span_notice("你可以<b>安装</b>点什么上去。")
 
 /obj/item/gibtonite/Destroy()
 	QDEL_NULL(rig)
@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		notify_admins = TRUE
 
 	if(user)
-		user.visible_message(span_warning("[user] strikes \the [src], causing a chain reaction!"), span_danger("You strike \the [src], causing a chain reaction."))
+		user.visible_message(span_warning("[user] 击打了\the [src]，引发了连锁反应！"), span_danger("You strike \the [src], causing a chain reaction."))
 
 	var/attacher_text = attacher ? "Igniter attacher: [ADMIN_LOOKUPFLW(attacher)]" : null
 
@@ -479,7 +479,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 // This is the only way to make coins that are possible to produce on station actually worth anything.
 /obj/item/coin
 	icon = 'icons/obj/economy.dmi'
-	name = "coin"
+	name = "硬币"
 	icon_state = "coin"
 	obj_flags = CONDUCTS_ELECTRICITY
 	force = 1
@@ -518,9 +518,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	return value
 
 /obj/item/coin/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] contemplates suicide with \the [src]!"))
+	user.visible_message(span_suicide("[user] 正考虑用\the [src]来自杀！"))
 	if (!attack_self(user))
-		user.visible_message(span_suicide("[user] couldn't flip \the [src]!"))
+		user.visible_message(span_suicide("[user] 无法抛起 \the [src]！"))
 		return SHAME
 	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 1 SECONDS)//10 = time takes for flip animation
 	return MANUAL_SUICIDE_NONLETHAL
@@ -528,7 +528,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coin/proc/manual_suicide(mob/living/user)
 	var/index = sideslist.Find(coinflip)
 	if (index == 2)//tails
-		user.visible_message(span_suicide("\the [src] lands on [coinflip]! [user] promptly falls over, dead!"))
+		user.visible_message(span_suicide("\the [src] 落在了 [coinflip] 上！[user] 随即倒下，死了！"))
 		user.adjust_oxy_loss(200)
 		user.death(FALSE)
 		user.set_suicide(TRUE)
@@ -538,21 +538,21 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/coin/examine(mob/user)
 	. = ..()
-	. += span_info("It's worth [value] [MONEY_NAME_AUTOPURAL(value)].")
+	. += span_info("它价值[value] [MONEY_NAME_AUTOPURAL(value)]。")
 
 /obj/item/coin/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = W
 		if(string_attached)
-			to_chat(user, span_warning("There already is a string attached to this coin!"))
+			to_chat(user, span_warning("这枚硬币上已经系着绳子了！"))
 			return
 
 		if (CC.use(1))
 			add_overlay("coin_string_overlay")
 			string_attached = 1
-			to_chat(user, span_notice("You attach a string to the coin."))
+			to_chat(user, span_notice("你将一根线系在了硬币上。"))
 		else
-			to_chat(user, span_warning("You need one length of cable to attach a string to the coin!"))
+			to_chat(user, span_warning("你需要一段电缆才能把线系在硬币上！"))
 			return
 	else
 		..()
@@ -565,13 +565,13 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	new /obj/item/stack/cable_coil(drop_location(), 1)
 	overlays = list()
 	string_attached = null
-	to_chat(user, span_notice("You detach the string from the coin."))
+	to_chat(user, span_notice("你将绳子从硬币上解了下来。"))
 	return TRUE
 
 /obj/item/coin/attack_self(mob/user)
 	if(cooldown < world.time)
 		if(string_attached) //does the coin have a wire attached
-			to_chat(user, span_warning("The coin won't flip very well with something attached!") )
+			to_chat(user, span_warning("硬币上粘了东西可不好抛！") )
 			return FALSE//do not flip the coin
 		cooldown = world.time + 15
 		flick("coin_[coinflip]_flip", src)
@@ -581,9 +581,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		var/oldloc = loc
 		sleep(1.5 SECONDS)
 		if(loc == oldloc && user && !user.incapacitated)
-			user.visible_message(span_notice("[user] flips [src]. It lands on [coinflip]."), \
-				span_notice("You flip [src]. It lands on [coinflip]."), \
-				span_hear("You hear the clattering of loose change."))
+			user.visible_message(span_notice("[user] 抛出了 [src]。它落在了 [coinflip] 上。"), \
+				span_notice("你抛起了[src]。它落地时是[coinflip]。"), \
+				span_hear("你听见零钱叮当作响。"))
 		if(has_action)
 			if(coinflip == heads_name)
 				heads_action(user)
@@ -640,12 +640,12 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	return list(/datum/reagent/iron = 4, /datum/reagent/consumable/ethanol/ritual_wine = 4)
 
 /obj/item/coin/twoheaded
-	desc = "Hey, this coin's the same on both sides!"
+	desc = "嘿，这硬币两个面都一模一样！"
 	sideslist = list("heads")
 
 /obj/item/coin/antagtoken
-	name = "antag token"
-	desc = "A novelty coin that helps the heart know what hard evidence cannot prove."
+	name = "反派代币"
+	desc = "一枚新奇的硬币，帮助心灵知道无法用确凿的证据证明的东西。"
 	icon_state = "coin_valid"
 	custom_materials = list(/datum/material/plastic = COIN_MATERIAL_AMOUNT)
 	sideslist = list("valid", "salad")
@@ -661,7 +661,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/coin/gold/debug
 	custom_materials = list(/datum/material/gold = COIN_MATERIAL_AMOUNT)
-	desc = "If you got this somehow, be aware that it will dust you. Almost certainly."
+	desc = "如果你不小心收到了这份东西，要清楚它会给你带来麻烦的。几乎肯定会有影响的。"
 
 /obj/item/coin/gold/debug/grind_results()
 	return list(/datum/reagent/gold/cursed = 8)
@@ -669,7 +669,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coin/gold/debug/attack_self(mob/user)
 	if(cooldown < world.time)
 		if(string_attached) //does the coin have a wire attached
-			to_chat(user, span_warning("The coin won't flip very well with something attached!") )
+			to_chat(user, span_warning("硬币上粘着东西可不好抛！") )
 			return FALSE//do not flip the coin
 		cooldown = world.time + 15
 		flick("coin_[coinflip]_flip", src)
@@ -679,9 +679,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		var/oldloc = loc
 		sleep(1.5 SECONDS)
 		if(loc == oldloc && user && !user.incapacitated)
-			user.visible_message(span_notice("[user] flips [src]. It lands on [coinflip]."), \
-				span_notice("You flip [src]. It lands on [coinflip]."), \
-				span_hear("You hear the clattering of loose change."))
+			user.visible_message(span_notice("[user] 抛出了 [src]。它落在了 [coinflip] 上。"), \
+				span_notice("你抛起了[src]。它落地时是[coinflip]。"), \
+				span_hear("你听到了零钱叮当作响的声音。"))
 		SSeconomy.fire()
 		to_chat(user,"<span class='bounty'>[SSeconomy.inflation_value()] is the inflation value.</span>")
 	return TRUE//did the coin flip? useful for suicide_act
@@ -689,17 +689,17 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 ///Coins used in the dutchmen money bag.
 /obj/item/coin/silver/doubloon
-	name = "doubloon"
+	name = "达布隆币"
 
 /obj/item/coin/gold/doubloon
-	name = "doubloon"
+	name = "达布隆币"
 
 /obj/item/coin/adamantine/doubloon
-	name = "doubloon"
+	name = "达布隆币"
 
 /obj/item/coin/eldritch
-	name = "eldritch coin"
-	desc = "A surprisingly heavy, ornate coin. Its sides seem to depict a different image each time you look."
+	name = "邪神硬币"
+	desc = "一枚异常沉重、装饰华丽的硬币。它的两面似乎每次看都会呈现不同的图像。"
 	icon_state = "coin_heretic"
 	custom_materials = list(/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT)
 	sideslist = list("heretic", "blade")

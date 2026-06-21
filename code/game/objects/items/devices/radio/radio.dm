@@ -2,13 +2,13 @@
 
 /obj/item/radio
 	icon = 'icons/obj/devices/voice.dmi'
-	name = "station bounced radio"
+	name = "站内反弹无线电"
 	icon_state = "walkietalkie"
 	inhand_icon_state = "walkietalkie"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	worn_icon_state = "radio"
-	desc = "A basic handheld radio that communicates with local telecommunication networks."
+	desc = "一种基本的手持无线电，可与本地电信网络通信。"
 	dog_fashion = /datum/dog_fashion/back
 	interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_ALLOW_USER_LOCATION | INTERACT_ATOM_IGNORE_MOBILITY
 	sound_vary = TRUE
@@ -577,11 +577,11 @@
 /obj/item/radio/examine(mob/user)
 	. = ..()
 	if (frequency && in_range(src, user))
-		. += span_notice("It is set to broadcast over the [span_radio("[frequency/10]")] frequency.")
+		. += span_notice("它被设置为在 [span_radio("[frequency/10]")] 频率上广播。")
 	if (unscrewed)
-		. += span_notice("It can be attached and modified.")
+		. += span_notice("可以附加和修改。")
 	else
-		. += span_notice("It cannot be modified or attached.")
+		. += span_notice("它无法被修改或安装。")
 
 /obj/item/radio/update_overlays()
 	. = ..()
@@ -604,9 +604,9 @@
 	unscrewed = !unscrewed
 	tool.play_tool_sound(src, 10)
 	if(unscrewed)
-		to_chat(user, span_notice("[src] can now be attached and modified!"))
+		to_chat(user, span_notice("[src]现在可以被安装和修改了！"))
 	else
-		to_chat(user, span_notice("[src] can no longer be modified or attached!"))
+		to_chat(user, span_notice("[src]不能再被修改或安装了！"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/radio/screwdriver_act(mob/living/user, obj/item/tool)
@@ -620,11 +620,11 @@
 
 	var/list/removed_keys = remove_keys(user)
 	if(length(removed_keys) > 1)
-		to_chat(user, span_notice("You remove the encryption keys from [src]."))
+		to_chat(user, span_notice("你从[src]中移除了加密密钥。"))
 	else if(length(removed_keys) == 1)
-		to_chat(user, span_notice("You remove [removed_keys[1]] from [src]."))
+		to_chat(user, span_notice("你从[removed_keys[1]]中取出了[src]。"))
 	else
-		to_chat(user, span_warning("[src] doesn't have any unique encryption keys! How useless..."))
+		to_chat(user, span_warning("[src]没有任何独特的加密密钥！真没用……"))
 	tool.play_tool_sound(src, 10)
 	return TRUE
 
@@ -648,20 +648,20 @@
 /// Attempts to install the given encryption key into the radio
 /obj/item/radio/proc/install_key(mob/living/user, obj/item/encryptionkey/key)
 	if(keyslot)
-		loc.balloon_alert(user, "cannot hold a second key!")
+		loc.balloon_alert(user, "无法容纳第二把密钥！")
 		return ITEM_INTERACT_BLOCKING
 	if(freqlock || keylock)
-		loc.balloon_alert(user, "keyslot is locked!")
+		loc.balloon_alert(user, "密钥槽已锁定！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(key, src))
-		loc.balloon_alert(user, "cannot install!")
+		loc.balloon_alert(user, "无法安装！")
 		return ITEM_INTERACT_BLOCKING
 
 	keyslot = key
 	recalculateChannels()
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-	loc.balloon_alert(user, "encryption key installed")
+	loc.balloon_alert(user, "加密密钥已安装")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/radio/emp_act(severity)
@@ -671,14 +671,14 @@
 	emped++ //There's been an EMP; better count it
 	var/curremp = emped //Remember which EMP this was
 	if (listening && ismob(loc)) // if the radio is turned on and on someone's person they notice
-		to_chat(loc, span_warning("\The [src] overloads."))
+		to_chat(loc, span_warning("\The [src] 过载了。"))
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
 	set_on(FALSE)
 	addtimer(CALLBACK(src, PROC_REF(end_emp_effect), curremp), 20 SECONDS)
 
 /obj/item/radio/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始用 [src] 敲打 [user.p_their()] 自己的头！看起来 [user.p_theyre()] 想要自杀！"))
 	return BRUTELOSS
 
 /obj/item/radio/proc/end_emp_effect(curremp)
@@ -689,9 +689,9 @@
 	return TRUE
 
 /obj/item/radio/proc/make_silly()
-	name = "\improper Little-Crew: Assistant's First Radio"
+	name = "\improper 小船员：助手的第一台无线电"
 	icon_state = "walkieian"
-	desc = "A Little-Crew branded toy radio in the shape of a lovable pet. After Little-Crew HQ was hit with a Donksoft Nuke, these have become collector's items!"
+	desc = "一款小船员牌玩具对讲机，外形是一只可爱的宠物。在小船员总部被唐克软核弹击中后，这些已成为收藏品！"
 	overlay_speaker_idle = null
 	overlay_speaker_active = null
 	overlay_mic_idle = null
@@ -703,7 +703,7 @@
 //Giving borgs their own radio to have some more room to work with -Sieve
 
 /obj/item/radio/borg
-	name = "cyborg radio"
+	name = "机械人无线电"
 	subspace_transmission = TRUE
 	subspace_switchable = TRUE
 	dog_fashion = null
@@ -734,7 +734,7 @@
 
 // RADIOS USED BY BROADCASTING
 /obj/item/radio/entertainment
-	desc = "You should not hold this."
+	desc = "你不应该拿着这个。"
 	canhear_range = 7
 	freerange = TRUE
 	freqlock = RADIO_FREQENCY_LOCKED
@@ -763,8 +763,8 @@
 	return ..()
 
 /obj/item/radio/entertainment/speakers/physical // Can be used as a physical item
-	name = "entertainment radio"
-	desc = "A portable one-way radio permanently tuned into entertainment frequency."
+	name = "娱乐电台"
+	desc = "一台便携式单向收音机，永久调谐至娱乐频道。"
 	icon_state = "radio"
 	inhand_icon_state = "radio"
 	worn_icon_state = "radio"
@@ -784,8 +784,8 @@
 	wires?.cut(WIRE_RX)
 
 /obj/item/radio/entertainment/microphone/physical // Can be used as a physical item
-	name = "microphone"
-	desc = "No comments."
+	name = "麦克风"
+	desc = "没有评论。"
 	icon = 'icons/obj/service/broadcast.dmi'
 	icon_state = "microphone"
 	inhand_icon_state = "microphone"

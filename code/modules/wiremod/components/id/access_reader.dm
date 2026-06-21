@@ -1,6 +1,6 @@
 /obj/item/circuit_component/id_access_reader
 	display_name = "Read ID Access"
-	desc = "A component that reads the access on an ID."
+	desc = "一个读取ID访问权限的组件。"
 	category = "ID"
 
 	/// The input port

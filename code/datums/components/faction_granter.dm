@@ -36,18 +36,18 @@
 /datum/component/faction_granter/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(used)
-		examine_list += span_notice("[parent]'s favor granting power has been used up.")
+		examine_list += span_notice("[parent] 的恩赐赋予能力已耗尽。")
 	else
-		examine_list += span_notice("Using [parent] in your hand will grant you favor with [faction_to_grant]\s")
+		examine_list += span_notice("在手中使用 [parent] 将为你赢得 [faction_to_grant]\s 的青睐")
 
 ///signal called on parent being interacted with in hand
 /datum/component/faction_granter/proc/on_self_attack(atom/source, mob/user)
 	SIGNAL_HANDLER
 	if(used)
-		to_chat(user, span_warning("The power of [parent] has been used up!"))
+		to_chat(user, span_warning("[parent] 的力量已经耗尽了！"))
 		return
 	if(user.mind?.holy_role < holy_role_required)
-		to_chat(user, span_warning("You are not holy enough to invoke the power of [parent]!"))
+		to_chat(user, span_warning("你的圣洁程度不足以激发 [parent] 的力量！"))
 		return
 
 	to_chat(user, grant_message)

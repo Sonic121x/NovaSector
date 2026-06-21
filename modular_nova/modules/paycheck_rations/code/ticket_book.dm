@@ -1,6 +1,6 @@
 /obj/item/storage/ration_ticket_book
-	name = "ration ticket book"
-	desc = "A small booklet able to hold all your ration tickets. More will be available here as your paychecks come in."
+	name = "口粮票簿"
+	desc = "一本可以收纳你所有口粮票的小册子。随着你的工资发放，这里会有更多票券可用。"
 	icon = 'modular_nova/modules/paycheck_rations/icons/tickets.dmi'
 	icon_state = "ticket_book"
 	w_class = WEIGHT_CLASS_SMALL

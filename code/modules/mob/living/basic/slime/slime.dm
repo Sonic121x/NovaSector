@@ -4,7 +4,7 @@
 #define SLIME_SHOCK_PERCENTAGE_PER_LEVEL 7
 
 /mob/living/basic/slime
-	name = "grey baby slime (123)"
+	name = "灰色史莱姆幼体 (123)"
 	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "grey-baby"
 	pass_flags = PASSTABLE | PASSGRILLE
@@ -50,10 +50,10 @@
 	bubble_icon = "slime"
 	initial_language_holder = /datum/language_holder/slime
 
-	verb_say = "blorbles"
-	verb_ask = "inquisitively blorbles"
-	verb_exclaim = "loudly blorbles"
-	verb_yell = "loudly blorbles"
+	verb_say = "咕噜咕噜"
+	verb_ask = "好奇地咕噜咕噜"
+	verb_exclaim = "大声咕噜咕噜"
+	verb_yell = "大声咕噜咕噜"
 
 	//AI controller
 
@@ -133,7 +133,7 @@
 	AddComponent(/datum/component/obeys_commands, pet_commands)
 
 	AddElement(/datum/element/ai_retaliate)
-	AddElement(/datum/element/basic_health_examine, light_damage_message = "It has some punctures in its flesh!", heavy_damage_message = span_bold("It has severe punctures and tears in its flesh!"), heavy_threshold = 0.4)
+	AddElement(/datum/element/basic_health_examine, light_damage_message = "它的肉体上有一些穿刺伤！", heavy_damage_message = span_bold("它的肉体上有严重的穿刺和撕裂伤！"), heavy_threshold = 0.4)
 	AddElement(/datum/element/footstep, footstep_type = FOOTSTEP_MOB_SLIME)
 	AddElement(/datum/element/soft_landing)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SLIME, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
@@ -188,7 +188,7 @@
 	var/static/regex/slime_name_regex = new("\\w+ (baby|adult) slime \\(\\d+\\)")
 	if(slime_name_regex.Find(name))
 		var/slime_id = rand(1, 1000)
-		name = "[slime_type.colour] [life_stage] slime ([slime_id])"
+		name = "[slime_type.colour] [life_stage] 史莱姆 ([slime_id])"
 		real_name = name
 	return ..()
 
@@ -246,9 +246,9 @@
 			. += "It is glowing alarmingly with high levels of electrical activity."
 
 		if(SLIME_MAX_POWER)
-			. += span_boldwarning("It is radiating with massive levels of electrical activity!")
+			. += span_boldwarning("它正辐射出巨量的电活动！")
 	if(overcrowded)
-		. += span_warning("It seems too overcroweded to properly reproduce!")
+		. += span_warning("它看起来过于拥挤，无法正常繁殖！")
 
 ///Changes the slime's current life state
 /mob/living/basic/slime/proc/set_life_stage(new_life_stage = SLIME_LIFE_STAGE_BABY, initial = FALSE)
@@ -292,7 +292,7 @@
 		return COMPONENT_HOSTILE_NO_ATTACK
 
 	if(isAI(target)) //The aI is not tasty!
-		target.balloon_alert(our_slime, "not tasty!")
+		target.balloon_alert(our_slime, "不好吃！")
 		return COMPONENT_HOSTILE_NO_ATTACK
 
 	if(our_slime.buckled == target) //If you try to attack the creature you are latched on, you instead cancel feeding
@@ -307,9 +307,9 @@
 		if(prob(stunprob) && our_slime.powerlevel >= SLIME_EXTRA_SHOCK_COST)
 			our_slime.powerlevel = clamp(our_slime.powerlevel - SLIME_EXTRA_SHOCK_COST, SLIME_MIN_POWER, SLIME_MAX_POWER)
 			borg_target.apply_damage(our_slime.powerlevel * rand(6, 10), BRUTE, spread_damage = TRUE, wound_bonus = CANT_WOUND)
-			borg_target.visible_message(span_danger("\The [our_slime] shocks [borg_target]!"), span_userdanger("\The [our_slime] shocks you!"))
+			borg_target.visible_message(span_danger("\The [our_slime] 电击了 [borg_target]！"), span_userdanger("\The [our_slime] 电击了你！"))
 		else
-			borg_target.visible_message(span_danger("\The [our_slime] fails to hurt [borg_target]!"), span_userdanger("\The [our_slime] failed to hurt you!"))
+			borg_target.visible_message(span_danger("\The [our_slime] 未能伤害到 [borg_target]！"), span_userdanger("\The [our_slime] 未能伤害到你！"))
 
 		return COMPONENT_HOSTILE_NO_ATTACK
 
@@ -319,7 +319,7 @@
 		if(!prob(stunprob))
 			return NONE // normal attack
 
-		carbon_target.visible_message(span_danger("\The [our_slime] shocks [carbon_target]!"), span_userdanger("\The [our_slime] shocks you!"))
+		carbon_target.visible_message(span_danger("\The [our_slime] 电击了 [carbon_target]！"), span_userdanger("\The [our_slime] 电击了你！"))
 
 		do_sparks(5, TRUE, carbon_target)
 		var/power = our_slime.powerlevel + rand(0,3)
@@ -336,8 +336,8 @@
 		var/mob/living/basic/slime/target_slime = target
 		if(target_slime.buckled)
 			target_slime.stop_feeding(silent = TRUE)
-			visible_message(span_danger("[our_slime] pulls [target_slime] off!"), \
-				span_danger("You pull [target_slime] off!"))
+			visible_message(span_danger("[our_slime] 把 [target_slime] 扯了下来！"), \
+				span_danger("你把 [target_slime] 扯了下来！"))
 			return NONE // normal attack
 
 		var/is_adult_slime = our_slime.life_stage == SLIME_LIFE_STAGE_ADULT
@@ -352,7 +352,7 @@
 ///Spawns a crossed slimecore item
 /mob/living/basic/slime/proc/spawn_corecross()
 	var/static/list/crossbreeds = subtypesof(/obj/item/slimecross)
-	visible_message(span_danger("[src] shudders, its mutated core consuming the rest of its body!"))
+	visible_message(span_danger("[src] 剧烈颤抖，其突变的核心吞噬了身体的其余部分！"))
 	playsound(src, 'sound/effects/magic/smoke.ogg', 50, TRUE)
 	var/selected_crossbreed_path
 	for(var/crossbreed_path in crossbreeds)
@@ -363,7 +363,7 @@
 	if(selected_crossbreed_path)
 		new selected_crossbreed_path(loc)
 	else
-		visible_message(span_warning("The mutated core shudders, and collapses into a puddle, unable to maintain its form."))
+		visible_message(span_warning("突变核心颤抖着，坍缩成一滩液体，无法维持其形态。"))
 	qdel(src)
 
 ///Proc for slime core removal surgery, tries to remove cores from a dead slime.

@@ -53,16 +53,16 @@
 		to_chat(cast_on, "ERROR: Limb disengagement protocols report no compatible cybernetics currently installed. Seek out a maintenance technician.")
 		return
 
-	var/obj/item/bodypart/limb_to_detach = tgui_input_list(cast_on, "Limb to detach", "Cybernetic Limb Detachment", sort_names(robot_parts))
+	var/obj/item/bodypart/limb_to_detach = tgui_input_list(cast_on, "要脱离的肢体", "赛博格肢体脱离", sort_names(robot_parts))
 	if (QDELETED(src) || QDELETED(cast_on) || QDELETED(limb_to_detach))
 		return
 
 	if (length(limb_to_detach.wounds) >= 1)
-		cast_on.balloon_alert(cast_on, "can't detach wounded limbs!")
+		cast_on.balloon_alert(cast_on, "无法脱离受伤的肢体！")
 		playsound(cast_on, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		return
 
-	cast_on.balloon_alert(cast_on, "detaching limb...")
+	cast_on.balloon_alert(cast_on, "正在脱离肢体...")
 	playsound(cast_on, 'sound/items/tools/rped.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	cast_on.visible_message(span_notice("[cast_on] shuffles [cast_on.p_their()] [limb_to_detach.name] forward, actuators hissing and whirring as [cast_on.p_they()] disengage[cast_on.p_s()] the limb from its mount..."))
 
@@ -70,11 +70,11 @@
 		cast_on.visible_message(span_notice("With a gentle twist, [cast_on] finally prises [cast_on.p_their()] [limb_to_detach.name] free from its socket."))
 		limb_to_detach.drop_limb()
 		cast_on.put_in_hands(limb_to_detach)
-		cast_on.balloon_alert(cast_on, "limb detached!")
+		cast_on.balloon_alert(cast_on, "肢体已脱离！")
 		if(prob(5))
 			playsound(cast_on, 'sound/items/champagne_pop.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		else
 			playsound(cast_on, 'sound/items/deconstruct.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	else
-		cast_on.balloon_alert(cast_on, "interrupted!")
+		cast_on.balloon_alert(cast_on, "被打断了！")
 		playsound(cast_on, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)

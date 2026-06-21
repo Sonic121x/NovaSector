@@ -27,18 +27,18 @@
 		CRASH("activate_module called with item_module not in model.modules")
 
 	if(activated(item_module))
-		to_chat(src, span_warning("That module is already activated."))
+		to_chat(src, span_warning("那个模块已经激活了。"))
 		return FALSE
 
 	if(disabled_modules & BORG_MODULE_ALL_DISABLED)
-		to_chat(src, span_warning("All modules are disabled!"))
+		to_chat(src, span_warning("所有模块都已禁用！"))
 		return FALSE
 
 	/// What's the first free slot for the borg?
 	var/first_free_slot = !held_items[1] ? 1 : (!held_items[2] ? 2 : (!held_items[3] ? 3 : null))
 
 	if(!first_free_slot || is_invalid_module_number(first_free_slot))
-		to_chat(src, span_warning("Deactivate a module first!"))
+		to_chat(src, span_warning("请先停用一个模块！"))
 		return FALSE
 
 	return put_in_hand(item_module, first_free_slot)
@@ -60,7 +60,7 @@
 		return ..()
 
 	if(newloc != model)
-		to_chat(src, span_notice("You can't drop your [item_dropping.name] module."))
+		to_chat(src, span_notice("你不能丢弃你的[item_dropping.name]模块。"))
 		return FALSE
 
 	var/module_num = get_selected_module()
@@ -115,13 +115,13 @@
 			disabled_modules |= BORG_MODULE_ALL_DISABLED
 
 			playsound(src, 'sound/machines/warning-buzzer.ogg', 75, TRUE, TRUE)
-			audible_message(span_warning("[src] sounds an alarm! \"CRITICAL ERROR: ALL modules OFFLINE.\""))
+			audible_message(span_warning("[src]发出警报声！\"严重错误：所有模块离线。\""))
 
 			if(builtInCamera)
 				builtInCamera.camera_enabled = FALSE
-				to_chat(src, span_userdanger("CRITICAL ERROR: Built in security camera OFFLINE."))
+				to_chat(src, span_userdanger("严重错误：内置安保摄像头离线。"))
 
-			to_chat(src, span_userdanger("CRITICAL ERROR: ALL modules OFFLINE."))
+			to_chat(src, span_userdanger("严重错误：所有模块离线。"))
 
 		if(BORG_CHOOSE_MODULE_TWO)
 			if(disabled_modules & BORG_MODULE_TWO_DISABLED)
@@ -130,8 +130,8 @@
 			disabled_modules |= BORG_MODULE_TWO_DISABLED
 
 			playsound(src, 'sound/machines/warning-buzzer.ogg', 60, TRUE, TRUE)
-			audible_message(span_warning("[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\""))
-			to_chat(src, span_userdanger("SYSTEM ERROR: Module [module_num] OFFLINE."))
+			audible_message(span_warning("[src]发出警报声！\"系统错误：模块[module_num]离线。\""))
+			to_chat(src, span_userdanger("系统错误：模块 [module_num] 离线。"))
 
 		if(BORG_CHOOSE_MODULE_THREE)
 			if(disabled_modules & BORG_MODULE_THREE_DISABLED)
@@ -140,8 +140,8 @@
 			disabled_modules |= BORG_MODULE_THREE_DISABLED
 
 			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, TRUE, TRUE)
-			audible_message(span_warning("[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\""))
-			to_chat(src, span_userdanger("SYSTEM ERROR: Module [module_num] OFFLINE."))
+			audible_message(span_warning("[src]发出警报声！\"系统错误：模块[module_num]离线。\""))
+			to_chat(src, span_userdanger("系统错误：模块 [module_num] 离线。"))
 
 	var/atom/movable/screen/robot/module_slot/module = hud_used?.screen_objects[HUD_KEY_CYBORG_MODULE(module_num)]
 	if(module)
@@ -173,7 +173,7 @@
 			disabled_modules &= ~BORG_MODULE_ALL_DISABLED
 			if(builtInCamera)
 				builtInCamera.camera_enabled = TRUE
-				to_chat(src, span_notice("You hear your built in security camera focus adjust as it comes back online!"))
+				to_chat(src, span_notice("你听到内置安保摄像头的对焦调整声，它重新上线了！"))
 
 		if(BORG_CHOOSE_MODULE_TWO)
 			if(!(disabled_modules & BORG_MODULE_TWO_DISABLED))
@@ -187,7 +187,7 @@
 
 			disabled_modules &= ~BORG_MODULE_THREE_DISABLED
 
-	to_chat(src, span_notice("ERROR CLEARED: Module [module_num] back online."))
+	to_chat(src, span_notice("错误已清除：模块 [module_num] 重新上线。"))
 	var/atom/movable/screen/robot/module_slot/module = hud_used?.screen_objects[HUD_KEY_CYBORG_MODULE(module_num)]
 	if(module)
 		module.icon_state = module.base_icon_state

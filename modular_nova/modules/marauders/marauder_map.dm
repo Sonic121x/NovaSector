@@ -6,7 +6,7 @@
 
 /datum/map_template/shuttle/traitor/default
 	suffix = "default"
-	name = "marauder's shuttle (Default)"
+	name = "掠夺者穿梭机（默认）"
 	has_ceiling = TRUE
 	ceiling_turf = /turf/open/floor/plating/reinforced
 
@@ -29,7 +29,7 @@
 	transit_dock.setDir(random_dir)
 
 /obj/machinery/computer/security/telescreen/traitor_shuttle
-	name = "shuttle-camera telescreen"
+	name = "穿梭机摄像头电视屏"
 	network = list("lone_infil_shuttle")
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/traitor_shuttle, 32)
@@ -75,7 +75,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/traitor_
 
 //mobile docking port
 /obj/docking_port/mobile/traitor
-	name = "marauder shuttle"
+	name = "掠夺者穿梭机"
 	callTime = 10 SECONDS
 	ignitionTime = 5 SECONDS
 	rechargeTime = 30 SECONDS
@@ -87,7 +87,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/traitor_
 //area
 /area/shuttle/traitor
 	requires_power = TRUE
-	name = "\proper Razorfeather 8E short-range cruiser"
+	name = "\proper 剃羽8E短程巡洋舰"
 	flags_1 = NONE
 
 //map
@@ -98,7 +98,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/traitor_
 
 //pet
 /mob/living/basic/carp/pet/clover //carpo you're really adding another carp pet isn't that overdone? I JUST THINK THEY'RE NEAT
-	name = "Clover"
+	name = "三叶草"
 	real_name = "Clover"
 	icon = 'modular_nova/master_files/icons/mob/pets.dmi'
 	icon_state = "clover"
@@ -136,7 +136,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/traitor_
 
 //stationary docking port
 /obj/docking_port/stationary/traitor
-	name = "Launchpad no. 09"
+	name = "09号发射坪"
 	shuttle_id = "traitor"
 	delete_after = TRUE //no return
 	hidden = TRUE
@@ -147,7 +147,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/traitor_
 
 //nav beacon for shuttles that doesnt generate a name
 /obj/machinery/spaceship_navigation_beacon/nt
-	name = "\improper Nanotrasen radio navigation gigabeacon"
+	name = "\improper 纳米传讯无线电导航巨型信标"
 
 /obj/machinery/spaceship_navigation_beacon/nt/Initialize(mapload)
 	. = ..()
@@ -181,44 +181,44 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/traitor_
 
 //areas
 /area/misc/operative_barracks
-	name = "Aft Operative Barracks"
+	name = "舰尾特工营房"
 	requires_power = FALSE
 	area_flags = NOTELEPORT | HIDDEN_AREA
 	default_gravity = STANDARD_GRAVITY
 	ambient_buzz = null
 
 /area/misc/operative_barracks/armoury
-	name = "Armoury no. 09"
+	name = "09号军械库"
 	sound_environment = SOUND_ENVIRONMENT_LIVINGROOM
 
 /area/misc/operative_barracks/secure
-	name = "Armoury Secure Storage"
+	name = "军械库安全存储室"
 	sound_environment = SOUND_ENVIRONMENT_PADDED_CELL
 
 /area/misc/operative_barracks/robotics
-	name = "Robotics Laboratorium no. 09"
+	name = "09号机器人实验室"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/misc/operative_barracks/medbay
-	name = "Implant Laboratorium no. 09"
+	name = "09号植入物实验室"
 	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/misc/operative_barracks/surgery
-	name = "Surgery Room"
+	name = "手术室"
 	sound_environment = SOUND_ENVIRONMENT_PADDED_CELL
 
 /area/misc/operative_barracks/mission_briefing
-	name = "Mission Briefing no. 09"
+	name = "09号任务简报室"
 	sound_environment = SOUND_ENVIRONMENT_STONEROOM
 
 /area/misc/operative_barracks/dorm
-	name = "Dormroom no. 09"
+	name = "09号宿舍"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/misc/operative_barracks/bathroom
-	name = "Bathroom"
+	name = "浴室"
 	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/misc/operative_barracks/hangar
-	name = "Launchpad no. 09"
+	name = "09号发射坪"
 	sound_environment = SOUND_ENVIRONMENT_HANGAR

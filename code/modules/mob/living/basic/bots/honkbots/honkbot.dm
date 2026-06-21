@@ -1,6 +1,6 @@
 /mob/living/basic/bot/secbot/honkbot
-	name = "\improper Honkbot"
-	desc = "A little robot. It looks happy with its bike horn."
+	name = "\improper 鸣笛机器人"
+	desc = "一个小小的机器人。它看起来对自己的自行车喇叭很满意。"
 	icon_state = "honkbot"
 	base_icon_state = "honkbot"
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0)

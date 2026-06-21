@@ -23,7 +23,7 @@
 	var/stabilizing_speed = 5 SECONDS
 
 /obj/item/xenoarch/anomaly_stabilizer/attack_self(mob/user)
-	var/target_path = input(user, "Choose a field") as null|anything in fields
+	var/target_path = input(user, "选择一个力场") as null|anything in fields
 	if (!target_path)
 		return
 	else

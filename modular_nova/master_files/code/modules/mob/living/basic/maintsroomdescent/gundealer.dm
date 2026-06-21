@@ -1,6 +1,6 @@
 /mob/living/basic/trader/gundealer
-	name = "Trader"
-	desc = "A shadowie figure offering some of the strongest armaments from here to terra- if you have the INSANE dough to offer."
+	name = "商人"
+	desc = "一个黑影般的身影，提供着从这里到地球最强大的武器装备——如果你有那离谱的钞票来交换的话。"
 	unique_name = FALSE
 	icon = 'icons/mob/simple/simple_human.dmi'
 	maxHealth = 200

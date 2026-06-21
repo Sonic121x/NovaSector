@@ -1,11 +1,11 @@
 /// Slashes up the target
 /datum/smite/bloodless
-	name = ":B:loodless"
+	name = ":B:血洪水"
 
 /datum/smite/bloodless/effect(client/user, mob/living/target)
 	. = ..()
 	if (!iscarbon(target))
-		to_chat(user, span_warning("This must be used on a carbon mob."), confidential = TRUE)
+		to_chat(user, span_warning("必须对碳基生物使用。"), confidential = TRUE)
 		return
 	var/mob/living/carbon/carbon_target = target
 	for(var/_limb in carbon_target.get_bodyparts())

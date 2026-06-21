@@ -1,10 +1,10 @@
 /obj/effect/spawner/random/mod
-	name = "MOD module spawner"
-	desc = "Modularize this, please."
+	name = "MOD模块生成器"
+	desc = "请将其模块化。"
 	icon_state = "circuit"
 
 /obj/effect/spawner/random/mod/maint
-	name = "maint MOD module spawner"
+	name = "维护区MOD模块生成器"
 	loot = list(
 		/obj/item/mod/module/springlock = 2,
 		/obj/item/mod/module/visor/rave = 2,

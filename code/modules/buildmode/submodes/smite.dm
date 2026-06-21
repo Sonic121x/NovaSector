@@ -13,7 +13,7 @@
 	)
 
 /datum/buildmode_mode/smite/change_settings(client/user)
-	var/punishment = input(user, "Choose a punishment", "DIVINE SMITING") as null|anything in GLOB.smites
+	var/punishment = input(user, "选择一种惩罚", "神圣惩罚") as null|anything in GLOB.smites
 	var/smite_path = GLOB.smites[punishment]
 	var/datum/smite/picking_smite = new smite_path
 	var/configuration_success = picking_smite.configure(user)
@@ -34,7 +34,7 @@
 		return
 
 	if (selected_smite == null)
-		to_chat(user, span_notice("No smite selected."))
+		to_chat(user, span_notice("未选择天罚。"))
 		return
 
 	selected_smite.do_effect(user, object)

@@ -1,6 +1,6 @@
 /mob/living/silicon/pai/mob_try_pickup(mob/living/user, instant=FALSE)
 	if(!possible_chassis[chassis])
-		to_chat(user, span_warning("[src]'s current form isn't able to be carried!"))
+		to_chat(user, span_warning("[src]的当前形态无法被携带！"))
 		return FALSE
 	return ..()
 
@@ -18,7 +18,7 @@
 		return FALSE
 	var/holochassis = pick(possible_chassis - chassis)
 	set_holochassis(holochassis)
-	balloon_alert(src, "[holochassis] composite engaged")
+	balloon_alert(src, "[holochassis]复合体已启用")
 	return TRUE
 
 /**
@@ -35,7 +35,7 @@
 	if(get_turf(src) != get_turf(anchor))
 		return FALSE
 	if(!isturf(loc) && loc != card)
-		balloon_alert(src, "can't do that here")
+		balloon_alert(src, "无法在此处执行此操作")
 		return FALSE
 	return TRUE
 
@@ -56,7 +56,7 @@
 	if(!choice)
 		return FALSE
 	set_holochassis(choice)
-	balloon_alert(src, "[choice] composite engaged")
+	balloon_alert(src, "[choice]复合体已启用")
 	update_resting()
 	return TRUE
 
@@ -78,7 +78,7 @@
 	if(!holoform)
 		. = fold_out(force)
 		return FALSE
-	visible_message(span_notice("[src] dematerialises!"))
+	visible_message(span_notice("[src]正在解离！"))
 	stop_pulling()
 	if(ispickedupmob(loc))
 		var/obj/item/mob_holder/mob_head = loc
@@ -106,16 +106,16 @@
  */
 /mob/living/silicon/pai/proc/fold_out(force = FALSE)
 	if(holochassis_health < 0)
-		balloon_alert(src, "emitter repair incomplete")
+		balloon_alert(src, "发射器修复未完成")
 		return FALSE
 	if(!can_holo && !force)
-		balloon_alert(src, "emitters are disabled")
+		balloon_alert(src, "发射器已禁用")
 		return FALSE
 	if(holoform)
 		. = fold_in(force)
 		return
 	if(!holochassis_ready)
-		balloon_alert(src, "emitters recycling...")
+		balloon_alert(src, "发射器正在回收...")
 		return FALSE
 	holochassis_ready = FALSE
 	addtimer(VARSET_CALLBACK(src, holochassis_ready, TRUE), HOLOCHASSIS_COOLDOWN)

@@ -3,7 +3,7 @@
 
 /obj/item/circuit_component/begin_animation
 	display_name = "Begin Animation"
-	desc = "Begins an animation on the target. Create animation steps by chaining \"Animation Step\" components off of the \"Perform Animation\" port."
+	desc = "在目标上开始播放动画。通过将“动画步骤”组件串联起来连接到“执行动画”端口，来创建动画步骤。"
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_INSTANT|CIRCUIT_FLAG_ADMIN
 
@@ -96,7 +96,7 @@
 
 /obj/item/circuit_component/animation_step
 	display_name = "Animation Step"
-	desc = "Perform a single animation step. The input of this component should be connected, directly or indirectly, to the \"Perform Animation\" port of a \"Begin Animation\" component."
+	desc = "执行一个动画步骤。此组件的输入应与“开始动画”组件的“执行动画”端口直接或间接地相连。"
 	category = "Admin"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN

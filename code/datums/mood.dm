@@ -437,7 +437,7 @@
 				msg += "[span_boldwarning("I'm completely wasted.")]<br>"
 
 	if (HAS_TRAIT(mob_parent, TRAIT_APATHETIC))
-		msg += span_notice("My mood: [span_grey("I don't feel anything.")]<br>")
+		msg += span_notice("我的心情：[span_grey("I don't feel anything.")]<br>")
 	else if(!HAS_TRAIT(user, TRAIT_MOOD_NOEXAMINE))// NOVA EDIT CHANGE - ORIGINAL: else
 		msg += span_notice("My current sanity: ") //Long term
 		switch(sanity)
@@ -512,7 +512,7 @@
 		msg += span_notice("You know yourself to be [mob_parent.get_parsonality_string()].<br>")
 
 	if(LAZYLEN(mob_parent.quirks))
-		msg += span_notice("You have these quirks: [mob_parent.get_quirk_string(FALSE, CAT_QUIRK_ALL)].")
+		msg += span_notice("你有这些怪癖：[mob_parent.get_quirk_string(FALSE, CAT_QUIRK_ALL)]。")
 
 	to_chat(user, boxed_message(msg))
 

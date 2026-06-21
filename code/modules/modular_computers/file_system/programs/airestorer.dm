@@ -25,7 +25,7 @@
 		examine_text += "It has a slot installed for an intelliCard which contains: [stored_card.name]"
 	else
 		examine_text += "It has a slot installed for an intelliCard, which appears to be occupied."
-	examine_text += span_info("Alt-click to eject the intelliCard.")
+	examine_text += span_info("Alt-点击以弹出智能卡。")
 	return examine_text
 
 /datum/computer_file/program/ai_restorer/kill_program(mob/user)
@@ -65,28 +65,28 @@
 	if(!computer)
 		return NONE
 	if(stored_card)
-		to_chat(user, span_warning("You try to insert \the [used_aicard] into \the [computer.name], but the slot is occupied."))
+		to_chat(user, span_warning("你试图将\the [used_aicard]插入\the [computer.name]，但插槽已被占用。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(used_aicard, computer))
 		return ITEM_INTERACT_BLOCKING
 
 	stored_card = used_aicard
-	to_chat(user, span_notice("You insert \the [used_aicard] into \the [computer.name]."))
+	to_chat(user, span_notice("你将\the [used_aicard]插入\the [computer.name]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /datum/computer_file/program/ai_restorer/try_eject(mob/living/user, forced = FALSE)
 	if(!stored_card)
 		if(user)
-			to_chat(user, span_warning("There is no card in \the [computer.name]."))
+			to_chat(user, span_warning("\the [computer.name]中没有卡片。"))
 		return FALSE
 
 	if(restoring && !forced)
 		if(user)
-			to_chat(user, span_warning("Safeties prevent you from removing the card until reconstruction is complete..."))
+			to_chat(user, span_warning("安全机制阻止你在重建完成前取出卡片..."))
 		return FALSE
 
 	if(user && computer.Adjacent(user))
-		to_chat(user, span_notice("You remove [stored_card] from [computer.name]."))
+		to_chat(user, span_notice("你从[computer.name]中取出[stored_card]。"))
 		user.put_in_hands(stored_card)
 	else
 		stored_card.forceMove(computer.drop_location())

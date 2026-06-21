@@ -76,17 +76,17 @@
 			return
 		var/cooldown = ckey_to_cooldown[source.ckey] - world.time
 		if(cooldown > 0)
-			to_chat(source, span_warning("Your deadchat control inputs are still on cooldown for another [CEILING(cooldown * 0.1, 1)] second\s."))
+			to_chat(source, span_warning("你的死寂聊天控制输入仍在冷却中，还需等待 [CEILING(cooldown * 0.1, 1)] second\s 。"))
 			return MOB_DEADSAY_SIGNAL_INTERCEPT
 		ckey_to_cooldown[source.ckey] = world.time + input_cooldown
 		addtimer(CALLBACK(src, PROC_REF(end_cooldown), source.ckey), input_cooldown)
 		inputs[message].Invoke()
-		to_chat(source, span_notice("\"[message]\" input accepted. You are now on cooldown for [input_cooldown * 0.1] second\s."))
+		to_chat(source, span_notice("“\"[message]\"”输入已接受。你现在进入冷却，持续 [input_cooldown * 0.1] second\s 。"))
 		return MOB_DEADSAY_SIGNAL_INTERCEPT
 
 	if(deadchat_mode & DEMOCRACY_MODE)
 		ckey_to_cooldown[source.ckey] = message
-		to_chat(source, span_notice("You have voted for \"[message]\"."))
+		to_chat(source, span_notice("你已投票支持 \"[message]\"。"))
 		return MOB_DEADSAY_SIGNAL_INTERCEPT
 
 /datum/component/deadchat_control/proc/democracy_loop()
@@ -182,14 +182,14 @@
 
 /// Async proc handling the alert input and associated logic for an admin removing this component via the VV dropdown.
 /datum/component/deadchat_control/proc/async_handle_vv_topic(mob/user, list/href_list)
-	if(tgui_alert(user, "Remove deadchat control from [parent]?", "Deadchat Plays [parent]", list("Remove", "Cancel")) == "Remove")
+	if(tgui_alert(user, "从 [parent] 移除死寂聊天控制？", "死寂聊天控制 [parent]", list("Remove", "Cancel")) == "Remove")
 		// Quick sanity check as this is an async call.
 		if(QDELETED(src))
 			return
 
-		to_chat(user, span_notice("Deadchat can no longer control [parent]."))
+		to_chat(user, span_notice("死寂聊天已无法再控制 [parent]。"))
 		log_admin("[key_name(user)] has removed deadchat control from [parent]")
-		message_admins(span_notice("[key_name(user)] has removed deadchat control from [parent]"))
+		message_admins(span_notice("[key_name(user)] 已从 [parent] 移除了死寂聊天控制"))
 
 		qdel(src)
 
@@ -200,12 +200,12 @@
 	if(!isobserver(user))
 		return
 
-	examine_list += span_notice("[A.p_Theyre()] currently under deadchat control using the [(deadchat_mode & DEMOCRACY_MODE) ? "democracy" : "anarchy"] ruleset!")
+	examine_list += span_notice("[A.p_Theyre()] 目前正由死寂聊天控制，使用 [(deadchat_mode & DEMOCRACY_MODE) ? "democracy" : "anarchy"] 规则集！")
 
 	if(deadchat_mode & DEMOCRACY_MODE)
-		examine_list += span_notice("Type a command into chat to vote on an action. This happens once every [input_cooldown * 0.1] second\s.")
+		examine_list += span_notice("在聊天中输入指令来对行动投票。每 [input_cooldown * 0.1] second\s 进行一次。")
 	else if(deadchat_mode & ANARCHY_MODE)
-		examine_list += span_notice("Type a command into chat to perform. You may do this once every [input_cooldown * 0.1] second\s.")
+		examine_list += span_notice("在聊天中输入指令来执行。你每 [input_cooldown * 0.1] second\s 只能这样做一次。")
 
 	var/extended_examine = "<span class='notice'>Command list:"
 

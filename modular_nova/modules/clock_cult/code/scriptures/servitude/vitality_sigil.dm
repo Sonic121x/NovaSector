@@ -1,6 +1,6 @@
 /datum/scripture/create_structure/sigil_vitality
-	name = "Vitality Matrix"
-	desc = "Summons a vitality matrix, which drains the life force of non servants. Much less vitality is gained from simpler entities."
+	name = "活力矩阵"
+	desc = "召唤一个活力矩阵，可汲取非仆从的生命力。从简单实体中获得的活力要少得多。"
 	tip = "Drain life from non-servants, increasing stored vitality."
 	button_icon_state = "Sigil of Vitality"
 	power_cost = 300

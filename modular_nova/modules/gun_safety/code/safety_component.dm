@@ -43,7 +43,7 @@
 	SIGNAL_HANDLER
 
 	if(safety_currently_on)
-		user.balloon_alert(user, "safety on!")
+		user.balloon_alert(user, "保险已开启！")
 		return COMPONENT_CANCEL_GUN_FIRE
 
 /// Calls toggle_safeties if the action type for doing so is used
@@ -76,7 +76,7 @@
 	examine_list += "<span>The safety is [safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"].</span>"
 	var/keybinding = examiner.client?.prefs?.key_bindings?["toggle_safety"]?[1]
 	if (!isnull(keybinding))
-		examine_list += "Press [span_notice("[keybinding]")] with it in hand to toggle the safety."
+		examine_list += "手持时按[span_notice("[keybinding]")]来切换保险。"
 
 /// Small proc to update the actio button's icon, just so I can not have to copypaste the same thing several times.
 /datum/component/gun_safety/proc/update_action_button_state()
@@ -88,6 +88,6 @@
 
 // The actual action, used by the component
 /datum/action/item_action/gun_safety_toggle
-	name = "Toggle Gun Safety"
+	name = "切换枪支保险"
 	button_icon = 'modular_nova/modules/gun_safety/icons/actions.dmi'
 	button_icon_state = "safety_on"

@@ -3,8 +3,8 @@
 #define DRONE_READY "ready"
 
 /obj/machinery/drone_dispenser //Most customizable machine 2015
-	name = "drone shell dispenser"
-	desc = "A hefty machine that, when supplied with iron and glass, will periodically create a drone shell. Does not need to be manually operated."
+	name = "无人机外壳分配机"
+	desc = "一台巨大的机器，当装入铁和玻璃时，会定期制造无人机外壳。不需要手动操作。"
 
 	icon = 'icons/obj/machines/drone_dispenser.dmi'
 	icon_state = "on"
@@ -91,8 +91,8 @@
 	starting_amount = SHEET_MATERIAL_AMOUNT * 2.5
 
 /obj/machinery/drone_dispenser/syndrone //Please forgive me
-	name = "syndrone shell dispenser"
-	desc = "A suspicious machine that will create Syndicate exterminator drones when supplied with iron and glass. Disgusting."
+	name = "辛迪无人机外壳分配机"
+	desc = "一台可疑的机器，装载铁与玻璃时会自动制造辛迪加毁灭者无人机. 恶心"
 	dispense_type = list(/obj/effect/mob_spawn/ghost_role/drone/syndrone)
 	//If we're gonna be a jackass, go the full mile - 10 second recharge timer
 	cooldownTime = 10 SECONDS
@@ -100,15 +100,15 @@
 	starting_amount = SHEET_MATERIAL_AMOUNT * 12.5
 
 /obj/machinery/drone_dispenser/syndrone/badass //Please forgive me
-	name = "badass syndrone shell dispenser"
-	desc = "A suspicious machine that will create Syndicate exterminator drones when supplied with iron and glass. Disgusting. This one seems ominous."
+	name = "邪恶辛迪无人机外壳分配机"
+	desc = "一台可疑的机器，装载铁与玻璃时会自动制造辛迪加毁灭者无人机. 恶心. 这台看起来有种不详的感觉"
 	dispense_type = list(/obj/effect/mob_spawn/ghost_role/drone/syndrone/badass)
 	end_create_message = "dispenses an ominous suspicious drone shell."
 
 // I don't need your forgiveness, this is awesome.
 /obj/machinery/drone_dispenser/snowflake
-	name = "snowflake drone shell dispenser"
-	desc = "A hefty machine that, when supplied with iron and glass, will periodically create a snowflake drone shell. Does not need to be manually operated."
+	name = "雪花无人机外壳分配机"
+	desc = "一台巨大的机器，当装入铁和玻璃时，会定期制造出雪花无人机外壳。不需要手动操作。"
 	dispense_type = list(/obj/effect/mob_spawn/ghost_role/drone/snowflake)
 	end_create_message = "dispenses a snowflake drone shell."
 	// Those holoprojectors aren't cheap
@@ -119,8 +119,8 @@
 
 // If the derelict gets lonely, make more friends.
 /obj/machinery/drone_dispenser/derelict
-	name = "derelict drone shell dispenser"
-	desc = "A rusty machine that, when supplied with iron and glass, will periodically create a derelict drone shell. Does not need to be manually operated."
+	name = "废弃无人机外壳分配机"
+	desc = "一台生锈的机器，当装入铁和玻璃时，会定期制造一个废弃的无人机外壳。不需要手动操作"
 	dispense_type = list(/obj/effect/mob_spawn/ghost_role/drone/derelict)
 	end_create_message = "dispenses a derelict drone shell."
 	iron_cost = SHEET_MATERIAL_AMOUNT * 5
@@ -129,16 +129,16 @@
 	cooldownTime = 60 SECONDS
 
 /obj/machinery/drone_dispenser/classic
-	name = "classic drone shell dispenser"
-	desc = "A hefty machine that, when supplied with iron and glass, will periodically create a classic drone shell. Does not need to be manually operated."
+	name = "经典无人机外壳分配机"
+	desc = "这是一台巨大的机器，当配备铁和玻璃时，会定期制造出经典的无人机外壳。不需要手动操作"
 	dispense_type = list(/obj/effect/mob_spawn/ghost_role/drone/classic)
 	end_create_message = "dispenses a classic drone shell."
 
 // An example of a custom drone dispenser.
 // This one requires no materials and creates basic hivebots
 /obj/machinery/drone_dispenser/hivebot
-	name = "hivebot fabricator"
-	desc = "A large, bulky machine that whirs with activity, steam hissing from vents in its sides."
+	name = "蜂巢机器人加工厂"
+	desc = "一台大而笨重的机器，随着运作而呼呼作响，蒸汽从侧面的通风口发出嘶嘶声"
 	icon = 'icons/obj/machines/hivebot_fabricator.dmi'
 	icon_state = "hivebot_fab"
 	icon_off = "hivebot_fab"
@@ -157,8 +157,8 @@
 
 // A dispenser that produces binoculars, for the MediSim shuttle.
 /obj/machinery/drone_dispenser/binoculars
-	name = "binoculars fabricator"
-	desc = "A hefty machine that periodically creates a pair of binoculars. Really, Nanotrasen? We're getting this lazy?"
+	name = "双筒望远镜制造机"
+	desc = "一台笨重的机器，会定期制造一副双筒望远镜。说真的，纳能特拉森？我们已经懒到这种地步了吗？"
 	dispense_type = list(/obj/item/binoculars)
 	starting_amount = SHEET_MATERIAL_AMOUNT * 2.5 //Redudant
 	maximum_idle = 1
@@ -257,27 +257,27 @@
 /obj/machinery/drone_dispenser/crowbar_act(mob/living/user, obj/item/tool)
 	materials.retrieve_all()
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice("You retrieve the materials from [src]."))
+	to_chat(user, span_notice("你从 [src] 中取回了材料。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/drone_dispenser/welder_act(mob/living/user, obj/item/tool)
 	if(!(machine_stat & BROKEN))
-		to_chat(user, span_warning("[src] doesn't need repairs."))
+		to_chat(user, span_warning("[src] 不需要修理。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] begins patching up [src] with [tool]."),
-		span_notice("You begin restoring the damage to [src]..."))
+		span_notice("[user] 开始用 [tool] 修补 [src]。"),
+		span_notice("你开始修复 [src] 的损伤..."))
 
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] fixes [src]!"),
-		span_notice("You restore [src] to operation."))
+		span_notice("[user] 修好了 [src]！"),
+		span_notice("你让 [src] 恢复了运作。"))
 
 	set_machine_stat(machine_stat & ~BROKEN)
 	atom_integrity = max_integrity

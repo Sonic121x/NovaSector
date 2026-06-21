@@ -1,5 +1,5 @@
 /datum/space_level
-	var/name = "NAME MISSING"
+	var/name = "名称缺失"
 	var/list/neigbours = list()
 	var/list/traits
 	var/z_value = 1 //actual z placement

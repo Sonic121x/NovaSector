@@ -1,6 +1,6 @@
 /obj/item/holosign_creator
-	name = "holographic sign projector"
-	desc = "A handy-dandy holographic projector that displays a janitorial sign."
+	name = "全息标志投影仪"
+	desc = "一个方便的全息投影仪，可以显示清洁标志。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "signmaker"
 	inhand_icon_state = "electronic"
@@ -41,7 +41,7 @@
 	. = ..()
 	if(!signs)
 		return
-	. += span_notice("It is currently maintaining <b>[signs.len]/[max_signs]</b> projections.")
+	. += span_notice("它当前维持着 <b>[signs.len]/[max_signs]</b> 个投影。")
 
 /obj/item/holosign_creator/check_allowed_items(atom/target, not_inside, target_self)
 	if(HAS_TRAIT(target, TRAIT_COMBAT_MODE_SKIP_INTERACTION))
@@ -60,10 +60,10 @@
 	if(target_turf.is_blocked_turf(TRUE, ignore_atoms = projectable_through, type_list = TRUE)) //can't put holograms on a tile that has dense stuff
 		return ITEM_INTERACT_BLOCKING
 	if(holocreator_busy)
-		balloon_alert(user, "busy making a hologram!")
+		balloon_alert(user, "正忙着制作全息图！")
 		return ITEM_INTERACT_BLOCKING
 	if(LAZYLEN(signs) >= max_signs)
-		balloon_alert(user, "max capacity!")
+		balloon_alert(user, "已达最大容量！")
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/machines/click.ogg', 20, TRUE)
@@ -96,7 +96,7 @@
 	if(LAZYLEN(signs))
 		for(var/obj/structure/holosign/hologram as anything in signs)
 			qdel(hologram)
-		balloon_alert(user, "holograms cleared")
+		balloon_alert(user, "全息图已清除")
 
 /obj/item/holosign_creator/Destroy()
 	. = ..()
@@ -114,31 +114,31 @@
 			hologram.color = color
 
 /obj/item/holosign_creator/janibarrier
-	name = "custodial holobarrier projector"
-	desc = "A holographic projector that creates hard light wet floor barriers."
+	name = "保洁全息屏障投影仪"
+	desc = "一种能产生硬光湿滑地面屏障的全息投影仪。"
 	holosign_type = /obj/structure/holosign/barrier/wetsign
 	creation_time = 1 SECONDS
 	max_signs = 12
 
 /obj/item/holosign_creator/security
-	name = "security holobarrier projector"
-	desc = "A holographic projector that creates holographic security barriers. You can remotely open barriers with it."
+	name = "安保全息屏障投影仪"
+	desc = "一种能产生全息安保屏障的投影仪。你可以用它远程开启屏障。"
 	icon_state = "signmaker_sec"
 	holosign_type = /obj/structure/holosign/barrier
 	creation_time = 2 SECONDS
 	max_signs = 6
 
 /obj/item/holosign_creator/engineering
-	name = "engineering holobarrier projector"
-	desc = "A holographic projector that creates holographic engineering barriers. You can remotely open barriers with it."
+	name = "工程全息屏障投影仪"
+	desc = "一种能产生全息工程屏障的投影仪。你可以用它远程开启屏障。"
 	icon_state = "signmaker_engi"
 	holosign_type = /obj/structure/holosign/barrier/engineering
 	creation_time = 1 SECONDS
 	max_signs = 12
 
 /obj/item/holosign_creator/atmos
-	name = "ATMOS holofan projector"
-	desc = "A holographic projector that creates holographic barriers that prevent changes in atmosphere conditions."
+	name = "大气全息风扇投影仪"
+	desc = "一种能产生全息屏障的投影仪，可防止大气条件发生变化。"
 	icon_state = "signmaker_atmos"
 	holosign_type = /obj/structure/holosign/barrier/atmos
 	creation_time = 0
@@ -183,13 +183,13 @@
 /obj/item/holosign_creator/atmos/attack_self_secondary(mob/user, modifiers)
 	if(clearview)
 		reset_hologram_transparency()
-		balloon_alert(user, "turned off clearview")
+		balloon_alert(user, "已关闭清障视野")
 		return
 	if(LAZYLEN(signs))
 		for(var/obj/structure/holosign/barrier/atmos/hologram as anything in signs)
 			hologram.clearview_transparency()
 		clearview = TRUE
-		balloon_alert(user, "turned on clearview")
+		balloon_alert(user, "已开启清障视野")
 		clearview_timer = addtimer(CALLBACK(src, PROC_REF(reset_hologram_transparency)), 40 SECONDS, TIMER_STOPPABLE)
 	return ..()
 
@@ -201,16 +201,16 @@
 		deltimer(clearview_timer)
 
 /obj/item/holosign_creator/medical
-	name = "\improper PENLITE barrier projector"
-	desc = "A holographic projector that creates PENLITE holobarriers. Useful during quarantines since they halt those with malicious diseases."
+	name = "\improper PENLITE屏障投射器"
+	desc = "一种能生成PENLITE全息屏障的投影仪。在隔离期间非常有用，因为它们能阻止携带恶性疾病者通过。"
 	icon_state = "signmaker_med"
 	holosign_type = /obj/structure/holosign/barrier/medical
 	creation_time = 1 SECONDS
 	max_signs = 6
 
 /obj/item/holosign_creator/cyborg
-	name = "Energy Barrier Projector"
-	desc = "A holographic projector that creates fragile energy fields."
+	name = "能量屏障投射器"
+	desc = "一种能生成脆弱能量场的全息投影仪。"
 	creation_time = 1.5 SECONDS
 	max_signs = 9
 	holosign_type = /obj/structure/holosign/barrier/cyborg
@@ -221,7 +221,7 @@
 		var/mob/living/silicon/robot/borg = user
 
 		if(shock)
-			to_chat(user, span_notice("You clear all active holograms, and reset your projector to normal."))
+			to_chat(user, span_notice("你清除了所有活动的全息图，并将投影仪重置为正常状态."))
 			holosign_type = /obj/structure/holosign/barrier/cyborg
 			creation_time = 0.5 SECONDS
 			for(var/obj/structure/holosign/hologram as anything in signs)
@@ -229,7 +229,7 @@
 			shock = FALSE
 			return
 		if(borg.emagged && !shock)
-			to_chat(user, span_warning("You clear all active holograms, and overload your energy projector!"))
+			to_chat(user, span_warning("你清除了所有活动的全息图，并过载了你的能量投影仪！"))
 			holosign_type = /obj/structure/holosign/barrier/cyborg/hacked
 			creation_time = 3 SECONDS
 			for(var/obj/structure/holosign/hologram as anything in signs)
@@ -238,4 +238,4 @@
 			return
 	for(var/obj/structure/holosign/hologram as anything in signs)
 		qdel(hologram)
-	balloon_alert(user, "holograms cleared")
+	balloon_alert(user, "全息影像已清除")

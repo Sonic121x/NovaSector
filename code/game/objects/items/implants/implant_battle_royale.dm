@@ -1,7 +1,7 @@
 
 /// Implant used by the traitor Battle Royale objective, is not active immediately
 /obj/item/implant/explosive/battle_royale
-	name = "rumble royale implant"
+	name = "隆隆大逃杀植入物"
 	actions_types = null
 	instant_explosion = FALSE
 	master_implant = TRUE
@@ -62,7 +62,7 @@
 	if (has_exploded || QDELETED(src))
 		return
 	if (!special && prob(removed_explode_chance))
-		target.visible_message(span_boldwarning("[src] beeps ominously."))
+		target.visible_message(span_boldwarning("[src] 发出不祥的哔哔声。"))
 		playsound(loc, 'sound/items/timer.ogg', 50, vary = FALSE)
 		explode(target)
 	target?.mind?.remove_antag_datum(/datum/antagonist/survivalist/battle_royale)
@@ -82,7 +82,7 @@
 		return
 	if (!source.itch() || prob(80))
 		return
-	to_chat(source, span_boldwarning("You feel a lump which shouldn't be there."))
+	to_chat(source, span_boldwarning("你感觉到一个不该存在的肿块。"))
 
 /// Start the battle royale
 /obj/item/implant/explosive/battle_royale/proc/start_battle(target_area_name, list/limited_areas)
@@ -120,7 +120,7 @@
 	if (is_type_in_list(get_area(source), limited_areas))
 		return
 	playsound(imp_in, 'sound/items/timer.ogg', 50, vary = FALSE)
-	to_chat(imp_in, span_boldwarning("You are out of bounds! Get to the [target_area_name] quickly!"))
+	to_chat(imp_in, span_boldwarning("你已超出边界！请立即前往 [target_area_name]！"))
 	addtimer(CALLBACK(src, PROC_REF(check_area_deadly)), 5 SECONDS, TIMER_DELETE_ME)
 
 /// After a grace period they're still out of bounds, killing time

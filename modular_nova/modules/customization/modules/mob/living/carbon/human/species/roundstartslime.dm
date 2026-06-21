@@ -309,15 +309,15 @@
 	)
 	item.reagents.clear_reagents() //removes the whole shit
 	if(isnull(brainmob))
-		user.balloon_alert(user, "brain is not a viable candidate for repair!")
+		user.balloon_alert(user, "大脑不是可行的修复对象！")
 		return TRUE
 
 	brainmob.grab_ghost()
 	if(isnull(brainmob.stored_dna))
-		user.balloon_alert(user, "brain does not contain any dna!")
+		user.balloon_alert(user, "大脑不包含任何DNA！")
 		return TRUE
 	if(isnull(brainmob.client))
-		user.balloon_alert(user, "brain does not contain a mind!")
+		user.balloon_alert(user, "大脑不包含意识！")
 		return TRUE
 	regenerate()
 	return TRUE
@@ -351,7 +351,7 @@
 		if(!istype(bodypart, /obj/item/bodypart/chest))
 			bodypart.drop_limb()
 			continue
-	new_body.visible_message(span_warning("[new_body]'s torso \"forms\" from [new_body.p_their()] core, yet to form the rest."))
+	new_body.visible_message(span_warning("[new_body]的躯干从[new_body.p_their()]核心\"成形\"，但尚未形成其余部分。"))
 	to_chat(owner, span_purple("Your torso fully forms out of your core, yet to form the rest."))
 	return TRUE
 
@@ -730,8 +730,8 @@
 /datum/action/innate/alter_form/proc/alter_skin_colours(mob/living/carbon/human/alterer)
 	var/skintone_string = tgui_input_list(
 		alterer,
-		"Choose your character's new skin color:",
-		"Form Alteration",
+		"选择你角色的新肤色：",
+		"形态改变",
 		GLOB.skin_tone_names
 	)
 
@@ -788,20 +788,20 @@
 
 	var/marking_reset = tgui_alert(
 		alterer,
-		"Would you like to reset your markings to match your new colors?",
-		"Reset markings",
+		"你想要重置你的标记以匹配新颜色吗？",
+		"重置标记",
 		list("Yes", "No"),
 	)
 	var/mutant_part_reset = tgui_alert(
 		alterer,
-		"Would you like to reset your mutant body parts(not limbs) to match your new colors?",
-		"Reset mutant parts",
+		"你想要重置你的突变身体部位（非肢体）以匹配新颜色吗？",
+		"重置突变部位",
 		list("Yes", "No"),
 	)
 	var/hair_reset = tgui_alert(
 		alterer,
-		"Would you like to reset your hair to match your new colors?",
-		"Reset hair",
+		"你想要重置你的发型以匹配新颜色吗？",
+		"重置发型",
 		list("Hair", "Facial Hair", "Both", SPRITE_ACCESSORY_NONE),
 	)
 
@@ -871,15 +871,15 @@
 		return
 	switch(target_hair)
 		if("Hair")
-			var/new_style = tgui_input_list(owner, "Select a hair style", "Hair Alterations", SSaccessories.hairstyles_list)
+			var/new_style = tgui_input_list(owner, "选择一种发型", "发型调整", SSaccessories.hairstyles_list)
 			if(new_style)
 				alterer.set_hairstyle(new_style, update = TRUE)
 		if("Facial Hair")
-			var/new_style = tgui_input_list(alterer, "Select a facial hair style", "Hair Alterations", SSaccessories.facial_hairstyles_list)
+			var/new_style = tgui_input_list(alterer, "选择一种面部毛发样式", "发型调整", SSaccessories.facial_hairstyles_list)
 			if(new_style)
 				alterer.set_facial_hairstyle(new_style, update = TRUE)
 		if("Hair Color")
-			var/hair_area = tgui_alert(alterer, "Select which color you would like to change", "Hair Color Alterations", list("Hairstyle", "Facial Hair", "Both"))
+			var/hair_area = tgui_alert(alterer, "选择你想要更改的颜色部分", "发色调整", list("Hairstyle", "Facial Hair", "Both"))
 			if(!hair_area)
 				return
 			var/new_hair_color = tgui_color_picker(alterer, "Select your new hair color", "Hair Color Alterations", alterer.dna.features[FEATURE_MUTANT_COLOR])
@@ -906,8 +906,8 @@
 		key_list.Remove("Genitals")
 	var/dna_alteration = tgui_input_list(
 		alterer,
-		"Select what part of your DNA you'd like to alter",
-		"DNA Alteration",
+		"选择你想要更改的DNA部分",
+		"DNA改造",
 		key_list,
 	)
 	if(!dna_alteration)
@@ -915,15 +915,15 @@
 	switch(dna_alteration)
 		if("Body Size")
 			if(oversized_user && !HAS_TRAIT(alterer, TRAIT_OVERSIZED))
-				var/reset_size = tgui_alert(alterer, "Do you wish to return to being oversized?", "Size Change", list("Yes", "No"))
+				var/reset_size = tgui_alert(alterer, "你希望恢复到超大尺寸吗？", "尺寸变更", list("Yes", "No"))
 				if(reset_size == "Yes")
 					alterer.add_quirk(/datum/quirk/oversized)
 					return
 
 			var/new_body_size = tgui_input_number(
 				alterer,
-				"Choose your desired sprite size: ([BODY_SIZE_MIN * 100]% to [BODY_SIZE_MAX * 100]%). Warning: May make your character look distorted",
-				"Size Change",
+				"选择你想要的精灵尺寸：（[BODY_SIZE_MIN * 100]% 到 [BODY_SIZE_MAX * 100]%）。警告：可能会让你的角色看起来扭曲",
+				"尺寸变更",
 				default = min(alterer.dna.features["body_size"] * 100, BODY_SIZE_MAX * 100),
 				max_value = BODY_SIZE_MAX * 100,
 				min_value = BODY_SIZE_MIN * 100,
@@ -959,8 +959,8 @@
 		mutant_part_list[block::feature_key] = block
 	var/chosen_key = tgui_input_list(
 		alterer,
-		"Select the part you want to alter",
-		"Body Part Alterations",
+		"选择你想要改造的部位",
+		"身体部位改造",
 		mutant_part_list,
 	)
 	if(!chosen_key)
@@ -969,8 +969,8 @@
 	var/choice_list = available_choices[chosen_key]
 	var/chosen_name_key = tgui_input_list(
 		alterer,
-		"What do you want the part to become?",
-		"Body Part Alterations",
+		"你希望这个部位变成什么？",
+		"身体部位改造",
 		choice_list,
 	)
 	if(!chosen_name_key)
@@ -1040,8 +1040,8 @@
 	var/list/candidates = GLOB.body_marking_sets
 	var/chosen_name = tgui_input_list(
 		alterer,
-		"Select which set of markings would you like to change into",
-		"Marking Alterations",
+		"选择你想要改变成哪一套标记",
+		"标记改造",
 		candidates,
 	)
 	if(!chosen_name)
@@ -1063,12 +1063,12 @@
 	if(alterer.get_organ_slot(ORGAN_SLOT_TESTICLES))
 		genital_list += list("Testicles Size")
 	if(!length(genital_list))
-		alterer.balloon_alert(alterer, "no genitals!")
+		alterer.balloon_alert(alterer, "没有生殖器！")
 
 	var/dna_alteration = tgui_input_list(
 		alterer,
-		"Select what bodypart you'd like to alter",
-		"Genital Alteration",
+		"选择你想要改变的身体部位",
+		"生殖器改造",
 		genital_list
 	)
 	if(!dna_alteration)
@@ -1084,8 +1084,8 @@
 			var/obj/item/organ/genital/breasts/melons = alterer.get_organ_slot(ORGAN_SLOT_BREASTS)
 			var/new_size = tgui_input_list(
 				alterer,
-				"Choose your character's breasts size:",
-				"DNA Alteration",
+				"选择你角色的胸部尺寸：",
+				"DNA改造",
 				GLOB.breast_size_to_number,
 			)
 			if(!new_size)
@@ -1100,8 +1100,8 @@
 				max_girth = alterer.dna.features["penis_size"]
 			var/new_girth = tgui_input_number(
 				alterer,
-				"Choose your penis girth:\n(1-[max_girth] (based on length) in inches)",
-				"Character Preference",
+				"选择你的阴茎粗细：\n(1-[max_girth] (基于长度) 英寸)",
+				"角色偏好",
 				max_value = max_girth,
 				min_value = 1
 			)
@@ -1113,8 +1113,8 @@
 			var/obj/item/organ/genital/penis/wang = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
 			var/new_length = tgui_input_number(
 				alterer,
-				"Choose your penis length:\n([PENIS_MIN_LENGTH]-[PENIS_MAX_LENGTH] inches)",
-				"DNA Alteration",
+				"选择你的阴茎长度：\n([PENIS_MIN_LENGTH]-[PENIS_MAX_LENGTH] 英寸)",
+				"DNA改造",
 				max_value = PENIS_MAX_LENGTH,
 				min_value = PENIS_MIN_LENGTH,
 			)
@@ -1130,8 +1130,8 @@
 			var/obj/item/organ/genital/penis/schlong = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
 			var/new_sheath = tgui_input_list(
 				alterer,
-				"Choose your penis sheath",
-				"DNA Alteration",
+				"选择你的阴茎鞘",
+				"DNA改造",
 				SHEATH_MODES,
 			)
 			if(new_sheath)
@@ -1146,8 +1146,8 @@
 			var/obj/item/organ/genital/testicles/avocados = alterer.get_organ_slot(ORGAN_SLOT_TESTICLES)
 			var/new_size = tgui_input_list(
 				alterer,
-				"Choose your character's testicles size:",
-				"Character Preference",
+				"选择你角色的睾丸大小：",
+				"角色偏好",
 				GLOB.preference_balls_sizes,
 			)
 			if(new_size)

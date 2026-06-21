@@ -196,11 +196,11 @@
 
 			if((rank < hotswap_rank) && (rank_changed >= hotswap_rank))
 				var/mob/mob_parent = parent
-				mob_parent.balloon_alert(mob_parent, "hotswapping enabled")
+				mob_parent.balloon_alert(mob_parent, "热插拔已启用")
 
 			else if((rank >= hotswap_rank) && (rank_changed < hotswap_rank))
 				var/mob/mob_parent = parent
-				mob_parent.balloon_alert(mob_parent, "hotswapping disabled")
+				mob_parent.balloon_alert(mob_parent, "热插拔已禁用")
 
 			rank = rank_changed
 
@@ -319,13 +319,13 @@
 /datum/component/style/proc/hotswap_interact(mob/living/source, obj/item/weapon, atom/target, list/modifiers)
 	var/datum/storage/atom_storage = target.loc.atom_storage
 	if(!atom_storage.can_insert(weapon, source, messages = FALSE))
-		source.balloon_alert(source, "unable to hotswap!")
+		source.balloon_alert(source, "无法热插拔！")
 		return
 
 	if (atom_storage.attempt_insert(weapon, source, override = TRUE) && source.put_in_hands(target))
-		source.visible_message(span_notice("[source] quickly swaps [weapon] out with [target]!"), span_notice("You quickly swap [weapon] with [target]."))
+		source.visible_message(span_notice("[source] 迅速将 [weapon] 与 [target] 交换！"), span_notice("你迅速将 [weapon] 与 [target] 交换。"))
 	else
-		source.balloon_alert(source, "unable to hotswap!")
+		source.balloon_alert(source, "无法热插拔！")
 
 /// Increase our permanent multiplier based on the modifier.
 /datum/component/style/proc/adjust_permanent_multiplier(modifier)

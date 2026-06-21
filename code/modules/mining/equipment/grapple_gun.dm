@@ -1,8 +1,8 @@
 #define DAMAGE_ON_IMPACT 20
 
 /obj/item/grapple_gun
-	name = "grapple gun"
-	desc = "A small specialised airgun capable of launching a climbing hook into a distant rock face and pulling the user toward it via motorised zip-line. A handy tool for traversing the craggy landscape of lavaland!"
+	name = "抓钩枪"
+	desc = "一种小型专用气枪，能够将登山钩发射到远处的岩壁上，并通过电动滑索将使用者拉向目标。是在熔岩地崎岖地形中穿行的便捷工具！"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "grapple_gun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -42,10 +42,10 @@
 		return NONE
 
 	if(!lavaland_equipment_pressure_check(get_turf(user)) && !(obj_flags & EMAGGED))
-		user.balloon_alert(user, "gun mechanism won't work here!")
+		user.balloon_alert(user, "枪械机构在此处无法工作！")
 		return ITEM_INTERACT_BLOCKING
 	if(get_dist(user, target) > 9)
-		user.balloon_alert(user, "too far away!")
+		user.balloon_alert(user, "太远了！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/turf/attacked_atom = get_turf(target)
@@ -77,7 +77,7 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "pressure settings overloaded")
+	balloon_alert(user, "压力设置过载")
 	obj_flags |= EMAGGED
 	return TRUE
 
@@ -175,7 +175,7 @@
 		. += hook_overlay
 
 /obj/projectile/grapple_hook
-	name = "grapple hook"
+	name = "抓钩"
 	icon_state = "grapple_hook"
 	damage = 0
 	range = 9

@@ -24,7 +24,7 @@
 /// Adds text to the examine text of the parent item, explaining that the item can be used to enable the use of NIFSoft HUDs
 /datum/component/soulcatcher/attachable_soulcatcher/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	examine_text += span_cyan_nova("[source] has a soulcatcher attached to it, <b>Ctrl+Shift+Click</b> to use it.")
+	examine_text += span_cyan_nova("[source] 上附有一个灵魂捕捉器，<b>Ctrl+Shift+点击</b>来使用它。")
 
 /datum/component/soulcatcher/attachable_soulcatcher/proc/bring_up_ui(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -54,8 +54,8 @@
 	return ..()
 
 /obj/item/attachable_soulcatcher
-	name = "Poltergeist-Type RSD"
-	desc = "This device, a polymorphic nanomachine net, wraps around objects of most sizes and allows them to function as a container for Resonance. The soul in question within the vessel is imbued much like it would be in a body or a normal Soulcatcher, perceiving the world and even speaking out of their new form. The nanomachine net of the device allows for the consciousness to somewhat manipulate their container, but any large-scale movement is out of the question."
+	name = "骚灵型共振模拟装置"
+	desc = "该装置是一种多态纳米机器网，可包裹大多数尺寸的物体，使其能够作为共振的容器。容器内的灵魂被注入的方式与在身体或普通灵魂捕捉器中类似，能够感知世界，甚至从其新形态中发声。装置的纳米机器网允许意识在一定程度上操纵其容器，但任何大规模移动都是不可能的。"
 	icon = 'modular_nova/modules/modular_implants/icons/obj/devices.dmi'
 	icon_state = "attachable-soulcatcher"
 	w_class = WEIGHT_CLASS_SMALL
@@ -84,11 +84,11 @@
 
 /obj/item/attachable_soulcatcher/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isitem(interacting_with) || is_type_in_list(interacting_with, blacklisted_items))
-		balloon_alert(user, "incompatible!")
+		balloon_alert(user, "不兼容！")
 		return NONE
 
 	if(interacting_with.GetComponent(/datum/component/soulcatcher))
-		balloon_alert(user, "already attached!")
+		balloon_alert(user, "已连接！")
 		return ITEM_INTERACT_BLOCKING
 
 

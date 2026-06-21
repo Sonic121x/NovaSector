@@ -1,8 +1,8 @@
 /obj/item/storage/lunchbox
-	name = "Lunchbox"
+	name = "午餐盒"
 	icon = 'modular_nova/master_files/icons/obj/storage/lunchbox.dmi'
 	icon_state = "nanotrasen"
-	desc = "A Spessman's best friend, a beautifully packed lunch."
+	desc = "太空人的挚友，一份包装精美的午餐。"
 
 	inhand_icon_state = "toolbox_default"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
@@ -81,11 +81,11 @@
 	icon_state = "ally"
 
 /obj/item/storage/lunchbox/ship
-	desc = "A Spessman's best friend: a beautifully packed lunch, on the side depicting a ship moving fast around a planet."
+	desc = "太空人的挚友：一份包装精美的午餐，侧面描绘着一艘飞船围绕行星快速飞行的图案。"
 	icon_state = "ship"
 
 /obj/item/storage/lunchbox/ammo
-	desc = "A well packed ammo box..."
+	desc = "一个包装精良的弹药盒..."
 	icon_state = "ammo"
 
 /obj/item/storage/lunchbox/cyber

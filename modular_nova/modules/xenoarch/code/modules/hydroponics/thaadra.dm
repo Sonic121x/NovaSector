@@ -1,6 +1,6 @@
 /obj/item/seeds/thaadra
-	name = "thaadra seed pack"
-	desc = "These seeds grow into thaadra plants. A strange flower full of unique medicines and silver."
+	name = "萨德拉种子包"
+	desc = "这些种子会长成萨德拉植株。一种充满独特药物和银元素的奇异花朵。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "thaadra"
 	species = "thaadra"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/thaadra
 	seed = /obj/item/seeds/thaadra
-	name = "thaadra"
-	desc = "A cluster of thaadra petals, full of niche medicinal chemicals."
+	name = "萨德拉"
+	desc = "一簇萨德拉花瓣，富含小众药用化学物质。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "thaadra"
 	filling_color = "#FF4500"

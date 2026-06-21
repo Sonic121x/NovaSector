@@ -1,6 +1,6 @@
 /// Manages the security cameras and camera chunks
 SUBSYSTEM_DEF(cameras)
-	name = "Cameras"
+	name = "摄像头"
 	ss_flags = SS_BACKGROUND
 	priority = FIRE_PRIORITY_CAMERAS
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -321,7 +321,7 @@ SUBSYSTEM_DEF(cameras)
 #undef IGNORE_CAMERA
 
 /obj/effect/overlay/camera_static
-	name = "static"
+	name = "静态"
 	icon = null
 	icon_state = null
 	anchored = TRUE  // should only appear in vis_contents, but to be safe

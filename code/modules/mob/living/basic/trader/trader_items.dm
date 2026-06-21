@@ -1,7 +1,7 @@
 ///Sale signs
 /obj/structure/trader_sign
-	name = "holographic store sign"
-	desc = "A holographic sign that promises great deals."
+	name = "全息商店招牌"
+	desc = "一个承诺提供超值优惠的全息招牌。"
 	icon = 'icons/obj/trader_signs.dmi'
 	icon_state = "faceless"
 	anchored = TRUE
@@ -32,5 +32,5 @@
 	outfit = /datum/outfit/mrbonescorpse
 
 /datum/outfit/mrbonescorpse
-	name = "Mr Bones' Corpse"
+	name = "骨头先生的尸体"
 	head = /obj/item/clothing/head/hats/tophat

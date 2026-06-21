@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////EGG RECIPE's////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/sausageegg
-	name = "Egg with sausage"
+	name = "腊肠煎蛋"
 	reqs = list(
 		/obj/item/food/sausage = 1,
 		/obj/item/food/friedegg = 1,
@@ -13,7 +13,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/omelette
-	name = "Omelette du fromage"
+	name = "奶酪煎蛋卷"
 	reqs = list(
 		/obj/item/food/egg = 2,
 		/obj/item/food/cheese/wedge = 2
@@ -23,7 +23,7 @@
 	removed_foodtypes = RAW
 
 /datum/crafting_recipe/food/chocolateegg
-	name = "Chocolate egg"
+	name = "巧克力蛋"
 	reqs = list(
 		/obj/item/food/boiledegg = 1,
 		/obj/item/food/chocolatebar = 1
@@ -34,7 +34,7 @@
 	meal_category = MEAL_DESSERT
 
 /datum/crafting_recipe/food/eggsbenedict
-	name = "Eggs benedict"
+	name = "Eggs benedict-班尼迪克蛋"
 	reqs = list(
 		/obj/item/food/friedegg = 1,
 		/obj/item/food/meat/steak = 1,
@@ -44,7 +44,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/eggbowl
-	name = "Egg bowl"
+	name = "Egg bowl-蛋碗"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/boiledrice = 1,
@@ -57,7 +57,7 @@
 	dish_category = DISH_RICE
 
 /datum/crafting_recipe/food/wrap
-	name = "Egg Wrap"
+	name = "Egg Wrap-蛋卷"
 	reqs = list(/datum/reagent/consumable/soysauce = 10,
 		/obj/item/food/friedegg = 1,
 		/obj/item/food/grown/cabbage = 1,
@@ -68,7 +68,7 @@
 	dish_category = DISH_BURRITO
 
 /datum/crafting_recipe/food/chawanmushi
-	name = "Chawanmushi"
+	name = "Chawanmushi-茶碗蒸"
 	reqs = list(
 		/datum/reagent/water = 5,
 		/datum/reagent/consumable/soysauce = 5,

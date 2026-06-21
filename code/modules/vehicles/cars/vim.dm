@@ -5,8 +5,8 @@
  * For the critters that cannot be understood, there is a sound creator in the mecha. It also has headlights.
  */
 /obj/vehicle/sealed/car/vim
-	name = "\improper Vim"
-	desc = "A miniature exosuit from Nanotrasen, developed to let the irreplaceable station pets live a little longer."
+	name = "\improper 活力"
+	desc = "纳米传讯公司开发的一款微型外骨骼，旨在让那些无可替代的空间站宠物活得更久一点。"
 	icon_state = "vim"
 	max_integrity = 50
 	armor_type = /datum/armor/car_vim
@@ -42,12 +42,12 @@
 
 /obj/vehicle/sealed/car/vim/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] can be repaired with a welder.")
+	. += span_notice("[src]可以用焊接器修复。")
 
 /obj/vehicle/sealed/car/vim/atom_destruction(damage_flag)
 	new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
 	do_sparks(5, TRUE, src)
-	visible_message(span_bolddanger("[src] blows apart!"))
+	visible_message(span_bolddanger("[src]炸开了！"))
 	return ..()
 
 /obj/vehicle/sealed/car/vim/mob_try_enter(mob/entering)
@@ -55,7 +55,7 @@
 		return FALSE
 	var/mob/living/animal_or_basic = entering
 	if(animal_or_basic.mob_size > maximum_mob_size)
-		entering.balloon_alert(entering, "can't fit inside!")
+		entering.balloon_alert(entering, "挤不进去！")
 		return FALSE
 	return ..()
 
@@ -64,21 +64,21 @@
 		return
 	. = TRUE
 	if(DOING_INTERACTION(user, src))
-		balloon_alert(user, "you're already repairing it!")
+		balloon_alert(user, "你已经在修理它了！")
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it's not damaged!")
+		balloon_alert(user, "它没有损坏！")
 		return
 	if(!W.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
 	user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
-	audible_message(span_hear("You hear welding."))
+	audible_message(span_hear("你听到了焊接声。"))
 	var/did_the_thing
 	while(atom_integrity < max_integrity)
 		if(W.use_tool(src, user, 2.5 SECONDS, volume=50))
 			did_the_thing = TRUE
 			atom_integrity += min(VIM_HEAL_AMOUNT, (max_integrity - atom_integrity))
-			audible_message(span_hear("You hear welding."))
+			audible_message(span_hear("你听到了焊接声。"))
 		else
 			break
 	if(did_the_thing)
@@ -119,7 +119,7 @@
 
 /obj/item/circuit_component/vim
 	display_name = "Vim"
-	desc = "A miniature exosuit from Nanotrasen, developed to let the irreplaceable station pets live a little longer."
+	desc = "纳米传讯公司开发的一款微型外骨骼，旨在让那些无可替代的空间站宠物活得更久一点。"
 
 	/// Sent when the mech chimes.
 	var/datum/port/output/chime

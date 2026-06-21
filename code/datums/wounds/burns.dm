@@ -149,7 +149,7 @@
 
 /datum/wound/burn/flesh/get_wound_description(mob/user)
 	if(strikes_to_lose_limb <= 0)
-		return span_deadsay("<B>[victim.p_Their()] [limb.plaintext_zone] has locked up completely and is non-functional.</B>")
+		return span_deadsay("<B>[victim.p_Their()] [limb.plaintext_zone]已经完全锁死，无法使用。</B>")
 
 	var/list/condition = list("[victim.p_Their()] [limb.plaintext_zone] [examine_desc]")
 	var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
@@ -173,9 +173,9 @@
 			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
 				condition += ", [span_deadsay("with growing clouds of infection.")]"
 			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-				condition += ", [span_deadsay("with streaks of rotten infection!")]"
+				condition += "，[span_deadsay("with streaks of rotten infection!")]"
 			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				return span_deadsay("<B>[victim.p_Their()] [limb.plaintext_zone] is a mess of charred skin and infected rot!</B>")
+				return span_deadsay("<B>[victim.p_Their()] [limb.plaintext_zone] 是一团焦黑皮肤和腐烂感染的烂摊子！</B>")
 			else
 				condition += "!"
 
@@ -200,7 +200,7 @@
 /datum/wound/burn/flesh/get_scanner_description(mob/user)
 	if(strikes_to_lose_limb <= 0) // Unclear if it can go below 0, best to not take the chance
 		var/oopsie = "Type: [name]<br>Severity: [severity_text()]"
-		oopsie += "<div class='ml-3'>Infection Level: [span_deadsay("The body part has suffered complete sepsis and must be removed. Amputate or augment limb immediately, or place the patient in a cryotube.")]</div>"
+		oopsie += "<div class='ml-3'>感染等级：[span_deadsay("The body part has suffered complete sepsis and must be removed. Amputate or augment limb immediately, or place the patient in a cryotube.")]</div>"
 		return oopsie
 
 	. = ..()
@@ -215,9 +215,9 @@
 			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
 				. += "Infection Level: Severe\n"
 			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-				. += "Infection Level: [span_deadsay("CRITICAL")]\n"
+				. += "感染等级：[span_deadsay("CRITICAL")]\n"
 			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				. += "Infection Level: [span_deadsay("LOSS IMMINENT")]\n"
+				. += "感染等级：[span_deadsay("LOSS IMMINENT")]\n"
 		if(infection > sanitization)
 			. += "\tSurgical debridement, antibiotics/sterilizers, or regenerative mesh will rid infection. Paramedic UV penlights are also effective.\n"
 
@@ -240,10 +240,10 @@
 /// Paramedic UV penlights
 /datum/wound/burn/flesh/proc/uv(obj/item/flashlight/pen/paramedic/I, mob/user)
 	if(!COOLDOWN_FINISHED(I, uv_cooldown))
-		to_chat(user, span_notice("[I] is still recharging!"))
+		to_chat(user, span_notice("[I] 仍在充能中！"))
 		return
 	if(infection <= 0 || infection < sanitization)
-		to_chat(user, span_notice("There's no infection to treat on [victim]'s [limb.plaintext_zone]!"))
+		to_chat(user, span_notice("[victim] 的 [limb.plaintext_zone] 上没有需要治疗的感染！"))
 		return
 
 	user.visible_message(span_notice("[user] flashes the burns on [victim]'s [limb] with [I]."), span_notice("You flash the burns on [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone] with [I]."), vision_distance=COMBAT_MESSAGE_RANGE)

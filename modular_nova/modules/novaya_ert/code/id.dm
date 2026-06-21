@@ -1,6 +1,6 @@
 /obj/item/card/id/advanced/centcom/ert/nri
-	name = "\improper HC ID"
-	desc = "An ID straight from the HC."
+	name = "\improper 高级指挥官身份卡"
+	desc = "一张直接来自最高指挥部的身份卡。"
 	icon_state = "card_black"
 	assigned_icon_state = "assigned_centcom"
 

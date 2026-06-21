@@ -1,11 +1,11 @@
 /obj/item/organ/heart/snail
-	name = "twin gastropod hearts"
-	desc = "A primary heart normally nestled inside a gastropod's shell, and another in the owner's actual chest; necessary to maintain ample bloodflow through essentially two torsos."
+	name = "双腹足心脏"
+	desc = "一颗通常位于腹足类壳内的主心脏，以及另一颗位于所有者实际胸腔内的心脏；对于维持本质上两个躯干的充足血流是必要的。"
 	icon = 'modular_nova/master_files/icons/obj/surgery.dmi'
 	icon_state = "heart-snail-on"
 	base_icon_state = "heart-snail"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD // There's two of them. Also, due to the special interaction below, it's best we make sure these aren't easily lost.
-	now_fixed = span_info("Your hearts begin to beat again.") //For the sake of verisimilitude.
+	now_fixed = span_info("你的心脏再次开始跳动。") //For the sake of verisimilitude.
 
 	COOLDOWN_DECLARE(shell_effect_cd)
 
@@ -56,7 +56,7 @@
 		return
 
 	if(COOLDOWN_FINISHED(src, shell_effect_cd))
-		source.visible_message(span_warning("[source]'s shell weathers the blow, absorbing most of the shock!"))
+		source.visible_message(span_warning("[source]的甲壳承受住了这一击，吸收了大部分冲击！"))
 		playsound(source, 'sound/items/weapons/parry.ogg', 50, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 
 	COOLDOWN_START(src, shell_effect_cd, 5 SECONDS) // Cooldown resets EVERY time we get hit

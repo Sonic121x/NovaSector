@@ -1,6 +1,6 @@
 /mob/living/basic/stickman
-	name = "Angry Stick Man"
-	desc = "A being from a realm with only 2 dimensions. At least it's trying to stay faced towards you."
+	name = "愤怒的火柴人"
+	desc = "一个来自二维世界的生物。至少它正努力保持着面向你的姿势。"
 	icon_state = "stickman"
 	icon_living = "stickman"
 	icon_dead = "stickman_dead"
@@ -44,8 +44,8 @@
 	)
 
 /mob/living/basic/stickman/dog
-	name = "Angry Stick Dog"
-	desc = "Stickman's best friend, if he could see him at least."
+	name = "愤怒的火柴狗"
+	desc = "斯蒂克曼最好的朋友，如果他能看到他的话（也就是假设他能看见他的话）。"
 	icon_state = "stickdog"
 	icon_living = "stickdog"
 	icon_dead = "stickdog_dead"
@@ -57,8 +57,8 @@
 	attack_sound = 'sound/items/weapons/bite.ogg'
 
 /mob/living/basic/stickman/ranged
-	name = "Angry Stick Gunman"
-	desc = "How do 2 dimensional guns even work??"
+	name = "愤怒的持枪火柴人"
+	desc = "二维枪到底是怎么工作的？"
 	icon_state = "stickmanranged"
 	icon_living = "stickmanranged"
 	attack_verb_continuous = "whacks"

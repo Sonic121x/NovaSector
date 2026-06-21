@@ -29,8 +29,8 @@
 #define GUILLOTINE_WRENCH_DELAY (1 SECONDS)
 
 /obj/structure/guillotine
-	name = "guillotine"
-	desc = "A large structure used to remove the heads of traitors and treasonists."
+	name = "断头台"
+	desc = "一种用来砍掉叛徒和叛国者头颅的大型建筑。"
 	icon = 'icons/obj/guillotine.dmi'
 	icon_state = "guillotine_raised"
 	icon_preview = 'icons/obj/fluff/previews.dmi'
@@ -65,16 +65,16 @@
 
 /obj/structure/guillotine/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/sheet/plasteel))
-		to_chat(user, span_notice("You start repairing the guillotine with the plasteel..."))
+		to_chat(user, span_notice("你开始用塑钢修复断头台..."))
 		if(blade_sharpness<10)
 			if(do_after(user,100,target=user))
 				blade_sharpness = min(10,blade_sharpness+3)
 				I.use(1)
-				to_chat(user, span_notice("You repair the guillotine with the plasteel."))
+				to_chat(user, span_notice("你用塑钢修复了断头台。"))
 			else
-				to_chat(user, span_notice("You stop repairing the guillotine with the plasteel."))
+				to_chat(user, span_notice("你停止了用塑钢修复断头台。"))
 		else
-			to_chat(user, span_warning("The guillotine is already fully repaired!"))
+			to_chat(user, span_warning("断头台已经完全修复了！"))
 
 /obj/structure/guillotine/examine(mob/user)
 	. = ..()
@@ -94,7 +94,7 @@
 	. += span_notice(msg)
 
 	if (LAZYLEN(buckled_mobs))
-		. += span_notice("Someone appears to be strapped in. You can help them out, or you can harm them by activating the guillotine.")
+		. += span_notice("看起来有人被绑在里面了。你可以帮他们出来，或者启动断头台伤害他们。")
 
 /obj/structure/guillotine/attack_hand(mob/living/user, list/modifiers)
 	add_fingerprint(user)
@@ -114,8 +114,8 @@
 		if (GUILLOTINE_BLADE_RAISED)
 			if (LAZYLEN(buckled_mobs))
 				if (user.combat_mode)
-					user.visible_message(span_warning("[user] begins to pull the lever!"),
-						                 span_warning("You begin to the pull the lever."))
+					user.visible_message(span_warning("[user]开始拉动拉杆！"),
+						                 span_warning("你开始拉动拉杆。"))
 					current_action = GUILLOTINE_ACTION_INUSE
 
 					if (do_after(user, GUILLOTINE_ACTIVATE_DELAY, target = src) && blade_status == GUILLOTINE_BLADE_RAISED)
@@ -200,8 +200,8 @@
 				blade_status = GUILLOTINE_BLADE_SHARPENING
 				if(do_after(user, 0.7 SECONDS, target = src))
 					blade_status = GUILLOTINE_BLADE_RAISED
-					user.visible_message(span_notice("[user] sharpens the large blade of the guillotine."),
-						                 span_notice("You sharpen the large blade of the guillotine."))
+					user.visible_message(span_notice("[user]磨利了断头台的大刀片。"),
+						                 span_notice("你磨利了断头台的大刀片。"))
 					blade_sharpness += 1
 					playsound(src, 'sound/items/unsheath.ogg', 100, TRUE)
 					return
@@ -209,25 +209,25 @@
 					blade_status = GUILLOTINE_BLADE_RAISED
 					return
 			else
-				to_chat(user, span_warning("The blade is sharp enough!"))
+				to_chat(user, span_warning("刀片已经够锋利了！"))
 				return
 		else
-			to_chat(user, span_warning("You need to raise the blade in order to sharpen it!"))
+			to_chat(user, span_warning("你需要升起刀片才能磨利它！"))
 			return
 	else
 		return ..()
 
 /obj/structure/guillotine/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if (!anchored)
-		to_chat(usr, span_warning("[src] needs to be wrenched to the floor!"))
+		to_chat(usr, span_warning("[src]需要被用扳手固定在地板上！"))
 		return FALSE
 
 	if (!ishuman(M))
-		to_chat(usr, span_warning("It doesn't look like [M.p_they()] can fit into this properly!"))
+		to_chat(usr, span_warning("看起来[M.p_they()]无法正确放入这个装置！"))
 		return FALSE // Can't decapitate non-humans
 
 	if (blade_status != GUILLOTINE_BLADE_RAISED)
-		to_chat(usr, span_warning("You need to raise the blade before buckling someone in!"))
+		to_chat(usr, span_warning("在把人绑进去之前，你需要升起刀片！"))
 		return FALSE
 
 	return ..(M, user, check_loc = FALSE) //check_loc = FALSE to allow moving people in from adjacent turfs
@@ -267,7 +267,7 @@
 /obj/structure/guillotine/can_be_unfasten_wrench(mob/user, silent)
 	if (LAZYLEN(buckled_mobs))
 		if (!silent)
-			to_chat(user, span_warning("Can't unfasten, someone's strapped in!"))
+			to_chat(user, span_warning("无法松开，有人被绑在里面！"))
 		return FAILED_UNFASTEN
 
 	if (current_action && current_action != GUILLOTINE_ACTION_WRENCH)

@@ -1,19 +1,19 @@
 /obj/machinery/digital_clock
-	name = "digital clock"
+	name = "数字时钟"
 	desc = "An ultra-futuristic, sleek, advanced, next-gen normal digital clock that tells the time. Powered by bluespace. Despite supposedly being better in every way to classic clocks, it just doesn't feel the same. They just don't make them the way they used to..."
 	icon_state = "digital_clock_base"
 	icon = 'icons/obj/digital_clock.dmi'
-	verb_say = "beeps"
-	verb_ask = "bloops"
-	verb_exclaim = "blares"
+	verb_say = "哔哔声"
+	verb_ask = "哔噜声"
+	verb_exclaim = "鸣响声"
 	density = FALSE
 	layer = ABOVE_WINDOW_LAYER
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 4)
 	subsystem_type = /datum/controller/subsystem/processing/digital_clock
 
 /obj/item/wallframe/digital_clock
-	name = "digital clock frame"
-	desc = "Used to build digital clocks, just secure to the wall."
+	name = "数字时钟框架"
+	desc = "用于建造数字时钟，只需将其固定在墙上即可。"
 	icon_state = "digital_clock_base"
 	icon = 'icons/obj/digital_clock.dmi'
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 4)
@@ -22,11 +22,11 @@
 
 /obj/machinery/digital_clock/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "[anchored ? "un" : ""]securing...")
+	balloon_alert(user, "[anchored ? "un" : ""]固定中...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, "[anchored ? "un" : ""]secured")
+		balloon_alert(user, "[anchored ? "un" : ""]固定完成")
 		deconstruct()
 		return TRUE
 
@@ -34,12 +34,12 @@
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "它不需要修理！")
 		return TRUE
-	balloon_alert(user, "repairing display...")
+	balloon_alert(user, "正在修理显示屏...")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume=50))
 		return TRUE
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修复")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -50,11 +50,11 @@
 		return
 	if(!(obj_flags & EMAGGED))
 		return
-	balloon_alert(user, "resetting...")
+	balloon_alert(user, "重置中...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, "reset")
+		balloon_alert(user, "已重置")
 		obj_flags &= ~EMAGGED
 		return TRUE
 

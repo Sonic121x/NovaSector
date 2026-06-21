@@ -26,5 +26,5 @@
 	if(!explosion_source)
 		stack_trace("Reagent explosion triggered without a source atom. This explosion may have incomplete logging.")
 	if(explosion_message)
-		location.visible_message(span_danger("The solution violently explodes!"), span_hear("You hear an explosion!"))
+		location.visible_message(span_danger("溶液剧烈爆炸了！"), span_hear("你听到一声爆炸！"))
 	dyn_explosion(location, amount, flash_range = flashing_factor, flame_range = flaming_factor, explosion_cause = explosion_source)

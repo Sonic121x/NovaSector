@@ -1,7 +1,7 @@
 //Template ruin areas
 
 /area/ruin/powered/shuttle
-	name = "\improper Shuttle"
+	name = "\improper 穿梭机"
 
 /area/ruin/powered/shuttle/medium_1
 

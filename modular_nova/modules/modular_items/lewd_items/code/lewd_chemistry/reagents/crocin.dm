@@ -1,7 +1,7 @@
 // Crocin. Basic aphrodisiac with no consequences
 /datum/reagent/drug/aphrodisiac/crocin
 	name = "crocin"
-	description = "Naturally found in the crocus and gardenia flowers, this drug acts as a natural and safe aphrodisiac."
+	description = "天然存在于藏红花和栀子花中，这种药物是一种天然且安全的催情剂。"
 	taste_description = "strawberries"
 	color = "#FFADFF"
 	life_pref_datum = /datum/preference/toggle/erp/aphro

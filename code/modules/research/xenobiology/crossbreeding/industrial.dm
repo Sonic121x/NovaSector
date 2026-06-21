@@ -3,8 +3,8 @@ Industrial extracts:
 	Slowly consume plasma, produce items with it.
 */
 /obj/item/slimecross/industrial
-	name = "industrial extract"
-	desc = "A gel-like, sturdy extract, fond of plasma and industry."
+	name = "工业提取物"
+	desc = "一种凝胶状、坚固的提取物，用于等离子和工业。"
 	effect = "industrial"
 	icon_state = "industrial_still"
 	var/plasmarequired = 2 //Units of plasma required to be consumed to produce item.

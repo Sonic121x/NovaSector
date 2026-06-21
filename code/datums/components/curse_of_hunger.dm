@@ -48,9 +48,9 @@
 	if(!awakened)
 		return //we should not reveal we are cursed until equipped
 	if(current_health < max_health)
-		examine_list += span_notice("[parent] looks sick from something it ate.")
+		examine_list += span_notice("[parent] 看起来像是吃了什么不干净的东西，显得病恹恹的。")
 	if(hunger > HUNGER_THRESHOLD_WARNING)
-		examine_list += span_danger("[parent] hungers for something to eat...")
+		examine_list += span_danger("[parent] 渴望着能吃点什么东西...")
 
 ///signal called from equipping parent
 /datum/component/curse_of_hunger/proc/on_equip(datum/source, mob/equipper, slot)
@@ -103,7 +103,7 @@
 		cursed_item.forceMove(get_turf(cursed_item))
 	//only taking the most reasonable slot is fine since it unequips what is there to equip itself.
 	cursed_item.AddElement(/datum/element/cursed, cursed_item.slot_equipment_priority[1])
-	cursed_item.visible_message(span_warning("[cursed_item] begins to move on [cursed_item.p_their()] own..."))
+	cursed_item.visible_message(span_warning("[cursed_item] 开始靠 [cursed_item.p_their()] 自己移动了..."))
 
 /datum/component/curse_of_hunger/process(seconds_per_tick)
 	var/obj/item/cursed_item = parent
@@ -129,14 +129,14 @@
 		if(locate(/datum/reagent/toxin) in food.reagents.reagent_list)
 			var/sick_word = pick("queasy", "sick", "iffy", "unwell")
 			cursed.visible_message(
-				span_notice("[cursed_item] eats something from [cursed], and looks [sick_word] afterwards!"),
-				span_notice("[cursed_item] eats your [food.name] to sate [cursed_item.p_their()] hunger, and looks [sick_word] afterwards!"),
+				span_notice("[cursed_item] 从 [cursed] 那里吃了点东西，之后看起来 [sick_word]！"),
+				span_notice("[cursed_item] 吃了你的 [food.name] 来满足 [cursed_item.p_their()] 的饥饿感，之后看起来 [sick_word]！"),
 			)
 			current_health--
 		else
 			cursed.visible_message(
-				span_warning("[cursed_item] eats something from [cursed] to sate [cursed_item.p_their()] hunger."),
-				span_warning("[cursed_item] eats your [food.name] to sate [cursed_item.p_their()] hunger."),
+				span_warning("[cursed_item] 从 [cursed] 那里吃了点东西来满足 [cursed_item.p_their()] 的饥饿感。"),
+				span_warning("[cursed_item] 吃了你的 [food.name] 来满足 [cursed_item.p_their()] 的饥饿感。"),
 			)
 		cursed.temporarilyRemoveItemFromInventory(food, force = TRUE)
 		qdel(food)
@@ -144,12 +144,12 @@
 
 	///no food found, but you're dead: it bites you slightly, and doesn't regain health.
 	if(cursed.stat == DEAD)
-		cursed.visible_message(span_danger("[cursed_item] nibbles on [cursed]."), span_userdanger("[cursed_item] nibbles on you!"))
+		cursed.visible_message(span_danger("[cursed_item] 轻轻啃咬着 [cursed]。"), span_userdanger("[cursed_item] 正在啃咬你！"))
 		cursed.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
 		return
 
 	///no food found: it bites you and regains some health.
-	cursed.visible_message(span_danger("[cursed_item] bites [cursed]!"), span_userdanger("[cursed_item] bites you to sate [cursed_item.p_their()] hunger!"))
+	cursed.visible_message(span_danger("[cursed_item] 咬了 [cursed]！"), span_userdanger("[cursed_item] 咬了你一口来满足 [cursed_item.p_their()] 的饥饿感！"))
 	cursed.apply_damage(60, BRUTE, BODY_ZONE_CHEST, wound_bonus = -20, exposed_wound_bonus = 20)
 	current_health = min(current_health + 1, max_health)
 

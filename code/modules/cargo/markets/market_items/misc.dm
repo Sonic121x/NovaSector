@@ -3,8 +3,8 @@
 	abstract_path = /datum/market_item/misc
 
 /datum/market_item/misc/clear_pda
-	name = "Clear PDA"
-	desc = "Show off your style with this limited edition clear PDA!."
+	name = "透明版PDA"
+	desc = "一款限量版透明PDA，展现出你的风格！"
 	item = /obj/item/modular_computer/pda/clear
 
 	price_min = CARGO_CRATE_VALUE * 1.25
@@ -13,8 +13,8 @@
 	availability_prob = 50
 
 /datum/market_item/misc/jade_lantern
-	name = "Jade Lantern"
-	desc = "Found in a box labeled 'Danger: Radioactive'. Probably safe."
+	name = "玉提灯"
+	desc = "在一个标着“警告:放射性”的盒子里发现的。"
 	item = /obj/item/flashlight/lantern/jade
 
 	price_min = CARGO_CRATE_VALUE * 0.75
@@ -23,8 +23,8 @@
 	availability_prob = 45
 
 /datum/market_item/misc/cap_gun
-	name = "Cap Gun"
-	desc = "Prank your friends with this harmless gun! Harmlessness guaranteed."
+	name = "软弹枪"
+	desc = "用这把无害的枪捉弄你的朋友吧！保证无害。"
 	item = /obj/item/toy/gun
 
 	price_min = CARGO_CRATE_VALUE * 0.25
@@ -33,8 +33,8 @@
 	availability_prob = 80
 
 /datum/market_item/misc/shoulder_holster
-	name = "Shoulder holster"
-	desc = "Yeehaw, hardboiled friends! This holster is the first step in your dream of becoming a detective and being allowed to shoot real guns!"
+	name = "肩部枪套"
+	desc = "耶哈，硬汉朋友们！这个枪套是你实现成为侦探梦想并被允许使用真枪的第一步！"
 	item = /obj/item/storage/belt/holster
 
 	price_min = CARGO_CRATE_VALUE * 2
@@ -43,8 +43,8 @@
 	availability_prob = 60
 
 /datum/market_item/misc/donk_recycler
-	name = "MOD Riot Foam Dart Recycler Module"
-	desc = "If you love toy guns, hate cleaning and got a MODsuit, this module is a must-have."
+	name = "MOD防暴泡沫飞镖回收模块"
+	desc = "如果你喜欢玩具枪、讨厌打扫并且有一件MOD防护服，这个模块是必备品。"
 	item = /obj/item/mod/module/recycler/donk
 	price_min = CARGO_CRATE_VALUE * 2
 	price_max = CARGO_CRATE_VALUE * 4.5
@@ -52,8 +52,8 @@
 	availability_prob = 30
 
 /datum/market_item/misc/atrocinator
-	name = "MOD Anti-Gravity Module"
-	desc = "We found this module in a maintenance tunnel, behind several warning cones and hazard signs, unlabeled. It's probably safe."
+	name = "MOD反重力模块"
+	desc = "我们在一条维护隧道里发现了这个模块，它被放在几个警告锥和危险标志后面，没有标签。它大概是安全的。"
 	item = /obj/item/mod/module/atrocinator
 	price_min = CARGO_CRATE_VALUE * 4
 	price_max = CARGO_CRATE_VALUE * 7
@@ -61,8 +61,8 @@
 	availability_prob = 22
 
 /datum/market_item/misc/tanner
-	name = "MOD Tanning Module"
-	desc = "Ever wanted to be at the beach AND at work? Now you can with this snazzy tanning module!"
+	name = "MOD美黑模块"
+	desc = "曾想过既在海滩又在工作吗？现在有了这个时髦的美黑模块，你就可以做到了！"
 	item = /obj/item/mod/module/tanner
 	price_min = CARGO_CRATE_VALUE * 2
 	price_max = CARGO_CRATE_VALUE * 3
@@ -70,8 +70,8 @@
 	availability_prob = 30
 
 /datum/market_item/misc/hat_stabilizer
-	name = "MOD Hat Stabilizer Module"
-	desc = "Don't sacrifice style for substance with this module! Hats not included."
+	name = "MOD帽子稳定器模块"
+	desc = "有了这个模块，不必为了实用性牺牲风格！帽子不包含在内。"
 	item = /obj/item/mod/module/hat_stabilizer
 	price_min = CARGO_CRATE_VALUE * 2
 	price_max = CARGO_CRATE_VALUE * 3
@@ -79,8 +79,8 @@
 	availability_prob = 35
 
 /datum/market_item/misc/shove_blocker
-	name = "MOD Bulwark Module"
-	desc = "You have no idea how much effort it took us to extract this module from that damn safeguard MODsuit last shift."
+	name = "MOD壁垒模块"
+	desc = "你根本不知道我们花了多大力气才在上个班次从那该死的防护MOD服里拆出这个模块。"
 	item = /obj/item/mod/module/shove_blocker
 	price_min = CARGO_CRATE_VALUE * 4
 	price_max = CARGO_CRATE_VALUE * 5.75
@@ -88,8 +88,8 @@
 	availability_prob = 25
 
 /datum/market_item/misc/holywater
-	name = "Flask of holy water"
-	desc = "Father Lootius' own brand of ready-made holy water."
+	name = "一瓶圣水"
+	desc = "卢修斯神父自己制作的现成圣水。"
 	item = /obj/item/reagent_containers/cup/glass/bottle/holywater
 
 	price_min = CARGO_CRATE_VALUE * 2
@@ -105,8 +105,8 @@
 	return ..()
 
 /datum/market_item/misc/strange_seed
-	name = "Strange Seeds"
-	desc = "An Exotic Variety of seed that can contain anything from glow to acid."
+	name = "奇怪的种子"
+	desc = "一包奇怪的种子，可能包含了从荧光植物到酸性植物。"
 	item = /obj/item/seeds/random
 
 	price_min = CARGO_CRATE_VALUE * 1.6
@@ -116,8 +116,8 @@
 	availability_prob = 50
 
 /datum/market_item/misc/smugglers_satchel
-	name = "Smuggler's Satchel"
-	desc = "This easily hidden satchel can become a versatile tool to anybody with the desire to keep certain items out of sight and out of mind. Its contents cannot be detected by contraband scanners."
+	name = "走私者挎包"
+	desc = "这个易于隐藏的挎包可以成为任何希望将特定物品置于视线和思维之外的人的通用工具。其内容物无法被违禁品扫描仪检测到。"
 	item = /obj/item/storage/backpack/satchel/flat/empty
 
 	price_min = CARGO_CRATE_VALUE * 3.75
@@ -126,8 +126,8 @@
 	availability_prob = 30
 
 /datum/market_item/misc/roulette
-	name = "Roulette Beacon"
-	desc = "Start your own underground casino, wherever you go. One use only. No refunds."
+	name = "轮盘信标"
+	desc = "无论走到哪里，都可以开启你自己的地下赌场。仅限单次使用。概不退款。"
 	item = /obj/item/roulette_wheel_beacon
 	price_min = CARGO_CRATE_VALUE * 1
 	price_max = CARGO_CRATE_VALUE * 2.5
@@ -135,8 +135,8 @@
 	availability_prob = 50
 
 /datum/market_item/misc/jawed_hook
-	name = "Jawed Fishing Hook"
-	desc = "The thing ya use if y'are strugglin' with fishes. Just remember to whoop yer rod before it's too late, 'cause this thing's gonna hurt them like an Arkansas toothpick."
+	name = "带颚鱼钩"
+	desc = "如果你在跟鱼较劲，就用这玩意儿。只要记得在太晚之前猛拉你的鱼竿，因为这玩意儿会像阿肯色牙签一样伤到它们。"
 	item = /obj/item/fishing_hook/jaws
 	price_min = CARGO_CRATE_VALUE * 0.75
 	price_max = CARGO_CRATE_VALUE * 2
@@ -144,8 +144,8 @@
 	availability_prob = 70
 
 /datum/market_item/misc/v8_engine
-	name = "Genuine V8 Engine (Perserved)"
-	desc = "Hey greasemonkeys, you ready to start those engines? Want to start racing through the halls and making some tighter turns on the interstellar beltway? Then you need this classic engine."
+	name = "正宗V8发动机（保存版）"
+	desc = "嘿，机械工们，准备好启动引擎了吗？想在走廊里飙车，在星际高速公路上做出更急的转弯吗？那你需要这台经典引擎。"
 	item = /obj/item/v8_engine
 	price_min = CARGO_CRATE_VALUE * 4
 	price_max = CARGO_CRATE_VALUE * 6
@@ -153,9 +153,9 @@
 	availability_prob = 15
 
 /datum/market_item/misc/fishing_capsule
-	name = "Fishing Spot Capsule"
+	name = "钓鱼点胶囊"
 	//IUU stands for Illegal Unreported and Unregulated fishing. Ironic.
-	desc = "A repurposed mining capsule connected to a selection of exclusive fishing spots. Approved by the Intergalactic IUU Fishing Association."
+	desc = "一个经过改造的采矿胶囊，连接着一系列专属钓鱼点。已获星际IUU钓鱼协会批准。"
 	price_min = CARGO_CRATE_VALUE * 1.125
 	price_max = CARGO_CRATE_VALUE * 2.125
 	item = /obj/item/survivalcapsule/fishing
@@ -164,8 +164,8 @@
 	availability_prob = 80
 
 /datum/market_item/misc/fish
-	name = "Fish"
-	desc = "Fish! Fresh fish! Fish you can cut, grind and even keep in aquarium if you want to! Get some before the next fight at my village breaks out!"
+	name = "鱼"
+	desc = "鱼！新鲜的鱼！你可以切、可以磨，甚至想的话还能养在水族箱里的鱼！趁我村里下一场斗殴爆发前赶紧来点吧！"
 	price_min = PAYCHECK_CREW * 0.5
 	price_max = PAYCHECK_CREW * 1.2
 	item = /obj/item/storage/fish_case/blackmarket
@@ -174,8 +174,8 @@
 	availability_prob = 90
 
 /datum/market_item/misc/girlypop
-	name = "Girlypop Posters"
-	desc = "A collection of cute and adorable posters. Girl power!"
+	name = "少女流行海报"
+	desc = "一系列可爱迷人的海报。女孩力量！"
 	price_min = PAYCHECK_CREW * 2
 	price_max = PAYCHECK_CREW * 5
 	item = /obj/item/poster/contraband/heart // gives it the rolled poster icon in the menu
@@ -223,8 +223,8 @@
 		availability_prob *= 0.5
 
 /datum/market_item/misc/tricktrickcigarettes
-	name = "Trick Trick Cigarettes"
-	desc = "Cigarettes filled with flash powder. Makes for a fun prank!"
+	name = "戏法戏法香烟"
+	desc = "装满闪光粉的香烟。用来搞恶作剧很有趣！"
 	item = /obj/item/storage/fancy/cigarettes/flash_powder
 	price_min = PAYCHECK_CREW
 	price_max = PAYCHECK_CREW * 3

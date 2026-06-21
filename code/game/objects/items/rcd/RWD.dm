@@ -1,6 +1,6 @@
 /obj/item/rwd
-	name = "rapid wiring device"
-	desc = "A device used to rapidly lay cable & pick up stray cable pieces laying around."
+	name = "快速布线装置"
+	desc = "一种用于快速铺设电缆并拾取散落电缆段的装置。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcl-0"
 	inhand_icon_state = "rcl-0"
@@ -63,10 +63,10 @@
 
 /obj/item/rwd/attack_self_secondary(mob/user, modifiers)
 	if(current_amount <= 0)
-		balloon_alert(user, "nothing to dispense!")
+		balloon_alert(user, "没有可发放的物品！")
 		return
 
-	var/amount = tgui_input_number(user = user, message = "Enter amount to dispense", title = "Custom cable", default = 0, max_value = min(30, current_amount), min_value = min(1, current_amount), timeout = 0, round_value = TRUE)
+	var/amount = tgui_input_number(user = user, message = "输入发放数量", title = "自定义线缆", default = 0, max_value = min(30, current_amount), min_value = min(1, current_amount), timeout = 0, round_value = TRUE)
 	if(isnull(amount) || amount > current_amount)
 		return
 
@@ -89,7 +89,7 @@
 	//spawn the cable. if it merged with the stak below then you pick that up else put it in the user's hand
 	var/obj/item/stack/cable_coil/new_cable = new(user.drop_location(), amount)
 	if(QDELETED(new_cable))
-		balloon_alert(user, "merged with stack below!")
+		balloon_alert(user, "已与下方堆叠合并！")
 	else
 		user.put_in_active_hand(modify_cable(new_cable))
 
@@ -150,7 +150,7 @@
 	if(!istype(user))
 		return FALSE
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("你没有足够的灵巧度来完成这个操作！"))
 		return FALSE
 	if(user.incapacitated || !user.Adjacent(src))
 		return FALSE
@@ -159,7 +159,7 @@
 /// insert cable into the rwd
 /obj/item/rwd/proc/add_cable(mob/user, obj/item/stack/cable_coil/cable)
 	if(current_amount == max_amount)
-		balloon_alert(user, "device is full!")
+		balloon_alert(user, "设备已满！")
 		return
 
 	var/insert_amount = min(cable.amount, max_amount - current_amount)
@@ -168,7 +168,7 @@
 
 	delta_cable(insert_amount, decrement = FALSE)
 	update_appearance(UPDATE_ICON_STATE)
-	balloon_alert(user, "inserted [insert_amount] cable")
+	balloon_alert(user, "插入了[insert_amount]根线缆")
 
 /// modify cable properties according to its layer
 /obj/item/rwd/proc/modify_cable(obj/item/stack/cable_coil/target_cable)
@@ -254,7 +254,7 @@
 	current_amount = 210
 
 /obj/item/rwd/admin
-	name = "admin RWD"
+	name = "管理员 RWD"
 	max_amount = INFINITY
 	current_amount = INFINITY
 

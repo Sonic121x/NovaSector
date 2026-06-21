@@ -1,6 +1,6 @@
 /obj/item/circuit_component/wirenet_receive
 	display_name = "Wirenet Receiver"
-	desc = "Receives data packets through the connected cable network. If Encryption Key is set then only signals with the same Encryption Key will be received."
+	desc = "通过连接的线缆网络接收数据包。如果设置了加密密钥，则只有具有相同加密密钥的信号才会被接收。"
 	category = "Utility"
 
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL //trigger_output

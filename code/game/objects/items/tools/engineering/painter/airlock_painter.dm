@@ -1,6 +1,6 @@
 /obj/item/airlock_painter
-	name = "airlock painter"
-	desc = "An advanced autopainter preprogrammed with several paintjobs for airlocks. Use it on an airlock during or after construction to change the paintjob."
+	name = "气闸喷漆器"
+	desc = "一种高级自动喷漆器，预装了多种气闸涂装方案。在气闸建造期间或之后对其使用以更改涂装。"
 	desc_controls = "Alt-Click to remove the ink cartridge."
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "paint_sprayer"
@@ -62,10 +62,10 @@
 //because you're expecting user input.
 /obj/item/airlock_painter/proc/can_use(mob/user)
 	if(!ink)
-		balloon_alert(user, "no cartridge!")
+		balloon_alert(user, "没有墨盒！")
 		return FALSE
 	else if(ink.charges < 1)
-		balloon_alert(user, "out of ink!")
+		balloon_alert(user, "墨水用完了！")
 		return FALSE
 	else
 		return TRUE
@@ -74,7 +74,7 @@
 	var/obj/item/organ/lungs/L = user.get_organ_slot(ORGAN_SLOT_LUNGS)
 
 	if(can_use(user) && L)
-		user.visible_message(span_suicide("[user] is inhaling toner from [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正在从[src]吸入碳粉！看起来[user.p_theyre()]想要自杀！"))
 		use(user)
 
 		// Once you've inhaled the toner, you throw up your lungs
@@ -100,27 +100,27 @@
 
 		// TODO maybe add some colorful vomit?
 
-		user.visible_message(span_suicide("[user] vomits out [user.p_their()] [L]!"))
+		user.visible_message(span_suicide("[user]吐出了[user.p_their()]的[L]！"))
 		playsound(user.loc, 'sound/effects/splat.ogg', 50, TRUE)
 
 		L.forceMove(T)
 
 		return (TOXLOSS|OXYLOSS)
 	else if(can_use(user) && !L)
-		user.visible_message(span_suicide("[user] is spraying toner on [user.p_them()]self from [src]! It looks like [user.p_theyre()] trying to commit suicide."))
+		user.visible_message(span_suicide("[user]正在用[src]往[user.p_them()]自己身上喷碳粉！看起来[user.p_theyre()]想要自杀。"))
 		user.reagents.add_reagent(/datum/reagent/colorful_reagent, 1)
 		user.reagents.expose(user, TOUCH, 1)
 		return TOXLOSS
 
 	else
-		user.visible_message(span_suicide("[user] is trying to inhale toner from [src]! It might be a suicide attempt if [src] had any toner."))
+		user.visible_message(span_suicide("[user]正试图从[src]吸入碳粉！如果[src]里还有碳粉的话，这可能是自杀企图。"))
 		return SHAME
 
 
 /obj/item/airlock_painter/examine(mob/user)
 	. = ..()
 	if(!ink)
-		. += span_notice("It doesn't have a toner cartridge installed.")
+		. += span_notice("它没有安装碳粉盒。")
 		return
 	var/ink_level = "high"
 	if(ink.charges < 1)
@@ -129,16 +129,16 @@
 		ink_level = "low"
 	else if((ink.charges/ink.max_charges) > 1) //Over 100% (admin var edit)
 		ink_level = "dangerously high"
-	. += span_notice("Its ink levels look [ink_level].")
+	. += span_notice("它的墨水余量看起来[ink_level]。")
 
 /obj/item/airlock_painter/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(W, /obj/item/toner))
 		if(ink)
-			to_chat(user, span_warning("[src] already contains \a [ink]!"))
+			to_chat(user, span_warning("[src] 已经装有 \a [ink]！"))
 			return
 		if(!user.transferItemToLoc(W, src))
 			return
-		to_chat(user, span_notice("You install [W] into [src]."))
+		to_chat(user, span_notice("你将[W]安装进了[src]。"))
 		ink = W
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	else
@@ -151,6 +151,6 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	ink.forceMove(user.drop_location())
 	user.put_in_hands(ink)
-	to_chat(user, span_notice("You remove [ink] from [src]."))
+	to_chat(user, span_notice("你从[src]中取出了[ink]。"))
 	ink = null
 	return CLICK_ACTION_SUCCESS

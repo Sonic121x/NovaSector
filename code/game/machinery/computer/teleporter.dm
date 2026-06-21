@@ -2,8 +2,8 @@
 #define REGIME_GATE "Gate"
 
 /obj/machinery/computer/teleporter
-	name = "teleporter control console"
-	desc = "Used to control a linked teleportation Hub and Station."
+	name = "传送器控制台"
+	desc = "用来控制一个与太空站相连接的传送枢纽。"
 	icon_screen = "teleport"
 	icon_keyboard = "teleport_key"
 	light_color = LIGHT_COLOR_BLUE
@@ -204,17 +204,17 @@
 	var/list/targets = get_targets()
 
 	if (regime_set == REGIME_TELEPORTER)
-		var/desc = tgui_input_list(usr, "Select a location to lock in", "Locking Computer", sort_list(targets))
+		var/desc = tgui_input_list(usr, "选择一个位置进行锁定", "锁定控制台", sort_list(targets))
 		if(isnull(desc) || !user.can_perform_action(src, ALLOW_SILICON_REACH))
 			return
 		set_teleport_target(targets[desc])
 		user.log_message("set the teleporter target to [targets[desc]].]", LOG_GAME)
 	else
 		if (!length(targets))
-			to_chat(user, span_alert("No active connected stations located."))
+			to_chat(user, span_alert("未找到活动的已连接站点。"))
 			return
 
-		var/desc = tgui_input_list(usr, "Select a station to lock in", "Locking Computer", sort_list(targets))
+		var/desc = tgui_input_list(usr, "选择一个站点进行锁定", "锁定控制台", sort_list(targets))
 		if(isnull(desc)|| !user.can_perform_action(src, ALLOW_SILICON_REACH))
 			return
 		var/obj/machinery/teleport/station/target_station = targets[desc]
@@ -241,7 +241,7 @@
 
 /obj/item/circuit_component/teleporter_control_console
 	display_name = "Teleporter Control Console"
-	desc = "Used to control a linked teleportation Hub and Station."
+	desc = "用来控制一个与太空站相连接的传送枢纽。"
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	var/datum/port/input/new_target

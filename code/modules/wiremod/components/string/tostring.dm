@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/tostring
 	display_name = "To String"
-	desc = "A component that converts its input to text."
+	desc = "一种将输入内容转换为文本的组件。"
 	category = "String"
 
 	/// The input port

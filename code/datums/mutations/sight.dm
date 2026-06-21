@@ -1,10 +1,10 @@
 //Nearsightedness restricts your vision by several tiles.
 /datum/mutation/nearsight
-	name = "Near Sightness"
-	desc = "The holder of this mutation has poor eyesight."
+	name = "近视"
+	desc = "此突变的持有者视力不佳。"
 	instability = NEGATIVE_STABILITY_MODERATE
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_danger("You can't see very well.")
+	text_gain_indication = span_danger("你看不太清楚。")
 
 /datum/mutation/nearsight/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -19,11 +19,11 @@
 
 ///Blind makes you blind. Who knew?
 /datum/mutation/blind
-	name = "Blindness"
-	desc = "Renders the subject completely blind."
+	name = "失明"
+	desc = "使受试者完全失明。"
 	instability = NEGATIVE_STABILITY_MAJOR
 	quality = NEGATIVE
-	text_gain_indication = span_danger("You can't seem to see anything.")
+	text_gain_indication = span_danger("你似乎什么都看不见了。")
 
 /datum/mutation/blind/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -38,12 +38,12 @@
 
 ///Thermal Vision lets you see mobs through walls
 /datum/mutation/thermal
-	name = "Thermal Vision"
-	desc = "The user of this genome can visually perceive the unique human thermal signature."
+	name = "热视觉"
+	desc = "此基因组的用户能够视觉感知到独特的人类热信号。"
 	quality = POSITIVE
 	difficulty = 18
-	text_gain_indication = span_notice("You can see the heat rising off of your skin...")
-	text_lose_indication = span_notice("You can no longer see the heat rising off of your skin...")
+	text_gain_indication = span_notice("你能看到热量从皮肤上升起……")
+	text_lose_indication = span_notice("你再也看不到热量从皮肤上升起了……")
 	instability = POSITIVE_INSTABILITY_MAJOR // thermals aren't station equipment
 	synchronizer_coeff = 1
 	power_coeff = 1
@@ -69,8 +69,8 @@
 	to_modify.thermal_duration = /datum/action/cooldown/spell/thermal_vision::thermal_duration * GET_MUTATION_POWER(src)
 
 /datum/action/cooldown/spell/thermal_vision
-	name = "Activate Thermal Vision"
-	desc = "You can see thermal signatures, at the cost of your eyesight."
+	name = "激活热视觉"
+	desc = "你可以看到热信号，但代价是你的视力。"
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "augmented_eyesight"
 
@@ -94,7 +94,7 @@
 	. = ..()
 	ADD_TRAIT(cast_on, TRAIT_THERMAL_VISION, GENETIC_MUTATION)
 	cast_on.update_sight()
-	to_chat(cast_on, span_info("You focus your eyes intensely, as your vision becomes filled with heat signatures."))
+	to_chat(cast_on, span_info("你集中精神凝视，视野中充满了热信号。"))
 	addtimer(CALLBACK(src, PROC_REF(deactivate), cast_on), thermal_duration)
 
 /datum/action/cooldown/spell/thermal_vision/proc/deactivate(mob/living/cast_on)
@@ -103,7 +103,7 @@
 
 	REMOVE_TRAIT(cast_on, TRAIT_THERMAL_VISION, GENETIC_MUTATION)
 	cast_on.update_sight()
-	to_chat(cast_on, span_info("You blink a few times, your vision returning to normal as a dull pain settles in your eyes."))
+	to_chat(cast_on, span_info("你眨了眨眼，视力恢复正常，眼中传来一阵钝痛。"))
 
 	if(iscarbon(cast_on))
 		var/mob/living/carbon/carbon_cast_on = cast_on
@@ -111,9 +111,9 @@
 
 ///X-ray Vision lets you see through walls.
 /datum/mutation/xray
-	name = "X Ray Vision"
-	desc = "A strange genome that allows the user to see between the spaces of walls." //actual x-ray would mean you'd constantly be blasting rads, which might be fun for later //hmb
-	text_gain_indication = span_notice("The walls suddenly disappear!")
+	name = "X射线视觉"
+	desc = "一种奇怪的基因组，允许用户看穿墙壁之间的空隙。" //actual x-ray would mean you'd constantly be blasting rads, which might be fun for later //hmb
+	text_gain_indication = span_notice("墙壁突然消失了！")
 	instability = POSITIVE_INSTABILITY_MAJOR
 	locked = TRUE
 
@@ -133,12 +133,12 @@
 
 ///Laser Eyes lets you shoot lasers from your eyes!
 /datum/mutation/laser_eyes
-	name = "Laser Eyes"
-	desc = "Reflects concentrated light back from the eyes."
+	name = "激光眼"
+	desc = "将汇聚的光线从眼中反射回去。"
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 16
-	text_gain_indication = span_notice("You feel pressure building up behind your eyes.")
+	text_gain_indication = span_notice("你感到眼球后方有压力在积聚。")
 	layer_used = FRONT_MUTATIONS_LAYER
 	limb_req = BODY_ZONE_HEAD
 
@@ -168,7 +168,7 @@
 
 	if(!source.combat_mode)
 		return
-	to_chat(source, span_warning("You shoot with your laser eyes!"))
+	to_chat(source, span_warning("你用激光眼射击！"))
 	source.changeNext_move(CLICK_CD_RANGE)
 	source.newtonian_move(get_angle(source, target))
 	var/obj/projectile/beam/laser/laser_eyes/LE = new(source.loc)
@@ -180,17 +180,17 @@
 
 ///Projectile type used by laser eyes
 /obj/projectile/beam/laser/laser_eyes
-	name = "beam"
+	name = "光束"
 	icon = 'icons/mob/effects/genetics.dmi'
 	icon_state = "eyelasers"
 
 /datum/mutation/illiterate
-	name = "Illiterate"
-	desc = "Causes a severe case of Aphasia that prevents reading or writing."
+	name = "文盲"
+	desc = "导致严重的失语症，使人无法读写。"
 	instability = NEGATIVE_STABILITY_MAJOR
 	quality = NEGATIVE
-	text_gain_indication = span_danger("You feel unable to read or write.")
-	text_lose_indication = span_danger("You feel able to read and write again.")
+	text_gain_indication = span_danger("你感到无法阅读或书写。")
+	text_lose_indication = span_danger("你感到又能阅读和书写了。")
 
 /datum/mutation/illiterate/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()

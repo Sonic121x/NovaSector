@@ -1,8 +1,8 @@
 #define CUM_VOLUME_MULTIPLIER 10
 
 /obj/item/hand_item/coom
-	name = "cum"
-	desc = "C-can I watch...?"
+	name = "精液"
+	desc = "我、我能看看吗……？"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "eggplant"
 	inhand_icon_state = "nothing"
@@ -22,46 +22,46 @@
 
 	// do you have a penis?
 	if(!user.has_penis())
-		to_chat(user, span_danger("You can't stroke your penis if you don't have one."))
+		to_chat(user, span_danger("你没有阴茎，无法手淫。"))
 		qdel(src)
 		return
 
 	// is the penis exposed?
 	if(!user.has_penis(required_state = REQUIRE_GENITAL_EXPOSED))
-		to_chat(user, span_danger("You need to expose your penis in order to stroke it."))
+		to_chat(user, span_danger("你需要露出阴茎才能手淫。"))
 		return
 
 	if(user.is_wearing_condom()) // i give up actually, the code from climax was refusing to work and not like its contributing to the goal here... just press the climax button
-		to_chat(user, span_danger("You can't cum on something if you are wearing a condom... - Try climaxing instead."))
+		to_chat(user, span_danger("戴着避孕套时无法射在物体上……试试高潮吧。"))
 		return
 
 	if(target == user)
-		user.visible_message(span_warning("[user] starts masturbating onto [target.p_them()]self!"), span_danger("You start masturbating onto yourself!"))
+		user.visible_message(span_warning("[user]开始对着[target.p_them()]自己手淫！"), span_danger("你开始对着自己手淫！"))
 
 	else if(target.is_refillable() && target.is_drainable())
 		if(target.reagents.holder_full())
-			to_chat(user, span_warning("[target] is full."))
+			to_chat(user, span_warning("[target]已经满了。"))
 			return
-		user.visible_message(span_warning("[user] starts masturbating into [target]!"), span_danger("You start masturbating into [target]!"))
+		user.visible_message(span_warning("[user]开始对着[target]手淫！"), span_danger("你开始对着[target]手淫！"))
 	else
-		user.visible_message(span_warning("[user] starts masturbating onto [target]!"), span_danger("You start masturbating onto [target]!"))
+		user.visible_message(span_warning("[user]开始对着[target]手淫！"), span_danger("你开始对着[target]手淫！"))
 
 	if(do_after(user, 6 SECONDS, target))
 		if(!user.has_balls())
-			user.visible_message(span_warning("[user] tries to cum, but nothing comes out!"), span_danger("You try to cum, but nothing comes out!"))
+			user.visible_message(span_warning("[user]试图射精，但什么也没射出来！"), span_danger("你试图射精，但什么也没射出来！"))
 		else if(target == user)
-			user.visible_message(span_warning("[user] cums on [target.p_them()]self!"), span_danger("You cum on yourself!"))
+			user.visible_message(span_warning("[user]射在了[target.p_them()]自己身上！"), span_danger("你射在了自己身上！"))
 			playsound_if_pref(target, SFX_DESECRATION, 50, TRUE)
 			affected_human.add_cum_splatter_floor(get_turf(target))
 		else if(target.is_refillable() && target.is_drainable())
 			var/cum_volume = mob_testicles.genital_size * CUM_VOLUME_MULTIPLIER
 			var/datum/reagents/applied_reagents = new/datum/reagents(50)
 			applied_reagents.add_reagent(/datum/reagent/consumable/cum, cum_volume) // probably should check what the target is actually cumming but we dont have custom cum settings enabled anyways...
-			user.visible_message(span_warning("[user] cums into [target]!"), span_danger("You cum into [target]!"))
+			user.visible_message(span_warning("[user]射进了[target]里！"), span_danger("你射进了[target]里！"))
 			playsound_if_pref(target, SFX_DESECRATION, 50, TRUE)
 			applied_reagents.trans_to(target, cum_volume)
 		else
-			user.visible_message(span_warning("[user] cums on [target]!"), span_danger("You cum on [target]!"))
+			user.visible_message(span_warning("[user]射在了[target]上！"), span_danger("你射在了[target]上！"))
 			playsound_if_pref(target, SFX_DESECRATION, 50, TRUE)
 			affected_human.add_cum_splatter_floor(get_turf(target))
 		log_combat(user, target, "came on")

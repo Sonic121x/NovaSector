@@ -1,6 +1,6 @@
 /mob/living/basic/stoat
-	name = "stoat"
-	desc = "A natural born vermin exterminator... a janitor's best friend."
+	name = "鼬"
+	desc = "天生的害虫终结者……清洁工最好的朋友。"
 	icon_state = "stoat"
 	icon_living = "stoat"
 	icon_dead = "stoat_dead"
@@ -17,11 +17,11 @@
 	melee_damage_upper = 9
 	response_help_continuous = "pets"
 	response_help_simple = "pet"
-	verb_say = "chips"
-	verb_ask = "chips curiously"
+	verb_say = "吱吱"
+	verb_ask = "好奇地吱吱叫"
 	can_be_held = TRUE
-	verb_exclaim = "chips loudly"
-	verb_yell = "chips loudly"
+	verb_exclaim = "大声吱吱叫"
+	verb_yell = "大声吱吱叫"
 	faction = list(FACTION_NEUTRAL)
 	ai_controller = /datum/ai_controller/basic_controller/stoat
 	///some commands we obey
@@ -71,7 +71,7 @@
 	)
 
 /mob/living/basic/stoat/kit
-	name = "\improper stoat kit"
+	name = "\improper 鼬鼠幼崽"
 	real_name = "stoat"
 	desc = "An apex predator, but friend-shaped, and tiny..."
 	icon_state = "kit_stoat"

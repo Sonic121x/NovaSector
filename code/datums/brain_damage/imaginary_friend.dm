@@ -4,15 +4,15 @@
 #define IMAGINARY_FRIEND_EXTENDED_SPEECH_RANGE 999
 
 /datum/brain_trauma/special/imaginary_friend
-	name = "Imaginary Friend"
-	desc = "Patient can see and hear an imaginary person."
+	name = "幻想朋友"
+	desc = "患者可以看到并听到一个虚构的人。"
 	scan_desc = "partial schizophrenia"
 	symptoms = "Exhibits signs of interacting with an unseen individual, including talking to themselves, \
 		responding to unheard stimuli, and displaying behaviors that suggest the presence of a companion. \
 		This \"imaginary friend\" may influence the patient's actions and emotional state, \
 		leading to social withdrawal, altered perceptions of reality, or atypical activities."
-	gain_text = span_notice("You feel in good company, for some reason.")
-	lose_text = span_warning("You feel lonely again.")
+	gain_text = span_notice("不知为何，你感觉有伴了。")
+	lose_text = span_warning("你又感到孤独了。")
 	var/mob/eye/imaginary_friend/friend
 	var/friend_initialized = FALSE
 
@@ -56,7 +56,7 @@
 /// Tries a poll for the imaginary friend
 /datum/brain_trauma/special/imaginary_friend/proc/get_ghost()
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
-		question = "Do you want to play as [span_danger("[owner.real_name]'s")] [span_notice("imaginary friend")]?",
+		question = "你想扮演[span_danger("[owner.real_name]'s")][span_notice("imaginary friend")]吗？",
 		check_jobban = ROLE_PAI,
 		poll_time = 20 SECONDS,
 		checked_target = owner,
@@ -83,7 +83,7 @@
 	name = "imaginary friend"
 	real_name = "imaginary friend"
 	move_on_shuttle = TRUE
-	desc = "A wonderful yet fake friend."
+	desc = "一个美好但不真实的朋友。"
 	sight = NONE
 	mouse_opacity = MOUSE_OPACITY_ICON
 	see_invisible = SEE_INVISIBLE_LIVING
@@ -112,9 +112,9 @@
 	Show()
 
 /mob/eye/imaginary_friend/proc/greet()
-	to_chat(src, span_notice("<b>You are the imaginary friend of [owner]!</b>"))
-	to_chat(src, span_notice("You are absolutely loyal to your friend, no matter what."))
-	to_chat(src, span_notice("You cannot directly influence the world around you, but you can see what [owner] cannot."))
+	to_chat(src, span_notice("<b>你是[owner]的幻想朋友！</b>"))
+	to_chat(src, span_notice("无论发生什么，你都绝对忠于你的朋友。"))
+	to_chat(src, span_notice("你无法直接影响周围的世界，但你能看见[owner]所不能看见的东西。"))
 
 /**
  * Arguments:
@@ -372,7 +372,7 @@
 		to_chat(user, span_boldwarning("You cannot send IC messages (muted)."))
 		return FALSE
 	else if(!params)
-		message = copytext(sanitize(input("Choose an emote to display.") as text|null), 1, MAX_MESSAGE_LEN)
+		message = copytext(sanitize(input("选择一个要显示的表情动作。") as text|null), 1, MAX_MESSAGE_LEN)
 	else
 		message = params
 	. = ..()

@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/aoe/fiery_rebirth
-	name = "Nightwatcher's Rebirth"
+	name = "夜巡者的重生"
 	desc = "A spell that extinguishes you and drains nearby heathens engulfed in flames of their life force, \
 		healing you for each victim drained. Those in critical condition \
 		will have the last of their vitality drained, killing them."

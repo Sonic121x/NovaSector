@@ -1,6 +1,6 @@
 /obj/item/implant/weapons_auth
-	name = "firearms authentication implant"
-	desc = "Lets you shoot your guns."
+	name = "火器认证植入体"
+	desc = "让你能开枪射击。"
 	icon_state = "auth"
 	actions_types = null
 
@@ -15,8 +15,8 @@
 		However, it should be noted that the weakest link in a digital authentication scheme is oftentimes the physical layer."
 
 /obj/item/implant/emp
-	name = "\improper EMP implant"
-	desc = "Triggers an EMP."
+	name = "\improper EMP植入体"
+	desc = "触发一次EMP。"
 	icon_state = "emp"
 	uses = 3
 
@@ -36,14 +36,14 @@
 		qdel(src)
 
 /obj/item/implanter/emp
-	name = "implanter" // NOVA EDIT, was implanter (EMP)
+	name = "植入器" // NOVA EDIT, was implanter (EMP)
 	imp_type = /obj/item/implant/emp
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // NOVA EDIT
 	special_desc = "A Syndicate implanter used for a EMP implant" // NOVA EDIT
 
 /obj/item/implant/smoke
-	name = "smoke implant"
-	desc = "Releases a plume of smoke."
+	name = "烟雾植入体"
+	desc = "释放一股烟雾。"
 	icon_state = "smoke"
 	uses = 3
 
@@ -63,11 +63,11 @@
 		qdel(src)
 
 /obj/item/implanter/smoke
-	name = "implanter (Smoke)"
+	name = "植入器（烟雾）"
 	imp_type = /obj/item/implant/smoke
 
 /obj/item/implant/radio
-	name = "internal radio implant"
+	name = "内置无线电植入体"
 	var/obj/item/radio/radio
 	var/radio_type = /obj/item/radio // NOVA EDIT ADDITION
 	var/radio_key
@@ -93,7 +93,7 @@
 	radio = new radio_type(src) // NOVA EDIT CHANGE - ORIGINAL: radio = new(src)
 	// almost like an internal headset, but without the
 	// "must be in ears to hear" restriction.
-	radio.name = "internal radio"
+	radio.name = "内置无线电"
 	radio.subspace_transmission = subspace_transmission
 	radio.canhear_range = 0
 	if(radio_key)
@@ -108,23 +108,23 @@
 	radio_key = /obj/item/encryptionkey/headset_cargo
 
 /obj/item/implant/radio/syndicate
-	desc = "Are you there God? It's me, Syndicate Comms Agent."
+	desc = "上帝你在吗？是我，辛迪加通讯特工。"
 	radio_key = /obj/item/encryptionkey/syndicate
 	subspace_transmission = TRUE
 
 /obj/item/implant/radio/slime
-	name = "slime radio"
+	name = "史莱姆无线电"
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "adamantine_resonator"
 	radio_key = /obj/item/encryptionkey/headset_sci
 	subspace_transmission = TRUE
 
 /obj/item/implanter/radio
-	name = "implanter (internal radio)"
+	name = "植入器（内置无线电）"
 	imp_type = /obj/item/implant/radio
 
 /obj/item/implanter/radio/syndicate
-	name = "implanter" // NOVA EDIT , was originally implanter (internal syndicate radio)
+	name = "植入器" // NOVA EDIT , was originally implanter (internal syndicate radio)
 	imp_type = /obj/item/implant/radio/syndicate
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // NOVA EDIT
 	special_desc = "A Syndicate implanter used for a internal radio implant" // NOVA EDIT

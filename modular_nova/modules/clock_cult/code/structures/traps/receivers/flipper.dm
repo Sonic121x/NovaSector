@@ -2,15 +2,15 @@
 #define FLIP_SPEED 3
 
 /obj/item/clockwork/trap_placer/flipper
-	name = "flipper"
-	desc = "A steam powered rotating floor panel. When input is received it will fling anyone on top of it."
+	name = "弹射器"
+	desc = "一个蒸汽驱动的旋转地板面板。当接收到输入信号时，它会将站在其上的人弹飞。"
 	icon_state = "pressure_sensor"
 	result_path = /obj/structure/destructible/clockwork/trap/flipper
 	clockwork_desc = "A floor panel capable of flinging anyone back when triggered."
 
 /obj/structure/destructible/clockwork/trap/flipper
-	name = "flipper"
-	desc = "A steam powered rotating floor panel. When input is received it will fling anyone on top of it."
+	name = "弹射器"
+	desc = "一个蒸汽驱动的旋转地板面板。当接收到输入信号时，它会将站在其上的人抛飞。"
 	icon_state = "flipper"
 	component_datum = /datum/component/clockwork_trap/flipper
 	unwrench_path = /obj/item/clockwork/trap_placer/flipper
@@ -23,7 +23,7 @@
 	. = ..()
 
 	if(!COOLDOWN_FINISHED(src, flip_cooldown) && IS_CLOCK(user))
-		. += span_brass("It's not ready to activate again yet!")
+		. += span_brass("它还没准备好再次激活！")
 
 /// Send all `atom/movable`s flying in the set direction for a decent distance
 /obj/structure/destructible/clockwork/trap/flipper/proc/flip()
@@ -44,7 +44,7 @@
 
 /// Visual update when the cooldown's finished
 /obj/structure/destructible/clockwork/trap/flipper/proc/cooldown_done()
-	visible_message(span_brass("[src] whirrs with a loud *CLANK* as it resets."))
+	visible_message(span_brass("[src] 发出响亮的 *哐当* 声并重置。"))
 
 /datum/component/clockwork_trap/flipper
 	takes_input = TRUE

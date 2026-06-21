@@ -2,8 +2,8 @@
 	group = "Vending Restocks"
 
 /datum/supply_pack/vending/bartending
-	name = "Booze-o-mat and Coffee Supply Crate"
-	desc = "Bring on the booze and coffee vending machine refills."
+	name = "酒饮和咖啡补给箱"
+	desc = "来点酒精和咖啡自动售货机的补充吧。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/boozeomat,
 					/obj/item/vending_refill/coffee,
@@ -28,35 +28,35 @@
 
 /datum/supply_pack/vending/dinnerware
 	name = "Dinnerware Supply Crate"
-	desc = "More knives for the chef."
+	desc = "给大厨准备更多的刀。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/dinnerware)
 	crate_name = "dinnerware supply crate"
 
 /datum/supply_pack/vending/science/modularpc
-	name = "Deluxe Silicate Selections Restock"
-	desc = "What's a computer? Contains a Deluxe Silicate Selections restocking unit."
+	name = "豪华掌上电脑精选补货"
+	desc = "计算机是什么？包含一个豪华掌上电脑精选补货装置。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/vending_refill/modularpc)
 	crate_name = "computer supply crate"
 
 /datum/supply_pack/vending/engivend
 	name = "EngiVend Supply Crate"
-	desc = "The engineers are out of metal foam grenades? This should help."
+	desc = "工程师的金属泡沫手榴弹用完了？这个应该有帮助。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/vending_refill/engivend)
 	crate_name = "engineering supply crate"
 
 /datum/supply_pack/vending/games
 	name = "Games Supply Crate"
-	desc = "Get your game on with this game vending machine refill."
+	desc = "用这台游戏自动售货机补充你的游戏乐趣。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/games)
 	crate_name = "games supply crate"
 	crate_type = /obj/structure/closet/crate
 
 /datum/supply_pack/vending/hydro_refills
-	name = "Hydroponics Vending Machines Refills"
+	name = "水培自动售货机补充品"
 	desc = "When the clown takes all the banana seeds. \
 		Contains a NutriMax refill and a MegaSeed Servitor refill."
 	cost = CARGO_CRATE_VALUE * 4
@@ -67,8 +67,8 @@
 	crate_name = "hydroponics supply crate"
 
 /datum/supply_pack/vending/imported
-	name = "Imported Vending Machines"
-	desc = "Vending machines famous in other parts of the galaxy."
+	name = "进口自动售货机"
+	desc = "在银河系其他地方也很有名的自动售货机。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/vending_refill/sustenance,
 					/obj/item/vending_refill/robotics,
@@ -107,7 +107,7 @@
 	crate_type = /obj/structure/closet/crate/secure/gear
 
 /datum/supply_pack/vending/snack
-	name = "Snack Supply Crate"
+	name = "零食贩卖机补给箱"
 	desc = "One vending machine refill of cavity-bringin' goodness! \
 		The number one dentist recommended order!"
 	cost = CARGO_CRATE_VALUE * 2
@@ -116,7 +116,7 @@
 	crate_type = /obj/structure/closet/crate/robust
 
 /datum/supply_pack/vending/cola
-	name = "Softdrinks Supply Crate"
+	name = "汽水贩卖机补给箱"
 	desc = "Got whacked by a toolbox, but you still have those pesky teeth? \
 		Get rid of those pearly whites with this soda machine refill, today!"
 	cost = CARGO_CRATE_VALUE * 2
@@ -125,7 +125,7 @@
 
 /datum/supply_pack/vending/vendomat
 	name = "Part-Mart & YouTool Supply Crate"
-	desc = "More tools for your IED testing facility."
+	desc = "为您的IED测试设施提供更多工具。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/vending_refill/assist,
 					/obj/item/vending_refill/youtool,
@@ -134,7 +134,7 @@
 
 /datum/supply_pack/vending/clothesmate
 	name = "ClothesMate Supply Crate"
-	desc = "Out of cowboy boots? Buy this crate."
+	desc = "牛仔靴卖完了？买这个箱子吧。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/clothing)
 	crate_name = "\improper ClothesMate supply crate"
@@ -151,15 +151,15 @@
 	crate_name = "autodrobe supply crate"
 
 /datum/supply_pack/vending/wardrobes/cargo
-	name = "Cargo Wardrobe Supply Crate"
-	desc = "This crate contains a refill for the CargoDrobe."
+	name = "补给衣橱补给箱"
+	desc = "这个箱子里装有 CargoDrobe 的补充包。"
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(/obj/item/vending_refill/wardrobe/cargo_wardrobe)
 	crate_name = "cargo department supply crate"
 
 /datum/supply_pack/vending/wardrobes/engineering
-	name = "Engineering Wardrobe Supply Crate"
-	desc = "This crate contains refills for the EngiDrobe and AtmosDrobe."
+	name = "工程衣橱补给箱"
+	desc = "这个箱子里装有用于EngiDrobe和AtmosDrobe的补充装。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/vending_refill/wardrobe/engi_wardrobe,
 					/obj/item/vending_refill/wardrobe/atmos_wardrobe,
@@ -167,7 +167,7 @@
 	crate_name = "engineering department wardrobe supply crate"
 
 /datum/supply_pack/vending/wardrobes/general
-	name = "General Wardrobes Supply Crate"
+	name = "通用衣橱补给箱"
 	desc = "This crate contains refills for the CuraDrobe, BarDrobe, \
 		ChefDrobe and ChapDrobe."
 	cost = CARGO_CRATE_VALUE * 6
@@ -180,20 +180,20 @@
 
 /datum/supply_pack/vending/wardrobes/hydroponics
 	name = "Hydrobe Supply Crate"
-	desc = "This crate contains a refill for the Hydrobe."
+	desc = "这个箱子里有一个 Hydrobe 的补充装。"
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(/obj/item/vending_refill/wardrobe/hydro_wardrobe)
 	crate_name = "hydrobe supply crate"
 
 /datum/supply_pack/vending/wardrobes/janitor
 	name = "JaniDrobe Supply Crate"
-	desc = "This crate contains a refill for the JaniDrobe."
+	desc = "这个箱子里装有 JaniDrobe 的补充装。"
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(/obj/item/vending_refill/wardrobe/jani_wardrobe)
 	crate_name = "janidrobe supply crate"
 
 /datum/supply_pack/vending/wardrobes/medical
-	name = "Medical Wardrobe Supply Crate"
+	name = "医疗衣橱补给箱"
 	desc = "This crate contains refills for the MediDrobe, \
 		ChemDrobe, ViroDrobe, and MortiDrobe."
 	cost = CARGO_CRATE_VALUE * 6
@@ -205,7 +205,7 @@
 	crate_name = "medical department wardrobe supply crate"
 
 /datum/supply_pack/vending/wardrobes/science
-	name = "Science Wardrobe Supply Crate"
+	name = "科研衣橱补给箱"
 	desc = "This crate contains refills for the SciDrobe, \
 		GeneDrobe, and RoboDrobe."
 	cost = CARGO_CRATE_VALUE * 4.5
@@ -216,7 +216,7 @@
 	crate_name = "science department wardrobe supply crate"
 
 /datum/supply_pack/vending/wardrobes/security
-	name = "Security Wardrobe Supply Crate"
+	name = "安保衣橱补给箱"
 	desc = "This crate contains refills for the SecDrobe, \
 		DetDrobe and LawDrobe."
 	cost = CARGO_CRATE_VALUE * 4

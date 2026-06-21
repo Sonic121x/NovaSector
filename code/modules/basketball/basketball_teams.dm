@@ -1,6 +1,6 @@
 // GENERIC TEAM
 /datum/outfit/basketball
-	name = "Basketball Team Uniform"
+	name = "篮球队队服"
 	uniform = /obj/item/clothing/under/color/black
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	id = /obj/item/card/id/away
@@ -52,7 +52,7 @@
 		human_to_equip.set_mob_height(taller_list[tall_index])
 
 /datum/outfit/basketball/referee
-	name = "Basketball Referee"
+	name = "篮球裁判"
 	uniform = /obj/item/clothing/under/costume/referee
 	shoes = /obj/item/clothing/shoes/laceup
 	mask = /obj/item/clothing/mask/whistle/minigame
@@ -61,14 +61,14 @@
 	taller_chance = 15
 
 /datum/outfit/basketball/nanotrasen
-	name = "Basketball NT Team"
+	name = "篮球纳米传讯队"
 	undershirt = /datum/sprite_accessory/clothing/undershirt/bluejersey
 	uniform = /obj/item/clothing/under/shorts/blue
 	suit = /obj/item/clothing/suit/jacket/letterman_nanotrasen
 	shoes = /obj/item/clothing/shoes/sneakers/black
 
 /datum/outfit/basketball/greytide_worldwide
-	name = "Basketball Greytide Worldwide"
+	name = "篮球全球灰潮队"
 	uniform = /obj/item/clothing/under/color/grey/ancient
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	mask = /obj/item/clothing/mask/gas/prop
@@ -85,7 +85,7 @@
 	slowdown_active = 0
 
 /datum/outfit/basketball/space_surfers
-	name = "Basketball Space Surfers"
+	name = "篮球太空冲浪者队"
 	shoes = /obj/item/clothing/shoes/magboots/basketball
 	suit = /obj/item/clothing/suit/space/basketball
 	head = /obj/item/clothing/head/helmet/space
@@ -93,7 +93,7 @@
 	neck = /obj/item/bedsheet/cosmos
 
 /datum/outfit/basketball/lusty_xenomorphs
-	name = "Basketball Lusty Xenomorphs"
+	name = "篮球欲望异形队"
 	suit = /obj/item/clothing/suit/costume/xenos
 	head = /obj/item/clothing/head/costume/xenos
 	mask = /obj/item/clothing/mask/chameleon
@@ -108,27 +108,27 @@
 	idcard.update_icon()
 
 /datum/outfit/basketball/ass_blast_usa
-	name = "Basketball Ass Blast USA"
+	name = "篮球 美利坚爆菊队"
 	uniform = /obj/item/clothing/under/misc/patriotsuit
 	shoes = /obj/item/clothing/shoes/sneakers/red
 	neck = /obj/item/bedsheet/patriot
 
 /datum/outfit/basketball/soviet_bears
-	name = "Basketball Soviet Bears"
+	name = "篮球 苏维埃战熊队"
 	uniform = /obj/item/clothing/under/costume/soviet
 	shoes = /obj/item/clothing/shoes/winterboots
 	head = /obj/item/clothing/head/costume/ushanka
 	gloves = /obj/item/clothing/gloves/color/brown
 
 /datum/outfit/basketball/ash_gladiators
-	name = "Basketball Ash Gladiators"
+	name = "篮球 灰烬角斗士队"
 	head = /obj/item/clothing/head/helmet/gladiator
 	uniform = /obj/item/clothing/under/costume/gladiator/ash_walker
 	back = /obj/item/spear
 	shoes = null
 
 /datum/outfit/basketball/beach_bums
-	name = "Basketball Beach Bums"
+	name = "篮球 沙滩浪子队"
 	undershirt = /datum/sprite_accessory/clothing/undershirt/nude
 	underwear = /datum/sprite_accessory/clothing/underwear/nude
 	socks = /datum/sprite_accessory/clothing/socks/nude

@@ -1,6 +1,6 @@
 /mob/living/basic/mining/megadeer
-	name = "megadeer"
-	desc = "The descendants of the common deer, turned into angry beasts by the harshness of the land."
+	name = "巨鹿"
+	desc = "普通鹿的后代，因土地的严酷而变成了愤怒的野兽。"
 	icon = 'modular_nova/modules/serenitystation/icons/newfauna_wide.dmi'
 	icon_state = "megadeer"
 	icon_living = "megadeer"
@@ -47,8 +47,8 @@
 	AddElement(/datum/element/ai_retaliate)
 
 /obj/item/crusher_trophy/deer_fur
-	name = "deer fur"
-	desc = "It's fur from a mega deer."
+	name = "鹿毛"
+	desc = "这是巨鹿的毛皮。"
 	icon = 'modular_nova/modules/serenitystation/icons/misc.dmi'
 	icon_state = "deer_fur"
 	denied_type = /obj/item/crusher_trophy/deer_fur
@@ -62,7 +62,7 @@
 
 //sinew re-flavor for megadeers
 /obj/item/stack/sheet/sinew/deer
-	name = "deer sinew"
+	name = "鹿筋"
 	singular_name = "deer sinew"
 	merge_type = /obj/item/stack/sheet/sinew/deer
 

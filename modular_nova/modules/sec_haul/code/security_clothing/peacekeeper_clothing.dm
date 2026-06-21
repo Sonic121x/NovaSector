@@ -1,14 +1,14 @@
 //PEACEKEEPER GLASSES
 /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper
-	name = "peacekeeper hud glasses"
+	name = "维和部队平视显示器眼镜"
 	icon_state = "peacekeeperglasses"
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/eyes.dmi'
 	icon = 'modular_nova/master_files/icons/obj/clothing/glasses.dmi'
 
 //PEACEKEEPER ARMOR
 /obj/item/clothing/suit/armor/vest/peacekeeper
-	name = "peacekeeper armor vest"
-	desc = "A standard issue peacekeeper armor vest, versatile, lightweight, and most importantly, cheap."
+	name = "维和部队装甲背心"
+	desc = "一款标准制式的维和部队装甲背心，用途广泛、重量轻，最重要的是，价格便宜。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "peacekeeper_white"
@@ -18,8 +18,8 @@
 	icon_state = "peacekeeper_black"
 
 /obj/item/clothing/suit/armor/vest/peacekeeper/spacecoat
-	name = "peacekeeper sleek coat"
-	desc = "An incredibly stylish and heavy black coat made of synthetic kangaroo leather, padded with durathread and lined with kevlar."
+	name = "维和部队流线型大衣"
+	desc = "一件极其时尚厚重的黑色大衣，由合成袋鼠皮革制成，内衬杜拉纤维并填充了凯夫拉。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "peacekeeper_spacecoat"
@@ -28,8 +28,8 @@
 
 //PEACEKEEPER GLOVES
 /obj/item/clothing/gloves/combat/peacekeeper
-	name = "peacekeeper gloves"
-	desc = "These tactical gloves are fireproof."
+	name = "维和部队手套"
+	desc = "这些战术手套是防火的。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "black_blue_gloves"
@@ -45,15 +45,15 @@
 	cut_type = null
 
 /obj/item/clothing/gloves/tackler/peacekeeper
-	name = "peacekeeper gripper gloves"
-	desc = "Special gloves that manipulate the blood vessels in the wearer's hands, granting them the ability to launch headfirst into walls."
+	name = "维和部队抓握手套"
+	desc = "特殊手套，能操纵佩戴者手部的血管，赋予他们一头撞向墙壁的能力。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "black_blue_gripper_gloves"
 
 /obj/item/clothing/gloves/kaza_ruk/sec/peacekeeper
-	name = "peacekeeper krav maga gloves"
-	desc = "These gloves can teach you to perform Krav Maga using nanochips."
+	name = "维和部队马伽术手套"
+	desc = "这些手套能通过纳米芯片教你使用马伽术。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "fightgloves_blue"
@@ -71,8 +71,8 @@
 
 //BOOTS
 /obj/item/clothing/shoes/jackboots/peacekeeper
-	name = "peacekeeper boots"
-	desc = "High speed, low drag combat boots."
+	name = "维和部队靴子"
+	desc = "高速、低阻力的作战靴。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "peacekeeper"

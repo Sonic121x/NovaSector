@@ -1,7 +1,7 @@
 //does toxin damage, hallucination, targets think they're not hurt at all
 /datum/blobstrain/reagent/regenerative_materia
-	name = "Regenerative Materia"
-	description = "will do medium initial toxin damage, injecting a poison which does more toxin damage and makes targets believe they are fully healed. The core regenerates much faster."
+	name = "再生基质"
+	description = "会造成中等初始毒素伤害，注入一种会造成更多毒素伤害并使目标相信自己已完全治愈的毒药。核心再生速度大幅加快。"
 	analyzerdescdamage = "Does medium initial toxin damage, injecting a poison which does more toxin damage and makes targets believe they are fully healed. Core regenerates much faster."
 	color = "#A88FB7"
 	complementary_color = "#AF7B8D"
@@ -11,8 +11,8 @@
 	point_rate_bonus = 1
 
 /datum/reagent/blob/regenerative_materia
-	name = "Regenerative Materia"
-	description = "Chemical that inflicts toxin damage and makes the target believe they are fully healed. Regenerative materia blobs inject this into their victims."
+	name = "再生基质"
+	description = "一种会造成毒素伤害并使目标相信自己已完全治愈的化学物质。再生质团状物将此注入受害者体内。"
 	taste_description = "heaven"
 	color = "#A88FB7"
 

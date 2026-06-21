@@ -83,7 +83,7 @@
 
 /// Makes the mob try to sink three times. Unsinks if interrupted.
 /datum/component/ground_sinking/proc/sinking_progress(mob/living/basic/living_target)
-	living_target.visible_message(span_notice("[living_target] starts sinking into the ground!"))
+	living_target.visible_message(span_notice("[living_target] 开始沉入地面！"))
 	for(var/i in 1 to 3)
 		if(QDELETED(living_target))
 			return
@@ -123,7 +123,7 @@
 		return
 	if (living_parent.health == living_parent.maxHealth)
 		return
-	living_parent.visible_message(span_notice("[living_parent]'s wounds begin to knit closed!"))
+	living_parent.visible_message(span_notice("[living_parent]的伤口开始愈合了！"))
 	START_PROCESSING(SSobj, src)
 	if (!outline_colour)
 		return

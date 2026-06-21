@@ -1,7 +1,7 @@
 
 /obj/machinery/computer/pandemic
-	name = "PanD.E.M.I.C 2200"
-	desc = "Used to work with viruses."
+	name = "广域瘟.疫.病 2200"
+	desc = "用来对付病毒。"
 	density = TRUE
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pandemic0"
@@ -56,7 +56,7 @@
 			is_close = TRUE
 		else
 			. += "It has a beaker inside it."
-		. += span_info("Alt-click to eject [is_close ? beaker : "the beaker"].")
+		. += span_info("Alt-点击以弹出[is_close ? beaker : "the beaker"]。")
 
 /obj/machinery/computer/pandemic/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -84,7 +84,7 @@
 	//Advanced science! Precision instruments (eg droppers and syringes) are precise enough to modify the loaded sample!
 	if(istype(held_item, /obj/item/reagent_containers/dropper) || istype(held_item, /obj/item/reagent_containers/syringe))
 		if(!beaker)
-			balloon_alert(user, "no beaker!")
+			balloon_alert(user, "没有烧杯！")
 			return ..()
 		if(istype(held_item, /obj/item/reagent_containers/syringe) && LAZYACCESS(modifiers, RIGHT_CLICK))
 			held_item.interact_with_atom_secondary(beaker, user)
@@ -99,10 +99,10 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return ..()
 	if(beaker)
-		balloon_alert(user, "beaker swapped")
+		balloon_alert(user, "烧杯已更换")
 		try_put_in_hand(beaker, usr)
 	else
-		balloon_alert(user, "beaker loaded")
+		balloon_alert(user, "烧杯已装载")
 	user.transferItemToLoc(held_item, src)
 	beaker = held_item
 	update_appearance()
@@ -197,15 +197,15 @@
 	var/datum/disease/advance/adv_disease = SSdisease.archive_diseases[id]
 
 	if(!istype(adv_disease) || !adv_disease.mutable)
-		to_chat(usr, span_warning("ERROR: Cannot replicate virus strain."))
+		to_chat(usr, span_warning("错误：无法复制病毒株。"))
 		return FALSE
 	use_energy(active_power_usage)
 	adv_disease = adv_disease.Copy()
 	var/list/data = list("viruses" = list(adv_disease))
 
 	var/obj/item/reagent_containers/cup/tube/bottle = new(drop_location())
-	bottle.name = "[adv_disease.name] culture tube"
-	bottle.desc = "A small test tube containing [adv_disease.agent] culture in synthblood medium."
+	bottle.name = "[adv_disease.name]培养皿"
+	bottle.desc = "一小瓶。含有在合成血液培养基中的[adv_disease.agent]培养物。"
 	bottle.reagents.add_reagent(/datum/reagent/blood, 20, data)
 	wait = TRUE
 	update_appearance()
@@ -232,7 +232,7 @@
 	var/id = index
 	var/datum/disease/disease = SSdisease.archive_diseases[id]
 	var/obj/item/reagent_containers/cup/tube/bottle = new(drop_location())
-	bottle.name = "[disease.name] vaccine tube"
+	bottle.name = "[disease.name]疫苗瓶"
 	bottle.reagents.add_reagent(/datum/reagent/vaccine, 15, list(id))
 	wait = TRUE
 	update_appearance()

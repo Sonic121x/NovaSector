@@ -1,6 +1,6 @@
 /obj/machinery/quantumpad
-	name = "quantum pad"
-	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
+	name = "量子板"
+	desc = "用于将物体传送到其他量子板的蓝空量子连接传送盘。"
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "qpad-idle"
 	base_icon_state = "qpad"
@@ -32,9 +32,9 @@
 
 /obj/machinery/quantumpad/examine(mob/user)
 	. = ..()
-	. += span_notice("It is [ linked_pad ? "currently" : "not"] linked to another pad.")
+	. += span_notice("它现在 [ linked_pad ? "currently" : "not"] 连接到另一个量子垫。")
 	if(!panel_open)
-		. += span_notice("The panel is <i>screwed</i> in, obstructing the linking device.")
+		. += span_notice("面板已被<i>拧紧</i>，阻挡了连接装置。")
 	else
 		. += span_notice("The <i>linking</i> device is now able to be <i>scanned<i> with a multitool.")
 
@@ -55,19 +55,19 @@
 /obj/machinery/quantumpad/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	if(panel_open)
 		multi_tool.set_buffer(src)
-		balloon_alert(user, "saved to multitool buffer")
-		to_chat(user, span_notice("You save the data in [multi_tool] buffer. It can now be saved to pads with closed panels."))
+		balloon_alert(user, "已保存到多功能工具缓冲区")
+		to_chat(user, span_notice("你将数据保存到[multi_tool]的缓冲区。现在可以将其保存到面板已关闭的传送垫上。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(multi_tool.buffer, /obj/machinery/quantumpad))
 		if(multi_tool.buffer == src)
-			balloon_alert(user, "cannot link to self!")
+			balloon_alert(user, "无法连接到自身！")
 			return ITEM_INTERACT_BLOCKING
 		linked_pad = multi_tool.buffer
-		balloon_alert(user, "data uploaded from buffer")
+		balloon_alert(user, "数据已从缓冲区上传")
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, "no quantum pad data found!")
+	balloon_alert(user, "未找到量子传送垫数据！")
 	return NONE
 
 /obj/machinery/quantumpad/screwdriver_act(mob/living/user, obj/item/tool)
@@ -104,7 +104,7 @@
 		if(map_pad_link_id && initMappedLink())
 			target_pad = linked_pad
 		else
-			to_chat(user, span_warning("Target pad not found!"))
+			to_chat(user, span_warning("目标台无法定位！"))
 			return
 	//NOVA EDIT ADDITION
 	var/turf/my_turf = get_turf(src)
@@ -114,19 +114,19 @@
 	//NOVA EDIT END
 
 	if(world.time < last_teleport + teleport_cooldown)
-		to_chat(user, span_warning("[src] is recharging power. Please wait [DisplayTimeText(last_teleport + teleport_cooldown - world.time)]."))
+		to_chat(user, span_warning("[src] 正在充能,请稍等 [DisplayTimeText(last_teleport + teleport_cooldown - world.time)]."))
 		return
 
 	if(teleporting)
-		to_chat(user, span_warning("[src] is charging up. Please wait."))
+		to_chat(user, span_warning("[src] 正在充能,请稍等."))
 		return
 
 	if(target_pad.teleporting)
-		to_chat(user, span_warning("Target pad is busy. Please wait."))
+		to_chat(user, span_warning("目标pad繁忙。请稍等."))
 		return
 
 	if(target_pad.machine_stat & NOPOWER)
-		to_chat(user, span_warning("Target pad is not responding to ping."))
+		to_chat(user, span_warning("目标pad对ping没有响应。"))
 		return
 	add_fingerprint(user)
 	doteleport(user, target_pad)
@@ -155,11 +155,11 @@
 	teleporting = FALSE
 	if(machine_stat & NOPOWER)
 		if(user)
-			to_chat(user, span_warning("[src] is unpowered!"))
+			to_chat(user, span_warning("[src] 没有能源!"))
 		return
 	if(QDELETED(target_pad) || target_pad.machine_stat & NOPOWER)
 		if(user)
-			to_chat(user, span_warning("Linked pad is not responding to ping. Teleport aborted."))
+			to_chat(user, span_warning("链接pad对ping没有响应。传送中止."))
 		return
 
 	last_teleport = world.time
@@ -198,12 +198,12 @@
 		. = TRUE
 
 /obj/item/paper/guides/quantumpad
-	name = "Quantum Pad For Dummies"
-	default_raw_text = "<center><b>Dummies Guide To Quantum Pads</b></center><br><br><center>Do you hate the concept of having to use your legs, let alone <i>walk</i> to places? Well, with the Quantum Pad (tm), never again will the fear of cardio keep you from going places!<br><br><c><b>How to set up your Quantum Pad(tm)</b></center><br><br>1.Unscrew the Quantum Pad(tm) you wish to link.<br>2. Use your multi-tool to cache the buffer of the Quantum Pad(tm) you wish to link.<br>3. Apply the multi-tool to the secondary Quantum Pad(tm) you wish to link to the first Quantum Pad(tm)<br><br><center>If you followed these instructions carefully, your Quantum Pad(tm) should now be properly linked together for near-instant movement across the station! Bear in mind that this is technically a one-way teleport, so you'll need to do the same process with the secondary pad to the first one if you wish to travel between both.</center>"
+	name = "给笨比用的量子盘"
+	default_raw_text = "<center><b>量子传送垫傻瓜指南</b></center><br><br><center>你是否讨厌使用双腿，甚至<i>步行</i>去某个地方的概念？那么，有了量子传送垫(tm)，对心肺功能的恐惧再也不会阻止你去任何地方了！<br><br><c><b>如何设置你的量子传送垫(tm)</b></center><br><br>1.拧开你想要连接的量子传送垫(tm)。<br>2.使用你的多功能工具缓存你想要连接的量子传送垫(tm)的缓冲区。<br>3.将多功能工具应用到第二个量子传送垫(tm)，将其连接到第一个量子传送垫(tm)。<br><br><center>如果你仔细遵循了这些说明，你的量子传送垫(tm)现在应该已经正确连接，可以在空间站内实现近乎瞬间的移动！请注意，这在技术上是一种单向传送，所以如果你希望能在两者之间往返，你需要对第二个传送垫和第一个传送垫执行相同的过程。</center>"
 
 /obj/item/circuit_component/quantumpad
 	display_name = "Quantum Pad"
-	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
+	desc = "用于将物体传送到其他量子板的蓝空量子连接传送盘。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
 	var/datum/port/input/target_pad

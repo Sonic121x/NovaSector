@@ -950,7 +950,7 @@
 // Changeling profile themselves. Store a data to store what every DNA instance looked like.
 /datum/changeling_profile
 	/// The name of the profile / the name of whoever this profile source.
-	var/name = "a bug"
+	var/name = "一个问题"
 	/// Whether this profile is protected - if TRUE, it cannot be removed from a changeling's profiles without force
 	var/protected = FALSE
 	/// The DNA datum associated with our profile from the profile source
@@ -1125,7 +1125,7 @@
 
 // Changelings spawned from non-changeling headslugs (IE, due to being transformed into a headslug as a non-ling). Weaker than a normal changeling.
 /datum/antagonist/changeling/headslug
-	name = "\improper Headslug Changeling"
+	name = "\improper 化形脑虫"
 	show_in_antagpanel = FALSE
 	give_objectives = FALSE
 	antag_flags = ANTAG_SKIP_GLOBAL_LIST
@@ -1153,7 +1153,7 @@
 	to_chat(src, span_changeling("Our mind stirs to life, from the depths of an endless slumber..."))
 
 /datum/outfit/changeling
-	name = "Changeling"
+	name = "化形"
 
 	head = /obj/item/clothing/head/helmet/changeling
 	suit = /obj/item/clothing/suit/armor/changeling

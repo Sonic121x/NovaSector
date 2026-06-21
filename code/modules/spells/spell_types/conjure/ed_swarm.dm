@@ -1,7 +1,7 @@
 // test purposes - Also a lot of fun
 /datum/action/cooldown/spell/conjure/summon_ed_swarm
-	name = "Dispense Wizard Justice"
-	desc = "This spell dispenses wizard justice."
+	name = "执行正义之法杖"
+	desc = "此咒语彰显了巫师的公正裁决。"
 
 	summon_radius = 3
 	summon_type = list(/mob/living/basic/bot/secbot/ed209)
@@ -12,7 +12,7 @@
 		return
 
 	var/mob/living/basic/bot/secbot/ed209/summoned_bot = summoned_object
-	summoned_bot.name = "Wizard's Justicebot"
+	summoned_bot.name = "巫师的正义机器人"
 
 	summoned_bot.security_mode_flags = ~SECBOT_DECLARE_ARRESTS
 	summoned_bot.bot_mode_flags &= ~BOT_MODE_REMOTE_ENABLED

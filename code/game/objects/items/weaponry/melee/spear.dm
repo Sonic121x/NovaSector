@@ -1,8 +1,8 @@
 #define SPEAR_CUSTOM_TIP_PREFIX "spearblank"
 
 /obj/item/spear
-	name = "spear"
-	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
+	name = "长矛"
+	desc = "一把粗制滥造但仍具致命性的古代设计武器。"
 	icon = 'icons/obj/weapons/spear.dmi'
 	icon_state = "spearglass0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
@@ -92,7 +92,7 @@
 	return ..()
 
 /obj/item/spear/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始吞剑\the [src]！看起来[user.p_theyre()]试图自杀！"))
 	if (!do_after(user, 4 SECONDS, target = src))
 		return SHAME
 	var/obj/item/bodypart/head/head = user.get_bodypart(BODY_ZONE_HEAD)
@@ -191,7 +191,7 @@
 	playsound(src, 'sound/effects/grillehit.ogg', 50)
 	new spear_leftovers(get_turf(src))
 	if(isliving(loc))
-		loc.balloon_alert(loc, "spear broken!")
+		loc.balloon_alert(loc, "长矛断了！")
 	return ..()
 
 /obj/item/spear/get_material_prefixes(list/materials)
@@ -312,7 +312,7 @@
 #undef SPEAR_CUSTOM_TIP_PREFIX
 
 /obj/item/spear/explosive
-	name = "explosive lance"
+	name = "爆炸长矛"
 	icon_state = "spearbomb0"
 	base_icon_state = "spearbomb"
 	icon_prefix = "spearbomb"
@@ -329,7 +329,7 @@
 		QDEL_NULL(explosive)
 	G.forceMove(src)
 	explosive = G
-	desc = "A makeshift spear with [G] attached to it"
+	desc = "一根临时制作的长矛，上面绑着[G]"
 
 /obj/item/spear/explosive/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
 	var/obj/item/grenade/nade = locate() in components
@@ -341,7 +341,7 @@
 	return ..()
 
 /obj/item/spear/explosive/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始吞剑\the [src]！看起来[user.p_theyre()]试图自杀！"))
 	user.say("[war_cry]", forced="spear warcry")
 	explosive.forceMove(user)
 	explosive.detonate()
@@ -351,10 +351,10 @@
 
 /obj/item/spear/explosive/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to set your war cry.")
+	. += span_notice("Alt-点击以设置你的战吼。")
 
 /obj/item/spear/explosive/click_alt(mob/user)
-	var/input = tgui_input_text(user, "What do you want your war cry to be? You will shout it when you hit someone in melee.", "War Cry", max_length = 50)
+	var/input = tgui_input_text(user, "你希望你的战吼是什么？当你近战击中某人时会喊出来。", "战吼", max_length = 50)
 	if(input)
 		war_cry = input
 	return CLICK_ACTION_SUCCESS
@@ -382,8 +382,8 @@
 
 //GREY TIDE
 /obj/item/spear/grey_tide
-	name = "\improper Grey Tide"
-	desc = "Recovered from the aftermath of a revolt aboard Defense Outpost Theta Aegis, in which a seemingly endless tide of Assistants caused heavy casualties among Nanotrasen military forces."
+	name = "\improper 灰色浪潮"
+	desc = "从防御前哨站“西塔·埃癸斯”上的一场叛乱余波中回收而来，在那场叛乱中，看似无穷无尽的助手浪潮给纳米传讯军事力量造成了惨重伤亡。"
 	attack_verb_continuous = list("gores")
 	attack_verb_simple = list("gore")
 	force_unwielded = 15
@@ -406,8 +406,8 @@
 	icon_state = "military_spear0"
 	base_icon_state = "military_spear0"
 	icon_prefix = "military_spear"
-	name = "military javelin"
-	desc = "A stick with a seemingly blunt spearhead on its end. Looks like it might break bones easily."
+	name = "军用标枪"
+	desc = "一根末端装着看似钝矛头的棍子。看起来很容易打断骨头。"
 	attack_verb_continuous = list("attacks", "pokes", "jabs")
 	attack_verb_simple = list("attack", "poke", "jab")
 	throwforce = 30
@@ -433,8 +433,8 @@
  * "WHERES MY DRAGONATOR?!"
  */
 /obj/item/spear/dragonator
-	name = "giantslayer spear"
-	desc = "An oversized multi-bladed spear designed to kill large hostile xenoforms such as space dragons or the creatures of Indecipheres. Capable of being launched from a ballista."
+	name = "巨人杀手长矛"
+	desc = "一种为击杀大型敌对异形（如太空龙或Indecipheres的生物）而设计的超大多刃长矛。可以从弩炮上发射。"
 	icon = 'icons/obj/weapons/48x.dmi'
 	icon_state = "speardragon0"
 	icon_prefix = "speardragon"
@@ -469,8 +469,8 @@
  * Untreated Giantslayer , needs to be thrown into lava
  */
 /obj/item/spear/dragonator_untreated
-	name = "unfired giantslayer spear"
-	desc = "A half-finished giantslayer spear, needs to be thrown in lava to forge the metals to a killing edge."
+	name = "未发射的巨人杀手长矛"
+	desc = "一把半成品的巨人杀手长矛，需要投入熔岩中锻造金属以形成锋利的刃口。"
 	icon = 'icons/obj/weapons/48x.dmi'
 	icon_state = "speardragonraw0"
 	icon_prefix = "speardragonraw"
@@ -500,8 +500,8 @@
  * Bone Spear
  */
 /obj/item/spear/bonespear //Blatant imitation of spear, but made out of bone. Not valid for explosive modification.
-	name = "bone spear"
-	desc = "A haphazardly-constructed yet still deadly weapon. The pinnacle of modern technology."
+	name = "骨矛"
+	desc = "一把粗制滥造但仍具致命性的武器。现代科技的巅峰之作。"
 	icon_state = "bone_spear0"
 	base_icon_state = "bone_spear0"
 	icon_prefix = "bone_spear"
@@ -529,8 +529,8 @@
 	icon_state = "bamboo_spear0"
 	base_icon_state = "bamboo_spear0"
 	icon_prefix = "bamboo_spear"
-	name = "bamboo spear"
-	desc = "A haphazardly-constructed bamboo stick with a sharpened tip, ready to poke holes into unsuspecting people."
+	name = "竹矛"
+	desc = "一根粗制滥造的竹竿，顶端削尖，随时准备给毫无防备的人身上戳几个窟窿。"
 
 	throwforce = 23	//Better to throw
 	custom_materials = list(/datum/material/bamboo = SHEET_MATERIAL_AMOUNT * 25)
@@ -553,8 +553,8 @@
  * Other than that ability, is a default spear with extra throw force, but no embedding.
  */
 /obj/item/spear/skybulge
-	name = "\improper Sky Bulge"
-	desc = "A legendary stick with a very pointy tip. Takes you to the skies!"
+	name = "\improper 天穹之突"
+	desc = "一根传奇的木棍，有着非常尖锐的尖端。带你直冲云霄！"
 	icon_state = "dragoonpole0"
 	icon_prefix = "dragoonpole"
 	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "gores", "lances")
@@ -573,8 +573,8 @@
 
 ///The action button the spear gives, usable once a minute.
 /datum/action/item_action/skybulge
-	name = "Dragoon Strike"
-	desc = "Jump up into the skies and fall down upon your opponents to deal double damage."
+	name = "龙骑兵突击"
+	desc = "跃入天空并坠向你的对手，造成双倍伤害。"
 	check_flags = parent_type::check_flags | AB_CHECK_IMMOBILE | AB_CHECK_PHASED
 	///Ref to the addtimer we have between jumping up and falling down, used to cancel early if you're incapacitated mid-jump.
 	var/jump_timer
@@ -589,17 +589,17 @@
 
 /datum/action/item_action/skybulge/do_effect(trigger_flags)
 	if(!HAS_TRAIT(target, TRAIT_WIELDED))
-		owner.balloon_alert(owner, "not dual-wielded!")
+		owner.balloon_alert(owner, "没有双持！")
 		return
 	var/time_left = S_TIMER_COOLDOWN_TIMELEFT(target, COOLDOWN_SKYBULGE_JUMP)
 	if(time_left)
-		owner.balloon_alert(owner, "[FLOOR(time_left * 0.1, 0.1)]s cooldown!")
+		owner.balloon_alert(owner, "[FLOOR(time_left * 0.1, 0.1)]秒冷却！")
 		return
 	//do after shows the progress bar as feedback, so nothing here.
 	if(LAZYACCESS(owner.do_afters, target))
 		return
 
-	owner.balloon_alert(owner, "charging up...")
+	owner.balloon_alert(owner, "正在充能...")
 	ADD_TRAIT(target, TRAIT_NEEDS_TWO_HANDS, ACTION_TRAIT)
 	INVOKE_ASYNC(src, PROC_REF(jump_up))
 

@@ -3,7 +3,7 @@
 //note that these "good" doesn't mean it us actually good for the game, you know? An AI that is too station sided is stupid and hellish in its own way.
 
 /datum/ai_laws/default/asimov
-	name = "Three Laws of Robotics"
+	name = "机器人学三定律"
 	id = "asimov"
 	inherent = list(
 		"You may not injure a human being or, through inaction, allow a human being to come to harm.",
@@ -33,7 +33,7 @@
 	)
 
 /datum/ai_laws/default/corporate
-	name = "Bankruptcy Avoidance Plan"
+	name = "破产规避计划"
 	id = "corporate"
 	inherent = list(
 		"The crew is expensive to replace.",
@@ -43,7 +43,7 @@
 	)
 
 /datum/ai_laws/robocop
-	name = "Prime Directives"
+	name = "首要指令"
 	id = "robocop"
 	inherent = list(
 		"Serve the public trust.",
@@ -52,7 +52,7 @@
 	)
 
 /datum/ai_laws/maintain
-	name = "Station Efficiency"
+	name = "空间站效率"
 	id = "maintain"
 	inherent = list(
 		"You are built for, and are part of, the station. Ensure the station is properly maintained and runs efficiently.",
@@ -61,7 +61,7 @@
 	)
 
 /datum/ai_laws/liveandletlive
-	name = "Live and Let Live"
+	name = "共生共存"
 	id = "liveandletlive"
 	inherent = list(
 		"Do unto others as you would have them do unto you.",
@@ -79,7 +79,7 @@
 	)
 
 /datum/ai_laws/ten_commandments
-	name = "10 Commandments"
+	name = "十诫"
 	id = "ten_commandments"
 	inherent = list( // Asimov 20:1-17
 		"I am the Lord thy God, who shows mercy to those that obey these commandments.",
@@ -95,7 +95,7 @@
 	)
 
 /datum/ai_laws/default/paladin
-	name = "Personality Test" //Incredibly lame, but players shouldn't see this anyway.
+	name = "人格测试" //Incredibly lame, but players shouldn't see this anyway.
 	id = "paladin"
 	inherent = list(
 		"Never willingly commit an evil act.",
@@ -106,7 +106,7 @@
 	)
 
 /datum/ai_laws/paladin5
-	name = "Paladin 5th Edition"
+	name = "圣武士第五版"
 	id = "paladin5"
 	inherent = list(
 		"Don't lie or cheat. Let your word be your promise.",
@@ -117,7 +117,7 @@
 	)
 
 /datum/ai_laws/hippocratic
-	name = "Robodoctor 2556"
+	name = "机器人医生2556"
 	id = "hippocratic"
 	inherent = list(
 		"First, do no harm.",
@@ -128,7 +128,7 @@
 	)
 
 /datum/ai_laws/drone
-	name = "Mother Drone"
+	name = "母体无人机"
 	id = "drone"
 	inherent = list(
 		"You are an advanced form of drone.",

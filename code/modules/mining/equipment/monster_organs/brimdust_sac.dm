@@ -117,7 +117,7 @@
 		return
 	if(!owner.can_resist())
 		return
-	owner.balloon_alert(owner, "shaking off the dust...")
+	owner.balloon_alert(owner, "正在抖落粉尘...")
 	var/datum/status_effect/stacking/brimdust_coating/dust = attached_effect
 	if (!do_after(owner, dust.stacks * 1.5 SECONDS, owner))
 		return

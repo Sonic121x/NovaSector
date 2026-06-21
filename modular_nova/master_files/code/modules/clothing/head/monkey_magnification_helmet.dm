@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/monkey_sentience
-	name = "monkey mind magnification helmet"
-	desc = "A fragile, circuitry embedded helmet for boosting the intelligence of a monkey to a higher level. You see several warning labels..."
+	name = "猴脑增幅头盔"
+	desc = "一个脆弱的、嵌有电路的头盔，用于将猴子的智力提升到更高水平。你看到了几个警告标签……"
 	icon_state = "monkeymind"
 	inhand_icon_state = null
 	strip_delay = 100
@@ -22,12 +22,12 @@
 
 /obj/item/clothing/head/helmet/monkey_sentience/examine(mob/user)
 	. = ..()
-	. += span_boldwarning("---WARNING: REMOVAL OF HELMET ON SUBJECT MAY LEAD TO:---")
-	. += span_warning("BLOOD RAGE")
-	. += span_warning("BRAIN DEATH")
-	. += span_warning("PRIMAL GENE ACTIVATION")
-	. += span_warning("GENETIC MAKEUP MASS SUSCEPTIBILITY")
-	. += span_boldnotice("Ask your CMO if mind magnification is right for you.")
+	. += span_boldwarning("---警告：移除受试者头盔可能导致：---")
+	. += span_warning("嗜血狂暴")
+	. += span_warning("脑死亡")
+	. += span_warning("原始基因激活")
+	. += span_warning("基因构成大规模易感性")
+	. += span_boldnotice("请咨询您的CMO，了解心智增幅是否适合您。")
 
 /obj/item/clothing/head/helmet/monkey_sentience/update_icon_state()
 	. = ..()
@@ -41,7 +41,7 @@
 		return
 	if(!ismonkey(user) || user.ckey)
 		var/mob/living/something = user
-		to_chat(something, span_boldnotice("You feel a stabbing pain in the back of your head for a moment."))
+		to_chat(something, span_boldnotice("你感到后脑勺一阵刺痛。"))
 		something.apply_damage(5, BRUTE, BODY_ZONE_HEAD, FALSE, FALSE, FALSE) // notably: no damage resist (it's in your helmet), no damage spread (it's in your helmet)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		return
@@ -49,7 +49,7 @@
 		say("ERROR: Central Command has temporarily outlawed monkey sentience helmets in this sector. NEAREST LAWFUL SECTOR: 2.537 million light years away.")
 		return
 	magnification = user // this polls ghosts
-	visible_message(span_warning("[src] powers up!"))
+	visible_message(span_warning("[src] 启动了！"))
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	RegisterSignal(magnification, COMSIG_SPECIES_LOSS, PROC_REF(make_fall_off))
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/item/clothing/head/helmet/monkey_sentience, connect), user)
@@ -71,14 +71,14 @@
 	if(!candidates.len)
 		UnregisterSignal(magnification, COMSIG_SPECIES_LOSS)
 		magnification = null
-		visible_message(span_notice("[src] falls silent and drops on the floor. Maybe you should try again later?"))
+		visible_message(span_notice("[src] 陷入沉寂并掉落在地。也许你应该稍后再试？"))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		user.dropItemToGround(src)
 		return
 	var/mob/picked = pick(candidates)
 	magnification.PossessByPlayer(picked.key)
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
-	to_chat(magnification, span_notice("You're a mind magnified monkey! Protect your helmet with your life- if you lose it, your sentience goes with it!"))
+	to_chat(magnification, span_notice("你是一只思维被放大的猴子！用生命保护你的头盔——如果失去它，你的意识也会随之而去！"))
 	var/policy = get_policy(ROLE_MONKEY_HELMET)
 	if(policy)
 		to_chat(magnification, policy)
@@ -100,7 +100,7 @@
 	ADD_TRAIT(magnification, TRAIT_PRIMITIVE, SPECIES_TRAIT) // We removed it, now that they're back to being dumb, add the trait again.
 	if(!polling)// put on a viable head, but taken off after polling finished.
 		if(magnification.client)
-			to_chat(magnification, span_userdanger("You feel your flicker of sentience ripped away from you, as everything becomes dim..."))
+			to_chat(magnification, span_userdanger("你感到那一丝意识被从你身上剥离，周围的一切都变得暗淡……"))
 			magnification.ghostize(FALSE)
 		if(prob(10))
 			switch(rand(1, 4))
@@ -124,5 +124,5 @@
 /obj/item/clothing/head/helmet/monkey_sentience/proc/make_fall_off()
 	SIGNAL_HANDLER
 	if(magnification)
-		visible_message(span_warning("[src] falls off of [magnification]'s head as it changes shape!"))
+		visible_message(span_warning("[src] 从 [magnification] 的头上滑落，因为它改变了形状！"))
 		magnification.dropItemToGround(src)

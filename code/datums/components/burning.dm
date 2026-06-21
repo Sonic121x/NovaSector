@@ -80,19 +80,19 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 /datum/component/burning/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_danger("[source.p_Theyre()] burning!")
+	examine_list += span_danger("[source.p_Theyre()]着火了！")
 
 /// Handles searing the hand of anyone who tries to touch parent without protection.
 /datum/component/burning/proc/on_attack_hand(atom/source, mob/living/carbon/user)
 	SIGNAL_HANDLER
 
 	if(!iscarbon(user) || user.can_touch_burning(source))
-		to_chat(user, span_notice("You put out the fire on [source]."))
+		to_chat(user, span_notice("你扑灭了[source]上的火焰。"))
 		source.extinguish()
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	user.apply_damage(5, BURN, user.get_active_hand())
-	to_chat(user, span_userdanger("You burn your hand on [source]!"))
+	to_chat(user, span_userdanger("你的手被[source]烫伤了！"))
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(source, SFX_SEAR, 50, TRUE)
 	return COMPONENT_CANCEL_ATTACK_CHAIN

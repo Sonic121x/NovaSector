@@ -1,9 +1,9 @@
 /obj/effect/mob_spawn/corpse/human/nanotrasensoldier/deathsquad
-	name = "NT asset protection corpse"
+	name = "NT资产保护部队尸体"
 	outfit = /datum/outfit/nanotrasensoldiercorpse/deathsquad
 
 /datum/outfit/nanotrasensoldiercorpse/deathsquad
-	name = "NT Asset protection corpse"
+	name = "NT资产保护部队尸体"
 	uniform = /obj/item/clothing/under/rank/centcom/military
 	suit = /obj/item/clothing/suit/armor/vest/marine/security
 	shoes = /obj/item/clothing/shoes/combat

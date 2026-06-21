@@ -7,7 +7,7 @@
 
 /obj/item/circuit_component/nfc_send
 	display_name = "NFC Transmitter"
-	desc = "Sends a data package through NTNet. If Encryption Key is set then transmitted data will be only picked up by receivers with the same Encryption Key."
+	desc = "通过NTNet发送数据包。如果设置了加密密钥，则传输的数据将只能被具有相同加密密钥的接收器接收。"
 	category = "Utility"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL

@@ -6,27 +6,27 @@
 
 /datum/map_template/shuttle/mining/box
 	suffix = "box"
-	name = "mining shuttle (Box)"
+	name = "采矿穿梭机（箱式）"
 
 /datum/map_template/shuttle/mining/delta
 	suffix = "delta"
-	name = "mining shuttle (Delta)"
+	name = "采矿穿梭机（德尔塔）"
 
 /datum/map_template/shuttle/mining/kilo
 	suffix = "kilo"
-	name = "mining shuttle (Kilo)"
+	name = "采矿穿梭机（千吨）"
 
 /datum/map_template/shuttle/mining/large
 	suffix = "large"
-	name = "mining shuttle (Large)"
+	name = "采矿穿梭机（大型）"
 
 /datum/map_template/shuttle/mining/northstar
 	suffix = "northstar"
-	name = "mining shuttle (North Star)"
+	name = "采矿穿梭机（北极星）"
 
 /datum/map_template/shuttle/mining/nebula
 	suffix = "nebula"
-	name = "mining shuttle (Nebula)"
+	name = "采矿穿梭机（星云）"
 
 // MINING COMMON SHUTTLES
 /datum/map_template/shuttle/mining_common
@@ -36,12 +36,12 @@
 
 /datum/map_template/shuttle/mining_common/meta
 	suffix = "meta"
-	name = "lavaland shuttle (Meta)"
+	name = "熔岩地穿梭机（Meta）"
 
 /datum/map_template/shuttle/mining_common/kilo
 	suffix = "kilo"
-	name = "lavaland shuttle (Kilo)"
+	name = "熔岩地穿梭机（Kilo）"
 
 /datum/map_template/shuttle/mining_common/northstar
 	suffix = "northstar"
-	name = "lavaland shuttle (North Star)"
+	name = "熔岩地穿梭机（北极星）"

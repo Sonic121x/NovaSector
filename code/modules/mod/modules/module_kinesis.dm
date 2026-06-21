@@ -1,6 +1,6 @@
 ///Kinesis - Gives you the ability to move and launch objects.
 /obj/item/mod/module/anomaly_locked/kinesis
-	name = "MOD kinesis module"
+	name = "MOD念力模块"
 	desc = "A modular plug-in to the forearm, this module was presumed lost for many years, \
 		despite the suits it used to be mounted on still seeing some circulation. \
 		This piece of technology allows the user to generate precise anti-gravity fields, \
@@ -55,10 +55,10 @@
 		launch(launched_object)
 		return
 	if(!range_check(target))
-		balloon_alert(mod.wearer, "too far!")
+		balloon_alert(mod.wearer, "太远了！")
 		return
 	if(!can_grab(target))
-		balloon_alert(mod.wearer, "can't grab!")
+		balloon_alert(mod.wearer, "无法抓取！")
 		return
 	drain_power(use_energy_cost)
 	grab_atom(target)
@@ -71,7 +71,7 @@
 		clear_grab()
 		return
 	if(!range_check(grabbed_atom))
-		balloon_alert(mod.wearer, "out of range!")
+		balloon_alert(mod.wearer, "超出范围！")
 		clear_grab()
 		return
 	drain_power(use_energy_cost/10)
@@ -254,7 +254,7 @@
 	core_removable = FALSE
 
 /obj/item/mod/module/anomaly_locked/kinesis/prototype
-	name = "MOD prototype kinesis module"
+	name = "MOD原型念力模块"
 	prebuilt = TRUE
 	complexity = 0
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 5
@@ -262,7 +262,7 @@
 	core_removable = FALSE
 
 /obj/item/mod/module/anomaly_locked/kinesis/plus
-	name = "MOD kinesis+ module"
+	name = "MOD念力+模块"
 	desc = "A modular plug-in to the forearm, this module was recently redeveloped in secret. \
 		The bane of all ne'er-do-wells, the kinesis+ module is a powerful tool that allows the user \
 		to manipulate the world around them. Like its older counterpart, it's capable of manipulating \

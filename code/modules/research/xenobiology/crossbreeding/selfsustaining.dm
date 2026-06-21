@@ -3,21 +3,21 @@ Self-sustaining extracts:
 	Produces 4 extracts that do not need reagents.
 */
 /obj/item/slimecross/selfsustaining
-	name = "self-sustaining extract"
+	name = "自我维持提取物"
 	effect = "self-sustaining"
 	icon_state = "selfsustaining"
 	var/extract_type = /obj/item/slime_extract
 
 /obj/item/autoslime
-	name = "autoslime"
-	desc = "It resembles a normal slime extract, but seems filled with a strange, multi-colored fluid."
+	name = "古怪黏液"
+	desc = "它看起来像普通的史莱姆提取物，但似乎内部充满了某种奇特的、多色的液体。"
 	var/obj/item/slime_extract/extract
 	var/effect_desc = "A self-sustaining slime extract. When used, lets you choose which reaction you want."
 
 //Just divides into the actual item.
 /obj/item/slimecross/selfsustaining/Initialize(mapload)
 	..()
-	visible_message(span_warning("The [src] shudders, and splits into four smaller extracts."))
+	visible_message(span_warning("这个[src]颤抖着，分裂成了四个更小的提取物。"))
 	for(var/i in 1 to 4)
 		var/obj/item/autoslime/A = new /obj/item/autoslime(src.loc)
 		var/obj/item/slime_extract/X = new extract_type(A)
@@ -25,7 +25,7 @@ Self-sustaining extracts:
 		A.icon = icon
 		A.icon_state = icon_state
 		A.color = color
-		A.name = "self-sustaining " + colour + " extract"
+		A.name = "自维持" + colour + "提取物"
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/autoslime/Initialize(mapload)
@@ -44,7 +44,7 @@ Self-sustaining extracts:
 		var/choice = english_list(req_chem_names, and_text = ", ")
 		choices[choice] = recipe
 
-	var/selectName = tgui_input_list(user, "Reagent(s) the extract will produce.", "Self-sustaining Reaction", choices)
+	var/selectName = tgui_input_list(user, "提取物将产生的化学试剂。", "自持反应", choices)
 	if(isnull(selectName))
 		return
 

@@ -1,6 +1,6 @@
 /datum/action/cooldown/mob_cooldown/bot/honk
-	name = "Honk"
-	desc = "Spread cheer and joy all around!"
+	name = "鸣笛"
+	desc = "向四周传播欢乐与喜悦！"
 	button_icon = 'icons/obj/art/horn.dmi'
 	button_icon_state = "bike_horn"
 	cooldown_time = 5 SECONDS

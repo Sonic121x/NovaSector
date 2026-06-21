@@ -1,11 +1,11 @@
 ///These are for the medisim shuttle
 
 /obj/machinery/computer/reality_simulation
-	name = "reality simulation computer"
-	desc = "A computer calculating the medieval times. Uh, wow. Is this bad boy quantum?"
+	name = "现实模拟计算机"
+	desc = "一台计算着中世纪时代的计算机。呃，哇哦。这玩意儿是量子的吗？"
 
 /obj/item/paper/crumpled/retired_designs
-	name = "crumpled notes on cuirass design"
+	name = "关于胸甲设计的皱巴巴笔记"
 	default_raw_text = {"Yeah, you may as well just melt this crap back down into metal.<br>
 	<br>
 	<br>

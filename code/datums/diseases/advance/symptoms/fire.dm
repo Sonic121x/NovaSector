@@ -8,8 +8,8 @@
  */
 
 /datum/symptom/fire
-	name = "Spontaneous Combustion"
-	desc = "The virus turns fat into an extremely flammable compound, and raises the body's temperature, making the host burst into flames spontaneously."
+	name = "自燃"
+	desc = "该病毒将脂肪转化为一种极易燃的化合物，并提高体温，使宿主自发地燃烧起来。"
 	illness = "Spontaneous Combustion"
 	stealth = 0
 	resistance = 0
@@ -59,8 +59,8 @@
 			living_mob.take_overall_damage(burn = ((advanced_stage ? 5 : 3) * power), required_bodytype = BODYTYPE_ORGANIC)
 			living_mob.ignite_mob(silent = TRUE)
 			if(living_mob.on_fire) //check to make sure they actually caught on fire, or if it was prevented cause they were wet.
-				living_mob.visible_message(span_warning("[living_mob] catches fire!"), ignored_mobs = living_mob)
-				to_chat(living_mob, span_userdanger((advanced_stage ? "Your skin erupts into an inferno!" : "Your skin bursts into flames!")))
+				living_mob.visible_message(span_warning("[living_mob] 着火了！"), ignored_mobs = living_mob)
+				to_chat(living_mob, span_userdanger((advanced_stage ? "你的皮肤燃起了熊熊烈焰！" : "你的皮肤突然燃起火焰！")))
 				living_mob.emote("scream")
 			else if(!suppress_warning)
 				warn_mob(living_mob)
@@ -70,10 +70,10 @@
 
 /datum/symptom/fire/proc/warn_mob(mob/living/living_mob)
 	if(prob(33.33))
-		living_mob.show_message(span_hear("You hear a crackling noise."), type = MSG_AUDIBLE)
+		living_mob.show_message(span_hear("你听到一阵噼啪作响的声音。"), type = MSG_AUDIBLE)
 	else
 		if(HAS_TRAIT(living_mob, TRAIT_ANOSMIA)) //Anosmia quirk holder can't smell anything.
-			to_chat(living_mob, span_warning("You feel hot."))
+			to_chat(living_mob, span_warning("你感觉很热。"))
 		else
 			to_chat(living_mob, span_warning("[pick("You feel hot.", "You smell smoke.")]"))
 
@@ -91,8 +91,8 @@ Bonus
 
 /datum/symptom/alkali
 
-	name = "Alkali perspiration"
-	desc = "The virus attaches to sudoriparous glands, synthesizing a chemical that bursts into flames when reacting with water, leading to self-immolation."
+	name = "碱液排汗"
+	desc = "该病毒附着于汗腺，合成一种遇水即燃的化学物质，导致自焚。"
 	illness = "Crispy Skin"
 	stealth = 2
 	resistance = -2
@@ -137,19 +137,19 @@ Bonus
 				to_chat(M, span_warning("[pick("Your veins boil.", "You feel hot.", "You smell meat cooking.")]"))
 		if(4)
 			if(M.fire_stacks < 0)
-				M.visible_message(span_warning("[M]'s sweat sizzles and pops on contact with water!"))
+				M.visible_message(span_warning("[M]的汗水接触到水时发出嘶嘶声并爆裂开来！"))
 				explosion(M, devastation_range = -1, heavy_impact_range = (-1 + explosion_power), light_impact_range = (2 * explosion_power), explosion_cause = src)
 			Alkali_fire_stage_4(M, A)
 			M.ignite_mob()
-			to_chat(M, span_userdanger("Your sweat bursts into flames!"))
+			to_chat(M, span_userdanger("你的汗水突然燃烧了起来！"))
 			M.emote("scream")
 		if(5)
 			if(M.fire_stacks < 0)
-				M.visible_message(span_warning("[M]'s sweat sizzles and pops on contact with water!"))
+				M.visible_message(span_warning("[M]的汗水接触到水时发出嘶嘶声并爆裂开来！"))
 				explosion(M, devastation_range = -1, heavy_impact_range = (-1 + explosion_power), light_impact_range = (2 * explosion_power), explosion_cause = src)
 			Alkali_fire_stage_5(M, A)
 			M.ignite_mob()
-			to_chat(M, span_userdanger("Your skin erupts into an inferno!"))
+			to_chat(M, span_userdanger("你的皮肤燃起了熊熊烈焰！"))
 			M.emote("scream")
 
 /datum/symptom/alkali/proc/Alkali_fire_stage_4(mob/living/M, datum/disease/advance/A)

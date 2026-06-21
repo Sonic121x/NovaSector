@@ -7,8 +7,8 @@
  * Bonus: Makes the mob gain a random crayon powder colorful reagent.
 */
 /datum/symptom/polyvitiligo
-	name = "Polyvitiligo"
-	desc = "The virus replaces the melanin in the skin with reactive pigment."
+	name = "多色白斑症"
+	desc = "该病毒将皮肤中的黑色素替换为活性色素。"
 	illness = "Chroma Imbalance"
 	stealth = -1
 	resistance = 3
@@ -33,4 +33,4 @@
 				M.reagents.add_reagent(color, 5)
 		else
 			if (prob(50)) // spam
-				M.visible_message(span_warning("[M] looks rather vibrant..."), span_notice("The colors, man, the colors..."))
+				M.visible_message(span_warning("[M] 看起来相当鲜艳..."), span_notice("这颜色，老兄，这颜色……"))

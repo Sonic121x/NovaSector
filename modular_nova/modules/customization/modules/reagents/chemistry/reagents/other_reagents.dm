@@ -12,9 +12,9 @@
 
 // Catnip
 /datum/reagent/pax/catnip
-	name = "Catnip"
+	name = "猫薄荷"
 	taste_description = "grass"
-	description = "A colourless liquid that makes people more peaceful and felines happier."
+	description = "一种无色液体，能让人更平和，让猫科动物更快乐。"
 	metabolization_rate = 1.75 * REAGENTS_METABOLISM
 
 /datum/reagent/pax/catnip/on_mob_life(mob/living/carbon/M, seconds_per_tick, metabolization_ratio)
@@ -30,8 +30,8 @@
 #define DERMAGEN_SCAR_FIX_AMOUNT 10
 
 /datum/reagent/medicine/dermagen
-	name = "Dermagen"
-	description = "Heals scars formed by past physical trauma when applied. Minimum 10u needed, only works when applied topically."
+	name = "皮肤再生剂"
+	description = "涂抹时可治愈过去物理创伤形成的疤痕。至少需要10单位，仅局部涂抹有效。"
 	color = "#FFEBEB"
 	ph = 6
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -46,15 +46,15 @@
 	if(scarred.stat == DEAD)
 		show_message = FALSE
 	if(show_message)
-		to_chat(scarred, span_danger("The scars on your body start to fade and disappear."))
+		to_chat(scarred, span_danger("你身上的疤痕开始褪色并消失。"))
 	if(reac_volume >= DERMAGEN_SCAR_FIX_AMOUNT)
 		QDEL_LAZYLIST(scarred.all_scars)
 
 #undef DERMAGEN_SCAR_FIX_AMOUNT
 
 /datum/reagent/medicine/taste_suppressor
-	name = "Taste Suppressor"
-	description = "A colorless medicine aimed to dull the sense of taste of those that consumed it, as long as it's in their system."
+	name = "味觉抑制剂"
+	description = "一种无色药物，旨在钝化服用者的味觉，只要它还在其体内。"
 	color = "#AAAAAA77"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

@@ -1,6 +1,6 @@
 /datum/experiment/scanning/points
-	name = "Point Scanning Experiment"
-	description = "Base experiment for scanning experiments tracked by points"
+	name = "点扫描实验"
+	description = "按点数追踪的扫描实验的基础实验"
 	/// The current points gained on this experiment
 	var/points = 0
 	/// The total required points for this experiment

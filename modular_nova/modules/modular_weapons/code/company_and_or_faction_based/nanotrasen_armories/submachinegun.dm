@@ -5,7 +5,7 @@ This is a Blueshield weapon. It's for the Blueshield. If this ends up in Cargo I
 */
 
 /obj/item/gun/ballistic/automatic/nt20
-	name = "\improper NT20 Submachine Gun"
+	name = "\improper NT20冲锋枪"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_armories/ballistic.dmi'
 	desc = "A sleek, select-fire SMG chambered in the venerable 9mm cartridge. The Blueshield's favorite toy."
 	icon_state = "nt20"
@@ -67,7 +67,7 @@ This is a Blueshield weapon. It's for the Blueshield. If this ends up in Cargo I
 	start_empty = TRUE
 
 /obj/item/storage/toolbox/guncase/nova/ntspecial/nt20
-	name = "\improper Nanotrasen Armories \"NT20\" gunset"
+	name = "\improper 纳米传讯军械库 \"NT20\" 枪套"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/nt20
 	extra_to_spawn = /obj/item/ammo_box/magazine/smg_nt20
 

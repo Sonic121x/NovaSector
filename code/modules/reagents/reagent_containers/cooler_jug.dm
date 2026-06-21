@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/cooler_jug
-	name = "cooler jug"
-	desc = "A huge, unwieldy jug. Serves as the life force for liquid coolers. It smells like freshly cooled plastic."
+	name = "冷却水壶"
+	desc = "一个巨大、笨重的水壶。是液体冷却器的生命之源。闻起来像刚冷却的塑料。"
 	icon = 'icons/obj/medical/chemical_tanks.dmi'
 	icon_state = "cooler_jug"
 	volume = 200
@@ -14,11 +14,11 @@
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/reagent_containers/cooler_jug/water
-	name = "water jug"
+	name = "水壶"
 	desc = "An elegant-looking water cooler jug. There's a water cooler out there, somewhere, waiting to be reunited with this. The jug's mouth smells intoxicatingly stale and metallic."
 	list_reagents = list(/datum/reagent/water = 200)
 
 /obj/item/reagent_containers/cooler_jug/punch
-	name = "punch jug"
-	desc = "A jug meant for storing fruit punch. It's covered in dozens of warning labels and scary-looking symbols you don't recognize. The smell of sweet punch sticks to the mouth of the jug."
+	name = "潘趣酒壶"
+	desc = "一个用于储存水果潘趣酒的壶。上面贴满了数十个警告标签和你不认识的吓人符号。甜美的潘趣酒气味附着在壶口。"
 	list_reagents = list(/datum/reagent/consumable/fruit_punch = 200)

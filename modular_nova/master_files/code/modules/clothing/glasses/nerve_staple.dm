@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/nerve_staple
-	name = "\proper a nerve staple"
-	desc = "A horrific looking device that is stapled into your face"
+	name = "\proper 神经钉"
+	desc = "一种钉入你面部的恐怖装置"
 	icon = 'modular_nova/master_files/icons/obj/clothing/glasses.dmi'
 	icon_state = "nerve_staple"
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/eyes.dmi'

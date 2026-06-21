@@ -1,7 +1,7 @@
 //Request reinforcements from ghost pop; sacrifice one of your respawns. Good for solo runs to make them not solo.
 /obj/item/antag_spawner/bitrunning_help
-	name = "subcontracted assistance request beacon"
-	desc = "A single-use beacon designed to send an assistance request to any willing freelance bitrunners."
+	name = "分包协助请求信标"
+	desc = "一种一次性信标，旨在向任何愿意接单的自由比特运行者发送协助请求。"
 	icon = 'modular_nova/modules/bitrunning/icons/remote.dmi'
 	icon_state = "delivery_running"
 	/// The applied outfit
@@ -22,7 +22,7 @@
 /// Returns TRUE if the beacon can be used, FALSE otherwise
 /obj/item/antag_spawner/bitrunning_help/proc/check_usability(mob/user)
 	if(user.mind.has_antag_datum(/datum/antagonist/domain_ghost_actor, TRUE) || user.mind.has_antag_datum(/datum/antagonist/bitrunning_glitch, TRUE))
-		to_chat(user, span_danger("Listen here hacker. Your interest will be terminated. Bitrunner will be retained."))
+		to_chat(user, span_danger("听着，黑客。你的兴趣将被终结。比特运行者将被保留。"))
 		if(isliving(user))
 			var/mob/living/intruder = user
 			intruder.electrocute_act(15, user, 1, SHOCK_NOGLOVES|SHOCK_NOSTUN)
@@ -44,16 +44,16 @@
 		return
 
 	if(polling)
-		balloon_alert(user, "already in use!")
+		balloon_alert(user, "已在使用了！")
 		return
 
-	balloon_alert(user, "[src] activated!")
+	balloon_alert(user, "[src] 已激活！")
 	polling = TRUE
 
 	// Find an available quantum server
 	var/obj/machinery/quantum_server/server = get_available_server()
 	if(!server)
-		balloon_alert(user, "bandwidth limit reached!")
+		balloon_alert(user, "带宽已达上限！")
 		polling = FALSE
 		return
 
@@ -81,7 +81,7 @@
 		// Announce the successful query
 		var/obj/machinery/announcement_system/aas = get_announcement_system(source = server)
 		if(aas)
-			aas.broadcast("Subcontractor query successful, bitrunner connecting.", list(RADIO_CHANNEL_SUPPLY, RADIO_CHANNEL_FACTION))
+			aas.broadcast("分包商查询成功，比特运行者正在连接。", list(RADIO_CHANNEL_SUPPLY, RADIO_CHANNEL_FACTION))
 
 		// Spawn the antag and clean up
 		spawn_antag(chosen_one.client, get_turf(src), "subrunner", user.mind, server)
@@ -89,7 +89,7 @@
 		qdel(src)
 	else
 		polling = FALSE
-		to_chat(user, span_warning("Unable to detect spooling quantum servers. Please wait and try again later."))
+		to_chat(user, span_warning("无法检测到正在启动的量子服务器。请稍后再试。"))
 
 /// Finds an available quantum server
 /// Iterates through all quantum servers to find one that has available retries or doesn't require retries to be spent.

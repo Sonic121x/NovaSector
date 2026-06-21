@@ -1,6 +1,6 @@
 /mob/living/basic/ghost
-	name = "ghost"
-	desc = "A soul of the dead, spooky."
+	name = "鬼魂"
+	desc = "死者的灵魂，阴森森的。"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "ghost"
 	icon_living = "ghost"
@@ -89,9 +89,9 @@
 	if(random_identity)
 		switch(rand(0,1))
 			if(0)
-				name = "ghost of [pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
+				name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]的鬼魂"
 			if(1)
-				name = "ghost of [pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
+				name = "[pick(GLOB.first_names_female)] [pick(GLOB.last_names)]的鬼魂"
 
 /datum/ai_controller/basic_controller/ghost
 	blackboard = list(
@@ -109,8 +109,8 @@
 
 /// Weaker variant of ghosts. Meant to be summoned in swarms via the ectoplasmic anomaly and associated ghost portal.
 /mob/living/basic/ghost/swarm
-	name = "vengeful spirit"
-	desc = "Back from the grave, and not happy about it."
+	name = "复仇幽灵"
+	desc = "从坟墓归来，对此并不高兴。"
 	maxHealth = 30
 	health = 30
 	attack_verb_continuous = "smashes"

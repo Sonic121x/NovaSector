@@ -10,7 +10,7 @@
  */
 /mob/living/proc/perform_surgery(atom/movable/operating_on, potential_tool = IMPLEMENT_HAND, intentionally_fail = FALSE, operating_zone = zone_selected)
 	if(DOING_INTERACTION(src, (HAS_TRAIT(src, TRAIT_HIPPOCRATIC_OATH) ? operating_on : DOAFTER_SOURCE_SURGERY)))
-		operating_on.balloon_alert(src, "already performing surgery!")
+		operating_on.balloon_alert(src, "已在执行手术！")
 		return ITEM_INTERACT_BLOCKING
 
 	// allow cyborgs to use "hands"
@@ -45,13 +45,13 @@
 		if (isliving(operating_on))
 			var/mob/living/patient = operating_on
 			if(!patient.is_location_accessible(operating_zone, IGNORED_OPERATION_CLOTHING_SLOTS))
-				patient.balloon_alert(src, "operation site is obstructed!")
+				patient.balloon_alert(src, "手术部位被遮挡！")
 			else if(!IS_LYING_OR_CANNOT_LIE(patient))
-				patient.balloon_alert(src, "not lying down!")
+				patient.balloon_alert(src, "未躺下！")
 			else
-				patient.balloon_alert(src, "nothing to do with [realtool.name]!")
+				patient.balloon_alert(src, "与[realtool.name]无关！")
 		else
-			operating.balloon_alert(src, "nothing to do with [realtool.name]!")
+			operating.balloon_alert(src, "与[realtool.name]无关！")
 		//  ...then, block attacking. prevents the surgeon from viciously stabbing the patient on a mistake
 		return ITEM_INTERACT_BLOCKING
 
@@ -140,9 +140,9 @@
 		return ITEM_INTERACT_BLOCKING
 
 	visible_message(
-		span_notice("[src] attempts to close [p_their()] own [limb.plaintext_zone] with [tool]..."),
-		span_notice("You attempt to close your own [limb.plaintext_zone] with [tool]..."),
-		span_hear("You hear [tool?.get_temperature() ? "singeing" : "stitching"] sounds."),
+		span_notice("[src]试图用[p_their()]闭合[limb.plaintext_zone]自己的[tool]..."),
+		span_notice("你试图用[tool]闭合自己的[limb.plaintext_zone]..."),
+		span_hear("你听到[tool?.get_temperature() ? "singeing" : "stitching"]的声音。"),
 		vision_distance = 5,
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
@@ -156,9 +156,9 @@
 		return ITEM_INTERACT_BLOCKING
 
 	visible_message(
-		span_notice("[src] closes [p_their()] own [limb.plaintext_zone] with [tool]."),
-		span_notice("You close your own [limb.plaintext_zone] with [tool]."),
-		span_hear("You hear [tool?.get_temperature() ? "singeing" : "stitching"] sounds."),
+		span_notice("[src]用[p_their()]闭合了[limb.plaintext_zone]自己的[tool]。"),
+		span_notice("你用[tool]闭合了自己的[limb.plaintext_zone]。"),
+		span_hear("你听到[tool?.get_temperature() ? "singeing" : "stitching"]的声音。"),
 		vision_distance = 5,
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
@@ -213,7 +213,7 @@
 
 	var/list/operations = surgeon.get_available_operations(src, surgeon.get_active_held_item())
 	if(!length(operations))
-		to_chat(surgeon, boxed_message(span_info("No available surgeries.")))
+		to_chat(surgeon, boxed_message(span_info("无可用手术。")))
 		return
 
 	var/list/operations_info = list()
@@ -231,30 +231,30 @@
 	if(has_limbs)
 		var/obj/item/bodypart/part = get_bodypart(target_zone)
 		if(isnull(part))
-			return list("Bodypart missing")
+			return list("身体部位缺失")
 
 		if(HAS_TRAIT(part, TRAIT_READY_TO_OPERATE))
-			state += "Ready for surgery"
+			state += "准备就绪，可进行手术"
 		if(!is_location_accessible(target_zone, IGNORED_OPERATION_CLOTHING_SLOTS))
-			state += "Bodypart is obstructed by clothing"
+			state += "身体部位被衣物遮挡"
 
 		var/part_state = part?.surgery_state || NONE
 
 		if(!LIMB_HAS_BONES(part))
 			part_state &= ~BONELESS_SURGERY_STATES
-			state += "Bodypart lacks bones (counts as [jointext(bitfield_to_list(BONELESS_SURGERY_STATES, SURGERY_STATE_READABLE), ", ")])"
+			state += "身体部位缺少骨骼（视为[jointext(bitfield_to_list(BONELESS_SURGERY_STATES, SURGERY_STATE_READABLE), ", ")]）"
 		if(!LIMB_HAS_VESSELS(part))
 			part_state &= ~VESSELLESS_SURGERY_STATES
-			state += "Bodypart lacks blood vessels (counts as [jointext(bitfield_to_list(VESSELLESS_SURGERY_STATES, SURGERY_STATE_READABLE), ", ")])"
+			state += "身体部位缺少血管（视为[jointext(bitfield_to_list(VESSELLESS_SURGERY_STATES, SURGERY_STATE_READABLE), ", ")]）"
 		if(!LIMB_HAS_SKIN(part))
 			part_state &= ~SKINLESS_SURGERY_STATES
-			state += "Bodypart lacks skin (counts as [jointext(bitfield_to_list(SKINLESS_SURGERY_STATES, SURGERY_STATE_READABLE), ", ")])"
+			state += "身体部位缺少皮肤（视为[jointext(bitfield_to_list(SKINLESS_SURGERY_STATES, SURGERY_STATE_READABLE), ", ")]）"
 
 		state += bitfield_to_list(part_state, SURGERY_STATE_READABLE)
 
 	else
 		if(HAS_TRAIT(src, TRAIT_READY_TO_OPERATE))
-			state += "Ready for surgery"
+			state += "准备就绪，可进行手术"
 
 		var/datum/status_effect/basic_surgery_state/state_holder = has_status_effect(__IMPLIED_TYPE__)
 		state += bitfield_to_list(state_holder?.surgery_state, SURGERY_STATE_READABLE)
@@ -628,7 +628,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 /// "All requirements" are formatted as "All of the following must be true:"
 /datum/surgery_operation/proc/all_required_strings()
 	SHOULD_CALL_PARENT(TRUE)
-	. = bitfield_to_list(all_surgery_states_required, SURGERY_STATE_GUIDES("must"))
+	. = bitfield_to_list(all_surgery_states_required, SURGERY_STATE_GUIDES("必须"))
 	if(!(operation_flags & OPERATION_STANDING_ALLOWED))
 		. += "the patient must be lying down"
 
@@ -657,7 +657,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	if(operation_flags & OPERATION_SELF_OPERABLE)
-		. += "a surgeon may perform this on themselves"
+		. += "外科医生可以对自己执行此操作"
 
 /// Returns a list of strings indicating blocked states for this operation
 /// "Blocked requirements" are formatted as "However, none of the following may be true:"
@@ -668,17 +668,17 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	var/parsed_blocked_flags = any_surgery_states_blocked
 	if((parsed_blocked_flags & ALL_SURGERY_BONE_STATES) == ALL_SURGERY_BONE_STATES)
 		parsed_blocked_flags &= ~ALL_SURGERY_BONE_STATES
-		. += "the bone must be intact"
+		. += "骨骼必须完好无损"
 	if((parsed_blocked_flags & ALL_SURGERY_SKIN_STATES) == ALL_SURGERY_SKIN_STATES)
 		parsed_blocked_flags &= ~ALL_SURGERY_SKIN_STATES
-		. += "the skin must be intact"
+		. += "皮肤必须完好无损"
 	if((parsed_blocked_flags & ALL_SURGERY_VESSEL_STATES) == ALL_SURGERY_VESSEL_STATES)
 		parsed_blocked_flags &= ~ALL_SURGERY_VESSEL_STATES
-		. += "the blood vessels must be intact"
+		. += "血管必须完好无损"
 
-	. += bitfield_to_list(parsed_blocked_flags, SURGERY_STATE_GUIDES("must not"))
+	. += bitfield_to_list(parsed_blocked_flags, SURGERY_STATE_GUIDES("必须不"))
 	if(!(operation_flags & OPERATION_IGNORE_CLOTHES))
-		. += "the operation site must not be obstructed by clothing"
+		. += "手术部位不得被衣物遮挡"
 
 /**
  * Returns what icon this surgery uses by default on the radial wheel if it does not implement its own radial options
@@ -761,7 +761,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 		basemod *= 0.8
 	if(HAS_TRAIT(patient, TRAIT_ANALGESIA))
 		basemod *= 0.8
-		to_chat(surgeon, span_notice("You are able to work faster due to the patient's calm attitude!")) // NOVA EDIT ADDITION - Better feedback for the use of analgesia
+		to_chat(surgeon, span_notice("由于患者态度平静，你能更快地进行手术！")) // NOVA EDIT ADDITION - Better feedback for the use of analgesia
 	return basemod
 
 /// Returns a time modifier based on the surgeon's status
@@ -787,7 +787,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 			break
 	if(quiet_environment)
 		basemod *= 0.8
-		to_chat(surgeon, span_notice("You are able to work faster due to the quiet environment!"))
+		to_chat(surgeon, span_notice("由于环境安静，你能更快地进行手术！"))
 	// NOVA EDIT ADDITION END
 
 	return basemod
@@ -1013,9 +1013,9 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 
 	var/you_feel = pick("a brief pain", "your body tense up", "an unnerving sensation")
 	target.show_message(
-		msg = vague_message || detailed_message || span_notice("You feel [you_feel] as you are operated on."),
+		msg = vague_message || detailed_message || span_notice("你感到[you_feel]，因为正在对你进行手术。"),
 		type = MSG_VISUAL,
-		alt_msg = span_notice("You feel [you_feel] as you are operated on."),
+		alt_msg = span_notice("你感到[you_feel]，因为正在对你进行手术。"),
 	)
 
 /// Display pain message to the target based on their traits and condition
@@ -1039,7 +1039,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	if(target.stat >= UNCONSCIOUS || HAS_TRAIT(target, TRAIT_KNOCKEDOUT))
 		return
 	if(HAS_TRAIT(target, TRAIT_ANALGESIA) || drunken_patient && prob(drunken_ignorance_probability))
-		to_chat(target, span_notice("You feel a dull, numb sensation as your body is surgically operated on."))
+		to_chat(target, span_notice("当你的身体被手术时，你感到一种迟钝、麻木的感觉。"))
 		return
 	to_chat(target, span_userdanger(pain_message))
 	if(prob(30) && !mechanical_surgery)
@@ -1149,9 +1149,9 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You begin to operate on [display_target]..."),
-		span_notice("[surgeon] begins to operate on [display_target]."),
-		span_notice("[surgeon] begins to operate on [display_target]."),
+		span_notice("你开始对[display_target]进行手术..."),
+		span_notice("[surgeon]开始对[display_target]进行手术。"),
+		span_notice("[surgeon]开始对[display_target]进行手术。"),
 	)
 
 /**
@@ -1181,9 +1181,9 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You succeed."),
-		span_notice("[surgeon] succeeds!"),
-		span_notice("[surgeon] finishes."),
+		span_notice("你成功了。"),
+		span_notice("[surgeon]成功了！"),
+		span_notice("[surgeon]完成了。"),
 	)
 
 /**
@@ -1230,9 +1230,9 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	display_results(
 		surgeon,
 		patient,
-		span_warning("You screw up![screwedmessage]"),
-		span_warning("[surgeon] screws up!"),
-		span_notice("[surgeon] finishes."),
+		span_warning("你搞砸了！[screwedmessage]"),
+		span_warning("[surgeon]搞砸了！"),
+		span_notice("[surgeon]完成了。"),
 		TRUE, //By default the patient will notice if the wrong thing has been cut
 	)
 
@@ -1259,17 +1259,17 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 /datum/surgery_operation/basic/all_required_strings()
 	. = list()
 	if(required_biotype)
-		. += "operate on [target_zone ? "[parse_zone(target_zone)] (target [parse_zone(target_zone)])" : "patient"]"
+		. += "对[target_zone ? "[parse_zone(target_zone)] (target [parse_zone(target_zone)])" : "patient"]进行手术"
 	else if(target_zone)
-		. += "operate on [parse_zone(target_zone)] (target [parse_zone(target_zone)])"
+		. += "对[parse_zone(target_zone)]进行手术 (目标 [parse_zone(target_zone)])"
 	. += ..()
 
 /datum/surgery_operation/basic/all_blocked_strings()
 	. = ..()
 	if(required_biotype & MOB_ROBOTIC)
-		. += "the patient must not be organic"
+		. += "患者必须是非有机体"
 	else if(required_biotype)
-		. += "the patient must not be robotic"
+		. += "患者不能是机器人"
 
 /datum/surgery_operation/basic/is_available(mob/living/patient, operated_zone)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -1331,9 +1331,9 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 /datum/surgery_operation/limb/all_blocked_strings()
 	. = ..()
 	if(required_bodytype & BODYTYPE_ROBOTIC)
-		. += "the limb must not be organic"
+		. += "肢体不能是有机的"
 	else if(required_bodytype & BODYTYPE_ORGANIC)
-		. += "the limb must not be cybernetic"
+		. += "肢体不能是赛博格化的"
 
 /datum/surgery_operation/limb/get_operation_target(atom/movable/operating_on, body_zone)
 	if (isliving(operating_on))
@@ -1384,14 +1384,14 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	var/obj/item/organ/target_type
 
 /datum/surgery_operation/organ/all_required_strings()
-	return list("operate on [target_type::name] (target [target_type::zone])") + ..()
+	return list("对 [target_type::name] 进行手术（目标 [target_type::zone]）") + ..()
 
 /datum/surgery_operation/organ/all_blocked_strings()
 	. = ..()
 	if(required_organ_flag & BODYTYPE_ROBOTIC)
-		. += "the organ must not be organic"
+		. += "器官不能是有机的"
 	else if(required_organ_flag & ORGAN_TYPE_FLAGS)
-		. += "the organ must not be cybernetic"
+		. += "器官不能是赛博格化的"
 
 /datum/surgery_operation/organ/get_default_radial_image()
 	return get_generic_limb_radial_image(target_type::zone)

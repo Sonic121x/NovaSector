@@ -1,9 +1,9 @@
 
 /obj/structure/transit_tube
-	name = "transit tube"
+	name = "输送管"
 	icon = 'icons/obj/pipes_n_cables/transit_tube.dmi'
 	icon_state = "straight"
-	desc = "A transit tube for moving things around."
+	desc = "一种用于运送物品的管道。"
 	density = TRUE
 	layer = LOW_ITEM_LAYER
 	anchored = TRUE
@@ -36,7 +36,7 @@
 	if(W.tool_behaviour == TOOL_WRENCH)
 		if(tube_construction)
 			for(var/obj/structure/transit_tube_pod/pod in src.loc)
-				to_chat(user, span_warning("Remove the pod first!"))
+				to_chat(user, span_warning("请先移除乘坐舱！"))
 				return
 			user.visible_message(span_notice("[user] starts to detach \the [src]."), span_notice("You start to detach \the [src]..."))
 			if(W.use_tool(src, user, 2 SECONDS, volume=50))

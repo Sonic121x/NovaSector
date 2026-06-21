@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/unloader
-	name = "manufacturing crate unloader"
-	desc = "Unloads crates (and ore boxes) passed into it, ejecting the empty crate to the side and its contents forwards. Use a multitool to flip the crate output."
+	name = "制造板条箱卸载器"
+	desc = "卸载通过的板条箱（及矿石箱），将空箱侧向弹出，内容物向前弹出。使用多功能工具可翻转板条箱输出方向。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "unloader-corner"
 	circuit = /obj/item/circuitboard/machine/manuunloader
@@ -23,7 +23,7 @@
 
 /obj/machinery/power/manufacturing/unloader/multitool_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "flipped")
+	balloon_alert(user, "已翻转")
 	flip_side = !flip_side
 	update_appearance()
 

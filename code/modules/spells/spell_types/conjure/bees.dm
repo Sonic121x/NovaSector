@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/conjure/bee
-	name = "Lesser Summon Bees"
+	name = "召唤小蜜蜂"
 	desc = "This spell magically kicks a transdimensional beehive, \
 		instantly summoning a swarm of bees to your location. \
 		These bees are NOT friendly to anyone."

@@ -11,11 +11,11 @@
 	required_wounding_type = WOUND_PIERCE
 
 /datum/wound/burn/electrical_damage/pierce/get_limb_examine_description()
-	return span_warning("The metal on this limb is pierced open.")
+	return span_warning("该肢体上的金属被刺穿了。")
 
 /datum/wound/electrical_damage/pierce/moderate
-	name = "Punctured Capacitor"
-	desc = "A major capacitor has been broken open, causing slow but noticable electrical damage."
+	name = "电容器穿孔"
+	desc = "一个主要电容器被击穿，造成缓慢但明显的电击伤害。"
 	occur_text = "shoots out a short stream of sparks"
 	examine_desc = "is shuddering gently, movements a little weak"
 	treat_text = "Replacing of damaged wiring, though repairs via wirecutting instruments or sutures may suffice, albeit at limited efficiency. In case of emergency, \
@@ -58,8 +58,8 @@
 	threshold_minimum = 40
 
 /datum/wound/electrical_damage/pierce/severe
-	name = "Penetrated Transformer"
-	desc = "A major transformer has been pierced, causing slow-to-progess but eventually intense electrical damage."
+	name = "变压器穿透"
+	desc = "一个主要变压器被刺穿，造成进展缓慢但最终强烈的电击伤害。"
 	occur_text = "sputters and goes limp for a moment as it ejects a stream of sparks"
 	examine_desc = "is shuddering significantly, its servos briefly giving way in a rythmic pattern"
 	treat_text = "Containment of damaged wiring via gauze, then application of fresh wiring/sutures, or resetting of displaced wiring via wirecutter/retractor."
@@ -101,8 +101,8 @@
 	threshold_minimum = 60
 
 /datum/wound/electrical_damage/pierce/critical
-	name = "Ruptured PSU"
-	desc = "The local PSU of this limb has suffered a core rupture, causing a progressive power failure that will slowly intensify into massive electrical damage."
+	name = "电源单元破裂"
+	desc = "该肢体的本地电源单元遭受了核心破裂，导致渐进性电力故障，将缓慢加剧为大规模电击伤害。"
 	occur_text = "flashes with radiant blue, emitting a noise not unlike a Jacob's Ladder"
 	examine_desc = "'s PSU is visible, with a sizable hole in the center"
 	treat_text = "Immediate securing via gauze, followed by emergency cable replacement and securing via wirecutters or hemostat. \

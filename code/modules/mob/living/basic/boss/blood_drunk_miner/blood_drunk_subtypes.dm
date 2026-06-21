@@ -21,8 +21,8 @@
 
 /// Slow but constantly dashes and has longer barrages
 /mob/living/basic/boss/blood_drunk_miner/doom
-	name = "hostile-environment miner"
-	desc = "A miner destined to hop across dimensions for all eternity, hunting anomalous creatures."
+	name = "恶劣环境矿工"
+	desc = "一个注定要跨越维度永恒跳跃的矿工，猎杀着异常生物。"
 	speed = 5
 	ranged_attack_cooldown_duration = 0.8 SECONDS
 	ai_controller = /datum/ai_controller/blood_drunk_miner/doom

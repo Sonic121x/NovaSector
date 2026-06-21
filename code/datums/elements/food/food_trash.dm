@@ -80,7 +80,7 @@
 
 	playsound(source, 'sound/effects/chipbagpop.ogg', 100)
 
-	popper.visible_message(span_danger("[popper] steps on \the [source], popping the bag!"), span_danger("You step on \the [source], popping the bag!"), span_danger("You hear a sharp crack!"), COMBAT_MESSAGE_RANGE)
+	popper.visible_message(span_danger("[popper] 踩到了\the [source]，把袋子踩爆了！"), span_danger("You step on \the [source], popping the bag!"), span_danger("你听到一声尖锐的爆裂声！"), COMBAT_MESSAGE_RANGE)
 	INVOKE_ASYNC(src, PROC_REF(async_generate_trash), source)
 	qdel(source)
 
@@ -88,7 +88,7 @@
 /datum/element/food_trash/proc/open_trash(datum/source, mob/user)
 	SIGNAL_HANDLER
 
-	to_chat(user, span_notice("You open \the [source], revealing \a [initial(trash.name)]."))
+	to_chat(user, span_notice("你打开了\the [source]，露出了\a [initial(trash.name)]。"))
 
 	INVOKE_ASYNC(src, PROC_REF(async_generate_trash), source)
 	qdel(source)

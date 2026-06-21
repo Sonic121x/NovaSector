@@ -1,5 +1,5 @@
 /datum/crafting_recipe/moffers
-	name = "Moffers"
+	name = "莫弗斯"
 	result = /obj/item/clothing/shoes/clown_shoes/moffers
 	time = 6 SECONDS //opportunity to rethink your life
 	reqs = list(
@@ -17,7 +17,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/mothplush
-	name = "Moth Plushie"
+	name = "蛾子玩偶"
 	result = /obj/item/toy/plush/moth
 	reqs = list(
 		/obj/item/stack/sheet/animalhide/mothroach = 1,
@@ -27,7 +27,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/sharkplush
-	name = "Shark Plushie"
+	name = "鲨鱼玩偶"
 	result = /obj/item/toy/plush/shark
 	reqs = list(
 		/obj/item/clothing/suit/hooded/shark_costume = 1,
@@ -37,7 +37,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/monkeyplush
-	name = "Monkey Plushie"
+	name = "猴子玩偶"
 	result = /obj/item/toy/plush/monkey
 	reqs = list(
 		/obj/item/clothing/mask/gas/monkeymask = 1,
@@ -47,7 +47,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/mixedbouquet
-	name = "Mixed bouquet"
+	name = "混合花束"
 	result = /obj/item/bouquet
 	reqs = list(
 		/obj/item/food/grown/poppy/lily = 2,
@@ -57,25 +57,25 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/sunbouquet
-	name = "Sunflower bouquet"
+	name = "向日葵花束"
 	result = /obj/item/bouquet/sunflower
 	reqs = list(/obj/item/food/grown/sunflower = 6)
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/poppybouquet
-	name = "Poppy bouquet"
+	name = "罂粟花花束"
 	result = /obj/item/bouquet/poppy
 	reqs = list (/obj/item/food/grown/poppy = 6)
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/rosebouquet
-	name = "Rose bouquet"
+	name = "玫瑰花束"
 	result = /obj/item/bouquet/rose
 	reqs = list(/obj/item/food/grown/rose = 6)
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/spooky_camera
-	name = "Camera Obscura"
+	name = "暗箱相机"
 	result = /obj/item/camera/spooky
 	time = 1.5 SECONDS
 	reqs = list(
@@ -86,7 +86,7 @@
 
 
 /datum/crafting_recipe/skateboard
-	name = "Skateboard"
+	name = "滑板"
 	result = /obj/vehicle/ridden/scooter/skateboard/improvised
 	time = 6 SECONDS
 	reqs = list(
@@ -96,7 +96,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/scooter
-	name = "Scooter"
+	name = "滑板车"
 	result = /obj/vehicle/ridden/scooter
 	time = 6.5 SECONDS
 	reqs = list(
@@ -106,7 +106,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/headpike
-	name = "Spike Head (Glass Spear)"
+	name = "穿刺首级（玻璃矛）"
 	time = 6.5 SECONDS
 	reqs = list(
 		/obj/item/spear = 1,
@@ -126,7 +126,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/headpikebone
-	name = "Spike Head (Bone Spear)"
+	name = "穿刺首级（骨矛）"
 	time = 6.5 SECONDS
 	reqs = list(
 		/obj/item/spear/bonespear = 1,
@@ -140,7 +140,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/headpikebamboo
-	name = "Spike Head (Bamboo Spear)"
+	name = "穿刺首级（竹矛）"
 	time = 6.5 SECONDS
 	reqs = list(
 		/obj/item/spear/bamboospear = 1,
@@ -154,7 +154,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/headpikemilitary
-	name = "Spike Head (Military)"
+	name = "穿刺首级（军用）"
 	time = 6.5 SECONDS
 	reqs = list(
 		/obj/item/spear/military = 1,
@@ -168,7 +168,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/guillotine
-	name = "Guillotine"
+	name = "断头台"
 	result = /obj/structure/guillotine
 	time = 15 SECONDS // Building a functioning guillotine takes time
 	reqs = list(
@@ -180,7 +180,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/toiletbong
-	name = "Toiletbong"
+	name = "马桶烟枪"
 	category = CAT_ENTERTAINMENT
 	tool_behaviors = list(TOOL_WRENCH)
 	reqs = list(/obj/item/flamethrower = 1)
@@ -198,7 +198,7 @@
 	return ..()
 
 /datum/crafting_recipe/punching_bag
-	name = "Punching Bag"
+	name = "沙袋"
 	result = /obj/structure/punching_bag
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	reqs = list(
@@ -210,7 +210,7 @@
 	time = 10 SECONDS
 
 /datum/crafting_recipe/stacklifter
-	name = "Chest Press"
+	name = "卧推器"
 	result = /obj/structure/weightmachine
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	reqs = list(
@@ -222,7 +222,7 @@
 	time = 10 SECONDS
 
 /datum/crafting_recipe/weightlifter
-	name = "Bench Press"
+	name = "杠铃卧推器"
 	result = /obj/structure/weightmachine/weightlifter
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	reqs = list(
@@ -234,7 +234,7 @@
 	time = 10 SECONDS
 
 /datum/crafting_recipe/latexballoon
-	name = "Latex Balloon"
+	name = "乳胶气球"
 	result = /obj/item/latexballoon
 	time = 5 SECONDS
 	reqs = list(
@@ -244,7 +244,7 @@
 	category = CAT_ENTERTAINMENT
 
 /datum/crafting_recipe/violin
-	name = "Violin"
+	name = "小提琴"
 	result = /obj/item/instrument/violin
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 4,
@@ -259,7 +259,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/crackpipe
-	name = "Glass Pipe"
+	name = "玻璃烟斗"
 	result = /obj/item/cigarette/pipe/crackpipe
 	time = 5 SECONDS
 	reqs = list(

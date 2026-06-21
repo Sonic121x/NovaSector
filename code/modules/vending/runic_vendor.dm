@@ -1,8 +1,8 @@
 #define PULSE_DISTANCE_RANGE 2
 
 /obj/machinery/vending/runic_vendor
-	name = "\improper Runic Vending Machine"
-	desc = "This vending machine was designed for warfare! A perfect bait for Nanotrasen's crew thirst for consumerism."
+	name = "\improper 符文自动售货机"
+	desc = "这台自动售货机是为战争设计的！是引诱纳米传讯船员消费主义渴望的完美诱饵。"
 	icon_state = "RunicVendor"
 	panel_type = "panel10"
 	product_slogans = "Come get free magic!;50% off on Mjollnirs today!; Buy a warp whistle and get another one free!"
@@ -64,7 +64,7 @@
 /obj/machinery/vending/runic_vendor/handle_deconstruct(disassembled)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
-	visible_message(span_warning("[src] flickers and disappears!"))
+	visible_message(span_warning("[src] 闪烁并消失了！"))
 	playsound(src,'sound/items/weapons/resonator_blast.ogg',25,TRUE)
 	return ..()
 
@@ -79,7 +79,7 @@
 		for(var/mob/living/mob_to_be_pulsed_back in pulsing_turf.contents)
 			hit_things += mob_to_be_pulsed_back
 			var/atom/target = get_edge_target_turf(mob_to_be_pulsed_back, get_dir(src, get_step_away(mob_to_be_pulsed_back, src)))
-			to_chat(mob_to_be_pulsed_back, span_userdanger("The field repels you with tremendous force!"))
+			to_chat(mob_to_be_pulsed_back, span_userdanger("力场以巨大的力量将你推开！"))
 			playsound(src, 'sound/effects/gravhit.ogg', 50, TRUE)
 			mob_to_be_pulsed_back.throw_at(target, 4, 4)
 

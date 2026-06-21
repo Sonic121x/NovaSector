@@ -226,7 +226,7 @@
 		living_host.spin(spintime = 2 SECONDS, speed = 1)
 		living_rider.Knockdown(4 SECONDS)
 		living_host.unbuckle_mob(living_rider)
-		living_host.balloon_alert(living_rider, "knocks you down!")
+		living_host.balloon_alert(living_rider, "把你摔了下来！")
 	qdel(src)
 
 /datum/riding_minigame/proc/win_minigame()
@@ -236,7 +236,7 @@
 		qdel(src)
 		return
 	living_host.befriend(living_rider)
-	living_host.balloon_alert(living_rider, "calms down...")
+	living_host.balloon_alert(living_rider, "平静下来了……")
 	qdel(src)
 
 /datum/riding_minigame/Destroy()

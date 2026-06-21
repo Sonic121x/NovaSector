@@ -1,6 +1,6 @@
 /// Manages library data, loading bookselves, etc
 SUBSYSTEM_DEF(library)
-	name = "Library Loading"
+	name = "库加载"
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
 		/datum/controller/subsystem/mapping,

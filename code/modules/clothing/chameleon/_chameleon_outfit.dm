@@ -57,19 +57,19 @@
 
 /datum/action/chameleon_outfit/proc/save_outfit(mob/user, list/saved_paths)
 	if(!length(saved_paths))
-		owner.balloon_alert(user, "no outfit saved!")
+		owner.balloon_alert(user, "未保存套装！")
 		return
 
 	for(var/existing_outfit in custom_outfits)
 		if(custom_outfits[existing_outfit] ~= saved_paths)
-			owner.balloon_alert(user, "outfit already saved!")
+			owner.balloon_alert(user, "套装已保存！")
 			return
 
 	if(next_custom_outfit > max_custom_oufits)
 		next_custom_outfit = 1
 
 	LAZYSET(custom_outfits, "Custom Outfit #[next_custom_outfit]", saved_paths)
-	owner.balloon_alert(user, "outfit saved in slot [next_custom_outfit]")
+	owner.balloon_alert(user, "套装已保存至槽位 [next_custom_outfit]")
 	next_custom_outfit += 1
 
 /datum/action/chameleon_outfit/proc/select_outfit(mob/user)
@@ -80,7 +80,7 @@
 	all_options += "--- Job outfits ---"
 	all_options += outfit_options
 
-	var/selected = tgui_input_list(user, "Select outfit to change into", "Chameleon Outfit", all_options)
+	var/selected = tgui_input_list(user, "选择要变装的套装", "变色龙套装", all_options)
 	if(isnull(selected) || QDELETED(src) || QDELETED(user) || QDELETED(owner) || !IsAvailable(feedback = TRUE))
 		return FALSE
 

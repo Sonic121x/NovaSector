@@ -8,5 +8,5 @@
 	mind_control_duration = 900
 
 /obj/item/organ/heart/gland/access/activate()
-	to_chat(owner, span_notice("You feel like a VIP for some reason."))
+	to_chat(owner, span_notice("不知为何，你感觉自己像个贵宾。"))
 	owner.AddComponent(/datum/component/simple_access, SSid_access.get_region_access_list(list(REGION_ALL_GLOBAL)), src)

@@ -1,10 +1,10 @@
 /obj/item/disk/nifsoft_uploader/mil_grade/thermal
-	name = "Thermal Lens"
+	name = "热成像透镜"
 	loaded_nifsoft = /datum/nifsoft/hud/thermal
 	icon_state = "contract_mil_disk"
 
 /datum/nifsoft/hud/thermal
-	name = "Thermal Lens"
+	name = "热成像透镜"
 	program_desc = "A military-grade visual enhancement package, Thermal Lens is a coveted tool among underworld assassins and elite operatives. \
 		Unlike traditional thermal goggles, this NIFSoft directly modifies the user's ocular systems - organic or otherwise - to perceive infrared radiation as visible light. \
 		The system's nanites create temporary photonic receptors in the retina, allowing heat signatures to be seen through walls and dense materials with startling clarity. \

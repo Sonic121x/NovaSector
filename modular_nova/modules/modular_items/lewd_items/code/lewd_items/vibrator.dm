@@ -3,8 +3,8 @@
 
 //This code huge and blocky, but we're working on update for... my god, 4 months. If you can upgrade it - do it, but don't remove or break something, test carefully. This item is insertable.
 /obj/item/clothing/sextoy/vibrator
-	name = "vibrator"
-	desc = "Woah. What an... Interesting item. I wonder what this red button does..."
+	name = "振动棒"
+	desc = "哇哦。真是个……有趣的物品。我想知道这个红色按钮是干嘛的……"
 	icon_state = "vibrator_pink_off"
 	base_icon_state = "vibrator"
 	inhand_icon_state = "vibrator_pink"
@@ -115,10 +115,10 @@
 	var/message = ""
 	var/targetedsomewhere = FALSE
 	if(!toy_on)
-		to_chat(user, span_notice("[src] must be on to use it!"))
+		to_chat(user, span_notice("[src] 必须处于开启状态才能使用！"))
 		return
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("Looks like [target] don't want you to do that."))
+		to_chat(user, span_danger("看起来 [target] 不想让你这么做。"))
 		return
 
 	switch(user.zone_selected) //to let code know what part of body we gonna vibe
@@ -142,7 +142,7 @@
 				target.adjust_pleasure(DEFAULT_PLEASURE_INCREASE)
 
 			else
-				to_chat(user, span_danger("Looks like [target]'s groin is covered!"))
+				to_chat(user, span_danger("看起来 [target] 的腹股沟被遮住了！"))
 				return
 
 			if(prob(50) && (target.stat != DEAD))
@@ -160,24 +160,24 @@
 					target.try_lewd_autoemote(pick("twitch_s", "moan"))
 
 			else
-				to_chat(user, span_danger("Looks like [target]'s chest is covered!"))
+				to_chat(user, span_danger("看起来 [target] 的胸部被遮住了！"))
 				return
 	if(!targetedsomewhere)
 		return
-	user.visible_message(span_purple("[user] [message]!"))
+	user.visible_message(span_purple("[user] [message]！"))
 	playsound_if_pref(loc, 'modular_nova/modules/modular_items/lewd_items/sounds/vibrate.ogg', 10, TRUE)
 
 /obj/item/clothing/sextoy/vibrator/attack_self(mob/user, obj/item/attack_item)
 	toggle_mode()
 	switch(vibration_mode)
 		if("low")
-			to_chat(user, span_notice("Vibration mode now is low. Bzzz..."))
+			to_chat(user, span_notice("振动模式现在为低档。嗡……"))
 		if("medium")
-			to_chat(user, span_notice("Vibration mode now is medium. Bzzzz!"))
+			to_chat(user, span_notice("振动模式现在为中档。嗡嗡嗡！"))
 		if("hard")
-			to_chat(user, span_notice("Vibration mode now is hard. Careful with that thing."))
+			to_chat(user, span_notice("振动模式现在为高档。小心使用这东西。"))
 		if("off")
-			to_chat(user, span_notice("Vibrator turned off. Fun's over?"))
+			to_chat(user, span_notice("振动棒已关闭。乐趣结束了？"))
 	update_icon()
 	update_icon_state()
 

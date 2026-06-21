@@ -1,5 +1,5 @@
 /mob/living/basic/alien/queen
-	name = "alien queen"
+	name = "异形女王"
 	icon_state = "alienq"
 	icon_living = "alienq"
 	icon_dead = "alienq_dead"
@@ -22,7 +22,7 @@
 	AddComponent(/datum/component/ranged_attacks, projectile_type = projectiletype, projectile_sound = projectilesound, cooldown_time = 1 SECONDS)
 
 /mob/living/basic/alien/queen/large
-	name = "alien empress"
+	name = "异形女皇"
 	icon = 'icons/mob/nonhuman-player/alienqueen.dmi'
 	icon_state = "alienq"
 	icon_living = "alienq"

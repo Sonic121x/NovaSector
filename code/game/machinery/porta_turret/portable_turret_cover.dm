@@ -4,7 +4,7 @@
 ************************/
 
 /obj/machinery/porta_turret_cover
-	name = "turret"
+	name = "炮塔"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "turretCover"
 	layer = HIGH_OBJ_LAYER
@@ -38,11 +38,11 @@
 
 /obj/machinery/porta_turret_cover/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	if(parent_turret.locked)
-		user.balloon_alert(user, "controls locked")
+		user.balloon_alert(user, "控制面板已锁定")
 		return ITEM_INTERACT_BLOCKING
 
 	multi_tool.set_buffer(parent_turret)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret_cover/wrench_act(mob/living/user, obj/item/tool)
@@ -51,14 +51,14 @@
 
 	if(parent_turret.anchored)
 		parent_turret.set_anchored(FALSE)
-		to_chat(user, span_notice("You unsecure the exterior bolts on the turret."))
+		to_chat(user, span_notice("你解除固定了炮塔的外部螺栓。"))
 		parent_turret.SetInvisibility(INVISIBILITY_NONE, id=parent_turret.type, priority=INVISIBILITY_PRIORITY_TURRET_COVER)
 		parent_turret.update_appearance()
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 
 	parent_turret.set_anchored(TRUE)
-	to_chat(user, span_notice("You secure the exterior bolts on the turret."))
+	to_chat(user, span_notice("你固定了炮塔的外部螺栓。"))
 	parent_turret.SetInvisibility(INVISIBILITY_MAXIMUM, id=parent_turret.type, priority=INVISIBILITY_PRIORITY_TURRET_COVER)
 	parent_turret.update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -67,10 +67,10 @@
 	if(!tool.GetID())
 		return NONE
 	if(!parent_turret.allowed(user))
-		to_chat(user, span_notice("Access denied."))
+		to_chat(user, span_notice("拒绝访问."))
 		return ITEM_INTERACT_BLOCKING
 	parent_turret.locked = !parent_turret.locked
-	to_chat(user, span_notice("Controls are now [parent_turret.locked ? "locked" : "unlocked"]."))
+	to_chat(user, span_notice("控制现已[parent_turret.locked ? "locked" : "unlocked"]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret_cover/attacked_by(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
@@ -90,8 +90,8 @@
 	if((parent_turret.obj_flags & EMAGGED))
 		return FALSE
 
-	balloon_alert(user, "threat assessment circuits shorted")
-	audible_message(span_hear("[parent_turret] hums oddly..."))
+	balloon_alert(user, "威胁评估电路短路")
+	audible_message(span_hear("[parent_turret]发出奇怪的嗡鸣声..."))
 	parent_turret.obj_flags |= EMAGGED
 	parent_turret.on = FALSE
 	addtimer(VARSET_CALLBACK(parent_turret, on, TRUE), 4 SECONDS)

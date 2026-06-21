@@ -26,7 +26,7 @@
 		if(!job_config[job_key]) // Job isn't listed, skip it.
 			// List both job_title and job_key in case they de-sync over time.
 			if(!silent)
-				message_admins(span_notice("[occupation.title] (with config key [job_key]) is missing from jobconfig.toml! Using codebase defaults."))
+				message_admins(span_notice("[occupation.title]（配置键为[job_key]）在jobconfig.toml中缺失！将使用代码库默认值。"))
 			continue
 
 		for(var/config_datum_key in job_config_datum_singletons)
@@ -55,19 +55,19 @@
 	config_documentation = initial(config_documentation) // Reset to default juuuuust in case.
 
 	if(fexists(file(toml_path)))
-		to_chat(user, span_notice("Generating new jobconfig.toml, pulling from the old config settings."))
+		to_chat(user, span_notice("正在生成新的jobconfig.toml，从旧的配置设置中提取。"))
 		if(!regenerate_job_config(user))
 			return FALSE
 		return TRUE
 
 	if(fexists(file(jobstext))) // Generate the new TOML format, migrating from the text format.
-		to_chat(user, span_notice("Found jobs.txt in config directory! Generating jobconfig.toml from it."))
+		to_chat(user, span_notice("在配置目录中找到了 jobs.txt！正在从中生成 jobconfig.toml。"))
 		if(!import_config_from_txt(user))
 			return FALSE
 		return TRUE
 
 	// Generate the new TOML format, using codebase defaults.
-	to_chat(user, span_notice("Generating new jobconfig.toml, using codebase defaults."))
+	to_chat(user, span_notice("正在生成新的 jobconfig.toml，使用代码库默认值。"))
 	var/list/file_data = list()
 	for(var/datum/job/occupation as anything in joinable_occupations)
 		file_data[occupation.config_tag] = generate_blank_job_config(occupation)
@@ -113,7 +113,7 @@
 	var/list/file_data = list()
 
 	if(!fexists(file(toml_path))) // You need an existing (valid) TOML for this to work. Sanity check if someone calls this directly instead of through 'Generate Job Configuration' verb.
-		to_chat(user, span_notice("No jobconfig.toml found in the config folder! If this is not expected, please notify a server operator or coders. You may need to generate a new config file by running 'Generate Job Configuration' from the Server tab."))
+		to_chat(user, span_notice("在配置文件夹中未找到 jobconfig.toml！如果这并非预期情况，请通知服务器管理员或程序员。您可能需要通过从服务器选项卡运行‘生成职位配置’来生成新的配置文件。"))
 		return FALSE
 
 	var/list/job_config = rustg_read_toml_file(toml_path)
@@ -126,7 +126,7 @@
 
 		// When we regenerate, we want to make sure commented stuff stays commented, but we also want to migrate information that remains uncommented. So, let's make sure we keep that pattern.
 		if(!job_config[job_key])
-			to_chat(user, span_notice("New job [occupation.title] (using key [job_key]) detected! Adding to jobconfig.toml using default codebase values..."))
+			to_chat(user, span_notice("检测到新职位 [occupation.title]（使用键 [job_key]）！正在使用代码库默认值将其添加到 jobconfig.toml..."))
 			file_data[job_key] = generate_blank_job_config(occupation)
 			continue
 

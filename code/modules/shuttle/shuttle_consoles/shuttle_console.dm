@@ -7,8 +7,8 @@
 #define SHUTTLE_CONSOLE_ERROR "error"
 
 /obj/machinery/computer/shuttle
-	name = "shuttle console"
-	desc = "A shuttle control computer."
+	name = "穿梭机控制台"
+	desc = "一台穿梭机控制计算机。"
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
 	light_color = LIGHT_COLOR_CYAN
@@ -43,25 +43,25 @@
 /obj/machinery/computer/shuttle/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	if(is_station_level(user.z) && user.mind && IS_HEAD_REVOLUTIONARY(user) && !(user.mind in dumb_rev_heads)) //Rev heads will get a one-time warning that they shouldn't leave
-		to_chat(user, span_warning("You get a feeling that leaving the station might be a REALLY dumb idea..."))
+		to_chat(user, span_warning("你感觉离开空间站可能是个非常愚蠢的主意……"))
 		dumb_rev_heads += user.mind
 		return
 	if (HAS_TRAIT(user, TRAIT_FORBID_MINING_SHUTTLE_CONSOLE_OUTSIDE_STATION) && !is_station_level(user.z)) //Free golems and other mobs with this trait will not be able to use the shuttle from outside the station Z
-		to_chat(user, span_warning("You get the feeling you shouldn't mess with this."))
+		to_chat(user, span_warning("你觉得不应该乱动这东西。"))
 		return
 	if(!user.can_read(src, reading_check_flags = READING_CHECK_LITERACY)) //Illiterate mobs which aren't otherwise blocked from using computers will send the shuttle to a random valid destination
-		to_chat(user, span_warning("You start mashing buttons at random!"))
+		to_chat(user, span_warning("你开始胡乱地猛按按钮！"))
 		if(do_after(user, 10 SECONDS, target = src))
 			var/list/dest_list = get_valid_destinations()
 			if(!dest_list.len) //No valid destinations
-				to_chat(user, span_warning("The console shows a flashing error message, but you can't comprehend it."))
+				to_chat(user, span_warning("控制台显示了一条闪烁的错误信息，但你无法理解其内容。"))
 				return
 			var/list/destination = pick(dest_list)
 			switch (send_shuttle(destination["id"], user))
 				if (SHUTTLE_CONSOLE_SUCCESS)
 					return
 				else
-					to_chat(user, span_warning("The console shows a flashing error message, but you can't comprehend it."))
+					to_chat(user, span_warning("控制台显示了一条闪烁的错误信息，但你无法理解其内容。"))
 					return
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -187,29 +187,29 @@
 	if(.)
 		return
 	if(!allowed(usr))
-		to_chat(usr, span_danger("Access denied."))
+		to_chat(usr, span_danger("访问被拒绝。"))
 		return
 
 	switch(action)
 		if("move")
 			switch (send_shuttle(params["shuttle_id"], usr)) //Try to send the shuttle, tell the user what happened
 				if (SHUTTLE_CONSOLE_ACCESSDENIED)
-					to_chat(usr, span_warning("Access denied."))
+					to_chat(usr, span_warning("访问被拒绝。"))
 					return
 				if (SHUTTLE_CONSOLE_ENDGAME)
-					to_chat(usr, span_warning("You've already escaped. Never going back to that place again!"))
+					to_chat(usr, span_warning("你已经成功逃脱了。再也不想回到那个地方了！"))
 					return
 				if (SHUTTLE_CONSOLE_RECHARGING)
-					to_chat(usr, span_warning("Shuttle engines are not ready for use."))
+					to_chat(usr, span_warning("穿梭机引擎尚未准备就绪。"))
 					return
 				if (SHUTTLE_CONSOLE_INTRANSIT)
-					to_chat(usr, span_warning("Shuttle already in transit."))
+					to_chat(usr, span_warning("穿梭机已在运输途中。"))
 					return
 				if (SHUTTLE_CONSOLE_DESTINVALID)
-					to_chat(usr, span_warning("Invalid destination."))
+					to_chat(usr, span_warning("无效的目的地。"))
 					return
 				if (SHUTTLE_CONSOLE_ERROR)
-					to_chat(usr, span_warning("Unable to comply."))
+					to_chat(usr, span_warning("无法执行。"))
 					return
 				if (SHUTTLE_CONSOLE_SUCCESS)
 					return TRUE //No chat message here because the send_shuttle proc makes the console itself speak
@@ -220,10 +220,10 @@
 				return TRUE
 		if("request")
 			if(!COOLDOWN_FINISHED(src, request_cooldown))
-				to_chat(usr, span_warning("CentCom is still processing last authorization request!"))
+				to_chat(usr, span_warning("中央司令部仍在处理上一次授权请求！"))
 				return
 			COOLDOWN_START(src, request_cooldown, 1 MINUTES)
-			to_chat(usr, span_notice("Your request has been received by CentCom."))
+			to_chat(usr, span_notice("您的请求已被中央司令部接收。"))
 			to_chat(GLOB.admins, "<b>SHUTTLE: <font color='#3d5bc3'>[ADMIN_LOOKUPFLW(usr)] (<A href='byond://?_src_=holder;[HrefToken()];move_shuttle=[shuttleId]'>Move Shuttle</a>)(<A href='byond://?_src_=holder;[HrefToken()];unlock_shuttle=[REF(src)]'>Lock/Unlock Shuttle</a>)</b> is requesting to move or unlock the shuttle.</font>")
 			return TRUE
 
@@ -232,7 +232,7 @@
 		return FALSE
 	req_access = list()
 	obj_flags |= EMAGGED
-	balloon_alert(user, "id checking system fried")
+	balloon_alert(user, "身份检查系统已烧毁")
 	return TRUE
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)

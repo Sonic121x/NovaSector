@@ -1,8 +1,8 @@
 #define NO_TOOL "fold"
 
 /obj/item/spess_knife
-	name = "spess knife"
-	desc = "Unleash the cosmic ingenuity at your fingertips. It seamlessly shifts forms, revealing hidden talents that might just save the day. Who knows what secrets lie within this celestial tool?"
+	name = "太空小刀"
+	desc = "释放你指尖的宇宙巧思。它无缝切换形态，揭示可能拯救局面的隐藏才能。谁知道这件天界工具中藏着什么秘密？"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "spess_knife"
 	worn_icon_state = "spess_knife"
@@ -62,10 +62,10 @@
 
 	if(isnull(tool_behaviour))
 		update_weight_class(WEIGHT_CLASS_TINY)
-		balloon_alert(user, "folded")
+		balloon_alert(user, "已折叠")
 	else
 		update_weight_class(WEIGHT_CLASS_SMALL)
-		balloon_alert(user, mistake_occured ? "oops! [tool_behaviour] out" : "[tool_behaviour] out")
+		balloon_alert(user, mistake_occured ? "哎呀！[tool_behaviour] 出来了" : "[tool_behaviour] 出来了")
 
 	update_tool_parameters()
 	update_appearance(UPDATE_ICON_STATE)

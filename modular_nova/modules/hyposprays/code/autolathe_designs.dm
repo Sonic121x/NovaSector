@@ -1,5 +1,5 @@
 /datum/design/hypovial
-	name = "Hypovial"
+	name = "次生瓶"
 	id = "hypovial"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -21,7 +21,7 @@
 
 /// Large hypovials
 /datum/design/hypovial/large
-	name = "Large Hypovial"
+	name = "大型次生瓶"
 	id = "large_hypovial"
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
@@ -30,7 +30,7 @@
 	build_path = /obj/item/reagent_containers/cup/vial/large
 
 /datum/design/hypokit
-	name = "Hypospray Case"
+	name = "次生注射器箱"
 	id = "hypokit"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -46,7 +46,7 @@
 
 /// Hyposprays
 /datum/design/hypokit/deluxe
-	name = "Deluxe Hypospray Case"
+	name = "豪华型注射器盒"
 	id = "hypokit_deluxe"
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
@@ -56,7 +56,7 @@
 	build_path = /obj/item/storage/hypospraykit/cmo/empty
 
 /datum/design/hypomkii
-	name = "Hypospray Mk. II"
+	name = "注射器 Mk. II"
 	id = "hypomkii"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -79,7 +79,7 @@
 	return ..()
 
 /datum/design/hypomkii/deluxe
-	name = "Hypospray Mk. II Deluxe Upgrade"
+	name = "注射器 Mk. II 豪华升级套件"
 	id = "hypomkii_deluxe"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -101,7 +101,7 @@
 	return ..()
 
 /datum/design/hypomkii/piercing
-	name = "Hypospray Mk. II Advanced"
+	name = "注射器 Mk. II 高级型"
 	id = "hypomkii_advanced"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -121,7 +121,7 @@
 /// For reasons unknown, pens are included as an autolathe design here, in the hypospray module of all places.
 /// I'm not touching this unless a maint asks me to because it feels weird and haunted, like the picture of a potato that bricks Source if you remove it.
 /datum/design/pen
-	name = "Pen"
+	name = "钢笔"
 	id = "pen"
 	build_type = AUTOLATHE | AWAY_LATHE
 	materials = list(

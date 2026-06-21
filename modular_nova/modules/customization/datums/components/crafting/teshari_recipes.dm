@@ -13,7 +13,7 @@
 	resulting_food_path = /obj/item/food/piru_dough
 
 /datum/crafting_recipe/food/spiced_jerky
-	name = "Spiced Jerky"
+	name = "香料肉干"
 	reqs = list(
 		/obj/item/food/meat/cutlet = 1,
 		/datum/reagent/consumable/nakati_spice = 2,
@@ -24,7 +24,7 @@
 	cuisine_category = CUISINE_TESHARI
 
 /datum/crafting_recipe/food/sirisai_wrap
-	name = "Sirisai Wrap"
+	name = "Sirisai卷饼"
 	reqs = list(
 		/obj/item/food/breadslice/piru = 1,
 		/obj/item/food/meat/cutlet = 1,
@@ -37,7 +37,7 @@
 	cuisine_category = CUISINE_TESHARI
 
 /datum/crafting_recipe/food/sweet_piru_noodles
-	name = "Sweet Piru Noodles"
+	name = "甜皮鲁面条"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/piru_pasta = 1,
@@ -51,7 +51,7 @@
 	cuisine_category = CUISINE_TESHARI
 
 /datum/crafting_recipe/food/kiri_curry
-	name = "Kiri Curry"
+	name = "Kiri咖喱"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/piru_pasta = 1,
@@ -67,7 +67,7 @@
 	added_foodtypes = FRUIT|SUGAR
 
 /datum/crafting_recipe/food/sirisai_flatbread
-	name = "Sirisai Flatbread"
+	name = "西里赛扁面包"
 	reqs = list(
 		/obj/item/food/grilled_piru_flatbread = 1,
 		/obj/item/food/meat/cutlet = 3,
@@ -81,7 +81,7 @@
 	cuisine_category = CUISINE_TESHARI
 
 /datum/crafting_recipe/food/bluefeather_crisp
-	name = "Bluefeather Crisp"
+	name = "蓝羽脆片"
 	reqs = list(
 		/obj/item/food/breadslice/piru = 1,
 		/datum/reagent/consumable/nakati_spice = 2,
@@ -92,7 +92,7 @@
 	cuisine_category = CUISINE_TESHARI
 
 /datum/crafting_recipe/food/stewed_muli
-	name = "Stewed Muli"
+	name = "炖穆利"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/datum/reagent/consumable/muli_juice = 10,
@@ -107,7 +107,7 @@
 	cuisine_category = CUISINE_TESHARI
 
 /datum/crafting_recipe/food/stuffed_muli_pod
-	name = "Stuffed Muli Pod"
+	name = "酿穆利荚"
 	reqs = list(
 		/obj/item/food/grown/muli = 1,
 		/obj/item/food/meat/cutlet = 1,
@@ -121,7 +121,7 @@
 	cuisine_category = CUISINE_TESHARI
 
 /datum/crafting_recipe/food/caramel_jelly_toast
-	name = "Caramel-jelly Toast"
+	name = "焦糖果酱吐司"
 	reqs = list(
 		/obj/item/food/breadslice/piru = 1,
 		/datum/reagent/consumable/kiri_jelly = 5,
@@ -134,7 +134,7 @@
 	added_foodtypes = FRUIT|SUGAR
 
 /datum/crafting_recipe/food/kiri_jellypuff
-	name = "Kiri Jellypuff"
+	name = "基里果酱泡芙"
 	reqs = list(
 		/obj/item/food/breadslice/piru = 1,
 		/datum/reagent/consumable/kiri_jelly = 5,
@@ -148,7 +148,7 @@
 	added_foodtypes = FRUIT|SUGAR
 
 /datum/crafting_recipe/food/bluefeather_crisps_and_dip
-	name = "Bluefeather Crisps and Dip"
+	name = "蓝羽脆片配蘸酱"
 	reqs = list(
 		/obj/item/food/bluefeather_crisp = 2,
 		/datum/reagent/consumable/muli_juice = 5,

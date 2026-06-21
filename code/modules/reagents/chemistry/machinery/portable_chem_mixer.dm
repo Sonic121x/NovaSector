@@ -1,6 +1,6 @@
 /obj/item/storage/portable_chem_mixer
-	name = "portable chemical mixer"
-	desc = "A portable device that dispenses and mixes chemicals using the beakers inserted inside."
+	name = "便携式化学混合器"
+	desc = "一种便携设备，可使用插入其中的烧杯分配和混合化学品。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "portablechemicalmixer_open"
 	worn_icon_state = "portable_chem_mixer"
@@ -50,14 +50,14 @@
 /obj/item/storage/portable_chem_mixer/examine(mob/user)
 	. = ..()
 	if(!atom_storage.locked)
-		. += span_notice("Use [EXAMINE_HINT("Ctrl Click")] to lock in order to use its interface.")
+		. += span_notice("使用[EXAMINE_HINT("Ctrl Click")]来锁定以使用其界面。")
 	else
-		. += span_notice("Its storage is locked, use [EXAMINE_HINT("Ctrl Click")] to unlock it.")
+		. += span_notice("其存储空间已锁定，使用[EXAMINE_HINT("Ctrl Click")]来解锁。")
 	if(QDELETED(beaker))
-		. += span_notice("A beaker can be inserted to dispense reagents after it is locked.")
+		. += span_notice("锁定后可插入烧杯以分配试剂。")
 	else
-		. += span_notice("A beaker of [beaker.reagents.maximum_volume]u capacity is inserted.")
-		. += span_notice("It can be ejected with [EXAMINE_HINT("Alt Click")].")
+		. += span_notice("已插入一个容量为[beaker.reagents.maximum_volume]u的烧杯。")
+		. += span_notice("可以使用[EXAMINE_HINT("Alt Click")]将其弹出。")
 
 /obj/item/storage/portable_chem_mixer/update_icon_state()
 	if(!atom_storage.locked)
@@ -139,7 +139,7 @@
 
 /obj/item/storage/portable_chem_mixer/ui_interact(mob/user, datum/tgui/ui)
 	if(!atom_storage.locked)
-		balloon_alert(user, "lock it first!")
+		balloon_alert(user, "请先锁定！")
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -241,7 +241,7 @@
 
 /obj/item/storage/portable_chem_mixer/click_alt(mob/living/user)
 	if(!atom_storage.locked)
-		balloon_alert(user, "lock first to use alt eject!")
+		balloon_alert(user, "请先锁定才能使用Alt弹出！")
 		return CLICK_ACTION_BLOCKING
 
 	replace_beaker(user)

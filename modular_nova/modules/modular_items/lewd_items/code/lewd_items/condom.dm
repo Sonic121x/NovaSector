@@ -5,8 +5,8 @@
 //Packaged condom
 
 /obj/item/condom_pack
-	name = "condom pack"
-	desc = "Don't worry, I have protection."
+	name = "安全套包"
+	desc = "别担心，我有保护措施。"
 	icon_state = "condom_pack_pink"
 	base_icon_state = "condom_pack"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -29,7 +29,7 @@
 	icon_state = "[base_icon_state]_[current_color]"
 
 /obj/item/condom_pack/attack_self(mob/user)
-	to_chat(user, span_notice("You start to open the condom pack..."))
+	to_chat(user, span_notice("你开始打开安全套包..."))
 	if(!do_after(user, 1.5 SECONDS, target = user))
 		return
 	playsound_if_pref(src.loc, 'sound/items/poster/poster_ripped.ogg', 50, TRUE)
@@ -48,8 +48,8 @@
 //Opened condom
 
 /obj/item/clothing/sextoy/condom
-	name = "condom"
-	desc = "I wonder if I can put this over my head..."
+	name = "安全套"
+	desc = "我在想能不能把这东西套在头上..."
 	icon_state = "condom_pink_unused"
 	base_icon_state = "condom"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -73,16 +73,16 @@
 /obj/item/clothing/sextoy/condom/proc/condom_use()
 	switch(condom_state)
 		if("used")
-			name = "used condom"
+			name = "用过的安全套"
 			condom_state = "dirty"
 			if(prob(10)) //chance of condom to break on first time.
-				name = "broken condom"
+				name = "破损的安全套"
 				condom_state = "broken"
 			update_icon_state()
 			update_icon()
 
 		if("dirty")
-			name = "broken condom"
+			name = "破损的安全套"
 			condom_state = "broken"
 			update_icon_state()
 			update_icon()

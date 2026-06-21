@@ -53,8 +53,8 @@
 /datum/emote/help/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	var/list/keys = list()
-	var/list/message = list("Available emotes, you can use them with say [span_bold("\"*emote\"")]: \n")
-	message += span_smallnoticeital("Note - emotes highlighted in blue play a sound \n\n")
+	var/list/message = list("可用表情动作，你可以通过说[span_bold("\"*emote\"")]来使用它们：\n")
+	message += span_smallnoticeital("注意 - 以蓝色高亮显示的表情动作会播放声音\n\n")
 
 	for(var/key in GLOB.emote_list)
 		for(var/datum/emote/emote_action in GLOB.emote_list[key])
@@ -106,15 +106,15 @@
 		if(prob(fall_over_prob))
 			flippy_mcgee.Knockdown(1 SECONDS)
 			flippy_mcgee.visible_message(
-				span_notice("[flippy_mcgee] attempts to do a flip and falls over, what a doofus!"),
-				span_notice("You attempt to do a flip while still off balance from the last flip and fall down!")
+				span_notice("[flippy_mcgee]试图来个后空翻却摔倒了，真是个傻瓜！"),
+				span_notice("你试图在从上一次后空翻的失衡中恢复过来时再做一次，结果摔倒了！")
 			)
 			if(prob(fall_over_prob/2))
 				flippy_mcgee.adjust_brute_loss(1)
 		else
 			flippy_mcgee.visible_message(
-				span_notice("[flippy_mcgee] stumbles a bit after their flip."),
-				span_notice("You stumble a bit from still being off balance from your last flip.")
+				span_notice("[flippy_mcgee]在后空翻后有点踉跄。"),
+				span_notice("你因为上次后空翻后仍未恢复平衡而有点踉跄。")
 			)
 
 /datum/emote/flip/backflip
@@ -148,7 +148,7 @@
 		return
 
 	if(prob(BEYBLADE_DIZZINESS_PROBABILITY))
-		to_chat(user, span_warning("You feel woozy from spinning."))
+		to_chat(user, span_warning("你转得头晕目眩。"))
 		user.set_dizzy_if_lower(BEYBLADE_DIZZINESS_DURATION)
 		user.adjust_confusion_up_to(BEYBLADE_CONFUSION_INCREMENT, BEYBLADE_CONFUSION_LIMIT)
 

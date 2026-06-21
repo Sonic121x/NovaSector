@@ -151,7 +151,7 @@
 			chip_tally++
 
 	if(chip_tally)
-		to_chat(owner, span_warning("Unusual brain biology detected. Failsafe procedure engaged. [chip_tally] skillchip[chip_tally == 1 ? " has" : "s have"] been deactivated."))
+		to_chat(owner, span_warning("检测到异常脑部生理结构。已启动故障安全程序。[chip_tally] 技能芯片[chip_tally == 1 ? " has" : "s have"]被停用。"))
 
 /// Disables or re-enables any extra skillchips after skillchip limit changes.
 /obj/item/organ/brain/proc/update_skillchips()

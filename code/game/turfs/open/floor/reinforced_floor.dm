@@ -1,7 +1,7 @@
 
 /turf/open/floor/engine
-	name = "reinforced floor"
-	desc = "Extremely sturdy."
+	name = "强化地板"
+	desc = "极其坚固。"
 	icon_state = "engine"
 	holodeck_compatible = TRUE
 	thermal_conductivity = 0.01
@@ -19,7 +19,7 @@
 
 /turf/open/floor/engine/examine(mob/user)
 	. += ..()
-	. += span_notice("The reinforcement rods are <b>wrenched</b> firmly in place.")
+	. += span_notice("加固杆已用<b>扳手</b>牢牢固定。")
 
 /turf/open/floor/engine/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -43,7 +43,7 @@
 
 /turf/open/floor/engine/wrench_act(mob/living/user, obj/item/I)
 	..()
-	to_chat(user, span_notice("You begin removing rods..."))
+	to_chat(user, span_notice("你开始拆除加固杆..."))
 	if(I.use_tool(src, user, 30, volume=80))
 		if(!istype(src, /turf/open/floor/engine))
 			return TRUE
@@ -97,99 +97,99 @@
 
 /turf/open/floor/engine/n2o
 	article = "an"
-	name = "\improper N2O floor"
+	name = "\improper 一氧化二氮地板"
 	initial_gas_mix = ATMOS_TANK_N2O
 
 /turf/open/floor/engine/co2
-	name = "\improper CO2 floor"
+	name = "\improper 二氧化碳地板"
 	initial_gas_mix = ATMOS_TANK_CO2
 
 /turf/open/floor/engine/plasma
-	name = "plasma floor"
+	name = "等离子地板"
 	initial_gas_mix = ATMOS_TANK_PLASMA
 
 /turf/open/floor/engine/o2
-	name = "\improper O2 floor"
+	name = "\improper 氧气地板"
 	initial_gas_mix = ATMOS_TANK_O2
 
 /turf/open/floor/engine/n2
 	article = "an"
-	name = "\improper N2 floor"
+	name = "\improper 氮气地板"
 	initial_gas_mix = ATMOS_TANK_N2
 
 /turf/open/floor/engine/bz
-	name = "\improper BZ floor"
+	name = "\improper BZ地板"
 	initial_gas_mix = ATMOS_TANK_BZ
 
 /turf/open/floor/engine/freon
-	name = "\improper Freon floor"
+	name = "\improper 氟利昂地板"
 	initial_gas_mix = ATMOS_TANK_FREON
 
 /turf/open/floor/engine/halon
-	name = "\improper Halon floor"
+	name = "\improper 哈龙地板"
 	initial_gas_mix = ATMOS_TANK_HALON
 
 /turf/open/floor/engine/healium
-	name = "\improper Healium floor"
+	name = "\improper 治疗气体地板"
 	initial_gas_mix = ATMOS_TANK_HEALIUM
 
 /turf/open/floor/engine/h2
 	article = "an"
-	name = "\improper H2 floor"
+	name = "\improper 氢气地板"
 	initial_gas_mix = ATMOS_TANK_H2
 
 /turf/open/floor/engine/hypernoblium
-	name = "\improper Hypernoblium floor"
+	name = "\improper 超导气体地板"
 	initial_gas_mix = ATMOS_TANK_HYPERNOBLIUM
 
 /turf/open/floor/engine/miasma
-	name = "\improper Miasma floor"
+	name = "\improper 瘴气地板"
 	initial_gas_mix = ATMOS_TANK_MIASMA
 
 /turf/open/floor/engine/nitrium
-	name = "\improper nitrium floor"
+	name = "\improper 硝基气体地板"
 	initial_gas_mix = ATMOS_TANK_NITRIUM
 
 /turf/open/floor/engine/pluoxium
-	name = "\improper Pluoxium floor"
+	name = "\improper 普洛氧地板"
 	initial_gas_mix = ATMOS_TANK_PLUOXIUM
 
 /turf/open/floor/engine/proto_nitrate
-	name = "\improper Proto-Nitrate floor"
+	name = "\improper 原硝酸盐地板"
 	initial_gas_mix = ATMOS_TANK_PROTO_NITRATE
 
 /turf/open/floor/engine/tritium
-	name = "\improper Tritium floor"
+	name = "\improper 氚地板"
 	initial_gas_mix = ATMOS_TANK_TRITIUM
 
 /turf/open/floor/engine/h2o
 	article = "an"
-	name = "\improper H2O floor"
+	name = "\improper 水地板"
 	initial_gas_mix = ATMOS_TANK_H2O
 
 /turf/open/floor/engine/zauker
-	name = "\improper Zauker floor"
+	name = "\improper 扎克地板"
 	initial_gas_mix = ATMOS_TANK_ZAUKER
 
 /turf/open/floor/engine/helium
-	name = "\improper Helium floor"
+	name = "\improper 氦气地板"
 	initial_gas_mix = ATMOS_TANK_HELIUM
 
 /turf/open/floor/engine/antinoblium
-	name = "\improper Antinoblium floor"
+	name = "\improper 反锘地板"
 	initial_gas_mix = ATMOS_TANK_ANTINOBLIUM
 
 /turf/open/floor/engine/air
-	name = "air floor"
+	name = "空气地板"
 	initial_gas_mix = ATMOS_TANK_AIRMIX
 
 /turf/open/floor/engine/xenobio
-	name = "xenobio bz floor"
+	name = "异种生物BZ地板"
 	initial_gas_mix = XENOBIO_BZ
 
 /turf/open/floor/engine/cult
-	name = "engraved floor"
-	desc = "The air smells strange over this sinister flooring."
+	name = "雕纹地板"
+	desc = "在这不祥的地板上方，空气闻起来有些古怪。"
 	icon_state = "cult"
 	floor_tile = null
 	var/obj/effect/cult_turf/realappearance
@@ -221,15 +221,15 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/engine/vacuum
-	name = "vacuum floor"
+	name = "真空地板"
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/engine/telecomms
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/engine/insulation
-	name = "hyper-insulated floor"
-	desc = "Sturdy and completely heat-proof."
+	name = "超绝热地板"
+	desc = "坚固且完全隔热。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "insulation"
 	thermal_conductivity = 0

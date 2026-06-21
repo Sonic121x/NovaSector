@@ -1,5 +1,5 @@
 /datum/map_template
-	var/name = "Default Template Name"
+	var/name = "默认模板名称"
 	var/width = 0
 	var/height = 0
 	var/mappath = null

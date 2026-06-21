@@ -4,7 +4,7 @@
 /datum/techweb_node/adv_vision
 	id = TECHWEB_NODE_ADVANCED_VISION
 	display_name = "Combat Cybernetic Eyes"
-	description = "Military grade combat implants to improve vision."
+	description = "军用级战斗植入物，用于增强视觉能力。"
 	prereq_ids = list(TECHWEB_NODE_COMBAT_IMPLANTS, TECHWEB_NODE_ALIEN_SURGERY)
 	design_ids = list(
 		"ci-thermals",
@@ -18,7 +18,7 @@
 /datum/techweb_node/borg_shapeshifter
 	id = TECHWEB_NODE_BORG_SHAPESHIFTER
 	display_name = "Illegal Cyborg Addition"
-	description = "Some sort of experimental tool that was once used by an rival company."
+	description = "某种曾被一家竞争对手公司使用过的实验性工具。"
 	prereq_ids = list(TECHWEB_NODE_SYNDICATE_BASIC)
 	design_ids = list("borg_shapeshifter_module")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
@@ -27,7 +27,7 @@
 	id = TECHWEB_NODE_ANDROID_CHASSIS
 	starting_node = TRUE
 	display_name = "Android Technology"
-	description = "Shiny parts for your shiny friends!"
+	description = "为你闪亮的朋友准备的闪亮部件！"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"synth_head",
@@ -45,7 +45,7 @@
 	id = TECHWEB_NODE_ANDROID_ORGANS
 	starting_node = TRUE
 	display_name = "Android Organs"
-	description = "Internal Mechanisms for Synthetics and IPC's."
+	description = "合成人与IPC的内部机制。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"synth_posi",

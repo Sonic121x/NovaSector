@@ -23,13 +23,13 @@
 
 /// Displays information about the current virtual domain.
 /datum/action/avatar_domain_info
-	name = "Open Virtual Domain Information"
+	name = "打开虚拟域信息"
 	button_icon_state = "round_end"
 	show_to_observers = FALSE
 
 /datum/action/avatar_domain_info/New(Target)
 	. = ..()
-	name = "Open Domain Information"
+	name = "打开域信息"
 
 /datum/action/avatar_domain_info/Trigger(mob/clicker, trigger_flags)
 	. = ..()

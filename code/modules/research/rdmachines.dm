@@ -3,7 +3,7 @@
 
 
 /obj/machinery/rnd
-	name = "R&D Device"
+	name = "研发设备"
 	icon = 'icons/obj/machines/research.dmi'
 	density = TRUE
 	use_power = IDLE_POWER_USE
@@ -42,11 +42,11 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice("A [EXAMINE_HINT("multitool")] with techweb designs can be uploaded here.")
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("带有科技网设计的[EXAMINE_HINT("multitool")]可以在这里上传。")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"]。")
 	if(panel_open)
-		. += span_notice("Use a [EXAMINE_HINT("multitool")] or [EXAMINE_HINT("wirecutters")] to interact with wires.")
-		. += span_notice("The machine can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("使用[EXAMINE_HINT("multitool")]或[EXAMINE_HINT("wirecutters")]来操作电线。")
+		. += span_notice("这台机器可以被[EXAMINE_HINT("pried")]拆开。")
 
 /obj/machinery/rnd/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
@@ -132,22 +132,22 @@
 //whether the machine can have an item inserted in its current state.
 /obj/machinery/rnd/proc/is_insertion_ready(mob/user)
 	if(panel_open)
-		balloon_alert(user, "panel open!")
+		balloon_alert(user, "面板已打开！")
 		return FALSE
 	if(disabled)
-		balloon_alert(user, "belts disabled!")
+		balloon_alert(user, "传送带已停用！")
 		return FALSE
 	if(busy)
-		balloon_alert(user, "still busy!")
+		balloon_alert(user, "仍在忙碌中！")
 		return FALSE
 	if(machine_stat & BROKEN)
-		balloon_alert(user, "machine broken!")
+		balloon_alert(user, "机器已损坏！")
 		return FALSE
 	if(machine_stat & NOPOWER)
-		balloon_alert(user, "no power!")
+		balloon_alert(user, "没有电力！")
 		return FALSE
 	if(loaded_item)
-		balloon_alert(user, "item already loaded!")
+		balloon_alert(user, "物品已装载！")
 		return FALSE
 	return TRUE
 

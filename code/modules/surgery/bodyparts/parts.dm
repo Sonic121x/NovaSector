@@ -1,7 +1,7 @@
 
 /obj/item/bodypart/chest
 	name = BODY_ZONE_CHEST
-	desc = "It's impolite to stare at a person's chest."
+	desc = "盯着一个人的胸部看是不够绅士的举动"
 	icon_state = "default_human_chest"
 	max_damage = LIMB_MAX_HP_CORE
 	body_zone = BODY_ZONE_CHEST
@@ -317,7 +317,7 @@
 /datum/actionspeed_modifier/arm_speed_penalty/right_hand
 
 /obj/item/bodypart/arm/left
-	name = "left arm"
+	name = "左臂"
 	desc = "Did you know that the word 'sinister' stems originally from the \
 		Latin 'sinestra' (left hand), because the left hand was supposed to \
 		be possessed by the devil? This arm appears to be possessed by no \
@@ -401,7 +401,7 @@
 	biological_state = BIO_STANDARD_ALIEN
 
 /obj/item/bodypart/arm/right
-	name = "right arm"
+	name = "右臂"
 	desc = "Over 87% of humans are right handed. That figure is much lower \
 		among humans missing their right arm."
 	body_zone = BODY_ZONE_R_ARM
@@ -571,7 +571,7 @@
 	owner?.update_bodypart_speed_modifier()
 
 /obj/item/bodypart/leg/left
-	name = "left leg"
+	name = "左腿"
 	desc = "Some athletes prefer to tie their left shoelaces first for good \
 		luck. In this instance, it probably would not have helped."
 	icon_state = "default_human_l_leg"
@@ -650,7 +650,7 @@
 	biological_state = BIO_STANDARD_ALIEN
 
 /obj/item/bodypart/leg/right
-	name = "right leg"
+	name = "右腿"
 	desc = "You put your right leg in, your right leg out. In, out, in, out, \
 		shake it all about. And apparently then it detaches.\n\
 		The hokey pokey has certainly changed a lot since space colonisation."

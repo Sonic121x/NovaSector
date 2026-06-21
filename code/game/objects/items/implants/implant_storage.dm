@@ -1,6 +1,6 @@
 /obj/item/implant/storage
-	name = "storage implant"
-	desc = "Stores up to two big items in a bluespace pocket."
+	name = "存储植入体"
+	desc = "在蓝空间口袋中最多存储两件大型物品。"
 	icon_state = "storage"
 	implant_color = "r"
 	var/max_slot_stacking = 4
@@ -17,7 +17,7 @@
 	for (var/obj/item/stored in contents)
 		stored.add_mob_blood(implantee)
 	atom_storage.remove_all()
-	implantee.visible_message(span_warning("A bluespace pocket opens around [src] as it exits [implantee], spewing out its contents and rupturing the surrounding tissue!"))
+	implantee.visible_message(span_warning("当[src]离开[implantee]时，一个蓝空间口袋在其周围打开，喷出其中的内容物并撕裂周围组织！"))
 	implantee.apply_damage(20, BRUTE, BODY_ZONE_CHEST)
 	QDEL_NULL(atom_storage)
 	return ..()
@@ -40,7 +40,7 @@
 	return ..()
 
 /obj/item/implanter/storage
-	name = "implanter" // NOVA EDIT , original was implanter (storage)
+	name = "植入器" // NOVA EDIT , original was implanter (storage)
 	imp_type = /obj/item/implant/storage
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // NOVA EDIT
 	special_desc = "A Syndicate implanter used for a storage implant" // NOVA EDIT

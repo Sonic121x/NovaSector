@@ -10,7 +10,7 @@
  */
 
 /obj/item/dyespray
-	desc = "A spray to dye hair, as well as giving it any gradient you'd like."
+	desc = "一种用于染发的喷雾，还能为头发添加任何你想要的渐变效果。"
 	var/uses = 40
 
 /obj/item/dyespray/proc/dye(mob/target, mob/user)
@@ -18,12 +18,12 @@
 		return
 
 	if(!uses) // Can be set to -1 for infinite uses, basically.
-		balloon_alert(user, "it's empty!")
+		balloon_alert(user, "它是空的！")
 		return
 
 	var/mob/living/carbon/human/human_target = target
 	var/static/list/dye_options = list(DYE_OPTION_HAIR_COLOR, DYE_OPTION_GRADIENT)
-	var/gradient_or_hair = tgui_alert(user, "What would you like to do?", "Hair Dye Spray", dye_options, autofocus = TRUE)
+	var/gradient_or_hair = tgui_alert(user, "你想做什么？", "染发喷雾", dye_options, autofocus = TRUE)
 	if(!gradient_or_hair || !user.can_perform_action(src, NEED_DEXTERITY))
 		return
 
@@ -34,21 +34,21 @@
 		if(!new_color || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
-		human_target.visible_message(span_notice("[user] starts applying hair dye to [dyeing_themselves ? "their own" : "[human_target]'s"] hair..."), span_notice("[dyeing_themselves ? "You start" : "[user] starts"] applying hair dye to [dyeing_themselves ? "your own" : "your"] hair..."), ignored_mobs = user)
+		human_target.visible_message(span_notice("[user] 开始将染发剂涂抹到[dyeing_themselves ? "their own" : "[human_target]'s"]头发上..."), span_notice("[dyeing_themselves ? "You start" : "[user] starts"]将染发剂涂抹到[dyeing_themselves ? "your own" : "your"]头发上..."), ignored_mobs = user)
 		if(!dyeing_themselves)
-			balloon_alert(user, "dyeing...")
+			balloon_alert(user, "染色中...")
 		if(!do_after(user, 3 SECONDS, target))
 			return
 
 		human_target.set_haircolor(sanitize_hexcolor(new_color), update = TRUE)
 
 	else
-		var/beard_or_hair = tgui_input_list(user, "What do you want to dye?", "Character Preference", list("Hair", "Facial Hair"))
+		var/beard_or_hair = tgui_input_list(user, "你想染什么？", "角色偏好", list("Hair", "Facial Hair"))
 		if(!beard_or_hair || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
 		var/list/choices = beard_or_hair == "Hair" ? SSaccessories.hair_gradients_list : SSaccessories.facial_hair_gradients_list
-		var/new_grad_style = tgui_input_list(user, "Choose a color pattern:", "Dye Spray", choices)
+		var/new_grad_style = tgui_input_list(user, "选择颜色样式：", "染发喷雾", choices)
 		if(!new_grad_style || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
@@ -57,9 +57,9 @@
 		if(!new_grad_color || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
-		human_target.visible_message(span_notice("[user] starts applying hair dye to [dyeing_themselves ? "their own" : "[human_target]'s"] hair..."), span_notice("[dyeing_themselves ? "You start" : "[user] starts"] applying hair dye to [dyeing_themselves ? "your own" : "your"] hair..."), ignored_mobs = user)
+		human_target.visible_message(span_notice("[user]开始将染发剂涂抹到[dyeing_themselves ? "their own" : "[human_target]'s"]头发上..."), span_notice("[dyeing_themselves ? "You start" : "[user] starts"]将染发剂涂抹到[dyeing_themselves ? "your own" : "your"]头发上..."), ignored_mobs = user)
 		if(!dyeing_themselves)
-			balloon_alert(user, "dyeing...")
+			balloon_alert(user, "染色中...")
 		if(!do_after(user, 3 SECONDS, target))
 			return
 
@@ -73,10 +73,10 @@
 	playsound(src, 'sound/effects/spray.ogg', 10, vary = TRUE)
 
 	human_target.visible_message(
-		span_notice("[user] finishes applying hair dye to [dyeing_themselves ? "their own" : "[human_target]'s"] hair, changing its color!"),
-		span_notice("[dyeing_themselves ? "You finish" : "[user] finishes"] applying hair dye to [dyeing_themselves ? "your own" : "your"] hair, changing its color!"), ignored_mobs = user)
+		span_notice("[user]完成了对[dyeing_themselves ? "their own" : "[human_target]'s"]头发的染色，改变了它的颜色！"),
+		span_notice("[dyeing_themselves ? "You finish" : "[user] finishes"]对[dyeing_themselves ? "your own" : "your"]头发完成了染色，改变了它的颜色！"), ignored_mobs = user)
 	if(!dyeing_themselves)
-		balloon_alert(user, "dyeing complete!")
+		balloon_alert(user, "染色完成！")
 
 	uses--
 

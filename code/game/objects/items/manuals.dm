@@ -7,7 +7,7 @@
 	unique = TRUE   // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
 
 /obj/item/book/manual/hydroponics_pod_people
-	name = "The Human Harvest: From Seed to Market"
+	name = "《人类收获：从种子到市场》"
 	icon_state ="bookHydroponicsPodPeople"
 	starting_author = "Farmer John" // Whoever wrote the paper or book, can be changed by pen or PC. It is not automatically assigned.
 	starting_title = "The Human Harvest: From Seed to Market"
@@ -32,7 +32,7 @@
 				"
 
 /obj/item/book/manual/ripley_build_and_repair
-	name = "APLU \"Ripley\" Construction and Operation Manual"
+	name = "APLU \"雷普利\"建造与操作手册"
 	icon_state ="book"
 	starting_author = "Weyland-Yutani Corp"
 	starting_title = "APLU \"Ripley\" Construction and Operation Manual"
@@ -84,7 +84,7 @@
 			"
 
 /obj/item/book/manual/chef_recipes
-	name = "Chef Recipes"
+	name = "厨师食谱"
 	icon_state = "cooked_book"
 	starting_author = "Lord Frenrir Cageth"
 	starting_title = "Chef Recipes"
@@ -155,7 +155,7 @@
 				"
 
 /obj/item/book/manual/nuclear
-	name = "Fission Mailed: Nuclear Sabotage 101"
+	name = "《裂变邮递：核破坏101》"
 	icon_state ="bookNuclear"
 	starting_author = "Syndicate"
 	starting_title = "Fission Mailed: Nuclear Sabotage 101"

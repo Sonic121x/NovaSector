@@ -1,9 +1,9 @@
 /obj/item/book/granter/martial/cqc
 	martial = /datum/martial_art/cqc
-	name = "old manual"
+	name = "旧手册"
 	martial_name = "close quarters combat"
-	desc = "A small, black manual. There are drawn instructions of tactical hand-to-hand combat."
-	greet = span_bolddanger("You've mastered the basics of CQC.")
+	desc = "一本小小的黑色手册。上面画着战术徒手格斗的示意图。"
+	greet = span_bolddanger("你已掌握了CQC的基础。")
 	icon_state = "cqcmanual"
 	remarks = list(
 		"Kick... Slam...",
@@ -18,10 +18,10 @@
 /obj/item/book/granter/martial/cqc/on_reading_finished(mob/living/carbon/user)
 	. = ..()
 	if(uses <= 0)
-		to_chat(user, span_warning("[src] beeps ominously..."))
+		to_chat(user, span_warning("[src]发出不祥的哔哔声..."))
 
 /obj/item/book/granter/martial/cqc/recoil(mob/living/user)
-	to_chat(user, span_warning("[src] explodes!"))
+	to_chat(user, span_warning("[src] 爆炸了！"))
 	playsound(src,'sound/effects/explosion/explosion1.ogg',40,TRUE)
 	user.flash_act(1, 1)
 	user.adjust_brute_loss(6)

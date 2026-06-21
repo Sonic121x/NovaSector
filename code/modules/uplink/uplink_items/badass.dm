@@ -1,5 +1,5 @@
 /datum/uplink_category/badassery
-	name = "(Pointless) Badassery"
+	name = "(无用的)乐子"
 	weight = 0
 
 /datum/uplink_item/badass
@@ -40,7 +40,7 @@
 
 /datum/uplink_item/badass/syndiecigs
 	name = "Syndicate Smokes"
-	desc = "Strong flavor, dense smoke, infused with omnizine."
+	desc = "浓郁、浓烟，注有全锌-omnizine"
 	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
@@ -57,12 +57,12 @@
 
 /datum/uplink_item/badass/costumes/clown
 	name = "Clown Costume"
-	desc = "Nothing is more terrifying than clowns with fully automatic weaponry."
+	desc = "没有什么比那些装备有全自动武器的丑角更令人恐惧的了。"
 	item = /obj/item/storage/backpack/duffelbag/clown/syndie
 
 /datum/uplink_item/badass/costumes/tactical_naptime
 	name = "Sleepy Time Pajama Bundle"
-	desc = "Even soldiers need to get a good nights rest. Comes with blood-red pajamas, a blankie, a hot mug of cocoa and a fuzzy friend."
+	desc = "即使是士兵也需要好好休息一晚。他们身着血红色的睡衣，身旁放着一条毛毯、一杯热可可和一个毛绒玩具伙伴。"
 	item = /obj/item/storage/box/syndie_kit/sleepytime
 	limited_stock = 1
 	cant_discount = TRUE
@@ -74,7 +74,7 @@
 	item = /obj/item/storage/box/syndie_kit/chameleon/broken
 
 /datum/uplink_item/badass/costumes/centcom_official
-	name = "CentCom Official Costume"
+	name = "中央指挥部官方制服"
 	desc = "Ask the crew to \"inspect\" their nuclear disk and weapons system, and then when they decline, pull out a fully automatic rifle and gun down the Captain. \
 			Radio headset does not include encryption key. No gun included."
 	item = /obj/item/storage/box/syndie_kit/centcom_costume

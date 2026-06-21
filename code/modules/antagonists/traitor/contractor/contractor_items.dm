@@ -1,13 +1,13 @@
 /obj/item/pinpointer/crew/contractor
-	name = "contractor pinpointer"
-	desc = "A handheld tracking device that locks onto certain signals. Ignores suit sensors, but is much less accurate."
+	name = "承包商寻人仪"
+	desc = "一种手持追踪设备，可锁定特定信号。忽略防护服传感器，但精度要低得多。"
 	icon_state = "pinpointer_syndicate"
 	worn_icon_state = "pinpointer_black"
 	minimum_range = 25
 	ignore_suit_sensor_level = TRUE
 
 /obj/item/paper/contractor_guide
-	name = "Contractor Guide"
+	name = "承包商指南"
 	default_raw_text = {"Welcome agent, congratulations on your new position as contractor. On top of your already assigned objectives,\
 		this kit will provide you contracts to take on for TC payments.\
 		<p>Provided within, we give your specialist contractor space suit. It's even more compact, being able to fit into a pocket, and faster than the \

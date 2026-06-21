@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(liquids)
-	name = "Liquid Turfs"
+	name = "液体地格"
 	wait = 1 SECONDS
 	ss_flags = SS_KEEP_TIMING | SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME

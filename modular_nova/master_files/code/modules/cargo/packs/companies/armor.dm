@@ -111,9 +111,9 @@
 	cost = CARGO_CRATE_VALUE * 0.5
 
 /datum/supply_pack/companies/armor/hc_surplus/space_suit
-	name = "Voskhod-P depowered combat armor"
+	name = "沃斯霍德-P型非动力战斗装甲"
 	contains = list(/obj/item/clothing/suit/space/voskhod, /obj/item/clothing/head/helmet/space/voskhod)
-	desc = "An old combat proto-hardsuit with its powered components removed. Works perfectly for kevlar knighting though! Includes helmet."
+	desc = "一件旧式战斗原型硬质防护服，其动力组件已被移除。不过，用于凯夫拉骑士活动倒是完美！包含头盔。"
 	cost = CARGO_CRATE_VALUE * 2
 	auto_name = FALSE
 

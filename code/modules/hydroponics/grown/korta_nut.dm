@@ -1,7 +1,7 @@
 //Korta Nut
 /obj/item/seeds/korta_nut
-	name = "korta nut seed pack"
-	desc = "These seeds grow into korta nut bushes, native to Tizira."
+	name = "科尔塔坚果种子包"
+	desc = "这些种子(pack of korta nut seeds)长成科尔塔坚果灌木丛，原生于泰泽拉。"
 	icon_state = "seed-korta"
 	species = "kortanut"
 	plantname = "Korta Nut Bush"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/korta_nut
 	seed = /obj/item/seeds/korta_nut
-	name = "korta nut"
-	desc = "A little nut of great importance. Has a peppery shell which can be ground into flour and a soft, pulpy interior that produces a milky fluid when juiced. Or you can eat them whole, as a quick snack."
+	name = "科尔塔坚果"
+	desc = "非常重要的小坚果(korta nut)，有可以磨成面粉的辛辣的外壳和柔软的果肉内部，当榨汁时会产生乳白色的液体。或者你把它当做能直接吃掉的方便零食。"
 	icon_state = "korta_nut"
 	foodtypes = NUTS
 	tastes = list("peppery heat" = 1)
@@ -33,8 +33,8 @@
 
 //Sweet Korta Nut
 /obj/item/seeds/korta_nut/sweet
-	name = "sweet korta nut seed pack"
-	desc = "These seeds grow into sweet korta nuts, a mutation of the original species that produces a thick syrup that Tizirans use for desserts."
+	name = "甜科尔塔坚果种子包"
+	desc = "这些种子(sweet korta nut seeds)会长成了甜科尔塔坚果，这是原始物种的一个突变，它生产出一种浓稠的糖浆，泰泽拉人用它来制作甜点。"
 	icon_state = "seed-sweetkorta"
 	species = "kortanut"
 	plantname = "Sweet Korta Nut Bush"
@@ -47,8 +47,8 @@
 
 /obj/item/food/grown/korta_nut/sweet
 	seed = /obj/item/seeds/korta_nut/sweet
-	name = "sweet korta nut"
-	desc = "A sweet treat lizards love to eat."
+	name = "甜科塔坚果"
+	desc = "蜥蜴人们喜欢吃的甜食(sweet korta nut)。"
 	icon_state = "korta_nut"
 	tastes = list("peppery sweet" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/kortara

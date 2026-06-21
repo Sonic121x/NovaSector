@@ -1,8 +1,8 @@
 #define BOOK_OPEN_RANGE 2
 
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern
-	name = "technologist's lectern"
-	desc = "A small pedestal with a glowing book floating over it.."
+	name = "技师讲台"
+	desc = "一个带有发光书本悬浮其上的小型基座。"
 	clockwork_desc = "A small pedestal, glowing with a divine energy. Used to research new abilities and objects."
 	base_icon_state = "lectern"
 	icon_state = "lectern"
@@ -77,7 +77,7 @@
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern/examine(mob/user)
 	. = ..()
 	if(researching && IS_CLOCK(user))
-		. += span_brass("The researching of [selected_research.name] will take another [DisplayTimeText(timeleft(research_timer_id))].")
+		. += span_brass("[selected_research.name] 的研究还需要 [DisplayTimeText(timeleft(research_timer_id))]。")
 
 
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern/process(seconds_per_tick)
@@ -109,7 +109,7 @@
 		return
 
 	if(!anchored)
-		balloon_alert(user, "not fastened!")
+		balloon_alert(user, "未固定！")
 		return
 
 	ui_interact(user)
@@ -275,11 +275,11 @@
 		if(istype(nearby_turf, /turf/open/floor))
 			continue
 
-		owner.balloon_alert(owner, "not enough room!")
+		owner.balloon_alert(owner, "空间不足！")
 		return
 
 	if(researching)
-		owner.balloon_alert(owner, "already researching!")
+		owner.balloon_alert(owner, "已在研究中！")
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(begin_research), owner, target_turf)
@@ -368,7 +368,7 @@
 
 	research_sigil.finish_research()
 
-	priority_announce("An outburst of anomalous energy has been detected at [get_area(src)]. Please ensure the safety of any nearby crew.")
+	priority_announce("在[get_area(src)]检测到异常能量爆发。请确保附近船员的安危。")
 
 	addtimer(CALLBACK(src, PROC_REF(side_effect)), 10 SECONDS)
 
@@ -412,7 +412,7 @@
 					qdel(nearby_atom)
 
 		if(11 to 20) // Spawn 4 ai-controlled marauders to fuck shit up
-			visible_message(span_warning("A group of clockwork marauders appear, before being obscured by a cloud of smoke!"))
+			visible_message(span_warning("一群发条掠夺者出现，随即被一团烟雾遮蔽！"))
 
 			for(var/direction in list(NORTH, SOUTH, EAST, WEST))
 				var/turf/tile = get_step(src, direction)
@@ -421,7 +421,7 @@
 				do_smoke(4, src, src)
 
 		if(21 to 30) // Fuck up the power
-			priority_announce("A fatal power outage has occurred. Please ensure that all on-board devices are connected to an appropriate power generator.")
+			priority_announce("发生致命停电。请确保所有机载设备均已连接到合适的发电机。")
 
 			apc_loop:
 				for(var/obj/machinery/power/apc/controller as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/apc))
@@ -445,13 +445,13 @@
 					continue
 
 				if(IS_CLOCK(living_mob))
-					to_chat(living_mob, span_brass("You feel as if something powerful is watching over you, as you feel the power in your Clockwork Slab increase."))
+					to_chat(living_mob, span_brass("你感到某种强大的存在正注视着你，同时感觉到发条石板中的力量增强了。"))
 				else
-					to_chat(living_mob, span_brass("You feel as if something powerful is watching over you as a low hum of machinery fills your mind."))
+					to_chat(living_mob, span_brass("你感到某种强大的存在正注视着你，低沉的机械嗡鸣充斥了你的脑海。"))
 
 
 		if(31 to 40) // Fuck up the power, but in the other way instead
-			priority_announce("An extreme power surge has been detected in on-board APCs. Surge will subside in [rand(3, 8)] minutes.") // Not always accurate, are we?
+			priority_announce("检测到机载APC出现极端电涌。电涌将在[rand(3, 8)]分钟后消退。") // Not always accurate, are we?
 
 			force_apc_arcing(TRUE)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(force_apc_arcing), FALSE), 4 MINUTES)

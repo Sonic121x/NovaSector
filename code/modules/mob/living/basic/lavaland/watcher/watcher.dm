@@ -1,7 +1,7 @@
 /// A floating eyeball which keeps its distance and sometimes make you look away.
 /mob/living/basic/mining/watcher
-	name = "watcher"
-	desc = "A levitating, monocular creature held aloft by wing-like veins. A sharp spine of crystal protrudes from its body."
+	name = "监视者"
+	desc = "一种悬浮的单眼生物，由翼状脉管支撑在空中。其身体突出一根尖锐的水晶棘刺。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "watcher"
 	icon_living = "watcher"
@@ -76,13 +76,13 @@
 
 /// I love eating diamonds yum
 /mob/living/basic/mining/watcher/proc/consume(atom/movable/thing)
-	visible_message(span_warning("[thing] seems to vanish into [src]'s body!"))
+	visible_message(span_warning("[thing]似乎消失在了[src]的身体里！"))
 	thing.forceMove(src)
 
 /// More durable, burning projectiles
 /mob/living/basic/mining/watcher/magmawing
-	name = "magmawing watcher"
-	desc = "Presented with extreme temperatures, adaptive watchers absorb heat through their circulatory wings and repurpose it as a weapon."
+	name = "熔岩翼监视者"
+	desc = "面对极端温度，适应性强的监视者通过其循环翼吸收热量，并将其转化为武器。"
 	icon_state = "watcher_magmawing"
 	icon_living = "watcher_magmawing"
 	icon_dead = "watcher_magmawing_dead"
@@ -96,8 +96,8 @@
 
 /// Less durable, freezing projectiles
 /mob/living/basic/mining/watcher/icewing
-	name = "icewing watcher"
-	desc = "Watchers which fail to absorb enough heat during their development become fragile, but share their internal chill with their enemies."
+	name = "冰翼监视者"
+	desc = "在发育过程中未能吸收足够热量的监视者会变得脆弱，但会将体内的寒意分享给敌人。"
 	icon_state = "watcher_icewing"
 	icon_living = "watcher_icewing"
 	icon_dead = "watcher_icewing_dead"

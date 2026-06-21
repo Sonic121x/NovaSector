@@ -16,8 +16,8 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	))
 
 /obj/item/stack/rods
-	name = "iron rod"
-	desc = "Some rods. Can be used for building or something."
+	name = "铁棒"
+	desc = "一些棒子。可以用来建造或做点什么。"
 	singular_name = "iron rod"
 	icon_state = "rods"
 	inhand_icon_state = "rods"
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	embed_chance = 50
 
 /obj/item/stack/rods/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to stuff \the [src] down [user.p_their()] throat! It looks like [user.p_theyre()] trying to commit suicide!"))//it looks like theyre ur mum
+	user.visible_message(span_suicide("[user] 开始把 \the [src] 塞进 [user.p_their()] 喉咙里！看起来 [user.p_theyre()] 想自杀！"))//it looks like theyre ur mum
 	return BRUTELOSS
 
 /obj/item/stack/rods/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
@@ -87,12 +87,12 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 
 /obj/item/stack/rods/welder_act(mob/living/user, obj/item/tool)
 	if(get_amount() < 2)
-		balloon_alert(user, "not enough rods!")
+		balloon_alert(user, "金属杆不够！")
 		return
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/sheet/iron/new_item = new(user.loc)
 		user.visible_message(
-			span_notice("[user.name] shaped [src] into iron sheets with [tool]."),
+			span_notice("[user.name] 用 [tool] 将 [src] 塑造成了铁板。"),
 			blind_message = span_hear("You hear welding."),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/tile/iron/two/new_item = new(user.loc)
 		user.visible_message(
-			span_notice("[user.name] shaped [src] into floor tiles with [tool]."),
+			span_notice("[user.name] 用 [tool] 将 [src] 塑造成了地板砖。"),
 			blind_message = span_hear("You hear welding."),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
@@ -131,8 +131,8 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	amount = 50
 
 /obj/item/stack/rods/lava
-	name = "heat resistant rod"
-	desc = "Treated, specialized iron rods. When exposed to the vacuum of space their coating breaks off, but they can hold up against the extreme heat of active lava."
+	name = "耐热棒"
+	desc = "经过处理的专用铁棒。暴露于太空真空时其涂层会剥落，但它们能承受活跃熔岩的极端高温。"
 	singular_name = "heat resistant rod"
 	icon_state = "lavarods"
 	inhand_icon_state = "rods"
@@ -148,8 +148,8 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	amount = 30
 
 /obj/item/stack/rods/shuttle
-	name = "shuttle frame rods"
-	desc = "Treated, specialized iron rods suitable for the construction of shuttle frames or the expansion of existing shuttles."
+	name = "穿梭机框架棒"
+	desc = "经过处理的专用铁棒，适用于建造穿梭机框架或扩展现有穿梭机。"
 	singular_name = "shuttle frame rod"
 	icon_state = "shuttlerods"
 	mats_per_unit = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT,  /datum/material/titanium=SMALL_MATERIAL_AMOUNT)

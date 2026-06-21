@@ -31,8 +31,8 @@
 
 	if(HAS_TRAIT(src, TRAIT_ANALGESIA))
 		visible_message(
-			span_info("[attacker] [is_kick ? "kicks" : "punches"] [src] right in the nuts... but they don't react at all! What the hell?"),
-			span_danger("You [is_kick ? "kick" : "punch"] [src] in the nuts with all your might... but your efforts are for naught as they remain impassive! Inhuman!")
+			span_info("[attacker] [is_kick ? "kicks" : "punches"] [src] 的蛋蛋……但他们毫无反应！搞什么鬼？"),
+			span_danger("你用尽全力[is_kick ? "kick" : "punch"]了[src]的蛋蛋……但你的努力白费了，他们依然无动于衷！简直不是人！")
 			)
 		return FALSE
 

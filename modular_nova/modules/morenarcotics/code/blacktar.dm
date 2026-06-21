@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/blacktar
-	name = "black tar heroin"
-	desc = "A rock of black tar heroin, an impure, freebase form of heroin."
+	name = "黑焦油海洛因"
+	desc = "一块黑焦油海洛因，一种不纯的、游离碱形式的海洛因。"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "blacktar"
 	volume = 5

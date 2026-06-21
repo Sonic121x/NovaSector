@@ -1,8 +1,8 @@
 //Large and powerful, but timid. It won't engage anything above 50 health, or anything without legcuffs.
 //It can fire fleshy snares that legcuff anyone that it hits, making them look especially tasty to the arachnid.
 /mob/living/basic/mega_arachnid
-	name = "mega arachnid"
-	desc = "Though physically imposing, it prefers to ambush its prey, and it will only engage with an already crippled opponent."
+	name = "巨型蛛形纲生物"
+	desc = "尽管体型庞大，但它更喜欢伏击猎物，并且只会攻击已经受伤的对手。"
 	icon = 'icons/mob/simple/jungle/arachnid.dmi'
 	icon_state = "arachnid"
 	icon_living = "arachnid"

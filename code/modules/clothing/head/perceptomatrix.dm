@@ -129,7 +129,7 @@
 /obj/item/clothing/head/helmet/perceptomatrix/item_interaction(mob/user, obj/item/weapon, params)
 	if (!istype(weapon, /obj/item/assembly/signaler/anomaly/hallucination))
 		return NONE
-	balloon_alert(user, "inserting...")
+	balloon_alert(user, "正在插入...")
 	if (!do_after(user, delay = 3 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	qdel(weapon)

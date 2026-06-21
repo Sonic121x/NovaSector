@@ -2,7 +2,7 @@
 
 ///Springlock Mechanism - allows your modsuit to activate faster, but reagents are very dangerous.
 /obj/item/mod/module/springlock
-	name = "MOD springlock module"
+	name = "MOD弹簧锁模块"
 	desc = "A module that spans the entire size of the MOD unit, sitting under the outer shell. \
 		This mechanical exoskeleton pushes out of the way when the user enters and it helps in booting \
 		up, but was taken out of modern suits because of the springlock's tendency to \"snap\" back \
@@ -74,7 +74,7 @@
 ///Signal fired when wearer attempts to activate/deactivate suits
 /obj/item/mod/module/springlock/proc/on_activate_spring_block(datum/source, user)
 	SIGNAL_HANDLER
-	balloon_alert(user, "springlocks aren't responding...?")
+	balloon_alert(user, "弹簧锁没有反应...？")
 	return MOD_CANCEL_ACTIVATE
 
 ///Delayed death proc of the suit after the wearer is exposed to reagents
@@ -105,8 +105,8 @@
 
 ///Rave Visor - Gives you a rainbow visor and plays jukebox music to you.
 /obj/item/mod/module/visor/rave
-	name = "MOD rave visor module"
-	desc = "A Super Cool Awesome Visor (SCAV), intended for modular suits."
+	name = "MOD遮阳板模块"
+	desc = "一款超酷炫的头盔（SCAV），专为模块化防护服设计。"
 	icon_state = "rave_visor"
 	complexity = 1
 	required_slots = list(ITEM_SLOT_HEAD|ITEM_SLOT_MASK)
@@ -188,7 +188,7 @@
 
 ///Tanner - Tans you with spraytan.
 /obj/item/mod/module/tanner
-	name = "MOD tanning module"
+	name = "MOD 鞣制模块"
 	desc = "A tanning module for modular suits. Skin cancer functionality has not been ever proven, \
 		although who knows with the rumors..."
 	icon_state = "tanning"
@@ -210,8 +210,8 @@
 
 ///Balloon Blower - Blows a balloon.
 /obj/item/mod/module/balloon
-	name = "MOD balloon blower module"
-	desc = "A strange module invented years ago by some ingenious mimes. It blows balloons."
+	name = "MOD气球鼓风机模块"
+	desc = "多年前一些聪明的哑剧演员发明了一种奇特的装置，它能吹出气球。"
 	icon_state = "bloon"
 	module_type = MODULE_USABLE
 	complexity = 1
@@ -234,7 +234,7 @@
 
 ///Paper Dispenser - Dispenses (sometimes burning) paper sheets.
 /obj/item/mod/module/paper_dispenser
-	name = "MOD paper dispenser module"
+	name = "MOD纸机模块"
 	desc = "A simple module designed by the bureaucrats of Torch Bay. \
 		It dispenses 'warm, clean, and crisp sheets of paper' onto a nearby table. Usually."
 	icon_state = "paper_maker"
@@ -252,11 +252,11 @@
 		return FALSE
 
 	var/obj/item/paper/crisp_paper = new(get_turf(src))
-	crisp_paper.desc = "It's crisp and warm to the touch. Must be fresh."
+	crisp_paper.desc = "它摸起来既脆又温暖。肯定是新的。"
 
 	var/obj/structure/table/nearby_table = locate() in range(1, mod.wearer)
 	playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
-	balloon_alert(mod.wearer, "dispensed paper[nearby_table ? " onto table":""]")
+	balloon_alert(mod.wearer, "已分发纸张[nearby_table ? " onto table":""]")
 
 	mod.wearer.put_in_hands(crisp_paper)
 	if(nearby_table)
@@ -276,7 +276,7 @@
 
 ///Stamper - Extends a stamp that can switch between accept/deny modes.
 /obj/item/mod/module/stamp
-	name = "MOD stamper module"
+	name = "MOD印章模块"
 	desc = "A module installed into the wrist of the suit, this functions as a high-power stamp, \
 		able to switch between accept, deny, and void modes."
 	icon_state = "stamp"
@@ -289,7 +289,7 @@
 	required_slots = list(ITEM_SLOT_GLOVES|ITEM_SLOT_NECK)
 
 /obj/item/stamp/mod
-	name = "MOD electronic stamp"
+	name = "MOD多用印章模块"
 	desc = "A high-power stamp, able to switch between accept, deny, and void modes when used."
 	icon_state = "stamp-ok"
 
@@ -315,8 +315,8 @@
 
 ///Atrocinator - Flips your gravity.
 /obj/item/mod/module/atrocinator
-	name = "MOD atrocinator module"
-	desc = "A mysterious orb that has mysterious effects when inserted in a MODsuit."
+	name = "MOD反重力模块"
+	desc = "一个神秘的球体，当将其插入到模块服中时会产生神秘的效果。"
 	icon_state = "atrocinator"
 	module_type = MODULE_TOGGLE
 	complexity = 2

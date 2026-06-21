@@ -22,8 +22,8 @@
 	new_icon_state = "blastwave_suit_y"
 
 /obj/item/clothing/suit/blastwave
-	name = "blastwave trenchcoat"
-	desc = "A generic trenchcoat of the boring wars."
+	name = "冲击波风衣"
+	desc = "无聊战争中的一件普通风衣。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/suit_digi.dmi'

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/filter_list
 	display_name = "Filter"
-	desc = "A component that loops through each element in a list and filters them."
+	desc = "一个能够遍历列表中的每个元素并对其进行筛选的组件。"
 	category = "List"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_INSTANT
 

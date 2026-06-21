@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 #define CARGO_TELEPORTER_COOLDOWN 8 SECONDS
 
 /obj/item/cargo_teleporter
-	name = "cargo teleporter"
-	desc = "An item that can set down a set number of markers, allowing them to teleport items within a tile to the set markers."
+	name = "货运传送器"
+	desc = "一种可以放置一定数量标记的物品，允许将一格内的物品传送到已设置的标记处。"
 	icon = 'modular_nova/modules/cargo_items/icons/cargo_teleporter.dmi'
 	icon_state = "cargo_tele"
 	///the list of markers spawned by this item
@@ -16,8 +16,8 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 
 /obj/item/cargo_teleporter/examine(mob/user)
 	. = ..()
-	. += span_notice("Attack itself to set down the markers!")
-	. += span_notice("ALT-CLICK to open options for removing markers or setting markers!")
+	. += span_notice("攻击自身以放置标记！")
+	. += span_notice("ALT-点击以打开移除标记或设置标记的选项！")
 
 /obj/item/cargo_teleporter/Destroy()
 	if(length(marker_children))
@@ -29,17 +29,17 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 
 /obj/item/cargo_teleporter/attack_self(mob/user, modifiers)
 	if(length(marker_children) >= 3)
-		to_chat(user, span_warning("You may only have three spawned markers from [src]!"))
+		to_chat(user, span_warning("你只能从[src]生成三个标记！"))
 		return
 
-	to_chat(user, span_notice("You place a cargo marker below your feet."))
+	to_chat(user, span_notice("你在脚下放置了一个货运标记。"))
 	var/obj/effect/decal/cleanable/cargo_mark/spawned_marker = new /obj/effect/decal/cleanable/cargo_mark(get_turf(src))
 	playsound(src, 'sound/machines/click.ogg', 50)
 	spawned_marker.parent_item = src
 	marker_children += spawned_marker
 
 /obj/item/cargo_teleporter/click_alt(mob/user)
-	var/option_selection = tgui_input_list(user, "What would you like to do?", "Cargo Teleporter Options", list("Remove all markers", "Set default marker"))
+	var/option_selection = tgui_input_list(user, "你想做什么？", "货物传送器选项", list("Remove all markers", "Set default marker"))
 	if(isnull(option_selection))
 		return CLICK_ACTION_BLOCKING
 
@@ -51,26 +51,26 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 		return CLICK_ACTION_SUCCESS
 
 	if(option_selection == "Set default marker")
-		var/cargo_mark_selection = tgui_input_list(user, "Select which cargo mark to teleport the items to?", "Cargo Mark Selection", GLOB.cargo_marks)
+		var/cargo_mark_selection = tgui_input_list(user, "选择将物品传送到哪个货物标记点？", "货物标记点选择", GLOB.cargo_marks)
 		if(isnull(cargo_mark_selection))
 			return CLICK_ACTION_BLOCKING
 
 		selected_mark = cargo_mark_selection
-		to_chat(user, span_notice("You have selected [selected_mark] as the default mark. ALT-CLICK to open up the options to change the selection."))
+		to_chat(user, span_notice("你已选择 [selected_mark] 作为默认标记。ALT-点击以打开选项来更改选择。"))
 		return CLICK_ACTION_SUCCESS
 
 /obj/item/cargo_teleporter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
-		to_chat(user, span_warning("[src] is still on cooldown!"))
+		to_chat(user, span_warning("[src] 仍在冷却中！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isnull(selected_mark))
-		var/choice = tgui_input_list(user, "Select which cargo mark to teleport the items to?", "Cargo Mark Selection", GLOB.cargo_marks)
+		var/choice = tgui_input_list(user, "选择将物品传送到哪个货物标记点？", "货物标记点选择", GLOB.cargo_marks)
 		if(isnull(choice))
 			return ITEM_INTERACT_BLOCKING
 
 		selected_mark = choice
-		to_chat(user, span_notice("You have selected [selected_mark] as the default mark. ALT-CLICK to open up the options to change the selection."))
+		to_chat(user, span_notice("你已选择 [selected_mark] 作为默认标记。ALT-点击以打开选项来更改选择。"))
 
 	if(get_dist(user, interacting_with) > 1)
 		return ITEM_INTERACT_BLOCKING
@@ -110,8 +110,8 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 	return ITEM_INTERACT_SUCCESS
 
 /datum/design/cargo_teleporter
-	name = "Cargo Teleporter"
-	desc = "A wonderful item that can set markers and teleport things to those markers."
+	name = "货运传送器"
+	desc = "一个可以设置标记并将物品传送到这些标记处的绝妙物品。"
 	id = "cargotele"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/cargo_teleporter
@@ -126,8 +126,8 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /obj/effect/decal/cleanable/cargo_mark
-	name = "cargo mark"
-	desc = "A mark left behind by a cargo teleporter, which allows targeted teleportation. Can be removed by the cargo teleporter."
+	name = "货运标记"
+	desc = "货运传送器留下的标记，允许进行定向传送。可以用货运传送器移除。"
 	icon = 'modular_nova/modules/cargo_items/icons/cargo_teleporter.dmi'
 	icon_state = "marker"
 	///the reference to the item that spawned the cargo mark
@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 
 /obj/effect/decal/cleanable/cargo_mark/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/cargo_teleporter))
-		to_chat(user, span_notice("You remove [src] using [attacking_item]."))
+		to_chat(user, span_notice("你使用 [attacking_item] 移除了 [src]。"))
 		playsound(src, 'sound/machines/click.ogg', 50)
 		qdel(src)
 		return

@@ -73,7 +73,7 @@
 		return FALSE
 	if(time_left() <= 0)
 		if(!silent)
-			to_chat(candidate, span_danger("Sorry, you were too late for the consideration!"))
+			to_chat(candidate, span_danger("抱歉，你考虑得太迟了！"))
 			SEND_SOUND(candidate, 'sound/machines/buzz/buzz-sigh.ogg')
 		return FALSE
 
@@ -131,12 +131,12 @@
 	if(!ignore_list)
 		GLOB.poll_ignore[ignoring_category] = list()
 	GLOB.poll_ignore[ignoring_category] += candidate.ckey
-	to_chat(candidate, span_danger("Choice registered: Never for this round."))
+	to_chat(candidate, span_danger("选择已登记：本轮永不。"))
 	remove_candidate(candidate, silent = TRUE)
 
 /datum/candidate_poll/proc/undo_never_for_this_round(mob/candidate)
 	GLOB.poll_ignore[ignoring_category] -= candidate.ckey
-	to_chat(candidate, span_notice("Choice registered: Eligible for this round"))
+	to_chat(candidate, span_notice("选择已登记：本轮符合资格"))
 
 /datum/candidate_poll/proc/trim_candidates()
 	list_clear_nulls(signed_up)
@@ -155,4 +155,4 @@
 	for(var/mob/chosen in chosen_candidates)
 		var/client/chosen_client = chosen.client
 		for(var/mob/poll_recipient as anything in poll_recipients)
-			to_chat(poll_recipient, span_ooc("[isobserver(poll_recipient) ? FOLLOW_LINK(poll_recipient, chosen_client.mob) : null][span_warning(" [full_capitalize(role)] Poll: ")][key_name(chosen_client, include_name = FALSE)] was selected."))
+			to_chat(poll_recipient, span_ooc("[isobserver(poll_recipient) ? FOLLOW_LINK(poll_recipient, chosen_client.mob) : null][span_warning(" [full_capitalize(role)] Poll: ")][key_name(chosen_client, include_name = FALSE)] 已被选中。"))

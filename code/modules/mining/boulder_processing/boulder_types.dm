@@ -3,8 +3,8 @@
 
 ///Boulders with special artificats that can give higher mining points
 /obj/item/boulder/artifact
-	name = "artifact boulder"
-	desc = "This boulder is brimming with strange energy. Cracking it open could contain something unusual for science."
+	name = "文物巨岩"
+	desc = "这块巨岩充满了奇异的能量。敲开它可能会为科研部门带来不寻常的东西。"
 	icon_state = "boulder_artifact"
 	/// This is the type of item that will be inside the boulder. Default is a strange object.
 	var/artifact_type = /obj/item/relic/lavaland
@@ -55,8 +55,8 @@
 
 ///Boulders usually spawned in lavaland labour camp area
 /obj/item/boulder/gulag
-	name = "low-quality boulder"
-	desc = "This rocks. It's a low quality boulder, so it's probably not worth as much."
+	name = "低品质巨岩"
+	desc = "这块石头。它是低品质的巨石，所以可能不值多少钱。"
 
 /obj/item/boulder/gulag/Initialize(mapload)
 	. = ..()
@@ -76,8 +76,8 @@
 
 ///Boulders usually spawned in lavaland labour camp area but with bluespace material
 /obj/item/boulder/gulag_expanded
-	name = "low-density boulder"
-	desc = "This rocks. It's not very well packed, and can't contain as many minerals."
+	name = "低密度巨石"
+	desc = "这块石头。它包装得不是很好，无法容纳那么多矿物。"
 
 /obj/item/boulder/gulag_expanded/Initialize(mapload)
 	. = ..()
@@ -97,8 +97,8 @@
 
 ///lowgrade boulder, Exists as an admin spawn for testing
 /obj/item/boulder/shabby
-	name = "shabby boulder"
-	desc = "A bizarre, twisted boulder. Wait, wait no, it's just a rock."
+	name = "破旧巨石"
+	desc = "一块形状怪异扭曲的巨石。等等，不对，它只是块普通的石头。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.1, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.1)
 	durability = 1
 

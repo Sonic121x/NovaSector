@@ -4,8 +4,8 @@
 #define BLUESPACE_MINER_TOO_CLOSE (1<<3)
 
 /obj/machinery/bluespace_miner
-	name = "bluespace miner"
-	desc = "Through the power of bluespace, it is capable of producing materials."
+	name = "蓝空矿机"
+	desc = "借助蓝空的力量，它能够生产材料。"
 	icon = 'modular_nova/modules/bluespace_miner/icons/bluespace_miner.dmi'
 	icon_state = "miner"
 
@@ -84,22 +84,22 @@
 /obj/machinery/bluespace_miner/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning("The safeties are turned off!")
+		. += span_warning("安全装置已关闭！")
 
 	// We don't need to run any more checks if this is functioning. Genuinely the old code is terrible
 	if(mining_stat)
 		if(mining_stat & BLUESPACE_MINER_TOO_CLOSE)
-			. += span_warning("[src] is in a suboptimal environment: TOO CLOSE TO ANOTHER BLUESPACE MINER")
+			. += span_warning("[src] 处于次优环境：距离另一台蓝空矿机太近")
 			return . // This needs relocation to fix so we won't bother with the rest
 
 		if(mining_stat & BLUESPACE_MINER_TOO_HOT)
-			. += span_warning("[src] is in a suboptimal environment: " + span_boldwarning("TEMPERATURE TOO HIGH!"))
+			. += span_warning("[src] 处于次优环境：" + span_boldwarning("温度过高！"))
 
 		if(mining_stat & BLUESPACE_MINER_LOW_PRESSURE)
-			. += span_warning("[src] is in a suboptimal environment: " + span_boldwarning("PRESSURE TOO LOW!"))
+			. += span_warning("[src] 处于次优环境：" + span_boldwarning("压力过低！"))
 
 		else if(mining_stat & BLUESPACE_MINER_HIGH_PRESSURE)
-			. += span_warning("[src] is in a suboptimal environment: " + span_boldwarning("PRESSURE TOO HIGH!"))
+			. += span_warning("[src] 处于次优环境：" + span_boldwarning("压力过高！"))
 
 
 //we need to make sure we can actually print the ores out
@@ -171,16 +171,16 @@
 	if(focused_item)
 		ore_chance[focused_item] /= 3
 		focused_item = null
-		balloon_alert(user, "removed focus mode")
+		balloon_alert(user, "已移除专注模式")
 		return TRUE
 
-	var/choice = tgui_input_list(user, "Which would you like to triple?", "Focus Mode", ore_chance)
+	var/choice = tgui_input_list(user, "你想要将哪种矿石的产出概率提升至三倍？", "专注模式", ore_chance)
 	if(isnull(choice))
 		return FALSE
 
 	ore_chance[choice] *= 3
 	focused_item = choice
-	balloon_alert(user, "added focus mode")
+	balloon_alert(user, "已添加专注模式")
 	return TRUE
 
 /obj/machinery/bluespace_miner/attack_hand(mob/living/user, list/modifiers)
@@ -216,7 +216,7 @@
 
 /obj/machinery/bluespace_miner/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "already emagged!")
+		balloon_alert(user, "已经破解过了！")
 		return FALSE
 
 	ore_chance += list(/obj/item/stack/sheet/mineral/bananium = 1)
@@ -225,8 +225,8 @@
 	return TRUE
 
 /obj/item/circuitboard/machine/bluespace_miner
-	name = "Bluespace Miner"
-	desc = "The bluespace miner is a machine that, when provided the correct temperature and pressure, will produce materials."
+	name = "蓝空矿机"
+	desc = "蓝空矿机是一种机器，在提供正确的温度和压力时，能够生产材料。"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/bluespace_miner
 	req_components = list(
@@ -239,8 +239,8 @@
 	needs_anchored = TRUE
 
 /datum/supply_pack/engineering/bluespace_miner
-	name = "Bluespace Miner"
-	desc = "Nanotrasen has revolutionized the procuring of materials with bluespace-- featuring the Bluespace Miner!"
+	name = "蓝空矿机"
+	desc = "纳米传讯公司利用蓝空技术革新了材料获取方式——推出了蓝空矿机！"
 	cost = CARGO_CRATE_VALUE * 50 // 10,000
 	contains = list(/obj/item/circuitboard/machine/bluespace_miner)
 	crate_name = "Bluespace Miner Circuitboard Crate"

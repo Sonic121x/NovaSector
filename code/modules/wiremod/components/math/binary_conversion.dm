@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/binary_conversion
 	display_name = "Binary Conversion"
-	desc = "Splits a decimal number into an array of binary digits, or bits, represented as 1 or 0 and often used in boolean or binary operations like AND, OR and XOR."
+	desc = "将一个十进制数拆分成一个由 1 或 0 表示的二进制数字（或位）数组，这种表示方式常用于布尔运算或二进制操作（如与、或和异或）。"
 	category = "Math"
 
 	/// One number

@@ -6,10 +6,10 @@
 
 //Chef
 /obj/item/clothing/head/utility/chefhat
-	name = "chef's hat"
+	name = "主厨帽"
 	inhand_icon_state = "chefhat"
 	icon_state = "chef"
-	desc = "The commander in chef's head wear."
+	desc = "厨师长佩戴的帽子。"
 	strip_delay = 1 SECONDS
 	equip_delay_other = 1 SECONDS
 	dog_fashion = /datum/dog_fashion/head/chef
@@ -23,7 +23,7 @@
 
 /// Admin variant of the chef hat where every mouse pilot input will always be transferred to the wearer
 /obj/item/clothing/head/utility/chefhat/i_am_assuming_direct_control
-	desc = "The commander in chef's head wear. Upon closer inspection, there seem to be dozens of tiny levers, buttons, dials, and screens inside of this hat. What the hell...?"
+	desc = "厨师长的帽子。仔细观察，会发现这顶帽子内部似乎装有数十个微小的操纵杆、按钮、旋钮和屏幕。这到底是……？"
 	mouse_control_probability = 100
 
 /obj/item/clothing/head/utility/chefhat/Initialize(mapload)
@@ -98,8 +98,8 @@
 
 //Captain
 /obj/item/clothing/head/hats/caphat
-	name = "captain's hat"
-	desc = "It's good being the king."
+	name = "舰长帽"
+	desc = "当国王真好。"
 	icon_state = "captain"
 	inhand_icon_state = "that"
 	flags_inv = 0
@@ -119,8 +119,8 @@
 	wound = 5
 
 /obj/item/clothing/head/hats/caphat/parade
-	name = "captain's parade cap"
-	desc = "Worn only by Captains with an abundance of class."
+	name = "舰长检阅帽"
+	desc = "仅由极具风度的舰长佩戴。"
 	icon_state = "capcap"
 	dog_fashion = null
 
@@ -131,8 +131,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/caphat/beret
-	name = "captain's beret"
-	desc = "For the Captains known for their sense of fashion."
+	name = "舰长贝雷帽"
+	desc = "为那些以时尚感著称的船长而设。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/caphat/beret"
 	post_init_icon_state = "beret_badge"
@@ -144,9 +144,9 @@
 
 //Head of Personnel
 /obj/item/clothing/head/hats/hopcap
-	name = "head of personnel's cap"
+	name = "人事部长帽"
 	icon_state = "hopcap"
-	desc = "The symbol of true bureaucratic micromanagement."
+	desc = "真正官僚式微观管理的象征。"
 	armor_type = /datum/armor/hats_hopcap
 	dog_fashion = /datum/dog_fashion/head/hop
 
@@ -161,8 +161,8 @@
 	acid = 50
 
 /obj/item/clothing/head/chaplain/nun_hood
-	name = "nun hood"
-	desc = "Maximum piety in this star system."
+	name = "修女头罩"
+	desc = "这个星系中最高的虔诚。"
 	icon_state = "nun_hood"
 	flags_inv = HIDEHAIR
 	flags_cover = HEADCOVERSEYES
@@ -175,16 +175,16 @@
 	clothing_flags = SNUG_FIT // can't be knocked off by throwing a paper hat.
 
 /obj/item/clothing/head/chaplain/bishopmitre
-	name = "bishop mitre"
-	desc = "An opulent hat that functions as a radio to God. Or as a lightning rod, depending on who you ask."
+	name = "主教帽"
+	desc = "一顶华丽的帽子，能作为通向上帝的收音机。或者作为避雷针，这取决于你问谁。"
 	icon_state = "bishopmitre"
 
 #define CANDY_CD_TIME 2 MINUTES
 
 //Detective
 /obj/item/clothing/head/fedora/det_hat
-	name = "detective's fedora"
-	desc = "There's only one man who can sniff out the dirty stench of crime, and he's likely wearing this hat."
+	name = "侦探软呢帽"
+	desc = "只有一个人能嗅出犯罪的肮脏气息，而他很可能正戴着这顶帽子。"
 	armor_type = /datum/armor/fedora_det_hat
 	icon_state = "detective"
 	interaction_flags_click = NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING
@@ -234,7 +234,7 @@
 
 	var/obj/item/food/candy_corn/sweets = new /obj/item/food/candy_corn(src)
 	user.put_in_hands(sweets)
-	to_chat(user, span_notice("You slip a candy corn from \the [src]."))
+	to_chat(user, span_notice("你从\the [src]里抽出一颗糖果玉米。"))
 	COOLDOWN_START(src, candy_cooldown, CANDY_CD_TIME)
 
 	return CLICK_ACTION_SUCCESS
@@ -301,7 +301,7 @@
 /obj/item/clothing/head/fedora/inspector_hat/examine(mob/user)
 	. = ..()
 	. += span_notice("You can put items inside, and get them out by saying a phrase, or using it in-hand!")
-	. += span_notice("The prefix is <b>[prefix]</b>, and you can change it with alt-click!\n")
+	. += span_notice("前缀是<b>[prefix]</b>，你可以用Alt+点击来更改它！\n")
 	for(var/found_regex in phrases_by_regex)
 		var/found_phrase = phrases_by_regex[found_regex]
 		var/obj/item/found_item = items_by_regex[found_regex]
@@ -323,7 +323,7 @@
 			wearer.visible_message(span_warning("[src] drops [found_item] into the hands of [wearer]!"))
 			. = HEAR_HEARD | HEAR_UNDERSTOOD
 		else
-			balloon_alert(wearer, "can't put in hands!")
+			balloon_alert(wearer, "无法放入手中！")
 			break
 
 	return .
@@ -332,13 +332,13 @@
 	. = ..()
 
 	if(LAZYLEN(contents) >= max_items)
-		balloon_alert(user, "full!")
+		balloon_alert(user, "满了！")
 		return
 	if(item.w_class > max_weight)
-		balloon_alert(user, "too big!")
+		balloon_alert(user, "太大了！")
 		return
 
-	var/desired_phrase = tgui_input_text(user, "What is the activation phrase?", "Activation phrase", "gadget", max_length = 26)
+	var/desired_phrase = tgui_input_text(user, "激活口令是什么？", "激活口令", "gadget", max_length = 26)
 	if(!desired_phrase || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 
@@ -358,13 +358,13 @@
 	var/list/found_items = list()
 	for(var/found_regex in items_by_regex)
 		found_items += items_by_regex[found_regex]
-	var/obj/found_item = tgui_input_list(user, "What item do you want to remove?", "Item Removal", found_items)
+	var/obj/found_item = tgui_input_list(user, "你想移除哪个物品？", "物品移除", found_items)
 	if(!found_item || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return CLICK_ACTION_BLOCKING
 	user.put_in_inactive_hand(found_item)
 
 /obj/item/clothing/head/fedora/inspector_hat/click_alt(mob/user)
-	var/new_prefix = tgui_input_text(user, "What should be the new prefix?", "Activation prefix", prefix, max_length = 24)
+	var/new_prefix = tgui_input_text(user, "新的前缀应该是什么？", "激活前缀", prefix, max_length = 24)
 	if(!new_prefix || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return CLICK_ACTION_BLOCKING
 	set_prefix(new_prefix)
@@ -397,8 +397,8 @@
 
 //Mime
 /obj/item/clothing/head/beret
-	name = "beret"
-	desc = "A beret, a mime's favorite headwear."
+	name = "贝雷帽"
+	desc = "贝雷帽，默剧演员最青睐的帽子。"
 	dog_fashion = /datum/dog_fashion/head/beret
 	icon = 'icons/map_icons/clothing/head/beret.dmi'
 	icon_state = "/obj/item/clothing/head/beret"
@@ -418,7 +418,7 @@
 	strip_delay = 8 SECONDS
 
 /obj/item/clothing/head/hats/hos/cap
-	name = "head of security cap"
+	name = "安保部长帽"
 	desc = "The robust standard-issue cap of the Head of Security. For showing the officers who's in charge. Looks a bit stout."
 	icon_state = "hoscap"
 
@@ -446,8 +446,8 @@
 	wound = 10
 
 /obj/item/clothing/head/hats/hos/cap/syndicate
-	name = "syndicate cap"
-	desc = "A black cap fit for a high ranking syndicate officer."
+	name = "辛迪加帽"
+	desc = "一顶专为辛迪加高级军官设计的黑色军帽。"
 
 /obj/item/clothing/head/hats/hos/shako
 	name = "sturdy shako"
@@ -459,8 +459,8 @@
 	custom_materials = list(/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 2, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/clothing/head/hats/hos/beret
-	name = "head of security's beret"
-	desc = "A robust beret for the Head of Security, for looking stylish while not sacrificing protection."
+	name = "安保部长贝雷帽"
+	desc = "强健的安保部长必备的贝雷帽，时尚的同时兼备防护性。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/hats/hos/beret"
 	post_init_icon_state = "beret_badge"
@@ -470,18 +470,18 @@
 	hair_mask = /datum/hair_mask/standard_hat_middle
 
 /obj/item/clothing/head/hats/hos/beret/navyhos
-	name = "head of security's formal beret"
-	desc = "A special beret with the Head of Security's insignia emblazoned on it. A symbol of excellence, a badge of courage, a mark of distinction."
+	name = "安保部长的正装贝雷帽"
+	desc = "一顶特殊的贝雷帽，上面印着安保部长的徽章。是卓越的象征，是勇气的标志，当然也是尊贵的标志。"
 	icon_state = "/obj/item/clothing/head/hats/hos/beret/navyhos"
 	greyscale_colors = "#638799#f0cc8f"
 
 /obj/item/clothing/head/hats/hos/beret/syndicate
-	name = "syndicate beret"
-	desc = "A black beret with thick armor padding inside. Stylish and robust."
+	name = "辛迪加贝雷帽"
+	desc = "一顶黑色贝雷帽，里面有厚厚的护甲。时尚而强健。"
 
 /obj/item/clothing/head/hats/warden
-	name = "warden's police hat"
-	desc = "It's a special armored hat issued to the Warden of a security force. Protects the head from impacts."
+	name = "典狱长警帽"
+	desc = "这是一种特殊的装甲帽子，配给安保部的典狱长。能够保护头部免受撞击伤害。"
 	icon_state = "policehelm"
 	armor_type = /datum/armor/hats_warden
 	strip_delay = 6 SECONDS
@@ -498,18 +498,18 @@
 	wound = 5
 
 /obj/item/clothing/head/hats/warden/police
-	name = "police officer's hat"
-	desc = "A police officer's hat. This hat emphasizes that you are THE LAW."
+	name = "警官帽"
+	desc = "一顶警官帽。这顶帽子象征着你就是法律。"
 
 /obj/item/clothing/head/hats/warden/red
-	name = "warden's hat"
-	desc = "A warden's red hat. Looking at it gives you the feeling of wanting to keep people in cells for as long as possible."
+	name = "典狱长的帽子"
+	desc = "一顶典狱长的红帽子。看着它，你会有一种想要尽可能长时间地把人关在牢房里的感觉。"
 	icon_state = "wardenhat"
 	dog_fashion = /datum/dog_fashion/head/warden_red
 
 /obj/item/clothing/head/hats/warden/drill
-	name = "warden's campaign hat"
-	desc = "A special armored campaign hat with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	name = "典狱长竞选帽"
+	desc = "一顶印有安全标志的特种战斗帽。采用加固织物，能够提供足够的保护。"
 	icon_state = "wardendrill"
 	inhand_icon_state = null
 	dog_fashion = null
@@ -577,8 +577,8 @@
 		speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/clothing/head/beret/sec
-	name = "security beret"
-	desc = "A robust beret with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	name = "安保人员贝雷帽"
+	desc = "一顶饰有安全标志的强健贝雷帽。采用加固织物，能够提供足够的保护。"
 	icon_state = "/obj/item/clothing/head/beret/sec"
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
@@ -600,7 +600,7 @@
 	wound = 5
 
 /obj/item/clothing/head/beret/sec/navywarden
-	name = "warden's beret"
+	name = "典狱长贝雷帽"
 	desc = "A special beret with the Warden's insignia emblazoned on it. For wardens with class."
 	icon_state = "/obj/item/clothing/head/beret/sec/navywarden"
 	greyscale_colors = "#638799#ebebeb"
@@ -613,8 +613,8 @@
 
 //Science
 /obj/item/clothing/head/beret/science
-	name = "science beret"
-	desc = "A science-themed beret for our hardworking scientists."
+	name = "科研贝雷帽"
+	desc = "为我们辛勤工作的科学家准备的科学主题贝雷帽。"
 	icon_state = "/obj/item/clothing/head/beret/science"
 	greyscale_colors = "#8D008F"
 	flags_1 = NONE
@@ -629,28 +629,28 @@
 
 //Medical
 /obj/item/clothing/head/beret/medical
-	name = "medical beret"
-	desc = "A medical-flavored beret for the doctor in you!"
+	name = "医疗贝雷帽"
+	desc = "一顶医用雷帽，唤醒你心中的白衣天使！"
 	icon_state = "/obj/item/clothing/head/beret/medical"
 	greyscale_colors = COLOR_WHITE
 	flags_1 = NONE
 
 /obj/item/clothing/head/beret/medical/paramedic
-	name = "paramedic beret"
-	desc = "For finding corpses in style!"
+	name = "急救员贝雷帽"
+	desc = "能找到很有格调的尸体！"
 	icon_state = "/obj/item/clothing/head/beret/medical/paramedic"
 	greyscale_colors = "#16313D"
 
 /obj/item/clothing/head/beret/medical/cmo
-	name = "chief medical officer beret"
-	desc = "A beret in a distinct surgical turquoise!"
+	name = "医疗部长贝雷帽"
+	desc = "一顶绿松石色的贝雷帽！"
 	icon_state = "/obj/item/clothing/head/beret/medical/cmo"
 	greyscale_colors = "#5EB8B8"
 
 /obj/item/clothing/head/utility/surgerycap
-	name = "blue surgery cap"
+	name = "蓝手术帽"
 	icon_state = "surgicalcap"
-	desc = "A blue medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
+	desc = "一项蓝色的医用外科手术帽，用以防止外科医生的头发掉进患者体内！"
 	flags_inv = HIDEHAIR //Cover your head doctor!
 	w_class = WEIGHT_CLASS_SMALL //surgery cap can be easily crumpled
 	pickup_sound = SFX_CLOTH_PICKUP
@@ -665,31 +665,31 @@
 	. = ..()
 	if(.)
 		return
-	balloon_alert(user, "[flags_inv & HIDEHAIR ? "loosening" : "tightening"] strings...")
+	balloon_alert(user, "气球提示(user, \"[flags_inv & HIDEHAIR ? "loosening" : "tightening"] 系带...\")")
 	if(!do_after(user, 3 SECONDS, src))
 		return
 	flags_inv ^= HIDEHAIR
-	balloon_alert(user, "[flags_inv & HIDEHAIR ? "tightened" : "loosened "] strings")
+	balloon_alert(user, "气球提示(user, \"[flags_inv & HIDEHAIR ? "tightened" : "loosened "] 系带\")")
 	return TRUE
 
 /obj/item/clothing/head/utility/surgerycap/examine(mob/user)
 	. = ..()
-	. += span_notice("Use in hand to [flags_inv & HIDEHAIR ? "loosen" : "tighten"] the strings.")
+	. += span_notice("拿在手上使用可以[flags_inv & HIDEHAIR ? "loosen" : "tighten"]系带。")
 
 /obj/item/clothing/head/utility/surgerycap/purple
-	name = "burgundy surgery cap"
+	name = "暗红手术帽"
 	icon_state = "surgicalcapwine"
-	desc = "A burgundy medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
+	desc = "一项深红色的医用外科手术帽，用以防止外科医生的头发掉进患者体内！"
 
 /obj/item/clothing/head/utility/surgerycap/green
-	name = "green surgery cap"
+	name = "绿手术帽"
 	icon_state = "surgicalcapgreen"
-	desc = "A green medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
+	desc = "一项绿色的医用外科手术帽，用以防止外科医生的头发掉进患者体内！"
 
 /obj/item/clothing/head/utility/surgerycap/cmo
-	name = "turquoise surgery cap"
+	name = "青色手术帽"
 	icon_state = "surgicalcapcmo"
-	desc = "The CMO's medical surgery cap to prevent their hair from entering the insides of the patient!"
+	desc = "首席医疗官的医用外科手术帽，用以防止其头发掉进患者体内！"
 
 /obj/item/clothing/head/utility/surgerycap/black
 	name = "black surgery cap"
@@ -782,29 +782,29 @@
 
 //Engineering
 /obj/item/clothing/head/beret/engi
-	name = "engineering beret"
-	desc = "Might not protect you from radiation, but definitely will protect you from looking unfashionable!"
+	name = "工程师贝雷帽"
+	desc = "可能不能保护你免受辐射，但绝对可以让你看着时髦！"
 	icon_state = "/obj/item/clothing/head/beret/engi"
 	greyscale_colors = "#FFBC30"
 	flags_1 = NONE
 
 //Cargo
 /obj/item/clothing/head/beret/cargo
-	name = "cargo beret"
-	desc = "No need to compensate when you can wear this beret!"
+	name = "货舱贝雷帽"
+	desc = "当你能戴上这顶贝雷帽时，什么东西都不用赔！"
 	icon_state = "/obj/item/clothing/head/beret/cargo"
 	greyscale_colors = "#b7723d"
 	flags_1 = NONE
 
 //Curator
 /obj/item/clothing/head/fedora/curator
-	name = "treasure hunter's fedora"
-	desc = "You got red text today kid, but it doesn't mean you have to like it."
+	name = "赏金猎人软呢帽"
+	desc = "你今天收到了“失败”，孩子，但这并不意味着你必须喜欢它。"
 	icon_state = "curator"
 
 /obj/item/clothing/head/beret/durathread
-	name = "durathread beret"
-	desc = "A beret made from durathread, its resilient fibers provide some protection to the wearer."
+	name = "杜拉棉贝雷帽"
+	desc = "贝雷帽由杜拉棉制成，其弹性纤维为佩戴者提供一定的保护。"
 	icon_state = "/obj/item/clothing/head/beret/durathread"
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
@@ -832,8 +832,8 @@
 
 //CentCom
 /obj/item/clothing/head/beret/centcom_formal
-	name = "\improper CentCom Formal Beret"
-	desc = "Sometimes, a compromise between fashion and defense needs to be made. Thanks to Nanotrasen's most recent nano-fabric durability enhancements, this time, it's not the case."
+	name = "\improper 中央指挥部正式贝雷帽"
+	desc = "有时，时尚与防护之间需要找到一个平衡点。但得益于纳米传讯公司最新的纳米织物耐用性改进技术，这一次情况并非如此。"
 	icon_state = "/obj/item/clothing/head/beret/centcom_formal"
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge

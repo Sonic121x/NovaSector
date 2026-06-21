@@ -14,9 +14,9 @@
 	target_layer = 4
 
 /obj/machinery/meter/monitored/waste_loop
-	name = "waste loop gas flow meter"
+	name = "废气循环流量计"
 	chamber_id = ATMOS_GAS_MONITOR_WASTE
 
 /obj/machinery/meter/monitored/distro_loop
-	name = "distribution loop gas flow meter"
+	name = "供应回路气体流量计"
 	chamber_id = ATMOS_GAS_MONITOR_DISTRO

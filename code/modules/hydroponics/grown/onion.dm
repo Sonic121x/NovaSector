@@ -1,6 +1,6 @@
 /obj/item/seeds/onion
-	name = "onion seed pack"
-	desc = "These seeds grow into onions."
+	name = "洋葱种子包"
+	desc = "能长成洋葱的种子。"
 	icon_state = "seed-onion"
 	species = "onion"
 	plantname = "Onion Sprouts"
@@ -19,8 +19,8 @@
 
 /obj/item/food/grown/onion
 	seed = /obj/item/seeds/onion
-	name = "onion"
-	desc = "Nothing to cry over."
+	name = "洋葱"
+	desc = "没什么好哭的。"
 	icon_state = "onion"
 	tastes = list("onions" = 1)
 	wine_power = 30
@@ -30,8 +30,8 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/onion_slice, 2, 15, screentip_verb = "Cut")
 
 /obj/item/seeds/onion/red
-	name = "red onion seed pack"
-	desc = "For growing exceptionally potent onions."
+	name = "红洋葱种子包"
+	desc = "种出了特别厉害的洋葱。"
 	icon_state = "seed-onionred"
 	species = "onion_red"
 	plantname = "Red Onion Sprouts"
@@ -41,8 +41,8 @@
 
 /obj/item/food/grown/onion/red
 	seed = /obj/item/seeds/onion/red
-	name = "red onion"
-	desc = "Purple despite the name."
+	name = "红洋葱"
+	desc = "尽管名字叫红洋葱，但实际上却是紫色的。"
 	icon_state = "onion_red"
 	wine_power = 60
 
@@ -55,8 +55,8 @@
 	return ..()
 
 /obj/item/food/onion_slice
-	name = "onion slice"
-	desc = "Ring, not for wearing."
+	name = "洋葱片"
+	desc = "环状物，非佩戴用。"
 	icon_state = "onionslice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
 	w_class = WEIGHT_CLASS_TINY
@@ -69,7 +69,7 @@
 	AddElement(/datum/element/microwavable, /obj/item/food/onionrings)
 
 /obj/item/food/onion_slice/red
-	name = "red onion slice"
-	desc = "It shines like an exceptionally low quality amethyst."
+	name = "红洋葱片"
+	desc = "它像一颗品质极低的紫水晶一样闪耀。"
 	icon_state = "onionslice_red"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/tearjuice = 2.5)

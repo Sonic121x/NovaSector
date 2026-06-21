@@ -1,6 +1,6 @@
 /obj/structure/window/fulltile/colony_fabricator
-	name = "prefabricated window"
-	desc = "A conservatively built metal frame with a thick sheet of space-grade glass slotted into it."
+	name = "预制窗户"
+	desc = "一个保守建造的金属框架，里面镶嵌着一块厚厚的太空级玻璃板。"
 	icon = 'modular_nova/modules/colony_fabricator/icons/prefab_window.dmi'
 	icon_state = "prefab-0"
 	base_icon_state = "prefab"
@@ -17,18 +17,18 @@
 		return
 	var/obj/item/stack/stack_in_question = attacking_item
 	if(stack_in_question.get_amount() < 1)
-		to_chat(user, span_warning("You need at least one plastic panel for that!"))
+		to_chat(user, span_warning("你至少需要一块塑料面板才能那样做！"))
 		return
 	var/dir_to_set = SOUTHWEST
 	if(!anchored)
-		to_chat(user, span_warning("[src] needs to be fastened to the floor first!"))
+		to_chat(user, span_warning("[src]需要先固定在地板上！"))
 		return
 	for(var/obj/structure/window/window_on_turf in loc)
-		to_chat(user, span_warning("There is already a window there!"))
+		to_chat(user, span_warning("那里已经有一扇窗户了！"))
 		return
 	if(!clear_tile(user))
 		return
-	to_chat(user, span_notice("You start placing the window..."))
+	to_chat(user, span_notice("你开始安装窗户..."))
 	if(!do_after(user, 1 SECONDS, target = src))
 		return
 	if(!src.loc || !anchored) //Grille broken or unanchored while waiting
@@ -41,4 +41,4 @@
 	new_window.setDir(dir_to_set)
 	new_window.state = 0
 	stack_in_question.use(1)
-	to_chat(user, span_notice("You place [new_window] on [src]."))
+	to_chat(user, span_notice("你将[new_window]安装到[src]上。"))

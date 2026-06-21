@@ -1,6 +1,6 @@
 /datum/scripture/create_structure/tinkerers_cache
-	name = "Tinkerer's Cache"
-	desc = "Creates a tinkerer's cache, a powerful forge capable of crafting elite equipment."
+	name = "工匠储藏库"
+	desc = "创造一个工匠储藏库，一个能够锻造精英装备的强大熔炉。"
 	tip = "Use the cache to create more powerful equipment at the cost of power and time."
 	button_icon_state = "Tinkerer's Cache"
 	power_cost = 700

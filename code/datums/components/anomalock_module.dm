@@ -48,7 +48,7 @@
 /datum/component/anomaly_locked_module/proc/on_module_triggered(obj/item/mod/module/source, mob/living/wearer)
 	SIGNAL_HANDLER
 	if(!core)
-		source.balloon_alert(wearer, "no core!")
+		source.balloon_alert(wearer, "没有核心！")
 		return MOD_ABORT_USE
 
 /datum/component/anomaly_locked_module/proc/on_item_interact(obj/item/mod/module/source, mob/living/user, obj/item/tool, list/modifiers)
@@ -56,7 +56,7 @@
 	if(!is_type_in_typecache(tool, accepted_anomalies))
 		return 0
 	if(core)
-		source.balloon_alert(user, "already has core!")
+		source.balloon_alert(user, "已有核心！")
 		return ITEM_INTERACT_FAILURE
 	if(pre_insert_callback)
 		var/callback_return
@@ -73,7 +73,7 @@
 	if(!user.transferItemToLoc(tool, source))
 		return ITEM_INTERACT_FAILURE
 	core = tool
-	source.balloon_alert(user, "core inserted")
+	source.balloon_alert(user, "核心已插入")
 	playsound(source, 'sound/machines/click.ogg', 30, TRUE)
 	source.update_appearance(UPDATE_ICON_STATE)
 	if(core_insert_callback)
@@ -87,18 +87,18 @@
 /datum/component/anomaly_locked_module/proc/on_screwdriver_act(obj/item/mod/module/source, mob/living/user, obj/item/tool)
 	SIGNAL_HANDLER
 	if(!core)
-		source.balloon_alert(user, "no core!")
+		source.balloon_alert(user, "没有核心！")
 		return ITEM_INTERACT_FAILURE
 	if(!core_removable)
-		source.balloon_alert(user, "cannot remove core!")
+		source.balloon_alert(user, "无法移除核心！")
 	INVOKE_ASYNC(src, PROC_REF(try_remove_core), source, user, tool)
 	return ITEM_INTERACT_SUCCESS
 
 /datum/component/anomaly_locked_module/proc/try_remove_core(obj/item/mod/module/source, mob/living/user, obj/item/tool)
 	if(!do_after(user, 3 SECONDS, source))
-		source.balloon_alert(user, "interrupted!")
+		source.balloon_alert(user, "被打断了！")
 		return
-	source.balloon_alert(user, "core removed")
+	source.balloon_alert(user, "核心已移除")
 	core.forceMove(source.drop_location())
 	if(source.Adjacent(user) && !issilicon(user))
 		user.put_in_hands(core)
@@ -116,14 +116,14 @@
 	if(!length(accepted_anomalies))
 		return
 	if(core)
-		examine_list += span_notice("There is a [core.name] installed in it. [core_removable ? "You could remove it with a <b>screwdriver</b>..." : "Unfortunately, due to a design quirk, it's unremovable."]")
+		examine_list += span_notice("里面安装了一个[core.name]。[core_removable ? "You could remove it with a <b>screwdriver</b>..." : "Unfortunately, due to a design quirk, it's unremovable."]")
 		return
 	var/list/core_list = list()
 	for(var/atom/core_path as anything in accepted_anomalies)
 		core_list += initial(core_path.name)
-	examine_list += span_notice("You need to insert \a [english_list(core_list, and_text = " or ")] for this module to function.")
+	examine_list += span_notice("你需要插入\a [english_list(core_list, and_text = " or ")]才能使这个模块运作。")
 	if(!core_removable)
-		examine_list += span_notice("Due to some design quirk, once a core is inserted, it won't be removable.")
+		examine_list += span_notice("由于某些设计缺陷，一旦核心被插入，就无法移除。")
 
 /datum/component/anomaly_locked_module/proc/on_update_icon_state(obj/item/mod/module/source)
 	SIGNAL_HANDLER

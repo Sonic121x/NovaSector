@@ -5,8 +5,8 @@
 	no_corpse = TRUE
 
 /mob/living/basic/zombie/cheesezombie
-	name = "Cheese Zombie"
-	desc = "Oh God it stinks!!"
+	name = "奶酪僵尸"
+	desc = "哦天哪，臭死了！！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "cheesezomb"
 	icon_living = "cheesezomb"

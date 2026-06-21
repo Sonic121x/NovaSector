@@ -35,8 +35,8 @@
 
 /turf/open/misc/asteroid/snow/indestructible
 	gender = PLURAL
-	name = "snow"
-	desc = "Pretty snow! It's not too cold."
+	name = "雪"
+	desc = "漂亮的雪！不算太冷。"
 	baseturfs = /turf/open/misc/asteroid/snow/indestructible
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	slowdown = 1
@@ -83,7 +83,7 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/random/asteroid/rockplanet	//A version that can be used on the mining planet without destroying atmos - starts with Low_Pressure, along with the rest of the planet.
-	name = "iron rock"
+	name = "铁矿石"
 	icon = MAP_SWITCH('icons/turf/walls/red_rock.dmi', 'icons/turf/mining.dmi')
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "red_rock"

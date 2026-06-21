@@ -3,9 +3,9 @@
  * Usually either obtained in magical form by a wizard, or technological form by a traitor. Sometimes found by miners.
  */
 /mob/living/basic/guardian
-	name = "Guardian Spirit"
+	name = "守护灵"
 	real_name = "Guardian Spirit"
-	desc = "A mysterious being that stands by its charge, ever vigilant."
+	desc = "一个神秘的存在，守护在其主人身边，时刻保持警惕。"
 	icon = 'icons/mob/nonhuman-player/guardian.dmi'
 	icon_state = "magicbase"
 	icon_living = "magicbase"
@@ -66,7 +66,7 @@
 	/// How are we themed?
 	var/datum/guardian_fluff/theme
 	/// A string explaining to the guardian what they can do.
-	var/playstyle_string = span_boldholoparasite("You are a Guardian without any type. You shouldn't exist and are an affront to god!")
+	var/playstyle_string = span_boldholoparasite("你是一个没有类型的守护灵。你不应该存在，是对神明的亵渎！")
 
 	/// Are we forced to not be able to manifest/recall?
 	var/locked = FALSE
@@ -130,12 +130,12 @@
 	if (!. || isnull(client))
 		return FALSE
 	if (isnull(summoner))
-		to_chat(src, span_boldholoparasite("For some reason, somehow, you have no summoner. Please report this bug immediately."))
+		to_chat(src, span_boldholoparasite("出于某种原因，不知何故，你没有召唤者。请立即报告此错误。"))
 		stack_trace("Guardian created with client but no summoner.")
 	else
-		to_chat(src, span_holoparasite("You are a <b>[theme.name]</b>, bound to serve [summoner.real_name]."))
-		to_chat(src, span_holoparasite("You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.p_them()] privately there."))
-		to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself."))
+		to_chat(src, span_holoparasite("你是一个<b>[theme.name]</b>，被束缚以侍奉[summoner.real_name]。"))
+		to_chat(src, span_holoparasite("你能够通过HUD上的按钮显形或召回至你的主人处。你还会在那里找到一个与[summoner.p_them()]私下交流的按钮。"))
+		to_chat(src, span_holoparasite("虽然你个人是无敌的，但如果[summoner.real_name]死亡，你也会死去，并且对你造成的任何伤害都会有一部分传递给[summoner.p_them()]，因为你依靠汲取[summoner.p_them()]来维持自身。"))
 	to_chat(src, playstyle_string)
 	if (!isnull(guardian_colour))
 		return // Already set up so we don't need to do it again
@@ -147,7 +147,7 @@
 /mob/living/basic/guardian/mind_initialize()
 	. = ..()
 	if (isnull(summoner))
-		to_chat(src, span_boldholoparasite("For some reason, somehow, you have no summoner. Please report this bug immediately."))
+		to_chat(src, span_boldholoparasite("出于某种原因，不知何故，你没有召唤者。请立即报告此错误。"))
 		return
 	mind.enslave_mind_to_creator(summoner) // Once our mind is created, we become enslaved to our summoner. cant be done in the first run of set_summoner, because by then we dont have a mind yet.
 
@@ -157,7 +157,7 @@
 		return
 	var/chosen_guardian_colour = tgui_color_picker(src, "What would you like your colour to be?", "Choose Your Colour", COLOR_WHITE)
 	if (isnull(chosen_guardian_colour)) //redo proc until we get a color
-		to_chat(src, span_warning("Invalid colour, please try again."))
+		to_chat(src, span_warning("无效的颜色，请重试。"))
 		return guardian_recolour()
 	set_guardian_colour(chosen_guardian_colour)
 
@@ -172,11 +172,11 @@
 	if (isnull(client))
 		return
 
-	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "What would you like your name to be?", "Choose Your Name", generate_random_name(), MAX_NAME_LEN)))
+	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "你希望自己的名字是什么？", "选择你的名字", generate_random_name(), MAX_NAME_LEN)))
 	if (!new_name) //redo proc until we get a good name
-		to_chat(src, span_warning("Invalid name, please try again."))
+		to_chat(src, span_warning("无效的名称，请重试。"))
 		return guardian_rename()
-	to_chat(src, span_notice("Your new name [span_name(new_name)] anchors itself in your mind."))
+	to_chat(src, span_notice("你的新名字[span_name(new_name)]已深深烙印在你的脑海中。"))
 	fully_replace_character_name(null, new_name)
 
 /// Picks a random name as a suggestion
@@ -192,13 +192,13 @@
 
 /mob/living/basic/guardian/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	if (!is_deployed())
-		balloon_alert(src, "not tangible!")
+		balloon_alert(src, "没有实体！")
 		return FALSE
 	return ..()
 
 /mob/living/basic/guardian/death(gibbed)
 	if (!QDELETED(summoner))
-		to_chat(summoner, span_bolddanger("Your [name] died somehow!"))
+		to_chat(summoner, span_bolddanger("你的[name]不知怎么死了！"))
 		summoner.dust()
 	return ..()
 
@@ -300,26 +300,26 @@
 	cut_summoner()
 	if (!isnull(former_owner.loc))
 		forceMove(former_owner.loc)
-	to_chat(src, span_danger("Your summoner has died!"))
-	visible_message(span_bolddanger("\The [src] dies along with its user!"))
-	former_owner.visible_message(span_bolddanger("[former_owner]'s body is completely consumed by the strain of sustaining [src]!"))
+	to_chat(src, span_danger("你的召唤者已死亡！"))
+	visible_message(span_bolddanger("\The [src] 与其使用者一同死亡！"))
+	former_owner.visible_message(span_bolddanger("[former_owner]的身体因维持[src]的负担而被完全消耗！"))
 	former_owner.dust(drop_items = TRUE)
 
 /// Called when our health changes, inform our owner of why they are getting hurt (if they are)
 /mob/living/basic/guardian/proc/on_harm(mob/living/source, mob/living/summoner, amount)
 	if (QDELETED(src) || QDELETED(summoner) || amount <= 2)
 		return
-	to_chat(summoner, span_bolddanger("[name] is under attack! You take damage!"))
-	summoner.visible_message(span_bolddanger("Blood sprays from [summoner] as [src] takes damage!"))
+	to_chat(summoner, span_bolddanger("[name]正遭受攻击！你受到了伤害！"))
+	summoner.visible_message(span_bolddanger("当[src]受到伤害时，鲜血从[summoner]身上喷溅而出！"))
 	if(summoner.stat == UNCONSCIOUS || summoner.stat == HARD_CRIT)
-		to_chat(summoner, span_bolddanger("Your head pounds, you can't take the strain of sustaining [src] in this condition!"))
+		to_chat(summoner, span_bolddanger("你的头部剧痛，在这种状态下你无法承受维持[src]的负担！"))
 		summoner.adjust_organ_loss(ORGAN_SLOT_BRAIN, amount * 0.5)
 
 /// When our owner is deleted, we go too.
 /mob/living/basic/guardian/proc/on_summoner_deletion(mob/living/source)
 	SIGNAL_HANDLER
 	cut_summoner()
-	to_chat(src, span_danger("Your summoner is gone, you feel yourself fading!"))
+	to_chat(src, span_danger("你的召唤者消失了，你感到自己正在消散！"))
 	ghostize(FALSE)
 	qdel(src)
 
@@ -327,22 +327,22 @@
 /mob/living/basic/guardian/proc/on_summoner_wabbajacked(mob/living/source, mob/living/new_mob)
 	SIGNAL_HANDLER
 	set_summoner(new_mob)
-	to_chat(src, span_holoparasite("Your summoner has changed form!"))
+	to_chat(src, span_holoparasite("你的召唤者改变了形态！"))
 
 /// Signal proc for [COMSIG_LIVING_SHAPESHIFTED], when our summoner is shapeshifted we should change to the new mob
 /mob/living/basic/guardian/proc/on_summoner_shapeshifted(mob/living/source, mob/living/new_shape)
 	SIGNAL_HANDLER
 	set_summoner(new_shape)
-	to_chat(src, span_holoparasite("Your summoner has shapeshifted into that of a [new_shape]!"))
+	to_chat(src, span_holoparasite("你的召唤者已变形为[new_shape]的形态！"))
 
 /// Signal proc for [COMSIG_LIVING_UNSHAPESHIFTED], when our summoner unshapeshifts go back to that mob
 /mob/living/basic/guardian/proc/on_summoner_unshapeshifted(mob/living/source, mob/living/old_summoner)
 	SIGNAL_HANDLER
 	set_summoner(old_summoner)
-	to_chat(src, span_holoparasite("Your summoner has shapeshifted back into their normal form!"))
+	to_chat(src, span_holoparasite("你的召唤者已变回其正常形态！"))
 
 /mob/living/basic/guardian/wabbajack(what_to_randomize, change_flags = WABBAJACK)
-	visible_message(span_warning("[src] resists the polymorph!")) // Ha, no
+	visible_message(span_warning("[src]抵抗了变形效果！")) // Ha, no
 
 /mob/living/basic/guardian/can_suicide()
 	return FALSE // You gotta persuade your boss to end it instead, sorry

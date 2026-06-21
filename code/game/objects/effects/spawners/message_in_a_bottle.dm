@@ -1,6 +1,6 @@
 /obj/effect/spawner/message_in_a_bottle
-	name = "message in a bottle"
-	desc = "Sending out an SOS"
+	name = "瓶中信"
+	desc = "正在发出求救信号"
 	icon = 'icons/effects/random_spawners.dmi'
 	icon_state = "message_bottle"
 	var/probability = 100

@@ -1,6 +1,6 @@
 /datum/wound/blunt/robotic/moderate
-	name = "Loosened Screws"
-	desc = "Various semi-external fastening instruments have loosened, causing components to jostle, inhibiting limb control."
+	name = "螺丝松动"
+	desc = "多种半外部紧固装置已松动，导致组件晃动，抑制了肢体控制。"
 	treat_text_short = "Use a screwdriver on the affected limb, use gauze to reduce negative effects."
 	treat_text = "Recommend topical re-fastening of instruments with a screwdriver, though percussive maintenance via low-force bludgeoning may suffice - \
 	albeit at risk of worsening the injury."
@@ -54,13 +54,13 @@
 
 	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
 	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	victim.visible_message(span_notice("[user] begins fastening the screws of [their_or_other] [limb.plaintext_zone]..."), \
-		span_notice("You begin fastening the screws of [your_or_other] [limb.plaintext_zone]..."))
+	victim.visible_message(span_notice("[user]开始拧紧[their_or_other]的[limb.plaintext_zone]上的螺丝..."), \
+		span_notice("你开始拧紧[your_or_other]的[limb.plaintext_zone]上的螺丝..."))
 
 	if (!screwdriver_tool.use_tool(target = victim, user = user, delay = (6 SECONDS * delay_mult), volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
-	victim.visible_message(span_green("[user] finishes fastening [their_or_other] [limb.plaintext_zone]!"), \
-		span_green("You finish fastening [your_or_other] [limb.plaintext_zone]!"))
+	victim.visible_message(span_green("[user]完成了[their_or_other]的[limb.plaintext_zone]的紧固！"), \
+		span_green("你完成了[your_or_other]的[limb.plaintext_zone]的紧固！"))
 
 	remove_wound()

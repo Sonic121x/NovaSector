@@ -1,6 +1,6 @@
 /mob/living/basic/mushroom
-	name = "walking mushroom"
-	desc = "It's a massive mushroom... with legs?"
+	name = "行走蘑菇"
+	desc = "这是一个巨大的蘑菇……还长着腿？"
 	icon_state = "mushroom_color"
 	icon_living = "mushroom_color"
 	icon_dead = "mushroom_dead"
@@ -103,10 +103,10 @@
 		consume_mushroom(target)
 		return
 	target.faint_ticker++
-	visible_message(span_notice("[src] chews a bit on [target]."))
+	visible_message(span_notice("[src] 轻轻啃了啃 [target]。"))
 
 /mob/living/basic/mushroom/proc/consume_mushroom(mob/living/basic/mushroom/consumed)
-	visible_message(span_warning("[src] devours [consumed]!"))
+	visible_message(span_warning("[src] 吞噬了 [consumed]！"))
 	var/level_gain = (consumed.powerlevel - powerlevel)
 	if(level_gain >= 0 && !ckey && !consumed.bruised)//Player shrooms can't level up to become robust gods.
 		consumed.level_up(level_gain)
@@ -135,7 +135,7 @@
 		add_overlay(cap_living)
 
 /mob/living/basic/mushroom/proc/recover(obj/item/mush_meal)
-	visible_message(span_notice("[src] eats [mush_meal]!"))
+	visible_message(span_notice("[src] 吃掉了 [mush_meal]！"))
 	update_mushroomcap()
 	qdel(mush_meal)
 	if(!COOLDOWN_FINISHED(src, recovery_cooldown))

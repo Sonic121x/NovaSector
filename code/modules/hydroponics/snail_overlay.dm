@@ -2,7 +2,7 @@
 #define SNAIL_MOVEMENT_TIME 10 SECONDS
 
 /obj/effect/overlay/vis_effect/snail
-	name = "snail"
+	name = "蜗牛"
 	vis_flags = VIS_INHERIT_PLANE
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "snail_hydrotray"

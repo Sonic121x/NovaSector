@@ -1,8 +1,8 @@
 #define PROCESSOR_SELECT_RECIPE(movable_input) LAZYACCESS(processor_inputs[type], movable_input.type)
 
 /obj/machinery/processor
-	name = "food processor"
-	desc = "An industrial grinder used to process meat and other foods. Keep hands clear of intake area while operating."
+	name = "食品加工机"
+	desc = "用来加工肉类和其他食物的工业研磨机，操作时保持双手远离进料区。"
 	icon = 'icons/obj/machines/kitchen.dmi'
 	base_icon_state = "processor"
 	icon_state = "processor"
@@ -54,7 +54,7 @@
 /obj/machinery/processor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Outputting <b>[rating_amount]</b> item(s) at <b>[rating_speed*100]%</b> speed.")
+		. += span_notice("状态显示屏显示：正在以<b>[rating_amount]%</b>的速度输出<b>[rating_speed*100]</b>件物品。")
 
 /obj/machinery/processor/Exited(atom/movable/gone, direction)
 	..()
@@ -93,7 +93,7 @@
 
 /obj/machinery/processor/screwdriver_act(mob/living/user, obj/item/tool)
 	if(processing)
-		to_chat(user, span_warning("[src] is in the process of processing!"))
+		to_chat(user, span_warning("[src] 正在处理中！"))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
@@ -124,7 +124,7 @@
 				LAZYADD(processor_contents, content_item)
 				loaded++
 		if(loaded)
-			to_chat(user, span_notice("You insert [loaded] items into [src]."))
+			to_chat(user, span_notice("你将[loaded]件物品放入了[src]。"))
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 
@@ -137,7 +137,7 @@
 		LAZYADD(processor_contents, tool)
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_warning("That probably won't blend!"))
+	to_chat(user, span_warning("那东西可能搅不碎！"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/processor/update_icon_state()
@@ -146,24 +146,24 @@
 
 /obj/machinery/processor/interact(mob/user)
 	if(processing)
-		to_chat(user, span_warning("[src] is in the process of processing!"))
+		to_chat(user, span_warning("[src] 正在处理中！"))
 		return TRUE
 	if(ismob(user.pulling) && PROCESSOR_SELECT_RECIPE(user.pulling))
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, span_warning("You need a better grip to do that!"))
+			to_chat(user, span_warning("你需要抓得更稳才能做到！"))
 			return
 		var/mob/living/pushed_mob = user.pulling
-		visible_message(span_warning("[user] stuffs [pushed_mob] into [src]!"))
+		visible_message(span_warning("[user] 把 [pushed_mob] 塞进了 [src]！"))
 		pushed_mob.forceMove(src)
 		LAZYADD(processor_contents, pushed_mob)
 		user.stop_pulling()
 		return
 	if(!LAZYLEN(processor_contents))
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 		return TRUE
-	user.visible_message(span_notice("[user] turns on [src]."), \
-		span_notice("You turn on [src]."), \
-		span_hear("You hear a food processor."))
+	user.visible_message(span_notice("[user] 启动了 [src]。"), \
+		span_notice("你启动了[src]。"), \
+		span_hear("你听到一台食品加工机的声音。"))
 	processing()
 
 
@@ -191,7 +191,7 @@
 			continue
 		process_food(recipe, content_item)
 	processing = FALSE
-	visible_message(span_notice("\The [src] finishes processing."))
+	visible_message(span_notice("\The [src] 完成了处理。"))
 
 /obj/machinery/processor/verb/eject()
 	set name = "Eject Contents"
@@ -209,17 +209,17 @@
 
 /obj/machinery/processor/container_resist_act(mob/living/user)
 	user.forceMove(drop_location())
-	user.visible_message(span_notice("[user] crawls free of the processor!"))
+	user.visible_message(span_notice("[user] 从处理器里爬了出来！"))
 
 /obj/machinery/processor/slime
-	name = "slime processor"
+	name = "史莱姆处理机"
 	base_icon_state = "processor_slime"
 	icon_state = "processor_slime"
-	desc = "An industrial grinder with a sticker saying appropriated for science department. Keep hands clear of intake area while operating."
+	desc = "一台工业研磨机，上面贴有“专供科学部门使用”的标签。操作时请远离进料区域。"
 	circuit = /obj/item/circuitboard/machine/processor/slime
 
 /obj/machinery/processor/slime/fullupgrade //fully ugpraded stock parts
-	desc = "An industrial grinder with a sticker saying appropiated for bioterrorism department. keep hands clear of intake while operating."
+	desc = "一台工业研磨机，上面贴着一张标签，写着“生物恐怖主义部门专用”。操作时请勿将手靠近进料口。"
 	circuit = /obj/item/circuitboard/machine/processor/slime/fullupgrade
 
 /obj/machinery/processor/slime/Initialize(mapload)
@@ -259,7 +259,7 @@
 			break
 	if(!LAZYLEN(picked_slimes))
 		return
-	visible_message(span_notice("[jointext(picked_slimes, ", ")] [LAZYLEN(picked_slimes) > 1 ? "are" : "is"] sucked into [src]."))
+	visible_message(span_notice("[jointext(picked_slimes, ", ")] [LAZYLEN(picked_slimes) > 1 ? "are" : "is"]被吸入了[src]。"))
 	for(var/mob/living/basic/slime/slime_to_add in picked_slimes)
 		LAZYADD(processor_contents, slime_to_add)
 		slime_to_add.forceMove(src)
@@ -284,7 +284,7 @@
 
 /obj/item/circuit_component/slime_processor
 	display_name = "Slime Processor"
-	desc = "Allows to activate process and get the amount of processor contents."
+	desc = "允许激活处理进程并获取处理器内容物的数量。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	///Activate process

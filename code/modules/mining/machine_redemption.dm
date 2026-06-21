@@ -2,8 +2,8 @@
 //Turns all the various mining machines into a single unit to speed up mining and establish a point system
 
 /obj/machinery/mineral/ore_redemption
-	name = "ore redemption machine"
-	desc = "A machine that accepts ore and instantly transforms it into workable material sheets. Points for ore are generated based on type and can be redeemed at a mining equipment vendor."
+	name = "矿物提炼机"
+	desc = "一种可接收矿石并立即将其转化为可加工的材料的机器，积分点数是根据矿物类型生成的，可以在采矿装备售货机使用。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "ore_redemption"
 	base_icon_state = "ore_redemption"
@@ -77,7 +77,7 @@
 /obj/machinery/mineral/ore_redemption/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_notice("Alt-click to rotate the input and output direction.")
+		. += span_notice("Alt-点击以旋转输入和输出方向。")
 
 
 /obj/machinery/mineral/ore_redemption/proc/silo_redeem_points(obj/machinery/mineral/ore_redemption/machine, container, obj/item/stack/ore/gathered_ore)
@@ -232,7 +232,7 @@
 		return CLICK_ACTION_BLOCKING
 	input_dir = turn(input_dir, -90)
 	output_dir = turn(output_dir, -90)
-	to_chat(user, span_notice("You change [src]'s I/O settings, setting the input to [dir2text(input_dir)] and the output to [dir2text(output_dir)]."))
+	to_chat(user, span_notice("你更改了[src]的I/O设置，将输入方向设为[dir2text(input_dir)]，输出方向设为[dir2text(output_dir)]。"))
 	unregister_input_turf() // someone just rotated the input and output directions, unregister the old turf
 	register_input_turf() // register the new one
 	update_appearance(UPDATE_OVERLAYS)
@@ -337,7 +337,7 @@
 			if(!materials.can_use_resource(user_data = ID_DATA(usr)))
 				return
 			else if(!allowed(usr)) //Check the ID inside, otherwise check the user
-				to_chat(usr, span_warning("Required access not found."))
+				to_chat(usr, span_warning("未找到所需访问权限。"))
 			else
 				var/datum/material/mat = locate(params["id"])
 
@@ -376,7 +376,7 @@
 					output = alloy.create_result(src)
 				unload_mineral(output)
 			else
-				to_chat(usr, span_warning("Required access not found."))
+				to_chat(usr, span_warning("未找到所需访问权限。"))
 			return TRUE
 
 /obj/machinery/mineral/ore_redemption/ex_act(severity, target)

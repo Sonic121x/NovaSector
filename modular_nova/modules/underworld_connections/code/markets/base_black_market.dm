@@ -9,22 +9,22 @@
 	price_max = PAYCHECK_CREW * 3
 
 /datum/market_item/clothing/durathread_vest
-	desc = "Concerns about high asbestos content are completely unfounded. Note: may contain asbestos."
+	desc = "关于高石棉含量的担忧完全没有根据。注意：可能含有石棉。"
 	price_min = PAYCHECK_CREW * 0.5
 	price_max = PAYCHECK_CREW * 1.5
 
 /datum/market_item/clothing/durathread_helmet
-	desc = "Smells faintly like an icewalker. Weird. Goes on your head and is vaguely armoured. Note: may contain asbestos."
+	desc = "闻起来隐约有冰行者的味道。奇怪。戴在头上，并且勉强算有护甲。注意：可能含有石棉。"
 	price_min = PAYCHECK_CREW * 0.5
 	price_max = PAYCHECK_CREW * 1.5
 
 /datum/market_item/clothing/full_spacesuit_set
-	desc = "Decommissioned thirty years ago, boxes of these ancient spaceproof relics keep showing up in warehouses somewhere. They're \"old style\"."
+	desc = "三十年前已退役，这些古老的太空防护遗物成箱地不断出现在某处的仓库里。它们是“旧式”的。"
 	price_min = PAYCHECK_CREW * 6
 	price_max = PAYCHECK_CREW * 12
 
 /datum/market_item/clothing/chameleon_hat
-	desc = "Emulate the appearance of any hat in the sector! Warning: device not quality tested. \[REDACTED\] assumes no risk for malfunction or mortal injury."
+	desc = "模拟星域内任何帽子的外观！警告：设备未经质量测试。\[REDACTED\]对设备故障或致命伤害不承担任何风险。"
 	price_min = PAYCHECK_CREW
 	price_max = PAYCHECK_CREW * 3
 
@@ -39,7 +39,7 @@
 
 // CONSUMABLES
 /datum/market_item/consumable/clown_tears
-	desc = "Wrung by force from ethically-sourced clowns by your local jester. 100% guaranteed baton free."
+	desc = "由你本地的小丑从符合伦理来源的小丑身上强行拧出。100%保证不含警棍。"
 	price_min = PAYCHECK_CREW * 0.5
 	price_max = PAYCHECK_CREW * 1.5
 
@@ -53,20 +53,20 @@
 	price_max = PAYCHECK_CREW * 1.5
 
 /datum/market_item/consumable/floor_pill
-	desc = "Harvested daily by responsibly-paid assistants, this pill is guaranteed to a) have been on the floor, and b) is a pill. Good luck!"
+	desc = "由获得合理报酬的助手每日采集，此药片保证：a) 曾在地板上，且 b) 是一片药片。祝你好运！"
 	price_min = PAYCHECK_CREW * 0.1
 	price_max = PAYCHECK_CREW * 0.3
 	availability_prob = 100 // no shortage of unmarked pills babyyyy
 
 /datum/market_item/consumable/pumpup
-	desc = "Clean-up crews sell off these things by the dozen after every shift - get your hands on some today! What could possibly go wrong with maintenance drugs?"
+	desc = "清洁队每次轮班后都会成打地卖掉这些东西——今天就弄一些吧！维护区的药物能出什么问题呢？"
 	price_min = PAYCHECK_CREW * 0.2
 	price_max = PAYCHECK_CREW * 0.4
 
 // MISCELLANEOUS
 
 /datum/market_item/misc/clear_pda
-	desc = "Clearly show your appreciation for style with this limited edition clear PDA!"
+	desc = "用这款限量版透明PDA，清晰地展示你对时尚的欣赏吧！"
 	price_min = PAYCHECK_CREW
 	price_max = PAYCHECK_CREW * 2
 
@@ -79,7 +79,7 @@
 	price_max = PAYCHECK_CREW
 
 /datum/market_item/misc/shoulder_holster
-	name = "Shoulder Holster"
+	name = "肩部枪套"
 	//why in great googly moogly were these so expensive? what the fuck?
 	price_min = PAYCHECK_CREW * 0.2
 	price_max = PAYCHECK_CREW * 0.6
@@ -94,8 +94,8 @@
 	price_max = PAYCHECK_CREW * 14
 
 /datum/market_item/misc/voskhod_refit
-	name = "Voskhod refit kit"
-	desc = "A shipping, holding, medical, security and many other fee-free case of thingamabobs one can use to turn their ancient steel-plated space suit into a less ancient modular space suit."
+	name = "Voskhod改装套件"
+	desc = "一个免除了运输、仓储、医疗、安保等多项费用的零配件箱，可用于将您那套古老的钢板太空服升级为不那么古老的模块化太空服。"
 	item = /obj/item/crafting_conversion_kit/voskhod_refit
 	price_min = CARGO_CRATE_VALUE * 4
 	price_max = CARGO_CRATE_VALUE * 5.75
@@ -103,12 +103,12 @@
 	availability_prob = 25
 
 /datum/market_item/misc/holywater
-	desc = "The Spinward Independent Magicians assume no responsibility for the holy (or unholiness) of this magical reagent."
+	desc = "旋向独立魔法师协会对此魔法试剂的神圣性（或非神圣性）概不负责。"
 	price_min = PAYCHECK_CREW
 	price_max = PAYCHECK_CREW * 3
 
 /datum/market_item/misc/strange_seed
-	desc = "Exotic varieties of seed outlawed in most sectors, including this one. What's the worst that could happen?"
+	desc = "在包括本扇区在内的大多数扇区都被禁止的奇异种子品种。最坏能发生什么呢？"
 	price_min = PAYCHECK_CREW * 0.5
 	price_max = PAYCHECK_CREW
 
@@ -122,18 +122,18 @@
 	price_max = PAYCHECK_CREW * 6 // it's how the chips fall babyyy
 
 /datum/market_item/misc/jawed_hook
-	desc = "If you're struggling with the fishes, give 'em the jaws, see?"
+	desc = "如果你搞不定那些鱼，就给它们点颜色看看，懂吗？"
 	price_min = PAYCHECK_CREW * 0.5
 	price_max = PAYCHECK_CREW * 1.5
 
 /datum/market_item/misc/v8_engine
-	name = "Genuine V8 Engine (Preserved)"
+	name = "正宗V8引擎（保存完好）"
 	price_min = PAYCHECK_CREW * 6
 	price_max = PAYCHECK_CREW * 12
 
 /datum/market_item/misc/fish
-	name = "Case of Smuggled Fish"
-	desc = "What makes these fish such hot products? We'd have to kill you if we told you."
+	name = "一箱走私鱼"
+	desc = "是什么让这些鱼成了抢手货？告诉你的话我们就得灭口了。"
 
 // TOOLS
 /datum/market_item/tool/caravan_wrench
@@ -158,23 +158,23 @@
 
 /datum/market_item/tool/binoculars
 	//we can roundstart with these so let's tone them way down
-	desc = "Offworld military surplus. They'll never see you coming."
+	desc = "来自外星球的军事剩余物资。他们永远也发现不了你的接近。"
 	price_min = PAYCHECK_CREW * 0.2
 	price_max = PAYCHECK_CREW * 0.5
 
 /datum/market_item/tool/riot_shield
-	desc = "Bloodstains not included."
+	desc = "血迹不包括在内。"
 	price_min = PAYCHECK_CREW * 4
 	price_max = PAYCHECK_CREW * 8
 
 /datum/market_item/tool/thermite_bottle
-	desc = "Fifty galactic units of an incendiary compound that will burn through just about anything."
+	desc = "五十个星系单位的燃烧剂，几乎能烧穿任何东西。"
 	price_min = PAYCHECK_CREW * 2
 	price_max = PAYCHECK_CREW * 6
 
 /datum/market_item/tool/program_disk
-	name = "Bootleg PDA Data Disk"
-	desc = "Contains a random selection of limited PDA programs purloined by bitrunners from the FTU. Wait, we're not supposed to tell you that."
+	name = "盗版PDA数据磁盘"
+	desc = "包含由比特跑者从FTU窃取的一系列随机限量版PDA程序。等等，我们不该告诉你这个。"
 	price_min = PAYCHECK_CREW * 1.5
 	price_max = PAYCHECK_CREW * 3
 	availability_prob = 100 // not every program is useful but some of these are and they're fun and hackery, so why not?
@@ -194,20 +194,20 @@
 	price_max = PAYCHECK_CREW * 2
 
 /datum/market_item/weapon/chainsaw
-	desc = "Once used to fell trees on Gaia worlds, the humble chainsaw has come into its own as the premiere anti-mold device of the sector. And you can have one right now for one easy payment!"
+	desc = "曾经用于盖亚星球上砍伐树木的普通链锯，如今已成为本扇区首屈一指的抗霉菌设备。现在只需轻松付款一次，你就能拥有一个！"
 	price_min = PAYCHECK_CREW * 2
 	price_max = PAYCHECK_CREW * 4
 	availability_prob = 75 // USE CHAINSAWS FOR MOLDS MORE OH MY GOD
 
 /datum/market_item/weapon/switchblade
 	// This is force 20 like the sabre/shamshir so price it similarly. Also, make it always available so you can shank people in maints.
-	desc = "Standard-issue hardware for shifty goons sector-wide. Pointy and sharp."
+	desc = "全扇区可疑打手们的标准配置装备。又尖又利。"
 	price_min = PAYCHECK_CREW * 4.25
 	price_max = PAYCHECK_CREW * 8
 	availability_prob = 100
 
 /datum/market_item/weapon/emp_grenade
-	desc = "The bane of synthetics and station-engineers everywhere."
+	desc = "合成人与空间站工程师们无处不在的克星。"
 	price_min = PAYCHECK_CREW * 1.5
 	price_max = PAYCHECK_CREW * 5
 
@@ -216,8 +216,8 @@
 	price_max = PAYCHECK_CREW * 8
 
 /datum/market_item/weapon/giant_wrench_parts
-	name = "Comically-Large Wrench Parts"
-	desc = "They're searching every broadband transmission for the name of this wrench, alright? You're mad if you assemble this thing. Mad, we tell you."
+	name = "滑稽巨型扳手零件"
+	desc = "他们正在搜查每一条宽带传输信号寻找这把扳手的名字，明白吗？你要是把这玩意儿组装起来就是疯了。我们告诉你，你疯了。"
 	price_min = PAYCHECK_CREW * 4
 	price_max = PAYCHECK_CREW * 8
 

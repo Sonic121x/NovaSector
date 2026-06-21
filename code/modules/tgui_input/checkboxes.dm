@@ -10,7 +10,7 @@
  * max_checked - The maximum number of checkboxes that can be checked (optional)
  * timeout - The timeout for the input (optional)
  */
-/proc/tgui_input_checkboxes(mob/user, message, title = "Select", list/items, min_checked = 1, max_checked = 50, timeout = 0, ui_state = GLOB.always_state)
+/proc/tgui_input_checkboxes(mob/user, message, title = "选择", list/items, min_checked = 1, max_checked = 50, timeout = 0, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if(!length(items))

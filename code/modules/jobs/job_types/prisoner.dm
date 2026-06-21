@@ -1,6 +1,6 @@
 /datum/job/prisoner
 	title = JOB_PRISONER
-	description = "Keep yourself occupied in permabrig."
+	description = "在永久禁闭室里找点事做。"
 	faction = FACTION_STATION
 	total_positions = 0
 	spawn_positions = 4
@@ -45,11 +45,11 @@
 	var/datum/record/crew/target_record = find_record(crewmember.real_name)
 	target_record.crimes += past_crime
 	target_record.recreate_manifest_photos(add_height_chart = TRUE)
-	to_chat(crewmember, span_warning("You are imprisoned for \"[crime_name]\"."))
+	to_chat(crewmember, span_warning("你因\"[crime_name]\"而被监禁。"))
 	crewmember.add_mob_memory(/datum/memory/key/permabrig_crimes, crimes = crime_name)
 
 /datum/outfit/job/prisoner
-	name = "Prisoner"
+	name = "囚犯"
 	jobtype = /datum/job/prisoner
 
 	id = /obj/item/card/id/advanced/prisoner

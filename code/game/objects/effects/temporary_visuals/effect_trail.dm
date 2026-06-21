@@ -1,7 +1,7 @@
 /// An invisible effect which chases a target, spawning spikes every so often.
 /obj/effect/temp_visual/effect_trail
-	name = "effect trail"
-	desc = "An invisible effect, how did you examine this?"
+	name = "效果轨迹"
+	desc = "一个隐形效果，你是怎么检视到它的？"
 	icon = 'icons/mob/eyemob.dmi'
 	icon_state = "marker"
 	duration = 15 SECONDS

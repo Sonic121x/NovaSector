@@ -1,6 +1,6 @@
 /obj/structure/broken_flooring
-	name = "broken tiling"
-	desc = "A segment of broken flooring."
+	name = "破损的地砖"
+	desc = "一段破损的地板。"
 	icon = 'icons/obj/fluff/brokentiling.dmi'
 	icon_state = "corner"
 	anchored = TRUE
@@ -28,7 +28,7 @@
 
 /obj/structure/broken_flooring/crowbar_act(mob/living/user, obj/item/I)
 	I.play_tool_sound(src, 80)
-	balloon_alert(user, "tile reclaimed")
+	balloon_alert(user, "地砖已回收")
 	new /obj/item/stack/tile/iron(get_turf(src))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

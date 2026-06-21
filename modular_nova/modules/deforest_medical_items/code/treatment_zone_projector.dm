@@ -1,8 +1,8 @@
 // Giant 3x3 tile warning hologram that tells people they should probably stand outside of it
 
 /obj/structure/holosign/treatment_zone_warning
-	name = "treatment zone indicator"
-	desc = "A massive glowing holosign warning you to keep out of it, there's probably some important stuff happening in there!"
+	name = "治疗区域指示器"
+	desc = "一个巨大的发光全息标志，警告你远离它，里面可能正在进行一些重要的事情！"
 	icon = 'modular_nova/modules/deforest_medical_items/icons/telegraph_96x96.dmi'
 	icon_state = "treatment_zone"
 	layer = BELOW_OBJ_LAYER
@@ -13,8 +13,8 @@
 // Projector for the above mentioned treatment zone signs
 
 /obj/item/holosign_creator/medical/treatment_zone
-	name = "emergency treatment zone projector"
-	desc = "A holographic projector that creates a large, clearly marked treatment zone hologram, which warns outsiders that they ought to stay out of it."
+	name = "紧急治疗区域投影仪"
+	desc = "一种全息投影仪，可创建一个大型、标记清晰的区域全息图，警告外部人员应远离该区域。"
 	holosign_type = /obj/structure/holosign/treatment_zone_warning
 	creation_time = 1 SECONDS
 	max_signs = 1
@@ -22,8 +22,8 @@
 // Tech design for printing the projectors
 
 /datum/design/treatment_zone_projector
-	name = "Emergency Treatment Zone Projector"
-	desc = "A holographic projector that creates a large, clearly marked treatment zone hologram, which warns outsiders that they ought to stay out of it."
+	name = "紧急治疗区域投影仪"
+	desc = "一种全息投影仪，可创建一个大型、标记清晰的区域全息图，警告外部人员应远离该区域。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/holosign_creator/medical/treatment_zone
 	materials = list(

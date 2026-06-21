@@ -10,7 +10,7 @@
 	if(!.)
 		return
 	do_drugs(user, 60)
-	to_chat(user, span_hypnophrase("I feel so chill."))
+	to_chat(user, span_hypnophrase("我感觉好放松。"))
 
 /datum/artifact_effect/drugs/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -21,7 +21,7 @@
 		if(!SPT_PROB(10, seconds_per_tick))
 			continue
 		do_drugs(living_mob, 10 * seconds_per_tick)
-		to_chat(living_mob, span_hypnophrase("I feel good, like really good."))
+		to_chat(living_mob, span_hypnophrase("我感觉很好，真的很好。"))
 
 /datum/artifact_effect/drugs/do_effect_pulse(seconds_per_tick)
 	. = ..()
@@ -32,13 +32,13 @@
 		if(!SPT_PROB(25, seconds_per_tick))
 			continue
 		do_drugs(living_mob, 20 * seconds_per_tick)
-		to_chat(living_mob, span_hypnophrase("Things here are nice. Maybe I should come here more often."))
+		to_chat(living_mob, span_hypnophrase("这里真不错。也许我该多来这儿。"))
 
 /datum/artifact_effect/drugs/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/living_mob in range(range+3, curr_turf))
 		do_drugs(living_mob, 120)
-		to_chat(living_mob, span_hypnophrase("Duuuude, I feel so transcendent."))
+		to_chat(living_mob, span_hypnophrase("老兄，我感觉超脱了。"))
 
 /**
  * Applies drugginess to mob

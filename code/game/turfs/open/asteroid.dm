@@ -4,8 +4,8 @@
 
 /turf/open/misc/asteroid //floor piece
 	gender = PLURAL
-	name = "asteroid sand"
-	desc = "It's coarse and rough and gets everywhere."
+	name = "小行星沙"
+	desc = "它粗糙且坚硬，而且无处不在"
 	baseturfs = /turf/open/misc/asteroid
 	icon = 'icons/turf/floors.dmi'
 	damaged_dmi = 'icons/turf/floors.dmi'
@@ -74,7 +74,7 @@
 		if(!isturf(user.loc))
 			return
 
-		balloon_alert(user, "digging...")
+		balloon_alert(user, "挖掘中...")
 
 		if(attack_item.use_tool(src, user, 4 SECONDS, volume = 50))
 			if(!can_dig(user))
@@ -100,7 +100,7 @@
 	if(!dug && !broken)
 		return TRUE
 	if(user)
-		balloon_alert(user, "already excavated!")
+		balloon_alert(user, "已经挖掘过了！")
 	return FALSE
 
 ///Refills the previously dug tile
@@ -133,7 +133,7 @@
 GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/basalt
-	name = "volcanic floor"
+	name = "火山岩地面"
 	baseturfs = /turf/open/misc/asteroid/basalt
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "basalt"
@@ -301,8 +301,8 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/snow
 	gender = PLURAL
-	name = "snow"
-	desc = "Looks cold."
+	name = "雪"
+	desc = "看起来就觉得冷。"
 	icon = 'icons/turf/snow.dmi'
 	damaged_dmi = 'icons/turf/snow.dmi'
 	baseturfs = /turf/open/misc/asteroid/snow
@@ -319,7 +319,7 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/snow/burn_tile()
 	if(!burnt)
-		visible_message(span_danger("[src] melts away!."))
+		visible_message(span_danger("[src] 融化了！。"))
 		slowdown = 0
 		burnt = TRUE
 		update_appearance()
@@ -411,8 +411,8 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 	planetary_atmos = TRUE
 
 /turf/open/misc/asteroid/snow/ice
-	name = "icy snow"
-	desc = "Looks colder."
+	name = "寒雪"
+	desc = "看起来觉得更冷了。"
 	baseturfs = /turf/open/misc/asteroid/snow/ice
 	initial_gas_mix = BURNING_COLD
 	floor_variance = 0
@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 	planetary_atmos = FALSE
 
 /turf/open/misc/asteroid/moon
-	name = "lunar surface"
+	name = "月球表面"
 	baseturfs = /turf/open/misc/asteroid/moon
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "moon"
@@ -482,8 +482,8 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/plasma //floor piece
 	gender = PLURAL
-	name = "asteroid gravel"
-	desc = "It's coarse and rough and gets everywhere."
+	name = "小行星砾石"
+	desc = "它粗糙且坚硬，而且无处不在"
 	baseturfs = /turf/open/misc/asteroid
 	icon = 'icons/turf/floors.dmi'
 	damaged_dmi = 'icons/turf/floors.dmi'

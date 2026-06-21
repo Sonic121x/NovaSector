@@ -1,5 +1,5 @@
 /datum/design/rods
-	name = "Iron Rod"
+	name = "铁棒"
 	id = "rods"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/rglass
-	name = "Reinforced Glass"
+	name = "强化玻璃"
 	id = "rglass"
 	build_type = AUTOLATHE | SMELTER | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SHEET_MATERIAL_AMOUNT)

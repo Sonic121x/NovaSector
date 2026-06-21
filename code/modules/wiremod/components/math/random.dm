@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/random
 	display_name = "Random"
-	desc = "A component that returns random values."
+	desc = "一个能返回随机值的组件。"
 	category = "Math"
 
 	/// The minimum value that the random number can be

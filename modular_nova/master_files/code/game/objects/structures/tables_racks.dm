@@ -9,8 +9,8 @@
 	AddElement(/datum/element/liquids_height, 20)
 
 /obj/structure/table/wood/fancy/kinaris
-	name = "regal kinaris table"
-	desc = "A standard metal table frame covered with an amazingly fancy, patterned cloth."
+	name = "华贵的基纳里斯木桌"
+	desc = "一个标准的金属桌框，上面覆盖着令人惊叹的花纹布料。"
 	icon_state = "kinaris_table-0"
 	base_icon_state = "kinaris_table"
 	buildstack = /obj/item/stack/tile/carpet/kinaris

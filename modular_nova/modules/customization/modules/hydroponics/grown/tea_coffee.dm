@@ -2,11 +2,11 @@
 
 // Catnip
 /obj/item/seeds/tea/catnip
-	name = "catnip seed pack"
+	name = "猫薄荷种子包"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-catnip"
 	growing_icon = 'modular_nova/master_files/icons/obj/hydroponics/growing.dmi'
-	desc = "Long stalks with flowering tips, they contain a chemical that attracts felines."
+	desc = "长茎带花尖，含有一种能吸引猫科动物的化学物质。"
 	species = "catnip"
 	plantname = "Catnip Plant"
 	icon_dead = null
@@ -17,7 +17,7 @@
 
 /obj/item/food/grown/tea/catnip
 	seed = /obj/item/seeds/tea/catnip
-	name = "catnip buds"
+	name = "猫薄荷花蕾"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "catnip"
 	filling_color = "#4582B4"

@@ -1,6 +1,6 @@
 /obj/item/implant/tracking
-	name = "tracking implant"
-	desc = "Track with this."
+	name = "追踪植入体"
+	desc = "用这个来追踪。"
 	actions_types = null
 	implant_flags = IMPLANT_TYPE_SECURITY
 	hud_icon_state = "hud_imp_tracking"
@@ -46,19 +46,19 @@
 		return
 
 	if(params["implant_action"] == "warn")
-		var/warning = tgui_input_text(user, "What warning do you want to send to [imp_in.name]?", "Messaging", max_length = MAX_MESSAGE_LEN)
+		var/warning = tgui_input_text(user, "你想向[imp_in.name]发送什么警告？", "消息发送", max_length = MAX_MESSAGE_LEN)
 		if(!warning || QDELETED(src) || QDELETED(user) || QDELETED(console) || isnull(imp_in))
 			return TRUE
 		if(!console.is_operational || !user.can_perform_action(console, NEED_DEXTERITY|ALLOW_SILICON_REACH))
 			return TRUE
 
-		to_chat(imp_in, span_hear("You hear a voice in your head saying: '[warning]'"))
+		to_chat(imp_in, span_hear("你听到脑海中有一个声音说：'[warning]'"))
 		log_directed_talk(user, imp_in, warning, LOG_SAY, "implant message")
 		return TRUE
 
 /obj/item/implant/tracking/c38
-	name = "TRAC implant"
-	desc = "A smaller tracking implant that supplies power for only a few minutes."
+	name = "TRAC植入体"
+	desc = "一种更小的追踪植入体，仅能提供几分钟的电力。"
 	implant_flags = NONE
 	///How long before this implant self-deletes?
 	var/lifespan = 5 MINUTES

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/utility/hardhat/cakehat
-	name = "cakehat"
-	desc = "You put the cake on your head. Brilliant."
+	name = "蛋糕帽"
+	desc = "你把蛋糕放到了自己的头上。干得漂亮。"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "hardhat0_cakehat"
@@ -58,8 +58,8 @@
 	return on * heat
 
 /obj/item/clothing/head/utility/hardhat/cakehat/energycake
-	name = "energy cake"
-	desc = "You put the energy sword on your cake. Brilliant."
+	name = "能量剑糕"
+	desc = "你把能量剑放到了蛋糕上。干得漂亮。"
 	icon_state = "hardhat1_energycake"
 	inhand_icon_state = "hardhat0_energycake"
 	hat_type = "energycake"

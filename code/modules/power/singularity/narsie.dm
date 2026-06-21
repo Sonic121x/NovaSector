@@ -9,8 +9,8 @@
 
 /// Nar'Sie, the God of the blood cultists
 /obj/narsie
-	name = "Nar'Sie"
-	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
+	name = "纳尔'西"
+	desc = "你的心智开始沸腾、渗出，试图理解眼前所见之物。"
 	icon = 'icons/obj/antags/cult/narsie.dmi'
 	icon_state = "narsie"
 	anchored = TRUE
@@ -67,7 +67,7 @@
 		singularity_size = NARSIE_SINGULARITY_SIZE, \
 	))
 
-	send_to_playing_players(span_narsie("NAR'SIE HAS RISEN"))
+	send_to_playing_players(span_narsie("纳尔西已经降临"))
 	sound_to_playing_players('sound/music/antag/bloodcult/narsie_rises.ogg')
 
 	var/area/area = get_area(src)
@@ -123,7 +123,7 @@
 			summon_objective.summoned = FALSE
 			summon_objective.killed = TRUE
 
-	send_to_playing_players(span_narsie(span_bold(pick("Nooooo...", "Not die. How-", "Die. Mort-", "Sas tyen re-"))))
+	send_to_playing_players(span_narsie(span_bold(pick("不……", "不……死。怎么-", "死亡。凡人-", "萨斯·提恩·瑞-"))))
 	sound_to_playing_players('sound/effects/magic/demon_dies.ogg', 50)
 
 /obj/narsie/vv_get_dropdown()
@@ -140,7 +140,7 @@
 	if(!href_list[VV_HK_BEGIN_NARSIE_ROUNDEND] || !check_rights(R_FUN, show_msg = TRUE))
 		return
 
-	if(tgui_alert(usr, ADMIN_WARNING_MESSAGE, "Begin Nar'Sie Roundender", list("I'm Sure", "Abort")) != "I'm Sure")
+	if(tgui_alert(usr, ADMIN_WARNING_MESSAGE, "开始纳尔西回合终结", list("I'm Sure", "Abort")) != "I'm Sure")
 		return
 
 	log_admin("[key_name(usr)] has triggered the Nar'Sie roundender.")
@@ -149,7 +149,7 @@
 /obj/narsie/attack_ghost(mob/dead/observer/user)
 	if(is_banned_from(user.ckey, ROLE_CULTIST))
 		return
-	if(tgui_alert(user, "Do you wish to become an occult harvester?", "Become Harvester?", list("Yes", "No"), timeout = 10 SECONDS) == "Yes")
+	if(tgui_alert(user, "你希望成为一名邪教收割者吗？", "成为收割者？", list("Yes", "No"), timeout = 10 SECONDS) == "Yes")
 		make_new_construct(/mob/living/basic/construct/harvester, user, cultoverride = TRUE, loc_override = loc, ghost_activated = TRUE)
 
 /obj/narsie/process()
@@ -172,7 +172,7 @@
 	for (var/mob/living/carbon/victim in viewers(NARSIE_CONSUME_RANGE, src))
 		if (victim.stat == CONSCIOUS)
 			if (!IS_CULTIST(victim))
-				to_chat(victim, span_cult("You feel conscious thought crumble away in an instant as you gaze upon [src]..."))
+				to_chat(victim, span_cult("当你凝视着[src]时，你感到自己的意识在瞬间瓦解……"))
 				victim.apply_effect(NARSIE_MESMERIZE_EFFECT, EFFECT_STUN)
 
 /// Narsie rewards her cultists with being devoured first, then picks a ghost to follow.
@@ -219,12 +219,12 @@
 	if (food == old_target)
 		return
 
-	to_chat(old_target, span_cult("NAR'SIE HAS LOST INTEREST IN YOU."))
+	to_chat(old_target, span_cult("纳茜对你的兴趣已消退。"))
 	singularity_component.target = food
 	if(ishuman(food))
-		to_chat(food, span_cult("NAR'SIE HUNGERS FOR YOUR SOUL."))
+		to_chat(food, span_cult("纳茜渴求着你的灵魂。"))
 	else
-		to_chat(food, span_cult("NAR'SIE HAS CHOSEN YOU TO LEAD HER TO HER NEXT MEAL."))
+		to_chat(food, span_cult("纳茜已选定你，引领她前往下一顿美餐。"))
 
 /// Called to make Nar'Sie convert objects to cult stuff, or to eat
 /obj/narsie/proc/consume(atom/target)
@@ -261,8 +261,8 @@
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), CULT_FAILURE_NARSIE_KILLED), 2 SECONDS)
 		return
 	priority_announce(
-		text = "An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 60 SECONDS.",
-		title = "[command_name()] Higher Dimensional Affairs",
+		text = "在您所在星区检测到非因果维度事件。事件已被标记为灭绝级。正在引导所有可用资源进行解决方案模拟。预计解决方案时间：60秒。",
+		title = "[command_name()] 高维事务部",
 		sound = 'sound/announcer/alarm/airraid.ogg',
 	)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(narsie_end_second_check)), 50 SECONDS)
@@ -274,7 +274,7 @@
 		GLOB.cult_narsie = null
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), CULT_FAILURE_NARSIE_KILLED), 2 SECONDS)
 		return
-	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: ONE MINUTE. ","[command_name()] Higher Dimensional Affairs")
+	priority_announce("非因果维度事件模拟已完成。正在部署解决方案包。预计部署时间：一分钟。","[command_name()] 高维事务部")
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(narsie_start_destroy_station)), 5 SECONDS)
 
 ///security level and shuttle lockdowns for [/proc/begin_the_end()]

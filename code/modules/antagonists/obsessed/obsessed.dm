@@ -5,7 +5,7 @@
 #define OBSESSED_OBJECTIVE_JEALOUS "jealous"
 
 /datum/antagonist/obsessed
-	name = "Obsessed"
+	name = "痴迷者"
 	show_in_antagpanel = TRUE
 	antagpanel_category = ANTAG_GROUP_CREW
 	pref_flag = ROLE_OBSESSED
@@ -26,7 +26,7 @@
 
 /// Dummy antag datum that will show the cured obsessed to admins
 /datum/antagonist/former_obsessed
-	name = "Former Obsessed"
+	name = "前痴迷者"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	antagpanel_category = ANTAG_GROUP_CREW
@@ -38,10 +38,10 @@
 /datum/antagonist/obsessed/admin_add(datum/mind/new_owner,mob/admin)
 	var/mob/living/carbon/C = new_owner.current
 	if(!istype(C))
-		to_chat(admin, "[roundend_category] come from a brain trauma, so they need to at least be a carbon!")
+		to_chat(admin, "[roundend_category]源于脑部创伤，所以他们至少得是碳基生物！")
 		return
 	if(!C.get_organ_by_type(/obj/item/organ/brain)) // If only I had a brain
-		to_chat(admin, "[roundend_category] come from a brain trauma, so they need to HAVE A BRAIN.")
+		to_chat(admin, "[roundend_category]源于脑部创伤，所以他们得有个脑子才行。")
 		return
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
@@ -75,7 +75,7 @@
 	return final_icon
 
 /datum/outfit/obsessed
-	name = "Obsessed (Preview only)"
+	name = "痴迷者（仅预览）"
 
 	uniform = /obj/item/clothing/under/misc/overalls
 	gloves = /obj/item/clothing/gloves/latex
@@ -144,7 +144,7 @@
 		O.update_explanation_text()
 
 /datum/antagonist/obsessed/roundend_report_header()
-	return span_header("Someone became obsessed!<br>")
+	return span_header("有人变得痴迷了！<br>")
 
 /datum/antagonist/obsessed/roundend_report()
 	var/list/report = list()
@@ -163,11 +163,11 @@
 				break
 	if(trauma)
 		if(trauma.total_time_creeping > 0)
-			report += span_greentext("The [name] spent a total of [DisplayTimeText(trauma.total_time_creeping)] being near [trauma.obsession]!")
+			report += span_greentext("这位[name]总共花了[DisplayTimeText(trauma.total_time_creeping)]时间待在[trauma.obsession]附近！")
 		else
-			report += span_redtext("The [name] did not go near their obsession the entire round! That's extremely impressive!")
+			report += span_redtext("这位[name]整轮都没有接近过他们的痴迷对象！这真是太了不起了！")
 	else
-		report += span_redtext("The [name] had no trauma attached to their antagonist ways! Either it bugged out or an admin incorrectly gave this good samaritan antag and it broke! You might as well show yourself!!")
+		report += span_redtext("这位[name]的敌对行为没有关联任何创伤！要么是出了bug，要么是管理员错误地给了这位善良的萨玛利亚人敌对身份并导致了问题！你不如自己站出来吧！！")
 
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"

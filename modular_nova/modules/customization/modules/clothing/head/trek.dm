@@ -1,7 +1,7 @@
 //Trekkie Caps
 /obj/item/clothing/head/hats/caphat/parade/fedcap
-	name = "Officer's cap"
-	desc = "An officer's cap that demands discipline from the one who wears it."
+	name = "军官帽"
+	desc = "一顶要求佩戴者保持纪律的军官帽。"
 	icon_state = "fedcapofficer"
 	armor_type = /datum/armor/none
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'

@@ -27,11 +27,11 @@
 /datum/status_effect/jitter/get_examine_text()
 	switch(duration)
 		if(5 MINUTES to INFINITY)
-			return span_boldwarning("[owner.p_They()] [owner.p_are()] convulsing violently!")
+			return span_boldwarning("[owner.p_They()] [owner.p_are()]正在剧烈地抽搐！")
 		if(3 MINUTES to 5 MINUTES)
-			return span_warning("[owner.p_They()] [owner.p_are()] extremely jittery.")
+			return span_warning("[owner.p_They()] [owner.p_are()]极度紧张不安。")
 		if(1 MINUTES to 3 MINUTES)
-			return span_warning("[owner.p_They()] [owner.p_are()] twitching ever so slightly.")
+			return span_warning("[owner.p_They()] [owner.p_are()]在轻微地抽搐。")
 
 	return null
 

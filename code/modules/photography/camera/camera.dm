@@ -1,7 +1,7 @@
 /obj/item/camera
 	name = "camera"
 	icon = 'icons/obj/art/camera.dmi'
-	desc = "A polaroid camera."
+	desc = "一台宝丽来相机。"
 	icon_state = "camera"
 	base_icon_state = "camera"
 	inhand_icon_state = "camera"
@@ -97,13 +97,13 @@
 
 /obj/item/camera/examine(mob/user)
 	. = ..()
-	. += span_notice("It has [pictures_left] photos left.")
-	. += span_notice("Alt-click to change its focusing, allowing you to set how big of an area it will capture.")
+	. += span_notice("它还有[pictures_left]张照片剩余。")
+	. += span_notice("Alt-点击以改变其聚焦，允许你设置它将捕获多大的区域。")
 	. += span_notice("Ctrl-click to change the printer between color and monochrome.")
 	. += span_notice("The present dimensions of the picture are [EXAMINE_HINT("[APERTURE_TO_METERS(picture_size_x)]x[APERTURE_TO_METERS(picture_size_y)]")]")
 
 	if(isnull(disk))
-		. += span_notice("It has a slot for a holorecord disk.")
+		. += span_notice("它有一个全息记录磁盘插槽。")
 	else
 		. += span_notice("It has \an [disk.name] inserted.")
 
@@ -125,12 +125,12 @@
 
 	if(user)
 		if(loc != user)
-			to_chat(user, span_warning("You must be holding the camera to continue!"))
+			to_chat(user, span_warning("你必须手持相机才能继续操作！"))
 			return FALSE
-		desired_x = tgui_input_number(user, "Set camera half width Aperture", "Zoom", picture_size_x, CAMERA_PICTURE_SIZE_HARD_LIMIT, 2)
+		desired_x = tgui_input_number(user, "Set camera half width Aperture", "缩放", picture_size_x, CAMERA_PICTURE_SIZE_HARD_LIMIT, 2)
 		if(!desired_x || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH|ALLOW_PAI) || loc != user)
 			return FALSE
-		desired_y = tgui_input_number(user, "Set camera half height Aperture", "Zoom", picture_size_y, CAMERA_PICTURE_SIZE_HARD_LIMIT, 2)
+		desired_y = tgui_input_number(user, "Set camera half height Aperture", "缩放", picture_size_y, CAMERA_PICTURE_SIZE_HARD_LIMIT, 2)
 		if(!desired_y || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH|ALLOW_PAI) || loc != user)
 			return FALSE
 
@@ -351,15 +351,15 @@
 
 		new_photo = new(src, picture)
 
-		to_chat(user, span_notice("[pictures_left] photos left."))
+		to_chat(user, span_notice("还剩 [pictures_left] 张照片。"))
 
 		var/name_customized = FALSE
 		if(can_customise)
-			var/customise = tgui_alert(user, "Do you want to customize the photo?", "Customization", list("Yes", "No"))
+			var/customise = tgui_alert(user, "你想要自定义这张照片吗？", "自定义", list("Yes", "No"))
 			if(customise == "Yes")
-				var/name1 = tgui_input_text(user, "Set a name for this photo, or leave blank.", "Name", max_length = 32)
-				var/desc1 = tgui_input_text(user, "Set a description to add to photo, or leave blank.", "Description", max_length = 128)
-				var/caption = tgui_input_text(user, "Set a caption for this photo, or leave blank.", "Caption", max_length = 256)
+				var/name1 = tgui_input_text(user, "为这张照片设置一个名字，或留空。", "名称", max_length = 32)
+				var/desc1 = tgui_input_text(user, "为照片添加一段描述，或留空。", "描述", max_length = 128)
+				var/caption = tgui_input_text(user, "为这张照片设置一个标题，或留空。", "标题", max_length = 256)
 				if(name1)
 					picture.picture_name = name1
 					name_customized = TRUE
@@ -379,7 +379,7 @@
 
 		new_photo = new(get_turf(src), picture)
 
-		to_chat(holder, span_notice("[pictures_left] photos left."))
+		to_chat(holder, span_notice("还剩 [pictures_left] 张照片。"))
 
 	new_photo.set_picture(picture, TRUE, TRUE)
 	if(CONFIG_GET(flag/picture_logging_camera))
@@ -402,7 +402,7 @@
 /obj/item/camera/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/camera_film))
 		if(pictures_left)
-			balloon_alert(user, "isn't empty!")
+			balloon_alert(user, "不是空的！")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.temporarilyRemoveItemFromInventory(tool))
 			return ITEM_INTERACT_BLOCKING
@@ -413,13 +413,13 @@
 
 	if(istype(tool, /obj/item/disk/holodisk))
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, "stuck in hand!")
+			balloon_alert(user, "卡在手里了！")
 			return TRUE
 		if(disk)
 			user.put_in_hands(disk)
-			balloon_alert(user, "disks swapped!")
+			balloon_alert(user, "磁盘已交换！")
 		else
-			balloon_alert(user, "disk inserted!")
+			balloon_alert(user, "磁盘已插入！")
 		playsound(src, 'sound/machines/card_slide.ogg', 50)
 		disk = tool
 		return ITEM_INTERACT_SUCCESS
@@ -432,7 +432,7 @@
 /obj/item/camera/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(disk)
 		if(!ismob(interacting_with))
-			to_chat(user, span_warning("Invalid holodisk target."))
+			to_chat(user, span_warning("无效的全息盘目标。"))
 			return ITEM_INTERACT_BLOCKING
 		if(disk.record)
 			QDEL_NULL(disk.record)

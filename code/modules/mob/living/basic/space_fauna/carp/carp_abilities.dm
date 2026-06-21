@@ -4,8 +4,8 @@
  * Probably won't do anything if assigned via VV unless you also VV in a projectile for it.
  */
 /datum/action/cooldown/mob_cooldown/projectile_attack/magicarp_bolt
-	name = "Magicarp Blast"
-	desc = "Unleash a bolt of magical force at a target you click on."
+	name = "魔法鲤鱼冲击波"
+	desc = "向点击的目标释放一股魔法能量束。"
 	button_icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	button_icon_state = "arcane_barrage"
 	cooldown_time = 5 SECONDS
@@ -38,10 +38,10 @@
  * Teleport a short distance and leave a short-lived portal for people to follow through
  */
 /datum/action/cooldown/mob_cooldown/lesser_carp_rift
-	name = "Lesser Carp Rift"
+	name = "次级鲤鱼裂隙"
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rift"
-	desc = "Open a rift through the carp stream, allowing passage to somewhere close by."
+	desc = "打开一个通往鲤鱼流的裂隙，允许传送到附近某处。"
 	cooldown_time = 15 SECONDS
 	melee_cooldown_time = 0 SECONDS // Handled by rift
 	/// How far away can you place a rift?
@@ -57,7 +57,7 @@
 
 /datum/action/cooldown/mob_cooldown/lesser_carp_rift/proc/make_rift(atom/target_atom)
 	if (owner.Adjacent(target_atom))
-		owner.balloon_alert(owner, "too close!")
+		owner.balloon_alert(owner, "太近了！")
 		return FALSE
 
 	var/turf/owner_turf = get_turf(owner)
@@ -75,7 +75,7 @@
 		open_exit_turfs += potential_exit
 
 	if (!length(open_exit_turfs))
-		owner.balloon_alert(owner, "no exit!")
+		owner.balloon_alert(owner, "没有出口！")
 		return FALSE
 	if (!target_turf.is_blocked_turf(exclude_mobs = TRUE))
 		open_exit_turfs += target_turf
@@ -88,7 +88,7 @@
 
 /// If you touch the entrance you are teleported to the exit, exit doesn't do anything
 /obj/effect/temp_visual/lesser_carp_rift
-	name = "lesser carp rift"
+	name = "次级鲤鱼裂隙"
 	icon_state = "rift"
 	duration = 5 SECONDS
 	/// Holds a reference to a timer until this gets deleted
@@ -150,7 +150,7 @@
 
 /// Just an animation
 /obj/effect/temp_visual/lesser_carp_rift_dissipating
-	name = "lesser carp rift"
+	name = "次级鲤鱼裂隙"
 	icon_state = "rift"
 	duration = 1 SECONDS
 

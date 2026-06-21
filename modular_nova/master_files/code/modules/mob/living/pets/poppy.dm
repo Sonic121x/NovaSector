@@ -1,6 +1,6 @@
 /mob/living/basic/pet/poppy
-	name = "Poppy the Safety Inspector"
-	desc = "Safety first!"
+	name = "安全检查员波比"
+	desc = "安全第一！"
 	icon = 'modular_nova/master_files/icons/mob/pets.dmi'
 	icon_state = "poppypossum"
 	icon_living = "poppypossum"
@@ -75,7 +75,7 @@
 		var/list/sm_chamber = get_area_turfs(/area/station/engineering/supermatter)
 		if(src.loc in sm_chamber)
 			safety_inspection = FALSE
-			priority_announce("This is a generated message due to an automated signal regarding the safety standards of the engineering department onboard [station_name()]. Due to the station engineers failing to meet the standard set by Central Command, each of them are now at risk of being forcefully enrolled in a re-evaluation program at later notice...", "Concerning the results of a safety inspection", type = "Priority")
+			priority_announce("这是一条因关于[station_name()]上工程部门安全标准的自动信号而生成的消息。由于站点工程师未能达到中央指挥部设定的标准，他们每个人现在都面临在后续通知中被强制纳入重新评估计划的风险...", "关于安全检查结果", type = "优先")
 			// It's just flavor, no tangible punishment
 	return ..()
 

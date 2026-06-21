@@ -9,19 +9,19 @@
 	return ..()
 
 /datum/aas_config_entry/goodycase_destroyed
-	name = "Cargo Alert: Goody Case Destroyed"
+	name = "货运警报：补给箱已销毁"
 	// Empty line will be dropped, so by default we will not report properly destroyed goody cases.
 	announcement_lines_map = list(
 		"Delivered" = "",
-		"Locked" = "%OWNER's locked goody case has been destroyed in %LOCATION.")
+		"Locked" = "%OWNER的已锁定补给箱已在%LOCATION被摧毁。")
 	vars_and_tooltips_map = list(
-		"LOCATION" = "will be replaced with the location of the goody case.",
-		"OWNER" = "with case owner name."
+		"LOCATION" = "将被替换为补给箱的位置。",
+		"OWNER" = "替换为箱子所有者的名字。"
 	)
 
 /obj/item/goodycase_holder
-	name = "goody case holder"
-	desc = "Perhaps the companies never expected the cargo traffic that goody cases would cause. This holder is the solution to holding multiple goody cases."
+	name = "补给箱支架"
+	desc = "或许公司从未预料到补给箱会带来如此大的货运流量。这个支架就是用来存放多个补给箱的解决方案。"
 	icon = 'modular_nova/modules/cargo_items/icons/import_holder.dmi'
 	icon_state = "goodycase_holder"
 	w_class = WEIGHT_CLASS_BULKY
@@ -34,8 +34,8 @@
 
 /obj/item/goodycase_holder/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>There are [length(goodycase_list)]/[max_goodycases] cases currently stored.")
-	. += span_notice("To access contents inside, press this item.")
+	. += span_notice("<br>当前存放了[length(goodycase_list)]/[max_goodycases]个箱子。")
+	. += span_notice("要访问内部物品，请按动此物品。")
 
 /obj/item/goodycase_holder/update_appearance(updates)
 	. = ..()
@@ -46,35 +46,35 @@
 
 /obj/item/goodycase_holder/attack_self(mob/user, modifiers)
 	if(length(goodycase_list) < 1)
-		to_chat(user, span_notice("There are no items to take out."))
+		to_chat(user, span_notice("没有物品可以取出。"))
 		return
 
-	var/obj/obj_choice = tgui_input_list(user, "Which goody case would you like to remove?", "Goody Case Holder Selection", goodycase_list)
+	var/obj/obj_choice = tgui_input_list(user, "你想移除哪个赠品箱？", "赠品箱收纳器选择", goodycase_list)
 	if(isnull(obj_choice))
 		return
 
 	obj_choice.forceMove(get_turf(src))
 	goodycase_list -= obj_choice
-	to_chat(user, span_notice("[obj_choice] has been removed from [src] to [get_turf(src)]."))
+	to_chat(user, span_notice("[obj_choice]已从[src]中取出到[get_turf(src)]。"))
 	update_appearance()
 
 /obj/item/goodycase_holder/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/storage/lockbox/order))
 		if(length(goodycase_list) >= max_goodycases)
-			to_chat(user, span_warning("You are unable to fit more items into [src]!"))
+			to_chat(user, span_warning("你无法将更多物品放入[src]！"))
 			return ITEM_INTERACT_BLOCKING
 
 		goodycase_list += tool
 		tool.forceMove(src)
 		update_appearance()
-		to_chat(user, span_notice("You add [tool] to [src]."))
+		to_chat(user, span_notice("你将[tool]添加到了[src]。"))
 		return ITEM_INTERACT_BLOCKING
 
 	return ..()
 
 /datum/design/goodycase_holder
-	name = "Goody Case Holder"
-	desc = "The solution to the plethora of goody cases that litter the cargonian halls."
+	name = "补给箱支架"
+	desc = "解决货运大厅里堆积如山的补给箱问题的方案。"
 	id = "goodycase_holder"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/goodycase_holder

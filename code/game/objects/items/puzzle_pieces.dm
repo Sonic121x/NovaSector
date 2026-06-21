@@ -4,8 +4,8 @@
 //*****Keys*****
 //**************
 /obj/item/keycard
-	name = "security keycard"
-	desc = "This feels like it belongs to a door."
+	name = "安全门禁卡"
+	desc = "这感觉像是属于一扇门的。"
 	icon = 'icons/obj/fluff/puzzle_small.dmi'
 	icon_state = "keycard"
 	force = 0
@@ -21,14 +21,14 @@
 
 //Two test keys for use alongside the two test doors.
 /obj/item/keycard/yellow
-	name = "yellow keycard"
-	desc = "A yellow keycard. How fantastic. Looks like it belongs to a high security door."
+	name = "黄色门禁卡"
+	desc = "一张黄色门禁卡。真棒。看起来属于一扇高安全级别的门。"
 	color = "#f0da12"
 	puzzle_id = "yellow"
 
 /obj/item/keycard/blue
-	name = "blue keycard"
-	desc = "A blue keycard. How terrific. Looks like it belongs to a high security door."
+	name = "蓝色门禁卡"
+	desc = "一张蓝色门禁卡。真棒。看起来属于一扇高安全级别的门。"
 	color = "#3bbbdb"
 	puzzle_id = "blue"
 
@@ -37,8 +37,8 @@
 //***************
 
 /obj/machinery/door/puzzle
-	name = "locked door"
-	desc = "This door only opens under certain conditions. It looks virtually indestructible."
+	name = "上锁的门"
+	desc = "这扇门只在特定条件下才会打开。它看起来几乎坚不可摧。"
 	icon = 'icons/obj/doors/puzzledoor/default.dmi'
 	icon_state = "door_closed"
 	explosion_block = 3
@@ -113,7 +113,7 @@
 	if(puzzle_id && puzzle_id != try_id)
 		return FALSE
 	if(!density)
-		visible_message(span_warning("The door can't seem to be closed."))
+		visible_message(span_warning("这扇门似乎无法被关闭。"))
 		return TRUE
 	if(open_message)
 		visible_message(span_notice(open_message))
@@ -121,7 +121,7 @@
 	return TRUE
 
 /obj/machinery/door/puzzle/keycard
-	desc = "This door only opens when a keycard is swiped. It looks virtually indestructible."
+	desc = "这扇门只在刷卡时才会打开。它看起来几乎坚不可摧。"
 	uses_queuelinks = FALSE
 
 /obj/machinery/door/puzzle/keycard/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
@@ -130,29 +130,29 @@
 		return
 	var/obj/item/keycard/key = attacking_item
 	if(!try_puzzle_open(key.puzzle_id))
-		to_chat(user, span_notice("[src] buzzes. This must not be the right key."))
+		to_chat(user, span_notice("[src] 发出嗡嗡声。这肯定不是正确的钥匙。"))
 
 //Test doors. Gives admins a few doors to use quickly should they so choose for events.
 /obj/machinery/door/puzzle/keycard/yellow_required
-	name = "blue airlock"
-	desc = "It looks like it requires a yellow keycard."
+	name = "蓝色气闸门"
+	desc = "看起来它需要一张黄色门禁卡。"
 	puzzle_id = "yellow"
 
 /obj/machinery/door/puzzle/keycard/blue_required
-	name = "blue airlock"
-	desc = "It looks like it requires a blue keycard."
+	name = "蓝色气闸门"
+	desc = "看起来它需要一张蓝色门禁卡。"
 	puzzle_id = "blue"
 
 /obj/machinery/door/puzzle/light
-	desc = "This door only opens when a linked mechanism is powered. It looks virtually indestructible."
+	desc = "这扇门只在连接的机制通电时才会打开。它看起来几乎坚不可摧。"
 
 //*************************
 //***Box Pushing Puzzles***
 //*************************
 //We're working off a subtype of pressureplates, which should work just a BIT better now.
 /obj/structure/holobox
-	name = "holobox"
-	desc = "A hard-light box, containing a secure decryption key."
+	name = "全息盒"
+	desc = "一个硬光盒子，内含一个安全的解密密钥。"
 	icon = 'icons/obj/fluff/puzzle_small.dmi'
 	icon_state = "laserbox"
 	density = TRUE
@@ -160,8 +160,8 @@
 
 //Uses the pressure_plate settings for a pretty basic custom pattern that waits for a specific item to trigger. Easy enough to retool for mapping purposes or subtypes.
 /obj/item/pressure_plate/hologrid
-	name = "hologrid"
-	desc = "A high power, electronic input port for a holobox, which can unlock the hologrid's storage compartment. Safe to stand on."
+	name = "全息网格"
+	desc = "一个用于全息盒的高功率电子输入端口，可以解锁全息网格的存储隔间。站在上面是安全的。"
 	icon = 'icons/obj/fluff/puzzle_small.dmi'
 	icon_state = "lasergrid"
 	anchored = TRUE
@@ -189,7 +189,7 @@
 /obj/item/pressure_plate/hologrid/examine(mob/user)
 	. = ..()
 	if(claimed)
-		. += span_notice("This one appears to be spent already.")
+		. += span_notice("这个看起来已经用过了。")
 
 /obj/item/pressure_plate/hologrid/trigger()
 	if(!claimed)
@@ -208,8 +208,8 @@
 
 //Light puzzle
 /obj/structure/light_puzzle
-	name = "light mechanism"
-	desc = "It's a mechanism that seems to power something when all the lights are lit up. It looks virtually indestructible."
+	name = "光照机制"
+	desc = "这是一个当所有灯都点亮时似乎能为某物供能的装置。它看起来几乎坚不可摧。"
 	icon = 'icons/obj/fluff/puzzle_small.dmi'
 	icon_state = "light_puzzle"
 	anchored = TRUE
@@ -302,7 +302,7 @@
 	for(var/checking_light in light_list)
 		if(!checking_light)
 			return
-	visible_message(span_boldnotice("[src] becomes fully charged!"))
+	visible_message(span_boldnotice("[src] 完全充能了！"))
 	powered = TRUE
 	SEND_SIGNAL(src, COMSIG_PUZZLE_COMPLETED)
 	playsound(src, 'sound/machines/synth/synth_yes.ogg', 100, TRUE)
@@ -312,7 +312,7 @@
 //
 
 /obj/machinery/puzzle
-	name = "abstract puzzle gizmo"
+	name = "抽象谜题装置"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
 	/// have we been pressed already?
@@ -348,8 +348,8 @@
 	return ..()
 
 /obj/machinery/puzzle/button
-	name = "control panel"
-	desc = "A panel that controls something nearby. I'm sure it being covered in hazard stripes is fine."
+	name = "控制面板"
+	desc = "一个控制附近某物的面板。它上面覆盖着危险条纹，我想应该没问题吧。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "lockdown0"
 	base_icon_state = "lockdown"
@@ -362,15 +362,15 @@
 		return
 	used = single_use
 	update_icon_state()
-	visible_message(span_notice("[user] presses a button on [src]."), span_notice("You press a button on [src]."))
+	visible_message(span_notice("[user] 按下了 [src] 上的一个按钮。"), span_notice("你按下了 [src] 上的一个按钮。"))
 	playsound(src, 'sound/machines/terminal/terminal_button07.ogg', 45, TRUE)
 	on_puzzle_complete()
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/button, 32)
 
 /obj/machinery/puzzle/keycardpad
-	name = "keycard panel"
-	desc = "A panel that controls something nearby. Accepts keycards."
+	name = "门禁卡面板"
+	desc = "一个控制附近某物的面板。接受门禁卡。"
 	icon_state = "keycardpad0"
 	base_icon_state = "keycardpad"
 
@@ -392,8 +392,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/button, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/keycardpad, 32)
 
 /obj/machinery/puzzle/password
-	name = "password panel"
-	desc = "A panel that controls something nearby. This one requires a (case-sensitive) password, and it's not \"Swordfish\"."
+	name = "密码面板"
+	desc = "一个控制附近某物的面板。这个需要（区分大小写的）密码，而且不是 \"Swordfish\"。"
 	icon_state = "passpad0"
 	base_icon_state = "passpad"
 	///The password to this door.
@@ -429,7 +429,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/keycardpad, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password, 32)
 
 /obj/machinery/puzzle/password/pin
-	desc = "A panel that controls something nearby. This one requires a PIN password, so let's start by typing in 1234..."
+	desc = "一个控制附近某物的面板。这个需要PIN密码，那么我们先输入1234试试..."
 	tgui_text = "Please enter the PIN code."
 	tgui_title = "What's the PIN code?"
 	input_max_len_is_pass = TRUE
@@ -470,8 +470,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password/pin, 32)
 
 ///blockades destroy themselves if they receive COMSIG_GLOB_PUZZLE_COMPLETED with their ID
 /obj/structure/puzzle_blockade
-	name = "shield gate"
-	desc = "A wall of solid light, likely defending something important. Virtually indestructible, must be a way around, or to disable it."
+	name = "护盾门"
+	desc = "一道坚固的光墙，很可能在保护着重要的东西。几乎坚不可摧，肯定有办法绕过或关闭它。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "wave2"
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
@@ -501,8 +501,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password/pin, 32)
 	qdel(src)
 
 /obj/structure/puzzle_blockade/oneway
-	name = "one-way gate"
-	desc = "A wall of solid light, likely defending something important. Virtually indestructible."
+	name = "单向门"
+	desc = "一道坚固的光墙，很可能在保护着重要的东西。几乎坚不可摧。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "oneway"
 	base_icon_state = "oneway"
@@ -525,8 +525,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password/pin, 32)
 	update_appearance(UPDATE_ICON)
 
 /obj/effect/puzzle_poddoor_open
-	name = "puzzle-poddoor relay"
-	desc = "Activates pod doors if activated with a puzzle signal."
+	name = "谜题-舱门中继器"
+	desc = "如果被谜题信号激活，则会启动舱门。"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
 	anchored = TRUE
@@ -567,8 +567,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password/pin, 32)
 
 ///A dotted board that can be used as clue for PIN puzzle machinery
 /obj/effect/decal/puzzle_dots
-	name = "dotted board"
-	desc = "A board filled with colored dots. What could this mean?"
+	name = "点阵板"
+	desc = "一块布满彩色圆点的板子。这到底是什么意思呢？"
 	icon = 'icons/obj/fluff/puzzle_small.dmi'
 	icon_state = "puzzle_dots"
 	layer = ABOVE_NORMAL_TURF_LAYER
@@ -610,7 +610,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password/pin, 32)
 
 
 /obj/effect/decal/cleanable/crayon/puzzle
-	name = "Password character"
+	name = "密码字符"
 	icon_state = "0"
 	///The id of the puzzle we're linked to.
 	var/puzzle_id
@@ -620,7 +620,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password/pin, 32)
 
 /obj/effect/decal/cleanable/crayon/puzzle/Initialize(mapload, main, type, e_name, graf_rot, alt_icon = null)
 	. = ..()
-	name = "number"
+	name = "数字"
 	if(puzzle_id)
 		SSqueuelinks.add_to_queue(src, puzzle_id)
 
@@ -633,12 +633,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password/pin, 32)
 		return FALSE
 	icon_state = pick(pass_character)
 	if(!text2num(icon_state))
-		name = "letter"
-		desc = "A letter vandalizing the station."
+		name = "字母"
+		desc = "一个在空间站上涂鸦的字母。"
 	return TRUE
 
 /obj/effect/decal/cleanable/crayon/puzzle/pin
-	name = "PIN number"
+	name = "PIN码"
 
 /obj/effect/decal/cleanable/crayon/puzzle/pin/MatchedLinks(id, partners)
 	. = ..()
@@ -646,7 +646,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password/pin, 32)
 	add_atom_colour(pad.digit_to_color[icon_state], FIXED_COLOUR_PRIORITY)
 
 /obj/item/paper/fluff/scrambled_pass
-	name = "gibberish note"
+	name = "乱码纸条"
 	icon_state = "scrap"
 	///The ID associated to the puzzle we're part of.
 	var/puzzle_id

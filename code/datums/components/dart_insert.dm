@@ -52,10 +52,10 @@
 	if(!istype(dart))
 		return
 	if(!dart.modified)
-		to_chat(user, span_warning("The safety cap prevents you from inserting [parent] into [dart]."))
+		to_chat(user, span_warning("安全帽阻止你将 [parent] 插入 [dart]。"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(HAS_TRAIT(dart, TRAIT_DART_HAS_INSERT))
-		to_chat(user, span_warning("There's already something in [dart]."))
+		to_chat(user, span_warning("[dart] 里面已经有东西了。"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	add_to_dart(dart, user)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -70,7 +70,7 @@
 	if(user)
 		if(!user.transferItemToLoc(parent_item, dart_projectile))
 			return
-		to_chat(user, span_notice("You insert [parent_item] into [dart]."))
+		to_chat(user, span_notice("你将 [parent_item] 插入了 [dart]。"))
 	else
 		parent_item.forceMove(dart_projectile)
 	ADD_TRAIT(dart, TRAIT_DART_HAS_INSERT, REF(src))
@@ -105,7 +105,7 @@
 	UnregisterSignal(parent, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 	if(user)
 		INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, put_in_hands), parent)
-		to_chat(user, span_notice("You remove [parent] from [dart]."))
+		to_chat(user, span_notice("你从 [dart] 中取出了 [parent]。"))
 
 /datum/component/dart_insert/proc/on_dart_attack_self(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -113,7 +113,7 @@
 
 /datum/component/dart_insert/proc/on_dart_examine_more(datum/source, mob/user, list/examine_list)
 	var/obj/item/parent_item = parent
-	examine_list += span_notice("You can see a [parent_item.name] inserted into it.")
+	examine_list += span_notice("你可以看到里面插着一个 [parent_item.name]。")
 
 /datum/component/dart_insert/proc/on_leave_dart()
 	SIGNAL_HANDLER

@@ -1,8 +1,8 @@
 //Item for knock/moon heretic sidepath, it can block 5 hits of damage, acts as storage and if the heretic is examined the examiner suffers brain damage and blindness
 
 /obj/item/storage/belt/unfathomable_curio
-	name = "Unfathomable Curio"
-	desc = "It. It looks backs. It looks past. It looks in. It sees. It hides. It opens."
+	name = "深不可测的奇物"
+	desc = "它。它回望。它看穿。它窥视。它看见。它隐藏。它开启。"
 	icon_state = "unfathomable_curio"
 	worn_icon_state = "unfathomable_curio"
 	content_overlays = FALSE
@@ -32,7 +32,7 @@
 	RegisterSignal(user, COMSIG_LIVING_CHECK_BLOCK, PROC_REF(shield_reaction))
 
 	if(!IS_HERETIC(user))
-		to_chat(user, span_warning("The curio wraps around you, and you feel the beating of something dark inside it..."))
+		to_chat(user, span_warning("奇物缠绕着你，你感觉到其中某种黑暗之物在搏动……"))
 
 /obj/item/storage/belt/unfathomable_curio/dropped(mob/user)
 	. = ..()
@@ -60,11 +60,11 @@
 		/datum/brain_trauma/severe/paralysis,
 		/datum/brain_trauma/severe/monophobia
 	)
-	wearer.visible_message(span_danger("[wearer]'s veil makes [attack_text] miss, but the force behind the blow causes it to disperse!"))
+	wearer.visible_message(span_danger("[wearer] 的面纱使 [attack_text] 落空，但其冲击力导致面纱消散了！"))
 	if(IS_HERETIC(wearer))
 		return
 
-	to_chat(wearer, span_warning("Laughter echoes in your mind...."))
+	to_chat(wearer, span_warning("笑声在你脑海中回荡……"))
 	wearer.adjust_organ_loss(ORGAN_SLOT_BRAIN, 40)
 	wearer.dropItemToGround(src, TRUE)
 	wearer.gain_trauma(pick(brain_traumas), TRAUMA_RESILIENCE_MAGIC)
@@ -76,6 +76,6 @@
 
 	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 160)
 	user.adjust_temp_blindness(5 SECONDS)
-	. += span_notice("It. It looked. IT WRAPS ITSELF AROUND ME.")
+	. += span_notice("它。它看着。它缠绕着我。")
 
 

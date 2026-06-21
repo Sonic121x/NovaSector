@@ -22,7 +22,7 @@
 
 /datum/team/nuclear/roundend_report()
 	var/list/parts = list()
-	parts += span_header("[syndicate_name] Operatives:")
+	parts += span_header("[syndicate_name] 特工：")
 
 	switch(get_result())
 		if(NUKE_RESULT_FLUKE)
@@ -62,7 +62,7 @@
 			parts += "<span class='neutraltext big'>Neutral Victory</span>"
 			parts += "<B>Mission aborted!</B>"
 
-	var/text = span_header("<br>The syndicate operatives were:")
+	var/text = span_header("<br>辛迪加特工是：")
 	var/purchases = ""
 	var/TC_uses = 0
 	LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
@@ -135,7 +135,7 @@
 
 /datum/team/nuclear/proc/rename_team(new_name)
 	syndicate_name = new_name
-	name = "[syndicate_name] Team"
+	name = "[syndicate_name] 小队"
 	for(var/datum/mind/synd_mind in members)
 		var/datum/antagonist/nukeop/synd_datum = synd_mind.has_antag_datum(/datum/antagonist/nukeop)
 		synd_datum?.give_alias()
@@ -146,15 +146,15 @@
 
 	var/infil_or_nukebase = tgui_alert(
 		admin,
-		"Spawn them at the nuke base, or in the Infiltrator?",
-		"Where to reinforce?",
+		"将他们生成在核弹基地，还是渗透者号上？",
+		"在哪里增援？",
 		list(SPAWN_AT_BASE, SPAWN_AT_INFILTRATOR, "Cancel"),
 	)
 
 	if(!infil_or_nukebase || infil_or_nukebase == "Cancel")
 		return
 
-	var/tc_to_spawn = tgui_input_number(admin, "How much TC to spawn with?", "TC", 0, 100)
+	var/tc_to_spawn = tgui_input_number(admin, "生成时携带多少TC？", "TC", 0, 100)
 
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates(
 		check_jobban = ROLE_OPERATIVE,
@@ -167,7 +167,7 @@
 	)
 
 	if(isnull(chosen_one))
-		tgui_alert(admin, "No candidates found.", "Recruitment Shortage", list("OK"))
+		tgui_alert(admin, "未找到候选人。", "招募短缺", list("OK"))
 		return
 
 
@@ -214,7 +214,7 @@
 	playsound(spawn_loc, SFX_SPARKS, 50, TRUE)
 	playsound(spawn_loc, 'sound/effects/phasein.ogg', 50, TRUE)
 
-	tgui_alert(admin, "Reinforcement spawned at [infil_or_nukebase] with [tc_to_spawn].", "Reinforcements have arrived", list("God speed"))
+	tgui_alert(admin, "增援已在[infil_or_nukebase]生成，携带[tc_to_spawn]。", "增援已抵达", list("God speed"))
 
 /datum/team/nuclear/proc/is_disk_rescued()
 	for(var/obj/item/disk/nuclear/nuke_disk in SSpoints_of_interest.real_nuclear_disks)

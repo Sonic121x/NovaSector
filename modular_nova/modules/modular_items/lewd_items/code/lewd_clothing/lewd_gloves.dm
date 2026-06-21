@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/ball_mittens
-	name = "ball mittens"
-	desc = "A pair of spherical mitts; made to suppress the wearer's hands and prevent fine motor control."
+	name = "球形连指手套"
+	desc = "一副球形连指手套；用于限制佩戴者的双手并阻止精细运动控制。"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
 	greyscale_colors = "#383840"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
@@ -20,8 +20,8 @@
 		return
 	if(!istype(attacking_item, /obj/item/restraints/handcuffs) || !initial(breakouttime))
 		return
-	to_chat(user, span_notice("You reinforce the belts on [src] with [attacking_item]."))
-	name = "reinforced [initial(name)]"
+	to_chat(user, span_notice("你用[attacking_item]加固了[src]上的带子。"))
+	name = "加固的[initial(name)]"
 	clothing_flags = DANGEROUS_OBJECT
 	breakouttime = 100 SECONDS
 	qdel(attacking_item)
@@ -34,8 +34,8 @@
 
 /// Paw mittens; which vary only in looks from ball mittens
 /obj/item/clothing/gloves/ball_mittens/paw_mittens
-	name = "paw mittens"
-	desc = "Mittens that compress the hand into a tight space, and restrict fine motor control."
+	name = "爪形连指手套"
+	desc = "将手压缩在狭小空间内并限制精细运动控制的连指手套。"
 	greyscale_colors = "#383840#dc7ef4"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/ball_mittens/paw_mittens"
@@ -46,8 +46,8 @@
 
 /// Long (Formerly Latex) Gloves
 /obj/item/clothing/gloves/long_gloves
-	name = "long gloves"
-	desc = "Sleek gloves that go up towards the shoulder."
+	name = "长手套"
+	desc = "一直延伸到肩部的光滑手套。"
 	w_class = WEIGHT_CLASS_SMALL
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
 	greyscale_colors = "#383840"

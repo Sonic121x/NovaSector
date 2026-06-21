@@ -24,8 +24,8 @@
 	new_icon_state = "pleading"
 
 /obj/item/clothing/mask/joy
-	name = "emotion mask"
-	desc = "Express your happiness or hide your sorrows with this cultured cutout."
+	name = "情绪面具"
+	desc = "用这个精致的剪影来表达你的快乐或隐藏你的悲伤。"
 	icon_state = "joy"
 	base_icon_state = "joy"
 	clothing_flags = MASKINTERNALS
@@ -35,22 +35,22 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/joy_mask, infinite = TRUE)
 
 /obj/item/clothing/mask/mummy
-	name = "mummy mask"
-	desc = "Ancient bandages."
+	name = "木乃伊面具"
+	desc = "古老的绷带。"
 	icon_state = "mummy_mask"
 	inhand_icon_state = null
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/mask/scarecrow
-	name = "sack mask"
-	desc = "A burlap sack with eyeholes."
+	name = "口罩"
+	desc = "一个带有眼孔的麻布袋。"
 	icon_state = "scarecrow_sack"
 	inhand_icon_state = null
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/mask/kitsune
-	name = "kitsune mask"
-	desc = "Porcelain mask made in the style of the Sol-3 region. It is painted to look like a kitsune."
+	name = "狐面"
+	desc = "以太阳系第三区风格制作的瓷面具。被涂绘成狐狸的样子。"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_SMALL
 	adjusted_flags = ITEM_SLOT_HEAD
@@ -78,8 +78,8 @@
 	flags_inv = up ? NONE : (HIDEFACE|HIDEFACIALHAIR)
 
 /obj/item/clothing/mask/rebellion
-	name = "rebellion mask"
-	desc = "Mask that is usually used during rebellions by insurgents. It covers the entire face and makes you unrecognizable."
+	name = "反抗面具"
+	desc = "通常由叛乱分子在起义期间使用的面具。它覆盖整个面部，让你无法被识别。"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_SMALL
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT

@@ -1,6 +1,6 @@
 /obj/machinery/inspector_mainframe
-	name = "Inspector Mainframe"
-	desc = "A sophisticated machine capable of locking down cargo shuttles and controlling ship alert status. Its functions are accessible through a secure interface."
+	name = "检查员主控台"
+	desc = "一台精密的机器，能够锁定货运穿梭机并控制飞船警报状态。其功能可通过安全界面访问。"
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
 	base_icon_state = "dominator"
@@ -89,7 +89,7 @@
 	to_chat(user,span_notice("You toggle [src] [cargo_disruption_active ? "on":"off"]."))
 	if(!tracked)
 		AddComponent(/datum/component/gps, "HC Starship")
-		to_chat(user,span_warning("The scrambling signal can now be tracked by GPS."))
+		to_chat(user,span_warning("干扰信号现在可以通过GPS追踪。"))
 	if(!sos_active)
 		START_PROCESSING(SSobj,src)
 	update_appearance()
@@ -129,7 +129,7 @@
 
 /// Sends a priority announcement about signal interference and cargo lockdown
 /obj/machinery/inspector_mainframe/proc/send_notification()
-	priority_announce("Signal interference detected; source registered on local GPS units. Cargo shuttle systems have been locked down.")
+	priority_announce("检测到信号干扰；来源已在本地GPS单元上注册。货运穿梭机系统已被锁定。")
 
 /// Shows a radial menu for selecting the ship's alert level
 /obj/machinery/inspector_mainframe/proc/select_alert_level(mob/user)
@@ -173,13 +173,13 @@
 /// Sets the ship's alert level and notifies the crew via radio
 /obj/machinery/inspector_mainframe/proc/set_alert_level(level_name, level_description, mob/user)
 	if(current_alert_level == level_name)
-		balloon_alert(user, "alert level unchanged!")
+		balloon_alert(user, "警戒等级未改变！")
 		return
 
 	current_alert_level = level_name
-	to_chat(user, span_notice("You set the ship alert status to [level_name]."))
+	to_chat(user, span_notice("你将飞船警报状态设置为[level_name]。"))
 	radio.talk_into(src, "ALERT LEVEL CHANGED: [level_name] - [level_description]", RADIO_CHANNEL_GUILD)
-	balloon_alert(user, "alert level updated")
+	balloon_alert(user, "警戒等级已更新")
 	playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 50, TRUE)
 	update_appearance()
 
@@ -189,16 +189,16 @@
 		return
 
 	if(current_alert_level != "Status Onyx" && current_alert_level != "Status Obsidian")
-		balloon_alert(user, "requires status four or five!")
-		to_chat(user, span_warning("The SOS beacon can only be activated when the ship is at Status Onyx or Status Obsidian."))
+		balloon_alert(user, "需要状态四或五！")
+		to_chat(user, span_warning("SOS信标只能在飞船处于缟玛瑙状态或黑曜石状态时激活。"))
 		return
 
 	sos_active = !sos_active
 	if(sos_active)
 		if(!cargo_disruption_active)
 			START_PROCESSING(SSobj, src)
-		to_chat(user, span_notice("You activate the SOS beacon."))
-		balloon_alert(user, "distress beacon activated!")
+		to_chat(user, span_notice("你激活了SOS信标。"))
+		balloon_alert(user, "遇险信标已激活！")
 		playsound(src, 'modular_nova/modules/random_ship_event/random_ships/heliostatic_inspectors/sounds/alarm_small_09.ogg', 75, TRUE)
 		if(current_alert_level == "Status Obsidian")
 			radio.talk_into(src, "ENCRYPTED BURST: OBSIDIAN. Self-destruct and denial protocols initiated. All assets to be denied to the enemy.", RADIO_CHANNEL_GUILD)
@@ -212,8 +212,8 @@
 		if(sos_timer_id)
 			deltimer(sos_timer_id)
 			sos_timer_id = null
-		to_chat(user, span_notice("You deactivate the SOS beacon."))
-		balloon_alert(user, "distress beacon deactivated!")
+		to_chat(user, span_notice("你关闭了SOS信标。"))
+		balloon_alert(user, "遇险信标已停用！")
 		playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 50, TRUE)
 		radio.talk_into(src, "Distress signal deactivated.", RADIO_CHANNEL_GUILD)
 	update_appearance()
@@ -234,4 +234,4 @@
 /obj/machinery/inspector_mainframe/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: System is [cargo_disruption_active ? "ACTIVE" : "INACTIVE"]. Current alert level: [current_alert_level]. SOS beacon: [sos_active ? "ACTIVE" : "INACTIVE"].")
+		. += span_notice("状态显示屏显示：系统状态为 [cargo_disruption_active ? "ACTIVE" : "INACTIVE"]。当前警戒等级：[current_alert_level]。SOS信标：[sos_active ? "ACTIVE" : "INACTIVE"]。")

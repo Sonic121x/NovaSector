@@ -1,6 +1,6 @@
 /obj/item/mecha_diagnostic
-	name = "mecha holodiagnostic"
-	desc = "A holographic datasheet of unique data related to the mecha's construction and any production differences between the published designs to increment improvements."
+	name = "机甲全息诊断仪"
+	desc = "一份包含机甲构造独特数据以及已发布设计之间生产差异的全息数据表，用于记录渐进式改进。"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "holosheet"
 	w_class = WEIGHT_CLASS_SMALL

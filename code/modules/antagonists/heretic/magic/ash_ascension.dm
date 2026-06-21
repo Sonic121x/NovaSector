@@ -1,7 +1,7 @@
 /// Creates a constant Ring of Fire around the caster for a set duration of time, which follows them.
 /datum/action/cooldown/spell/fire_sworn
-	name = "Oath of Flame"
-	desc = "For a minute, you will passively create a ring of fire around you."
+	name = "烈焰之誓"
+	desc = "你会在一分钟内被动地在周围形成一圈火焰。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -61,8 +61,8 @@
 
 /// Creates one, large, expanding ring of fire around the caster, which does not follow them.
 /datum/action/cooldown/spell/fire_cascade
-	name = "Lesser Fire Cascade"
-	desc = "Heats the air around you."
+	name = "小型火焰级联"
+	desc = "加热你周围的空气。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -96,13 +96,13 @@
 		stoplag(0.3 SECONDS)
 
 /datum/action/cooldown/spell/fire_cascade/big
-	name = "Greater Fire Cascade"
+	name = "大型火焰级联"
 	flame_radius = 6
 
 // Currently unused - releases streams of fire around the caster.
 /datum/action/cooldown/spell/pointed/ash_beams
-	name = "Nightwatcher's Rite"
-	desc = "A powerful spell that releases five streams of eldritch fire towards the target."
+	name = "夜巡者的仪式"
+	desc = "一个强大的法术，将五股奥术之火射向目标。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -149,13 +149,13 @@
 
 		for(var/mob/living/L in T.contents)
 			if(L.can_block_magic())
-				L.visible_message(span_danger("The spell bounces off of [L]!"), span_danger("The spell bounces off of you!"))
+				L.visible_message(span_danger("法术从[L]身上弹开了！"), span_danger("法术从你身上弹开了！"))
 				continue
 			if((L in hit_list) || L == source)
 				continue
 			hit_list += L
 			L.adjust_fire_loss(20)
-			to_chat(L, span_userdanger("You're hit by [source]'s eldritch flames!"))
+			to_chat(L, span_userdanger("你被[source]的异界火焰击中了！"))
 
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)

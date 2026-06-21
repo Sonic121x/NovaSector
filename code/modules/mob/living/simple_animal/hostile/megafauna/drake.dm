@@ -30,8 +30,8 @@
  */
 
 /mob/living/simple_animal/hostile/megafauna/dragon
-	name = "ash drake"
-	desc = "Guardians of the necropolis."
+	name = "灰烬龙"
+	desc = "墓地的守卫者."
 	health = 2500
 	maxHealth = 2500
 	attack_verb_continuous = "chomps"

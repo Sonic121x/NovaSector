@@ -1,5 +1,5 @@
 /obj/effect/spawner/random/magturret
-	name = "Random Magazine Turret"
+	name = "随机弹匣炮台"
 	icon = 'modular_nova/modules/magfed_turret/icons/spawners.dmi'
 	icon_state = "dep_turret_spawner"
 	loot = list(
@@ -8,7 +8,7 @@
 	)
 
 /obj/effect/spawner/random/throwturret
-	name = "Random Throwable Turret"
+	name = "随机投掷式炮台"
 	icon = 'modular_nova/modules/magfed_turret/icons/spawners.dmi'
 	icon_state = "dep_throw_spawner"
 	loot = list(
@@ -17,7 +17,7 @@
 	)
 
 /obj/effect/spawner/random/turretkit
-	name = "Random Magazine Turret Kit"
+	name = "随机弹匣炮台套件"
 	icon = 'modular_nova/modules/magfed_turret/icons/spawners.dmi'
 	icon_state = "turretkit_spawner"
 	loot = list(
@@ -29,7 +29,7 @@
 	)
 
 /obj/effect/spawner/random/throwturretkit
-	name = "Random Throwable Turret Kit"
+	name = "随机投掷式炮台套件"
 	icon = 'modular_nova/modules/magfed_turret/icons/spawners.dmi'
 	icon_state = "throwkit_spawner"
 	loot = list(
@@ -39,7 +39,7 @@
 	)
 
 /obj/effect/spawner/random/turretassembly
-	name = "Random Turret Assembly"
+	name = "随机炮台组装件"
 	icon = 'modular_nova/modules/magfed_turret/icons/spawners.dmi'
 	icon_state = "assembly_spawner"
 	loot = list(

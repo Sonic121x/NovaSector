@@ -1,6 +1,6 @@
 /obj/machinery/vending/assist
-	name = "\improper Part-Mart"
-	desc = "All the finest of miscellaneous electronics one could ever need! Not responsible for any injuries caused by reckless misuse of parts."
+	name = "\improper 零件销商"
+	desc = "最好的各种各样的电子产品一应俱全！我们不对鲁莽使用零件造成的事故损伤负责。"
 	icon_state = "parts"
 	icon_deny = "parts-deny"
 	panel_type = "panel10"

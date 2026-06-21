@@ -2,11 +2,11 @@
 
 //Ammo storage in freighter armoury
 /obj/structure/closet/freighterammo
-	name = "Ammo Storage"
+	name = "弹药储存柜"
 
 //Freighter QM's gear locker
 /obj/structure/closet/secure_closet/personal/cabinet/freighterboss
-	name = "Personal Closet"
+	name = "个人储物柜"
 
 /obj/structure/closet/freighterammo/PopulateContents()
 	. = ..()

@@ -1,6 +1,6 @@
 /*****************Pickaxes & Drills & Shovels****************/
 /obj/item/pickaxe
-	name = "pickaxe"
+	name = "镐子"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "pickaxe"
 	inhand_icon_state = "pickaxe"
@@ -28,16 +28,16 @@
 	return SHAME
 
 /obj/item/pickaxe/rusted
-	name = "rusty pickaxe"
-	desc = "A pickaxe that's been left to rust."
+	name = "生锈的镐"
+	desc = "一把已经锈迹斑斑的镐子."
 	attack_verb_continuous = list("ineffectively hits")
 	attack_verb_simple = list("ineffectively hit")
 	force = 1
 	throwforce = 1
 
 /obj/item/pickaxe/mini
-	name = "compact pickaxe"
-	desc = "A smaller, compact version of the standard pickaxe."
+	name = "紧凑稿"
+	desc = "标准鹤嘴锄的小而紧凑的版本。"
 	icon_state = "minipick"
 	worn_icon_state = "pickaxe"
 	force = 10
@@ -47,23 +47,23 @@
 	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/pickaxe/silver
-	name = "silver-plated pickaxe"
+	name = "镀银镐"
 	icon_state = "spickaxe"
 	inhand_icon_state = "spickaxe"
 	toolspeed = 0.5 //mines faster than a normal pickaxe, bought from mining vendor
-	desc = "A silver-plated pickaxe that mines slightly faster than standard-issue."
+	desc = "一种镀银的鹤嘴锄，挖矿速度比标准型号稍快。"
 	force = 17
 
 /obj/item/pickaxe/diamond
-	name = "diamond-tipped pickaxe"
+	name = "钻石尖嘴镐"
 	icon_state = "dpickaxe"
 	inhand_icon_state = "dpickaxe"
 	toolspeed = 0.3
-	desc = "A pickaxe with a diamond pick head. Extremely robust at cracking rock walls and digging up dirt."
+	desc = "有钻石头的鹤嘴锄。在开裂岩壁和挖土方面非常强健。"
 	force = 19
 
 /obj/item/pickaxe/drill
-	name = "mining drill"
+	name = "采矿钻"
 	icon_state = "handdrill"
 	inhand_icon_state = "handdrill"
 	icon_angle = 0
@@ -71,31 +71,31 @@
 	toolspeed = 0.6 //available from roundstart, faster than a pickaxe.
 	usesound = 'sound/items/weapons/drill.ogg'
 	hitsound = 'sound/items/weapons/drill.ogg'
-	desc = "An electric mining drill for the especially scrawny."
+	desc = "为细狗的人准备的电钻。"
 
 /obj/item/pickaxe/drill/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/cuffable_item) //closed handle
 
 /obj/item/pickaxe/drill/diamonddrill
-	name = "diamond-tipped mining drill"
+	name = "钻石尖采矿钻"
 	icon_state = "diamonddrill"
 	inhand_icon_state = "diamonddrill"
 	toolspeed = 0.2
-	desc = "Yours is the drill that will pierce the heavens!"
+	desc = "你的钻头将突破天际！"
 
 /obj/item/pickaxe/drill/jackhammer
-	name = "sonic jackhammer"
+	name = "声波手提钻"
 	icon_state = "jackhammer"
 	inhand_icon_state = "jackhammer"
 	toolspeed = 0.1 //the epitome of powertools. extremely fast mining
 	usesound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	hitsound = 'sound/items/weapons/sonic_jackhammer.ogg'
-	desc = "Cracks rocks with sonic blasts."
+	desc = "用声波震碎岩石。"
 
 /obj/item/pickaxe/improvised
-	name = "improvised pickaxe"
-	desc = "A pickaxe made with a knife and crowbar taped together, how does it not break?"
+	name = "临时镐"
+	desc = "一把由刀和撬棍拼接而成的铁锹，会不会断裂呢？"
 	icon_state = "ipickaxe"
 	inhand_icon_state = "ipickaxe"
 	worn_icon_state = "pickaxe"
@@ -107,8 +107,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*6) //This number used to be insane and I'm just going to save your sanity and not tell you what it was.
 
 /obj/item/shovel
-	name = "shovel"
-	desc = "A large tool for digging and moving dirt."
+	name = "铲子"
+	desc = "用来挖土和铲土的大型工具。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "shovel"
 	inhand_icon_state = "shovel"
@@ -145,8 +145,8 @@
 	return SHAME
 
 /obj/item/shovel/spade
-	name = "spade"
-	desc = "A small tool for digging and moving dirt."
+	name = "铲子"
+	desc = "用来挖土和铲土的小型工具。"
 	icon_state = "spade"
 	inhand_icon_state = "spade"
 	icon_angle = -135
@@ -165,7 +165,7 @@
 	worn_icon_state = null
 
 /obj/item/shovel/serrated
-	name = "serrated bone shovel"
+	name = "锯齿骨铲"
 	desc = "A wicked tool that cleaves through dirt just as easily as it does flesh. The design was styled after ancient lavaland tribal designs. \
 		It seems less capable of harming inorganic creatures. Who knows why."
 	icon_state = "shovel_bone"
@@ -202,8 +202,8 @@
 	toolspeed = 0.8
 
 /obj/item/trench_tool
-	name = "entrenching tool"
-	desc = "The multi-purpose tool you always needed."
+	name = "挖壕工具"
+	desc = "你一直所需的多功能工具。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "trench_tool"
 	inhand_icon_state = "trench_tool"
@@ -367,7 +367,7 @@
 	tool_behaviour = (active ? TOOL_WRENCH : initial(tool_behaviour))
 	armour_penetration = (active ? 30 : initial(armour_penetration))
 	if(user)
-		balloon_alert(user, "folded Big Slappy [active ? "open" : "closed"]")
+		balloon_alert(user, "折叠了巨力拍子 [active ? "open" : "closed"]")
 	playsound(src, 'sound/items/tools/ratchet.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 

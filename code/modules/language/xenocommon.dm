@@ -1,6 +1,6 @@
 /datum/language/xenocommon
-	name = "Xenomorph"
-	desc = "The common tongue of the xenomorphs."
+	name = "异形语"
+	desc = "异形的通用语"
 	key = "4"
 	syllables = list("sss","sSs","SSS")
 	default_priority = 50

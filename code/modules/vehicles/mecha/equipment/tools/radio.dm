@@ -1,7 +1,7 @@
 ///Mech radio module
 /obj/item/mecha_parts/mecha_equipment/radio
-	name = "mounted radio"
-	desc = "A basic component of every vehicle."
+	name = "车载无线电"
+	desc = "每辆载具的基础组件。"
 	icon_state = "mecha_radio"
 	equipment_slot = MECHA_UTILITY
 	///Internal radio item

@@ -22,10 +22,10 @@
 	. = ..()
 
 	if(!hasPower())
-		to_chat(user, span_warning("This door isn't powered."))
+		to_chat(user, span_warning("这扇门没有通电。"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	src.balloon_alert(user, "ai requested!")
+	src.balloon_alert(user, "已请求AI！")
 
 	for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
 		if(AI.stat == DEAD)

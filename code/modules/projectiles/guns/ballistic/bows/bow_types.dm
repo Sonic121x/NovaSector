@@ -1,21 +1,21 @@
 
 ///basic bow, used for medieval sim
 /obj/item/gun/ballistic/bow/longbow
-	name = "longbow"
-	desc = "While pretty finely crafted, surely you can find something better to use in the current year."
+	name = "长弓"
+	desc = "虽然制作相当精良，但在这个时代你肯定能找到更好的东西来用。"
 
 /// Shortbow, made via the crafting recipe
 /obj/item/gun/ballistic/bow/shortbow
-	name = "shortbow"
-	desc = "A simple homemade shortbow. Great for LARPing. Or poking out someones eye."
+	name = "短弓"
+	desc = "一把简单的自制短弓。非常适合真人角色扮演。或者戳瞎别人的眼睛。"
 	obj_flags = UNIQUE_RENAME
 	projectile_damage_multiplier = 0.5
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 ///chaplain's divine archer bow
 /obj/item/gun/ballistic/bow/divine
-	name = "divine bow"
-	desc = "Holy armament to pierce the souls of sinners."
+	name = "神圣之弓"
+	desc = "刺穿罪人灵魂的神圣武器。"
 	icon_state = "holybow"
 	inhand_icon_state = "holybow"
 	base_icon_state = "holybow"
@@ -27,7 +27,7 @@
 	projectile_speed_multiplier = 1.5
 
 /obj/item/ammo_box/magazine/internal/bow/holy
-	name = "divine bowstring"
+	name = "神圣弓弦"
 	ammo_type = /obj/item/ammo_casing/arrow/holy
 
 /obj/item/gun/ballistic/bow/divine/Initialize(mapload)
@@ -41,8 +41,8 @@
 
 /// Ashen bow, crafted from watcher sinew and animal bones.
 /obj/item/gun/ballistic/bow/ashenbow
-	name = "ashen bow"
-	desc = "A bow made from watcher sinew and bone. Seems to possess an almost eerie radiance about it."
+	name = "灰烬之弓"
+	desc = "一把由守望者肌腱和骨头制成的弓。似乎散发着一种近乎诡异的微光。"
 	icon_state = "ashenbow"
 	inhand_icon_state = "ashenbow"
 	base_icon_state = "ashenbow"

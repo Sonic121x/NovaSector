@@ -25,8 +25,8 @@
 		cortical_owner.genome_locked = TRUE
 
 /datum/borer_evolution/base
-	name = "The Beginning"
-	desc = "The start of a great age."
+	name = "开端"
+	desc = "伟大时代的起点。"
 	gain_text = "The worms, which we came to call \"Cortical Borers\", are fascinating creatures."
 	evo_cost = 0
 	evo_type = BORER_EVOLUTION_START

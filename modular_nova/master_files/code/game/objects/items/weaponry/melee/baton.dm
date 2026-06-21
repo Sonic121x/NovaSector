@@ -7,7 +7,7 @@
 
 /obj/item/melee/baton/security/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The Secure Apprehension Device (sometimes referred to as the SAD in officer training manuals) is \
 			the unholy union of a mace and a cattleprod. This nonlethal device was designed to put a stop to ruffians, \
 			scoundrels, ne'er-do-wells and criminals wherever they may rear their ugly heads.<br>\
@@ -35,7 +35,7 @@
 
 /obj/item/melee/baton/telescopic/contractor_baton/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The Contract Acquisition Device (sometimes referred to as the CAD in encrypted correspondence) is \
 			one of the more frequently encountered examples of Cybersun Industries weaponry. Extremely similar to Nanotrasen's \
 			own Secure Apprehension Device (also simply known as the stun baton), the contractor baton is able to induce \

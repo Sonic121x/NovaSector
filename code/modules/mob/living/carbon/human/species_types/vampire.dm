@@ -207,7 +207,7 @@
 
 /datum/action/item_action/organ_action/vampire
 	name = "Drain Victim"
-	desc = "Leech blood from any carbon victim you are passively grabbing."
+	desc = "从任何被碳元素污染的受害者身上吸血，这完全是被动的行为。"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "drain_victim"
 	background_icon_state = "bg_vampire"
@@ -268,7 +268,7 @@
 	return TRUE
 
 /obj/item/organ/heart/vampire
-	name = "vampire heart"
+	name = "吸血鬼之心"
 	icon_state = "heart_vampire"
 	desc = "Some guy stabbed his brother 6,000 years ago so now you have this."
 

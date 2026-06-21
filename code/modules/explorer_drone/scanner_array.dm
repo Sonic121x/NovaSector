@@ -76,8 +76,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	deltimer(scan_timer)
 
 /obj/machinery/computer/exoscanner_control
-	name = "scanner array control console"
-	desc = "Controls scanner arrays to initiate scans for exodrones."
+	name = "扫描仪阵列控制台"
+	desc = "控制扫描阵列以启动对外勤无人机的扫描。"
 	circuit = /obj/item/circuitboard/computer/exoscanner_console
 	/// If scan was interrupted show a popup until dismissed.
 	var/failed_popup = FALSE
@@ -190,11 +190,11 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE)
 
 /obj/machinery/exoscanner
-	name = "scanner array"
+	name = "扫描仪阵列"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "scanner_off"
 	base_icon_state = "scanner"
-	desc = "A sophisticated scanning array. Easily influenced by its environment."
+	desc = "一个精密的扫描阵列。极易受环境影响。"
 	circuit = /obj/item/circuitboard/machine/exoscanner
 	///the scan power of this array to supply to scanner_controller
 	var/scan_power = 1
@@ -354,8 +354,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return 1
 
 /datum/scan_condition/nebula
-	name = "Nebula"
-	description = "Site is within an unusually dense nebula. To reduce scanner noise, position dishes at least 15 tiles apart."
+	name = "星云"
+	description = "站点位于异常密集的星云内。为减少扫描仪噪音，请将天线碟至少间隔15格放置。"
 	var/distance = 15
 
 /datum/scan_condition/nebula/check_dish(obj/machinery/exoscanner/dish)
@@ -365,8 +365,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return 1
 
 /datum/scan_condition/pulsar
-	name = "Pulsar"
-	description = "A pulsar near the site requires dishes to be shielded from electomagnetic noise. Ensure no other machines are working near the dish."
+	name = "脉冲星"
+	description = "站点附近的一颗脉冲星要求天线碟屏蔽电磁噪声。确保天线碟附近没有其他机器在工作。"
 	var/distance = 2
 
 /datum/scan_condition/pulsar/check_dish(obj/machinery/exoscanner/dish)
@@ -376,16 +376,16 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return 1
 
 /datum/scan_condition/asteroid_belt
-	name = "Asteroid Belt"
-	description = "An asteroid belt is obscuring the direct line of sight from the station to the site. Ensure the dishes are placed outside of the station z level."
+	name = "小行星带"
+	description = "一条小行星带遮挡了从空间站到站点的直接视线。请确保天线碟放置在空间站Z层级之外。"
 
 /datum/scan_condition/asteroid_belt/check_dish(obj/machinery/exoscanner/dish)
 	var/turf/dish_turf = get_turf(dish)
 	return is_station_level(dish_turf.z) ? 0 : 1
 
 /datum/scan_condition/black_hole
-	name = "Black Hole"
-	description = "A background black hole requires you to focus the scan point precisely. Ensure the dishes are isolated from rest of the station with at least 6 walls around them."
+	name = "黑洞"
+	description = "一个背景黑洞要求你精确聚焦扫描点。确保天线碟与空间站其他部分隔离，周围至少有6面墙。"
 
 /datum/scan_condition/black_hole/check_dish(obj/machinery/exoscanner/dish)
 	var/wall_count = 0
@@ -395,8 +395,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return wall_count > 6 ? 1 : 0
 
 /datum/scan_condition/easy
-	name = "Easy Scan"
-	description = "This site is very easy to scan, all dish power is doubled."
+	name = "简易扫描"
+	description = "这个站点非常容易扫描，所有天线碟的功率都翻倍。"
 
 /datum/scan_condition/easy/check_dish(obj/machinery/exoscanner/dish)
 	return 2

@@ -66,7 +66,7 @@
 
 /// Cryo cell
 /obj/machinery/cryo_cell
-	name = "cryo cell"
+	name = "休眠舱"
 	icon = 'icons/obj/medical/cryogenics.dmi'
 	icon_state = "pod-off"
 	density = TRUE
@@ -188,28 +188,28 @@
 /obj/machinery/cryo_cell/examine(mob/user) //this is leaving out everything but efficiency since they follow the same idea of "better beaker, better results"
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Efficiency at <b>[efficiency * 100]</b>%.")
+		. += span_notice("状态显示屏显示：效率为 <b>[efficiency * 100]</b>%。")
 		if(occupant)
 			if(on)
-				. += span_notice("Someone's inside [src]!")
+				. += span_notice("有人正在 [src] 里面！")
 			else
-				. += span_notice("You can barely make out a form floating in [src].")
+				. += span_notice("你勉强能辨认出 [src] 中漂浮着一个形体。")
 		else
-			. += span_notice("[src] seems empty.")
+			. += span_notice("[src] 似乎是空的。")
 		if(beaker)
-			. += span_notice("A beaker of [beaker.reagents.maximum_volume]u capacity is located inside.")
+			. += span_notice("里面有一个容量为 [beaker.reagents.maximum_volume]u 的烧杯。")
 		else
-			. += span_warning("Its missing a beaker.")
+			. += span_warning("它缺少一个烧杯。")
 
-		. += span_notice("Use [EXAMINE_HINT("Alt-Click")] to [state_open ? "Close" : "Open"] the machine.")
-		. += span_notice("Use [EXAMINE_HINT("Ctrl-Click")] to turn [on ? "Off" : "On"] the machine.")
+		. += span_notice("使用[EXAMINE_HINT("Alt-Click")]来[state_open ? "Close" : "Open"]机器。")
+		. += span_notice("使用 [EXAMINE_HINT("Ctrl-Click")] 来 [on ? "Off" : "On"] 机器。")
 
-		. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] open.")
+		. += span_notice("它的维护面板可以 [EXAMINE_HINT("screwed")] 打开。")
 		if(panel_open)
-			. += span_notice("[src] can be [EXAMINE_HINT("pried")] apart.")
-			. += span_notice("[src] can be rotated with a [EXAMINE_HINT("wrench")].")
+			. += span_notice("[src] 可以 [EXAMINE_HINT("pried")] 拆开。")
+			. += span_notice("[src] 可以用 [EXAMINE_HINT("wrench")] 旋转。")
 		else if(machine_stat & NOPOWER)
-			. += span_notice("[src] can be [EXAMINE_HINT("pried")] open.")
+			. += span_notice("[src] 可以 [EXAMINE_HINT("pried")] 打开。")
 
 /obj/machinery/cryo_cell/update_icon()
 	SET_PLANE_IMPLICIT(src, initial(plane))
@@ -235,30 +235,30 @@
 	if(!istype(tool, /obj/item/reagent_containers/cup))
 		return
 	if(!QDELETED(beaker))
-		balloon_alert(user, "beaker present!")
+		balloon_alert(user, "已有烧杯！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
 	beaker = tool
-	balloon_alert(user, "beaker inserted")
+	balloon_alert(user, "烧杯已插入")
 	user.log_message("added \a [tool] to cryo containing [pretty_string_from_reagent_list(tool.reagents.reagent_list)].", LOG_GAME)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/cryo_cell/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(on)
-		balloon_alert(user, "turn off!")
+		balloon_alert(user, "先关闭！")
 		return ITEM_INTERACT_BLOCKING
 	if(occupant)
-		balloon_alert(user, "occupant inside!")
+		balloon_alert(user, "里面有乘员！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/cryo_cell/crowbar_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, "turn off!")
+		balloon_alert(user, "先关闭！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/can_crowbar = FALSE
@@ -304,13 +304,13 @@
 /obj/machinery/cryo_cell/wrench_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(on)
-		balloon_alert(user, "turn off!")
+		balloon_alert(user, "先关闭！")
 		return
 	if(occupant)
-		balloon_alert(user, "occupant inside!")
+		balloon_alert(user, "里面有乘员！")
 		return
 	if(state_open)
-		balloon_alert(user, "close first!")
+		balloon_alert(user, "先关上！")
 		return
 
 	if(default_change_direction_wrench(user, tool))
@@ -518,14 +518,14 @@
 /obj/machinery/cryo_cell/container_resist_act(mob/living/user)
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the glass of [src]!"), \
-		span_notice("You struggle inside [src], kicking the release with your foot... (this will take about [DisplayTimeText(CRYO_BREAKOUT_TIME)].)"), \
-		span_hear("You hear a thump from [src]."))
+	user.visible_message(span_notice("你看到[user]正在踢[src]的玻璃！"), \
+		span_notice("你在[src]内挣扎，用脚踢着释放装置……（这大约需要[DisplayTimeText(CRYO_BREAKOUT_TIME)]。）"), \
+		span_hear("你听到[src]传来一声闷响。"))
 	if(do_after(user, CRYO_BREAKOUT_TIME, target = src, hidden = TRUE))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user]成功从[src]中挣脱出来了！"), \
+			span_notice("你成功从[src]中挣脱出来了！"))
 		open_machine()
 
 /obj/machinery/cryo_cell/ui_state(mob/user)
@@ -554,11 +554,11 @@
 
 		occupant_data["name"] = mob_occupant.name
 		if(mob_occupant.stat == DEAD)
-			occupant_data["stat"] = "Dead"
+			occupant_data["stat"] = "死亡"
 		else if (HAS_TRAIT(mob_occupant, TRAIT_KNOCKEDOUT))
-			occupant_data["stat"] = "Unconscious"
+			occupant_data["stat"] = "无意识"
 		else
-			occupant_data["stat"] = "Conscious"
+			occupant_data["stat"] = "清醒"
 
 		occupant_data["bodyTemperature"] = round(mob_occupant.bodytemperature, 1)
 
@@ -627,7 +627,7 @@
 /obj/machinery/cryo_cell/click_ctrl(mob/user)
 	if(is_operational && !state_open)
 		set_on(!on)
-		balloon_alert(user, "turned [on ? "on" : "off"]")
+		balloon_alert(user, "已[on ? "on" : "off"]")
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
 
@@ -640,7 +640,7 @@
 		close_machine()
 	else
 		open_machine()
-	balloon_alert(user, "door [state_open ? "opened" : "closed"]")
+	balloon_alert(user, "门已[state_open ? "opened" : "closed"]")
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/cryo_cell/mouse_drop_receive(mob/target, mob/user, params)
@@ -653,7 +653,7 @@
 			close_machine(target)
 		return
 
-	user.visible_message(span_notice("[user] starts shoving [target] inside [src]."), span_notice("You start shoving [target] inside [src]."))
+	user.visible_message(span_notice("[user]开始将[target]塞进[src]。"), span_notice("你开始将[target]塞进[src]。"))
 	if (do_after(user, 2.5 SECONDS, target=target))
 		close_machine(target)
 
@@ -661,20 +661,20 @@
 	user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)
 
 /datum/aas_config_entry/medical_cryo_announcements
-	name = "Medical Alert: Cryogenics Reports"
+	name = "医疗警报：低温休眠报告"
 	announcement_lines_map = list(
-		"Autoejecting" = "Auto ejecting patient now.",
-		"Deceased" = "Cryogenics report: Patient is deceased. %AUTOEJECTING",
-		"Fully Recovered" = "Cryogenics report: Patient fully restored. %AUTOEJECTING",
-		"Insufficient Gas" = "Cryogenics report: Insufficient cryogenic gas, shutting down. %AUTOEJECTING",
-		"Wound Treatment" = "Cryogenics report: Patient vitals fully recovered, continuing automated wound treatment."
+		"Autoejecting" = "正在自动弹出患者。",
+		"Deceased" = "低温休眠报告：患者已死亡。%AUTOEJECTING",
+		"Fully Recovered" = "低温休眠报告：患者已完全恢复。%AUTOEJECTING",
+		"Insufficient Gas" = "低温休眠报告：低温气体不足，正在关闭。%AUTOEJECTING",
+		"Wound Treatment" = "低温休眠报告：患者生命体征已完全恢复，继续自动伤口治疗。"
 	)
 	vars_and_tooltips_map = list(
-		"AUTOEJECTING" = "will be replaced with Autoejecting line, if system reports it's necessity"
+		"AUTOEJECTING" = "如果系统报告需要，将被替换为自动弹出提示行"
 	)
 
 /datum/aas_config_entry/medical_cryo_announcements/compile_announce(list/variables_map, announcement_line)
-	variables_map["AUTOEJECTING"] = variables_map["EJECTING"] ? announcement_lines_map["Autoejecting"] : ""
+	variables_map["AUTOEJECTING"] = variables_map["EJECTING"] ? announcement_lines_map["AUTOEJECTING"] : ""
 	var/list/exploded_string = splittext_char(..(), "\[NO DATA\]")
 	var/list/trimed_message = list()
 	for (var/line in exploded_string)

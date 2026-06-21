@@ -34,7 +34,7 @@
 		playsound(src, 'sound/items/nuke_toy_lowpower.ogg', 50, FALSE)
 		if(isliving(loc))
 			var/mob/living/alerted_holder = loc
-			to_chat(alerted_holder, span_userdanger("Your [name] vibrates and lets out an ominous alarm. Uh oh."))
+			to_chat(alerted_holder, span_userdanger("你的[name]振动并发出不祥的警报。哦，不妙。"))
 		return
 
 /obj/item/pinpointer/nuke/scan_for_target()
@@ -61,20 +61,20 @@
 /obj/item/pinpointer/nuke/proc/switch_mode_to(new_mode)
 	if(isliving(loc))
 		var/mob/living/L = loc
-		to_chat(L, span_userdanger("Your [name] beeps as it reconfigures its tracking algorithms."))
+		to_chat(L, span_userdanger("你的[name]在重新配置其追踪算法时发出哔哔声。"))
 		playsound(L, 'sound/machines/beep/triple_beep.ogg', 50, TRUE)
 	mode = new_mode
 	scan_for_target()
 
 /obj/item/pinpointer/nuke/syndicate // Syndicate pinpointers automatically point towards the infiltrator once the nuke is active.
-	name = "syndicate pinpointer"
-	desc = "A handheld tracking device that locks onto certain signals. It's configured to switch tracking modes once it detects the activation signal of a nuclear device."
+	name = "辛迪加追踪器"
+	desc = "一种手持追踪设备，可锁定特定信号。一旦检测到核装置的启动信号，它会自动切换追踪模式。"
 	icon_state = "pinpointer_syndicate"
 	worn_icon_state = "pinpointer_black"
 
 /obj/item/pinpointer/syndicate_cyborg // Cyborg pinpointers just look for a random operative.
-	name = "cyborg syndicate pinpointer"
-	desc = "An integrated tracking device, jury-rigged to search for living Syndicate operatives."
+	name = "赛博辛迪加追踪器"
+	desc = "一个集成的追踪装置，经过临时改造，用于搜寻活着的辛迪加成员。"
 	flags_1 = NONE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 

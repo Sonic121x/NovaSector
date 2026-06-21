@@ -206,8 +206,8 @@
  * Shrink the chain of mobs into one tile.
  */
 /datum/action/cooldown/worm_contract
-	name = "Force Contract"
-	desc = "Forces your body to contract onto a single tile."
+	name = "强制收缩"
+	desc = "迫使你的身体收缩到单个格子上。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'

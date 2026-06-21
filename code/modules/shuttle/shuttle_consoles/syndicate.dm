@@ -1,8 +1,8 @@
 #define SYNDICATE_CHALLENGE_TIMER (20 MINUTES)
 
 /obj/machinery/computer/shuttle/syndicate
-	name = "syndicate shuttle terminal"
-	desc = "The terminal used to control the syndicate transport shuttle."
+	name = "辛迪加穿梭机终端"
+	desc = "用于控制辛迪加运输穿梭机的终端。"
 	circuit = /obj/item/circuitboard/computer/syndicate_shuttle
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
@@ -22,19 +22,19 @@
 		return FALSE
 	var/obj/item/circuitboard/computer/syndicate_shuttle/board = circuit
 	if(board?.challenge_start_time && world.time < board.challenge_start_time + SYNDICATE_CHALLENGE_TIMER)
-		to_chat(user, span_warning("You've issued a combat challenge to the station! You've got to give them at least [DisplayTimeText(board.challenge_start_time + SYNDICATE_CHALLENGE_TIMER - world.time)] more to allow them to prepare."))
+		to_chat(user, span_warning("您已向空间站发出了战斗挑战！您必须至少再给他们[DisplayTimeText(board.challenge_start_time + SYNDICATE_CHALLENGE_TIMER - world.time)]的时间来准备。"))
 		return FALSE
 	board.moved = TRUE
 	return TRUE
 
 /obj/machinery/computer/shuttle/syndicate/recall
-	name = "syndicate shuttle recall terminal"
-	desc = "Use this if your friends left you behind."
+	name = "辛迪加穿梭机召回终端"
+	desc = "如果你的朋友把你落下了，就用这个。"
 	possible_destinations = "syndicate_away"
 
 /obj/machinery/computer/shuttle/syndicate/drop_pod
-	name = "syndicate assault pod control"
-	desc = "Controls the drop pod's launch system."
+	name = "辛迪加突击舱控制台"
+	desc = "控制空投舱的发射系统。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "pod_off"
 	icon_keyboard = null
@@ -49,13 +49,13 @@
 	if(!.)
 		return FALSE
 	if(!is_reserved_level(z))
-		to_chat(user, span_warning("Pods are one way!"))
+		to_chat(user, span_warning("空投舱是单程的！"))
 		return FALSE
 	return TRUE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate
-	name = "syndicate shuttle navigation computer"
-	desc = "Used to designate a precise transit location for the syndicate shuttle."
+	name = "辛迪加穿梭机导航计算机"
+	desc = "用于为辛迪加穿梭机指定精确的传送位置。"
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	shuttleId = "syndicate"

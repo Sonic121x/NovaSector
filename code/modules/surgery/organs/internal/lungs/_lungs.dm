@@ -401,12 +401,12 @@
 	if (freon_pp > gas_stimulation_min)
 		breather.reagents.add_reagent(/datum/reagent/freon, 1)
 	if (prob(freon_pp))
-		to_chat(breather, span_alert("Your mouth feels like it's burning!"))
+		to_chat(breather, span_alert("你的嘴巴感觉像在燃烧！"))
 	if (freon_pp > 40)
 		breather.emote("gasp")
 		breather.adjust_fire_loss(15)
 		if (prob(freon_pp / 2))
-			to_chat(breather, span_alert("Your throat closes up!"))
+			to_chat(breather, span_alert("你的喉咙收紧了！"))
 			breather.set_silence_if_lower(6 SECONDS)
 	else
 		breather.adjust_fire_loss(freon_pp / 4)
@@ -426,7 +426,7 @@
 	// Euphoria side-effect.
 	if(healium_pp > gas_stimulation_min)
 		if(prob(15))
-			to_chat(breather, span_alert("Your head starts spinning and your lungs burn!"))
+			to_chat(breather, span_alert("你的头开始发晕，肺部在灼烧！"))
 			healium_euphoria = EUPHORIA_ACTIVE
 			breather.emote("gasp")
 	else
@@ -872,17 +872,17 @@
 /obj/item/organ/lungs/feel_for_damage(self_aware)
 	if(organ_flags & ORGAN_FAILING)
 		if(self_aware)
-			return span_boldwarning("Your lungs hurt madly[HAS_TRAIT(owner, TRAIT_NOBREATH) ? "" : ", and you can't breathe"]!")
-		return span_boldwarning("It hurts madly[HAS_TRAIT(owner, TRAIT_NOBREATH) ? "" : ", and you can't breathe"]!")
+			return span_boldwarning("你的肺部剧痛[HAS_TRAIT(owner, TRAIT_NOBREATH) ? "" : ", and you can't breathe"]！")
+		return span_boldwarning("它剧痛[HAS_TRAIT(owner, TRAIT_NOBREATH) ? "" : ", and you can't breathe"]！")
 	if(damage < low_threshold)
 		return ""
 	if(damage < high_threshold)
 		if(self_aware)
-			return span_warning("Your lungs feel tight[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and breathing is harder"].")
-		return span_warning("It feels tight[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and breathing is harder"].")
+			return span_warning("你的肺部感觉紧绷[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and breathing is harder"]。")
+		return span_warning("它感觉紧绷[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and breathing is harder"]。")
 	if(self_aware)
-		return span_boldwarning("Your lungs feel extremely tight[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and every breath is a struggle"].")
-	return span_boldwarning("It feels extremely tight[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and every breath is a struggle"].")
+		return span_boldwarning("你的肺部感觉极度紧绷[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and every breath is a struggle"]。")
+	return span_boldwarning("感觉极其紧绷[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and every breath is a struggle"]。")
 
 /obj/item/organ/lungs/get_status_appendix(advanced, add_tooltips)
 	var/initial_pressure_mult = initial(received_pressure_mult)

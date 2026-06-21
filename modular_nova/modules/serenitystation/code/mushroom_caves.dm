@@ -1,5 +1,5 @@
 /datum/map_generator/cave_generator/forest/mushroom
-	name = "Mushroom Cave Biome Generator"
+	name = "蘑菇洞穴生态生成器"
 	weighted_open_turf_types = list(/turf/open/misc/dirt/forest = 3, /turf/open/misc/asteroid/forest/mushroom = 2)
 	weighted_closed_turf_types = list(/turf/closed/mineral/random/forest = 1)
 	birth_limit = 7

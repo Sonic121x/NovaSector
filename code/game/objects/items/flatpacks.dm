@@ -1,6 +1,6 @@
 /obj/item/flatpack
-	name = "flatpack"
-	desc = "A box containing a compactly packed machine. Use multitool to deploy."
+	name = "扁平包装"
+	desc = "一个装有紧凑包装机器的盒子。使用多功能工具部署。"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "flatpack"
 	density = TRUE
@@ -31,7 +31,7 @@
 	if(board.loc != src)
 		board.forceMove(src)
 	var/obj/machinery/build = initial(board.build_path)
-	name = "flatpack ([initial(build.name)])"
+	name = "扁平包装 ([initial(build.name)])"
 
 /obj/item/flatpack/Destroy()
 	QDEL_NULL(board)
@@ -43,13 +43,13 @@
 		return
 
 	if(loc == user)
-		. += span_warning("You can't deploy while holding it in your hand.")
+		. += span_warning("你不能在手持时部署。")
 	else if(isturf(loc))
 		var/turf/location = loc
 		if(!isopenturf(location))
-			. += span_warning("Can't deploy in this location")
+			. += span_warning("无法在此位置部署")
 		else if(location.is_blocked_turf(source_atom = src))
-			. += span_warning("No space for deployment")
+			. += span_warning("没有部署空间")
 
 /obj/item/flatpack/multitool_act(mob/living/user, obj/item/tool)
 	. = NONE
@@ -57,14 +57,14 @@
 	if(isnull(board))
 		return ITEM_INTERACT_BLOCKING
 	if(!isturf(loc))
-		balloon_alert(user, "must deploy on the floor")
+		balloon_alert(user, "必须部署在地板上")
 		return ITEM_INTERACT_BLOCKING
 	var/turf/location = loc
 	if(!isopenturf(location))
-		balloon_alert(user, "can't deploy here")
+		balloon_alert(user, "无法在此部署")
 		return ITEM_INTERACT_BLOCKING
 	else if(location.is_blocked_turf(source_atom = src))
-		balloon_alert(user, "no space for deployment")
+		balloon_alert(user, "没有空间部署")
 		return ITEM_INTERACT_BLOCKING
 	balloon_alert_to_viewers("deploying!")
 	if(!do_after(user, 1 SECONDS, target = src))
@@ -88,7 +88,7 @@
 	board = null
 	var/obj/machinery/new_machine = new leaving_circuit.build_path(loc, board = leaving_circuit)
 	new_machine.on_construction(user)
-	loc.visible_message(span_warning("[src] deploys!"))
+	loc.visible_message(span_warning("[src] 部署了！"))
 	playsound(src, 'sound/machines/terminal/terminal_eject.ogg', 70, TRUE)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -97,8 +97,8 @@
 #define MAX_FLAT_PACKS 3
 
 /obj/structure/flatpack_cart
-	name = "flatpack cart"
-	desc = "A cart specifically made to hold flatpacks from a flatpacker, evenly distributing weight. Convenient!"
+	name = "扁平包装推车"
+	desc = "专门用于存放来自扁平包装机的扁平包装的推车，能均匀分配重量。很方便！"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "flatcart"
 	density = TRUE
@@ -156,7 +156,7 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if (length(contents) >= MAX_FLAT_PACKS)
-		balloon_alert(user, "full!")
+		balloon_alert(user, "满了！")
 		return ITEM_INTERACT_BLOCKING
 	if (!user.transferItemToLoc(attacking_item, src))
 		return ITEM_INTERACT_BLOCKING
@@ -168,7 +168,7 @@
 // Engineering flatpacks
 
 /obj/item/flatpack/flatpacker // a roundstart flatpacker is NICE you can gahdamn tell the time and everythin'
-	name = "flatpacker"
+	name = "扁平包装机"
 	board = /obj/item/circuitboard/machine/flatpacker
 	custom_premium_price = PAYCHECK_COMMAND
 
@@ -180,6 +180,6 @@
 // Cargo flatpacks
 
 /obj/item/flatpack/mailsorter // to have a roundstart mail sorter at cargo
-	name = "mail sorter"
+	name = "邮件分拣机"
 	board = /obj/item/circuitboard/machine/mailsorter
 	custom_premium_price = PAYCHECK_CREW * 1.5

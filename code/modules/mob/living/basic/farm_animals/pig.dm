@@ -1,7 +1,7 @@
 //pig
 /mob/living/basic/pig
-	name = "pig"
-	desc = "A fat pig."
+	name = "猪"
+	desc = "一只肥猪。"
 	icon_state = "pig"
 	icon_living = "pig"
 	icon_dead = "pig_dead"
@@ -57,7 +57,7 @@
 /mob/living/basic/pig/tamed(mob/living/tamer, atom/food)
 	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/pig)
-	visible_message(span_notice("[src] snorts respectfully."))
+	visible_message(span_notice("[src] 恭敬地哼了一声。"))
 
 /datum/ai_controller/basic_controller/pig
 	blackboard = list(

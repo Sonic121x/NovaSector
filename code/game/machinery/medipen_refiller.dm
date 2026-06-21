@@ -1,6 +1,6 @@
 /obj/machinery/medipen_refiller
-	name = "Medipen Refiller"
-	desc = "A machine that refills used medipens with chemicals."
+	name = "医疗笔装填机"
+	desc = "一种用化学品重新填充用过的医疗笔的机器。"
 	icon = 'icons/obj/machines/medipen_refiller.dmi'
 	icon_state = "medipen_refiller"
 	base_icon_state = "medipen_refiller"
@@ -89,31 +89,31 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(DOING_INTERACTION(user, src))
-		balloon_alert(user, "already interacting!")
+		balloon_alert(user, "已在交互中！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(is_reagent_container(tool) && tool.is_open_container())
 		var/obj/item/reagent_containers/reagent_container = tool
 		if(!length(reagent_container.reagents.reagent_list))
-			balloon_alert(user, "nothing to transfer!")
+			balloon_alert(user, "无可转移物！")
 			return ITEM_INTERACT_BLOCKING
 
 		var/units = reagent_container.reagents.trans_to(src, reagent_container.amount_per_transfer_from_this, transferred_by = user)
 		if(units)
-			balloon_alert(user, "[units] units transferred")
+			balloon_alert(user, "[units] 单位已转移")
 			return ITEM_INTERACT_SUCCESS
 		else
-			balloon_alert(user, "reagent storage full!")
+			balloon_alert(user, "试剂储存已满！")
 			return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/reagent_containers/hypospray/medipen))
 		var/obj/item/reagent_containers/hypospray/medipen/medipen = tool
 		if(!(LAZYFIND(allowed_pens, medipen.type)))
-			balloon_alert(user, "medipen incompatible!")
+			balloon_alert(user, "医疗笔不兼容！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(medipen.reagents?.reagent_list.len)
-			balloon_alert(user, "medipen full!")
+			balloon_alert(user, "医疗笔已满！")
 			return ITEM_INTERACT_BLOCKING
 
 		//if(!reagents.has_reagent(allowed_pens[medipen.type], 10)) // NOVA EDIT REMOVAL
@@ -121,17 +121,17 @@
 		var/list/datum/reagent/compatible_universal_reagents
 		if(istype(medipen, /obj/item/reagent_containers/hypospray/medipen/universal))
 			if(!reagents.total_volume)
-				balloon_alert(user, "not enough reagents!")
+				balloon_alert(user, "试剂不足！")
 				return
 			// Ignore reagents which aren't the blacklist or whitelist
 			compatible_universal_reagents = typecache_filter_multi_list_exclusion(reagents.reagent_list, medipen_reagent_whitelist, medipen_reagent_blacklist)
 			// Ensure there is enough of the whitelisted reagents
 			if(!length(compatible_universal_reagents))
-				balloon_alert(user, "reagents incompatible!")
+				balloon_alert(user, "试剂不兼容！")
 				return
 		else if(!reagents.has_reagent(allowed_pens[medipen.type], medipen.volume))
 		// NOVA EDIT ADDITION END
-			balloon_alert(user, "not enough reagents!")
+			balloon_alert(user, "试剂不足！")
 			return ITEM_INTERACT_BLOCKING
 
 		add_overlay("active")
@@ -151,7 +151,7 @@
 			medipen.used_up = FALSE
 			//medipen.add_initial_reagents() // NOVA EDIT REMOVAL - Handled above
 			//reagents.remove_reagent(allowed_pens[medipen.type], 10) // NOVA EDIT REMOVAL - Handled above
-			balloon_alert(user, "refilled")
+			balloon_alert(user, "已补充")
 			use_energy(active_power_usage)
 		cut_overlays()
 		return ITEM_INTERACT_SUCCESS

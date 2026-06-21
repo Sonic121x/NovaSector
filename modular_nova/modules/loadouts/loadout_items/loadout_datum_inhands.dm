@@ -23,100 +23,100 @@
 */
 
 /datum/loadout_item/inhand/bouquet_mixed
-	name = "Bouquet - Mixed"
+	name = "花束 - 混合"
 	item_path = /obj/item/bouquet
 
 /datum/loadout_item/inhand/bouquet_sunflower
-	name = "Bouquet - Sunflower"
+	name = "花束 - 向日葵"
 	item_path = /obj/item/bouquet/sunflower
 
 /datum/loadout_item/inhand/bouquet_poppy
-	name = "Bouquet - Poppy"
+	name = "花束 - 罂粟"
 	item_path = /obj/item/bouquet/poppy
 
 /datum/loadout_item/inhand/bouquet_rose
-	name = "Bouquet - Rose"
+	name = "花束 - 玫瑰"
 	item_path = /obj/item/bouquet/rose
 
 /datum/loadout_item/inhand/cane
-	name = "Cane"
+	name = "手杖"
 	item_path = /obj/item/cane
 
 /datum/loadout_item/inhand/cane/white
-	name = "Cane - White"
+	name = "手杖 - 白色"
 	item_path = /obj/item/cane/white
 
 /datum/loadout_item/inhand/cane/crutch
-	name = "Crutch"
+	name = "拐杖"
 	item_path = /obj/item/cane/crutch
 
 /datum/loadout_item/inhand/guncase_large
-	name = "Empty Gun Case (Black, Large)"
+	name = "空枪盒（黑色，大号）"
 	item_path = /obj/item/storage/toolbox/guncase/nova
 
 /datum/loadout_item/inhand/guncase_small
-	name = "Empty Gun Case (Black, Small)"
+	name = "空枪盒（黑色，小号）"
 	item_path = /obj/item/storage/toolbox/guncase/nova/pistol
 
 /datum/loadout_item/inhand/guncase_large/yellow
-	name = "Empty Gun Case (Yellow, Large)"
+	name = "空枪盒（黄色，大号）"
 	item_path = /obj/item/storage/toolbox/guncase/nova/carwo_large_case
 
 /datum/loadout_item/inhand/flag_azulea
-	name = "Flag - Azulea"
+	name = "旗帜 - 阿祖利亚"
 	item_path = /obj/item/sign/flag/azulea
 
 /datum/loadout_item/inhand/flag_mothic
-	name = "Flag - Grand Nomad Fleet"
+	name = "旗帜 - 大游牧舰队"
 	item_path = /obj/item/sign/flag/mothic
 
 /datum/loadout_item/inhand/flag_agurk
-	name = "Flag - Kingdom Of Agurkrral"
+	name = "旗帜 - 阿古尔克拉尔王国"
 	item_path = /obj/item/sign/flag/ssc
 
 /datum/loadout_item/inhand/flag_nt
-	name = "Flag - Nanotrasen"
+	name = "旗帜 - 纳米传讯"
 	item_path = /obj/item/sign/flag/nanotrasen
 
 /datum/loadout_item/inhand/flag_hc
-	name = "Flag - Heliostatic Coalition"
+	name = "旗帜 - 日光静止联盟"
 	item_path = /obj/item/sign/flag/hc
 
 /datum/loadout_item/inhand/flag_moghes
-	name = "Flag - Republic Of Northern Moghes"
+	name = "旗帜 - 北莫赫斯共和国"
 	item_path = /obj/item/sign/flag/tizira
 
 /datum/loadout_item/inhand/flag_solfed
-	name = "Flag - Sol Federation"
+	name = "旗帜 - 太阳系联邦"
 	item_path = /obj/item/sign/flag/terragov
 
 /datum/loadout_item/inhand/flag_teshari
-	name = "Flag - Teshari League For Self-Determination"
+	name = "旗帜 - 特沙里自决联盟"
 	item_path = /obj/item/sign/flag/mars
 
 /datum/loadout_item/inhand/toolbox
-	name = "Full Toolbox"
+	name = "装满的工具箱"
 	item_path = /obj/item/storage/toolbox/mechanical
 	blacklisted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/inhand/saddle // these should be in the other category but apparantly those are "pocket" loadout items so idk?
-	name = "Riding Saddle (Leather)"
+	name = "骑乘鞍具（皮革）"
 	item_path = /obj/item/riding_saddle/leather
 
 /datum/loadout_item/inhand/saddle_blue
-	name = "Riding Saddle (Blue)"
+	name = "骑乘鞍具（蓝色）"
 	item_path = /obj/item/riding_saddle/leather/blue
 
 /datum/loadout_item/inhand/skateboard
-	name = "Skateboard"
+	name = "滑板"
 	item_path = /obj/item/melee/skateboard
 
 /datum/loadout_item/inhand/skub
-	name = "Skub"
+	name = "斯卡布"
 	item_path = /obj/item/skub
 
 /datum/loadout_item/inhand/saddlebags
-	name = "Saddlebags"
+	name = "鞍囊"
 	item_path = /obj/item/storage/backpack/saddlebags
 
 /datum/loadout_item/inhand/wheelchair
@@ -136,57 +136,57 @@ SPECIES RESTRICTED
 */
 
 /datum/loadout_item/inhand/envirokit_orange
-	name = "Envirosuit Kit: Orange"
+	name = "环境防护服套装：橙色"
 	item_path = /obj/item/storage/box/envirosuit
 	species_whitelist = list(SPECIES_PLASMAMAN)
 	group = "Species-Unique"
 
 /datum/loadout_item/inhand/envirokit_black
-	name = "Envirosuit Kit: Black"
+	name = "环境防护服套装：黑色"
 	item_path = /obj/item/storage/box/envirosuit/black
 	species_whitelist = list(SPECIES_PLASMAMAN)
 	group = "Species-Unique"
 
 /datum/loadout_item/inhand/envirokit_white
-	name = "Envirosuit Kit: White"
+	name = "环境防护服套装：白色"
 	item_path = /obj/item/storage/box/envirosuit/white
 	species_whitelist = list(SPECIES_PLASMAMAN)
 	group = "Species-Unique"
 
 /datum/loadout_item/inhand/envirokit_khaki
-	name = "Envirosuit Kit: Khaki"
+	name = "环境防护服套装：卡其色"
 	item_path = /obj/item/storage/box/envirosuit/khaki
 	species_whitelist = list(SPECIES_PLASMAMAN)
 	group = "Species-Unique"
 
 /datum/loadout_item/inhand/envirokit_slacks
-	name = "Envirosuit Kit: Formal Enviroslacks"
+	name = "环境防护服套装：正式环境裤装"
 	item_path = /obj/item/storage/box/envirosuit/slacks
 	species_whitelist = list(SPECIES_PLASMAMAN)
 	group = "Species-Unique"
 
 /datum/loadout_item/inhand/envirokit_prototype
-	name = "Envirosuit Kit: Protoype"
+	name = "环境防护服套装：原型"
 	item_path = /obj/item/storage/box/envirosuit/prototype
 	species_whitelist = list(SPECIES_PLASMAMAN)
 	group = "Species-Unique"
 
 /datum/loadout_item/inhand/envirokit_security
-	name = "Alternate Envirosuit Kit: Security Officer"
+	name = "备用环境防护服套装：安保干员"
 	item_path = /obj/item/storage/box/envirosuit/security
 	species_whitelist = list(SPECIES_PLASMAMAN)
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
 	group = "Species-Unique"
 
 /datum/loadout_item/inhand/envirokit_security_warden
-	name = "Alternate Envirosuit Kit: Warden"
+	name = "备用环境防护服套装：典狱长"
 	item_path = /obj/item/storage/box/envirosuit/security_warden
 	species_whitelist = list(SPECIES_PLASMAMAN)
 	restricted_roles = list(JOB_WARDEN)
 	group = "Species-Unique"
 
 /datum/loadout_item/inhand/envirokit_head_of_security
-	name = "Alternate Envirosuit Kit: Head of Security"
+	name = "备用环境防护服套装：安全主管"
 	item_path = /obj/item/storage/box/envirosuit/security_hos
 	species_whitelist = list(SPECIES_PLASMAMAN)
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)

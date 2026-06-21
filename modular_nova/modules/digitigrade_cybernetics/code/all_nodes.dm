@@ -3,7 +3,7 @@
 /datum/techweb_node/digitigrade_cyber
 	id = TECHWEB_NODE_CYBERNETICS_DIGITIGRADE
 	display_name = "Digitigrade Cybernetics"
-	description = "Specialized cybernetic limb designs. The shortening of the femur is surely the result of mechanical optimization."
+	description = "特化的赛博格肢体设计。股骨的缩短无疑是机械优化的结果。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"digitigrade_cyber_l_leg",
@@ -16,7 +16,7 @@
 /datum/techweb_node/adv_digitigrade_cyber
 	id = TECHWEB_NODE_CYBERNETICS_DIGITIGRADE_ADVANCED
 	display_name = "Advanced Digitigrade Cybernetics"
-	description = "A step above consumer-grade digitigrade models, these have self-sharpening claws for destroying your footwear much faster."
+	description = "比消费级趾行模型更胜一筹，它们拥有自磨锐的爪子，能更快地毁掉你的鞋履。"
 	prereq_ids = list(TECHWEB_NODE_AUGMENTATION)
 	design_ids = list(
 		"digitigrade_advanced_l_leg",

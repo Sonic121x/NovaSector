@@ -1,7 +1,7 @@
 /// Component printer, creates components for integrated circuits.
 /obj/machinery/component_printer
-	name = "component printer"
-	desc = "Produces components for the creation of integrated circuits."
+	name = "组件打印厂"
+	desc = "生产用于制造集成电路的组件。"
 	icon = 'icons/obj/machines/wiremod_fab.dmi'
 	icon_state = "fab-idle"
 	base_icon_state = "fab"
@@ -77,9 +77,9 @@
 		var/amount_inserted = materials.insert_item(tool, user_data = ID_DATA(user))
 
 		if(amount_inserted)
-			to_chat(user, span_notice("[tool] worth [amount_inserted / SHEET_MATERIAL_AMOUNT] sheets of material was consumed by [src]"))
+			to_chat(user, span_notice("[tool] 价值 [amount_inserted / SHEET_MATERIAL_AMOUNT] 张板材的材料已被 [src] 消耗"))
 		else
-			to_chat(user, span_warning("[tool] was rejected by [src]"))
+			to_chat(user, span_warning("[tool] 被 [src] 拒绝了"))
 
 		return amount_inserted > 0 ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_FAILURE
 
@@ -230,7 +230,7 @@
 
 	circuit.linked_component_printer = WEAKREF(src)
 	circuit.update_static_data_for_all_viewers()
-	balloon_alert(user, "successfully linked to the integrated circuit")
+	balloon_alert(user, "已成功链接到集成电路")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/component_printer/crowbar_act(mob/living/user, obj/item/tool)
@@ -252,8 +252,8 @@
 	return data
 
 /obj/machinery/debug_component_printer
-	name = "debug component printer"
-	desc = "Produces components for the creation of integrated circuits."
+	name = "Debug组件打印机"
+	desc = "生产用于制造集成电路的组件。"
 	icon = 'icons/obj/machines/wiremod_fab.dmi'
 	icon_state = "fab-idle"
 
@@ -336,8 +336,8 @@
 
 /// Module duplicator, allows you to save and recreate module components.
 /obj/machinery/module_duplicator
-	name = "module duplicator"
-	desc = "Allows you to duplicate module components so that you don't have to recreate them. Scan a module component over this machine to add it as an entry."
+	name = "模块复印机"
+	desc = "允许您复制模块组件，这样您就不必重新创建它们。扫描此机器上的模块组件，将其添加为条目。"
 	icon = 'icons/obj/machines/wiremod_fab.dmi'
 	icon_state = "module-fab-idle"
 	base_icon_state = "module-fab"
@@ -456,7 +456,7 @@
 	if(istype(tool, /obj/item/circuit_component/module))
 		var/obj/item/circuit_component/module/module = tool
 		if(HAS_TRAIT(module, TRAIT_CIRCUIT_UNDUPABLE))
-			balloon_alert(user, "integrated circuit cannot be saved!")
+			balloon_alert(user, "集成电路无法保存！")
 			return ITEM_INTERACT_BLOCKING
 
 		data["dupe_data"] = list()
@@ -468,7 +468,7 @@
 	else if(istype(tool, /obj/item/integrated_circuit))
 		var/obj/item/integrated_circuit/integrated_circuit = tool
 		if(HAS_TRAIT(integrated_circuit, TRAIT_CIRCUIT_UNDUPABLE))
-			balloon_alert(user, "integrated circuit cannot be saved!")
+			balloon_alert(user, "集成电路无法保存！")
 			return ITEM_INTERACT_BLOCKING
 
 		data["dupe_data"] = integrated_circuit.convert_to_json()
@@ -488,12 +488,12 @@
 		return NONE
 
 	if(!data["name"])
-		balloon_alert(user, "it needs a name!")
+		balloon_alert(user, "它需要一个名字！")
 		return ITEM_INTERACT_BLOCKING
 
 	for(var/list/component_data as anything in scanned_designs)
 		if(component_data["name"] == data["name"])
-			balloon_alert(user, "name already exists!")
+			balloon_alert(user, "名字已存在！")
 			return ITEM_INTERACT_BLOCKING
 
 	flick("module-fab-scan", src)
@@ -503,7 +503,7 @@
 /obj/machinery/module_duplicator/proc/finish_module_scan(mob/user, data)
 	scanned_designs += list(data)
 
-	balloon_alert(user, "module has been saved.")
+	balloon_alert(user, "模块已保存。")
 	playsound(src, 'sound/machines/ping.ogg', 50)
 
 	update_static_data_for_all_viewers()

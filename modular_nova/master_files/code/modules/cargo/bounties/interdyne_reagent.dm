@@ -30,7 +30,7 @@
 	return TRUE
 
 /datum/bounty/interdyne_reagent/simple_drink
-	name = "Simple Drink"
+	name = "简单饮品"
 	reward = CARGO_CRATE_VALUE * 3
 
 /datum/bounty/interdyne_reagent/simple_drink/New()
@@ -83,11 +83,11 @@
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "I'll be real, corporate is thirsty! Send a shipment of [name] to corporate to quench the company's thirst."
+	description = "说真的，公司高层渴了！送一批[name]给公司，解解公司的渴。"
 	reward += rand(0, 2) * 500
 
 /datum/bounty/interdyne_reagent/complex_drink
-	name = "Complex Drink"
+	name = "复杂饮品"
 	reward = CARGO_CRATE_VALUE * 8
 
 /datum/bounty/interdyne_reagent/complex_drink/New()
@@ -117,11 +117,11 @@
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "Upper level staff want some more complex drinks, and this request must be fulfilled. Ship a container of [name] and you will be rewarded."
+	description = "高层员工想要一些更复杂的饮品，这个要求必须满足。运送一容器[name]，你将获得奖励。"
 	reward += rand(0, 4) * 500
 
 /datum/bounty/interdyne_reagent/chemical_simple
-	name = "Simple Chemical"
+	name = "简单化学品"
 	reward = CARGO_CRATE_VALUE * 8
 	required_volume = 30
 
@@ -155,11 +155,11 @@
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "A hospital is in desperate need of the chemical [name]. Ship a container of it to be rewarded."
+	description = "一家医院急需化学制剂[name]。运送一容器该制剂即可获得奖励。"
 	reward += rand(0, 4) * 500 //4000 to 6000 credits
 
 /datum/bounty/interdyne_reagent/chemical_complex
-	name = "Rare Chemical"
+	name = "稀有化学品"
 	reward = CARGO_CRATE_VALUE * 12
 	required_volume = 20
 
@@ -187,7 +187,7 @@
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "A hospital is in need of a rare chemical, [name]. Ship a container of it to be rewarded."
+	description = "一家医院需要一种稀有化学制剂，[name]。运送一容器该制剂即可获得奖励。"
 	reward += (rand(0, 5) * (PAYCHECK_COMMAND * 7.5)) //6000 to 9750 credits
 
 /datum/bounty/interdyne_pill
@@ -219,7 +219,7 @@
 	return TRUE
 
 /datum/bounty/interdyne_pill/simple_pill
-	name = "Simple Pill"
+	name = "简单药丸"
 	reward = CARGO_CRATE_VALUE * 20
 
 /datum/bounty/interdyne_pill/simple_pill/New()
@@ -243,8 +243,8 @@
 
 	var/datum/reagent/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
-	name = "[wanted_reagent.name] pills"
+	name = "[wanted_reagent.name]药丸"
 	required_amount += rand(1,60)
 	wanted_vol += rand(1,20)
-	description = "Special Request from someone out of your paygrade, they need [required_amount] of [name] containing at least [wanted_vol] each. Ship a container of it to be rewarded."
+	description = "来自你薪资级别之上的特殊请求，他们需要 [required_amount] 份 [name]，每份至少含有 [wanted_vol]。运送一容器即可获得奖励。"
 	reward += rand(1, 5) * (CARGO_CRATE_VALUE * 6)

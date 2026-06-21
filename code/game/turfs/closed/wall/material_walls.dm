@@ -1,6 +1,6 @@
 /turf/closed/wall/material
-	name = "wall"
-	desc = "A huge chunk of material used to separate rooms."
+	name = "墙"
+	desc = "一大块用于分隔房间的材料。"
 	icon = 'icons/turf/walls/material_wall.dmi'
 	icon_state = "material_wall-0"
 	base_icon_state = "material_wall"
@@ -24,5 +24,5 @@
 
 /turf/closed/wall/material/finalize_material_effects(list/materials)
 	. = ..()
-	desc = "A huge chunk of [get_material_english_list(materials)] used to separate rooms."
+	desc = "一大块[get_material_english_list(materials)]，用于分隔房间。"
 

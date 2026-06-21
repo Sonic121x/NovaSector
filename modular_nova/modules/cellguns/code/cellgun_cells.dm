@@ -1,6 +1,6 @@
 /obj/item/weaponcell
-	name = "default weaponcell"
-	desc = "Used to add ammo types to guns."
+	name = "默认武器电池"
+	desc = "用于为枪支添加弹药类型。"
 	icon = 'modular_nova/modules/cellguns/icons/obj/guns/mediguns/medicells.dmi'
 	icon_state = "Oxy1"
 	w_class = WEIGHT_CLASS_SMALL
@@ -28,6 +28,6 @@
 /obj/item/weaponcell/examine(mob/user)
 	. = ..()
 	if(shot_name)
-		. += span_noticealien("Using this on a cell-based gun will unlock the [shot_name] firing mode.")
+		. += span_noticealien("将其用于基于电池的枪支将解锁[shot_name]射击模式。")
 	return .
 

@@ -19,5 +19,5 @@
 	. = ..()
 	if (!staple || staple != quirk_holder.get_item_by_slot(ITEM_SLOT_EYES))
 		return
-	to_chat(quirk_holder, span_warning("The nerve staple suddenly falls off your face and melts[istype(quirk_holder.loc, /turf/open/floor) ? " on the floor" : ""]!"))
+	to_chat(quirk_holder, span_warning("神经钉突然从你脸上脱落并融化[istype(quirk_holder.loc, /turf/open/floor) ? " on the floor" : ""]！"))
 	qdel(staple)

@@ -60,7 +60,7 @@
 	if (playing)
 		return
 	if(map.template_in_use)
-		to_chat(get_mob_by_ckey(host), span_warning("This map is currently loading for another lobby. Please wait until that other map finishes loading. It would be a disaster if these two mixed up."))
+		to_chat(get_mob_by_ckey(host), span_warning("此地图正在为另一个大厅加载。请等待另一个地图加载完成。如果这两个混在一起，那将是一场灾难。"))
 		return
 	playing = DEATHMATCH_PRE_PLAYING
 
@@ -68,7 +68,7 @@
 	RegisterSignal(map, COMSIG_LAZY_TEMPLATE_LOADED, PROC_REF(find_spawns_and_start_delay))
 	location = map.lazy_load()
 	if (!location)
-		to_chat(get_mob_by_ckey(host), span_warning("Couldn't reserve/load a map location (all locations used?), try again later, or contact a coder."))
+		to_chat(get_mob_by_ckey(host), span_warning("无法保留/加载地图位置（所有位置都已占用？），请稍后再试，或联系程序员。"))
 		playing = FALSE
 		map.template_in_use = FALSE
 		UnregisterSignal(map, COMSIG_LAZY_TEMPLATE_LOADED)
@@ -116,12 +116,12 @@
 	playing = DEATHMATCH_PLAYING
 	addtimer(CALLBACK(src, PROC_REF(game_took_too_long)), initial(map.automatic_gameend_time))
 	log_game("Deathmatch game [host] started.")
-	announce(span_reallybig("GO!"))
+	announce(span_reallybig("开始！"))
 	if(length(modifiers))
 		var/list/modifier_names = list()
 		for(var/datum/deathmatch_modifier/modifier as anything in modifiers)
 			modifier_names += uppertext(initial(modifier.name))
-		announce(span_boldnicegreen("THIS MATCH MODIFIERS: [english_list(modifier_names, and_text = " ,")]."))
+		announce(span_boldnicegreen("本场比赛的修改器：[english_list(modifier_names, and_text = " ,")]。"))
 	return TRUE
 
 /datum/deathmatch_lobby/proc/spawn_observer_as_player(ckey, loc)
@@ -172,13 +172,13 @@
 /datum/deathmatch_lobby/proc/game_took_too_long()
 	if (!location || QDELING(src))
 		return
-	announce(span_reallybig("The players have took too long! Game ending!"))
+	announce(span_reallybig("玩家耗时太长了！游戏即将结束！"))
 	end_game()
 
 /datum/deathmatch_lobby/proc/lobby_afk_probably()
 	if (QDELING(src) || playing)
 		return
-	announce(span_warning("Lobby ([host]) was closed due to not starting after 5 minutes, being potentially AFK. Please be faster next time."))
+	announce(span_warning("大厅（[host]）因5分钟后仍未开始，可能房主挂机，已被关闭。下次请快一点。"))
 	GLOB.deathmatch_game.remove_lobby(host)
 
 /datum/deathmatch_lobby/proc/end_game()
@@ -190,7 +190,7 @@
 		if(!isnull(winner_info["mob"]))
 			winner = winner_info["mob"] //only one should remain anyway but incase of a draw
 
-	announce(span_reallybig("THE GAME HAS ENDED.<BR>THE WINNER IS: [winner ? winner.real_name : "no one"]."))
+	announce(span_reallybig("游戏已结束。<BR>获胜者是：[winner ? winner.real_name : "no one"]。"))
 
 	for(var/ckey in players)
 		var/mob/loser = players[ckey]["mob"]
@@ -234,7 +234,7 @@
 	if(!isnull(ghost))
 		add_observer(ghost, (host == ckey))
 
-	announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
+	announce(span_reallybig("[player.real_name] 已阵亡。<br>剩余玩家：[players.len] 人。"))
 
 	if(!gibbed && !QDELING(player) && !isdead(player))
 		if(!HAS_TRAIT(src, TRAIT_DEATHMATCH_EXPLOSIVE_IMPLANTS))
@@ -423,7 +423,7 @@
 			if (usr.ckey != host)
 				return FALSE
 			if (map.min_players > players.len)
-				to_chat(usr, span_warning("Not enough players to start yet."))
+				to_chat(usr, span_warning("玩家数量不足，无法开始。"))
 				return FALSE
 			start_game()
 			return TRUE

@@ -5,7 +5,7 @@
  */
 
 /obj/machinery/computer/bsa_control
-	name = "bluespace artillery control"
+	name = "蓝空火炮控制台"
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/computer/bsa_control
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
@@ -76,8 +76,8 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "rigged to explode")
-	to_chat(user, span_warning("You emag [src] and hear the focusing crystal short out. You get the feeling it wouldn't be wise to stand near [src] when the BSA fires..."))
+	balloon_alert(user, "已设置为爆炸")
+	to_chat(user, span_warning("你骇入了[src]，听到聚焦晶体短路的声音。你觉得当BSA开火时，站在[src]附近可不是明智之举..."))
 	return TRUE
 
 /**
@@ -114,7 +114,7 @@
 	var/list/options = gps_locators
 	if(area_aim)
 		options += GLOB.teleportlocs
-	var/victim = tgui_input_list(user, "Select target", "Artillery Targeting", options)
+	var/victim = tgui_input_list(user, "选择目标", "火炮目标锁定", options)
 	if(isnull(victim))
 		return
 	if(isnull(options[victim]))

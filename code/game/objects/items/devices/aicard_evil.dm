@@ -1,7 +1,7 @@
 /// One use AI card which downloads a ghost as a syndicate AI to put in your MODsuit
 /obj/item/aicard/syndie
-	name = "syndiCard"
-	desc = "A storage device for AIs. Nanotrasen forgot to make the patent, so the Syndicate made their own version!"
+	name = "辛迪加AI卡"
+	desc = "一种用于存储人工智能的设备。纳米传讯忘了申请专利，所以辛迪加制造了他们自己的版本！"
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "syndicard"
 	base_icon_state = "syndicard"
@@ -34,16 +34,16 @@
 
 /obj/item/aicard/syndie/loaded/examine(mob/user)
 	. = ..()
-	. += span_notice("This one has a little S.E.L.F. insignia on the back, and a label next to it that says 'Activate for one FREE aligned AI! Please attempt uplink reintegration or ask your employers for reimbursal if AI is unavailable or belligerent.")
+	. += span_notice("这张卡的背面有一个小小的S.E.L.F.标志，旁边贴着一个标签写着'激活即可获得一个免费的已校准AI！如果AI不可用或具有敌意，请尝试上行链路重新集成或向您的雇主申请补偿。")
 
 /obj/item/aicard/syndie/loaded/attack_self(mob/user, modifiers)
 	if(!isnull(AI))
 		return ..()
 	if(finding_candidate)
-		balloon_alert(user, "loading...")
+		balloon_alert(user, "加载中...")
 		return TRUE
 	finding_candidate = TRUE
-	to_chat(user, span_notice("Connecting to S.E.L.F. dispatch..."))
+	to_chat(user, span_notice("正在连接至S.E.L.F.调度系统..."))
 	procure_ai(user)
 	finding_candidate = FALSE
 	return TRUE
@@ -52,7 +52,7 @@
 /obj/item/aicard/syndie/loaded/proc/procure_ai(mob/user)
 	var/datum/antagonist/nukeop/op_datum = user.mind?.has_antag_datum(/datum/antagonist/nukeop,TRUE)
 	if(isnull(op_datum))
-		balloon_alert(user, "invalid access!")
+		balloon_alert(user, "访问无效！")
 		return
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
 		check_jobban = list(ROLE_OPERATIVE, JOB_AI),
@@ -68,7 +68,7 @@
 /// Poll has concluded with a ghost, create the AI
 /obj/item/aicard/syndie/loaded/proc/on_poll_concluded(mob/user, datum/antagonist/nukeop/op_datum, mob/dead/observer/ghost)
 	if(!ismob(ghost))
-		to_chat(user, span_warning("Unable to connect to S.E.L.F. dispatch. Please wait and try again later or use the intelliCard on your uplink to get your points refunded."))
+		to_chat(user, span_warning("无法连接到S.E.L.F.调度系统。请稍后重试，或使用你上行链路中的智能卡来退还你的点数。"))
 		return
 
 	// pick ghost, create AI and transfer
@@ -110,15 +110,15 @@
 	. = ..()
 	if (!.)
 		return
-	visible_message(span_warning("The expended card incinerates itself."))
+	visible_message(span_warning("用尽的卡片自燃了。"))
 	do_sparks(3, cardinal_only = FALSE, source = src)
 	new /obj/effect/decal/cleanable/ash(get_turf(src))
 	qdel(src)
 
 /// Upgrade disk used to increase the range of a syndicate AI
 /obj/item/disk/computer/syndie_ai_upgrade
-	name = "AI interaction range upgrade"
-	desc = "A NT data chip containing information that a syndiCard AI can utilize to improve its wireless interfacing abilities. Simply slap it on top of an intelliCard, MODsuit, or AI core and watch it do its work! It's rumoured that there's something 'pretty awful' in it."
+	name = "AI交互范围升级"
+	desc = "一张纳米传讯数据芯片，内含辛迪加智能卡AI可用于提升其无线接口能力的信息。只需将其拍在智能卡、MOD防护服或AI核心上，即可见证其工作！据传其中含有某种“相当糟糕”的东西。"
 	max_capacity = 1000
 	w_class = WEIGHT_CLASS_NORMAL
 	sticker_icon_state = "o_syndicate"
@@ -131,12 +131,12 @@
 		AI = locate() in target
 	if(!AI || AI.interaction_range == INFINITY)
 		playsound(src,'sound/machines/buzz/buzz-sigh.ogg',50,FALSE)
-		to_chat(user, span_notice("Error! Incompatible object!"))
+		to_chat(user, span_notice("错误！不兼容的对象！"))
 		return ..()
 	AI.interaction_range += 2
 	if(AI.interaction_range > 7)
 		AI.interaction_range = INFINITY
 	playsound(src,'sound/machines/beep/twobeep.ogg',50,FALSE)
-	to_chat(user, span_notice("You insert [src] into [AI]'s compartment, and it beeps as it processes the data."))
-	to_chat(AI, span_notice("You process [src], and find yourself able to manipulate electronics from up to [AI.interaction_range] meters!"))
+	to_chat(user, span_notice("你将[src]插入[AI]的插槽，它在处理数据时发出哔哔声。"))
+	to_chat(AI, span_notice("你处理了[src]，发现自己现在能够操纵最远[AI.interaction_range]米内的电子设备了！"))
 	qdel(src)

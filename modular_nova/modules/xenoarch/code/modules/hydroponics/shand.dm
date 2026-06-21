@@ -1,6 +1,6 @@
 /obj/item/seeds/shand
-	name = "shand seed pack"
-	desc = "These seeds grow into shand plants. While not very useful on its own, it is full of chemicals that no other plant can produce. A good candidate for crossbreeding."
+	name = "闪德种子包"
+	desc = "这些种子会长成闪德植株。虽然其本身用途不大，但它富含其他植物无法产生的化学物质。是杂交育种的良好候选。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "shand"
 	species = "shand"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/shand
 	seed = /obj/item/seeds/shand
-	name = "shand"
-	desc = "A handful of shand leaves, the leaves are oily and smell like a laboratory."
+	name = "闪德"
+	desc = "一把闪德叶子，叶片油腻，闻起来像实验室的味道。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "shand"
 	filling_color = "#FF4500"

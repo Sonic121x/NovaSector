@@ -44,7 +44,7 @@
 		if(61.01 to 91)
 			return span_warning("[owner.p_They()] look[owner.p_s()] like a drunken mess.")
 		if(91.01 to INFINITY)
-			return span_warning("[owner.p_They()] [owner.p_are()] a shitfaced, slobbering wreck.")
+			return span_warning("[owner.p_They()] [owner.p_are()] 烂醉如泥，口水横流。")
 
 	return null
 

@@ -60,8 +60,8 @@
 			if (admin)
 				log_admin("The admin [ckey] has been allowed to bypass the whitelist")
 				if (message)
-					message_admins(span_adminnotice("The admin [ckey] has been allowed to bypass the whitelist"))
-					addclientmessage(ckey,span_adminnotice("You have been allowed to bypass the whitelist"))
+					message_admins(span_adminnotice("管理员[ckey]已被允许绕过白名单"))
+					addclientmessage(ckey,span_adminnotice("你已被允许绕过白名单"))
 			else
 				log_access("Failed Login: [ckey] - Not on whitelist")
 				return list("reason"="whitelist", "desc" = CONFIG_GET(string/missing_whitelist_message)) // NOVA EDIT CHANGE - SQL-based whitelist. ORIGINAL: return list("reason"="whitelist", "desc" = "\nReason: You are not on the white list for this server")
@@ -238,14 +238,14 @@
 		if (admin)
 			log_admin("The admin [ckey] has been allowed to bypass a matching host/sticky ban on [bannedckey]")
 			if (message)
-				message_admins(span_adminnotice("The admin [ckey] has been allowed to bypass a matching host/sticky ban on [bannedckey]"))
-				addclientmessage(ckey,span_adminnotice("You have been allowed to bypass a matching host/sticky ban on [bannedckey]"))
+				message_admins(span_adminnotice("管理员[ckey]已被允许绕过在[bannedckey]上的匹配主机/粘性封禁"))
+				addclientmessage(ckey,span_adminnotice("你已被允许绕过在[bannedckey]上的匹配主机/粘性封禁"))
 			return null
 
 		if (C) //user is already connected!.
-			to_chat(C, span_redtext("You are about to get disconnected for matching a sticky ban after you connected. If this turns out to be the ban evasion detection system going haywire, we will automatically detect this and revert the matches. if you feel that this is the case, please wait EXACTLY 6 seconds then reconnect using file -> reconnect to see if the match was automatically reversed."), confidential = TRUE)
+			to_chat(C, span_redtext("你即将因匹配粘性封禁而被断开连接。如果这证明是封禁规避检测系统出错，我们将自动检测并撤销匹配。如果你认为属于这种情况，请等待恰好6秒，然后通过文件->重新连接来查看匹配是否已自动撤销。"), confidential = TRUE)
 
-		var/desc = "\nReason:(StickyBan) You, or another user of this computer or connection ([bannedckey]) is banned from playing here. The ban reason is:\n[ban["message"]]\nThis ban was applied by [ban["admin"]]\nThis is a BanEvasion Detection System ban, if you think this ban is a mistake, please wait EXACTLY 6 seconds, then try again before filing an appeal.\n"
+		var/desc = "\nReason：（粘性封禁）你，或此计算机/连接的另一用户（[bannedckey]）已被禁止在此游玩。封禁原因为：\n[ban["message"]]\nThis 此封禁由 [ban["admin"]] 应用。\nThis 这是一个封禁规避检测系统封禁，如果你认为此封禁有误，请精确等待 6 秒，然后在提交申诉前重试。\n"
 		. = list("reason" = "Stickyban", "desc" = desc)
 		log_suspicious_login("Failed Login: [ckey] [computer_id] [address] - StickyBanned [ban["message"]] Target Username: [bannedckey] Placed by [ban["admin"]]")
 

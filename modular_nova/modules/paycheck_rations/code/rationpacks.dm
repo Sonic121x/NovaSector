@@ -1,6 +1,6 @@
 /obj/item/storage/box/spaceman_ration
-	name = "unlabeled ration container"
-	desc = "You get the feeling you sholdn't have been sent this one?"
+	name = "未标记的配给容器"
+	desc = "你感觉这本不该寄给你？"
 	icon = 'modular_nova/modules/paycheck_rations/icons/food_containers.dmi'
 	icon_state = "plants"
 	illustration = null
@@ -17,8 +17,8 @@
 // Contains your daily need of plants, yum!
 
 /obj/item/storage/box/spaceman_ration/plants
-	name = "produce ration container"
-	desc = "Contains your allotted ration of produce, which in this case should be peas and a potato."
+	name = "农产品配给容器"
+	desc = "包含你分配的农产品配给，这里应该是豌豆和土豆。"
 	box_storage_slots = 2
 
 /obj/item/storage/box/spaceman_ration/plants/PopulateContents()
@@ -28,7 +28,7 @@
 // Alternate diet, themed around martian food a bit more
 
 /obj/item/storage/box/spaceman_ration/plants/alternate
-	desc = "Contains your allotted ration of produce, which in this case should be cabbage and an onion."
+	desc = "包含你分配的农产品配给，这里应该是卷心菜和洋葱。"
 	icon_state = "plants_alt"
 
 /obj/item/storage/box/spaceman_ration/plants/alternate/PopulateContents()
@@ -38,7 +38,7 @@
 // For the moths amogus
 
 /obj/item/storage/box/spaceman_ration/plants/mothic
-	desc = "Contains your allotted ration of produce, which in this case should be chili and a potato."
+	desc = "包含你分配的农产品配给，这里应该是辣椒和土豆。"
 	icon_state = "plants_moth"
 
 /obj/item/storage/box/spaceman_ration/plants/mothic/PopulateContents()
@@ -48,7 +48,7 @@
 // For the lizards amongus
 
 /obj/item/storage/box/spaceman_ration/plants/lizard
-	desc = "Contains your allotted ration of produce, which in this case should be two korta nuts and two potatoes."
+	desc = "包含你分配的农产品配给，这里应该是两颗科塔果和两个土豆。"
 	icon_state = "plants_lizard"
 	box_storage_slots = 4
 
@@ -61,8 +61,8 @@
 // Contains your allotted meats, tasty!
 
 /obj/item/storage/box/spaceman_ration/meats
-	name = "meat ration container"
-	desc = "Contains your allotted ration of meat, which in this case should be preserved pork and a random side option."
+	name = "肉类配给容器"
+	desc = "包含你分配的肉类配给，这里应该是腌猪肉和一份随机配菜选项。"
 	icon_state = "meats"
 
 /obj/item/storage/box/spaceman_ration/meats/PopulateContents()
@@ -73,7 +73,7 @@
 // Seafood variant
 
 /obj/item/storage/box/spaceman_ration/meats/fish
-	desc = "Contains your allotted ration of meat, which in this case should be preserved pork and a random seafood side option."
+	desc = "包含你分配的肉类配给，这里应该是腌猪肉和一份随机海鲜配菜选项。"
 	icon_state = "meats_fish"
 
 /obj/item/storage/box/spaceman_ration/meats/fish/PopulateContents()
@@ -84,7 +84,7 @@
 // For the lizards amongus
 
 /obj/item/storage/box/spaceman_ration/meats/lizard
-	desc = "Contains your allotted ration of meat, which in this case should be preserved pork and a random seafood side option."
+	desc = "包含你分配的肉类配给，这里应该是腌猪肉和一份随机海鲜配菜选项。"
 	icon_state = "meats_lizard"
 
 /obj/item/storage/box/spaceman_ration/meats/lizard/PopulateContents()
@@ -95,8 +95,8 @@
 // Paper sack that spawns a random two slices of bread
 
 /obj/item/storage/box/papersack/ration_bread_slice
-	name = "bread and cheese ration bag"
-	desc = "A dusty old paper sack that should ideally contain your ration of bread and cheese."
+	name = "面包奶酪配给袋"
+	desc = "一个积满灰尘的旧纸袋，理想情况下应该装着你的面包和奶酪配给。"
 
 /obj/item/storage/box/papersack/ration_bread_slice/Initialize(mapload)
 	. = ..()

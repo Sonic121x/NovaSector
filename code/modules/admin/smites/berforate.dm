@@ -1,18 +1,18 @@
 /// Fires an absurd amount of bullets at the target
 /datum/smite/berforate
-	name = ":B:erforate"
+	name = ":B:扫射"
 
 	/// Determines how fucked the target is
 	var/hatred
 
 /datum/smite/berforate/configure(client/user)
 	var/static/list/how_fucked_is_this_dude = list("A little", "A lot", "So fucking much", "FUCK THIS DUDE")
-	hatred = input(user, "How much do you hate this guy?") in how_fucked_is_this_dude
+	hatred = input(user, "你有多恨这家伙？") in how_fucked_is_this_dude
 
 /datum/smite/berforate/effect(client/user, mob/living/target)
 	. = ..()
 	if (!iscarbon(target))
-		to_chat(user, span_warning("This must be used on a carbon mob."), confidential = TRUE)
+		to_chat(user, span_warning("必须对碳基生物使用。"), confidential = TRUE)
 		return
 
 	var/repetitions
@@ -53,5 +53,5 @@
 					break
 
 /datum/smite/berforate/divine
-	name = ":B:erforate (Divine)"
+	name = ":B:erforate（神圣）"
 	smite_flags = SMITE_DIVINE

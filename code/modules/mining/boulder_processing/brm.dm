@@ -10,8 +10,8 @@
 #define TURF_BLOCKED_BY_BOULDER -1
 
 /obj/machinery/brm
-	name = "boulder retrieval matrix"
-	desc = "A teleportation matrix used to retrieve boulders excavated by mining NODEs from ore vents."
+	name = "岩石回收矩阵"
+	desc = "一种传送矩阵，用于从矿脉喷口回收由采矿节点挖掘出的巨石。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "brm"
 	base_icon_state = "brm"
@@ -65,14 +65,14 @@
 
 /obj/machinery/brm/examine(mob/user)
 	. = ..()
-	. += span_notice("The small screen reads there are [span_boldnotice("[SSore_generation.available_boulders.len] boulders")] available to teleport.")
-	. += span_notice("Can collect up to <b>[boulders_processing_max] boulders</b> at a time.")
-	. += span_notice("Automatic boulder retrieval can be toggled [EXAMINE_HINT("[toggled_on ? "Off" : "On"]")] with [EXAMINE_HINT("Right Click")].")
+	. += span_notice("小屏幕上显示有[span_boldnotice("[SSore_generation.available_boulders.len] boulders")]可供传送。")
+	. += span_notice("一次最多可收集<b>[boulders_processing_max] 块</b>巨石。")
+	. += span_notice("Automatic boulder retrieval can be toggled [EXAMINE_HINT("[toggled_on ? "关闭" : "On"]")] with [EXAMINE_HINT("Right Click")].")
 
 	if(anchored)
-		. += span_notice("It's [EXAMINE_HINT("anchored")] in place.")
+		. += span_notice("它已[EXAMINE_HINT("anchored")]就位。")
 	else
-		. += span_warning("It needs to be [EXAMINE_HINT("anchored")] to start operations.")
+		. += span_warning("需要[EXAMINE_HINT("anchored")]才能开始操作。")
 
 	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
 
@@ -130,9 +130,9 @@
 
 	var/result = pre_collect_boulder()
 	if(result == TURF_BLOCKED_BY_BOULDER)
-		balloon_alert(user, "no space!")
+		balloon_alert(user, "没有空间！")
 	else if(result)
-		balloon_alert(user, "teleporting...")
+		balloon_alert(user, "传送中...")
 	COOLDOWN_START(src, manual_teleport_cooldown, TELEPORTATION_TIME)
 
 	return TRUE
@@ -150,16 +150,16 @@
 	// NOVA EDIT ADDITION START
 	var/area/teleport_area = get_area(src)
 	if (!is_type_in_typecache(teleport_area, allowed_areas_to_work))
-		balloon_alert(user, "can't use this here!")
+		balloon_alert(user, "不能在这里使用！")
 		return FALSE
 	// NOVA EDIT ADDITION END
 	if(!COOLDOWN_FINISHED(src, manual_teleport_cooldown))
 		return FALSE
 	if(panel_open)
-		balloon_alert(user, "close panel first!")
+		balloon_alert(user, "先关闭面板！")
 		return FALSE
 	if(batch_processing)
-		balloon_alert(user, "batch still processing!")
+		balloon_alert(user, "批次仍在处理中！")
 		return FALSE
 	playsound(src, MANUAL_TELEPORT_SOUND, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -173,9 +173,9 @@
 
 	var/result = pre_collect_boulder()
 	if(result == TURF_BLOCKED_BY_BOULDER)
-		balloon_alert(user, "no space!")
+		balloon_alert(user, "没有空间！")
 	else if(result)
-		balloon_alert(user, "teleporting...")
+		balloon_alert(user, "传送中...")
 
 	COOLDOWN_START(src, manual_teleport_cooldown, TELEPORTATION_TIME)
 
@@ -190,9 +190,9 @@
 
 	var/result = pre_collect_boulder()
 	if(result == TURF_BLOCKED_BY_BOULDER)
-		balloon_alert(user, "no space!")
+		balloon_alert(user, "空间不足！")
 	else if(result)
-		balloon_alert(user, "teleporting...")
+		balloon_alert(user, "传送中...")
 
 	COOLDOWN_START(src, manual_teleport_cooldown, TELEPORTATION_TIME)
 
@@ -203,7 +203,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
 		return
 	if(!anchored)
-		balloon_alert(user, "anchor it first!")
+		balloon_alert(user, "请先固定！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	toggle_auto_on(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -221,14 +221,14 @@
 	// NOVA EDIT ADDITION START
 	var/area/teleport_area = get_area(src)
 	if (!is_type_in_typecache(teleport_area, allowed_areas_to_work))
-		balloon_alert(user, "can't use this here!")
+		balloon_alert(user, "此处无法使用！")
 		return FALSE
 	// NOVA EDIT ADDITION END
 	if(panel_open)
-		balloon_alert(user, "close panel first!")
+		balloon_alert(user, "请先关闭面板！")
 		return
 	if(!anchored)
-		balloon_alert(user, "anchor it first!")
+		balloon_alert(user, "请先固定！")
 		return
 	if(!is_operational || machine_stat & (BROKEN | NOPOWER))
 		return
@@ -245,7 +245,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
 		return
 	if(!anchored)
-		balloon_alert(user, "unanchored!")
+		balloon_alert(user, "未固定！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	toggle_auto_on(user)
@@ -258,7 +258,7 @@
 	if(!user.can_perform_action(src, ALLOW_SILICON_REACH | FORBID_TELEKINESIS_REACH))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!anchored)
-		balloon_alert(user, "unanchored!")
+		balloon_alert(user, "未固定！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	toggle_auto_on(user)

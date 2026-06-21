@@ -1,6 +1,6 @@
 /datum/action/cooldown/mob_cooldown/lay_eggs
-	name = "Lay Eggs"
-	desc = "Lay a cluster of eggs, which will soon grow into a normal spider."
+	name = "产卵"
+	desc = "产下一簇卵，它们很快就会孵化成普通的蜘蛛。"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "lay_eggs"
 	background_icon_state = "bg_alien"
@@ -30,12 +30,12 @@
 		return FALSE
 	if(DOING_INTERACTION(owner, DOAFTER_SOURCE_SPIDER))
 		if (feedback)
-			owner.balloon_alert(owner, "busy!")
+			owner.balloon_alert(owner, "正忙！")
 		return FALSE
 	var/obj/structure/spider/eggcluster/eggs = locate() in get_turf(owner)
 	if(eggs)
 		if (feedback)
-			owner.balloon_alert(owner, "already eggs here!")
+			owner.balloon_alert(owner, "这里已经有卵了！")
 		return FALSE
 	return TRUE
 
@@ -43,12 +43,12 @@
 	owner.balloon_alert_to_viewers("laying eggs...")
 	StartCooldown(360 SECONDS, 360 SECONDS)
 	if(!do_after(owner, egg_lay_time, target = get_turf(owner), interaction_key = DOAFTER_SOURCE_SPIDER))
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 		StartCooldown(0 SECONDS)
 		return
 	var/obj/structure/spider/eggcluster/eggs = locate() in get_turf(owner)
 	if(eggs)
-		owner.balloon_alert(owner, "already eggs here!")
+		owner.balloon_alert(owner, "这里已经有卵了！")
 	else
 		lay_egg()
 	StartCooldown()
@@ -61,15 +61,15 @@
 		new_eggs.directive = spider_directive.current_directive
 
 /datum/action/cooldown/mob_cooldown/lay_eggs/abnormal
-	name = "Lay Abnormal Eggs"
-	desc = "Lay a cluster of eggs, which will soon grow into a uncommon spider."
+	name = "产下异常卵"
+	desc = "产下一簇卵，它们很快就会成长为不常见的蜘蛛。"
 	button_icon_state = "lay_abnormal_eggs"
 	cooldown_time = 180 SECONDS
 	egg_type = /obj/effect/mob_spawn/ghost_role/spider/abnormal
 
 /datum/action/cooldown/mob_cooldown/lay_eggs/enriched
-	name = "Lay Enriched Eggs"
-	desc = "Lay a cluster of eggs, which will soon grow into a rare spider.  Requires you drain a human per cluster of these eggs."
+	name = "产下富化卵"
+	desc = "产下一簇卵，它们很快就会成长为稀有蜘蛛。每产一簇这样的卵需要你吸取一个人类。"
 	button_icon_state = "lay_enriched_eggs"
 	cooldown_time = 60 SECONDS
 	egg_type = /obj/effect/mob_spawn/ghost_role/spider/enriched
@@ -82,7 +82,7 @@
 		return FALSE
 	if (charges <= 0)
 		if (feedback)
-			owner.balloon_alert(owner, "must feed first!")
+			owner.balloon_alert(owner, "必须先进食！")
 		return FALSE
 	return TRUE
 

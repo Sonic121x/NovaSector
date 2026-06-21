@@ -1,6 +1,6 @@
 /obj/machinery/vending/syndichem
-	name = "\improper SyndiChem"
-	desc = "A vending machine full of grenades and grenade accessories. Sponsored by Donk Co."
+	name = "\improper 辛迪化学"
+	desc = "一台装满手榴弹和手榴弹配件的自动售货机。由唐克公司赞助。"
 	products = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/assembly/igniter = 20,

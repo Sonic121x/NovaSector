@@ -18,7 +18,7 @@
  * This effectively makes each set a circular list, hence a carousel.
  */
 SUBSYSTEM_DEF(fluids)
-	name = "Fluid"
+	name = "流体"
 	wait = 0 // Will be autoset to whatever makes the most sense given the spread and effect waits.
 	ss_flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
@@ -239,13 +239,13 @@ SUBSYSTEM_DEF(fluids)
 
 /// The subsystem responsible for processing smoke propagation and effects.
 FLUID_SUBSYSTEM_DEF(smoke)
-	name = "Smoke"
+	name = "烟雾"
 	spread_wait = 0.1 SECONDS
 	effect_wait = 2.0 SECONDS
 
 /// The subsystem responsible for processing foam propagation and effects.
 FLUID_SUBSYSTEM_DEF(foam)
-	name = "Foam"
+	name = "泡沫"
 	wait = 0.1 SECONDS // Makes effect bubbling work with foam.
 	spread_wait = 0.2 SECONDS
 	effect_wait = 0.2 SECONDS

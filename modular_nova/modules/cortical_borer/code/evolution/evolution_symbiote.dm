@@ -3,8 +3,8 @@
 
 // T1
 /datum/borer_evolution/symbiote/willing_host
-	name = "Willing Host"
-	desc = "Ask a host if they are willing, furthering your objectives."
+	name = "自愿宿主"
+	desc = "询问宿主是否自愿，以推进你的目标。"
 	gain_text = "Some of the monkeys we gave the worms seemed far more... willing than others to be a host. I could've sworn one let them climb up their arm."
 	tier = 1
 	unlocked_evolutions = list(/datum/borer_evolution/symbiote/chem_per_level)
@@ -17,8 +17,8 @@
 
 // T2
 /datum/borer_evolution/symbiote/chem_per_level
-	name = "Chemical Increase"
-	desc = "Increase the amount of chemicals per level-up you gain."
+	name = "化学品增量"
+	desc = "增加你每次升级时获得的化学品数量。"
 	gain_text = "The rate of which we've had to clean the borer pens is increasing. Perhaps their secretions are excess chemicals they cannot use?"
 	tier = 2
 	unlocked_evolutions = list(/datum/borer_evolution/symbiote/expanded_chemicals)
@@ -31,8 +31,8 @@
 
 // T3 + T2 Path
 /datum/borer_evolution/symbiote/expanded_chemicals
-	name = "Expanded Chemical List"
-	desc = "Gain access to a new list of helpful chemicals to the unlockable list."
+	name = "扩展化学品清单"
+	desc = "获得一份新的有益化学品清单，添加到可解锁列表中。"
 	gain_text = "The chemicals the worms seem capable of synthesizing are truly remarkable, their hosts are able to get up from amazing amounts of harm."
 	mutually_exclusive = TRUE
 	tier = 3
@@ -54,21 +54,21 @@
 	cortical_owner.potential_chemicals |= added_chemicals
 
 /datum/borer_evolution/symbiote/chem_per_level/t2
-	name = "Chemical Increase II"
-	desc = "Increase the amount of chemicals per level-up you gain even further."
+	name = "化学品增量 II"
+	desc = "进一步增加你每次升级时获得的化学品数量。"
 	tier = -1
 	unlocked_evolutions = list(/datum/borer_evolution/symbiote/chem_per_level/t3)
 
 /datum/borer_evolution/symbiote/chem_per_level/t3
-	name = "Chemical Increase III"
-	desc = "Increase the amount of chemicals per level-up you gain even further."
+	name = "化学增幅 III"
+	desc = "进一步增加你每次升级时获得的化学物质量。"
 	tier = -1
 	unlocked_evolutions = list()
 
 // T4 and path
 /datum/borer_evolution/symbiote/harm_decrease
-	name = "Toxins Decrease"
-	desc = "Decrease the passive and active damage you do to your host, and how often it occurs."
+	name = "毒素衰减"
+	desc = "减少你对宿主造成的被动和主动伤害，并降低其发生频率。"
 	gain_text = "However, some of the others became... if not smaller, certainly longer, more lithe."
 	tier = 4
 	unlocked_evolutions = list(
@@ -81,21 +81,21 @@
 	cortical_owner.host_harm_multiplier -= 0.25
 
 /datum/borer_evolution/symbiote/harm_decrease/t2
-	name = "Toxins Decrease II"
-	desc = "Further decrease the passive and active damage you do to your host, and how often it occurs."
+	name = "毒素衰减 II"
+	desc = "进一步减少你对宿主造成的被动和主动伤害，并降低其发生频率。"
 	tier = -1
 	unlocked_evolutions = list(/datum/borer_evolution/symbiote/harm_decrease/t3)
 
 /datum/borer_evolution/symbiote/harm_decrease/t3
-	name = "Toxins Decrease III"
-	desc = "Further decrease the passive and active damage you do to your host, and how often it occurs."
+	name = "毒素衰减 III"
+	desc = "进一步减少你对宿主造成的被动和主动伤害，并降低其发生频率。"
 	tier = -1
 	unlocked_evolutions = list()
 
 // T5
 /datum/borer_evolution/symbiote/revive_host
-	name = "Revive Host"
-	desc = "Revive your host and heal what ails them."
+	name = "复活宿主"
+	desc = "复活你的宿主并治愈其病痛。"
 	gain_text = "As I was in the lab, the most curious occurance so far happened. A Cortical Borer went into one of the cadaver's heads, and moments later they were standing again."
 	evo_cost = 3
 	tier = 5

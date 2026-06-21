@@ -44,7 +44,7 @@ This component is used in vat growing to swab for microbiological samples which 
 /datum/component/swabbing/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(LAZYLEN(swabbed_items))
-		examine_list += span_nicegreen("There is a microbiological sample on [parent]!")
+		examine_list += span_nicegreen("[parent]上有一个微生物样本！")
 		examine_list += "[span_notice("You can see the following micro-organisms:")]\n"
 		for(var/i in swabbed_items)
 			var/datum/biological_sample/samp = i
@@ -93,10 +93,10 @@ This component is used in vat growing to swab for microbiological samples which 
 	. = COMPONENT_CANCEL_ATTACK_CHAIN //Point of no return. No more attacking after this.
 
 	if(LAZYLEN(swabbed_items))
-		to_chat(user, span_warning("You cannot collect another sample on [parent]!"))
+		to_chat(user, span_warning("你无法在[parent]上收集另一个样本！"))
 		return
 
-	to_chat(user, span_notice("You start swabbing [target] for samples!"))
+	to_chat(user, span_notice("你开始从[target]上擦拭取样！"))
 	INVOKE_ASYNC(src, PROC_REF(async_try_to_swab), target, user)
 
 /datum/component/swabbing/proc/async_try_to_swab(atom/target, mob/user)
@@ -106,10 +106,10 @@ This component is used in vat growing to swab for microbiological samples which 
 	LAZYINITLIST(swabbed_items) //If it isn't initialized, initialize it. As we need to pass it by reference
 
 	if(SEND_SIGNAL(target, COMSIG_SWAB_FOR_SAMPLES, swabbed_items) == NONE) //If we found something to swab now we let the swabbed thing handle what it would do, we just sit back and relax now.
-		to_chat(user, span_warning("You do not manage to find anything on [target]!"))
+		to_chat(user, span_warning("你在[target]上什么都没找到！"))
 		return
 
-	to_chat(user, span_nicegreen("You manage to collect a microbiological sample from [target]!"))
+	to_chat(user, span_nicegreen("你成功从[target]收集到一个微生物样本！"))
 
 	var/obj/item/parent_item = parent
 	parent_item.update_appearance()

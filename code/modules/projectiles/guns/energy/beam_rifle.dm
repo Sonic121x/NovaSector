@@ -37,7 +37,7 @@
 /obj/item/gun/energy/event_horizon/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 
 	if(!HAS_TRAIT(user, TRAIT_USER_SCOPED))
-		balloon_alert(user, "must be scoped!")
+		balloon_alert(user, "必须使用瞄准镜！")
 		return
 
 	. = ..()

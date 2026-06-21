@@ -74,7 +74,7 @@
 	if((visible_info & EMPATH_SEE_EVIL) && HAS_TRAIT(target, TRAIT_EVIL))
 		examine_list += "[t_Their] eyes radiate with a unfeeling, cold detachment. There is nothing but darkness within [t_their] soul."
 		if(living_parent.mind?.holy_role >= HOLY_ROLE_PRIEST)
-			examine_list += span_warning("PERFECT FOR SMITING!!")
+			examine_list += span_warning("完美适合惩戒！！")
 		else if(!seen_it)
 			seen_it = TRUE
 			living_parent.add_mood_event("encountered_evil", /datum/mood_event/encountered_evil)

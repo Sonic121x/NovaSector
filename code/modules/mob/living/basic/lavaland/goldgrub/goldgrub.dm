@@ -1,7 +1,7 @@
 //An ore-devouring but easily scared creature
 /mob/living/basic/mining/goldgrub
-	name = "goldgrub"
-	desc = "A worm that grows fat from eating everything in its sight. Seems to enjoy precious metals and other shiny things, hence the name."
+	name = "金蠕虫"
+	desc = "一种通过吞噬眼前一切而长得肥硕的蠕虫。似乎喜欢贵金属和其他闪亮的东西，因此得名。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "goldgrub"
 	icon_living = "goldgrub"
@@ -97,7 +97,7 @@
 	if(prob(hitting_projectile.armour_penetration) || (hitting_projectile.armor_flag != BOMB && hitting_projectile.armor_flag != ENERGY))
 		return NONE
 
-	visible_message(span_danger("[hitting_projectile] is repelled by [source]'s girth!"))
+	visible_message(span_danger("[hitting_projectile] 被 [source] 的肥硕身躯弹开了！"))
 	return COMPONENT_BULLET_BLOCKED
 
 /mob/living/basic/mining/goldgrub/proc/barf_contents(gibbed)
@@ -106,7 +106,7 @@
 		ore.forceMove(loc)
 
 	if(!gibbed)
-		visible_message(span_danger("[src] spits out its consumed ores!"))
+		visible_message(span_danger("[src] 吐出了它吞下的矿石！"))
 
 /mob/living/basic/mining/goldgrub/proc/generate_loot()
 	var/loot_amount = rand(1,3)
@@ -161,7 +161,7 @@
 
 /mob/living/basic/mining/goldgrub/baby
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
-	name = "goldgrub baby"
+	name = "金蠕虫幼体"
 	icon_state = "grub_baby"
 	icon_living = "grub_baby"
 	icon_dead = "grub_baby_dead"
@@ -193,8 +193,8 @@
 	return (stat == CONSCIOUS && !is_jaunting(src))
 
 /obj/item/food/egg/green/grub_egg
-	name = "grub egg"
-	desc = "Covered in disgusting fluid."
+	name = "蠕虫卵"
+	desc = "覆盖着恶心的粘液。"
 
 
 /obj/item/food/egg/green/grub_egg/Initialize(mapload)

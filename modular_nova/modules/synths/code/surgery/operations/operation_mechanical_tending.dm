@@ -6,9 +6,9 @@
 #define COMBO_SURGERY (1<<2)
 
 /datum/surgery_operation/basic/repair_synth
-	name = "structural repairs"
+	name = "结构修复"
 	rnd_name = "Structural Repairs (Tend Wounds)"
-	desc = "Perform superficial repairs that focuses on fixing the patients chassis and physical frame."
+	desc = "执行表面修复，重点修复患者的底盘和物理框架。"
 	implements = list(
 		TOOL_WELDER = 1,
 		/obj/item/stack/cable_coil = 1,
@@ -33,7 +33,7 @@
 	var/healing_multiplier = 0.07
 
 /datum/surgery_operation/basic/repair_synth/all_required_strings()
-	return ..() + list("the patient must have denting or heat damage")
+	return ..() + list("患者必须存在凹痕或热损伤")
 
 /datum/surgery_operation/basic/repair_synth/state_check(mob/living/patient)
 	if(issynthetic(patient))
@@ -52,7 +52,7 @@
 			all_healing = new()
 			all_healing.image = image(/obj/item/storage/medkit/tactical/premium)
 			all_healing.name = "tend dents and charring"
-			all_healing.info = "Heal a patient's superficial dents, scuffs, and warped heat damage."
+			all_healing.info = "治疗患者表面的凹痕、擦伤和热损伤导致的变形。"
 			LAZYSET(cached_healing_options, "[COMBO_SURGERY]", all_healing)
 
 		options[all_healing] = list(
@@ -69,7 +69,7 @@
 			brute_healing = new()
 			brute_healing.image = image(/obj/item/storage/medkit/robotic_repair)
 			brute_healing.name = "repair blunt damage"
-			brute_healing.info = "Heal a patient's superficial bruises and cuts."
+			brute_healing.info = "治疗患者表层的瘀伤和割伤。"
 			LAZYSET(cached_healing_options, "[BRUTE_SURGERY]", brute_healing)
 
 		options[brute_healing] = list(
@@ -84,7 +84,7 @@
 			burn_healing = new()
 			burn_healing.image = image(/obj/item/reagent_containers/spray/dinitrogen_plasmide)
 			burn_healing.name = "repair heat damage"
-			burn_healing.info = "Heal a patient's superficial charring and warping damage."
+			burn_healing.info = "治疗患者表层的烧焦和变形损伤。"
 			LAZYSET(cached_healing_options, "[BURN_SURGERY]", burn_healing)
 
 		options[burn_healing] = list(

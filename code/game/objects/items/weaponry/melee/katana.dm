@@ -1,6 +1,6 @@
 /obj/item/katana
-	name = "katana"
-	desc = "Woefully underpowered in D20."
+	name = "武士刀"
+	desc = "在D20规则中弱得可怜。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "katana"
 	inhand_icon_state = "katana"
@@ -40,7 +40,7 @@
 	acid = 50
 
 /obj/item/katana/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is slitting [user.p_their()] stomach open with [src]! It looks like [user.p_theyre()] trying to commit seppuku!"))
+	user.visible_message(span_suicide("[user]正用[src]切开[user.p_their()]的腹部！看起来[user.p_theyre()]想要切腹自尽！"))
 	return BRUTELOSS
 
 /obj/item/katana/cursed //used by wizard events, see the tendril_loot.dm file for the miner one

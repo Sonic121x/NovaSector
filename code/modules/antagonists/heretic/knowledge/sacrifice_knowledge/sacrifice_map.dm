@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(heretic_sacrifice_landmarks)
 
 // Rooms for where heretic sacrifices send people.
 /area/centcom/heretic_sacrifice
-	name = "Mansus"
+	name = "茫惚"
 	icon_state = "heretic"
 	default_gravity = STANDARD_GRAVITY
 	ambience_index = AMBIENCE_SPOOKY
@@ -73,22 +73,22 @@ GLOBAL_LIST_EMPTY(heretic_sacrifice_landmarks)
 	return ..()
 
 /area/centcom/heretic_sacrifice/ash //also, the default
-	name = "Mansus Ash Gate"
+	name = "茫惚灰烬之门"
 
 /area/centcom/heretic_sacrifice/void
-	name = "Mansus Void Gate"
+	name = "茫惚虚空之门"
 	sound_environment = SOUND_ENVIRONMENT_UNDERWATER
 
 /area/centcom/heretic_sacrifice/flesh
-	name = "Mansus Flesh Gate"
+	name = "茫惚肉门"
 	sound_environment = SOUND_ENVIRONMENT_STONEROOM
 
 /area/centcom/heretic_sacrifice/rust
-	name = "Mansus Rust Gate"
+	name = "茫惚铁门"
 	ambience_index = AMBIENCE_REEBE
 	sound_environment = SOUND_ENVIRONMENT_SEWER_PIPE
 
 /area/centcom/heretic_sacrifice/lock
-	name = "Mansus Lock Gate"
+	name = "曼苏斯锁闭之门"
 	ambience_index = AMBIENCE_DANGER
 	sound_environment = SOUND_ENVIRONMENT_PSYCHOTIC

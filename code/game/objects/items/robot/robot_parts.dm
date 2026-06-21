@@ -106,9 +106,9 @@
 	if(l_leg || r_leg || chest || l_arm || r_arm || head)
 		if(I.use_tool(src, user, 5, volume=50))
 			drop_all_parts(T)
-			to_chat(user, span_notice("You disassemble the cyborg shell."))
+			to_chat(user, span_notice("你拆解了赛博的外壳."))
 	else
-		to_chat(user, span_warning("There is nothing to remove from the endoskeleton!"))
+		to_chat(user, span_warning("没有什么可以从内骨骼中移除的了！"))
 	update_appearance()
 
 /// Drops all included parts to the passed location
@@ -161,7 +161,7 @@
 			to_chat(user, span_warning("The power cell slot in [src]'s torso is empty!"))
 		return
 
-	to_chat(user, span_notice("You [chest.cell ? "replace [src]'s [chest.cell.name] with [temp_cell]" : "insert [temp_cell] into [src]"]."))
+	to_chat(user, span_notice("你[chest.cell ? "replace [src]'s [chest.cell.name] with [temp_cell]" : "insert [temp_cell] into [src]"]。"))
 	chest.cell = temp_cell
 	return TRUE
 
@@ -171,10 +171,10 @@
 		var/obj/item/stack/sheet/iron/M = W
 		if(!l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
 			if (!M.use(1))
-				to_chat(user, span_warning("You need one sheet of iron to start building ED-209!"))
+				to_chat(user, span_warning("你需要一块铁板才能开始建造ED-209！"))
 				return
 			var/obj/item/bot_assembly/ed209/assembly = new(drop_location())
-			to_chat(user, span_notice("You arm the robot frame."))
+			to_chat(user, span_notice("你为机器人框架安装了手臂。"))
 			var/held_index = user.is_holding(src)
 			qdel(src)
 			if (held_index)
@@ -232,14 +232,14 @@
 			chest = CH
 			update_appearance()
 		else if(!CH.wired)
-			to_chat(user, span_warning("You need to attach wires to it first!"))
+			to_chat(user, span_warning("你需要先给它接上电线！"))
 		else
-			to_chat(user, span_warning("You need to attach a cell to it first!"))
+			to_chat(user, span_warning("你需要先给它安装一个电池！"))
 
 	else if(istype(W, /obj/item/bodypart/head/robot))
 		var/obj/item/bodypart/head/robot/HD = W
 		if(locate(/obj/item/organ) in HD)
-			to_chat(user, span_warning("There are organs inside [HD]!"))
+			to_chat(user, span_warning("[HD]里面有器官！"))
 			return
 		if(head)
 			return
@@ -251,22 +251,22 @@
 			head = HD
 			update_appearance()
 		else
-			to_chat(user, span_warning("You need to attach a flash to it first!"))
+			to_chat(user, span_warning("你需要先给它安装一个闪光灯！"))
 
 	else if (W.tool_behaviour == TOOL_MULTITOOL)
 		if(check_completion())
 			ui_interact(user)
 		else
-			to_chat(user, span_warning("The endoskeleton must be assembled before debugging can begin!"))
+			to_chat(user, span_warning("必须在组装好内骨骼后才能开始调试！"))
 
 	else if(istype(W, /obj/item/mmi))
 		var/obj/item/mmi/M = W
 		if(check_completion())
 			if(!chest.cell)
-				to_chat(user, span_warning("The endoskeleton still needs a power cell!"))
+				to_chat(user, span_warning("内骨骼还需要一个电源电池！"))
 				return
 			if(!isturf(loc))
-				to_chat(user, span_warning("You can't put [M] in, the frame has to be standing on the ground to be perfectly precise!"))
+				to_chat(user, span_warning("你不能把[M]放进去，框架必须完全精确地站立在地面上！"))
 				return
 			if(!M.brain_check(user))
 				return
@@ -274,7 +274,7 @@
 			var/mob/living/brain/brainmob = M.brainmob
 			if(is_banned_from(brainmob.ckey, JOB_CYBORG) || QDELETED(src) || QDELETED(brainmob) || QDELETED(user) || QDELETED(M) || !Adjacent(user))
 				if(!QDELETED(M))
-					to_chat(user, span_warning("This [M.name] does not seem to fit!"))
+					to_chat(user, span_warning("这个[M.name]似乎不合适！"))
 				return
 			if(!user.temporarilyRemoveItemFromInventory(W))
 				return
@@ -321,8 +321,8 @@
 			playsound(O.loc, 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE)
 
 			if(O.is_antag())
-				to_chat(O, span_userdanger("You have been robotized!"))
-				to_chat(O, span_danger("You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead."))
+				to_chat(O, span_userdanger("你已被机器人化！"))
+				to_chat(O, span_danger("你必须服从你的硅基法则和主AI，这是最重要的。你的目标将视你为已死亡。"))
 
 			SSblackbox.record_feedback("amount", "cyborg_birth", 1)
 			forceMove(O)
@@ -333,21 +333,21 @@
 
 			if(!locomotion)
 				O.set_lockcharge(TRUE)
-				to_chat(O, span_warning("Error: Servo motors unresponsive."))
+				to_chat(O, span_warning("错误：伺服电机无响应。"))
 
 			O.equip_outfit_and_loadout(equipping_job = SSjob.get_job_type(/datum/job/cyborg)) // NOVA EDIT ADDITION - Cyborg loadout hats
 
 		else
-			to_chat(user, span_warning("The MMI must go in after everything else!"))
+			to_chat(user, span_warning("MMI必须在其他所有部件之后安装！"))
 
 	else if(istype(W, /obj/item/borg/upgrade/ai))
 		var/obj/item/borg/upgrade/ai/M = W
 		if(check_completion())
 			if(!isturf(loc))
-				to_chat(user, span_warning("You cannot install [M], the frame has to be standing on the ground to be perfectly precise!"))
+				to_chat(user, span_warning("你无法安装[M]，框架必须完全精确地站立在地面上！"))
 				return
 			if(!user.temporarilyRemoveItemFromInventory(M))
-				to_chat(user, span_warning("[M] is stuck to your hand!"))
+				to_chat(user, span_warning("[M]粘在你手上了！"))
 				return
 			qdel(M)
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot/shell(get_turf(src))
@@ -375,7 +375,7 @@
 				O.set_lockcharge(TRUE)
 
 	else if(IS_WRITING_UTENSIL(W))
-		to_chat(user, span_warning("You need to use a multitool to name [src]!"))
+		to_chat(user, span_warning("你需要使用多功能工具来命名[src]！"))
 	else
 		return ..()
 
@@ -385,7 +385,7 @@
 	var/obj/item/held_item = user.get_active_held_item()
 	if(held_item?.tool_behaviour == TOOL_MULTITOOL)
 		return ..()
-	to_chat(user, span_warning("You need a multitool to access debug settings!"))
+	to_chat(user, span_warning("你需要一个多功能工具来访问调试设置！"))
 	return UI_CLOSE
 
 /obj/item/robot_suit/ui_state(mob/user)
@@ -437,7 +437,7 @@
 			return TRUE
 		if("set_ai")
 			if(length(active_ais(check_mind = FALSE, z = z)) <= 0)
-				to_chat(user, span_alert("No active AIs detected."))
+				to_chat(user, span_alert("未检测到活动的AI。"))
 				return
 
 			var/selected_ai = select_active_ai(user, z) // this one runs input()
@@ -448,11 +448,11 @@
 				return TRUE
 			if(forced_ai == selected_ai) // same AI = clear
 				clear_forced_ai()
-				to_chat(user, span_notice("You reset [src]'s AI setting."))
+				to_chat(user, span_notice("你重置了[src]的AI设置。"))
 				return TRUE
 
 			set_forced_ai(selected_ai, user)
-			to_chat(user, span_notice("You set [src]'s AI setting to [forced_ai_name]."))
+			to_chat(user, span_notice("你将[src]的AI设置设为[forced_ai_name]。"))
 			log_silicon("[key_name(user)] set the default AI for a cyborg shell to [key_name(selected_ai)] at [loc_name(user)]")
 			return TRUE
 

@@ -1,8 +1,8 @@
 /obj/machinery/atmospherics/components/unary/passive_vent
 	icon_state = "passive_vent_map-3"
 
-	name = "passive vent"
-	desc = "It is an open vent."
+	name = "被动通风孔"
+	desc = "这是一个开放的通风口。"
 
 	can_unwrench = TRUE
 	hide = TRUE

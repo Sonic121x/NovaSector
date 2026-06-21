@@ -3,54 +3,54 @@
 */
 
 /obj/structure/decorative/shelf
-	name = "shelf"
-	desc = "A sturdy wooden shelf to store a variety of items on."
+	name = "架子"
+	desc = "一个坚固的木制架子，用于存放各种物品。"
 	icon = 'modular_nova/modules/mapping/icons/unique/furniture.dmi'
 	icon_state = "empty_shelf_1"
 	density = 0
 
 /obj/structure/decorative/shelf/crates
-	desc = "A sturdy wooden shelf with a bunch of crates on it."
+	desc = "一个坚固的木架子，上面放着一堆板条箱。"
 	icon_state = "shelf_1"
 
 /obj/structure/decorative/shelf/milkjugs
-	desc = "A sturdy wooden shelf with a jugs and cartons of skimmed, semi-skimmed and full fat milk."
+	desc = "一个坚固的木架子，上面放着脱脂、半脱脂和全脂牛奶的壶和纸盒。"
 	icon_state = "shelf_2"
 
 /obj/structure/decorative/shelf/alcohol
-	desc = "A sturdy wooden shelf with a bunch of probably alcoholic drinks on it."
+	desc = "一个坚固的木架子，上面放着一堆可能是酒精饮料的东西。"
 	icon_state = "shelf_3"
 
 /obj/structure/decorative/shelf/soda
-	desc = "A sturdy wooden shelf with a bunch of soft drinks on it. This planet's version of coca cola?"
+	desc = "一个坚固的木架子，上面放着一堆软饮料。这是这个星球的可口可乐版本吗？"
 	icon_state = "shelf_4"
 
 /obj/structure/decorative/shelf/soda_multipacks
-	desc = "A sturdy wooden shelf with a bunch of multipack soft drinks."
+	desc = "一个坚固的木架子，上面放着一堆多包装的软饮料。"
 	icon_state = "shelf_5"
 
 /obj/structure/decorative/shelf/crates1
-	desc = "A sturdy wooden shelf with a bunch of crates on it. How... generic?"
+	desc = "一个坚固的木架子，上面放着一堆板条箱。多么……普通？"
 	icon_state = "shelf_6"
 
 /obj/structure/decorative/shelf/soda_milk
-	desc = "A sturdy wooden shelf with an assortment of boxes. Multipack soft drinks and some milk."
+	desc = "一个坚固的木架子，上面放着各种盒子。多包装软饮料和一些牛奶。"
 	icon_state = "shelf_7"
 
 /obj/structure/decorative/shelf/milk
-	desc = "A sturdy wooden shelf with a variety of small milk cartons. Great for those who live alone!"
+	desc = "一个坚固的木架子，上面放着各种小盒牛奶。非常适合独居人士！"
 	icon_state = "shelf_8"
 
 /obj/structure/decorative/shelf/milk_big
-	desc = "A sturdy wooden shelf with lots of larger milk cartons."
+	desc = "一个坚固的木架子，上面放着许多大盒牛奶。"
 	icon_state = "shelf_9"
 
 /obj/structure/decorative/shelf/alcohol_small
-	desc = "A sturdy wooden shelf with lots of alcohol."
+	desc = "一个坚固的木架子，上面放着许多酒。"
 	icon_state = "shelf_10"
 
 /obj/structure/decorative/shelf/alcohol_assortment
-	desc = "A sturdy wooden shelf with a variety of branded alcoholic drinks."
+	desc = "一个坚固的木架子，上面放着各种品牌的酒精饮料。"
 	icon_state = "shelf_11"
 
 // Toilet with a snap pop.

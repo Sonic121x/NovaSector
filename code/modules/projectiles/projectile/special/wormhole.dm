@@ -1,5 +1,5 @@
 /obj/projectile/beam/wormhole
-	name = "bluespace beam"
+	name = "蓝空射束"
 	icon_state = null
 	hitsound = SFX_SPARKS
 	damage = 0
@@ -13,7 +13,7 @@
 	hitscan = TRUE
 
 /obj/projectile/beam/wormhole/orange
-	name = "orange bluespace beam"
+	name = "橙色蓝空射束"
 	color = "#FF6600"
 
 /obj/projectile/beam/wormhole/Initialize(mapload, obj/item/ammo_casing/energy/wormhole/casing)

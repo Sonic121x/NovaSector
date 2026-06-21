@@ -42,7 +42,7 @@
 
 //xeno-organs
 /obj/item/autosurgeon/xeno
-	name = "strange autosurgeon"
+	name = "奇怪的自动手术仪"
 	icon = 'modular_nova/modules/moretraitoritems/icons/alien.dmi'
 	surgery_speed = 2
 	organ_whitelist = list(/obj/item/organ/alien)
@@ -53,7 +53,7 @@
 	plasma_rate = 10
 
 /obj/item/storage/organbox/strange
-	name = "strange organ transport box"
+	name = "奇怪的器官运输箱"
 	icon = 'modular_nova/modules/moretraitoritems/icons/alien.dmi'
 
 /obj/item/storage/organbox/strange/Initialize(mapload)

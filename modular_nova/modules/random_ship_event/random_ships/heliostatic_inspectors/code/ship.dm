@@ -1,9 +1,9 @@
 /datum/map_template/shuttle/random_ship/hc_police
 	suffix = "hc_police"
-	name = "random ship (HC Ship)"
+	name = "随机飞船（HC 飞船）"
 
 /area/shuttle/hc_cops
-	name = "HC Ship"
+	name = "HC 飞船"
 	forced_ambience = TRUE
 	requires_power = TRUE
 	area_limited_icon_smoothing = /area/shuttle/hc_cops
@@ -17,59 +17,59 @@
 				'modular_nova/modules/random_ship_event/random_ships/heliostatic_inspectors/sounds/intercom_loop.ogg')
 
 /area/shuttle/hc_cops/engineering
-	name = "HC Ship Reactor Room"
+	name = "HC 飞船反应堆室"
 	icon_state = "engie"
 
 /area/shuttle/hc_cops/ready_room
-	name = "HC Ship Ready Room"
+	name = "HC 飞船待命室"
 	icon_state = "security_sub"
 
 /area/shuttle/hc_cops/cargo_hold
-	name = "HC Ship Cargo Hold"
+	name = "HC 飞船货运舱"
 	icon_state = "cargo_bay"
 
 /area/shuttle/hc_cops/infirmary
-	name = "HC Ship Infirmary"
+	name = "HC 飞船医务室"
 	icon_state = "med_central"
 
 /area/shuttle/hc_cops/recreation
-	name = "HC Ship Recreation"
+	name = "HC 飞船娱乐区"
 	icon_state = "rec"
 
 /area/shuttle/hc_cops/armory
-	name = "HC Ship Armory"
+	name = "HC 飞船军械库"
 	icon_state = "security"
 
 /area/shuttle/hc_cops/command
-	name = "HC Ship Bridge"
+	name = "HC 飞船舰桥"
 	icon_state = "command"
 
 /area/shuttle/hc_cops/canteen
-	name = "HC Ship Canteen"
+	name = "HC 飞船食堂"
 	icon_state = "cafeteria"
 
 /area/shuttle/hc_cops/hydroponics
-	name = "HC Ship Hydroponics"
+	name = "HC 飞船水培室"
 	icon_state = "hydro"
 
 /area/shuttle/hc_cops/isolation
-	name = "HC Ship Isolation Room"
+	name = "HC 飞船隔离室"
 	icon_state = "virology_isolation"
 
 /area/shuttle/hc_cops/conference
-	name = "HC Ship Conference Hall"
+	name = "HC 飞船会议厅"
 	icon_state = "courtroom"
 
 /area/shuttle/hc_cops/lounge
-	name = "HC Ship Lounge"
+	name = "HC 飞船休息室"
 	icon_state = "lounge"
 
 /area/shuttle/hc_cops/checkpoint
-	name = "HC Ship Teleporter Checkpoint"
+	name = "HC 飞船传送检查点"
 	icon_state = "checkpoint_arr"
 
 /area/shuttle/hc_cops/teleporter
-	name = "HC Ship Teleporter"
+	name = "HC 飞船传送器"
 	icon_state = "teleporter"
 
 /obj/docking_port/mobile/hc_ship
@@ -84,7 +84,7 @@
 	landing_sound = sound('modular_nova/modules/random_ship_event/random_ships/heliostatic_inspectors/sounds/env_ship_down.ogg')
 
 /obj/machinery/computer/shuttle/hc
-	name = "police shuttle console"
+	name = "警用穿梭机控制台"
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	light_color = COLOR_SOFT_RED
@@ -92,8 +92,8 @@
 	possible_destinations = "hc_ship_custom"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/pirate/hc
-	name = "police shuttle navigation computer"
-	desc = "Used to designate a precise transit location for the police shuttle."
+	name = "警用穿梭机导航电脑"
+	desc = "用于为警用穿梭机指定精确的传送位置。"
 	lock_override = CAMERA_LOCK_STATION
 	view_range = 8.5
 	x_offset = 6
@@ -102,12 +102,12 @@
 	shuttlePortId = "hc_ship_custom"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/pirate/hc/rotateLandingSpot()
-	to_chat(current_user, span_warning("Rotation disabled to preserve structural integrity of the outpost."))
+	to_chat(current_user, span_warning("旋转功能已禁用，以保护前哨站的结构完整性。"))
 	return FALSE
 
 /obj/machinery/porta_turret/syndicate/hc_police
-	name = "anti-projectile turret"
-	desc = "An automatic defense turret designed for point-defense, it's probably not that wise to try approaching it."
+	name = "反投射物炮塔"
+	desc = "一种为点防御设计的自动防御炮塔，试图接近它可能不太明智。"
 	scan_range = 9
 	shot_delay = 15
 	faction = list(FACTION_NEUTRAL)
@@ -130,17 +130,17 @@
 		return TRUE
 
 /obj/projectile/bullet/ciws
-	name = "anti-projectile salvo"
+	name = "反投射物齐射"
 	icon_state = "guardian"
 	damage = 15
 	armour_penetration = 10
 
 /obj/structure/plaque/static_plaque/golden/commission/ks13/hc_police
-	desc = "HC Sector 09-G-17 Asteroidal Anomaly Orbital Shipworks, Ship OSTs-05 'Hunter Strider' Class Frigate Commissioned 16/01/2566 'Keeping Promises'"
+	desc = "HC 第09-G-17区小行星异常轨道造船厂，OSTs-05级护卫舰'猎手漫步者'号于2566年1月16日入役，'信守承诺'"
 
 /obj/machinery/computer/centcom_announcement/hc_police
-	name = "inspection announcement console"
-	desc = "A console used for making safety inspection announcements."
+	name = "检查公告控制台"
+	desc = "用于发布安全检查公告的控制台。"
 	req_access = null
 	circuit = null
 	command_name = "Heliostatic Coalition Safety Inspection Team Announcement"

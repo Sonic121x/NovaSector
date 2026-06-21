@@ -6,13 +6,13 @@
 
 // Cult archives. Gives out utility items.
 /obj/structure/destructible/cult/item_dispenser/archives
-	name = "archives"
-	desc = "A desk covered in arcane manuscripts and tomes in unknown languages. Looking at the text makes your skin crawl."
+	name = "档案台"
+	desc = "一张堆满了神秘手稿和无法理解语言的圣经. 看着那些让你觉得毛骨悚然"
 	cult_examine_tip = "Can be used to create zealot's blindfolds, shuttle curse orbs, and veil walker equipment."
 	icon_state = "tomealtar"
 	light_range = 1.5
 	light_color = LIGHT_COLOR_FIRE
-	break_message = span_warning("The books and tomes of the archives burn into ash as the desk shatters!")
+	break_message = span_warning("档案处的书籍与典籍化为灰烬，书桌也随之碎裂！")
 	mansus_conversion_path = /obj/item/codex_cicatrix
 	custom_materials = list(/datum/material/runedmetal = SHEET_MATERIAL_AMOUNT * 3)
 
@@ -56,7 +56,7 @@
 	)
 
 /obj/structure/destructible/cult/item_dispenser/archives/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cult_italic("You summon [spawned_item] from [src]!"))
+	to_chat(user, span_cult_italic("你从[src]中召唤出了[spawned_item]！"))
 
 // Preset for the library that doesn't spawn runed metal on destruction, or glow.
 /obj/structure/destructible/cult/item_dispenser/archives/library

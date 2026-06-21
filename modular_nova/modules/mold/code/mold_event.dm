@@ -4,8 +4,8 @@
 #define MOLDIES_SPAWN_HIGHPOP_MAX 2
 
 /datum/round_event_control/mold
-	name = "Moldies"
-	description = "A mold outbreak on the station. The mold will spread across the station if not contained."
+	name = "霉菌事件"
+	description = "空间站上的霉菌爆发。如果不加以控制，霉菌将在空间站内蔓延。"
 	typepath = /datum/round_event/mold
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
@@ -21,7 +21,7 @@
 	if(!fake)
 		INVOKE_ASYNC(SSsecurity_level, TYPE_PROC_REF(/datum/controller/subsystem/security_level, minimum_security_level), SEC_LEVEL_VIOLET, FALSE, FALSE)
 
-	priority_announce("Confirmed outbreak of level 6 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_OUTBREAK6)
+	priority_announce("确认在[station_name()]上爆发6级生物危害。所有人员必须控制疫情。", "生物危害警报", ANNOUNCER_OUTBREAK6)
 
 /datum/round_event/mold/start()
 	var/list/turfs = list() //list of all the empty floor turfs in the hallway areas

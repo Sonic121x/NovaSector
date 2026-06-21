@@ -1,5 +1,5 @@
 /datum/outfit/solfed
-	name = "SolFed Official"
+	name = "太阳联邦官员"
 	uniform = /obj/item/clothing/under/solfed/officer
 	gloves = /obj/item/clothing/gloves/combat
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -31,16 +31,16 @@
 	..()
 
 /datum/outfit/solfed/lowrank
-	name = "SolFed Official (Low Rank)"
+	name = "太阳联邦官员（低阶）"
 	uniform = /obj/item/clothing/under/solfed/officer_lowrnk
 	accessory = /obj/item/clothing/accessory/nova/acc_medal/neckpin/solfed/official
 
 /datum/outfit/solfed/civil
-	name = "SolFed Official (Civil Services)"
+	name = "太阳联邦官员（民事服务）"
 	uniform = /obj/item/clothing/under/solfed/official_civil
 	accessory = /obj/item/clothing/accessory/nova/acc_medal/neckpin/solfed/official
 
 /datum/outfit/solfed/social
-	name = "SolFed Official (Social Services)"
+	name = "太阳联邦官员（社会服务）"
 	uniform = /obj/item/clothing/under/solfed/official_social
 	accessory = /obj/item/clothing/accessory/nova/acc_medal/neckpin/solfed/official

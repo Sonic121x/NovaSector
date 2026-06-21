@@ -36,7 +36,7 @@
 	rpg_title = "Veteran Adventurer"
 
 /datum/outfit/job/curator
-	name = "Curator"
+	name = "馆长"
 	jobtype = /datum/job/curator
 
 	id_trim = /datum/id_trim/job/curator

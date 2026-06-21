@@ -55,5 +55,5 @@
 		return
 	var/mob/living/new_mob = evolve_path
 	var/new_mob_name = initial(new_mob.name)
-	old_mob.visible_message(span_warning("[old_mob] evolves into \a [new_mob_name]!"))
+	old_mob.visible_message(span_warning("[old_mob] 进化成了 \a [new_mob_name]！"))
 	old_mob.change_mob_type(evolve_path, old_mob.loc, new_name = new_mob_name, delete_old_mob = TRUE)

@@ -33,7 +33,7 @@
 #define RAD_IRRADIATE_THRESHOLD_CORE 10
 
 /datum/mold_type
-	var/name = "debug"
+	var/name = "调试"
 	/// The tier of the mold, used to decide whether it can spawn on lowpop
 	var/tier = MOLD_TIER_LOW_THREAT
 	/// The color of the mold structures
@@ -77,7 +77,7 @@
  */
 /datum/mold_type/proc/bulb_discharge(obj/structure/mold/structure/bulb/bulb)
 	SHOULD_CALL_PARENT(TRUE) //  don't skip the message brah...
-	bulb.visible_message(span_warning("[bulb] ruptures!"))
+	bulb.visible_message(span_warning("[bulb] 破裂了！"))
 	return
 
 /**
@@ -105,7 +105,7 @@
  * * amount_of_reagent - how much of the reagent to add to the reagents datum. Defaults to 30.
  */
 /datum/mold_type/proc/spew_foam(obj/structure/mold/structure/source, range, reagent_capacity, reagent_to_add, amount_of_reagent = 30)
-	source.visible_message(span_warning("[source] spews out foam!"))
+	source.visible_message(span_warning("[source] 喷出泡沫！"))
 	var/datum/reagents/spewed_reagents = new /datum/reagents(reagent_capacity)
 	spewed_reagents.my_atom = source
 	spewed_reagents.add_reagent(reagent_to_add, amount_of_reagent)
@@ -120,7 +120,7 @@
  * Probably the most simple mold type.
  */
 /datum/mold_type/fire
-	name = "fire"
+	name = "火焰"
 	mold_color = "#e04000"
 	structure_light_color = LIGHT_COLOR_FIRE
 	examine_text = "It feels hot to the touch."
@@ -129,7 +129,7 @@
 	resistance_flags = FIRE_PROOF
 
 /datum/mold_type/fire/core_defense(obj/structure/mold/structure/core/core)
-	core.visible_message(span_warning("[core] puffs out a cloud of flames!"))
+	core.visible_message(span_warning("[core] 喷出一团火焰！"))
 	spawn_atmos(core)
 
 /datum/mold_type/fire/bulb_discharge(obj/structure/mold/structure/bulb/bulb)
@@ -148,7 +148,7 @@
  * It has its own custom disease, too. Fancy.
  */
 /datum/mold_type/disease
-	name = "fungal"
+	name = "真菌"
 	tier = MOLD_TIER_HIGH_THREAT
 	mold_color = "#6e5100"
 	structure_light_color = LIGHT_COLOR_BROWN
@@ -158,7 +158,7 @@
 	preferred_atmos_conditions = "TEMP=312"
 
 /datum/mold_type/disease/core_defense(obj/structure/mold/structure/core/core)
-	core.visible_message(span_warning("[core] emits a cloud!"))
+	core.visible_message(span_warning("[core] 释放出一团云雾！"))
 	fungal_puff(core, DISEASE_PUFF_RANGE_CORE)
 
 /datum/mold_type/disease/bulb_discharge(obj/structure/mold/structure/bulb/bulb)
@@ -195,7 +195,7 @@
 	preferred_atmos_conditions = "n2=30;TEMP=100"
 
 /datum/mold_type/emp/core_defense(obj/structure/mold/structure/core/core)
-	core.visible_message(span_warning("[core] sends out electrical discharges!"))
+	core.visible_message(span_warning("[core] 发出电击！"))
 	electrical_discharge(
 		source = core,
 		heavy_emp_range = ELECTRICAL_DISCHARGE_HEAVY_RANGE,
@@ -253,7 +253,7 @@
  * in the poison flask Hearthstone card.
  */
 /datum/mold_type/toxic
-	name = "toxic"
+	name = "剧毒"
 	mold_color = "#cb37f5"
 	structure_light_color = LIGHT_COLOR_LAVENDER
 	examine_text = "It feels damp and smells of rat poison."
@@ -286,7 +286,7 @@
  * unstable mutagen foam as well as occasionally firing nuclear particles.
  */
 /datum/mold_type/radioactive
-	name = "radioactive"
+	name = "放射性"
 	mold_color = "#80ff00"
 	structure_light_color = LIGHT_COLOR_ELECTRIC_GREEN
 	examine_text = "It's glowing a soft green."
@@ -295,7 +295,7 @@
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 
 /datum/mold_type/radioactive/core_defense(obj/structure/mold/structure/core/core)
-	core.visible_message(span_warning("[core] emits a strong radiation pulse!"))
+	core.visible_message(span_warning("[core] 释放出强烈的辐射脉冲！"))
 	irradiate(core, threshold = RAD_IRRADIATE_THRESHOLD_CORE)
 	spew_foam(
 		core,

@@ -4,8 +4,8 @@
  * A gun that lets you fire projectiles to enact circuitry.
  */
 /obj/item/gun/energy/wiremod_gun
-	name = "circuit gun"
-	desc = "A gun that fires projectiles able to control circuitry. It can recharge using power from an attached circuit."
+	name = "电路枪"
+	desc = "一种能发射能控制电路的炮弹的枪。它可以通过连接的电路充电。"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_gun"
 	ammo_type = list(/obj/item/ammo_casing/energy/wiremod_gun)
@@ -24,7 +24,7 @@
 	fire_sound = 'sound/items/weapons/blaster.ogg'
 
 /obj/projectile/energy/wiremod_gun
-	name = "scanning beam"
+	name = "扫描电子束"
 	icon_state = "energy"
 	damage = 0
 	range = 7
@@ -42,7 +42,7 @@
 
 /obj/item/circuit_component/wiremod_gun
 	display_name = "Gun"
-	desc = "Used to receive entities hit by projectiles from a gun."
+	desc = "用来接收被枪弹击中的物体。"
 	/// Called when a projectile hits
 	var/datum/port/output/signal
 	/// The shooter

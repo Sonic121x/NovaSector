@@ -1,7 +1,7 @@
 // Tobacco
 /obj/item/seeds/tobacco
-	name = "tobacco seed pack"
-	desc = "These seeds grow into tobacco plants."
+	name = "烟草种子包"
+	desc = "能长成烟草植株的种子。"
 	icon_state = "seed-tobacco"
 	species = "tobacco"
 	plantname = "Tobacco Plant"
@@ -17,15 +17,15 @@
 
 /obj/item/food/grown/tobacco
 	seed = /obj/item/seeds/tobacco
-	name = "tobacco leaves"
-	desc = "Dry them out to make some smokes."
+	name = "烟草叶"
+	desc = "把烟草叶烘干，可以用它们做卷烟。"
 	icon_state = "tobacco_leaves"
 	distill_reagent = /datum/reagent/consumable/ethanol/creme_de_menthe //Menthol, I guess.
 
 // Space Tobacco
 /obj/item/seeds/tobacco/space
-	name = "space tobacco seed pack"
-	desc = "These seeds grow into space tobacco plants."
+	name = "太空烟草种子包"
+	desc = "能长成太空烟草植株的种子。"
 	icon_state = "seed-stobacco"
 	species = "stobacco"
 	plantname = "Space Tobacco Plant"
@@ -36,8 +36,8 @@
 
 /obj/item/food/grown/tobacco/space
 	seed = /obj/item/seeds/tobacco/space
-	name = "space tobacco leaves"
-	desc = "Dry them out to make some space-smokes."
+	name = "太空烟草叶"
+	desc = "把太空烟草叶烘干，用它们来做太空卷烟。"
 	icon_state = "stobacco_leaves"
 	bite_consumption_mod = 2
 	distill_reagent = null

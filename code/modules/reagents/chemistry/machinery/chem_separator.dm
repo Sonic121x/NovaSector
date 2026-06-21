@@ -2,8 +2,8 @@
 #define MAX_BURNER_KNOB_SETTINGS 10
 
 /obj/structure/chem_separator
-	name = "distillation apparatus"
-	desc = "A device that performs chemical separation by distillation."
+	name = "蒸馏装置"
+	desc = "一种通过蒸馏进行化学分离的设备。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "separator"
 	light_power = 1
@@ -102,36 +102,36 @@
 	. = ..()
 
 	if(reagents.total_volume)
-		. += span_notice("The distilation flask reads <b>[reagents.total_volume]/[reagents.maximum_volume]u</b>.")
+		. += span_notice("蒸馏烧瓶显示为<b>[reagents.total_volume]/[reagents.maximum_volume]u</b>。")
 	if(!QDELETED(distilled_container))
-		. += span_notice("The distilation beaker reads <b>[distilled_container.reagents.total_volume]/[distilled_container.reagents.maximum_volume]u</b>.")
-		. += span_notice("Remove beaker with [EXAMINE_HINT("LMB")].")
+		. += span_notice("蒸馏烧瓶显示 <b>[distilled_container.reagents.total_volume]/[distilled_container.reagents.maximum_volume]u</b>。")
+		. += span_notice("用[EXAMINE_HINT("LMB")]移除烧杯。")
 	else
-		. += span_warning("Its missing a distilation container, insert with [EXAMINE_HINT("LMB")]")
+		. += span_warning("它缺少一个蒸馏容器，用[EXAMINE_HINT("LMB")]插入")
 	if(!QDELETED(fuel_container))
-		. += span_notice("The burner fuel container reads <b>[fuel_container.reagents.total_volume]/[fuel_container.reagents.maximum_volume]u</b>.")
-		. += span_notice("Remove fuel with [EXAMINE_HINT("RMB")].")
+		. += span_notice("燃烧器燃料容器显示 <b>[fuel_container.reagents.total_volume]/[fuel_container.reagents.maximum_volume]u</b>。")
+		. += span_notice("用[EXAMINE_HINT("RMB")]移除燃料。")
 	else
-		. += span_warning("Its missing a beaker containing fuel for the burner, insert with [EXAMINE_HINT("RMB")]")
+		. += span_warning("它缺少一个为燃烧器提供燃料的烧杯，用[EXAMINE_HINT("RMB")]插入")
 	if(burner_on)
-		. += span_notice("Off burner with [EXAMINE_HINT("ALT LMB")].")
+		. += span_notice("用[EXAMINE_HINT("ALT LMB")]关闭燃烧器。")
 	else
-		. += span_notice("You can start a flame with a combustible device.")
+		. += span_notice("你可以用可燃装置点燃火焰。")
 
 	if(condenser_installed)
-		. += span_notice("The in-built condenser can facilitate faster cooling but consumes fuel.")
+		. += span_notice("内置冷凝器可以加速冷却，但会消耗燃料。")
 	else
-		. += span_notice("You could install a [EXAMINE_HINT("condenser")] for faster cooling.")
+		. += span_notice("你可以安装一个[EXAMINE_HINT("condenser")]来加速冷却。")
 
-	. += span_notice("You can [EXAMINE_HINT("examine more")] to see reagent boiling points & fuel properties.")
-	. += span_notice("The whole aparatus can be [EXAMINE_HINT("pried")] apart.")
+	. += span_notice("你可以[EXAMINE_HINT("examine more")]来查看试剂沸点和燃料属性。")
+	. += span_notice("整个装置可以被[EXAMINE_HINT("pried")]开。")
 
 /obj/structure/chem_separator/examine_more(mob/user)
 	. = ..()
 
-	. += span_notice("For burner fuel Plasma > Oil > Welding Fuel = Oxygen > Ethanol > Monkey Energy")
+	. += span_notice("作为燃烧燃料，效能排序为：等离子体 > 油 > 焊接燃料 = 氧气 > 乙醇 > 猴子能量")
 
-	. += span_notice("Upon cross examining the flasks reagents contents with its chart you see the boiling points of each reagent present.")
+	. += span_notice("将烧瓶内的试剂成分与其图表交叉比对后，你看到了每种存在试剂的沸点。")
 	for(var/datum/reagent/reg as anything in reagents.reagent_list)
 		. += span_notice("[reg.name] [get_boiling_point(reg)]K")
 
@@ -269,24 +269,24 @@
 
 		//add new container
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("[tool] is stuck in your hand."))
+			to_chat(user, span_warning("[tool]卡在你手里了。"))
 			return ITEM_INTERACT_BLOCKING
 		distilled_container = tool
 
 		START_PROCESSING(SSobj, src)
-		balloon_alert(user, "distillation container added.")
+		balloon_alert(user, "蒸馏容器已添加。")
 
 		ui_interact(user)
 		update_appearance(UPDATE_OVERLAYS)
 		return ITEM_INTERACT_SUCCESS
 	else if(istype(tool, /obj/item/assembly/igniter/condenser))
 		if(!user.temporarilyRemoveItemFromInventory(tool))
-			to_chat(user, span_warning("[tool] is stuck in your hand."))
+			to_chat(user, span_warning("[tool]卡在你手里了。"))
 			return ITEM_INTERACT_BLOCKING
 		condenser_installed = TRUE
 		update_static_data_for_all_viewers()
 		qdel(tool)
-		balloon_alert(user, "condenser installed.")
+		balloon_alert(user, "冷凝器已安装。")
 		return ITEM_INTERACT_SUCCESS
 
 	///Try & ignite the bunset burner with this item
@@ -308,7 +308,7 @@
 			return TRUE
 
 		if(user.put_in_hands(distilled_container))
-			to_chat(user, span_notice("you take out the output flask."))
+			to_chat(user, span_notice("你取出了输出烧瓶。"))
 			update_appearance(UPDATE_OVERLAYS)
 		return TRUE
 
@@ -326,10 +326,10 @@
 
 		//add new container
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("[tool] is stuck in your hand."))
+			to_chat(user, span_warning("[tool]卡在你手里了。"))
 			return ITEM_INTERACT_BLOCKING
 		fuel_container = tool
-		balloon_alert(user, "fuel container added.")
+		balloon_alert(user, "燃料容器已添加。")
 
 		ui_interact(user)
 		return ITEM_INTERACT_SUCCESS
@@ -341,7 +341,7 @@
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 		if(user.put_in_hands(fuel_container))
-			to_chat(user, span_notice("you take out the burner fuel container"))
+			to_chat(user, span_notice("你取出了燃烧器燃料容器"))
 			toggle_burner(FALSE)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 

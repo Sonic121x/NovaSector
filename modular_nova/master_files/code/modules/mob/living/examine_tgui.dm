@@ -19,12 +19,12 @@
 	examine_panel_screen.hide_from(user)
 
 /atom/movable/screen/map_view/examine_panel_screen
-	name = "examine panel screen"
+	name = "检视面板屏幕"
 
 /datum/examine_panel/ui_interact(mob/user, datum/tgui/ui)
 	if(!examine_panel_screen)
 		examine_panel_screen = new
-		examine_panel_screen.name = "screen"
+		examine_panel_screen.name = "屏幕"
 		examine_panel_screen.assigned_map = "examine_panel_[REF(holder)]_map"
 		examine_panel_screen.del_on_map_removal = FALSE
 		examine_panel_screen.screen_loc = "[examine_panel_screen.assigned_map]:1,1"

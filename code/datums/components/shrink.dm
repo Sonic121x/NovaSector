@@ -22,8 +22,8 @@
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			C.unequip_everything()
-			C.visible_message(span_warning("[C]'s belongings fall off of [C.p_them()] as they shrink down!"),
-			span_userdanger("Your belongings fall away as everything grows bigger!"))
+			C.visible_message(span_warning("[C]的随身物品随着[C.p_them()]的缩小而掉落！"),
+			span_userdanger("你的随身物品纷纷掉落，周围的一切都变大了！"))
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C
 				H.physiology.damage_resistance -= 100//carbons take double damage while shrunk
@@ -36,8 +36,8 @@
 			)
 	else
 		parent_atom.set_density(FALSE) // this is handled by the UNDENSE trait on mobs
-	parent_atom.visible_message(span_warning("[parent_atom] shrinks down to a tiny size!"),
-	span_userdanger("Everything grows bigger!"))
+	parent_atom.visible_message(span_warning("[parent_atom]缩小到了微小的尺寸！"),
+	span_userdanger("一切都变大了！"))
 	if(shrink_time >= 0) // negative shrink time is permanent
 		QDEL_IN(src, shrink_time)
 

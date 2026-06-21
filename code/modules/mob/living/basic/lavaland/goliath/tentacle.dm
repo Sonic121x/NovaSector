@@ -1,6 +1,6 @@
 /// A tentacle which grabs you if you don't get away from it
 /obj/effect/goliath_tentacle
-	name = "goliath tentacle"
+	name = "歌利亚触须"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "goliath_tentacle_spawn"
 	layer = BELOW_MOB_LAYER
@@ -68,8 +68,8 @@
 		var/obj/item/restraints/legcuffs/goliath_tentacle/trap = new trap_type(loc, victim, src)
 		if (QDELETED(trap))
 			continue
-		balloon_alert(victim, "grabbed")
-		visible_message(span_danger("[src] grabs hold of [victim]!"))
+		balloon_alert(victim, "被抓住了")
+		visible_message(span_danger("[src] 抓住了 [victim]！"))
 		victim.apply_damage(rand(min_damage, max_damage), BRUTE, pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG), wound_bonus = CANT_WOUND)
 		trapped_mobs = TRUE
 

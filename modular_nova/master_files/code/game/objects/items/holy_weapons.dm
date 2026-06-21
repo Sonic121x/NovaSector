@@ -16,7 +16,7 @@
 /obj/item/clothing/head/helmet/chaplain/bland
 	icon = 'modular_nova/master_files/icons/obj/clothing/head/chaplain.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/chaplain.dmi'
-	name = "crusader helmet"
+	name = "十字军头盔"
 	desc = "Helfen, Wehren, Heilen."
 	icon_state = "knight_generic"
 
@@ -41,14 +41,14 @@
 /obj/item/clothing/suit/chaplainsuit/armor/templar/generic
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits/chaplain.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suits/chaplain.dmi'
-	desc = "Protect the weak and defenceless, live by honor and glory, and fight for the welfare of all!"
+	desc = "保护弱小与无助者，为荣誉与荣耀而生，为所有人的福祉而战！"
 	icon_state = "knight_generic"
 
 /obj/item/clothing/suit/chaplainsuit/armor/templar/generic/setup_reskins()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/templar_generic)
 
 /obj/item/storage/box/holy/knight
-	name = "knight's kit"
+	name = "骑士装备包"
 
 /obj/item/storage/box/holy/knight/PopulateContents()
 	new /obj/item/clothing/head/helmet/chaplain/bland(src)
@@ -56,8 +56,8 @@
 
 //make chaplain version w/ unique sprite?
 /obj/item/clothing/suit/hooded/cultlain_robe
-	name = "ancient robes"
-	desc = "A ragged, dusty set of robes."
+	name = "古老长袍"
+	desc = "一套破旧、布满灰尘的长袍。"
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	icon_state = "cultrobes"
@@ -68,8 +68,8 @@
 	hoodtype = /obj/item/clothing/head/hooded/cultlain_hood
 
 /obj/item/clothing/head/hooded/cultlain_hood
-	name = "ancient hood"
-	desc = "A torn, dust-caked hood."
+	name = "古老兜帽"
+	desc = "一顶撕裂、沾满灰尘的兜帽。"
 	icon_state = "culthood"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
@@ -79,15 +79,15 @@
 	armor_type = /datum/armor/chaplainsuit_armor
 
 /obj/item/storage/box/holy/narsian
-	name = "ancient kit"
+	name = "古老装备包"
 
 /obj/item/storage/box/holy/narsian/PopulateContents()
 	new /obj/item/clothing/suit/hooded/cultlain_robe(src)
 	new /obj/item/clothing/shoes/cult/alt(src)
 
 /obj/item/nullrod/cultdagger
-	name = "ritual dagger"
-	desc = "A strange dagger said to be once used by a sinister group.. "
+	name = "仪式匕首"
+	desc = "一把据称曾被某个邪恶团体使用过的奇异匕首。"
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "render"
 	inhand_icon_state = "cultdagger"
@@ -104,7 +104,7 @@
 
 /obj/item/nullrod/cultdagger/attack_self(mob/user)
 	if(!narsian && user.mind && (user.mind.holy_role))
-		to_chat(user, span_cult_large("\"Partake in the language of blood..\""))
+		to_chat(user, span_cult_large("以血为语..."))
 		user.grant_language(/datum/language/narsie, source = LANGUAGE_MIND)
 		special_desc_requirement = NONE // No point in keeping something that can't no longer be used
 		narsian = TRUE
@@ -117,7 +117,7 @@
 
 /obj/item/nullrod/claymore/darkblade/attack_self(mob/user)
 	if(!narsian && user.mind && (user.mind.holy_role))
-		to_chat(user, span_cult_large("\"Partake in the language of blood..\""))
+		to_chat(user, span_cult_large("以血为语..."))
 		user.grant_language(/datum/language/narsie, source = LANGUAGE_MIND)
 		special_desc_requirement = NONE // No point in keeping something that can't no longer be used
 		narsian = TRUE
@@ -132,14 +132,14 @@
 	if(ratvarian)
 		return ..()
 	else if(user.mind?.holy_role)
-		to_chat(user, span_bigbrass("The sound of cogs permeates your head..."))
+		to_chat(user, span_bigbrass("齿轮的声响渗透进你的脑海..."))
 		user.grant_language(/datum/language/ratvar, source = LANGUAGE_MIND)
 		special_desc_requirement = NONE // No point in keeping something that can't no longer be used
 		ratvarian = TRUE
 
 /obj/item/nullrod/rosary
-	name = "prayer beads"
-	desc = "A set of prayer beads used by many of the more traditional religions in space"
+	name = "念珠"
+	desc = "一套在太空诸多传统宗教中使用的念珠。"
 	icon = 'modular_nova/modules/chaplain/icons/holy_weapons.dmi'
 	icon_state = "rosary"
 	worn_icon_state = "nullrod"
@@ -158,21 +158,21 @@
 
 /obj/item/nullrod/rosary/attack(mob/living/target, mob/living/user, params)
 	if(!user.mind || !user.mind.holy_role)
-		balloon_alert(user, "not holy enough!")
+		balloon_alert(user, "不够神圣！")
 		return
 	if(user.combat_mode)
 		return ..()
 	if(praying)
-		balloon_alert(user, "already in use!")
+		balloon_alert(user, "已在使用中！")
 		return
 
-	user.visible_message(span_info("[user] kneels[target == user ? null : " next to [target]"] and begins to utter a prayer to [deity_name]."), \
-		span_info("You kneel[target == user ? null : " next to [target]"] and begin a prayer to [deity_name]."))
+	user.visible_message(span_info("[user]跪了下来[target == user ? null : " next to [target]"]，开始向[deity_name]祈祷。"), \
+		span_info("你跪了下来[target == user ? null : " next to [target]"]，开始向[deity_name]祈祷。"))
 
 	praying = TRUE
 	if(do_after(user, 5 SECONDS, target = target))
 		target.reagents?.add_reagent(/datum/reagent/water/holywater, 5)
-		to_chat(target, span_notice("[user]'s prayer to [deity_name] has eased your pain!"))
+		to_chat(target, span_notice("[user] 向 [deity_name] 的祈祷缓解了你的痛苦！"))
 		var/need_mob_update
 		need_mob_update += target.adjust_tox_loss(-5, updating_health = FALSE, forced = TRUE)
 		need_mob_update += target.adjust_oxy_loss(-5, updating_health = FALSE)
@@ -182,12 +182,12 @@
 			target.updatehealth()
 		praying = FALSE
 	else
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		praying = FALSE
 
 /obj/item/nullrod/scythe/sickle
-	name = "damned sickle"
-	desc = "A green crescent blade, decorated with an ornamental eye. The pupil has faded..."
+	name = "受诅咒的镰刀"
+	desc = "一把绿色的新月形刀刃，装饰着一只装饰性的眼睛。瞳孔已经褪色..."
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "eldritch_blade"
 	inhand_icon_state = "eldritch_blade"
@@ -203,8 +203,8 @@
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "rend")
 
 /obj/item/nullrod/scythe/sickle/void
-	name = "crystal sickle"
-	desc = "Made of clear crystal, the blade refracts the light slightly. Purity, so close yet unattainable in this form."
+	name = "水晶镰刀"
+	desc = "由透明水晶制成，刀刃微微折射着光线。如此接近却又无法以这种形态触及的纯净。"
 	icon_state = "void_blade"
 	inhand_icon_state = "void_blade"
 	worn_icon_state = "dark_blade"

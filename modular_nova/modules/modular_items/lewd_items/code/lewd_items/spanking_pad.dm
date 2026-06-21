@@ -1,6 +1,6 @@
 /obj/item/spanking_pad
-	name = "spanking pad"
-	desc = "A leather pad with a handle."
+	name = "打屁股垫"
+	desc = "一个带手柄的皮革垫。"
 	icon_state = "spankpad_pink"
 	base_icon_state = "spankpad"
 	inhand_icon_state = "spankpad_pink"
@@ -63,12 +63,12 @@
 
 	var/message = ""
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[target] doesn't want you to do that."))
+		to_chat(user, span_danger("[target]不想让你这么做。"))
 		return
 	switch(user.zone_selected) //to let code know what part of body we gonna spank.
 		if(BODY_ZONE_PRECISE_GROIN)
 			if(!target.is_bottomless())
-				to_chat(user, span_danger("[target]'s butt is covered!"))
+				to_chat(user, span_danger("[target]的臀部被遮住了！"))
 				return
 			message = (user == target) ? pick("spanks themselves with [src]", "uses [src] to slap their hips") : pick("slaps [target]'s hips with [src]", "uses [src] to slap [target]'s butt", "spanks [target] with [src], making a loud slapping noise", "slaps [target]'s thighs with [src]")
 			if(prob(40) && (target.stat != DEAD))
@@ -80,5 +80,5 @@
 				target.add_mood_event("pervert spanked", /datum/mood_event/perv_spanked)
 			if(prob(10) && (target.stat != DEAD))
 				target.apply_status_effect(/datum/status_effect/subspace)
-			user.visible_message(span_purple("[user] [message]!"))
+			user.visible_message(span_purple("[user] [message]！"))
 			playsound_if_pref(loc, 'modular_nova/modules/modular_items/lewd_items/sounds/slap.ogg', 100, 1, -1)

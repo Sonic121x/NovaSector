@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(time_track)
-	name = "Time Tracking"
+	name = "时间追踪"
 	wait = 100
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 

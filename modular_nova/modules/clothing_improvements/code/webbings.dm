@@ -1,6 +1,6 @@
 /obj/item/clothing/accessory/webbing
-	name = "webbing"
-	desc = "A sturdy mess of synthetic belts and buckles, ready to share your burden."
+	name = "携行具"
+	desc = "一套由合成材料腰带和扣具组成的坚固装备，随时准备分担你的负重。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
 	icon_state = "webbing"
@@ -23,7 +23,7 @@
 
 	if(!isnull(attach_to.atom_storage))
 		if(user)
-			attach_to.balloon_alert(user, "not compatible!")
+			attach_to.balloon_alert(user, "不兼容！")
 		return FALSE
 	return TRUE
 
@@ -43,8 +43,8 @@
 	new_icon_state = "vest_white"
 
 /obj/item/clothing/accessory/webbing/vest
-	name = "webbing vest"
-	desc = "A robust vest with lots of pockets to hold whatever you need, ready to share your burdens."
+	name = "携行背心"
+	desc = "一件坚固的背心，上面有很多口袋，可以装下你需要的任何东西，随时准备分担你的负重。"
 	icon_state = "vest_brown"
 
 /obj/item/clothing/accessory/webbing/vest/setup_reskins()
@@ -66,8 +66,8 @@
 	new_icon_state = "thigh_white"
 
 /obj/item/clothing/accessory/webbing/pouch
-	name = "drop pouches"
-	desc = "A robust pair of drop pouches with good capacity, ready to share your burdens."
+	name = "垂降袋"
+	desc = "一对容量不错的坚固垂降袋，随时准备分担你的负重。"
 	icon_state = "thigh_brown"
 
 /obj/item/clothing/accessory/webbing/pouch/setup_reskins()
@@ -88,7 +88,7 @@
 	new_icon_state = "pilot_webbing2"
 
 /obj/item/clothing/accessory/webbing/pilot
-	name = "storage rigging"
+	name = "储物索具"
 	icon_state = "pilot_webbing1"
 
 /obj/item/clothing/accessory/webbing/pilot/setup_reskins()

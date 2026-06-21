@@ -23,11 +23,11 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 )))
 
 /datum/round_event_control/sentience
-	name = "Random Human-level Intelligence"
+	name = "随机的人类水平智能"
 	typepath = /datum/round_event/ghost_role/sentience
 	weight = 10
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "An animal or robot becomes sentient!"
+	description = "一只动物或机器人获得了感知能力！"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
 
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 
 	sentience_report += "Based on [data], we believe that [one] of the station's [pets] has developed [strength] level intelligence, and the ability to communicate."
 
-	priority_announce(sentience_report,"[command_name()] Medium-Priority Update")
+	priority_announce(sentience_report,"[command_name()] 中等优先级更新")
 
 /datum/round_event/ghost_role/sentience/spawn_role()
 	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, alert_pic = /obj/item/slimepotion/sentience, role_name_text = role_name)
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 		selected.health = selected.maxHealth
 		spawned_mobs += selected
 
-		to_chat(selected, span_userdanger("Hello world!"))
+		to_chat(selected, span_userdanger("你好，世界！"))
 		to_chat(selected, span_warning("Due to freak radiation and/or chemicals \
 			and/or lucky chance, you have gained human level intelligence \
 			and the ability to speak and understand human language!"))
@@ -123,11 +123,11 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 		low += checked_mob
 
 /datum/round_event_control/sentience/all
-	name = "Station-wide Human-level Intelligence"
+	name = "全站级人类智能水平"
 	typepath = /datum/round_event/ghost_role/sentience/all
 	weight = 0
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "ALL animals and robots become sentient, provided there is enough ghosts."
+	description = "所有动物和机器人都会获得感知能力，前提是有足够的幽灵。"
 
 /datum/round_event/ghost_role/sentience/all
 	one = "all"

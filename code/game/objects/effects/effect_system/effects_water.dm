@@ -1,7 +1,7 @@
 //WATER EFFECTS
 
 /obj/effect/particle_effect/water
-	name = "water"
+	name = "水"
 	icon_state = "extinguish"
 	pass_flags = PASSTABLE | PASSMACHINE | PASSSTRUCTURE | PASSGRILLE | PASSBLOB | PASSVEHICLE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -59,7 +59,7 @@
 	animate(src, alpha = 0, time = engine.delay)
 
 /obj/effect/particle_effect/water/extinguisher/stomach_acid
-	name = "acid"
+	name = "酸"
 	icon_state = "xenobarf"
 
 // Stomach acid doesn't use legacy because it's not "targeted", and we instead want the circular sorta look
@@ -79,7 +79,7 @@
 
 /////////////////////////////////////////////
 /obj/effect/particle_effect/steam
-	name = "steam"
+	name = "蒸汽"
 	icon_state = "extinguish"
 	density = FALSE
 

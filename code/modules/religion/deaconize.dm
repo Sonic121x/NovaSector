@@ -85,7 +85,7 @@
  * If they accept, the deaconize rite can now recruit them instead of just offering more invites.
  */
 /datum/religion_rites/deaconize/proc/invite_deacon(mob/living/carbon/human/invited)
-	var/ask = tgui_alert(invited, "Join [GLOB.deity]? You will be expected to follow the Chaplain's order.", "Invitation", list("Yes", "No"), 60 SECONDS)
+	var/ask = tgui_alert(invited, "加入[GLOB.deity]？你将需要听从牧师的命令。", "邀请", list("Yes", "No"), 60 SECONDS)
 	if(ask != "Yes")
 		return
 	potential_deacon = invited

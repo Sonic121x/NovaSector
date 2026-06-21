@@ -84,19 +84,19 @@
 	// 0 = full protection on both
 	// 2 = zero protection summary
 	if(weakness_caster + weakness_to_swap <= 1) { // Either one is fully protected, or they have total protection <= 1
-		to_chat(caster, span_warning("You feel like you've just dodged a bullet."))
-		to_chat(to_swap, span_warning("You feel like you've just dodged a bullet."))
+		to_chat(caster, span_warning("你感觉自己刚刚躲过了一劫。"))
+		to_chat(to_swap, span_warning("你感觉自己刚刚躲过了一劫。"))
 		return FALSE
 	}
 
 	// IT WAS TRUE ALL ALONG
 	if(istype(caster.head, /obj/item/clothing/head/costume/foilhat))
-		to_chat(caster, span_clockred("Your tinfoil hat vibrates, protecting your brain from some kind of invisible rays!"))
+		to_chat(caster, span_clockred("你的锡纸帽在振动，保护你的大脑免受某种无形射线的侵害！"))
 		return FALSE
 
 	// THEY CONTROL US WITH INVISIBLE RAYS FROM SPACE SATELLITES
 	if(istype(to_swap.head, /obj/item/clothing/head/costume/foilhat))
-		to_chat(to_swap, span_clockred("Your tinfoil hat vibrates, protecting your brain from some kind of invisible rays!"))
+		to_chat(to_swap, span_clockred("你的锡纸帽在振动，保护你的大脑免受某种无形射线的侵害！"))
 		return FALSE
 
 	// Gives the target a mind if they don't have one
@@ -113,8 +113,8 @@
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/rev) \
 		|| mind_to_swap.key?[1] == "@" \
 	)
-		holder.balloon_alert(to_swap, "fizzles out!")
-		holder.balloon_alert(caster, "fizzles out!")
+		holder.balloon_alert(to_swap, "嘶嘶作响地熄灭了！")
+		holder.balloon_alert(caster, "嘶嘶作响地熄灭了！")
 		return FALSE
 
 	// MIND TRANSFER BEGIN

@@ -3,8 +3,8 @@
 */
 
 /mob/living/basic/abductor
-	name = "abductor scientist"
-	desc = "From the depths of space."
+	name = "外星人科学家"
+	desc = "来自太空深处。"
 	icon = 'modular_nova/modules/awaymissions_nova/icons/abductors.dmi'
 	icon_state = "abductor_scientist"
 	icon_living = "abductor_scientist"
@@ -56,7 +56,7 @@
 
 // Tankier, more damaging variant
 /mob/living/basic/abductor/agent
-	name = "abductor agent"
+	name = "外星人特工"
 	icon_state = "abductor_agent"
 	icon_living = "abductor_agent"
 
@@ -73,7 +73,7 @@
 */
 
 /mob/living/basic/abductor/ranged
-	name = "abductor scientist"
+	name = "外星人科学家"
 	icon_state = "abductor_scientist_gun"
 	icon_living = "abductor_scientist_gun"
 
@@ -90,7 +90,7 @@
 
 // Tankier variant
 /mob/living/basic/abductor/ranged/agent
-	name = "abductor combat specialist"
+	name = "外星人战斗专家"
 	icon_state = "abductor_agent_combat_gun"
 	icon_living = "abductor_agent_combat_gun"
 
@@ -104,8 +104,8 @@
  */
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/astrum
-	name = "abductor captain"
-	desc = "The one you've come here for. Finish this."
+	name = "外星人舰长"
+	desc = "你为此而来。了结这一切。"
 	icon = 'modular_nova/modules/awaymissions_nova/icons/abductors.dmi'
 	icon_state = "abductor_agent_combat"
 	icon_living = "abductor_agent_combat"

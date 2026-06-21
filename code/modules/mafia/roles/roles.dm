@@ -1,6 +1,6 @@
 /datum/mafia_role
 	var/name = JOB_ASSISTANT
-	var/desc = "You are a crewmember without any special abilities."
+	var/desc = "你是一名没有任何特殊能力的船员。"
 	var/win_condition = "kill all mafia and solo killing roles."
 	var/team = MAFIA_TEAM_TOWN
 	///how the random setup chooses which roles get put in
@@ -117,7 +117,7 @@
 ///Same as handle_speech, but for dead players.
 /datum/mafia_role/proc/handle_speech_dead(datum/source, message)
 	SIGNAL_HANDLER
-	var/message_sent = span_changeling("<b>\[DEAD CHAT\] [source]</b>: [message]")
+	var/message_sent = span_changeling("<b>\[死者聊天\] [source]</b>：[message]")
 	mafia_game_controller.send_message(message_sent, team = MAFIA_TEAM_DEAD)
 	return MOB_DEADSAY_SIGNAL_INTERCEPT
 
@@ -158,15 +158,15 @@
 /datum/mafia_role/proc/greet()
 	mafia_alert = new(body, src)
 	SEND_SOUND(body, 'sound/ambience/misc/ambifailure.ogg')
-	to_chat(body, span_danger("You are the [name]."))
+	to_chat(body, span_danger("你是[name]。"))
 	to_chat(body, span_danger("[desc]"))
 	switch(team)
 		if(MAFIA_TEAM_MAFIA)
-			to_chat(body,span_danger("You and your co-conspirators win if you outnumber crewmembers."))
+			to_chat(body,span_danger("你和你的同谋者若在人数上超过船员即可获胜。"))
 		if(MAFIA_TEAM_TOWN)
-			to_chat(body,span_danger("You are a crewmember. Find out and lynch the changelings!"))
+			to_chat(body,span_danger("你是一名船员。找出并吊死那些变形者！"))
 		if(MAFIA_TEAM_SOLO)
-			to_chat(body,span_danger("You are not aligned to town or mafia. Accomplish your own objectives!"))
+			to_chat(body,span_danger("你既不效忠于城镇也不效忠于黑手党。完成你自己的目标！"))
 	to_chat(body, "<span class='warningplain'><b>Be sure to read <a href=\"https://tgstation13.org/wiki/Mafia\">the wiki page</a> to learn more, if you have no idea what's going on.</b></span>")
 
 /datum/mafia_role/proc/reveal_role(datum/mafia_controller/game, verbose = FALSE)
@@ -202,5 +202,5 @@
 			the = FALSE
 	result += span_notice("The [span_bold("[name]")] is aligned with [the ? "the " : ""]<span class='[team_span]'>[team_desc]</span>")
 	result += "<span class='bold notice'>\"[initial(desc)]\"</span>"
-	result += span_notice("[name] wins when they [win_condition]")
+	result += span_notice("[name] 在 [win_condition] 时获胜")
 	to_chat(clueless, result.Join("</br>"))

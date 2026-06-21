@@ -4,7 +4,7 @@
 	icon = 'modular_nova/modules/bitrunning/icons/remote.dmi'
 	icon_state = "delivery_dlc"
 	company_source = "'Time Of Valor 2' development team"
-	company_message = span_bold("Thanks, and have fun!")
+	company_message = span_bold("谢谢，玩得开心！")
 
 /obj/item/choice_beacon/ancient_milsim/generate_display_names()
 	var/static/list/gear_options

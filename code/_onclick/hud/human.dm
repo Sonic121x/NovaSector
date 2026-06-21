@@ -195,7 +195,7 @@
 	abstract_type = /datum/inventory_slot/human
 
 /datum/inventory_slot/human/uniform
-	name = "uniform"
+	name = "制服"
 	slot_id = ITEM_SLOT_ICLOTHING
 	icon_state = "uniform"
 	icon_full = "template"
@@ -203,7 +203,7 @@
 	screen_group = HUD_GROUP_TOGGLEABLE_INVENTORY
 
 /datum/inventory_slot/human/suit
-	name = "suit"
+	name = "防护服"
 	slot_id = ITEM_SLOT_OCLOTHING
 	icon_state = "suit"
 	icon_full = "template"
@@ -211,14 +211,14 @@
 	screen_group = HUD_GROUP_TOGGLEABLE_INVENTORY
 
 /datum/inventory_slot/human/id
-	name = "id"
+	name = "身份标识"
 	icon_state = "id"
 	icon_full = "template_small"
 	screen_loc = ui_id
 	slot_id = ITEM_SLOT_ID
 
 /datum/inventory_slot/human/mask
-	name = "mask"
+	name = "面罩"
 	icon_state = "mask"
 	icon_full = "template"
 	screen_loc = ui_mask
@@ -226,7 +226,7 @@
 	screen_group = HUD_GROUP_TOGGLEABLE_INVENTORY
 
 /datum/inventory_slot/human/neck
-	name = "neck"
+	name = "颈部"
 	icon_state = "neck"
 	icon_full = "template"
 	screen_loc = ui_neck
@@ -234,35 +234,35 @@
 	screen_group = HUD_GROUP_TOGGLEABLE_INVENTORY
 
 /datum/inventory_slot/human/back
-	name = "back"
+	name = "背部"
 	icon_state = "back"
 	icon_full = "template_small"
 	screen_loc = ui_back
 	slot_id = ITEM_SLOT_BACK
 
 /datum/inventory_slot/human/l_pocket
-	name = "left pocket"
+	name = "左口袋"
 	icon_state = "pocket"
 	icon_full = "template_small"
 	screen_loc = ui_storage1
 	slot_id = ITEM_SLOT_LPOCKET
 
 /datum/inventory_slot/human/r_pocket
-	name = "right pocket"
+	name = "右口袋"
 	icon_state = "pocket"
 	icon_full = "template_small"
 	screen_loc = ui_storage2
 	slot_id = ITEM_SLOT_RPOCKET
 
 /datum/inventory_slot/human/suit_storage
-	name = "suit storage"
+	name = "外套存储"
 	icon_state = "suit_storage"
 	icon_full = "template"
 	screen_loc = ui_sstore1
 	slot_id = ITEM_SLOT_SUITSTORE
 
 /datum/inventory_slot/human/gloves
-	name = "gloves"
+	name = "手套"
 	icon_state = "gloves"
 	icon_full = "template"
 	screen_loc = ui_gloves
@@ -270,7 +270,7 @@
 	screen_group = HUD_GROUP_TOGGLEABLE_INVENTORY
 
 /datum/inventory_slot/human/eyes
-	name = "eyes"
+	name = "眼睛"
 	icon_state = "glasses"
 	icon_full = "template"
 	screen_loc = ui_glasses
@@ -278,7 +278,7 @@
 	screen_group = HUD_GROUP_TOGGLEABLE_INVENTORY
 
 /datum/inventory_slot/human/ears
-	name = "ears"
+	name = "耳朵"
 	icon_state = "ears"
 	icon_full = "template"
 	screen_loc = ui_ears
@@ -286,7 +286,7 @@
 	screen_group = HUD_GROUP_TOGGLEABLE_INVENTORY
 
 /datum/inventory_slot/human/head
-	name = "head"
+	name = "头部"
 	icon_state = "head"
 	icon_full = "template"
 	screen_loc = ui_head
@@ -294,7 +294,7 @@
 	screen_group = HUD_GROUP_TOGGLEABLE_INVENTORY
 
 /datum/inventory_slot/human/shoes
-	name = "shoes"
+	name = "鞋子"
 	icon_state = "shoes"
 	icon_full = "template"
 	screen_loc = ui_shoes
@@ -302,7 +302,7 @@
 	screen_group = HUD_GROUP_TOGGLEABLE_INVENTORY
 
 /datum/inventory_slot/human/belt
-	name = "belt"
+	name = "腰带"
 	icon_state = "belt"
 	icon_full = "template_small"
 	screen_loc = ui_belt

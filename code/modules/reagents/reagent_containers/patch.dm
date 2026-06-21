@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/applicator/patch
-	name = "patch"
-	desc = "A chemical patch for touch based applications."
+	name = "贴片"
+	desc = "一种用于接触式给药的化学品贴片。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "bandaid_blank"
 	inhand_icon_state = null
@@ -20,11 +20,11 @@
 	var/obj/item/bodypart/affecting = carbon_eater.get_bodypart(check_zone(user.zone_selected))
 
 	if(!affecting)
-		to_chat(user, span_warning("The limb is missing!"))
+		to_chat(user, span_warning("肢体缺失了！"))
 		return FALSE
 
 	if(!IS_ORGANIC_LIMB(affecting))
-		to_chat(user, span_notice("Medicine won't work on an inorganic limb!"))
+		to_chat(user, span_notice("药物对无机肢体无效！"))
 		return FALSE
 
 	return TRUE
@@ -175,25 +175,25 @@
 	transfer_per_second = /obj/item/reagent_containers/applicator/patch::volume
 
 /obj/item/reagent_containers/applicator/patch/libital
-	name = "libital patch (brute)"
-	desc = "A pain reliever. Does minor liver damage. Diluted with Granibitaluri."
+	name = "利比特贴片 (创伤)"
+	desc = "一种止痛药。会造成轻微肝脏损伤。用Granibitaluri稀释。"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 2, /datum/reagent/medicine/granibitaluri = 8) //10 iterations
 	icon_state = "bandaid_brute"
 
 /obj/item/reagent_containers/applicator/patch/aiuri
-	name = "aiuri patch (burn)"
-	desc = "Helps with burn injuries. Does minor eye damage. Diluted with Granibitaluri."
+	name = "艾尤里贴片 (烧伤)"
+	desc = "有助于治疗烧伤。会造成轻微眼部损伤。用Granibitaluri稀释。"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 2, /datum/reagent/medicine/granibitaluri = 8)
 	icon_state = "bandaid_burn"
 
 /obj/item/reagent_containers/applicator/patch/fent
-	name = "unmarked patch"
-	desc = "An unmarked, unlabeled transdermal patch for you to wear!"
+	name = "无标记贴片"
+	desc = "一个无标记、无标签的透皮贴片，供你使用！"
 	list_reagents = list(/datum/reagent/toxin/fentanyl = 2)
 
 /obj/item/reagent_containers/applicator/patch/synthflesh
-	name = "synthflesh patch"
-	desc = "Helps with brute and burn injuries. Slightly toxic. Three patches applied can restore a corpse husked by burns."
+	name = "合成肉贴片-synthflesh'"
+	desc = "有助于治疗钝器伤和烧伤。略有毒性。使用三片可以修复一具因烧伤而焦尸化的尸体。"
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 20)
 	list_reagents_purity = 1
 	icon_state = "bandaid_both"
@@ -210,11 +210,11 @@
 	var/mob/living/carbon/carbies = eater
 	if(HAS_TRAIT_FROM(carbies, TRAIT_HUSK, BURN) && carbies.get_fire_loss() > UNHUSK_DAMAGE_THRESHOLD * 2.5)
 		// give them a warning if the mob is a husk but synthflesh won't unhusk yet
-		carbies.visible_message(span_boldwarning("[carbies]'s burns need to be repaired first before synthflesh will unhusk it!"))
+		carbies.visible_message(span_boldwarning("[carbies]的烧伤需要先修复，合成肉才能解除其焦尸化状态！"))
 
 /obj/item/reagent_containers/applicator/patch/ondansetron
-	name = "ondansetron patch"
-	desc = "Alleviates nausea. May cause drowsiness."
+	name = "昂丹司琼贴片"
+	desc = "缓解恶心。可能导致嗜睡。"
 	list_reagents = list(/datum/reagent/medicine/ondansetron = 10)
 	icon_state = "bandaid_toxin"
 

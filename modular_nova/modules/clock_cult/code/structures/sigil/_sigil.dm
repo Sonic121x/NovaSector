@@ -4,8 +4,8 @@
 
 //Sigil base
 /obj/structure/destructible/clockwork/sigil
-	name = "sigil"
-	desc = "It's a sigil that does something."
+	name = "印记"
+	desc = "这是一个有某种作用的印记。"
 	max_integrity = 10
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_effects.dmi'
 	icon_state = "sigilvitality"

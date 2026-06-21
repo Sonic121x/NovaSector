@@ -6,7 +6,7 @@ ADMIN_VERB(admin_change_title_screen, R_FUN, "Title Screen: Change", "Upload a n
 	log_admin("[key_name(user)] is changing the title screen.")
 	message_admins("[key_name_admin(user)] is changing the title screen.")
 
-	switch(alert(usr, "Please select a new title screen.", "Title Screen", "Change", "Reset", "Cancel"))
+	switch(alert(usr, "请选择一个新的标题画面。", "标题画面", "Change", "Reset", "Cancel"))
 		if("Change")
 			var/file = input(user) as icon|null
 			if(!file)
@@ -24,12 +24,12 @@ ADMIN_VERB(change_title_screen_notice, R_FUN, "Title Screen: Set Notice", "Sets 
 	log_admin("[key_name(usr)] is setting the title screen notice.")
 	message_admins("[key_name_admin(usr)] is setting the title screen notice.")
 
-	var/new_notice = input(usr, "Please input a notice to be displayed on the title screen:", "Titlescreen Notice") as text|null
+	var/new_notice = input(usr, "请输入要显示在标题画面上的通知：", "标题画面通知") as text|null
 	SStitle.set_notice(new_notice)
 	if(!new_notice)
 		return
 	for(var/mob/dead/new_player/new_player in GLOB.new_player_list)
-		to_chat(new_player, span_boldannounce("TITLE NOTICE UPDATED: [new_notice]"))
+		to_chat(new_player, span_boldannounce("标题通知已更新：[new_notice]"))
 		SEND_SOUND(new_player,  sound('modular_nova/modules/admin/sound/duckhonk.ogg'))
 
 /**
@@ -50,7 +50,7 @@ ADMIN_VERB(change_title_screen_html, R_DEBUG, "Title Screen: Set HTML", "Change 
 	log_admin("[key_name(user)] is setting the title screen HTML.")
 	message_admins("[key_name_admin(user)] is setting the title screen HTML.")
 
-	var/new_html = input(user, "Please enter your desired HTML(WARNING: YOU WILL BREAK SHIT)", "DANGER: TITLE HTML EDIT") as message|null
+	var/new_html = input(user, "请输入你想要的HTML（警告：你会搞坏东西的）", "危险：标题HTML编辑") as message|null
 
 	if(!new_html)
 		return

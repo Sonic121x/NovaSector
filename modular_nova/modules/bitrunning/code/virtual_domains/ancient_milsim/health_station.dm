@@ -102,7 +102,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 		if("Health Scan")
 			healthscan(user, user, advanced = TRUE)
 			chemscan(user, user)
-			balloon_alert(user, "analyzing vitals")
+			balloon_alert(user, "分析生命体征")
 			playsound(user.loc, 'sound/items/healthanalyzer.ogg', 40, TRUE)
 		if("Heal Wounds")
 			playsound(user.loc, 'sound/machines/ping.ogg', 40, TRUE)
@@ -120,37 +120,37 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 	if(istype(attacking_item, /obj/item/reagent_containers/hypospray/medipen))
 		var/obj/item/reagent_containers/hypospray/medipen/medipen = attacking_item
 		if(!(LAZYFIND(refillable_pens, medipen.type)))
-			balloon_alert(user, "medipen incompatible!")
+			balloon_alert(user, "医疗笔不兼容！")
 			return
 		if(medipen.reagents?.reagent_list.len)
-			balloon_alert(user, "medipen full!")
+			balloon_alert(user, "医疗笔已满！")
 			return
 		var/charge_taken = is_type_in_list(medipen, refillable_pens, zebra = TRUE)
 		if(charge_amount < charge_taken)
-			balloon_alert(user, "no biomass!")
+			balloon_alert(user, "没有生物质！")
 			return
 		if(do_after(user, 2 SECONDS, src))
 			medipen.used_up = FALSE
 			medipen.add_initial_reagents()
 			charge_amount -= charge_taken
-		balloon_alert(user, "medipen refilled!")
+		balloon_alert(user, "医疗笔已补充！")
 		playsound(src, 'sound/items/hypospray.ogg', 40, TRUE)
 		update_appearance()
 	return TRUE
 
 /obj/machinery/health_station/proc/heal_wound(mob/living/carbon/user)
 	if(charge_amount < 20)
-		balloon_alert(user, "no biomass!")
+		balloon_alert(user, "没有生物质！")
 		return FALSE
 
 	if(!user.all_wounds)
-		balloon_alert(user, "no wounds!")
+		balloon_alert(user, "没有伤口！")
 		return FALSE
 
 	if(do_after(user, 5 SECONDS, src))
 		var/datum/wound/wound2fix = user.all_wounds[1]
 		wound2fix.remove_wound()
-		balloon_alert(user, "wound treated")
+		balloon_alert(user, "伤口已处理")
 		charge_amount -= 20
 		playsound(src, 'sound/items/handling/surgery/saw.ogg', 40, TRUE)
 		update_appearance()
@@ -159,7 +159,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 /obj/machinery/health_station/proc/heal_damage(mob/living/carbon/user)
 	var/overall_damage = (user.get_tox_loss() + user.get_oxy_loss() + user.get_fire_loss() + user.get_brute_loss())
 	if(charge_amount < 15)
-		balloon_alert(user, "no biomass!")
+		balloon_alert(user, "没有生物质！")
 		return FALSE
 
 	if(overall_damage)
@@ -170,12 +170,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 			need_mob_update += user.adjust_oxy_loss(-overall_damage/2, updating_health = FALSE)
 			if(need_mob_update)
 				user.updatehealth()
-			balloon_alert(user, "damage treated")
+			balloon_alert(user, "损伤已处理")
 			charge_amount -= 15
 			playsound(src, 'sound/items/handling/surgery/retractor1.ogg', 40, TRUE)
 			update_appearance()
 	else
-		balloon_alert(user, "no damage!")
+		balloon_alert(user, "没有损伤！")
 		return FALSE
 
 	return TRUE

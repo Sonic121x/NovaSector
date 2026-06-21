@@ -3,7 +3,7 @@
 
 /// Quickly throws a supply pod at the target, optionally with an item
 /datum/smite/supply_pod_quick
-	name = "Supply Pod (Quick)"
+	name = "补给舱 (快速)"
 
 	/// What is sent down with the pod
 	var/target_path
@@ -11,8 +11,8 @@
 /datum/smite/supply_pod_quick/configure(client/user)
 	var/attempted_target_path = input(
 		user,
-		"Enter typepath of an atom you'd like to send with the pod (type \"empty\" to send an empty pod):",
-		"Typepath",
+		"输入你想用补给舱发送的原子的类型路径（输入\"empty\"以发送空舱）：",
+		"类型路径",
 		"/obj/item/food/grown/harebell",
 	) as null|text
 
@@ -28,7 +28,7 @@
 	if(!ispath(delivery))
 		delivery = pick_closest_path(attempted_target_path)
 		if(!delivery)
-			tgui_alert(user, "ERROR: Incorrect / improper path given.")
+			tgui_alert(user, "错误：路径不正确/不合法。")
 			return FALSE
 	target_path = delivery
 

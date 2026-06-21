@@ -1,5 +1,5 @@
 /datum/disease/gastrolosis
-	name = "Invasive Gastrolosis"
+	name = "侵袭性胃螺病"
 	desc = "A bizarre disease that causes the host to grow snail-like features, eventually turning into a human-snail hybrid."
 	max_stages = 4
 	spread_text = "None"
@@ -42,8 +42,8 @@
 			if(!eyes && SPT_PROB(2.5, seconds_per_tick))
 				var/obj/item/organ/eyes/snail/new_eyes = new()
 				new_eyes.Insert(affected_mob)
-				affected_mob.visible_message(span_warning("[affected_mob]'s eyes fall out, with snail eyes taking its place!"), \
-				span_userdanger("You scream in pain as your eyes are pushed out by your new snail eyes!"))
+				affected_mob.visible_message(span_warning("[affected_mob]的眼睛掉了出来，取而代之的是蜗牛的眼睛！"), \
+				span_userdanger("你痛苦地尖叫，因为你的新蜗牛眼睛把你的眼睛挤了出来！"))
 				affected_mob.emote("scream")
 				return
 
@@ -53,8 +53,8 @@
 			if(!shell && SPT_PROB(2.5, seconds_per_tick))
 				if(affected_mob.dropItemToGround(affected_mob.get_item_by_slot(ITEM_SLOT_BACK)))
 					affected_mob.equip_to_slot_or_del(new /obj/item/storage/backpack/snail(affected_mob), ITEM_SLOT_BACK)
-					affected_mob.visible_message(span_warning("[affected_mob] grows a grotesque shell on their back!"), \
-					span_userdanger("You scream in pain as a shell pushes itself out from under your skin!"))
+					affected_mob.visible_message(span_warning("[affected_mob]的背上长出了一个怪异的壳！"), \
+					span_userdanger("你痛苦地尖叫，一个壳从你的皮肤下挤了出来！"))
 					affected_mob.emote("scream")
 					return
 
@@ -62,14 +62,14 @@
 			if(!tongue && SPT_PROB(2.5, seconds_per_tick))
 				var/obj/item/organ/tongue/snail/new_tongue = new()
 				new_tongue.Insert(affected_mob)
-				to_chat(affected_mob, span_userdanger("You feel your speech slow down..."))
+				to_chat(affected_mob, span_userdanger("你感觉自己的语速变慢了..."))
 				return
 
 			if(shell && eyes && tongue && SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.set_species(/datum/species/snail)
 				affected_mob.client?.give_award(/datum/award/achievement/jobs/snail, affected_mob)
-				affected_mob.visible_message(span_warning("[affected_mob] turns into a snail!"), \
-				span_boldnotice("You turned into a snail person! You feel an urge to cccrrraaawwwlll..."))
+				affected_mob.visible_message(span_warning("[affected_mob]变成了一只蜗牛！"), \
+				span_boldnotice("你变成了蜗牛人！你感到一股想要爬行蠕动（cccRRRaaaawwwlll...）的冲动..."))
 				cure()
 				return FALSE
 

@@ -103,7 +103,7 @@
 		user.put_in_hands(machete)
 		update_appearance()
 		return CLICK_ACTION_SUCCESS
-	balloon_alert(user, "it's empty!")
+	balloon_alert(user, "它是空的！")
 
 /obj/item/storage/belt/machete/update_icon_state()
 	icon_state = initial(icon_state)

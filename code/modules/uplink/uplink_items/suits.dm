@@ -1,7 +1,7 @@
 // File ordered by progression
 
 /datum/uplink_category/suits
-	name = "Space Suits"
+	name = "太空服"
 	weight = 3
 
 /datum/uplink_item/suits
@@ -31,7 +31,7 @@
 
 /datum/uplink_item/suits/modsuit
 	name = "Syndicate MODsuit"
-	desc = "The feared MODsuit of a Syndicate agent. Features armoring and a set of inbuilt modules."
+	desc = "辛迪加特工令人闻风丧胆的MOD套装。配备护甲和一系列内置模块。"
 	item = /obj/item/mod/control/pre_equipped/traitor
 	cost = 8
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS //you can't buy it in nuke, because the elite modsuit costs the same while being better
@@ -40,25 +40,25 @@
 
 /datum/uplink_item/suits/thermal
 	name = "MODsuit Thermal Visor Module"
-	desc = "A visor for a MODsuit. Lets you see living beings through walls."
+	desc = "一款用于模块服的护目镜。它能让您透过墙壁看到生物。"
 	item = /obj/item/mod/module/visor/thermal
 	cost = 2
 
 /datum/uplink_item/suits/chameleon
 	name = "MODsuit Chameleon Module"
-	desc = "A MODsuit module that lets the suit disguise itself as other objects."
+	desc = "一款模块服模块，能让模块服能够伪装成其他物体。"
 	item = /obj/item/mod/module/chameleon
 	cost = 1
 
 /datum/uplink_item/suits/plate_compression
 	name = "MODsuit Plate Compression Module"
-	desc = "A MODsuit module that lets the suit compress into a smaller size. Not compatible with storage modules or the Infiltrator MODsuit."
+	desc = "一款可使模块服收缩变小的模块。但该模块不与存储模块或渗透者模块服兼容。"
 	item = /obj/item/mod/module/plate_compression
 	cost = 1
 
 /datum/uplink_item/suits/noslip
 	name = "MODsuit Anti-Slip Module"
-	desc = "A MODsuit module preventing the user from slipping on water."
+	desc = "一款模块服模块，可防止用户在水中滑倒。"
 	item = /obj/item/mod/module/noslip
 	cost = 1
 

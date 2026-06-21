@@ -1,21 +1,21 @@
 //Maid Outfit
 
 /obj/item/clothing/head/costume/maid_headband/syndicate/loadout_headband
-	name = "tactical maid headband"
-	desc = "Tacticute."
+	name = "战术女仆头带"
+	desc = "战术萌。"
 	icon_state = "syndimaid_headband"
 	icon = 'modular_nova/master_files/icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/costume.dmi'
 
 /obj/item/clothing/gloves/tactical_maid
-	name = "tactical maid sleeves"
+	name = "战术女仆袖套"
 	desc = "These 'tactical' gloves and heavy and warm."
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "syndimaid_arms"
 
 /obj/item/clothing/under/syndicate/nova/maid/loadout_maid
-	name = "tactical maid outfit"
+	name = "战术女仆装"
 	desc = "A 'tactical' skirtleneck fashioned to the likeness of a maid outfit"
 	has_sensor = HAS_SENSORS
 	icon_state = "syndimaid"
@@ -30,8 +30,8 @@
 	attach_accessory(A)
 
 /obj/item/clothing/accessory/maidcorset/syndicate/loadout_corset
-	name = "tactical maid apron"
-	desc = "Practical? No. Tactical? Also no. Cute? Most definitely yes."
+	name = "战术女仆围裙"
+	desc = "实用吗？不。战术吗？也不。可爱吗？绝对是。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
 	icon_state = "syndimaid_corset"

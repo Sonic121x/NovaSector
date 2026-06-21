@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/pulse_rifle
-	name = "\improper M/PR-15 'Žaibas' Plasma Pulse Projector"
-	desc = "An advanced energy weapon that uses high-capacity plasma pulse cells. Fires in 3-round bursts."
+	name = "\improper M/PR-15 'Žaibas' 等离子脉冲投射器"
+	desc = "一种使用高容量等离子脉冲电池的先进能量武器。以三连发模式射击。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_48.dmi'
 	icon_state = "zaibas"
@@ -58,7 +58,7 @@
 	. = ..()
 	var/obj/item/ammo_casing/pulse/casing = chambered
 	if(istype(casing))
-		. += span_notice("The chambered cell has [casing.remaining_uses] out of [casing.max_uses] shots remaining.")
+		. += span_notice("已装填的电池剩余 [casing.remaining_uses] 发，总容量为 [casing.max_uses] 发。")
 
 /obj/item/gun/ballistic/automatic/pulse_rifle/process_chamber(empty_chamber = TRUE, from_firing = TRUE, chamber_next_round = TRUE)
 	var/obj/item/ammo_casing/pulse/casing = chambered
@@ -124,7 +124,7 @@
 /obj/item/gun/ballistic/automatic/pulse_rifle/postfire_empty_checks(last_shot_succeeded)
 	var/obj/item/ammo_casing/pulse/casing = chambered
 	if(istype(casing) && casing.remaining_uses <= 0)
-		visible_message(span_warning("[src] emits a low power warning!"))
+		visible_message(span_warning("[src] 发出低能量警告！"))
 		playsound(src, 'sound/items/weapons/gun/general/empty_alarm.ogg', 40, TRUE)
 		return
 	..()

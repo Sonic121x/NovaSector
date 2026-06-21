@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/greaves_of_the_prophet
-	name = "\improper Joint-snap sabatons"
-	desc = "Sabatons made out of rugged, worn iron. Feels more stable than the ground they tread on. They're caked in a thin layer of rust - and yet, the sight of it fills you with odd relief."
+	name = "\improper 关节碎裂胫甲"
+	desc = "由粗糙磨损的铁制成的护胫。感觉比它们踏足的地面更加稳固。表面覆盖着一层薄锈——然而，这景象却让你感到奇异的宽慰。"
 	icon_state = "hereticgreaves"
 	resistance_flags = ACID_PROOF | FIRE_PROOF | LAVA_PROOF
 

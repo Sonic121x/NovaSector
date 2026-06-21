@@ -5,8 +5,8 @@
 */
 
 /obj/item/clothing/sextoy/dildo
-	name = "dildo"
-	desc = "A large plastic penis, much like the one in your mother's bedside drawer."
+	name = "假阳具"
+	desc = "一个大型塑料阴茎，很像你母亲床头抽屉里的那个。"
 	icon_state = "dildo_human"
 	base_icon_state = "dildo"
 	inhand_icon_state = "dildo_human"
@@ -96,7 +96,7 @@
 
 	var/message = ""
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[target] doesn't want you to do that."))
+		to_chat(user, span_danger("[target] 不想让你这么做。"))
 		return
 
 	var/arousal_adjustment = 4
@@ -107,11 +107,11 @@
 		if(BODY_ZONE_PRECISE_GROIN)
 			var/obj/item/organ/genital/vagina = target.get_organ_slot(ORGAN_SLOT_VAGINA)
 			if(!vagina)
-				to_chat(user, span_danger("[target] don't have suitable genitalia for that!"))
+				to_chat(user, span_danger("[target] 没有适合的生殖器！"))
 				return FALSE
 
 			if(!(target.is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW))
-				to_chat(user, span_danger("[target]'s groin is covered!"))
+				to_chat(user, span_danger("[target] 的胯部被遮住了！"))
 				return FALSE
 
 			message = (user == target) ? pick("rubs [target.p_their()] vagina with [src]", "gently jams [target.p_their()] pussy with [src]", "fucks [target.p_their()] vagina with a [src]") : pick("delicately rubs [target]'s vagina with [src]", "uses [src] to fuck [target]'s vagina", "jams [target]'s pussy with [src]", "teasing [target]'s pussy with [src]")
@@ -135,7 +135,7 @@
 
 		if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_EYES) //Mouth only. Sorry, perverts. No eye/ear penetration for you today.
 			if(target.is_mouth_covered())
-				to_chat(user, span_danger("Looks like [target]'s mouth is covered!"))
+				to_chat(user, span_danger("看起来 [target] 的嘴被遮住了！"))
 				return FALSE
 
 			message = (user == target) ? pick("licks [src] erotically", "sucks on [src], slowly inserting it into [target.p_their()] throat") : pick("fucks [target]'s mouth with [src]", "inserts [src] into [target]'s throat, choking [target.p_them()]", "forces [target] to suck [src]", "inserts [src] into [target]'s throat")
@@ -146,7 +146,7 @@
 
 		else
 			if(!target.is_bottomless())
-				to_chat(user, span_danger("[target]'s anus is covered!"))
+				to_chat(user, span_danger("[target] 的肛门被遮住了！"))
 				return FALSE
 
 			message = (user == target) ? pick("puts [src] into [target.p_their()] anus", "slowly inserts [src] into [target.p_their()] ass") : pick("fucks [target]'s ass with [src]", "uses [src] to fuck [target]'s anus", "jams [target]'s ass with [src]", "roughly fucks [target]'s ass with [src], making [target.p_their()] eyes roll back")
@@ -160,7 +160,7 @@
 	if(prob(emote_probability))
 		target.try_lewd_autoemote(pick(possible_emotes))
 
-	user.visible_message(span_purple("[user] [message]!"))
+	user.visible_message(span_purple("[user] [message]！"))
 	playsound_if_pref(loc, pick('modular_nova/modules/modular_items/lewd_items/sounds/bang1.ogg',
 						'modular_nova/modules/modular_items/lewd_items/sounds/bang2.ogg',
 						'modular_nova/modules/modular_items/lewd_items/sounds/bang3.ogg',
@@ -187,8 +187,8 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 		))
 
 /obj/item/clothing/sextoy/dildo/custom_dildo
-	name = "custom dildo"
-	desc = "A dildo that can be customized to your specification."
+	name = "定制假阳具"
+	desc = "一个可以根据你的规格定制的假阳具。"
 	icon_state = "polydildo_small"
 	base_icon_state = "polydildo"
 	inhand_icon_state = "polydildo_small"
@@ -234,13 +234,13 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	if(!src || !user || user.incapacitated || !in_range(user, src))
 		return FALSE
 
-	var/color_choice = tgui_input_list(user, "Choose a color for your dildo.", "Dildo Color", GLOB.dildo_colors)
+	var/color_choice = tgui_input_list(user, "为你的假阳具选择颜色。", "假阳具颜色", GLOB.dildo_colors)
 	if(color_choice)
 		sanitize_inlist(color_choice, GLOB.dildo_colors, "Red")
 		color = GLOB.dildo_colors[color_choice]
 
 	update_icon_state()
-	var/transparency_choice = tgui_input_number(user, "Choose the transparency of your dildo. Lower is more transparent! (192-255)", "Dildo Transparency", 255, 255, 192)
+	var/transparency_choice = tgui_input_number(user, "选择假阳具的透明度。数值越低越透明！(192-255)", "假阳具透明度", 255, 255, 192)
 	if(transparency_choice)
 		sanitize_integer(transparency_choice, 191, 255, 192)
 		alpha = transparency_choice
@@ -250,7 +250,7 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 
 /obj/item/clothing/sextoy/dildo/custom_dildo/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>Alt-Click \the [src.name] to customize it.")
+	. += span_notice("<br>Alt-点击 \the [src.name] 来自定义它。")
 
 /obj/item/clothing/sextoy/dildo/custom_dildo/update_icon_state()
 	. = ..()
@@ -262,8 +262,8 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 */
 
 /obj/item/clothing/sextoy/dildo/double_dildo
-	name = "double dildo"
-	desc = "You'll have to be a real glizzy gladiator to contend with this."
+	name = "双头假阳具"
+	desc = "你得是个真正的热狗角斗士才能驾驭这个。"
 	icon_state = "dildo_double"
 	inhand_icon_state = "dildo_double"
 	worn_icon_state = "dildo_side"
@@ -304,8 +304,8 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 
 //button stuff
 /datum/action/item_action/take_dildo
-	name = "Take the other side of the double dildo in hand"
-	desc = "You can feel one side inside you, time to share this feeling with someone..."
+	name = "将双头假阳具的另一端拿在手中"
+	desc = "你能感觉到其中一端在你体内，是时候与某人分享这种感觉了……"
 
 /datum/action/item_action/take_dildo/Trigger(trigger_flags)
 	. = ..()
@@ -321,9 +321,9 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	if(src == user.vagina)
 		toggle(user)
 	else if(src == user.anus)
-		to_chat(user, span_warning("You can't use [src] from this angle!"))
+		to_chat(user, span_warning("你无法从这个角度使用[src]！"))
 	else
-		to_chat(user, span_warning("You need to equip [src] before you can use it!"))
+		to_chat(user, span_warning("你需要装备[src]才能使用它！"))
 
 //dumb way to fix organs overlapping with toys, but WHY NOT. Find a better way if you're not lazy as me.
 /obj/item/clothing/sextoy/dildo/double_dildo/lewd_equipped(mob/living/carbon/human/user, slot)
@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	if(end_piece)
 		end_piece.moveToNullspace()
 		QDEL_NULL(other_end)
-		user.visible_message(span_notice("[user] releases their grip on one end of the [src]."))
+		user.visible_message(span_notice("[user]松开了[src]的一端。"))
 		end_in_hand = FALSE
 		return
 
@@ -408,17 +408,17 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	other_end = new /obj/item/clothing/sextoy/dildo/double_dildo_end
 
 	if(!user.put_in_hands(other_end))
-		user.visible_message(span_notice("[user] tries to hold one end of [src] in [user.p_their()] hand, but [user.p_their()] hand isn't empty!"))
+		user.visible_message(span_notice("[user]试图将[src]的一端握在[user.p_their()]手中，但[user.p_their()]的手不是空的！"))
 		return FALSE
 
 	other_end.parent_end = WEAKREF(src)
-	user.visible_message(span_notice("[user] holds one end of [src] in [user.p_their()] hand."))
+	user.visible_message(span_notice("[user]将[src]的一端握在[user.p_their()]手中。"))
 	end_in_hand = TRUE
 	return TRUE
 
 /obj/item/clothing/sextoy/dildo/double_dildo_end
-	name = "dildo side"
-	desc = "You looking so hot!"
+	name = "假阳具端头"
+	desc = "你看上去真火辣！"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_icons.dmi'
 	icon_state = "dildo_side"
 	inhand_icon_state = null

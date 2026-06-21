@@ -19,8 +19,8 @@
  * Cooldown for melee is on mech_melee_attack also because exploits
  */
 /obj/vehicle/sealed/mecha
-	name = "exosuit"
-	desc = "Exosuit"
+	name = "外骨骼机甲"
+	desc = "外骨骼机甲"
 	icon = 'icons/mob/rideables/mecha.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	max_integrity = 300
@@ -375,7 +375,7 @@
 	weapons_safety = !weapons_safety
 	if(!safety_sound_custom)
 		SEND_SOUND(user, sound('sound/machines/beep/beep.ogg', volume = 25))
-	balloon_alert(user, "equipment [weapons_safety ? "safe" : "ready"]")
+	balloon_alert(user, "装备[weapons_safety ? "safe" : "ready"]")
 	set_mouse_pointer()
 	SEND_SIGNAL(src, COMSIG_MECH_SAFETIES_TOGGLE, user, weapons_safety)
 
@@ -518,7 +518,7 @@
 	for(var/occupant in occupants)
 		var/mob/mob_occupant = occupant
 		SEND_SOUND(mob_occupant, sound('sound/items/timer.ogg', volume=50))
-		to_chat(mob_occupant, span_notice("Equipment control unit has been rebooted successfully."))
+		to_chat(mob_occupant, span_notice("装备控制单元已成功重启。"))
 	set_mouse_pointer()
 
 /obj/vehicle/sealed/mecha/proc/update_part_values() ///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
@@ -532,34 +532,34 @@
 /obj/vehicle/sealed/mecha/examine(mob/user)
 	. = ..()
 	if(LAZYLEN(flat_equipment))
-		. += span_notice("It's equipped with:")
+		. += span_notice("它装备有：")
 		for(var/obj/item/mecha_parts/mecha_equipment/ME as anything in flat_equipment)
 			if(istype(ME, /obj/item/mecha_parts/mecha_equipment/concealed_weapon_bay))
 				continue
-			. += span_notice("[icon2html(ME, user)] \A [ME].")
+			. += span_notice("[icon2html(ME, user)] \A [ME]。")
 	if(mecha_flags & PANEL_OPEN)
 		if(servo)
-			. += span_notice("Servo reduces movement power usage by [100 - round(100 / servo.rating)]%")
+			. += span_notice("伺服器将移动功耗降低了[100 - round(100 / servo.rating)]%")
 		else
-			. += span_warning("It's missing a servo.")
+			. += span_warning("它缺少一个伺服器。")
 		if(capacitor)
-			. += span_notice("Capacitor increases armor against energy attacks by [capacitor.rating * 5].")
+			. += span_notice("电容器将能量攻击护甲值提高了[capacitor.rating * 5]。")
 		else
-			. += span_warning("It's missing a capacitor.")
+			. += span_warning("它缺少一个电容器。")
 		if(!scanmod)
-			. += span_warning("It's missing a scanning module.")
+			. += span_warning("它缺少一个扫描模块。")
 	if(!(mecha_flags & IS_ENCLOSED))
 		if(mecha_flags & SILICON_PILOT)
-			. += span_notice("[src] appears to be piloting itself...")
+			. += span_notice("[src] 似乎在自行驾驶...")
 		else
 			for(var/occupante in occupants)
-				. += span_notice("You can see [occupante] inside.")
+				. += span_notice("你可以看到 [occupante] 在里面。")
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				for(var/held_item in H.held_items)
 					if(!isgun(held_item))
 						continue
-					. += span_warning("It looks like you can hit the pilot directly if you target the center or above.")
+					. += span_warning("看起来如果你瞄准中心或以上部位，可以直接击中驾驶员。")
 					break //in case user is holding two guns
 	. += span_notice("It has a <a href='byond://?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.")
 
@@ -759,7 +759,7 @@
 	if(completely_disabled || is_currently_ejecting || (mecha_flags & CANNOT_INTERACT))
 		return
 	if(phasing)
-		balloon_alert(user, "not while [phasing]!")
+		balloon_alert(user, "在 [phasing] 时不行！")
 		return
 	if(user.incapacitated)
 		return
@@ -774,7 +774,7 @@
 		target = pick(view(3,target))
 	var/mob/living/livinguser = user
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)))
-		balloon_alert(user, "wrong seat for equipment!")
+		balloon_alert(user, "座位不对，无法使用装备！")
 		return
 	var/obj/item/mecha_parts/mecha_equipment/selected
 	if(modifiers[BUTTON] == RIGHT_CLICK)
@@ -784,7 +784,7 @@
 	if(selected)
 		if(!Adjacent(target) && (selected.range & MECHA_RANGED))
 			if(HAS_TRAIT(livinguser, TRAIT_PACIFISM) && selected.harmful)
-				to_chat(livinguser, span_warning("You don't want to harm other living beings!"))
+				to_chat(livinguser, span_warning("你不想伤害其他生命体！"))
 				return
 			if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 				return
@@ -792,14 +792,14 @@
 			return
 		if(Adjacent(target) && (selected.range & MECHA_MELEE))
 			if(isliving(target) && selected.harmful && HAS_TRAIT(livinguser, TRAIT_PACIFISM))
-				to_chat(livinguser, span_warning("You don't want to harm other living beings!"))
+				to_chat(livinguser, span_warning("你不想伤害其他生命体！"))
 				return
 			if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 				return
 			INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, modifiers)
 			return
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_MELEE)))
-		to_chat(livinguser, span_warning("You're in the wrong seat to interact with your hands."))
+		to_chat(livinguser, span_warning("你坐错了位置，无法用手部互动。"))
 		return
 	var/on_cooldown = TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_MELEE_ATTACK)
 	var/adjacent = Adjacent(target)
@@ -831,7 +831,7 @@
 		return
 
 	if(!(user in return_controllers_with_flag(VEHICLE_CONTROL_DRIVE)))
-		to_chat(user, span_warning("You're in the wrong seat to control movement."))
+		to_chat(user, span_warning("你坐错了位置，无法控制移动。"))
 		return
 
 	toggle_strafe()
@@ -884,11 +884,11 @@
 ///makes cabin unsealed, dumping cabin air outside or airtight filling the cabin with external air mix
 /obj/vehicle/sealed/mecha/proc/set_cabin_seal(mob/user, cabin_sealed)
 	if(!(mecha_flags & IS_ENCLOSED))
-		balloon_alert(user, "cabin can't be sealed!")
+		balloon_alert(user, "驾驶舱无法密封！")
 		log_message("Tried to seal cabin. This mech can't be airtight.", LOG_MECHA)
 		return
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_CABIN_SEAL))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "正在冷却中！")
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_CABIN_SEAL, 1 SECONDS)
 
@@ -920,7 +920,7 @@
 			action.button_icon_state = "mech_cabin_[cabin_sealed ? "closed" : "open"]"
 			action.build_all_button_icons()
 
-		balloon_alert(occupant, "cabin [cabin_sealed ? "sealed" : "unsealed"]")
+		balloon_alert(occupant, "驾驶舱 [cabin_sealed ? "sealed" : "unsealed"]")
 	log_message("Cabin [cabin_sealed ? "sealed" : "unsealed"].", LOG_MECHA)
 	playsound(src, 'sound/machines/airlock/airlock.ogg', 50, TRUE)
 
@@ -928,7 +928,7 @@
 /obj/vehicle/sealed/mecha/proc/on_light_eater(obj/vehicle/sealed/source, datum/light_eater)
 	SIGNAL_HANDLER
 	if(mecha_flags & HAS_LIGHTS)
-		visible_message(span_danger("[src]'s lights burn out!"))
+		visible_message(span_danger("[src] 的灯光烧毁了！"))
 		mecha_flags &= ~HAS_LIGHTS
 	set_light_on(FALSE)
 	for(var/occupant in occupants)
@@ -969,10 +969,10 @@
 		act?.build_all_button_icons(UPDATE_BUTTON_ICON)
 	if(overclock_mode)
 		movedelay = movedelay / overclock_coeff
-		visible_message(span_notice("[src] starts heating up, making humming sounds."))
+		visible_message(span_notice("[src] 开始升温，发出嗡嗡声。"))
 	else
 		movedelay = initial(movedelay)
-		visible_message(span_notice("[src] cools down and the humming stops."))
+		visible_message(span_notice("[src] 冷却下来，嗡嗡声停止了。"))
 	update_energy_drain()
 	return TRUE
 
@@ -998,11 +998,11 @@
 /obj/vehicle/sealed/mecha/proc/toggle_lights(forced_state = null, mob/user)
 	if(!(mecha_flags & HAS_LIGHTS))
 		if(user)
-			balloon_alert(user, "mech has no lights!")
+			balloon_alert(user, "机甲没有灯！")
 		return
 	if((!(mecha_flags & LIGHTS_ON) && forced_state != FALSE) && get_charge() < power_to_energy(light_power_drain, scheduler = SSobj))
 		if(user)
-			balloon_alert(user, "no power for lights!")
+			balloon_alert(user, "没有电力供灯使用！")
 		return
 	mecha_flags ^= LIGHTS_ON
 	set_light_on(mecha_flags & LIGHTS_ON)
@@ -1014,7 +1014,7 @@
 			act.button_icon_state = "mech_lights_on"
 		else
 			act.button_icon_state = "mech_lights_off"
-		balloon_alert(occupant, "lights [mecha_flags & LIGHTS_ON ? "on":"off"]")
+		balloon_alert(occupant, "灯光 [mecha_flags & LIGHTS_ON ? "on":"off"]")
 		act.build_all_button_icons()
 
 /obj/vehicle/sealed/mecha/proc/melee_attack_effect(mob/living/victim, heavy)

@@ -1,6 +1,6 @@
 // A type of antagonist created by the moon ascension
 /datum/antagonist/lunatic
-	name = "\improper Lunatic"
+	name = "\improper 狂人"
 	hijack_speed = 0
 	antagpanel_category = ANTAG_GROUP_HORRORS
 	show_in_antagpanel = FALSE
@@ -52,7 +52,7 @@
 	lunatic_obj.master = heretic_master
 	lunatic_obj.update_explanation_text()
 
-	to_chat(owner, span_boldnotice("Ruin the lie, save the truth through obeying [heretic_master] the ringleader!"))
+	to_chat(owner, span_boldnotice("摧毁谎言，通过服从[heretic_master]这位主谋来拯救真相！"))
 
 /datum/antagonist/lunatic/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/our_mob = mob_override || owner.current
@@ -69,7 +69,7 @@
 
 // Mood event given to moon acolytes
 /datum/mood_event/heretics/lunatic
-	description = "THE TRUTH REVEALED, THE LIE SLAIN."
+	description = "真相已揭晓，谎言已消亡。"
 	mood_change = 10
 
 /datum/objective/lunatic
@@ -87,7 +87,7 @@
 
 // Lunatic master
 /datum/antagonist/lunatic/master
-	name = "\improper Ringleader"
+	name = "\improper 主谋"
 	antag_hud_name = "lunatic_master"
 
 /datum/antagonist/lunatic/master/on_gain()

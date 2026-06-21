@@ -4,8 +4,8 @@ Chilling extracts:
 	filled with 10u plasma and activated in-hand.
 */
 /obj/item/slimecross/chilling
-	name = "chilling extract"
-	desc = "It's cold to the touch, as if frozen solid."
+	name = "冰冷提取物"
+	desc = "它摸起来很冷，仿佛已经完全冻住了。"
 	effect = "chilling"
 	icon_state = "chilling"
 
@@ -15,10 +15,10 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/attack_self(mob/user)
 	if(!reagents.has_reagent(/datum/reagent/toxin/plasma, 10))
-		to_chat(user, span_warning("This extract needs to be full of plasma to activate!"))
+		to_chat(user, span_warning("这个提取物需要充满等离子体才能激活！"))
 		return
 	reagents.remove_reagent(/datum/reagent/toxin/plasma, 10)
-	to_chat(user, span_notice("You squeeze the extract, and it absorbs the plasma!"))
+	to_chat(user, span_notice("你挤压提取物，它吸收了等离子体！"))
 	playsound(src, 'sound/effects/bubbles/bubbles.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/glass/glassbr1.ogg', 50, TRUE)
 	do_effect(user)
@@ -32,7 +32,7 @@ Chilling extracts:
 	effect_desc = "Creates some slime barrier cubes. When used they create slimy barricades."
 
 /obj/item/slimecross/chilling/grey/do_effect(mob/user)
-	user.visible_message(span_notice("[src] produces a few small, grey cubes"))
+	user.visible_message(span_notice("[src] 产生了一些小的灰色立方体"))
 	for(var/i in 1 to 3)
 		new /obj/item/barriercube(get_turf(user))
 	..()
@@ -42,7 +42,7 @@ Chilling extracts:
 	effect_desc = "Creates a ring of fire one tile away from the user."
 
 /obj/item/slimecross/chilling/orange/do_effect(mob/user)
-	user.visible_message(span_danger("[src] shatters, and lets out a jet of heat!"))
+	user.visible_message(span_danger("[src] 碎裂了，并喷出一股热流！"))
 	for(var/turf/T in orange(get_turf(user),2))
 		if(get_dist(get_turf(user), T) > 1)
 			new /obj/effect/hotspot(T)
@@ -55,9 +55,9 @@ Chilling extracts:
 /obj/item/slimecross/chilling/purple/do_effect(mob/user)
 	var/area/user_area = get_area(user)
 	if(user_area.outdoors)
-		to_chat(user, span_warning("[src] can't affect such a large area."))
+		to_chat(user, span_warning("[src] 无法影响如此大的区域。"))
 		return
-	user.visible_message(span_notice("[src] shatters, and a healing aura fills the room briefly."))
+	user.visible_message(span_notice("[src] 碎裂了，一股治疗光环短暂地充满了房间。"))
 	for (var/list/zlevel_turfs as anything in user_area.get_zlevel_turf_lists())
 		for(var/turf/area_turf as anything in zlevel_turfs)
 			for(var/mob/living/carbon/nearby in area_turf)
@@ -69,7 +69,7 @@ Chilling extracts:
 	effect_desc = "Creates a rebreather, a tankless mask."
 
 /obj/item/slimecross/chilling/blue/do_effect(mob/user)
-	user.visible_message(span_notice("[src] cracks, and spills out a liquid goo, which reforms into a mask!"))
+	user.visible_message(span_notice("[src] 裂开，流出液态粘液，重组成了一个面具！"))
 	new /obj/item/clothing/mask/nobreath(get_turf(user))
 	..()
 
@@ -78,7 +78,7 @@ Chilling extracts:
 	effect_desc = "Temporarily surrounds the user with unbreakable walls."
 
 /obj/item/slimecross/chilling/metal/do_effect(mob/user)
-	user.visible_message(span_danger("[src] melts like quicksilver, and surrounds [user] in a wall!"))
+	user.visible_message(span_danger("[src] 像水银一样融化，并将 [user] 包围在一堵墙里！"))
 	for(var/turf/T in orange(get_turf(user),1))
 		if(get_dist(get_turf(user), T) > 0)
 			new /obj/effect/forcefield/slimewall(T)
@@ -91,12 +91,12 @@ Chilling extracts:
 /obj/item/slimecross/chilling/yellow/do_effect(mob/user)
 	var/area/user_area = get_area(user)
 	if(isnull(user_area.apc?.cell))
-		user.visible_message(span_notice("[src] shatters, yet the air around you feels normal."))
+		user.visible_message(span_notice("[src] 碎裂了，但你周围的空气感觉正常。"))
 		return
 
 	var/obj/machinery/power/apc/area_apc = user_area.apc
 	area_apc.cell.charge = min(area_apc.cell.charge + area_apc.cell.maxcharge / 2, area_apc.cell.maxcharge)
-	user.visible_message(span_notice("[src] shatters, and the air suddenly feels charged for a moment."))
+	user.visible_message(span_notice("[src] 碎裂了，空气突然感觉带电了一瞬间。"))
 	..()
 
 /obj/item/slimecross/chilling/darkpurple
@@ -106,7 +106,7 @@ Chilling extracts:
 /obj/item/slimecross/chilling/darkpurple/do_effect(mob/user)
 	var/area/A = get_area(get_turf(user))
 	if(A.outdoors)
-		to_chat(user, span_warning("[src] can't affect such a large area."))
+		to_chat(user, span_warning("[src] 无法影响如此大的区域。"))
 		return
 	var/filtered = FALSE
 	for(var/turf/open/T in A.get_turfs_from_all_zlevels())
@@ -118,9 +118,9 @@ Chilling extracts:
 			G.garbage_collect()
 			T.air_update_turf(FALSE, FALSE)
 	if(filtered)
-		user.visible_message(span_notice("Cracks spread throughout [src], and some air is sucked in!"))
+		user.visible_message(span_notice("裂纹遍布 [src]，一些空气被吸了进去！"))
 	else
-		user.visible_message(span_notice("[src] cracks, but nothing happens."))
+		user.visible_message(span_notice("[src] 裂开了，但什么都没发生。"))
 	..()
 
 /obj/item/slimecross/chilling/darkblue
@@ -129,7 +129,7 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/darkblue/do_effect(mob/user)
 	if(isliving(user))
-		user.visible_message(span_notice("[src] freezes over [user]'s entire body!"))
+		user.visible_message(span_notice("[src] 冻结了 [user] 的整个身体！"))
 		var/mob/living/M = user
 		M.apply_status_effect(/datum/status_effect/frozenstasis)
 	..()
@@ -139,7 +139,7 @@ Chilling extracts:
 	effect_desc = "Creates several ration packs."
 
 /obj/item/slimecross/chilling/silver/do_effect(mob/user)
-	user.visible_message(span_notice("[src] crumbles into icy powder, leaving behind several emergency food supplies!"))
+	user.visible_message(span_notice("[src] 碎裂成冰冷的粉末，留下了几份应急食品！"))
 	var/amount = rand(5, 10)
 	for(var/i in 1 to amount)
 		new /obj/item/food/rationpack(get_turf(user))
@@ -156,32 +156,32 @@ Chilling extracts:
 		return NONE
 	user.do_attack_animation(interacting_with)
 	if(HAS_TRAIT(interacting_with, TRAIT_NO_TELEPORT))
-		to_chat(user, span_warning("[interacting_with] resists being linked with [src]!"))
+		to_chat(user, span_warning("[interacting_with] 抵抗与 [src] 建立链接！"))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with in slimepals)
 		slimepals -= interacting_with
-		to_chat(user, span_notice("You unlink [src] with [interacting_with]."))
+		to_chat(user, span_notice("你解除了 [src] 与 [interacting_with] 的链接。"))
 	else
 		slimepals += interacting_with
-		to_chat(user, span_notice("You link [src] with [interacting_with]."))
+		to_chat(user, span_notice("你将 [src] 与 [interacting_with] 链接起来。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimecross/chilling/bluespace/do_effect(mob/user)
 	if(slimepals.len <= 0)
-		to_chat(user, span_warning("[src] is not linked to anyone!"))
+		to_chat(user, span_warning("[src] 没有与任何人链接！"))
 		return
-	to_chat(user, span_notice("You feel [src] pulse as it begins charging bluespace energies..."))
+	to_chat(user, span_notice("你感觉到 [src] 脉动起来，开始充能蓝空能量..."))
 	active = TRUE
 	for(var/mob/living/M in slimepals)
 		var/datum/status_effect/slimerecall/S = M.apply_status_effect(/datum/status_effect/slimerecall)
 		S.target = user
 	if(do_after(user, 10 SECONDS, target=src))
-		to_chat(user, span_notice("[src] shatters as it tears a hole in reality, snatching the linked individuals from the void!"))
+		to_chat(user, span_notice("[src] 碎裂开来，在现实中撕开一个裂口，将链接的个体从虚空中拽了出来！"))
 		for(var/mob/living/M in slimepals)
 			var/datum/status_effect/slimerecall/S = M.has_status_effect(/datum/status_effect/slimerecall)
 			M.remove_status_effect(S)
 	else
-		to_chat(user, span_warning("[src] falls dark, dissolving into nothing as the energies fade away."))
+		to_chat(user, span_warning("[src] 暗淡下去，随着能量消散而化为乌有。"))
 		for(var/mob/living/M in slimepals)
 			var/datum/status_effect/slimerecall/S = M.has_status_effect(/datum/status_effect/slimerecall)
 			if(istype(S))
@@ -200,14 +200,14 @@ Chilling extracts:
 	user.do_attack_animation(interacting_with)
 	if(interacting_with in slimepals)
 		slimepals -= interacting_with
-		to_chat(user, span_notice("You unlink [src] with [interacting_with]."))
+		to_chat(user, span_notice("你解除了 [src] 与 [interacting_with] 的链接。"))
 	else
 		slimepals += interacting_with
-		to_chat(user, span_notice("You link [src] with [interacting_with]."))
+		to_chat(user, span_notice("你将 [src] 与 [interacting_with] 链接起来。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimecross/chilling/sepia/do_effect(mob/user)
-	user.visible_message(span_warning("[src] shatters, freezing time itself!"))
+	user.visible_message(span_warning("[src] 碎裂，冻结了时间本身！"))
 	slimepals -= user //support class
 	new /obj/effect/timestop(get_turf(user), 2, 300, slimepals)
 	..()
@@ -218,7 +218,7 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/cerulean/do_effect(mob/user)
 	if(isliving(user))
-		user.visible_message(span_warning("[src] creaks and shifts into a clone of [user]!"))
+		user.visible_message(span_warning("[src] 嘎吱作响并转变成了 [user] 的克隆体！"))
 		var/mob/living/M = user
 		M.apply_status_effect(/datum/status_effect/slime_clone)
 	..()
@@ -228,7 +228,7 @@ Chilling extracts:
 	effect_desc = "Creates a pair of Prism Glasses, which allow the wearer to place colored light crystals."
 
 /obj/item/slimecross/chilling/pyrite/do_effect(mob/user)
-	user.visible_message(span_notice("[src] crystallizes into a pair of spectacles!"))
+	user.visible_message(span_notice("[src] 结晶成了一副眼镜！"))
 	new /obj/item/clothing/glasses/prism_glasses(get_turf(user))
 	..()
 
@@ -242,9 +242,9 @@ Chilling extracts:
 		slimesfound = TRUE
 		slime_in_view.set_pacified_behaviour()
 	if(slimesfound)
-		user.visible_message(span_notice("[src] lets out a peaceful ring as it shatters, and nearby slimes seem calm."))
+		user.visible_message(span_notice("[src] 碎裂时发出一声平和的鸣响，附近的史莱姆似乎平静了下来。"))
 	else
-		user.visible_message(span_notice("[src] lets out a peaceful ring as it shatters, but nothing happens..."))
+		user.visible_message(span_notice("[src] 碎裂时发出一声平和的鸣响，但什么都没发生..."))
 	return ..()
 
 /obj/item/slimecross/chilling/green
@@ -260,9 +260,9 @@ Chilling extracts:
 	var/obj/item/gun/magic/bloodchill/gun = new(user)
 	if(!L.put_in_hands(gun))
 		qdel(gun)
-		user.visible_message(span_warning("[src] flash-freezes [user]'s arm, cracking the flesh horribly!"))
+		user.visible_message(span_warning("[src] 瞬间冻结了 [user] 的手臂，使皮肉可怕地开裂！"))
 	else
-		user.visible_message(span_danger("[src] chills and snaps off the front of the bone on [user]'s arm, leaving behind a strange, gun-like structure!"))
+		user.visible_message(span_danger("[src] 冷却并折断了 [user] 手臂前端骨骼，留下了一个奇怪的、枪状的结构！"))
 	user.emote("scream")
 	L.apply_damage(30, BURN, L.get_active_hand())
 	..()
@@ -272,7 +272,7 @@ Chilling extracts:
 	effect_desc = "Creates a slime corgi puppy."
 
 /obj/item/slimecross/chilling/pink/do_effect(mob/user)
-	user.visible_message(span_notice("[src] cracks like an egg, and an adorable puppy comes tumbling out!"))
+	user.visible_message(span_notice("[src] 像鸡蛋一样裂开，一只可爱的小狗滚了出来！"))
 	new /mob/living/basic/pet/dog/corgi/puppy/slime(get_turf(user))
 	..()
 
@@ -281,7 +281,7 @@ Chilling extracts:
 	effect_desc = "Produces a golden capture device"
 
 /obj/item/slimecross/chilling/gold/do_effect(mob/user)
-	user.visible_message(span_notice("[src] lets off golden light as it melts and reforms into an egg-like device!"))
+	user.visible_message(span_notice("[src] 发出金色的光芒，融化并重组成了一个蛋状的装置！"))
 	new /obj/item/capturedevice(get_turf(user))
 	..()
 
@@ -290,7 +290,7 @@ Chilling extracts:
 	effect_desc = "It creates a weak, but wide-ranged explosion."
 
 /obj/item/slimecross/chilling/oil/do_effect(mob/user)
-	user.visible_message(span_danger("[src] begins to shake with muted intensity!"))
+	user.visible_message(span_danger("[src] 开始以压抑的强度震动！"))
 	addtimer(CALLBACK(src, PROC_REF(boom)), 5 SECONDS)
 
 /obj/item/slimecross/chilling/oil/proc/boom()
@@ -303,7 +303,7 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/black/do_effect(mob/user)
 	if(ishuman(user))
-		user.visible_message(span_notice("[src] crystallizes along [user]'s skin, turning into solid stone!"))
+		user.visible_message(span_notice("[src] 沿着 [user] 的皮肤结晶，变成了坚硬的石头！"))
 		var/mob/living/carbon/human/H = user
 		H.set_species(/datum/species/golem)
 	..()
@@ -313,7 +313,7 @@ Chilling extracts:
 	effect_desc = "Creates a Heroine Bud, a special flower that pacifies whoever wears it on their head. They will not be able to take it off without help."
 
 /obj/item/slimecross/chilling/lightpink/do_effect(mob/user)
-	user.visible_message(span_notice("[src] blooms into a beautiful flower!"))
+	user.visible_message(span_notice("[src] 绽放成一朵美丽的花！"))
 	new /obj/item/clothing/head/peaceflower(get_turf(user))
 	..()
 
@@ -322,7 +322,7 @@ Chilling extracts:
 	effect_desc = "Solidifies into a set of adamantine armor."
 
 /obj/item/slimecross/chilling/adamantine/do_effect(mob/user)
-	user.visible_message(span_notice("[src] creaks and breaks as it shifts into a heavy set of armor!"))
+	user.visible_message(span_notice("[src] 吱嘎作响并碎裂，转变为一套沉重的盔甲！"))
 	new /obj/item/clothing/suit/armor/heavy/adamantine(get_turf(user))
 	..()
 
@@ -333,9 +333,9 @@ Chilling extracts:
 /obj/item/slimecross/chilling/rainbow/do_effect(mob/user)
 	var/area/area = get_area(user)
 	if(area.outdoors)
-		to_chat(user, span_warning("[src] can't affect such a large area."))
+		to_chat(user, span_warning("[src] 无法影响如此大的区域。"))
 		return
-	user.visible_message(span_warning("[src] reflects an array of dazzling colors and light, energy rushing to nearby doors!"))
+	user.visible_message(span_warning("[src] 反射出一片令人眼花缭乱的色彩和光芒，能量涌向附近的气闸门！"))
 	for (var/list/zlevel_turfs as anything in area.get_zlevel_turf_lists())
 		for(var/turf/area_turf as anything in zlevel_turfs)
 			for(var/obj/machinery/door/airlock/door in area_turf)

@@ -37,8 +37,8 @@
 		return
 
 	user.do_attack_animation(target)
-	target.visible_message(span_warning("[user] gently taps [target]'s knee with [item]."), \
-		span_userdanger("[user] taps your knee with [item]."))
+	target.visible_message(span_warning("[user] 用[item]轻轻敲了敲[target]的膝盖。"), \
+		span_userdanger("[user] 用[item]敲了敲你的膝盖。"))
 
 	if(target.stat == DEAD) //dead men have no reflexes!
 		return
@@ -50,17 +50,17 @@
 
 	if(target_brain_damage < BRAIN_DAMAGE_MILD) //a healthy brain produces a normal reaction
 		playsound(target, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
-		target.visible_message(span_danger("[target]'s leg kicks out sharply!"), \
-			span_danger("Your leg kicks out sharply!"))
+		target.visible_message(span_danger("[target]的腿猛地踢了出去！"), \
+			span_danger("你的腿猛地踢了出去！"))
 
 	else if(target_brain_damage < BRAIN_DAMAGE_SEVERE) //a mildly damaged brain produces a delayed reaction
 		playsound(target, 'sound/items/weapons/punchmiss.ogg', 15, TRUE, -1)
-		target.visible_message(span_danger("After a moment, [target]'s leg kicks out sharply!"), \
-			span_danger("After a moment, your leg kicks out sharply!"))
+		target.visible_message(span_danger("片刻之后，[target]的腿猛地踢了出去！"), \
+			span_danger("片刻之后，你的腿猛地踢了出去！"))
 
 	else if(target_brain_damage < BRAIN_DAMAGE_DEATH) //a severely damaged brain produces a delayed + weaker reaction
 		playsound(target, 'sound/items/weapons/punchmiss.ogg', 5, TRUE, -1)
-		target.visible_message(span_danger("After a moment, [target]'s leg kicks out weakly!"), \
-			span_danger("After a moment, your leg kicks out weakly!"))
+		target.visible_message(span_danger("片刻之后，[target]的腿无力地踢了一下！"), \
+			span_danger("片刻之后，你的腿无力地踢了一下！"))
 
 	return

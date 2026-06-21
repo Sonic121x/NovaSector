@@ -1,5 +1,5 @@
 /mob/living/basic/alien/maid
-	name = "lusty xenomorph maid"
+	name = "妖艳的异形女仆"
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	combat_mode = FALSE
@@ -24,9 +24,9 @@
 
 	target.wash(CLEAN_SCRUB)
 	if(istype(target, /obj/effect/decal/cleanable))
-		visible_message(span_notice("[src] cleans up \the [target]."))
+		visible_message(span_notice("[src]清理了\the [target]。"))
 	else
-		visible_message(span_notice("[src] polishes \the [target]."))
+		visible_message(span_notice("[src]擦拭了\the [target]。"))
 	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 /**
@@ -35,8 +35,8 @@
  */
 /mob/living/basic/alien/maid/barmaid
 	gold_core_spawnable = NO_SPAWN
-	name = "Barmaid"
-	desc = "A barmaid, a maiden found in a bar."
+	name = "酒吧女侍"
+	desc = "一位酒吧女侍，在酒吧里找到的少女。"
 	pass_flags = PASSTABLE
 	unique_name = FALSE
 	initial_language_holder = /datum/language_holder/universal

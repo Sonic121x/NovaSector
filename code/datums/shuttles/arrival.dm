@@ -5,36 +5,36 @@
 
 /datum/map_template/shuttle/arrival/box
 	suffix = "box"
-	name = "arrival shuttle (Box)"
+	name = "抵达穿梭机（箱式）"
 
 /datum/map_template/shuttle/arrival/donut
 	suffix = "donut"
-	name = "arrival shuttle (Donut)"
+	name = "抵达穿梭机（甜甜圈式）"
 
 /datum/map_template/shuttle/arrival/birdshot
 	suffix = "birdshot"
-	name = "arrival shuttle (Birdshot)"
+	name = "抵达穿梭机（鸟弹式）"
 
 /datum/map_template/shuttle/arrival/delta
 	suffix = "delta"
-	name = "arrival shuttle (Delta)"
+	name = "抵达穿梭机（德尔塔式）"
 
 /datum/map_template/shuttle/arrival/kilo
 	suffix = "kilo"
-	name = "arrival shuttle (Kilo)"
+	name = "抵达穿梭机（千式）"
 
 /datum/map_template/shuttle/arrival/pubby
 	suffix = "pubby"
-	name = "arrival shuttle (Pubby)"
+	name = "抵达穿梭机（酒馆式）"
 
 /datum/map_template/shuttle/arrival/northstar
 	suffix = "northstar"
-	name = "arrival shuttle (North Star)"
+	name = "抵达穿梭机（北极星式）"
 
 /datum/map_template/shuttle/arrival/catwalk
 	suffix = "catwalk"
-	name = "arrival shuttle (Catwalk)"
+	name = "抵达穿梭机（猫道式）"
 
 /datum/map_template/shuttle/arrival/nebula
 	suffix = "nebula"
-	name = "arrival shuttle (Nebula)"
+	name = "抵达穿梭机（星云）"

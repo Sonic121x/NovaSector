@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/light
 	display_name = "Light"
-	desc = "A component that emits a light of a specific brightness and colour. Requires a shell."
+	desc = "一种能够发出特定亮度和颜色光线的组件。需要一个外壳。"
 	category = "Action"
 
 	/// The colours of the light

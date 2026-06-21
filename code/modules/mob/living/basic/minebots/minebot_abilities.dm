@@ -6,15 +6,15 @@
 	click_to_activate = FALSE
 
 /datum/action/cooldown/mob_cooldown/minedrone/toggle_light
-	name = "Toggle Light"
+	name = "切换灯光"
 	button_icon_state = "mech_lights_off"
 
 /datum/action/cooldown/mob_cooldown/minedrone/Activate()
 	owner.set_light_on(!owner.light_on)
-	owner.balloon_alert(owner, "lights [owner.light_on ? "on" : "off"]!")
+	owner.balloon_alert(owner, "灯光[owner.light_on ? "on" : "off"]！")
 
 /datum/action/cooldown/mob_cooldown/minedrone/dump_ore
-	name = "Dump Ore"
+	name = "倾倒矿石"
 	button_icon_state = "mech_eject"
 
 /datum/action/cooldown/mob_cooldown/minedrone/dump_ore/IsAvailable(feedback = TRUE)
@@ -22,7 +22,7 @@
 		return TRUE
 
 	if(feedback)
-		owner.balloon_alert(owner, "no ore!")
+		owner.balloon_alert(owner, "没有矿石！")
 	return FALSE
 
 /datum/action/cooldown/mob_cooldown/minedrone/dump_ore/Activate()
@@ -30,7 +30,7 @@
 	user.drop_ore()
 
 /datum/action/cooldown/mob_cooldown/minedrone/toggle_meson_vision
-	name = "Toggle Meson Vision"
+	name = "切换介子视觉"
 	button_icon_state = "meson"
 
 /datum/action/cooldown/mob_cooldown/minedrone/toggle_meson_vision/Activate()
@@ -50,12 +50,12 @@
 	to_chat(owner, span_notice("You toggle your meson vision [(owner.sight & SEE_TURFS) ? "on" : "off"]."))
 
 /datum/action/cooldown/mob_cooldown/missile_launcher
-	name = "Launch Missile"
+	name = "发射导弹"
 	button_icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	button_icon_state = "84mm-heap"
 	background_icon_state = "bg_default"
 	overlay_icon_state = "bg_default_border"
-	desc = "Launch a missile towards the target!"
+	desc = "向目标发射一枚导弹！"
 	cooldown_time = 10 SECONDS
 	shared_cooldown = NONE
 	///how long before we launch said missile
@@ -68,7 +68,7 @@
 	if(lavaland_equipment_pressure_check(get_turf(owner)))
 		return TRUE
 	if(feedback)
-		owner.balloon_alert(owner, "cant be used here!")
+		owner.balloon_alert(owner, "无法在此处使用！")
 	return FALSE
 
 /datum/action/cooldown/mob_cooldown/missile_launcher/Activate(atom/target)
@@ -91,8 +91,8 @@
 	animate(falling_shadow, transform = matrix().Scale(0.1, 0.1), time = falling_shadow.duration)
 
 /datum/action/cooldown/mob_cooldown/drop_landmine
-	name = "Landmine"
-	desc = "Drop a landmine!"
+	name = "地雷"
+	desc = "放置一枚地雷！"
 	button_icon = 'icons/obj/weapons/grenade.dmi'
 	button_icon_state = "landmine"
 	background_icon_state = "bg_default"
@@ -108,7 +108,7 @@
 	if(lavaland_equipment_pressure_check(get_turf(owner)))
 		return TRUE
 	if(feedback)
-		owner.balloon_alert(owner, "cant be used here!")
+		owner.balloon_alert(owner, "无法在此处使用！")
 	return FALSE
 
 /datum/action/cooldown/mob_cooldown/drop_landmine/Activate(atom/target)
@@ -122,7 +122,7 @@
 	return TRUE
 
 /obj/effect/temp_visual/rising_rocket
-	name = "Missile"
+	name = "导弹"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "84mm-heap"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -134,7 +134,7 @@
 	animate(src, pixel_y = base_pixel_y + 500, time = duration, easing = QUAD_EASING|EASE_IN)
 
 /obj/effect/temp_visual/falling_rocket
-	name = "Missile"
+	name = "导弹"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "84mm-heap"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -160,7 +160,7 @@
 		living_target.apply_damage(explosion_damage)
 
 /obj/effect/mine/minebot
-	name = "Landmine"
+	name = "地雷"
 	///we dont detonate if any of these people step on us
 	var/list/ignore_list = list()
 	///the damage we apply to whoever steps on us

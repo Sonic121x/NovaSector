@@ -1,7 +1,7 @@
 // Cocoa Pod
 /obj/item/seeds/cocoapod
-	name = "cocoa pod seed pack"
-	desc = "These seeds grow into cacao trees. They look fattening." //SIC: cocoa is the seeds. The trees are spelled cacao.
+	name = "可可豆荚种子包"
+	desc = "能长成可可树的种子，看起来会让人变胖." //SIC: cocoa is the seeds. The trees are spelled cacao.
 	icon_state = "seed-cocoapod"
 	species = "cocoapod"
 	plantname = "Cocao Tree"
@@ -21,8 +21,8 @@
 
 /obj/item/food/grown/cocoapod
 	seed = /obj/item/seeds/cocoapod
-	name = "cocoa pod"
-	desc = "Fattening... Mmmmm... chucklate."
+	name = "可可果"
+	desc = "使人变胖...嗯...乔可力."
 	icon_state = "cocoapod"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -31,8 +31,8 @@
 
 // Vanilla Pod
 /obj/item/seeds/cocoapod/vanillapod
-	name = "vanilla pod seed pack"
-	desc = "These seeds grow into vanilla trees. They look fattening."
+	name = "香草荚种子包"
+	desc = "能长成香兰荚的种子，看起来会让人变胖."
 	icon_state = "seed-vanillapod"
 	species = "vanillapod"
 	plantname = "Vanilla Tree"
@@ -43,8 +43,8 @@
 
 /obj/item/food/grown/vanillapod
 	seed = /obj/item/seeds/cocoapod/vanillapod
-	name = "vanilla pod"
-	desc = "Fattening... Mmmmm... vanilla."
+	name = "香兰荚"
+	desc = "使人变胖...嗯...香兰荚."
 	icon_state = "vanillapod"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -52,8 +52,8 @@
 	distill_reagent = /datum/reagent/consumable/vanilla //Takes longer, but you can get even more vanilla from it.
 
 /obj/item/seeds/cocoapod/bungotree
-	name = "bungo tree seed pack"
-	desc = "These seeds grow into bungo trees. They appear to be heavy and almost perfectly spherical."
+	name = "本戈树种子包"
+	desc = "能长成巴古树的种子，它们看起来很重，而且几乎是完美的球形。"
 	icon_state = "seed-bungotree"
 	plant_icon_offset = 4
 	species = "bungotree"
@@ -74,8 +74,8 @@
 
 /obj/item/food/grown/bungofruit
 	seed = /obj/item/seeds/cocoapod/bungotree
-	name = "bungo fruit"
-	desc = "A strange fruit, tough leathery skin protects its juicy flesh and large poisonous seed."
+	name = "巴古果"
+	desc = "这是一种奇特的果实，其坚硬的革质外皮包裹着多汁的果肉和巨大的有毒种子。"
 	icon_state = "bungo"
 	bite_consumption_mod = 2
 	trash_type = /obj/item/food/grown/bungopit
@@ -88,10 +88,10 @@
 
 /obj/item/food/grown/bungopit
 	seed = /obj/item/seeds/cocoapod/bungotree
-	name = "bungo pit"
+	name = "巴古核"
 	icon_state = "bungopit"
 	bite_consumption_mod = 5
-	desc = "A large seed, it is said to be potent enough to be able to stop a mans heart."
+	desc = "这是一颗硕大的种子，据说其毒性极强，足以让人心脏骤停。"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3

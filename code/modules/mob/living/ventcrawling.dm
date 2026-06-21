@@ -4,7 +4,7 @@
 	var/ventcrawler = HAS_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS) || HAS_TRAIT(src, TRAIT_VENTCRAWLER_NUDE)
 	if(!ventcrawler)
 		return
-	to_chat(src, span_notice("You can ventcrawl! Use alt+click on vents to quickly travel about the station."))
+	to_chat(src, span_notice("你可以进行管道爬行！使用alt+点击通风口来快速穿梭于空间站。"))
 
 /mob/living/carbon/human/notify_ventcrawler_on_login()
 	if(!ismonkey(src))
@@ -27,40 +27,40 @@
 		return
 	if(stat)
 		if(provide_feedback)
-			to_chat(src, span_warning("You must be conscious to do this!"))
+			to_chat(src, span_warning("你必须保持清醒才能这么做！"))
 		return
 	if(HAS_TRAIT(src, TRAIT_IMMOBILIZED))
 		if(provide_feedback)
-			to_chat(src, span_warning("You currently can't move into the vent!"))
+			to_chat(src, span_warning("你现在无法进入通风口！"))
 		return
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		if(provide_feedback)
-			to_chat(src, span_warning("You need to be able to use your hands to ventcrawl!"))
+			to_chat(src, span_warning("你需要能够使用双手才能进行管道爬行！"))
 		return
 	if(has_buckled_mobs())
 		if(provide_feedback)
-			to_chat(src, span_warning("You can't vent crawl with other creatures on you!"))
+			to_chat(src, span_warning("你不能带着其他生物进行管道爬行！"))
 		return
 	if(buckled)
 		if(provide_feedback)
-			to_chat(src, span_warning("You can't vent crawl while buckled!"))
+			to_chat(src, span_warning("被固定时不能进行管道爬行！"))
 		return
 	if(iscarbon(src) && required_nudity)
 		if(length(get_equipped_items(INCLUDE_POCKETS|INCLUDE_HELD)))
 			if(provide_feedback)
-				to_chat(src, span_warning("You can't crawl around in the ventilation ducts with items!"))
+				to_chat(src, span_warning("你不能带着物品在通风管道里爬行！"))
 			return
 	if(ventcrawl_target.welded)
 		if(provide_feedback)
 			// Add cooldown to prevent welded vent message spam during movement
 			if(COOLDOWN_FINISHED(src, welded_vent_message_cd))
-				to_chat(src, span_warning("You can't crawl around a welded vent!"))
+				to_chat(src, span_warning("你不能在焊死的通风口周围爬行！"))
 				COOLDOWN_START(src, welded_vent_message_cd, 2 SECONDS)
 		return
 
 	if(!(vent_movement & VENTCRAWL_ENTRANCE_ALLOWED))
 		if(provide_feedback)
-			to_chat(src, span_warning("You can't enter this vent!"))
+			to_chat(src, span_warning("你不能进入这个通风口！"))
 		return
 
 	return TRUE
@@ -74,15 +74,15 @@
 
 	//Handle the exit here
 	if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING) && istype(loc, /obj/machinery/atmospherics) && movement_type & VENTCRAWLING)
-		to_chat(src, span_notice("You begin climbing out from the ventilation system..."))
+		to_chat(src, span_notice("你开始从通风系统中爬出..."))
 		if(has_client && isnull(client))
 			return
 		if(!do_after(src, 1 SECONDS, target = ventcrawl_target))
 			return
 		if(ventcrawl_target.welded) // in case it got welded during our sleep
-			to_chat(src, span_warning("You can't crawl around a welded vent!"))
+			to_chat(src, span_warning("你无法在焊接好的通风口周围爬行！"))
 			return
-		visible_message(span_notice("[src] scrambles out from the ventilation ducts!"), span_notice("You scramble out from the ventilation ducts."))
+		visible_message(span_notice("[src]从通风管道里爬了出来！"), span_notice("你从通风管道里爬了出来。"))
 		forceMove(ventcrawl_target.loc)
 		REMOVE_TRAIT(src, TRAIT_MOVE_VENTCRAWLING, VENTCRAWLING_TRAIT)
 		update_pipe_vision()
@@ -92,24 +92,24 @@
 		var/datum/pipeline/vent_parent = ventcrawl_target.parents[1]
 		if(vent_parent && (vent_parent.members.len || vent_parent.other_atmos_machines))
 			ventcrawl_target.flick_overlay_static(image('icons/effects/vent_indicator.dmi', "arrow", ABOVE_MOB_LAYER, dir = get_dir(src.loc, ventcrawl_target.loc)), 2 SECONDS)
-			visible_message(span_notice("[src] begins climbing into the ventilation system...") ,span_notice("You begin climbing into the ventilation system..."))
+			visible_message(span_notice("[src]开始爬进通风系统……") ,span_notice("你开始爬进通风系统……"))
 			if(!do_after(src, 2.5 SECONDS, target = ventcrawl_target, extra_checks = CALLBACK(src, PROC_REF(can_enter_vent), ventcrawl_target)))
 				return
 			if(has_client && isnull(client))
 				return
 			if(ventcrawl_target.welded) // in case it got welded during our sleep
-				to_chat(src, span_warning("You can't crawl around a welded vent!"))
+				to_chat(src, span_warning("你无法在焊接好的通风口周围爬行！"))
 				return
 			ventcrawl_target.flick_overlay_static(image('icons/effects/vent_indicator.dmi', "insert", ABOVE_MOB_LAYER), 1 SECONDS)
-			visible_message(span_notice("[src] scrambles into the ventilation ducts!"), span_notice("You climb into the ventilation ducts."))
+			visible_message(span_notice("[src]爬进了通风管道！"), span_notice("你爬进了通风管道。"))
 			move_into_vent(ventcrawl_target)
 		else
-			to_chat(src, span_warning("This ventilation duct is not connected to anything!"))
+			to_chat(src, span_warning("这个通风管道没有连接到任何地方！"))
 
 /mob/living/basic/slime/can_enter_vent(obj/machinery/atmospherics/components/ventcrawl_target, provide_feedback = TRUE)
 	if(buckled)
 		if(provide_feedback)
-			to_chat(src, span_warning("You can't vent crawl while feeding!"))
+			to_chat(src, span_warning("你在进食时无法进行管道爬行！"))
 		return
 	return ..()
 

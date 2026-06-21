@@ -3,8 +3,8 @@
 // Darkish blue kinda material
 
 /datum/material/cobolterium
-	name = "cobolterium"
-	desc = "Cobolterium"
+	name = "钴波尔特合金"
+	desc = "钴波尔特合金"
 	color = list(0.2,0.5,0.7,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
 	greyscale_color = "#264d61"
 	mat_flags = MATERIAL_CLASS_RIGID | MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL
@@ -26,8 +26,8 @@
 		return TRUE
 
 /obj/item/stack/sheet/cobolterium
-	name = "cobolterium bars"
-	desc = "Cobalt-blue metal that might actually just be cobalt."
+	name = "钴波尔特合金锭"
+	desc = "钴蓝色的金属，可能真的就是钴。"
 	singular_name = "cobolterium bar"
 	icon = 'modular_nova/modules/company_imports/icons/special_metals_stack.dmi'
 	icon_state = "precious-metals"
@@ -66,8 +66,8 @@
 		return TRUE
 
 /obj/item/stack/sheet/copporcitite
-	name = "copporcitite bars"
-	desc = "Copper colored metal that might actually just be copper."
+	name = "copporcitite 锭"
+	desc = "铜色的金属，可能真的就是铜。"
 	singular_name = "copporcitite bar"
 	icon = 'modular_nova/modules/company_imports/icons/special_metals_stack.dmi'
 	icon_state = "precious-metals"
@@ -106,8 +106,8 @@
 		return TRUE
 
 /obj/item/stack/sheet/tinumium
-	name = "tinumium bars"
-	desc = "Heavily blued, silver colored metal."
+	name = "tinumium 锭"
+	desc = "严重发蓝的银色金属。"
 	singular_name = "tinumium bar"
 	icon = 'modular_nova/modules/company_imports/icons/special_metals_stack.dmi'
 	icon_state = "precious-metals"
@@ -146,8 +146,8 @@
 		return TRUE
 
 /obj/item/stack/sheet/brussite
-	name = "brussite bars"
-	desc = "Brassy-yellow metal that might actually just be brass."
+	name = "brussite 锭"
+	desc = "黄铜色的金属，可能真的就是黄铜。"
 	singular_name = "brussite bar"
 	icon = 'modular_nova/modules/company_imports/icons/special_metals_stack.dmi'
 	icon_state = "precious-metals"

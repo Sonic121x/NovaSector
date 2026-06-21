@@ -7,8 +7,8 @@ Difficulty: Hard
 */
 
 /mob/living/simple_animal/hostile/megafauna/wendigo
-	name = "wendigo"
-	desc = "A mythological man-eating legendary creature, the sockets of its eyes track you with an unsatiated hunger."
+	name = "温迪戈"
+	desc = "一种神话传说中的食人生物，它空洞的眼窝以永不满足的饥饿感追踪着你。"
 	health = 2500
 	maxHealth = 2500
 	icon_state = "wendigo"
@@ -155,7 +155,7 @@ Difficulty: Hard
 	animate(pixel_z = -pixel_shift, time = 1, flags = ANIMATION_RELATIVE)
 	for(var/mob/living/dizzy_target in get_hearers_in_view(7, owner) - owner)
 		dizzy_target.set_dizzy_if_lower(12 SECONDS)
-		to_chat(dizzy_target, span_danger("[owner] screams loudly!"))
+		to_chat(dizzy_target, span_danger("[owner]大声尖叫！"))
 	SLEEP_CHECK_DEATH(1 SECONDS, owner)
 
 /proc/wendigo_slam(mob/owner, range, delay, throw_range)
@@ -172,7 +172,7 @@ Difficulty: Hard
 			for(var/mob/living/hit_mob in stomp_turf)
 				if(hit_mob == owner || hit_mob.throwing)
 					continue
-				to_chat(hit_mob, span_userdanger("[owner]'s ground slam shockwave sends you flying!"))
+				to_chat(hit_mob, span_userdanger("[owner]的地面重击冲击波将你击飞了！"))
 				var/turf/thrownat = get_ranged_target_turf_direct(owner, hit_mob, throw_range, rand(-10, 10))
 				hit_mob.throw_at(thrownat, 8, 2, null, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 				hit_mob.apply_damage(20, BRUTE, wound_bonus=CANT_WOUND)
@@ -197,7 +197,7 @@ Difficulty: Hard
 	exit.set_light(20, 1, COLOR_SOFT_RED)
 
 /obj/projectile/colossus/wendigo_shockwave
-	name = "wendigo shockwave"
+	name = "温迪戈冲击波"
 	speed = 0.5
 
 	/// Amount the angle changes every pixel move

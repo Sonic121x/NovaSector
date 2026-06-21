@@ -136,7 +136,7 @@
 	return to_add
 
 /datum/action/innate/regenerate_limbs
-	name = "Regenerate Limbs"
+	name = "再生肢体"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeheal"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -162,7 +162,7 @@
 	if(!length(limbs_to_heal))
 		to_chat(H, span_notice("You feel intact enough as it is."))
 		return
-	to_chat(H, span_notice("You focus intently on your missing [length(limbs_to_heal) >= 2 ? "limbs" : "limb"]..."))
+	to_chat(H, span_notice("你全神贯注于你缺失的 [length(limbs_to_heal) >= 2 ? "limbs" : "limb"]..."))
 	if(H.get_blood_volume() >= blood_per_limb * length(limbs_to_heal) + BLOOD_VOLUME_OKAY)
 		H.regenerate_limbs()
 		H.adjust_blood_volume(-blood_per_limb * length(limbs_to_heal))
@@ -271,7 +271,7 @@
 			source.adjust_nutrition(-1.25 * seconds_per_tick)
 
 /datum/action/innate/split_body
-	name = "Split Body"
+	name = "分裂"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimesplit"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -342,7 +342,7 @@
 
 
 /datum/action/innate/swap_body
-	name = "Swap Body"
+	name = "转移"
 	check_flags = NONE
 	button_icon_state = "slimeswap"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -557,8 +557,8 @@
 	glow.set_light_range_power_color(glow_intensity, glow_intensity, glowie.dna.features[FEATURE_MUTANT_COLOR])
 
 /datum/action/innate/integrate_extract
-	name = "Integrate Extract"
-	desc = "Eat a slime extract to use its properties."
+	name = "整合提取"
+	desc = "吃一个史莱姆提取物即可利用其特性。"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeconsume"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -580,11 +580,11 @@
 /datum/action/innate/integrate_extract/update_button_name(atom/movable/screen/movable/action_button/button, force = FALSE)
 	var/datum/species/jelly/luminescent/species = target
 	if(!istype(species) || !species.current_extract)
-		name = "Integrate Extract"
-		desc = "Eat a slime extract to use its properties."
+		name = "整合提取"
+		desc = "吃一个史莱姆提取物即可利用其特性。"
 	else
-		name = "Eject Extract"
-		desc = "Eject your current slime extract."
+		name = "弹出提取物"
+		desc = "取出你当前的史莱姆提取物。"
 
 	return ..()
 
@@ -609,25 +609,25 @@
 			to_remove.forceMove(human_owner.drop_location())
 
 		species.current_extract = null
-		human_owner.balloon_alert(human_owner, "[to_remove.name] ejected")
+		human_owner.balloon_alert(human_owner, "[to_remove.name] 已排出")
 
 	else
 		var/obj/item/slime_extract/to_integrate = human_owner.get_active_held_item()
 		if(!istype(to_integrate) || to_integrate.extract_uses <= 0)
-			human_owner.balloon_alert(human_owner, "need an unused slime extract!")
+			human_owner.balloon_alert(human_owner, "需要一个未使用的史莱姆提取物！")
 			return
 		if(!human_owner.temporarilyRemoveItemFromInventory(to_integrate))
 			return
 		to_integrate.forceMove(human_owner)
 		species.current_extract = to_integrate
-		human_owner.balloon_alert(human_owner, "[to_integrate.name] consumed")
+		human_owner.balloon_alert(human_owner, "[to_integrate.name] 已消耗")
 
 	for(var/datum/action/to_update as anything in species.luminescent_actions)
 		to_update.build_all_button_icons()
 
 /datum/action/innate/use_extract
-	name = "Extract Minor Activation"
-	desc = "Pulse the slime extract with energized jelly to activate it."
+	name = "提取次要激活信号"
+	desc = "将史莱姆提取物与充满能量的果冻混合，以激活它。"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeuse1"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -668,8 +668,8 @@
 	COOLDOWN_START(species, extract_cooldown, after_use_cooldown)
 
 /datum/action/innate/use_extract/major
-	name = "Extract Major Activation"
-	desc = "Pulse the slime extract with plasma jelly to activate it."
+	name = "提取主要激活信息"
+	desc = "将史莱姆提取物与等离子混合，以激活它。"
 	button_icon_state = "slimeuse2"
 	activation_type = SLIME_ACTIVATE_MAJOR
 
@@ -712,8 +712,8 @@
 	return ..()
 
 /datum/action/innate/project_thought
-	name = "Send Thought"
-	desc = "Send a private psychic message to someone you can see."
+	name = "发送想法"
+	desc = "向你能看到的人发送一条私人的心灵信息。"
 	button_icon_state = "send_mind"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
@@ -731,26 +731,26 @@
 	if(!length(recipient_options))
 		to_chat(telepath, span_warning("You don't see anyone to send your thought to."))
 		return
-	var/mob/living/recipient = tgui_input_list(telepath, "Choose a telepathic message recipient", "Telepathy", sort_names(recipient_options))
+	var/mob/living/recipient = tgui_input_list(telepath, "选择心灵感应消息接收者", "心灵感应", sort_names(recipient_options))
 	if(isnull(recipient) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
 	var/msg = tgui_input_text(telepath, title = "Telepathy", max_length = MAX_MESSAGE_LEN)
 	if(isnull(msg) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
 	if(!(recipient in oview(telepath)))
-		to_chat(telepath, span_warning("You can't see [recipient] anymore!"))
+		to_chat(telepath, span_warning("你再也看不到[recipient]了！"))
 		return
 	if(recipient.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 		to_chat(telepath, span_warning("As you reach into [recipient]'s mind, you are stopped by a mental blockage. It seems you've been foiled."))
 		return
 	//NOVA EDIT ADDITION START -  Telepathy Block Quirk
 	if(HAS_TRAIT(recipient, TRAIT_PSIONIC_DAMPENER))
-		to_chat(telepath, span_warning("As you reach into [recipient]'s mind, you are stopped by a mental blockage."))
+		to_chat(telepath, span_warning("当你试图侵入[recipient]的意识时，你被一道精神屏障阻挡了。"))
 		return
 	//NOVA EDIT ADDITION END
 	log_directed_talk(telepath, recipient, msg, LOG_SAY, "slime telepathy")
 	to_chat(recipient, "[span_notice("You hear an alien voice in your head... ")]<font color=#008CA2>[msg]</font>")
-	to_chat(telepath, span_notice("You telepathically said: \"[msg]\" to [recipient]"))
+	to_chat(telepath, span_notice("你通过心灵感应向[msg]说道：\"[recipient]\""))
 	for(var/dead in GLOB.dead_mob_list)
 		if(!isobserver(dead))
 			continue
@@ -759,8 +759,8 @@
 		to_chat(dead, "[follow_link_user] [span_name("[telepath]")] [span_alertalien("Slime Telepathy --> ")] [follow_link_target] [span_name("[recipient]")] [span_noticealien("[msg]")]")
 
 /datum/action/innate/link_minds
-	name = "Link Minds"
-	desc = "Link someone's mind to your Slime Link, allowing them to communicate telepathically with other linked minds."
+	name = "心灵链接"
+	desc = "将某人的思维与你的史莱姆链接相连，使他们能够与其他相连的思维进行心灵感应式的交流。"
 	button_icon_state = "mindlink"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
@@ -789,21 +789,21 @@
 
 /datum/action/innate/link_minds/Activate()
 	if(!isliving(owner.pulling) || owner.grab_state < GRAB_AGGRESSIVE)
-		to_chat(owner, span_warning("You need to aggressively grab someone to link minds!"))
+		to_chat(owner, span_warning("你需要用力抓住某人才能连接意识！"))
 		return
 
 	var/mob/living/living_target = owner.pulling
 	if(living_target.stat == DEAD)
-		to_chat(owner, span_warning("They're dead!"))
+		to_chat(owner, span_warning("他们死了！"))
 		return
 
-	to_chat(owner, span_notice("You begin linking [living_target]'s mind to yours..."))
-	to_chat(living_target, span_warning("You feel a foreign presence within your mind..."))
+	to_chat(owner, span_notice("你开始将[living_target]的意识与你的连接起来……"))
+	to_chat(living_target, span_warning("你感觉到一个外来存在侵入了你的脑海……"))
 	currently_linking = TRUE
 
 	if(!do_after(owner, 6 SECONDS, target = living_target, extra_checks = CALLBACK(src, PROC_REF(while_link_callback), living_target)))
-		to_chat(owner, span_warning("You can't seem to link [living_target]'s mind."))
-		to_chat(living_target, span_warning("The foreign presence leaves your mind."))
+		to_chat(owner, span_warning("你似乎无法连接[living_target]的意识。"))
+		to_chat(living_target, span_warning("那个外来存在离开了你的脑海。"))
 		currently_linking = FALSE
 		return
 

@@ -41,12 +41,12 @@
 	TEST_ASSERT_EQUAL(item.stock, 2, "The unit test market item is incorrectly stocked after restock. There should be two in stock")
 
 /datum/market/unit_test
-	name = "Unit Test Market"
+	name = "单元测试市场"
 	shipping = list(SHIPPING_METHOD_TELEPORT = 0)
 
 /datum/market_item/unit_test
-	name = "Your Own Special Singularity"
-	desc = "ALL HAIL LORD SINGULOTH!!!"
+	name = "您专属的奇点"
+	desc = "赞美我主奇点！！！"
 	category = CATEGORY_CODERBUS
 	markets = list(/datum/market/unit_test)
 	item = /obj/singularity

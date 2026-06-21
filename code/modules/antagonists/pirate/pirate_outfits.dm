@@ -1,5 +1,5 @@
 /datum/outfit/pirate
-	name = "Space Pirate"
+	name = "太空海盗"
 
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/pirate
@@ -30,20 +30,20 @@
 		pirate_uniform.set_sensor_mode(SENSOR_OFF)
 
 /datum/outfit/pirate/captain
-	name = "Space Pirate Captain"
+	name = "太空海盗船长"
 
 	id_trim = /datum/id_trim/pirate/captain
 	head = /obj/item/clothing/head/costume/pirate/armored
 
 /datum/outfit/pirate/captain/skeleton
-	name = "Space Pirate Captain (Skeleton)"
+	name = "太空海盗船长（骷髅）"
 
 	belt = /obj/item/gun/magic/midas_hand
 	l_pocket = /obj/item/coin/gold/doubloon
 
 
 /datum/outfit/pirate/space
-	name = "Space Pirate (EVA)"
+	name = "太空海盗（舱外活动）"
 
 	suit = /obj/item/clothing/suit/space/pirate
 	suit_store = /obj/item/tank/internals/oxygen
@@ -51,19 +51,19 @@
 	mask = /obj/item/clothing/mask/breath
 
 /datum/outfit/pirate/space/captain
-	name = "Space Pirate Captain (EVA)"
+	name = "太空海盗船长（舱外活动）"
 
 	head = /obj/item/clothing/head/helmet/space/pirate
 
 	id_trim = /datum/id_trim/pirate/captain
 
 /datum/outfit/pirate/space/captain/cardboard
-	name = "Space Pirate Captain (EVA)"
+	name = "太空海盗船长（舱外活动）"
 	l_hand = /obj/item/fake_e_cutlass
 
 /obj/item/fake_e_cutlass
-	name = "fake energy cutlass"
-	desc = "Damn, son, where'd you find this? (Tell a coder if you do)"
+	name = "仿制能量弯刀"
+	desc = "好家伙，你从哪儿搞到这玩意的？（如果找到了，请告诉程序员）"
 	icon = 'icons/obj/weapons/transforming_energy.dmi'
 	icon_state = "e_cutlass_on"
 	inhand_icon_state = "e_cutlass_on"
@@ -72,7 +72,7 @@
 	item_flags = ABSTRACT
 
 /datum/outfit/pirate/silverscale
-	name = "Silver Scale Member"
+	name = "银鳞会成员"
 
 	id = /obj/item/card/id/advanced/silver
 	id_trim = /datum/id_trim/pirate/silverscale
@@ -86,7 +86,7 @@
 	implants = list(/obj/item/implant/explosive)
 
 /datum/outfit/pirate/silverscale/captain
-	name = "Silver Scale Captain"
+	name = "银鳞会船长"
 
 	id_trim = /datum/id_trim/pirate/captain/silverscale
 	head = /obj/item/clothing/head/costume/crown
@@ -94,7 +94,7 @@
 	l_pocket = /obj/item/lighter
 
 /datum/outfit/pirate/interdyne
-	name = "Ex-Interdyne Pharmacist"
+	name = "前星际动力药剂师"
 
 	id = /obj/item/card/id/advanced/black
 	id_trim = /datum/id_trim/syndicom/Interdyne/pharmacist
@@ -108,12 +108,12 @@
 	l_pocket = /obj/item/card/emag/doorjack
 
 /datum/outfit/pirate/interdyne/captain
-	name = "Ex-Interdyne Senior Resident"
+	name = "前星际动力高级住院医师"
 
 	id_trim = /datum/id_trim/syndicom/Interdyne/pharmacist_director
 
 /datum/outfit/pirate/grey
-	name = "The Grey Tide"
+	name = "灰色浪潮"
 
 	id = /obj/item/card/id/advanced/chameleon
 	uniform = /obj/item/clothing/under/color/grey/ancient
@@ -127,7 +127,7 @@
 	r_pocket = /obj/item/tank/internals/emergency_oxygen
 
 /datum/outfit/pirate/irs
-	name = "IRS Agent Outfit"
+	name = "国税局特工装束"
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/syndicom/irs
 	uniform = /obj/item/clothing/under/costume/buttondown/slacks
@@ -140,7 +140,7 @@
 	ears = /obj/item/radio/headset/syndicate/alt
 
 /datum/outfit/pirate/irs/auditor
-	name = "IRS Head Auditor"
+	name = "国税局首席审计官"
 	id_trim = /datum/id_trim/syndicom/irs/auditor
 	uniform = /obj/item/clothing/under/suit/charcoal
 	neck = /obj/item/clothing/neck/tie/red/tied
@@ -150,7 +150,7 @@
 	belt = /obj/item/storage/belt/holster/detective/full/ert
 
 /datum/outfit/pirate/lustrous
-	name = "Lustrous Scintillant"
+	name = "璀璨辉光"
 
 	id = /obj/item/card/id/advanced/black
 	uniform = /obj/item/clothing/under/ethereal_tunic
@@ -161,7 +161,7 @@
 	l_pocket = /obj/item/switchblade
 
 /datum/outfit/pirate/lustrous/captain
-	name = "Lustrous Radiant"
+	name = "璀璨光芒"
 
 	glasses = null
 	suit = /obj/item/clothing/suit/jacket/oversized
@@ -170,7 +170,7 @@
 	id_trim = /datum/id_trim/pirate/captain
 
 /datum/outfit/pirate/medieval
-	name = "Medieval Warmonger"
+	name = "中世纪战争贩子"
 
 	id = null
 	glasses = null
@@ -186,7 +186,7 @@
 	l_pocket = /obj/item/flashlight/flare/torch
 
 /datum/outfit/pirate/medieval/warlord
-	name = "Medieval Warlord"
+	name = "中世纪军阀"
 
 	neck = /obj/item/bedsheet/pirate
 	suit = /obj/item/clothing/suit/armor/riot/knight/warlord

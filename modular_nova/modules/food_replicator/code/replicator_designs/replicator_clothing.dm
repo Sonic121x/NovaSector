@@ -1,5 +1,5 @@
 /datum/design/colonial_under
-	name = "Colonial Uniform"
+	name = "殖民制服"
 	id = "slavic_under"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 200)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/colonial_boots
-	name = "Colonial Half-Boots"
+	name = "殖民半筒靴"
 	id = "slavic_boots"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -21,7 +21,7 @@
 	)
 
 /datum/design/colonial_cloak
-	name = "Colonial Cloak"
+	name = "殖民斗篷"
 	id = "slavic_cloak"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 250)
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/colonial_webbing
-	name = "Slim Colonial Webbing"
+	name = "纤薄殖民携行具"
 	id = "slavic_webbing"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 200)
@@ -43,7 +43,7 @@
 	)
 
 /datum/design/cool_hat
-	name = "Colonial Cap"
+	name = "殖民帽"
 	id = "slavic_cap"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -54,7 +54,7 @@
 	)
 
 /datum/design/cool_gloves
-	name = "Black Gloves"
+	name = "黑色手套"
 	id = "slavic_gloves"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)

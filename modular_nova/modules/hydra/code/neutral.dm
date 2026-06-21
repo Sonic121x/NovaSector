@@ -51,7 +51,7 @@
 	if(!hydra_quirk.original_name) // sets the archived 'real' name if not set.
 		hydra_quirk.original_name = hydra.real_name
 	var/list/names = splittext(hydra_quirk.original_name,"-")
-	var/selhead = input("Who would you like to speak as?","Heads:") in names
+	var/selhead = input("你想以哪个头颅的身份发言？","Heads:") in names
 	hydra.real_name = selhead
 	hydra.visible_message(span_notice("[hydra.name] pulls the rest of their heads back; and puts [selhead]'s forward."), \
 							span_notice("You are now talking as [selhead]!"), ignored_mobs=owner)

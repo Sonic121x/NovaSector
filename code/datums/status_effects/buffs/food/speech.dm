@@ -26,8 +26,8 @@
 	QDEL_NULL(speechmod)
 
 /atom/movable/screen/alert/status_effect/italian_speech
-	name = "Linguini Embrace"
-	desc = "You feel a sudden urge to gesticulate wildly."
+	name = "意面拥抱"
+	desc = "你突然有种想要疯狂打手势的冲动。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "food_italian"
 
@@ -55,7 +55,7 @@
 	QDEL_NULL(speechmod)
 
 /atom/movable/screen/alert/status_effect/french_speech
-	name = "Café Chic"
-	desc = "Suddenly, everything seems worthy of a passionate debate."
+	name = "时尚咖啡馆"
+	desc = "突然间，一切似乎都值得来一场激情辩论。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "food_french"

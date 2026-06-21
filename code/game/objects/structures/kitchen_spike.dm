@@ -1,10 +1,10 @@
 #define MEATSPIKE_IRONROD_REQUIREMENT 4
 
 /obj/structure/kitchenspike_frame
-	name = "meatspike frame"
+	name = "肉钉框架"
 	icon = 'icons/obj/service/kitchen.dmi' //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "spikeframe"
-	desc = "The frame of a meat spike."
+	desc = "肉钉的框架"
 	density = TRUE
 	anchored = FALSE
 	max_integrity = 200
@@ -42,7 +42,7 @@
 		return TRUE
 	visible_message(span_notice("[user] slices apart \the [src]."),
 		span_notice("You cut \the [src] apart with \the [tool]."),
-		span_hear("You hear welding."))
+		span_hear("你听到了焊接声."))
 	new /obj/item/stack/sheet/iron(loc, MEATSPIKE_IRONROD_REQUIREMENT)
 	qdel(src)
 	return TRUE
@@ -66,10 +66,10 @@
 	balloon_alert(user, "[MEATSPIKE_IRONROD_REQUIREMENT] rods needed!")
 
 /obj/structure/kitchenspike
-	name = "meat spike"
+	name = "肉钉"
 	icon = 'icons/obj/service/kitchen.dmi' //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "spike"
-	desc = "A spike for collecting meat from animals."
+	desc = "一根尖刺，用来收集动物的肉。"
 	density = TRUE
 	anchored = TRUE
 	buckle_lying = 180
@@ -104,11 +104,11 @@
 
 /obj/structure/kitchenspike/crowbar_act(mob/living/user, obj/item/tool)
 	if(has_buckled_mobs())
-		to_chat(user, span_warning("You can't do that while something's on the spike!"))
+		to_chat(user, span_warning("有东西在钉刺上时不能这么做！"))
 		return TRUE
 
 	if(tool.use_tool(src, user, 2 SECONDS, volume = 100))
-		to_chat(user, span_notice("You pry the spikes out of the frame."))
+		to_chat(user, span_notice("你将尖刺从框架中撬了出来。"))
 		deconstruct(TRUE)
 		return TRUE
 	return FALSE
@@ -137,23 +137,23 @@
 
 /obj/structure/kitchenspike/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	if(buckled_mob != user)
-		buckled_mob.visible_message(span_notice("[user] tries to pull [buckled_mob] free of [src]!"),\
-			span_notice("[user] is trying to pull you off [src], opening up fresh wounds!"),\
-			span_hear("You hear a squishy wet noise."))
+		buckled_mob.visible_message(span_notice("[user] 试图将 [buckled_mob] 从 [src] 上拉下来！"),\
+			span_notice("[user] 正试图把你从 [src] 上拉下来，撕开了新的伤口！"),\
+			span_hear("你听到一阵湿漉漉的挤压声。"))
 		if(!do_after(user, 30 SECONDS, target = src))
 			if(buckled_mob?.buckled)
-				buckled_mob.visible_message(span_notice("[user] fails to free [buckled_mob]!"),\
-					span_notice("[user] fails to pull you off of [src]."))
+				buckled_mob.visible_message(span_notice("[user] 没能把 [buckled_mob] 放下来！"),\
+					span_notice("[user] 没能把你从 [src] 上拉下来。"))
 			return
 
 	else
-		buckled_mob.visible_message(span_warning("[buckled_mob] struggles to break free from [src]!"),\
-		span_notice("You struggle to break free from [src], exacerbating your wounds! (Stay still for two minutes.)"),\
-		span_hear("You hear a wet squishing noise.."))
+		buckled_mob.visible_message(span_warning("[buckled_mob] 正奋力想从 [src] 挣脱！"),\
+		span_notice("你挣扎着想从[src]上挣脱，反而加重了你的伤势！（保持静止两分钟。）"),\
+		span_hear("你听到一阵湿漉漉的挤压声.."))
 		buckled_mob.adjust_brute_loss(30)
 		if(!do_after(buckled_mob, 2 MINUTES, target = src, hidden = TRUE))
 			if(buckled_mob?.buckled)
-				to_chat(buckled_mob, span_warning("You fail to free yourself!"))
+				to_chat(buckled_mob, span_warning("你没能挣脱！"))
 			return
 	return ..()
 

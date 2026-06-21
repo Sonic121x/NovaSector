@@ -1,7 +1,7 @@
 // Currently unused
 /datum/action/cooldown/spell/touch/mad_touch
-	name = "Touch of Madness"
-	desc = "A touch spell that drains your enemy's sanity and knocks them down."
+	name = "癫狂之触"
+	desc = "一个接触法术，能吸取敌人的理智并将其击倒。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -23,11 +23,11 @@
 
 /datum/action/cooldown/spell/touch/mad_touch/on_antimagic_triggered(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	victim.visible_message(
-		span_danger("The spell bounces off of [victim]!"),
-		span_danger("The spell bounces off of you!"),
+		span_danger("法术从[victim]身上弹开了！"),
+		span_danger("法术从你身上弹开了！"),
 	)
 
 /datum/action/cooldown/spell/touch/mad_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/victim, mob/living/carbon/caster)
-	to_chat(caster, span_warning("[victim.name] has been cursed!"))
+	to_chat(caster, span_warning("[victim.name]被诅咒了！"))
 	victim.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 	return TRUE

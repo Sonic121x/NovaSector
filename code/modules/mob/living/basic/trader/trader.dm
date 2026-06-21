@@ -1,6 +1,6 @@
 /mob/living/basic/trader
-	name = "Trader"
-	desc = "Come buy some!"
+	name = "商人"
+	desc = "来买点东西吧！"
 	unique_name = FALSE
 	icon = 'icons/mob/simple/simple_human.dmi'
 	maxHealth = 200
@@ -59,8 +59,8 @@
 	ai_controller.set_blackboard_key(BB_SETUP_SHOP, setup_shop)
 
 /mob/living/basic/trader/mrbones
-	name = "Mr. Bones"
-	desc = "A skeleton merchant, he seems very humerus."
+	name = "骨头先生"
+	desc = "一位骷髅商人，他看起来非常幽默（肱骨）。"
 	speak_emote = list("rattles")
 	speech_span = SPAN_SANS
 	mob_biotypes = MOB_UNDEAD|MOB_HUMANOID

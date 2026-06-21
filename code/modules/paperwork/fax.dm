@@ -2,8 +2,8 @@ GLOBAL_VAR_INIT(nt_fax_department, pick("NT HR Department", "NT Legal Department
 GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 
 /obj/machinery/fax
-	name = "Fax Machine"
-	desc = "Bluespace technologies on the application of bureaucracy."
+	name = "传真机"
+	desc = "蓝空技术在行政管理中的应用。"
 	icon = 'icons/obj/machines/fax.dmi'
 	icon_state = "fax"
 	density = TRUE
@@ -62,16 +62,16 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	)
 
 /obj/machinery/fax/auto_name
-	name = "Auto-naming Fax Machine"
+	name = "自动命名传真机"
 
 /obj/machinery/fax/auto_name/Initialize(mapload)
 	var/area/current_area = get_area(src)
-	name = "[current_area.name]'s Fax Machine"
+	name = "[current_area.name]的传真机"
 	fax_name = "[current_area.name]"
 	return ..()
 
 /obj/machinery/fax/admin/syndicate
-	name = "Syndicate Fax Machine"
+	name = "辛迪加传真机"
 
 /obj/machinery/fax/admin/syndicate/Initialize(mapload)
 	fax_name = "[special_networks["syndicate"]["fax_name"]]"
@@ -80,14 +80,14 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	return ..()
 
 /obj/machinery/fax/admin
-	name = "CentCom Fax Machine"
+	name = "中央司令部传真机"
 
 /obj/machinery/fax/admin/Initialize(mapload)
 	if (!fax_name)
 		fax_name = "[GLOB.nt_fax_department]"
 	if(!fax_id)
 		fax_id = special_networks["nanotrasen"]["fax_id"]
-	name = "[fax_name] Fax Machine"
+	name = "[fax_name]传真机"
 	visible_to_network = FALSE
 	return ..()
 
@@ -116,7 +116,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/examine()
 	. = ..()
 	if(jammed)
-		. += span_notice("Its output port is jammed and needs cleaning.")
+		. += span_notice("它的输出端口堵塞了，需要清理。")
 
 
 /obj/machinery/fax/on_set_is_operational(old_value)
@@ -141,13 +141,13 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
  */
 /obj/machinery/fax/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if (!panel_open && !allow_exotic_faxes)
-		balloon_alert(user, "open panel first!")
+		balloon_alert(user, "先打开面板！")
 		return FALSE
 	if (!(obj_flags & EMAGGED))
 		obj_flags |= EMAGGED
 		playsound(src, 'sound/mobs/non-humanoids/dog/growl2.ogg', 50, FALSE)
-		balloon_alert(user, "migrated to syndienet 2.0")
-		to_chat(user, span_warning("An image appears on [src] screen for a moment with Ian in the cap of a Syndicate officer."))
+		balloon_alert(user, "已迁移至辛迪加网络 2.0")
+		to_chat(user, span_warning("[src]的屏幕上短暂出现了一幅图像，上面是戴着辛迪加军官帽的伊恩。"))
 		return TRUE
 	return FALSE
 
@@ -168,14 +168,14 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/multitool_act(mob/living/user, obj/item/I)
 	if (panel_open)
 		return
-	var/new_fax_name = tgui_input_text(user, "Enter a new name for the fax machine.", "New Fax Name", max_length = 128)
+	var/new_fax_name = tgui_input_text(user, "为传真机输入一个新名称。", "新传真机名称", max_length = 128)
 	if (!new_fax_name)
 		return ITEM_INTERACT_SUCCESS
 	if (new_fax_name != fax_name)
 		if (fax_name_exist(new_fax_name))
 			// Being able to set the same name as another fax machine will give a lot of gimmicks for the traitor.
 			if (syndicate_network != TRUE && !(obj_flags & EMAGGED))
-				to_chat(user, span_warning("There is already a fax machine with this name on the network."))
+				to_chat(user, span_warning("网络上已存在同名传真机。"))
 				return ITEM_INTERACT_SUCCESS
 		user.log_message("renamed [fax_name] (fax machine) to [new_fax_name].", LOG_GAME)
 		fax_name = new_fax_name
@@ -207,7 +207,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 			return FALSE
 		clean_spray.reagents.remove_reagent(/datum/reagent/space_cleaner, clean_spray.amount_per_transfer_from_this)
 		playsound(loc, 'sound/effects/spray3.ogg', 50, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
-		user.visible_message(span_notice("[user] cleans \the [src]."), span_notice("You clean \the [src]."))
+		user.visible_message(span_notice("[user] 清理了 \the [src]。"), span_notice("You clean \the [src]."))
 		jammed = FALSE
 		return TRUE
 	if (istype(item, /obj/item/soap) || istype(item, /obj/item/rag))
@@ -312,7 +312,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 		if("send_special")
 			var/obj/item/paper/fax_paper = loaded_item_ref?.resolve()
 			if(!istype(fax_paper))
-				to_chat(usr, icon2html(src.icon, usr) + span_warning("Fax cannot send all above paper on this protected network, sorry."))
+				to_chat(usr, icon2html(src.icon, usr) + span_warning("抱歉，传真机无法在此受保护的网络上发送上述所有纸张。"))
 				return
 
 			fax_paper.request_state = TRUE
@@ -377,7 +377,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 			continue
 		if (FAX.jammed)
 			do_sparks(5, TRUE, src)
-			balloon_alert(usr, "destination port jammed")
+			balloon_alert(usr, "目标端口堵塞")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 			return FALSE
 		FAX.receive(loaded, fax_name)

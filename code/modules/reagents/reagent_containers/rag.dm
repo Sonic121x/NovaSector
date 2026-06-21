@@ -1,6 +1,6 @@
 /obj/item/rag
-	name = "damp rag"
-	desc = "For cleaning up messes, you suppose."
+	name = "湿抹布"
+	desc = "用来清理烂摊子，你猜。"
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "rag"
@@ -23,21 +23,21 @@
 
 /obj/item/rag/examine(mob/user)
 	. = ..()
-	. += span_notice("Adding [/datum/reagent/water::name] or [/datum/reagent/space_cleaner::name] to it would make it a fair bit better at scrubbing.")
+	. += span_notice("加入[/datum/reagent/water::name]或[/datum/reagent/space_cleaner::name]会让它的擦洗效果更好一些。")
 	switch(blood_level)
 		if(1 to 4)
-			. += span_info("The [name] is a bit dirty, but it should still be good for cleaning.")
+			. += span_info("这块[name]有点脏，但应该还能用来清洁。")
 		if(5 to 9)
-			. += span_warning("This [name] is dirty! But it still probably has a few wipes left in it.")
+			. += span_warning("这块[name]脏了！但它大概还能再擦几下。")
 		if(10 to INFINITY)
-			. += span_warning("This [name] is filthy! I couldn't clean a thing with it!")
+			. += span_warning("这块[name]太脏了！用它什么都擦不干净！")
 
 /obj/item/rag/interact(mob/user)
 	. = ..()
 	if(loc != user || blood_level <= 4)
 		return
 
-	balloon_alert(user, "wringing out...")
+	balloon_alert(user, "拧干中...")
 	if(!do_after(user, (wrings + 2) * 1 SECONDS, src))
 		return
 
@@ -52,15 +52,15 @@
 /obj/item/rag/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/reagent_containers/spray))
 		if(tool.reagents.total_volume <= 0)
-			balloon_alert(user, "spray is empty!")
+			balloon_alert(user, "喷雾空了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(reagents.holder_full())
-			balloon_alert(user, "[name] is full!")
+			balloon_alert(user, "[name] 满了！")
 			return ITEM_INTERACT_BLOCKING
 
 		tool.reagents.trans_to(reagents, tool.reagents.total_volume, transferred_by = user)
-		balloon_alert(user, "[name] spritzed")
+		balloon_alert(user, "[name] 喷洒了")
 		var/obj/item/reagent_containers/spray/spray = tool
 		playsound(src, spray.spray_sound, 33, TRUE, -6)
 		return ITEM_INTERACT_SUCCESS
@@ -75,7 +75,7 @@
 		holder.add_blood_DNA(GET_ATOM_BLOOD_DNA(src))
 
 /obj/item/rag/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is smothering [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正用[src]闷住[user.p_them()]自己！看起来[user.p_theyre()]想要自杀！"))
 	return OXYLOSS
 
 /obj/item/rag/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -87,12 +87,12 @@
 	var/log_object = "containing [reagentlist]"
 	if(!carbon_target.is_mouth_covered())
 		reagents.trans_to(carbon_target, reagents.total_volume, transferred_by = user, methods = INGEST)
-		carbon_target.visible_message(span_danger("[user] smothers \the [carbon_target] with \the [src]!"), span_userdanger("[user] smothers you with \the [src]!"), span_hear("You hear some struggling and muffled cries of surprise."))
+		carbon_target.visible_message(span_danger("[user] smothers \the [carbon_target] with \the [src]!"), span_userdanger("[user] smothers you with \the [src]!"), span_hear("你听到一阵挣扎和沉闷的惊叫声。"))
 		log_combat(user, carbon_target, "smothered", src, log_object)
 	else
 		reagents.expose(carbon_target, TOUCH)
 		reagents.clear_reagents()
-		carbon_target.visible_message(span_notice("[user] touches \the [carbon_target] with \the [src]."))
+		carbon_target.visible_message(span_notice("[user] 用 \the [carbon_target] 触碰 \the [src]。"))
 		log_combat(user, carbon_target, "touched", src, log_object)
 	return ITEM_INTERACT_SUCCESS
 
@@ -114,7 +114,7 @@
 		// snowflakeeeee check to make it a bit more intuitive when cleaning the rag.
 		if(istype(atom_to_clean, /obj/structure/sink))
 			return CLEAN_BLOCKED|CLEAN_DONT_BLOCK_INTERACTION
-		atom_to_clean.balloon_alert(cleaner, "[name] is too dirty!")
+		atom_to_clean.balloon_alert(cleaner, "[name] 太脏了！")
 		return CLEAN_BLOCKED
 	if(loc == cleaner)
 		return CLEAN_ALLOWED
@@ -150,7 +150,7 @@
 		add_blood_DNA(all_blood_dna)
 	update_appearance()
 	if(blood_level >= 10)
-		to_chat(cleaner, span_warning("[src] is too dirty to clean anything else! Wash it first!"))
+		to_chat(cleaner, span_warning("[src]太脏了，无法再清洁其他东西！请先清洗它！"))
 	if(prob(10 * blood_level))
 		bloody_holder(cleaner)
 

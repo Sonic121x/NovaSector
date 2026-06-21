@@ -1,6 +1,6 @@
 /obj/machinery/rnd/production/circuit_imprinter
-	name = "circuit imprinter"
-	desc = "Manufactures circuit boards for the construction of machines."
+	name = "电路板打印机"
+	desc = "制造用于机器结构的电路板。"
 	icon_state = "circuit_imprinter"
 	base_icon_state = "circuit_imprinter"
 	production_animation = "circuit_imprinter_ani"
@@ -18,7 +18,7 @@
 	return //we presently have no animation
 
 /obj/machinery/rnd/production/circuit_imprinter/offstation
-	name = "ancient circuit imprinter"
-	desc = "Manufactures circuit boards for the construction of machines. Its ancient construction may limit its ability to print all known technology."
+	name = "古老的电路板打印机"
+	desc = "生产用于机器制造的电路板。其老旧的生产设备可能限制了其能够应用所有已知技术的能力。"
 	allowed_buildtypes = AWAY_IMPRINTER
 	circuit = /obj/item/circuitboard/machine/circuit_imprinter/offstation

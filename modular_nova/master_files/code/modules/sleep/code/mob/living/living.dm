@@ -4,12 +4,12 @@
 	set category = "IC"
 
 	if(IsSleeping())
-		to_chat(src, span_warning("You are already sleeping!"))
+		to_chat(src, span_warning("你已经睡着了！"))
 		return
 	var/duration = tgui_input_number(
 		src,
-		"How many minutes do you want to sleep for? Enter 0 to sleep indefinitely. Resist to wake up.",
-		"Sleep: Duration",
+		"你想睡多少分钟？输入0表示无限期睡眠。抵抗以醒来。",
+		"睡眠：持续时间",
 		max_value = 300,
 		min_value = 0,
 		default = 1

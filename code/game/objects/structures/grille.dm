@@ -2,8 +2,8 @@
 #define CLEAR_TILE_MOVE_LIMIT 20
 
 /obj/structure/grille
-	desc = "A flimsy framework of iron rods."
-	name = "grille"
+	desc = "一个由铁棒拼成的脆弱框架。"
+	name = "铁网"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
 	base_icon_state = "grille"
@@ -114,7 +114,7 @@
 			var/turf/T = loc
 
 			if(repair_grille())
-				balloon_alert(user, "grille rebuilt")
+				balloon_alert(user, "格栅已重建")
 			if(!clear_tile(user))
 				return FALSE
 
@@ -125,7 +125,7 @@
 			//checks if its a valid build direction
 			if(!initial(window_path.fulltile))
 				if(!valid_build_direction(loc, user.dir, is_fulltile = FALSE))
-					balloon_alert(user, "window already here!")
+					balloon_alert(user, "这里已经有窗户了！")
 					return FALSE
 
 			var/obj/structure/window/WD = new window_path(T, user.dir)
@@ -148,10 +148,10 @@
 	if(!unanchored_items_on_tile)
 		return TRUE
 
-	to_chat(user, span_notice("You move [unanchored_items_on_tile == 1 ? "[last_item_moved]" : "some things"] out of the way."))
+	to_chat(user, span_notice("你将[unanchored_items_on_tile == 1 ? "[last_item_moved]" : "some things"]移开了。"))
 
 	if(unanchored_items_on_tile - CLEAR_TILE_MOVE_LIMIT > 0)
-		to_chat(user, span_warning("There's still too much stuff in the way!"))
+		to_chat(user, span_warning("路上还是太多东西挡着了！"))
 		return FALSE
 
 	return TRUE
@@ -186,7 +186,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-	user.visible_message(span_warning("[user] hits [src]."), null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_warning("[user] 击打了 [src]。"), null, null, COMBAT_MESSAGE_RANGE)
 	log_combat(user, src, "hit")
 	if(!shock(user, 70))
 		take_damage(rand(5,10), BRUTE, MELEE, 1)
@@ -194,7 +194,7 @@
 /obj/structure/grille/attack_alien(mob/living/user, list/modifiers)
 	user.do_attack_animation(src)
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message(span_warning("[user] mangles [src]."), null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_warning("[user] 撕碎了 [src]。"), null, null, COMBAT_MESSAGE_RANGE)
 	if(!shock(user, 70))
 		take_damage(20, BRUTE, MELEE, 1)
 
@@ -227,7 +227,7 @@
 	if(!tool.use_tool(src, user, 0, volume=100))
 		return FALSE
 	set_anchored(!anchored)
-	user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] [src]."), \
+	user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"]了[src]。"), \
 		span_notice("You [anchored ? "fasten [src] to" : "unfasten [src] from"] the floor."))
 	return ITEM_INTERACT_SUCCESS
 
@@ -237,8 +237,8 @@
 		if(shock(user, 90))
 			return
 		var/obj/item/stack/rods/R = W
-		user.visible_message(span_notice("[user] rebuilds the broken grille."), \
-			span_notice("You rebuild the broken grille."))
+		user.visible_message(span_notice("[user] 修复了破损的格栅。"), \
+			span_notice("你修复了破损的格栅。"))
 		repair_grille()
 		R.use(1)
 		return TRUE
@@ -248,18 +248,18 @@
 		if (!broken)
 			var/obj/item/stack/ST = W
 			if (ST.get_amount() < 2)
-				to_chat(user, span_warning("You need at least two sheets of glass for that!"))
+				to_chat(user, span_warning("你至少需要两块玻璃板才能那么做！"))
 				return
 			var/dir_to_set = SOUTHWEST
 			if(!anchored)
-				to_chat(user, span_warning("[src] needs to be fastened to the floor first!"))
+				to_chat(user, span_warning("[src] 需要先固定在地板上！"))
 				return
 			for(var/obj/structure/window/WINDOW in loc)
-				to_chat(user, span_warning("There is already a window there!"))
+				to_chat(user, span_warning("那里已经有一扇窗户了！"))
 				return
 			if(!clear_tile(user))
 				return
-			to_chat(user, span_notice("You start placing the window..."))
+			to_chat(user, span_notice("你开始安装窗户..."))
 			if(do_after(user,20, target = src))
 				if(!src.loc || !anchored) //Grille broken or unanchored while waiting
 					return
@@ -290,7 +290,7 @@
 				WD.set_anchored(FALSE)
 				WD.state = 0
 				ST.use(2)
-				to_chat(user, span_notice("You place [WD] on [src]."))
+				to_chat(user, span_notice("你将 [WD] 放置在 [src] 上。"))
 			return
 //window placing end
 

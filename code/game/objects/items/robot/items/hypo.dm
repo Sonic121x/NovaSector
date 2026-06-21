@@ -188,26 +188,26 @@
 
 	var/mob/living/carbon/injectee = interacting_with
 	if(!selected_reagent)
-		balloon_alert(user, "no reagent selected!")
+		balloon_alert(user, "未选择试剂！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
-		balloon_alert(user, "not enough [selected_reagent.name]!")
+		balloon_alert(user, "[selected_reagent.name]不足！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!injectee.try_inject(user, user.zone_selected, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE | (bypass_protection ? INJECT_CHECK_PENETRATE_THICK : 0)))
-		balloon_alert(user, "[injectee.parse_zone_with_bodypart(user.zone_selected)] is blocked!")
+		balloon_alert(user, "[injectee.parse_zone_with_bodypart(user.zone_selected)]被阻挡了！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (!injectee.reagents)
-		balloon_alert(user, "unable to inject!")
+		balloon_alert(user, "无法注射！")
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(injectee, span_warning("You feel a tiny prick!"))
-	to_chat(user, span_notice("You inject [injectee] with the injector ([selected_reagent.name])."))
+	to_chat(injectee, span_warning("你感到有点小小的刺痛！"))
+	to_chat(user, span_notice("你用注射器向[injectee]注射了（[selected_reagent.name]）。"))
 	user.changeNext_move(CLICK_CD_MELEE)
 	stored_reagents.trans_to(injectee, amount_per_transfer_from_this, target_id = selected_reagent.type, transferred_by = user, methods = INJECT)
-	balloon_alert(user, "[amount_per_transfer_from_this] unit\s injected")
+	balloon_alert(user, "[amount_per_transfer_from_this] unit\s 已注射")
 	log_combat(user, injectee, "injected", src, "(CHEMICALS: [selected_reagent])")
 	return ITEM_INTERACT_SUCCESS
 
@@ -250,7 +250,7 @@
 				var/obj/item/robot_model/container_model = loc
 				cyborg = container_model.robot
 			playsound(cyborg, 'sound/effects/pop.ogg', 50, FALSE)
-			balloon_alert(cyborg, "dispensing [selected_reagent.name]")
+			balloon_alert(cyborg, "正在分配[selected_reagent.name]")
 			break
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
@@ -411,13 +411,13 @@ NOVA EDIT REMOVAL END */
 	if(!interacting_with.is_refillable())
 		return NONE
 	if(!selected_reagent)
-		balloon_alert(user, "no reagent selected!")
+		balloon_alert(user, "未选择试剂！")
 		return ITEM_INTERACT_BLOCKING
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
-		balloon_alert(user, "not enough [selected_reagent.name]!")
+		balloon_alert(user, "[selected_reagent.name] 不够了！")
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with.reagents.total_volume >= interacting_with.reagents.maximum_volume)
-		balloon_alert(user, "it's full!")
+		balloon_alert(user, "已经满了！")
 		return ITEM_INTERACT_BLOCKING
 
 	// This is the in-between where we're storing the reagent we're going to pour into the container
@@ -427,7 +427,7 @@ NOVA EDIT REMOVAL END */
 	shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, reagtemp = dispensed_temperature, no_react = TRUE)
 
 	shaker.trans_to(interacting_with, amount_per_transfer_from_this, transferred_by = user)
-	balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
+	balloon_alert(user, "已倒入[amount_per_transfer_from_this] unit\s")
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -471,13 +471,13 @@ NOVA EDIT REMOVAL END */
 	if(!interacting_with.is_refillable())
 		return NONE
 	if(!selected_reagent)
-		balloon_alert(user, "no reagent selected!")
+		balloon_alert(user, "未选择试剂！")
 		return ITEM_INTERACT_BLOCKING
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
-		balloon_alert(user, "not enough [selected_reagent.name]!")
+		balloon_alert(user, "[selected_reagent.name]不足！")
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with.reagents.total_volume >= interacting_with.reagents.maximum_volume)
-		balloon_alert(user, "it's full!")
+		balloon_alert(user, "已经满了！")
 		return ITEM_INTERACT_BLOCKING
 	// This is the in-between where we're storing the reagent we're going to pour into the container
 	// because we cannot specify a singular reagent to transfer in trans_to
@@ -485,7 +485,7 @@ NOVA EDIT REMOVAL END */
 	stored_reagents.remove_reagent(selected_reagent.type, amount_per_transfer_from_this)
 	shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, reagtemp = dispensed_temperature, no_react = TRUE)
 	shaker.trans_to(interacting_with, amount_per_transfer_from_this, transferred_by = user)
-	balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
+	balloon_alert(user, "已倒入[amount_per_transfer_from_this] unit\s")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/borghypo/borgshaker/hacked

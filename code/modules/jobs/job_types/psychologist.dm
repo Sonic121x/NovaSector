@@ -34,7 +34,7 @@
 
 
 /datum/outfit/job/psychologist
-	name = "Psychologist"
+	name = "心理学家"
 	jobtype = /datum/job/psychologist
 
 	id = /obj/item/card/id/advanced

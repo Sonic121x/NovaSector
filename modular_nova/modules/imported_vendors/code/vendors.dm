@@ -30,8 +30,8 @@
 	payment_department = NO_FREEBIES
 
 /obj/machinery/vending/imported/nt
-	name = "NT Sustenance Supplier"
-	desc = "A vending machine serving up only the finest of human college student food."
+	name = "纳米传讯补给供应商"
+	desc = "一台只提供最优质人类大学生食品的自动售货机。"
 	icon_state = "nt_food"
 	light_mask = "nt_food-light-mask"
 	light_color = LIGHT_COLOR_LIGHT_CYAN
@@ -73,8 +73,8 @@
 	machine_name = "NT Sustenance Supplier"
 
 /obj/machinery/vending/imported/yangyu
-	name = "Fudobenda"
-	desc = "A vendor selling traditional Sol eastern foods of dubious quality."
+	name = "福多便当"
+	desc = "一家出售质量可疑的传统太阳系东部食品的售货机。"
 	icon_state = "yangyu_food"
 	light_mask = "yangyu_food-light-mask"
 	light_color = LIGHT_COLOR_FLARE
@@ -123,15 +123,15 @@
 
 /obj/machinery/vending/imported/yangyu/examine_more(mob/user)
 	. = ..()
-	. += span_notice("Someone appears to have written <i>\"Don't trust the sushi!\"</i> in marker on the side of the vendor.")
+	. += span_notice("售货机侧面似乎有人用马克笔写着<i>\"别信寿司！\"</i>。")
 	return .
 
 /obj/item/vending_refill/snack/imported/yangyu
 	machine_name = "Fudobenda"
 
 /obj/machinery/vending/imported/mothic
-	name = "Nomad Fleet Ration Chit Exchange"
-	desc = "One of the Nomad Fleet's own ration vendors; in spite of the name engraved into it, it's been fitted to accept credits."
+	name = "游牧舰队配给券兑换机"
+	desc = "游牧舰队自家的配给售货机之一；尽管上面刻着这个名字，但它已被改装成接受信用点。"
 	icon_state = "moth_food"
 	light_mask = "moth_food-light-mask"
 	light_color = LIGHT_COLOR_HALOGEN
@@ -182,8 +182,8 @@
 	machine_name = "Nomad Fleet Ration Chit Exchange"
 
 /obj/machinery/vending/imported/tiziran
-	name = "Tiziran Imported Delicacies"
-	desc = "A vendor serving a fine collection of what is very likely knock-offs of popular Tiziran brands."
+	name = "提兹兰进口美食"
+	desc = "一台提供很可能是流行提兹兰品牌仿冒品的精选美食的售货机。"
 	icon_state = "tizira_food"
 	light_mask = "tizira_food-light-mask"
 	light_color = LIGHT_COLOR_FIRE

@@ -1,8 +1,8 @@
 #define TANK_DISPENSER_CAPACITY 10
 
 /obj/structure/tank_dispenser
-	name = "tank dispenser"
-	desc = "A simple yet bulky storage device for gas tanks."
+	name = "气瓶分配器"
+	desc = "一个简单但笨重的储气罐存储装置。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "dispenser"
 	density = TRUE
@@ -38,7 +38,7 @@
 /obj/structure/tank_dispenser/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if (!plasmatanks)
-		balloon_alert(user, "no plasma tanks!")
+		balloon_alert(user, "没有等离子罐！")
 		return
 	dispense(/obj/item/tank/internals/plasma, user)
 	plasmatanks--
@@ -47,7 +47,7 @@
 /obj/structure/tank_dispenser/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if (!oxygentanks)
-		balloon_alert(user, "no oxygen tanks!")
+		balloon_alert(user, "没有氧气罐！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	dispense(/obj/item/tank/internals/oxygen, user)
 	oxygentanks--
@@ -72,17 +72,17 @@
 		else
 			full = TRUE
 	else if(!user.combat_mode || (I.item_flags & NOBLUDGEON))
-		balloon_alert(user, "can't insert!")
+		balloon_alert(user, "无法插入！")
 		return
 	else
 		return ..()
 	if(full)
-		balloon_alert(user, "it is full!")
+		balloon_alert(user, "它已经满了！")
 		return
 
 	if(!user.transferItemToLoc(I, src))
 		return
-	balloon_alert(user, "tank inserted")
+	balloon_alert(user, "气罐已插入")
 	update_appearance()
 
 /obj/structure/tank_dispenser/atom_deconstruct(disassembled = TRUE)
@@ -94,7 +94,7 @@
 /obj/structure/tank_dispenser/examine(mob/user)
 	. = ..()
 	if(plasmatanks && oxygentanks)
-		. += span_notice("It has <b>[plasmatanks]</b> plasma tank\s and <b>[oxygentanks]</b> oxygen tank\s left.")
+		. += span_notice("它还剩下<b>[plasmatanks]</b>个等离子气罐tank\s 和<b>[oxygentanks]</b>个氧气罐tank\s 。")
 	else if(plasmatanks || oxygentanks)
 		. += span_notice("It has <b>[plasmatanks ? "[plasmatanks]</b> plasma" : "[oxygentanks]</b> oxygen"] tank\s left.")
 

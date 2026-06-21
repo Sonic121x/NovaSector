@@ -48,19 +48,19 @@
 	var/obj/item/bodypart/limb = patient.get_bodypart(healed_zone)
 	if(isnull(limb))
 		if(!silent)
-			patient.balloon_alert(user, "no [parse_zone(healed_zone)]!")
+			patient.balloon_alert(user, "没有[parse_zone(healed_zone)]！")
 		return FALSE
 	if(!LAZYLEN(limb.wounds))
 		if(!silent)
-			patient.balloon_alert(user, "no wounds!") // good problem to have imo
+			patient.balloon_alert(user, "没有伤口！") // good problem to have imo
 		return FALSE
 	if(patient.has_status_effect(/datum/status_effect/vulnerable_to_damage))
 		if(!silent)
-			patient.balloon_alert(user, "still recovering from last use!")
+			patient.balloon_alert(user, "上次使用后仍在恢复中！")
 		return FALSE
 	if(!find_suitable_wound(limb))
 		if(!silent)
-			patient.balloon_alert(user, "can't heal those!")
+			patient.balloon_alert(user, "无法治疗那些伤口！")
 		return FALSE
 	return TRUE
 
@@ -88,7 +88,7 @@
 	woundies.remove_wound()
 	if(!HAS_TRAIT(patient, TRAIT_ANALGESIA) || !causes_pain)
 		patient.emote("scream")
-		to_chat(patient, span_userdanger("Your [limb.plaintext_zone] burns like hell as the wounds on it are rapidly healed, fuck!"))
+		to_chat(patient, span_userdanger("你的 [limb.plaintext_zone] 像被火烧一样疼，因为上面的伤口正在快速愈合，真该死！"))
 		patient.add_mood_event("severe_surgery", /datum/mood_event/rapid_wound_healing)
 	limb.receive_damage(brute = INSTANT_WOUND_HEAL_LIMB_DAMAGE, wound_bonus = CANT_WOUND)
 	patient.adjust_stamina_loss(INSTANT_WOUND_HEAL_STAMINA_DAMAGE)
@@ -96,13 +96,13 @@
 	use(1)
 
 /datum/mood_event/rapid_wound_healing
-	description = "The wound is gone, but that pain was unbearable!\n"
+	description = "伤口消失了，但那疼痛简直无法忍受！\n"
 	mood_change = -3
 	timeout = 5 MINUTES
 
 // Helps recover bleeding
 /obj/item/stack/medical/wound_recovery/rapid_coagulant
-	name = "rapid coagulant applicator"
+	name = "快速凝血剂敷料器"
 	singular_name = "rapid coagulant applicator"
 	desc = "A small device filled with a fast acting coagulant of some type. \
 		When used on a bleeding area, will nearly instantly stop all bleeding. \
@@ -122,7 +122,7 @@
 
 // Helps recover burn wounds much faster, while not healing much damage directly
 /obj/item/stack/medical/ointment/red_sun
-	name = "red sun balm"
+	name = "红日烧伤膏"
 	singular_name = "red sun balm"
 	desc = "A popular brand of ointment for handling anything under the red sun, which tends to be terrible burns. \
 		Which red sun may this be referencing? Not even the producers of the balm are sure."
@@ -153,7 +153,7 @@
 
 // Gauze that are especially good at treating burns, but are terrible splints
 /obj/item/stack/medical/wrap/gauze/sterilized
-	name = "sealed aseptic gauze"
+	name = "密封无菌纱布"
 	singular_name = "sealed aseptic gauze"
 	desc = "A small roll of elastic material specially treated to be entirely sterile, and sealed in plastic just to be sure. \
 		These make excellent treatment against burn wounds, but due to their small nature are sub-par for serving as \
@@ -176,7 +176,7 @@
 
 // Works great at sealing bleed wounds, but does little to actually heal them
 /obj/item/stack/medical/suture/coagulant
-	name = "coagulant-F packet"
+	name = "凝血剂-F 包"
 	singular_name = "coagulant-F packet"
 	desc = "A small packet of fabricated coagulant for bleeding. Not as effective as some \
 		other methods of coagulating wounds, but is more effective than plain sutures. \

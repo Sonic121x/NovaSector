@@ -1,6 +1,6 @@
 /obj/item/clothing/accessory/badge
-	name = "detective's badge"
-	desc = "Security Department detective's badge, made from gold."
+	name = "侦探徽章"
+	desc = "安保部侦探徽章，由黄金制成。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
 	icon_state = "badge"
@@ -14,10 +14,10 @@
 	pickup_sound = 'modular_nova/master_files/sound/items/pickup/ring.ogg'
 
 /obj/item/clothing/accessory/badge/old
-	name = "faded badge"
+	name = "褪色徽章"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
-	desc = "A faded badge, backed with leather. It bears the emblem of the Forensic division."
+	desc = "一枚褪色的徽章，背面衬有皮革。上面印有法证部门的徽记。"
 	icon_state = "goldbadge"
 
 /obj/item/clothing/accessory/badge/proc/set_name(new_name)
@@ -29,15 +29,15 @@
 /obj/item/clothing/accessory/badge/attack_self(mob/user as mob)
 
 	if(!stored_name)
-		to_chat(user, "You polish your old badge fondly, shining up the surface.")
+		to_chat(user, "你深情地擦拭着你的旧徽章，把表面擦得锃亮。")
 		set_name(user.real_name)
 		return
 
 	if(isliving(user))
 		if(stored_name)
-			user.visible_message(span_notice("[user] displays their [src.name].\nIt reads: [stored_name], [badge_string]."),span_notice("You display your [src.name].\nIt reads: [stored_name], [badge_string]."))
+			user.visible_message(span_notice("[user]展示了他们的[src.name]。\nIt上写着：[stored_name]，[badge_string]。"),span_notice("你展示了你的[src.name]。\nIt上写着：[stored_name]，[badge_string]。"))
 		else
-			user.visible_message(span_notice("[user] displays their [src.name].\nIt reads: [badge_string]."),span_notice("You display your [src.name]. It reads: [badge_string]."))
+			user.visible_message(span_notice("[user]展示了他们的[src.name]。\nIt上写着：[badge_string]。"),span_notice("你展示了你的 [src.name]。上面写着：[badge_string]。"))
 
 /obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
@@ -46,14 +46,14 @@
 
 // Sheriff Badge (toy)
 /obj/item/clothing/accessory/badge/sheriff
-	name = "sheriff badge"
-	desc = "This town ain't big enough for the two of us, pardner."
+	name = "警长徽章"
+	desc = "这镇子可容不下咱俩，伙计。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
 	icon_state = "sheriff"
 
 /obj/item/clothing/accessory/badge/sheriff/attack_self(mob/user as mob)
-	user.visible_message("[user] shows their sheriff badge. There's a new sheriff in town!",\
+	user.visible_message("[user]亮出了他们的警长徽章。镇上来新警长了！",\
 		"You flash the sheriff badge to everyone around you!")
 
 /obj/item/clothing/accessory/badge/sheriff/attack(mob/living/carbon/human/M, mob/living/user)
@@ -63,19 +63,19 @@
 
 //.Holobadges.
 /obj/item/clothing/accessory/badge/holo
-	name = "holobadge"
-	desc = "This glowing blue badge marks the holder as THE LAW."
+	name = "全息徽章"
+	desc = "这枚发着蓝光的徽章标志着佩戴者即为法律。"
 	icon_state = "holobadge"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
 
 /obj/item/clothing/accessory/badge/holo/blue
-	name = "blue holobadge"
-	desc = "This glowing blue badge marks the holder as THE LAW."
+	name = "蓝色全息徽章"
+	desc = "这枚发着蓝光的徽章标志着佩戴者即为法律。"
 	icon_state = "holobadge_blue"
 
 /obj/item/clothing/accessory/badge/holo/cord
-	name = "holobadge with lanyard"
+	name = "带挂绳的全息徽章"
 	icon_state = "holobadge-cord"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
@@ -83,18 +83,18 @@
 
 /obj/item/clothing/accessory/badge/holo/attack_self(mob/user as mob)
 	if(!stored_name)
-		to_chat(user, "Waving around a holobadge before swiping an ID would be pretty pointless.")
+		to_chat(user, "在刷卡前挥舞全息徽章没什么意义。")
 		return
 	return ..()
 
 /obj/item/clothing/accessory/badge/holo/emag_act(remaining_charges, mob/user)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "already cracked")
+		balloon_alert(user, "已经破解")
 		return FALSE
 
 	obj_flags |= EMAGGED
-	balloon_alert(user, "security checks cracked!")
-	to_chat(user, span_danger("You crack the holobadge security checks."))
+	balloon_alert(user, "安全检查已破解！")
+	to_chat(user, span_danger("你破解了全息徽章的安保检查。"))
 	return TRUE
 
 /obj/item/clothing/accessory/badge/holo/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
@@ -106,17 +106,17 @@
 			id_card = attacking_item
 
 		if((ACCESS_SECURITY in id_card.access) || (obj_flags & EMAGGED))
-			to_chat(user, "You imprint your ID details onto the badge.")
+			to_chat(user, "你将ID信息刻印到了徽章上。")
 			set_name(user.real_name)
 			badge_string = id_card.assignment
 		else
-			to_chat(user, "[src] rejects your insufficient access rights.")
+			to_chat(user, "[src]拒绝了你的访问权限。")
 		return
 	return ..()
 
 /obj/item/storage/box/holobadge
-	name = "holobadge box"
-	desc = "A box claiming to contain holobadges."
+	name = "全息徽章盒"
+	desc = "一个声称装有全息徽章的盒子。"
 
 /obj/item/storage/box/holobadge/PopulateContents()
 	. = ..()
@@ -129,7 +129,7 @@
 	return
 
 /obj/item/clothing/accessory/badge/holo/warden
-	name = "warden's holobadge"
+	name = "典狱长的全息徽章"
 	desc = "A silver corporate security badge. Stamped with the words 'Warden.'"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
@@ -137,7 +137,7 @@
 	slot_flags = ITEM_SLOT_NECK
 
 /obj/item/clothing/accessory/badge/holo/hos
-	name = "head of security's holobadge"
+	name = "安全主管的全息徽章"
 	desc = "An immaculately polished gold security badge. Labeled 'Head of Security.'"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
@@ -145,7 +145,7 @@
 	slot_flags = ITEM_SLOT_NECK
 
 /obj/item/clothing/accessory/badge/holo/detective
-	name = "detective's holobadge"
+	name = "侦探的全息徽章"
 	desc = "An immaculately polished gold security badge on leather. Labeled 'Detective.'"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
@@ -153,8 +153,8 @@
 	slot_flags = ITEM_SLOT_NECK
 
 /obj/item/storage/box/holobadge/hos
-	name = "holobadge box"
-	desc = "A box claiming to contain holobadges."
+	name = "全息徽章盒"
+	desc = "一个声称装有全息徽章的盒子。"
 
 /obj/item/storage/box/holobadge/hos/PopulateContents()
 	. = ..()
@@ -169,8 +169,8 @@
 
 // The newbie pin
 /obj/item/clothing/accessory/green_pin
-	name = "green pin"
-	desc = "A pin given to newly hired personnel on deck."
+	name = "绿色别针"
+	desc = "一枚发给甲板上新雇员的别针。"
 	icon_state = "green"
 	icon = 'modular_nova/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/accessories.dmi'
@@ -270,7 +270,7 @@
 
 // Accessory for Akula species, it makes them wet and happy! :)
 /obj/item/clothing/accessory/vaporizer
-	name = "\improper Stardress hydro-vaporizer"
+	name = "\improper 星装水合蒸汽器"
 	desc = "An expensive device manufactured for the civilian work-force of the Azulean military power. \
 		Relying on an internal battery, the coil mechanism synthesizes a hydrogen oxygen mixture, \
 		which can then be used to moisturize the wearer's skin. \n\n\
@@ -294,16 +294,16 @@
 		return CLICK_ACTION_BLOCKING
 	var/mob/living/carbon/human/wearer = user
 	if(wearer.get_active_held_item() != src)
-		to_chat(wearer, span_warning("You must hold the [src] in your hand to do this!"))
+		to_chat(wearer, span_warning("你必须将[src]拿在手中才能这么做！"))
 		return CLICK_ACTION_BLOCKING
 	if(icon_state == "[base_icon_state]")
 		icon_state = "[base_icon_state]_hidden"
 		worn_icon_state = "[base_icon_state]_hidden"
-		balloon_alert(wearer, "hidden")
+		balloon_alert(wearer, "已隐藏")
 	else
 		icon_state = "[base_icon_state]"
 		worn_icon_state = "[base_icon_state]"
-		balloon_alert(wearer, "shown")
+		balloon_alert(wearer, "已显示")
 	update_icon() // update that mf
 	return CLICK_ACTION_SUCCESS
 
@@ -337,7 +337,7 @@
 	emp_act(EMP_LIGHT)
 
 /datum/design/vaporizer
-	name = "Hydro-Vaporizer"
+	name = "水合蒸汽器"
 	id = "vaporizer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/gold = SMALL_MATERIAL_AMOUNT*2.5, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)

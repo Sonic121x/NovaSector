@@ -10,7 +10,7 @@
 	/// Apply the element to ORGAN_SLOT_BRAIN if you don't want it to be hideable behind clothing.
 	var/list/noticable_organ_examines
 
-/datum/element/ai_control_examine/Attach(datum/target, noticable_organ_examines = list(ORGAN_SLOT_BRAIN = span_deadsay("doesn't appear to be themself.")))
+/datum/element/ai_control_examine/Attach(datum/target, noticable_organ_examines = list(ORGAN_SLOT_BRAIN = span_deadsay("看起来不像他们自己。")))
 	. = ..()
 
 	if(!istype(target, /datum/ai_controller))

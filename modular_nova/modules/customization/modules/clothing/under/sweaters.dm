@@ -19,8 +19,8 @@
 	new_icon_state = "croptop_sweater"
 
 /obj/item/clothing/under/sweater
-	name = "cableknit sweater"
-	desc = "Why trade style for comfort? Now you can go commando down south and still be cozy up north."
+	name = "绞花针织毛衣"
+	desc = "为何要在风格与舒适之间取舍？现在你可以在下半身“放飞自我”，同时上半身依然温暖舒适。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/sweater"
 	post_init_icon_state = "cableknit_sweater"

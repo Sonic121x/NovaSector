@@ -1,6 +1,6 @@
 /obj/item/seeds/nofruit
-	name = "nofruit seed pack"
-	desc = "These seeds grow into nofruit plants. A strange plant often cultivated by silent performers."
+	name = "诺果种子包"
+	desc = "这些种子会长成诺果植株。一种常被默剧表演者培育的奇特植物。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "nofruit"
 	species = "nofruit"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/nofruit
 	seed = /obj/item/seeds/nofruit
-	name = "nofruit"
-	desc = "A cubic nofruit, the leaf on top of the nofruit gesticulates wildly."
+	name = "诺果"
+	desc = "一个立方形的诺果，顶部的叶子疯狂地比划着。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "nofruit"
 	filling_color = "#FF4500"

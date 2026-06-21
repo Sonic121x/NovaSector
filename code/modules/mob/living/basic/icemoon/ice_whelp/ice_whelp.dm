@@ -1,6 +1,6 @@
 /mob/living/basic/mining/ice_whelp
-	name = "ice whelp"
-	desc = "The offspring of an ice drake, weak in comparison but still terrifying."
+	name = "冰霜幼龙"
+	desc = "冰霜巨龙的子嗣，虽然相比之下较为弱小，但仍然令人畏惧。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "ice_whelp"
 	icon_living = "ice_whelp"
@@ -70,20 +70,20 @@
 
 /// Carve a stone into a beautiful self-portrait
 /mob/living/basic/mining/ice_whelp/proc/create_sculpture(atom/target)
-	balloon_alert(src, "sculpting...")
+	balloon_alert(src, "雕刻中……")
 	if(!do_after(src, 5 SECONDS, target = target))
 		return
 	var/obj/structure/statue/custom/dragon_statue = new(get_turf(target))
 	dragon_statue.set_visuals(src)
-	dragon_statue.name = "statue of [src]"
-	dragon_statue.desc = "Let this serve as a warning."
+	dragon_statue.name = "[src]的雕像"
+	dragon_statue.desc = "让这作为一个警告。"
 	dragon_statue.set_anchored(TRUE)
 	qdel(target)
 
 /// Gib and consume our fellow ice drakes
 /mob/living/basic/mining/ice_whelp/proc/cannibalize_victim(mob/living/target)
 	start_pulling(target)
-	balloon_alert(src, "devouring...")
+	balloon_alert(src, "吞噬中……")
 	if(!do_after(src, 5 SECONDS, target))
 		return
 	target.gib(DROP_ALL_REMAINS)
@@ -91,8 +91,8 @@
 
 ///Ash whelp, the "lava" variant of ice whelps.
 /mob/living/basic/mining/ice_whelp/ash
-	name = "ash whelp"
-	desc = "The offspring of an ash drake, weak in comparison but still terrifying."
+	name = "灰烬幼龙"
+	desc = "灰烬巨龙的子嗣，虽然相比之下较为弱小，但仍然令人畏惧。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "ash_whelp"
 	icon_living = "ash_whelp"

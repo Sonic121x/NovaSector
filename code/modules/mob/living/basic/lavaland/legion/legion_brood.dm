@@ -1,7 +1,7 @@
 /// A spooky skull which heals lavaland mobs, attacks miners, and infests their bodies
 /mob/living/basic/mining/legion_brood
-	name = "legion"
-	desc = "One of many."
+	name = "军团"
+	desc = "众多之一。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion_head"
 	icon_living = "legion_head"
@@ -72,7 +72,7 @@
 		created_by = null
 
 	if (isliving(target) && faction_check_atom(target) && !istype(target, mob_creator?.type))
-		visible_message(span_warning("[src] melds with [target]'s flesh!"))
+		visible_message(span_warning("[src] 与 [target] 的血肉融为一体！"))
 		target.apply_status_effect(/datum/status_effect/regenerative_core)
 		new /obj/effect/temp_visual/heal(get_turf(target), COLOR_HEALING_CYAN)
 		death()
@@ -81,7 +81,7 @@
 
 /// Turn the targeted mob into one of us
 /mob/living/basic/mining/legion_brood/proc/infest(mob/living/carbon/human/target)
-	visible_message(span_warning("[name] burrows into the flesh of [target]!"))
+	visible_message(span_warning("[name] 钻进了 [target] 的血肉中！"))
 	var/spawn_type = get_legion_type(target)
 	var/mob/living/basic/mining/legion/new_legion = new spawn_type(loc)
 	new_legion.consume(target)
@@ -127,7 +127,7 @@
 
 /// Like the Legion's summoned skull but funnier (it's snow now)
 /mob/living/basic/mining/legion_brood/snow
-	name = "snow legion"
+	name = "雪原军团"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "snowlegion_head"
 	icon_living = "snowlegion_head"

@@ -1,6 +1,6 @@
 /// Anything above a lattice should go here.
 /turf/open/floor
-	name = "floor"
+	name = "地板"
 	icon = 'icons/turf/floors.dmi' //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	base_icon_state = "floor"
 	baseturfs = /turf/open/floor/plating
@@ -163,10 +163,10 @@
 		broken = FALSE
 		burnt = FALSE
 		if(user && !silent)
-			to_chat(user, span_notice("You remove the broken plating."))
+			to_chat(user, span_notice("你移除了破损的板材。"))
 	else
 		if(user && !silent)
-			to_chat(user, span_notice("You remove the floor tile."))
+			to_chat(user, span_notice("你撬开了地砖."))
 		if(make_tile)
 			spawn_tile()
 	return make_plating(force_plating)
@@ -285,7 +285,7 @@
 			var/obj/structure/window/window_path = rcd_data[RCD_DESIGN_PATH]
 			if(!initial(window_path.fulltile))
 				if(!valid_build_direction(src, user.dir, is_fulltile = FALSE))
-					balloon_alert(user, "window already here!")
+					balloon_alert(user, "这里已经有窗户了！")
 					return FALSE
 				var/obj/structure/window/WD = new window_path(src, user.dir)
 				WD.set_anchored(TRUE)
@@ -300,12 +300,12 @@
 
 			if(ispath(airlock_type, /obj/machinery/door/window))
 				if(!valid_build_direction(src, user.dir, is_fulltile = FALSE))
-					balloon_alert(user, "there's already a windoor!")
+					balloon_alert(user, "已经有一个风门了！")
 					return FALSE
 				for(var/obj/machinery/door/door in src)
 					if(istype(door, /obj/machinery/door/window))
 						continue
-					balloon_alert(user, "there's already a door!")
+					balloon_alert(user, "已经有一扇门了！")
 					return FALSE
 				//create the assembly and let it finish itself
 				var/obj/structure/windoor_assembly/assembly = new (src, user.dir)
@@ -317,7 +317,7 @@
 			for(var/obj/machinery/door/door in src)
 				if(door.sub_door)
 					continue
-				balloon_alert(user, "there's already a door!")
+				balloon_alert(user, "已经有一扇门了！")
 				return FALSE
 			//create the assembly and let it finish itself
 			var/obj/structure/door_assembly/assembly = new (src)
@@ -355,7 +355,7 @@
 			return TRUE
 		if(RCD_DECONSTRUCT)
 			if(rcd_proof)
-				balloon_alert(user, "it's too thick!")
+				balloon_alert(user, "它太厚了！")
 				return FALSE
 			if(!ScrapeAway(flags = CHANGETURF_INHERIT_AIR))
 				return FALSE

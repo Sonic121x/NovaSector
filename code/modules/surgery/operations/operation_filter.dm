@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/filter_blood
-	name = "blood filtration"
+	name = "血液过滤"
 	rnd_name = "Hemodialysis (Blood Filtration)"
-	desc = "Remove unwanted chemicals from a patient's bloodstream."
+	desc = "从患者血液中清除不需要的化学物质。"
 	implements = list(/obj/item/blood_filter = 1)
 	time = 2.5 SECONDS
 	operation_flags = OPERATION_LOOPING
@@ -12,9 +12,9 @@
 
 /datum/surgery_operation/limb/filter_blood/all_required_strings()
 	. = list()
-	. += "operate on chest (target chest)"
+	. += "对胸部进行手术（目标胸部）"
 	. += ..()
-	. += "the patient must not be husked"
+	. += "患者不能是干尸"
 
 /datum/surgery_operation/limb/filter_blood/get_default_radial_image()
 	return image(/obj/item/blood_filter)
@@ -88,7 +88,7 @@
 	return FALSE
 
 /datum/surgery_operation/limb/filter_blood/mechanic
-	name = "purge hydraulics"
+	name = "清除液压系统"
 	rnd_name = "Hydraulics Purge (Blood Filtration)"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC

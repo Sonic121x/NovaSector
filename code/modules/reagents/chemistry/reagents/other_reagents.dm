@@ -1,6 +1,6 @@
 /datum/reagent/blood
 	name = "Blood"
-	description  = "Blood cells suspended in plasma, the most abundant of which being the hemoglobin-containing red blood cells."
+	description  = "悬浮在血浆中的血细胞，其中含量最丰富的是含有血红蛋白的红细胞。"
 	color = "#C80000" // rgb: 200, 0, 0
 	metabolization_rate = 12.5 * REAGENTS_METABOLISM //fast rate so it disappears fast.
 	taste_description = "iron"
@@ -15,8 +15,8 @@
 
 /datum/glass_style/drinking_glass/blood
 	required_drink_type = /datum/reagent/blood
-	name = "glass of tomato juice"
-	desc = "Are you sure this is tomato juice?"
+	name = "一杯番茄汁"
+	desc = "你确定这是番茄汁吗？"
 
 // FEED ME
 /datum/reagent/blood/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
@@ -50,7 +50,7 @@
 /datum/reagent/consumable/liquidgibs
 	name = "Liquid Gibs"
 	color = "#CC4633"
-	description = "You don't even want to think about what's in here."
+	description = "你甚至不愿去想这里面是什么。"
 	taste_description = "gross iron"
 	nutriment_factor = 2
 	material = /datum/material/meat
@@ -65,7 +65,7 @@
 /datum/reagent/bone_dust
 	name = "Bone Dust"
 	color = "#dbcdcb"
-	description = "Ground up bones, gross!"
+	description = "磨碎的骨头，真恶心！"
 	taste_description = "the most disgusting grain in existence"
 
 /datum/reagent/vaccine
@@ -92,7 +92,7 @@
 		data |= mix_data
 
 /datum/reagent/vaccine/fungal_tb
-	name = "Vaccine (Fungal Tuberculosis)"
+	name = "Vaccine-疫苗(结核真菌)"
 
 /datum/reagent/vaccine/fungal_tb/New(data)
 	. = ..()
@@ -106,7 +106,7 @@
 
 /datum/reagent/water
 	name = "Water"
-	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen."
+	description = "一种普遍存在的化学物质，由氢和氧组成。"
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "water"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_CLEANS
@@ -120,8 +120,8 @@
 
 /datum/glass_style/drinking_glass/water
 	required_drink_type = /datum/reagent/water
-	name = "glass of water"
-	desc = "The father of all refreshments."
+	name = "一杯水"
+	desc = "茶点之父"
 	icon_state = "glass_clear"
 
 /*
@@ -257,7 +257,7 @@
 
 /datum/reagent/water/salt
 	name = "Saltwater"
-	description = "Water, but salty. Smells like... the station infirmary?"
+	description = "水，但是咸的。闻起来像……空间站的医务室？"
 	color = "#aaaaaa9d" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "the sea"
 	cooling_temperature = 3
@@ -307,7 +307,7 @@
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
-	description = "Water blessed by some deity."
+	description = "被某位神祇祝福过的水。"
 	color = "#E0E8EF" // rgb: 224, 232, 239
 	self_consuming = TRUE //divine intervention won't be limited by the lack of a liver
 	ph = 7.5 //God is alkaline
@@ -318,8 +318,8 @@
 
 /datum/glass_style/drinking_glass/holywater
 	required_drink_type = /datum/reagent/water/holywater
-	name = "glass of holy water"
-	desc = "A glass of holy water."
+	name = "一杯圣水"
+	desc = "一杯圣水。"
 	icon_state = "glass_clear"
 
 /datum/reagent/water/holywater/on_new(list/data)
@@ -357,7 +357,7 @@
 				removed_any = TRUE
 				qdel(BS)
 			if(removed_any)
-				to_chat(affected_mob, span_cult_large("Your blood rites falter as holy water scours your body!"))
+				to_chat(affected_mob, span_cult_large("圣水冲刷着你的身体，你的血之仪式动摇了！"))
 
 	if(data["deciseconds_metabolized"] >= (25 SECONDS)) // 10 units
 		affected_mob.adjust_stutter_up_to(2 SECONDS * metabolization_ratio * seconds_per_tick, 20 SECONDS)
@@ -365,7 +365,7 @@
 		if(IS_CULTIST(affected_mob) && SPT_PROB(10, seconds_per_tick))
 			affected_mob.say(pick("Av'te Nar'Sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
 			if(prob(10))
-				affected_mob.visible_message(span_danger("[affected_mob] starts having a seizure!"), span_userdanger("You have a seizure!"))
+				affected_mob.visible_message(span_danger("[affected_mob] 开始癫痫发作！"), span_userdanger("你癫痫发作了！"))
 				affected_mob.Unconscious(12 SECONDS)
 				to_chat(affected_mob, span_cult_large("[pick("Your blood is your bond - you are nothing without it", "Do not forget your place", \
 					"All that power, and you still fail?", "If you cannot scour this poison, I shall scour your meager life!")]."))
@@ -400,7 +400,7 @@
 
 /datum/reagent/water/hollowwater
 	name = "Hollow Water"
-	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen, but it looks kinda hollow."
+	description = "一种由氢和氧组成的常见化学物质，但它看起来有点空洞。"
 	color = "#88878777"
 	taste_description = "emptyiness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
@@ -408,7 +408,7 @@
 
 /datum/reagent/hydrogen_peroxide
 	name = "Hydrogen Peroxide"
-	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen and oxygen." //intended intended
+	description = "一种由氢和氧以及氧组成的常见化学物质。" //intended intended
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "burning water"
 	ph = 6.2
@@ -421,8 +421,8 @@
 
 /datum/glass_style/drinking_glass/hydrogen_peroxide
 	required_drink_type = /datum/reagent/hydrogen_peroxide
-	name = "glass of oxygenated water"
-	desc = "The father of all refreshments. Surely it tastes great, right?"
+	name = "一杯过氧化氢"
+	desc = "茶点之父。所以味道肯定不会差，对吧？"
 	icon_state = "glass_clear"
 
 /*
@@ -453,7 +453,7 @@
 
 /datum/reagent/fuel/unholywater //if you somehow managed to extract this from someone, dont splash it on yourself and have a smoke
 	name = "Unholy Water"
-	description = "Something that shouldn't exist on this plane of existence."
+	description = "某种不应存在于这个位面的东西。"
 	taste_description = "suffering"
 	self_consuming = TRUE //unholy intervention won't be limited by the lack of a liver
 	metabolization_rate = 2.5 * REAGENTS_METABOLISM  //0.5u/second
@@ -497,7 +497,7 @@
 
 /datum/reagent/hellwater //if someone has this in their system they've really pissed off an eldrich god
 	name = "Hell Water"
-	description = "YOUR FLESH! IT BURNS!"
+	description = "你的血肉！它在燃烧！"
 	taste_description = "burning"
 	ph = 0.1
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
@@ -518,7 +518,7 @@
 
 /datum/reagent/medicine/omnizine/godblood
 	name = "Godblood"
-	description = "Slowly heals all damage types. Has a rather high overdose threshold. Glows with mysterious power."
+	description = "缓慢治愈所有伤害类型。具有相当高的过量阈值。散发着神秘的光芒。"
 	overdose_threshold = 150
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -526,7 +526,7 @@
 ///Used for clownery
 /datum/reagent/lube
 	name = "Space Lube"
-	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
+	description = "润滑剂是一种涂在两个移动表面之间以减少摩擦和磨损的物质。嘿嘿。"
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
 	var/lube_kind = TURF_WET_LUBE ///What kind of slipperiness gets added to turfs
@@ -654,7 +654,7 @@
 		affected_human.update_body(is_creating = TRUE)
 		if(SPT_PROB(3.5, seconds_per_tick))
 			if(affected_human.w_uniform)
-				affected_mob.visible_message(pick("<b>[affected_mob]</b>'s collar pops up without warning.</span>", "<b>[affected_mob]</b> flexes [affected_mob.p_their()] arms."))
+				affected_mob.visible_message(pick("<b>[affected_mob]</b>'s collar pops up without warning.</span>", "<b>[affected_mob]</b> 弯曲了 [affected_mob.p_their()] 手臂。"))
 			else
 				affected_mob.visible_message("<b>[affected_mob]</b> flexes [affected_mob.p_their()] arms.")
 	if(SPT_PROB(5, seconds_per_tick))
@@ -673,7 +673,7 @@
 
 /datum/reagent/mutationtoxin
 	name = "Stable Mutation Toxin"
-	description = "A humanizing toxin."
+	description = "一种人性化毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM //metabolizes to prevent micro-dosage
 	taste_description = "slime"
@@ -814,7 +814,7 @@
 
 /datum/reagent/mutationtoxin/abductor
 	name = "Abductor Mutation Toxin"
-	description = "An alien toxin."
+	description = "一种外星毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/abductor
 	taste_description = "something out of this world... no, universe!"
@@ -823,7 +823,7 @@
 
 /datum/reagent/mutationtoxin/android
 	name = "Android Mutation Toxin"
-	description = "A robotic toxin."
+	description = "一种机器人毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/android
 	taste_description = "circuitry and steel"
@@ -833,7 +833,7 @@
 //BLACKLISTED RACES
 /datum/reagent/mutationtoxin/skeleton
 	name = "Skeleton Mutation Toxin"
-	description = "A scary toxin."
+	description = "一种可怕的毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/skeleton
 	taste_description = "milk... and lots of it"
@@ -842,7 +842,7 @@
 
 /datum/reagent/mutationtoxin/zombie
 	name = "Zombie Mutation Toxin"
-	description = "An undead toxin."
+	description = "一种不死族毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/zombie //Not the infectious kind. The days of xenobio zombie outbreaks are long past.
 	taste_description = "brai...nothing in particular"
@@ -851,7 +851,7 @@
 
 /datum/reagent/mutationtoxin/ash
 	name = "Ash Mutation Toxin"
-	description = "An ashen toxin."
+	description = "一种灰烬毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/lizard/ashwalker
 	taste_description = "savagery"
@@ -870,7 +870,7 @@
 //DANGEROUS RACES
 /datum/reagent/mutationtoxin/shadow
 	name = "Shadow Mutation Toxin"
-	description = "A dark toxin."
+	description = "一种黑暗毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/shadow
 	taste_description = "the night"
@@ -879,7 +879,7 @@
 
 /datum/reagent/mutationtoxin/plasma
 	name = "Plasma Mutation Toxin"
-	description = "A plasma-based toxin."
+	description = "一种基于等离子体的毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/plasmaman
 	taste_description = "plasma"
@@ -896,7 +896,7 @@
 
 /datum/reagent/mulligan
 	name = "Mulligan Toxin"
-	description = "This toxin will rapidly change the DNA of humanoid beings. Commonly used by Syndicate spies and assassins in need of an emergency ID change."
+	description = "这种毒素会迅速改变类人生物的DNA。通常被需要紧急更换身份的辛迪加间谍和刺客使用。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	metabolization_rate = INFINITY
 	taste_description = "slime"
@@ -908,13 +908,13 @@
 	if(!ishuman(affected_mob))
 		return
 	var/mob/living/carbon/human/affected_human = affected_mob
-	to_chat(affected_human, span_boldwarning("You grit your teeth in pain as your body rapidly mutates!"))
-	affected_human.visible_message("<b>[affected_human]</b> suddenly transforms!")
+	to_chat(affected_human, span_boldwarning("你咬紧牙关，忍受着身体迅速突变带来的痛苦！"))
+	affected_human.visible_message("<b>[affected_human]</b> 突然变形了！")
 	randomize_human_normie(affected_human)
 
 /datum/reagent/aslimetoxin
 	name = "Advanced Mutation Toxin"
-	description = "An advanced corruptive toxin produced by slimes."
+	description = "一种由史莱姆产生的高级腐化毒素。"
 	color = "#13BC5E" // rgb: 19, 188, 94
 	taste_description = "slime"
 	penetrates_skin = NONE
@@ -928,7 +928,7 @@
 
 /datum/reagent/gluttonytoxin
 	name = "Gluttony's Blessing"
-	description = "An advanced corruptive toxin produced by something terrible."
+	description = "一种由某种可怕之物产生的高级腐化毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	taste_description = "decay"
 	penetrates_skin = NONE
@@ -943,7 +943,7 @@
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
-	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
+	description = "一种能促进人体内血清素神经递质集中产生的化合物。"
 	color = "#202040" // rgb: 20, 20, 40
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
@@ -958,7 +958,7 @@
 
 /datum/reagent/oxygen
 	name = "Oxygen"
-	description = "A colorless, odorless gas. Grows on trees but is still pretty valuable."
+	description = "一种无色无味的气体。虽然树上就能长出来，但仍然相当有价值。"
 	color = COLOR_GRAY
 	taste_mult = 0 // oderless and tasteless
 	ph = 9.2//It's acutally a huge range and very dependant on the chemistry but ph is basically a made up var in its implementation anyways
@@ -974,7 +974,7 @@
 
 /datum/reagent/copper
 	name = "Copper"
-	description = "A highly ductile metal. Things made out of copper aren't very durable, but it makes a decent material for electrical wiring."
+	description = "一种延展性极高的金属。铜制物品并不十分耐用，但它是制作电线的理想材料。"
 	color = "#6E3B08" // rgb: 110, 59, 8
 	taste_description = "metal"
 	ph = 5.5
@@ -993,7 +993,7 @@
 
 /datum/reagent/nitrogen
 	name = "Nitrogen"
-	description = "A colorless, odorless, tasteless gas. A simple asphyxiant that can silently displace vital oxygen."
+	description = "一种无色、无味、无臭的气体。一种简单的窒息剂，能悄无声息地置换掉至关重要的氧气。"
 	color = COLOR_GRAY
 	taste_mult = 0
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1006,7 +1006,7 @@
 
 /datum/reagent/hydrogen
 	name = "Hydrogen"
-	description = "A colorless, odorless, nonmetallic, tasteless, highly combustible diatomic gas."
+	description = "一种无色、无味、非金属、无臭、高度易燃的双原子气体。"
 	color = COLOR_GRAY
 	taste_mult = 0
 	ph = 0.1//Now I'm stuck in a trap of my own design. Maybe I should make -ve phes? (not 0 so I don't get div/0 errors)
@@ -1015,7 +1015,7 @@
 
 /datum/reagent/potassium
 	name = "Potassium"
-	description = "A soft, low-melting solid that can easily be cut with a knife. Reacts violently with water."
+	description = "一种柔软、低熔点的固体，用刀就能轻易切开。遇水会发生剧烈反应。"
 	color = "#A0A0A0" // rgb: 160, 160, 160
 	taste_description = "sweetness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1023,7 +1023,7 @@
 
 /datum/reagent/mercury
 	name = "Mercury"
-	description = "A curious metal that's a liquid at room temperature. Neurodegenerative and very bad for the mind."
+	description = "一种奇特的金属，在室温下呈液态。具有神经退行性，对心智极为有害。"
 	color = COLOR_WEBSAFE_DARK_GRAY // rgb: 72, 72, 72A
 	taste_mult = 0 // apparently tasteless.
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1040,7 +1040,7 @@
 
 /datum/reagent/sulfur
 	name = "Sulfur"
-	description = "A sickly yellow solid mostly known for its nasty smell. It's actually much more helpful than it looks in biochemistry."
+	description = "一种病态的黄色固体，以其难闻的气味而闻名。实际上，它在生物化学中的作用远比看起来要有用得多。"
 	color = "#BF8C00" // rgb: 191, 140, 0
 	taste_description = "rotten eggs"
 	ph = 4.5
@@ -1049,7 +1049,7 @@
 
 /datum/reagent/carbon
 	name = "Carbon"
-	description = "A crumbly black solid that, while unexciting on a physical level, forms the base of all known life. Kind of a big deal."
+	description = "一种易碎的黑色固体，虽然在物理层面上平淡无奇，却构成了所有已知生命的基础。这玩意儿可了不得。"
 	color = "#1C1300" // rgb: 30, 20, 0
 	taste_description = "sour chalk"
 	ph = 5
@@ -1065,7 +1065,7 @@
 
 /datum/reagent/chlorine
 	name = "Chlorine"
-	description = "A pale yellow gas that's well known as an oxidizer. While it forms many harmless molecules in its elemental form it is far from harmless."
+	description = "一种淡黄色的气体，是众所周知的氧化剂。虽然其元素形态能形成许多无害的分子，但它本身远非无害。"
 	color = "#FFFB89" //pale yellow? let's make it light gray
 	taste_description = "chlorine"
 	ph = 7.4
@@ -1089,7 +1089,7 @@
 
 /datum/reagent/fluorine
 	name = "Fluorine"
-	description = "A comically-reactive chemical element. The universe does not want this stuff to exist in this form in the slightest."
+	description = "一种极具反应性的化学元素。宇宙压根儿就不想让这东西以这种形式存在。"
 	color = COLOR_GRAY
 	taste_description = "acid"
 	ph = 2
@@ -1110,7 +1110,7 @@
 
 /datum/reagent/sodium
 	name = "Sodium"
-	description = "A soft silver metal that can easily be cut with a knife. It's not salt just yet, so refrain from putting it on your chips."
+	description = "一种柔软的银色金属，用刀就能轻易切开。它现在还不是盐，所以别把它撒在你的薯条上。"
 	color = COLOR_GRAY
 	taste_description = "salty metal"
 	ph = 11.6
@@ -1119,7 +1119,7 @@
 
 /datum/reagent/phosphorus
 	name = "Phosphorus"
-	description = "A ruddy red powder that burns readily. Though it comes in many colors, the general theme is always the same."
+	description = "一种易燃烧的暗红色粉末。虽然它有许多颜色，但基本特性总是一样的。"
 	color = "#832828" // rgb: 131, 40, 40
 	taste_description = "vinegar"
 	ph = 6.5
@@ -1134,7 +1134,7 @@
 
 /datum/reagent/lithium
 	name = "Lithium"
-	description = "A silver metal, its claim to fame is its remarkably low density. Using it is a bit too effective in calming oneself down."
+	description = "一种银白色金属，以其极低的密度而闻名。用它来镇定情绪有点过于有效了。"
 	color = COLOR_GRAY
 	taste_description = "metal"
 	ph = 11.3
@@ -1150,7 +1150,7 @@
 
 /datum/reagent/glycerol
 	name = "Glycerol"
-	description = "A simple polyol compound. Sweet-tasting and of low toxicity."
+	description = "一种简单的多元醇化合物。味道甘甜，毒性低。"
 	color = "#D3B913"
 	taste_description = "sweetness"
 	ph = 9
@@ -1159,7 +1159,7 @@
 
 /datum/reagent/space_cleaner/sterilizine
 	name = "Sterilizine"
-	description = "Sterilizes wounds in preparation for surgery."
+	description = "用于手术前对伤口进行消毒。"
 	color = "#D0EFEE" // space cleaner but lighter
 	taste_description = "bitterness"
 	ph = 10.5
@@ -1178,7 +1178,7 @@
 
 /datum/reagent/iron
 	name = "Iron"
-	description = "Pure iron is a metal."
+	description = "纯铁是一种金属。"
 	taste_description = "iron"
 	material = /datum/material/iron
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1188,7 +1188,7 @@
 
 /datum/reagent/gold
 	name = "Gold"
-	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
+	description = "金是一种致密、柔软、有光泽的金属，也是已知延展性最好的金属。"
 	color = "#F7C430" // rgb: 247, 196, 48
 	taste_description = "expensive metal"
 	material = /datum/material/gold
@@ -1197,7 +1197,7 @@
 
 /datum/reagent/silver
 	name = "Silver"
-	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
+	description = "一种柔软、白色、有光泽的过渡金属，在所有元素中导电性最高，在所有金属中导热性最高。"
 	color = "#D0D0D0" // rgb: 208, 208, 208
 	taste_description = "expensive yet reasonable metal"
 	material = /datum/material/silver
@@ -1206,7 +1206,7 @@
 
 /datum/reagent/uranium
 	name = "Uranium"
-	description = "A jade-green metallic chemical element in the actinide series, weakly radioactive."
+	description = "一种锕系金属化学元素，呈翡翠绿色，具有弱放射性。"
 	color = "#5E9964" //this used to be silver, but liquid uranium can still be green and it's more easily noticeable as uranium like this so why bother?
 	taste_description = "the inside of a reactor"
 	ph = 4
@@ -1290,7 +1290,7 @@
 
 /datum/reagent/uranium/radium
 	name = "Radium"
-	description = "Radium is an alkaline earth metal. It is extremely radioactive."
+	description = "镭是一种碱土金属。它具有极强的放射性。"
 	color = "#00CC00" // ditto
 	taste_description = "the colour blue and regret"
 	tox_damage = 0.5
@@ -1302,7 +1302,7 @@
 
 /datum/reagent/bluespace
 	name = "Bluespace Dust"
-	description = "A dust composed of microscopic bluespace crystals, with minor space-warping properties."
+	description = "一种由微观蓝空晶体组成的粉末，具有微弱的空间扭曲特性。"
 	color = "#0000CC"
 	taste_description = "fizzling blue"
 	material = /datum/material/bluespace
@@ -1320,7 +1320,7 @@
 /datum/reagent/bluespace/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(current_cycle > 10 && SPT_PROB(7.5, seconds_per_tick))
-		to_chat(affected_mob, span_warning("You feel unstable..."))
+		to_chat(affected_mob, span_warning("你感到不稳定..."))
 		affected_mob.set_jitter_if_lower(2 SECONDS)
 		current_cycle = 1
 		addtimer(CALLBACK(affected_mob, TYPE_PROC_REF(/mob/living, bluespace_shuffle)), 3 SECONDS)
@@ -1330,7 +1330,7 @@
 
 /datum/reagent/aluminium
 	name = "Aluminium"
-	description = "A silvery white and ductile member of the boron group of chemical elements."
+	description = "一种银白色、有延展性的硼族化学元素。"
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	taste_description = "metal"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1338,7 +1338,7 @@
 
 /datum/reagent/silicon
 	name = "Silicon"
-	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
+	description = "硅是一种四价类金属，其化学活性低于其类似物碳。"
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	taste_mult = 0
 	material = /datum/material/glass
@@ -1348,7 +1348,7 @@
 
 /datum/reagent/fuel
 	name = "Welding Fuel"
-	description = "Required for welders. Flammable."
+	description = "焊接器所需。易燃。"
 	color = "#660000" // rgb: 102, 0, 0
 	taste_description = "gross metal"
 	penetrates_skin = NONE
@@ -1361,8 +1361,8 @@
 
 /datum/glass_style/drinking_glass/fuel
 	required_drink_type = /datum/reagent/fuel
-	name = "glass of welder fuel"
-	desc = "Unless you're an industrial tool, this is probably not safe for consumption."
+	name = "一杯焊接燃料"
+	desc = "除非你是一台工业机器，否则大概不能安全的喝下去。"
 	icon_state = "dr_gibb_glass"
 
 /datum/reagent/fuel/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
@@ -1408,7 +1408,7 @@
 
 /datum/reagent/space_cleaner
 	name = "Space Cleaner"
-	description = "A compound used to clean things. Now with 50% more sodium hypochlorite! Can be used to clean wounds, but it's not really meant for that."
+	description = "一种用于清洁的化合物。现在含有额外50%的次氯酸钠！可用于清洁伤口，但这并非其本意。"
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	taste_description = "sourness"
 	reagent_weight = 0.6 //so it sprays further
@@ -1442,13 +1442,13 @@
 /datum/reagent/space_cleaner/on_burn_wound_processing(datum/wound/burn/flesh/burn_wound)
 	burn_wound.sanitization += 0.3
 	if(prob(5))
-		to_chat(burn_wound.victim, span_notice("Your [burn_wound] stings and burns from [src] covering it! It <i>does</i> look pretty clean though."))
+		to_chat(burn_wound.victim, span_notice("你的 [burn_wound] 因覆盖了 [src] 而感到刺痛和灼烧！不过它 <i>确实</i> 看起来相当干净。"))
 		burn_wound.victim.apply_damage(0.5, TOX)
 		burn_wound.victim.apply_damage(0.5, BURN, burn_wound.limb, wound_bonus = CANT_WOUND)
 
 /datum/reagent/space_cleaner/ez_clean
 	name = "EZ Clean"
-	description = "A powerful, acidic cleaner sold by Waffle Corp. Affects organic matter while leaving other objects unaffected."
+	description = "一种由华夫公司销售的强力酸性清洁剂。影响有机物质，同时不损害其他物体。"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "acid"
 	penetrates_skin = VAPOR
@@ -1479,7 +1479,7 @@
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
-	description = "Cryptobiolin causes confusion and dizziness."
+	description = "隐生生物素会导致混乱和眩晕。"
 	color = "#ADB5DB" //i hate default violets and 'crypto' keeps making me think of cryo so it's light blue now
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "sourness"
@@ -1502,7 +1502,7 @@
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"
-	description = "A narcotic that impedes one's ability by slowing down the higher brain cell functions."
+	description = "一种通过减缓高级脑细胞功能来阻碍个体能力的麻醉剂。"
 	color = "#E07DDD" // pink = happy = dumb
 	taste_description = "numbness"
 	ph = 9.1
@@ -1523,7 +1523,7 @@
 
 /datum/reagent/cyborg_mutation_nanomachines
 	name = "Nanomachines"
-	description = "Microscopic construction robots. Nanomachines son!"
+	description = "微观构造机器人。纳米机器啊，小子！"
 	color = "#535E66" // rgb: 83, 94, 102
 	taste_description = "sludge"
 	penetrates_skin = NONE
@@ -1539,7 +1539,7 @@
 
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
-	description = "Microbes with an entirely alien cellular structure."
+	description = "具有完全外星细胞结构的微生物。"
 	color = "#535E66" // rgb: 83, 94, 102
 	taste_description = "sludge"
 	penetrates_skin = NONE
@@ -1552,7 +1552,7 @@
 
 /datum/reagent/fungalspores
 	name = "Tubercle Bacillus Cosmosis Microbes"
-	description = "Active fungal spores."
+	description = "活跃的真菌孢子。"
 	color = "#92D17D" // rgb: 146, 209, 125
 	taste_description = "slime"
 	penetrates_skin = NONE
@@ -1565,7 +1565,7 @@
 
 /datum/reagent/snail
 	name = "Agent-S"
-	description = "Virological agent that infects the subject with Gastrolosis."
+	description = "一种使受试者感染胃蠕虫病的病毒制剂。"
 	color = COLOR_VERY_DARK_LIME_GREEN // rgb(0, 51, 0)
 	taste_description = "goo"
 	penetrates_skin = NONE
@@ -1578,7 +1578,7 @@
 
 /datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"
-	description = "A perfluoronated sulfonic acid that forms a foam when mixed with water."
+	description = "一种全氟磺酸，与水混合时会形成泡沫。"
 	color = "#9E6B38" // rgb: 158, 107, 56
 	taste_description = "metal"
 	ph = 11
@@ -1587,7 +1587,7 @@
 
 /datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming Agent"
-	description = "An agent that yields metallic foam when mixed with light metal and a strong acid."
+	description = "一种与轻金属和强酸混合时会产生金属泡沫的试剂。"
 	color = "#664B63" // rgb: 102, 75, 99
 	taste_description = "metal"
 	ph = 11.5
@@ -1596,7 +1596,7 @@
 
 /datum/reagent/smart_foaming_agent //Smart foaming agent. Functions similarly to metal foam, but conforms to walls.
 	name = "Smart Foaming Agent"
-	description = "An agent that yields metallic foam which conforms to area boundaries when mixed with light metal and a strong acid."
+	description = "一种与轻金属和强酸混合时会产生符合区域边界的金属泡沫的试剂。"
 	color = "#664B63" // rgb: 102, 75, 99
 	taste_description = "metal"
 	ph = 11.8
@@ -1605,7 +1605,7 @@
 
 /datum/reagent/ammonia
 	name = "Ammonia"
-	description = "A caustic substance commonly used in fertilizer or household cleaners."
+	description = "一种腐蚀性物质，常用于肥料或家用清洁剂。"
 	color = "#404030" // rgb: 64, 64, 48
 	taste_description = "mordant"
 	ph = 11.6
@@ -1623,7 +1623,7 @@
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
-	description = "A secondary amine, mildly corrosive."
+	description = "一种仲胺，具有轻微腐蚀性。"
 	color = "#604030" // rgb: 96, 64, 48
 	taste_description = "iron"
 	ph = 12
@@ -1641,7 +1641,7 @@
 
 /datum/reagent/carbondioxide
 	name = "Carbon Dioxide"
-	description = "A gas commonly produced by burning carbon fuels. You're constantly producing this in your lungs."
+	description = "一种通常由含碳燃料燃烧产生的气体。你的肺部在持续产生这种气体。"
 	color = "#B0B0B0" // rgb : 192, 192, 192
 	taste_description = "something unknowable"
 	ph = 6
@@ -1707,7 +1707,7 @@
 
 /datum/reagent/colorful_reagent/powder
 	name = "Mundane Powder" //the name's a bit similar to the name of colorful reagent, but hey, they're practically the same chem anyway
-	description = "A powder that is used for coloring things."
+	description = "一种用于给物品着色的粉末。"
 	color = COLOR_WHITE
 	taste_description = "the back of class"
 	can_color_organs = TRUE
@@ -1715,11 +1715,11 @@
 
 /datum/reagent/colorful_reagent/powder/New()
 	if(colorname == "none")
-		description = "A rather mundane-looking powder. It doesn't look like it'd color much of anything..."
+		description = "一种看起来相当普通的粉末。看起来它似乎不能给什么东西上色……"
 	else if(colorname == "invisible")
-		description = "An invisible powder. Unfortunately, since it's invisible, it doesn't look like it'd color much of anything..."
+		description = "一种看不见的粉末。不幸的是，既然它是隐形的，看起来它似乎不能给什么东西上色……"
 	else
-		description = "\An [colorname] powder, used for coloring things [colorname]."
+		description = "\An [colorname] 粉末，用于给物品[colorname]着色。"
 	return ..()
 
 /datum/reagent/colorful_reagent/powder/red
@@ -1853,7 +1853,7 @@
 
 /datum/reagent/plantnutriment
 	name = "Generic Nutriment"
-	description = "Some kind of nutriment. You can't really tell what it is. You should probably report it, along with how you obtained it."
+	description = "某种营养剂。你不太能分辨出它是什么。你或许应该报告它，连同你是如何获得它的。"
 	color = COLOR_BLACK // RBG: 0, 0, 0
 	taste_description = "plant food"
 	ph = 3
@@ -1870,7 +1870,7 @@
 
 /datum/reagent/plantnutriment/eznutriment
 	name = "E-Z Nutrient"
-	description = "Contains electrolytes. It's what plants crave."
+	description = "含有电解质。植物渴望的就是这个。"
 	color = "#376400" // RBG: 50, 100, 0
 	tox_prob = 5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1885,7 +1885,7 @@
 
 /datum/reagent/plantnutriment/left4zednutriment
 	name = "Left 4 Zed"
-	description = "Unstable nutriment that makes plants mutate more often than usual."
+	description = "不稳定的营养剂，会使植物比平常更频繁地发生突变。"
 	color = "#1A1E4D" // RBG: 26, 30, 77
 	tox_prob = 13
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1897,7 +1897,7 @@
 
 /datum/reagent/plantnutriment/robustharvestnutriment
 	name = "Robust Harvest"
-	description = "Very potent nutriment that slows plants from mutating."
+	description = "效力极强的营养剂，能减缓植物的突变速度。"
 	color = "#9D9D00" // RBG: 157, 157, 0
 	tox_prob = 8
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1912,7 +1912,7 @@
 
 /datum/reagent/plantnutriment/endurogrow
 	name = "Enduro Grow"
-	description = "A specialized nutriment, which decreases product quantity and potency, but strengthens the plants endurance."
+	description = "一种专门的营养剂，会降低产物的数量和效力，但能增强植物的耐力。"
 	color = "#a06fa7" // RBG: 160, 111, 167
 	tox_prob = 8
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1927,7 +1927,7 @@
 
 /datum/reagent/plantnutriment/liquidearthquake
 	name = "Liquid Earthquake"
-	description = "A specialized nutriment, which increases the plant's production speed, as well as it's susceptibility to weeds."
+	description = "一种专门的营养剂，能提高植物的生产速度，同时也会增加其受杂草影响的易感性。"
 	color = "#912e00" // RBG: 145, 46, 0
 	tox_prob = 13
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1947,7 +1947,7 @@
 
 /datum/reagent/fuel/oil
 	name = "Oil"
-	description = "Burns in a small smoky fire, can be used to get Ash."
+	description = "能在小型烟熏火中燃烧，可用于获取灰烬。"
 	color = "#2D2D2D"
 	taste_description = "oil"
 	burning_temperature = 1200//Oil is crude
@@ -1959,7 +1959,7 @@
 
 /datum/reagent/stable_plasma
 	name = "Stable Plasma"
-	description = "Non-flammable plasma locked into a liquid form that cannot ignite or become gaseous/solid."
+	description = "不可燃等离子体，被锁定为液态，无法点燃或变为气态/固态。"
 	color = "#2D2D2D"
 	taste_description = "bitterness"
 	taste_mult = 1.5
@@ -1973,7 +1973,7 @@
 
 /datum/reagent/iodine
 	name = "Iodine"
-	description = "Commonly added to table salt as a nutrient. On its own it tastes far less pleasing."
+	description = "通常作为营养素添加到食盐中。单独品尝时味道远没有那么好。"
 	color = "#BC8A00"
 	taste_description = "metal"
 	ph = 4.5
@@ -1982,7 +1982,7 @@
 
 /datum/reagent/carpet
 	name = "Carpet"
-	description = "For those that need a more creative way to roll out a red carpet."
+	description = "为那些需要更富创意方式铺开红地毯的人准备。"
 	color = "#771100"
 	taste_description = "carpet" // Your tounge feels furry.
 	var/carpet_type = /turf/open/floor/carpet
@@ -1996,7 +1996,7 @@
 
 /datum/reagent/carpet/black
 	name = "Black Carpet"
-	description = "The carpet also comes in... BLAPCK" //yes, the typo is intentional
+	description = "这种地毯还有……黑黑黑黑色" //yes, the typo is intentional
 	color = "#1E1E1E"
 	taste_description = "licorice"
 	carpet_type = /turf/open/floor/carpet/black
@@ -2005,7 +2005,7 @@
 
 /datum/reagent/carpet/blue
 	name = "Blue Carpet"
-	description = "For those that really need to chill out for a while."
+	description = "专为那些真的需要冷静一段时间的人准备。"
 	color = "#0000DC"
 	taste_description = "frozen carpet"
 	carpet_type = /turf/open/floor/carpet/blue
@@ -2014,7 +2014,7 @@
 
 /datum/reagent/carpet/cyan
 	name = "Cyan Carpet"
-	description = "For those that need a throwback to the years of using poison as a construction material. Smells like asbestos."
+	description = "专为那些需要重温用毒物作为建筑材料岁月的人准备。闻起来像石棉。"
 	color = "#00B4FF"
 	taste_description = "asbestos"
 	carpet_type = /turf/open/floor/carpet/cyan
@@ -2023,7 +2023,7 @@
 
 /datum/reagent/carpet/green
 	name = "Green Carpet"
-	description = "For those that need the perfect flourish for green eggs and ham."
+	description = "专为那些需要为绿鸡蛋和火腿增添完美点缀的人准备。"
 	color = COLOR_CRAYON_GREEN
 	taste_description = "Green" //the caps is intentional
 	carpet_type = /turf/open/floor/carpet/green
@@ -2032,7 +2032,7 @@
 
 /datum/reagent/carpet/orange
 	name = "Orange Carpet"
-	description = "For those that prefer a healthy carpet to go along with their healthy diet."
+	description = "专为那些喜欢在健康饮食之余也铺上健康地毯的人准备。"
 	color = "#E78108"
 	taste_description = "orange juice"
 	carpet_type = /turf/open/floor/carpet/orange
@@ -2041,7 +2041,7 @@
 
 /datum/reagent/carpet/purple
 	name = "Purple Carpet"
-	description = "For those that need to waste copious amounts of healing jelly in order to look fancy."
+	description = "专为那些需要浪费大量治疗胶冻来彰显品味的人准备。"
 	color = "#91D865"
 	taste_description = "jelly"
 	carpet_type = /turf/open/floor/carpet/purple
@@ -2050,7 +2050,7 @@
 
 /datum/reagent/carpet/red
 	name = "Red Carpet"
-	description = "For those that need an even redder carpet."
+	description = "专为那些需要更红地毯的人准备。"
 	color = "#731008"
 	taste_description = "blood and gibs"
 	carpet_type = /turf/open/floor/carpet/red
@@ -2059,7 +2059,7 @@
 
 /datum/reagent/carpet/royal
 	name = "Royal Carpet?"
-	description = "For those that break the game and need to make an issue report."
+	description = "专为那些搞坏游戏并需要提交问题报告的人准备。"
 
 /datum/reagent/carpet/royal/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -2068,7 +2068,7 @@
 		// Heads of staff and the captain have a "royal metabolism"
 		if(HAS_TRAIT(liver, TRAIT_ROYAL_METABOLISM))
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, "You feel like royalty.")
+				to_chat(affected_mob, "你感觉自己像个皇室成员。")
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.say(pick("Peasants..","This carpet is worth more than your contracts!","I could fire you at any time..."), forced = "royal carpet")
 
@@ -2079,7 +2079,7 @@
 
 /datum/reagent/carpet/royal/black
 	name = "Royal Black Carpet"
-	description = "For those that feel the need to show off their time-wasting skills."
+	description = "专为那些觉得有必要炫耀自己浪费时间技巧的人准备。"
 	color = COLOR_BLACK
 	taste_description = "royalty"
 	carpet_type = /turf/open/floor/carpet/royalblack
@@ -2088,7 +2088,7 @@
 
 /datum/reagent/carpet/royal/blue
 	name = "Royal Blue Carpet"
-	description = "For those that feel the need to show off their time-wasting skills... in BLUE."
+	description = "专为那些觉得有必要炫耀自己浪费时间技巧的人准备...不过是蓝色的。"
 	color = "#5A64C8"
 	taste_description = "blueyalty" //also intentional
 	carpet_type = /turf/open/floor/carpet/royalblue
@@ -2097,7 +2097,7 @@
 
 /datum/reagent/carpet/neon
 	name = "Neon Carpet"
-	description = "For those who like the 1980s, Vegas, and debugging."
+	description = "专为那些喜欢1980年代、拉斯维加斯和调试的人准备。"
 	color = COLOR_ALMOST_BLACK
 	taste_description = "neon"
 	ph = 6
@@ -2107,7 +2107,7 @@
 
 /datum/reagent/carpet/neon/simple_white
 	name = "Simple White Neon Carpet"
-	description = "For those who like fluorescent lighting."
+	description = "专为那些喜欢荧光灯照明的人准备。"
 	color = LIGHT_COLOR_HALOGEN
 	taste_description = "sodium vapor"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2116,7 +2116,7 @@
 
 /datum/reagent/carpet/neon/simple_red
 	name = "Simple Red Neon Carpet"
-	description = "For those who like a bit of uncertainty."
+	description = "专为那些喜欢一点不确定性的人准备。"
 	color = COLOR_RED
 	taste_description = "neon hallucinations"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2125,7 +2125,7 @@
 
 /datum/reagent/carpet/neon/simple_orange
 	name = "Simple Orange Neon Carpet"
-	description = "For those who like some sharp edges."
+	description = "适合那些喜欢锐利边缘的人。"
 	color = COLOR_ORANGE
 	taste_description = "neon spines"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2134,7 +2134,7 @@
 
 /datum/reagent/carpet/neon/simple_yellow
 	name = "Simple Yellow Neon Carpet"
-	description = "For those who need a little stability in their lives."
+	description = "适合那些生活中需要一点稳定的人。"
 	color = COLOR_YELLOW
 	taste_description = "stabilized neon"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2143,7 +2143,7 @@
 
 /datum/reagent/carpet/neon/simple_lime
 	name = "Simple Lime Neon Carpet"
-	description = "For those who need a little bitterness."
+	description = "适合那些需要一点苦涩的人。"
 	color = COLOR_LIME
 	taste_description = "neon citrus"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2152,7 +2152,7 @@
 
 /datum/reagent/carpet/neon/simple_green
 	name = "Simple Green Neon Carpet"
-	description = "For those who need a little bit of change in their lives."
+	description = "适合那些生活中需要一点改变的人。"
 	color = COLOR_GREEN
 	taste_description = "radium"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2161,7 +2161,7 @@
 
 /datum/reagent/carpet/neon/simple_teal
 	name = "Simple Teal Neon Carpet"
-	description = "For those who need a smoke."
+	description = "适合那些需要来根烟的人。"
 	color = COLOR_TEAL
 	taste_description = "neon tobacco"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2170,7 +2170,7 @@
 
 /datum/reagent/carpet/neon/simple_cyan
 	name = "Simple Cyan Neon Carpet"
-	description = "For those who need to take a breath."
+	description = "适合那些需要喘口气的人。"
 	color = COLOR_DARK_CYAN
 	taste_description = "neon air"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2179,7 +2179,7 @@
 
 /datum/reagent/carpet/neon/simple_blue
 	name = "Simple Blue Neon Carpet"
-	description = "For those who need to feel joy again."
+	description = "适合那些需要重新感受快乐的人。"
 	color = COLOR_NAVY
 	taste_description = "neon blue"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2188,7 +2188,7 @@
 
 /datum/reagent/carpet/neon/simple_purple
 	name = "Simple Purple Neon Carpet"
-	description = "For those that need a little bit of exploration."
+	description = "适合那些需要一点探索的人。"
 	color = COLOR_PURPLE
 	taste_description = "neon hell"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2197,7 +2197,7 @@
 
 /datum/reagent/carpet/neon/simple_violet
 	name = "Simple Violet Neon Carpet"
-	description = "For those who want to temp fate."
+	description = "适合那些想挑战命运的人。"
 	color = COLOR_VIOLET
 	taste_description = "neon hell"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2206,7 +2206,7 @@
 
 /datum/reagent/carpet/neon/simple_pink
 	name = "Simple Pink Neon Carpet"
-	description = "For those just want to stop thinking so much."
+	description = "适合那些只想停止过度思考的人。"
 	color = COLOR_PINK
 	taste_description = "neon pink"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2215,7 +2215,7 @@
 
 /datum/reagent/carpet/neon/simple_black
 	name = "Simple Black Neon Carpet"
-	description = "For those who need to catch their breath."
+	description = "适合那些需要缓口气的人。"
 	color = COLOR_BLACK
 	taste_description = "neon ash"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2224,7 +2224,7 @@
 
 /datum/reagent/bromine
 	name = "Bromine"
-	description = "A brownish liquid that's highly reactive. Useful for stopping free radicals, but not intended for human consumption."
+	description = "一种棕色的高活性液体。可用于阻止自由基，但不适合人类食用。"
 	color = "#D35415"
 	taste_description = "chemicals"
 	ph = 7.8
@@ -2233,7 +2233,7 @@
 
 /datum/reagent/pentaerythritol
 	name = "Pentaerythritol"
-	description = "A crystalline compound used in the synthesis of explosives and other chemicals."
+	description = "一种用于合成炸药和其他化学品的结晶化合物。"
 	color = "#EEEEEF"
 	taste_description = "acid"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2241,7 +2241,7 @@
 
 /datum/reagent/acetaldehyde
 	name = "Acetaldehyde"
-	description = "A colorless liquid with a strong smell. Used in the synthesis of other chemicals."
+	description = "一种具有强烈气味的无色液体。用于合成其他化学品。"
 	color = "#EEEEEF"
 	taste_description = "dead people" //made from formaldehyde, ya get da joke ?
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2249,7 +2249,7 @@
 
 /datum/reagent/acetone_oxide
 	name = "Acetone Oxide"
-	description = "A highly reactive compoud derived from acetone. Known to cause burns on contact. Used in the synthesis of various explosives."
+	description = "一种从丙酮衍生的高活性化合物。已知接触会引起灼伤。用于合成各种炸药。"
 	color = "#966199cb"
 	taste_description = "acid"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2269,7 +2269,7 @@
 
 /datum/reagent/phenol
 	name = "Phenol"
-	description = "An aromatic ring of carbon with a hydroxyl group. A useful precursor to some medicines, but has no healing properties on its own."
+	description = "一个带有羟基的芳香碳环。是某些药物的有用前体，但其本身没有治疗特性。"
 	color = "#E7EA91"
 	taste_description = "acid"
 	ph = 5.5
@@ -2278,7 +2278,7 @@
 
 /datum/reagent/ash
 	name = "Ash"
-	description = "A fine ash. Supposedly phoenixes rise from these, but you've never seen it."
+	description = "一种细灰。据说凤凰会从中重生，但你从未见过。"
 	color = "#515151"
 	taste_description = "ash"
 	ph = 6.5
@@ -2293,15 +2293,15 @@
 
 /datum/reagent/acetone
 	name = "Acetone"
-	description = "A slick, slightly carcinogenic liquid. Has a multitude of mundane uses in everyday life."
+	description = "一种光滑、略有致癌性的液体。在日常生活中具有多种平凡用途。"
 	color = "#AF14B7"
 	taste_description = "acid"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/colorful_reagent
-	name = "Colorful Reagent"
-	description = "Thoroughly sample the rainbow."
+	name = "彩色试剂"
+	description = "彻底品味彩虹。"
 	var/list/random_color_list = list("#00aedb","#a200ff","#f47835","#d41243","#d11141","#00b159","#00aedb","#f37735","#ffc425","#008744","#0057e7","#d62d20","#ffa700")
 	color = COLOR_GRAY
 	taste_description = "rainbows"
@@ -2390,7 +2390,7 @@
 
 /datum/reagent/hair_dye
 	name = "Quantum Hair Dye"
-	description = "Has a high chance of making you look like a mad scientist."
+	description = "有很大几率让你看起来像个疯狂的科学家。"
 	var/list/potential_colors = list("#00aadd","#aa00ff","#ff7733","#dd1144","#dd1144","#00bb55","#00aadd","#ff7733","#ffcc22","#008844","#0055ee","#dd2222","#ffaa00") // fucking hair code
 	color = COLOR_GRAY
 	taste_description = "sourness"
@@ -2420,7 +2420,7 @@
 
 /datum/reagent/barbers_aid
 	name = "Barber's Aid"
-	description = "A solution to hair loss across the world."
+	description = "一种解决全球脱发问题的方案。"
 	color = "#A86B45" //hair is brown
 	taste_description = "sourness"
 	penetrates_skin = NONE
@@ -2443,11 +2443,11 @@
 	if(!HAS_TRAIT(exposed_human, TRAIT_BALD))
 		var/datum/sprite_accessory/hair/picked_hair = pick(SSaccessories.hairstyles_list)
 		exposed_human.set_hairstyle(picked_hair, update = TRUE)
-	to_chat(exposed_human, span_notice("Hair starts sprouting from your [HAS_TRAIT(exposed_human, TRAIT_BALD) ? "face" : "scalp"]."))
+	to_chat(exposed_human, span_notice("毛发开始从你的[HAS_TRAIT(exposed_human, TRAIT_BALD) ? "face" : "scalp"]上长出来。"))
 
 /datum/reagent/concentrated_barbers_aid
 	name = "Concentrated Barber's Aid"
-	description = "A concentrated solution to hair loss across the world."
+	description = "一种解决全球脱发问题的浓缩溶液。"
 	color = "#7A4E33" //hair is dark browmn
 	taste_description = "sourness"
 	penetrates_skin = NONE
@@ -2468,7 +2468,7 @@
 		exposed_human.set_facial_hairstyle("Beard (Very Long)", update = FALSE)
 	if(!HAS_TRAIT(exposed_human, TRAIT_BALD))
 		exposed_human.set_hairstyle("Very Long Hair", update = TRUE)
-	to_chat(exposed_human, span_notice("Your[HAS_TRAIT(exposed_human, TRAIT_BALD) ? " facial" : ""] hair starts growing at an incredible speed!"))
+	to_chat(exposed_human, span_notice("你的[HAS_TRAIT(exposed_human, TRAIT_BALD) ? " facial" : ""]毛发开始以惊人的速度生长！"))
 
 /datum/reagent/concentrated_barbers_aid/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -2490,7 +2490,7 @@
 
 /datum/reagent/baldium
 	name = "Baldium"
-	description = "A major cause of hair loss across the world."
+	description = "全球脱发的主要原因。"
 	color = "#ecb2cf"
 	taste_description = "bitterness"
 	penetrates_skin = NONE
@@ -2515,7 +2515,7 @@
 
 /datum/reagent/saltpetre
 	name = "Saltpetre"
-	description = "Volatile. Controversial. Third Thing."
+	description = "易挥发。有争议。第三件事。"
 	color = "#60A584" // rgb: 96, 165, 132
 	taste_description = "cool salt"
 	ph = 11.2
@@ -2530,7 +2530,7 @@
 
 /datum/reagent/lye
 	name = "Lye"
-	description = "Also known as sodium hydroxide. As a profession making this is somewhat underwhelming."
+	description = "也称为氢氧化钠。作为一种职业，制造这东西有点令人失望。"
 	color = "#FFFFD6" // very very light yellow
 	taste_description = "acid"
 	ph = 11.9
@@ -2539,7 +2539,7 @@
 
 /datum/reagent/drying_agent
 	name = "Drying Agent"
-	description = "A desiccant. Can be used to dry things."
+	description = "一种干燥剂。可用于干燥物品。"
 	color = "#A70FFF"
 	taste_description = "dryness"
 	ph = 10.7
@@ -2625,7 +2625,7 @@
 
 /datum/reagent/royal_bee_jelly
 	name = "Royal Bee Jelly"
-	description = "Royal Bee Jelly, if injected into a Queen Space Bee said bee will split into two bees."
+	description = "皇家蜂王浆，如果注入蜂后太空蜂体内，该蜂会分裂成两只。"
 	color = "#00ff80"
 	taste_description = "strange honey"
 	ph = 3
@@ -2670,7 +2670,7 @@
 
 /datum/reagent/magillitis
 	name = "Magillitis"
-	description = "An experimental serum which causes rapid muscular growth in Hominidae. Side effects may include hypertrichosis, violent outbursts, and an unending affinity for bananas."
+	description = "一种实验性血清，会导致人科动物肌肉快速生长。副作用可能包括多毛症、暴力发作以及对香蕉的无尽喜爱。"
 	color = "#00f041"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -2683,7 +2683,7 @@
 
 /datum/reagent/growthserum
 	name = "Growth Serum"
-	description = "A commercial chemical designed to help older men in the bedroom."//not really it just makes you a giant
+	description = "一种旨在帮助老年男性在卧室中表现的商业化学品。"//not really it just makes you a giant
 	color = "#ff0000"//strong red. rgb 255, 0, 0
 	var/current_size = RESIZE_DEFAULT_SIZE
 	taste_description = "bitterness" // apparently what viagra tastes like
@@ -2720,7 +2720,7 @@
 
 /datum/reagent/plastic_polymers
 	name = "Plastic Polymers"
-	description = "Petroleum based components of plastic."
+	description = "塑料的石油基成分。"
 	color = "#f7eded"
 	taste_description = "plastic"
 	ph = 6
@@ -2729,7 +2729,7 @@
 
 /datum/reagent/glitter
 	name = "Glitter"
-	description = "The herpes of arts and crafts."
+	description = "手工艺界的疱疹。"
 	data = list("colors" = list(COLOR_WHITE = 100))
 	color = COLOR_WHITE //pure white
 	taste_description = "plastic"
@@ -2788,7 +2788,7 @@
 
 /datum/reagent/confetti
 	name = "Confetti"
-	description = "Tiny plastic flakes that are impossible to sweep up."
+	description = "难以清扫的微小塑料碎片。"
 	color = "#7dd87b"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -2801,7 +2801,7 @@
 
 /datum/reagent/pax
 	name = "Pax"
-	description = "A colorless liquid that suppresses violence in its subjects."
+	description = "一种无色液体，能抑制受试者的暴力倾向。"
 	color = "#AAAAAA55"
 	taste_description = "water"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
@@ -2812,7 +2812,7 @@
 
 /datum/reagent/bz_metabolites
 	name = "BZ Metabolites"
-	description = "A harmless metabolite of BZ gas."
+	description = "BZ气体的一种无害代谢物。"
 	color = "#FAFF00"
 	taste_description = "acrid cinnamon"
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
@@ -2851,7 +2851,7 @@
 
 /datum/reagent/peaceborg/confuse
 	name = "Dizzying Solution"
-	description = "Makes the target off balance and dizzy"
+	description = "使目标失去平衡并感到眩晕"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "dizziness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
@@ -2867,7 +2867,7 @@
 
 /datum/reagent/peaceborg/tire
 	name = "Tiring Solution"
-	description = "An extremely weak stamina-toxin that tires out the target. Completely harmless."
+	description = "一种极其微弱的耐力毒素，会使目标疲劳。完全无害。"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "tiredness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
@@ -2885,7 +2885,7 @@
 
 /datum/reagent/gondola_mutation_toxin
 	name = "Tranquility"
-	description = "A highly mutative liquid of unknown origin."
+	description = "一种来源未知的高突变性液体。"
 	color = "#9A6750" //RGB: 154, 103, 80
 	taste_description = "inner peace"
 	penetrates_skin = NONE
@@ -2898,14 +2898,14 @@
 
 /datum/reagent/spider_extract
 	name = "Spider Extract"
-	description = "A highly specialized extract coming from the Australicus sector, used to create broodmother spiders."
+	description = "一种来自澳大利亚星区的高度特化提取物，用于制造育母蜘蛛。"
 	color = "#ED2939"
 	taste_description = "upside down"
 
 /// Improvised reagent that induces vomiting. Created by dipping a dead mouse in welder fluid.
 /datum/reagent/yuck
 	name = "Organic Slurry"
-	description = "A mixture of various colors of fluid. Induces vomiting."
+	description = "多种颜色液体的混合物。会诱发呕吐。"
 	color = "#545000"
 	taste_description = "insides"
 	taste_mult = 4
@@ -2916,8 +2916,8 @@
 
 /datum/glass_style/drinking_glass/yuck
 	required_drink_type = /datum/reagent/yuck
-	name = "glass of ...yuck!"
-	desc = "It smells like a carcass, and doesn't look much better."
+	name = "一杯……恶心！"
+	desc = "闻起来像一具尸体，看起来也好不到哪里去。"
 
 /datum/reagent/yuck/on_mob_add(mob/living/affected_mob)
 	if(HAS_TRAIT(affected_mob, TRAIT_NOHUNGER)) //they can't puke
@@ -2966,7 +2966,7 @@
 //monkey powder heehoo
 /datum/reagent/monkey_powder
 	name = "Monkey Powder"
-	description = "Just add water!"
+	description = "只需加水！"
 	color = "#9C5A19"
 	taste_description = "bananas"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2974,7 +2974,7 @@
 
 /datum/reagent/plasma_oxide
 	name = "Hyper-Plasmium Oxide"
-	description = "Compound created deep in the cores of demon-class planets. Commonly found through deep geysers."
+	description = "在恶魔级行星核心深处形成的化合物。通常通过深层间歇泉发现。"
 	color = "#470750" // rgb: 255, 255, 255
 	taste_description = "hell"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2982,7 +2982,7 @@
 
 /datum/reagent/exotic_stabilizer
 	name = "Exotic Stabilizer"
-	description = "Advanced compound created by mixing stabilizing agent and hyper-plasmium oxide."
+	description = "通过混合稳定剂和超等离子氧化物制成的高级化合物。"
 	color = "#180000" // rgb: 255, 255, 255
 	taste_description = "blood"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2990,7 +2990,7 @@
 
 /datum/reagent/wittel
 	name = "Wittel"
-	description = "An extremely rare metallic-white substance only found on demon-class planets."
+	description = "一种极其稀有的金属白色物质，仅在恶魔级行星上发现。"
 	color = COLOR_WHITE // rgb: 255, 255, 255
 	taste_mult = 0 // oderless and tasteless
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -3052,7 +3052,7 @@
 
 /datum/reagent/gravitum
 	name = "Gravitum"
-	description = "A rare kind of null fluid, capable of temporarily removing all weight of whatever it touches." //i dont even
+	description = "一种稀有的零流体，能够暂时移除其接触物的所有重量。" //i dont even
 	color = "#050096" // rgb: 5, 0, 150
 	taste_mult = 0 // oderless and tasteless
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM //20 times as long, so it's actually viable to use
@@ -3078,7 +3078,7 @@
 
 /datum/reagent/cellulose
 	name = "Cellulose Fibers"
-	description = "A crystalline polydextrose polymer, plants swear by this stuff."
+	description = "一种结晶聚葡萄糖聚合物，植物对此物深信不疑。"
 	color = "#E6E6DA"
 	taste_mult = 0
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -3087,7 +3087,7 @@
 // "Second wind" reagent generated when someone suffers a wound. Epinephrine, adrenaline, and stimulants are all already taken so here we are
 /datum/reagent/determination
 	name = "Determination"
-	description = "For when you need to push on a little more. Do NOT allow near plants."
+	description = "当你需要再坚持一下的时候。切勿让植物靠近。"
 	color = "#D2FFFA"
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM // 5u (WOUND_DETERMINATION_CRITICAL) will last for ~34 seconds
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -3173,7 +3173,7 @@
 
 /datum/reagent/universal_indicator
 	name = "Universal Indicator"
-	description = "A solution that can be used to create pH paper booklets, or sprayed on things to colour them by their pH."
+	description = "一种可用于制作pH试纸册，或喷洒在物体上根据其pH值着色的溶液。"
 	taste_description = "a strong chemical taste"
 	color = "#1f8016"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -3190,7 +3190,7 @@
 // [Original ants concept by Keelin on Goon]
 /datum/reagent/ants
 	name = "Ants"
-	description = "A genetic crossbreed between ants and termites, their bites land at a 3 on the Schmidt Pain Scale."
+	description = "蚂蚁和白蚁的基因杂交品种，它们的叮咬在施密特疼痛量表上达到3级。"
 	color = "#993333"
 	taste_mult = 1.3
 	taste_description = "tiny legs scuttling down the back of your throat"
@@ -3217,8 +3217,8 @@
 
 /datum/glass_style/drinking_glass/ants
 	required_drink_type = /datum/reagent/ants
-	name = "glass of ants"
-	desc = "Bottoms up...?"
+	name = "一杯蚂蚁"
+	desc = "干杯……？"
 
 /datum/reagent/ants/on_mob_life(mob/living/carbon/victim, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -3285,7 +3285,7 @@
 
 /datum/reagent/ants/fire
 	name = "Fire ants"
-	description = "A rare mutation of space ants, born from the heat of a plasma fire. Their bites land a 3.7 on the Schmidt Pain Scale."
+	description = "太空蚂蚁的一种罕见突变体，由等离子火焰的高温孕育而生。它们的叮咬在施密特疼痛量表上达到3.7级。"
 	color = "#b51f1f"
 	taste_description = "tiny flaming legs scuttling down the back of your throat"
 	ant_damage = 0.05 // Roughly 64 brute with 100u
@@ -3300,7 +3300,7 @@
 //This is intended to a be a scarce reagent to gate certain drugs and toxins with. Do not put in a synthesizer. Renewable sources of this reagent should be inefficient.
 /datum/reagent/lead
 	name = "Lead"
-	description = "A dull metallic element with a low melting point."
+	description = "一种熔点较低的暗沉金属元素。"
 	taste_description = "metal"
 	color = "#80919d"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
@@ -3331,7 +3331,7 @@
 
 /datum/reagent/brimdust
 	name = "Brimdust"
-	description = "A brimdemon's dust. Consumption is not recommended, although plants like it."
+	description = "炼狱恶魔的粉尘。不建议食用，但植物喜欢它。"
 	color = "#522546"
 	taste_description = "burning"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -3352,7 +3352,7 @@
 // Reagent added to food by chef's with a chef's kiss. Makes people happy.
 /datum/reagent/love
 	name = "Love"
-	description = "This food's been made... with love."
+	description = "这份食物是……用爱制作的。"
 	color = "#ff7edd"
 	taste_description = "love"
 	taste_mult = 10
@@ -3388,7 +3388,7 @@
 /datum/reagent/hauntium
 	name = "Hauntium"
 	color = "#3B3B3BA3"
-	description = "An eerie liquid created by purifying the presence of ghosts. If it happens to get in your body, it starts hurting your soul." //soul as in mood and heart
+	description = "一种通过净化鬼魂存在而制成的诡异液体。如果它进入你的身体，就会开始伤害你的灵魂。" //soul as in mood and heart
 	taste_description = "evil spirits"
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM
 	material = /datum/material/hauntium
@@ -3438,7 +3438,7 @@
 
 /datum/reagent/luminescent_fluid
 	name = "Green Luminiscent Fluid"
-	description = "A colored fluid that produces light as a result of a chemical reaction with oxygen." // Reacts with oxygen in hydrogen peroxide IRL
+	description = "一种有色流体，通过与氧气发生化学反应而产生光。" // Reacts with oxygen in hydrogen peroxide IRL
 	taste_description = "buttery acid" // Best way I can describe glowstick fluid's taste
 	color = LIGHT_COLOR_GREEN
 	metabolization_rate = 0.3 * REAGENTS_METABOLISM

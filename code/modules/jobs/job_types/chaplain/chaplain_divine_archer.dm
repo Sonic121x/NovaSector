@@ -4,16 +4,16 @@
 
 /// undersuit
 /obj/item/clothing/under/rank/civilian/chaplain/divine_archer
-	name = "divine archer's garb"
-	desc = "Inner garb for divine archers."
+	name = "神圣射手装束"
+	desc = "神圣射手的贴身装束。"
 	icon_state = "archergarb"
 	inhand_icon_state = "archergarb"
 	can_adjust = TRUE
 
 /// suit
 /obj/item/clothing/suit/hooded/chaplain_hoodie/divine_archer
-	name = "divine archer coat"
-	desc = "Outer coat for divine archers. Offers some protection."
+	name = "神圣射手外套"
+	desc = "神圣射手的外套。提供一定的保护。"
 	icon_state = "archercoat"
 	inhand_icon_state = "archercoat"
 	body_parts_covered = CHEST|GROIN|LEGS
@@ -36,15 +36,15 @@
 
 /// hood
 /obj/item/clothing/head/hooded/chaplain_hood/divine_archer
-	name = "divine archer hood"
-	desc = "A divine hood included, because have you ever got the sun in your eyes during archery? Oh, it's just the worst."
+	name = "神射手兜帽"
+	desc = "附带一顶神圣兜帽，因为你在射箭时有没有被阳光晃过眼睛？哦，那真是太糟糕了。"
 	icon_state = "archerhood"
 	armor_type = /datum/armor/chaplainsuit_armor_weaker
 
 /// gloves
 /obj/item/clothing/gloves/divine_archer
-	name = "divine archer bracers"
-	desc = "Bracers, a wise choice for archers who do not want their outfit to get in the way of drawing and firing their weapon."
+	name = "神圣射手护腕"
+	desc = "护腕，对于不想让服装妨碍拉弓和射击的弓箭手来说，这是个明智的选择。"
 	icon_state = "archerbracers"
 	inhand_icon_state = "archerbracers"
 	body_parts_covered = ARMS|HANDS
@@ -55,8 +55,8 @@
 
 /// boots
 /obj/item/clothing/shoes/divine_archer
-	name = "divine archer boots"
-	desc = "Boots, For steady footing while aiming."
+	name = "神圣射手靴"
+	desc = "靴子，用于瞄准时保持稳定。"
 	icon_state = "archerboots"
 	inhand_icon_state = "archerboots"
 	body_parts_covered = LEGS|FEET

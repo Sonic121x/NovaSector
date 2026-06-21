@@ -1,5 +1,5 @@
 /datum/crafting_recipe/stunprod
-	name = "Stunprod"
+	name = "电击棒"
 	result = /obj/item/melee/baton/security/cattleprod
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -10,7 +10,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/teleprod
-	name = "Teleprod"
+	name = "传送棒"
 	result = /obj/item/melee/baton/security/cattleprod/teleprod
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -22,7 +22,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/telecrystalprod
-	name = "Snatcherprod"
+	name = "捕捉棒"
 	result = /obj/item/melee/baton/security/cattleprod/telecrystalprod
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -86,7 +86,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/tailclub
-	name = "Tail Club"
+	name = "尾巴棍棒"
 	result = /obj/item/tailclub
 	reqs = list(
 		/obj/item/organ/tail/lizard = 1,
@@ -97,7 +97,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/balloon_mallet
-	name = "Balloon Mallet"
+	name = "气球木槌"
 	result = /obj/item/balloon_mallet
 	reqs = list(
 		/obj/item/toy/balloon/long = 18,
@@ -109,7 +109,7 @@
 	return HAS_TRAIT(user, TRAIT_BALLOON_SUTRA)
 
 /datum/crafting_recipe/tailwhip
-	name = "Liz O' Nine Tails"
+	name = "九尾蜥鞭"
 	result = /obj/item/melee/chainofcommand/tailwhip
 	reqs = list(
 		/obj/item/organ/tail/lizard = 1,
@@ -120,7 +120,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/catwhip
-	name = "Cat O' Nine Tails"
+	name = "九尾猫鞭"
 	result = /obj/item/melee/chainofcommand/tailwhip/kitty
 	reqs = list(
 		/obj/item/organ/tail/cat = 1,
@@ -130,7 +130,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/chainsaw
-	name = "Chainsaw"
+	name = "链锯"
 	result = /obj/item/chainsaw
 	reqs = list(
 		/obj/item/circular_saw = 1,
@@ -142,7 +142,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/spear
-	name = "Spear"
+	name = "长矛"
 	result = /obj/item/spear
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -163,7 +163,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/toysword
-	name = "Toy Sword"
+	name = "玩具剑"
 	reqs = list(
 		/obj/item/light/bulb = 1,
 		/obj/item/stack/cable_coil = 1,
@@ -173,14 +173,14 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/bonedagger
-	name = "Bone Dagger"
+	name = "骨匕首"
 	result = /obj/item/knife/combat/bone
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2)
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/bonespear
-	name = "Bone Spear"
+	name = "骨矛"
 	result = /obj/item/spear/bonespear
 	time = 3 SECONDS
 	reqs = list(
@@ -190,7 +190,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/boneaxe
-	name = "Bone Axe"
+	name = "骨斧"
 	result = /obj/item/fireaxe/boneaxe
 	time = 5 SECONDS
 	reqs = list(
@@ -200,7 +200,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/house_edge
-	name = "House Edge"
+	name = "庄家优势"
 	result = /obj/item/house_edge
 	tool_behaviors = list(TOOL_WRENCH, TOOL_SCREWDRIVER, TOOL_WELDER)
 	reqs = list(
@@ -217,7 +217,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/giant_wrench
-	name = "Big Slappy"
+	name = "大拍子"
 	result = /obj/item/shovel/giant_wrench
 	tool_behaviors = list(TOOL_CROWBAR, TOOL_SCREWDRIVER, TOOL_WELDER)
 	reqs = list(
@@ -231,7 +231,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/singulo_hammer
-	name = "Singularity Hammer"
+	name = "奇点锤"
 	result = /obj/item/singularityhammer
 	reqs = list(
 		/obj/item/assembly/signaler/anomaly/pyro = 1,
@@ -251,7 +251,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/bambostaff
-	name = "Bamboo Bo Staff"
+	name = "竹制齐眉棍"
 	result = /obj/item/bambostaff
 	reqs = list(
 		/obj/item/stack/sheet/mineral/bamboo = 4,
@@ -261,7 +261,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/sm_sword
-	name = "Supermatter Sword"
+	name = "超物质剑"
 	result = /obj/item/melee/supermatter_sword
 	reqs = list(
 		/obj/item/assembly/signaler/anomaly/vortex = (MAX_CORES_VORTEX - 1),
@@ -273,7 +273,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/dragonator_spear_untreated
-	name = "Untreated Giant-Killer Spear"
+	name = "未处理的巨人杀手矛"
 	result = /obj/item/spear/dragonator_untreated
 	reqs = list(
 		/obj/item/stack/sheet/plasteel = 15,

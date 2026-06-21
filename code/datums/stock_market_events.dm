@@ -1,6 +1,6 @@
 /datum/stock_market_event
 	/// The name of the event, used to describe it in the news.
-	var/name = "Stock Market Event!"
+	var/name = "股市事件！"
 	/// A list of company names to use for the event and the circumstance.
 	var/static/list/company_name = list(
 		"Nakamura Engineering",
@@ -66,7 +66,7 @@
 
 
 /datum/stock_market_event/market_reset
-	name = "Market Reset!"
+	name = "市场重置！"
 	trend_value = MARKET_TREND_STABLE
 	trend_duration = 1
 	circumstance = list(
@@ -81,7 +81,7 @@
 	create_news()
 
 /datum/stock_market_event/large_boost
-	name = "Large Boost!"
+	name = "大幅上涨！"
 	trend_value = MARKET_TREND_UPWARD
 	trend_duration = 4
 	circumstance = list(
@@ -98,7 +98,7 @@
 	create_news()
 
 /datum/stock_market_event/large_drop
-	name = "Large Drop!"
+	name = "大幅下跌！"
 	trend_value = MARKET_TREND_DOWNWARD
 	trend_duration = 4
 	circumstance = list(
@@ -115,7 +115,7 @@
 	create_news()
 
 /datum/stock_market_event/hotcakes
-	name = "Selling like Hotcakes!"
+	name = "热销如煎饼！"
 	trend_value = MARKET_TREND_UPWARD
 	trend_duration = 1
 	circumstance = list(
@@ -130,7 +130,7 @@
 	create_news()
 
 /datum/stock_market_event/lockdown
-	name = "Lockdown!"
+	name = "封锁！"
 	trend_value = MARKET_TREND_DOWNWARD
 	trend_duration = 2
 	circumstance = list(

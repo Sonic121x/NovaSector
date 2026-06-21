@@ -2,8 +2,8 @@
 
 ///Magnetic Harness - Automatically puts guns in your suit storage when you drop them.
 /obj/item/mod/module/magnetic_harness
-	name = "MOD magnetic harness module"
-	desc = "Based off old TerraGov harness kits, this magnetic harness automatically attaches dropped guns back to the wearer."
+	name = "MOD磁力枪束模块"
+	desc = "基于老式的TerraGov套具套装，这种磁性套具能够自动将掉落的枪械重新附着到使用者身上."
 	icon_state = "mag_harness"
 	complexity = 2
 	use_energy_cost = DEFAULT_CHARGE_DRAIN
@@ -66,13 +66,13 @@
 	if(!mod.wearer.equip_to_slot_if_possible(item, ITEM_SLOT_SUITSTORE, qdel_on_fail = FALSE, disable_warning = TRUE))
 		return
 	playsound(src, 'sound/items/modsuit/magnetic_harness.ogg', 50, TRUE)
-	balloon_alert(mod.wearer, "[item] reattached")
+	balloon_alert(mod.wearer, "[item] 已重新附着")
 	drain_power(use_energy_cost)
 
 ///Pepper Shoulders - When hit, reacts with a spray of pepper spray around the user.
 /obj/item/mod/module/pepper_shoulders
-	name = "MOD pepper shoulders module"
-	desc = "A module that attaches two pepper sprayers on shoulders of a MODsuit, reacting to touch with a spray around the user."
+	name = "MOD胡椒肩模块"
+	desc = "一种模块装置，将两支辣椒喷雾器安装在模块服的肩部，当有人触碰时，会自动向其周围喷射出辣椒喷雾。"
 	icon_state = "pepper_shoulder"
 	module_type = MODULE_USABLE
 	complexity = 1
@@ -105,7 +105,7 @@
 
 ///Holster - Instantly holsters any not huge gun.
 /obj/item/mod/module/holster
-	name = "MOD holster module"
+	name = "MOD枪套模块"
 	desc = "Based off typical storage compartments, this system allows the suit to holster a \
 		standard firearm across its surface and allow for extremely quick retrieval. \
 		While some users prefer the chest, others the forearm for quick deployment, \
@@ -123,20 +123,20 @@
 	if(!holstered)
 		var/obj/item/gun/holding = mod.wearer.get_active_held_item()
 		if(!holding)
-			balloon_alert(mod.wearer, "nothing to holster!")
+			balloon_alert(mod.wearer, "没有可收纳的武器！")
 			return
 		if(!istype(holding) || holding.w_class >= WEIGHT_CLASS_BULKY) // NOVA EDIT CHANGE - Original: if(!istype(holding) || holding.w_class > WEIGHT_CLASS_BULKY)
-			balloon_alert(mod.wearer, "doesn't fit!")
+			balloon_alert(mod.wearer, "放不进去！")
 			return
 		if(mod.wearer.transferItemToLoc(holding, src, force = FALSE, silent = TRUE))
 			holstered = holding
-			balloon_alert(mod.wearer, "weapon holstered")
+			balloon_alert(mod.wearer, "武器已收纳")
 			playsound(src, 'sound/items/weapons/gun/revolver/empty.ogg', 100, TRUE)
 	else if(mod.wearer.put_in_active_hand(holstered, forced = FALSE, ignore_animation = TRUE))
-		balloon_alert(mod.wearer, "weapon drawn")
+		balloon_alert(mod.wearer, "武器已拔出")
 		playsound(src, 'sound/items/weapons/gun/revolver/empty.ogg', 100, TRUE)
 	else
-		balloon_alert(mod.wearer, "holster full!")
+		balloon_alert(mod.wearer, "枪套已满！")
 
 /obj/item/mod/module/holster/on_uninstall(deleting = FALSE)
 	. = ..()
@@ -154,8 +154,8 @@
 
 ///Megaphone - Lets you speak loud.
 /obj/item/mod/module/megaphone
-	name = "MOD megaphone module"
-	desc = "A microchip megaphone linked to a MODsuit, for very important purposes, like: loudness."
+	name = "MOD 扩音器模块"
+	desc = "一种与模块服相连的微型芯片扩音器，主要用于非常重要的场合，比如：增强音量。"
 	icon_state = "megaphone"
 	module_type = MODULE_TOGGLE
 	complexity = 1
@@ -185,7 +185,7 @@
 
 ///Criminal Capture - Generates hardlight bags you can put people in and sinch.
 /obj/item/mod/module/criminalcapture
-	name = "MOD criminal capture module"
+	name = "MOD犯人捕获模块"
 	desc = "The private security that had orders to take in people dead were quite \
 		happy with their space-proofed suit, but for those who wanted to bring back \
 		whomever their targets were still breathing needed a way to \"share\" the \
@@ -225,7 +225,7 @@
 	if(target == linked_bodybag)
 		playsound(src, 'sound/machines/ding.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, packup_time, target = target))
-			balloon_alert(mod.wearer, "interrupted!")
+			balloon_alert(mod.wearer, "被打断了！")
 		packup()
 		return
 	if(linked_bodybag)
@@ -235,7 +235,7 @@
 		return
 	playsound(src, 'sound/machines/ding.ogg', 25, TRUE)
 	if(!do_after(mod.wearer, capture_time, target = target))
-		balloon_alert(mod.wearer, "interrupted!")
+		balloon_alert(mod.wearer, "被打断了！")
 		return
 	if(linked_bodybag)
 		return
@@ -264,14 +264,14 @@
 /obj/item/mod/module/criminalcapture/proc/delete_bag(obj/structure/closet/body_bag/bag)
 	if(mod?.wearer)
 		UnregisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED, PROC_REF(check_range))
-		balloon_alert(mod.wearer, "bag dissipated")
+		balloon_alert(mod.wearer, "袋子消散了")
 	bag.open(force = TRUE)
 	qdel(bag)
 
 ///Mirage grenade dispenser - Dispenses grenades that copy the user's appearance.
 /obj/item/mod/module/dispenser/mirage
-	name = "MOD mirage grenade dispenser module"
-	desc = "This module can create mirage grenades at the user's liking. These grenades create holographic copies of the user."
+	name = "MOD幻影榴弹发射模块"
+	desc = "此模块能够按照使用者的意愿制造幻影手榴弹。这些手榴弹会生成使用者的虚拟影像。"
 	icon_state = "mirage_grenade"
 	cooldown_time = 20 SECONDS
 	overlay_state_inactive = "module_mirage_grenade"
@@ -282,8 +282,8 @@
 	grenade.arm_grenade(mod.wearer)
 
 /obj/item/grenade/mirage
-	name = "mirage grenade"
-	desc = "A special device that, when activated, produces a holographic copy of the user."
+	name = "幻影榴弹"
+	desc = "一种特殊的装置，一旦启动，就会生成使用者的全息影像复制品。"
 	icon_state = "mirage"
 	inhand_icon_state = "flashbang"
 	det_time = 3 SECONDS
@@ -304,8 +304,8 @@
 
 ///Projectile Dampener - Weakens projectiles in range.
 /obj/item/mod/module/projectile_dampener
-	name = "MOD projectile dampener module"
-	desc = "Using technology from peaceborgs, this module weakens all projectiles in nearby range."
+	name = "MOD发射物阻尼模块"
+	desc = "利用和平赛博技术，此模块能够削弱附近范围内的所有弹药。"
 	icon_state = "projectile_dampener"
 	module_type = MODULE_TOGGLE
 	complexity = 3
@@ -342,7 +342,7 @@
 
 ///Active Sonar - Displays a hud circle on the turf of any living creatures in the given radius
 /obj/item/mod/module/active_sonar
-	name = "MOD active sonar"
+	name = "MOD主动式声纳"
 	desc = "Ancient tech from the 20th century, this module uses sonic waves to detect living creatures within the user's radius. \
 		Its basic function slowly scans around the user for any bio-signatures, however it can be overclocked to scan everywhere at once.\
 		Its loud ping is much harder to hide in an indoor station than in the outdoor operations it was designed for."
@@ -438,7 +438,7 @@
 	COOLDOWN_START(src, scan_cooldown, scan_cooldown_time)
 
 /obj/item/mod/module/active_sonar/on_use(mob/activator)
-	balloon_alert(activator, "readying sonar...")
+	balloon_alert(activator, "正在准备声呐...")
 	playsound(mod.wearer, 'sound/vehicles/mecha/skyfall_power_up.ogg', vol = 20, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 	if(!do_after(mod.wearer, 1.1 SECONDS, target = mod))
 		return
@@ -489,7 +489,7 @@
 	if(new_mode == selected_mode || !mod.active)
 		return
 	if(new_mode != SHOOTING_ASSISTANT_OFF && !mod.get_charge())
-		balloon_alert(mod.wearer, "no charge!")
+		balloon_alert(mod.wearer, "电量不足！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 

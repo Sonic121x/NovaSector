@@ -1,6 +1,6 @@
 /obj/item/seeds/vale
-	name = "vale seed pack"
-	desc = "These seeds grow into vale plants. Once sold as a luxury for their unique aesthetics, after the trees suddenly combusted they were taken off of the market."
+	name = "维尔种子包"
+	desc = "这些种子会长成维尔植株。曾因其独特美学作为奢侈品出售，但在树木突然自燃后便从市场上撤下。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "vale"
 	species = "vale"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/vale
 	seed = /obj/item/seeds/vale
-	name = "vale"
-	desc = "A cluster of vale leaves, keep away from open flames."
+	name = "维尔"
+	desc = "一簇维尔叶子，请远离明火。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "vale"
 	filling_color = "#FF4500"

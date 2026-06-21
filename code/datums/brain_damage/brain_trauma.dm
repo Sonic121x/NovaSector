@@ -6,8 +6,8 @@
 /datum/brain_trauma
 	/// Tracks abstract types of brain traumas, useful for determining traumas that should not exist
 	abstract_type = /datum/brain_trauma
-	var/name = "Brain Trauma"
-	var/desc = "A trauma caused by brain damage, which causes issues to the patient."
+	var/name = "脑部创伤"
+	var/desc = "由脑损伤引起的创伤，会对患者造成困扰。"
 	/// Description when detected by a health scanner
 	var/scan_desc = "generic brain trauma"
 	/// A string listing potential symptoms caused by this trauma
@@ -17,9 +17,9 @@
 	/// The poor bastard's brain
 	var/obj/item/organ/brain/brain
 	/// Message sent in chat when trauma is gained
-	var/gain_text = span_notice("You feel traumatized.")
+	var/gain_text = span_notice("你感到精神受创。")
 	/// Message sent in chat when trauma is lost
-	var/lose_text = span_notice("You no longer feel traumatized.")
+	var/lose_text = span_notice("你不再感到精神受创。")
 	/// If the trauma can be gained, checked in can_gain_trauma
 	var/can_gain = TRUE
 	/// If this trauma can be gained randomly

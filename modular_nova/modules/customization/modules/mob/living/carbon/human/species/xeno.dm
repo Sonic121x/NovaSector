@@ -107,7 +107,7 @@
 
 /datum/action/cooldown/alien/make_structure/plant_weeds/Activate(atom/target)
 	if(build_duration && !do_after(owner, build_duration))
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 		return
 	return ..()
 

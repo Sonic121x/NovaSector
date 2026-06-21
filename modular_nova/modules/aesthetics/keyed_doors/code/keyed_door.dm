@@ -4,8 +4,8 @@
  * Keycard that's meant to be able to open a /obj/machinery/door/airlock/keyed. Without it, the door will not open.
  */
 /obj/item/key_card
-	name = "door keycard"
-	desc = "This feels like it belongs to a door."
+	name = "门禁卡"
+	desc = "这感觉像是属于某扇门的。"
 	icon = 'icons/obj/fluff/puzzle_small.dmi'
 	icon_state = "keycard"
 	force = 0
@@ -28,8 +28,8 @@
  *
  */
 /obj/machinery/door/airlock/keyed
-	name = "locked airlock"
-	desc = "This door only opens when a keycard with the proper access is swiped. It looks virtually indestructible."
+	name = "上锁的气闸门"
+	desc = "这扇门只有在刷了具有相应权限的钥匙卡时才会打开。它看起来几乎是坚不可摧的。"
 	icon = 'modular_nova/modules/aesthetics/keyed_doors/icons/keyed.dmi'
 	// overlays_file = 'modular_nova/modules/aesthetics/keyed_doors/icons/keyed_overlays.dmi' // if this route is ever taken
 	icon_state = "closed"

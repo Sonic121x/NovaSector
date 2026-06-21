@@ -1,7 +1,7 @@
 // Boat
 /obj/vehicle/ridden/lavaboat
-	name = "lava boat"
-	desc = "A boat used for traversing lava."
+	name = "岩浆船"
+	desc = "一艘用于穿过熔岩的船."
 	icon = 'icons/obj/mining_zones/dragonboat.dmi'
 	icon_state = "goliath_boat"
 	icon_preview = 'icons/obj/fluff/previews.dmi'
@@ -35,8 +35,8 @@
 		return span_notice("Alt-click [src] to detach \the [inserted_key].")
 
 /obj/item/oar
-	name = "oar"
-	desc = "Not to be confused with the kind Research hassles you for."
+	name = "船桨"
+	desc = "不要将其与研究中那些让你烦恼的事情混淆了。"
 	icon = 'icons/mob/rideables/vehicles.dmi'
 	icon_state = "oar"
 	inhand_icon_state = "oar"
@@ -49,42 +49,42 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/oar
-	name = "Goliath Bone Oar"
+	name = "歌利亚骨浆"
 	result = /obj/item/oar
 	reqs = list(/obj/item/stack/sheet/bone = 2)
 	time = 1.5 SECONDS
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/boat
-	name = "Goliath Hide Boat"
+	name = "歌利亚皮船"
 	result = /obj/vehicle/ridden/lavaboat
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 3)
 	time = 5 SECONDS
 	category = CAT_TOOLS
 
 /obj/vehicle/ridden/lavaboat/plasma
-	name = "plasma boat"
-	desc = "A boat used for traversing the streams of plasma without turning into an icecube."
+	name = "等离子船"
+	desc = "一艘能渡过等离子流而不变成冰立方的船."
 	icon = 'icons/obj/mining_zones/dragonboat.dmi'
 	icon_state = "goliath_boat"
 	resistance_flags = FREEZE_PROOF
 	can_buckle = TRUE
 
 /datum/crafting_recipe/boat/plasma
-	name = "Polar Bear Hide Boat"
+	name = "北极熊皮船"
 	result = /obj/vehicle/ridden/lavaboat/plasma
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide = 3)
 
 // Dragon Boat
 /obj/item/ship_in_a_bottle
-	name = "ship in a bottle"
-	desc = "A tiny ship inside a bottle."
+	name = "瓶中船"
+	desc = "瓶中有一艘小船."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "ship_bottle"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ship_in_a_bottle/attack_self(mob/user)
-	to_chat(user, span_notice("You're not sure how they get the ships in these things, but you're pretty sure you know how to get it out."))
+	to_chat(user, span_notice("你不确定他们是怎么把船放进这些东西里的，但你很清楚怎么把它弄出来。"))
 	create_boat(get_turf(src))
 
 /obj/item/ship_in_a_bottle/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -98,8 +98,8 @@
 	qdel(src)
 
 /obj/vehicle/ridden/lavaboat/dragon
-	name = "mysterious boat"
-	desc = "This boat moves where you will it, without the need for an oar."
+	name = "神秘船"
+	desc = "这艘船无需船桨，可以驶向你心中想去的地方."
 	icon_state = "dragon_boat"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | FREEZE_PROOF
 	key_type = null

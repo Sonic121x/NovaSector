@@ -4,8 +4,8 @@
  * Baby birds that grow into big chickens.
  */
 /mob/living/basic/chick
-	name = "\improper chick"
-	desc = "Adorable! They make such a racket though."
+	name = "\improper 小鸡"
+	desc = "真可爱！不过它们也太吵了。"
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "chick_dead"

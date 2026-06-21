@@ -2,8 +2,8 @@
 #define EMP_TIMEOUT_DURATION (2 MINUTES)
 
 /obj/item/machine_remote
-	name = "machine wand"
-	desc = "A remote for controlling machines and bots around the station."
+	name = "机器魔杖"
+	desc = "一个用于控制空间站周围机器人和机器的遥控器。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "weakpoint_locator"
 	inhand_icon_state = "weakpoint_locator"
@@ -46,7 +46,7 @@
 /obj/item/machine_remote/examine(mob/user)
 	. = ..()
 	if(controlling_machine_or_bot)
-		. += span_notice("It is currently controlling [controlling_machine_or_bot]. Use in-hand to interact with it.")
+		. += span_notice("它当前正在控制[controlling_machine_or_bot]。手持使用以与其交互。")
 
 /obj/item/machine_remote/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(controlling_machine_or_bot)
@@ -145,8 +145,8 @@
 
 ///The effect of the bug moving towards the selected machinery to mess with.
 /obj/effect/bug_moving
-	name = "bug"
-	desc = "Where da bug goin?"
+	name = "虫子"
+	desc = "虫子要去哪儿？"
 	icon_state = "fly"
 	obj_flags = CAN_BE_HIT
 	max_integrity = 20

@@ -1,6 +1,6 @@
 /obj/item/organ/cyberimp/arm/toolkit/power_cord
-	name = "charging implant"
-	desc = "An internal power cord. Useful if you run on elecricity. Not so much otherwise."
+	name = "充电植入体"
+	desc = "一根内置电源线。如果你靠电力运行，它会很有用。否则就没多大用处。"
 	items_to_create = list(/obj/item/synth_powercord)
 	zone = "l_arm"
 	cannot_confiscate = TRUE
@@ -17,8 +17,8 @@
 			effect_chance = 45
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger("[owner]'s charging implant sparks and crackles!"),
-			span_warning("Your charging implant shorts out, making you twitch!")
+			span_danger("[owner]的充电植入体迸出火花，噼啪作响！"),
+			span_warning("你的充电植入体短路了，让你抽搐起来！")
 		)
 		if(active_item)
 			Retract()
@@ -28,8 +28,8 @@
 		SEND_SIGNAL(owner, COMSIG_LIVING_MINOR_SHOCK)
 
 /obj/item/synth_powercord
-	name = "power cord"
-	desc = "An internal power cord. Useful if you run on electricity. Not so much otherwise."
+	name = "电源线"
+	desc = "一根内置电源线。如果你靠电力运行，它会很有用。否则就没多大用处。"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "wire1"
 	///Object basetypes which the powercord is allowed to connect to.
@@ -61,7 +61,7 @@
 /obj/item/synth_powercord/proc/try_power_draw(obj/target, mob/living/carbon/human/user)
 	// Only robotic species can use this
 	if(!(user.mob_biotypes & MOB_ROBOTIC))
-		to_chat(user, span_warning("You plug into [target], but nothing happens! It seems you don't have an internal cell to charge."))
+		to_chat(user, span_warning("你插入了[target]，但什么都没发生！看来你没有可供充电的内部电池。"))
 		return
 
 	/// The current user's nutrition level in joules.
@@ -70,20 +70,20 @@
 
 	var/obj/item/organ/stomach/synth/synth_cell = user.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(QDELETED(synth_cell) || !istype(synth_cell))
-		to_chat(user, span_warning("You plug into [target], but nothing happens! It seems you don't have an internal cell to charge."))
+		to_chat(user, span_warning("你插入了[target]，但什么都没发生！看来你没有可供充电的内部电池。"))
 		return
 
 	if(nutrition_level_joules > SYNTH_CHARGE_ALMOST_FULL)
-		user.balloon_alert(user, "cell fully charged!")
+		user.balloon_alert(user, "电池已充满！")
 		return
 
-	user.visible_message(span_notice("[user] inserts a power connector into [target]."), span_notice("You begin to draw power from [target]."))
+	user.visible_message(span_notice("[user]将电源连接器插入[target]。"), span_notice("你开始从[target]汲取电力。"))
 	do_power_draw(target, user)
 
 	if(QDELETED(target))
 		return
 
-	user.visible_message(span_notice("[user] unplugs from [target]."), span_notice("You unplug from [target]."))
+	user.visible_message(span_notice("[user]从[target]拔下插头。"), span_notice("你从[target]拔下插头。"))
 
 /**
  * Runs a loop to charge a synth cell (stomach) from a power cell or APC.
@@ -108,7 +108,7 @@
 	var/minimum_cell_charge = target_apc ? SYNTH_APC_MINIMUM_PERCENT : 0
 
 	if(!target_cell || target_cell.percent() < minimum_cell_charge)
-		user.balloon_alert(user, "apc charge low!")
+		user.balloon_alert(user, "APC电量低！")
 		return
 	var/wait = SSmachines.wait / (1 SECONDS)
 	var/energy_needed
@@ -116,7 +116,7 @@
 		// Check if the charge level of the cell is below the minimum.
 		// Prevents synths from overloading the cell.
 		if(target_cell.percent() < minimum_cell_charge)
-			user.balloon_alert(user, "apc charge low!")
+			user.balloon_alert(user, "APC电量低！")
 			break
 
 		// Attempt to drain charge from the cell.
@@ -137,7 +137,7 @@
 			// The cell could be sabotaged, which causes it to explode and qdelete.
 			if(QDELETED(target_cell))
 				return
-			user.balloon_alert(user, "[target_apc ? "APC" : "Cell"] empty!")
+			user.balloon_alert(user, "[target_apc ? "APC" : "Cell"]已空！")
 			break
 
 		// If charging was successful, then increase user nutrition and emit sparks.
@@ -145,12 +145,12 @@
 		user.nutrition = min(user.nutrition + nutrition_gained, NUTRITION_LEVEL_FULL)
 		do_sparks(1, FALSE, target_cell.loc)
 		if(user.nutrition > NUTRITION_LEVEL_ALMOST_FULL)
-			user.balloon_alert(user, "fully charged")
+			user.balloon_alert(user, "已充满")
 			break
 
 /datum/design/synth_charger
-	name = "Charging Cord Implant"
-	desc = "An internal power cord for synthetic use only. Requires connection the synthetic fuel cell to function."
+	name = "充电线植入体"
+	desc = "仅供合成人使用的内部电源线。需要连接到合成燃料单元才能工作。"
 	id = "synth_charger"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS

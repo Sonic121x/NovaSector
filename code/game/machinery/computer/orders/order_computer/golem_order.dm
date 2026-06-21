@@ -1,5 +1,5 @@
 /obj/machinery/computer/order_console/mining/golem
-	name = "golem ship equipment vendor"
+	name = "魔像飞船设备供应商"
 	circuit = /obj/item/circuitboard/computer/order_console/mining/golem
 	forced_express = TRUE
 	express_cost_multiplier = 1

@@ -69,7 +69,7 @@
  * check_examine is meant to listen for the COMSIG_ATOM_EXAMINE signal, where it will put additional information in the examine
  */
 /datum/component/simple_farm/proc/check_examine(datum/source, mob/user, list/examine_list)
-	examine_list += span_notice("<br>You are able to plant seeds here!")
+	examine_list += span_notice("<br>你可以在这里种植种子！")
 
 /**
  * delete_farm is meant to be called when the parent of this component has been deleted-- thus deleting the ability to grow the simple farm
@@ -83,8 +83,8 @@
 		qdel(locate_farm)
 
 /obj/structure/simple_farm
-	name = "simple farm"
-	desc = "A small little plant that has adapted to the surrounding environment."
+	name = "简易农场"
+	desc = "一株适应了周围环境的小小植物。"
 	//it needs to be able to be walked through
 	density = FALSE
 	//it should not be pulled by anything
@@ -131,11 +131,11 @@
 
 /obj/structure/simple_farm/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>[src] will be ready for harvest in [DisplayTimeText(COOLDOWN_TIMELEFT(src, harvest_timer))]")
+	. += span_notice("<br>[src] 将在 [DisplayTimeText(COOLDOWN_TIMELEFT(src, harvest_timer))] 后可以收获")
 	if(max_harvest < 6)
-		. += span_notice("You can use goliath hides or worm fertilizer to increase the amount dropped per harvest!")
+		. += span_notice("你可以使用歌利亚兽皮或蠕虫肥料来增加每次收获的产量！")
 	if(harvest_cooldown > 30 SECONDS)
-		. += span_notice("<br>You can use sinew or worm fertilizer to lower the time between each harvest!")
+		. += span_notice("<br>你可以使用肌腱或蠕虫肥料来缩短每次收获之间的时间！")
 
 /obj/structure/simple_farm/process(seconds_per_tick)
 	update_appearance()
@@ -157,13 +157,13 @@
 
 	else
 		icon_state = "[planted_seed.icon_grow]1"
-		name = LOWER_TEXT("harvested [planted_seed.plantname]")
+		name = LOWER_TEXT("已收获的 [planted_seed.plantname]")
 
 	return ..()
 
 /obj/structure/simple_farm/attack_hand(mob/living/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, harvest_timer))
-		balloon_alert(user, "plant not ready for harvest!")
+		balloon_alert(user, "植物尚未成熟，无法收获！")
 		return
 
 	COOLDOWN_START(src, harvest_timer, harvest_cooldown)
@@ -216,10 +216,10 @@
 		if (cooldown_improved || yield_improved)
 			use_item.use(1)
 			user.mind?.adjust_experience(/datum/skill/primitive, 2)
-			balloon_alert(user, "fertilized")
+			balloon_alert(user, "已施肥")
 
 		else
-			balloon_alert(user, "already fertilized!")
+			balloon_alert(user, "已经施过肥了！")
 
 		return ITEM_INTERACT_BLOCKING
 
@@ -231,7 +231,7 @@
 /obj/structure/simple_farm/proc/increase_yield(mob/user, silent = FALSE)
 	if(max_harvest >= 6)
 		if(!silent)
-			balloon_alert(user, "plant is at maximum yield")
+			balloon_alert(user, "植物已达到最大产量")
 
 		return FALSE
 
@@ -248,7 +248,7 @@
 /obj/structure/simple_farm/proc/decrease_cooldown(mob/user, silent = FALSE)
 	if(harvest_cooldown <= 30 SECONDS)
 		if(!silent)
-			balloon_alert(user, "already at maximum growth speed!")
+			balloon_alert(user, "已经达到最大生长速度了！")
 
 		return FALSE
 

@@ -1,7 +1,7 @@
 ///Use on an anomaly core to "awake" the anomaly and stabilize it
 /obj/item/anomaly_releaser
-	name = "anomaly releaser"
-	desc = "Single-use injector that releases and stabilizes anomalies by injecting an unknown substance."
+	name = "异常释放器"
+	desc = "一次性注射器，通过注射未知物质来释放并稳定异常。"
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "anomaly_releaser"
 	inhand_icon_state = "stimpen"
@@ -41,6 +41,6 @@
 	if(!infinite)
 		icon_state = used_icon_state
 		used = TRUE
-		name = "used " + name
+		name = "已使用的" + name
 		qdel(core)
 	return ITEM_INTERACT_SUCCESS

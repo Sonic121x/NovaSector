@@ -2,8 +2,8 @@
  *A new subsystem for hydroponics, as a way to share specific traits into plants, as a way to phase out the DNA manipulator.
  */
 /obj/item/graft
-	name = "plant graft"
-	desc = "A carefully cut graft off of a freshly grown plant. Can be grafted onto a plant in order to share unique plant traits onto a plant."
+	name = "植物嫁接"
+	desc = "从一棵新长出的植物上仔细地切下的一部分。可以将其嫁接到另一株植物上，以使后者获得该植物特有的特性。"
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "graft_plant"

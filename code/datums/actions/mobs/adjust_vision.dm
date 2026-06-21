@@ -5,8 +5,8 @@
 #define VISION_ACTION_LIGHT_HIG 3
 
 /datum/action/adjust_vision
-	name = "Adjust Vision"
-	desc = "See better in the dark. Or don't. Your advanced vision allows either."
+	name = "调整视觉"
+	desc = "在黑暗中看得更清楚。或者不。你的高级视觉允许你选择。"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "adjust_vision"
 	background_icon_state = "bg_default"

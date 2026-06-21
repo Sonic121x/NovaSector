@@ -94,7 +94,7 @@
 
 	qdel(tool)
 	upgrade_to_bluespace(user)
-	to_chat(user, span_notice("You insert [tool] into your shell, and it starts to glow blue with expanded storage potential!"))
+	to_chat(user, span_notice("你将 [tool] 插入你的壳中，它开始发出蓝色的光芒，存储潜力得到了扩展！"))
 	return ITEM_INTERACT_SUCCESS
 
 /// Upgrades the storage capacity of the snail shell and gives it a glowy blue outline
@@ -107,7 +107,7 @@
 	create_storage(max_specific_storage = WEIGHT_CLASS_GIGANTIC, max_total_storage = 35, max_slots = 30, storage_type = /datum/storage/bag_of_holding)
 	for(var/obj/item/stored_item in old_inventory)
 		atom_storage.attempt_insert(stored_item, override = TRUE, messages = FALSE, force = TRUE)
-	name = "snail shell of holding"
+	name = "蜗牛次元壳"
 	update_appearance()
 
 	// Update the worn sprite with the blue outline too if applicable

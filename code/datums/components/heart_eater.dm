@@ -71,7 +71,7 @@
 	if(we_ate_heart == previous_heart)
 		return
 	if (!HAS_TRAIT(we_ate_heart, TRAIT_ORGAN_USED_BY_PLAYER))
-		to_chat(eater, span_warning("This heart is utterly lifeless, you won't receive any boons from consuming it!"))
+		to_chat(eater, span_warning("这颗心脏已完全失去生机，吞噬它不会获得任何恩赐！"))
 		return
 	bites_taken = 0
 
@@ -92,7 +92,7 @@
 	eater.dna?.species?.damage_modifier += 10
 	remember_modifier += 10
 	healing_heart(eater)
-	to_chat(eater, span_warning("This heart is perfect. You feel a surge of vital energy."))
+	to_chat(eater, span_warning("这颗心脏是完美的。你感到一股生命能量在涌动。"))
 
 ///Not Perfect heart give random mutation.
 /datum/component/heart_eater/proc/not_perfect_heart(mob/living/carbon/human/eater)
@@ -108,7 +108,7 @@
 		return
 	eater.dna.add_mutation(new_mutation, MUTATION_SOURCE_HEART_EATER)
 	healing_heart(eater)
-	to_chat(eater, span_warning("This heart is not right for you. You now have [new_mutation.name] mutation."))
+	to_chat(eater, span_warning("这颗心脏不适合你。你现在获得了[new_mutation.name]突变。"))
 
 ///Heart eater give also strong healing from hearts.
 /datum/component/heart_eater/proc/healing_heart(mob/living/carbon/human/eater)

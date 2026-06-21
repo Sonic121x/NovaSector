@@ -5,18 +5,18 @@
 /obj/item/stack/tile/mineral/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(W.tool_behaviour == TOOL_WELDER)
 		if(get_amount() < 4)
-			to_chat(user, span_warning("You need at least four tiles to do this!"))
+			to_chat(user, span_warning("你至少需要四块砖才能这么做！"))
 			return
 		if(!mineralType)
-			to_chat(user, span_warning("You can not reform this!"))
+			to_chat(user, span_warning("你无法重塑这个！"))
 			stack_trace("A mineral tile of type [type] doesn't have its mineralType set.")
 			return
 		if(W.use_tool(src, user, 0, volume=40))
 			var/sheet_type = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
 			var/obj/item/stack/sheet/mineral/new_item = new sheet_type(user.loc)
-			user.visible_message(span_notice("[user] shaped [src] into [new_item] with [W]."), \
-				span_notice("You shaped [src] into [new_item] with [W]."), \
-				span_hear("You hear welding."))
+			user.visible_message(span_notice("[user]用[W]将[src]塑造成了[new_item]。"), \
+				span_notice("你用[W]将[src]塑造成了[new_item]。"), \
+				span_hear("你听到了焊接声."))
 			var/holding = user.is_holding(src)
 			use(4)
 			if(holding && QDELETED(src))
@@ -25,9 +25,9 @@
 		return ..()
 
 /obj/item/stack/tile/mineral/plasma
-	name = "plasma tile"
+	name = "等离子砖"
 	singular_name = "plasma floor tile"
-	desc = "A tile made out of highly flammable plasma. This can only end well."
+	desc = "一块由高度易燃的等离子体制成的砖。这结局肯定很美好。"
 	icon_state = "tile_plasma"
 	inhand_icon_state = "tile-plasma"
 	turf_type = /turf/open/floor/mineral/plasma
@@ -36,9 +36,9 @@
 	merge_type = /obj/item/stack/tile/mineral/plasma
 
 /obj/item/stack/tile/mineral/uranium
-	name = "uranium tile"
+	name = "铀砖"
 	singular_name = "uranium floor tile"
-	desc = "A tile made out of uranium. You feel a bit woozy."
+	desc = "一块由铀制成的砖。你感觉有点头晕。"
 	icon_state = "tile_uranium"
 	inhand_icon_state = "tile-uranium"
 	turf_type = /turf/open/floor/mineral/uranium
@@ -47,9 +47,9 @@
 	merge_type = /obj/item/stack/tile/mineral/uranium
 
 /obj/item/stack/tile/mineral/gold
-	name = "gold tile"
+	name = "金砖"
 	singular_name = "gold floor tile"
-	desc = "A tile made out of gold, the swag seems strong here."
+	desc = "一块由黄金制成的砖，这里的炫富气息很浓。"
 	icon_state = "tile_gold"
 	inhand_icon_state = "tile-gold"
 	turf_type = /turf/open/floor/mineral/gold
@@ -58,9 +58,9 @@
 	merge_type = /obj/item/stack/tile/mineral/gold
 
 /obj/item/stack/tile/mineral/silver
-	name = "silver tile"
+	name = "银质地砖"
 	singular_name = "silver floor tile"
-	desc = "A tile made out of silver, the light shining from it is blinding."
+	desc = "由银制成的地砖，其上反射的光芒令人目眩。"
 	icon_state = "tile_silver"
 	inhand_icon_state = "tile-silver"
 	turf_type = /turf/open/floor/mineral/silver
@@ -69,9 +69,9 @@
 	merge_type = /obj/item/stack/tile/mineral/silver
 
 /obj/item/stack/tile/mineral/diamond
-	name = "diamond tile"
+	name = "钻石地砖"
 	singular_name = "diamond floor tile"
-	desc = "A tile made out of diamond. Wow, just, wow."
+	desc = "由钻石制成的地砖。哇，真是，哇。"
 	icon_state = "tile_diamond"
 	inhand_icon_state = "tile-diamond"
 	turf_type = /turf/open/floor/mineral/diamond
@@ -80,9 +80,9 @@
 	merge_type = /obj/item/stack/tile/mineral/diamond
 
 /obj/item/stack/tile/mineral/bananium
-	name = "bananium tile"
+	name = "香蕉矿地砖"
 	singular_name = "bananium floor tile"
-	desc = "A non-slippery tile made out of bananium, HOOOOOOOOONK!"
+	desc = "由香蕉矿制成的不打滑地砖，HOOOOOOOOONK！"
 	icon_state = "tile_bananium"
 	inhand_icon_state = "tile-bananium"
 	turf_type = /turf/open/floor/mineral/bananium
@@ -92,9 +92,9 @@
 	merge_type = /obj/item/stack/tile/mineral/bananium
 
 /obj/item/stack/tile/mineral/abductor
-	name = "alien floor tile"
+	name = "外星地板砖"
 	singular_name = "alien floor tile"
-	desc = "A tile made out of alien alloy."
+	desc = "由外星合金制成的地砖。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "tile_abductor"
 	inhand_icon_state = "tile-abductor"
@@ -104,9 +104,9 @@
 	merge_type = /obj/item/stack/tile/mineral/abductor
 
 /obj/item/stack/tile/mineral/titanium
-	name = "titanium tile"
+	name = "钛质地砖"
 	singular_name = "titanium floor tile"
-	desc = "Sleek titanium tiles, used for shuttles."
+	desc = "光滑的钛质地砖，用于航天飞机。"
 	icon_state = "tile_titanium"
 	inhand_icon_state = "tile-shuttle"
 	turf_type = /turf/open/floor/mineral/titanium
@@ -127,81 +127,81 @@
 		)
 
 /obj/item/stack/tile/mineral/titanium/yellow
-	name = "yellow titanium tile"
+	name = "黄色钛质地砖"
 	singular_name = "yellow titanium floor tile"
-	desc = "Sleek yellow titanium tiles, used for shuttles."
+	desc = "光滑的黄色钛质地砖，用于航天飞机。"
 	turf_type = /turf/open/floor/mineral/titanium/yellow
 	icon_state = "tile_titanium_yellow"
 	merge_type = /obj/item/stack/tile/mineral/titanium/yellow
 
 /obj/item/stack/tile/mineral/titanium/blue
-	name = "blue titanium tile"
+	name = "蓝色钛质地砖"
 	singular_name = "blue titanium floor tile"
-	desc = "Sleek blue titanium tiles, used for shuttles."
+	desc = "光滑的蓝色钛质地砖，用于航天飞机。"
 	turf_type = /turf/open/floor/mineral/titanium/blue
 	icon_state = "tile_titanium_blue"
 	merge_type = /obj/item/stack/tile/mineral/titanium/blue
 
 /obj/item/stack/tile/mineral/titanium/white
-	name = "white titanium tile"
+	name = "白色钛质地砖"
 	singular_name = "white titanium floor tile"
-	desc = "Sleek white titanium tiles, used for shuttles."
+	desc = "光滑的白色钛质地砖，用于航天飞机。"
 	turf_type = /turf/open/floor/mineral/titanium/white
 	icon_state = "tile_titanium_white"
 	merge_type = /obj/item/stack/tile/mineral/titanium/white
 
 /obj/item/stack/tile/mineral/titanium/purple
-	name = "purple titanium tile"
+	name = "紫色钛质地砖"
 	singular_name = "purple titanium floor tile"
-	desc = "Sleek purple titanium tiles, used for shuttles."
+	desc = "光滑的紫色钛质地砖，用于航天飞机。"
 	turf_type = /turf/open/floor/mineral/titanium/purple
 	icon_state = "tile_titanium_purple"
 	merge_type = /obj/item/stack/tile/mineral/titanium/purple
 
 /obj/item/stack/tile/mineral/titanium/tiled
-	name = "tiled titanium tile"
+	name = "拼花钛质地砖"
 	singular_name = "tiled titanium floor tile"
-	desc = "Titanium floor tiles, used for shuttles."
+	desc = "钛质地板砖，用于航天飞机。"
 	turf_type = /turf/open/floor/mineral/titanium/tiled
 	icon_state = "tile_titanium_tiled"
 	merge_type = /obj/item/stack/tile/mineral/titanium/tiled
 
 /obj/item/stack/tile/mineral/titanium/tiled/yellow
-	name = "yellow titanium tile"
+	name = "黄色钛合金地砖"
 	singular_name = "yellow titanium floor tile"
-	desc = "Yellow titanium floor tiles, used for shuttles."
+	desc = "黄色钛合金地板砖，用于航天飞机。"
 	turf_type = /turf/open/floor/mineral/titanium/tiled/yellow
 	icon_state = "tile_titanium_tiled_yellow"
 	merge_type = /obj/item/stack/tile/mineral/titanium/tiled/yellow
 
 /obj/item/stack/tile/mineral/titanium/tiled/blue
-	name = "blue titanium tile"
+	name = "蓝色钛合金地砖"
 	singular_name = "blue titanium floor tile"
-	desc = "Blue titanium floor tiles, used for shuttles."
+	desc = "蓝色钛合金地板砖，用于航天飞机。"
 	turf_type = /turf/open/floor/mineral/titanium/tiled/blue
 	icon_state = "tile_titanium_tiled_blue"
 	merge_type = /obj/item/stack/tile/mineral/titanium/tiled/blue
 
 /obj/item/stack/tile/mineral/titanium/tiled/white
-	name = "white titanium tile"
+	name = "白色钛合金地砖"
 	singular_name = "white titanium floor tile"
-	desc = "White titanium floor tiles, used for shuttles."
+	desc = "白色钛合金地板砖，用于航天飞机。"
 	turf_type = /turf/open/floor/mineral/titanium/tiled/white
 	icon_state = "tile_titanium_tiled_white"
 	merge_type = /obj/item/stack/tile/mineral/titanium/tiled/white
 
 /obj/item/stack/tile/mineral/titanium/tiled/purple
-	name = "purple titanium tile"
+	name = "紫色钛合金地砖"
 	singular_name = "purple titanium floor tile"
-	desc = "Purple titanium floor tiles, used for shuttles."
+	desc = "紫色钛合金地板砖，用于航天飞机。"
 	turf_type = /turf/open/floor/mineral/titanium/tiled/purple
 	icon_state = "tile_titanium_tiled_purple"
 	merge_type = /obj/item/stack/tile/mineral/titanium/tiled/purple
 
 /obj/item/stack/tile/mineral/plastitanium
-	name = "plastitanium tile"
+	name = "塑钛地砖"
 	singular_name = "plastitanium floor tile"
-	desc = "A tile made of plastitanium, used for very evil shuttles."
+	desc = "由塑钛制成的地砖，用于非常邪恶的航天飞机。"
 	icon_state = "tile_plastitanium"
 	inhand_icon_state = "tile-darkshuttle"
 	turf_type = /turf/open/floor/mineral/plastitanium
@@ -214,17 +214,17 @@
 		)
 
 /obj/item/stack/tile/mineral/plastitanium/red
-	name = "red plastitanium tile"
+	name = "红色塑钛地砖"
 	singular_name = "red plastitanium floor tile"
-	desc = "A tile made of plastitanium, used for very red shuttles."
+	desc = "由塑钛制成的地砖，用于非常红色的航天飞机。"
 	turf_type = /turf/open/floor/mineral/plastitanium/red
 	icon_state = "tile_plastitanium_red"
 	merge_type = /obj/item/stack/tile/mineral/plastitanium/red
 
 /obj/item/stack/tile/mineral/snow
-	name = "snow tile"
+	name = "雪地砖"
 	singular_name = "snow tile"
-	desc = "A layer of snow."
+	desc = "一层雪。"
 	icon_state = "tile_snow"
 	inhand_icon_state = "tile-silver"
 	turf_type = /turf/open/floor/fake_snow

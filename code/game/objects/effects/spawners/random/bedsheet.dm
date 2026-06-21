@@ -1,5 +1,5 @@
 /obj/effect/spawner/random/bedsheet
-	name = "random dorm bedsheet"
+	name = "随机宿舍床单"
 	icon_state = "random_bedsheet"
 	loot = list(/obj/item/bedsheet = 8,
 		/obj/item/bedsheet/blue = 8,
@@ -22,7 +22,7 @@
 	)
 
 /obj/effect/spawner/random/bedsheet/double
-	name = "random dorm double bedsheet"
+	name = "随机宿舍双人床单"
 	icon_state = "random_doublesheet"
 	loot = list(
 		/obj/item/bedsheet/double = 4,
@@ -44,7 +44,7 @@
 	)
 
 /obj/effect/spawner/random/bedsheet/any
-	name = "random single bedsheet"
+	name = "随机单人床单"
 	loot = null
 	var/static/list/bedsheet_list = list()
 	var/spawn_type = BEDSHEET_SINGLE

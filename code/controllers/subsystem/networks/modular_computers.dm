@@ -2,7 +2,7 @@
 #define MAX_LOG_COUNT 300
 
 SUBSYSTEM_DEF(modular_computers)
-	name = "Modular Computers"
+	name = "模块化计算机"
 
 	wait = 1 MINUTES
 	runlevels = RUNLEVEL_GAME

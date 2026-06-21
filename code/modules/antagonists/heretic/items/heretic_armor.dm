@@ -4,8 +4,8 @@
 
 // Eldritch armor. Looks cool, hood lets you cast heretic spells.
 /obj/item/clothing/suit/hooded/cultrobes/eldritch
-	name = "ominous armor"
-	desc = "A ragged, dusty set of robes. Strange eyes line the inside."
+	name = "不详甲"
+	desc = "一套破旧不堪、沾满灰尘的长袍。长袍内侧排列着一排奇怪的眼睛"
 	icon_state = "armor"
 	inhand_icon_state = null
 	flags_inv = HIDESHOES | HIDEJUMPSUIT | HIDEBELT
@@ -68,11 +68,11 @@
 	. += span_notice("Allows you to cast heretic spells while the hood is up.")
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
-	name = "ominous hood"
+	name = "不详兜帽"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "helmet"
-	desc = "A torn, dust-caked hood. Strange eyes line the inside."
+	desc = "破烂不堪、沾满灰尘的兜帽。兜帽内侧布满了奇怪的眼睛"
 	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | HIDEHAIR | HIDEFACIALHAIR | HIDESNOUT
 	flags_cover = HEADCOVERSEYES | PEPPERPROOF
 	flash_protect = FLASH_PROTECTION_WELDER_HYPER_SENSITIVE
@@ -173,7 +173,7 @@
 		user.extinguish()
 		STOP_PROCESSING(SSobj, src)
 
-	user.balloon_alert(user, flame_generation ? "enabled" : "disabled")
+	user.balloon_alert(user, flame_generation ? "已启用" : "已禁用")
 	user.fire_stack_decay_rate = flame_generation ? 0 : initial(user.fire_stack_decay_rate)
 	// Extinguishes the wearer after they disable the flames
 
@@ -384,10 +384,10 @@
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/cosmic/proc/toggle_gravity(mob/living/user)
 	if(!weightless_enabled)
 		user.add_traits(list(TRAIT_NEGATES_GRAVITY, TRAIT_MOVE_FLYING, TRAIT_FREE_HYPERSPACE_MOVEMENT), REF(src))
-		user.balloon_alert(user, "enabled")
+		user.balloon_alert(user, "已启用")
 	else
 		user.remove_traits(list(TRAIT_NEGATES_GRAVITY, TRAIT_MOVE_FLYING, TRAIT_FREE_HYPERSPACE_MOVEMENT), REF(src))
-		user.balloon_alert(user, "disabled")
+		user.balloon_alert(user, "已禁用")
 	weightless_enabled = !weightless_enabled
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/cosmic
@@ -682,7 +682,7 @@
 		return ..()
 	var/mob/living/carbon/human/wearer = user
 	if(wearer.get_organ_loss(ORGAN_SLOT_BRAIN) > 0)
-		wearer.balloon_alert(user, "can't strip, brain damaged!")
+		wearer.balloon_alert(user, "无法剥除，大脑受损！")
 		return FALSE
 	return ..()
 
@@ -1113,7 +1113,7 @@
 
 // Void cloak. Turns invisible with the hood up, lets you hide stuff.
 /obj/item/clothing/head/hooded/cult_hoodie/void
-	name = "void hood"
+	name = "虚空兜帽"
 	desc = "Black like tar, reflecting no light. Runic symbols line the outside. \
 		With each flash you lose comprehension of what you are seeing."
 	icon = 'icons/obj/clothing/head/helmet.dmi'
@@ -1136,7 +1136,7 @@
 	add_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP), INNATE_TRAIT)
 
 /obj/item/clothing/suit/hooded/cultrobes/void
-	name = "void cloak"
+	name = "虚空斗篷"
 	desc = "Black like tar, reflecting no light. Runic symbols line the outside. \
 		With each flash you lose comprehension of what you are seeing."
 	icon_state = "void_cloak"
@@ -1210,7 +1210,7 @@
 	if(IS_HERETIC_OR_MONSTER(wearer))
 		return TRUE
 
-	loc.balloon_alert(loc, "can't get the hood up!")
+	loc.balloon_alert(loc, "兜帽拉不上去！")
 	return FALSE
 
 /obj/item/clothing/suit/hooded/cultrobes/void/on_hood_created(obj/item/clothing/head/hooded/hood)
@@ -1226,7 +1226,7 @@
 	if(isliving(loc))
 		loc.remove_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD), REF(src))
 		REMOVE_TRAIT(loc, TRAIT_RESISTLOWPRESSURE, REF(src))
-		loc.balloon_alert(loc, "cloak hidden")
+		loc.balloon_alert(loc, "斗篷已隐藏")
 		loc.visible_message(span_notice("Light shifts around [loc], making the cloak around them invisible!"))
 
 /// Makes our cloak "visible" again.
@@ -1237,5 +1237,5 @@
 
 	if(isliving(loc))
 		loc.add_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD), REF(src))
-		loc.balloon_alert(loc, "cloak revealed")
+		loc.balloon_alert(loc, "斗篷显形")
 		loc.visible_message(span_notice("A kaleidoscope of colours collapses around [loc], a cloak appearing suddenly around their person!"))

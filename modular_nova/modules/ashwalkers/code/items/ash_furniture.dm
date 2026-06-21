@@ -1,7 +1,7 @@
 // Ashwalker Bed
 /obj/structure/bed/double/thatch
-	name = "thatch bed"
-	desc = "A rustic bed, made from thatch."
+	name = "茅草床"
+	desc = "一张用茅草制成的乡村风格床铺。"
 	icon_state = "thatch_bed"
 	icon = 'modular_nova/modules/tribal_extended/icons/tribal_beds.dmi'
 	anchored = TRUE
@@ -20,7 +20,7 @@
 	new /obj/item/stack/sheet/mineral/wood(loc, build_stack_amount)
 
 /datum/crafting_recipe/thatch_bed
-	name = "Thatch Bed"
+	name = "茅草床"
 	category = CAT_FURNITURE
 	//recipe given to ashwalkers as part of their spawner/team setting
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND

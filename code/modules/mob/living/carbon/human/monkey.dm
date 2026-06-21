@@ -9,7 +9,7 @@
 		var/cap = CONFIG_GET(number/monkeycap)
 		if (LAZYLEN(SSmobs.cubemonkeys) > cap)
 			if (spawner)
-				to_chat(spawner, span_warning("Bluespace harmonics prevent the spawning of more than [cap] monkeys on the station at one time!"))
+				to_chat(spawner, span_warning("蓝空谐波阻止了空间站上同时存在超过[cap]只猴子！"))
 			return INITIALIZE_HINT_QDEL
 		SSmobs.cubemonkeys += src
 	return ..()
@@ -35,7 +35,7 @@
 GLOBAL_DATUM(the_one_and_only_punpun, /mob/living/carbon/human/species/monkey/punpun)
 
 /mob/living/carbon/human/species/monkey/punpun
-	name = "Pun Pun" //C A N O N
+	name = "潘潘" //C A N O N
 	unique_name = FALSE
 	use_random_name = FALSE
 	ai_controller = /datum/ai_controller/monkey/pun_pun

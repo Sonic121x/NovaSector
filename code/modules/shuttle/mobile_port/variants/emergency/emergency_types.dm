@@ -1,6 +1,6 @@
 /// Fallback shuttle
 /obj/docking_port/mobile/emergency/backup
-	name = "backup shuttle"
+	name = "备用穿梭机"
 	shuttle_id = "backup"
 	dir = EAST
 
@@ -21,7 +21,7 @@
 
 /// Monastery shuttle
 /obj/docking_port/mobile/monastery
-	name = "monastery pod"
+	name = "修道院舱"
 	shuttle_id = "mining_common" //set so mining can call it down
 	launch_status = UNLAUNCHED //required for it to launch as a pod.
 

@@ -1,5 +1,5 @@
 /obj/projectile/bullet/cannonball
-	name = "cannonball"
+	name = "炮弹"
 	icon_state = "cannonball"
 	damage = 110 //gets set to 100 before first mob impact.
 	sharpness = NONE
@@ -41,7 +41,7 @@
 	return ..()
 
 /obj/projectile/bullet/cannonball/explosive
-	name = "explosive shell"
+	name = "爆破弹"
 	color = COLOR_RED
 	projectile_piercing = NONE
 	damage = 40 //set to 30 before first mob impact, but they're gonna be gibbed by the explosion
@@ -51,7 +51,7 @@
 	. = ..()
 
 /obj/projectile/bullet/cannonball/emp
-	name = "malfunction shot"
+	name = "失控弹"
 	icon_state = "emp_cannonball"
 	projectile_piercing = NONE
 	damage = 15 //very low
@@ -61,7 +61,7 @@
 	. = ..()
 
 /obj/projectile/bullet/cannonball/biggest_one
-	name = "\"The Biggest One\""
+	name = "\"大的要来了\""
 	icon_state = "biggest_one"
 	damage = 70 //low pierce
 
@@ -71,12 +71,12 @@
 	. = ..()
 
 /obj/projectile/bullet/cannonball/trashball
-	name = "trashball"
+	name = "垃圾球"
 	icon_state = "trashball"
 	damage = 90 //better than the biggest one but no explosion, so kinda just a worse normal cannonball
 
 /obj/projectile/bullet/cannonball/meteorslug
-	name = "meteorslug"
+	name = "流星弹"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small"
 	damage = 40 //REALLY not as bad as a real cannonball but they'll fucking hurt
@@ -91,7 +91,7 @@
 
 /// Mounted ballista projectile, not exactly a cannonball but it's close enough
 /obj/projectile/bullet/ballista_spear
-	name = "ballista spear"
+	name = "弩炮长矛"
 	icon_state = "ballista_spear"
 	damage = 60
 	speed = 3
@@ -113,7 +113,7 @@
 
 /// An even bigger ballista projectile designed for taking down monsters
 /obj/projectile/bullet/ballista_spear/dragonator
-	name = "dragon-slaying ballista spear"
+	name = "屠龙弩炮长矛"
 	icon_state = "ballista_spear_dragon"
 	damage = 120
 	speed = 4
@@ -130,7 +130,7 @@
 
 /// A "spear" that's not sharp but has a different surprise on the end
 /obj/projectile/bullet/ballista_spear/prod
-	name = "ballistic prod"
+	name = "弹道刺棒"
 	icon_state = "ballista_prod"
 	damage = 40
 	projectile_piercing = NONE
@@ -145,7 +145,7 @@
 	AddComponent(/datum/component/projectile_instance_drop, spear)
 	if (!istype(spear, /obj/item/melee/baton/security/cattleprod))
 		return // IDK how you did this but you're going to have a boring projectile
-	name = "ballistic [initial(spear.name)]"
+	name = "弹道 [initial(spear.name)]"
 	held_prod = spear
 	RegisterSignals(held_prod, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(on_prod_left))
 

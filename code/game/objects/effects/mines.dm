@@ -1,6 +1,6 @@
 /obj/effect/mine
-	name = "dummy mine"
-	desc = "Better stay away from that thing."
+	name = "假人地雷"
+	desc = "最好离那玩意远点"
 	density = FALSE
 	anchored = TRUE
 	icon = 'icons/obj/weapons/grenade.dmi'
@@ -34,13 +34,13 @@
 /obj/effect/mine/examine(mob/user)
 	. = ..()
 	if(!armed)
-		. += span_info("It appears to be inactive...")
+		. += span_info("它看起来处于未激活状态...")
 
 	var/atom/movable/unlucky_sod = foot_on_mine?.resolve()
 	if(user == unlucky_sod)
-		. += span_bolddanger("The pressure plate is depressed. Any movement you make will set it off now.")
+		. += span_bolddanger("压力板已被压下。你现在任何移动都会触发它。")
 	else if(!isnull(unlucky_sod))
-		. += span_danger("The pressure plate is depressed by [unlucky_sod]. Any move they make'll set it off now.")
+		. += span_danger("压力板被[unlucky_sod]压下了。他们任何移动都会触发它。")
 
 /obj/effect/mine/update_icon_state()
 	. = ..()
@@ -58,7 +58,7 @@
 	armed = TRUE
 	update_appearance(UPDATE_ICON_STATE)
 	playsound(src, 'sound/machines/nuke/angry_beep.ogg', 40, FALSE, -2)
-	visible_message(span_danger("\The [src] beeps softly, indicating it is now active."), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_danger("\The [src] 发出轻柔的哔哔声，表明它现在已激活。"), vision_distance = COMBAT_MESSAGE_RANGE)
 
 /// Can this mine trigger on the passed movable?
 /obj/effect/mine/proc/can_trigger(atom/movable/on_who)
@@ -95,7 +95,7 @@
 		else
 			return //it didn't actually touch the mine, don't blow
 
-	visible_message(span_danger("[icon2html(src, viewers(src))] *click*"))
+	visible_message(span_danger("[icon2html(src, viewers(src))] *咔哒*"))
 	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 	if(gonna_blow)
 		RegisterSignal(arrived, COMSIG_MOVABLE_MOVED, PROC_REF(triggermine)) //wait for it to finish the movement before blowing so it takes proper damage
@@ -112,7 +112,7 @@
 
 	if(!foot_on_mine && gone.flags_1 & ON_BORDER_1)
 		if(gone.dir == REVERSE_DIR(direction)) //see if a north facing border atom (ie window) travels south (and other directions as needed)
-			visible_message(span_danger("[icon2html(src, viewers(src))] *click*"))
+			visible_message(span_danger("[icon2html(src, viewers(src))] *咔哒*"))
 			playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 			triggermine() //it "passed" over the mine briefly, triggering it in the process
 		return //either it blew up the mine, or it didn't and we don't have to worry about anything else.
@@ -134,9 +134,9 @@
 	if(triggered) //too busy detonating to detonate again
 		return
 	if(triggerer)
-		visible_message(span_danger("[triggerer] sets off [icon2html(src, viewers(src))] [src]!"))
+		visible_message(span_danger("[triggerer] 触发了 [icon2html(src, viewers(src))] [src]！"))
 	else
-		visible_message(span_danger("[icon2html(src, viewers(src))] [src] detonates!"))
+		visible_message(span_danger("[icon2html(src, viewers(src))] [src] 爆炸了！"))
 
 	do_sparks(3, TRUE, src)
 	mineEffect(triggerer)
@@ -145,7 +145,7 @@
 	qdel(src)
 
 /obj/effect/mine/explosive
-	name = "explosive mine"
+	name = "爆炸地雷"
 	/// The devastation range of the resulting explosion.
 	var/range_devastation = 0
 	/// The heavy impact range of the resulting explosion.
@@ -161,25 +161,25 @@
 	explosion(src, range_devastation, range_heavy, range_light, range_flame, range_flash)
 
 /obj/effect/mine/explosive/light
-	name = "low-yield explosive mine"
+	name = "低当量爆炸地雷"
 	range_heavy = 0
 	range_light = 3
 	range_flash = 2
 
 /obj/effect/mine/explosive/flame
-	name = "incendiary explosive mine"
+	name = "燃烧爆炸地雷"
 	range_heavy = 0
 	range_light = 1
 	range_flame = 3
 
 /obj/effect/mine/explosive/flash
-	name = "blinding explosive mine"
+	name = "致盲爆炸地雷"
 	range_heavy = 0
 	range_light = 1
 	range_flash = 6
 
 /obj/effect/mine/stun
-	name = "stun mine"
+	name = "眩晕地雷"
 	var/stun_time = 80
 
 /obj/effect/mine/stun/mineEffect(mob/living/victim)
@@ -187,15 +187,15 @@
 		victim.Paralyze(stun_time)
 
 /obj/effect/mine/kickmine
-	name = "kick mine"
+	name = "二踢脚地雷"
 
 /obj/effect/mine/kickmine/mineEffect(mob/victim)
 	if(isliving(victim) && victim.client && Adjacent(victim))
-		to_chat(victim, span_userdanger("You have been kicked FOR NO REISIN!"))
+		to_chat(victim, span_userdanger("你被踢了，毫无理由！"))
 		qdel(victim.client)
 
 /obj/effect/mine/gas
-	name = "oxygen mine"
+	name = "氧气地雷"
 	var/gas_amount = 360
 	var/gas_type = GAS_O2
 
@@ -203,32 +203,32 @@
 	atmos_spawn_air("[gas_type]=[gas_amount]")
 
 /obj/effect/mine/gas/plasma
-	name = "plasma mine"
+	name = "等离子地雷"
 	gas_type = GAS_PLASMA
 
 /obj/effect/mine/gas/n2o
-	name = "\improper N2O mine"
+	name = "\improper 一氧化二氮地雷"
 	gas_type = GAS_N2O
 
 /obj/effect/mine/gas/water_vapor
-	name = "chilled vapor mine"
+	name = "冷蒸汽地雷"
 	gas_amount = 500
 	gas_type = GAS_WATER_VAPOR
 
 /obj/effect/mine/sound
-	name = "honkblaster 1000"
+	name = "喇叭起爆器 1000"
 	var/sound = 'sound/items/bikehorn.ogg'
 
 /obj/effect/mine/sound/mineEffect(mob/victim)
 	playsound(loc, sound, 100, TRUE)
 
 /obj/effect/mine/sound/bwoink
-	name = "bwoink mine"
+	name = "Bwoink（拟声词）地雷"
 	sound = 'sound/effects/adminhelp.ogg'
 
 /// These mines spawn pellet_clouds around them when triggered
 /obj/effect/mine/shrapnel
-	name = "shrapnel mine"
+	name = "破片地雷"
 	/// The type of projectiles we're shooting out of this
 	var/shrapnel_type = /obj/projectile/bullet/shrapnel
 	/// Broadly, how many pellets we're spawning, the total is n! - (n-1)! pellets, so don't set it too high. For reference, 15 is probably pushing it at MAX
@@ -244,12 +244,12 @@
 	return ..()
 
 /obj/effect/mine/shrapnel/sting
-	name = "stinger mine"
+	name = "毒刺地雷"
 	shrapnel_type = /obj/projectile/bullet/pellet/stingball
 
 /obj/effect/mine/shrapnel/capspawn
-	name = "\improper AP mine"
-	desc = "A defensive landmine filled with 'AP shrapnel', good for defending cramped spaces without breaching hulls. The AP stands for 'Asset Protection', though it's still plenty nasty against any fool who sets it off."
+	name = "\improper 反步兵地雷"
+	desc = "一种装满穿甲弹片的防御性地雷，可以在狭小空间内引爆而不破坏船体。AP意味着‘保护资产’，尽管总有傻瓜去引爆它造成严重后果。"
 	shrapnel_type = /obj/projectile/bullet/pellet/capmine
 	shrapnel_magnitude = 4
 	shred_triggerer = TRUE
@@ -263,8 +263,8 @@
 	set_light_on(TRUE)
 
 /obj/item/minespawner
-	name = "landmine deployment device"
-	desc = "When activated, will deploy an Asset Protection landmine after 3 seconds passes, perfect for high ranking NT officers looking to cover their assets from afar."
+	name = "地雷部署装置"
+	desc = "激活后，将在3秒后部署反步兵地雷（保护资产地雷），非常适合从远处保护纳米传讯的高级军官们。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "beacon"
 
@@ -277,7 +277,7 @@
 		return
 
 	playsound(src, 'sound/items/weapons/armbomb.ogg', 70, TRUE)
-	to_chat(user, span_warning("You arm \the [src], causing it to shake! It will deploy in 3 seconds."))
+	to_chat(user, span_warning("你启动了 \the [src]，使其开始震动！它将在3秒后部署。"))
 	active = TRUE
 	addtimer(CALLBACK(src, PROC_REF(deploy_mine)), 3 SECONDS)
 
@@ -286,7 +286,7 @@
 	do_alert_animation()
 	playsound(loc, 'sound/machines/chime.ogg', 30, FALSE, -3)
 	var/obj/effect/mine/new_mine = new mine_type(get_turf(src))
-	visible_message(span_danger("\The [src] releases a puff of smoke, revealing \a [new_mine]!"))
+	visible_message(span_danger("\The [src] 喷出一股烟雾，露出了 \a [new_mine]！"))
 	var/obj/effect/particle_effect/fluid/smoke/poof = new (get_turf(src))
 	poof.lifetime = 3
 	qdel(src)

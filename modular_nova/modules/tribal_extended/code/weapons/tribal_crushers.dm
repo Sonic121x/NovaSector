@@ -3,8 +3,8 @@
 #define RUNIC_LIGHT_POWER 0.8
 
 /obj/item/kinetic_crusher/runic_greatsword
-	name = "runic greatsword"
-	desc = "A greatsword of Hearthkin make. The runes on the blades glows a soft blue."
+	name = "符文巨剑"
+	desc = "一把炉心氏族打造的巨剑。剑刃上的符文散发着柔和的蓝光。"
 	icon = 'modular_nova/modules/tribal_extended/icons/tribal_crushers.dmi'
 	icon_state = "runic_greatsword"
 	worn_icon = 'modular_nova/modules/tribal_extended/icons/back.dmi'
@@ -26,8 +26,8 @@
 		. += emissive_appearance(icon_file, "[inhand_icon_state]-emissive", src, alpha = src.alpha)
 
 /obj/item/kinetic_crusher/runic_greataxe
-	name = "runic greataxe"
-	desc = "A greataxe of Hearthkin make. The runes on the blades glows a soft blue."
+	name = "符文巨斧"
+	desc = "一把炉心氏族打造的巨斧。斧刃上的符文散发着柔和的蓝光。"
 	icon = 'modular_nova/modules/tribal_extended/icons/tribal_crushers.dmi' //Modified sprite from Roguetown
 	icon_state = "runic_axe"
 	worn_icon = 'icons/mob/clothing/back.dmi'
@@ -40,8 +40,8 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/kinetic_crusher/spear/runic_spear
-	name = "runic spear"
-	desc = "A spear of Hearthkin make. The runes on the blades glows a soft blue."
+	name = "符文长矛"
+	desc = "一把炉心氏族打造的长矛。矛刃上的符文散发着柔和的蓝光。"
 	icon = 'modular_nova/modules/tribal_extended/icons/tribal_crushers.dmi' //Custom sprite, i'm a bad spriter, mhkay?
 	icon_state = "runic_spear"
 	light_range = RUNIC_LIGHT_RANGE
@@ -77,7 +77,7 @@
 //changed compared to kintetic_crusher.dm. We don't fire a projectile and we don't care if the cursor is over the player.
 /obj/item/kinetic_crusher/runic_greatsword/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED) && !acts_as_if_wielded)
-		balloon_alert(user, "wield it first!")
+		balloon_alert(user, "先双手持握！")
 		return ITEM_INTERACT_BLOCKING
 	runic_spin()
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -134,8 +134,8 @@
 	playsound(src.loc, 'sound/effects/magic/cosmic_energy.ogg', 60, TRUE)
 
 /obj/item/hearthkin_ship_fragment_inactive
-	name = "dormant fragment of the Stjarndrakkr"
-	desc = "A dormant piece of ancient tech, carbon-dated to roughly 300 years ago. One side is etched with strange symbols resembling Ættmál runes, their lines worn and shallow. Tribes whisper that only by carving them anew with a chisel can its purpose be revealed."
+	name = "沉睡的星龙碎片"
+	desc = "一块沉睡的古代科技碎片，碳测年法显示其年代大约在300年前。一侧蚀刻着类似Ættmál符文的奇怪符号，线条磨损且浅显。部落间流传着只有用凿子重新雕刻这些符文才能揭示其用途的耳语。"
 	icon = 'icons/obj/antags/cult/items.dmi'
 	icon_state = "cult_sharpener_used"
 	drop_sound = SFX_STONE_DROP
@@ -149,8 +149,8 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/item/hearthkin_ship_fragment_active
-	name = "fragment of the Stjarndrakkr"
-	desc = "A piece of ancient tech, carbon-dated to roughly 300 years ago. One side is etched with strange glowing symbols resembling Ættmál runes. Perhaps the natives could uncover its purpose."
+	name = "星龙碎片"
+	desc = "一块古代科技碎片，碳测年法显示其年代大约在300年前。一侧蚀刻着发光的奇怪符号，类似Ættmál符文。或许原住民能发现它的用途。"
 	icon = 'icons/obj/antags/cult/items.dmi'
 	icon_state = "cult_sharpener"
 	drop_sound = SFX_STONE_DROP
@@ -164,16 +164,16 @@
 		return
 
 	if(!isprimitivedemihuman(user))
-		to_chat(user, span_warning("You find yourself unable to carve into [src]!"))
+		to_chat(user, span_warning("你发现自己无法在[src]上雕刻！"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert(user, "begins engraving runes...")
+	user.balloon_alert(user, "开始雕刻符文...")
 	playsound(src, 'sound/effects/break_stone.ogg', 50, TRUE)
 	if(!do_after(user, 30 SECONDS, target = src))
-		user.visible_message(span_warning("[user]'s engraving was interrupted."))
+		user.visible_message(span_warning("[user]的雕刻被打断了。"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] completes the engraving — the fragment glows faintly."))
+	user.visible_message(span_notice("[user]完成了雕刻——碎片微微发光。"))
 	new /obj/item/hearthkin_ship_fragment_active(get_turf(src))
 	playsound(src, 'sound/effects/break_stone.ogg', 50, TRUE)
 	qdel(src)

@@ -79,9 +79,9 @@
 	var/obj/item/organ/removing_organ = pick(removable_organs)
 
 	if (carbon_owner.vomit(vomit_flags = VOMIT_CATEGORY_BLOOD))
-		carbon_owner.visible_message(span_boldwarning("[carbon_owner] vomits out [carbon_owner.p_their()] [removing_organ]"))
+		carbon_owner.visible_message(span_boldwarning("[carbon_owner]吐出了[carbon_owner.p_their()]的[removing_organ]"))
 	else
-		carbon_owner.visible_message(span_boldwarning("[carbon_owner]'s [removing_organ] rips itself out of `[carbon_owner.p_their()] chest!"))
+		carbon_owner.visible_message(span_boldwarning("[carbon_owner]的[removing_organ]从[carbon_owner.p_their()]胸口撕裂而出！"))
 
 	removing_organ.Remove(carbon_owner)
 

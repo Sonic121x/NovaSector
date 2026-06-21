@@ -1,6 +1,6 @@
 /obj/structure/ore_vein
-	name = "ore vein"
-	desc = "An ore vein that can mined."
+	name = "矿脉"
+	desc = "一个可供开采的矿脉。"
 	icon = 'modular_nova/modules/stone/icons/ore.dmi'
 	icon_state = "stone1"
 	base_icon_state = "stone"
@@ -44,21 +44,21 @@
 
 /obj/structure/ore_vein/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_MINING)
-		to_chat(user, span_notice("You need a pickaxe to mine this."))
+		to_chat(user, span_notice("你需要一把镐来开采这个。"))
 		return FALSE
 	if(!ore_type)
-		to_chat(user, span_notice("There's no ore to mine!"))
+		to_chat(user, span_notice("没有矿石可开采！"))
 		return FALSE
 	if(!ore_amount)
-		to_chat(user, span_notice("The [src] is too low quality to yield any useful amount of [ore_descriptor]."))
+		to_chat(user, span_notice("这个[src]品质太低，无法产出任何有用的[ore_descriptor]。"))
 		return FALSE
 	if(depleted == TRUE)
-		to_chat(user, span_notice("This ore vein is exhausted."))
+		to_chat(user, span_notice("这个矿脉已枯竭。"))
 		return FALSE
 	// Our early return checks to tell the user what went wrong.
-	to_chat(user, span_notice("You start mining the [ore_descriptor]..."))
+	to_chat(user, span_notice("你开始开采[ore_descriptor]..."))
 	if(W.use_tool(src, user, src.mining_time, volume=50))
-		to_chat(user, span_notice("You mine the [ore_descriptor]."))
+		to_chat(user, span_notice("你开采了[ore_descriptor]。"))
 		if(ore_type && ore_amount && depleted == FALSE)
 			new ore_type(loc, ore_amount)
 		SSblackbox.record_feedback("tally", "pick_used_mining", 1, W.type)
@@ -72,44 +72,44 @@
 	update_icon_state()
 
 /obj/structure/ore_vein/stone
-	name = "large rocks"
-	desc = "Various types of high quality stone that could probably make a good construction material if dug up and refined."
+	name = "大块岩石"
+	desc = "各种高品质的石头，如果挖掘并提炼，很可能成为良好的建筑材料。"
 
 /obj/structure/ore_vein/iron
-	name = "rusted rocks"
-	desc = "The rusty brown color on these rocks gives away the fact they are full of iron!"
+	name = "锈蚀岩石"
+	desc = "这些岩石上的锈褐色暴露了它们富含铁的事实！"
 	icon_state = "iron1"
 	base_icon_state = "iron"
 	ore_descriptor = "iron"
 	ore_type = /obj/item/stack/ore/iron
 
 /obj/structure/ore_vein/silver
-	name = "silvery-blue rocks"
-	desc = "These rocks have the giveaway blued-silver look of, well, raw silver."
+	name = "银蓝色岩石"
+	desc = "这些岩石呈现出典型的蓝银色外观，嗯，就是原银的样子。"
 	icon_state = "silver1"
 	base_icon_state = "silver"
 	ore_descriptor = "silver"
 	ore_type = /obj/item/stack/ore/silver
 
 /obj/structure/ore_vein/gold
-	name = "gold streaked rocks"
-	desc = "Fairly normal looking rocks... aside from the streaks of shining gold running through some of them!."
+	name = "金纹岩石"
+	desc = "看起来相当普通的岩石……除了其中一些上面贯穿的闪亮金色条纹！"
 	icon_state = "gold1"
 	base_icon_state = "gold"
 	ore_descriptor = "gold"
 	ore_type = /obj/item/stack/ore/gold
 
 /obj/structure/ore_vein/plasma
-	name = "plasma rich rocks"
-	desc = "Rocks with unrefined plasma visible on the outside of several... Do be careful with open flames near this."
+	name = "等离子富集岩石"
+	desc = "几块岩石外部可见未精炼的等离子体……靠近这东西时务必小心明火。"
 	icon_state = "plasma1"
 	base_icon_state = "plasma"
 	ore_descriptor = "plasma"
 	ore_type = /obj/item/stack/ore/plasma
 
 /obj/structure/ore_vein/diamond
-	name = "diamond studded rocks"
-	desc = "While nowhere near as rare as you'd think, the diamonds studding these rocks are still both useful and valuable."
+	name = "钻石镶嵌岩石"
+	desc = "虽然远没有你想象的那么稀有，但这些岩石上镶嵌的钻石仍然既实用又有价值。"
 	icon_state = "diamond1"
 	base_icon_state = "diamond"
 	ore_descriptor = "diamond"

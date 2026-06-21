@@ -22,8 +22,8 @@
 	new_icon_state = "blastwave_uniform_y"
 
 /obj/item/clothing/under/blastwave
-	name = "blastwave uniform"
-	desc = "An utilitarian uniform of rugged warfare."
+	name = "冲击波制服"
+	desc = "严酷战争中的一套实用制服。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/uniform_digi.dmi'

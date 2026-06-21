@@ -1,6 +1,6 @@
 /obj/item/xenoarch/wave_scanner_backpack
-	name = "Alden-Saraspova wave scanner backpack"
-	desc = "Old Nanotrasen wave scanner, designed to search and analyze exotic waves."
+	name = "阿尔登-萨拉斯波娃波形扫描仪背包"
+	desc = "老旧的纳米传讯波形扫描仪，用于搜索和分析奇异波形。"
 	slot_flags = ITEM_SLOT_BACK
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/tools.dmi'
 	worn_icon = 'modular_nova/modules/xenoarchartifacts/icons/worn.dmi'
@@ -30,13 +30,13 @@
 
 	var/mob/user = usr
 	if(!user.get_item_by_slot(ITEM_SLOT_BACK) == src)
-		to_chat(usr, span_warning("The [src] must be worn properly to use!"))
+		to_chat(usr, span_warning("必须正确穿戴[src]才能使用！"))
 		return
 
 	if(processor.loc == src)
 		// Detach the searcher into the user's hands
 		if(!user.put_in_hands(processor))
-			to_chat(user, span_warning("You need a free hand to hold the [processor]!"))
+			to_chat(user, span_warning("你需要一只空手来握住[processor]！"))
 			return
 		playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 50, FALSE)
 	else
@@ -58,7 +58,7 @@
 	if(ismob(processor.loc))
 		var/mob/mob_loc = processor.loc
 		if(mob_loc.dropItemToGround(processor))
-			to_chat(mob_loc, span_notice("The [processor] snaps back into the [src]."))
+			to_chat(mob_loc, span_notice("[processor]啪地一声缩回了[src]中。"))
 			playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 50, FALSE)
 	else
 		processor.forceMove(src)
@@ -89,8 +89,8 @@
 	remove_processor()
 
 /obj/item/xenoarch/searcher
-	name = "exotic wave searcher"
-	desc = "Searches for exotic waves."
+	name = "奇异波形搜索器"
+	desc = "用于搜索奇异波形。"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/tools.dmi'
 	icon_state = "wave_searcher"
 	w_class = WEIGHT_CLASS_BULKY
@@ -167,6 +167,6 @@
 			if(nearest_artifact_distance < 0 || cur_dist < nearest_artifact_distance)
 				nearest_artifact_distance = cur_dist + rand() * 2 - 1
 	visible_message(
-		span_info("[src] clicks."),
-		blind_message = span_notice("You hear click nearby."),
+		span_info("[src]发出咔哒声。"),
+		blind_message = span_notice("你听到附近传来咔哒声。"),
 	)

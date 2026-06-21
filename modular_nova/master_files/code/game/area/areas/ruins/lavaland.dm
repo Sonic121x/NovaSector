@@ -9,7 +9,7 @@
 // Interdyne planetary base
 
 /area/ruin/interdyne_planetary_base // used as parent type and for turret control
-	name = "Interdyne Pharmaceuticals Spinward Sector Base"
+	name = "英特戴恩制药旋臂星区基地"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "syndie-control"
 	ambience_index = AMBIENCE_DANGER
@@ -17,21 +17,21 @@
 	area_flags = BLOBS_ALLOWED
 
 /area/ruin/interdyne_planetary_base/cargo
-	name = "Interdyne Cargo Bay"
+	name = "英特戴恩货运舱"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "mining"
 
 /area/ruin/interdyne_planetary_base/cargo/deck
-	name = "Interdyne Deck Officer's Office"
+	name = "英特戴恩甲板军官办公室"
 	icon_state = "qm_office"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/interdyne_planetary_base/cargo/ware
-	name = "Interdyne Warehouse"
+	name = "英特戴恩仓库"
 	icon_state = "cargo_warehouse"
 
 /area/ruin/interdyne_planetary_base/cargo/obs
-	name = "Interdyne Observation Center"
+	name = "英特戴恩观测中心"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "observatory"
 	ambience_index = AMBIENCE_DANGER
@@ -49,21 +49,21 @@
 	return ..()
 
 /area/ruin/interdyne_planetary_base/main
-	name = "Interdyne Main Hall"
+	name = "英特戴恩主厅"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "hall"
 
 /area/ruin/interdyne_planetary_base/main/vault
-	name = "Interdyne Vault"
+	name = "英特戴恩金库"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "syndie-control"
 
 /area/ruin/interdyne_planetary_base/main/dorms
-	name = "Interdyne Dormitories"
+	name = "英特戴恩宿舍区"
 	icon_state = "crew_quarters"
 
 /area/ruin/interdyne_planetary_base/main/dorms/lib
-	name = "Interdyne Library"
+	name = "英特戴恩图书馆"
 	icon_state = "library"
 	mood_bonus = 5
 	mood_message = "I love being in the base's library!"
@@ -71,62 +71,62 @@
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/ruin/interdyne_planetary_base/med
-	name = "Interdyne Medical Wing"
+	name = "英特戴恩医疗翼"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "medbay"
 	ambience_index = AMBIENCE_MEDICAL
 
 /area/ruin/interdyne_planetary_base/med/pharm
-	name = "Interdyne Pharmacy"
+	name = "英特戴恩药房"
 	icon_state = "pharmacy"
 
 /area/ruin/interdyne_planetary_base/med/viro
-	name = "Interdyne Virological Lab"
+	name = "英特戴恩病毒学实验室"
 	icon_state = "virology"
 	ambience_index = AMBIENCE_VIROLOGY
 
 /area/ruin/interdyne_planetary_base/med/morgue
-	name = "Interdyne Morgue"
+	name = "英特戴恩停尸房"
 	icon_state = "morgue"
 	ambience_index = AMBIENCE_SPOOKY
 	ambientsounds = list('sound/ambience/icemoon/ambiicemelody4.ogg') // creepy, but a bit wistful
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/interdyne_planetary_base/science
-	name = "Interdyne Science Wing"
+	name = "英特戴恩科研翼"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "science"
 
 /area/ruin/interdyne_planetary_base/science/xeno
-	name = "Interdyne Xenobiological Lab"
+	name = "英特戴恩异种生物学实验室"
 	icon_state = "xenobio"
 
 /area/ruin/interdyne_planetary_base/serv
-	name = "Interdyne Service Wing"
+	name = "英特戴恩服务翼"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "hall_service"
 
 /area/ruin/interdyne_planetary_base/serv/rstrm
-	name = "Interdyne Unisex Restrooms"
+	name = "英特戴恩无性别洗手间"
 	icon_state = "toilet"
 
 /area/ruin/interdyne_planetary_base/serv/bar
-	name = "Interdyne Bar"
+	name = "英特戴恩酒吧"
 	icon_state = "bar"
 	mood_bonus = 5
 	mood_message = "I love being in the base's bar!"
 	mood_trait = TRAIT_EXTROVERT
 
 /area/ruin/interdyne_planetary_base/serv/kitchen
-	name = "Interdyne Kitchen"
+	name = "英特戴恩厨房"
 	icon_state = "kitchen"
 
 /area/ruin/interdyne_planetary_base/serv/hydr
-	name = "Interdyne Hydroponics"
+	name = "英特戴恩水培室"
 	icon_state = "hydro"
 
 /area/ruin/interdyne_planetary_base/eng
-	name = "Interdyne Engineering"
+	name = "英特戴恩工程部"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "maint_electrical" // given interdyne's powerplant is rtg's, thought this looked good on the frontend for mappers
 	ambient_buzz = 'modular_nova/modules/random_ship_event/random_ships/heliostatic_inspectors/sounds/gear_loop.ogg'
@@ -142,10 +142,10 @@
 	return ..()
 
 /area/ruin/interdyne_planetary_base/eng/disp
-	name = "Interdyne Disposals"
+	name = "英特戴恩废弃物处理"
 	icon_state = "disposal"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 //The prefab colonist homestead. Dependent on the colony_fabricator module.
 /area/ruin/colonist_homestead
-	name = "Colonist Homestead"
+	name = "殖民者家园"

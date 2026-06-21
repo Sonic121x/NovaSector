@@ -1,6 +1,6 @@
 /mob/living/basic/pony
-	name = "pony"
-	desc = "Look at my horse, my horse is amazing!"
+	name = "小马"
+	desc = "看看我的马，我的马真棒！"
 	icon_state = "pony"
 	icon_living = "pony"
 	icon_dead = "pony_dead"
@@ -63,7 +63,7 @@
 	. = ..()
 	playsound(src, 'sound/mobs/non-humanoids/pony/snort.ogg', 50)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/pony)
-	visible_message(span_notice("[src] snorts happily."))
+	visible_message(span_notice("[src] 高兴地哼了一声。"))
 	new /obj/effect/temp_visual/heart(loc)
 
 	ai_controller.replace_planning_subtrees(list(
@@ -144,7 +144,7 @@
 /mob/living/basic/pony/syndicate
 	health = 300
 	maxHealth = 300
-	desc = "A special breed of horse engineered by the syndicate to be capable of surviving in the deep reaches of space. A modern outlaw's best friend."
+	desc = "一种由辛迪加培育的特殊马种，能够在太空深处生存。现代法外之徒的最佳伙伴。"
 	faction = list(ROLE_SYNDICATE)
 	ponycolors = list("#5d566f", COLOR_RED)
 	pressure_resistance = 200
@@ -168,7 +168,7 @@
 		COLOR_DARK_BROWN=1,
 	)
 	ponycolors = list("#5d566f", pick_weight(mane_colors))
-	name = pick("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+	name = pick("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六")
 	// Only one person can tame these fellas, and they only need one apple
 	var/static/list/food_types = list(/obj/item/food/grown/apple)
 	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100, bonus_tame_chance = 15, unique = unique_tamer)
@@ -176,7 +176,7 @@
 /mob/living/basic/pony/dangerous
 	health = 300
 	maxHealth = 300
-	desc = "A special breed of horse engineered by the syndicate to be capable of surviving in the deep reaches of space. A modern outlaw's best friend."
+	desc = "一种由辛迪加培育的特殊马种，能够在太空深处生存。现代法外之徒的最佳伙伴。"
 	faction = list(ROLE_SYNDICATE)
 	ponycolors = list("#666666", COLOR_ORANGE)
 	pressure_resistance = 200
@@ -194,6 +194,6 @@
 	. = ..()
 	var/mane_colors = list(COLOR_RED, COLOR_ORANGE, COLOR_YELLOW)
 	ponycolors = list("#666666", pick(mane_colors))
-	name = pick("S-Horse", "Plotva", "Horsekk", "Agro", "Hons")
+	name = pick("S-Horse", "普洛特瓦", "S-Horse", "Agro", "Hons")
 	var/static/list/food_types = list(/obj/item/food/grown/apple)
 	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100, bonus_tame_chance = 15, unique = unique_tamer)

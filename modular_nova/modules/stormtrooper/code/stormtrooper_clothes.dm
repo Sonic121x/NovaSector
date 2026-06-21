@@ -1,22 +1,22 @@
 /obj/item/clothing/head/helmet/stormtrooper
-	name = "stormtrooper helmet"
-	desc = "A shiny white helmet with some very narrow holes for the users eyes."
+	name = "冲锋队头盔"
+	desc = "一顶闪亮的白色头盔，为使用者眼睛留出的孔洞非常狭窄。"
 	icon = 'modular_nova/modules/stormtrooper/icons/items.dmi'
 	worn_icon = 'modular_nova/modules/stormtrooper/icons/head.dmi'
 	icon_state = "stormtrooper_helmet"
 	supports_variations_flags = NONE
 
 /obj/item/clothing/suit/armor/stormtrooper
-	name = "stormtrooper suit"
-	desc = "A shiny white armoured suit, looks like it'd be good for deflecting blaster fire."
+	name = "冲锋队护甲"
+	desc = "一套闪亮的白色装甲服，看起来很适合偏转爆能枪火力。"
 	icon_state = "stormtrooper_suit"
 	icon = 'modular_nova/modules/stormtrooper/icons/items.dmi'
 	worn_icon = 'modular_nova/modules/stormtrooper/icons/suit.dmi'
 	supports_variations_flags = NONE
 
 /obj/item/clothing/shoes/combat/stormtrooper
-	name = "stormtrooper boots"
-	desc = "A pair of white boots."
+	name = "冲锋队靴子"
+	desc = "一双白色靴子。"
 	icon = 'modular_nova/modules/stormtrooper/icons/items.dmi'
 	worn_icon = 'modular_nova/modules/stormtrooper/icons/feet.dmi'
 	icon_state = "stormtrooper_boots"
@@ -28,8 +28,8 @@
 	supports_variations_flags = NONE
 
 /obj/item/clothing/gloves/combat/peacekeeper/stormtrooper
-	name = "stormtrooper gloves"
-	desc = "White gloves with some limited reflective armor."
+	name = "冲锋队手套"
+	desc = "带有有限反射装甲的白色手套。"
 	icon = 'modular_nova/modules/stormtrooper/icons/items.dmi'
 	worn_icon = 'modular_nova/modules/stormtrooper/icons/hands.dmi'
 	icon_state = "stormtrooper_gloves"

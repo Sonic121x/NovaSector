@@ -50,8 +50,8 @@
 			take_bodypart_damage(5 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 		else if(!iscarbon(hit_atom) && extra_speed)
 			take_bodypart_damage(5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
-		visible_message(span_danger("[src] crashes into [hit_atom][extra_speed ? " really hard" : ""]!"),\
-			span_userdanger("You violently crash into [hit_atom][extra_speed ? " extra hard" : ""]!"))
+		visible_message(span_danger("[src]撞上了[hit_atom][extra_speed ? " really hard" : ""]！"),\
+			span_userdanger("你猛烈地撞上了[hit_atom][extra_speed ? " extra hard" : ""]！"))
 		log_combat(hit_atom, src, "crashes ")
 		oof_noise = TRUE
 
@@ -71,21 +71,21 @@
 		oof_noise = TRUE
 
 		if(blocked)
-			visible_message(span_danger("[src] crashes into [victim][extra_speed ? " really hard" : ""], but [victim] blocked the worst of it!"),\
-				span_userdanger("You violently crash into [victim][extra_speed ? " extra hard" : ""], but [victim] managed to block the worst of it!"))
+			visible_message(span_danger("[src]撞上了[victim][extra_speed ? " really hard" : ""]，但[victim]挡住了最严重的冲击！"),\
+				span_userdanger("你猛烈地撞上了[victim][extra_speed ? " extra hard" : ""]，但[victim]设法挡住了最严重的冲击！"))
 			log_combat(src, victim, "crashed into and was blocked by")
 			return
 		else if(HAS_TRAIT(victim, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED))
 			victim.take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 			victim.apply_damage(10 + 10 * extra_speed, STAMINA)
 			victim.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, 10 SECONDS)
-			visible_message(span_danger("[src] crashes into [victim][extra_speed ? " really hard" : ""], but [victim] was able to stay on their feet!"),\
-				span_userdanger("You violently crash into [victim][extra_speed ? " extra hard" : ""], but [victim] managed to stay on their feet!"))
+			visible_message(span_danger("[src]撞上了[victim][extra_speed ? " really hard" : ""]，但[victim]设法站稳了脚跟！"),\
+				span_userdanger("你猛烈地撞上了[victim][extra_speed ? " extra hard" : ""]，但[victim]设法站稳了脚跟！"))
 		else
 			victim.Paralyze(2 SECONDS)
 			victim.take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
-			visible_message(span_danger("[src] crashes into [victim][extra_speed ? " really hard" : ""], knocking them both over!"),\
-				span_userdanger("You violently crash into [victim][extra_speed ? " extra hard" : ""]!"))
+			visible_message(span_danger("[src]撞上了[victim][extra_speed ? " really hard" : ""]，把两个人都撞倒了！"),\
+				span_userdanger("你猛烈地撞上了[victim][extra_speed ? " extra hard" : ""]！"))
 		log_combat(src, victim, "crashed into")
 
 	if(oof_noise)
@@ -257,8 +257,8 @@
 		return FALSE
 	if(I != handcuffed && I != legcuffed)
 		return FALSE
-	visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [I]!"))
-	to_chat(src, span_notice("You successfully [cuff_break ? "break" : "remove"] [I]."))
+	visible_message(span_danger("[src]成功[cuff_break ? "break" : "remove"]了[I]！"))
+	to_chat(src, span_notice("你成功[cuff_break ? "break" : "remove"][I]。"))
 
 	if(cuff_break)
 		. = !((I == handcuffed) || (I == legcuffed))
@@ -342,7 +342,7 @@
 	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
 		if(message)
 			visible_message(
-				span_danger("[src] throws up all over [p_them()]self!"),
+				span_danger("[src] 吐得[p_them()]自己满身都是！"),
 				span_userdanger("You throw up all over yourself!"),
 			)
 			add_mood_event("vomit", /datum/mood_event/vomitself)
@@ -1018,7 +1018,7 @@
 		if(!check_rights(R_SPAWN))
 			return
 
-		var/edit_action = tgui_alert(usr, "What would you like to do?", "Modify Body Part", list("Replace", "Remove"))
+		var/edit_action = tgui_alert(usr, "你想要做什么？", "修改身体部位", list("Replace", "Remove"))
 		if(!edit_action)
 			return
 
@@ -1066,7 +1066,7 @@
 		for (var/obj/item/bodypart/part_type as anything in sort_list(limbtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 			limb_picks[replacetext("[part_type]", "/obj/item/bodypart/", ":")] = part_type
 
-		var/choice = tgui_input_list(usr, "Select a bodypart type to add", "Add/Replace Bodypart", limb_picks)
+		var/choice = tgui_input_list(usr, "选择要添加的身体部位类型", "添加/替换身体部位", limb_picks)
 		if (!choice)
 			return
 
@@ -1088,7 +1088,7 @@
 		for(var/i in artpaths)
 			var/datum/martial_art/M = i
 			artnames[initial(M.name)] = M
-		var/result = tgui_input_list(usr, "Choose the martial art to teach", "JUDO CHOP", sort_list(artnames, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/result = tgui_input_list(usr, "选择要教授的武术", "柔道劈砍", sort_list(artnames, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(!usr)
 			return
 		if(QDELETED(src))
@@ -1103,7 +1103,7 @@
 
 	if(href_list[VV_HK_GIVE_TRAUMA])
 		var/list/traumas = subtypesof(/datum/brain_trauma)
-		var/result = tgui_input_list(usr, "Choose the brain trauma to apply", "Traumatize", sort_list(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/result = tgui_input_list(usr, "选择要施加的脑部创伤", "创伤化", sort_list(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(!usr)
 			return
 		if(QDELETED(src))

@@ -1,7 +1,7 @@
 // Given to heretic monsters.
 /datum/action/cooldown/spell/emp/eldritch
-	name = "Energetic Pulse"
-	desc = "A spell that causes a large EMP around you, disabling electronics."
+	name = "未知脉冲"
+	desc = "一个在你周围产生大范围电磁脉冲的魔法，使电子设备失效。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 

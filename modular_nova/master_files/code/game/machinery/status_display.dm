@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(alert_picture_options_nova, list(
 	set_picture("default")
 
 /obj/machinery/status_display/syndie
-	name = "syndicate status display"
+	name = "辛迪加状态显示屏"
 
 /obj/machinery/status_display/syndie/post_machine_initialize()
 	. = ..()

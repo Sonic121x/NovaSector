@@ -1,6 +1,6 @@
 ///This station traits gives 5 bananium sheets to the clown (and every dead clown out there in deep space or lavaland).
 /datum/station_trait/bananium_shipment
-	name = "Bananium Shipment"
+	name = "香蕉矿货运"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
@@ -13,7 +13,7 @@
 	return advisory_string
 
 /datum/station_trait/unnatural_atmosphere
-	name = "Unnatural atmospherical properties"
+	name = "异常大气属性"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
@@ -25,14 +25,14 @@
 	can_revert = FALSE
 
 /datum/station_trait/spider_infestation
-	name = "Spider Infestation"
+	name = "蜘蛛侵扰"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	report_message = "We have introduced a natural countermeasure to reduce the number of rodents on board your station."
 	trait_to_give = STATION_TRAIT_SPIDER_INFESTATION
 
 /datum/station_trait/unique_ai
-	name = "Unique AI"
+	name = "独特AI"
 	trait_type = STATION_TRAIT_NEUTRAL
 	trait_flags = parent_type::trait_flags | STATION_TRAIT_REQUIRES_AI
 	weight = 5
@@ -47,7 +47,7 @@
 		ai.show_laws()
 
 /datum/station_trait/ian_adventure
-	name = "Ian's Adventure"
+	name = "伊恩的冒险"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	show_in_report = FALSE
@@ -107,7 +107,7 @@
 		qdel(old_dog)
 
 /datum/station_trait/glitched_pdas
-	name = "PDA glitch"
+	name = "PDA故障"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	show_in_report = TRUE
@@ -116,7 +116,7 @@
 	trait_to_give = STATION_TRAIT_PDA_GLITCHED
 
 /datum/station_trait/announcement_intern
-	name = "Announcement Intern"
+	name = "通告实习生"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 1
 	show_in_report = TRUE
@@ -133,7 +133,7 @@
 	return advisory_string
 
 /datum/station_trait/announcement_medbot
-	name = "Announcement \"System\""
+	name = "通告“系统”"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 1
 	show_in_report = TRUE
@@ -145,7 +145,7 @@
 	SSstation.announcer = /datum/centcom_announcer/medbot
 
 /datum/station_trait/colored_assistants
-	name = "Colored Assistants"
+	name = "彩色助手"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 10
 	show_in_report = TRUE
@@ -160,7 +160,7 @@
 	GLOB.colored_assistant = new new_colored_assistant_type
 
 /datum/station_trait/birthday
-	name = "Employee Birthday"
+	name = "员工生日"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 2
 	show_in_report = TRUE
@@ -221,7 +221,7 @@
 
 /datum/station_trait/birthday/proc/announce_birthday()
 	report_message = "We here at Nanotrasen would all like to wish [birthday_person ? birthday_person_name : "Employee Name"] a very happy birthday."
-	priority_announce("Happy birthday to [birthday_person ? birthday_person_name : "Employee Name"]! Nanotrasen wishes you a very happy [birthday_person ? thtotext(birthday_person.age + 1) : "255th"] birthday.")
+	priority_announce("祝[birthday_person ? birthday_person_name : "Employee Name"]生日快乐！纳米传讯祝你[birthday_person ? thtotext(birthday_person.age + 1) : "255th"]岁生日快乐。")
 	if(birthday_person)
 		playsound(birthday_person, 'sound/items/party_horn.ogg', 50)
 		birthday_person.add_mood_event("birthday", /datum/mood_event/birthday)
@@ -258,19 +258,19 @@
 			spawned_mob.equip_to_storage(birthday_invite, ITEM_SLOT_BACK, indirect_action = TRUE) //Just incase someone spawns with both hands full.
 
 /obj/item/birthday_invite
-	name = "birthday invitation"
-	desc = "A card stating that it's someone's birthday today."
+	name = "生日邀请函"
+	desc = "一张卡片，上面写着今天是某人的生日。"
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/birthday_invite/proc/setup_card(birthday_name)
-	desc = "A card stating that its [birthday_name]'s birthday today."
+	desc = "一张卡片，上面写着今天是[birthday_name]的生日。"
 	icon_state = "paperslip_words"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 
 /obj/item/clothing/head/costume/party
-	name = "party hat"
-	desc = "A crappy paper hat that you are REQUIRED to wear."
+	name = "派对帽"
+	desc = "一顶你必须戴上的劣质纸帽子。"
 	icon_state = "party_hat"
 	greyscale_config =  /datum/greyscale_config/party_hat
 	greyscale_config_worn = /datum/greyscale_config/party_hat/worn
@@ -290,13 +290,13 @@
 	return ..()
 
 /obj/item/clothing/head/costume/party/festive
-	name = "festive paper hat"
+	name = "节日纸帽"
 	icon_state = "xmashat_grey"
 	greyscale_config = /datum/greyscale_config/festive_hat
 	greyscale_config_worn = /datum/greyscale_config/festive_hat/worn
 
 /datum/station_trait/scryers
-	name = "Scryers"
+	name = "占卜者"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 2
 	cost = STATION_TRAIT_COST_LOW
@@ -327,7 +327,7 @@
 	spawned.equip_to_slot_or_del(new_scryer, ITEM_SLOT_NECK, initial = FALSE)
 
 /datum/station_trait/wallets
-	name = "Wallets!"
+	name = "钱包！"
 	trait_type = STATION_TRAIT_NEUTRAL
 	show_in_report = TRUE
 	weight = 5
@@ -368,7 +368,7 @@
 
 /// Tells the area map generator to ADD MORE TREEEES
 /datum/station_trait/forested
-	name = "Forested"
+	name = "森林化"
 	trait_type = STATION_TRAIT_NEUTRAL
 	trait_to_give = STATION_TRAIT_FORESTED
 	trait_flags = STATION_TRAIT_PLANETARY
@@ -377,7 +377,7 @@
 	report_message = "There sure are a lot of trees out there."
 
 /datum/station_trait/linked_closets
-	name = "Closet Anomaly"
+	name = "储物柜异常"
 	trait_type = STATION_TRAIT_NEUTRAL
 	show_in_report = TRUE
 	weight = 1
@@ -406,7 +406,7 @@
 
 /// A trait that lets players choose whether they want pro-skub or anti-skub (or neither), and receive the appropriate equipment.
 /datum/station_trait/skub
-	name = "The Great Skub Contention"
+	name = "伟大的斯库布之争"
 	trait_type = STATION_TRAIT_NEUTRAL
 	show_in_report = FALSE
 	weight = 2
@@ -420,7 +420,7 @@
 
 /datum/station_trait/skub/setup_lobby_button(atom/movable/screen/lobby/button/sign_up/lobby_button)
 	RegisterSignal(lobby_button, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_lobby_button_update_overlays))
-	lobby_button.desc = "Are you pro-skub or anti-skub? Click to cycle through pro-skub, anti-skub, random and neutral."
+	lobby_button.desc = "你是支持斯库布还是反对斯库布？点击循环切换：支持斯库布、反对斯库布、随机和中立。"
 	return ..()
 
 /// Let late-joiners jump on this gimmick too.
@@ -448,16 +448,16 @@
 	switch(skub_stance)
 		if(PRO_SKUB)
 			skubbers[player.ckey] = ANTI_SKUB
-			lobby_button.balloon_alert(player, "anti-skub")
+			lobby_button.balloon_alert(player, "反斯卡布")
 		if(ANTI_SKUB)
 			skubbers[player.ckey] = SKUB_IDFC
-			lobby_button.balloon_alert(player, "don't care")
+			lobby_button.balloon_alert(player, "无所谓")
 		if(SKUB_IDFC)
 			skubbers[player.ckey] = RANDOM_SKUB
-			lobby_button.balloon_alert(player, "on the best side")
+			lobby_button.balloon_alert(player, "站在最好的一边")
 		if(RANDOM_SKUB)
 			skubbers[player.ckey] = PRO_SKUB
-			lobby_button.balloon_alert(player, "pro-skub")
+			lobby_button.balloon_alert(player, "支持斯卡布")
 
 /datum/station_trait/skub/proc/on_lobby_button_update_overlays(atom/movable/screen/lobby/button/sign_up/lobby_button, list/overlays)
 	SIGNAL_HANDLER
@@ -504,7 +504,7 @@
 
 /// Crew don't ever spawn as enemies of the station. Obsesseds, blob infection, space changelings etc can still happen though
 /datum/station_trait/background_checks
-	name = "Station-Wide Background Checks"
+	name = "全站背景审查"
 	report_message = "We replaced the intern doing your crew's background checks with a trained screener for this shift! \
 		That said, our enemies may just find another way to infiltrate the station, so be careful."
 	trait_type = STATION_TRAIT_NEUTRAL
@@ -528,7 +528,7 @@
 		dynamic_config[initial(ruleset.config_tag)][NAMEOF(ruleset, weight)] = 0
 
 /datum/station_trait/pet_day
-	name = "Bring Your Pet To Work Day"
+	name = "带宠物上班日"
 	trait_type = STATION_TRAIT_NEUTRAL
 	show_in_report = FALSE
 	weight = 2
@@ -539,7 +539,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_after_spawn))
 
 /datum/station_trait/pet_day/setup_lobby_button(atom/movable/screen/lobby/button/sign_up/lobby_button)
-	lobby_button.desc = "Want to bring your innocent pet to a giant metal deathtrap? Click here to customize it!"
+	lobby_button.desc = "想把你无辜的宠物带到这个巨大的金属死亡陷阱里来吗？点击这里自定义它！"
 	RegisterSignal(lobby_button, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_lobby_button_update_overlays))
 	return ..()
 
@@ -572,7 +572,7 @@
 
 /// We're pulling a Jim Kramer with this one boys
 /datum/station_trait/gmm_spotlight
-	name = "GMM Economic Spotlight"
+	name = "GMM经济聚焦"
 	report_message = "This shift, the Galactic Mineral Market is doing a showcase on your crew's affulence! Every paycheck, the station newscasters will alert the crew who has the most credits."
 	trait_type = STATION_TRAIT_NEUTRAL
 	trait_to_give = STATION_TRAIT_ECONOMY_ALERTS

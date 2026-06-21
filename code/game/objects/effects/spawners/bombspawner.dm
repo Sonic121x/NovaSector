@@ -3,7 +3,7 @@
  *
  */
 /obj/effect/spawner/newbomb
-	name = "bomb"
+	name = "炸弹"
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "x"
 	/* Gasmixes for tank_one and tank_two of the ttv respectively.

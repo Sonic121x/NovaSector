@@ -5,8 +5,8 @@
 */
 
 /mob/living/basic/killer_tomato
-	name = "Killer Tomato"
-	desc = "It's a horrifyingly enormous beef tomato, and it's packing extra beef!"
+	name = "杀手番茄"
+	desc = "这是一个骇人听闻的巨大牛肉番茄，而且它还额外加了料！"
 	icon_state = "tomato"
 	icon_living = "tomato"
 	icon_dead = "tomato_dead"

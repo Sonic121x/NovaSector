@@ -48,7 +48,7 @@
 	ascension = /datum/heretic_knowledge/ultimate/ash_final
 
 /datum/heretic_knowledge/limited_amount/starting/base_ash
-	name = "Nightwatcher's Secret"
+	name = "夜行者的秘密"
 	desc = "Opens up the Path of Ash to you. \
 		Allows you to transmute a match and a knife into an Ashen Blade. \
 		You can only create five at a time." //NOVA EDIT two to five
@@ -88,7 +88,7 @@
 		grasp.build_all_button_icons()
 
 /datum/heretic_knowledge/spell/ash_passage
-	name = "Ashen Passage"
+	name = "灰烬穿梭"
 	desc = "Grants you Ashen Passage, a spell that lets you phase out of reality, allowing you to traverse a short distance, passing though any walls. \
 			When empowered, it will break you out of any stuns and restraints, and will have a longer range."
 	gain_text = "He knew how to walk between the planes."
@@ -124,7 +124,7 @@
 	)
 
 /datum/heretic_knowledge/mad_mask
-	name = "Mask of Madness"
+	name = "癫狂面具"
 	desc = "Allows you to transmute any mask, four candles, a stun baton, and a liver to create a Mask of Madness. \
 		The mask instills fear into heathens who witness it, causing stamina damage, hallucinations, and insanity. \
 		It can also be forced onto a heathen, to make them unable to take it off..."
@@ -141,8 +141,8 @@
 	research_tree_icon_state = "mad_mask"
 
 /datum/heretic_knowledge/blade_upgrade/ash
-	name = "Fiery Blade"
-	desc = "Your blade now lights enemies ablaze on attack."
+	name = "烈火刃"
+	desc = "你的剑刃现将在攻击时点燃敌人"
 	gain_text = "He returned, blade in hand, he swung and swung as the ash fell from the skies. \
 		His city, the people he swore to watch... and watch he did, as they all burnt to cinders."
 
@@ -158,7 +158,7 @@
 	target.ignite_mob()
 
 /datum/heretic_knowledge/spell/flame_birth
-	name = "Nightwatcher's Rebirth"
+	name = "夜行者的复兴"
 	desc = "Grants you Nightwatcher's Rebirth, a spell that extinguishes you and \
 		burns all nearby heathens who are currently on fire, healing you for every victim afflicted. \
 		If any victims afflicted are in critical condition, they will also instantly die."
@@ -170,7 +170,7 @@
 	is_final_knowledge = TRUE
 
 /datum/heretic_knowledge/ultimate/ash_final
-	name = "Ashlord's Rite"
+	name = "灰烬神仪式"
 	desc = "The ascension ritual of the Path of Ash. \
 		Bring 3 burning or husked corpses to a transmutation rune to complete the ritual. \
 		When completed, you become a harbinger of flames, gaining two abilites. \
@@ -183,7 +183,7 @@
 		WITNESS MY ASCENSION, THE ASHY LANTERN BLAZES ONCE MORE!"
 
 	ascension_achievement = /datum/award/achievement/misc/ash_ascension
-	announcement_text = "%SPOOKY% Fear the blaze, for the Ashlord, %NAME% has ascended! The flames shall consume all! %SPOOKY%"
+	announcement_text = "%SPOOKY% 畏惧烈焰吧，因为灰烬之主，%NAME% 已经升天！火焰将吞噬一切！%SPOOKY%"
 	announcement_sound = 'sound/music/antag/heretic/ascend_ash.ogg'
 	/// A static list of all traits we apply on ascension.
 	var/static/list/traits_to_apply = list(

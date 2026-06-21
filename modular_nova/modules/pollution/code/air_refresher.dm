@@ -1,6 +1,6 @@
 /obj/item/air_refresher
-	name = "air refresher"
-	desc = "A bottle packed with sickly strong fragrance, with an easy to use pressurized release nozzle."
+	name = "空气清新剂"
+	desc = "一个装满刺鼻浓烈香气的瓶子，配有易于使用的加压释放喷嘴。"
 	icon = 'modular_nova/modules/pollution/icons/air_refresher.dmi'
 	icon_state = "air_refresher"
 	inhand_icon_state = "cleaner"
@@ -20,19 +20,19 @@
 
 /obj/item/air_refresher/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(uses_remaining <= 0)
-		to_chat(user, span_warning("\The [src] is empty!"))
+		to_chat(user, span_warning("\The [src] 是空的！"))
 		return NONE
 	uses_remaining--
 	var/turf/aimed_turf = get_turf(interacting_with)
 	aimed_turf.pollute_turf(/datum/pollutant/fragrance/air_refresher, 200)
-	user.visible_message(span_notice("[user] sprays the air around with \the [src]."), span_notice("You spray the air around with \the [src]."))
+	user.visible_message(span_notice("[user] 用\the [src]喷洒周围的空气。"), span_notice("You spray the air around with \the [src]."))
 	user.changeNext_move(CLICK_CD_RANGE*2)
 	playsound(aimed_turf, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/pollution_scrubber
-	name = "Pollution Scrubber"
-	desc = "A scrubber that will process the air and filter out any contaminants."
+	name = "污染洗涤器"
+	desc = "一种会处理空气并过滤掉所有污染物的洗涤器。"
 	icon = 'modular_nova/modules/pollution/icons/pollution_scrubber.dmi'
 	icon_state = "scrubber"
 	var/scrub_amount = 2
@@ -41,7 +41,7 @@
 /obj/machinery/pollution_scrubber/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	on = !on
-	balloon_alert(user, "scrubber turned [on ? "on" : "off"]")
+	balloon_alert(user, "净化器已[on ? "on" : "off"]")
 
 	update_appearance()
 

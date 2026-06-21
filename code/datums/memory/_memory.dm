@@ -98,7 +98,7 @@
 	var/list/potential_names = get_names()
 	if(!length(potential_names))
 		// Someone forgot to implement get_names - it will stack trace, so we just need to return
-		name = "Erroneous memory - This is a bug"
+		name = "错误记忆 - 这是一个漏洞"
 		story_value = STORY_VALUE_SHIT
 		memory_flags |= (MEMORY_FLAG_NOPERSISTENCE|MEMORY_NO_STORY)
 		return

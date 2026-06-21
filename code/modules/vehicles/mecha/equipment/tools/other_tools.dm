@@ -5,8 +5,8 @@
 ////////////////////////////////////////////// TELEPORTER ///////////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/teleporter
-	name = "mounted teleporter"
-	desc = "An exosuit module that allows exosuits to teleport to any position in view."
+	name = "机载传送器"
+	desc = "机甲模块，允许机甲传送到视野中的任何位置。"
 	icon_state = "mecha_teleport"
 	equip_cooldown = 150
 	energy_drain = STANDARD_CELL_CHARGE
@@ -26,7 +26,7 @@
 ////////////////////////////////////////////// WORMHOLE GENERATOR //////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/wormhole_generator
-	name = "mounted wormhole generator"
+	name = "机载虫洞生成器"
 	desc = "An exosuit module that allows generating of small quasi-stable wormholes, allowing for long-range inaccurate teleportation."
 	icon_state = "mecha_wholegen"
 	equip_cooldown = 50
@@ -67,8 +67,8 @@
 #define GRAVPUSH_MODE 2
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult
-	name = "mounted gravitational catapult"
-	desc = "An exosuit mounted Gravitational Catapult."
+	name = "机载重力投掷模块"
+	desc = "一套机甲型重力投掷模块"
 	icon_state = "mecha_teleport"
 	equip_cooldown = 10
 	energy_drain = 100
@@ -164,7 +164,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/armor/anticcw_armor_booster
 	name = "exosuit impact cushion plates"
-	desc = "Boosts exosuit armor against melee attacks"
+	desc = "增强机甲护甲对近战攻击的抗性"
 	icon_state = "mecha_abooster_ccw"
 	armor_mod = /datum/armor/mecha_equipment_ccw_boost
 
@@ -213,8 +213,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid
-	name = "exosuit repair droid"
-	desc = "An automated repair droid for exosuits. Scans for damage and repairs it. Can fix almost all types of external or internal damage."
+	name = "机甲维修机器人"
+	desc = "一种机甲自动修复机器人。扫描损坏并修复。可以修复几乎所有类型的外部或内部损伤。"
 	icon_state = "repair_droid"
 	energy_drain = 50
 	range = 0
@@ -290,7 +290,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/generator
-	name = "plasma engine"
+	name = "等离子引擎"
 	desc = "An exosuit module that generates power using solid plasma as fuel."
 	icon_state = "tesla"
 	range = MECHA_MELEE
@@ -390,8 +390,8 @@
 /////////////////////////////////////////// THRUSTERS /////////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/thrusters
-	name = "generic exosuit thrusters" //parent object, in-game sources will be a child object
-	desc = "A generic set of thrusters, from an unknown source. Uses not-understood methods to propel exosuits seemingly for free."
+	name = "通用机甲推进器" //parent object, in-game sources will be a child object
+	desc = "一套通用的推进装置，来源不明，它采用了未知的原理,似乎能让机甲无消耗推进。"
 	icon_state = "thrusters"
 	equipment_slot = MECHA_UTILITY
 	can_be_toggled = TRUE
@@ -450,8 +450,8 @@
 	QDEL_IN(E, 5)
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/gas
-	name = "RCS thruster package"
-	desc = "A set of thrusters that allow for exosuit movement in zero-gravity environments, by expelling gas from the internal life support tank."
+	name = "RCS推进器组件"
+	desc = "一套推进装置，能够在零重力环境中驱动机甲移动。其工作原理是从生命维持储罐中排出气体来实现。"
 	effect_type = /obj/effect/particle_effect/fluid/smoke
 	var/move_cost = 0.05 //moles per step (5 times more than human jetpacks)
 
@@ -471,8 +471,8 @@
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/ion //for mechs with built-in thrusters, should never really exist un-attached to a mech
-	name = "Ion thruster package"
-	desc = "A set of thrusters that allow for exosuit movement in zero-gravity environments."
+	name = "离子推进器组件"
+	desc = "一套推进装置，能够在零重力环境中驱动机甲移动。"
 	detachable = FALSE
 	effect_type = /obj/effect/particle_effect/ion_trails
 
@@ -487,8 +487,8 @@
 ///////////////////////////////////// CONCEALED WEAPON BAY ////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/concealed_weapon_bay
-	name = "concealed weapon bay"
-	desc = "A compartment that allows a non-combat mecha to equip one weapon while hiding the weapon from plain sight."
+	name = "隐蔽型武器舱"
+	desc = "一个隔间，允许非战斗机甲装备一件武器的同时并将其隐藏起来。"
 	icon_state = "mecha_weapon_bay"
 
 /obj/item/mecha_parts/mecha_equipment/concealed_weapon_bay/try_attach_part(mob/user, obj/vehicle/sealed/mecha/M)
@@ -535,7 +535,7 @@
 
 /obj/item/mecha_parts/camera_kit/try_attach_part(mob/user, obj/vehicle/sealed/mecha/mech, attach_right)
 	if(mech.chassis_camera)
-		balloon_alert(user, "already has a camera!")
+		balloon_alert(user, "已经装有摄像头了！")
 		return ITEM_INTERACT_BLOCKING
 
 	. = ..()

@@ -1,6 +1,6 @@
 // "Floating ghost blade" effect for blade heretics
 /obj/effect/floating_blade
-	name = "knife"
+	name = "刀"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "dio_knife"
 	layer = LOW_MOB_LAYER

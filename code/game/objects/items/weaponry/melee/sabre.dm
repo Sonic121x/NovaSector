@@ -1,6 +1,6 @@
 /obj/item/melee/sabre
-	name = "officer's sabre"
-	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
+	name = "军官佩剑"
+	desc = "一件优雅的武器，其单分子刃能够轻松切开血肉与骨骼。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "sabre"
 	inhand_icon_state = "sabre"
@@ -48,7 +48,7 @@
 /obj/item/melee/sabre/proc/bane_message(mob/living/target, mob/living/attacker)
 	target.visible_message(
 		span_warning("[src] tears through [target] with unnatural ease!"),
-		span_boldwarning("As [src] tears into your body, you feel the weight of authority collapse into your wounds!"),
+		span_boldwarning("当[src]撕裂你的身体时，你感到权威的重量压入了你的伤口！"),
 	)
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
 
@@ -64,7 +64,7 @@
 	playsound(container.parent, 'sound/items/sheath.ogg', 25, TRUE)
 
 /obj/item/melee/sabre/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is trying to cut off all [user.p_their()] limbs with [src]! it looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正试图用[user.p_their()]砍掉[src]所有的肢体！看起来[user.p_theyre()]试图自杀！"))
 	var/i = 0
 	ADD_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 	if(iscarbon(user))
@@ -108,8 +108,8 @@
 
 
 /obj/item/melee/parsnip_sabre
-	name = "parsnip sabre"
-	desc = "A weird, yet elegant weapon. Surprisingly sharp for something made from a parsnip."
+	name = "欧防风佩剑"
+	desc = "一件怪异而又优雅的武器。对于用欧防风制成的东西来说，锋利得令人惊讶。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "parsnip_sabre"
 	inhand_icon_state = "parsnip_sabre"

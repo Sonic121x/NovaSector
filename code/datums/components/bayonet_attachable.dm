@@ -92,7 +92,7 @@
 
 	examine_list += "It has \a [bayonet] [removable ? "" : "permanently "]affixed to it."
 	if(removable)
-		examine_list += span_info("[bayonet] looks like it can be <b>unscrewed</b> from [bayonet].")
+		examine_list += span_info("[bayonet]看起来可以从[bayonet]上<b>拧下来</b>。")
 
 /datum/component/bayonet_attachable/proc/on_pre_attack(obj/item/source, atom/target, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER
@@ -111,14 +111,14 @@
 		return
 
 	if(bayonet)
-		source.balloon_alert(attacker, "already has \a [bayonet]!")
+		source.balloon_alert(attacker, "已经装有 \a [bayonet]！")
 		return
 
 	if(!attacker.transferItemToLoc(attacking_item, source))
 		return
 
 	add_bayonet(attacking_item, attacker)
-	source.balloon_alert(attacker, "attached")
+	source.balloon_alert(attacker, "已安装")
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/component/bayonet_attachable/proc/add_bayonet(obj/item/new_bayonet, mob/attacher)
@@ -162,7 +162,7 @@
 
 /datum/component/bayonet_attachable/proc/unscrew_bayonet(obj/item/source, mob/user, obj/item/tool)
 	tool?.play_tool_sound(source)
-	source.balloon_alert(user, "unscrewed [bayonet]")
+	source.balloon_alert(user, "拧下了 [bayonet]")
 
 	var/obj/item/to_remove = bayonet
 	to_remove.forceMove(source.drop_location())
@@ -204,7 +204,7 @@
 
 	if (!bayonet || allow_sawnoff)
 		return
-	source.balloon_alert(user, "bayonet must be removed!")
+	source.balloon_alert(user, "必须先移除刺刀！")
 	return COMPONENT_CANCEL_SAWING_OFF
 
 /datum/component/bayonet_attachable/proc/on_sawn_off(obj/item/source, mob/user)

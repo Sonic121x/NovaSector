@@ -1,10 +1,10 @@
 /area/station/engineering/rbmk2
-	name = "\improper RB-MK2 Reactor Room"
+	name = "\improper RB-MK2 反应堆室"
 	icon_state = "engine_sm_room"
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 	area_flags = BLOBS_ALLOWED | CULT_PERMITTED
 
 /area/station/engineering/rbmk2/chamber
-	name = "\improper RB-MK2 Reactor Chamber"
+	name = "\improper RB-MK2 反应堆腔室"
 	icon_state = "engine_sm"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED

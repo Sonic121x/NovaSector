@@ -388,7 +388,7 @@
 #define CAPTAINSAID_MODE_OFF 1
 
 /obj/item/toy/captainsaid
-	name = "\improper Captain's Aid"
+	name = "\improper 舰长助手"
 	desc = "Every captain's greatest ally when exploring the vast emptiness of space, now with a color display!"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "captainsaid_off"
@@ -415,7 +415,7 @@
 	if (current_mode <= modes.len)
 		balloon_alert(user, "set to [current_mode]")
 	else
-		balloon_alert(user, "turned off")
+		balloon_alert(user, "已关闭")
 		current_mode = CAPTAINSAID_MODE_OFF
 	icon_state = "captainsaid_[modes[current_mode]]"
 	update_appearance(UPDATE_ICON)
@@ -460,7 +460,7 @@
 	if(!user)
 		return
 	if(!user.is_holding(src)) // Half digestion? Start choking to death
-		user.visible_message(span_suicide("[user] panics and starts choking [user.p_them()]self to death!"))
+		user.visible_message(span_suicide("[user] 惊慌失措，开始掐死[user.p_them()]自己！"))
 		user.adjust_oxy_loss(200)
 		user.death(FALSE) // unfortunately you have to handle the suiciding yourself with a manual suicide
 		user.ghostize(FALSE) // get the fuck out of our body
@@ -526,10 +526,10 @@
 			return 1
 		if (A.amount_left < (7 - src.bullets))
 			src.bullets += A.amount_left
-			to_chat(user, span_notice("You reload [A.amount_left] cap\s."))
+			to_chat(user, span_notice("你装填了[A.amount_left] cap\s 。"))
 			A.amount_left = 0
 		else
-			to_chat(user, span_notice("You reload [7 - src.bullets] cap\s."))
+			to_chat(user, span_notice("你装填了[7 - src.bullets] cap\s 。"))
 			A.amount_left -= 7 - src.bullets
 			src.bullets = 7
 		A.update_appearance()
@@ -550,7 +550,7 @@
 	src.bullets--
 	user.visible_message(span_danger("[user] fires [src] at [interacting_with]!"), \
 		span_danger("You fire [src] at [interacting_with]!"), \
-		span_hear("You hear a gunshot!"))
+		span_hear("你听到一声枪响！"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/toy/ammo
@@ -644,7 +644,7 @@
 			saber_color = "red"
 		else
 			return ITEM_INTERACT_SUCCESS
-	balloon_alert(user, "changed to [saber_color]")
+	balloon_alert(user, "已更改为[saber_color]")
 	update_appearance(UPDATE_ICON)
 	return ITEM_INTERACT_SUCCESS
 
@@ -908,8 +908,8 @@
 
 /obj/item/toy/talking/proc/activation_message(mob/user)
 	user.visible_message(
-		span_notice("[user] pulls the string on \the [src]."),
-		span_notice("You pull the string on \the [src]."),
+		span_notice("[user] 拉动了 \the [src] 上的绳子。"),
+		span_notice("你拉动了 \the [src] 上的绳子。"),
 		span_notice("You hear a string being pulled."))
 
 /obj/item/toy/talking/proc/generate_messages()
@@ -929,8 +929,8 @@
  * AI core prizes
  */
 /obj/item/toy/talking/ai
-	name = "toy AI"
-	desc = "A little toy model AI core with real law announcing action!"
+	name = "玩具AI"
+	desc = "一个小小的玩具AI核心模型，带有真实的法则播报功能！"
 	icon_state = "AI"
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -938,8 +938,8 @@
 	return list(generate_ion_law())
 
 /obj/item/toy/talking/codex_gigas
-	name = "Toy Codex Gigas"
-	desc = "A tool to help you write fictional devils!"
+	name = "玩具巨人法典"
+	desc = "一个帮助你撰写虚构魔鬼的工具！"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "demonomicon"
 	lefthand_file = 'icons/mob/inhands/items/books_lefthand.dmi'
@@ -950,13 +950,13 @@
 
 /obj/item/toy/talking/codex_gigas/activation_message(mob/user)
 	user.visible_message(
-		span_notice("[user] presses the button on \the [src]."),
+		span_notice("[user] 按下了 \the [src] 上的按钮。"),
 		span_notice("You press the button on \the [src]."),
-		span_notice("You hear a soft click."))
+		span_notice("你听到一声轻微的咔哒声。"))
 
 /obj/item/toy/talking/owl
-	name = "owl action figure"
-	desc = "An action figure modeled after 'The Owl', defender of justice."
+	name = "猫头鹰手办"
+	desc = "一个以正义守护者'猫头鹰'为原型制作的手办。"
 	icon_state = "owlprize"
 	messages = list("You won't get away this time, Griffin!", "Stop right there, criminal!", "Hoot! Hoot!", "I am the night!")
 	chattering = TRUE
@@ -964,8 +964,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/toy/talking/griffin
-	name = "griffin action figure"
-	desc = "An action figure modeled after 'The Griffin', criminal mastermind."
+	name = "狮鹫手办"
+	desc = "一个以犯罪主谋'狮鹫'为原型制作的手办。"
 	icon_state = "griffinprize"
 	messages = list("You can't stop me, Owl!", "My plan is flawless! The vault is mine!", "Caaaawwww!", "You will never catch me!")
 	chattering = TRUE
@@ -976,8 +976,8 @@
  * Fake nuke
  */
 /obj/item/toy/nuke
-	name = "\improper Nuclear Fission Explosive toy"
-	desc = "A plastic model of a Nuclear Fission Explosive."
+	name = "\improper 核裂变爆炸玩具"
+	desc = "一个核裂变爆炸装置的塑料模型。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "nuketoyidle"
 	w_class = WEIGHT_CLASS_SMALL
@@ -987,16 +987,16 @@
 /obj/item/toy/nuke/attack_self(mob/user)
 	if (obj_flags & EMAGGED && cooldown < world.time)
 		cooldown = world.time + 600
-		user.audible_message(span_hear("You hear the click of a button."), self_message = span_notice("You activate [src], it plays a loud noise!"))
+		user.audible_message(span_hear("你听见了按钮的咔哒声。"), self_message = span_notice("你激活了[src]，它发出了巨大的噪音！"))
 		sleep(0.5 SECONDS)
 		playsound(src, 'sound/announcer/alarm/nuke_alarm.ogg', 20, FALSE)
 		sleep(14 SECONDS)
-		user.visible_message(span_alert("[src] violently explodes!"))
+		user.visible_message(span_alert("[src]猛烈地爆炸了！"))
 		explosion(src, light_impact_range = 1)
 		qdel(src)
 	else if (cooldown < world.time)
 		cooldown = world.time + 600 //1 minute
-		user.visible_message(span_warning("[user] presses a button on [src]."), span_notice("You activate [src], it plays a loud noise!"), span_hear("You hear the click of a button."))
+		user.visible_message(span_warning("[user]按下了[src]上的一个按钮。"), span_notice("You activate [src], it plays a loud noise!"), span_hear("You hear the click of a button."))
 		sleep(0.5 SECONDS)
 		icon_state = "nuketoy"
 		playsound(src, 'sound/announcer/alarm/nuke_alarm.ogg', 20, FALSE)
@@ -1012,7 +1012,7 @@
 /obj/item/toy/nuke/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if (obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "explosive simulation enabled")
+	balloon_alert(user, "爆炸模拟已启用")
 	obj_flags |= EMAGGED
 	return TRUE
 
@@ -1068,7 +1068,7 @@
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(shake_camera), M, 2, 1), 0.8 SECONDS)
 
 	else
-		to_chat(user, span_alert("Nothing happens."))
+		to_chat(user, span_alert("什么也没发生."))
 
 /*
  * Snowballs
@@ -1135,7 +1135,7 @@
 		user.visible_message(span_warning("[user] rotates a cogwheel on [src]."), span_notice("You rotate a cogwheel on [src], it plays a loud noise!"), span_hear("You hear cogwheels turning."))
 		playsound(src, 'sound/effects/magic/clockwork/ark_activation.ogg', 50, FALSE)
 	else
-		to_chat(user, span_alert("The cogwheels are already turning!"))
+		to_chat(user, span_alert("齿轮已经在转动了！"))
 
 /obj/item/toy/clockwork_watch/examine(mob/user)
 	. = ..()
@@ -1444,7 +1444,7 @@
 
 //Add changing looks when i feel suicidal about making 20 inhands for these.
 /obj/item/toy/dummy/attack_self(mob/user)
-	var/new_name = tgui_input_text(usr, "What would you like to name the dummy?", "Doll Name", doll_name, max_length = MAX_NAME_LEN)
+	var/new_name = tgui_input_text(usr, "你想给玩偶起什么名字？", "玩偶命名", doll_name, max_length = MAX_NAME_LEN)
 	if(!new_name || !user.is_holding(src))
 		return
 	doll_name = new_name
@@ -1774,10 +1774,10 @@ GLOBAL_LIST_EMPTY(intento_players)
 			to_chat(victim, span_danger("[src] hugs you to make you feel better!"))
 			victim.add_mood_event("hug", /datum/mood_event/hug)
 		if(DISARM)
-			to_chat(victim, span_danger("You're knocked down from a shove by [src]!"))
+			to_chat(victim, span_danger("你被[src]推倒了!"))
 			victim.Knockdown(2 SECONDS)
 		if(GRAB)
-			to_chat(victim, span_danger("[src] grabs you aggressively!"))
+			to_chat(victim, span_danger("[src] 有力的拉着你!"))
 			victim.Stun(2 SECONDS)
 		if(HARM)
 			to_chat(victim, span_danger("You're punched by [src]!"))
@@ -1807,7 +1807,7 @@ GLOBAL_LIST_EMPTY(intento_players)
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "negative feedback loop enabled")
+	balloon_alert(user, "负反馈循环已启用")
 	return TRUE
 
 /obj/item/toy/intento/Destroy()
@@ -1833,8 +1833,8 @@ GLOBAL_LIST_EMPTY(intento_players)
  * Runic Scepter
  */
 /obj/item/toy/foam_runic_scepter
-	name = "foam scepter"
-	desc = "A foam replica of the scepters Wizards us on Vendormancy Soccer."
+	name = "泡沫权杖"
+	desc = "巫师在售货魔法足球赛中所用法杖的泡沫复制品。"
 	icon_state = "vendor_staff"
 	worn_icon_state = "vendor_staff" //For the back
 	inhand_icon_state = "vendor_staff"
@@ -1848,8 +1848,8 @@ GLOBAL_LIST_EMPTY(intento_players)
 	resistance_flags = FLAMMABLE
 
 /obj/item/extendohand
-	name = "extendo-hand"
-	desc = "Futuristic tech has allowed these classic spring-boxing toys to essentially act as a fully functional hand-operated hand prosthetic."
+	name = "伸缩手"
+	desc = "未来科技让这些经典的弹簧拳击玩具能够充当功能齐全的手动假手。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "extendohand"
 	inhand_icon_state = "extendohand"
@@ -1861,19 +1861,19 @@ GLOBAL_LIST_EMPTY(intento_players)
 	var/min_reach = 2
 
 /obj/item/extendohand/acme
-	name = "\improper ACME Extendo-Hand"
-	desc = "A novelty extendo-hand produced by the ACME corporation. Originally designed to knock out roadrunners."
+	name = "\improper ACME伸缩手"
+	desc = "由ACME公司生产的新奇伸缩手。最初设计用来击倒走鹃。"
 
 /obj/item/extendohand/attack(atom/M, mob/living/carbon/human/user, list/modifiers, list/attack_modifiers)
 	var/dist = get_dist(M, user)
 	if(dist < min_reach)
-		to_chat(user, span_warning("[M] is too close to use [src] on."))
+		to_chat(user, span_warning("[M] 距离太近，无法使用 [src]。"))
 		return
 	M.attack_hand(user, modifiers)
 
 /obj/item/banhammer
-	desc = "A banhammer."
-	name = "banhammer"
+	desc = "一把封禁锤。"
+	name = "封禁锤"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "toyhammer"
 	icon_angle = -45
@@ -1898,7 +1898,7 @@ GLOBAL_LIST_EMPTY(intento_players)
 	AddElement(/datum/element/kneejerk)
 
 /obj/item/banhammer/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to ban [user.p_them()]self from life."))
+	user.visible_message(span_suicide("[user] 正在用 [user.p_them()] 敲打[src]自己！看起来[user.p_theyre()]试图将[user.p_them()]自己从生命中封禁出去。"))
 	return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
 /*
 oranges says: This is a meme relating to the english translation of the ss13 russian wiki page on lurkmore.
@@ -1907,9 +1907,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 */
 /obj/item/banhammer/attack(mob/M, mob/living/user)
 	if(user.zone_selected == BODY_ZONE_HEAD)
-		M.visible_message(span_danger("[user] are stroking the head of [M] with a bangammer."), span_userdanger("[user] are stroking your head with a bangammer."), span_hear("You hear a bangammer stroking a head.")) // see above comment
+		M.visible_message(span_danger("[user] 正在用封禁锤抚摸 [M] 的头部。"), span_userdanger("[user] 正在用封禁锤抚摸你的头部。"), span_hear("你听到一把禁言锤在抚摸一个脑袋。")) // see above comment
 	else
-		M.visible_message(span_danger("[M] has been banned FOR NO REISIN by [user]!"), span_userdanger("You have been banned FOR NO REISIN by [user]!"), span_hear("You hear a banhammer banning someone."))
+		M.visible_message(span_danger("[M] 已被 [user] 毫无理由地禁言了！"), span_userdanger("你已被 [user] 毫无理由地禁言了！"), span_hear("你听到一把禁言锤在禁言某人。"))
 	playsound(loc, 'sound/effects/adminhelp.ogg', 15) //keep it at 15% volume so people don't jump out of their skin too much
 	if(user.combat_mode)
 		return ..(M, user)

@@ -8,7 +8,7 @@
 /datum/job_config_type
 	/// The name that will be used in the config file. This is also the key for the accessing the singleton.
 	/// Use the JOB_CONFIG_* defines in __defines/jobs.dm to make sure you don't typo.
-	var/name = "DEFAULT"
+	var/name = "默认"
 
 	/// The name of the variable on the job datum that we will be accessing.
 	var/datum_var_name = "type" // we use this as the default because A) it always exists and B) if we try and modify it, we runtime. perfect for what we need

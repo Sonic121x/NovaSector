@@ -1,6 +1,6 @@
 /obj/item/seeds/telriis
-	name = "telriis seed pack"
-	desc = "These seeds grow into telriis plants. A distant relative of milkweed, this grass can actually be juiced into milk."
+	name = "泰尔里斯种子包"
+	desc = "这些种子会长成泰尔里斯植株。作为马利筋的远亲，这种草实际上可以榨出奶状汁液。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "telriis"
 	species = "telriis"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/telriis
 	seed = /obj/item/seeds/telriis
-	name = "telriis"
-	desc = "A sheaf of telris, it can be ground or juiced into a milky liquid."
+	name = "泰尔里斯"
+	desc = "一束泰尔里斯，可以研磨或榨成乳状液体。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "telriis"
 	filling_color = "#FF4500"

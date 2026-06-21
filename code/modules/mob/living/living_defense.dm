@@ -17,7 +17,7 @@
 		if(penetrated_text)
 			to_chat(src, span_userdanger("[penetrated_text]"))
 		else
-			to_chat(src, span_userdanger("Your armor was penetrated!"))
+			to_chat(src, span_userdanger("你的护甲被击穿了！"))
 	else if(our_armor >= 100)
 		if(absorb_text)
 			to_chat(src, span_notice("[absorb_text]"))
@@ -708,7 +708,7 @@
 		// you need earmuffs, inacusiate, or replacement
 		ears.set_organ_damage(ears.maxHealth)
 	else if(ears.damage >= 5)
-		to_chat(src, span_warning("Your ears start to ring[ears.damage >= 15 ? " badly!":"!"]"))
+		to_chat(src, span_warning("你的耳朵开始嗡嗡作响[ears.damage >= 15 ? " badly!":"!"]"))
 
 
 //to damage the clothes worn by a mob
@@ -822,18 +822,18 @@
 			return
 		if((shove_flags & SHOVE_BLOCKED) && !(shove_flags & (SHOVE_KNOCKDOWN_BLOCKED|SHOVE_CAN_KICK_SIDE)))
 			var/knocked_down = target.Knockdown(SHOVE_KNOCKDOWN_SOLID, daze_amount = 3 SECONDS)
-			target.visible_message(span_danger("[name] shoves [target.name][knocked_down ? ", knocking [target.p_them()] down" : ""]!"),
-				span_userdanger("You[knocked_down ? "'re knocked down" : " resist falling down"] from a shove by [name]!"), span_hear("You hear aggressive shuffling [knocked_down ? "followed by a loud thud!" : ""]"), COMBAT_MESSAGE_RANGE, src)
-			to_chat(src, span_danger("You shove [target.name][knocked_down ? ", knocking [target.p_them()] down" : ""]!"))
+			target.visible_message(span_danger("[name]推搡了[target.name][knocked_down ? ", knocking [target.p_them()] down" : ""]！"),
+				span_userdanger("你[knocked_down ? "'re knocked down" : " resist falling down"]被[name]推搡了！"), span_hear("你听到一阵激烈的推搡声[knocked_down ? "followed by a loud thud!" : ""]"), COMBAT_MESSAGE_RANGE, src)
+			to_chat(src, span_danger("你推搡了[target.name][knocked_down ? ", knocking [target.p_them()] down" : ""]！"))
 			log_combat(src, target, "shoved", "[knocked_down ? "knocking them down[weapon ? " with [weapon]" : ""]" : ""]")
 			return
 
 	if(shove_flags & SHOVE_CAN_KICK_SIDE) //KICK HIM IN THE NUTS
 		if(target.Paralyze(SHOVE_CHAIN_PARALYZE))
 			target.apply_status_effect(/datum/status_effect/no_side_kick)
-			target.visible_message(span_danger("[name] kicks [target.name] onto [target.p_their()] side!"),
-							span_userdanger("You're kicked onto your side by [name]!"), span_hear("You hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, src)
-			to_chat(src, span_danger("You kick [target.name] onto [target.p_their()] side!"))
+			target.visible_message(span_danger("[name]将[target.name]踢翻到[target.p_their()]一侧！"),
+							span_userdanger("你被[name]踢翻到一侧！"), span_hear("你听到一阵激烈的推搡声，随后是一声巨响！"), COMBAT_MESSAGE_RANGE, src)
+			to_chat(src, span_danger("你将[target.name]踢翻到[target.p_their()]一侧！"))
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, SetKnockdown), 0), SHOVE_CHAIN_PARALYZE)
 			log_combat(src, target, "kicks", "onto their side (paralyzing)")
 			return
@@ -872,9 +872,9 @@
 
 ///Send the chat feedback message for shoving
 /mob/living/proc/get_shoving_message(mob/living/shover, obj/item/weapon, shove_flags)
-	visible_message(span_danger("[shover] shoves [name][weapon ? " with [weapon]" : ""]!"),
-		span_userdanger("You're shoved by [shover][weapon ? " with [weapon]" : ""]!"), span_hear("You hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, shover)
-	to_chat(shover, span_danger("You shove [name][weapon ? " with [weapon]" : ""]!"))
+	visible_message(span_danger("[shover]推搡了[name][weapon ? " with [weapon]" : ""]！"),
+		span_userdanger("你被[shover][weapon ? " with [weapon]" : ""]推搡了！"), span_hear("你听到一阵激烈的推搡声！"), COMBAT_MESSAGE_RANGE, shover)
+	to_chat(shover, span_danger("你推搡了[name][weapon ? " with [weapon]" : ""]！"))
 
 /mob/living/proc/check_block(atom/hit_by, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
 	if(SEND_SIGNAL(src, COMSIG_LIVING_CHECK_BLOCK, hit_by, damage, attack_text, attack_type, armour_penetration, damage_type) & SUCCESSFUL_BLOCK)

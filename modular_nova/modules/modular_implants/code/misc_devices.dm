@@ -1,7 +1,7 @@
 ///NIFSoft Remover. This is mostly here so that security and antags have a way to remove NIFSofts from someome
 /obj/item/nifsoft_remover
 	name = "Nanotrasen 'Wrangler' NIF-Cutter"
-	desc = "A small device that lets the user remove NIFSofts from a NIF user"
+	desc = "一种小型设备，允许用户从NIF使用者身上移除NIFSoft。"
 	special_desc = "Given the relatively recent and sudden proliferation of NIFs, their use in crime both petty and organized has skyrocketed in recent years. \
 	The existence of nanomachine-based real-time burst communication that cannot be effectively monitored or hacked into has given most PMCs cause enough for concern \
 	to invent their own devices. This one is a 'Wrangler' model NIF-Cutter, used for crudely wiping programs directly off a user's Framework."
@@ -16,35 +16,35 @@
 	var/obj/item/organ/cyberimp/brain/nif/target_nif = target_mob.get_organ_by_type(/obj/item/organ/cyberimp/brain/nif)
 
 	if(!target_nif || !LAZYLEN(target_nif.loaded_nifsofts))
-		balloon_alert(user, "[target_mob] has no NIFSofts!")
+		balloon_alert(user, "[target_mob] 没有NIFSoft！")
 		return
 
-	user.visible_message(span_warning("[user] starts to scan [src] [target_mob]"), span_notice("You start to scan [src] on [target_mob]"))
+	user.visible_message(span_warning("[user] 开始用 [src] 扫描 [target_mob]"), span_notice("你开始用 [src] 扫描 [target_mob]"))
 	if(!do_after(user, 5 SECONDS, target_mob))
-		balloon_alert(user, "scan cancelled!")
+		balloon_alert(user, "扫描取消！")
 		return FALSE
 	var/list/installed_nifsofts = target_nif.loaded_nifsofts
-	var/datum/nifsoft/nifsoft_to_remove = tgui_input_list(user, "Chose a NIFSoft to remove.", "[src]", installed_nifsofts)
+	var/datum/nifsoft/nifsoft_to_remove = tgui_input_list(user, "选择要移除的NIFSoft。", "[src]", installed_nifsofts)
 
 	if(!nifsoft_to_remove)
 		return FALSE
 
-	user.visible_message(span_warning("[user] starts to use [src] on [target_mob]"), span_notice("You start to use [src] on [target_mob]"))
+	user.visible_message(span_warning("[user] 开始对 [target_mob] 使用 [src]"), span_notice("你开始对 [target_mob] 使用 [src]"))
 	if(!do_after(user, 5 SECONDS, target_mob))
-		balloon_alert(user, "removal cancelled!")
+		balloon_alert(user, "移除已取消！")
 		return FALSE
 
 	if(!target_nif.remove_nifsoft(nifsoft_to_remove))
-		balloon_alert(user, "removal failed!")
+		balloon_alert(user, "移除失败！")
 		return FALSE
 
-	to_chat(user, span_notice("You successfully remove [nifsoft_to_remove]."))
+	to_chat(user, span_notice("你成功移除了 [nifsoft_to_remove]。"))
 	user.log_message("removed [nifsoft_to_remove] from [target_mob]" ,LOG_GAME)
 
 	if(create_disk)
 		var/obj/item/disk/nifsoft_uploader/new_disk = new
 		new_disk.loaded_nifsoft = nifsoft_to_remove.type
-		new_disk.name = "[nifsoft_to_remove] datadisk"
+		new_disk.name = "[nifsoft_to_remove] 数据盘"
 
 		user.put_in_hands(new_disk)
 
@@ -54,7 +54,7 @@
 
 /obj/item/nifsoft_remover/syndie
 	name = "Cybersun 'Scalpel' NIF-Cutter"
-	desc = "A modified version of a NIFSoft remover that allows the user to remove a NIFSoft and have a blank copy of the removed NIFSoft saved to a disk."
+	desc = "NIFSoft移除器的改良版本，允许用户移除NIFSoft，并将移除的NIFSoft的空白副本保存到磁盘上。"
 	special_desc = "In the upper echelons of the corporate world, Nanite Implant Frameworks are everywhere. Valuable targets will almost always be in constant NIF communication with at least one or two points of contact in the event of an emergency. To bypass this unfortunate conundrum, Cybersun Industries invented the 'Scalpel' NIF-Cutter. A device no larger than a PDA, this gift to the field of neurological theft is capable of extracting specific programs from a target in five seconds or less. On top of that, high-grade programming allows for the tool to copy the specific 'soft to a disk for the wielder's own use."
 	icon_state = "nifsoft_remover_syndie"
 	create_disk = TRUE
@@ -67,29 +67,29 @@
 	var/obj/item/organ/cyberimp/brain/nif/target_nif = target_mob.get_organ_by_type(/obj/item/organ/cyberimp/brain/nif)
 
 	if(!target_nif || !LAZYLEN(target_nif.loaded_nifsofts))
-		balloon_alert(user, "[target_mob] has no NIFSofts!")
+		balloon_alert(user, "[target_mob] 没有NIFSoft！")
 		return ITEM_INTERACT_BLOCKING
 
-	var/datum/nifsoft/nifsoft_to_remove = tgui_input_list(user, "Choose a NIFSoft to remove.", "[src]", target_nif.loaded_nifsofts)
+	var/datum/nifsoft/nifsoft_to_remove = tgui_input_list(user, "选择要移除的NIFSoft。", "[src]", target_nif.loaded_nifsofts)
 	if(!nifsoft_to_remove)
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_warning("[user] starts to use [src] on [target_mob]"), span_notice("You start to use [src] on [target_mob]"))
+	user.visible_message(span_warning("[user]开始对[target_mob]使用[src]"), span_notice("你开始对[target_mob]使用[src]"))
 	if(!do_after(user, 5 SECONDS, target_mob))
-		balloon_alert(user, "removal cancelled!")
+		balloon_alert(user, "移除已取消！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!target_nif.remove_nifsoft(nifsoft_to_remove))
-		balloon_alert(user, "removal failed!")
+		balloon_alert(user, "移除失败！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "removal successful")
+	balloon_alert(user, "移除成功")
 	user.log_message("removed [nifsoft_to_remove] from [target_mob]", LOG_GAME)
 
 	if(create_disk)
 		var/obj/item/disk/nifsoft_uploader/new_disk = new
 		new_disk.loaded_nifsoft = nifsoft_to_remove.type
-		new_disk.name = "[nifsoft_to_remove] datadisk"
+		new_disk.name = "[nifsoft_to_remove]数据盘"
 		user.put_in_hands(new_disk)
 
 	qdel(nifsoft_to_remove)
@@ -97,14 +97,14 @@
 
 /datum/uplink_item/device_tools/nifsoft_remover
 	name = "Cybersun 'Scalpel' NIF-Cutter"
-	desc = "A modified version of a NIFSoft remover that allows the user to remove a NIFSoft and have a blank copy of the removed NIFSoft saved to a disk."
+	desc = "一种经过改造的NIFSoft移除器，允许使用者移除NIFSoft并将被移除NIFSoft的空白副本保存到磁盘中。"
 	item = /obj/item/nifsoft_remover/syndie
 	cost = 3
 
 ///NIF Repair Kit.
 /obj/item/nif_repair_kit
-	name = "Cerulean NIF Regenerator"
-	desc = "A repair kit that allows for NIFs to be repaired without the use of surgery"
+	name = "蔚蓝NIF再生器"
+	desc = "一种无需手术即可修复NIF的维修套件"
 	special_desc = "The effects of capitalism and industry run deep, and they run within the Nanite Implant Framework industry as well. \
 	Frameworks, complicated devices as they are, are normally locked at the firmware level to requiring specific 'approved' brands of repair paste or repair-docks. \
 	This hacked-kit has been developed by the Altspace Coven as a freeware alternative, spread far and wide throughout extra-Solarian space for quality of life \
@@ -122,26 +122,26 @@
 
 	var/obj/item/organ/cyberimp/brain/nif/installed_nif = mob_to_repair.get_organ_by_type(/obj/item/organ/cyberimp/brain/nif)
 	if(!installed_nif)
-		balloon_alert(user, "[mob_to_repair] lacks a NIF")
+		balloon_alert(user, "[mob_to_repair] 缺少NIF")
 
 	if(!do_after(user, 5 SECONDS, mob_to_repair))
-		balloon_alert(user, "repair cancelled")
+		balloon_alert(user, "修复已取消")
 		return FALSE
 
 	if(!installed_nif.adjust_durability(repair_amount))
-		balloon_alert(user, "target NIF is at max duarbility")
+		balloon_alert(user, "目标NIF耐久度已满")
 		return FALSE
 
-	to_chat(user, span_notice("You successfully repair [mob_to_repair]'s NIF"))
-	to_chat(mob_to_repair, span_notice("[user] successfully repairs your NIF"))
+	to_chat(user, span_notice("你成功修复了[mob_to_repair]的NIF"))
+	to_chat(mob_to_repair, span_notice("[user]成功修复了你的NIF"))
 
 	uses -= 1
 	if(!uses)
 		qdel(src)
 
 /obj/item/nif_hud_adapter
-	name = "Scrying Lens Adapter"
-	desc = "A kit that modifies select glasses to display HUDs for NIFs"
+	name = "窥视镜片适配器"
+	desc = "一种用于改造特定眼镜以显示NIF平视显示器的套件"
 	icon = 'modular_nova/master_files/icons/donator/obj/kits.dmi'
 	icon_state = "partskit"
 
@@ -187,15 +187,15 @@
 /obj/item/nif_hud_adapter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	var/obj/item/clothing/glasses/target_glasses = interacting_with
 	if(!istype(target_glasses) || !is_type_in_list(target_glasses, glasses_whitelist))
-		balloon_alert(user, "incompatible!")
+		balloon_alert(user, "不兼容！")
 		return NONE
 
 	if(HAS_TRAIT(target_glasses, TRAIT_NIFSOFT_HUD_GRANTER))
-		balloon_alert(user, "already upgraded!")
+		balloon_alert(user, "已升级！")
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] upgrades [target_glasses] with [src]."), span_notice("You upgrade [target_glasses] to be NIF HUD compatible."))
-	target_glasses.name = "\improper HUD-upgraded " + target_glasses.name
+	user.visible_message(span_notice("[user] 使用 [src] 升级了 [target_glasses]。"), span_notice("你将 [target_glasses] 升级为兼容 NIF HUD。"))
+	target_glasses.name = "\improper HUD升级版" + target_glasses.name
 	target_glasses.AddElement(/datum/element/nifsoft_hud)
 	playsound(target_glasses.loc, 'sound/items/weapons/circsawhit.ogg', 50, vary = TRUE)
 

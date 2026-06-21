@@ -1,6 +1,6 @@
 /obj/item/clothing/head/mush_helmet
-	name = "mush cap"
-	desc = "A mushroom cap, this one also doubles as an umbrella!"
+	name = "蘑菇帽"
+	desc = "一顶蘑菇帽，这个还可以当雨伞用！"
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/costume.dmi'
 	worn_icon_state = "mush_cap"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
@@ -26,8 +26,8 @@
 	new_icon_state = "mush_female"
 
 /obj/item/clothing/suit/mush
-	name = "mushroom suit"
-	desc = "A mushroom suit, these can be sporadically seen being worn by the more fungal personalities."
+	name = "蘑菇套装"
+	desc = "一件蘑菇套装，偶尔能看到那些更具真菌气质的人穿着它。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "mush_male"
@@ -40,8 +40,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/mushroom_suit)
 
 /obj/item/storage/box/hero/mushperson
-	name = "Mushy The Mushperson - 2305"
-	desc = "Can you remember?"
+	name = "蘑菇人穆希 - 2305"
+	desc = "你还记得吗？"
 
 /obj/item/storage/box/hero/mushperson/PopulateContents()
 	new /obj/item/clothing/suit/mush(src)

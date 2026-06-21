@@ -1,7 +1,7 @@
 /obj/item/organ/eyes
 	name = BODY_ZONE_PRECISE_EYES
 	icon_state = "eyes"
-	desc = "I see you!"
+	desc = "我看见你了！"
 	visual = TRUE
 	zone = BODY_ZONE_PRECISE_EYES
 	slot = ORGAN_SLOT_EYES
@@ -13,12 +13,12 @@
 	high_threshold = 0.3 * STANDARD_ORGAN_THRESHOLD //threshold at 30
 	low_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD //threshold at 20
 
-	low_threshold_passed = span_info("Distant objects become somewhat less tangible.")
-	high_threshold_passed = span_info("Everything starts to look a lot less clear.")
-	now_failing = span_warning("Darkness envelopes you, as your eyes go blind!")
-	now_fixed = span_info("Color and shapes are once again perceivable.")
-	high_threshold_cleared = span_info("Your vision functions passably once more.")
-	low_threshold_cleared = span_info("Your vision is cleared of any ailment.")
+	low_threshold_passed = span_info("远处的物体变得有些模糊不清。")
+	high_threshold_passed = span_info("一切都开始变得不那么清晰。")
+	now_failing = span_warning("黑暗笼罩了你，你的眼睛失明了！")
+	now_fixed = span_info("色彩和形状再次变得可感知。")
+	high_threshold_cleared = span_info("你的视觉功能勉强恢复了。")
+	low_threshold_cleared = span_info("你的视觉清除了所有不适。")
 
 	/// Sight flags this eye pair imparts on its user.
 	var/sight_flags = NONE
@@ -264,7 +264,7 @@
 		return
 
 	var/picked_side = pick(valid_sides)
-	to_chat(owner, span_userdanger("You feel searing pain shoot though your [picked_side == RIGHT_EYE_SCAR ? "right" : "left"] eye!"))
+	to_chat(owner, span_userdanger("你感到一阵灼热的疼痛穿过你的 [picked_side == RIGHT_EYE_SCAR ? "right" : "left"] 眼睛！"))
 	// oof ouch my eyes
 	apply_organ_damage(rand((maxHealth - high_threshold) * 0.5, maxHealth - low_threshold))
 	var/datum/wound/pierce/bleed/severe/eye/eye_puncture = new
@@ -594,7 +594,7 @@
 		animate_eyelid(eyelid_left, parent, sync_blinking, anim_times)
 
 /obj/effect/abstract/eyelid_effect
-	name = "eyelid"
+	name = "眼睑"
 	icon = 'icons/mob/human/human_eyes.dmi'
 	layer = -EYES_LAYER
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE | VIS_INHERIT_ID
@@ -610,7 +610,7 @@
 
 /// by default, returns the eyes' penlight_message var as a notice span. May do other things when overridden, such as eldritch insanity, or eye damage, or whatnot. Whatever you want, really.
 /obj/item/organ/eyes/proc/penlight_examine(mob/living/viewer)
-	return span_notice("[owner.p_Their()] eyes [penlight_message].")
+	return span_notice("[owner.p_Their()]的眼睛[penlight_message]。")
 
 #define NIGHTVISION_LIGHT_OFF 0
 #define NIGHTVISION_LIGHT_LOW 1

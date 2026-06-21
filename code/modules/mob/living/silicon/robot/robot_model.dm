@@ -7,7 +7,7 @@
  *
  **/
 /obj/item/robot_model
-	name = "Default"
+	name = "默认"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "std_mod"
 	w_class = WEIGHT_CLASS_GIGANTIC
@@ -226,7 +226,7 @@
 		charger.balloon_alert(robot, "+ [to_stock]u [initial(storage_datum.mat_type.name)]")
 		playsound(charger, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 50, vary = FALSE)
 		return
-	charger.balloon_alert(robot, "restock process complete")
+	charger.balloon_alert(robot, "补给流程完成")
 	charger.sendmats = FALSE
 
 
@@ -271,7 +271,7 @@
 
 /obj/item/robot_model/proc/be_transformed_to(obj/item/robot_model/old_model, forced = FALSE)
 	if(HAS_TRAIT(robot, TRAIT_NO_TRANSFORM))
-		robot.balloon_alert(robot, "can't transform right now!")
+		robot.balloon_alert(robot, "现在无法变形！")
 		return FALSE
 	if(islist(borg_skins) && !forced)
 		var/mob/living/silicon/robot/cyborg = loc
@@ -291,7 +291,7 @@
 		var/list/details = borg_skins[borg_skin]
 		//NOVA EDIT START
 		if(cyborg.hasExpanded && (((TRAIT_R_WIDE in details[SKIN_FEATURES]) && (TRAIT_R_WIDE in model_features)) || ((TRAIT_R_TALL in details[SKIN_FEATURES]) && (TRAIT_R_TALL in model_features))))
-			to_chat(cyborg, span_warning("You can't make yourself into a larger frame when you've already used an expander!"))
+			to_chat(cyborg, span_warning("你已经使用过扩展器，不能再把自己变成更大的框架了！"))
 			return FALSE
 		//NOVA EDIT END
 		if(!isnull(details[SKIN_ICON_STATE]))
@@ -374,7 +374,7 @@
 	return TRUE
 
 /obj/item/robot_model/clown
-	name = "Clown"
+	name = "小丑"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/toy/crayon/rainbow,
@@ -412,7 +412,7 @@
 		soap.uses += ROUND_UP(initial(soap.uses) / 100) * coeff
 
 /obj/item/robot_model/engineering
-	name = "Engineering"
+	name = "工程"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/construction/rcd/borg,
@@ -452,7 +452,7 @@
 	var/datum/weakref/night_vision_ref
 
 /datum/action/cooldown/borg_meson
-	name = "Toggle Meson Vision"
+	name = "切换介子视觉"
 	button_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "meson"
 
@@ -479,7 +479,7 @@
 	return ..()
 
 /obj/item/robot_model/janitor
-	name = "Janitor"
+	name = "清洁工"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/screwdriver/cyborg,
@@ -520,8 +520,8 @@
 	return ..()
 
 /datum/action/toggle_buffer
-	name = "Activate Auto-Wash"
-	desc = "Trade speed and water for a clean floor."
+	name = "激活自动清扫"
+	desc = "用速度和充足的水换回干净的地板。"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "activate_wash"
 	var/static/datum/callback/allow_buffer_activate
@@ -569,13 +569,13 @@
 
 	if(!buffer_on)
 		if(!COOLDOWN_FINISHED(src, toggle_cooldown))
-			robot_owner.balloon_alert(robot_owner, "auto-wash refreshing, please hold...")
+			robot_owner.balloon_alert(robot_owner, "自动清洗刷新中，请稍候...")
 			return FALSE
 		COOLDOWN_START(src, toggle_cooldown, 4 SECONDS)
 		if(!allow_buffer_activate())
 			return FALSE
 
-		robot_owner.balloon_alert(robot_owner, "activating auto-wash...")
+		robot_owner.balloon_alert(robot_owner, "正在激活自动清洗...")
 		// Start the sound. it'll just last the 4 seconds it takes for us to rev up
 		wash_audio.start()
 		// We're just gonna shake the borg a bit. Not a ton, but just enough that it feels like the audio makes sense
@@ -593,9 +593,9 @@
 			return FALSE
 	else
 		if(!COOLDOWN_FINISHED(src, toggle_cooldown))
-			robot_owner.balloon_alert(robot_owner, "auto-wash deactivating, please hold...")
+			robot_owner.balloon_alert(robot_owner, "自动清洗正在停用，请稍候...")
 			return FALSE
-		robot_owner.balloon_alert(robot_owner, "de-activating auto-wash...")
+		robot_owner.balloon_alert(robot_owner, "正在停用自动清洗...")
 
 	toggle_wash()
 
@@ -663,12 +663,12 @@
 /datum/action/toggle_buffer/proc/allow_buffer_activate()
 	var/mob/living/silicon/robot/robot_owner = owner
 	if(block_buffer_change)
-		robot_owner.balloon_alert(robot_owner, "activation cancelled!")
+		robot_owner.balloon_alert(robot_owner, "激活已取消！")
 		return FALSE
 
 	var/obj/item/reagent_containers/cup/bucket/our_bucket = bucket_ref?.resolve()
 	if(!buffer_on && our_bucket?.reagents?.total_volume < 0.1)
-		robot_owner.balloon_alert(robot_owner, "bucket is empty!")
+		robot_owner.balloon_alert(robot_owner, "桶是空的！")
 		return FALSE
 	return TRUE
 
@@ -681,7 +681,7 @@
 	var/datum/reagents/reagents = our_bucket?.reagents
 
 	if(!reagents || reagents.total_volume < 0.1)
-		robot_owner.balloon_alert(robot_owner, "bucket is empty, de-activating...")
+		robot_owner.balloon_alert(robot_owner, "桶是空的，正在停用...")
 		deactivate_wash()
 		return
 
@@ -699,9 +699,9 @@
 
 /datum/action/toggle_buffer/update_button_name(atom/movable/screen/movable/action_button/current_button, force)
 	if(buffer_on)
-		name = "De-Activate Auto-Wash"
+		name = "关闭自动清扫"
 	else
-		name = "Activate Auto-Wash"
+		name = "激活自动清扫"
 	return ..()
 
 /datum/action/toggle_buffer/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
@@ -712,12 +712,12 @@
 	return ..()
 
 /obj/item/reagent_containers/spray/cyborg_drying
-	name = "drying agent spray"
+	name = "干燥剂喷雾"
 	color = "#A000A0"
 	list_reagents = list(/datum/reagent/drying_agent = 250)
 
 /obj/item/reagent_containers/spray/cyborg_lube
-	name = "lube spray"
+	name = "润滑油喷雾"
 	list_reagents = list(/datum/reagent/lube = 250)
 
 /obj/item/robot_model/janitor/respawn_consumable(mob/living/silicon/robot/cyborg, coeff = 1)
@@ -750,7 +750,7 @@
 		soap.uses += ROUND_UP(initial(soap.uses) / 100) * coeff
 
 /obj/item/robot_model/medical
-	name = "Medical"
+	name = "医疗"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/healthanalyzer,
@@ -784,7 +784,7 @@
 	)
 
 /obj/item/robot_model/miner
-	name = "Miner"
+	name = "矿工"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/storage/bag/ore/cyborg,
@@ -827,7 +827,7 @@
 	return ..()
 
 /obj/item/robot_model/peacekeeper
-	name = "Peacekeeper"
+	name = "维和者"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/rsf/cookiesynth,
@@ -852,7 +852,7 @@
 		You are not a security member and you are expected to follow orders and prevent harm above all else. Space law means nothing to you.")) // NOVA EDIT CHANGE - Changes 1st sentence verbiage off ASIMOV/HUMAN Focus - ORIGINAL: "Under ASIMOV, you are an enforcer of the PEACE and preventer of HUMAN HARM."
 
 /obj/item/robot_model/security
-	name = "Security"
+	name = "安保"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
@@ -888,7 +888,7 @@
 			taser.charge_timer = 0
 
 /obj/item/robot_model/service
-	name = "Service"
+	name = "服务"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		//obj/item/reagent_containers/borghypo/borgshaker, // NOVA EDIT REMOVAL - SPECIFIC SHAKERS
@@ -949,7 +949,7 @@
 			enzyme.reagents.add_reagent(/datum/reagent/consumable/enzyme, 2 * coeff)
 
 /obj/item/robot_model/syndicate
-	name = "Syndicate Assault"
+	name = "辛迪加突击"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/melee/energy/sword/saber/cyborg,
@@ -979,7 +979,7 @@
 	cyborg.add_faction(FACTION_SILICON) //ai is your bff now!
 
 /obj/item/robot_model/syndicate_medical
-	name = "Syndicate Medical"
+	name = "辛迪加医疗"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/reagent_containers/borghypo/syndicate,
@@ -1012,7 +1012,7 @@
 	tacmap_action.Grant(cyborg)
 
 /obj/item/robot_model/saboteur
-	name = "Syndicate Saboteur"
+	name = "辛迪加破坏者"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/construction/rcd/borg/syndicate,
@@ -1075,7 +1075,7 @@
 	return ..()
 
 /obj/item/robot_model/syndicate/kiltborg
-	name = "Highlander"
+	name = "高地人"
 	basic_modules = list(
 		/obj/item/claymore/highlander/robot,
 		/obj/item/pinpointer/nuke,
@@ -1106,7 +1106,7 @@
 
 // ------------------------------------------ Storages
 /datum/robot_energy_storage
-	var/name = "Generic energy storage"
+	var/name = "通用储能系统"
 	var/max_energy = 30000
 	var/recharge_rate = 1000
 	var/energy
@@ -1153,29 +1153,29 @@
 	return ..()
 
 /datum/robot_energy_storage/material/iron
-	name = "Iron Synthesizer"
+	name = "铁合成器"
 	mat_type = /datum/material/iron
 
 /datum/robot_energy_storage/material/glass
-	name = "Glass Synthesizer"
+	name = "玻璃合成器"
 	mat_type = /datum/material/glass
 
 /datum/robot_energy_storage/wire
 	max_energy = 50
 	recharge_rate = 2
-	name = "Wire Synthesizer"
+	name = "线圈合成器"
 
 /datum/robot_energy_storage/medical
 	max_energy = 2500
 	recharge_rate = 250
-	name = "Medical Synthesizer"
+	name = "医疗合成器"
 
 /datum/robot_energy_storage/beacon
 	max_energy = 30
 	recharge_rate = 1
-	name = "Marker Beacon Storage"
+	name = "路径灯标存储"
 
 /datum/robot_energy_storage/pipe_cleaner
 	max_energy = 50
 	recharge_rate = 2
-	name = "Pipe Cleaner Synthesizer"
+	name = "绳绒线合成器"

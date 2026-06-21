@@ -83,7 +83,7 @@
 	)
 
 /datum/outfit/job/rd/mod
-	name = "Research Director (MODsuit)"
+	name = "科研部长 (模块服)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/research

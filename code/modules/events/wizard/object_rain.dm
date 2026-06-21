@@ -9,9 +9,9 @@
 )
 
 /datum/round_event_control/wizard/object_rain
-	name = "Indoor Weather: Cats and Dogs (and Frogs)"
+	name = "室内天气：猫狗（和青蛙）齐飞"
 	typepath = /datum/round_event/wizard/object_rain/animal
-	description = "Small animals will rain from the sky."
+	description = "小动物将从天而降。"
 	weight = 2
 	max_occurrences = 2
 	earliest_start = 0 MINUTES
@@ -20,19 +20,19 @@
 	admin_setup = list(/datum/event_admin_setup/listed_options/object_rain)
 
 /datum/round_event_control/wizard/object_rain/food
-	name = "Indoor Weather: Chance of Meatballs"
+	name = "室内天气：肉丸雨"
 	typepath = /datum/round_event/wizard/object_rain/food
-	description = "Food will rain from the sky."
+	description = "食物将从天而降。"
 
 /datum/round_event_control/wizard/object_rain/cash
-	name = "Indoor Weather: Loose Change"
+	name = "室内天气：零钱雨"
 	typepath = /datum/round_event/wizard/object_rain/cash
-	description = "Money will rain from the sky."
+	description = "钱将从天而降。"
 
 /datum/round_event_control/wizard/object_rain/fish
-	name = "Indoor Weather: Fish"
+	name = "室内天气：鱼"
 	typepath = /datum/round_event/wizard/object_rain/fish
-	description = "Fish will rain from the sky."
+	description = "天上会下鱼。"
 
 /**
  * Event where some kind of object will fall from the sky in a random themed area of the station.
@@ -81,7 +81,7 @@
 		"effectQuiet" = TRUE,))
 
 /datum/round_event/wizard/object_rain/announce(fake)
-	priority_announce("Anomalous weather patterns forecast in the [target_region].", "Janitorial alert")
+	priority_announce("在[target_region]区域预报有异常天气模式。", "清洁警报")
 
 /// Return whatever it is you want to rain from the sky here.
 /datum/round_event/wizard/object_rain/proc/get_item()

@@ -5,102 +5,102 @@
 */
 
 /datum/loadout_item/under/miscellaneous/vicvest
-	name = "Buttondown Shirt w/ Double-Breasted Vest"
+	name = "纽扣衬衫配双排扣马甲"
 	item_path = /obj/item/clothing/under/pants/nova/vicvest
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/recolorable_kilt
-	name = "Buttondown Shirt w/ Kilt"
+	name = "纽扣衬衫配苏格兰短裙"
 	item_path = /obj/item/clothing/under/pants/nova/kilt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/skirt_plaid
-	name = "Buttondown Shirt w/ Plaid Skirt"
+	name = "纽扣衬衫配格子裙"
 	item_path = /obj/item/clothing/under/dress/skirt/plaid
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/buttondown
-	name = "Buttondown Shirt w/ Slacks"
+	name = "纽扣衬衫配西裤"
 	item_path = /obj/item/clothing/under/costume/buttondown/slacks
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/buttondown_shorts
-	name = "Buttondown Shirt w/ Shorts"
+	name = "纽扣衬衫配短裤"
 	item_path = /obj/item/clothing/under/costume/buttondown/shorts
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/buttondown_skirt
-	name = "Buttondown Shirt w/ Skirt"
+	name = "纽扣衬衫配半身裙"
 	item_path = /obj/item/clothing/under/costume/buttondown/skirt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/skirt_black
-	name = "Cardigan w/ Skirt"
+	name = "开襟毛衣配半身裙"
 	item_path = /obj/item/clothing/under/dress/skirt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/flowerdress
-	name = "Dress - Flower"
+	name = "连衣裙 - 花卉"
 	item_path = /obj/item/clothing/under/dress/nova/flower
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/littleblack
-	name = "Dress - Short w/ Sash"
+	name = "连衣裙 - 短款配饰带"
 	item_path = /obj/item/clothing/under/dress/nova/short_dress
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/straplessdress
-	name = "Dress - Strapless (Colorable)"
+	name = "连衣裙 - 无肩带（可着色）"
 	item_path = /obj/item/clothing/under/dress/nova/strapless
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/pentagramdress
-	name = "Dress - Strapped, Pentagram (Colorable)"
+	name = "连衣裙 - 吊带，五角星（可着色）"
 	item_path = /obj/item/clothing/under/dress/nova/pentagram
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/dress_striped
-	name = "Dress - Striped"
+	name = "连衣裙 - 条纹"
 	item_path = /obj/item/clothing/under/dress/striped
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/dress_sun
-	name = "Dress - Sundress (Colorable)"
+	name = "连衣裙 - 太阳裙（可着色）"
 	item_path = /obj/item/clothing/under/dress/sundress
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/dress_tango
-	name = "Dress - Tango (Colorable)"
+	name = "连衣裙 - 探戈裙（可着色）"
 	item_path = /obj/item/clothing/under/dress/tango
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/wedding_dress
-	name = "Dress - Wedding"
+	name = "连衣裙 - 婚纱"
 	item_path = /obj/item/clothing/under/dress/wedding_dress
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/wedding_dress/ribbon
-	name = "Dress - Wedding w/ Ribbon"
+	name = "连衣裙 - 婚纱配饰带"
 	item_path = /obj/item/clothing/under/dress/wedding_dress/ribbon
 	group = "Casualwear"
 
 /datum/loadout_item/under/jumpsuit/gorkas
-	name = "Gorka Jumpsuit"
+	name = "戈尔卡连体服"
 	item_path = /obj/item/clothing/under/greyscale/gorkas
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/camo
-	name = "Pants - Camo (Colorable)"
+	name = "裤子 - 迷彩（可着色）"
 	item_path = /obj/item/clothing/under/pants/camo
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/jeans
-	name = "Pants - Jeans"
+	name = "裤子 - 牛仔裤"
 	item_path = /obj/item/clothing/under/pants/jeans
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/jeansripped
-	name = "Pants - Jeans (Ripped)"
+	name = "裤子 - 牛仔裤（破洞）"
 	item_path = /obj/item/clothing/under/pants/nova/jeans_ripped
 	group = "Casualwear"
 
@@ -110,179 +110,179 @@
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/loose_pants
-	name = "Loose pants"
+	name = "宽松裤"
 	item_path = /obj/item/clothing/under/pants/nova/loose_pants
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/hakama
-	name = "Hakama"
+	name = "袴"
 	item_path = /obj/item/clothing/under/pants/nova/hakama
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/double_skirt_dress
-	name = "Double Skirt Dress"
+	name = "双层裙连衣裙"
 	item_path = /obj/item/clothing/under/pants/nova/double_skirt_dress
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/slacks
-	name = "Pants - Slacks"
+	name = "裤子 - 西裤"
 	item_path = /obj/item/clothing/under/pants/slacks
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/track
-	name = "Pants - Track"
+	name = "裤子 - 运动裤"
 	item_path = /obj/item/clothing/under/pants/track
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/yoga
-	name = "Pants - Yoga (Colorable)"
+	name = "裤子 - 瑜伽裤（可着色）"
 	item_path = /obj/item/clothing/under/pants/nova/yoga
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/wide_leg
-	name = "Pants - Wide Legged (Colorable)"
+	name = "裤子 - 阔腿裤（可着色）"
 	item_path = /obj/item/clothing/under/pants/nova/wide_leg
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/shorts
-	name = "Shorts  (Colorable)"
+	name = "短裤（可着色）"
 	item_path = /obj/item/clothing/under/shorts
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/shortershorts
-	name = "Shorts  (Colorable, Shorter)"
+	name = "短裤（可着色，更短）"
 	item_path = /obj/item/clothing/under/shorts/nova/shortershorts
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/red_short
-	name = "Shorts (Red)"
+	name = "短裤（红色）"
 	item_path = /obj/item/clothing/under/shorts/red
 	group = "Casualwear"
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/miscellaneous/green_short
-	name = "Shorts (Green)"
+	name = "短裤（绿色）"
 	item_path = /obj/item/clothing/under/shorts/green
 	group = "Casualwear"
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/miscellaneous/blue_short
-	name = "Shorts (Blue)"
+	name = "短裤（蓝色）"
 	item_path = /obj/item/clothing/under/shorts/blue
 	group = "Casualwear"
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/miscellaneous/black_short
-	name = "Shorts (Black)"
+	name = "短裤（黑色）"
 	item_path = /obj/item/clothing/under/shorts/black
 	group = "Casualwear"
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/miscellaneous/grey_short
-	name = "Shorts (Grey)"
+	name = "短裤（灰色）"
 	item_path = /obj/item/clothing/under/shorts/grey
 	group = "Casualwear"
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/miscellaneous/purple_short
-	name = "Shorts (Purple)"
+	name = "短裤（紫色）"
 	item_path = /obj/item/clothing/under/shorts/purple
 	group = "Casualwear"
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/miscellaneous/jeanshorts
-	name = "Shorts - Jean (Colorable)"
+	name = "短裤 - 牛仔（可着色）"
 	item_path = /obj/item/clothing/under/shorts/jeanshorts
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/pants_blackshorts
-	name = "Shorts - Jean (Ripped, Colorable)"
+	name = "短裤 - 牛仔（破洞，可着色）"
 	item_path = /obj/item/clothing/under/shorts/nova/shorts_ripped
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/lone_skirt
-	name = "Skirt (Colorable)"
+	name = "短裙（可着色）"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/lone_skirt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/medium_skirt
-	name = "Skirt (Colorable, Medium)"
+	name = "短裙（可着色，中长）"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/medium
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/long_skirt
-	name = "Skirt (Colorable, Long)"
+	name = "短裙（可着色，长款）"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/long
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/mini_skirt
-	name = "Skirt (Colorable, Tiny)"
+	name = "短裙（可着色，超短）"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/mini_skirt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/black_skirt
-	name = "Skirt - w/ Bra (Black)"
+	name = "短裙 - 配文胸（黑色）"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/black_skirt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/red_skirt
-	name = "Skirt - w/ Bra (Red)"
+	name = "短裙 - 配文胸（红色）"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/red_skirt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/striped_skirt
-	name = "Skirt - w/ Bra (Red, Striped)"
+	name = "短裙 - 配文胸（红色，条纹）"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/striped_skirt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/denim_skirt
-	name = "Skirt - Jean"
+	name = "短裙 - 牛仔"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/jean
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/swept_skirt
-	name = "Skirt - Swept"
+	name = "短裙 - 斜裁"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/swept
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/pinktutu
-	name = "Skirt - Tutu"
+	name = "短裙 - 芭蕾舞裙"
 	item_path = /obj/item/clothing/under/dress/nova/pinktutu
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/sweater
-	name = "Cableknit Sweater" //Different than the Suit item ("Sweater")!!
+	name = "绞花针织毛衣" //Different than the Suit item ("Sweater")!!
 	item_path = /obj/item/clothing/under/sweater
 	reskin_datum = /datum/atom_skin/cableknit_sweater
 	group = "Casualwear"
 
 /datum/loadout_item/under/jumpsuit/turtleneck
-	name = "Turtleneck w/ Pants"
+	name = "高领毛衣配长裤"
 	item_path = /obj/item/clothing/under/greyscale/turtleneck
 	group = "Casualwear"
 
 /datum/loadout_item/under/jumpsuit/skirtleneck
-	name = "Turtleneck w/ Skirt"
+	name = "高领毛衣配短裙"
 	item_path = /obj/item/clothing/under/greyscale/turtleneck/skirt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/skirt_turtleneck
-	name = "Turtleneck w/ Skirt (Plain)"
+	name = "高领毛衣配短裙（素色）"
 	item_path = /obj/item/clothing/under/dress/skirt/turtleskirt //TODO: turn above item into reskin on this item (w/ above being the default)
 	group = "Casualwear"
 
 /datum/loadout_item/under/jumpsuit/overalls
-	name = "Turtleneck w/ Overalls"
+	name = "高领毛衣配工装裤"
 	item_path = /obj/item/clothing/under/greyscale/overalls
 	group = "Casualwear"
 
 /datum/loadout_item/under/jumpsuit/overalls_skirt
-	name = "Turtleneck w/ Overalls Skirt"
+	name = "高领毛衣配工装裙"
 	item_path = /obj/item/clothing/under/greyscale/overalls/skirt
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/windowed_dress
-	name = "Windowed Dress"
+	name = "开窗连衣裙"
 	item_path = /obj/item/clothing/under/dress/nova/windowed_dress
 	group = "Casualwear"
 
@@ -297,7 +297,7 @@
 	group = "Casualwear"
 
 /datum/loadout_item/under/miscellaneous/shorter_overall
-	name = "Shorter Overall"
+	name = "短款工装裤"
 	item_path = /obj/item/clothing/under/pants/nova/shorted_overall
 	group = "Casualwear"
 

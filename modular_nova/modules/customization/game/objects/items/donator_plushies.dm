@@ -795,10 +795,10 @@
 	var/mob/living/living_user = user
 	if(istype(living_user))
 		living_user.add_mood_event("hug", /datum/mood_event/warmhug/rubi, src)
-	user.visible_message(span_notice("[user] hugs \the [src]."), span_notice("You hug \the [src]."))
+	user.visible_message(span_notice("[user] 拥抱了 \the [src]。"), span_notice("你拥抱了\the [src]。"))
 
 /datum/mood_event/warmhug/rubi
-	description = span_nicegreen("Warm cozy bee hugs are the best!")
+	description = span_nicegreen("温暖舒适的蜜蜂拥抱是最棒的！")
 	mood_change = 0
 	timeout = 2 MINUTES
 

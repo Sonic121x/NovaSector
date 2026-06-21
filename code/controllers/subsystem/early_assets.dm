@@ -4,7 +4,7 @@
 /// Thus, we want it to fail consistently in CI as if it would've if a player
 /// opened it up early.
 SUBSYSTEM_DEF(early_assets)
-	name = "Early Assets"
+	name = "早期资源"
 	dependencies = list(
 		/datum/controller/subsystem/processing/reagents,
 		/datum/controller/subsystem/greyscale_previews,

@@ -1,6 +1,6 @@
 /datum/job/atmospheric_technician
 	title = JOB_ATMOSPHERIC_TECHNICIAN
-	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
+	description = "确保空间站空气可供呼吸，填充氧气罐，扑灭火灾，净化空气。"
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 2
@@ -38,7 +38,7 @@
 	rpg_title = "Aeromancer"
 
 /datum/outfit/job/atmos
-	name = "Atmospheric Technician"
+	name = "大气技术员"
 	jobtype = /datum/job/atmospheric_technician
 
 	id_trim = /datum/id_trim/job/atmospheric_technician
@@ -58,7 +58,7 @@
 	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/atmos/mod
-	name = "Atmospheric Technician (MODsuit)"
+	name = "大气技术员 (模块服)"
 
 	suit = null
 	suit_store = /obj/item/tank/internals/oxygen

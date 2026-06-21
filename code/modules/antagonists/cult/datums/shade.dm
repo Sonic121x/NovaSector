@@ -1,5 +1,5 @@
 /datum/antagonist/cult/shade
-	name = "\improper Cult Shade"
+	name = "\improper 邪教幽影"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
@@ -11,10 +11,10 @@
 
 /datum/antagonist/cult/shade/check_invoke_validity()
 	if(isnull(release_time))
-		to_chat(owner.current, span_alert("You cannot invoke runes from inside of a soulstone!"))
+		to_chat(owner.current, span_alert("你无法从灵魂石内部激活符文！"))
 		return FALSE
 
 	if(release_time + invoke_delay > world.time)
-		to_chat(owner.current, span_alert("You haven't gathered enough power to invoke runes yet. You need to remain out of your soulstone for a while longer!"))
+		to_chat(owner.current, span_alert("你尚未积聚足够的力量来激活符文。你需要在灵魂石外再待一段时间！"))
 		return FALSE
 	return TRUE

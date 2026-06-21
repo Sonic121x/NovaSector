@@ -1,8 +1,8 @@
 // Divine vocal cords
 
 /obj/item/organ/vocal_cords/colossus
-	name = "divine vocal cords"
-	desc = "They carry the voice of an ancient god."
+	name = "神圣声带"
+	desc = "它们承载着一位古老神祇的声音。"
 	icon_state = "voice_of_god"
 	actions_types = list(/datum/action/item_action/organ_action/colossus)
 	var/next_command = 0
@@ -11,7 +11,7 @@
 	spans = list("colossus","yell")
 
 /datum/action/item_action/organ_action/colossus
-	name = "Voice of God"
+	name = "神之音"
 	var/obj/item/organ/vocal_cords/colossus/cords = null
 
 /datum/action/item_action/organ_action/colossus/New()
@@ -23,23 +23,23 @@
 		return FALSE
 	if(world.time < cords.next_command)
 		if (feedback)
-			owner.balloon_alert(owner, "wait [DisplayTimeText(cords.next_command - world.time)]!")
+			owner.balloon_alert(owner, "等待 [DisplayTimeText(cords.next_command - world.time)]！")
 		return FALSE
 	if(isliving(owner))
 		var/mob/living/living = owner
 		if(!living.can_speak())
 			if (feedback)
-				owner.balloon_alert(owner, "can't speak!")
+				owner.balloon_alert(owner, "无法说话！")
 			return FALSE
 	if(check_flags & AB_CHECK_CONSCIOUS)
 		if(owner.stat)
 			if (feedback)
-				owner.balloon_alert(owner, "unconscious!")
+				owner.balloon_alert(owner, "失去意识！")
 			return FALSE
 	return TRUE
 
 /datum/action/item_action/organ_action/colossus/do_effect(trigger_flags)
-	var/command = tgui_input_text(owner, "Speak with the Voice of God", "Command", max_length = MAX_MESSAGE_LEN)
+	var/command = tgui_input_text(owner, "以神之音发言", "命令", max_length = MAX_MESSAGE_LEN)
 	if(!command)
 		return FALSE
 	if(QDELETED(src) || QDELETED(owner))
@@ -52,7 +52,7 @@
 		return FALSE
 
 	if(world.time < next_command)
-		to_chat(owner, span_notice("You must wait [DisplayTimeText(next_command - world.time)] before Speaking again."))
+		to_chat(owner, span_notice("你必须等待 [DisplayTimeText(next_command - world.time)] 才能再次使用神言。"))
 		return FALSE
 
 	return owner.can_speak()
@@ -78,8 +78,8 @@
 #define ACTIVATE_MAGIC "magic"
 
 /obj/machinery/anomalous_crystal
-	name = "anomalous crystal"
-	desc = "A strange chunk of crystal, being in the presence of it fills you with equal parts excitement and dread."
+	name = "异常水晶"
+	desc = "一块奇怪的水晶碎片，身处其旁让你同时感到兴奋与恐惧。"
 	var/observer_desc = "Anomalous crystals have descriptions that only observers can see. But this one hasn't been changed from the default."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "anomaly_crystal"
@@ -317,7 +317,7 @@
 	if(.)
 		return
 	if(ready_to_deploy)
-		var/be_helper = tgui_alert(usr, "Become a Lightgeist? (Warning, You can no longer be revived!)", "Lightgeist Deployment", list("Yes", "No"))
+		var/be_helper = tgui_alert(usr, "成为光灵？（警告，你将无法再被复活！）", "光灵部署", list("Yes", "No"))
 		if((be_helper == "Yes") && !QDELETED(src) && isobserver(user))
 			var/mob/living/basic/lightgeist/deployable = new(get_turf(loc))
 			deployable.PossessByPlayer(user.key)
@@ -357,8 +357,8 @@
 
 
 /obj/structure/closet/stasis
-	name = "quantum entanglement stasis warp field"
-	desc = "You can hardly comprehend this thing... which is why you can't see it."
+	name = "量子纠缠停滞扭曲场"
+	desc = "你几乎无法理解这东西……这也是你看不见它的原因。"
 	icon_state = null //This shouldn't even be visible, so if it DOES show up, at least nobody will notice
 	enable_door_overlay = FALSE //For obvious reasons
 	density = TRUE
@@ -408,8 +408,8 @@
 	dump_contents()
 
 /datum/action/exit_possession
-	name = "Exit Possession"
-	desc = "Exits the body you are possessing. They will explode violently when this occurs."
+	name = "脱离附身"
+	desc = "脱离你当前附身的躯体。脱离时该躯体会剧烈爆炸。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "exit_possession"
 

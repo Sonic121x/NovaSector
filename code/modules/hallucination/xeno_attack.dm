@@ -55,7 +55,7 @@
 		qdel(src)
 		return
 
-	to_chat(hallucinator, span_notice("[fake_xeno.name] begins climbing into the ventilation system..."))
+	to_chat(hallucinator, span_notice("[fake_xeno.name] 开始爬进通风系统……"))
 	addtimer(CALLBACK(src, PROC_REF(disappear), fake_xeno), 3 SECONDS)
 
 /// Disappears into the vent, ending the hallucination.
@@ -63,7 +63,7 @@
 	if(QDELETED(src))
 		return
 	if(!QDELETED(fake_xeno))
-		to_chat(hallucinator, span_notice("[fake_xeno.name] scrambles into the ventilation ducts!"))
+		to_chat(hallucinator, span_notice("[fake_xeno.name] 迅速钻进了通风管道！"))
 
 	qdel(src)
 
@@ -74,7 +74,7 @@
 
 /obj/effect/client_image_holder/hallucination/xeno/Initialize(mapload, list/mobs_which_see_us, datum/hallucination/parent)
 	. = ..()
-	name = "alien hunter ([rand(1, 1000)])"
+	name = "异形猎手 ([rand(1, 1000)])"
 
 // The hallucination "throws" us at the hallucinator, so whenever we impact, we're actually landing a "leap".
 /obj/effect/client_image_holder/hallucination/xeno/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -86,8 +86,8 @@
 		return
 	hit_living.Paralyze(10 SECONDS)
 	hit_living.visible_message(
-		span_warning("[hit_living] flails around wildly."),
-		span_userdanger("[name] pounces on you!"),
+		span_warning("[hit_living] 疯狂地挥舞着手臂。"),
+		span_userdanger("[name] 向你扑来！"),
 	)
 
 /// Sets our icon to look like we're leaping.

@@ -21,4 +21,4 @@
 /datum/element/radiation_protected_clothing/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 
-	examine_text += span_notice("A patch with a hazmat sign on the side suggests it would <b>protect you from radiation</b>.")
+	examine_text += span_notice("侧面的一个带有危险品标志的补丁表明它<b>能保护你免受辐射</b>。")

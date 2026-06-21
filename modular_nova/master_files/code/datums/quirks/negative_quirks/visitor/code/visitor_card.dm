@@ -1,10 +1,10 @@
 //the card
 /obj/item/card/id/advanced/visitor
-	name = "visitor's ID"
+	name = "访客ID"
 	icon_state = "visitor"
 	icon = 'modular_nova/master_files/code/datums/quirks/negative_quirks/visitor/icons/card.dmi'
 	assigned_icon_state = null
-	desc = "An ID card to be issued to visitors of the station. Its appearance leaves much to be desired, making it glaringly obvious you weren't worth the bureaucratic effort."
+	desc = "一张发放给空间站访客的ID卡。它的外观令人不敢恭维，明摆着告诉你连官僚系统都懒得为你费心。"
 	trim = /datum/id_trim/job/assistant/visitor
 	trim_changeable = FALSE
 
@@ -14,8 +14,8 @@
 	sechud_icon_state = SECHUD_UNKNOWN
 
 /obj/item/storage/box/visitor_ids
-	name = "box of spare visitor IDs"
-	desc = "Has so many empty IDs."
+	name = "备用访客身份卡盒"
+	desc = "有好多空白的身份卡。"
 	illustration = "id"
 
 /obj/item/storage/box/visitor_ids/PopulateContents()
@@ -24,8 +24,8 @@
 
 //design
 /datum/design/id/visitor
-	name = "Visitation ID Card"
-	desc = "A card used to provide ID, particularly for guests aboard the station."
+	name = "访客ID卡"
+	desc = "一种用于提供身份证明的卡片，尤其适用于空间站上的访客。"
 	id = "idcard_guest"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT)

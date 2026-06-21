@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/space/freedom
-	name = "eagle helmet"
-	desc = "An advanced, space-proof helmet. It appears to be modeled after an old-world eagle."
+	name = "老鹰头盔"
+	desc = "一款先进的、防太空环境的头盔。它似乎是仿照旧世界的鹰设计的。"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "griffinhat"
@@ -23,7 +23,7 @@
 	acid = 80
 
 /obj/item/clothing/suit/space/freedom
-	name = "eagle suit"
+	name = "鹰太空服"
 	desc = "An advanced, light suit, fabricated from a mixture of synthetic feathers and space-resistant material. A gun holster appears to be integrated into the suit and the wings appear to be stuck in 'freedom' mode."
 	icon_state = "freedom"
 	inhand_icon_state = null

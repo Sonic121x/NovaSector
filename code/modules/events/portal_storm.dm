@@ -1,11 +1,11 @@
 /datum/round_event_control/portal_storm_syndicate
-	name = "Portal Storm: Syndicate Shocktroops"
+	name = "传送门风暴：辛迪加突击队"
 	typepath = /datum/round_event/portal_storm/syndicate_shocktroop
 	weight = 2
 	min_players = 15
 	earliest_start = 30 MINUTES
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Syndicate troops pour out of portals."
+	description = "辛迪加部队从传送门中涌出。"
 
 /datum/round_event/portal_storm/syndicate_shocktroop
 	boss_types = list(/mob/living/basic/trooper/syndicate/melee/space/stormtrooper = 2)
@@ -15,12 +15,12 @@
 	)
 
 /datum/round_event_control/portal_storm_narsie
-	name = "Portal Storm: Constructs"
+	name = "传送门风暴：构造体"
 	typepath = /datum/round_event/portal_storm/portal_storm_narsie
 	weight = 0
 	max_occurrences = 0
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Nar'sie constructs pour out of portals."
+	description = "纳尔西造物从传送门中涌出。"
 	min_wizard_trigger_potency = 5
 	max_wizard_trigger_potency = 7
 
@@ -74,7 +74,7 @@
 	set waitfor = 0
 	sound_to_playing_players('sound/effects/magic/lightning_chargeup.ogg')
 	sleep(8 SECONDS)
-	priority_announce("Massive bluespace anomaly detected en route to [station_name()]. Brace for impact.")
+	priority_announce("检测到大规模蓝空异常正朝 [station_name()] 移动。准备迎接冲击。")
 	sleep(2 SECONDS)
 	sound_to_playing_players('sound/effects/magic/lightningbolt.ogg')
 

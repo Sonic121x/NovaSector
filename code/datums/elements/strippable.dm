@@ -97,7 +97,7 @@
 		return FALSE
 
 	if (HAS_TRAIT(equipping, TRAIT_NODROP))
-		to_chat(user, span_warning("You can't put [equipping] on [source], it's stuck to your hand!"))
+		to_chat(user, span_warning("你不能把[equipping]放到[source]上，它粘在你手上了！"))
 		return FALSE
 
 	if (equipping.item_flags & ABSTRACT)
@@ -152,14 +152,14 @@
 	var/is_silent = can_be_silent && HAS_TRAIT(user, TRAIT_STICKY_FINGERS)
 	if (!is_silent)
 		source.visible_message(
-			span_warning("[user] tries to remove [source]'s [item.name]."),
-			span_userdanger("[user] tries to remove your [item.name]."),
-			blind_message = span_hear("You hear rustling."),
+			span_warning("[user]试图脱下[source]的[item.name]。"),
+			span_userdanger("[user]试图脱下你的[item.name]。"),
+			blind_message = span_hear("你听到窸窣声。"),
 			ignored_mobs = user,
 		)
 	//NOVA EDIT CHANGE END
 
-	to_chat(user, span_danger("You try to remove [source]'s [item.name]..."))
+	to_chat(user, span_danger("你试图脱下[source]的[item.name]..."))
 	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red")
 	source.log_message("is being stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 	item.add_fingerprint(src)
@@ -172,7 +172,7 @@
 				LAZYADD(victim_human.afk_thefts, new_entry)
 
 		else if(victim_human.is_blind())
-			to_chat(source, span_userdanger("You feel someone fumble with your belongings."))
+			to_chat(source, span_userdanger("你感觉到有人在笨拙地翻弄你的物品。"))
 
 	return TRUE
 
@@ -236,7 +236,7 @@
 		return FALSE
 
 	if (!equipping.mob_can_equip(source, item_slot, disable_warning = TRUE, bypass_equip_delay_self = TRUE))
-		to_chat(user, span_warning("\The [equipping] doesn't fit in that place!"))
+		to_chat(user, span_warning("\The [equipping] 放不进那个位置！"))
 		return FALSE
 
 	return TRUE

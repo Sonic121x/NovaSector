@@ -1,5 +1,5 @@
 /obj/effect/shield
-	name = "shield"
+	name = "护盾"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "wave2"
 	layer = ABOVE_NORMAL_TURF_LAYER

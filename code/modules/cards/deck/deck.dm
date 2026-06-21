@@ -2,8 +2,8 @@
 #define DECK_SYNDIE_SHUFFLE_TIME (3 SECONDS)
 
 /obj/item/toy/cards/deck
-	name = "deck of cards"
-	desc = "A deck of space-grade playing cards."
+	name = "一副纸牌"
+	desc = "一副太空级别的扑克牌。"
 	icon = 'icons/obj/toys/playing_cards.dmi'
 	icon_state = "deck_nanotrasen_full"
 	w_class = WEIGHT_CLASS_SMALL
@@ -53,7 +53,7 @@
 			initial_cards += "[person] of [suit]"
 
 /obj/item/toy/cards/deck/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is slitting [user.p_their()] wrists with \the [src]! It looks like their luck ran out!"))
+	user.visible_message(span_suicide("[user] 正用 \the [user.p_their()] 割开 [src] 的手腕！看来他们的运气用光了！"))
 	playsound(src, 'sound/items/cards/cardshuffle.ogg', 50, TRUE)
 	return BRUTELOSS
 
@@ -194,7 +194,7 @@
 		return NONE
 
 	if (!insert(tool))
-		to_chat(user, span_warning("\The [src] is stacked too high!"))
+		to_chat(user, span_warning("\The [src] 堆得太高了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/card_grammar = istype(tool, /obj/item/toy/singlecard) ? "card" : "cards"
@@ -220,8 +220,8 @@
 || Syndicate playing cards, for pretending you're Gambit and playing poker for the nuke disk. ||
 */
 /obj/item/toy/cards/deck/syndicate
-	name = "suspicious looking deck of cards"
-	desc = "A deck of space-grade playing cards. They seem unusually rigid."
+	name = "看起来可疑的一副扑克牌"
+	desc = "一副太空级别的扑克牌。它们看起来异常坚硬。"
 	cardgame_desc = "suspicious card game"
 	icon_state = "deck_syndicate_full"
 	deckstyle = "syndicate"

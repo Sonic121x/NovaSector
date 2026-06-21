@@ -1,6 +1,6 @@
 /obj/item/melee/breaching_hammer
-	name = "D-4 tactical hammer"
-	desc = "A metallic-plastic composite breaching hammer, looks like a whack with this would severly harm or tire someone."
+	name = "D-4战术锤"
+	desc = "一种金属-塑料复合破门锤，看起来被这东西砸一下会让人严重受伤或筋疲力尽。"
 	icon = 'modular_nova/modules/sec_haul/icons/peacekeeper/peacekeeper_items.dmi'
 	icon_state = "peacekeeper_hammer"
 	inhand_icon_state = "peacekeeper_hammer"
@@ -37,7 +37,7 @@
 	if(!registered)
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(remove_track), FALSE)
 		RegisterSignal(interacting_with, COMSIG_BREACHING, PROC_REF(try_breaching), TRUE)
-		to_chat(user, text = "You prepare to forcefully strike the door")
+		to_chat(user, text = "你准备用力击打这扇门")
 		registered = TRUE
 	breacher = user
 	SEND_SIGNAL(interacting_with, COMSIG_BREACHING, user)
@@ -51,7 +51,7 @@
 		return FALSE
 	registered = FALSE
 	breaching = FALSE
-	to_chat(user, text = "You relax yourself , and lay down the breaching hammer")
+	to_chat(user, text = "你放松下来，放下了破门锤")
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(breaching_target, COMSIG_BREACHING)
 	breaching_target = null
@@ -76,8 +76,8 @@
 	breaching = TRUE
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/item/melee/breaching_hammer, breaching_loop ), user, target)
 	INVOKE_ASYNC(second_hammer, TYPE_PROC_REF(/obj/item/melee/breaching_hammer, breaching_loop ), breacher, target)
-	to_chat(breacher , text = "You begin forcefully smashing the [target]")
-	to_chat(user, text = "You begin forcefully smashing the [target]")
+	to_chat(breacher , text = "你开始用力猛砸[target]")
+	to_chat(user, text = "你开始用力猛砸[target]")
 
 /// Keeps looping under the door is no more , or someone moves , gets shot , dies , incapacitated , stunned , etc
 /obj/item/melee/breaching_hammer/proc/breaching_loop(mob/living/user, obj/target)
@@ -103,7 +103,7 @@
 			return FALSE
 		target.take_damage(force*breaching_multipler)
 		playsound(target, 'sound/items/weapons/sonic_jackhammer.ogg', 70)
-		visible_message("[user] smashes the [target] forcefully with the [src]")
+		visible_message("[user]用[src]用力砸向[target]")
 		user.do_attack_animation(target, used_item = src)
 		breaching_loop(user, target)
 		return TRUE

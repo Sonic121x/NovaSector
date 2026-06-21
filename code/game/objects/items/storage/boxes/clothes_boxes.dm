@@ -121,7 +121,7 @@
 
 /obj/item/storage/box/hero/mothpioneer
 	name = "Mothic Fleet Pioneer - 2429."
-	desc = "Some claim that the fleet engineers are directly responsible for most modern advancements in spacefaring designs. Although the exact details of their past contributions are somewhat fuzzy, their ingenuity remains unmatched and unquestioned to this day."
+	desc = "有人认为，舰队工程师直接促成了现代太空航行设计的大部分进步。尽管他们过去贡献的确切细节有些模糊，但他们的独创性至今仍是无与伦比、无可置疑的。"
 
 /obj/item/storage/box/hero/mothpioneer/PopulateContents()
 	new /obj/item/clothing/head/mothcap/original(src)
@@ -134,8 +134,8 @@
 	new /obj/item/wrench(src)
 
 /obj/item/storage/box/hero/etherealwarden
-	name = "Ethereal Trailwarden - 2450's."
-	desc = "Many fantastical stories are told of valiant trail wardens, even by offworlders who, thanks to their guidance, avoided an untimely demise while traveling the sometimes treacherous roads of Sprout. In truth their job entails far more walking and fixing roads than slaying dragons, but it is no less important and well respected: keeping the roads and trails safe and well maintained is for many settlements a matter of survival."
+	name = "灵能径卫 - 2450年代。"
+	desc = "关于英勇径卫的奇幻故事广为流传，甚至包括那些因他们的指引而在斯普劳特时而险恶的道路上免于过早死亡的异星人。实际上，他们的工作远不止是斩杀恶龙，更多的是步行和修路，但这同样重要且备受尊敬：对许多定居点而言，保持道路和小径的安全与良好维护是关乎生存的大事。"
 
 /obj/item/storage/box/hero/etherealwarden/PopulateContents()
 	new /obj/item/clothing/suit/hooded/ethereal_raincoat/trailwarden(src)
@@ -143,8 +143,8 @@
 	new /obj/item/storage/backpack/saddlepack(src)
 
 /obj/item/storage/box/hero/journalist
-	name = "Assassinated by CIA - 1984." // Literally
-	desc = "Many courageous individuals risked their lives to report on events the government sought to keep hidden from the public, ensuring that the truth remained buried and unheard. These garments are replicas of the clothing worn by one such 'journalist,' a silent sentinel in the fight for truth."
+	name = "被中央情报局暗杀 - 1984年。" // Literally
+	desc = "许多勇敢的个体冒着生命危险报道政府试图向公众隐瞒的事件，确保真相被掩埋、无人听闻。这些服装是其中一位'记者'所穿衣物的复制品，他们是追求真理斗争中无声的哨兵。"
 
 /obj/item/storage/box/hero/journalist/PopulateContents()
 	new /obj/item/clothing/under/costume/buttondown/slacks(src)
@@ -161,7 +161,7 @@
 	new /obj/item/wallframe/telescreen/entertainment(src)
 
 /obj/item/storage/box/holy
-	name = "Templar Kit"
+	name = "圣殿骑士套装"
 	/// This item is used to generate a preview image for this set.
 	/// It could be any item, doesn't even necessarily need to be something in the kit
 	var/obj/item/typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/templar
@@ -171,7 +171,7 @@
 	new /obj/item/clothing/suit/chaplainsuit/armor/templar(src)
 
 /obj/item/storage/box/holy/clock
-	name = "Forgotten kit"
+	name = "遗忘者套装"
 	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/clock
 
 /obj/item/storage/box/holy/clock/PopulateContents()
@@ -179,7 +179,7 @@
 	new /obj/item/clothing/suit/chaplainsuit/armor/clock(src)
 
 /obj/item/storage/box/holy/student
-	name = "Profane Scholar Kit"
+	name = "亵渎学者套装"
 	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/studentuni
 
 /obj/item/storage/box/holy/student/PopulateContents()
@@ -187,7 +187,7 @@
 	new /obj/item/clothing/head/helmet/chaplain/cage(src)
 
 /obj/item/storage/box/holy/sentinel
-	name = "Stone Sentinel Kit"
+	name = "石之哨兵套装"
 	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/ancient
 
 /obj/item/storage/box/holy/sentinel/PopulateContents()
@@ -195,7 +195,7 @@
 	new /obj/item/clothing/head/helmet/chaplain/ancient(src)
 
 /obj/item/storage/box/holy/witchhunter
-	name = "Witchhunter Kit"
+	name = "猎巫人套装"
 	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/witchhunter
 
 /obj/item/storage/box/holy/witchhunter/PopulateContents()
@@ -203,7 +203,7 @@
 	new /obj/item/clothing/head/helmet/chaplain/witchunter_hat(src)
 
 /obj/item/storage/box/holy/adept
-	name = "Divine Adept Kit"
+	name = "神圣使徒套装"
 	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/adept
 
 /obj/item/storage/box/holy/adept/PopulateContents()
@@ -212,7 +212,7 @@
 	new /obj/item/clothing/gloves/bracer(src)
 
 /obj/item/storage/box/holy/follower
-	name = "Followers of the Chaplain Kit"
+	name = "牧师追随者套装"
 	typepath_for_preview = /obj/item/clothing/suit/hooded/chaplain_hoodie/leader
 
 /obj/item/storage/box/holy/follower/PopulateContents()
@@ -223,7 +223,7 @@
 	new /obj/item/clothing/suit/hooded/chaplain_hoodie/leader(src)
 
 /obj/item/storage/box/holy/divine_archer
-	name = "Divine Archer Kit"
+	name = "神圣射手套装"
 	typepath_for_preview = /obj/item/clothing/suit/hooded/chaplain_hoodie/divine_archer
 
 /obj/item/storage/box/holy/divine_archer/PopulateContents()
@@ -233,7 +233,7 @@
 	new /obj/item/clothing/shoes/divine_archer(src)
 
 /obj/item/storage/box/holy/heretic
-	name = "Occult Practitioner Kit"
+	name = "秘术实践者套装"
 	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/heretic
 
 /obj/item/storage/box/holy/heretic/PopulateContents()
@@ -241,7 +241,7 @@
 	new /obj/item/clothing/head/helmet/chaplain/heretic(src)
 
 /obj/item/storage/box/floor_camo
-	name = "floor tile camo box"
+	name = "地板伪装盒"
 	desc = "Thank you for shopping from Camo-J's, our uniquely designed \
 		floor-tile 'NT scum' styled camouflage fatigues is the ultimate \
 		espionage uniform used by the very best. Providing the best \
@@ -256,7 +256,7 @@
 	new /obj/item/storage/backpack/floortile(src)
 
 /obj/item/storage/box/collar_bomb
-	name = "collar bomb box"
+	name = "项圈炸弹盒"
 	desc = "A small print on the back reads 'For research purposes only. Handle with care. In case of emergency, call the following number:'... the rest is scratched out with a marker..."
 
 /obj/item/storage/box/collar_bomb/PopulateContents()
@@ -276,7 +276,7 @@
 	new /obj/item/clothing/shoes/plate/red(src)
 
 /obj/item/storage/box/wizard_kit
-	name = "Generic Wizard Cosplay Kit"
+	name = "通用巫师角色扮演套装"
 
 /obj/item/storage/box/wizard_kit/PopulateContents()
 	new /obj/item/clothing/head/wizard(src)
@@ -284,7 +284,7 @@
 	new /obj/item/clothing/shoes/sandal(src)
 
 /obj/item/storage/box/wizard_kit/red
-	name = "Evocation Wizard Cosplay Kit"
+	name = "召唤巫师角色扮演套装"
 
 /obj/item/storage/box/wizard_kit/red/PopulateContents()
 	new /obj/item/clothing/head/wizard/red(src)

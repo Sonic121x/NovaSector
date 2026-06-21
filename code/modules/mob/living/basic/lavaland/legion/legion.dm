@@ -3,8 +3,8 @@
  * Legion skulls heal allies, bite enemies, and infest dying humans to make more legions.
  */
 /mob/living/basic/mining/legion
-	name = "legion"
-	desc = "You can still see what was once a human under the shifting mass of corruption."
+	name = "军团"
+	desc = "你仍能从那蠕动的腐败团块下，辨认出曾经属于人类的轮廓。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion"
 	icon_living = "legion"
@@ -93,7 +93,7 @@
 	ai_controller?.set_blackboard_key(BB_LEGION_CORPSE, consumed)
 	ai_controller?.set_blackboard_key(BB_LEGION_RECENT_LINES, consumed.copy_recent_speech(line_chance = 80))
 	stored_mob = consumed
-	visible_message(span_warning("[src] staggers to [p_their()] feet!"))
+	visible_message(span_warning("[src] 摇摇晃晃地站到 [p_their()] 脚上！"))
 	if (prob(75))
 		return
 	// Congratulations you have won a special prize: cancer
@@ -112,8 +112,8 @@
 
 /// Like a Legion but it's an adorable snowman
 /mob/living/basic/mining/legion/snow
-	name = "snow legion"
-	desc = "You can vaguely see what was once a human under the densely packed snow. Cute, but macabre."
+	name = "雪原军团"
+	desc = "你能隐约看到厚厚积雪下曾经是人类的轮廓。可爱，却又令人毛骨悚然。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "snowlegion"
 	icon_living = "snowlegion"
@@ -134,8 +134,8 @@
 
 /// Like a Legion but shorter and faster
 /mob/living/basic/mining/legion/dwarf
-	name = "dwarf legion"
-	desc = "You can still see what was once a rather small human under the shifting mass of corruption."
+	name = "矮人军团"
+	desc = "你仍能看出，在这团蠕动的腐败物质之下，曾经是一个相当矮小的人类。"
 	icon_state = "dwarf_legion"
 	icon_living = "dwarf_legion"
 	icon_dead = "dwarf_legion"
@@ -148,8 +148,8 @@
 
 /// Like a Legion but larger and spawns regular Legions, not currently used anywhere and very soulful
 /mob/living/basic/mining/legion/large
-	name = "myriad"
-	desc = "A legion of legions, a dead end to whatever form the Necropolis was attempting to create."
+	name = "万千"
+	desc = "军团的军团，是死城试图创造的某种形态的终点。"
 	icon = 'icons/mob/simple/lavaland/64x64megafauna.dmi'
 	icon_state = "legion"
 	icon_living = "legion"

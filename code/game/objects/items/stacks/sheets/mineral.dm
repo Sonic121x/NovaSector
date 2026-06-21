@@ -33,8 +33,8 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	abstract_type = /obj/item/stack/sheet/mineral
 
 /obj/item/stack/sheet/mineral/sandstone
-	name = "sandstone brick"
-	desc = "This appears to be a combination of both sand and stone."
+	name = "砂岩砖"
+	desc = "这似乎是沙子和石头的结合体。"
 	singular_name = "sandstone brick"
 	icon_state = "sheet-sandstone"
 	inhand_icon_state = null
@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
  */
 
 /obj/item/stack/sheet/mineral/sandbags
-	name = "sandbags"
+	name = "沙袋"
 	icon_state = "sandbags"
 	singular_name = "sandbag"
 	layer = LOW_ITEM_LAYER
@@ -79,8 +79,8 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	amount = 50
 
 /obj/item/emptysandbag
-	name = "empty sandbag"
-	desc = "A bag to be filled with sand."
+	name = "空沙袋"
+	desc = "一个用来装沙子的袋子。"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "sandbag"
 	w_class = WEIGHT_CLASS_TINY
@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 /obj/item/emptysandbag/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(W, /obj/item/stack/ore/glass))
 		var/obj/item/stack/ore/glass/G = W
-		to_chat(user, span_notice("You fill the sandbag."))
+		to_chat(user, span_notice("你填满了沙袋。"))
 		var/obj/item/stack/sheet/mineral/sandbags/I = new (drop_location())
 		qdel(src)
 		if (Adjacent(user) && !issilicon(user))
@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
  * Plasma
  */
 /obj/item/stack/sheet/mineral/plasma
-	name = "solid plasma"
+	name = "固态等离子体"
 	icon_state = "sheet-plasma"
 	inhand_icon_state = "sheet-plasma"
 	singular_name = "plasma sheet"
@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	walltype = /turf/closed/wall/mineral/plasma
 
 /obj/item/stack/sheet/mineral/plasma/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins licking \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始舔舐\the [src]！看起来[user.p_theyre()]想自杀！"))
 	return TOXLOSS//dont you kids know that stuff is toxic?
 
 GLOBAL_LIST_INIT(plasma_recipes, list ( \
@@ -321,7 +321,7 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	if(istype(W, /obj/item/stack/rods))
 		var/obj/item/stack/rods/old_rods = W
 		if(old_rods.merge_type != /obj/item/stack/rods)
-			to_chat(user, span_warning("You can't craft shuttle frame rods with this type of rod!"))
+			to_chat(user, span_warning("你不能用这种类型的杆制作穿梭机框架杆！"))
 		if (old_rods.get_amount() >= 5 && get_amount() >= 1)
 			var/obj/item/stack/rods/shuttle/five/new_rods = new (get_turf(user))
 			if(!QDELETED(new_rods))
@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 			if(QDELETED(src) && replace && !QDELETED(new_rods))
 				user.put_in_hands(new_rods)
 		else
-			to_chat(user, span_warning("You need five rods and one sheet of titanium to make shuttle frame rods!"))
+			to_chat(user, span_warning("你需要五根杆和一张钛板来制作穿梭机框架杆！"))
 		return
 	return ..()
 
@@ -352,7 +352,7 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 1
 	throw_range = 3
-	construction_path_type = "plastitanium"
+	construction_path_type = "塑钛"
 	mats_per_unit = list(/datum/material/alloy/plastitanium=SHEET_MATERIAL_AMOUNT)
 	gulag_valid = TRUE
 	material_type = /datum/material/alloy/plastitanium
@@ -375,7 +375,7 @@ GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
  */
 
 /obj/item/stack/sheet/mineral/snow
-	name = "snow"
+	name = "雪"
 	icon_state = "sheet-snow"
 	inhand_icon_state = null
 	mats_per_unit = list(/datum/material/snow = SHEET_MATERIAL_AMOUNT)
@@ -415,7 +415,7 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
 	))
 
 /obj/item/stack/sheet/mineral/adamantine
-	name = "adamantine"
+	name = "精金"
 	icon_state = "sheet-adamantine"
 	inhand_icon_state = "sheet-adamantine"
 	singular_name = "adamantine sheet"
@@ -431,8 +431,8 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
  */
 
 /obj/item/stack/sheet/mineral/runite
-	name = "runite"
-	desc = "Rare material found in distant lands."
+	name = "符文石"
+	desc = "在遥远之地发现的稀有材料。"
 	singular_name = "runite bar"
 	icon_state = "sheet-runite"
 	inhand_icon_state = "sheet-runite"
@@ -445,7 +445,7 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
  * Mythril
  */
 /obj/item/stack/sheet/mineral/mythril
-	name = "mythril"
+	name = "秘银"
 	icon_state = "sheet-mythril"
 	inhand_icon_state = "sheet-mythril"
 	singular_name = "mythril sheet"
@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
  * Alien Alloy
  */
 /obj/item/stack/sheet/mineral/abductor
-	name = "alien alloy"
+	name = "外星合金"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "sheet-abductor"
 	inhand_icon_state = "sheet-abductor"
@@ -487,8 +487,8 @@ GLOBAL_LIST_INIT(abductor_recipes, list ( \
  */
 
 /obj/item/stack/sheet/mineral/coal
-	name = "coal"
-	desc = "Someone's gotten on the naughty list."
+	name = "煤"
+	desc = "有人上了淘气名单。"
 	icon = 'icons/obj/ore.dmi'
 	icon_state = "slag"
 	singular_name = "coal lump"
@@ -528,7 +528,7 @@ GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
 	))
 
 /obj/item/stack/sheet/mineral/metal_hydrogen
-	name = "metal hydrogen"
+	name = "金属氢"
 	icon_state = "sheet-metalhydrogen"
 	inhand_icon_state = null
 	singular_name = "metal hydrogen sheet"

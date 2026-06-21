@@ -4,7 +4,7 @@
 	lefthand_file = 'icons/mob/inhands/items/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/food_righthand.dmi'
 	abstract_type = /obj/item/trash
-	desc = "This is rubbish."
+	desc = "这是垃圾。"
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	item_flags = NOBLUDGEON|SKIP_FANTASY_ON_SPAWN
@@ -23,28 +23,28 @@
 	return ..()
 
 /obj/item/trash/raisins
-	name = "\improper 4no raisins"
+	name = "\improper 4no葡萄干"
 	icon_state= "4no_raisins"
 	custom_materials = list(/datum/material/cardboard=SMALL_MATERIAL_AMOUNT*2)
 
 /obj/item/trash/candy
-	name = "candy"
+	name = "糖果"
 	icon_state= "candy"
 
 /obj/item/trash/cheesie
-	name = "cheesie honkers"
+	name = "奇滋脆脆角"
 	icon_state = "cheesie_honkers"
 
 /obj/item/trash/chips
-	name = "chips"
+	name = "薯片"
 	icon_state = "chips"
 
 /obj/item/trash/shrimp_chips
-	name = "shrimp chips"
+	name = "虾片"
 	icon_state = "shrimp_chips"
 
 /obj/item/trash/boritos
-	name = "boritos bag"
+	name = "boritos 包装袋"
 	icon_state = "boritos"
 
 /obj/item/trash/boritos/grind_results()
@@ -60,60 +60,60 @@
 	icon_state = "boritospurple"
 
 /obj/item/trash/popcorn
-	name = "popcorn"
+	name = "爆米花"
 	icon_state = "popcorn"
 	custom_materials = list(/datum/material/cardboard=SMALL_MATERIAL_AMOUNT*2)
 
 /obj/item/trash/popcorn/caramel
-	name = "empty caramel popcorn"
-	desc = "Now it's not a sweet snack, but just a sticky bag..."
+	name = "空焦糖爆米花"
+	desc = "现在它不再是甜点，只是一个黏糊糊的袋子..."
 	icon_state = "empty_caramel_popcorn"
 
 /obj/item/trash/popcorn/salty
-	name = "empty salty popcorn"
-	desc = "It looks like there are only a few grains of salt left at the bottom of the bag..."
+	name = "空咸味爆米花"
+	desc = "看起来袋底只剩下几粒盐了..."
 	icon_state = "empty_salty_popcorn"
 
 /obj/item/trash/sosjerky
-	name = "\improper Scaredy's Private Reserve Beef Jerky"
+	name = "\improper 胆小鬼私藏牛肉干"
 	icon_state = "sosjerky"
 
 /obj/item/trash/syndi_cakes
-	name = "syndi-cakes"
+	name = "辛迪-蛋糕"
 	icon_state = "syndi_cakes"
 	custom_materials = list(/datum/material/cardboard=SMALL_MATERIAL_AMOUNT*2)
 
 /obj/item/trash/energybar
-	name = "energybar wrapper"
+	name = "能量棒包装纸"
 	icon_state = "energybar"
 
 /obj/item/trash/fleet_ration
-	name = "surplus fleet wrapper"
-	desc = "In the Mothic Fleet every individual wrapper is carefully recycled and repurposed into fresh material. Over here they are more commonly dropped directly onto the floor."
+	name = "剩余舰队包装纸"
+	desc = "在飞蛾舰队中，每一张包装纸都会被仔细回收并重新制成新材料。而在这里，它们更常被直接扔在地上。"
 	icon_state = "moth_ration"
 	custom_materials = list(/datum/material/cardboard=SMALL_MATERIAL_AMOUNT*2)
 
 /obj/item/trash/pistachios
-	name = "pistachios pack"
+	name = "开心果包装"
 	icon_state = "pistachios_pack"
 
 /obj/item/trash/semki
-	name = "semki pack"
+	name = "semki 包装"
 	icon_state = "semki_pack"
 
 /obj/item/trash/semki/healthy
-	name = "nibbled sunflower seeds"
+	name = "啃过的葵花籽"
 	icon_state = "sunseeds"
 	custom_materials = null
 
 /obj/item/trash/tray
-	name = "tray"
+	name = "托盘"
 	icon_state = "tray"
 	resistance_flags = NONE
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*4)
 
 /obj/item/trash/candle
-	name = "melted candle"
+	name = "融化的蜡烛"
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle4"
 	custom_materials = null
@@ -123,13 +123,13 @@
 	AddElement(/datum/element/floor_placeable)
 
 /obj/item/trash/flare
-	name = "burnt flare"
+	name = "烧尽的信号棒"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flare-empty"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2,/datum/material/glass=SMALL_MATERIAL_AMOUNT,)
 
 /obj/item/trash/can
-	name = "crushed can"
+	name = "压扁的罐子"
 	icon_state = "cola"
 	resistance_flags = NONE
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2)
@@ -142,15 +142,15 @@
 	icon_state = "peachcan_empty"
 
 /obj/item/trash/can/food/peaches
-	name = "canned peaches"
+	name = "罐头桃子"
 	icon_state = "peachcan_empty"
 
 /obj/item/trash/can/food/peaches/maint
-	name = "Maintenance Peaches"
+	name = "维护区桃子"
 	icon_state = "peachcanmaint_empty"
 
 /obj/item/trash/can/food/beans
-	name = "tin of beans"
+	name = "豆子罐头"
 	icon_state = "beans_empty"
 
 /obj/item/trash/can/Initialize(mapload)
@@ -159,61 +159,61 @@
 	pixel_y = rand(-4,4)
 
 /obj/item/trash/peanuts
-	name = "\improper Gallery peanuts packet"
-	desc = "This thread is trash!"
+	name = "\improper 画廊花生包"
+	desc = "这个帖子是垃圾！"
 	icon_state = "peanuts"
 
 /obj/item/trash/cnds
-	name = "\improper C&Ds packet"
+	name = "\improper C&Ds 包装袋"
 	icon_state = "cnds"
 
 /obj/item/trash/can/food/envirochow
-	name = "dog eat dog envirochow"
+	name = "狗咬狗环境饲料"
 	icon_state = "envirochow_empty"
 
 /obj/item/trash/can/food/tomatoes
-	name = "canned San Marzano tomatoes"
+	name = "圣马尔扎诺番茄罐头"
 	icon_state = "tomatoescan_empty"
 
 /obj/item/trash/can/food/pine_nuts
-	name = "canned pine nuts"
+	name = "松子罐头"
 	icon_state = "pinenutscan_empty"
 
 /obj/item/trash/can/food/jellyfish
-	name = "canned gunner jellyfish"
+	name = "炮手水母罐头"
 	icon_state = "jellyfish_empty"
 
 /obj/item/trash/can/food/desert_snails
-	name = "canned desert snails"
+	name = "沙漠蜗牛罐头"
 	icon_state = "snails_empty"
 
 /obj/item/trash/can/food/larvae
-	name = "canned bee larva"
+	name = "蜜蜂幼虫罐头"
 	icon_state = "larvae_empty"
 
 /obj/item/trash/spacers_sidekick
-	name = "\improper Spacer's Sidekick packet"
+	name = "\improper 太空人伙伴包装袋"
 	icon_state = "spacers_sidekick"
 
 /obj/item/trash/ready_donk
-	name = "empty Ready-donk"
-	desc = "It's been Donk-decimated."
+	name = "空的多恩克即食盒"
+	desc = "它已被多恩克彻底消灭。"
 	icon_state = "ready_donk"
 
 /obj/item/trash/can/food/squid_ink
-	name = "canned squid ink"
+	name = "鱿鱼墨罐头"
 	icon_state = "squidinkcan_empty"
 
 /obj/item/trash/can/food/chap
-	name = "can of CHAP"
+	name = "CHAP罐头"
 	icon_state = "chapcan_empty"
 
 /obj/item/trash/hot_shots
-	name = "\improper Hot Shots box"
+	name = "\improper 热力射击盒"
 	icon_state = "hot_shots"
 
 /obj/item/trash/sticko
-	name = "\improper Sticko box"
+	name = "\improper 斯蒂克盒"
 	icon_state = "sticko"
 	custom_materials = list(/datum/material/cardboard=SMALL_MATERIAL_AMOUNT*2)
 
@@ -230,7 +230,7 @@
 	icon_state = "sticko_yuyake"
 
 /obj/item/trash/shok_roks
-	name = "\improper Shok-Roks packet"
+	name = "\improper 休克石包装袋"
 	icon_state = "shok_roks"
 
 /obj/item/trash/shok_roks/citrus

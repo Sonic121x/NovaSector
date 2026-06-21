@@ -1,12 +1,12 @@
 /// Rips off all the limbs of the target
 /datum/smite/nugget
-	name = "Nugget"
+	name = "Nugget-拔四肢"
 
 /datum/smite/nugget/effect(client/user, mob/living/target)
 	. = ..()
 
 	if (!iscarbon(target))
-		to_chat(user, span_warning("This must be used on a carbon mob."), confidential = TRUE)
+		to_chat(user, span_warning("此功能必须对碳基生物使用。"), confidential = TRUE)
 		return
 
 	var/mob/living/carbon/carbon_target = target

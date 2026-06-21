@@ -1,7 +1,7 @@
 /obj/item/stack/tile/light
-	name = "light tile"
+	name = "发光地砖"
 	singular_name = "light floor tile"
-	desc = "A floor tile, made out of glass. It produces light."
+	desc = "一种由玻璃制成的地板砖。它能发光。"
 	icon_state = "tile_e"
 	obj_flags = CONDUCTS_ELECTRICITY
 	attack_verb_continuous = list("bashes", "batters", "bludgeons", "thrashes", "smashes")

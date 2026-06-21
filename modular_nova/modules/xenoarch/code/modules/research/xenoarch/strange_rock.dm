@@ -11,8 +11,8 @@
 #define REWARD_THREE 3
 
 /obj/item/xenoarch/strange_rock
-	name = "strange rock"
-	desc = "A mysterious, strange rock that has the potential to have a wonderful item. Also possible for it to have our disposed garbage."
+	name = "奇异岩石"
+	desc = "一块神秘的奇异岩石，可能蕴藏着美妙的物品。当然，也可能只是我们丢弃的垃圾。"
 	icon_state = "rock"
 
 	///The max depth a strange rock can be
@@ -54,11 +54,11 @@
 	. = ..()
 	. += span_notice("[scanned ? "This item has been scanned. Max Depth: [max_depth] cm. Safe Depth: [safe_depth] cm." : "This item has not been scanned."]")
 	if(adv_scanned)
-		. += span_notice("The item depth is [item_depth] cm.")
+		. += span_notice("物品深度为[item_depth]厘米。")
 
 	. += span_notice("[measured ? "This item has been measured. Dug Depth: [dug_depth]." : "This item has not been measured."]")
 	if(measured && dug_depth > item_depth)
-		. += span_warning("The rock is crumbling, even just brushing it will destroy it!")
+		. += span_warning("这块岩石正在碎裂，哪怕只是轻轻触碰都会毁掉它！")
 
 /obj/item/xenoarch/strange_rock/proc/create_item()
 	choose_tier = rand(1,100)
@@ -134,79 +134,79 @@
 		return ITEM_INTERACT_BLOCKING
 	if(istype(tool, /obj/item/xenoarch/hammer))
 		var/obj/item/xenoarch/hammer/xeno_hammer = tool
-		user.balloon_alert(user, "carefully hammering...")
+		user.balloon_alert(user, "小心地敲击...")
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/archeology, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, xeno_hammer.dig_speed * skill_modifier, target = src))
-			user.balloon_alert(user, "interrupted, rock damaged!")
+			user.balloon_alert(user, "被打断，岩石受损！")
 			dug_depth += rand(1,5)
 			return ITEM_INTERACT_BLOCKING
 
 		switch(try_dig(xeno_hammer.dig_amount))
 			if(DIG_UNDEFINED)
-				user.balloon_alert(user, "something broke (oops)!")
+				user.balloon_alert(user, "出了点问题（哎呀）！")
 				message_admins("Tell coders something broke with xenoarch hammers and dig amount.")
 				return ITEM_INTERACT_BLOCKING
 
 			if(DIG_DELETE)
-				user.balloon_alert(user, "rock crumbles badly!")
-				to_chat(user, span_warning("The rock crumbles, leaving nothing behind."))
+				user.balloon_alert(user, "岩石严重碎裂！")
+				to_chat(user, span_warning("岩石碎裂，什么都没留下。"))
 				return ITEM_INTERACT_BLOCKING
 
 			if(DIG_ROCK)
-				user.balloon_alert(user, "item excavated successfully")
+				user.balloon_alert(user, "物品成功挖掘")
 				return ITEM_INTERACT_BLOCKING
 
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/xenoarch/brush))
 		var/obj/item/xenoarch/brush/xeno_brush = tool
-		user.balloon_alert(user, "carefully brushing...")
+		user.balloon_alert(user, "仔细刷洗中...")
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/archeology, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, xeno_brush.dig_speed * skill_modifier, target = src))
-			user.balloon_alert(user, "interrupted, rock damaged!")
+			user.balloon_alert(user, "被打断，岩石受损！")
 			dug_depth += rand(1,5)
 			return ITEM_INTERACT_BLOCKING
 
 		switch(try_uncover())
 			if(BRUSH_DELETE)
-				user.balloon_alert(user, "rock crumbles badly!")
+				user.balloon_alert(user, "岩石严重碎裂！")
 				return ITEM_INTERACT_BLOCKING
 
 			if(BRUSH_UNCOVER)
-				user.balloon_alert(user, "item extracted successfully")
+				user.balloon_alert(user, "物品成功提取")
 				user.mind?.adjust_experience(/datum/skill/archeology, 20)
 				return ITEM_INTERACT_BLOCKING
 
 			if(BRUSH_NONE)
-				user.balloon_alert(user, "rock needs more brushing")
+				user.balloon_alert(user, "岩石需要更多刷洗")
 				return ITEM_INTERACT_BLOCKING
 
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.type == /obj/item/xenoarch)
 		if(measured)
-			user.balloon_alert(user, "rock already marked!")
+			user.balloon_alert(user, "岩石已标记！")
 			return ITEM_INTERACT_BLOCKING
 
-		user.balloon_alert(user, "affixing holo measuring tape...")
+		user.balloon_alert(user, "正在固定全息测量卷尺...")
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/archeology, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 4 SECONDS * skill_modifier, target = src))
-			user.balloon_alert(user, "interrupted, rock damaged!")
+			user.balloon_alert(user, "被打断，岩石受损！")
 			dug_depth += rand(1,5)
 			return ITEM_INTERACT_BLOCKING
 
 		if(get_measured())
-			user.balloon_alert(user, "rock reporting excavation")
+			user.balloon_alert(user, "岩石报告挖掘情况")
 			user.mind?.adjust_experience(/datum/skill/archeology, 10)
 			return ITEM_INTERACT_BLOCKING
 
 
 	if(istype(tool, /obj/item/xenoarch/handheld_scanner))
 		var/obj/item/xenoarch/handheld_scanner/item_scanner = tool
-		user.balloon_alert(user, "scanning...")
+		user.balloon_alert(user, "扫描中...")
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/archeology, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, item_scanner.scanning_speed * skill_modifier, target = src))
-			user.balloon_alert(user, "interrupted, rock damaged!")
+			user.balloon_alert(user, "中断，岩石受损！")
 			dug_depth += rand(1,5)
 			return ITEM_INTERACT_BLOCKING
 
@@ -221,7 +221,7 @@
 			user.balloon_alert(user, report_string)
 			return ITEM_INTERACT_BLOCKING
 
-		user.balloon_alert(user, "rock already tagged!")
+		user.balloon_alert(user, "岩石已标记！")
 		return ITEM_INTERACT_BLOCKING
 
 //turfs

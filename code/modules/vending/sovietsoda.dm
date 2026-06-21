@@ -1,6 +1,6 @@
 /obj/machinery/vending/sovietsoda
-	name = "\improper BODA"
-	desc = "Old sweet water vending machine."
+	name = "\improper 苏联小甜水售货机"
+	desc = "老式甜水自动售货机。列宁格勒的味道!"
 	icon_state = "sovietsoda"
 	panel_type = "panel8"
 	light_mask = "soviet-light-mask"

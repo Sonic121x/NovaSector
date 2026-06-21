@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/space/santahat
-	name = "Santa's hat"
-	desc = "Ho ho ho. Merrry X-mas!"
+	name = "圣诞老人帽"
+	desc = "吼吼吼。圣诞快乐！"
 	icon = 'icons/obj/clothing/head/wizard.dmi'
 	worn_icon = 'icons/mob/clothing/head/wizard.dmi'
 	icon_state = "santahat"
@@ -18,8 +18,8 @@
 	flags_inv = NONE
 
 /obj/item/clothing/suit/space/santa
-	name = "Santa's suit"
-	desc = "Festive!"
+	name = "圣诞老人服"
+	desc = "好有节日氛围！"
 	icon_state = "santa"
 	icon = 'icons/obj/clothing/suits/wizard.dmi'
 	worn_icon = 'icons/mob/clothing/suits/wizard.dmi'

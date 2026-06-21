@@ -1,7 +1,7 @@
 
 /datum/reagent/thermite
-	name = "Thermite"
-	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
+	name = "Thermite-铝热剂"
+	description = "铝热剂能产生一种被称为铝热反应的高温反应。可用于熔化墙壁。"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	color = "#550000"
@@ -18,7 +18,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/nitroglycerin
-	name = "Nitroglycerin"
+	name = "Nitroglycerin-硝化甘油"
 	description = "Nitroglycerin is a heavy, colorless, oily liquid obtained by nitrating glycerol. \
 		It is commonly used to treat heart conditions, but also in the creation of explosives."
 	color = COLOR_GRAY
@@ -36,8 +36,8 @@
 	return SPARK_ACT_DESTRUCTIVE | SPARK_ACT_CLEAR_ALL
 
 /datum/reagent/stabilizing_agent
-	name = "Stabilizing Agent"
-	description = "Keeps unstable chemicals stable. This does not work on everything."
+	name = "Stabilizing Agent-稳定剂"
+	description = "能使不稳定的化学物质保持稳定。这并非对所有物质都有效。"
 	color = COLOR_YELLOW
 	taste_description = "metal"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -48,8 +48,8 @@
 	mytray.myseed?.adjust_instability(-round(volume))
 
 /datum/reagent/clf3
-	name = "Chlorine Trifluoride"
-	description = "A very flammable liquid capable of burning even through the hull of the station. Bursts into a fireball upon creation."
+	name = "Chlorine Trifluoride-三氟化氯"
+	description = "一种极易燃的液体，甚至能烧穿空间站的船体。在生成时会爆发出火球。"
 	color = "#FFC8C8"
 	metabolization_rate = 10 * REAGENTS_METABOLISM
 	taste_description = "burning"
@@ -87,8 +87,8 @@
 		new /obj/effect/hotspot(exposed_mob.loc)
 
 /datum/reagent/sorium
-	name = "Sorium"
-	description = "Sends everything flying from the detonation point."
+	name = "Sorium-斥力爆"
+	description = "将一切从爆炸点炸飞。"
 	color = "#5A64C8"
 	taste_description = "air and bitterness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -100,8 +100,8 @@
 	return SPARK_ACT_NON_DESTRUCTIVE
 
 /datum/reagent/liquid_dark_matter
-	name = "Liquid Dark Matter"
-	description = "Sucks everything into the detonation point."
+	name = "Liquid Dark Matter-液体暗物质"
+	description = "将一切吸入爆炸点。"
 	color = "#210021"
 	taste_description = "compressed bitterness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -113,8 +113,8 @@
 	return SPARK_ACT_NON_DESTRUCTIVE
 
 /datum/reagent/gunpowder
-	name = "Gunpowder"
-	description = "Explodes. Violently."
+	name = "Gunpowder-火药"
+	description = "会爆炸。非常剧烈。"
 	color = COLOR_BLACK
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	taste_description = "salt"
@@ -153,15 +153,15 @@
 		reagent_explode(holder, volume, modifier = 5, strengthdiv = 10, clear_holder_reagents = FALSE, flame_factor = 1)
 		return SPARK_ACT_DESTRUCTIVE | SPARK_ACT_CLEAR_ALL
 
-	holder.my_atom.visible_message(span_boldnotice("Sparks start flying around the gunpowder!"))
+	holder.my_atom.visible_message(span_boldnotice("火花开始在火药周围飞舞！"))
 	if (!(spark_flags & SPARK_ACT_ENCLOSED))
 		do_sparks(2, TRUE, get_turf(holder.my_atom))
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(reagent_explode), holder, volume, 5, 10), rand(5 SECONDS, 10 SECONDS))
 	return SPARK_ACT_NON_DESTRUCTIVE // just wait a bit...
 
 /datum/reagent/rdx
-	name = "RDX"
-	description = "Military grade explosive"
+	name = "RDX-环三亚甲基三硝胺"
+	description = "军用级炸药"
 	color = COLOR_WHITE
 	taste_description = "salt"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -179,8 +179,8 @@
 	return SPARK_ACT_DESTRUCTIVE | SPARK_ACT_CLEAR_ALL
 
 /datum/reagent/tatp
-	name = "TaTP"
-	description = "Suicide grade explosive"
+	name = "TaTP-三过氧化三丙酮"
+	description = "自杀级炸药"
 	color = COLOR_WHITE
 	taste_description = "death"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -191,8 +191,8 @@
 	return SPARK_ACT_DESTRUCTIVE | SPARK_ACT_CLEAR_ALL
 
 /datum/reagent/flash_powder
-	name = "Flash Powder"
-	description = "Makes a very bright flash."
+	name = "Flash Powder-闪光粉"
+	description = "会产生非常明亮的闪光。"
 	color = "#C8C8C8"
 	taste_description = "salt"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -222,8 +222,8 @@
 	return SPARK_ACT_NON_DESTRUCTIVE
 
 /datum/reagent/smoke_powder
-	name = "Smoke Powder"
-	description = "Makes a large cloud of smoke that can carry reagents."
+	name = "Smoke Powder-烟粉"
+	description = "会产生一大片能携带化学试剂的烟雾。"
 	color = "#C8C8C8"
 	taste_description = "smoke"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -239,14 +239,14 @@
 	if (iscarbon(holder.my_atom))
 		var/mob/living/carbon/victim = holder.my_atom
 		if (victim.stat != DEAD)
-			victim.visible_message(span_warning("[victim] starts violently coughing up smoke!"))
+			victim.visible_message(span_warning("[victim]开始剧烈地咳出烟雾！"))
 		victim.adjust_organ_loss(ORGAN_SLOT_LUNGS, volume / 15)
 	do_chem_smoke(amount = volume / 1.5, holder = holder.my_atom, location = location, carry = holder, silent = FALSE, log = TRUE)
 	return SPARK_ACT_NON_DESTRUCTIVE | SPARK_ACT_CLEAR_ALL
 
 /datum/reagent/sonic_powder
-	name = "Sonic Powder"
-	description = "Makes a deafening noise."
+	name = "Sonic Powder-声波粉"
+	description = "会发出震耳欲聋的噪音。"
 	color = "#C8C8C8"
 	taste_description = "loud noises"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -261,8 +261,8 @@
 	return SPARK_ACT_NON_DESTRUCTIVE
 
 /datum/reagent/phlogiston
-	name = "Phlogiston"
-	description = "Catches you on fire and makes you ignite."
+	name = "Phlogiston-燃素"
+	description = "会使你着火并引燃你。"
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
@@ -296,8 +296,8 @@
 	return SPARK_ACT_NON_DESTRUCTIVE
 
 /datum/reagent/napalm
-	name = "Napalm"
-	description = "Very flammable."
+	name = "Napalm-凝固汽油"
+	description = "极易燃烧。"
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
@@ -338,7 +338,7 @@
 #define CRYO_SPEED_CONSTANT 0.1
 
 /datum/reagent/cryostylane
-	name = "Cryostylane"
+	name = "Cryostylane-冷冻剂"
 	description = "Induces a cryostasis like state in a patient's organs, preventing them from decaying while dead. Slows down surgery while in a patient however. When reacted with oxygen, it will slowly consume it and reduce a container's temperature to 0K. Also damages slime simplemobs when 5u is sprayed."
 	color = "#0000DC"
 	ph = 8.6
@@ -395,8 +395,8 @@
 #undef CRYO_SPEED_CONSTANT
 
 /datum/reagent/pyrosium
-	name = "Pyrosium"
-	description = "Comes into existence at 20K. As long as there is sufficient oxygen for it to react with, Pyrosium slowly heats all other reagents in the container."
+	name = "Pyrosium-自热素"
+	description = "在20K时形成。只要有足够的氧气与之反应，热素会缓慢加热容器中的所有其他试剂。"
 	color = "#64FAC8"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
@@ -422,8 +422,8 @@
 	burning_temperature = null
 
 /datum/reagent/teslium //Teslium. Causes periodic shocks, and makes shocks against the target much more effective.
-	name = "Teslium"
-	description = "An unstable, electrically-charged metallic slurry. Periodically electrocutes its victim, and makes electrocutions against them more deadly. Excessively heating teslium results in dangerous destabilization. Do not allow it to come into contact with water."
+	name = "Teslium-液体特斯拉"
+	description = "一种不稳定的带电金属浆液。会周期性地电击受害者，并使针对他们的电击更加致命。过度加热泰斯利姆会导致危险的失稳。切勿让其与水接触。"
 	color = "#20324D" //RGB: 32, 50, 77
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "charged metal"
@@ -468,8 +468,8 @@
 	return SPARK_ACT_NON_DESTRUCTIVE
 
 /datum/reagent/teslium/energized_jelly
-	name = "Energized Jelly"
-	description = "Electrically-charged jelly. Boosts jellypeople's nervous system, but only shocks other lifeforms."
+	name = "充能果冻"
+	description = "带电的果冻。能增强果冻人的神经系统，但只会电击其他生命形式。"
 	color = "#CAFF43"
 	taste_description = "jelly"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -487,8 +487,8 @@
 		slime_species.extract_cooldown = max(slime_species.extract_cooldown - (1 SECONDS * metabolization_ratio * seconds_per_tick), 0)
 
 /datum/reagent/firefighting_foam
-	name = "Firefighting Foam"
-	description = "A historical fire suppressant. Originally believed to simply displace oxygen to starve fires, it actually interferes with the combustion reaction itself. Vastly superior to the cheap water-based extinguishers found on NT vessels."
+	name = "Firefighting Foam-消防泡沫"
+	description = "一种历史上的灭火剂。最初认为它只是通过置换氧气来窒息火焰，但实际上它干扰了燃烧反应本身。远比在纳米传讯船只上发现的廉价水基灭火器优越。"
 	color = "#A6FAFF55"
 	taste_description = "the inside of a fire extinguisher"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

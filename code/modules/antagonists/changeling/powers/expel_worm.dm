@@ -1,6 +1,6 @@
 /datum/action/changeling_expel_worm
-	name = "Expel Worm"
-	desc = "Forcefully expel the blood worm in your body."
+	name = "排出蠕虫"
+	desc = "强行排出体内的血蠕虫。"
 
 	background_icon_state = "bg_changeling"
 	overlay_icon_state = "bg_changeling_border"

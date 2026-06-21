@@ -42,15 +42,15 @@
 	abstract_type = /datum/loadout_item/under/jumpsuit
 
 /datum/loadout_item/under/jumpsuit/greyscale
-	name = "  Jumpsuit (Colorable)"
+	name = "连体服（可着色）"
 	item_path = /obj/item/clothing/under/color
 
 /datum/loadout_item/under/jumpsuit/rainbow
-	name = "  Jumpsuit (Rainbow)"
+	name = "连体服（彩虹色）"
 	item_path = /obj/item/clothing/under/color/rainbow
 
 /datum/loadout_item/under/jumpsuit/random
-	name = "  Jumpsuit - Random"
+	name = "连体服 - 随机"
 	item_path = /obj/item/clothing/under/color/random
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
@@ -59,15 +59,15 @@
 	.[FA_ICON_DICE] = TOOLTIP_RANDOM_COLOR
 
 /datum/loadout_item/under/jumpsuit/greyscale_skirt
-	name = " Jumpskirt (Colorable)"
+	name = "连体裙（可着色）"
 	item_path = /obj/item/clothing/under/color/jumpskirt
 
 /datum/loadout_item/under/jumpsuit/rainbow_skirt
-	name = " Jumpskirt (Rainbow)"
+	name = "连体裙（彩虹色）"
 	item_path = /obj/item/clothing/under/color/jumpskirt/rainbow
 
 /datum/loadout_item/under/jumpsuit/random_skirt
-	name = " Jumpskirt - Random"
+	name = "连体裙 - 随机"
 	item_path = /obj/item/clothing/under/color/jumpskirt/random
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
@@ -81,75 +81,75 @@
 */
 
 /datum/loadout_item/under/jumpsuit/kim
-	name = "Aerostatic Suit"
+	name = "气动服"
 	item_path = /obj/item/clothing/under/rank/security/detective/kim
 
 /datum/loadout_item/under/jumpsuit/frontier
-	name = "Frontier Jumpsuit"
+	name = "边疆连体服"
 	item_path = /obj/item/clothing/under/frontier_colonist
 
 /datum/loadout_item/under/jumpsuit/refit_wetsuit
-	name = "Refitted Shoredress Wetsuit"
+	name = "改装岸裙潜水服"
 	item_path = /obj/item/clothing/under/akula_wetsuit/refit
 
 /datum/loadout_item/under/miscellaneous //This needs to be removed whenever (ifever) loadout datums are actually cleaned.
 	abstract_type = /datum/loadout_item/under/miscellaneous
 
 /datum/loadout_item/under/miscellaneous/gear_harness
-	name = "Gear Harness"
+	name = "装备背带"
 	item_path = /obj/item/clothing/under/misc/nova/gear_harness
 
 /datum/loadout_item/under/miscellaneous/giant_scarf
-	name = "Giant Scarf"
+	name = "巨型围巾"
 	item_path = /obj/item/clothing/under/dress/nova/giant_scarf
 	reskin_datum = /datum/atom_skin/giant_scarf
 
 /datum/loadout_item/under/miscellaneous/playsuit
-	name = "Playsuit (Recolorable)"
+	name = "连体衣（可重着色）"
 	item_path = /obj/item/clothing/under/greyscale/playsuit
 
 /datum/loadout_item/under/jumpsuit/disco
-	name = "Superstar Cop Uniform"
+	name = "超级明星警察制服"
 	item_path = /obj/item/clothing/under/rank/security/detective/disco
 
 /datum/loadout_item/under/miscellaneous/syndicate_unarmoured_skirt
-	name = "Suspicious Tactical Skirtleneck (Grey)"
+	name = "可疑战术裙领衫（灰色）"
 	item_path = /obj/item/clothing/under/syndicate/unarmoured/skirt
 
 /datum/loadout_item/under/miscellaneous/syndicate_nova_unarmoured_skirt
-	name = "Suspicious Tactical Skirtleneck (Red)"
+	name = "可疑战术裙领衫（红色）"
 	item_path = /obj/item/clothing/under/syndicate/nova/tactical/unarmoured/skirt
 
 /datum/loadout_item/under/miscellaneous/syndicate_unarmoured
-	name = "Suspicious Tactical Turtleneck (Grey)"
+	name = "可疑战术高领衫（灰色）"
 	item_path = /obj/item/clothing/under/syndicate/unarmoured
 
 /datum/loadout_item/under/miscellaneous/syndicate_nova_unarmoured
-	name = "Suspicious Tactical Turtleneck (Red)"
+	name = "可疑战术高领衫（红色）"
 	item_path = /obj/item/clothing/under/syndicate/nova/tactical/unarmoured
 
 /datum/loadout_item/under/miscellaneous/syndicate_nova_overalls_unarmoured_skirt
-	name = "Suspicious Utility Overalls Skirtleneck"
+	name = "可疑工装裙领衫"
 	item_path = /obj/item/clothing/under/syndicate/nova/overalls/unarmoured/skirt
 
 /datum/loadout_item/under/miscellaneous/syndicate_nova_overalls_unarmoured
-	name = "Suspicious Utility Overalls Turtleneck"
+	name = "可疑工装高领衫"
 	item_path = /obj/item/clothing/under/syndicate/nova/overalls/unarmoured
 
 /datum/loadout_item/under/miscellaneous/tactical_pants
-	name = "Tactical Pants"
+	name = "战术长裤"
 	item_path = /obj/item/clothing/under/pants/tactical
 
 /datum/loadout_item/under/miscellaneous/taccas
-	name = "Tacticasual Uniform"
+	name = "战术休闲制服"
 	item_path = /obj/item/clothing/under/misc/nova/taccas
 
 /datum/loadout_item/under/miscellaneous/tactical_skirt
-	name = "Tacticool Skirtleneck"
+	name = "战术酷裙领衫"
 	item_path = /obj/item/clothing/under/syndicate/tacticool/skirt
 
 /datum/loadout_item/under/miscellaneous/tacticool_turtleneck
-	name = "Tacticool Turtleneck"
+	name = "战术酷高领衫"
 	item_path = /obj/item/clothing/under/syndicate/tacticool
 
 /*
@@ -161,211 +161,211 @@
 	group = "Formalwear"
 
 /datum/loadout_item/under/formal/assistant
-	name = "Assistant's Formal Uniform"
+	name = "助手正装制服"
 	item_path = /obj/item/clothing/under/misc/assistantformal
 
 /datum/loadout_item/under/formal/amish_suit
-	name = "Buttondown Suit (Black)"
+	name = "纽扣西装（黑色）"
 	item_path = /obj/item/clothing/under/costume/buttondown/slacks/service
 
 /datum/loadout_item/under/formal/blue_suit
-	name = "Buttondown Suit (Blue)"
+	name = "纽扣西装（蓝色）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/bluesuit
 
 /datum/loadout_item/under/formal/blue_suitskirt
-	name = "Buttondown Suit (Blue, Skirt)"
+	name = "纽扣西装（蓝色，裙装）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/bluesuit/skirt
 
 /datum/loadout_item/under/formal/recolorable_suit/casual
-	name = "Buttondown Suit - Collared"
+	name = "纽扣西装 - 有领"
 	item_path = /obj/item/clothing/under/suit/nova/recolorable/casual
 
 /datum/loadout_item/under/jumpsuit/hlscientist
-	name = "Buttondown Suit - Science Team"
+	name = "纽扣衬衫 - 科研团队"
 	item_path = /obj/item/clothing/under/rank/rnd/scientist/nova/hlscience
 	group = "Formalwear" //This datum needs retyping to be /under/formal!
 
 /datum/loadout_item/under/formal/executive_suit
-	name = "Executive Suit"
+	name = "行政西装"
 	item_path = /obj/item/clothing/under/suit/black_really
 
 /datum/loadout_item/under/formal/recolorable_suit/executive
-	name = "Executive Suit (Colorable)"
+	name = "行政西装（可着色）"
 	item_path = /obj/item/clothing/under/suit/nova/recolorable/executive
 
 /datum/loadout_item/under/formal/executive_suit_alt
-	name = "Executive Suit - Wide-collared"
+	name = "行政西装 - 宽领"
 	item_path = /obj/item/clothing/under/suit/nova/black_really_collared
 
 /datum/loadout_item/under/formal/executive_skirt
-	name = "Executive Suitskirt"
+	name = "行政西装裙"
 	item_path = /obj/item/clothing/under/suit/black_really/skirt
 
 /datum/loadout_item/under/formal/pencil/black_really
-	name = "Executive Suitskirt (Colorable, Pencilskirt)"
+	name = "行政西装裙（可着色，铅笔裙）"
 	item_path = /obj/item/clothing/under/suit/nova/pencil/black_really
 
 /datum/loadout_item/under/formal/executive_skirt_alt
-	name = "Executive Suitskirt - Wide-collared"
+	name = "行政西装裙 - 宽领"
 	item_path = /obj/item/clothing/under/suit/nova/black_really_collared/skirt
 
 /datum/loadout_item/under/formal/red_gown
-	name = "Formal Dress"
+	name = "礼服裙"
 	item_path = /obj/item/clothing/under/dress/eveninggown
 
 /datum/loadout_item/under/formal/countessdress
-	name = "Formal Dress - Countess"
+	name = "礼服裙 - 女伯爵"
 	item_path = /obj/item/clothing/under/dress/nova/countess
 
 /datum/loadout_item/under/formal/formaldressred
-	name = "Formal Dress - Crimson"
+	name = "礼服裙 - 深红"
 	item_path = /obj/item/clothing/under/dress/nova/redformal
 
 /datum/loadout_item/under/formal/sailor_skirt
-	name = "Formal Dress - Sailor"
+	name = "礼服裙 - 水手"
 	item_path = /obj/item/clothing/under/dress/sailor
 
 /datum/loadout_item/under/formal/inferno
-	name = "Inferno Suit"
+	name = "地狱火西装"
 	item_path = /obj/item/clothing/under/suit/nova/inferno
 	reskin_datum = /datum/atom_skin/inferno_suit
 
 /datum/loadout_item/under/formal/inferno_skirt
-	name = "Inferno Suitskirt"
+	name = "地狱火西装裙"
 	item_path = /obj/item/clothing/under/suit/nova/inferno/skirt
 	reskin_datum = /datum/atom_skin/inferno_suitskirt
 
 /datum/loadout_item/under/formal/black_lawyer_suit
-	name = "Lawyer Suit (Black)"
+	name = "律师西装（黑色）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/black
 
 /datum/loadout_item/under/formal/black_lawyer_skirt
-	name = "Lawyer Suit (Black, Skirt)"
+	name = "律师西装（黑色，裙装）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/black/skirt
 
 /datum/loadout_item/under/formal/blue_lawyer_suit
-	name = "Lawyer Suit (Blue)"
+	name = "律师西装（蓝色）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/blue
 
 /datum/loadout_item/under/formal/blue_lawyer_skirt
-	name = "Lawyer Suit (Blue, Skirt)"
+	name = "律师西装（蓝色，裙装）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/blue/skirt
 
 /datum/loadout_item/under/formal/red_lawyer_suit
-	name = "Lawyer Suit (Red)"
+	name = "律师西装（红色）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/red
 
 /datum/loadout_item/under/formal/red_lawyer_skirt
-	name = "Lawyer Suit (Red, Skirt)"
+	name = "律师西装（红色，裙装）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/red/skirt
 
 /datum/loadout_item/under/formal/pencil
-	name = "Pencilskirt"
+	name = "铅笔裙"
 	item_path = /obj/item/clothing/under/suit/nova/pencil
 
 /datum/loadout_item/under/formal/pencil/checkered
-	name = "Pencilskirt  (Checkered)" //This is recolorable, put it right after the base type
+	name = "铅笔裙（方格纹）" //This is recolorable, put it right after the base type
 	item_path = /obj/item/clothing/under/suit/nova/pencil/checkered
 
 /datum/loadout_item/under/formal/pencil/burgandy
-	name = "Pencilskirt (Burgundy)"
+	name = "铅笔裙（酒红色）"
 	item_path = /obj/item/clothing/under/suit/nova/pencil/burgundy
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/formal/pencil/charcoal
-	name = "Pencilskirt (Charcoal)"
+	name = "铅笔裙（炭灰色）"
 	item_path = /obj/item/clothing/under/suit/nova/pencil/charcoal
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/formal/pencil/green
-	name = "Pencilskirt (Green)"
+	name = "铅笔裙（绿色）"
 	item_path = /obj/item/clothing/under/suit/nova/pencil/green
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/formal/pencil/navy
-	name = "Pencilskirt (Navy)"
+	name = "铅笔裙（海军蓝）"
 	item_path = /obj/item/clothing/under/suit/nova/pencil/navy
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/formal/pencil/tan
-	name = "Pencilskirt (Tan)"
+	name = "铅笔裙（棕褐色）"
 	item_path = /obj/item/clothing/under/suit/nova/pencil/tan
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 
 /datum/loadout_item/under/formal/pencil/noshirt
-	name = "Pencilskirt - Shirtless"
+	name = "铅笔裙 - 无衬衣"
 	item_path = /obj/item/clothing/under/suit/nova/pencil/noshirt
 
 /datum/loadout_item/under/formal/pencil/checkered/noshirt
-	name = "Pencilskirt - Shirtless (Checkered)"
+	name = "铅笔裙 - 无衬衣（方格纹）"
 	item_path = /obj/item/clothing/under/suit/nova/pencil/checkered/noshirt
 
 /datum/loadout_item/under/formal/recolorable_suit
-	name = "Suit  (Colorable)"
+	name = "西装（可着色）"
 	item_path = /obj/item/clothing/under/suit/nova/recolorable
 
 /datum/loadout_item/under/formal/recolorable_suitskirt
-	name = "Suit  (Colorable, Skirt)"
+	name = "西装（可着色，裙装）"
 	item_path = /obj/item/clothing/under/suit/nova/recolorable/skirt
 
 /datum/loadout_item/under/formal/beige_suit
-	name = "Suit (Beige)"
+	name = "西装（米色）"
 	item_path = /obj/item/clothing/under/suit/beige
 
 /datum/loadout_item/under/formal/black_suit
-	name = "Suit (Black)"
+	name = "西装（黑色）"
 	item_path = /obj/item/clothing/under/suit/black
 
 /datum/loadout_item/under/formal/black_suitskirt
-	name = "Suit (Black, Skirt)"
+	name = "西装（黑色，裙装）"
 	item_path = /obj/item/clothing/under/suit/black/skirt
 
 /datum/loadout_item/under/formal/burgundy_suit
-	name = "Suit (Burgundy)"
+	name = "西装（酒红色）"
 	item_path = /obj/item/clothing/under/suit/burgundy
 
 /datum/loadout_item/under/formal/charcoal_suit
-	name = "Suit (Charcoal)"
+	name = "西装（炭灰色）"
 	item_path = /obj/item/clothing/under/suit/charcoal
 
 /datum/loadout_item/under/formal/checkered_suit
-	name = "Suit (Checkered)"
+	name = "西装（方格纹）"
 	item_path = /obj/item/clothing/under/suit/checkered
 
 /datum/loadout_item/under/formal/navy_suit
-	name = "Suit (Navy)"
+	name = "西装（海军蓝）"
 	item_path = /obj/item/clothing/under/suit/navy
 
 /datum/loadout_item/under/formal/purple_suit
-	name = "Suit (Purple)"
+	name = "西装（紫色）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/purpsuit
 
 /datum/loadout_item/under/formal/purple_suitskirt
-	name = "Suit (Purple, Skirt)"
+	name = "西装（紫色，裙装）"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/purpsuit/skirt
 
 /datum/loadout_item/under/formal/sensible_suit
-	name = "Suit (Red)"
+	name = "西装（红色）"
 	item_path = /obj/item/clothing/under/rank/civilian/curator
 
 /datum/loadout_item/under/formal/sensible_skirt
-	name = "Suit (Red, Skirt)"
+	name = "西装（红色，裙装）"
 	item_path = /obj/item/clothing/under/rank/civilian/curator/skirt
 
 /datum/loadout_item/under/formal/white_suit
-	name = "Suit (White)"
+	name = "西装（白色）"
 	item_path = /obj/item/clothing/under/suit/white
 
 /datum/loadout_item/under/formal/tuxedo
-	name = "Tuxedo Suit"
+	name = "燕尾服西装"
 	item_path = /obj/item/clothing/under/suit/tuxedo
 
 /datum/loadout_item/under/formal/waiter
-	name = "Waiter's Suit"
+	name = "侍者西装"
 	item_path = /obj/item/clothing/under/suit/waiter
 
 /datum/loadout_item/under/formal/midnight_gown
-	name = "Midnight Gown"
+	name = "午夜礼服"
 	item_path = /obj/item/clothing/under/dress/nova/midnight_gown
 	reskin_datum = /datum/atom_skin/midnight_gown
 
@@ -384,7 +384,7 @@
 	group = "Bunny Suits"
 
 /datum/loadout_item/under/bunny/white
-	name = "Bunny Suit (White)"
+	name = "兔女郎装（白色）"
 	item_path = /obj/item/clothing/under/costume/bunnylewd/white
 	erp_item = TRUE
 	group = "Bunny Suits"
@@ -531,13 +531,13 @@
 	group = "Bunny Suits"
 
 /datum/loadout_item/under/miscellaneous/latex_catsuit
-	name = "Latex Catsuit"
+	name = "乳胶紧身衣"
 	item_path = /obj/item/clothing/under/misc/latex_catsuit
 	erp_item = TRUE
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/stripper_outfit
-	name = "Tearaway Garments"
+	name = "可撕式服装"
 	item_path = /obj/item/clothing/under/tearaway_garments
 	erp_item = TRUE
 	group = "Costumes"

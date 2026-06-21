@@ -1,7 +1,7 @@
 /mob/living/basic/pet/gondola/gondolapod
-	name = "gondola"
+	name = "冈多拉"
 	real_name = "gondola"
-	desc = "The silent walker. This one seems to be part of a delivery agency."
+	desc = "沉默的行者。这一只似乎是某家快递机构的一部分。"
 	icon = 'icons/obj/supplypods.dmi'
 	icon_state = "gondola"
 	icon_living = "gondola"
@@ -47,9 +47,9 @@
 /mob/living/basic/pet/gondola/gondolapod/examine(mob/user)
 	. = ..()
 	if (contents.len)
-		. += span_notice("It looks like it hasn't made its delivery yet.")
+		. += span_notice("看起来它还没有完成它的投递。")
 	else
-		. += span_notice("It looks like it has already made its delivery.")
+		. += span_notice("看起来它已经完成了投递。")
 
 /mob/living/basic/pet/gondola/gondolapod/set_opened()
 	opened = TRUE
@@ -64,8 +64,8 @@
 
 ///Opens the gondola pod and delivers its package, one-time use as it removes all delivery-related actions.
 /datum/action/innate/deliver_gondola_package
-	name = "Deliver"
-	desc = "Open your pod and release any contents stored within."
+	name = "投递"
+	desc = "打开你的舱体并释放其中储存的任何内容物。"
 	button_icon = 'icons/hud/screen_gen.dmi'
 	button_icon_state = "arrow"
 	check_flags = AB_CHECK_PHASED
@@ -84,8 +84,8 @@
 
 ///Checks the contents of the gondola and lets them know what they're holding.
 /datum/action/innate/check_gondola_contents
-	name = "Check contents"
-	desc = "See how many items you are currently holding in your pod."
+	name = "检查内容物"
+	desc = "查看你当前在舱体内持有的物品数量。"
 	button_icon = 'icons/hud/implants.dmi'
 	button_icon_state = "storage"
 	check_flags = AB_CHECK_PHASED
@@ -98,7 +98,7 @@
 	var/mob/living/basic/pet/gondola/gondolapod/gondola_owner = owner
 	var/total = gondola_owner.contents.len
 	if (total)
-		to_chat(gondola_owner, span_notice("You detect [total] object\s within your incredibly vast belly."))
+		to_chat(gondola_owner, span_notice("你感知到[total] object\s 在你无比广阔的肚子里。"))
 	else
-		to_chat(gondola_owner, span_notice("A closer look inside yourself reveals... nothing."))
+		to_chat(gondola_owner, span_notice("更仔细地观察内部发现……空无一物。"))
 	return TRUE

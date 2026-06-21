@@ -6,7 +6,7 @@
 // valentine / candy heart distribution //
 
 /datum/round_event_control/valentines
-	name = "Valentines!"
+	name = "情人卡！"
 	holidayID = VALENTINES
 	typepath = /datum/round_event/valentines
 	weight = -1 //forces it to be called, regardless of weight
@@ -96,7 +96,7 @@
 	if(length(candidates_pruned) == 0)
 		return
 	if(length(candidates_pruned) == 1)
-		to_chat(candidates_pruned[1], span_warning("You are the only one who wanted a Valentine..."))
+		to_chat(candidates_pruned[1], span_warning("你是唯一一个想要情人节礼物的人……"))
 		return
 
 	while(length(candidates_pruned) >= 2)
@@ -120,30 +120,30 @@
 		candidates_pruned[1].mind.add_antag_datum(/datum/antagonist/heartbreaker)
 
 /datum/round_event/valentines/announce(fake)
-	priority_announce("It's Valentine's Day! Give a valentine to that special someone!")
+	priority_announce("今天是情人节！给你特别的人送上一份情人节礼物吧！")
 
 /obj/item/paper/valentine
-	name = "valentine"
-	desc = "A Valentine's card! Wonder what it says..."
+	name = "情人卡"
+	desc = "情人节贺卡！不知道上面写了什么……"
 	icon = 'icons/obj/toys/playing_cards.dmi'
 	icon_state = "sc_Ace of Hearts_syndicate" // shut up // bye felicia
 	show_written_words = FALSE
 
 /obj/item/paper/valentine/Initialize(mapload)
-	default_raw_text = pick_list(VALENTINE_FILE, "valentines") || "A generic message of love or whatever."
+	default_raw_text = pick_list(VALENTINE_FILE, "valentines") || "一条关于爱或随便什么内容的通用信息。"
 	return ..()
 
 /obj/item/food/candyheart
-	name = "candy heart"
+	name = "糖果心"
 	icon = 'icons/obj/holiday/holiday_misc.dmi'
 	icon_state = "candyheart"
-	desc = "A heart-shaped candy that reads: "
+	desc = "一个心形的糖果，上面写着："
 	food_reagents = list(/datum/reagent/consumable/sugar = 2)
 	junkiness = 5
 
 /obj/item/food/candyheart/Initialize(mapload)
 	. = ..()
-	desc = pick(strings(VALENTINE_FILE, "candyhearts"))
+	desc = pick(strings(VALENTINE_FILE, "糖果心"))
 	icon_state = pick("candyheart", "candyheart2", "candyheart3", "candyheart4")
 
 #undef VALENTINE_FILE

@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(ckey_to_aooc_name)
 	set category = "OOC"
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("发言当前已被管理员禁用。"))
 		return
 
 	if(!mob)
@@ -18,16 +18,16 @@ GLOBAL_LIST_EMPTY(ckey_to_aooc_name)
 
 	if(!holder)
 		if(!mob.mind || !length(mob.mind.antag_datums))
-			to_chat(src, span_danger("You're not an antagonist!"))
+			to_chat(src, span_danger("你不是对抗者！"))
 			return
 		if(!GLOB.aooc_allowed)
-			to_chat(src, span_danger("AOOC is globally muted."))
+			to_chat(src, span_danger("AOOC 已被全局静音。"))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, span_danger("You cannot use OOC (muted)."))
+			to_chat(src, span_danger("你无法使用 OOC（已被静音）。"))
 			return
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, span_danger("You have been banned from OOC."))
+		to_chat(src, span_danger("你已被禁止使用 OOC。"))
 		return
 	if(QDELETED(src))
 		return
@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(ckey_to_aooc_name)
 	msg = emoji_parse(msg)
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		to_chat(src, span_danger("You have OOC muted."))
+		to_chat(src, span_danger("你已静音 OOC。"))
 		return
 
 	mob.log_talk(raw_msg, LOG_OOC, tag = "AOOC")
@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(ckey_to_aooc_name)
 			listeners[iterated_mob.client] = TRUE
 	for(var/iterated_listener in listeners)
 		var/client/iterated_client = iterated_listener
-		to_chat(iterated_client, span_oocplain("<B>The AOOC channel has been globally [GLOB.aooc_allowed ? "enabled" : "disabled"].</B>"))
+		to_chat(iterated_client, span_oocplain("<B>AOOC 频道已在全局范围内[GLOB.aooc_allowed ? "enabled" : "disabled"]。</B>"))
 
 ADMIN_VERB(toggleaooc, R_ADMIN, "Toggle Antag OOC", "Toggles Antag OOC.", ADMIN_CATEGORY_SERVER)
 	toggle_aooc()

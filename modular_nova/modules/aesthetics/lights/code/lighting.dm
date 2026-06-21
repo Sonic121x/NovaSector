@@ -82,13 +82,13 @@
 
 /obj/machinery/light/multitool_act(mob/living/user, obj/item/multitool)
 	if(!constant_flickering)
-		balloon_alert(user, "ballast is already working!")
+		balloon_alert(user, "镇流器已在工作！")
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, "repairing the ballast...")
+	balloon_alert(user, "正在修复镇流器...")
 	if(do_after(user, 2 SECONDS, src))
 		stop_flickering()
-		balloon_alert(user, "ballast repaired!")
+		balloon_alert(user, "镇流器已修复！")
 		return ITEM_INTERACT_SUCCESS
 	return ..()
 

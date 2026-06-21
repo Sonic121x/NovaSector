@@ -16,8 +16,8 @@
 #define REMOVE_DELAY 15
 
 /obj/item/construction/rld
-	name = "Rapid Lighting Device"
-	desc = "A device used to rapidly provide lighting sources to an area. Reload with iron, plasteel, glass or compressed matter cartridges."
+	name = "快速照明装置"
+	desc = "一种用于快速为区域提供光源的设备。可使用铁、塑钢、玻璃或压缩物质弹匣重新装填。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rld"
 	worn_icon_state = "RPD"
@@ -64,10 +64,10 @@
 	switch(choice)
 		if("Light Fixture")
 			mode = LIGHT_MODE
-			to_chat(user, span_notice("You change RLD's mode to 'Permanent Light Construction'."))
+			to_chat(user, span_notice("你将RLD的模式切换为‘永久性照明建造’。"))
 		if("Glow Stick")
 			mode = GLOW_MODE
-			to_chat(user, span_notice("You change RLD's mode to 'Light Launcher'."))
+			to_chat(user, span_notice("你将RLD的模式切换为‘照明发射器’。"))
 		if("Color Pick")
 			var/new_choice = tgui_color_picker(user, "", "Choose Color", color_choice)
 			if(new_choice == null)
@@ -84,7 +84,7 @@
 			color_choice = new_choice
 		if("Deconstruct")
 			mode = REMOVE_MODE
-			to_chat(user, span_notice("You change RLD's mode to 'Deconstruct'."))
+			to_chat(user, span_notice("你将RLD的模式切换为‘解构’。"))
 		else
 			toggle_silo(user)
 
@@ -169,7 +169,7 @@
 						winner = C
 						winning_dist = contender
 				if(!winner)
-					balloon_alert(user, "no valid target!")
+					balloon_alert(user, "没有有效目标！")
 					return ITEM_INTERACT_BLOCKING
 				var/obj/machinery/light/L = new /obj/machinery/light(get_turf(winner))
 				L.setDir(get_dir(winner, interacting_with))
@@ -217,8 +217,8 @@
 	return NONE
 
 /obj/item/construction/rld/mini
-	name = "mini-rapid-light-device"
-	desc = "A device used to rapidly provide lighting sources to an area. Reload with iron, plasteel, glass or compressed matter cartridges."
+	name = "微型快速照明装置"
+	desc = "一种用于快速为区域提供光源的设备。可使用铁、塑钢、玻璃或压缩物质弹匣重新装填。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rld"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'

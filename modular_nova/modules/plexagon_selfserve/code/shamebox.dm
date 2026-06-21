@@ -1,6 +1,6 @@
 /obj/item/storage/lockbox/timeclock
-	name = "crew equipment lockbox"
-	desc = "Holds a crew's restricted equipment while they are temporarily assigned off-duty. Nanotrasen contracts stipulate that company issued batons, masks, restraints, and other equipment are not to be used for recreational purposes. The lockbox may be unlocked to retrieve restricted items after punch in."
+	name = "船员装备锁箱"
+	desc = "用于存放船员在临时调离岗位期间的受限装备。纳米传讯合同规定，公司配发的警棍、面罩、约束装置及其他装备不得用于娱乐目的。打卡上班后，可解锁锁箱取回受限物品。"
 	icon = 'modular_nova/modules/plexagon_selfserve/icons/shame_box.dmi'
 	icon_state = "crewbox+l"
 	icon_locked = "crewbox+l"
@@ -28,12 +28,12 @@
 /obj/item/storage/lockbox/timeclock/examine(mob/user)
 	. = ..()
 	if(!isnull(locked_contents))
-		. += span_notice("The contents label reads: [locked_contents].")
+		. += span_notice("内容标签显示：[locked_contents]。")
 
 /obj/item/storage/lockbox/timeclock/can_unlock(mob/living/user, obj/item/card/id/id_card)
 	. = ..()
 	if(!.)
-		to_chat(user, span_warning("[src] can only be unlocked while on-duty or by the HoP, HoS, or Captain!"))
+		to_chat(user, span_warning("[src] 只能在值班期间，或由人事主管、安保主管或舰长解锁！"))
 
 /// Timeclock boxes can only be opened while the crew member is on duty, or by a command member with the proper access.
 /obj/item/storage/lockbox/timeclock/check_access(obj/item/crew_id)
@@ -74,7 +74,7 @@
 /// Timeclock boxes are one time use. When unlocked, release the contents and go away.
 /obj/item/storage/lockbox/timeclock/proc/release_contents()
 	emptyStorage()
-	usr.visible_message(span_notice("[usr] activates the lockbox mechanism, releasing its contents before vanishing in a puff of bluespace smoke!"))
+	usr.visible_message(span_notice("[usr] 激活了锁箱机制，释放其内容物后，锁箱便在一阵蓝空烟雾中消失了！"))
 	associated_card = null
 	qdel(src)
 

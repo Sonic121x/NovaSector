@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/bhop
-	name = "jump boots"
-	desc = "A specialized pair of combat boots with a built-in propulsion system for rapid forward movement."
+	name = "跳跃靴"
+	desc = "一双特制的战斗靴，内置推进系统，可实现快速向前移动。"
 	icon_state = "jetboots"
 	inhand_icon_state = null
 	resistance_flags = FIRE_PROOF
@@ -25,7 +25,7 @@
 		return
 
 	if(recharging_time > world.time)
-		to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
+		to_chat(user, span_warning("靴子的内部推进器仍需充能！"))
 		return
 
 	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
@@ -33,15 +33,15 @@
 	ADD_TRAIT(user, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)  //Throwing itself doesn't protect mobs against lava (because gulag).
 	if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = TRAIT_CALLBACK_REMOVE(user, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)))
 		playsound(src, 'sound/effects/stealthoff.ogg', 50, TRUE, TRUE)
-		user.visible_message(span_warning("[usr] dashes forward into the air!"))
+		user.visible_message(span_warning("[usr] 向前猛冲到了空中！"))
 		recharging_time = world.time + recharging_rate
 	else
 		REMOVE_TRAIT(user, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)
-		to_chat(user, span_warning("Something prevents you from dashing forward!"))
+		to_chat(user, span_warning("有什么东西阻止了你向前冲刺！"))
 
 /obj/item/clothing/shoes/bhop/rocket
-	name = "rocket boots"
-	desc = "Very special boots with built-in rocket thrusters! SHAZBOT!"
+	name = "火箭靴"
+	desc = "内置火箭推进器的特殊靴子！SHAZBOT！"
 	icon_state = "rocketboots"
 	inhand_icon_state = null
 	actions_types = list(/datum/action/item_action/bhop/brocket)

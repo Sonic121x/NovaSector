@@ -1,5 +1,5 @@
 /obj/item/clothing
-	name = "clothing"
+	name = "服装"
 	abstract_type = /obj/item/clothing
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
@@ -75,7 +75,7 @@
 		item_flags |= ABSTRACT
 
 /obj/item/food/clothing
-	name = "temporary moth clothing snack item"
+	name = "临时飞蛾服装零食"
 	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object. <--- stinky idiot wrote this"
 	spawn_blacklisted = TRUE
 	bite_consumption = 1
@@ -133,9 +133,9 @@
 		if(CLOTHING_SHREDDED)
 			var/obj/item/stack/cloth_repair = weapon
 			if(cloth_repair.amount < 3)
-				to_chat(user, span_warning("You require 3 [cloth_repair.name] to repair [src]."))
+				to_chat(user, span_warning("你需要3个[cloth_repair.name]来修复[src]。"))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice("You begin fixing the damage to [src] with [cloth_repair]..."))
+			to_chat(user, span_notice("你开始用[src]修复[cloth_repair]的损伤..."))
 			if(!do_after(user, 6 SECONDS, src) || !cloth_repair.use(3))
 				return ITEM_INTERACT_BLOCKING
 			repair(user)
@@ -151,7 +151,7 @@
 	damage_by_parts = null
 	if(user)
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		to_chat(user, span_notice("You fix the damage on [src]."))
+		to_chat(user, span_notice("你修复了[src]上的损伤。"))
 	update_appearance()
 
 /**
@@ -202,7 +202,7 @@
 	if(iscarbon(loc))
 		var/mob/living/carbon/carbon_loc = loc
 		zone_name = carbon_loc.parse_zone_with_bodypart(def_zone)
-		carbon_loc.visible_message(span_danger("The [zone_name] on [carbon_loc]'s [src.name] is [break_verb] away!"), span_userdanger("The [zone_name] on your [src.name] is [break_verb] away!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		carbon_loc.visible_message(span_danger("[zone_name] 身上 [carbon_loc] 的 [src.name] 被 [break_verb] 了！"), span_userdanger("你[zone_name]上的[src.name]被[break_verb]了！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		RegisterSignal(carbon_loc, COMSIG_MOVABLE_MOVED, PROC_REF(bristle), override = TRUE)
 	else
 		zone_name = parse_zone(def_zone)
@@ -217,11 +217,11 @@
 
 	switch(zones_disabled)
 		if(1)
-			name = "damaged [initial(name)]"
+			name = "损坏的[initial(name)]"
 		if(2)
-			name = "mangy [initial(name)]"
+			name = "肮脏的[initial(name)]"
 		if(3 to INFINITY) // take better care of your shit, dude
-			name = "tattered [initial(name)]"
+			name = "破损的[initial(name)]"
 
 	update_clothes_damaged_state(CLOTHING_DAMAGED)
 	update_appearance()
@@ -322,7 +322,7 @@
 /obj/item/clothing/examine(mob/user)
 	. = ..()
 	if(damaged_clothes == CLOTHING_SHREDDED)
-		. += span_warning("<b>[p_Theyre()] completely shredded and require[p_s()] mending before [p_they()] can be worn again!</b>")
+		. += span_warning("<b>[p_Theyre()] 已完全破损，需要[p_s()]修补后才能[p_they()]再次穿戴！</b>")
 		return
 
 	for(var/zone in damage_by_parts)
@@ -330,11 +330,11 @@
 		var/zone_name = parse_zone(zone)
 		switch(pct_damage_part)
 			if(100 to INFINITY)
-				. += span_warning("<b>The [zone_name] is useless and requires mending!</b>")
+				. += span_warning("<b>这件[zone_name]已经损坏，需要修补！</b>")
 			if(60 to 99)
-				. += span_warning("The [zone_name] is heavily shredded!")
+				. += span_warning("这件[zone_name]被严重撕碎了！")
 			if(30 to 59)
-				. += span_danger("The [zone_name] is partially shredded.")
+				. += span_danger("该[zone_name]部分被撕碎了。")
 
 	if(atom_storage)
 		var/list/how_cool_are_your_threads = list("<span class='notice'>")
@@ -424,7 +424,7 @@
 		if((flags_cover & HEADCOVERSMOUTH) || (flags_cover & PEPPERPROOF))
 			var/list/things_blocked = list()
 			if(flags_cover & HEADCOVERSMOUTH)
-				things_blocked += span_tooltip("Because this item is worn on the head and is covering the mouth, it will block facehugger proboscides, killing facehuggers.", "facehuggers")
+				things_blocked += span_tooltip("由于此物品佩戴在头部并覆盖口部，它将阻挡抱脸虫的探针，从而杀死抱脸虫。", "由于此物品佩戴在头部并覆盖口部，它将阻挡抱脸虫的触须，从而杀死抱脸虫。")
 			if(flags_cover & PEPPERPROOF)
 				things_blocked += "pepperspray"
 			if(length(things_blocked))
@@ -459,7 +459,7 @@
 			. += "[src] offers the wearer [heat_protection] protection from heat, up to [max_heat_protection_temperature] kelvin."
 
 		if(min_cold_protection_temperature)
-			readout += "It will insulate the wearer from [min_cold_protection_temperature <= SPACE_SUIT_MIN_TEMP_PROTECT ? span_tooltip("While not as dangerous as the lack of pressure, the extremely low temperature of space is also a hazard.", "the cold of space, down to [min_cold_protection_temperature] kelvin") : "cold, down to [min_cold_protection_temperature] kelvin"]."
+			readout += "它能将穿戴者与[min_cold_protection_temperature <= SPACE_SUIT_MIN_TEMP_PROTECT ? span_tooltip("While not as dangerous as the lack of pressure, the extremely low temperature of space is also a hazard.", "the cold of space, down to [min_cold_protection_temperature] kelvin") : "cold, down to [min_cold_protection_temperature] kelvin"]隔绝。"
 
 		if(!length(readout))
 			readout += "No armor or durability information available."
@@ -486,9 +486,9 @@
 	if(isliving(loc)) //It's not important enough to warrant a message if it's not on someone
 		var/mob/living/M = loc
 		if(src in M.get_equipped_items())
-			to_chat(M, span_warning("Your [name] start[p_s()] to fall apart!"))
+			to_chat(M, span_warning("你的[name]开始[p_s()]散架了！"))
 		else
-			to_chat(M, span_warning("[src] start[p_s()] to fall apart!"))
+			to_chat(M, span_warning("[src]开始[p_s()]散架了！"))
 
 // you just dont get the same feeling with handwashed clothes
 /obj/item/clothing/machine_wash()
@@ -610,7 +610,7 @@ BLIND     // can't see anything
 		new /obj/effect/decal/cleanable/shreds(current_position, name)
 		if(isliving(loc))
 			var/mob/living/possessing_mob = loc
-			possessing_mob.visible_message(span_danger("[src] is consumed until naught but shreds remains!"), span_boldwarning("[src] falls apart into little bits!"))
+			possessing_mob.visible_message(span_danger("[src]被消耗殆尽，只剩碎片残留！"), span_boldwarning("[src]碎裂成小块！"))
 		deconstruct(FALSE)
 	else
 		body_parts_covered = NONE
@@ -619,11 +619,11 @@ BLIND     // can't see anything
 		if(isliving(loc))
 			var/mob/living/M = loc
 			if(src in M.get_equipped_items()) //make sure they were wearing it and not attacking the item in their hands
-				M.visible_message(span_danger("[M]'s [src.name] fall[p_s()] off, [p_theyre()] completely shredded!"), span_warning("<b>Your [src.name] fall[p_s()] off, [p_theyre()] completely shredded!</b>"), vision_distance = COMBAT_MESSAGE_RANGE)
+				M.visible_message(span_danger("[M]的[src.name]掉[p_s()]了下来，[p_theyre()]完全被撕碎了！"), span_warning("<b>你的[src.name]掉[p_s()]了下来，[p_theyre()]完全被撕碎了！</b>"), vision_distance = COMBAT_MESSAGE_RANGE)
 				M.dropItemToGround(src)
 			else
-				M.visible_message(span_danger("[src] fall[p_s()] apart, completely shredded!"), vision_distance = COMBAT_MESSAGE_RANGE)
-		name = "shredded [initial(name)]" // change the name -after- the message, not before.
+				M.visible_message(span_danger("[src]散[p_s()]架了，完全被撕碎了！"), vision_distance = COMBAT_MESSAGE_RANGE)
+		name = "碎裂的[initial(name)]" // change the name -after- the message, not before.
 		update_appearance()
 	SEND_SIGNAL(src, COMSIG_ATOM_DESTRUCTION, damage_flag)
 
@@ -634,7 +634,7 @@ BLIND     // can't see anything
 	if(!istype(L))
 		return
 	if(prob(0.2))
-		to_chat(L, span_warning("The damaged threads on your [src.name] chafe!"))
+		to_chat(L, span_warning("你[src.name]上破损的线头磨得人生疼！"))
 
 /obj/item/clothing/apply_fantasy_bonuses(bonus)
 	. = ..()

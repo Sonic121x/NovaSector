@@ -158,7 +158,7 @@
 	if(!is_cyborg)
 		return TRUE
 	if (user)
-		to_chat(user, span_warning("[src] is too integrated into your chassis and can't be ground up!"))
+		to_chat(user, span_warning("[src]已深度集成到你的底盘，无法研磨！"))
 	return FALSE
 
 /obj/item/stack/grind_atom(datum/reagents/target_holder, mob/user)
@@ -236,7 +236,7 @@
 		. += "There are [get_amount()] in the stack."
 	else
 		. += "There is [get_amount()] in the stack."
-	. += span_notice("<b>Right-click</b> with an empty hand to take a custom amount.")
+	. += span_notice("<b>右键点击</b>空手可自定义拿取数量。")
 
 /obj/item/stack/proc/get_amount()
 	if(is_cyborg)
@@ -421,7 +421,7 @@
 		return
 	if(recipe.time)
 		var/adjusted_time = 0
-		builder.balloon_alert(builder, "building...")
+		builder.balloon_alert(builder, "建造中...")
 		builder.visible_message(
 			span_notice("[builder] starts building \a [recipe.title]."),
 			span_notice("You start building \a [recipe.title]..."),
@@ -445,18 +445,18 @@
 	var/atom/created
 	if(recipe.max_res_amount > 1) // Is it a stack?
 		created = new recipe.result_type(builder.drop_location(), recipe.res_amount * multiplier)
-		builder.balloon_alert(builder, "built items")
+		builder.balloon_alert(builder, "已建造物品")
 
 	else if(ispath(recipe.result_type, /turf))
 		var/turf/covered_turf = builder.drop_location()
 		if(!isturf(covered_turf))
 			return
 		created = covered_turf.place_on_top(recipe.result_type, flags = CHANGETURF_INHERIT_AIR)
-		builder.balloon_alert(builder, "placed [ispath(recipe.result_type, /turf/open) ? "floor" : "wall"]")
+		builder.balloon_alert(builder, "放置了[ispath(recipe.result_type, /turf/open) ? "floor" : "wall"]")
 
 	else
 		created = new recipe.result_type(builder.drop_location())
-		builder.balloon_alert(builder, "built item")
+		builder.balloon_alert(builder, "已建造物品")
 
 	// split the material and use it for the craft
 	var/obj/item/stack/used_stack = split_stack(recipe.req_amount * multiplier)
@@ -522,33 +522,33 @@
 /// Checks if we can build here, validly.
 /obj/item/stack/proc/building_checks(mob/builder, datum/stack_recipe/recipe, multiplier)
 	if (get_amount() < recipe.req_amount * multiplier)
-		builder.balloon_alert(builder, "not enough material!")
+		builder.balloon_alert(builder, "材料不足！")
 		return FALSE
 	var/turf/dest_turf = get_turf(builder)
 
 	if((recipe.crafting_flags & CRAFT_ONE_PER_TURF) && (locate(recipe.result_type) in dest_turf))
-		builder.balloon_alert(builder, "already one here!")
+		builder.balloon_alert(builder, "这里已经有一个了！")
 		return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DIRECTION)
 		if(!valid_build_direction(dest_turf, builder.dir, is_fulltile = (recipe.crafting_flags & CRAFT_IS_FULLTILE)))
-			builder.balloon_alert(builder, "won't fit here!")
+			builder.balloon_alert(builder, "这里放不下！")
 			return FALSE
 
 	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
 		if(isclosedturf(dest_turf))
-			builder.balloon_alert(builder, "cannot be made on a wall!")
+			builder.balloon_alert(builder, "不能在墙上制作！")
 			return FALSE
 
 		if(is_type_in_typecache(dest_turf, GLOB.turfs_without_ground))
 			if(!locate(/obj/structure/thermoplastic) in dest_turf) // for tram construction
-				builder.balloon_alert(builder, "must be made on solid ground!")
+				builder.balloon_alert(builder, "必须在坚实的地面上制作！")
 				return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)
 		for(var/obj/object in dest_turf)
 			if(object.density && !(object.obj_flags & IGNORE_DENSITY) || object.obj_flags & BLOCKS_CONSTRUCTION)
-				builder.balloon_alert(builder, "something is in the way!")
+				builder.balloon_alert(builder, "有东西挡着！")
 				return FALSE
 
 	if(recipe.placement_checks & STACK_CHECK_CARDINALS)
@@ -556,23 +556,23 @@
 		for(var/direction in GLOB.cardinals)
 			nearby_turf = get_step(dest_turf, direction)
 			if(locate(recipe.result_type) in nearby_turf)
-				to_chat(builder, span_warning("\The [recipe.title] must not be built directly adjacent to another!"))
-				builder.balloon_alert(builder, "can't be adjacent to another!")
+				to_chat(builder, span_warning("\The [recipe.title] 不能直接紧挨着另一个建造！"))
+				builder.balloon_alert(builder, "不能紧挨着另一个！")
 				return FALSE
 
 	if(recipe.placement_checks & STACK_CHECK_ADJACENT)
 		if(locate(recipe.result_type) in range(1, dest_turf))
-			builder.balloon_alert(builder, "can't be near another!")
+			builder.balloon_alert(builder, "不能靠近另一个！")
 			return FALSE
 
 	if(recipe.placement_checks & STACK_CHECK_TRAM_FORBIDDEN)
 		if(locate(/obj/structure/transport/linear/tram) in dest_turf || locate(/obj/structure/thermoplastic) in dest_turf)
-			builder.balloon_alert(builder, "can't be on tram!")
+			builder.balloon_alert(builder, "不能在电车上！")
 			return FALSE
 
 	if(recipe.placement_checks & STACK_CHECK_TRAM_EXCLUSIVE)
 		if(!locate(/obj/structure/transport/linear/tram) in dest_turf)
-			builder.balloon_alert(builder, "must be made on a tram!")
+			builder.balloon_alert(builder, "必须在电车上制作！")
 			return FALSE
 
 	return TRUE
@@ -597,15 +597,15 @@
 /obj/item/stack/tool_use_check(mob/living/user, amount, heat_required)
 	if(get_amount() < amount)
 		// general balloon alert that says they don't have enough
-		user.balloon_alert(user, "not enough material!")
+		user.balloon_alert(user, "材料不足！")
 		// then a more specific message about how much they need and what they need specifically
 		if(singular_name)
 			if(amount > 1)
-				to_chat(user, span_warning("You need at least [amount] [singular_name]\s to do this!"))
+				to_chat(user, span_warning("你至少需要 [amount] [singular_name]\s 才能这么做！"))
 			else
-				to_chat(user, span_warning("You need at least [amount] [singular_name] to do this!"))
+				to_chat(user, span_warning("你至少需要 [amount] 个 [singular_name] 才能这么做！"))
 		else
-			to_chat(user, span_warning("You need at least [amount] to do this!"))
+			to_chat(user, span_warning("你至少需要 [amount] 个才能这么做！"))
 
 		return FALSE
 
@@ -758,11 +758,11 @@
 	if(is_zero_amount(delete_if_zero = TRUE))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	var/max = get_amount()
-	var/stackmaterial = tgui_input_number(user, "How many sheets do you wish to take out of this stack?", "Stack Split", max_value = max)
+	var/stackmaterial = tgui_input_number(user, "你想从这个堆叠中取出多少张？", "堆叠拆分", max_value = max)
 	if(!stackmaterial || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	split_n_take(user, stackmaterial)
-	to_chat(user, span_notice("You take [stackmaterial] sheets out of the stack."))
+	to_chat(user, span_notice("你从堆叠中取出了 [stackmaterial] 张。"))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /** Splits the stack into two stacks, returns the new stack.
@@ -801,7 +801,7 @@
 	if(can_merge(W, inhand = TRUE))
 		var/obj/item/stack/S = W
 		if(merge(S))
-			to_chat(user, span_notice("Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s."))
+			to_chat(user, span_notice("你的[S.name]堆叠现在包含[S.get_amount()]个[S.singular_name]\s 。"))
 	else
 		. = ..()
 

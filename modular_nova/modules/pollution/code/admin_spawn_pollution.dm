@@ -1,9 +1,9 @@
 ADMIN_VERB(spawn_pollution, R_ADMIN, "Spawn Pollution", "Spawns an amount of chosen pollutant at your current location.", ADMIN_CATEGORY_FUN)
 	var/list/singleton_list = SSpollution.singletons
-	var/choice = tgui_input_list(user, "What type of pollutant would you like to spawn?", "Spawn Pollution", singleton_list)
+	var/choice = tgui_input_list(user, "您想生成哪种类型的污染物？", "生成污染物", singleton_list)
 	if(!choice)
 		return
-	var/amount_choice = input("Amount of pollution:") as null|num
+	var/amount_choice = input("污染物数量：") as null|num
 	if(!amount_choice)
 		return
 	var/turf/epicenter = get_turf(user.mob)

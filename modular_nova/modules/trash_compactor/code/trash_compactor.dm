@@ -85,9 +85,9 @@
 	if(tracker_key && (tracker_key in trash_counts))
 		var/required = is_janitor(user) ? REQUIRED_TRASH_JANITOR : REQUIRED_TRASH_CREW
 		var/remaining = required - trash_counts[tracker_key]
-		. += span_notice("The status display reads: You have deposited <b>[trash_counts[tracker_key]]</b> pieces of trash. <b>[remaining]</b> more needed for [is_janitor(user) ? "a wage bonus" : "a ration ticket"].")
+		. += span_notice("状态显示屏显示：您已存入<b>[trash_counts[tracker_key]]</b>件垃圾。还需要<b>[remaining]</b>件才能获得[is_janitor(user) ? "a wage bonus" : "a ration ticket"]。")
 	else
-		. += span_notice("The status display reads: Deposit [is_janitor(user) ? "[REQUIRED_TRASH_JANITOR]" : "[REQUIRED_TRASH_CREW]"] pieces of trash to receive [is_janitor(user) ? "a wage bonus" : "a ration ticket"].")
+		. += span_notice("状态显示屏显示：存入[is_janitor(user) ? "[REQUIRED_TRASH_JANITOR]" : "[REQUIRED_TRASH_CREW]"]件垃圾以获得[is_janitor(user) ? "a wage bonus" : "a ration ticket"]。")
 
 /obj/machinery/trash_compactor/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = NONE
@@ -95,12 +95,12 @@
 	// Handle GAP card insertion
 	if(istype(tool, /obj/item/gbp_punchcard))
 		if(!isnull(inserted_card))
-			balloon_alert(user, "gap card already inserted!")
+			balloon_alert(user, "GAP卡已插入！")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		inserted_card = tool
-		balloon_alert(user, "inserted card")
+		balloon_alert(user, "已插入卡片")
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -119,7 +119,7 @@
 	if(!user.put_in_hands(inserted_card))
 		inserted_card.forceMove(drop_location())
 	inserted_card = null
-	balloon_alert(user, "removed card")
+	balloon_alert(user, "已移除卡片")
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -138,7 +138,7 @@
 /// Processes a trash item through the compactor, tracking user progress and dispensing rewards.
 /obj/machinery/trash_compactor/proc/process_trash(obj/item/trash_item, mob/living/carbon/user, bulk_processing = FALSE)
 	if(machine_stat & (NOPOWER|BROKEN))
-		balloon_alert(user, "no power!")
+		balloon_alert(user, "没有电力！")
 		return FALSE
 
 	if(!is_type_in_list(trash_item, trash_items))
@@ -168,7 +168,7 @@
 		// Say random wisdom (only for single items, not bulk)
 		var/wisdom = pick(GLOB.wisdoms)
 		say(wisdom)
-		balloon_alert(user, "trash compacted")
+		balloon_alert(user, "垃圾已压缩")
 		playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
 
 	// Check if we've reached required pieces of trash
@@ -224,7 +224,7 @@
 /// Processes-runs all valid trash items in a trash bag through the compactor.
 /obj/machinery/trash_compactor/proc/process_trash_bag(obj/item/storage/bag/trash/trash_bag, mob/living/carbon/user)
 	if(machine_stat & (NOPOWER|BROKEN))
-		balloon_alert(user, "no power!")
+		balloon_alert(user, "没有电力！")
 		return FALSE
 
 	var/processed_count = 0
@@ -233,10 +233,10 @@
 			processed_count++
 
 	if(processed_count > 0)
-		balloon_alert(user, "processed [processed_count] items")
+		balloon_alert(user, "已处理 [processed_count] 件物品")
 		playsound(src, 'sound/machines/ping.ogg', 60, TRUE)
 	else
-		balloon_alert(user, "bag empty!")
+		balloon_alert(user, "袋子是空的！")
 
 	return processed_count > 0
 

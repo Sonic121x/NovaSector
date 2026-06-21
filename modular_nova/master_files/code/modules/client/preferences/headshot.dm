@@ -23,18 +23,18 @@
 
 	var/find_index = findtext(value, "https://")
 	if(find_index != 1)
-		to_chat(usr, span_warning("Your link must be https!"))
+		to_chat(usr, span_warning("你的链接必须是 https！"))
 		return
 
 	if(!findtext(value, "."))
-		to_chat(usr, span_warning("Invalid link!"))
+		to_chat(usr, span_warning("链接无效！"))
 		return
 	var/list/value_split = splittext(value, ".")
 
 	// extension will always be the last entry
 	var/extension = value_split[length(value_split)]
 	if(!(extension in valid_extensions))
-		to_chat(usr, span_warning("The image must be one of the following extensions: '[english_list(valid_extensions)]'"))
+		to_chat(usr, span_warning("图像必须是以下扩展名之一：'[english_list(valid_extensions)]'"))
 		return
 
 	find_index = findtext(value, link_regex)
@@ -44,9 +44,9 @@
 
 	if(stored_links[usr.ckey] && stored_links[usr.ckey][type] != value && cooldown_timer <= world.time)
 		cooldown_timer = cooldown_duration + world.time
-		to_chat(usr, span_notice("Please use a relatively SFW image of the head and shoulder area to maintain immersion level. Think of it as a headshot for your ID. Lastly, [span_bold("do not use a real life photo or use any image that is less than serious.")]"))
-		to_chat(usr, span_notice("If the photo doesn't show up properly in-game, ensure that it's a direct image link that opens properly in a browser."))
-		to_chat(usr, span_notice("Keep in mind that the photo will be downsized to 250x250 pixels, so the more square the photo, the better it will look."))
+		to_chat(usr, span_notice("请使用相对适合工作环境的头部和肩部图像，以保持沉浸感。可以把它想象成你身份证上的头像。最后，[span_bold("do not use a real life photo or use any image that is less than serious.")]"))
+		to_chat(usr, span_notice("如果照片在游戏中没有正确显示，请确保它是一个能在浏览器中正常打开的直链图片链接。"))
+		to_chat(usr, span_notice("请注意，照片将被缩小至250x250像素，因此照片越接近正方形，效果就越好。"))
 		log_game("[usr] has set their Headshot image to '[value]'.")
 
 	apply_headshot(value)

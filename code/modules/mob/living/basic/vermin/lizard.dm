@@ -5,8 +5,8 @@
 */
 
 /mob/living/basic/lizard
-	name = "Lizard"
-	desc = "A cute tiny lizard."
+	name = "蜥蜴"
+	desc = "一只可爱的小蜥蜴。"
 	icon_state = "lizard"
 	icon_living = "lizard"
 	icon_dead = "lizard_dead"
@@ -80,8 +80,8 @@
 
 /// Lizards that can survive in space.
 /mob/living/basic/lizard/space
-	name = "Space Lizard"
-	desc = "A cute tiny lizard with a tiny space helmet."
+	name = "太空蜥蜴"
+	desc = "一只戴着微型太空头盔的可爱小蜥蜴。"
 	icon_state = "lizard_space"
 	icon_living = "lizard_space"
 	unsuitable_atmos_damage = 0
@@ -90,10 +90,10 @@
 
 /// Janitor's pet lizard.
 /mob/living/basic/lizard/wags_his_tail
-	name = "Wags-His-Tail"
-	desc = "The janitorial department's trusty pet lizard."
+	name = "摇尾巴"
+	desc = "清洁部门可靠的宠物蜥蜴。"
 
 /// Another pet lizard for the janitor.
 /mob/living/basic/lizard/eats_the_roaches
-	name = "Eats-The-Roaches"
-	desc = "The janitorial department's less trusty pet lizard."
+	name = "吃蟑螂"
+	desc = "清洁部门不那么可靠的宠物蜥蜴。"

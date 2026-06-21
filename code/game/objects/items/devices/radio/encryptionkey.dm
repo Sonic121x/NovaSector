@@ -1,9 +1,9 @@
 /obj/item/encryptionkey
-	name = "standard encryption key"
+	name = "标准加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey"
 	post_init_icon_state = "cypherkey_basic"
-	desc = "An encryption key for a radio headset."
+	desc = "用于无线电耳机的加密密钥。"
 	w_class = WEIGHT_CLASS_TINY
 	greyscale_config = /datum/greyscale_config/encryptionkey_basic
 	greyscale_colors = "#820a16#3758c4"
@@ -17,7 +17,7 @@
 /obj/item/encryptionkey/examine(mob/user)
 	. = ..()
 	if(!LAZYLEN(channels) && !(special_channels & RADIO_SPECIAL_BINARY) && !LAZYLEN(language_data))
-		. += span_warning("Has no special codes in it. You should probably tell a coder!")
+		. += span_warning("里面没有特殊代码。你或许应该告诉程序员！")
 		return
 
 	var/list/examine_text_list = list()
@@ -28,7 +28,7 @@
 		examine_text_list += "[GLOB.channel_tokens[MODE_BINARY]] - [MODE_BINARY]"
 
 	if(length(examine_text_list))
-		. += span_notice("It can access the following channels; [jointext(examine_text_list, ", ")].")
+		. += span_notice("它可以访问以下频道；[jointext(examine_text_list, ", ")]。")
 
 	var/list/language_text_list = list()
 	for(var/lang in language_data)
@@ -43,10 +43,10 @@
 		language_text_list += langstring
 
 	if(length(language_text_list))
-		. += span_notice("It can translate the following languages; [jointext(language_text_list, ", ")].")
+		. += span_notice("它可以翻译以下语言；[jointext(language_text_list, ", ")]。")
 
 /obj/item/encryptionkey/syndicate
-	name = "syndicate encryption key"
+	name = "辛迪加加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/syndicate"
 	post_init_icon_state = "cypherkey_syndicate"
@@ -56,7 +56,7 @@
 	greyscale_colors = "#171717#990000"
 
 /obj/item/encryptionkey/binary
-	name = "binary translator key"
+	name = "二进制翻译密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/binary"
 	post_init_icon_state = "cypherkey_basic"
@@ -68,7 +68,7 @@
 	greyscale_colors = "#24a157#3758c4"
 
 /obj/item/encryptionkey/headset_sec
-	name = "security radio encryption key"
+	name = "安全无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_sec"
 	post_init_icon_state = "cypherkey_security"
@@ -77,7 +77,7 @@
 	greyscale_colors = "#820a16#280b1a"
 
 /obj/item/encryptionkey/headset_eng
-	name = "engineering radio encryption key"
+	name = "工程无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_eng"
 	post_init_icon_state = "cypherkey_engineering"
@@ -86,7 +86,7 @@
 	greyscale_colors = "#f8d860#dca01b"
 
 /obj/item/encryptionkey/headset_rob
-	name = "robotics radio encryption key"
+	name = "机器人学无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_rob"
 	post_init_icon_state = "cypherkey_engineering"
@@ -95,7 +95,7 @@
 	greyscale_colors = "#793a80#dca01b"
 
 /obj/item/encryptionkey/headset_med
-	name = "medical radio encryption key"
+	name = "医疗无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_med"
 	post_init_icon_state = "cypherkey_medical"
@@ -104,7 +104,7 @@
 	greyscale_colors = "#ebebeb#69abd1"
 
 /obj/item/encryptionkey/headset_sci
-	name = "science radio encryption key"
+	name = "科学无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_sci"
 	post_init_icon_state = "cypherkey_research"
@@ -113,7 +113,7 @@
 	greyscale_colors = "#793a80#bc4a9b"
 
 /obj/item/encryptionkey/headset_medsci
-	name = "medical research radio encryption key"
+	name = "医学研究无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_medsci"
 	post_init_icon_state = "cypherkey_medical"
@@ -122,7 +122,7 @@
 	greyscale_colors = "#ebebeb#9d1de8"
 
 /obj/item/encryptionkey/headset_srvsec
-	name = "law and order radio encryption key"
+	name = "法律与秩序无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_srvsec"
 	post_init_icon_state = "cypherkey_service"
@@ -131,7 +131,7 @@
 	greyscale_colors = "#820a16#3bca5a"
 
 /obj/item/encryptionkey/headset_srvmed
-	name = "psychology radio encryption key"
+	name = "心理学无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_srvmed"
 	post_init_icon_state = "cypherkey_service"
@@ -140,7 +140,7 @@
 	greyscale_colors = "#ebebeb#3bca5a"
 
 /obj/item/encryptionkey/headset_srvent
-	name = "press radio encryption key"
+	name = "新闻无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_srvent"
 	post_init_icon_state = "cypherkey_service"
@@ -149,7 +149,7 @@
 	greyscale_colors = "#83eb8f#3bca5a"
 
 /obj/item/encryptionkey/headset_com
-	name = "command radio encryption key"
+	name = "指挥无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_com"
 	post_init_icon_state = "cypherkey_cube"
@@ -161,7 +161,7 @@
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/encryptionkey/heads/captain
-	name = "\proper the captain's encryption key"
+	name = "\proper 舰长的加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/heads/captain"
 	post_init_icon_state = "cypherkey_cube"
@@ -170,7 +170,7 @@
 	greyscale_colors = "#2b2793#dca01b"
 
 /obj/item/encryptionkey/heads/rd
-	name = "\proper the research director's encryption key"
+	name = "\proper 研究主管的加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/heads/rd"
 	post_init_icon_state = "cypherkey_research"
@@ -179,7 +179,7 @@
 	greyscale_colors = "#bc4a9b#793a80"
 
 /obj/item/encryptionkey/heads/hos
-	name = "\proper the head of security's encryption key"
+	name = "\proper 安全部长的加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/heads/hos"
 	post_init_icon_state = "cypherkey_security"
@@ -188,7 +188,7 @@
 	greyscale_colors = "#280b1a#820a16"
 
 /obj/item/encryptionkey/heads/ce
-	name = "\proper the chief engineer's encryption key"
+	name = "\proper 总工程师的加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/heads/ce"
 	post_init_icon_state = "cypherkey_engineering"
@@ -197,7 +197,7 @@
 	greyscale_colors = "#dca01b#f8d860"
 
 /obj/item/encryptionkey/heads/cmo
-	name = "\proper the chief medical officer's encryption key"
+	name = "\proper 首席医疗官的加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/heads/cmo"
 	post_init_icon_state = "cypherkey_medical"
@@ -206,7 +206,7 @@
 	greyscale_colors = "#ebebeb#2b2793"
 
 /obj/item/encryptionkey/heads/hop
-	name = "\proper the head of personnel's encryption key"
+	name = "\proper 人事部长的加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/heads/hop"
 	post_init_icon_state = "cypherkey_cube"
@@ -215,7 +215,7 @@
 	greyscale_colors = "#2b2793#c2c1c9"
 
 /obj/item/encryptionkey/heads/qm
-	name = "\proper the quartermaster's encryption key"
+	name = "\proper 军需官的加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/heads/qm"
 	post_init_icon_state = "cypherkey_cargo"
@@ -224,7 +224,7 @@
 	greyscale_colors = "#49241a#dca01b"
 
 /obj/item/encryptionkey/headset_cargo
-	name = "supply radio encryption key"
+	name = "补给无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_cargo"
 	post_init_icon_state = "cypherkey_cargo"
@@ -233,7 +233,7 @@
 	greyscale_colors = "#49241a#7b3f2e"
 
 /obj/item/encryptionkey/headset_mining
-	name = "mining radio encryption key"
+	name = "采矿无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_mining"
 	post_init_icon_state = "cypherkey_cargo"
@@ -242,7 +242,7 @@
 	greyscale_colors = "#49241a#bc4a9b"
 
 /obj/item/encryptionkey/headset_service
-	name = "service radio encryption key"
+	name = "服务无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_service"
 	post_init_icon_state = "cypherkey_service"
@@ -251,7 +251,7 @@
 	greyscale_colors = "#3758c4#3bca5a"
 
 /obj/item/encryptionkey/headset_cent
-	name = "\improper CentCom radio encryption key"
+	name = "\improper 中央司令部无线电加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/headset_cent"
 	post_init_icon_state = "cypherkey_centcom"
@@ -275,7 +275,7 @@
 	)
 
 /obj/item/encryptionkey/ai_with_binary
-	name = "ai encryption key"
+	name = "人工智能加密密钥"
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 	channels = list(
 		RADIO_CHANNEL_COMMAND = 1,
@@ -294,7 +294,7 @@
 	)
 
 /obj/item/encryptionkey/ai/evil //ported from NT, this goes 'inside' the AI.
-	name = "syndicate binary encryption key"
+	name = "辛迪加二进制加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/ai_with_binary"
 	post_init_icon_state = "cypherkey_syndicate"

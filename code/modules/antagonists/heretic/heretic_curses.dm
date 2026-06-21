@@ -46,18 +46,18 @@
 			continue
 		potential_targets["[human_to_check.real_name]"] = human_to_check
 
-	var/chosen_mob = tgui_input_list(user, "Select the victim you wish to curse.", name, sort_list(potential_targets, GLOBAL_PROC_REF(cmp_text_asc)))
+	var/chosen_mob = tgui_input_list(user, "选择你想要诅咒的受害者。", name, sort_list(potential_targets, GLOBAL_PROC_REF(cmp_text_asc)))
 	if(isnull(chosen_mob))
 		return FALSE
 
 	var/mob/living/carbon/human/to_curse = potential_targets[chosen_mob]
 	if(QDELETED(to_curse))
-		loc.balloon_alert(user, "ritual failed, invalid choice!")
+		loc.balloon_alert(user, "仪式失败，选择无效！")
 		return FALSE
 
 	// Yes, you COULD curse yourself, not sure why but you could
 	if(to_curse == user)
-		var/are_you_sure = tgui_alert(user, "Are you sure you want to curse yourself?", name, list("Yes", "No"))
+		var/are_you_sure = tgui_alert(user, "你确定要诅咒自己吗？", name, list("Yes", "No"))
 		if(are_you_sure != "Yes")
 			return FALSE
 
@@ -66,7 +66,7 @@
 
 	var/turf/curse_turf = get_turf(to_curse)
 	if(!is_valid_z_level(curse_turf, loc) || get_dist(curse_turf, loc) > max_range * 1.5) // Give a bit of leeway on max range for people moving around
-		loc.balloon_alert(user, "ritual failed, too far!")
+		loc.balloon_alert(user, "仪式失败，距离太远！")
 		return FALSE
 
 	if(IS_HERETIC(to_curse) && to_curse != user)
@@ -153,7 +153,7 @@
 		to_chat(chosen_mob, span_notice("You feel a slight pain for a moment, but it passes shortly. Odd."))
 		return
 
-	to_chat(chosen_mob, span_danger("You suddenly lose feeling in your leg[chosen_mob.usable_legs == 1 ? "":"s"]!"))
+	to_chat(chosen_mob, span_danger("你的腿[chosen_mob.usable_legs == 1 ? "":"s"]突然失去了知觉！"))
 	chosen_mob.add_traits(list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG), type)
 	return ..()
 
@@ -163,7 +163,7 @@
 
 	chosen_mob.remove_traits(list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG), type)
 	if(chosen_mob.usable_legs > 1)
-		to_chat(chosen_mob, span_green("You regain feeling in your leg[chosen_mob.usable_legs == 1 ? "":"s"]!"))
+		to_chat(chosen_mob, span_green("你的腿[chosen_mob.usable_legs == 1 ? "":"s"]恢复了知觉！"))
 	return ..()
 
 //---- Curse of Corrosion
@@ -211,7 +211,7 @@
 		if(initial(species_type.changesource_flags) & RACE_SWAP)
 			chooseable_races[species_type.name] = species_type
 
-	var/species_name = tgui_input_list(user, "Choose a race", "Choose a race to turn your victim into", chooseable_races)
+	var/species_name = tgui_input_list(user, "选择一个种族", "选择一个种族来转变你的受害者", chooseable_races)
 	if(!species_name)
 		return FALSE
 	chosen_species = chooseable_races[species_name]

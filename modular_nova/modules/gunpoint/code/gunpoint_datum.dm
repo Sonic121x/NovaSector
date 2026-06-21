@@ -24,7 +24,7 @@
 	aimed_gun = gun
 
 	source.face_atom(target)
-	source.visible_message(span_danger("[source.name] aims at [target.name] with the [aimed_gun.name]!"))
+	source.visible_message(span_danger("[source.name]用[aimed_gun.name]瞄准了[target.name]！"))
 
 	/* // NOVA EDIT REMOVAL START
 	was_running = (source.move_intent == MOVE_INTENT_RUN)
@@ -61,10 +61,10 @@
 		locked = TRUE
 		log_combat(target, source, "locked onto with aiming")
 		playsound(get_turf(source), 'modular_nova/modules/gunpoint/sound/targeton.ogg', 50,1)
-		to_chat(source, span_notice("<b>You lock onto [target.name]!</b>"))
-		target.visible_message(span_warning("<b>[source.name] holds [target.name] at gunpoint with the [aimed_gun.name]!</b>"), span_userdanger("[source.name] holds you at gunpoint with the [aimed_gun.name]!"))
+		to_chat(source, span_notice("<b>你已锁定[target.name]！</b>"))
+		target.visible_message(span_warning("<b>[source.name]用[aimed_gun.name]挟持了[target.name]！</b>"), span_userdanger("[source.name]用[aimed_gun.name]挟持了你！"))
 		if(target.gunpointed.len == 1)//First case
-			to_chat(target, span_danger("You can move, but you see that [source.name] has a gun pointed at you!"))
+			to_chat(target, span_danger("你可以移动，但你看到[source.name]正用枪指着你！"))
 		if(target.gp_effect.icon_state != "locked")
 			target.gp_effect.icon_state = "locked"
 
@@ -90,7 +90,7 @@
 	target.gunpointed -= src
 	source.gunpointing = null
 	if(locked)
-		target.visible_message(span_notice("[source.name] no longer holds [target.name] at gunpoint."), span_notice("<b>[source.name] no longer holds you at gunpoint.</b>"))
+		target.visible_message(span_notice("[source.name]不再挟持[target.name]。"), span_notice("<b>[source.name]不再挟持你。</b>"))
 	source = null
 	target = null
 	aimed_gun = null

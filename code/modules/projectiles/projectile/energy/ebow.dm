@@ -1,5 +1,5 @@
 /obj/projectile/energy/bolt //ebow bolts
-	name = "bolt"
+	name = "弩箭"
 	icon_state = "cbbolt"
 	damage = 15
 	damage_type = TOX
@@ -9,7 +9,7 @@
 	slur = 10 SECONDS
 
 /obj/projectile/energy/bolt/halloween
-	name = "candy corn"
+	name = "玉米糖"
 	icon_state = "candy_corn"
 	icon = 'icons/obj/food/food.dmi'
 

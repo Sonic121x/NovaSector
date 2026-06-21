@@ -1,7 +1,7 @@
 // Damaged Borgs
 /mob/living/basic/evilborgs/evilborg
-	name = "Malfunctioning Cyborg"
-	desc = "A small cyborg unit, hacked or malfunctioning. It is likely hostile."
+	name = "故障机械人"
+	desc = "一个小型机械人单位，被黑客入侵或发生故障。它很可能具有敌意。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "evilbotold"
 	icon_living = "evilbotold"
@@ -54,8 +54,8 @@
 */
 
 /mob/living/basic/evilborgs/evilborg/heavy
-	name = "Malfunctioning Heavy Cyborg"
-	desc = "A large cyborg unit, hacked or malfunctioning. It- oh my god is that a chainsaw?!"
+	name = "故障重型机械人"
+	desc = "一个大型机械人单位，被黑客入侵或发生故障。它——哦，天哪，那是电锯吗？！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "evilbotheavy"
 	health = 200
@@ -72,8 +72,8 @@
 */
 
 /mob/living/basic/evilborgs/evilborg/peace
-	name = "Malfunctioning Peacekeeper Cyborg"
-	desc = "A cyborg unit, hacked or malfunctioning. This is a Peacekeeper model."
+	name = "故障维和机械人"
+	desc = "一个机械人单位，被黑客入侵或发生故障。这是维和者型号。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "evilbotpeace"
 	icon_living = "evilbotpeace"
@@ -91,8 +91,8 @@
 */
 
 /mob/living/basic/evilborgs/evilborg/engi
-	name = "Malfunctioning Engineering Cyborg"
-	desc = "An engineering cyborg unit, hacked or malfunctioning- Oh shit that's a plasma bar."
+	name = "故障工程机械人"
+	desc = "一个工程机械人单位，被黑客入侵或发生故障——哦该死那是等离子棒。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "evilbotengi"
 	icon_living = "evilbotengi"
@@ -111,8 +111,8 @@
 */
 
 /mob/living/basic/evilborgs/evilborg/sec
-	name = "Malfunctioning Security Cyborg"
-	desc = "A security cyborg unit, hacked or malfunctioning. There are two guns attached to it."
+	name = "故障安保机械人"
+	desc = "一个安保机械人单位，被黑客入侵或发生故障。它身上装有两把枪。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "evilbotsec"
 	icon_living = "evilbotsec"
@@ -144,8 +144,8 @@
 */
 
 /mob/living/basic/evilborgs/evilborg/roomba
-	name = "Malfunctioning Roomba Cyborg"
-	desc = "A roomba, hacked or malfunctioning- OW MY FOOT!"
+	name = "故障扫地机械人"
+	desc = "一个扫地机器人，被黑客入侵或发生故障——嗷我的脚！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "evilbotroomba"
 	icon_living = "evilbotroomba"
@@ -163,8 +163,8 @@
 */
 
 /mob/living/basic/evilborgs/evilborg/dog
-	name = "Malfunctioning Canine Cyborg"
-	desc = "A canine-borg, hacked or malfunctioning. This one appears to be a mining variant."
+	name = "故障犬型机械人"
+	desc = "一个犬型机械人，被黑客入侵或发生故障。这似乎是一个采矿型号。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs64x32.dmi'
 	icon_state = "evilbotmine"
 	icon_living = "evilbotmine"
@@ -182,8 +182,8 @@
 */
 
 /mob/living/basic/evilborgs/evilborg/dogstrong
-	name = "Corrupt Hound"
-	desc = "A canine-borg, hacked or malfunctioning. This one is large, imposing, and can pack a big punch."
+	name = "腐化猎犬"
+	desc = "一个犬型机械人，被黑客入侵或发生故障。这个体型巨大，气势逼人，能造成重击。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs64x32.dmi'
 	icon_state = "evilbotelite" // ported from VORE
 	icon_living = "evilbotelite"
@@ -201,8 +201,8 @@
 */
 
 /mob/living/basic/evilborgs/evilborg/bigguy
-	name = "Malfunctioning Military robot"
-	desc = "A military robot unit, hacked or malfunctioning. This one looks really tough.."
+	name = "故障军用机器人"
+	desc = "一个军用机器人单位，被黑客入侵或发生故障。这个看起来非常结实.."
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "sentrybot"
 	icon_living = "sentrybot"
@@ -237,8 +237,8 @@
 */
 
 /mob/living/basic/evilborgs/evilborg/protect
-	name = "Malfunctioning Standard Robot"
-	desc = "A civlian model robot, hacked or malfunctioning with mechanical claw arms."
+	name = "故障标准机器人"
+	desc = "一个民用型号机器人，被黑客入侵或发生故障，带有机械爪臂。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "protectbot"
 	icon_living = "protectbot"

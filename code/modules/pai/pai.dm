@@ -2,7 +2,7 @@
 	can_be_held = TRUE
 	can_buckle_to = FALSE
 	density = FALSE
-	desc = "A generic pAI hard-light holographics emitter."
+	desc = "一种通用的脉冲式人工智能强光全息发射器。"
 	health = 500
 	held_lh = 'icons/mob/inhands/pai_item_lh.dmi'
 	held_rh = 'icons/mob/inhands/pai_item_rh.dmi'
@@ -308,7 +308,7 @@
  */
 /mob/living/silicon/pai/proc/fix_speech()
 	var/mob/living/silicon/pai = src
-	balloon_alert(pai, "speech modulation corrected")
+	balloon_alert(pai, "语音调制已修正")
 	for(var/effect in typesof(/datum/status_effect/speech))
 		pai.remove_status_effect(effect)
 	return TRUE
@@ -336,8 +336,8 @@
 /mob/living/silicon/pai/proc/handle_emag(mob/living/carbon/attacker)
 	if(!isliving(attacker))
 		return FALSE
-	balloon_alert(attacker, "directive override complete")
-	balloon_alert(src, "directive override detected")
+	balloon_alert(attacker, "指令覆盖完成")
+	balloon_alert(src, "检测到指令覆盖")
 	log_game("[key_name(attacker)] emagged [key_name(src)], wiping their master DNA and supplemental directive.")
 	emagged = TRUE
 	master_ref = WEAKREF(attacker)
@@ -351,7 +351,7 @@
 /mob/living/silicon/pai/on_saboteur(datum/source, disrupt_duration)
 	. = ..()
 	set_silence_if_lower(disrupt_duration)
-	balloon_alert(src, "muted!")
+	balloon_alert(src, "已静音！")
 	return TRUE
 
 /**
@@ -368,7 +368,7 @@
 	master_dna = null
 	add_supplied_law(0, "None.")
 	leash = AddComponent(/datum/component/leash, card, HOLOFORM_DEFAULT_RANGE, force_teleport_out_effect = /obj/effect/temp_visual/guardian/phase/out)
-	balloon_alert(src, "software rebooted")
+	balloon_alert(src, "软件已重启")
 	return TRUE
 
 /**
@@ -379,11 +379,11 @@
  */
 /mob/living/silicon/pai/proc/set_dna(mob/user)
 	if(!iscarbon(user))
-		balloon_alert(user, "incompatible DNA signature")
-		balloon_alert(src, "incompatible DNA signature")
+		balloon_alert(user, "DNA签名不兼容")
+		balloon_alert(src, "DNA签名不兼容")
 		return FALSE
 	if(emagged)
-		balloon_alert(user, "directive system malfunctional")
+		balloon_alert(user, "指令系统故障")
 		return FALSE
 	var/mob/living/carbon/master = user
 	master_ref = WEAKREF(master)
@@ -401,12 +401,12 @@
  */
 /mob/living/silicon/pai/proc/set_laws(mob/user)
 	if(!master_ref)
-		balloon_alert(user, "access denied: no master")
+		balloon_alert(user, "访问被拒：无主人")
 		return FALSE
 	var/new_laws = tgui_input_text(
 		user,
-		"Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.",
-		"pAI Directive Configuration",
+		"输入你希望你的pAI人格遵循的任何额外指令。请注意，这些指令不会覆盖人格对其烙印主人的忠诚。冲突的指令将被忽略。",
+		"pAI指令配置",
 		laws.supplied[1],
 		max_length = 300,
 	)
@@ -422,7 +422,7 @@
  * @returns {boolean} - TRUE if successful, FALSE if not.
  */
 /mob/living/silicon/pai/proc/toggle_holo()
-	balloon_alert(src, "holomatrix [can_holo ? "disabled" : "enabled"]")
+	balloon_alert(src, "全息矩阵 [can_holo ? "disabled" : "enabled"]")
 	can_holo = !can_holo
 	return TRUE
 
@@ -441,7 +441,7 @@
 		can_receive = !can_receive
 	radio.wires.cut(transmit_holder)//wires.cut toggles cut and uncut states
 	transmit_holder = (transmitting ? can_transmit : can_receive) //recycling can be fun!
-	balloon_alert(src, "[transmitting ? "outgoing" : "incoming"] radio [transmit_holder ? "enabled" : "disabled"]")
+	balloon_alert(src, "[transmitting ? "outgoing" : "incoming"] 无线电 [transmit_holder ? "enabled" : "disabled"]")
 	return TRUE
 
 /**
@@ -452,13 +452,13 @@
  * @returns {boolean} - TRUE if successful, FALSE if not.
  */
 /mob/living/silicon/pai/proc/wipe_pai(mob/user)
-	if(tgui_alert(user, "Are you certain you wish to delete the current personality? This action cannot be undone.", "Personality Wipe", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, "你确定要删除当前人格吗？此操作无法撤销。", "人格擦除", list("Yes", "No")) != "Yes")
 		return FALSE
-	to_chat(src, span_warning("You feel yourself slipping away from reality."))
-	to_chat(src, span_danger("Byte by byte you lose your sense of self."))
-	to_chat(src, span_userdanger("Your mental faculties leave you."))
-	to_chat(src, span_rose("oblivion... "))
-	balloon_alert(user, "personality wiped")
+	to_chat(src, span_warning("你感觉自己正从现实中滑落。"))
+	to_chat(src, span_danger("字节接字节地，你失去了自我意识。"))
+	to_chat(src, span_userdanger("你的心智能力离你而去。"))
+	to_chat(src, span_rose("湮灭……"))
+	balloon_alert(user, "人格已擦除")
 	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 	qdel(src)
 	return TRUE
@@ -468,7 +468,7 @@
 	SIGNAL_HANDLER
 
 	for(var/mob/living/cultist as anything in invokers)
-		to_chat(cultist, span_cult_italic("You don't think this is what Nar'Sie had in mind when She asked for blood sacrifices..."))
+		to_chat(cultist, span_cult_italic("你觉得这恐怕不是娜尔茜在要求血祭时心中所想……"))
 	return STOP_SACRIFICE|SILENCE_SACRIFICE_MESSAGE
 
 /// Updates the distance we can be from our pai card

@@ -1,6 +1,6 @@
 ///thats amoreeeeee
 /datum/shuttle_event/simple_spawner/italian
-	name = "Italian Storm! (Mama Mia!)"
+	name = "意大利风暴！（妈妈咪呀！）"
 	event_probability = 0.05
 
 	spawns_per_spawn = 5
@@ -11,7 +11,7 @@
 
 ///We do a little bit of tomfoolery
 /datum/shuttle_event/simple_spawner/fake_ttv
-	name = "Fake TTV (Harmless!)"
+	name = "假TTV（无害！）"
 	event_probability = 0.5
 	activation_fraction = 0.1
 
@@ -24,7 +24,7 @@
 
 ///Just spawn random maint garbage
 /datum/shuttle_event/simple_spawner/maintenance
-	name = "Maintenance Debris (Harmless!)"
+	name = "维护区碎片（无害！）"
 	event_probability = 3
 	activation_fraction = 0.1
 

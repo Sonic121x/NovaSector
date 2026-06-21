@@ -1,12 +1,12 @@
 /datum/round_event_control/carp_migration
-	name = "Carp Migration"
+	name = "鲤鱼迁移"
 	typepath = /datum/round_event/carp_migration
 	weight = 15
 	min_players = 12
 	earliest_start = 10 MINUTES
 	max_occurrences = 6
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Summons a school of space carp."
+	description = "召唤一群太空鲤鱼。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 3
 	admin_setup = list(/datum/event_admin_setup/carp_migration)
@@ -37,7 +37,7 @@
 	start_when = rand(40, 60)
 
 /datum/round_event/carp_migration/announce(fake)
-	priority_announce("[fluff_signal] have been detected near [station_name()], please stand-by.", "Lifesign Alert")
+	priority_announce("[fluff_signal] 已在 [station_name()] 附近被侦测到，请待命。", "生命信号警报")
 
 /datum/round_event/carp_migration/start()
 	// Stores the most recent fish we spawn
@@ -84,10 +84,10 @@
 
 /datum/event_admin_setup/carp_migration/prompt_admins()
 	targets_per_z = list()
-	if (tgui_alert(usr, "Direct carp to your current location? Only applies to your current Z level.", "Carp Direction", list("Yes", "No")) != "Yes")
+	if (tgui_alert(usr, "将鲤鱼引导至你当前位置？仅适用于你当前的 Z 层级。", "鲤鱼引导", list("Yes", "No")) != "Yes")
 		return
 	record_admin_location()
-	while (tgui_alert(usr, "Add additional locations? Only applies to your current Z level.", "More Carp Direction", list("Yes", "No")) == "Yes")
+	while (tgui_alert(usr, "添加额外位置？仅适用于你当前的 Z 层级。", "更多鲤鱼引导", list("Yes", "No")) == "Yes")
 		record_admin_location()
 
 /// Stores the admin's current location corresponding to the z level of that location

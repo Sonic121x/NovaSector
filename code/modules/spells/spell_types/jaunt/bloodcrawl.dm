@@ -4,7 +4,7 @@
  * Lets the caster enter and exit pools of blood.
  */
 /datum/action/cooldown/spell/jaunt/bloodcrawl
-	name = "Blood Crawl"
+	name = "血液穿行"
 	desc = "Allows you to phase in and out of existence via pools of blood."
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
@@ -159,7 +159,7 @@
  * Allows the blood crawler to consume people they are dragging.
  */
 /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon
-	name = "Voracious Blood Crawl"
+	name = "暴力的血液穿行"
 	desc = "Allows you to phase in and out of existence via pools of blood. If you are dragging someone in critical or dead, \
 		they will be consumed by you, fully healing you."
 	/// The sound played when someone's consumed.
@@ -287,7 +287,7 @@
  * All mobs consumed are revived after the demon is killed.
  */
 /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/funny
-	name = "Friendly Blood Crawl"
+	name = "友好的血液穿行"
 	desc = "Allows you to phase in and out of existence via pools of blood. If you are dragging someone in critical or dead - I mean, \
 		sleeping, when entering a blood pool, they will be invited to a party and fully heal you!"
 	consume_sound = 'sound/misc/scary_horn.ogg'
@@ -369,8 +369,8 @@
 
 /// Bloodcrawl "hands", prevent the user from holding items in bloodcrawl
 /obj/item/bloodcrawl
-	name = "blood crawl"
-	desc = "You are unable to hold anything while in this form."
+	name = "血液穿行"
+	desc = "在这种形态下，您无法拿起任何东西。"
 	icon = 'icons/effects/blood.dmi'
 	item_flags = ABSTRACT | DROPDEL
 

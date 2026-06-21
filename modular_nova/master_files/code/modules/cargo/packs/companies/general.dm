@@ -11,24 +11,24 @@
 	cost = CARGO_CRATE_VALUE * 0.25
 
 /datum/supply_pack/companies/general/blacksteel/forging_metals/fake_cobalt
-	name = "Cobolterium"
+	name = "钴博合金"
 	contains = list(/obj/item/stack/sheet/cobolterium/three)
-	desc = "A three-pack of our finest cobolterium alloy, with an unmatched regal blue color for creating the strongest metalworks from."
+	desc = "三件装我们最优质的钴博合金，拥有无与伦比的皇家蓝色，用于打造最坚固的金属制品。"
 
 /datum/supply_pack/companies/general/blacksteel/forging_metals/fake_copper
-	name = "Copporcitite"
+	name = "铜珀石"
 	contains = list(/obj/item/stack/sheet/copporcitite/three)
-	desc = "A three-pack of our finest copporcitite alloy, with a powerful, fiery orange color for creating the strongest metalworks from."
+	desc = "三件装我们最优质的铜珀石合金，拥有强烈的火橙色，用于打造最坚固的金属制品。"
 
 /datum/supply_pack/companies/general/blacksteel/forging_metals/fake_really_blue_aluminum
-	name = "Tinumium"
+	name = "锡钕合金"
 	contains = list(/obj/item/stack/sheet/tinumium/three)
-	desc = "A three-pack of our finest tinumium alloy, with a mystical faded blue color for creating the strongest metalworks from."
+	desc = "三件装我们最优质的锡钕合金，拥有神秘的淡蓝色，用于打造最坚固的金属制品。"
 
 /datum/supply_pack/companies/general/blacksteel/forging_metals/fake_brass
-	name = "Brussite"
+	name = "黄铜石"
 	contains = list(/obj/item/stack/sheet/brussite/three)
-	desc = "A three-pack of our finest brussite alloy, with a robust yellow color for creating the strongest metalworks from."
+	desc = "三件装我们最优质的黄铜石合金，拥有坚固的黄色，用于打造最坚固的金属制品。"
 
 // Kahraman
 
@@ -104,8 +104,8 @@
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketteriyaki)
 
 /datum/supply_pack/companies/general/donk/food/pizza_voucher
-	name = "Pizza Voucher"
-	desc = "WE ALWAYS DELIVER! WE ALWAYS DELIVER! WE ALWAYS DELIVER!"
+	name = "披萨代金券"
+	desc = "我们使命必达！我们使命必达！我们使命必达！"
 	contains = list(/obj/item/pizzavoucher)
 	cost = CARGO_CRATE_VALUE * 0.9 // This price gives 180 and when the very common trait to up prices 10% hits, gives a total of 199 credits. Just under a crate value!
 	auto_name = FALSE

@@ -1,6 +1,6 @@
 /obj/item/seeds/poppy/opiumpoppy
-	name = "opium poppy seed pack"
-	desc = "These seeds grow into real opium poppies."
+	name = "罂粟种子包"
+	desc = "这些种子会长成真正的罂粟。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	growing_icon = 'modular_nova/master_files/icons/obj/hydroponics/growing.dmi'
 	icon_state = "seed-opiumpoppy"
@@ -14,8 +14,8 @@
 
 /obj/item/food/grown/poppy/opiumpoppy
 	seed = /obj/item/seeds/poppy/opiumpoppy
-	name = "opium poppy seedpod"
-	desc = "The seedpod of the opium poppy plant, which contains opium latex."
+	name = "罂粟种荚"
+	desc = "罂粟植物的种荚，内含鸦片乳胶。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "opiumpoppy"
 	worn_icon_state = "map_flower"

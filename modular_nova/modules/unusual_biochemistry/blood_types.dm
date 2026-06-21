@@ -1,7 +1,7 @@
 /datum/blood_type/haemocyanin
 	name = "Haemocyanin"
 	color = "#3399FF"
-	desc = "This oxygen-carrying macromolecule is formed using copper instead of iron (giving it its blue color), and has similar efficiency to haemoglobin in colder temperatures."
+	desc = "这种携氧大分子由铜而非铁构成（因此呈蓝色），在较低温度下其效率与血红蛋白相似。"
 	restoration_chem = /datum/reagent/copper
 	compatible_types = list(
 		/datum/blood_type/haemocyanin,
@@ -10,7 +10,7 @@
 /datum/blood_type/chlorocruorin
 	name = "Chlorocruorin"
 	color = "#9FF73B"
-	desc = "Chlorocruorin molecules are massive relative to other oxygen carriers and get their green color from the presence of an abnormal heme group."
+	desc = "血绿蛋白分子相对于其他氧载体来说非常巨大，其绿色源于一种异常的血红素基团。"
 	compatible_types = list(
 		/datum/blood_type/chlorocruorin,
 	)
@@ -18,7 +18,7 @@
 /datum/blood_type/hemerythrin
 	name = "Hemerythrin"
 	color = "#C978DD"
-	desc  = "The pink hemerythrin macromolecules actually bind to oxygen by creating a hydroperoxide, a unique mechanism for blood oxygen."
+	desc  = "粉红色的蚯蚓血红蛋白大分子实际上通过形成氢过氧化物来结合氧气，这是一种独特的血液携氧机制。"
 	compatible_types = list(
 		/datum/blood_type/hemerythrin,
 	)
@@ -27,7 +27,7 @@
 	name = "Pinnaglobin"
 	color = "#CDC020"
 	restoration_chem = /datum/reagent/manganese
-	desc = "Most similar to haemocyanin, pinnaglobin possesses manganese atoms in place of copper, giving it a unique color."
+	desc = "与血蓝蛋白最为相似，羽扇豆蛋白以锰原子取代了铜原子，赋予其独特的颜色。"
 	compatible_types = list(
 		/datum/blood_type/pinnaglobin,
 	)
@@ -39,4 +39,4 @@
 	compatible_types = list(
 		/datum/blood_type/exotic,
 	)
-	desc = "This blood color does not appear to exist naturally in nature, but with exposure to sulfur or some other genetic engineering or corruption it might be possible."
+	desc = "这种血液颜色在自然界中似乎并不天然存在，但通过接触硫磺或其他基因工程或污染，或许有可能产生。"

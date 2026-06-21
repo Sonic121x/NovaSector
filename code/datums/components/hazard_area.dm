@@ -62,7 +62,7 @@
 	if(!check_area_hazardous(last_parent_area))
 		return
 
-	vehicle.balloon_alert(parent, "you slip and fall off!")
+	vehicle.balloon_alert(parent, "你滑倒摔下来了！")
 	if(isliving(parent)) // We don't know for certain if we are a mob/living subtype
 		var/mob/living/parent_living = parent
 		parent_living.Stun(0.5 SECONDS)
@@ -125,7 +125,7 @@
 	if(should_have_status_effect && !effect) // Should have the status - and doesnt
 		parent_living.apply_status_effect(/datum/status_effect/hazard_area)
 		if(parent_living.buckled)
-			parent_living.buckled.balloon_alert(parent, "you fall off!")
+			parent_living.buckled.balloon_alert(parent, "你摔下来了！")
 			parent_living.buckled.unbuckle_mob(parent_living, force=TRUE)
 		return
 
@@ -164,10 +164,10 @@
 	owner.remove_actionspeed_modifier(/datum/actionspeed_modifier/status_effect/hazard_area, update=TRUE)
 
 /datum/status_effect/hazard_area/get_examine_text()
-	return span_notice("[owner.p_They()] appear[owner.p_s()] to be largely immobilized through unknown means.")
+	return span_notice("[owner.p_They()] 似乎[owner.p_s()]因未知原因而基本无法移动。")
 
 /atom/movable/screen/alert/status_effect/hazard_area
-	name = "Hazardous Area"
-	desc = "The area you are currently within is incredibly hazardous to you. Check your surroundings and vacate as soon as possible."
+	name = "危险区域"
+	desc = "你当前所在的区域对你来说极其危险。检查你的周围环境并尽快撤离。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "hazard_area"

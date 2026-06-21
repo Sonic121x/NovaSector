@@ -5,7 +5,7 @@
 	melee_damage_upper = 15
 	damage_coeff = list(BRUTE = 0.6, BURN = 0.6, TOX = 0.6, STAMINA = 0, OXY = 0.6)
 	range = 13
-	playstyle_string = span_holoparasite("As an <b>explosive</b> type, you have moderate close combat abilities and are capable of converting nearby items and objects into disguised bombs via right-click.")
+	playstyle_string = span_holoparasite("作为<b>爆破</b>类型，你拥有中等的近战能力，并且能够通过右键点击将附近的物品和物体转化为伪装炸弹。")
 	creator_name = "Explosive"
 	creator_desc = "High damage resist and medium power attack. Can turn any object, including objects too large to pick up, into a bomb, dealing explosive damage to the next person to touch it. The object will return to normal after the trap is triggered or after a delay."
 	creator_icon = "explosive"
@@ -30,8 +30,8 @@
 
 /// An ability which can turn an object into a bomb
 /datum/action/cooldown/mob_cooldown/explosive_booby_trap
-	name = "Explosive Trap"
-	desc = "Convert an inanimate object into a deadly and mostly undetectable explosive, triggered on touch."
+	name = "爆破陷阱"
+	desc = "将一个无生命的物体转化为致命且基本无法检测的爆炸物，触发方式为接触。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "smoke"
 	cooldown_time = 20 SECONDS
@@ -63,7 +63,7 @@
 		explosive_checks = CALLBACK(src, PROC_REF(validate_target)), \
 		triggering_signals = boom_signals, \
 	)
-	target.balloon_alert(owner, "bomb planted")
+	target.balloon_alert(owner, "炸弹已安放")
 	StartCooldown()
 	return TRUE
 

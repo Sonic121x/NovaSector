@@ -309,7 +309,7 @@
 /datum/chemical_reaction/heparin
 	results = list(/datum/reagent/toxin/heparin = 3)
 	required_reagents = list(/datum/reagent/toxin/formaldehyde = 1, /datum/reagent/consumable/salt = 1, /datum/reagent/lithium = 1)
-	mix_message = span_danger("The mixture thins and loses all color.")
+	mix_message = span_danger("混合物变稀并失去了所有颜色。")
 	is_cold_recipe = FALSE
 	required_temp = 100
 	optimal_temp = 450
@@ -329,7 +329,7 @@
 /datum/chemical_reaction/rotatium
 	results = list(/datum/reagent/toxin/rotatium = 3)
 	required_reagents = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/teslium = 1, /datum/reagent/toxin/fentanyl = 1)
-	mix_message = span_danger("After sparks, fire, and the smell of mindbreaker, the mix is constantly spinning with no stop in sight.")
+	mix_message = span_danger("在火花、火焰和致幻剂的气味之后，混合物开始不停地旋转，毫无停止的迹象。")
 	is_cold_recipe = FALSE
 	required_temp = 100
 	optimal_temp = 450
@@ -389,7 +389,7 @@
 /datum/chemical_reaction/bonehurtingjuice
 	results = list(/datum/reagent/toxin/bonehurtingjuice = 5)
 	required_reagents = list(/datum/reagent/toxin/mutagen = 1, /datum/reagent/toxin/itching_powder = 3, /datum/reagent/consumable/milk = 1)
-	mix_message = span_danger("The mixture suddenly becomes clear and looks a lot like water. You feel a strong urge to drink it.")
+	mix_message = span_danger("混合物突然变得清澈，看起来很像水。你感到一股强烈的冲动想喝掉它。")
 	is_cold_recipe = FALSE
 	required_temp = 100
 	optimal_temp = 450

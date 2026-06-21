@@ -1,7 +1,7 @@
 ///Tail parent, it doesn't do very much.
 /obj/item/organ/tail
 	name = "tail"
-	desc = "A severed tail. What did you cut this off of?"
+	desc = "一条断掉的尾巴。你把它从哪里剪断的呢？"
 	icon_state = "severedtail"
 
 	zone = BODY_ZONE_PRECISE_GROIN
@@ -172,7 +172,7 @@
 	// color_source = ORGAN_COLOR_HAIR // NOVA EDIT REMOVAL
 
 /obj/item/organ/tail/monkey
-	name = "monkey tail"
+	name = "猴子尾巴"
 	icon_state = "severedmonkeytail"
 	dna_block = null
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/monkey
@@ -183,16 +183,16 @@
 	feature_key = FEATURE_TAIL // NOVA EDIT - Customization - ORIGINAL: feature_key = FEATURE_TAIL_MONKEY
 
 /obj/item/organ/tail/xeno
-	name = "alien tail"
-	desc = "A long and flexible tail slightly resembling a spine, used by its original owner as both weapon and balance aid."
+	name = "异形尾巴"
+	desc = "一条长而灵活的尾巴，略微类似脊柱，其原主人将其既用作武器也用作平衡辅助工具。"
 	icon_state = "severedxenotail"
 	dna_block = null
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/xeno
 	organ_traits = list(TRAIT_TACKLING_TAILED_POUNCE, TRAIT_FREERUNNING)
 
 /obj/item/organ/tail/xeno_queen
-	name = "alien queen's tail"
-	desc = "An enormous serrated tail, used to deadly effect by its original owner but perhaps too heavy for a human spine."
+	name = "异形女王的尾巴"
+	desc = "一条巨大的锯齿状尾巴，其原主人曾用它造成致命效果，但对人类脊柱来说可能太重了。"
 	icon = 'icons/mob/human/species/alien/tail_xenomorph_queen.dmi'
 	icon_state = "severedqueentail"
 	w_class = WEIGHT_CLASS_BULKY
@@ -237,8 +237,8 @@
 	default_appearance = "Xeno Queen"
 
 /obj/item/organ/tail/lizard
-	name = "lizard tail"
-	desc = "A severed lizard tail. Somewhere, no doubt, a lizard hater is very pleased with themselves."
+	name = "lizard tail-蜥蜴尾"
+	desc = "一条断掉的蜥蜴尾巴。毫无疑问，在某个地方，一定有某个讨厌蜥蜴的人正为此而沾沾自喜呢。"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/lizard
 
@@ -251,8 +251,8 @@
 	draw_on_husks = HUSK_OVERLAY_GRAYSCALE
 
 /obj/item/organ/tail/lizard/fake
-	name = "fabricated lizard tail"
-	desc = "A fabricated severed lizard tail. This one's made of synthflesh. Probably not usable for lizard wine."
+	name = "人造蜥蜴尾巴"
+	desc = "一条被切断的蜥蜴尾巴。这截尾巴是用合成肉体制成的。恐怕不适合用来制作蜥蜴酒了。"
 
 ///Bodypart overlay for tail spines. Handled by the tail - has no actual organ associated.
 /datum/bodypart_overlay/mutant/tail_spines

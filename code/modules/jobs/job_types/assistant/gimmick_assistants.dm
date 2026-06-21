@@ -2,7 +2,7 @@
 
 /// Parent type of gimmick loadouts for assistants for the functional assistant station traits
 /datum/outfit/job/assistant/gimmick
-	name = "Gimmick Assistant"
+	name = "花活助手"
 	/// The weight of the outfit to be picked
 	var/outfit_weight = 0
 
@@ -11,7 +11,7 @@
 	return //dont do colorized and stuff, it messes with our uniforms
 
 /datum/outfit/job/assistant/gimmick/bee
-	name = "Gimmick Assistant - Bee"
+	name = "特色助手 - 蜜蜂"
 	suit = /obj/item/clothing/suit/hooded/bee_costume
 	uniform = /obj/item/clothing/under/color/yellow
 
@@ -20,13 +20,13 @@
 	outfit_weight = 2
 
 /obj/item/coupon/bee
-	desc = "BEEEES???? AT AN AFFORDAbLE PORICE?!!!" //wordcoders seething
+	desc = "蜜蜜蜜蜂蜜蜂？？？？以可承受的价价价格？！！！" //wordcoders seething
 
 	discounted_pack = /datum/supply_pack/organic/hydroponics/beekeeping_fullkit
 	discount_pct_off = 0.7
 
 /datum/outfit/job/assistant/gimmick/chicken
-	name = "Gimmick Assistant - Chicken"
+	name = "特色助理 - 小鸡"
 	suit = /obj/item/clothing/suit/costume/chickensuit
 	head = /obj/item/clothing/head/costume/chicken
 
@@ -35,7 +35,7 @@
 	outfit_weight = 2
 
 /datum/outfit/job/assistant/gimmick/cyborg
-	name = "Gimmick Assistant - Cardborg"
+	name = "噱头助手 - 纸板机器人"
 	suit = /obj/item/clothing/suit/costume/cardborg
 	head = /obj/item/clothing/head/costume/cardborg
 	uniform = /obj/item/clothing/under/color/black
@@ -53,7 +53,7 @@
 	robotongue.Insert(equipped, movement_flags = DELETE_IF_REPLACED)
 
 /datum/outfit/job/assistant/gimmick/skater
-	name = "Gimmick Assistant - Skater"
+	name = "花式助手 - 滑板手"
 	head = /obj/item/clothing/head/helmet/taghelm/red
 	suit = /obj/item/clothing/suit/redtag
 
@@ -64,7 +64,7 @@
 	outfit_weight = 6
 
 /datum/outfit/job/assistant/gimmick/rollerskater
-	name = "Gimmick Assistant - Rollerskater"
+	name = "特色助手 - 轮滑者"
 	head = /obj/item/clothing/head/helmet/taghelm/blue
 	suit = /obj/item/clothing/suit/bluetag
 
@@ -75,7 +75,7 @@
 	outfit_weight = 6
 
 /datum/outfit/job/assistant/gimmick/fisher
-	name = "Gimmick Assistant - Fisher"
+	name = "特色助理 - 渔夫"
 	suit = /obj/item/clothing/suit/jacket/puffer/vest
 	uniform = /obj/item/clothing/under/color/blue
 
@@ -84,7 +84,7 @@
 	outfit_weight = 3
 
 /datum/outfit/job/assistant/gimmick/patient
-	name = "Gimmick Assistant - Patient"
+	name = "特色助手 - 病人"
 	suit = /obj/item/clothing/suit/apron/surgical
 
 	l_pocket = /obj/item/storage/pill_bottle/multiver
@@ -95,7 +95,7 @@
 	outfit_weight = 3
 
 /datum/outfit/job/assistant/gimmick/mopper
-	name = "Gimmick Assistant - Mopper"
+	name = "噱头助手 - 拖地工"
 	suit = /obj/item/clothing/suit/caution
 	uniform = /obj/item/clothing/under/color/lightpurple
 
@@ -114,7 +114,7 @@
 		break
 
 /datum/outfit/job/assistant/gimmick/broomer
-	name = "Gimmick Assistant - Broomer"
+	name = "噱头助手 - 扫地工"
 	suit = /obj/item/clothing/suit/caution
 	uniform = /obj/item/clothing/under/color/lightpurple
 
@@ -124,7 +124,7 @@
 	outfit_weight = 5
 
 /datum/outfit/job/assistant/gimmick/hall_monitor
-	name = "Gimmick Assistant - Hall Monitor"
+	name = "噱头助手 - 走廊监督员"
 	head = /obj/item/clothing/head/collectable/police
 	mask = /obj/item/clothing/mask/whistle
 	uniform = /obj/item/clothing/under/color/red
@@ -134,7 +134,7 @@
 	outfit_weight = 2
 
 /datum/outfit/job/assistant/gimmick/monkey
-	name = "Gimmick Assistant - Monkey"
+	name = "噱头助手 - 猴子"
 	suit = /obj/item/clothing/suit/costume/monkeysuit
 	mask = /obj/item/clothing/mask/gas/monkeymask
 	l_pocket = /obj/item/food/monkeycube
@@ -143,14 +143,14 @@
 	outfit_weight = 1
 
 /datum/outfit/job/assistant/gimmick/flesh
-	name = "Gimmick Assistant - Fleshy"
+	name = "噱头助手 - 血肉之躯"
 	suit = /obj/item/clothing/suit/hooded/bloated_human
 	r_hand = /obj/item/toy/foamblade
 
 	outfit_weight = 1
 
 /datum/outfit/job/assistant/gimmick/lightbringer
-	name = "Gimmick Assistant - Lightbringer"
+	name = "噱头助手 - 光明使者"
 	uniform = /obj/item/clothing/under/color/yellow
 	head = /obj/item/clothing/head/costume/cueball
 	gloves = /obj/item/clothing/gloves/color/black
@@ -161,7 +161,7 @@
 	outfit_weight = 3
 
 /datum/outfit/job/assistant/gimmick/handyman
-	name = "Gimmick Assistant - Handyman"
+	name = "噱头助手 - 杂务工"
 
 	suit = /obj/item/clothing/suit/hazardvest
 	belt = /obj/item/storage/belt/utility/full
@@ -173,7 +173,7 @@
 	outfit_weight = 6
 
 /datum/outfit/job/assistant/gimmick/magician
-	name = "Gimmick Assistant - Magician"
+	name = "噱头助手 - 魔术师"
 
 	head = /obj/item/clothing/head/hats/tophat
 	uniform = /obj/item/clothing/under/color/lightpurple
@@ -183,7 +183,7 @@
 	outfit_weight = 2
 
 /datum/outfit/job/assistant/gimmick/firefighter
-	name = "Gimmick Assistant - Firefighter"
+	name = "噱头助手 - 消防员"
 
 	head = /obj/item/clothing/head/utility/hardhat/red
 	suit = /obj/item/clothing/suit/hazardvest
@@ -195,7 +195,7 @@
 	outfit_weight = 3
 
 /datum/outfit/job/assistant/gimmick/gardener
-	name = "Gimmick Assistant - Gardener"
+	name = "噱头助手 - 园丁"
 	uniform = /obj/item/clothing/under/color/green
 	skillchips = list(/obj/item/skillchip/bonsai)
 
@@ -205,7 +205,7 @@
 	outfit_weight = 3
 
 /datum/outfit/job/assistant/gimmick/artist
-	name = "Gimmick Assistant - Artist"
+	name = "噱头助手 - 艺术家"
 	uniform = /obj/item/clothing/under/color/rainbow
 
 	backpack_contents = list(/obj/item/storage/crayons)
@@ -213,7 +213,7 @@
 	outfit_weight = 3
 
 /datum/outfit/job/assistant/gimmick/bear
-	name = "Gimmick Assistant - Bear"
+	name = "噱头助手 - 熊"
 	head = /obj/item/clothing/head/costume/bearpelt
 	suit = /obj/item/clothing/suit/costume/bear_suit
 	shoes = /obj/item/clothing/shoes/sneakers/black

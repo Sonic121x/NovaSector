@@ -1,10 +1,10 @@
 /obj/effect/spawner/random/trash
-	name = "trash spawner"
-	desc = "Ewwwwwww gross."
+	name = "废品生成器"
+	desc = "呃哦，好恶心。"
 	icon_state = "trash"
 
 /obj/effect/spawner/random/trash/garbage
-	name = "garbage spawner"
+	name = "垃圾生成器"
 	loot = list(
 		/obj/effect/spawner/random/trash/food_packaging = 20,
 		/obj/effect/spawner/random/trash/crushed_can = 15,
@@ -35,7 +35,7 @@
 	)
 
 /obj/effect/spawner/random/trash/deluxe_garbage
-	name = "fancy deluxe garbage spawner"
+	name = "豪华垃圾生成器"
 	loot = list(
 		/obj/effect/spawner/random/trash/garbage = 25,
 		/obj/effect/spawner/random/trash/food_packaging = 10,
@@ -70,7 +70,7 @@
 	return ..()
 
 /obj/effect/spawner/random/trash/cigpack
-	name = "empty cigarette pack spawner"
+	name = "空烟盒生成器"
 	loot = list(
 		/obj/item/storage/fancy/cigarettes/empty = 5,
 		/obj/item/storage/fancy/cigarettes/cigpack_uplift/empty = 5,
@@ -93,7 +93,7 @@
 	)
 
 /obj/effect/spawner/random/trash/cigbutt
-	name = "cigarette butt spawner"
+	name = "烟蒂生成器"
 	loot = list(
 		/obj/item/cigbutt = 25,
 		/obj/item/cigbutt/roach = 25,
@@ -104,7 +104,7 @@
 	)
 
 /obj/effect/spawner/random/trash/food_packaging
-	name = "empty food packaging spawner"
+	name = "空食物包装生成器"
 	loot = list(
 		/obj/item/trash/raisins = 2,
 		/obj/item/trash/cheesie = 2,
@@ -181,7 +181,7 @@
 	)
 
 /obj/effect/spawner/random/trash/botanical_waste
-	name = "botanical waste spawner"
+	name = "植物废料生成器"
 	icon_state = "peel"
 	loot = list(
 		/obj/item/grown/bananapeel = 6,
@@ -190,7 +190,7 @@
 	)
 
 /obj/effect/spawner/random/trash/grille_or_waste
-	name = "grille or waste spawner"
+	name = "格栅或废料生成器"
 	icon_state = "grille"
 	loot = list(
 		/obj/structure/grille = 5,
@@ -201,7 +201,7 @@
 	)
 
 /obj/effect/spawner/random/trash/hobo_squat
-	name = "hobo squat spawner"
+	name = "流浪汉据点生成器"
 	icon_state = "dirty_mattress"
 	spawn_all_loot = TRUE
 	loot = list(
@@ -211,7 +211,7 @@
 	)
 
 /obj/effect/spawner/random/trash/moisture_trap
-	name = "moisture trap spawner"
+	name = "除湿器生成器"
 	icon_state = "moisture_trap"
 	spawn_all_loot = TRUE
 	loot = list(
@@ -220,7 +220,7 @@
 	)
 
 /obj/effect/spawner/random/trash/mess
-	name = "gross decal spawner"
+	name = "污秽痕迹生成器"
 	icon_state = "vomit"
 	loot = list(
 		/obj/effect/decal/cleanable/dirt = 6,
@@ -236,7 +236,7 @@
 	)
 
 /obj/effect/spawner/random/trash/grime
-	name = "trash and grime spawner"
+	name = "垃圾污垢生成器"
 	spawn_loot_count = 5
 	spawn_scatter_radius = 2
 	loot = list( // This spawner will scatter garbage around a dirty site.
@@ -256,7 +256,7 @@
 	return ..()
 
 /obj/effect/spawner/random/trash/moisture
-	name = "water hazard spawner"
+	name = "积水危险生成器"
 	icon_state = "caution"
 	spawn_loot_count = 2
 	spawn_scatter_radius = 1
@@ -279,8 +279,8 @@
 	return ..()
 
 /obj/effect/spawner/random/frog
-	name = "random frog"
-	desc = "Spawns a frog, or sometimes a RARE frog."
+	name = "随机青蛙"
+	desc = "生成一只青蛙，有时会生成一只稀有青蛙。"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "frog"
 	loot = list(
@@ -289,7 +289,7 @@
 	)
 
 /obj/effect/spawner/random/trash/graffiti
-	name = "random graffiti spawner"
+	name = "随机涂鸦生成器"
 	icon_state = "rune"
 	loot = list(/obj/effect/decal/cleanable/crayon)
 	var/graffiti_icons = list(
@@ -324,7 +324,7 @@
 	return graffiti_decal
 
 /obj/effect/spawner/random/trash/mopbucket
-	name = "mop bucket spawner"
+	name = "拖把桶生成器"
 	icon_state = "mopbucket"
 	spawn_loot_count = 2
 	spawn_loot_double = FALSE
@@ -337,7 +337,7 @@
 	)
 
 /obj/effect/spawner/random/trash/caution_sign
-	name = "caution sign spawner"
+	name = "警告标生成器"
 	icon_state = "caution"
 	loot = list(
 		/obj/item/clothing/suit/caution = 40,
@@ -348,7 +348,7 @@
 
 
 /obj/effect/spawner/random/trash/bucket
-	name = "bucket spawner"
+	name = "水桶生成器"
 	icon_state = "caution"
 	loot = list(
 		/obj/item/reagent_containers/cup/bucket,
@@ -356,7 +356,7 @@
 	)
 
 /obj/effect/spawner/random/trash/soap
-	name = "soap spawner"
+	name = "香皂生成器"
 	icon_state = "soap"
 	loot = list(
 		/obj/item/soap = 25,
@@ -369,7 +369,7 @@
 	)
 
 /obj/effect/spawner/random/trash/box
-	name = "box spawner"
+	name = "盒子生成器"
 	icon_state = "box"
 	loot = list(
 		/obj/structure/closet/cardboard = 5,
@@ -378,7 +378,7 @@
 	)
 
 /obj/effect/spawner/random/trash/bin
-	name = "trashbin spawner"
+	name = "垃圾箱生成器"
 	icon_state = "trash_bin"
 	loot = list(
 		/obj/structure/closet/crate/bin = 10,
@@ -390,7 +390,7 @@
 
 
 /obj/effect/spawner/random/trash/janitor_supplies
-	name = "janitor supplies spawner"
+	name = "清洁工物品生成器"
 	icon_state = "box_small"
 	loot = list(
 		/obj/item/storage/box/mousetraps,
@@ -400,14 +400,14 @@
 	)
 
 /obj/effect/spawner/random/trash/bacteria
-	name = "moldy food spawner"
+	name = "发霉食物生成器"
 	loot = list(
 		/obj/item/food/breadslice/moldy/bacteria,
 		/obj/item/food/pizzaslice/moldy/bacteria,
 	)
 
 /obj/effect/spawner/random/trash/crushed_can
-	name = "crushed can spawner"
+	name = "压扁罐头生成器"
 	icon_state = "crushed_can"
 	loot = list(/obj/item/trash/can)
 	/// Whether the can will spawn with this spawner's icon_state instead of a random one (used for mapedits)
@@ -426,7 +426,7 @@
 	return crushed_can
 
 /obj/effect/spawner/random/trash/ghetto_containers
-	name = "ghetto container spawner"
+	name = "简陋容器生成器"
 	loot = list(
 		/obj/item/reagent_containers/cup/bucket = 5,
 		/obj/item/reagent_containers/cup/glass/bottle = 5,

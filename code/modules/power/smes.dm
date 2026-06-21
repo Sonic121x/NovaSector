@@ -2,8 +2,8 @@
 // stores power
 
 /obj/machinery/power/smes
-	name = "power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	name = "电力存储单元"
+	desc = "一个高容量的超导磁储能装置（SMES）"
 	icon_state = "smes"
 	base_icon_state = "smes"
 	density = TRUE
@@ -125,16 +125,16 @@
 /obj/machinery/power/smes/examine(user)
 	. = ..()
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "opened"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("screwed")] [panel_open ? "closed" : "opened"]。")
 	if(panel_open)
 		if(!terminal)
-			. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
-		. += span_notice("It can [EXAMINE_HINT("wrenched")] to rotate.")
+			. += span_notice("它可以[EXAMINE_HINT("pried")]开。")
+		. += span_notice("它可以[EXAMINE_HINT("wrenched")]来旋转。")
 
 	if(!terminal)
-		. += span_warning("A terminal that requires [EXAMINE_HINT("10 cable pieces")] needs to be installed!.")
+		. += span_warning("需要安装一个需要[EXAMINE_HINT("10 cable pieces")]的终端！")
 	else if(panel_open)
-		. += span_notice("The terminal can be [EXAMINE_HINT("cut")] apart.")
+		. += span_notice("终端可以[EXAMINE_HINT("cut")]开。")
 
 /obj/machinery/power/smes/update_overlays()
 	. = ..()
@@ -222,19 +222,19 @@
 	var/turf/terminal_turf = get_turf(user)
 	if(!panel_open)
 		if(!silent && user)
-			balloon_alert(user, "open the maintenance panel!")
+			balloon_alert(user, "打开维护面板！")
 		return FALSE
 	if(terminal_turf.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		if(!silent && user)
-			balloon_alert(user, "remove the floor plating!")
+			balloon_alert(user, "移除地板！")
 		return FALSE
 	if(terminal)
 		if(!silent && user)
-			balloon_alert(user, "already wired!")
+			balloon_alert(user, "已经接好线了！")
 		return FALSE
 	if(installing_cable.get_amount() < 10)
 		if(!silent && user)
-			balloon_alert(user, "need ten lengths of cable!")
+			balloon_alert(user, "需要十段电缆！")
 		return FALSE
 	return TRUE
 
@@ -249,7 +249,7 @@
 		//select cable layer
 		var/terminal_cable_layer = installing_cable.target_layer
 		if(LAZYACCESS(modifiers, RIGHT_CLICK))
-			var/choice = tgui_input_list(user, "Select Power Input Cable Layer", "Select Cable Layer", GLOB.cable_name_to_layer)
+			var/choice = tgui_input_list(user, "选择电力输入电缆层级", "选择电缆层级", GLOB.cable_name_to_layer)
 			if(isnull(choice) \
 				|| !user.is_holding(installing_cable) \
 				|| !user.Adjacent(src) \
@@ -258,8 +258,8 @@
 			)
 				return ITEM_INTERACT_BLOCKING
 			terminal_cable_layer = GLOB.cable_name_to_layer[choice]
-		user.visible_message(span_notice("[user.name] starts adding cables to [src]."))
-		balloon_alert(user, "adding cables...")
+		user.visible_message(span_notice("[user.name]开始给[src]添加电缆。"))
+		balloon_alert(user, "正在添加电缆...")
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 
 		//use cable
@@ -274,8 +274,8 @@
 			do_sparks(5, TRUE, src)
 			return ITEM_INTERACT_BLOCKING
 		cable.use(10)
-		user.visible_message(span_notice("[user.name] adds cables to [src]."))
-		balloon_alert(user, "cables added")
+		user.visible_message(span_notice("[user.name]给[src]添加了电缆。"))
+		balloon_alert(user, "电缆已添加")
 
 		//build the terminal and link it to the network
 		terminal = new(turf)
@@ -301,7 +301,7 @@
 
 /obj/machinery/power/smes/crowbar_act(mob/living/user, obj/item/tool)
 	if(terminal)
-		balloon_alert(user, "remove the power terminal!")
+		balloon_alert(user, "先移除电源接线端！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(default_deconstruction_crowbar(user, tool))
@@ -322,15 +322,15 @@
 			if(term && term.dir == REVERSE_DIR(dir))
 				terminal = term
 				terminal.master = src
-				to_chat(user, span_notice("Terminal found."))
+				to_chat(user, span_notice("找到接线端。"))
 				set_machine_stat(machine_stat & ~BROKEN)
 				update_appearance(UPDATE_OVERLAYS)
 				return ITEM_INTERACT_SUCCESS
-		to_chat(user, span_alert("No power terminal found."))
+		to_chat(user, span_alert("未找到电源接线端。"))
 
 /obj/machinery/power/smes/cable_layer_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open panel first!")
+		balloon_alert(user, "先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -530,8 +530,8 @@
 
 // Variant of SMES that starts with super power cells for higher longevity
 /obj/machinery/power/smes/super
-	name = "super capacity power storage unit"
-	desc = "A super-capacity superconducting magnetic energy storage (SMES) unit. Relatively rare, and typically installed in long-range outposts where minimal maintenance is expected."
+	name = "超级容量电力储存单元"
+	desc = "一台超级容量的超导磁能储存（SMES）单元。相对罕见，通常安装在预期维护需求极少的远程前哨站。"
 	circuit = /obj/item/circuitboard/machine/smes/super
 
 /obj/machinery/power/smes/super/full
@@ -548,8 +548,8 @@
 	output_level = 90 KILO WATTS
 
 /obj/machinery/power/smes/magical
-	name = "magical power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
+	name = "魔法电力存储单元"
+	desc = "一个高容量的超导磁储能装置（SMES）。神奇地产生电能。"
 
 /obj/machinery/power/smes/magical/adjust_charge(charge_adjust)
 	//give charge without consuming anything

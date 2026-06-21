@@ -17,20 +17,20 @@
 		return ..()
 
 /obj/structure/plaque/static_plaque/atmos
-	name = "\improper FEA Atmospherics Division plaque"
-	desc = "This plaque commemorates the fall of the Atmos FEA division. For all the charred, dizzy, and brittle men who have died in its hands."
+	name = "\improper FEA大气部纪念标牌"
+	desc = "这块牌匾纪念了大气有限元素分析部门的陷落。致敬所有死于它手的烧焦、眩晕和脆脆的人。"
 
 /obj/structure/plaque/static_plaque/thunderdome
-	name = "\improper Thunderdome plaque"
-	desc = "This plaque commemorates those who have fallen in glorious combat.  For all the charred, dizzy, and beaten men who have died in its hands."
+	name = "\improper 雷霆竞技场纪念标牌"
+	desc = "这块纪念碑是为了纪念那些在英勇战斗中牺牲的勇士们。为了所有那些在它的庇护下遭受重创、失去理智、遍体鳞伤而逝去的生命。"
 
 /obj/structure/plaque/static_plaque/golden
-	name = "The Most Robust Men Award for Robustness"
-	desc = "To be Robust is not an action or a way of life, but a mental state. Only those with the force of Will strong enough to act during a crisis, saving friend from foe, are truly Robust. Stay Robust my friends."
+	name = "强健之最奖"
+	desc = "强健并不是一种行为，也不是一种生活方式，而是一种心态。只有那些意志强大到足以在危机中采取行动，危急关头救友于险境，才能算得上真正强健。保持强健，我的朋友们."
 	icon_state = "goldenplaque"
 
 /obj/structure/plaque/static_plaque/golden/captain
-	name = "The Most Robust Captain Award for Robustness"
+	name = "最强健之舰长奖"
 
 // Commission plaques, to give a little backstory to the stations. Commission dates are date of merge (or best approximation, in the case of Meta) + 540 years to convert to SS13 dates.
 // Where PRs are available, I've linked them. Where they are unavailable, a git hash is provided instead for the direct commit that added/removed the map.
@@ -38,7 +38,7 @@
 
 // Runtimestation: added Nov 11, 2016 (946ec1fec869eb59d6a84e32c90613af734fcd0e)
 /obj/structure/plaque/static_plaque/golden/commission
-	name = "commission plaque"
+	name = "服役证明"
 	desc = "Spinward Sector Station SS-13\n'Runtime' Class Outpost\nCommissioned 03/11/2556\n'Dedicated to the Pioneers'"
 	icon_state = "commission_nt"
 	layer = BELOW_OPEN_DOOR_LAYER
@@ -140,37 +140,37 @@
 // Space Station 13, Developer Class Outpost, Station Commissioned 30.12.2322, For the Glory of the Workers of the Third Soviet Union
 // The date for this station is exactly 4 centuries after the initial foundation of the (1st) Soviet Union. I have very little interest in tracking down the actual date of addition of Originalstation.
 /obj/structure/plaque/static_plaque/golden/commission/ks13
-	desc = "космическая-станция-13\nфорпост класса разработчика\nстанция сдана 30.12.2322\nво славу тружеников третьего советского союза"
+	desc = "向旋扇区站点ия-13\n’разработчика‘级前哨站\n2322 年 12 月 30 日竣工\n纪念第三苏联劳动人民的荣耀"
 	icon_state = "commission_commie"
 
 //These are plaques that aren't made of metal, so we'll just consider them signs. Those are made of plastic (default) or wood, not gold.
 //See: code>game>objects>structures>signs>_signs.dm
 
 /obj/structure/sign/plaques/kiddie
-	name = "\improper AI developers plaque"
-	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be disabled. Beneath the image, someone has scratched the word \"PACKETS\"."
+	name = "\improper AI开发者牌匾"
+	desc = "在长长的姓名与职务列表旁，有一副小孩的画像，看起来身有残疾。在画像下方，有人潦草地刻下了 \"PACKETS\"这个词。"
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/plaques/kiddie/devils_tooth
-	name = "\improper Devil's Tooth Plaque"
+	name = "\improper 恶魔之牙牌匾"
 	desc = "A plaque commemorating the fallen souls who had to die tunneling out this segment of the frozen ice planet that surrounds it. It's named \"Devil's Tooth\" because those who laid down their life here surely thought they were in hell."
 
 /obj/structure/sign/plaques/kiddie/badger
-	name = "\improper Remembrance Plaque"
-	desc = "A plaque commemorating the fallen, may they rest in peace, forever asleep amongst the stars. Someone has drawn a picture of a crying badger at the bottom."
+	name = "\improper 悼念标牌"
+	desc = "一块纪念亡者的牌匾，愿他们在群星中安睡，安息吧。有人在底部画了一幅哭泣的貛的图案。"
 
 /obj/structure/sign/plaques/kiddie/library
-	name = "\improper Library Rules Sign"
-	desc = "A long list of rules to be followed when in the library, extolling the virtues of being quiet at all times and threatening those who would dare eat hot food inside."
+	name = "\improper 图书馆规定标识"
+	desc = "列出了需要在图书馆里遵循的一长串规则，强调了任何时候都要保持安静，并对胆敢在馆内食用热食的人发出了严厉的威胁。"
 
 /obj/structure/sign/plaques/kiddie/perfect_man
-	name = "\improper 'Perfect Man' sign"
-	desc = "A guide to the exhibit, explaining how recent developments in mindshield implant and cloning technologies by Nanotrasen Corporation have led to the development and the effective immortality of the 'perfect man', the loyal Nanotrasen Employee."
+	name = "\improper '完美之人' 标识"
+	desc = "对展览的讲解，介绍了纳米传讯公司近期心盾植入和克隆技术的发展，如何促成了“完美之人”——忠诚纳米传讯员工的诞生与实质上的不朽。"
 
 /obj/structure/sign/plaques/kiddie/perfect_drone
-	name = "\improper 'Perfect Drone' sign"
-	desc = "A guide to the drone shell dispenser, detailing the constructive and destructive applications of modern repair drones, as well as the development of the incorruptible cyborg servants of tomorrow, available today."
+	name = "\improper '完美之机' 标识"
+	desc = "对无人机壳分配器的讲解，详细介绍了现代维修无人机的建设性和破坏性应用，以及对未来那种永不被腐化的仆从赛博的展望，如今，未来已至。"
 
 /obj/structure/sign/plaques/kiddie/gameoflife
-	name = "\improper Conway's The Game Of Life plaque"
-	desc = "A plaque detailing the historical significance of The Game Of Life in the field of computer science, and that the mural underfoot is a representation of the game in action."
+	name = "\improper 《康威生命游戏》纪念牌匾"
+	desc = "一块详细介绍了生命游戏在计算机科学领域的巨大历史性意义的牌匾，其下的壁画则是一个在运行的游戏的展现。"

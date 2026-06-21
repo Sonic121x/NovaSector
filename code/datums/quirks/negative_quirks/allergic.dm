@@ -1,10 +1,10 @@
 /datum/quirk/item_quirk/allergic
 	name = "Extreme Medicine Allergy"
-	desc = "Ever since you were a kid, you've been allergic to certain chemicals..."
+	desc = "从小时候起，你就对某些化学物质过敏……"
 	icon = FA_ICON_PRESCRIPTION_BOTTLE
 	value = -6
-	gain_text = span_danger("You feel your immune system shift.")
-	lose_text = span_notice("You feel your immune system phase back into perfect shape.")
+	gain_text = span_danger("你感觉你的免疫系统发生了变化。")
+	lose_text = span_notice("你感觉你的免疫系统恢复到了完美状态。")
 	medical_record_text = "Patient's immune system responds violently to certain chemicals."
 	hardcore_value = 3
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
@@ -43,7 +43,7 @@
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/obj/item/clothing/accessory/dogtag/allergy/dogtag = new(get_turf(human_holder), allergy_string)
 
-	give_item_to_holder(dogtag, list(LOCATION_BACKPACK, LOCATION_HANDS), flavour_text = "Make sure medical staff can see this...", notify_player = TRUE)
+	give_item_to_holder(dogtag, list(LOCATION_BACKPACK, LOCATION_HANDS), flavour_text = "确保医疗人员能看到这个...", notify_player = TRUE)
 
 /datum/quirk/item_quirk/allergic/remove()
 	UnregisterSignal(quirk_holder, COMSIG_MOB_REAGENT_TICK)

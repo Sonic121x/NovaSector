@@ -23,55 +23,55 @@
 		REMOVE_TRAIT(host, trait, REF(borer))
 
 /datum/borer_focus/head
-	name = "head focus"
+	name = "头部专注"
 	traits = list(TRAIT_NOFLASH, TRAIT_TRUE_NIGHT_VISION, TRAIT_KNOW_ENGI_WIRES)
 
 /datum/borer_focus/head/on_add(mob/living/carbon/human/host, mob/living/basic/cortical_borer/borer)
-	to_chat(host, span_notice("Your eyes begin to feel strange..."))
+	to_chat(host, span_notice("你的眼睛开始感觉有些奇怪..."))
 	return ..()
 
 /datum/borer_focus/head/on_remove(mob/living/carbon/human/host, mob/living/basic/cortical_borer/borer)
-	to_chat(host, span_notice("Your eyes begin to return to normal..."))
+	to_chat(host, span_notice("你的眼睛开始恢复正常..."))
 	host.update_sight()
 	return ..()
 
 /datum/borer_focus/chest
-	name = "chest focus"
+	name = "胸部专注"
 	traits = list(TRAIT_NOBREATH, TRAIT_NOHUNGER, TRAIT_STABLEHEART)
 
 /datum/borer_focus/chest/on_add(mob/living/carbon/human/host, mob/living/basic/cortical_borer/borer)
-	to_chat(host, span_notice("Your chest begins to slow down..."))
+	to_chat(host, span_notice("你的胸膛开始放缓..."))
 	host.nutrition = NUTRITION_LEVEL_WELL_FED
 	return ..()
 
 /datum/borer_focus/chest/on_remove(mob/living/carbon/human/host, mob/living/basic/cortical_borer/borer)
-	to_chat(host, span_notice("Your chest begins to heave again..."))
+	to_chat(host, span_notice("你的胸膛又开始起伏了..."))
 	return ..()
 
 /datum/borer_focus/arms
-	name = "arm focus"
+	name = "手臂专注"
 	traits = list(TRAIT_QUICKER_CARRY, TRAIT_QUICK_BUILD, TRAIT_SHOCKIMMUNE)
 
 /datum/borer_focus/arms/on_add(mob/living/carbon/human/host, mob/living/basic/cortical_borer/borer)
-	to_chat(host, span_notice("Your arms start to feel funny..."))
+	to_chat(host, span_notice("你的手臂开始感觉怪怪的..."))
 	borer.human_host.add_actionspeed_modifier(/datum/actionspeed_modifier/focus_speed)
 	return ..()
 
 /datum/borer_focus/arms/on_remove(mob/living/carbon/human/host, mob/living/basic/cortical_borer/borer)
-	to_chat(host, span_notice("Your arms start to feel normal again..."))
+	to_chat(host, span_notice("你的手臂开始恢复正常感觉..."))
 	borer.human_host.remove_actionspeed_modifier(ACTIONSPEED_ID_BORER)
 	return ..()
 
 /datum/borer_focus/legs
-	name = "leg focus"
+	name = "腿部专注"
 	traits = list(TRAIT_LIGHT_STEP, TRAIT_FREERUNNING, TRAIT_SILENT_FOOTSTEPS)
 
 /datum/borer_focus/legs/on_add(mob/living/carbon/human/host, mob/living/basic/cortical_borer/borer)
-	to_chat(host, span_notice("You feel faster..."))
+	to_chat(host, span_notice("你感觉更快了..."))
 	host.add_movespeed_modifier(/datum/movespeed_modifier/focus_speed)
 	return ..()
 
 /datum/borer_focus/legs/on_remove(mob/living/carbon/human/host, mob/living/basic/cortical_borer/borer)
-	to_chat(host, span_notice("You feel slower..."))
+	to_chat(host, span_notice("你感觉变慢了..."))
 	host.remove_movespeed_modifier(/datum/movespeed_modifier/focus_speed)
 	return ..()

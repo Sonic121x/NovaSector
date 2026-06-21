@@ -1,6 +1,6 @@
 /obj/item/clothing/accessory/breathing
-	name = "breathing dogtag"
-	desc = "A dogtag which labels what kind of gas a person may breathe."
+	name = "呼吸识别牌"
+	desc = "一个标明佩戴者可呼吸何种气体的狗牌。"
 	icon_state = "allergy"
 	above_suit = FALSE
 	attachment_slot = NONE

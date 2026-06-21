@@ -6,7 +6,7 @@
 /// S close enough for government work though.
 /// Fuck you goonstation
 SUBSYSTEM_DEF(wardrobe)
-	name = "Wardrobe"
+	name = "衣橱"
 	wait = 10 // This is more like a queue then anything else
 	ss_flags = SS_BACKGROUND
 	dependencies = list(

@@ -1,9 +1,9 @@
 ///Robot customers
 /mob/living/basic/robot_customer
-	name = "tourist bot"
+	name = "游客机器人"
 	maxHealth = 150
 	health = 150
-	desc = "I wonder what they'll order..."
+	desc = "不知道他们会点什么..."
 	gender = NEUTER
 
 	icon = 'icons/mob/simple/tourists.dmi'
@@ -51,7 +51,7 @@
 
 	icon = customer_info.base_icon
 	icon_state = customer_info.base_icon_state
-	name = "[pick(customer_info.name_prefixes)]-bot"
+	name = "[pick(customer_info.name_prefixes)]-机器人"
 	add_atom_colour(rgb(rand(80,255), rand(80,255), rand(80,255)), FIXED_COLOUR_PRIORITY)
 	clothes_set = pick(customer_info.clothing_sets)
 	update_appearance(UPDATE_ICON)
@@ -119,7 +119,7 @@
 	else
 		order = attending_venue.order_food_line(wanted_item)
 
-	. += span_notice("Their order was: \"[order].\"")
+	. += span_notice("他们的订单是：\"[order]。\"")
 
 /mob/living/basic/robot_customer/death()
 	new /obj/effect/gibspawner/robot(drop_location())

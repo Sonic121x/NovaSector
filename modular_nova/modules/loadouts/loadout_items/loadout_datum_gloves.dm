@@ -27,51 +27,51 @@
 */
 
 /datum/loadout_item/gloves/armwraps
-	name = "Arm Wraps (Colorable)"
+	name = "臂带（可着色）"
 	item_path = /obj/item/clothing/gloves/bracer/wraps
 
 /datum/loadout_item/gloves/black
-	name = "Gloves (Black)"
+	name = "手套（黑色）"
 	item_path = /obj/item/clothing/gloves/color/black
 
 /datum/loadout_item/gloves/brown
-	name = "Gloves (Brown)"
+	name = "手套（棕色）"
 	item_path = /obj/item/clothing/gloves/color/brown
 
 /datum/loadout_item/gloves/blue
-	name = "Gloves (Blue)"
+	name = "手套（蓝色）"
 	item_path = /obj/item/clothing/gloves/color/blue
 
 /datum/loadout_item/gloves/green
-	name = "Gloves (Green)"
+	name = "手套（绿色）"
 	item_path = /obj/item/clothing/gloves/color/green
 
 /datum/loadout_item/gloves/grey
-	name = "Gloves (Grey)"
+	name = "手套（灰色）"
 	item_path = /obj/item/clothing/gloves/color/grey
 
 /datum/loadout_item/gloves/light_brown
-	name = "Gloves (Light Brown)"
+	name = "手套（浅棕色）"
 	item_path = /obj/item/clothing/gloves/color/light_brown
 
 /datum/loadout_item/gloves/orange
-	name = "Gloves (Orange)"
+	name = "手套（橙色）"
 	item_path = /obj/item/clothing/gloves/color/orange
 
 /datum/loadout_item/gloves/purple
-	name = "Gloves (Purple)"
+	name = "手套（紫色）"
 	item_path = /obj/item/clothing/gloves/color/purple
 
 /datum/loadout_item/gloves/red
-	name = "Gloves (Red)"
+	name = "手套（红色）"
 	item_path = /obj/item/clothing/gloves/color/red
 
 /datum/loadout_item/gloves/white
-	name = "Gloves (White)"
+	name = "手套（白色）"
 	item_path = /obj/item/clothing/gloves/color/white
 
 /datum/loadout_item/gloves/yellow
-	name = "Gloves (Yellow)"
+	name = "手套（黄色）"
 	item_path = /obj/item/clothing/gloves/color/ffyellow
 
 /datum/loadout_item/gloves/yellow/get_item_information()
@@ -79,31 +79,31 @@
 	.[FA_ICON_BOLT] = "Non-Insulating"
 
 /datum/loadout_item/gloves/kim
-	name = "Gloves - Aerostatic"
+	name = "手套 - 气动式"
 	item_path = /obj/item/clothing/gloves/kim
 
 /datum/loadout_item/gloves/lalune_long
-	name = "Gloves - Designer"
+	name = "手套 - 设计师款"
 	item_path = /obj/item/clothing/gloves/designer
 
 /datum/loadout_item/gloves/evening
-	name = "Gloves - Evening"
+	name = "手套 - 晚宴款"
 	item_path = /obj/item/clothing/gloves/evening
 
 /datum/loadout_item/gloves/rainbow
-	name = "Gloves - Rainbow"
+	name = "手套 - 彩虹款"
 	item_path = /obj/item/clothing/gloves/color/rainbow
 
 /datum/loadout_item/gloves/maid_arm_covers
-	name = "Maid Arm Covers (Colorable)"
+	name = "女仆臂套（可着色）"
 	item_path = /obj/item/clothing/gloves/maid_arm_covers
 
 /datum/loadout_item/gloves/tactical_maid_sleeves
-	name = "Maid Arm Covers - Tactical"
+	name = "女仆臂套 - 战术款"
 	item_path = /obj/item/clothing/gloves/tactical_maid
 
 /datum/loadout_item/gloves/pink_clown_gloves
-	name = "Pink Clown Gloves"
+	name = "粉色小丑手套"
 	item_path = /obj/item/clothing/gloves/pink_clown
 
 /datum/loadout_item/gloves/recolorable
@@ -127,15 +127,15 @@
 */
 
 /datum/loadout_item/gloves/diamondring
-	name = "Ring - Diamond"
+	name = "戒指 - 钻石"
 	item_path = /obj/item/clothing/gloves/ring/diamond
 
 /datum/loadout_item/gloves/goldring
-	name = "Ring - Gold"
+	name = "戒指 - 黄金"
 	item_path = /obj/item/clothing/gloves/ring
 
 /datum/loadout_item/gloves/silverring
-	name = "Ring - Silver"
+	name = "戒指 - 白银"
 	item_path = /obj/item/clothing/gloves/ring/silver
 
 /*
@@ -143,7 +143,7 @@
 */
 
 /datum/loadout_item/gloves/latex
-	name = "Latex Gloves"
+	name = "乳胶手套"
 	item_path = /obj/item/clothing/gloves/long_gloves
 	erp_item = TRUE
 
@@ -156,5 +156,5 @@
 	donator_only = TRUE
 
 /datum/loadout_item/gloves/donator/military
-	name = "Military Gloves"
+	name = "军用战术手套"
 	item_path = /obj/item/clothing/gloves/military

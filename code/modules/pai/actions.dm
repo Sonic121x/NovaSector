@@ -1,5 +1,5 @@
 /datum/action/innate/pai
-	name = "PAI Action"
+	name = "pAI运行"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	var/mob/living/silicon/pai/pai_owner
 
@@ -10,7 +10,7 @@
 	return ..()
 
 /datum/action/innate/pai/software
-	name = "Software Interface"
+	name = "软件界面"
 	button_icon_state = "pai"
 	background_icon_state = "bg_tech"
 	overlay_icon_state = "bg_tech_border"
@@ -22,7 +22,7 @@
 	pai_owner.ui_act()
 
 /datum/action/innate/pai/shell
-	name = "Toggle Holoform"
+	name = "切换全息形态"
 	button_icon_state = "pai_holoform"
 	background_icon_state = "bg_tech"
 	overlay_icon_state = "bg_tech_border"
@@ -37,7 +37,7 @@
 		pai_owner.fold_out()
 
 /datum/action/innate/pai/chassis
-	name = "Holochassis Appearance Composite"
+	name = "全息底盘外观合成"
 	button_icon_state = "pai_chassis"
 	background_icon_state = "bg_tech"
 	overlay_icon_state = "bg_tech_border"
@@ -49,7 +49,7 @@
 	pai_owner.choose_chassis()
 
 /datum/action/innate/pai/rest
-	name = "Rest"
+	name = "休息"
 	button_icon_state = "pai_rest"
 	background_icon_state = "bg_tech"
 	overlay_icon_state = "bg_tech_border"
@@ -61,7 +61,7 @@
 	pai_owner.toggle_resting()
 
 /datum/action/innate/pai/light
-	name = "Toggle Integrated Lights"
+	name = "切换集成灯带"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "emp"
 	background_icon_state = "bg_tech"
@@ -74,7 +74,7 @@
 	pai_owner.toggle_integrated_light()
 
 /datum/action/innate/pai/messenger
-	name = "Interact with PDA"
+	name = "与PDA交互"
 	button_icon_state = "pda"
 	background_icon_state = "bg_tech"
 	overlay_icon_state = "bg_tech_border"
@@ -85,7 +85,7 @@
 		return
 	var/obj/item/pai_card/pai_holder = owner.loc
 	if(!istype(pai_holder.loc, /obj/item/modular_computer))
-		owner.balloon_alert(owner, "not in a pda!")
+		owner.balloon_alert(owner, "不在PDA中！")
 		return
 	var/obj/item/modular_computer/computer_host = pai_holder.loc
 	computer_host.interact(owner)

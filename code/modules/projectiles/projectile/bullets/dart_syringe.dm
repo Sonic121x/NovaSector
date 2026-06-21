@@ -1,5 +1,5 @@
 /obj/projectile/bullet/dart
-	name = "dart"
+	name = "飞镖"
 	icon_state = "cbbolt"
 	damage = 6
 	embed_type = null
@@ -20,8 +20,8 @@
 				return BULLET_ACT_HIT
 			else
 				blocked = 100
-				target.visible_message(span_danger("\The [src] is deflected!"), \
-									   span_userdanger("You are protected against \the [src]!"))
+				target.visible_message(span_danger("\The [src] 被偏转了！"), \
+									   span_userdanger("你受到了对\the [src]的保护！"))
 
 	..(target, blocked)
 	reagents.flags &= ~(NO_REACT)
@@ -35,7 +35,7 @@
 	reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 5)
 
 /obj/projectile/bullet/dart/syringe
-	name = "syringe"
+	name = "注射器"
 	icon_state = "syringeproj"
 	/// Syringe stored by this projectile
 	var/obj/item/reagent_containers/syringe/inner_syringe

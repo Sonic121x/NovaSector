@@ -4,7 +4,7 @@
 		var/obj/item/ai_module/MOD = W
 		disconnect_shell()
 		if(!mind) //A player mind is required for law procs to run antag checks.
-			to_chat(user, span_warning("[src] is entirely unresponsive!"))
+			to_chat(user, span_warning("[src]完全无响应！"))
 			return
 		MOD.install(laws, user) //Proc includes a success mesage so we don't need another one
 		return
@@ -50,10 +50,10 @@
 /mob/living/silicon/ai/emag_act(mob/user, obj/item/card/emag/emag_card) ///emags access panel lock, so you can crowbar it without robotics access or consent
 	. = ..()
 	if(emagged)
-		balloon_alert(user, "access panel lock already shorted!")
+		balloon_alert(user, "访问面板锁已短路！")
 		return
-	balloon_alert(user, "access panel lock shorted")
-	var/message = (user ? "[user] shorts out your access panel lock!" : "Your access panel lock was short circuited!")
+	balloon_alert(user, "访问面板锁短路")
+	var/message = (user ? "[user] 短路了你的访问面板锁！" : "你的访问面板锁被短路了！")
 	to_chat(src, span_warning(message))
 	do_sparks(3, FALSE, src) // just a bit of extra "oh shit" to the ai - might grab its attention
 	emagged = TRUE
@@ -65,15 +65,15 @@
 		return
 	if(stat != DEAD && !incapacitated && (client || deployed_shell?.client))
 		// alive and well AIs control their floor bolts
-		balloon_alert(user, "the AI's bolt motors resist.")
+		balloon_alert(user, "AI的螺栓马达抵抗了。")
 		return ITEM_INTERACT_SUCCESS
-	balloon_alert(user, "[!is_anchored ? "tightening" : "loosening"] bolts...")
-	balloon_alert(src, "bolts being [!is_anchored ? "tightened" : "loosened"]...")
+	balloon_alert(user, "[!is_anchored ? "tightening" : "loosening"]螺栓...")
+	balloon_alert(src, "螺栓正在被[!is_anchored ? "tightened" : "loosened"]...")
 	if(!tool.use_tool(src, user, 4 SECONDS))
 		return ITEM_INTERACT_SUCCESS
 	flip_anchored()
-	balloon_alert(user, "bolts [is_anchored ? "tightened" : "loosened"]")
-	balloon_alert(src, "bolts [is_anchored ? "tightened" : "loosened"]")
+	balloon_alert(user, "螺栓[is_anchored ? "tightened" : "loosened"]")
+	balloon_alert(src, "螺栓[is_anchored ? "tightened" : "loosened"]")
 	return ITEM_INTERACT_SUCCESS
 
 /mob/living/silicon/ai/crowbar_act(mob/living/user, obj/item/tool)
@@ -81,22 +81,22 @@
 	if(user.combat_mode)
 		return
 	if(!is_anchored)
-		balloon_alert(user, "bolt it down first!")
+		balloon_alert(user, "先把它固定住！")
 		return ITEM_INTERACT_SUCCESS
 	if(opened)
 		if(emagged)
-			balloon_alert(user, "access panel lock damaged!")
+			balloon_alert(user, "访问面板锁已损坏！")
 			return ITEM_INTERACT_SUCCESS
-		balloon_alert(user, "closing access panel...")
-		balloon_alert(src, "access panel being closed...")
+		balloon_alert(user, "正在关闭检修面板...")
+		balloon_alert(src, "检修面板正在被关闭...")
 		if(!tool.use_tool(src, user, 5 SECONDS))
 			return ITEM_INTERACT_SUCCESS
-		balloon_alert(src, "access panel closed")
-		balloon_alert(user, "access panel closed")
+		balloon_alert(src, "检修面板已关闭")
+		balloon_alert(user, "检修面板已关闭")
 		opened = FALSE
 		return ITEM_INTERACT_SUCCESS
 	if(stat == DEAD)
-		to_chat(user, span_warning("The access panel looks damaged, you try dislodging the cover."))
+		to_chat(user, span_warning("检修面板看起来损坏了，你试图撬开盖板。"))
 	else
 		var/consent
 		var/consent_override = FALSE
@@ -107,25 +107,25 @@
 				if(ACCESS_ROBOTICS in access)
 					consent_override = TRUE
 		if(mind)
-			consent = tgui_alert(src, "[user] is attempting to open your access panel, unlock the cover?", "AI Access Panel", list("Yes", "No"))
+			consent = tgui_alert(src, "[user] 正试图打开你的检修面板，要解锁面板盖吗？", "AI 检修面板", list("Yes", "No"))
 			if(consent == "No" && !consent_override && !emagged)
-				to_chat(user, span_notice("[src] refuses to unlock its access panel."))
+				to_chat(user, span_notice("[src]拒绝解锁其检修面板。"))
 				return ITEM_INTERACT_SUCCESS
 			if(consent != "Yes" && (consent_override || emagged))
-				to_chat(user, span_warning("[src] refuses to unlock its access panel...so you[!emagged ? " swipe your ID and " : " "]open it anyway!"))
+				to_chat(user, span_warning("[src] 拒绝解锁其检修面板……所以你[!emagged ? " swipe your ID and " : " "]强行打开了它！"))
 		else
 			if(!consent_override && !emagged)
-				to_chat(user, span_notice("[src] did not respond to your request to unlock its access panel cover lock."))
+				to_chat(user, span_notice("[src]没有响应你解锁其检修面板盖锁的请求。"))
 				return ITEM_INTERACT_SUCCESS
 			else
-				to_chat(user, span_notice("[src] did not respond to your request to unlock its access panel cover lock. You[!emagged ? " swipe your ID and " : " "]open it anyway."))
+				to_chat(user, span_notice("[src] 没有回应你解锁其检修面板盖锁的请求。你[!emagged ? " swipe your ID and " : " "]强行打开了它。"))
 
-	balloon_alert(user, "prying open access panel...")
-	balloon_alert(src, "access panel being pried open...")
+	balloon_alert(user, "正在撬开检修面板...")
+	balloon_alert(src, "检修面板正在被撬开...")
 	if(!tool.use_tool(src, user, (stat == DEAD ? 40 SECONDS : 5 SECONDS)))
 		return ITEM_INTERACT_SUCCESS
-	balloon_alert(src, "access panel opened")
-	balloon_alert(user, "access panel opened")
+	balloon_alert(src, "检修面板已打开")
+	balloon_alert(user, "检修面板已打开")
 	opened = TRUE
 	return ITEM_INTERACT_SUCCESS
 
@@ -134,23 +134,23 @@
 	if(user.combat_mode)
 		return
 	if(!is_anchored)
-		balloon_alert(user, "bolt it down first!")
+		balloon_alert(user, "先把它用螺栓固定住！")
 		return ITEM_INTERACT_SUCCESS
 	if(!opened)
-		balloon_alert(user, "open the access panel first!")
+		balloon_alert(user, "先打开检修面板！")
 		return ITEM_INTERACT_SUCCESS
-	balloon_alert(src, "neural network being disconnected...")
-	balloon_alert(user, "disconnecting neural network...")
+	balloon_alert(src, "神经网络正在断开连接...")
+	balloon_alert(user, "正在断开神经网络连接...")
 	if(!tool.use_tool(src, user, (stat == DEAD ? 5 SECONDS : 40 SECONDS)))
 		return ITEM_INTERACT_SUCCESS
 	if(IS_MALF_AI(src))
-		to_chat(user, span_userdanger("The voltage inside the wires rises dramatically!"))
+		to_chat(user, span_userdanger("电线内部的电压急剧上升！"))
 		user.electrocute_act(120, src)
 		opened = FALSE
 		return ITEM_INTERACT_SUCCESS
-	to_chat(src, span_danger("You feel incredibly confused and disorientated."))
+	to_chat(src, span_danger("你感到极度困惑和迷失方向。"))
 	var/atom/ai_structure = ai_mob_to_structure()
-	ai_structure.balloon_alert(user, "disconnected neural network")
+	ai_structure.balloon_alert(user, "已断开神经网络连接")
 	return ITEM_INTERACT_SUCCESS
 
 /mob/living/silicon/ai/attack_effects(damage_done, hit_zone, armor_block, obj/item/attacking_item, mob/living/attacker)

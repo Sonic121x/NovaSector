@@ -62,9 +62,9 @@
 				part_type = /obj/item/bodypart/leg/right/flesh
 
 		carbon_mob.visible_message(
-			span_danger("[carbon_mob][carbon_mob.p_s()] limb suddenly swells and rips apart, revealing brand new red bloody flesh!"),
-			span_bolddanger("Your limb suddenly swells and rips apart, revealing brand new red bloody flesh!"),
-			blind_message = span_hear("You hear gore sounds, like someone is tearing up flesh and breaking bones."),
+			span_danger("[carbon_mob][carbon_mob.p_s()]的肢体突然肿胀并撕裂，露出了全新的血红色血肉！"),
+			span_bolddanger("你的肢体突然肿胀并撕裂，露出了全新的、血淋淋的鲜肉！"),
+			blind_message = span_hear("你听到血肉撕裂和骨头断裂的可怕声音。"),
 		)
 		var/obj/item/bodypart/new_bodypart = new part_type()
 		var/mob/living/basic/living_limb_flesh/parasite = new /mob/living/basic/living_limb_flesh

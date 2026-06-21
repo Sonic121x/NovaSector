@@ -160,7 +160,7 @@
 	if(crayon.check_empty(user))
 		return FALSE
 	if(crayon.is_capped)
-		to_chat(user, span_warning("Take the cap off first!"))
+		to_chat(user, span_warning("需要先取下盖子."))
 		return FALSE
 	return TRUE
 

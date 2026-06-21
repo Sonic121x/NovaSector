@@ -187,14 +187,14 @@ GLOBAL_LIST_EMPTY(exploration_sites)
 /// Sites
 
 /datum/exploration_site/abandoned_refueling_station
-	name = "abandoned refueling station"
-	description = "An old shuttle refueling station drifting through the void."
+	name = "废弃的加油站"
+	description = "一座在虚空中漂流的旧穿梭机燃料补给站。"
 	band_info = list(EXOSCANNER_BAND_TECH = 1)
 	site_traits = list(EXPLORATION_SITE_RUINS,EXPLORATION_SITE_TECHNOLOGY,EXPLORATION_SITE_STATION)
 
 /datum/exploration_site/trader_post
-	name = "unregistered trading station"
-	description = "A weak radio transmission advertises this place as RANDOMIZED_NAME"
+	name = "未注册的贸易站"
+	description = "一段微弱的无线电传输将此地宣传为RANDOMIZED_NAME"
 	band_info = list(EXOSCANNER_BAND_TECH = 1, EXOSCANNER_BAND_LIFE = 1)
 	site_traits = list(EXPLORATION_SITE_TECHNOLOGY,EXPLORATION_SITE_STATION,EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_CIVILIZED)
 	fluff_type = "fluff_trading"
@@ -202,24 +202,24 @@ GLOBAL_LIST_EMPTY(exploration_sites)
 /datum/exploration_site/trader_post/New(band)
 	. = ..()
 	var/chosen_name = pick_list(EXODRONE_FILE,"trading_station_names")
-	name = "\"[chosen_name]\" trading station"
+	name = "\"[chosen_name]\" 贸易站"
 	description = replacetext(description,"RANDOMIZED_NAME",chosen_name)
 
 /datum/exploration_site/cargo_wreck
-	name = "interstellar cargo ship wreckage"
-	description = "Wreckage of a long-range cargo shuttle."
+	name = "星际货运飞船残骸"
+	description = "一架远程货运穿梭机的残骸。"
 	band_info = list(EXOSCANNER_BAND_TECH = 1, EXOSCANNER_BAND_DENSITY = 1)
 	site_traits = list(EXPLORATION_SITE_SHIP,EXPLORATION_SITE_TECHNOLOGY)
 
 /datum/exploration_site/alien_spaceship
-	name = "ancient alien spaceship"
-	description = "A gigantic spaceship of unknown origin. It doesn't respond to your hails but does not prevent you boarding, either."
+	name = "古代外星飞船"
+	description = "一艘来源不明的巨型飞船。它没有回应你的呼叫，但也没有阻止你登船。"
 	band_info = list(EXOSCANNER_BAND_TECH = 1, EXOSCANNER_BAND_RADIATION = 1)
 	site_traits = list(EXPLORATION_SITE_SHIP,EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_ALIEN)
 
 /datum/exploration_site/uncharted_planet
-	name = "uncharted planet"
-	description = "A planet missing from Nanotrasen starcharts."
+	name = "未知星球"
+	description = "一颗未在纳米传讯星图上标注的行星。"
 	band_info = list(EXOSCANNER_BAND_LIFE = 3)
 	site_traits = list(EXPLORATION_SITE_SURFACE)
 
@@ -237,27 +237,27 @@ GLOBAL_LIST_EMPTY(exploration_sites)
 	. = ..()
 
 /datum/exploration_site/alien_ruins
-	name = "alien ruins"
-	description = "Alien ruins on a small moon's surface."
+	name = "外星遗迹"
+	description = "一颗小卫星表面的外星遗迹。"
 	site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_SURFACE,EXPLORATION_SITE_ALIEN,EXPLORATION_SITE_RUINS)
 	fluff_type = "fluff_ruins"
 
 /datum/exploration_site/asteroid_belt
-	name = "asteroid belt"
-	description = "A dense asteroid belt."
+	name = "小行星带"
+	description = "一片密集的小行星带。"
 	site_traits = list(EXPLORATION_SITE_SURFACE)
 	fluff_type = "fluff_space"
 
 /datum/exploration_site/spacemine
-	name = "mining facility"
-	description = "An abandoned mining facility attached to an ore-rich asteroid."
+	name = "矿场"
+	description = "一座附着在富矿小行星上的废弃采矿设施。"
 	band_info = list(EXOSCANNER_BAND_PLASMA = 3)
 	site_traits = list(EXPLORATION_SITE_RUINS,EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_SURFACE)
 	fluff_type = "fluff_ruins"
 
 /datum/exploration_site/junkyard
-	name = "space junk field"
-	description = "A giant cluster of space junk."
+	name = "太空垃圾场"
+	description = "一大片太空垃圾堆。"
 	band_info = list(EXOSCANNER_BAND_DENSITY = 3)
 	site_traits = list(EXPLORATION_SITE_TECHNOLOGY,EXPLORATION_SITE_SPACE)
 	fluff_type = "fluff_space"

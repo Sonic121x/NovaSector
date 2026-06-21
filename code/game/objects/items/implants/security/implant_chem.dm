@@ -1,6 +1,6 @@
 /obj/item/implant/chem
-	name = "chem implant"
-	desc = "Injects things."
+	name = "化学植入物"
+	desc = "注射物品。"
 	icon_state = "reagents"
 	actions_types = null
 	implant_flags = IMPLANT_TYPE_SECURITY
@@ -86,9 +86,9 @@
 	else
 		injectamount = cause
 	reagents.trans_to(R, injectamount)
-	to_chat(R, span_hear("You hear a faint beep."))
+	to_chat(R, span_hear("你听到一声微弱的哔哔声。"))
 	if(!reagents.total_volume)
-		to_chat(R, span_hear("You hear a faint click from your chest."))
+		to_chat(R, span_hear("你听到胸口传来一声轻微的咔哒声。"))
 		qdel(src)
 
 /obj/item/implant/chem/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -110,6 +110,6 @@
 	activate(reagents.total_volume)
 
 /obj/item/implantcase/chem
-	name = "implant case - 'Remote Chemical'"
-	desc = "A glass case containing a remote chemical implant."
+	name = "植入物盒 - '远程化学'"
+	desc = "一个装有远程化学植入物的玻璃盒。"
 	imp_type = /obj/item/implant/chem

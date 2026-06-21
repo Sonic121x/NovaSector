@@ -1,8 +1,8 @@
 #define AI_CORE_BRAIN(X) X.braintype == "Android" ? "brain" : "MMI"
 
 /obj/structure/ai_core
-	name = "\improper AI core"
-	desc = "The framework for an artificial intelligence core."
+	name = "\improper AI核心"
+	desc = "人工智能核心的框架。"
 	icon = 'icons/mob/silicon/ai.dmi'
 	icon_state = "build_0"
 	base_icon_state = "build_"
@@ -95,14 +95,14 @@
 
 	switch(state)
 		if(CORE_STATE_EMPTY)
-			. += span_notice("There is a <b>slot</b> for a circuit board, the frame can be <b>melted</b> down.")
+			. += span_notice("有一个用于放置电路板的<b>插槽</b>，框架可以<b>熔化</b>回收。")
 		if(CORE_STATE_CIRCUIT)
-			. += span_notice("The circuit board can be <b>screwed</b> into place or <b>pried</b> out.")
+			. += span_notice("电路板可以<b>拧紧</b>固定或<b>撬出</b>。")
 		if(CORE_STATE_SCREWED)
-			. += span_notice("The frame can be <b>wired</b>, the circuit board can be <b>unfastened</b>.")
+			. += span_notice("框架可以<b>接线</b>，电路板可以<b>松开</b>。")
 		if(CORE_STATE_CABLED)
 			if(!core_mmi)
-				. += span_notice("There are wires which could be hooked up to an <b>MMI or positronic brain</b>, or <b>cut</b>.")
+				. += span_notice("有电线可以连接到<b>MMI或正电子脑</b>，或者<b>切断</b>。")
 			else
 				var/accept_laws = TRUE
 				if(core_mmi.laws.id != DEFAULT_AI_LAWID || !core_mmi.brainmob || !core_mmi.brainmob?.mind)
@@ -111,7 +111,7 @@
 		if(CORE_STATE_GLASSED)
 			. += span_notice("The monitor [core_mmi?.brainmob?.mind && !suicide_check() ? "and neural interface " : ""]can be <b>screwed</b> in, the panel can be <b>pried</b> out.")
 		if(CORE_STATE_FINISHED)
-			. += span_notice("The monitor's connection can be <b>cut</b>[core_mmi?.brainmob?.mind && !suicide_check() ? " the neural interface can be <b>screwed</b> in." : "."]")
+			. += span_notice("监视器的连接可以<b>切断</b>[core_mmi?.brainmob?.mind && !suicide_check() ? " the neural interface can be <b>screwed</b> in." : "."]")
 
 /obj/structure/ai_core/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(state < CORE_STATE_FINISHED)
@@ -124,8 +124,8 @@
 	return (state == state_to_check)
 
 /obj/structure/ai_core/latejoin_inactive
-	name = "networked AI core"
-	desc = "This AI core is connected by bluespace transmitters to NTNet, allowing for an AI personality to be downloaded to it on the fly mid-shift."
+	name = "联网AI核心"
+	desc = "这个AI核心通过蓝空间发射器连接到NTNet，允许在班次中途动态下载AI人格。"
 	anchored = TRUE
 	state = CORE_STATE_FINISHED
 	var/available = TRUE
@@ -143,7 +143,7 @@
 /obj/structure/ai_core/latejoin_inactive/examine(mob/user)
 	. = ..()
 	. += "Its transmitter seems to be <b>[active? "on" : "off"]</b>."
-	. += span_notice("You could [active? "deactivate" : "activate"] it with a multitool.")
+	. += span_notice("你可以用多功能工具[active? "deactivate" : "activate"]它。")
 
 /obj/structure/ai_core/latejoin_inactive/proc/is_available() //If people still manage to use this feature to spawn-kill AI latejoins ahelp them.
 	if(!available)
@@ -172,7 +172,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	active = !active
-	balloon_alert(user, "[active ? "activated" : "deactivated"] transmitters")
+	balloon_alert(user, "[active ? "activated" : "deactivated"]发射器")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/ai_core/proc/ai_structure_to_mob()
@@ -200,7 +200,7 @@
 	if(core_mmi.force_replace_ai_name)
 		ai_mob.fully_replace_character_name(ai_mob.name, core_mmi.replacement_ai_name())
 	ai_mob.posibrain_inside = core_mmi.braintype == "Android"
-	deadchat_broadcast(" has been brought online at <b>[get_area_name(ai_mob, format_text = TRUE)]</b>.", span_name("[ai_mob]"), follow_target = ai_mob, message_type = DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("已在<b>[get_area_name(ai_mob, format_text = TRUE)]</b>上线。", span_name("[ai_mob]"), follow_target = ai_mob, message_type = DEADCHAT_ANNOUNCEMENT)
 	qdel(src)
 	return ai_mob
 
@@ -222,7 +222,7 @@ That prevents a few funky behaviors.
 	SHOULD_CALL_PARENT(TRUE)
 	if(istype(card))
 		if(card.flush)
-			to_chat(user, span_alert("ERROR: AI flush is in progress, cannot execute transfer protocol."))
+			to_chat(user, span_alert("错误：AI 刷新正在进行中，无法执行传输协议。"))
 			return FALSE
 	return TRUE
 
@@ -231,27 +231,27 @@ That prevents a few funky behaviors.
 		return
 	if(core_mmi && core_mmi.brainmob)
 		if(core_mmi.brainmob.mind)
-			to_chat(user, span_warning("[src] already contains an active mind!"))
+			to_chat(user, span_warning("[src] 已包含一个活跃的意识！"))
 			return
 		else if(suicide_check())
-			to_chat(user, span_warning("[AI_CORE_BRAIN(core_mmi)] installed in [src] is completely useless!"))
+			to_chat(user, span_warning("安装在[src]中的[AI_CORE_BRAIN(core_mmi)]完全无用！"))
 			return
 	//Transferring a carded AI to a core.
 	if(interaction == AI_TRANS_FROM_CARD)
 		AI.set_control_disabled(FALSE)
 		AI.radio_enabled = TRUE
 		AI.forceMove(loc) // to replace the terminal.
-		to_chat(AI, span_notice("You have been uploaded to a stationary terminal. Remote device connection restored."))
+		to_chat(AI, span_notice("你已被上传至固定终端。远程设备连接已恢复。"))
 		to_chat(user, "[span_boldnotice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
 		card.AI = null
 		AI.battery = circuit.battery
 		AI.posibrain_inside = isnull(core_mmi) || core_mmi.braintype == "Android"
 		qdel(src)
 	else //If for some reason you use an empty card on an empty AI terminal.
-		to_chat(user, span_alert("There is no AI loaded on this terminal."))
+		to_chat(user, span_alert("此终端上没有加载任何 AI。"))
 
 /obj/item/circuitboard/aicore
-	name = "AI core (AI Core Board)" //Well, duh, but best to be consistent
+	name = "AI核心（AI核心主板）" //Well, duh, but best to be consistent
 	var/battery = 200 //backup battery for when the AI loses power. Copied to/from AI mobs when carding, and placed here to avoid recharge via deconning the core
 
 /obj/item/circuitboard/aicore/Initialize(mapload)

@@ -4,132 +4,132 @@
 */
 
 /datum/loadout_item/under/miscellaneous/blastwave_uniform
-	name = "Blastwave Uniform"
+	name = "冲击波制服"
 	item_path = /obj/item/clothing/under/blastwave
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/pj_blood
-	name = "Blood-red Pajamas"
+	name = "血红色睡衣"
 	item_path = /obj/item/clothing/under/syndicate/bloodred/sleepytime/sensors
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/cavalry
-	name = "Cavalry Uniform"
+	name = "骑兵制服"
 	item_path = /obj/item/clothing/under/costume/nova/cavalry
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/blacknwhite
-	name = "Classic Prisoner Jumpsuit"
+	name = "经典囚犯连体服"
 	item_path = /obj/item/clothing/under/rank/prisoner/classic
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/cheongsam
-	name = "Cheongsam"
+	name = "旗袍"
 	item_path = /obj/item/clothing/under/costume/nova/cheongsam
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/cheongsam_recolorable
-	name = "Cheongsam - Custom Trim"
+	name = "旗袍 - 自定义镶边"
 	item_path = /obj/item/clothing/under/costume/nova/cheongsam/customtrim
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/dutch
-	name = "Dutch Suit"
+	name = "荷兰西装"
 	item_path = /obj/item/clothing/under/costume/dutch
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/expeditionary_corps
-	name = "Expeditionary Corps Uniform"
+	name = "远征军团制服"
 	item_path = /obj/item/clothing/under/rank/expeditionary_corps
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/the_q
-	name = "French Marshall's Uniform"
+	name = "法国元帅制服"
 	item_path = /obj/item/clothing/under/trek/q
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/geisha_suit
-	name = "Geisha Suit"
+	name = "艺伎装"
 	item_path = /obj/item/clothing/under/costume/geisha
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/gladiator
-	name = "Gladiator Uniform"
+	name = "角斗士制服"
 	item_path = /obj/item/clothing/under/costume/gladiator
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/griffon
-	name = "Griffon Uniform"
+	name = "狮鹫制服"
 	item_path = /obj/item/clothing/under/costume/griffin
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/jabroni
-	name = "Jabroni Outfit"
+	name = "杰布罗尼套装"
 	item_path = /obj/item/clothing/under/costume/jabroni
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/jacarta_dress
-	name = "Jacarta Dress"
+	name = "雅加达连衣裙"
 	item_path = /obj/item/clothing/under/dress/nova/jute
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/jester
-	name = "Jester Suit"
+	name = "小丑服"
 	item_path = /obj/item/clothing/under/rank/civilian/clown/jester
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/jesteralt
-	name = "Jester Suit (Alt)"
+	name = "小丑服（变体）"
 	item_path = /obj/item/clothing/under/rank/civilian/clown/jesteralt
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/kilt
-	name = "Kilt"
+	name = "苏格兰短裙"
 	item_path = /obj/item/clothing/under/costume/kilt
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/kimono
-	name = "Kimono (Black)"
+	name = "和服（黑色）"
 	item_path = /obj/item/clothing/under/costume/kimono
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/kimono/purple
-	name = "Kimono (Purple)"
+	name = "和服（紫色）"
 	item_path = /obj/item/clothing/under/costume/kimono/purple
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/kimono/red
-	name = "Kimono (Red)"
+	name = "和服（红色）"
 	item_path = /obj/item/clothing/under/costume/kimono/red
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/kimono
-	name = "Kimono - Fancy"
+	name = "和服 - 华丽款"
 	item_path =  /obj/item/clothing/under/costume/nova/kimono
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/adam
-	name = "Leaf"
+	name = "叶片装"
 	item_path = /obj/item/clothing/under/misc/nova/gear_harness/adam
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/eve
-	name = "Leaves"
+	name = "树叶装"
 	item_path = /obj/item/clothing/under/misc/nova/gear_harness/eve
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/loincloth
-	name = "Loincloth"
+	name = "缠腰布"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/loincloth
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/loincloth_alt
-	name = "Loincloth (Short)"
+	name = "缠腰布（短款）"
 	item_path = /obj/item/clothing/under/dress/skirt/nova/loincloth/loincloth_alt
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/maid_uniform
-	name = "Maid Uniform"
+	name = "女仆装"
 	item_path = /obj/item/clothing/under/costume/nova/maid_uniform
 	group = "Costumes"
 
@@ -139,118 +139,118 @@
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/maid_costume
-	name = "Maid Uniform (Colorable)"
+	name = "女仆装（可染色）"
 	item_path = /obj/item/clothing/under/maid_costume
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/maidcostume
-	name = "Maid Uniform - Frilly"
+	name = "女仆装 - 荷叶边款"
 	item_path = /obj/item/clothing/under/costume/maid
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/tactical_maid_costume
-	name = "Maid Uniform - Tactical"
+	name = "女仆装 - 战术款"
 	item_path = /obj/item/clothing/under/syndicate/nova/maid/loadout_maid
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/pink_clown_outfit
-	name = "Pink Clown Outfit"
+	name = "粉色小丑套装"
 	item_path = /obj/item/clothing/under/rank/civilian/clown/pink_clown_outfit
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/pj_blue
-	name = "Mailman Jumpsuit"
+	name = "邮递员连体服"
 	item_path = /obj/item/clothing/under/misc/mailman
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/mech_suit
-	name = "Mech Suit"
+	name = "机甲服"
 	item_path = /obj/item/clothing/under/costume/mech_suit
 	reskin_datum = /datum/atom_skin/mech_suit
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/cybersleek
-	name = "Modern Coat"
+	name = "现代外套"
 	item_path = /obj/item/clothing/under/costume/cybersleek
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/cybersleek_long
-	name = "Modern Coat - Long"
+	name = "现代外套 - 长款"
 	item_path = /obj/item/clothing/under/costume/cybersleek/long
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/osi
-	name = "OSI Uniform"
+	name = "OSI制服"
 	item_path = /obj/item/clothing/under/costume/osi
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/overalls
-	name = "Overalls"
+	name = "工装裤"
 	item_path = /obj/item/clothing/under/misc/overalls
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/owl
-	name = "Owl Uniform"
+	name = "猫头鹰制服"
 	item_path = /obj/item/clothing/under/costume/owl
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/pj_red
-	name = "PJs (Red)"
+	name = "睡衣（红色）"
 	item_path = /obj/item/clothing/under/misc/pj/red
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/pj_blue
-	name = "PJs (Blue)"
+	name = "睡衣（蓝色）"
 	item_path = /obj/item/clothing/under/misc/pj/blue
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/qipao_black
-	name = "Qipao"
+	name = "旗袍"
 	item_path = /obj/item/clothing/under/costume/nova/qipao
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/qipao_recolorable
-	name = "Qipao - Custom Trim"
+	name = "旗袍 - 自定义镶边"
 	item_path = /obj/item/clothing/under/costume/nova/qipao/customtrim
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/redcoat
-	name = "Redcoat"
+	name = "红衫军制服"
 	item_path = /obj/item/clothing/under/costume/redcoat
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/sailor
-	name = "Sailor Costume"
+	name = "水手服"
 	item_path = /obj/item/clothing/under/costume/sailor
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/shihakusho
-	name = "Shihakusho"
+	name = "死霸装"
 	item_path = /obj/item/clothing/under/costume/nova/shihakusho
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/soviet
-	name = "Soviet Uniform"
+	name = "苏联制服"
 	item_path = /obj/item/clothing/under/costume/soviet
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/tactical_hawaiian_orange
-	name = "Tactical Hawaiian Outfit (Orange)"
+	name = "战术夏威夷装（橙色）"
 	item_path = /obj/item/clothing/under/tachawaiian
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/tactical_hawaiian_blue
-	name = "Tactical Hawaiian Outfit (Blue)"
+	name = "战术夏威夷装（蓝色）"
 	item_path = /obj/item/clothing/under/tachawaiian/blue
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/tactical_hawaiian_purple
-	name = "Tactical Hawaiian Outfit (Purple)"
+	name = "战术夏威夷装（紫色）"
 	item_path = /obj/item/clothing/under/tachawaiian/purple
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/tactical_hawaiian_green
-	name = "Tactical Hawaiian Outfit (Green)"
+	name = "战术夏威夷装（绿色）"
 	item_path = /obj/item/clothing/under/tachawaiian/green
 	group = "Costumes"
 
@@ -260,112 +260,112 @@
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/tmc
-	name = "TMC Uniform"
+	name = "TMC制服"
 	item_path = /obj/item/clothing/under/costume/tmc
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/tracky
-	name = "Tracksuit"
+	name = "运动服"
 	item_path = /obj/item/clothing/under/misc/bluetracksuit
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/treasure_hunter
-	name = "Treasure Hunter"
+	name = "宝藏猎人"
 	item_path = /obj/item/clothing/under/rank/civilian/curator/treasure_hunter
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_command
-	name = "Trekkie Command Uniform"
+	name = "星际迷航指挥制服"
 	item_path = /obj/item/clothing/under/trek/command
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_next_command
-	name = "Trekkie Command Uniform - TNG"
+	name = "星际迷航指挥制服 - TNG"
 	item_path = /obj/item/clothing/under/trek/command/next
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_ent_command
-	name = "Trekkie Command Uniform - ENT"
+	name = "星际迷航指挥制服 - ENT"
 	item_path = /obj/item/clothing/under/trek/command/ent
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_voy_command
-	name = "Trekkie Command Uniform - VOY"
+	name = "星际迷航指挥制服 - VOY"
 	item_path = /obj/item/clothing/under/trek/command/voy
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_engsec
-	name = "Trekkie Engsec Uniform"
+	name = "星际迷航工程安保制服"
 	item_path = /obj/item/clothing/under/trek/engsec
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_next_engsec
-	name = "Trekkie Engsec Uniform - TNG"
+	name = "星际迷航工程安保制服 - TNG"
 	item_path = /obj/item/clothing/under/trek/engsec/next
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_ent_engsec
-	name = "Trekkie Engsec Uniform - ENT"
+	name = "星际迷航工程安保制服 - ENT"
 	item_path = /obj/item/clothing/under/trek/engsec/ent
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_voy_engsec
-	name = "Trekkie Engsec Uniform - VOY"
+	name = "星际迷航工程安保制服 - VOY"
 	item_path = /obj/item/clothing/under/trek/engsec/voy
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_medsci
-	name = "Trekkie Medsci Uniform"
+	name = "星际迷航医疗科学制服"
 	item_path = /obj/item/clothing/under/trek/medsci
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_next_medsci
-	name = "Trekkie Medsci Uniform - TNG"
+	name = "星际迷航医疗科学制服 - TNG"
 	item_path = /obj/item/clothing/under/trek/medsci/next
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_ent_medsci
-	name = "Trekkie Medsci Uniform - ENT"
+	name = "星际迷航医疗科学制服 - ENT"
 	item_path = /obj/item/clothing/under/trek/medsci/ent
 	group = "Costumes"
 
 /datum/loadout_item/under/formal/trek_voy_medsci
-	name = "Trekkie Medsci Uniform - VOY"
+	name = "星际迷航医疗科学制服 - VOY"
 	item_path = /obj/item/clothing/under/trek/medsci/voy
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/vice_officer
-	name = "Vice Officer Jumpsuit"
+	name = "副警长连体服"
 	item_path = /obj/item/clothing/under/misc/vice_officer
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/villain
-	name = "Villain Suit"
+	name = "反派套装"
 	item_path = /obj/item/clothing/under/costume/villain
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/yukata
-	name = "Yukata  (Colorable)"
+	name = "浴衣 (可着色)"
 	item_path = /obj/item/clothing/under/costume/nova/yukata
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/yukata
-	name = "Yukata (Black)"
+	name = "浴衣 (黑色)"
 	item_path = /obj/item/clothing/under/costume/yukata
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/yukata/green
-	name = "Yukata (Green)"
+	name = "浴衣 (绿色)"
 	item_path = /obj/item/clothing/under/costume/yukata/green
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/yukata/white
-	name = "Yukata (White)"
+	name = "浴衣 (白色)"
 	item_path = /obj/item/clothing/under/costume/yukata/white
 	group = "Costumes"
 
 /datum/loadout_item/under/miscellaneous/chima_jeogori
-	name = "Chima Jeogori"
+	name = "赤马赤古里"
 	item_path = /obj/item/clothing/under/costume/nova/chima_jeogori
 	group = "Costumes"
 
@@ -374,32 +374,32 @@
 */
 
 /datum/loadout_item/under/formal/azulea_oldblood
-	name = "Oldblood's Royal Regalia"
+	name = "旧血皇族盛装"
 	item_path = /obj/item/clothing/under/rank/azulean/old_blood
 	group = "Species-Unique"
 
 /datum/loadout_item/under/formal/azulea_oldblood/skirt
-	name = "Oldblood's Royal Regalia (Skirt)"
+	name = "旧血皇族盛装（裙装）"
 	item_path = /obj/item/clothing/under/rank/azulean/old_blood/skirt
 	group = "Species-Unique"
 
 /datum/loadout_item/under/formal/azulea_upstart
-	name = "Upstart's Noble Getup"
+	name = "新贵贵族装束"
 	item_path = /obj/item/clothing/under/rank/azulean/upstart
 	group = "Species-Unique"
 
 /datum/loadout_item/under/formal/azulea_upstart/skirt
-	name = "Upstart's Noble Getup (Skirt)"
+	name = "新贵贵族装束（裙装）"
 	item_path = /obj/item/clothing/under/rank/azulean/upstart/skirt
 	group = "Species-Unique"
 
 /datum/loadout_item/under/jumpsuit/akula_wetsuit
-	name = "Shoredress Wetsuit"
+	name = "岸装潜水服"
 	item_path = /obj/item/clothing/under/akula_wetsuit
 	species_whitelist = list(SPECIES_AKULA)
 	group = "Species-Unique"
 
 /datum/loadout_item/under/miscellaneous/ethereal_tunic
-	name = "Ethereal Tunic"
+	name = "灵能束腰外衣"
 	item_path = /obj/item/clothing/under/ethereal_tunic
 	group = "Species-Unique"

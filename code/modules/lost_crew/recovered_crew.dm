@@ -1,6 +1,6 @@
 /// Revived crew ready to serve once more! Only here for tracking/admin reasons, otherwise hidden
 /datum/antagonist/recovered_crew
-	name = "\improper Recovered Crew"
+	name = "\improper 被寻回的船员"
 	antagpanel_category = "Recovered Crew"
 	show_in_antagpanel = TRUE
 	pref_flag = ROLE_RECOVERED_CREW

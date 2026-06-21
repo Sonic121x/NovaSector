@@ -1,6 +1,6 @@
 /obj/item/stock_parts/power_store/battery
-	name = "megacell"
-	desc = "A series of rechargeable electrochemical cells wired together to hold significantly more power than a standard power cell."
+	name = "巨型电池"
+	desc = "一系列可充电的电化学电池串联在一起，能储存比标准电源电池多得多的能量。"
 	icon = 'icons/obj/machines/cell_charger.dmi'
 	icon_state = "cellbig"
 	cell_size_prefix = "cellbig"
@@ -24,14 +24,14 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/upgraded
-	name = "upgraded megacell"
-	desc = "A battery with a slightly higher capacity than normal!"
+	name = "升级型巨型电池"
+	desc = "容量比普通型号稍高的电池！"
 	maxcharge = STANDARD_BATTERY_CHARGE * 2.5
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*2.5)
 	chargerate = STANDARD_BATTERY_RATE * 0.5
 
 /obj/item/stock_parts/power_store/battery/high
-	name = "high-capacity megacell"
+	name = "高容量巨型电池"
 	icon_state = "hcellbig"
 	maxcharge = STANDARD_BATTERY_CHARGE * 10
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT * 3)
@@ -41,7 +41,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/super
-	name = "super-capacity megacell"
+	name = "超高容量巨型电池"
 	icon_state = "scellbig"
 	maxcharge = STANDARD_BATTERY_CHARGE * 20
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT * 4)
@@ -51,7 +51,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/hyper
-	name = "hyper-capacity megacell"
+	name = "超极容量巨型电池"
 	icon_state = "hpcellbig"
 	maxcharge = STANDARD_BATTERY_CHARGE * 30
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT * 5)
@@ -61,8 +61,8 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/bluespace
-	name = "bluespace megacell"
-	desc = "A rechargeable transdimensional megacell."
+	name = "蓝空巨型电池"
+	desc = "一种可充电的超维度巨型电池。"
 	icon_state = "bscellbig"
 	maxcharge = STANDARD_BATTERY_CHARGE * 40
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*6)
@@ -72,8 +72,8 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/crap
-	name = "\improper Nanotrasen brand rechargeable AA megacell"
-	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
+	name = "\improper 纳米传讯品牌可充电AA巨型电池"
+	desc = "等离子顶盖，无与伦比。" //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = STANDARD_BATTERY_CHARGE * 0.5
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*1)
 
@@ -81,8 +81,8 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/infinite
-	name = "infinite-capacity megacell"
-	desc = "A transdimensional megacell with an inexhaustible capacity."
+	name = "无限容量巨型电池"
+	desc = "一个拥有无穷容量的跨维度巨型电池。"
 	icon_state = "icellbig"
 	maxcharge = INFINITY
 	chargerate = INFINITY

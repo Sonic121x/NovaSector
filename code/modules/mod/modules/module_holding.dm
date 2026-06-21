@@ -70,7 +70,7 @@
 	if(possible_bag_bombs[suit] == HOLDING_MODULE_PREVENT_DUPLICATE_CHECK)
 		return MOD_ABORT_INSTALL
 	if(!anomalock.core)
-		balloon_alert(user, "no core!")
+		balloon_alert(user, "没有核心！")
 		playsound(suit, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return MOD_ABORT_INSTALL
 	var/datum/storage/bag_of_holding/other_bag

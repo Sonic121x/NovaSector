@@ -1,7 +1,7 @@
 // Honker
 
 /obj/projectile/bullet/honker
-	name = "banana"
+	name = "香蕉"
 	damage = 0
 	movement_type = FLYING
 	projectile_piercing = ALL
@@ -43,7 +43,7 @@
 
 /// Marksman Shot
 /obj/projectile/bullet/marksman
-	name = "marksman nanoshot"
+	name = "神射手纳米弹"
 	icon_state = null
 	hitscan = TRUE
 	damage = 30
@@ -78,7 +78,7 @@
 
 /// Marksman Coin
 /obj/projectile/bullet/coin
-	name = "marksman coin"
+	name = "神射手硬币"
 	icon_state = "coinshot"
 	speed = 0.33
 	damage = 5
@@ -138,7 +138,7 @@
 
 	used = TRUE
 	var/turf/cur_tur = get_turf(src)
-	cur_tur.visible_message(span_nicegreen("[incoming_shot] impacts [src] and splits!"))
+	cur_tur.visible_message(span_nicegreen("[incoming_shot] 击中 [src] 并分裂了！"))
 	iterate_splitshots(shooter, incoming_shot)
 	QDEL_IN(src, 0.25 SECONDS) // may not be needed
 

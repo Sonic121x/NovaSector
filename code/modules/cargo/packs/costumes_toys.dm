@@ -3,7 +3,7 @@
 
 /datum/supply_pack/costumes_toys/randomised
 	name = "Collectable Hats Crate"
-	desc = "Flaunt your status with three unique, highly-collectable hats!"
+	desc = "炫耀你的地位与三个独特的，高度收藏的帽子！"
 	cost = CARGO_CRATE_VALUE * 40
 	var/num_contained = 3 //number of items picked to be contained in a randomised crate
 	contains = list(/obj/item/clothing/head/collectable/chef,
@@ -41,7 +41,7 @@
 
 /datum/supply_pack/costumes_toys/formalwear
 	name = "Formalwear Crate"
-	desc = "You're gonna like the way you look, I guaranteed it. Contains an asston of fancy clothing."
+	desc = "我保证你会喜欢你的新搭配的。包含了一堆华丽和花哨的衣服。"
 	cost = CARGO_CRATE_VALUE * 4 //Lots of very expensive items. You gotta pay up to look good!
 	contains = list(/obj/item/clothing/under/dress/tango,
 					/obj/item/clothing/under/misc/assistantformal = 2,
@@ -71,8 +71,8 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/clownpin
-	name = "Hilarious Firing Pin Crate"
-	desc = "I uh... I'm not really sure what this does. Wanna buy it?"
+	name = "滑稽撞针板条箱"
+	desc = "额...我不太确定这是什么，买一个试试？"
 	cost = CARGO_CRATE_VALUE * 10
 	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/firing_pin/clown)
@@ -107,8 +107,8 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/lasertag/pins
-	name = "Laser Tag Firing Pins Crate"
-	desc = "Three laser tag firing pins used in laser-tag units to ensure users are wearing their vests."
+	name = "镭射标记对战撞针板条箱"
+	desc = "三个用于镭射标记装置的撞针，用于确保使用者穿戴了比赛的指定护具。"
 	cost = CARGO_CRATE_VALUE * 3.5
 	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/storage/box/lasertagpins)
@@ -116,7 +116,7 @@
 
 /datum/supply_pack/costumes_toys/mech_suits
 	name = "Mech Pilot's Suit Crate"
-	desc = "Suits for piloting big robots. Contains four of those!"
+	desc = "用于驾驶巨型机甲的驾驶服.里面包含了四套服装."
 	cost = CARGO_CRATE_VALUE * 3 //state-of-the-art technology doesn't come cheap
 	contains = list(/obj/item/clothing/under/costume/mech_suit = 4)
 	crate_name = "mech pilot's suit crate"
@@ -124,7 +124,7 @@
 
 /datum/supply_pack/costumes_toys/costume_original
 	name = "Original Costume Crate"
-	desc = "Reenact Shakespearean plays with this assortment of outfits. Contains eight different costumes!"
+	desc = "用这堆衣服来演一场莎士比亚的戏剧。包含了八套不同的服装。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/costume/snowman,
 					/obj/item/clothing/suit/costume/snowman,
@@ -207,7 +207,7 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/trekkie
-	name = "Trekkie Costume Crate"
+	name = "星际迷航服装板条箱"
 	desc = "Wear the scrapped concepts for twelve of Nanotrasen's jumpsuits, based off popular \
 		late-20th century Earth media! While they couldn't be used for the official jumpsuits \
 		due to copyright infringement, it's been assured that they can still legally be sold under \
@@ -230,8 +230,8 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/randomised/tcg
-	name = "Big-Ass Booster Pack Pack"
-	desc = "A bumper load of NT TCG Booster Packs of varying series. Collect them all!"
+	name = "Big-Ass增强卡包板条箱"
+	desc = "多种不同系列的纳米传讯TCG增强卡包。把它们都收集起来!"
 	cost = 1000
 	contains = list()
 	crate_name = "booster pack pack"

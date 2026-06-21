@@ -102,7 +102,7 @@
 		M.throw_at(target_turf, 5, 10)
 
 	if(!silent)
-		M.visible_message(span_notice("[M] drops out of \the [src]!"))
+		M.visible_message(span_notice("[M] 从 \the [src] 里掉了出来！"))
 	return TRUE
 
 /obj/vehicle/sealed/proc/exit_location(M)
@@ -125,12 +125,12 @@
 
 /obj/vehicle/sealed/proc/remove_key(mob/user)
 	if(!inserted_key)
-		to_chat(user, span_warning("There is no key in [src]!"))
+		to_chat(user, span_warning("[src]里没有钥匙！"))
 		return
 	if(!is_occupant(user) || !(occupants[user] & VEHICLE_CONTROL_DRIVE))
-		to_chat(user, span_warning("You must be driving [src] to remove [src]'s key!"))
+		to_chat(user, span_warning("你必须驾驶着[src]才能取出[src]的钥匙！"))
 		return
-	to_chat(user, span_notice("You remove [inserted_key] from [src]."))
+	to_chat(user, span_notice("你从[src]中取出了[inserted_key]。"))
 	if(!HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		user.put_in_hands(inserted_key)
 	else

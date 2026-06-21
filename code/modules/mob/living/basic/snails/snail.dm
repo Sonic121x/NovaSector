@@ -1,6 +1,6 @@
 /mob/living/basic/snail
-	name = "snail"
-	desc = "Is petting this thing sanitary?"
+	name = "蜗牛"
+	desc = "抚摸这东西卫生吗？"
 	icon_state = "snail"
 	icon_living = "snail"
 	icon_dead = "snail_dead"
@@ -17,11 +17,11 @@
 	health = 30
 	maxHealth = 30
 	speed = 6
-	verb_say = "gurgles"
-	verb_ask = "gurgles curiously"
+	verb_say = "咕噜咕噜"
+	verb_ask = "好奇地咕噜咕噜"
 	can_be_held = TRUE
-	verb_exclaim = "gurgles loudly"
-	verb_yell = "gurgles loudly"
+	verb_exclaim = "大声咕噜咕噜"
+	verb_yell = "大声咕噜咕噜"
 	worn_slot_flags = ITEM_SLOT_HEAD
 	gold_core_spawnable = FRIENDLY_SPAWN
 	faction = list(FACTION_NEUTRAL, FACTION_MAINT_CREATURES)
@@ -74,8 +74,8 @@
 	if(stat == DEAD)
 		return
 	visible_message(
-		span_danger("[src] shows a strong reaction after tasting some salt!"),
-		span_userdanger("You show a strong reaction after tasting some salt."),
+		span_danger("[src] 在尝到一些盐后表现出强烈反应！"),
+		span_userdanger("你在尝到一些盐后表现出强烈反应。"),
 	)
 	apply_damage(500) //ouch
 
@@ -94,7 +94,7 @@
 
 /// This snail is going to try and beat you up
 /mob/living/basic/snail/angry
-	name = "sewer snail"
+	name = "下水道蜗牛"
 	gold_core_spawnable = HOSTILE_SPAWN
 	icon_state = "snail_maints"
 	icon_living = "snail_maints"
@@ -119,11 +119,11 @@
 
 	. = ITEM_INTERACT_BLOCKING
 	if(held_mob.stat == DEAD)
-		user.balloon_alert(user, "it's dead!")
+		user.balloon_alert(user, "它死了！")
 		return
 
 	if(locate(type) in interacting_with)
-		user.balloon_alert(user, "already has snail!")
+		user.balloon_alert(user, "已经有蜗牛了！")
 		return
 
 	if(!do_after(user, 2 SECONDS, interacting_with))

@@ -21,7 +21,7 @@
 	. = ..()
 	if(!.)
 		return
-	to_chat(user, span_notice("A soothing energy invigorate you."))
+	to_chat(user, span_notice("一股舒缓的能量使你精神焕发。"))
 	heal_target(user, 25)
 
 /datum/artifact_effect/heal/do_effect_aura(seconds_per_tick)
@@ -30,7 +30,7 @@
 		return
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice("A wave of energy invigorates you."))
+		to_chat(receiver, span_notice("一股能量波使你精神焕发。"))
 		heal_target(receiver, rand(1,3)/2 * seconds_per_tick)
 
 /datum/artifact_effect/heal/do_effect_pulse(seconds_per_tick)
@@ -40,13 +40,13 @@
 	var/used_power = .
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice("A wave of energy invigorates you."))
+		to_chat(receiver, span_notice("一股能量波使你精神焕发。"))
 		heal_target(receiver, 2.5 * used_power * seconds_per_tick)
 
 /datum/artifact_effect/heal/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(7, curr_turf))
-		to_chat(receiver, span_notice("A wave of energy healed your wounds."))
+		to_chat(receiver, span_notice("一股能量波治愈了你的伤口。"))
 		heal_target(receiver, 50)
 
 /datum/artifact_effect/roboheal
@@ -72,7 +72,7 @@
 		return
 	if(!issilicon(user))
 		return
-	to_chat(user, span_notice("Your systems report damaged components mending by themselves!"))
+	to_chat(user, span_notice("你的系统报告受损组件正在自行修复！"))
 	heal_target(user, 25)
 
 /datum/artifact_effect/roboheal/do_effect_aura(seconds_per_tick)
@@ -81,7 +81,7 @@
 		return
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice("SYSTEM ALERT: Beneficial energy field detected!"))
+		to_chat(receiver, span_notice("系统警报：检测到有益能量场！"))
 		heal_target(receiver, 0.5 * seconds_per_tick)
 
 /datum/artifact_effect/roboheal/do_effect_pulse(seconds_per_tick)
@@ -91,13 +91,13 @@
 	var/used_power = .
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice("SYSTEM ALERT: Structural damage has been repaired by energy pulse!"))
+		to_chat(receiver, span_notice("系统警报：结构损伤已被能量脉冲修复！"))
 		heal_target(receiver, 2.5 * used_power * seconds_per_tick)
 
 /datum/artifact_effect/roboheal/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(7, curr_turf))
-		to_chat(receiver, span_notice("SYSTEM ALERT: Structural damage has been repaired by energy pulse!"))
+		to_chat(receiver, span_notice("系统警报：结构损伤已被能量脉冲修复！"))
 		heal_target(receiver, 50)
 
 /datum/artifact_effect/hurt
@@ -122,7 +122,7 @@
 	. = ..()
 	if(!.)
 		return
-	to_chat(user, span_warning("A painful discharge of energy strikes you!"))
+	to_chat(user, span_warning("一股痛苦的能量放电击中了你！"))
 	deal_damage(user, 10)
 	return TRUE
 
@@ -132,7 +132,7 @@
 		return
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(range, curr_turf))
-		to_chat(receiver, span_warning("You feel a painful force radiating from something nearby."))
+		to_chat(receiver, span_warning("你感觉到附近有某种东西散发出痛苦的力量。"))
 		deal_damage(receiver, 0.5 * seconds_per_tick)
 
 /datum/artifact_effect/hurt/do_effect_pulse(seconds_per_tick)
@@ -142,13 +142,13 @@
 	var/used_power = .
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice("A wave of energy invigorates you, tearing your flesh."))
+		to_chat(receiver, span_notice("一股能量波使你精力充沛，同时撕裂了你的血肉。"))
 		deal_damage(receiver, 2.5 * (used_power / 3) * seconds_per_tick)
 
 /datum/artifact_effect/hurt/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(7, curr_turf))
-		to_chat(receiver, span_warning("You feel tremendous pain"))
+		to_chat(receiver, span_warning("你感到剧烈的疼痛"))
 		deal_damage(receiver, 50)
 
 /datum/artifact_effect/robohurt
@@ -174,7 +174,7 @@
 		return
 	if(!issilicon(user))
 		return
-	to_chat(user, span_warning("Your systems report severe damage has been inflicted!"))
+	to_chat(user, span_warning("你的系统报告遭受了严重损伤！"))
 	deal_damage(user, 10)
 
 /datum/artifact_effect/robohurt/do_effect_aura(seconds_per_tick)
@@ -183,7 +183,7 @@
 		return
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(range, curr_turf))
-		to_chat(receiver, span_warning("SYSTEM ALERT: Harmful energy field detected!"))
+		to_chat(receiver, span_warning("系统警报：检测到有害能量场！"))
 		deal_damage(receiver, 0.5 * seconds_per_tick)
 
 /datum/artifact_effect/robohurt/do_effect_pulse(seconds_per_tick)
@@ -193,11 +193,11 @@
 	var/used_power = .
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(range, curr_turf))
-		to_chat(receiver, span_warning("SYSTEM ALERT: Structural damage inflicted by energy pulse!"))
+		to_chat(receiver, span_warning("系统警报：能量脉冲造成了结构损伤！"))
 		deal_damage(receiver, 0.25 * used_power * seconds_per_tick)
 
 /datum/artifact_effect/robohurt/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(7, curr_turf))
-		to_chat(receiver, span_warning("SYSTEM ALERT: Critical structural damage inflicted by energy pulse!"))
+		to_chat(receiver, span_warning("系统警报：能量脉冲造成了严重结构损伤！"))
 		deal_damage(receiver, 50)

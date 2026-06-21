@@ -1,6 +1,6 @@
 /obj/machinery/computer/launchpad
-	name = "launchpad control console"
-	desc = "Used to teleport objects to and from a launchpad."
+	name = "发射台控制操作台"
+	desc = "用于在发射台之间传送物体。"
 	icon_screen = "teleport"
 	icon_keyboard = "teleport_key"
 	circuit = /obj/item/circuitboard/computer/launchpad_console
@@ -16,7 +16,7 @@
 
 /obj/item/circuit_component/bluespace_launchpad/console
 	display_name = "Bluespace Launchpad Console"
-	desc = "Teleports anything to and from any location on the station. Doesn't use actual GPS coordinates, but rather offsets from the launchpad itself. Can only go as far as the launchpad can go, which depends on its parts."
+	desc = "将任何东西传送到太空站的任何位置。不使用实际的GPS坐标，而是使用与发射台本身的支距。只能到达发射台所能到达的距离，这取决于其部件。"
 
 	var/datum/port/input/launchpad_id
 
@@ -53,7 +53,7 @@
 	..()
 
 /obj/machinery/computer/launchpad/attack_paw(mob/user, list/modifiers)
-	to_chat(user, span_warning("You are too primitive to use this computer!"))
+	to_chat(user, span_warning("你太原始了，无法使用这台电脑！"))
 	return
 
 /obj/machinery/computer/launchpad/multitool_act(mob/living/user, obj/item/multitool/tool)
@@ -64,7 +64,7 @@
 	if(LAZYLEN(launchpads) < maximum_pads)
 		launchpads |= tool.buffer
 		tool.set_buffer(null)
-		to_chat(user, span_notice("You upload the data from the [tool] buffer."))
+		to_chat(user, span_notice("你从 [tool] 的缓冲区上传了数据。"))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/launchpad/proc/pad_exists(number)
@@ -149,7 +149,7 @@
 				return
 			current_pad.display_name = new_name
 		if("remove")
-			if(usr && tgui_alert(usr, "Are you sure?", "Unlink Launchpad", list("I'm Sure", "Abort")) == "I'm Sure")
+			if(usr && tgui_alert(usr, "你确定吗？", "解除发射台链接", list("I'm Sure", "Abort")) == "I'm Sure")
 				launchpads -= current_pad
 				selected_id = null
 			. = TRUE

@@ -2,8 +2,8 @@
 
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "floor_beaconf"
-	name = "bluespace gigabeacon"
-	desc = "A device that draws power from bluespace and creates a permanent tracking beacon."
+	name = "千兆蓝空信标"
+	desc = "一种从蓝空汲取能量并创建永久跟踪信标的设备"
 	layer = LOW_OBJ_LAYER
 	use_power = NO_POWER_USE
 	idle_power_usage = 0

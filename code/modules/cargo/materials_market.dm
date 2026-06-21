@@ -46,27 +46,27 @@
 		return NONE
 
 	if(!is_operational)
-		balloon_alert(user, "no power!")
+		balloon_alert(user, "没有电力！")
 		return ITEM_INTERACT_FAILURE
 
 	var/list/datum/material/materials = exportable.custom_materials
 	if(materials.len != 1)
-		balloon_alert(user, "alloy stacks not allowed")
+		balloon_alert(user, "不允许合金堆叠")
 		return ITEM_INTERACT_FAILURE
 
 	var/price = SSstock_market.materials_prices[materials[1].type]
 	if(!price)
-		balloon_alert(user, "materials in stack are worthless")
+		balloon_alert(user, "堆叠中的材料毫无价值")
 		return ITEM_INTERACT_FAILURE
 
 	if(!user.transferItemToLoc(exportable, src))
-		to_chat(user, span_warning("[exportable] is stuck in hand!"))
+		to_chat(user, span_warning("[exportable] 粘在手里了！"))
 		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/stock_block/new_block = new /obj/item/stock_block(drop_location())
 	new_block.export_value = price
 	new_block.set_custom_materials(materials)
-	to_chat(user, span_notice("You have created a stock block worth [new_block.export_value * exportable.amount] [MONEY_SYMBOL]! Sell it before it becomes liquid!"))
+	to_chat(user, span_notice("你创建了一个价值 [new_block.export_value * exportable.amount] [MONEY_SYMBOL] 的股票块！在它变成流动资产前卖掉它！"))
 	playsound(src, 'sound/machines/synth/synth_yes.ogg', 50, FALSE)
 	qdel(exportable)
 	use_energy(active_power_usage)
@@ -343,8 +343,8 @@
 				return TRUE
 
 /obj/item/stock_block
-	name = "stock block"
-	desc = "A block of stock. It's worth a certain amount of money, based on a sale on the materials market. Ship it on the cargo shuttle to claim your money."
+	name = "股票块"
+	desc = "一块股票。它基于材料市场上的销售，价值一定金额。将其运上货运穿梭机以兑换你的钱。"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "stock_block"
 	/// How many credits was this worth when created?
@@ -362,15 +362,15 @@
 
 	var/datum/material/export_mat = custom_materials[1]
 	var/quantity = custom_materials[export_mat] / SHEET_MATERIAL_AMOUNT
-	. += span_notice("\The [src] is worth [quantity * export_value] [MONEY_SYMBOL], from selling [quantity] sheets of [export_mat.name].")
+	. += span_notice("\The [src] 价值 [quantity * export_value] [MONEY_SYMBOL]，来自出售 [quantity] 张 [export_mat.name]。")
 
 	if(fluid)
-		. += span_warning("\The [src] is currently liquid! Its value is based on the market price.")
+		. += span_warning("\The [src] 目前是流动的！其价值基于市场价格。")
 	else
-		. += span_notice("\The [src]'s value is still [span_boldnotice("locked in")]. [span_boldnotice("Sell it")] before its value becomes liquid!")
+		. += span_notice("\The [src] 的价值仍被[span_boldnotice("locked in")]。在它变成流动价值之前[span_boldnotice("Sell it")]！")
 
 /obj/item/stock_block/proc/value_warning()
-	visible_message(span_warning("\The [src] is starting to become liquid!"))
+	visible_message(span_warning("\The [src] 开始变得流动了！"))
 	icon_state = "stock_block_fluid"
 	update_appearance(UPDATE_ICON_STATE)
 
@@ -378,7 +378,7 @@
 	export_value = SSstock_market.materials_prices[custom_materials[1]]
 	icon_state = "stock_block_liquid"
 	update_appearance(UPDATE_ICON_STATE)
-	visible_message(span_warning("\The [src] becomes liquid!"))
+	visible_message(span_warning("\The [src] 变成流动的了！"))
 	fluid = TRUE
 
 #undef MAX_STACK_LIMIT

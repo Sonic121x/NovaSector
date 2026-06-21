@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	return custom_team
 
 /datum/antagonist/custom/admin_add(datum/mind/new_owner,mob/admin)
-	var/custom_name = stripped_input(admin, "Custom antagonist name:", "Custom antag", "Antagonist")
+	var/custom_name = stripped_input(admin, "自定义敌对角色名称：", "自定义敌对角色", "反派")
 	if(!custom_name)
 		return
 	name = custom_name
@@ -518,7 +518,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	return finish_preview_icon(preview_icon)
 
 /datum/antagonist/proc/edit_memory(mob/user)
-	var/new_memo = tgui_input_text(user, "Write a new memory", "Antag Memory", antag_memory, multiline = TRUE)
+	var/new_memo = tgui_input_text(user, "撰写新的记忆", "敌对记忆", antag_memory, multiline = TRUE)
 	if (isnull(new_memo))
 		return
 	antag_memory = new_memo
@@ -585,12 +585,12 @@ GLOBAL_LIST_EMPTY(antagonists)
 		return FALSE
 	var/mob/living/owner_mob = owner.current
 	if (!force && !can_assign_self_objectives)
-		owner_mob.balloon_alert(owner_mob, "can't do that!")
+		owner_mob.balloon_alert(owner_mob, "无法做到！")
 		return FALSE
 	var/custom_objective_text = tgui_input_text(
 		owner_mob,
-		message = "Specify your new objective.",
-		title = "Custom Objective",
+		message = "指定您的新目标。",
+		title = "自定义目标",
 		default = default_custom_objective,
 		max_length = CUSTOM_OBJECTIVE_MAX_LENGTH,
 	)
@@ -598,7 +598,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 		return FALSE // Some people take a long-ass time to type maybe they got dusted
 
 	log_game("[key_name(owner_mob)] [retain_existing ? "" : "opted out of their original objectives and "]chose a custom objective: [custom_objective_text]")
-	message_admins("[ADMIN_LOOKUPFLW(owner_mob)] has chosen a custom antagonist objective: [span_syndradio("[custom_objective_text]")] | [ADMIN_SMITE(owner_mob)] | [ADMIN_SYNDICATE_REPLY(owner_mob)]")
+	message_admins("[ADMIN_LOOKUPFLW(owner_mob)] 选择了一个自定义敌对目标：[span_syndradio("[custom_objective_text]")] | [ADMIN_SMITE(owner_mob)] | [ADMIN_SYNDICATE_REPLY(owner_mob)]")
 
 	var/datum/objective/custom/custom_objective = new()
 	custom_objective.owner = owner

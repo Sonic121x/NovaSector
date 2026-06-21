@@ -2,7 +2,7 @@
 
 ///Bike Horn - Plays a bike horn sound.
 /obj/item/mod/module/bikehorn
-	name = "MOD bike horn module"
+	name = "MOD喇叭模块"
 	desc = "A shoulder-mounted piece of heavy sonic artillery, this module uses the finest femto-manipulator technology to \
 		precisely deliver an almost lethal squeeze to... a bike horn, producing a significantly memorable sound."
 	icon_state = "bikehorn"
@@ -27,7 +27,7 @@
 
 ///Microwave Beam - Microwaves items instantly.
 /obj/item/mod/module/microwave_beam
-	name = "MOD microwave beam module"
+	name = "MOD微波束模块"
 	desc = "An oddly domestic device, this module is installed into the user's palm, \
 		hooking up with culinary scanners located in the helmet to blast food with precise microwave radiation, \
 		allowing them to cook food from a distance, with the greatest of ease. Not recommended for use against grapes."
@@ -46,7 +46,7 @@
 	if(!isitem(target))
 		return
 	if(!isturf(target.loc))
-		balloon_alert(mod.wearer, "not in storage!")
+		balloon_alert(mod.wearer, "不在储物空间里！")
 		return
 	var/obj/item/microwave_target = target
 	do_sparks(2, TRUE, mod.wearer)
@@ -54,13 +54,13 @@
 	if(microwave_target.microwave_act(microwaver = mod.wearer) & COMPONENT_MICROWAVE_SUCCESS)
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 50, FALSE)
 	else
-		balloon_alert(mod.wearer, "can't be microwaved!")
+		balloon_alert(mod.wearer, "无法微波加热！")
 	do_sparks(2, TRUE, microwave_target)
 	drain_power(use_energy_cost)
 
 //Waddle - Makes you waddle and squeak.
 /obj/item/mod/module/waddle
-	name = "MOD waddle module"
+	name = "MOD颠摆模块"
 	desc = "Some of the most primitive technology in use by Honk Co. This module works off an automatic intention system, \
 		utilizing its sensitivity to the pilot's often-limited brainwaves to directly read their next step, \
 		affecting the boots they're installed in. Employing a twin-linked gravitonic drive to create \

@@ -236,7 +236,7 @@
 // Switch the mask valve to the opposite state
 /obj/item/clothing/mask/gas/bdsm_mask/proc/toggle(mob/living/carbon/user)
 	mask_on = !mask_on
-	to_chat(user, span_notice("You turn the air filter [mask_on ? "on. Use with caution!" : "off. Now it's safe to wear."]"))
+	to_chat(user, span_notice("你将空气过滤器[mask_on ? "on. Use with caution!" : "off. Now it's safe to wear."]"))
 	playsound_if_pref(user, mask_on ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_mob_action_buttonss()
 	update_icon()
@@ -250,13 +250,13 @@
 /obj/item/clothing/mask/gas/bdsm_mask/proc/check_gag(user)
 	var/mob/living/carbon/affected_carbon = user
 	if(src == affected_carbon.wear_mask)
-		to_chat(user, span_notice("You can't reach the gag switch!"))
+		to_chat(user, span_notice("你够不到口塞开关！"))
 	else
 		toggle_gag(affected_carbon)
 
 /obj/item/clothing/mask/gas/bdsm_mask/proc/toggle_gag(user)
 	speech_disabled = !speech_disabled
-	to_chat(user, span_notice("You [speech_disabled ? "disable" : "enable"] the gag on the mask."))
+	to_chat(user, span_notice("你[speech_disabled ? "disable" : "enable"]了面具上的口塞。"))
 	update_mob_action_buttonss()
 	update_icon()
 
@@ -312,8 +312,8 @@
 	new_icon_state = "filter_teal"
 
 /obj/item/reagent_containers/cup/lewd_filter
-	name = "gasmask filter"
-	desc = "A strange looking air filter. It may not be a good idea to breathe this in..."
+	name = "防毒面具过滤器"
+	desc = "一个看起来奇怪的空气过滤器。吸入这个可能不是个好主意..."
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	icon_state = "filter_pink"
 	w_class = WEIGHT_CLASS_SMALL
@@ -351,5 +351,5 @@
 	var/obj/item/clothing/mask/gas/bdsm_mask/mask = loc
 	if(!istype(mask) || !mask.is_locked(user))
 		return ..()
-	to_chat(user, span_warning("You can't change the flow rate of the valve while the mask is on!"))
+	to_chat(user, span_warning("你无法在面具佩戴时改变阀门的流速！"))
 	return CLICK_ACTION_BLOCKING

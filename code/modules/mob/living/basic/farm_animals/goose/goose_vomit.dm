@@ -1,6 +1,6 @@
 /// Repeatedly throw up until there's nothing left inside, regrettably sufficiently complex that it requires its own file
 /datum/action/cooldown/mob_cooldown/goose_vomit
-	name = "Vomit"
+	name = "呕吐"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
 	button_icon_state = "vomit"
 	button_icon = 'icons/mob/simple/animal.dmi'
@@ -28,11 +28,11 @@
 		return FALSE
 	if (!length(owner.contents))
 		if (feedback)
-			owner.balloon_alert(owner, "stomach empty!")
+			owner.balloon_alert(owner, "胃空了！")
 		return FALSE
 	if (!isliving(owner))
 		if (feedback)
-			owner.balloon_alert(owner, "you're not alive!")
+			owner.balloon_alert(owner, "你不是活物！")
 		return FALSE
 	return TRUE
 

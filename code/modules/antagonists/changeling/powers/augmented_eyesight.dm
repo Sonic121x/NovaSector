@@ -2,7 +2,7 @@
 //Possible todo: make a custom message for directing a penlight/flashlight at the eyes - not sure what would display though.
 
 /datum/action/changeling/augmented_eyesight
-	name = "Augmented Eyesight"
+	name = "视力增强"
 	desc = "Creates more light sensing rods in our eyes, allowing our vision to penetrate most blocking objects. \
 		Protects our vision from flashes while inactive."
 	helptext = "Grants us x-ray vision or flash protection. \
@@ -30,7 +30,7 @@
 
 	var/obj/item/organ/eyes/ling_eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(isnull(ling_eyes))
-		user.balloon_alert(user, "no eyes!")
+		user.balloon_alert(user, "没有眼睛！")
 		return FALSE
 
 	..()

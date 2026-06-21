@@ -4,9 +4,9 @@
  * It can blind people to make a getaway, but also get stronger if it attacks the same target consecutively.
  */
 /mob/living/basic/heretic_summon/raw_prophet
-	name = "\improper Raw Prophet"
+	name = "\improper 原始先知"
 	real_name = "Raw Prophet"
-	desc = "An abomination stitched together from a few severed arms and one swollen, orphaned eye."
+	desc = "一个由几只断臂和一只肿胀、孤零零的眼睛缝合而成的可憎之物。"
 	icon_state = "raw_prophet"
 	icon_living = "raw_prophet"
 	status_flags = CANPUSH

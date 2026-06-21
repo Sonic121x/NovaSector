@@ -81,7 +81,7 @@
  * A particle effect that belongs to a fluid group.
  */
 /obj/effect/particle_effect/fluid
-	name = "fluid"
+	name = "流体"
 	///	The fluid group that this particle effect belongs to.
 	var/datum/fluid_group/group
 	/// What SSfluid bucket this particle effect is currently in.

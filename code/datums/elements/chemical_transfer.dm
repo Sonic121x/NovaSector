@@ -1,6 +1,6 @@
 //the default chemical transfer messages if they aren't set
-#define DEFAULT_ATTACKER_MESSAGE span_notice("You transfer your chemicals to %VICTIM.")
-#define DEFAULT_VICTIM_MESSAGE span_userdanger("Chemicals have been transferred into you from %ATTACKER!")
+#define DEFAULT_ATTACKER_MESSAGE span_notice("你将你的化学品转移给了%VICTIM。")
+#define DEFAULT_VICTIM_MESSAGE span_userdanger("化学品已从%ATTACKER处转移至你体内！")
 
 /**
  * ## chemical transfer element!
@@ -48,7 +48,7 @@
 			probability_description = "often"
 		if(100)
 			probability_description = "always"
-	examine_list += span_notice("Attacking with [target] will [probability_description] transfer reagents inside of you to your victim.")
+	examine_list += span_notice("使用[target]攻击将[probability_description]把你体内的试剂转移给受害者。")
 
 ///signal called on parent being used to attack a victim
 /datum/element/chemical_transfer/proc/on_attack(datum/target, mob/living/transfer_victim, mob/living/transfer_attacker)

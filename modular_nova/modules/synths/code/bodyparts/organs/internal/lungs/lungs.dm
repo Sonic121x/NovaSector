@@ -1,6 +1,6 @@
 /obj/item/organ/lungs/synth
-	name = "heatsink"
-	desc = "A device that transfers generated heat to a fluid medium to cool it down. Required to keep your synthetics cool-headed. Its shape resembles lungs." //Purposefully left the 'fluid medium' ambigious for interpretation of the character, whether it be air or fluid cooling
+	name = "散热器"
+	desc = "一种将产生的热量传递到流体介质以使其冷却的设备。是保持合成人冷静头脑所必需的。其形状类似于肺。" //Purposefully left the 'fluid medium' ambigious for interpretation of the character, whether it be air or fluid cooling
 	icon = 'modular_nova/master_files/icons/obj/surgery.dmi'
 	icon_state = "lungs-ipc"
 	safe_nitro_min = 0
@@ -25,18 +25,18 @@
 
 	switch(severity)
 		if(EMP_HEAVY)
-			to_chat(owner, span_warning("Alert: Critical cooling system failure! Seek maintenance immediately. Error Code: 5H-17"))
+			to_chat(owner, span_warning("警报：冷却系统严重故障！请立即前往维护区。错误代码：5H-17"))
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 			owner.adjust_bodytemperature(SYNTH_HEAVY_EMP_TEMPERATURE_POWER * TEMPERATURE_DAMAGE_COEFFICIENT)
 
 		if(EMP_LIGHT)
-			to_chat(owner, span_warning("Alert: Major cooling system failure!"))
+			to_chat(owner, span_warning("警报：冷却系统主要故障！"))
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 			owner.adjust_bodytemperature(SYNTH_LIGHT_EMP_TEMPERATURE_POWER * TEMPERATURE_DAMAGE_COEFFICIENT)
 
 /datum/design/synth_heatsink
-	name = "Heatsink"
-	desc = "A device that transfers generated heat to a fluid medium to cool it down. Required to keep your synthetics cool-headed. Its shape resembles lungs."
+	name = "散热器"
+	desc = "一种将产生的热量传递到流体介质以使其冷却的设备。是保持合成人冷静头脑所必需的。其形状类似于肺。"
 	id = "synth_lungs"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS

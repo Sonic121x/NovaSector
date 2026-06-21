@@ -12,8 +12,8 @@
 // WOOO!
 
 /datum/reagent/consumable/ethanol/synthanol
-	name = "Synthanol"
-	description = "A runny liquid with conductive capacities. Its effects on synthetics are similar to those of alcohol on organics."
+	name = "合成醇"
+	description = "一种具有导电能力的流动液体。它对合成人的影响类似于酒精对有机体的影响。"
 	color = "#1BB1FF"
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 	boozepwr = 50
@@ -24,8 +24,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/synthanol
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi' // This should cover anything synthanol related. Will have to individually tag others unless we make an object path for Nova drinks.
 	icon_state = "synthanolglass"
-	name = "glass of synthanol"
-	desc = "The equivalent of alcohol for synthetic crewmembers. They'd find it awful if they had tastebuds too."
+	name = "一杯合成醇"
+	desc = "这是合成人员员的酒精替代品。如果他们也有味蕾的话，也会觉得这玩意儿糟透了。"
 
 /datum/reagent/consumable/ethanol/synthanol/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	if(!(affected_mob.mob_biotypes & MOB_ROBOTIC))
@@ -39,10 +39,10 @@
 	if(C.mob_biotypes & MOB_ROBOTIC)
 		return
 	if(method == INGEST)
-		to_chat(C, pick(span_danger("That was awful!"), span_danger("That was disgusting!")))
+		to_chat(C, pick(span_danger("那玩意儿糟透了！"), span_danger("那玩意儿真恶心！")))
 
 /datum/reagent/consumable/ethanol/synthanol/robottears
-	name = "Robot Tears"
+	name = "机器人眼泪"
 	description = "An oily substance that an IPC could technically consider a 'drink'."
 	color = "#363636"
 	quality = DRINK_GOOD
@@ -52,12 +52,12 @@
 /datum/glass_style/drinking_glass/synthanol/robottears
 	required_drink_type = /datum/reagent/consumable/ethanol/synthanol/robottears
 	icon_state = "robottearsglass"
-	name = "glass of robot tears"
-	desc = "No robots were hurt in the making of this drink."
+	name = "一杯机器人眼泪"
+	desc = "制作此饮品时没有伤害任何机器人。"
 
 /datum/reagent/consumable/ethanol/synthanol/trinary
-	name = "Trinary"
-	description = "A fruit drink meant only for synthetics, however that works."
+	name = "三元"
+	description = "一种仅供合成人饮用的果味饮品，虽然这听起来有点奇怪。"
 	color = "#ADB21f"
 	quality = DRINK_GOOD
 	boozepwr = 20
@@ -66,12 +66,12 @@
 /datum/glass_style/drinking_glass/synthanol/trinary
 	required_drink_type = /datum/reagent/consumable/ethanol/synthanol/trinary
 	icon_state = "trinaryglass"
-	name = "glass of trinary"
-	desc = "Colorful drink made for synthetic crewmembers. It doesn't seem like it would taste well."
+	name = "一杯三元"
+	desc = "为合成人员员调制的彩色饮品。看起来味道不怎么样。"
 
 /datum/reagent/consumable/ethanol/synthanol/servo
-	name = "Servo"
-	description = "A drink containing some organic ingredients, but meant only for synthetics."
+	name = "伺服"
+	description = "一种含有部分有机成分，但仅供合成人饮用的饮品。"
 	color = "#5B3210"
 	quality = DRINK_GOOD
 	boozepwr = 25
@@ -80,12 +80,12 @@
 /datum/glass_style/drinking_glass/synthanol/servo
 	required_drink_type = /datum/reagent/consumable/ethanol/synthanol/servo
 	icon_state = "servoglass"
-	name = "glass of servo"
-	desc = "Chocolate - based drink made for IPCs. Not sure if anyone's actually tried out the recipe."
+	name = "一杯伺服"
+	desc = "为IPC调制的巧克力基底饮品。不确定是否真的有人尝试过这个配方。"
 
 /datum/reagent/consumable/ethanol/synthanol/uplink
-	name = "Uplink"
-	description = "A potent mix of alcohol and synthanol. Will only work on synthetics."
+	name = "上行链路"
+	description = "酒精与合成醇的强力混合物。仅对合成人有效。"
 	color = "#E7AE04"
 	quality = DRINK_GOOD
 	boozepwr = 15
@@ -94,12 +94,12 @@
 /datum/glass_style/drinking_glass/synthanol/uplink
 	required_drink_type = /datum/reagent/consumable/ethanol/synthanol/uplink
 	icon_state = "uplinkglass"
-	name = "glass of uplink"
-	desc = "An exquisite mix of the finest liquoirs and synthanol. Meant only for synthetics."
+	name = "一杯上行链路"
+	desc = "由最上等的利口酒与合成醇调配而成的精致混合物。仅供合成体饮用。"
 
 /datum/reagent/consumable/ethanol/synthanol/synthncoke
-	name = "Synth 'n Coke"
-	description = "The classic drink adjusted for a robot's tastes."
+	name = "合成可乐"
+	description = "为机器人的口味调整过的经典饮品。"
 	color = "#7204E7"
 	quality = DRINK_GOOD
 	boozepwr = 25
@@ -108,12 +108,12 @@
 /datum/glass_style/drinking_glass/synthanol/synthncoke
 	required_drink_type = /datum/reagent/consumable/ethanol/synthanol/synthncoke
 	icon_state = "synthncokeglass"
-	name = "glass of synth 'n coke"
-	desc = "Classic drink altered to fit the tastes of a robot, contains de-rustifying properties. Bad idea to drink if you're made of carbon."
+	name = "一杯合成可乐"
+	desc = "为适应机器人口味而改良的经典饮品，含有除锈特性。如果你是碳基生物，饮用它可不是个好主意。"
 
 /datum/reagent/consumable/ethanol/synthanol/synthignon
-	name = "Synthignon"
-	description = "Someone mixed wine and alcohol for robots. Hope you're proud of yourself."
+	name = "合成尼翁"
+	description = "有人把葡萄酒和机器人的酒精混在一起了。希望你为此感到自豪。"
 	color = "#D004E7"
 	quality = DRINK_GOOD
 	boozepwr = 25
@@ -122,14 +122,14 @@
 /datum/glass_style/drinking_glass/synthanol/synthignon
 	required_drink_type = /datum/reagent/consumable/ethanol/synthanol/synthignon
 	icon_state = "synthignonglass"
-	name = "glass of synthignon"
-	desc = "Someone mixed good wine and robot booze. Romantic, but atrocious."
+	name = "一杯合成尼翁"
+	desc = "有人把好葡萄酒和机器人烈酒混在了一起。很浪漫，但糟透了。"
 
 // Other Booze
 
 /datum/reagent/consumable/ethanol/gunfire
-	name = "Gunfire"
-	description = "A drink that tastes like tiny explosions."
+	name = "枪火"
+	description = "一种尝起来像微小爆炸的饮料。"
 	color = "#e4830d"
 	boozepwr = 40
 	quality = DRINK_GOOD
@@ -139,17 +139,17 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/gunfire
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "gunfire"
-	name = "glass of gunfire"
-	desc = "It pops constantly as you look at it, giving off tiny sparks."
+	name = "一杯枪火"
+	desc = "当你看着它时，它不断地发出爆裂声，并迸发出微小的火花。"
 
 /datum/reagent/consumable/ethanol/gunfire/on_mob_life(mob/living/carbon/M, seconds_per_tick, metabolization_ratio)
 	if (prob(3))
-		to_chat(M,span_notice("You feel the gunfire pop in your mouth."))
+		to_chat(M,span_notice("你感觉到枪火在嘴里噼啪作响。"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/hellfire
-	name = "Hellfire"
-	description = "A nice drink that isn't quite as hot as it looks."
+	name = "地狱火"
+	description = "一种不错的饮料，并没有看起来那么热。"
 	color = "#fb2203"
 	boozepwr = 60
 	quality = DRINK_VERYGOOD
@@ -159,16 +159,16 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/hellfire
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "hellfire"
-	name = "glass of hellfire"
-	desc = "An amber colored drink that isn't quite as hot as it looks."
+	name = "一杯地狱火"
+	desc = "一种琥珀色的饮品，实际并没有它看起来那么灼热。"
 
 /datum/reagent/consumable/ethanol/hellfire/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	affected_mob.adjust_bodytemperature(50 * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick * metabolization_ratio, 0, BODYTEMP_NORMAL + 30)
 
 /datum/reagent/consumable/ethanol/sins_delight
-	name = "Sin's Delight"
-	description = "The drink smells like the seven sins."
+	name = "罪之欢愉"
+	description = "这饮料闻起来有七宗罪的味道。"
 	color = "#330000"
 	boozepwr = 66
 	quality = DRINK_FANTASTIC
@@ -178,12 +178,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/sins_delight
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "sins_delight"
-	name = "glass of sin's delight"
-	desc = "You can smell the seven sins rolling off the top of the glass."
+	name = "一杯罪之欢愉"
+	desc = "你能闻到七宗罪的气息从杯口弥漫开来。"
 
 /datum/reagent/consumable/ethanol/strawberry_daiquiri
-	name = "Strawberry Daiquiri"
-	description = "Pink looking alcoholic drink."
+	name = "草莓黛绮丽"
+	description = "看起来粉红色的酒精饮料。"
 	boozepwr = 20
 	color = "#FF4A74"
 	quality = DRINK_NICE
@@ -193,12 +193,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/strawberry_daiquiri
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "strawberry_daiquiri"
-	name = "glass of strawberry daiquiri"
-	desc = "Pink looking drink with flowers and a big straw to sip it. Looks sweet and refreshing, perfect for warm days."
+	name = "一杯草莓黛绮丽"
+	desc = "粉红色的饮品，点缀着花朵和一根用来啜饮的大吸管。看起来甜美又清爽，是温暖日子的完美选择。"
 
 /datum/reagent/consumable/ethanol/liz_fizz
-	name = "Liz Fizz"
-	description = "Triple citrus layered with some ice and cream."
+	name = "蜥蜴嘶嘶"
+	description = "三重柑橘风味，分层铺上冰块和奶油。"
 	boozepwr = 0
 	color = "#D8FF59"
 	quality = DRINK_NICE
@@ -208,12 +208,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/liz_fizz
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "liz_fizz"
-	name = "glass of liz fizz"
-	desc = "Looks like a citrus sherbet seperated in layers? Why would anyone want that is beyond you."
+	name = "一杯蜥蜴嘶嘶"
+	desc = "看起来像是分层了的柑橘果子露？为什么会有人想要这个，你完全无法理解。"
 
 /datum/reagent/consumable/ethanol/miami_vice
-	name = "Miami Vice"
-	description = "A drink layering Pina Colada and Strawberry Daiquiri"
+	name = "迈阿密风云"
+	description = "一种分层混合了椰林飘香和草莓黛绮丽的饮料"
 	boozepwr = 30
 	color = "#D8FF59"
 	quality = DRINK_FANTASTIC
@@ -223,12 +223,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/miami_vice
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "miami_vice"
-	name = "glass of miami vice"
-	desc = "Strawberries and coconut, like yin and yang."
+	name = "一杯迈阿密风云"
+	desc = "草莓与椰子，如同阴与阳。"
 
 /datum/reagent/consumable/ethanol/malibu_sunset
-	name = "Malibu Sunset"
-	description = "A drink consisting of creme de coconut and tropical juices"
+	name = "马里布日落"
+	description = "一种由椰子奶油利口酒和热带果汁组成的饮料"
 	boozepwr = 20
 	color = "#FF9473"
 	quality = DRINK_VERYGOOD
@@ -238,12 +238,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/malibu_sunset
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "malibu_sunset"
-	name = "glass of malibu sunset"
-	desc = "Tropical looking drinks, with ice cubes hovering on the surface and grenadine coloring the bottom."
+	name = "一杯马里布日落"
+	desc = "热带风情的饮品，冰块漂浮在表面，红石榴糖浆染红了底部。"
 
 /datum/reagent/consumable/ethanol/hotlime_miami
-	name = "Hotlime Miami"
-	description = "The essence of the 90's, if they were a bloody mess that is."
+	name = "热辣莱姆迈阿密"
+	description = "90年代的精髓，如果那是一个血腥烂摊子的话。"
 	boozepwr = 40
 	color = "#A7FAE8"
 	quality = DRINK_FANTASTIC
@@ -253,8 +253,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/hotlime_miami
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "hotlime_miami"
-	name = "glass of hotlime miami"
-	desc = "This looks very aesthetically pleasing."
+	name = "一杯热辣莱姆迈阿密"
+	desc = "这看起来非常赏心悦目。"
 
 /datum/reagent/consumable/ethanol/hotlime_miami/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -263,8 +263,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/coggrog
-	name = "Cog Grog"
-	description = "Now you can fill yourself with the power of Ratvar!"
+	name = "齿轮格罗格"
+	description = "现在你可以用拉特瓦尔的力量填满自己了！"
 	color = rgb(255, 201, 49)
 	boozepwr = 10
 	quality = DRINK_FANTASTIC
@@ -274,12 +274,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/coggrog
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "coggrog"
-	name = "glass of cog grog"
-	desc = "Not even Ratvar's Four Generals could withstand this!  Qevax Jryy!"
+	name = "一杯齿轮格罗格"
+	desc = "就连拉特瓦的四位将军也无法承受这个！Qevax Jryy！"
 
 /datum/reagent/consumable/ethanol/badtouch
-	name = "Bad Touch"
-	description = "A sour and vintage drink. Some say the inventor gets slapped a lot."
+	name = "糟糕触碰"
+	description = "一种酸涩的复古饮品。有人说发明者经常挨耳光。"
 	color = rgb(31, 181, 99)
 	boozepwr = 35
 	quality = DRINK_GOOD
@@ -289,12 +289,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/badtouch
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "badtouch"
-	name = "glass of bad touch"
-	desc = "We're nothing but mammals after all."
+	name = "一杯糟糕触碰"
+	desc = "毕竟我们不过是哺乳动物罢了。"
 
 /datum/reagent/consumable/ethanol/marsblast
-	name = "Marsblast"
-	description = "A spicy and manly drink in honor of the first colonists on Mars."
+	name = "火星冲击"
+	description = "一种辛辣而充满男子气概的饮料，旨在纪念火星的第一批殖民者。"
 	color = rgb(246, 143, 55)
 	boozepwr = 70
 	quality = DRINK_FANTASTIC
@@ -304,12 +304,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/marsblast
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "marsblast"
-	name = "glass of marsblast"
-	desc = "One of these is enough to leave your face as red as the planet."
+	name = "一杯火星冲击"
+	desc = "一杯就足以让你的脸变得和那颗行星一样红。"
 
 /datum/reagent/consumable/ethanol/mercuryblast
-	name = "Mercuryblast"
-	description = "A sour burningly cold drink that's sure to chill the drinker."
+	name = "水星冲击"
+	description = "一种酸涩、灼烧般冰冷的饮品，肯定能让饮用者感到寒意。"
 	color = rgb(29, 148, 213)
 	boozepwr = 40
 	quality = DRINK_VERYGOOD
@@ -319,16 +319,16 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/mercuryblast
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "mercuryblast"
-	name = "glass of mercuryblast"
-	desc = "No thermometers were harmed in the creation of this drink"
+	name = "一杯水星冲击"
+	desc = "制作这杯饮品时没有温度计受到伤害。"
 
 /datum/reagent/consumable/ethanol/mercuryblast/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	affected_mob.adjust_bodytemperature(-50 * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick * metabolization_ratio, T0C)
 
 /datum/reagent/consumable/ethanol/piledriver
-	name = "Piledriver"
-	description = "A bright drink that leaves you with a burning sensation."
+	name = "打桩机"
+	description = "一种明亮的饮品，会给你留下灼烧感。"
 	color = rgb(241, 146, 59)
 	boozepwr = 45
 	quality = DRINK_NICE
@@ -338,12 +338,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/piledriver
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "piledriver"
-	name = "glass of piledriver"
-	desc = "Not the only thing to leave your throat sore."
+	name = "一杯打桩机"
+	desc = "这可不是唯一会让你喉咙发痛的东西。"
 
 /datum/reagent/consumable/ethanol/zenstar
-	name = "Zen Star"
-	description = "A sour and bland drink, rather disappointing."
+	name = "禅星"
+	description = "一种酸涩而平淡的饮品，相当令人失望。"
 	color = rgb(51, 87, 203)
 	boozepwr = 35
 	quality = DRINK_NICE
@@ -353,16 +353,16 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/zenstar
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "zenstar"
-	name = "glass of zen star"
+	name = "一杯禅星"
 	desc = "You'd think something so balanced would actually taste nice... you'd be dead wrong."
 
 
 // RACE SPECIFIC DRINKS
 
 /datum/reagent/consumable/ethanol/coldscales
-	name = "Coldscales"
+	name = "冷鳞"
 	color = "#5AEB52" //(90, 235, 82)
-	description = "A cold looking drink made for people with scales."
+	description = "一种看起来冰冷的饮品，专为有鳞片的人调制。"
 	boozepwr = 50 //strong!
 	taste_description = "dead flies"
 
@@ -370,8 +370,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/coldscales
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "coldscales"
-	name = "glass of coldscales"
-	desc = "A soft green drink that looks inviting!"
+	name = "一杯冷鳞"
+	desc = "一杯看起来诱人的柔和绿色饮品！"
 
 /datum/reagent/consumable/ethanol/coldscales/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(islizard(exposed_mob))
@@ -381,9 +381,9 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/oil_drum
-	name = "Oil Drum"
+	name = "油桶"
 	color = "#000000" //(0, 0, 0)
-	description = "Industrial grade oil mixed with some ethanol to make it a drink. Somehow not known to be toxic."
+	description = "工业级油与一些乙醇混合制成的饮品。不知为何，并未发现其有毒。"
 	boozepwr = 45
 	taste_description = "oil spill"
 
@@ -391,8 +391,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/oil_drum
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "oil_drum"
-	name = "drum of oil"
-	desc = "A gray can of booze and oil..."
+	name = "一桶油"
+	desc = "一罐灰色的酒和油的混合物……"
 
 /datum/reagent/consumable/ethanol/oil_drum/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(MOB_ROBOTIC)
@@ -402,9 +402,9 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/nord_king
-	name = "Nord King"
+	name = "北方之王"
 	color = "#EB1010" //(235, 16, 16)
-	description = "Strong mead mixed with more honey and ethanol. Beloved by its human patrons."
+	description = "浓烈的蜂蜜酒混合了更多蜂蜜和乙醇。深受其人类顾客喜爱。"
 	boozepwr = 50 //strong!
 	taste_description = "honey and red wine"
 
@@ -412,8 +412,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/nord_king
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "nord_king"
-	name = "keg of nord king"
-	desc = "A dripping keg of red mead."
+	name = "一桶北方之王"
+	desc = "一桶滴着红色蜂蜜酒的小桶。"
 
 /datum/reagent/consumable/ethanol/nord_king/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(ishumanbasic(exposed_mob) || isdwarf(exposed_mob))
@@ -423,9 +423,9 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/velvet_kiss
-	name = "Velvet Kiss"
+	name = "天鹅绒之吻"
 	color = "#EB1010" //(235, 16, 16)
-	description = "A bloody drink mixed with wine."
+	description = "一种与葡萄酒混合的血色饮品。"
 	boozepwr = 10 //weak
 	taste_description = "iron with grapejuice"
 
@@ -433,8 +433,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/velvet_kiss
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "velvet_kiss"
-	name = "glass of velvet kiss"
-	desc = "Red and white drink for the upper classes or undead."
+	name = "一杯天鹅绒之吻"
+	desc = "为上流阶层或亡灵准备的红白饮品。"
 
 /datum/reagent/consumable/ethanol/velvet_kiss/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(iszombie(exposed_mob) || isvampire(exposed_mob) || isdullahan(exposed_mob)) //Rare races!
@@ -444,9 +444,9 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/abduction_fruit
-	name = "Abduction Fruit"
+	name = "绑架果实"
 	color = "#DEFACD" //(222, 250, 205)
-	description = "Mixing of juices to make an alien taste."
+	description = "混合果汁以制造出外星风味。"
 	boozepwr = 80 //Strong
 	taste_description = "grass and lime"
 
@@ -454,8 +454,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/abduction_fruit
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "abduction_fruit"
-	name = "glass of abduction fruit"
-	desc = "Mixed fruits that were never meant to be mixed..."
+	name = "一杯绑架果实"
+	desc = "混合了本不该混合的水果……"
 
 /datum/reagent/consumable/ethanol/abduction_fruit/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isabductor(exposed_mob) || isxenohybrid(exposed_mob))
@@ -465,9 +465,9 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/bug_zapper
-	name = "Bug Zapper"
+	name = "虫虫克星"
 	color = "#F5882A" //(222, 250, 205)
-	description = "Copper and lemon juice. Hardly even a drink."
+	description = "铜和柠檬汁。几乎算不上是饮品。"
 	boozepwr = 5 //No booze really
 	taste_description = "copper and AC power"
 
@@ -475,8 +475,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/bug_zapper
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "bug_zapper"
-	name = "glass of bug zapper"
-	desc = "An odd mix of copper, lemon juice and power meant for non-human consumption."
+	name = "一杯虫虫克星"
+	desc = "一种铜、柠檬汁和能量的奇怪混合物，本意并非供人类饮用。"
 
 /datum/reagent/consumable/ethanol/bug_zapper/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isinsect(exposed_mob) || isflyperson(exposed_mob) || ismoth(exposed_mob))
@@ -486,9 +486,9 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/mush_crush
-	name = "Mush Crush"
+	name = "蘑菇粉碎"
 	color = "#F5882A" //(222, 250, 205)
-	description = "Soil in a glass."
+	description = "一杯土。"
 	boozepwr = 5 //No booze really
 	taste_description = "dirt and iron"
 
@@ -496,8 +496,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/mush_crush
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "mush_crush"
-	name = "glass of mush crush"
-	desc = "Popular among people that want to grow their own food rather than drink the soil."
+	name = "一杯蘑菇粉碎"
+	desc = "在那些想自己种食物而不是喝泥土的人中很受欢迎。"
 
 /datum/reagent/consumable/ethanol/mush_crush/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(ispodperson(exposed_mob) || issnail(exposed_mob))
@@ -507,9 +507,9 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/hollow_bone
-	name = "Hollow Bone"
+	name = "空心骨"
 	color = "#FCF7D4" //(252, 247, 212)
-	description = "Shockingly none-harmful mix of toxins and milk."
+	description = "毒素和牛奶的混合物，令人惊讶地无害。"
 	boozepwr = 15
 	taste_description = "Milk and salt"
 
@@ -517,8 +517,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/hollow_bone
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "hollow_bone"
-	name = "skull of hollow bone"
-	desc = "Mixing of milk and bone hurting juice for enjoyment for rather skinny people."
+	name = "一颅空心骨"
+	desc = "牛奶与伤骨汁的混合，为相当瘦削的人带来享受。"
 
 /datum/reagent/consumable/ethanol/hollow_bone/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isplasmaman(exposed_mob) || isskeleton(exposed_mob))
@@ -528,9 +528,9 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/jell_wyrm
-	name = "Jell Wyrm"
+	name = "果冻蠕虫"
 	color = "#FF6200" //(255, 98, 0)
-	description = "Horrible mix of CO2, toxins, and heat. Meant for slime based life."
+	description = "二氧化碳、毒素和热量的可怕混合物。专为黏液基生命体准备。"
 	boozepwr = 40
 	taste_description = "tropical sea"
 
@@ -538,8 +538,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/jell_wyrm
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "jell_wyrm"
-	name = "glass of jell wyrm"
-	desc = "A bubbly drink that is rather inviting to those that don't know who it's meant for."
+	name = "一杯果冻蠕虫"
+	desc = "一种气泡饮料，对那些不知道它是为谁准备的人来说相当诱人。"
 
 /datum/reagent/consumable/ethanol/jell_wyrm/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -559,9 +559,9 @@
 #undef JELLWYRM_DISGUST
 
 /datum/reagent/consumable/ethanol/laval_spit //Yes Laval
-	name = "Laval Spit"
+	name = "熔岩唾沫"
 	color = "#DE3009" //(222, 48, 9)
-	description = "Heat minerals and some mauna loa. Meant for rock based life."
+	description = "加热矿物和一些莫纳罗亚火山成分。专为岩石基生命设计。"
 	boozepwr = 30
 	taste_description = "tropical island"
 
@@ -569,8 +569,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/laval_spit
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "laval_spit"
-	name = "glass of laval spit"
-	desc = "Piping hot drink for those who can stomach the heat of lava."
+	name = "一杯熔岩唾沫"
+	desc = "为那些能承受熔岩热度的人准备的滚烫饮品。"
 
 /datum/reagent/consumable/ethanol/laval_spit/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isgolem(exposed_mob))
@@ -582,7 +582,7 @@
 /datum/reagent/consumable/ethanol/frisky_kitty
 	name = "Frisky Kitty"
 	color = "#FCF7D4" //(252, 247, 212)
-	description = "Warm milk mixed with catnip."
+	description = "温牛奶混合猫薄荷。"
 	boozepwr = 0
 	taste_description = "Warm milk and catnip"
 
@@ -590,8 +590,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/frisky_kitty
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "frisky_kitty"
-	name = "cup of frisky kitty"
-	desc = "Warm milk and some catnip."
+	name = "一杯frisky kitty"
+	desc = "温牛奶和一些猫薄荷。"
 
 /datum/reagent/consumable/ethanol/frisky_kitty/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isfeline(exposed_mob))
@@ -603,7 +603,7 @@
 
 /datum/reagent/consumable/ethanol/bloodshot_base
 	name = "Bloodshot Base"
-	description = "The bootleg blend of nutrients and alcohol that goes into making Bloodshots. Doesn't taste too great on its own, for Hemophages at least."
+	description = "制作血弹所需的私酿营养与酒精混合物。单独品尝味道不怎么样，至少对嗜血者而言。"
 	color = "#c29ca1"
 	boozepwr = 25 // Still more concentrated than in Bloodshot.
 	taste_description = "nutritious mix with an alcoholic kick to it"
@@ -624,7 +624,7 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/bloodshot
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "bloodshot"
-	name = "glass of bloodshot"
+	name = "一杯bloodshot"
 	desc = "The history of the 'Bloodshot' is based in a mix of flavor-neutral chems devised to help deliver nutrients to a Hemophage's tumorous organs. Due to the expense of the real thing and the clinical nature of it, this liquor has been designed as a 'improvised' alternative; though, still tasting like a hangover cure. It smells like iron, giving a clue to the key ingredient."
 
 
@@ -652,7 +652,7 @@
 
 /datum/reagent/consumable/ethanol/blizzard_brew
 	name = "Blizzard Brew"
-	description = "An ancient recipe. Served best chilled as much as dwarvenly possible."
+	description = "一份古老的配方。最好尽可能以矮人方式冰镇后享用。"
 	color = rgb(180, 231, 216)
 	boozepwr = 25
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
@@ -663,8 +663,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/blizzard_brew
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "blizzard_brew"
-	name = "glass of Blizzard Brew"
-	desc = "An ancient recipe. Served best chilled as much as dwarvenly possible."
+	name = "一杯Blizzard Brew"
+	desc = "一个古老的配方。最好尽可能以矮人风格冰镇后享用。"
 
 /datum/reagent/consumable/ethanol/blizzard_brew/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isdwarf(exposed_mob))
@@ -689,7 +689,7 @@
 
 /datum/reagent/consumable/ethanol/molten_mead
 	name = "Molten Mead"
-	description = "Famously known to set beards aflame. Ingest at your own risk!"
+	description = "以点燃胡须而闻名。饮用风险自负！"
 	color = rgb(224, 78, 16)
 	boozepwr = 35
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
@@ -700,8 +700,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/molten_mead
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "molten_mead"
-	name = "glass of Molten Mead"
-	desc = "Famously known to set beards aflame. Ingest at your own risk!"
+	name = "一杯Molten Mead"
+	desc = "以点燃胡须而闻名。饮用风险自负！"
 
 /datum/reagent/consumable/ethanol/molten_mead/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isdwarf(exposed_mob))
@@ -717,7 +717,7 @@
 
 /datum/reagent/consumable/ethanol/hippie_hooch
 	name = "Hippie Hooch"
-	description = "Peace and love! Under request of the HR department, this drink is sure to sober you up quickly."
+	description = "和平与爱！应人力资源部要求，这款饮品能让你快速清醒。"
 	color = rgb(77, 138, 34)
 	boozepwr = -20
 	taste_description = "eggy hemp"
@@ -732,8 +732,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/hippie_hooch
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "hippie_hooch"
-	name = "glass of Hippie Hooch"
-	desc = "Peace and love! Under request of the HR department, this drink is sure to sober you up quickly."
+	name = "一杯Hippie Hooch"
+	desc = "和平与爱！应人力资源部要求，这款饮品保证能让你快速清醒。"
 
 /datum/reagent/consumable/ethanol/hippie_hooch/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isdwarf(exposed_mob))
@@ -753,7 +753,7 @@
 
 /datum/reagent/consumable/ethanol/research_rum
 	name = "Research Rum"
-	description = "Cooked up by dwarven scientists, this glowing pink brew is sure to supercharge your thinking. How? Science!"
+	description = "由矮人科学家调制，这种发光的粉色酿造物定能超级激发你的思维。怎么做到的？科学！"
 	color = rgb(169, 69, 169)
 	boozepwr = 50
 	taste_description = "slippery grey matter"
@@ -762,8 +762,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/research_rum
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "research_rum"
-	name = "glass of Research Rum"
-	desc = "Cooked up by dwarven scientists, this glowing pink brew is sure to supercharge your thinking. How? Science!"
+	name = "一杯Research Rum"
+	desc = "由矮人科学家调制而成，这种发光的粉色佳酿定能超频你的思维。怎么做到的？科研！"
 
 /datum/reagent/consumable/ethanol/research_rum/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isdwarf(exposed_mob))
@@ -779,7 +779,7 @@
 
 /datum/reagent/consumable/ethanol/golden_grog
 	name = "Golden Grog"
-	description = "A drink concocted by a dwarven Quartermaster who had too much time and money on his hands. Commonly ordered by influencers looking to flaunt their wealth."
+	description = "由一位时间与金钱都过多的矮人军需官调制的饮品。通常被想要炫耀财富的网红们点单。"
 	color = rgb(247, 230, 141)
 	boozepwr = 70
 	taste_description = "sweet credit holochips"
@@ -788,8 +788,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/golden_grog
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "golden_grog"
-	name = "glass of Golden Grog"
-	desc = "A drink concocted by a dwarven Quartermaster who had too much time and money on his hands. Commonly ordered by influencers looking to flaunt their wealth."
+	name = "一杯黄金格罗格"
+	desc = "由一位时间与金钱都过于充裕的矮人军需官调制出的饮品。常被想要炫耀财富的网红们点单。"
 
 /datum/reagent/consumable/ethanol/golden_grog/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	if(isdwarf(exposed_mob))
@@ -801,9 +801,9 @@
 // RACIAL DRINKS END
 
 /datum/reagent/consumable/ethanol/appletini
-	name = "Appletini"
+	name = "苹果马提尼"
 	color = "#9bd1a9" //(155, 209, 169)
-	description = "The electric-green appley beverage nobody can turn down!"
+	description = "没人能拒绝的亮绿色苹果味饮料！"
 	boozepwr = 50
 	taste_description = "Sweet and green"
 	quality = DRINK_GOOD
@@ -812,13 +812,13 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/appletini
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "appletini"
-	name = "glass of appletini"
-	desc = "An appley beverage in a martini glass"
+	name = "一杯苹果马提尼"
+	desc = "马提尼杯中的苹果风味饮品"
 
 /datum/reagent/consumable/ethanol/quadruple_sec/cityofsin //making this a subtype was some REAL JANK, but it saves me a headache, and it looks good!
-	name = "City of Sin"
+	name = "罪恶之城"
 	color = "#eb9378" //(235, 147, 120)
-	description = "A smooth, fancy drink for people of ill repute"
+	description = "为声名狼藉之人准备的顺滑、精致的饮品"
 	boozepwr = 70
 	taste_description = "Your own sins"
 	quality = DRINK_VERYGOOD //takes extra effort
@@ -828,11 +828,11 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/quadruple_sec/cityofsin
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "cityofsin"
-	name = "glass of city of sin"
-	desc = "Looking at it makes you recall every mistake you've made."
+	name = "一杯罪恶之城"
+	desc = "看着它，会让你回想起自己犯过的每一个错误。"
 
 /datum/reagent/consumable/ethanol/cringe_weaver
-	name = "Cringe Weaver"
+	name = "尬织者"
 	description = "An infrangibly awful-tasting drink that 'smart' people inexplicably covet. For when they ask for a Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 	color = "#2BFE3C"
 	boozepwr = -20 //spicy. sobering. burning. cringe.
@@ -850,14 +850,14 @@
 
 /datum/glass_style/drinking_glass/cringe_weaver
 	required_drink_type = /datum/reagent/consumable/ethanol/cringe_weaver
-	name = "Cringe Weaver"
-	desc = "Spicy, sobering, burning, and of course - irrefutably cringe. Enjoyed by patrons who ask for a plum in a man's hat."
+	name = "尬织者"
+	desc = "辛辣、醒酒、灼烧感，当然——还有无可辩驳的尴尬。深受那些会向戴帽子的男人要一颗李子的顾客喜爱。"
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "cringe_weaver"
 
 /datum/reagent/consumable/ethanol/shakiri
-	name = "Shakiri"
-	description = "A sweet, fragrant red drink made from fermented kiri fruits. It seems to gently sparkle when exposed to light."
+	name = "沙基里酒"
+	description = "一种由发酵的基里果制成的甜美、芬芳的红色饮品。在光照下似乎会微微闪烁。"
 	boozepwr = 45
 	color = "#cf3c3c"
 	quality = DRINK_GOOD
@@ -868,12 +868,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/shakiri
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "shakiri"
-	name = "glass of shakiri"
-	desc = "A sweet, fragrant red drink made from fermented kiri fruits. It seems to gently sparkle when exposed to light."
+	name = "一杯沙基里酒"
+	desc = "一种由发酵的基里果制成的甜美、芬芳的红色饮品。在光照下似乎会微微闪烁。"
 
 /datum/reagent/consumable/ethanol/shakiri_spritz
-	name = "Shakiri Spritz"
-	description = "A carbonated cocktail made from shakiri and orange juice with soda water."
+	name = "沙基里气泡酒"
+	description = "一种由沙基里酒、橙汁和苏打水制成的碳酸鸡尾酒。"
 	color = "#cf863c"
 	quality = DRINK_GOOD
 	boozepwr = 45
@@ -883,12 +883,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/shakiri_spritz
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "shakiri_spritz"
-	name = "glass of shakiri spritz"
-	desc = "A carbonated cocktail made from shakiri and orange juice with soda water."
+	name = "一杯沙基里气泡酒"
+	desc = "一种由沙基里酒、橙汁和苏打水制成的碳酸鸡尾酒。"
 
 /datum/reagent/consumable/ethanol/crimson_hurricane
-	name = "Crimson Hurricane"
-	description = "A strong, citrusy cocktail of human origin, now made with shakiri and kiri jelly for a delightfully sweet drink."
+	name = "绯红飓风"
+	description = "一种源自人类的浓烈、柑橘风味的鸡尾酒，现在改用沙基里酒和基里果冻制成，口感甜美宜人。"
 	color = "#b86637"
 	quality = DRINK_VERYGOOD
 	boozepwr = 60
@@ -898,12 +898,12 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/crimson_hurricane
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "crimson_hurricane"
-	name = "glass of crimson hurricane"
-	desc = "A strong, citrusy cocktail of human origin, now with shakiri and kiri jelly for a delightfully sweet drink."
+	name = "一杯绯红飓风"
+	desc = "一种源自人类的浓烈柑橘风味鸡尾酒，现在加入了沙基里酒和基里果冻，成为一款令人愉悦的甜味饮品。"
 
 /datum/reagent/consumable/ethanol/shakiri_rogers
 	name = "Shakiri Rogers"
-	description = "A take on the classic Roy Rogers, with shakiri instead of grenadine. Sweet and refreshing."
+	description = "对经典罗伊·罗杰斯鸡尾酒的改良，用沙基里酒代替了石榴糖浆。甜美而清爽。"
 	color = "#6F2B1A"
 	quality = DRINK_GOOD
 	boozepwr = 45
@@ -913,5 +913,5 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/shakiri_rogers
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "shakiri_rogers"
-	name = "glass of shakiri rogers"
-	desc = "A take on the classic Roy Rogers, with shakiri instead of grenadine. Sweet and refreshing."
+	name = "一杯沙基里·罗杰斯"
+	desc = "经典罗伊·罗杰斯的变体，用沙基里代替了石榴糖浆。甜美而清爽。"

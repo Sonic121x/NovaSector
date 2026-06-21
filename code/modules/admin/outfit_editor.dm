@@ -21,7 +21,7 @@
 		drip = target
 	else
 		drip = new /datum/outfit
-		drip.name = "New Outfit"
+		drip.name = "新装备"
 
 /datum/outfit_editor/ui_state(mob/user)
 	return ADMIN_STATE(R_NONE)
@@ -102,7 +102,7 @@
 				drip.vars[slot] = null
 
 		if("rename")
-			var/newname = tgui_input_text(owner, "What do you want to name this outfit?", OUTFIT_EDITOR_NAME, max_length = MAX_NAME_LEN)
+			var/newname = tgui_input_text(owner, "你想给这套服装起什么名字？", OUTFIT_EDITOR_NAME, max_length = MAX_NAME_LEN)
 			if(newname)
 				drip.name = newname
 		if("save")
@@ -119,7 +119,7 @@
 	if(!choice)
 		return
 	if(!ispath(choice))
-		tgui_alert(owner, "Invalid item", OUTFIT_EDITOR_NAME, list("oh no"))
+		tgui_alert(owner, "无效物品", OUTFIT_EDITOR_NAME, list("oh no"))
 		return
 	if(initial(choice.icon_state) == null) //hacky check copied from experimentor code
 		var/msg = "Warning: This item's icon_state is null, indicating it is very probably not actually a usable item."
@@ -170,7 +170,7 @@
 				suit = new suit //initial() doesn't like lists
 				options = suit.allowed
 			if(!length(options)) //nothing will happen, but don't let the user think it's broken
-				to_chat(owner, span_warning("No options available for the current suit."))
+				to_chat(owner, span_warning("当前套装没有可用选项。"))
 
 		if("belt")
 			options = typesof(/obj/item/storage/belt)
@@ -197,7 +197,7 @@
 
 	if(!length(options))
 		return
-	var/option = tgui_input_list(owner, "Choose an item", OUTFIT_EDITOR_NAME, options)
+	var/option = tgui_input_list(owner, "选择一个物品", OUTFIT_EDITOR_NAME, options)
 	if(isnull(option))
 		return
 	set_item(slot, option)

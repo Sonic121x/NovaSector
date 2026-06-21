@@ -1,6 +1,6 @@
 /datum/design/jawsoflife/science
-	name = "Hybrid cutters"
-	desc = "An off-shoot of the jaws of life that lacks the door-opening power"
+	name = "混合切割器"
+	desc = "生命之钳的一个分支，缺少了撬开门的力量"
 	id = SCIENCE_JAWS_OF_LIFE_DESIGN_ID // added one more requirement since the Jaws of Life are a bit OP
 	build_path = /obj/item/crowbar/power/science
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
@@ -12,7 +12,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/handdrill/science/New()
-	name = ("Science " + name)
+	name = ("科研" + name)
 	desc += " with a science paintjob"
 
 	return ..()

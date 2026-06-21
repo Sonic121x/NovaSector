@@ -17,8 +17,8 @@
 	alternate_worn_layer = initial(alternate_worn_layer)
 
 /obj/item/clothing/glasses/blindfold/color
-	name = "blind personnel blindfold"
-	desc = "Indicates that the wearer suffers from blindness."
+	name = "盲人眼罩"
+	desc = "表示佩戴者失明。"
 	worn_icon = 'modular_nova/modules/GAGS/icons/eyes_worn.dmi'
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/glasses/blindfold/color"

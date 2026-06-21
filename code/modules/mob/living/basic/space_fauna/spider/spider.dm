@@ -2,8 +2,8 @@
  * Base type of various spider life stages
  */
 /mob/living/basic/spider
-	name = "abstract spider"
-	desc = "Furry and abstract, it makes you shudder to look at it. This one should not exist."
+	name = "抽象蜘蛛"
+	desc = "毛茸茸且抽象，光是看着它就让你不寒而栗。这东西本不该存在。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	speak_emote = list("chitters")
@@ -195,8 +195,8 @@
  * A less than giant spider which lives in the maintenance ducts and makes them annoying to traverse.
  */
 /mob/living/basic/spider/maintenance
-	name = "duct spider"
-	desc = "Nanotrasen's imported solution to mice, comes with its own problems."
+	name = "管道蜘蛛"
+	desc = "纳米传讯为解决鼠患引进的方案，但自身也带来了新问题。"
 	icon_state = "maint_spider"
 	icon_living = "maint_spider"
 	icon_dead = "maint_spider_dead"

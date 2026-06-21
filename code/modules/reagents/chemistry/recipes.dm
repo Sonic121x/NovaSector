@@ -330,7 +330,7 @@
 	var/turf/location = get_turf(holder.my_atom)
 	for(var/mob/living/living_mob in viewers(range, location))
 		living_mob.flash_act(length = length)
-	holder.my_atom.visible_message("The [holder.my_atom] suddenly lets out a bright flash!")
+	holder.my_atom.visible_message("这个[holder.my_atom]突然发出一道明亮的闪光！")
 
 /*
  *Deafens those in range causing ear damage and muting sound
@@ -535,7 +535,7 @@
 			continue
 		if(target.get_eye_protection() && !ignore_eyes)
 			continue
-		to_chat(target, "The [holder.my_atom.name] launches some of [holder.p_their()] contents at you!")
+		to_chat(target, "这个[holder.my_atom.name]朝你喷射了一些[holder.p_their()]内容物！")
 		target.reagents.add_reagent(reagent, vol)
 
 

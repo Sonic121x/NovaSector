@@ -1,8 +1,8 @@
 // Service
 
 /datum/supply_pack/service/hydro_synthesizers
-	name = "Hydroponics Plumbing Synthesizer Pack"
-	desc = "Watering and feeding your plants got you down? Worry no further as this kit contains two each of water and hydroponics fertilizer synthesizers."
+	name = "水培管道合成器包"
+	desc = "浇水和施肥让你烦恼吗？别担心，这个套件包含两个水合成器和两个水培肥料合成器。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(
 		/obj/machinery/plumbing/synthesizer/water_synth,
@@ -14,8 +14,8 @@
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/service/frontier_kitchen
-	name = "Frontier Kitchen Equipment"
-	desc = "A range of frontier appliance classics, enough to set up a functioning kitchen no matter where you are in the galaxy."
+	name = "边疆厨房设备"
+	desc = "一系列经典的边疆电器，足以在银河系的任何地方建立一个功能齐全的厨房。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/machinery/plumbing/synthesizer/water_synth,
@@ -30,8 +30,8 @@
 // Engineering
 
 /datum/supply_pack/engineering/colony_starter
-	name = "Colonization Starter Kit"
-	desc = "The Sol standard minimum kit for frontier colonization, contains everything you need to construct a mostly functioning colony in most places across the galaxy."
+	name = "殖民启动套件"
+	desc = "太阳系标准的边疆殖民最低限度套件，包含在银河系大多数地方建立一个基本功能殖民地所需的一切。"
 	cost = CARGO_CRATE_VALUE * 11 // 6 for the lathe, 3 for the organics printer, 2 for the rest of the stuff
 	contains = list(
 		/obj/item/flatpacked_machine,

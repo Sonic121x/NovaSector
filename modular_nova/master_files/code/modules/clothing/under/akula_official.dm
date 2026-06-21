@@ -6,7 +6,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/azulean/old_blood
-	name = "\improper Agurkrral Oldblood's royal regalia"
+	name = "\improper 阿古尔克拉尔古血族王室盛装"
 	desc = "A service dress uniform of the Old Principalities of Agurkrral, a fashion shared by the majority of the nobility. \
 		These outfits are known to normally be accessorized with gold trims and other rare metals, \
 		constructed and treated specially for use in underwater environments; the dwellings of most of the crown's old guard. \n\n\
@@ -17,13 +17,13 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK | CLOTHING_BIG_LEGS_MASK
 
 /obj/item/clothing/under/rank/azulean/old_blood/skirt
-	name = "\improper Agurkrral Oldblood's royal regalia"
+	name = "\improper 阿古克劳尔旧血贵族王室礼服"
 	icon_state = "oldblood_skirt"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON | CLOTHING_BIG_LEGS_MASK
 
 /obj/item/clothing/under/rank/azulean/upstart
-	name = "\improper Agurkrral Upstart's noble getup"
+	name = "\improper 阿古克劳尔暴发户的贵族装束"
 	desc = "Patterned off the dress uniforms of the Old Principalities, this sort of style belongs to the border princes of the New Principalities. \
 		These outfits rebuke tradition to incorporate the use of imported leather, using reinforced clasps instead of shiny golden buttons. \n\n\
 		Few decorations are normally seen in these clothing, owing to the tendency of their wearers to 'gallivant.' \

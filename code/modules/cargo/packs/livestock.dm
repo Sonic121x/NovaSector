@@ -3,8 +3,8 @@
 	crate_type = /obj/structure/closet/crate/critter
 
 /datum/supply_pack/critter/parrot
-	name = "Bird Crate"
-	desc = "Contains five expert telecommunication birds."
+	name = "鸟箱"
+	desc = "包含五只专业电信技术鸟。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/mob/living/basic/parrot)
 	crate_name = "parrot crate"
@@ -15,8 +15,8 @@
 		new /mob/living/basic/parrot(.)
 
 /datum/supply_pack/critter/butterfly
-	name = "Butterflies Crate"
-	desc = "Not a very dangerous insect, but they do give off a better image than, say, flies or cockroaches."//is that a motherfucking worm reference
+	name = "蝴蝶箱"
+	desc = "不是一种非常危险的昆虫，它们确实比苍蝇和蟑螂更能给人留下好印象。"//is that a motherfucking worm reference
 	order_flags = ORDER_CONTRABAND
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/mob/living/basic/butterfly)
@@ -29,7 +29,7 @@
 
 /datum/supply_pack/critter/cat
 	name = "Cat Crate"
-	desc = "The cat goes meow! Comes with a collar and a nice cat toy! Cheeseburger not included."//i can't believe im making this reference
+	desc = "猫在喵喵叫！附带一个项圈和一个漂亮的猫玩具！不包括芝士汉堡。"//i can't believe im making this reference
 	cost = CARGO_CRATE_VALUE * 4 //Cats are worth as much as corgis.
 	contains = list(
 		/mob/living/basic/pet/cat,
@@ -50,7 +50,7 @@
 
 /datum/supply_pack/critter/chick
 	name = "Chicken Crate"
-	desc = "The chicken goes bwaak!"
+	desc = "鸡咕咕叫！"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/mob/living/basic/chick)
 	crate_name = "chicken crate"
@@ -75,34 +75,34 @@
 
 /datum/supply_pack/critter/cow
 	name = "Cow Crate"
-	desc = "The cow goes moo! Contains one cow."
+	desc = "奶牛在哞哞哞地叫！里面装着一头奶牛。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/mob/living/basic/cow)
 	crate_name = "cow crate"
 
 /datum/supply_pack/critter/sheep
 	name = "Sheep Crate"
-	desc = "The sheep goes BAAAA! Contains one sheep."
+	desc = "绵羊在咩咩咩地叫！里面装着一只绵羊。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/mob/living/basic/sheep)
 	crate_name = "sheep crate"
 
 /datum/supply_pack/critter/pig
 	name = "Pig Crate"
-	desc = "The pig goes oink! Contains one pig."
+	desc = "猪在哼哼哼地叫！里面装着一头猪。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/mob/living/basic/pig)
 	crate_name = "pig crate"
 
 /datum/supply_pack/critter/pony
-	name = "Pony Crate"
-	desc = "Ponies, yay! (Just the one.)"
+	name = "小马板条箱"
+	desc = "小马，耶！（只有一匹。）"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/mob/living/basic/pony)
 	crate_name = "pony crate"
 
 /datum/supply_pack/critter/crab
-	name = "Crab Rocket"
+	name = "螃蟹火箭"
 	desc = "CRAAAAAAB ROCKET. CRAB ROCKET. CRAB ROCKET. CRAB CRAB CRAB CRAB CRAB CRAB CRAB \
 		CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB \
 		CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB \
@@ -132,7 +132,7 @@
 
 /datum/supply_pack/critter/fox
 	name = "Fox Crate"
-	desc = "The fox goes...? Contains one fox. Comes with a collar!"//what does the fox say
+	desc = "大楚兴，陈胜王！"//what does the fox say
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/mob/living/basic/pet/fox,
@@ -142,7 +142,7 @@
 
 /datum/supply_pack/critter/goat
 	name = "Goat Crate"
-	desc = "The goat goes baa! Contains one goat. Warranty void if used as a replacement for Pete."
+	desc = "山羊叫了一声！里面有一只山羊。如果用来代替皮特，则保修无效。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/mob/living/basic/goat)
 	crate_name = "goat crate"
@@ -164,7 +164,7 @@
 
 /datum/supply_pack/critter/monkey
 	name = "Monkey Cube Crate"
-	desc = "Stop monkeying around! Contains seven monkey cubes. Just add water!"
+	desc = "别瞎折腾了！内含七个猴子方块。只要加水即可！"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list (/obj/item/storage/box/monkeycubes)
 	crate_type = /obj/structure/closet/crate
@@ -172,7 +172,7 @@
 
 /datum/supply_pack/critter/pug
 	name = "Pug Crate"
-	desc = "Like a normal dog, but... squished. Contains one pug. Comes with a nice collar!"
+	desc = "就像一只正常的狗，但是……变形了。包含一只哈巴狗。还有一个漂亮的项圈！"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/mob/living/basic/pet/dog/pug,
 					/obj/item/clothing/neck/petcollar,
@@ -210,7 +210,7 @@
 
 /datum/supply_pack/critter/lizard
 	name = "Lizard Crate"
-	desc = "Hisss! Containssss a friendly lizard. Not to be confusssed with a lizardperssson."
+	desc = "*哈气!包含一只友好的蜥蜴。别和蜥蜴人搞混了。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/mob/living/basic/lizard)
 	crate_name = "lizard crate"

@@ -6,7 +6,7 @@
 /// Gas tank air sensor.
 /// These always hook to monitors, be mindful of them
 /obj/machinery/air_sensor
-	name = "gas sensor"
+	name = "气体传感器"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "gsensor1"
 	resistance_flags = FIRE_PROOF
@@ -109,8 +109,8 @@
 
 /obj/machinery/air_sensor/examine(mob/user)
 	. = ..()
-	. += span_notice("Use a multitool to link it to an injector, vent, or air alarm, or reset its ports.")
-	. += span_notice("Click with hand to turn it off.")
+	. += span_notice("使用多功能工具将其连接到注入器、通风口或空气警报器，或重置其端口。")
+	. += span_notice("用手点击以关闭它。")
 
 /obj/machinery/air_sensor/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -118,7 +118,7 @@
 	//switched off version of this air sensor but still anchored to the ground
 	var/obj/item/air_sensor/sensor = new(drop_location())
 	sensor.set_anchored(TRUE)
-	sensor.balloon_alert(user, "sensor turned off")
+	sensor.balloon_alert(user, "传感器已关闭")
 
 	//delete self
 	qdel(src)
@@ -139,7 +139,7 @@
 ///right click with multi tool to disconnect everything
 /obj/machinery/air_sensor/multitool_act_secondary(mob/living/user, obj/item/tool)
 	reset()
-	balloon_alert(user, "ports reset")
+	balloon_alert(user, "端口已重置")
 	return TRUE
 
 /obj/machinery/air_sensor/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
@@ -149,9 +149,9 @@
 	switch(type)
 		if(INLET, OUTLET)
 			var/port = "[type == INLET ? "input" : "output"] port"
-			user.balloon_alert(user, "[port] configured")
-			to_chat(user, span_notice("[src] has connected [multi_tool.buffer] to its [port]."))
-	to_chat(user, span_notice("[src] has been added to multitool buffer."))
+			user.balloon_alert(user, "[port] 已配置")
+			to_chat(user, span_notice("[src]已将[multi_tool.buffer]连接到其[port]。"))
+	to_chat(user, span_notice("[src]已添加到多功能工具缓冲区。"))
 	multi_tool.set_buffer(src)
 
 	return ITEM_INTERACT_SUCCESS
@@ -163,8 +163,8 @@
  * The logic is same as meters
  */
 /obj/item/air_sensor
-	name = "Air Sensor"
-	desc = "A device designed to detect gases and their concentration in an area."
+	name = "空气传感器"
+	desc = "一种设计用于检测区域内气体及其浓度的设备。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "gsensor0"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT + SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -190,11 +190,11 @@
 /obj/item/air_sensor/examine(mob/user)
 	. = ..()
 	if(anchored)
-		. += span_notice("It's [EXAMINE_HINT("wrenched")] in place")
+		. += span_notice("它已[EXAMINE_HINT("wrenched")]固定到位")
 	else
-		. += span_notice("It should be [EXAMINE_HINT("wrenched")] in place to turn it on.")
-	. +=  span_notice("It could be [EXAMINE_HINT("welded")] apart.")
-	. +=  span_notice("Click with hand to turn it on.")
+		. += span_notice("需要[EXAMINE_HINT("wrenched")]固定到位才能将其打开。")
+	. +=  span_notice("它可以被[EXAMINE_HINT("welded")]拆开。")
+	. +=  span_notice("用手点击以开启它。")
 
 /obj/item/air_sensor/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -212,7 +212,7 @@
 		available_sensors += GLOB.station_gas_chambers[chamber_id]
 
 	//make the choice
-	var/chamber_name = tgui_input_list(user, "Select Sensor Purpose", "Select Sensor ID", available_sensors)
+	var/chamber_name = tgui_input_list(user, "选择传感器用途", "选择传感器ID", available_sensors)
 	if(isnull(chamber_name))
 		return
 
@@ -234,7 +234,7 @@
 
 		//make real air sensor in its place
 		var/obj/machinery/air_sensor/new_sensor = new sensor(get_turf(src))
-		new_sensor.balloon_alert(user, "sensor turned on")
+		new_sensor.balloon_alert(user, "传感器已开启")
 		qdel(src)
 
 		break
@@ -247,10 +247,10 @@
 	if(!tool.tool_start_check(user, amount = 1))
 		return ITEM_INTERACT_BLOCKING
 
-	loc.balloon_alert(user, "dismantling sensor")
+	loc.balloon_alert(user, "正在拆卸传感器")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 30, amount = 1))
 		return ITEM_INTERACT_BLOCKING
-	loc.balloon_alert(user, "sensor dismanteled")
+	loc.balloon_alert(user, "传感器已拆卸")
 
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS

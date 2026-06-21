@@ -13,7 +13,7 @@
 	max_occurrences_modifier = 0
 
 /datum/station_trait/cybernetic_revolution
-	name = "Cybernetic Revolution (DISABLED)"
+	name = "义体革命（已禁用）"
 	weight = 0
 
 /datum/station_trait/cybernetic_revolution/New()

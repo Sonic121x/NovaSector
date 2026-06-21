@@ -14,8 +14,8 @@
  *
  */
 /mob/living/basic/drone
-	name = "Drone"
-	desc = "A maintenance drone, an expendable robot built to perform station repairs."
+	name = "无人机"
+	desc = "一个维护区无人机，一种用于执行空间站维修的可消耗机器人。"
 	icon = 'icons/mob/silicon/drone.dmi'
 	icon_state = "drone_maint_grey"
 	icon_living = "drone_maint_grey"
@@ -232,21 +232,21 @@
 
 	//Hacked
 	if(hacked)
-		. += span_warning("Its display is glowing red!")
+		. += span_warning("它的显示屏正发出红光！")
 
 	//Damaged
 	if(health != maxHealth)
 		if(health > maxHealth * 0.33) //Between maxHealth and about a third of maxHealth, between 30 and 10 for normal drones
-			. += span_warning("Its screws are slightly loose.")
+			. += span_warning("它的螺丝有点松了。")
 		else //otherwise, below about 33%
-			. += span_boldwarning("Its screws are very loose!")
+			. += span_boldwarning("它的螺丝非常松！")
 
 	//Dead
 	if(stat == DEAD)
 		if(client)
-			. += span_deadsay("A message repeatedly flashes on its display: \"REBOOT -- REQUIRED\".")
+			. += span_deadsay("它的显示屏上反复闪烁着一则信息：\"需要重启\"。")
 		else
-			. += span_deadsay("A message repeatedly flashes on its display: \"ERROR -- OFFLINE\".")
+			. += span_deadsay("它的显示屏上反复闪烁着一则信息：\"错误 -- 离线\"。")
 
 /mob/living/basic/drone/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null) //Secbots won't hunt maintenance drones.
 	return -10
@@ -256,18 +256,18 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	Stun(70)
-	to_chat(src, span_danger("<b>ER@%R: MME^RY CO#RU9T!</b> R&$b@0tin)..."))
+	to_chat(src, span_danger("<b>ER@%R: 内存#腐坏！</b> 重&$启@中)..."))
 	if(severity == 1)
 		adjust_brute_loss(heavy_emp_damage)
 		to_chat(src, span_userdanger("HeAV% DA%^MMA+G TO I/O CIR!%UUT!"))
 
 /mob/living/basic/drone/proc/alarm_triggered(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
-	to_chat(src, "--- [alarm_type] alarm detected in [source_area.name]!")
+	to_chat(src, "--- 在[source_area.name]检测到[alarm_type]警报！")
 
 /mob/living/basic/drone/proc/alarm_cleared(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
-	to_chat(src, "--- [alarm_type] alarm in [source_area.name] has been cleared.")
+	to_chat(src, "--- [alarm_type]警报在[source_area.name]已被清除。")
 
 /mob/living/basic/drone/proc/set_shy(new_shy)
 	shy = new_shy

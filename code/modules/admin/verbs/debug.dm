@@ -15,10 +15,10 @@ ADMIN_VERB(air_status, R_DEBUG, "Air Status In Location", "Gets the air status f
 
 ADMIN_VERB(cmd_admin_robotize, R_FUN, "Make Cyborg", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/target)
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(user, "Wait until the game starts")
+		tgui_alert(user, "等待游戏开始")
 		return
 	if(issilicon(target))
-		tgui_alert(user, "They are already a cyborg.")
+		tgui_alert(user, "他们已经是机械人了。")
 		return
 	log_admin("[key_name(user)] has robotized [target.key].")
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, Robotize))
@@ -31,7 +31,7 @@ ADMIN_VERB(cmd_admin_robotize, R_FUN, "Make Cyborg", ADMIN_VERB_NO_DESCRIPTION, 
 	if(!length(types))
 		return
 
-	var/key = input(usr, "Choose an object to delete.", "Delete:") as null|anything in sort_list(types)
+	var/key = input(usr, "选择要删除的对象。", "Delete:") as null|anything in sort_list(types)
 
 	if(!key)
 		return
@@ -72,16 +72,16 @@ ADMIN_VERB(cmd_del_all_hard, R_DEBUG|R_SPAWN, "Hard-Del-All", "Hard delete all d
 	if(!type_to_del)
 		return
 
-	var/choice = alert(user, "ARE YOU SURE that you want to hard delete this type? It will cause MASSIVE lag.", "Hoooo lad what happen?", "Yes", "No")
+	var/choice = alert(user, "你确定要硬删除此类型吗？这会导致严重的卡顿。", "好家伙，发生什么事了？", "Yes", "No")
 	if(choice != "Yes")
 		return
 
-	choice = alert(user, "Do you want to pre qdelete the atom? This will speed things up significantly, but may break depending on your level of fuckup.", "How do you even get it that bad", "Yes", "No")
+	choice = alert(user, "你想要预删除这个原子吗？这会显著加快速度，但根据你搞砸的程度可能会出问题。", "你到底是怎么搞成这样的", "Yes", "No")
 	var/should_pre_qdel = TRUE
 	if(choice == "No")
 		should_pre_qdel = FALSE
 
-	choice = alert(user, "Ok one last thing, do you want to yield to the game? or do it all at once. These are hard deletes remember.", "Jesus christ man", "Yield", "Ignore the server")
+	choice = alert(user, "好了最后一件事，你想让游戏让步吗？还是一次性全部删除。记住这些都是硬删除。", "天啊老兄", "Yield", "Ignore the server")
 	var/should_check_tick = TRUE
 	if(choice == "Ignore the server")
 		should_check_tick = FALSE
@@ -116,7 +116,7 @@ ADMIN_VERB(cmd_debug_make_powernets, R_DEBUG|R_SERVER, "Make Powernets", "Regene
 ADMIN_VERB_VISIBILITY(cmd_admin_grantfullaccess, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "Grant Full Access", "Grant full access to a mob.", ADMIN_CATEGORY_DEBUG, mob/M in world)
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(user, "Wait until the game starts")
+		tgui_alert(user, "等待游戏开始")
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -150,19 +150,19 @@ ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "Grant Full Access", "Grant full 
 			H.equip_to_slot(id, ITEM_SLOT_ID)
 
 	else
-		tgui_alert(user,"Invalid mob")
+		tgui_alert(user,"无效的玩家")
 	BLACKBOX_LOG_ADMIN_VERB("Grant Full Access")
 	log_admin("[key_name(user)] has granted [M.key] full access.")
-	message_admins(span_adminnotice("[key_name_admin(user)] has granted [M.key] full access."))
+	message_admins(span_adminnotice("[key_name_admin(user)]已授予[M.key]完全访问权限。"))
 
 ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "Assume Direct Control", "Assume direct control of a mob.", ADMIN_CATEGORY_DEBUG, mob/M)
 	if(M.ckey)
-		if(tgui_alert(user,"This mob is being controlled by [M.key]. Are you sure you wish to assume control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
+		if(tgui_alert(user,"这个生物正由 [M.key] 控制。你确定要接管控制权吗？[M.key] 将被变为幽灵。",,list("Yes","No")) != "Yes")
 			return
 	if(!M || QDELETED(M))
-		to_chat(user, span_warning("The target mob no longer exists."))
+		to_chat(user, span_warning("目标生物已不存在。"))
 		return
-	message_admins(span_adminnotice("[key_name_admin(user)] assumed direct control of [M]."))
+	message_admins(span_adminnotice("[key_name_admin(user)]已直接控制[M]。"))
 	log_admin("[key_name(user)] assumed direct control of [M].")
 	var/mob/adminmob = user.mob
 	if(M.ckey)
@@ -179,17 +179,17 @@ ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "Give Direct Control", "Give direct
 	if(!M)
 		return
 	if(M.ckey)
-		if(tgui_alert(user,"This mob is being controlled by [M.key]. Are you sure you wish to give someone else control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
+		if(tgui_alert(user,"这个生物正由 [M.key] 控制。你确定要将控制权交给其他人吗？[M.key] 将被变为幽灵。",,list("Yes","No")) != "Yes")
 			return
-	var/client/newkey = tgui_input_list(user, "Pick the player to put in control.", "New player", sort_list(GLOB.clients))
+	var/client/newkey = tgui_input_list(user, "选择要赋予控制权的玩家。", "新玩家", sort_list(GLOB.clients))
 	if(isnull(newkey))
 		return
 	var/mob/oldmob = newkey.mob
 	var/delmob = FALSE
-	if((isobserver(oldmob) || tgui_alert(user,"Do you want to delete [newkey]'s old mob?","Delete?",list("Yes","No")) != "No"))
+	if((isobserver(oldmob) || tgui_alert(user,"你想要删除 [newkey] 的旧生物吗？","Delete?",list("Yes","No")) != "No"))
 		delmob = TRUE
 	if(!M || QDELETED(M))
-		to_chat(user, span_warning("The target mob no longer exists, aborting."))
+		to_chat(user, span_warning("目标生物已不存在，操作中止。"))
 		return
 	if(M.ckey)
 		M.ghostize(FALSE)
@@ -198,7 +198,7 @@ ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "Give Direct Control", "Give direct
 	if(delmob)
 		qdel(oldmob)
 	SEND_SIGNAL(M, COMSIG_MOB_GIVE_DIRECT_CONTROL) // NOVA EDIT ADDITION
-	message_admins(span_adminnotice("[key_name_admin(user)] gave away direct control of [M] to [newkey]."))
+	message_admins(span_adminnotice("[key_name_admin(user)] 将 [M] 的直接控制权移交给了 [newkey]。"))
 	log_admin("[key_name(user)] gave away direct control of [M] to [newkey].")
 	BLACKBOX_LOG_ADMIN_VERB("Give Direct Control")
 
@@ -234,7 +234,7 @@ ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test Areas", "Tests the areas for vario
 	))
 
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		to_chat(user, "Game still loading, please hold!", confidential = TRUE)
+		to_chat(user, "游戏仍在加载中，请稍候！", confidential = TRUE)
 		return
 
 	var/log_message
@@ -247,7 +247,7 @@ ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test Areas", "Tests the areas for vario
 		dat += "<b>Maintenance Areas Filtered Out</b>"
 		log_message += ", with no maintenance areas"
 
-	message_admins(span_adminnotice("[key_name_admin(user)] used the Test Areas debug command checking [log_message]."))
+	message_admins(span_adminnotice("[key_name_admin(user)] 使用了测试区域调试命令，检查 [log_message]。"))
 	log_admin("[key_name(user)] used the Test Areas debug command checking [log_message].")
 
 	for(var/area/A as anything in GLOB.areas)
@@ -414,7 +414,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas
 		var/datum/outfit/O = path //not much to initalize here but whatever
 		outfits[initial(O.name)] = path
 
-	var/dresscode = tgui_input_list(usr, "Select outfit", "Robust quick dress shop", baseoutfits + sort_list(outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/dresscode = tgui_input_list(usr, "选择服装", "鲁棒快速服装店", baseoutfits + sort_list(outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if (isnull(dresscode))
 		return
 
@@ -428,7 +428,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas
 			var/datum/outfit/O = path
 			job_outfits[initial(O.name)] = path
 
-		dresscode = tgui_input_list(usr, "Select job equipment", "Robust quick dress shop", sort_list(job_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		dresscode = tgui_input_list(usr, "选择职业装备", "鲁棒快速服装店", sort_list(job_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -440,7 +440,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas
 			var/datum/outfit/O = path
 			plasmaman_outfits[initial(O.name)] = path
 
-		dresscode = tgui_input_list(usr, "Select plasmeme equipment", "Robust quick dress shop", sort_list(plasmaman_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		dresscode = tgui_input_list(usr, "选择等离子人装备", "鲁棒快速服装店", sort_list(plasmaman_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = plasmaman_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -449,7 +449,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas
 		var/list/custom_names = list()
 		for(var/datum/outfit/D in GLOB.custom_outfits)
 			custom_names[D.name] = D
-		var/selected_name = tgui_input_list(usr, "Select outfit", "Robust quick dress shop", sort_list(custom_names, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/selected_name = tgui_input_list(usr, "选择服装", "强力快速换装商店", sort_list(custom_names, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return
@@ -458,12 +458,12 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN, "Rejuvenate", mob/living/M in world)
 	if(!istype(M))
-		tgui_alert(user,"Cannot revive a ghost")
+		tgui_alert(user,"无法复活幽灵")
 		return
 	M.revive(ADMIN_HEAL_ALL)
 
 	log_admin("[key_name(user)] healed / revived [key_name(M)]")
-	var/msg = span_danger("Admin [key_name_admin(user)] healed / revived [ADMIN_LOOKUPFLW(M)]!")
+	var/msg = span_danger("管理员 [key_name_admin(user)] 治疗/复活了 [ADMIN_LOOKUPFLW(M)]！")
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	BLACKBOX_LOG_ADMIN_VERB("Rejuvenate")
@@ -490,7 +490,7 @@ ADMIN_VERB(modify_goals, R_ADMIN, "Modify Goals", "Modify the station goals for 
 	browser.open()
 
 ADMIN_VERB(debug_mob_lists, R_DEBUG, "Debug Mob Lists", "For when you just gotta know.", ADMIN_CATEGORY_DEBUG)
-	var/chosen_list = tgui_input_list(user, "Which list?", "Select List", list("Players","Admins","Mobs","Living Mobs","Dead Mobs","Clients","Joined Clients"))
+	var/chosen_list = tgui_input_list(user, "选择哪个列表？", "选择列表", list("Players","Admins","Mobs","Living Mobs","Dead Mobs","Clients","Joined Clients"))
 	if(isnull(chosen_list))
 		return
 	switch(chosen_list)
@@ -588,7 +588,7 @@ ADMIN_VERB(jump_to_ruin, R_DEBUG, "Jump to Ruin", "Displays a list of all placed
 
 		names[name] = ruin_landmark
 
-	var/ruinname = tgui_input_list(user, "Select ruin", "Jump to Ruin", sort_list(names))
+	var/ruinname = tgui_input_list(user, "选择遗迹", "Jump to Ruin-跳至遗迹", sort_list(names))
 	var/obj/effect/landmark/ruin/landmark = names[ruinname]
 	if(!istype(landmark))
 		return
@@ -616,13 +616,13 @@ ADMIN_VERB(place_ruin, R_DEBUG, "Spawn Ruin", "Attempt to randomly place a speci
 			themed_names[name] = list(ruin, theme, list(ruin.default_area))
 		names += sort_list(themed_names)
 
-	var/ruinname = tgui_input_list(user, "Select ruin", "Spawn Ruin", names)
+	var/ruinname = tgui_input_list(user, "选择遗迹", "Spawn Ruin-生成遗迹", names)
 	var/data = names[ruinname]
 	if (!data)
 		return
 	var/datum/map_template/ruin/template = data[1]
 	if (exists[template])
-		var/response = tgui_alert(user,"There is already a [template] in existence.", "Spawn Ruin", list("Jump", "Place Another"))
+		var/response = tgui_alert(user,"已存在一个[template]。", "Spawn Ruin-生成遗迹", list("Jump", "Place Another"))
 		if (!response)
 			return
 		if (response == "Jump")
@@ -638,7 +638,7 @@ ADMIN_VERB(place_ruin, R_DEBUG, "Spawn Ruin", "Attempt to randomly place a speci
 		to_chat(user, span_name("[template.name]"), confidential = TRUE)
 		to_chat(user, span_italics("[template.description]"), confidential = TRUE)
 	else
-		to_chat(user, span_warning("Failed to place [template.name]."), confidential = TRUE)
+		to_chat(user, span_warning("放置 [template.name] 失败。"), confidential = TRUE)
 
 ADMIN_VERB(unload_ctf, R_DEBUG, "Unload CTF", "Despawns the majority of CTF.", ADMIN_CATEGORY_DEBUG)
 	toggle_id_ctf(user, CTF_GHOST_CTF_GAME_ID, unload=TRUE)
@@ -668,13 +668,13 @@ ADMIN_VERB(test_pathfinding, R_DEBUG, "Toggle Pathfind Testing", "Enables/Disabl
 ADMIN_VERB(clear_turf_reservations, R_DEBUG, "Clear Dynamic Turf Reservations", "Deallocates all reserved space, restoring it to round start conditions.", ADMIN_CATEGORY_DEBUG)
 	var/answer = tgui_alert(
 		user,
-		"WARNING: THIS WILL WIPE ALL RESERVED SPACE TO A CLEAN SLATE! ANY MOVING SHUTTLES, ELEVATORS, OR IN-PROGRESS PHOTOGRAPHY WILL BE DELETED!",
-		"Really wipe dynamic turfs?",
+		"警告：此操作将清空所有预留空间！任何移动中的穿梭机、电梯或正在进行的摄影活动都将被删除！",
+		"确实要清除动态地块吗？",
 		list("YES", "NO"),
 	)
 	if(answer != "YES")
 		return
-	message_admins(span_adminnotice("[key_name_admin(user)] cleared dynamic transit space."))
+	message_admins(span_adminnotice("[key_name_admin(user)] 清除了动态传送空间。"))
 	BLACKBOX_LOG_ADMIN_VERB("Clear Dynamic Turf Reservations")
 	log_admin("[key_name(user)] cleared dynamic turf reservations.")
 	SSmapping.wipe_reservations() //this goes after it's logged, incase something horrible happens.
@@ -682,7 +682,7 @@ ADMIN_VERB(clear_turf_reservations, R_DEBUG, "Clear Dynamic Turf Reservations", 
 ADMIN_VERB(toggle_medal_disable, R_DEBUG, "Toggle Medal Disable", "Toggles the safety lock on trying to contact the medal hub.", ADMIN_CATEGORY_DEBUG)
 	SSachievements.achievements_enabled = !SSachievements.achievements_enabled
 
-	message_admins(span_adminnotice("[key_name_admin(user)] [SSachievements.achievements_enabled ? "disabled" : "enabled"] the medal hub lockout."))
+	message_admins(span_adminnotice("[key_name_admin(user)] [SSachievements.achievements_enabled ? "disabled" : "enabled"] 了勋章中心锁定。"))
 	BLACKBOX_LOG_ADMIN_VERB("Toggle Medal Disable")
 	log_admin("[key_name(user)] [SSachievements.achievements_enabled ? "disabled" : "enabled"] the medal hub lockout.")
 
@@ -696,12 +696,12 @@ ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.",
 		if(GLOB.total_runtimes >= 100000)
 			warning = "There are a TON of runtimes, clicking any button (especially \"linear\") WILL LIKELY crash the server"
 		// Not using TGUI alert, because it's view runtimes, stuff is probably broken
-		alert(user, "[warning]. Proceed with caution. If you really need to see the runtimes, download the runtime log and view it in a text editor.", "HEED THIS WARNING CAREFULLY MORTAL")
+		alert(user, "[warning]。请谨慎操作。如果你确实需要查看运行时错误，请下载运行时日志并在文本编辑器中查看。", "凡人，请仔细留意此警告")
 
 ADMIN_VERB(pump_random_event, R_DEBUG, "Pump Random Event", "Schedules the event subsystem to fire a new random event immediately. Some events may fire without notification.", ADMIN_CATEGORY_DEBUG)
 	SSevents.scheduled = world.time
 
-	message_admins(span_adminnotice("[key_name_admin(user)] pumped a random event."))
+	message_admins(span_adminnotice("[key_name_admin(user)] 触发了一个随机事件。"))
 	BLACKBOX_LOG_ADMIN_VERB("Pump Random Event")
 	log_admin("[key_name(user)] pumped a random event.")
 
@@ -709,7 +709,7 @@ ADMIN_VERB_VISIBILITY(start_line_profiling, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DE
 ADMIN_VERB(start_line_profiling, R_DEBUG, "Start Line Profiling", "Starts tracking line by line profiling for code lines that support it.", ADMIN_CATEGORY_PROFILE)
 	LINE_PROFILE_START
 
-	message_admins(span_adminnotice("[key_name_admin(user)] started line by line profiling."))
+	message_admins(span_adminnotice("[key_name_admin(user)] 启动了逐行性能分析。"))
 	BLACKBOX_LOG_ADMIN_VERB("Start Line Profiling")
 	log_admin("[key_name(user)] started line by line profiling.")
 
@@ -717,7 +717,7 @@ ADMIN_VERB_VISIBILITY(stop_line_profiling, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEB
 ADMIN_VERB(stop_line_profiling, R_DEBUG, "Stop Line Profiling", "Stops tracking line by line profiling for code lines that support it.", ADMIN_CATEGORY_PROFILE)
 	LINE_PROFILE_STOP
 
-	message_admins(span_adminnotice("[key_name_admin(user)] stopped line by line profiling."))
+	message_admins(span_adminnotice("[key_name_admin(user)] 停止了逐行性能分析。"))
 	BLACKBOX_LOG_ADMIN_VERB("Stop Line Profiling")
 	log_admin("[key_name(user)] stopped line by line profiling.")
 
@@ -728,14 +728,14 @@ ADMIN_VERB(show_line_profiling, R_DEBUG, "Show Line Profiling", "Shows tracked p
 		"Total Time" = GLOBAL_PROC_REF(cmp_profile_time_dsc),
 		"Call Count" = GLOBAL_PROC_REF(cmp_profile_count_dsc),
 	)
-	var/sort = input(user, "Sort type?", "Sort Type", "Avg time") as null|anything in sortlist
+	var/sort = input(user, "排序类型？", "排序类型", "平均时间") as null|anything in sortlist
 	if (!sort)
 		return
 	sort = sortlist[sort]
 	profile_show(user, sort)
 
 ADMIN_VERB(reload_configuration, R_DEBUG, "Reload Configuration", "Reloads the configuration from the default path on the disk, wiping any in-round modifications.", ADMIN_CATEGORY_DEBUG)
-	if(tgui_alert(user, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modifications?", "Really reset?", list("No", "Yes")) != "Yes")
+	if(tgui_alert(user, "你确定要从磁盘的默认路径重新加载配置，并清除所有回合内的修改吗？", "确实要重置吗？", list("No", "Yes")) != "Yes")
 		return
 	config.admin_reload()
 
@@ -766,10 +766,10 @@ ADMIN_VERB(reestablish_tts_connection, R_DEBUG, "Re-establish Connection To TTS"
 
 ADMIN_VERB(allow_browser_inspect, R_DEBUG, "Allow Browser Inspect", "Allow browser debugging via inspect", ADMIN_CATEGORY_DEBUG)
 	if(user.byond_version < 516)
-		to_chat(user, span_warning("You can only use this on 516!"))
+		to_chat(user, span_warning("你只能在 516 上使用这个！"))
 		return
 
-	to_chat(user, span_notice("You can now right click to use inspect on browsers."))
+	to_chat(user, span_notice("你现在可以右键点击浏览器使用检查功能了。"))
 	winset(user, null, list("browser-options" = "+devtools"))
 
 /proc/generate_timer_source_output(list/datum/timedevent/events)
@@ -885,21 +885,21 @@ ADMIN_VERB(check_missing_sprites, R_DEBUG, "Debug Worn Item Sprites", "We're can
 #ifndef OPENDREAM_REAL
 ADMIN_VERB(start_tracy, R_DEBUG, "Run Tracy Now", "Start running the byond-tracy profiler immediately", ADMIN_CATEGORY_DEBUG)
 	if(Tracy.enabled)
-		to_chat(user, span_warning("byond-tracy is already running!"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+		to_chat(user, span_warning("byond-tracy 已经在运行了！"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 		return
 	else if(Tracy.error)
-		to_chat(user, span_danger("byond-tracy failed to initialize during an earlier attempt: [Tracy.error]"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+		to_chat(user, span_danger("byond-tracy 在之前的尝试中初始化失败：[Tracy.error]"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 		return
-	message_admins(span_adminnotice("[key_name_admin(user)] is trying to start the byond-tracy profiler."))
+	message_admins(span_adminnotice("[key_name_admin(user)] 正在尝试启动 byond-tracy 性能分析器。"))
 	log_admin("[key_name(user)] is trying to start the byond-tracy profiler.")
 	if(!Tracy.enable("[user.ckey]"))
 		var/error = Tracy.error || "N/A"
-		to_chat(user, span_danger("byond-tracy failed to initialize: [error]"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
-		message_admins(span_adminnotice("[key_name_admin(user)] tried to start the byond-tracy profiler, but it failed to initialize ([error])"))
+		to_chat(user, span_danger("byond-tracy 初始化失败：[error]"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+		message_admins(span_adminnotice("[key_name_admin(user)] 尝试启动 byond-tracy 性能分析器，但初始化失败（[error]）"))
 		log_admin("[key_name(user)] tried to start the byond-tracy profiler, but it failed to initialize ([error])")
 		return
-	to_chat(user, span_notice("byond-tracy successfully started!"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
-	message_admins(span_adminnotice("[key_name_admin(user)] started the byond-tracy profiler."))
+	to_chat(user, span_notice("byond-tracy 成功启动！"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+	message_admins(span_adminnotice("[key_name_admin(user)] 启动了 byond-tracy 性能分析器。"))
 	log_admin("[key_name(user)] started the byond-tracy profiler.")
 	if(Tracy.trace_path)
 		rustg_file_write("[Tracy.trace_path]", "[GLOB.log_directory]/tracy.loc")
@@ -912,7 +912,7 @@ ADMIN_VERB(queue_tracy, R_DEBUG, "Toggle Tracy Next Round", "Toggle running the 
 		fdel(TRACY_ENABLE_PATH)
 	else
 		rustg_file_write("[user.ckey]", TRACY_ENABLE_PATH)
-	message_admins(span_adminnotice("[key_name_admin(user)] [fexists(TRACY_ENABLE_PATH) ? "enabled" : "disabled"] the byond-tracy profiler for next round."))
+	message_admins(span_adminnotice("[key_name_admin(user)] [fexists(TRACY_ENABLE_PATH) ? "enabled" : "disabled"] 了下一回合的byond-tracy性能分析器。"))
 	log_admin("[key_name(user)] [fexists(TRACY_ENABLE_PATH) ? "enabled" : "disabled"] the byond-tracy profiler for next round.")
 
 ADMIN_VERB_CUSTOM_EXIST_CHECK(queue_tracy)
@@ -991,11 +991,11 @@ ADMIN_VERB(show_powernets, R_DEBUG, "Color Powernet Runs", "Colors every node an
 			marker.powernet_owner = REF(net)
 
 ADMIN_VERB(count_instances, R_DEBUG, "Count Atoms/Datums", "Count how many atom or datum instances there are of each type, then output it to a JSON to download.", ADMIN_CATEGORY_DEBUG)
-	var/option = tgui_alert(user, "What type of instances do you wish to count?", "Instance Count", list("Atoms", "Datums"))
+	var/option = tgui_alert(user, "你希望统计哪种类型的实例？", "实例计数", list("Atoms", "Datums"))
 	if(!option)
 		return
 	var/list/result
-	to_chat(user, span_notice("Beginning instance count ([option])"), type = MESSAGE_TYPE_DEBUG)
+	to_chat(user, span_notice("开始实例计数（[option]）"), type = MESSAGE_TYPE_DEBUG)
 	switch(option)
 		if("Atoms")
 			result = count_atoms()
@@ -1003,7 +1003,7 @@ ADMIN_VERB(count_instances, R_DEBUG, "Count Atoms/Datums", "Count how many atom 
 			result = count_datums()
 
 	if(result)
-		to_chat(user, span_adminnotice("Counted [length(result)] instances, sending compiled JSON file now."), type = MESSAGE_TYPE_DEBUG)
+		to_chat(user, span_adminnotice("已统计 [length(result)] 个实例，正在发送编译后的 JSON 文件。"), type = MESSAGE_TYPE_DEBUG)
 		var/tmp_path = "tmp/instance_count_[user.ckey].json"
 		fdel(tmp_path)
 		rustg_file_write(json_encode(result, JSON_PRETTY_PRINT), tmp_path)
@@ -1036,12 +1036,12 @@ ADMIN_VERB(count_instances, R_DEBUG, "Count Atoms/Datums", "Count how many atom 
 ADMIN_VERB_VISIBILITY(export_save_to_dev_preference, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
 ADMIN_VERB(export_save_to_dev_preference, R_DEBUG, "Export Save as Dev Preferences", "Exports your savefile to be used by any guests that connect to your localost.", ADMIN_CATEGORY_SERVER)
 	if(!user.is_localhost())
-		tgui_alert(user, "You shouldn't be using this right now!", "Export Failed", list("OK"))
+		tgui_alert(user, "你现在不应该使用这个功能！", "导出失败", list("OK"))
 		log_admin("[key_name(user)] attempted to export preferences to [DEV_PREFS_PATH] - this is normally locked to localhost only!")
 		stack_trace("Export Save as Dev Preferences was called by a non-localhost user!")
 		return
 	if(is_guest_key(user.key))
-		tgui_alert(user, "Guests don't have preferences to export.", "Export Failed", list("OK"))
+		tgui_alert(user, "访客没有偏好设置可供导出。", "导出失败", list("OK"))
 		return
 	var/datum/preferences/user_prefs = user.prefs
 	var/datum/json_savefile/dev_save = new(DEV_PREFS_PATH)
@@ -1049,4 +1049,4 @@ ADMIN_VERB(export_save_to_dev_preference, R_DEBUG, "Export Save as Dev Preferenc
 	user_prefs.savefile.copy_to_savefile(dev_save)
 	dev_save.save()
 	tgui_alert(user, "Exported preferences to [DEV_PREFS_PATH]. \
-		Next time you localhost as a guest it will use this savefile as-is.", "Export Complete", list("OK thanks"))
+		Next time you localhost as a guest it will use this savefile as-is.", "导出完成", list("OK thanks"))

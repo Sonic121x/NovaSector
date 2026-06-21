@@ -24,7 +24,7 @@
 		return
 	if(issynthetic(user))
 		return
-	to_chat(user, span_notice("Your body feels full, somehow."))
+	to_chat(user, span_notice("你的身体不知为何感觉充盈了起来。"))
 	regen_target(user, 15)
 
 /datum/artifact_effect/blood_regen/do_effect_aura(seconds_per_tick)
@@ -35,7 +35,7 @@
 	for(var/mob/living/receiver in range(range, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_notice("Your chest feels warm."))
+		to_chat(receiver, span_notice("你的胸口感到温暖。"))
 		regen_target(receiver, 5 * seconds_per_tick)
 
 /datum/artifact_effect/blood_regen/do_effect_pulse(seconds_per_tick)
@@ -46,7 +46,7 @@
 	for(var/mob/living/receiver in range(range, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_notice("Your chest feels warm."))
+		to_chat(receiver, span_notice("你的胸口感到温暖。"))
 		regen_target(receiver, 25 * seconds_per_tick)
 
 /datum/artifact_effect/blood_regen/do_effect_destroy()
@@ -54,7 +54,7 @@
 	for(var/mob/living/receiver in range(7, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_notice("Your chest feels warm."))
+		to_chat(receiver, span_notice("你的胸口感到温暖。"))
 		regen_target(receiver, 100)
 
 /datum/artifact_effect/blood_drain
@@ -81,7 +81,7 @@
 		return
 	if(issynthetic(user))
 		return
-	to_chat(user, span_warning("Blood starts pouring out of your pores!"))
+	to_chat(user, span_warning("血液开始从你的毛孔中涌出！"))
 	suck(user, 50)
 	return TRUE
 
@@ -93,7 +93,7 @@
 	for(var/mob/living/receiver in range(range, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_warning("Your nose bleeds."))
+		to_chat(receiver, span_warning("你的鼻子流血了。"))
 		suck(receiver, 5 * seconds_per_tick)
 
 /datum/artifact_effect/blood_drain/do_effect_pulse(seconds_per_tick)
@@ -115,5 +115,5 @@
 	for(var/mob/living/receiver in range(7, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_warning("You feel empty."))
+		to_chat(receiver, span_warning("你感到空虚。"))
 		suck(receiver, 75)

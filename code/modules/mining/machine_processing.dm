@@ -66,7 +66,7 @@
 		unloaded_mineral.forceMove(unload_turf)
 
 /obj/machinery/mineral/processing_unit_console
-	name = "production machine console"
+	name = "生产机器控制台"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = TRUE
@@ -129,7 +129,7 @@
 
 
 /obj/machinery/mineral/processing_unit
-	name = "furnace"
+	name = "熔炉"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "furnace"
 	density = TRUE

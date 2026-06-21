@@ -5,4 +5,4 @@
 // Custom ERT shuttles
 /datum/map_template/shuttle/ert/bounty
 	suffix = "bounty"
-	name = "Bounty Hunter ERT Shuttle"
+	name = "赏金猎人应急响应队穿梭机"

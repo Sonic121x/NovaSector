@@ -296,7 +296,7 @@
 		return FALSE
 
 	desired_item = pick(valid_possible_items)
-	name = "[desired_item.name] [difficulty == SPY_DIFFICULTY_HARD ? "Grand ":""]Theft"
+	name = "[desired_item.name] [difficulty == SPY_DIFFICULTY_HARD ? "Grand ":""]盗窃"
 	help = "Steal [desired_item.name][desired_item.steal_hint ? ": [desired_item.steal_hint]" : "."]"
 	return TRUE
 
@@ -586,13 +586,13 @@
 	var/mob/living/carbon/human/stolen_from = stealing
 	var/obj/item/real_stolen_item = find_desired_thing(stealing)
 	stolen_from.Unconscious(10 SECONDS)
-	to_chat(stolen_from, span_warning("You feel something missing where your [real_stolen_item.name] once was."))
+	to_chat(stolen_from, span_warning("你感觉[real_stolen_item.name]曾经所在的位置少了点什么。"))
 	return ..(real_stolen_item, spy)
 
 /datum/spy_bounty/targets_person/some_item/target_found(mob/crewmember)
 	var/obj/item/desired_thing = find_desired_thing(crewmember)
 	target_original_desired_ref = WEAKREF(desired_thing)
-	name = "[crewmember.real_name]'s [desired_thing.name]"
+	name = "[crewmember.real_name]的[desired_thing.name]"
 	help = "Steal [desired_thing] from [crewmember.real_name]. \
 		You can accomplish this via brute force, or by scanning them with your uplink while they are incapacitated."
 	return TRUE
@@ -614,7 +614,7 @@
 
 /datum/spy_bounty/targets_person/some_item/id/target_found(mob/crewmember)
 	. = ..()
-	name = "[crewmember.real_name]'s ID Card"
+	name = "[crewmember.real_name]的ID卡"
 
 // Steal someone's PDA
 /datum/spy_bounty/targets_person/some_item/pda
@@ -629,7 +629,7 @@
 
 /datum/spy_bounty/targets_person/some_item/pda/target_found(mob/crewmember)
 	. = ..()
-	name = "[crewmember.real_name]'s PDA"
+	name = "[crewmember.real_name]的PDA"
 
 // Steal someone's heirloom
 /datum/spy_bounty/targets_person/some_item/heirloom
@@ -642,7 +642,7 @@
 
 /datum/spy_bounty/targets_person/some_item/heirloom/target_found(mob/crewmember)
 	. = ..()
-	name = "[crewmember.real_name]'s heirloom"
+	name = "[crewmember.real_name]的传家宝"
 
 // Steal a limb or organ off someone
 /datum/spy_bounty/targets_person/some_item/limb_or_organ
@@ -681,7 +681,7 @@
 
 /datum/spy_bounty/some_bot/finish_cleanup(mob/living/basic/bot/stealing)
 	if(stealing.client)
-		to_chat(stealing, span_deadsay("You've been stolen! You are shipped off to the black market and taken apart for spare parts..."))
+		to_chat(stealing, span_deadsay("你被偷了！你被运往黑市，拆解成零件……"))
 		stealing.investigate_log("stole by a spy (and deleted)", INVESTIGATE_DEATHS)
 		stealing.ghostize()
 	return ..()

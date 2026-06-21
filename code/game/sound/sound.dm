@@ -176,7 +176,7 @@
 			return FALSE
 
 	if(HAS_TRAIT(src, TRAIT_SOUND_DEBUGGED))
-		to_chat(src, span_admin("Max Range-[max_distance] Distance-[distance] Vol-[round(sound_to_use.volume, 0.01)] Sound-[sound_to_use.file]"))
+		to_chat(src, span_admin("最大范围-[max_distance] 距离-[distance] 音量-[round(sound_to_use.volume, 0.01)] 声音-[sound_to_use.file]"))
 
 	SEND_SOUND(src, sound_to_use)
 	return TRUE

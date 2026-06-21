@@ -35,7 +35,7 @@ GLOBAL_DATUM(ctf_spawner, /obj/effect/landmark/ctf)
 		for(var/datum/map_template/ctf/map as anything in map_options)
 			var/mapname = initial(map.name)
 			map_choices[mapname] = map
-		chosen_map = tgui_input_list(user, "Select a map", "Choose CTF Map",list("Random")|sort_list(map_choices))
+		chosen_map = tgui_input_list(user, "选择一张地图", "选择夺旗模式地图",list("Random")|sort_list(map_choices))
 		if (isnull(chosen_map))
 			return FALSE;
 		else
@@ -65,32 +65,32 @@ GLOBAL_DATUM(ctf_spawner, /obj/effect/landmark/ctf)
 	var/points_to_win = 3
 
 /datum/map_template/ctf/classic
-	name = "Classic"
-	description = "The original CTF map."
+	name = "经典"
+	description = "原版夺旗模式地图。"
 	mappath = "_maps/minigame/CTF/classic.dmm"
 
 /datum/map_template/ctf/four_side
-	name = "Four Side"
-	description = "A CTF map created to demonstrate 4 team CTF, features a single centred flag rather than one per team."
+	name = "四面"
+	description = "为演示4队夺旗模式而创建的地图，特点是只有一个位于中央的旗帜，而非每队一个。"
 	mappath = "_maps/minigame/CTF/fourSide.dmm"
 
 /datum/map_template/ctf/downtown
-	name = "Downtown"
-	description = "A CTF map that takes place in a terrestrial city."
+	name = "市中心"
+	description = "一场发生在地面城市中的夺旗模式地图。"
 	mappath = "_maps/minigame/CTF/downtown.dmm"
 
 /datum/map_template/ctf/limbo
-	name = "Limbo"
-	description = "A KOTH map that takes place in a wizard den with looping hallways"
+	name = "炼狱"
+	description = "一场发生在拥有循环走廊的巫师巢穴中的占山为王模式地图。"
 	mappath = "_maps/minigame/CTF/limbo.dmm"
 	points_to_win = 180
 
 /datum/map_template/ctf/cruiser
-	name = "Crusier"
-	description = "A CTF map that takes place across multiple space ships, one carrying a powerful device that can accelerate those who obtain it"
+	name = "巡洋舰"
+	description = "一场发生在多艘太空船之间的夺旗模式地图，其中一艘携带着能加速获得者的强力装置。"
 	mappath = "_maps/minigame/CTF/cruiser.dmm"
 
 /datum/map_template/ctf/turbine
-	name = "Turbine"
-	description = "A CTF map that takes place in a familiar facility. Don't try to hold out mid- There's no sentries in this version."
+	name = "涡轮机"
+	description = "一场发生在熟悉设施中的夺旗模式地图。别试图在中间固守——这个版本没有哨戒炮。"
 	mappath = "_maps/minigame/CTF/turbine.dmm"

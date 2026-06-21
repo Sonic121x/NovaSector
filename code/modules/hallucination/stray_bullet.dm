@@ -25,7 +25,7 @@
 
 /// Hallucinated projectiles.
 /obj/projectile/hallucination
-	name = "bullet"
+	name = "子弹"
 	icon = null
 	icon_state = null
 	hitsound = ""
@@ -105,11 +105,11 @@
 /// Called when a mob is hit by the fake projectile
 /obj/projectile/hallucination/proc/on_mob_hit(mob/living/hit_mob)
 	if(hit_mob == parent.hallucinator)
-		to_chat(parent.hallucinator, span_userdanger("[hit_mob] is hit by \a [src] in the chest!"))
+		to_chat(parent.hallucinator, span_userdanger("[hit_mob] 被 \a [src] 击中了胸部！"))
 		apply_effect_to_hallucinator(parent.hallucinator)
 
 	else if(hit_mob in view(parent.hallucinator))
-		to_chat(parent.hallucinator, span_danger("[hit_mob] is hit by \a [src] in the chest!"))
+		to_chat(parent.hallucinator, span_danger("[hit_mob] 被 \a [src] 击中了胸口！"))
 
 	if(damage_type == BRUTE)
 		var/splatter_dir = dir
@@ -199,7 +199,7 @@
 	afflicted.adjust_stamina_loss(60)
 
 /obj/projectile/hallucination/laser
-	name = "laser"
+	name = "激光"
 	damage_type = BURN
 	hal_icon_state = "laser"
 	hal_fire_sound = 'sound/items/weapons/laser.ogg'
@@ -220,7 +220,7 @@
 	afflicted.adjust_eye_blur(4 SECONDS)
 
 /obj/projectile/hallucination/disabler
-	name = "disabler beam"
+	name = "镇暴光束"
 	damage_type = STAMINA
 	hal_icon_state = "omnilaser"
 	hal_fire_sound = 'sound/items/weapons/taser2.ogg'
@@ -239,7 +239,7 @@
 	afflicted.adjust_stamina_loss(30)
 
 /obj/projectile/hallucination/ebow
-	name = "bolt"
+	name = "栓"
 	damage_type = TOX
 	hal_icon_state = "cbbolt"
 	hal_fire_sound = 'sound/items/weapons/genhit.ogg'
@@ -255,7 +255,7 @@
 	afflicted.adjust_eye_blur(20 SECONDS)
 
 /obj/projectile/hallucination/change
-	name = "bolt of change"
+	name = "变化之箭"
 	damage_type = BURN
 	hal_icon_state = "ice_1"
 	hal_fire_sound = 'sound/effects/magic/staff_change.ogg'
@@ -277,7 +277,7 @@
 	)
 
 /obj/projectile/hallucination/death
-	name = "bolt of death"
+	name = "死亡之箭"
 	damage_type = BURN
 	hal_icon_state = "pulse1_bl"
 	hal_fire_sound = 'sound/effects/magic/wandodeath.ogg'

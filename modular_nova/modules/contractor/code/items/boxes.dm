@@ -1,7 +1,7 @@
 #define SMALL_ITEM_AMOUNT 2
 
 /obj/item/storage/box/syndicate/contract_kit
-	desc = "It's just an ordinary box."
+	desc = "它只是个普通的盒子。"
 	special_desc = "Supplied to Syndicate contractors."
 	special_desc_requirement = EXAMINE_CHECK_CONTRACTOR
 	/// Extra items to insert modularly into the list of random small item candidates
@@ -15,7 +15,7 @@
 		)
 
 /obj/item/storage/box/syndicate/contractor_loadout
-	desc = "It's just an ordinary box."
+	desc = "它只是个普通的盒子。"
 	special_desc_requirement = EXAMINE_CHECK_CONTRACTOR
 	special_desc = "Supplied to Syndicate contractors, providing their specialised MODSuit and chameleon uniform."
 
@@ -41,8 +41,8 @@
 #undef SMALL_ITEM_AMOUNT
 
 /obj/item/storage/box/syndicate/contractor_loadout/stealth_contractor
-	name = "Stealth Kit"
-	desc = "It's just an ordinary box."
+	name = "潜行装备包"
+	desc = "它只是个普通的盒子。"
 	special_desc = "Supplied to Syndicate contractors. Intended to support stealthy operations."
 
 /obj/item/storage/box/syndicate/contractor_loadout/stealth_contractor/PopulateContents()
@@ -53,8 +53,8 @@
 	new /obj/item/clothing/shoes/chameleon(src)
 
 /obj/item/storage/box/syndicate/contractor_loadout/tools
-	name = "compact toolbox"
-	desc = "Only a toolbox by technicality, considering it's just a box with tools."
+	name = "紧凑工具箱"
+	desc = "严格来说只是个工具箱，毕竟它只是个装着工具的盒子。"
 
 /obj/item/storage/box/syndicate/contractor_loadout/tools/PopulateContents()
 	new /obj/item/screwdriver/nuke(src)
@@ -69,7 +69,7 @@
 	spawn_magazine_type = /obj/item/ammo_box/magazine/m10mm/downer
 
 /obj/item/storage/toolbox/guncase/traitor/contractor_fisher
-	name = "contractor gun case"
+	name = "承包商枪盒"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/clandestine/fisher/contractor // preloaded with sleeper bullets
 	extra_to_spawn = /obj/item/ammo_box/magazine/m10mm/downer
 	/// What other magazine do we spawn in our case?

@@ -36,7 +36,7 @@
 	damage = 20 // originally 20 on TG
 
 /obj/projectile/bullet/c38/haywire
-	name = ".38 haywire bullet"
+	name = ".38干扰弹"
 	damage = 20
 	ricochets_max = 0
 	embed_type = null
@@ -51,7 +51,7 @@
 // .357
 
 /obj/projectile/bullet/c357/haywire
-	name = ".357 Haywire+ bullet"
+	name = ".357干扰弹+"
 	damage = 40
 	ricochets_max = 0
 	embed_type = null
@@ -66,7 +66,7 @@
 // .45
 
 /obj/projectile/bullet/c45/rubber
-	name = ".45 rubber bullet"
+	name = ".45橡胶弹"
 	damage = 10
 	stamina = 30
 	ricochets_max = 6
@@ -81,7 +81,7 @@
 // 9mm
 
 /obj/projectile/bullet/c9mm/ihdf
-	name = "9mm IHDF bullet"
+	name = "9毫米IHDF子弹"
 	damage = 30
 	damage_type = STAMINA
 	embed_type = /datum/embedding/c9mm_ihdf
@@ -97,7 +97,7 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/c9mm/rubber
-	name = "9mm rubber bullet"
+	name = "9毫米橡胶弹"
 	icon_state = "pellet"
 	damage = 5
 	stamina = 25
@@ -112,7 +112,7 @@
 // 10mm
 
 /obj/projectile/bullet/c10mm/rubber
-	name = "10mm rubber bullet"
+	name = "10毫米橡胶弹"
 	damage = 10
 	stamina = 35
 	ricochets_max = 6
@@ -124,7 +124,7 @@
 	embed_type = null
 
 /obj/projectile/bullet/c10mm/ihdf
-	name = "10mm IHDF bullet"
+	name = "10毫米IHDF子弹"
 	damage = 40
 	damage_type = STAMINA
 	embed_type = /datum/embedding/c10mm_ihdf
@@ -140,7 +140,7 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/c10mm/downer
-	name = "10mm downer bullet"
+	name = "10毫米镇静剂子弹"
 	damage = 45
 	damage_type = STAMINA
 	embed_type = null
@@ -159,18 +159,18 @@
 		// if they're stamcrit, sleep them
 		if(stamcritted_target)
 			living_guy.AdjustSleeping(10 SECONDS) // long naptime for you, buddy
-			to_chat(living_guy, span_warning("As [src] hits you, you feel the heavy burden of exhaustion quickly set in..."))
+			to_chat(living_guy, span_warning("当[src]击中你时，你感到沉重的疲惫感迅速袭来..."))
 			return
 		// or, if they're exhausted, roll to sleep them for a very short time
 		else if(prob(stamina_ratio))
 			living_guy.AdjustSleeping(1 SECONDS * mitigate_percent) // short naptime but it throws them off something fierce
-			to_chat(living_guy, span_warning("As [src] hits you, you feel exhaustion set in."))
+			to_chat(living_guy, span_warning("当[src]击中你时，你感到疲惫感袭来。"))
 			return
 
 // 4.6x30mm
 
 /obj/projectile/bullet/c46x30mm/rubber
-	name = "4.6x30mm rubber bullet"
+	name = "4.6x30毫米橡胶弹"
 	damage = 3
 	stamina = 17
 	ricochets_max = 6
@@ -185,7 +185,7 @@
 // .223
 
 /obj/projectile/bullet/a223/rubber
-	name = ".223 rubber bullet"
+	name = ".223橡胶弹"
 	damage = 10
 	armour_penetration = 10
 	stamina = 30

@@ -185,7 +185,7 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_
 			var/list/tiers = list()
 			for(var/datum/dynamic_tier/tier as anything in subtypesof(/datum/dynamic_tier))
 				tiers[tier::config_tag] = tier
-			var/picked = tgui_input_list(ui.user, "Pick a dynamic tier before the game starts", "Pick tier", tiers, ui_state = ADMIN_STATE(R_ADMIN))
+			var/picked = tgui_input_list(ui.user, "在游戏开始前选择一个动态威胁等级", "选择威胁等级", tiers, ui_state = ADMIN_STATE(R_ADMIN))
 			if(picked && !SSticker.HasRoundStarted())
 				SSdynamic.set_tier(tiers[picked])
 				message_admins("[key_name_admin(ui.user)] set the dynamic tier to [picked].")

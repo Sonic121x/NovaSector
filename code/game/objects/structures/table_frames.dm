@@ -10,8 +10,8 @@
  */
 
 /obj/structure/table_frame
-	name = "table frame"
-	desc = "Four metal legs with four framing rods for a table. You could easily pass through this."
+	name = "桌框"
+	desc = "桌子上有四根金属腿和四根框的架杆，你可以很容易地通过这个。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "table_frame"
 	density = FALSE
@@ -40,7 +40,7 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/table_frame/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "deconstructing...")
+	balloon_alert(user, "正在解构...")
 	tool.play_tool_sound(src)
 	if(!tool.use_tool(src, user, 3 SECONDS))
 		return ITEM_INTERACT_BLOCKING
@@ -60,7 +60,7 @@
 		return NONE
 
 	if(our_stack.get_amount() < 1)
-		balloon_alert(user, "need more material!")
+		balloon_alert(user, "需要更多材料！")
 		return ITEM_INTERACT_BLOCKING
 
 	// Check if the turf is blocked by dense objects or objects that block construction
@@ -68,10 +68,10 @@
 		if(object.pass_flags & PASSTABLE)
 			continue
 		if((object.density && !(object.obj_flags & IGNORE_DENSITY)) || object.obj_flags & BLOCKS_CONSTRUCTION)
-			balloon_alert(user, "[object.name] is in the way!")
+			balloon_alert(user, "[object.name] 挡路了！")
 			return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "constructing table...")
+	balloon_alert(user, "正在建造桌子...")
 	if(!do_after(user, 2 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
@@ -80,7 +80,7 @@
 		if(object.pass_flags & PASSTABLE)
 			continue
 		if((object.density && !(object.obj_flags & IGNORE_DENSITY)) || object.obj_flags & BLOCKS_CONSTRUCTION)
-			balloon_alert(user, "[object.name] is in the way!")
+			balloon_alert(user, "[object.name] 挡路了！")
 			return ITEM_INTERACT_BLOCKING
 
 	if(!our_stack.use(1))
@@ -106,8 +106,8 @@
  */
 
 /obj/structure/table_frame/wood
-	name = "wooden table frame"
-	desc = "Four wooden legs with four framing wooden rods for a wooden table. You could easily pass through this."
+	name = "木质桌架"
+	desc = "四条木腿和四根框架木杆组成的木桌，你可以很容易地通过这个。"
 	icon_state = "wood_frame"
 	framestack = /obj/item/stack/sheet/mineral/wood
 	framestackamount = 2

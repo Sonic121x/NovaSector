@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/crayon
-	name = "rune"
-	desc = "Graffiti. Damn kids."
+	name = "符文"
+	desc = "涂鸦. 该死的孩子。"
 	icon = 'icons/effects/crayondecal.dmi'
 	icon_state = "rune1"
 	gender = NEUTER
@@ -23,7 +23,7 @@
 	if(desc_override)
 		desc = "[desc_override]"
 	else
-		desc = "A [name] vandalizing the station."
+		desc = "[name]破坏空间站"
 	if(alt_icon)
 		icon = alt_icon
 	if(type)
@@ -91,7 +91,7 @@
 
 /obj/effect/decal/cleanable/crayon/x
 	icon_state = "x"
-	name = "graffiti"
+	name = "涂鸦"
 	paint_colour = COLOR_CRAYON_ORANGE
 
 /obj/effect/decal/cleanable/crayon/l
@@ -104,5 +104,5 @@
 	icon_state = "e"
 
 /obj/effect/decal/cleanable/crayon/i/orange
-	name = "graffiti"
+	name = "涂鸦"
 	paint_colour = COLOR_CRAYON_ORANGE

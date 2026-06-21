@@ -1,6 +1,6 @@
 /obj/structure/closet/body_bag
-	name = "body bag"
-	desc = "A plastic bag designed for the storage and transportation of cadavers."
+	name = "裹尸袋"
+	desc = "用于存放和运输尸体的塑料袋。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "bodybag"
 	density = FALSE
@@ -120,8 +120,8 @@
 	undeploy_bodybag(loc)
 
 /obj/structure/closet/body_bag/bluespace
-	name = "bluespace body bag"
-	desc = "A bluespace body bag designed for the storage and transportation of cadavers."
+	name = "蓝空裹尸袋"
+	desc = "用于存放和运输尸体的蓝空裹尸袋。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "bluebodybag"
 	foldedbag_path = /obj/item/bodybag/bluespace
@@ -236,7 +236,7 @@
 		if(force || !user || user.loc == src)
 			pinned.forceMove(drop_location())
 			return TRUE // force open, no user, or we can't take the note out from inside
-		balloon_alert(user, "paper removed")
+		balloon_alert(user, "纸张已移除")
 		if(!user.put_in_inactive_hand(pinned) && pinned.loc == src)
 			pinned.forceMove(drop_location())
 		return FALSE // blocked the open action
@@ -249,8 +249,8 @@
 /// Environmental bags. They protect against bad weather.
 
 /obj/structure/closet/body_bag/environmental
-	name = "environmental protection bag"
-	desc = "An insulated, reinforced bag designed to protect against exoplanetary storms and other environmental factors."
+	name = "环境防护袋"
+	desc = "一个隔热加固的袋子，旨在抵抗系外行星的风暴以及其他恶劣环境因素。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "envirobag"
 	mob_storage_capacity = 1
@@ -299,8 +299,8 @@
 	air_contents.adjust_gas(/datum/gas/nitrogen, (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
 
 /obj/structure/closet/body_bag/environmental/nanotrasen
-	name = "elite environmental protection bag"
-	desc = "A heavily reinforced and insulated bag, capable of fully isolating its contents from external factors."
+	name = "精良环境防护袋"
+	desc = "一个深度加固隔热的袋子。旨在将外界因素与内部物品完全隔绝开来。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "ntenvirobag"
 	contents_pressure_protection = 1
@@ -311,8 +311,8 @@
 /// Securable enviro. bags
 
 /obj/structure/closet/body_bag/environmental/prisoner
-	name = "prisoner transport bag"
-	desc = "Intended for transport of prisoners through hazardous environments, this environmental protection bag comes with straps to keep an occupant secure."
+	name = "囚犯运输袋"
+	desc = "这款环保袋专为运送囚犯穿越危险环境而设计，配有安全带以确保被运送者的安全。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "prisonerenvirobag"
 	foldedbag_path = /obj/item/bodybag/environmental/prisoner
@@ -409,8 +409,8 @@
 	update_appearance()
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate
-	name = "syndicate prisoner transport bag"
-	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured during transport."
+	name = "辛迪加囚犯运输袋"
+	desc = "一种对纳米传讯公司环保袋的改良产品，该产品曾在多起备受瞩目的绑架案中得到使用。其设计目的是在运输过程中使受害者保持昏迷、存活且安全的状态。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "syndieenvirobag"
 	contents_pressure_protection = 1
@@ -431,7 +431,7 @@
 
 /obj/structure/closet/body_bag/environmental/hardlight
 	name = "hardlight body bag"
-	desc = "A hardlight bag for storing bodies. Resistant to space."
+	desc = "用于存放尸体的硬光尸袋。有很好的太空防护能力。"
 	icon_state = "holobag_med"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	foldedbag_path = null

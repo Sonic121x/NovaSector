@@ -1,6 +1,6 @@
 /obj/machinery/automatic_respawner
-	name = "Automatic Respawner"
-	desc = "Allows for lost souls to find a new body."
+	name = "自动重生器"
+	desc = "允许迷失的灵魂寻找新的躯体。"
 	icon = 'modular_nova/modules/mapping/icons/machinery/automatic_respawner.dmi'
 	icon_state = "respawner"
 	use_power = FALSE //It doesn't make sense for this to require power in most of the use cases.
@@ -28,18 +28,18 @@
 
 		var/datum/component/respawner/mind_component = user.mind.GetComponent(target_component)
 		if(!mind_component)
-			to_chat(user, span_warning("You are not able to use [src]!"))
+			to_chat(user, span_warning("你无法使用 [src]！"))
 			return FALSE
 
 		if(mind_component.time_before_respawn && !COOLDOWN_FINISHED(mind_component, respawn_timer))
-			to_chat(user, span_warning("You have [COOLDOWN_TIMELEFT(mind_component, respawn_timer) / 10] seconds left before you can use [src]."))
+			to_chat(user, span_warning("你还需要等待 [COOLDOWN_TIMELEFT(mind_component, respawn_timer) / 10] 秒才能使用 [src]。"))
 			return FALSE
 
 	if(!COOLDOWN_FINISHED(src, respawn_cooldown))
-		to_chat(user, span_warning("[src] has [COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10] seconds left before it can be used again. Please try again later."))
+		to_chat(user, span_warning("[src] 还需要 [COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10] 秒才能再次使用。请稍后再试。"))
 		return FALSE
 
-	var/choice = tgui_alert(user, "Do you wish to use the respawner? If you have a body, you will not be able to return to it.", name, list("Yes", "No"))
+	var/choice = tgui_alert(user, "你希望使用重生器吗？如果你还有身体，你将无法返回它。", name, list("Yes", "No"))
 	if(choice != "Yes")
 		return FALSE
 
@@ -68,18 +68,18 @@
 	. = ..()
 	if(cooldown_time)
 		if(!COOLDOWN_FINISHED(src, respawn_cooldown))
-			. += span_warning("[src] has [COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10] seconds left before it can be used again.")
+			. += span_warning("[src] 距离下次可用还剩 [COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10] 秒。")
 
 		else
-			. += span_abductor("[src] has a cooldown of [cooldown_time / 10] seconds between uses.")
+			. += span_abductor("[src] 每次使用之间有 [cooldown_time / 10] 秒的冷却时间。")
 
 /obj/machinery/automatic_respawner/test
 	cooldown_time = 1.5 MINUTES
 	target_component = /datum/component/respawner
 
 /obj/item/respawn_implant //Not actually an implanter
-	name = "Respawn Implanter"
-	desc = "Life doesn't end after death."
+	name = "重生植入器"
+	desc = "生命在死亡后并未终结。"
 	icon = 'modular_nova/modules/aesthetics/implanter/icons/implanter.dmi'
 	icon_state = "implanter0"
 	inhand_icon_state = "syringe_0"

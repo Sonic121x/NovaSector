@@ -77,7 +77,7 @@
 		if(is_type_in_typecache(perks, no_coexistence_typecache))
 			return FALSE
 	if(is_type_in_list(src, wizard_datum.perks))
-		to_chat(user, span_warning("This perk already learned!"))
+		to_chat(user, span_warning("此能力已习得！"))
 		return FALSE
 	return TRUE
 
@@ -95,10 +95,10 @@
 	if(existing)
 		var/before_name = existing.name
 		if(!existing.level_spell())
-			to_chat(user, span_warning("This spell cannot be improved further!"))
+			to_chat(user, span_warning("此法术无法再精进！"))
 			return FALSE
 
-		to_chat(user, span_notice("You have improved [before_name] into [existing.name]."))
+		to_chat(user, span_notice("你已将[before_name]精进为[existing.name]。"))
 		name = existing.name
 
 		//we'll need to update the cooldowns for the spellbook
@@ -113,7 +113,7 @@
 	//No same spell found - just learn it
 	var/datum/action/cooldown/spell/new_spell = new spell_type(user.mind || user)
 	new_spell.Grant(user)
-	to_chat(user, span_notice("You have learned [new_spell.name]."))
+	to_chat(user, span_notice("你已习得[new_spell.name]。"))
 
 	if(log_buy)
 		log_spellbook("[key_name(user)] learned [new_spell] for [cost] points")
@@ -147,7 +147,7 @@
  */
 /datum/spellbook_entry/proc/can_refund(mob/living/carbon/human/user, obj/item/spellbook/book)
 	if(HAS_TRAIT(user, TRAIT_SPELLS_LOTTERY))
-		to_chat(user, span_notice("No refund."))
+		to_chat(user, span_notice("概不退款。"))
 		return FALSE
 	if(!refundable)
 		return FALSE
@@ -172,7 +172,7 @@
 /datum/spellbook_entry/proc/refund_spell(mob/living/carbon/human/user, obj/item/spellbook/book)
 	var/area/centcom/wizard_station/wizard_home = GLOB.areas_by_type[/area/centcom/wizard_station]
 	if(get_area(user) != wizard_home)
-		to_chat(user, span_warning("You can only refund spells at the wizard lair!"))
+		to_chat(user, span_warning("你只能在巫师巢穴退还法术！"))
 		return -1
 
 	for(var/datum/action/cooldown/spell/to_refund in user.actions)
@@ -226,7 +226,7 @@
 /// Attempts to give the item to the buyer on purchase.
 /datum/spellbook_entry/item/proc/try_equip_item(mob/living/carbon/human/user, obj/item/to_equip)
 	var/was_put_in_hands = user.put_in_hands(to_equip)
-	to_chat(user, span_notice("\A [to_equip.name] has been summoned [was_put_in_hands ? "in your hands" : "at your feet"]."))
+	to_chat(user, span_notice("\A [to_equip.name] 已被召唤 [was_put_in_hands ? "in your hands" : "at your feet"]。"))
 
 /// Ritual, these cause station wide effects and are (pretty much) a blank slate to implement stuff in
 /datum/spellbook_entry/summon
@@ -245,7 +245,7 @@
 
 /// Non-purchasable flavor spells to populate the spell book with, for style.
 /datum/spellbook_entry/challenge
-	name = "Take the Challenge"
+	name = "接受挑战"
 	category = "Challenges"
 	refundable = FALSE
 	buy_word = "Accept"

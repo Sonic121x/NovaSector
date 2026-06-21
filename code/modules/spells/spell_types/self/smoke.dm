@@ -1,6 +1,6 @@
 /// Basic smoke spell.
 /datum/action/cooldown/spell/smoke
-	name = "Smoke"
+	name = "烟雾"
 	desc = "This spell spawns a cloud of smoke at your location. \
 		People within will begin to choke and drop their items."
 	button_icon_state = "smoke"
@@ -17,8 +17,8 @@
 
 /// Chaplain smoke.
 /datum/action/cooldown/spell/smoke/lesser
-	name = "Holy Smoke"
-	desc = "This spell spawns a small cloud of smoke at your location."
+	name = "圣烟"
+	desc = "此法术会在您所在的位置生成一小团烟雾。"
 
 	school = SCHOOL_HOLY
 	cooldown_time = 36 SECONDS
@@ -28,8 +28,8 @@
 
 /// Unused smoke that makes people sleep. Used to be for cult?
 /datum/action/cooldown/spell/smoke/disable
-	name = "Paralysing Smoke"
-	desc = "This spell spawns a cloud of paralysing smoke."
+	name = "窒息性烟雾"
+	desc = "此法术会生成一团令敌人麻痹的烟雾。"
 	background_icon_state = "bg_cult"
 	overlay_icon_state = "bg_cult_border"
 

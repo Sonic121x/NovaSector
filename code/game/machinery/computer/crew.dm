@@ -4,8 +4,8 @@
 #define UNKNOWN_JOB_ID 998
 
 /obj/machinery/computer/crew
-	name = "crew monitoring console"
-	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
+	name = "船员监测操作台"
+	desc = "用于监测大多数船员制服中激活的内置健康传感器。"
 	icon_screen = "crew"
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/crew
@@ -17,7 +17,7 @@
 
 /obj/item/circuit_component/medical_console_data
 	display_name = "Crew Monitoring Data"
-	desc = "Outputs the medical statuses of people on the crew monitoring computer, where it can then be filtered with a Select Query component."
+	desc = "输出船员监控计算机上人员的医疗状态，然后可以使用选择查询组件进行过滤。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The records retrieved

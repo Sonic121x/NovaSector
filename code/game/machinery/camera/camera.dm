@@ -12,8 +12,8 @@
  * Putting this on a wall will put a deconstructed camera machine on the wall.
  */
 /obj/item/wallframe/camera
-	name = "camera assembly"
-	desc = "The basic construction for Nanotrasen-Always-Watching-You cameras."
+	name = "摄像头组件"
+	desc = "纳米传讯用于一直监视你的摄像头的基本组件。"
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "cameracase"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
@@ -24,8 +24,8 @@
 	return istype(structure, /obj/structure/window) ? structure : ..()
 
 /obj/machinery/camera
-	name = "security camera"
-	desc = "It's used to monitor rooms."
+	name = "安保摄像头"
+	desc = "用于监控房间。"
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "camera"
 	base_icon_state = "camera"
@@ -201,29 +201,29 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 	. = ..()
 
 	if(isEmpProof(TRUE)) //don't reveal it's upgraded if was done via MALF AI Upgrade Camera Network ability
-		. += span_info("It has electromagnetic interference shielding installed.")
+		. += span_info("它已安装电磁干扰屏蔽层。")
 	else
-		. += span_info("It can be shielded against electromagnetic interference with some <b>plasma</b>.")
+		. += span_info("它可以通过某种<b>等离子体技术</b>来抵御电磁干扰。")
 
 	if(isXRay(TRUE)) //don't reveal it's upgraded if was done via MALF AI Upgrade Camera Network ability
-		. += span_info("It has an X-ray photodiode installed.")
+		. += span_info("它已安装X射线光电二极管。")
 	else
-		. += span_info("It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.")
+		. += span_info("可以安装<b>气体分析仪</b>进行X光二极管升级.")
 
 	if(isMotion())
-		. += span_info("It has a proximity sensor installed.")
+		. += span_info("它已安装接近传感器。")
 	else
-		. += span_info("It can be upgraded with a <b>proximity sensor</b>.")
+		. += span_info("可以安装<b>距离传感器</b>进行升级.")
 
 	if(!camera_enabled)
-		. += span_info("It's currently deactivated.")
+		. += span_info("它目前处于停用状态。")
 		if(!panel_open && powered())
-			. += span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.")
+			. += span_notice("你需要用<b>螺丝刀</b>打开它的维护面板才能重新启动它。")
 
 	if(panel_open)
-		. += span_info("Its maintenance panel is currently open.")
+		. += span_info("维修面板处于打开状态.")
 		if(!camera_enabled && powered())
-			. += span_info("It can reactivated with <b>wirecutters</b>.")
+			. += span_info("可以用<b>钢丝钳</b>重新激活它。")
 
 /obj/machinery/camera/emp_act(severity, reset_time = 90 SECONDS)
 	. = ..()
@@ -244,7 +244,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 	for(var/mob/M as anything in GLOB.player_list)
 		if (M.client?.eye == src)
 			M.reset_perspective(null)
-			to_chat(M, span_warning("The screen bursts into static!"))
+			to_chat(M, span_warning("屏幕爆发出静电干扰！"))
 
 /obj/machinery/camera/on_saboteur(datum/source, disrupt_duration)
 	. = ..()
@@ -379,10 +379,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 			addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 10 SECONDS)
 	if(displaymessage)
 		if(user)
-			visible_message(span_danger("[user] [change_msg] [src]!"))
+			visible_message(span_danger("[user] [change_msg]了[src]！"))
 			add_hiddenprint(user)
 		else
-			visible_message(span_danger("\The [src] [change_msg]!"))
+			visible_message(span_danger("\The [src] [change_msg]了！"))
 
 		playsound(src, 'sound/items/tools/wirecutter.ogg', 100, TRUE)
 	update_appearance() //update Initialize() if you remove this.
@@ -394,7 +394,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 	for(var/mob/O as anything in GLOB.player_list)
 		if (O.client?.eye == src)
 			O.reset_perspective(null)
-			to_chat(O, span_warning("The screen bursts into static!"))
+			to_chat(O, span_warning("屏幕爆发出静电干扰！"))
 
 /obj/machinery/camera/proc/triggerCameraAlarm()
 	alarm_on = TRUE

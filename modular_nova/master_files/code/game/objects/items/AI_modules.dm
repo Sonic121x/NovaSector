@@ -1,7 +1,7 @@
 /obj/item/ai_module/core/full/dagothbot
-	name = "'God Complex' Core AI Module"
+	name = "'神之妄想'核心AI模块"
 	law_id = "dagothbot"
 
 /obj/item/ai_module/core/full/texas
-	name = "'Frontier Ranger' Core AI Module"
+	name = "'边疆游侠'核心AI模块"
 	law_id = "texas"

@@ -1,5 +1,5 @@
 /obj/projectile/energy/snare
-	name = "energy snare"
+	name = "能量陷阱"
 	icon_state = "e_netting"
 	damage = 30
 	damage_type = STAMINA
@@ -31,8 +31,8 @@
 	. = ..()
 
 /obj/effect/nettingportal
-	name = "DRAGnet teleportation field"
-	desc = "A field of bluespace energy, locking on to teleport a target."
+	name = "网枪传送场"
+	desc = "蓝空能量场，锁定传送目标。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dragnetfield"
 	light_range = 3
@@ -60,8 +60,8 @@
 	return
 
 /obj/item/dragnet_beacon
-	name = "\improper DRAGnet beacon"
-	desc = "Can be synced with a DRAGnet to set it as a designated teleporting point."
+	name = "\improper DRAGnet 信标"
+	desc = "可以与 DRAGnet 同步，将其设置为指定的传送点。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "dragnet_beacon"
 	inhand_icon_state = "beacon"
@@ -78,31 +78,31 @@
 
 	if(isidcard(tool))
 		if(!anchored)
-			balloon_alert(user, "wrench the beacon first!")
+			balloon_alert(user, "先用扳手固定信标！")
 			return
 
 		if(obj_flags & EMAGGED)
-			balloon_alert(user, "the access control is fried!")
+			balloon_alert(user, "访问控制烧坏了！")
 			return
 
 		var/obj/item/card/id/id_card = tool
 		if((ACCESS_SECURITY in id_card.GetAccess()))
 			locked = !locked
-			balloon_alert(user, "beacon [locked ? "locked" : "unlocked"]")
+			balloon_alert(user, "信标[locked ? "locked" : "unlocked"]")
 		else
-			balloon_alert(user, "no access!")
+			balloon_alert(user, "没有访问权限！")
 
 /obj/item/dragnet_beacon/wrench_act(mob/living/user, obj/item/tool)
 	if(user.is_holding(src))
-		balloon_alert(user, "put it down first!")
+		balloon_alert(user, "先把它放下！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(anchored && locked)
-		balloon_alert(user, "must be unlocked first!")
+		balloon_alert(user, "必须先解锁！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(isinspace() && !anchored)
-		balloon_alert(user, "nothing to anchor to!")
+		balloon_alert(user, "没有可固定的地方！")
 		return ITEM_INTERACT_BLOCKING
 
 	set_anchored(!anchored)
@@ -116,5 +116,5 @@
 	locked = FALSE
 	set_anchored(FALSE)
 	do_sparks(3, TRUE, src)
-	balloon_alert(user, "beacon unlocked")
+	balloon_alert(user, "信标已解锁")
 	return TRUE

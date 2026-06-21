@@ -161,7 +161,7 @@
 	var/hurt_this_guy = determine_if_this_hurts_instead(mendicant, hurtguy)
 
 	if (hurt_this_guy && (HAS_TRAIT(mendicant, TRAIT_PACIFISM) || !mendicant.combat_mode)) //Returns if we're a pacifist and we'd hurt them, or we're not in combat mode and we'll hurt them
-		mendicant.balloon_alert(mendicant, "[hurtguy] would be hurt!")
+		mendicant.balloon_alert(mendicant, "[hurtguy] 会受伤的！")
 		return FALSE
 
 	if(hurt_this_guy)
@@ -231,7 +231,7 @@
 			mendicant_organic_limbs += possible_limb
 	// None? Gtfo
 	if(!length(mendicant_organic_limbs))
-		mendicant.balloon_alert(mendicant, "no organic limbs!")
+		mendicant.balloon_alert(mendicant, "没有有机肢体！")
 		return .
 
 	// Try to use our active hand, otherwise pick at random
@@ -249,7 +249,7 @@
 		. = TRUE
 
 	if(!.)
-		hurtguy.balloon_alert(mendicant, "unhurt!")
+		hurtguy.balloon_alert(mendicant, "未受伤！")
 
 /datum/action/cooldown/spell/touch/lay_on_hands/proc/do_complicated_heal(mob/living/carbon/mendicant, mob/living/carbon/hurtguy, heal_multiplier, pain_multiplier)
 
@@ -355,7 +355,7 @@
 	else
 		to_chat(mendicant, span_notice("Your veins swell!"))
 	if(!.)
-		mendicant.balloon_alert(hurtguy, "no damaged organic limbs!")
+		mendicant.balloon_alert(hurtguy, "没有受损的有机肢体！")
 
 
 /datum/action/cooldown/spell/touch/lay_on_hands/proc/determine_if_this_hurts_instead(mob/living/carbon/mendicant, mob/living/hurtguy)

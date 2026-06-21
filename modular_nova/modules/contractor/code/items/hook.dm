@@ -1,6 +1,6 @@
 /obj/item/gun/magic/hook/contractor
-	name = "SCORPION hook"
-	desc = "A hardlight hook used to non-lethally pull targets much closer to the user."
+	name = "SCORPION钩爪"
+	desc = "一种硬光钩爪，用于非致命地将目标拉近使用者。"
 	icon = 'modular_nova/modules/contractor/icons/hook.dmi'
 	icon_state = "hook_weapon"
 	inhand_icon_state = "" //nah

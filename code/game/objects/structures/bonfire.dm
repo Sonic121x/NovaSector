@@ -8,8 +8,8 @@
  * salem style. Keeping the fire on requires oxygen. You can dismantle the bonfire back into logs when it is unignited.
  */
 /obj/structure/bonfire
-	name = "bonfire"
-	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
+	name = "篝火"
+	desc = "用于烧烤、烘烤、炭化、生烟、加热、烘焙、烤面包、炖煮、烧焦、熔化，偶尔也用于燃烧物品。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "bonfire"
 	light_color = LIGHT_COLOR_FIRE
@@ -43,7 +43,7 @@
 /obj/structure/bonfire/attackby(obj/item/used_item, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(used_item, /obj/item/stack/rods) && !can_buckle && !grill)
 		var/obj/item/stack/rods/rods = used_item
-		var/choice = tgui_alert(user, "What would you like to construct?", "Bonfire", list("Stake","Grill"))
+		var/choice = tgui_alert(user, "你想建造什么？", "篝火", list("Stake","Grill"))
 		if(isnull(choice))
 			return
 		rods.use(1)
@@ -83,7 +83,7 @@
 	if(.)
 		return
 	if(burning)
-		to_chat(user, span_warning("You need to extinguish [src] before removing the logs!"))
+		to_chat(user, span_warning("你需要先熄灭[src]才能移走木柴！"))
 		return
 	if(!has_buckled_mobs() && do_after(user, 5 SECONDS, target = src))
 		for(var/obj/item/grown/log/bonfire_log in contents)
@@ -131,11 +131,11 @@
 		var/mob/living/burning_body = entered
 		if(burning_body.on_fire)
 			start_burning()
-			visible_message(span_notice("[entered] runs over [src], starting its fire!"))
+			visible_message(span_notice("[entered]跑过[src]，点燃了它的火焰！"))
 
 	else if(entered.resistance_flags & ON_FIRE)
 		start_burning()
-		visible_message(span_notice("[entered]'s fire spreads to [src], setting it ablaze!"))
+		visible_message(span_notice("[entered]的火焰蔓延到[src]，将其点燃！"))
 
 /obj/structure/bonfire/proc/bonfire_burn(seconds_per_tick = 2)
 	var/turf/current_location = get_turf(src)

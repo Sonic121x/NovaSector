@@ -1,6 +1,6 @@
 /obj/machinery/artifact
-	name = "alien artifact"
-	desc = "A large alien device."
+	name = "外星遗物"
+	desc = "一个巨大的外星装置。"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/artifacts.dmi'
 	icon_state = "artifact_1"
 	anchored = 0
@@ -61,20 +61,20 @@
 	) // 12th and 13th are just types of crystals, please ignore them at THAT point
 	switch(artifact_type_id)
 		if(ARTIFACT_COMPUTER)
-			name = "alien computer"
-			desc = "It is covered in strange markings."
+			name = "外星计算机"
+			desc = "它表面覆盖着奇怪的标记。"
 		if(ARTIFACT_PILLAR)
-			name = "alien device"
-			desc = "A large pillar, made of strange shiny metal."
+			name = "外星装置"
+			desc = "一根巨大的柱子，由奇怪的闪亮金属制成。"
 		if(ARTIFACT_VENTS)
-			name = "alien device"
-			desc = "A large alien device, there appear to be some kind of vents in the side."
+			name = "外星装置"
+			desc = "一个巨大的外星装置，侧面似乎有某种通风口。"
 		if(ARTIFACT_FLOATING)
-			name = "strange metal object"
-			desc = "A large object made of tough green-shaded alien metal."
+			name = "奇怪的金属物体"
+			desc = "一个由坚韧的绿色调外星金属制成的大型物体。"
 		if(ARTIFACT_CRYSTAL_GREEN)
 			artifact_type_id = pick(ARTIFACT_CRYSTAL_GREEN, ARTIFACT_CRYSTAL_PURPLE, ARTIFACT_CRYSTAL_BLUE) // now we pick a color
-			name = "large crystal"
+			name = "大型晶体"
 			desc = pick(
 				"It shines faintly as it catches the light.", "It appears to have a faint inner glow.",
 				"It seems to draw you inward as you look it at.", "Something twinkles faintly as you look at it.",
@@ -95,8 +95,8 @@
 /obj/machinery/artifact/Destroy()
 	do_destroy_effects()
 	loc.visible_message(
-		span_danger("[src] breaks in pieces, releasing a wave of energy!"),
-		blind_message = span_hear("You hear something break into pieces!"),
+		span_danger("[src]碎裂成片，释放出一股能量波！"),
+		blind_message = span_hear("你听到有什么东西碎裂了！"),
 	)
 	if(!QDELETED(first_effect))
 		QDEL_NULL(first_effect)
@@ -167,22 +167,22 @@
 	. = ..()
 	switch(round(100 * (get_integrity() / max_integrity)))
 		if(85 to 100)
-			to_chat(user, "Appears to have no structural damage.")
+			to_chat(user, "看起来没有结构损伤。")
 		if(65 to 85)
-			to_chat(user, "Appears to have light structural damage.")
+			to_chat(user, "看起来有轻微的结构损伤。")
 		if(45 to 65)
-			to_chat(user, "Appears to have moderate structural damage.")
+			to_chat(user, "看起来有中度的结构损伤。")
 		if(10 to 45)
-			to_chat(user, "Appears to have heavy structural damage.")
+			to_chat(user, "似乎遭受了严重的结构损伤。")
 		if(0 to 10)
-			to_chat(user, "Appears to be barely intact.")
+			to_chat(user, "看起来勉强保持完整。")
 
 /obj/machinery/artifact/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	if(!Adjacent(user))
-		to_chat(user, span_warning("You can't reach [src] from here!"))
+		to_chat(user, span_warning("你无法从这里够到[src]！"))
 		return TRUE
 	if(iscarbon(user))
 		var/mob/living/carbon/human_to_test = user
@@ -193,7 +193,7 @@
 			try_toggle_effects(TRIGGER_TOUCH)
 	else
 		try_toggle_effects(TRIGGER_TOUCH)
-	to_chat(user, span_bold("You touch [src]."))
+	to_chat(user, span_bold("你触摸了[src]。"))
 
 	if(first_effect.release_method == ARTIFACT_EFFECT_TOUCH)
 		first_effect.do_effect_touch(user)
@@ -288,7 +288,7 @@
 		if(secondary_effect && secondary_effect.release_method == ARTIFACT_EFFECT_TOUCH && secondary_effect.activated && prob(50))
 			secondary_effect.do_effect_touch(what_bumped)
 		if(ismob(what_bumped))
-			to_chat(what_bumped, span_bold("You accidentally touch [src]."))
+			to_chat(what_bumped, span_bold("你不小心碰到了[src]。"))
 
 /**
  * Checks if container has reagent, which is in volatile_reagents global list
@@ -337,11 +337,11 @@
  */
 /obj/machinery/artifact/proc/get_scan(mob/living/user, obj/item/xenoarch/handheld_scanner/scanner)
 	user.visible_message(
-		span_notice("[user] begins to scan [src] using [scanner]."),
-		span_notice("You begin to scan [src] using [scanner]..."),
-		blind_message = span_hear("You hear some kind of machine silently winding up."),
+		span_notice("[user]开始使用[scanner]扫描[src]。"),
+		span_notice("你开始使用[scanner]扫描[src]..."),
+		blind_message = span_hear("你听到某种机器无声地启动。"),
 	)
 	if(!do_after(user, scanner.scanning_speed * 5, target = src))
-		to_chat(user, span_warning("You interrupt your scanning."))
+		to_chat(user, span_warning("你中断了扫描。"))
 		return
-	to_chat(user, span_notice("[src] is too big to scan with [scanner]. Use static artifact analyzer."))
+	to_chat(user, span_notice("[src]太大，无法用[scanner]扫描。请使用静态文物分析仪。"))

@@ -1,5 +1,5 @@
 /obj/item/stack/telecrystal
-	name = "telecrystal"
+	name = "心灵水晶"
 	desc = "Covered in a web of finely engraved geometrical patterns, pulsing with suspiciously enticing energies."
 	singular_name = "telecrystal"
 	icon_state = "telecrystal"
@@ -26,7 +26,7 @@
 			continue
 		hidden_uplink.uplink_handler.add_telecrystals(amount)
 		use(amount)
-		to_chat(user, span_notice("You press [src] onto yourself and charge your hidden uplink."))
+		to_chat(user, span_notice("你将[src]按在自己身上，为你隐藏的上行链路充能。"))
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 

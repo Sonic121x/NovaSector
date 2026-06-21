@@ -11,7 +11,7 @@
 	// Tweaking defaults a bit (requires TGcode tweaks to take effect, will be done for upstream)
 	var/datum/aas_config_entry/config = locate(/datum/aas_config_entry/newhead) in config_entries
 	if (config)
-		config.announcement_lines_map = list("Message" = "%PERSON, %RANK is the representative of the command at the installation.")
+		config.announcement_lines_map = list("消息" = "%PERSON, %RANK 是指挥部在本设施的代表。")
 
 // Cryosleep consoles
 /obj/machinery/computer/cryopod/interdinify()

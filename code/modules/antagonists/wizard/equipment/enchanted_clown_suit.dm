@@ -52,7 +52,7 @@
 	cast_message(cast_on)
 	if (!do_after(cast_on, cast_time, cast_on))
 		casting = FALSE
-		cast_on.balloon_alert(cast_on, "interrupted!")
+		cast_on.balloon_alert(cast_on, "被打断了！")
 		StartCooldown(2 SECONDS) // Prevents chat spam
 		return . | SPELL_CANCEL_CAST
 	casting = FALSE
@@ -70,7 +70,7 @@
 		return
 	if (casting)
 		if (feedback)
-			owner.balloon_alert(owner, "can't rummage harder!")
+			owner.balloon_alert(owner, "没法翻得更深了！")
 		return FALSE
 
 /// Prints a funny message, exists so I can override it to print a different message

@@ -17,7 +17,7 @@
 		outfit.l_hand = item_path
 
 /datum/loadout_item/inhand/cane
-	name = "Cane"
+	name = "手杖"
 	item_path = /obj/item/cane
 
 /* NOVA EDIT REMOVAL - Already exists in our loadout
@@ -27,9 +27,9 @@
 */ // NOVA REMOVAL END
 
 /datum/loadout_item/inhand/briefcase
-	name = "Briefcase (Leather)"
+	name = "公文包（皮革）"
 	item_path = /obj/item/storage/briefcase
 
 /datum/loadout_item/inhand/briefcase_secure
-	name = "Briefcase (Secure)"
+	name = "公文包（安全型）"
 	item_path = /obj/item/storage/briefcase/secure

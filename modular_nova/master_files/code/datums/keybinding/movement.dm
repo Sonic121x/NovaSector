@@ -2,7 +2,7 @@
 	hotkey_keys = list("K")
 	name = "prone"
 	full_name = "army crawl"
-	description = "lay yourself as close to the ground as possible after a short delay"
+	description = "在短暂延迟后，尽可能地将自己贴近地面"
 	keybind_signal = COMSIG_KB_MOVEMENT_ARMY_CRAWL_DOWN
 
 /datum/keybinding/movement/army_crawl/down(client/user)

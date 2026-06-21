@@ -3,7 +3,7 @@
 #define MAX_CAT_DEPLOY 50
 
 /mob/living/basic/pet/cat/runtime
-	name = "Runtime"
+	name = "运行时"
 	desc = "GCAT"
 	icon_state = "cat"
 	icon_living = "cat"

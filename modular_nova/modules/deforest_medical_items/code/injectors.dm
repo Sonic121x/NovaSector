@@ -48,7 +48,7 @@
 			else
 				reagents.expose(affected_mob, INJECT, fraction)
 				trans = reagents.trans_to(affected_mob, amount_per_transfer_from_this, copy_only = TRUE)
-			to_chat(user, span_notice("[trans] unit\s injected. [reagents.total_volume] unit\s remaining in [src]."))
+			to_chat(user, span_notice("[trans] unit\s 已注射。 [reagents.total_volume] unit\s 剩余在 [src] 中。"))
 			log_combat(user, affected_mob, "injected", src, "([contained])")
 		return TRUE
 	return FALSE

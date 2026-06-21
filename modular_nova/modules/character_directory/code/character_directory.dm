@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(name_to_appearance)
 /client/proc/is_character_directory_on_cooldown()
 	// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 	if(!COOLDOWN_FINISHED(src, char_directory_cooldown))
-		to_chat(src, span_alert("Hold your horses! It's still refreshing!"))
+		to_chat(src, span_alert("别着急！它还在刷新！"))
 		return TRUE
 	COOLDOWN_START(src, char_directory_cooldown, 10)
 	return FALSE
@@ -322,7 +322,7 @@ GLOBAL_LIST_EMPTY(name_to_appearance)
 		if("refresh")
 			// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 			if(!COOLDOWN_FINISHED(user.client, char_directory_cooldown))
-				to_chat(user, span_warning("Please wait before refreshing the directory again."))
+				to_chat(user, span_warning("请等待片刻再刷新目录。"))
 				return
 			COOLDOWN_START(user.client, char_directory_cooldown, 10)
 			update_static_data(user, ui)

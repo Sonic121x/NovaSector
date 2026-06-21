@@ -1,6 +1,6 @@
 /obj/item/organ/xenodorsal
-	name = "dorsal spines"
-	desc = "How did that even fit on them...?"
+	name = "背脊棘刺"
+	desc = "这玩意儿当初是怎么装在他们身上的...？"
 	organ_flags = parent_type::organ_flags | ORGAN_EXTERNAL
 
 	mutantpart_key = FEATURE_XENODORSAL

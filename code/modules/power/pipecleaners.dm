@@ -24,8 +24,8 @@ By design, d1 is the smallest direction and d2 is the highest
 */
 
 /obj/structure/pipe_cleaner
-	name = "pipe cleaner"
-	desc = "A bendable piece of wire covered in fuzz. Fun for arts and crafts!"
+	name = "绳绒线"
+	desc = "一条布满绒毛的可弯曲金属丝。非常适合用于艺术和手工艺品制作！"
 	icon = 'icons/obj/pipes_n_cables/pipe_cleaner.dmi'
 	icon_state = "0-1"
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
@@ -139,14 +139,14 @@ By design, d1 is the smallest direction and d2 is the highest
 	else if(istype(W, /obj/item/stack/pipe_cleaner_coil))
 		var/obj/item/stack/pipe_cleaner_coil/coil = W
 		if (coil.get_amount() < 1)
-			to_chat(user, span_warning("Not enough pipe cleaner!"))
+			to_chat(user, span_warning("管道清洁器不够！"))
 			return
 		coil.pipe_cleaner_join(src, user)
 
 	add_fingerprint(user)
 
 /obj/structure/pipe_cleaner/proc/cut_pipe_cleaner(mob/user)
-	user.visible_message(span_notice("[user] pulls up the pipe cleaner."), span_notice("You pull up the pipe cleaner."))
+	user.visible_message(span_notice("[user]拉起了管道清洁器。"), span_notice("你拉起了管道清洁器。"))
 	stored.add_fingerprint(user)
 	investigate_log("was pulled up by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
 	deconstruct()
@@ -177,8 +177,8 @@ By design, d1 is the smallest direction and d2 is the highest
 ////////////////////////////////
 
 /obj/item/stack/pipe_cleaner_coil
-	name = "pipe cleaner coil"
-	desc = "A coil of pipe cleaners. Good for arts and crafts, not to build with."
+	name = "绳绒线圈"
+	desc = "一卷绳绒线圈。适合用于手工制作，但不能用于搭建。"
 	custom_price = PAYCHECK_CREW * 0.5
 	gender = NEUTER //That's a pipe_cleaner coil sounds better than that's some pipe_cleaner coils
 	icon = 'icons/obj/stack_objects.dmi'
@@ -246,9 +246,9 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/pipe_cleaner_coil/suicide_act(mob/living/user)
 	if(locate(/obj/structure/chair/stool) in get_turf(user))
-		user.visible_message(span_suicide("[user] is making a noose with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 正在用[src]做套索！看起来[user.p_theyre()]想要自杀！"))
 	else
-		user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 正用 [user.p_them()] 勒住 [src] 自己！看起来 [user.p_theyre()] 想要自杀！"))
 	return OXYLOSS
 
 /obj/item/stack/pipe_cleaner_coil/Initialize(mapload, new_amount = null, list/mat_override=null, mat_amt=1, param_color = null)
@@ -272,7 +272,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/pipe_cleaner_coil/update_name()
 	. = ..()
-	name = "pipe cleaner [amount < 3 ? "piece" : "coil"]"
+	name = "管道清洁器 [amount < 3 ? "piece" : "coil"]"
 
 /obj/item/stack/pipe_cleaner_coil/update_icon_state()
 	. = ..()
@@ -312,15 +312,15 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	if(!isturf(T) || !T.can_have_cabling())
-		to_chat(user, span_warning("You can only lay pipe cleaners on a solid floor!"))
+		to_chat(user, span_warning("你只能在坚实的地板上铺设清洁管道！"))
 		return
 
 	if(get_amount() < 1) // Out of pipe_cleaner
-		to_chat(user, span_warning("There is no pipe cleaner left!"))
+		to_chat(user, span_warning("没有管道清洁线了！"))
 		return
 
 	if(get_dist(T,user) > 1) // Too far
-		to_chat(user, span_warning("You can't lay pipe cleaner at a place that far away!"))
+		to_chat(user, span_warning("你无法在那么远的地方铺设清洁管道！"))
 		return
 
 	var/dirn
@@ -334,7 +334,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	for(var/obj/structure/pipe_cleaner/LC in T)
 		if(LC.d2 == dirn && LC.d1 == 0)
-			to_chat(user, span_warning("There's already a pipe cleaner at that position!"))
+			to_chat(user, span_warning("那个位置已经有一根管道清洁线了！"))
 			return
 
 	var/obj/structure/pipe_cleaner/C = get_new_pipe_cleaner(T)
@@ -362,7 +362,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	if(get_dist(C, user) > 1) // make sure it's close enough
-		to_chat(user, span_warning("You can't lay pipe cleaner at a place that far away!"))
+		to_chat(user, span_warning("你无法在那么远的地方铺设清洁管！"))
 		return
 
 
@@ -378,7 +378,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if((C.d1 == dirn || C.d2 == dirn) && !forceddir)
 		if(!U.can_have_cabling()) //checking if it's a plating or catwalk
 			if (showerror)
-				to_chat(user, span_warning("You can only lay pipe cleaners on catwalks and plating!"))
+				to_chat(user, span_warning("你只能在网格走道和地板上铺设清洁管！"))
 			return
 		else
 			// pipe_cleaner is pointing at us, we're standing on an open tile
@@ -389,7 +389,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			for(var/obj/structure/pipe_cleaner/LC in U) // check to make sure there's not a pipe_cleaner there already
 				if(LC.d1 == fdirn || LC.d2 == fdirn)
 					if (showerror)
-						to_chat(user, span_warning("There's already a pipe cleaner at that position!"))
+						to_chat(user, span_warning("那个位置已经有线缆了！"))
 					return
 
 			var/obj/structure/pipe_cleaner/NC = get_new_pipe_cleaner(U)
@@ -420,7 +420,7 @@ By design, d1 is the smallest direction and d2 is the highest
 				continue
 			if((LC.d1 == nd1 && LC.d2 == nd2) || (LC.d1 == nd2 && LC.d2 == nd1) ) // make sure no pipe_cleaner matches either direction
 				if (showerror)
-					to_chat(user, span_warning("There's already a pipe cleaner at that position!"))
+					to_chat(user, span_warning("那个位置已经有线缆了！"))
 
 				return
 

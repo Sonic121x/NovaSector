@@ -43,7 +43,7 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 	if(!can_announce(user, is_silicon))
 		return FALSE
 	if(is_silicon)
-		minor_announce(html_decode(input),"[user.name] announces:", players = players)
+		minor_announce(html_decode(input),"[user.name] 宣布：", players = players)
 		COOLDOWN_START(src, silicon_message_cooldown, COMMUNICATION_COOLDOWN_AI)
 	else
 		var/list/message_data = user.treat_message(input)
@@ -137,13 +137,13 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 		. += "<hr><h4>Additional Notes: </h4>" + footnote_pile
 
 #ifndef MAP_TEST
-	print_command_report(., "[command_name()] Status Summary", announce = FALSE, contains_advanced_html = TRUE)
+	print_command_report(., "[command_name()] 状态摘要", announce = FALSE, contains_advanced_html = TRUE)
 	if(greenshift)
 		priority_announce(
 			"Thanks to the tireless efforts of our security and intelligence divisions, \
 				there are currently no credible threats to [station_name()]. \
 				All station construction projects have been authorized. Have a secure shift!",
-			"Security Report",
+			"安保报告",
 			SSstation.announcer.get_rand_report_sound(),
 			color_override = "green",
 		)
@@ -153,14 +153,14 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 		priority_announce(
 			"[SSsecurity_level.current_security_level.elevating_to_announcement]\n\n\
 				A summary has been copied and printed to all communications consoles.",
-			"Security level elevated.",
+			"安保等级已提升。",
 			ANNOUNCER_INTERCEPT,
 			color_override = SSsecurity_level.current_security_level.announcement_color,
 		)
 	else
 		priority_announce(
-			"A summary of the station's situation has been copied and printed to all communications consoles.",
-			"Security Report",
+			"空间站状况摘要已复制并打印至所有通讯控制台。",
+			"安保报告",
 			SSstation.announcer.get_rand_report_sound(),
 		)
 

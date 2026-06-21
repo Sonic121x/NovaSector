@@ -1,9 +1,9 @@
 //Tiziran Fish.
 
 /obj/item/fish/moonfish
-	name = "zagoskian moonfish"
+	name = "扎戈斯基安月鱼"
 	fish_id = "moonfish"
-	desc = "A disc-shaped fish native of the less shallow areas of Tizira's oceans, roughly the size of a tuna. Highly prized in lizard cuisine for their large eggs."
+	desc = "一种盘状鱼，原产于提兹拉海洋较深的水域，大小与金枪鱼相仿。因其大颗的鱼卵而在蜥蜴美食中备受推崇。"
 	icon_state = "tizira_moonfish"
 	sprite_height = 7
 	sprite_width = 7
@@ -46,9 +46,9 @@
 			return COMPONENT_DONT_GROW
 
 /obj/item/fish/moonfish/dwarf
-	name = "dwarf moonfish"
+	name = "侏儒月鱼"
 	fish_id = "dwarf_moonfish"
-	desc = "Ordinarily in the wild, the Zagoskian moonfish is around the size of a tuna, however through selective breeding a smaller breed suitable for being kept as an aquarium pet has been created."
+	desc = "在野外，扎戈斯基月鱼通常有金枪鱼那么大，但通过选择性育种，人们培育出了适合作为水族宠物的较小品种。"
 	icon_state = "dwarf_moonfish"
 	sprite_height = 6
 	sprite_width = 6
@@ -68,9 +68,9 @@
 	AddComponent(/datum/component/fish_growth, /datum/fish_evolution/moonfish, 2.5 MINUTES * multiplier, use_drop_loc = FALSE)
 
 /obj/item/fish/gunner_jellyfish
-	name = "gunner jellyfish"
+	name = "炮手水母"
 	fish_id = "gunner_jellyfish"
-	desc = "So called due to their resemblance to an artillery shell, the gunner jellyfish is native to Tizira, where it is enjoyed as a delicacy. Produces a mild hallucinogen that is destroyed by cooking."
+	desc = "因其外形酷似炮弹而得名，炮手水母原产于提兹拉，在那里被视为美味佳肴。它能产生一种轻微的致幻剂，但烹饪后会将其破坏。"
 	icon_state = "gunner_jellyfish"
 	sprite_height = 4
 	sprite_width = 5
@@ -97,9 +97,9 @@
 	return list("crunchy tenderness" = 2)
 
 /obj/item/fish/needlefish
-	name = "needlefish"
+	name = "针鱼"
 	fish_id = "needlefish"
-	desc = "A tiny, transparent fish which resides in large schools in the oceans of Tizira. A common food for other, larger fish."
+	desc = "一种微小的透明鱼类，在提兹拉的海洋中聚集成庞大的鱼群。是其他大型鱼类的常见食物。"
 	icon_state = "needlefish"
 	sprite_height = 3
 	sprite_width = 7
@@ -118,9 +118,9 @@
 	add_traits(list(TRAIT_FISHING_BAIT, TRAIT_GOOD_QUALITY_BAIT), INNATE_TRAIT)
 
 /obj/item/fish/armorfish
-	name = "armorfish"
+	name = "甲壳鱼"
 	fish_id = "armorfish"
-	desc = "A small shellfish native to Tizira's oceans, known for its exceptionally hard shell. Consumed similarly to prawns."
+	desc = "一种原产于提兹拉海洋的小型甲壳类动物，以其异常坚硬的外壳而闻名。食用方式类似于对虾。"
 	icon_state = "armorfish"
 	sprite_height = 5
 	sprite_width = 6

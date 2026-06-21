@@ -1,7 +1,7 @@
 /datum/surgery_operation/organ/pacify
-	name = "pacification"
+	name = "安抚化"
 	rnd_name = "Paxopsy (Pacification)"
-	desc = "Remove aggressive tendencies from a patient's brain."
+	desc = "移除患者大脑中的攻击性倾向。"
 	rnd_desc = "A surgical procedure which permanently inhibits the aggression center of the brain, making the patient unwilling to cause direct harm."
 	operation_flags = OPERATION_MORBID | OPERATION_LOCKED | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
@@ -54,7 +54,7 @@
 	organ.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 
 /datum/surgery_operation/organ/pacify/mechanic
-	name = "delete aggression programming"
+	name = "删除攻击性程序"
 	rnd_name = "Aggression Suppression Programming (Pacification)"
 	rnd_desc = "Install malware which permanently inhibits the aggression programming of the patient's neural network, making the patient unwilling to cause direct harm."
 	implements = list(

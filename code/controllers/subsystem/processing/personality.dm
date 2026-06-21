@@ -1,5 +1,5 @@
 PROCESSING_SUBSYSTEM_DEF(personalities)
-	name = "Personalities"
+	name = "人格"
 	runlevels = RUNLEVEL_GAME
 	ss_flags = SS_BACKGROUND|SS_POST_FIRE_TIMING
 	wait = 3 SECONDS

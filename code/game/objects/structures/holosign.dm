@@ -2,7 +2,7 @@
 //holographic signs and barriers
 
 /obj/structure/holosign
-	name = "holo sign"
+	name = "全息标识"
 	icon = 'icons/effects/holosigns.dmi'
 	anchored = TRUE
 	max_integrity = 1
@@ -73,14 +73,14 @@
 		overlay.add_atom_colour(cached_color_filter || color, FIXED_COLOUR_PRIORITY)
 
 /obj/structure/holosign/wetsign
-	name = "wet floor sign"
-	desc = "The words flicker as if they mean nothing."
+	name = "地板潮湿标识"
+	desc = "这些文字闪烁不定，仿佛毫无意义。"
 	icon_state = "holosign"
 	base_icon_state = "holosign"
 
 /obj/structure/holosign/barrier
-	name = "security holobarrier"
-	desc = "A strong short security holographic barrier used for crowd control and blocking crime scenes. Can only be passed by walking."
+	name = "安保全息屏障"
+	desc = "一种坚固的短型安保全息屏障，用于人群控制和封锁犯罪现场。只能通过步行穿过。"
 	icon_state = "holosign_sec"
 	base_icon_state = "holosign_sec"
 	pass_flags_self = PASSTABLE | PASSGRILLE | PASSGLASS | LETPASSTHROW
@@ -135,11 +135,11 @@
 
 /obj/structure/holosign/barrier/proc/open(user)
 	if(!openable)
-		balloon_alert(user, "unable!")
+		balloon_alert(user, "无法！")
 		return
 
 	if(!COOLDOWN_FINISHED(src, cooldown_open))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "冷却中！")
 		return
 
 	if(!opened)
@@ -155,8 +155,8 @@
 	COOLDOWN_START(src, cooldown_open, 1 SECONDS)
 
 /obj/structure/holosign/barrier/wetsign
-	name = "wet floor holobarrier"
-	desc = "When it says walk it means <b>WALK!</b>"
+	name = "地板湿润全息屏障"
+	desc = "当它说步行时，意思是<b>步行！</b>"
 	icon_state = "holosign_dense"
 	base_icon_state = "holosign_dense"
 	max_integrity = 1
@@ -172,16 +172,16 @@
 			return FALSE
 
 /obj/structure/holosign/barrier/engineering
-	name = "engineering holobarrier"
-	desc = "A short engineering holographic barrier used for designating hazardous zones, slightly blocks radiation. Can only be passed by walking."
+	name = "工程全息屏障"
+	desc = "一种短型工程全息屏障，用于标记危险区域，能略微阻挡辐射。只能通过步行穿过。"
 	icon_state = "holosign_engi"
 	base_icon_state = "holosign_engi"
 	rad_insulation = RAD_LIGHT_INSULATION
 	max_integrity = 1
 
 /obj/structure/holosign/barrier/atmos
-	name = "holofirelock"
-	desc = "A holographic barrier resembling a firelock. Though it does not prevent solid objects from passing through, gas is kept out."
+	name = "全息火锁"
+	desc = "一个以类似实体火锁方式运作的全息屏障。不阻止固体物品通过，但气体则被阻挡在外。"
 	icon_state = "holo_firelock"
 	base_icon_state = "holo_firelock"
 	openable = FALSE
@@ -207,12 +207,12 @@
 	SSvis_overlays.add_vis_overlay(src, icon, icon_state, ABOVE_MOB_LAYER, MUTATE_PLANE(GAME_PLANE, our_turf), dir, add_appearance_flags = RESET_ALPHA)
 
 /obj/structure/holosign/barrier/atmos/sturdy
-	name = "sturdy holofirelock"
+	name = "坚固的全息火锁"
 	max_integrity = 150
 	openable = FALSE
 
 /obj/structure/holosign/barrier/atmos/tram
-	name = "tram atmos barrier"
+	name = "电车大气屏障"
 	max_integrity = 150
 	icon_state = "holo_tram"
 	base_icon_state = "holo_tram"
@@ -231,8 +231,8 @@
 	return ..()
 
 /obj/structure/holosign/barrier/cyborg
-	name = "Energy Field"
-	desc = "A fragile energy field that blocks movement. Excels at blocking lethal projectiles."
+	name = "能量力场"
+	desc = "阻挡动能的脆弱能量场。擅长拦截致命射弹。"
 	density = TRUE
 	max_integrity = 10
 	allow_walk = FALSE
@@ -245,8 +245,8 @@
 	melee = 20
 
 /obj/structure/holosign/barrier/medical
-	name = "\improper PENLITE holobarrier"
-	desc = "A holobarrier that uses biometrics to detect human viruses. Denies passing to personnel with easily-detected, malicious viruses. Good for quarantines."
+	name = "\improper PENLITE全息屏障"
+	desc = "一种用生物识别装置来检测病毒的全息屏障。能拒绝携带可被轻易检测的恶意病毒的人员通过。非常适合用于实施隔离。"
 	icon_state = "holo_medical"
 	base_icon_state = "holo_medical"
 	max_integrity = 1
@@ -286,8 +286,8 @@
 	return TRUE
 
 /obj/structure/holosign/barrier/cyborg/hacked
-	name = "Charged Energy Field"
-	desc = "A powerful energy field that blocks movement. Energy arcs off it."
+	name = "充能能量力场"
+	desc = "一种可阻碍移动的强大能量场。能量从中散发出来。"
 	max_integrity = 20
 	armor_type = /datum/armor/structure_holosign //Yeah no this doesn't get projectile resistance.
 	var/shockcd = 0

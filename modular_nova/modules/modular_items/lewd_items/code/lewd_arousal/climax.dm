@@ -23,8 +23,8 @@
 		return
 
 	if(HAS_TRAIT(src, TRAIT_NEVERBONER) || has_status_effect(/datum/status_effect/climax_cooldown) || (!has_vagina() && !has_penis()))
-		visible_message(span_purple("[src] twitches, trying to cum, but with no result."), \
-			span_purple("You can't have an orgasm!"), pref_to_check = /datum/preference/toggle/erp)
+		visible_message(span_purple("[src] 抽搐着，试图射精，但毫无结果。"), \
+			span_purple("你无法达到高潮！"), pref_to_check = /datum/preference/toggle/erp)
 		return TRUE
 
 	// Reduce pop-ups and make it slightly more frictionless (lewd).
@@ -39,7 +39,7 @@
 				genitals.Add(CLIMAX_BOTH)
 		else if(has_penis())
 			genitals.Add(CLIMAX_PENIS)
-		climax_choice = tgui_alert(src, "You are climaxing, choose which genitalia to climax with.", "Genitalia Preference!", genitals)
+		climax_choice = tgui_alert(src, "你正在高潮，请选择用哪个生殖器高潮。", "生殖器偏好！", genitals)
 
 	switch(gender)
 		if(MALE)
@@ -57,18 +57,18 @@
 	if(climax_choice == CLIMAX_PENIS || climax_choice == CLIMAX_BOTH)
 		var/obj/item/organ/genital/penis/penis = get_organ_slot(ORGAN_SLOT_PENIS)
 		if(!get_organ_slot(ORGAN_SLOT_TESTICLES)) //If we have no god damn balls, we can't cum anywhere... GET BALLS!
-			visible_message(span_userlove("[src] orgasms, but nothing comes out of [self_their] penis!"), \
-				span_userlove("You orgasm, it feels great, but nothing comes out of your penis!"), pref_to_check = /datum/preference/toggle/erp)
+			visible_message(span_userlove("[src] 高潮了，但[self_their]阴茎里什么也没射出来！"), \
+				span_userlove("你高潮了，感觉很棒，但你的阴茎里什么也没流出来！"), pref_to_check = /datum/preference/toggle/erp)
 
 		else if(is_wearing_condom())
 			var/obj/item/clothing/sextoy/condom/condom = src.penis
 			condom.condom_use()
-			visible_message(span_userlove("[src] shoots [self_their] load into the [condom], filling it up!"), \
-				span_userlove("You shoot your thick load into the [condom] and it catches it all!"), pref_to_check = /datum/preference/toggle/erp)
+			visible_message(span_userlove("[src] 将[self_their]精液射进了[condom]，把它填满了！"), \
+				span_userlove("你将浓稠的精液射进了[condom]里，它全部接住了！"), pref_to_check = /datum/preference/toggle/erp)
 
 		else if(!is_bottomless() && penis.visibility_preference != GENITAL_ALWAYS_SHOW)
-			visible_message(span_userlove("[src] cums inside [self_their] clothes!"), \
-				span_userlove("You shoot your load, but you weren't naked, so you mess up your clothes!"), pref_to_check = /datum/preference/toggle/erp)
+			visible_message(span_userlove("[src] 射在了[self_their]衣服里！"), \
+				span_userlove("你射了出来，但你没脱衣服，所以弄脏了你的衣服！"), pref_to_check = /datum/preference/toggle/erp)
 			self_orgasm = TRUE
 
 		else
@@ -92,21 +92,21 @@
 			if(interactable_inrange_open_containers.len)
 				buttons += CLIMAX_OPEN_CONTAINER
 
-			var/penis_climax_choice = tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons)
+			var/penis_climax_choice = tgui_alert(src, "选择将精液射到哪里。", "精液偏好！", buttons)
 
 			var/create_cum_decal = FALSE
 
 			if(isnull(penis_climax_choice) || penis_climax_choice == CLIMAX_ON_FLOOR)
 				create_cum_decal = TRUE
-				visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
-					span_userlove("You shoot string after string of hot cum, hitting the floor!"), pref_to_check = /datum/preference/toggle/erp)
+				visible_message(span_userlove("[src] 将[self_their]黏稠的精液射到了地板上！"), \
+					span_userlove("你射出一股又一股滚烫的精液，打在了地板上！"), pref_to_check = /datum/preference/toggle/erp)
 
 			else if(penis_climax_choice == CLIMAX_OPEN_CONTAINER)
-				var/target_choice = tgui_input_list(src, "Choose a container to cum into.", "Choose target!", interactable_inrange_open_containers)
+				var/target_choice = tgui_input_list(src, "选择一个容器射进去。", "选择目标！", interactable_inrange_open_containers)
 				if(isnull(target_choice))
 					create_cum_decal = TRUE
-					visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
-						span_userlove("You decide to just go for it, and shoot string after string of hot cum, hitting the floor!"), pref_to_check = /datum/preference/toggle/erp)
+					visible_message(span_userlove("[src] 将[self_their]黏稠的精液射到了地板上！"), \
+						span_userlove("你决定就这么干了，射出一股又一股滚烫的精液，打在了地板上！"), pref_to_check = /datum/preference/toggle/erp)
 				else
 					var/obj/item/reagent_containers/cup/target_open_container = interactable_inrange_open_containers[target_choice]
 					if(target_open_container.is_refillable() && target_open_container.is_drainable())
@@ -116,30 +116,30 @@
 						if(target_open_container.reagents.holder_full())
 							// reagent container is full
 							add_cum_splatter_floor(get_turf(target_open_container))
-							visible_message(span_userlove("[src] tries to cum into the [target_open_container], but it's already full, spilling their hot load onto the floor!"), \
-								span_userlove("You try to cum into the [target_open_container], but it's already full, so it all hits the floor instead!"), pref_to_check = /datum/preference/toggle/erp)
+							visible_message(span_userlove("[src] 试图射进[target_open_container]里，但它已经满了，滚烫的精液洒到了地板上！"), \
+								span_userlove("你试图射进[target_open_container]里，但它已经满了，所以全都打在了地板上！"), pref_to_check = /datum/preference/toggle/erp)
 						else
 							target_open_container.reagents.add_reagent(/datum/reagent/consumable/cum, load_volume)
 							if((load_volume + target_open_container.reagents.total_volume) > target_open_container.volume)
 								// the chalice overfloweth
 								add_cum_splatter_floor(get_turf(target_open_container))
-								visible_message(span_userlove("[src] shoots [self_their] sticky load into the [target_open_container], but it's so full that it overflows!"), \
-									span_userlove("You shoot string after string of hot cum into the [target_open_container], making it overflow!"), pref_to_check = /datum/preference/toggle/erp)
+								visible_message(span_userlove("[src] 将[self_their]黏稠的精液射进了[target_open_container]里，但它太满了以至于溢了出来！"), \
+									span_userlove("你将一股又一股滚烫的精液射进[target_open_container]里，让它溢了出来！"), pref_to_check = /datum/preference/toggle/erp)
 							else
-								visible_message(span_userlove("[src] shoots [self_their] sticky load into the [target_open_container]!"), \
-									span_userlove("You shoot string after string of hot cum into the [target_open_container]!"), pref_to_check = /datum/preference/toggle/erp)
+								visible_message(span_userlove("[src] 将[self_their]黏稠的精液射进了[target_open_container]里！"), \
+									span_userlove("你将一股又一股滚烫的精液射进[target_open_container]里！"), pref_to_check = /datum/preference/toggle/erp)
 					else
 						// somehow the reagents changed while we were deciding where to go
 						create_cum_decal = TRUE
-						visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
-							span_userlove("You shoot string after string of hot cum, hitting the floor!"), pref_to_check = /datum/preference/toggle/erp)
+						visible_message(span_userlove("[src] 将[self_their]黏稠的精液射到了地板上！"), \
+							span_userlove("你射出一股又一股滚烫的精液，打在了地板上！"), pref_to_check = /datum/preference/toggle/erp)
 
 			else
-				var/target_choice = tgui_input_list(src, "Choose a person to cum in or on.", "Choose target!", interactable_inrange_humans)
+				var/target_choice = tgui_input_list(src, "选择一个人射在里面或上面。", "选择目标！", interactable_inrange_humans)
 				if(!target_choice)
 					create_cum_decal = TRUE
-					visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
-						span_userlove("You shoot string after string of hot cum, hitting the floor!"), pref_to_check = /datum/preference/toggle/erp)
+					visible_message(span_userlove("[src] 将[self_their]黏稠的精液射到了地板上！"), \
+						span_userlove("你射出一股又一股滚烫的精液，打在了地板上！"), pref_to_check = /datum/preference/toggle/erp)
 				else
 					var/mob/living/carbon/human/target_human = interactable_inrange_humans[target_choice]
 					var/target_human_them = target_human.p_them()
@@ -158,20 +158,20 @@
 							target_buttons += "sheath"
 					target_buttons += "On [target_human_them]"
 
-					var/climax_into_choice = tgui_input_list(src, "Where on or in [target_human] do you wish to cum?", "Final frontier!", target_buttons)
+					var/climax_into_choice = tgui_input_list(src, "你希望在[target_human]的哪个位置或里面射精？", "最终边界！", target_buttons)
 
 					if(!climax_into_choice)
 						create_cum_decal = TRUE
-						visible_message(span_userlove("[src] shoots their sticky load onto the floor!"), \
-							span_userlove("You shoot string after string of hot cum, hitting the floor!"), pref_to_check = /datum/preference/toggle/erp)
+						visible_message(span_userlove("[src] 将他们的黏稠精液射到了地板上！"), \
+							span_userlove("你射出一股又一股滚烫的精液，打在了地板上！"), pref_to_check = /datum/preference/toggle/erp)
 					else if(climax_into_choice == "On [target_human_them]")
 						create_cum_decal = TRUE
-						visible_message(span_userlove("[src] shoots their sticky load onto [target_human]!"), \
-							span_userlove("You shoot string after string of hot cum onto [target_human]!"), pref_to_check = /datum/preference/toggle/erp)
+						visible_message(span_userlove("[src] 将他们的黏稠精液射到了[target_human]身上！"), \
+							span_userlove("你将一股又一股滚烫的精液射到了[target_human]身上！"), pref_to_check = /datum/preference/toggle/erp)
 					else
-						visible_message(span_userlove("[src] hilts [self_their] cock into [target_human]'s [climax_into_choice], shooting cum into [target_human_them]!"), \
-							span_userlove("You hilt your cock into [target_human]'s [climax_into_choice], shooting cum into [target_human_them]!"), pref_to_check = /datum/preference/toggle/erp)
-						to_chat(target_human, span_userlove("Your [climax_into_choice] fills with warm cum as [src] shoots [self_their] load into it."))
+						visible_message(span_userlove("[src]将[self_their]的肉棒深深插入[target_human]的[climax_into_choice]中，将精液射入[target_human_them]体内！"), \
+							span_userlove("你将肉棒深深插入[target_human]的[climax_into_choice]中，将精液射入[target_human_them]体内！"), pref_to_check = /datum/preference/toggle/erp)
+						to_chat(target_human, span_userlove("你的[climax_into_choice]被温热的精液充满，因为[src]将[self_their]的精华射入了其中。"))
 
 			var/obj/item/organ/genital/testicles/testicles = get_organ_slot(ORGAN_SLOT_TESTICLES)
 			testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6) // yep. we are sending semen to nullspace
@@ -189,11 +189,11 @@
 	if(climax_choice == CLIMAX_VAGINA || climax_choice == CLIMAX_BOTH)
 		var/obj/item/organ/genital/vagina/vagina = get_organ_slot(ORGAN_SLOT_VAGINA)
 		if(is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW)
-			visible_message(span_userlove("[src] twitches and moans as [p_they()] climax from their vagina!"), span_userlove("You twitch and moan as you climax from your vagina!"), pref_to_check = /datum/preference/toggle/erp)
+			visible_message(span_userlove("[src]抽搐着呻吟，因为[p_they()]从阴道达到了高潮！"), span_userlove("你抽搐着呻吟，因为你从阴道达到了高潮！"), pref_to_check = /datum/preference/toggle/erp)
 			add_cum_splatter_floor(get_turf(src), female = TRUE)
 		else
-			visible_message(span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"), \
-						span_userlove("You cum in your underwear from your vagina! Eww."), pref_to_check = /datum/preference/toggle/erp)
+			visible_message(span_userlove("[src]从[self_their]的阴道射在了[self_their]的内裤里！"), \
+						span_userlove("你从阴道射在了自己的内裤里！呃。"), pref_to_check = /datum/preference/toggle/erp)
 			self_orgasm = TRUE
 
 	apply_status_effect(/datum/status_effect/climax)

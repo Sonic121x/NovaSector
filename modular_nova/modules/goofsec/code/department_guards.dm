@@ -8,14 +8,14 @@
 */
 /obj/item/clothing/under/rank/security/officer/blueshirt/nova
 	//Effectively the same as TG's blueshirt, including icon. The /nova path makes it easier for sorting.
-	name = "science guard's uniform"
+	name = "科研警卫制服"
 
 /obj/item/clothing/under/rank/security/officer/blueshirt/nova/setup_reskins()
 	return
 
 /obj/item/clothing/under/rank/security/officer/blueshirt/nova/orderly
-	name = "orderly uniform"
-	desc = "White scrubs with gray pants underneath. Be warned, wearers of this uniform may only take the Hippocratic Oath as a suggestion."
+	name = "护工制服"
+	desc = "白色刷手服，内搭灰色长裤。请注意，穿着此制服者可能只将希波克拉底誓言视为建议。"
 	icon_state = "orderly_uniform"
 	worn_icon_state = "orderly_uniform"
 	icon = 'modular_nova/master_files/icons/obj/clothing/under/medical.dmi'
@@ -23,8 +23,8 @@
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/under/medical_digi.dmi'
 
 /obj/item/clothing/under/rank/security/officer/blueshirt/nova/engineering_guard
-	name = "engineering guard uniform"
-	desc = "Effectively just padded hi-vis coveralls, they do the trick both inside of, and while keeping people out of, a hardhat zone."
+	name = "工程警卫制服"
+	desc = "本质上就是带衬垫的高能见度连体工作服，无论是在安全帽区域内工作，还是将人挡在区域外，它都能派上用场。"
 	icon_state = "engineering_guard_uniform"
 	worn_icon_state = "engineering_guard_uniform"
 	icon = 'modular_nova/master_files/icons/obj/clothing/under/engineering.dmi'
@@ -234,7 +234,7 @@
 */
 /datum/job/science_guard
 	title = JOB_SCIENCE_GUARD
-	description = "Figure out why the emails aren't working, keep an eye on the eggheads, protect them from their latest mistakes."
+	description = "搞清楚为什么邮件系统不工作，看好那些书呆子，保护他们免受他们最新失误的伤害。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -333,7 +333,7 @@
 */
 /datum/job/orderly
 	title = JOB_ORDERLY
-	description = "Defend the medical department, hold down idiots who refuse the vaccine, assist medical with prep and/or cleanup."
+	description = "保卫医疗部门，按住那些拒绝接种疫苗的白痴，协助医疗人员进行准备工作或清理。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -428,7 +428,7 @@
 */
 /datum/job/engineering_guard
 	title = JOB_ENGINEERING_GUARD
-	description = "Monitor the supermatter, keep an eye on atmospherics, make sure everyone is wearing Proper Protective Equipment."
+	description = "监控超物质，留意大气系统，确保每个人都穿着合适的防护装备。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -528,7 +528,7 @@
 */
 /datum/job/customs_agent
 	title = JOB_CUSTOMS_AGENT
-	description = "Inspect the packages coming to and from the station, protect the cargo department, beat the shit out of people trying to ship Cocaine to the Spinward Stellar Coalition."
+	description = "检查进出空间站的包裹，保护货运部门，痛扁那些试图向旋翼星盟走私可卡因的家伙。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -620,7 +620,7 @@
 */
 /datum/job/bouncer
 	title = JOB_BOUNCER
-	description = "Make sure people don't jump the kitchen counter, stop Chapel vandalism, check bargoer's IDs, prevent the dreaded \"food fight\"."
+	description = "确保没人翻越厨房柜台，阻止小教堂的破坏行为，检查酒吧顾客的身份证，防止那可怕的\"食物大战\"。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -741,7 +741,7 @@
 				target.visible_message(span_warning("[user] prods [target] with [src]. Luckily, it shut off due to being in the wrong area."), \
 					span_warning("[user] prods you with [src]. Luckily, it shut off due to being in the wrong area."))
 				turn_off()
-				balloon_alert(user, "wrong department")
+				balloon_alert(user, "部门错误")
 				playsound(src, SFX_SPARKS, 75, TRUE, -1)
 				update_appearance()
 				return FALSE
@@ -763,7 +763,7 @@
 			user.visible_message(span_warning("Sparks fly from [src]!"),
 							span_warning("You scramble [src]'s departmental lock, allowing it to be used freely!"),
 							span_hear("You hear a faint electrical spark."))
-		balloon_alert(user, "emagged")
+		balloon_alert(user, "已扰乱")
 		playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		obj_flags |= EMAGGED
 		emagged = TRUE

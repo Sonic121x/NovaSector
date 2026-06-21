@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/kineticballs
-	name = "kinetic ball pistol magazine"
-	desc = "A gun magazine filled with balls. The kind that makes makes people stop, holds twelve rounds."
+	name = "动能球手枪弹匣"
+	desc = "装满球体的枪械弹匣。那种能让人停下来的球体，可容纳十二发。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/bolt_fabrications/type207magazine.dmi'
 	icon_state = "type207mag"
 	ammo_type = /obj/item/ammo_casing/kineticball
@@ -15,8 +15,8 @@
 // Magazine for the Type 213
 
 /obj/item/ammo_box/magazine/kineticballsbig
-	name = "kinetic submachine gun magazine"
-	desc = "A large magazine for a Type 213 Submachine Gun. Holds 24 rounds of ammunition."
+	name = "动能冲锋枪弹匣"
+	desc = "213型冲锋枪用的大型弹匣。可容纳24发弹药。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/bolt_fabrications/type213magazine.dmi'
 	icon_state = "type213mag"
 	ammo_type = /obj/item/ammo_casing/kineticball
@@ -29,7 +29,7 @@
 	start_empty = TRUE
 
 /datum/design/kineticballs
-	name = "Ammo Box (Kinetic Balls)"
+	name = "弹药箱（动能球）"
 	id = "kineticballs"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -44,10 +44,10 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /obj/item/ammo_box/advanced/kineticballs
-	name = "ammo box (kinetic balls)"
+	name = "弹药箱（动能球）"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/bolt_fabrications/stingstopbox.dmi'
 	icon_state = "stingstopbox"
-	desc = "A box of kinetic balls rounds, holds twenty-four rounds."
+	desc = "一箱动能球弹药，可容纳二十四发。"
 	custom_price = PAYCHECK_CREW * 2
 	ammo_type = /obj/item/ammo_casing/kineticball
 	custom_materials = list(

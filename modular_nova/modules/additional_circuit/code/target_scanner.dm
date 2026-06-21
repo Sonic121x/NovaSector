@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/target_scanner
 	display_name = "Target Scanner"
-	desc = "A component that will create a list of the things within a location depending on an offset to the shell."
+	desc = "一个将根据相对于外壳的偏移量，创建该位置内物体列表的组件。"
 	category = "Action"
 
 	// the offsets required for scanning

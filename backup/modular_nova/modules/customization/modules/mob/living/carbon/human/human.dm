@@ -1,0 +1,297 @@
+//	This DMI holds our radial icons for the 'hide mutant parts' verb
+#define HIDING_RADIAL_DMI 'modular_nova/modules/customization/modules/mob/living/carbon/human/MOD_sprite_accessories/icons/radial.dmi'
+
+/mob/living/carbon/human/Topic(href, href_list)
+	. = ..()
+
+	if(href_list["lookup_info"])
+		switch(href_list["lookup_info"])
+			if("genitals")
+				var/list/line = list()
+				for(var/genital in GLOB.possible_genitals)
+					var/datum/mutant_bodypart/genital_part = dna.mutant_bodyparts[genital]
+					if(isnull(genital_part))
+						continue
+					var/datum/sprite_accessory/genital/genital_accessory = SSaccessories.sprite_accessories[genital][genital_part.name]
+					if(isnull(genital_accessory))
+						continue
+					if(genital_accessory.is_hidden(src))
+						continue
+					var/obj/item/organ/genital/genital_organ = get_organ_slot(genital_accessory.associated_organ_slot)
+					if(isnull(genital_organ))
+						continue
+					line += genital_organ.get_description_string(genital_accessory)
+				if(length(line))
+					to_chat(usr, span_notice("[jointext(line, "\n")]"))
+			if("open_examine_panel")
+				mob_examine_panel.ui_interact(usr) //datum has a examine_panel component, here we open the window
+			if("open_character_ad")
+				usr.client?.show_character_directory(specific_ad = real_name)
+
+/mob/living/carbon/human/species/vox
+	race = /datum/species/vox
+
+/mob/living/carbon/human/species/vox_primalis
+	race = /datum/species/vox_primalis
+
+/mob/living/carbon/human/species/synth
+	race = /datum/species/synthetic
+
+/mob/living/carbon/human/species/mammal
+	race = /datum/species/mammal
+
+/mob/living/carbon/human/species/vulpkanin
+	race = /datum/species/vulpkanin
+
+/mob/living/carbon/human/species/tajaran
+	race = /datum/species/tajaran
+
+/mob/living/carbon/human/species/unathi
+	race = /datum/species/unathi
+
+/mob/living/carbon/human/species/podweak
+	race = /datum/species/pod/podweak
+
+/mob/living/carbon/human/species/xeno
+	race = /datum/species/xeno
+
+/mob/living/carbon/human/species/dwarf
+	race = /datum/species/dwarf
+
+/mob/living/carbon/human/species/ghoul
+	race = /datum/species/ghoul
+
+/mob/living/carbon/human/species/roundstartslime
+	race = /datum/species/jelly/roundstartslime
+
+/mob/living/carbon/human/species/teshari
+	race = /datum/species/teshari
+
+/mob/living/carbon/human/species/akula
+	race = /datum/species/akula
+
+/mob/living/carbon/human/species/skrell
+	race = /datum/species/skrell
+
+/mob/living/carbon/human/species/abductorweak
+	race = /datum/species/abductor/abductorweak
+
+/mob/living/carbon/human/species/golem/weak
+	race = /datum/species/golem/weak
+
+/mob/living/carbon/human/species/monkey/kobold
+	race = /datum/species/monkey/kobold
+
+/mob/living/carbon/human/species/monkey/roundstartkobold
+	race = /datum/species/monkey/kobold/roundstart
+
+/mob/living/carbon/human/species/protean
+	race = /datum/species/protean
+
+/mob/living/carbon/human/species/shadekin
+	race = /datum/species/shadekin
+
+/mob/living/carbon/human/verb/toggle_undies()
+	set category = "IC"
+	set name = "Toggle underwear visibility"
+	set desc = "Allows you to toggle which underwear should show or be hidden. Underwear will obscure genitals."
+
+	if(stat != CONSCIOUS)
+		to_chat(usr, span_warning("You can't toggle underwear visibility right now..."))
+		return
+
+	var/underwear_button = underwear_visibility & UNDERWEAR_HIDE_UNDIES ? "Show underwear" : "Hide underwear"
+	var/undershirt_button = underwear_visibility & UNDERWEAR_HIDE_SHIRT ? "Show shirt" : "Hide shirt"
+	var/socks_button = underwear_visibility & UNDERWEAR_HIDE_SOCKS ? "Show socks" : "Hide socks"
+	var/bra_button = underwear_visibility & UNDERWEAR_HIDE_BRA ? "Show bra" : "Hide bra"
+
+	var/list/choice_list = list("[underwear_button]" = "underwear", "[bra_button]" = "bra", "[undershirt_button]" = "shirt", "[socks_button]" = "socks")
+
+	if(underwear_visibility != NONE)
+		choice_list += list("Show all" = "show")
+
+	if(underwear_visibility != UNDERWEAR_HIDE_ALL)
+		choice_list += list("Hide all" = "hide")
+
+	var/picked_visibility = tgui_input_list(src, "Choose visibility setting", "Show/Hide underwear", choice_list)
+
+	if(!picked_visibility)
+		return
+
+	var/picked_choice = choice_list[picked_visibility]
+
+	switch(picked_choice)
+		if("underwear")
+			underwear_visibility ^= UNDERWEAR_HIDE_UNDIES
+		if("bra")
+			underwear_visibility ^= UNDERWEAR_HIDE_BRA
+		if("shirt")
+			underwear_visibility ^= UNDERWEAR_HIDE_SHIRT
+		if("socks")
+			underwear_visibility ^= UNDERWEAR_HIDE_SOCKS
+		if("show")
+			underwear_visibility = NONE
+		if("hide")
+			underwear_visibility = UNDERWEAR_HIDE_ALL
+
+	update_body()
+
+/mob/living/carbon/human/revive(full_heal_flags = NONE, excess_healing = 0, force_grab_ghost = FALSE)
+	. = ..()
+	if(.)
+		if(dna && dna.species)
+			dna.species.spec_revival(src)
+
+/mob/living/carbon/human/verb/toggle_mutant_part_visibility()
+	set category = "IC"
+	set name = "Show/Hide Mutant Parts"
+	set desc = "Allows you to choose to try and hide your mutant bodyparts under your clothes."
+
+	mutant_part_visibility()
+
+/mob/living/carbon/human/proc/mutant_part_visibility(quick_toggle, re_do)
+	// The parts our particular user can choose
+	var/list/available_selection
+	// The total list of parts choosable
+	var/static/list/total_selection = list(
+		ORGAN_SLOT_EXTERNAL_HORNS = FEATURE_HORNS,
+		ORGAN_SLOT_EARS = FEATURE_EARS,
+		ORGAN_SLOT_EXTERNAL_WINGS = FEATURE_WINGS,
+		ORGAN_SLOT_EXTERNAL_TAIL = FEATURE_TAIL,
+		ORGAN_SLOT_EXTERNAL_SYNTH_ANTENNA = FEATURE_SYNTH_ANTENNA,
+		ORGAN_SLOT_EXTERNAL_ANTENNAE = FEATURE_MOTH_ANTENNAE,
+		ORGAN_SLOT_EXTERNAL_XENODORSAL = FEATURE_XENODORSAL,
+		ORGAN_SLOT_EXTERNAL_SPINES = FEATURE_SPINES,
+	)
+
+	// Stat check
+	if(stat != CONSCIOUS)
+		to_chat(usr, span_warning("You can't do this right now..."))
+		return
+
+	// Only show the 'reveal all' button if we are already hiding something
+	available_selection = list()
+	if(LAZYLEN(try_hide_mutant_parts))
+		available_selection["reveal all"] = TRUE
+	// Lets build our parts list
+	for(var/organ_slot, feature_string in total_selection)
+		if(get_organ_slot(organ_slot))
+			available_selection[feature_string] = TRUE
+
+	// If this proc is called with the 'quick_toggle' flag, we skip the rest
+	if(quick_toggle)
+		if("reveal all" in available_selection)
+			LAZYNULL(try_hide_mutant_parts)
+		else
+			for(var/part in available_selection)
+				LAZYSET(try_hide_mutant_parts, part,  TRUE)
+		update_body_parts()
+		return
+
+	// Dont open the radial automatically just for one button
+	if(re_do && (length(available_selection) == 1))
+		return
+	// If 'reveal all' is our only option just do it
+	if(!re_do && (("reveal all" in available_selection) && (length(available_selection) == 1)))
+		LAZYNULL(try_hide_mutant_parts)
+		update_body_parts()
+		return
+
+	// Radial rendering
+	// Shared static caches so we never re-create objects
+	var/static/list/choice_icon_cache = list()
+	var/static/mutable_appearance/unusable_overlay = mutable_appearance(
+		icon = HIDING_RADIAL_DMI,
+		icon_state = "module_unable",
+	)
+
+	// Radial rendering
+	var/list/choices = list()
+
+	for(var/choice in available_selection)
+		// Build appearance once per icon_state
+		if(isnull(choice_icon_cache[choice]))
+			choice_icon_cache[choice] = mutable_appearance(
+				icon = HIDING_RADIAL_DMI,
+				icon_state = choice,
+			)
+
+		// Reuse cached appearance
+		var/mutable_appearance/choice_icon_appearance = new (choice_icon_cache[choice])
+
+		var/datum/radial_menu_choice/option = new
+		option.image = choice_icon_appearance
+
+		// Add overlay if hidden
+		if(choice in try_hide_mutant_parts)
+			choice_icon_appearance.overlays += unusable_overlay
+
+		choices[choice] = option
+
+	// Radial choices
+	sort_list(choices)
+	var/pick = show_radial_menu(usr, src, choices, custom_check = FALSE, tooltips = TRUE)
+	if(!pick)
+		return
+
+	// Choice to action
+	if(pick == "reveal all")
+		to_chat(usr, span_notice("You are no longer trying to hide your mutant parts."))
+		LAZYNULL(try_hide_mutant_parts)
+		update_body_parts()
+		return
+
+	else if(LAZYLEN(try_hide_mutant_parts) && try_hide_mutant_parts.Remove(pick))
+		to_chat(usr, span_notice("You are no longer trying to hide your [pick]."))
+	else
+		to_chat(usr, span_notice("You are now trying to hide your [pick]."))
+		LAZYSET(try_hide_mutant_parts, pick, TRUE)
+	update_body_parts()
+	// automatically re-do the menu after making a selection
+	mutant_part_visibility(re_do = TRUE)
+
+// Feign impairment verb
+#define DEFAULT_TIME 30
+#define MAX_TIME 36000 // 10 hours
+
+/mob/living/carbon/human/verb/acting()
+	set category = "IC"
+	set name = "Feign Impairment"
+	set desc = "Pretend to be impaired for a defined duration."
+
+	if(stat != CONSCIOUS)
+		to_chat(usr, span_warning("You can't do this right now..."))
+		return
+
+	var/static/list/choices = list("drunkenness", "jittering")
+	var/impairment = tgui_input_list(src, "Select an impairment to perform:", "Impairments", choices)
+	if(!impairment)
+		return
+
+	var/duration = tgui_input_number(src, "How long would you like to feign [impairment] for?", "Duration in seconds", DEFAULT_TIME, MAX_TIME)
+	switch(impairment)
+		if("drunkenness")
+			var/mob/living/living_user = usr
+			if(istype(living_user))
+				living_user.add_mood_event("drunk", /datum/mood_event/drunk)
+			set_slurring_if_lower(duration SECONDS)
+		if("jittering")
+			set_jitter_if_lower(duration SECONDS)
+
+	if(duration)
+		addtimer(CALLBACK(src, PROC_REF(acting_expiry), impairment), duration SECONDS)
+		to_chat(src, "You are now feigning [impairment].")
+
+/mob/living/carbon/human/proc/acting_expiry(impairment)
+	if(impairment)
+		// Procs when fake impairment duration ends, useful for calling extra events to wrap up too
+		if(impairment == "drunkenness")
+			var/mob/living/living_user = usr
+			if(istype(living_user))
+				living_user.clear_mood_event("drunk")
+		// Notify the user
+		to_chat(src, "You are no longer feigning [impairment].")
+
+#undef DEFAULT_TIME
+#undef MAX_TIME
+#undef HIDING_RADIAL_DMI

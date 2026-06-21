@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/hear
 	display_name = "Voice Activator"
-	desc = "A component that listens for messages. Requires a shell."
+	desc = "一种用于接收消息的组件。需要一个外壳。"
 	category = "Entity"
 
 	/// The on/off port

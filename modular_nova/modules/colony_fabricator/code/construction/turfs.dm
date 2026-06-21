@@ -46,21 +46,21 @@ GLOBAL_LIST_INIT(plastic_wall_panel_recipes, list(
 		return NONE
 	var/turf/open/build_on = interacting_with
 	if(isgroundlessturf(build_on))
-		user.balloon_alert(user, "can't place it here!")
+		user.balloon_alert(user, "无法放置在这里！")
 		return ITEM_INTERACT_BLOCKING
 	if(build_on.is_blocked_turf())
-		user.balloon_alert(user, "something is blocking the tile!")
+		user.balloon_alert(user, "有东西挡住了这个格子！")
 		return ITEM_INTERACT_BLOCKING
 	if(get_amount() < 1)
-		user.balloon_alert(user, "not enough material!")
+		user.balloon_alert(user, "材料不足！")
 		return ITEM_INTERACT_BLOCKING
 	if(!do_after(user, 3 SECONDS, build_on))
 		return ITEM_INTERACT_BLOCKING
 	if(build_on.is_blocked_turf())
-		user.balloon_alert(user, "something is blocking the tile!")
+		user.balloon_alert(user, "有东西挡住了这个格子！")
 		return ITEM_INTERACT_BLOCKING
 	if(!use(1))
-		user.balloon_alert(user, "not enough material!")
+		user.balloon_alert(user, "材料不足！")
 		return ITEM_INTERACT_BLOCKING
 	build_on.place_on_top(walltype, flags = CHANGETURF_INHERIT_AIR)
 	return ITEM_INTERACT_SUCCESS

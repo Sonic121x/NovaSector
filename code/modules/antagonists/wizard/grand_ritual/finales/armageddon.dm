@@ -52,7 +52,7 @@
 			GLOB.meteor_mode ||= new()
 			GLOB.meteor_mode.meteordelay = 0
 			GLOB.meteor_mode.start_meteor()
-			priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", ANNOUNCER_METEORS)
+			priority_announce("检测到陨石正朝空间站撞击而来。", "陨石警报", ANNOUNCER_METEORS)
 
 #undef DOOM_SINGULARITY
 #undef DOOM_TESLA

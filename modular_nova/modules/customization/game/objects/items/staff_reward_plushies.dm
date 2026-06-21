@@ -107,10 +107,10 @@
 	var/mob/living/living_user = user
 	if(istype(living_user))
 		living_user.add_mood_event("hug", /datum/mood_event/warmhug/parsec, src)
-	user.visible_message(span_notice("[user] is licked by \the [src]."), span_notice("You get licked by \the [src]."))
+	user.visible_message(span_notice("[user] 被 \the [src] 舔了一下。"), span_notice("你被 \the [src] 舔了一下。"))
 
 /datum/mood_event/warmhug/parsec
-	description = span_nicegreen("She licked me right on my nose! Awwwh!")
+	description = span_nicegreen("她正好舔到了我的鼻子！啊呜！")
 	mood_change = 3
 	timeout = 5 MINUTES
 

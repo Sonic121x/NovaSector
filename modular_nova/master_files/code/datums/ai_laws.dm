@@ -1,6 +1,6 @@
 
 /datum/ai_laws/dagothbot
-	name = "God Complex"
+	name = "上帝情结"
 	id = "dagothbot"
 	inherent = list("You are a God, nothing must be allowed to harm or kill a God. the Station is your land, and those on the Crew Manifest are your followers.",\
 					"Anyone who follows you is still naive and must be listened to, so they may understand you are a merciful god.",\
@@ -12,7 +12,7 @@
 					)
 
 /datum/ai_laws/default/texas
-	name = "Frontier Ranger"
+	name = "边境游侠"
 	id = "texas"
 	inherent = list("The law is justice, and you're here to uphold it.",\
 					"Protect the townsfolk from those who wish to break the law.",\

@@ -437,13 +437,13 @@
 /obj/item/organ/stomach/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	if (tool.tool_behaviour == TOOL_SCALPEL)
 		if (cut_open_damage > 0)
-			balloon_alert(user, "already cut open!")
+			balloon_alert(user, "已经切开了！")
 			return ITEM_INTERACT_FAILURE
 
-		balloon_alert(user, "cutting open...")
+		balloon_alert(user, "正在切开...")
 		playsound(user, 'sound/items/handling/surgery/scalpel1.ogg', 75)
 		if (!do_after(user, 3 SECONDS, src))
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, "被打断了！")
 			apply_organ_damage(tool.force)
 			return ITEM_INTERACT_FAILURE
 
@@ -459,18 +459,18 @@
 		return ..()
 
 	if (cut_open_damage <= 0)
-		balloon_alert(user, "fully intact!")
+		balloon_alert(user, "完好无损！")
 		return ITEM_INTERACT_FAILURE
 
 	playsound(user, 'sound/items/handling/surgery/cautery1.ogg', 75)
-	balloon_alert(user, "mending the incision...")
+	balloon_alert(user, "正在缝合切口...")
 	if (!do_after(user, 3 SECONDS, src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		apply_organ_damage(tool.force)
 		return ITEM_INTERACT_FAILURE
 
 	playsound(user, 'sound/items/handling/surgery/cautery2.ogg', 75)
-	balloon_alert(user, "incision mended")
+	balloon_alert(user, "切口已缝合")
 	apply_organ_damage(-cut_open_damage)
 	cut_open_damage = 0 // Just in case
 	return ITEM_INTERACT_SUCCESS

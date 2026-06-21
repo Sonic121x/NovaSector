@@ -43,17 +43,17 @@
 		if("resetid")
 			payments_acc = null
 		if("setsplit")
-			var/potential_cut = input("How much would you like to pay out to the registered card?","Percentage Profit ([round(cut_min*100)]% - [round(cut_max*100)]%)") as num|null
+			var/potential_cut = input("你想向注册卡支付多少金额？","利润百分比 ([round(cut_min*100)]% - [round(cut_max*100)]%)") as num|null
 			cut_multiplier = potential_cut ? clamp(round(potential_cut/100, cut_min), cut_min, cut_max) : initial(cut_multiplier)
 		if("print")
 			if(computer.stored_paper <= 0)
-				to_chat(usr, span_notice("Printer is out of paper."))
+				to_chat(usr, span_notice("打印机缺纸。"))
 				return TRUE
 			if(!payments_acc)
-				to_chat(usr, span_notice("Software error: Please set a current user first."))
+				to_chat(usr, span_notice("软件错误：请先设置当前用户。"))
 				return TRUE
 			var/obj/item/barcode/barcode = new /obj/item/barcode(get_turf(computer.ui_host()))
 			barcode.payments_acc = payments_acc
 			barcode.cut_multiplier = cut_multiplier
 			computer.stored_paper--
-			to_chat(usr, span_notice("The computer prints out a barcode."))
+			to_chat(usr, span_notice("电脑打印出了一张条形码。"))

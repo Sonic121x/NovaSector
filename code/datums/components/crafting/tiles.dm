@@ -1,5 +1,5 @@
 /datum/crafting_recipe/blackcarpet
-	name = "Black Carpet"
+	name = "黑色地毯"
 	reqs = list(
 		/obj/item/stack/tile/carpet = 50,
 		/obj/item/toy/crayon/black = 1,
@@ -9,7 +9,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/wired_glass
-	name = "Wired Glass Tile"
+	name = "带线玻璃砖"
 	result = /obj/item/stack/tile/light
 	reqs = list(
 		/obj/item/stack/sheet/iron = 1,
@@ -19,7 +19,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/circuit
-	name = "Circuit Tile"
+	name = "电路砖"
 	result = /obj/item/stack/tile/circuit
 	reqs = list(
 		/obj/item/stack/sheet/iron = 1,

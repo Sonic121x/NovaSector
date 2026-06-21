@@ -1,12 +1,12 @@
 /datum/disease/decloning
 	form = "Virus"
-	name = "Cellular Degeneration"
+	name = "细胞退化"
 	max_stages = 5
 	stage_prob = 0.5
 	cure_text = /datum/reagent/medicine/rezadone::name + ", abated by " + /datum/reagent/medicine/mutadone::name + ", or death"
 	agent = "Severe Genetic Damage"
 	viable_mobtypes = list(/mob/living/carbon/human)
-	desc = @"If left untreated the subject will [REDACTED]!"
+	desc = @"如果不加以治疗，受试者将会[REDACTED]！"
 	severity = "Dangerous!"
 	cures = list(/datum/reagent/medicine/rezadone)
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
@@ -41,7 +41,7 @@
 			if(SPT_PROB(1.5, seconds_per_tick))
 				affected_mob.apply_status_effect(/datum/status_effect/decloning)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your skin feels strange."))
+				to_chat(affected_mob, span_danger("你的皮肤感觉很奇怪。"))
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick))
 				affected_mob.emote("itch")
@@ -58,7 +58,7 @@
 			if(SPT_PROB(1, seconds_per_tick))
 				affected_mob.emote("drool")
 			if(SPT_PROB(2.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your skin starts degrading!"))
+				to_chat(affected_mob, span_danger("你的皮肤开始退化！"))
 			if(SPT_PROB(5, seconds_per_tick))
 				affected_mob.apply_status_effect(/datum/status_effect/decloning)
 				affected_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 2, 170)

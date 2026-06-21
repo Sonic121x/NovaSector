@@ -1,6 +1,6 @@
 /obj/item/toy/plush
-	name = "plush"
-	desc = "This is the special coder plush, do not steal."
+	name = "毛绒玩具"
+	desc = "这是特殊的程序员毛绒玩具，请勿偷窃。"
 	icon = 'icons/obj/toys/plushes.dmi'
 	icon_state = "debug"
 	worn_icon_state = "plushie"
@@ -124,50 +124,50 @@
 /obj/item/toy/plush/attack_self(mob/user)
 	. = ..()
 	if(stuffed || grenade)
-		to_chat(user, span_notice("You pet [src]. D'awww."))
+		to_chat(user, span_notice("你抚摸着[src]。真可爱。"))
 		if(grenade && !grenade.active)
 			user.log_message("activated a hidden grenade in [src].", LOG_VICTIM)
 			grenade.arm_grenade(user, msg = FALSE, volume = 10)
 	else
-		to_chat(user, span_notice("You try to pet [src], but it has no stuffing. Aww..."))
+		to_chat(user, span_notice("你试图抚摸[src]，但它没有填充物了。唉..."))
 
 /obj/item/toy/plush/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(I.get_sharpness())
 		if(!grenade)
 			if(!stuffed)
-				to_chat(user, span_warning("You already murdered it!"))
+				to_chat(user, span_warning("你已经谋杀过它了！"))
 				return
 			if(!divine)
-				user.visible_message(span_notice("[user] tears out the stuffing from [src]!"), span_notice("You rip a bunch of the stuffing from [src]. Murderer."))
+				user.visible_message(span_notice("[user]从[src]里扯出了填充物！"), span_notice("你从[src]里扯出了一大团填充物。谋杀犯。"))
 				I.play_tool_sound(src)
 				stuffed = FALSE
 			else
-				to_chat(user, span_notice("What a fool you are. [src] is a god, how can you kill a god? What a grand and intoxicating innocence."))
+				to_chat(user, span_notice("你真是个傻瓜。[src]是神，你怎么能杀死神？多么宏伟而令人陶醉的天真。"))
 				user.adjust_drunk_effect(20, up_to = 50)
 
 				var/turf/current_location = get_turf(user)
 				var/area/current_area = current_location.loc //copied from hand tele code
 				if(current_location && current_area && (current_area.area_flags & NOTELEPORT))
-					to_chat(user, span_notice("There is no escape. No recall or intervention can work in this place."))
+					to_chat(user, span_notice("无处可逃。此地无法召回或干预。"))
 				else
-					to_chat(user, span_notice("There is no escape. Although recall or intervention can work in this place, attempting to flee from [src]'s immense power would be futile."))
-				user.visible_message(span_notice("[user] lays down their weapons and begs for [src]'s mercy!"), span_notice("You lay down your weapons and beg for [src]'s mercy."))
+					to_chat(user, span_notice("无处可逃。虽然此地可以召回或干预，但试图逃离[src]的强大力量将是徒劳的。"))
+				user.visible_message(span_notice("[user]放下武器，乞求[src]的怜悯！"), span_notice("你放下武器，乞求[src]的怜悯。"))
 				user.drop_all_held_items()
 		else
-			to_chat(user, span_notice("You remove the grenade from [src]."))
+			to_chat(user, span_notice("你从[src]中取出了手榴弹。"))
 			user.put_in_hands(grenade)
 		return
 	if(isgrenade(I))
 		if(stuffed)
-			to_chat(user, span_warning("You need to remove some stuffing first!"))
+			to_chat(user, span_warning("你需要先取出一些填充物！"))
 			return
 		if(grenade)
-			to_chat(user, span_warning("[src] already has a grenade!"))
+			to_chat(user, span_warning("[src]已经有一颗手榴弹了！"))
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
-		user.visible_message(span_warning("[user] slides [grenade] into [src]."), \
-		span_danger("You slide [I] into [src]."))
+		user.visible_message(span_warning("[user]将[grenade]滑入[src]。"), \
+		span_danger("你将[I]滑入[src]。"))
 		grenade = I
 		user.log_message("added a grenade ([I.name]) to [src]", LOG_GAME)
 		return
@@ -184,19 +184,19 @@
 
 	//we are not catholic
 	if(young == TRUE || Kisser.young == TRUE)
-		user.show_message(span_notice("[src] plays tag with [Kisser]."), MSG_VISUAL,
-			span_notice("They're happy."), NONE)
+		user.show_message(span_notice("[src]和[Kisser]玩起了捉人游戏。"), MSG_VISUAL,
+			span_notice("它们很开心。"), NONE)
 		Kisser.cheer_up()
 		cheer_up()
 
 	//never again
 	else if(Kisser in scorned)
 		//message, visible, alternate message, neither visible nor audible
-		user.show_message(span_notice("[src] rejects the advances of [Kisser]!"), MSG_VISUAL,
-			span_notice("That didn't feel like it worked."), NONE)
+		user.show_message(span_notice("[src] 拒绝了 [Kisser] 的求爱！"), MSG_VISUAL,
+			span_notice("感觉没成功。"), NONE)
 	else if(src in Kisser.scorned)
-		user.show_message(span_notice("[Kisser] realises who [src] is and turns away."), MSG_VISUAL,
-			span_notice("That didn't feel like it worked."), NONE)
+		user.show_message(span_notice("[Kisser] 认出了 [src] 是谁，转身离开了。"), MSG_VISUAL,
+			span_notice("感觉没成功。"), NONE)
 
 	//first comes love
 	else if(Kisser.lover != src && Kisser.partner != src) //cannot be lovers or married
@@ -209,40 +209,40 @@
 			chance -= duty //do we mate for life?
 
 		if(prob(chance)) //did we bag a date?
-			user.visible_message(span_notice("[user] makes [Kisser] kiss [src]!"),
-									span_notice("You make [Kisser] kiss [src]!"))
+			user.visible_message(span_notice("[user] 让 [Kisser] 亲吻了 [src]！"),
+									span_notice("你让 [Kisser] 亲吻了 [src]！"))
 			if(lover) //who cares for the past, we live in the present
 				lover.heartbreak(src)
 			new_lover(Kisser)
 			Kisser.new_lover(src)
 		else
-			user.show_message(span_notice("[src] rejects the advances of [Kisser], maybe next time?"), MSG_VISUAL,
-								span_notice("That didn't feel like it worked, this time."), NONE)
+			user.show_message(span_notice("[src] 拒绝了 [Kisser] 的求爱，也许下次？"), MSG_VISUAL,
+								span_notice("这次感觉没成功。"), NONE)
 
 	//then comes marriage
 	else if(Kisser.lover == src && Kisser.partner != src) //need to be lovers (assumes loving is a two way street) but not married (also assumes similar)
-		user.visible_message(span_notice("[user] pronounces [Kisser] and [src] married! D'aw."),
-									span_notice("You pronounce [Kisser] and [src] married!"))
+		user.visible_message(span_notice("[user] 宣布 [Kisser] 和 [src] 结为夫妻！真可爱。"),
+									span_notice("你宣布 [Kisser] 和 [src] 结为夫妻！"))
 		new_partner(Kisser)
 		Kisser.new_partner(src)
 
 	//then comes a baby in a baby's carriage, or an adoption in an adoption's orphanage
 	else if(Kisser.partner == src && !plush_child) //the one advancing does not take ownership of the child and we have a one child policy in the toyshop
-		user.visible_message(span_notice("[user] is going to break [Kisser] and [src] by bashing them like that."),
-									span_notice("[Kisser] passionately embraces [src] in your hands. Look away you perv!"))
+		user.visible_message(span_notice("[user] 这样猛撞会把 [Kisser] 和 [src] 弄坏的。"),
+									span_notice("[Kisser] 在你手中深情地拥抱了 [src]。别看，你这个变态！"))
 		user.client.give_award(/datum/award/achievement/misc/rule8, user)
 		if(plop(Kisser))
-			user.visible_message(span_notice("Something drops at the feet of [user]."),
-							span_notice("The miracle of oh god did that just come out of [src]?!"))
+			user.visible_message(span_notice("有什么东西掉在了 [user] 脚边。"),
+							span_notice("生命的奇迹——天啊，那东西刚刚是从 [src] 里出来的吗？！"))
 
 	//then comes protection, or abstinence if we are catholic
 	else if(Kisser.partner == src && plush_child)
-		user.visible_message(span_notice("[user] makes [Kisser] nuzzle [src]!"),
-									span_notice("You make [Kisser] nuzzle [src]!"))
+		user.visible_message(span_notice("[user] 让 [Kisser] 蹭了蹭 [src]！"),
+									span_notice("你让 [Kisser] 蹭了蹭 [src]！"))
 
 	//then oh fuck something unexpected happened
 	else
-		user.show_message(span_warning("[Kisser] and [src] don't know what to do with one another."), NONE)
+		user.show_message(span_warning("[Kisser] 和 [src] 不知道该如何对待彼此。"), NONE)
 
 /obj/item/toy/plush/proc/heartbreak(obj/item/toy/plush/Brutus)
 	if(lover != Brutus)
@@ -388,8 +388,8 @@
 		desc += mood_message
 
 /obj/item/toy/plush/carpplushie
-	name = "space carp plushie"
-	desc = "An adorable stuffed toy that resembles a space carp."
+	name = "太空鲤鱼毛绒玩具"
+	desc = "一个可爱的、形似太空鲤鱼的毛绒玩具。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/toy/plush/carpplushie"
 	post_init_icon_state = "map_plushie_carp"
@@ -401,16 +401,16 @@
 	squeak_override = list('sound/items/weapons/bite.ogg'=1)
 
 /obj/item/toy/plush/bubbleplush
-	name = "\improper Bubblegum plushie"
-	desc = "The friendly red demon that gives good miners gifts."
+	name = "\improper 泡泡糖恶魔玩偶"
+	desc = "友善的红色恶魔，会给好矿工送礼物。"
 	icon_state = "bubbleplush"
 	attack_verb_continuous = list("rents")
 	attack_verb_simple = list("rent")
 	squeak_override = list('sound/effects/magic/demon_attack1.ogg'=1)
 
 /obj/item/toy/plush/ratplush
-	name = "\improper Ratvar plushie"
-	desc = "An adorable plushie of the clockwork justiciar himself with new and improved spring arm action."
+	name = "\improper 拉特瓦尔玩偶"
+	desc = "一个可爱的发条正义使者本人玩偶，带有全新改良的弹簧手臂动作。"
 	icon_state = "plushvar"
 	divine = TRUE
 	var/obj/item/toy/plush/narplush/clash_target
@@ -439,7 +439,7 @@
 			clash_target = null
 			return
 		if(!Adjacent(P))
-			visible_message(span_warning("The two plushies angrily flail at each other before giving up."))
+			visible_message(span_warning("两个玩偶愤怒地互相挥舞了一阵，然后放弃了。"))
 			clash_target = null
 			P.clashing = FALSE
 			return
@@ -496,7 +496,7 @@
 		P.clashing = FALSE
 
 /obj/item/toy/plush/narplush
-	name = "\improper Nar'Sie plushie"
+	name = "\improper 娜尔茜玩偶"
 	desc = "A small stuffed doll of the elder goddess Nar'Sie. Who thought this was a good children's toy?"
 	icon_state = "narplush"
 	divine = TRUE
@@ -510,8 +510,8 @@
 		P.clash_of_the_plushies(src)
 
 /obj/item/toy/plush/lizard_plushie
-	name = "lizard plushie"
-	desc = "An adorable stuffed toy that resembles a lizardperson."
+	name = "蜥蜴人玩偶"
+	desc = "一个可爱的填充玩具，形似蜥蜴人。"
 	icon_state = "map_plushie_lizard"
 	greyscale_config = /datum/greyscale_config/plush_lizard
 	attack_verb_continuous = list("claws", "hisses", "tail slaps")
@@ -534,14 +534,14 @@
 
 // Preset lizard plushie that uses the original lizard plush green. (Or close to it)
 /obj/item/toy/plush/lizard_plushie/green
-	desc = "An adorable stuffed toy that resembles a green lizardperson. This one fills you with nostalgia and soul."
+	desc = "一个可爱的填充玩具，形似绿色蜥蜴人。这一个让你充满怀旧与灵魂。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/toy/plush/lizard_plushie/green"
 	post_init_icon_state = "map_plushie_lizard"
 	greyscale_colors = "#66ff33#000000"
 
 /obj/item/toy/plush/lizard_plushie/greyscale
-	desc = "An adorable stuffed toy that resembles a lizardperson. This one has been custom made."
+	desc = "一个可爱的填充玩具，形似蜥蜴人。这个是定制的。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/toy/plush/lizard_plushie/greyscale"
 	post_init_icon_state = "map_plushie_lizard"
@@ -549,8 +549,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/toy/plush/lizard_plushie/space
-	name = "space lizard plushie"
-	desc = "An adorable stuffed toy that resembles a very determined spacefaring lizardperson. To infinity and beyond, little guy."
+	name = "太空蜥蜴玩偶"
+	desc = "一个可爱的填充玩具，形似一位非常坚定的太空蜥蜴人。飞向无限，小家伙。"
 	icon_state = "map_plushie_spacelizard"
 	greyscale_config = /datum/greyscale_config/plush_spacelizard
 	// space lizards can't hit people with their tail, it's stuck in their suit
@@ -558,15 +558,15 @@
 	attack_verb_simple = list("claw", "hiss", "bop")
 
 /obj/item/toy/plush/lizard_plushie/space/green
-	desc = "An adorable stuffed toy that resembles a very determined spacefaring green lizardperson. To infinity and beyond, little guy. This one fills you with nostalgia and soul."
+	desc = "一个可爱的填充玩具，形似一位非常坚定的太空绿色蜥蜴人。飞向无限，小家伙。这一个让你充满怀旧与灵魂。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/toy/plush/lizard_plushie/space/green"
 	post_init_icon_state = "map_plushie_spacelizard"
 	greyscale_colors = "#66ff33#000000"
 
 /obj/item/toy/plush/snakeplushie
-	name = "snake plushie"
-	desc = "An adorable stuffed toy that resembles a snake. Not to be mistaken for the real thing."
+	name = "蛇玩偶"
+	desc = "一个可爱的填充玩具，形似一条蛇。别误以为是真蛇。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/toy/plush/snakeplushie"
 	post_init_icon_state = "map_plushie_snake"
@@ -578,8 +578,8 @@
 	squeak_override = list('sound/items/weapons/bite.ogg' = 1)
 
 /obj/item/toy/plush/nukeplushie
-	name = "operative plushie"
-	desc = "A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious."
+	name = "特工玩偶"
+	desc = "一个形似辛迪加核弹特工的填充玩具。标签声称特工纯属虚构。"
 	icon_state = "plushie_nuke"
 	inhand_icon_state = null
 	attack_verb_continuous = list("shoots", "nukes", "detonates")
@@ -587,8 +587,8 @@
 	squeak_override = list('sound/effects/hit_punch.ogg' = 1)
 
 /obj/item/toy/plush/plasmamanplushie
-	name = "plasmaman plushie"
-	desc = "A stuffed toy that resembles your purple coworkers. Mmm, yeah, in true plasmaman fashion, it's not cute at all despite the designer's best efforts."
+	name = "等离子人玩偶"
+	desc = "一个形似你紫色同事的填充玩具。嗯，是的，按照等离子人的一贯风格，尽管设计师尽了最大努力，它一点也不可爱。"
 	icon_state = "plushie_pman"
 	inhand_icon_state = null
 	attack_verb_continuous = list("burns", "space beasts", "fwooshes")
@@ -596,8 +596,8 @@
 	squeak_override = list('sound/effects/extinguish.ogg' = 1)
 
 /obj/item/toy/plush/slimeplushie
-	name = "slime plushie"
-	desc = "An adorable stuffed toy that resembles a slime. It is practically just a hacky sack."
+	name = "史莱姆玩偶"
+	desc = "一个可爱的填充玩具，外形像史莱姆。它实际上就是个沙包。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/toy/plush/slimeplushie"
 	post_init_icon_state = "map_plushie_slime"
@@ -611,8 +611,8 @@
 
 // This is supposed to be only in the bus ruin, don't spawn it elsewhere
 /obj/item/toy/plush/awakenedplushie
-	name = "awakened plushie"
-	desc = "An ancient plushie that has grown enlightened to the true nature of reality."
+	name = "觉醒玩偶"
+	desc = "一个古老的玩偶，它已开悟，洞悉了现实的本质。"
 	icon_state = "plushie_awake"
 	inhand_icon_state = null
 
@@ -621,8 +621,8 @@
 	AddComponent(/datum/component/edit_complainer)
 
 /obj/item/toy/plush/whiny_plushie
-	name = "whiny plushie"
-	desc = "An ancient plushie that demands constant companionship, after being forgotten for too long."
+	name = "爱抱怨的玩偶"
+	desc = "一个古老的玩偶，在被遗忘太久后，要求持续的陪伴。"
 	icon_state = "plushie_whiny"
 	inhand_icon_state = null
 	/// static list of cry messages it picks from to speak when it is insecure from no movement
@@ -668,8 +668,8 @@
 	playsound(src, 'sound/items/intents/Help.ogg', 50, FALSE)
 
 /obj/item/toy/plush/beeplushie
-	name = "bee plushie"
-	desc = "A cute toy that resembles an even cuter bee."
+	name = "蜜蜂玩偶"
+	desc = "一个可爱的玩具，像一只更可爱的蜜蜂。"
 	icon_state = "plushie_h"
 	inhand_icon_state = null
 	attack_verb_continuous = list("stings")
@@ -678,8 +678,8 @@
 	squeak_override = list('sound/mobs/humanoids/moth/scream_moth.ogg'=1)
 
 /obj/item/toy/plush/moth
-	name = "moth plushie"
-	desc = "A plushie depicting an adorable mothperson. It's a huggable bug!"
+	name = "飞蛾玩偶"
+	desc = "一个描绘可爱蛾人的玩偶。这是个可以拥抱的虫子！"
 	icon_state = "moffplush"
 	inhand_icon_state = null
 	attack_verb_continuous = list("flutters", "flaps")
@@ -689,12 +689,12 @@
 	var/suicide_count = 0
 
 /obj/item/toy/plush/moth/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] stares deeply into the eyes of [src] and it begins consuming [user.p_them()]!  It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 深深凝视着 [src] 的眼睛，它开始吞噬 [user.p_them()]！看起来 [user.p_theyre()] 想自杀！"))
 	suicide_count++
 	if(suicide_count < 3)
 		desc = "A plushie depicting an unsettling mothperson. After killing [suicide_count] [suicide_count == 1 ? "person" : "people"] it's not looking so huggable now..."
 	else
-		desc = "A plushie depicting a creepy mothperson. It's killed [suicide_count] people! I don't think I want to hug it any more!"
+		desc = "一个描绘令人毛骨悚然的蛾人的玩偶。它已经杀死了 [suicide_count] 个人！我想我再也不想拥抱它了！"
 		divine = TRUE
 		resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
 	playsound(src, 'sound/effects/hallucinations/wail.ogg', 50, TRUE, -1)
@@ -706,16 +706,16 @@
 	return MANUAL_SUICIDE
 
 /obj/item/toy/plush/pkplush
-	name = "peacekeeper plushie"
-	desc = "A plushie depicting a peacekeeper cyborg. Only you can prevent human harm!"
+	name = "维和机器人玩偶"
+	desc = "一个描绘维和机器人的玩偶。只有你能防止人类受到伤害！"
 	icon_state = "pkplush"
 	attack_verb_continuous = list("hugs", "squeezes")
 	attack_verb_simple = list("hug", "squeeze")
 	squeak_override = list('sound/items/weapons/thudswoosh.ogg'=1)
 
 /obj/item/toy/plush/rouny
-	name = "runner plushie"
-	desc = "A plushie depicting a xenomorph runner, made to commemorate the centenary of the Battle of LV-426. Much cuddlier than the real thing."
+	name = "奔跑者玩偶"
+	desc = "一个描绘异形奔跑者的玩偶，为纪念LV-426战役一百周年而制作。比真实的东西可爱得多。"
 	icon_state = "rouny"
 	item_flags = XENOMORPH_HOLDABLE
 	inhand_icon_state = null
@@ -724,8 +724,8 @@
 	squeak_override = list('sound/items/intents/Help.ogg' = 1)
 
 /obj/item/toy/plush/abductor
-	name = "abductor plushie"
-	desc = "A plushie depicting an alien abductor. The tag on it is in an indecipherable language."
+	name = "绑架者玩偶"
+	desc = "一个描绘外星绑架者的毛绒玩具。它的标签上是一种无法理解的语言。"
 	icon_state = "abductor"
 	inhand_icon_state = null
 	attack_verb_continuous = list("abducts", "probes")
@@ -733,8 +733,8 @@
 	squeak_override = list('sound/ambience/weather/ashstorm/inside/weak_end.ogg' = 1) //very faint sound since abductors are silent as far as "speaking" is concerned.
 
 /obj/item/toy/plush/abductor/agent
-	name = "abductor agent plushie"
-	desc = "A plushie depicting an alien abductor agent. The stun baton is attached to the hand of the plushie, and appears to be inert. I wouldn't stay alone with it."
+	name = "绑架者特工毛绒玩具"
+	desc = "一个描绘外星绑架者特工的毛绒玩具。电击警棍附着在玩具的手上，看起来是惰性的。我可不想和它单独待在一起。"
 	icon_state = "abductor_agent"
 	inhand_icon_state = null
 	attack_verb_continuous = list("abducts", "probes", "stuns")
@@ -745,8 +745,8 @@
 	)
 
 /obj/item/toy/plush/shark
-	name = "shark plushie"
-	desc = "A plushie depicting a somewhat cartoonish shark. The tag calls it a 'hákarl', noting that it was made by an obscure furniture manufacturer in old Scandinavia."
+	name = "鲨鱼毛绒玩具"
+	desc = "一个描绘有些卡通化的鲨鱼的毛绒玩具。标签上称它为'hákarl'，并注明它是由旧斯堪的纳维亚一家不知名的家具制造商制造的。"
 	lefthand_file = 'icons/mob/inhands/items/plushes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/plushes_righthand.dmi'
 	icon_state = "blahaj"
@@ -755,15 +755,15 @@
 	attack_verb_simple = list("gnaw", "gnash", "chew")
 
 /obj/item/toy/plush/donkpocket
-	name = "donk pocket plushie"
-	desc = "The stuffed companion of choice for the seasoned traitor."
+	name = "唐克口袋毛绒玩具"
+	desc = "经验丰富的叛徒首选的填充伙伴。"
 	icon_state = "donkpocket"
 	attack_verb_continuous = list("donks")
 	attack_verb_simple = list("donk")
 
 /obj/item/toy/plush/human
-	name = "human plushie"
-	desc = "This is a felt plush of a human. All craftsmanship is of the lowest quality. The human is crying. The human is screaming."
+	name = "人类毛绒玩具"
+	desc = "这是一个用毛毡制成的人类毛绒玩具。所有工艺都是最低质量的。人类在哭泣。人类在尖叫。"
 	icon_state = "plushie_human"
 	inhand_icon_state = null //i would rather not have a blue coder plushie inhand
 	attack_verb_continuous = list("screams at", "strikes", "bashes")
@@ -774,22 +774,22 @@
 		)
 
 /obj/item/toy/plush/horse
-	name = "horse plushie"
-	desc = "A squishy soft horse plushie. This one is bay with white socks."
+	name = "马毛绒玩具"
+	desc = "一个柔软蓬松的马毛绒玩具。这只是枣红色带白袜的。"
 	icon_state = "horse"
 	attack_verb_continuous = list("whinnies", "gallops", "prances", "horses")  // Yes I'm using horse as a verb
 	attack_verb_simple = list("whinny", "gallop", "prance", "horse")
 
 /obj/item/toy/plush/unicorn
-	name = "unicorn plushie"
-	desc = "A squishy soft unicorn plushie. It has a magical aura."
+	name = "独角兽毛绒玩具"
+	desc = "一个柔软蓬松的独角兽毛绒玩具。它散发着一种魔法气息。"
 	icon_state = "unicorn"
 	attack_verb_continuous = list("whinnies", "gallops", "prances", "magicks")
 	attack_verb_simple = list("whinny", "gallop", "prance", "magick")
 
 /obj/item/toy/plush/monkey
-	name = "monkey plushie"
-	desc = "The tag reads: 'Oop eek! I'm a chimpanzee!', with 'Now in JUMBO SIZE!' on the flipside."
+	name = "猴子毛绒玩具"
+	desc = "标签上写着：'Oop eek! I'm a chimpanzee!'，背面写着'Now in JUMBO SIZE!'。"
 	w_class = WEIGHT_CLASS_BULKY
 	throw_range = 2
 	throw_speed = 1
@@ -805,7 +805,7 @@
 	if(!istype(nana))
 		return ..()
 	nana.forceMove(src) // go into the cotton stomach
-	to_chat(feeder, span_notice("You hand over the [nana] to [src] and watch as it eats..."))
+	to_chat(feeder, span_notice("你将[nana]递给[src]，看着它吃下去..."))
 	playsound(src, 'sound/items/eatfood.ogg', 75, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(eat), feeder, nana), 3 SECONDS)
 	return ITEM_INTERACT_SUCCESS

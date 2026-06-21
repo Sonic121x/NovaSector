@@ -1,6 +1,6 @@
 /obj/item/construction/rcd/arcd/mattermanipulator
-	name = "matter manipulator"
-	desc = "A strange, familiar yet distinctly different analogue to the Nanotrasen standard RCD. Works at range, and can deconstruct reinforced walls. Reload using metal, glass, or plasteel."
+	name = "物质操纵器"
+	desc = "一种与纳米传讯标准RCD相似却又明显不同的奇特装置。可在一定距离内工作，并能解构强化墙壁。使用金属、玻璃或塑钢进行充能。"
 	icon = 'modular_nova/master_files/icons/obj/tools.dmi'
 	icon_state = "rcd"
 	worn_icon_state = "RCD"
@@ -31,8 +31,8 @@
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/construction/plumbing/mining
-	name = "mining plumbing constructor"
-	desc = "A type of plumbing constructor designed to harvest from geysers and collect their fluids."
+	name = "采矿管道构造器"
+	desc = "一种专为从间歇泉采集并收集其流体而设计的管道构造器。"
 	icon_state = "plumberer_mining"
 	var/static/list/mining_design_types = list(
 		//category 1 Synthesizers i.e devices which creates , reacts & destroys chemicals

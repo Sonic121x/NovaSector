@@ -1,5 +1,5 @@
 /datum/design/ration
-	name = "Foreign Colonization Ration"
+	name = "外域殖民口粮"
 	id = "slavic_mre"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 550)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/pljeskavica
-	name = "Foreign Colonization Ration, Main Course"
+	name = "外域殖民口粮，主菜"
 	id = "slavic_burger"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 200)
@@ -21,7 +21,7 @@
 	)
 
 /datum/design/nachos
-	name = "Foreign Colonization Ration, Side Dish"
+	name = "外域殖民口粮，配菜"
 	id = "mexican_chips"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/blins
-	name = "Foreign Colonization Ration, Dessert"
+	name = "外域殖民口粮，甜点"
 	id = "slavic_crepes"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -44,7 +44,7 @@
 
 ///Despite being in the medical.dm file, it's still used to fill your hunger up, as such, technically, is food.
 /datum/design/glucose
-	name = "EVA Glucose Injector"
+	name = "舱外活动葡萄糖注射器"
 	id = "slavic_glupen"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -55,7 +55,7 @@
 	)
 
 /datum/design/spork
-	name = "Foreign Colonization Ration, Utensils"
+	name = "外域殖民口粮，餐具"
 	id = "slavic_utens"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 75)
@@ -66,7 +66,7 @@
 	)
 
 /datum/design/bubblegum
-	name = "Foreign Colonization Ration, Bubblegum Pack"
+	name = "外域殖民口粮，泡泡糖包"
 	id = "slavic_gum"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -77,7 +77,7 @@
 	)
 
 /datum/design/cup
-	name = "Empty Paper Cup"
+	name = "空纸杯"
 	id = "slavic_cup"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 10)
@@ -88,7 +88,7 @@
 	)
 
 /datum/design/tea
-	name = "Powdered Black Tea"
+	name = "红茶粉"
 	id = "slavic_tea"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 4)
@@ -99,7 +99,7 @@
 	)
 
 /datum/design/coffee
-	name = "Powdered Coffee"
+	name = "咖啡粉"
 	id = "slavic_coffee"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 4)
@@ -110,7 +110,7 @@
 	)
 
 /datum/design/cocoa
-	name = "Powdered Hot Chocolate"
+	name = "热巧克力粉"
 	id = "slavic_coco"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 4)
@@ -121,7 +121,7 @@
 	)
 
 /datum/design/lemonade
-	name = "Powdered Lemonade"
+	name = "柠檬水粉"
 	id = "slavic_lemon"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 4)
@@ -132,7 +132,7 @@
 	)
 
 /datum/design/replicator_sugar
-	name = "Sugar"
+	name = "糖"
 	id = "slavic_sugar"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 5)
@@ -143,7 +143,7 @@
 	)
 
 /datum/design/powdered_milk
-	name = "Powdered Milk"
+	name = "奶粉"
 	id = "slavic_milk"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 4)
@@ -154,7 +154,7 @@
 	)
 
 /datum/design/water
-	name = "Water"
+	name = "水"
 	id = "slavic_water"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 1)

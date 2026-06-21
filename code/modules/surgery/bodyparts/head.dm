@@ -1,6 +1,6 @@
 /obj/item/bodypart/head
 	name = BODY_ZONE_HEAD
-	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
+	desc = "你有一股想把它当球踢的冲动"
 	icon = 'icons/mob/human/bodyparts.dmi'
 	icon_state = "default_human_head"
 	max_damage = LIMB_MAX_HP_CORE
@@ -124,29 +124,29 @@
 	var/shown_name = get_face_name()
 	var/obj/item/organ/brain/brain = locate(/obj/item/organ/brain) in src
 	if(!brain)
-		. += span_info("The brain has been removed from [src].")
+		. += span_info("大脑已从[src]中取出。")
 	else if(brain.suicided || (brain.brainmob && HAS_TRAIT(brain.brainmob, TRAIT_SUICIDED)))
-		. += span_info("There's a miserable expression on [shown_name]'s face; they must have really hated life. There's no hope of recovery.")
+		. += span_info("[shown_name]的脸上带着痛苦的表情；他们一定非常厌恶生活。没有恢复的希望了。")
 	else if(brain.brainmob)
 		if(brain.brainmob?.health <= HEALTH_THRESHOLD_DEAD)
-			. += span_info("It's leaking some kind of... clear fluid? The brain inside must be in pretty bad shape.")
+			. += span_info("它正在渗出某种……透明液体？里面的大脑状况一定相当糟糕。")
 		if(brain.brainmob.key || brain.brainmob.get_ghost(FALSE, TRUE))
-			. += span_info("Its muscles are twitching slightly... It seems to have some life still in it.")
+			. += span_info("它的肌肉在轻微抽搐……看来里面还有些许生命迹象。")
 		else
 			. += span_info("It's completely lifeless. Perhaps there'll be a chance for them later.")
 	else if(brain?.decoy_override)
 		. += span_info("It's completely lifeless. Perhaps there'll be a chance for them later.")
 	else
-		. += span_info("It's completely lifeless.")
+		. += span_info("它完全失去了生命迹象。")
 
 	if(!(locate(/obj/item/organ/eyes) in src))
-		. += span_info("[shown_name]'s eyes have been removed.")
+		. += span_info("[shown_name]的眼睛已被移除。")
 
 	if(!(locate(/obj/item/organ/ears) in src))
-		. += span_info("[shown_name]'s ears have been removed.")
+		. += span_info("[shown_name]的耳朵已被移除。")
 
 	if(!(locate(/obj/item/organ/tongue) in src))
-		. += span_info("[shown_name]'s tongue has been removed.")
+		. += span_info("[shown_name]的舌头已被移除。")
 
 /obj/item/bodypart/head/proc/get_face_name()
 	if (HAS_TRAIT(src, TRAIT_DISFIGURED))
@@ -164,10 +164,10 @@
 
 /obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
 	if(user)
-		user.visible_message(span_warning("[user] saws [src] open and pulls out a brain!"), span_notice("You saw [src] open and pull out a brain."))
+		user.visible_message(span_warning("[user]锯开[src]并从中拉出了一个大脑！"), span_notice("你锯开[src]并从中拉出了一个大脑。"))
 	var/obj/item/organ/brain/brain = locate(/obj/item/organ/brain) in src
 	if(brain && violent_removal && prob(90)) //ghetto surgery can damage the brain.
-		to_chat(user, span_warning("[brain] was damaged in the process!"))
+		to_chat(user, span_warning("[brain]在此过程中受损了！"))
 		brain.set_organ_damage(brain.maxHealth)
 	return ..()
 

@@ -1,6 +1,6 @@
 /obj/machinery/nova/fan //Due to constrains, atmos effects arent stopped on depower, so only the self powered version is player buildable.
-	name = "tiny fan"
-	desc = "A tiny fan, releasing a thin gust of air."
+	name = "微型风扇"
+	desc = "一个微型风扇，释放出微弱的气流。"
 	layer = HIGH_PIPE_LAYER
 	power_channel = AREA_USAGE_ENVIRON
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION
@@ -39,8 +39,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/nova/fan/self_powered
-	name = "self-powered tiny fan"
-	desc = parent_type::desc + " This one seems to have a heated plasma shard that propels the blades!"
+	name = "自供电微型风扇"
+	desc = parent_type::desc + "这个似乎有一个加热的等离子体碎片在推动叶片！"
 	use_power = NO_POWER_USE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5.05, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.05)
 
@@ -49,7 +49,7 @@
 	new /obj/item/stack/sheet/mineral/plasma(drop_location())
 
 /datum/crafting_recipe/nova/fan/self
-	name = "Self-Powered Tiny Fan"
+	name = "自供电微型风扇"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/machinery/nova/fan/self_powered
 	reqs = list(

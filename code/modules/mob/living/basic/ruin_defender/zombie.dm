@@ -1,7 +1,7 @@
 /// Everyone knows what a zombie is
 /mob/living/basic/zombie
-	name = "Shambling Corpse"
-	desc = "When there is no more room in hell, the dead will walk in outer space."
+	name = "蹒跚的尸体"
+	desc = "当地狱再无容身之所，死者将在太空中行走。"
 	icon = 'icons/mob/simple/simple_human.dmi'
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	sentience_type = SENTIENCE_HUMANOID
@@ -41,8 +41,8 @@
 
 /// Weaker variant used if you want to put more of them in one place, won't attack obstacles
 /mob/living/basic/zombie/rotten
-	name = "Rotting Carcass"
-	desc = "This undead fiend looks to be badly decomposed."
+	name = "腐烂的尸骸"
+	desc = "这个亡灵恶魔看起来严重腐烂了。"
 	health = 60
 	melee_damage_lower = 11
 	melee_damage_upper = 11
@@ -52,14 +52,14 @@
 	outfit = /datum/outfit/corpse_assistant
 
 /datum/outfit/corpse_doctor
-	name = "Corpse Doctor"
+	name = "尸体医生"
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	uniform = /obj/item/clothing/under/rank/medical/doctor
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	back = /obj/item/storage/backpack/medic
 
 /datum/outfit/corpse_assistant
-	name = "Corpse Assistant"
+	name = "尸体助手"
 	mask = /obj/item/clothing/mask/gas
 	uniform = /obj/item/clothing/under/color/grey
 	shoes = /obj/item/clothing/shoes/sneakers/black

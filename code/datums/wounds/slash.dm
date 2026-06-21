@@ -4,7 +4,7 @@
 */
 
 /datum/wound/slash
-	name = "Slashing (Cut) Wound"
+	name = "割裂（切割）伤口"
 	undiagnosed_name = "Cut"
 	sound_effect = 'sound/items/weapons/slice.ogg'
 
@@ -14,13 +14,13 @@
 
 	switch(severity)
 		if(WOUND_SEVERITY_TRIVIAL)
-			return span_danger("It's leaking blood from a small [LOWER_TEXT(undiagnosed_name || name)].")
+			return span_danger("它正从一处小小的[LOWER_TEXT(undiagnosed_name || name)]往外渗血。")
 		if(WOUND_SEVERITY_MODERATE)
-			return span_warning("It's leaking blood from a [LOWER_TEXT(undiagnosed_name || name)].")
+			return span_warning("它正从一处[LOWER_TEXT(undiagnosed_name || name)]往外渗血。")
 		if(WOUND_SEVERITY_SEVERE)
-			return span_boldwarning("It's leaking blood from a serious [LOWER_TEXT(undiagnosed_name || name)]!")
+			return span_boldwarning("它正从一处严重的[LOWER_TEXT(undiagnosed_name || name)]往外渗血！")
 		if(WOUND_SEVERITY_CRITICAL)
-			return span_boldwarning("It's leaking blood from a major [LOWER_TEXT(undiagnosed_name || name)]!!")
+			return span_boldwarning("它正从一处重大的[LOWER_TEXT(undiagnosed_name || name)]往外渗血！！")
 
 /datum/wound_pregen_data/flesh_slash
 	abstract = TRUE
@@ -31,7 +31,7 @@
 	wound_series = WOUND_SERIES_FLESH_SLASH_BLEED
 
 /datum/wound/slash/flesh
-	name = "Slashing (Cut) Flesh Wound"
+	name = "割裂（切割）皮肉伤口"
 	threshold_penalty = 5
 	processes = TRUE
 	treatable_tools = list(TOOL_CAUTERY)
@@ -185,15 +185,15 @@
 		return FALSE
 
 	if(DOING_INTERACTION_WITH_TARGET(user, victim))
-		to_chat(user, span_warning("You're already interacting with [victim]!"))
+		to_chat(user, span_warning("你已经在处理[victim]了！"))
 		return
 	if(iscarbon(user))
 		var/mob/living/carbon/carbon_user = user
 		if(carbon_user.is_mouth_covered())
-			to_chat(user, span_warning("Your mouth is covered, you can't lick [victim]'s wounds!"))
+			to_chat(user, span_warning("你的嘴被遮住了，没法舔舐[victim]的伤口！"))
 			return
 		if(!carbon_user.get_organ_slot(ORGAN_SLOT_TONGUE))
-			to_chat(user, span_warning("You can't lick wounds without a tongue!")) // f in chat
+			to_chat(user, span_warning("没有舌头可没法舔伤口！")) // f in chat
 			return
 
 	lick_wounds(user)
@@ -208,19 +208,19 @@
 		user.ForceContractDisease(iter_disease)
 
 	user.visible_message(span_notice("[user] begins licking the wounds on [victim]'s [limb.plaintext_zone]."), span_notice("You begin licking the wounds on [victim]'s [limb.plaintext_zone]..."), ignored_mobs=victim)
-	to_chat(victim, span_notice("[user] begins to lick the wounds on your [limb.plaintext_zone]."))
+	to_chat(victim, span_notice("[user]开始舔舐你[limb.plaintext_zone]上的伤口。"))
 	if(!do_after(user, base_treat_time, target = victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	user.visible_message(span_notice("[user] licks the wounds on [victim]'s [limb.plaintext_zone]."), span_notice("You lick some of the wounds on [victim]'s [limb.plaintext_zone]"), ignored_mobs=victim)
-	to_chat(victim, span_green("[user] licks the wounds on your [limb.plaintext_zone]!"))
+	to_chat(victim, span_green("[user]舔舐了你[limb.plaintext_zone]上的伤口！"))
 	var/mob/victim_stored = victim
 	adjust_blood_flow(-0.5)
 
 	if(blood_flow > minimum_flow)
 		try_handling(user)
 	else if(demotes_to)
-		to_chat(user, span_green("You successfully lower the severity of [user == victim_stored ? "your" : "[victim_stored]'s"] cuts."))
+		to_chat(user, span_green("你成功降低了[user == victim_stored ? "your" : "[victim_stored]'s"]割伤的严重程度。"))
 
 /datum/wound/slash/flesh/adjust_blood_flow(adjust_by, minimum)
 	. = ..()
@@ -230,7 +230,7 @@
 		if(demotes_to)
 			replace_wound(new demotes_to)
 		else
-			to_chat(victim, span_green("The cut on your [limb.plaintext_zone] has [!limb.can_bleed() ? "healed up" : "stopped bleeding"]!"))
+			to_chat(victim, span_green("你[limb.plaintext_zone]上的割伤已经[!limb.can_bleed() ? "healed up" : "stopped bleeding"]！"))
 			qdel(src)
 
 /datum/wound/slash/flesh/on_xadone(power)
@@ -253,7 +253,7 @@
 	if(!lasgun.process_fire(victim, victim, TRUE, null, limb.body_zone))
 		return
 	victim.emote("scream")
-	victim.visible_message(span_warning("The cuts on [victim]'s [limb.plaintext_zone] scar over!"))
+	victim.visible_message(span_warning("[victim]的[limb.plaintext_zone]上的割伤结疤了！"))
 	adjust_blood_flow(-1 * (damage / (5 * self_penalty_mult))) // 20 / 5 = 4 bloodflow removed, p good
 
 /// If someone is using either a cautery tool or something with heat to cauterize this cut
@@ -277,7 +277,7 @@
 	playsound(user, 'sound/items/handling/surgery/cautery2.ogg', 75, TRUE)
 
 	var/bleeding_wording = (limb.can_bleed() ? "bleeding" : "cuts")
-	user.visible_message(span_green("[user] cauterizes some of the [bleeding_wording] on [victim]."), span_green("You cauterize some of the [bleeding_wording] on [victim]."))
+	user.visible_message(span_green("[user]烧灼了[bleeding_wording]身上的一些[victim]。"), span_green("你烧灼了[bleeding_wording]身上的一些[victim]。"))
 	victim.apply_damage(2 + severity, BURN, limb, wound_bonus = CANT_WOUND)
 	if(prob(30))
 		victim.emote("scream")
@@ -289,14 +289,14 @@
 		try_treating(I, user)
 
 	else if(demotes_to)
-		to_chat(user, span_green("You successfully lower the severity of [user == victim_stored ? "your" : "[victim_stored]'s"] cuts."))
+		to_chat(user, span_green("你成功降低了[user == victim_stored ? "your" : "[victim_stored]'s"]割伤的严重程度。"))
 
 /datum/wound/slash/get_limb_examine_description()
-	return span_warning("The flesh on this limb appears badly lacerated.")
+	return span_warning("该肢体上的皮肉看起来严重撕裂了。")
 
 /datum/wound/slash/flesh/moderate
-	name = "Rough Abrasion"
-	desc = "Patient's skin has been badly scraped, generating moderate blood loss."
+	name = "严重擦伤"
+	desc = "患者的皮肤被严重刮擦，导致中度失血。"
 	treat_text = "Apply bandaging or suturing to the wound. \
 		Follow up with food and a rest period."
 	treat_text_short = "Apply bandaging or suturing."
@@ -326,8 +326,8 @@
 	threshold_minimum = 20
 
 /datum/wound/slash/flesh/severe
-	name = "Open Laceration"
-	desc = "Patient's skin is ripped clean open, allowing significant blood loss."
+	name = "开放性撕裂伤"
+	desc = "患者的皮肤被完全撕开，导致大量失血。"
 	treat_text = "Swiftly apply bandaging or suturing to the wound, \
 		or make use of blood clotting agents or cauterization. \
 		Follow up with iron supplements or saline-glucose and a rest period."
@@ -360,8 +360,8 @@
 		occur_text = "is ripped open"
 
 /datum/wound/slash/flesh/critical
-	name = "Weeping Avulsion"
-	desc = "Patient's skin is completely torn open, along with significant loss of tissue. Extreme blood loss will lead to quick death without intervention."
+	name = "渗血性撕脱伤"
+	desc = "患者的皮肤完全撕裂，伴有大量组织缺失。若不进行干预，极端失血将迅速导致死亡。"
 	treat_text = "Immediately apply bandaging or suturing to the wound, \
 		or make use of blood clotting agents or cauterization. \
 		Follow up supervised resanguination."
@@ -393,8 +393,8 @@
 	threshold_minimum = 80
 
 /datum/wound/slash/flesh/moderate/many_cuts
-	name = "Numerous Small Slashes"
-	desc = "Patient's skin has numerous small slashes and cuts, generating moderate blood loss."
+	name = "多处小型割伤"
+	desc = "患者的皮肤有多处小型割伤和切口，造成中度失血。"
 	examine_desc = "has a ton of small cuts"
 	occur_text = "is cut numerous times, leaving many small slashes."
 
@@ -406,7 +406,7 @@
 
 // Subtype for cleave (heretic spell)
 /datum/wound/slash/flesh/critical/cleave
-	name = "Burning Avulsion"
+	name = "灼烧性撕脱伤"
 	examine_desc = "is ruptured, spraying blood wildly"
 	clot_rate = 0.01
 

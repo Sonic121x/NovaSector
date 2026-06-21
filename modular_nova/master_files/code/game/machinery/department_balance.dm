@@ -1,6 +1,6 @@
 /obj/machinery/status_display/department_balance
-	name = "department balance display"
-	desc = "A digital screen displaying the current budget."
+	name = "部门预算显示器"
+	desc = "一个显示当前预算的数字屏幕。"
 
 	current_mode = SD_MESSAGE
 	text_color = COLOR_DISPLAY_GREEN
@@ -17,44 +17,44 @@
 	var/display_reset_state = 0
 
 /obj/machinery/status_display/department_balance/destwo
-	name = "DS-2 Budget Monitor"
+	name = "DS-2 预算监视器"
 	credits_account = "DS2"
 	default_logo = "synd"
 
 /obj/machinery/status_display/department_balance/interdyne
-	name = "Interdyne Budget Monitor"
+	name = "英特戴恩预算监视器"
 	credits_account = "IP"
 
 /obj/machinery/status_display/department_balance/tarkon
-	name = "Tarkon Budget Monitor"
+	name = "塔肯预算监视器"
 	credits_account = "TI"
 
 /obj/machinery/status_display/department_balance/command
-	name = "Command Budget Monitor"
+	name = "指挥预算监视器"
 	credits_account = "CMD"
 
 /obj/machinery/status_display/department_balance/medical
-	name = "Medical Budget Monitor"
+	name = "医疗预算监视器"
 	credits_account = "MED"
 
 /obj/machinery/status_display/department_balance/security
-	name = "Security Budget Monitor"
+	name = "安保预算监视器"
 	credits_account = "SEC"
 
 /obj/machinery/status_display/department_balance/science
-	name = "Science Budget Monitor"
+	name = "科研预算监视器"
 	credits_account = "SCI"
 
 /obj/machinery/status_display/department_balance/cargo
-	name = "Cargo Budget Monitor"
+	name = "货运预算监视器"
 	credits_account = "CAR"
 
 /obj/machinery/status_display/department_balance/engineering
-	name = "Engineering Budget Monitor"
+	name = "工程预算监视器"
 	credits_account = "ENG"
 
 /obj/machinery/status_display/department_balance/civilian
-	name = "Civilian Budget Monitor"
+	name = "民用预算监视器"
 	credits_account = "CIV"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/department_balance/destwo, 32)

@@ -2,7 +2,7 @@
 
 /// Throws a supply pod at the target, with no item inside
 /datum/smite/supply_pod
-	name = "Supply Pod"
+	name = "补给舱"
 
 	// punish_log() is handled by the centcom_podlauncher datum
 	should_log = FALSE

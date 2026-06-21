@@ -1,6 +1,6 @@
 /obj/item/autopsy_scanner
-	name = "autopsy scanner"
-	desc = "Used in surgery to extract information from a cadaver. Can also scan the health of cadavers like an advanced health analyzer!"
+	name = "尸检扫描仪"
+	desc = "用于手术中从尸体提取信息。也能像高级健康分析仪一样扫描尸体的健康状况！"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "autopsy_scanner"
 	inhand_icon_state = "autopsy_scanner"
@@ -26,23 +26,23 @@
 	var/mob/living/scanned = interacting_with
 
 	if(scanned.stat != DEAD && !HAS_TRAIT(scanned, TRAIT_FAKEDEATH)) // good job, you found a loophole
-		to_chat(user, span_deadsay("[icon2html(src, user)] ERROR! CANNOT SCAN LIVE CADAVERS. PROCURE HEALTH ANALYZER OR TERMINATE PATIENT."))
+		to_chat(user, span_deadsay("[icon2html(src, user)] 错误！无法扫描活体。请获取健康分析仪或终止患者。"))
 		return ITEM_INTERACT_BLOCKING
 
 	. = ITEM_INTERACT_SUCCESS
 
 	// Clumsiness/brain damage check
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
-		user.visible_message(span_warning("[user] analyzes the floor's vitals!"), \
-							span_notice("You stupidly try to analyze the floor's vitals!"))
+		user.visible_message(span_warning("[user] 分析了地板的生命体征！"), \
+							span_notice("你愚蠢地试图分析地板的生命体征！"))
 		to_chat(user, "[span_info("Analyzing results for The floor:\n\tOverall status: <b>Healthy</b>")]\
 				\n[span_info("Key: <font color='#00cccc'>Suffocation</font>/<font color='#00cc66'>Toxin</font>/<font color='#ffcc33'>Burn</font>/<font color='#ff3333'>Brute</font>")]\
 				\n[span_info("\tDamage specifics: <font color='#66cccc'>0</font>-<font color='#00cc66'>0</font>-<font color='#ff9933'>0</font>-<font color='#ff3333'>0</font>")]\
 				\n[span_info("Body temperature: ???")]")
 		return
 
-	user.visible_message(span_notice("[user] scans [scanned]'s cadaver."))
-	to_chat(user, span_deadsay("[icon2html(src, user)] ANALYZING CADAVER."))
+	user.visible_message(span_notice("[user] 扫描了 [scanned] 的尸体。"))
+	to_chat(user, span_deadsay("[icon2html(src, user)] 正在分析尸体。"))
 
 	healthscan(user, scanned, advanced = TRUE)
 
@@ -244,5 +244,5 @@
 	autopsy_report.add_raw_text(final_report_text, advanced_html = TRUE)
 	autopsy_report.update_appearance()
 	user.put_in_hands(autopsy_report)
-	user.balloon_alert(user, "report printed")
+	user.balloon_alert(user, "报告已打印")
 	return TRUE

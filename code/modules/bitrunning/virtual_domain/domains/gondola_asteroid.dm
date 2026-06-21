@@ -1,6 +1,6 @@
 /datum/lazy_template/virtual_domain/gondola_asteroid
-	name = "Gondola Asteroid"
-	desc = "An asteroid home to a bountiful forest of gondolas. Peaceful."
+	name = "贡多拉小行星"
+	desc = "一颗栖息着茂盛贡多拉森林的小行星。宁静祥和。"
 	help_text = "What a lovely forest. There's a loot crate here in the middle of the map. \
 	Hmm... It doesn't budge. The gondolas don't seem to have any trouble moving it, though. \
 	I bet there's a way to move it myself."
@@ -30,7 +30,7 @@
 	)
 
 /datum/reagent/gondola_mutation_toxin/virtual_domain
-	name = "Advanced Tranquility"
+	name = "高级宁静剂"
 	gondola_disease = /datum/disease/transformation/gondola/virtual_domain
 
 /datum/disease/transformation/gondola/virtual_domain

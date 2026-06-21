@@ -1,8 +1,8 @@
 #define OVEN_TRAY_Y_OFFSET -12
 
 /obj/machinery/oven/primitive
-	name = "stone oven"
-	desc = "Sorry buddy, all this stone used up the budget that would have normally gone to garfield comic jokes."
+	name = "石制烤箱"
+	desc = "抱歉伙计，所有石头都用光了预算，不然本来可以放加菲猫漫画笑话的。"
 	icon = 'modular_nova/modules/primitive_cooking_additions/icons/stone_kitchen_machines.dmi'
 	circuit = null
 	use_power = FALSE
@@ -16,7 +16,7 @@
 	)
 
 /obj/machinery/oven/primitive/clay
-	name = "clay oven"
+	name = "黏土烤箱"
 	custom_materials = list(/datum/material/clay = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/machinery/oven/primitive/Initialize(mapload)
@@ -37,7 +37,7 @@
 /obj/machinery/oven/primitive/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It can be taken apart with a <b>crowbar</b>.")
+	. += span_notice("可以用<b>撬棍</b>将其拆开。")
 
 /obj/machinery/oven/primitive/add_tray_to_oven(obj/item/plate/oven_tray, mob/baker)
 	used_tray = oven_tray

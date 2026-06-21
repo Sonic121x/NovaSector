@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(voidwalker_void)
 
 /// Voidwalker void where the people go
 /area/centcom/voidwalker_void
-	name = "Voidwalker void"
+	name = "虚空行者虚空"
 	icon_state = "voidwalker"
 	default_gravity = STANDARD_GRAVITY
 	ambience_index = AMBIENCE_SPOOKY
@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(voidwalker_void)
 
 /// Mini car where people drive around in in their mangled corpse to heal a bit before they get dumped back on station
 /obj/effect/wisp_mobile
-	name = "wisp"
+	name = "幽光"
 
 	icon = 'icons/obj/weapons/voidwalker_items.dmi'
 	icon_state = "wisp"
@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(voidwalker_void)
 	. = ..()
 
 	gone.remove_traits(wisp_driver_traits, REF(src))
-	to_chat(gone, span_boldwarning("You feel watched."))
+	to_chat(gone, span_boldwarning("你感到被注视着。"))
 	qdel(src)
 
 /// Loop us around, maybe, if we're going to bump into a wall
@@ -115,7 +115,7 @@ GLOBAL_LIST_EMPTY(voidwalker_void)
 
 /// we only exist to be eaten by wisps for food 😔👊
 /obj/effect/wisp_food
-	name = "wisp"
+	name = "幽光"
 	icon = 'icons/obj/weapons/voidwalker_items.dmi'
 	icon_state = "wisp"
 

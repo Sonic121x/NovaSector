@@ -12,7 +12,7 @@
 	select_color = "#00d9ffff"
 
 /obj/projectile/energy/medical
-	name = "medical heal shot"
+	name = "医疗治疗射线"
 	icon_state = "blue_laser"
 	damage = 0
 	var/healing_threshold = 20
@@ -126,7 +126,7 @@
 	select_color = "#ff0000ff"
 
 /obj/projectile/energy/medical/brute
-	name = "brute heal shot"
+	name = "创伤治疗射线"
 	icon_state = "red_laser"
 	var/amount_healed = 7.5
 
@@ -141,7 +141,7 @@
 	select_color = "#ffae00ff"
 
 /obj/projectile/energy/medical/burn
-	name = "burn heal shot"
+	name = "烧伤治疗射线"
 	icon_state = "yellow_laser"
 	var/amount_healed = 7.5
 
@@ -151,7 +151,7 @@
 
 //Basic Oxygen Heal Projectile. Doesn't get a casing because the base medical projectile is already oxygen.
 /obj/projectile/energy/medical/oxygen
-	name = "oxygen heal shot"
+	name = "氧气治疗射线"
 	var/amount_healed = 10
 
 /obj/projectile/energy/medical/oxygen/on_hit(mob/living/target, blocked = 0, pierce_hit)
@@ -165,7 +165,7 @@
 	select_color = "#15ff00ff"
 
 /obj/projectile/energy/medical/toxin
-	name = "toxin heal shot"
+	name = "毒素治疗射线"
 	icon_state = "green_laser"
 	var/amount_healed = 5
 
@@ -184,7 +184,7 @@
 	select_color = "#ff0000ff"
 
 /obj/projectile/energy/medical/brute/better
-	name = "strong brute heal shot"
+	name = "强力创伤治疗射线"
 	pass_flags =  UPGRADED_MEDICELL_PASSFLAGS
 	amount_healed = 11.25
 	base_disgust = 2
@@ -197,7 +197,7 @@
 	select_color = "#ffae00ff"
 
 /obj/projectile/energy/medical/burn/better
-	name = "strong burn heal shot"
+	name = "强力烧伤治疗射线"
 	pass_flags =  UPGRADED_MEDICELL_PASSFLAGS
 	amount_healed = 11.25
 	base_disgust = 2
@@ -210,7 +210,7 @@
 	select_color = "#00d9ffff"
 
 /obj/projectile/energy/medical/oxygen/better
-	name = "strong oxygen heal shot"
+	name = "强力氧气治疗射线"
 	pass_flags =  UPGRADED_MEDICELL_PASSFLAGS
 	amount_healed = 20
 	base_disgust = 2
@@ -222,7 +222,7 @@
 	select_color = "#15ff00ff"
 
 /obj/projectile/energy/medical/toxin/better
-	name = "strong toxin heal shot"
+	name = "强力毒素治疗射线"
 	pass_flags =  UPGRADED_MEDICELL_PASSFLAGS
 	amount_healed = 7.5
 	base_disgust = 2
@@ -239,7 +239,7 @@
 	select_color = "#ff0000ff"
 
 /obj/projectile/energy/medical/brute/better/best
-	name = "powerful brute heal shot"
+	name = "高效创伤治疗射线"
 	amount_healed = 15
 	base_disgust = 3
 	healing_threshold = 40
@@ -251,7 +251,7 @@
 	select_color = "#ffae00ff"
 
 /obj/projectile/energy/medical/burn/better/best
-	name = "powerful burn heal shot"
+	name = "高效烧伤治疗射线"
 	amount_healed = 15
 	base_disgust = 3
 	healing_threshold = 40
@@ -263,7 +263,7 @@
 	select_color = "#00d9ffff"
 
 /obj/projectile/energy/medical/oxygen/better/best
-	name = "powerful oxygen heal shot"
+	name = "高效氧气治疗射线"
 	amount_healed = 30
 	base_disgust = 3
 
@@ -274,7 +274,7 @@
 	select_color = "#15ff00ff"
 
 /obj/projectile/energy/medical/toxin/better/best
-	name = "powerful toxin heal shot"
+	name = "高效毒素治疗射线"
 	amount_healed = 10
 	base_disgust = 3
 	healing_threshold = 40
@@ -285,7 +285,7 @@
 
 //Utility basis
 /obj/projectile/energy/medical/utility
-	name = "utility medical shot"
+	name = "医疗功能射线"
 	pass_flags =  UPGRADED_MEDICELL_PASSFLAGS
 
 //Clotting
@@ -295,7 +295,7 @@
 	select_color = "#ff00eaff"
 
 /obj/projectile/energy/medical/utility/clotting
-	name = "clotting agent shot"
+	name = "凝血剂射线"
 
 /obj/projectile/energy/medical/utility/clotting/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -315,7 +315,7 @@
 	select_color = "#fbff00ff"
 
 /obj/projectile/energy/medical/utility/temperature
-	name = "temperature adjustment shot"
+	name = "温度调节射线"
 
 /obj/projectile/energy/medical/utility/temperature/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -338,7 +338,7 @@
 	select_color = "#00ffbf"
 
 /obj/projectile/energy/medical/utility/gown
-	name = "hardlight surgical gown field"
+	name = "硬光手术袍力场"
 
 /obj/projectile/energy/medical/utility/gown/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -349,10 +349,10 @@
 	var/obj/item/clothing/gown = new /obj/item/clothing/suit/toggle/labcoat/nova/surgical_gown/hardlight
 
 	if(wearer.equip_to_slot_if_possible(gown, ITEM_SLOT_OCLOTHING, 1, 1, 1))
-		wearer.visible_message(span_notice("[gown] covers [wearer]'s body."), span_notice("[gown] wraps around your body, covering you."))
+		wearer.visible_message(span_notice("[gown]覆盖了[wearer]的身体。"), span_notice("[gown]缠绕在你的身体上，将你覆盖。"))
 		return
 	else
-		wearer.visible_message(span_warning("[gown] fails to fit on [wearer], instantly disintegrating away!"), span_warning("[gown], unable to fit on you, disintegrates into nothing!"))
+		wearer.visible_message(span_warning("[gown]无法适配[wearer]，瞬间消散了！"), span_warning("[gown]无法穿戴在你身上，瞬间化为乌有！"))
 		return FALSE
 
 //Salve Medicell
@@ -362,7 +362,7 @@
 	select_color = "#00af57"
 
 /obj/projectile/energy/medical/utility/salve
-	name = "salve globule"
+	name = "药膏球"
 	icon_state = "glob_projectile"
 	shrapnel_type = /obj/item/mending_globule/hardlight
 	embed_type = /datum/embedding/salve_globule/hardlight
@@ -382,7 +382,7 @@
 
 /datum/embedding/salve_globule/hardlight/remove_embedding()
 	var/obj/item/mending_globule/globule = parent
-	owner.visible_message(span_warning("[globule]'s hardlight field disintigrates upon being removed from [owner], fizzling away into nothingness with the remaining salve!"))
+	owner.visible_message(span_warning("[globule]的硬光场在从[owner]身上移除时瓦解，连同剩余的药膏一起嘶嘶作响地化为虚无！"))
 	qdel(globule)
 	return ..()
 
@@ -393,7 +393,7 @@
 	select_color = "#00fff2"
 
 /obj/projectile/energy/medical/utility/bed
-	name = "hardlight bed field"
+	name = "硬光病床力场"
 
 /obj/projectile/energy/medical/utility/bed/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -420,7 +420,7 @@
 	delay = 12 //This is a powerful cell, It'd be good for this to have a bit of a delay
 
 /obj/projectile/energy/medical/utility/body_teleporter
-	name = "bluespace transportation field"
+	name = "蓝空传送力场"
 
 /obj/projectile/energy/medical/utility/body_teleporter/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -434,28 +434,28 @@
 	body.forceMove(firer.loc)
 	teleport_effect(body.loc)
 
-	body.visible_message(span_notice("[body]'s body teleports to [firer]!"))
+	body.visible_message(span_notice("[body]的身体传送到了[firer]处！"))
 
 /obj/projectile/energy/medical/utility/body_teleporter/proc/teleport_effect(location)
 	do_sparks(5, TRUE, get_turf(location), spark_type = /datum/effect_system/basic/spark_spread/quantum) //uses the teleport effect from quantum pads
 
 //Objects Used by medicells.
 /obj/item/clothing/suit/toggle/labcoat/nova/surgical_gown/hardlight
-	name = "hardlight surgical gown"
-	desc = "A hospital gown made out of hardlight. You can barely feel it on your body, especially with all the anesthetics."
+	name = "硬光手术袍"
+	desc = "一件由硬光制成的病号服。你几乎感觉不到它在你身上，尤其是在所有麻醉剂的作用下。"
 	icon_state = "lgown"
 	item_flags = parent_type::item_flags | DROPDEL
 
 /obj/item/clothing/suit/toggle/labcoat/nova/surgical_gown/hardlight/dropped(mob/user)
 	user.update_held_items()
 	if(!QDELETED(src))
-		user.visible_message(span_warning("[src] disappears after being removed!"))
+		user.visible_message(span_warning("[src]在被移除后消失了！"))
 	return ..()
 
 //Salve Globule
 /obj/item/mending_globule/hardlight
-	name = "salve globule"
-	desc = "A ball of regenerative, synthetic plant matter, contained within a soft hardlight field."
+	name = "药膏球"
+	desc = "一团再生的合成植物物质，被包裹在一个柔软的硬光场内。"
 	embed_type = /datum/embedding/salve_globule/hardlight
 	icon = 'modular_nova/modules/cellguns/icons/obj/guns/mediguns/misc.dmi'
 	icon_state = "globule"
@@ -466,7 +466,7 @@
 	. = ..()
 	for(var/obj/item/mending_globule/hardlight/existing in target_limb.embedded_objects)
 		if ((existing != parent))
-			target.visible_message(span_warning("[parent] slides right off of [target]'s [target_limb.plaintext_zone], already having a globule attached there!"))
+			target.visible_message(span_warning("[parent]从[target]的[target_limb.plaintext_zone]滑落，那里已经附着了一个药膏球！"))
 			qdel(parent)
 			return
 		else
@@ -482,8 +482,8 @@
 
 //Hardlight Emergency Bed.
 /obj/structure/bed/medical/medigun
-	name = "hardlight medical bed"
-	desc = "A medical bed made out of hardlight."
+	name = "硬光医疗床"
+	desc = "一张由硬光制成的医疗床。"
 	icon = 'modular_nova/modules/cellguns/icons/obj/guns/mediguns/misc.dmi'
 	icon_state = "hardlight_down"
 	base_icon_state = "hardlight"
@@ -515,7 +515,7 @@
 		if(has_buckled_mobs())
 			return FALSE
 
-		user.visible_message(span_notice("[user] deactivates \the [src]."), span_notice("You deactivate \the [src]."))
+		user.visible_message(span_notice("[user] 关闭了 \the [src]。"), span_notice("你关闭了 \the [src]。"))
 		qdel(src)
 
 //Oppressive Force Relocation
@@ -530,7 +530,7 @@
 	delay = 12
 
 /obj/projectile/energy/medical/utility/relocation
-	name = "bluespace transportation field"
+	name = "蓝空传送力场"
 	/// Determines whether or not this works anywhere?
 	var/area_locked = FALSE
 	/// A list of areas that the effect works in, if area_locked is set to true
@@ -577,7 +577,7 @@
 		return FALSE
 
 	if(grace_period)
-		to_chat(teleportee, span_warning("You have [(time_allowance / 10)] seconds to leave, if you do not leave in this time, you will be forcibly teleported outside."))
+		to_chat(teleportee, span_warning("你有[(time_allowance / 10)]秒的时间离开，如果你在此期间没有离开，将被强制传送出去。"))
 		teleportee.AddComponent(/datum/component/medigun_relocation, time_allowance, destination_area, area_locked, teleport_areas)
 		return TRUE
 
@@ -589,7 +589,7 @@
 			if(!turf_in_area.is_blocked_turf())
 				turf_list += turf_in_area
 
-	teleportee.visible_message(span_notice("[teleportee] is teleported away!"))
+	teleportee.visible_message(span_notice("[teleportee]被传送走了！"))
 
 	do_teleport(teleportee, pick(turf_list), no_effects = FALSE, channel = TELEPORT_CHANNEL_QUANTUM)
 
@@ -632,7 +632,7 @@
 			if(!turf_in_area.is_blocked_turf())
 				turf_list += turf_in_area
 
-	teleportee.visible_message(span_notice("[teleportee] is teleported away!"))
+	teleportee.visible_message(span_notice("[teleportee]被传送走了！"))
 
 	do_teleport(teleportee, pick(turf_list), no_effects = FALSE, channel = TELEPORT_CHANNEL_QUANTUM)
 

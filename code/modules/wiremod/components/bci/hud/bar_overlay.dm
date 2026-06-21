@@ -10,7 +10,7 @@
 
 /obj/item/circuit_component/object_overlay/bar
 	display_name = "Bar Overlay"
-	desc = "Requires a BCI shell. A component that shows a bar overlay atop an object, ranging from 0 to 100."
+	desc = "需要BCI外壳。一个在物体顶部显示条形覆盖层的组件，范围从0到100。"
 	category = "BCI"
 
 	var/datum/port/input/option/bar_overlay_options

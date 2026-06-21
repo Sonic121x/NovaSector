@@ -50,7 +50,7 @@
 /datum/storage/security_belt/can_insert(obj/item/to_insert, mob/user, messages, force)
 	. = ..()
 	if(is_type_in_list(to_insert, limited_hold_types) && (limited_held >= max_limited_store) && (to_insert.w_class > WEIGHT_CLASS_SMALL))
-		user.balloon_alert(user, "no suitable space!")
+		user.balloon_alert(user, "没有合适的空间！")
 		return FALSE
 
 // CE's roundstart toolbelt, with T2 tools

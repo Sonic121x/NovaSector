@@ -1,11 +1,11 @@
 /datum/map_template/holodeck/wargame
-	name = "Holodeck - Naval Wargames"
+	name = "全息甲板 - 海军战争游戏"
 	template_id = "holodeck_wargame"
 	mappath = "_maps/nova/holodeck_wargame.dmm"
 
 /obj/item/storage/briefcase/secure/white/wargame_kit
-	name = "DIY Wargaming Kit"
-	desc = "Contains everything an aspiring naval officer (or just massive nerd) would need for a proper modern naval wargame."
+	name = "DIY战争游戏套件"
+	desc = "包含一位有抱负的海军军官（或仅仅是狂热爱好者）进行一场正规现代海军战争游戏所需的一切。"
 	custom_premium_price = PAYCHECK_CREW * 2
 
 /obj/item/storage/briefcase/secure/white/wargame_kit/PopulateContents()
@@ -20,7 +20,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/book/manual/wargame_rules
-	name = "Wargame: Blue Lizard - Example Ruleset"
+	name = "战争游戏：蓝蜥蜴 - 示例规则集"
 	icon_state = "book"
 	starting_author = "Nanotrasen Naval Wargames Commission"
 	starting_title = "Wargame: Blue Lizard - Example Ruleset"
@@ -247,7 +247,7 @@
 			"}
 
 /obj/item/book/manual/wargame_rules/examples
-	name = "Wargame: Blue Lizard - Example Ships and Scenarios"
+	name = "战争游戏：蓝蜥蜴 - 示例舰船与场景"
 	icon_state = "book1"
 	starting_author = "Nanotrasen Naval Wargames Commission"
 	starting_title = "Wargame: Blue Lizard - Example Ships and Scenarios"

@@ -1,6 +1,6 @@
 /mob/living/basic/sheep
-	name = "sheep"
-	desc = "Known for their soft wool and use in sacrificial rituals. Big fan of grass."
+	name = "羊"
+	desc = "以其柔软的羊毛和在献祭仪式中的用途而闻名。是青草的忠实粉丝。"
 	icon = 'icons/mob/simple/sheep.dmi'
 	icon_state = "sheep"
 	icon_dead = "sheep_dead"
@@ -58,11 +58,11 @@
 
 	if(cult_converted)
 		for(var/mob/living/cultist as anything in invokers)
-			to_chat(cultist, span_cult_italic("[src] has already been sacrificed!"))
+			to_chat(cultist, span_cult_italic("[src] 已经被献祭过了！"))
 		return STOP_SACRIFICE|SILENCE_SACRIFICE_MESSAGE
 
 	for(var/mob/living/cultist as anything in invokers)
-		to_chat(cultist, span_cult_italic("This feels a bit too cliché, don't you think?"))
+		to_chat(cultist, span_cult_italic("这感觉有点太老套了，你不觉得吗？"))
 
 	cult_converted = TRUE
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "BAAAAAAAAH!")

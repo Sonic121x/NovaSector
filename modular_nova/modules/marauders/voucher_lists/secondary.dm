@@ -195,7 +195,7 @@
 
 // kits
 /datum/voucher_set/traitor/secondary_weapon/kit_throwing_weapons
-	name = "throwing weapons kit"
+	name = "投掷武器套件"
 	icon = /obj/item/storage/box/syndie_kit/throwing_weapons::icon
 	icon_state = /obj/item/storage/box/syndie_kit/throwing_weapons::icon_state
 	set_items = list(
@@ -212,7 +212,7 @@
 	)
 
 /datum/voucher_set/traitor/secondary_weapon/kit_manhack_grenades
-	name = "manhack grenade kit"
+	name = "人机猎手手榴弹套件"
 	icon = /obj/item/storage/box/syndie_kit/manhack_grenades::icon
 	icon_state = /obj/item/storage/box/syndie_kit/manhack_grenades::icon_state
 	set_items = list(

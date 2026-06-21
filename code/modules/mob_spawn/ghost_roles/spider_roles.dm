@@ -1,7 +1,7 @@
 /obj/structure/spider/eggcluster
-	name = "egg cluster"
+	name = "卵簇"
 	icon = 'icons/effects/effects.dmi'
-	desc = "There's something alive in there, and sooner or later it's going to find its way out."
+	desc = "里面有活物，迟早会找到出路。"
 	icon_state = "eggs"
 	/// Mob spawner handling the actual spawn of the spider
 	var/obj/effect/mob_spawn/ghost_role/spider/spawner
@@ -27,43 +27,43 @@
 	if(istype(user, /mob/living/basic/spider/giant/midwife))
 		switch(spawner.amount_grown)
 			if(0 to 24)
-				. += span_info("These eggs look shrunken and dormant.")
+				. += span_info("这些卵看起来萎缩且处于休眠状态。")
 			if(25 to 49)
-				. += span_info("These eggs have begun to move, pulsating, gestating...")
+				. += span_info("这些卵已经开始移动，脉动着，孕育着……")
 			if(50 to 74)
-				. += span_info("These eggs are rippling, unseen life stirring beneath its skin.")
+				. += span_info("这些卵在波动，看不见的生命在其表皮之下蠢动。")
 			if(75 to 99)
-				. += span_info("These eggs swell with unseen life. They are almost ready to burst.")
+				. += span_info("这些卵因看不见的生命而膨胀。它们几乎要爆裂了。")
 			if(100 to INFINITY)
-				. += span_info("These eggs are plump, teeming with life. Any moment now...")
+				. += span_info("这些卵饱满丰盈，充满了生命。随时可能……")
 
 /obj/structure/spider/eggcluster/abnormal
-	name = "abnormal egg cluster"
+	name = "异常卵簇"
 	color = rgb(0, 148, 211)
 
 /obj/structure/spider/eggcluster/enriched
-	name = "enriched egg cluster"
+	name = "强化卵簇"
 	color = rgb(148, 0, 211)
 
 /obj/structure/spider/eggcluster/bloody
 	icon = 'icons/mob/simple/meteor_heart.dmi'
 	icon_state = "eggs"
-	name = "bloody egg cluster"
+	name = "血腥卵簇"
 
 /obj/structure/spider/eggcluster/midwife
-	name = "midwife egg cluster"
+	name = "蛛母卵簇"
 
 /obj/effect/mob_spawn/ghost_role/spider
-	name = "egg cluster"
-	desc = "They seem to pulse slightly with an inner life."
+	name = "卵簇"
+	desc = "它们似乎带着一种内在的生命力微微地跳动着。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "eggs"
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
 	show_flavor = FALSE
-	you_are_text = "You are a spider."
-	flavour_text = "For the hive! Choose a spider and fulfill your role to take over the station... if that is within your directives, of course."
-	important_text = "Follow your directives at all costs."
+	you_are_text = "你是一只蜘蛛。"
+	flavour_text = "为了蜂群！选择一种蜘蛛并履行你的职责来接管空间站……当然，前提是这符合你的指令。"
+	important_text = "不惜一切代价遵循你的指令。"
 	faction = list(FACTION_SPIDER)
 	spawner_job_path = /datum/job/spider
 	role_ban = ROLE_ALIEN
@@ -137,7 +137,7 @@
 		return FALSE
 	if(!ready)
 		if(!silent)
-			to_chat(user, span_warning("\The [src] is not ready to hatch yet!"))
+			to_chat(user, span_warning("\The [src] 还没准备好孵化！"))
 		return FALSE
 	return TRUE
 
@@ -151,7 +151,7 @@
 	spawned_mob.mind.add_antag_datum(spider_antag)
 
 /obj/effect/mob_spawn/ghost_role/spider/abnormal
-	name = "abnormal egg cluster"
+	name = "异常卵簇"
 	color = rgb(0, 148, 211)
 	cluster_type = /obj/structure/spider/eggcluster/abnormal
 	potentialspawns = list(
@@ -161,9 +161,9 @@
 	flash_window = TRUE
 
 /obj/effect/mob_spawn/ghost_role/spider/enriched
-	name = "enriched egg cluster"
+	name = "强化卵簇"
 	color = rgb(148, 0, 211)
-	you_are_text = "You are an enriched spider."
+	you_are_text = "你是一只强化蜘蛛。"
 	cluster_type = /obj/structure/spider/eggcluster/enriched
 	potentialspawns = list(
 		/mob/living/basic/spider/growing/spiderling/tarantula,
@@ -173,11 +173,11 @@
 	flash_window = TRUE
 
 /obj/effect/mob_spawn/ghost_role/spider/bloody
-	name = "bloody egg cluster"
+	name = "血腥卵簇"
 	icon = 'icons/mob/simple/meteor_heart.dmi'
 	icon_state = "eggs"
-	you_are_text = "You are a flesh spider."
-	flavour_text = "An abomination of nature set upon the station by changelings. Your only goal is to kill, terrorize, and survive."
+	you_are_text = "你是一只血肉蜘蛛。"
+	flavour_text = "一个由异形寄生物种投放到空间站的、自然界的畸形产物。你唯一的目标就是杀戮、制造恐怖并生存下去。"
 	faction = null
 	directive = null
 	cluster_type = /obj/structure/spider/eggcluster/bloody
@@ -188,9 +188,9 @@
 	granted_datum = /datum/antagonist/spider/flesh
 
 /obj/effect/mob_spawn/ghost_role/spider/midwife
-	name = "midwife egg cluster"
-	you_are_text = "You are a midwife spider."
-	flavour_text = "The crux of the spider horde. You have the ability to reproduce and create more spiders, and turn victims into special spider eggs."
+	name = "蛛母卵簇"
+	you_are_text = "你是一只助产蜘蛛。"
+	flavour_text = "你是蜘蛛群的核心。你拥有繁殖并创造更多蜘蛛的能力，还能将受害者转化为特殊的蜘蛛卵。"
 	directive = "Ensure the survival of the spider species and overtake whatever structure you find yourself in."
 	cluster_type = /obj/structure/spider/eggcluster/midwife
 	potentialspawns = list(

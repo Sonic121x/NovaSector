@@ -2,7 +2,7 @@
 	id = TECHWEB_NODE_MATERIAL_PROC
 	starting_node = TRUE
 	display_name = "Material Processing"
-	description = "Refinement and processing of alloys and ores to enhance their utility and value."
+	description = "合金和矿石的提炼与加工，以增强其实用性和价值。"
 	design_ids = list(
 		"pickaxe",
 		"shovel",
@@ -25,7 +25,7 @@
 /datum/techweb_node/mining
 	id = TECHWEB_NODE_MINING
 	display_name = "Mining Technology"
-	description = "Development of tools meant to optimize mining operations and resource extraction."
+	description = "旨在优化采矿作业和资源开采的工具开发。"
 	prereq_ids = list(TECHWEB_NODE_MATERIAL_PROC)
 	design_ids = list(
 		"cargoexpress",
@@ -53,7 +53,7 @@
 /datum/techweb_node/low_pressure_excavation
 	id = TECHWEB_NODE_LOW_PRESSURE_EXCAVATION
 	display_name = "Low-Pressure Excavation"
-	description = "Research of Proto-Kinetic Accelerators (PKAs), pneumatic guns renowned for their exceptional performance in low-pressure environments."
+	description = "对原动加速器（PKAs）的研究，这种气动枪以其在低压环境下的卓越性能而闻名。"
 	prereq_ids = list(TECHWEB_NODE_MINING, TECHWEB_NODE_GAS_COMPRESSION)
 	design_ids = list(
 		"damagemod",
@@ -72,7 +72,7 @@
 /datum/techweb_node/plasma_mining
 	id = TECHWEB_NODE_PLASMA_MINING
 	display_name = "Plasma Beam Mining"
-	description = "Engineers' plasma welders have proven highly effective in mining operations. This led to the development of a mech-mounted variant and an enhanced handheld cutter for miners."
+	description = "工程师的等离子焊枪在采矿作业中被证明非常有效。这促成了机甲搭载型号和增强型手持切割器的开发，供矿工使用。"
 	prereq_ids = list(TECHWEB_NODE_LOW_PRESSURE_EXCAVATION, TECHWEB_NODE_PLASMA_CONTROL)
 	design_ids = list(
 		"mech_plasma_cutter",
@@ -84,7 +84,7 @@
 /datum/techweb_node/bitrunning
 	id = TECHWEB_NODE_BITRUNNING
 	display_name = "Bitrunning Technology"
-	description = "Bluespace technology has led to the development of quantum-scale computing, which unlocks the means to materialize atomic structures while executing advanced programs."
+	description = "蓝空技术催生了量子级计算的发展，从而解锁了在执行高级程序时物质化原子结构的手段。"
 	prereq_ids = list(TECHWEB_NODE_GAMING, TECHWEB_NODE_APPLIED_BLUESPACE)
 	design_ids = list(
 		"byteforge",
@@ -97,7 +97,7 @@
 /datum/techweb_node/mining_adv
 	id = TECHWEB_NODE_MINING_ADV
 	display_name = "Advanced Mining Technology"
-	description = "High-level mining equipment, pushing the boundaries of efficiency and effectiveness in resource extraction."
+	description = "高级采矿设备，将资源开采的效率和效能推向极限。"
 	prereq_ids = list(TECHWEB_NODE_PLASMA_MINING)
 	design_ids = list(
 		"jackhammer",

@@ -4,8 +4,8 @@
 /* ----------------- Lore ----------------- */
 //Tape subtype for adding ruin lore -- the variables below are the ones you need to change
 /obj/item/tape/ruins
-	name = "tape"
-	desc = "A magnetic tape that can hold up to ten minutes of content on either side."
+	name = "磁带"
+	desc = "一盘每面最多可容纳十分钟内容的磁带。"
 	icon_state = "tape_white"   //Options are white, blue, red, yellow, purple, greyscale, or you can chose one randomly (see tape/ruins/random below)
 
 	max_capacity = 10 MINUTES
@@ -25,7 +25,7 @@
 
 /obj/item/tape/ruins/ghostship	//An early 'AI' that gained self-awareness, praising the Machine God. Yes, this whole map is a Hardspace Shipbreaker reference.
 	icon_state = "tape_blue"
-	desc = "The tape, aside from some grime, has a... binary label? \"01001101 01100001 01100011 01101000 01101001 01101110 01100101 01000111 01101111 01100100 01000011 01101111 01101101 01100101 01110011\""
+	desc = "这盘磁带除了有些污垢外，还有一个……二进制标签？\"01001101 01100001 01100011 01101000 01101001 01101110 01100101 01000111 01101111 01100100 01000011 01101111 01101101 01100101 01110011\""
 
 	used_capacity = 380
 	storedinfo = list(
@@ -57,8 +57,8 @@
 /* ----------------- Fluff/Decor ----------------- */
 /obj/structure/decorative/fluff/ai_node //Budding AI's way of interfacing with stuff it couldn't normally do so with. Needed to be placed by a willing human, before borgs were created. Used in any ruins regarding pre-bluespace, self-aware AIs
 	icon = 'modular_nova/modules/mapping/icons/obj/fluff.dmi'
-	name = "ai node"
-	desc = "A mysterious, blinking device, attached straight to a surface. Its function is beyond your comprehension."
+	name = "AI节点"
+	desc = "一个神秘的、闪烁着的装置，直接附着在表面上。它的功能超出了你的理解范围。"
 	icon_state = "ai_node"	//credit to @Hay#7679 on the SR Discord
 
 	max_integrity = 100
@@ -71,8 +71,8 @@
 		return
 	else if(. && !QDELETED(src))
 		visible_message(
-			span_notice("[src] sparks and explodes! You hear a faint, buzzy scream..."),
-			blind_message = span_hear("You hear a loud pop, followed by a faint, buzzy scream."),
+			span_notice("[src] 迸出火花并爆炸了！你听到一声微弱的、嗡嗡作响的尖叫……"),
+			blind_message = span_hear("你听到一声响亮的爆裂声，随后是一声微弱的、嗡嗡作响的尖叫。"),
 		)
 		playsound(src.loc, 'modular_nova/modules/mapping/sounds/MachineDeath.ogg', 75, TRUE)	//Credit to @yungfunnyman#3798 on the SR Discord
 		do_sparks(2, TRUE, src)
@@ -84,8 +84,8 @@
 //Just a re-done Tram Rail, but with all 4 directions instead of being stuck east/west - more varied placement, and a more vague name. Good for mapping support beams/antennae/etc
 /obj/structure/fluff/metalpole
 	icon = 'modular_nova/modules/mapping/icons/obj/fluff.dmi'
-	name = "metal pole"
-	desc = "A metal pole, the likes of which are commonly used as an antennae, structural support, or simply to maneuver in zero-g."
+	name = "金属杆"
+	desc = "一根金属杆，这类东西通常用作天线、结构支撑，或者仅仅是在零重力环境下移动身体。"
 	icon_state = "pole"
 	layer = ABOVE_OPEN_TURF_LAYER
 	plane = FLOOR_PLANE
@@ -101,16 +101,16 @@
 	icon_state = "poleend_right"
 
 /obj/structure/fluff/metalpole/anchor
-	name = "metal pole anchor"
+	name = "金属杆锚点"
 	icon_state = "poleanchor"
 
 /obj/structure/fluff/empty_sleeper/bloodied
-	name = "Occupied Sleeper"
-	desc = "A closed, occupied sleeper, bloodied handprints are seen on the inside, along with an odd, redish blur. It seems sealed shut."
+	name = "已占用的休眠舱"
+	desc = "一个关闭的、已占用的休眠舱，内部可见带血的手印，以及一团奇怪的、红色的模糊痕迹。它似乎被密封住了。"
 	icon_state = "sleeper-o"
 
 /obj/structure/curtain/cloth/prison
-	name = "Prisoner Privacy Curtains"
+	name = "囚犯隐私帘"
 	color = "#ACD1E9"
 
 /obj/structure/fluff/fake_firedoor
@@ -121,8 +121,8 @@
 	layer = /obj/machinery/door/firedoor::layer
 
 /obj/structure/fluff/standalone_wooden_post
-	name = "wooden post"
-	desc = "A sturdy space-wood post; upright, on it's lonesome. Ominous."
+	name = "木桩"
+	desc = "一根坚固的太空木柱；孤零零地矗立着。不祥之兆。"
 	icon = 'modular_nova/modules/mapping/icons/obj/fluff.dmi'
 	icon_state = "wooden_post"
 	can_buckle = TRUE

@@ -1,6 +1,6 @@
 /obj/machinery/computer/warrant
-	name = "security warrant console"
-	desc = "Used to view outstanding warrants."
+	name = "安保授权控制台"
+	desc = "用于查看未执行的逮捕令。"
 	icon_screen = "security"
 	icon_keyboard = "security_key"
 	circuit = /obj/item/circuitboard/computer/warrant
@@ -87,26 +87,26 @@
 		return FALSE
 
 	if(!isliving(user) || issilicon(user))
-		to_chat(user, span_warning("ACCESS DENIED"))
+		to_chat(user, span_warning("访问被拒绝"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	var/mob/living/player = user
 	var/obj/item/card/id/auth = player.get_idcard(TRUE)
 	if(!auth)
-		to_chat(user, span_warning("ACCESS DENIED: No ID card detected."))
+		to_chat(user, span_warning("访问被拒绝：未检测到ID卡。"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	var/datum/bank_account/account = auth.registered_account
 	if(!account?.account_holder || account.account_holder == "Unassigned")
-		to_chat(user, span_warning("ACCESS DENIED: No account linked to ID."))
+		to_chat(user, span_warning("访问被拒绝：ID未关联账户。"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	var/amount = params["amount"]
 	if(!amount || !isnum(amount) || amount <= 0 || amount > warrant.fine || !account.adjust_money(-amount, "Paid fine for [target.name]"))
-		to_chat(user, span_warning("ACCESS DENIED: Invalid amount."))
+		to_chat(user, span_warning("访问被拒绝：金额无效。"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
@@ -148,7 +148,7 @@
 /// Prints a bounty for a listed fine.
 /obj/machinery/computer/warrant/proc/print_bounty(mob/user, list/params)
 	if(printing)
-		balloon_alert(user, "printer busy")
+		balloon_alert(user, "打印机忙")
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
@@ -169,12 +169,12 @@
 	bounty_text += "<center><b>FINE:</b> [warrant.fine] [MONEY_NAME]</center>"
 
 	printing = TRUE
-	balloon_alert(user, "printing")
+	balloon_alert(user, "打印中")
 	playsound(src, 'sound/machines/printer.ogg', 100, TRUE)
 
 	var/obj/item/paper/bounty = new(null)
-	bounty.name = "Bounty for [target.name]"
-	bounty.desc = "A [warrant.fine][MONEY_SYMBOL] bounty for [target.name]."
+	bounty.name = "[target.name]的悬赏令"
+	bounty.desc = "一份针对[target.name]的[warrant.fine][MONEY_SYMBOL]悬赏。"
 	bounty.add_raw_text(bounty_text)
 	bounty.update_icon()
 

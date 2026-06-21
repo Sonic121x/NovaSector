@@ -1,7 +1,7 @@
 
 /mob/living/basic/snake
-	name = "snake"
-	desc = "A slithery snake. These legless reptiles are the bane of mice and adventurers alike."
+	name = "蛇"
+	desc = "一条滑溜溜的蛇。这些无腿的爬行动物是老鼠和冒险者们的克星。"
 	icon_state = "snake"
 	icon_living = "snake"
 	icon_dead = "snake_dead"
@@ -70,7 +70,7 @@
 	. = ..()
 	if(!.)
 		return
-	visible_message("[src] hisses happily as it seems to bond with [new_friend].")
+	visible_message("[src]高兴地嘶嘶叫着，似乎与[new_friend]建立了联系。")
 
 /// Snakes are primarily concerned with getting those tasty, tasty mice, but aren't afraid to strike back at those who attack them
 /datum/ai_controller/basic_controller/snake

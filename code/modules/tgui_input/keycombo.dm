@@ -10,7 +10,7 @@
  * * title - The title of the number input modal, shown on the top of the TGUI window.
  * * default - The default (or current) key, shown as a placeholder.
  */
-/proc/tgui_input_keycombo(mob/user = usr, message, title = "Key Input", default = 0, timeout = 0, ui_state = GLOB.always_state)
+/proc/tgui_input_keycombo(mob/user = usr, message, title = "按键输入", default = 0, timeout = 0, ui_state = GLOB.always_state)
 	if (!istype(user))
 		if (istype(user, /client))
 			var/client/client = user
@@ -23,7 +23,7 @@
 
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
-		var/input_key = input(user, message, title + "(Modifiers are TGUI only, sorry!)", default) as null|text
+		var/input_key = input(user, message, title + "(修饰键仅TGUI支持，抱歉！)", default) as null|text
 		return input_key[1]
 	var/datum/tgui_input_keycombo/key_input = new(user, message, title, default, timeout, ui_state)
 	key_input.ui_interact(user)

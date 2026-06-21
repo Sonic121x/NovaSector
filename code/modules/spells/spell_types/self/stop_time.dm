@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/timestop
-	name = "Stop Time"
+	name = "时停"
 	desc = "This spell stops time for everyone except for you, \
 		allowing you to move freely while your enemies and even projectiles are frozen."
 	button_icon_state = "time"

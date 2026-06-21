@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(polling)
-	name = "Polling"
+	name = "轮询"
 	ss_flags = SS_BACKGROUND | SS_NO_INIT
 	wait = 1 SECONDS
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(polling)
 	if(role && !role_name_text)
 		role_name_text = role
 	if(role_name_text && !question)
-		question = "Do you want to play as [span_notice(role_name_text)]?"
+		question = "你想扮演[span_notice(role_name_text)]吗？"
 	if(!question)
 		question = "Do you want to play as a special role?"
 	log_ghost_poll("Candidate poll started.", data = list(
@@ -291,7 +291,7 @@ SUBSYSTEM_DEF(polling)
 			return FALSE
 	// NOVA EDIT ADDITION BEGIN
 	if(is_banned_from(potential_candidate.ckey, BAN_GHOST_TAKEOVER) || is_banned_from(potential_candidate.ckey, BAN_ANTAGONIST))
-		to_chat(potential_candidate, "There was a ghost prompt for: [role], unfortunately you are banned from ghost takeovers.")
+		to_chat(potential_candidate, "有一个幽灵提示：[role]，但你不幸被禁止进行幽灵接管。")
 		return FALSE
 	// NOVA EDIT ADDITION END
 	if(role && potential_candidate.client)

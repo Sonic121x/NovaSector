@@ -1,6 +1,6 @@
 /obj/structure/frame/machine
-	name = "machine frame"
-	desc = "The standard frame for most station appliances. Its appearance and function is controlled by the inserted board."
+	name = "机器框架"
+	desc = "这是大多数空间站设备的标准框架。其外观和功能由插入的电路板控制。"
 	board_type = /obj/item/circuitboard/machine
 	/// List of all compnents inside the frame contributing to its construction
 	var/list/components
@@ -84,16 +84,16 @@
 		. += span_notice("It can be [EXAMINE_HINT("anchored")] [anchored ? "loose." : "into place."]")
 	if(state == FRAME_STATE_EMPTY)
 		if(!anchored)
-			. += span_notice("It can be [EXAMINE_HINT("welded")] or [EXAMINE_HINT("screwed")] apart.")
-		. += span_info("It should be [EXAMINE_HINT("wired")] with 5 cables.")
+			. += span_notice("它可以被[EXAMINE_HINT("welded")]或[EXAMINE_HINT("screwed")]拆开。")
+		. += span_info("它需要用5根电缆[EXAMINE_HINT("wired")]。")
 		return
 	if(state == FRAME_STATE_WIRED)
-		. += span_notice("Its wires can be [EXAMINE_HINT("cut")].")
+		. += span_notice("它的电线可以被[EXAMINE_HINT("cut")]。")
 	if(state != FRAME_STATE_BOARD_INSTALLED)
-		. += span_warning("It's missing a circuit board!")
+		. += span_warning("它缺少一块电路板！")
 		return
 	if(!length(req_components))
-		. += span_info("It requires no components.")
+		. += span_info("它不需要任何组件。")
 		return
 
 	var/list/nice_list = list()
@@ -101,11 +101,11 @@
 		if(!req_components[component])
 			continue
 		nice_list += list("[req_components[component]] [req_component_names[component]]\s")
-	. += span_info("It requires [english_list(nice_list, "no more components")].")
+	. += span_info("它需要[english_list(nice_list, "no more components")]。")
 
-	. += span_notice("All the components can be [EXAMINE_HINT("pried")] out.")
+	. += span_notice("所有组件都可以被[EXAMINE_HINT("pried")]出来。")
 	if(!length(nice_list))
-		. += span_info("The frame should be [EXAMINE_HINT("screwed")] to complete it.")
+		. += span_info("框架需要被[EXAMINE_HINT("screwed")]才能完成。")
 
 /obj/structure/frame/machine/dump_contents()
 	var/atom/drop_loc = drop_location()
@@ -139,13 +139,13 @@
 
 /obj/structure/frame/machine/install_board(mob/living/user, obj/item/circuitboard/machine/board, by_hand = TRUE)
 	if(state == FRAME_STATE_EMPTY)
-		balloon_alert(user, "needs wiring!")
+		balloon_alert(user, "需要接线！")
 		return FALSE
 	if(state == FRAME_STATE_BOARD_INSTALLED)
-		balloon_alert(user, "circuit already installed!")
+		balloon_alert(user, "电路板已安装！")
 		return FALSE
 	if(!anchored && istype(board) && board.needs_anchored)
-		balloon_alert(user, "frame must be anchored!")
+		balloon_alert(user, "框架必须被固定！")
 		return FALSE
 
 	return ..()
@@ -242,7 +242,7 @@
 					continue
 				req_components[path] -= used_amt
 				// No balloon alert here so they can look back and see what they added
-				to_chat(user, span_notice("You add [used_amt] [stack_name] to [src]."))
+				to_chat(user, span_notice("你将[used_amt]个[stack_name]添加到[src]。"))
 				play_sound = TRUE
 			else if(replacer.atom_storage.attempt_remove(part, src))
 				var/stock_part_datum = GLOB.stock_part_datums_per_object[part.type]
@@ -254,7 +254,7 @@
 					part.forceMove(src)
 				req_components[path]--
 				// No balloon alert here so they can look back and see what they added
-				to_chat(user, span_notice("You add [part] to [src]."))
+				to_chat(user, span_notice("你将[part]添加到[src]。"))
 				play_sound = TRUE
 
 	if(play_sound && !no_sound)
@@ -268,7 +268,7 @@
 		return .
 
 	if(circuit?.needs_anchored)
-		balloon_alert(user, "frame must be anchored!")
+		balloon_alert(user, "框架必须被固定！")
 		return FAILED_UNFASTEN
 
 	return .
@@ -290,7 +290,7 @@
 	if(state != FRAME_STATE_WIRED)
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "removing cables...")
+	balloon_alert(user, "正在移除电缆...")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 50) || state != FRAME_STATE_WIRED)
 		return ITEM_INTERACT_BLOCKING
 
@@ -308,7 +308,7 @@
 	tool.play_tool_sound(src)
 	var/list/leftover_components = components.Copy() - circuit
 	dump_contents()
-	balloon_alert(user, "circuit board[length(leftover_components) ? " and components" : ""] removed")
+	balloon_alert(user, "电路板[length(leftover_components) ? " and components" : ""]已移除")
 	// Circuit exited handles updating state
 	return ITEM_INTERACT_SUCCESS
 
@@ -351,7 +351,7 @@
 			if(used_amt && S.use(used_amt))
 				req_components[stock_part_path] -= used_amt
 				// No balloon alert here so they can look back and see what they added
-				to_chat(user, span_notice("You add [tool] to [src]."))
+				to_chat(user, span_notice("你将[tool]添加到[src]。"))
 			return
 
 		// We might end up qdel'ing the part if it's a stock part datum.
@@ -380,11 +380,11 @@
 			break
 
 		// No balloon alert here so they can look back and see what they added
-		to_chat(user, span_notice("You add [part_name] to [src]."))
+		to_chat(user, span_notice("你将[part_name]添加到[src]。"))
 		req_components[stock_part_base]--
 		return TRUE
 
-	balloon_alert(user, "can't add that!")
+	balloon_alert(user, "无法添加那个！")
 	return FALSE
 
 /obj/structure/frame/machine/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -398,7 +398,7 @@
 				if(!tool.tool_start_check(user, amount = 5))
 					return ITEM_INTERACT_BLOCKING
 
-				balloon_alert(user, "adding cables...")
+				balloon_alert(user, "正在添加电缆...")
 				if(!tool.use_tool(src, user, 2 SECONDS, volume = 50, amount = 5) || state != FRAME_STATE_EMPTY)
 					return ITEM_INTERACT_BLOCKING
 
@@ -438,11 +438,11 @@
  */
 /obj/structure/frame/machine/finalize_construction(mob/living/user, obj/item/tool)
 	if(locate(circuit.build_path) in loc)
-		balloon_alert(user, "identical machine present!")
+		balloon_alert(user, "已有相同机器！")
 		return FALSE
 	for(var/component in req_components)
 		if(req_components[component] > 0)
-			user.balloon_alert(user, "missing components!")
+			user.balloon_alert(user, "缺少组件！")
 			return FALSE
 
 	if(!circuit.completion_requirements(src, user))

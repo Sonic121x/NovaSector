@@ -1,6 +1,6 @@
 /obj/item/clothing/head/domina_cap
-	name = "dominant cap"
-	desc = "For special types of inspections."
+	name = "支配者帽"
+	desc = "用于特殊类型的检查。"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_hats.dmi'
 	greyscale_colors = "#383840#FFFFFF"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'

@@ -1,6 +1,6 @@
 /obj/item/organ/pod_hair
-	name = "podperson hair"
-	desc = "Base for many-o-salads."
+	name = "植生人头发"
+	desc = "许多沙拉的基础。"
 
 	mutantpart_key = FEATURE_POD_HAIR
 

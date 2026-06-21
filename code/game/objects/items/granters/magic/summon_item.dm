@@ -2,7 +2,7 @@
 	granted_action = /datum/action/cooldown/spell/summonitem
 	action_name = "instant summons"
 	icon_state ="booksummons"
-	desc = "This book is bright and garish, very hard to miss."
+	desc = "这本书色彩鲜艳花哨，非常显眼。"
 	remarks = list(
 		"I can't look away from the book!",
 		"The words seem to pop around the page...",
@@ -15,5 +15,5 @@
 
 /obj/item/book/granter/action/spell/summonitem/recoil(mob/living/user)
 	. = ..()
-	to_chat(user,span_warning("[src] suddenly vanishes!"))
+	to_chat(user,span_warning("[src]突然消失了！"))
 	qdel(src)

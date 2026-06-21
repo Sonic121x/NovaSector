@@ -1,6 +1,6 @@
 /obj/item/organ/fluff
-	name = "fluff"
-	desc = "Real fluffy."
+	name = "绒毛"
+	desc = "真的很蓬松。"
 
 	mutantpart_key = FEATURE_FLUFF
 

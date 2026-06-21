@@ -1,7 +1,7 @@
 /datum/personality/introvert
 	savefile_key = "introvert"
-	name = "Introverted"
-	desc = "I prefer to be alone, reading or painting in the library."
+	name = "内向型"
+	desc = "我更喜欢独处，在图书馆里读书或画画。"
 	pos_gameplay_desc = "Likes being in the library"
 	// neg_gameplay_desc = "Dislikes large groups"
 	personality_trait = TRAIT_INTROVERT
@@ -9,8 +9,8 @@
 
 /datum/personality/extrovert
 	savefile_key = "extrovert"
-	name = "Extroverted"
-	desc = "I prefer to be surrounded by people, having a drink at the Bar."
+	name = "外向型"
+	desc = "我更喜欢被人群包围，在酒吧喝一杯。"
 	pos_gameplay_desc = "Likes being in the bar"
 	// neg_gameplay_desc = "Dislikes being alone"
 	personality_trait = TRAIT_EXTROVERT
@@ -18,8 +18,8 @@
 
 /datum/personality/paranoid
 	savefile_key = "paranoid"
-	name = "Paranoid"
-	desc = "Everyone and everything is out to get me! This place is a deathtrap!"
+	name = "偏执型"
+	desc = "每个人和每件事都想害我！这地方就是个死亡陷阱！"
 	pos_gameplay_desc = "Likes being alone or in moderately-sized groups"
 	neg_gameplay_desc = "Stressed when with one other person, or in large groups"
 	processes = TRUE

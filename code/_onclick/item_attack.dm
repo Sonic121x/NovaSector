@@ -236,7 +236,7 @@
 
 	var/final_force = CALCULATE_FORCE(src, attack_modifiers)
 	if(damtype != STAMINA && final_force && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to harm other living beings!"))
+		to_chat(user, span_warning("你不想伤害其他生物！"))
 		return FALSE
 
 	if(!LAZYACCESS(attack_modifiers, SILENCE_HITSOUND))
@@ -332,8 +332,8 @@
 	var/armor_block = min(run_armor_check(
 			def_zone = targeting,
 			attack_flag = MELEE,
-			absorb_text = span_notice("Your armor has protected your [targeting_human_readable]!"),
-			soften_text = span_warning("Your armor has softened a hit to your [targeting_human_readable]!"),
+			absorb_text = span_notice("你的护甲保护了你的[targeting_human_readable]！"),
+			soften_text = span_warning("你的护甲减轻了对你的[targeting_human_readable]的打击！"),
 			armour_penetration = attacking_item.armour_penetration,
 			weak_against_armour = attacking_item.weak_against_armour,
 		), ARMOR_MAX_BLOCK)
@@ -430,8 +430,8 @@
 					adjust_organ_loss(ORGAN_SLOT_BRAIN, 20)
 					if(stat == CONSCIOUS)
 						visible_message(
-							span_danger("[src] is knocked senseless!"),
-							span_userdanger("You're knocked senseless!"),
+							span_danger("[src]被打得失去知觉了！"),
+							span_userdanger("你被打得失去知觉了！"),
 						)
 						set_confusion_if_lower(20 SECONDS)
 						adjust_eye_blur(20 SECONDS)
@@ -453,8 +453,8 @@
 			if(stat == CONSCIOUS && !attacking_item.get_sharpness() && !HAS_TRAIT(src, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED) && attacking_item.damtype == BRUTE)
 				if(prob(damage_done))
 					visible_message(
-						span_danger("[src] is knocked down!"),
-						span_userdanger("You're knocked down!"),
+						span_danger("[src]被击倒了！"),
+						span_userdanger("你被击倒了！"),
 					)
 					apply_effect(6 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 
@@ -516,7 +516,7 @@
 	visible_message(span_danger("[attack_message_spectator]"),\
 		span_userdanger("[attack_message_victim]"), null, COMBAT_MESSAGE_RANGE, user)
 	if(is_blind())
-		to_chat(src, span_danger("Someone hits you[message_hit_area]!"))
+		to_chat(src, span_danger("有人击打了你[message_hit_area]！"))
 	to_chat(user, span_danger("[attack_message_attacker]"))
 	return 1
 

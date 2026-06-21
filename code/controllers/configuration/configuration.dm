@@ -1,5 +1,5 @@
 /datum/controller/configuration
-	name = "Configuration"
+	name = "配置"
 
 	var/directory = "config"
 
@@ -77,7 +77,7 @@
 
 /datum/controller/configuration/proc/PreConfigReload()
 	if(reload_in_progress)
-		to_chat(usr, span_warning("Another user is already reloading the config!"))
+		to_chat(usr, span_warning("已有其他用户正在重新加载配置！"))
 		return FALSE
 
 	reload_in_progress = TRUE

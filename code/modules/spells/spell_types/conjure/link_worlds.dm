@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure/link_worlds
-	name = "Link Worlds"
-	desc = "A whole new dimension for you to play with! They won't be happy about it, though."
+	name = "链接世界"
+	desc = "这将为你开辟一个全新的游戏空间！不过他们肯定会不高兴的。"
 	sound = 'sound/items/weapons/marauder.ogg'
 	button_icon = 'icons/mob/simple/lavaland/nest.dmi'
 	button_icon_state = "nether"

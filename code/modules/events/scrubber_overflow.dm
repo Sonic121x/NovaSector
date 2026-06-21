@@ -1,11 +1,11 @@
 /datum/round_event_control/scrubber_overflow
-	name = "Scrubber Overflow: Normal"
+	name = "洗涤器溢出：正常"
 	typepath = /datum/round_event/scrubber_overflow
 	weight = 10
 	max_occurrences = 3
 	min_players = 10
 	category = EVENT_CATEGORY_JANITORIAL
-	description = "The scrubbers release a tide of mostly harmless froth."
+	description = "洗涤器释放出一股基本无害的泡沫潮。"
 	admin_setup = list(/datum/event_admin_setup/listed_options/scrubber_overflow)
 
 /datum/round_event/scrubber_overflow
@@ -62,10 +62,10 @@
 	if(!forced_reagent_type)
 		//nothing out of the ordinary, so default announcement
 		return ..()
-	deadchat_broadcast(" has just been[random ? " randomly" : ""] triggered[cause ? " by [cause]" : ""]!", "<b>Scrubber Overflow: [initial(forced_reagent_type.name)]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("刚刚被[random ? " randomly" : ""]触发[cause ? " by [cause]" : ""]！", "<b>洗涤塔溢出：[initial(forced_reagent_type.name)]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
 
 /datum/round_event/scrubber_overflow/announce(fake)
-	priority_announce("The scrubbers network is experiencing a backpressure surge. Some ejection of contents may occur.", "[command_name()] Engineering Division")
+	priority_announce("洗涤器网络正经历背压激增。可能会发生内容物喷出。", "[command_name()] 工程部")
 
 /datum/round_event/scrubber_overflow/setup()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/temp_vent as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/atmospherics/components/unary/vent_scrubber))
@@ -123,13 +123,13 @@
 		CHECK_TICK
 
 /datum/round_event_control/scrubber_overflow/threatening
-	name = "Scrubber Overflow: Threatening"
+	name = "洗涤器溢出：威胁性"
 	typepath = /datum/round_event/scrubber_overflow/threatening
 	weight = 4
 	min_players = 25
 	max_occurrences = 1
 	earliest_start = 35 MINUTES
-	description = "The scrubbers release a tide of moderately harmless froth."
+	description = "洗涤器释放出一股基本无害的泡沫潮。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 4
 
@@ -138,13 +138,13 @@
 	reagents_amount = 100
 
 /datum/round_event_control/scrubber_overflow/catastrophic
-	name = "Scrubber Overflow: Catastrophic"
+	name = "洗涤器溢出：灾难性"
 	typepath = /datum/round_event/scrubber_overflow/catastrophic
 	weight = 2
 	min_players = 35
 	max_occurrences = 1
 	earliest_start = 45 MINUTES
-	description = "The scrubbers release a tide of mildly harmless froth."
+	description = "洗涤器释放出一股轻微无害的泡沫潮。"
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 6
 
@@ -153,11 +153,11 @@
 	reagents_amount = 150
 
 /datum/round_event_control/scrubber_overflow/every_vent
-	name = "Scrubber Overflow: Every Vent"
+	name = "洗涤塔溢出：所有通风口"
 	typepath = /datum/round_event/scrubber_overflow/every_vent
 	weight = 0
 	max_occurrences = 0
-	description = "The scrubbers release a tide of mostly harmless froth, but every scrubber is affected."
+	description = "洗涤器释放出一股基本无害的泡沫潮，但所有洗涤器都受到影响。"
 
 /datum/round_event/scrubber_overflow/every_vent
 	overflow_probability = 100

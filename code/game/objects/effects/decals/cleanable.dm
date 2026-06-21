@@ -100,14 +100,14 @@
 		return NONE
 
 	if (!lazy_init_reagents()?.total_volume)
-		to_chat(user, span_notice("[src] isn't thick enough to scoop up!"))
+		to_chat(user, span_notice("[src]不够厚实，无法舀起来！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!reagents.trans_to(tool, reagents.total_volume, transferred_by = user))
-		to_chat(user, span_warning("[tool] is full!"))
+		to_chat(user, span_warning("[tool]已经满了！"))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You scoop up [reagents.total_volume > 0 ? "some of " : ""]\the [src] into \the [tool]!"))
+	to_chat(user, span_notice("你将 [reagents.total_volume > 0 ? "some of " : ""]\the [src] 舀进了 \the [tool]！"))
 	if (!reagents.total_volume) //scooped up all of it
 		qdel(src)
 	return ITEM_INTERACT_SUCCESS

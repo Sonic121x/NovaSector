@@ -1,7 +1,7 @@
 //after a delay, creates a rune below you. for constructs creating runes.
 /datum/action/innate/cult/create_rune
-	name = "Summon Rune"
-	desc = "Summons a rune"
+	name = "召唤符文"
+	desc = "召唤一道符文"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
 
@@ -25,13 +25,13 @@
 	if(!T)
 		return FALSE
 	if(isspaceturf(T))
-		to_chat(owner, span_warning("You cannot scribe runes in space!"))
+		to_chat(owner, span_warning("你无法在太空中刻写符文！"))
 		return FALSE
 	if(locate(/obj/effect/rune) in T)
-		to_chat(owner, span_cult("There is already a rune here."))
+		to_chat(owner, span_cult("这里已经有一个符文了。"))
 		return FALSE
 	if(!is_station_level(T.z) && !is_mining_level(T.z))
-		to_chat(owner, span_warning("The veil is not weak enough here."))
+		to_chat(owner, span_warning("此处的帷幕还不够薄弱。"))
 		return FALSE
 	return TRUE
 
@@ -41,7 +41,7 @@
 	if(turf_check(T))
 		var/chosen_keyword
 		if(initial(rune_type.req_keyword))
-			chosen_keyword = tgui_input_text(owner, "Enter a keyword for the new rune.", "Words of Power", max_length = MAX_NAME_LEN)
+			chosen_keyword = tgui_input_text(owner, "为新符文输入一个关键词。", "力量之言", max_length = MAX_NAME_LEN)
 			if(!chosen_keyword || !turf_check(T))
 				return
 	//the outer ring is always the same across all runes
@@ -83,8 +83,8 @@
 
 //teleport rune
 /datum/action/innate/cult/create_rune/tele
-	name = "Summon Teleport Rune"
-	desc = "Summons a teleport rune to your location, as though it has been there all along..."
+	name = "召唤传送符文"
+	desc = "召唤一道传送符文到你的未知，就像它一直都在那一样..."
 	button_icon_state = "telerune"
 	rune_type = /obj/effect/rune/teleport
 	rune_word_type = /obj/effect/temp_visual/cult/rune_spawn/rune2
@@ -93,8 +93,8 @@
 	rune_color = RUNE_COLOR_TELEPORT
 
 /datum/action/innate/cult/create_rune/wall
-	name = "Summon Barrier Rune"
-	desc = "Summons an active barrier rune to your location, as though it has been there all along..."
+	name = "召唤屏障符文"
+	desc = "召唤一道激活的屏障符文到你的未知，就像它一直都在那一样..."
 	button_icon_state = "barrier"
 	rune_type = /obj/effect/rune/wall
 	rune_word_type = /obj/effect/temp_visual/cult/rune_spawn/rune4
@@ -103,8 +103,8 @@
 	rune_color = RUNE_COLOR_DARKRED
 
 /datum/action/innate/cult/create_rune/revive
-	name = "Summon Revive Rune"
-	desc = "Summons a revive rune to your location, as though it has been there all along..."
+	name = "召唤复活符文"
+	desc = "召唤一道复活符文到你的未知，就像它一直都在那一样..."
 	button_icon_state = "revive"
 	rune_type = /obj/effect/rune/raise_dead
 	rune_word_type = /obj/effect/temp_visual/cult/rune_spawn/rune1

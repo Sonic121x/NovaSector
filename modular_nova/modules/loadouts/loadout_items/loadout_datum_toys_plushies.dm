@@ -6,63 +6,63 @@
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_NAMING
 
 /datum/loadout_item/toys/plush/bee
-	name = "Bee Plushie"
+	name = "蜜蜂玩偶"
 	item_path = /obj/item/toy/plush/beeplushie
 
 /datum/loadout_item/toys/plush/carp
-	name = "Carp Plushie"
+	name = "鲤鱼玩偶"
 	item_path = /obj/item/toy/plush/carpplushie
 
 /datum/loadout_item/toys/plush/shark
-	name = "Shark Plushie"
+	name = "鲨鱼玩偶"
 	item_path = /obj/item/toy/plush/shark
 
 /datum/loadout_item/toys/plush/lizard_greyscale
-	name = "Greyscale Lizard Plushie"
+	name = "灰阶蜥蜴玩偶"
 	item_path = /obj/item/toy/plush/lizard_plushie/greyscale
 
 /datum/loadout_item/toys/plush/moth
-	name = "Moth Plushie"
+	name = "飞蛾玩偶"
 	item_path = /obj/item/toy/plush/moth
 
 /datum/loadout_item/toys/plush/narsie
-	name = "Nar'sie Plushie"
+	name = "纳尔西玩偶"
 	item_path = /obj/item/toy/plush/narplush
 
 /datum/loadout_item/toys/plush/nukie
-	name = "Nukie Plushie"
+	name = "核弹兵玩偶"
 	item_path = /obj/item/toy/plush/nukeplushie
 
 /datum/loadout_item/toys/plush/peacekeeper
-	name = "Peacekeeper Plushie"
+	name = "维和者玩偶"
 	item_path = /obj/item/toy/plush/pkplush
 
 /datum/loadout_item/toys/plush/plasmaman
-	name = "Plasmaman Plushie"
+	name = "等离子人玩偶"
 	item_path = /obj/item/toy/plush/plasmamanplushie
 
 /datum/loadout_item/toys/plush/ratvar
-	name = "Ratvar Plushie"
+	name = "拉特瓦尔玩偶"
 	item_path = /obj/item/toy/plush/ratplush
 
 /datum/loadout_item/toys/plush/rouny
-	name = "Rouny Plushie"
+	name = "鲁尼玩偶"
 	item_path = /obj/item/toy/plush/rouny
 
 /datum/loadout_item/toys/plush/snake
-	name = "Snake Plushie"
+	name = "蛇玩偶"
 	item_path = /obj/item/toy/plush/snakeplushie
 
 /datum/loadout_item/toys/plush/slime
-	name = "Slime Plushie"
+	name = "史莱姆玩偶"
 	item_path = /obj/item/toy/plush/slimeplushie
 
 /datum/loadout_item/toys/plush/bubble
-	name = "Bubblegum Plushie"
+	name = "泡泡糖玩偶"
 	item_path = /obj/item/toy/plush/bubbleplush
 
 /datum/loadout_item/toys/plush/human
-	name = "Human Plushie"
+	name = "人类玩偶"
 	item_path = /obj/item/toy/plush/human
 
 /*
@@ -70,75 +70,75 @@
 */
 
 /datum/loadout_item/toys/plush/sechound
-	name = "Sechound Plushie"
+	name = "安保犬玩偶"
 	item_path = /obj/item/toy/plush/nova/sechound
 
 /datum/loadout_item/toys/plush/medihound
-	name = "Medihound Plushie"
+	name = "医疗犬玩偶"
 	item_path = /obj/item/toy/plush/nova/medihound
 
 /datum/loadout_item/toys/plush/engihound
-	name = "Engihound Plushie"
+	name = "工程犬玩偶"
 	item_path = /obj/item/toy/plush/nova/engihound
 
 /datum/loadout_item/toys/plush/scrubpuppy
-	name = "Scrubpuppy Plushie"
+	name = "清洁犬玩偶"
 	item_path = /obj/item/toy/plush/nova/scrubpuppy
 
 /datum/loadout_item/toys/plush/meddrake
-	name = "MediDrake Plushie"
+	name = "医疗龙玩偶"
 	item_path = /obj/item/toy/plush/nova/meddrake
 
 /datum/loadout_item/toys/plush/secdrake
-	name = "SecDrake Plushie"
+	name = "安保龙玩偶"
 	item_path = /obj/item/toy/plush/nova/secdrake
 
 /datum/loadout_item/toys/plush/borbplushie
-	name = "Borb Plushie"
+	name = "波波鸟玩偶"
 	item_path = /obj/item/toy/plush/nova/borbplushie
 
 /datum/loadout_item/toys/plush/deer
-	name = "Deer Plushie"
+	name = "鹿玩偶"
 	item_path = /obj/item/toy/plush/nova/deer
 
 /datum/loadout_item/toys/plush/fox
-	name = "Fox Plushie"
+	name = "狐狸玩偶"
 	item_path = /obj/item/toy/plush/nova/fox
 
 /datum/loadout_item/toys/plush/ianbastardman
-	name = "Ian Plushie"
+	name = "伊恩玩偶"
 	item_path = /obj/item/toy/plush/nova/ian
 
 /datum/loadout_item/toys/plush/corgiman
-	name = "Corgi Plushie"
+	name = "柯基毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/ian/small
 
 /datum/loadout_item/toys/plush/corgiwoman
-	name = "Girly Corgi Plushie"
+	name = "少女风柯基毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/ian/lisa
 
 /datum/loadout_item/toys/plush/cat
-	name = "Cat Plushie"
+	name = "猫咪毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/cat
 
 /datum/loadout_item/toys/plush/tuxcat
-	name = "Tux Cat Plushie"
+	name = "燕尾服猫毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/cat/tux
 
 /datum/loadout_item/toys/plush/whitecat
-	name = "White Cat Plushie"
+	name = "白猫毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/cat/white
 
 /datum/loadout_item/toys/plush/fkinbnuuy
-	name = "Heckin Bnuuy"
+	name = "超萌兔兔"
 	item_path = /obj/item/toy/plush/nova/fkinbnuuy
 
 /datum/loadout_item/toys/plush/funniyellowrock
-	name = "Squishy Yellow Rock"
+	name = "软软黄石头"
 	item_path = /obj/item/toy/plush/nova/funniyellowrock
 
 /datum/loadout_item/toys/plush/expie
-	name = "Experiment Plushie"
+	name = "实验体毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/expie
 
 /*
@@ -146,147 +146,147 @@
 */
 
 /datum/loadout_item/toys/plush/fermis
-	name = "Medcat Plushie"
+	name = "医疗猫毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/fermis
 
 /datum/loadout_item/toys/plush/chen
-	name = "Securicat Plushie"
+	name = "安保猫毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/fermis/chen
 
 /datum/loadout_item/toys/plush/duffmoff
-	name = "Suspicious Moth Plushie"
+	name = "可疑飞蛾毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/duffmoth
 
 /datum/loadout_item/toys/plush/musicalduffy
-	name = "Suspicious Musical moth"
+	name = "可疑音乐飞蛾"
 	item_path = /obj/item/instrument/musicalduffy
 
 /datum/loadout_item/toys/plush/leaplush
-	name = "Suspicious Deer Plushie"
+	name = "可疑鹿毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/leaplush
 
 /datum/loadout_item/toys/plush/sarmie
-	name = "Cosplayer Plushie"
+	name = "角色扮演者毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/sarmieplush
 
 /datum/loadout_item/toys/plush/sharknet
-	name = "Gluttonous Shark Plushie"
+	name = "贪吃鲨鱼毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/sharknet
 
 /datum/loadout_item/toys/plush/pintaplush
-	name = "Smaller Deer Plushie"
+	name = "小号鹿毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/pintaplush
 
 /datum/loadout_item/toys/plush/szaplush
-	name = "Suspicious Spider Plushie"
+	name = "可疑蜘蛛毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/szaplush
 
 /datum/loadout_item/toys/plush/riffplush
-	name = "Valid Plushie"
+	name = "有效毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/riffplush
 
 /datum/loadout_item/toys/plush/seaduplush
-	name = "Sneed Plushie"
+	name = "斯尼德毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/seaduplush
 
 /datum/loadout_item/toys/plush/lizzyplush
-	name = "Odd Yoga lizzy Plushie"
+	name = "古怪瑜伽蜥蜴毛绒玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/lizzyplush
 
 /datum/loadout_item/toys/plush/mechanic_fox
-	name = "Mechanist Fox Plushie"
+	name = "机械师狐狸玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/mechanic_fox
 
 /datum/loadout_item/toys/plush/tribal_salamander
-	name = "Tribal Salamander Plushie"
+	name = "部落蝾螈玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/tribal_salamander
 
 /datum/loadout_item/toys/plush/commanding_teshari
-	name = "Commanding Teshari Plushy"
+	name = "威严特夏利玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/commanding_teshari
 
 /datum/loadout_item/toys/plush/snow_owl
-	name = "Snowy Owl Plush"
+	name = "雪鸮玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/snow_owl
 
 /datum/loadout_item/toys/plush/breakdancing_bird
-	name = "Breakdancing Bird Plushie"
+	name = "霹雳舞鸟玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/breakdancing_bird
 
 /datum/loadout_item/toys/plush/skreking_vox
-	name = "Skreking Vox Plushie"
+	name = "尖啸沃克斯玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/skreking_vox
 
 /datum/loadout_item/toys/plush/engi_snek
-	name = "Engineering Snek Plushie"
+	name = "工程蛇玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/engi_snek
 
 /datum/loadout_item/toys/plush/glitch_synth
-	name = "Glitching Synthetic Plushie"
+	name = "故障合成人玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/glitch_synth
 
 /datum/loadout_item/toys/plush/boom_bird
-	name = "Boom Bird Plushie"
+	name = "爆破鸟玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/boom_bird
 
 /datum/loadout_item/toys/plush/blue_cat
-	name = "Blue Cat Plushie"
+	name = "蓝猫玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/blue_cat
 
 /datum/loadout_item/toys/plush/igneous_synth
-	name = "Igneous Synth Plushie"
+	name = "火成合成人玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/igneous_synth
 
 /datum/loadout_item/toys/plush/edgy_bird
-	name = "Edgy Bird Plushie"
+	name = "暗黑鸟玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/edgy_bird
 
 /datum/loadout_item/toys/plush/xixi
-	name = "Familiar Harpy Plushie"
+	name = "熟悉的鹰身女妖玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/xixi
 
 /datum/loadout_item/toys/plush/rubi_plush
-	name = "Huggable Bee Plushie"
+	name = "可拥抱蜜蜂玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/rubi
 
 /datum/loadout_item/toys/plush/derg_plushie
-	name = "Wingless Dragon Plushie"
+	name = "无翼龙玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/derg_plushie
 
 /datum/loadout_item/toys/plush/tracy
-	name = "Creature Plushie"
+	name = "生物玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/tracy
 
 /datum/loadout_item/toys/plush/adventurous_synth
-	name = "Adventurous Synth Plushie"
+	name = "冒险合成人玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/plushie_synthia
 
 /datum/loadout_item/toys/plush/jecca
-	name = "Sexy Snoodle Plushie"
+	name = "性感斯努德尔玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/jecca
 
 /datum/loadout_item/toys/plush/courier_synth
-	name = "Courier Synth Plushie"
+	name = "信使合成人玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/courier_synth
 
 /datum/loadout_item/toys/plush/plush_janiborg
-	name = "Friendly Janiborg Plush"
+	name = "友好的清洁机器人玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/plush_janiborg
 
 /datum/loadout_item/toys/plush/securifox
-	name = "Securifox Plushie"
+	name = "安保狐玩偶"
 	item_path = /obj/item/toy/plush/nova/securifox
 
 /datum/loadout_item/toys/plush/towa
-	name = "Tiny Overwatch"
+	name = "微型守望者"
 	item_path = /obj/item/toy/plush/nova/towa
 
 /datum/loadout_item/toys/plush/fushi
-	name = "Fluffy Dragon"
+	name = "毛茸茸的龙"
 	item_path = /obj/item/toy/plush/nova/fushi
 
 /datum/loadout_item/toys/plush/plush_hemlock
-	name = "Silly Snuppy Plushie"
+	name = "傻乎乎的斯纳比玩偶"
 	item_path = /obj/item/toy/plush/nova/donator/plush_hemlock
 
 /datum/loadout_item/toys/plush/plush_celica
@@ -302,17 +302,17 @@
 */
 
 /datum/loadout_item/toys/plush/plush_melon
-	name = "Melon Plushie"
+	name = "西瓜玩偶"
 	item_path = /obj/item/toy/plush/nova/melon
 
 /datum/loadout_item/toys/plush/plush_parsec
-	name = "Engie Dog"
+	name = "工程狗"
 	item_path = /obj/item/toy/plush/nova/parsec
 
 /datum/loadout_item/toys/plush/plush_nik
-	name = "Scary Cat Plushie"
+	name = "吓人猫玩偶"
 	item_path = /obj/item/toy/plush/nova/akinshi
 
 /datum/loadout_item/toys/plush/plush_skaag
-	name = "Skaag Plushie"
+	name = "斯卡格玩偶"
 	item_path = /obj/item/toy/plush/nova/skaag

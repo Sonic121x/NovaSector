@@ -2,8 +2,8 @@
  * Item used to store implants. Can be renamed with a pen. Implants are moved between those and implanters when a mob uses an implanter on a case.
  */
 /obj/item/implantcase
-	name = "implant case"
-	desc = "A glass case containing an implant."
+	name = "植入体盒"
+	desc = "一个装有植入体的玻璃盒。"
 	icon = 'icons/obj/medical/syringe.dmi' //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "implantcase-0"
 	inhand_icon_state = "implantcase"
@@ -66,11 +66,11 @@
 ///An implant case that spawns with a tracking implant, as well as an appropriate name and description.
 /obj/item/implantcase/tracking
 	name = "implant case - 'Tracking'"
-	desc = "A glass case containing a tracking implant."
+	desc = "一个装有追踪植入体的玻璃盒。"
 	imp_type = /obj/item/implant/tracking
 
 ///An implant case that spawns with a firearms authentication implant, as well as an appropriate name and description.
 /obj/item/implantcase/weapons_auth
-	name = "implant case - 'Firearms Authentication'"
-	desc = "A glass case containing a firearms authentication implant."
+	name = "植入体盒 - '武器认证'"
+	desc = "一个装有武器认证植入体的玻璃盒。"
 	imp_type = /obj/item/implant/weapons_auth

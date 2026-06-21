@@ -1,5 +1,5 @@
 /obj/item/xenoarch/particles_battery
-	name = "Exotic particles power battery"
+	name = "奇异粒子动力电池"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/machinery.dmi'
 	icon_state = "particles_battery0"
 	w_class = WEIGHT_CLASS_TINY
@@ -28,7 +28,7 @@
 #define COOLDOWN_TIME 5
 
 /obj/item/xenoarch/xenoarch_utilizer
-	name = "Exotic particles power utilizer"
+	name = "奇异粒子动力利用器"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/machinery.dmi'
 	icon_state = "utilizer"
 	w_class = WEIGHT_CLASS_TINY
@@ -61,9 +61,9 @@
 		if(!inserted_battery)
 			if(user.transferItemToLoc(attacking_item, src))
 				user.visible_message(
-					span_notice("[user] inserts battery into the utilizer."),
-					span_notice("You insert the battery into the utilizer."),
-					blind_message = span_notice("You hear click nearby."),
+					span_notice("[user] 将电池插入利用器。"),
+					span_notice("你将电池插入利用器。"),
+					blind_message = span_notice("你听到附近传来咔哒声。"),
 				)
 				playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 25, FALSE)
 				inserted_battery = attacking_item
@@ -136,8 +136,8 @@
 		if(cooldown <= 0)
 			cooldown = 0
 			visible_message(
-				span_notice("[src] chimes."),
-				blind_message = span_notice("You hear something chime."),
+				span_notice("[src] 发出鸣响。"),
+				blind_message = span_notice("你听到某物鸣响。"),
 			)
 	else if(activated && inserted_battery.battery_effect)
 		// make sure the effect is active
@@ -168,7 +168,7 @@
 	if(activated)
 		activated = FALSE
 		timing = FALSE
-		visible_message(span_notice("[src] buzzes."), blind_message = span_notice("You hear something buzz."))
+		visible_message(span_notice("[src] 发出嗡嗡声。"), blind_message = span_notice("你听到某物嗡嗡作响。"))
 		cooldown = COOLDOWN_TIME
 
 	if(inserted_battery?.battery_effect)
@@ -278,14 +278,14 @@
 		inserted_battery.battery_effect.do_effect_touch(target_mob)
 		inserted_battery.stored_charge -= min(inserted_battery.stored_charge, 20) // we are spending quite a big amount of energy doing this
 		user.visible_message(
-			span_notice("[user] taps [target_mob] with [src], and it shudders on contact."),
-			span_notice("You tap [target_mob] with [src], and it shudders on contact."),
-			blind_message = span_hear("You hear silent zapping sounds."),
+			span_notice("[user] 用 [src] 轻触 [target_mob]，它在接触时颤动了一下。"),
+			span_notice("你用 [src] 轻触 [target_mob]，它在接触时颤动了一下。"),
+			blind_message = span_hear("你听到微弱的滋滋声。"),
 		)
 	else
 		user.visible_message(
-			span_notice("[user] taps [target_mob] with [src], but nothing happens."),
-			span_notice("You tap [target_mob] with [src], but nothing happens."),
+			span_notice("[user] 用 [src] 轻触 [target_mob]，但什么也没发生。"),
+			span_notice("你用 [src] 轻触 [target_mob]，但什么也没发生。"),
 		)
 
 	if(inserted_battery.battery_effect)

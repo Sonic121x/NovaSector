@@ -1,6 +1,6 @@
 /obj/machinery/vending/clothing
-	name = "ClothesMate"
-	desc = "A vending machine for clothing."
+	name = "服装贩卖机"
+	desc = "售卖服装的自动售货机。"
 	icon_state = "clothes"
 	icon_deny = "clothes-deny"
 	panel_type = "panel15"

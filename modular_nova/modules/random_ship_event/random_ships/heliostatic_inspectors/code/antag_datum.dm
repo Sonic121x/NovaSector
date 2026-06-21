@@ -1,5 +1,5 @@
 /datum/antagonist/cop
-	name = "\improper HC Police Officer"
+	name = "\improper HC 警官"
 	roundend_category = "hc cops"
 	antagpanel_category = "HC Police"
 	show_in_antagpanel = FALSE
@@ -57,7 +57,7 @@
 	return ..()
 
 /datum/team/cop
-	name = "\improper HC police patrol"
+	name = "\improper HC 警察巡逻队"
 
 /datum/team/cop/proc/forge_objectives()
 	add_objective(new /datum/objective/policing)
@@ -76,12 +76,12 @@
 		cop.objectives |= objectives
 
 /datum/objective/policing
-	name = "safety inspection"
+	name = "安全检查"
 	explanation_text = "Conduct a voluntary safety inspection of the station. Delegate responsibilities among the inspection team. Maintain professional and courteous demeanor at all times."
 	martyr_compatible = TRUE
 
 /datum/objective/inspect_area
-	name = "inspect area"
+	name = "检查区域"
 	explanation_text = "Inspect certain department for safety compliance. Provide constructive feedback and recommendations."
 	///Area picked for an entirely roleplay objective.
 	var/inspection_area
@@ -99,7 +99,7 @@
 		explanation_text = "Perform a general station safety inspection and provide recommendations for improvement."
 
 /datum/objective/survey
-	name = "safety survey"
+	name = "安全调查"
 	martyr_compatible = TRUE
 	admin_grantable = TRUE
 	///Area picked for an entirely roleplay objective.
@@ -117,7 +117,7 @@
 		explanation_text = "Conduct a general station safety survey. Gather feedback from staff and identify potential safety concerns."
 
 /datum/objective/steal_n_of_type/contraband
-	name = "secure hazardous materials"
+	name = "扣押危险材料"
 	explanation_text = "Secure potentially hazardous materials for safekeeping or disposal."
 
 /datum/objective/steal_n_of_type/contraband/New()
@@ -131,7 +131,7 @@
 	return completed //I am letting them roleplay this out, just like the other objectives.
 
 /datum/objective/dock
-	name = "remain docked"
+	name = "保持对接"
 	explanation_text = "Dock to the station to conduct the inspection. Remain in the sector until the inspection is complete."
 	martyr_compatible = TRUE
 

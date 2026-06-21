@@ -1,5 +1,5 @@
 /datum/antagonist/space_carp
-	name = "\improper Space Carp"
+	name = "\improper 太空鲤鱼"
 	antagpanel_category = ANTAG_GROUP_LEVIATHANS
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE

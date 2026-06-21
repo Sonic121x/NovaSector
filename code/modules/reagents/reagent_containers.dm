@@ -1,5 +1,5 @@
 /obj/item/reagent_containers
-	name = "Container"
+	name = "容器"
 	desc = "..."
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = null
@@ -86,9 +86,9 @@
 	. = ..()
 	if(has_variable_transfer_amount)
 		if(possible_transfer_amounts.len > 1)
-			. += span_notice("Left-click or right-click in-hand to increase or decrease its transfer amount. It is currently set to [amount_per_transfer_from_this] units.")
+			. += span_notice("左键或右键点击手持物品以增加或减少其转移量。当前设置为[amount_per_transfer_from_this]单位。")
 		else if(possible_transfer_amounts.len)
-			. += span_notice("Left-click or right-click in-hand to view its transfer amount.")
+			. += span_notice("左键或右键点击手持物品以查看其转移量。")
 	if(isliving(user) && HAS_TRAIT(user, TRAIT_REMOTE_TASTING))
 		var/mob/living/living_user = user
 		living_user.taste_container(reagents)
@@ -128,7 +128,7 @@
 		else
 			CRASH("change_transfer_amount() called with invalid direction value")
 	amount_per_transfer_from_this = possible_transfer_amounts[index]
-	balloon_alert(user, "transferring [amount_per_transfer_from_this]u")
+	balloon_alert(user, "正在转移 [amount_per_transfer_from_this] 单位")
 	mode_change_message(user)
 
 /obj/item/reagent_containers/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
@@ -150,17 +150,17 @@
 
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.visible_message(
-		span_danger("[user] splashes the contents of [src] onto [target][punctuation]"),
-		span_danger("You splash the contents of [src] onto [target][punctuation]"),
+		span_danger("[user] 将 [src] 的内容泼洒到 [target][punctuation]"),
+		span_danger("你将 [src] 的内容泼洒到 [target][punctuation]"),
 		ignored_mobs = target,
 	)
 	SEND_SIGNAL(target, COMSIG_ATOM_SPLASHED)
 	if (ismob(target))
 		var/mob/target_mob = target
 		target_mob.show_message(
-			span_userdanger("[user] splashes the contents of [src] onto you!"),
+			span_userdanger("[user] 将 [src] 的内容泼洒到你身上！"),
 			MSG_VISUAL,
-			span_userdanger("You feel drenched!"),
+			span_userdanger("你感觉浑身湿透了！"),
 		)
 
 	playsound(target, 'sound/effects/slosh.ogg', 25, TRUE)
@@ -181,7 +181,7 @@
 	if(!iscarbon(eater))
 		return FALSE
 	if(!reagents || !reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 		return FALSE
 	var/mob/living/carbon/as_carbon = eater
 	var/covered = ""
@@ -191,7 +191,7 @@
 		covered = "mask"
 	if(covered)
 		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
-		to_chat(user, span_warning("You have to remove [who] [covered] first!"))
+		to_chat(user, span_warning("你得先取下 [who] 的 [covered]！"))
 		return FALSE
 	return TRUE
 
@@ -245,8 +245,8 @@
 		var/turf_splash_multiplier = 1 - splash_multiplier
 		var/mob/M = target
 		var/turf/target_turf = get_turf(target)
-		target.visible_message(span_danger("[M] is splashed with something!"), \
-						span_userdanger("[M] is splashed with something!"))
+		target.visible_message(span_danger("[M] 被什么东西泼到了！"), \
+						span_userdanger("[M] 被什么东西泼到了！"))
 		if(splasher)
 			log_combat(splasher, M, "splashed", src, "containing [reagents.get_reagent_log_string()] [was_thrown ? "(thrown)" : ""]")
 		reagents.expose(target, TOUCH, splash_multiplier)
@@ -255,7 +255,7 @@
 			target_turf.add_liquid_from_reagents(reagents, reagent_multiplier = (1 - turf_splash_multiplier)) // NOVA EDIT ADDITION - liquid spills (molotov buff) (huge)
 
 	else if(bartender_check(target, splasher) && was_thrown)
-		visible_message(span_notice("[src] lands onto \the [target] without spilling a single drop."))
+		visible_message(span_notice("[src] 落在 \the [target] 上，一滴都没洒出来。"))
 		return
 
 	else
@@ -265,7 +265,7 @@
 				target.add_liquid_from_reagents(reagents, thrown_from = src, thrown_to = target)
 			log_combat(splasher, target, "splashed [english_list(reagents.reagent_list)]", src, "in [AREACOORD(target)] [was_thrown ? "(thrown)" : ""]")
 			message_admins("[ADMIN_LOOKUPFLW(splasher)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
-		visible_message(span_notice("[src] spills its contents all over [target]."))
+		visible_message(span_notice("[src] 将其内容物洒得 [target] 到处都是。"))
 		reagents.expose(target, TOUCH)
 		if(QDELETED(src))
 			return
@@ -397,33 +397,33 @@
 
 /obj/item/reagent_containers/proc/try_refill(atom/target, mob/living/user)
 	if(!reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(target.reagents.holder_full())
-		to_chat(user, span_warning("[target] is full."))
+		to_chat(user, span_warning("[target] 已经满了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = round(reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
 	playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
 	if(trans)
-		to_chat(user, span_notice("You transfer [trans] unit\s of the solution to [target]."))
+		to_chat(user, span_notice("你将 [trans] unit\s 的溶液转移到 [target]。"))
 	SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_TO, target)
 	target.update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/proc/try_drain(atom/target, mob/living/user)
 	if(!target.reagents.total_volume)
-		to_chat(user, span_warning("[target] is empty and can't be refilled!"))
+		to_chat(user, span_warning("[target] 是空的，无法重新填充！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(reagents.holder_full())
-		to_chat(user, span_warning("[src] is full."))
+		to_chat(user, span_warning("[src] 已经满了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = round(target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
 	playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
-	to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
+	to_chat(user, span_notice("你用 [src] 的内容物填充 [trans]，共 [target] unit\s 。"))
 	SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_FROM, target)
 	target.update_appearance()
 	return ITEM_INTERACT_SUCCESS

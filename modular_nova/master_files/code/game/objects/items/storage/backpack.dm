@@ -48,22 +48,22 @@
  */
 
 /obj/item/storage/backpack/messenger/head_of_personnel
-	name = "head of personnel's messenger bag"
-	desc = "A exclusive messenger bag issued to Nanotrasen's finest second, with great storage space for all that paperwork you have planned."
+	name = "人事主管的信使包"
+	desc = "一款专为纳米传讯最优秀的二把手发行的独家信使包，拥有充足的空间来存放你计划中的所有文书工作。"
 	icon_state = "messenger_hop"
 	inhand_icon_state = "messenger_hop"
 	NOVA_BACKPACK_ICON_DEFINES
 
 /obj/item/storage/backpack/messenger/blueshield
-	name = "blueshield's messenger bag"
-	desc = "A robust messenger bag issued to Nanotrasen's finest guard dogs, with extra TACTICAL POCKETS. Whatever that even means."
+	name = "蓝盾的信使包"
+	desc = "一款颁发给纳米传讯最精锐护卫犬的坚固信使包，带有额外的战术口袋。谁知道这到底是什么意思。"
 	icon_state = "messenger_blueshield"
 	inhand_icon_state = "messenger_blueshield"
 	NOVA_BACKPACK_ICON_DEFINES
 
 /obj/item/storage/backpack/messenger/science/robo
-	name = "robotics messenger bag"
-	desc = "A sleek, industrial-strength messenger bag issued to robotics personnel. Smells faintly of oil; a fashionably mobile choice for fashionably sedentary mechanics."
+	name = "机器人学信使包"
+	desc = "一款时尚、工业级的信使包，专为机器人学人员配备。散发着淡淡的机油味；对于追求时尚却久坐的机械师来说，这是个时髦又便携的选择。"
 	icon_state = "messenger_robo"
 	inhand_icon_state = "messenger_robo"
 	NOVA_BACKPACK_ICON_DEFINES

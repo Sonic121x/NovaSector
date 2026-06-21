@@ -1,6 +1,6 @@
 /// Simple, mostly AI-controlled critters, such as pets, bots, and drones.
 /mob/living/simple_animal
-	name = "animal"
+	name = "动物"
 	icon = 'icons/mob/simple/animal.dmi'
 	abstract_type = /mob/living/simple_animal
 	health = 20
@@ -223,9 +223,9 @@
 	. = ..()
 	if(stat == DEAD)
 		if(HAS_MIND_TRAIT(user, TRAIT_NAIVE))
-			. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be asleep.")
+			. += span_deadsay("仔细一看，[p_they()]似乎[p_s()]睡着了。")
 		else
-			. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
+			. += span_deadsay("仔细一看，[p_they()]似乎[p_s()]已经死了。")
 
 /mob/living/simple_animal/update_stat()
 	if(HAS_TRAIT(src, TRAIT_GODMODE))
@@ -555,7 +555,7 @@
 	if(isliving(hunted)) // Are we hunting a living mob?
 		var/mob/living/prey = hunted
 		if(inept_hunter) // Make your hunter inept to have them unable to catch their prey.
-			visible_message(span_warning("[src] chases [prey] around, to no avail!"))
+			visible_message(span_warning("[src]追逐着[prey]，但徒劳无功！"))
 			step(prey, pick(GLOB.cardinals))
 			COOLDOWN_START(src, emote_cooldown, 1 MINUTES)
 			return

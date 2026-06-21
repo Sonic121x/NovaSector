@@ -1,7 +1,7 @@
 /// Spawns a little worm nearby
 /datum/action/cooldown/mob_cooldown/skull_launcher
-	name = "Launch Legion"
-	desc = "Propel a living piece of your body to a distant location."
+	name = "发射军团"
+	desc = "将你身体的一个活体部分投射到远处。"
 	button_icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "legion_head"
 	background_icon_state = "bg_demon"
@@ -22,7 +22,7 @@
 	if (!.)
 		return
 	if (!isturf(owner.loc))
-		owner.balloon_alert(owner, "no room!")
+		owner.balloon_alert(owner, "没空间了！")
 		return FALSE
 	return TRUE
 
@@ -40,7 +40,7 @@
 		if (length(near_turfs))
 			target_turf = pick(near_turfs)
 		else if(target_turf.is_blocked_turf(exclude_mobs = TRUE))
-			owner.balloon_alert(owner, "no room!")
+			owner.balloon_alert(owner, "没空间了！")
 			StartCooldown(0.5 SECONDS)
 			return
 
@@ -74,7 +74,7 @@
 
 /// Animation for launching a skull
 /obj/effect/temp_visual/legion_skull_depart
-	name = "legion brood launch"
+	name = "军团子嗣发射"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion_head"
 	duration = 0.25 SECONDS
@@ -87,7 +87,7 @@
 
 /// Animation for landing a skull
 /obj/effect/temp_visual/legion_skull_land
-	name = "legion brood land"
+	name = "军团子嗣着陆"
 	duration = 0.5 SECONDS
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion_head"
@@ -104,7 +104,7 @@
 
 /// A skull is going to be here! Oh no!
 /obj/effect/temp_visual/legion_brood_indicator
-	name = "legion brood land"
+	name = "军团子嗣着陆"
 	duration = 0.75 SECONDS
 	layer = BELOW_MOB_LAYER
 	plane = GAME_PLANE

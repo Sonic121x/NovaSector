@@ -5,15 +5,15 @@
 
 /datum/map_template/shuttle/infiltrator/basic
 	suffix = "basic"
-	name = "basic syndicate infiltrator"
-	description = "Base Syndicate infiltrator, spawned by default for nukeops to use."
+	name = "基础辛迪加渗透者"
+	description = "基础辛迪加渗透舰，默认生成供核弹特工使用。"
 
 /datum/map_template/shuttle/infiltrator/advanced
 	suffix = "advanced"
-	name = "advanced syndicate infiltrator"
-	description = "A much larger version of the standard Syndicate infiltrator that feels more like Kilostation. Has APCs, but power is not a concern for nuclear operatives. Also comes with atmos!"
+	name = "高级辛迪加渗透者"
+	description = "标准辛迪加渗透舰的加大版本，感觉更像千吨级空间站。配有APC，但电力对核弹特工来说不是问题。还配备了大气系统！"
 
 /datum/map_template/shuttle/infiltrator/clown
 	suffix = "clown"
-	name = "clown syndicate infiltrator"
-	description = "A version of the base infiltrator that spawns with a bananiumbomb"
+	name = "小丑辛迪加渗透者"
+	description = "基础渗透舰的一个版本，生成时带有一枚香蕉炸弹。"

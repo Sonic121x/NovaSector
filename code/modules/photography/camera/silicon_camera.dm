@@ -1,6 +1,6 @@
 
 /obj/item/camera/siliconcam
-	name = "silicon photo camera"
+	name = "硅摄影相机"
 	resistance_flags = INDESTRUCTIBLE
 	cooldown = 2 SECONDS
 	/// List of all pictures taken by this camera.
@@ -31,25 +31,25 @@
 	else
 		// Trying to turn on camera mode while you have another click intercept active, such as malf abilities
 		if(sound)
-			balloon_alert(user, "can't enable camera mode!")
+			balloon_alert(user, "无法启用相机模式！")
 			playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE)
 		return
 
 	if(sound)
 		playsound(user, 'sound/items/tools/wirecutter.ogg', 50, TRUE)
-		balloon_alert(user, "camera mode [user.click_intercept == src ? "activated" : "deactivated"]")
+		balloon_alert(user, "相机模式[user.click_intercept == src ? "activated" : "deactivated"]")
 
 /obj/item/camera/siliconcam/proc/selectpicture(mob/user)
 	RETURN_TYPE(/datum/picture)
 	if(!length(stored))
-		user.balloon_alert(user, "no stored photos!")
+		user.balloon_alert(user, "没有存储的照片！")
 		return
 	var/list/nametemp = list()
 	var/list/temp = list()
 	for(var/datum/picture/stored_photo as anything in stored)
 		nametemp += stored_photo.picture_name
 		temp[stored_photo.picture_name] = stored_photo
-	var/find = tgui_input_list(user, "Select image", "Storage", nametemp)
+	var/find = tgui_input_list(user, "选择图像", "存储", nametemp)
 	if(isnull(find) || isnull(temp[find]))
 		return
 	return temp[find]
@@ -63,7 +63,7 @@
 		qdel(P)
 
 /obj/item/camera/siliconcam/ai_camera
-	name = "AI photo camera"
+	name = "人工智能摄影相机"
 	flash_enabled = FALSE
 
 /obj/item/camera/siliconcam/ai_camera/can_take_picture(mob/living/silicon/ai/clicker)
@@ -83,11 +83,11 @@
 	var/number = length(stored)
 	picture.picture_name = "Image [number] (taken by [loc.name])"
 	stored[picture] = TRUE
-	balloon_alert(user, "image recorded")
+	balloon_alert(user, "图像已记录")
 	user.playsound_local(get_turf(user), SFX_POLAROID, 50, TRUE, -3)
 
 /obj/item/camera/siliconcam/robot_camera
-	name = "Cyborg photo camera"
+	name = "赛博结合照相机"
 	var/printcost = 2
 
 /obj/item/camera/siliconcam/robot_camera/can_take_picture(mob/living/silicon/robot/clicker)
@@ -100,12 +100,12 @@
 		var/number = user.connected_ai.aicamera.stored.len
 		picture.picture_name = "Image [number] (taken by [loc.name])"
 		user.connected_ai.aicamera.stored[picture] = TRUE
-		balloon_alert(user, "image recorded and uploaded")
+		balloon_alert(user, "图像已记录并上传")
 	else
 		var/number = stored.len
 		picture.picture_name = "Image [number] (taken by [loc.name])"
 		stored[picture] = TRUE
-		balloon_alert(user, "image recorded and saved locally")
+		balloon_alert(user, "图像已记录并本地保存")
 	playsound(src, SFX_POLAROID, 75, TRUE, -3)
 
 /obj/item/camera/siliconcam/robot_camera/selectpicture(mob/living/silicon/robot/user)
@@ -116,16 +116,16 @@
 
 /obj/item/camera/siliconcam/robot_camera/proc/borgprint(mob/living/silicon/robot/user)
 	if(!istype(user) || user.toner < printcost)
-		balloon_alert(user, "not enough toner!")
+		balloon_alert(user, "墨粉不足！")
 		return
 	var/datum/picture/selection = selectpicture(user)
 	if(!istype(selection))
-		balloon_alert(user, "invalid image!")
+		balloon_alert(user, "图像无效！")
 		return
 	var/obj/item/photo/printed = new(user.drop_location(), selection)
 	printed.pixel_x = printed.base_pixel_x + rand(-10, 10)
 	printed.pixel_y = printed.base_pixel_y + rand(-10, 10)
 	user.toner -= printcost  //All fun allowed.
-	user.visible_message(span_notice("[user.name] spits out a photograph from a narrow slot on its chassis."), span_notice("You print a photograph."))
-	balloon_alert(user, "photograph printed")
+	user.visible_message(span_notice("[user.name] 从其机身上的一个狭窄插槽中吐出了一张照片。"), span_notice("你打印了一张照片。"))
+	balloon_alert(user, "照片已打印")
 	playsound(src, 'sound/items/taperecorder/taperecorder_print.ogg', 50, TRUE, -3)

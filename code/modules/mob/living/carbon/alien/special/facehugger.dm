@@ -9,8 +9,8 @@
 #define MAX_ACTIVE_TIME 400
 
 /obj/item/clothing/mask/facehugger
-	name = "alien"
-	desc = "It has some sort of a tube at the end of its tail."
+	name = "异形"
+	desc = "它的尾巴末端有一个类似管子的东西。"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	icon_state = "facehugger"
 	base_icon_state = "facehugger"
@@ -77,11 +77,11 @@
 		return
 	switch(stat)
 		if(DEAD,UNCONSCIOUS)
-			. += span_bolddanger("[src] is not moving.")
+			. += span_bolddanger("[src] 没有在动。")
 		if(CONSCIOUS)
-			. += span_bolddanger("[src] seems to be active!")
+			. += span_bolddanger("[src] 看起来是活跃的！")
 	if (sterile)
-		. += span_bolddanger("It looks like the proboscis has been removed.")
+		. += span_bolddanger("看起来它的口器已经被移除了。")
 
 /obj/item/clothing/mask/facehugger/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
 	return (exposed_temperature > 300)
@@ -153,21 +153,21 @@
 	if(target.wear_mask && istype(target.wear_mask, /obj/item/clothing/mask/facehugger))
 		return FALSE
 	// passed initial checks - time to leap!
-	target.visible_message(span_danger("[src] leaps at [target]'s face!"), \
-						span_userdanger("[src] leaps at your face!"))
+	target.visible_message(span_danger("[src] 扑向了 [target] 的脸！"), \
+						span_userdanger("[src] 扑向了你的脸！"))
 
 	// probiscis-blocker handling
 	if(target.is_mouth_covered(ITEM_SLOT_HEAD))
-		target.visible_message(span_danger("[src] smashes against [target]'s [target.head]!"), \
-							span_userdanger("[src] smashes against your [target.head]!"))
+		target.visible_message(span_danger("[src]猛撞在[target]的[target.head]上！"), \
+							span_userdanger("[src]猛撞在你的[target.head]上！"))
 		Die()
 		return FALSE
 
 	if(target.wear_mask)
 		var/obj/item/clothing/worn_mask = target.wear_mask
 		if(target.dropItemToGround(worn_mask))
-			target.visible_message(span_danger("[src] tears [worn_mask] off of [target]'s face!"), \
-								span_userdanger("[src] tears [worn_mask] off of your face!"))
+			target.visible_message(span_danger("[src]将[worn_mask]从[target]的脸上扯了下来！"), \
+								span_userdanger("[src]将[worn_mask]从你的脸上扯了下来！"))
 
 	if(!target.equip_to_slot_if_possible(src, ITEM_SLOT_MASK, 0, 1, 1))
 		log_combat(target, src, "failed facehugged by")
@@ -210,8 +210,8 @@
 			return
 
 	if(!sterile)
-		target.visible_message(span_danger("[src] falls limp after violating [target]'s face!"), \
-								span_userdanger("[src] falls limp after violating your face!"))
+		target.visible_message(span_danger("[src]在侵犯了[target]的脸后变得瘫软！"), \
+								span_userdanger("[src]在侵犯了你的脸后变得瘫软！"))
 
 		Die()
 		icon_state = "[base_icon_state]_impregnated"
@@ -226,8 +226,8 @@
 				target.apply_status_effect(/datum/status_effect/nest_sustenance)
 
 	else
-		target.visible_message(span_danger("[src] violates [target]'s face!"), \
-								span_userdanger("[src] violates your face!"))
+		target.visible_message(span_danger("[src]侵犯了[target]的脸！"), \
+								span_userdanger("[src]侵犯了你的脸！"))
 
 /obj/item/clothing/mask/facehugger/proc/GoActive()
 	if(stat == DEAD || stat == CONSCIOUS)
@@ -256,7 +256,7 @@
 	inhand_icon_state = "facehugger_inactive"
 	stat = DEAD
 
-	visible_message(span_danger("[src] curls up into a ball!"))
+	visible_message(span_danger("[src]蜷缩成了一个球！"))
 
 	// chest maybe because getting slammed in the chest would knock it off your face while dead
 	AddComponent(/datum/component/knockoff, knockoff_chance = 40, target_zones = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST), slots_knockoffable = slot_flags)
@@ -265,7 +265,7 @@
 	if(!real || sterile || stat == DEAD || user.get_organ_by_type(/obj/item/organ/body_egg/alien_embryo))
 		return ..()
 	if(user.get_item_by_slot(slot_flags) == src)
-		to_chat(user, span_userdanger("[src] is latched on too tight! Get help or wait for it to let go!"))
+		to_chat(user, span_userdanger("[src]抓得太紧了！快找人帮忙或者等它自己松开！"))
 		return FALSE
 	return ..()
 
@@ -276,7 +276,7 @@
 	if(!real || sterile || user.get_organ_by_type(/obj/item/organ/body_egg/alien_embryo))
 		return ..()
 	if(wearer.get_item_by_slot(slot_flags) == src && stat != DEAD)
-		to_chat(user, span_userdanger("[src] is latched on too tight! Get help or wait for it to let go!"))
+		to_chat(user, span_userdanger("[src]抓得太紧了！快找人帮忙或者等它自己松开！"))
 		return
 	return ..()
 
@@ -304,7 +304,7 @@
 	return COMPONENT_TRAITOR_MAIL_HANDLED
 
 /obj/item/clothing/mask/facehugger/lamarr
-	name = "Lamarr"
+	name = "拉玛"
 	desc = "The Research Director's pet, a domesticated and debeaked alien. Friendly, but may still try to couple with your head."
 	sterile = TRUE
 	slowdown = 1.5 //lamarr is too fat after being fed in captivity to effectively slow people down or something
@@ -323,7 +323,7 @@
 
 /obj/item/clothing/mask/facehugger/toy
 	inhand_icon_state = "facehugger_inactive"
-	desc = "A toy often used to play pranks on other miners by putting it in their beds. It takes a bit to recharge after latching onto something."
+	desc = "有一种玩具常被用来对其他矿工搞恶作剧，就是把这种玩具放在他们的床上。一旦它吸附在某个物体上，就需要一段时间才能重新充电。"
 	real = FALSE
 	sterile = TRUE
 	tint = 3 //Makes it feel more authentic when it latches on

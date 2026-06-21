@@ -1,5 +1,5 @@
 /datum/outfit/centcom/spec_ops
-	name = "Special Ops Officer"
+	name = "特别行动官员"
 
 	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/centcom/specops_officer
@@ -30,7 +30,7 @@
 	..()
 
 /datum/outfit/space
-	name = "Standard Space Gear"
+	name = "标准太空装备"
 
 	uniform = /obj/item/clothing/under/color/grey
 	shoes = /obj/item/clothing/shoes/sneakers/black
@@ -40,7 +40,7 @@
 	mask = /obj/item/clothing/mask/breath
 
 /datum/outfit/tournament
-	name = "tournament standard red"
+	name = "锦标赛标准红色"
 
 	uniform = /obj/item/clothing/under/color/red
 	suit = /obj/item/clothing/suit/armor/vest
@@ -51,12 +51,12 @@
 	r_pocket = /obj/item/grenade/smokebomb
 
 /datum/outfit/tournament/green
-	name = "tournament standard green"
+	name = "锦标赛标准绿色"
 
 	uniform = /obj/item/clothing/under/color/green
 
 /datum/outfit/tournament/gangster
-	name = "tournament gangster"
+	name = "锦标赛黑帮"
 
 	uniform = /obj/item/clothing/under/rank/security/detective
 	suit = /obj/item/clothing/suit/toggle/jacket/det_trench
@@ -67,7 +67,7 @@
 	r_pocket = /obj/item/ammo_box/c10mm
 
 /datum/outfit/tournament/janitor
-	name = "tournament janitor"
+	name = "清洁工比赛"
 
 	uniform = /obj/item/clothing/under/rank/civilian/janitor
 	suit = null
@@ -89,7 +89,7 @@
 	bucket.reagents.add_reagent(/datum/reagent/water,70)
 
 /datum/outfit/laser_tag
-	name = "Laser Tag Red"
+	name = "红镭射标记枪"
 
 	uniform = /obj/item/clothing/under/color/red
 	suit = /obj/item/clothing/suit/redtag
@@ -102,7 +102,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/red
 
 /datum/outfit/traitor_cutout
-	name = "Traitor Cutout"
+	name = "叛徒替身"
 
 	uniform = /obj/item/clothing/under/color/grey
 	suit = /obj/item/clothing/suit/armor/vest
@@ -114,7 +114,7 @@
 	shoes = /obj/item/clothing/shoes/magboots/advance
 
 /datum/outfit/heretic_hallucination
-	name = "Heretic Hallucination"
+	name = "异教徒幻觉"
 
 	uniform = /obj/item/clothing/under/color/grey
 	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch/rust
@@ -124,7 +124,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 
 /datum/outfit/rev_cutout
-	name = "Revolutionary Cutout"
+	name = "革命者替身"
 
 	uniform = /obj/item/clothing/under/color/grey
 	back = /obj/item/storage/backpack
@@ -135,7 +135,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 
 /datum/outfit/laser_tag/blue
-	name = "Laser Tag Blue"
+	name = "蓝镭射标记枪"
 
 	uniform = /obj/item/clothing/under/color/blue
 	suit = /obj/item/clothing/suit/bluetag
@@ -145,7 +145,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/blue
 
 /datum/outfit/tunnel_clown
-	name = "Tunnel Clown"
+	name = "隧道小丑"
 
 	id = /obj/item/card/id/advanced/gold
 	id_trim = /datum/id_trim/tunnel_clown
@@ -170,7 +170,7 @@
 	W.update_icon()
 
 /datum/outfit/psycho
-	name = "Masked Killer"
+	name = "蒙面杀手"
 
 	uniform = /obj/item/clothing/under/misc/overalls
 	suit = /obj/item/clothing/suit/apron
@@ -192,7 +192,7 @@
 	H.regenerate_icons()
 
 /datum/outfit/assassin
-	name = "Assassin"
+	name = "刺客"
 
 	id = /obj/item/card/id/advanced/chameleon/elite/black
 	id_trim = /datum/id_trim/reaper_assassin
@@ -233,7 +233,7 @@
 	W.update_icon()
 
 /datum/outfit/centcom/commander
-	name = "CentCom Commander"
+	name = "中央指挥司令"
 
 	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/centcom/commander
@@ -261,7 +261,7 @@
 	..()
 
 /datum/outfit/centcom/commander/mod
-	name = "CentCom Commander (MODsuit)"
+	name = "中央指挥司令（模块服）"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	suit = null
@@ -271,7 +271,7 @@
 	internals_slot = ITEM_SLOT_SUITSTORE
 
 /datum/outfit/ghost_cultist
-	name = "Cultist Ghost"
+	name = "血教幽灵"
 
 	uniform = /obj/item/clothing/under/color/black/ghost
 	suit = /obj/item/clothing/suit/hooded/cultrobes/alt/ghost
@@ -279,7 +279,7 @@
 	l_hand = /obj/item/melee/cultblade/ghost
 
 /datum/outfit/cult_cutout
-	name = "Cultist Cutout"
+	name = "邪教徒替身"
 
 	uniform = /obj/item/clothing/under/rank/civilian/chaplain
 	suit = /obj/item/clothing/suit/hooded/cultrobes/hardened
@@ -288,7 +288,7 @@
 	r_hand = /obj/item/melee/cultblade/dagger
 
 /datum/outfit/wizard
-	name = "Blue Wizard"
+	name = "蓝巫师"
 
 	uniform = /obj/item/clothing/under/color/lightpurple
 	suit = /obj/item/clothing/suit/wizrobe
@@ -312,14 +312,14 @@
 		new_spellbook.owner = wizard.mind
 
 /datum/outfit/wizard/bookless
-	name = "Wizard - Bookless"
+	name = "巫师 - 无书"
 	backpack_contents = list()
 
 /datum/outfit/wizard/bookless/post_equip(mob/living/carbon/human/wizard, visuals_only)
 	return
 
 /datum/outfit/wizard/apprentice
-	name = "Wizard Apprentice"
+	name = "巫师学徒"
 
 	r_pocket = /obj/item/teleportation_scroll/apprentice
 	r_hand = null
@@ -327,20 +327,20 @@
 	backpack_contents = list()
 
 /datum/outfit/wizard/red
-	name = "Red Wizard"
+	name = "红巫师"
 
 	suit = /obj/item/clothing/suit/wizrobe/red
 	head = /obj/item/clothing/head/wizard/red
 
 /datum/outfit/wizard/weeb
-	name = "Marisa Wizard"
+	name = "魔理沙"
 
 	suit = /obj/item/clothing/suit/wizrobe/marisa
 	head = /obj/item/clothing/head/wizard/marisa
 	shoes = /obj/item/clothing/shoes/sneakers/marisa
 
 /datum/outfit/wizard/academy
-	name = "Academy Wizard"
+	name = "巫师学院"
 	r_pocket = null
 	r_hand = null
 	suit = /obj/item/clothing/suit/wizrobe/red
@@ -348,7 +348,7 @@
 	backpack_contents = list()
 
 /datum/outfit/centcom/soviet
-	name = "Soviet Admiral"
+	name = "苏联上将"
 
 	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/centcom/admiral
@@ -374,7 +374,7 @@
 	..()
 
 /datum/outfit/mobster
-	name = "Mobster"
+	name = "黑帮分子"
 
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/mobster
@@ -397,7 +397,7 @@
 	W.update_icon()
 
 /datum/outfit/chrono_agent
-	name = "Timeline Eradication Agent"
+	name = "时间线根除特工"
 
 	uniform = /obj/item/clothing/under/color/white
 	suit_store = /obj/item/tank/internals/oxygen
@@ -413,7 +413,7 @@
 	lock.true_owner_ckey = agent.ckey
 
 /datum/outfit/debug //Debug objs plus MODsuit
-	name = "Debug outfit"
+	name = "Debug套装"
 
 	id = /obj/item/card/id/advanced/debug
 	uniform = /obj/item/clothing/under/misc/patriotsuit
@@ -444,7 +444,7 @@
 	W.update_icon()
 
 /datum/outfit/admin //for admeem shenanigans and testing things that arent related to equipment, not a subtype of debug just in case debug changes things
-	name = "Admin outfit"
+	name = "Admin outfit-管理员装备"
 
 	id = /obj/item/card/id/advanced/debug
 	uniform = /obj/item/clothing/under/misc/patriotsuit

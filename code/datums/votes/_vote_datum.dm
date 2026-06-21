@@ -175,7 +175,7 @@
 	if(override_question)
 		title_text += span_bold(override_question)
 	else
-		title_text += span_bold("[capitalize(name)] Vote")
+		title_text += span_bold("[capitalize(name)] 投票")
 
 	returned_text += "Winner Selection: "
 	switch(winner_method)
@@ -191,7 +191,7 @@
 		total_votes += choices[option]
 
 	if(total_votes <= 0)
-		return span_bold("Vote Result: Inconclusive - No Votes!")
+		return span_bold("投票结果：无定论 - 无人投票！")
 
 	if (display_statistics)
 		returned_text += "\nResults:"
@@ -208,7 +208,7 @@
 				percentage_text += "[text]%"
 			else
 				percentage_text = "    0%"
-			returned_text += "[percentage_text] | [span_bold(option)]: [choices[option]]"
+			returned_text += "[percentage_text] | [span_bold(option)]：[choices[option]]"
 
 	if(!real_winner) // vote has no winner or cannot be won, but still had votes
 		return returned_text
@@ -234,7 +234,7 @@
 		for(var/a_winner in all_winners)
 			returned_text += "\n\t[a_winner]"
 
-	returned_text += span_bold("\nVote Result: [real_winner]")
+	returned_text += span_bold("\nVote 结果：[real_winner]")
 	return returned_text
 
 /**

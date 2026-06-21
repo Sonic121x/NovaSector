@@ -1,16 +1,16 @@
 /datum/action/cooldown/spell/shapeshift/wolf
-	name = "Wolf Form"
-	desc = "Take on the shape a wolf."
-	invocation = span_danger("<b>%CASTER</b> lets out a mighty growl!")
-	invocation_self_message = span_danger("You let out a mighty growl!")
+	name = "狼形态"
+	desc = "化身为狼。"
+	invocation = span_danger("<b>%CASTER</b>发出一声低沉的咆哮！")
+	invocation_self_message = span_danger("你发出一声低沉的咆哮！")
 	invocation_type = INVOCATION_EMOTE
 	spell_requirements = NONE
 
 	possible_shapes = list(/mob/living/basic/mining/wolf)
 
 /obj/item/clothing/neck/cloak/wolf_coat
-	name = "wolf pelt cloak"
-	desc = "A cloak made of very lively wolf fur, feels warm to touch."
+	name = "狼皮斗篷"
+	desc = "一件用非常鲜活的狼毛制成的斗篷，摸起来很温暖。"
 	icon_state = "icecloak"
 	icon = 'icons/obj/clothing/cloaks.dmi'
 	worn_icon = 'icons/mob/clothing/neck.dmi'
@@ -50,8 +50,8 @@
 
 ///The hoodie, made by the cloak, which gives the action button (making it required to wear the hoodie to use it)
 /obj/item/clothing/head/hooded/wolf_coat_hoodie
-	name = "wolf pelt hood"
-	desc = "A hood made of wolf fur."
+	name = "狼皮兜帽"
+	desc = "一顶用狼毛制成的兜帽。"
 	icon = 'icons/obj/clothing/head/winterhood.dmi'
 	worn_icon = 'icons/mob/clothing/head/winterhood.dmi'
 	icon_state = "icecloak_hood"

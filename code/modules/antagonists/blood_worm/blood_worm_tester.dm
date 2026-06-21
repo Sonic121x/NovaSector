@@ -1,6 +1,6 @@
 /obj/item/blood_worm_tester
-	name = "hemoparasite testing tool"
-	desc = "A proprietary device patented by the DeForest Medical Corporation that is tailor-made for detecting hemoparasites, such as the infamous space-faring blood worm. The testing process is allegedly very painful."
+	name = "血寄生虫检测工具"
+	desc = "一种由DeForest医疗公司获得专利的专有设备，专为检测血寄生虫（例如臭名昭著的太空血蠕虫）而量身定制。据说检测过程非常痛苦。"
 
 	icon = 'icons/obj/antags/blood_worm.dmi'
 	icon_state = "tester"
@@ -29,20 +29,20 @@
 
 /obj/item/blood_worm_tester/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	if (spent)
-		target_mob.balloon_alert(user, "already spent!")
+		target_mob.balloon_alert(user, "已经用过了！")
 		return
 	if (!ISADVANCEDTOOLUSER(user))
-		target_mob.balloon_alert(user, "needs dexterity!")
+		target_mob.balloon_alert(user, "需要灵巧操作！")
 		return
 	if (!ishuman(target_mob))
-		target_mob.balloon_alert(user, "target a human!")
+		target_mob.balloon_alert(user, "目标是人类！")
 		return
 	if (!target_mob.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))
 		return
 
 	if (target_mob != user)
 		user.visible_message(
-			message = span_danger("\The [user] jab[user.p_s()] \the [target_mob] with \the [src]!"),
+			message = span_danger("\The [user] jab[user.p_s()] \the [target_mob] with \the [src]！"),
 			self_message = span_danger("You jab \the [target_mob] with \the [src]!"),
 			ignored_mobs = target_mob,
 		)
@@ -53,8 +53,8 @@
 		)
 	else
 		user.visible_message(
-			message = span_notice("\The [user] jab[user.p_s()] [user.p_themselves()] with \the [src]."),
-			self_message = span_notice("You jab yourself with \the [src]."),
+			message = span_notice("\The [user]用\the [user.p_s()]戳了[user.p_themselves()][src]。"),
+			self_message = span_notice("你用\the [src]戳了自己一下。"),
 		)
 
 	log_combat(user, target_mob, "tested", src)

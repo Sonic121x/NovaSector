@@ -1,7 +1,7 @@
 /datum/reagent/reaction_agent
 	abstract_type = /datum/reagent/reaction_agent
-	name = "Reaction Agent"
-	description = "Hello! I am a bugged reagent. Please report me for my crimes. Thank you!!"
+	name = "Reaction Agent-反应试剂"
+	description = "你好！我是一个有问题的试剂。请举报我的罪行。谢谢！！"
 
 /datum/reagent/reaction_agent/intercept_reagents_transfer(datum/reagents/target, amount, copy_only)
 	if(!target)
@@ -18,8 +18,8 @@
 	return TRUE
 
 /datum/reagent/reaction_agent/acidic_buffer
-	name = "Strong Acidic Buffer"
-	description = "This reagent will consume itself and move the pH of a beaker towards acidity when added to another."
+	name = "Strong Acidic Buffer-强酸性缓冲液"
+	description = "此试剂在添加到另一个烧杯时会消耗自身，并将烧杯的pH值移向酸性。"
 	color = "#fbc314"
 	ph = 0
 	inverse_chem = null
@@ -50,8 +50,8 @@
 		holder.update_total()
 
 /datum/reagent/reaction_agent/basic_buffer
-	name = "Strong Basic Buffer"
-	description = "This reagent will consume itself and move the pH of a beaker towards alkalinity when added to another."
+	name = "Strong Basic Buffer-强碱性缓冲液"
+	description = "此试剂在添加到另一个烧杯时会消耗自身，并将烧杯的pH值移向碱性。"
 	color = "#3853a4"
 	ph = 14
 	inverse_chem = null
@@ -83,18 +83,18 @@
 //purity testor/reaction agent prefactors
 
 /datum/reagent/prefactor_a
-	name = "Interim Product Alpha"
-	description = "This reagent is a prefactor to the purity tester reagent, and will react with stable plasma to create it"
+	name = "Interim Product Alpha-中期产品阿尔法"
+	description = "这种试剂是纯度测试剂的前体，会与稳定等离子体反应生成它。"
 	color = "#bafa69"
 
 /datum/reagent/prefactor_b
-	name = "Interim Product Beta"
-	description = "This reagent is a prefactor to the reaction speed agent reagent, and will react with stable plasma to create it"
+	name = "Interim Product Beta-中期产品贝塔"
+	description = "这种试剂是反应加速剂的前体，会与稳定等离子体反应生成它。"
 	color = "#8a3aa9"
 
 /datum/reagent/reaction_agent/purity_tester
-	name = "Purity Tester"
-	description = "This reagent will consume itself and violently react if there is a highly impure reagent in the beaker."
+	name = "Purity Tester-纯度测试剂"
+	description = "如果烧杯中含有高杂质试剂，这种试剂会消耗自身并发生剧烈反应。"
 	ph = 3
 	color = "#ffffff"
 
@@ -108,10 +108,10 @@
 		if(reagent.purity <= reagent.inverse_chem_val)
 			is_inverse = TRUE
 	if(is_inverse)
-		target.my_atom.audible_message(span_warning("The beaker bubbles violently as the reagent is added!"))
+		target.my_atom.audible_message(span_warning("烧杯在试剂加入时剧烈冒泡！"))
 		playsound(target.my_atom, 'sound/effects/chemistry/bufferadd.ogg', 50, TRUE)
 	else
-		target.my_atom.audible_message(span_warning("The added reagent doesn't seem to do much."))
+		target.my_atom.audible_message(span_warning("加入的试剂似乎没什么效果。"))
 	if(!copy_only)
 		volume -= amount
 		holder.update_total()
@@ -120,8 +120,8 @@
 #define SPEED_REAGENT_STRENGTH 20
 
 /datum/reagent/reaction_agent/speed_agent
-	name = "Tempomyocin"
-	description = "This reagent will consume itself and speed up an ongoing reaction, modifying the current reaction's purity by its own."
+	name = "Tempomyocin-纯度催化剂"
+	description = "这种试剂会消耗自身并加速正在进行的反应，根据其自身纯度修改当前反应的纯度。"
 	ph = 10
 	color = "#e61f82"
 
@@ -147,8 +147,8 @@
 #undef SPEED_REAGENT_STRENGTH
 
 /datum/reagent/reaction_agent/inversing_buffer
-	name = "Chiral Inversing Buffer"
-	description = "This reagent will consume itself and convert impure reagents into their inversed counterparts. Amount varies based on volume of added buffer."
+	name = "手性反转缓冲液"
+	description = "这种试剂会消耗自身并将杂质试剂转化为它们的反向对应物。转化量取决于所添加缓冲液的体积。"
 	ph = 7
 	color = "#b60046"
 
@@ -176,10 +176,10 @@
 
 	//audible feedback
 	if(conversion_buffer < amount * 10)
-		target.my_atom.audible_message(span_warning("The beaker goes into a rolling boil as the contents begin inversing!"))
+		target.my_atom.audible_message(span_warning("烧杯开始剧烈沸腾，内容物开始反转！"))
 		playsound(target.my_atom, 'sound/effects/chemistry/catalyst.ogg', 50, TRUE)
 	else
-		target.my_atom.audible_message(span_warning("The buffer fizzles with no effect."))
+		target.my_atom.audible_message(span_warning("缓冲液嘶嘶作响，但毫无效果。"))
 
 	//remove inversening reagent based on total buffer removed
 	var/volume_to_transfer = amount - (amount * (1 - (conversion_buffer / (amount * 10))))

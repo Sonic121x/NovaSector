@@ -5,8 +5,8 @@
  * Because using these, you can have multiple light sources in a single object.
  */
 /obj/effect/dummy/lighting_obj
-	name = "lighting"
-	desc = "Tell a coder if you're seeing this."
+	name = "光照"
+	desc = "如果你看到这个，请告诉程序员。"
 	icon_state = "nothing"
 	light_system = OVERLAY_LIGHT
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
@@ -26,7 +26,7 @@
 		QDEL_IN(src, duration)
 
 /obj/effect/dummy/lighting_obj/moblight
-	name = "mob lighting"
+	name = "生物光照"
 
 /obj/effect/dummy/lighting_obj/moblight/Initialize(mapload, range, power, color, duration)
 	. = ..()
@@ -34,10 +34,10 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/effect/dummy/lighting_obj/moblight/fire
-	name = "mob fire lighting"
+	name = "生物火焰光照"
 	light_color = LIGHT_COLOR_FIRE
 	light_range = LIGHT_RANGE_FIRE
 	light_power = LIGHT_POWER_FIRE
 
 /obj/effect/dummy/lighting_obj/moblight/species
-	name = "species lighting"
+	name = "物种光照"

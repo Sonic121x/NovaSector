@@ -1,7 +1,7 @@
 /// Wizard-looking guy who basically just shoots you
 /mob/living/basic/dark_wizard
-	name = "Dark Wizard"
-	desc = "Killing amateurs since the dawn of times."
+	name = "黑暗巫师"
+	desc = "自时间之初便开始杀戮业余者。"
 	icon = 'icons/mob/simple/simple_human.dmi'
 	icon_state = "dark_wizard"
 	icon_living = "dark_wizard"
@@ -70,7 +70,7 @@
 
 /// I don't know why an earth bolt freezes you but I guess it does
 /obj/projectile/temp/earth_bolt
-	name = "earth bolt"
+	name = "大地之箭"
 	icon_state = "declone"
 	damage = 4
 	damage_type = BURN

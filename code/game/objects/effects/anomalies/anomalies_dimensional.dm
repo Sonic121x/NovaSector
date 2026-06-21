@@ -1,6 +1,6 @@
 
 /obj/effect/anomaly/dimensional
-	name = "dimensional anomaly"
+	name = "维度异常"
 	icon_state = "dimensional"
 	anomaly_core = /obj/item/assembly/signaler/anomaly/dimensional
 	lifespan = ANOMALY_COUNTDOWN_TIMER * 20 // will generally be killed off by reaching max teleports first
@@ -88,7 +88,7 @@
 	var/area/new_area = placer.findValidArea()
 	var/turf/new_turf = placer.findValidTurf(new_area)
 
-	priority_announce("Dimensional instability relocated. Expected location: [new_area.name].", "Anomaly Alert")
+	priority_announce("维度不稳定性已转移。预计位置：[new_area.name]。", "异常警报")
 	src.forceMove(new_turf)
 	prepare_area()
 

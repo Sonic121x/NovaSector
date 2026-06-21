@@ -1,6 +1,6 @@
 /obj/machinery/door/window
 	name = "interior door"
-	desc = "A strong door."
+	desc = "一扇坚固的门。"
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
@@ -383,7 +383,7 @@
 /obj/machinery/door/window/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning("Its access panel is smoking slightly.")
+		. += span_warning("它的访问面板正微微冒烟。")
 	if(!density)
 		if(panel_open)
 			. += span_notice("The [span_boldnotice("airlock electronics")] could be [span_boldnotice("levered")] out.")
@@ -392,12 +392,12 @@
 /obj/machinery/door/window/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(density || operating)
-		to_chat(user, span_warning("You need to open the door to access the maintenance panel!"))
+		to_chat(user, span_warning("你需要打开门才能接触到维护面板！"))
 		return
 	add_fingerprint(user)
 	tool.play_tool_sound(src)
 	toggle_panel_open()
-	to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance panel."))
+	to_chat(user, span_notice("你[panel_open ? "open" : "close"]了维护面板。"))
 	return TRUE
 
 /obj/machinery/door/window/crowbar_act(mob/living/user, obj/item/tool)
@@ -405,8 +405,8 @@
 	if(!panel_open || density || operating)
 		return
 	add_fingerprint(user)
-	user.visible_message(span_notice("[user] removes the electronics from \the [src]."), \
-	span_notice("You start to remove electronics from \the [src]..."))
+	user.visible_message(span_notice("[user] 从 \the [src] 上拆下了电子元件。"), \
+	span_notice("你开始从\the [src]上拆除电子元件..."))
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return
 	if(!panel_open || density || operating || !loc)
@@ -429,10 +429,10 @@
 	windoor_assembly.update_appearance()
 	windoor_assembly.created_name = name
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("You discard the damaged electronics."))
+		to_chat(user, span_warning("你丢弃了损坏的电子元件。"))
 		qdel(src)
 		return
-	to_chat(user, span_notice("You remove the airlock electronics."))
+	to_chat(user, span_notice("你移除了气闸电子元件。"))
 	var/obj/item/electronics/airlock/dropped_electronics
 	if(!electronics)
 		dropped_electronics = new/obj/item/electronics/airlock(drop_location())
@@ -466,7 +466,7 @@
 		var/obj/item/crowbar/power/power_tool = I
 		if(power_tool.limit_jaws_access && forced)
 			playsound(src.loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-			user.balloon_alert(user, "cannot pry open!")
+			user.balloon_alert(user, "无法撬开！")
 			return
 
 	if(!hasPower() || forced)
@@ -475,7 +475,7 @@
 		else
 			close(BYPASS_DOOR_CHECKS)
 	else
-		to_chat(user, span_warning("The door's motors resist your efforts to force it!"))
+		to_chat(user, span_warning("门的马达抵抗着你强行打开它的努力！"))
 
 /obj/machinery/door/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
@@ -499,12 +499,12 @@
 	explosion_block = 1
 
 /obj/machinery/door/window/brigdoor/security/cell
-	name = "cell door"
-	desc = "For keeping in criminal scum."
+	name = "牢门"
+	desc = "用于关押罪犯和不法之徒。"
 	req_access = list(ACCESS_BRIG)
 
 /obj/machinery/door/window/brigdoor/security/holding
-	name = "holding cell door"
+	name = "拘留室门"
 	req_one_access = list(ACCESS_SECURITY)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/left, 0)

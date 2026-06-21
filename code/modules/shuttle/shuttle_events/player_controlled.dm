@@ -30,7 +30,7 @@
 
 ///BACK FOR REVENGE!!!
 /datum/shuttle_event/simple_spawner/player_controlled/alien_queen
-	name = "ALIEN QUEEN! (Kinda dangerous!)"
+	name = "异形女王！（有点危险！）"
 	spawning_list = list(/mob/living/carbon/alien/adult/royal/queen = 1, /obj/vehicle/sealed/mecha/ripley = 1)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 
@@ -47,7 +47,7 @@
 
 ///Spawns three player controlled carp!! Deadchats final chance to wreak havoc, probably really not that dangerous if even one person has a laser gun
 /datum/shuttle_event/simple_spawner/player_controlled/carp
-	name = "Three player controlled carp! (Little dangerous!)"
+	name = "三条玩家控制的太空鲤鱼！（有点危险！）"
 	spawning_list = list(/mob/living/basic/carp = 10, /mob/living/basic/carp/mega = 2, /mob/living/basic/carp/magic = 2, /mob/living/basic/carp/magic/chaos = 1)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 

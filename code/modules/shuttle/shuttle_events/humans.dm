@@ -13,7 +13,7 @@
 	human.equipOutfit(new outfit ())
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/greytide
-	name = "Greytide! (10 assistants)"
+	name = "灰潮！（10名助手）"
 	spawning_list = list(/mob/living/carbon/human = 10)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 	outfit = /datum/outfit/job/assistant/breath_mask
@@ -31,13 +31,13 @@
 	role_type = ROLE_HERMIT
 
 /datum/outfit/job/assistant/breath_mask
-	name = "Assistant - Breathmask"
+	name = "助手 - 呼吸面罩"
 	mask = /obj/item/clothing/mask/breath
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
 	internals_slot = ITEM_SLOT_LPOCKET
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/greytide/interns
-	name = "Intern Wave (Unarmed, 10 interns)"
+	name = "实习生浪潮（未武装，10名实习生）"
 	event_probability = 0
 	outfit = /datum/outfit/centcom/centcom_intern/unarmed
 
@@ -47,11 +47,11 @@
 /datum/shuttle_event/simple_spawner/player_controlled/human/greytide/interns/activate()
 	..()
 
-	minor_announce("We're sending you our bravest interns, please let them in when they arrive.",
-		title = "Emergency Shuttle", alert = TRUE)
+	minor_announce("我们正在派遣最勇敢的实习生过来，他们抵达时请让他们进来。",
+		title = "紧急穿梭机", alert = TRUE)
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/greytide/interns/armed
-	name = "Intern Wave (Armed, 10 interns)"
+	name = "实习生浪潮（已武装，10名实习生）"
 	event_probability = 0
 	outfit = /datum/outfit/centcom/centcom_intern
 
@@ -59,7 +59,7 @@
 	ghost_alert_string = "Would you like to be a centcom intern shot at the shuttle?"
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/hitchhiker
-	name = "Hitchhiker! (Harmless, single ghost spawn)"
+	name = "搭便车者！（无害，单个幽灵生成）"
 	spawning_list = list(/mob/living/carbon/human = 1)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 	outfit = /datum/outfit/job/assistant/hitchhiker
@@ -76,7 +76,7 @@
 	role_type = ROLE_HERMIT
 
 /datum/outfit/job/assistant/hitchhiker
-	name = "Assistant - Hitchhiker"
+	name = "助手 - 搭便车者"
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/eva
 	head = /obj/item/clothing/head/helmet/space/eva
@@ -85,7 +85,7 @@
 	internals_slot = ITEM_SLOT_LPOCKET
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/nukie
-	name = "Nuclear Operative (Dangerous as heck)!"
+	name = "核弹特工（危险得要命）！"
 	spawning_list = list(/mob/living/carbon/human = 1)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 	outfit = /datum/outfit/deathmatch_loadout/nukie
@@ -101,7 +101,7 @@
 	role_type = ROLE_OPERATIVE
 
 /datum/outfit/shuttle_nukie
-	name = "Shuttle Nuclear Operative"
+	name = "穿梭机核弹特工"
 
 	uniform = /obj/item/clothing/under/syndicate/tacticool
 	back = /obj/item/mod/control/pre_equipped/nuclear

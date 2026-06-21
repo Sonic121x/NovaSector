@@ -14,5 +14,5 @@
 /// Proc that just logs whenever an uninitialized client tries to do something before they have fully gone through New().
 /// Intended to be used in conjunction with the `VALIDATE_CLIENT_INITIALIZATION()` macro, but can be dropped anywhere when we look at the `fully_created` var on /client.
 /proc/unvalidated_client_error(client/target)
-	to_chat(target, span_warning("You are not fully initialized yet! Please wait a moment."))
+	to_chat(target, span_warning("你尚未完全初始化！请稍等片刻。"))
 	log_access("Client [key_name(target)] attempted to execute a verb before being fully initialized.")

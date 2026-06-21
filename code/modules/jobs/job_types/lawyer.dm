@@ -29,7 +29,7 @@
 	job_tone = "objection"
 
 /datum/outfit/job/lawyer
-	name = "Lawyer"
+	name = "律师"
 	jobtype = /datum/job/lawyer
 
 	id_trim = /datum/id_trim/job/lawyer

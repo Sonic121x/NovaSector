@@ -4,7 +4,7 @@
  * (basically just handles reducing their bloodiness value over time)
  */
 PROCESSING_SUBSYSTEM_DEF(blood_drying)
-	name = "Blood Drying"
+	name = "血液干燥"
 	ss_flags = SS_NO_INIT | SS_BACKGROUND
 	priority = FIRE_PRIORITY_BLOOD_DRYING
 	runlevels = RUNLEVEL_GAME

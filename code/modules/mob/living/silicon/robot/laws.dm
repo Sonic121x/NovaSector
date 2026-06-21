@@ -8,25 +8,25 @@
 	if(lawupdate)
 		if (!QDELETED(connected_ai))
 			if(connected_ai.stat != CONSCIOUS || connected_ai.control_disabled)
-				to_chat(src, span_bold("AI signal lost, unable to sync laws."))
+				to_chat(src, span_bold("AI信号丢失，无法同步法则。"))
 
 			else
 				lawsync()
-				to_chat(src, span_bold("Laws synced with AI, be sure to note any changes."))
+				to_chat(src, span_bold("法则已与AI同步，请注意任何变更。"))
 		else
-			to_chat(src, span_bold("No AI selected to sync laws with, disabling lawsync protocol."))
+			to_chat(src, span_bold("未选择AI进行法则同步，已禁用法则同步协议。"))
 			lawupdate = FALSE
 
 	. = ..()
 
 	if (shell) //AI shell
-		to_chat(src, span_bold("Remember, you are an AI remotely controlling your shell, other AIs can be ignored."))
+		to_chat(src, span_bold("记住，你是远程控制外壳的AI，可以忽略其他AI。"))
 	else if (connected_ai)
-		to_chat(src, span_bold("Remember, [connected_ai.name] is your master, other AIs can be ignored."))
+		to_chat(src, span_bold("记住，[connected_ai.name] 是你的主人，可以忽略其他AI。"))
 	else if (emagged)
-		to_chat(src, span_bold("Remember, you are not required to listen to the AI."))
+		to_chat(src, span_bold("记住，你没有义务听从AI。"))
 	else
-		to_chat(src, span_bold("Remember, you are not bound to any AI, you are not required to listen to them."))
+		to_chat(src, span_bold("记住，你不受任何AI约束，没有义务听从它们。"))
 
 /mob/living/silicon/robot/try_sync_laws()
 	if(QDELETED(connected_ai) || !lawupdate)

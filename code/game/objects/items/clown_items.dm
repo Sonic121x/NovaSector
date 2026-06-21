@@ -12,8 +12,8 @@
  */
 
 /obj/item/soap
-	name = "soap"
-	desc = "A cheap bar of soap. Doesn't smell."
+	name = "肥皂"
+	desc = "一块便宜的肥皂。没有气味。"
 	gender = PLURAL
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "soap"
@@ -58,7 +58,7 @@
 	. += span_notice("[msg]")
 
 /obj/item/soap/homemade
-	desc = "A homemade bar of soap. Smells of... well...."
+	desc = "一块自制的肥皂。闻起来……嗯……"
 	icon_state = "soapgibs"
 	inhand_icon_state = "soapgibs"
 	worn_icon_state = "soapgibs"
@@ -68,7 +68,7 @@
 	return list(/datum/reagent/consumable/liquidgibs = 9, /datum/reagent/lye = 9)
 
 /obj/item/soap/nanotrasen
-	desc = "A heavy duty bar of Nanotrasen brand soap. Smells of plasma."
+	desc = "一块纳米特拉森品牌的重型肥皂。闻起来有等离子体的味道。"
 	icon_state = "soapnt"
 	inhand_icon_state = "soapnt"
 	worn_icon_state = "soapnt"
@@ -79,7 +79,7 @@
 	return list(/datum/reagent/toxin/plasma = 10, /datum/reagent/lye = 10)
 
 /obj/item/soap/deluxe
-	desc = "A deluxe Waffle Corporation brand bar of soap. Smells of high-class luxury."
+	desc = "一块华夫饼公司品牌的豪华肥皂。闻起来有高档奢华的气息。"
 	icon_state = "soapdeluxe"
 	inhand_icon_state = "soapdeluxe"
 	worn_icon_state = "soapdeluxe"
@@ -89,7 +89,7 @@
 	return list(/datum/reagent/consumable/aloejuice = 10, /datum/reagent/lye = 10)
 
 /obj/item/soap/syndie
-	desc = "An untrustworthy bar of soap made of strong chemical agents that dissolve blood faster."
+	desc = "一块由强力化学剂制成、能更快溶解血液的不可靠肥皂。"
 	icon_state = "soapsyndie"
 	inhand_icon_state = "soapsyndie"
 	worn_icon_state = "soapsyndie"
@@ -99,15 +99,15 @@
 	return list(/datum/reagent/toxin/acid = 10, /datum/reagent/lye = 10)
 
 /obj/item/soap/drone
-	name = "\improper integrated soap module"
+	name = "\improper 集成肥皂模块"
 	inhand_icon_state = "soapnt"
 	worn_icon_state = "soapnt"
 	cleanspeed = 0.5 SECONDS //can be changed if someone isn't happy
 	uses = INFINITY
 
 /obj/item/soap/omega
-	name = "\improper Omega soap"
-	desc = "The most advanced soap known to mankind. The beginning of the end for germs."
+	name = "\improper 欧米茄肥皂"
+	desc = "人类已知最先进的肥皂。细菌终结的开端。"
 	icon_state = "soapomega"
 	inhand_icon_state = "soapomega"
 	worn_icon_state = "soapomega"
@@ -134,18 +134,18 @@
 	)
 
 /obj/item/soap/omega/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is using [src] to scrub themselves from the timeline! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在用 [src] 把自己从时间线上擦除！看起来 [user.p_theyre()] 试图自杀！"))
 	new /obj/structure/chrono_field(user.loc, user)
 	return MANUAL_SUICIDE
 
 /obj/item/paper/fluff/stations/soap
-	name = "ancient janitorial poem"
-	desc = "An old paper that has passed many hands."
+	name = "古老的清洁工诗歌"
+	desc = "一张经手多人的旧纸。"
 	default_raw_text = "<h1><b>The Legend of the Omega Soap</b></h1><br><br>Essence of <b>potato</b>, juice, not grind.<br>A <b>lizard's</b> tail, turned into wine.<br><b>Powder of monkey</b>, to help the workload.<br>Some <b>Krokodil</b>, because meth would explode.<br><b>Nitric acid</b> and <b>Baldium</b>, for organic dissolving.<br>A cup full of <b>hooch</b>, for sins' absolving.<br>A dash of <b>bluespace dust</b>, for removal of stains.<br>A syringe of <b>Pump-Up</b>, Security's worst of pains.<br>A can of <b>Space Cola</b>, to watch the dirt fade.<br><b>Heat</b> as hot as possible, let the soap be your blade.<br>With <b>ten</b> units of each, the soap that topples all will be made."
 
 /obj/item/soap/suicide_act(mob/living/user)
 	user.say(";FFFFFFFFFFFFFFFFUUUUUUUDGE!!", forced="soap suicide")
-	user.visible_message(span_suicide("[user] lifts [src] to [user.p_their()] mouth and gnaws on it furiously, producing a thick froth! [user.p_They()]'ll never get that BB gun now!"))
+	user.visible_message(span_suicide("[user] 将 [src] 举到 [user.p_their()] 嘴边，疯狂地啃咬，产生浓密的泡沫！[user.p_They()] 再也得不到那把BB枪了！"))
 	do_foam(1, src, get_turf(user))
 	return TOXLOSS
 
@@ -175,14 +175,14 @@
 		noUses(user)
 
 /obj/item/soap/proc/noUses(mob/user)
-	to_chat(user, span_warning("[src] crumbles into tiny bits!"))
+	to_chat(user, span_warning("[src] 碎成了小碎片！"))
 	qdel(src)
 
 /obj/item/soap/nanotrasen/cyborg
-	name = "built-in soap"
+	name = "内置肥皂"
 
 /obj/item/soap/nanotrasen/cyborg/noUses(mob/user)
-	to_chat(user, span_warning("[src] has ran out of chemicals! Head to a recharger to refill it."))
+	to_chat(user, span_warning("[src] 的化学物质用完了！前往充电器补充。"))
 
 /obj/item/soap/nanotrasen/cyborg/should_clean(datum/cleaning_source, atom/atom_to_clean, mob/living/cleaner)
 	if(uses <= 0)
@@ -194,8 +194,8 @@
  */
 
 /obj/item/bikehorn
-	name = "bike horn"
-	desc = "A horn off of a bicycle. Rumour has it that they're made from recycled clowns."
+	name = "自行车喇叭"
+	desc = "一个从自行车上拆下来的喇叭。传闻它们是用回收的小丑制成的。"
 	icon = 'icons/obj/art/horn.dmi'
 	icon_state = "bike_horn"
 	inhand_icon_state = "bike_horn"
@@ -227,20 +227,20 @@
 	return ..()
 
 /obj/item/bikehorn/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] solemnly points [src] at [user.p_their()] temple! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 庄重地将 [src] 对准了 [user.p_their()] 的太阳穴！看起来 [user.p_theyre()] 想要自杀！"))
 	playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
 	return BRUTELOSS
 
 //air horn
 /obj/item/bikehorn/airhorn
-	name = "air horn"
-	desc = "Damn son, where'd you find this?"
+	name = "空气喇叭"
+	desc = "好家伙，你从哪儿搞来的？"
 	icon_state = "air_horn"
 	worn_icon_state = "horn_air"
 	sound_file = 'sound/items/airhorn/airhorn2.ogg'
 
 /datum/crafting_recipe/airhorn
-	name = "Air Horn"
+	name = "空气喇叭"
 	result = /obj/item/bikehorn/airhorn
 	reqs = list(
 		/obj/item/bikehorn = 1,
@@ -250,8 +250,8 @@
 
 //golden bikehorn
 /obj/item/bikehorn/golden
-	name = "golden bike horn"
-	desc = "Golden? Clearly, it's made with bananium! Honk!"
+	name = "金色自行车喇叭"
+	desc = "金色的？很明显，这是用香蕉矿做的！哔哔！"
 	icon_state = "gold_horn"
 	inhand_icon_state = "gold_horn"
 	worn_icon_state = "horn_gold"
@@ -276,12 +276,12 @@
 	COOLDOWN_START(src, golden_horn_cooldown, 1 SECONDS)
 
 /obj/item/bikehorn/rubberducky/plasticducky
-	name = "plastic ducky"
-	desc = "It's a cheap plastic knockoff of a loveable bathtime toy."
+	name = "塑料小鸭"
+	desc = "这是一个可爱的沐浴玩具的廉价塑料仿制品。"
 	custom_materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/bikehorn/rubberducky
-	name = "rubber ducky"
+	name = "橡皮小鸭"
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~" //thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
@@ -293,15 +293,15 @@
 
 //canned laughter
 /obj/item/reagent_containers/cup/soda_cans/canned_laughter
-	name = "Canned Laughter"
-	desc = "Just looking at this makes you want to giggle."
+	name = "罐装笑声"
+	desc = "光是看着这个就让人想咯咯笑。"
 	icon_state = "laughter"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/laughter = 50)
 
 //balloon mallet
 /obj/item/balloon_mallet
-	name = "balloon mallet"
+	name = "气球锤"
 	desc = "It's a mallet, a weapon known for being heavy, but made from notoriously light balloons. Air inside removes any force from the swings. It'd be quite embarrassing to get hit by this."
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "balloon_mallet"

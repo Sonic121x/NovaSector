@@ -1,5 +1,5 @@
 /datum/outfit/virtual_syndicate
-	name = "Virtual Syndie"
+	name = "虚拟辛迪加"
 	uniform = /obj/item/clothing/under/syndicate/ninja
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated

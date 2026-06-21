@@ -1,7 +1,7 @@
 // Hierophant club
 
 /obj/item/hierophant_club
-	name = "hierophant club"
+	name = "圣像巨棒"
 	desc = "The shriveled remains of the Hierophant hold some remnant of its power. It used it to beat you, but now you can set the beat."
 	icon_state = "hierophant_club"
 	inhand_icon_state = "hierophant_club"
@@ -44,9 +44,9 @@
 /obj/item/hierophant_club/examine(mob/user)
 	. = ..()
 	if (beacon)
-		. += span_hierophant_warning("The beacon is currently detached.")
+		. += span_hierophant_warning("信标目前处于分离状态。")
 	else
-		. += span_hierophant_warning("There is a beacon attached at the back end of the handle.")
+		. += span_hierophant_warning("有一枚信标附着在握柄的末端。")
 
 /obj/item/hierophant_club/equipped(mob/user)
 	. = ..()
@@ -60,10 +60,10 @@
 
 /obj/item/hierophant_club/suicide_act(mob/living/user)
 	say("Xverwpsgexmrk...", forced = "hierophant club suicide")
-	user.visible_message(span_suicide("[user] holds [src] into the air! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]将[src]举向空中！看起来[user.p_theyre()]想要自杀！"))
 	new/obj/effect/temp_visual/hierophant/telegraph(get_turf(user))
 	playsound(user,'sound/machines/airlock/airlockopen.ogg', 75, TRUE)
-	user.visible_message(span_hierophant_warning("[user] fades out, leaving [user.p_their()] belongings behind!"))
+	user.visible_message(span_hierophant_warning("[user]逐渐淡出，留下了[user.p_their()]的所有物品！"))
 	for (var/obj/item/user_item as anything in user.get_all_gear(FALSE, FALSE))
 		user.dropItemToGround(user_item)
 	for (var/turf/blast_turf as anything in RANGE_TURFS(1, user))
@@ -74,7 +74,7 @@
 /obj/item/hierophant_club/attack_self(mob/user)
 	. = ..()
 	blink_activated = !blink_activated
-	balloon_alert(user, "blinking [blink_activated ? "enabled" : "disabled"]")
+	balloon_alert(user, "闪烁 [blink_activated ? "enabled" : "disabled"]")
 
 /obj/item/hierophant_club/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	// If our target is the beacon and the hierostaff is next to the beacon, we're trying to pick it up.
@@ -114,11 +114,11 @@
 
 /obj/item/hierophant_club/ui_action_click(mob/user, action)
 	if (teleporting)
-		balloon_alert(user, "already in use!")
+		balloon_alert(user, "已在使用中！")
 		return
 
 	if (!user.is_holding(src))
-		to_chat(user, span_warning("You need to hold the club in your hands to [beacon ? "teleport with it" : "detach the beacon"]!"))
+		to_chat(user, span_warning("你需要手持权杖才能[beacon ? "teleport with it" : "detach the beacon"]！"))
 		return
 
 	if (!beacon)
@@ -126,40 +126,40 @@
 		return
 
 	if (get_dist(user, beacon) <= 2)
-		balloon_alert(user, "too close to the beacon!")
+		balloon_alert(user, "离信标太近了！")
 		return
 
 	var/turf/beacon_turf = get_turf(beacon)
 	if (!beacon_turf || beacon_turf.is_blocked_turf(TRUE))
-		balloon_alert(user, "the beacon is blocked!")
+		balloon_alert(user, "信标被阻挡了！")
 		return
 
 	if (!isturf(user.loc))
-		balloon_alert(user, "not enough room to teleport!")
+		balloon_alert(user, "没有足够的空间传送！")
 		return
 
 	var/turf/user_turf = get_turf(user)
 	teleporting = TRUE
 	user.update_mob_action_buttons()
-	user.visible_message(span_hierophant_warning("[user] starts to glow faintly..."), span_hierophant_warning("You begin channeling [src]'s power..."))
+	user.visible_message(span_hierophant_warning("[user]开始发出微弱的光芒..."), span_hierophant_warning("你开始引导[src]的力量..."))
 	beacon.icon_state = "hierophant_tele_on"
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/user_telegraph = new /obj/effect/temp_visual/hierophant/telegraph/edge(user_turf)
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/beacon_telegraph = new /obj/effect/temp_visual/hierophant/telegraph/edge(beacon_turf)
 	if (!do_after(user, 4 SECONDS, user))
 		if (user)
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, "被打断了！")
 		stop_teleport(user)
 		qdel(user_telegraph)
 		qdel(beacon_telegraph)
 		return
 
 	if (!beacon)
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		stop_teleport(user)
 		return
 
 	if (beacon_turf.is_blocked_turf(TRUE))
-		balloon_alert(user, "the beacon is blocked!")
+		balloon_alert(user, "信标被阻挡了！")
 		stop_teleport(user)
 		return
 
@@ -197,23 +197,23 @@
 		return
 	animate(victim, alpha = 0, time = 0.2 SECONDS, easing = SINE_EASING|EASE_OUT)
 	sleep(0.2 SECONDS)
-	victim.visible_message(span_hierophant_warning("[victim] fades out!"))
+	victim.visible_message(span_hierophant_warning("[victim]逐渐淡出！"))
 	var/success = do_teleport(victim, target_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_MAGIC)
 	animate(victim, alpha = 255, time = 0.2 SECONDS, SINE_EASING|EASE_OUT)
-	victim.visible_message(span_hierophant_warning("[victim] fades in!"))
+	victim.visible_message(span_hierophant_warning("[victim]逐渐显现！"))
 	if (user != victim && success)
 		log_combat(user, victim, "teleported", null, "from [AREACOORD(user_turf)]")
 
 /// Attempts to place a return beacon at user's feet
 /obj/item/hierophant_club/proc/deploy_beacon(mob/user)
 	if (!isopenturf(user.loc) && !isopenspaceturf(user.loc))
-		to_chat(user, span_warning("You need to be on solid ground to detach the beacon!"))
+		to_chat(user, span_warning("你需要站在坚实的地面上才能部署信标！"))
 		return
 
-	user.visible_message(span_hierophant_warning("[user] starts fiddling with [src]'s pommel..."), span_notice("You start detaching the hierophant beacon..."))
-	balloon_alert(user, "detaching the beacon...")
+	user.visible_message(span_hierophant_warning("[user]开始摆弄[src]的柄头..."), span_notice("你开始拆卸圣职者信标..."))
+	balloon_alert(user, "正在分离信标...")
 	if (!do_after(user, 5 SECONDS, user))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
 
 	// Already dropped one
@@ -227,17 +227,17 @@
 	RegisterSignal(beacon, COMSIG_QDELETING, PROC_REF(beacon_destroyed))
 
 	user.update_mob_action_buttons()
-	user.visible_message(span_hierophant_warning("[user] places a strange machine beneath [user.p_their()] feet!"), span_hierophant("You detach the hierophant beacon, allowing you to teleport yourself and any allies to it at any time!"))
-	to_chat(user, span_hierophant("You can remove the beacon to place it again by striking it with the club."))
+	user.visible_message(span_hierophant_warning("[user] 在 [user.p_their()] 脚下放置了一台奇怪的机器！"), span_hierophant("你分离了圣像信标，允许你随时将自己和任何盟友传送到它那里！"))
+	to_chat(user, span_hierophant("你可以用权杖击打信标来移除它，以便再次放置。"))
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/hierophant_club/proc/beacon_destroyed(datum/source)
 	SIGNAL_HANDLER
 	beacon = null
 	if (ismob(loc))
-		to_chat(loc, span_hierophant("With a loud snap, a new beacon appears at [src]'s pommel."))
+		to_chat(loc, span_hierophant("随着一声响亮的噼啪声，一个新的信标出现在 [src] 的柄端。"))
 	else
-		visible_message(span_hierophant("With a loud snap, a new beacon appears at [src]'s pommel."))
+		visible_message(span_hierophant("随着一声响亮的噼啪声，一个新的信标出现在 [src] 的柄端。"))
 	playsound(src, 'sound/effects/magic/blind.ogg', 50, TRUE, -4)
 	update_appearance(UPDATE_OVERLAYS)
 

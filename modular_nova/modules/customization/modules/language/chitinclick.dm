@@ -1,6 +1,6 @@
 /datum/language/chitinclick
-	name = "Chitinclick"
-	desc = "A popular non-Human language that finds extensive use by various types of anthropomorphic invertebrates. It consists of complex flutters, chittering, antenna movements, and sparse guttural syllables."
+	name = "几丁质咔哒语"
+	desc = "一种流行的非人类语言，被各种类型的类人无脊椎动物广泛使用。它由复杂的振翅声、咔哒声、触角动作以及稀疏的喉音音节组成。"
 	key = "C"
 	space_chance = 40
 	sentence_chance = 10

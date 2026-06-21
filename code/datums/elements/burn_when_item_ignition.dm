@@ -41,14 +41,14 @@
 		user.ignite_mob()
 		if(user.on_fire)
 			user.visible_message(
-				span_warning("[user] accidentally ignites [user.p_them()]self!"),
-				span_userdanger("You miss [src] and accidentally light yourself on fire!"),
+				span_warning("[user]不小心点燃了[user.p_them()]自己！"),
+				span_userdanger("你没击中[src]却不小心把自己点着了！"),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		else
 			user.visible_message(
-				span_warning("[user] accidentally burns [user.p_them()]self!"),
-				span_userdanger("You miss [src] and accidentally burn yourself!"),
+				span_warning("[user]不小心烫伤了[user.p_them()]自己！"),
+				span_userdanger("你没击中[src]却不小心烫伤了自己！"),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		return ITEM_INTERACT_SUCCESS

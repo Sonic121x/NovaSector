@@ -266,15 +266,15 @@
 	cost = CARGO_CRATE_VALUE * 1.5
 
 /datum/supply_pack/companies/medical/cyber_implants/razorwire
-	name = "Razorwire Spool Implant"
+	name = "剃刀线轴植入体"
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/razorwire)
 
 /datum/supply_pack/companies/medical/cyber_implants/shell_launcher
-	name = "Shell Launch System Implant"
+	name = "弹壳发射系统植入体"
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/shell_launcher)
 
 /datum/supply_pack/companies/medical/cyber_implants/sandy
-	name = "Qani-Laaca Sensory Computer Implant"
+	name = "Qani-Laaca感官计算机植入体"
 	contains = list(/obj/item/organ/cyberimp/sensory_enhancer)
 	cost = CARGO_CRATE_VALUE * 2.5
 

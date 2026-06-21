@@ -1,7 +1,7 @@
 //Parent types
 
 /area/ruin
-	name = "\improper Unexplored Location"
+	name = "\improper 未探索区域"
 	icon = 'icons/area/areas_ruins.dmi'
 	icon_state = "ruins"
 	default_gravity = STANDARD_GRAVITY

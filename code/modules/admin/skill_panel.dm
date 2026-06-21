@@ -42,17 +42,17 @@
 	switch (action)
 		if ("adj_exp")
 			var/skill = text2path(params["skill"])
-			var/number = input("Please insert the amount of experience you'd like to add/subtract:") as num|null
+			var/number = input("请输入你想要增加/减少的经验值数量：") as num|null
 			if (number)
 				targetmind.adjust_experience(skill, number)
 		if ("set_exp")
 			var/skill = text2path(params["skill"])
-			var/number = input("Please insert the number you want to set the player's exp to:") as num|null
+			var/number = input("请输入你想将玩家的经验值设置为的数字：") as num|null
 			if (number)
 				targetmind.set_experience(skill, number)
 		if ("set_lvl")
 			var/skill = text2path(params["skill"])
 			var/max_skill = length(SKILL_EXP_LIST)
-			var/number = input("Please insert a whole number between 1 (NONE) and [max_skill] (LEGENDARY) corresponding to the level you'd like to set the player to.") as num|null
+			var/number = input("请输入一个介于 1 (无) 和 [max_skill] (传奇) 之间的整数，对应你想为玩家设置的等级。") as num|null
 			if (number > 0 && number <= max_skill )
 				targetmind.set_level(skill, number)

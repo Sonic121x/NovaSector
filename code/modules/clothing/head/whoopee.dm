@@ -1,8 +1,8 @@
 /// Whoopee cushion for the april fools mail pool
 /// I fear what would happen if this were to be released outside of april fools but there's a `check_holidays()` in there just in case
 /obj/item/clothing/head/costume/whoopee
-	name = "whoopee cushion"
-	desc = "A relic of archaic humor technology."
+	name = "放屁坐垫"
+	desc = "一种古老幽默科技的遗物。"
 	icon = 'icons/obj/holiday/holiday_misc.dmi'
 	icon_state = "whoopee"
 	inhand_icon_state = null

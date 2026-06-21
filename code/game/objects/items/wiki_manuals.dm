@@ -49,150 +49,150 @@
 /obj/item/book/manual/wiki/display_content(mob/living/user)
 	var/wiki_url = CONFIG_GET(string/wikiurl)
 	if(!wiki_url)
-		user.balloon_alert(user, "this book is empty!")
+		user.balloon_alert(user, "这本书是空的！")
 		return
 	credit_book_to_reader(user)
 	if(user.client.byond_version < 516) //Remove this once 516 is stable
-		if(tgui_alert(user, "This book's page will open in your browser. Are you sure?", "Open The Wiki", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "这本书的页面将在你的浏览器中打开。你确定吗？", "打开维基", list("Yes", "No")) != "Yes")
 			return
 		DIRECT_OUTPUT(user, link("[wiki_url]/[page_link]"))
 	else
 		DIRECT_OUTPUT(user, browse(WIKI_PAGE_IFRAME(name, wiki_url, page_link), "window=manual;size=[BOOK_WINDOW_BROWSE_SIZE]")) // if you change this GUARANTEE that it works.
 
 /obj/item/book/manual/wiki/chemistry
-	name = "Chemistry Textbook"
+	name = "化学教科书"
 	icon_state ="chemistrybook"
 	starting_author = "Nanotrasen"
 	starting_title = "Chemistry Textbook"
 	page_link = "Guide_to_chemistry"
 
 /obj/item/book/manual/wiki/engineering_construction
-	name = "Station Repairs and Construction"
+	name = "空间站维修与建造"
 	icon_state ="bookEngineering"
 	starting_author = "Engineering Encyclopedia"
 	starting_title = "Station Repairs and Construction"
 	page_link = "Guide_to_construction"
 
 /obj/item/book/manual/wiki/engineering_guide
-	name = "Engineering Textbook"
+	name = "工程学教科书"
 	icon_state ="bookEngineering2"
 	starting_author = "Engineering Encyclopedia"
 	starting_title = "Engineering Textbook"
 	page_link = "Guide_to_engineering"
 
 /obj/item/book/manual/wiki/security_space_law
-	name = "Space Law"
-	desc = "A set of Nanotrasen guidelines for keeping law and order on their space stations."
+	name = "太空法"
+	desc = "一套用于维持其空间站法律与秩序的纳米特拉森准则。"
 	icon_state = "bookSpaceLaw"
 	starting_author = "Nanotrasen"
 	starting_title = "Space Law"
 	page_link = "Space_Law"
 
 /obj/item/book/manual/wiki/security_space_law/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] pretends to read \the [src] intently... then promptly dies of laughter!"))
+	user.visible_message(span_suicide("[user] 假装在认真阅读 \the [src]……然后立刻笑死了！"))
 	return OXYLOSS
 
 /obj/item/book/manual/wiki/infections
-	name = "Infections - Making your own pandemic!"
+	name = "感染——创造你自己的大流行病！"
 	icon_state = "bookInfections"
 	starting_author = "Infections Encyclopedia"
 	starting_title = "Infections - Making your own pandemic!"
 	page_link = "Infections"
 
 /obj/item/book/manual/wiki/telescience
-	name = "Teleportation Science - Bluespace for dummies!"
+	name = "传送科学——给傻瓜看的蓝空间！"
 	icon_state = "book7"
 	starting_author = "University of Bluespace"
 	starting_title = "Teleportation Science - Bluespace for dummies!"
 	page_link = "Guide_to_telescience"
 
 /obj/item/book/manual/wiki/engineering_hacking
-	name = "Hacking"
+	name = "黑客技术"
 	icon_state ="bookHacking"
 	starting_author = "Engineering Encyclopedia"
 	starting_title = "Hacking"
 	page_link = "Hacking"
 
 /obj/item/book/manual/wiki/detective
-	name = "The Film Noir: Proper Procedures for Investigations"
+	name = "《黑色电影：调查工作规范流程》"
 	icon_state ="bookDetective"
 	starting_author = "Nanotrasen"
 	starting_title = "The Film Noir: Proper Procedures for Investigations"
 	page_link = "Detective"
 
 /obj/item/book/manual/wiki/barman_recipes
-	name = "Barman Recipes: Mixing Drinks and Changing Lives"
+	name = "《调酒师配方：调制饮品，改变人生》"
 	icon_state = "barbook"
 	starting_author = "Sir John Rose"
 	starting_title = "Barman Recipes: Mixing Drinks and Changing Lives"
 	page_link = "Guide_to_drinks"
 
 /obj/item/book/manual/wiki/robotics_cyborgs
-	name = "Robotics for Dummies"
+	name = "《机器人学入门指南》"
 	icon_state = "borgbook"
 	starting_author = "XISC"
 	starting_title = "Robotics for Dummies"
 	page_link = "Guide_to_robotics"
 
 /obj/item/book/manual/wiki/research_and_development
-	name = "Research and Development 101"
+	name = "《研发基础入门》"
 	icon_state = "rdbook"
 	starting_author = "Dr. L. Ight"
 	starting_title = "Research and Development 101"
 	page_link = "Guide_to_Research_and_Development"
 
 /obj/item/book/manual/wiki/experimentor
-	name = "Mentoring your Experiments"
+	name = "《实验指导手册》"
 	icon_state = "rdbook"
 	starting_author = "Dr. H.P. Kritz"
 	starting_title = "Mentoring your Experiments"
 	page_link = "Experimentor"
 
 /obj/item/book/manual/wiki/cooking_to_serve_man
-	name = "To Serve Man"
-	desc = "It's a cookbook!"
+	name = "《供人食用》"
+	desc = "这是本食谱！"
 	icon_state ="cooked_book"
 	starting_author = "the Kanamitan Empire"
 	starting_title = "To Serve Man"
 	page_link = "Guide_to_food"
 
 /obj/item/book/manual/wiki/tcomms
-	name = "Subspace Telecommunications And You"
+	name = "《子空间通信与你》"
 	icon_state = "book3"
 	starting_author = "Engineering Encyclopedia"
 	starting_title = "Subspace Telecommunications And You"
 	page_link = "Guide_to_Telecommunications"
 
 /obj/item/book/manual/wiki/atmospherics
-	name = "Lexica Atmosia"
+	name = "《大气学词典》"
 	icon_state = "book5"
 	starting_author = "the City-state of Atmosia"
 	starting_title = "Lexica Atmosia"
 	page_link = "Guide_to_Atmospherics"
 
 /obj/item/book/manual/wiki/medicine
-	name = "Medical Space Compendium, Volume 638"
+	name = "《太空医学纲要，第638卷》"
 	icon_state = "book8"
 	starting_author = "Medical Journal"
 	starting_title = "Medical Space Compendium, Volume 638"
 	page_link = "Guide_to_medicine"
 
 /obj/item/book/manual/wiki/surgery
-	name = "Brain Surgery for Dummies"
+	name = "《脑外科手术入门指南》"
 	icon_state = "book4"
 	starting_author = "Dr. F. Fran"
 	starting_title = "Brain Surgery for Dummies"
 	page_link = "Surgery"
 
 /obj/item/book/manual/wiki/grenades
-	name = "DIY Chemical Grenades"
+	name = "《自制化学手榴弹》"
 	icon_state = "book2"
 	starting_author = "W. Powell"
 	starting_title = "DIY Chemical Grenades"
 	page_link = "Grenade"
 
 /obj/item/book/manual/wiki/ordnance
-	name = "Ordnance for Dummies or: How I Learned to Stop Worrying and Love the Maxcap"
+	name = "《军械入门指南：或：我如何学会停止担忧并爱上最大当量》"
 	icon_state = "book6"
 	starting_author = "Cuban Pete"
 	starting_title = "Ordnance for Dummies or: How I Learned to Stop Worrying and Love the Maxcap"
@@ -200,7 +200,7 @@
 
 /obj/item/book/manual/wiki/ordnance/suicide_act(mob/living/user)
 	var/mob/living/carbon/human/H = user
-	user.visible_message(span_suicide("[user] starts dancing to the Rhumba Beat! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始跟着伦巴节奏跳舞！看起来[user.p_theyre()]想自杀！"))
 	playsound(loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	if(QDELETED(H))
 		return
@@ -225,21 +225,21 @@
 	return BRUTELOSS
 
 /obj/item/book/manual/wiki/plumbing
-	name = "Chemical Factories Without Narcotics"
+	name = "《无毒品化学工厂》"
 	icon_state ="plumbingbook"
 	starting_author = "Nanotrasen"
 	starting_title = "Chemical Factories Without Narcotics"
 	page_link = "Guide_to_plumbing"
 
 /obj/item/book/manual/wiki/cytology
-	name = "Unethically Grown Organics"
+	name = "《非伦理培育有机体》"
 	icon_state ="cytologybook"
 	starting_author = "Kryson"
 	starting_title = "Unethically Grown Organics"
 	page_link = "Guide_to_cytology"
 
 /obj/item/book/manual/wiki/tgc
-	name = "Tactical Game Cards - Player's Handbook"
+	name = "《战术游戏卡牌 - 玩家手册》"
 	icon_state = "tgcbook"
 	starting_author = "Nanotrasen Edu-tainment Division"
 	starting_title = "Tactical Game Cards - Player's Handbook"

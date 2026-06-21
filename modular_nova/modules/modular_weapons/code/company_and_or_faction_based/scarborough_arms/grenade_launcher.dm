@@ -127,7 +127,7 @@
 /obj/item/gun/ballistic/pump_launcher/rack(mob/user)
 	if((folded == BOARDER_FOLD_FOLDED) && !can_rack_when_folded)
 		to_chat(user, span_warning("[src] can't cycle while folded!"))
-		balloon_alert(user, "can't rack when folded!")
+		balloon_alert(user, "折叠时无法上膛！")
 		return FALSE
 	. = ..()
 
@@ -145,13 +145,13 @@
 		recoil = 0.5
 	else
 		if(!do_after(user, fold_time, timed_action_flags = IGNORE_USER_LOC_CHANGE))
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, "被打断了！")
 			return
 		w_class = WEIGHT_CLASS_NORMAL
 		recoil = 1.5 // ow ouch ouchie oof
 	folded = !folded
 	if(user)
-		balloon_alert(user, "stock [folded ? "collapsed" : "extended"]")
+		balloon_alert(user, "枪托[folded ? "collapsed" : "extended"]")
 		playsound(src.loc, 'sound/items/weapons/batonextend.ogg', 30, 1)
 	update_icon()
 
@@ -162,7 +162,7 @@
 
 // magazines
 /obj/item/ammo_box/magazine/internal/pump_launcher
-	name = "pump-action grenade launcher magazine tube"
+	name = "泵动式榴弹发射器弹管"
 	desc = "Oh. That's a 40mm grenade. That's a 40mm grenade being launched towards my face."
 	ammo_type = /obj/item/ammo_casing/a40mm
 	caliber = CALIBER_40MM
@@ -177,7 +177,7 @@
 
 // cases
 /obj/item/storage/toolbox/guncase/traitor/boarder
-	name = "boarder grenade launcher case"
+	name = "登船者榴弹发射器箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/pump_launcher/c980/prefold
 	extra_to_spawn = /obj/item/ammo_box/c980grenade/shrapnel
 	ammo_box_to_spawn = /obj/item/ammo_box/c980grenade/shrapnel/phosphor

@@ -12,7 +12,7 @@
 
 /// See #66313 and #60901. outfit_sanity used to runtime whenever you had two mergable sheets in either hand. Previously, this only had a 3% chance of occuring. Now 100%.
 /datum/outfit/stacks_in_hands
-	name = "Mr. Runtime"
+	name = "运行时先生"
 
 	uniform = /obj/item/clothing/under/suit/tuxedo
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -23,19 +23,19 @@
 
 /// outfit_sanity needs to cover insertions into duffelbags
 /datum/outfit/duffel_user
-	name = "Mr. Runtime"
+	name = "Runtime先生"
 	back = /obj/item/storage/backpack/duffelbag
 	backpack_contents = list(/obj/item/cigarette/cigar/havana)
 
 /// Satchels too
 /datum/outfit/stachel_user
-	name = "Mr. Runtime"
+	name = "Runtime先生"
 	back = /obj/item/storage/backpack/satchel
 	backpack_contents = list(/obj/item/cigarette/cigar/havana)
 
 /// And just in case we'll check backpacks
 /datum/outfit/backpack_user
-	name = "Mr. Runtime"
+	name = "Runtime先生"
 	back = /obj/item/storage/backpack
 	backpack_contents = list(/obj/item/cigarette/cigar/havana)
 

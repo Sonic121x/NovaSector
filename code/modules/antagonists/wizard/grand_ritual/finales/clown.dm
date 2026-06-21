@@ -1,7 +1,7 @@
 /// Dress the crew as magical clowns
 /datum/grand_finale/clown
-	name = "Jubilation"
-	desc = "The ultimate use of your gathered power! Rewrite time so that everyone went to clown college! Now they'll prank each other for you!"
+	name = "欢庆"
+	desc = "你聚集力量的终极用途！改写时间，让所有人都去上了小丑学院！现在他们会替你互相恶作剧了！"
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "clown"
 	glow_colour = "#ffff0048"
@@ -47,7 +47,7 @@
 	mood_change = 4
 
 /datum/mood_event/clown_world/add_effects(param)
-	description = "I LOVE working at Clown Research Station [station_name()]!!"
+	description = "我爱在小丑研究空间站 [station_name()] 工作！！"
 
 /// Dress the passed mob as a magical clown, self-explanatory
 /datum/grand_finale/clown/proc/dress_as_magic_clown(mob/living/carbon/human/victim)

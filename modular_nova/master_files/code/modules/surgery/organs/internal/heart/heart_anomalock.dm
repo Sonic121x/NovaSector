@@ -11,7 +11,7 @@
 	. = ..()
 	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The voltaic combat cyberheart was originally designed for corporate killsquad usage, \
 			but later declassified for normal research. Nobody knows where the original designs came from, and \
 			how Nanotrasen got the designs, you'll probably never know.<br>\
@@ -33,11 +33,11 @@
 	var/emp_resist = TRUE
 
 /datum/status_effect/voltaic_overdrive/on_remove()
-	to_chat(owner, span_userdanger("Your voltaic combat cyberheart putters weakly in your chest as it recharges; it won't protect you against EMPs until it recovers."))
+	to_chat(owner, span_userdanger("你胸口的伏打战斗赛博心脏虚弱地跳动着，它正在充电；在恢复之前，它将无法保护你免受电磁脉冲伤害。"))
 	return ..()
 
 /obj/item/organ/heart/cybernetic/anomalock/weak
-	name = "scavenged voltaic combat cyberheart"
+	name = "拾荒得来的伏打战斗赛博心脏"
 	desc = "A cutting-edge cyberheart. Voltaic technology allows the heart to keep the body upright in dire circumstances, \
 		along with fully shielding the user from shocks, when in an \"overdrive\" state. \
 		Requires a refined flux core as a power source. \

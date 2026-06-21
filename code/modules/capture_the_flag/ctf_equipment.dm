@@ -36,7 +36,7 @@
 
 /obj/item/gun/ballistic/automatic/laser/ctf
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ctf/rifle
-	desc = "This looks like it could really hurt in melee."
+	desc = "这看起来在近战中真的会很疼。"
 	force = 50
 	weapon_weight = WEAPON_HEAVY
 	slot_flags = null
@@ -59,8 +59,8 @@
 // LASER SHOTGUN
 
 /obj/item/gun/ballistic/shotgun/ctf
-	name = "laser shotgun"
-	desc = "This looks like it could really hurt in melee."
+	name = "激光霰弹枪"
+	desc = "这看起来在近战中真的会很疼。"
 	icon_state = "ctfshotgun"
 	inhand_icon_state = "shotgun_combat"
 	worn_icon_state = "gun"
@@ -93,7 +93,7 @@
 // MARKSMAN RIFLE
 
 /obj/item/gun/ballistic/automatic/laser/ctf/marksman
-	name = "designated marksman rifle"
+	name = "指定射手步枪"
 	icon_state = "ctfmarksman"
 	inhand_icon_state = "ctfmarksman"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ctf/marksman
@@ -121,7 +121,7 @@
 // DESERT EAGLE
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/ctf
-	desc = "This looks like it could really hurt in melee."
+	desc = "这看起来在近战中真的会很疼。"
 	force = 75
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ctf/deagle
 
@@ -145,10 +145,10 @@
 // INSTAKILL RIFLE
 
 /obj/item/gun/energy/laser/instakill
-	name = "instakill rifle"
+	name = "秒杀步枪"
 	icon_state = "instagib"
 	inhand_icon_state = "instagib"
-	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit."
+	desc = "一把专用的ASMD激光步枪，能够在一次击中中彻底摧毁大多数目标。"
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill)
 	force = 60
@@ -175,7 +175,7 @@
 	muzzle_flash_color = LIGHT_COLOR_BLUE
 
 /obj/projectile/beam/instakill
-	name = "instagib laser"
+	name = "秒杀镭射"
 	icon_state = "purple_laser"
 	damage = 200
 	damage_type = BURN
@@ -186,14 +186,14 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/target_mob = target
-		target_mob.visible_message(span_danger("[target_mob] explodes into a shower of gibs!"))
+		target_mob.visible_message(span_danger("[target_mob] 炸成了一团肉酱！"))
 		target_mob.gib()
 
 // SHIELDED VEST
 
 /obj/item/clothing/suit/armor/vest/ctf
-	name = "white shielded vest"
-	desc = "Standard issue vest for playing capture the flag."
+	name = "白色护盾背心"
+	desc = "用于玩夺旗游戏的标准背心。"
 	worn_icon = 'icons/mob/clothing/suits/ctf.dmi'
 	// Adding TRAIT_NODROP is done when the CTF spawner equips people
 	armor_type = /datum/armor/none
@@ -230,8 +230,8 @@
 // LIGHT SHIELDED VEST
 
 /obj/item/clothing/suit/armor/vest/ctf/light
-	name = "light white shielded vest"
-	desc = "Lightweight vest for playing capture the flag."
+	name = "亮白色护盾背心"
+	desc = "适合玩夺旗游戏的轻便背心。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/armor/vest/ctf/light"
 	post_init_icon_state = "light"
@@ -290,7 +290,7 @@
 
 // Instakill
 /obj/item/gun/energy/laser/instakill/ctf/red
-	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a red design."
+	desc = "一把专用的ASMD激光步枪，能够在一次击中中彻底消灭大多数目标。这把枪采用了红色设计。"
 	icon_state = "instagibred"
 	inhand_icon_state = "instagibred"
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill/red)
@@ -347,7 +347,7 @@
 
 // Instakill
 /obj/item/gun/energy/laser/instakill/ctf/blue
-	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a blue design."
+	desc = "一把专用的ASMD激光步枪，能够在一次击中中直接摧毁大多数目标。这把枪采用了蓝色设计。"
 	icon_state = "instagibblue"
 	inhand_icon_state = "instagibblue"
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill/blue)
@@ -410,7 +410,7 @@
 
 // Instakill
 /obj/item/gun/energy/laser/instakill/ctf/green
-	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a green design."
+	desc = "一把专用的ASMD激光步枪，能够在一次击中中直接摧毁大多数目标。这把是绿色设计。"
 	icon_state = "instagibgreen"
 	inhand_icon_state = "instagibgreen"
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill/green)
@@ -473,7 +473,7 @@
 
 // Instakill
 /obj/item/gun/energy/laser/instakill/ctf/yellow
-	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a yellow design."
+	desc = "一把专用的ASMD激光步枪，能够在一次击中中直接摧毁大多数目标。这把枪采用了黄色设计。"
 	icon_state = "instagibyellow"
 	inhand_icon_state = "instagibyellow"
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill/yellow)
@@ -490,7 +490,7 @@
 
 // Regular
 /obj/item/clothing/suit/armor/vest/ctf/red
-	name = "red shielded vest"
+	name = "红色护盾背心"
 	icon_state = "/obj/item/clothing/suit/armor/vest/ctf/red"
 	inhand_icon_state = null
 	team_shield_icon = "shield-red"
@@ -498,7 +498,7 @@
 
 // Light
 /obj/item/clothing/suit/armor/vest/ctf/light/red
-	name = "light red shielded vest"
+	name = "亮红色护盾背心"
 	icon_state = "/obj/item/clothing/suit/armor/vest/ctf/light/red"
 	inhand_icon_state = null
 	team_shield_icon = "shield-red"
@@ -508,7 +508,7 @@
 
 // Regular
 /obj/item/clothing/suit/armor/vest/ctf/blue
-	name = "blue shielded vest"
+	name = "蓝色护盾背心"
 	icon_state = "/obj/item/clothing/suit/armor/vest/ctf/blue"
 	inhand_icon_state = null
 	team_shield_icon = "shield-old"
@@ -516,7 +516,7 @@
 
 // Light
 /obj/item/clothing/suit/armor/vest/ctf/light/blue
-	name = "light blue shielded vest"
+	name = "亮蓝色护盾背心"
 	icon_state = "/obj/item/clothing/suit/armor/vest/ctf/light/blue"
 	inhand_icon_state = null
 	team_shield_icon = "shield-old"
@@ -526,7 +526,7 @@
 
 // Regular
 /obj/item/clothing/suit/armor/vest/ctf/green
-	name = "green shielded vest"
+	name = "绿色护盾背心"
 	icon_state = "/obj/item/clothing/suit/armor/vest/ctf/green"
 	inhand_icon_state = null
 	team_shield_icon = "shield-green"
@@ -534,7 +534,7 @@
 
 // Light
 /obj/item/clothing/suit/armor/vest/ctf/light/green
-	name = "light green shielded vest"
+	name = "亮绿色护盾背心"
 	icon_state = "/obj/item/clothing/suit/armor/vest/ctf/light/green"
 	inhand_icon_state = null
 	team_shield_icon = "shield-green"
@@ -544,7 +544,7 @@
 
 // Regular
 /obj/item/clothing/suit/armor/vest/ctf/yellow
-	name = "yellow shielded vest"
+	name = "黄色护盾背心"
 	icon_state = "/obj/item/clothing/suit/armor/vest/ctf/yellow"
 	inhand_icon_state = null
 	team_shield_icon = "shield-yellow"
@@ -552,7 +552,7 @@
 
 // Light
 /obj/item/clothing/suit/armor/vest/ctf/light/yellow
-	name = "light yellow shielded vest"
+	name = "亮黄色护盾背心"
 	icon_state = "/obj/item/clothing/suit/armor/vest/ctf/light/yellow"
 	inhand_icon_state = null
 	team_shield_icon = "shield-yellow"

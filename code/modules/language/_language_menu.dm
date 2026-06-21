@@ -71,7 +71,7 @@
 		if("grant_language")
 			if((is_admin || isobserver(speaker)) && language_datum)
 				var/list/choices = list("Only Spoken", "Only Understood", "Both")
-				var/choice = tgui_input_list(user, "How do you want to add this language?", "[language_datum]", choices)
+				var/choice = tgui_input_list(user, "你想如何添加这门语言？", "[language_datum]", choices)
 				if(isnull(choice))
 					return
 				var/adding_flags = NONE
@@ -90,7 +90,7 @@
 					block_being_removed_on += "spoken"
 
 				if(ask_to_remove_block)
-					choice = tgui_alert(user, "Do you want to lift the blockage that's also preventing the language to be [block_being_removed_on.Join(" or ")]?", "[language_datum]", list("Yes", "No"))
+					choice = tgui_alert(user, "你是否也想解除同样阻止这门语言被[block_being_removed_on.Join(" or ")]的封锁？", "[language_datum]", list("Yes", "No"))
 					if(choice == "Yes")
 						language_holder.remove_blocked_language(language_datum, adding_flags, LANGUAGE_ALL)
 				language_holder.grant_language(language_datum, adding_flags)
@@ -101,7 +101,7 @@
 		if("remove_language")
 			if((is_admin || isobserver(speaker)) && language_datum)
 				var/list/choices = list("Only Spoken", "Only Understood", "Both")
-				var/choice = tgui_input_list(user, "Which part do you wish to remove?", "[language_datum]", choices)
+				var/choice = tgui_input_list(user, "你希望移除哪个部分？", "[language_datum]", choices)
 				if(isnull(choice))
 					return
 				var/removing_flags = NONE

@@ -177,7 +177,7 @@
 
 	locations["None (Dangerous)"] = PORTAL_LOCATION_DANGEROUS
 
-	var/teleport_location_key = tgui_input_list(user, "Teleporter to lock on", "Hand Teleporter", sort_list(locations))
+	var/teleport_location_key = tgui_input_list(user, "要锁定的传送器", "手持传送器", sort_list(locations))
 	if (isnull(teleport_location_key))
 		return
 	if(user.get_active_held_item() != src || user.incapacitated)
@@ -361,7 +361,7 @@
 		charges++
 		if(ishuman(loc))
 			var/mob/living/carbon/human/holder = loc
-			balloon_alert(holder, "teleporter beeps")
+			balloon_alert(holder, "传送器哔哔作响")
 		playsound(src, 'sound/machines/beep/twobeep.ogg', 10, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0)
 
 /obj/item/syndicate_teleporter/emp_act(severity)
@@ -371,7 +371,7 @@
 	var/teleported_something = FALSE
 	if(ishuman(loc))
 		var/mob/living/carbon/human/holder = loc
-		balloon_alert(holder, "teleporter buzzes!")
+		balloon_alert(holder, "传送器嗡嗡作响！")
 		attempt_teleport(user = holder, triggered_by_emp = TRUE)
 	else
 		var/turf/teleport_turf = get_turf(src)
@@ -392,7 +392,7 @@
  **/
 /obj/item/syndicate_teleporter/proc/attempt_teleport(mob/user, triggered_by_emp = FALSE, not_holding_tele = FALSE)
 	if(!charges && !triggered_by_emp)
-		balloon_alert(user, "recharging!")
+		balloon_alert(user, "正在充能！")
 		return
 
 	var/turf/current_location = get_turf(user)
@@ -400,7 +400,7 @@
 	if(malfunctioning(user, current_location))
 		if(not_holding_tele)
 			return
-		balloon_alert(user, "malfunctioning!")
+		balloon_alert(user, "发生故障！")
 		return
 
 	var/teleport_distance = rand(minimum_teleport_distance, maximum_teleport_distance)
@@ -459,7 +459,7 @@
 		charges = max(charges - 1, 0)
 		new /obj/effect/temp_visual/teleport_abductor/syndi_teleporter(mobloc)
 		new /obj/effect/temp_visual/teleport_abductor/syndi_teleporter(emergency_destination)
-		balloon_alert(user, "emergency teleport triggered!")
+		balloon_alert(user, "紧急传送已触发！")
 		if(make_bloods(destination, emergency_destination, user))
 			new /obj/effect/temp_visual/circle_wave/syndi_teleporter/bloody(destination)
 		else

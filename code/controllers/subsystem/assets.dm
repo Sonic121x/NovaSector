@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(assets)
-	name = "Assets"
+	name = "资源"
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
 		/datum/controller/subsystem/persistent_paintings,

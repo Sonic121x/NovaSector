@@ -5,21 +5,21 @@
 /mob/proc/change_mob_type(new_type = null, turf/location = null, new_name = null as text|null, delete_old_mob = FALSE)
 
 	if(isnewplayer(src))
-		to_chat(usr, span_danger("Cannot convert players who have not entered yet."))
+		to_chat(usr, span_danger("无法转换尚未进入游戏的玩家。"))
 		return
 
 	if(!new_type)
-		new_type = input("Mob type path:", "Mob type") as text|null
+		new_type = input("生物类型路径：", "生物类型") as text|null
 
 	if(istext(new_type))
 		new_type = text2path(new_type)
 
 	if(!ispath(new_type) )
-		to_chat(usr, "Invalid type path (new_type = [new_type]) in change_mob_type(). Contact a coder.")
+		to_chat(usr, "change_mob_type() 中的类型路径无效 (new_type = [new_type])。请联系程序员。")
 		return
 
 	if(ispath(new_type, /mob/dead/new_player))
-		to_chat(usr, span_danger("Cannot convert into a new_player mob type."))
+		to_chat(usr, span_danger("无法转换为新玩家 mob 类型。"))
 		return
 
 	if (SEND_SIGNAL(src, COMSIG_PRE_MOB_CHANGED_TYPE) & COMPONENT_BLOCK_MOB_CHANGE)

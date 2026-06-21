@@ -3,7 +3,7 @@ GLOBAL_LIST_EMPTY(antagonist_teams)
 //A barebones antagonist team.
 /datum/team
 	///Name of the entire Team
-	var/name = "\improper Team"
+	var/name = "\improper 团队"
 	///What members are considered in the roundend report (ex: 'cultists')
 	var/member_name = "member"
 	///Whether the team shows up in the roundend report.
@@ -52,12 +52,12 @@ GLOBAL_LIST_EMPTY(antagonist_teams)
 /datum/team/proc/roundend_report()
 	var/list/report = list()
 
-	report += span_header("\The [name]:")
+	report += span_header("\The [name]：")
 	report += "The [member_name]s were:"
 	report += printplayerlist(members)
 
 	if(objectives.len)
-		report += span_header("Team had following objectives:")
+		report += span_header("团队有以下目标：")
 		var/win = TRUE
 		var/objective_count = 1
 		for(var/datum/objective/objective as anything in objectives)
@@ -66,9 +66,9 @@ GLOBAL_LIST_EMPTY(antagonist_teams)
 			report += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			objective_count++
 		if(win)
-			report += span_greentext("The [name] was successful!")
+			report += span_greentext("[name]成功了！")
 		else
-			report += span_redtext("The [name] have failed!")
+			report += span_redtext("[name]失败了！")
 
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"

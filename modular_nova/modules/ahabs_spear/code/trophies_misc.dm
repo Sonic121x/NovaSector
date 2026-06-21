@@ -15,8 +15,8 @@
 	new_worn_icon = 'modular_nova/modules/ahabs_spear/icons/back.dmi'
 
 /obj/item/crusher_trophy/retool_kit/ahab
-	name = "Ahab's harpoon retool kit"
-	desc = "A toolkit for changing the crusher's appearance without affecting the device's function. This one will make it look like Ahab's harpoon, the weapon of legends."
+	name = "亚哈的鱼叉改装工具包"
+	desc = "一个用于改变粉碎者外观而不影响其功能的工具包。这个工具包会让它看起来像传说中的武器——亚哈的鱼叉。"
 	icon = 'modular_nova/modules/ahabs_spear/icons/ahabs_spear.dmi'
 	icon_state = "ahab_retool"
 	forced_skin = /datum/atom_skin/crusher_skin/locked/ahabs_harpoon

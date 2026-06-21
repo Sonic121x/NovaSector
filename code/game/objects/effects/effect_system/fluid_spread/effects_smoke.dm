@@ -2,7 +2,7 @@
  * A fluid which spreads through the air affecting every mob it engulfs.
  */
 /obj/effect/particle_effect/fluid/smoke
-	name = "smoke"
+	name = "烟雾"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smoke"
 	pixel_x = -32
@@ -233,7 +233,7 @@
 
 /// Green smoke that makes you cough.
 /obj/effect/particle_effect/fluid/smoke/bad/green
-	name = "green smoke"
+	name = "绿色烟雾"
 	color = COLOR_VIBRANT_LIME
 	opacity = FALSE
 
@@ -243,7 +243,7 @@
 
 /// Black smoke that makes you cough. (Actually dark grey)
 /obj/effect/particle_effect/fluid/smoke/bad/black
-	name = "black smoke"
+	name = "黑色烟雾"
 	color = "#383838"
 	opacity = FALSE
 
@@ -257,7 +257,7 @@
 
 /// Light blue, transparent smoke which is usually paired with a blast that chills every turf in the area.
 /obj/effect/particle_effect/fluid/smoke/freezing
-	name = "nanofrost smoke"
+	name = "纳米冰霜烟雾"
 	color = "#B2FFFF"
 	opacity = FALSE
 
@@ -312,7 +312,7 @@
 			if(!isnull(comp.welded) && !comp.welded) //must be an unwelded vent pump or vent scrubber.
 				comp.welded = TRUE
 				comp.update_appearance()
-				comp.visible_message(span_danger("[comp] is frozen shut!"))
+				comp.visible_message(span_danger("[comp]被冻住了！"))
 
 	// Extinguishes everything in the turf
 	for(var/mob/living/potential_tinder in chilly)

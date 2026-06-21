@@ -4,8 +4,8 @@ Regenerative extracts:
 	Has a unique additional effect.
 */
 /obj/item/slimecross/regenerative
-	name = "regenerative extract"
-	desc = "It's filled with a milky substance, and pulses like a heartbeat."
+	name = "再生提取物"
+	desc = "它里面充满了乳白色的液体，并且会随着脉搏的跳动而起伏。"
 	effect = "regenerative"
 	icon_state = "regenerative"
 	effect_desc = "Completely heals your injuries, with no extra effects."
@@ -20,14 +20,14 @@ Regenerative extracts:
 		return
 	var/mob/living/H = interacting_with
 	if(H.stat == DEAD)
-		to_chat(user, span_warning("[src] will not work on the dead!"))
+		to_chat(user, span_warning("[src] 对死者无效！"))
 		return ITEM_INTERACT_BLOCKING
 	if(H != user)
-		user.visible_message(span_notice("[user] crushes [src] over [H], the milky goo quickly regenerating all of [H.p_their()] injuries!"),
-			span_notice("You squeeze [src], and it bursts over [H], the milky goo regenerating [H.p_their()] injuries."))
+		user.visible_message(span_notice("[user] 将 [src] 捏碎在 [H] 身上，乳白色的粘液迅速治愈了 [H.p_their()] 的所有伤势！"),
+			span_notice("你捏碎了 [src]，它在 [H] 身上爆开，乳白色的粘液治愈了 [H.p_their()] 的伤势。"))
 	else
-		user.visible_message(span_notice("[user] crushes [src] over [user.p_them()]self, the milky goo quickly regenerating all of [user.p_their()] injuries!"),
-			span_notice("You squeeze [src], and it bursts in your hand, splashing you with milky goo which quickly regenerates your injuries!"))
+		user.visible_message(span_notice("[user]将[src]在[user.p_them()]身上碾碎，乳白色的粘液迅速治愈了[user.p_their()]所有伤势！"),
+			span_notice("你捏碎了 [src]，它在你的手中爆开，乳白色的粘液溅了你一身，迅速治愈了你的伤势！"))
 	core_effect_before(H, user)
 	user.do_attack_animation(interacting_with)
 	H.revive(HEAL_ALL & ~HEAL_REFRESH_ORGANS)
@@ -44,7 +44,7 @@ Regenerative extracts:
 	colour = SLIME_TYPE_ORANGE
 
 /obj/item/slimecross/regenerative/orange/core_effect_before(mob/living/target, mob/user)
-	target.visible_message(span_warning("The [src] boils over!"))
+	target.visible_message(span_warning("这个 [src] 沸腾了！"))
 	for(var/turf/targetturf in RANGE_TURFS(1,target))
 		if(!locate(/obj/effect/hotspot) in targetturf)
 			new /obj/effect/hotspot(targetturf)
@@ -64,20 +64,20 @@ Regenerative extracts:
 	if(isturf(target.loc))
 		var/turf/open/T = get_turf(target)
 		T.MakeSlippery(TURF_WET_WATER, min_wet_time = 10, wet_time_to_add = 5)
-		target.visible_message(span_warning("The milky goo in the extract gets all over the floor!"))
+		target.visible_message(span_warning("提取物中的乳白色粘液洒了一地！"))
 
 /obj/item/slimecross/regenerative/metal
 	colour = SLIME_TYPE_METAL
 	effect_desc = "Fully heals the target and encases the target in a locker."
 
 /obj/item/slimecross/regenerative/metal/core_effect(mob/living/target, mob/user)
-	target.visible_message(span_warning("The milky goo hardens and reshapes itself, encasing [target]!"))
+	target.visible_message(span_warning("乳白色的粘液硬化并重塑，将 [target] 包裹了起来！"))
 	var/obj/structure/closet/C = new /obj/structure/closet(target.loc)
-	C.name = "slimy closet"
-	C.desc = "Looking closer, it seems to be made of a sort of solid, opaque, metal-like goo."
+	C.name = "黏滑储物柜"
+	C.desc = "仔细观察后发现，它似乎是由一种质地坚硬、不透明、类似金属的黏性物质构成的。"
 	if(target.mob_size > C.max_mob_size) //Prevents capturing megafauna or other large mobs in the closets
 		C.bust_open()
-		C.visible_message(span_warning("[target] is too big, and immediately breaks \the [C.name] open!"))
+		C.visible_message(span_warning("[target]太大了，立刻就把\the [C.name]撑破了！"))
 	else //This can't be allowed to actually happen to the too-big mobs or it breaks some actions
 		target.forceMove(C)
 
@@ -93,7 +93,7 @@ Regenerative extracts:
 	if(batteries.len)
 		var/obj/item/stock_parts/power_store/ToCharge = pick(batteries)
 		ToCharge.charge = ToCharge.maxcharge
-		to_chat(target, span_notice("You feel a strange electrical pulse, and one of your electrical items was recharged."))
+		to_chat(target, span_notice("你感到一阵奇特的电脉冲，你的一件电子物品被重新充能了。"))
 
 /obj/item/slimecross/regenerative/darkpurple
 	colour = SLIME_TYPE_DARK_PURPLE
@@ -106,7 +106,7 @@ Regenerative extracts:
 	equipped += target.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/purple(null), ITEM_SLOT_GLOVES)
 	equipped += target.equip_to_slot_or_del(new /obj/item/clothing/head/soft/purple(null), ITEM_SLOT_HEAD)
 	if(equipped > 0)
-		target.visible_message(span_notice("The milky goo congeals into clothing!"))
+		target.visible_message(span_notice("乳白色的粘液凝结成了衣物！"))
 
 /obj/item/slimecross/regenerative/darkblue
 	colour = SLIME_TYPE_DARK_BLUE
@@ -126,10 +126,10 @@ Regenerative extracts:
 		var/obj/item/clothing/C = H.get_item_by_slot(ITEM_SLOT_HEAD)
 		fireproof(C)
 	if(fireproofed)
-		target.visible_message(span_notice("Some of [target]'s clothing gets coated in the goo, and turns blue!"))
+		target.visible_message(span_notice("[target] 的一些衣物被粘液覆盖，并变成了蓝色！"))
 
 /obj/item/slimecross/regenerative/darkblue/proc/fireproof(obj/item/clothing/clothing_piece)
-	clothing_piece.name = "fireproofed [clothing_piece.name]"
+	clothing_piece.name = "防火的 [clothing_piece.name]"
 	clothing_piece.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	clothing_piece.add_atom_colour(color_transition_filter(COLOR_NAVY, SATURATION_OVERRIDE), FIXED_COLOUR_PRIORITY)
 	clothing_piece.max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -142,7 +142,7 @@ Regenerative extracts:
 
 /obj/item/slimecross/regenerative/silver/core_effect(mob/living/target, mob/user)
 	target.set_nutrition(NUTRITION_LEVEL_FULL - 1)
-	to_chat(target, span_notice("You feel satiated."))
+	to_chat(target, span_notice("你感到饱腹了。"))
 
 /obj/item/slimecross/regenerative/bluespace
 	colour = SLIME_TYPE_BLUESPACE
@@ -152,11 +152,11 @@ Regenerative extracts:
 /obj/item/slimecross/regenerative/bluespace/core_effect(mob/living/target, mob/user)
 	var/turf/old_location = get_turf(target)
 	if(do_teleport(target, T, channel = TELEPORT_CHANNEL_QUANTUM)) //despite being named a bluespace teleportation method the quantum channel is used to preserve precision teleporting with a bag of holding
-		old_location.visible_message(span_warning("[target] disappears in a shower of sparks!"))
-		to_chat(target, span_danger("The milky goo teleports you somewhere it remembers!"))
+		old_location.visible_message(span_warning("[target] 在一阵火花中消失了！"))
+		to_chat(target, span_danger("乳白色的粘液将你传送到了一个它记得的地方！"))
 
 	if(HAS_TRAIT(target, TRAIT_NO_TELEPORT))
-		old_location.visible_message(span_warning("[target] sparks briefly, but is prevented from teleporting!"))
+		old_location.visible_message(span_warning("[target] 短暂地迸发出火花，但传送被阻止了！"))
 
 /obj/item/slimecross/regenerative/bluespace/Initialize(mapload)
 	. = ..()
@@ -167,7 +167,7 @@ Regenerative extracts:
 	effect_desc = "Fully heals the target. After 10 seconds, relocate the target to the initial position the core was used with their previous health status."
 
 /obj/item/slimecross/regenerative/sepia/core_effect_before(mob/living/target, mob/user)
-	to_chat(target, span_notice("You try to forget how you feel."))
+	to_chat(target, span_notice("你试图忘记自己的感受。"))
 	target.AddComponent(/datum/component/dejavu)
 
 /obj/item/slimecross/regenerative/cerulean
@@ -180,14 +180,14 @@ Regenerative extracts:
 	X.name = name
 	X.desc = desc
 	user.put_in_active_hand(X)
-	to_chat(user, span_notice("Some of the milky goo congeals in your hand!"))
+	to_chat(user, span_notice("一些乳白色的粘稠物在你手中凝结了！"))
 
 /obj/item/slimecross/regenerative/pyrite
 	colour = SLIME_TYPE_PYRITE
 	effect_desc = "Fully heals and randomly colors the target."
 
 /obj/item/slimecross/regenerative/pyrite/core_effect(mob/living/target, mob/user)
-	target.visible_message(span_warning("The milky goo coating [target] leaves [target.p_them()] a different color!"))
+	target.visible_message(span_warning("覆盖着[target]的乳白色粘稠物让[target.p_them()]变了颜色！"))
 	target.add_atom_colour(color_transition_filter(rgb(rand(0,255), rand(0,255), rand(0,255)), SATURATION_OVERRIDE), WASHABLE_COLOUR_PRIORITY)
 
 /obj/item/slimecross/regenerative/red
@@ -195,7 +195,7 @@ Regenerative extracts:
 	effect_desc = "Fully heals the target and injects them with some ephedrine."
 
 /obj/item/slimecross/regenerative/red/core_effect(mob/living/target, mob/user)
-	to_chat(target, span_notice("You feel... <i>faster.</i>"))
+	to_chat(target, span_notice("你感觉……<i>变快了。</i>"))
 	target.reagents.add_reagent(/datum/reagent/medicine/ephedrine,3)
 
 /obj/item/slimecross/regenerative/green
@@ -204,7 +204,7 @@ Regenerative extracts:
 
 /obj/item/slimecross/regenerative/green/core_effect(mob/living/target, mob/user)
 	if(isslime(target))
-		target.visible_message(span_warning("The [target] suddenly changes color!"))
+		target.visible_message(span_warning("这个[target]突然变了颜色！"))
 		var/mob/living/basic/slime/target_slime = target
 		target_slime.set_slime_type()
 	if(isjellyperson(target))
@@ -215,7 +215,7 @@ Regenerative extracts:
 	effect_desc = "Fully heals the target and injects them with some krokodil."
 
 /obj/item/slimecross/regenerative/pink/core_effect(mob/living/target, mob/user)
-	to_chat(target, span_notice("You feel more calm."))
+	to_chat(target, span_notice("你感觉更加平静了。"))
 	target.reagents.add_reagent(/datum/reagent/drug/krokodil,4)
 
 /obj/item/slimecross/regenerative/gold
@@ -245,9 +245,9 @@ Regenerative extracts:
 	var/dummytype = target.type
 	if(target.mob_biotypes & MOB_SPECIAL) //Prevents megafauna and voidwalker duping in a lame way
 		dummytype = /mob/living/basic/slime
-		to_chat(user, span_warning("The milky goo flows over [target], falling into a weak puddle."))
+		to_chat(user, span_warning("乳白色的粘稠物流过[target]，形成了一滩稀薄的液体。"))
 	var/mob/living/dummy = new dummytype(target.loc)
-	to_chat(target, span_notice("The milky goo flows from your skin, forming an imperfect copy of you."))
+	to_chat(target, span_notice("乳白色的粘稠物从你的皮肤上流下，形成了一个不完美的你的复制品。"))
 	if(iscarbon(target) && iscarbon(dummy))
 		var/mob/living/carbon/carbon_target = target
 		var/mob/living/carbon/carbon_dummy = dummy
@@ -270,7 +270,7 @@ Regenerative extracts:
 		return
 	var/mob/living/U = user
 	U.revive(HEAL_ALL & ~HEAL_REFRESH_ORGANS)
-	to_chat(U, span_notice("Some of the milky goo sprays onto you, as well!"))
+	to_chat(U, span_notice("一些乳白色的粘稠物也喷到了你身上！"))
 
 /obj/item/slimecross/regenerative/adamantine
 	colour = SLIME_TYPE_ADAMANTINE

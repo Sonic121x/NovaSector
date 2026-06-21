@@ -43,25 +43,25 @@
 	// Ethereals can't drain APCs under half charge, so that they are forced to look to alternative power sources if the station is running low
 	if(cell.charge() < half_max_charge)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "safeties prevent draining!"), ETHEREAL_APC_ALERT_DELAY)
-		user.visible_message(span_notice("[src] displays a red X, sealing ports as 'safeties enabled' flashes across the screen!")) // NOVA EDIT ADDITION
+		user.visible_message(span_notice("[src] 显示了一个红色的X，端口封闭，屏幕上闪过“安全装置已启用”！")) // NOVA EDIT ADDITION
 		return
 
 	var/obj/item/stock_parts/power_store/stomach_cell = used_stomach.cell
 	used_stomach.drain_time = world.time + ETHEREAL_APC_DRAIN_TIME
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "draining power..."), ETHEREAL_APC_ALERT_DELAY)
 	//NOVA EDIT CHANGE BEGIN - Ethereal Rework 2024
-	user.visible_message(span_notice("[user] presses their fingers into [src]'s screen, static jumping up [user.p_their()] arm as they drain it!"))
-	to_chat(user, span_purple("You try to drain some of [src]'s energy into yourself..."))
+	user.visible_message(span_notice("[user] 将手指按入 [src] 的屏幕，静电顺着 [user.p_their()] 手臂跳跃，他们正在吸取能量！"))
+	to_chat(user, span_purple("你尝试将 [src] 的部分能量吸入自己体内..."))
 	//NOVA EDIT CHANGE END - Ethereal Rework 2024
 	while(do_after(user, ETHEREAL_APC_DRAIN_TIME, target = src))
 		if(isnull(used_stomach) || (used_stomach != user.get_organ_slot(ORGAN_SLOT_STOMACH)))
-			balloon_alert(user, "stomach removed!?")
+			balloon_alert(user, "胃被移除了！？")
 			return
 		if(isnull(cell))
-			balloon_alert(user, "cell removed!")
+			balloon_alert(user, "电池被移除了！")
 			return
 		if(cell.charge() < half_max_charge)
-			balloon_alert(user, "safeties kicked in!")
+			balloon_alert(user, "安全机制已启动！")
 			return
 
 		var/our_available_charge = cell.charge() - half_max_charge
@@ -72,11 +72,11 @@
 		used_stomach.adjust_charge(energy_drained)
 
 		if(stomach_cell.used_charge() <= 0)
-			balloon_alert(user, "your charge is full!")
-			user.visible_message(span_notice("[user] drops [user.p_their()] hand from [src], glowing at [user.p_their()] zenith!")) // NOVA EDIT ADDITION
+			balloon_alert(user, "你的电荷已满！")
+			user.visible_message(span_notice("[user] 将 [user.p_their()] 手从 [src] 上移开，在 [user.p_their()] 巅峰时刻闪闪发光！")) // NOVA EDIT ADDITION
 			return
 		if(cell.charge() <= 0)
-			balloon_alert(user, "apc is empty!")
+			balloon_alert(user, "APC是空的！")
 			return
 
 /// Handles charging our internal cell from an ethereal and their stomach
@@ -92,16 +92,16 @@
 	used_stomach.drain_time = world.time + ETHEREAL_APC_DRAIN_TIME
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "transferring power..."), ETHEREAL_APC_ALERT_DELAY)
 	// NOVA EDIT ADDITION BEGIN - Ethereal Rework 2024
-	user.visible_message(span_notice("[user] presses [user.p_their()] fingers into [src]'s screen, [user.p_their()] arm alight with static as [user.p_they()] charge it!"))
-	to_chat(user, span_purple("You try to shunt some of your energy into [src]..."))
+	user.visible_message(span_notice("[user] 将 [user.p_their()] 手指按入 [src] 的屏幕，[user.p_their()] 手臂闪烁着静电光芒，[user.p_they()] 正在为其充电！"))
+	to_chat(user, span_purple("你试图将一些能量分流到[src]中..."))
 	// NOVA EDIT ADDITION END - Ethereal Rework 2024
 	if(!do_after(user, ETHEREAL_APC_DRAIN_TIME, target = src))
 		return
 	if(isnull(used_stomach) || (used_stomach != user.get_organ_slot(ORGAN_SLOT_STOMACH)))
-		balloon_alert(user, "stomach removed!?")
+		balloon_alert(user, "胃被移除了！？")
 		return
 	if(isnull(cell))
-		balloon_alert(user, "cell removed!")
+		balloon_alert(user, "电池被移除了！")
 		return
 
 	var/stomach_charge = stomach_cell.charge()
@@ -112,11 +112,11 @@
 	cell.give(-energy_drained)
 
 	if(cell.used_charge() <= 0)
-		balloon_alert(user, "apc is full!")
-		user.visible_message(span_notice("[src] displays a red X across the screen, sealing ports and rejecting [user]'s charge!")) // NOVA EDIT ADDITION - Ethereal Rework 2024
+		balloon_alert(user, "APC已满！")
+		user.visible_message(span_notice("[src] 在屏幕上显示一个红色的 X，密封端口并拒绝 [user] 的充能！")) // NOVA EDIT ADDITION - Ethereal Rework 2024
 		return
 	if(stomach_cell.charge() <= 0)
-		balloon_alert(user, "out of charge!")
+		balloon_alert(user, "电荷耗尽！")
 		return
 
 
@@ -128,8 +128,8 @@
 
 	if(opened && (!issilicon(user)))
 		if(cell)
-			user.visible_message(span_notice("[user] removes \the [cell] from [src]!"))
-			balloon_alert(user, "cell removed")
+			user.visible_message(span_notice("[user] 从 [cell] 中取出了 \the [src]！"))
+			balloon_alert(user, "电池已移除")
 			user.put_in_hands(cell)
 		return
 	if((machine_stat & MAINT) && !opened) //no board; no interface
@@ -163,7 +163,7 @@
 		else if(istype(malfai) && !(malfai == user || (user in malfai.connected_robots)))
 			. = FALSE
 	if (!. && !loud)
-		balloon_alert(user, "it's disabled!")
+		balloon_alert(user, "它被禁用了！")
 	return .
 
 /obj/machinery/power/apc/shock(mob/living/shocking, chance, shock_source, siemens_coeff)

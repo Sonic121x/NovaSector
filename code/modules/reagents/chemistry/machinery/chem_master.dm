@@ -1,8 +1,8 @@
 #define MAX_CONTAINER_PRINT_AMOUNT 50
 
 /obj/machinery/chem_master
-	name = "\improper ChemMaster 3000"
-	desc = "Used to separate chemicals and distribute them in a variety of forms."
+	name = "\improper 化学大师3000"
+	desc = "用于分离化学品并以多种形式进行分装。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "chemmaster"
 	base_icon_state = "chemmaster"
@@ -81,17 +81,17 @@
 /obj/machinery/chem_master/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:<br>Reagent buffer capacity: <b>[reagents.maximum_volume]</b> units.<br>Printing speed: <b>[0.75 SECONDS / printing_speed * 100]%</b>.")
+		. += span_notice("状态显示屏显示：<br>试剂缓冲容量：<b>[reagents.maximum_volume]</b> 单位。<br>打印速度：<b>[0.75 SECONDS / printing_speed * 100]%</b>。")
 		if(!QDELETED(beaker))
-			. += span_notice("[beaker] of <b>[beaker.reagents.maximum_volume]u</b> capacity inserted.")
-			. += span_notice("Right click with empty hand to remove beaker.")
+			. += span_notice("已插入容量为<b>[beaker]u</b>的[beaker.reagents.maximum_volume]。")
+			. += span_notice("右键点击以移除烧杯。")
 		else
-			. += span_warning("Missing input beaker.")
+			. += span_warning("缺少输入烧杯。")
 
-		. += span_notice("It can be [EXAMINE_HINT("wrenched")] [anchored ? "loose" : "in place"].")
-		. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+		. += span_notice("它可以被[EXAMINE_HINT("wrenched")] [anchored ? "loose" : "in place"]。")
+		. += span_notice("它的维护区面板可以[EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"]。")
 		if(panel_open)
-			. += span_notice("The machine can be [EXAMINE_HINT("pried")] apart.")
+			. += span_notice("这台机器可以[EXAMINE_HINT("pried")]拆开。")
 
 /obj/machinery/chem_master/update_appearance(updates)
 	. = ..()
@@ -182,7 +182,7 @@
 
 /obj/machinery/chem_master/wrench_act(mob/living/user, obj/item/tool)
 	if(is_printing)
-		balloon_alert(user, "still printing!")
+		balloon_alert(user, "仍在打印中！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
@@ -191,14 +191,14 @@
 
 /obj/machinery/chem_master/screwdriver_act(mob/living/user, obj/item/tool)
 	if(is_printing)
-		balloon_alert(user, "still printing!")
+		balloon_alert(user, "仍在打印中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/chem_master/crowbar_act(mob/living/user, obj/item/tool)
 	if(is_printing)
-		balloon_alert(user, "still printing!")
+		balloon_alert(user, "仍在打印中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)
@@ -428,7 +428,7 @@
 
 			if(amount == -1) // Set custom amount
 				var/mob/user = ui.user //Hold a reference of the user if the UI is closed
-				amount = round(tgui_input_number(user, "Enter amount to transfer", "Transfer amount", round_value = FALSE), CHEMICAL_VOLUME_ROUNDING)
+				amount = round(tgui_input_number(user, "输入要转移的量", "转移量", round_value = FALSE), CHEMICAL_VOLUME_ROUNDING)
 				if(!amount || !user.can_perform_action(src))
 					return FALSE
 
@@ -514,8 +514,8 @@
 			// NOVA EDIT ADDITION END
 			var/item_name = tgui_input_text(
 				usr,
-				"Container name",
-				"Name",
+				"容器名称",
+				"名称",
 				item_name_default,
 				max_length = MAX_NAME_LEN,
 			)
@@ -575,8 +575,8 @@
 		update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/chem_master/condimaster
-	name = "CondiMaster 3000"
-	desc = "Used to create condiments and other cooking supplies."
+	name = "调味大师 3000"
+	desc = "用来制作调味品和其他烹饪用品。"
 	icon_state = "condimaster"
 
 /obj/machinery/chem_master/condimaster/load_printable_containers()

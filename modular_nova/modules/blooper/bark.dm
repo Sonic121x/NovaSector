@@ -12,7 +12,7 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 	var/blooper_speed
 
 /datum/smite/normalblooper
-	name = "Normal blooper"
+	name = "普通爆破音"
 
 /datum/smite/normalblooper/effect(client/user, mob/living/carbon/human/target)
 	. = ..()
@@ -45,7 +45,7 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 
 /// It's was stoolen from Splurt build >:3 and from fluffySTG!! nyeehehehheee!~
 /datum/blooper
-	var/name = "None"
+	var/name = "无"
 	var/id = "No Voice"
 	var/soundpath
 

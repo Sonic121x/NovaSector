@@ -52,14 +52,14 @@
 	. = ..()
 	if(!buildable_sign)
 		return ITEM_INTERACT_FAILURE
-	user.visible_message(span_notice("[user] starts removing [src]..."), \
-		span_notice("You start unfastening [src]."))
+	user.visible_message(span_notice("[user]开始拆除[src]..."), \
+		span_notice("你开始松开[src]。"))
 	I.play_tool_sound(src)
 	if(!I.use_tool(src, user, 4 SECONDS))
 		return ITEM_INTERACT_FAILURE
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-	user.visible_message(span_notice("[user] unfastens [src]."), \
-		span_notice("You unfasten [src]."))
+	user.visible_message(span_notice("[user]松开了[src]。"), \
+		span_notice("你松开了[src]。"))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -68,16 +68,16 @@
 	if(user.combat_mode)
 		return FALSE
 	if(atom_integrity == max_integrity)
-		to_chat(user, span_warning("This sign is already in perfect condition."))
+		to_chat(user, span_warning("这个标识已经完好无损。"))
 		return TRUE
 	if(!I.tool_start_check(user, amount=1))
 		return TRUE
-	user.visible_message(span_notice("[user] starts repairing [src]..."), \
-		span_notice("You start repairing [src]."))
+	user.visible_message(span_notice("[user]开始修复[src]..."), \
+		span_notice("你开始修复[src]。"))
 	if(!I.use_tool(src, user, 4 SECONDS, volume =50 ))
 		return TRUE
-	user.visible_message(span_notice("[user] finishes repairing [src]."), \
-		span_notice("You finish repairing [src]."))
+	user.visible_message(span_notice("[user]完成了对[src]的修复。"), \
+		span_notice("你完成了对[src]的修理。"))
 	atom_integrity = max_integrity
 	return TRUE
 
@@ -85,14 +85,14 @@
 	if(is_editable && IS_WRITING_UTENSIL(I))
 		if(!length(GLOB.editable_sign_types))
 			CRASH("GLOB.editable_sign_types failed to populate")
-		var/choice = tgui_input_list(user, "Select a sign type", "Sign Customization", GLOB.editable_sign_types)
+		var/choice = tgui_input_list(user, "选择标牌类型", "标牌定制", GLOB.editable_sign_types)
 		if(isnull(choice))
 			return
 		if(!Adjacent(user)) //Make sure user is adjacent still.
-			to_chat(user, span_warning("You need to stand next to the sign to change it!"))
+			to_chat(user, span_warning("你需要站在告示牌旁边才能更改它！"))
 			return
-		user.visible_message(span_notice("[user] begins changing [src]."), \
-			span_notice("You begin changing [src]."))
+		user.visible_message(span_notice("[user]开始更换[src]。"), \
+			span_notice("你开始更换[src]。"))
 		if(!do_after(user, 4 SECONDS, target = src)) //Small delay for changing signs instead of it being instant, so somebody could be shoved or stunned to prevent them from doing so.
 			return
 		var/sign_type = GLOB.editable_sign_types[choice]
@@ -104,8 +104,8 @@
 		changedsign.pixel_y = pixel_y
 		changedsign.atom_integrity = atom_integrity
 		qdel(src)
-		user.visible_message(span_notice("[user] finishes changing the sign."), \
-			span_notice("You finish changing the sign."))
+		user.visible_message(span_notice("[user]完成了告示牌的更换。"), \
+			span_notice("你完成了告示牌的更换。"))
 		return
 	return ..()
 
@@ -114,7 +114,7 @@
 	var/obj/item/sign/unwrenched_sign = new (drop_turf)
 	if(type != /obj/structure/sign/blank) //If it's still just a basic sign backing, we can (and should) skip some of the below variable transfers.
 		unwrenched_sign.name = name //Copy over the sign structure variables to the sign item we're creating when we unwrench a sign.
-		unwrenched_sign.desc = "[desc] It can be placed on a wall."
+		unwrenched_sign.desc = "[desc]可以被放置在墙上"
 		unwrenched_sign.icon = icon
 		unwrenched_sign.icon_state = icon_state
 		unwrenched_sign.sign_path = type
@@ -125,13 +125,13 @@
 /obj/structure/sign/blank //This subtype is necessary for now because some other things (posters, picture frames, paintings) inherit from the parent type.
 	icon_state = "backing"
 	name = "sign backing"
-	desc = "A plastic sign backing, use a pen to change the decal. It can be detached from the wall with a wrench."
+	desc = "一块塑料的招牌底板，用笔能更换贴纸。可用扳手从墙上取下。"
 	is_editable = TRUE
 	sign_change_name = "Blank Sign"
 
 /obj/item/sign
-	name = "sign backing"
-	desc = "A plastic sign backing, use a pen to change the decal. It can be placed on a wall."
+	name = "招牌底板"
+	desc = "一块塑料的招牌底板，用笔能更换贴纸。可以被挂在墙上。"
 	icon = 'icons/obj/signs.dmi'
 	icon_state = "backing"
 	inhand_icon_state = "backing"
@@ -170,17 +170,17 @@
 		return ..()
 	if(!length(GLOB.editable_sign_types))
 		CRASH("GLOB.editable_sign_types failed to populate")
-	var/choice = tgui_input_list(user, "Select a sign type", "Sign Customization", GLOB.editable_sign_types)
+	var/choice = tgui_input_list(user, "选择标牌类型", "标牌定制", GLOB.editable_sign_types)
 	if(isnull(choice))
 		return ITEM_INTERACT_BLOCKING
 	if(!Adjacent(user)) //Make sure user is adjacent still.
-		to_chat(user, span_warning("You need to stand next to the sign to change it!"))
+		to_chat(user, span_warning("你需要站在告示牌旁边才能更改它！"))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("You begin changing [src]."))
+	user.visible_message(span_notice("你开始更换[src]。"))
 	if(!do_after(user, 4 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	set_sign_type(GLOB.editable_sign_types[choice])
-	user.visible_message(span_notice("You finish changing the sign."))
+	user.visible_message(span_notice("你完成了告示牌的更换。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/sign/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -190,7 +190,7 @@
 	var/turf/user_turf = get_turf(user)
 	var/dir = get_dir(user_turf, target_turf)
 	if(!(dir in GLOB.cardinals))
-		balloon_alert(user, "stand in line with wall!")
+		balloon_alert(user, "与墙壁对齐！")
 		return ITEM_INTERACT_BLOCKING
 	var/obj/structure/sign/placed_sign = new sign_path(user_turf) //We place the sign on the turf the user is standing, and pixel shift it to the target wall, as below.
 	//This is to mimic how signs and other wall objects are usually placed by mappers, and so they're only visible from one side of a wall.
@@ -202,8 +202,8 @@
 		placed_sign.pixel_x = 32
 	else if(dir & WEST)
 		placed_sign.pixel_x = -32
-	user.visible_message(span_notice("[user] fastens [src] to [target_turf]."), \
-		span_notice("You attach the sign to [target_turf]."))
+	user.visible_message(span_notice("[user]将[src]固定在[target_turf]上。"), \
+		span_notice("你将告示牌安装到[target_turf]。"))
 	playsound(target_turf, 'sound/items/deconstruct.ogg', 50, TRUE)
 	placed_sign.update_integrity(get_integrity())
 	placed_sign.setDir(dir)
@@ -216,16 +216,16 @@
 	if(user.combat_mode)
 		return FALSE
 	if(atom_integrity == max_integrity)
-		to_chat(user, span_warning("This sign is already in perfect condition."))
+		to_chat(user, span_warning("这个告示牌已经处于完美状态。"))
 		return TRUE
 	if(!I.tool_start_check(user, amount=1))
 		return TRUE
-	user.visible_message(span_notice("[user] starts repairing [src]..."), \
-		span_notice("You start repairing [src]."))
+	user.visible_message(span_notice("[user]开始修理[src]..."), \
+		span_notice("你开始修理[src]。"))
 	if(!I.use_tool(src, user, 4 SECONDS, volume =50 ))
 		return TRUE
-	user.visible_message(span_notice("[user] finishes repairing [src]."), \
-		span_notice("You finish repairing [src]."))
+	user.visible_message(span_notice("[user]完成了对[src]的修理。"), \
+		span_notice("你完成了对[src]的修理。"))
 	atom_integrity = max_integrity
 	return TRUE
 
@@ -235,7 +235,7 @@
 /obj/item/sign/proc/set_sign_type(obj/structure/sign/fake_type)
 	name = initial(fake_type.name)
 	if(fake_type != /obj/structure/sign/blank)
-		desc = "[initial(fake_type.desc)] It can be placed on a wall."
+		desc = "[initial(fake_type.desc)]可以被放置在墙上"
 	else
 		desc = initial(desc)
 	icon_state = initial(fake_type.icon_state)

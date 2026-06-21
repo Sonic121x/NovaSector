@@ -24,16 +24,16 @@
 		mobs_with_special_messages += buckling
 		delay *= SADDLE_MOUNTING_OTHER_MULT
 
-	user.visible_message(span_warning("[user] starts to mount[ridee_string] [src]..."), span_notice("You start to mount[ridee_string] [src]..."), ignored_mobs = mobs_with_special_messages)
-	to_chat(src, span_warning("[user] starts to mount[ridee_string] you!"))
+	user.visible_message(span_warning("[user]开始骑上[ridee_string][src]..."), span_notice("你开始骑上[ridee_string][src]..."), ignored_mobs = mobs_with_special_messages)
+	to_chat(src, span_warning("[user]开始骑上[ridee_string]你！"))
 	if (buckling != user)
-		to_chat(buckling, span_boldwarning("[user] starts to mount you onto [src]!"))
+		to_chat(buckling, span_boldwarning("[user]开始把你骑到[src]上！"))
 
 	if (!do_after(user, SADDLE_MOUNTING_TIME, target = src))
-		user.visible_message(span_warning("[user] fails to mount[ridee_string] [src]!"), span_warning("You fail to mount[ridee_string] [src]!"), ignored_mobs = mobs_with_special_messages)
-		to_chat(src, span_warning("[user] fails to mount[ridee_string] you!"))
+		user.visible_message(span_warning("[user]没能骑上[ridee_string][src]！"), span_warning("你没能骑上[ridee_string][src]！"), ignored_mobs = mobs_with_special_messages)
+		to_chat(src, span_warning("[user]没能骑上[ridee_string]你！"))
 		if (buckling != user)
-			to_chat(buckling, span_warning("[user] fails to mount you onto [src]!"))
+			to_chat(buckling, span_warning("[user]没能把你骑到[src]上！"))
 		return FALSE
 
 	if (!can_be_ridden_by(buckling, user)) // because we slept

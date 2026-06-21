@@ -4,8 +4,8 @@
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	icon = 'icons/obj/devices/remote.dmi'
-	name = "tram remote"
-	desc = "A remote control that can be linked to a tram. This can only go well."
+	name = "有轨电车遥控器"
+	desc = "一个可以连接到有轨电车的遥控器。这肯定会很顺利的。"
 	w_class = WEIGHT_CLASS_TINY
 	options = RAPID_MODE
 	///desired tram destination
@@ -35,14 +35,14 @@
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/platform as anything in SStransport.nav_beacons[specific_transport_id])
 		LAZYADD(available_platforms, platform.name)
 
-	var/selected_platform = tgui_input_list(user, "Available destinations", "Where to?", available_platforms)
+	var/selected_platform = tgui_input_list(user, "可用目的地", "前往何处？", available_platforms)
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/potential_platform as anything in SStransport.nav_beacons[specific_transport_id])
 		if(potential_platform.name == selected_platform)
 			destination = potential_platform.platform_code
 			break
 
-	balloon_alert(user, "set [selected_platform]")
-	to_chat(user, span_notice("You change the platform ID on [src] to [selected_platform]."))
+	balloon_alert(user, "设置 [selected_platform]")
+	to_chat(user, span_notice("你将 [src] 上的站台ID更改为 [selected_platform]。"))
 
 ///set safety bypass
 /obj/item/assembly/control/transport/remote/item_ctrl_click(mob/user)
@@ -52,7 +52,7 @@
 		if(RAPID_MODE)
 			options &= ~RAPID_MODE
 	update_appearance()
-	balloon_alert(user, "mode: [options ? "fast" : "safe"]")
+	balloon_alert(user, "模式：[options ? "fast" : "safe"]")
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/assembly/control/transport/remote/examine(mob/user)
@@ -91,7 +91,7 @@
 		return
 
 	if(cooldown)
-		balloon_alert(user, "cooldown: [DisplayTimeText(cooldown, 1)]")
+		balloon_alert(user, "冷却：[DisplayTimeText(cooldown, 1)]")
 		return
 
 	activate(user)
@@ -100,10 +100,10 @@
 ///send our selected commands to the tram
 /obj/item/assembly/control/transport/remote/activate(mob/user)
 	if(!specific_transport_id)
-		balloon_alert(user, "no tram linked!")
+		balloon_alert(user, "未链接到有轨电车！")
 		return
 	if(!destination)
-		balloon_alert(user, "no destination!")
+		balloon_alert(user, "没有目的地！")
 		return
 
 	SEND_SIGNAL(src, COMSIG_TRANSPORT_REQUEST, specific_transport_id, destination, options)
@@ -118,11 +118,11 @@
 	for(var/datum/transport_controller/linear/tram/tram as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
 		LAZYADD(transports_available, tram.specific_transport_id)
 
-	specific_transport_id = tgui_input_list(user, "Available transports", "Select a transport", transports_available)
+	specific_transport_id = tgui_input_list(user, "可用运输工具", "选择一个运输工具", transports_available)
 
 	if(specific_transport_id)
-		balloon_alert(user, "tram linked")
+		balloon_alert(user, "有轨电车已链接")
 	else
-		balloon_alert(user, "link failed!")
+		balloon_alert(user, "链接失败！")
 
 	update_appearance()

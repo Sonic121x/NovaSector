@@ -1,5 +1,5 @@
 /area/misc/condo
-	name = "Condo"
+	name = "公寓"
 	icon = 'modular_nova/modules/condos/icons/area.dmi'
 	icon_state = "condo"
 	requires_power = FALSE

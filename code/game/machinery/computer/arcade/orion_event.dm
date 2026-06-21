@@ -1,7 +1,7 @@
 
 //yep you guessed it back at it again with another datum singleton.
 /datum/orion_event
-	var/name = "this displays the events name"
+	var/name = "这显示事件的名称"
 	var/text = "this displays a blurb about the event"
 	///pickweight to show up. will still be in the events pool if added to the events list but not RANDOM, only triggered.
 	var/weight = 0
@@ -63,11 +63,11 @@
 
 ///Engine Breakdown - spend one engine part or wait 3 days (harmless emag effect)
 /datum/orion_event/engine_part
-	name = "Engine Breakdown"
+	name = "引擎故障"
 	text = "Oh no! The engine has broken down! \
 	You can repair it with an engine part, or you \
 	can make repairs for 3 days."
-	emag_message = span_warning("You hear some large object lurch to a halt right behind you! When you go to look, nothing's there...")
+	emag_message = span_warning("你听到身后有某个巨大物体猛地停了下来！当你去看时，那里什么都没有……")
 	emag_sound = 'sound/effects/creak/creak1.ogg'
 	weight = 2
 	event_responses = list()
@@ -90,7 +90,7 @@
 
 ///Malfunction - spend one engine part or wait 3 days (emag effect randomizes some stats)
 /datum/orion_event/electronic_part
-	name = "Malfunction"
+	name = "失控"
 	text = "The ship's systems are malfunctioning! \
 	You can replace the broken electronics with spares, \
 	or you can spend 3 days troubleshooting the AI."
@@ -114,7 +114,7 @@
 
 /datum/orion_event/electronic_part/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/gamer)
 	playsound(game, 'sound/effects/empulse.ogg', 50, TRUE)
-	game.visible_message(span_danger("[game] malfunctions, randomizing in-game stats!"))
+	game.visible_message(span_danger("[game] 发生故障，正在随机化游戏内数据！"))
 	var/oldfood = game.food
 	var/oldfuel = game.fuel
 	game.food = rand(10,80) / rand(1,2)
@@ -124,9 +124,9 @@
 
 /datum/orion_event/electronic_part/proc/revert_random(obj/machinery/computer/arcade/orion_trail/game, oldfood, oldfuel)
 	if(oldfuel > game.fuel && oldfood > game.food)
-		game.audible_message(span_danger("[game] lets out a somehow reassuring chime."))
+		game.audible_message(span_danger("[game] 发出了一声莫名令人安心的提示音。"))
 	else if(oldfuel < game.fuel || oldfood < game.food)
-		game.audible_message(span_danger("[game] lets out a somehow ominous chime."))
+		game.audible_message(span_danger("[game] 发出了一声莫名不祥的提示音。"))
 	game.food = oldfood
 	game.fuel = oldfuel
 	playsound(game, 'sound/machines/chime.ogg', 50, TRUE)
@@ -135,7 +135,7 @@
 
 ///Collision - spend one engine part or wait 3 days (has a nasty emag effect)
 /datum/orion_event/hull_part
-	name = "Collision"
+	name = "撞击"
 	text = "Something hit us! Looks like there's some hull damage. \
 	You can repair the damage with hull plates, or you can spend \
 	the next 3 days welding scrap together."
@@ -178,7 +178,7 @@
 #define BUTTON_LEAVE_THE_DERELICT "Leave the Derelict"
 
 /datum/orion_event/old_ship
-	name = "Derelict Ship"
+	name = "被遗弃的飞船"
 	text = "Your crew spots an old ship floating through space. \
 	It might have some supplies, but then again it looks rather unsafe."
 	weight = 2
@@ -198,7 +198,7 @@
 #define BUTTON_CONTINUE_TRAVELS "Continue travels."
 
 /datum/orion_event/exploring_derelict
-	name = "Derelict Exploration"
+	name = "废弃探索"
 	weight = 2
 	//set by on_select
 	event_responses = list()
@@ -238,7 +238,7 @@
 #define BUTTON_CONTINUE "Continue"
 
 /datum/orion_event/raiders
-	name = "Raiders"
+	name = "突袭者"
 	weight = 3
 	event_responses = list(BUTTON_CONTINUE)
 
@@ -259,15 +259,15 @@
 
 /datum/orion_event/raiders/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/gamer)
 	if(prob(50-gamer_skill))
-		to_chat(usr, span_userdanger("You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?"))
+		to_chat(usr, span_userdanger("你听到了战斗的呐喊。靴子踩在冰冷金属上的践踏声。痛苦的尖叫。空气泄漏的呼啸声。你疯了吗？"))
 		gamer.adjust_hallucinations(60 SECONDS)
 	else
-		to_chat(usr, span_userdanger("Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there..."))
+		to_chat(usr, span_userdanger("有什么东西从背后袭击了你！疼得要命，感觉像是钝器，但那里什么都没有……"))
 		gamer.take_bodypart_damage(30)
 		playsound(game, 'sound/items/weapons/genhit2.ogg', 100, TRUE)
 
 /datum/orion_event/illness
-	name = "Space Illness"
+	name = "太空病"
 	//needs to specify who died, set by select
 	weight = 3
 	event_responses = list(BUTTON_CONTINUE)
@@ -283,14 +283,14 @@
 		maxSeverity = 2 //part of gitting gud is rng mitigation
 	var/severity = rand(1,maxSeverity) //pray to RNGesus. PRAY, PIGS
 	if(severity == 1)
-		to_chat(gamer, span_userdanger("You suddenly feel slightly nauseated.") )
+		to_chat(gamer, span_userdanger("你突然感到有点恶心。") )
 		gamer.adjust_disgust(50)
 	if(severity == 2)
-		to_chat(usr, span_userdanger("You suddenly feel extremely nauseated and hunch over until it passes."))
+		to_chat(usr, span_userdanger("你突然感到极度恶心，弯下腰直到这种感觉过去。"))
 		gamer.adjust_disgust(110)
 		gamer.Stun(60)
 	if(severity >= 3) //you didn't pray hard enough
-		to_chat(gamer, span_warning("An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit."))
+		to_chat(gamer, span_warning("一阵压倒性的恶心感吞噬了你。你弯下腰，胃里的东西正准备进行一次壮观的离场。"))
 		gamer.adjust_disgust(150) //max this bitch out so they barf a lot
 		gamer.Stun(100)
 
@@ -298,7 +298,7 @@
 #define BUTTON_SLOW_DOWN "Slow Down"
 
 /datum/orion_event/flux
-	name = "Flux"
+	name = "磁波"
 	text = "This region of space is highly turbulent. If we go \
 	slowly we may avoid more damage, but if we keep our speed we won't waste supplies."
 	weight = 1
@@ -316,7 +316,7 @@
 
 /datum/orion_event/flux/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/gamer)
 	if(prob(25 + gamer_skill))//withstand the wind with your GAMER SKILL
-		to_chat(gamer, span_userdanger("A violent gale blows past you, and you barely manage to stay standing!"))
+		to_chat(gamer, span_userdanger("一阵猛烈的狂风从你身边吹过，你勉强站稳了！"))
 		return
 	gamer.Paralyze(60)
 	game.say("A sudden gust of powerful wind slams [gamer] into the floor!")
@@ -324,7 +324,7 @@
 	playsound(game, 'sound/items/weapons/genhit.ogg', 100, TRUE)
 
 /datum/orion_event/changeling_infiltration
-	name = "Changeling Infiltration"
+	name = "化形渗透"
 	weight = 3
 	event_responses = list(BUTTON_CONTINUE)
 
@@ -346,7 +346,7 @@
 		game.lings_suspected = TRUE
 
 /datum/orion_event/changeling_attack
-	name = "Changeling Attack"
+	name = "化形攻击"
 	event_responses = list(BUTTON_CONTINUE)
 
 /datum/orion_event/changeling_attack/on_select(obj/machinery/computer/arcade/orion_trail/game, gamer_skill, gamer_skill_level, gamer_skill_rands)
@@ -398,7 +398,7 @@
 
 ///Black Hole - final  (emag can spawn singulo, see death event)
 /datum/orion_event/black_hole
-	name = "Looming Black Hole"
+	name = "若隐若现的黑洞"
 	text = "Sensors indicate that a black hole's gravitational field is \
 	affecting the region of space we were headed through. We could stay \
 	of course, but risk of being overcome by its gravity, or we could \
@@ -421,7 +421,7 @@
 
 ///You died to a black hole, have some fluff text
 /datum/orion_event/black_hole_death
-	name = "Event Horizon"
+	name = "事件视界"
 	text = "As you jet the shuttle forward, you realize you underestimated the \
 	pull of the black hole. Try as you may, you cannot escape its stellar force. \
 	It isn't long before you pass the event horizon, and you close your eyes, readying \
@@ -445,7 +445,7 @@
 
 ///You found a space port!
 /datum/orion_event/space_port
-	name = "Space Port"
+	name = "太空港"
 	var/normal_arrival = "You have spotted a small pocket of civilization \
 	along the Orion Trail. A friendly hailing from the nearby space port \
 	assures that you can dock to rest and prepare for the travels ahead."
@@ -483,7 +483,7 @@
 
 ///You found the midway mark!
 /datum/orion_event/space_port/tau_ceti
-	name = "Tau Ceti Beta"
+	name = "南河二"
 	normal_arrival = "You have reached the halfway point in your journey, the largest space port \
 	along the trail: Tau Ceti Beta. It bustles with activity and life. It gives you hope \
 	of finding your future at Orion."
@@ -492,7 +492,7 @@
 
 ///You raided a space port!
 /datum/orion_event/space_port_raid
-	name = "Space Port Raid"
+	name = "太空港突袭"
 
 	event_responses = list(BUTTON_CONTINUE)
 

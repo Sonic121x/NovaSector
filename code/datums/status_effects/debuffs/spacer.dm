@@ -108,22 +108,22 @@
 		the_spacer.losebreath = min(the_spacer.losebreath++, minutes_active, 8)
 
 /atom/movable/screen/alert/status_effect/gravity_sickness
-	name = "Gravity Sickness"
-	desc = "The gravity of the planet around you is making you feel sick and tired."
+	name = "重力不适症"
+	desc = "周围行星的重力让你感到恶心和疲惫。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "paralysis"
 
 /datum/mood_event/spacer
 
 /datum/mood_event/spacer/in_space
-	description = "Space is long and dark and empty, but it's my home."
+	description = "太空漫长、黑暗而空旷，但它是我的家。"
 
 /datum/mood_event/spacer/on_planet
-	description = "I'm on a planet. The gravity here makes me uncomfortable."
+	description = "我在一颗行星上。这里的重力让我感到不适。"
 	mood_change = -2
 
 /datum/mood_event/spacer/on_planet/too_long
-	description = "I've been on this planet for too long. I need to get back to space."
+	description = "我在这颗行星上待得太久了。我需要回到太空去。"
 	mood_change = -4
 
 /datum/mood_event/spacer/on_planet/nerfed

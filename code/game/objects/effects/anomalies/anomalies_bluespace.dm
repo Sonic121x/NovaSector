@@ -1,6 +1,6 @@
 
 /obj/effect/anomaly/bluespace
-	name = "bluespace anomaly"
+	name = "蓝空异常"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "bluespace"
 	density = TRUE
@@ -54,7 +54,7 @@
 	var/turf/beacon_turf = get_turf(chosen) // the turf of origin we're travelling TO
 
 	playsound(beacon_turf, 'sound/effects/phasein.ogg', 100, TRUE)
-	priority_announce("Massive bluespace translocation detected.", "Anomaly Alert", ANNOUNCER_TRANSLOCATION) //NOVA EDIT CHANGE - ANNOUNCER
+	priority_announce("检测到大规模蓝空传送。", "异常警报", ANNOUNCER_TRANSLOCATION) //NOVA EDIT CHANGE - ANNOUNCER
 
 	var/list/flashers = list()
 	for(var/mob/living/living in viewers(beacon_turf, null))

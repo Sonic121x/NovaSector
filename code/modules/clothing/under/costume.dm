@@ -3,8 +3,8 @@
 	worn_icon = 'icons/mob/clothing/under/costume.dmi'
 
 /obj/item/clothing/under/costume/roman
-	name = "\improper Roman armor"
-	desc = "Ancient Roman armor. Made of metallic and leather straps."
+	name = "\improper 罗马盔甲"
+	desc = "古罗马盔甲。由金属和皮革带制成。"
 	icon_state = "roman"
 	inhand_icon_state = "armor"
 	can_adjust = FALSE
@@ -12,28 +12,28 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/jabroni
-	name = "jabroni outfit"
-	desc = "The leather club is two sectors down."
+	name = "董大伟服装"
+	desc = "黑暗，深邃，幻想。"
 	icon_state = "darkholme"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/owl
-	name = "owl uniform"
-	desc = "A soft brown jumpsuit made of synthetic feathers and strong conviction."
+	name = "猫头鹰制服"
+	desc = "一件柔软的棕色连身衣，由合成羽毛和坚定的信念制成。"
 	icon_state = "owl"
 	inhand_icon_state = "owl"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/griffin
-	name = "griffon uniform"
-	desc = "A soft brown jumpsuit with a white feather collar made of synthetic feathers and a lust for mayhem."
+	name = "狮鹫制服"
+	desc = "一件柔软的棕色连身衣，用合成羽毛做的白色羽毛领子，还带有一种对混乱的渴望。"
 	icon_state = "griffin"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/seifuku
-	name = "schoolgirl uniform"
-	desc = "It's just like one of my Japanese animes!"
+	name = "女学生制服"
+	desc = "这就像我喜欢的日本动画片一样！"
 	greyscale_colors = "#942737#4A518D#EBEBEB"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/seifuku"
@@ -61,29 +61,29 @@
 	greyscale_colors = "#87502E#B9A56A#EBEBEB"
 
 /obj/item/clothing/under/costume/pirate
-	name = "pirate outfit"
-	desc = "Yarr."
+	name = "海盗套装"
+	desc = "呀儿。"
 	icon_state = "pirate"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/soviet
-	name = "soviet uniform"
-	desc = "For the Motherland!"
+	name = "苏联制服"
+	desc = "为了祖国！"
 	icon_state = "soviet"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/redcoat
-	name = "redcoat uniform"
-	desc = "Looks old."
+	name = "英军制服"
+	desc = "看起来好老。"
 	icon_state = "redcoat"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/kilt
-	name = "kilt"
-	desc = "Includes shoes and plaid."
+	name = "苏格兰裙"
+	desc = "包括鞋子和格子。"
 	icon_state = "kilt"
 	inhand_icon_state = "kilt"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
@@ -91,15 +91,15 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/kilt/highlander
-	desc = "You're the only one worthy of this kilt."
+	desc = "你是唯一配得上这条短裙的人."
 
 /obj/item/clothing/under/costume/kilt/highlander/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER_TRAIT)
 
 /obj/item/clothing/under/costume/gladiator
-	name = "gladiator uniform"
-	desc = "Are you not entertained? Is that not why you are here?"
+	name = "角斗士制服"
+	desc = "你不开心吗？你不就是为这个来的吗？"
 	icon_state = "gladiator"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -109,12 +109,12 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/gladiator/ash_walker
-	desc = "This gladiator uniform appears to be covered in ash and fairly dated."
+	desc = "这件角斗士制服似乎被灰覆盖，而且相当陈旧。"
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/costume/maid
-	name = "maid costume"
-	desc = "Maid in China."
+	name = "女仆装"
+	desc = "中国女仆"
 	greyscale_colors = "#494955#EEEEEE"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/maid"
@@ -133,16 +133,16 @@
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR //weebs are gonna love this
 
 /obj/item/clothing/under/costume/geisha
-	name = "geisha suit"
-	desc = "Cute space ninja senpai not included."
+	name = "艺妓服"
+	desc = "不包括可爱的太空忍者前辈。"
 	icon_state = "geisha"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/under/costume/yukata
-	name = "black yukata"
-	desc = "A comfortable black cotton yukata inspired by traditional designs, perfect for a non-formal setting."
+	name = "黑色浴衣"
+	desc = "一件舒适的黑色棉质浴衣，灵感源自传统设计，非常适合非正式场合。"
 	icon_state = "yukata1"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
@@ -151,18 +151,18 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/costume/yukata/green
-	name = "green yukata"
-	desc = "A comfortable green cotton yukata inspired by traditional designs, perfect for a non-formal setting."
+	name = "绿色浴衣"
+	desc = "一件舒适的绿色棉质浴衣，灵感源自传统设计，非常适合非正式场合。"
 	icon_state = "yukata2"
 
 /obj/item/clothing/under/costume/yukata/white
-	name = "white yukata"
-	desc = "A comfortable white cotton yukata inspired by traditional designs, perfect for a non-formal setting."
+	name = "白色浴衣"
+	desc = "一件舒适的白色棉质浴衣，灵感源自传统设计，非常适合非正式场合。"
 	icon_state = "yukata3"
 
 /obj/item/clothing/under/costume/kimono
-	name = "black kimono"
-	desc = "A luxurious black silk kimono with traditional flair, ideal for elegant festive occasions."
+	name = "黑色和服"
+	desc = "一件奢华的黑丝和服，带有传统风情，适合优雅的节庆场合。"
 	icon_state = "kimono1"
 	inhand_icon_state = "yukata1"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -172,58 +172,58 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/costume/kimono/red
-	name = "red kimono"
-	desc = "A luxurious red silk kimono with traditional flair, ideal for elegant festive occasions."
+	name = "红色和服"
+	desc = "一件奢华的红丝和服，带有传统风情，适合优雅的节庆场合。"
 	icon_state = "kimono2"
 	inhand_icon_state = "kimono2"
 
 /obj/item/clothing/under/costume/kimono/purple
-	name = "purple kimono"
-	desc = "A luxurious purple silk kimono with traditional flair, ideal for elegant festive occasions."
+	name = "紫色和服"
+	desc = "一件奢华的紫丝和服，带有传统风情，适合优雅的节庆场合。"
 	icon_state = "kimono3"
 	inhand_icon_state = "kimono3"
 
 /obj/item/clothing/under/costume/villain
-	name = "villain suit"
-	desc = "A change of wardrobe is necessary if you ever want to catch a real superhero."
+	name = "反派角色服"
+	desc = "如果你想要抓住一个真正的超级英雄，那么换换衣服是必要的。"
 	icon_state = "villain"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/sailor
-	name = "sailor suit"
-	desc = "Skipper's in the wardroom drinkin' gin."
+	name = "水手服"
+	desc = "船长在军官室里喝着杜松子酒。"
 	icon_state = "sailor"
 	inhand_icon_state = "b_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/singer
 	abstract_type = /obj/item/clothing/under/costume/singer
-	desc = "Just looking at this makes you want to sing."
+	desc = "光看这个就让你想唱歌。"
 	body_parts_covered = CHEST|GROIN|ARMS
 	alternate_worn_layer = ABOVE_SHOES_LAYER
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/singer/yellow
-	name = "yellow performer's outfit"
+	name = "黄色表演服"
 	icon_state = "ysing"
 	inhand_icon_state = null
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/costume/singer/blue
-	name = "blue performer's outfit"
+	name = "绿色表演服"
 	icon_state = "bsing"
 	inhand_icon_state = null
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/costume/singer/red
-	name = "red performer's outfit"
+	name = "红色表演者服装"
 	icon_state = "rsing"
 	inhand_icon_state = null
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/costume/mummy
-	name = "mummy wrapping"
-	desc = "Return the slab or suffer my stale references."
+	name = "木乃伊裹条"
+	desc = "要么重置石板，要么再多听我啰嗦几句。"
 	icon_state = "mummy"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
@@ -232,8 +232,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/scarecrow
-	name = "scarecrow clothes"
-	desc = "Perfect camouflage for hiding in botany."
+	name = "稻草人衣服"
+	desc = "在植物中完美伪装。"
 	icon_state = "scarecrow"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
@@ -242,8 +242,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/draculass
-	name = "draculass coat"
-	desc = "A dress inspired by the ancient \"Victorian\" era."
+	name = "恶魔风格外套"
+	desc = "这条裙子的灵感来自古老的“维多利亚”时代。"
 	icon_state = "draculass"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -251,30 +251,30 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/drfreeze
-	name = "doctor freeze's jumpsuit"
-	desc = "A modified scientist jumpsuit to look extra cool."
+	name = "冷冻博士连身衣"
+	desc = "一件改良的科学家连身衣，看起来特别酷."
 	icon_state = "drfreeze"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/lobster
-	name = "foam lobster suit"
-	desc = "Who beheaded the college mascot?"
+	name = "泡沫龙虾服"
+	desc = "谁把大学吉祥物砍了？"
 	icon_state = "lobster"
 	inhand_icon_state = null
 	female_sprite_flags = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/gondola
-	name = "gondola hide suit"
-	desc = "Now you're cooking."
+	name = "贡多拉毛皮服"
+	desc = "现在你可以做给大家吃了。"
 	icon_state = "gondola"
 	inhand_icon_state = "lb_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/skeleton
-	name = "skeleton jumpsuit"
-	desc = "A black jumpsuit with a white bone pattern printed on it. Spooky!"
+	name = "骨架连身衣"
+	desc = "一件黑色连身裤，上面印着白色的骨头图案。好吓人！"
 	icon_state = "skeleton"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
@@ -303,8 +303,8 @@
 	new_icon_state = "black_mech_suit"
 
 /obj/item/clothing/under/costume/mech_suit
-	name = "mech pilot's suit"
-	desc = "A mech pilot's suit. Might make your butt look big."
+	name = "机甲驾驶服"
+	desc = "一套机甲驾驶服，可能会让你的屁股看起来很大."
 	icon_state = "red_mech_suit"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -317,8 +317,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/mech_suit)
 
 /obj/item/clothing/under/costume/russian_officer
-	name = "\improper Russian officer's uniform"
-	desc = "The latest in fashionable russian outfits."
+	name = "\improper 俄罗斯军官制服"
+	desc = "最新的俄罗斯时尚服装。"
 	icon = 'icons/obj/clothing/under/security.dmi'
 	icon_state = "hostanclothes"
 	inhand_icon_state = null
@@ -347,8 +347,8 @@
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/under/costume/buttondown/slacks
-	name = "button-down shirt with slacks"
-	desc = "A fancy button-down shirt with slacks."
+	name = "纽扣衬衫配西裤"
+	desc = "一件精致的纽扣衬衫配西裤。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/buttondown/slacks"
 	post_init_icon_state = "buttondown_slacks"
@@ -363,8 +363,8 @@
 	greyscale_colors = "#EEEEEE#CBDBFC#17171B#222227"
 
 /obj/item/clothing/under/costume/buttondown/shorts
-	name = "button-down shirt with shorts"
-	desc = "A fancy button-down shirt with shorts."
+	name = "纽扣衬衫配短裤"
+	desc = "一件精致的纽扣衬衫配短裤。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/buttondown/shorts"
 	post_init_icon_state = "buttondown_shorts"
@@ -375,8 +375,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/costume/buttondown/skirt
-	name = "button-down shirt with skirt"
-	desc = "A fancy button-down shirt with skirt."
+	name = "纽扣衬衫配短裙"
+	desc = "一件精致的纽扣衬衫配短裙。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/buttondown/skirt"
 	post_init_icon_state = "buttondown_skirt"
@@ -393,20 +393,20 @@
 	greyscale_colors = "#EEEEEE#CBDBFC#17171B#222227"
 
 /obj/item/clothing/under/costume/jackbros
-	name = "jack bros outfit"
-	desc = "For when it's time to hee some hos."
+	name = "迪克兄弟服装"
+	desc = "是时候去CCB了。"
 	icon_state = "JackFrostUniform"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/deckers
-	name = "deckers outfit"
+	name = "德克尔服"
 	icon_state = "decker_jumpsuit"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/football_suit
-	name = "football uniform"
+	name = "足球服"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/football_suit"
 	post_init_icon_state = "football_suit"
@@ -418,59 +418,59 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/costume/swagoutfit
-	name = "Swag outfit"
-	desc = "Why don't you go secure some bitches?"
+	name = "斯瓦格服"
+	desc = "为什么不准备去泡几个妞呢？"
 	icon_state = "SwagOutfit"
 	inhand_icon_state = null
 	can_adjust = FALSE
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/under/costume/referee
-	name = "referee uniform"
-	desc = "A standard black and white striped uniform to signal authority."
+	name = "裁判制服"
+	desc = "标准的黑白条纹制服，代表权威。"
 	icon_state = "referee"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/joker
-	name = "comedian suit"
-	desc = "The worst part of having a mental illness is people expect you to behave as if you don't."
+	name = "戏剧演员服装"
+	desc = "患有精神疾病最让人难受的部分就是人们总是期望你表现得像没有精神疾病一样。"
 	icon_state = "joker"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/yuri
-	name = "yuri initiate jumpsuit"
+	name = "尤里新兵连身衣"
 	icon_state = "yuri_uniform"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/dutch
-	name = "dutch's suit"
-	desc = "You can feel a <b>god damn plan</b> coming on."
+	name = "荷兰人服"
+	desc = "你可以感觉到一个<b>该死的计划</b>即将到来。"
 	icon_state = "DutchUniform"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 // For the nuke-ops cowboy fit. Sadly no Lone Ranger fit & I don't wanna bloat costume files further.
 /obj/item/clothing/under/costume/dutch/syndicate
-	desc = "You can feel a <b>god damn plan</b> coming on, and the armor lining in this suit'll do wonders in makin' it work."
+	desc = "你能感觉到一个<b>该死的计划</b>正在酝酿，而这套西装里的装甲衬里会让它顺利实施。"
 	armor_type = /datum/armor/clothing_under/syndicate
 
 /obj/item/clothing/under/costume/osi
-	name = "O.S.I. jumpsuit"
+	name = "O.S.I.连身衣"
 	icon_state = "osi_jumpsuit"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/tmc
-	name = "Lost MC clothing"
+	name = "迷失M.C服"
 	icon_state = "tmc_jumpsuit"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/gi
-	name = "martial gi"
-	desc = "Assistant, nukie, whatever. You can beat anyone; it's called hard work!"
+	name = "武道服"
+	desc = "助理也好，核弹客也罢。你能打败任何人；这叫努力！"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/gi"
 	post_init_icon_state = "martial_arts_gi"
@@ -489,23 +489,23 @@
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/clothing/under/costume/gi/goku
-	name = "sacred gi"
-	desc = "Created by a man who touched the hearts and lives of many."
+	name = "神圣武道服"
+	desc = "由一位触动了许多人心灵和生活的人所创造。"
 	icon_state = "/obj/item/clothing/under/costume/gi/goku"
 	post_init_icon_state = "martial_arts_gi_goku"
 	greyscale_colors = "#f89925#3e6dd7"
 
 /obj/item/clothing/under/costume/traditional
-	name = "traditional suit"
-	desc = "A full, vibrantly coloured suit. Likely with traditional purposes. Maybe the colours represent a family, clan, or rank, who knows."
+	name = "传统服饰"
+	desc = "一套色彩鲜艳的完整服饰。很可能具有传统用途。也许这些颜色代表着一个家族、氏族或等级，谁知道呢。"
 	icon_state = "tradition"
 	inhand_icon_state = null
 	female_sprite_flags = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/loincloth
-	name = "leather loincloth"
-	desc = "Just a piece of leather to cover private areas. Itchy to the touch. Whoever made this must have been desperate, or savage."
+	name = "皮革缠腰布"
+	desc = "只是一块用来遮盖私处的皮革。摸起来很痒。制作它的人一定很绝望，或者很野蛮。"
 	icon_state = "loincloth"
 	inhand_icon_state = null
 	body_parts_covered = GROIN
@@ -514,8 +514,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/costume/henchmen
-	name = "henchmen jumpsuit"
-	desc = "A very gaudy jumpsuit for a proper Henchman. Guild regulations, you understand."
+	name = "跟班连体服"
+	desc = "一件给合格跟班穿的非常花哨的连体服。公会规定，你懂的。"
 	icon = 'icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "henchmen"
@@ -525,29 +525,29 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEEARS|HIDEEYES|HIDEHAIR
 
 /obj/item/clothing/under/costume/gamberson
-	name = "re-enactor's gambeson"
-	desc = "A colorful set of clothes made to look like a medieval gambeson."
+	name = "重演者的软甲"
+	desc = "一套色彩鲜艳、看起来像中世纪软甲的衣服。"
 	icon_state = "gamberson"
 	inhand_icon_state = null
 	female_sprite_flags = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/gamberson/military
-	name = "swordsman's gambeson"
-	desc = "A padded medieval gambeson. Has enough woolen layers to dull a strike from any small weapon."
+	name = "剑士软甲"
+	desc = "一件加厚的中世纪软甲。有足够的羊毛层来削弱任何小型武器的打击。"
 	armor_type = /datum/armor/clothing_under/rank_security
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/costume/captain
-	name = "captain's suit"
-	desc = "A green suit and yellow necktie. Exemplifies authority."
+	name = "船长制服"
+	desc = "一套绿色西装和黄色领带。彰显权威。"
 	icon_state = "green_suit"
 	inhand_icon_state = "dg_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/captain/skirt
-	name = "green suitskirt"
-	desc = "A green suitskirt and yellow necktie. Exemplifies authority."
+	name = "绿色西装裙"
+	desc = "一件绿色西装裙和黄色领带。彰显权威。"
 	icon_state = "green_suit_skirt"
 	inhand_icon_state = "dg_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -556,15 +556,15 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/costume/head_of_personnel
-	name = "head of personnel's suit"
-	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
+	name = "人事主管制服"
+	desc = "一套青色西装和黄色领带。一套权威但俗气的装束。"
 	icon_state = "teal_suit"
 	inhand_icon_state = "g_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/head_of_personnel/skirt
-	name = "teal suitskirt"
-	desc = "A teal suitskirt and yellow necktie. An authoritative yet tacky ensemble."
+	name = "青色西装裙"
+	desc = "一件青色西装裙和黄色领带。一套权威但俗气的装束。"
 	icon_state = "teal_suit_skirt"
 	inhand_icon_state = "g_suit"
 	body_parts_covered = CHEST|GROIN|ARMS

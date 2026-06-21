@@ -1,7 +1,7 @@
 
 /datum/action/item_action/cult_dagger
-	name = "Draw Blood Rune"
-	desc = "Use the ritual dagger to create a powerful blood rune"
+	name = "绘制血之符文"
+	desc = "使用仪式匕首创造一个强大的血之符文"
 	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "draw"
 	buttontooltipstyle = "cult"
@@ -18,7 +18,7 @@
 
 /datum/action/item_action/cult_dagger/do_effect(trigger_flags)
 	if(!isliving(owner))
-		to_chat(owner, span_warning("You lack the necessary living force for this action."))
+		to_chat(owner, span_warning("你缺乏进行此操作所需的生命能量。"))
 		return FALSE
 
 	var/obj/item/target_item = target
@@ -34,7 +34,7 @@
 		return TRUE
 
 	if (living_owner.usable_hands <= 0)
-		to_chat(living_owner, span_warning("You don't have any usable hands!"))
+		to_chat(living_owner, span_warning("你没有可用的手！"))
 	else
-		to_chat(living_owner, span_warning("Your hands are full!"))
+		to_chat(living_owner, span_warning("你的手已经满了！"))
 	return FALSE

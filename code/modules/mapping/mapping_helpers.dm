@@ -3,7 +3,7 @@
 
 
 /obj/effect/baseturf_helper //Set the baseturfs of every turf in the /area/ it is placed.
-	name = "baseturf editor"
+	name = "基础草皮编辑器"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
 	/// Replacing a specific turf
@@ -46,47 +46,47 @@
 	thing.place_on_bottom(baseturf)
 
 /obj/effect/baseturf_helper/space
-	name = "space baseturf editor"
+	name = "太空基地人造草皮编辑器"
 	baseturf = /turf/open/space
 
 /obj/effect/baseturf_helper/asteroid
-	name = "asteroid baseturf editor"
+	name = "小行星基地草皮编辑器"
 	baseturf = /turf/open/misc/asteroid
 
 /obj/effect/baseturf_helper/asteroid/airless
-	name = "asteroid airless baseturf editor"
+	name = "小行星无气型人造草皮编辑器"
 	baseturf = /turf/open/misc/asteroid/airless
 
 /obj/effect/baseturf_helper/asteroid/basalt
-	name = "asteroid basalt baseturf editor"
+	name = "小行星玄武岩基础草皮编辑器"
 	baseturf = /turf/open/misc/asteroid/basalt
 
 /obj/effect/baseturf_helper/asteroid/snow
-	name = "asteroid snow baseturf editor"
+	name = "小行星雪草坪编辑器"
 	baseturf = /turf/open/misc/asteroid/snow
 
 /obj/effect/baseturf_helper/asteroid/moon
-	name = "lunar sand baseturf editor"
+	name = "月壤基底地形编辑器"
 	baseturf = /turf/open/misc/asteroid/moon
 
 /obj/effect/baseturf_helper/beach/sand
-	name = "beach sand baseturf editor"
+	name = "海滩人造草皮编辑器"
 	baseturf = /turf/open/misc/beach/sand
 
 /obj/effect/baseturf_helper/beach/water
-	name = "water baseturf editor"
+	name = "水基人造草皮编辑器"
 	baseturf = /turf/open/water/beach
 
 /obj/effect/baseturf_helper/lava
-	name = "lava baseturf editor"
+	name = "熔岩基人造草皮编辑器"
 	baseturf = /turf/open/lava/smooth
 
 /obj/effect/baseturf_helper/lava_land/surface
-	name = "lavaland baseturf editor"
+	name = "拉瓦兰人造草皮编辑器"
 	baseturf = /turf/open/lava/smooth/lava_land_surface
 
 /obj/effect/baseturf_helper/reinforced_plating
-	name = "reinforced plating baseturf editor"
+	name = "强化地板基底地形编辑器"
 	baseturf = /turf/open/floor/plating/reinforced
 	baseturf_to_replace = list(/turf/open/floor/plating)
 
@@ -97,7 +97,7 @@
 
 //This applies the reinforced plating to the above Z level for every tile in the area where this is placed
 /obj/effect/baseturf_helper/reinforced_plating/ceiling
-	name = "reinforced ceiling plating baseturf editor"
+	name = "强化天花板地板基底地形编辑器"
 
 /obj/effect/baseturf_helper/reinforced_plating/ceiling/replace_baseturf(turf/thing)
 	var/turf/ceiling = get_step_multiz(thing, UP)
@@ -109,8 +109,8 @@
 
 ///Used for marking mapping errors. These should only be created by cases explicitly caught by unit tests, and should NEVER actually appear in production.
 /obj/effect/mapping_error
-	name = "I AM ERROR"
-	desc = "IF YOU SEE ME, YELL AT A MAPPER!!!"
+	name = "我是错误"
+	desc = "如果你看到我，请向地图编辑者大喊！！！"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "mapping_error"
 
@@ -199,7 +199,7 @@
 	return
 
 /obj/effect/mapping_helpers/airlock/cyclelink_helper
-	name = "airlock cyclelink helper"
+	name = "气闸循环连接辅助器"
 	icon_state = "airlock_cyclelink_helper"
 
 /obj/effect/mapping_helpers/airlock/cyclelink_helper/payload(obj/machinery/door/airlock/airlock)
@@ -209,7 +209,7 @@
 		airlock.cyclelinkeddir = dir
 
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi
-	name = "airlock multi-cyclelink helper"
+	name = "气闸多循环连接辅助器"
 	icon_state = "airlock_multicyclelink_helper"
 	var/cycle_id
 
@@ -222,7 +222,7 @@
 		airlock.closeOtherId = cycle_id
 
 /obj/effect/mapping_helpers/airlock/locked
-	name = "airlock lock helper"
+	name = "气闸锁辅助装置"
 	icon_state = "airlock_locked_helper"
 
 /obj/effect/mapping_helpers/airlock/locked/payload(obj/machinery/door/airlock/airlock)
@@ -233,7 +233,7 @@
 		airlock.locked = TRUE
 
 /obj/effect/mapping_helpers/airlock/unres
-	name = "airlock unrestricted side helper"
+	name = "气闸无限制辅助舱"
 	icon_state = "airlock_unres_helper"
 
 /obj/effect/mapping_helpers/airlock/unres/payload(obj/machinery/door/airlock/airlock)
@@ -241,7 +241,7 @@
 	airlock.unres_latch = TRUE
 
 /obj/effect/mapping_helpers/airlock/unres/delayed
-	name = "airlock unrestricted side delayed helper"
+	name = "气闸门无限制侧延迟助手"
 	icon_state = "airlock_unres_delayed_helper"
 
 /obj/effect/mapping_helpers/airlock/unres/delayed/payload(obj/machinery/door/airlock/airlock)
@@ -249,7 +249,7 @@
 	airlock.delayed_unres_open = TRUE
 
 /obj/effect/mapping_helpers/airlock/abandoned
-	name = "airlock abandoned helper"
+	name = "气闸门废弃助手"
 	icon_state = "airlock_abandoned"
 
 /obj/effect/mapping_helpers/airlock/abandoned/payload(obj/machinery/door/airlock/airlock)
@@ -259,7 +259,7 @@
 		airlock.abandoned = TRUE
 
 /obj/effect/mapping_helpers/airlock/welded
-	name = "airlock welded helper"
+	name = "气闸门焊接助手"
 	icon_state = "airlock_welded"
 
 /obj/effect/mapping_helpers/airlock/welded/payload(obj/machinery/door/airlock/airlock)
@@ -268,7 +268,7 @@
 	airlock.welded = TRUE
 
 /obj/effect/mapping_helpers/airlock/cutaiwire
-	name = "airlock cut ai wire helper"
+	name = "气闸门切断AI线助手"
 	icon_state = "airlock_cutaiwire"
 
 /obj/effect/mapping_helpers/airlock/cutaiwire/payload(obj/machinery/door/airlock/airlock)
@@ -278,7 +278,7 @@
 		airlock.cutAiWire = TRUE
 
 /obj/effect/mapping_helpers/airlock/autoname
-	name = "airlock autoname helper"
+	name = "气闸门自动命名助手"
 	icon_state = "airlock_autoname"
 
 /obj/effect/mapping_helpers/airlock/autoname/payload(obj/machinery/door/airlock/airlock)
@@ -288,7 +288,7 @@
 		airlock.autoname = TRUE
 
 /obj/effect/mapping_helpers/airlock/inaccessible
-	name = "airlock inaccessible helper"
+	name = "气闸门不可访问助手"
 	icon_state = "airlock_inaccessible"
 
 /obj/effect/mapping_helpers/airlock/inaccessible/payload(obj/machinery/door/airlock/airlock)
@@ -298,7 +298,7 @@
 		airlock.req_access += list(ACCESS_INACCESSIBLE)
 
 /obj/effect/mapping_helpers/airlock/red_alert_access
-	name = "airlock red alert access helper"
+	name = "气闸门红色警报访问助手"
 	icon_state = "airlock_red_alert_access"
 	apply_to_windoors = TRUE
 
@@ -307,7 +307,7 @@
 
 //air alarm helpers
 /obj/effect/mapping_helpers/airalarm
-	desc = "You shouldn't see this. Report it please."
+	desc = "你不应该看到这个。请报告它。"
 	late = TRUE
 
 /obj/effect/mapping_helpers/airalarm/Initialize(mapload)
@@ -363,7 +363,7 @@
 	return
 
 /obj/effect/mapping_helpers/airalarm/unlocked
-	name = "airalarm unlocked interface helper"
+	name = "空气警报器解锁界面助手"
 	icon_state = "airalarm_unlocked_interface_helper"
 
 /obj/effect/mapping_helpers/airalarm/unlocked/payload(obj/machinery/airalarm/target)
@@ -373,7 +373,7 @@
 	target.unlocked = TRUE
 
 /obj/effect/mapping_helpers/airalarm/syndicate_access
-	name = "airalarm syndicate access helper"
+	name = "空气警报器辛迪加访问助手"
 	icon_state = "airalarm_syndicate_access_helper"
 
 /obj/effect/mapping_helpers/airalarm/syndicate_access/payload(obj/machinery/airalarm/target)
@@ -383,7 +383,7 @@
 	target.syndicate_access = TRUE
 
 /obj/effect/mapping_helpers/airalarm/away_general_access
-	name = "airalarm away access helper"
+	name = "空气警报器外部通用访问助手"
 	icon_state = "airalarm_away_general_access_helper"
 
 /obj/effect/mapping_helpers/airalarm/away_general_access/payload(obj/machinery/airalarm/target)
@@ -393,7 +393,7 @@
 	target.away_general_access = TRUE
 
 /obj/effect/mapping_helpers/airalarm/engine_access
-	name = "airalarm engine access helper"
+	name = "空气警报引擎访问助手"
 	icon_state = "airalarm_engine_access_helper"
 
 /obj/effect/mapping_helpers/airalarm/engine_access/payload(obj/machinery/airalarm/target)
@@ -403,7 +403,7 @@
 	target.engine_access = TRUE
 
 /obj/effect/mapping_helpers/airalarm/mixingchamber_access
-	name = "airalarm mixingchamber access helper"
+	name = "空气警报混合室访问助手"
 	icon_state = "airalarm_mixingchamber_access_helper"
 
 /obj/effect/mapping_helpers/airalarm/mixingchamber_access/payload(obj/machinery/airalarm/target)
@@ -413,7 +413,7 @@
 	target.mixingchamber_access = TRUE
 
 /obj/effect/mapping_helpers/airalarm/all_access
-	name = "airalarm all access helper"
+	name = "空气警报全访问助手"
 	icon_state = "airalarm_all_access_helper"
 
 /obj/effect/mapping_helpers/airalarm/all_access/payload(obj/machinery/airalarm/target)
@@ -423,7 +423,7 @@
 	target.all_access = TRUE
 
 /obj/effect/mapping_helpers/airalarm/tlv_cold_room
-	name = "airalarm cold room tlv helper"
+	name = "空气警报冷藏室TLV助手"
 	icon_state = "airalarm_tlv_cold_room_helper"
 
 /obj/effect/mapping_helpers/airalarm/tlv_cold_room/payload(obj/machinery/airalarm/target)
@@ -433,7 +433,7 @@
 	target.tlv_cold_room = TRUE
 
 /obj/effect/mapping_helpers/airalarm/tlv_kitchen
-	name = "airalarm kitchen tlv helper"
+	name = "空气警报厨房TLV助手"
 	icon_state = "airalarm_tlv_kitchen_helper"
 
 /obj/effect/mapping_helpers/airalarm/tlv_kitchen/payload(obj/machinery/airalarm/target)
@@ -443,7 +443,7 @@
 	target.tlv_kitchen = TRUE
 
 /obj/effect/mapping_helpers/airalarm/tlv_no_checks
-	name = "airalarm no checks tlv helper"
+	name = "空气警报无检查TLV助手"
 	icon_state = "airalarm_tlv_no_checks_helper"
 
 /obj/effect/mapping_helpers/airalarm/tlv_no_checks/payload(obj/machinery/airalarm/target)
@@ -453,7 +453,7 @@
 	target.tlv_no_checks = TRUE
 
 /obj/effect/mapping_helpers/airalarm/link
-	name = "airalarm link helper"
+	name = "空气警报链接助手"
 	icon_state = "airalarm_link_helper"
 	late = TRUE
 	var/chamber_id = ""
@@ -476,7 +476,7 @@
 	qdel(src)
 
 /obj/effect/mapping_helpers/airalarm/surgery
-	name = "airalarm surgery helper"
+	name = "空气警报手术室助手"
 	icon_state = "airalarm_surgery_helper"
 
 /obj/effect/mapping_helpers/airalarm/surgery/LateInitialize()
@@ -488,7 +488,7 @@
 
 //apc helpers
 /obj/effect/mapping_helpers/apc
-	desc = "You shouldn't see this. Report it please."
+	desc = "你不应该看到这个。请报告它。"
 	late = TRUE
 
 /obj/effect/mapping_helpers/apc/Initialize(mapload)
@@ -541,7 +541,7 @@
 	return
 
 /obj/effect/mapping_helpers/apc/cut_AI_wire
-	name = "apc AI wire mended helper"
+	name = "APC AI线路修复助手"
 	icon_state = "apc_cut_AIwire_helper"
 
 /obj/effect/mapping_helpers/apc/cut_AI_wire/payload(obj/machinery/power/apc/target)
@@ -551,7 +551,7 @@
 	target.cut_AI_wire = TRUE
 
 /obj/effect/mapping_helpers/apc/cell_5k
-	name = "apc 5k cell helper"
+	name = "APC 5k电池助手"
 	icon_state = "apc_5k_cell_helper"
 
 /obj/effect/mapping_helpers/apc/cell_5k/payload(obj/machinery/power/apc/target)
@@ -561,7 +561,7 @@
 	target.cell_5k = TRUE
 
 /obj/effect/mapping_helpers/apc/cell_10k
-	name = "apc 10k cell helper"
+	name = "APC 10k电池助手"
 	icon_state = "apc_10k_cell_helper"
 
 /obj/effect/mapping_helpers/apc/cell_10k/payload(obj/machinery/power/apc/target)
@@ -571,7 +571,7 @@
 	target.cell_10k = TRUE
 
 /obj/effect/mapping_helpers/apc/syndicate_access
-	name = "apc syndicate access helper"
+	name = "APC 辛迪加访问助手"
 	icon_state = "apc_syndicate_access_helper"
 
 /obj/effect/mapping_helpers/apc/syndicate_access/payload(obj/machinery/power/apc/target)
@@ -581,7 +581,7 @@
 	target.syndicate_access = TRUE
 
 /obj/effect/mapping_helpers/apc/away_general_access
-	name = "apc away access helper"
+	name = "APC 外部通用访问助手"
 	icon_state = "apc_away_general_access_helper"
 
 /obj/effect/mapping_helpers/apc/away_general_access/payload(obj/machinery/power/apc/target)
@@ -591,7 +591,7 @@
 	target.away_general_access = TRUE
 
 /obj/effect/mapping_helpers/apc/unlocked
-	name = "apc unlocked interface helper"
+	name = "APC 解锁界面助手"
 	icon_state = "apc_unlocked_interface_helper"
 
 /obj/effect/mapping_helpers/apc/unlocked/payload(obj/machinery/power/apc/target)
@@ -601,7 +601,7 @@
 	target.unlocked = TRUE
 
 /obj/effect/mapping_helpers/apc/no_charge
-	name = "apc no charge helper"
+	name = "APC 无充电助手"
 	icon_state = "apc_no_charge_helper"
 
 /obj/effect/mapping_helpers/apc/no_charge/payload(obj/machinery/power/apc/target)
@@ -611,7 +611,7 @@
 	target.no_charge = TRUE
 
 /obj/effect/mapping_helpers/apc/full_charge
-	name = "apc full charge helper"
+	name = "APC 满电助手"
 	icon_state = "apc_full_charge_helper"
 
 /obj/effect/mapping_helpers/apc/full_charge/payload(obj/machinery/power/apc/target)
@@ -622,7 +622,7 @@
 
 //Used to turn off lights with lightswitch in areas.
 /obj/effect/mapping_helpers/turn_off_lights_with_lightswitch
-	name = "area turned off lights helper"
+	name = "区域关闭灯光助手"
 	icon_state = "lights_off"
 
 /obj/effect/mapping_helpers/turn_off_lights_with_lightswitch/Initialize(mapload)
@@ -664,7 +664,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///Helpers used for injecting stuff into atoms on the map.
 /obj/effect/mapping_helpers/atom_injector
-	name = "Atom Injector"
+	name = "原子注入器"
 	icon_state = "injector"
 	late = TRUE
 	///Will inject into all fitting the criteria if false, otherwise first found.
@@ -709,7 +709,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	. = "[name] found no targets at ([x], [y], [z]). First Match Only: [first_match_only ? "true" : "false"] target type: [target_type] | target name: [target_name]"
 
 /obj/effect/mapping_helpers/atom_injector/obj_flag
-	name = "Obj Flag Injector"
+	name = "对象标志注入器"
 	icon_state = "objflag_helper"
 	var/inject_flags = NONE
 
@@ -721,7 +721,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///This helper applies components to things on the map directly.
 /obj/effect/mapping_helpers/atom_injector/component_injector
-	name = "Component Injector"
+	name = "组件注入器"
 	icon_state = "component"
 	///Typepath of the component.
 	var/component_type
@@ -744,7 +744,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///This helper applies elements to things on the map directly.
 /obj/effect/mapping_helpers/atom_injector/element_injector
-	name = "Element Injector"
+	name = "元素注入器"
 	icon_state = "element"
 	///Typepath of the element.
 	var/element_type
@@ -767,7 +767,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///This helper applies traits to things on the map directly.
 /obj/effect/mapping_helpers/atom_injector/trait_injector
-	name = "Trait Injector"
+	name = "特性注入器"
 	icon_state = "trait"
 	///Name of the trait, in the lower-case text (NOT the upper-case define) form.
 	var/trait_name
@@ -790,7 +790,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///This helper applies dynamic human icons to things on the map
 /obj/effect/mapping_helpers/atom_injector/human_icon_injector
-	name = "Human Icon Injector"
+	name = "人类图标注入器"
 	icon_state = "icon"
 	/// Path of the outfit we give the human.
 	var/outfit_path
@@ -829,7 +829,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///Fetches an external dmi and applies to the target object
 /obj/effect/mapping_helpers/atom_injector/custom_icon
-	name = "Custom Icon Injector"
+	name = "自定义图标注入器"
 	icon_state = "icon"
 	///This is the var that will be set with the fetched icon. In case you want to set some secondary icon sheets like inhands and such.
 	var/target_variable = "icon"
@@ -874,7 +874,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///Fetches an external sound and applies to the target object
 /obj/effect/mapping_helpers/atom_injector/custom_sound
-	name = "Custom Sound Injector"
+	name = "自定义声音注入器"
 	icon_state = "sound"
 	///This is the var that will be set with the fetched sound.
 	var/target_variable = "hitsound"
@@ -918,7 +918,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	. += " | target variable: [target_variable] | sound url: [sound_url]"
 
 /obj/effect/mapping_helpers/dead_body_placer
-	name = "Dead Body placer"
+	name = "尸体放置器"
 	late = TRUE
 	icon_state = "deadbodyplacer"
 	///if TRUE, was spawned out of mapload.
@@ -972,7 +972,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 //On Ian's birthday, the hop's office is decorated.
 /obj/effect/mapping_helpers/ianbirthday
-	name = "Ian's Bday Helper"
+	name = "伊恩的生日助手"
 	late = TRUE
 	icon_state = "iansbdayhelper"
 	/// How many clusters of balloons to spawn.
@@ -1008,7 +1008,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 		var/turf/food_turf = length(table_turfs) ? pick(table_turfs) : dogbed_turf
 		new /obj/item/knife/kitchen(food_turf)
 		var/obj/item/food/cake/birthday/iancake = new(food_turf)
-		iancake.desc = "Happy birthday, Ian!"
+		iancake.desc = "生日快乐，伊恩！"
 
 	if(!length(open_turfs))
 		return
@@ -1040,7 +1040,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	//remind me to add wall decor!
 
 /obj/effect/mapping_helpers/ianbirthday/admin//so admins may birthday any room
-	name = "generic birthday setup"
+	name = "通用生日设置"
 	icon_state = "bdayhelper"
 	map_warning = FALSE
 
@@ -1050,7 +1050,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 //Ian, like most dogs, loves a good new years eve party.
 /obj/effect/mapping_helpers/iannewyear
-	name = "Ian's New Years Helper"
+	name = "伊恩的新年帮手"
 	late = TRUE
 	icon_state = "iansnewyrshelper"
 
@@ -1076,7 +1076,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 	new /obj/item/clothing/head/costume/festive(dogbed_turf)
 	var/obj/item/reagent_containers/cup/glass/bottle/champagne/iandrink = new(dogbed_turf)
-	iandrink.name = "dog champagne"
+	iandrink.name = "狗香槟"
 	iandrink.pixel_y += 8
 	iandrink.pixel_x += 8
 
@@ -1088,7 +1088,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 //lets mappers place notes on airlocks with custom info or a pre-made note from a path
 /obj/effect/mapping_helpers/airlock_note_placer
-	name = "Airlock Note Placer"
+	name = "气闸门便条放置器"
 	late = TRUE
 	icon_state = "airlocknoteplacer"
 	var/note_info //for writing out custom notes without creating an extra paper subtype
@@ -1137,7 +1137,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
  * note: this is not a turf subtype because the trapdoor needs the type of the turf to turn back into
  */
 /obj/effect/mapping_helpers/trapdoor_placer
-	name = "trapdoor placer"
+	name = "活板门放置器"
 	icon_state = "trapdoor"
 	late = TRUE
 
@@ -1147,7 +1147,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	qdel(src)
 
 /obj/effect/mapping_helpers/ztrait_injector
-	name = "ztrait injector"
+	name = "Z层特征注入器"
 	icon_state = "ztrait"
 	late = TRUE
 	/// List of traits to add to this Z-level.
@@ -1161,7 +1161,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	SSweather.update_z_level(level) //in case of someone adding a weather for the level, we want SSweather to update for that
 
 /obj/effect/mapping_helpers/circuit_spawner
-	name = "circuit spawner"
+	name = "电路生成器"
 	icon_state = "circuit"
 	/// The shell for the circuit.
 	var/atom/movable/circuit_shell
@@ -1216,7 +1216,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	return json_data
 
 /obj/effect/mapping_helpers/broken_floor
-	name = "broken floor"
+	name = "破裂的地板"
 	icon = 'icons/turf/damaged.dmi'
 	icon_state = "damaged1"
 	layer = ABOVE_NORMAL_TURF_LAYER
@@ -1228,7 +1228,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	qdel(src)
 
 /obj/effect/mapping_helpers/burnt_floor
-	name = "burnt floor"
+	name = "烧毁的地板"
 	icon = 'icons/turf/damaged.dmi'
 	icon_state = "floorscorched1"
 	layer = ABOVE_NORMAL_TURF_LAYER
@@ -1241,7 +1241,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///Applies BROKEN flag to the first found machine on a tile
 /obj/effect/mapping_helpers/broken_machine
-	name = "broken machine helper"
+	name = "损坏机器辅助器"
 	icon_state = "broken_machine"
 	late = TRUE
 
@@ -1278,7 +1278,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///Deals random damage to the first window found on a tile to appear cracked
 /obj/effect/mapping_helpers/damaged_window
-	name = "damaged window helper"
+	name = "损坏窗户辅助器"
 	icon_state = "damaged_window"
 	late = TRUE
 	/// Minimum roll of integrity damage in percents needed to show cracks
@@ -1315,7 +1315,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 //requests console helpers
 /obj/effect/mapping_helpers/requests_console
-	desc = "You shouldn't see this. Report it please."
+	desc = "你不应该看到这个。请报告它。"
 	late = TRUE
 
 /obj/effect/mapping_helpers/requests_console/Initialize(mapload)
@@ -1341,42 +1341,42 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	return
 
 /obj/effect/mapping_helpers/requests_console/announcement
-	name = "request console announcement helper"
+	name = "请求控制台公告辅助器"
 	icon_state = "requests_console_announcement_helper"
 
 /obj/effect/mapping_helpers/requests_console/announcement/payload(obj/machinery/requests_console/console)
 	console.can_send_announcements = TRUE
 
 /obj/effect/mapping_helpers/requests_console/assistance
-	name = "request console assistance requestable helper"
+	name = "请求控制台援助请求辅助器"
 	icon_state = "requests_console_assistance_helper"
 
 /obj/effect/mapping_helpers/requests_console/assistance/payload(obj/machinery/requests_console/console)
 	GLOB.req_console_assistance |= console.department
 
 /obj/effect/mapping_helpers/requests_console/supplies
-	name = "request console supplies requestable helper"
+	name = "请求控制台补给请求辅助器"
 	icon_state = "requests_console_supplies_helper"
 
 /obj/effect/mapping_helpers/requests_console/supplies/payload(obj/machinery/requests_console/console)
 	GLOB.req_console_supplies |= console.department
 
 /obj/effect/mapping_helpers/requests_console/information
-	name = "request console information relayable helper"
+	name = "请求控制台信息中继辅助器"
 	icon_state = "requests_console_information_helper"
 
 /obj/effect/mapping_helpers/requests_console/information/payload(obj/machinery/requests_console/console)
 	GLOB.req_console_information |= console.department
 
 /obj/effect/mapping_helpers/requests_console/ore_update
-	name = "request console ore update helper"
+	name = "请求控制台矿石更新辅助器"
 	icon_state = "requests_console_ore_update_helper"
 
 /obj/effect/mapping_helpers/requests_console/ore_update/payload(obj/machinery/requests_console/console)
 	console.receive_ore_updates = TRUE
 
 /obj/effect/mapping_helpers/engraving
-	name = "engraving helper"
+	name = "雕刻辅助器"
 	icon = 'icons/turf/wall_overlays.dmi'
 	icon_state = "engraving2"
 	late = TRUE
@@ -1404,7 +1404,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 /// Apply to a wall (or floor, technically) to ensure it is instantly destroyed by any explosion, even if usually invulnerable
 /obj/effect/mapping_helpers/bombable_wall
-	name = "bombable wall helper"
+	name = "可爆破墙壁辅助器"
 	icon = 'icons/turf/overlays.dmi'
 	icon_state = "explodable"
 
@@ -1420,7 +1420,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 /// this helper buckles all mobs on the tile to the first buckleable object
 /obj/effect/mapping_helpers/mob_buckler
-	name = "Buckle Mob"
+	name = "束缚生物"
 	icon_state = "buckle"
 	late = TRUE
 	///whether we force a buckle
@@ -1457,8 +1457,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 ///Basic mob flag helpers for things like deleting on death.
 /obj/effect/mapping_helpers/basic_mob_flags
-	name = "Basic mob flags helper"
-	desc = "Used to apply basic_mob_flags to basic mobs on the same turf."
+	name = "基础生物标志辅助器"
+	desc = "用于对同一格子的基础生物应用 basic_mob_flags。"
 	late = TRUE
 
 	///The basic mob flag that we're adding to all basic mobs on the turf.
@@ -1480,37 +1480,37 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	qdel(src)
 
 /obj/effect/mapping_helpers/basic_mob_flags/del_on_death
-	name = "Basic mob del on death flag helper"
+	name = "基础生物死亡删除标志辅助器"
 	icon_state = "basic_mob_del_on_death"
 	flag_to_give = DEL_ON_DEATH
 
 /obj/effect/mapping_helpers/basic_mob_flags/flip_on_death
-	name = "Basic mob flip on death flag helper"
+	name = "基础生物死亡翻转标志辅助器"
 	icon_state = "basic_mob_flip_on_death"
 	flag_to_give = FLIP_ON_DEATH
 
 /obj/effect/mapping_helpers/basic_mob_flags/remain_dense_while_dead
-	name = "Basic mob remain dense while dead flag helper"
+	name = "基础生物死亡保持致密标志辅助器"
 	icon_state = "basic_mob_remain_dense_while_dead"
 	flag_to_give = REMAIN_DENSE_WHILE_DEAD
 
 /obj/effect/mapping_helpers/basic_mob_flags/flammable_mob
-	name = "Basic mob flammable flag helper"
+	name = "基础生物易燃标志辅助器"
 	icon_state = "basic_mob_flammable"
 	flag_to_give = FLAMMABLE_MOB
 
 /obj/effect/mapping_helpers/basic_mob_flags/immune_to_fists
-	name = "Basic mob immune to fists flag helper"
+	name = "基础生物免疫拳击标志辅助器"
 	icon_state = "basic_mob_immune_to_fists"
 	flag_to_give = IMMUNE_TO_FISTS
 
 /obj/effect/mapping_helpers/basic_mob_flags/immune_to_getting_wet
-	name = "Basic mob immune to getting wet flag helper"
+	name = "基础生物免疫浸湿标志辅助器"
 	icon_state = "basic_mob_immune_to_getting_wet"
 	flag_to_give = IMMUNE_TO_GETTING_WET
 
 /obj/effect/mapping_helpers/wall_dent
-	name = "bullet impact dent"
+	name = "子弹冲击凹痕"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "bullet_hole"
 	/// Dent type to spawn
@@ -1531,6 +1531,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/mapping_helpers/wall_dent/impact
-	name = "blunt impact dent"
+	name = "钝器冲击凹痕"
 	icon_state = "impact1"
 	dent_type = WALL_DENT_HIT

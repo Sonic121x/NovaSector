@@ -1,5 +1,5 @@
 /obj/structure/bed/double
-	name = "double bed"
+	name = "双人床"
 	icon_state = "doublebed"
 	icon = 'modular_nova/modules/aesthetics/furniture/icons/furniture.dmi'
 

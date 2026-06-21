@@ -247,7 +247,7 @@
 
 	on_fire = TRUE
 	if(!silent)
-		owner.visible_message(span_warning("[owner] catches fire!"), span_userdanger("You're set on fire!"))
+		owner.visible_message(span_warning("[owner] 着火了！"), span_userdanger("你着火了！"))
 
 	if(moblight_type)
 		if(moblight)

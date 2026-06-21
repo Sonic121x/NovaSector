@@ -1,6 +1,6 @@
 /// Subtype for escape pod ports so that we can give them trait behaviour
 /obj/docking_port/stationary/escape_pod
-	name = "escape pod loader"
+	name = "逃生舱装载器"
 	height = 5
 	width = 3
 	dwidth = 1
@@ -21,7 +21,7 @@
 
 // should fit the syndicate infiltrator, and smaller ships like the battlecruiser corvettes and fighters
 /obj/docking_port/stationary/syndicate
-	name = "near the station"
+	name = "空间站附近"
 	dheight = 1
 	dwidth = 12
 	height = 17
@@ -29,15 +29,15 @@
 	shuttle_id = "syndicate_nearby"
 
 /obj/docking_port/stationary/syndicate/northwest
-	name = "northwest of station"
+	name = "空间站西北方"
 	shuttle_id = "syndicate_nw"
 
 /obj/docking_port/stationary/syndicate/northeast
-	name = "northeast of station"
+	name = "空间站东北方"
 	shuttle_id = "syndicate_ne"
 
 /obj/docking_port/stationary/transit
-	name = "In Transit"
+	name = "运输中"
 	override_can_dock_checks = TRUE
 	/// The turf reservation returned by the transit area request
 	var/datum/turf_reservation/reserved_area
@@ -77,7 +77,7 @@
 	roundstart_template = SSmapping.shuttle_templates[selectedid]
 
 /obj/docking_port/stationary/picked/whiteship
-	name = "Deep Space"
+	name = "深空"
 	shuttle_id = "whiteship_away"
 	height = 45 //Width and height need to remain in sync with the size of whiteshipdock.dmm, otherwise we'll get overflow
 	width = 45

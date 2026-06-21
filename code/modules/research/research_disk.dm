@@ -1,7 +1,7 @@
 
 /obj/item/disk/tech_disk
-	name = "technology disk"
-	desc = "A disk for storing technology data for further research."
+	name = "科研数据盘"
+	desc = "一个用于存储技术数据以供进一步研究的磁盘。"
 	icon_state = "datadisk0"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass=SMALL_MATERIAL_AMOUNT)
 	var/datum/techweb/stored_research
@@ -14,8 +14,8 @@
 	pixel_y = base_pixel_y + rand(-5, 5)
 
 /obj/item/disk/tech_disk/debug
-	name = "\improper CentCom technology disk"
-	desc = "A debug item for research"
+	name = "\improper 中央指挥部科技磁盘"
+	desc = "一个用于研究的调试物品"
 	custom_materials = null
 
 /obj/item/disk/tech_disk/debug/Initialize(mapload)

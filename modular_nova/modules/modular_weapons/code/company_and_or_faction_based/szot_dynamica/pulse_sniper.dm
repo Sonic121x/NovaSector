@@ -82,7 +82,7 @@
 	var/obj/item/ammo_casing/pulse/casing = chambered
 	if(istype(casing))
 		var/shots_left = floor(casing.remaining_uses / shots_per_fire)
-		. += span_notice("The chambered cell has [casing.remaining_uses] out of [casing.max_uses] charges remaining (enough for [shots_left] shot[shots_left != 1 ? "s" : ""]).")
+		. += span_notice("膛室内的能量单元还剩 [casing.remaining_uses] / [casing.max_uses] 发能量（足够进行 [shots_left] 次射击[shots_left != 1 ? "s" : ""]）。")
 		if(casing.remaining_uses < shots_per_fire)
 			. += span_warning("Not enough charge for another shot!")
 

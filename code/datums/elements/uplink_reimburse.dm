@@ -34,10 +34,10 @@
 	SIGNAL_HANDLER
 
 	if(!IS_TRAITOR(user) && !IS_NUKE_OP(user))
-		examine_list += span_warning("There's a label on the side, but it's written in indecipherable gibberish. You have no idea what it means!")
+		examine_list += span_warning("侧面贴着一张标签，但上面写的是难以辨认的乱码。你完全不明白它的意思！")
 		return
 
-	examine_list += span_notice("There's a label written in codespeak on the side, saying that this item can be refunded for [refundable_tc] by applying it onto an uplink.")
+	examine_list += span_notice("侧面有一张用暗语写的标签，说明此物品可通过将其应用于上行链路退还[refundable_tc]点数。")
 
 /datum/element/uplink_reimburse/proc/reimburse(obj/item/refund_item, mob/user, datum/component/uplink/uplink_comp)
 	SIGNAL_HANDLER
@@ -45,7 +45,7 @@
 	if(!uplink_comp)
 		CRASH("No uplink component in arguments detected")
 
-	to_chat(user, span_notice("You tap [uplink_comp.parent] with [refund_item], and a moment after [refund_item] disappears in a puff of red smoke!"))
+	to_chat(user, span_notice("你用[refund_item]轻敲[uplink_comp.parent]，片刻之后[refund_item]在一阵红色烟雾中消失了！"))
 	do_sparks(2, source = uplink_comp.parent)
 	uplink_comp.uplink_handler.add_telecrystals(refundable_tc)
 	SEND_SIGNAL(refund_item, COMSIG_ITEM_TC_REIMBURSED)

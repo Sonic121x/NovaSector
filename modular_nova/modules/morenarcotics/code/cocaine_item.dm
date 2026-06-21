@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/crack
-	name = "crack"
-	desc = "A rock of freebase cocaine, otherwise known as crack."
+	name = "快克"
+	desc = "一块游离碱可卡因，也被称为快克。"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "crack"
 	volume = 10
@@ -8,8 +8,8 @@
 	list_reagents = list(/datum/reagent/drug/cocaine/freebase_cocaine = 10)
 
 /obj/item/reagent_containers/crackbrick
-	name = "crack brick"
-	desc = "A brick of crack cocaine."
+	name = "快克砖"
+	desc = "一块快克可卡因砖。"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "crackbrick"
 	volume = 40
@@ -18,13 +18,13 @@
 
 /obj/item/reagent_containers/crackbrick/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(attacking_item.get_sharpness())
-		user.show_message(span_notice("You cut \the [src] into some rocks."), MSG_VISUAL)
+		user.show_message(span_notice("你将 \the [src] 切成了几块石头。"), MSG_VISUAL)
 		for(var/i = 1 to 4)
 			new /obj/item/reagent_containers/crack(user.loc)
 		qdel(src)
 
 /datum/crafting_recipe/crackbrick
-	name = "Crack brick"
+	name = "快克砖"
 	result = /obj/item/reagent_containers/crackbrick
 	reqs = list(/obj/item/reagent_containers/crack = 4)
 	parts = list(/obj/item/reagent_containers/crack = 4)
@@ -33,8 +33,8 @@
 
 // Should probably give this the edible component at some point
 /obj/item/reagent_containers/cocaine
-	name = "cocaine"
-	desc = "Reenact your favorite scenes from Scarface!"
+	name = "可卡因"
+	desc = "重现你最喜欢的《疤面煞星》场景！"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "cocaine"
 	volume = 5
@@ -50,14 +50,14 @@
 	else if(user.is_mouth_covered(ITEM_SLOT_MASK))
 		covered = "mask"
 	if(covered)
-		to_chat(user, span_warning("You have to remove your [covered] first!"))
+		to_chat(user, span_warning("你得先取下你的[covered]！"))
 	var/obj/item/organ/lungs/lungs = user.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if(isnull(lungs) || istype(lungs, /obj/item/organ/lungs/synth))
-		to_chat(user, span_warning("You have to be able to breathe to snort the cocaine!"))
+		to_chat(user, span_warning("你必须能呼吸才能吸食可卡因！"))
 		return
-	user.visible_message(span_notice("[user] starts snorting the [src]."))
+	user.visible_message(span_notice("[user]开始吸食[src]。"))
 	if(do_after(user, 30))
-		to_chat(user, span_notice("You finish snorting the [src]."))
+		to_chat(user, span_notice("你吸食完了[src]。"))
 		if(reagents.total_volume)
 			reagents.trans_to(user, reagents.total_volume, transferred_by = user, methods = INGEST)
 		qdel(src)
@@ -80,8 +80,8 @@
 	return
 
 /obj/item/reagent_containers/cocainebrick
-	name = "cocaine brick"
-	desc = "A brick of cocaine. Good for transport!"
+	name = "可卡因砖"
+	desc = "一块可卡因砖。便于运输！"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "cocainebrick"
 	volume = 25
@@ -90,15 +90,15 @@
 
 
 /obj/item/reagent_containers/cocainebrick/attack_self(mob/user)
-	user.visible_message(span_notice("[user] starts breaking up the [src]."))
+	user.visible_message(span_notice("[user]开始弄碎[src]。"))
 	if(do_after(user,10))
-		to_chat(user, span_notice("You finish breaking up the [src]."))
+		to_chat(user, span_notice("你弄碎了[src]。"))
 		for(var/i = 1 to 5)
 			new /obj/item/reagent_containers/cocaine(user.loc)
 		qdel(src)
 
 /datum/crafting_recipe/cocainebrick
-	name = "Cocaine brick"
+	name = "可卡因砖"
 	result = /obj/item/reagent_containers/cocainebrick
 	reqs = list(/obj/item/reagent_containers/cocaine = 5)
 	parts = list(/obj/item/reagent_containers/cocaine = 5)

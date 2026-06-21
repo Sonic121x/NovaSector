@@ -1,6 +1,6 @@
 /obj/machinery/dna_scannernew
-	name = "\improper DNA scanner"
-	desc = "It scans DNA structures."
+	name = "\improper DNA扫描仪"
+	desc = "它扫描DNA结构。"
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "scanner"
 	base_icon_state = "scanner"
@@ -33,7 +33,7 @@
 /obj/machinery/dna_scannernew/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Radiation pulse accuracy increased by factor <b>[precision_coeff**2]</b>.<br>Radiation pulse damage decreased by factor <b>[damage_coeff**2]</b>.")
+		. += span_notice("状态显示为：辐射脉冲精度提高了 <b>[precision_coeff**2]</b>倍。<br>辐射脉冲损伤降低了<b>[damage_coeff**2]</b>倍。")
 
 /obj/machinery/dna_scannernew/update_icon_state()
 	//no power or maintenance
@@ -56,7 +56,7 @@
 
 /obj/machinery/dna_scannernew/proc/toggle_open(mob/user)
 	if(panel_open)
-		to_chat(user, span_notice("Close the maintenance panel first."))
+		to_chat(user, span_notice("需要先关闭维修面板."))
 		return
 
 	if(state_open)
@@ -64,7 +64,7 @@
 		return
 
 	else if(locked)
-		to_chat(user, span_notice("The bolts are locked down, securing the door shut."))
+		to_chat(user, span_notice("气闸螺栓被锁紧，牢固紧闭着."))
 		return
 
 	open_machine()
@@ -75,15 +75,15 @@
 		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
-		span_hear("You hear a metallic creaking from [src]."))
+	user.visible_message(span_notice("你看到[user]正在踢[src]的门！"), \
+		span_notice("你靠在[src]的背面，开始推开门...（这大约需要[DisplayTimeText(breakout_time)]。）"), \
+		span_hear("你听到 [src] 发出金属吱吱声。"))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked)
 			return
 		locked = FALSE
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user]成功从[src]中挣脱出来了！"), \
+			span_notice("你成功逃离了 [src]！"))
 		open_machine()
 
 /obj/machinery/dna_scannernew/proc/locate_computer(type_)
@@ -122,7 +122,7 @@
 	if(user.stat || locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, span_warning("[src]'s door won't budge!"))
+			to_chat(user, span_warning("[src] 的门不会动的！"))
 		return
 	open_machine()
 
@@ -154,7 +154,7 @@
 
 //Just for transferring between genetics machines.
 /obj/item/disk/data
-	name = "\improper DNA data disk"
+	name = "\improper DNA数据盘"
 	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
 	var/list/genetic_makeup_buffer = list()
 	var/list/mutations = list()
@@ -171,8 +171,8 @@
 			blood_type = get_blood_type(blood_type) || random_human_blood_type()
 
 /obj/item/disk/data/debug
-	name = "\improper CentCom DNA disk"
-	desc = "A debug item for genetics"
+	name = "\improper 中央指挥部DNA数据磁盘"
+	desc = "遗传学的调试物品"
 	custom_materials = null
 
 /obj/item/disk/data/debug/Initialize(mapload)

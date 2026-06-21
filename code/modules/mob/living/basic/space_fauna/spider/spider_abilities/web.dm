@@ -31,19 +31,19 @@
 		return FALSE
 	if(DOING_INTERACTION(owner, DOAFTER_SOURCE_SPIDER))
 		if (feedback)
-			owner.balloon_alert(owner, "busy!")
+			owner.balloon_alert(owner, "正忙！")
 		return FALSE
 	if(!isturf(owner.loc))
 		if (feedback)
-			owner.balloon_alert(owner, "invalid location!")
+			owner.balloon_alert(owner, "无效位置！")
 		return FALSE
 	if(HAS_TRAIT(owner.loc, TRAIT_SPINNING_WEB_TURF))
 		if (feedback)
-			owner.balloon_alert(owner, "already being webbed!")
+			owner.balloon_alert(owner, "正在结网中！")
 		return FALSE
 	if(obstructed_by_other_web())
 		if (feedback)
-			owner.balloon_alert(owner, "already webbed!")
+			owner.balloon_alert(owner, "已有蛛网！")
 		return FALSE
 	return TRUE
 
@@ -63,7 +63,7 @@
 	if(do_after(owner, webbing_time, target = spider_turf, interaction_key = DOAFTER_SOURCE_SPIDER) && owner.loc == spider_turf)
 		plant_web(spider_turf, web)
 	else
-		owner?.balloon_alert(owner, "interrupted!") // Null check because we might have been interrupted via being disintegrated
+		owner?.balloon_alert(owner, "被打断了！") // Null check because we might have been interrupted via being disintegrated
 	REMOVE_TRAIT(spider_turf, TRAIT_SPINNING_WEB_TURF, REF(src))
 	build_all_button_icons()
 
@@ -165,7 +165,7 @@
 		return FALSE
 	if(!isturf(owner.loc))
 		if (feedback)
-			owner.balloon_alert(owner, "invalid location!")
+			owner.balloon_alert(owner, "无效位置！")
 		return FALSE
 	return TRUE
 

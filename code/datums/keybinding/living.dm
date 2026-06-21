@@ -9,7 +9,7 @@
 	hotkey_keys = list("B")
 	name = "resist"
 	full_name = "Resist"
-	description = "Break free of your current state. Handcuffed? on fire? Resist!"
+	description = "挣脱当前状态。被铐住了？着火了？抵抗！"
 	keybind_signal = COMSIG_KB_LIVING_RESIST_DOWN
 
 /datum/keybinding/living/resist/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -35,7 +35,7 @@
 	hotkey_keys = list("P") //NOVA EDIT CHANGE - CUSTOMIZATION
 	name = "look up"
 	full_name = "Look Up"
-	description = "Look up at the next z-level.  Only works if directly below open space."
+	description = "向上查看下一个Z层级。仅在正下方是开放空间时有效。"
 	keybind_signal = COMSIG_KB_LIVING_LOOKUP_DOWN
 
 /datum/keybinding/living/look_up/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -57,7 +57,7 @@
 	hotkey_keys = list("\[") //NOVA EDIT CHANGE - CUSTOMIZATION
 	name = "look down"
 	full_name = "Look Down"
-	description = "Look down at the previous z-level.  Only works if directly above open space."
+	description = "向下查看上一个Z层级。仅在正上方是开放空间时有效。"
 	keybind_signal = COMSIG_KB_LIVING_LOOKDOWN_DOWN
 
 /datum/keybinding/living/look_down/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -78,7 +78,7 @@
 	hotkey_keys = list("U")
 	name = "rest"
 	full_name = "Rest"
-	description = "Lay down, or get up."
+	description = "躺下，或起身。"
 	keybind_signal = COMSIG_KB_LIVING_REST_DOWN
 
 /datum/keybinding/living/rest/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -93,7 +93,7 @@
 	hotkey_keys = list("F")
 	name = "toggle_combat_mode"
 	full_name = "Toggle Combat Mode"
-	description = "Toggles combat mode. Like Help/Harm but cooler."
+	description = "切换战斗模式。类似帮助/伤害模式，但更酷。"
 	keybind_signal = COMSIG_KB_LIVING_TOGGLE_COMBAT_DOWN
 
 
@@ -108,7 +108,7 @@
 	hotkey_keys = list("4")
 	name = "enable_combat_mode"
 	full_name = "Enable Combat Mode"
-	description = "Enable combat mode."
+	description = "启用战斗模式。"
 	keybind_signal = COMSIG_KB_LIVING_ENABLE_COMBAT_DOWN
 
 /datum/keybinding/living/enable_combat_mode/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -122,7 +122,7 @@
 	hotkey_keys = list("1")
 	name = "disable_combat_mode"
 	full_name = "Disable Combat Mode"
-	description = "Disable combat mode."
+	description = "禁用战斗模式。"
 	keybind_signal = COMSIG_KB_LIVING_DISABLE_COMBAT_DOWN
 
 /datum/keybinding/living/disable_combat_mode/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -136,7 +136,7 @@
 	hotkey_keys = list("Alt") //NOVA EDIT CHANGE - C IS FOR COMBAT INDICATOR - ORIGINAL: hotkey_keys = list("C")
 	name = "toggle_move_intent"
 	full_name = "Hold to toggle move intent"
-	description = "Held down to cycle to the other move intent, release to cycle back"
+	description = "按住以切换到另一种移动意图，松开则切换回来"
 	keybind_signal = COMSIG_KB_LIVING_TOGGLEMOVEINTENT_DOWN
 
 /datum/keybinding/living/toggle_move_intent/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -157,7 +157,7 @@
 	hotkey_keys = list(UNBOUND_KEY)
 	name = "toggle_move_intent_alt"
 	full_name = "press to cycle move intent"
-	description = "Pressing this cycle to the opposite move intent, does not cycle back"
+	description = "按下此键切换至相反的移动意图，不会循环切换回来"
 	keybind_signal = COMSIG_KB_LIVING_TOGGLEMOVEINTENTALT_DOWN
 
 /datum/keybinding/living/toggle_move_intent_alternative/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -172,7 +172,7 @@
 	hotkey_keys = list("R", "Southwest") // END
 	name = "toggle_throw_mode"
 	full_name = "Toggle throw mode"
-	description = "Toggle throwing the current item or not."
+	description = "切换是否投掷当前物品。"
 	keybind_signal = COMSIG_KB_LIVING_TOGGLETHROWMODE_DOWN
 
 /datum/keybinding/living/toggle_throw_mode/down(client/user)
@@ -187,7 +187,7 @@
 	hotkey_keys = list("Space")
 	name = "hold_throw_mode"
 	full_name = "Hold throw mode"
-	description = "Hold this to turn on throw mode, and release it to turn off throw mode"
+	description = "按住此键开启投掷模式，松开则关闭投掷模式"
 	keybind_signal = COMSIG_KB_LIVING_HOLDTHROWMODE_DOWN
 
 /datum/keybinding/living/hold_throw_mode/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -208,7 +208,7 @@
 	hotkey_keys = list("G")
 	name = "Give_Item"
 	full_name = "Give item"
-	description = "Give the item you're currently holding"
+	description = "交出你当前持有的物品"
 	keybind_signal = COMSIG_KB_LIVING_GIVEITEM_DOWN
 
 /datum/keybinding/living/give/can_use(client/user)

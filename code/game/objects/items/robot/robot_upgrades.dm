@@ -2,8 +2,8 @@
 // Contains various borg upgrades.
 
 /obj/item/borg/upgrade
-	name = "borg upgrade module"
-	desc = "Protected by FRM."
+	name = "机器人升级模块"
+	desc = "受FRM保护。"
 	icon = 'icons/mob/silicon/robot_items.dmi'
 	icon_state = "module_general"
 	w_class = WEIGHT_CLASS_SMALL
@@ -26,15 +26,15 @@
 
 /obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(borg.stat == DEAD)
-		to_chat(user, span_warning("[src] will not function on a deceased cyborg!"))
+		to_chat(user, span_warning("[src] 将不会对已经死亡的赛博起效!"))
 		return FALSE
 	if(model_type && !is_type_in_list(borg.model, model_type))
-		to_chat(borg, span_alert("Upgrade mounting error! No suitable hardpoint detected."))
-		to_chat(user, span_warning("There's no mounting point for the module!"))
+		to_chat(borg, span_alert("升级安装错误！未检测到合适的硬点。"))
+		to_chat(user, span_warning("没有模块的安装点！"))
 		return FALSE
 	if(!allow_duplicates && (locate(type) in borg.upgrades))
-		to_chat(borg, span_alert("Upgrade mounting error! Hardpoint already occupied!"))
-		to_chat(user, span_warning("The mounting point for the module is already occupied!"))
+		to_chat(borg, span_alert("升级安装错误！硬点已被占用！"))
+		to_chat(user, span_warning("模块的安装点已被占用！"))
 		return FALSE
 	// Handles adding/removing items.
 	if(length(items_to_add))
@@ -71,15 +71,15 @@
 	return TRUE
 
 /obj/item/borg/upgrade/rename
-	name = "cyborg reclassification board"
-	desc = "Used to rename a cyborg."
+	name = "机械人重分类板"
+	desc = "用于重命名机械人。"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "cyborg_upgrade1"
 	var/heldname = ""
 	one_use = TRUE
 
 /obj/item/borg/upgrade/rename/attack_self(mob/user)
-	var/new_heldname = sanitize_name(tgui_input_text(user, "Enter new robot name", "Cyborg Reclassification", heldname, MAX_NAME_LEN), allow_numbers = TRUE)
+	var/new_heldname = sanitize_name(tgui_input_text(user, "输入新的机器人名称", "机械人重分类", heldname, MAX_NAME_LEN), allow_numbers = TRUE)
 	if(!new_heldname || !user.is_holding(src))
 		return
 	heldname = new_heldname
@@ -311,10 +311,10 @@
 
 /obj/item/borg/upgrade/selfrepair/ui_action_click()
 	if(on)
-		to_chat(toggle_action.owner, span_notice("You deactivate the self-repair module."))
+		to_chat(toggle_action.owner, span_notice("你关闭了自修复模块."))
 		deactivate_sr()
 	else
-		to_chat(toggle_action.owner, span_notice("You activate the self-repair module."))
+		to_chat(toggle_action.owner, span_notice("你启动了自修复模块."))
 		activate_sr()
 
 
@@ -343,12 +343,12 @@
 
 	if(istype(cyborg) && (cyborg.stat != DEAD) && on)
 		if(!cyborg.cell)
-			to_chat(cyborg, span_alert("Self-repair module deactivated. Please insert power cell."))
+			to_chat(cyborg, span_alert("自修复模块已关闭.请插入电池."))
 			deactivate_sr()
 			return
 
 		if(cyborg.cell.charge < energy_cost * 2)
-			to_chat(cyborg, span_alert("Self-repair module deactivated. Please recharge."))
+			to_chat(cyborg, span_alert("自修复模块已关闭.请充电."))
 			deactivate_sr()
 			return
 
@@ -374,7 +374,7 @@
 				msgmode = "critical"
 			else if(cyborg.health < cyborg.maxHealth)
 				msgmode = "normal"
-			to_chat(cyborg, span_notice("Self-repair is active in [span_boldnotice("[msgmode]")] mode."))
+			to_chat(cyborg, span_notice("自修复功能已激活，处于[span_boldnotice("[msgmode]")]模式。"))
 	else
 		deactivate_sr()
 
@@ -861,13 +861,13 @@
 	if(!istype(borgo))
 		return ..()
 	if(!borgo.opened)
-		to_chat(user, span_warning("You must access the cyborg's internals!"))
+		to_chat(user, span_warning("你必须先解锁赛博的内部！"))
 		return ..()
 	if(borgo.health < 0)
-		to_chat(user, span_warning("You have to repair the cyborg before using this module!"))
+		to_chat(user, span_warning("你必须在使用这个模块之前修理赛博！"))
 		return ..()
 	if(!(borgo.stat & DEAD))
-		to_chat(user, span_warning("This cyborg is already operational!"))
+		to_chat(user, span_warning("这个赛博已经可以正常运作了！"))
 		return ..()
 
 	if(borgo.mind)

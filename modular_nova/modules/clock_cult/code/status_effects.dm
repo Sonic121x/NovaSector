@@ -12,7 +12,7 @@
 		owner.toggle_move_intent(owner)
 		owner.adjust_confusion_up_to(1 SECONDS, 1 SECONDS)
 		running_toggled = TRUE
-		to_chat(owner, span_warning("You know you shouldn't be running here."))
+		to_chat(owner, span_warning("你知道你不该在这里奔跑。"))
 
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/clock_interdiction)
 
@@ -23,8 +23,8 @@
 		owner.toggle_move_intent(owner)
 
 /atom/movable/screen/alert/status_effect/interdiction
-	name = "Interdicted"
-	desc = "I don't think I am meant to go this way."
+	name = "被禁制"
+	desc = "我觉得我不该走这条路。"
 	icon = 'modular_nova/modules/clock_cult/icons/actions_clock.dmi'
 	icon_state = "interdiction_effect" //fix later
 

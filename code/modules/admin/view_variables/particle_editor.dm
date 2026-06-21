@@ -162,7 +162,7 @@
 						var_value[3] = var_value[1]
 					var_value = generator(arglist(var_value))
 				if(P_DATA_ICON_ADD)
-					var_value = input("Pick icon:", "Icon") as null|icon
+					var_value = input("选择图标：", "图标") as null|icon
 					if(!var_value)
 						return FALSE
 					var/list/new_values = list()

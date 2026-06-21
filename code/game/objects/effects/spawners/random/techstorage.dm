@@ -1,12 +1,12 @@
 // Tech storage circuit board spawners
 /obj/effect/spawner/random/techstorage
-	name = "generic circuit board spawner"
+	name = "通用电路板生成器"
 	icon_state = "circuit"
 	spawn_loot_split = TRUE
 	spawn_all_loot = TRUE
 
 /obj/effect/spawner/random/techstorage/data_disk
-	name = "data disk spawner"
+	name = "数据盘生成器"
 	icon_state = "disk"
 	spawn_all_loot = FALSE
 	loot = list(
@@ -15,7 +15,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/arcade_boards
-	name = "arcade board spawner"
+	name = "游戏厅电路板生成器"
 	spawn_all_loot = FALSE
 	spawn_loot_count = 1
 	loot = list(
@@ -25,7 +25,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/custom_shuttle
-	name = "custom shuttle circuit board spawner"
+	name = "定制穿梭机电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/computer/shuttle/docker,
 		/obj/item/circuitboard/computer/shuttle/flight_control,
@@ -38,7 +38,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/service_all
-	name = "service circuit board spawner"
+	name = "服务部电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/computer/arcade/battle,
 		/obj/item/circuitboard/computer/arcade/orion_trail,
@@ -61,7 +61,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/rnd_all
-	name = "RnD circuit board spawner"
+	name = "研发电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/computer/aifixer,
 		/obj/item/circuitboard/machine/rdserver,
@@ -76,7 +76,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/security_all
-	name = "security circuit board spawner"
+	name = "安保电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/computer/secure_data,
 		/obj/item/circuitboard/computer/security,
@@ -84,7 +84,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/engineering_all
-	name = "engineering circuit board spawner"
+	name = "工程部电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/computer/atmos_alert,
 		/obj/item/circuitboard/computer/station_alert,
@@ -92,7 +92,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/tcomms_all
-	name = "tcomms circuit board spawner"
+	name = "Tcomms 电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/computer/message_monitor,
 		/obj/item/circuitboard/machine/telecomms/broadcaster,
@@ -106,7 +106,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/medical_all
-	name = "medical circuit board spawner"
+	name = "医疗电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/machine/chem_dispenser,
 		/obj/item/circuitboard/computer/med_data,
@@ -116,7 +116,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/ai_all
-	name = "secure AI circuit board spawner"
+	name = "安保AI电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/computer/aiupload,
 		/obj/item/circuitboard/computer/borgupload,
@@ -124,7 +124,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/command_all
-	name = "secure command circuit board spawner"
+	name = "安保指挥部电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/computer/accounting,
 		/obj/item/circuitboard/computer/bankmachine,
@@ -133,7 +133,7 @@
 	)
 
 /obj/effect/spawner/random/techstorage/rnd_secure_all
-	name = "secure RnD circuit board spawner"
+	name = "安保研发电路板生成器"
 	loot = list(
 		/obj/item/circuitboard/computer/mecha_control,
 		/obj/item/circuitboard/computer/apc_control,

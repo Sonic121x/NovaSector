@@ -1,6 +1,6 @@
 /obj/item/clothing/head/beret/frenchberet
-	name = "french beret"
-	desc = "A quality beret, infused with the aroma of chain-smoking, wine-swilling Parisians. You feel less inclined to engage in military conflict, for some reason."
+	name = "法国贝雷帽"
+	desc = "一顶优质贝雷帽，散发着爱抽连环烟、爱喝葡萄酒的巴黎人气息。不知为何，你会觉得不太想参与军事冲突。"
 	flags_1 = NO_NEW_GAGS_PREVIEW_1
 	clothing_traits = list(TRAIT_GARLIC_BREATH)
 

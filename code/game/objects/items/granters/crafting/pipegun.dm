@@ -1,6 +1,6 @@
 /obj/item/book/granter/crafting_recipe/dusting/pipegun_prime
-	name = "diary of a dead assistant"
-	desc = "A battered journal. Looks like he had a pretty rough life."
+	name = "已故助理的日记"
+	desc = "一本破旧的日志。看起来他生前过得相当艰难。"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/pipegun_prime
 	)
@@ -15,8 +15,8 @@
 	)
 
 /obj/item/book/granter/crafting_recipe/dusting/laser_musket_prime
-	name = "journal of a space ranger"
-	desc = "A singed and weathered book, how did this get onto the station?"
+	name = "太空游侠的日志"
+	desc = "一本烧焦且破旧的书，它是怎么出现在空间站上的？"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/laser_musket_prime
 	)
@@ -31,8 +31,8 @@
 
 //This one isn't found as maint loot, it's too powerful for that, but it keeps the theming of the others
 /obj/item/book/granter/crafting_recipe/dusting/smoothbore_disabler_prime
-	name = "tome of a space pirate"
-	desc = "A beaten-up tome. Where was this plundered from?"
+	name = "太空海盗的典籍"
+	desc = "一本破旧的典籍。这是从哪里掠夺来的？"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/smoothbore_disabler_prime
 	)

@@ -1,6 +1,6 @@
 // Ye old forbidden book, the Codex Cicatrix.
 /obj/item/codex_cicatrix
-	name = "Codex Cicatrix"
+	name = "瘢痕法典"
 	desc = "This heavy tome is full of cryptic scribbles and impossible diagrams. \
 	According to legend, it can be deciphered to reveal the secrets of the veil between worlds."
 	icon = 'icons/obj/antags/eldritch.dmi'
@@ -107,7 +107,7 @@
 	var/list/curse_list = list()
 	for(var/datum/heretic_knowledge/curse/curses as anything in subtypesof(/datum/heretic_knowledge/curse))
 		curse_list[curses.name] = curses
-	var/selected_curse = tgui_input_list(user, "Cast any curse", "Select a curse!", curse_list, timeout = 0)
+	var/selected_curse = tgui_input_list(user, "施放任意诅咒", "选择一个诅咒！", curse_list, timeout = 0)
 	if(!selected_curse)
 		return NONE
 
@@ -116,7 +116,7 @@
 
 	var/atom/held_offhand = user.get_inactive_held_item()
 	if(!held_offhand)
-		user.balloon_alert(user, "no catalyst!")
+		user.balloon_alert(user, "没有催化剂！")
 		return
 	var/blood_samples = list()
 	for(var/blood in GET_ATOM_BLOOD_DNA(held_offhand))
@@ -126,7 +126,7 @@
 			continue
 		blood_samples += usable_reagent.data["blood_DNA"]
 	if(isnull(blood_samples))
-		user.balloon_alert(user, "no blood!")
+		user.balloon_alert(user, "没有血液！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/curse_type = curse_list[selected_curse]

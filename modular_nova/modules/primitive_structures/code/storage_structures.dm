@@ -1,7 +1,7 @@
 // Wooden shelves that force items placed on them to be visually placed them
 
 /obj/structure/rack/wooden
-	name = "shelf"
+	name = "架子"
 	icon_state = "shelf_wood"
 	icon = 'modular_nova/modules/primitive_structures/icons/storage.dmi'
 	resistance_flags = FLAMMABLE
@@ -44,8 +44,8 @@
 // Barrel but it works like a crate
 
 /obj/structure/closet/crate/wooden/storage_barrel
-	name = "storage barrel"
-	desc = "This barrel can't hold liquids, it can just hold things inside of it however!"
+	name = "储物桶"
+	desc = "这个桶不能装液体，不过它可以把东西装在里面！"
 	icon_state = "barrel"
 	base_icon_state = "barrel"
 	icon = 'modular_nova/modules/primitive_structures/icons/storage.dmi'
@@ -56,8 +56,8 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/machinery/smartfridge/wooden
-	name = "debug wooden smartfridge"
-	desc = "You should not be seeing this!"
+	name = "调试用木质智能冰箱"
+	desc = "你不应该看到这个！"
 	icon = 'modular_nova/modules/primitive_structures/icons/storage.dmi'
 	resistance_flags = FLAMMABLE
 	base_build_path = /obj/machinery/smartfridge/wooden
@@ -98,11 +98,11 @@
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
 
 /obj/machinery/smartfridge/wooden/structure_examine()
-	. = span_info("The whole rack can be [EXAMINE_HINT("pried")] apart.")
+	. = span_info("整个架子可以被[EXAMINE_HINT("pried")]开。")
 
 /obj/machinery/smartfridge/wooden/produce_bin
-	name = "produce bin"
-	desc = "A wooden hamper, used to hold plant products and try to keep them safe from pests."
+	name = "农产品箱"
+	desc = "一个木制篮子，用于存放植物产品并试图保护它们免受害虫侵害。"
 	icon_state = "producebin"
 	base_icon_state = "producebin"
 	contents_overlay_icon = "produce"
@@ -119,8 +119,8 @@
 	return is_type_in_list(item_to_check, accepted_items)
 
 /obj/machinery/smartfridge/wooden/seed_shelf
-	name = "seed shelf"
-	desc = "A wooden shelf, used to hold seeds, preventing them from germinating early."
+	name = "种子架"
+	desc = "一个木制架子，用于存放种子，防止它们过早发芽。"
 	icon_state = "seedshelf"
 	base_icon_state = "seedshelf"
 	contents_overlay_icon = "seed"
@@ -131,8 +131,8 @@
 	return istype(item_to_check, /obj/item/seeds)
 
 /obj/machinery/smartfridge/wooden/ration_shelf
-	name = "ration shelf"
-	desc = "A wooden shelf, used to store food... Preferably preserved."
+	name = "配给架"
+	desc = "一个木制架子，用于储存食物……最好是保存好的。"
 	icon_state = "rationshelf"
 	base_icon_state = "rationshelf"
 	contents_overlay_icon = "ration"
@@ -143,8 +143,8 @@
 	return (IS_EDIBLE(item_to_check) || (istype(item_to_check,/obj/item/reagent_containers/cup/bowl) && length(item_to_check.reagents?.reagent_list)))
 
 /obj/machinery/smartfridge/wooden/produce_display
-	name = "produce display"
-	desc = "A wooden table with awning, used to display produce items."
+	name = "农产品展示台"
+	desc = "一个带遮阳篷的木桌，用于展示农产品。"
 	icon_state = "producedisplay"
 	base_icon_state = "producedisplay"
 	contents_overlay_icon = "nonfood"

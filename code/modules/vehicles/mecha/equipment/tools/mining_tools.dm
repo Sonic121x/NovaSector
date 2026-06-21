@@ -6,8 +6,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/drill
-	name = "exosuit drill"
-	desc = "Equipment for engineering and combat exosuits. This is the drill that'll pierce the heavens!"
+	name = "机甲钻头"
+	desc = "用于工程和战斗的设备。也是用来冲破天穹的武器！"
 	icon_state = "mecha_drill"
 	equipment_slot = MECHA_UTILITY
 	can_be_toggled = TRUE
@@ -96,7 +96,7 @@
 			var/turf/closed/mineral/gibtonite/giberal_turf = target
 			if(giberal_turf.stage != GIBTONITE_UNSTRUCK)
 				playsound(chassis, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-				to_chat(source, span_warning("[icon2html(src, source)] Active gibtonite ore deposit detected! Safety protocols preventing continued drilling."))
+				to_chat(source, span_warning("[icon2html(src, source)] 检测到活跃的吉布顿岩矿脉！安全协议阻止继续钻探。"))
 				return
 
 	else
@@ -119,9 +119,9 @@
 	if(DOING_INTERACTION_WITH_TARGET(source, target) && do_after_cooldown(target, source, DOAFTER_SOURCE_MECHADRILL))
 		return
 
-	target.visible_message(span_warning("[chassis] starts to drill [target]."), \
+	target.visible_message(span_warning("[chassis]开始钻探[target]。"), \
 				span_userdanger("[chassis] starts to drill you!"), \
-				span_hear("You hear drilling."))
+				span_hear("你听到钻探声。"))
 
 	log_message("Started drilling [target]", LOG_MECHA)
 
@@ -187,8 +187,8 @@
 	chassis.collect_ore()
 
 /obj/item/mecha_parts/mecha_equipment/drill/proc/drill_mob(mob/living/target, mob/living/user)
-	target.visible_message(span_danger("[chassis] is drilling [target] with [src]!"), \
-						span_userdanger("[chassis] is drilling you with [src]!"))
+	target.visible_message(span_danger("[chassis] 正在用 [src] 钻击 [target]！"), \
+						span_userdanger("[chassis] 正在用 [src] 钻击你！"))
 	log_combat(user, target, "drilled", "[name]", "Combat mode: [user.combat_mode ? "On" : "Off"])(DAMTYPE: [uppertext(damtype)])")
 	if(target.stat == DEAD && target.get_brute_loss() >= (target.maxHealth * 2))
 		log_combat(user, target, "gibbed", name)
@@ -215,8 +215,8 @@
 	target.create_splatter(get_dir(chassis, target))
 
 /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill
-	name = "diamond-tipped exosuit drill"
-	desc = "Equipment for engineering and combat exosuits. This is an upgraded version of the drill that'll pierce the heavens!"
+	name = "机甲钻石尖钻"
+	desc = "用于工程和战斗的设备。这是改进版钻头，可以天元突破。"
 	icon_state = "mecha_diamond_drill"
 	equip_cooldown = 10
 	drill_delay = 4
@@ -225,8 +225,8 @@
 	toolspeed = 0.7
 
 /obj/item/mecha_parts/mecha_equipment/mining_scanner
-	name = "exosuit mining scanner"
-	desc = "Equipment for working exosuits. It will automatically check surrounding rock for useful minerals."
+	name = "机甲矿物扫描仪"
+	desc = "机甲设备。它会自动扫描周围岩石中是否有矿物。"
 	icon_state = "mecha_analyzer"
 	equip_cooldown = 1.5 SECONDS
 	equipment_slot = MECHA_UTILITY

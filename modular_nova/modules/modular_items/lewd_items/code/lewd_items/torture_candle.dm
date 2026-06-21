@@ -2,8 +2,8 @@
 #define PAIN_DEFAULT 9
 
 /obj/item/bdsm_candle
-	name = "soy candle"
-	desc = "A candle with low melting temperature."
+	name = "大豆蜡烛"
+	desc = "一支低熔点蜡烛。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	lefthand_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
 	righthand_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_right.dmi'
@@ -125,7 +125,7 @@
 	else
 		if(!put_out_candle())
 			return CLICK_ACTION_BLOCKING
-		user.visible_message(span_notice("[user] snuffs [src]."))
+		user.visible_message(span_notice("[user] 熄灭了 [src]。"))
 		return CLICK_ACTION_SUCCESS
 
 /*
@@ -140,10 +140,10 @@
 	var/message = ""
 	var/targeted_somewhere
 	if(!lit)
-		to_chat(user, span_danger("[src] needs to be lit to produce wax!"))
+		to_chat(user, span_danger("[src] 需要点燃才能产生蜡！"))
 		return
 	if(!attacked.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("It looks like [attacked] don't want you to do that."))
+		to_chat(user, span_danger("看起来 [attacked] 不想让你这么做。"))
 		return
 	switch(user.zone_selected) //to let code know what part of body we gonna wax
 		if(BODY_ZONE_PRECISE_GROIN)
@@ -176,7 +176,7 @@
 				attacked.adjust_pain(PAIN_DEFAULT)
 
 			else
-				to_chat(user, span_danger("Looks like [attacked]'s groin is covered!"))
+				to_chat(user, span_danger("看起来 [attacked] 的腹股沟被遮住了！"))
 				return
 
 		if(BODY_ZONE_CHEST)
@@ -188,7 +188,7 @@
 				attacked.adjust_pain(PAIN_DEFAULT * 0.66)
 
 			else
-				to_chat(user, span_danger("Looks like [attacked]'s chest is covered!"))
+				to_chat(user, span_danger("看起来 [attacked] 的胸部被遮住了！"))
 				return
 
 	if(!targeted_somewhere)
@@ -197,7 +197,7 @@
 		attacked.do_jitter_animation()
 		if(prob(50))
 			attacked.try_lewd_autoemote(pick("twitch_s" , "gasp", "shiver"))
-	user.visible_message(span_purple("[user] [message]!"))
+	user.visible_message(span_purple("[user] [message]！"))
 	playsound_if_pref(loc, pick('modular_nova/modules/modular_items/lewd_items/sounds/vax1.ogg',
 						'modular_nova/modules/modular_items/lewd_items/sounds/vax2.ogg'), 70, TRUE)
 

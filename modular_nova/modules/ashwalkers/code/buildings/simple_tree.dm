@@ -7,15 +7,15 @@
 		return ..()
 
 	if(harvested && tool.get_sharpness())
-		to_chat(user, span_notice("You begin to scrape away at the thick layers of ash underneath [src]..."))
+		to_chat(user, span_notice("你开始刮掉[src]下方厚厚的灰烬层..."))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 10 SECONDS * skill_modifier, target = src))
-			to_chat(user, span_warning("You decide against scraping away at the thick layers of ash underneath [src]!"))
+			to_chat(user, span_warning("你决定不刮掉[src]下方厚厚的灰烬层了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(prob(10))
 			new /obj/item/food/tree_fruit(get_turf(src))
-			to_chat(user, span_notice("You succesfully cut away a mass underneath [src], revealing an old preserved fruit from some kind of tree..."))
+			to_chat(user, span_notice("你成功切掉了[src]下方的一大块东西，露出了某种树上保存下来的古老果实..."))
 			user.mind?.adjust_experience(/datum/skill/primitive, 5)
 
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
@@ -27,8 +27,8 @@
 	return ..()
 
 /obj/item/food/tree_fruit
-	name = "tree fruit"
-	desc = "A very nondescript fruit from a tree-- you have to wonder where it came from."
+	name = "树果"
+	desc = "一种来自树木、非常普通的果实——你不得不思考它来自哪里。"
 	icon = 'modular_nova/modules/ashwalkers/icons/plant.dmi'
 	icon_state = "treefruit"
 	bite_consumption = 10
@@ -48,8 +48,8 @@
 #define TREE_STAGE_THREE 3
 
 /obj/structure/simple_tree
-	name = "tree"
-	desc = "Whether by sheer luck or by determination, this tree has survived in this hellish environment-- for now. This tree will need assistance if it wants to survive!"
+	name = "树"
+	desc = "无论是凭借纯粹的运气还是决心，这棵树在这地狱般的环境中幸存了下来——目前如此。这棵树若想生存下去，需要帮助！"
 	icon = 'modular_nova/modules/ashwalkers/icons/tree.dmi'
 	icon_state = "seedling"
 
@@ -189,37 +189,37 @@
 	. = ..()
 	switch(tree_stage)
 		if(TREE_STAGE_ONE)
-			. += span_notice("Very tiny! The tree is still very much a seedling.")
+			. += span_notice("非常小！这棵树仍然是一株幼苗。")
 
 		if(TREE_STAGE_TWO)
-			. += span_notice("Getting bigger! The tree is truly a sapling now.")
+			. += span_notice("正在长大！这棵树现在确实是一株幼树了。")
 
 		if(TREE_STAGE_THREE)
-			. += span_notice("Hooray! The tree has survived the ordeal, and has become fully grown.")
+			. += span_notice("万岁！这棵树经受住了考验，已经完全长大了。")
 			if(COOLDOWN_FINISHED(src, harvest_cooldown))
-				. += span_notice("There are fruits that look ready to pick.")
+				. += span_notice("有些果实看起来已经可以采摘了。")
 
 			if(COOLDOWN_FINISHED(src, wood_cooldown))
-				. += span_notice("There are some branches that look ready to cut down with something sharp.")
+				. += span_notice("有些树枝看起来可以用锋利的东西砍下来。")
 
 			if(length(graft_list) < 3)
-				. += span_notice("You are able to graft samples of other plants to this tree.")
+				. += span_notice("你可以将其他植物的样本嫁接到这棵树上。")
 
 			for(var/obj/item/graft/grafted_item in graft_list)
-				. += span_notice("A sample of [grafted_item.plant_dna.plantname] is grafted on.")
+				. += span_notice("一个[grafted_item.plant_dna.plantname]的样本被嫁接在上面。")
 
 			if(tree_bee)
-				. += span_notice("A big queen bee can be seen flying around the tree.")
+				. += span_notice("可以看到一只巨大的蜂后在树周围飞舞。")
 				if(COOLDOWN_FINISHED(src, honeycomb_cooldown))
-					. += span_notice("The hive looks ready to harvest. Use some cutters or knives.")
+					. += span_notice("蜂巢看起来可以收获了。使用一些切割器或刀具。")
 
 			if(tapped_tree)
-				. += span_notice("There is a tap poking out the side of the tree.")
+				. += span_notice("有一根导管从树的侧面伸出来。")
 				if(COOLDOWN_FINISHED(src, sap_cooldown))
-					. += span_notice("Some sap is leaking out the tap-- collect it!")
+					. += span_notice("一些树液正从导管中渗出——收集它！")
 
 			else
-				. += span_notice("You can use a screwdriver to tap this tree.")
+				. += span_notice("你可以用螺丝刀给这棵树安装导管。")
 
 /obj/structure/simple_tree/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/worm_fertilizer))
@@ -240,7 +240,7 @@
 	if(istype(tool, /obj/item/secateurs))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 10 SECONDS * skill_modifier, target = src))
-			to_chat(user, span_warning("You decide against removing the grafts!"))
+			to_chat(user, span_warning("你决定不取下嫁接物！"))
 			return ITEM_INTERACT_BLOCKING
 
 		for(var/obj/item/graft/target_grafts in graft_list)
@@ -250,23 +250,23 @@
 
 		update_graft_reagents()
 		update_appearance(UPDATE_OVERLAYS)
-		to_chat(user, span_notice("You decide to remove the grafts from [src]."))
+		to_chat(user, span_notice("你决定从[src]上取下嫁接物。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/queen_bee))
 		if(tree_bee)
-			to_chat(user, span_warning("There is already a queen bee!"))
+			to_chat(user, span_warning("已经有一只蜂后了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		tool.forceMove(src)
 		tree_bee = tool
-		to_chat(user, span_notice("You add [tool] to [src]."))
+		to_chat(user, span_notice("你将[tool]添加到[src]。"))
 		update_appearance(UPDATE_OVERLAYS)
 		return ITEM_INTERACT_SUCCESS
 
 	if(is_reagent_container(tool))
 		if(!COOLDOWN_FINISHED(src, sap_cooldown))
-			to_chat(user, span_warning("[src] has recently been tapped!"))
+			to_chat(user, span_warning("[src]最近刚被安装了导管！"))
 			return ITEM_INTERACT_BLOCKING
 
 		COOLDOWN_START(src, sap_cooldown, 1 MINUTES)
@@ -277,27 +277,27 @@
 				container_tool.reagents.add_reagent(tapped_reagent, 10)
 				return ITEM_INTERACT_SUCCESS
 
-			to_chat(user, span_warning("[tool] is unable to be filled further!"))
+			to_chat(user, span_warning("[tool]无法再装更多了！"))
 			return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/graft))
 		var/obj/item/graft/tool_graft = tool
 		playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
-		to_chat(user, span_notice("You begin to graft the [tool_graft.plant_dna.plantname] graft onto [src]."))
+		to_chat(user, span_notice("你开始将[tool_graft.plant_dna.plantname]嫁接物嫁接到[src]上。"))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 10 SECONDS * skill_modifier, target = src))
-			to_chat(user, span_warning("You decide against the grafting!"))
+			to_chat(user, span_warning("你决定放弃嫁接！"))
 			return ITEM_INTERACT_BLOCKING
 
 		playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
 
 		if(length(graft_list) >= 3)
-			to_chat(user, span_warning("[src] is already full of grafts!"))
+			to_chat(user, span_warning("[src]已经满是嫁接物了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		tool_graft.forceMove(src)
 		graft_list += tool_graft
-		to_chat(user, span_notice("You successfully graft the [tool_graft.plant_dna.plantname] graft onto [src]."))
+		to_chat(user, span_notice("你成功将[tool_graft.plant_dna.plantname]嫁接物嫁接到了[src]上。"))
 		update_graft_reagents()
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		update_appearance(UPDATE_OVERLAYS)
@@ -319,7 +319,7 @@
 		update_appearance(UPDATE_OVERLAYS)
 		playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
-		to_chat(user, span_notice("You harvest some fruit from [src]."))
+		to_chat(user, span_notice("你从[src]收获了一些果实。"))
 		var/turf/user_turf = get_turf(user)
 		for(var/iteration in 1 to rand(1, 2))
 			var/obj/item/food/tree_fruit/spawned_fruit = new /obj/item/food/tree_fruit(user_turf)
@@ -331,7 +331,7 @@
 	// if not fruited, lets get the bee out if its there
 	if(tree_bee)
 		tree_bee.forceMove(get_turf(user))
-		to_chat(user, span_warning("You pull [tree_bee] from [src]!"))
+		to_chat(user, span_warning("你将[tree_bee]从[src]中拉了出来！"))
 		playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
 		tree_bee = null
 		update_appearance(UPDATE_OVERLAYS)
@@ -343,7 +343,7 @@
 
 /obj/structure/simple_tree/screwdriver_act(mob/living/user, obj/item/tool)
 	if(tapped_tree)
-		to_chat(user, span_warning("[src] has already been tapped!"))
+		to_chat(user, span_warning("[src]已经安装过导管了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	tap_tree(user, tool)
@@ -353,13 +353,13 @@
 /obj/structure/simple_tree/proc/tap_tree(mob/user, obj/item/tool, tapping_direction = TRUE, use_time = 4 SECONDS, forced_tool = FALSE)
 	playsound(get_turf(src), SFX_TREE_CHOP, 50, vary = FALSE)
 	if(!forced_tool)
-		to_chat(user, span_notice("You begin to use [tool] on [src]..."))
+		to_chat(user, span_notice("你开始对[src]使用[tool]..."))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, use_time * tool.toolspeed * skill_modifier, target = src))
-			to_chat(user, span_warning("You decide against using [tool] on [src]!"))
+			to_chat(user, span_warning("你决定不对[src]使用[tool]！"))
 			return
 
-		to_chat(user, span_notice("You finished using [tool] on [src]!"))
+		to_chat(user, span_notice("你完成了对[src]使用[tool]！"))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		tool.forceMove(src)
 
@@ -372,10 +372,10 @@
 	playsound(src, 'sound/effects/shovel_dig.ogg', 50, TRUE)
 	if(!forced_fertilizer)
 		if(!tool.use(use_amount))
-			to_chat(user, span_warning("You decide against using [tool] on [src]!"))
+			to_chat(user, span_warning("你决定不对[src]使用[tool]！"))
 			return
 
-		to_chat(user, span_notice("You used [tool], which healed [src]!"))
+		to_chat(user, span_notice("你使用了[tool]，它治愈了[src]！"))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 
 	adjust_health(5)
@@ -386,14 +386,14 @@
 /obj/structure/simple_tree/proc/attempt_woodmaking(mob/user)
 	if(!COOLDOWN_FINISHED(src, wood_cooldown) || tree_stage < TREE_STAGE_THREE)
 		adjust_health(-50)
-		to_chat(user, span_warning("You damage [src] trying to harvest something!"))
+		to_chat(user, span_warning("你在试图收获时损坏了[src]！"))
 		return
 
 	COOLDOWN_START(src, wood_cooldown, 1 MINUTES)
 	update_appearance(UPDATE_OVERLAYS)
 	var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 	if(!do_after(user, 5 SECONDS * skill_modifier, target = src))
-		to_chat(user, span_warning("You fumble with the wood, splintering it into uselessness!"))
+		to_chat(user, span_warning("你笨拙地处理木材，把它弄成了无用的碎片！"))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		return
 
@@ -405,20 +405,20 @@
 /obj/structure/simple_tree/proc/attempt_honeycomb(mob/user)
 	if(tree_stage < TREE_STAGE_THREE)
 		adjust_health(-10)
-		to_chat(user, span_warning("You damage [src] trying to harvest something!"))
+		to_chat(user, span_warning("你在试图收获时损坏了[src]！"))
 		return
 
 	playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
 	if(!tree_bee || !COOLDOWN_FINISHED(src, honeycomb_cooldown))
-		to_chat(user, span_warning("There is nothing to harvest from [src]!"))
+		to_chat(user, span_warning("[src]上没有任何可收获的东西！"))
 		return
 
 	COOLDOWN_START(src, honeycomb_cooldown, 90 SECONDS)
-	to_chat(user, span_notice("You begin harvesting honeycomb from [src]..."))
+	to_chat(user, span_notice("你开始从[src]收获蜂巢..."))
 	update_appearance(UPDATE_OVERLAYS)
 	var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 	if(!do_after(user, 10 SECONDS * skill_modifier, target = src))
-		to_chat(user, span_warning("You break the honeycomb accidentally!"))
+		to_chat(user, span_warning("你不小心弄坏了蜂巢！"))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		return
 
@@ -426,7 +426,7 @@
 	for(var/iteration in 1 to rand(1, 2))
 		var/obj/item/food/honeycomb/new_comb = new(get_turf(user))
 		new_comb.set_reagent(tree_bee.queen.beegent.type)
-	to_chat(user, span_notice("You successfully harvest honeycomb from [src]."))
+	to_chat(user, span_notice("你成功从[src]收获了蜂巢。"))
 	user.mind?.adjust_experience(/datum/skill/primitive, 10)
 	return
 

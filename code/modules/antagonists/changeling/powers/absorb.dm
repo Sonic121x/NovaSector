@@ -1,6 +1,6 @@
 /datum/action/changeling/absorb_dna
-	name = "Absorb DNA"
-	desc = "Absorb the DNA of our victim. Requires us to strangle them."
+	name = "吸收DNA"
+	desc = "吸收受害者的DNA. 需要死死的勒住受害者(四级拉扯)"
 	button_icon_state = "absorb_dna"
 	chemical_cost = 0
 	dna_cost = CHANGELING_POWER_INNATE
@@ -14,14 +14,14 @@
 		return
 
 	if(is_absorbing)
-		owner.balloon_alert(owner, "already absorbing!")
+		owner.balloon_alert(owner, "正在吸收中！")
 		return
 
 	if(!owner.pulling || !iscarbon(owner.pulling))
-		owner.balloon_alert(owner, "needs grab!")
+		owner.balloon_alert(owner, "需要抓住！")
 		return
 	if(owner.grab_state <= GRAB_NECK)
-		owner.balloon_alert(owner, "needs tighter grip!")
+		owner.balloon_alert(owner, "需要抓得更紧！")
 		return
 
 	var/mob/living/carbon/target = owner.pulling
@@ -39,7 +39,7 @@
 		return
 
 	SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "4"))
-	owner.visible_message(span_danger("[owner] sucks the fluids from [target]!"), span_notice("We have absorbed [target]."))
+	owner.visible_message(span_danger("[owner]吸干了[target]的体液！"), span_notice("我们已吸收了[target]。"))
 
 	if(target.client && target.mind)
 		var/mob/eye/imaginary_friend/hivemind/new_member = new(target.loc)
@@ -52,7 +52,7 @@
 
 	var/true_absorbtion = (!isnull(target.client) || !isnull(target.mind) || !isnull(target.last_mind))
 	if (!true_absorbtion)
-		to_chat(owner, span_changeling(span_bold("You absorb [target], but their weak DNA is not enough to satisfy your hunger.")))
+		to_chat(owner, span_changeling(span_bold("你吸收了[target]，但他们脆弱的DNA不足以满足你的饥渴。")))
 
 	if(!changeling.has_profile_with_dna(target.dna))
 		changeling.add_new_profile(target)
@@ -117,17 +117,17 @@
 
 	if(recent_speech.len)
 		changeling.antag_memory += "Some of [target]'s speech patterns, we should study these to better impersonate [target.p_them()]: "
-		to_chat(owner, span_boldnotice("Some of [target]'s speech patterns, we should study these to better impersonate [target.p_them()]!"))
+		to_chat(owner, span_boldnotice("这是[target]的一些说话方式，我们应该研究这些以便更好地模仿[target.p_them()]！"))
 		for(var/spoken_memory in recent_speech)
 			changeling.antag_memory += " \"[spoken_memory]\""
-			to_chat(owner, span_notice("\"[spoken_memory]\""))
+			to_chat(owner, span_notice("[spoken_memory]"))
 		changeling.antag_memory += ". We have no more knowledge of [target]'s speech patterns. "
-		to_chat(owner, span_boldnotice("We have no more knowledge of [target]'s speech patterns."))
+		to_chat(owner, span_boldnotice("我们不再掌握[target]的说话方式了。"))
 
 
 	var/datum/antagonist/changeling/target_ling = IS_CHANGELING(target)
 	if(target_ling)//If the target was a changeling, suck out their extra juice and objective points!
-		to_chat(owner, span_boldnotice("[target] was one of us. We have absorbed their power."))
+		to_chat(owner, span_boldnotice("[target]曾是我们的一员。我们已经吸收了他们的力量。"))
 
 		// Gain half of their genetic points.
 		var/genetic_points_to_add = round(target_ling.total_genetic_points / 2)
@@ -152,18 +152,18 @@
 	for(var/absorbing_iteration in 1 to 3)
 		switch(absorbing_iteration)
 			if(1)
-				to_chat(owner, span_notice("This creature is compatible. We must hold still..."))
+				to_chat(owner, span_notice("这个生物是兼容的。我们必须保持静止..."))
 			if(2)
-				owner.visible_message(span_warning("[owner] extends a proboscis!"), span_notice("We extend a proboscis."))
+				owner.visible_message(span_warning("[owner]伸出了一根探针！"), span_notice("我们伸出了一根探针。"))
 			if(3)
 				absorbing_loop = new(owner, start_immediately = TRUE)
-				owner.visible_message(span_danger("[owner] stabs [target] with the proboscis!"), span_notice("We stab [target] with the proboscis."))
-				to_chat(target, span_userdanger("You feel a sharp stabbing pain!"))
+				owner.visible_message(span_danger("[owner]用探针刺向了[target]！"), span_notice("我们用探针刺向了[target]。"))
+				to_chat(target, span_userdanger("你感到一阵尖锐的刺痛！"))
 				target.take_overall_damage(40)
 
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[absorbing_iteration]"))
 		if(!do_after(owner, 15 SECONDS, target, hidden = TRUE))
-			owner.balloon_alert(owner, "interrupted!")
+			owner.balloon_alert(owner, "被打断了！")
 			qdel(absorbing_loop)
 			is_absorbing = FALSE
 			return FALSE
@@ -191,7 +191,7 @@
 /mob/eye/imaginary_friend/hivemind/greet()
 
 	var/greet_message = ""
-	greet_message += separator_hr(span_danger(span_slightly_larger("You are absorbed by the changeling!")))
+	greet_message += separator_hr(span_danger(span_slightly_larger("你被化形者吸收了！")))
 	greet_message += "You are now a part of the changeling hivemind, and can communicate with them freely by speaking. \
 		Your knowledge may be useful to them..."
 	greet_message += "<br>You may also choose to <a href='byond://?src=[REF(src)];exit_hivemind=1'>exit the hivemind</a> \

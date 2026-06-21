@@ -1,6 +1,6 @@
 /mob/living/basic/deer
-	name = "doe"
-	desc = "A gentle, peaceful forest animal. How did this get into space?"
+	name = "雌鹿"
+	desc = "一种温和、平和的森林动物。它是怎么跑到太空里来的？"
 	icon_state = "deer-doe"
 	icon_living = "deer-doe"
 	icon_dead = "deer-doe-dead"

@@ -3,7 +3,7 @@
 #define PLASMA_COMBO "HDDDH"
 
 /datum/martial_art/plasma_fist
-	name = "Plasma Fist"
+	name = "等离子拳"
 	id = MARTIALART_PLASMAFIST
 	help_verb = "Recall Teachings"
 	var/nobomb = FALSE
@@ -48,13 +48,13 @@
 
 /datum/martial_art/plasma_fist/proc/Throwback(mob/living/attacker, mob/living/defender)
 	defender.visible_message(
-		span_danger("[attacker] hits [defender] with Plasma Punch!"),
-		span_userdanger("You're hit with a Plasma Punch by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger("[attacker]用等离子拳击中了[defender]！"),
+		span_userdanger("你被[attacker]的等离子拳击中了！"),
+		span_hear("你听到肉体撞击的恶心声响！"),
 		null,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You hit [defender] with Plasma Punch!"))
+	to_chat(attacker, span_danger("你用等离子拳击中了[defender]！"))
 	playsound(defender, 'sound/items/weapons/punch1.ogg', 50, TRUE, -1)
 	var/atom/throw_target = get_edge_target_turf(defender, get_dir(defender, get_step_away(defender, attacker)))
 	defender.throw_at(throw_target, 200, 4,attacker)
@@ -69,13 +69,13 @@
 	playsound(defender, 'sound/items/weapons/punch1.ogg', 50, TRUE, -1)
 	attacker.say("PLASMA FIST!", forced="plasma fist")
 	defender.visible_message(
-		span_danger("[attacker] hits [defender] with THE PLASMA FIST TECHNIQUE!"),
-		span_userdanger("You're suddenly hit with THE PLASMA FIST TECHNIQUE by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger("[attacker]用等离子拳奥义击中了[defender]！"),
+		span_userdanger("你突然被[attacker]的等离子拳奥义击中了！"),
+		span_hear("你听到肉体撞击的恶心声响！"),
 		null,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You hit [defender] with THE PLASMA FIST TECHNIQUE!"))
+	to_chat(attacker, span_danger("你用等离子拳奥义击中了[defender]！"))
 	log_combat(attacker, defender, "gibbed (Plasma Fist)")
 	var/turf/Dturf = get_turf(defender)
 	defender.investigate_log("has been gibbed by plasma fist.", INVESTIGATE_DEATHS)
@@ -120,7 +120,7 @@
 	log_combat(user, user, "triggered final plasma explosion with size [plasma_power], [plasma_power*2], [plasma_power*4] (Plasma Fist)")
 	message_admins("[key_name_admin(user)] triggered final plasma explosion with size [plasma_power], [plasma_power*2], [plasma_power*4].")
 
-	to_chat(user, span_userdanger("The explosion knocks your soul out of your body!"))
+	to_chat(user, span_userdanger("爆炸将你的灵魂震出了身体！"))
 	user.ghostize(FALSE) //prevents... horrible memes just believe me
 
 	user.apply_damage(rand(50, 70), BRUTE, wound_bonus = CANT_WOUND)
@@ -152,7 +152,7 @@
 	if(check_streak(attacker, defender))
 		return MARTIAL_ATTACK_SUCCESS
 	if(attacker == defender)//there is no disarming yourself, so we need to let plasma fist user know
-		to_chat(attacker, span_notice("You have added a disarm to your streak."))
+		to_chat(attacker, span_notice("你已为连击增加了一次缴械。"))
 		return MARTIAL_ATTACK_FAIL
 	return MARTIAL_ATTACK_INVALID
 
@@ -167,7 +167,7 @@
 	. = list()
 
 	var/datum/martial_art/plasma_fist/martial = GET_ACTIVE_MARTIAL_ART(holder)
-	. += "<b><i>You clench your fists and have a flashback of knowledge...</i></b>"
+	. += "<b><i>你握紧双拳，脑海中闪过知识的片段...</i></b>"
 	. += "[span_notice("Tornado Sweep")]: Punch Punch Shove. Repulses opponent and everyone back."
 	. += "[span_notice("Throwback")]: Shove Punch Shove. Throws the opponent and an item at them."
 	. += "[span_notice("The Plasma Fist")]: Punch Shove Shove Shove Punch. Instantly gibs an opponent.[martial.nobomb ? "" : " Each kill with this grows your [span_notice("Apotheosis")] explosion size."]"
@@ -177,8 +177,8 @@
 
 
 /obj/effect/temp_visual/plasma_soul
-	name = "plasma energy"
-	desc = "Leftover energy brought out from The Plasma Fist."
+	name = "等离子能量"
+	desc = "等离子拳释放出的残余能量。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "plasmasoul"
 	duration = 3 SECONDS
@@ -194,16 +194,16 @@
 
 /obj/effect/temp_visual/plasma_soul/Destroy()
 	if(!beam_target)
-		visible_message(span_notice("[src] fades away..."))
+		visible_message(span_notice("[src]逐渐消散..."))
 	. = ..()
 
 /obj/effect/ebeam/plasma_fist
 	name = "plasma"
 	mouse_opacity = MOUSE_OPACITY_ICON
-	desc = "Flowing energy."
+	desc = "流动的能量。"
 
 /datum/martial_art/plasma_fist/nobomb
-	name = "Novice Plasma Fist"
+	name = "新手等离子拳"
 	nobomb = TRUE
 
 #undef TORNADO_COMBO

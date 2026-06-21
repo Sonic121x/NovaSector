@@ -1,6 +1,6 @@
 /obj/item/instrument/violin/festival
-	name = "Cogitandi Fidis"
-	desc = "A violin that holds a special interest in the songs played from its strings."
+	name = "思弦"
+	desc = "一把对其琴弦演奏出的乐曲抱有特殊兴趣的小提琴。"
 	icon_state = "holy_violin"
 	inhand_icon_state = "holy_violin"
 
@@ -21,9 +21,9 @@
 	var/list/analysis = list()
 	//check tempo and lines
 	var/song_length = song.lines.len * song.tempo
-	analysis += span_revenbignotice("[src] speaks to you...")
-	analysis += span_revennotice("\"This song has <b>[song.lines.len]</b> lines and a tempo of <b>[song.tempo]</b>.\"")
-	analysis += span_revennotice("\"Multiplying these together gives a song length of <b>[song_length]</b>.\"")
-	analysis += span_revennotice("\"To get a bonus effect from [GLOB.deity] upon finishing a performance, you need a song length of <b>[FESTIVAL_SONG_LONG_ENOUGH]</b>.\"")
+	analysis += span_revenbignotice("[src] 对你低语...")
+	analysis += span_revennotice("这首乐曲有 <b>[song.lines.len]</b> 行，节拍为 <b>[song.tempo]</b>。")
+	analysis += span_revennotice("将两者相乘，得到乐曲长度为 <b>[song_length]</b>。")
+	analysis += span_revennotice("要在一场演奏结束时从 [GLOB.deity] 那里获得增益效果，你需要一首长度达到 <b>[FESTIVAL_SONG_LONG_ENOUGH]</b> 的乐曲。")
 
 	to_chat(playing_song, analysis.Join("\n"))

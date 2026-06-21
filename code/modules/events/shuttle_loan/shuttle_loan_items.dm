@@ -1,6 +1,6 @@
 /obj/item/paper/fluff/bee_objectives
-	name = "Objectives of a Bee Liberation Front Operative"
-	default_raw_text = "<b>Objective #1</b>. Liberate all bees on the NT transport vessel 2416/B. <b>Success!</b>  <br><b>Objective #2</b>. Escape alive. <b>Failed.</b>"
+	name = "蜜蜂解放阵线特工目标"
+	default_raw_text = "<b>目标 #1</b>. 解放NT运输船2416/B上的所有蜜蜂。<b>成功！</b>  <br><b>目标 #2</b>. 活着逃脱。<b>失败。</b>"
 
 /obj/machinery/syndicatebomb/shuttle_loan
 	add_boom_wires = FALSE
@@ -13,8 +13,8 @@
 	update_appearance()
 
 /obj/item/paper/fluff/cargo/bomb
-	name = "hastly scribbled note"
-	default_raw_text = "GOOD LUCK!"
+	name = "匆忙涂写的便条"
+	default_raw_text = "祝你好运！"
 
 /obj/item/paper/fluff/cargo/bomb/allyourbase
-	default_raw_text = "Somebody set us up the bomb!"
+	default_raw_text = "有人给我们设下了炸弹！"

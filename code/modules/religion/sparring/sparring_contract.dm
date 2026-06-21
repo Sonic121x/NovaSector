@@ -1,5 +1,5 @@
 /obj/item/sparring_contract
-	desc = "A contract for setting up sparring matches. Both sparring partners must agree with the terms to begin."
+	desc = "一份关于举办对练比赛的合同。双方都必须同意相关条款后，比赛才能开始。"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "sparringcontract"
 	drop_sound = 'sound/items/handling/paper_drop.ogg'
@@ -18,7 +18,7 @@
 
 /obj/item/sparring_contract/Initialize(mapload)
 	. = ..()
-	name = "[GLOB.deity]'s sparring contract"
+	name = "[GLOB.deity]的对练合同"
 
 /obj/item/sparring_contract/Destroy()
 	signed_by.Cut()
@@ -73,7 +73,7 @@
 	var/mob/user = usr
 
 	if(!ishuman(user))
-		to_chat(user, span_warning("This contract refuses to be signed by a lesser creature such as yourself."))
+		to_chat(user, span_warning("这份契约拒绝被你这样的低等生物签署。"))
 		return
 
 	var/datum/religion_sect/spar/sect = GLOB.religious_sect
@@ -85,7 +85,7 @@
 			resolved_opponents += resolved
 
 	if((user in resolved_opponents) && params["stakes"] == STAKES_HOLY_MATCH)
-		to_chat(user, span_warning("This contract refuses to be signed up for a holy match by a previous holy match loser. Pick a different stake!"))
+		to_chat(user, span_warning("这份契约拒绝由一场神圣比赛的败者来报名参加另一场神圣比赛。换个赌注吧！"))
 
 	//any updating of the terms should update the UI to display new terms
 	. = TRUE
@@ -104,7 +104,7 @@
 			if(!left_partner || !right_partner || !left_partner.mind || !right_partner.mind)
 				return
 			if(HAS_TRAIT(left_partner, TRAIT_SPARRING) || HAS_TRAIT(right_partner, TRAIT_SPARRING))
-				to_chat(user, span_warning("One participant is already sparring!"))
+				to_chat(user, span_warning("一名参与者已经在进行格斗了！"))
 				return
 			var/chaplain = left_partner.mind.holy_role ? left_partner : right_partner
 			var/opponent = left_partner.mind.holy_role ? right_partner : left_partner
@@ -112,7 +112,7 @@
 			qdel(src)
 		if("sign")
 			if(user == left_partner || user == right_partner)
-				to_chat(user, span_warning("You've already signed one side of the contract."))
+				to_chat(user, span_warning("你已经签署了契约的一方。"))
 				return
 			var/area/arena_condition_name = GLOB.areas_by_type[arena_condition]
 			arena_condition_name = format_text(arena_condition_name.name)
@@ -137,7 +137,7 @@
 			//if you change the terms you have to get the other person to sign again.
 			if(terms_changed && (left_partner || right_partner))
 				signed_by = list(null, null)//remove weakrefs
-				to_chat(user, span_warning("You will need to get your sparring partner to sign again under these new terms you've set."))
+				to_chat(user, span_warning("你需要让你的格斗伙伴在这些你设定的新条款下重新签署。"))
 			//fluff and signing
 			var/datum/weakref/user_ref = WEAKREF(user)
 			if(params["sign_position"] == CONTRACT_LEFT_FIELD)

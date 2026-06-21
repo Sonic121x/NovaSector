@@ -113,12 +113,12 @@
 		return
 	if(HAS_TRAIT(clicker, TRAIT_SEE_WORN_COLOURS))
 		REMOVE_TRAIT(clicker, TRAIT_SEE_WORN_COLOURS, CLOTHING_TRAIT)
-		clicker.balloon_alert(clicker, "glasses colors disabled")
+		clicker.balloon_alert(clicker, "眼镜颜色已禁用")
 	else
 		ADD_TRAIT(clicker, TRAIT_SEE_WORN_COLOURS, CLOTHING_TRAIT)
-		clicker.balloon_alert(clicker, "glasses colors enabled")
+		clicker.balloon_alert(clicker, "眼镜颜色已启用")
 	return CLICK_ACTION_SUCCESS
 
 /datum/element/wearable_client_colour/proc/on_examine(obj/item/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
-	examine_texts += span_info("While holding or wearing it, [key_info] to toggle on/off the screen color from glasses and such.")
+	examine_texts += span_info("手持或穿戴时，[key_info] 来切换眼镜等物品的屏幕颜色效果。")

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/sdql_operation
 	display_name = "SDQL Operation"
-	desc = "A component that performs an SDQL operation when invoked."
+	desc = "一种在被调用时会执行 SDQL 操作的组件。"
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 

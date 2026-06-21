@@ -1,18 +1,18 @@
 /datum/action/cooldown/mob_cooldown/spit_ore
-	name = "Spit Ore"
-	desc = "Vomit out all of your consumed ores."
+	name = "吐出矿石"
+	desc = "将你吞下的所有矿石呕吐出来。"
 	click_to_activate = FALSE
 	cooldown_time = 5 SECONDS
 
 /datum/action/cooldown/mob_cooldown/spit_ore/IsAvailable(feedback)
 	if(is_jaunting(owner))
 		if(feedback)
-			owner.balloon_alert(owner, "currently underground!")
+			owner.balloon_alert(owner, "目前在地下！")
 		return FALSE
 
 	if(!length(owner.contents))
 		if(feedback)
-			owner.balloon_alert(owner, "no ores to spit!")
+			owner.balloon_alert(owner, "没有矿石可吐！")
 		return FALSE
 	return TRUE
 
@@ -23,8 +23,8 @@
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/burrow
-	name = "Burrow"
-	desc = "Burrow under soft ground, evading predators and increasing your speed."
+	name = "掘地"
+	desc = "在松软的地面下掘地，躲避捕食者并提高你的速度。"
 	cooldown_time = 7 SECONDS
 	click_to_activate = FALSE
 
@@ -36,7 +36,7 @@
 
 	if(!isasteroidturf(location) && !ismineralturf(location))
 		if(feedback)
-			owner.balloon_alert(owner, "available only on mining floor or wall!")
+			owner.balloon_alert(owner, "仅可在采矿地板或墙壁上使用！")
 		return FALSE
 
 	return TRUE
@@ -50,11 +50,11 @@
 		return
 
 	if(get_turf(owner) != current_loc)
-		to_chat(owner, span_warning("Action cancelled, as you moved while reappearing."))
+		to_chat(owner, span_warning("行动取消，因为你在重新出现时移动了。"))
 		return
 
 	if(!is_jaunting(owner))
-		owner.visible_message(span_danger("[owner] buries into the ground, vanishing from sight!"))
+		owner.visible_message(span_danger("[owner] 钻入地下，从视线中消失了！"))
 		playsound(get_turf(owner), 'sound/effects/break_stone.ogg', 50, TRUE, -1)
 		holder = new /obj/effect/dummy/phased_mob/grub_burrow(current_loc, owner)
 		return TRUE
@@ -62,7 +62,7 @@
 	holder = owner.loc
 	holder.eject_jaunter()
 	holder = null
-	owner.visible_message(span_danger("[owner] emerges from the ground!"))
+	owner.visible_message(span_danger("[owner] 从地下钻出来了！"))
 
 	if(ismineralturf(current_loc))
 		var/turf/closed/mineral/mineral_turf = current_loc
@@ -85,5 +85,5 @@
 		return
 
 	if(!ismineralturf(.) && !isasteroidturf(.))
-		to_chat(user, span_warning("You cannot dig through this floor!"))
+		to_chat(user, span_warning("你无法挖穿这种地板！"))
 		return null

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/variable/getter
 	display_name = "Variable Getter"
-	desc = "A component that gets a variable globally on the circuit."
+	desc = "一种能在整个电路中全局获取变量的组件。"
 
 	/// The value of the variable
 	var/datum/port/output/value

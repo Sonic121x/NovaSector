@@ -8,9 +8,9 @@
 		return
 	if(teleport_around(user, 10))
 		user.visible_message(
-			span_warning("[user] is suddenly zapped away elsewhere!"),
-			span_warning("You are suddenly zapped away elsewhere!"),
-			blind_message = span_hear("You hear zap nearby."),
+			span_warning("[user]突然被传送到了别处！"),
+			span_warning("你突然被电击传送到别处去了！"),
+			blind_message = span_hear("你听到附近传来电击声。"),
 		)
 
 /datum/artifact_effect/teleport/do_effect_aura(seconds_per_tick)
@@ -21,9 +21,9 @@
 	for(var/mob/living/living_mob in range(range, curr_turf))
 		if(teleport_around(living_mob, 20))
 			living_mob.visible_message(
-				span_warning("[living_mob] is displaced by a strange force!"),
-				span_warning("You are displaced by a strange force!"),
-				blind_message = span_hear("You hear zap nearby."),
+				span_warning("[living_mob]被一股奇怪的力量转移了！"),
+				span_warning("你被一股奇怪的力量转移了！"),
+				blind_message = span_hear("你听到附近传来电击声。"),
 			)
 
 /datum/artifact_effect/teleport/do_effect_pulse(seconds_per_tick)
@@ -35,9 +35,9 @@
 	for(var/mob/living/living_mob in range(range, curr_turf))
 		if(teleport_around(living_mob, round(1 * used_power)))
 			living_mob.visible_message(
-				span_warning("[living_mob] is displaced by a strange force!"),
-				span_warning("You are displaced by a strange force!"),
-				blind_message = span_hear("You hear zap nearby."),
+				span_warning("[living_mob]被一股奇怪的力量转移了！"),
+				span_warning("你被一股奇怪的力量转移了！"),
+				blind_message = span_hear("你听到附近传来电击声。"),
 			)
 
 /datum/artifact_effect/teleport/do_effect_destroy()
@@ -45,9 +45,9 @@
 	for(var/mob/living/living_mob in range(7, curr_turf))
 		if(teleport_around(living_mob, 50))
 			living_mob.visible_message(
-				span_warning("[living_mob] is displaced by a strange force!"),
-				span_warning("You are displaced by a strange force!"),
-				blind_message = span_hear("You hear zap nearby."),
+				span_warning("[living_mob]被一股奇怪的力量转移了！"),
+				span_warning("你被一股奇怪的力量转移了！"),
+				blind_message = span_hear("你听到附近传来电击声。"),
 			)
 
 /**

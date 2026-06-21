@@ -1,6 +1,6 @@
 /obj/item/gun/energy/pulse
-	name = "pulse rifle"
-	desc = "A heavy-duty, multifaceted energy rifle with three modes. Preferred by front-line combat personnel."
+	name = "脉冲步枪"
+	desc = "一款重型、多功能能量步枪，具有三种模式。前线作战人员的首选。"
 	icon_state = "pulse"
 	inhand_icon_state = null
 	worn_icon_state = null
@@ -38,8 +38,8 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 
 /obj/item/gun/energy/pulse/carbine
-	name = "pulse carbine"
-	desc = "A compact variant of the pulse rifle with less firepower but easier storage."
+	name = "脉冲卡宾枪"
+	desc = "脉冲步枪的紧凑型版本，火力较小但更易于存放。"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "pulse_carbine"
@@ -64,18 +64,18 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/pulse, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/pulse/destroyer
-	name = "pulse destroyer"
-	desc = "A heavy-duty energy rifle built for pure destruction."
+	name = "脉冲摧毁炮"
+	desc = "一把为纯粹毁灭而打造的重型能量步枪。"
 	worn_icon_state = "pulse"
 	cell_type = /obj/item/stock_parts/power_store/cell/infinite
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/pulse)
 
 /obj/item/gun/energy/pulse/destroyer/attack_self(mob/living/user)
-	to_chat(user, span_danger("[src.name] has three settings, and they are all DESTROY."))
+	to_chat(user, span_danger("[src.name] 有三种设置，它们全都是毁灭性的。"))
 
 /obj/item/gun/energy/pulse/pistol
-	name = "pulse pistol"
-	desc = "A pulse rifle in an easily concealed handgun package with low capacity."
+	name = "脉冲手枪"
+	desc = "一种脉冲步枪，但设计成易于隐藏的手枪形式，容量较低。"
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	icon_state = "pulse_pistol"
@@ -91,7 +91,7 @@
 
 /obj/item/gun/energy/pulse/pistol/m1911
 	name = "\improper M1911-P"
-	desc = "A compact pulse core in a classic handgun frame for Nanotrasen officers. It's not the size of the gun, it's the size of the hole it puts through people."
+	desc = "一款紧凑型脉冲核心，装配于经典手枪框架，专为纳米传讯官员设计。这不是枪的尺寸，而是它在人身上打出的孔的大小。"
 	icon_state = "m1911"
 	inhand_icon_state = "gun"
 	cell_type = /obj/item/stock_parts/power_store/cell/infinite

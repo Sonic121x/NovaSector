@@ -3,8 +3,8 @@
  */
 
 /obj/item/tank/internals/nitrogen
-	name = "nitrogen tank"
-	desc = "A small tank of nitrogen, for crew who don't breathe the standard air mix."
+	name = "氮气罐"
+	desc = "一个小型氮气罐，供不呼吸标准空气混合物的船员使用。"
 	icon_state = "oxygen_fr"
 	force = 10
 	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
@@ -34,8 +34,8 @@
 	air_contents.gases[/datum/gas/nitrogen][MOLES] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 
 /obj/item/tank/internals/nitrogen/belt/emergency
-	name = "emergency nitrogen tank"
-	desc = "Used for emergencies. Contains very little nitrogen, so try to conserve it until you actually need it."
+	name = "应急氮气罐"
+	desc = "用于紧急情况。内含氮气极少，请尽量节省使用，直到真正需要时。"
 	icon_state = "nitrogen"
 	worn_icon_state = "nitrogen_extended"
 	volume = 3

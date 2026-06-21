@@ -1,6 +1,6 @@
 /datum/job/cargo_gorilla
 	title = JOB_CARGO_GORILLA
-	description = "Assist the supply department by moving freight and disposing of unwanted fruits."
+	description = "协助供应部门搬运货物并处理不需要的水果。"
 	faction = FACTION_STATION
 	total_positions = 0
 	spawn_positions = 0
@@ -43,6 +43,6 @@
 	gorilla_id.set_account(bank_account)
 	spawned.put_in_hands(gorilla_id, del_on_fail = TRUE)
 
-	to_chat(spawned, span_boldnotice("You are Cargorilla, a pacifist friend of the station and carrier of freight."))
-	to_chat(spawned, span_notice("You can pick up crates by clicking on them, and drop them by clicking on the ground."))
+	to_chat(spawned, span_boldnotice("你是货运大猩猩，空间站的和平之友，货物的搬运者。"))
+	to_chat(spawned, span_notice("你可以通过点击来拾取板条箱，并通过点击地面来放下它们。"))
 	LAZYADD(spawned.mind.special_roles, "Cargorilla")

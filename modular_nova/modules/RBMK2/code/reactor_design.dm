@@ -1,6 +1,6 @@
 /datum/design/board/rbmk2_reactor
-	name = "RB-MK2 Reactor Board"
-	desc = "The circuit board for a RB-MK2 reactor."
+	name = "RB-MK2 反应堆电路板"
+	desc = "用于 RB-MK2 反应堆的电路板。"
 	id = "rbmk2_reactor"
 	build_path = /obj/item/circuitboard/machine/rbmk2
 	materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/uranium = SMALL_MATERIAL_AMOUNT * 8)
@@ -10,8 +10,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/rbmk2_reactor_sniffer
-	name = "RB-MK2 Reactor Sniffer"
-	desc = "The circuit board for a RB-MK2 reactor sniffer."
+	name = "RB-MK2 反应堆嗅探器"
+	desc = "RB-MK2反应堆嗅探器的电路板。"
 	id = "rbmk2_sniffer"
 	build_path = /obj/item/circuitboard/machine/rbmk2_sniffer
 	category = list(
@@ -20,8 +20,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rbmk2_rod
-	name = "RB-MK2 Reactor Rod"
-	desc = "A specialized rod for the RB-MK2 reactor."
+	name = "RB-MK2反应堆燃料棒"
+	desc = "用于RB-MK2反应堆的专用燃料棒。"
 	id = "rbmk2_rod"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT * 2)
@@ -35,7 +35,7 @@
 /datum/techweb_node/rbmk2
 	id = TECHWEB_NODE_RBMK
 	display_name = "RB-MK2"
-	description = "The latest in non-dangerous Nanotrasen power generation!"
+	description = "纳米传讯最新一代无危险发电技术！"
 	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION)
 	design_ids = list(
 		"rbmk2_reactor",

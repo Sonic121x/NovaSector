@@ -10,7 +10,7 @@
  * * default - If an option is already preselected on the UI. Current values, etc.
  * * timeout - The timeout of the input box, after which the menu will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_list(mob/user, message, title = "Select", list/items, default, timeout = 0, ui_state = GLOB.always_state)
+/proc/tgui_input_list(mob/user, message, title = "选择", list/items, default, timeout = 0, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if(!length(items))

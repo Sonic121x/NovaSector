@@ -1,6 +1,6 @@
 /obj/item/circuit_component/wire_bundle
 	display_name = "Wire Bundle"
-	desc = "A bundle of exposed wires that assemblies can be attached to. Ports will only show up once the circuit is inserted into a shell."
+	desc = "一束暴露的电线，可以连接组件。端口只有在电路插入外壳后才会显示。"
 	category = "Utility"
 	circuit_flags = CIRCUIT_FLAG_REFUSE_MODULE
 
@@ -107,7 +107,7 @@
 		return
 	var/datum/component/shell/shell_comp = source.GetComponent(/datum/component/shell)
 	if(shell_comp.locked)
-		source.balloon_alert(user, "locked!")
+		source.balloon_alert(user, "已锁定！")
 		return ITEM_INTERACT_FAILURE
 	if(source.attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK)
 		return ITEM_INTERACT_BLOCKING

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(greyscale_previews)
-	name = "Greyscale Previews"
+	name = "灰度预览"
 	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_EARLY
 	dependencies = list(

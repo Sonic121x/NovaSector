@@ -1,5 +1,5 @@
 /datum/dynamic_ruleset/midround/from_ghosts/contractor
-	name = "Drifting Contractors"
+	name = "游荡合约工"
 	config_tag = "Drifting Contractors"
 	pref_flag = ROLE_DRIFTING_CONTRACTOR
 	preview_antag_datum = /datum/antagonist/contractor

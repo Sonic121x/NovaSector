@@ -6,7 +6,7 @@
 	fakeable = FALSE
 
 /datum/round_event/random_ship_event/announce(fake)
-	priority_announce("An unknown ship is attempting to contact the station.", sender_override = "Automated Traffic Control System")
+	priority_announce("一艘未知飞船正尝试联系空间站。", sender_override = "自动化交通管制系统")
 
 /datum/round_event/random_ship_event/start()
 	// Create the ship event

@@ -1,6 +1,6 @@
 /datum/lazy_template/virtual_domain/grasslands_hunt
-	name = "Grasslands Hunt"
-	desc = "A peaceful hunt in the wilderness."
+	name = "草原狩猎"
+	desc = "荒野中的和平狩猎。"
 	help_text = "As a hunter, you must be able to track and kill your prey. Prove yourself."
 	is_modular = TRUE
 	key = "grasslands_hunt"

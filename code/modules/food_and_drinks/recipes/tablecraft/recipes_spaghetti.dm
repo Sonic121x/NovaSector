@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////SPAGHETTI////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/tomatopasta
-	name = "Tomato pasta"
+	name = "Tomato pasta-西红柿意面"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/grown/tomato = 2
@@ -14,7 +14,7 @@
 	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/copypasta
-	name = "Copypasta"
+	name = "复制意面"
 	reqs = list(
 		/obj/item/food/spaghetti/pastatomato = 2
 	)
@@ -23,7 +23,7 @@
 	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/spaghettimeatball
-	name = "Spaghetti meatball"
+	name = "Spaghetti meatball-意大利肉丸"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/meatball = 2
@@ -33,7 +33,7 @@
 	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/spesslaw
-	name = "Spesslaw"
+	name = "太空肉丸意面"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/meatball = 4
@@ -43,7 +43,7 @@
 	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/beefnoodle
-	name = "Beef noodle"
+	name = "Beef noodle-牛肉面"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
@@ -55,7 +55,7 @@
 	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/chowmein
-	name = "Chowmein"
+	name = "Chowmein-炒面"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/meat/cutlet = 1,
@@ -67,7 +67,7 @@
 	// cuisine_category = CUISINE_CHINESE
 
 /datum/crafting_recipe/food/butternoodles
-	name = "Butter Noodles"
+	name = "Butter Noodles-黄油面条"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/butterslice = 1
@@ -77,7 +77,7 @@
 	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/mac_n_cheese
-	name = "Mac n' cheese"
+	name = "Mac n' cheese-芝士煮通心粉"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/bechamel_sauce = 1,
@@ -89,7 +89,7 @@
 	dish_category = DISH_NOODLES
 
 /datum/crafting_recipe/food/shoyu_tonkotsu_ramen
-	name = "Shoyu Tonkotsu ramen"
+	name = "酱油豚骨拉面"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
@@ -104,7 +104,7 @@
 	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/kitakata_ramen
-	name = "Kitakata ramen"
+	name = "喜多方拉面"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
@@ -118,7 +118,7 @@
 	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/kitsune_udon
-	name = "Kitsune udon"
+	name = "狐狸乌冬面"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
@@ -132,7 +132,7 @@
 	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/nikujaga
-	name = "Nikujaga"
+	name = "肉じゃが"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
@@ -146,7 +146,7 @@
 	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/pho
-	name = "Pho"
+	name = "越南河粉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
@@ -159,7 +159,7 @@
 	// cuisine_category = CUISINE_VIETNAMESE
 
 /datum/crafting_recipe/food/pad_thai
-	name = "Pad thai"
+	name = "泰式炒河粉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
@@ -173,7 +173,7 @@
 	// cuisine_category = CUISINE_THAI
 
 /datum/crafting_recipe/food/carbonara
-	name = "Spaghetti Carbonara"
+	name = "培根蛋酱意大利面"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/cheese/firm_cheese_slice = 1,

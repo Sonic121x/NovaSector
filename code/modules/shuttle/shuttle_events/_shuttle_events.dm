@@ -1,7 +1,7 @@
 ///An event that can run during shuttle flight, and will run for the duration of it (configurable)
 /datum/shuttle_event
 	///How we're announced to ghosts and stuff
-	var/name = "The concept of a shuttle event"
+	var/name = "穿梭机事件的概念"
 	///probability of this event to run from 0 to 100
 	var/event_probability = 0
 	///Track if we're allowed to run, gets turned to TRUE when the activation timer hits

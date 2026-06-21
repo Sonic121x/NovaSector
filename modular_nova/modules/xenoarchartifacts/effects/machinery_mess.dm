@@ -33,7 +33,7 @@
 				return FALSE
 
 			playsound(holder, 'sound/misc/interference.ogg', 50, ignore_walls = TRUE)
-			chosen_machine.audible_message(span_userdanger("You hear a loud electrical buzzing sound coming from [chosen_machine]!"))
+			chosen_machine.audible_message(span_userdanger("你听到从[chosen_machine]传来响亮的电流嗡嗡声！"))
 			if(QDELETED(chosen_machine))
 				return
 

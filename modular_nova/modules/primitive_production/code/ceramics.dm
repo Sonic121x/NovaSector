@@ -5,8 +5,8 @@
  */
 
 /obj/item/stack/sheet/mineral/clay
-	name = "clay brick"
-	desc = "A heavy clay brick."
+	name = "黏土砖"
+	desc = "一块沉重的黏土砖。"
 	singular_name = "clay brick"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "sheet-clay"
@@ -21,8 +21,8 @@
 
 //And now for our lavaland dwelling friends, sand, but in stone form! Truly revolutionary.
 /datum/material/clay
-	name = "clay"
-	desc = "It's clay."
+	name = "黏土"
+	desc = "这是黏土。"
 	color = "#757575"
 	mat_flags = MATERIAL_CLASS_RIGID | MATERIAL_BASIC_RECIPES
 	mat_properties = list(
@@ -101,14 +101,14 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 			return
 
 		color = crayon_item.paint_color
-		to_chat(user, span_notice("You color [src] with [crayon_item]..."))
+		to_chat(user, span_notice("你用[crayon_item]给[src]上色..."))
 		return
 
 	return ..()
 
 /obj/item/stack/clay
 	name = "clay"
-	desc = "A pile of clay that can be used to create ceramic artwork."
+	desc = "一堆可以用来制作陶瓷艺术品的黏土。"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay"
 	merge_type = /obj/item/stack/clay
@@ -141,25 +141,25 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 	. = ..()
 
 /obj/item/ceramic/plate
-	name = "ceramic plate"
-	desc = "A piece of clay that is flat, in the shape of a plate. Requires heat treatment in a forge."
+	name = "陶瓷盘坯"
+	desc = "一块扁平的黏土，呈盘子形状。需要在熔炉中进行热处理。"
 	icon_state = "clay_plate"
 	forge_item = /obj/item/plate/ceramic
 
 /obj/item/plate/ceramic
-	name = "ceramic plate"
+	name = "陶瓷盘"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay_plate"
 
 /obj/item/ceramic/pot
-	name = "ceramic pot"
-	desc = "A piece of clay that is curved upwards, in the shape of a pot. Requires heat treatment in a forge."
+	name = "陶瓷罐坯"
+	desc = "一块向上弯曲的黏土，呈罐子形状。需要在熔炉中进行热处理。"
 	icon_state = "clay_pot"
 	forge_item = /obj/item/clay_pot
 
 /obj/item/clay_pot
-	name = "clay pot"
-	desc = "A very empty clay pot. Put some sand and a seed in and call it a day."
+	name = "黏土花盆"
+	desc = "一个非常空的黏土花盆。放点沙子和种子进去就算完事了。"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay_pot"
 
@@ -170,33 +170,33 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 	if(istype(tool, /obj/item/stack/ore/glass))
 		var/obj/item/stack/use_stack = tool
 		if(has_sand)
-			to_chat(user, span_warning("There is already sand in the pot!"))
+			to_chat(user, span_warning("花盆里已经有沙子了！"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You begin to fill [src] with some sand..."))
+		to_chat(user, span_notice("你开始往[src]里装一些沙子..."))
 		if(!do_after(user, 3 SECONDS, target = src))
-			to_chat(user, span_notice("You decide against filling the pot with sand."))
+			to_chat(user, span_notice("你决定不往罐子里装沙子了。"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!use_stack.use(1))
-			to_chat(user, span_warning("You find yourself unable to part with [use_stack]!"))
+			to_chat(user, span_warning("你发现自己舍不得[use_stack]！"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You fill [src] with some sand."))
+		to_chat(user, span_notice("你往[src]里装了一些沙子。"))
 		has_sand = TRUE
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/seeds))
 		if(!has_sand)
-			to_chat(user, span_warning("Sand is absolutely required to start planting!"))
+			to_chat(user, span_warning("开始种植绝对需要沙子！"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You begin to plant a seed inside [src]..."))
+		to_chat(user, span_notice("你开始在[src]里种植种子..."))
 		if(!do_after(user, 3 SECONDS, target = src))
-			to_chat(user, span_notice("You decide against planting the seed."))
+			to_chat(user, span_notice("你决定不种这颗种子了。"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You plant [tool] into the pot."))
+		to_chat(user, span_notice("你将[tool]种进了罐子里。"))
 		qdel(tool)
 		new /obj/item/kirbyplants(drop_location(src))
 		qdel(src)
@@ -205,51 +205,51 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 	return NONE
 
 /obj/item/ceramic/tray
-	name = "ceramic tray"
-	desc = "A piece of clay that is flat, in the shape of a tray. Requires heat treatment in a forge."
+	name = "陶瓷托盘"
+	desc = "一块扁平的粘土，呈托盘形状。需要在熔炉中进行热处理。"
 	icon_state = "clay_tray"
 	forge_item = /obj/item/plate/oven_tray/material/ceramic
 
 /obj/item/plate/oven_tray/material/ceramic
-	name = "ceramic oven tray"
+	name = "陶瓷烤盘"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay_tray"
 
 /obj/item/ceramic/bowl
-	name =  "ceramic bowl"
-	desc = "A piece of clay with a raised lip, in the shape of a bowl. Requires heat treatment in a forge."
+	name =  "陶瓷碗"
+	desc = "一块边缘隆起的粘土，呈碗状。需要在熔炉中进行热处理。"
 	icon_state = "clay_bowl"
 	forge_item = /obj/item/reagent_containers/cup/bowl/ceramic
 
 /obj/item/reagent_containers/cup/bowl/ceramic
-	name = "ceramic bowl"
+	name = "陶瓷碗"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay_bowl"
 	custom_materials = null
 
 /obj/item/ceramic/cup
-	name = "ceramic cup"
-	desc = "A piece of clay with high walls, in the shape of a cup. It can hold 120 units. Requires heat treatment in a forge."
+	name = "陶瓷杯"
+	desc = "一块高壁的粘土，呈杯子形状。可容纳120单位。需要在熔炉中进行热处理。"
 	icon_state = "clay_cup"
 	forge_item = /obj/item/reagent_containers/cup/beaker/large/ceramic
 
 /obj/item/reagent_containers/cup/beaker/large/ceramic
-	name = "ceramic cup"
-	desc = "A cup that is made from ceramic."
+	name = "陶瓷杯"
+	desc = "一个用陶瓷制成的杯子。"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay_cup"
 	custom_materials = null
 
 /obj/item/ceramic/brick
-	name = "ceramic brick"
-	desc = "A dense block of clay, ready to be fired into a brick!"
+	name = "陶瓷砖"
+	desc = "一块密实的粘土块，准备烧制成砖！"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "sheet-clay"
 	forge_item = /obj/item/stack/sheet/mineral/clay
 
 /obj/structure/throwing_wheel
-	name = "throwing wheel"
-	desc = "A machine that allows you to throw clay."
+	name = "拉坯轮"
+	desc = "一台可以让你拉制陶泥的机器。"
 	icon = 'modular_nova/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "throw_wheel_empty"
 	density = TRUE
@@ -341,16 +341,16 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 	in_use = TRUE
 	var/spinning_speed = user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER) * DEFAULT_SPIN
 	if(!has_clay)
-		balloon_alert(user, "there is no clay!")
+		balloon_alert(user, "没有黏土！")
 		return
 
-	var/user_input = tgui_alert(user, "What would you like to do?", "Choice Selection", list("Create", "Remove"))
+	var/user_input = tgui_alert(user, "你想做什么？", "选择", list("Create", "Remove"))
 	if(!user_input)
 		return
 
 	switch(user_input)
 		if("Create")
-			var/creation_choice = tgui_input_list(user, "What you like to create?", "Creation Choice", production_list)
+			var/creation_choice = tgui_input_list(user, "你想制作什么？", "制作选择", production_list)
 			if(isnull(creation_choice))
 				return
 

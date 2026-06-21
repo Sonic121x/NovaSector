@@ -1,6 +1,6 @@
 /datum/experiment/scanning/random/material
-	name = "Material Scanning Experiment"
-	description = "Base experiment for scanning atoms with materials"
+	name = "材料扫描实验"
+	description = "扫描含有材料的原子的基础实验"
 	exp_tag = "Material Scan"
 	total_requirement = 8
 	possible_types = list(/obj/structure/chair, /obj/structure/toilet, /obj/structure/table, /turf/closed/wall, /turf/open/floor)

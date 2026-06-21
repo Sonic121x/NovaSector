@@ -4,7 +4,7 @@
 	circuit = /obj/item/circuitboard/machine/processor/slime/fullupgrade
 
 /obj/item/circuitboard/machine/processor/slime/fullupgrade
-	name = "\improper Slime Processor"
+	name = "\improper 史莱姆处理器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/processor/slime/fullupgrade
 	req_components = list(
@@ -26,7 +26,7 @@
 	AddElement(/datum/element/tool_blocker, TOOL_CROWBAR)
 
 /obj/item/circuitboard/machine/monkey_recycler/fullupgrade
-	name = "\improper Monkey Recycler"
+	name = "\improper 猴子回收器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/monkey_recycler/fullupgrade
 	req_components = list(
@@ -35,14 +35,14 @@
 	)
 
 /obj/machinery/chem_master/fullupgrade
-	name = "\improper ChemMaster 4000"
+	name = "\improper 化学大师4000"
 	circuit = /obj/item/circuitboard/machine/chem_master/fullupgrade
 
 /obj/item/circuitboard/machine/chem_master/fullupgrade
-	name = "\improper ChemMaster 4000"
+	name = "\improper 化学大师 4000"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/chem_master/fullupgrade
-	desc = "You can turn the \"mode selection\" dial using a screwdriver, but you might not be able to turn it back."
+	desc = "你可以用螺丝刀转动\"模式选择\"旋钮，但可能无法再转回来。"
 	req_components = list(
 		/obj/item/reagent_containers/cup/beaker/bluespace = 2,
 		/datum/stock_part/servo/tier4 = 1,
@@ -59,7 +59,7 @@
 	AddElement(/datum/element/tool_blocker, TOOL_CROWBAR)
 
 /obj/item/circuitboard/machine/biogenerator/fullupgrade
-	name = "\improper Biogenerator"
+	name = "\improper 生物质生成器"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/biogenerator/fullupgrade
 	req_components = list(

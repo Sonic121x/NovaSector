@@ -1,7 +1,7 @@
 //Boxes of ammo
 /obj/item/ammo_box
-	name = "ammo box (null_reference_exception)"
-	desc = "A box of ammo."
+	name = "弹药箱（null_reference_exception）"
+	desc = "一箱弹药。"
 	icon = 'icons/obj/weapons/guns/ammo.dmi'
 	abstract_type = /obj/item/ammo_box
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -196,11 +196,11 @@
 /obj/item/ammo_box/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(IS_WRITING_UTENSIL(tool))
 		if(!ammo_band_icon)
-			balloon_alert(user, "no indicator support!")
+			balloon_alert(user, "不支持指示器！")
 			return
 		var/new_color = tgui_color_picker(user, "Set a new ammo band color, cancel to remove indicator", "Ammo Box Indicator Color", ammo_band_color)
 		ammo_band_color = new_color
-		balloon_alert(user, "indicator updated")
+		balloon_alert(user, "指示器已更新")
 		update_appearance()
 		return
 
@@ -244,7 +244,7 @@
 
 	if(num_loaded)
 		if(!silent)
-			to_chat(user, span_notice("You load [num_loaded > 1 ? "[num_loaded] [casing_phrasing]s" : "a [casing_phrasing]"] into \the [src]!"))
+			to_chat(user, span_notice("你将[num_loaded > 1 ? "[num_loaded] [casing_phrasing]s" : "a [casing_phrasing]"]装入了\the [src]！"))
 			playsound(src, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
 		update_appearance()
 
@@ -259,7 +259,7 @@
 	if(!user.is_holding(src) || !user.put_in_hands(A)) //incase they're using TK
 		A.bounce_away(FALSE, NONE)
 	playsound(src, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
-	to_chat(user, span_notice("You remove a [casing_phrasing] from [src]!"))
+	to_chat(user, span_notice("你从[src]中取出了一个[casing_phrasing]！"))
 	update_appearance()
 
 /obj/item/ammo_box/examine(mob/user)
@@ -271,7 +271,7 @@
 	. += "It has <b>[shells_left]</b> [casing_phrasing]\s remaining."
 	// this is kind of awkward phrasing, but it's the top/ready ammo in the box
 	// intended for people who have like three mislabeled magazines
-	. += span_notice("\A <b>[top_round]</b> is ready.")
+	. += span_notice("\A <b>[top_round]</b>已就绪。")
 
 /obj/item/ammo_box/update_icon_state()
 	var/shells_left = LAZYLEN(stored_ammo)
@@ -297,8 +297,8 @@
 	overlays += ammo_band_image
 
 /obj/item/ammo_box/magazine
-	name = "A magazine (what?)"
-	desc = "A magazine of rounds, they look like error signs... this should probably be reported somewhere."
+	name = "一个弹匣（什么？）"
+	desc = "一个装填了子弹的弹匣，它们看起来像是错误标志……这或许应该向某处报告一下。"
 	abstract_type = /obj/item/ammo_box/magazine
 	ammo_box_multiload = AMMO_BOX_MULTILOAD_IN // so you can't use a magazine like a bootleg speedloader
 	drop_sound = 'sound/items/handling/gun/ballistics/magazine/magazine_drop1.ogg'

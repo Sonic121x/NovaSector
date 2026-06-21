@@ -109,7 +109,7 @@
 	added_foodtypes = parent_type::added_foodtypes|TOXIC
 
 /datum/crafting_recipe/food/pizza/raw_meat_calzone
-	name = "Meat calzone"
+	name = "肉馅卷饼"
 	reqs = list(
 		/obj/item/food/flatdough = 1,
 		/obj/item/food/cheese/wedge = 2,
@@ -119,7 +119,7 @@
 	result = /obj/item/food/raw_meat_calzone
 
 /datum/crafting_recipe/food/pizza/raw_vegetarian_calzone
-	name = "Vegetarian calzone"
+	name = "素食卷饼"
 	reqs = list(
 		/obj/item/food/flatdough = 1,
 		/obj/item/food/grown/tomato = 1,

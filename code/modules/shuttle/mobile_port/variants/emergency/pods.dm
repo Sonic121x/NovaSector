@@ -1,7 +1,7 @@
 // THIS FILE CONTAINS: Pod mobile/stationary docking port, pod control console, pod storage and pod items
 
 /obj/docking_port/mobile/pod
-	name = "escape pod"
+	name = "逃生舱"
 	shuttle_id = "pod"
 	launch_status = UNLAUNCHED
 
@@ -10,7 +10,7 @@
 	if(!istype(connected_computer, /obj/machinery/computer/shuttle/pod))
 		return FALSE
 	if(!(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED) && !(connected_computer.obj_flags & EMAGGED))
-		to_chat(usr, span_warning("Escape pods will only launch during \"Code Red\" security alert."))
+		to_chat(usr, span_warning("逃生舱仅在“红色代码”安保警报期间发射。"))
 		return FALSE
 	if(launch_status == UNLAUNCHED)
 		launch_status = EARLY_LAUNCHED
@@ -20,7 +20,7 @@
 	return
 
 /obj/machinery/computer/shuttle/pod
-	name = "pod control computer"
+	name = "舱体控制电脑"
 	locked = TRUE
 	possible_destinations = "pod_asteroid"
 	icon = 'icons/obj/machines/wallmounts.dmi'
@@ -40,7 +40,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
-	balloon_alert(user, "alert level checking disabled")
+	balloon_alert(user, "警报等级检查已禁用")
 	icon_screen = "emagged_general"
 	update_appearance()
 	return TRUE
@@ -78,7 +78,7 @@
 	locked = (new_level < SEC_LEVEL_RED)
 
 /obj/docking_port/stationary/random
-	name = "escape pod"
+	name = "逃生舱"
 	shuttle_id = "pod"
 	hidden = TRUE
 	override_can_dock_checks = TRUE
@@ -113,23 +113,23 @@
 
 
 /obj/item/clothing/head/helmet/space/orange
-	name = "emergency space helmet"
+	name = "紧急太空头盔"
 	icon_state = "syndicate-helm-orange"
 	inhand_icon_state = "syndicate-helm-orange"
 
 /obj/item/clothing/suit/space/orange
-	name = "emergency space suit"
+	name = "紧急太空服"
 	icon_state = "syndicate-orange"
 	inhand_icon_state = "syndicate-orange"
 	slowdown = 3
 
 /obj/item/pickaxe/emergency
-	name = "emergency disembarkation tool"
-	desc = "For extracting yourself from rough landings."
+	name = "紧急离舱工具"
+	desc = "用于在紧急着陆后脱困。"
 
 /obj/item/storage/pod
-	name = "emergency space suits"
-	desc = "A wall mounted safe containing space suits. Will only open in emergencies."
+	name = "紧急太空服"
+	desc = "一个装有太空服的壁挂式保险箱。仅在紧急情况下打开。"
 	anchored = TRUE
 	density = FALSE
 	icon = 'icons/obj/storage/storage.dmi'

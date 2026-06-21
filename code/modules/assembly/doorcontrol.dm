@@ -1,6 +1,6 @@
 /obj/item/assembly/control
-	name = "blast door controller"
-	desc = "A small electronic device able to control a blast door remotely."
+	name = "防爆门控制器"
+	desc = "一种能够远程控制防爆门的小型电子设备。"
 	icon_state = "control"
 	/// The ID of the blast door electronics to match to the ID of the blast door being used.
 	var/id = -1
@@ -23,10 +23,10 @@
 	. = ..()
 	if(id)
 		if(id != -1)
-			. += span_notice("Its channel ID is '[id]'.")
+			. += span_notice("它的频道ID是'[id]'。")
 		else
-			. += span_notice("Interact with pod door to generate an new id")
-	. += span_notice("You can interact with another controller to copy its ID.")
+			. += span_notice("与舱门交互以生成新ID")
+	. += span_notice("你可以与另一个控制器交互以复制其ID。")
 
 /obj/item/assembly/control/multitool_act(mob/living/user)
 	var/list/door_ids = list()
@@ -40,7 +40,7 @@
 		var/area/door_area = get_area(M)
 		display_ids += "[door_area.name]([M.id])"
 
-	var/change_id = tgui_input_list(user, "Set Controller ID", "Controller ID", display_ids)
+	var/change_id = tgui_input_list(user, "设置控制器ID", "控制器ID", display_ids)
 	if(!change_id || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 
@@ -53,17 +53,17 @@
 			id = "[change_id[start]]"
 		else
 			id = copytext(change_id, start, end)
-	balloon_alert(user, "id changed")
+	balloon_alert(user, "ID已更改")
 	if(id != -1)
-		to_chat(user, span_notice("You change the ID to [id]."))
+		to_chat(user, span_notice("你将ID更改为[id]。"))
 	else
-		to_chat(user, span_notice("You now must interact with an pod door to generate an unique ID."))
+		to_chat(user, span_notice("你现在必须与舱门交互以生成唯一ID。"))
 
 /obj/item/assembly/control/interact_with_atom(obj/item/assembly/control/interacting_with, mob/living/user, list/modifiers)
 	. = NONE
 	if(istype(interacting_with))
 		id = interacting_with.id
-		balloon_alert(user, "id changed")
+		balloon_alert(user, "ID已更改")
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/assembly/control/activate()
@@ -79,13 +79,13 @@
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 SECONDS)
 
 /obj/item/assembly/control/curtain
-	name = "curtain controller"
-	desc = "A small electronic device able to control a mechanical curtain remotely."
+	name = "窗帘控制器"
+	desc = "一种能够远程控制机械窗帘的小型电子设备。"
 
 /obj/item/assembly/control/curtain/examine(mob/user)
 	. = ..()
 	if(id)
-		. += span_notice("Its channel ID is '[id]'.")
+		. += span_notice("它的频道ID是'[id]'。")
 
 /obj/item/assembly/control/curtain/activate()
 	var/openclose
@@ -101,8 +101,8 @@
 
 
 /obj/item/assembly/control/airlock
-	name = "airlock controller"
-	desc = "A small electronic device able to control an airlock remotely."
+	name = "气闸控制器"
+	desc = "一种能够远程控制气闸的小型电子设备。"
 	id = "badmin" // Set it to null for MEGAFUN.
 	var/specialfunctions = OPEN
 	/*
@@ -149,8 +149,8 @@
 
 
 /obj/item/assembly/control/massdriver
-	name = "mass driver controller"
-	desc = "A small electronic device able to control a mass driver."
+	name = "质量发射器控制器"
+	desc = "一种能够控制质量发射器的小型电子装置."
 
 /obj/item/assembly/control/massdriver/activate()
 	if(cooldown)
@@ -178,8 +178,8 @@
 
 
 /obj/item/assembly/control/igniter
-	name = "ignition controller"
-	desc = "A remote controller for a mounted igniter."
+	name = "点火控制器"
+	desc = "用于壁挂式点火器的遥控器。"
 
 /obj/item/assembly/control/igniter/activate()
 	if(cooldown)
@@ -196,8 +196,8 @@
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 3 SECONDS)
 
 /obj/item/assembly/control/flasher
-	name = "flasher controller"
-	desc = "A remote controller for a mounted flasher."
+	name = "闪光灯控制器"
+	desc = "用于控制预置闪光灯的遥控器。"
 
 /obj/item/assembly/control/flasher/activate()
 	if(cooldown)
@@ -211,8 +211,8 @@
 
 
 /obj/item/assembly/control/crematorium
-	name = "crematorium controller"
-	desc = "An evil-looking remote controller for a crematorium."
+	name = "焚化炉控制器"
+	desc = "一个看起来很邪恶的焚化炉遥控器。"
 
 /obj/item/assembly/control/crematorium/activate()
 	if(cooldown)

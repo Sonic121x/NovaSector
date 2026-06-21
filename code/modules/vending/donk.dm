@@ -1,6 +1,6 @@
 /obj/machinery/vending/donksnack
-	name = "\improper Donk Co Vendor"
-	desc = "A snack machine courtesy of Donk Co."
+	name = "\improper 咚可公司售货机"
+	desc = "一台由唐克公司提供的零食售货机。"
 	product_slogans = "Just microwave and eat!;The original home of the Donk Pocket!"
 	product_ads = "The original!;You wanna put a bangin' Donk on it!;The best!;The seasoned traitor's food of choice!;Now with 12% more omnizine!;Eat DONK or DIE!;The galaxy's most popular microwavable snack food!*;Try our NEW Ready-Donk Meals!"
 	icon_state = "snackdonk"

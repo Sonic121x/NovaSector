@@ -39,17 +39,17 @@
 /mob/proc/query_heart(attempt=1)
 	if(!client || attempt > 3)
 		return
-	if(attempt == 1 && tgui_alert(src, "Was there another character you noticed being kind this round that you would like to anonymously thank?", "<3?", list("Yes", "No"), timeout = 30 SECONDS) != "Yes")
+	if(attempt == 1 && tgui_alert(src, "本轮中你是否注意到另一位角色表现友善，并想匿名感谢？", "<3？", list("Yes", "No"), timeout = 30 SECONDS) != "Yes")
 		return
 
 	var/heart_nominee
 	switch(attempt)
 		if(1)
-			heart_nominee = tgui_input_text(src, "What was their name? Just a first or last name may be enough.", "<3?", max_length = MAX_NAME_LEN)
+			heart_nominee = tgui_input_text(src, "他们的名字是什么？仅提供名或姓可能就足够了。", "<3?", max_length = MAX_NAME_LEN)
 		if(2)
-			heart_nominee = tgui_input_text(src, "Try again, what was their name? Just a first or last name may be enough.", "<3?", max_length = MAX_NAME_LEN)
+			heart_nominee = tgui_input_text(src, "再试一次，他们叫什么名字？只提供名或姓可能就足够了。", "<3?", max_length = MAX_NAME_LEN)
 		if(3)
-			heart_nominee = tgui_input_text(src, "One more try, what was their name? Just a first or last name may be enough.", "<3?", max_length = MAX_NAME_LEN)
+			heart_nominee = tgui_input_text(src, "最后一次尝试，他们叫什么名字？只提供名或姓可能就足够了。", "<3?", max_length = MAX_NAME_LEN)
 
 	if(!heart_nominee)
 		return
@@ -66,7 +66,7 @@
 		if(heart_contender == src)
 			continue
 
-		switch(tgui_alert(src, "Is this the person: [heart_contender.real_name]?", "<3?", list("Yes!", "Nope", "Cancel"), timeout = 15 SECONDS))
+		switch(tgui_alert(src, "是这个人吗：[heart_contender.real_name]？", "<3?", list("Yes!", "Nope", "Cancel"), timeout = 15 SECONDS))
 			if("Yes!")
 				heart_contender.receive_heart(src)
 				return
@@ -91,7 +91,7 @@
 /mob/proc/receive_heart(mob/heart_sender, duration = 24 HOURS, instant = FALSE)
 	if(!client)
 		return
-	to_chat(heart_sender, span_nicegreen("Commendation sent!"))
+	to_chat(heart_sender, span_nicegreen("嘉奖已发送！"))
 	message_admins("[key_name(heart_sender)] commended [key_name(src)] [instant ? "(instant)" : ""]")
 	log_admin("[key_name(heart_sender)] commended [key_name(src)] [instant ? "(instant)" : ""]")
 	if(instant || SSticker.current_state == GAME_STATE_FINISHED)

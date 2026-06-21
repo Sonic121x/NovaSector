@@ -2,8 +2,8 @@
 //Due to using pre-existing ammo, they dont require to be loaded with gunpowder or an equivalent.
 
 /obj/structure/mounted_gun
-	name = "Mounted Gun"
-	desc = "Default mounted gun for inheritance purposes."
+	name = "架设式火炮"
+	desc = "用于继承目的的默认架设式火炮。"
 	density = TRUE
 	anchored = FALSE
 	icon = 'icons/obj/weapons/cannons.dmi'
@@ -86,16 +86,16 @@
 		return NONE
 
 	if(is_firing)
-		balloon_alert(user, "gun firing!")
+		balloon_alert(user, "火炮开火！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/fully_loaded = shots_in_gun >= max_shots_per_fire
 	if(fully_loaded)
-		balloon_alert(user, "already loaded!")
+		balloon_alert(user, "已经装填！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (load_delay > 0)
-		user.visible_message(span_warning("[user] starts loading [src]."))
+		user.visible_message(span_warning("[user] 开始装填 [src]。"))
 		if(!do_after(user, load_delay, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -109,7 +109,7 @@
 	if (.)
 		return
 	if (is_firing)
-		balloon_alert(user, "gun firing!")
+		balloon_alert(user, "火炮开火！")
 		return
 	try_firing(user)
 
@@ -121,7 +121,7 @@
 /// Loop firing until we are done
 /obj/structure/mounted_gun/proc/fire_sequence(mob/living/user)
 	if (!shots_in_gun)
-		balloon_alert(user, "not loaded!")
+		balloon_alert(user, "未装填！")
 		return
 
 	is_firing = TRUE
@@ -182,8 +182,8 @@
 
 /// Rapidly fires a barrage of random junk ammo
 /obj/structure/mounted_gun/organ_gun
-	name = "Pipe Organ Gun"
-	desc = "To become master over one who has killed, one must become a better killer. This engine of destruction is one of many things made to that end."
+	name = "管风琴火炮"
+	desc = "要成为杀戮者的主宰，就必须成为更优秀的杀手。这台毁灭引擎正是为此目的制造的众多事物之一。"
 	icon_state = "pipeorgangun"
 	base_icon_state = "pipeorgangun"
 	anchored = FALSE
@@ -220,13 +220,13 @@
 
 /obj/structure/mounted_gun/organ_gun/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<b><i>Looking down at \the [src], you recall a tale told to you in some distant memory...</i></b>")
+	. += span_notice("<b><i>低头看着 \the [src]，你回忆起某个遥远记忆里听到的故事...</i></b>")
 
-	. += span_info("To commit an act of vengeance is not unlike to enter a blood pact with a devil, ending the life of another, at the cost of your own.")
-	. += span_info("When humanity first spilled the blood of its own kind, with likely nothing more than a rock, the seal was broken. Vengeance was borne unto the world.")
-	. += span_info("However, vengeance alone is not enough to carry through the grim deed of murder. One must gain an advantage over their adversary.")
-	. += span_info("As such, the man who ended another's life with a stone, was in turn smote himself by another wielding a spear. After spears, bows. Swords. Guns. Tanks. Missiles. And on and on Vengeance fed. Growing stronger. Growing Worse.")
-	. += span_info("Vengeance persists to this day. It sometimes may slumber, seemingly content with having gorged itself, but in the end, its ceaseless hunger can be neither numbed nor sated.")
+	. += span_info("实施复仇之举，无异于与魔鬼订立血契，以自身为代价终结他人性命。")
+	. += span_info("当人类首次用可能不过是石块的东西，染上同类的鲜血时，封印便被打破。复仇由此降临世间。")
+	. += span_info("然而，仅凭复仇不足以完成谋杀这一冷酷行径。必须获得超越对手的优势。")
+	. += span_info("因此，用石头终结他人性命者，终将死于持矛者之手。矛之后是弓。剑。枪。坦克。导弹。复仇不断吞噬，日益强大，日益恶化。")
+	. += span_info("复仇延续至今。它有时或许会沉睡，看似满足于饱餐一顿，但最终，它那永无止境的饥渴既无法麻痹也无法满足。")
 
 /obj/structure/mounted_gun/organ_gun/get_fired_projectile()
 	var/random_type = pick_weight(list_of_projectiles)
@@ -234,8 +234,8 @@
 
 /// Rapidly sprays a large amount of bullets, used by pirates
 /obj/structure/mounted_gun/canister_gatling
-	name = "Canister Gatling Gun"
-	desc = "''Quantity has a quality of its own.''"
+	name = "霰弹加特林炮"
+	desc = "'数量本身就是一种质量。'"
 	icon_state = "canister_gatling"
 	base_icon_state = "canister_gatling"
 	anchored = FALSE
@@ -255,8 +255,8 @@
 	)
 
 /obj/item/ammo_casing/canister_shot
-	name = "Canister Shot"
-	desc = "A gigantic... well, canister of canister shot. Used for reloading the Canister Gatling Gun."
+	name = "霰弹"
+	desc = "一个巨大的……嗯，霰弹罐。用于为霰弹加特林炮重新装填。"
 	icon_state = "canister_shot"
 	obj_flags = CONDUCTS_ELECTRICITY
 	throwforce = 0
@@ -265,8 +265,8 @@
 
 /// Hand-cranked laser repeater which does not need to be reloaded
 /obj/structure/mounted_gun/ratvarian_repeater
-	name = "Ratvarian Repeater"
-	desc = "''Brains? Bronze? Why not both?''"
+	name = "拉特瓦连发炮"
+	desc = "'大脑？青铜？为何不兼得？'"
 	icon_state = "ratvarian_repeater"
 	base_icon_state = "ratvarian_repeater"
 	loading_message = "gun charged"
@@ -315,7 +315,7 @@
 		return ..()
 
 	if (load_delay > 0)
-		user.visible_message(span_warning("[user] starts winding [src]."))
+		user.visible_message(span_warning("[user]开始给[src]上弦。"))
 		if(!do_after(user, load_delay, target = src))
 			return
 
@@ -327,8 +327,8 @@
 
 /// A makeshift structure for firing spears with increased force
 /obj/structure/mounted_gun/ballista
-	name = "Improvised Ballista"
-	desc = "''Engineers like to solve problems. If there are no problems handily available, they will create their own problems.''"
+	name = "简易弩炮"
+	desc = "'工程师喜欢解决问题。如果没有现成的问题，他们就会自己制造问题。'"
 	icon_state = "improvised_ballista"
 	base_icon_state = "improvised_ballista"
 	throwforce = 30
@@ -373,16 +373,16 @@
 		return NONE
 
 	if(is_firing)
-		balloon_alert(user, "gun firing!")
+		balloon_alert(user, "火炮开火！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(loaded_spear)
-		balloon_alert(user, "already loaded!")
+		balloon_alert(user, "已经装填！")
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/items/weapons/draw_bow.ogg', 50, FALSE, 5)
 	if (load_delay > 0)
-		user.visible_message(span_warning("[user] starts loading [src]."))
+		user.visible_message(span_warning("[user]开始为[src]装填。"))
 		if (!do_after(user, load_delay, target = src))
 			return ITEM_INTERACT_BLOCKING
 

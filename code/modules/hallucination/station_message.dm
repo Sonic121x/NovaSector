@@ -23,17 +23,17 @@
 	require_hearing = TRUE
 
 /datum/hallucination/station_message/blob_alert/do_fake_alert()
-	priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", \
-		"Biohazard Alert", ANNOUNCER_OUTBREAK5, players = list(hallucinator))
+	priority_announce("已确认在[station_name()]上爆发5级生物危害。所有人员必须控制疫情。", \
+		"生物危害警报", ANNOUNCER_OUTBREAK5, players = list(hallucinator))
 
 /datum/hallucination/station_message/shuttle_dock
 
 /datum/hallucination/station_message/shuttle_dock/do_fake_alert()
 	priority_announce(
-		text = "[SSshuttle.emergency] has docked with the station. You have [DisplayTimeText(SSshuttle.emergency_dock_time)] to board the emergency shuttle.",
-		title = "Emergency Shuttle Arrival",
+		text = "[SSshuttle.emergency]已与空间站对接。你有[DisplayTimeText(SSshuttle.emergency_dock_time)]时间登上紧急穿梭机。",
+		title = "紧急穿梭机抵达",
 		sound = ANNOUNCER_SHUTTLEDOCK,
-		sender_override = "Emergency Shuttle Uplink Alert",
+		sender_override = "紧急穿梭机上行链路警报",
 		players = list(hallucinator),
 		color_override = "orange",
 	)
@@ -45,8 +45,8 @@
 	if(!(locate(/mob/living/silicon/ai) in GLOB.silicon_mobs))
 		return CANCEL_FAKE_ALERT
 
-	priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", \
-		"Anomaly Alert", ANNOUNCER_AIMALF, players = list(hallucinator))
+	priority_announce("在所有空间站系统中检测到敌对运行时，请停用您的人工智能以防止其道德核心可能受损。", \
+		"异常警报", ANNOUNCER_AIMALF, players = list(hallucinator))
 
 /datum/hallucination/station_message/heretic
 	require_hearing = TRUE
@@ -106,8 +106,8 @@
 	var/area/fake_summon_area = GLOB.areas_by_type[fake_summon_area_type]
 
 	priority_announce(
-		text = "Figments from an eldritch god are being summoned by [totally_real_cult_leader.real_name] into [fake_summon_area] from an unknown dimension. Disrupt the ritual at all costs!",
-		title = "[command_name()] Higher Dimensional Affairs",
+		text = "来自远古邪神的幻影正被 [totally_real_cult_leader.real_name] 从未知维度召唤至 [fake_summon_area]。不惜一切代价阻止仪式！",
+		title = "[command_name()] 高维事务部",
 		sound = 'sound/music/antag/bloodcult/bloodcult_scribe.ogg',
 		has_important_message = TRUE,
 		players = list(hallucinator),
@@ -118,13 +118,13 @@
 	require_hearing = TRUE
 
 /datum/hallucination/station_message/meteors/do_fake_alert()
-	priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", ANNOUNCER_METEORS, players = list(hallucinator))
+	priority_announce("检测到陨石正与空间站发生碰撞。", "陨石警报", ANNOUNCER_METEORS, players = list(hallucinator))
 
 /datum/hallucination/station_message/supermatter_delam
 
 /datum/hallucination/station_message/supermatter_delam/do_fake_alert()
 	SEND_SOUND(hallucinator, 'sound/effects/magic/charge.ogg')
-	to_chat(hallucinator, span_bolddanger("You feel reality distort for a moment..."))
+	to_chat(hallucinator, span_bolddanger("你感到现实扭曲了一瞬间……"))
 
 /datum/hallucination/station_message/clock_cult_ark
 	// Clock cult's long gone, but this stays for posterity.

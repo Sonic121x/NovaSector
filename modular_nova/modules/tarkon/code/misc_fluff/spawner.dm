@@ -1,13 +1,13 @@
 //Port Tarkon, 8 people trapped in a revamped charlie-station like ghost role. Survive the aliens and threats, Fix the port and/or finish construction
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon
-	name = "Port Tarkon Crew Member"
-	prompt_name = "a port deck worker"
+	name = "塔尔孔港船员"
+	prompt_name = "一名港口甲板工人"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	you_are_text = "You are a member of Tarkon Industries, recently assigned to a recently recovered asset known as Port Tarkon. Your supervisors are the Ensign and Site Director."
-	flavour_text = "On the recently reclaimed Port Tarkon, You are tasked to help finish construction and carry on any tasks given by the site director. It may be best to look at your departmental noteboard."
-	important_text = "You are not to abandon Port Tarkon. Check other sleepers for alternative jobs. Listen to the Site Director and Ensign."
+	you_are_text = "你是Tarkon工业的一名成员，最近被指派到一个新近回收的资产——Tarkon港。你的上级是少尉和站点主管。"
+	flavour_text = "在新近回收的Tarkon港上，你的任务是协助完成建设，并执行站点主管下达的任何任务。最好先看看你部门的记事板。"
+	important_text = "你不得擅自离开塔尔康港。检查其他休眠舱以寻找替代工作。听从站点主管和少尉的指示。"
 	outfit = /datum/outfit/tarkon
 	faction = list(FACTION_TARKON)
 	spawner_job_path = /datum/job/tarkon
@@ -17,7 +17,7 @@
 	computer_area = /area/ruin/space/has_grav/port_tarkon
 
 /datum/outfit/tarkon
-	name = "default port tarkon outfit"
+	name = "默认港口塔尔孔制服"
 	uniform = /obj/item/clothing/under/tarkon/general
 	head = /obj/item/clothing/head/utility/welding/hat
 	shoes = /obj/item/clothing/shoes/winterboots
@@ -99,11 +99,11 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/cargo
-	prompt_name = "a port salvage tech"
+	prompt_name = "一名港口打捞技术员"
 	outfit = /datum/outfit/tarkon/cargo
 
 /datum/outfit/tarkon/cargo
-	name = "Port Tarkon Cargo Outfit"
+	name = "塔康港货运制服"
 	uniform = /obj/item/clothing/under/tarkon
 	glasses = /obj/item/clothing/glasses/sunglasses
 	id = /obj/item/card/id/advanced/tarkon/cargo
@@ -111,11 +111,11 @@
 	l_pocket = /obj/item/mining_voucher
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sci
-	prompt_name = "a port researcher"
+	prompt_name = "一名港口研究员"
 	outfit = /datum/outfit/tarkon/sci
 
 /datum/outfit/tarkon/sci
-	name = "Port Tarkon Science Outfit"
+	name = "塔康港科研制服"
 	uniform = /obj/item/clothing/under/tarkon/sci
 	glasses = /obj/item/clothing/glasses/hud/diagnostic
 	id = /obj/item/card/id/advanced/tarkon/sci
@@ -124,11 +124,11 @@
 	l_pocket = /obj/item/card/id/away/tarkonrobo
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/med
-	prompt_name = "a port trauma medic"
+	prompt_name = "一名港口创伤急救员"
 	outfit = /datum/outfit/tarkon/med
 
 /datum/outfit/tarkon/med
-	name = "Port Tarkon Medical Outfit"
+	name = "塔康港医疗制服"
 	uniform = /obj/item/clothing/under/tarkon/med
 	glasses = /obj/item/clothing/glasses/hud/health
 	id = /obj/item/card/id/advanced/tarkon/med
@@ -138,11 +138,11 @@
 	r_pocket = /obj/item/stack/medical/suture/medicated
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/engi
-	prompt_name = "a port maintenance engineer"
+	prompt_name = "一名港口维护工程师"
 	outfit = /datum/outfit/tarkon/engi
 
 /datum/outfit/tarkon/engi
-	name = "Port Tarkon Engineering Outfit"
+	name = "塔康港工程制服"
 	uniform = /obj/item/clothing/under/tarkon/eng
 	glasses = /obj/item/clothing/glasses/meson/engine/tray
 	id = /obj/item/card/id/advanced/tarkon/engi
@@ -156,11 +156,11 @@
 		)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sec
-	prompt_name = "a port security member"
+	prompt_name = "一名港口安保成员"
 	outfit = /datum/outfit/tarkon/sec
 
 /datum/outfit/tarkon/sec
-	name = "Port Tarkon Security Outfit"
+	name = "塔康港安保制服"
 	uniform = /obj/item/clothing/under/tarkon/sec
 	glasses = /obj/item/clothing/glasses/hud/security
 	gloves = /obj/item/clothing/gloves/tackler/combat
@@ -171,18 +171,18 @@
 	r_pocket = /obj/item/grenade/barrier
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/ensign
-	name = "Port Tarkon Ensign"
-	prompt_name = "an abandoned ensign"
+	name = "塔康港少尉"
+	prompt_name = "一名被遗弃的少尉"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper-o"
-	you_are_text = "You were tasked by Tarkon Industries to Port Tarkon as a low-level command member. Your superior is the site director."
-	flavour_text = "Second in command, you are usually tasked with outward missions with other Tarkon members while the site director stays at the port. "
-	important_text = "This is Not a job ment for Non-Tarkon specific Characters. You are not to abandon Port Tarkon without reason. You are allowed to travel within available Z-levels and to the station, and are allowed to hold exploration parties."
+	you_are_text = "你被塔尔康工业派往塔尔康港担任低级指挥成员。你的上级是站点主管。"
+	flavour_text = "作为二把手，你通常负责带领其他塔尔康成员执行外部任务，而站点主管则留守港口。"
+	important_text = "这不是为非塔尔康专属角色设计的职位。你不得无故离开塔尔康港。你可以在可用的Z层级内以及前往空间站旅行，并获准组织探索队。"
 	outfit = /datum/outfit/tarkon/ensign
 	spawner_job_path = /datum/job/tarkon
 
 /datum/outfit/tarkon/ensign //jack of all trades, master of none, spent all his credits, every last one
-	name = "Port Tarkon Ensigns Outfit"
+	name = "塔康港少尉制服"
 	uniform = /obj/item/clothing/under/tarkon/com
 	ears = /obj/item/radio/headset/tarkon/command
 	id = /obj/item/card/id/advanced/tarkon/ensign
@@ -190,13 +190,13 @@
 	neck = /obj/item/clothing/neck/security_cape/tarkon
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/director
-	name = "Port Tarkon Site Director"
-	prompt_name = "a port site director"
+	name = "塔康港站点主管"
+	prompt_name = "一名港口站点主管"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	you_are_text = "You are a newly assigned Site Director for Port Tarkon. Your superiors are none except the will of yourself and Tarkon Industries."
-	flavour_text = "On the recently reclaimed Port Tarkon, You are tasked with overlooking your crew and keeping the port up and running."
-	important_text = "This is Not a job ment for Non-Tarkon specific Characters. You are not to abandon Port Tarkon. Check other sleepers for alternative jobs."
+	you_are_text = "你是新近任命的塔尔康港站点主管。除了你自己和塔尔康工业的意志，你没有其他上级。"
+	flavour_text = "在最近收复的塔康港，你的任务是监督船员并维持港口的正常运转。"
+	important_text = "此职位并非为非塔康港特定角色设计。你不得离开塔康港。请检查其他休眠舱以寻找替代工作。"
 	outfit = /datum/outfit/tarkon/director
 	spawner_job_path = /datum/job/tarkon/command
 	loadout_enabled = TRUE
@@ -204,7 +204,7 @@
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 
 /datum/outfit/tarkon/director //Look at me, I'm the director now.
-	name = "Port Tarkon Directors Outfit"
+	name = "塔康港主管制服"
 	uniform = /obj/item/clothing/under/tarkon/com
 	ears = /obj/item/radio/headset/tarkon/command
 	id = /obj/item/card/id/advanced/tarkon/director
@@ -215,7 +215,7 @@
 ////////////////////// Corpse/Mob Spawners Below
 
 /datum/outfit/tarkon/loot
-	name = "Dead Tarkon Ensigns Outfit"
+	name = "阵亡塔康港少尉制服"
 	uniform = /obj/item/clothing/under/tarkon/com
 	ears = /obj/item/radio/headset/tarkon/command
 	id = /obj/item/card/id/advanced/tarkon/ensign
@@ -232,8 +232,8 @@
 #define ROLE_TARKALIEN "Xenomorph Hive T-35"
 
 /obj/structure/spawner/tarkon_xenos
-	name = "infested warren"
-	desc = "A deep tunnel that goes deeper than any light can reach. A distant roaring could be heard within..."
+	name = "受侵染的巢穴"
+	desc = "一条深不见底的隧道，任何光线都无法触及深处。洞内传来遥远的咆哮声……"
 	icon_state = "hole"
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	max_integrity = 500
@@ -254,8 +254,8 @@
 	return ..()
 
 /obj/effect/nest_break
-	name = "collapsing infested nest"
-	desc = "Stop standing and get clear!"
+	name = "坍塌中的受侵染巢穴"
+	desc = "别站着，快离开！"
 	layer = TABLE_LAYER
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "hole"
@@ -268,7 +268,7 @@
 	for(var/mob/shooken in range(7,src))
 		shake_camera(shooken, 15, 1)
 	playsound(get_turf(src),'sound/effects/explosion/explosionfar.ogg', 200, TRUE)
-	visible_message(span_boldannounce("The nest's entrance starts to crumble before something charges forth!"))
+	visible_message(span_boldannounce("巢穴入口开始崩塌，有什么东西正冲出来！"))
 	var/mob/living/basic/boss_baby = new boss_mob(loc)
 	boss_baby.set_faction(faction)
 	new loot_drop(loc)
@@ -278,14 +278,14 @@
 	. = ..()
 	src.loot_drop = loot_drop
 	src.boss_mob = boss_mob
-	visible_message(span_boldannounce("The nest rumbles violently as the entrance begins to crack and break apart!"))
+	visible_message(span_boldannounce("巢穴剧烈震动，入口开始破裂崩解！"))
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, FALSE, 50, TRUE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(rustle)), 5 SECONDS, TIMER_DELETE_ME)
 	do_jiggle_nova()
 
 /obj/structure/spawner/tarkon_xenos/common
-	name = "infested nest"
-	desc = "A deep tunnel lined with weeds, something can be heard stirring within..."
+	name = "受侵染的巢穴"
+	desc = "一条长满杂草的深隧道，里面似乎有东西在活动……"
 	icon_state = "hole"
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	max_integrity = 300
@@ -295,8 +295,8 @@
 	loot_drop = /obj/effect/spawner/random/astrum/sci_loot/tarkon
 
 /obj/structure/spawner/tarkon_xenos/minor
-	name = "infested tunnel"
-	desc = "A tunnel lined with weeds, something can be heard clicking deep within..."
+	name = "受侵染的隧道"
+	desc = "一条长满杂草的隧道，深处传来咔哒咔哒的声响……"
 	icon_state = "hole"
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	max_integrity = 150
@@ -310,7 +310,7 @@
 	loot_drop = /obj/effect/spawner/random/exotic/technology/tarkon
 
 /obj/effect/spawner/random/astrum/sci_loot/tarkon
-	name = "abductor scientist loot"
+	name = "绑架者科学家战利品"
 	loot = list(
 		/obj/item/circular_saw/alien = 10,
 		/obj/item/retractor/alien = 10,
@@ -332,7 +332,7 @@
 	req_access = list(ACCESS_TARKON)
 
 /obj/structure/closet/secure_closet/tarkon/engi
-	name = "Circuit Storage"
+	name = "电路存储柜"
 	icon_state = "eng"
 
 #undef ROLE_TARKALIEN

@@ -29,17 +29,17 @@
 	slot = AUGMENT_SLOT_CHEST
 
 /datum/augment_item/implant/chest/nutriment_pump
-	name = "Nutriment Pump"
+	name = "营养泵"
 	cost = 4
 	path = /obj/item/organ/cyberimp/chest/nutriment
 
 /datum/augment_item/implant/chest/optical_camo
-	name = "Optical Camouflage Implant"
+	name = "光学迷彩植入体"
 	cost = 9
 	path = /obj/item/organ/cyberimp/chest/opticalcamo
 
 /datum/augment_item/implant/chest/internal_health_analyzer/lite
-	name = "Internal Health Analyzer"
+	name = "内置健康分析仪"
 	cost = 6
 	path = /obj/item/organ/cyberimp/chest/scanner/lite
 

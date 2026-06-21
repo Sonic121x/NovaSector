@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/summonitem
-	name = "Instant Summons"
-	desc = "This spell can be used to recall a previously marked item to your hand from anywhere in the universe."
+	name = "瞬间召唤"
+	desc = "此咒语可用于将之前标记过的物品从宇宙中的任何地方召唤至你的手中。"
 	button_icon_state = "summons"
 
 	school = SCHOOL_TRANSMUTATION

@@ -2,11 +2,11 @@
 * Spider Phantom - same same as the elephant graveyard one but tailored towards spiders. Probably will be gained upon destroying a Spider Totem
 */
 /datum/brain_trauma/magic/spider
-	name = "Stalking Phantom Spider"
-	desc = "Patient is stalked by a phantom only they can see."
+	name = "潜行的幻影蜘蛛"
+	desc = "患者被一个只有他们自己能看见的幻影所跟踪。"
 	scan_desc = "extra-sensory paranoia"
-	gain_text = span_warning("You feel like something wants to kill you...")
-	lose_text = span_notice("You no longer feel many eyes on your back.")
+	gain_text = span_warning("你感觉有什么东西想杀了你……")
+	lose_text = span_notice("你不再感到背后有许多眼睛在盯着。")
 	resilience = TRAUMA_RESILIENCE_BASIC
 	/// The image holder var for the very real spider
 	var/obj/effect/client_image_holder/spider_phantom/spider
@@ -44,7 +44,7 @@
 
 	if(get_dist(owner, spider) <= 1)
 		playsound(owner, 'sound/effects/magic/demon_attack1.ogg', 50)
-		owner.visible_message(span_warning("[owner] is torn apart by invisible teeth!"), span_userdanger("Ghostly teeth tear your body apart!"))
+		owner.visible_message(span_warning("[owner] 被无形的牙齿撕碎了！"), span_userdanger("幽灵般的牙齿将你的身体撕碎！"))
 		owner.take_bodypart_damage(rand(20, 50), wound_bonus = CANT_WOUND)
 	else if(SPT_PROB(30, seconds_per_tick))
 		spider.forceMove(get_step_towards(spider, owner))
@@ -62,6 +62,6 @@
 // the Image holder, which in this case is just a spider icon - it isn't real and cant hurt you (or can it)
 /obj/effect/client_image_holder/spider_phantom
 	name = "???"
-	desc = "It's coming closer..."
+	desc = "它越来越近了……"
 	image_icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	image_state = "pepper"

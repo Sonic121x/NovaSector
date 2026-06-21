@@ -1,0 +1,247 @@
+/obj/machinery/vending/dorms
+	name = "LustWish"
+	desc = "A vending machine with various toys. Not for the faint of heart."
+	icon_state = "lustwish"
+	base_icon_state = "lustwish"
+	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/lustwish.dmi'
+	light_mask = "lustwish-light-mask"
+	age_restrictions = TRUE
+	///Has the discount card been used on the vending machine?
+	var/card_used = FALSE
+	product_ads = "Try me!;Kinky!;Lewd and fun!;Hey you, yeah you... wanna take a look at my collection?;Come on, take a look!;Remember, always adhere to Nanotrasen corporate policy!;Don't forget to use protection!"
+	vend_reply = "Enjoy!;We're glad to satisfy your desires!"
+
+	//STUFF SOLD HERE//
+	product_categories = list(
+		list(
+			"name" = "Toys",
+			"icon" = FA_ICON_MAGIC_WAND_SPARKLES,
+			"products" = list(
+				//Sex Toys
+				/obj/item/clothing/sextoy/buttplug = 6,
+				/obj/item/clothing/sextoy/nipple_clamps = 4,
+				/obj/item/clothing/sextoy/eggvib = 8,
+				/obj/item/clothing/sextoy/eggvib/signalvib = 8,
+				/obj/item/assembly/signaler = 8,
+				/obj/item/clothing/sextoy/vibroring = 6,
+
+				//Dildo (Use-on-crotch)
+				/obj/item/clothing/sextoy/dildo = 8,
+				/obj/item/clothing/sextoy/dildo/double_dildo = 3,
+				/obj/item/clothing/sextoy/dildo/custom_dildo = 8,
+				/obj/item/clothing/sextoy/fleshlight = 8,
+				/obj/item/clothing/sextoy/magic_wand = 4,
+				/obj/item/clothing/sextoy/vibrator = 4,
+
+				//belt
+				/obj/item/clothing/strapon = 6,
+
+				//Multi-use
+
+				/obj/item/kinky_shocker = 4,
+				/obj/item/clothing/mask/leatherwhip = 4,
+				/obj/item/bdsm_candle = 4,
+				/obj/item/spanking_pad = 4,
+				/obj/item/tickle_feather = 8,
+				/obj/item/borg/upgrade/dominatrixmodule = 5,
+				/obj/item/reagent_containers/venom_milker = 5,
+			),
+		),
+		list(
+			"name" = "Outfits",
+			"icon" = FA_ICON_SHIRT,
+			"products" = list(
+				/obj/item/clothing/under/pants/nova/chaps = 4,
+				/obj/item/clothing/under/costume/playbunny/greyscale = 5,
+				/obj/item/clothing/under/costume/bunnylewd = 5,
+				/obj/item/clothing/under/costume/bunnylewd/white = 5,
+				/obj/item/clothing/head/costume/rabbitears = 5,//Ears together, right after Bunny Suit.
+				/obj/item/clothing/head/playbunnyears = 5,
+				/obj/item/clothing/suit/jacket/tailcoat = 5,
+				/obj/item/clothing/neck/tie/bunnytie = 5,
+				/obj/item/clothing/head/costume/kitty = 4,
+
+				/obj/item/clothing/head/domina_cap = 5,
+				/obj/item/clothing/shoes/ballet_heels/domina_heels = 4,
+				/obj/item/clothing/gloves/evening = 5,
+
+				/obj/item/clothing/under/misc/nova/gear_harness = 20,//Important "not-nude" outfit
+				/obj/item/clothing/shoes/jackboots/knee = 3,
+
+				/obj/item/clothing/under/misc/latex_catsuit = 8,
+				/obj/item/clothing/gloves/long_gloves = 8,
+				/obj/item/clothing/shoes/ballet_heels = 4,
+				/obj/item/clothing/shoes/latex_socks = 8,
+
+				/obj/item/clothing/head/costume/nova/maid = 5,
+				/obj/item/clothing/under/costume/maid = 5,
+				/obj/item/clothing/under/rank/civilian/janitor/maid = 5,
+				/obj/item/clothing/suit/corset = 5,
+
+				/obj/item/clothing/under/tearaway_garments = 5,
+				/obj/item/clothing/glasses/nice_goggles = 1, //easter egg, don't touch plz
+			),
+		),
+		list(
+			"name" = "Restraints",
+			"icon" = FA_ICON_HANDCUFFS,
+			"products" = list(
+				//Sex toys
+				/obj/item/restraints/handcuffs/lewd = 8,
+				/obj/item/stack/shibari_rope/full = 10,
+				/obj/item/stack/shibari_rope/glow/full = 10,
+
+				//clothing facial/head
+				/obj/item/clothing/mask/muzzle/ballgag = 8,
+				/obj/item/clothing/mask/muzzle/ballgag/choking = 8,
+				/obj/item/clothing/mask/muzzle/ring = 4,
+				/obj/item/clothing/head/deprivation_helmet = 5,
+				/obj/item/clothing/glasses/blindfold/dorms = 5,
+				/obj/item/clothing/ears/dorms_headphones = 5,
+				/obj/item/clothing/mask/gas/bdsm_mask = 5,
+				/obj/item/reagent_containers/cup/lewd_filter = 5,
+				/obj/item/clothing/glasses/hypno = 4,
+
+				//neck
+				/obj/item/key/collar = 48,
+				/obj/item/clothing/erp_leash = 8,
+				/obj/item/clothing/neck/collar = 8,
+				/obj/item/clothing/neck/collar/bell = 8,
+				/obj/item/clothing/neck/collar/cowbell = 8,
+				/obj/item/clothing/neck/collar/cross = 8,
+				/obj/item/clothing/neck/collar/tagged = 8,
+				/obj/item/clothing/neck/collar/thick = 8,
+				/obj/item/clothing/neck/collar/thick/bell = 8,
+				/obj/item/clothing/neck/collar/thick/cowbell = 8,
+				/obj/item/clothing/neck/collar/thick/cross = 8,
+				/obj/item/clothing/neck/collar/thick/tagged = 8,
+				/obj/item/clothing/neck/collar/spike = 8,
+				/obj/item/clothing/neck/collar/leather = 8,
+				/obj/item/clothing/neck/collar/leather/bell = 8,
+				/obj/item/clothing/neck/collar/leather/cowbell = 8,
+				/obj/item/clothing/neck/collar/leather/cross = 8,
+				/obj/item/clothing/neck/collar/leather/tagged = 8,
+
+				//torso clothing
+				/obj/item/clothing/suit/straight_jacket/latex_straight_jacket = 5,
+				/obj/item/clothing/suit/straight_jacket/shackles = 4,
+
+				//hands
+				/obj/item/clothing/gloves/ball_mittens = 8,
+				/obj/item/clothing/gloves/ball_mittens/paw_mittens = 8,
+			),
+		),
+			list(
+			"name" = "Consumables",
+			"icon" = FA_ICON_VIAL,
+			"products" = list(
+				//Sex toys
+				/obj/item/condom_pack = 20,
+				/obj/item/serviette_pack = 10,
+				/obj/item/fancy_pillow = 32,
+
+				//chems
+				/obj/item/reagent_containers/applicator/pill/crocin = 20,
+				/obj/item/reagent_containers/applicator/pill/camphor = 10,
+				/obj/item/reagent_containers/cup/bottle/crocin = 6,
+				/obj/item/reagent_containers/cup/bottle/camphor = 3,
+				/obj/item/reagent_containers/cup/bottle/succubus_milk = 6, //Those are legal 'cause you can just turn off prefs in round in "CLOWN SMOKE MACHINE+PENIS ENLARGEMENT CHEMICAL CASE". Yes, i have special code-phrase for this. I've seen some shit.
+				/obj/item/reagent_containers/cup/bottle/incubus_draft = 6,
+
+				//neurowares
+				/obj/item/disk/neuroware/crocin = 30,
+				/obj/item/disk/neuroware/camphor = 20,
+				/obj/item/storage/box/flat/neuroware/crocin = 15,
+				/obj/item/storage/box/flat/neuroware/camphor = 10,
+			),
+		),
+		list(
+			"name" = "Structures",
+			"icon" = FA_ICON_HAMMER,
+			"products" = list(
+				//fur niture //haha you got it
+				/obj/item/storage/box/bdsmbed_kit = 4,
+				/obj/item/storage/box/milking_kit = 4,
+				/obj/item/storage/box/shibari_stand = 4,
+				/obj/item/storage/box/strippole_kit = 4,
+				/obj/item/storage/box/xstand_kit = 4,
+				/obj/item/holosign_creator/privacy = 4,
+			),
+		),
+	)
+
+	premium = list(
+		/obj/item/clothing/neck/collar/holocollar = 3,
+		/obj/item/clothing/neck/collar/thick/holocollar = 3,
+		/obj/item/clothing/neck/collar/leather/holocollar = 3,
+		/obj/item/clothing/neck/size_collar = 8,//It only works in the Interlink anyways
+	)
+
+	contraband = list(
+		/obj/item/electropack/shockcollar = 4,
+		/obj/item/clothing/neck/mind_collar = 2,
+		/obj/item/clothing/under/costume/jabroni = 4,
+		/obj/item/clothing/suit/straight_jacket/kinky_sleepbag = 2, //my favorite thing, spent 1 month on it. Don't remove please.
+		/obj/item/disk/nifsoft_uploader/dorms/contract = 5,
+		/obj/item/reagent_containers/applicator/pill/hexacrocin = 10,
+		/obj/item/reagent_containers/applicator/pill/pentacamphor = 5,
+		/obj/item/reagent_containers/cup/bottle/hexacrocin = 4,
+		/obj/item/reagent_containers/cup/bottle/pentacamphor = 2,
+		/obj/item/disk/neuroware/hexacrocin = 15,
+		/obj/item/disk/neuroware/pentacamphor = 10,
+		/obj/item/storage/box/flat/neuroware/hexacrocin = 4,
+		/obj/item/storage/box/flat/neuroware/pentacamphor = 2,
+	)
+
+	refill_canister = /obj/item/vending_refill/lustwish
+	payment_department = ACCOUNT_SRV
+	default_price = PAYCHECK_CREW * 0.6
+	extra_price = PAYCHECK_COMMAND * 2.5
+	allow_custom = TRUE
+
+//Changes the settings on the vendor, if the user uses the discount card.
+/obj/machinery/vending/dorms/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
+	if(!istype(attacking_item, /obj/item/lustwish_discount))
+		return ..()
+
+	user.visible_message(span_boldnotice("Something changes in [src] with a loud clunk."))
+	card_used = !card_used
+
+	if(card_used)
+		default_price = 0
+		extra_price = 0
+
+		return
+
+	default_price = initial(default_price)
+	extra_price = initial(extra_price)
+
+///Performs checks to see if the user can change the color on the vending machine.
+/obj/machinery/vending/dorms/proc/check_menu(mob/living/user, obj/item/multitool)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated)
+		return FALSE
+	if(!multitool || !user.is_holding(multitool))
+		return FALSE
+
+	return TRUE
+
+/obj/machinery/vending/dorms/Initialize(mapload)
+	. = ..()
+	update_icon_state()
+	update_icon()
+
+/obj/machinery/vending/dorms/update_icon_state()
+	..()
+	if(machine_stat & BROKEN)
+		icon_state = "[base_icon_state]-broken"
+		return
+
+	icon_state = "[base_icon_state][powered() ? null : "-off"]"
+
+//Refill item
+/obj/item/vending_refill/lustwish
+	machine_name = "LustWish"
+	icon_state = "lustwish_refill"
+	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'

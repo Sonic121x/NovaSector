@@ -2,8 +2,8 @@
 	icon = 'modular_nova/modules/aesthetics/rack/icons/rack.dmi'
 
 /obj/structure/rack/shelf
-	name = "shelf"
-	desc = "A shelf, for storing things on. Convenient!"
+	name = "架子"
+	desc = "一个架子，用来存放东西。很方便！"
 	icon = 'modular_nova/modules/aesthetics/rack/icons/rack.dmi'
 	icon_state = "shelf"
 

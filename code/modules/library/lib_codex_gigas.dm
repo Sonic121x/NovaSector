@@ -1,6 +1,6 @@
 /obj/item/book/codex_gigas
-	name = "\improper Codex Gigas"
-	desc = "A book documenting the nature of devils."
+	name = "\improper 魔鬼法典"
+	desc = "一本记录恶魔本性的书。"
 	icon_state ="demonomicon"
 	lefthand_file = 'icons/mob/inhands/items/books_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/books_righthand.dmi'

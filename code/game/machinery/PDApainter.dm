@@ -1,7 +1,7 @@
 /// Basic machine used to paint PDAs and re-trim ID cards.
 /obj/machinery/pdapainter
-	name = "\improper Tablet & ID Painter"
-	desc = "A painting machine that can be used to paint PDAs and trim IDs. To use, simply insert the item and choose the desired preset."
+	name = "\improper 掌上电脑&ID卡印刷机"
+	desc = "可用于绘制掌上电脑和修改ID卡的印刷机。只要把东西插进去并选择所需的预设就行了。"
 	icon = 'icons/obj/machines/pda.dmi'
 	icon_state = "pdapainter"
 	base_icon_state = "pdapainter"
@@ -137,10 +137,10 @@
 
 /obj/machinery/pdapainter/welder_act(mob/living/user, obj/item/tool)
 	if(!(machine_stat & BROKEN) && (atom_integrity >= max_integrity))
-		balloon_alert(user, "isn't broken!")
+		balloon_alert(user, "没坏！")
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.tool_start_check(user, amount = 1))
-		balloon_alert(user, "not enough fuel!")
+		balloon_alert(user, "燃料不足！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.use_tool(src, user, 40, volume = 50))
@@ -148,7 +148,7 @@
 
 	set_machine_stat(machine_stat & ~BROKEN)
 	atom_integrity = max_integrity
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修复")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/pdapainter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -185,7 +185,7 @@
 
 	if(stored_pda)
 		eject_pda(user)
-		balloon_alert(user, "swapped")
+		balloon_alert(user, "已更换")
 
 	stored_pda = new_pda
 	new_pda.add_fingerprint(user)
@@ -218,9 +218,9 @@
  */
 /obj/machinery/pdapainter/proc/insert_id_card(obj/item/card/id/new_id_card, mob/living/user)
 	if(!new_id_card.trim_changeable)
-		balloon_alert(user, "rejected!")
+		balloon_alert(user, "已拒绝！")
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
-		to_chat(user, span_warning("This ID card does not appear to be compatible with the ID Painter."))
+		to_chat(user, span_warning("这张ID卡似乎与ID涂色机不兼容。"))
 		return FALSE
 
 	if(user && !user.transferItemToLoc(new_id_card, src, silent = FALSE))
@@ -230,7 +230,7 @@
 
 	if(stored_id_card)
 		eject_id_card(user)
-		balloon_alert(user, "swapped")
+		balloon_alert(user, "已更换")
 
 	stored_id_card = new_id_card
 	new_id_card.add_fingerprint(user)
@@ -360,7 +360,7 @@
 				if(SSid_access.apply_trim_to_card(stored_id_card, path, copy_access = FALSE))
 					return TRUE
 
-				to_chat(usr, span_warning("The trim you selected could not be added to \the [stored_id_card]. You will need a rarer ID card to imprint that trim data."))
+				to_chat(usr, span_warning("您选择的印花无法添加到 \the [stored_id_card] 中。您将需要一个更特殊的ID卡才能印制该印花数据."))
 
 			return TRUE
 		if("reset_card")
@@ -373,25 +373,25 @@
 
 /// Security departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/security
-	name = "\improper Security PDA & ID Painter"
+	name = "\improper 安保掌上电脑&ID卡印刷机"
 	target_dept = REGION_SECURITY
 
 /// Medical departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/medbay
-	name = "\improper Medbay PDA & ID Painter"
+	name = "\improper 医疗部掌上电脑&ID卡印刷机"
 	target_dept = REGION_MEDBAY
 
 /// Science departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/research
-	name = "\improper Research PDA & ID Painter"
+	name = "\improper 研究部掌上电脑&ID卡印刷机"
 	target_dept = REGION_RESEARCH
 
 /// Engineering departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/engineering
-	name = "\improper Engineering PDA & ID Painter"
+	name = "\improper 工程部掌上电脑&ID卡印刷机"
 	target_dept = REGION_ENGINEERING
 
 /// Supply departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/supply
-	name = "\improper Supply PDA & ID Painter"
+	name = "\improper 供给部掌上电脑&ID卡印刷机"
 	target_dept = REGION_SUPPLY

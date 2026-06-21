@@ -30,9 +30,9 @@
 //Evolving
 
 /datum/action/innate/slime/evolve
-	name = "Evolve"
+	name = "进化"
 	button_icon_state = "slimegrow"
-	desc = "This will let you evolve from baby to adult slime."
+	desc = "这将让你从史莱姆幼体进化为成体。"
 	life_stage_required = SLIME_LIFE_STAGE_BABY
 	needs_growth = TRUE
 	nutrition_cost = SLIME_EVOLUTION_COST
@@ -42,16 +42,16 @@
 	var/mob/living/basic/slime/slime_owner = owner
 
 	if(slime_owner.stat)
-		slime_owner.balloon_alert(slime_owner, "unconscious!")
+		slime_owner.balloon_alert(slime_owner, "失去意识！")
 		return
 	if(slime_owner.life_stage == SLIME_LIFE_STAGE_ADULT)
-		slime_owner.balloon_alert(slime_owner, "already adult!")
+		slime_owner.balloon_alert(slime_owner, "已经是成年体了！")
 		return
 	if(slime_owner.amount_grown < SLIME_EVOLUTION_THRESHOLD)
-		slime_owner.balloon_alert(slime_owner, "need to grow!")
+		slime_owner.balloon_alert(slime_owner, "需要成长！")
 		return
 	if(slime_owner.nutrition < nutrition_cost)
-		slime_owner.balloon_alert(slime_owner, "need food!")
+		slime_owner.balloon_alert(slime_owner, "需要食物！")
 		return
 
 	slime_owner.adjust_nutrition(-nutrition_cost)
@@ -65,9 +65,9 @@
 //Reproduction
 
 /datum/action/innate/slime/reproduce
-	name = "Reproduce"
+	name = "繁殖"
 	button_icon_state = "slimesplit"
-	desc = "This will make you split into four slimes."
+	desc = "这将使你分裂成四个史莱姆。"
 	life_stage_required = SLIME_LIFE_STAGE_ADULT
 	needs_growth = TRUE
 
@@ -79,18 +79,18 @@
 /mob/living/basic/slime/proc/reproduce()
 
 	if(stat != CONSCIOUS)
-		balloon_alert(src, "not conscious!")
+		balloon_alert(src, "没有意识！")
 		return
 
 	if(!isopenturf(loc))
-		balloon_alert(src, "not here!")
+		balloon_alert(src, "不能在这里！")
 
 	if(life_stage != SLIME_LIFE_STAGE_ADULT)
-		balloon_alert(src, "not adult!")
+		balloon_alert(src, "不是成年体！")
 		return
 
 	if(amount_grown < SLIME_EVOLUTION_THRESHOLD)
-		balloon_alert(src, "need growth!")
+		balloon_alert(src, "需要成长！")
 		return
 
 	var/list/friends_list = list()
@@ -103,7 +103,7 @@
 
 	overcrowded = length(friends_list) >= SLIME_OVERCROWD_AMOUNT
 	if(overcrowded)
-		balloon_alert(src, "overcrowded!")
+		balloon_alert(src, "过于拥挤！")
 		return
 
 	var/new_nutrition = floor(nutrition * 0.9)

@@ -1,6 +1,6 @@
 /obj/machinery/vending/engivend
-	name = "\improper Engi-Vend"
-	desc = "Spare tool vending. What? Did you expect some witty description?"
+	name = "\improper 工程工具售货机"
+	desc = "备用工具售卖。怎么啦？你以为会有风趣的描述吗？"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
 	panel_type = "panel10"

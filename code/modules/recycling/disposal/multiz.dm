@@ -3,12 +3,12 @@
 
 
 /obj/structure/disposalpipe/trunk/multiz
-	name = "Disposal trunk that goes up"
+	name = "向上延伸的废物处理主干管道"
 	icon_state = "pipe-up"
 	var/multiz_dir = MULTIZ_PIPE_UP ///Set the multiz direction of your trunk. 1 = up, 2 = down
 
 /obj/structure/disposalpipe/trunk/multiz/down
-	name = "Disposal trunk that goes down"
+	name = "向下延伸的废物处理主干管道"
 	icon_state = "pipe-down"
 	multiz_dir = MULTIZ_PIPE_DOWN
 

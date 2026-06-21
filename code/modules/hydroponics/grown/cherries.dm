@@ -1,7 +1,7 @@
 // Cherries
 /obj/item/seeds/cherry
-	name = "cherry pit pack"
-	desc = "Careful not to crack a tooth on one... That'd be the pits."
+	name = "樱桃核包"
+	desc = "千万要小心别把牙齿磕断了……那样可就糟糕了。"
 	icon_state = "seed-cherry"
 	species = "cherry"
 	plantname = "Cherry Tree"
@@ -22,8 +22,8 @@
 
 /obj/item/food/grown/cherries
 	seed = /obj/item/seeds/cherry
-	name = "cherries"
-	desc = "Great for toppings!"
+	name = "樱桃"
+	desc = "非常适合用作配料！"
 	icon_state = "cherry"
 	gender = PLURAL
 	bite_consumption_mod = 2
@@ -36,8 +36,8 @@
 
 // Blue Cherries
 /obj/item/seeds/cherry/blue
-	name = "blue cherry pit pack"
-	desc = "The blue kind of cherries."
+	name = "蓝樱桃核包"
+	desc = "蓝色的那种樱桃。"
 	icon_state = "seed-bluecherry"
 	species = "bluecherry"
 	plantname = "Blue Cherry Tree"
@@ -48,8 +48,8 @@
 
 /obj/item/food/grown/bluecherries
 	seed = /obj/item/seeds/cherry/blue
-	name = "blue cherries"
-	desc = "They're cherries that are blue."
+	name = "蓝樱桃"
+	desc = "蓝色的樱桃。"
 	icon_state = "bluecherry"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -61,8 +61,8 @@
 
 //Cherry Bulbs
 /obj/item/seeds/cherry/bulb
-	name = "cherry bulb pit pack"
-	desc = "The glowy kind of cherries."
+	name = "樱桃球茎核包"
+	desc = "那种色泽鲜艳的樱桃。"
 	icon_state = "seed-cherrybulb"
 	species = "cherrybulb"
 	plantname = "Cherry Bulb Tree"
@@ -75,8 +75,8 @@
 
 /obj/item/food/grown/cherrybulbs
 	seed = /obj/item/seeds/cherry/bulb
-	name = "cherry bulbs"
-	desc = "They're like little Space Christmas lights!"
+	name = "灯泡樱桃"
+	desc = "它们就像小小的太空圣诞灯！"
 	icon_state = "cherry_bulb"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -88,8 +88,8 @@
 
 //Cherry Bombs
 /obj/item/seeds/cherry/bomb
-	name = "cherry bomb pit pack"
-	desc = "They give you vibes of dread and frustration."
+	name = "樱桃炸弹核包"
+	desc = "他们给你带来的感觉是恐惧和沮丧。"
 	icon_state = "seed-cherry_bomb"
 	species = "cherry_bomb"
 	plantname = "Cherry Bomb Tree"
@@ -100,8 +100,8 @@
 	rarity = 60 //See above
 
 /obj/item/food/grown/cherry_bomb
-	name = "cherry bombs"
-	desc = "You think you can hear the hissing of a tiny fuse."
+	name = "樱桃炸弹"
+	desc = "你觉得你能听到一根小保险丝发出的嘶嘶声。"
 	icon_state = "cherry_bomb"
 	alt_icon = "cherry_bomb_lit"
 	seed = /obj/item/seeds/cherry/bomb

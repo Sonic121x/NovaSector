@@ -3,8 +3,8 @@
  * Currently not given to any mob, but retained so admins can use it.
  */
 /datum/action/cooldown/mob_cooldown/watcher_overwatch
-	name = "Overwatch"
-	desc = "Keep a close eye on the target's actions, automatically firing upon them if they act."
+	name = "俯瞰"
+	desc = "密切监视目标的行为，若其采取行动则自动开火。"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "eye"
 	background_icon_state = "bg_demon"
@@ -45,7 +45,7 @@
 	living_owner.face_atom(target)
 	living_owner.Stun(overwatch_duration, ignore_canstun = TRUE)
 	target.apply_status_effect(/datum/status_effect/overwatch, overwatch_duration, owner, projectile_type, projectile_sound)
-	owner.visible_message(span_warning("[owner]'s eye locks on to [target]!"))
+	owner.visible_message(span_warning("[owner]的眼睛锁定了[target]！"))
 	StartCooldown()
 	return TRUE
 
@@ -144,8 +144,8 @@
 	qdel(src)
 
 /atom/movable/screen/alert/status_effect/overwatch
-	name = "Overwatched"
-	desc = "Freeze! You are being watched!"
+	name = "被监视"
+	desc = "不许动！你正被监视着！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "aimed"
 

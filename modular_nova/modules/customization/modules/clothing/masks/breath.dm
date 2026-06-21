@@ -32,14 +32,14 @@
 // Modular masks
 
 /obj/item/clothing/mask/breath/vox
-	desc = "A close-fitting mask that can be connected to an air supply. This one's got an easily accessible feeding port to be more suitable for the Vox crewmembers."
-	name = "vox breath mask"
+	desc = "一种可以连接到供气系统的贴合面罩。这款有一个易于使用的进食口，更适合沃克斯族船员。"
+	name = "沃克斯呼吸面罩"
 	actions_types = list()
 	flags_cover = NONE
 
 /obj/item/clothing/mask/balaclava/adjustable
-	name = "adjustable balaclava"
-	desc = "Wider eyed and made of an elastic based material, this one seems like it can contort more."
+	name = "可调节巴拉克拉法帽"
+	desc = "这款面罩的眼部开口更宽，采用弹性材料制成，似乎能更好地贴合面部轮廓。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "balaclava_adj"
@@ -57,22 +57,22 @@
 			if (0)
 				flags_inv = HIDEHAIR
 				icon_state = initial(icon_state) + "_open"
-				to_chat(user, span_notice("You pull the balaclava away, revealing your face."))
+				to_chat(user, span_notice("你将巴拉克拉瓦头套拉下，露出了你的脸。"))
 				open = 1
 			if (1)
 				flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 				icon_state = initial(icon_state) + "_mouth"
-				to_chat(user, span_notice("You adjust the balaclava up to cover your mouth."))
+				to_chat(user, span_notice("你将巴拉克拉瓦头套向上调整以遮住嘴巴。"))
 				open = 2
 			else
 				flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 				icon_state = initial(icon_state)
-				to_chat(user, span_notice("You pull the balaclava up to cover your whole head."))
+				to_chat(user, span_notice("你将巴拉克拉瓦头套完全拉起，遮住了整个头部。"))
 				open = 0
 		user.update_clothing(slot_flags)
 
 /obj/item/clothing/mask/balaclava/threehole
-	name = "three hole balaclava"
+	name = "三孔巴拉克拉瓦头套"
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "balaclavam"
@@ -81,7 +81,7 @@
 	visor_flags_inv = HIDEHAIR
 
 /obj/item/clothing/mask/balaclava/threehole/green
-	name = "three hole green balaclava"
+	name = "绿色三孔巴拉克拉瓦头套"
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "swatclavam"

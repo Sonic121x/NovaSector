@@ -57,12 +57,12 @@
 
 	if(href_list["toggle_ready"])
 		if(SSticker && SSticker.current_state > GAME_STATE_PREGAME)
-			to_chat(src, span_notice("It's too late for that, the round is already starting!"))
+			to_chat(src, span_notice("太迟了，轮次已经开始！"))
 			return
 		play_lobby_button_sound()
 		if(CONFIG_GET(flag/min_flavor_text))
 			if(!is_admin(client) && length_char(client?.prefs?.read_preference(/datum/preference/text/flavor_text)) < CONFIG_GET(number/flavor_text_character_requirement))
-				to_chat(src, span_notice("You need at least [CONFIG_GET(number/flavor_text_character_requirement)] characters of flavor text to ready up for the round. You have [length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))] characters."))
+				to_chat(src, span_notice("你需要至少 [CONFIG_GET(number/flavor_text_character_requirement)] 个字符的角色描述文本来准备加入本轮游戏。你当前有 [length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))] 个字符。"))
 				return
 
 		if(ready == PLAYER_NOT_READY)
@@ -153,16 +153,16 @@
 	if(LAZYLEN(servers) == 1)
 		var/server_name = servers[1]
 		var/server_ip = servers[server_name]
-		var/confirm = tgui_alert(src, "Are you sure you want to swap to [server_name] ([server_ip])?", "Swapping server!", list("Send me there", "Stay here"))
+		var/confirm = tgui_alert(src, "你确定要切换到[server_name]（[server_ip]）吗？", "切换服务器！", list("Send me there", "Stay here"))
 		if(confirm == "Connect me!")
 			to_chat_immediate(src, "So long, spaceman.")
 			client << link(server_ip)
 		return
-	var/server_name = tgui_input_list(src, "Please select the server you wish to swap to:", "Swap servers!", servers)
+	var/server_name = tgui_input_list(src, "请选择你想要切换到的服务器：", "切换服务器！", servers)
 	if(!server_name)
 		return
 	var/server_ip = servers[server_name]
-	var/confirm = tgui_alert(src, "Are you sure you want to swap to [server_name] ([server_ip])?", "Swapping server!", list("Connect me!", "Stay here!"))
+	var/confirm = tgui_alert(src, "你确定要切换到[server_name]（[server_ip]）吗？", "切换服务器！", list("Connect me!", "Stay here!"))
 	if(confirm == "Connect me!")
 		to_chat_immediate(src, "So long, spaceman.")
 		src.client << link(server_ip)

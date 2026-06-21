@@ -163,17 +163,17 @@
 			return TRUE
 		if("Dispense_Tickets")
 			if(computer.stored_paper <= 0)
-				to_chat(gamer, span_notice("Printer is out of paper."))
+				to_chat(gamer, span_notice("打印机缺纸。"))
 				return
 			else
-				computer.visible_message(span_notice("\The [computer] prints out paper."))
+				computer.visible_message(span_notice("\The [computer]打印出纸张。"))
 				if(ticket_count >= 1)
 					new /obj/item/stack/arcadeticket((get_turf(computer)))
-					to_chat(gamer, span_notice("[computer] dispenses a ticket!"))
+					to_chat(gamer, span_notice("[computer]分发了一张票券！"))
 					ticket_count -= 1
 					computer.stored_paper -= 1
 				else
-					to_chat(gamer, span_notice("You don't have any stored tickets!"))
+					to_chat(gamer, span_notice("你没有存储任何票券！"))
 				return TRUE
 		if("Start_Game")
 			game_active = TRUE

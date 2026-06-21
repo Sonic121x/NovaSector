@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/ripley
-	desc = "Autonomous Power Loader Unit MK-I. Designed primarily around heavy lifting, the Ripley can be outfitted with utility equipment to fill a number of roles."
-	name = "\improper APLU MK-I \"Ripley\""
+	desc = "自主动力装载机MK-I。雷普利主要是围绕重型起重而设计的，它可以配备各种实用设备来完成多种任务。"
+	name = "\improper APLU MK-I \"雷普利\""
 	icon_state = "ripley"
 	base_icon_state = "ripley"
 	silicon_icon_state = "ripley-empty"
@@ -66,8 +66,8 @@
 	laser = 5
 
 /obj/vehicle/sealed/mecha/ripley/mk2
-	desc = "Autonomous Power Loader Unit MK-II. This prototype Ripley is refitted with a pressurized cabin, trading its prior speed for atmospheric protection and armor."
-	name = "\improper APLU MK-II \"Ripley\""
+	desc = "自主动力装载机单元MK-II。这台雷普利被加装了一个加压舱，牺牲它的速度换取了气密保护和装甲。"
+	name = "\improper APLU MK-II \"雷普利\""
 	icon_state = "ripleymkii"
 	base_icon_state = "ripleymkii"
 	fast_pressure_step_in = 2 //step_in while in low pressure conditions
@@ -92,8 +92,8 @@
 	acid = 100
 
 /obj/vehicle/sealed/mecha/ripley/paddy
-	desc = "Autonomous Power Loader Unit Subtype Paddy. A Modified MK-I Ripley design intended for light security use."
-	name = "\improper APLU \"Paddy\""
+	desc = "自主动力装载单元帕迪子型号。一种为轻型安保用途而修改的MK-I里普利设计。"
+	name = "\improper APLU \"帕迪\""
 	icon_state = "paddy"
 	base_icon_state = "paddy"
 	movedelay = 5
@@ -185,8 +185,8 @@
 	)
 
 /obj/vehicle/sealed/mecha/ripley/deathripley
-	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
-	name = "\improper DEATH-RIPLEY"
+	desc = "哎呦我操是死亡小队，我们死定啦！"
+	name = "\improper 死队-雷普利"
 	icon_state = "deathripley"
 	base_icon_state = "deathripley"
 	fast_pressure_step_in = 2 //step_in while in low pressure conditions
@@ -207,7 +207,7 @@
 	)
 
 /obj/vehicle/sealed/mecha/ripley/deathripley/real
-	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE. FOR REAL"
+	desc = "哎呦我操是死亡小队，我们死定啦！我他妈认真的！"
 	equip_by_category = list(
 		MECHA_L_ARM = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill,
 		MECHA_R_ARM = null,
@@ -217,8 +217,8 @@
 	)
 
 /obj/vehicle/sealed/mecha/ripley/mining
-	desc = "An old, dusty mining Ripley."
-	name = "\improper APLU \"Miner\""
+	desc = "一台老旧的矿用雷普利。"
+	name = "\improper APLU \"矿机\""
 
 /obj/vehicle/sealed/mecha/ripley/mining/Initialize(mapload)
 	. = ..()
@@ -246,8 +246,8 @@
 GLOBAL_DATUM(cargo_ripley, /obj/vehicle/sealed/mecha/ripley/cargo)
 
 /obj/vehicle/sealed/mecha/ripley/cargo
-	name = "\improper APLU \"Big Bess\""
-	desc = "An ailing, old, repurposed cargo hauler. Most of its equipment wires are frayed or missing and its frame is rusted."
+	name = "\improper APLU \"大工蜂\""
+	desc = "一辆老旧的货运机甲。它的大部分设备电线磨损或丢失，它的框架也生锈了。"
 	icon_state = "hauler"
 	base_icon_state = "hauler"
 	silicon_icon_state = "hauler-empty"
@@ -279,8 +279,8 @@ GLOBAL_DATUM(cargo_ripley, /obj/vehicle/sealed/mecha/ripley/cargo)
 	update_part_values()
 
 /obj/item/mecha_parts/mecha_equipment/ejector
-	name = "cargo compartment"
-	desc = "Holds cargo loaded with a hydraulic clamp."
+	name = "货舱隔层"
+	desc = "通过液压钳装载并固定货物。"
 	icon_state = "mecha_bin"
 	equipment_slot = MECHA_UTILITY
 	detachable = FALSE
@@ -325,15 +325,15 @@ GLOBAL_DATUM(cargo_ripley, /obj/vehicle/sealed/mecha/ripley/cargo)
 			step_rand(stored)
 
 /obj/item/mecha_parts/mecha_equipment/ejector/relay_container_resist_act(mob/living/user, obj/container)
-	to_chat(user, span_notice("You lean on the back of [container] and start pushing so it falls out of [src]."))
+	to_chat(user, span_notice("你靠在[container]后面开始推，试图让它从[src]里掉出来。"))
 	if(do_after(user, 30 SECONDS, target = container))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || container.loc != src )
 			return
-		to_chat(user, span_notice("You successfully pushed [container] out of [src]!"))
+		to_chat(user, span_notice("你成功把[container]推出了[src]！"))
 		container.forceMove(drop_location())
 	else
 		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
-			to_chat(user, span_warning("You fail to push [container] out of [src]!"))
+			to_chat(user, span_warning("你没能把[container]推出[src]！"))
 
 /obj/item/mecha_parts/mecha_equipment/ejector/get_snowflake_data()
 	var/list/data = list(
@@ -365,8 +365,8 @@ GLOBAL_DATUM(cargo_ripley, /obj/vehicle/sealed/mecha/ripley/cargo)
 		return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/ejector/seccage
-	name = "holding cell"
-	desc = "Holds suspects loaded with a hydraulic claw."
+	name = "拘留舱"
+	desc = "通过液压爪装载并拘留嫌疑人。"
 	cargo_capacity = 4
 
 /obj/item/mecha_parts/mecha_equipment/ejector/seccage/Initialize(mapload)
@@ -389,7 +389,7 @@ GLOBAL_DATUM(cargo_ripley, /obj/vehicle/sealed/mecha/ripley/cargo)
 
 /obj/item/mecha_parts/mecha_equipment/ejector/seccage/proc/stop_cuff_removal(datum/source, obj/item/cuffs)
 	SIGNAL_HANDLER
-	to_chat(source, span_warning("You don't have the room to remove [cuffs]!"))
+	to_chat(source, span_warning("你没有足够的空间取下[cuffs]！"))
 	return COMSIG_MOB_BLOCK_CUFF_REMOVAL
 
 /obj/item/mecha_parts/mecha_equipment/ejector/seccage/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -411,15 +411,15 @@ GLOBAL_DATUM(cargo_ripley, /obj/vehicle/sealed/mecha/ripley/cargo)
 	if (user.mob_size > MOB_SIZE_HUMAN)
 		breakout_time = 6 SECONDS
 
-	to_chat(user, span_notice("You begin attempting a breakout. (This will take around [DisplayTimeText(breakout_time)] and [chassis] needs to remain stationary.)"))
+	to_chat(user, span_notice("你开始尝试越狱。（这大约需要[DisplayTimeText(breakout_time)]，并且[chassis]需要保持静止。）"))
 	if(!do_after(user, breakout_time, target = chassis))
 		return
-	to_chat(user, span_notice("You break out of the [src]."))
+	to_chat(user, span_notice("你从[src]中挣脱了出来。"))
 	playsound(chassis, 'sound/items/tools/crowbar.ogg', 100, TRUE)
 	cheese_it(user)
 	for(var/mob/freebird in contents)
 		if(user != freebird)
-			to_chat(freebird, span_warning("[user] has managed to open the hatch, and you fall out with him. You're free!"))
+			to_chat(freebird, span_warning("[user]设法打开了舱门，你和他一起掉了出来。你自由了！"))
 			cheese_it(freebird)
 
 /obj/item/mecha_parts/mecha_equipment/ejector/seccage/proc/cheese_it(mob/living/escapee)

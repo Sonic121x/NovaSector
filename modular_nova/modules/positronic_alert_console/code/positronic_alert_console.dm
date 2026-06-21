@@ -1,6 +1,6 @@
 /obj/machinery/posialert
-	name = "automated positronic alert console"
-	desc = "A console that will ping when a positronic personality is available for download."
+	name = "自动正电子警报控制台"
+	desc = "当有正电子人格可供下载时会发出提示的控制台。"
 	icon = 'modular_nova/modules/positronic_alert_console/icons/terminals.dmi'
 	icon_state = "posialert"
 	// to create a cooldown so if roboticists are tired of ghosts
@@ -17,32 +17,32 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/posialert, 28)
 /obj/machinery/posialert/examine(mob/user)
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, robotics_cooldown))
-		. += span_notice("Remaining time on mute is [COOLDOWN_TIMELEFT(src, robotics_cooldown) * 0.1] seconds.")
-		. += span_notice("Mute reason: [mute_reason]")
-	. += span_notice("Press the screen to mute or unmute the console.")
+		. += span_notice("静音剩余时间为[COOLDOWN_TIMELEFT(src, robotics_cooldown) * 0.1]秒。")
+		. += span_notice("静音原因：[mute_reason]")
+	. += span_notice("按下屏幕以静音或取消静音此控制台。")
 
 /obj/machinery/posialert/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, robotics_cooldown))
 		COOLDOWN_RESET(src, robotics_cooldown)
-		to_chat(user, span_notice("You have removed the mute on [src]."))
+		to_chat(user, span_notice("你已移除[src]的静音。"))
 		return
 	mute_reason = null
-	mute_reason = stripped_input(user, "What would the reason for the mute be? (max characters is 20)", "Mute Reason", "", 20)
+	mute_reason = stripped_input(user, "静音的原因是什么？（最多20个字符）", "静音原因", "", 20)
 	if(!mute_reason)
-		to_chat(user, span_warning("[src] requires a reason to mute!"))
+		to_chat(user, span_warning("[src]需要提供静音原因！"))
 		return
 	COOLDOWN_START(src, robotics_cooldown, 5 MINUTES)
-	to_chat(user, span_notice("You have muted [src] for five minutes."))
+	to_chat(user, span_notice("你已将[src]静音五分钟。"))
 
 /obj/machinery/posialert/attack_ghost(mob/user)
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, robotics_cooldown))
-		to_chat(user, span_warning("[src] has been muted! Remaining time on mute is [COOLDOWN_TIMELEFT(src, robotics_cooldown) * 0.1] seconds."))
-		to_chat(user, span_warning("[src]'s mute reason: [mute_reason]"))
+		to_chat(user, span_warning("[src]已被静音！静音剩余时间为[COOLDOWN_TIMELEFT(src, robotics_cooldown) * 0.1]秒。"))
+		to_chat(user, span_warning("[src]的静音原因：[mute_reason]"))
 		return
 	if(!COOLDOWN_FINISHED(src, ghost_cooldown))
-		to_chat(user, span_warning("[src] is currently still on cooldown! Remaining time on cooldown is [COOLDOWN_TIMELEFT(src, ghost_cooldown) * 0.1] seconds."))
+		to_chat(user, span_warning("[src]目前仍在冷却中！冷却剩余时间为[COOLDOWN_TIMELEFT(src, ghost_cooldown) * 0.1]秒。"))
 		return
 	COOLDOWN_START(src, ghost_cooldown, 30 SECONDS)
 	flick("posialertflash",src)
@@ -51,18 +51,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/posialert, 28)
 	playsound(loc, 'sound/machines/ping.ogg', 50)
 
 /datum/aas_config_entry/posibrain_alert
-	name = "Science Alert: New Positronic Brain Available"
+	name = "科研警报：新的正电子脑可用"
 	announcement_lines_map = list(
-		"Message" = "There are positronic personalities available.",
+		"Message" = "有正电子人格可供下载。",
 	)
-	general_tooltip = "Broadcasted when a new personality is available for download in posibrain."
+	general_tooltip = "当正电子脑中有新人格可供下载时广播。"
 
 /datum/aas_config_entry/posibrain_alert/act_up()
 	. = ..()
 	if (.)
 		return
 
-	announcement_lines_map["Message"] = pick(
+	announcement_lines_map["消息"] = pick(
 		"R/NT1M3 A= ANNOUN-*#nt_SY!?EM.dm, LI%£ 86: N=0DE NULL!",
-		"New version of SyndieOS downloaded and ready for installation. Please proceed to robotics.",
-		"ERR)#R - B*@ TEXT F*O(ND!")
+		"新版SyndieOS已下载并准备安装。请前往机器人学部门。",
+		"错误)#R - 发现B*@文本F*O(ND！")

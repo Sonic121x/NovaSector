@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 /datum/objective
 	var/datum/mind/owner //The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
 	var/datum/team/team //An alternative to 'owner': a team. Use this when writing new code.
-	var/name = "generic objective" //Name for admin prompts
+	var/name = "通用目标" //Name for admin prompts
 	var/explanation_text = "Nothing" //What that person is supposed to do.
 	///if this objective doesn't print failure or success in the roundend report
 	var/no_failure = FALSE
@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	if(target?.current)
 		def_value = target.current
 
-	var/mob/new_target = input(admin,"Select target:", "Objective target", def_value) as null|anything in possible_targets
+	var/mob/new_target = input(admin,"选择目标：", "任务目标", def_value) as null|anything in possible_targets
 	if (!new_target)
 		return
 
@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 /datum/objective/proc/get_roundend_success_suffix()
 	if(no_failure)
 		return "" // Just print the objective with no success/fail evaluation, as it has no mechanical backing
-	return check_completion() ? span_greentext("Success!") : span_redtext("Fail.")
+	return check_completion() ? span_greentext("成功！") : span_redtext("失败。")
 
 /datum/objective/proc/is_unique_objective(possible_target, dupe_search_range)
 	if(!islist(dupe_search_range))
@@ -207,8 +207,8 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 		receiver.try_give_equipment_fallback()
 
 /datum/action/special_equipment_fallback
-	name = "Request Objective-specific Equipment"
-	desc = "Call down a supply pod containing the equipment required for specific objectives."
+	name = "请求目标专用装备"
+	desc = "呼叫一个包含特定目标所需装备的补给舱。"
 	button_icon = 'icons/obj/devices/tracker.dmi'
 	button_icon_state = "beacon"
 
@@ -234,7 +234,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return TRUE
 
 /datum/objective/assassinate
-	name = "assassinate"
+	name = "暗杀"
 	martyr_compatible = TRUE
 	admin_grantable = TRUE
 	var/target_role_type = FALSE
@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 #define DISCONNECT_GRACE_WARNING_TIME (1 MINUTES)
 
 /datum/objective/mutiny
-	name = "mutiny"
+	name = "叛变"
 	martyr_compatible = 1
 	var/target_role_type = FALSE
 	/// Not primarily used as a cooldown but a timer to give a little bit more of a chance for the player to reconnect.
@@ -301,7 +301,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 		explanation_text = "Free objective."
 
 /datum/objective/maroon
-	name = "maroon"
+	name = "放逐"
 	martyr_compatible = TRUE
 	admin_grantable = TRUE
 	var/target_role_type = FALSE
@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	admin_simple_target_pick(admin)
 
 /datum/objective/debrain
-	name = "debrain"
+	name = "取脑"
 	admin_grantable = TRUE
 	var/target_role_type = FALSE
 
@@ -357,7 +357,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	admin_simple_target_pick(admin)
 
 /datum/objective/protect//The opposite of killing a dude.
-	name = "protect"
+	name = "保护"
 	martyr_compatible = TRUE
 	admin_grantable = TRUE
 	var/target_role_type = FALSE
@@ -383,12 +383,12 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	admin_simple_target_pick(admin)
 
 /datum/objective/protect/nonhuman
-	name = "protect nonhuman"
+	name = "保护非人类"
 	human_check = FALSE
 	admin_grantable = FALSE
 
 /datum/objective/jailbreak
-	name = "jailbreak"
+	name = "越狱"
 	martyr_compatible = TRUE //why not?
 	admin_grantable = TRUE
 	var/target_role_type
@@ -408,7 +408,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	admin_simple_target_pick(admin)
 
 /datum/objective/jailbreak/detain
-	name = "detain"
+	name = "拘留"
 
 /datum/objective/jailbreak/detain/check_completion()
 	return completed || (!considered_escaped(target) && (considered_alive(target) && target.current.onCentCom()))
@@ -421,7 +421,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 		explanation_text = "Free objective."
 
 /datum/objective/hijack
-	name = "hijack"
+	name = "劫持"
 	explanation_text = "Hijack the emergency shuttle by hacking its navigational protocols through the control console (alt click emergency shuttle console)."
 	team_explanation_text = "Hijack the emergency shuttle by hacking its navigational protocols through the control console (alt click emergency shuttle console). Leave no team member behind."
 	martyr_compatible = FALSE //Technically you won't get both anyway.
@@ -439,7 +439,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return SSshuttle.emergency.is_hijacked()
 
 /datum/objective/elimination
-	name = "elimination"
+	name = "清除"
 	explanation_text = "Slaughter all loyalist crew aboard the shuttle. You, and any likeminded individuals, must be the only remaining people on the shuttle."
 	team_explanation_text = "Slaughter all loyalist crew aboard the shuttle. You, and any likeminded individuals, must be the only remaining people on the shuttle. Leave no team member behind."
 	martyr_compatible = FALSE
@@ -454,7 +454,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return SSshuttle.emergency.elimination_hijack()
 
 /datum/objective/elimination/highlander
-	name="highlander elimination"
+	name="高地人清除"
 	explanation_text = "Escape on the shuttle alone. Ensure that nobody else makes it out."
 
 /datum/objective/elimination/highlander/check_completion()
@@ -467,7 +467,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return SSshuttle.emergency.elimination_hijack(filter_by_human = FALSE, solo_hijack = TRUE)
 
 /datum/objective/block
-	name = "no organics on shuttle"
+	name = "穿梭机上无有机体"
 	explanation_text = "Do not allow any organic lifeforms with sapience to escape on the shuttle alive."
 	martyr_compatible = 1
 
@@ -481,7 +481,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return TRUE
 
 /datum/objective/purge
-	name = "no mutants on shuttle"
+	name = "穿梭机上无突变体"
 	explanation_text = "Ensure no nonhuman humanoid species with sapience are present aboard the escape shuttle."
 	martyr_compatible = TRUE
 
@@ -496,7 +496,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return TRUE
 
 /datum/objective/robot_army
-	name = "robot army"
+	name = "机器人军团"
 	explanation_text = "Have at least eight active cyborgs synced to you."
 	martyr_compatible = FALSE
 
@@ -513,7 +513,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return counter >= 8
 
 /datum/objective/escape
-	name = "escape"
+	name = "逃脱"
 	explanation_text = "Escape on the shuttle or an escape pod alive and without being in custody."
 	team_explanation_text = "Have all members of your team escape on a shuttle or pod alive, without being in custody."
 	admin_grantable = TRUE
@@ -527,7 +527,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return TRUE
 
 /datum/objective/escape/escape_with_identity
-	name = "escape with identity"
+	name = "伪装逃脱"
 	var/target_real_name // Has to be stored because the target's real_name can change over the course of the round
 	var/target_missing_id
 
@@ -572,7 +572,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	admin_simple_target_pick(admin)
 
 /datum/objective/survive
-	name = "survive"
+	name = "生存"
 	explanation_text = "Stay alive until the end."
 	admin_grantable = TRUE
 
@@ -584,7 +584,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return TRUE
 
 /datum/objective/survive/malf //Like survive, but for Malf AIs
-	name = "survive AI"
+	name = "AI生存"
 	explanation_text = "Prevent your own deactivation."
 	admin_grantable = FALSE
 
@@ -596,7 +596,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 		return TRUE
 
 /datum/objective/exile
-	name = "exile"
+	name = "流放"
 	explanation_text = "Stay alive off station. Do not go to CentCom."
 
 /datum/objective/exile/check_completion()
@@ -609,7 +609,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return TRUE
 
 /datum/objective/martyr
-	name = "martyr"
+	name = "殉道者"
 	explanation_text = "Die a glorious death."
 	admin_grantable = TRUE
 
@@ -623,7 +623,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 	return TRUE
 
 /datum/objective/nuclear
-	name = "nuclear"
+	name = "核弹"
 	explanation_text = "Destroy the station with a nuclear device."
 	martyr_compatible = TRUE
 	admin_grantable = TRUE
@@ -635,7 +635,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 
 GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/steal
-	name = "steal"
+	name = "盗窃"
 	martyr_compatible = FALSE
 	admin_grantable = TRUE
 	var/datum/objective_item/targetinfo = null //Save the chosen item datum so we can access it later.
@@ -674,17 +674,17 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal/admin_edit(mob/admin)
 	var/list/possible_items_all = GLOB.possible_items
-	var/new_target = input(admin,"Select target:", "Objective target", steal_target) as null|anything in sort_names(possible_items_all)+"custom"
+	var/new_target = input(admin,"选择目标：", "任务目标", steal_target) as null|anything in sort_names(possible_items_all)+"custom"
 	if (!new_target)
 		return
 
 	if (new_target == "custom") //Can set custom items.
-		var/custom_path = input(admin,"Search for target item type:","Type") as null|text
+		var/custom_path = input(admin,"搜索目标物品类型：","类型") as null|text
 		if (!custom_path)
 			return
 		var/obj/item/custom_target = pick_closest_path(custom_path, make_types_fancy(subtypesof(/obj/item)))
 		var/custom_name = initial(custom_target.name)
-		custom_name = stripped_input(admin,"Enter target name:", "Objective target", custom_name)
+		custom_name = stripped_input(admin,"输入目标名称：", "目标物品", custom_name)
 		if (!custom_name)
 			return
 		steal_target = custom_target
@@ -719,7 +719,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	return FALSE
 
 /datum/objective/capture
-	name = "capture"
+	name = "捕获"
 	admin_grantable = TRUE
 
 /datum/objective/capture/proc/gen_amount_goal()
@@ -761,13 +761,13 @@ GLOBAL_LIST_EMPTY(possible_items)
 	return captured_amount >= target_amount
 
 /datum/objective/capture/admin_edit(mob/admin)
-	var/count = input(admin,"How many mobs to capture ?","capture",target_amount) as num|null
+	var/count = input(admin,"要捕获多少生物？","捕获",target_amount) as num|null
 	if(count)
 		target_amount = count
 	update_explanation_text()
 
 /datum/objective/protect_object
-	name = "protect object"
+	name = "保护目标"
 	var/obj/protect_target
 
 /datum/objective/protect_object/proc/set_target(obj/O)
@@ -792,7 +792,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 //Changeling Objectives
 
 /datum/objective/absorb
-	name = "absorb"
+	name = "吸收"
 	admin_grantable = TRUE
 
 /datum/objective/absorb/proc/gen_amount_goal(lowbound = 4, highbound = 6)
@@ -818,7 +818,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	explanation_text = "Extract [target_amount] compatible genome\s."
 
 /datum/objective/absorb/admin_edit(mob/admin)
-	var/count = input(admin,"How many people to absorb?","absorb",target_amount) as num|null
+	var/count = input(admin,"要吸收多少人？","吸收",target_amount) as num|null
 	if(count)
 		target_amount = count
 	update_explanation_text()
@@ -836,7 +836,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	return absorbed_count >= target_amount
 
 /datum/objective/absorb_most
-	name = "absorb most"
+	name = "吸收最多"
 	explanation_text = "Extract more compatible genomes than any other Changeling."
 
 /datum/objective/absorb_most/check_completion()
@@ -857,7 +857,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	return TRUE
 
 /datum/objective/absorb_changeling
-	name = "absorb changeling"
+	name = "吸收变种人"
 	explanation_text = "Absorb another Changeling."
 
 /datum/objective/absorb_changeling/check_completion()
@@ -879,7 +879,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 //End Changeling Objectives
 
 /datum/objective/destroy
-	name = "destroy AI"
+	name = "摧毁AI"
 	martyr_compatible = TRUE
 
 /datum/objective/destroy/find_target(dupe_search_range, list/blacklist)
@@ -913,14 +913,14 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/destroy/admin_edit(mob/admin)
 	var/list/possible_targets = active_ais(1)
 	if(possible_targets.len)
-		var/mob/new_target = input(admin,"Select target:", "Objective target") as null|anything in sort_names(possible_targets)
+		var/mob/new_target = input(admin,"选择目标：", "目标人物") as null|anything in sort_names(possible_targets)
 		target = new_target.mind
 	else
-		to_chat(admin, span_boldwarning("No active AIs with minds."))
+		to_chat(admin, span_boldwarning("没有活跃的、拥有心智的AI。"))
 	update_explanation_text()
 
 /datum/objective/steal_n_of_type
-	name = "steal five of"
+	name = "窃取五件"
 	explanation_text = "Steal some items!"
 	//what types we want to steal
 	var/list/wanted_items = list()
@@ -948,7 +948,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	return TRUE
 
 /datum/objective/steal_n_of_type/summon_guns
-	name = "steal guns"
+	name = "窃取枪支"
 	explanation_text = "Steal at least five guns!"
 	wanted_items = list(/obj/item/gun)
 	amount = 5
@@ -958,7 +958,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	return !(gun.gun_flags & NOT_A_REAL_GUN)
 
 /datum/objective/steal_n_of_type/summon_magic
-	name = "steal magic"
+	name = "窃取魔法"
 	explanation_text = "Steal at least five magical artefacts!"
 	wanted_items = list()
 	amount = 5
@@ -984,7 +984,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	return stolen_count >= amount
 
 /datum/objective/steal_n_of_type/organs
-	name = "steal organs"
+	name = "窃取器官"
 	explanation_text = "Steal at least 5 organic organs! They must be kept healthy."
 	wanted_items = list(/obj/item/organ)
 	amount = 5 //i want this to be higher, but the organs must be fresh at roundend
@@ -1012,12 +1012,12 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 //Created by admin tools
 /datum/objective/custom
-	name = "custom"
+	name = "自定义"
 	admin_grantable = TRUE
 	no_failure = TRUE
 
 /datum/objective/custom/admin_edit(mob/admin)
-	var/expl = stripped_input(admin, "Custom objective:", "Objective", explanation_text)
+	var/expl = stripped_input(admin, "自定义目标：", "目标", explanation_text)
 	if(expl)
 		explanation_text = expl
 

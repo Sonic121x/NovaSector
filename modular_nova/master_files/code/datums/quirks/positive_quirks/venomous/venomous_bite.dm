@@ -3,8 +3,8 @@
 #define VENOMOUS_BITE_WOUND_BONUS 40
 
 /datum/action/cooldown/mob_cooldown/venomous_bite
-	name = "Inject Venom"
-	desc = "Sink your fangs into another and inject them with your venom. Ineffective against those wearing armor."
+	name = "注入毒液"
+	desc = "将你的尖牙刺入另一个生物，向其注入你的毒液。对穿着护甲的目标无效。"
 
 	button_icon = 'modular_nova/master_files/icons/mob/actions/venomous_bite.dmi'
 	button_icon_state = "venom"
@@ -42,7 +42,7 @@
 	if (!.)
 		return
 
-	owner.visible_message("[owner] bares [owner.p_their()] fangs...", span_warning("You bare your fangs..."))
+	owner.visible_message("[owner]露出了[owner.p_their()]尖牙...", span_warning("你露出了你的尖牙..."))
 
 /datum/action/cooldown/mob_cooldown/venomous_bite/Activate(atom/target_atom)
 	if (!isliving(target_atom))
@@ -50,19 +50,19 @@
 	if (iscarbon(owner))
 		var/mob/living/carbon/carbon_holder = owner
 		if (carbon_holder.is_mouth_covered())
-			owner.balloon_alert(owner, "mouth covered!")
+			owner.balloon_alert(owner, "嘴被挡住了！")
 			return FALSE
 
 	if (!owner.Adjacent(target_atom))
-		owner.balloon_alert(owner, "too far!")
+		owner.balloon_alert(owner, "太远了！")
 		return FALSE
 
 	if (target_atom == owner)
-		owner.balloon_alert(owner, "can't bite yourself!")
+		owner.balloon_alert(owner, "不能咬自己！")
 		return FALSE
 
-	owner.visible_message(span_warning("[owner] starts to bite [target_atom]!"), span_warning("You start to bite [target_atom]!"), ignored_mobs = target_atom)
-	to_chat(target_atom, span_userdanger("[owner] starts to bite you!"))
+	owner.visible_message(span_warning("[owner]开始咬[target_atom]！"), span_warning("你开始咬[target_atom]！"), ignored_mobs = target_atom)
+	to_chat(target_atom, span_userdanger("[owner]开始咬你！"))
 	owner.balloon_alert_to_viewers("biting...")
 	var/result = do_after(owner, 0.5 SECONDS, target_atom, IGNORE_HELD_ITEM)
 	if (!result)

@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/custom
-	name = "custom shuttle"
+	name = "自定义穿梭机"
 	shuttle_id = "custom"
 	launch_status = UNLAUNCHED
 	var/datum/weakref/master_blueprint

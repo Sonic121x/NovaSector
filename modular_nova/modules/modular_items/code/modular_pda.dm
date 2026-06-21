@@ -3,8 +3,8 @@ PDA GALORE!
 */
 
 /obj/item/modular_computer/pda/ancient
-	name = "ancient PDA"
-	desc = "A piece of plastic, it looks freshly made, but designed off an older model of device."
+	name = "老式PDA"
+	desc = "一块塑料制品，看起来是全新制造的，但设计仿照了更老型号的设备。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/ancient"
 	post_init_icon_state = "pda"
@@ -14,8 +14,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/ultraslim
-	name = "ultraslim PDA"
-	desc = "A newer model of PDA, looking to be half the size... sadly it looks flimsier than others. Try to not drop it."
+	name = "超薄型PDA"
+	desc = "一款新型号的PDA，看起来只有一半大小……可惜它看起来比其他型号更脆弱。尽量别摔了它。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/ultraslim"
 	post_init_icon_state = "pda"
@@ -26,8 +26,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/ceti
-	name = "ceti PDA"
-	desc = "A PDA made in the deeper side of frontier space, presiding commonly in the HC, this PDA was built to last."
+	name = "塞提PDA"
+	desc = "一款在边疆空间深处制造的PDA，通常在HC（人类殖民地）普遍使用，这款PDA是为持久耐用而打造的。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/ceti"
 	post_init_icon_state = "pda"
@@ -38,8 +38,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/virtual
-	name = "virtual PDA"
-	desc = "A somewhat useful PDA, with not so great crash padding on it, not sure how this is virtual however."
+	name = "虚拟PDA"
+	desc = "一款还算有用的PDA，上面的防撞缓冲垫不怎么样，不过不清楚它为何被称为“虚拟”。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/virtual"
 	post_init_icon_state = "pda"
@@ -50,8 +50,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/robust
-	name = "\improper Shell-Shock PDA"
-	desc = "A PDA built similar to that of human's ancient nokia phones, this PDA is built tough, and will take most beatings"
+	name = "\improper 弹震症PDA"
+	desc = "一款仿照人类古老诺基亚手机制造的PDA，这款PDA构造坚固，能承受大多数击打"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/robust"
 	post_init_icon_state = "pda"
@@ -63,7 +63,7 @@ PDA GALORE!
 
 /obj/item/modular_computer/pda/neko
 	name = "Neko PDA"
-	desc = "This thing is an affront to something."
+	desc = "这东西是对某种事物的冒犯。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/neko"
 	post_init_icon_state = "pda"
@@ -73,8 +73,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/old
-	name = "outdated PDA"
-	desc = "This PDA is from a time since passed, still useful, built tough... may not be as fast due to its older parts.."
+	name = "过时PDA"
+	desc = "这款PDA来自一个已逝的时代，仍然有用，构造坚固……可能因为其老旧部件而速度不那么快。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/old"
 	post_init_icon_state = "pda"
@@ -84,8 +84,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/holodeck
-	name = "holodeck PDA"
-	desc = "A somewhat nice PDA, using holo technology for its display."
+	name = "全息甲板PDA"
+	desc = "一款还算不错的PDA，使用全息技术作为其显示屏。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/holodeck"
 	post_init_icon_state = "pda"
@@ -95,8 +95,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/hologram
-	name = "holographic PDA"
-	desc = "A rather flimsy PDA device, built with holo technology for displaying data and information."
+	name = "全息PDA"
+	desc = "一款相当脆弱的PDA设备，采用全息技术构建，用于显示数据和信息。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/hologram"
 	post_init_icon_state = "pda"
@@ -107,8 +107,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/tablet
-	name = "tablet PDA"
-	desc = "A niche type of PDA, it is rumored you can hear someone asking if you have games on it."
+	name = "平板PDA"
+	desc = "一种小众的PDA类型，据说你能听到有人问你在上面有没有游戏。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/tablet"
 	post_init_icon_state = "pda"
@@ -118,8 +118,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/slimline
-	name = "slim PDA"
-	desc = "A much slimmer, portable micro computer"
+	name = "纤薄PDA"
+	desc = "一款更加纤薄、便携的微型计算机"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/slimline"
 	post_init_icon_state = "pda"
@@ -129,8 +129,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/rugged
-	name = "rugged PDA"
-	desc = "A much more rugged and well-built portable micro computer."
+	name = "坚固型PDA"
+	desc = "一款更加坚固耐用、做工精良的便携式微型计算机。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/rugged"
 	post_init_icon_state = "pda"
@@ -142,7 +142,7 @@ PDA GALORE!
 
 /obj/item/modular_computer/pda/g3
 	name = "\improper G3 PDA"
-	desc = "A unique portable micro computer design."
+	desc = "一款独特的便携式微型计算机设计。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/g3"
 	post_init_icon_state = "pda"
@@ -153,8 +153,8 @@ PDA GALORE!
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/modular_computer/pda/holosystem
-	name = "holosystem PDA"
-	desc = "A holographic portable micro computer."
+	name = "全息系统PDA"
+	desc = "一款全息便携式微型计算机。"
 	icon = 'modular_nova/master_files/icons/obj/devices/modular_pda.dmi'
 	icon_state = "/obj/item/modular_computer/pda/holosystem"
 	post_init_icon_state = "pda"

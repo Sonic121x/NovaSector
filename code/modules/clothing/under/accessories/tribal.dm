@@ -1,23 +1,23 @@
 // Tribal undershirt accessories, made from bone or sinew.
 /obj/item/clothing/accessory/talisman
-	name = "bone talisman"
-	desc = "A hunter's talisman, some say the old gods smile on those who wear it."
+	name = "骨制护身符"
+	desc = "猎人的护身符，有人说古神会眷顾佩戴它的人。"
 	icon_state = "talisman"
 	attachment_slot = NONE
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/clothing/accessory/skullcodpiece
-	name = "skull codpiece"
-	desc = "A skull shaped ornament, intended to protect the important things in life."
+	name = "颅骨护裆"
+	desc = "一个颅骨形状的装饰品，旨在保护生命中重要的东西。"
 	icon_state = "skull"
 	attachment_slot = GROIN
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/clothing/accessory/skilt
-	name = "sinew skirt"
-	desc = "For the last time. IT'S A KILT not a skirt."
+	name = "筋腱短裙"
+	desc = "最后说一遍。这是苏格兰短裙，不是裙子。"
 	icon_state = "skilt"
 	minimize_when_attached = FALSE
 	attachment_slot = GROIN

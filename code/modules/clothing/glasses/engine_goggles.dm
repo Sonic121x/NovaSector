@@ -13,8 +13,8 @@
 #define TEMP_SHADE_RED 500
 
 /obj/item/clothing/glasses/meson/engine
-	name = "engineering scanner goggles"
-	desc = "Goggles used by engineers. The Meson Scanner mode lets you see basic structural and terrain layouts through walls and the T-ray Scanner mode lets you see underfloor objects such as cables and pipes."
+	name = "工程扫描护目镜"
+	desc = "工程师使用的护目镜。其介子扫描模式可穿透墙壁观察基本结构与地形布局，T射线扫描模式则能探测电缆、管道等埋藏于地板下的物体。"
 	icon_state = "trayson-meson"
 	inhand_icon_state = "trayson-meson"
 	actions_types = list(/datum/action/item_action/toggle_mode)
@@ -148,10 +148,10 @@
 	return ..()
 
 /obj/item/clothing/glasses/meson/engine/tray //atmos techs have lived far too long without tray goggles while those damned engineers get their dual-purpose gogles all to themselves
-	name = "optical t-ray scanner"
+	name = "光学T射线扫描仪"
 	icon_state = "trayson-t-ray"
 	inhand_icon_state = "trayson-t-ray"
-	desc = "Used by engineering staff to see underfloor objects such as cables and pipes."
+	desc = "一种供工程师检查的扫描仪，用于检测地下物体，如电缆和管道。"
 	range = 2
 	modes = list(MODE_NONE, MODE_TRAY, MODE_PIPE_CONNECTABLE, MODE_ATMOS_THERMAL) // atmos techs now finally have 3 modes on their  goggles!
 
@@ -161,15 +161,15 @@
 		connection_images.Cut()
 
 /obj/item/clothing/glasses/meson/engine/shuttle
-	name = "shuttle region scanner"
+	name = "穿梭机分区扫描仪"
 	icon_state = "trayson-shuttle"
 	inhand_icon_state = "trayson-shuttle"
-	desc = "Used to see the boundaries of shuttle regions."
+	desc = "用于观察穿梭机分区的界线。"
 	modes = list(MODE_NONE, MODE_SHUTTLE)
 
 /obj/item/clothing/glasses/meson/engine/atmos_imaging
-	name = "atmospheric thermal imaging goggles"
-	desc = "Goggles used by Atmospheric Technicians to see the thermal energy of gasses in open areas."
+	name = "大气热成像目镜"
+	desc = "大气技术员使用的护目镜，用于在开阔区域观测气体的热能。"
 	icon_state = "trayson-atmospheric-thermal"
 	inhand_icon_state = "trayson-meson"
 	glass_colour_type = /datum/client_colour/glass_colour/gray
@@ -180,8 +180,8 @@
 	return ..()
 
 /obj/item/clothing/glasses/meson/engine/admin
-	name = "admin imaging goggles"
-	desc = "Used by Nanotrasen admins to detect blueprint areas, pipes, thermal, wiring, and pipes."
+	name = "管理员成像护目镜"
+	desc = "纳米传讯管理员用于检测蓝图区域、管道、热能、线路以及管道。"
 	range = 7
 	modes = list(MODE_NONE, MODE_TRAY, MODE_PIPE_CONNECTABLE, MODE_ATMOS_THERMAL, MODE_AREA_BLUEPRINTS)
 

@@ -9,7 +9,7 @@
 * It keeps the work tree in SDMM nice and pretty :)
 */
 /area/station
-	name = "Station Areas"
+	name = "空间站区域"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "station"
 
@@ -18,11 +18,11 @@
 */
 
 /area/station/escapepodbay
-	name = "\improper Pod Bay"
+	name = "\improper 逃生舱舱库"
 	icon_state = "podbay"
 
 /area/station/asteroid
-	name = "\improper Station Asteroid"
+	name = "\improper 空间站小行星区"
 	icon_state = "station_asteroid"
 	always_unpowered = TRUE
 	power_environ = FALSE

@@ -74,7 +74,7 @@
 	if(!should_warn())
 		return
 	var/mob/admin = usr
-	if(tgui_alert(usr, "WARNING: [warning_text]", event_control.name, list("Yes", "No")) == "Yes")
+	if(tgui_alert(usr, "警告：[warning_text]", event_control.name, list("Yes", "No")) == "Yes")
 		if(snitch_text)
 			message_admins("[admin.ckey] [snitch_text]")
 	else
@@ -131,9 +131,9 @@
 /datum/event_admin_setup/minimum_candidate_requirement/prompt_admins()
 	var/candidate_count = count_candidates()
 	if(candidate_count < min_candidates)
-		tgui_alert(usr, output_text, "Error")
+		tgui_alert(usr, output_text, "错误")
 		return ADMIN_CANCEL_EVENT
-	tgui_alert(usr, "[candidate_count] candidates found!", event_control.name)
+	tgui_alert(usr, "找到 [candidate_count] 名候选者！", event_control.name)
 
 /// Checks for candidates. Should return the total number of candidates
 /datum/event_admin_setup/minimum_candidate_requirement/proc/count_candidates()

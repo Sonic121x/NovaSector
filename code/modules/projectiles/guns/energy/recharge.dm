@@ -2,7 +2,7 @@
 /obj/item/gun/energy/recharge
 	icon_state = "kineticgun"
 	base_icon_state = "kineticgun"
-	desc = "A self recharging gun. Holds one shot at a time."
+	desc = "一把自我充能的枪。一次只能装一发子弹。"
 	automatic_charge_overlays = FALSE
 	cell_type = /obj/item/stock_parts/power_store/cell/emproof
 	/// If set to something, instead of an overlay, sets the icon_state directly.
@@ -84,7 +84,7 @@
 	if(!suppressed && recharge_sound)
 		playsound(src.loc, recharge_sound, 60, TRUE)
 	else
-		to_chat(loc, span_warning("[src] silently charges up."))
+		to_chat(loc, span_warning("[src]无声地充能了。"))
 	update_appearance()
 
 /obj/item/gun/energy/recharge/update_overlays()
@@ -101,8 +101,8 @@
 			icon_state = no_charge_state
 
 /obj/item/gun/energy/recharge/ebow
-	name = "mini energy crossbow"
-	desc = "A weapon favored by syndicate stealth specialists."
+	name = "迷你能量驽"
+	desc = "一件深受辛迪加潜伏专家青睐的武器。"
 	icon_state = "crossbow"
 	base_icon_state = "crossbow"
 	inhand_icon_state = "crossbow"
@@ -124,16 +124,16 @@
 	AddComponent(/datum/component/bayonet_attachable, offset_x = 20, offset_y = 12)
 
 /obj/item/gun/energy/recharge/ebow/halloween
-	name = "candy corn crossbow"
-	desc = "A weapon favored by Syndicate trick-or-treaters."
+	name = "玉米糖弩"
+	desc = "辛迪加成员在万圣节讨糖时最喜欢的武器。"
 	icon_state = "crossbow_halloween"
 	base_icon_state = "crossbow_halloween"
 	no_charge_state = "crossbow_halloween_empty"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
 
 /obj/item/gun/energy/recharge/ebow/large
-	name = "energy crossbow"
-	desc = "A reverse engineered weapon using syndicate technology."
+	name = "能量驽"
+	desc = "采用逆向工程仿制的辛迪加科技武器。"
 	icon_state = "crossbowlarge"
 	base_icon_state = "crossbowlarge"
 	no_charge_state = "crossbowlarge_empty"
@@ -149,7 +149,7 @@
 
 /// A silly gun that does literally zero damage, but disrupts electrical sources of light, like flashlights.
 /obj/item/gun/energy/recharge/fisher
-	name = "\improper SC/FISHER disruptor"
+	name = "\improper SC/FISHER 干扰器"
 	desc = "A self-recharging, integrally suppressed, modified kinetic accelerator that does no damage, \
 		but disrupts electronics like lights, APCs, and security cameras. \
 		Can fire twice before requiring a recharge. \

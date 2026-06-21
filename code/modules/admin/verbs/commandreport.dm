@@ -9,7 +9,7 @@
 #define CUSTOM_SOUND_PRESET "Custom Sound"
 
 ADMIN_VERB(change_command_name, R_ADMIN, "Change Command Name", "Change the name of Central Command.", ADMIN_CATEGORY_EVENTS)
-	var/input = input(user, "Please input a new name for Central Command.", "What?", "") as text|null
+	var/input = input(user, "请输入中央司令部的新名称。", "What?", "") as text|null
 	if(!input)
 		return
 	change_command_name(input)
@@ -100,13 +100,13 @@ ADMIN_VERB(create_command_report, R_ADMIN, "Create Command Report", "Create a co
 		if("set_report_sound")
 			if(params["picked_sound"] == CUSTOM_SOUND_PRESET)
 				played_sound = DEFAULT_ANNOUNCEMENT_SOUND // fallback by default
-				var/sound_file = input(ui_user, "Select sound file", "Upload sound") as sound|null
+				var/sound_file = input(ui_user, "选择声音文件", "上传声音") as sound|null
 				if(!sound_file)
-					tgui_alert(ui_user, "The custom sound could not be loaded. The standard sound will be played.", "Loading error", list("Ok"))
+					tgui_alert(ui_user, "无法加载自定义声音。将播放标准声音。", "加载错误", list("Ok"))
 					return
 
 				if(!IS_SOUND_FILE(sound_file))
-					tgui_alert(ui_user, "Invalid file type. Please select a sound file.", "Loading error", list("Ok"))
+					tgui_alert(ui_user, "文件类型无效。请选择一个声音文件。", "加载错误", list("Ok"))
 					return
 
 				played_sound = sound_file
@@ -125,10 +125,10 @@ ADMIN_VERB(create_command_report, R_ADMIN, "Create Command Report", "Create a co
 			subheader = params["new_subheader"]
 		if("submit_report")
 			if(!command_name)
-				to_chat(ui_user, span_danger("You can't send a report with no command name."))
+				to_chat(ui_user, span_danger("你不能发送没有指挥名称的报告。"))
 				return
 			if(!params["report"])
-				to_chat(ui_user, span_danger("You can't send a report with no contents."))
+				to_chat(ui_user, span_danger("你不能发送没有内容的报告。"))
 				return
 			command_report_content = params["report"]
 			send_announcement()
@@ -160,7 +160,7 @@ ADMIN_VERB(create_command_report, R_ADMIN, "Create Command Report", "Create a co
 		priority_announce(command_report_content, subheader == ""? null : subheader, report_sound, has_important_message = TRUE, color_override = chosen_color)
 
 	if(!announce_contents || print_report)
-		print_command_report(command_report_content, "[announce_contents ? "" : "Classified "][command_name] Update", !announce_contents, contains_advanced_html = TRUE)
+		print_command_report(command_report_content, "[announce_contents ? "" : "Classified "][command_name] 更新", !announce_contents, contains_advanced_html = TRUE)
 
 	change_command_name(original_command_name)
 

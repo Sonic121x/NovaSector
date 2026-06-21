@@ -86,7 +86,7 @@
 
 /datum/uplink_item/ammo_nuclear/basic/buck
 	name = "12g Buckshot Drum (Bulldog)"
-	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun. Front towards enemy."
+	desc = "一个用于斗牛犬霰弹枪的八发铅弹弹匣，迎着敌人前进"
 	item = /obj/item/ammo_box/magazine/m12g
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
@@ -142,7 +142,7 @@
 
 /datum/uplink_item/ammo_nuclear/basic/m10mm
 	name = "10mm Handgun Magazine (Ansem)"
-	desc = "An additional 8-round 10mm magazine, compatible with the Ansem pistol."
+	desc = "另外还配备了一个容量为 8 发、口径为 10 毫米的弹匣，与Ansem手枪兼容。"
 	item = /obj/item/ammo_box/magazine/m10mm
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
@@ -190,7 +190,7 @@
 
 /datum/uplink_item/ammo_nuclear/basic/smg
 	name = ".45 SMG Magazine (C-20r)"
-	desc = "An additional 24-round .45 magazine suitable for use with the C-20r submachine gun."
+	desc = "一个额外的24发 .45 弹匣，适用于C-20r冲锋枪。"
 	item = /obj/item/ammo_box/magazine/smgm45
 
 /datum/uplink_item/ammo_nuclear/ap/smg
@@ -390,7 +390,7 @@
 
 /datum/uplink_item/ammo_nuclear/basic/sniper
 	name = ".50 BMG Magazine (AMSR)"
-	desc = "An additional standard 6-round magazine for use with .50 sniper rifles."
+	desc = "用于.50狙击步枪的额外标准6发弹匣。"
 	item = /obj/item/ammo_box/magazine/sniper_rounds
 
 /datum/uplink_item/ammo_nuclear/basic/sniper/surplussniper
@@ -661,8 +661,8 @@
 // Technically not a spawn but it is a kind of reinforcement...I guess.
 
 /datum/uplink_item/reinforcements/turretbox
-	name = "Disposable Sentry Gun"
-	desc = "A disposable sentry gun deployment system cleverly disguised as a toolbox, apply wrench for functionality."
+	name = "一次性警戒枪"
+	desc = "一个一次性哨兵枪部署系统，巧妙地伪装成工具箱，使用扳手以启用功能。"
 	item = /obj/item/storage/toolbox/emergency/turret/nukie
 	cost = 16
 	restricted = FALSE
@@ -755,7 +755,7 @@
 	)
 
 /datum/uplink_item/mech/mauler
-	name = "Mauler Exosuit"
+	name = "毛勒外骨骼机甲"
 	desc = "A massive and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
 		and deployable smoke. Comes equipped with an LMG, scattershot carbine, missile rack, and an antiprojectile armor booster."
 	item = /obj/vehicle/sealed/mecha/marauder/mauler/loaded
@@ -818,14 +818,14 @@
 
 /datum/uplink_item/suits/emp_shield
 	name = "MODsuit Advanced EMP Shield Module"
-	desc = "An advanced EMP shield module for a MODsuit. It protects your entire body from electromagnetic pulses."
+	desc = "一款用于模块服的高级电磁脉冲防护模块。它能保护您的全身免受电磁脉冲的伤害。"
 	item = /obj/item/mod/module/emp_shield/advanced
 	cost = 5
 	purchasable_from = (UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
 
 /datum/uplink_item/suits/injector
 	name = "MODsuit Injector Module"
-	desc = "An injector module for a MODsuit. It is an extendable piercing injector with 30u capacity."
+	desc = "一款适用于模块服装备的注射器模块。它是一款可扩展的穿刺式注射器，容量为 30u。"
 	item = /obj/item/mod/module/injector
 	cost = 2
 	purchasable_from = (UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
@@ -833,7 +833,7 @@
 
 /datum/uplink_item/suits/holster
 	name = "MODsuit Holster Module"
-	desc = "A holster module for a MODsuit. It can stealthily store any not too heavy gun inside it."
+	desc = "一个用于模块服的枪套模块。它可以悄无声息地存放任何不太重的枪支。"
 	item = /obj/item/mod/module/holster
 	cost = 2
 	purchasable_from = (UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
@@ -869,7 +869,7 @@
 
 /datum/uplink_item/device_tools/assault_pod
 	name = "Assault Pod Targeting Device"
-	desc = "Use this to select the landing zone of your assault pod."
+	desc = "用它来选择你的攻击舱的着陆区域。"
 	item = /obj/item/assault_pod
 	cost = 30
 	surplus = 0
@@ -955,25 +955,25 @@
 
 /datum/uplink_item/implants/nuclear/reviver
 	name = "Reviver Implant"
-	desc = "This implant will attempt to revive and heal you if you lose consciousness. Comes with an autosurgeon."
+	desc = "这款植入物会在您失去意识时尝试复苏并治愈您。还配备了全自动植入器。"
 	item = /obj/item/autosurgeon/syndicate/reviver
 	cost = 8
 
 /datum/uplink_item/implants/nuclear/thermals
 	name = "Thermal Eyes"
-	desc = "These cybernetic eyes will give you thermal vision. Comes with a free autosurgeon."
+	desc = "这对电子眼球会带给你热视觉.配有一个免费全自动植入器."
 	item = /obj/item/autosurgeon/syndicate/thermal_eyes
 	cost = 8
 
 /datum/uplink_item/implants/nuclear/implants/xray
 	name = "X-ray Vision Implant"
-	desc = "These cybernetic eyes will give you X-ray vision. Comes with an autosurgeon."
+	desc = "这对电子眼球会带给你X射线视觉.配有一个全自动植入器."
 	item = /obj/item/autosurgeon/syndicate/xray_eyes
 	cost = 8
 
 /datum/uplink_item/implants/nuclear/antistun
 	name = "CNS Rebooter Implant"
-	desc = "This implant will help you get back up on your feet faster after being stunned. Comes with an autosurgeon."
+	desc = "这种植入物可以帮助你在昏迷后更快地站起来。配有全自动植入器。"
 	item = /obj/item/autosurgeon/syndicate/anti_stun
 	cost = 8
 
@@ -999,7 +999,7 @@
 	cant_discount = TRUE
 
 /datum/uplink_item/base_keys/bomb_key
-	name = "Syndicate Ordnance Laboratory Access Card"
+	name = "辛迪加军械实验室访问卡"
 	desc = "Do you fancy yourself an explosives expert? If so, then consider yourself lucky! With this special Authorization Key, \
 		you can blow those corpo suits away with your very own home-made explosive devices. Made in your local firebase's \
 		very own Ordnance Laboratory! *The Syndicate is not responsible for injuries or deaths sustained while utilizing the lab."
@@ -1007,7 +1007,7 @@
 	item = /obj/item/keycard/syndicate_bomb
 
 /datum/uplink_item/base_keys/bio_key
-	name = "Syndicate Bio-Weapon Laboratory Access Card"
+	name = "辛迪加生化武器实验室通行卡"
 	desc = "In the right hands, even vile corpo technology can be turned into a vast arsenal of liberation and justice. From \
 		micro-organism symbiosis to slime-core weaponization, this special Authorization Key can let you push past the boundaries \
 		of bio-terrorism at breakneck speeds. As a bonus, these labs even come equipped with natural life support! *Plants not included."
@@ -1015,7 +1015,7 @@
 	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
 
 /datum/uplink_item/base_keys/chem_key
-	name = "Syndicate Chemical Plant Access Card"
+	name = "辛迪加化工厂通行卡"
 	desc = "For some of our best Operatives, watching corpo space stations blow up with a flash of retribution just isn't enough. \
 		Folks like those prefer a more personal touch to their artistry. For those interested, a special Authorization Key \
 		can be instantly delivered to your location. Create groundbreaking chemical agents, cook up, sell the best of drugs, \
@@ -1024,7 +1024,7 @@
 	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
 
 /datum/uplink_item/base_keys/fridge_key
-	name = "Lopez's Access Card"
+	name = "洛佩兹的门禁卡"
 	desc = "Hungry? So is everyone in Firebase Balthazord. Lopez is a great cook, don't get me wrong, but he's stubborn when it \
 		comes to the meal plans. Sometimes you just want to pig out. Listen, don't tell anyone, ok? I picked this out of his \
 		pocket during this morning's briefing. He's been looking for it since. Take it, get into the fridge, and cook up whatever \

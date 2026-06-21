@@ -1,7 +1,7 @@
 //Necropolis Tendrils, which spawn lavaland monsters and break into a chasm when killed
 /obj/structure/spawner/lavaland
-	name = "necropolis tendril"
-	desc = "A vile tendril of corruption, originating deep underground. Terrible monsters are pouring out of it."
+	name = "墓地卷须"
+	desc = "一根邪恶的腐败触须，源自地下深处。可怕的怪物从这里涌出。"
 
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "tendril"
@@ -47,8 +47,8 @@ GLOBAL_LIST_INIT(tendrils, list())
 
 /obj/structure/spawner/lavaland/examine(mob/user)
 	var/list/examine_messages = ..()
-	examine_messages += span_notice("Once this thing gets hurts enough, it triggers a violent final retaliation.")
-	examine_messages += span_notice("You'll only have a few moments to run up, grab some loot with an open hand, and get out with it.")
+	examine_messages += span_notice("一旦这东西受到足够伤害，就会触发一次猛烈的最终反击。")
+	examine_messages += span_notice("你只有几秒钟时间冲上去，用空着的手抓些战利品，然后带着它逃出来。")
 	return examine_messages
 
 /obj/structure/spawner/lavaland/Destroy()
@@ -73,8 +73,8 @@ GLOBAL_LIST_INIT(tendrils, list())
 	light_color = LIGHT_COLOR_LAVA
 
 /obj/effect/collapse
-	name = "collapsing necropolis tendril"
-	desc = "Get your loot and get clear!"
+	name = "塌陷中的墓地卷须"
+	desc = "拿好你的战利品，然后赶快跑路！"
 	layer = TABLE_LAYER
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "tendril"
@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(tendrils, list())
 /obj/effect/collapse/Initialize(mapload)
 	. = ..()
 	emitted_light = new(loc)
-	visible_message(span_bolddanger("The tendril writhes in fury as the earth around it begins to crack and break apart! Get back!"))
+	visible_message(span_bolddanger("触须狂怒地扭动着，周围的地面开始开裂崩碎！快退后！"))
 	balloon_alert_to_viewers("interact to grab loot before collapse!", vision_distance = 7)
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, FALSE, 50, TRUE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(collapse)), 5 SECONDS)
@@ -97,17 +97,17 @@ GLOBAL_LIST_INIT(tendrils, list())
 	var/list/examine_messages = ..()
 	if(isliving(user))
 		if(has_collected(user))
-			examine_messages += span_boldnotice("You've grabbed what you can, now get out!")
+			examine_messages += span_boldnotice("你已经拿到了能拿的东西，现在快逃！")
 		else
-			examine_messages += span_boldnotice("You might have some time to grab some goodies with an open hand before it collapses!")
+			examine_messages += span_boldnotice("在它彻底崩塌前，你或许还有一点时间用空着的手抓些好东西！")
 	return examine_messages
 
 /obj/effect/collapse/attack_hand(mob/living/collector, list/modifiers)
 	. = ..()
 	if(has_collected(collector))
-		to_chat(collector, span_danger("You've already gotten some loot, just get out of there with it!"))
+		to_chat(collector, span_danger("你已经拿到了一些战利品，快带着它离开那里！"))
 		return
-	visible_message(span_warning("Something falls free of the tendril!"))
+	visible_message(span_warning("有什么东西从触须上掉了下来！"))
 	var/obj/structure/closet/crate/necropolis/tendril/loot = new /obj/structure/closet/crate/necropolis/tendril(loc)
 	collector.start_pulling(loot)
 	collected += WEAKREF(collector)
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(tendrils, list())
 	for(var/mob/M in range(7,src))
 		shake_camera(M, 15, 1)
 	playsound(get_turf(src),'sound/effects/explosion/explosionfar.ogg', 200, TRUE)
-	visible_message(span_bolddanger("The tendril falls inward, the ground around it widening into a yawning chasm!"))
+	visible_message(span_bolddanger("触须向内塌陷，周围的地面裂开，形成了一个深不见底的裂口！"))
 	for(var/turf/T in RANGE_TURFS(2,src))
 		if(HAS_TRAIT(T, TRAIT_NO_TERRAFORM))
 			continue

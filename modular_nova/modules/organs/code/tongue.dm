@@ -25,8 +25,8 @@
 		tongue.say_mod = say
 
 /obj/item/organ/tongue/dog
-	name = "long tongue"
-	desc = "A long and wet tongue. It seems to jump when it's called good, oddly enough."
+	name = "长舌头"
+	desc = "一条又长又湿的舌头。奇怪的是，当被夸奖时它似乎会跳动。"
 	say_mod = "woofs"
 	icon_state = "tongue"
 	modifies_speech = TRUE
@@ -54,8 +54,8 @@
 	speaker.verb_yell = initial(verb_yell)
 
 /obj/item/organ/tongue/avian
-	name = "avian tongue"
-	desc = "A short and stubby tongue that craves seeds."
+	name = "禽类舌头"
+	desc = "一条短而粗的舌头，渴望种子。"
 	say_mod = "chirps"
 	icon_state = "tongue"
 	modifies_speech = TRUE
@@ -77,8 +77,8 @@
 	say_mod = "says"
 
 /obj/item/organ/tongue/lizard/robot
-	name = "robotic lizard voicebox"
-	desc = "A lizard-like voice synthesizer that can interface with organic lifeforms."
+	name = "机械蜥蜴发声器"
+	desc = "一个蜥蜴状的语音合成器，可以与有机生命体交互。"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 	icon_state = "tonguerobot"
 	say_mod = "hizzes"
@@ -99,10 +99,10 @@
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /obj/item/organ/tongue/lizard/cybernetic
-	name = "forked cybernetic tongue"
+	name = "分叉式赛博舌头"
 	icon = 'modular_nova/modules/organs/icons/cyber_tongue.dmi'
 	icon_state = "cybertongue-lizard"
-	desc =  "A fully-functional forked synthetic tongue, encased in soft silicone. Features include high-resolution vocals and taste receptors."
+	desc =  "一个功能齐全的分叉式合成舌头，包裹在柔软的硅胶中。特点包括高分辨率发声和味觉感受器。"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 	// Not as good as organic tongues, not as bad as the robotic voicebox.
 	taste_sensitivity = 20
@@ -111,10 +111,10 @@
 	modifies_speech = TRUE
 
 /obj/item/organ/tongue/cybernetic
-	name = "cybernetic tongue"
+	name = "赛博舌头"
 	icon = 'modular_nova/modules/organs/icons/cyber_tongue.dmi'
 	icon_state = "cybertongue"
-	desc =  "A fully-functional synthetic tongue, encased in soft silicone. Features include high-resolution vocals and taste receptors."
+	desc =  "一个功能齐全的合成舌头，包裹在柔软的硅胶中。特点包括高分辨率发声和味觉感受器。"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 	say_mod = "says"
 	// Not as good as organic tongues, not as bad as the robotic voicebox.
@@ -124,37 +124,37 @@
 	toxic_foodtypes = NONE
 
 /obj/item/organ/tongue/vox
-	name = "vox tongue"
-	desc = "A fleshy muscle mostly used for skreeing."
+	name = "沃克斯舌头"
+	desc = "一块主要用于发出尖啸声的肉质肌肉。"
 	say_mod = "skrees"
 	liked_foodtypes = MEAT | FRIED
 
 /obj/item/organ/tongue/dwarven
-	name = "dwarven tongue"
-	desc = "A fleshy muscle mostly used for bellowing."
+	name = "矮人舌头"
+	desc = "一块主要用于咆哮的肉质肌肉。"
 	say_mod = "bellows"
 	liked_foodtypes = ALCOHOL | MEAT | DAIRY //Dwarves like alcohol, meat, and dairy products.
 	disliked_foodtypes = JUNKFOOD | FRIED | CLOTH //Dwarves hate foods that have no nutrition other than alcohol.
 
 /obj/item/organ/tongue/ghoul
-	name = "ghoulish tongue"
-	desc = "A fleshy muscle mostly used for rasping."
+	name = "食尸鬼舌头"
+	desc = "一块主要用于发出刺耳声音的肉质肌肉。"
 	say_mod = "rasps"
 	liked_foodtypes = RAW | MEAT
 	disliked_foodtypes = VEGETABLES | FRUIT | CLOTH
 	toxic_foodtypes = DAIRY | PINEAPPLE
 
 /obj/item/organ/tongue/insect
-	name = "insect tongue"
-	desc = "A fleshy muscle mostly used for chittering."
+	name = "昆虫舌头"
+	desc = "一块主要用于发出吱吱声的肉质肌肉。"
 	say_mod = "chitters"
 	liked_foodtypes = GROSS | RAW | TOXIC | GORE
 	disliked_foodtypes = CLOTH | GRAIN | FRIED
 	toxic_foodtypes = DAIRY
 
 /obj/item/organ/tongue/xeno_hybrid
-	name = "alien tongue"
-	desc = "According to leading xenobiologists the evolutionary benefit of having a second mouth in your mouth is \"that it looks badass\"."
+	name = "外星舌头"
+	desc = "根据顶尖外星生物学家的说法，在嘴里再长一张嘴的进化优势是\"看起来很酷\"。"
 	icon_state = "tonguexeno"
 	say_mod = "hisses"
 	taste_sensitivity = 10
@@ -165,12 +165,12 @@
 	voice_filter = /obj/item/organ/tongue/alien::voice_filter
 
 /obj/item/organ/tongue/skrell
-	name = "skrell tongue"
-	desc = "A fleshy muscle mostly used for warbling."
+	name = "史克鲁尔舌头"
+	desc = "一块主要用于发出颤音的肉质肌肉。"
 	say_mod = "warbles"
 
 /obj/item/organ/tongue/lizard/filterless
-	name = "smooth forked tongue"
+	name = "光滑分叉舌头"
 
 	voice_filter = null
 

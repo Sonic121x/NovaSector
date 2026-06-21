@@ -1,7 +1,7 @@
 //Command
 
 /obj/item/circuitboard/machine/bsa/back
-	name = "Bluespace Artillery Generator"
+	name = "蓝空炮生成器"
 	greyscale_colors = CIRCUIT_COLOR_COMMAND
 	build_path = /obj/machinery/bsa/back //No freebies!
 	specific_parts = TRUE
@@ -10,7 +10,7 @@
 		/obj/item/stack/cable_coil = 2)
 
 /obj/item/circuitboard/machine/bsa/front
-	name = "Bluespace Artillery Bore"
+	name = "蓝空炮钻头"
 	greyscale_colors = CIRCUIT_COLOR_COMMAND
 	build_path = /obj/machinery/bsa/front
 	specific_parts = TRUE
@@ -19,7 +19,7 @@
 		/obj/item/stack/cable_coil = 2)
 
 /obj/item/circuitboard/machine/bsa/middle
-	name = "Bluespace Artillery Fusor"
+	name = "蓝空炮聚变器"
 	greyscale_colors = CIRCUIT_COLOR_COMMAND
 	build_path = /obj/machinery/bsa/middle
 	req_components = list(
@@ -27,7 +27,7 @@
 		/obj/item/stack/cable_coil = 2)
 
 /obj/item/circuitboard/machine/dna_vault
-	name = "DNA Vault"
+	name = "DNA 保险库"
 	greyscale_colors = CIRCUIT_COLOR_COMMAND
 	build_path = /obj/machinery/dna_vault //No freebies!
 	specific_parts = TRUE
@@ -51,7 +51,7 @@
 //Engineering
 
 /obj/item/circuitboard/machine/announcement_system
-	name = "Announcement System"
+	name = "公告系统"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/announcement_system
 	req_components = list(
@@ -59,7 +59,7 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/suit_storage_unit
-	name = "Suit Storage Unit"
+	name = "防护服存储单元"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/suit_storage_unit
 	req_components = list(
@@ -69,14 +69,14 @@
 		/obj/item/electronics/airlock = 1)
 
 /obj/item/circuitboard/machine/mass_driver
-	name = "Mass Driver"
+	name = "质量驱动器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/mass_driver
 	req_components = list(
 		/datum/stock_part/servo = 1,)
 
 /obj/item/circuitboard/machine/autolathe
-	name = "Autolathe"
+	name = "自动制造机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/autolathe
 	req_components = list(
@@ -85,14 +85,14 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/grounding_rod
-	name = "Grounding Rod"
+	name = "接地棒"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/energy_accumulator/grounding_rod
 	req_components = list(/datum/stock_part/capacitor = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/telecomms/broadcaster
-	name = "Subspace Broadcaster"
+	name = "子空间广播器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/telecomms/broadcaster
 	req_components = list(
@@ -104,7 +104,7 @@
 	)
 
 /obj/item/circuitboard/machine/telecomms/bus
-	name = "Bus Mainframe"
+	name = "总线主机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/telecomms/bus
 	req_components = list(
@@ -114,7 +114,7 @@
 	)
 
 /obj/item/circuitboard/machine/telecomms/hub
-	name = "Hub Mainframe"
+	name = "集线器主机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/telecomms/hub
 	req_components = list(
@@ -124,7 +124,7 @@
 	)
 
 /obj/item/circuitboard/machine/telecomms/message_server
-	name = "Messaging Server"
+	name = "消息服务器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/telecomms/message_server
 	req_components = list(
@@ -134,7 +134,7 @@
 	)
 
 /obj/item/circuitboard/machine/telecomms/processor
-	name = "Processor Unit"
+	name = "处理器单元"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/telecomms/processor
 	req_components = list(
@@ -147,7 +147,7 @@
 	)
 
 /obj/item/circuitboard/machine/telecomms/receiver
-	name = "Subspace Receiver"
+	name = "子空间接收器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/telecomms/receiver
 	req_components = list(
@@ -158,7 +158,7 @@
 	)
 
 /obj/item/circuitboard/machine/telecomms/relay
-	name = "Relay Mainframe"
+	name = "中继主机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/telecomms/relay
 	req_components = list(
@@ -168,7 +168,7 @@
 	)
 
 /obj/item/circuitboard/machine/telecomms/server
-	name = "Telecommunication Server"
+	name = "电信服务器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/telecomms/server
 	req_components = list(
@@ -178,15 +178,15 @@
 	)
 
 /obj/item/circuitboard/machine/tesla_coil
-	name = "Tesla Controller"
+	name = "特斯拉控制器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
-	desc = "Does not let you shoot lightning from your hands."
+	desc = "并不能让你从手中射出闪电。"
 	build_path = /obj/machinery/power/energy_accumulator/tesla_coil
 	req_components = list(/datum/stock_part/capacitor = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/modular_shield_generator/gate
-	name = "Modular Shield Gate"
+	name = "模块化护盾闸门"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/modular_shield_generator/gate
 	req_components = list(
@@ -197,7 +197,7 @@
 	)
 
 /obj/item/circuitboard/machine/modular_shield_generator
-	name = "Modular Shield Generator"
+	name = "模块化护盾发生器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/modular_shield_generator
 	req_components = list(
@@ -208,7 +208,7 @@
 	)
 
 /obj/item/circuitboard/machine/modular_shield_node
-	name = "Modular Shield Node"
+	name = "模块化护盾节点"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/modular_shield/module/node
 	req_components = list(
@@ -217,7 +217,7 @@
 	)
 
 /obj/item/circuitboard/machine/modular_shield_cable
-	name = "Modular Shield Cable"
+	name = "模块化护盾电缆"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/modular_shield/module/node/cable
 	req_components = list(
@@ -225,7 +225,7 @@
 	)
 
 /obj/item/circuitboard/machine/modular_shield_well
-	name = "Modular Shield Well"
+	name = "模块化护盾井"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/modular_shield/module/well
 	req_components = list(
@@ -234,7 +234,7 @@
 	)
 
 /obj/item/circuitboard/machine/modular_shield_relay
-	name = "Modular Shield Relay"
+	name = "模块化护盾中继器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/modular_shield/module/relay
 	req_components = list(
@@ -243,7 +243,7 @@
 	)
 
 /obj/item/circuitboard/machine/modular_shield_charger
-	name = "Modular Shield Charger"
+	name = "模块化护盾充能器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/modular_shield/module/charger
 	req_components = list(
@@ -252,20 +252,20 @@
 	)
 
 /obj/item/circuitboard/machine/cell_charger
-	name = "Cell Charger"
+	name = "电池充电器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/cell_charger
 	req_components = list(/datum/stock_part/capacitor = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/circulator
-	name = "Circulator/Heat Exchanger"
+	name = "循环器/热交换器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/atmospherics/components/binary/circulator
 	req_components = list()
 
 /obj/item/circuitboard/machine/emitter
-	name = "Emitter"
+	name = "发射器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/emitter
 	req_components = list(
@@ -274,13 +274,13 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/thermoelectric_generator
-	name = "Thermo-Electric Generator"
+	name = "热电发电机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/thermoelectric_generator
 	req_components = list()
 
 /obj/item/circuitboard/machine/ntnet_relay
-	name = "NTNet Relay"
+	name = "NTNet中继器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/ntnet_relay
 	req_components = list(
@@ -289,7 +289,7 @@
 	)
 
 /obj/item/circuitboard/machine/pacman
-	name = "PACMAN-type Generator"
+	name = "PACMAN型发电机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/port_gen/pacman
 	req_components = list(
@@ -302,16 +302,16 @@
 /obj/item/circuitboard/machine/pacman/examine(mob/user)
 	. = ..()
 	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
-	. += span_notice("It's set to [message].")
-	. += span_notice("You can switch the mode by using a screwdriver on [src].")
+	. += span_notice("它被设置为[message]。")
+	. += span_notice("你可以用螺丝刀在[src]上切换模式。")
 
 /obj/item/circuitboard/machine/pacman/screwdriver_act(mob/living/user, obj/item/tool)
 	high_production_profile = !high_production_profile
 	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
-	to_chat(user, span_notice("You set the board for [message]"))
+	to_chat(user, span_notice("你将电路板设置为[message]"))
 
 /obj/item/circuitboard/machine/turbine_compressor
-	name = "Turbine - Inlet Compressor"
+	name = "涡轮机 - 进气压缩机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/turbine/inlet_compressor
 	req_components = list(
@@ -319,7 +319,7 @@
 		/obj/item/stack/sheet/iron = 5)
 
 /obj/item/circuitboard/machine/turbine_rotor
-	name = "Turbine - Core Rotor"
+	name = "涡轮机 - 核心转子"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/turbine/core_rotor
 	req_components = list(
@@ -327,7 +327,7 @@
 		/obj/item/stack/sheet/iron = 5)
 
 /obj/item/circuitboard/machine/turbine_stator
-	name = "Turbine - Turbine Outlet"
+	name = "涡轮机 - 涡轮出口"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/turbine/turbine_outlet
 	req_components = list(
@@ -335,7 +335,7 @@
 		/obj/item/stack/sheet/iron = 5)
 
 /obj/item/circuitboard/machine/protolathe/department/engineering
-	name = "Departmental Protolathe - Engineering"
+	name = "部门原型机 - 工程部"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/rnd/production/protolathe/department/engineering
 
@@ -349,7 +349,7 @@
 		/obj/item/stack/sheet/mineral/uranium = 10) // We have no Pu-238, and this is the closest thing to it.
 
 /obj/item/circuitboard/machine/rtg/advanced
-	name = "Advanced RTG"
+	name = "高级RTG"
 	build_path = /obj/machinery/power/rtg/advanced
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
@@ -359,7 +359,7 @@
 		/obj/item/stack/sheet/mineral/plasma = 5)
 
 /obj/item/circuitboard/machine/scanner_gate
-	name = "Scanner Gate"
+	name = "扫描门"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/scanner_gate
 	req_components = list(
@@ -376,14 +376,14 @@
 	def_components = list(/obj/item/stock_parts/power_store/battery = /obj/item/stock_parts/power_store/battery/high/empty)
 
 /obj/item/circuitboard/machine/smes/connector
-	name = "power connector"
+	name = "电源连接器"
 	build_path = /obj/machinery/power/smes/connector
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/datum/stock_part/capacitor = 1,)
 
 /obj/item/circuitboard/machine/smesbank
-	name = "portable SMES"
+	name = "便携式SMES"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	needs_anchored = FALSE
 	build_path = /obj/machinery/smesbank
@@ -393,7 +393,7 @@
 	def_components = list(/obj/item/stock_parts/power_store/battery = /obj/item/stock_parts/power_store/battery/high/empty)
 
 /obj/item/circuitboard/machine/techfab/department/engineering
-	name = "\improper Departmental Techfab - Engineering"
+	name = "\improper 部门技术制造机 - 工程部"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/rnd/production/techfab/department/engineering
 
@@ -404,7 +404,7 @@
 	def_components = list(/obj/item/stock_parts/power_store/battery = /obj/item/stock_parts/power_store/battery/super/empty)
 
 /obj/item/circuitboard/machine/thermomachine
-	name = "Thermomachine"
+	name = "热力机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/atmospherics/components/unary/thermomachine/freezer
 	var/pipe_layer = PIPING_LAYER_DEFAULT
@@ -417,35 +417,35 @@
 /obj/item/circuitboard/machine/thermomachine/multitool_act(mob/living/user, obj/item/multitool/multitool)
 	. = ..()
 	pipe_layer = (pipe_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (pipe_layer + 1)
-	to_chat(user, span_notice("You change the circuitboard to layer [pipe_layer]."))
+	to_chat(user, span_notice("你将电路板设置为[pipe_layer]层。"))
 
 /obj/item/circuitboard/machine/thermomachine/examine()
 	. = ..()
-	. += span_notice("It is set to layer [pipe_layer].")
+	. += span_notice("它被设置为[pipe_layer]层。")
 
 /obj/item/circuitboard/machine/HFR_fuel_input
-	name = "HFR Fuel Input"
+	name = "HFR燃料输入"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
 
 /obj/item/circuitboard/machine/HFR_waste_output
-	name = "HFR Waste Output"
+	name = "HFR废物输出"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
 
 /obj/item/circuitboard/machine/HFR_moderator_input
-	name = "HFR Moderator Input"
+	name = "HFR慢化剂输入"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
 
 /obj/item/circuitboard/machine/HFR_core
-	name = "HFR core"
+	name = "HFR核心"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/core
 	req_components = list(
@@ -454,14 +454,14 @@
 		/obj/item/stack/sheet/plasteel = 10)
 
 /obj/item/circuitboard/machine/HFR_corner
-	name = "HFR Corner"
+	name = "HFR转角"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/hypertorus/corner
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
 
 /obj/item/circuitboard/machine/HFR_interface
-	name = "HFR Interface"
+	name = "HFR接口"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/hypertorus/interface
 	req_components = list(
@@ -470,7 +470,7 @@
 		/obj/item/stack/sheet/plasteel = 5)
 
 /obj/item/circuitboard/machine/crystallizer
-	name = "Crystallizer"
+	name = "结晶器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/atmospherics/components/binary/crystallizer
 	req_components = list(
@@ -480,7 +480,7 @@
 
 //Generic
 /obj/item/circuitboard/machine/component_printer
-	name = "\improper Component Printer"
+	name = "\improper 组件打印机"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/component_printer
 	req_components = list(
@@ -489,7 +489,7 @@
 	)
 
 /obj/item/circuitboard/machine/module_duplicator
-	name = "\improper Module Duplicator"
+	name = "\improper 模块复制器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/module_duplicator
 	req_components = list(
@@ -498,7 +498,7 @@
 	)
 
 /obj/item/circuitboard/machine/circuit_imprinter
-	name = "Circuit Imprinter"
+	name = "电路印刷机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/rnd/production/circuit_imprinter
 	req_components = list(
@@ -507,16 +507,16 @@
 		)
 
 /obj/item/circuitboard/machine/circuit_imprinter/offstation
-	name = "Ancient Circuit Imprinter"
+	name = "古代电路印刷机"
 	build_path = /obj/machinery/rnd/production/circuit_imprinter/offstation
 
 /obj/item/circuitboard/machine/circuit_imprinter/department
-	name = "Departmental Circuit Imprinter"
+	name = "部门电路印刷机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/rnd/production/circuit_imprinter/department
 
 /obj/item/circuitboard/machine/holopad
-	name = "AI Holopad"
+	name = "AI全息台"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/holopad
 	req_components = list(/datum/stock_part/capacitor = 1)
@@ -530,7 +530,7 @@
 	else
 		build_path = /obj/machinery/holopad/secure
 		secure = TRUE
-	to_chat(user, span_notice("You [secure? "en" : "dis"]able the security on [src]"))
+	to_chat(user, span_notice("你[secure? "en" : "dis"]禁用了[src]上的安保功能"))
 	return TRUE
 
 /obj/item/circuitboard/machine/holopad/examine(mob/user)
@@ -540,7 +540,7 @@
 		. += "There is a red light flashing next to the word \"secure\""
 
 /obj/item/circuitboard/machine/launchpad
-	name = "Bluespace Launchpad"
+	name = "蓝空发射台"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/launchpad
 	req_components = list(
@@ -549,7 +549,7 @@
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/item/circuitboard/machine/protolathe
-	name = "Protolathe"
+	name = "原型机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/rnd/production/protolathe
 	req_components = list(
@@ -558,16 +558,16 @@
 		)
 
 /obj/item/circuitboard/machine/protolathe/offstation
-	name = "Ancient Protolathe"
+	name = "古代原型机"
 	build_path = /obj/machinery/rnd/production/protolathe/offstation
 
 /obj/item/circuitboard/machine/protolathe/department
-	name = "Departmental Protolathe"
+	name = "部门原型机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/rnd/production/protolathe/department
 
 /obj/item/circuitboard/machine/reagentgrinder
-	name = "All-In-One Grinder"
+	name = "全能研磨机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/reagentgrinder
 	req_components = list(
@@ -577,7 +577,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/smartfridge
-	name = "Smartfridge"
+	name = "智能冰箱"
 	build_path = /obj/machinery/smartfridge
 	req_components = list(/datum/stock_part/matter_bin = 1)
 	var/static/list/fridges_name_paths = list(/obj/machinery/smartfridge = "plant produce",
@@ -605,23 +605,23 @@
 	var/position = fridges_name_paths.Find(build_path, fridges_name_paths)
 	position = (position == length(fridges_name_paths)) ? 1 : (position + 1)
 	build_path = fridges_name_paths[position]
-	to_chat(user, span_notice("You set the board to [fridges_name_paths[build_path]]."))
+	to_chat(user, span_notice("你将电路板设置为[fridges_name_paths[build_path]]。"))
 	return TRUE
 
 /obj/item/circuitboard/machine/smartfridge/examine(mob/user)
 	. = ..()
 	if(is_special_type)
 		return
-	. += span_info("[src] is set to [fridges_name_paths[build_path]]. You can use a screwdriver to reconfigure it.")
+	. += span_info("[src]被设置为[fridges_name_paths[build_path]]。你可以用螺丝刀重新配置它。")
 
 /obj/item/circuitboard/machine/dehydrator
-	name = "Dehydrator"
+	name = "脱水机"
 	build_path = /obj/machinery/smartfridge/drying
 	req_components = list(/datum/stock_part/matter_bin = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/space_heater
-	name = "Space Heater"
+	name = "太空加热器"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/space_heater
 	req_components = list(
@@ -631,7 +631,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/electrolyzer
-	name = "Electrolyzer"
+	name = "电解器"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/electrolyzer
 	req_components = list(
@@ -644,7 +644,7 @@
 
 
 /obj/item/circuitboard/machine/techfab
-	name = "\improper Techfab"
+	name = "\improper 科技制造机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/rnd/production/techfab
 	req_components = list(
@@ -653,12 +653,12 @@
 		)
 
 /obj/item/circuitboard/machine/techfab/department
-	name = "\improper Departmental Techfab"
+	name = "\improper 部门技术制造台"
 	build_path = /obj/machinery/rnd/production/techfab/department
 
 /obj/item/circuitboard/machine/vendor
-	name = "Custom Vendor"
-	desc = "You can turn the \"brand selection\" dial using a screwdriver."
+	name = "自定义售货机"
+	desc = "你可以使用螺丝刀转动“品牌选择”旋钮。"
 	custom_premium_price = PAYCHECK_CREW * 1.5
 	build_path = /obj/machinery/vending/custom
 	req_components = list(/obj/item/vending_refill/custom = 1)
@@ -678,7 +678,7 @@
 	. = ITEM_INTERACT_FAILURE
 	if(all_products_free)
 		return
-	var/choice = tgui_input_list(user, "Choose a new brand", "Select an Item", sort_list(valid_vendor_names_paths))
+	var/choice = tgui_input_list(user, "选择新品牌", "选择物品", sort_list(valid_vendor_names_paths))
 	if(isnull(choice))
 		return
 	if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
@@ -694,7 +694,7 @@
 */
 /obj/item/circuitboard/machine/vendor/proc/set_type(obj/machinery/vending/typepath)
 	build_path = typepath
-	name = "[typepath::name] Vendor"
+	name = "[typepath::name] 售货机"
 	req_components = list(initial(typepath.refill_canister) = 1)
 	flatpack_components = list(initial(typepath.refill_canister))
 
@@ -703,7 +703,7 @@
 	return ..()
 
 /obj/item/circuitboard/machine/bountypad
-	name = "Civilian Bounty Pad"
+	name = "民用悬赏终端"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/piratepad/civilian
 	req_components = list(
@@ -713,7 +713,7 @@
 	)
 
 /obj/item/circuitboard/machine/fax
-	name = "Fax Machine"
+	name = "传真机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/fax
 	req_components = list(
@@ -723,7 +723,7 @@
 		/datum/stock_part/servo = 1,)
 
 /obj/item/circuitboard/machine/bookbinder
-	name = "Book Binder"
+	name = "书籍装订机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/bookbinder
 	req_components = list(
@@ -731,7 +731,7 @@
 	)
 
 /obj/item/circuitboard/machine/libraryscanner
-	name = "Book Scanner"
+	name = "书籍扫描仪"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/libraryscanner
 	req_components = list(
@@ -739,7 +739,7 @@
 	)
 
 /obj/item/circuitboard/machine/photocopier
-	name = "Photocopier"
+	name = "复印机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/photocopier
 	req_components = list(
@@ -751,7 +751,7 @@
 //Medical
 
 /obj/item/circuitboard/machine/chem_dispenser
-	name = "Chem Dispenser"
+	name = "化学分配器"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/chem_dispenser
 	req_components = list(
@@ -786,7 +786,7 @@
 	)
 
 /obj/item/circuitboard/machine/chem_dispenser/abductor
-	name = "Reagent Synthesizer"
+	name = "试剂合成器"
 	name_extension = "(Abductor Machine Board)"
 	icon_state = "abductor_mod"
 	build_path = /obj/machinery/chem_dispenser/abductor
@@ -801,7 +801,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/chem_heater
-	name = "Chemical Heater"
+	name = "化学加热器"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/chem_heater
 	req_components = list(
@@ -809,7 +809,7 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/chem_mass_spec
-	name = "High-Performance Liquid Chromatography Machine"
+	name = "高效液相色谱仪"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/chem_mass_spec
 	req_components = list(
@@ -820,7 +820,7 @@
 	name = "ChemMaster 3000"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/chem_master
-	desc = "You can turn the \"mode selection\" dial using a screwdriver."
+	desc = "你可以使用螺丝刀转动“模式选择”旋钮。"
 	req_components = list(
 		/obj/item/reagent_containers/cup/beaker = 2,
 		/datum/stock_part/servo = 1,
@@ -837,11 +837,11 @@
 
 	build_path = new_path
 	name = "[new_name] 3000"
-	to_chat(user, span_notice("You change the circuit board setting to \"[new_name]\"."))
+	to_chat(user, span_notice("你将电路板设置更改为“[new_name]”。"))
 	return TRUE
 
 /obj/item/circuitboard/machine/cryo_tube
-	name = "Cryotube"
+	name = "低温休眠舱"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/cryo_cell
 	req_components = list(
@@ -850,20 +850,20 @@
 		/obj/item/stack/sheet/glass = 4)
 
 /obj/item/circuitboard/machine/fat_sucker
-	name = "Lipid Extractor"
+	name = "脂质提取器"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/fat_sucker
 	req_components = list(/datum/stock_part/micro_laser = 1,
 		/obj/item/kitchen/fork = 1)
 
 /obj/item/circuitboard/machine/harvester
-	name = "Harvester"
+	name = "收割机"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/harvester
 	req_components = list(/datum/stock_part/micro_laser = 4)
 
 /obj/item/circuitboard/machine/medical_kiosk
-	name = "Medical Kiosk"
+	name = "医疗自助终端"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/medical_kiosk
 	var/custom_cost = 10
@@ -873,21 +873,21 @@
 
 /obj/item/circuitboard/machine/medical_kiosk/multitool_act(mob/living/user)
 	. = ..()
-	var/new_cost = tgui_input_number(user, "New cost for using this medical kiosk", "Pricing", custom_cost, 1000, 10)
+	var/new_cost = tgui_input_number(user, "使用此医疗自助终端的新费用", "定价", custom_cost, 1000, 10)
 	if(!new_cost || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	if(loc != user)
-		to_chat(user, span_warning("You must hold the circuitboard to change its cost!"))
+		to_chat(user, span_warning("你必须手持电路板才能更改其费用！"))
 		return
 	custom_cost = new_cost
-	to_chat(user, span_notice("The cost is now set to [custom_cost]."))
+	to_chat(user, span_notice("费用现已设置为[custom_cost]。"))
 
 /obj/item/circuitboard/machine/medical_kiosk/examine(mob/user)
 	. = ..()
 	. += "The cost to use this kiosk is set to [custom_cost]."
 
 /obj/item/circuitboard/machine/limbgrower
-	name = "Limb Grower"
+	name = "肢体生长器"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/limbgrower
 	req_components = list(
@@ -896,7 +896,7 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/limbgrower/fullupgrade
-	name = "Limb Grower"
+	name = "肢体生长器"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/limbgrower
 	req_components = list(
@@ -905,12 +905,12 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/protolathe/department/medical
-	name = "Departmental Protolathe - Medical"
+	name = "部门原型机 - 医疗"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/rnd/production/protolathe/department/medical
 
 /obj/item/circuitboard/machine/sleeper
-	name = "Sleeper"
+	name = "休眠舱"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/sleeper
 	req_components = list(
@@ -931,11 +931,11 @@
 		/obj/item/stack/sheet/glass = 2)
 
 /obj/item/circuitboard/machine/sleeper/party
-	name = "Party Pod"
+	name = "派对舱"
 	build_path = /obj/machinery/sleeper/party
 
 /obj/item/circuitboard/machine/smoke_machine
-	name = "Smoke Machine"
+	name = "烟雾机"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/smoke_machine
 	req_components = list(
@@ -946,7 +946,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/stasis
-	name = "\improper Lifeform Stasis Unit"
+	name = "\improper 生命体停滞装置"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/stasis
 	req_components = list(
@@ -955,26 +955,26 @@
 		/datum/stock_part/capacitor = 1)
 
 /obj/item/circuitboard/machine/medipen_refiller
-	name = "Medipen Refiller"
+	name = "医疗笔补充器"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/medipen_refiller
 	req_components = list(
 		/datum/stock_part/matter_bin = 1)
 
 /obj/item/circuitboard/machine/techfab/department/medical
-	name = "\improper Departmental Techfab - Medical"
+	name = "\improper 部门技术制造机 - 医疗"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/rnd/production/techfab/department/medical
 
 //Science
 
 /obj/item/circuitboard/machine/circuit_imprinter/department/science
-	name = "Departmental Circuit Imprinter - Science"
+	name = "部门电路印刷机 - 科学"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/rnd/production/circuit_imprinter/department/science
 
 /obj/item/circuitboard/machine/cyborgrecharger
-	name = "Cyborg Recharger"
+	name = "机器人充电器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/recharge_station
 	req_components = list(
@@ -984,7 +984,7 @@
 	def_components = list(/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell/high)
 
 /obj/item/circuitboard/machine/destructive_analyzer
-	name = "Destructive Analyzer"
+	name = "破坏性分析仪"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/rnd/destructive_analyzer
 	req_components = list(
@@ -1003,7 +1003,7 @@
 		/datum/stock_part/micro_laser = 2)
 
 /obj/item/circuitboard/machine/mech_recharger
-	name = "Mechbay Recharger"
+	name = "机甲泊位充电器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/mech_bay_recharge_port
 	req_components = list(
@@ -1011,7 +1011,7 @@
 		/datum/stock_part/capacitor = 5)
 
 /obj/item/circuitboard/machine/mechfab
-	name = "Exosuit Fabricator"
+	name = "外骨骼装配机"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/mecha_part_fabricator
 	req_components = list(
@@ -1021,12 +1021,12 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/vatgrower
-	name = "Growing Vat"
+	name = "生长培养缸"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/vatgrower
 
 /obj/item/circuitboard/machine/monkey_recycler
-	name = "Monkey Recycler"
+	name = "猴子回收器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/monkey_recycler
 	req_components = list(
@@ -1035,7 +1035,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/processor/slime
-	name = "Slime Processor"
+	name = "史莱姆处理器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/processor/slime
 
@@ -1048,12 +1048,12 @@
 	)
 
 /obj/item/circuitboard/machine/protolathe/department/science
-	name = "Departmental Protolathe - Science"
+	name = "部门原型机 - 科学部"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/rnd/production/protolathe/department/science
 
 /obj/item/circuitboard/machine/quantumpad
-	name = "Quantum Pad"
+	name = "量子传送板"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/quantumpad
 	req_components = list(
@@ -1064,7 +1064,7 @@
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/item/circuitboard/machine/rdserver
-	name = "R&D Server"
+	name = "研发服务器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/rnd/server
 	req_components = list(
@@ -1073,16 +1073,16 @@
 	)
 
 /obj/item/circuitboard/machine/rdserver/oldstation
-	name = "Ancient R&D Server"
+	name = "远古研发服务器"
 	build_path = /obj/machinery/rnd/server/oldstation
 
 /obj/item/circuitboard/machine/techfab/department/science
-	name = "\improper Departmental Techfab - Science"
+	name = "\improper 部门技术制造机 - 科学部"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/rnd/production/techfab/department/science
 
 /obj/item/circuitboard/machine/teleporter_hub
-	name = "Teleporter Hub"
+	name = "传送器枢纽"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/teleport/hub
 	req_components = list(
@@ -1091,7 +1091,7 @@
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/item/circuitboard/machine/teleporter_station
-	name = "Teleporter Station"
+	name = "传送器控制站"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/teleport/station
 	req_components = list(
@@ -1101,7 +1101,7 @@
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/item/circuitboard/machine/dnascanner
-	name = "DNA Scanner"
+	name = "DNA扫描仪"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/dna_scannernew
 	req_components = list(
@@ -1112,7 +1112,7 @@
 		/obj/item/stack/cable_coil = 2)
 
 /obj/item/circuitboard/machine/dna_infuser
-	name = "DNA Infuser"
+	name = "DNA注入器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/dna_infuser
 	req_components = list(
@@ -1123,7 +1123,7 @@
 	)
 
 /obj/item/circuitboard/machine/experimental_cloner_scanner
-	name = "Experimental Cloning Scanner"
+	name = "实验性克隆扫描仪"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/experimental_cloner_scanner
 	req_components = list(
@@ -1135,7 +1135,7 @@
 	)
 
 /obj/item/circuitboard/machine/experimental_cloner
-	name = "Experimental Cloning Pod"
+	name = "实验性克隆舱"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/experimental_cloner
 	req_components = list(
@@ -1145,13 +1145,13 @@
 	)
 
 /obj/item/circuitboard/machine/mechpad
-	name = "Mecha Orbital Pad"
+	name = "机甲轨道发射台"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/mechpad
 	req_components = list()
 
 /obj/item/circuitboard/machine/botpad
-	name = "Bot launchpad"
+	name = "机器人发射台"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/botpad
 	req_components = list()
@@ -1159,25 +1159,25 @@
 //Security
 
 /obj/item/circuitboard/machine/protolathe/department/security
-	name = "Departmental Protolathe - Security"
+	name = "部门原型机 - 安保部"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/rnd/production/protolathe/department/security
 
 /obj/item/circuitboard/machine/recharger
-	name = "Weapon Recharger"
+	name = "武器充能器"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/recharger
 	req_components = list(/datum/stock_part/capacitor = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/techfab/department/security
-	name = "\improper Departmental Techfab - Security"
+	name = "\improper 部门技术制造机 - 安保部"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/rnd/production/techfab/department/security
 
 //Service
 /obj/item/circuitboard/machine/photobooth
-	name = "Photobooth"
+	name = "照相亭"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/photobooth
 	req_components = list(
@@ -1186,12 +1186,12 @@
 	)
 
 /obj/item/circuitboard/machine/photobooth/security
-	name = "Security Photobooth"
+	name = "安保照相亭"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/photobooth/security
 
 /obj/item/circuitboard/machine/biogenerator
-	name = "Biogenerator"
+	name = "生物生成器"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/biogenerator
 	req_components = list(
@@ -1201,7 +1201,7 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/chem_dispenser/drinks
-	name = "Soda Dispenser"
+	name = "苏打水分配器"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/chem_dispenser/drinks
 
@@ -1216,7 +1216,7 @@
 	)
 
 /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
-	name = "Booze Dispenser"
+	name = "酒类分配器"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/chem_dispenser/drinks/beer
 
@@ -1231,47 +1231,47 @@
 	)
 
 /obj/item/circuitboard/machine/chem_master/condi
-	name = "CondiMaster 3000"
+	name = "调味大师3000"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/chem_master/condimaster
 
 /obj/item/circuitboard/machine/deep_fryer
-	name = "Deep Fryer"
+	name = "油炸锅"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/deepfryer
 	req_components = list(/datum/stock_part/micro_laser = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/griddle
-	name = "Griddle"
+	name = "烤盘"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/griddle
 	req_components = list(/datum/stock_part/micro_laser = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/oven
-	name = "Oven"
+	name = "烤箱"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/oven
 	req_components = list(/datum/stock_part/micro_laser = 1)
 	needs_anchored = TRUE
 
 /obj/item/circuitboard/machine/stove
-	name = "Stove"
+	name = "炉灶"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/stove
 	req_components = list(/datum/stock_part/micro_laser = 1)
 	needs_anchored = TRUE
 
 /obj/item/circuitboard/machine/range
-	name = "Range (Oven & Stove)"
+	name = "灶台（烤箱与炉灶）"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/oven/range
 	req_components = list(/datum/stock_part/micro_laser = 2)
 	needs_anchored = TRUE
 
 /obj/item/circuitboard/machine/dish_drive
-	name = "Dish Drive"
+	name = "餐具驱动器"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/dish_drive
 	req_components = list(
@@ -1284,20 +1284,20 @@
 
 /obj/item/circuitboard/machine/dish_drive/examine(mob/user)
 	. = ..()
-	. += span_notice("Its suction function is [suction ? "enabled" : "disabled"]. Use it in-hand to switch.")
-	. += span_notice("Its disposal auto-transmit function is [transmit ? "enabled" : "disabled"]. Alt-click it to switch.")
+	. += span_notice("其吸力功能为[suction ? "enabled" : "disabled"]。手持使用以切换。")
+	. += span_notice("其垃圾自动传输功能为[transmit ? "enabled" : "disabled"]。Alt-点击以切换。")
 
 /obj/item/circuitboard/machine/dish_drive/attack_self(mob/living/user)
 	suction = !suction
-	to_chat(user, span_notice("You [suction ? "enable" : "disable"] the board's suction function."))
+	to_chat(user, span_notice("你[suction ? "enable" : "disable"]了电路板的吸力功能。"))
 
 /obj/item/circuitboard/machine/dish_drive/click_alt(mob/living/user)
 	transmit = !transmit
-	to_chat(user, span_notice("You [transmit ? "enable" : "disable"] the board's automatic disposal transmission."))
+	to_chat(user, span_notice("你[transmit ? "enable" : "disable"]了电路板的自动垃圾传输功能。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/circuitboard/machine/gibber
-	name = "Gibber"
+	name = "绞肉机"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/gibber
 	req_components = list(
@@ -1306,7 +1306,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/hydroponics
-	name = "Hydroponics Tray"
+	name = "水培托盘"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/hydroponics/constructable
 	req_components = list(
@@ -1345,7 +1345,7 @@
 	)
 
 /obj/item/circuitboard/machine/microwave
-	name = "Microwave"
+	name = "微波炉"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/microwave
 	req_components = list(
@@ -1357,7 +1357,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/microwave/engineering
-	name = "Wireless Microwave Oven"
+	name = "无线微波炉"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/microwave/engineering
 	req_components = list(
@@ -1368,7 +1368,7 @@
 		/obj/item/stack/sheet/glass = 2)
 
 /obj/item/circuitboard/machine/processor
-	name = "Food Processor"
+	name = "食物处理器"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/processor
 	req_components = list(
@@ -1378,22 +1378,22 @@
 
 /obj/item/circuitboard/machine/processor/screwdriver_act(mob/living/user, obj/item/tool)
 	if(build_path == /obj/machinery/processor)
-		name = "Slime Processor"
+		name = "史莱姆处理器"
 		build_path = /obj/machinery/processor/slime
-		to_chat(user, span_notice("Name protocols successfully updated."))
+		to_chat(user, span_notice("命名协议已成功更新。"))
 	else
-		name = "Food Processor"
+		name = "食物处理器"
 		build_path = /obj/machinery/processor
-		to_chat(user, span_notice("Defaulting name protocols."))
+		to_chat(user, span_notice("恢复默认命名协议。"))
 	return TRUE
 
 /obj/item/circuitboard/machine/protolathe/department/service
-	name = "Departmental Protolathe - Service"
+	name = "部门原型机 - 服务部"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/rnd/production/protolathe/department/service
 
 /obj/item/circuitboard/machine/recycler
-	name = "Recycler"
+	name = "回收机"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/recycler
 	req_components = list(
@@ -1401,7 +1401,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/seed_extractor
-	name = "Seed Extractor"
+	name = "种子提取器"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/seed_extractor
 	req_components = list(
@@ -1410,12 +1410,12 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/techfab/department/service
-	name = "\improper Departmental Techfab - Service"
+	name = "\improper 部门科技制造机 - 服务部"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/rnd/production/techfab/department/service
 
 /obj/item/circuitboard/machine/fishing_portal_generator
-	name = "Fishing Portal Generator"
+	name = "钓鱼传送门生成器"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/fishing_portal_generator
 	req_components = list(
@@ -1424,12 +1424,12 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/fishing_portal_generator/emagged
-	name = "Emagged Fishing Portal Generator"
+	name = "电磁干扰钓鱼传送门生成器"
 	build_path = /obj/machinery/fishing_portal_generator/emagged
 
 //Supply
 /obj/item/circuitboard/machine/ore_redemption
-	name = "Ore Redemption"
+	name = "矿石回收机"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/mineral/ore_redemption
 	req_components = list(
@@ -1444,18 +1444,18 @@
 	build_path = /obj/machinery/mineral/ore_redemption/offstation
 
 /obj/item/circuitboard/machine/ore_silo
-	name = "Ore Silo"
+	name = "矿石筒仓"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/ore_silo
 	req_components = list()
 
 /obj/item/circuitboard/machine/protolathe/department/cargo
-	name = "Departmental Protolathe - Cargo"
+	name = "部门原型机 - 货舱"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/rnd/production/protolathe/department/cargo
 
 /obj/item/circuitboard/machine/stacking_machine
-	name = "Stacking Machine"
+	name = "堆叠机"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/mineral/stacking_machine
 	req_components = list(
@@ -1463,7 +1463,7 @@
 		/datum/stock_part/matter_bin = 2)
 
 /obj/item/circuitboard/machine/stacking_unit_console
-	name = "Stacking Machine Console"
+	name = "堆叠机控制台"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/mineral/stacking_unit_console
 	req_components = list(
@@ -1471,12 +1471,12 @@
 		/obj/item/stack/cable_coil = 5)
 
 /obj/item/circuitboard/machine/techfab/department/cargo
-	name = "\improper Departmental Techfab - Cargo"
+	name = "\improper 部门技术制造机 - 货舱"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/rnd/production/techfab/department/cargo
 
 /obj/item/circuitboard/machine/materials_market
-	name = "Galactic Materials Market"
+	name = "银河材料市场"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/materials_market
 	req_components = list(
@@ -1485,7 +1485,7 @@
 		/datum/stock_part/card_reader = 1)
 
 /obj/item/circuitboard/machine/mailsorter
-	name = "Mail Sorter"
+	name = "邮件分拣机"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/mailsorter
 	req_components = list(
@@ -1496,14 +1496,14 @@
 
 //Tram
 /obj/item/circuitboard/machine/crossing_signal
-	name = "Crossing Signal"
+	name = "道口信号机"
 	build_path = /obj/machinery/transport/crossing_signal
 	req_components = list(
 		/datum/stock_part/micro_laser = 1,
 	)
 
 /obj/item/circuitboard/machine/guideway_sensor
-	name = "Guideway Sensor"
+	name = "导轨传感器"
 	build_path = /obj/machinery/transport/guideway_sensor
 	req_components = list(
 		/obj/item/assembly/prox_sensor = 1,
@@ -1511,7 +1511,7 @@
 
 //Misc
 /obj/item/circuitboard/machine/sheetifier
-	name = "Sheet-meister 2000"
+	name = "板材大师 2000"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/sheetifier
 	req_components = list(
@@ -1520,7 +1520,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/restaurant_portal
-	name = "Restaurant Portal"
+	name = "餐厅传送门"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/restaurant_portal
 	req_components = list(
@@ -1545,14 +1545,14 @@
 		return ITEM_INTERACT_BLOCKING
 
 	venue_type = radial_results[choice]
-	to_chat(user, span_notice("You change [src]'s linked venue."))
+	to_chat(user, span_notice("你更改了[src]的关联场所。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/circuitboard/machine/restaurant_portal/examine(mob/user)
 	. = ..()
 	if (venue_type)
 		var/datum/venue/as_venue = venue_type
-		. += span_notice("[src] is linked to \a [initial(as_venue.name)] venue.")
+		. += span_notice("[src]关联至\a [initial(as_venue.name)]场所。")
 
 /obj/item/circuitboard/machine/restaurant_portal/configure_machine(obj/machinery/restaurant_portal/machine)
 	if(!istype(machine))
@@ -1561,11 +1561,11 @@
 	machine.linked_venue.restaurant_portals += machine
 
 /obj/item/circuitboard/machine/abductor
-	name = "alien board (Report This)"
+	name = "外星电路板（请报告此问题）"
 	icon_state = "abductor_mod"
 
 /obj/item/circuitboard/machine/abductor/core
-	name = "alien board"
+	name = "外星电路板"
 	name_extension = "(Void Core)"
 	build_path = /obj/machinery/power/rtg/abductor
 	req_components = list(
@@ -1577,7 +1577,7 @@
 		/datum/stock_part/micro_laser = /datum/stock_part/micro_laser/tier4)
 
 /obj/item/circuitboard/machine/hypnochair
-	name = "Enhanced Interrogation Chamber"
+	name = "强化审讯室"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/hypnochair
 	req_components = list(
@@ -1586,7 +1586,7 @@
 	)
 
 /obj/item/circuitboard/machine/plumbing_receiver
-	name = "Chemical Recipient"
+	name = "化学接收器"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/plumbing/receiver
 	req_components = list(
@@ -1597,7 +1597,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/skill_station
-	name = "Skill Station"
+	name = "技能站"
 	build_path = /obj/machinery/skill_station
 	req_components = list(
 		/datum/stock_part/matter_bin = 2,
@@ -1606,7 +1606,7 @@
 	)
 
 /obj/item/circuitboard/machine/destructive_scanner
-	name = "Experimental Destructive Scanner"
+	name = "实验性破坏性扫描仪"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/destructive_scanner
 	req_components = list(
@@ -1615,7 +1615,7 @@
 		/datum/stock_part/servo = 2)
 
 /obj/item/circuitboard/machine/doppler_array
-	name = "Tachyon-Doppler Research Array"
+	name = "超光速多普勒研究阵列"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/doppler_array
 	req_components = list(
@@ -1623,7 +1623,7 @@
 		/datum/stock_part/scanning_module = 4)
 
 /obj/item/circuitboard/machine/exoscanner
-	name = "Exoscanner"
+	name = "外太空扫描仪"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/exoscanner
 	req_components = list(
@@ -1631,7 +1631,7 @@
 		/datum/stock_part/scanning_module = 4)
 
 /obj/item/circuitboard/machine/exodrone_launcher
-	name = "Exploration Drone Launcher"
+	name = "勘探无人机发射器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/exodrone_launcher
 	req_components = list(
@@ -1639,14 +1639,14 @@
 		/datum/stock_part/scanning_module = 4)
 
 /obj/item/circuitboard/machine/ecto_sniffer
-	name = "Ectoscopic Sniffer"
+	name = "灵体外窥嗅探器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/ecto_sniffer
 	req_components = list(
 		/datum/stock_part/scanning_module = 1)
 
 /obj/item/circuitboard/machine/anomaly_refinery
-	name = "Anomaly Refinery"
+	name = "异常精炼厂"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/research/anomaly_refinery
 	req_components = list(
@@ -1656,7 +1656,7 @@
 		)
 
 /obj/item/circuitboard/machine/tank_compressor
-	name = "Tank Compressor"
+	name = "储罐压缩机"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/atmospherics/components/binary/tank_compressor
 	req_components = list(
@@ -1665,7 +1665,7 @@
 		)
 
 /obj/item/circuitboard/machine/coffeemaker
-	name = "Coffeemaker"
+	name = "咖啡机"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/coffeemaker
 	req_components = list(
@@ -1677,7 +1677,7 @@
 	)
 
 /obj/item/circuitboard/machine/coffeemaker/impressa
-	name = "Impressa Coffeemaker"
+	name = "Impressa咖啡机"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/coffeemaker/impressa
 	req_components = list(
@@ -1689,13 +1689,13 @@
 	)
 
 /obj/item/circuitboard/machine/navbeacon
-	name = "Bot Navigational Beacon"
+	name = "机器人导航信标"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/navbeacon
 	req_components = list()
 
 /obj/item/circuitboard/machine/radioactive_nebula_shielding
-	name = "Radioactive Nebula Shielding"
+	name = "放射性星云屏蔽装置"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/nebula_shielding/radiation
 	req_components = list(
@@ -1705,7 +1705,7 @@
 	)
 
 /obj/item/circuitboard/machine/brm
-	name = "Boulder Retrieval Matrix"
+	name = "巨石回收矩阵"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/brm
 	req_components = list(
@@ -1715,7 +1715,7 @@
 	)
 
 /obj/item/circuitboard/machine/refinery
-	name = "Boulder Refinery"
+	name = "巨石精炼厂"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/bouldertech/refinery
 	req_components = list(
@@ -1726,7 +1726,7 @@
 	)
 
 /obj/item/circuitboard/machine/smelter
-	name = "Boulder Smelter"
+	name = "巨石熔炼炉"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/bouldertech/refinery/smelter
 	req_components = list(
@@ -1737,7 +1737,7 @@
 	)
 
 /obj/item/circuitboard/machine/shieldwallgen
-	name = "Shield Wall Generator"
+	name = "护盾墙发生器"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/power/shieldwallgen
 	req_components = list(
@@ -1747,7 +1747,7 @@
 	)
 
 /obj/item/circuitboard/machine/flatpacker
-	name = "Flatpacker"
+	name = "平板包装机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/flatpacker
 	req_components = list(
@@ -1758,7 +1758,7 @@
 	)
 
 /obj/item/circuitboard/machine/scrubber
-	name = "Portable Air Scrubber"
+	name = "便携式空气净化器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/portable_atmospherics/scrubber
 	needs_anchored = FALSE
@@ -1767,7 +1767,7 @@
 	)
 
 /obj/item/circuitboard/machine/pump
-	name = "Portable Air Pump"
+	name = "便携式空气泵"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/portable_atmospherics/pump
 	needs_anchored = FALSE
@@ -1776,7 +1776,7 @@
 	)
 
 /obj/item/circuitboard/machine/pipe_scrubber
-	name = "Portable Pipe Scrubber"
+	name = "便携式管道净化器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/portable_atmospherics/pipe_scrubber
 	needs_anchored = FALSE
@@ -1785,7 +1785,7 @@
 	)
 
 /obj/item/circuitboard/machine/portagrav
-	name = "Portable Gravity Unit"
+	name = "便携式重力单元"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/portagrav
 	req_components = list(
@@ -1794,7 +1794,7 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/big_manipulator
-	name = "Big Manipulator"
+	name = "大型机械臂"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/big_manipulator
 	req_components = list(
@@ -1873,7 +1873,7 @@
 	)
 
 /obj/item/circuitboard/machine/engine
-	name = "Shuttle Engine"
+	name = "穿梭机引擎"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/shuttle_engine
 	needs_anchored = FALSE
@@ -1883,15 +1883,15 @@
 	)
 
 /obj/item/circuitboard/machine/engine/heater
-	name = "Shuttle Engine Heater"
+	name = "穿梭机引擎加热器"
 	build_path = /obj/machinery/power/shuttle_engine/heater
 
 /obj/item/circuitboard/machine/engine/propulsion
-	name = "Shuttle Engine Propulsion"
+	name = "穿梭机引擎推进器"
 	build_path = /obj/machinery/power/shuttle_engine/propulsion
 
 /obj/item/circuitboard/machine/quantum_server
-	name = "Quantum Server"
+	name = "量子服务器"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/quantum_server
 	req_components = list(
@@ -1901,7 +1901,7 @@
 	)
 
 /obj/item/circuitboard/machine/netpod
-	name = "Netpod"
+	name = "网络舱"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/netpod
 	req_components = list(
@@ -1910,12 +1910,12 @@
 	)
 
 /obj/item/circuitboard/computer/quantum_console
-	name = "Quantum Console"
+	name = "量子控制台"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/computer/quantum_console
 
 /obj/item/circuitboard/machine/byteforge
-	name = "Byteforge"
+	name = "字节熔炉"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/byteforge
 	req_components = list(
@@ -1923,7 +1923,7 @@
 	)
 
 /obj/item/circuitboard/machine/washing_machine
-	name = "Washing Machine"
+	name = "洗衣机"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/washing_machine
 	req_components = list(

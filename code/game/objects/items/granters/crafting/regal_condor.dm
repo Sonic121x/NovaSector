@@ -1,6 +1,6 @@
 /obj/item/book/granter/crafting_recipe/regal_condor
-	name = "memoirs of a fallen agent"
-	desc = "A battered journal. It seems like it is covered in donkpocket crumbs."
+	name = "陨落特工的回忆录"
+	desc = "一本破旧的日记。它似乎沾满了唐克口袋饼的碎屑。"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/deagle_prime,
 		/datum/crafting_recipe/deagle_prime_mag,
@@ -16,5 +16,5 @@
 	)
 
 /obj/item/book/granter/crafting_recipe/regal_condor/recoil(mob/living/user)
-	to_chat(user, span_warning("The book turns to dust in your hands."))
+	to_chat(user, span_warning("这本书在你手中化为了尘埃。"))
 	qdel(src)

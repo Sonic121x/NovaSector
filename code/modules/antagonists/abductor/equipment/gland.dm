@@ -1,6 +1,6 @@
 /obj/item/organ/heart/gland
-	name = "fleshy mass"
-	desc = "A nausea-inducing hunk of twisting flesh and metal."
+	name = "肉质肿块"
+	desc = "一大块扭曲又恶心的的金属肉块"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "gland"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_PROMINENT // weird?
@@ -61,7 +61,7 @@
 		return FALSE
 	mind_control_uses--
 	owner.balloon_alert(owner, "new compulsion")
-	to_chat(owner, span_userdanger("You suddenly feel an irresistible compulsion to follow an order..."))
+	to_chat(owner, span_userdanger("你突然感到一种无法抗拒的冲动，想要服从一个命令……"))
 	to_chat(owner, span_mind_control("[command]"))
 	active_mind_control = TRUE
 	message_admins("[key_name(user)] sent an abductor mind control message to [key_name(owner)]: [command]")
@@ -76,7 +76,7 @@
 	if(!ownerCheck() || !active_mind_control)
 		return FALSE
 	owner.balloon_alert(owner, "compulsion forgotten")
-	to_chat(owner, span_userdanger("You feel the compulsion fade, and you <i>completely forget</i> about your previous orders."))
+	to_chat(owner, span_userdanger("你感到那股强迫冲动逐渐消退，并且你<i>完全忘记</i>了之前的命令。"))
 	owner.clear_alert(ALERT_MIND_CONTROL)
 	active_mind_control = FALSE
 	return TRUE

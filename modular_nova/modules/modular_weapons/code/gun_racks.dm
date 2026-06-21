@@ -1,6 +1,6 @@
 /obj/structure/rack/gunrack
-	name = "gun rack"
-	desc = "A tall rack for storing guns."
+	name = "枪架"
+	desc = "一个用于存放枪支的高架子。"
 	icon = 'modular_nova/modules/modular_weapons/icons/gun_rack.dmi'
 	icon_state = "gunrack"
 

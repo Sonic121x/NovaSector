@@ -186,7 +186,7 @@
 			continue
 		if(human.can_block_magic(antimagic_flags))
 			continue
-		to_chat(human, span_revenwarning("You feel [pick("your sense of direction flicker out", "a stabbing pain in your head", "your mind fill with static")]."))
+		to_chat(human, span_revenwarning("你感到[pick("your sense of direction flicker out", "a stabbing pain in your head", "your mind fill with static")]。"))
 		new /obj/effect/temp_visual/revenant(human.loc)
 		human.emp_act(EMP_HEAVY)
 	for(var/obj/thing in victim)
@@ -206,8 +206,8 @@
 
 //Blight: Infects nearby humans and in general messes living stuff up.
 /datum/action/cooldown/spell/aoe/revenant/blight
-	name = "Blight"
-	desc = "Causes nearby living things to waste away."
+	name = "枯萎"
+	desc = "使附近的生物逐渐衰弱。"
 	button_icon_state = "blight"
 	cooldown_time = 20 SECONDS
 
@@ -220,7 +220,7 @@
 		if(mob == caster)
 			continue
 		if(mob.can_block_magic(antimagic_flags))
-			to_chat(caster, span_warning("The spell had no effect on [mob]!"))
+			to_chat(caster, span_warning("该法术对[mob]没有效果！"))
 			continue
 		new /obj/effect/temp_visual/revenant(mob.loc)
 		if(iscarbon(mob))
@@ -235,7 +235,7 @@
 						blight.stage++
 				if(!blightfound)
 					H.ForceContractDisease(new /datum/disease/revblight(), FALSE, TRUE)
-					to_chat(H, span_revenminor("You feel [pick("suddenly sick", "a surge of nausea", "like your skin is <i>wrong</i>")]."))
+					to_chat(H, span_revenminor("你感到[pick("suddenly sick", "a surge of nausea", "like your skin is <i>wrong</i>")]。"))
 			else
 				if(mob.reagents)
 					mob.reagents.add_reagent(/datum/reagent/toxin/plasma, 5)
@@ -256,7 +256,7 @@
 		tray.set_toxic(rand(45, 55))
 
 /datum/action/cooldown/spell/aoe/revenant/haunt_object
-	name = "Haunt Object"
+	name = "附身物体"
 	desc = "Empower nearby objects to you with ghostly energy, causing them to attack nearby mortals. \
 		Items closer to you are more likely to be haunted."
 	button_icon_state = "r_haunt"
@@ -301,8 +301,8 @@
 		haunt_color = "#823abb", \
 		haunt_duration = rand(1 MINUTES, 3 MINUTES), \
 		aggro_radius = aoe_radius - 1, \
-		spawn_message = span_revenwarning("[victim] begins to float and twirl into the air as it glows a ghastly purple!"), \
-		despawn_message = span_revenwarning("[victim] falls back to the ground, stationary once more."), \
+		spawn_message = span_revenwarning("[victim]开始漂浮并在空中旋转，散发出诡异的紫色光芒！"), \
+		despawn_message = span_revenwarning("[victim]落回地面，再次静止不动。"), \
 	)
 
 #undef REVENANT_DEFILE_MIN_DAMAGE

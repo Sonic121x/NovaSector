@@ -1,6 +1,6 @@
 /obj/structure/bed/double/pelt/synthetic
-	name = "white pelts bed"
-	desc = "A luxurious double bed, made with synthetic white wolf pelts."
+	name = "白色毛皮床"
+	desc = "一张奢华的双人床，由合成白色狼皮制成。"
 	icon_state = "pelt_bed_white"
 	icon = 'modular_nova/modules/tribal_extended/icons/tribal_beds.dmi'
 	anchored = TRUE
@@ -15,7 +15,7 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3)
 
 /datum/crafting_recipe/synth_white_pelt_bed
-	name = "Synthetic White Pelts Bed"
+	name = "合成白色毛皮床"
 	category = CAT_FURNITURE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND
 
@@ -27,14 +27,14 @@
 	result = /obj/structure/bed/double/pelt/synthetic
 
 /obj/structure/bed/double/pelt/synthetic/black
-	name = "black pelts bed"
-	desc = "A luxurious double bed, made with synthetic black wolf pelts."
+	name = "黑色毛皮床"
+	desc = "一张奢华的双人床，由合成黑色狼皮制成。"
 	icon_state = "pelt_bed_black"
 	icon = 'modular_nova/modules/tribal_extended/icons/tribal_beds.dmi'
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3)
 
 /datum/crafting_recipe/synth_black_pelt_bed
-	name = "Synthetic Black Pelts Bed"
+	name = "合成黑色毛皮床"
 	category = CAT_FURNITURE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND
 
@@ -47,8 +47,8 @@
 
 // Medieval oversized beds
 /obj/structure/bed/oversized
-	name = "single oversized bed"
-	desc = "A luxurious bed, inviting you to rest on it, oh traveler."
+	name = "单人超大床"
+	desc = "一张奢华的床，邀请您，哦，旅者，在其上休憩。"
 	icon = 'modular_nova/master_files/icons/obj/medieval/structures_64x64.dmi'
 	icon_state = "bed_1x2"
 	anchored = TRUE
@@ -67,7 +67,7 @@
 	new /obj/item/stack/sheet/mineral/wood(loc, build_stack_amount)
 
 /datum/crafting_recipe/oversized_bed
-	name = "Single Oversized Bed"
+	name = "单人超大床"
 	category = CAT_FURNITURE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND
 
@@ -79,7 +79,7 @@
 	result = /obj/structure/bed/oversized
 
 /obj/structure/bed/oversized/double
-	name = "double oversized bed"
+	name = "双人超大床"
 	icon = 'modular_nova/master_files/icons/obj/medieval/structures_64x64.dmi'
 	icon_state = "bed_2x2"
 	max_buckled_mobs = 2
@@ -88,7 +88,7 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 6)
 
 /datum/crafting_recipe/oversized_bed_double
-	name = "Double Oversized Bed"
+	name = "双人超大床"
 	category = CAT_FURNITURE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND
 
@@ -100,7 +100,7 @@
 	result = /obj/structure/bed/oversized/double
 
 /obj/structure/bed/oversized/triple
-	name = "triple oversized bed"
+	name = "三倍超大床"
 	icon = 'modular_nova/master_files/icons/obj/medieval/structures_96x96.dmi'
 	icon_state = "bed_3x3"
 	max_buckled_mobs = 4
@@ -109,7 +109,7 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 10)
 
 /datum/crafting_recipe/oversized_bed_triple
-	name = "Triple Oversized Bed"
+	name = "三倍超大床"
 	category = CAT_FURNITURE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND
 

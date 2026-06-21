@@ -1,7 +1,7 @@
 /// Gives someone the stable voided trauma and then self destructs
 /obj/item/clothing/head/helmet/skull/cosmic
-	name = "cosmic skull"
-	desc = "You can see and feel the surrounding space pulsing through it..."
+	name = "宇宙颅骨"
+	desc = "你能透过它看到并感受到周围空间在脉动……"
 	icon = 'icons/obj/weapons/voidwalker_items.dmi'
 	icon_state = "cosmic_skull_charged"
 
@@ -17,7 +17,7 @@
 	. = ..()
 
 	if(istype(user, /mob/living/basic/voidwalker))
-		to_chat(user, span_bolddanger("OH GOD NOO!!!! WHYYYYYYYYY??!!! WHO WOULD DO THIS?!!"))
+		to_chat(user, span_bolddanger("哦，天哪，不！！！！为什么？？！！！谁会这么做？！！"))
 		return
 
 	if(!uses || !ishuman(user))
@@ -42,15 +42,15 @@
 		starer.cure_trauma_type(/datum/brain_trauma/voided) //this wouldn't make much sense to have anymore
 		starer.gain_trauma(/datum/brain_trauma/voided/stable)
 
-	to_chat(user, span_purple("And a whole world opens up to you."))
+	to_chat(user, span_purple("一个完整的世界在你面前展开。"))
 	playsound(get_turf(user), 'sound/effects/curse/curse5.ogg', 60)
 
 /**
  * An armblade that pops windows
  */
 /obj/item/void_eater
-	name = "void eater" //as opposed to full eater
-	desc = "A deformed appendage, capable of shattering any glass and any flesh."
+	name = "虚空吞噬者" //as opposed to full eater
+	desc = "一个畸形的附肢，能够粉碎任何玻璃与血肉。"
 	icon = 'icons/obj/weapons/voidwalker_items.dmi'
 	icon_state = "tentacle"
 	inhand_icon_state = "tentacle"

@@ -1,6 +1,6 @@
 /mob/living/basic/mining/wolf
-	name = "white wolf"
-	desc = "Pack hunters of the Icemoon wastes. While a mere nuisance individually, they become fearsome foes in larger groups."
+	name = "白狼"
+	desc = "冰月荒原上的群居猎手。单个个体只是小麻烦，但在更大的群体中会成为可怕的敌人。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "whitewolf"
 	icon_living = "whitewolf"
@@ -85,4 +85,4 @@
 	if(isnull(.))
 		return
 	SET_FACTION_AND_ALLIES_FROM(src, new_friend)
-	visible_message(span_notice("[src] lowers [src.p_their()] snout at [new_friend]'s offering and begins to wag [src.p_their()] tail."))
+	visible_message(span_notice("[src] 将[src.p_their()]的鼻子凑向[new_friend]的贡品，并开始摇动[src.p_their()]的尾巴。"))

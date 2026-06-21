@@ -1,8 +1,8 @@
 #define MAX_NOTICES 8
 
 /obj/structure/noticeboard
-	name = "notice board"
-	desc = "A board for pinning important notices upon. It is made of the finest Spanish cork."
+	name = "告示牌"
+	desc = "一块用于钉重要通知的板子。它由最上等的西班牙软木制成。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "noticeboard"
 	density = FALSE
@@ -42,16 +42,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 /obj/structure/noticeboard/attackby(obj/item/O, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(O, /obj/item/paper) || istype(O, /obj/item/photo))
 		if(!allowed(user))
-			to_chat(user, span_warning("You are not authorized to add notices!"))
+			to_chat(user, span_warning("你无权添加通知！"))
 			return
 		if(notices < MAX_NOTICES)
 			if(!user.transferItemToLoc(O, src))
 				return
 			notices++
 			update_appearance(UPDATE_ICON)
-			to_chat(user, span_notice("You pin the [O] to the noticeboard."))
+			to_chat(user, span_notice("你将 [O] 钉在了通知板上。"))
 		else
-			to_chat(user, span_warning("The notice board is full!"))
+			to_chat(user, span_warning("布告牌上已经满了！"))
 	else
 		return ..()
 
@@ -116,7 +116,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 	item.forceMove(drop_location())
 	if(user)
 		user.put_in_hands(item)
-		balloon_alert(user, "removed from board")
+		balloon_alert(user, "已从布告板上移除")
 	notices--
 	update_appearance(UPDATE_ICON)
 
@@ -129,8 +129,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 		remove_item(content)
 
 /obj/item/wallframe/noticeboard
-	name = "notice board"
-	desc = "Right now it's more of a clipboard. Attach to a wall to use."
+	name = "告示牌"
+	desc = "现在它更像是个写字夹板。请安装在墙上使用。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "noticeboard"
 	custom_materials = list(
@@ -143,43 +143,43 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 // Notice boards for the heads of staff (plus the qm)
 
 /obj/structure/noticeboard/captain
-	name = "Captain's Notice Board"
-	desc = "Important notices from the Captain."
+	name = "舰长告示牌"
+	desc = "舰长的重要通知。"
 	req_access = list(ACCESS_CAPTAIN)
 
 /obj/structure/noticeboard/hop
-	name = "Head of Personnel's Notice Board"
-	desc = "Important notices from the Head of Personnel."
+	name = "人事部长布告栏"
+	desc = "人事部长的重要通知。"
 	req_access = list(ACCESS_HOP)
 
 /obj/structure/noticeboard/ce
-	name = "Chief Engineer's Notice Board"
-	desc = "Important notices from the Chief Engineer."
+	name = "工程部长告示牌"
+	desc = "工程部长的重要通知。"
 	req_access = list(ACCESS_CE)
 
 /obj/structure/noticeboard/hos
-	name = "Head of Security's Notice Board"
-	desc = "Important notices from the Head of Security."
+	name = "安全部长告示牌"
+	desc = "安全部长的重要通知。"
 	req_access = list(ACCESS_HOS)
 
 /obj/structure/noticeboard/cmo
-	name = "Chief Medical Officer's Notice Board"
-	desc = "Important notices from the Chief Medical Officer."
+	name = "首席医疗官告示牌"
+	desc = "首席医疗官的重要通知。"
 	req_access = list(ACCESS_CMO)
 
 /obj/structure/noticeboard/rd
-	name = "Research Director's Notice Board"
-	desc = "Important notices from the Research Director."
+	name = "研究总监告示牌"
+	desc = "研究总监的重要通知。"
 	req_access = list(ACCESS_RD)
 
 /obj/structure/noticeboard/qm
-	name = "Quartermaster's Notice Board"
-	desc = "Important notices from the Quartermaster."
+	name = "军需官告示牌"
+	desc = "军需官的重要通知。"
 	req_access = list(ACCESS_QM)
 
 /obj/structure/noticeboard/staff
-	name = "Staff Notice Board"
-	desc = "Important notices from the heads of staff."
+	name = "员工告示牌"
+	desc = "来自员工领导的重要通知。"
 	req_access = list(ACCESS_COMMAND)
 
 #undef MAX_NOTICES

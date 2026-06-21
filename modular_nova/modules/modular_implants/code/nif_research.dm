@@ -1,6 +1,6 @@
 /datum/design/nifsoft_remover
 	name = "Nanotrasen 'Wrangler' NIF-Cutter"
-	desc = "A small device that lets the user remove NIFSofts from a NIF user."
+	desc = "一种小型设备，允许使用者从 NIF 用户身上移除 NIFSoft。"
 	id = "nifsoft_remover"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/nifsoft_remover
@@ -15,8 +15,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/nifsoft_money_sense
-	name = "Automatic Appraisal NIFSoft"
-	desc = "A NIFSoft datadisk containing the Automatic Appraisal NIFsoft."
+	name = "自动估价 NIFSoft"
+	desc = "一张包含自动估价 NIFsoft 的 NIFSoft 数据盘。"
 	id = "nifsoft_money_sense"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/disk/nifsoft_uploader/job/money_sense
@@ -31,8 +31,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/soulcatcher_device
-	name = "Evoker-Type RSD"
-	desc = "An RSD instrument that lets the user pull the consciousness from a body and store it virtually."
+	name = "召唤者型 RSD"
+	desc = "一种 RSD 仪器，允许使用者从身体中提取意识并以虚拟形式存储。"
 	id = "soulcatcher_device"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/handheld_soulcatcher
@@ -47,8 +47,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mini_soulcatcher
-	name = "Poltergeist-Type RSD"
-	desc = "A miniature version of a Soulcatcher that can be attached to various objects."
+	name = "骚灵型 RSD"
+	desc = "灵魂捕捉器的微型版本，可以附加到各种物体上。"
 	id = "mini_soulcatcher"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/attachable_soulcatcher
@@ -62,8 +62,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/nif_detective_tools
-	name = "Grimoire Vacholiere NIFSoft"
-	desc = "A NIFSoft datadisk containing the Grimoire Vacholiere NIFSoft."
+	name = "魔典·瓦科利埃 NIFSoft"
+	desc = "一张包含魔典·瓦科利埃 NIFSoft 的 NIFSoft 数据盘。"
 	id = "nif_detective_tools"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/disk/nifsoft_uploader/job/summoner/detective
@@ -78,8 +78,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/nif_surgery_tools
-	name = "Grimoire Asclepius NIFSoft"
-	desc = "A NIFSoft datadisk containing the Grimoire Asclepius NIFSoft."
+	name = "魔典·阿斯克勒庇俄斯 NIFSoft"
+	desc = "一张包含魔典·阿斯克勒庇俄斯 NIFSoft 的 NIFSoft 数据盘。"
 	id = "nif_surgery_tools"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/disk/nifsoft_uploader/job/summoner/surgery
@@ -94,8 +94,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/nif_service_tools
-	name = "Grimoire Hestia NIFSoft"
-	desc = "A NIFSoft datadisk containing the Grimoire Hestia NIFSoft."
+	name = "魔典·赫斯提亚 NIFSoft"
+	desc = "一张包含魔典·赫斯提亚 NIFSoft 的 NIFSoft 数据盘。"
 	id = "nif_service_tools"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/disk/nifsoft_uploader/job/summoner/service
@@ -110,8 +110,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/nif_general_tools
-	name = "Grimoire Opera NIFSoft"
-	desc = "A NIFSoft datadisk containing the Grimoire Opera NIFSoft."
+	name = "魔典·欧佩拉 NIFSoft"
+	desc = "一张包含魔典·欧佩拉 NIFSoft 的 NIFSoft 数据盘。"
 	id = "nif_general_tools"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/disk/nifsoft_uploader/summoner/tools
@@ -137,50 +137,50 @@
 	)
 
 /datum/design/nifsoft_hud/medical
-	name = "Medical HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Medical HUD NIFsoft."
+	name = "医疗 HUD NIFSoft"
+	desc = "一张包含医疗 HUD NIFSoft 的 NIFSoft 数据盘。"
 	id = "nifsoft_hud_medical"
 	build_path = /obj/item/disk/nifsoft_uploader/job/med_hud
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/nifsoft_hud/security
-	name = "Security HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Security HUD NIFsoft."
+	name = "安保 HUD NIFSoft"
+	desc = "一张包含安保 HUD NIFSoft 的 NIFSoft 数据盘。"
 	id = "nifsoft_hud_security"
 	build_path = /obj/item/disk/nifsoft_uploader/job/sec_hud
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/nifsoft_hud/cargo
-	name = "Permit HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Permit HUD NIFsoft."
+	name = "许可 HUD NIFSoft"
+	desc = "一张包含许可 HUD NIFSoft 的 NIFSoft 数据盘。"
 	id = "nifsoft_hud_cargo"
 	build_path = /obj/item/disk/nifsoft_uploader/job/permit_hud
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/nifsoft_hud/diagnostic
-	name = "Diagnostic HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Diagnostic HUD NIFsoft."
+	name = "诊断 HUD NIFSoft"
+	desc = "一张包含诊断 HUD NIFSoft 的 NIFSoft 数据盘。"
 	id = "nifsoft_hud_diagnostic"
 	build_path = /obj/item/disk/nifsoft_uploader/job/diag_hud
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/nifsoft_hud/science
-	name = "Science HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Science HUD NIFsoft."
+	name = "科研 HUD NIFSoft"
+	desc = "一张包含科研 HUD NIFSoft 的 NIFSoft 数据盘。"
 	id = "nifsoft_hud_science"
 	build_path = /obj/item/disk/nifsoft_uploader/job/sci_hud
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/nifsoft_hud/meson
-	name = "Meson HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Meson HUD NIFsoft."
+	name = "介子 HUD NIFSoft"
+	desc = "一张包含介子 HUD NIFSoft 的 NIFSoft 数据盘。"
 	id = "nifsoft_hud_meson"
 	build_path = /obj/item/disk/nifsoft_uploader/job/meson_hud
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/nif_hud_kit
-	name = "NIF HUD Retrofitter"
-	desc = "A kit that modifies select glasses to display HUDs for NIFs."
+	name = "NIF HUD 改装套件"
+	desc = "一个用于改装特定眼镜以显示NIF平视显示器的套件。"
 	id = "nifsoft_hud_kit"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY

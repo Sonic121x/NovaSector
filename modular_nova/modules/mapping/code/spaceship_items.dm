@@ -1,5 +1,5 @@
 /obj/item/stack/sheet/spaceship
-	name = "spaceship plating"
+	name = "飞船板材"
 	desc = "A metal sheet made out of a titanium alloy, riveted for use in spaceship walls."
 	icon = 'modular_nova/modules/mapping/icons/unique/spaceships/shipstacks.dmi'
 	icon_state = "sheet-spaceship"
@@ -11,7 +11,7 @@
 	mats_per_unit = /obj/item/stack/sheet/mineral/titanium::mats_per_unit
 
 /obj/item/stack/sheet/spaceshipglass
-	name = "spaceship window plates"
+	name = "飞船窗板"
 	desc = "A glass sheet made out of a titanium-silicate alloy, riveted for use in spaceship window frames."
 	icon = 'modular_nova/modules/mapping/icons/unique/spaceships/shipstacks.dmi'
 	icon_state = "sheet-spaceshipglass"

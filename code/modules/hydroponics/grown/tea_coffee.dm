@@ -1,7 +1,7 @@
 // Tea
 /obj/item/seeds/tea
-	name = "tea aspera seed pack"
-	desc = "These seeds grow into tea plants."
+	name = "茶（aspera）种子包"
+	desc = "能长成茶树的种子。"
 	icon_state = "seed-teaaspera"
 	species = "teaaspera"
 	plantname = "Tea Aspera Plant"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/tea
 	seed = /obj/item/seeds/tea
-	name = "Tea Aspera tips"
-	desc = "These aromatic tips of the tea plant can be dried to make tea."
+	name = "苦旅茶尖"
+	desc = "这些从茶树上采下的芳香茶尖晒干后可以用来泡茶。"
 	icon_state = "tea_aspera_leaves"
 	dry_grind = TRUE
 	can_distill = FALSE
@@ -29,7 +29,7 @@
 
 // Tea Astra
 /obj/item/seeds/tea/astra
-	name = "tea astra seed pack"
+	name = "茶（astra）种子包"
 	icon_state = "seed-teaastra"
 	species = "teaastra"
 	plantname = "Tea Astra Plant"
@@ -40,7 +40,7 @@
 
 /obj/item/food/grown/tea/astra
 	seed = /obj/item/seeds/tea/astra
-	name = "Tea Astra tips"
+	name = "星辰茶尖"
 	icon_state = "tea_astra_leaves"
 	bite_consumption_mod = 2
 
@@ -49,8 +49,8 @@
 
 // Coffee
 /obj/item/seeds/coffee
-	name = "coffee arabica seed pack"
-	desc = "These seeds grow into coffee arabica bushes."
+	name = "咖啡（arabica）种子包"
+	desc = "能长成阿拉比卡咖啡的种子。"
 	icon_state = "seed-coffeea"
 	species = "coffeea"
 	plantname = "Coffee Arabica Bush"
@@ -69,8 +69,8 @@
 
 /obj/item/food/grown/coffee
 	seed = /obj/item/seeds/coffee
-	name = "coffee arabica beans"
-	desc = "Dry them out to make coffee."
+	name = "阿拉比卡咖啡豆"
+	desc = "将它们晾干以用于制作咖啡。"
 	icon_state = "coffee_arabica"
 	dry_grind = TRUE
 	distill_reagent = /datum/reagent/consumable/ethanol/kahlua
@@ -80,8 +80,8 @@
 
 // Coffee Robusta
 /obj/item/seeds/coffee/robusta
-	name = "coffee robusta seed pack"
-	desc = "These seeds grow into coffee robusta bushes."
+	name = "咖啡（robusta）种子包"
+	desc = "这些种子会长成罗布斯塔咖啡树。"
 	icon_state = "seed-coffeer"
 	species = "coffeer"
 	plantname = "Coffee Robusta Bush"
@@ -92,8 +92,8 @@
 
 /obj/item/food/grown/coffee/robusta
 	seed = /obj/item/seeds/coffee/robusta
-	name = "coffee robusta beans"
-	desc = "Increases robustness by 37 percent!"
+	name = "罗布斯塔咖啡豆"
+	desc = "增强了 37% 的稳定性！"
 	icon_state = "coffee_robusta"
 
 /obj/item/food/grown/coffee/robusta/grind_results()

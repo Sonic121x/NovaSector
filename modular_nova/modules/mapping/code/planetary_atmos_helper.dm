@@ -1,6 +1,6 @@
 /// Sets every turf in the area to have planetary atmos; which gradually self-corrects. See LINDA_turf_tile.dm
 /obj/effect/planetary_turf_atmos_helper
-	name = "planetary turf atmos helper"
+	name = "行星地表大气辅助器"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
 	plane = POINT_PLANE

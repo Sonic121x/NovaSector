@@ -1,6 +1,6 @@
 /datum/action/cooldown/alien/hide
-	name = "Hide"
-	desc = "Allows you to hide beneath tables and certain objects."
+	name = "隐藏"
+	desc = "允许您隐藏在桌子和某些物体之下。"
 	button_icon_state = "alien_hide"
 	plasma_cost = 0
 	/// The layer we are on while hiding
@@ -26,8 +26,8 @@
 	return TRUE
 
 /datum/action/cooldown/alien/larva_evolve
-	name = "Evolve"
-	desc = "Evolve into a higher alien caste."
+	name = "进化"
+	desc = "进化成为更高层级的异形。"
 	button_icon_state = "alien_evolve_larva"
 	plasma_cost = 0
 
@@ -57,7 +57,7 @@
 		// This can probably be genericized in the future.
 		var/mob/hunter_path = /mob/living/carbon/alien/adult/hunter
 		var/datum/radial_menu_choice/hunter = new()
-		hunter.name = "Hunter"
+		hunter.name = "猎手"
 		hunter.image  = image(icon = initial(hunter_path.icon), icon_state = initial(hunter_path.icon_state))
 		hunter.info = span_info("Hunters are the most agile caste, tasked with hunting for hosts. \
 			They are faster than a human and can even pounce, but are not much tougher than a drone.")
@@ -66,7 +66,7 @@
 
 		var/mob/sentinel_path = /mob/living/carbon/alien/adult/sentinel
 		var/datum/radial_menu_choice/sentinel = new()
-		sentinel.name = "Sentinel"
+		sentinel.name = "哨兵"
 		sentinel.image  = image(icon = initial(sentinel_path.icon), icon_state = initial(sentinel_path.icon_state))
 		sentinel.info = span_info("Sentinels are tasked with protecting the hive. \
 			With their ranged spit, invisibility, and high health, they make formidable guardians \
@@ -76,7 +76,7 @@
 
 		var/mob/drone_path = /mob/living/carbon/alien/adult/drone
 		var/datum/radial_menu_choice/drone = new()
-		drone.name = "Drone"
+		drone.name = "雄蜂"
 		drone.image  = image(icon = initial(drone_path.icon), icon_state = initial(drone_path.icon_state))
 		drone.info = span_info("Drones are the weakest and slowest of the castes, \
 			but can grow into a praetorian and then queen if no queen exists, \

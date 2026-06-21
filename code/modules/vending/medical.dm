@@ -1,6 +1,6 @@
 /obj/machinery/vending/medical
-	name = "\improper NanoMed Plus"
-	desc = "Medical drug dispenser."
+	name = "\improper 纳米高级药柜"
+	desc = "医疗药品分配器。"
 	icon_state = "med"
 	icon_deny = "med-deny"
 	panel_type = "panel11"
@@ -47,7 +47,7 @@
 	icon_state = "refill_medical"
 
 /obj/machinery/vending/medical/syndicate
-	name = "\improper SyndiMed Plus"
+	name = "\improper 辛迪高级药柜"
 	initial_language_holder = /datum/language_holder/syndicate
 	allow_custom = FALSE
 
@@ -71,8 +71,8 @@
 
 //Created out of a necessity to get these dumb chems out of the medical tools vendor.
 /obj/machinery/vending/drugs
-	name = "\improper NanoDrug Plus"
-	desc = "Medical drugs dispenser."
+	name = "\improper 纳米药柜"
+	desc = "医疗药品分配器。"
 	icon_state = "drug"
 	icon_deny = "drug-deny"
 	panel_type = "panel11"

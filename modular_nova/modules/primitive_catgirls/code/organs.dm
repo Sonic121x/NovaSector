@@ -3,8 +3,8 @@
 // Lungs
 
 /obj/item/organ/lungs/icebox_adapted
-	name = "hardy lungs"
-	desc = "Lungs adapted to frozen environments that would be otherwise inhospitable to most races. Feels cold."
+	name = "强韧肺脏"
+	desc = "适应了冰冻环境的肺脏，这种环境对大多数种族来说通常是无法生存的。摸起来很冷。"
 	icon_state = "hardylungs"
 	icon = 'modular_nova/modules/primitive_catgirls/icons/organs.dmi'
 

@@ -16,18 +16,18 @@
 /obj/item/organ/cyberimp/mouth/breathing_tube/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(isnull(aug_overlay))
-		name = "breathing tube implant"
+		name = "呼吸管植入体"
 		aug_overlay = "breathing_tube"
 		if(isnull(bodypart_aug)) //Need to ensure there's one of these on the Integrated one, which starts null
 			bodypart_aug = new(src)
 	else
-		name = "integrated breathing tube implant"
+		name = "集成式呼吸管植入体"
 		aug_overlay = null
 		QDEL_NULL(bodypart_aug)
 	tool.play_tool_sound(src)
-	balloon_alert(user, "visibility toggled")
+	balloon_alert(user, "可见性已切换")
 
 //And a preset for the loadout
 /obj/item/organ/cyberimp/mouth/breathing_tube/hidden
-	name = "integrated breathing tube implant"
+	name = "集成式呼吸管植入体"
 	aug_overlay = null

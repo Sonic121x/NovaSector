@@ -1,7 +1,7 @@
 ///The item used as the basis for construction kits for organic interface
 /obj/item/construction_kit
-	name = "construction kit"
-	desc = "Used for constructing various things"
+	name = "组装套件"
+	desc = "用于建造各种物品"
 	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = CAN_BE_HIT
 	throwforce = 0
@@ -18,15 +18,15 @@
 
 /obj/item/construction_kit/examine(mob/user)
 	. = ..()
-	. += span_purple("[src] can be assembled by using <b>Ctrl+Shift+Click</b> while [src] is on the floor.")
+	. += span_purple("[src] 可以通过在 [src] 位于地面上时使用 <b>Ctrl+Shift+点击</b> 来组装。")
 
 /obj/item/construction_kit/click_ctrl_shift(mob/user)
 	if((item_flags & IN_INVENTORY) || (item_flags & IN_STORAGE))
 		return
 
-	to_chat(user, span_notice("You begin to assemble [src]..."))
+	to_chat(user, span_notice("你开始组装 [src]..."))
 	if(!do_after(user, construction_time, src))
-		to_chat(user, span_warning("You fail to assemble [src]!"))
+		to_chat(user, span_warning("你未能组装 [src]！"))
 		return
 
 	var/obj/structure/chair/final_structure = new resulting_structure (get_turf(user))
@@ -44,7 +44,7 @@
 		stand.set_greyscale(greyscale_colors)
 
 	qdel(src)
-	to_chat(user, span_notice("You assemble [src]."))
+	to_chat(user, span_notice("你组装了 [src]。"))
 
 // MILKER
 
@@ -98,7 +98,7 @@
 
 /obj/item/construction_kit/bdsm/shibari/examine(mob/user)
 	.=..()
-	. += span_purple("[src]'s color can be customized with <b>Ctrl+Click</b>.")
+	. += span_purple("[src] 的颜色可以通过 <b>Ctrl+点击</b> 来自定义。")
 
 //to change model
 /obj/item/construction_kit/bdsm/shibari/item_ctrl_click(mob/user)
@@ -115,5 +115,5 @@
 		starting_colors = greyscale_colors
 	)
 	menu.ui_interact(usr)
-	to_chat(user, span_notice("You switch the frame's plastic fittings color."))
+	to_chat(user, span_notice("你切换了框架塑料配件的颜色。"))
 	return CLICK_ACTION_SUCCESS

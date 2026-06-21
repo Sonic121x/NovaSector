@@ -1,6 +1,6 @@
 /obj/item/tickle_feather
-	name = "tickling feather"
-	desc = "A rather ticklish feather that can be used in both mirth and malice."
+	name = "搔痒羽毛"
+	desc = "一根相当令人发痒的羽毛，可用于嬉戏或恶作剧。"
 	icon_state = "feather"
 	inhand_icon_state = "feather"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -20,7 +20,7 @@
 		if(BODY_ZONE_PRECISE_GROIN)
 			targetedsomewhere = TRUE
 			if(!(target.is_bottomless()))
-				to_chat(user, span_danger("[target]'s groin is covered!"))
+				to_chat(user, span_danger("[target]的腹股沟被遮住了！"))
 				return
 			message = (user == target) ? pick("tickles [target.p_them()]self with [src]", "gently teases [target.p_their()] belly with [src]") : pick("teases [target]'s belly with [src]", "uses [src] to tickle [target]'s belly", "tickles [target] with [src]")
 			if(target.stat == DEAD)
@@ -32,7 +32,7 @@
 			targetedsomewhere = TRUE
 			var/obj/item/organ/genital/badonkers = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 			if(!(target.is_topless() || badonkers.visibility_preference == GENITAL_ALWAYS_SHOW))
-				to_chat(user, span_danger("[target]'s chest is covered!"))
+				to_chat(user, span_danger("[target]的胸部被遮住了！"))
 				return
 			message = (user == target) ? pick("tickles [target.p_them()]self with [src]", "gently teases [target.p_their()] own nipples with [src]") : pick("teases [target]'s nipples with [src]", "uses [src] to tickle [target]'s left nipple", "uses [src] to tickle [target]'s right nipple")
 			if(target.stat == DEAD)
@@ -43,11 +43,11 @@
 		if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 			targetedsomewhere = TRUE
 			if(!target.has_feet())
-				to_chat(user, span_danger("[target] doesn't have any feet!"))
+				to_chat(user, span_danger("[target]没有脚！"))
 				return
 
 			if(!target.is_barefoot())
-				to_chat(user, span_danger("[target]'s feet are covered!"))
+				to_chat(user, span_danger("[target]的脚被遮住了！"))
 				return
 			message = (user == target) ? pick("tickles [target.p_them()]self with [src]", "gently teases [target.p_their()] own feet with [src]") : pick("teases [target]'s feet with [src]", "uses [src] to tickle [target]'s [user.zone_selected == BODY_ZONE_L_LEG ? "left" : "right"] foot", "uses [src] to tickle [target]'s toes")
 			if(target.stat == DEAD)
@@ -58,7 +58,7 @@
 		if(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
 			targetedsomewhere = TRUE
 			if(!target.is_topless())
-				to_chat(user, span_danger("[target]'s armpits are covered!"))
+				to_chat(user, span_danger("[target]的腋下被遮住了！"))
 				return
 			message = (user == target) ? pick("tickles [target.p_them()]self with [src]", "gently teases [target.p_their()] own armpit with [src]") : pick("teases [target]'s right armpit with [src]", "uses [src] to tickle [target]'s [user.zone_selected == BODY_ZONE_L_ARM ? "left" : "right"] armpit", "uses [src] to tickle [target]'s underarm")
 			if(target.stat == DEAD)
@@ -71,7 +71,7 @@
 	target.adjust_stamina_loss(4)
 	target.add_mood_event("tickled", /datum/mood_event/tickled)
 	target.adjust_arousal(3)
-	user.visible_message(span_purple("[user] [message]!"))
+	user.visible_message(span_purple("[user] [message]！"))
 	playsound_if_pref(loc, \
 		pick(
 			'sound/items/handling/cloth/cloth_drop1.ogg', // I duplicate this part of code because im useless shitcoder that can't make it work properly without tons of repeating code blocks
@@ -81,6 +81,6 @@
 
 //Mood boost
 /datum/mood_event/tickled
-	description = span_nicegreen("Wooh... I was tickled. It was... Funny!\n")
+	description = span_nicegreen("呜呼……我被挠痒了。这……真好玩！\n")
 	mood_change = 0
 	timeout = 2 MINUTES

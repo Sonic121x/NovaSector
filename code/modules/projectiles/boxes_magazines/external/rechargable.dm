@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/recharge
-	name = "power pack"
-	desc = "A rechargeable, detachable battery that serves as a magazine for laser rifles."
+	name = "电源包"
+	desc = "一种用于镭射步枪的可充电、可拆卸电池。"
 	icon_state = "oldrifle-20"
 	base_icon_state = "oldrifle"
 	ammo_type = /obj/item/ammo_casing/laser
@@ -9,7 +9,7 @@
 
 /obj/item/ammo_box/magazine/recharge/update_desc()
 	. = ..()
-	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
+	desc = "[initial(desc)] 还有[stored_ammo.len]发 \s 剩余."
 
 /obj/item/ammo_box/magazine/recharge/update_icon_state()
 	. = ..()

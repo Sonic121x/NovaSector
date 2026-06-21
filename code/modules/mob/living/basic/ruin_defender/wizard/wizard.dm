@@ -1,6 +1,6 @@
 /mob/living/basic/wizard
-	name = "Space Wizard"
-	desc = "A wizard is never early. Nor is he late. He arrives exactly at the worst possible moment."
+	name = "太空巫师"
+	desc = "巫师从不早到，也从不迟到。他总在最糟糕的时刻准时出现。"
 	icon = 'icons/mob/simple/simple_human.dmi'
 	icon_state = "wizard"
 	icon_living = "wizard"

@@ -10,7 +10,7 @@
 	if(!.)
 		return
 	if(apply_stun(user, 200, 2)) // Instant stun
-		to_chat(user, span_warning("A powerful force overwhelms your consciousness."))
+		to_chat(user, span_warning("一股强大的力量淹没了你的意识。"))
 
 /datum/artifact_effect/stun/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -21,7 +21,7 @@
 		if(!SPT_PROB(10, seconds_per_tick))
 			continue
 		if(apply_stun(living_mob, 12.5, seconds_per_tick))
-			to_chat(living_mob, span_warning("Your body goes numb for a moment."))
+			to_chat(living_mob, span_warning("你的身体暂时麻木了。"))
 
 /datum/artifact_effect/stun/do_effect_pulse(seconds_per_tick)
 	. = ..()
@@ -33,13 +33,13 @@
 		if(!SPT_PROB(25, seconds_per_tick))
 			continue
 		if(apply_stun(living_mob, 5 * used_power, seconds_per_tick))
-			to_chat(living_mob, span_warning("A wave of energy overwhelms your senses!"))
+			to_chat(living_mob, span_warning("一股能量波淹没了你的感官！"))
 
 /datum/artifact_effect/stun/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/living_mob in range(range+3, curr_turf))
 		if(apply_stun(living_mob, 200, 2))
-			to_chat(living_mob, span_warning("A <b>massive</b> wave of energy overwhelms your senses!"))
+			to_chat(living_mob, span_warning("一股<b>巨大</b>的能量波淹没了你的感官！"))
 
 /**
  * Tries to stun receiver, obviously

@@ -7,8 +7,8 @@
 /datum/status_effect/organ_set_bonus/carp
 	id = "organ_set_bonus_carp"
 	organs_needed = 4
-	bonus_activate_text = span_notice("Carp DNA is deeply infused with you! You've learned how to propel yourself through space!")
-	bonus_deactivate_text = span_notice("Your DNA is once again mostly yours, and so fades your ability to space-swim...")
+	bonus_activate_text = span_notice("鲤鱼DNA已深深融入你的身体！你学会了如何在太空中推进自己！")
+	bonus_deactivate_text = span_notice("你的DNA再次基本属于你自己，因此你在太空中游泳的能力也随之消退……")
 	bonus_traits = list(TRAIT_SPACEWALK)
 	bonus_biotype = MOB_AQUATIC
 	limb_overlay = /datum/bodypart_overlay/texture/carpskin
@@ -17,8 +17,8 @@
 ///Carp lungs! You can breathe in space! Oh... you can't breathe on the station, you need low oxygen environments.
 /// Inverts behavior of lungs. Bypasses suffocation due to space / lack of gas, but also allows Oxygen to suffocate.
 /obj/item/organ/lungs/carp
-	name = "mutated carp-lungs"
-	desc = "Carp DNA infused into what was once some normal lungs."
+	name = "突变的鲤鱼肺"
+	desc = "鲤鱼DNA被注入到曾经是正常肺部的器官中。"
 	// Oxygen causes suffocation.
 	safe_oxygen_min = 0
 	safe_oxygen_max = 15
@@ -37,8 +37,8 @@
 
 ///occasionally sheds carp teeth, stronger melee (bite) attacks, but you can't cover your mouth anymore.
 /obj/item/organ/tongue/carp
-	name = "mutated carp-jaws"
-	desc = "Carp DNA infused into what was once some normal teeth."
+	name = "突变的鲤鱼颚"
+	desc = "鲤鱼DNA被注入到曾经是正常牙齿的器官中。"
 
 	say_mod = "gnashes"
 
@@ -103,15 +103,15 @@
 	. += /datum/language/carptongue
 
 /obj/item/knife/carp
-	name = "carp tooth"
+	name = "鲤鱼牙齿"
 	desc = "Looks sharp. Sharp enough to poke someone's eye out. Holy fuck it's big."
 	icon_state = "carptooth"
 	icon_angle = -45
 
 ///carp brain. you need to occasionally go to a new zlevel. think of it as... walking your dog!
 /obj/item/organ/brain/carp
-	name = "mutated carp-brain"
-	desc = "Carp DNA infused into what was once a normal brain."
+	name = "突变的鲤鱼脑"
+	desc = "鲤鱼DNA被注入到曾经是正常大脑的器官中。"
 
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/brain/carp"
@@ -155,8 +155,8 @@
 
 /// makes you cold resistant, but heat-weak.
 /obj/item/organ/heart/carp
-	name = "mutated carp-heart"
-	desc = "Carp DNA infused into what was once a normal heart."
+	name = "突变的鲤鱼心脏"
+	desc = "鲤鱼DNA被注入到曾经是正常心脏的器官中。"
 
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/heart/carp"

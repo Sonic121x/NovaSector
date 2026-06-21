@@ -3,8 +3,8 @@
 
 /// Rise into the air and slam down, knocking people away. No real cooldown but has escalating endlag if used in quick succession.
 /datum/action/cooldown/mob_cooldown/abdomen_pound
-	name = "Abdomen Pound"
-	desc = "Raise your abdomen in the air and slam it onto the ground, scattering those close to you."
+	name = "腹部重击"
+	desc = "将腹部高举到空中然后猛砸地面，击散你附近的敌人。"
 	button_icon = 'icons/effects/magic.dmi'
 	button_icon_state = "3"
 	cooldown_time = 10 SECONDS
@@ -59,7 +59,7 @@
 /datum/action/cooldown/mob_cooldown/abdomen_pound/proc/begin_sequence()
 	owner.add_traits(applied_traits, REF(src)) // No moving till we're done
 	owner.update_appearance(UPDATE_ICON)
-	owner.balloon_alert(owner, "you raise your abdomen high up into the air.")
+	owner.balloon_alert(owner, "你将腹部高高举向空中。")
 	animate(owner, pixel_y = 10, time = windup_time)
 	active_timer = addtimer(CALLBACK(src, PROC_REF(ground_pound)), windup_time, TIMER_DELETE_ME | TIMER_STOPPABLE)
 	for (var/mob/living/candidate in view(pound_distance, owner))
@@ -76,8 +76,8 @@
 	for (var/mob/living/candidate in view(pound_distance, owner))
 		if(candidate == owner || candidate.faction_check_atom(owner))
 			continue
-		owner.visible_message(span_boldwarning("[candidate] is knocked back by the sudden slam on the tiles!"))
-		to_chat(candidate, span_userdanger("You're knocked back by the spiders impact on the floor!"))
+		owner.visible_message(span_boldwarning("[candidate] 被瓷砖上突如其来的重击震退了！"))
+		to_chat(candidate, span_userdanger("你被蜘蛛撞击地面的冲击力震退了！"))
 		var/dir_to_target = get_dir(get_turf(owner), get_turf(candidate))
 		var/throwtarget = get_edge_target_turf(target, dir_to_target)
 		candidate.safe_throw_at(throwtarget, range = 7, speed = 1, thrower = owner)

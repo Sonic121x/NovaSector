@@ -87,7 +87,7 @@
 	if (!should_be_regenning(parent))
 		return
 	var/mob/living/living_parent = parent
-	living_parent.visible_message(span_notice("[living_parent]'s wounds begin to knit closed!"))
+	living_parent.visible_message(span_notice("[living_parent]的伤口开始愈合了！"))
 	START_PROCESSING(SSobj, src)
 	regeneration_start_timer = null
 	if (!outline_colour)

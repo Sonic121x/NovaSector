@@ -1,8 +1,8 @@
 /// The dark matt-eor. Only attracted by emagging 10 satellites and maximizing meteor chances, and it drops a singulo. Otherwise, it's not that bad.
 /obj/effect/meteor/dark_matteor
-	name = "dark matt-eor"
+	name = "暗物质流星"
 	icon_state = "dark_matter"
-	desc = "The most widely accepted theory is that dark matter is made up of weakly interacting massive particles (WIMPs). But seeing this malevolent force of imminent death careening towards you, gotta admit, it doesn't look so WIMPy anymore..."
+	desc = "最广为接受的理论是暗物质由弱相互作用大质量粒子（WIMPs）构成。但看到这股充满恶意的、即将到来的死亡力量朝你猛冲而来，不得不承认，它看起来一点也不‘弱’了……"
 	hits = 15
 	hitpwr = EXPLODE_DEVASTATE
 	heavy = TRUE
@@ -54,7 +54,7 @@
 		spark_system.start()
 
 /obj/effect/meteor/dark_matteor/shield_defense(obj/machinery/satellite/meteor_shield/defender)
-	defender.visible_message(span_danger("[defender]'s beam is reflected by [src]!"))
+	defender.visible_message(span_danger("[defender] 的光束被 [src] 反射了！"))
 	new /obj/effect/temp_visual/explosion/fast(get_turf(defender))
 	qdel(defender)
 	return FALSE
@@ -63,4 +63,4 @@
 	. = ..()
 	if(previous_security_level && SSsecurity_level.get_current_level_as_number() != SEC_LEVEL_DELTA)
 		SSsecurity_level.set_level(previous_security_level)
-	priority_announce("Wow. The Dark Matt-eor actually missed your station. Don't forget to thank your Chaplain for his apparent divine intervention.", "Meteor Update")
+	priority_announce("哇哦。暗物质陨石居然错过了你的空间站。别忘了感谢你们的牧师，他显然进行了神圣的干预。", "陨石更新")

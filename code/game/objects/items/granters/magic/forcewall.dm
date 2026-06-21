@@ -2,7 +2,7 @@
 	granted_action = /datum/action/cooldown/spell/forcewall
 	action_name = "forcewall"
 	icon_state ="bookforcewall"
-	desc = "This book has a dedication to mimes everywhere inside the front cover."
+	desc = "这本书的扉页上写着献给全世界的哑剧演员。"
 	remarks = list(
 		"I can go through the wall! Neat.",
 		"Why are there so many mime references...?",
@@ -15,6 +15,6 @@
 
 /obj/item/book/granter/action/spell/forcewall/recoil(mob/living/user)
 	. = ..()
-	to_chat(user, span_warning("You suddenly feel very solid!"))
+	to_chat(user, span_warning("你突然感觉身体非常结实！"))
 	user.Stun(4 SECONDS, ignore_canstun = TRUE)
 	user.petrify(6 SECONDS)

@@ -1,64 +1,64 @@
 // 10mm
 
 /obj/item/ammo_casing/c10mm
-	name = "10mm bullet casing"
-	desc = "A 10mm bullet casing."
+	name = "10mm 子弹弹壳"
+	desc = "一颗 10mm 子弹弹壳。"
 	caliber = CALIBER_10MM
 	projectile_type = /obj/projectile/bullet/c10mm
 	newtonian_force = 0.75
 
 /obj/item/ammo_casing/c10mm/ap
-	name = "10mm armor-piercing bullet casing"
-	desc = "A 10mm armor-piercing bullet casing."
+	name = "10mm 穿甲弹弹壳"
+	desc = "一颗 10mm 穿甲弹弹壳。"
 	projectile_type = /obj/projectile/bullet/c10mm/ap
 
 /obj/item/ammo_casing/c10mm/hp
-	name = "10mm hollow-point bullet casing"
+	name = "10mm 空尖弹弹壳"
 	desc = "A 10mm hollow-point bullet casing."
 	projectile_type = /obj/projectile/bullet/c10mm/hp
 
 /obj/item/ammo_casing/c10mm/fire
-	name = "10mm incendiary bullet casing"
-	desc = "A 10mm incendiary bullet casing."
+	name = "10mm 燃烧弹弹壳"
+	desc = "一颗 10mm 燃烧弹弹壳。"
 	projectile_type = /obj/projectile/bullet/incendiary/c10mm
 
 // 9mm (Makarov, Stechkin APS)
 
 /obj/item/ammo_casing/c9mm
-	name = "9mm bullet casing"
-	desc = "A 9mm bullet casing."
+	name = "9mm 子弹弹壳"
+	desc = "一颗 9mm 子弹弹壳。"
 	caliber = CALIBER_9MM
 	projectile_type = /obj/projectile/bullet/c9mm
 	newtonian_force = 0.75
 
 /obj/item/ammo_casing/c9mm/ap
-	name = "9mm armor-piercing bullet casing"
-	desc = "A 9mm armor-piercing bullet casing."
+	name = "9mm 穿甲弹弹壳"
+	desc = "一颗 9mm 穿甲弹弹壳。"
 	projectile_type =/obj/projectile/bullet/c9mm/ap
 
 /obj/item/ammo_casing/c9mm/hp
-	name = "9mm hollow-point bullet casing"
-	desc = "A 9mm hollow-point bullet casing."
+	name = "9mm 空尖弹弹壳"
+	desc = "一个9毫米空尖子弹弹壳。"
 	projectile_type = /obj/projectile/bullet/c9mm/hp
 
 /obj/item/ammo_casing/c9mm/fire
-	name = "9mm incendiary bullet casing"
-	desc = "A 9mm incendiary bullet casing."
+	name = "9mm 燃烧弹弹壳"
+	desc = "一颗 9mm 燃烧弹弹壳。"
 	projectile_type = /obj/projectile/bullet/incendiary/c9mm
 
 // .50AE (Desert Eagle)
 
 /obj/item/ammo_casing/a50ae
-	name = ".50AE bullet casing"
-	desc = "A .50AE bullet casing."
+	name = ".50AE 子弹"
+	desc = "一颗 .50AE 子弹弹壳。"
 	caliber = CALIBER_50AE
 	projectile_type = /obj/projectile/bullet/a50ae
 
 // .160 Smart (Abielle smartgun)
 
 /obj/item/ammo_casing/c160smart
-	name = ".160 smart bullet casing"
-	desc = "A .160 smart bullet with a small charge of booster propellant at the bottom."
+	name = ".160智能子弹弹壳"
+	desc = "一枚.160智能子弹，底部装有少量助推推进剂。"
 	icon_state = "smartgun_casing"
 	caliber = CALIBER_160SMART
 	projectile_type = /obj/projectile/bullet/c160smart
@@ -81,7 +81,7 @@
 			new /obj/effect/temp_visual/smartgun_target(get_turf(aimbot_target))
 
 /obj/effect/temp_visual/smartgun_target
-	name = "smartgun target reticle"
-	desc = "A holographic crosshair that probably means you should start running."
+	name = "智能枪目标瞄准镜"
+	desc = "一个全息十字准星，这可能意味着你应该开始逃跑了。"
 	icon_state = "launchpad_pull"
 	duration = 0.25 SECONDS

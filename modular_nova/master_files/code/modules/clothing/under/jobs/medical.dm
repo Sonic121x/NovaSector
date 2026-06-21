@@ -30,7 +30,7 @@
 	icon = 'modular_nova/master_files/icons/obj/clothing/under/medical.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/medical.dmi'
 	icon_state = "scrubswhite" // Because for some reason TG's scrubs dont have an icon on their basetype
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one seems to be the original Scrub."
+	desc = "它由一种特殊纤维制成，能提供对生物危害的轻微防护。这件似乎是原版刷手服。"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/medical/chemist/nova
@@ -52,8 +52,8 @@
 */
 
 /obj/item/clothing/under/rank/medical/doctor/nova/utility
-	name = "medical utility uniform"
-	desc = "A utility uniform worn by Medical doctors."
+	name = "医疗勤务制服"
+	desc = "医疗医生穿着的勤务制服。"
 	icon_state = "util_med"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_BIG_LEGS_MASK
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -68,11 +68,11 @@
 */
 
 /obj/item/clothing/under/rank/medical/scrubs/nova/red
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in a deep red."
+	desc = "它由一种特殊纤维制成，能提供对生物危害的轻微防护。这件是深红色的。"
 	icon_state = "scrubsred"
 
 /obj/item/clothing/under/rank/medical/scrubs/nova/white
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in a cream white colour."
+	desc = "它由一种特殊纤维制成，能提供对生物危害的轻微防护。这件是奶油白色的。"
 	icon_state = "scrubswhite"
 
 /*
@@ -80,12 +80,12 @@
 */
 
 /obj/item/clothing/under/rank/medical/chemist/nova/formal
-	name = "chemist's formal jumpsuit"
-	desc = "A white shirt with left-aligned buttons and an orange stripe, lined with protection against chemical spills."
+	name = "药剂师的正装连体服"
+	desc = "一件左对齐纽扣的白色衬衫，带有橙色条纹，内衬有防化学泄漏的保护层。"
 	icon_state = "pharmacologist"
 
 /obj/item/clothing/under/rank/medical/chemist/nova/formal/skirt
-	name = "chemist's formal jumpskirt"
+	name = "药剂师的正装连体裙"
 	icon_state = "pharmacologist_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
@@ -101,13 +101,13 @@
 */
 
 /obj/item/clothing/under/rank/medical/paramedic/nova/light
-	name = "light paramedic uniform"
-	desc = "A brighter variant of the typical Paramedic uniform made with special fibers that provide minor protection against biohazards, this one has the reflective strips removed."
+	name = "轻型护理员制服"
+	desc = "典型护理员制服的明亮变体，由能提供对生物危害轻微防护的特殊纤维制成，这件移除了反光条。"
 	icon_state = "paramedic_light"
 
 /obj/item/clothing/under/rank/medical/paramedic/nova/light/skirt
-	name = "light paramedic skirt"
-	desc = "A brighter variant of the typical Paramedic uniform made with special fibers that provide minor protection against biohazards, this one has had its legs replaced with a skirt."
+	name = "轻型护理员裙"
+	desc = "典型护理员制服的明亮变体，由能提供对生物危害轻微防护的特殊纤维制成，这件将裤腿换成了裙子。"
 	icon_state = "paramedic_light_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
@@ -120,15 +120,15 @@
 */
 
 /obj/item/clothing/under/imperial/cmo
-	desc = "A teal, sterile naval suit with a rank badge denoting the Officer of the Medical Corps. Doesn't protect against blaster fire."
-	name = "chief medical officer's naval jumpsuit"
+	desc = "一件青绿色、无菌的海军制服，配有表示医疗部队军官的军衔徽章。无法抵御爆能枪火力。"
+	name = "首席医疗官的海军连体服"
 	icon_state = "/obj/item/clothing/under/imperial/cmo"
 	greyscale_colors = "#5EB8B8#5EB8B8#5EB8B8#373741#FFFFFF#2979cd#bc2626"
 	flags_1 = NONE
 
 /obj/item/clothing/under/imperialskirt/cmo
-	desc = "A teal, sterile naval skirt with a rank badge denoting the Officer of the Medical Corps. Doesn't protect against blaster fire."
-	name = "chief medical officer's naval skirt"
+	desc = "一件青绿色、无菌的海军裙装，配有表示医疗部队军官的军衔徽章。无法抵御爆能枪火力。"
+	name = "首席医疗官的海军裙装"
 	icon_state = "/obj/item/clothing/under/imperialskirt/cmo"
 	greyscale_colors = "#5EB8B8#5EB8B8#373741#FFFFFF#2979cd#bc2626"
 	flags_1 = NONE

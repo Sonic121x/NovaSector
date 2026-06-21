@@ -186,7 +186,7 @@
 		qdel(src)
 
 /datum/action/innate/end_holocall
-	name = "End Holocall"
+	name = "结束全息通话"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 	var/datum/holocall/hcall
@@ -213,8 +213,8 @@
 	user.setDir(olddir)
 
 /obj/item/disk/holodisk
-	name = "holorecord disk"
-	desc = "Stores recorder holocalls."
+	name = "全息记录磁盘"
+	desc = "存储录制的全息通话。"
 	sticker_icon_state = "o_holo"
 	obj_flags = UNIQUE_RENAME
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
@@ -239,7 +239,7 @@
 	var/obj/item/disk/holodisk/holodisk_original = tool
 
 	if (!holodisk_original.record)
-		to_chat(user, span_warning("[holodisk_original] has no record on it!"))
+		to_chat(user, span_warning("[holodisk_original]上面没有记录！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!record)
@@ -249,7 +249,7 @@
 	record.caller_image = holodisk_original.record.caller_image
 	record.entries = holodisk_original.record.entries.Copy()
 	record.language = holodisk_original.record.language
-	to_chat(user, span_notice("You copy the record from [holodisk_original] to [src] by connecting the ports!"))
+	to_chat(user, span_notice("你通过连接端口将记录从[holodisk_original]复制到了[src]！"))
 	name = holodisk_original.name
 
 	return ITEM_INTERACT_SUCCESS
@@ -385,8 +385,8 @@
 	DELAY 20"}
 
 /obj/item/disk/holodisk/donutstation/whiteship
-	name = "Blackbox Print-out #DS024"
-	desc = "A holodisk containing the last viable recording of DS024's blackbox."
+	name = "黑匣子打印输出 #DS024"
+	desc = "一张包含DS024黑匣子最后可用记录的全息磁盘。"
 	preset_image_type = /datum/preset_holoimage/engineer/ce
 	preset_record_text = {"
 	NAME Geysr Shorthalt
@@ -431,8 +431,8 @@
 	"}
 
 /obj/item/disk/holodisk/ruin/snowengieruin
-	name = "Blackbox Print-out #EB412"
-	desc = "A holodisk containing the last moments of EB412. There's a bloody fingerprint on it."
+	name = "黑匣子打印输出 #EB412"
+	desc = "一张包含EB412最后时刻的全息磁盘。上面有一个血指纹。"
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
 	NAME Dave Tundrale
@@ -474,7 +474,7 @@
 	DELAY 50"}
 
 /obj/item/disk/holodisk/ruin/ghost_restaurant
-	name = "Blackbox Print-out #NG234"
+	name = "黑匣子打印输出 #NG234"
 	preset_image_type = /datum/preset_holoimage/assistant
 	preset_record_text = {"
 	NAME Aron Blue
@@ -571,8 +571,8 @@
 	"}
 
 /obj/item/disk/holodisk/ruin/space/travelers_rest
-	name = "Owner's memo"
-	desc = "A holodisk containing a small memo from the previous owner, addressed to someone else."
+	name = "所有者备忘录"
+	desc = "一张全息磁盘，内含前主人留给别人的简短备忘录。"
 	preset_image_type = /datum/preset_holoimage/engineer/atmos
 	preset_record_text = {"
 		NAME Space Adventurer

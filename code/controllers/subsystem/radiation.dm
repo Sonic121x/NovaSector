@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(radiation)
-	name = "Radiation"
+	name = "辐射"
 	ss_flags = SS_BACKGROUND | SS_NO_INIT
 
 	wait = 0.5 SECONDS

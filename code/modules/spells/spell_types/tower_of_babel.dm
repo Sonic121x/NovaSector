@@ -9,7 +9,7 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 		badmin.log_message("has stricken the station with the Tower of Babel!", LOG_GAME)
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(handle_new_player))
-	deadchat_broadcast("The [span_name("Tower of Babel")] has stricken the station, people will struggle to communicate.", message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("[span_name("Tower of Babel")]降临了空间站，人们将难以交流。", message_type=DEADCHAT_ANNOUNCEMENT)
 
 	for(var/mob/living/carbon/target in GLOB.player_list)
 		if(!target.mind)
@@ -18,7 +18,7 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 			// wizards are not only immune but can speak all languages to taunt their victims over the radio
 			target.grant_all_languages(source = LANGUAGE_BABEL)
 			ADD_TRAIT(target.mind, TRAIT_TOWER_OF_BABEL, MAGIC_TRAIT)
-			to_chat(target, span_reallybig(span_hypnophrase("You feel a magical force improving your speech patterns!")))
+			to_chat(target, span_reallybig(span_hypnophrase("你感到一股魔法力量正在改善你的说话方式！")))
 			continue
 
 		if(target.stat == DEAD)
@@ -50,7 +50,7 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 		return
 
 	if(to_curse.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND) || HAS_MIND_TRAIT(to_curse, TRAIT_TOWER_OF_BABEL))
-		to_chat(to_curse, span_notice("You have a strange feeling for a moment, but then it passes."))
+		to_chat(to_curse, span_notice("你感到一阵奇怪的异样，但随后便消失了。"))
 		return
 
 	to_curse.apply_status_effect(/datum/status_effect/tower_of_babel/magical, INFINITY)
@@ -71,7 +71,7 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 
 /client/proc/tower_of_babel()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr,"The game hasn't started yet!")
+		tgui_alert(usr,"游戏还没开始！")
 		return
 
 	GLOB.tower_of_babel = new /datum/tower_of_babel(usr)
@@ -82,6 +82,6 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 		log_admin("[key_name(usr)] has cured the station from the effects of Tower of Babel.")
 		usr.log_message("has cured the station from the effects of Tower of Babel!", LOG_GAME)
 
-		deadchat_broadcast("The [span_name("Tower of Babel")] has been cured, people will now communicate normally.", message_type=DEADCHAT_ANNOUNCEMENT)
+		deadchat_broadcast("[span_name("Tower of Babel")]已被治愈，人们现在可以正常交流了。", message_type=DEADCHAT_ANNOUNCEMENT)
 
 		QDEL_NULL(GLOB.tower_of_babel)

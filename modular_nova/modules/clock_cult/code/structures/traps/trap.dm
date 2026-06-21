@@ -1,7 +1,7 @@
 //Thing that you stick on the floor
 /obj/item/clockwork/trap_placer
-	name = "trap"
-	desc = "don't trust it"
+	name = "陷阱"
+	desc = "别相信它"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_objects.dmi'
 	w_class = WEIGHT_CLASS_HUGE
 	/// The path of the trap to make when this is set down
@@ -32,10 +32,10 @@
 		if(!istype(trap, result_path))
 			continue
 
-		user.balloon_alert(user, "space occupied!")
+		user.balloon_alert(user, "空间被占用！")
 		return
 
-	to_chat(user, span_brass("You place [src], use a <b>clockwork slab</b> to link it to other traps."))
+	to_chat(user, span_brass("你放置了[src]，使用<b>发条石板</b>将其与其他陷阱连接。"))
 	var/obj/new_obj = new result_path(target)
 	new_obj.setDir(user.dir)
 
@@ -43,8 +43,8 @@
 
 //Thing you stick on the wall
 /obj/item/wallframe/clocktrap
-	name = "clockwork trap item"
-	desc = "It's a... Wait what?"
+	name = "发条陷阱物品"
+	desc = "这是个……等等，什么？"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_objects.dmi'
 	pixel_shift = 24
 	w_class = WEIGHT_CLASS_HUGE
@@ -60,12 +60,12 @@
 
 //Wall item (either spawned by a wallframe or directly)
 /obj/structure/destructible/clockwork/trap
-	name = "clockwork trap item"
-	desc = "Probably doesn't do much."
+	name = "发条陷阱物品"
+	desc = "可能没什么用。"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_objects.dmi'
 	density = FALSE
 	layer = LOW_OBJ_LAYER
-	break_message = span_warning("The intricate looking device falls apart.")
+	break_message = span_warning("这个结构精密的装置散架了。")
 	/// What item's produced when this structure is unwrenched
 	var/unwrench_path = /obj/item/wallframe/clocktrap
 	/// The component used for the trap's back-end
@@ -79,12 +79,12 @@
 
 /obj/structure/destructible/clockwork/trap/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	balloon_alert(user, "unwrenching...")
+	balloon_alert(user, "正在卸下...")
 
 	if(!do_after(user, 5 SECONDS, target = src))
 		return
 
-	balloon_alert(user, "detached [src]")
+	balloon_alert(user, "已拆下 [src]")
 	new unwrench_path(get_turf(src))
 
 	qdel(src)
@@ -146,22 +146,22 @@
 	if(slab.buffer)
 
 		if(takes_input)
-			to_chat(user, span_brass("You connect [slab.buffer.parent] to [parent]."))
+			to_chat(user, span_brass("你将 [slab.buffer.parent] 连接到 [parent]。"))
 			add_output(slab.buffer)
 			slab.buffer = null
 
 		else
-			to_chat(user, span_brass("That device does not accept input."))
+			to_chat(user, span_brass("该装置不接受输入。"))
 
 	else
 
 		if(sends_input)
-			to_chat(user, span_brass("You prepare to connect [parent] with other devices."))
+			to_chat(user, span_brass("你准备将 [parent] 与其他装置连接。"))
 			slab.buffer = src
 
 		else
 
-			to_chat(user, span_brass("That device does not output anything."))
+			to_chat(user, span_brass("该装置不输出任何信号。"))
 
 /// Sends a signal to activate to every outputting component in `outputs`
 /datum/component/clockwork_trap/proc/trigger_connected()

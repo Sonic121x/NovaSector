@@ -1,5 +1,5 @@
 /obj/item/ammo_box/magazine/m12g/empty
-	name = "shotgun magazine (12g)"
+	name = "霰弹枪弹匣 (12号口径)"
 	icon_state = "m12gb-0"
 	start_empty = TRUE
 	ammo_type = /obj/item/ammo_casing/shotgun
@@ -13,8 +13,8 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/katyusha
-	name = "\improper Katyusha Drum Magazine"
-	desc = "A drum magazine of shotgun shells, suitable for the Katyusha combat shotgun."
+	name = "\improper 喀秋莎弹鼓"
+	desc = "一个适用于卡秋莎战斗霰弹枪的霰弹鼓式弹匣。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_armories/magazines.dmi'
 	icon_state = "spikewall_mag"
 	base_icon_state = "spikewall_mag"
@@ -36,8 +36,8 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/jager
-	name = "\improper Jäger Magazine"
-	desc = "A magazine of shotgun shells, suitable for the 'Jäger' combat shotgun."
+	name = "\improper 猎手弹匣"
+	desc = "一个霰弹枪弹匣，适用于'Jäger'战斗霰弹枪。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_armories/magazines.dmi'
 	icon_state = "jager_mag"
 	base_icon_state = "jager_mag"
@@ -49,7 +49,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 
 /obj/item/ammo_box/magazine/jager/large
-	name = "large Jäger Magazine"
+	name = "大型猎手弹匣"
 	desc = "A magazine of shotgun shells, suitable for the 'Jager' combat shotgun."
 	icon_state = "jager_mag_large"
 	base_icon_state = "jager_mag_large"
@@ -62,7 +62,7 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/shitzu
-	name = "\improper Shitzu Shotgun Magazine"
+	name = "\improper 石津牌霰弹枪弹匣"
 	desc = "A magazine of shotgun shells, suitable for the 'Shitzu' combat shotgun."
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/syndicate_armaments/magazines.dmi'
 	icon_state = "shitzu_mag"

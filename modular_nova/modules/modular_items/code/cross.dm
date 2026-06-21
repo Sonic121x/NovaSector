@@ -1,6 +1,6 @@
 /obj/item/crucifix
-	name = "ornate crucifix"
-	desc = "An ornate golden crucifix, adorned with various gemstones and tiny carvings. For some reason, it always feels warm to the touch."
+	name = "华丽十字架"
+	desc = "一个华丽的金色十字架，装饰着各种宝石和微小的雕刻。不知为何，它摸起来总是温热的。"
 	icon = 'modular_nova/modules/modular_items/icons/crucifix.dmi'
 	icon_state = "cross_ornate"
 	lefthand_file = 'modular_nova/modules/modular_items/icons/cross_left.dmi'
@@ -13,7 +13,7 @@
 	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT)
 
 /datum/crafting_recipe/cross
-	name = "Ornate Cross"
+	name = "华丽十字架"
 	result = /obj/item/crucifix
 	reqs = list(/obj/item/stack/sheet/mineral/gold = 1,
 				/obj/item/stack/sheet/mineral/diamond = 1)

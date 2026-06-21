@@ -33,7 +33,7 @@
 			new /obj/effect/hotspot(holder.my_atom.loc)
 			holder.remove_reagent(/datum/reagent/medicine/c2/helbital, 2)
 			holder.chem_temp += 5
-			holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))] The impurity of the reacting helbital is too great causing [holder.my_atom] to let out a hearty burst of flame, evaporating part of the product!"))
+			holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))] 反应的赫尔比塔尔杂质过多，导致[holder.my_atom]喷出一股猛烈的火焰，蒸发了部分产物！"))
 
 /datum/chemical_reaction/medicine/helbital/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, step_volume_added)
 	. = ..()//drains product
@@ -130,7 +130,7 @@
 	for(var/mob/living/living_mob in orange(3, get_turf(holder.my_atom)))
 		if(living_mob.flash_act(1, length = 5))
 			living_mob.set_eye_blur(20 SECONDS)
-	holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))] The [holder.my_atom] lets out a loud bang!"))
+	holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))] [holder.my_atom]发出响亮的爆炸声！"))
 	playsound(holder.my_atom, 'sound/effects/explosion/explosion1.ogg', 50, 1)
 
 /datum/chemical_reaction/medicine/hercuri
@@ -155,7 +155,7 @@
 	if(off_cooldown(holder, equilibrium, 2, "hercuri_freeze"))
 		return
 	playsound(holder.my_atom, 'sound/effects/magic/ethereal_exit.ogg', 50, 1)
-	holder.my_atom.visible_message("The reaction frosts over, releasing its chilly contents!")
+	holder.my_atom.visible_message("反应冻结了，释放出冰冷的内容物！")
 	var/radius = max((equilibrium.step_target_vol/50), 1)
 	freeze_radius(holder, equilibrium, 200, radius, 60 SECONDS) //drying agent exists
 	explode_shockwave(holder, equilibrium, sound_and_text = FALSE)
@@ -287,7 +287,7 @@
 	var/datum/reagent/monover = holder.has_reagent(/datum/reagent/inverse/healing/monover)
 	if(monover)
 		holder.remove_reagent(/datum/reagent/inverse/healing/monover, monover.volume)
-		holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))] The Monover bursts into flames from the heat!"))
+		holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))] 莫诺维尔因高温而燃起火焰！"))
 		explode_fire_square(holder, equilibrium, 1)
 		holder.my_atom.fire_act(holder.chem_temp, monover.volume)//I'm kinda banking on this setting the thing on fire. If you see this, then it didn't!
 
@@ -298,7 +298,7 @@
 		var/norm_d_ph = 1-(delta_ph/0.35)
 		holder.chem_temp += norm_d_ph*12 //0 - 48 per second)
 	if(delta_ph < 0.1)
-		holder.my_atom.visible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))] The Monover begins to glow!"))
+		holder.my_atom.visible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))] 莫诺维尔开始发光！"))
 
 /datum/chemical_reaction/medicine/syriniver
 	results = list(/datum/reagent/medicine/c2/syriniver = 5)

@@ -1,5 +1,5 @@
 /obj/effect/spawner/random/astrum
-	name = "astrum low"
+	name = "天星低阶"
 	loot = list(/obj/item/storage/medkit/regular = 10,
 				/obj/item/reagent_containers/syringe/penacid = 5,
 				/obj/item/reagent_containers/syringe/salacid = 20,
@@ -12,7 +12,7 @@
 				)
 
 /obj/effect/spawner/random/astrum/mid
-	name = "astrum mid"
+	name = "天星中阶"
 	loot = list(/obj/item/storage/medkit/expeditionary = 20,
 				/obj/item/shield/riot/tele = 12,
 				/obj/item/dnainjector/shock = 10,
@@ -23,7 +23,7 @@
 				)
 
 /obj/effect/spawner/random/astrum/sci_loot
-	name = "abductor scientist loot"
+	name = "绑架者科学家战利品"
 	loot = list(/obj/item/circular_saw/alien = 10,
 				/obj/item/retractor/alien = 10,
 				/obj/item/scalpel/alien = 10,
@@ -40,7 +40,7 @@
 				)
 
 /obj/effect/spawner/random/astrum/agent_loot
-	name = "abductor agent loot"
+	name = "绑架者特工战利品"
 	loot = list(/obj/item/organ/heart/cybernetic/tier3 = 10,
 				/obj/item/clothing/suit/armor/abductor/astrum = 10,
 				/obj/item/clothing/head/helmet/astrum = 10,

@@ -39,7 +39,7 @@
 		modified_tame_chance += 50
 		inform_tamer = TRUE
 
-	source.balloon_alert(attacker, "eats from your hand")
+	source.balloon_alert(attacker, "从你手中进食")
 	if(prob(modified_tame_chance)) //note: lack of feedback message is deliberate, keep them guessing unless they're an expert!
 		on_tame(source, attacker, food, inform_tamer)
 	else
@@ -59,7 +59,7 @@
 	if(isliving(parent) && isliving(tamer))
 		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob/living, befriend), tamer)
 		if(inform_tamer)
-			source.balloon_alert(tamer, "tamed")
+			source.balloon_alert(tamer, "已驯服")
 
 	if(HAS_TRAIT(tamer, TRAIT_BEAST_EMPATHY))
 		INVOKE_ASYNC(src, PROC_REF(rename_pet), source, tamer)
@@ -69,11 +69,11 @@
 		current_tame_chance = tame_chance
 
 /datum/component/tameable/proc/rename_pet(mob/living/animal, mob/living/tamer)
-	var/chosen_name = sanitize_name(tgui_input_text(tamer, "Choose your pet's name!", "Name pet", animal.name, MAX_NAME_LEN), allow_numbers = TRUE)
+	var/chosen_name = sanitize_name(tgui_input_text(tamer, "为你的宠物起个名字！", "命名宠物", animal.name, MAX_NAME_LEN), allow_numbers = TRUE)
 	if(QDELETED(animal) || chosen_name == animal.name)
 		return
 	if(!chosen_name)
-		to_chat(tamer, span_warning("Please enter a valid name."))
+		to_chat(tamer, span_warning("请输入一个有效的名字。"))
 		rename_pet(animal, tamer)
 		return
 	animal.fully_replace_character_name(animal.name, chosen_name)

@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/ring
-	name = "gold ring"
-	desc = "A tiny gold ring, sized to wrap around a finger."
+	name = "金戒指"
+	desc = "一枚小小的金戒指，尺寸刚好能套在手指上。"
 	icon_state = "ringgold"
 	inhand_icon_state = "ringgold"
 	worn_icon_state = "gring"
@@ -20,18 +20,18 @@
 	return OXYLOSS
 
 /obj/item/clothing/gloves/ring/diamond
-	name = "diamond ring"
-	desc = "An expensive ring, studded with a diamond. Many cultures have used these rings in courtship for millenia."
+	name = "钻石戒指"
+	desc = "一枚昂贵的戒指，镶嵌着一颗钻石。数千年来，许多文化都将这种戒指用于求爱。"
 	icon_state = "ringdiamond"
 	inhand_icon_state = "ringdiamond"
 	worn_icon_state = "dring"
 
 /obj/item/clothing/gloves/ring/diamond/attack_self(mob/user)
-	user.visible_message(span_warning("\The [user] gets down on one knee, presenting \the [src]."),span_warning("You get down on one knee, presenting \the [src]."))
+	user.visible_message(span_warning("\The [user] 单膝跪地，献上\the [src]。"),span_warning("你单膝跪地，献上\the [src]。"))
 
 /obj/item/clothing/gloves/ring/silver
-	name = "silver ring"
-	desc = "A tiny silver ring, sized to wrap around a finger."
+	name = "银戒指"
+	desc = "一枚小小的银戒指，尺寸刚好能套在手指上。"
 	icon_state = "ringsilver"
 	inhand_icon_state = "ringsilver"
 	worn_icon_state = "sring"

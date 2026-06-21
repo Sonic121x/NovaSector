@@ -5,7 +5,7 @@
  * A datum that represents a product that is vendable
  */
 /datum/data/vending_product
-	name = "generic"
+	name = "通用"
 	///Typepath of the product that is created when this record "sells"
 	var/product_path = null
 	///How many of this product we currently have
@@ -34,16 +34,16 @@
  * Captalism in the year 2525, everything in a vending machine, even love
  */
 /obj/machinery/vending
-	name = "\improper Vendomat"
-	desc = "A generic vending machine."
+	name = "\improper 自动售货机"
+	desc = "一台通用自动售货机。"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
 	abstract_type = /obj/machinery/vending
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
-	verb_say = "beeps"
-	verb_ask = "beeps"
-	verb_exclaim = "beeps"
+	verb_say = "哔哔声"
+	verb_ask = "哔哔声"
+	verb_exclaim = "哔哔声"
 	max_integrity = 300
 	integrity_failure = 0.33
 	armor_type = /datum/armor/machinery_vending
@@ -359,20 +359,20 @@
 	if(isnull(refill_canister))
 		return // you can add the comment here instead
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"]。")
 	if(panel_open)
-		. += span_notice("The machine may be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("这台机器可以[EXAMINE_HINT("pried")]。")
 
 	var/list/total_stock = total_stock()
 	if(total_stock[2])
 		if(total_stock[1] < total_stock[2])
-			. += span_notice("\The [src] can be restocked with [span_boldnotice("\a [initial(refill_canister.machine_name)] [initial(refill_canister.name)]")] with the panel open.")
+			. += span_notice("\The [src] 可以在面板打开时用[span_boldnotice("\a [initial(refill_canister.machine_name)] [initial(refill_canister.name)]")]进行补货。")
 		else
-			. += span_notice("\The [src] is fully stocked.")
+			. += span_notice("\The [src] 已完全补满。")
 	if(credits_contained < CREDITS_DUMP_THRESHOLD && credits_contained > 0)
-		. += span_notice("It should have a handfull of [MONEY_NAME] stored based on the missing items.")
+		. += span_notice("根据缺失的物品，它里面应该存有一些[MONEY_NAME]。")
 	else if (credits_contained > PAYCHECK_CREW)
-		. += span_notice("It should have at least a full paycheck worth of [MONEY_NAME] inside!")
+		. += span_notice("它里面至少应该有价值一整份薪水的[MONEY_NAME]！")
 
 /obj/machinery/vending/update_appearance(updates = ALL)
 	. = ..()
@@ -420,7 +420,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "product lock disabled")
+	balloon_alert(user, "产品锁定已禁用")
 	return TRUE
 
 
@@ -466,14 +466,14 @@
 	say(message)
 
 /datum/aas_config_entry/vendomat_age_control
-	name = "Security Alert: Underaged Substance Abuse"
+	name = "安保警报：未成年物质滥用"
 	announcement_lines_map = list(
-		"Message" = "SECURITY ALERT: Underaged crewmember %PERSON recorded attempting to purchase %PRODUCT in %LOCATION by %VENDOR. Please watch for substance abuse."
+		"Message" = "安保警报：记录到未成年船员%PERSON试图在%LOCATION通过%VENDOR购买%PRODUCT。请注意物质滥用情况。"
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with the name of the crewmember",
-		"PRODUCT" = "with the product, he attempted to purchase",
-		"LOCATION" = "with place of purchase",
-		"VENDOR" = "with the vending machine"
+		"PERSON" = "将被替换为船员的姓名",
+		"PRODUCT" = "试图购买的产品",
+		"LOCATION" = "购买地点",
+		"VENDOR" = "自动售货机"
 	)
 //=============================================================================

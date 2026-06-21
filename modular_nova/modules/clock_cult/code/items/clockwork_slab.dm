@@ -16,8 +16,8 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 
 /obj/item/clockwork/clockwork_slab
-	name = "Clockwork Slab"
-	desc = "A mechanical-looking device filled with intricate cogs that swirl to their own accord."
+	name = "钟表石板"
+	desc = "一个机械外观的设备，内部充满了复杂的齿轮，它们按照自己的规律旋转。"
 	clockwork_desc = "A beautiful work of art, harnessing mechanical energy for a variety of useful powers."
 	item_flags = NOBLUDGEON
 	icon_state = "clockwork_slab"
@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 /obj/item/clockwork/clockwork_slab/attack_self(mob/living/user)
 	if(!IS_CLOCK(user))
-		to_chat(user, span_warning("You cannot figure out what the device is used for!"))
+		to_chat(user, span_warning("你搞不懂这个设备是做什么用的！"))
 		return
 
 	if(active_scripture)
@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 	if(buffer)
 		buffer = null
-		to_chat(user, span_brass("You clear the [src]'s buffer."))
+		to_chat(user, span_brass("你清除了[src]的缓冲区。"))
 		return
 
 	SEND_SIGNAL(user, COMSIG_CLOCKWORK_SLAB_USED, src)
@@ -192,32 +192,32 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 			if(scripture.type in purchased_scriptures)
 				if(invoking_scripture)
-					living_user.balloon_alert(living_user, "failed to invoke!")
+					living_user.balloon_alert(living_user, "调用失败！")
 					return FALSE
 
 				if(scripture.power_cost > GLOB.clock_power)
-					living_user.balloon_alert(living_user, "[scripture.power_cost]W required!")
+					living_user.balloon_alert(living_user, "需要[scripture.power_cost]W！")
 					return FALSE
 
 				if(scripture.vitality_cost > GLOB.clock_vitality)
-					living_user.balloon_alert(living_user, "[scripture.vitality_cost] vitality required!")
+					living_user.balloon_alert(living_user, "需要[scripture.vitality_cost]点活力！")
 					return FALSE
 
 				scripture.begin_invoke(living_user, src)
 
 			else
 				if(scripture.research_required && !(scripture.type in GLOB.clockwork_research_unlocked_scriptures))
-					living_user.balloon_alert(living_user, "research required!")
+					living_user.balloon_alert(living_user, "需要研究！")
 					return FALSE
 
 				if(cogs >= scripture.cogs_required)
 					cogs -= scripture.cogs_required
-					living_user.balloon_alert(living_user, "[scripture.name] purchased")
+					living_user.balloon_alert(living_user, "已购买[scripture.name]")
 					log_game("[scripture.name] purchased by [living_user.ckey]/[living_user.name] the [living_user.job] for [scripture.cogs_required] cogs, [cogs] cogs remaining.")
 					purchased_scriptures += scripture.type
 
 				else
-					living_user.balloon_alert(living_user, "need at least [scripture.cogs_required]!")
+					living_user.balloon_alert(living_user, "至少需要[scripture.cogs_required]个！")
 
 			return TRUE
 
@@ -236,7 +236,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 				else
 					positions += "([i]) - [quick_bound.name]"
 
-			var/position = tgui_input_list(living_user, "Where to quickbind to?", "Quickbind Slot", positions)
+			var/position = tgui_input_list(living_user, "要绑定到哪个快捷槽位？", "快捷绑定槽位", positions)
 			if(!position)
 				return FALSE
 

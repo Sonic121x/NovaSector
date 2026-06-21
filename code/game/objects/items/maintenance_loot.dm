@@ -4,7 +4,7 @@
 //Saw-tier bulky & blunt weapon. A decent bone breaker. Source of lead reagent.
 //Add lead material to this once implemented.
 /obj/item/lead_pipe
-	name = "lead pipe"
+	name = "铅管"
 	icon = 'icons/obj/maintenance_loot.dmi'
 	icon_state = "lead_pipe"
 	inhand_icon_state = "lead_pipe"
@@ -32,8 +32,8 @@
 //A good battery early in the shift. Source of lead & sulfuric acid reagents.
 //Add lead material to this once implemented.
 /obj/item/stock_parts/power_store/cell/lead
-	name = "lead-acid battery"
-	desc = "A primitive battery. It is quite large and feels unexpectedly heavy."
+	name = "铅酸电池"
+	desc = "一种原始的电池。它相当大，而且感觉异常沉重。"
 	icon = 'icons/obj/maintenance_loot.dmi'
 	icon_state = "lead_battery"
 	force = 10 // double the force of a normal cell

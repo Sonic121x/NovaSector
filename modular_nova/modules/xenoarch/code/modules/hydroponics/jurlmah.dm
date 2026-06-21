@@ -1,6 +1,6 @@
 /obj/item/seeds/jurlmah
-	name = "jurlmah seed pack"
-	desc = "These seeds grow into jurlmah plants. Often used as makeshift cryo-treatment in areas where a dedicated cryotube setup is impossible."
+	name = "尤尔玛种子包"
+	desc = "这些种子会长成尤尔玛植株。在无法设置专用低温治疗舱的区域，常被用作临时低温治疗手段。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "jurlmah"
 	species = "jurlmah"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/jurlmah
 	seed = /obj/item/seeds/jurlmah
-	name = "jurlmah"
-	desc = "A frosty jurlmah fruit, it feels cold to the touch."
+	name = "尤尔玛"
+	desc = "一个冰冷的尤尔玛果实，摸起来很凉。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "jurlmah"
 	filling_color = "#FF4500"

@@ -1,9 +1,9 @@
 //does burn damage and EMPs, slightly fragile
 /datum/blobstrain/reagent/electromagnetic_web
-	name = "Electromagnetic Web"
+	name = "Electromagnetic Web-电磁网"
 	color = "#83ECEC"
 	complementary_color = "#EC8383"
-	description = "will do high burn damage and EMP targets."
+	description = "会造成高额燃烧伤害并对目标造成电磁脉冲。"
 	effectdesc = "will also take massively increased damage and release an EMP when killed."
 	analyzerdescdamage = "Does low burn damage and EMPs targets."
 	analyzerdesceffect = "Is fragile to all types of damage, but takes massive damage from brute. In addition, releases a small EMP when killed."
@@ -19,7 +19,7 @@
 		empulse(B.loc, 1, 3) //less than screen range, so you can stand out of range to avoid it
 
 /datum/reagent/blob/electromagnetic_web
-	name = "Electromagnetic Web"
+	name = "Electromagnetic Web-电磁网"
 	taste_description = "pop rocks"
 	color = "#83ECEC"
 

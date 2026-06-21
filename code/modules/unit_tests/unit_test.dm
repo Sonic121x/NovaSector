@@ -419,5 +419,5 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	SSticker.declare_completion()
 
 /datum/map_template/unit_tests
-	name = "Unit Tests Zone"
+	name = "单元测试区域"
 	mappath = "_maps/templates/unit_tests.dmm"

@@ -1,6 +1,6 @@
 /obj/machinery/gulag_item_reclaimer
-	name = "equipment reclaimer station"
-	desc = "Used to reclaim your items after you finish your sentence at the labor camp."
+	name = "装备回收站"
+	desc = "用于在劳改服刑结束后回收物品"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "gulag_off"
 	req_access = list(ACCESS_BRIG) //REQACCESS TO ACCESS ALL STORED ITEMS
@@ -40,7 +40,7 @@
 	obj_flags |= EMAGGED
 	screen_icon = "emagged_general"
 	update_appearance()
-	balloon_alert(user, "id checker scrambled")
+	balloon_alert(user, "身份检查器已扰乱")
 	return TRUE
 
 /obj/machinery/gulag_item_reclaimer/ui_interact(mob/user, datum/tgui/ui)
@@ -91,7 +91,7 @@
 		if("release_items")
 			var/mob/living/carbon/human/H = locate(params["mobref"]) in stored_items
 			if(H != usr && !allowed(usr))
-				to_chat(usr, span_warning("Access denied."))
+				to_chat(usr, span_warning("拒绝访问."))
 				return
 			drop_items(H)
 			. = TRUE
@@ -100,7 +100,7 @@
 	if(!stored_items[user])
 		return
 	if(!use_energy(active_power_usage, force = FALSE))
-		balloon_alert(user, "not enough energy!")
+		balloon_alert(user, "能量不足！")
 		return
 	var/drop_location = drop_location()
 	for(var/i in stored_items[user])

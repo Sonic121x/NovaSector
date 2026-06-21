@@ -1,6 +1,6 @@
 /datum/scripture/create_structure/interdiction
-	name = "Interdiction Lens"
-	desc = "Creates a device that will slow non servants in the area and damage mechanised exosuits. Requires power from a sigil of transmission."
+	name = "禁制透镜"
+	desc = "创造一个装置，会减缓区域内非仆从单位的移动速度，并对机械化外骨骼造成伤害。需要从传输印记获取能量。"
 	tip = "Construct interdiction lens to slow down a hostile assault."
 	button_icon_state = "Interdiction Lens"
 	power_cost = 500

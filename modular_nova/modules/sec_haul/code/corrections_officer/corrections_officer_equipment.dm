@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/security/corrections_officer
-	desc = "A white satin shirt with some bronze rank pins at the neck."
-	name = "corrections officer's suit"
+	desc = "一件白色缎面衬衫，领口处有一些青铜色军衔徽章。"
+	name = "惩教官员的西装"
 	icon = 'modular_nova/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "corrections_officer"
@@ -13,14 +13,14 @@
 	melee = 10
 
 /obj/item/clothing/under/rank/security/corrections_officer/skirt
-	desc = "A white satin shirt with some bronze rank pins at the neck."
-	name = "corrections officer's skirt"
+	desc = "一件白色缎面衬衫，领口处有一些青铜色军衔徽章。"
+	name = "惩教官员的裙子"
 	icon_state = "corrections_officerw"
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/rank/security/corrections_officer/sweater
-	desc = "A black combat sweater thrown over the standard issue shirt, perfect for wake up calls."
-	name = "corrections officer's sweater"
+	desc = "一件黑色作战毛衣套在标准配发的衬衫外面，非常适合执行叫醒服务。"
+	name = "惩教官员的毛衣"
 	icon_state = "corrections_officer_sweat"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
@@ -29,13 +29,13 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/radio/headset/corrections_officer
-	name = "\proper corrections officer's headset"
+	name = "\proper 惩教官员的耳机"
 	icon_state = "sec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_sec
 
 /obj/item/clothing/suit/toggle/jacket/nova/corrections_officer
-	name = "corrections officer's suit jacket"
-	desc = "A pressed and ironed suit jacket, it has light armor against stabbings. There's some rank badges on the right breast."
+	name = "惩教官员的西装外套"
+	desc = "一件熨烫平整的西装外套，对刺击有轻度的防护。右胸有一些军衔徽章。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "co_coat"
@@ -50,7 +50,7 @@
 	melee = 10
 
 /obj/structure/closet/secure_closet/corrections_officer
-	name = "corrections officer riot gear"
+	name = "惩教官员防暴装备"
 	icon = 'modular_nova/master_files/icons/obj/closet.dmi'
 	icon_state = "riot"
 	door_anim_time = 0 //Somebody resprite or remove this 'riot' locker. It's evil.

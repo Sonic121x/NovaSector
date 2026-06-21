@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(movement)
-	name = "Movement Loops"
+	name = "移动循环"
 	ss_flags = SS_NO_INIT|SS_TICKER
 	wait = 1 //Fire each tick
 	/*

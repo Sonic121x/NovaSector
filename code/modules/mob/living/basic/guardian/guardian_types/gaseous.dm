@@ -5,7 +5,7 @@
 	melee_damage_upper = 10
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 0)
 	range = 7
-	playstyle_string = span_holoparasite("As a <b>gaseous</b> type, you have only light damage resistance, but you can expel gas in an area. In addition, your punches cause sparks, and you make your summoner inflammable.")
+	playstyle_string = span_holoparasite("作为<b>气态</b>类型，你只有轻度伤害抗性，但你可以在一个区域内排出气体。此外，你的拳击会产生火花，并使你的召唤者变得不易燃。")
 	creator_name = "Gaseous"
 	creator_desc = "Creates sparks on touch and continuously expels a gas of its choice. Automatically extinguishes the user if they catch on fire."
 	creator_icon = "gaseous"
@@ -71,8 +71,8 @@
 
 /// Expel a range of gases
 /datum/action/cooldown/mob_cooldown/expel_gas
-	name = "Release Gas"
-	desc = "Start or stop expelling a selected gas into the environment."
+	name = "释放气体"
+	desc = "开始或停止向环境中排出选定的气体。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "smoke"
 	cooldown_time = 0 SECONDS // We're here for the interface not the cooldown
@@ -109,7 +109,7 @@
 	for(var/datum/gas/gas as anything in possible_gases)
 		gas_selection[initial(gas.name)] = gas
 
-	var/picked_gas = tgui_input_list(owner, "Select a gas to emit.", "Gas Producer", gas_selection)
+	var/picked_gas = tgui_input_list(owner, "选择要释放的气体。", "气体发生器", gas_selection)
 	StartCooldown()
 	if(picked_gas == "None")
 		stop_gas()
@@ -122,10 +122,10 @@
 	if(isguardian(owner))
 		var/mob/living/basic/guardian/guardian_owner = owner
 		if(!guardian_owner.is_deployed())
-			to_chat(owner, span_warning("You cannot release gas without being summoned!"))
+			to_chat(owner, span_warning("你无法在未被召唤时释放气体！"))
 			return
 
-	to_chat(owner, span_bolddanger("You start releasing [picked_gas]."))
+	to_chat(owner, span_bolddanger("你开始释放[picked_gas]。"))
 	owner.investigate_log("set their gas type to [picked_gas].", INVESTIGATE_ATMOS)
 	var/had_gas = !isnull(active_gas)
 	active_gas = gas_type
@@ -140,7 +140,7 @@
 /datum/action/cooldown/mob_cooldown/expel_gas/proc/stop_gas()
 	SIGNAL_HANDLER
 	if (!isnull(active_gas))
-		to_chat(src, span_notice("You stop releasing gas."))
+		to_chat(src, span_notice("你停止了释放气体。"))
 	active_gas = null
 	QDEL_NULL(mob_smoke)
 	UnregisterSignal(owner, COMSIG_LIVING_LIFE)

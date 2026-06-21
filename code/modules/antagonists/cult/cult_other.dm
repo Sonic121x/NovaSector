@@ -1,5 +1,5 @@
 /datum/outfit/cultist
-	name = "Cultist (Preview only)"
+	name = "教徒（仅预览）"
 
 	uniform = /obj/item/clothing/under/color/black
 	suit = /obj/item/clothing/suit/hooded/cultrobes/alt

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(mobs)
-	name = "Mobs"
+	name = "生物系统"
 	priority = FIRE_PRIORITY_MOBS
 	ss_flags = SS_KEEP_TIMING | SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME

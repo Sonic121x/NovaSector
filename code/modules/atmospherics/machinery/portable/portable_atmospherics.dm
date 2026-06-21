@@ -1,7 +1,7 @@
 #define PORTABLE_ATMOS_IGNORE_ATMOS_LIMIT 0
 
 /obj/machinery/portable_atmospherics
-	name = "portable_atmospherics"
+	name = "便携式大气设备"
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi'
 	use_power = NO_POWER_USE
 	max_integrity = 250
@@ -112,13 +112,13 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 	if(atom_integrity >= max_integrity || (machine_stat & BROKEN) || !tool.tool_start_check(user, amount = 1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "正在修复……")
 	while(tool.use_tool(src, user, 2.5 SECONDS, volume=40))
 		atom_integrity = min(atom_integrity + 25, max_integrity)
 		if(atom_integrity >= max_integrity)
-			balloon_alert(user, "repaired")
+			balloon_alert(user, "已修复")
 			return ITEM_INTERACT_SUCCESS
-		balloon_alert(user, "partially repaired...")
+		balloon_alert(user, "部分修复……")
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -215,7 +215,7 @@
 /obj/machinery/portable_atmospherics/click_alt(mob/living/user)
 	if(!holding)
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice("You remove [holding] from [src]."))
+	to_chat(user, span_notice("你从[src]中取出了[holding]。"))
 	replace_tank(user, TRUE)
 	return CLICK_ACTION_SUCCESS
 
@@ -223,8 +223,8 @@
 	. = ..()
 	if(!holding)
 		return
-	. += span_notice("\The [src] contains [holding]. Alt-click [src] to remove it.")+\
-		span_notice("Click [src] with another gas tank to hot swap [holding].")
+	. += span_notice("\The [src] 内装有 [holding]。Alt-点击 [src] 以将其移除。")+\
+		span_notice("点击[src]并配合另一个气罐来热交换[holding]。")
 
 /**
  * Allow the player to place a tank inside the machine.
@@ -243,7 +243,7 @@
 
 	if(holding && new_tank)//for when we are actually switching tanks
 		investigate_log("had its internal [holding] swapped with [new_tank] by [key_name(user)].", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice("In one smooth motion you pop [holding] out of [src]'s connector and replace it with [new_tank]."))
+		to_chat(user, span_notice("你以一个流畅的动作将[holding]从[src]的连接器上弹出，并用[new_tank]替换了它。"))
 		user.put_in_hands(holding)
 		UnregisterSignal(holding, COMSIG_QDELETING)
 		holding = new_tank
@@ -252,7 +252,7 @@
 		playsound(src, remove_sound, sound_vol)
 	else if(holding)//we remove a tank
 		investigate_log("had its internal [holding] removed by [key_name(user)].", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice("You remove [holding] from [src]."))
+		to_chat(user, span_notice("你从[src]中取出了[holding]。"))
 		if(Adjacent(user))
 			user.put_in_hands(holding)
 		else
@@ -262,7 +262,7 @@
 		holding = null
 	else if(new_tank)//we insert the tank
 		investigate_log("had [new_tank] inserted into it by [key_name(user)].", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice("You insert [new_tank] into [src]."))
+		to_chat(user, span_notice("你将[new_tank]插入[src]。"))
 		holding = new_tank
 		playsound(src, insert_sound, sound_vol)
 		RegisterSignal(holding, COMSIG_QDELETING, PROC_REF(unregister_holding))
@@ -285,22 +285,22 @@
 		wrench.play_tool_sound(src)
 		user.visible_message( \
 			"[user] disconnects [src].", \
-			span_notice("You unfasten [src] from the port."), \
-			span_hear("You hear a ratchet."))
+			span_notice("你将[src]从端口上松开。"), \
+			span_hear("你听到棘轮的声音。"))
 		update_appearance()
 		return TRUE
 	var/obj/machinery/atmospherics/components/unary/portables_connector/possible_port = locate(/obj/machinery/atmospherics/components/unary/portables_connector) in loc
 	if(!possible_port)
-		to_chat(user, span_notice("Nothing happens."))
+		to_chat(user, span_notice("无事发生。"))
 		return FALSE
 	if(!connect(possible_port))
-		to_chat(user, span_notice("[name] failed to connect to the port."))
+		to_chat(user, span_notice("[name]未能连接到端口。"))
 		return FALSE
 	wrench.play_tool_sound(src)
 	user.visible_message( \
 		"[user] connects [src].", \
-		span_notice("You fasten [src] to the port."), \
-		span_hear("You hear a ratchet."))
+		span_notice("你将[src]固定在端口上。"), \
+		span_hear("你听到棘轮的声音。"))
 	update_appearance()
 	investigate_log("was connected to [possible_port] by [key_name(user)].", INVESTIGATE_ATMOS)
 	return TRUE

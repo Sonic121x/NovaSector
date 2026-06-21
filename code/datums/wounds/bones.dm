@@ -175,23 +175,23 @@
 				victim.bleed(blood_bled, TRUE)
 			if(7 to 13)
 				victim.visible_message(
-					span_smalldanger("A thin stream of blood drips from [victim]'s mouth from the blow to [victim.p_their()] chest."),
+					span_smalldanger("一股细小的血流从 [victim] 的嘴角滴下，这是对 [victim.p_their()] 胸部的打击造成的。"),
 					span_danger("You cough up a bit of blood from the blow to your chest."),
 					vision_distance = COMBAT_MESSAGE_RANGE,
 				)
 				victim.bleed(blood_bled, TRUE)
 			if(14 to 19)
 				victim.visible_message(
-					span_smalldanger("Blood spews out of [victim]'s mouth from the blow to [victim.p_their()] chest!"),
-					span_danger("You spit out a string of blood from the blow to your chest!"),
+					span_smalldanger("鲜血从 [victim] 口中喷出，这是对 [victim.p_their()] 胸部的重击造成的！"),
+					span_danger("你因胸口的重击咳出了一串血沫！"),
 					vision_distance = COMBAT_MESSAGE_RANGE,
 				)
 				victim.create_splatter(victim.dir)
 				victim.bleed(blood_bled)
 			if(20 to INFINITY)
 				victim.visible_message(
-					span_danger("Blood spurts out of [victim]'s mouth from the blow to [victim.p_their()] chest!"),
-					span_bolddanger("You choke up on a spray of blood from the blow to your chest!"),
+					span_danger("鲜血从[victim]的嘴里喷出，因为这一击打在了[victim.p_their()]胸口！"),
+					span_bolddanger("你被胸口的一击呛得喷出一口鲜血！"),
 					vision_distance = COMBAT_MESSAGE_RANGE,
 				)
 				victim.bleed(blood_bled)
@@ -204,12 +204,12 @@
 	var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if (!current_gauze)
 		if(taped)
-			. += ", [span_notice("and appears to be reforming itself under some surgical tape!")]"
+			. += "，[span_notice("and appears to be reforming itself under some surgical tape!")]"
 		else if(gelled)
-			. += ", [span_notice("with fizzing flecks of blue bone gel sparking off the bone!")]"
+			. += "，[span_notice("with fizzing flecks of blue bone gel sparking off the bone!")]"
 
 /datum/wound/blunt/get_limb_examine_description()
-	return span_warning("The bones in this limb appear badly cracked.")
+	return span_warning("这条肢体里的骨头看起来严重碎裂了。")
 
 /*
 	New common procs for /datum/wound/blunt/bone/
@@ -225,10 +225,10 @@
 
 /// Joint Dislocation (Moderate Blunt)
 /datum/wound/blunt/bone/moderate
-	name = "Joint Dislocation"
+	name = "关节脱位"
 	undiagnosed_name = "Dislocation"
 	a_or_from = "a"
-	desc = "Patient's limb has been unset from socket, causing pain and reduced motor function."
+	desc = "患者的肢体已从关节窝脱出，导致疼痛和运动功能下降。"
 	treat_text = "Apply Bonesetter to the affected limb. \
 		Manual relocation by via an aggressive grab and a tight hug to the affected limb may also suffice."
 	treat_text_short = "Apply Bonesetter, or manually relocate the limb."
@@ -271,13 +271,13 @@
 	return ..()
 
 /datum/wound/blunt/bone/moderate/get_self_check_description(self_aware)
-	return span_warning("It feels dislocated!")
+	return span_warning("感觉脱臼了！")
 
 /// Getting smushed in an airlock/firelock is a last-ditch attempt to try relocating your limb
 /datum/wound/blunt/bone/moderate/proc/door_crush()
 	SIGNAL_HANDLER
 	if(prob(40))
-		victim.visible_message(span_danger("[victim]'s dislocated [limb.plaintext_zone] pops back into place!"), span_userdanger("Your dislocated [limb.plaintext_zone] pops back into place! Ow!"))
+		victim.visible_message(span_danger("[victim]脱臼的[limb.plaintext_zone]弹回了原位！"), span_userdanger("你脱臼的[limb.plaintext_zone]弹回了原位！嗷！"))
 		remove_wound()
 		return DOORCRUSH_NO_WOUND
 	return NONE
@@ -289,12 +289,12 @@
 		return FALSE
 
 	if(user.grab_state == GRAB_PASSIVE)
-		to_chat(user, span_warning("You must have [victim] in an aggressive grab to manipulate [victim.p_their()] [LOWER_TEXT(undiagnosed_name || name)]!"))
+		to_chat(user, span_warning("你必须对[victim]使用强力擒拿才能处理[victim.p_their()]的[LOWER_TEXT(undiagnosed_name || name)]！"))
 		return TRUE
 
 	if(user.grab_state >= GRAB_AGGRESSIVE)
 		user.visible_message(span_danger("[user] begins twisting and straining [victim]'s dislocated [limb.plaintext_zone]!"), span_notice("You begin twisting and straining [victim]'s dislocated [limb.plaintext_zone]..."), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] begins twisting and straining your dislocated [limb.plaintext_zone]!"))
+		to_chat(victim, span_userdanger("[user]开始扭动并拉扯你脱臼的[limb.plaintext_zone]！"))
 		if(!user.combat_mode)
 			chiropractice(user)
 		else
@@ -345,7 +345,7 @@
 	var/treatment_delay = base_treat_time * self_penalty_mult * scanned_mult
 
 	if(victim == user)
-		victim.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] resetting [victim.p_their()] [limb.plaintext_zone] with [tool]."), span_warning("You begin resetting your [limb.plaintext_zone] with [tool][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
+		victim.visible_message(span_danger("[user]开始[scanned ? "expertly" : ""]用[victim.p_their()]为[limb.plaintext_zone]复位[tool]。"), span_warning("你开始用[limb.plaintext_zone][tool]复位你的[scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
 	else
 		user.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] resetting [victim]'s [limb.plaintext_zone] with [tool]."), span_notice("You begin resetting [victim]'s [limb.plaintext_zone] with [tool][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
 
@@ -354,11 +354,11 @@
 
 	if(victim == user)
 		victim.apply_damage(15, BRUTE, limb, wound_bonus = CANT_WOUND)
-		victim.visible_message(span_danger("[user] finishes resetting [victim.p_their()] [limb.plaintext_zone]!"), span_userdanger("You reset your [limb.plaintext_zone]!"))
+		victim.visible_message(span_danger("[user]完成了[victim.p_their()] [limb.plaintext_zone]的复位！"), span_userdanger("你复位了你的[limb.plaintext_zone]！"))
 	else
 		victim.apply_damage(10, BRUTE, limb, wound_bonus = CANT_WOUND)
 		user.visible_message(span_danger("[user] finishes resetting [victim]'s [limb.plaintext_zone]!"), span_nicegreen("You finish resetting [victim]'s [limb.plaintext_zone]!"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] resets your [limb.plaintext_zone]!"))
+		to_chat(victim, span_userdanger("[user]复位了你的[limb.plaintext_zone]！"))
 
 	victim.emote("scream")
 	qdel(src)
@@ -460,7 +460,7 @@
 		return skelly_gel(I, user)
 
 	if(gelled)
-		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] is already coated with bone gel!"))
+		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] 已经涂上了骨胶！"))
 		return TRUE
 
 	user.visible_message(span_danger("[user] begins hastily applying [I] to [victim]'s' [limb.plaintext_zone]..."), span_warning("You begin hastily applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone], disregarding the warning label..."))
@@ -479,7 +479,7 @@
 				victim.visible_message(span_danger("[victim] fails to finish applying [I] to [victim.p_their()] [limb.plaintext_zone], passing out from the pain!"), span_notice("You pass out from the pain of applying [I] to your [limb.plaintext_zone] before you can finish!"))
 				victim.AdjustUnconscious(5 SECONDS)
 				return TRUE
-		victim.visible_message(span_notice("[victim] finishes applying [I] to [victim.p_their()] [limb.plaintext_zone], grimacing from the pain!"), span_notice("You finish applying [I] to your [limb.plaintext_zone], and your bones explode in pain!"))
+		victim.visible_message(span_notice("[victim] 完成了将 [I] 涂抹到 [victim.p_their()] [limb.plaintext_zone] 上，因疼痛而表情扭曲！"), span_notice("You finish applying [I] to your [limb.plaintext_zone], and your bones explode in pain!"))
 
 	victim.apply_damage(25, BRUTE, limb, wound_bonus = CANT_WOUND)
 	victim.apply_damage(100, STAMINA)
@@ -489,7 +489,7 @@
 /// skellies are less averse to bone gel, since they're literally all bone
 /datum/wound/blunt/bone/proc/skelly_gel(obj/item/stack/medical/bone_gel/I, mob/user)
 	if(gelled)
-		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] is already coated with bone gel!"))
+		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] 已经涂上了骨胶！"))
 		return
 
 	user.visible_message(span_danger("[user] begins applying [I] to [victim]'s' [limb.plaintext_zone]..."), span_warning("You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone]..."))
@@ -511,10 +511,10 @@
 /// if someone is using surgical tape on our wound
 /datum/wound/blunt/bone/proc/tape(obj/item/stack/medical/wrap/sticky_tape/surgical/I, mob/user)
 	if(!gelled)
-		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] must be coated with bone gel to perform this emergency operation!"))
+		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone]必须先涂上骨胶才能进行这项紧急手术！"))
 		return TRUE
 	if(taped)
-		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] is already wrapped in [I.name] and reforming!"))
+		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone]已经用[I.name]包裹好并正在重塑了！"))
 		return TRUE
 
 	user.visible_message(span_danger("[user] begins applying [I] to [victim]'s' [limb.plaintext_zone]..."), span_warning("You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone]..."))
@@ -528,9 +528,9 @@
 	I.use(1)
 	if(user != victim)
 		user.visible_message(span_notice("[user] finishes applying [I] to [victim]'s [limb.plaintext_zone], emitting a fizzing noise!"), span_notice("You finish applying [I] to [victim]'s [limb.plaintext_zone]!"), ignored_mobs=victim)
-		to_chat(victim, span_green("[user] finishes applying [I] to your [limb.plaintext_zone], you immediately begin to feel your bones start to reform!"))
+		to_chat(victim, span_green("[user]完成了将[I]敷在你的[limb.plaintext_zone]上，你立刻感觉到骨头开始重新生长！"))
 	else
-		victim.visible_message(span_notice("[victim] finishes applying [I] to [victim.p_their()] [limb.plaintext_zone], !"), span_green("You finish applying [I] to your [limb.plaintext_zone], and you immediately begin to feel your bones start to reform!"))
+		victim.visible_message(span_notice("[victim]完成了将[I]敷在[victim.p_their()] [limb.plaintext_zone]上，！"), span_green("你完成了将[I]敷在你的[limb.plaintext_zone]上，并且你立刻感觉到骨头开始重新生长！"))
 
 	taped = TRUE
 	processes = TRUE

@@ -1,5 +1,5 @@
 /datum/outfit/syndicate
-	name = "Syndicate Operative - Basic"
+	name = "辛迪加行动队 - 基础"
 
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
@@ -35,7 +35,7 @@
 	internals_slot = ITEM_SLOT_HANDS
 
 /datum/outfit/syndicate/leader
-	name = "Syndicate Leader - Basic"
+	name = "辛迪加领导-基础"
 	command_radio = TRUE
 
 	implants = list(
@@ -77,7 +77,7 @@
 	nukie.update_icons()
 
 /datum/outfit/syndicate/full
-	name = "Syndicate Operative - Full Kit"
+	name = "辛迪加行动队 - 全套装备"
 
 	glasses = /obj/item/clothing/glasses/night
 	mask = /obj/item/clothing/mask/gas/syndicate
@@ -118,7 +118,7 @@
 	uplink_type = /obj/item/uplink/loneop
 
 /datum/outfit/syndicate/reinforcement
-	name = "Syndicate Operative - Reinforcement"
+	name = "辛迪加行动队-增援"
 	tc = 0
 	backpack_contents = list(
 		/obj/item/gun/ballistic/automatic/smartgun = 1,
@@ -151,7 +151,7 @@
 	internals_slot = ITEM_SLOT_HANDS
 
 /datum/outfit/syndicate/reinforcement/gorlex
-	name = "Syndicate Operative - Gorlex Reinforcement"
+	name = "辛迪加行动队-格掠斯增援"
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	head = /obj/item/clothing/head/helmet/swat
 	neck = /obj/item/clothing/neck/large_scarf/syndie
@@ -159,7 +159,7 @@
 	faction = "the Gorlex Marauders"
 
 /datum/outfit/syndicate/reinforcement/cybersun
-	name = "Syndicate Operative - Cybersun Reinforcement"
+	name = "辛迪加行动队-赛博森增援"
 	uniform = /obj/item/clothing/under/syndicate/cybersun
 	gloves = /obj/item/clothing/gloves/combat
 	shoes = /obj/item/clothing/shoes/laceup
@@ -167,7 +167,7 @@
 	faction = "Cybersun Industries"
 
 /datum/outfit/syndicate/reinforcement/donk
-	name = "Syndicate Operative - Donk Reinforcement"
+	name = "辛迪加行动队-杜克增援"
 	suit = /obj/item/clothing/suit/hazardvest
 	head = /obj/item/clothing/head/utility/hardhat/orange
 	shoes = /obj/item/clothing/shoes/workboots
@@ -175,7 +175,7 @@
 	faction = "Donk Company"
 
 /datum/outfit/syndicate/reinforcement/waffle
-	name = "Syndicate Operative - Waffle Reinforcement"
+	name = "辛迪加行动队-华夫增援"
 	uniform = /obj/item/clothing/under/syndicate/camo
 	suit = /obj/item/clothing/suit/armor/vest
 	head = /obj/item/clothing/head/helmet/blueshirt
@@ -183,7 +183,7 @@
 	faction = "the Waffle Corporation"
 
 /datum/outfit/syndicate/reinforcement/interdyne
-	name = "Syndicate Operative - Interdyne Reinforcement"
+	name = "辛迪加行动队-因特达英增援"
 	uniform = /obj/item/clothing/under/syndicate/scrubs
 	suit = /obj/item/clothing/suit/toggle/labcoat/interdyne
 	head = /obj/item/clothing/head/beret/medical
@@ -194,7 +194,7 @@
 	faction = "Interdyne Pharmaceutics"
 
 /datum/outfit/syndicate/reinforcement/mi13
-	name = "Syndicate Operative - MI13 Reinforcement"
+	name = "辛迪加行动队-MI13增援"
 	uniform = /obj/item/clothing/under/syndicate/sniper
 	shoes = /obj/item/clothing/shoes/laceup
 	glasses = /obj/item/clothing/glasses/sunglasses/big

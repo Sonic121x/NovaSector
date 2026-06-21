@@ -8,11 +8,11 @@
 #define BAD_LAYER 5
 
 /area/shuttle/auxiliary_base
-	name = "Auxiliary Base"
+	name = "Auxiliary Base-辅助基地"
 	luminosity = 0 //Lighting gets lost when it lands anyway
 
 /obj/machinery/computer/auxiliary_base
-	name = "auxiliary base management console"
+	name = "辅助基地管理控制台"
 	desc = "Allows a deployable expedition base to be dropped from the station to a designated mining location. It can also \
 	interface with the mining shuttle at the landing site if a mobile beacon is also deployed."
 	icon = 'icons/obj/machines/wallmounts.dmi'
@@ -250,18 +250,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/auxiliary_base, 32)
 	possible_destinations += "[landing_zone.shuttle_id];"
 
 //Serves as a nice mechanic to people get ready for the launch.
-	minor_announce("Auxiliary base landing zone coordinates locked in for [A]. Launch command now available!")
+	minor_announce("辅助基地着陆区坐标已锁定，目标为[A]。现在可以下达发射指令！")
 	to_chat(user, span_notice("Landing zone set."))
 	return ZONE_SET
 
 /obj/item/assault_pod/mining
-	name = "Landing Field Designator"
+	name = "着陆区标记器"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "designator_mining"
 	inhand_icon_state = "minertalkie"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	desc = "Deploy to designate the landing zone of the auxiliary base."
+	desc = "部署以指定辅助基地的降落区。"
 	w_class = WEIGHT_CLASS_SMALL
 	shuttle_id = "colony_drop"
 	var/setting = FALSE
@@ -304,13 +304,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/auxiliary_base, 32)
 			to_chat(user, span_warning("This area is not hazardous enough to justify an auxiliary base. Try again on a deeper layer."))
 
 /obj/item/assault_pod/mining/unrestricted
-	name = "omni-locational landing field designator"
-	desc = "Allows the deployment of the mining base ANYWHERE. Use with caution."
+	name = "全方位降落场指示器"
+	desc = "允许将采矿基地部署到任何地方。使用时请务必小心。"
 	no_restrictions = TRUE
 
 
 /obj/docking_port/mobile/auxiliary_base
-	name = "auxiliary base"
+	name = "auxiliary base-辅助基地"
 	shuttle_id = "colony_drop"
 
 /obj/docking_port/mobile/auxiliary_base/takeoff(list/old_turfs, list/new_turfs, list/moved_atoms, rotation, movement_direction, old_dock, area/underlying_old_area)
@@ -321,7 +321,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/auxiliary_base, 32)
 	return ..()
 
 /obj/docking_port/stationary/public_mining_dock
-	name = "public mining base dock"
+	name = "公共采矿基地码头"
 	shuttle_id = "disabled" //The Aux Base has to leave before this can be used as a dock.
 	//Should be checked on the map to ensure it matchs the mining shuttle dimensions.
 	dwidth = 3
@@ -330,8 +330,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/auxiliary_base, 32)
 	area_type = /area/station/construction/mining/aux_base
 
 /obj/structure/mining_shuttle_beacon
-	name = "mining shuttle beacon"
-	desc = "A bluespace beacon calibrated to mark a landing spot for the mining shuttle when deployed near the auxiliary mining base."
+	name = "矿业穿梭机信标"
+	desc = "一个蓝空信号灯，经过精确校准，用于在辅助采矿基地附近部署时指示采矿飞船的着陆位置。"
 	anchored = FALSE
 	density = FALSE
 	var/shuttle_ID = "landing_zone_dock"
@@ -381,7 +381,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/auxiliary_base, 32)
 			Mport = new(landing_spot)
 			Mport.shuttle_id = "landing_zone_dock"
 			Mport.port_destinations = "landing_zone_dock"
-			Mport.name = "auxiliary base landing site"
+			Mport.name = "辅助着陆场"
 			Mport.dwidth = SM.dwidth
 			Mport.dheight = SM.dheight
 			Mport.width = SM.width

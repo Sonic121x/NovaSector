@@ -9,8 +9,8 @@
 	stat_value = rand(4, 11)
 	if(rand(3) == 1)
 		stat_value *= -1
-	name = "Virus ([stat_name] of [stat_value])"
-	description = "Nanotrasen is interested in a virus with a [stat_name] stat of exactly [stat_value]. Central Command will pay handsomely for such a virus."
+	name = "([stat_name]之[stat_value])病毒"
+	description = "纳米传讯对一种 [stat_name] 属性恰好为 [stat_value] 的病毒感兴趣。中央司令部会为此病毒支付丰厚报酬。"
 	reward += rand(0, 4) * CARGO_CRATE_VALUE
 
 /datum/bounty/virus/print_required()

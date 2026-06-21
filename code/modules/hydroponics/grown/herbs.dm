@@ -1,7 +1,7 @@
 // Herbs
 /obj/item/seeds/herbs
-	name = "herb seed pack"
-	desc = "These seeds grow to produce an assortment of herbs and seasonings."
+	name = "香草种子包"
+	desc = "这些种子长大后会产出各种各样的草药和调味料。"
 	icon_state = "seed-herbs"
 	species = "herbs"
 	plantname = "Herbs"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/herbs
 	seed = /obj/item/seeds/herbs
-	name = "bundle of herbs"
-	desc = "A bundle of various herbs. Somehow, you're always able to pick what you need out."
+	name = "一捆草药"
+	desc = "一捆各种各样的草药(bundle of herbs)，不知何故，你总能挑出你需要的东西。"
 	icon_state = "herbs"
 	foodtypes = VEGETABLES
 	tastes = list("nondescript herbs" = 1)

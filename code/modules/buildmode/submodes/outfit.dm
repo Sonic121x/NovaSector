@@ -29,7 +29,7 @@
 
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
 		if(isnull(dressuptime))
-			to_chat(c, span_warning("Pick an outfit first."))
+			to_chat(c, span_warning("请先选择一个套装。"))
 			return
 
 		for (var/item in dollie.get_equipped_items(INCLUDE_POCKETS))

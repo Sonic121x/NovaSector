@@ -1,5 +1,5 @@
 /datum/action/changeling/resonant_shriek
-	name = "Resonant Shriek"
+	name = "共振尖啸"
 	desc = "Our lungs and vocal cords shift, allowing us to emit a noise that deafens and confuses non-changelings, causing them to lose some control over their movements. \
 		Best used to stop prey from escaping. Doesn't work well in a vacuum. Costs 20 chemicals."
 	helptext = "Emits a high-frequency sound that confuses and deafens humans to hamper their movement, blows out nearby lights and overloads cyborg sensors."
@@ -14,7 +14,7 @@
 /datum/action/changeling/resonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, "can't shriek in pipes!")
+		user.balloon_alert(user, "无法在管道内尖啸！")
 		return FALSE
 	playsound(user, 'sound/effects/screech.ogg', 100)
 	for(var/mob/living/living in get_hearers_in_view(4, user))
@@ -44,7 +44,7 @@
 /datum/action/changeling/dissonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, "can't shriek in pipes!")
+		user.balloon_alert(user, "无法在管道内尖啸！")
 		return FALSE
 	empulse(get_turf(user), 2, 5, 1, emp_source = src)
 	for(var/obj/machinery/light/L in range(5, usr))

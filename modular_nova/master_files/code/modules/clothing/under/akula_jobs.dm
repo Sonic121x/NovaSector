@@ -154,7 +154,7 @@
 	acid = 95
 
 /obj/item/clothing/under/akula_wetsuit/job/medical
-	name = "medical Shoredress wetsuit"
+	name = "医疗岸装潜水服"
 	desc = "The 'Medical'-Type Shoredress is yet another model commissioned by Nanotrasen. This suit has been adapted from exploration \
 		Shoredresses meant for use in murky or even outright toxic environments, being predominantly composed of self-sterilizing polymers with \
 		a system able to filter out all sorts of hazardous particles in the air or water including fumes, smoke, allergens, or ocean-bound toxins. \n\
@@ -168,7 +168,7 @@
 	bio = 95
 
 /obj/item/clothing/under/akula_wetsuit/job/security
-	name = "security Shoredress wetsuit"
+	name = "安保岸装潜水服"
 	desc = "The 'Security'-Type Shoredress is a model produced by Nanotrasen; but the origins of this wetsuit lie in designs belonging to \
 		rank-and-file warriors and fighters in the New Principalities. Designed to be protective over comfortable, these suits are no true \
 		replacement for true armor, but make an excellent undersuit for even civilian plate carriers. \n\
@@ -178,7 +178,7 @@
 	armor_type = /datum/armor/clothing_under/rank_security
 
 /obj/item/clothing/under/akula_wetsuit/job/command
-	name = "command Shoredress wetsuit"
+	name = "指挥型岸装潜水服"
 	desc = "The 'Command'-Type Shoredress is yet another model commissioned by Nanotrasen; but the origins of this wetsuit lie in designs belonging to, \
 			typically, high-ranking officials and managers in the Old Principalities. \n\
 			The bright luminescent panels on the arms have been further set apart by similar paneling on the chest, meant to ensure the wearer looks distinct both in the water, on land, and even on camera. \n\

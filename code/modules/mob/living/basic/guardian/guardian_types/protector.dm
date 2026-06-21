@@ -5,7 +5,7 @@
 	melee_damage_upper = 15
 	range = 5 // You want this to be low so you can drag them around
 	damage_coeff = list(BRUTE = 0.4, BURN = 0.4, TOX = 0.4, STAMINA = 0, OXY = 0.4)
-	playstyle_string = span_holoparasite("As a <b>protector</b> type you cause your summoner to leash to you instead of you leashing to them and have two modes; Combat Mode, where you do and take medium damage, and Protection Mode, where you do and take almost no damage, but move slightly slower.")
+	playstyle_string = span_holoparasite("作为 <b>守护者</b> 类型，你会使你的召唤者与你形成牵引（而非你被牵引），并拥有两种模式：战斗模式，造成并承受中等伤害；以及保护模式，造成并承受极低伤害，但移动速度稍慢。")
 	creator_name = "Protector"
 	creator_desc = "Causes you to teleport to it when out of range, unlike other parasites. Has two modes; Combat, where it does and takes medium damage, and Protection, where it does and takes almost no damage but moves slightly slower."
 	creator_icon = "protector"
@@ -40,8 +40,8 @@
 
 /// Toggle a status effect which makes you slow but defensive
 /datum/action/cooldown/mob_cooldown/protector_shield
-	name = "Protection Mode"
-	desc = "Enter a defensive stance which slows you down and reduces your damage, but makes you almost invincible."
+	name = "保护模式"
+	desc = "进入防御姿态，这会减慢你的速度并降低你的伤害，但使你几乎无敌。"
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "shield-old"
 	background_icon = 'icons/hud/guardian.dmi'
@@ -91,7 +91,7 @@
 		original_damage_coeff = basic_owner.damage_coeff
 		basic_owner.damage_coeff = shielded_damage
 
-	to_chat(owner, span_bolddanger("You enter protection mode."))
+	to_chat(owner, span_bolddanger("你进入了保护模式。"))
 	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_update_overlays))
 	RegisterSignals(owner, COMSIG_LIVING_ADJUST_STANDARD_DAMAGE_TYPES, PROC_REF(on_health_changed))
 	owner.update_appearance(UPDATE_ICON)
@@ -106,7 +106,7 @@
 		var/mob/living/basic/basic_owner = owner
 		basic_owner.damage_coeff = original_damage_coeff
 
-	to_chat(owner, span_bolddanger("You return to your normal mode."))
+	to_chat(owner, span_bolddanger("你回到了正常模式。"))
 	UnregisterSignal(owner, list(COMSIG_ATOM_UPDATE_OVERLAYS) + COMSIG_LIVING_ADJUST_STANDARD_DAMAGE_TYPES)
 	owner.update_appearance(UPDATE_ICON)
 

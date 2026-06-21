@@ -1,8 +1,8 @@
 //Fragile but highly aggressive wanderers that pose a large threat in numbers.
 //They'll attempt to leap at their target from afar using their hatchets.
 /mob/living/basic/mining/mook
-	name = "wanderer"
-	desc = "This unhealthy looking primitive seems to be talented at administering health care."
+	name = "漫游者"
+	desc = "这个看起来不太健康的原始人似乎很擅长提供医疗护理。"
 	icon = 'icons/mob/simple/jungle/mook.dmi'
 	icon_state = "mook"
 	icon_living = "mook"
@@ -180,7 +180,7 @@
 	return COMSIG_KB_ACTIVATED
 
 /mob/living/basic/mining/mook/death()
-	desc = "A deceased primitive. Upon closer inspection, it was suffering from severe cellular degeneration and its garments are machine made..." //Can you guess the twist
+	desc = "一具原始人的尸体。仔细一看，它正遭受严重的细胞退化，而且它的衣物是机器制造的……" //Can you guess the twist
 	return ..()
 
 /mob/living/basic/mining/mook/proc/attack_intruder(mob/living/intruder)
@@ -191,7 +191,7 @@
 
 
 /mob/living/basic/mining/mook/worker
-	desc = "This unhealthy looking primitive is wielding a rudimentary hatchet, swinging it with wild abandon. One isn't much of a threat, but in numbers they can quickly overwhelm a superior opponent."
+	desc = "这个看起来不太健康的原始人挥舞着一把简陋的手斧，狂乱地劈砍。单个威胁不大，但成群结队时能迅速压倒更强的对手。"
 	gender = MALE
 	melee_damage_lower = 15
 	melee_damage_upper = 15
@@ -239,7 +239,7 @@
 			. += neutral_stance
 
 /mob/living/basic/mining/mook/worker/bard
-	desc = "It's holding a guitar?"
+	desc = "它拿着一把吉他？"
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	gender = MALE
@@ -262,8 +262,8 @@
 	. = ..()
 
 /mob/living/basic/mining/mook/worker/tribal_chief
-	name = "tribal chief"
-	desc = "Acknowledge him!"
+	name = "部落酋长"
+	desc = "向他致敬！"
 	gender = MALE
 	melee_damage_lower = 20
 	melee_damage_upper = 20

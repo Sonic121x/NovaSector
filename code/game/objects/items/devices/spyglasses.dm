@@ -82,14 +82,11 @@
 	name = "Espionage For Dummies"
 	color = COLOR_YELLOW
 	desc = "An eye-gougingly yellow pamphlet with a badly designed image of a detective on it. The subtext says \"The latest way to violate privacy guidelines!\" "
-	default_raw_text = @{"
+	default_raw_text = @{"感谢您购买Nerd Co SpySpeks <small>tm</small>，本手册将为您提供快速入门指南，只需三步即可侵犯您船员的隐私！<br><br>第一步：将Nerd Co SpySpeks <small>tm</small>戴在脸上。 <br>
+第二步：将随附的“ProfitProtektor <small>tm</small>”摄像头组件放置在您选择的位置——请务必充分利用其不显眼的设计！
 
-Thank you for your purchase of the Nerd Co SpySpeks <small>tm</small>, this paper will be your quick-start guide to violating the privacy of your crewmates in three easy steps!<br><br>Step One: Nerd Co SpySpeks <small>tm</small> upon your face. <br>
-Step Two: Place the included "ProfitProtektor <small>tm</small>" camera assembly in a place of your choosing - make sure to make heavy use of its inconspicous design!
+第三步：按下您SpySpeks <small>tm</small>侧面的“激活远程视图”按钮，即可在视野角落打开一个可移动的摄像头显示界面，就是这么简单！<br><br><br><center><b>故障排除</b><br></center>
+我的SpySpeks <small>tm</small> 在使用时发出刺耳的哔哔声！
 
-Step Three: Press the "Activate Remote View" Button on the side of your SpySpeks <small>tm</small> to open a movable camera display in the corner of your vision, it's just that easy!<br><br><br><center><b>TROUBLESHOOTING</b><br></center>
-My SpySpeks <small>tm</small> Make a shrill beep while attempting to use!
-
-A shrill beep coming from your SpySpeks means that they can't connect to the included ProfitProtektor <small>tm</small>, please make sure your ProfitProtektor is still active, and functional!
-	"}
+您的SpySpeks发出刺耳的哔哔声，意味着它们无法连接到随附的ProfitProtektor <small>tm</small>，请确保您的ProfitProtektor仍处于活动状态且功能正常！"}
 

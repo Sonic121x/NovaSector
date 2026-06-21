@@ -1,6 +1,6 @@
 /obj/machinery/hydroponics
-	name = "hydroponics tray"
-	desc = "A basin used to grow plants in."
+	name = "水培托盘"
+	desc = "用于种植植物的培养槽。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "hydrotray"
 	density = TRUE
@@ -174,8 +174,8 @@
 	alt_tray = TRUE
 
 /obj/machinery/hydroponics/constructable/fullupgrade
-	name = "deluxe hydroponics tray"
-	desc = "A basin used to grown plants in, packed full of cutting-edge technology."
+	name = "豪华水培托盘"
+	desc = "用于种植植物的培养槽，满载尖端技术。"
 	circuit = /obj/item/circuitboard/machine/hydroponics/fullupgrade
 
 /obj/machinery/hydroponics/constructable/Initialize(mapload)
@@ -218,9 +218,9 @@
 
 /obj/machinery/hydroponics/constructable/examine(mob/user)
 	. = ..()
-	. += span_notice("Use <b>Ctrl-Click</b> to activate autogrow. <b>RMB</b> to empty the tray's nutrients.")
+	. += span_notice("使用<b>Ctrl-点击</b>激活自动生长。<b>右键</b>清空托盘营养液。")
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Tray efficiency at <b>[rating*100]%</b>.")
+		. += span_notice("状态显示器显示：托盘效率为<b>[rating*100]%</b>。")
 
 /obj/machinery/hydroponics/constructable/add_context(
 	atom/source,
@@ -300,7 +300,7 @@
 			adjust_pestlevel(-0.5 * seconds_per_tick)
 		else
 			set_self_sustaining(FALSE)
-			visible_message(span_warning("[name]'s auto-grow functionality shuts off!"))
+			visible_message(span_warning("[name]的自动生长功能已关闭！"))
 
 	if(isturf(loc))
 		var/turf/currentTurf = loc
@@ -668,25 +668,25 @@
 /obj/machinery/hydroponics/examine(user)
 	. = ..()
 	if(myseed)
-		. += span_info("It has [span_name("[myseed.plantname]")] planted.")
+		. += span_info("它种着[span_name("[myseed.plantname]")]。")
 		if (plant_status == HYDROTRAY_PLANT_DEAD)
-			. += span_warning("It's dead!")
+			. += span_warning("它死了！")
 		else if (plant_status == HYDROTRAY_PLANT_HARVESTABLE)
-			. += span_info("It's ready to harvest.")
+			. += span_info("它已经可以收获了。")
 		else if (plant_health <= (myseed.endurance / 2))
-			. += span_warning("It looks unhealthy.")
+			. += span_warning("它看起来不太健康。")
 	else
-		. += span_info("It's empty.")
+		. += span_info("它是空的。")
 
-	. += span_info("Water: [waterlevel]/[maxwater].")
-	. += span_info("Nutrient: [reagents.total_volume]/[maxnutri].")
+	. += span_info("水分：[waterlevel]/[maxwater]。")
+	. += span_info("养分：[reagents.total_volume]/[maxnutri]。")
 	if(self_sustaining)
-		. += span_info("The tray's autogrow is active, protecting it from species mutations, weeds, and pests.")
+		. += span_info("托盘的自生长功能已激活，保护其免受物种突变、杂草和害虫的影响。")
 
 	if(weedlevel >= 5)
-		. += span_warning("It's filled with weeds!")
+		. += span_warning("它长满了杂草！")
 	if(pestlevel >= 5)
-		. += span_warning("It's filled with tiny worms!")
+		. += span_warning("它爬满了小虫子！")
 
 /**
  * What happens when a tray's weeds grow too large.
@@ -721,7 +721,7 @@
 	set_plant_health(myseed.endurance, update_icon = FALSE)
 	set_weedlevel(0, update_icon = FALSE) // Reset
 	set_pestlevel(0) // Reset
-	visible_message(span_warning("The [oldPlantName] is overtaken by some [myseed.plantname]!"))
+	visible_message(span_warning("[oldPlantName]被一些[myseed.plantname]侵占了！"))
 
 /// Mutates the stats of the current seed
 /obj/machinery/hydroponics/proc/mutate(lifemut = 2, endmut = 5, productmut = 1, yieldmut = 2, potmut = 25, wrmut = 2, wcmut = 5, traitmut = 0, stabmut = 3) // Mutates the current seed
@@ -779,7 +779,7 @@
 	lastcycle = world.time
 	set_weedlevel(0, update_icon = FALSE)
 
-	var/message = span_warning("[oldPlantName] suddenly mutates into [myseed.plantname]!")
+	var/message = span_warning("[oldPlantName]突然变异成了[myseed.plantname]！")
 	addtimer(CALLBACK(src, PROC_REF(after_mutation), message), 0.5 SECONDS)
 
 /// Transform the plant into a completely random species
@@ -796,13 +796,13 @@
 	lastcycle = world.time
 	set_weedlevel(0, update_icon = FALSE)
 
-	var/message = span_warning("[oldPlantName] suddenly polymorphs into [myseed.plantname]!")
+	var/message = span_warning("[oldPlantName]突然多态化成了[myseed.plantname]！")
 	addtimer(CALLBACK(src, PROC_REF(after_mutation), message), 0.5 SECONDS)
 
 /// Mutates the weeds in the tray into a random weed plant (which can overtake existing plants)
 /obj/machinery/hydroponics/proc/mutateweed()
 	if(weedlevel <= 5)
-		visible_message(span_warning("The few weeds in [src] seem to react, but only for a moment..."))
+		visible_message(span_warning("[src]里的几株杂草似乎有反应，但只持续了一瞬间……"))
 		return
 
 	set_seed(null)
@@ -813,7 +813,7 @@
 	lastcycle = world.time
 	set_weedlevel(0, update_icon = FALSE) // Reset
 
-	var/message = span_warning("The mutated weeds in [src] spawn some [myseed.plantname]!")
+	var/message = span_warning("[src]里的变异杂草长出了些[myseed.plantname]！")
 	addtimer(CALLBACK(src, PROC_REF(after_mutation), message), 0.5 SECONDS)
 
 /**
@@ -879,7 +879,7 @@
  */
 /obj/machinery/hydroponics/proc/mutatepest()
 	if(pestlevel <= 5)
-		visible_message(span_warning("The pests seem to behave oddly in [src], but quickly settle down..."))
+		visible_message(span_warning("[src]里的害虫行为似乎有些异常，但很快就平静下来了……"))
 		return
 
 	var/mob/user = lastuser?.resolve()
@@ -887,7 +887,7 @@
 		message_admins("[ADMIN_LOOKUPFLW(user)] last altered a hydro tray's contents which spawned spiderlings.")
 		user.log_message("last altered a hydro tray, which spiderlings spawned from.", LOG_GAME)
 
-	visible_message(span_warning("The pests seem to behave oddly..."))
+	visible_message(span_warning("害虫的行为似乎有些异常……"))
 	spawn_atom_to_turf(/mob/living/basic/spider/growing/spiderling/hunter, src, 3, FALSE)
 
 /obj/machinery/hydroponics/wrench_act(mob/living/user, obj/item/tool)
@@ -901,11 +901,11 @@
 		var/obj/item/reagent_containers/reagent_source = O
 
 		if(!reagent_source.reagents.total_volume)
-			to_chat(user, span_warning("[reagent_source] is empty!"))
+			to_chat(user, span_warning("[reagent_source]是空的！"))
 			return 1
 
 		if(reagents.total_volume >= reagents.maximum_volume && !reagent_source.reagents.has_reagent(/datum/reagent/water, 1))
-			to_chat(user, span_notice("[src] is full."))
+			to_chat(user, span_notice("[src] 已满。"))
 			return
 
 		var/list/trays = list(src)//makes the list just this in cases of syringes and compost etc
@@ -915,7 +915,7 @@
 
 		if(IS_EDIBLE(reagent_source))
 			if(HAS_TRAIT(reagent_source, TRAIT_UNCOMPOSTABLE))
-				to_chat(user, "[reagent_source] cannot be composted in its current state")
+				to_chat(user, "[reagent_source] 在当前状态下无法堆肥")
 				return
 			visi_msg="[user] composts [reagent_source], spreading it through [target]"
 			transfer_amount = reagent_source.reagents.total_volume
@@ -938,7 +938,7 @@
 				flick_overlay_view(splash_animation, 1.1 SECONDS)
 
 		if(visi_msg)
-			visible_message(span_notice("[visi_msg]."))
+			visible_message(span_notice("[visi_msg]。"))
 
 		for(var/obj/machinery/hydroponics/H in trays)
 		//cause I don't want to feel like im juggling 15 tamagotchis and I can get to my real work of ripping flooring apart in hopes of validating my life choices of becoming a space-gardener
@@ -969,25 +969,25 @@
 		return
 	else if(istype(O, /obj/item/cultivator))
 		if(weedlevel > 0)
-			user.visible_message(span_notice("[user] uproots the weeds."), span_notice("You remove the weeds from [src]."))
+			user.visible_message(span_notice("[user] 拔除了杂草。"), span_notice("你从 [src] 中移除了杂草。"))
 			set_weedlevel(0)
 			return
 		else
-			to_chat(user, span_warning("This plot is completely devoid of weeds! It doesn't need uprooting."))
+			to_chat(user, span_warning("这块种植盘完全没有杂草！不需要拔除。"))
 			return
 
 	else if(istype(O, /obj/item/secateurs))
 		if(!myseed)
-			to_chat(user, span_notice("This plot is empty."))
+			to_chat(user, span_notice("这块种植盘是空的。"))
 			return
 		else if(plant_status != HYDROTRAY_PLANT_HARVESTABLE)
-			to_chat(user, span_notice("This plant must be harvestable in order to be grafted."))
+			to_chat(user, span_notice("此植物必须处于可收获状态才能进行嫁接。"))
 			return
 		else if(myseed.grafts_taken >= ((tray_flags & MULTIGRAFT) ? MULTI_GRAFT_MAX_COUNT : 1))
-			to_chat(user, span_notice("You can't take any more cuttings from this plant!"))
+			to_chat(user, span_notice("你无法再从这株植物上获取更多插条了！"))
 			return
 		else
-			user.visible_message(span_notice("[user] grafts off a limb from [src]."), span_notice("You carefully graft off a portion of [src]."))
+			user.visible_message(span_notice("[user] 从 [src] 上嫁接下一段枝条。"), span_notice("你小心地从 [src] 上嫁接下一部分。"))
 			var/obj/item/graft/snip = myseed.create_graft()
 			if(!snip)
 				return // The plant did not return a graft.
@@ -999,10 +999,10 @@
 
 	else if(istype(O, /obj/item/geneshears))
 		if(!myseed)
-			to_chat(user, span_notice("The tray is empty."))
+			to_chat(user, span_notice("托盘是空的。"))
 			return
 		if(plant_health <= GENE_SHEAR_MIN_HEALTH)
-			to_chat(user, span_notice("This plant looks too unhealty to be sheared right now."))
+			to_chat(user, span_notice("这株植物看起来太不健康，现在无法进行剪切。"))
 			return
 
 		var/list/current_traits = list()
@@ -1012,7 +1012,7 @@
 			if(!(gene.mutability_flags & PLANT_GENE_REMOVABLE))
 				continue // Don't show genes that can't be removed.
 			current_traits[gene.name] = gene
-		var/removed_trait = tgui_input_list(user, "Trait to remove from the [myseed.plantname]", "Plant Trait Removal", sort_list(current_traits))
+		var/removed_trait = tgui_input_list(user, "要从[myseed.plantname]中移除的特性", "植物特性移除", sort_list(current_traits))
 		if(isnull(removed_trait))
 			return
 		if(!user.can_perform_action(src))
@@ -1029,7 +1029,7 @@
 					break
 		myseed.reagents_from_genes()
 		adjust_plant_health(-15)
-		to_chat(user, span_notice("You carefully shear the genes off of the [myseed.plantname], leaving the plant looking weaker."))
+		to_chat(user, span_notice("你小心地从 [myseed.plantname] 上剪切下基因，使植物看起来更虚弱了。"))
 		update_appearance()
 		return
 
@@ -1040,13 +1040,13 @@
 				propagate_plant(snip.plant_dna, user)
 				qdel(snip)
 				return
-			to_chat(user, span_notice("The tray is empty."))
+			to_chat(user, span_notice("托盘是空的。"))
 			return
 		var/datum/plant_gene/grafted_trait = myseed.apply_graft(snip)
 		if(grafted_trait)
-			to_chat(user, span_notice("You carefully integrate the grafted plant limb onto [myseed.plantname], granting it [grafted_trait.get_name()]."))
+			to_chat(user, span_notice("你小心地将嫁接的植物枝条整合到 [myseed.plantname] 上，赋予它 [grafted_trait.get_name()]。"))
 		else
-			to_chat(user, span_notice("You try to integrate the grafted plant limb onto [myseed.plantname], but it rejects the trait from the [snip]."))
+			to_chat(user, span_notice("你试图将嫁接的植物枝条整合到 [myseed.plantname] 上，但它拒绝了来自 [snip] 的特性。"))
 		qdel(snip)
 		return
 
@@ -1056,40 +1056,40 @@
 			for(var/obj/item/food/grown/G in harvest)
 				O.atom_storage?.attempt_insert(G, user, TRUE)
 		else if(plant_status == HYDROTRAY_PLANT_DEAD)
-			to_chat(user, span_notice("You remove the dead plant from [src]."))
+			to_chat(user, span_notice("你从[src]中移除了死去的植物。"))
 			set_seed(null)
 		return
 
 	else if(O.tool_behaviour == TOOL_SHOVEL)
 		if(!myseed && !weedlevel)
-			to_chat(user, span_warning("[src] doesn't have any plants or weeds!"))
+			to_chat(user, span_warning("[src] 没有任何植物或杂草！"))
 			return
-		user.visible_message(span_notice("[user] starts digging out [src]'s plants..."),
-			span_notice("You start digging out [src]'s plants..."))
+		user.visible_message(span_notice("[user] 开始挖出 [src] 的植物..."),
+			span_notice("你开始挖出[src]里的植物..."))
 		if(O.use_tool(src, user, 50, volume=50) || (!myseed && !weedlevel))
-			user.visible_message(span_notice("[user] digs out the plants in [src]!"), span_notice("You dig out all of [src]'s plants!"))
+			user.visible_message(span_notice("[user]挖出了[src]里的植物！"), span_notice("你挖出了[src]里的所有植物！"))
 			remove_plant()
 			return
 	else if(istype(O, /obj/item/gun/energy/floragun))
 		var/obj/item/gun/energy/floragun/flowergun = O
 		if(flowergun.cell.charge < flowergun.cell.maxcharge)
-			to_chat(user, span_notice("[flowergun] must be fully charged to lock in a mutation!"))
+			to_chat(user, span_notice("[flowergun]必须完全充能才能锁定突变！"))
 			return
 		if(!myseed)
-			to_chat(user, span_warning("[src] is empty!"))
+			to_chat(user, span_warning("[src]是空的！"))
 			return
 		if(myseed.endurance <= FLORA_GUN_MIN_ENDURANCE)
-			to_chat(user, span_warning("[myseed.plantname] isn't hardy enough to sequence its mutation!"))
+			to_chat(user, span_warning("[myseed.plantname]不够坚韧，无法测序其突变！"))
 			return
 		if(!LAZYLEN(myseed.mutatelist))
-			to_chat(user, span_warning("[myseed.plantname] has nothing else to mutate into!"))
+			to_chat(user, span_warning("[myseed.plantname]没有其他可突变的形态了！"))
 			return
 		else
 			var/list/fresh_mut_list = list()
 			for(var/muties in myseed.mutatelist)
 				var/obj/item/seeds/another_mut = new muties
 				fresh_mut_list[another_mut.plantname] = muties
-			var/locked_mutation = tgui_input_list(user, "Mutation to lock", "Plant Mutation Locks", sort_list(fresh_mut_list))
+			var/locked_mutation = tgui_input_list(user, "要锁定的突变", "植物突变锁定", sort_list(fresh_mut_list))
 			if(isnull(locked_mutation))
 				return
 			if(isnull(fresh_mut_list[locked_mutation]))
@@ -1100,7 +1100,7 @@
 			myseed.set_endurance(myseed.endurance/2)
 			flowergun.cell.use(flowergun.cell.charge)
 			flowergun.update_appearance()
-			to_chat(user, span_notice("[myseed.plantname]'s mutation was set to [locked_mutation], depleting [flowergun]'s cell!"))
+			to_chat(user, span_notice("[myseed.plantname]的突变已设定为[locked_mutation]，耗尽了[flowergun]的电池！"))
 			return
 	else if(istype(O, /obj/item/soil_sack))
 		var/obj/item/soil_sack/oursoil = O
@@ -1130,7 +1130,7 @@
 
 /obj/machinery/hydroponics/attackby_secondary(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	if (istype(weapon, /obj/item/reagent_containers/syringe))
-		to_chat(user, span_warning("You can't get any extract out of this plant."))
+		to_chat(user, span_warning("你无法从这种植物中提取任何精华。"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	return SECONDARY_ATTACK_CALL_NORMAL
 
@@ -1150,7 +1150,7 @@
 		return myseed.harvest(user)
 
 	else if(plant_status == HYDROTRAY_PLANT_DEAD)
-		to_chat(user, span_notice("You remove the dead plant from [src]."))
+		to_chat(user, span_notice("你从 [src] 中移除了死去的植物。"))
 		set_seed(null)
 	else
 		if(user)
@@ -1163,12 +1163,12 @@
 	update_use_power(ACTIVE_POWER_USE)
 
 	if(!powered())
-		to_chat(user, span_warning("[name] has no power."))
+		to_chat(user, span_warning("[name]没有电力。"))
 		update_use_power(NO_POWER_USE)
 		return CLICK_ACTION_BLOCKING
 
 	set_self_sustaining(!self_sustaining)
-	to_chat(user, span_notice("You [self_sustaining ? "activate" : "deactivated"] [src]'s autogrow function[self_sustaining ? ", maintaining the tray's health while using high amounts of power" : ""]."))
+	to_chat(user, span_notice("你[self_sustaining ? "activate" : "deactivated"][src]的自动生长功能[self_sustaining ? ", maintaining the tray's health while using high amounts of power" : ""]。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/hydroponics/attack_hand_secondary(mob/user, list/modifiers)
@@ -1177,7 +1177,7 @@
 		return
 	if(!anchored)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	var/warning = tgui_alert(user, "Are you sure you wish to empty the tray's nutrient beaker?","Empty Tray Nutrients?", list("Yes", "No"))
+	var/warning = tgui_alert(user, "你确定要清空培养盘的营养液烧瓶吗？","清空培养盘营养液？", list("Yes", "No"))
 	if(warning == "Yes" && user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		empty_tray(user)
 	update_appearance()
@@ -1188,7 +1188,7 @@
 	reagents.clear_reagents()
 	for(var/obj/item/mob_holder/snail/possible_snail in contents)
 		possible_snail.forceMove(drop_location())
-	to_chat(user, span_warning("You empty [src]'s nutrient tank."))
+	to_chat(user, span_warning("你清空了[src]的营养液罐。"))
 
 /**
  * Update Tray Proc
@@ -1200,11 +1200,11 @@
 /obj/machinery/hydroponics/proc/update_tray(mob/user, product_count)
 	lastproduce = age
 	if(istype(myseed, /obj/item/seeds/replicapod))
-		to_chat(user, span_notice("You harvest from the [myseed.plantname]."))
+		to_chat(user, span_notice("你从[myseed.plantname]上收获了。"))
 	else if(product_count <= 0)
-		to_chat(user, span_warning("You fail to harvest anything useful!"))
+		to_chat(user, span_warning("你没能收获到任何有用的东西！"))
 	else
-		to_chat(user, span_notice("You harvest [product_count] items from the [myseed.plantname]."))
+		to_chat(user, span_notice("你从[product_count]上收获了[myseed.plantname]件物品。"))
 	if(!myseed.get_gene(/datum/plant_gene/trait/repeated_harvest))
 		set_seed(null)
 		if(self_sustaining) //No reason to pay for an empty tray.
@@ -1229,7 +1229,7 @@
 	if(!istype(young_plant))
 		return
 	if(myseed)
-		to_chat(user, span_warning("[src] already has a plant growing in it!"))
+		to_chat(user, span_warning("[src]里已经有一株植物在生长了！"))
 		return
 	if(young_plant.seed_flags & NO_PLANTING)
 		to_chat(user, span_warning("[young_plant] cannot be planted in [src]!"))
@@ -1239,7 +1239,7 @@
 	if(!user.transferItemToLoc(young_plant, src))
 		return
 	SEND_SIGNAL(young_plant, COMSIG_SEED_ON_PLANTED, src)
-	to_chat(user, span_notice("You plant [young_plant]."))
+	to_chat(user, span_notice("你种下了[young_plant]。"))
 	set_seed(young_plant)
 	set_plant_health(myseed.endurance)
 	lastcycle = world.time
@@ -1259,7 +1259,7 @@
 
 /obj/item/circuit_component/hydroponics
 	display_name = "Hydropnics Tray"
-	desc = "Automate the means of botanical production. Trigger to toggle auto-grow."
+	desc = "实现植物生产的自动化。触发开关以启用自动生长模式。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
 	var/obj/machinery/hydroponics/attached_tray

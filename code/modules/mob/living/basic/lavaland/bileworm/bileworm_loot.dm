@@ -2,8 +2,8 @@
 //skin
 
 /obj/item/stack/sheet/animalhide/bileworm
-	name = "bileworm skin"
-	desc = "The slushy, squishy and slightly shiny skin of a postmortem bileworm."
+	name = "胆管虫皮"
+	desc = "一具死后尸体上的胆虫的那层黏糊糊、软绵绵且略带光泽的外皮。"
 	singular_name = "bileworm skin piece"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "sheet-bileworm"

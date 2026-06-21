@@ -3,8 +3,8 @@
 */
 
 /turf/closed/indestructible/dungeon
-	name = "stone wall"
-	desc = "Cold stone walls. It's like a dungeon."
+	name = "石墙"
+	desc = "冰冷的石墙。就像地牢一样。"
 	icon = 'modular_nova/modules/mapping/icons/unique/dungeon.dmi'
 	icon_state = "wall"
 	base_icon_state = "wall"
@@ -20,8 +20,8 @@
 
 /turf/open/floor/plating/cobblestone
 	gender = PLURAL
-	name = "cobblestone"
-	desc = "Cobbled stone that makes a permanent pathway. A bit old-fashioned."
+	name = "鹅卵石"
+	desc = "铺成永久道路的鹅卵石。有点老派。"
 	icon = 'modular_nova/modules/mapping/icons/unique/dungeon.dmi'
 	icon_state = "cobble"
 	planetary_atmos = FALSE
@@ -50,8 +50,8 @@
 */
 
 /obj/structure/dungeon
-	name = "stone wall with a hole in it!"
-	desc = "A hole in the wall! It's small."
+	name = "有个洞的石墙！"
+	desc = "墙上的一个洞！它很小。"
 	icon = 'modular_nova/modules/mapping/icons/unique/dungeon.dmi'
 	icon_state = "wall-hole"
 	layer = ABOVE_MOB_LAYER
@@ -60,8 +60,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/structure/dungeon/doorway
-	name = "doorway"
-	desc = "A doorway fashioned into a stone wall. It's a tight fit."
+	name = "门口"
+	desc = "在石墙上开凿出的门口。空间很狭窄。"
 	icon = 'modular_nova/modules/mapping/icons/unique/dungeon.dmi'
 	icon_state = "wall-doorway"
 	layer = ABOVE_MOB_LAYER
@@ -77,8 +77,8 @@
 		return
 
 /obj/structure/railing/stone
-	name = "stone wall"
-	desc = "Cobbled stone wall. This is pretty strong."
+	name = "石墙"
+	desc = "鹅卵石墙。这相当坚固。"
 	icon = 'modular_nova/modules/mapping/icons/unique/dungeon.dmi'
 	icon_state = "cobble-wall"
 	max_integrity = 100
@@ -87,7 +87,7 @@
 	climbable = TRUE
 
 /obj/structure/railing/stone/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
-	to_chat(user, span_notice("You frown as you realise this wall is in fact made of stone, and cannot be uprooted from the ground and dragged along with a mere wrench."))
+	to_chat(user, span_notice("你皱起眉头，意识到这堵墙实际上是由石头制成的，无法仅用一把扳手就从地上拔起并拖走。"))
 	return
 
 /obj/structure/railing/stone/left
@@ -101,8 +101,8 @@
 	climbable = FALSE
 
 /obj/structure/mineral_door/dungeon
-	name = "wooden door"
-	desc = "A small wooden door. It probably still opens, but it's kind of small."
+	name = "木门"
+	desc = "一扇小木门。它大概还能打开，只是有点小。"
 	icon = 'modular_nova/modules/mapping/icons/unique/dungeon.dmi'
 	icon_state = "wall-door"
 	openSound = 'sound/effects/doorcreaky.ogg'
@@ -111,8 +111,8 @@
 	max_integrity = 100
 
 /obj/machinery/button/dungeon
-	name = "stone brick"
-	desc = "A brick that's stuck out of the wall. Huh."
+	name = "石砖"
+	desc = "一块从墙里凸出来的砖。嗯。"
 	icon = 'modular_nova/modules/mapping/icons/unique/dungeon.dmi'
 	base_icon_state = "doorctrl"
 	icon_state = "doorctrl"
@@ -123,6 +123,6 @@
 
 /obj/machinery/button/dungeon/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(attacking_item.tool_behaviour == TOOL_SCREWDRIVER)
-		to_chat(user, span_notice("You prod around the rim of the bricks and try and jam it in. Looks like it isn't coming out this way."))
+		to_chat(user, span_notice("你戳了戳砖块的边缘，试着把它塞进去。看来这样是弄不出来了。"))
 		return
 // Let's not open the maintenance panel of a stone brick.

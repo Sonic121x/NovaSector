@@ -1,7 +1,7 @@
 /datum/surgery_operation/basic/dissection
-	name = "experimental dissection"
+	name = "实验性解剖"
 	rnd_name = "Experimental Androtomy (Experimental Dissection and Autopsy)"
-	desc = "Perform an experimental dissection on a patient to obtain research points."
+	desc = "对病人进行实验性解剖以获得研究点数。"
 	rnd_desc = "An experimental surgical procedure that dissects bodies in exchange for research points at ancient R&D consoles."
 	implements = list(
 		/obj/item/autopsy_scanner = 1,
@@ -19,8 +19,8 @@
 
 /datum/surgery_operation/basic/dissection/all_required_strings()
 	. += ..()
-	. += "the patient must be deceased"
-	. += "the patient must not have been dissected prior"
+	. += "患者必须已死亡"
+	. += "患者之前必须未被解剖过"
 
 /datum/surgery_operation/basic/dissection/state_check(mob/living/patient)
 	return !HAS_TRAIT_FROM(patient, TRAIT_DISSECTED, EXPERIMENTAL_SURGERY_TRAIT) && patient.stat == DEAD
@@ -91,8 +91,8 @@
 	return reward
 
 /obj/item/research_notes
-	name = "research notes"
-	desc = "Valuable scientific data. Use it in an ancient research server to turn it in."
+	name = "研究笔记"
+	desc = "宝贵的科学数据。在古老的研究服务器上使用它来提交。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "paper"
 	w_class = WEIGHT_CLASS_SMALL
@@ -113,7 +113,7 @@
 
 /obj/item/research_notes/examine(mob/user)
 	. = ..()
-	. += span_notice("It is worth [value] research points.")
+	. += span_notice("它价值[value]研究点数。")
 
 /obj/item/research_notes/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/research_notes))
@@ -127,16 +127,16 @@
 /// proc that changes name and icon depending on value
 /obj/item/research_notes/proc/change_vol()
 	if(value >= 10000)
-		name = "revolutionary discovery in the field of [origin_type]"
+		name = "[origin_type]领域的革命性发现"
 		icon_state = "docs_verified"
 	else if(value >= 2500)
-		name = "essay about [origin_type]"
+		name = "关于[origin_type]的论文"
 		icon_state = "paper_words"
 	else if(value >= 100)
-		name = "notes of [origin_type]"
+		name = "[origin_type]的研究笔记"
 		icon_state = "paperslip_words"
 	else
-		name = "fragmentary data of [origin_type]"
+		name = "[origin_type]的零散数据"
 		icon_state = "scrap"
 
 ///proc when you slap research notes into another one, it applies a bonus if they are of different origin (only applied once)

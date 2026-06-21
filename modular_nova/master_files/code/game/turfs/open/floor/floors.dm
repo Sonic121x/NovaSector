@@ -46,7 +46,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick
 
 /obj/item/stack/tile/iron/brick
-	name = "brick floor tile"
+	name = "砖块地板瓷砖"
 	singular_name = "brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick"
@@ -61,7 +61,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_half
 
 /obj/item/stack/tile/iron/brick_half
-	name = "half brick floor tile"
+	name = "半砖块地板瓷砖"
 	singular_name = "brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_half"
@@ -76,7 +76,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_half_vertical
 
 /obj/item/stack/tile/iron/brick_half_vertical
-	name = "half brick vertical floor tile"
+	name = "半砖块垂直地板瓷砖"
 	singular_name = "brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_half_vertical"
@@ -91,7 +91,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_corner
 
 /obj/item/stack/tile/iron/brick_corner
-	name = "brick floor corner tile"
+	name = "砖块地板角砖"
 	singular_name = "brick floor corner tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_corner"
@@ -106,7 +106,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_corner_inverse
 
 /obj/item/stack/tile/iron/brick_corner_inverse
-	name = "brick floor inverse corner tile"
+	name = "砖块地板反向角砖"
 	singular_name = "brick floor inverse corner tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_corner_inverse"
@@ -121,7 +121,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_corner_vertical
 
 /obj/item/stack/tile/iron/brick_corner_vertical
-	name = "brick floor vertical corner tile"
+	name = "砖块地板垂直角砖"
 	singular_name = "brick floor vertical corner tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_corner_vertical"
@@ -136,7 +136,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_corner_vertical_inverse
 
 /obj/item/stack/tile/iron/brick_corner_vertical_inverse
-	name = "brick floor vertical inverse corner tile"
+	name = "砖块地板垂直反向角砖"
 	singular_name = "brick floor vertical inverse corner tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_corner_vertical_inverse"
@@ -151,7 +151,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_aligned
 
 /obj/item/stack/tile/iron/brick_aligned
-	name = "aligned brick floor tile"
+	name = "对齐砖块地板瓷砖"
 	singular_name = "aligned brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_aligned"
@@ -166,7 +166,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_aligned_half
 
 /obj/item/stack/tile/iron/brick_aligned_half
-	name = "half aligned brick floor tile"
+	name = "半对齐砖块地板瓷砖"
 	singular_name = "half aligned brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_aligned_half"
@@ -181,7 +181,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_aligned_half_vertical
 
 /obj/item/stack/tile/iron/brick_aligned_half_vertical
-	name = "half aligned brick floor vertical tile"
+	name = "半对齐砖块地板垂直瓷砖"
 	singular_name = "half aligned brick floor vertical tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_aligned_half_vertical"
@@ -196,7 +196,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_aligned_corner
 
 /obj/item/stack/tile/iron/brick_aligned_corner
-	name = "aligned brick corner"
+	name = "对齐砖块角砖"
 	singular_name = "aligned brick corner"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_aligned_corner"
@@ -211,7 +211,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_aligned_corner_inverse
 
 /obj/item/stack/tile/iron/brick_aligned_corner_inverse
-	name = "aligned brick inverse corner inverse"
+	name = "对齐砖块反向角砖"
 	singular_name = "aligned brick inverse corner inverse"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_aligned_corner_inverse"
@@ -226,7 +226,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_aligned_corner_vertical
 
 /obj/item/stack/tile/iron/brick_aligned_corner_vertical
-	name = "aligned vertical brick corner"
+	name = "对齐垂直砖块角砖"
 	singular_name = "aligned vertical brick corner"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_aligned_corner_vertical"
@@ -241,7 +241,7 @@
 	floor_tile = /obj/item/stack/tile/iron/brick_aligned_corner_vertical_inverse
 
 /obj/item/stack/tile/iron/brick_aligned_corner_vertical_inverse
-	name = "aligned vertical brick inverse corner"
+	name = "对齐垂直砖块反向角砖"
 	singular_name = "aligned vertical brick inverse corner"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "brick_aligned_corner_vertical_inverse"
@@ -256,7 +256,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_1
 
 /obj/item/stack/tile/iron/pattern_1
-	name = "diagonal brick tile"
+	name = "对角线砖块瓷砖"
 	singular_name = "diagonal brick tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_1"
@@ -271,7 +271,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_2
 
 /obj/item/stack/tile/iron/pattern_2
-	name = "diamond spiral brick tile"
+	name = "菱形螺旋砖块瓷砖"
 	singular_name = "diamond spiral brick tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_2"
@@ -286,7 +286,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_3
 
 /obj/item/stack/tile/iron/pattern_3
-	name = "brick crosshatch tile"
+	name = "砖块交叉网格地砖"
 	singular_name = "brick crosshatch tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_3"
@@ -301,7 +301,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_4
 
 /obj/item/stack/tile/iron/pattern_4
-	name = "brick spiral tile"
+	name = "砖块螺旋地砖"
 	singular_name = "brick spiral tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_4"
@@ -316,7 +316,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_5
 
 /obj/item/stack/tile/iron/pattern_5
-	name = "hex tile pattern tile"
+	name = "六边形图案地砖"
 	singular_name = "hex tile pattern tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_5"
@@ -330,7 +330,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_6
 
 /obj/item/stack/tile/iron/pattern_6
-	name = "hex tile pattern grid tile"
+	name = "六边形图案网格地砖"
 	singular_name = "hex tile pattern grid tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_6"
@@ -344,7 +344,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_7
 
 /obj/item/stack/tile/iron/pattern_7
-	name = "diagonal brick"
+	name = "对角砖块地砖"
 	singular_name = "diagonal brick"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_7"
@@ -358,7 +358,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_8
 
 /obj/item/stack/tile/iron/pattern_8
-	name = "large hex floor tile"
+	name = "大型六边形地砖"
 	singular_name = "large hex floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_8"
@@ -372,7 +372,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_9
 
 /obj/item/stack/tile/iron/pattern_9
-	name = "offset floor pattern tile"
+	name = "偏移图案地砖"
 	singular_name = "offset floor pattern tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_9"
@@ -386,7 +386,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_10
 
 /obj/item/stack/tile/iron/pattern_10
-	name = "arrow pattern brick tile"
+	name = "箭头图案砖块地砖"
 	singular_name = "arrow pattern brick tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_10"
@@ -401,7 +401,7 @@
 	floor_tile = /obj/item/stack/tile/iron/pattern_11
 
 /obj/item/stack/tile/iron/pattern_11
-	name = "large hex floor tile"
+	name = "大型六边形地砖"
 	singular_name = "large hex floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "pattern_11"
@@ -419,7 +419,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick
 
 /obj/item/stack/tile/iron/dark/brick
-	name = "dark brick floor tile"
+	name = "深色砖块地砖"
 	singular_name = "dark brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick"
@@ -434,7 +434,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_half
 
 /obj/item/stack/tile/iron/dark/brick_half
-	name = "dark half brick floor tile"
+	name = "深色半砖地砖"
 	singular_name = "dark half brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_half"
@@ -449,7 +449,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_half_vertical
 
 /obj/item/stack/tile/iron/dark/brick_half_vertical
-	name = "dark half brick vertical floor tile"
+	name = "深色垂直半砖地砖"
 	singular_name = "dark brick vertical floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_half_vertical"
@@ -464,7 +464,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_corner
 
 /obj/item/stack/tile/iron/dark/brick_corner
-	name = "dark brick corner floor tile"
+	name = "深色砖块转角地砖"
 	singular_name = "dark brick corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_corner"
@@ -479,7 +479,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_corner_inverse
 
 /obj/item/stack/tile/iron/dark/brick_corner_inverse
-	name = "dark brick inverse corner floor tile"
+	name = "深色砖块反向转角地砖"
 	singular_name = "dark brick inverse corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_corner_inverse"
@@ -494,7 +494,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_corner_vertical
 
 /obj/item/stack/tile/iron/dark/brick_corner_vertical
-	name = "dark brick vertical corner floor tile"
+	name = "深色砖块垂直转角地砖"
 	singular_name = "dark brick vertical corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_corner_vertical"
@@ -509,7 +509,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_corner_vertical_inverse
 
 /obj/item/stack/tile/iron/dark/brick_corner_vertical_inverse
-	name = "dark brick vertical corner invserse floor tile"
+	name = "深色砖块垂直反向转角地砖"
 	singular_name = "dark brick vertical corner invserse floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_corner_vertical_inverse"
@@ -524,7 +524,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_aligned
 
 /obj/item/stack/tile/iron/dark/brick_aligned
-	name = "dark aligned brick floor tile"
+	name = "深色对齐砖块地砖"
 	singular_name = "dark aligned floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_aligned"
@@ -539,7 +539,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_aligned_half
 
 /obj/item/stack/tile/iron/dark/brick_aligned_half
-	name = "dark aligned half brick floor tile"
+	name = "深色对齐半砖地砖"
 	singular_name = "dark aligned half brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_aligned_half"
@@ -554,7 +554,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_aligned_half_vertical
 
 /obj/item/stack/tile/iron/dark/brick_aligned_half_vertical
-	name = "dark aligned half brick vertical floor tile"
+	name = "深色对齐垂直半砖地砖"
 	singular_name = "dark aligned half brick vertical floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_aligned_half_vertical"
@@ -569,7 +569,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_aligned_corner_vertical
 
 /obj/item/stack/tile/iron/dark/brick_aligned_corner_vertical
-	name = "dark aligned vertical corner floor tile"
+	name = "深色对齐垂直转角地砖"
 	singular_name = "dark aligned vertical corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_aligned_corner_vertical"
@@ -584,7 +584,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_aligned_corner_vertical_inverse
 
 /obj/item/stack/tile/iron/dark/brick_aligned_corner_vertical_inverse
-	name = "dark aligned vertical inverse corner floor tile"
+	name = "深色对齐垂直反向转角地砖"
 	singular_name = "dark aligned vertical inverse corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_aligned_corner_vertical_inverse"
@@ -599,7 +599,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_aligned_corner
 
 /obj/item/stack/tile/iron/dark/brick_aligned_corner
-	name = "dark aligned corner floor tile"
+	name = "深色对齐转角地砖"
 	singular_name = "dark aligned corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_aligned_corner"
@@ -614,7 +614,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/brick_aligned_corner_inverse
 
 /obj/item/stack/tile/iron/dark/brick_aligned_corner_inverse
-	name = "dark aligned inverse corner floor tile"
+	name = "深色对齐反向转角地砖"
 	singular_name = "dark aligned inverse corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_brick_aligned_corner_inverse"
@@ -629,7 +629,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_1
 
 /obj/item/stack/tile/iron/dark/pattern_1
-	name = "dark diagonal brick tile"
+	name = "深色对角砖纹地砖"
 	singular_name = "dark diagonal brick tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_1"
@@ -644,7 +644,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_2
 
 /obj/item/stack/tile/iron/dark/pattern_2
-	name = "dark diamond spiral brick tile"
+	name = "深色菱形螺旋砖纹地砖"
 	singular_name = "dark diamond spiral brick tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_2"
@@ -659,7 +659,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_3
 
 /obj/item/stack/tile/iron/dark/pattern_3
-	name = "dark brick crosshatch tile"
+	name = "深色砖纹交叉网格地砖"
 	singular_name = "dark brick crosshatch tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_3"
@@ -674,7 +674,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_4
 
 /obj/item/stack/tile/iron/dark/pattern_4
-	name = "dark brick spiral tile"
+	name = "深色砖纹螺旋地砖"
 	singular_name = "dark brick spiral tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_4"
@@ -689,7 +689,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_5
 
 /obj/item/stack/tile/iron/dark/pattern_5
-	name = "dark hex tile pattern tile"
+	name = "深色六边形地砖"
 	singular_name = "dark hex tile pattern tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_5"
@@ -703,7 +703,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_6
 
 /obj/item/stack/tile/iron/dark/pattern_6
-	name = "dark hex tile pattern grid tile"
+	name = "深色六边形网格地砖"
 	singular_name = "dark hex tile pattern grid tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_6"
@@ -717,7 +717,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_7
 
 /obj/item/stack/tile/iron/dark/pattern_7
-	name = "dark diagonal brick"
+	name = "深色对角砖纹"
 	singular_name = "dark diagonal brick"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_7"
@@ -731,7 +731,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_8
 
 /obj/item/stack/tile/iron/dark/pattern_8
-	name = "large dark hex floor tile"
+	name = "大型深色六边形地砖"
 	singular_name = "large dark hex floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_8"
@@ -745,7 +745,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_9
 
 /obj/item/stack/tile/iron/dark/pattern_9
-	name = "dark offset floor pattern tile"
+	name = "深色错位地砖"
 	singular_name = "dark offset floor pattern tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_9"
@@ -759,7 +759,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_10
 
 /obj/item/stack/tile/iron/dark/pattern_10
-	name = "dark arrow pattern brick tile"
+	name = "深色箭头砖纹地砖"
 	singular_name = "dark arrow pattern brick tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_10"
@@ -774,7 +774,7 @@
 	floor_tile = /obj/item/stack/tile/iron/dark/pattern_11
 
 /obj/item/stack/tile/iron/dark/pattern_11
-	name = "dark large hex floor tile"
+	name = "深色大型六边形地砖"
 	singular_name = "dark large hex floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "dark_pattern_11"
@@ -791,7 +791,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick
 
 /obj/item/stack/tile/iron/white/brick
-	name = "white brick floor tile"
+	name = "白色砖纹地砖"
 	singular_name = "white brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick"
@@ -806,7 +806,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_half
 
 /obj/item/stack/tile/iron/white/brick_half
-	name = "white half brick floor tile"
+	name = "白色半砖地砖"
 	singular_name = "white half brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_half"
@@ -821,7 +821,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_half_vertical
 
 /obj/item/stack/tile/iron/white/brick_half_vertical
-	name = "white half brick vertical floor tile"
+	name = "白色垂直半砖地砖"
 	singular_name = "white half brick vertical floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_half_vertical"
@@ -836,7 +836,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_corner
 
 /obj/item/stack/tile/iron/white/brick_corner
-	name = "white brick corner floor tile"
+	name = "白色砖纹转角地砖"
 	singular_name = "white brick corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_corner"
@@ -851,7 +851,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_corner_inverse
 
 /obj/item/stack/tile/iron/white/brick_corner_inverse
-	name = "white brick inverse corner floor tile"
+	name = "白色砖纹反向转角地砖"
 	singular_name = "white brick inverse corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_corner_inverse"
@@ -866,7 +866,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_corner_vertical
 
 /obj/item/stack/tile/iron/white/brick_corner_vertical
-	name = "white vertical brick corner floor tile"
+	name = "白色垂直砖纹转角地砖"
 	singular_name = "white vertical brick corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_corner_vertical"
@@ -881,7 +881,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_corner_vertical_inverse
 
 /obj/item/stack/tile/iron/white/brick_corner_vertical_inverse
-	name = "white brick corner inverse floor tile"
+	name = "白色砖块反向转角地板砖"
 	singular_name = "white brick corner inverse floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_corner_vertical_inverse"
@@ -896,7 +896,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_aligned
 
 /obj/item/stack/tile/iron/white/brick_aligned
-	name = "white aligned brick floor tile"
+	name = "白色对齐砖块地板砖"
 	singular_name = "white aligned brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_aligned"
@@ -911,7 +911,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_aligned_half
 
 /obj/item/stack/tile/iron/white/brick_aligned_half
-	name = "white aligned half brick floor tile"
+	name = "白色对齐半砖地板砖"
 	singular_name = "white aligned half brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_aligned_half"
@@ -926,7 +926,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_aligned_half_vertical
 
 /obj/item/stack/tile/iron/white/brick_aligned_half_vertical
-	name = "white aligned half vertical brick floor tile"
+	name = "白色对齐垂直半砖地板砖"
 	singular_name = "white aligned half vertical brick floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_aligned_half_vertical"
@@ -941,7 +941,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_aligned_corner_vertical
 
 /obj/item/stack/tile/iron/white/brick_aligned_corner_vertical
-	name = "white aligned vertical brick corner floor tile"
+	name = "白色对齐垂直砖块转角地板砖"
 	singular_name = "white aligned vertical brick corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_aligned_corner_vertical"
@@ -956,7 +956,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_aligned_corner_vertical_inverse
 
 /obj/item/stack/tile/iron/white/brick_aligned_corner_vertical_inverse
-	name = "white aligned vertical brick inverse corner floor tile"
+	name = "白色对齐垂直砖块反向转角地板砖"
 	singular_name = "white aligned vertical brick inverse corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_aligned_corner_vertical_inverse"
@@ -971,7 +971,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_aligned_corner
 
 /obj/item/stack/tile/iron/white/brick_aligned_corner
-	name = "white aligned brick corner floor tile"
+	name = "白色对齐砖块转角地板砖"
 	singular_name = "white aligned brick corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_aligned_corner"
@@ -986,7 +986,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/brick_aligned_corner_inverse
 
 /obj/item/stack/tile/iron/white/brick_aligned_corner_inverse
-	name = "white aligned brick inverse corner floor tile"
+	name = "白色对齐砖块反向转角地板砖"
 	singular_name = "white aligned brick inverse corner floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_brick_aligned_corner_inverse"
@@ -1001,7 +1001,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_1
 
 /obj/item/stack/tile/iron/white/pattern_1
-	name = "white diagonal brick tile"
+	name = "白色对角砖块地板砖"
 	singular_name = "white diagonal brick tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_1"
@@ -1016,7 +1016,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_2
 
 /obj/item/stack/tile/iron/white/pattern_2
-	name = "white diamond spiral brick tile"
+	name = "白色菱形螺旋砖块地板砖"
 	singular_name = "white diamond spiral brick tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_2"
@@ -1031,7 +1031,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_3
 
 /obj/item/stack/tile/iron/white/pattern_3
-	name = "white brick crosshatch tile"
+	name = "白色砖块交叉网格地板砖"
 	singular_name = "white brick crosshatch tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_3"
@@ -1046,7 +1046,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_4
 
 /obj/item/stack/tile/iron/white/pattern_4
-	name = "white brick spiral tile"
+	name = "白色砖块螺旋地板砖"
 	singular_name = "white brick spiral tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_4"
@@ -1061,7 +1061,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_5
 
 /obj/item/stack/tile/iron/white/pattern_5
-	name = "white hex tile pattern tile"
+	name = "白色六边形图案地板砖"
 	singular_name = "white hex tile pattern tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_5"
@@ -1075,7 +1075,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_6
 
 /obj/item/stack/tile/iron/white/pattern_6
-	name = "white hex tile pattern grid tile"
+	name = "白色六边形图案网格地板砖"
 	singular_name = "white hex tile pattern grid tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_6"
@@ -1089,7 +1089,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_7
 
 /obj/item/stack/tile/iron/white/pattern_7
-	name = "white diagonal brick"
+	name = "白色对角砖块"
 	singular_name = "white diagonal brick"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_7"
@@ -1103,7 +1103,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_8
 
 /obj/item/stack/tile/iron/white/pattern_8
-	name = "large white hex floor tile"
+	name = "大型白色六边形地板砖"
 	singular_name = "large white hex floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_8"
@@ -1117,7 +1117,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_9
 
 /obj/item/stack/tile/iron/white/pattern_9
-	name = "white offset floor pattern tile"
+	name = "白色偏移地板图案砖"
 	singular_name = "white offset floor pattern tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_9"
@@ -1131,7 +1131,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_10
 
 /obj/item/stack/tile/iron/white/pattern_10
-	name = "white arrow pattern brick tile"
+	name = "白色箭头图案砖块地板砖"
 	singular_name = "white arrow pattern brick tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_10"
@@ -1146,7 +1146,7 @@
 	floor_tile = /obj/item/stack/tile/iron/white/pattern_11
 
 /obj/item/stack/tile/iron/white/pattern_11
-	name = "white large hex floor tile"
+	name = "白色大型六边形地板砖"
 	singular_name = "white large hex floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "white_pattern_11"
@@ -1164,7 +1164,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_1
 
 /obj/item/stack/tile/wood/wood_1
-	name = "diagonal brick"
+	name = "对角砖块"
 	singular_name = "diagonal brick"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_1"
@@ -1179,7 +1179,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_2
 
 /obj/item/stack/tile/wood/wood_2
-	name = "wood barrel floor tile"
+	name = "木桶地板砖"
 	singular_name = "wood barrel floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_2"
@@ -1194,7 +1194,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_3
 
 /obj/item/stack/tile/wood/wood_3
-	name = "alternating wood corners floor tile"
+	name = "交替木角地板砖"
 	singular_name = "alternating wood floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_3"
@@ -1208,7 +1208,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_4
 
 /obj/item/stack/tile/wood/wood_4
-	name = "alternating wood boards"
+	name = "交替木板"
 	singular_name = "alternating wood boards"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_4"
@@ -1223,7 +1223,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_5
 
 /obj/item/stack/tile/wood/wood_5
-	name = "diagonal wooden boards"
+	name = "对角木板"
 	singular_name = "diagonal wooden boards"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_5"
@@ -1238,7 +1238,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_6
 
 /obj/item/stack/tile/wood/wood_6
-	name = "wooden boards"
+	name = "木板"
 	singular_name = "wooden board"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_6"
@@ -1252,7 +1252,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_7
 
 /obj/item/stack/tile/wood/wood_7
-	name = "wood crosshatch floor tiles"
+	name = "木格纹地板砖"
 	singular_name = "wood crosshatch floor tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_7"
@@ -1266,7 +1266,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_8
 
 /obj/item/stack/tile/wood/wood_8
-	name = "square wood tiles"
+	name = "方形木砖"
 	singular_name = "square wood tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_8"
@@ -1281,7 +1281,7 @@
 
 
 /obj/item/stack/tile/wood/wood_9
-	name = "wood arrow pattern tiles"
+	name = "木箭头图案砖"
 	singular_name = "wood arrow pattern tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_9"
@@ -1296,7 +1296,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_10
 
 /obj/item/stack/tile/wood/wood_10
-	name = "modified wood parquet tiles"
+	name = "改良木拼花砖"
 	singular_name = "modified wood parquet tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_10"
@@ -1310,7 +1310,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_11
 
 /obj/item/stack/tile/wood/wood_11
-	name = "wood spiral tiles"
+	name = "木螺旋砖"
 	singular_name = "wood spiral tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_11"
@@ -1324,7 +1324,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_12
 
 /obj/item/stack/tile/wood/wood_12
-	name = "centered woof tiles"
+	name = "中心木纹砖"
 	singular_name = "centered wood tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_12"
@@ -1338,7 +1338,7 @@
 	floor_tile = /obj/item/stack/tile/wood/wood_13
 
 /obj/item/stack/tile/wood/wood_13
-	name = "hexagon wood tiles"
+	name = "六边形木砖"
 	singular_name = "hexagon wood tile"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
 	icon_state = "wood_13"

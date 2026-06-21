@@ -2,8 +2,8 @@
 // Simple power generator that would replace "magic SMES" on various derelicts.
 
 /obj/machinery/power/rtg
-	name = "radioisotope thermoelectric generator"
-	desc = "A simple nuclear power generator, used in small outposts to reliably provide power for decades."
+	name = "放射性同位素热电机"
+	desc = "一台简易核能发电机，常用于小型哨所，能提供持久稳定的电力。"
 	icon = 'icons/obj/machines/engine/other.dmi'
 	icon_state = "rtg"
 	base_icon_state = "rtg"
@@ -50,7 +50,7 @@
 /obj/machinery/power/rtg/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Power generation at <b>[display_power(power_gen, convert = FALSE)]</b>.")
+		. += span_notice("状态显示屏显示：发电功率为<b>[display_power(power_gen, convert = FALSE)]</b>。")
 
 /obj/machinery/power/rtg/update_icon_state()
 	. = ..()
@@ -68,7 +68,7 @@
 		RefreshParts()
 
 /obj/machinery/power/rtg/advanced
-	desc = "An advanced RTG capable of moderating isotope decay, increasing power output but reducing lifetime. It uses plasma-fueled radiation collectors to increase output even further."
+	desc = "一种先进的放射性热发电机能够控制同位素衰变，从而提高功率输出但会缩短其使用寿命。它还利用等离子体燃料的辐射收集器进一步提高输出功率。"
 	power_gen = 1.25 KILO WATTS
 	circuit = /obj/item/circuitboard/machine/rtg/advanced
 
@@ -80,7 +80,7 @@
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "core"
 	base_icon_state = "core"
-	desc = "An alien power source that produces energy seemingly out of nowhere."
+	desc = "一种看似凭空产生的、能够提供能量的外星发电机。"
 	circuit = /obj/item/circuitboard/machine/abductor/core
 	power_gen = 20 KILO WATTS
 	can_buckle = FALSE
@@ -94,7 +94,7 @@
 	going_kaboom = TRUE
 	visible_message(
 		message = span_danger("[src] lets out a shower of sparks as it starts to lose stability!"),
-		blind_message = span_hear("You hear a loud electrical crack!"),
+		blind_message = span_hear("你听到一声响亮的电击爆裂声！"),
 	)
 	playsound(src, 'sound/effects/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
 	tesla_zap(source = src, zap_range = 5, power = power_gen * 20)
@@ -127,7 +127,7 @@
 
 /obj/machinery/power/rtg/debug
 	name = "debug " + parent_type::name
-	desc = "You really shouldn't be seeing this if you're not a coder or jannie."
+	desc = "如果你不是程序员或者不是Wendy的话，那你绝对不应该看到这样的内容。"
 	power_gen = 20 KILO WATTS
 	circuit = null
 	affected_by_parts = FALSE

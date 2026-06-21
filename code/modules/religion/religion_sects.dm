@@ -68,7 +68,7 @@
 /// Activates if religious sect is reset by admins, should clean up anything you added on conversion.
 /datum/religion_sect/proc/on_deconversion(mob/living/chap)
 	SHOULD_CALL_PARENT(TRUE)
-	to_chat(chap, span_boldnotice("You have lost the approval of \the [name]."))
+	to_chat(chap, span_boldnotice("你已失去 \the [name] 的认可。"))
 	if(chap.mind.holy_role == HOLY_ROLE_HIGHPRIEST)
 		to_chat(chap, span_notice("Return to an altar to reform your sect."))
 	chap.remove_faction(FACTION_HOLY)
@@ -149,15 +149,15 @@
 /**** Nanotrasen Approved God ****/
 
 /datum/religion_sect/puritanism
-	name = "Nanotrasen Approved God"
-	desc = "Your run-of-the-mill sect, there are no benefits or boons associated."
+	name = "纳米传讯批准之神"
+	desc = "普普通通的教派，没有任何好处或福利."
 	quote = "Nanotrasen Recommends!"
 	tgui_icon = "bible"
 
 /**** Mechanical God ****/
 
 /datum/religion_sect/mechanical
-	name = "Mechanical God"
+	name = "机械之神"
 	quote = "May you find peace in a metal shell."
 	desc = "Bibles now recharge cyborgs and heal robotic limbs if targeted, but they \
 	do not heal organic limbs. You can now sacrifice cells, with favor depending on their charge."
@@ -175,7 +175,7 @@
 		if(target.mind?.holy_role == HOLY_ROLE_HIGHPRIEST)
 			charge_amount *= 2
 		R.cell?.charge += charge_amount
-		R.visible_message(span_notice("[chap] charges [R] with the power of [GLOB.deity]!"))
+		R.visible_message(span_notice("[chap] 用 [R] 的力量为 [GLOB.deity] 充能！"))
 		to_chat(R, span_boldnotice("You are charged by the power of [GLOB.deity]!"))
 		R.add_mood_event("blessing", /datum/mood_event/blessing)
 		playsound(chap, 'sound/effects/bang.ogg', 25, TRUE, -1)
@@ -211,7 +211,7 @@
 		blessed.update_damage_overlays()
 
 	blessed.visible_message(span_notice("[chap] [did_we_charge ? "repairs and charges" : "repairs"] [blessed] with the power of [GLOB.deity]!"))
-	to_chat(blessed, span_boldnotice("The inner machinations of [GLOB.deity] [did_we_charge ? "repairs and charges" : "repairs"] you!"))
+	to_chat(blessed, span_boldnotice("[GLOB.deity]的内在机制[did_we_charge ? "repairs and charges" : "repairs"]了你！"))
 	playsound(chap, 'sound/effects/bang.ogg', 25, TRUE, -1)
 	blessed.add_mood_event("blessing", /datum/mood_event/blessing)
 	return BLESSING_SUCCESS
@@ -221,19 +221,19 @@
 		return
 
 	if(power_cell.charge() < 0.3 * STANDARD_CELL_CHARGE)
-		to_chat(chap, span_notice("[GLOB.deity] does not accept pity amounts of power."))
+		to_chat(chap, span_notice("[GLOB.deity] 不接受这点可怜的电力。"))
 		return
 
 	adjust_favor(round(power_cell.charge() / (0.3 * STANDARD_CELL_CHARGE)), chap)
-	to_chat(chap, span_notice("You offer [power_cell]'s power to [GLOB.deity], pleasing them."))
+	to_chat(chap, span_notice("你将 [power_cell] 的能量献给 [GLOB.deity]，取悦了祂。"))
 	qdel(power_cell)
 	return TRUE
 
 /**** Pyre God ****/
 
 /datum/religion_sect/pyre
-	name = "Pyre God"
-	desc = "Sacrificing burning corpses with a lot of burn damage and candles grants you favor."
+	name = "火葬之神"
+	desc = "献祭燃烧的尸体和蜡烛会为你赢得恩宠。"
 	quote = "It must burn! The primal energy must be respected."
 	tgui_icon = "fire-alt"
 	alignment = ALIGNMENT_NEUT
@@ -254,9 +254,9 @@
 	if(!istype(offering))
 		return
 	if(!offering.light_on)
-		to_chat(user, span_notice("The candle needs to be lit to be offered!"))
+		to_chat(user, span_notice("蜡烛需要点燃才能献祭！"))
 		return
-	to_chat(user, span_notice("[GLOB.deity] is pleased with your sacrifice."))
+	to_chat(user, span_notice("[GLOB.deity] 对你的献祭感到满意。"))
 	adjust_favor(40, user) //it's not a lot but hey there's a pacifist favor option at least
 	qdel(offering)
 	return TRUE
@@ -264,9 +264,9 @@
 #define GREEDY_HEAL_COST 50
 
 /datum/religion_sect/greed
-	name = "Greedy God"
+	name = "贪婪之神"
 	quote = "Greed is good."
-	desc = "In the eyes of your mercantile deity, your wealth is your favor. Earn enough wealth to purchase some more business opportunities."
+	desc = "在您那商业之神的眼中，财富等于恩宠。赚取足够的财富以赚得更多商业机会。"
 	tgui_icon = "dollar-sign"
 	altar_icon_state = "convertaltar-yellow"
 	alignment = ALIGNMENT_EVIL //greed is not good wtf
@@ -282,17 +282,17 @@
 
 	var/datum/bank_account/account = chap.get_bank_account()
 	if(!account)
-		to_chat(chap, span_warning("You need a way to pay for the heal!"))
+		to_chat(chap, span_warning("你需要一种方式来支付治疗费用！"))
 		return BLESSING_IGNORED
 
 	if(account.account_balance < GREEDY_HEAL_COST)
-		to_chat(chap, span_warning("Healing from [GLOB.deity] costs [GREEDY_HEAL_COST] [MONEY_NAME] for 30 health!"))
+		to_chat(chap, span_warning("[GLOB.deity] 的治疗需要花费 [GREEDY_HEAL_COST] [MONEY_NAME] 来恢复 30 点生命值！"))
 		return BLESSING_IGNORED
 
 	var/mob/living/carbon/human/blessed = blessed_living
 	for(var/obj/item/bodypart/robolimb as anything in blessed.get_bodyparts())
 		if(IS_ROBOTIC_LIMB(robolimb))
-			to_chat(chap, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
+			to_chat(chap, span_warning("[GLOB.deity] 拒绝治疗这种金属污染！"))
 			return BLESSING_IGNORED
 
 	account.adjust_money(-GREEDY_HEAL_COST, "Church Donation: Treatment")
@@ -306,7 +306,7 @@
 			blessed.update_damage_overlays()
 
 	blessed.visible_message(span_notice("[chap] barters a heal for [blessed] from [GLOB.deity]!"))
-	to_chat(blessed, span_boldnotice("May the power of [GLOB.deity] compel you to be healed! Thank you for choosing [GLOB.deity]!"))
+	to_chat(blessed, span_boldnotice("愿 [GLOB.deity] 的力量迫使你痊愈！感谢你选择 [GLOB.deity]！"))
 	playsound(chap, 'sound/effects/cashregister.ogg', 60, TRUE)
 	blessed.add_mood_event("blessing", /datum/mood_event/blessing)
 	return BLESSING_SUCCESS
@@ -314,7 +314,7 @@
 #undef GREEDY_HEAL_COST
 
 /datum/religion_sect/burden
-	name = "Punished God"
+	name = "苦痛之神"
 	quote = "To feel the freedom, you must first understand captivity."
 	desc = "Incapacitate yourself in any way possible. Bad mutations, lost limbs, traumas, \
 		even addictions. You will learn the secrets of the universe from your defeated shell."
@@ -328,7 +328,7 @@
 /datum/religion_sect/burden/on_conversion(mob/living/carbon/human/new_convert)
 	..()
 	if(!ishuman(new_convert))
-		to_chat(new_convert, span_warning("[GLOB.deity] needs higher level creatures to fully comprehend the suffering. You are not burdened."))
+		to_chat(new_convert, span_warning("[GLOB.deity] 需要更高层次的生灵来完全理解苦难。你并未背负重担。"))
 		return
 	new_convert.gain_trauma(/datum/brain_trauma/special/burdened, TRAUMA_RESILIENCE_ABSOLUTE)
 
@@ -404,11 +404,11 @@
 	target.update_damage_overlays()
 	chaplain.update_damage_overlays()
 	if(!transferred)
-		to_chat(chaplain, span_warning("They hold no burden!"))
+		to_chat(chaplain, span_warning("他们没有背负重担！"))
 		return BLESSING_IGNORED
 
 	target.visible_message(span_notice("[chaplain] takes on [target]'s burden!"))
-	to_chat(target, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
+	to_chat(target, span_boldnotice("愿 [GLOB.deity] 的力量迫使你痊愈！"))
 	playsound(chaplain, SFX_PUNCH, 25, vary = TRUE, extrarange = -1)
 	target.add_mood_event("blessing", /datum/mood_event/blessing)
 	return BLESSING_SUCCESS
@@ -417,7 +417,7 @@
 	return sect_bless(target, chaplain)
 
 /datum/religion_sect/honorbound
-	name = "Honorbound God"
+	name = "荣誉之神"
 	quote = "A good, honorable crusade against evil is required."
 	desc = "Your deity requires fair fights from you. You may not attack the unready, the just, or the innocent. \
 	You earn favor by getting others to join the crusade, and you may spend favor to announce a battle, bypassing some conditions to attack."
@@ -429,7 +429,7 @@
 /datum/religion_sect/honorbound/on_conversion(mob/living/carbon/new_convert)
 	..()
 	if(!ishuman(new_convert))
-		to_chat(new_convert, span_warning("[GLOB.deity] has no respect for lower creatures, and refuses to make you honorbound."))
+		to_chat(new_convert, span_warning("[GLOB.deity] 瞧不起低等生物，拒绝让你成为荣誉战士。"))
 		return FALSE
 	new_convert.gain_trauma(/datum/brain_trauma/special/honorbound, TRAUMA_RESILIENCE_MAGIC)
 
@@ -441,9 +441,9 @@
 #define MINIMUM_YUCK_REQUIRED 5
 
 /datum/religion_sect/maintenance
-	name = "Maintenance God"
+	name = "维护之神"
 	quote = "Your kingdom in the darkness."
-	desc = "Sacrifice the organic slurry created from rats dipped in welding fuel to gain favor. Exchange favor to adapt to the maintenance shafts."
+	desc = "牺牲由浸过焊接燃料的老鼠研磨所产生的有机浆液来取悦祂。用得来的青睐来换取适应维修道所需的条件。"
 	tgui_icon = "eye"
 	altar_icon_state = "convertaltar-maint"
 	alignment = ALIGNMENT_EVIL //while maint is more neutral in my eyes, the flavor of it kinda pertains to rotting and becoming corrupted by the maints
@@ -456,7 +456,7 @@
 
 	var/mob/living/carbon/human/blessed = blessed_living
 	if(blessed.reagents.has_reagent(/datum/reagent/drug/maint/sludge))
-		to_chat(blessed, span_warning("[GLOB.deity] has already empowered them."))
+		to_chat(blessed, span_warning("[GLOB.deity] 已经强化过他们了。"))
 		return BLESSING_IGNORED
 
 	blessed.reagents.add_reagent(/datum/reagent/drug/maint/sludge, 5)
@@ -483,9 +483,9 @@
 #undef MINIMUM_YUCK_REQUIRED
 
 /datum/religion_sect/spar
-	name = "Sparring God"
+	name = "决斗之神"
 	quote = "Your next swing must be faster, neophyte. Steel your heart."
-	desc = "Spar other crewmembers to gain favor or other rewards. Exchange favor to steel yourself against real battles."
+	desc = "向其他船员决斗以取悦祂获得其他奖励。让自己在真正的战斗中坚强起来。"
 	tgui_icon = "fist-raised"
 	altar_icon_state = "convertaltar-orange"
 	alignment = ALIGNMENT_NEUT
@@ -512,9 +512,9 @@
 	return "You have [round(favor)] sparring matches won in [GLOB.deity]'s name to redeem. You have lost [matches_lost] holy matches. You will be excommunicated after losing three matches."
 
 /datum/religion_sect/music
-	name = "Festival God"
+	name = "节日之神"
 	quote = "Everything follows a rhythm- The heartbeat of the universe!"
-	desc = "Make wonderful music! Sooth or serrate your friends and foes with the beat."
+	desc = "创作美妙的音乐吧！用这节奏抚慰你的朋友和敌人。"
 	tgui_icon = "music"
 	altar_icon_state = "convertaltar-festival"
 	alignment = ALIGNMENT_GOOD

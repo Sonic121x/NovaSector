@@ -6,8 +6,8 @@
 /obj/docking_port/mobile/arrivals
 
 /turf/closed/wall/mineral/titanium/shuttle_wall
-	name = "shuttle wall"
-	desc = "A light-weight titanium wall used in shuttles."
+	name = "穿梭机舱壁"
+	desc = "一种用于穿梭机的轻质钛合金舱壁。"
 	icon = 'modular_nova/modules/advanced_shuttles/icons/pod.dmi'
 	icon_state = ""
 	base_icon_state = ""
@@ -65,7 +65,7 @@
 	icon_state = "18,2"
 
 /turf/open/floor/iron/shuttle/ferry
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	icon = 'modular_nova/modules/advanced_shuttles/icons/erokez.dmi'
 	icon_state = "floor1"
 
@@ -85,7 +85,7 @@
 	icon_state = "9,1"
 
 /turf/open/floor/iron/shuttle/evac
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	icon = 'modular_nova/modules/advanced_shuttles/icons/evac_shuttle.dmi'
 	icon_state = "floor"
 
@@ -105,7 +105,7 @@
 	icon_state = "3,1"
 
 /turf/open/floor/iron/shuttle/arrivals
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	icon = 'modular_nova/modules/advanced_shuttles/icons/wagon.dmi'
 	icon_state = "floor"
 
@@ -125,7 +125,7 @@
 	icon_state = "3,1"
 
 /turf/open/floor/iron/shuttle/cargo
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	icon = 'modular_nova/modules/advanced_shuttles/icons/cargo.dmi'
 	icon_state = "floor"
 
@@ -167,7 +167,7 @@
  */
 
 /turf/open/floor/iron/shuttle/exploration
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	icon = 'modular_nova/modules/advanced_shuttles/icons/exploration_floor.dmi'
 	icon_state = "oside"
 

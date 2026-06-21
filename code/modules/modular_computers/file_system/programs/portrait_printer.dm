@@ -67,7 +67,7 @@
 	if(!(computer.hardware_flag & PROGRAM_CONSOLE))
 		return
 	if(computer.stored_paper < CANVAS_PAPER_COST)
-		to_chat(usr, span_notice("Printing error: Your printer needs at least [CANVAS_PAPER_COST] paper to print a canvas."))
+		to_chat(usr, span_notice("打印错误：你的打印机需要至少[CANVAS_PAPER_COST]张纸来打印画布。"))
 		return
 
 	//canvas printing!
@@ -78,7 +78,7 @@
 		to_chat(usr, span_notice("Printing error: An unknown error has occurred."))
 		return
 	computer.stored_paper -= CANVAS_PAPER_COST
-	to_chat(usr, span_notice("You have printed [chosen_portrait.title] onto a new canvas."))
+	to_chat(usr, span_notice("你已将[chosen_portrait.title]打印到新画布上。"))
 	playsound(computer.physical, 'sound/machines/printer.ogg', 100, TRUE)
 
 /datum/computer_file/program/portrait_printer/proc/download_painting(selected_painting)

@@ -157,7 +157,7 @@
 /// Tells the client we couldn't equip their item
 /datum/loadout_item/proc/message_client(client, target, msg)
 	if(client)
-		to_chat(target, span_warning("You were unable to get a loadout item ([initial(item_path.name)]) due to [msg]!"))
+		to_chat(target, span_warning("你因为[msg]而无法获得一件装备物品([initial(item_path.name)])！"))
 	return FALSE
 
 /datum/loadout_item/get_ui_buttons()
@@ -197,8 +197,8 @@
 	var/list/loadout = manager.get_current_loadout()
 	var/input_desc = tgui_input_text(
 		user = user,
-		message = "What description do you want to give the [name]? Leave blank to clear.",
-		title = "[name] description",
+		message = "你想给 [name] 什么描述？留空以清除。",
+		title = "[name] 描述",
 		default = loadout?[item_path]?[INFO_DESCRIBED], // plop in existing description (if any)
 		max_length = MAX_DESC_LEN,
 	)

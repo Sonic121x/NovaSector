@@ -1,6 +1,6 @@
 ///CARPTIDE! CARPTIDE! CARPTIDE! A swarm of carp will pass by and through the shuttle, including consequences of carp going through the shuttle
 /datum/shuttle_event/simple_spawner/carp
-	name = "Carp Nest! (Very Dangerous!)"
+	name = "鲤鱼巢！（非常危险！）"
 	event_probability = 0.4
 	activation_fraction = 0.2
 
@@ -18,7 +18,7 @@
 
 ///Spawn a bunch of friendly carp to view from inside the shuttle! May occassionally pass through and nibble some windows, but are otherwise pretty harmless
 /datum/shuttle_event/simple_spawner/carp/friendly
-	name = "Passive Carp Nest! (Mostly Harmless!)"
+	name = "被动鲤鱼巢！（基本无害！）"
 	event_probability = 3
 	activation_fraction = 0.1
 
@@ -37,7 +37,7 @@
 
 ///Same as /friendly, but we only go through the shuttle, MUHAHAHAHAHAHA!! They dont actually harm anyone, but itll be a clusterfuck of confusion
 /datum/shuttle_event/simple_spawner/carp/friendly_but_no_personal_space
-	name = "Comfortable Carp Nest going through the shuttle! (Extremely annoying and confusing!)"
+	name = "舒适的鲤鱼巢正穿过穿梭机！（极其烦人且令人困惑！）"
 	event_probability = 0
 	activation_fraction = 0.5
 
@@ -50,7 +50,7 @@
 
 ///CARPTIDE! CARPTIDE! CARPTIDE! Magical carp will attack the shuttle!
 /datum/shuttle_event/simple_spawner/carp/magic
-	name = "Magical Carp Nest! (Very Dangerous!)"
+	name = "魔法鲤鱼巢！（非常危险！）"
 	spawning_list = list(/mob/living/basic/carp/magic = 12, /mob/living/basic/carp/magic/chaos = 3)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE | SHUTTLE_EVENT_MISS_SHUTTLE
 
@@ -63,7 +63,7 @@
 
 /// Spawns some player controlled fire sharks
 /datum/shuttle_event/simple_spawner/player_controlled/fire_shark
-	name = "Three player controlled fire sharks! (Dangerous!)"
+	name = "三只玩家控制的火焰鲨！（危险！）"
 	spawning_list = list(/mob/living/basic/heretic_summon/fire_shark = 3)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 

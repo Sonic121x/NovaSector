@@ -180,8 +180,8 @@
 	var/obj/item/ammo_casing/pulse/sample_casing = ammo_type
 
 	// Display magazine capacity info
-	readout += "This [span_warning(magazine_designation)] magazine holds up to [span_warning("[max_ammo] plasma plugs")], with each plug capable of [span_warning("[initial(sample_casing.max_uses)] pulses")]."
-	readout += "Total capacity: [span_warning("[max_ammo * initial(sample_casing.max_uses)] pulses")] when fully loaded."
+	readout += "这个[span_warning(magazine_designation)]弹匣最多可容纳[span_warning("[max_ammo] plasma plugs")]个等离子插头，每个插头能提供[span_warning("[initial(sample_casing.max_uses)] pulses")]次脉冲。"
+	readout += "满载时总容量：[span_warning("[max_ammo * initial(sample_casing.max_uses)] pulses")]。"
 
 	// Get actual round info if available
 	var/obj/item/ammo_casing/mag_ammo = get_and_shuffle_round()

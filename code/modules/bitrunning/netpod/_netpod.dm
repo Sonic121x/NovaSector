@@ -2,11 +2,11 @@
 #define SCANNING_TOGGLE_COOLDOWN 5
 
 /obj/machinery/netpod
-	name = "netpod"
+	name = "网络舱"
 
 	base_icon_state = "netpod"
 	circuit = /obj/item/circuitboard/machine/netpod
-	desc = "A link to the netverse. It has an assortment of cables to connect yourself to a virtual domain."
+	desc = "通往网络空间的链接。它配备了一系列电缆，可将你连接到虚拟域。"
 	icon = 'icons/obj/machines/bitrunning.dmi'
 	icon_state = "netpod"
 	max_integrity = 300
@@ -76,37 +76,37 @@
 /obj/machinery/netpod/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+	. += span_notice("它的维护面板可以 [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"]。")
 	if(isnull(occupant))
 		if(panel_open)
-			. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+			. += span_notice("它可以被 [EXAMINE_HINT("pried")] 拆开。")
 		else
-			. += span_notice("Its hatch can be [EXAMINE_HINT("pried")] [state_open ? "closed" : "open"].")
+			. += span_notice("它的舱门可以 [EXAMINE_HINT("pried")] [state_open ? "closed" : "open"]。")
 
 	if(isnull(server_ref?.resolve()))
-		. += span_infoplain("It's not connected to anything.")
-		. += span_infoplain("Netpods must be built within 4 tiles of a server.")
+		. += span_infoplain("它没有连接到任何东西。")
+		. += span_infoplain("网络舱必须建造在服务器4格范围内。")
 		return
 
 	if(!isobserver(user))
-		. += span_infoplain("Drag yourself into the pod to engage the link.")
-		. += span_infoplain("It has limited resuscitation capabilities. Remaining in the pod can heal some injuries.")
-		. += span_infoplain("It has a security system that will alert the occupant if it is tampered with.")
+		. += span_infoplain("将自己拖入舱内以启动连接。")
+		. += span_infoplain("它具备有限的复苏能力。留在舱内可以治疗部分伤势。")
+		. += span_infoplain("它配备的安全系统会在被篡改时提醒舱内人员。")
 		if(copy_body)
-			. += span_infoplain("Occupant scanning is currently enabled, which will cause bit avatars to look like the occupant when first created.")
-		. += span_infoplain("Alt-click to [copy_body ? "disable" : "enable"] occupant scanning.")
+			. += span_infoplain("乘员扫描功能当前已启用，这将导致比特化身在首次创建时看起来像乘员。")
+		. += span_infoplain("Alt-点击以 [copy_body ? "disable" : "enable"] 乘员扫描。")
 
 	if(isnull(occupant))
-		. += span_infoplain("It's currently unoccupied.")
+		. += span_infoplain("它当前无人占用。")
 		return
 
-	. += span_infoplain("It's currently occupied by [occupant].")
+	. += span_infoplain("它当前被[occupant]占用。")
 
 	if(isobserver(user))
-		. += span_notice("As an observer, you can click this netpod to jump to its avatar.")
+		. += span_notice("作为观察者，你可以点击此网络舱跳转到其化身。")
 		return
 
-	. += span_notice("It can be pried open with a crowbar, but its safety mechanisms will alert the occupant.")
+	. += span_notice("可以用撬棍撬开，但其安全机制会提醒舱内人员。")
 
 
 /obj/machinery/netpod/update_icon_state()

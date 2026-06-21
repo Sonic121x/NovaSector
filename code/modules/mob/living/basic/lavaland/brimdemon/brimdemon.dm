@@ -1,7 +1,7 @@
 /// Lavaland mob which tries to line up with its target and fire a laser
 /mob/living/basic/mining/brimdemon
-	name = "brimdemon"
-	desc = "A volatile creature resembling an enormous horned skull. Its response to almost any stimulus is to unleash a beam of infernal energy."
+	name = "狱炎恶魔"
+	desc = "一种外形酷似巨大带角头骨的不稳定生物。它对几乎任何刺激的反应都是释放一道地狱能量光束。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "brimdemon"
 	icon_living = "brimdemon"
@@ -67,7 +67,7 @@
 
 /// Show a funny animation before doing an explosion
 /obj/effect/temp_visual/brim_burst
-	name = "bursting brimdemon"
+	name = "爆裂的狱炎恶魔"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "brimdemon_dead"
 	duration = 1.9 SECONDS

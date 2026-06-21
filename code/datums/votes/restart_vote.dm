@@ -2,7 +2,7 @@
 #define CHOICE_CONTINUE "Continue Playing"
 
 /datum/vote/restart_vote
-	name = "Restart"
+	name = "重启"
 	default_choices = list(
 		CHOICE_RESTART,
 		CHOICE_CONTINUE,
@@ -52,14 +52,14 @@
 
 	if(winning_option == CHOICE_RESTART)
 		if(admins_present())
-			to_chat(world, span_boldannounce("Notice: A restart vote will not restart the server automatically because there are active admins on."))
+			to_chat(world, span_boldannounce("注意：重启投票不会自动重启服务器，因为有活跃的管理员在线。"))
 			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
 			return
 
 		// If there was a previous map vote, we revert the change.
 		if(!isnull(SSmap_vote.next_map_config))
 			log_game("The next map has been reset due to successful restart vote.")
-			send_to_playing_players(span_boldannounce("The next map has been reset due to successful restart vote."))
+			send_to_playing_players(span_boldannounce("由于重启投票成功，下一张地图已被重置。"))
 			SSmap_vote.revert_next_map()
 
 		SSticker.force_ending = FORCE_END_ROUND

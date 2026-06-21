@@ -1,5 +1,5 @@
 /obj/machinery/stasis
-	name = "lifeform stasis unit MK-II"
+	name = "生命体停滞装置MK-II"
 	/// The radio channel used to send messages. May be overridden by away missions
 	var/announcement_channel = RADIO_CHANNEL_MEDICAL
 
@@ -35,17 +35,17 @@
 
 /obj/item/circuitboard/machine/stasis/examine(mob/user)
 	. = ..()
-	. += span_info("Patient announcement pin is now [announce_when_buckled ? "enabled" : "disabled"]. You can use a [EXAMINE_HINT("multitool")] to reconfigure it.")
+	. += span_info("患者通知引脚现已[announce_when_buckled ? "enabled" : "disabled"]。你可以使用[EXAMINE_HINT("multitool")]来重新配置它。")
 
 /datum/aas_config_entry/stasis_announcement
-	name = "Medical Alert: Stasis Announcement"
+	name = "医疗警报：停滞舱通知"
 	// Empty line will be dropped, so by default we will not report nurse taking a nap on stasis bed.
 	announcement_lines_map = list(
 		"Healthy" = "",
-		"Injured" = "%PERSON awaiting treatment in stasis at %AREA.",
-		"Critical" = "Critical Patient %PERSON set in stasis at %AREA!",
+		"Injured" = "%PERSON正在%AREA的停滞舱中等待治疗。",
+		"Critical" = "危重病人%PERSON已在%AREA的停滞舱中安置！",
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with their name.",
-		"AREA" = "with their location."
+		"PERSON" = "将被替换为其姓名。",
+		"AREA" = "替换为其位置。"
 	)

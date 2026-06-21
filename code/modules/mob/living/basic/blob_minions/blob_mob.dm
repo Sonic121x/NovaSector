@@ -1,8 +1,8 @@
 /// Root of shared behaviour for mobs spawned by blobs, is abstract and should not be spawned
 /mob/living/basic/blob_minion
 	abstract_type = /mob/living/basic/blob_minion
-	name = "Blob Error"
-	desc = "A nonfunctional fungal creature created by bad code or celestial mistake. Point and laugh."
+	name = "凝胶错误体"
+	desc = "一个由错误代码或天体异常创造出的非功能性真菌生物。指指点点，嘲笑一番吧。"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blob_head"
 	base_icon_state = "blob_head"
@@ -54,4 +54,4 @@
 /// Called when our factory is destroyed
 /mob/living/basic/blob_minion/proc/on_factory_destroyed()
 	SIGNAL_HANDLER
-	to_chat(src, span_userdanger("Your factory was destroyed! You feel yourself dying!"))
+	to_chat(src, span_userdanger("你的工厂被摧毁了！你感到自己正在死去！"))

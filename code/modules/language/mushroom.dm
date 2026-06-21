@@ -1,6 +1,6 @@
 /datum/language/mushroom
-	name = "Mushroom"
-	desc = "A language that consists of the sound of periodic gusts of spore-filled air being released."
+	name = "蘑菇语"
+	desc = "孢子语一种由充满孢子的空气周期性释放的声音组成的语言"
 	key = "y"
 	sentence_chance = 0
 	sentence_chance = 0

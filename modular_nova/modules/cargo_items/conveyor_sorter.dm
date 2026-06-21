@@ -1,6 +1,6 @@
 /obj/item/conveyor_sorter
-	name = "conveyor sorter lister"
-	desc = "A tool that is used to not only create the conveyor sorters, but give lists to the conveyor sorters."
+	name = "传送带分拣器列表器"
+	desc = "一种工具，不仅用于创建传送带分拣器，还能为传送带分拣器提供列表。"
 	icon = 'modular_nova/modules/cargo_items/icons/conveyor_sorter.dmi'
 	icon_state = "lister"
 	///the list of conveyor sorters spawned by
@@ -21,14 +21,14 @@
 
 /obj/item/conveyor_sorter/examine(mob/user)
 	. = ..()
-	. += span_notice("Use it to place down a conveyor sorter, up to a limit of <b>[max_sorters]</b>.")
-	. += span_notice("This sorter can sort up to <b>[max_items]</b> Items.")
-	. += span_notice("Use Alt-Click to reset the sorting list.")
-	. += span_notice("Attack things to attempt to add to the sorting list.")
+	. += span_notice("用它来放置一个传送带分拣器，最多可放置 <b>[max_sorters]</b> 个。")
+	. += span_notice("此分拣器最多可分拣 <b>[max_items]</b> 个物品。")
+	. += span_notice("使用 Alt-点击来重置分拣列表。")
+	. += span_notice("攻击物品以尝试将其添加到分拣列表中。")
 
 /obj/item/conveyor_sorter/attack_self(mob/user, modifiers)
 	if(length(spawned_sorters) >= max_sorters)
-		to_chat(user, span_warning("You may only have [max_sorters] spawned conveyor sorters!"))
+		to_chat(user, span_warning("你最多只能生成 [max_sorters] 个传送带分拣器！"))
 		return
 	var/obj/effect/decal/conveyor_sorter/new_cs = new conveyor_type(get_turf(src))
 	new_cs.parent_item = src
@@ -41,24 +41,24 @@
 	if(istype(interacting_with, /obj/effect/decal/conveyor_sorter))
 		return NONE
 	if(is_type_in_list(interacting_with, current_sort))
-		to_chat(user, span_warning("[interacting_with] is already in [src]'s sorting list!"))
+		to_chat(user, span_warning("[interacting_with] 已在 [src] 的分拣列表中！"))
 		return ITEM_INTERACT_BLOCKING
 	if(length(current_sort) >= max_items)
-		to_chat(user, span_warning("[src] already has [max_items] things within the sorting list!"))
+		to_chat(user, span_warning("[src] 的分拣列表中已有 [max_items] 个物品！"))
 		return ITEM_INTERACT_BLOCKING
 	current_sort += interacting_with.type
-	to_chat(user, span_notice("[interacting_with] has been added to [src]'s sorting list."))
+	to_chat(user, span_notice("[interacting_with] 已被添加到 [src] 的分拣列表中。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/conveyor_sorter/click_alt(mob/user)
-	visible_message("[src] pings, resetting its sorting list!")
+	visible_message("[src] 发出哔哔声，正在重置其分拣列表！")
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	current_sort = list()
 	return CLICK_ACTION_SUCCESS
 
 /obj/effect/decal/conveyor_sorter
-	name = "conveyor sorter"
-	desc = "A mark that will sort items out based on what they are."
+	name = "传送带分拣器"
+	desc = "一个根据物品类型进行分拣的标记。"
 	icon = 'modular_nova/modules/cargo_items/icons/conveyor_sorter.dmi'
 	icon_state = "sorter"
 	layer = OBJ_LAYER
@@ -91,13 +91,13 @@
 
 /obj/effect/decal/conveyor_sorter/examine(mob/user)
 	. = ..()
-	. += span_notice("Attack with conveyor sorter lister to set the sorting list.")
-	. += span_notice("Slap with empty hands to change the sorting direction.")
-	. += span_notice("Alt-Click to reset the sorting list.")
-	. += span_notice("Ctrl-Click to remove.")
+	. += span_notice("使用传送带分拣器列表器攻击以设置分拣列表。")
+	. += span_notice("用空手拍击以更改分拣方向。")
+	. += span_notice("Alt-点击以重置分拣列表。")
+	. += span_notice("Ctrl-点击以移除。")
 
 /obj/effect/decal/conveyor_sorter/attack_hand(mob/living/user, list/modifiers)
-	var/user_choice = tgui_input_list(user, "Choose which direction to sort to!", "Direction choice", directions) // this would be cooler as a radial
+	var/user_choice = tgui_input_list(user, "选择要分拣到哪个方向！", "方向选择", directions) // this would be cooler as a radial
 	if(!user_choice)
 		return ..()
 
@@ -107,27 +107,27 @@
 
 	setDir(dir)
 
-	visible_message("[src] pings, updating its sorting direction!")
+	visible_message("[src] 发出哔哔声，正在更新其分拣方向！")
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 
 /obj/effect/decal/conveyor_sorter/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/conveyor_sorter))
 		var/obj/item/conveyor_sorter/cs_item = attacking_item
 		sorting_list = cs_item.current_sort
-		visible_message("[src] pings, updating its sorting list!")
+		visible_message("[src] 发出哔哔声，正在更新其分拣列表！")
 		playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 		return
 	else
 		return ..()
 
 /obj/effect/decal/conveyor_sorter/click_alt(mob/user)
-	visible_message("[src] pings, resetting its sorting list!")
+	visible_message("[src] 发出哔哔声，正在重置其分拣列表！")
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	sorting_list = list()
 	return CLICK_ACTION_SUCCESS
 
 /obj/effect/decal/conveyor_sorter/click_ctrl(mob/user)
-	visible_message("[src] begins to ping violently!")
+	visible_message("[src] 开始剧烈地哔哔作响！")
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	qdel(src)
 	return CLICK_ACTION_SUCCESS
@@ -139,8 +139,8 @@
 		entering_atom.Move(get_step(src, dir))
 
 /datum/design/conveyor_sorter
-	name = "Conveyor Sorter"
-	desc = "A wonderful item that can set markers and forcefully move stuff to a direction."
+	name = "传送带分拣器"
+	desc = "一个可以设置标记并强制将物品推向某个方向的绝妙物品。"
 	id = "conveysorter"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/conveyor_sorter
@@ -154,16 +154,16 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /obj/item/conveyor_sorter/improved
-	name = "improved conveyor sorter lister"
-	desc = "A tool that is used to not only create the conveyor sorters, but give lists to the conveyor sorters."
+	name = "改进型传送带分拣器列表器"
+	desc = "一种不仅用于创建传送带分拣器，还能为传送带分拣器提供列表的工具。"
 	icon_state = "lister_improved"
 	max_sorters = 8
 	max_items = 10
 	conveyor_type = /obj/effect/decal/conveyor_sorter/improved
 
 /obj/effect/decal/conveyor_sorter/improved
-	name = "improved conveyor sorter"
-	desc = "A mark that will sort items out based on what they are. This one can sort in ordinal directions as well!"
+	name = "改进型传送带分拣器"
+	desc = "一个根据物品类型进行分拣的标记。这个还能按斜向分拣！"
 	icon = 'modular_nova/modules/cargo_items/icons/conveyor_sorter.dmi'
 	icon_state = "sorter_improved"
 	light_range = 3
@@ -171,8 +171,8 @@
 	directions = list("North", "East", "South", "West", "NorthEast", "NorthWest", "SouthEast", "SouthWest")
 
 /datum/design/conveyor_sorter/improved
-	name = "Improved Conveyor Sorter"
-	desc = "A wonderful item that can set markers and forcefully move stuff to a direction. With more capacity to sort more!"
+	name = "改进型传送带分拣器"
+	desc = "一个可以设置标记并强制将物品推向某个方向的绝妙物品。拥有更大的容量以分拣更多物品！"
 	id = "conveyor_sorter_improved"
 	build_path = /obj/item/conveyor_sorter/improved
 	materials = list(
@@ -185,7 +185,7 @@
 /datum/techweb_node/conveyor_sorter/improved
 	id = TECHWEB_NODE_CONVEYOR_SORTER_IMPROVED
 	display_name = "Improved Conveyor Sorter"
-	description = "An improved version of the conveyor sorter, this one allows for more control over sorting."
+	description = "传送带分拣器的改进版本，这个版本允许对分拣进行更多控制。"
 	prereq_ids = list(TECHWEB_NODE_MISC_CARGO)
 	design_ids = list(
 		"conveyor_sorter_improved",

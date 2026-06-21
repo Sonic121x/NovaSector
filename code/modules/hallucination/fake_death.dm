@@ -26,7 +26,7 @@
 	hallucinator.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_dead, REF(src))
 	hallucinator.add_traits(list(TRAIT_MUTE, TRAIT_EMOTEMUTE), REF(src))
 
-	to_chat(hallucinator, span_deadsay("<b>[hallucinator.real_name]</b> has died at <b>[get_area_name(hallucinator)]</b>."))
+	to_chat(hallucinator, span_deadsay("<b>[hallucinator.real_name]</b>已在<b>[get_area_name(hallucinator)]</b>死亡。"))
 
 	var/delay = 0
 
@@ -74,7 +74,7 @@
 				"you too?",
 			)
 
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), hallucinator, span_deadsay("<b>DEAD: [who_is_salting.name]</b> says, \"[pick(dead_chat_salt)]\"")), delay)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), hallucinator, span_deadsay("<b>死者：[who_is_salting.name]</b>说道：\"[pick(dead_chat_salt)]\"")), delay)
 
 	addtimer(CALLBACK(src, PROC_REF(wake_up)), delay + rand(7 SECONDS, 9 SECONDS))
 	return TRUE

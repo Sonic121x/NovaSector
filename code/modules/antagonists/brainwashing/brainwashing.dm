@@ -28,7 +28,7 @@
 		brainwash_victim.say("You son of a bitch! I'm in.", forced = "That son of a bitch! They're in. (April Fools)")
 
 /datum/antagonist/brainwashed
-	name = "\improper Brainwashed Victim"
+	name = "\improper 洗脑受害者"
 	pref_flag = ROLE_BRAINWASHED
 	stinger_sound = 'sound/music/antag/brainwashed.ogg'
 	roundend_category = "brainwashed victims"
@@ -47,7 +47,7 @@
 	return data
 
 /datum/antagonist/brainwashed/farewell()
-	to_chat(owner, span_warning("Your mind suddenly clears..."))
+	to_chat(owner, span_warning("你的思绪突然清晰了..."))
 	to_chat(owner, "<big>[span_warning("<b>You feel the weight of the Directives disappear! You no longer have to obey them.</b>")]</big>")
 	if(owner.current)
 		var/mob/living/owner_mob = owner.current
@@ -61,19 +61,19 @@
 		return
 	var/list/objectives = list()
 	do
-		var/objective = tgui_input_text(admin, "Add an objective", "Brainwashing", max_length = MAX_MESSAGE_LEN)
+		var/objective = tgui_input_text(admin, "添加一个目标", "洗脑", max_length = MAX_MESSAGE_LEN)
 		if(objective)
 			objectives += objective
-	while(tgui_alert(admin, "Add another objective?", "More Brainwashing", list("Yes","No")) == "Yes")
+	while(tgui_alert(admin, "添加另一个目标？", "更多洗脑", list("Yes","No")) == "Yes")
 
-	if(tgui_alert(admin,"Confirm Brainwashing?","Are you sure?",list("Yes","No")) == "No")
+	if(tgui_alert(admin,"确认洗脑？","你确定吗？",list("Yes","No")) == "No")
 		return
 
 	if(!LAZYLEN(objectives))
 		return
 
 	if(QDELETED(C))
-		to_chat(admin, "Mob doesn't exist anymore")
+		to_chat(admin, "该生物已不存在")
 		return
 
 	brainwash(C, objectives)

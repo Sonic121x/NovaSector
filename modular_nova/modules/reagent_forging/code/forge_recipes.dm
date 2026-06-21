@@ -1,25 +1,25 @@
 /datum/crafting_recipe/primitive_billow
-	name = "Primitive Forging Billow"
+	name = "原始锻造风箱"
 	result = /obj/item/forging/billow/primitive
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 5)
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/primitive_tong
-	name = "Primitive Forging Tong"
+	name = "原始锻造钳"
 	result = /obj/item/forging/tongs/primitive
 	reqs = list(/obj/item/stack/sheet/iron = 5)
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/primitive_hammer
-	name = "Primitive Forging Hammer"
+	name = "原始锻造锤"
 	result = /obj/item/forging/hammer/primitive
 	reqs = list(/obj/item/stack/sheet/iron = 5)
 	category = CAT_TOOLS
 
 //cargo supply pack for items
 /datum/supply_pack/service/forging_items
-	name = "Forging Starter Item Pack"
-	desc = "Featuring: Forging. This pack is full of the items necessary to start your forging career: tongs, hammer, billow, iron, coal, wood."
+	name = "锻造入门工具包"
+	desc = "特色：锻造。此包装满了开启锻造生涯所需的物品：钳子、锤子、风箱、铁、煤、木头。"
 	cost = CARGO_CRATE_VALUE * 2.5
 	contains = list(
 		/obj/item/forging/tongs,
@@ -33,5 +33,5 @@
 	crate_type = /obj/structure/closet/crate/forging_items
 
 /obj/structure/closet/crate/forging_items
-	name = "forging starter items"
-	desc = "A crate filled with the items necessary to start forging (billow, hammer, and tongs)."
+	name = "锻造入门物品"
+	desc = "一个装满开始锻造所需物品的板条箱（风箱、锤子和钳子）。"

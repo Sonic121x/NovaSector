@@ -2,8 +2,8 @@
 //looks like a regular piano, then if you get close it wakes up and bites you
 
 /mob/living/basic/mad_piano
-	name = "space piano"
-	desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
+	name = "太空钢琴"
+	desc = "这是一架太空钢琴，就像普通钢琴一样，但永远音准在线！即使演奏者不是。"
 	icon = 'icons/mob/simple/mad_piano.dmi'
 	icon_state = "calm"
 	mob_size = MOB_SIZE_HUGE

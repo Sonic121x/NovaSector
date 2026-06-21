@@ -34,8 +34,8 @@
 
 /obj/machinery/plumbing/floor_pump/examine(mob/user)
 	. = ..()
-	. += span_notice("It's currently turned [turned_on ? "ON" : "OFF"].")
-	. += span_notice("Its height regulator [height_regulator ? "points at [height_regulator]" : "is disabled"]. Click while unanchored to change.")
+	. += span_notice("它目前处于[turned_on ? "ON" : "OFF"]状态。")
+	. += span_notice("它的高度调节器[height_regulator ? "points at [height_regulator]" : "is disabled"]。在未固定时点击以更改。")
 
 /obj/machinery/plumbing/floor_pump/update_appearance(updates)
 	. = ..()
@@ -63,7 +63,7 @@
 	if(!anchored)
 		set_regulator(user)
 		return
-	balloon_alert(user, "turned [turned_on ? "off" : "on"]")
+	balloon_alert(user, "已[turned_on ? "off" : "on"]")
 	turned_on = !turned_on
 	update_icon_state()
 
@@ -74,7 +74,7 @@
 	if(!user.can_perform_action(src, NEED_DEXTERITY))
 		return
 	var/new_height = tgui_input_number(user,
-		"At what water level should the pump stop pumping from 0 to [LIQUID_HEIGHT_CONSIDER_FULL_TILE]? 0 disables.",
+		"水泵应在水位从0到[LIQUID_HEIGHT_CONSIDER_FULL_TILE]的哪个高度停止抽水？输入0则禁用。",
 		"[src]",
 		default = height_regulator,
 		min_value = 0,
@@ -173,8 +173,8 @@
 
 
 /obj/machinery/plumbing/floor_pump/input
-	name = "liquid input pump"
-	desc = "Pump used to siphon liquids from a location into the plumbing pipenet."
+	name = "液体输入泵"
+	desc = "用于将液体从某处虹吸至管道网络的泵。"
 	icon_state = "active_input"
 	base_icon_state = "active_input"
 
@@ -220,8 +220,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/plumbing/floor_pump/input/on, 0)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/plumbing/floor_pump/input/on/waste, 0)
 
 /obj/machinery/plumbing/floor_pump/output
-	name = "liquid output pump"
-	desc = "Pump used to dump liquids out from a plumbing pipenet into a location."
+	name = "液体输出泵"
+	desc = "用于将液体从管道网络排放至某处的泵。"
 	icon_state = "active_output"
 	base_icon_state = "active_output"
 
@@ -242,9 +242,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/plumbing/floor_pump/input/on/waste, 0
 /obj/machinery/plumbing/floor_pump/output/examine(mob/user)
 	. = ..()
 	if(over_pressure)
-		. += span_warning("The gas regulator light is blinking.")
+		. += span_warning("气体调节器指示灯正在闪烁。")
 	if(over_volume)
-		. += span_warning("The liquid volume regulator light is blinking.")
+		. += span_warning("液体体积调节器指示灯正在闪烁。")
 
 /obj/machinery/plumbing/floor_pump/output/are_reagents_ready()
 	return reagents.total_volume > 0
@@ -301,8 +301,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/plumbing/floor_pump/output/on/supply,
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/plumbing/floor_pump/output/on/supply/waist_deep, 0)
 
 /obj/item/construction/plumbing/engineering
-	name = "engineering plumbing constructor"
-	desc = "A type of plumbing constructor designed to rapidly deploy the machines needed for logistics regarding fluids."
+	name = "工程管道构造器"
+	desc = "一种为快速部署流体物流所需机器而设计的管道构造器。"
 	icon_state = "plumberer_engi"
 	var/static/list/engineering_design_types = list(
 		//category 1 Synthesizers i.e devices which creates , reacts & destroys chemicals

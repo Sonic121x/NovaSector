@@ -99,7 +99,7 @@
 /datum/component/thermite/proc/on_examine(turf/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_warning("[source.p_Theyre()] covered in thermite.")
+	examine_list += span_warning("[source.p_Theyre()] 覆盖着铝热剂。")
 
 /// Used to maintain the thermite overlay on the parent [/turf].
 /datum/component/thermite/proc/on_update_overlays(turf/parent_turf, list/overlays)
@@ -182,7 +182,7 @@
 		return NONE
 
 	user.apply_damage(5, BURN, user.get_active_hand())
-	to_chat(user, span_userdanger("The ignited thermite on \the [source] burns your hand!"))
+	to_chat(user, span_userdanger("\the [source]上点燃的铝热剂灼伤了你的手！"))
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(source, SFX_SEAR, 50, TRUE)
 	return COMPONENT_CANCEL_ATTACK_CHAIN

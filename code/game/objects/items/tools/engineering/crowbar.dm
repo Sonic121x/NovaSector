@@ -213,7 +213,7 @@
 		for(var/possible_blacklisted_access in collective_access)
 			if(possible_blacklisted_access in blacklisted_access)
 				playsound(src.loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-				user.balloon_alert(user, "cannot pry open!")
+				user.balloon_alert(user, "无法撬开！")
 				return COMPONENT_TOOL_DO_NOT_ALLOW_FORCE_OPEN
 
 	if(radio_alert && COOLDOWN_FINISHED(src, alert_cooldown))
@@ -253,7 +253,7 @@
 		user.visible_message(span_suicide("[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!"))
 		playsound(loc, 'sound/items/tools/jaws_pry.ogg', 50, TRUE, -1)
 	else
-		user.visible_message(span_suicide("[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!"))
+		user.visible_message(span_suicide("[user] 正把 \the [src] 绕在 [user.p_their()] 脖子上。看起来 [user.p_theyre()] 试图把 [user.p_their()] 脑袋扯下来！"))
 		playsound(loc, 'sound/items/tools/jaws_cut.ogg', 50, TRUE, -1)
 		if(iscarbon(user))
 			var/mob/living/carbon/suicide_victim = user
@@ -385,17 +385,17 @@
 		return
 	var/obj/item/mecha_parts/mecha_equipment/sleeper/mech_sleeper = locate() in mech
 	if((!LAZYLEN(mech.occupants) || (LAZYLEN(mech.occupants) == 1 && mech.mecha_flags & SILICON_PILOT)) && (!mech_sleeper || !mech_sleeper.patient)) //if no occupants, or only an ai
-		mech.balloon_alert(user, "it's empty!")
+		mech.balloon_alert(user, "它是空的！")
 		return
 	var/list/log_list_before = LAZYCOPY(mech.occupants)
 	if(mech_sleeper?.patient)
 		log_list_before += mech_sleeper.patient
 	user.log_message("tried to pry open [mech], located at [loc_name(mech)], which is occupied by [log_list_before.Join(", ")].", LOG_ATTACK)
 	var/mech_dir = mech.dir
-	mech.balloon_alert(user, "prying open...")
+	mech.balloon_alert(user, "正在撬开...")
 	playsound(mech, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
 	if(!use_tool(mech, user, (mech.mecha_flags & IS_ENCLOSED) ? 5 SECONDS : 3 SECONDS, volume = 0, extra_checks = CALLBACK(src, PROC_REF(extra_checks), mech, mech_dir, mech_sleeper)))
-		mech.balloon_alert(user, "interrupted!")
+		mech.balloon_alert(user, "被打断了！")
 		return
 	var/list/log_list_after = LAZYCOPY(mech.occupants)
 	if(mech_sleeper?.patient)

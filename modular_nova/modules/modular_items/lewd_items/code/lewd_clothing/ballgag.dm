@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/muzzle/ballgag
-	name = "ball gag"
-	desc = "Prevents the wearer from speaking."
+	name = "口球"
+	desc = "阻止佩戴者说话。"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_masks.dmi'
 	worn_icon_muzzled = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_masks_muzzled.dmi'
 	greyscale_colors = "#383840#dc7ef4"
@@ -32,8 +32,8 @@
 	new_icon_state = "chokegag_large"
 
 /obj/item/clothing/mask/muzzle/ballgag/choking
-	name = "phallic ball gag"
-	desc = "Prevents the wearer from speaking, as well as making breathing harder."
+	name = "阴茎口球"
+	desc = "阻止佩戴者说话，同时使呼吸更加困难。"
 	worn_icon_state = "ballgag"
 	icon = 'icons/map_icons/clothing/mask.dmi'
 	icon_state = "/obj/item/clothing/mask/muzzle/ballgag/choking"
@@ -44,8 +44,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/ballgag, infinite = TRUE)
 
 /obj/item/clothing/mask/muzzle/ring
-	name = "ring gag"
-	desc = "A mouth wrap seemingly designed to hold the mouth open."
+	name = "环形口塞"
+	desc = "一种似乎设计用来保持嘴巴张开的嘴部束缚物。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_masks.dmi'
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_masks.dmi'
 	worn_icon_muzzled = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_masks_muzzled.dmi'

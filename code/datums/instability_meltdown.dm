@@ -25,7 +25,7 @@
 /datum/instability_meltdown/paraplegic/meltdown(mob/living/carbon/human/victim)
 	victim.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic)
 	new /obj/vehicle/ridden/wheelchair(get_turf(victim))
-	to_chat(victim, span_warning("My flesh turned into a wheelchair and I can't feel my legs."))
+	to_chat(victim, span_warning("我的血肉变成了一台轮椅，而且我感觉不到我的腿了。"))
 
 /// Turns you into a corgi
 /datum/instability_meltdown/corgi
@@ -37,13 +37,13 @@
 /datum/instability_meltdown/alright
 
 /datum/instability_meltdown/alright/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice("Oh, I actually feel quite alright!"))
+	to_chat(victim, span_notice("噢，我其实感觉相当不错！"))
 
 /// Gives you the same text as above but now when you're hit you take 200 times more damage
 /datum/instability_meltdown/not_alright
 
 /datum/instability_meltdown/not_alright/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice("Oh, I actually feel quite alright!"))
+	to_chat(victim, span_notice("噢，我其实感觉相当不错！"))
 	victim.physiology.damage_resistance -= 20000 //you thought
 	victim.log_message("has received x200 damage multiplier from [type] genetic meltdown")
 
@@ -51,7 +51,7 @@
 /datum/instability_meltdown/slime
 
 /datum/instability_meltdown/slime/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice("Oh, I actually feel quite alright!"))
+	to_chat(victim, span_notice("噢，我其实感觉相当不错！"))
 	victim.reagents.add_reagent(/datum/reagent/aslimetoxin, 10)
 
 /// Makes you phase through walls into a random direction
@@ -64,7 +64,7 @@
 /datum/instability_meltdown/decloning
 
 /datum/instability_meltdown/decloning/meltdown(mob/living/carbon/human/victim)
-	to_chat(src, span_notice("Oh, I actually feel quite alright!"))
+	to_chat(src, span_notice("噢，我其实感觉相当不错！"))
 	victim.ForceContractDisease(new /datum/disease/decloning) // slow acting, non-viral GBS
 
 /// Makes you vomit up a random organ
@@ -80,7 +80,7 @@
 		return
 	var/obj/item/organ/picked_organ = pick(elligible_organs)
 	picked_organ.Remove(src)
-	victim.visible_message(span_danger("[victim] vomits up [p_their()] [picked_organ.name]!"), span_danger("You vomit up your [picked_organ.name]")) //no "vomit up your heart"
+	victim.visible_message(span_danger("[victim] 吐出了 [p_their()] [picked_organ.name]！"), span_danger("你吐出了你的 [picked_organ.name]")) //no "vomit up your heart"
 	picked_organ.forceMove(victim.drop_location())
 	if(prob(20))
 		picked_organ.animate_atom_living()
@@ -90,14 +90,14 @@
 	meltdown_weight = 2
 
 /datum/instability_meltdown/snail/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice("Oh, I actually feel quite alright!"))
+	to_chat(victim, span_notice("噢，我其实感觉相当不错！"))
 	victim.ForceContractDisease(new/datum/disease/gastrolosis())
 
 /// Turns you into the ultimate lifeform
 /datum/instability_meltdown/crab
 
 /datum/instability_meltdown/crab/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice("Your DNA mutates into the ultimate biological form!"))
+	to_chat(victim, span_notice("你的DNA突变成了终极生物形态！"))
 	victim.crabize()
 
 // Fatal meltdowns
@@ -144,7 +144,7 @@
 /datum/instability_meltdown/fatal/skeletonize
 
 /datum/instability_meltdown/fatal/skeletonize/meltdown(mob/living/carbon/human/victim)
-	victim.visible_message(span_warning("[victim]'s skin melts off!"), span_boldwarning("Your skin melts off!"))
+	victim.visible_message(span_warning("[victim]的皮肤融化了！"), span_boldwarning("你的皮肤融化了！"))
 	victim.spawn_gibs()
 	victim.set_species(/datum/species/skeleton)
 	if(prob(90))
@@ -154,7 +154,7 @@
 /datum/instability_meltdown/fatal/ceiling
 
 /datum/instability_meltdown/fatal/ceiling/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_phobia("LOOK UP!"))
+	to_chat(victim, span_phobia("往上看！"))
 	addtimer(CALLBACK(victim, TYPE_PROC_REF(/mob/living/carbon/human, something_horrible_mindmelt)), 3 SECONDS)
 
 /// Slowly turns you into a psyker

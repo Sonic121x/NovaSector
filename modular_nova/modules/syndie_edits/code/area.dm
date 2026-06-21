@@ -2,39 +2,39 @@
 	always_unpowered = FALSE
 
 /area/ruin/syndicate_lava_base/engineering
-	name = "Interdyne Engineering"
+	name = "英特戴恩工程部"
 
 /area/ruin/syndicate_lava_base/medbay
-	name = "Interdyne Medbay"
+	name = "英特戴恩医疗舱"
 
 /area/ruin/syndicate_lava_base/arrivals
-	name = "Interdyne Arrivals"
+	name = "英特戴恩抵达区"
 
 /area/ruin/syndicate_lava_base/bar
-	name = "Interdyne Bar"
+	name = "英特戴恩酒吧"
 
 /area/ruin/syndicate_lava_base/lounge
-	name = "Interdyne Lounge"
+	name = "英特戴恩休息室"
 
 /area/ruin/syndicate_lava_base/main
-	name = "Interdyne Primary Hallway"
+	name = "英特戴恩主走廊"
 
 /area/ruin/syndicate_lava_base/cargo
-	name = "Interdyne Cargo Bay"
+	name = "英特戴恩货运舱"
 
 /area/ruin/syndicate_lava_base/chemistry
-	name = "Interdyne Chemistry"
+	name = "英特戴恩化学实验室"
 
 /area/ruin/syndicate_lava_base/virology
-	name = "Interdyne Virology"
+	name = "英特戴恩病毒学实验室"
 
 /area/ruin/syndicate_lava_base/testlab
-	name = "Interdyne Experimentation Lab"
+	name = "英特戴恩实验实验室"
 	area_flags = XENOBIOLOGY_COMPATIBLE
 	area_flags_mapping = NONE
 
 /area/ruin/syndicate_lava_base/dormitories
-	name = "Interdyne Dormitories"
+	name = "英特戴恩宿舍区"
 
 /area/ruin/syndicate_lava_base/telecomms
-	name = "Interdyne Telecommunications"
+	name = "英特戴恩电信中心"

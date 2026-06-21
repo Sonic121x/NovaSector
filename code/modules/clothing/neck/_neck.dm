@@ -1,5 +1,5 @@
 /obj/item/clothing/neck
-	name = "necklace"
+	name = "项链"
 	icon = 'icons/obj/clothing/neck.dmi'
 	abstract_type = /obj/item/clothing/neck
 	body_parts_covered = NECK
@@ -87,7 +87,7 @@
 /obj/item/clothing/neck/tie/click_alt(mob/user)
 	if(clip_on)
 		return NONE
-	to_chat(user, span_notice("You concentrate as you begin [is_tied ? "untying" : "tying"] [src]..."))
+	to_chat(user, span_notice("你集中精神，开始[is_tied ? "untying" : "tying"] [src]..."))
 	var/tie_timer_actual = tie_timer
 	// Mirrors give you a boost to your tying speed. I realize this stacks and I think that's hilarious.
 	for(var/obj/structure/mirror/reflection in view(2, user))
@@ -106,8 +106,8 @@
 	// Success!
 	is_tied = !is_tied
 	user.visible_message(
-		span_notice("[user] adjusts [user.p_their()] tie[HAS_TRAIT(user, TRAIT_BALD) ? "" : " and runs a hand across [user.p_their()] head"]."),
-		span_notice("You successfully [is_tied ? "tied" : "untied"] [src]!"),
+		span_notice("[user] 调整了[user.p_their()]领带[HAS_TRAIT(user, TRAIT_BALD) ? "" : " and runs a hand across [user.p_their()] head"]。"),
+		span_notice("你成功地[is_tied ? "tied" : "untied"]了 [src]！"),
 	)
 	update_appearance(UPDATE_ICON)
 	user.update_clothing(ITEM_SLOT_NECK)
@@ -116,7 +116,7 @@
 /obj/item/clothing/neck/tie/click_alt_secondary(mob/user)
 	alternate_worn_layer = (alternate_worn_layer == initial(alternate_worn_layer) ? NONE : initial(alternate_worn_layer))
 	user.update_clothing(ITEM_SLOT_NECK)
-	balloon_alert(user, "wearing [alternate_worn_layer == initial(alternate_worn_layer) ? "below" : "above"] suits")
+	balloon_alert(user, "穿在[alternate_worn_layer == initial(alternate_worn_layer) ? "below" : "above"]")
 
 /obj/item/clothing/neck/tie/update_icon()
 	. = ..()
@@ -157,13 +157,13 @@
 		. += undershirt.accessory_overlay
 
 /obj/item/clothing/neck/tie/blue
-	name = "blue tie"
+	name = "蓝色领带"
 	icon_state = "/obj/item/clothing/neck/tie/blue"
 	post_init_icon_state = "tie_greyscale_untied"
 	greyscale_colors = "#5275b6ff"
 
 /obj/item/clothing/neck/tie/red
-	name = "red tie"
+	name = "红色领带"
 	icon_state = "/obj/item/clothing/neck/tie/red"
 	post_init_icon_state = "tie_greyscale_untied"
 	greyscale_colors = "#c23838ff"
@@ -173,7 +173,7 @@
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/red/hitman
-	desc = "This is a $47,000 custom-tailored Référence Du Tueur À Gages tie. The clot is from neosilkworms raised at a tie microfarm in Cookwell, from a secret pattern passed down by monk tailors since the twenty-first century!"
+	desc = "这是一条价值 47,000 美元的定制版“猎手报酬”领带。领带的丝线取自科库维尔一家微型养蚕场里培育的新型蚕，其独特的图案是由自 21 世纪起就传承下来的修道院裁缝师们所设计的！"
 	tie_timer = 1 SECONDS // You're a professional.
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
@@ -182,7 +182,7 @@
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/black
-	name = "black tie"
+	name = "黑色领带"
 	icon_state = "/obj/item/clothing/neck/tie/black"
 	post_init_icon_state = "tie_greyscale_untied"
 	greyscale_colors = "#151516ff"
@@ -192,7 +192,7 @@
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/horrible
-	name = "horrible tie"
+	name = "糟糕的领带"
 	desc = "A neosilk tie. This one is disgusting."
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "horribletie"
@@ -221,8 +221,8 @@
 	AddElement(/datum/element/surgery_aid, "cape")
 
 /obj/item/clothing/neck/tie/detective
-	name = "loose tie"
-	desc = "A loosely tied necktie, a perfect accessory for the over-worked detective."
+	name = "松垮的领带"
+	desc = "松松系着的领带，是工作过度的侦探的完美配饰。"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "detective"
 	post_init_icon_state = null
@@ -232,8 +232,8 @@
 	greyscale_colors = null
 
 /obj/item/clothing/neck/stethoscope
-	name = "stethoscope"
-	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
+	name = "听诊器"
+	desc = "一台过时的、用于聆听人体声响的医疗仪器。它也能让你看起来像个懂行的人。"
 	icon_state = "stethoscope"
 
 /obj/item/clothing/neck/stethoscope/Initialize(mapload)
@@ -241,7 +241,7 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
 
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] puts \the [src] to [user.p_their()] chest! It looks like [user.p_they()] won't hear much!"))
+	user.visible_message(span_suicide("[user] 把\the [src]放在[user.p_their()]胸口！看起来[user.p_they()]听不到多少声音了！"))
 	return OXYLOSS
 
 /obj/item/clothing/neck/stethoscope/attack(mob/living/target, mob/living/user)
@@ -269,7 +269,7 @@
 	//determine what specific action we're taking
 	switch (body_part)
 		if(BODY_ZONE_CHEST)//Listening to the chest
-			user.visible_message(span_notice("[user] places [src] against [carbon_patient]'s [body_part] and listens attentively."), ignored_mobs = user)
+			user.visible_message(span_notice("[user] 将 [src] 贴在 [carbon_patient] 的 [body_part] 上，专注地倾听着。"), ignored_mobs = user)
 			if(HAS_TRAIT(user, TRAIT_DEAF))
 				to_chat(user, span_notice("You place [src] against [carbon_patient]'s [body_part]. Fat load of good it does you though, since you can't hear."))
 				return
@@ -310,8 +310,8 @@
 					render_list += "<span class='notice ml-1'>[heart.hear_beat_noise(user)]</span>\n"
 
 		if(BODY_ZONE_PRECISE_GROIN)//If we're targeting the groin
-			render_list += span_info("You carefully press down on [carbon_patient]'s abdomen:\n")
-			user.visible_message(span_notice("[user] presses their hands against [carbon_patient]'s abdomen."), ignored_mobs = user)
+			render_list += span_info("你小心地按压[carbon_patient]的腹部：\n")
+			user.visible_message(span_notice("[user]将手按在[carbon_patient]的腹部上。"), ignored_mobs = user)
 
 			//assess abdominal organs
 			var/appendix_okay = TRUE
@@ -335,20 +335,20 @@
 				render_list += "<span class='notice ml-1'>You don't find anything abnormal.</span>\n"//they're okay :D
 
 		if(BODY_ZONE_PRECISE_EYES)
-			balloon_alert(user, "can't do that!")
+			balloon_alert(user, "做不到！")
 			return
 
 		if(BODY_ZONE_PRECISE_MOUTH)
-			balloon_alert(user, "can't do that!")
+			balloon_alert(user, "做不到！")
 			return
 
 		else//targeting an extremity or the head
 			if(body_part ==  BODY_ZONE_HEAD)
-				render_list += span_info("You carefully press your fingers to [carbon_patient]'s neck:\n")
-				user.visible_message(span_notice("[user] presses their fingers against [carbon_patient]'s neck."), ignored_mobs = user)
+				render_list += span_info("你小心地将手指按在[carbon_patient]的颈部：\n")
+				user.visible_message(span_notice("[user]将手指按在[carbon_patient]的颈部。"), ignored_mobs = user)
 			else
-				render_list += span_info("You carefully press your fingers to [carbon_patient]'s [body_part]:\n")
-				user.visible_message(span_notice("[user] presses their fingers against [carbon_patient]'s [body_part]."), ignored_mobs = user)
+				render_list += span_info("你小心地将手指按在[carbon_patient]的[body_part]上：\n")
+				user.visible_message(span_notice("[user]将手指按在[carbon_patient]的[body_part]上。"), ignored_mobs = user)
 
 			var/cached_blood_volume = carbon_patient.get_blood_volume(apply_modifiers = TRUE)
 
@@ -378,8 +378,8 @@
 ///////////
 
 /obj/item/clothing/neck/scarf
-	name = "scarf"
-	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
+	name = "围巾"
+	desc = "一个时尚的围巾。对于那些有敏锐时尚感的人，以及那些不能忍受脖子上的冷风的人来说，这是完美的冬季配饰。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/scarf"
 	post_init_icon_state = "scarf"
@@ -391,62 +391,62 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/scarf/black
-	name = "black scarf"
+	name = "黑围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/black"
 	greyscale_colors = "#4A4A4B#4A4A4B"
 
 /obj/item/clothing/neck/scarf/pink
-	name = "pink scarf"
+	name = "粉围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/pink"
 	greyscale_colors = "#F699CD#F699CD"
 
 /obj/item/clothing/neck/scarf/red
-	name = "red scarf"
+	name = "红围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/red"
 	greyscale_colors = "#D91414#D91414"
 
 /obj/item/clothing/neck/scarf/green
-	name = "green scarf"
+	name = "绿围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/green"
 	greyscale_colors = "#5C9E54#5C9E54"
 
 /obj/item/clothing/neck/scarf/darkblue
-	name = "dark blue scarf"
+	name = "深蓝围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/darkblue"
 	greyscale_colors = "#1E85BC#1E85BC"
 
 /obj/item/clothing/neck/scarf/purple
-	name = "purple scarf"
+	name = "紫围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/purple"
 	greyscale_colors = "#9557C5#9557C5"
 
 /obj/item/clothing/neck/scarf/yellow
-	name = "yellow scarf"
+	name = "黄围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/yellow"
 	greyscale_colors = "#E0C14F#E0C14F"
 
 /obj/item/clothing/neck/scarf/orange
-	name = "orange scarf"
+	name = "橙围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/orange"
 	greyscale_colors = "#C67A4B#C67A4B"
 
 /obj/item/clothing/neck/scarf/cyan
-	name = "cyan scarf"
+	name = "青围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/cyan"
 	greyscale_colors = "#54A3CE#54A3CE"
 
 /obj/item/clothing/neck/scarf/zebra
-	name = "zebra scarf"
+	name = "条纹围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/zebra"
 	greyscale_colors = "#333333#EEEEEE"
 
 /obj/item/clothing/neck/scarf/christmas
-	name = "christmas scarf"
+	name = "圣诞围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/christmas"
 	greyscale_colors = "#038000#960000"
 
 /obj/item/clothing/neck/large_scarf
-	name = "large scarf"
+	name = "大围巾"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/large_scarf"
 	post_init_icon_state = "large_scarf"
@@ -458,29 +458,29 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/large_scarf/red
-	name = "large red scarf"
+	name = "红色大围巾"
 	icon_state = "/obj/item/clothing/neck/large_scarf/red"
 	greyscale_colors = "#8A2908#A06D66"
 
 /obj/item/clothing/neck/large_scarf/green
-	name = "large green scarf"
+	name = "绿色大围巾"
 	icon_state = "/obj/item/clothing/neck/large_scarf/green"
 	greyscale_colors = "#525629#888674"
 
 /obj/item/clothing/neck/large_scarf/blue
-	name = "large blue scarf"
+	name = "蓝色大围巾"
 	icon_state = "/obj/item/clothing/neck/large_scarf/blue"
 	greyscale_colors = "#20396C#6F7F91"
 
 /obj/item/clothing/neck/large_scarf/syndie
-	name = "suspicious looking striped scarf"
+	name = "可疑的条纹围巾"
 	desc = "Ready to operate."
 	icon_state = "/obj/item/clothing/neck/large_scarf/syndie"
 	greyscale_colors = "#B40000#545350"
 	armor_type = /datum/armor/large_scarf_syndie
 
 /obj/item/clothing/neck/infinity_scarf
-	name = "infinity scarf"
+	name = "无限围巾"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/infinity_scarf"
 	post_init_icon_state = "infinity_scarf"
@@ -492,8 +492,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/petcollar
-	name = "pet collar"
-	desc = "It's for pets."
+	name = "宠物项圈"
+	desc = "为宠物准备的。"
 	icon_state = "petcollar"
 	var/tagname = null
 	var/human_wearable = FALSE
@@ -511,7 +511,7 @@
 	human_wearable = TRUE
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
-	tagname = sanitize_name(tgui_input_text(user, "Would you like to change the name on the tag?", "Pet Naming", "Spot", MAX_NAME_LEN))
+	tagname = sanitize_name(tgui_input_text(user, "你想要更改标签上的名字吗？", "宠物命名", "Spot", MAX_NAME_LEN))
 	if (!tagname || !length(tagname))
 		name = initial(name)
 		tagname = null
@@ -527,13 +527,13 @@
 //////////////
 
 /obj/item/clothing/neck/necklace/dope
-	name = "gold necklace"
-	desc = "Damn, it feels good to be a gangster."
+	name = "金项链"
+	desc = "该死，当地痞无赖的感觉可真好。"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bling"
 
 /obj/item/clothing/neck/necklace/dope/merchant
-	desc = "Don't ask how it works, the proof is in the holochips!"
+	desc = "不要问它是怎么工作的，证据就在全息芯片里！"
 	/// scales the amount received in case an admin wants to emulate taxes/fees.
 	var/profit_scaling = 1
 	/// toggles between sell (TRUE) and get price post-fees (FALSE)
@@ -562,7 +562,7 @@
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/clothing/neck/beads
-	name = "plastic bead necklace"
+	name = "塑料珠项链"
 	desc = "A cheap, plastic bead necklace. Show team spirit! Collect them! Throw them away! The possibilities are endless!"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "beads"
@@ -590,7 +590,7 @@
 		. += emissive_appearance(icon_file, "wreath_emissive", src, alpha = src.alpha)
 
 /obj/item/clothing/neck/wreath/icewing
-	name = "\improper Icewing Wreath"
+	name = "\improper 冰翼花冠"
 	desc = "An elaborate crown made from the twisted flesh and sinew of an icewing watcher. \
 		Wearing it sends shivers down your spine just from being near it."
 	icon_state = "icewing_wreath"

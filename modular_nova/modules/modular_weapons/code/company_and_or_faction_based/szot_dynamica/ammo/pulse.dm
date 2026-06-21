@@ -1,6 +1,6 @@
 /obj/item/ammo_box/pulse_cargo_box
-	name = "ammo canister (pulse energy cell)"
-	desc = "A stabilizing canister of plasma pulse energy cells, holds eight cells."
+	name = "弹药罐 (脉冲能量电池)"
+	desc = "一个装有等离子脉冲能量电池的稳定罐，内装八枚电池。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "plasma_pulse_box"
@@ -23,8 +23,8 @@
 	. = ..(load_type, starting = FALSE)
 
 /obj/item/ammo_casing/pulse
-	name = "pulse energy cell"
-	desc = "A reusable energy cell for pulse weapons."
+	name = "脉冲能量电池"
+	desc = "一种用于脉冲武器的可重复使用能量单元。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "zaibas_bullet"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.25, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 1, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 0.75)
@@ -48,7 +48,7 @@
 /obj/item/ammo_casing/pulse/ready_proj(atom/target, mob/living/user, quiet, zone_override, atom/fired_from)
 	if(remaining_uses <= 0)
 		if(!quiet)
-			to_chat(user, span_warning("[src] is depleted!"))
+			to_chat(user, span_warning("[src] 已耗尽！"))
 		return FALSE
 	// Reset suppress_use_consumption flag when used in a different weapon
 	if(fired_from && istype(fired_from, /obj/item/gun))
@@ -83,10 +83,10 @@
 	var/total_damage = (initial_brute + initial_burn) * proj_damage_mult
 
 	if(total_damage <= 0)
-		return "Our legal team has determined these [span_warning(caliber)] plasma pulses to be non-lethal."
+		return "我们的法律团队已认定这些[span_warning(caliber)]等离子脉冲为非致命性武器。"
 
-	readout += "These [span_warning(caliber)] pulses deliver a combined [span_warning("[total_damage] damage")] per shot ([span_warning("[initial_brute * proj_damage_mult] brute")] + [span_warning("[initial_burn * proj_damage_mult] burn")])."
-	readout += "Most test subjects succumbed to their wounds after [span_warning("[HITS_TO_CRIT(total_damage)] pulse\s")] at point-blank range."
+	readout += "这些[span_warning(caliber)]脉冲每次射击可造成总计[span_warning("[total_damage] damage")]伤害（[span_warning("[initial_brute * proj_damage_mult] brute")] + [span_warning("[initial_burn * proj_damage_mult] burn")]）。"
+	readout += "大多数测试对象在[span_warning("[HITS_TO_CRIT(total_damage)] pulse\s")]于近距离命中后因伤势过重而死亡。"
 
 	return readout.Join("\n")
 
@@ -119,7 +119,7 @@
 			. += "zaibas_bullet_1"
 
 /obj/projectile/bullet/pulse
-	name = "pulse energy"
+	name = "脉冲能量"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "plasma_pulse"
 	damage = 10

@@ -34,42 +34,42 @@
 
 /// diorama plaques
 /obj/structure/sign/plaques/kiddie/diorama
-	name = "A standard Diorama Plaque"
-	desc = "Write what you want here."
+	name = "标准立体模型牌匾"
+	desc = "在此写下你想写的内容。"
 	icon = 'modular_nova/master_files/icons/obj/floorplaque.dmi'
 	icon_state ="floorplaque"
 
 // Ash
 /obj/structure/sign/plaques/kiddie/diorama/ash
-	name = "Ashlands Diorama"
-	desc = "A representation of the ashen wastes."
+	name = "灰烬之地立体模型"
+	desc = "一片灰烬荒原的再现。"
 
 // Beach
 /obj/structure/sign/plaques/kiddie/diorama/beach
-	name = "Beach Diorama"
-	desc = "A representation of what crew dream of: some water, a blanket to lay on against the sun, and of course, plenty of legal substances to consume."
+	name = "海滩立体模型"
+	desc = "再现了船员们的梦想：一些水，一张在阳光下铺开的毯子，当然，还有大量合法的物质可供享用。"
 
 // Borg
 /obj/structure/sign/plaques/kiddie/diorama/borg
-	name = "Borg Factory Diorama"
-	desc = "A representation of a small borg factory: prior to robotics being station-side, cyborgs were made in an assembly line."
+	name = "机械人工厂立体模型"
+	desc = "一个小型机械人工厂的再现：在机器人技术进驻空间站之前，机械人是在流水线上制造的。"
 
 // ice
 /obj/structure/sign/plaques/kiddie/diorama/ice
-	name = "Snow Diorama"
-	desc = "A representation of snow. Do you want to build a snowman with the penguins?"
+	name = "雪景立体模型"
+	desc = "雪的再现。你想和企鹅一起堆个雪人吗？"
 
 // jungle
 /obj/structure/sign/plaques/kiddie/diorama/jungle
-	name = "Jungle Diorama"
-	desc = "A representation of a jungle environment. Caution should be taken if one of the frogs grow to be larger than they should."
+	name = "丛林立体模型"
+	desc = "丛林环境的再现。如果其中一只青蛙长得比它们应有的体型更大，则应小心谨慎。"
 
 // Strike
 /obj/structure/sign/plaques/kiddie/diorama/strike
-	name = "defaced diorama plaque"
-	desc = "Someone with spite seems to have gouged all information out."
+	name = "被污损的立体模型牌匾"
+	desc = "似乎有人怀着恶意将所有信息都凿掉了。"
 
 // Vet
 /obj/structure/sign/plaques/kiddie/diorama/vet
-	name = "Veterinarian Diorama"
-	desc = "A representation of the crew's animal boarding station: while they work, crew will sometimes board their pets in one of these facilities."
+	name = "兽医立体模型"
+	desc = "船员动物寄宿站的展示：工作时，船员有时会将他们的宠物寄养在这样的设施中。"

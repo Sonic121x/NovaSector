@@ -138,7 +138,7 @@
 	if(!check_rights_for(user.client, R_DEBUG))
 		return
 	if(action == "runCodeFile")
-		params["code"] = file2text(input(user, "Input File") as null|file)
+		params["code"] = file2text(input(user, "输入文件") as null|file)
 		if(isnull(params["code"]))
 			return
 		action = "runCode"
@@ -167,7 +167,7 @@
 			run_code(params["code"])
 			return TRUE
 		if("runFile")
-			var/code_file = input(user, "Select a script to run.", "Lua") as file|null
+			var/code_file = input(user, "选择要运行的脚本。", "Lua") as file|null
 			if(!code_file)
 				return TRUE
 			var/code = file2text(code_file)
@@ -287,5 +287,5 @@ ADMIN_VERB(lua_editor, R_DEBUG, "Open Lua Editor", "Its codin' time.", ADMIN_CAT
 	var/datum/lua_editor/editor = new
 	editor.ui_interact(user.mob)
 #else
-	to_chat(user, span_warning("Lua support has been disabled at compile-time."), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE) // doing this instead of just disabling the verb entirely so it's clear WHY it doesn't work.
+	to_chat(user, span_warning("Lua支持已在编译时被禁用。"), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE) // doing this instead of just disabling the verb entirely so it's clear WHY it doesn't work.
 #endif

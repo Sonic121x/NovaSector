@@ -1,5 +1,5 @@
 /datum/lazy_template/virtual_domain/island_brawl
-	name = "Island Brawl"
+	name = "岛屿大乱斗"
 	announce_to_ghosts = TRUE
 	cost = BITRUNNER_COST_HIGH
 	desc = "A 'peaceful' island tucked away in the middle of nowhere. This map will auto-complete after a number of deaths have occurred."
@@ -47,8 +47,8 @@
 
 
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/islander
-	name = "Islander"
+	name = "岛民"
 	outfit = /datum/outfit/beachbum_combat
-	prompt_name = "a combat beach bum"
-	you_are_text = "You are a virtual islander."
+	prompt_name = "一名战斗海滩流浪汉"
+	you_are_text = "你是一名虚拟岛民。"
 	flavour_text = "Don't let anyone ruin your idyllic vacation spot. Coordinate with others- or don't!"

@@ -1,6 +1,6 @@
 /obj/vehicle/ridden/wheelchair/motorized
-	name = "motorized wheelchair"
-	desc = "A chair with big wheels. It seems to have a motor in it."
+	name = "电动轮椅"
+	desc = "一把有大轮子的座椅.它里面好像装了个马达."
 	icon_state = "motorized_wheelchair"
 	overlay_icon = "motorized_wheelchair_overlay"
 	foldabletype = null
@@ -80,12 +80,12 @@
 
 /obj/vehicle/ridden/wheelchair/motorized/relaymove(mob/living/user, direction)
 	if(!power_cell)
-		to_chat(user, span_warning("There seems to be no cell installed in [src]."))
+		to_chat(user, span_warning("[src]里似乎没有安装电池。"))
 		canmove = FALSE
 		addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
 		return FALSE
 	if(power_cell.charge < energy_usage / max(power_efficiency, 1))
-		to_chat(user, span_warning("The display on [src] blinks 'Out of Power'."))
+		to_chat(user, span_warning("[src]的显示屏闪烁着“电量耗尽”。"))
 		canmove = FALSE
 		addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
 		return FALSE
@@ -94,7 +94,7 @@
 /obj/vehicle/ridden/wheelchair/motorized/attack_hand(mob/living/user, list/modifiers)
 	if(!power_cell || !panel_open)
 		return ..()
-	to_chat(user, span_notice("You remove [power_cell] from [src]."))
+	to_chat(user, span_notice("你从[src]中取出了[power_cell]。"))
 	user.put_in_hands(power_cell)
 	power_cell = null
 
@@ -108,7 +108,7 @@
 
 	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(power_cell)
-			to_chat(user, span_warning("There is a power cell already installed."))
+			to_chat(user, span_warning("已经安装了一个电池。"))
 			return ITEM_INTERACT_BLOCKING
 
 		tool.forceMove(src)
@@ -143,7 +143,7 @@
 		user.put_in_hands(part)
 		component_parts -= oldstockpart
 		// user message
-		user.visible_message(span_notice("[user] replaces [oldstockpart.name()] with [newstockpart.name()] in [src]."), span_notice("You replace [oldstockpart.name()] with [newstockpart.name()]."))
+		user.visible_message(span_notice("[user]将[src]中的[oldstockpart.name()]替换为[newstockpart.name()]。"), span_notice("你将[oldstockpart.name()]替换为[newstockpart.name()]。"))
 		replacement_occured = TRUE
 		break
 
@@ -167,7 +167,7 @@
 /obj/vehicle/ridden/wheelchair/motorized/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	panel_open = !panel_open
-	user.visible_message(span_notice("[user] [panel_open ? "opens" : "closes"] the maintenance panel on [src]."), span_notice("You [panel_open ? "open" : "close"] the maintenance panel."))
+	user.visible_message(span_notice("[user] [panel_open ? "opens" : "closes"]了[src]上的维护区面板。"), span_notice("你[panel_open ? "open" : "close"]了维护区面板。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/vehicle/ridden/wheelchair/motorized/examine(mob/user)
@@ -194,7 +194,7 @@
 /// Detonate an armed explosive on this wheelchair
 /obj/vehicle/ridden/wheelchair/motorized/detonate_bomb()
 	if (obj_flags & EMAGGED)
-		visible_message(span_boldwarning("[src] explodes!!"))
+		visible_message(span_boldwarning("[src]爆炸了！！"))
 		explosion(src, devastation_range = -1, heavy_impact_range = 1, light_impact_range = 3, flash_range = 2, adminlog = FALSE)
 	return ..()
 
@@ -218,9 +218,9 @@
 			ramtarget.throw_at(throw_target, 2, 3)
 			ramtarget.Knockdown(8 SECONDS)
 			ramtarget.adjust_stamina_loss(35)
-			visible_message(span_danger("[src] crashes into [ramtarget], sending [disabled] and [ramtarget] flying!"))
+			visible_message(span_danger("[src]撞上了[ramtarget]，把[disabled]和[ramtarget]都撞飞了！"))
 		else
-			visible_message(span_danger("[src] crashes into [bumped_atom], sending [disabled] flying!"))
+			visible_message(span_danger("[src]撞上了[bumped_atom]，把[disabled]撞飞了！"))
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 
 /obj/vehicle/ridden/wheelchair/motorized/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -228,13 +228,13 @@
 		return FALSE
 
 	if (!panel_open)
-		balloon_alert(user, "panel is closed!")
+		balloon_alert(user, "面板是关着的！")
 		return FALSE
 
 	if (!bomb_attached)
 		RegisterSignal(src, COMSIG_WHEELCHAIR_BELL_RANG, PROC_REF(on_bell_rang))
-	balloon_alert(user, "bomb implanted...?")
-	visible_message(span_warning("A bomb appears in [src], what the fuck?"))
+	balloon_alert(user, "炸弹植入……？")
+	visible_message(span_warning("一颗炸弹出现在[src]里，搞什么鬼？"))
 	obj_flags |= EMAGGED
 	return TRUE
 

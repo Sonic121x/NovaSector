@@ -1,18 +1,18 @@
 /obj/effect/cosmic_diamond
-	name = "Cosmic Diamond"
+	name = "宇宙钻石"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "cosmic_diamond"
 	anchored = TRUE
 
 /obj/effect/temp_visual/cosmic_cloud
-	name = "Cosmic Cloud"
+	name = "宇宙云"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "cosmic_cloud"
 	anchored = TRUE
 	duration = 8
 
 /obj/effect/temp_visual/cosmic_explosion
-	name = "Cosmic Explosion"
+	name = "宇宙爆炸"
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "cosmic_explosion"
 	anchored = TRUE
@@ -21,7 +21,7 @@
 	pixel_y = -16
 
 /obj/effect/temp_visual/space_explosion
-	name = "Space Explosion"
+	name = "太空爆炸"
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "space_explosion"
 	anchored = TRUE
@@ -30,7 +30,7 @@
 	pixel_y = -16
 
 /obj/effect/temp_visual/cosmic_domain
-	name = "Cosmic Domain"
+	name = "宇宙领域"
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "cosmic_domain"
 	anchored = TRUE
@@ -39,7 +39,7 @@
 	pixel_y = -64
 
 /obj/effect/temp_visual/cosmic_gem
-	name = "cosmic gem"
+	name = "宇宙宝石"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "cosmic_gem"
 	duration = 12

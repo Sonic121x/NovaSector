@@ -6,9 +6,9 @@
 
 
 /datum/action/innate/clockcult/quick_bind
-	name = "Quick Bind"
+	name = "快速绑定"
 	button_icon_state = "telerune"
-	desc = "A quick bound spell."
+	desc = "一个快速绑定的法术。"
 	/// Weakref to the relevant slab
 	var/datum/weakref/slab_weakref
 	/// Ref to the relevant scripture
@@ -53,7 +53,7 @@
 		scripture.begin_invoke(owner, activation_slab)
 
 	else
-		to_chat(owner, span_brass("You fail to invoke [name]."))
+		to_chat(owner, span_brass("你未能成功施放[name]。"))
 
 /datum/action/item_action/toggle/clock
 	button_icon = 'modular_nova/modules/clock_cult/icons/background_clock.dmi'

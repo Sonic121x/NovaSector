@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/elevator
-	name = "elevator"
+	name = "电梯"
 	shuttle_id = "elevator"
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 

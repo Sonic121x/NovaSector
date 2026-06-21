@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/color/black
-	desc = "These gloves are fire-resistant."
-	name = "black gloves"
+	desc = "这双手套具有防火能力。"
+	name = "黑手套"
 	icon_state = "black"
 	greyscale_colors = "#2f2e31"
 	cold_protection = HANDS
@@ -20,8 +20,8 @@
 	)
 
 /obj/item/clothing/gloves/color/black/security
-	name = "security gloves"
-	desc = "These security gloves come with microchips that help the user quickly restrain suspects."
+	name = "安保手套"
+	desc = "这些安保手套配有微芯片，能帮助使用者快速制服嫌疑人。"
 	icon_state = "sec"
 	clothing_traits = list(TRAIT_FAST_CUFFING)
 
@@ -29,8 +29,8 @@
 	icon_state = "sec_blu"
 
 /obj/item/clothing/gloves/fingerless
-	name = "fingerless gloves"
-	desc = "Plain black gloves without fingertips for the hard-working."
+	name = "无指手套"
+	desc = "为辛勤工作者准备的普通黑色无指尖手套。"
 	icon_state = "fingerless"
 	greyscale_colors = "#2f2e31"
 	strip_delay = 4 SECONDS
@@ -52,20 +52,20 @@
 	)
 
 /obj/item/clothing/gloves/color/orange
-	name = "orange gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "橙色手套"
+	desc = "这只是一双手套而已，不管怎么看，都没什么特别之处。"
 	icon_state = "orange"
 	greyscale_colors = COLOR_CRAYON_ORANGE
 
 /obj/item/clothing/gloves/color/red
-	name = "red gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "红手套"
+	desc = "这只是一双手套而已，不管怎么看，都没什么特别之处。"
 	icon_state = "red"
 	greyscale_colors = COLOR_CRAYON_RED
 
 /obj/item/clothing/gloves/color/red/insulated
-	name = "insulated gloves"
-	desc = "These gloves provide protection against electric shock."
+	name = "绝缘手套"
+	desc = "这双手套具有绝缘效果。"
 	siemens_coefficient = 0
 	armor_type = /datum/armor/red_insulated
 	resistance_flags = NONE
@@ -74,40 +74,40 @@
 	bio = 50
 
 /obj/item/clothing/gloves/color/rainbow
-	name = "rainbow gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "彩虹手套"
+	desc = "这只是一双手套而已，不管怎么看，都没什么特别之处。"
 	icon_state = "rainbow"
 	inhand_icon_state = "rainbow_gloves"
 	greyscale_colors = null
 
 /obj/item/clothing/gloves/color/blue
-	name = "blue gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "蓝色手套"
+	desc = "这只是一双手套而已，不管怎么看，都没什么特别之处。"
 	icon_state = "blue"
 	greyscale_colors = COLOR_CRAYON_BLUE
 
 /obj/item/clothing/gloves/color/purple
-	name = "purple gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "紫色手套"
+	desc = "这只是一双手套而已，不管怎么看，都没什么特别之处。"
 	icon_state = "purple"
 	greyscale_colors = "#cc33ff"
 
 /obj/item/clothing/gloves/color/green
-	name = "green gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "绿色手套"
+	desc = "这只是一双手套而已，不管怎么看，都没什么特别之处。"
 	icon_state = "green"
 	greyscale_colors = COLOR_CRAYON_GREEN
 
 /obj/item/clothing/gloves/color/grey
-	name = "grey gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "灰色手套"
+	desc = "这只是一双手套而已，不管怎么看，都没什么特别之处。"
 	icon_state = "gray"
 	greyscale_colors = "#999999"
 
 // Grey gloves intended to be paired with winter coats (specifically EVA winter coats)
 /obj/item/clothing/gloves/color/grey/protects_cold
-	name = "\proper Endotherm gloves"
-	desc = "A pair of thick grey gloves, lined to protect the wearer from freezing cold."
+	name = "\proper 恒温手套"
+	desc = "一双厚实的灰色手套，可保护穿戴者不被冻伤。"
 	w_class = WEIGHT_CLASS_NORMAL
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
@@ -115,20 +115,20 @@
 	clothing_flags = parent_type::clothing_flags | THICKMATERIAL
 
 /obj/item/clothing/gloves/color/light_brown
-	name = "light brown gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "浅棕色手套"
+	desc = "这只是一双手套而已，不管怎么看，都没什么特别之处。"
 	icon_state = "lightbrown"
 	greyscale_colors = "#c09f72"
 
 /obj/item/clothing/gloves/color/brown
-	name = "brown gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "棕色手套"
+	desc = "这只是一双手套而已，不管怎么看，都没什么特别之处。"
 	icon_state = "brown"
 	greyscale_colors = "#83613d"
 
 /obj/item/clothing/gloves/color/white
-	name = "white gloves"
-	desc = "These look pretty fancy."
+	name = "白色手套"
+	desc = "看起来相当有档次。"
 	icon_state = "white"
 	greyscale_colors = COLOR_WHITE
 	custom_price = PAYCHECK_CREW

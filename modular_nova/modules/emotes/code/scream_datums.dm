@@ -16,11 +16,11 @@ GLOBAL_LIST_EMPTY(scream_types_by_name)
 	return ..()
 
 /datum/scream_type/none //Why would you want this?
-	name = "No Scream"
+	name = "无尖叫"
 	scream_sounds = null
 
 /datum/scream_type/human
-	name = "Human Scream"
+	name = "人类尖叫"
 	scream_sounds = list(
 		'sound/mobs/humanoids/human/scream/malescream_1.ogg',
 		'sound/mobs/humanoids/human/scream/malescream_2.ogg',
@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(scream_types_by_name)
 	)
 
 /datum/scream_type/human_two
-	name = "Human Scream 2"
+	name = "人类尖叫 2"
 	scream_sounds = list(
 		'sound/mobs/humanoids/human/scream/malescream_1.ogg',
 		'sound/mobs/humanoids/human/scream/malescream_2.ogg',
@@ -74,11 +74,11 @@ GLOBAL_LIST_EMPTY(scream_types_by_name)
 	scream_sounds = list('sound/mobs/humanoids/human/scream/wilhelm_scream.ogg')
 
 /datum/scream_type/robotic
-	name = "Robotic Scream"
+	name = "机械尖叫"
 	scream_sounds = list('modular_nova/modules/emotes/sound/voice/scream_silicon.ogg')
 
 /datum/scream_type/lizard
-	name = "Lizard Scream"
+	name = "蜥蜴尖叫"
 	scream_sounds = list(
 		'sound/mobs/humanoids/lizard/lizard_scream_1.ogg',
 		'sound/mobs/humanoids/lizard/lizard_scream_2.ogg',
@@ -86,35 +86,35 @@ GLOBAL_LIST_EMPTY(scream_types_by_name)
 	)
 
 /datum/scream_type/lizard2
-	name = "Lizard Scream 2"
+	name = "蜥蜴尖叫 2"
 	scream_sounds = list('modular_nova/modules/emotes/sound/voice/scream_lizard.ogg')
 
 /datum/scream_type/cat
-	name = "Cat Scream"
+	name = "猫叫"
 	scream_sounds = list('modular_nova/modules/emotes/sound/voice/scream_cat.ogg')
 
 /datum/scream_type/moth
-	name = "Moth Scream"
+	name = "蛾族尖叫"
 	scream_sounds = list('sound/mobs/humanoids/moth/scream_moth.ogg')
 
 /datum/scream_type/jelly
-	name = "Jelly Scream"
+	name = "果冻尖叫"
 	scream_sounds = list('modular_nova/modules/emotes/sound/emotes/jelly_scream.ogg')
 
 /datum/scream_type/vox
-	name = "Vox Scream"
+	name = "沃克斯尖叫"
 	scream_sounds = list('modular_nova/modules/emotes/sound/emotes/voxscream.ogg')
 
 /datum/scream_type/xeno
-	name = "Xeno Scream"
+	name = "异形尖叫"
 	scream_sounds = list('sound/mobs/non-humanoids/hiss/hiss6.ogg')
 
 /datum/scream_type/raptor //This is the Teshari scream ported from CitRP which was a cockatoo scream edited by BlackMajor.
-	name = "Raptor Scream"
+	name = "迅猛龙尖啸"
 	scream_sounds = list('modular_nova/modules/emotes/sound/emotes/raptorscream.ogg')
 
 /datum/scream_type/rodent //Ported from Polaris/Virgo.
-	name = "Rodent Scream"
+	name = "啮齿动物尖啸"
 	scream_sounds = list('modular_nova/modules/emotes/sound/emotes/rodentscream.ogg')
 
 /datum/scream_type/chicken
@@ -122,23 +122,23 @@ GLOBAL_LIST_EMPTY(scream_types_by_name)
 	scream_sounds = list('sound/mobs/non-humanoids/chicken/bagawk.ogg')
 
 /datum/scream_type/ethereal
-	name = "Ethereal Scream"
+	name = "灵能尖啸"
 	scream_sounds = list(
 		'sound/mobs/humanoids/ethereal/ethereal_scream_1.ogg',
 		'sound/mobs/humanoids/ethereal/ethereal_scream_2.ogg',
 		'sound/mobs/humanoids/ethereal/ethereal_scream_3.ogg')
 
 /datum/scream_type/slugcat
-	name = "Slugcat Scream"
+	name = "蛞蝓猫尖啸"
 	scream_sounds = list('modular_nova/modules/emotes/sound/voice/scugscream_1.ogg')
 
 //DONATOR SCREAMS
 /datum/scream_type/zombie
-	name = "Zombie Scream"
+	name = "僵尸尖啸"
 	scream_sounds = list('modular_nova/modules/emotes/sound/emotes/zombie_scream.ogg')
 
 /datum/scream_type/monkey
-	name = "Monkey Scream"
+	name = "猴子尖啸"
 	scream_sounds = list(
 		'modular_nova/modules/emotes/sound/voice/scream_monkey.ogg',
 		'sound/mobs/non-humanoids/monkey/monkey_screech_1.ogg',
@@ -151,15 +151,15 @@ GLOBAL_LIST_EMPTY(scream_types_by_name)
 	)
 
 /datum/scream_type/gorilla
-	name = "Gorilla Scream"
+	name = "大猩猩尖啸"
 	scream_sounds = list('sound/mobs/non-humanoids/gorilla/gorilla.ogg')
 
 /datum/scream_type/skeleton
-	name = "Skeleton Scream"
+	name = "骷髅尖啸"
 	scream_sounds = list('modular_nova/modules/emotes/sound/voice/scream_skeleton.ogg')
 
 /datum/scream_type/plasmaman
-	name = "Plasmaman Scream"
+	name = "等离子人尖啸"
 	scream_sounds = list(
 		'sound/mobs/humanoids/plasmaman/plasmeme_scream_1.ogg',
 		'sound/mobs/humanoids/plasmaman/plasmeme_scream_2.ogg',

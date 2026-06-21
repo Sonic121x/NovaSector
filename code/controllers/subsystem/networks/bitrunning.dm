@@ -1,7 +1,7 @@
 #define REDACTED "???"
 
 SUBSYSTEM_DEF(bitrunning)
-	name = "Bitrunning"
+	name = "比特运行"
 	ss_flags = SS_NO_FIRE
 
 	var/list/all_domains = list()
@@ -51,11 +51,11 @@ SUBSYSTEM_DEF(bitrunning)
 	return choice
 
 /obj/item/paper/paperslip/bitrunning_error
-	name = "Apology Letter"
-	desc = "Something went wrong here."
+	name = "致歉信"
+	desc = "这里出了点问题。"
 
 /obj/item/paper/paperslip/bitrunning_error/Initialize(mapload)
-	default_raw_text = "Your reward for collecting the encrypted curiosity failed to arrive, please report this to technical support."
+	default_raw_text = "您收集加密奇物应得的奖励未能送达，请将此问题报告给技术支持。"
 	return ..()
 
 #undef REDACTED

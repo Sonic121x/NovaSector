@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	var/list/perks = list()
 
 /datum/antagonist/wizard_minion
-	name = "Wizard Minion"
+	name = "巫师侍从"
 	antagpanel_category = ANTAG_GROUP_WIZARDS
 	antag_hud_name = "apprentice"
 	show_in_roundend = FALSE
@@ -224,7 +224,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	var/wizard_name_second = pick(GLOB.wizard_second)
 	var/randomname = "[wizard_name_first] [wizard_name_second]"
 	var/mob/living/wiz_mob = owner.current
-	var/newname = sanitize_name(reject_bad_text(tgui_input_text(wiz_mob, "You are the [name]. Would you like to change your name to something else?", "Name change", randomname, MAX_NAME_LEN)))
+	var/newname = sanitize_name(reject_bad_text(tgui_input_text(wiz_mob, "你就是[name]。你想把名字改成别的吗？", "改名", randomname, MAX_NAME_LEN)))
 
 	if (!newname)
 		newname = randomname
@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	owner.current.forceMove(pick(GLOB.wizardstart))
 
 /datum/antagonist/wizard/apprentice
-	name = "Wizard Apprentice"
+	name = "巫师学徒"
 	antag_hud_name = "apprentice"
 	can_assign_self_objectives = FALSE
 	move_to_lair = FALSE
@@ -342,7 +342,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 
 //Random event wizard
 /datum/antagonist/wizard/apprentice/imposter
-	name = "Wizard Imposter"
+	name = "巫师骗子"
 	show_in_antagpanel = FALSE
 	allow_rename = FALSE
 	move_to_lair = FALSE
@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	blink.Grant(H)
 
 /datum/antagonist/wizard/academy
-	name = "Academy Teacher"
+	name = "学院教师"
 	show_in_antagpanel = FALSE
 	outfit_type = /datum/outfit/wizard/academy
 	move_to_lair = FALSE
@@ -452,7 +452,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	parts += span_header("Wizards/witches of [master_wizard.owner.name] team were:")
 	parts += master_wizard.roundend_report()
 	parts += " "
-	parts += span_header("[master_wizard.owner.name] apprentices and minions were:")
+	parts += span_header("[master_wizard.owner.name] 的学徒和仆从是：")
 	parts += printplayerlist(members - master_wizard.owner)
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"

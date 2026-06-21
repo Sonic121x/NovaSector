@@ -35,7 +35,7 @@
 
 	. = ..(mapload, wanted_poster)
 	name = "[postName] ([wanted_name])"
-	desc = "[postDesc] [wanted_name]."
+	desc = "[postDesc] [wanted_name]。"
 	postHeaderText = headerText
 
 /obj/structure/sign/poster/wanted

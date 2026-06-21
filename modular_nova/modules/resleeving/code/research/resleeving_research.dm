@@ -1,6 +1,6 @@
 /datum/design/rsd_interface
-	name = "RSD Phylactery"
-	desc = "A brain interface that allows for transfer of Resonance from a handheld RSD, such as the Evoker model."
+	name = "RSD 魂器"
+	desc = "一种大脑接口，允许从手持式 RSD（例如 Evoker 型号）传输共振。"
 	id = "rsd_interface"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE

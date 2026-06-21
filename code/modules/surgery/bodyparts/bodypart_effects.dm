@@ -183,7 +183,7 @@
 
 	owner.adjust_fire_stacks(fire_stacks_per_second * seconds_between_ticks * length(bodyparts))
 	if(owner.ignite_mob())
-		owner.visible_message(span_danger("[owner]'s body reacts with the atmosphere and bursts into flames!"), span_userdanger("Your body reacts with the atmosphere and bursts into flame!"))
+		owner.visible_message(span_danger("[owner]的身体与大气发生反应，燃起了火焰！"), span_userdanger("你的身体与大气发生反应，燃起了火焰！"))
 
 #undef GET_BODYPART_COEFFICIENT
 #undef IS_FULL_BODY

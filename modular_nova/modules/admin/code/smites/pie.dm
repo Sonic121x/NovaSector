@@ -1,6 +1,6 @@
 //Drops a pie into the face of your victim
 /datum/smite/pie
-	name = "Pie"
+	name = "派"
 
 /datum/smite/pie/effect(client/user, mob/living/target)
 	. = ..()

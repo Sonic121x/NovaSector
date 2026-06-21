@@ -1,6 +1,6 @@
 /mob/living/basic/butterfly
-	name = "butterfly"
-	desc = "A colorful butterfly, how'd it get up here?"
+	name = "蝴蝶"
+	desc = "一只色彩斑斓的蝴蝶，它是怎么上来的？"
 	icon_state = "butterfly"
 	icon_living = "butterfly"
 	icon_dead = "butterfly_dead"
@@ -46,7 +46,7 @@
 	unsuitable_atmos_damage = 0
 
 /mob/living/basic/butterfly/lavaland/temporary
-	name = "strange butterfly"
+	name = "奇怪的蝴蝶"
 	basic_mob_flags = DEL_ON_DEATH
 	/// The atom that's spawning the butterflies
 	var/atom/source = null
@@ -94,4 +94,4 @@
 
 /mob/living/basic/butterfly/lavaland/temporary/examine(mob/user)
 	. = ..()
-	. += span_notice("Something about it seems unreal...")
+	. += span_notice("它身上似乎有种不真实的感觉...")

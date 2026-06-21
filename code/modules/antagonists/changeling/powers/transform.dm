@@ -1,6 +1,6 @@
 /datum/action/changeling/transform
-	name = "Transform"
-	desc = "We take on the appearance and voice of one we have absorbed. Costs 5 chemicals."
+	name = "变形"
+	desc = "我们接受我们所吸收的人的外貌和声音. 使用消耗5化学点"
 	button_icon_state = "transform"
 	chemical_cost = 5
 	dna_cost = CHANGELING_POWER_INNATE
@@ -8,14 +8,14 @@
 	req_human = TRUE
 
 /obj/item/clothing/glasses/changeling
-	name = "flesh"
+	name = "肉块"
 	spawn_blacklisted = TRUE
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/glasses/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你将[src]重新吸收回体内。"))
 		qdel(src)
 		return
 	. = ..()
@@ -24,14 +24,14 @@
 	attack_hand(user, modifiers)
 
 /obj/item/clothing/under/changeling
-	name = "flesh"
+	name = "肉块"
 	spawn_blacklisted = TRUE
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/under/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你将[src]重新吸收回体内。"))
 		qdel(src)
 		return
 	. = ..()
@@ -40,7 +40,7 @@
 	attack_hand(user, modifiers)
 
 /obj/item/clothing/suit/changeling
-	name = "flesh"
+	name = "肉块"
 	spawn_blacklisted = TRUE
 	allowed = list(/obj/item/changeling)
 	item_flags = DROPDEL
@@ -48,7 +48,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/suit/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你将[src]重新吸收回体内。"))
 		qdel(src)
 		return
 	. = ..()
@@ -57,7 +57,7 @@
 	attack_hand(user, modifiers)
 
 /obj/item/clothing/head/changeling
-	name = "flesh"
+	name = "肉块"
 	icon_state = null
 	spawn_blacklisted = TRUE
 	item_flags = DROPDEL
@@ -65,7 +65,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/head/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你将[src]重新吸收回体内。"))
 		qdel(src)
 		return
 	. = ..()
@@ -74,14 +74,14 @@
 	attack_hand(user, modifiers)
 
 /obj/item/clothing/shoes/changeling
-	name = "flesh"
+	name = "肉块"
 	spawn_blacklisted = TRUE
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/shoes/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你将[src]重新吸收回体内。"))
 		qdel(src)
 		return
 	. = ..()
@@ -90,14 +90,14 @@
 	attack_hand(user, modifiers)
 
 /obj/item/clothing/gloves/changeling
-	name = "flesh"
+	name = "肉块"
 	spawn_blacklisted = TRUE
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/gloves/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你将[src]重新吸收回体内。"))
 		qdel(src)
 		return
 	. = ..()
@@ -106,14 +106,14 @@
 	attack_hand(user, modifiers)
 
 /obj/item/clothing/mask/changeling
-	name = "flesh"
+	name = "肉块"
 	spawn_blacklisted = TRUE
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你将[src]重新吸收回体内。"))
 		qdel(src)
 		return
 	. = ..()
@@ -122,7 +122,7 @@
 	attack_hand(user, modifiers)
 
 /obj/item/changeling
-	name = "flesh"
+	name = "肉块"
 	spawn_blacklisted = TRUE
 	slot_flags = ALL
 	item_flags = DROPDEL
@@ -130,7 +130,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你将[src]重新吸收回体内。"))
 		qdel(src)
 		return
 	. = ..()

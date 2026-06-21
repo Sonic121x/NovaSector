@@ -8,8 +8,8 @@ Difficulty: Extremely Hard
 */
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner
-	name = "demonic-frost miner"
-	desc = "An extremely well-geared miner, driven crazy or possessed by the demonic forces here, either way a terrifying enemy."
+	name = "恶魔-冰霜矿工杀手"
+	desc = "一个装备极其精良的矿工，要么被这里的邪恶力量驱使发狂，要么被其附身，不管怎样，都是一股可怕的敌人力量。"
 	health = 1500
 	maxHealth = 1500
 	icon_state = "demonic_miner"
@@ -159,7 +159,7 @@ Difficulty: Extremely Hard
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/ex_act(severity, target)
 	adjust_brute_loss(-30 * severity)
-	visible_message(span_danger("[src] absorbs the explosion!"), span_userdanger("You absorb the explosion!"))
+	visible_message(span_danger("[src]吸收了爆炸！"), span_userdanger("你吸收了爆炸！"))
 	return TRUE
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Goto(target, delay, minimum_distance)
@@ -194,7 +194,7 @@ Difficulty: Extremely Hard
 	return ..()
 
 /obj/projectile/colossus/frost_orb
-	name = "frost orb"
+	name = "霜冻之球"
 	icon_state = "ice_1"
 	damage = 20
 	armour_penetration = 100
@@ -209,7 +209,7 @@ Difficulty: Extremely Hard
 		EX_ACT(target, EXPLODE_HEAVY)
 
 /obj/projectile/colossus/snowball
-	name = "machine-gun snowball"
+	name = "机关枪雪球"
 	icon_state = "nuclear_particle"
 	damage = 5
 	armour_penetration = 100
@@ -219,7 +219,7 @@ Difficulty: Extremely Hard
 	explode_hit_objects = FALSE
 
 /obj/projectile/colossus/ice_blast
-	name = "ice blast"
+	name = "冰爆"
 	icon_state = "ice_2"
 	damage = 15
 	armour_penetration = 100
@@ -246,14 +246,14 @@ Difficulty: Extremely Hard
 	return ..()
 
 /atom/movable/screen/alert/status_effect/ice_block_talisman
-	name = "Frozen Solid"
-	desc = "You're frozen inside an ice cube, and cannot move!"
+	name = "冻结实心"
+	desc = "你被冻在冰块里，无法移动！"
 	icon_state = "frozen"
 
 /datum/status_effect/ice_block_talisman/on_apply()
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(owner_moved))
 	if(!owner.stat)
-		to_chat(owner, span_userdanger("You become frozen in a cube!"))
+		to_chat(owner, span_userdanger("你被冻在冰块里了！"))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
 	var/list/icon_dimensions = get_icon_dimensions(owner.icon)
 	cube.Scale(icon_dimensions["width"], icon_dimensions["height"])
@@ -272,13 +272,13 @@ Difficulty: Extremely Hard
 
 /datum/status_effect/ice_block_talisman/on_remove()
 	if(!owner.stat)
-		to_chat(owner, span_notice("The cube melts!"))
+		to_chat(owner, span_notice("冰块融化了！"))
 	owner.cut_overlay(cube)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 
 /obj/structure/frost_miner_prism
-	name = "frost miner light prism"
-	desc = "A magical crystal enhanced by a demonic presence."
+	name = "寒霜矿工光棱"
+	desc = "一块被恶魔力量强化的魔法水晶。"
 	icon = 'icons/obj/science/slimecrossing.dmi'
 	icon_state = "lightprism"
 	density = FALSE

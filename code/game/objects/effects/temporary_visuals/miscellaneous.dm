@@ -50,7 +50,7 @@
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration, flags = CUBIC_EASING | EASE_OUT)
 
 /obj/effect/temp_visual/dir_setting/speedbike_trail
-	name = "speedbike trails"
+	name = "极速摩托轨迹"
 	icon_state = "ion_fade"
 	layer = BELOW_MOB_LAYER
 	plane = GAME_PLANE
@@ -97,7 +97,7 @@
 	duration = 3
 
 /obj/effect/temp_visual/dir_setting/ninja
-	name = "ninja shadow"
+	name = "忍者 阴影"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "uncloak"
 	duration = 9
@@ -109,14 +109,14 @@
 	icon_state = "shadow"
 
 /obj/effect/temp_visual/dir_setting/ninja/phase
-	name = "ninja energy"
+	name = "ninja energy-忍者 能量"
 	icon_state = "phasein"
 
 /obj/effect/temp_visual/dir_setting/ninja/phase/out
 	icon_state = "phaseout"
 
 /obj/effect/temp_visual/dir_setting/wraith
-	name = "shadow"
+	name = "阴影"
 	icon = 'icons/mob/nonhuman-player/cult.dmi'
 	icon_state = "phase_shift2_cult"
 	duration = 0.6 SECONDS
@@ -171,8 +171,8 @@
 
 
 /obj/effect/temp_visual/bsa_splash
-	name = "\improper Bluespace energy wave"
-	desc = "A massive, rippling wave of bluepace energy, all rapidly exhausting itself the moment it leaves the concentrated beam of light."
+	name = "\improper 蓝空能量波"
+	desc = "一股巨大的蓝空能量波，在离开集中光束的那一刻迅速耗尽。"
 	icon = 'icons/effects/beam_splash.dmi'
 	icon_state = "beam_splash_e"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -189,8 +189,8 @@
 			icon_state = "beam_splash_e"
 
 /obj/effect/temp_visual/bsa_impact
-	name = "\improper Bluespace Artillery detonation"
-	desc = "Tearing into conventional space once more, the immense energy of the beam is delivered directly into the target and its surroundings."
+	name = "\improper 蓝空火炮引爆"
+	desc = "再次撕裂常规空间，光束的巨大能量被直接传递到目标及其周围环境。"
 	icon = 'icons/effects/96x160.dmi'
 	icon_state = "bsa_impact_ex"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -200,7 +200,7 @@
 	duration = 10
 
 /obj/effect/temp_visual/wizard
-	name = "water"
+	name = "水"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "reappear"
 	duration = 5
@@ -233,7 +233,7 @@
 	icon_state = "phaseout"
 
 /obj/effect/temp_visual/decoy
-	desc = "It's a decoy!"
+	desc = "这是诱饵！"
 	duration = 15
 
 /obj/effect/temp_visual/decoy/Initialize(mapload, atom/mimiced_atom)
@@ -279,37 +279,37 @@
 	color = COLOR_DARK_ORANGE
 
 /obj/effect/temp_visual/revenant
-	name = "spooky lights"
+	name = "吓人的灯光"
 	icon_state = "purplesparkles"
 
 /obj/effect/temp_visual/revenant/cracks
-	name = "glowing cracks"
+	name = "发光裂缝"
 	icon_state = "purplecrack"
 	duration = 6
 
 /obj/effect/temp_visual/gravpush
-	name = "gravity wave"
+	name = "重力波"
 	icon_state = "shieldsparkles"
 	duration = 5
 
 /obj/effect/temp_visual/telekinesis
-	name = "telekinetic force"
+	name = "遥感之力"
 	icon_state = "telekinesis_throw" // NOVA EDIT CHANGE - ORIGINAL: icon_state = "empdisable"
 	icon = 'modular_nova/master_files/icons/effects/tele_effects.dmi' // NOVA EDIT ADDITION
 	duration = 5
 
 /obj/effect/temp_visual/emp
-	name = "emp sparks"
+	name = "电磁脉冲火花"
 	icon_state = "empdisable"
 
 /obj/effect/temp_visual/emp/pulse
-	name = "emp pulse"
+	name = "电磁脉冲"
 	icon_state = "emppulse"
 	duration = 8
 	randomdir = 0
 
 /obj/effect/temp_visual/bluespace_fissure
-	name = "bluespace fissure"
+	name = "蓝空裂隙"
 	icon_state = "bluestream_fade"
 	duration = 9
 
@@ -334,7 +334,7 @@
 	duration = 20
 
 /obj/effect/temp_visual/heal //color is white by default, set to whatever is needed
-	name = "healing glow"
+	name = "治愈光芒"
 	icon_state = "heal"
 	duration = 15
 
@@ -346,7 +346,7 @@
 	pixel_y = rand(-9, 0)
 
 /obj/effect/temp_visual/kinetic_blast
-	name = "kinetic explosion"
+	name = "动能爆炸"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "kinetic_blast"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -354,7 +354,7 @@
 	duration = 4
 
 /obj/effect/temp_visual/explosion
-	name = "explosion"
+	name = "爆炸"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
 	pixel_x = -32
@@ -366,14 +366,14 @@
 	duration = 4
 
 /obj/effect/temp_visual/blob
-	name = "blob"
+	name = "孢子"
 	icon_state = "blob_attack"
 	alpha = 140
 	randomdir = 0
 	duration = 6
 
 /obj/effect/temp_visual/desynchronizer
-	name = "desynchronizer field"
+	name = "去同步力场"
 	icon_state = "chronofield"
 	duration = 3
 
@@ -431,7 +431,7 @@
 	color = COLOR_NEARLY_ALL_BLACK
 
 /obj/effect/temp_visual/heart
-	name = "heart"
+	name = "heart-心脏"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "heart"
 	duration = 25
@@ -443,7 +443,7 @@
 	animate(src, pixel_y = pixel_y + 32, alpha = 0, time = 25)
 
 /obj/effect/temp_visual/annoyed
-	name = "annoyed"
+	name = "红温"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "annoyed"
 	duration = 25
@@ -455,7 +455,7 @@
 	animate(src, pixel_y = pixel_y + 16, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/bleed
-	name = "bleed"
+	name = "失血"
 	icon = 'icons/effects/bleed.dmi'
 	icon_state = "bleed0"
 	duration = 10
@@ -554,9 +554,9 @@
 	. = ..()
 
 	if (status == RCD_DECONSTRUCT)
-		name = "deconstruction effect"
+		name = "解构效果"
 	else
-		name = "construction effect"
+		name = "建造效果"
 
 /obj/effect/constructing_effect/update_icon_state()
 	icon_state = "rcd"
@@ -690,7 +690,7 @@
 	return ..()
 
 /obj/effect/temp_visual/block //color is white by default, set to whatever is needed
-	name = "blocking glow"
+	name = "格挡辉光"
 	icon_state = "block"
 	duration = 6.7
 
@@ -702,7 +702,7 @@
 	pixel_y = rand(-9, 0)
 
 /obj/effect/temp_visual/crit
-	name = "critical hit"
+	name = "暴击"
 	icon_state = "crit"
 	duration = 15
 
@@ -711,7 +711,7 @@
 	animate(src, pixel_y = pixel_y + 16, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/jet_plume
-	name = "jet plume"
+	name = "喷射羽流"
 	icon_state = "jet_plume"
 	layer = BELOW_MOB_LAYER
 	plane = GAME_PLANE
@@ -719,7 +719,7 @@
 
 /// Plays a dispersing animation on hivelord and legion minions so they don't just vanish
 /obj/effect/temp_visual/despawn_effect
-	name = "withering spawn"
+	name = "凋零生成"
 	duration = 1 SECONDS
 
 /obj/effect/temp_visual/despawn_effect/Initialize(mapload, atom/copy_from)
@@ -746,7 +746,7 @@
 	return ..()
 
 /obj/effect/temp_visual/mech_sparks
-	name = "mech sparks"
+	name = "机甲火花"
 	icon_state = "mech_sparks"
 	duration = 0.4 SECONDS
 
@@ -756,7 +756,7 @@
 	pixel_y = rand(-8, 8)
 
 /obj/effect/temp_visual/mech_attack_aoe_charge
-	name = "mech attack aoe charge"
+	name = "机甲攻击范围充能"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "mech_attack_aoe_charge"
 	duration = 0.5 SECONDS
@@ -764,7 +764,7 @@
 	pixel_y = -32
 
 /obj/effect/temp_visual/mech_attack_aoe_attack
-	name = "mech attack aoe attack"
+	name = "机甲攻击范围攻击"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "mech_attack_aoe_attack"
 	duration = 0.5 SECONDS
@@ -772,7 +772,7 @@
 	pixel_y = -32
 
 /obj/effect/temp_visual/spotlight
-	name = "Spotlight"
+	name = "聚光灯"
 	icon = 'icons/effects/light_overlays/light_64.dmi'
 	icon_state = "spotlight"
 	duration = 5 MINUTES
@@ -823,7 +823,7 @@
 
 /obj/effect/temp_visual/focus_ring
 	randomdir = FALSE
-	name = "ring"
+	name = "光环"
 	icon_state = "focus_ring"
 	layer = BELOW_MOB_LAYER
 	duration = 2.5 SECONDS

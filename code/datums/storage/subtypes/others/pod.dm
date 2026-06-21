@@ -7,7 +7,7 @@
 
 /datum/storage/pod/open_storage(mob/to_show)
 	if(locked && isliving(to_show)) //Observers get to see anyway
-		to_chat(to_show, span_warning("The storage unit will only unlock during a Red or Delta security alert."))
+		to_chat(to_show, span_warning("该储物单元仅在红色或德尔塔安保警报期间解锁。"))
 		return FALSE
 	return ..()
 

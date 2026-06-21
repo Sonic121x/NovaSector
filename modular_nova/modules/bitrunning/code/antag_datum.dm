@@ -1,5 +1,5 @@
 /datum/antagonist/bitrunning_reinforcement
-	name = "Subcontracted Assisting Bitrunner"
+	name = "分包协助比特狂奔者"
 	antagpanel_category = ANTAG_GROUP_GLITCH
 	pref_flag = ROLE_GLITCH
 	preview_outfit = /datum/outfit/job/bitrunner

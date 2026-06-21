@@ -16,7 +16,7 @@
 /datum/action/cooldown/spell/pointed/terrorize/is_valid_target(atom/cast_on)
 	. = ..()
 	if(!ishuman(cast_on))
-		cast_on.balloon_alert(owner, "cannot be terrorized!")
+		cast_on.balloon_alert(owner, "无法被恐吓！")
 		return FALSE
 
 	var/lit_tiles = 0
@@ -30,7 +30,7 @@
 			unlit_tiles++
 
 	if(lit_tiles > unlit_tiles)
-		cast_on.balloon_alert(owner, "must be in the dark!")
+		cast_on.balloon_alert(owner, "必须在黑暗中！")
 		return FALSE //Having a light on you will usually block this, meaning you'll probably need to get an initial hit on the victim with the light eater
 
 /datum/action/cooldown/spell/pointed/terrorize/cast(mob/living/carbon/human/cast_on)

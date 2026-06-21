@@ -1,6 +1,6 @@
 /obj/machinery/bouldertech
-	name = "bouldertech brand refining machine"
-	desc = "You shouldn't be seeing this! And bouldertech isn't even a real company!"
+	name = "Bouldertech 品牌精炼机"
+	desc = "你不应该看到这个！而且 Bouldertech 甚至不是一家真正的公司！"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "ore_redemption"
 	base_icon_state = "ore_redemption"
@@ -87,18 +87,18 @@
 	if(boulder_count >= 1)
 		. += span_notice("[EXAMINE_HINT("Right Click")] to manually remove a stored boulder.<br />")
 
-	. += span_info("Storage capacity = <b>[boulder_count]/[boulders_held_max] boulders</b>.")
+	. += span_info("存储容量 = <b>[boulder_count]/[boulders_held_max] 块巨石</b>。")
 	. += span_info("This machine can process up to [EXAMINE_HINT("[boulders_processing_count] boulders")] at a time.")
 
 	if(anchored)
-		. += span_notice("It's [EXAMINE_HINT("anchored")] in place.")
+		. += span_notice("它已[EXAMINE_HINT("anchored")]就位。")
 	else
-		. += span_warning("It needs to be [EXAMINE_HINT("anchored")] to start operations.")
+		. += span_warning("它需要被[EXAMINE_HINT("anchored")]才能开始运作。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"]。")
 
 	if(panel_open)
-		. += span_notice("The whole machine can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("整个机器可以[EXAMINE_HINT("pried")]。")
 
 /obj/machinery/bouldertech/examine_more(mob/user)
 	. = ..()
@@ -227,7 +227,7 @@
 	PROTECTED_PROC(TRUE)
 
 	Shake(duration = 1 SECONDS)
-	rockman.visible_message(span_warning("[rockman] is processed by [src]!"), span_userdanger("You get processed into bits by [src]!"))
+	rockman.visible_message(span_warning("[rockman] 被 [src] 处理了！"), span_userdanger("你被[src]加工成了碎块！"))
 	rockman.investigate_log("was gibbed by [src] for being a golem", INVESTIGATE_DEATHS)
 	rockman.gib(DROP_ALL_REMAINS)
 
@@ -290,7 +290,7 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/card/id/id_card = tool
-		var/amount = tgui_input_number(user, "How many mining points do you wish to claim? ID Balance: [id_card.registered_account.mining_points], stored mining points: [points_held]", "Transfer Points", max_value = points_held, min_value = 0, round_value = 1)
+		var/amount = tgui_input_number(user, "你希望领取多少采矿点数？ID余额：[id_card.registered_account.mining_points]，存储的采矿点数：[points_held]", "转移点数", max_value = points_held, min_value = 0, round_value = 1)
 		if(!amount)
 			return ITEM_INTERACT_BLOCKING
 		if(amount > points_held)
@@ -323,10 +323,10 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
 		return
 	if(!anchored)
-		balloon_alert(user, "anchor it first!")
+		balloon_alert(user, "先固定它！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(panel_open)
-		balloon_alert(user, "close panel!")
+		balloon_alert(user, "关闭面板！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	var/obj/item/boulder/boulder = locate(/obj/item/boulder) in src

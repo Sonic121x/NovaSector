@@ -125,10 +125,10 @@
 		return
 	var/turf/open/placement_turf = get_turf(user)
 	if(isgroundlessturf(placement_turf) || isclosedturf(placement_turf))
-		balloon_alert(user, "can't deploy!")
+		balloon_alert(user, "无法展开！")
 		return TRUE
 	if(!user.transferItemToLoc(src, placement_turf))
-		balloon_alert(user, "tray stuck!")
+		balloon_alert(user, "托盘卡住了！")
 		return TRUE
 	set_tray_mode(FALSE, user)
 	return
@@ -137,7 +137,7 @@
 	if(!user.can_perform_action(src, NEED_HANDS))
 		return ..()
 	if(!length(contents))
-		balloon_alert(user, "empty!")
+		balloon_alert(user, "空的！")
 	else
 		var/obj/item/grabbies = pick(contents)
 		if(atom_storage.remove_single(user, grabbies, drop_location()))

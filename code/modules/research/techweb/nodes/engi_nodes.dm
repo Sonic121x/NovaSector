@@ -3,7 +3,7 @@
 	id = TECHWEB_NODE_PARTS
 	starting_node = TRUE
 	display_name = "Essential Stock Parts"
-	description = "Foundational components that form the backbone of station operations, encompassing a range of essential equipment necessary for day-to-day functionality."
+	description = "构成空间站运作基础的核心组件，涵盖日常功能所需的一系列基本设备。"
 	design_ids = list(
 		"micro_servo",
 		"basic_battery",
@@ -29,7 +29,7 @@
 /datum/techweb_node/parts_upg
 	id = TECHWEB_NODE_PARTS_UPG
 	display_name = "Upgraded Parts"
-	description = "Offering enhanced capabilities beyond their basic counterparts."
+	description = "提供超越其基础对应物的增强能力。"
 	prereq_ids = list(TECHWEB_NODE_PARTS, TECHWEB_NODE_ENERGY_MANIPULATION)
 	design_ids = list(
 		"rped",
@@ -47,7 +47,7 @@
 /datum/techweb_node/parts_adv
 	id = TECHWEB_NODE_PARTS_ADV
 	display_name = "Advanced Parts"
-	description = "The most finely tuned and accurate stock parts."
+	description = "最精细调校且精确的标准部件。"
 	prereq_ids = list(TECHWEB_NODE_PARTS_UPG)
 	design_ids = list(
 		"ultra_micro_laser",
@@ -66,7 +66,7 @@
 /datum/techweb_node/parts_bluespace
 	id = TECHWEB_NODE_PARTS_BLUESPACE
 	display_name = "Bluespace Parts"
-	description = "Integrating the latest in bluespace technology, these advanced components not only enhance functionality but also open up new possibilities for the station's technological capabilities."
+	description = "整合了最新的蓝空技术，这些先进组件不仅增强了功能，还为空间站的技术能力开辟了新的可能性。"
 	prereq_ids = list(TECHWEB_NODE_PARTS_ADV, TECHWEB_NODE_BLUESPACE_TRAVEL)
 	design_ids = list(
 		"bs_rped",
@@ -85,7 +85,7 @@
 /datum/techweb_node/telecomms
 	id = TECHWEB_NODE_TELECOMS
 	display_name = "Telecommunications Technology"
-	description = "A comprehensive suite of machinery for station-wide communication setups, ensuring seamless connectivity and operational coordination."
+	description = "一套用于全站通信设置的综合性设备，确保无缝连接和操作协调。"
 	prereq_ids = list(TECHWEB_NODE_PARTS_BLUESPACE)
 	design_ids = list(
 		"comm_monitor",
@@ -115,7 +115,7 @@
 	id = TECHWEB_NODE_CONSTRUCTION
 	starting_node = TRUE
 	display_name = "Construction"
-	description = "Tools and essential machinery used for station maintenance and expansion."
+	description = "用于空间站维护和扩展的工具与基本机械。"
 	design_ids = list(
 		"circuit_imprinter_offstation",
 		"circuit_imprinter",
@@ -161,7 +161,7 @@
 /datum/techweb_node/energy_manipulation
 	id = TECHWEB_NODE_ENERGY_MANIPULATION
 	display_name = "Energy Manipulation"
-	description = "Harnessing the raw power of lightning arcs through sophisticated energy control methods."
+	description = "通过复杂的能量控制方法驾驭闪电弧的原始力量。"
 	prereq_ids = list(TECHWEB_NODE_CONSTRUCTION)
 	design_ids = list(
 		"apc_control",
@@ -187,7 +187,7 @@
 /datum/techweb_node/shuttle_engineering
 	id = TECHWEB_NODE_SHUTTLE_ENG
 	display_name = "Shuttle Engineering"
-	description = "Materials and equipment for constructing shuttles"
+	description = "用于建造穿梭机的材料和设备"
 	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION, TECHWEB_NODE_APPLIED_BLUESPACE)
 	design_ids = list(
 		"borg_upgrade_engineering_shuttle_blueprints",
@@ -204,7 +204,7 @@
 /datum/techweb_node/holographics
 	id = TECHWEB_NODE_HOLOGRAPHICS
 	display_name = "Holographics"
-	description = "Use of holographic technology for signage and barriers."
+	description = "将全息技术用于标识和屏障。"
 	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION)
 	design_ids = list(
 		"atmosshieldgen",
@@ -234,7 +234,7 @@
 /datum/techweb_node/hud
 	id = TECHWEB_NODE_HUD
 	display_name = "Integrated HUDs"
-	description = "Initially developed for assistants to learn the nuances of different professions through augmented reality."
+	description = "最初为助手开发，旨在通过增强现实学习不同职业的细微差别。"
 	prereq_ids = list(TECHWEB_NODE_HOLOGRAPHICS, TECHWEB_NODE_CYBER_IMPLANTS)
 	design_ids = list(
 		"health_hud",
@@ -253,7 +253,7 @@
 /datum/techweb_node/night_vision
 	id = TECHWEB_NODE_NIGHT_VISION
 	display_name = "Night Vision Technology"
-	description = "There are whispers that Nanotrasen pushed for this technology to extend shift durations, ensuring productivity around the clock."
+	description = "有传言称，纳米传讯推动这项技术是为了延长轮班时间，确保全天候的生产力。"
 	prereq_ids = list(TECHWEB_NODE_HUD)
 	design_ids = list(
 		"diagnostic_hud_night",

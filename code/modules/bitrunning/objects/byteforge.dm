@@ -1,8 +1,8 @@
 /obj/machinery/byteforge
-	name = "byteforge"
+	name = "字节熔炉"
 
 	circuit = /obj/item/circuitboard/machine/byteforge
-	desc = "A machine used by the quantum server. Quantum code converges here, materializing decrypted assets from the virtual abyss."
+	desc = "一台供量子服务器使用的机器。量子代码在此汇聚，从虚拟深渊中具现化解密的资产。"
 	icon = 'icons/obj/machines/bitrunning.dmi'
 	icon_state = "byteforge"
 	base_icon_state = "byteforge"
@@ -35,11 +35,11 @@
 /obj/machinery/byteforge/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Must be within 4 tiles of the quantum server.")
+	. += span_notice("必须在量子服务器4格范围内。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+	. += span_notice("它的维护区面板可以[EXAMINE_HINT("screwed")][panel_open ? "close" : "open"]。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("它可以[EXAMINE_HINT("pried")]撬开。")
 
 /obj/machinery/byteforge/update_appearance(updates)
 	. = ..()

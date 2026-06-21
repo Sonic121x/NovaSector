@@ -184,12 +184,12 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(!check_rights(R_DEBUG|R_SERVER))
 			return
-		var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
+		var/action_type = tgui_alert(usr, "严格类型（[type]）还是类型及其所有子类型？",,list("Strict type","Type and subtypes","Cancel"))
 		if(action_type == "Cancel" || !action_type)
 			return
-		if(tgui_alert(usr, "Are you really sure you want to delete all objects of type [type]?",,list("Yes","No")) != "Yes")
+		if(tgui_alert(usr, "你确定要删除所有 [type] 类型的对象吗？",,list("Yes","No")) != "Yes")
 			return
-		if(tgui_alert(usr, "Second confirmation required. Delete?",,list("Yes","No")) != "Yes")
+		if(tgui_alert(usr, "需要二次确认。删除吗？",,list("Yes","No")) != "Yes")
 			return
 		var/O_type = type
 		switch(action_type)
@@ -201,10 +201,10 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No objects of this type exist")
+					to_chat(usr, "不存在此类型的物体")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-				message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
+				message_admins(span_notice("[key_name(usr)]删除了所有[O_type]类型的物体（已删除[i]个物体）"))
 			if("Type and subtypes")
 				var/i = 0
 				for(var/obj/Obj in world)
@@ -213,10 +213,10 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No objects of this type exist")
+					to_chat(usr, "不存在此类型的物体")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-				message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
+				message_admins(span_notice("[key_name(usr)]删除了所有[O_type]类型或其子类型的物体（已删除[i]个物体）"))
 
 /obj/examine(mob/user)
 	. = ..()
@@ -276,7 +276,7 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 /// If we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
 /obj/proc/can_be_unfasten_wrench(mob/user, silent)
 	if(!(isfloorturf(loc) || isindestructiblefloor(loc)) && !anchored)
-		to_chat(user, span_warning("[src] needs to be on the floor to be secured!"))
+		to_chat(user, span_warning("[src]需要放在地板上才能固定！"))
 		return FAILED_UNFASTEN
 	return SUCCESSFUL_UNFASTEN
 
@@ -287,20 +287,20 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 
 	var/turf/ground = get_turf(src)
 	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		to_chat(user, span_notice("You fail to secure [src]."))
+		to_chat(user, span_notice("你未能固定[src]。"))
 		return CANT_UNFASTEN
 	var/can_be_unfasten = can_be_unfasten_wrench(user)
 	if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
 		return can_be_unfasten
 	if(time)
-		to_chat(user, span_notice("You begin [anchored ? "un" : ""]securing [src]..."))
+		to_chat(user, span_notice("你开始 [anchored ? "un" : ""]固定 [src]..."))
 	wrench.play_tool_sound(src, 50)
 	var/prev_anchored = anchored
 	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
 	if(!wrench.use_tool(src, user, time, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
 		return FAILED_UNFASTEN
 	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		to_chat(user, span_notice("You fail to secure [src]."))
+		to_chat(user, span_notice("你未能固定[src]。"))
 		return CANT_UNFASTEN
 	to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
 	set_anchored(!anchored)

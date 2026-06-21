@@ -317,7 +317,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		attacking_item.play_tool_sound(src)
 		inverted = !inverted
 		update_move_direction()
-		to_chat(user, span_notice("You set [src]'s direction [inverted ? "backwards" : "back to default"]."))
+		to_chat(user, span_notice("你将[src]的方向设置为[inverted ? "backwards" : "back to default"]。"))
 	else if(attacking_item.tool_behaviour == TOOL_MULTITOOL)
 		attacking_item.play_tool_sound(src)
 		wire_mode = !wire_mode
@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			START_PROCESSING(SSmachines, src)
 		else
 			STOP_PROCESSING(SSmachines, src)
-		to_chat(user, span_notice("You set [src]'s wire mode [wire_mode ? "on" : "off"]."))
+		to_chat(user, span_notice("你将[src]的线控模式设置为[wire_mode ? "on" : "off"]。"))
 	else if(istype(attacking_item, /obj/item/stack/conveyor))
 		// We should place a new conveyor belt machine on the output turf the conveyor is pointing to.
 		var/turf/target_turf = get_step(get_turf(src), forwards)
@@ -351,7 +351,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		attacking_item.play_tool_sound(src)
 		flipped = !flipped
 		update_move_direction()
-		to_chat(user, span_notice("You flip [src]'s belt [flipped ? "around" : "back to normal"]."))
+		to_chat(user, span_notice("你将[src]的传送带[flipped ? "around" : "back to normal"]翻转。"))
 
 	else if(attacking_item.tool_behaviour == TOOL_WRENCH)
 		attacking_item.play_tool_sound(src)
@@ -554,7 +554,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return TRUE
 
 /obj/machinery/conveyor_switch/multitool_act(mob/living/user, obj/item/I)
-	var/input_speed = tgui_input_number(user, "Set the speed of the conveyor belts in seconds", "Speed", conveyor_speed, 20, 0.2, round_value = FALSE)
+	var/input_speed = tgui_input_number(user, "设置传送带移动速度（秒）", "速度", conveyor_speed, 20, 0.2, round_value = FALSE)
 	if(!input_speed || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	conveyor_speed = input_speed
@@ -574,21 +574,21 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor_switch/screwdriver_act(mob/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	oneway = !oneway
-	to_chat(user, span_notice("You set [src] to [oneway ? "one way" : "default"] configuration."))
+	to_chat(user, span_notice("你将 [src] 设置为 [oneway ? "one way" : "default"] 配置。"))
 	return TRUE
 
 /obj/machinery/conveyor_switch/wrench_act(mob/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	invert_icon = !invert_icon
 	update_appearance()
-	to_chat(user, span_notice("You set [src] to [invert_icon ? "inverted": "normal"] position."))
+	to_chat(user, span_notice("你将 [src] 设置为 [invert_icon ? "inverted": "normal"] 位置。"))
 	return TRUE
 
 /obj/machinery/conveyor_switch/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] is set to [oneway ? "one way" : "default"] configuration. It can be changed with a <b>screwdriver</b>.")
-	. += span_notice("[src] is set to [invert_icon ? "inverted": "normal"] position. It can be rotated with a <b>wrench</b>.")
-	. += span_notice("[src] is set to move [conveyor_speed] seconds per belt. It can be changed with a <b>multitool</b>.")
+	. += span_notice("[src] 被设置为 [oneway ? "one way" : "default"] 配置。可以用<b>螺丝刀</b>更改。")
+	. += span_notice("[src] 被设置为 [invert_icon ? "inverted": "normal"] 位置。可以用<b>扳手</b>旋转。")
+	. += span_notice("[src] 被设置为每 [conveyor_speed] 秒移动一格传送带。可以用<b>多功能工具</b>更改。")
 
 /obj/machinery/conveyor_switch/oneway
 	icon_state = "conveyor_switch_oneway"

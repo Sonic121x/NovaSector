@@ -1,0 +1,120 @@
+/datum/job/blueshield
+	title = JOB_BLUESHIELD
+	description = "Protect heads of staff, get your fancy gun stolen, cry as the captain touches the supermatter."
+	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
+	faction = FACTION_STATION
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "Central Command and the Nanotrasen Consultant"
+	minimal_player_age = 7
+	exp_requirements = 2400
+	exp_required_type = EXP_TYPE_CREW
+	exp_required_type_department = EXP_TYPE_COMMAND
+	exp_granted_type = EXP_TYPE_CREW
+	config_tag = "BLUESHIELD"
+
+	paycheck = PAYCHECK_COMMAND
+	paycheck_department = ACCOUNT_CMD
+
+	outfit = /datum/outfit/job/blueshield
+	plasmaman_outfit = /datum/outfit/plasmaman/blueshield
+	display_order = JOB_DISPLAY_ORDER_BLUESHIELD
+	bounty_types = CIV_JOB_SEC
+
+	department_for_prefs = /datum/job_department/captain
+
+	departments_list = list(
+		/datum/job_department/central_command,
+		/datum/job_department/command,
+	)
+	liver_traits = list(TRAIT_PRETENDER_ROYAL_METABOLISM)
+
+	family_heirlooms = list(/obj/item/bedsheet/captain, /obj/item/clothing/head/beret/blueshield)
+
+	mail_goodies = list(
+		/obj/item/storage/fancy/cigarettes/cigars/havana = 10,
+		/obj/item/stack/spacecash/c500 = 3,
+		/obj/item/disk/nuclear/fake/obvious = 2,
+		/obj/item/clothing/head/collectable/captain = 4,
+	)
+
+	nova_stars_only = TRUE
+	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS | JOB_ANTAG_PROTECTED
+
+/datum/outfit/job/blueshield
+	name = "Blueshield"
+	jobtype = /datum/job/blueshield
+	uniform = /obj/item/clothing/under/rank/blueshield
+	suit = /obj/item/clothing/suit/armor/vest/blueshield/jacket
+	gloves = /obj/item/clothing/gloves/tackler/security
+	id = /obj/item/card/id/advanced/centcom/station
+	shoes = /obj/item/clothing/shoes/jackboots
+	ears = /obj/item/radio/headset/headset_bs/alt
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/blue
+	implants = list(/obj/item/implant/mindshield)
+	backpack_contents = list(
+		/obj/item/choice_beacon/blueshield = 1,
+	)
+	backpack = /obj/item/storage/backpack/blueshield
+	satchel = /obj/item/storage/backpack/satchel/blueshield
+	duffelbag = /obj/item/storage/backpack/duffelbag/blueshield
+	messenger = /obj/item/storage/backpack/messenger/blueshield
+
+	head = /obj/item/clothing/head/beret/blueshield
+	box = /obj/item/storage/box/survival/security
+	belt = /obj/item/modular_computer/pda/blueshield
+	l_pocket = /obj/item/sensor_device/blueshield
+
+	id_trim = /datum/id_trim/job/blueshield
+
+/datum/outfit/plasmaman/blueshield
+	name = "Blueshield Plasmaman"
+
+	head = /obj/item/clothing/head/helmet/space/plasmaman/blueshield
+	uniform = /obj/item/clothing/under/plasmaman/blueshield
+
+/obj/item/modular_computer/pda/blueshield
+	name = "blueshield's PDA"
+	inserted_item = /obj/item/pen/fountain
+	greyscale_colors = "#2B356D#1E1E1E"
+	starting_programs = list(
+		/datum/computer_file/program/records/security,
+		/datum/computer_file/program/robocontrol,
+	)
+
+/*
+	Blueshield's Hellfire is between SC-1 and the Hellfire in terms of Damage and wound output
+*/
+
+/// Blueshield's Custom Hellfire
+/obj/item/ammo_casing/energy/laser/hellfire/blueshield
+	e_cost = LASER_SHOTS(20, STANDARD_CELL_CHARGE)
+
+/obj/item/gun/energy/laser/hellgun/blueshield
+	name = "streamlined hellfire laser carbine"
+	icon = 'modular_nova/modules/aesthetics/guns/icons/energy.dmi'
+	icon_state = "bshg"
+	desc = parent_type::desc + " This one has been tinkered with by Central Command technicians to add blue-tinted furniture and squeeze out a few extra shots before running dry."
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire/blueshield)
+
+/obj/item/choice_beacon/blueshield
+	name = "weaponry beacon"
+	desc = "A single use beacon to deliver a weapon or set of your choice. Please only call this in your office!"
+	icon_state = "bs_beacon"
+	inhand_icon_state = "bs_beacon"
+	icon = 'modular_nova/modules/modular_items/icons/remote.dmi'
+	lefthand_file = 'modular_nova/modules/modular_items/icons/inhand/mobs/lefthand_remote.dmi'
+	righthand_file = 'modular_nova/modules/modular_items/icons/inhand/mobs/righthand_remote.dmi'
+	company_source = "Nanotrasen Rapid Equipment Deployment Division"
+	company_message = span_bold("Supply pod incoming, please stand by.")
+
+/obj/item/choice_beacon/blueshield/generate_display_names()
+	var/static/list/selectable_gun_types = list(
+		"Blueshield Energy Shield" = /obj/item/shield/energy/returning/blueshield,
+		"Fendér Revolver Set" = /obj/item/storage/toolbox/guncase/nova/pistol/trappiste_small_case/bluvolva,
+		"Custom Hellfire Laser Carbine" = /obj/item/gun/energy/laser/hellgun/blueshield,
+		"NT20 Submachinegun Gunset" = /obj/item/storage/toolbox/guncase/nova/ntspecial/nt20,
+		"Katyusha Shotgun Gunset" = /obj/item/storage/toolbox/guncase/nova/katyusha,
+	)
+
+	return selectable_gun_types

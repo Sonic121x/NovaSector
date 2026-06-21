@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/mind_transfer
 	name = "Mind Swap"
-	desc = "This spell allows the user to switch bodies with a target next to him."
+	desc = "这个咒语允许使用者与身旁的目标互换身体。"
 	button_icon_state = "mindswap"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/mindswap_target.dmi'
 
@@ -58,26 +58,26 @@
 		return FALSE
 
 	if(HAS_TRAIT(cast_on, TRAIT_MIND_TEMPORARILY_GONE))
-		to_chat(owner, span_warning("This creature's mind is somewhere else entirely!"))
+		to_chat(owner, span_warning("这个生物的意识完全在别处！"))
 		return FALSE
 
 	if(HAS_TRAIT(cast_on, TRAIT_NO_MINDSWAP))
-		to_chat(owner, span_warning("This type of magic can't operate on [cast_on.p_their()] mind!"))
+		to_chat(owner, span_warning("这种魔法无法作用于[cast_on.p_their()]的意识！"))
 		return FALSE
 
 	if(is_type_in_typecache(cast_on, blacklisted_mobs))
-		to_chat(owner, span_warning("This creature is too [pick("powerful", "strange", "arcane", "obscene")] to control!"))
+		to_chat(owner, span_warning("这个生物太[pick("powerful", "strange", "arcane", "obscene")]了，无法控制！"))
 		return FALSE
 
 	if(isguardian(cast_on))
 		var/mob/living/basic/guardian/stand = cast_on
 		if(stand.summoner && stand.summoner == owner)
-			to_chat(owner, span_warning("Swapping minds with your own guardian would just put you back into your own head!"))
+			to_chat(owner, span_warning("和你自己的守护灵交换意识只会让你回到自己的脑袋里！"))
 			return FALSE
 
 	var/mob/living/living_target = cast_on
 	if(living_target.stat == DEAD)
-		to_chat(owner, span_warning("You don't particularly want to be dead!"))
+		to_chat(owner, span_warning("你并不特别想死！"))
 		return FALSE
 	if(!living_target.mind && target_requires_mind)
 		to_chat(owner, span_warning("[living_target.p_They()] [living_target.p_do()]n't appear to have a mind to swap into!"))
@@ -113,7 +113,7 @@
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/rev) \
 		|| IS_FAKE_KEY(mind_to_swap.key) \
 	)
-		to_chat(caster, span_warning("[to_swap.p_Their()] mind is resisting your spell!"))
+		to_chat(caster, span_warning("[to_swap.p_Their()] 的心智正在抵抗你的法术！"))
 		return FALSE
 
 	// MIND TRANSFER BEGIN

@@ -5,7 +5,7 @@
 #define HUMAN_RIDING_LAYER (BELOW_HUMAN_HITBOX_LAYER + 0.02)
 
 /obj/golfcart_rear
-	name = "golf cart bed"
+	name = "高尔夫球车货斗"
 	icon = 'icons/obj/toys/golfcart_split.dmi'
 	icon_state = "rear_hitbox"
 	density = TRUE
@@ -104,8 +104,8 @@
 
 /obj/golfcart_rear/proc/after_escape(obj/container, mob/living/user)
 	user?.visible_message(
-		span_danger("The [container] falls off of the [src]!"),
-		span_userdanger("You knock the crate off the [src]!")
+		span_danger("[container] 从 [src] 上掉了下来！"),
+		span_userdanger("你把板条箱从 [src] 上撞了下来！")
 	)
 	container.SpinAnimation(5, 1)
 	if (user && istype(container, /obj/structure/closet))
@@ -132,14 +132,14 @@
 ///Called when someone resists inside of the cargo hitch.
 /obj/golfcart_rear/relay_container_resist_act(mob/living/user, obj/container)
 	user.visible_message(
-		span_danger("[user] tries to escape the [container]!"),
-		span_userdanger("You try to escape the [container]!"),
+		span_danger("[user] 试图逃离 [container]！"),
+		span_userdanger("你试图逃离 [container]！"),
 	)
 	if (parent.has_buckled_mobs())
 		for (var/mob/driver in parent.buckled_mobs)
 			if (!parent.is_driver(driver))
 				continue
-			driver.show_message(span_userdanger("The [container] shakes violently!"))
+			driver.show_message(span_userdanger("[container] 剧烈摇晃！"))
 	if (istype(container, /obj/structure/closet))
 		var/obj/structure/closet/closet = container
 		if (!closet.welded)
@@ -198,7 +198,7 @@
 /obj/golfcart_rear/examine(mob/user)
 	if (!parent)
 		. = ..()
-		. += span_warning("A lone golf cart bed must be a bad omen...")
+		. += span_warning("一个孤零零的高尔夫球车货斗肯定是个不祥之兆……")
 		return
 	return parent.examine(user)
 

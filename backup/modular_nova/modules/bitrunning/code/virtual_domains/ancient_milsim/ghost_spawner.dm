@@ -1,0 +1,25 @@
+/obj/effect/mob_spawn/ghost_role/human/virtual_domain/ancient_milsim
+	name = "lagging asset"
+	desc = "A vaguely military humanoid shape with a static texture all over it. It's having some issues with compilation, give it some time."
+	prompt_name = "a weird compound operative"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "static"
+	outfit = /datum/outfit/cin_soldier_player
+	you_are_text = "You are a smart NPC guarding the exit of a simulated combat domain."
+	flavour_text = "You are a smart NPC loaded into the domain as a means of slowing down the bitrunning contestants' progression one way or another, be it combat or drawn out dialogues."
+	important_text = "Play fair. Humans are the only allowed species."
+	restricted_species = list(/datum/species/human)
+	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
+
+/obj/effect/mob_spawn/ghost_role/human/virtual_domain/ancient_milsim/proc/apply_codename(mob/living/carbon/human/spawned_human)
+	var/callsign = pick(GLOB.callsigns_nri)
+	var/number = pick(GLOB.phonetic_alphabet_numbers)
+	spawned_human.fully_replace_character_name(null, "[callsign] [number]")
+
+/obj/effect/mob_spawn/ghost_role/human/virtual_domain/ancient_milsim/special(mob/living/carbon/human/spawned_human, mob/mob_possessor, apply_prefs)
+	. = ..()
+	spawned_human.grant_language(/datum/language/spinwarder, source = LANGUAGE_SPAWNER)
+
+/obj/effect/mob_spawn/ghost_role/human/virtual_domain/ancient_milsim/post_transfer_prefs(mob/living/carbon/human/spawned_human)
+	. = ..()
+	apply_codename(spawned_human)

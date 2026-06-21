@@ -1,5 +1,5 @@
 /obj/effect/dummy/phased_mob
-	name = "ethereal form"
+	name = "灵体形态"
 	anchored = TRUE
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | SHUTTLE_CRUSH_PROOF
@@ -62,7 +62,7 @@
 		// to try to land in a NOTELEPORT zone after it is created, AKA trying to exploit.
 		if(isliving(jaunter))
 			var/mob/living/living_cheaterson = jaunter
-			to_chat(living_cheaterson, span_userdanger("This area has a heavy universal force occupying it, and you are scattered to the cosmos!"))
+			to_chat(living_cheaterson, span_userdanger("这片区域被一股强大的宇宙力量占据，你被彻底撕碎并散落到宇宙中！"))
 			if(ishuman(living_cheaterson))
 				shake_camera(living_cheaterson, 20, 1)
 				addtimer(CALLBACK(living_cheaterson, TYPE_PROC_REF(/mob/living/carbon, vomit)), 2 SECONDS)
@@ -109,10 +109,10 @@
 		return null
 
 	if(newloc.turf_flags & NOJAUNT)
-		to_chat(user, span_warning("Some strange aura is blocking the way."))
+		to_chat(user, span_warning("某种奇怪的光环阻挡了去路。"))
 		return
 	if(destination_area.area_flags & NOTELEPORT || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
-		to_chat(user, span_danger("Some dull, universal force is blocking the way. Its overwhelmingly oppressive force feels dangerous."))
+		to_chat(user, span_danger("某种沉闷的宇宙力量阻挡了去路。它那压倒性的压迫感令人感到危险。"))
 		return
 	if (direction == UP || direction == DOWN)
 		newloc = can_z_move(direction, get_turf(src), newloc, ZMOVE_INCAPACITATED_CHECKS | ZMOVE_FEEDBACK | ZMOVE_ALLOW_ANCHORED, user)

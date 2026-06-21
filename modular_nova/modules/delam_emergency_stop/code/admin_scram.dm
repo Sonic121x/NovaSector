@@ -10,11 +10,11 @@ ADMIN_VERB(try_stop_delam, R_ADMIN, "Delam Emergency Stop", "Activate the delam 
 	// Warn them if they're intervening in the work of God
 	if(world.time - SSticker.round_start_time < 30 MINUTES)
 		var/go_early = tgui_alert(user, "The [suppression_system.name] is set to automatically start at the programmed time. \
-			Are you sure you want to override this and fire it early? It's less scary that way.", "Suffering premature delamination?", list("No", "Yes"))
+			Are you sure you want to override this and fire it early? It's less scary that way.", "正在遭受过早的剥离吗？", list("No", "Yes"))
 		if(go_early != "Yes")
 			return FALSE
 
-	var/double_check = tgui_alert(user, "You really sure that you want to push this?", "Reticulating Splines", list("No", "Yes"))
+	var/double_check = tgui_alert(user, "你确定真的要按下这个吗？", "网格化处理", list("No", "Yes"))
 	if(double_check != "Yes")
 		return FALSE
 

@@ -2,7 +2,7 @@
 #define RND_SUBCATEGORY_CYBERNETICS_ADVANCED_DIGI "/Advanced Digitigrade"
 
 /datum/design/digitigrade_cyber_r_leg
-	name = "Digitigrade Cybernetic Right Leg"
+	name = "趾行式机械右腿"
 	id = "digitigrade_cyber_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/digi
@@ -13,7 +13,7 @@
 	)
 
 /datum/design/digitigrade_cyber_l_leg
-	name = "Digitigrade Cybernetic Left Leg"
+	name = "趾行式机械左腿"
 	id = "digitigrade_cyber_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/digi
@@ -24,7 +24,7 @@
 	)
 
 /datum/design/digitigrade_adv_r_leg
-	name = "Digitigrade Advanced Right Leg"
+	name = "趾行式高级右腿"
 	id = "digitigrade_advanced_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/advanced/digi
@@ -39,7 +39,7 @@
 	)
 
 /datum/design/digitigrade_adv_l_leg
-	name = "Digitigrade Advanced Left Leg"
+	name = "趾行式高级左腿"
 	id = "digitigrade_advanced_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/advanced/digi

@@ -14,8 +14,8 @@
 
 // the disposal outlet machine
 /obj/structure/disposaloutlet
-	name = "disposal outlet"
-	desc = "An outlet for the pneumatic disposal system."
+	name = "处理管出口"
+	desc = "一个气动处理系统的出气口。"
 	icon = 'icons/obj/pipes_n_cables/disposal.dmi'
 	icon_state = "outlet"
 	density = TRUE
@@ -87,9 +87,9 @@
 		return TRUE
 
 	playsound(src, 'sound/items/tools/welder2.ogg', 100, TRUE)
-	to_chat(user, span_notice("You start slicing the floorweld off [src]..."))
+	to_chat(user, span_notice("你开始将[src]的地板焊接处切开..."))
 	if(I.use_tool(src, user, 20))
-		to_chat(user, span_notice("You slice the floorweld off [src]."))
+		to_chat(user, span_notice("你将[src]的地板焊接处切开了。"))
 		stored.forceMove(loc)
 		transfer_fingerprints_to(stored)
 		stored = null
@@ -100,21 +100,21 @@
 	. = ..()
 	switch(eject_speed)
 		if(EJECT_SPEED_SLOW)
-			. += span_info("An LED image of a turtle is displayed on the side of the outlet.")
+			. += span_info("出口侧面显示着一个乌龟的LED图像。")
 		if(EJECT_SPEED_MED)
-			. += span_info("An LED image of a bumblebee is displayed on the side of the outlet.")
+			. += span_info("出口侧面显示着一只大黄蜂的LED图像。")
 		if(EJECT_SPEED_FAST)
-			. += span_info("An LED image of a speeding bullet is displayed on the side of the outlet.")
+			. += span_info("出口侧面显示着一个飞速子弹的LED图像。")
 		if(EJECT_SPEED_YEET)
-			. += span_info("An LED image of a grawlix is displayed on the side of the outlet.")
+			. += span_info("出口侧面显示着一个乱码符号的LED图像。")
 
 /obj/structure/disposaloutlet/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
 //if emagged it cant change the speed setting off max
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_notice("The LED display flashes an error!"))
+		to_chat(user, span_notice("LED显示屏闪烁出一个错误！"))
 	else
-		to_chat(user, span_notice("You adjust the ejection force on \the [src]."))
+		to_chat(user, span_notice("你调整了\the [src]的弹射力度。"))
 		switch(eject_speed)
 			if(EJECT_SPEED_SLOW)
 				eject_speed = EJECT_SPEED_MED
@@ -131,7 +131,7 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return
-	balloon_alert(user, "ejection force maximized")
+	balloon_alert(user, "弹射力度已最大化")
 	obj_flags |= EMAGGED
 	eject_speed = EJECT_SPEED_YEET
 	eject_range = EJECT_RANGE_YEET
@@ -143,7 +143,7 @@
 		stored.forceMove(loc)
 		transfer_fingerprints_to(stored)
 		stored = null
-		visible_message(span_warning("[src] is ripped free from the floor!"))
+		visible_message(span_warning("[src]被从地板上扯了下来！"))
 		qdel(src)
 
 /obj/structure/disposaloutlet/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
@@ -152,7 +152,7 @@
 		stored.forceMove(loc)
 		transfer_fingerprints_to(stored)
 		stored = null
-		visible_message(span_warning("[src] is ripped free from the floor!"))
+		visible_message(span_warning("[src]被从地板上扯了下来！"))
 		qdel(src)
 
 #undef EJECT_SPEED_SLOW

@@ -1,6 +1,6 @@
 /obj/item/assembly/mousetrap
-	name = "mousetrap"
-	desc = "A handy little spring-loaded trap for catching pesty rodents."
+	name = "老鼠夹"
+	desc = "一个便捷的小型弹簧陷阱，用于捕捉讨厌的啮齿动物。"
 	icon_state = "mousetrap"
 	inhand_icon_state = "mousetrap"
 	custom_materials = list(/datum/material/cardboard = SHEET_MATERIAL_AMOUNT, /datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
@@ -77,7 +77,7 @@
 
 /obj/item/assembly/mousetrap/examine(mob/user)
 	. = ..()
-	. += span_notice("The pressure plate is [armed?"primed":"safe"].")
+	. += span_notice("压力板处于 [armed?"primed":"safe"] 状态。")
 
 /obj/item/assembly/mousetrap/activate()
 	if(..())
@@ -86,7 +86,7 @@
 			if(ishuman(usr))
 				var/mob/living/carbon/human/user = usr
 				if((HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
-					to_chat(user, span_warning("Your hand slips, setting off the trigger!"))
+					to_chat(user, span_warning("你的手滑了一下，触发了机关！"))
 					pulse()
 		update_appearance()
 		playsound(loc, 'sound/items/weapons/handcuffs.ogg', 30, TRUE, -3)
@@ -125,22 +125,22 @@
 					affecting = victim.get_bodypart(pick(GLOB.leg_zones))
 					victim.Paralyze(6 SECONDS)
 				else
-					to_chat(victim, span_notice("Your [victim.shoes.name] protects you from [src]."))
+					to_chat(victim, span_notice("你的 [victim.shoes.name] 保护了你免受 [src] 的伤害。"))
 			if(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 				if(!victim.gloves)
 					affecting = victim.get_bodypart(type)
 					victim.Stun(6 SECONDS)
 				else
-					to_chat(victim, span_notice("Your [victim.gloves.name] protects you from [src]."))
+					to_chat(victim, span_notice("你的 [victim.gloves.name] 保护了你免受 [src] 的伤害。"))
 		if(affecting)
 			victim.apply_damage(1, BRUTE, affecting, wound_bonus = CANT_WOUND)
 	else if(ismouse(target))
 		var/mob/living/basic/mouse/splatted = target
-		visible_message(span_bolddanger("SPLAT!"))
+		visible_message(span_bolddanger("啪嗒！"))
 		splatted.splat() // mousetraps are instadeath for mice
 
 	else if(isregalrat(target))
-		visible_message(span_bolddanger("Skreeeee!")) //He's simply too large to be affected by a tiny mouse trap.
+		visible_message(span_bolddanger("吱——！")) //He's simply too large to be affected by a tiny mouse trap.
 
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 	pulse()
@@ -160,13 +160,13 @@
 			which_hand = BODY_ZONE_PRECISE_R_HAND
 		triggered(user, which_hand)
 		user.visible_message(span_warning("[user] accidentally sets off [src], breaking their fingers."), \
-			span_warning("You accidentally trigger [src]!"))
+			span_warning("你意外触发了 [src]！"))
 		return TRUE
 	return FALSE
 
 /obj/item/assembly/mousetrap/attack_self(mob/living/carbon/human/user)
 	if(!armed)
-		to_chat(user, span_notice("You arm [src]."))
+		to_chat(user, span_notice("你武装了 [src]。"))
 	else
 		if(clumsy_check(user))
 			return

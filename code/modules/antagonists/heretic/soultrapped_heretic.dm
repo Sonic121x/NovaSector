@@ -9,7 +9,7 @@
 
 // Will never show up because they're shades inside a sword
 /datum/mood_event/soultrapped_heretic
-	description = "They trapped me! I can't escape!"
+	description = "他们困住了我！我逃不掉了！"
 	mood_change = -20
 
 // always failure obj

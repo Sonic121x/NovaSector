@@ -1,6 +1,6 @@
 /obj/item/slime_scanner
-	name = "slime scanner"
-	desc = "A device that analyzes a slime's internal composition and measures its stats."
+	name = "史莱姆扫描仪"
+	desc = "一种能分析史莱姆内部构成并测量其属性的设备。"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "slime_scanner"
 	inhand_icon_state = "analyzer"
@@ -19,7 +19,7 @@
 	if(!user.can_read(src)) //NOVA EDIT CHANGE - Blind People Can Analyze Again - ORIGINAL : if(!user.can_read(src) || user.is_blind())
 		return ITEM_INTERACT_BLOCKING
 	if (!isslime(interacting_with))
-		to_chat(user, span_warning("This device can only scan slimes!"))
+		to_chat(user, span_warning("此设备只能扫描史莱姆！"))
 		return ITEM_INTERACT_BLOCKING
 	var/mob/living/basic/slime/scanned_slime = interacting_with
 	playsound(src, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)

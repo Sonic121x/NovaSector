@@ -120,9 +120,9 @@
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					if(H.put_in_hands(crystals))
-						to_chat(H, span_notice("Your payment materializes into your hands!"))
+						to_chat(H, span_notice("你的报酬在你手中具现化！"))
 					else
-						to_chat(user, span_notice("Your payment materializes onto the floor."))
+						to_chat(user, span_notice("你的报酬在地板上具现化。"))
 
 				uplink_computer.opfor_data.contractor_hub.contract_TC_payed_out += uplink_computer.opfor_data.contractor_hub.contract_TC_to_redeem // NOVA EDIT CHANGE - ORIGINAL: traitor_data.uplink_handler.contractor_hub.contract_TC_payed_out += traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem
 				uplink_computer.opfor_data.contractor_hub.contract_TC_to_redeem = 0 // NOVA EDIT CHANGE - ORIGINAL: traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem = 0

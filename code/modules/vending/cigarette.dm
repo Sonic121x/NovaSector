@@ -1,6 +1,6 @@
 /obj/machinery/vending/cigarette
-	name = "\improper ShadyCigs Deluxe"
-	desc = "If you want to get cancer, might as well do it in style."
+	name = "\improper 忘缘牌豪华香烟售货机"
+	desc = "如果你真想得上癌症，那还不如搞得堂而皇之地，大张旗鼓地让全世界都知道呢。"
 	product_slogans = "Space cigs taste good like a cigarette should.;I'd rather toolbox than switch.;Smoke!;Don't believe the reports - smoke today!"
 	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
 	icon_state = "cigs"
@@ -37,7 +37,7 @@
 	light_mask = "cigs-light-mask"
 
 /obj/machinery/vending/cigarette/syndicate
-	name = "\improper Waffle Co Breakfast Cigarettes"
+	name = "\improper 华夫公司早餐香烟"
 	product_slogans = "Start your day the right way!;Breakfast of champions!;Smokes that mean business!;Omnizine, your uplink to smooth taste!"
 	product_ads = "Waffle Co's science advisory: omnizine may prevent most forms of smoking-related illness!*;New study: Rival corporations more trusting of men who smoke!;A Waffle Co cigarette makes yellow star feel like black orbit!"
 	products = list(
@@ -61,8 +61,8 @@
 
 
 /obj/machinery/vending/cigarette/beach //Used in the lavaland_biodome_beach.dmm ruin
-	name = "\improper ShadyCigs Ultra"
-	desc = "Now with extra premium products!"
+	name = "\improper 忘缘牌超究极香烟售货机"
+	desc = "现在还有额外产品选择！"
 	product_ads = "Probably not bad for you!;Dope will get you through times of no money better than money will get you through times of no dope!;It's good for you!"
 	product_slogans = "Turn on, tune in, drop out!;Better living through chemistry!;Toke!;Don't forget to keep a smile on your lips and a song in your heart!"
 	products = list(

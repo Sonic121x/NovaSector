@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/solfed/hermes
-	desc = "A lightweight recon unit optimized for stealth and sabotage. Outfitted with advanced sensors and cloaking tech, it excels in infiltration and electronic disruption."
-	name = "\improper MLR-2498G \"Hermes\""
+	desc = "一款专为潜行与破坏优化的轻型侦察单位。配备先进的传感器和隐形技术，擅长渗透与电子干扰。"
+	name = "\improper MLR-2498G \"赫尔墨斯\""
 	icon_state = "hermes" //Sprite by diltyrr on discord
 	base_icon_state = "hermes"
 	movedelay = 2.5
@@ -59,8 +59,8 @@
 	update_part_values()
 
 /obj/structure/mecha_wreckage/solfed/hermes
-	name = "\improper Hermes wreckage"
-	desc = "A collapsed Hermes-class recon unit. The frame is crumpled, legs splayed, and its sensor array is shattered. Speed wasn't enough this time."
+	name = "\improper 赫尔墨斯残骸"
+	desc = "一架坍塌的赫尔墨斯级侦察机甲。框架扭曲，腿部张开，传感器阵列也已粉碎。这次速度没能帮上忙。"
 	icon = 'modular_nova/modules/solfed_mechs/icons/solfed_mechs.dmi'
 	icon_state = "hermes-broken"
 	welder_salvage = list(/obj/item/stack/sheet/iron, /obj/item/stack/rods)
@@ -84,9 +84,9 @@
 		MMI.brainmob.update_sight()
 
 /datum/action/vehicle/sealed/mecha/hermes_toggle_chameleon
-	name = "Toggle Chameleon Skin"
+	name = "切换变色龙皮肤"
 	button_icon_state = "mech_stealth_off"
-	desc = "Activate or deactivate Hermes' adaptive camouflage."
+	desc = "激活或停用赫尔墨斯的自适应伪装。"
 
 /datum/action/vehicle/sealed/mecha/hermes_toggle_chameleon/Trigger(mob/user, trigger_flags)
 	. = ..()
@@ -99,7 +99,7 @@
 	camod_mech.chameleon_active = !camod_mech.chameleon_active
 	button_icon_state = camod_mech.chameleon_active ? "mech_stealth_on" : "mech_stealth_off"
 	build_all_button_icons()
-	to_chat(user, "Chameleon skin [camod_mech.chameleon_active ? "activated" : "deactivated"].")
+	to_chat(user, "变色龙皮肤[camod_mech.chameleon_active ? "activated" : "deactivated"]。")
 	if(!camod_mech.chameleon_active)
 		camod_mech.alpha = 255
 
@@ -111,7 +111,7 @@
 	if(!cell || cell.charge < chameleon_power_cost)
 		chameleon_active = FALSE
 		alpha = 255
-		to_chat(usr, "Chameleon skin deactivated: insufficient power.")
+		to_chat(usr, "变色龙皮肤已停用：能量不足。")
 		return
 	cell.use(chameleon_power_cost)
 	alpha = max(alpha - (chameleon_fade_rate * seconds_per_tick), 5 SECONDS)

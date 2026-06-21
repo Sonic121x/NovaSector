@@ -33,13 +33,13 @@
 /datum/action/item_action/mod/do_effect(trigger_flags)
 	var/obj/item/mod/control/mod = target
 	if(mod.malfunctioning && prob(MOD_MALFUNCTION_PROB))
-		mod.balloon_alert(usr, "button malfunctions!")
+		mod.balloon_alert(usr, "按钮故障！")
 		return FALSE
 	return TRUE
 
 /datum/action/item_action/mod/deploy
-	name = "Deploy MODsuit"
-	desc = "LMB: Deploy/Undeploy part. RMB: Deploy/Undeploy full suit."
+	name = "部署模块服"
+	desc = "左键: 部署/卸载 组成. 右键: 一键 部署/卸载 组成"
 	button_icon_state = "deploy"
 
 /datum/action/item_action/mod/deploy/do_effect(trigger_flags)
@@ -56,8 +56,8 @@
 	ai_action = TRUE
 
 /datum/action/item_action/mod/activate
-	name = "Activate MODsuit"
-	desc = "LMB: Activate/Deactivate suit with prompt. RMB: Activate/Deactivate suit skipping prompt."
+	name = "激活模块服"
+	desc = "左键: 带有提示的 激活/停用 模块服. 右键: 跳过提示的 激活/停用 模块服"
 	button_icon_state = "activate"
 	/// First time clicking this will set it to TRUE, second time will activate it.
 	var/ready = FALSE
@@ -86,8 +86,8 @@
 	ai_action = TRUE
 
 /datum/action/item_action/mod/module
-	name = "Toggle Module"
-	desc = "Toggle a MODsuit module."
+	name = "切换模块服"
+	desc = "启用模组"
 	button_icon_state = "module"
 
 /datum/action/item_action/mod/module/do_effect(trigger_flags)
@@ -101,8 +101,8 @@
 	ai_action = TRUE
 
 /datum/action/item_action/mod/panel
-	name = "MODsuit Panel"
-	desc = "Open the MODsuit's panel."
+	name = "模块服面板"
+	desc = "打开模块服面板"
 	button_icon_state = "panel"
 
 /datum/action/item_action/mod/panel/do_effect(trigger_flags)
@@ -139,7 +139,7 @@
 	qdel(src)
 
 /datum/action/item_action/mod/pinnable/module
-	desc = "Activate the module."
+	desc = "激活模块"
 	/// Overrides the icon applications.
 	var/override = FALSE
 	/// Module we are linked to.
@@ -156,8 +156,8 @@
 	if(linked_module.allow_flags & MODULE_ALLOW_INCAPACITATED)
 		// clears check hands and check conscious
 		check_flags = NONE
-	name = "Activate [capitalize(linked_module.name)]"
-	desc = "Quickly activate [linked_module]."
+	name = "激活[capitalize(linked_module.name)]"
+	desc = "快速激活[linked_module]"
 	RegisterSignals(linked_module, list(
 		COMSIG_MODULE_ACTIVATED,
 		COMSIG_MODULE_DEACTIVATED,

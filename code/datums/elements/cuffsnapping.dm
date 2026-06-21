@@ -100,7 +100,7 @@
 	if(!istype(cuffs))
 		return NONE
 
-	if(check_cuffs_strength(carbon_target, target, cutter_user, cuffs, span_notice("[cutter_user] tries to cut through [target]'s restraints with [cutter], but fails!")))
+	if(check_cuffs_strength(carbon_target, target, cutter_user, cuffs, span_notice("[cutter_user]试图用[cutter]切断[target]的束缚，但失败了！")))
 		INVOKE_ASYNC(src, PROC_REF(do_cuffsnap_target), cutter, target, cutter_user, cuffs)
 
 	return COMPONENT_SKIP_ATTACK
@@ -120,16 +120,16 @@
 		return
 	log_combat(cutter_user, target, "cut or tried to cut [target]'s cuffs", cutter)
 
-	do_snip_snap(cutter, target, cutter_user, cuffs, span_notice("[cutter_user] cuts [target]'s restraints with [cutter]!"))
+	do_snip_snap(cutter, target, cutter_user, cuffs, span_notice("[cutter_user]用[cutter]切断了[target]的束缚！"))
 
 ///Called when a player tries to remove the cuffs binding an item to their owner
 /datum/element/cuffsnapping/proc/try_cuffsnap_item(obj/item/cutter, mob/living/target, mob/living/cutter_user, obj/item/cuffed, obj/item/restraints/handcuffs/cuffs)
-	if(check_cuffs_strength(cutter, target, cutter_user, cuffs, span_notice("[cutter_user] tries to cut through the restraints binding [cuffed] to [target], but fails!")))
+	if(check_cuffs_strength(cutter, target, cutter_user, cuffs, span_notice("[cutter_user]试图切断将[cuffed]绑在[target]上的束缚，但失败了！")))
 		return
 
 	log_combat(cutter_user, target, "cut or tried to cut restraints binding [cuffed] to")
 
-	do_snip_snap(cutter, target, cutter_user, cuffs, span_notice("[cutter_user] cuts the restraints binding [src] to [target] with [cutter]!"))
+	do_snip_snap(cutter, target, cutter_user, cuffs, span_notice("[cutter_user]用[cutter]切断了将[src]绑在[target]上的束缚！"))
 
 ///The proc responsible for the very timed action that deletes the cuffs
 /datum/element/cuffsnapping/proc/do_snip_snap(obj/item/cutter, mob/living/target, mob/cutter_user, obj/item/restraints/handcuffs/cuffs, message)

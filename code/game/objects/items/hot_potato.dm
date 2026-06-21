@@ -1,6 +1,6 @@
 //CREATOR'S NOTE: DO NOT FUCKING GIVE THIS TO BOTANY!
 /obj/item/hot_potato
-	name = "hot potato"
+	name = "烫手山芋"
 	desc = "A label on the side of this potato reads \"Product of Donk Co. Service Wing. Activate far away from populated areas. Device will only attach to sapient creatures.\" <span class='boldnotice'>You can attack anyone with it to force it on them instead of yourself!</span>"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "potato"
@@ -50,7 +50,7 @@
 
 /obj/item/hot_potato/proc/detonate()
 	var/atom/location = loc
-	location.visible_message(span_userdanger("[src] [detonate_explosion? "explodes" : "activates"]!"), span_userdanger("[src] activates! You've ran out of time!"))
+	location.visible_message(span_userdanger("[src][detonate_explosion? "explodes" : "activates"]！"), span_userdanger("[src]已激活！你的时间耗尽了！"))
 	if(detonate_explosion && isliving(loc))
 		var/mob/living/victim_mob = loc
 		if(victim_mob.is_holding(src))
@@ -65,8 +65,8 @@
 
 /obj/item/hot_potato/attack_self(mob/user)
 	if(activate(timer, user))
-		user.visible_message(span_boldwarning("[user] squeezes [src], which promptly starts to flash red-hot colors!"), span_boldwarning("You squeeze [src], activating its countdown and attachment mechanism!"),
-		span_boldwarning("You hear a mechanical click and a loud beeping!"))
+		user.visible_message(span_boldwarning("[user]捏了一下[src]，它立刻开始闪烁红热的光芒！"), span_boldwarning("你捏了一下[src]，激活了它的倒计时与附着机制！"),
+		span_boldwarning("你听到一声机械咔嗒声和响亮的哔哔声！"))
 		return
 	return ..()
 
@@ -89,14 +89,14 @@
 /obj/item/hot_potato/examine(mob/user)
 	. = ..()
 	if(active)
-		. += span_warning("[src] is flashing red-hot! You should probably get rid of it!")
+		. += span_warning("[src]正闪烁着红热的光芒！你最好赶紧处理掉它！")
 		if(show_timer)
-			. += span_warning("[src]'s timer looks to be at [DisplayTimeText(activation_time - world.time)]!")
+			. += span_warning("[src]的计时器看起来还剩[DisplayTimeText(activation_time - world.time)]！")
 
 /obj/item/hot_potato/equipped(mob/user)
 	. = ..()
 	if(active)
-		to_chat(user, span_userdanger("You have a really bad feeling about [src]!"))
+		to_chat(user, span_userdanger("你对[src]有种非常不祥的预感！"))
 
 /obj/item/hot_potato/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -109,9 +109,9 @@
 	if(!istype(victim) || user != loc || victim == user)
 		return FALSE
 	if(!victim.client)
-		to_chat(user, span_boldwarning("[src] refuses to attach to a non-sapient creature!"))
+		to_chat(user, span_boldwarning("[src]拒绝附着于非智慧生物！"))
 	if(victim.stat != CONSCIOUS || !victim.usable_legs)
-		to_chat(user, span_boldwarning("[src] refuses to attach to someone incapable of using it!"))
+		to_chat(user, span_boldwarning("[src]拒绝附着到无法使用它的人身上！"))
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	. = FALSE
 	if(!victim.put_in_hands(src))
@@ -127,11 +127,11 @@
 		. = TRUE
 	if(.)
 		log_combat(user, victim, "forced a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
-		user.visible_message(span_userdanger("[user] forces [src] onto [victim]!"), span_userdanger("You force [src] onto [victim]!"), span_boldwarning("You hear a mechanical click and a beep."))
+		user.visible_message(span_userdanger("[user]将[src]强行按到[victim]身上！"), span_userdanger("你将[src]强行按到[victim]身上！"), span_boldwarning("你听到一声机械咔哒声和一声哔哔声。"))
 		colorize(null)
 	else
 		log_combat(user, victim, "tried to force a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
-		user.visible_message(span_boldwarning("[user] tried to force [src] onto [victim], but it could not attach!"), span_boldwarning("You try to force [src] onto [victim], but it is unable to attach!"), span_boldwarning("You hear a mechanical click and two buzzes."))
+		user.visible_message(span_boldwarning("[user]试图将[src]强行按到[victim]身上，但它无法附着！"), span_boldwarning("你试图将[src]强行按到[victim]身上，但它无法附着！"), span_boldwarning("你听到一声机械咔哒声和两声嗡嗡声。"))
 		user.put_in_hands(src)
 
 /obj/item/hot_potato/dropped(mob/user)
@@ -144,7 +144,7 @@
 	update_appearance()
 	if(sticky)
 		ADD_TRAIT(src, TRAIT_NODROP, HOT_POTATO_TRAIT)
-	name = "primed [name]"
+	name = "已启动的[name]"
 	activation_time = timer + world.time
 	detonation_timerid = addtimer(CALLBACK(src, PROC_REF(detonate)), delay, TIMER_STOPPABLE)
 	START_PROCESSING(SSfastprocess, src)

@@ -1,5 +1,5 @@
 /datum/antagonist/highlander
-	name = "\improper Highlander"
+	name = "\improper 高地人"
 	var/obj/item/claymore/highlander/sword
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
@@ -79,13 +79,13 @@
 
 
 	var/obj/item/bloodcrawl/antiwelder = new(H)
-	antiwelder.name = "compulsion of honor"
-	antiwelder.desc = "You are unable to hold anything in this hand until you're the last one left!"
+	antiwelder.name = "光荣冲动"
+	antiwelder.desc = "在你成为最后一个人之前，你无法用这只手拿任何东西！"
 	antiwelder.icon_state = "bloodhand_right"
 	H.put_in_hands(antiwelder)
 
 /datum/antagonist/highlander/robot
-	name = "\improper highlander"
+	name = "\improper 高地人"
 
 /datum/antagonist/highlander/robot/greet()
 	to_chat(owner, span_bolddanger("Your integrated claymore cries out for blood. Claim the lives of others, and your own will be restored!\n\

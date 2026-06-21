@@ -21,27 +21,27 @@
 	name = "\improper Telecomms Maintenance Room"
 
 /area/station/tcommsat/computer
-	name = "\improper Telecomms Control Room"
+	name = "\improper 电信控制室"
 	icon_state = "tcomsatcomp"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/station/tcommsat/server
-	name = "\improper Telecomms Server Room"
+	name = "\improper 电信服务器室"
 	icon_state = "tcomsatcham"
 
 /area/station/tcommsat/server/upper
-	name = "\improper Upper Telecomms Server Room"
+	name = "\improper 上层电信服务器室"
 
 /*
 * On-Station Telecommunications Areas
 */
 
 /area/station/comms
-	name = "\improper Communications Relay"
+	name = "\improper 通讯中继站"
 	icon_state = "tcomsatcham"
 	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/server
-	name = "\improper Messaging Server Room"
+	name = "\improper 消息服务器室"
 	icon_state = "server"
 	sound_environment = SOUND_AREA_STANDARD_STATION

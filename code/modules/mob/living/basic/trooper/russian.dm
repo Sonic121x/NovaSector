@@ -1,7 +1,7 @@
 /// Russian trooper subtype
 /mob/living/basic/trooper/russian
-	name = "Russian Mobster"
-	desc = "For the Motherland!"
+	name = "俄罗斯黑帮分子"
+	desc = "为了祖国！"
 	speed = 1.2
 	melee_damage_lower = 15
 	melee_damage_upper = 15

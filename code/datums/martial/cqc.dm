@@ -305,7 +305,7 @@
 
 	defender.visible_message(
 		span_danger("[attacker] [picked_hit_type]ed [defender]!"),
-		span_userdanger("You're [picked_hit_type]ed by [attacker]!"),
+		span_userdanger("你被[picked_hit_type]了[attacker]！"),
 		span_hear("You hear a sickening sound of flesh hitting flesh!"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
@@ -351,13 +351,13 @@
 			disarmed_item = null
 
 		defender.visible_message(
-			span_danger("[attacker] strikes [defender]'s jaw with their hand[disarmed_item ? ", disarming [defender.p_them()] of [disarmed_item]" : ""]!"),
-			span_userdanger("[attacker] strikes your jaw,[disarmed_item ? " disarming you of [disarmed_item] and" : ""] leaving you disoriented!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_danger("[attacker]用手猛击[defender]的下颌[disarmed_item ? ", disarming [defender.p_them()] of [disarmed_item]" : ""]！"),
+			span_userdanger("[attacker]击中了你的下颚，[disarmed_item ? " disarming you of [disarmed_item] and" : ""]让你感到晕眩！"),
+			span_hear("你听到肉体撞击肉体的恶心声响！"),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
-		to_chat(attacker, span_danger("You strike [defender]'s jaw,[disarmed_item ? " disarming [defender.p_them()] of [disarmed_item] and" : ""] leaving [defender.p_them()] disoriented!"))
+		to_chat(attacker, span_danger("你击中了[defender]的下巴，[disarmed_item ? " disarming [defender.p_them()] of [disarmed_item] and" : ""]让[defender.p_them()]晕头转向！"))
 		playsound(defender, 'sound/items/weapons/cqchit1.ogg', 50, TRUE, -1)
 		defender.set_jitter_if_lower(4 SECONDS)
 		defender.apply_damage(5, attacker.get_attack_type())
@@ -365,13 +365,13 @@
 		return MARTIAL_ATTACK_SUCCESS
 
 	defender.visible_message(
-		span_danger("[attacker] fails to disarm [defender]!"), \
-		span_userdanger("You're nearly disarmed by [attacker]!"),
-		span_hear("You hear a swoosh!"),
+		span_danger("[attacker]未能解除[defender]的武装！"), \
+		span_userdanger("你差点被[attacker]解除武装！"),
+		span_hear("你听到一阵呼啸声！"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_warning("You fail to disarm [defender]!"))
+	to_chat(attacker, span_warning("你未能解除[defender]的武装！"))
 	playsound(defender, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
 	log_combat(attacker, defender, "failed to disarm (CQC)")
 	return MARTIAL_ATTACK_FAIL
@@ -380,12 +380,12 @@
 /datum/martial_art/cqc/get_style_help()
 	. = list()
 
-	. += "<b><i>You try to remember some of the basics of CQC.</i></b>"
+	. += "<b><i>你试图回忆一些CQC的基础知识。</i></b>"
 
-	. += "[span_notice("Slam")]: Grab Punch. Slam opponent into the ground, knocking them down."
-	. += "[span_notice("CQC Kick")]: Punch Punch. Knocks opponent away. Knocks out stunned opponents and does stamina damage."
-	. += "[span_notice("Restrain")]: Grab Grab. Locks opponents into a restraining position, disarm to knock them out with a chokehold."
-	. += "[span_notice("Pressure")]: Shove Grab. Decent stamina damage."
+	. += "[span_notice("Slam")]：抓取后出拳。将对手猛摔在地，使其倒地。"
+	. += "[span_notice("CQC Kick")]：连续出拳。将对手击退。击晕已眩晕的对手并造成耐力伤害。"
+	. += "[span_notice("Restrain")]：连续抓取。将对手锁入束缚姿势，使用解除武装动作可通过锁喉使其昏迷。"
+	. += "[span_notice("Pressure")]：推搡后抓取。造成可观的耐力伤害。"
 	. += "[span_notice("Consecutive CQC")]: Shove Shove Punch. Mainly offensive move, huge damage and decent stamina damage."
 
 	. += "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to block and sometimes even counter attacks done to you.</i></b>"

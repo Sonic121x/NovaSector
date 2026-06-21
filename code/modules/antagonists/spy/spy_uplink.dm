@@ -44,9 +44,9 @@
 
 	if(!is_our_spy(user))
 		return
-	examine_list += span_notice("You recognize this as your <i>spy uplink</i>.")
-	examine_list += span_notice("- [EXAMINE_HINT("Use it in hand")] to view your bounty list.")
-	examine_list += span_notice("- [EXAMINE_HINT("Right click")] with it on a bounty target to claim it.")
+	examine_list += span_notice("你认出这是你的<i>间谍上行链路</i>。")
+	examine_list += span_notice("- [EXAMINE_HINT("Use it in hand")] 来查看你的悬赏列表。")
+	examine_list += span_notice("- 在悬赏目标上[EXAMINE_HINT("Right click")]以领取奖励。")
 
 /datum/component/spy_uplink/proc/block_pda_bombs(obj/item/source)
 	SIGNAL_HANDLER
@@ -82,10 +82,10 @@
 		if(!bounty.is_stealable(stealing))
 			continue
 		if(bounty.claimed)
-			stealing.balloon_alert(spy, "bounty already claimed!")
+			stealing.balloon_alert(spy, "悬赏已被领取！")
 			return TRUE
 		if(DOING_INTERACTION(spy, REF(src)))
-			spy.balloon_alert(spy, "already scanning!") // Only shown if they're trying to scan two valid targets
+			spy.balloon_alert(spy, "已在扫描中！") // Only shown if they're trying to scan two valid targets
 			return TRUE
 		SEND_SIGNAL(stealing, COMSIG_MOVABLE_SPY_STEALING, spy, bounty)
 		INVOKE_ASYNC(src, PROC_REF(start_stealing), stealing, spy, bounty)
@@ -96,7 +96,7 @@
 /// Wraps the stealing process in a scanning effect.
 /datum/component/spy_uplink/proc/start_stealing(atom/movable/stealing, mob/living/spy, datum/spy_bounty/bounty)
 	if(!isturf(stealing.loc) && stealing.loc != spy)
-		to_chat(spy, span_warning("Your uplink blinks red: [stealing] cannot be extracted from there."))
+		to_chat(spy, span_warning("你的上行链路闪烁红光：[stealing]无法从该处提取。"))
 		return FALSE
 
 	log_combat(spy, stealing, "started stealing", parent, "(spy bounty)")
@@ -134,17 +134,17 @@
 /// If successful, proceeds to complete the bounty.
 /datum/component/spy_uplink/proc/steal_process(atom/movable/stealing, mob/living/spy, datum/spy_bounty/bounty)
 	spy.visible_message(
-		span_warning("[spy] starts scanning [stealing] with a strange device..."),
-		span_notice("You start scanning [stealing], preparing it for extraction."),
+		span_warning("[spy]开始用一个奇怪的设备扫描[stealing]..."),
+		span_notice("你开始扫描[stealing]，为提取做准备。"),
 	)
 
 	if(!do_after(spy, bounty.theft_time, stealing, interaction_key = REF(src), hidden = TRUE))
 		return FALSE
 	if(bounty.claimed)
-		to_chat(spy, span_warning("Your uplink blinks red: The bounty for [stealing] has been claimed by another spy!"))
+		to_chat(spy, span_warning("你的上行链路闪烁红光：[stealing]的悬赏已被另一名间谍领取！"))
 		return FALSE
 	if(spy.is_holding(stealing) && !spy.dropItemToGround(stealing))
-		to_chat(spy, span_warning("Your uplink blinks red: [stealing] seems stuck to your hand!"))
+		to_chat(spy, span_warning("你的上行链路闪烁红光：[stealing]似乎粘在你手上了！"))
 		return FALSE
 
 	var/bounty_key = bounty.get_dupe_protection_key(stealing)
@@ -207,7 +207,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/effect/scan_effect/cone
-	name = "holoray"
+	name = "全息射线"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "scan_beam"
 	color = "#3ba0ff"

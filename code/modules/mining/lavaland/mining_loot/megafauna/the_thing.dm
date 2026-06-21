@@ -1,6 +1,6 @@
 /datum/action/innate/brain_undeployment
-	name = "Disconnect from shell"
-	desc = "Stop controlling your shell and resume normal core operations."
+	name = "断开与外壳的连接"
+	desc = "停止控制你的外壳并恢复核心的正常运作。"
 	button_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
 
@@ -13,8 +13,8 @@
 	return TRUE
 
 /obj/item/organ/brain/cybernetic/ai
-	name = "AI-uplink brain"
-	desc = "Can be inserted into a body with NO ORGANIC INTERNAL ORGANS (robotic organs only) to allow AIs to control it. Comes with its own health sensors beacon. MUST be a humanoid or bad things happen to the consciousness."
+	name = "AI-上行链路大脑"
+	desc = "可以植入一个不含任何有机内部器官（仅限机械器官）的躯体，以允许AI控制它。自带生命体征信标。必须是类人形态，否则意识会发生糟糕的事情。"
 	can_smoothen_out = FALSE
 	/// if connected, our AI
 	var/mob/living/silicon/ai/mainframe
@@ -98,11 +98,11 @@
 	lines += "Target is currently [!HAS_TRAIT(owner, TRAIT_INCAPACITATED) ? "functional" : "incapacitated"]"
 	lines += "Estimated organic/inorganic integrity: [owner.health]"
 	if(mainframe)
-		lines += span_warning("Already occupied by another digital entity.")
+		lines += span_warning("已被另一个数字实体占用。")
 	else if(connected_ai && connected_ai != user)
-		lines += span_warning("Uplink is locked by another digital entity.")
+		lines += span_warning("上行链路被另一个数字实体锁定。")
 	else if(!is_sufficiently_augmented())
-		lines += span_warning("Organic organs detected. Robotic organs only, cannot take over.")
+		lines += span_warning("检测到有机器官。仅限机械器官，无法接管。")
 	else
 		lines += "<a href='byond://?src=[REF(src)];ai_take_control=[REF(user)]'>[span_boldnotice("Take control?")]</a><br>"
 
@@ -116,10 +116,10 @@
 	if(isnull(AI))
 		return
 	if(AI.controlled_equipment)
-		to_chat(AI, span_warning("You are already loaded into an onboard computer!"))
+		to_chat(AI, span_warning("你已加载到机载计算机中！"))
 		return
 	if(!SScameras.is_visible_by_cameras(owner))
-		to_chat(AI, span_warning("Target is no longer near active cameras."))
+		to_chat(AI, span_warning("目标已不在活动摄像头附近。"))
 		return
 	if(!isturf(AI.loc))
 		to_chat(AI, span_warning("You aren't in your core!"))

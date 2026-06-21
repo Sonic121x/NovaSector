@@ -109,7 +109,7 @@ GLOBAL_DATUM(revolution_handler, /datum/revolution_handler)
 			), range = 5)
 
 	priority_announce("It appears the mutiny has been quelled. Please return yourself and your incapacitated colleagues to work. \
-		We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.", null, null, null, "[command_name()] Loyalty Monitoring Division")
+		We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.", null, null, null, "[command_name()] 忠诚监控部")
 
 	result = STATION_VICTORY
 

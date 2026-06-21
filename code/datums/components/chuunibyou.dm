@@ -73,7 +73,7 @@
 
 	playsound(to_fire,'sound/effects/magic/staff_change.ogg', 75, TRUE)
 	to_fire.color = "#f825f8"
-	to_fire.name = "chuuni-[to_fire.name]"
+	to_fire.name = "中二-[to_fire.name]"
 	to_fire.set_light(2, 2, LIGHT_COLOR_PINK, l_on = TRUE)
 
 ///signal sent before parent invokes a spell
@@ -102,7 +102,7 @@
 
 	source.heal_overall_damage(heal_amount)
 	playsound(source, 'sound/effects/magic/staff_healing.ogg', 30)
-	to_chat(source, span_danger("You feel slightly healed by your chuuni powers."))
+	to_chat(source, span_danger("你感觉自己的中二之力让你稍微恢复了一些。"))
 
 /datum/component/chuunibyou/no_healing
 	heal_amount = 0

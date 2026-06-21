@@ -23,8 +23,8 @@
 		new /obj/item/reagent_containers/heroin(location)
 
 /obj/item/reagent_containers/heroin
-	name = "heroin"
-	desc = "Take a line and take some time off, man."
+	name = "海洛因"
+	desc = "来上一口，给自己放个假吧，伙计。"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "heroin"
 	volume = 4
@@ -40,15 +40,15 @@
 	else if(user.is_mouth_covered(ITEM_SLOT_MASK))
 		covered = "mask"
 	if(covered)
-		to_chat(user, span_warning("You have to remove your [covered] first!"))
+		to_chat(user, span_warning("你得先取下你的 [covered]！"))
 		return
 	var/obj/item/organ/lungs/lungs = user.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if(isnull(lungs) || istype(lungs, /obj/item/organ/lungs/synth))
-		to_chat(user, span_warning("You have to be able to breathe to snort the heroin!"))
+		to_chat(user, span_warning("你必须能呼吸才能吸食海洛因！"))
 		return
-	user.visible_message(span_notice("'[user] starts snorting the [src]."))
+	user.visible_message(span_notice("[user] 开始吸食 [src]。"))
 	if(do_after(user, 30))
-		to_chat(user, span_notice("You finish snorting the [src]."))
+		to_chat(user, span_notice("你吸食完了 [src]。"))
 		if(reagents.total_volume)
 			reagents.trans_to(user, reagents.total_volume, transferred_by = user, methods = INGEST)
 		qdel(src)
@@ -71,8 +71,8 @@
 	return
 
 /obj/item/reagent_containers/heroinbrick
-	name = "heroin brick"
-	desc = "A brick of heroin. Good for transport!"
+	name = "海洛因砖"
+	desc = "一块海洛因砖。便于运输！"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "heroinbrick"
 	volume = 20
@@ -81,15 +81,15 @@
 
 
 /obj/item/reagent_containers/heroinbrick/attack_self(mob/user)
-	user.visible_message(span_notice("[user] starts breaking up the [src]."))
+	user.visible_message(span_notice("[user] 开始拆解 [src]。"))
 	if(do_after(user,10))
-		to_chat(user, span_notice("You finish breaking up the [src]."))
+		to_chat(user, span_notice("你拆解完了 [src]。"))
 		for(var/i = 1 to 5)
 			new /obj/item/reagent_containers/heroin(user.loc)
 		qdel(src)
 
 /datum/crafting_recipe/heroinbrick
-	name = "heroin brick"
+	name = "海洛因砖"
 	result = /obj/item/reagent_containers/heroinbrick
 	reqs = list(/obj/item/reagent_containers/heroin = 5)
 	parts = list(/obj/item/reagent_containers/heroin = 5)
@@ -100,8 +100,8 @@
 	color = "#444444"
 
 /datum/reagent/drug/opium
-	name = "opium"
-	description = "A extract from opium poppies. Puts the user in a slightly euphoric state."
+	name = "鸦片"
+	description = "从罂粟中提取的物质。能让使用者进入轻微的欣快状态。"
 	color = "#ffe669"
 	overdose_threshold = 30
 	ph = 8
@@ -138,8 +138,8 @@
 	metabolizer.clear_fullscreen("heroin_euphoria")
 
 /datum/reagent/drug/opium/heroin
-	name = "heroin"
-	description = "She's like heroin to me, she's like heroin to me! She cannot... miss a vein!"
+	name = "海洛因"
+	description = "她对我而言就像海洛因，她对我而言就像海洛因！她绝不会……错过我的血管！"
 	color = "#ffe669"
 	overdose_threshold = 20
 	ph = 6
@@ -158,8 +158,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/opium/blacktar
-	name = "black tar heroin"
-	description = "An impure, freebase form of heroin. Probably not a good idea to take this..."
+	name = "黑焦油海洛因"
+	description = "一种不纯的海洛因游离碱形态。服用这个可能不是个好主意……"
 	color = "#242423"
 	overdose_threshold = 10 //more easy to overdose on
 	ph = 8
@@ -177,7 +177,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/opium/blacktar/liquid //prevents self-duplication by going one step down when mixed
-	name = "liquid black tar heroin"
+	name = "液态黑焦油海洛因"
 
 /datum/chemical_reaction/blacktar
 	required_reagents = list(/datum/reagent/drug/opium/blacktar/liquid = 5)

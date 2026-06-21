@@ -1,6 +1,6 @@
 // mrsanderp's donator item
 /datum/crafting_recipe/food/miso_pasta
-	name = "Miso Pasta"
+	name = "味噌意面"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/grown/mushroom/chanterelle = 1,
@@ -15,7 +15,7 @@
 
 // mrsanderp's donator item
 /datum/crafting_recipe/food/red_bay_chicken_meatballs
-	name = "Red Bay Chicken Meatballs"
+	name = "红湾鸡肉丸"
 	reqs = list(
 		/datum/reagent/consumable/red_bay = 1,
 		/obj/item/food/meatball/chicken = 3,
@@ -30,7 +30,7 @@
 
 // mrsanderp's donator item
 /datum/crafting_recipe/food/tiramisu
-	name = "Tiramisu"
+	name = "提拉米苏"
 	reqs = list(
 		/obj/item/food/pastrybase = 2,
 		/datum/reagent/consumable/coffee = 10,
@@ -46,7 +46,7 @@
 
 // mrsanderp's donator item
 /datum/crafting_recipe/food/red_planet_parm
-	name = "Red Planet Parm"
+	name = "红色星球帕尔姆"
 	reqs = list(
 		/obj/item/food/breadslice/reispan = 2,
 		/obj/item/food/meat/steak/chicken = 1,
@@ -62,7 +62,7 @@
 
 // mrsanderp's donator item
 /datum/crafting_recipe/food/aubergine_rolls
-	name = "Aubergine Rolls"
+	name = "茄子卷"
 	reqs = list(
 		/datum/reagent/consumable/nutriment/fat/oil/olive = 2,
 		/obj/item/food/grown/eggplant = 1,
@@ -77,7 +77,7 @@
 
 // mrsanderp's donator item
 /datum/crafting_recipe/food/pineapple_trifle
-	name = "Pineapple Trifle"
+	name = "菠萝松糕"
 	reqs = list(
 		/obj/item/food/pineappleslice = 2,
 		/obj/item/food/pastrybase = 1,

@@ -1,7 +1,7 @@
 // Piru
 /obj/item/seeds/piru
-	name = "pack of piru starters"
-	desc = "This bacterial colony forms into piru fronds."
+	name = "一包皮鲁菌种"
+	desc = "这种细菌菌落会形成皮鲁叶簇。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-piru"
 	species = "piru"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/piru
 	seed = /obj/item/seeds/piru
-	name = "piru frond"
-	desc = "A delicate frond of piru, resembling strands of silk more than leaves. grinds down into piru flour used in teshari cuisine."
+	name = "皮鲁叶簇"
+	desc = "一簇精致的皮鲁叶，与其说是叶子不如说更像丝线。可研磨成用于特莎莉料理的皮鲁面粉。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "piru"
 	foodtypes = VEGETABLES

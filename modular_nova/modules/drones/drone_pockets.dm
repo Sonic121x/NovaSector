@@ -1,13 +1,13 @@
 // HUD elements
 /datum/inventory_slot/drone/l_pocket
-	name = "left pocket"
+	name = "左口袋"
 	icon_state = "pocket"
 	icon_full = "template_small"
 	screen_loc = ui_storage1
 	slot_id = ITEM_SLOT_LPOCKET
 
 /datum/inventory_slot/drone/r_pocket
-	name = "right pocket"
+	name = "右口袋"
 	icon_state = "pocket"
 	icon_full = "template_small"
 	screen_loc = ui_storage2

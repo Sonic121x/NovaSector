@@ -19,7 +19,7 @@
 
 	var/free_space = reagents.maximum_volume - reagents.total_volume
 	if(free_space <= 0)
-		to_chat(user, span_warning("Your [src] can't absorb any more liquid!"))
+		to_chat(user, span_warning("你的[src]无法吸收更多液体了！"))
 		return TRUE
 
 	var/datum/reagents/tempr = liquids.take_reagents_flat(free_space)

@@ -15,13 +15,13 @@
 *	UNSORTED
 */
 /obj/item/clothing/under/costume/nova/cavalry
-	name = "cavalry uniform"
-	desc = "Dedicate yourself to something better. To loyalty, honour, for it only dies when everyone abandons it."
+	name = "骑兵制服"
+	desc = "投身于更崇高的事业。为了忠诚与荣誉，因为只有当所有人都背弃它时，它才会消亡。"
 	icon_state = "cavalry" //specifically an 1890s US Army Cavalry Uniform
 
 /obj/item/clothing/under/costume/deckers/alt //not even going to bother re-pathing this one because it's such a unique case of 'TGs item has something but this alt doesnt'
-	name = "deckers maskless outfit"
-	desc = "A decker jumpsuit with neon blue coloring."
+	name = "迪克斯无面具套装"
+	desc = "一件霓虹蓝配色的迪克斯连体服。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/costume.dmi'
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/under/costume_digi.dmi'
@@ -29,8 +29,8 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/nova/bathrobe
-	name = "bathrobe"
-	desc = "A warm fluffy bathrobe, perfect for relaxing after finally getting clean."
+	name = "浴袍"
+	desc = "一件温暖蓬松的浴袍，非常适合在终于洗干净后放松身心。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/nova/bathrobe"
 	post_init_icon_state = "robes"
@@ -116,8 +116,8 @@
 */
 
 /obj/item/clothing/under/costume/nova/qipao
-	name = "qipao"
-	desc = "A qipao, traditionally worn in ancient Earth China by women during social events and lunar new years."
+	name = "旗袍"
+	desc = "一件旗袍，在古代地球中国，女性在社交活动和农历新年期间的传统穿着。"
 	body_parts_covered = CHEST|GROIN|LEGS
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	greyscale_colors = "#2b2b2b"
@@ -140,8 +140,8 @@
 	greyscale_config_worn_digi = /datum/greyscale_config/qipao_customtrim/worn/digi
 
 /obj/item/clothing/under/costume/nova/cheongsam
-	name = "cheongsam"
-	desc = "A cheongsam, traditionally worn in ancient Earth China by men during social events and lunar new years."
+	name = "长衫"
+	desc = "一件长衫，在古代地球中国，男性在社交活动和农历新年期间的传统穿着。"
 	body_parts_covered = CHEST|GROIN|LEGS
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	greyscale_colors = "#2b2b2b#353535"
@@ -164,8 +164,8 @@
 	greyscale_config_worn_digi = /datum/greyscale_config/cheongsam_customtrim/worn/digi
 
 /obj/item/clothing/under/costume/nova/yukata
-	name = "yukata"
-	desc = "A traditional ancient Earth Japanese yukata, typically worn in casual settings."
+	name = "浴衣"
+	desc = "一件古代地球日本传统的浴衣，通常在休闲场合穿着。"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	greyscale_colors = "#2b2b2b#666666"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
@@ -178,27 +178,27 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/costume/nova/kamishimo
-	name = "kamishimo"
-	desc = "A traditional ancient Earth Japanese Kamishimo."
+	name = "裃"
+	desc = "一件古代地球日本传统的裃。"
 	icon_state = "kamishimo"
 
 /obj/item/clothing/under/costume/nova/kimono
-	name = "fancy kimono"
-	desc = "A traditional ancient Earth Japanese Kimono. Longer and fancier than a yukata."
+	name = "华丽和服"
+	desc = "一件古代地球日本传统的和服。比浴衣更长、更华丽。"
 	icon_state = "kimono"
 	body_parts_covered = CHEST|GROIN|ARMS
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/costume/nova/shihakusho
-	name = "shihakusho"
-	desc = "A traditional ancient Earth Japanese Shihakusho."
+	name = "死霸装"
+	desc = "一件古代地球日本传统的死霸装。"
 	icon_state = "shihakusho"
 	body_parts_covered = CHEST|GROIN|ARMS
 
 /obj/item/clothing/under/costume/nova/chima_jeogori
-	name = "chima jeogori"
-	desc = "Traditional Korean clothes, often worn as formal attire."
+	name = "赤古里裙"
+	desc = "韩国传统服饰，常作为正装穿着。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/nova/chima_jeogori"
 	post_init_icon_state = "chima_jeogori"
@@ -215,8 +215,8 @@
 */
 
 /obj/item/clothing/under/costume/nova/christmas
-	name = "christmas costume"
-	desc = "Can you believe it guys? Christmas. Just a lightyear away!" //Lightyear is a measure of distance I hate it being used for this joke :(
+	name = "圣诞装扮"
+	desc = "伙计们，你们敢信吗？圣诞节。就在一光年之外！" //Lightyear is a measure of distance I hate it being used for this joke :(
 	greyscale_colors = "#cc0f0f#c4c2c2"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/nova/christmas"
@@ -228,7 +228,7 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/costume/nova/christmas/croptop
-	name = "sexy christmas costume"
+	name = "性感圣诞装扮"
 	desc = "About 550 years since the release of Mariah Carey's \"All I Want For Christmas is You\", society has yet to properly recover from its repercussions. Some still keep a gun as their christmas mantlepiece, just in case she's heard singing on their rooftop late in the night..."
 	greyscale_colors = "#cc0f0f#c4c2c2"
 	icon_state = "/obj/item/clothing/under/costume/nova/christmas/croptop"

@@ -1,7 +1,7 @@
 //computer that handle the points and teleports the prisoner
 /obj/machinery/computer/prisoner/gulag_teleporter_computer
-	name = "labor camp teleporter console"
-	desc = "Used to send criminals to the Labor Camp."
+	name = "劳改营传送器控制台"
+	desc = "用于将囚犯传送至劳改营。"
 	icon_screen = "explosive"
 	icon_keyboard = "security_key"
 	req_access = list(ACCESS_BRIG)
@@ -74,7 +74,7 @@
 	if(isliving(usr))
 		playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 	if(!allowed(usr))
-		to_chat(usr, span_warning("Access denied."))
+		to_chat(usr, span_warning("拒绝访问."))
 		return
 	switch(action)
 		if("scan_teleporter")
@@ -101,13 +101,13 @@
 			return TRUE
 		if("toggle_open")
 			if(teleporter.locked)
-				to_chat(usr, span_alert("The teleporter must be unlocked first."))
+				to_chat(usr, span_alert("传送器必须先解锁。"))
 				return
 			teleporter.toggle_open()
 			return TRUE
 		if("teleporter_lock")
 			if(teleporter.state_open)
-				to_chat(usr, span_alert("The teleporter must be closed first."))
+				to_chat(usr, span_alert("传送器必须先关闭。"))
 				return
 			teleporter.locked = !teleporter.locked
 			return TRUE
@@ -147,7 +147,7 @@
 	playsound(src, 'sound/items/weapons/emitter.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	prisoner.forceMove(get_turf(beacon))
 	prisoner.Paralyze(40) // small travel dizziness
-	to_chat(prisoner, span_warning("The teleportation makes you a little dizzy."))
+	to_chat(prisoner, span_warning("传送让你感到有点头晕。"))
 	new /obj/effect/particle_effect/sparks(get_turf(prisoner))
 	playsound(src, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	if(teleporter.locked)

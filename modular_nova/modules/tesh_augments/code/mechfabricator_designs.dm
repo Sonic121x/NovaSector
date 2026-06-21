@@ -4,7 +4,7 @@
 #define RND_SUBCATEGORY_CYBERNETICS_ADVANCED_RAPTORAL "/Advanced Raptoral"
 
 /datum/design/teshari_cyber_chest
-	name = "Raptoral Cybernetic Torso"
+	name = "猛禽型赛博格躯干"
 	id = "teshari_cyber_chest"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/chest/robot/teshari
@@ -15,7 +15,7 @@
 	)
 
 /datum/design/teshari_cyber_head
-	name = "Raptoral Cybernetic Head"
+	name = "猛禽机械头部"
 	id = "teshari_cyber_head"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/head/robot/teshari
@@ -26,7 +26,7 @@
 	)
 
 /datum/design/teshari_cyber_l_arm
-	name = "Raptoral Cybernetic Left Forelimb"
+	name = "猛禽机械左前肢"
 	id = "teshari_cyber_l_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/left/robot/teshari
@@ -37,7 +37,7 @@
 	)
 
 /datum/design/teshari_cyber_r_arm
-	name = "Raptoral Cybernetic Right Forelimb"
+	name = "猛禽机械右前肢"
 	id = "teshari_cyber_r_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/right/robot/teshari
@@ -48,7 +48,7 @@
 	)
 
 /datum/design/teshari_cyber_l_leg
-	name = "Raptoral Cybernetic Left Hindlimb"
+	name = "猛禽机械左后肢"
 	id = "teshari_cyber_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/teshari
@@ -59,7 +59,7 @@
 	)
 
 /datum/design/teshari_cyber_r_leg
-	name = "Raptoral Cybernetic Right Hindlimb"
+	name = "猛禽机械右后肢"
 	id = "teshari_cyber_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/teshari
@@ -72,7 +72,7 @@
 //advanced augmentations since those were added in the recent upstream
 
 /datum/design/teshari_advanced_l_arm
-	name = "Advanced Raptoral Cybernetic Left Forelimb"
+	name = "高级猛禽机械左前肢"
 	id = "teshari_advanced_l_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/left/robot/teshari_advanced
@@ -87,7 +87,7 @@
 	)
 
 /datum/design/teshari_advanced_r_arm
-	name = "Advanced Raptoral Cybernetic Right Forelimb"
+	name = "高级猛禽机械右前肢"
 	id = "teshari_advanced_r_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/right/robot/teshari_advanced
@@ -102,7 +102,7 @@
 	)
 
 /datum/design/teshari_advanced_l_leg
-	name = "Advanced Raptoral Cybernetic Left Hindlimb"
+	name = "高级猛禽机械左后肢"
 	id = "teshari_advanced_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/teshari_advanced
@@ -117,7 +117,7 @@
 	)
 
 /datum/design/teshari_advanced_r_leg
-	name = "Advanced Raptoral Cybernetic Right Hindlimb"
+	name = "高级猛禽机械右后肢"
 	id = "teshari_advanced_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/teshari_advanced

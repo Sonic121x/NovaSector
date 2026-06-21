@@ -59,7 +59,7 @@
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SCARBOROUGH)
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "Scarborough Arms's 'DURANDAL' line of parts kits are designed for the discerning customer who needs \
 		every ounce of performance they can get out of their tools of rampant violence. The rumors that the kits are \
 		designed with the assistance of an AI that's either missing ethical limiters or has independently subverted them \

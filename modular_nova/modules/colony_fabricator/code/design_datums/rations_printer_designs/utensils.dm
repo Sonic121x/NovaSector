@@ -1,5 +1,5 @@
 /datum/design/frontier_ration_plastic_fork
-	name = "Plastic Fork"
+	name = "塑料叉"
 	id = "frontier_ration_plastic_fork"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 10)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/frontier_ration_plastic_spoon
-	name = "Plastic Spoon"
+	name = "塑料勺"
 	id = "frontier_ration_plastic_spoon"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 10)
@@ -21,7 +21,7 @@
 	)
 
 /datum/design/frontier_ration_plastic_knife
-	name = "Plastic Knife"
+	name = "塑料刀"
 	id = "frontier_ration_plastic_knife"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 10)
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/frontier_ration_plastic_cup
-	name = "Plastic Cup"
+	name = "塑料杯"
 	id = "frontier_ration_plastic_cup"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)

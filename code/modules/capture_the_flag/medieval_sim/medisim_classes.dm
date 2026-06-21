@@ -1,5 +1,5 @@
 /datum/outfit/ctf/medisim
-	name = "Redfield Castle Knight"
+	name = "红方骑士"
 	icon_state = "medisim_knight"
 
 	uniform = /obj/item/clothing/under/color/red
@@ -23,7 +23,7 @@
 	class_description = "Melee class. Armed with a claymore."
 
 /datum/outfit/ctf/medisim/archer
-	name = "Redfield Castle Archer"
+	name = "红方弓箭手"
 	icon_state = "medisim_archer"
 
 	belt = /obj/item/storage/bag/quiver/full
@@ -33,7 +33,7 @@
 	class_description = "Ranged class. Armed with a bow and arrows."
 
 /datum/outfit/ctf/medisim/blue
-	name = "Bluesworth Hold Knight"
+	name = "蓝方骑士"
 
 	uniform = /obj/item/clothing/under/color/blue
 	shoes = /obj/item/clothing/shoes/plate/blue
@@ -42,7 +42,7 @@
 	head = /obj/item/clothing/head/helmet/knight/blue
 
 /datum/outfit/ctf/medisim/archer/blue
-	name = "Bluesworth Hold Archer"
+	name = "蓝方弓箭手"
 
 	uniform = /obj/item/clothing/under/color/blue
 	shoes = /obj/item/clothing/shoes/plate/blue

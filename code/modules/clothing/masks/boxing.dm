@@ -1,5 +1,5 @@
 /obj/item/clothing/mask/balaclava
-	name = "balaclava"
+	name = "巴拉克拉法帽"
 	desc = "LOADSAMONEY"
 	icon_state = "balaclava"
 	inhand_icon_state = "balaclava"
@@ -32,8 +32,8 @@
 	adjust_visor(user)
 
 /obj/item/clothing/mask/luchador
-	name = "Luchador Mask"
-	desc = "Worn by robust fighters, flying high to defeat their foes!"
+	name = "牛战士面具"
+	desc = "强健的牛战士总是一如既往的打败敌人！"
 	icon_state = "luchag"
 	inhand_icon_state = null
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -54,8 +54,8 @@
 	icon_state = "luchar"
 
 /obj/item/clothing/mask/russian_balaclava
-	name = "russian balaclava"
-	desc = "Protects your face from snow."
+	name = "俄罗斯巴拉克拉法帽"
+	desc = "保护你的脸不受雪的伤害。"
 	icon_state = "rus_balaclava"
 	inhand_icon_state = "balaclava"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT

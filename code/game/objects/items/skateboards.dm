@@ -1,7 +1,7 @@
 
 /obj/item/melee/skateboard
-	name = "skateboard"
-	desc = "A skateboard. It can be placed on its wheels and ridden, or used as a radical weapon."
+	name = "滑板"
+	desc = "一块滑板。它可以放在轮子上骑行，或者用作一种激进的武器。"
 	icon = 'icons/mob/rideables/vehicles.dmi'
 	icon_state = "skateboard_held"
 	inhand_icon_state = "skateboard"
@@ -20,35 +20,35 @@
 	forceMove(board)
 
 /obj/item/melee/skateboard/improvised
-	name = "improvised skateboard"
-	desc = "A jury-rigged skateboard. It can be placed on its wheels and ridden, or used as a radical weapon."
+	name = "简易滑板"
+	desc = "一个临时拼凑的滑板。它可以放在轮子上滑行，或者用作一件超酷的武器。"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/improvised
 
 /obj/item/melee/skateboard/pro
-	name = "skateboard"
-	desc = "An EightO brand professional skateboard. It looks sturdy and well made."
+	name = "滑板"
+	desc = "一块EightO品牌的专业滑板。它看起来坚固且制作精良。"
 	icon_state = "skateboard2_held"
 	inhand_icon_state = "skateboard2"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/pro
 	custom_premium_price = PAYCHECK_COMMAND * 5
 
 /obj/item/melee/skateboard/hoverboard
-	name = "hoverboard"
-	desc = "A blast from the past, so retro!"
+	name = "悬浮滑板"
+	desc = "来自过去的冲击，太复古了！"
 	icon_state = "hoverboard_red_held"
 	inhand_icon_state = "hoverboard_red"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/hoverboard
 	custom_premium_price = PAYCHECK_COMMAND * 5.4 //If I can't make it a meme I'll make it RAD
 
 /obj/item/melee/skateboard/hoverboard/admin
-	name = "Board Of Directors"
-	desc = "The engineering complexity of a spaceship concentrated inside of a board. Just as expensive, too."
+	name = "董事会"
+	desc = "一艘宇宙飞船的工程复杂度浓缩在一块板子里。同样昂贵。"
 	icon_state = "hoverboard_nt_held"
 	inhand_icon_state = "hoverboard_nt"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/hoverboard/admin
 
 /obj/item/melee/skateboard/holyboard
-	name = "holy skateboard"
+	name = "神圣滑板"
 	desc = "A board blessed by the gods with the power to grind for our sins. Has the initials 'J.C.' on the underside."
 	icon_state = "hoverboard_holy_held"
 	inhand_icon_state = "hoverboard_holy"

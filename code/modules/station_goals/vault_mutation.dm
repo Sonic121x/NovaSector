@@ -1,9 +1,9 @@
 
 /datum/mutation/breathless
 	name = "Breathless"
-	desc = "A mutation within the skin that allows for filtering and absorption of oxygen from the skin."
-	text_gain_indication = span_notice("Your lungs feel great.")
-	text_lose_indication = span_warning("Your lungs feel normal again.")
+	desc = "一种皮肤内的突变，允许通过皮肤过滤和吸收氧气。"
+	text_gain_indication = span_notice("你的肺部感觉棒极了。")
+	text_lose_indication = span_warning("你的肺部感觉恢复正常了。")
 	locked = TRUE
 
 /datum/mutation/breathless/on_acquiring(mob/living/carbon/human/acquirer)
@@ -16,9 +16,9 @@
 
 /datum/mutation/quick
 	name = "Quick"
-	desc = "A mutation within the leg muscles that allows it to operate at 20% more than the usual capacity."
-	text_gain_indication = span_notice("Your legs feel faster and stronger.")
-	text_lose_indication = span_warning("Your legs feel weaker and slower.")
+	desc = "一种腿部肌肉内的突变，使其能以比通常容量高出20%的效率运作。"
+	text_gain_indication = span_notice("你的双腿感觉更快更强壮了。")
+	text_lose_indication = span_warning("你的双腿感觉更虚弱更迟缓了。")
 	locked = TRUE
 
 /datum/mutation/quick/on_acquiring(mob/living/carbon/human/acquirer)
@@ -31,9 +31,9 @@
 
 /datum/mutation/tough
 	name = "Tough"
-	desc = "A mutation within the epidermis that makes it more resistant to tear."
-	text_gain_indication = span_notice("Your skin feels tougher.")
-	text_lose_indication = span_warning("Your skin feels weaker.")
+	desc = "一种表皮内的突变，使其更抗撕裂。"
+	text_gain_indication = span_notice("你的皮肤感觉更坚韧了。")
+	text_lose_indication = span_warning("你的皮肤感觉更脆弱了。")
 	locked = TRUE
 
 /datum/mutation/tough/on_acquiring(mob/living/carbon/human/acquirer)
@@ -48,9 +48,9 @@
 
 /datum/mutation/dextrous
 	name = "Dextrous"
-	desc = "A mutation within the nerve system that allows for more responsive and quicker action."
-	text_gain_indication = span_notice("Your limbs feel more dextrous and responsive.")
-	text_lose_indication = span_warning("Your limbs feel less dextrous and responsive.")
+	desc = "一种神经系统内的突变，允许更灵敏和更快速的动作。"
+	text_gain_indication = span_notice("你的肢体感觉更灵巧、反应更灵敏了。")
+	text_lose_indication = span_warning("你的肢体感觉不那么灵巧和灵敏了。")
 	locked = TRUE
 
 /datum/mutation/dextrous/on_acquiring(mob/living/carbon/human/acquirer)
@@ -63,9 +63,9 @@
 
 /datum/mutation/fire_immunity
 	name = "Fire Immunity"
-	desc = "A mutation within the body that allows it to become nonflammable and withstand higher temperature."
-	text_gain_indication = span_notice("Your body feels like it can withstand fire.")
-	text_lose_indication = span_warning("Your body feels vulnerable to fire again.")
+	desc = "一种身体内的突变，使其变得不可燃并能承受更高的温度。"
+	text_gain_indication = span_notice("你的身体感觉能够抵御火焰了。")
+	text_lose_indication = span_warning("你的身体感觉再次容易受到火焰伤害了。")
 	locked = TRUE
 
 /datum/mutation/fire_immunity/on_acquiring(mob/living/carbon/human/acquirer)
@@ -80,9 +80,9 @@
 
 /datum/mutation/quick_recovery
 	name = "Quick Recovery"
-	desc = "A mutation within the nervous system that allows it to recover from being knocked down."
-	text_gain_indication = span_notice("You feel like you can recover from a fall easier.")
-	text_lose_indication = span_warning("You feel like recovering from a fall is a challenge again.")
+	desc = "神经系统中的一种突变，使其能够从被击倒状态中恢复。"
+	text_gain_indication = span_notice("你感觉自己能更容易地从跌倒中恢复。")
+	text_lose_indication = span_warning("你感觉从跌倒中恢复又变得困难了。")
 	locked = TRUE
 
 /datum/mutation/quick_recovery/on_acquiring(mob/living/carbon/human/acquirer)
@@ -95,9 +95,9 @@
 
 /datum/mutation/plasmocile
 	name = "Plasmocile"
-	desc = "A mutation in the lungs that provides it immunity to plasma's toxic nature."
-	text_gain_indication = span_notice("Your lungs feel resistant to airborne contaminant.")
-	text_lose_indication = span_warning("Your lungs feel vulnerable to airborne contaminant again.")
+	desc = "肺部的一种突变，使其对等离子体的毒性具有免疫力。"
+	text_gain_indication = span_notice("你的肺部感觉对空气污染物有了抵抗力。")
+	text_lose_indication = span_warning("你的肺部感觉再次对空气污染物变得脆弱。")
 	locked = TRUE
 
 /datum/mutation/plasmocile/on_acquiring(mob/living/carbon/human/acquirer)

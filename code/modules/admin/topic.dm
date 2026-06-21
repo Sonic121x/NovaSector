@@ -110,12 +110,12 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		var/timer = input("Enter new shuttle duration (seconds):","Edit Shuttle Timeleft", SSshuttle.emergency.timeLeft() ) as num|null
+		var/timer = input("输入新的穿梭机持续时间（秒）：","编辑穿梭机剩余时间", SSshuttle.emergency.timeLeft() ) as num|null
 		if(!timer)
 			return
 		SSshuttle.emergency.setTimer(timer SECONDS)
 		log_admin("[key_name(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds.")
-		minor_announce("The emergency shuttle will reach its destination in [DisplayTimeText(timer SECONDS)].")
+		minor_announce("紧急穿梭机将在 [DisplayTimeText(timer SECONDS)] 后抵达目的地。")
 		message_admins(span_adminnotice("[key_name_admin(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds."))
 	else if(href_list["trigger_centcom_recall"])
 		if(!check_rights(R_ADMIN))
@@ -140,7 +140,7 @@
 		if(!shuttle_console)
 			return
 		shuttle_console.admin_controlled = !shuttle_console.admin_controlled
-		to_chat(usr, "[shuttle_console] was [shuttle_console.admin_controlled ? "locked" : "unlocked"].", confidential = TRUE)
+		to_chat(usr, "[shuttle_console] 已[shuttle_console.admin_controlled ? "locked" : "unlocked"]。", confidential = TRUE)
 
 	else if(href_list["delay_round_end"])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/delay_round_end)
@@ -149,7 +149,7 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(tgui_alert(usr, "Really cancel current round end delay? The reason for the current delay is: \"[SSticker.admin_delay_notice]\"", "Undelay round end", list("Yes", "No")) == "No")
+		if(tgui_alert(usr, "确定要取消当前回合结束延迟吗？当前延迟的原因是：\"[SSticker.admin_delay_notice]\"", "取消回合结束延迟", list("Yes", "No")) == "No")
 			return
 
 		SSticker.admin_delay_notice = null
@@ -164,9 +164,9 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		message_admins(span_adminnotice("[key_name_admin(usr)] is considering ending the round."))
-		if(tgui_alert(usr, "This will end the round, are you SURE you want to do this?", "Confirmation", list("Yes", "No")) == "Yes")
-			if(tgui_alert(usr, "Final Confirmation: End the round NOW?", "Confirmation", list("Yes", "No")) == "Yes")
+		message_admins(span_adminnotice("[key_name_admin(usr)] 正在考虑结束回合。"))
+		if(tgui_alert(usr, "这将结束回合，你确定要这样做吗？", "确认", list("Yes", "No")) == "Yes")
+			if(tgui_alert(usr, "最终确认：立即结束本轮游戏？", "确认", list("Yes", "No")) == "Yes")
 				message_admins(span_adminnotice("[key_name_admin(usr)] has ended the round."))
 				SSticker.force_ending = ADMIN_FORCE_END_ROUND //Yeah there we go APC destroyed mission accomplished
 				return
@@ -186,14 +186,14 @@
 
 		var/delmob = TRUE
 		if(!isobserver(M))
-			switch(tgui_alert(usr,"Delete old mob?","Message",list("Yes","No","Cancel")))
+			switch(tgui_alert(usr,"删除旧生物？","消息",list("Yes","No","Cancel")))
 				if("Cancel")
 					return
 				if("No")
 					delmob = FALSE
 
 		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
-		message_admins(span_adminnotice("[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]"))
+		message_admins(span_adminnotice("[key_name_admin(usr)] 对 [key_name_admin(M)] 使用了基础变形。变形为 [href_list["simplemake"]]。; deletemob=[delmob]"))
 		switch(href_list["simplemake"])
 			if("observer")
 				M.change_mob_type( /mob/dead/observer , null, null, delmob )
@@ -221,7 +221,7 @@
 			if(!check_if_greater_rights_than(M.client))
 				to_chat(usr, span_danger("Error: They have more rights than you do."), confidential = TRUE)
 				return
-			if(tgui_alert(usr, "Kick [key_name(M)]?", "Confirm", list("Yes", "No")) != "Yes")
+			if(tgui_alert(usr, "踢出 [key_name(M)]？", "确认", list("Yes", "No")) != "Yes")
 				return
 			if(!M)
 				to_chat(usr, span_danger("Error: [M] no longer exists!"), confidential = TRUE)
@@ -229,7 +229,7 @@
 			if(!M.client)
 				to_chat(usr, span_danger("Error: [M] no longer has a client!"), confidential = TRUE)
 				return
-			to_chat(M, span_danger("You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"]."), confidential = TRUE)
+			to_chat(M, span_danger("你已被 [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"] 踢出服务器。"), confidential = TRUE)
 			log_admin("[key_name(usr)] kicked [key_name(M)].")
 			message_admins(span_adminnotice("[key_name_admin(usr)] kicked [key_name_admin(M)]."))
 			qdel(M.client)
@@ -275,7 +275,7 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = tgui_alert(usr,"Delete message/note?",,list("Yes","No"));
+		var/safety = tgui_alert(usr,"删除消息/备注？",,list("Yes","No"));
 		if (safety == "Yes")
 			var/message_id = href_list["deletemessage"]
 			delete_message(message_id)
@@ -283,7 +283,7 @@
 	else if(href_list["deletemessageempty"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = tgui_alert(usr,"Delete message/note?",,list("Yes","No"));
+		var/safety = tgui_alert(usr,"删除消息/备注？",,list("Yes","No"));
 		if (safety == "Yes")
 			var/message_id = href_list["deletemessageempty"]
 			delete_message(message_id, browse = TRUE)
@@ -402,7 +402,7 @@
 		if(!ismob(M))
 			to_chat(usr, "this can only be used on instances of type /mob.", confidential = TRUE)
 			return
-		var/speech = input("What will [key_name(M)] say?", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
+		var/speech = input("[key_name(M)] 会说什么？", "强制发言", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
 		if(!speech)
 			return
 		M.say(speech, forced = "admin speech")
@@ -423,7 +423,7 @@
 			return
 		SSquirks.AssignQuirks(target, target.client)
 		log_admin("[key_name(usr)] applied client quirks to [key_name(target)].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] applied client quirks to [key_name_admin(target)]."))
+		message_admins(span_adminnotice("[key_name_admin(usr)] 向 [key_name_admin(target)] 应用了客户端特性。"))
 
 	else if(href_list["sendtoprison"])
 		if(!check_rights(R_ADMIN))
@@ -437,7 +437,7 @@
 			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.", confidential = TRUE)
 			return
 
-		if(tgui_alert(usr, "Send [key_name(M)] to Prison?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "将 [key_name(M)] 送往监狱？", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		do_sparks(10, TRUE, M, spark_type = /datum/effect_system/basic/spark_spread/quantum) // NOVA EDIT ADDITION - Immersion-friendly Admin Prison
@@ -461,7 +461,7 @@
 			to_chat(usr, span_warning("[M] doesn't seem to have an active client."), confidential = TRUE)
 			return
 
-		if(tgui_alert(usr, "Send [key_name(M)] back to Lobby?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "将 [key_name(M)] 送回大厅？", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
@@ -475,7 +475,7 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "Confirm?", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdome1"])
@@ -501,7 +501,7 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "Confirm?", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdome2"])
@@ -527,7 +527,7 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "Confirm?", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdomeadmin"])
@@ -550,7 +550,7 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "Confirm?", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdomeobserve"])
@@ -587,7 +587,7 @@
 			return
 
 		L.revive(ADMIN_HEAL_ALL)
-		message_admins(span_danger("Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!"))
+		message_admins(span_danger("管理员 [key_name_admin(usr)] 治愈/复活了 [key_name_admin(L)]！"))
 		log_admin("[key_name(usr)] healed / Revived [key_name(L)].")
 
 	else if(href_list["makeai"])
@@ -602,7 +602,7 @@
 			return
 
 		var/move = TRUE
-		switch(tgui_alert(usr,"Move new AI to AI spawn location?","Move AI?", list("Yes", "No","Cancel")))
+		switch(tgui_alert(usr,"将新AI移动到AI生成位置？","移动AI？", list("Yes", "No","Cancel")))
 			if("Cancel", null)
 				return
 			if("No")
@@ -610,7 +610,7 @@
 		if(QDELETED(our_mob))
 			to_chat(usr, span_danger("Subject was deleted already. Transform canceled."))
 			return
-		message_admins(span_danger("Admin [key_name_admin(usr)] AIized [key_name_admin(our_mob)]!"))
+		message_admins(span_danger("管理员 [key_name_admin(usr)] 已将 [key_name_admin(our_mob)] 转化为AI！"))
 		log_admin("[key_name(usr)] AIized [key_name(our_mob)].")
 		our_mob.AIize(our_mob.client, move)
 
@@ -733,7 +733,7 @@
 		exportable_text += "Mob Type - [subject.type]<br>"
 		exportable_text += "Gender - [gender_description]<br>"
 		exportable_text += "[health_description]<br>"
-		exportable_text += "Name: [span_bold(subject.name)] - Real Name: [subject.real_name] - Mind Name: [subject.mind?"[subject.mind.name]":""]<br>"
+		exportable_text += "名称：[span_bold(subject.name)] - 真实姓名：[subject.real_name] - 心智名称：[subject.mind?"[subject.mind.name]":""]<br>"
 		exportable_text += "Location is [location_description]<br>"
 		exportable_text += "[special_role_description]<br>"
 		exportable_text += ADMIN_FULLMONTY_NONAME(subject)
@@ -764,7 +764,7 @@
 		for(var/datum/job/job as anything in SSjob.joinable_occupations)
 			if(job.title == Add)
 				var/newslots = null
-				newslots = input(usr, "How many job slots do you want?", "Add job slots", "[newslots]") as num|null
+				newslots = input(usr, "你想要多少职位槽位？", "添加职位槽位", "[newslots]") as num|null
 				if(!isnull(newslots))
 					to_chat(src.owner, "Job slots for [job.title] set to [newslots]" , confidential = TRUE)
 					job.total_positions = newslots
@@ -843,7 +843,7 @@
 		if (!check_rights(R_ADMIN))
 			return
 
-		var/message = input(owner, "As well as a popup, they'll also be sent a message to reply to. What do you want that to be?", "Message") as text|null
+		var/message = input(owner, "除了弹窗，他们还会收到一条消息来回复。你想让那条消息是什么？", "消息") as text|null
 		if (!message)
 			to_chat(owner, span_notice("Popup cancelled."))
 			return
@@ -906,7 +906,7 @@
 			return
 
 		var/mob/M = locate(href_list["playsoundto"])
-		var/S = input("", "Select a sound file",) as null|sound
+		var/S = input("", "选择声音文件",) as null|sound
 		if(S)
 			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/play_direct_mob_sound, S, M)
 
@@ -936,7 +936,7 @@
 			return
 		// literally just gives them a sound and a message
 		SEND_SOUND(rper, sound('sound/misc/roleplay.ogg'))
-		to_chat(rper, boxed_message("You hear a nagging voice in your head... [span_hypnophrase("Please roleplay appropriately.")]"))
+		to_chat(rper, boxed_message("你脑海中响起一个烦人的声音……[span_hypnophrase("Please roleplay appropriately.")]"))
 		message_admins("[ADMIN_LOOKUPFLW(usr)] reminded [ADMIN_LOOKUPFLW(rper)] to roleplay appropriately.")
 		log_admin("[key_name(usr)] reminded [key_name(rper)] to roleplay appropriately.")
 
@@ -945,7 +945,7 @@
 			return
 
 		if(!SSticker.HasRoundStarted())
-			tgui_alert(usr,"The game hasn't started yet!")
+			tgui_alert(usr,"游戏尚未开始！")
 			return
 
 		var/mob/M = locate(href_list["traitor"])
@@ -965,7 +965,7 @@
 			return
 
 		if(!SSticker.HasRoundStarted())
-			tgui_alert(usr,"The game hasn't started yet!")
+			tgui_alert(usr,"游戏尚未开始！")
 			return
 
 		var/target = locate(href_list["skill"])
@@ -1018,10 +1018,10 @@
 			return
 		if(SSticker.IsRoundInProgress())
 			var/afkonly = text2num(href_list["afkonly"])
-			if(tgui_alert(usr,"Are you sure you want to kick all [afkonly ? "AFK" : ""] clients from the lobby??","Message",list("Yes","Cancel")) != "Yes")
+			if(tgui_alert(usr,"你确定要将所有[afkonly ? "AFK" : ""]客户端从大厅踢出吗？？","Message",list("Yes","Cancel")) != "Yes")
 				to_chat(usr, "Kick clients from lobby aborted", confidential = TRUE)
 				return
-			var/list/listkicked = kick_clients_in_lobby(span_danger("You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"]."), afkonly)
+			var/list/listkicked = kick_clients_in_lobby(span_danger("你被[usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"]从大厅踢出。"), afkonly)
 
 			var/strkicked = ""
 			for(var/name in listkicked)
@@ -1044,16 +1044,16 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/list/type_choices = typesof(/datum/station_goal)
-		var/picked = tgui_input_list(usr, "Choose goal type", "Station Goal", type_choices)
+		var/picked = tgui_input_list(usr, "选择目标类型", "空间站目标", type_choices)
 		if(!picked)
 			return
 		var/datum/station_goal/G = new picked()
 		if(picked == /datum/station_goal)
-			var/newname = input("Enter goal name:") as text|null
+			var/newname = input("输入目标名称：") as text|null
 			if(!newname)
 				return
 			G.name = newname
-			var/description = input("Enter CentCom message contents:") as message|null
+			var/description = input("输入中央司令部消息内容：") as message|null
 			if(!description)
 				return
 			G.report_message = description
@@ -1098,13 +1098,13 @@
 				log_admin("[key_name(usr)] toggled automatic Lag Switch activation [SSlag_switch.auto_switch ? "ON" : "OFF"].")
 				message_admins("[key_name_admin(usr)] toggled automatic Lag Switch activation [SSlag_switch.auto_switch ? "ON" : "OFF"].")
 			if("NUM")
-				var/new_num = input("Enter new threshold value:", "Num") as null|num
+				var/new_num = input("输入新的阈值：", "Num") as null|num
 				if(!isnull(new_num))
 					SSlag_switch.trigger_pop = new_num
 					log_admin("[key_name(usr)] set the Lag Switch automatic trigger pop to [new_num].")
 					message_admins("[key_name_admin(usr)] set the Lag Switch automatic trigger pop to [new_num].")
 			if("SLOWCOOL")
-				var/new_num = input("Enter new cooldown in seconds:", "Num") as null|num
+				var/new_num = input("输入新的冷却时间（秒）：", "数值") as null|num
 				if(!isnull(new_num))
 					SSlag_switch.change_slowmode_cooldown(new_num)
 					log_admin("[key_name(usr)] set the Lag Switch slowmode cooldown to [new_num] seconds.")
@@ -1155,8 +1155,8 @@
 		var/data = list("key" = usr.key)
 		var/answer = href_list["slowquery"]
 		if(answer == "yes")
-			if(tgui_alert(usr, "Did you just press any admin buttons?", "Query server hang report", list("Yes", "No")) == "Yes")
-				var/response = input(usr,"What were you just doing?","Query server hang report") as null|text
+			if(tgui_alert(usr, "你刚才按了任何管理员按钮吗？", "查询服务器卡顿报告", list("Yes", "No")) == "Yes")
+				var/response = input(usr,"你刚才在做什么？","查询服务器卡顿报告") as null|text
 				if(response)
 					data["response"] = response
 			logger.Log(LOG_CATEGORY_DEBUG_SQL, "server hang", data)
@@ -1338,7 +1338,7 @@
 			to_chat(usr, span_warning("This mob either no longer exists or no longer is being controlled by someone!"))
 			return
 
-		switch(tgui_alert(usr, "Would you like the effects to apply immediately or at the end of the round? Applying them now will make it clear it was an admin commendation.", "<3?", list("Apply now", "Apply at round end", "Cancel")))
+		switch(tgui_alert(usr, "你希望效果立即生效还是在回合结束时生效？立即生效会明确表明这是管理员嘉奖。", "<3?", list("Apply now", "Apply at round end", "Cancel")))
 			if("Apply now")
 				heart_recepient.receive_heart(usr, instant = TRUE)
 			if("Apply at round end")

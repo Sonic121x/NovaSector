@@ -1,6 +1,6 @@
 /obj/item/organ/brain/psyker
-	name = "psyker brain"
-	desc = "This brain is blue, split into two hemispheres, and has immense psychic powers. What kind of monstrosity would use that?"
+	name = "灵能者大脑"
+	desc = "这颗大脑呈蓝色，分裂成两个半球，并拥有强大的灵能力量。什么样的怪物会使用它？"
 	icon_state = "brain-psyker"
 	actions_types = list(
 		/datum/action/cooldown/spell/pointed/psychic_projection,
@@ -32,7 +32,7 @@
 		return
 	if(!SPT_PROB(2, seconds_per_tick))
 		return
-	to_chat(owner, span_userdanger("Your head hurts... It can't fit your brain!"))
+	to_chat(owner, span_userdanger("你的头好痛……它装不下你的大脑！"))
 	owner.adjust_disgust(33 * seconds_per_tick)
 	apply_organ_damage(5 * seconds_per_tick, 199)
 
@@ -51,19 +51,19 @@
 /mob/living/carbon/human/proc/slow_psykerize()
 	if(stat == DEAD || !get_bodypart(BODY_ZONE_HEAD) || istype(get_bodypart(BODY_ZONE_HEAD), /obj/item/bodypart/head/psyker))
 		return
-	to_chat(src, span_userdanger("You feel unwell..."))
+	to_chat(src, span_userdanger("你感觉不太舒服……"))
 	sleep(5 SECONDS)
 	if(stat == DEAD || !get_bodypart(BODY_ZONE_HEAD))
 		return
-	to_chat(src, span_userdanger("You feel your skin ripping off!"))
+	to_chat(src, span_userdanger("你感觉自己的皮肤正在撕裂！"))
 	emote("scream")
 	apply_damage(30, BRUTE, BODY_ZONE_HEAD)
 	sleep(5 SECONDS)
 	if(!psykerize())
-		to_chat(src, span_warning("The transformation subsides..."))
+		to_chat(src, span_warning("转化逐渐平息……"))
 		return
 	apply_damage(50, BRUTE, BODY_ZONE_HEAD)
-	to_chat(src, span_userdanger("Your head splits open! Your brain mutates!"))
+	to_chat(src, span_userdanger("你的头裂开了！你的大脑发生了突变！"))
 	new /obj/effect/gibspawner/generic(drop_location(), src, get_blood_dna_list())
 	emote("scream")
 
@@ -88,8 +88,8 @@
 	return TRUE
 
 /datum/religion_rites/nullrod_transformation
-	name = "Transmogrify"
-	desc = "Your full power needs a firearm to be realized. You may transform your null rod into one."
+	name = "变形"
+	desc = "你的全部力量需要一把枪械来实现。你可以将你的驱魔杖转化为一把。"
 	ritual_length = 10 SECONDS
 	///The rod that will be transmogrified.
 	var/obj/item/nullrod/transformation_target
@@ -100,13 +100,13 @@
 	var/mob/living/carbon/human/human_user = user
 	var/datum/brain_trauma/special/burdened/burden = human_user.has_trauma_type(/datum/brain_trauma/special/burdened)
 	if(!burden || burden.burden_level < 9)
-		to_chat(human_user, span_warning("You aren't burdened enough."))
+		to_chat(human_user, span_warning("你的负担还不够重。"))
 		return FALSE
 	for(var/obj/item/possible_rod in get_turf(religious_tool))
 		if(HAS_TRAIT(possible_rod, TRAIT_NULLROD_ITEM))
 			transformation_target = possible_rod
 			return ..()
-	to_chat(human_user, span_warning("You need to place a null rod on [religious_tool] to do this!"))
+	to_chat(human_user, span_warning("你需要将一根驱魔杖放在[religious_tool]上才能进行此操作！"))
 	return FALSE
 
 /datum/religion_rites/nullrod_transformation/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -114,17 +114,17 @@
 	var/obj/item/null_rod = transformation_target
 	transformation_target = null
 	if(QDELETED(null_rod) || null_rod.loc != get_turf(religious_tool))
-		to_chat(user, span_warning("Your target left the altar!"))
+		to_chat(user, span_warning("你的目标离开了祭坛！"))
 		return FALSE
-	to_chat(user, span_warning("[null_rod] turns into a gun!"))
+	to_chat(user, span_warning("[null_rod] 变成了一把枪！"))
 	user.emote("smile")
 	qdel(null_rod)
 	new /obj/item/gun/ballistic/revolver/chaplain(get_turf(religious_tool))
 	return TRUE
 
 /obj/item/gun/ballistic/revolver/chaplain
-	name = "chaplain's revolver"
-	desc = "Holy smokes."
+	name = "牧师的左轮手枪"
+	desc = "神圣的烟雾。"
 	icon_state = "lucky"
 	force = 10
 	fire_sound = 'sound/items/weapons/gun/revolver/shot.ogg'
@@ -181,14 +181,14 @@
 /obj/item/gun/ballistic/revolver/chaplain/suicide_act(mob/living/user)
 	. = ..()
 	name = "Habemus Papam"
-	desc = "I announce to you a great joy."
+	desc = "我向你们宣告一个巨大的喜悦。"
 
 /obj/item/gun/ballistic/revolver/chaplain/attack_self(mob/living/user)
 	pray_refill(user)
 
 /obj/item/gun/ballistic/revolver/chaplain/attackby(obj/item/possibly_ammo, mob/user, list/modifiers, list/attack_modifiers)
 	if (isammocasing(possibly_ammo) || istype(possibly_ammo, /obj/item/ammo_box))
-		user.balloon_alert(user, "no manual reloads!")
+		user.balloon_alert(user, "无法手动装填！")
 		return
 
 	return ..()
@@ -198,11 +198,11 @@
 		return
 	var/datum/brain_trauma/special/burdened/burden = user.has_trauma_type(/datum/brain_trauma/special/burdened)
 	if(needs_burden && (!burden || burden.burden_level < 9))
-		to_chat(user, span_warning("You aren't burdened enough."))
+		to_chat(user, span_warning("你的负担还不够沉重。"))
 		return
 	user.manual_emote("presses [user.p_their()] palms together...")
 	if(!do_after(user, 5 SECONDS, src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
 	user.say("#Oh great [GLOB.deity], give me the ammunition I need!", forced = "ammo prayer")
 	magazine.top_off()
@@ -210,24 +210,24 @@
 	chamber_round()
 
 /datum/action/item_action/pray_refill
-	name = "Refill"
-	desc = "Perform a prayer, to refill your weapon."
+	name = "重新装填"
+	desc = "进行一次祈祷，为你的武器重新装弹。"
 
 /obj/item/ammo_box/magazine/internal/cylinder/revchap
-	name = "chaplain revolver cylinder"
+	name = "牧师左轮手枪弹巢"
 	ammo_type = /obj/item/ammo_casing/c38/holy
 	caliber = CALIBER_38
 	max_ammo = 5
 
 /obj/item/ammo_casing/c38/holy
-	name = "lucky .38 bullet casing"
-	desc = "A lucky .38 bullet casing. You feel lucky just holding it."
+	name = "幸运的 .38 子弹弹壳"
+	desc = "一枚幸运的 .38 子弹弹壳。光是拿着它就让你感觉幸运。"
 	caliber = CALIBER_38
 	projectile_type = /obj/projectile/bullet/c38/holy
 	custom_materials = null
 
 /obj/projectile/bullet/c38/holy
-	name = "lucky .38 bullet"
+	name = "幸运的 .38 子弹"
 	ricochets_max = 2
 	ricochet_chance = 50
 	ricochet_auto_aim_angle = 10
@@ -244,8 +244,8 @@
 		new /obj/effect/temp_visual/crit(get_turf(target))
 
 /datum/action/cooldown/spell/pointed/psychic_projection
-	name = "Psychic Projection"
-	desc = "Project your psychics into a target to warp their view, and instill absolute terror that will cause them to fire their gun rapidly."
+	name = "心灵投射"
+	desc = "将你的心灵力量投射到目标身上，扭曲他们的视野，并灌输绝对的恐惧，导致他们快速开枪。"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
 	button_icon_state = "blind"
 	school = SCHOOL_PSYCHIC
@@ -271,10 +271,10 @@
 /datum/action/cooldown/spell/pointed/psychic_projection/cast(mob/living/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(cast_on, span_notice("Your mind feels weird, but it passes momentarily."))
-		to_chat(owner, span_warning("The spell had no effect!"))
+		to_chat(cast_on, span_notice("你的大脑感觉有些异样，但很快就过去了。"))
+		to_chat(owner, span_warning("法术没有效果！"))
 		return FALSE
-	to_chat(cast_on, span_userdanger("Your mind gets twisted!"))
+	to_chat(cast_on, span_userdanger("你的大脑被扭曲了！"))
 	cast_on.emote("scream")
 	cast_on.apply_status_effect(/datum/status_effect/psychic_projection, projection_duration)
 	return TRUE
@@ -326,8 +326,8 @@
 	held_gun.fire_cd = FALSE
 
 /datum/action/cooldown/spell/charged/psychic_booster
-	name = "Psychic Booster"
-	desc = "Charge up your mind to shoot firearms faster and home in on your targets. Think smarter, not harder."
+	name = "灵能增幅器"
+	desc = "集中精神以更快地射击火器并锁定目标。多动脑，少费力。"
 	button_icon_state = "projectile"
 	sound = 'sound/items/weapons/gun/shotgun/rack.ogg'
 	school = SCHOOL_PSYCHIC
@@ -336,7 +336,7 @@
 	spell_max_level = 1
 	invocation_type = INVOCATION_NONE
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
-	channel_message = span_notice("You focus on your trigger fingers...")
+	channel_message = span_notice("你专注于扣动扳机的手指...")
 	charge_overlay_icon = 'icons/effects/effects.dmi'
 	charge_overlay_state = "purplesparkles"
 	channel_time = 5 SECONDS
@@ -360,14 +360,14 @@
 	if(boosted)
 		return
 	boosted = TRUE
-	to_chat(owner, span_boldnotice("Your trigger fingers feel stronger."))
+	to_chat(owner, span_boldnotice("你的扳机指感觉更强壮了。"))
 	ADD_TRAIT(cast_on, TRAIT_DOUBLE_TAP, type)
 	RegisterSignal(cast_on, COMSIG_PROJECTILE_FIRER_BEFORE_FIRE, PROC_REF(modify_projectile))
 	addtimer(CALLBACK(src, PROC_REF(stop_effects)), effect_time)
 
 /datum/action/cooldown/spell/charged/psychic_booster/proc/stop_effects()
 	boosted = FALSE
-	to_chat(owner, span_danger("Your trigger fingers feel weaker."))
+	to_chat(owner, span_danger("你的扳机指感觉变弱了。"))
 	REMOVE_TRAIT(owner, TRAIT_DOUBLE_TAP, type)
 	UnregisterSignal(owner, COMSIG_PROJECTILE_FIRER_BEFORE_FIRE)
 
@@ -386,8 +386,8 @@
 	bullet.set_homing_target(target)
 
 /datum/action/cooldown/spell/forcewall/psychic_wall
-	name = "Psychic Wall"
-	desc = "Form a psychic wall, able to deflect projectiles and prevent things from going through."
+	name = "灵能之墙"
+	desc = "形成一道灵能墙，能够偏转抛射物并阻止事物穿过。"
 	school = SCHOOL_PSYCHIC
 	cooldown_time = 30 SECONDS
 	cooldown_reduction_per_rank = 0 SECONDS

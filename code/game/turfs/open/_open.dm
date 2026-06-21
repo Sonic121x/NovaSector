@@ -131,7 +131,7 @@
 				. += exit_overlay
 
 /turf/open/examine_descriptor(mob/user)
-	return "floor"
+	return "地板"
 
 /turf/open/examine(mob/user)
 	. = ..()
@@ -288,7 +288,7 @@
 
 /turf/open/indestructible
 	name = "floor"
-	desc = "The floor you walk on. It looks near-impervious to damage."
+	desc = "你行走的地板。它看起来几乎不受损伤。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 	footstep = FOOTSTEP_FLOOR
@@ -343,7 +343,7 @@
 	AddComponent(/datum/component/wet_floor, TURF_WET_LUBE, INFINITY, 0, INFINITY, TRUE)
 
 /turf/open/indestructible/honk
-	name = "bananium floor"
+	name = "蕉矿地板"
 	icon_state = "bananium"
 	footstep = null
 	barefootstep = null
@@ -361,8 +361,8 @@
 		playsound(src, sound, 50, TRUE)
 
 /turf/open/indestructible/necropolis
-	name = "necropolis floor"
-	desc = "It's regarding you suspiciously."
+	name = "墓地地板"
+	desc = "它正怀疑地打量着你。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "necro1"
 	baseturfs = /turf/open/indestructible/necropolis
@@ -382,7 +382,7 @@
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
-	name = "necropolis floor"
+	name = "墓地地板"
 	icon = 'icons/turf/boss_floors.dmi'
 	icon_state = "boss"
 	baseturfs = /turf/open/indestructible/boss
@@ -393,8 +393,8 @@
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 
 /turf/open/indestructible/hierophant
-	name = "palestone floor"
-	desc = "A tiled floor made out of an odd pale stone."
+	name = "苍白石地板"
+	desc = "一种由奇特的苍白石头制成的铺砖地板。"
 	icon = 'icons/turf/floors/hierophant_floor.dmi'
 	icon_state = "hierophant_floor-255"
 	base_icon_state = "hierophant_floor"
@@ -416,8 +416,8 @@
 	. += emissive_appearance(emissive_icon, icon_state, src)
 
 /turf/open/indestructible/hierophant/two
-	name = "runic palestone floor"
-	desc = "A tiled floor made out of an odd pale stone, inscribed with odd runes."
+	name = "符文苍白石地板"
+	desc = "一种由奇特的苍白石头制成的铺砖地板，上面刻有奇异的符文。"
 	icon = 'icons/turf/floors/hierophant_floor_alt.dmi'
 	icon_state = "hierophant_floor_alt-255"
 	base_icon_state = "hierophant_floor_alt"
@@ -427,8 +427,8 @@
 	return FALSE
 
 /turf/open/indestructible/paper
-	name = "notebook floor"
-	desc = "A floor made of invulnerable notebook paper."
+	name = "笔记本地板"
+	desc = "由坚不可摧的笔记本纸制成的地板。"
 	icon_state = "paperfloor"
 	footstep = null
 	barefootstep = null
@@ -437,7 +437,7 @@
 	tiled_turf = FALSE
 
 /turf/open/indestructible/binary
-	name = "tear in the fabric of reality"
+	name = "现实结构的撕裂"
 	can_atmos_pass = ATMOS_PASS_NO
 	baseturfs = /turf/open/indestructible/binary
 	icon_state = "binary"
@@ -468,9 +468,9 @@
 	icon_state = "rockvault"
 
 /turf/open/indestructible/plating
-	name = "plating"
+	name = "铺板"
 	icon_state = "plating"
-	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage."
+	desc = "所有的连接点都弯曲得毫无用处，看起来几乎不受损伤。"
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	footstep = FOOTSTEP_PLATING
@@ -568,7 +568,7 @@
 
 	if(!(lube & SLIDE_ICE))
 		// Ice slides are intended to be combo'd so don't give the feedback
-		to_chat(slipper, span_notice("You slipped[ slippable ? " on \the [slippable]" : ""]!"))
+		to_chat(slipper, span_notice("你滑倒了[ slippable ? " on \the [slippable]" : ""]！"))
 		playsound(slipper.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 
 	SEND_SIGNAL(slipper, COMSIG_ON_CARBON_SLIP)
@@ -623,36 +623,36 @@
 	var/obj/structure/lattice/catwalk_bait = locate(/obj/structure/lattice, src)
 	var/obj/structure/lattice/catwalk/existing_catwalk = locate(/obj/structure/lattice/catwalk, src)
 	if(existing_catwalk)
-		to_chat(user, span_warning("There is already a catwalk here!"))
+		to_chat(user, span_warning("那里已经有脚手架了！"))
 		return
 
 	if(catwalk_bait)
 		if(used_rods.use(1))
-			to_chat(user, span_notice("You construct a catwalk."))
+			to_chat(user, span_notice("你构建了脚手架."))
 			playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 			catwalk_bait.replace_with_catwalk()
 		else
-			to_chat(user, span_warning("You need two rods to build a catwalk!"))
+			to_chat(user, span_warning("你需要2份金属棒来构建脚手架."))
 		return
 
 	if(used_rods.use(1))
-		to_chat(user, span_notice("You construct a lattice."))
+		to_chat(user, span_notice("你构建了格架."))
 		playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 		var/obj/structure/lattice/new_lattice = new (src)
 		if(istype(used_rods, /obj/item/stack/rods/shuttle) && !istype(loc, /area/shuttle))
 			new_lattice.AddElement(/datum/element/shuttle_construction_lattice)
 	else
-		to_chat(user, span_warning("You need one rod to build a lattice."))
+		to_chat(user, span_warning("你需要一根金属杆来建造格栅。"))
 
 /// Very similar to build_with_rods, this exists to allow consistent behavior between different types in terms of how
 /// Building floors works
 /turf/open/proc/build_with_floor_tiles(obj/item/stack/tile/iron/used_tiles, user)
 	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, src)
 	if(!has_valid_support() && !lattice)
-		balloon_alert(user, "needs support, place rods!")
+		balloon_alert(user, "需要支撑，放置铁杆！")
 		return
 	if(!used_tiles.use(1))
-		balloon_alert(user, "need a floor tile to build!")
+		balloon_alert(user, "需要地板砖来建造！")
 		return
 
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
@@ -675,10 +675,10 @@
 /turf/open/proc/build_with_transport_tiles(obj/item/stack/thermoplastic/used_tiles, user)
 	var/obj/structure/transport/linear/platform = locate(/obj/structure/transport/linear, src)
 	if(!platform)
-		balloon_alert(user, "no tram base!")
+		balloon_alert(user, "没有有轨电车底座！")
 		return
 	if(!used_tiles.use(1))
-		balloon_alert(user, "no tile!")
+		balloon_alert(user, "没有砖块！")
 		return
 
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
@@ -697,10 +697,10 @@
 /turf/open/proc/build_with_titanium(obj/item/stack/sheet/mineral/titanium/used_stack, user)
 	var/obj/structure/transport/linear/platform = locate(/obj/structure/transport/linear, src)
 	if(!platform)
-		to_chat(user, span_warning("There is no transport frame to attach the anchor!"))
+		to_chat(user, span_warning("没有运输框架来固定锚点！"))
 		return
 	if(!used_stack.use(2))
-		balloon_alert(user, "not enough titanium!")
+		balloon_alert(user, "钛不够！")
 		return
 
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)

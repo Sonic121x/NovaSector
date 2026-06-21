@@ -1,36 +1,36 @@
 /datum/reagent/consumable/femcum
 	name = "femcum"
-	description = "Uhh... Someone had fun."
+	description = "呃……有人玩得挺开心。"
 	taste_description = "astringent and sweetish"
 	color = "#ffffffb0"
 
 /datum/glass_style/drinking_glass/femcum
 	required_drink_type = /datum/reagent/consumable/femcum
-	name = "glass of girlcum"
-	desc = "A strange white liquid... Ew!"
+	name = "一杯 girlcum"
+	desc = "一种奇怪的白色液体... 呃！"
 
 /datum/glass_style/shot_glass/femcum
 	required_drink_type = /datum/reagent/consumable/femcum
 	icon_state ="shotglasscream"
-	name = "glass of girlcum"
-	desc = "A strange white liquid... Ew!"
+	name = "一杯 girlcum"
+	desc = "一种奇怪的白色液体... 呃！"
 
 /datum/reagent/consumable/cum
 	name = "cum"
-	description = "A fluid secreted by the sexual organs of many species."
+	description = "一种由许多物种的性器官分泌的液体。"
 	taste_description = "musky and salty"
 	color = "#ffffffff"
 
 /datum/glass_style/drinking_glass/cum
 	required_drink_type = /datum/reagent/consumable/cum
-	name = "glass of cum"
-	desc = "O-oh, my...~"
+	name = "一杯 cum"
+	desc = "哦-哦，天哪...~"
 
 /datum/glass_style/shot_glass/cum
 	required_drink_type = /datum/reagent/consumable/cum
 	icon_state ="shotglasscream"
-	name = "glass of cum"
-	desc = "O-oh, my...~"
+	name = "一杯 cum"
+	desc = "哦-哦，天哪...~"
 
 /datum/chemical_reaction/cum
 	results = list(/datum/reagent/consumable/cum = 5)

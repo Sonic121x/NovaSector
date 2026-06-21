@@ -1,6 +1,6 @@
 /obj/item/summon_beacon
-	name = "summoner beacon"
-	desc = "Summons a thing. Probably shouldn't use this one, though."
+	name = "召唤信标"
+	desc = "召唤一个东西。不过你大概不该用这个。"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "self_delivery"
 	inhand_icon_state = null
@@ -33,8 +33,8 @@
 
 /obj/item/summon_beacon/examine()
 	. = ..()
-	. += span_warning("Caution: Only works in [area_string].")
-	. += span_notice("Currently selected: [selected_atom ? initial(selected_atom.name) : "None"].")
+	. += span_warning("警告：仅在[area_string]内有效。")
+	. += span_notice("当前选择：[selected_atom ? initial(selected_atom.name) : "None"]。")
 
 /obj/item/summon_beacon/attack_self(mob/user)
 	if(!can_use_beacon(user))
@@ -95,15 +95,15 @@
 
 /obj/item/summon_beacon/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!selected_atom)
-		balloon_alert(user, "no choice selected!")
+		balloon_alert(user, "未选择目标！")
 		return NONE
 	var/turf/target_turf = get_turf(interacting_with)
 	var/area/target_area = get_area(interacting_with)
 	if(!area_check(target_area, target_turf))
-		balloon_alert(user, "can't call here!")
+		balloon_alert(user, "无法在此处召唤！")
 		return NONE
 
-	var/confirmed = tgui_alert(user, "Are you sure you want to call [initial(selected_atom.name)] here?", "Confirmation", list("Yes", "No"))
+	var/confirmed = tgui_alert(user, "你确定要在此处召唤[initial(selected_atom.name)]吗？", "确认", list("Yes", "No"))
 	if(confirmed != "Yes")
 		return ITEM_INTERACT_BLOCKING
 
@@ -111,7 +111,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	uses -= 1
-	balloon_alert(user, "[uses] use[uses == 1 ? "" : "s"] left!")
+	balloon_alert(user, "还剩[uses]次使用[uses == 1 ? "" : "s"]！")
 
 	podspawn(list(
 		"target" = target_turf,
@@ -138,8 +138,8 @@
 	bluespace = FALSE
 
 /obj/item/storage/box/gas_miner_beacons
-	name = "box of gas miner delivery beacons"
-	desc = "Contains two beacons for delivery of atmospheric gas miners."
+	name = "气体矿机传送信标盒"
+	desc = "包含两个用于传送大气气体矿机的信标。"
 
 /obj/item/storage/box/gas_miner_beacons/PopulateContents()
 	new /obj/item/summon_beacon/gas_miner(src)
@@ -148,8 +148,8 @@
 // Actual beacons start here
 
 /obj/item/summon_beacon/gas_miner
-	name = "gas miner beacon"
-	desc = "Once a gas miner type is selected, delivers a gas miner to the target location."
+	name = "气体矿机信标"
+	desc = "选择气体矿机类型后，会将一个气体矿机传送到目标位置。"
 	icon = 'modular_nova/modules/modular_items/icons/remote.dmi'
 
 	allowed_areas = list(
@@ -180,8 +180,8 @@
 		message_admins("[selected_atom.name] was spawned by [user] ([user.ckey]) [ADMIN_JMP(location)].")
 
 /obj/item/summon_beacon/vendors
-	name = "Vendors beacon"
-	desc = "Delivers a Vendor via orbital drop with patented Donk Co. SafeTec Technology!"
+	name = "自动售货机信标"
+	desc = "通过轨道空投传送一台自动售货机，采用获得专利的Donk公司SafeTec技术！"
 	uses = 2
 
 	selectable_atoms = list(
@@ -216,16 +216,16 @@
 		selectable_atoms -= /obj/machinery/vending/dorms
 
 /obj/item/summon_beacon/gas_miner/hacked
-	name = "hacked gas miner beacon"
-	desc = parent_type::desc + " It seems the area detector is hardcoded to TRUE. Huh."
+	name = "被黑入的气体矿机信标"
+	desc = parent_type::desc + "看起来区域探测器被硬编码为TRUE。嗯。"
 	area_string = "any"
 	allowed_areas = list(
 		/area,
 	)
 
 /obj/item/summon_beacon/gas_miner/expanded
-	name = "expanded gas miner beacon"
-	desc = parent_type::desc + " This one seems to have its selection expanded."
+	name = "扩展型气体矿机信标"
+	desc = parent_type::desc + "这个信标的选择范围似乎被扩展了。"
 
 /obj/item/summon_beacon/gas_miner/expanded/Initialize(mapload)
 	. = ..()
@@ -247,8 +247,8 @@
 	)
 
 /obj/item/summon_beacon/gas_miner/expanded/debug
-	name = "debug gas miner beacon"
-	desc = "You better know what you are doing with this."
+	name = "调试用气体矿机信标"
+	desc = "你最好清楚自己在用这东西做什么。"
 	area_string = "any"
 	uses = 99
 	allowed_areas = list(

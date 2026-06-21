@@ -1,8 +1,8 @@
 // .35 Sol mini revolver
 
 /obj/item/gun/ballistic/revolver/sol
-	name = "\improper Renard Revolver"
-	desc = "A small revolver with a comically short barrel and cylinder space for eight .35 Sol Short rounds."
+	name = "\improper 雷纳德左轮手枪"
+	desc = "一把小型左轮手枪，枪管短得滑稽，转轮可容纳八发.35索尔短弹。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/guns32x.dmi'
 	icon_state = "eland"
@@ -38,8 +38,8 @@
 // .585 super revolver
 
 /obj/item/gun/ballistic/revolver/takbok
-	name = "\improper Défonce Revolver"
-	desc = "A hefty revolver with an equally large cylinder capable of holding six .585 Trappiste rounds."
+	name = "\improper 德丰斯左轮手枪"
+	desc = "一把重型左轮手枪，配有同样巨大的转轮，可容纳六发.585特拉皮斯特弹。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/guns32x.dmi'
 	icon_state = "takbok"
@@ -76,8 +76,8 @@
 // .585 bluey edition
 
 /obj/item/gun/ballistic/revolver/bluvolva
-	name = "\improper Fendér Revolver"
-	desc = "A custom fabricated version of the Défonce revolver. Made of more lightweight materials and utilizing a thinner grip and hammer."
+	name = "\improper 芬德尔左轮手枪"
+	desc = "德丰斯左轮手枪的定制制造版本。采用更轻质的材料，并使用了更薄的握把和击锤。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/guns32x.dmi'
 	icon_state = "bluvolva"

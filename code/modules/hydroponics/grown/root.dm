@@ -1,7 +1,7 @@
 // Carrot
 /obj/item/seeds/carrot
-	name = "carrot seed pack"
-	desc = "These seeds grow into carrots."
+	name = "胡萝卜种子包"
+	desc = "能长成胡萝卜的种子。"
 	icon_state = "seed-carrot"
 	species = "carrot"
 	plantname = "Carrots"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/carrot
 	seed = /obj/item/seeds/carrot
-	name = "carrot"
-	desc = "It's good for the eyes!"
+	name = "胡萝卜"
+	desc = "胡萝卜对眼睛有好处！"
 	icon_state = "carrot"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES
@@ -38,18 +38,18 @@
 	var/carrot_sword_chance = (max(0, seed.potency - 50) / 50)
 	if (prob(carrot_sword_chance))
 		carrot_blade = new /obj/item/claymore/carrot
-		to_chat(user, span_notice("You sharpen the carrot into a sword with [I]."))
+		to_chat(user, span_notice("你用[I]将胡萝卜削成了一把剑。"))
 	else
 		carrot_blade = new /obj/item/knife/shiv/carrot
-		to_chat(user, span_notice("You sharpen the carrot into a shiv with [I]."))
+		to_chat(user, span_notice("你用[I]将胡萝卜削成了一把简易匕首。"))
 	remove_item_from_storage(user)
 	qdel(src)
 	user.put_in_hands(carrot_blade)
 
 // Parsnip
 /obj/item/seeds/carrot/parsnip
-	name = "parsnip seed pack"
-	desc = "These seeds grow into parsnips."
+	name = "欧防风种子包"
+	desc = "能长成防风草的种子。"
 	icon_state = "seed-parsnip"
 	species = "parsnip"
 	plantname = "Parsnip"
@@ -61,7 +61,7 @@
 /obj/item/food/grown/parsnip
 	seed = /obj/item/seeds/carrot/parsnip
 	name = "parsnip"
-	desc = "Closely related to carrots."
+	desc = "和胡萝卜关系很近。"
 	icon_state = "parsnip"
 	foodtypes = VEGETABLES
 	wine_power = 35
@@ -79,10 +79,10 @@
 	var/parsnip_sabre_chance = (max(0, seed.potency - 50) / 50)
 	if (prob(parsnip_sabre_chance))
 		parsnip_blade = new /obj/item/melee/parsnip_sabre
-		to_chat(user, span_notice("You sharpen the parsnip into a sabre with [I]."))
+		to_chat(user, span_notice("你用[I]将欧防风削成了一把军刀。"))
 	else
 		parsnip_blade = new /obj/item/knife/shiv/parsnip
-		to_chat(user, span_notice("You sharpen the parsnip into a shiv with [I]."))
+		to_chat(user, span_notice("你用[I]将欧防风削成了一把简易匕首。"))
 	remove_item_from_storage(user)
 	qdel(src)
 	user.put_in_hands(parsnip_blade)
@@ -90,8 +90,8 @@
 
 // Cahn'root
 /obj/item/seeds/carrot/cahnroot
-	name = "cahn'root seed pack"
-	desc = "These seeds grow into cahn'roots."
+	name = "卡恩根种子包"
+	desc = "这些种子会长成卡恩根。"
 	icon_state = "seed-cahn'root"
 	species = "cahn'root"
 	plantname = "Cahn'root"
@@ -107,8 +107,8 @@
 
 /obj/item/food/grown/cahnroot
 	seed = /obj/item/seeds/carrot/cahnroot
-	name = "cahn'root"
-	desc = "Heavily modified version of terran carrot, originally made to survive the scarciest of environments by an enterprising scientist of Moth Flotilla, Cahn'Mang."
+	name = "卡恩根"
+	desc = "地球胡萝卜的重度改良版本，最初由飞蛾舰队一位富有进取精神的科学家卡恩·曼格培育，旨在最恶劣的环境中生存。"
 	icon_state = "cahn'root"
 	foodtypes = VEGETABLES
 	tastes = list("sweet dirt" = 1)
@@ -127,18 +127,18 @@
 	var/root_dagger_chance = (max(0, seed.potency - 25) / 50)
 	if (prob(root_dagger_chance))
 		root_blade = new /obj/item/knife/combat/root
-		to_chat(user, span_notice("You sharpen the cahn'root into a dagger with [I]."))
+		to_chat(user, span_notice("你用[I]将卡恩根削成了一把匕首。"))
 	else
 		root_blade = new /obj/item/knife/shiv/root
-		to_chat(user, span_notice("You sharpen the cahn'root into a shiv with [I]."))
+		to_chat(user, span_notice("你用[I]将卡恩根削成了一把简易匕首。"))
 	remove_item_from_storage(user)
 	qdel(src)
 	user.put_in_hands(root_blade)
 
 // White-Beet
 /obj/item/seeds/whitebeet
-	name = "white-beet seed pack"
-	desc = "These seeds grow into sugary beet producing plants."
+	name = "白甜菜种子包"
+	desc = "这些种子能长成用来产糖的甜菜。"
 	icon_state = "seed-whitebeet"
 	species = "whitebeet"
 	plantname = "White-Beet Plants"
@@ -155,8 +155,8 @@
 
 /obj/item/food/grown/whitebeet
 	seed = /obj/item/seeds/whitebeet
-	name = "white-beet"
-	desc = "You can't beat white-beet."
+	name = "白甜菜"
+	desc = "你绝对战胜不了白天才。"
 	icon_state = "whitebeet"
 	bite_consumption_mod = 3
 	foodtypes = VEGETABLES
@@ -164,8 +164,8 @@
 
 // Red Beet
 /obj/item/seeds/redbeet
-	name = "redbeet seed pack"
-	desc = "These seeds grow into red beet producing plants."
+	name = "红甜菜种子包"
+	desc = "这些种子能长成用来产糖的红甜菜。"
 	icon_state = "seed-redbeet"
 	species = "redbeet"
 	plantname = "Red-Beet Plants"
@@ -182,8 +182,8 @@
 
 /obj/item/food/grown/redbeet
 	seed = /obj/item/seeds/redbeet
-	name = "red beet"
-	desc = "You can't beat red beet."
+	name = "红甜菜"
+	desc = "你绝对战胜不了超天才。"
 	icon_state = "redbeet"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES

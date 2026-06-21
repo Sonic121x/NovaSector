@@ -31,16 +31,16 @@
 /datum/component/soul_stealer/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("It will steal the soul of anyone it defeats in battle.")
+	examine_list += span_notice("它将在战斗中窃取任何被其击败者的灵魂。")
 
 	var/num_souls = length(soulstones)
 	switch(num_souls)
 		if(0)
-			examine_list += span_notice("It has not consumed any souls yet.")
+			examine_list += span_notice("它尚未吞噬任何灵魂。")
 		if(1 to 9)
-			examine_list += span_notice("There are <b>[num_souls]</b> souls trapped within it.")
+			examine_list += span_notice("其中有<b>[num_souls]</b>个灵魂被困其中。")
 		if(10 to INFINITY)
-			examine_list += span_notice("A staggering <b>[num_souls]</b> souls have been claimed by it! And it hungers for more!")
+			examine_list += span_notice("它已夺取了惊人的<b>[num_souls]</b>个灵魂！并且它渴望更多！")
 
 /datum/component/soul_stealer/proc/on_afterattack(obj/item/source, atom/target, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER

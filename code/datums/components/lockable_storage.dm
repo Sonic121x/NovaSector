@@ -116,7 +116,7 @@
 
 	panel_open = !panel_open
 	tool.play_tool_sound(source)
-	source.balloon_alert(user, "panel [panel_open ? "opened" : "closed"]")
+	source.balloon_alert(user, "面板 [panel_open ? "opened" : "closed"]")
 	return ITEM_INTERACT_SUCCESS
 
 /**
@@ -128,9 +128,9 @@
 	if(!can_hack_open || !source.atom_storage.locked)
 		return NONE
 	if(!panel_open)
-		source.balloon_alert(user, "panel closed!")
+		source.balloon_alert(user, "面板已关闭！")
 		return ITEM_INTERACT_BLOCKING
-	source.balloon_alert(user, "hacking...")
+	source.balloon_alert(user, "入侵中...")
 	INVOKE_ASYNC(src, PROC_REF(hack_open), source, user, tool)
 	return ITEM_INTERACT_SUCCESS
 
@@ -138,7 +138,7 @@
 /datum/component/lockable_storage/proc/hack_open(atom/source, mob/user, obj/item/tool)
 	if(!tool.use_tool(parent, user, 40 SECONDS, volume = 50))
 		return
-	source.balloon_alert(user, "hacked")
+	source.balloon_alert(user, "已破解")
 	set_lock_code(null)
 
 /datum/component/lockable_storage/proc/break_lock()
@@ -160,8 +160,8 @@
 	if(source.obj_flags & EMAGGED)
 		return FALSE
 
-	source.visible_message(span_warning("Sparks fly from [source]!"), blind_message = span_hear("You hear a faint electrical spark."))
-	source.balloon_alert(user, "lock destroyed")
+	source.visible_message(span_warning("火花从 [source] 中飞出！"), blind_message = span_hear("你听到微弱的电火花声。"))
+	source.balloon_alert(user, "锁已摧毁")
 	playsound(source, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	break_lock()
 	return ITEM_INTERACT_SUCCESS
@@ -185,7 +185,7 @@
 	source.update_appearance()
 
 	if(istype(user) && new_code)
-		to_chat(user, span_notice("You set the [source] pincode to [lock_code]."))
+		to_chat(user, span_notice("你将 [source] 的密码设置为 [lock_code]。"))
 
 	return TRUE
 

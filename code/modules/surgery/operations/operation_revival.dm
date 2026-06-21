@@ -1,7 +1,7 @@
 /datum/surgery_operation/basic/revival
 	name = "shock brain"
 	rnd_name = "Brain Defibrillation (Revival)"
-	desc = "Use a defibrillator to shock a patient's brain back to life."
+	desc = "使用除颤器电击患者大脑使其复苏。"
 	implements = list(
 		/obj/item/shockpaddles = 1,
 		/obj/item/melee/touch_attack/shock = 1,
@@ -23,7 +23,7 @@
 	return image(/obj/item/shockpaddles)
 
 /datum/surgery_operation/basic/revival/all_required_strings()
-	return ..() + list("the patient must be deceased", "the patient must be in a revivable state")
+	return ..() + list("患者必须已死亡", "患者必须处于可复活状态")
 
 /datum/surgery_operation/basic/revival/state_check(mob/living/patient)
 	if(patient.stat != DEAD)
@@ -109,7 +109,7 @@
 	)
 
 /datum/surgery_operation/basic/revival/mechanic
-	name = "full system reboot"
+	name = "全系统重启"
 	required_biotype = MOB_ROBOTIC
 
 /datum/surgery_operation/basic/revival/mechanic/brain_check(obj/item/organ/brain/brain)

@@ -1,7 +1,7 @@
 // Chili
 /obj/item/seeds/chili
-	name = "chili seed pack"
-	desc = "These seeds grow into chili plants. HOT! HOT! HOT!"
+	name = "辣椒种子包"
+	desc = "能长成辣椒植株的种子。辣！辣！辣！"
 	icon_state = "seed-chili"
 	species = "chili"
 	plantname = "Chili Plants"
@@ -21,7 +21,7 @@
 
 /obj/item/food/grown/chili
 	seed = /obj/item/seeds/chili
-	name = "chili"
+	name = "辣椒"
 	desc = "It's spicy! Wait... IT'S BURNING ME!!"
 	icon_state = "chilipepper"
 	bite_consumption_mod = 2
@@ -30,8 +30,8 @@
 
 // Ice Chili
 /obj/item/seeds/chili/ice
-	name = "chilly pepper seed pack"
-	desc = "These seeds grow into chilly pepper plants."
+	name = "寒椒种子包"
+	desc = "能长成冷椒植株的种子。"
 	icon_state = "seed-icepepper"
 	species = "chiliice"
 	plantname = "Chilly Pepper Plants"
@@ -47,8 +47,8 @@
 
 /obj/item/food/grown/icepepper
 	seed = /obj/item/seeds/chili/ice
-	name = "chilly pepper"
-	desc = "It's a mutant strain of chili."
+	name = "冷椒"
+	desc = "这是一种变异的辣椒品种。"
 	icon_state = "icepepper"
 	bite_consumption_mod = 5
 	foodtypes = VEGETABLES
@@ -56,8 +56,8 @@
 
 // Ghost Chili
 /obj/item/seeds/chili/ghost
-	name = "ghost chili seed pack"
-	desc = "These seeds grow into a chili said to be the hottest in the galaxy."
+	name = "鬼椒种子包"
+	desc = "能长成全宇宙最辣的辣椒的种子。"
 	icon_state = "seed-chilighost"
 	species = "chilighost"
 	plantname = "Ghost Chili Plants"
@@ -74,8 +74,8 @@
 
 /obj/item/food/grown/ghost_chili
 	seed = /obj/item/seeds/chili/ghost
-	name = "ghost chili"
-	desc = "It seems to be vibrating gently."
+	name = "魔鬼辣椒"
+	desc = "它似乎在轻轻地振动着。"
 	icon_state = "ghostchilipepper"
 	bite_consumption_mod = 5
 	foodtypes = VEGETABLES
@@ -83,8 +83,8 @@
 
 // Bell Pepper
 /obj/item/seeds/chili/bell_pepper
-	name = "bell pepper seed pack"
-	desc = "These seeds grow into bell pepper plants. MILD! MILD! MILD!"
+	name = "甜椒种子包"
+	desc = "能长成灯笼椒植株的种子。温和！温和！温和！"
 	icon_state = "seed-bell-pepper"
 	species = "bellpepper"
 	plantname = "Bell Pepper Plants"
@@ -100,8 +100,8 @@
 
 /obj/item/food/grown/bell_pepper
 	seed = /obj/item/seeds/chili/bell_pepper
-	name = "bell pepper"
-	desc = "A big mild pepper that's good for many things."
+	name = "灯笼椒"
+	desc = "一种味道温和的大辣椒，用途广泛。"
 	icon_state = "bell_pepper"
 	foodtypes = VEGETABLES
 

@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/arrivals
-	name = "arrivals shuttle"
+	name = "抵达穿梭机"
 	shuttle_id = "arrival"
 
 	dir = WEST
@@ -204,7 +204,7 @@
 
 	Launch(TRUE)
 
-	to_chat(user, span_notice("Calling your shuttle. One moment..."))
+	to_chat(user, span_notice("正在呼叫你的穿梭机。请稍候..."))
 	while(mode != SHUTTLE_CALL && !damaged)
 		stoplag()
 

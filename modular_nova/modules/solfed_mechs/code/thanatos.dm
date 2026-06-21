@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/solfed/thanatos
-	desc = "A siege-grade mech designed for overwhelming firepower and area denial. Its massive railgun and rocket payload make it a last-resort asset in total containment failure."
-	name = "\improper MHS-2552X1 \"Thanatos\""
+	desc = "一款为压倒性火力和区域拒止设计的围攻级机甲。其巨大的轨道炮和火箭弹载荷使其成为全面收容失效时的最后手段。"
+	name = "\improper MHS-2552X1 \"塔纳托斯\""
 	icon_state = "thanatos" //Sprite by zy.dras on discord
 	base_icon_state = "thanatos"
 	movedelay = 5.5
@@ -47,8 +47,8 @@
 	update_part_values()
 
 /obj/structure/mecha_wreckage/solfed/thanatos
-	name = "\improper Thanatos wreckage"
-	desc = "The twisted shell of a Thanatos-class siege platform. Its railgun is cracked, its turret scorched, and its legs are half-buried in rubble. Even monsters fall, eventually."
+	name = "\improper 塔纳托斯级残骸"
+	desc = "塔纳托斯级攻城平台的扭曲外壳。它的轨道炮已经开裂，炮塔被烧焦，腿部半埋在瓦砾中。即使是怪物，最终也会倒下。"
 	icon = 'modular_nova/modules/solfed_mechs/icons/solfed_mechs.dmi'
 	icon_state = "thanatos-broken"
 	welder_salvage = list(/obj/item/stack/sheet/iron, /obj/item/stack/rods)

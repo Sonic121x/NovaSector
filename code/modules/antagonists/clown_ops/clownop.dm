@@ -42,7 +42,7 @@
 		owner.current.fully_replace_character_name(owner.current.real_name, "[nuke_team.syndicate_name] [title]")
 
 /datum/antagonist/nukeop/leader/clownop
-	name = "Clown Operative Leader"
+	name = "小丑行动队长"
 	roundend_category = "clown operatives"
 	antagpanel_category = ANTAG_GROUP_CLOWNOPS
 	nukeop_outfit = /datum/outfit/syndicate/clownop/leader
@@ -68,17 +68,17 @@
 
 // Clown op reinforcements
 /datum/antagonist/nukeop/reinforcement/clownop
-	name = "Clown Operative Reinforcement"
+	name = "小丑行动增援"
 	nukeop_outfit = /datum/outfit/syndicate/clownop/no_crystals
 
 /datum/outfit/clown_operative
-	name = "Clown Operative (Preview only)"
+	name = "小丑行动队员（仅预览）"
 
 	back = /obj/item/mod/control/pre_equipped/empty/syndicate/honkerative
 	uniform = /obj/item/clothing/under/syndicate
 
 /datum/outfit/clown_operative_elite
-	name = "Clown Operative (Elite, Preview only)"
+	name = "小丑行动队员（精英，仅预览）"
 
 	back = /obj/item/mod/control/pre_equipped/empty/syndicate/honkerative
 	uniform = /obj/item/clothing/under/syndicate

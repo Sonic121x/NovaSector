@@ -4,7 +4,7 @@
  * They either have the choice to fuck off and do their own thing, or try and regain their honor with a hijack.
  */
 /datum/antagonist/enemy_of_the_state
-	name = "\improper Enemy of the State"
+	name = "\improper 国之敌"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	hijack_speed = 2 //not like they have much to do
@@ -29,9 +29,9 @@
 
 /datum/antagonist/enemy_of_the_state/greet()
 	. = ..()
-	to_chat(owner, span_userdanger("The revolution is dead."))
+	to_chat(owner, span_userdanger("革命已经失败。"))
 	to_chat(owner, span_bolddanger("You're an enemy of the state to Nanotrasen. You're a loose end to the Syndicate."))
-	to_chat(owner, "<b>It's time to live out your days as an exile... Or go out in one last big bang.</b>")
+	to_chat(owner, "<b>是时候作为流亡者度过余生了……或者来一场最后的盛大爆炸。</b>")
 	owner.announce_objectives()
 
 /datum/antagonist/enemy_of_the_state/roundend_report()

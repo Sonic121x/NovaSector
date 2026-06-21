@@ -13,8 +13,8 @@
 	)
 
 /mob/living/basic/fleshblob
-	name = "mass of flesh"
-	desc = "A moving slithering mass of flesh, seems to be very much in pain. Better avoid. It has no mouth and it must scream."
+	name = "血肉团块"
+	desc = "一团蠕动滑行的血肉，看起来极度痛苦。最好避开它。它没有嘴，却必须尖叫。"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "fleshblob"
 	icon_living = "fleshblob"

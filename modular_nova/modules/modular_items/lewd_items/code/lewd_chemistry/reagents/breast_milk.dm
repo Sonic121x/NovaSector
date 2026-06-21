@@ -1,6 +1,6 @@
 /datum/reagent/consumable/breast_milk
 	name = "breast milk"
-	description = "This looks familiar... Wait, it's milk!"
+	description = "这看起来有点眼熟……等等，是奶！"
 	taste_description = "warm and creamy"
 	color = "#ffffffff"
 

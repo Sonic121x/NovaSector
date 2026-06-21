@@ -20,7 +20,7 @@
 	REMOVE_TRAIT(target, TRAIT_TENACIOUS, ELEMENT_TRAIT(type))
 	var/mob/living/carbon/human/valid_target = target
 	if(valid_target.remove_movespeed_modifier(/datum/movespeed_modifier/tenacious))
-		valid_target.balloon_alert(valid_target, "your tenacity wears off")
+		valid_target.balloon_alert(valid_target, "你的坚韧效果消失了")
 	return ..()
 
 ///signal called by the stat of the target changing
@@ -28,7 +28,7 @@
 	SIGNAL_HANDLER
 
 	if(new_stat == SOFT_CRIT)
-		target.balloon_alert(target, "your tenacity kicks in")
+		target.balloon_alert(target, "你的坚韧效果生效了")
 		target.add_movespeed_modifier(/datum/movespeed_modifier/tenacious)
 	else if(target.remove_movespeed_modifier(/datum/movespeed_modifier/tenacious))
-		target.balloon_alert(target, "your tenacity wears off")
+		target.balloon_alert(target, "你的坚韧效果消失了")

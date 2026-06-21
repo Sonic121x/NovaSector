@@ -2,8 +2,8 @@
  * # Janicart
  */
 /obj/vehicle/ridden/janicart
-	name = "janicart (pimpin' ride)"
-	desc = "A brave janitor cyborg gave its life to produce such an amazing combination of speed and utility."
+	name = "豪华清洁车"
+	desc = "一台英勇的清洁赛博奉献出了自己的生命，创造出了这样一辆速度和实用性的惊人结合。"
 	icon_state = "pussywagon"
 	key_type = /obj/item/key/janitor
 	movedelay = 1
@@ -40,12 +40,12 @@
 		return
 	if(istype(tool, /obj/item/storage/bag/trash))
 		if(trash_bag)
-			to_chat(user, span_warning("[src] already has a trashbag hooked!"))
+			to_chat(user, span_warning("[src]已经挂上了一个垃圾袋！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You hook the trashbag onto [src]."))
+		to_chat(user, span_notice("你将垃圾袋挂到了[src]上。"))
 		trash_bag = tool
 		RegisterSignal(trash_bag, COMSIG_QDELETING, PROC_REF(bag_deleted))
 		SEND_SIGNAL(src, COMSIG_VACUUM_BAG_ATTACH, tool)
@@ -54,13 +54,13 @@
 
 	if(istype(tool, /obj/item/janicart_upgrade))
 		if(installed_upgrade)
-			to_chat(user, span_warning("[src] already has an upgrade installed! Use a screwdriver to remove it."))
+			to_chat(user, span_warning("[src]已经安装了一个升级！用螺丝刀来移除它。"))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/janicart_upgrade/new_upgrade = tool
 		new_upgrade.forceMove(src)
 		new_upgrade.install(src)
 		installed_upgrade = new_upgrade
-		to_chat(user, span_notice("You upgrade [src] with [new_upgrade]."))
+		to_chat(user, span_notice("你用[new_upgrade]升级了[src]。"))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -76,7 +76,7 @@
 	installed_upgrade.uninstall(src)
 	installed_upgrade.forceMove(get_turf(user))
 	user.put_in_hands(installed_upgrade)
-	to_chat(user, span_notice("You remove [installed_upgrade] from [src]"))
+	to_chat(user, span_notice("你从[src]上移除了[installed_upgrade]"))
 	installed_upgrade = null
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -176,8 +176,8 @@
  *
  */
 /obj/item/janicart_upgrade
-	name = "base upgrade"
-	desc = "An abstract upgrade for mobile janicarts."
+	name = "基本升级"
+	desc = "一款针对移动清洁车的简要更新。"
 	icon = 'icons/obj/service/janicart_upgrade.dmi'
 	icon_state = "janicart_upgrade"
 	greyscale_config = /datum/greyscale_config/janicart_upgrade
@@ -203,8 +203,8 @@
 	return FALSE
 
 /obj/item/janicart_upgrade/buffer
-	name = "floor buffer upgrade"
-	desc = "An upgrade for mobile janicarts which adds a floor buffer functionality."
+	name = "地板抛光机升级"
+	desc = "一款针对移动清洁车的升级产品，新增了地面缓冲功能。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/janicart_upgrade/buffer"
 	post_init_icon_state = "janicart_upgrade"
@@ -217,8 +217,8 @@
 	installee.RemoveElement(/datum/element/cleaning)
 
 /obj/item/janicart_upgrade/vacuum
-	name = "vacuum upgrade"
-	desc = "An upgrade for mobile janicarts which adds a vacuum functionality."
+	name = "真空升级"
+	desc = "一款针对移动清洁车的升级产品，新增了真空功能。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/janicart_upgrade/vacuum"
 	post_init_icon_state = "janicart_upgrade"

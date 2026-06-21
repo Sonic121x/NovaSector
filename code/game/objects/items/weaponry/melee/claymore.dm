@@ -1,6 +1,6 @@
 /obj/item/claymore
-	name = "claymore"
-	desc = "What are you standing around staring at this for? Get to killing!"
+	name = "阔剑"
+	desc = "你还站在这儿盯着它看什么？快去杀敌！"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "claymore"
 	inhand_icon_state = "claymore"
@@ -43,7 +43,7 @@
 	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple, -15)
 
 /obj/item/claymore/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is falling on [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正摔向 [src]！看起来 [user.p_theyre()] 试图自杀！"))
 	return BRUTELOSS
 
 /obj/item/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
@@ -53,8 +53,8 @@
 
 //statistically similar to e-cutlasses
 /obj/item/claymore/cutlass
-	name = "cutlass"
-	desc = "A piratey sword used by buckaneers to \"negotiate\" the transfer of treasure."
+	name = "弯刀"
+	desc = "一把海盗风格的剑，被海盗们用来\"协商\"财宝的转移。"
 	icon_state = "cutlass"
 	inhand_icon_state = "cutlass"
 	worn_icon_state = "cutlass"
@@ -70,16 +70,16 @@
 	AddElement(/datum/element/cuffable_item) //closed sword guard
 
 /obj/item/claymore/cutlass/old
-	name = "old cutlass"
-	desc = parent_type::desc + " This one seems a tad old."
+	name = "旧式弯刀"
+	desc = parent_type::desc + "这把看起来有点旧了。"
 	force = 24
 	throwforce = 17
 	armour_penetration = 20
 	block_chance = 30
 
 /obj/item/claymore/carrot
-	name = "carrot sword"
-	desc = "A full-sized carrot sword. Definitely <b>not</b> good for the eyes, not anymore."
+	name = "胡萝卜剑"
+	desc = "一把全尺寸的胡萝卜剑。对眼睛绝对<b>不</b>好，再也不是了。"
 	icon_state = "carrot_sword"
 	inhand_icon_state = "carrot_sword"
 	worn_icon_state = "carrot_sword"
@@ -94,7 +94,7 @@
 
 //bootleg claymore
 /obj/item/claymore/shortsword
-	name = "shortsword"
+	name = "短剑"
 	desc = "A mercenary's sword, chipped and worn from battles long gone. You could say it is a swordsman's shortsword short sword."
 	icon_state = "shortsword"
 	inhand_icon_state = "shortsword"
@@ -105,7 +105,7 @@
 	block_chance = 30
 
 /obj/item/claymore/highlander //ALL COMMENTS MADE REGARDING THIS SWORD MUST BE MADE IN ALL CAPS
-	desc = "<b><i>THERE CAN BE ONLY ONE, AND IT WILL BE YOU!!!</i></b>\nActivate it in your hand to point to the nearest victim."
+	desc = "<b><i>只能有一个，那就是你！！！</i></b>\nActivate在手中激活它，指向最近的受害者。"
 	obj_flags = CONDUCTS_ELECTRICITY
 	item_flags = DROPDEL //WOW BRO YOU LOST AN ARM, GUESS WHAT YOU DONT GET YOUR SWORD ANYMORE //I CANT BELIEVE SPOOKYDONUT WOULD BREAK THE REQUIREMENTS
 	slot_flags = null
@@ -124,7 +124,7 @@
 /obj/item/claymore/highlander/Destroy()
 	if(nuke_disk)
 		nuke_disk.forceMove(get_turf(src))
-		nuke_disk.visible_message(span_warning("The nuke disk is vulnerable!"))
+		nuke_disk.visible_message(span_warning("核弹盘变得脆弱了！"))
 		nuke_disk = null
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -141,13 +141,13 @@
 
 /obj/item/claymore/highlander/pickup(mob/living/user)
 	. = ..()
-	to_chat(user, span_notice("The power of Scotland protects you! You are shielded from all stuns and knockdowns."))
+	to_chat(user, span_notice("苏格兰之力护佑着你！你免疫所有击晕与击倒效果。"))
 	user.ignore_slowdown(HIGHLANDER_TRAIT)
 	user.add_stun_absorption(
 		source = HIGHLANDER_TRAIT,
-		message = span_warning("%EFFECT_OWNER is protected by the power of Scotland!"),
-		self_message = span_boldwarning("The power of Scotland absorbs the stun!"),
-		examine_message = span_warning("%EFFECT_OWNER_THEYRE protected by the power of Scotland!"),
+		message = span_warning("%EFFECT_OWNER受到苏格兰之力的保护！"),
+		self_message = span_boldwarning("苏格兰之力吸收了这次击晕！"),
+		examine_message = span_warning("%EFFECT_OWNER_THEYRE受到苏格兰之力的保护！"),
 	)
 
 /obj/item/claymore/highlander/dropped(mob/living/user)
@@ -159,14 +159,14 @@
 	. = ..()
 	. += "It has [!notches ? "nothing" : "[notches] notches"] scratched into the blade."
 	if(nuke_disk)
-		. += span_boldwarning("It's holding the nuke disk!")
+		. += span_boldwarning("它正握着核弹盘！")
 
 /obj/item/claymore/highlander/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(!QDELETED(target) && target.stat == DEAD && target.mind?.has_antag_datum(/datum/antagonist/highlander))
 		user.fully_heal() //STEAL THE LIFE OF OUR FALLEN FOES
 		add_notch(user)
-		target.visible_message(span_warning("[target] crumbles to dust beneath [user]'s blows!"), span_userdanger("As you fall, your body crumbles to dust!"))
+		target.visible_message(span_warning("[target]在[user]的猛击下化为尘埃！"), span_userdanger("当你倒下时，你的身体化为了尘埃！"))
 		target.investigate_log("has been dusted by a highlander claymore.", INVESTIGATE_DEATHS)
 		target.dust()
 
@@ -181,9 +181,9 @@
 			closest_victim = siliscot
 
 	if(!closest_victim)
-		to_chat(user, span_warning("[src] thrums for a moment and falls dark. Perhaps there's nobody nearby."))
+		to_chat(user, span_warning("[src]嗡鸣片刻后黯淡下来。或许附近没有其他人了。"))
 		return
-	to_chat(user, span_danger("[src] thrums and points to the [dir2text(get_dir(user, closest_victim))]."))
+	to_chat(user, span_danger("[src]嗡鸣着指向[dir2text(get_dir(user, closest_victim))]方向。"))
 
 /obj/item/claymore/highlander/IsReflect()
 	return 1 //YOU THINK YOUR PUNY LASERS CAN STOP ME?
@@ -194,11 +194,11 @@
 	var/new_name = name
 	switch(notches)
 		if(1)
-			to_chat(user, span_notice("Your first kill - hopefully one of many. You scratch a notch into [src]'s blade."))
-			to_chat(user, span_warning("You feel your fallen foe's soul entering your blade, restoring your wounds!"))
+			to_chat(user, span_notice("你的首次击杀——希望这只是众多中的第一个。你在[src]的剑刃上刻下一道凹痕。"))
+			to_chat(user, span_warning("你感到败亡敌人的灵魂正涌入你的剑刃，治愈你的创伤！"))
 			new_name = "notched claymore"
 		if(2)
-			to_chat(user, span_notice("Another falls before you. Another soul fuses with your own. Another notch in the blade."))
+			to_chat(user, span_notice("又一人倒在你面前。又一个灵魂与你融为一体。剑刃上再添一道凹痕。"))
 			new_name = "double-notched claymore"
 			add_atom_colour(rgb(255, 235, 235), ADMIN_COLOUR_PRIORITY)
 		if(3)
@@ -210,15 +210,15 @@
 			new_name = "many-notched claymore"
 			add_atom_colour(rgb(255, 195, 195), ADMIN_COLOUR_PRIORITY)
 		if(5)
-			to_chat(user, span_bolddanger("Five voices now echo in your mind, cheering the slaughter."))
+			to_chat(user, span_bolddanger("五个声音在你脑海中回响，为这场屠杀欢呼。"))
 			new_name = "battle-tested claymore"
 			add_atom_colour(rgb(255, 175, 175), ADMIN_COLOUR_PRIORITY)
 		if(6)
-			to_chat(user, span_bolddanger("Is this what the vikings felt like? Visions of glory fill your head as you slay your sixth foe."))
+			to_chat(user, span_bolddanger("这就是维京人的感受吗？当你斩杀第六个敌人时，荣耀的幻象充斥脑海。"))
 			new_name = "battle-scarred claymore"
 			add_atom_colour(rgb(255, 155, 155), ADMIN_COLOUR_PRIORITY)
 		if(7)
-			to_chat(user, span_bolddanger("Kill. Butcher. <i>Conquer.</i>"))
+			to_chat(user, span_bolddanger("杀戮。屠戮。<i>征服。</i>"))
 			new_name = "vicious claymore"
 			add_atom_colour(rgb(255, 135, 135), ADMIN_COLOUR_PRIORITY)
 		if(8)
@@ -226,12 +226,12 @@
 			new_name = "bloodthirsty claymore"
 			add_atom_colour(rgb(255, 115, 115), ADMIN_COLOUR_PRIORITY)
 		if(9)
-			to_chat(user, span_userdanger("ANOTHER ONE FALLS TO YOUR BLOWS. ANOTHER WEAKLING UNFIT TO LIVE."))
+			to_chat(user, span_userdanger("又一人倒在了你的打击之下。又一个不配活着的弱者。"))
 			new_name = "gore-stained claymore"
 			add_atom_colour(rgb(255, 95, 95), ADMIN_COLOUR_PRIORITY)
 		if(10)
-			user.visible_message(span_warning("[user]'s eyes light up with a vengeful fire!"), \
-			span_userdanger("YOU FEEL THE POWER OF VALHALLA FLOWING THROUGH YOU! <i>THERE CAN BE ONLY ONE!!!</i>"))
+			user.visible_message(span_warning("[user]的眼中燃起了复仇的火焰！"), \
+			span_userdanger("你感受到瓦尔哈拉的力量在你体内奔涌！<i>只能有一个！！！</i>"))
 			new_name = "GORE-DRENCHED CLAYMORE OF [pick("THE WHIMSICAL SLAUGHTER", "A THOUSAND SLAUGHTERED CATTLE", "GLORY AND VALHALLA", "ANNIHILATION", "OBLITERATION")]"
 			icon_state = "claymore_gold"
 			inhand_icon_state = "cultblade"
@@ -256,8 +256,8 @@
 	loc.layer = ABOVE_ALL_MOB_LAYER
 
 /obj/item/claymore/gladius
-	name = "gladius"
-	desc = "A short but formidable sword, favored by recently-reanimated ancient warriors."
+	name = "罗马短剑"
+	desc = "一把短小但威力强大的剑，深受最近复活的古代战士喜爱。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "gladius"
 	inhand_icon_state = "gladius"

@@ -139,9 +139,9 @@
 	if(!assembly)
 		return
 	if(IS_OPEN(parent))
-		source.balloon_alert(user, "can't unlink trapdoor when its open")
+		source.balloon_alert(user, "活板门打开时无法断开连接")
 		return
-	source.balloon_alert(user, "unlinking trapdoor")
+	source.balloon_alert(user, "正在断开活板门连接")
 	INVOKE_ASYNC(src, PROC_REF(async_try_unlink), source, user, tool)
 	return
 
@@ -153,15 +153,15 @@
 		return
 	var/obj/item/trapdoor_remote/remote = tool
 	if(!remote.internals)
-		source.balloon_alert(user, "missing internals")
+		source.balloon_alert(user, "缺少内部组件")
 		return
 	if(IS_OPEN(parent))
-		source.balloon_alert(user, "can't link trapdoor when its open")
+		source.balloon_alert(user, "活板门打开时无法连接")
 		return
 	if(assembly)
-		source.balloon_alert(user, "already linked")
+		source.balloon_alert(user, "已连接")
 		return
-	source.balloon_alert(user, "linking trapdoor")
+	source.balloon_alert(user, "正在连接活板门")
 	INVOKE_ASYNC(src, PROC_REF(async_try_link), source, user, tool)
 
 /datum/component/trapdoor/proc/async_try_link(turf/source, mob/user, obj/item/trapdoor_remote/remote)
@@ -170,11 +170,11 @@
 	if(QDELETED(src))
 		return
 	if(IS_OPEN(parent))
-		source.balloon_alert(user, "can't link trapdoor when its open")
+		source.balloon_alert(user, "活板门打开时无法连接")
 		return
 	src.assembly = remote.internals
 	++assembly.linked
-	source.balloon_alert(user, "trapdoor linked")
+	source.balloon_alert(user, "活板门已连接")
 	UnregisterSignal(SSdcs, COMSIG_GLOB_TRAPDOOR_LINK)
 	RegisterSignal(assembly, COMSIG_ASSEMBLY_PULSED, PROC_REF(toggle_trapdoor))
 	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(try_unlink))
@@ -185,7 +185,7 @@
 	if(QDELETED(src))
 		return
 	if(IS_OPEN(parent))
-		source.balloon_alert(user, "can't unlink trapdoor when its open")
+		source.balloon_alert(user, "活板门打开时无法断开连接")
 		return
 	assembly.linked = max(assembly.linked - 1, 0)
 	stored_decals = list()
@@ -193,7 +193,7 @@
 	UnregisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL))
 	RegisterSignal(SSdcs, COMSIG_GLOB_TRAPDOOR_LINK, PROC_REF(on_link_requested))
 	assembly = null
-	source.balloon_alert(user, "trapdoor unlinked")
+	source.balloon_alert(user, "活板门已断开连接")
 
 /datum/component/trapdoor/proc/decal_detached(datum/source, description, cleanable, directional, pic)
 	SIGNAL_HANDLER
@@ -351,7 +351,7 @@
 		return
 	if(!COOLDOWN_FINISHED(src, search_cooldown))
 		if(loc && pulser)
-			loc.balloon_alert(pulser, "linking on cooldown!")
+			loc.balloon_alert(pulser, "连接正在冷却中！")
 		return
 	attempt_link_up()
 	COOLDOWN_START(src, search_cooldown, search_cooldown_time)
@@ -399,7 +399,7 @@
 	. += span_notice("[src] is linked to [internals.linked] trapdoor(s).")
 	. += span_notice("It can be linked to additional trapdoor(s) by using it on a trapdoor.")
 	. += span_notice("Trapdoor can be unlinked with multitool.")
-	. += span_notice("Autoclose is [internals.autoclose ? "enabled" : "disabled"], ctrl-click to toggle.")
+	. += span_notice("自动关闭功能已[internals.autoclose ? "enabled" : "disabled"]，按住Ctrl键点击以切换。")
 	if(!COOLDOWN_FINISHED(src, trapdoor_cooldown))
 		. += span_warning("It is on a short cooldown.")
 
@@ -416,9 +416,9 @@
 	if(!istype(assembly))
 		return NONE
 	if(internals)
-		balloon_alert(user, "doesn't fit!")
+		balloon_alert(user, "放不进去！")
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "added")
+	balloon_alert(user, "已添加")
 	internals = assembly
 	user.transferItemToLoc(assembly, src)
 	return ITEM_INTERACT_SUCCESS
@@ -429,24 +429,24 @@
 		return TRUE
 
 	if(!internals)
-		user.balloon_alert(user, "no device!")
+		user.balloon_alert(user, "没有设备！")
 		return TRUE
 
 	if(!internals.linked)
 		internals.pulsed(user)
 		// The pulse linked successfully
 		if(internals.linked)
-			user.balloon_alert(user, "linked [internals.linked] trapdoors")
+			user.balloon_alert(user, "已连接 [internals.linked] 个陷阱门")
 		// The pulse failed to link
 		else
-			user.balloon_alert(user, "link failed!")
+			user.balloon_alert(user, "连接失败！")
 		return TRUE
 
 	if(!COOLDOWN_FINISHED(src, trapdoor_cooldown))
-		user.balloon_alert(user, "on cooldown!")
+		user.balloon_alert(user, "冷却中！")
 		return TRUE
 
-	user.balloon_alert(user, "trapdoor triggered")
+	user.balloon_alert(user, "陷阱门已触发")
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 	icon_state = "trapdoor_pressed"
 	addtimer(VARSET_CALLBACK(src, icon_state, initial(icon_state)), trapdoor_cooldown_time)
@@ -458,11 +458,11 @@
 	if (!user.is_holding(src))
 		return CLICK_ACTION_BLOCKING
 	if(!internals)
-		user.balloon_alert(user, "no device!")
+		user.balloon_alert(user, "没有设备！")
 		return CLICK_ACTION_BLOCKING
 
 	internals.autoclose = !internals.autoclose
-	user.balloon_alert(user, "autoclose [internals.autoclose ? "enabled" : "disabled"]")
+	user.balloon_alert(user, "自动关闭 [internals.autoclose ? "enabled" : "disabled"]")
 	return CLICK_ACTION_SUCCESS
 
 #undef TRAPDOOR_LINKING_SEARCH_RANGE
@@ -495,7 +495,7 @@
 	if(!isopenspaceturf(target_turf))
 		return NONE
 	in_use = TRUE
-	balloon_alert(user, "constructing trapdoor")
+	balloon_alert(user, "正在建造陷阱门")
 	if(!do_after(user, 5 SECONDS, interacting_with))
 		in_use = FALSE
 		return ITEM_INTERACT_BLOCKING
@@ -504,6 +504,6 @@
 		return ITEM_INTERACT_BLOCKING
 	var/turf/new_turf = target_turf.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	new_turf.AddComponent(/datum/component/trapdoor, starts_open = FALSE, conspicuous = TRUE)
-	balloon_alert(user, "trapdoor constructed")
+	balloon_alert(user, "陷阱门建造完成")
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

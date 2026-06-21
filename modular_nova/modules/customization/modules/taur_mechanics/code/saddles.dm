@@ -1,6 +1,6 @@
 /obj/item/riding_saddle
-	name = "generic riding saddle"
-	desc = "someone spawned a basetype!"
+	name = "通用骑乘鞍座"
+	desc = "有人生成了基础类型！"
 	slot_flags = ITEM_SLOT_BACK // no storage
 
 	icon = 'modular_nova/modules/customization/modules/taur_mechanics/icons/saddles.dmi'
@@ -17,7 +17,7 @@
 	AddComponent(/datum/component/taur_clothing_offset)
 
 /obj/item/riding_saddle/leather
-	name = "riding saddle"
+	name = "骑乘鞍座"
 	desc = "A thick leather riding saddle. Typically used for animals, this one has been designed for use by the taurs of the galaxy. \n\
 		This saddle has specialized footrests that will allow a rider to <b>use both their hands</b> while riding."
 
@@ -32,7 +32,7 @@
 	. = ..()
 
 /obj/item/riding_saddle/leather/blue
-	name = "blue riding saddle"
+	name = "蓝色骑乘鞍座"
 
 	icon_state = "saddle_blue_item"
 	worn_icon_state = "saddle_blue"
@@ -43,7 +43,7 @@
 	desc += " This one is painted in blue and white."
 
 /obj/item/storage/backpack/saddlebags
-	name = "saddlebags"
+	name = "鞍囊"
 	desc = "A collection of small pockets bound together by belt, typically used on caravan animals due to their superior storage capacity. This one has been designed for use by the taurs of the galaxy. \n\
 		These saddlebags can be accessed by anyone if they <b>alt-click</b> the wearer.\n\
 		Additionally, they have been modified with a hand grip that would allow <b>one free hand</b> during riding."

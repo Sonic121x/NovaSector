@@ -51,8 +51,8 @@
 	var/organs_needed = 0
 	///if the bonus is active
 	var/bonus_active = FALSE
-	var/bonus_activate_text = span_notice("??? DNA is deeply infused with you! You've learned how to make error reports!")
-	var/bonus_deactivate_text = span_notice("Your DNA is no longer majority ???. You did make an issue report, right?")
+	var/bonus_activate_text = span_notice("??? DNA 已深深融入你的体内！你学会了如何提交错误报告！")
+	var/bonus_deactivate_text = span_notice("你的 DNA 不再以 ??? 为主。你应该已经提交了问题报告，对吧？")
 	/// Required mob bio-type. Also checks DNA validity it's set to MOB_ORGANIC.
 	var/required_biotype = MOB_ORGANIC
 	/// A list of traits added to the mob upon bonus activation, can be of any length.

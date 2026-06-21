@@ -1,6 +1,6 @@
 // Subtype that mimics more traditional airlocks.
 /turf/closed/indestructible/hoteldoor/fakedoor
-	name = "Condo Door"
+	name = "公寓门"
 	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
 	icon_state = "fake_door"
 	leave_message = "Are you ready to leave the Condo? If all occupants vacate; it'll be reset and anything you leave behind'll be lost!"
@@ -18,7 +18,7 @@
 	floor_to_copy = /turf/open/floor/iron
 
 /turf/closed/indestructible/hoteldoor/fakedoor/travel_tile
-	name = "Travel Tile"
+	name = "传送地砖"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "target_tile"
 	floor_to_copy = /turf/open/misc/dirt/jungle

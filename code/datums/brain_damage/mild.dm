@@ -185,11 +185,11 @@
 
 /datum/brain_trauma/mild/nervous_cough
 	name = "Nervous Cough"
-	desc = "Patient feels a constant need to cough."
+	desc = "患者感觉需要不停地咳嗽。"
 	scan_desc = "nervous cough"
 	symptoms = "Experiences a persistent, uncontrollable urge to cough, which may disrupt normal activities and social interactions."
-	gain_text = span_warning("Your throat itches incessantly...")
-	lose_text = span_notice("Your throat stops itching.")
+	gain_text = span_warning("你的喉咙不停地发痒...")
+	lose_text = span_notice("你的喉咙不再发痒了。")
 
 /datum/brain_trauma/mild/nervous_cough/on_life(seconds_per_tick)
 	if(SPT_PROB(6, seconds_per_tick) && !HAS_TRAIT(owner, TRAIT_SOOTHED_THROAT))
@@ -203,12 +203,12 @@
 	..()
 
 /datum/brain_trauma/mild/expressive_aphasia
-	name = "Expressive Aphasia"
-	desc = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
+	name = "表达性失语症"
+	desc = "患者受部分语言能力丧失影响，导致词汇量减少。"
 	scan_desc = "inability to form complex sentences"
 	symptoms = "Struggles to express thoughts verbally, often substituting complex words with simpler alternatives or nonsensical sounds."
-	gain_text = span_warning("You lose your grasp on complex words.")
-	lose_text = span_notice("You feel your vocabulary returning to normal again.")
+	gain_text = span_warning("你失去了对复杂词汇的掌握能力。")
+	lose_text = span_notice("你感觉自己的词汇量恢复正常了。")
 
 /datum/brain_trauma/mild/expressive_aphasia/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -246,12 +246,12 @@
 	speech_args[SPEECH_MESSAGE] = trim(message)
 
 /datum/brain_trauma/mild/mind_echo
-	name = "Mind Echo"
-	desc = "Patient's language neurons do not terminate properly, causing previous speech patterns to occasionally resurface spontaneously."
+	name = "心灵回响"
+	desc = "患者的语言神经元未能正常终止，导致先前的言语模式偶尔会自发地重新浮现。"
 	scan_desc = "looping neural pattern"
 	symptoms = "Experiences involuntary repetition of previously heard or spoken phrases, leading to persistent moments of déjà vu in both hearing and speech."
-	gain_text = span_warning("You feel a faint echo of your thoughts...")
-	lose_text = span_notice("The faint echo fades away.")
+	gain_text = span_warning("你感觉到自己思绪的微弱回响……")
+	lose_text = span_notice("那微弱的回响渐渐消逝了。")
 	var/list/hear_dejavu = list()
 	var/list/speak_dejavu = list()
 
@@ -286,12 +286,12 @@
 		speak_dejavu += speech_args[SPEECH_MESSAGE]
 
 /datum/brain_trauma/mild/color_blindness
-	name = "Achromatopsia"
-	desc = "Patient's occipital lobe is unable to recognize and interpret color, rendering the patient completely colorblind."
+	name = "全色盲"
+	desc = "患者的枕叶无法识别和解读颜色，导致患者完全色盲。"
 	scan_desc = "colorblindness"
 	symptoms = "Exhibits a complete inability to perceive colors, seeing the world in shades of gray, black, and white."
-	gain_text = span_warning("The world around you seems to lose its color.")
-	lose_text = span_notice("The world feels bright and colorful again.")
+	gain_text = span_warning("你周围的世界似乎失去了色彩。")
+	lose_text = span_notice("世界再次变得明亮多彩。")
 
 /datum/brain_trauma/mild/color_blindness/on_gain()
 	owner.add_client_colour(/datum/client_colour/monochrome, TRAUMA_TRAIT)
@@ -302,13 +302,13 @@
 	return ..()
 
 /datum/brain_trauma/mild/possessive
-	name = "Possessive"
-	desc = "Patient is extremely possessive of their belongings."
+	name = "占有欲"
+	desc = "患者对自己的物品有极强的占有欲。"
 	scan_desc = "possessiveness"
 	symptoms = "Exhibits an overwhelming need to keep personal belongings close, \
 		often resulting in an intense grip on held items that persists even when forced to let go."
-	gain_text = span_warning("You start to worry about your belongings.")
-	lose_text = span_notice("You worry less about your belongings.")
+	gain_text = span_warning("你开始担心自己的物品。")
+	lose_text = span_notice("你对个人物品的担忧减轻了。")
 
 /datum/brain_trauma/mild/possessive/on_lose(silent)
 	. = ..()
@@ -325,14 +325,14 @@
 
 	ADD_TRAIT(my_thing, TRAIT_NODROP, TRAUMA_TRAIT)
 	RegisterSignals(my_thing, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(clear_trait))
-	to_chat(owner, span_warning("You feel a need to keep [my_thing] close..."))
+	to_chat(owner, span_warning("你觉得有必要让[my_thing]保持在身边……"))
 	addtimer(CALLBACK(src, PROC_REF(relax), my_thing), rand(30 SECONDS, 3 MINUTES), TIMER_DELETE_ME)
 
 /datum/brain_trauma/mild/possessive/proc/relax(obj/item/my_thing)
 	if(QDELETED(my_thing))
 		return
 	if(HAS_TRAIT_FROM_ONLY(my_thing, TRAIT_NODROP, TRAUMA_TRAIT)) // in case something else adds nodrop, somehow?
-		to_chat(owner, span_notice("You feel more comfortable letting go of [my_thing]."))
+		to_chat(owner, span_notice("你觉得放手[my_thing]更自在了。"))
 	clear_trait(my_thing)
 
 /datum/brain_trauma/mild/possessive/proc/clear_trait(obj/item/my_thing, ...)

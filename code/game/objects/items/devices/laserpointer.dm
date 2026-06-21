@@ -75,7 +75,7 @@
 /obj/item/laser_pointer/screwdriver_act(mob/living/user, obj/item/tool)
 	if(diode)
 		tool.play_tool_sound(src)
-		balloon_alert(user, "removed diode")
+		balloon_alert(user, "已移除二极管")
 		diode.forceMove(drop_location())
 		diode = null
 		return TRUE
@@ -86,7 +86,7 @@
 	if(tool_behaviour != TOOL_WIRECUTTER && tool_behaviour != TOOL_HEMOSTAT)
 		return ..()
 	tool.play_tool_sound(src)
-	balloon_alert(user, "removed crystal lens")
+	balloon_alert(user, "已移除晶体透镜")
 	crystal_lens.forceMove(drop_location())
 	crystal_lens = null
 	return ITEM_INTERACT_SUCCESS
@@ -94,20 +94,20 @@
 /obj/item/laser_pointer/attackby(obj/item/attack_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attack_item, /obj/item/stock_parts/micro_laser))
 		if(diode)
-			balloon_alert(user, "already has a diode!")
+			balloon_alert(user, "已经有一个二极管了！")
 			return
 		var/obj/item/stock_parts/attack_diode = attack_item
 		if(crystal_lens && attack_diode.rating < 3) //only tier 3 and up are small enough to fit
-			to_chat(user, span_warning("You try to jam \the [attack_item.name] in place, but \the [crystal_lens.name] is in the way!"))
+			to_chat(user, span_warning("你试图把\the [attack_item.name]塞进去，但\the [crystal_lens.name]挡在了前面！"))
 			playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 20)
 			if(do_after(user, 2 SECONDS, src))
 				var/atom/atom_to_teleport = pick(user, attack_item)
 				if(atom_to_teleport == user)
-					to_chat(user, span_warning("You jam \the [attack_item.name] in too hard and break \the [crystal_lens.name] inside, teleporting you away!"))
+					to_chat(user, span_warning("你把\the [attack_item.name]塞得太用力，弄坏了里面的\the [crystal_lens.name]，把你传送走了！"))
 					user.drop_all_held_items()
 				else if(atom_to_teleport == attack_item)
 					attack_item.forceMove(drop_location())
-					to_chat(user, span_warning("You jam \the [attack_item.name] in too hard and break \the [crystal_lens.name] inside, teleporting \the [attack_item.name] away!"))
+					to_chat(user, span_warning("你把\the [attack_item.name]塞得太用力，弄坏了里面的\the [crystal_lens.name]，把\the [attack_item.name]传送走了！"))
 				do_teleport(atom_to_teleport, get_turf(src), crystal_lens.blink_range, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 				qdel(crystal_lens)
 			return
@@ -115,7 +115,7 @@
 			return
 		playsound(src, 'sound/items/tools/screwdriver.ogg', 30)
 		diode = attack_item
-		balloon_alert(user, "installed \the [diode.name]")
+		balloon_alert(user, "已安装\the [diode.name]")
 		//we have a diode now, try starting a charge sequence in case the pointer was charging when we took out the diode
 		recharging = TRUE
 		START_PROCESSING(SSobj, src)
@@ -123,21 +123,21 @@
 
 	if(istype(attack_item, /obj/item/stack/ore/bluespace_crystal))
 		if(crystal_lens)
-			balloon_alert(user, "already has a lens!")
+			balloon_alert(user, "已装有透镜！")
 			return
 		//the crystal stack we're trying to install a crystal from
 		var/obj/item/stack/ore/bluespace_crystal/crystal_stack = attack_item
 		if(diode && diode.rating < 3) //only lasers of tier 3 and up can house a lens
-			to_chat(user, span_warning("You try to jam \the [crystal_stack.name] in front of the diode, but it's a bad fit!"))
+			to_chat(user, span_warning("你试图把\the [crystal_stack.name]硬塞到二极管前面，但尺寸不合适！"))
 			playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 20)
 			if(do_after(user, 2 SECONDS, src))
 				var/atom/atom_to_teleport = pick(user, src)
 				if(atom_to_teleport == user)
-					to_chat(user, span_warning("You press on \the [crystal_stack.name] too hard and are teleported away!"))
+					to_chat(user, span_warning("你按\the [crystal_stack.name]的力气太大，结果被传送走了！"))
 					user.drop_all_held_items()
 				else if(atom_to_teleport == src)
 					forceMove(drop_location())
-					to_chat(user, span_warning("You press on \the [crystal_stack.name] too hard and \the [src] is teleported away!"))
+					to_chat(user, span_warning("你按\the [crystal_stack.name]的力气太大，结果\the [src]被传送走了！"))
 				do_teleport(atom_to_teleport, get_turf(src), crystal_stack.blink_range, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 				crystal_stack.use_tool(src, user, amount = 1) //use only one if we were installing from a stack of crystals
 			return
@@ -148,7 +148,7 @@
 		single_crystal.forceMove(src)
 		crystal_lens = single_crystal
 		playsound(src, 'sound/items/tools/screwdriver2.ogg', 30)
-		balloon_alert(user, "installed \the [crystal_lens.name]")
+		balloon_alert(user, "已安装\the [crystal_lens.name]")
 		to_chat(user, span_notice("You install a [crystal_lens.name] in [src]. \
 			It can now be used to shine through obstacles at the cost of double the energy drain."))
 		return TRUE
@@ -162,7 +162,7 @@
 			. += span_notice("The diode is missing.")
 		else
 			. += span_notice("A class <b>[diode.rating]</b> laser diode is installed. It is <i>screwed</i> in place.")
-		. += span_notice("A small display reads out that[recharge_locked ? " it is currently recharging to full, and" : ""] there is <b>[energy * 10]%</b> total charge remaining.")
+		. += span_notice("一个小显示屏显示[recharge_locked ? " it is currently recharging to full, and" : ""]剩余总电量为<b>[energy * 10]%</b>。")
 		if(crystal_lens)
 			. += span_notice("There is a <b>[crystal_lens.name]</b> fit neatly before the focus lens. It can be <i>plucked out</i> with some <i>wirecutters</i>.")
 		else if(diode) //hint at the ability to modify the pointer with a crystal only if we have a diode
@@ -204,7 +204,7 @@
 
 	if(max_range != INFINITY)
 		if(!IN_GIVEN_RANGE(target, user, max_range))
-			to_chat(user, span_warning("\The [target] is too far away!"))
+			to_chat(user, span_warning("\The [target] 太远了！"))
 			return
 		if(!(user in (view(max_range, target)))) //check if we are visible from the target's PoV
 			if(isnull(crystal_lens))

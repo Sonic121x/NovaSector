@@ -1,19 +1,19 @@
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/projectile/bullet/n762
-	name = "7.62x38mmR bullet"
+	name = "7.62x38mmR 子弹"
 	damage = 60
 
 // .50AE (Desert Eagle)
 
 /obj/projectile/bullet/a50ae
-	name = ".50AE bullet"
+	name = ".50AE 子弹"
 	damage = 60
 
 // .38 (Detective's Gun)
 
 /obj/projectile/bullet/c38
-	name = ".38 bullet"
+	name = ".38 子弹"
 	damage = 25
 	ricochets_max = 2
 	ricochet_chance = 50
@@ -35,7 +35,7 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/c38/match
-	name = ".38 Match bullet"
+	name = ".38 竞赛弹"
 	ricochets_max = 4
 	ricochet_chance = 100
 	ricochet_auto_aim_angle = 40
@@ -45,7 +45,7 @@
 	ricochet_decay_damage = 1
 
 /obj/projectile/bullet/c38/match/bouncy
-	name = ".38 Rubber bullet"
+	name = ".38 橡皮子弹"
 	damage = 10
 	stamina = 30
 	ricochets_max = 6
@@ -57,7 +57,7 @@
 	embed_type = null
 
 /obj/projectile/bullet/c38/match/true
-	name = ".38 True Strike bullet"
+	name = ".38真击子弹"
 	damage = 15
 	ricochet_auto_aim_range = 3
 	ricochet_auto_aim_angle = 100
@@ -69,7 +69,7 @@
 
 // premium .38 ammo from cargo, weak against armor, lower base damage, but excellent at embedding and causing slice wounds at close range
 /obj/projectile/bullet/c38/dumdum
-	name = ".38 DumDum bullet"
+	name = ".38 达姆弹"
 	damage = 15
 	weak_against_armour = TRUE
 	ricochets_max = 0
@@ -91,7 +91,7 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/c38/trac
-	name = ".38 TRAC bullet"
+	name = ".38 TRAC 子弹"
 	damage = 10
 	ricochets_max = 0
 
@@ -109,7 +109,7 @@
 		imp.implant(M)
 
 /obj/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
-	name = ".38 Hot Shot bullet"
+	name = ".38 热射弹"
 	damage = 20
 	ricochets_max = 0
 
@@ -121,7 +121,7 @@
 		criminal_scum.ignite_mob()
 
 /obj/projectile/bullet/c38/iceblox //see /obj/projectile/temp for the original code
-	name = ".38 Iceblox bullet"
+	name = ".38 冰冻弹"
 	damage = 20
 	var/temperature = 100
 	ricochets_max = 0
@@ -135,26 +135,26 @@
 // .357 (Syndie Revolver)
 
 /obj/projectile/bullet/c357
-	name = ".357 bullet"
+	name = ".357 子弹"
 	damage = 60
 	wound_bonus = -30
 
 /obj/projectile/bullet/c357/phasic
-	name = ".357 phasic bullet"
+	name = ".357相位子弹"
 	icon_state = "gaussphase"
 	damage = 35
 	armour_penetration = 100
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 
 /obj/projectile/bullet/c357/heartseeker
-	name = ".357 heartseeker bullet"
+	name = ".357寻心子弹"
 	icon_state = "gauss"
 	damage = 50
 	homing_turn_speed = 120
 
 // admin only really, for ocelot memes
 /obj/projectile/bullet/c357/match
-	name = ".357 match bullet"
+	name = ".357 竞赛弹"
 	ricochets_max = 5
 	ricochet_chance = 140
 	ricochet_auto_aim_angle = 50
@@ -164,7 +164,7 @@
 
 //gatfruit
 /obj/projectile/bullet/pea
-	name = "pea bullet"
+	name = "豌豆子弹"
 	damage = 15
 	weak_against_armour = TRUE
 	ricochets_max = 3
@@ -184,7 +184,7 @@
 			reagents.trans_to(target, reagents.total_volume, methods = INJECT)
 			return BULLET_ACT_HIT
 		blocked = 100
-		target.visible_message(span_danger("\The [src] is deflected!"), span_userdanger("You are protected against \the [src]!"))
+		target.visible_message(span_danger("\The [src]被偏转了！"), span_userdanger("你受到了针对\the [src]的保护！"))
 	. = ..()
 	if(reagents.flags & NO_REACT) //first impact on a noncarbon
 		reagents.flags &= ~(NO_REACT)

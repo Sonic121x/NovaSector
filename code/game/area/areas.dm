@@ -4,7 +4,7 @@
  * A grouping of tiles into a logical space, mostly used by map editors
  */
 /area
-	name = "Space"
+	name = "太空"
 	icon = 'icons/area/areas_misc.dmi'
 	icon_state = "unknown"
 	layer = AREA_LAYER
@@ -684,4 +684,4 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  * allowing golems to create new areas without suffering from the hazard_area debuffs.
  */
 /area/golem
-	name = "Golem Territory"
+	name = "石像鬼领地"

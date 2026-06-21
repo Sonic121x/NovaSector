@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/secure/syndicrate
-	name = "surplus syndicrate"
-	desc = "A conspicuous crate with the Syndicate logo on it. You don't know how to open it."
+	name = "剩余辛迪加箱"
+	desc = "一个显眼的板条箱，上面有辛迪加的标识。你不知道怎么打开它。"
 	icon_state = "syndicrate"
 	base_icon_state = "syndicrate"
 	max_integrity = 500
@@ -26,7 +26,7 @@
 		return FALSE
 
 	if(!broken && !force && !created_items)
-		balloon_alert(user, "locked!")
+		balloon_alert(user, "已锁定！")
 		return FALSE
 
 	return TRUE
@@ -38,7 +38,7 @@
 		return ..()
 	if(prob(75))
 		return ..()
-	visible_message(span_danger("The syndicrate's anti-tamper system activates!"))
+	visible_message(span_danger("辛迪加箱的防篡改系统激活了！"))
 	explosion(src, heavy_impact_range = 1, light_impact_range = 2, flash_range = 2)
 	qdel(src)
 
@@ -51,7 +51,7 @@
 		new item_path(src)
 	unlock_contents = list()
 	qdel(item)
-	to_chat(user, span_notice("You twist the key into both locks at once, opening the crate."))
+	to_chat(user, span_notice("你将钥匙同时插入两把锁并转动，打开了箱子。"))
 	playsound(src, 'sound/machines/airlock/boltsup.ogg', 50, vary = FALSE)
 	togglelock(user)
 
@@ -62,8 +62,8 @@
 		add_fingerprint(user)
 	locked = !locked
 	user.visible_message(
-		span_notice("[user] [locked ? "locks" : "unlocks"] [src]."),
-		span_notice("You [locked ? "locked" : "unlocked"] [src]."),
+		span_notice("[user] [locked ? "locks" : "unlocks"]了[src]。"),
+		span_notice("你[locked ? "locked" : "unlocked"]了[src]。"),
 	)
 	update_appearance()
 
@@ -71,8 +71,8 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/syndicrate_key
-	name = "syndicrate key"
-	desc = "A device bearing a serpentine emblem, capable of splitting itself into two keys. Can be used to open one syndicrate."
+	name = "辛迪加板条箱钥匙"
+	desc = "一个带有蛇形徽记的装置，能够分裂成两把钥匙。可用于打开一个辛迪加板条箱。"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "syndicrate_key"
 	w_class = WEIGHT_CLASS_TINY

@@ -82,15 +82,15 @@
 			MA.layer = FLOAT_LAYER
 
 			if(w == 23 || h == 23)
-				to_chat(ai, span_notice("Small note: 23x23 Portraits are accepted, but they do not fit perfectly inside the display frame."))
+				to_chat(ai, span_notice("小提示：接受23x23尺寸的肖像，但它们无法完美适配显示框。"))
 				MA.pixel_w = 5
 				MA.pixel_z = 5
 			else if(w == 24 || h == 24)
-				to_chat(ai, span_notice("Portrait Accepted. Enjoy!"))
+				to_chat(ai, span_notice("肖像已接受。请享用！"))
 				MA.pixel_w = 4
 				MA.pixel_z = 4
 			else
-				to_chat(ai, span_warning("Sorry, only 23x23 and 24x24 Portraits are accepted."))
+				to_chat(ai, span_warning("抱歉，仅接受23x23和24x24尺寸的肖像。"))
 				return
 
 			ai.portrait_appearance = MA

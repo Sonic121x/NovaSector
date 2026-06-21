@@ -4,8 +4,8 @@
 #define HEART_SPECIAL_SHADOWIFY 2
 
 /obj/item/organ/brain/shadow/nightmare
-	name = "tumorous mass"
-	desc = "A fleshy growth that was dug out of the skull of a Nightmare."
+	name = "肿瘤块"
+	desc = "从噩梦的头骨中挖出的肉质生长物。"
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "brain-x-d"
 	shade_color = "black, somehow"
@@ -64,19 +64,19 @@
 	SIGNAL_HANDLER
 	source.visible_message(
 		span_danger("[source] dances in the shadows, evading [hitting_projectile]!"),
-		span_danger("You evade [hitting_projectile] with the cover of darkness!"),
+		span_danger("你利用黑暗的掩护躲开了 [hitting_projectile]！"),
 	)
 	playsound(source, SFX_BULLET_MISS, 75, TRUE)
 	return COMPONENT_BULLET_PIERCED
 
 /atom/movable/screen/alert/status_effect/shadow_regeneration/nightmare
-	name = "Lightless Domain"
+	name = "无光领域"
 	desc = "Bathed in soothing darkness you will slowly regenerate, even past the point of death. \
 		Heightened reflexes will allow you to dodge projectile weapons."
 
 /obj/item/organ/heart/nightmare
-	name = "heart of darkness"
-	desc = "An alien organ that twists and writhes when exposed to light."
+	name = "黑暗之心"
+	desc = "一个异形器官。当受到光照时，它会扭曲蠕动。"
 	visual = TRUE
 	icon = 'icons/obj/medical/organs/shadow_organs.dmi'
 	icon_state = "dark_heart-on"
@@ -101,14 +101,14 @@
 	if(M != user)
 		return ..()
 	user.visible_message(
-		span_warning("[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!"),
-		span_danger("[src] feels unnaturally cold in your hands. You raise [src] to your mouth and devour it!")
+		span_warning("[user] 将 [src] 举到 [user.p_their()] 嘴边，用 [user.p_their()] 牙齿撕咬它！"),
+		span_danger("[src] 在你手中感觉异常冰冷。你将 [src] 举到嘴边并吞噬了它！")
 	)
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 
 	user.visible_message(
-		span_warning("Blood erupts from [user]'s arm as it reforms into a weapon!"),
-		span_userdanger("Icy blood pumps through your veins as your arm reforms itself!")
+		span_warning("鲜血从 [user] 的手臂喷涌而出，它重塑成了一件武器！"),
+		span_userdanger("冰冷的血液在你血管中奔涌，你的手臂正在重塑！")
 	)
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	Insert(user)
@@ -125,7 +125,7 @@
 	. = ..()
 	respawn_progress = 0
 	if(blade && special != HEART_SPECIAL_SHADOWIFY)
-		heart_owner.visible_message(span_warning("\The [blade] disintegrates!"))
+		heart_owner.visible_message(span_warning("\The [blade] 瓦解了！"))
 		QDEL_NULL(blade)
 
 /obj/item/organ/heart/nightmare/Stop()
@@ -154,9 +154,9 @@
 		Remove(owner, HEART_SPECIAL_SHADOWIFY)
 		old_owner.set_species(/datum/species/shadow)
 		Insert(old_owner, HEART_SPECIAL_SHADOWIFY)
-		to_chat(owner, span_userdanger("You feel the shadows invade your skin, leaping into the center of your chest! You're alive!"))
+		to_chat(owner, span_userdanger("你感到阴影侵入你的皮肤，跃入你的胸膛中央！你活过来了！"))
 		SEND_SOUND(owner, sound('sound/effects/ghost.ogg'))
-	owner.visible_message(span_warning("[owner] staggers to [owner.p_their()] feet!"))
+	owner.visible_message(span_warning("[owner] 摇摇晃晃地站[owner.p_their()]起来！"))
 	playsound(owner, 'sound/effects/hallucinations/far_noise.ogg', 50, TRUE)
 	respawn_progress = 0
 

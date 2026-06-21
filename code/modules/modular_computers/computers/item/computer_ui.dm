@@ -135,7 +135,7 @@
 	if(ishuman(usr) && !allow_chunky)
 		var/mob/living/carbon/human/human_user = usr
 		if(human_user.check_chunky_fingers())
-			balloon_alert(human_user, "fingers are too big!")
+			balloon_alert(human_user, "手指太大了！")
 			return TRUE
 
 	switch(action)
@@ -161,7 +161,7 @@
 				return
 
 			killed_program.kill_program(usr)
-			to_chat(usr, span_notice("Program [killed_program.filename].[killed_program.filetype] with PID [rand(100,999)] has been killed."))
+			to_chat(usr, span_notice("程序 [killed_program.filename].[killed_program.filetype] (PID [rand(100,999)]) 已被终止。"))
 			return TRUE
 
 		if("PC_runprogram")
@@ -180,7 +180,7 @@
 				if(!new_color)
 					return
 				if(is_color_dark(new_color, 50) ) //Colors too dark are rejected
-					to_chat(user, span_warning("That color is too dark! Choose a lighter one."))
+					to_chat(user, span_warning("那个颜色太深了！请选一个浅一点的。"))
 					new_color = null
 			set_flashlight_color(new_color)
 			return TRUE

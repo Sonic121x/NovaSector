@@ -1,8 +1,8 @@
 // SolFed shotgun (this was gonna be in a proprietary shotgun shell type outside of 12ga at some point, wild right?)
 
 /obj/item/gun/ballistic/shotgun/riot/sol
-	name = "\improper M64 Shotgun"
-	desc = "A robust twelve-gauge shotgun with an eight-shell, top-mounted magazine tube. Made for and used by SolFed's various military and police forces."
+	name = "\improper M64霰弹枪"
+	desc = "一把坚固的十二号口径霰弹枪，配有八发容量的顶置管状弹仓。专为太阳联邦各军事及警察部队制造并使用。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns48x.dmi'
 	icon_state = "renoster"
@@ -83,7 +83,7 @@
 // Shotgun but EVIL!
 
 /obj/item/gun/ballistic/shotgun/riot/sol/evil
-	desc = parent_type::desc + " This one is painted in a tacticool black."
+	desc = parent_type::desc + "这把被涂成了战术黑色。"
 
 	icon_state = "renoster_evil"
 	worn_icon_state = "renoster_evil"

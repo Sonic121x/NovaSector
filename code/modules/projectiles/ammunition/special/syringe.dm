@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/syringegun
-	name = "syringe gun spring"
-	desc = "A high-power spring that throws syringes."
+	name = "注射枪弹簧"
+	desc = "发射注射器的高功率弹簧"
 	slot_flags = null
 	projectile_type = /obj/projectile/bullet/dart/syringe
 	firing_effect_type = null
@@ -49,8 +49,8 @@
 	dart.inner_syringe = syringe
 
 /obj/item/ammo_casing/chemgun
-	name = "dart synthesiser"
-	desc = "A high-power spring, linked to an energy-based piercing dart synthesiser."
+	name = "飞镖合成器"
+	desc = "一个强力弹簧，与一种基于能量的穿刺飞镖合成器相连。"
 	projectile_type = /obj/projectile/bullet/dart/piercing
 	firing_effect_type = null
 
@@ -62,13 +62,13 @@
 		if(CG.syringes_left <= 0)
 			return
 		CG.reagents.trans_to(loaded_projectile, 15, transferred_by = user)
-		loaded_projectile.name = "piercing chemical dart"
+		loaded_projectile.name = "穿甲化学镖弹"
 		CG.syringes_left--
 	return ..()
 
 /obj/item/ammo_casing/dnainjector
-	name = "rigged syringe gun spring"
-	desc = "A high-power spring that throws DNA injectors."
+	name = "改装注射枪弹簧"
+	desc = "一个强力弹簧，用于发射 DNA 注射器。"
 	projectile_type = /obj/projectile/bullet/dnainjector
 	firing_effect_type = null
 

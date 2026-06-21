@@ -169,7 +169,7 @@
 */
 
 /datum/loadout_item/pocket_items/lipstick
-	name = "Lipstick"
+	name = "口红"
 	item_path = /obj/item/lipstick
 
 /datum/loadout_item/pocket_items/lipstick/get_item_information()
@@ -218,7 +218,7 @@
 		if("select_lipstick_style")
 			var/list/their_loadout = manager.get_current_loadout()// NOVA EDIT CHANGE - Multiple loadout presets - ORIGINAL: var/list/their_loadout = manager.preferences.read_preference(/datum/preference/loadout)
 			var/old_style = their_loadout?[item_path]?[INFO_LAYER] || MIDDLE_LIP
-			var/chosen = tgui_input_list(user, "Pick a lipstick style. (This determines where it sits on your sprite.)", "Pick a style", list(UPPER_LIP, MIDDLE_LIP, LOWER_LIP), old_style)
+			var/chosen = tgui_input_list(user, "选择一种口红样式。（这将决定它在你的精灵图上的位置。）", "选择样式", list(UPPER_LIP, MIDDLE_LIP, LOWER_LIP), old_style)
 			their_loadout =  manager.get_current_loadout()// NOVA EDIT CHANGE - Multiple loadout presets - ORIGINAL: their_loadout = manager.preferences.read_preference(/datum/preference/loadout) // after sleep: sanity check
 			if(their_loadout?[item_path]) // Validate they still have it equipped
 				their_loadout[item_path][INFO_LAYER] = chosen
@@ -238,44 +238,44 @@
 	return ..()
 
 /datum/loadout_item/pocket_items/lighter
-	name = "Zippo Lighter"
+	name = "Zippo打火机"
 	item_path = /obj/item/lighter
 
 /datum/loadout_item/pocket_items/flask
-	name = "Pocket Flask"
+	name = "随身酒壶"
 	item_path = /obj/item/reagent_containers/cup/glass/flask
 
 /datum/loadout_item/pocket_items/clipboard
-	name = "Clipboard"
+	name = "写字夹板"
 	item_path = /obj/item/clipboard
 
 /datum/loadout_item/pocket_items/dye
-	name = "Hair Dye"
+	name = "染发剂"
 	item_path = /obj/item/dyespray
 
 /datum/loadout_item/pocket_items/poster
-	name = "Poster (Contraband)"
+	name = "海报（违禁品）"
 	item_path = /obj/item/poster/random_contraband
 
 /datum/loadout_item/pocket_items/poster_pinup
-	name = "Poster (Pinup)"
+	name = "海报（美女图）"
 	item_path = /obj/item/poster/random_contraband/pinup
 
 /datum/loadout_item/pocket_items/holodisk
-	name = "Holodisk"
+	name = "全息磁盘"
 	item_path = /obj/item/disk/holodisk
 
 /datum/loadout_item/pocket_items/mug_nt
-	name = "Nanotrasen Mug"
+	name = "纳米传讯马克杯"
 	item_path = /obj/item/reagent_containers/cup/glass/mug/nanotrasen
 
 /datum/loadout_item/pocket_items/britcup
-	name = "British Flag Cup"
+	name = "英国国旗杯"
 	item_path = /obj/item/reagent_containers/cup/glass/mug/britcup
 
 // The wallet loadout item is special, and puts the player's ID and other small items into it on initialize (fancy!)
 /datum/loadout_item/pocket_items/wallet
-	name = "Wallet"
+	name = "钱包"
 	item_path = /obj/item/storage/wallet
 
 /datum/loadout_item/pocket_items/wallet/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
@@ -334,5 +334,5 @@
 	record?.medical_notes += new /datum/medical_note("Central Command", "Patient is a registered brain donor for Robotics research.", null)
 
 /datum/loadout_item/pocket_items/candles
-	name = "Box of Candles"
+	name = "蜡烛盒"
 	item_path = /obj/item/storage/fancy/candle_box

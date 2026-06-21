@@ -1,7 +1,7 @@
 //Anomalies, used for anomaly events. Anomalies cause adverse effects on their surroundings and can be mitigated by signalling their respective frequency.
 /obj/effect/anomaly
-	name = "anomaly"
-	desc = "A mysterious anomaly, seen commonly only in the region of space that the station orbits..."
+	name = "异常"
+	desc = "一种神秘的异常现象，通常只在空间站轨道所在的太空区域出现……"
 	icon = 'icons/effects/anomalies.dmi'
 	icon_state = "vortex"
 	density = FALSE
@@ -116,7 +116,7 @@
 			anomaly_core.forceMove(drop_location())
 			anomaly_core = null
 		else // You exceeded the cap sorry
-			visible_message(span_warning("[anomaly_core] loses its lustre as it falls to the ground, there is too little ambient energy to support another core of this type."))
+			visible_message(span_warning("[anomaly_core] 失去了光泽，掉落在地，环境能量不足以支撑另一个同类型的核心。"))
 			new /obj/item/inert_anomaly(drop_location())
 
 	// else, anomaly core gets deleted by qdel(src).
@@ -125,15 +125,15 @@
 
 /obj/effect/anomaly/analyzer_act(mob/living/user, obj/item/analyzer/tool)
 	if(!isnull(anomaly_core))
-		to_chat(user, span_notice("Analyzing... [src]'s unstable field is fluctuating along frequency [format_frequency(anomaly_core.frequency)], code [anomaly_core.code]."))
+		to_chat(user, span_notice("分析中……[src]的不稳定场正以频率[format_frequency(anomaly_core.frequency)]、代码[anomaly_core.code]波动。"))
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_notice("Analyzing... [src]'s unstable field is not fluctuating along a stable frequency."))
+	to_chat(user, span_notice("分析中……[src]的不稳定场未以稳定频率波动。"))
 	return ITEM_INTERACT_BLOCKING
 
 ///Stabilize an anomaly, letting it stay around forever or untill destabilizes by a player. An anomaly without a core can't be signalled, but can be destabilized
 /obj/effect/anomaly/proc/stabilize(anchor = FALSE, has_core = TRUE)
 	immortal = TRUE
-	name = (has_core ? "stable " : "hollow ") + name
+	name = (has_core ? "稳定" : "空洞") + name
 	if(!has_core)
 		QDEL_NULL(anomaly_core)
 	if (anchor)

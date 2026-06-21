@@ -4,8 +4,8 @@
 	item_flags = NEEDS_PERMIT
 
 /obj/item/melee/synthetic_arm_blade
-	name = "synthetic arm blade"
-	desc = "A grotesque blade that on closer inspection seems to be made out of synthetic flesh, it still feels like it would hurt very badly as a weapon."
+	name = "合成臂刃"
+	desc = "一把怪异的刀刃，仔细看似乎是由合成肉体构成的，作为武器它感觉仍然会造成非常严重的伤害。"
 	icon = 'icons/obj/weapons/changeling_items.dmi'
 	icon_state = "arm_blade"
 	inhand_icon_state = "arm_blade"
@@ -34,8 +34,8 @@
 	//very imprecise
 
 /obj/item/melee/beesword
-	name = "The Stinger"
-	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
+	name = "毒刺"
+	desc = "取自一只巨型蜜蜂，并在纯蜂蜜中折叠了上千次。可以刺穿任何东西。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "beesword"
 	inhand_icon_state = "stinger"
@@ -67,13 +67,13 @@
 		carbon_target.reagents.add_reagent(/datum/reagent/toxin, 4)
 
 /obj/item/melee/beesword/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is stabbing [user.p_them()]self in the throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在用 [src] 刺 [user.p_them()] 自己的喉咙！看起来 [user.p_theyre()] 想自杀！"))
 	playsound(get_turf(src), hitsound, 75, TRUE, -1)
 	return TOXLOSS
 
 /obj/item/melee/curator_whip
-	name = "curator's whip"
-	desc = "Somewhat eccentric and outdated, it still stings like hell to be hit by."
+	name = "馆长之鞭"
+	desc = "虽然有些古怪且过时，但被它抽中依然疼得要命。"
 	icon = 'icons/obj/weapons/whip.dmi'
 	icon_state = "whip"
 	inhand_icon_state = "chain"
@@ -93,11 +93,11 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		human_target.drop_all_held_items()
-		human_target.visible_message(span_danger("[user] disarms [human_target]!"), span_userdanger("[user] disarmed you!"))
+		human_target.visible_message(span_danger("[user] 缴械了 [human_target]！"), span_userdanger("[user] 缴了你的械！"))
 
 /obj/item/melee/roastingstick
-	name = "advanced roasting stick"
-	desc = "A telescopic roasting stick with a miniature shield generator designed to ensure entry into various high-tech shielded cooking ovens and firepits."
+	name = "高级烤肉签"
+	desc = "一根伸缩式烤肉签，配有微型护盾发生器，旨在确保能伸入各种高科技屏蔽烹饪炉和火坑中。"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "roastingstick"
 	inhand_icon_state = null
@@ -138,7 +138,7 @@
 	SIGNAL_HANDLER
 
 	if(held_sausage)
-		to_chat(user, span_warning("You can't retract [src] while [held_sausage] is attached!"))
+		to_chat(user, span_warning("当 [held_sausage] 还附着在上面时，你无法收起 [src]！"))
 		return COMPONENT_BLOCK_TRANSFORM
 
 /*
@@ -159,15 +159,15 @@
 	..()
 	if (istype(target, /obj/item/food/sausage))
 		if (!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-			to_chat(user, span_warning("You must extend [src] to attach anything to it!"))
+			to_chat(user, span_warning("你必须展开 [src] 才能在上面附着任何东西！"))
 			return
 		if (held_sausage)
-			to_chat(user, span_warning("[held_sausage] is already attached to [src]!"))
+			to_chat(user, span_warning("[held_sausage] 已经附着在 [src] 上了！"))
 			return
 		if (user.transferItemToLoc(target, src))
 			held_sausage = target
 		else
-			to_chat(user, span_warning("[target] doesn't seem to want to get on [src]!"))
+			to_chat(user, span_warning("[target] 似乎不想上 [src]！"))
 	update_appearance()
 
 /obj/item/melee/roastingstick/attack_hand(mob/user, list/modifiers)
@@ -192,7 +192,7 @@
 	if (!is_type_in_typecache(interacting_with, ovens))
 		return NONE
 	if (istype(interacting_with, /obj/singularity) || istype(interacting_with, /obj/energy_ball) && get_dist(user, interacting_with) < 10)
-		to_chat(user, span_notice("You send [held_sausage] towards [interacting_with]."))
+		to_chat(user, span_notice("你将 [held_sausage] 伸向 [interacting_with]。"))
 		playsound(src, 'sound/items/tools/rped.ogg', 50, TRUE)
 		beam = user.Beam(interacting_with, icon_state = "rped_upgrade", time = 10 SECONDS)
 		finish_roasting(user, interacting_with)
@@ -204,27 +204,27 @@
 		return NONE
 	if (!is_type_in_typecache(interacting_with, ovens))
 		return NONE
-	to_chat(user, span_notice("You extend [src] towards [interacting_with]."))
+	to_chat(user, span_notice("你将 [src] 伸向 [interacting_with]。"))
 	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 	finish_roasting(user, interacting_with)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/melee/roastingstick/proc/finish_roasting(user, atom/target)
 	if(do_after(user, 10 SECONDS, target = user))
-		to_chat(user, span_notice("You finish roasting [held_sausage]."))
+		to_chat(user, span_notice("你烤好了 [held_sausage]。"))
 		playsound(src, 'sound/items/tools/welder2.ogg', 50, TRUE)
 		held_sausage.add_atom_colour(rgb(103, 63, 24), FIXED_COLOUR_PRIORITY)
-		held_sausage.name = "[target.name]-roasted [held_sausage.name]"
-		held_sausage.desc = "[held_sausage.desc] It has been cooked to perfection on \a [target]."
+		held_sausage.name = "[target.name]-烤制的 [held_sausage.name]"
+		held_sausage.desc = "[held_sausage.desc] 它已在\a [target]上烤至完美。"
 		update_appearance()
 	else
 		QDEL_NULL(beam)
 		playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
-		to_chat(user, span_notice("You put [src] away."))
+		to_chat(user, span_notice("你收起了 [src]。"))
 
 /obj/item/melee/cleric_mace
-	name = "cleric mace"
-	desc = "The grandson of the club, yet the grandfather of the baseball bat. Most notably used by holy orders in days past."
+	name = "牧师权杖"
+	desc = "棍棒的孙辈，却是棒球棒的祖辈。在过去尤为神圣教团所使用。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/melee/cleric_mace"
 	post_init_icon_state = "default"
@@ -261,7 +261,7 @@
 	. = ..()
 	var/datum/material/material = get_material_from_slot(/datum/material_slot/handle)
 	if (material)
-		desc = "[initial(desc)] Its handle is made of [material.name]."
+		desc = "[initial(desc)] 它的握柄由[material.name]制成。"
 
 /obj/item/melee/cleric_mace/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	// Don't bring a...mace to a gunfight, and also you aren't going to really block someone full body tackling you with a mace.
@@ -275,8 +275,8 @@
 	material_amount = 3
 
 /obj/item/sord
-	name = "\improper SORD"
-	desc = "This thing is so unspeakably shitty you are having a hard time even holding it."
+	name = "\improper 索德"
+	desc = "这东西烂得令人发指，你甚至很难握住它。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "sord"
 	inhand_icon_state = "sord"
@@ -292,12 +292,12 @@
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 
 /obj/item/sord/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is trying to impale [user.p_them()]self with [src]! It might be a suicide attempt if it weren't so shitty."), \
-	span_suicide("You try to impale yourself with [src], but it's USELESS..."))
+	user.visible_message(span_suicide("[user]正试图用[src]刺穿[user.p_them()]自己！要不是它这么烂，这或许算得上一次自杀尝试。"), \
+	span_suicide("你试图用[src]刺穿自己，但它太没用了……"))
 	return SHAME
 
 /obj/item/carpenter_hammer
-	name = "carpenter hammer"
+	name = "木工锤"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "carpenter_hammer"
 	inhand_icon_state = "carpenter_hammer"
@@ -305,7 +305,7 @@
 	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
-	desc = "Uncanny looking hammer."
+	desc = "样子古怪的锤子。"
 	force = 17
 	throwforce = 14
 	throw_range = 4
@@ -337,8 +337,8 @@
 	)
 
 /obj/item/phone
-	name = "red phone"
-	desc = "Should anything ever go wrong..."
+	name = "红色电话"
+	desc = "万一出了什么差错……"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "red_phone"
 	force = 3
@@ -352,14 +352,14 @@
 
 /obj/item/phone/suicide_act(mob/living/user)
 	if(locate(/obj/structure/chair/stool) in user.loc)
-		user.visible_message(span_suicide("[user] begins to tie a noose with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]开始用[src]的线缆打绳结！看起来[user.p_theyre()]想自杀！"))
 	else
-		user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正用[src]的线缆勒住[user.p_them()]自己！看起来[user.p_theyre()]想自杀！"))
 	return OXYLOSS
 
 /obj/item/bambostaff
-	name = "bamboo staff"
-	desc = "A long bamboo-made staff with steel-capped ends. It is rumoured that initiates of Spider Clan train with such before getting to learn how to use a katana."
+	name = "竹杖"
+	desc = "一根长长的竹制手杖，两端包着钢帽。传闻蜘蛛氏族的学徒在学习使用武士刀之前，会用这种手杖进行训练。"
 	force = 10
 	block_chance = 45
 	block_sound = 'sound/items/weapons/genhit.ogg'
@@ -381,7 +381,7 @@
 /obj/item/bambostaff/Initialize(mapload)
 	. = ..()
 	// there are too many puns to choose from. ('Bo' is the 'real' name for this kind of weapon.)
-	name = pick("bamboo staff", "bambo staff", "bam-Bo staff", "bam boo staff", "bam-boo staff", "bam Bo", "bambo", "bam-Bo", "bamboo-Bo")
+	name = pick("竹杖", "班波杖", "班-波杖", "班 波杖", "班-波杖", "班 波", "班波", "bam-Bo", "bamboo-Bo")
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = 10, \
 		force_wielded = 14, \
@@ -398,8 +398,8 @@
 	return ..()
 
 /obj/item/staff
-	name = "wizard staff"
-	desc = "Apparently a staff used by the wizard."
+	name = "巫师法杖"
+	desc = "显然是巫师使用的法杖。"
 	icon = 'icons/obj/weapons/guns/magic.dmi'
 	icon_state = "staff"
 	inhand_icon_state = "staff"
@@ -420,22 +420,22 @@
 	AddComponent(/datum/component/walking_aid)
 
 /obj/item/staff/broom
-	name = "broom"
-	desc = "Used for sweeping, and flying into the night while cackling. Black cat not included."
+	name = "扫帚"
+	desc = "用于清扫，以及在夜晚狂笑着飞行。不含黑猫。"
 	icon_state = "broom"
 	inhand_icon_state = "broom"
 	resistance_flags = FLAMMABLE
 
 /obj/item/staff/tape
-	name = "tape staff"
-	desc = "A roll of tape snugly attached to a stick."
+	name = "胶带法杖"
+	desc = "一卷胶带紧紧地绑在一根棍子上。"
 	icon_state = "tapestaff"
 	inhand_icon_state = "tapestaff"
 	resistance_flags = FLAMMABLE
 
 /obj/item/staff/stick
-	name = "stick"
-	desc = "A great tool to drag someone else's drinks across the bar."
+	name = "棍子"
+	desc = "一个把别人的饮料拖过吧台的绝佳工具。"
 	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "cane"
 	inhand_icon_state = "stick"
@@ -449,8 +449,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tailclub
-	name = "tail club"
-	desc = "For the beating to death of lizards with their own tails."
+	name = "尾巴棍棒"
+	desc = "用于用它们自己的尾巴把蜥蜴打死。"
 	icon = 'icons/obj/weapons/club.dmi'
 	icon_state = "tailclub"
 	icon_angle = -25
@@ -463,8 +463,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/melee/flyswatter
-	name = "flyswatter"
-	desc = "Useful for killing pests of all sizes."
+	name = "苍蝇拍"
+	desc = "对消灭各种体型的害虫很有用。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "flyswatter"
 	inhand_icon_state = "flyswatter"
@@ -508,7 +508,7 @@
 
 /obj/item/melee/flyswatter/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(is_type_in_typecache(target, splattable))
-		to_chat(user, span_warning("You easily splat [target]."))
+		to_chat(user, span_warning("你轻松地拍扁了[target]。"))
 		if(QDELETED(target))
 			return
 		if(isliving(target))
@@ -525,8 +525,8 @@
 	return TRUE
 
 /obj/item/gohei
-	name = "gohei"
-	desc = "A wooden stick with white streamers at the end. Originally used by shrine maidens to purify things. Now used by the station's valued weeaboos."
+	name = "御币"
+	desc = "一根末端带有白色纸条的木棍。最初由神社巫女用于净化事物。现在被空间站宝贵的“二次元”们使用。"
 	resistance_flags = FLAMMABLE
 	force = 5
 	throwforce = 5
@@ -541,8 +541,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 
 /obj/item/melee/moonlight_greatsword
-	name = "moonlight greatsword"
-	desc = "Don't tell anyone you put any points into dex, though."
+	name = "月光大剑"
+	desc = "不过，别告诉任何人你把点数加到了敏捷上。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "swordon"
 	inhand_icon_state = "swordon"

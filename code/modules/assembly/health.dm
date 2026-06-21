@@ -1,6 +1,6 @@
 /obj/item/assembly/health
-	name = "health sensor"
-	desc = "Used for scanning and monitoring health."
+	name = "健康传感器"
+	desc = "用于扫描和监测健康状况。"
 	icon_state = "health"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*8, /datum/material/glass=SMALL_MATERIAL_AMOUNT * 2)
 	assembly_behavior = ASSEMBLY_TOGGLEABLE_INPUT
@@ -62,7 +62,7 @@
 
 	//do the pulse & the scan
 	pulse()
-	audible_message(span_infoplain("[icon2html(src, hearers(src))] *beep* *beep* *beep*"))
+	audible_message(span_infoplain("[icon2html(src, hearers(src))] *哔* *哔* *哔*"))
 	playsound(src, 'sound/machines/beep/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 	toggle_scan()
 

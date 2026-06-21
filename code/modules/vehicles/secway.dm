@@ -1,7 +1,7 @@
 
 /obj/vehicle/ridden/secway
-	name = "secway"
-	desc = "A brave security cyborg gave its life to help you look like a complete tool."
+	name = "安保代步机"
+	desc = "一位英勇的安保机器人为了帮助你完全变成了一个工具从而献出了自己的生命。"
 	icon_state = "secway"
 	max_integrity = 60
 	armor_type = /datum/armor/ridden_secway
@@ -37,18 +37,18 @@
 		return NONE
 
 	if(DOING_INTERACTION(user, src))
-		balloon_alert(user, "you're already repairing it!")
+		balloon_alert(user, "你已经在修理它了！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it's not damaged!")
+		balloon_alert(user, "它没坏！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return ITEM_INTERACT_BLOCKING
 
 	user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
-	audible_message(span_hear("You hear welding."))
+	audible_message(span_hear("你听到了焊接声。"))
 	var/did_the_thing
 	while(atom_integrity < max_integrity)
 		if(tool.use_tool(src, user, 2.5 SECONDS, volume=50))
@@ -84,17 +84,17 @@
 /obj/vehicle/ridden/secway/attack_hand(mob/living/user, list/modifiers)
 	if(!eddie_murphy)
 		return ..()
-	user.visible_message(span_warning("[user] begins cleaning [eddie_murphy] out of [src]."), span_warning("You begin cleaning [eddie_murphy] out of [src]..."))
+	user.visible_message(span_warning("[user]开始从[src]里清理出[eddie_murphy]。"), span_warning("你开始从[src]里清理出[eddie_murphy]..."))
 	if(!do_after(user, 6 SECONDS, target = src))
 		return ..()
-	user.visible_message(span_warning("[user] cleans [eddie_murphy] out of [src]."), span_warning("You manage to get [eddie_murphy] out of [src]."))
+	user.visible_message(span_warning("[user]从[src]里清理出了[eddie_murphy]。"), span_warning("你设法把[eddie_murphy]从[src]里弄了出来。"))
 	eddie_murphy.forceMove(drop_location())
 	eddie_murphy = null
 
 /obj/vehicle/ridden/secway/examine(mob/user)
 	. = ..()
 	if(eddie_murphy)
-		. += span_warning("Something appears to be stuck in its exhaust...")
+		. += span_warning("似乎有什么东西卡在了它的排气管里...")
 
 /obj/vehicle/ridden/secway/atom_destruction()
 	explosion(src, devastation_range = -1, light_impact_range = 2, flame_range = 3, flash_range = 4)

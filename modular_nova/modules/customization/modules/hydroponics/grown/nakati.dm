@@ -1,7 +1,7 @@
 // Nakati
 /obj/item/seeds/nakati
-	name = "pack of nakati starters"
-	desc = "This bacterial colony forms into bioluminescent nakati growths."
+	name = "一包纳卡提菌种"
+	desc = "这种细菌菌落会形成生物发光的纳卡提增生体。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-nakati"
 	species = "nakati"
@@ -18,7 +18,7 @@
 
 /obj/item/food/grown/nakati
 	seed = /obj/item/seeds/nakati
-	name = "nakati bark"
+	name = "纳卡提树皮"
 	desc = "A segment of fragrant brown 'bark' from a nakati growth, grinds into a zesty spice widely used in teshari cooking."
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "nakati"

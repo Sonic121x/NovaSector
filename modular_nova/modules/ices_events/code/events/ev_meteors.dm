@@ -7,14 +7,14 @@
 #define METEORS_PER_WAVE 5
 
 /datum/round_event_control/meteor_wave/ices
-	name = "Meteor Wave: ICES"
+	name = "流星雨：ICES"
 	typepath = /datum/round_event/meteor_wave/ices
 	weight = 16
 	min_players = 40
 	max_occurrences = 1
 	earliest_start = 75 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "A meteor wave, severity is a surprise!"
+	description = "一场流星雨，其严重程度是个惊喜！"
 	map_flags = EVENT_SPACE_ONLY
 
 /datum/round_event/meteor_wave
@@ -30,7 +30,7 @@
 	if(check_holidays(HALLOWEEN))
 		wave_name = "spooky"
 		log_game("EVENT: Meteor Wave: ICES is spookier than usual!")
-		deadchat_broadcast("Something feels awfully spooky today!", message_type=DEADCHAT_ANNOUNCEMENT)
+		deadchat_broadcast("今天感觉有点毛骨悚然！", message_type=DEADCHAT_ANNOUNCEMENT)
 	if(!wave_name)
 		wave_name = pick_weight(list(
 			"normal" = METEOR_WAVE_NORMAL_WEIGHT,
@@ -54,7 +54,7 @@
 	end_when = start_when + METEOR_WAVE_DURATION
 
 /datum/round_event/meteor_wave/announce(fake)
-	priority_announce("Meteors have been detected on collision course with the station. The energy field generator is disabled or missing. First collision in approximately [start_when * 2] seconds. Ensure all sensitive areas and equipment are shielded.", "Meteor Alert", ANNOUNCER_METEORS)
+	priority_announce("检测到陨石与空间站发生碰撞。能量场发生器已停用或缺失。首次碰撞预计在约[start_when * 2]秒后发生。请确保所有敏感区域和设备已做好防护。", "陨石警报", ANNOUNCER_METEORS)
 	if(wave_name == "threatening" || wave_name == "spooky")
 		INVOKE_ASYNC(SSsecurity_level, TYPE_PROC_REF(/datum/controller/subsystem/security_level/, minimum_security_level), SEC_LEVEL_ORANGE, TRUE, FALSE)
 

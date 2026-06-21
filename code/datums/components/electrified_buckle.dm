@@ -101,7 +101,7 @@
 		requested_overlays = overlays_to_add
 		parent_as_movable.add_overlay(requested_overlays)
 
-	parent_as_movable.name = "electrified [initial(parent_as_movable.name)]"
+	parent_as_movable.name = "通电的 [initial(parent_as_movable.name)]"
 
 	shock_damage = damage_on_shock
 
@@ -193,7 +193,7 @@
 	do_electrocution()
 
 	if (print_message)
-		parent_as_movable.visible_message(span_danger("[parent_as_movable] delivers a powerful shock!"), span_hear("You hear a deep sharp shock!"))
+		parent_as_movable.visible_message(span_danger("[parent_as_movable] 释放出强烈的电击！"), span_hear("你听到一阵深沉刺耳的电击声！"))
 
 /// Zap whoever is buckled to us
 /datum/component/electrified_buckle/proc/do_electrocution()
@@ -235,11 +235,11 @@
 	if(shock_on_loop)
 		shock_on_loop = FALSE
 		STOP_PROCESSING(SSprocessing, src)
-		parent_as_movable.visible_message(span_notice("\The [parent_as_movable] emits a snap as its circuit opens, making it safe for now."))
+		parent_as_movable.visible_message(span_notice("\The [parent_as_movable] 发出啪的一声，电路断开，暂时安全了。"))
 	else
 		shock_on_loop = TRUE
 		START_PROCESSING(SSprocessing, src)
-		parent_as_movable.visible_message(span_notice("You hear the sound of an electric circuit closing coming from \the [parent_as_movable]!"))
+		parent_as_movable.visible_message(span_notice("你听到从 \the [parent_as_movable] 传来电路闭合的声音！"))
 
 #undef ELECTRIC_BUCKLE_SHOCK_STRENGTH_DIVISOR
 #undef ELECTRIC_BUCKLE_MINUMUM_POWERNET_STRENGTH

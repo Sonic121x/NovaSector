@@ -203,7 +203,7 @@
 
 /obj/machinery/power/rbmk2/exchange_parts(mob/user, obj/item/storage/part_replacer/replacer_tool)
 	if(active)
-		balloon_alert(user, "turn off before upgrading!")
+		balloon_alert(user, "升级前请先关闭！")
 		return FALSE
 
 	. = ..()
@@ -216,12 +216,12 @@
 	if(!jammed)
 		return FALSE
 	if(atom_integrity <= damage_to_deal)
-		balloon_alert(user, "too damaged!")
+		balloon_alert(user, "损坏太严重！")
 		return FALSE
 	if(attacking_item.use_tool(src, user, 4 SECONDS, volume = 50) && jam(user, FALSE))
 		take_damage(damage_to_deal, armour_penetration = 100)
 		src.Shake(duration = 0.5 SECONDS)
-		balloon_alert(user, "unjammed!")
+		balloon_alert(user, "已解除堵塞！")
 		return TRUE
 	return FALSE
 
@@ -231,7 +231,7 @@
 		src.add_fingerprint(user)
 		stored_rod.add_fingerprint(user)
 		if(remove_rod(user))
-			balloon_alert(user, "rod removed!")
+			balloon_alert(user, "控制棒已移除！")
 		return TRUE
 
 /obj/machinery/power/rbmk2/proc/remove_rod(mob/living/user, do_throw = FALSE)
@@ -385,7 +385,7 @@
 
 	if(venting) //Can't change when they're already on.
 		if(user)
-			balloon_alert(user, "turn vents off first")
+			balloon_alert(user, "请先关闭通风口")
 		return FALSE
 
 	vent_reverse_direction = desired_state
@@ -393,7 +393,7 @@
 	if(user)
 		user.log_message("had vents set to [vent_reverse_direction ? "reverse" : "normal"] by [src]", LOG_GAME)
 		investigate_log("had vents set to [vent_reverse_direction ? "reverse" : "normal"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
-		balloon_alert(user, "vents switched to [vent_reverse_direction ? "pulling" : "pushing"]")
+		balloon_alert(user, "通风口已切换为[vent_reverse_direction ? "pulling" : "pushing"]")
 	else
 		var/turf/our_turf = get_turf(src)
 		log_game("[src] had vents set to [vent_reverse_direction ? "reverse" : "normal"] at [AREACOORD(our_turf)]")
@@ -500,7 +500,7 @@
 
 			safety = !safety
 
-			balloon_alert(user, "safeties are [safety ? "on" : "off"]")
+			balloon_alert(user, "安全装置已[safety ? "on" : "off"]")
 			. = TRUE
 			if(isliving(user))
 				user.log_message("turned the safety [safety ? "on" : "off"] of [src]", LOG_GAME)
@@ -513,7 +513,7 @@
 
 			overclocked = !overclocked
 
-			balloon_alert(user, "overclocking is [overclocked ? "on" : "off"]")
+			balloon_alert(user, "超频已[overclocked ? "on" : "off"]")
 			. = TRUE
 			if(isliving(user))
 				user.log_message("turned the overclock [overclocked ? "on" : "off"] of [src]", LOG_GAME)
@@ -533,23 +533,23 @@
 	. += "It is[!active?"n't":""] running."
 
 	if(!power || !powernet)
-		. += span_warning("It is not connected to a power cable.")
+		. += span_warning("它没有连接到电源线。")
 
 	if(!venting)
-		. += span_warning("The vents are closed.")
+		. += span_warning("通风口已关闭。")
 	else if(vent_reverse_direction)
 		. += "Its vents are running in reverse."
 	if(!stored_rod)
-		. += span_warning("It it is missing a RB-MK2 reactor rod.")
+		. += span_warning("它缺少一个RB-MK2反应堆棒。")
 	else if(jammed)
-		. += span_danger("The reactor rod is jammed! <b>Pry</b> the rod back in to unjam in!")
+		. += span_danger("反应堆棒卡住了！<b>撬</b>回棒子来解除卡滞！")
 	else if(meltdown)
-		. += span_danger("The reactor rod is leaping erractically!")
+		. += span_danger("反应堆棒正在不规则地跳动！")
 	else
-		. += span_notice("There is an RB-MK2 reactor rod installed. <b>Wrench</b> it down to activate, or remove it with ALT+CLICK.")
+		. += span_notice("已安装一个RB-MK2反应堆棒。<b>用扳手</b>固定以激活，或使用ALT+点击移除。")
 
 	if(active)
-		. += span_notice("It is currently consuming [last_tritium_consumption] moles of tritium per cycle, producing [display_power(last_power_generation)].")
+		. += span_notice("它当前每循环消耗[last_tritium_consumption]摩尔的氚，产生[display_power(last_power_generation)]。")
 
 /obj/machinery/power/rbmk2/examine_more(mob/user)
 	. = ..()

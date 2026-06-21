@@ -53,7 +53,7 @@
 /datum/antagonist/valentine/roundend_report()
 	var/datum/antagonist/valentine/dates_valentine = date?.has_antag_datum(type)
 	if(isnull(dates_valentine))
-		return span_redtext("[owner.name] had no date!")
+		return span_redtext("[owner.name]没有约会对象！")
 
 	dates_valentine.show_in_roundend = FALSE // We show up for them instead
 	var/datum/objective/protect/valentine/our_objective = locate() in objectives
@@ -64,9 +64,9 @@
 	if(we_survived && dates_survived)
 		return span_greentext("[owner.name] and [date.name] had a successful date!")
 	else if(we_survived)
-		return span_redtext("[owner.name] failed to protect [date.name], [owner.p_their()] date!")
+		return span_redtext("[owner.name]未能保护[date.name]，[owner.p_their()]的约会对象！")
 	else if(dates_survived)
-		return span_redtext("[date.name] failed to protect [owner.name], [date.p_their()] date!")
+		return span_redtext("[date.name]未能保护[owner.name]，[date.p_their()]的约会对象！")
 	return span_redtext("[owner.name] and [date.name] both failed to protect each other on their date!")
 
 /datum/antagonist/valentine/third_wheel

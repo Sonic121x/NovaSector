@@ -1,9 +1,9 @@
 /turf/open/misc/snow
 	gender = PLURAL
-	name = "snow"
+	name = "雪"
 	icon = 'icons/turf/snow.dmi'
 	damaged_dmi = 'icons/turf/snow.dmi'
-	desc = "Looks cold."
+	desc = "看起来感觉好冷。"
 	icon_state = "snow"
 	planetary_atmos = TRUE
 	initial_gas_mix = FROZEN_ATMOS

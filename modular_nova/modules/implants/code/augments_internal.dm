@@ -1,6 +1,6 @@
 /obj/item/organ/cyberimp/brain/anti_sleep
-	name = "CNS jumpstarter"
-	desc = "This implant will automatically attempt to jolt you awake when it detects you have fallen unconscious outside of REM sleeping cycles. Has a short cooldown. Conflicts with the CNS Rebooter, making them incompatible with eachother."
+	name = "CNS 启动器"
+	desc = "当检测到你在非快速眼动睡眠周期内失去意识时，该植入物会自动尝试将你电击唤醒。具有短暂冷却时间。与CNS重启器冲突，两者互不兼容。"
 	icon_state = "brain_implant_rebooter"
 	slot = ORGAN_SLOT_BRAIN_CNS //One or the other, not both.
 	var/cooldown
@@ -16,11 +16,11 @@
 
 	human_owner.AdjustUnconscious(-5 SECONDS * seconds_per_tick, FALSE)
 	human_owner.AdjustSleeping(-5 SECONDS * seconds_per_tick, FALSE)
-	to_chat(owner, span_notice("You feel a rush of energy course through your body!"))
+	to_chat(owner, span_notice("你感到一股能量流遍全身！"))
 	cooldown = addtimer(CALLBACK(src, PROC_REF(sleepytimerend)), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE | TIMER_DELETE_ME)
 
 /obj/item/organ/cyberimp/brain/anti_sleep/proc/sleepytimerend()
-	to_chat(owner, span_notice("You hear a small beep in your head as your CNS Jumpstarter finishes recharging."))
+	to_chat(owner, span_notice("你听到脑中传来一声轻微的哔哔声，你的CNS启动器已完成充能。"))
 	cooldown = null
 
 /obj/item/organ/cyberimp/brain/anti_sleep/emp_act(severity)

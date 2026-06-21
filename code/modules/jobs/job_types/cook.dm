@@ -1,6 +1,6 @@
 /datum/job/cook
 	title = JOB_COOK
-	description = "Serve food, cook meat, keep the crew fed."
+	description = "提供食物，烹饪肉类，确保船员吃饱。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -64,7 +64,7 @@
 
 
 /datum/outfit/job/cook
-	name = "Cook"
+	name = "厨师"
 	jobtype = /datum/job/cook
 
 	id_trim = /datum/id_trim/job/cook/chef

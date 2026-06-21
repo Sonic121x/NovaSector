@@ -6,7 +6,7 @@
 
 ///Health Analyzer - Gives the user a ranged health analyzer and their health status in the panel.
 /obj/item/mod/module/health_analyzer
-	name = "MOD health analyzer module"
+	name = "MOD健康分析仪模块"
 	desc = "A module installed into the glove of the suit. This is a high-tech biological scanning suite, \
 		allowing the user indepth information on the vitals and injuries of others even at a distance, \
 		all with the flick of the wrist. Data is displayed in a convenient package, but it's up to you to do something with it."
@@ -65,7 +65,7 @@
 
 ///Quick Carry - Lets the user carry bodies quicker.
 /obj/item/mod/module/quick_carry
-	name = "MOD quick carry module"
+	name = "MOD速运模块"
 	desc = "A suite of advanced servos, redirecting power from the suit's arms to help carry the wounded; \
 		or simply for fun. However, Nanotrasen has locked the module's ability to assist in hand-to-hand combat."
 	icon_state = "carry"
@@ -86,14 +86,14 @@
 	REMOVE_TRAIT(mod.wearer, quick_carry_trait, REF(src))
 
 /obj/item/mod/module/quick_carry/advanced
-	name = "MOD advanced quick carry module"
+	name = "MOD高级速运模块"
 	removable = FALSE
 	complexity = 0
 	quick_carry_trait = TRAIT_QUICKER_CARRY
 
 ///Injector - Gives the suit an extendable large-capacity piercing syringe.
 /obj/item/mod/module/injector
-	name = "MOD injector module"
+	name = "MOD注射器模块"
 	desc = "A module installed into the wrist of the suit, this functions as a high-capacity syringe, \
 		with a tip fine enough to locate the emergency injection ports on any suit of armor, \
 		penetrating it with ease. Even yours."
@@ -107,7 +107,7 @@
 	required_slots = list(ITEM_SLOT_GLOVES)
 
 /obj/item/reagent_containers/syringe/mod
-	name = "MOD injector syringe"
+	name = "MOD注射器模块"
 	desc = "A high-capacity syringe, with a tip fine enough to locate \
 		the emergency injection ports on any suit of armor, penetrating it with ease. Even yours."
 	icon_state = "mod_0"
@@ -153,11 +153,11 @@
 			return
 		var/atom/movable/organ = target
 		if(length(organ_list) >= max_organs)
-			balloon_alert(mod.wearer, "too many organs!")
+			balloon_alert(mod.wearer, "器官太多了！")
 			return
 		organ_list += organ
 		organ.forceMove(src)
-		balloon_alert(mod.wearer, "picked up [organ]")
+		balloon_alert(mod.wearer, "拾取了[organ]")
 		playsound(src, 'sound/vehicles/mecha/hydraulic.ogg', 25, TRUE)
 		drain_power(use_energy_cost)
 		return
@@ -172,7 +172,7 @@
 	drain_power(use_energy_cost)
 
 /obj/projectile/organ
-	name = "organ"
+	name = "器官"
 	damage = 0
 	hitsound = 'sound/effects/blob/attackblob.ogg'
 	hitsound_wall = 'sound/effects/blob/attackblob.ogg'
@@ -214,7 +214,7 @@
 
 ///Patrient Transport - Generates hardlight bags you can put people in.
 /obj/item/mod/module/criminalcapture/patienttransport
-	name = "MOD patient transport module"
+	name = "MOD伤员运输模块"
 	desc = "A module built into the forearm of the suit. Countless waves of mostly-lost mining teams being sent to \
 		Indecipheries and other hazardous locations have taught the DeForest Medical Company many lessons. \
 		Physical bodybags are difficult to store, hard to deploy, and even worse to keep intact in tough scenarios. \
@@ -228,7 +228,7 @@
 
 ///Defibrillator - Gives the suit an extendable pair of shock paddles.
 /obj/item/mod/module/defibrillator
-	name = "MOD defibrillator module"
+	name = "MOD除颤模块"
 	desc = "A module built into the gauntlets of the suit; commonly known as the 'Healing Hands' by medical professionals. \
 		The user places their palms above the patient. Onboard computers in the suit calculate the necessary voltage, \
 		and a modded targeting computer determines the best position for the user to push. \
@@ -290,7 +290,7 @@
 
 ///Thread Ripper - Temporarily rips apart clothing to make it not cover the body.
 /obj/item/mod/module/thread_ripper
-	name = "MOD thread ripper module"
+	name = "MOD织物缝割模块"
 	desc = "A custom-built module integrated with the suit's wrist. The thread ripper is built from \
 		recent technology dating back to the start of 2562, after an attempt by a well-known Nanotrasen researcher to \
 		expand on the rapid-tailoring technology found in Autodrobes. Rather than being capable of creating \
@@ -315,16 +315,16 @@
 	if(!.)
 		return
 	if(!mod.wearer.Adjacent(target) || !iscarbon(target) || target == mod.wearer)
-		balloon_alert(mod.wearer, "invalid target!")
+		balloon_alert(mod.wearer, "无效目标！")
 		return
 	var/mob/living/carbon/carbon_target = target
 	if(length(ripped_clothing))
-		balloon_alert(mod.wearer, "already ripped!")
+		balloon_alert(mod.wearer, "已经撕开了！")
 		return
-	balloon_alert(mod.wearer, "ripping clothing...")
+	balloon_alert(mod.wearer, "正在撕开衣物...")
 	playsound(src, 'sound/items/zip/zip.ogg', 25, TRUE, frequency = -1)
 	if(!do_after(mod.wearer, 1.5 SECONDS, target = carbon_target))
-		balloon_alert(mod.wearer, "interrupted!")
+		balloon_alert(mod.wearer, "被打断了！")
 		return
 	var/target_zones = body_zone2cover_flags(mod.wearer.zone_selected)
 	for(var/obj/item/clothing as anything in carbon_target.get_equipped_items())
@@ -354,7 +354,7 @@
 		ripped_clothing -= clothing
 	if(zipped)
 		playsound(src, 'sound/items/zip/zip.ogg', 25, TRUE)
-		balloon_alert(mod.wearer, "clothing mended")
+		balloon_alert(mod.wearer, "衣物已修补")
 
 /obj/item/mod/module/thread_ripper/on_part_deactivation(deleting = FALSE)
 	if(!length(ripped_clothing))
@@ -370,7 +370,7 @@
 
 ///Surgical Processor - Lets you do advanced surgeries portably.
 /obj/item/mod/module/surgical_processor
-	name = "MOD surgical processor module"
+	name = "MOD外科处理器模块"
 	desc = "A module using an onboard surgical computer which can be connected to other computers to download and \
 		perform advanced surgeries on the go."
 	icon_state = "surgical_processor"
@@ -382,7 +382,7 @@
 	cooldown_time = 0.5 SECONDS
 
 /obj/item/surgical_processor/mod
-	name = "MOD surgical processor"
+	name = "MOD外科处理器"
 
 /obj/item/mod/module/surgical_processor/preloaded
 	desc = "A module using an onboard surgical computer which can be connected to other computers to download and \

@@ -3,8 +3,8 @@
 * Has a lot more health and its own uplink with 10 TC.
 */
 /mob/living/basic/drone/syndrone
-	name = "Syndrone"
-	desc = "A modified maintenance drone. This one brings with it the feeling of terror."
+	name = "辛多恩"
+	desc = "一个经过改造的维护区无人机。这一个带来了恐怖的感觉。"
 	icon_state = "drone_synd"
 	icon_living = "drone_synd"
 	picked = TRUE //the appearence of syndrones is static, you don't get to change it.
@@ -36,14 +36,14 @@
 	hidden_uplink.uplink_handler.set_telecrystals(telecrystal_count)
 
 /obj/effect/mob_spawn/ghost_role/drone/syndrone
-	name = "syndrone shell"
-	desc = "A shell of a syndrone, a modified maintenance drone designed to infiltrate and annihilate."
+	name = "辛多恩外壳"
+	desc = "一个辛多恩的外壳，这是一种经过改造、旨在渗透和歼灭的维护区无人机。"
 	icon_state = "syndrone_item"
 	mob_name = "syndrone"
 	mob_type = /mob/living/basic/drone/syndrone
-	prompt_name = "a syndrone"
-	you_are_text = "You are a Syndicate Maintenance Drone."
-	flavour_text = "In a prior life, you maintained a Nanotrasen Research Station. Abducted from your home, you were given some upgrades... and now serve an enemy of your former masters."
+	prompt_name = "一台辛迪加无人机"
+	you_are_text = "你是一架辛迪加维护无人机。"
+	flavour_text = "在前世，你维护着一座纳米传讯研究空间站。你被从家中绑架，接受了一些升级……如今，你为昔日主人的敌人效力。"
 	important_text = ""
 	spawner_job_path = /datum/job/syndrone
 
@@ -53,7 +53,7 @@
 
 /// A version of the syndrone that gets a nuclear uplink, a firearms implant, and 30 TC.
 /mob/living/basic/drone/syndrone/badass
-	name = "Badass Syndrone"
+	name = "硬核辛多恩"
 	default_storage = /obj/item/uplink/nuclear
 	telecrystal_count = 30
 
@@ -63,11 +63,11 @@
 	weapon_implant.implant(src, force = TRUE)
 
 /obj/effect/mob_spawn/ghost_role/drone/syndrone/badass
-	name = "badass syndrone shell"
+	name = "硬核辛多恩外壳"
 	mob_name = "badass syndrone"
 	mob_type = /mob/living/basic/drone/syndrone/badass
-	prompt_name = "a badass syndrone"
-	flavour_text = "In a prior life, you maintained a Nanotrasen Research Station. Abducted from your home, you were given some BETTER upgrades... and now serve an enemy of your former masters."
+	prompt_name = "一架坏蛋辛迪加无人机"
+	flavour_text = "在前世，你维护着一座纳米传讯研究空间站。你被从家中绑架，接受了一些更好的升级……如今，你为昔日主人的敌人效力。"
 
 /// A drone that spawns with a chameleon hat for fashion purposes.
 /mob/living/basic/drone/snowflake
@@ -75,10 +75,10 @@
 	desc = "A maintenance drone, an expendable robot built to perform station repairs. This drone appears to have a complex holoprojector built on its 'head'."
 
 /obj/effect/mob_spawn/ghost_role/drone/snowflake
-	name = "snowflake drone shell"
-	desc = "A shell of a snowflake drone, a maintenance drone with a built in holographic projector to display hats and masks."
+	name = "雪花无人机外壳"
+	desc = "一个雪花无人机的外壳，这是一种内置了全息投影仪以显示帽子和面具的维护区无人机。"
 	mob_name = "snowflake drone"
-	prompt_name = "a drone with a holohat projector"
+	prompt_name = "一架带有全息帽子投影仪的无人机"
 	mob_type = /mob/living/basic/drone/snowflake
 
 /// A free drone that people can be turned into via wabbajack.
@@ -103,7 +103,7 @@
 
 /// "Classic" drones, which are not shy and get a duffelbag of tools instead of built-in tools.
 /mob/living/basic/drone/classic
-	name = "classic drone shell"
+	name = "经典无人机外壳"
 	shy = FALSE
 	default_storage = /obj/item/storage/backpack/duffelbag/drone
 
@@ -112,7 +112,7 @@
 
 /// Derelict drones, a ghost role tasked with repairing KS13. Get gibbed if they leave.
 /mob/living/basic/drone/derelict
-	name = "derelict drone"
+	name = "遗弃无人机"
 	default_headwear = /obj/item/clothing/head/costume/ushanka
 	laws = \
 	"1. You may not involve yourself in the matters of another sentient being outside the station that housed your activation, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone.\n"+\
@@ -127,24 +127,24 @@
 	"<span class='notice'>     - Going to the main station in search of materials.</span>\n"+\
 	"<span class='notice'>     - Interacting with non-drone players outside KS13, dead or alive.</span>\n"+\
 	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
-	span_warning("<u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u>")
+	span_warning("<u>如果你没有常规的无人机法则，请尽你所能遵循你的法则。</u>")
 
 /mob/living/basic/drone/derelict/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/stationstuck, PUNISHMENT_GIB, "01000110 01010101 01000011 01001011 00100000 01011001 01001111 01010101<br>WARNING: Dereliction of KS13 detected. Self-destruct activated.")
 
 /obj/effect/mob_spawn/ghost_role/drone/derelict
-	name = "derelict drone shell"
-	desc = "A long-forgotten drone shell. It seems kind of... Space Russian."
+	name = "遗弃无人机外壳"
+	desc = "一个被遗忘许久的无人机外壳。它看起来有点...太空俄罗斯风格。"
 	icon = 'icons/mob/silicon/drone.dmi'
 	icon_state = "drone_maint_hat"
 	mob_name = "derelict drone"
 	mob_type = /mob/living/basic/drone/derelict
 	anchored = TRUE
-	prompt_name = "a derelict drone"
-	you_are_text = "You are a drone on Kosmicheskaya Stantsiya 13."
-	flavour_text = "Something has brought you out of hibernation, and the station is in gross disrepair."
-	important_text = "Build, repair, maintain and improve the station that housed you on activation."
+	prompt_name = "一架废弃无人机"
+	you_are_text = "你是科斯米切斯卡亚13号空间站上的一架无人机。"
+	flavour_text = "某种事物将你从休眠中唤醒，而空间站已严重失修。"
+	important_text = "建造、修理、维护并改善在你激活时容纳你的空间站。"
 	spawner_job_path = /datum/job/derelict_drone
 
 /datum/job/derelict_drone

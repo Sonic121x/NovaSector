@@ -2,7 +2,7 @@
 	id = TECHWEB_NODE_MOD_SUIT
 	starting_node = TRUE
 	display_name = "Modular Suits"
-	description = "Specialized back mounted power suits with various different modules."
+	description = "配备各种不同模块的专用背装动力服。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"suit_storage_unit",
@@ -22,7 +22,7 @@
 /datum/techweb_node/mod_equip
 	id = TECHWEB_NODE_MOD_EQUIP
 	display_name = "Modular Suit Equipment"
-	description = "More advanced modules, to improve modular suits."
+	description = "更先进的模块，用于改进模块化套装。"
 	prereq_ids = list(TECHWEB_NODE_MOD_SUIT)
 	design_ids = list(
 		"modlink_scryer",
@@ -39,7 +39,7 @@
 /datum/techweb_node/mod_service
 	id = TECHWEB_NODE_MOD_SERVICE
 	display_name = "Civilian Modular Suits"
-	description = "Civilian MODsuits for dignified living."
+	description = "为体面生活设计的民用模块化套装。"
 	prereq_ids = list(TECHWEB_NODE_MOD_SUIT)
 	design_ids = list(
 		"mod_clamp",
@@ -54,7 +54,7 @@
 /datum/techweb_node/mod_entertainment
 	id = TECHWEB_NODE_MOD_ENTERTAINMENT
 	display_name = "Entertainment Modular Suits"
-	description = "Powered suits for protection against low-humor environments."
+	description = "为低幽默环境提供防护的动力服。"
 	prereq_ids = list(TECHWEB_NODE_MOD_SUIT)
 	design_ids = list(
 		"mod_plating_cosmohonk",
@@ -68,7 +68,7 @@
 /datum/techweb_node/mod_medical
 	id = TECHWEB_NODE_MOD_MEDICAL
 	display_name = "Medical Modular Suits"
-	description = "Medical MODsuits for quick rescue purposes."
+	description = "用于快速救援的医疗模块化套装。"
 	prereq_ids = list(TECHWEB_NODE_MOD_SUIT, TECHWEB_NODE_CHEM_SYNTHESIS)
 	design_ids = list(
 		"mod_plating_medical",
@@ -83,7 +83,7 @@
 /datum/techweb_node/mod_engi
 	id = TECHWEB_NODE_MOD_ENGI
 	display_name = "Engineering Modular Suits"
-	description = "Engineering suits, for powered engineers."
+	description = "工程套装，为动力工程师设计。"
 	prereq_ids = list(TECHWEB_NODE_MOD_EQUIP)
 	design_ids = list(
 		"mod_plating_engineering",
@@ -98,7 +98,7 @@
 /datum/techweb_node/mod_security
 	id = TECHWEB_NODE_MOD_SECURITY
 	display_name = "Security Modular Suits"
-	description = "Security suits for space crime handling."
+	description = "用于处理太空犯罪的安保套装。"
 	prereq_ids = list(TECHWEB_NODE_MOD_EQUIP)
 	design_ids = list(
 		"mod_mirage_grenade",
@@ -116,7 +116,7 @@
 /datum/techweb_node/mod_medical_adv
 	id = TECHWEB_NODE_MOD_MEDICAL_ADV
 	display_name = "Field Surgery Modules"
-	description = "Medical MODsuit equipment designed for conducting surgical operations in field conditions."
+	description = "专为在野外条件下进行外科手术而设计的医疗模块化套装设备。"
 	prereq_ids = list(TECHWEB_NODE_MOD_MEDICAL, TECHWEB_NODE_SURGERY_ADV)
 	design_ids = list(
 		"mod_defib",
@@ -130,7 +130,7 @@
 /datum/techweb_node/mod_engi_adv
 	id = TECHWEB_NODE_MOD_ENGI_ADV
 	display_name = "Advanced Engineering Modular Suits"
-	description = "Advanced Engineering suits, for advanced powered engineers."
+	description = "高级工程套装，为高级动力工程师设计。"
 	prereq_ids = list(TECHWEB_NODE_MOD_ENGI)
 	design_ids = list(
 		"mod_plating_atmospheric",
@@ -149,7 +149,7 @@
 /datum/techweb_node/mod_anomaly
 	id = TECHWEB_NODE_MOD_ANOMALY
 	display_name = "Anomalock Modular Suits"
-	description = "Modules for MODsuits that require anomaly cores to function."
+	description = "需要异常核心才能运行的模块化套装模块。"
 	prereq_ids = list(TECHWEB_NODE_MOD_ENGI_ADV, TECHWEB_NODE_ANOMALY_RESEARCH)
 	design_ids = list(
 		"mod_antigrav",

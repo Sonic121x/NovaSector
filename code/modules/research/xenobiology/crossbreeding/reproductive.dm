@@ -6,8 +6,8 @@ Reproductive extracts:
 
 
 /obj/item/slimecross/reproductive
-	name = "reproductive extract"
-	desc = "It pulses with a strange hunger."
+	name = "生殖提取物"
+	desc = "它散发着一种奇特的渴望。"
 	icon_state = "reproductive"
 	effect = "reproductive"
 	effect_desc = "When fed monkey cubes it produces more extracts. Bio bag compatible as well."
@@ -18,7 +18,7 @@ Reproductive extracts:
 
 /obj/item/slimecross/reproductive/examine()
 	. = ..()
-	. += span_danger("It appears to have eaten [length(contents)] Monkey Cube[p_s()]")
+	. += span_danger("它似乎已经吃掉了[length(contents)]个猴子方块[p_s()]")
 
 /obj/item/slimecross/reproductive/Initialize(mapload)
 	. = ..()
@@ -30,11 +30,11 @@ Reproductive extracts:
 		return NONE
 
 	if((last_produce + cooldown) > world.time)
-		to_chat(user, span_warning("[src] is still digesting!"))
+		to_chat(user, span_warning("[src]还在消化中！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(length(contents) >= feedAmount) //if for some reason the contents are full, but it didnt digest, attempt to digest again
-		to_chat(user, span_warning("[src] appears to be full but is not digesting! Maybe poking it stimulated it to digest."))
+		to_chat(user, span_warning("[src]看起来已经满了但并没有在消化！也许戳一下能刺激它开始消化。"))
 		slime_storage?.processCubes(user)
 		return ITEM_INTERACT_BLOCKING
 
@@ -42,7 +42,7 @@ Reproductive extracts:
 		var/list/inserted = list()
 		tool.atom_storage.remove_type(/obj/item/food/monkeycube, src, feedAmount - length(contents), TRUE, FALSE, user, inserted)
 		if(!inserted.len)
-			to_chat(user, span_warning("There are no monkey cubes in the bio bag!"))
+			to_chat(user, span_warning("生物袋里没有猴子方块！"))
 			return ITEM_INTERACT_BLOCKING
 		to_chat(user, span_notice("You feed [length(inserted)] monkey cube[length(inserted) > 1 ? "s" : ""] to [src], and it pulses gently."))
 		playsound(src, 'sound/items/eatfood.ogg', 20, TRUE)

@@ -1,6 +1,6 @@
 /obj/machinery/computer/rdservercontrol
-	name = "R&D Server Controller"
-	desc = "Manages access to research databases and consoles."
+	name = "研发服务器控制器"
+	desc = "管理对研究数据库和控制台的访问权限。"
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"
 	circuit = /obj/item/circuitboard/computer/rdservercontrol
@@ -67,7 +67,7 @@
 	if(.)
 		return TRUE
 	if(!allowed(usr) && !(obj_flags & EMAGGED))
-		balloon_alert(usr, "access denied!")
+		balloon_alert(usr, "访问被拒绝！")
 		playsound(src, 'sound/machines/click.ogg', 20, TRUE)
 		return TRUE
 

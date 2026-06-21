@@ -1,6 +1,6 @@
 /obj/item/wallframe/fireplace
-	name = "fireplace frame"
-	desc = "A do it yourself fireplace installation kit. What do you mean it looks like a tattoo kit? its totally different!"
+	name = "壁炉框架"
+	desc = "一套自己动手安装壁炉的工具包。你说它看起来像纹身工具包是什么意思？这完全不一样！"
 	// Using the tattoo kit sprite as a placeholder, otherwise this will never be coded.
 	icon_state = "tattoo_kit"
 	icon = 'icons/obj/maintenance_loot.dmi'
@@ -21,7 +21,7 @@
 	START_PROCESSING(SSobj, src)
 	burning_loop.start()
 	lit = TRUE
-	desc = "A large stone brick fireplace, warm and cozy."
+	desc = "一个大型石砖壁炉，温暖而舒适。"
 	flame_expiry_timer = world.time + fuel_added
 	fuel_added = 0
 	update_appearance()

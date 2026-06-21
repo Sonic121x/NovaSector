@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/shibari_legs
-	name = "shibari legs bondage"
-	desc = "Bondage ropes that cover legs."
+	name = "缚腿绳艺"
+	desc = "覆盖腿部的束缚绳索。"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes.dmi'
 	worn_icon_digi = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_digi.dmi'
 	body_parts_covered = NONE

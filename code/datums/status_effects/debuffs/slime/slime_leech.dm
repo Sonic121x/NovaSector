@@ -1,6 +1,6 @@
 /atom/movable/screen/alert/status_effect/slime_leech
-	name = "Covered in Slime"
-	desc = "A slime is draining your very lifeforce! Remove it by hand, by hitting it, or by water."
+	name = "被史莱姆覆盖"
+	desc = "一只史莱姆正在吸取你的生命力！用手移除、击打它或用水冲洗。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "slime_leech"
 
@@ -50,7 +50,7 @@
 
 	if(owner.stat == DEAD) // our victim died
 		if(our_slime.client)
-			to_chat(our_slime, span_info("This subject does not have a strong enough life energy anymore..."))
+			to_chat(our_slime, span_info("这个目标的生命能量已经不够强大了..."))
 
 		SEND_SIGNAL(owner, COMSIG_SLIME_DRAINED, our_slime)
 
@@ -75,7 +75,7 @@
 			owner.updatehealth()
 
 	if(totaldamage >= 0) // adjust_brute_loss() returns a negative value on successful damage adjustment
-		our_slime.balloon_alert(our_slime, "not food!")
+		our_slime.balloon_alert(our_slime, "不是食物！")
 		our_slime.stop_feeding()
 		return
 

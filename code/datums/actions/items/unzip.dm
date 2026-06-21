@@ -1,6 +1,6 @@
 /datum/action/item_action/zipper
-	name = "Unzip Duffel"
-	desc = "Unzip your equipped duffelbag so you can access its contents."
+	name = "解开行李袋"
+	desc = "解开你装备的行李袋以便访问其内容物。"
 
 /datum/action/item_action/zipper/New(Target)
 	. = ..()
@@ -11,9 +11,9 @@
 /datum/action/item_action/zipper/proc/on_zip_change(datum/source, new_zip)
 	SIGNAL_HANDLER
 	if(new_zip)
-		name = "Unzip" 
-		desc = "Unzip your equipped duffelbag so you can access its contents."
+		name = "解开" 
+		desc = "解开你装备的行李袋以便访问其内容物。"
 	else
-		name = "Zip"
-		desc = "Zip your equipped duffelbag so you can move around faster."
+		name = "拉上"
+		desc = "拉上你装备的行李袋以便更快地移动。"
 	build_all_button_icons(UPDATE_BUTTON_NAME)

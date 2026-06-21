@@ -93,13 +93,13 @@
 		. += span_notice("Currently at tier [installed_part.current_tier].")
 		if(installed_part.current_tier + 1 < TURBINE_PART_TIER_FOUR)
 			. += span_notice("Can be upgraded by using a tier [installed_part.current_tier + 1] part.")
-		. += span_notice("\The [installed_part] can be [EXAMINE_HINT("pried")] out.")
+		. += span_notice("\The [installed_part] 可以[EXAMINE_HINT("pried")]出来。")
 	else
 		. += span_warning("Is missing a [initial(part_path.name)].")
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("screwed")][panel_open ? "closed" : "open"]。")
 	if(panel_open)
-		. += span_notice("It can rotated with a [EXAMINE_HINT("wrench")]")
-		. += span_notice("The full machine can be [EXAMINE_HINT("pried")] apart")
+		. += span_notice("可以用[EXAMINE_HINT("wrench")]旋转它")
+		. += span_notice("整个机器可以[EXAMINE_HINT("pried")]拆开")
 
 ///Is this machine currently running
 /obj/machinery/power/turbine/proc/is_active()
@@ -167,10 +167,10 @@
 /obj/machinery/power/turbine/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(is_active())
-		balloon_alert(user, "turn it off!")
+		balloon_alert(user, "先关掉它！")
 		return
 	if(!anchored)
-		balloon_alert(user, "anchor first!")
+		balloon_alert(user, "先固定好！")
 		return
 
 	tool.play_tool_sound(src, 50)
@@ -194,13 +194,13 @@
 /obj/machinery/power/turbine/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(!panel_open)
-		balloon_alert(user, "panel is closed!")
+		balloon_alert(user, "面板关着呢！")
 		return
 	if(!installed_part)
-		balloon_alert(user, "no rotor installed!")
+		balloon_alert(user, "未安装转子！")
 		return
 	if(is_active())
-		balloon_alert(user, "[src] is on!")
+		balloon_alert(user, "[src] 已启动！")
 		return
 
 	user.put_in_hands(installed_part)
@@ -253,10 +253,10 @@
 
 	//not in a state to accept the part. block so we don't bash the machine and damage it
 	if(is_active())
-		balloon_alert(user, "turn off the machine first!")
+		balloon_alert(user, "请先关闭机器！")
 		return ITEM_INTERACT_BLOCKING
 	if(!panel_open)
-		balloon_alert(user, "open the maintenance hatch first!")
+		balloon_alert(user, "请先打开维护舱口！")
 		return ITEM_INTERACT_BLOCKING
 
 	//install the part
@@ -264,9 +264,9 @@
 		return ITEM_INTERACT_BLOCKING
 	if(installed_part)
 		user.put_in_hands(installed_part)
-		balloon_alert(user, "replaced part with the one in hand")
+		balloon_alert(user, "已用手上的部件替换")
 	else
-		balloon_alert(user, "installed new part")
+		balloon_alert(user, "已安装新部件")
 	user.transferItemToLoc(object, src)
 	installed_part = object
 	efficiency = installed_part.get_tier_value(TURBINE_MAX_EFFICIENCY)
@@ -274,8 +274,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/turbine/inlet_compressor
-	name = "inlet compressor"
-	desc = "The input side of a turbine generator, contains the compressor."
+	name = "进气压缩机"
+	desc = "涡轮发电机的输入端包含压缩机。"
 	icon_state = "inlet_compressor"
 	base_icon_state = "inlet"
 	circuit = /obj/item/circuitboard/machine/turbine_compressor
@@ -333,8 +333,8 @@
 
 //===========================OUTLET==============================================
 /obj/machinery/power/turbine/turbine_outlet
-	name = "turbine outlet"
-	desc = "The output side of a turbine generator, contains the turbine and the stator."
+	name = "涡轮机出气口"
+	desc = "涡轮发电机的输出端包含涡轮和定子。"
 	icon_state = "turbine_outlet"
 	base_icon_state = "outlet"
 	circuit = /obj/item/circuitboard/machine/turbine_stator
@@ -380,7 +380,7 @@
 
 //===========================================CORE ROTOR=========================================
 /obj/machinery/power/turbine/core_rotor
-	name = "core rotor"
+	name = "核心转子"
 	desc = "The middle part of a turbine generator, contains the rotor and the main computer."
 	icon_state = "core_rotor"
 	base_icon_state = "core"
@@ -434,9 +434,9 @@
 /obj/machinery/power/turbine/core_rotor/examine(mob/user)
 	. = ..()
 	if(!panel_open)
-		. += span_notice("[EXAMINE_HINT("screw")] open its panel to change cable layer.")
+		. += span_notice("[EXAMINE_HINT("screw")] 打开其面板以更改电缆层。")
 	if(!all_parts_connected)
-		. += span_warning("The parts need to be linked via a [EXAMINE_HINT("multitool")]")
+		. += span_warning("部件需要通过 [EXAMINE_HINT("multitool")] 进行链接")
 
 ///Adds overlays to this turbines appearance
 /obj/machinery/power/turbine/core_rotor/set_overlays(list/overlays)
@@ -449,7 +449,7 @@
 
 /obj/machinery/power/turbine/core_rotor/cable_layer_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open panel first!")
+		balloon_alert(user, "请先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -463,7 +463,7 @@
 		return ITEM_INTERACT_SUCCESS
 
 	//log rotor to link later to computer
-	balloon_alert(user, "all parts linked")
+	balloon_alert(user, "所有部件已链接")
 	var/obj/item/multitool/multitool = tool
 	multitool.set_buffer(src)
 	to_chat(user, span_notice("You store linkage information in [tool]'s buffer."))

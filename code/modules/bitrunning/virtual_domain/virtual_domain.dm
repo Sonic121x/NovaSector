@@ -21,13 +21,13 @@
 	/// Cost of this map to load
 	var/cost = BITRUNNER_COST_NONE
 	/// The description of the map for the console UI
-	var/desc = "A map."
+	var/desc = "一张地图。"
 	/// Affects the ui and ability to scan info.
 	var/difficulty = BITRUNNER_DIFFICULTY_NONE
 	/// Write these to help complete puzzles and other objectives. Viewed in the domain info ability.
 	var/help_text
 	// Name to show in the UI
-	var/name = "Virtual Domain"
+	var/name = "虚拟域"
 	/// Points to reward for completion. Used to purchase new domains and calculate ore rewards.
 	var/reward_points = BITRUNNER_REWARD_MIN
 	/// Any additional flags for this domain

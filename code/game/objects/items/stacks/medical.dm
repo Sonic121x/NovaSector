@@ -1,5 +1,5 @@
 /obj/item/stack/medical
-	name = "medical pack"
+	name = "医疗包"
 	singular_name = "medical pack"
 	icon = 'icons/obj/medical/stack_medical.dmi'
 	worn_icon_state = "nothing"
@@ -142,8 +142,8 @@
 	if(patient == user)
 		if(!silent)
 			user.visible_message(
-				span_notice("[user] starts to apply [src] on [user.p_them()]self..."),
-				span_notice("You begin applying [src] on yourself..."),
+				span_notice("[user]开始将[src]敷在[user.p_them()]自己身上..."),
+				span_notice("你开始将[src]敷在自己身上..."),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		if(!do_after(
@@ -161,8 +161,8 @@
 	else if(other_delay)
 		if(!silent)
 			user.visible_message(
-				span_notice("[user] starts to apply [src] on [patient]."),
-				span_notice("You begin applying [src] on [patient]..."),
+				span_notice("[user]开始将[src]敷在[patient]身上。"),
+				span_notice("你开始将[src]敷在[patient]身上..."),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		if(!do_after(
@@ -180,8 +180,8 @@
 	else
 		if(!silent)
 			user.visible_message(
-				span_notice("[user] applies [src] on [patient]."),
-				span_notice("You apply [src] on [patient]."),
+				span_notice("[user]将[src]敷在了[patient]身上。"),
+				span_notice("你将[src]敷在了[patient]身上。"),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 
@@ -195,7 +195,7 @@
 		CRASH("Stack medical item healing a non-carbon, non-animal mob [patient] ([patient.type])")
 	if(!use(1) || !repeating || amount <= 0)
 		var/atom/alert_loc = QDELETED(src) ? user : src
-		alert_loc.balloon_alert(user, repeating ? "all used up!" : "treated [parse_zone(healed_zone)]")
+		alert_loc.balloon_alert(user, repeating ? "全部用完了！" : "已治疗 [parse_zone(healed_zone)]")
 		if(heal_end_sound)
 			playsound(patient, heal_end_sound, 75, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 		return
@@ -216,7 +216,7 @@
 	// second, handle what happens otherwise
 	if(!iscarbon(patient))
 		// behavior 0: non-carbons have no limbs so we can assume they are fully healed
-		patient.balloon_alert(user, "fully treated")
+		patient.balloon_alert(user, "已完全治疗")
 	else if(auto_change_zone)
 		// behavior 1: automatically pick another zone to heal
 		try_heal_auto_change_zone(patient, user, preferred_target, healed_zone)
@@ -236,7 +236,7 @@
 		other_affected_limbs += limb.body_zone
 
 	if(!length(other_affected_limbs))
-		patient.balloon_alert(user, "fully treated")
+		patient.balloon_alert(user, "已完全治疗")
 		return
 
 	var/next_picked = (preferred_target in other_affected_limbs) ? preferred_target : other_affected_limbs[1]
@@ -247,7 +247,7 @@
 /obj/item/stack/medical/proc/try_heal_manual_target(mob/living/carbon/patient, mob/living/user)
 	PRIVATE_PROC(TRUE)
 
-	patient.balloon_alert(user, "assessing injury...")
+	patient.balloon_alert(user, "评估伤势中...")
 	if(!do_after(user, 1 SECONDS, patient))
 		return
 	var/new_zone = check_zone(user.zone_selected)
@@ -271,7 +271,7 @@
 		return FALSE
 	if(!works_on_dead && patient.stat == DEAD)
 		if(!silent)
-			patient.balloon_alert(user, "[patient.p_theyre()] dead!")
+			patient.balloon_alert(user, "[patient.p_theyre()] 死了！")
 		return FALSE
 
 	if(iscarbon(patient))
@@ -279,11 +279,11 @@
 		var/obj/item/bodypart/affecting = carbon_patient.get_bodypart(healed_zone)
 		if(!affecting) //Missing limb?
 			if(!silent)
-				carbon_patient.balloon_alert(user, "no [parse_zone(healed_zone)]!")
+				carbon_patient.balloon_alert(user, "没有 [parse_zone(healed_zone)]！")
 			return FALSE
 		if(!IS_ORGANIC_LIMB(affecting)) //Limb must be organic to be healed - RR
 			if(!silent)
-				carbon_patient.balloon_alert(user, "[affecting.plaintext_zone] is not organic!")
+				carbon_patient.balloon_alert(user, "[affecting.plaintext_zone] 不是有机组织！")
 			return FALSE
 
 		var/datum/wound/burn/flesh/any_burn_wound = locate() in affecting.wounds
@@ -295,28 +295,28 @@
 		if(!brute_to_heal && !burn_to_heal && !can_heal_burn_wounds && !can_suture_bleeding)
 			if(!silent)
 				if(!brute_to_heal && stop_bleeding) // no brute, no bleeding
-					carbon_patient.balloon_alert(user, "[affecting.plaintext_zone] is not bleeding or bruised!")
+					carbon_patient.balloon_alert(user, "[affecting.plaintext_zone] 没有流血或瘀伤！")
 				else if(!burn_to_heal && (flesh_regeneration || sanitization) && any_burn_wound) // no burns, existing burn wounds are treated
-					carbon_patient.balloon_alert(user, "[affecting.plaintext_zone] is fully treated, give it time!")
+					carbon_patient.balloon_alert(user, "[affecting.plaintext_zone] 已完全处理，给它点时间！")
 				else if(!affecting.brute_dam && !affecting.burn_dam) // not hurt at all
-					carbon_patient.balloon_alert(user, "[affecting.plaintext_zone] is not hurt!")
+					carbon_patient.balloon_alert(user, "[affecting.plaintext_zone] 没有受伤！")
 				else // probably hurt in some way but we are not the right item for this
-					carbon_patient.balloon_alert(user, "can't heal [affecting.plaintext_zone] with [name]!")
+					carbon_patient.balloon_alert(user, "无法用 [affecting.plaintext_zone] 治疗 [name]！")
 			return FALSE
 		return TRUE
 
 	if(isanimal_or_basicmob(patient))
 		if(!heal_brute) // only brute can heal
 			if(!silent)
-				patient.balloon_alert(user, "can't heal with [name]!")
+				patient.balloon_alert(user, "无法用 [name] 治疗！")
 			return FALSE
 		if(!(patient.mob_biotypes & MOB_ORGANIC))
 			if(!silent)
-				patient.balloon_alert(user, "no organic tissue!")
+				patient.balloon_alert(user, "没有有机组织！")
 			return FALSE
 		if(patient.health == patient.maxHealth)
 			if(!silent)
-				patient.balloon_alert(user, "not hurt!")
+				patient.balloon_alert(user, "没有受伤！")
 			return FALSE
 		return TRUE
 
@@ -328,8 +328,8 @@
 /obj/item/stack/medical/proc/heal_carbon(mob/living/carbon/patient, mob/living/user, healed_zone)
 	var/obj/item/bodypart/affecting = patient.get_bodypart(healed_zone)
 	user.visible_message(
-		span_green("[user] applies [src] on [patient]'s [affecting.plaintext_zone]."),
-		span_green("You apply [src] on [patient]'s [affecting.plaintext_zone]."),
+		span_green("[user]将[src]敷在[patient]的[affecting.plaintext_zone]上。"),
+		span_green("你将[src]敷在[patient]的[affecting.plaintext_zone]上。"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	var/previous_damage = affecting.get_damage()
@@ -354,8 +354,8 @@
 /obj/item/stack/medical/proc/heal_simplemob(mob/living/patient, mob/living/user)
 	patient.adjust_brute_loss(-1 * (heal_brute * patient.maxHealth / 100))
 	user.visible_message(
-		span_green("[user] applies [src] on [patient]."),
-		span_green("You apply [src] on [patient]."),
+		span_green("[user]将[src]敷在[patient]身上。"),
+		span_green("你将 [src] 敷在 [patient] 上。"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	return TRUE
@@ -365,9 +365,9 @@
 	return
 
 /obj/item/stack/medical/bruise_pack
-	name = "bruise pack"
+	name = "瘀伤包"
 	singular_name = "bruise pack"
-	desc = "A therapeutic gel pack and bandages designed to treat blunt-force trauma."
+	desc = "一种治疗凝胶包和绷带，专为治疗钝器创伤而设计。"
 	icon_state = "brutepack"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
@@ -381,7 +381,7 @@
 	return list(/datum/reagent/medicine/c2/libital = 10)
 
 /obj/item/stack/medical/bruise_pack/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is bludgeoning [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在用 [user.p_them()] 猛击 [src]自己！看起来 [user.p_theyre()] 试图自杀！"))
 	return BRUTELOSS
 
 /obj/item/stack/medical/wrap
@@ -423,14 +423,14 @@
 
 	if(!can_gauze)
 		if(!surgery_prepped)
-			patient.balloon_alert(user, LAZYLEN(limb.wounds) ? "can't gauze!" : "no wounds!")
+			patient.balloon_alert(user, LAZYLEN(limb.wounds) ? "无法包扎！" : "没有伤口！")
 		. |= LIMB_APPLICABLE_BLOCK_APPLICATION
 		return .
 
 	var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if(current_gauze && (current_gauze.absorption_capacity * 1.2 > absorption_capacity)) // ignore if our new wrap is < 20% better than the current one, so someone doesn't bandage it 5 times in a row
 		if(!surgery_prepped)
-			patient.balloon_alert(user, pick("already bandaged!", "bandage is clean!")) // good enough
+			patient.balloon_alert(user, pick("已经包扎好了！", "绷带是干净的！")) // good enough
 		. |= LIMB_APPLICABLE_BLOCK_APPLICATION
 		return .
 
@@ -449,20 +449,20 @@
 		treatment_delay *= 0.5
 		if(user == patient)
 			user.visible_message(
-				span_warning("[user] begins expertly wrapping the wounds on [p_their()]'s [limb.plaintext_zone] with [src]..."),
-				span_warning("You begin quickly wrapping the wounds on your [limb.plaintext_zone] with [src], keeping the holo-image indications in mind..."),
+				span_warning("[user] 开始熟练地用 [p_their()] 包扎 [limb.plaintext_zone] 的 [src] 上的伤口..."),
+				span_warning("你开始快速用 [limb.plaintext_zone] 包扎自己 [src] 上的伤口，同时牢记全息图像指示..."),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		else
 			user.visible_message(
-				span_warning("[user] begins expertly wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src]..."),
-				span_warning("You begin quickly wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src], keeping the holo-image indications in mind..."),
+				span_warning("[user] 开始用 [patient] 熟练地包扎 [limb.plaintext_zone] 的 [src] 上的伤口..."),
+				span_warning("你开始用 [patient] 快速包扎 [limb.plaintext_zone] 的 [src] 上的伤口，同时留意着全息影像的指示..."),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 	else
 		user.visible_message(
-			span_warning("[user] begins wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src]..."),
-			span_warning("You begin wrapping the wounds on [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone] with [src]..."),
+			span_warning("[user] 开始用 [patient] 包扎 [limb.plaintext_zone] 的 [src] 上的伤口..."),
+			span_warning("你开始用 [user == patient ? "your" : "[patient]'s"] 包扎 [limb.plaintext_zone] [src] 上的伤口..."),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	if(heal_begin_sound)
@@ -479,7 +479,7 @@
 /obj/item/stack/medical/wrap/proc/on_gauze_limb(mob/user, mob/living/patient, obj/item/bodypart/limb)
 	patient.balloon_alert(user, "wrapped [limb.plaintext_zone]")
 	user.visible_message(
-		span_green("[user] applies [src] to [patient]'s [limb.plaintext_zone]."),
+		span_green("[user] 将 [src] 敷在 [patient] 的 [limb.plaintext_zone] 上。"),
 		span_green("You bandage the wounds on [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone]."),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
@@ -498,7 +498,7 @@
 		gauzed.update_inefficiencies()
 
 /obj/item/stack/medical/wrap/gauze
-	name = "medical gauze"
+	name = "医疗纱布"
 	desc = "A roll of elastic cloth, perfect for stabilizing all kinds of wounds, from cuts and burns, to broken bones."
 	singular_name = "medical gauze"
 	self_delay = 5 SECONDS
@@ -535,13 +535,13 @@
 /obj/item/stack/medical/wrap/gauze/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.tool_behaviour == TOOL_WIRECUTTER || tool.get_sharpness())
 		if(get_amount() < 2)
-			balloon_alert(user, "not enough gauze!")
+			balloon_alert(user, "纱布不够！")
 			return ITEM_INTERACT_BLOCKING
 		new /obj/item/stack/sheet/cloth(tool.drop_location())
 		if(IsReachableBy(user))
 			user.visible_message(span_notice("[user] cuts [src] into pieces of cloth with [tool]."), \
 				span_notice("You cut [src] into pieces of cloth with [tool]."), \
-				span_hear("You hear cutting."))
+				span_hear("你听到了切割声。"))
 		else //telekinesis
 			visible_message(span_notice("[tool] cuts [src] into pieces of cloth."), \
 				blind_message = span_hear("You hear cutting."))
@@ -552,13 +552,13 @@
 
 
 /obj/item/stack/medical/wrap/gauze/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins tightening [src] around [user.p_their()] neck! It looks like [user.p_they()] forgot how to use medical supplies!"))
+	user.visible_message(span_suicide("[user] 开始将 [src] 紧紧勒在 [user.p_their()] 脖子上！看起来 [user.p_they()] 忘了怎么使用医疗用品！"))
 	return OXYLOSS
 
 /obj/item/stack/medical/wrap/gauze/improvised
-	name = "improvised gauze"
+	name = "简易纱布"
 	singular_name = "improvised gauze"
-	desc = "A roll of cloth roughly cut from something that does a decent job of stabilizing wounds, but less efficiently so than real medical gauze."
+	desc = "从某物上粗略剪下的一卷布料，能有效稳定伤口，但效率不如真正的医疗纱布。"
 	icon_state = "gauze_imp"
 	self_delay = 6 SECONDS
 	other_delay = 3 SECONDS
@@ -579,8 +579,8 @@
 	 */
 
 /obj/item/stack/medical/suture
-	name = "suture"
-	desc = "Basic sterile sutures used to seal up cuts and lacerations and stop bleeding."
+	name = "缝合线"
+	desc = "用于缝合伤口和撕裂伤并止血的基本无菌缝合线。"
 	gender = PLURAL
 	singular_name = "suture"
 	icon_state = "suture"
@@ -603,9 +603,9 @@
 	return list(/datum/reagent/medicine/spaceacillin = 2)
 
 /obj/item/stack/medical/suture/medicated
-	name = "medicated suture"
+	name = "药物缝合线"
 	icon_state = "suture_purp"
-	desc = "A suture infused with drugs that speed up wound healing of the treated laceration."
+	desc = "一种注入了药物的缝合线，能加速被处理撕裂伤的愈合。"
 	heal_brute = 15
 	stop_bleeding = 0.75
 	merge_type = /obj/item/stack/medical/suture/medicated
@@ -614,8 +614,8 @@
 	return list(/datum/reagent/medicine/polypyr = 1)
 
 /obj/item/stack/medical/ointment
-	name = "ointment"
-	desc = "Basic burn ointment, rated effective for second degree burns with proper bandaging, though it's still an effective stabilizer for worse burns. Not terribly good at outright healing burns though."
+	name = "药膏"
+	desc = "基本烧伤药膏，在适当包扎下对二度烧伤有效，对于更严重的烧伤也是有效的稳定剂。不过对于直接治愈烧伤效果并不太好。"
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
@@ -635,12 +635,12 @@
 	return list(/datum/reagent/medicine/c2/lenturi = 10)
 
 /obj/item/stack/medical/ointment/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is squeezing [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?"))
+	user.visible_message(span_suicide("[user] 正把 [src] 挤进 [user.p_their()] 嘴里！[user.p_do(TRUE)] 难道 [user.p_they()] 不知道这东西有毒吗？"))
 	return TOXLOSS
 
 /obj/item/stack/medical/mesh
-	name = "regenerative mesh"
-	desc = "A bacteriostatic mesh used to dress burns."
+	name = "再生网"
+	desc = "一种用于包扎烧伤的抑菌网。"
 	gender = PLURAL
 	singular_name = "mesh piece"
 	icon_state = "regen_mesh"
@@ -679,34 +679,34 @@
 /obj/item/stack/medical/mesh/try_heal_checks(mob/living/patient, mob/living/user, healed_zone, silent = FALSE)
 	if(!is_open)
 		if(!silent)
-			balloon_alert(user, "open it first!")
+			balloon_alert(user, "先打开它！")
 		return FALSE
 	return ..()
 
 /obj/item/stack/medical/mesh/click_alt(mob/living/user)
 	if(!is_open)
-		balloon_alert(user, "open it first!")
+		balloon_alert(user, "先打开它！")
 		return CLICK_ACTION_BLOCKING
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/stack/medical/mesh/attack_hand(mob/user, list/modifiers)
 	if(!is_open && user.get_inactive_held_item() == src)
-		balloon_alert(user, "open it first!")
+		balloon_alert(user, "先打开它！")
 		return
 	return ..()
 
 /obj/item/stack/medical/mesh/attack_self(mob/user)
 	if(!is_open)
 		is_open = TRUE
-		balloon_alert(user, "opened")
+		balloon_alert(user, "已打开")
 		update_appearance()
 		playsound(src, 'sound/items/poster/poster_ripped.ogg', 20, TRUE)
 		return
 	return ..()
 
 /obj/item/stack/medical/mesh/advanced
-	name = "advanced regenerative mesh"
-	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used to treat burns."
+	name = "高级再生网"
+	desc = "一种由芦荟提取物和消毒化学品制成的高级网，用于治疗烧伤。"
 	gender = PLURAL
 	icon_state = "aloe_mesh"
 	heal_burn = 15
@@ -723,8 +723,8 @@
 	icon_state = "aloe_mesh_closed"
 
 /obj/item/stack/medical/aloe
-	name = "aloe cream"
-	desc = "A healing paste for minor cuts and burns."
+	name = "芦荟膏"
+	desc = "用于治疗轻微割伤和烧伤的愈合膏。"
 	gender = PLURAL
 	singular_name = "aloe cream"
 	icon_state = "aloe_paste"
@@ -750,9 +750,9 @@
 	amount = 2
 
 /obj/item/stack/medical/bone_gel
-	name = "bone gel"
+	name = "骨胶"
 	singular_name = "bone gel"
-	desc = "A potent medical gel that, when applied to a damaged bone in a proper surgical setting, triggers an intense melding reaction to repair the wound. Can be directly applied alongside surgical sticky tape to a broken bone in dire circumstances, though this is very harmful to the patient and not recommended."
+	desc = "一种强效医疗凝胶，在适当的手术环境下涂抹于受损骨骼时，会触发强烈的融合反应以修复伤口。在紧急情况下，可与外科粘性胶带一起直接涂抹于骨折处，但这对患者非常有害，不推荐使用。"
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "bone-gel"
 	inhand_icon_state = "bone-gel"
@@ -771,16 +771,16 @@
 	return "gel" + (tray_extended ? "" : "_out")
 
 /obj/item/stack/medical/bone_gel/attack(mob/living/patient, mob/user)
-	patient.balloon_alert(user, "no fractures!")
+	patient.balloon_alert(user, "没有骨折！")
 	return
 
 /obj/item/stack/medical/bone_gel/suicide_act(mob/living/user)
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/patient = user
-	patient.visible_message(span_suicide("[patient] is squirting all of [src] into [patient.p_their()] mouth! That's not proper procedure! It looks like [patient.p_theyre()] trying to commit suicide!"))
+	patient.visible_message(span_suicide("[patient] 正把所有的 [src] 挤进 [patient.p_their()] 嘴里！这可不是正确的用法！看起来 [patient.p_theyre()] 想自杀！"))
 	if(!do_after(patient, 2 SECONDS))
-		patient.visible_message(span_suicide("[patient] screws up like an idiot and still dies anyway!"))
+		patient.visible_message(span_suicide("[patient] 像个白痴一样搞砸了，但还是死了！"))
 		return BRUTELOSS
 
 	patient.emote("scream")
@@ -799,7 +799,7 @@
 	amount = 1
 
 /obj/item/stack/medical/poultice
-	name = "mourning poultices"
+	name = "哀悼膏药"
 	singular_name = "mourning poultice"
 	desc = "A type of primitive herbal poultice.\n\
 		While traditionally used to prepare corpses for the mourning feast, \
@@ -827,8 +827,8 @@
 	healed_mob.adjust_oxy_loss(amount_healed)
 
 /obj/item/stack/medical/bandage
-	name = "first aid bandage"
-	desc = "A DeForest brand bandage designed for basic first aid on blunt-force trauma."
+	name = "急救绷带"
+	desc = "一种DeForest品牌的绷带，专为钝器创伤的基本急救而设计。"
 	icon_state = "bandage"
 	inhand_icon_state = "bandage"
 	novariants = TRUE
@@ -847,8 +847,8 @@
 	return list(/datum/reagent/medicine/c2/libital = 2)
 
 /obj/item/stack/medical/bandage/makeshift
-	name = "makeshift bandage"
-	desc = "A hastily constructed bandage designed for basic first aid on blunt-force trauma."
+	name = "临时绷带"
+	desc = "一种仓促制作的绷带，专为钝器创伤的基本急救而设计。"
 	icon_state = "bandage_makeshift"
 	icon_state_preview = "bandage_makeshift"
 	inhand_icon_state = "bandage"

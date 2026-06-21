@@ -1,6 +1,6 @@
 /obj/item/pai_cable
-	desc = "A flexible coated cable with a universal jack on one end."
-	name = "data cable"
+	desc = "一根带通用接口的柔性包覆电缆。"
+	name = "数据线"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "wire1"
 	item_flags = NOBLUDGEON
@@ -14,5 +14,5 @@
 /obj/item/pai_cable/proc/plugin(obj/machinery/M, mob/living/user)
 	if(!user.transferItemToLoc(src, M))
 		return
-	user.visible_message(span_notice("[user] inserts [src] into a data port on [M]."), span_notice("You insert [src] into a data port on [M]."), span_hear("You hear the satisfying click of a wire jack fastening into place."))
+	user.visible_message(span_notice("[user] 将 [src] 插入 [M] 的数据端口。"), span_notice("你将 [src] 插入 [M] 的数据端口。"), span_hear("你听到线缆插头固定到位的清脆咔哒声。"))
 	hacking_machine = M

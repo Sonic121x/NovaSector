@@ -5,8 +5,8 @@
 
 
 /obj/item/clothing/accessory/chaps
-	name = "chaps"
-	desc = "Padding typically worn over one's trousers to better protect the outside of their legs from hazards."
+	name = "皮护腿"
+	desc = "通常穿在裤子外面，以更好地保护腿部外侧免受危险伤害的衬垫。"
 	icon = 'icons/map_icons/clothing/accessory.dmi'
 	icon_state = "/obj/item/clothing/accessory/chaps"
 	post_init_icon_state = "chaps"
@@ -25,13 +25,13 @@
 	var/obj/item/clothing/under/pants/nova/chaps/chaps_uniform = new /obj/item/clothing/under/pants/nova/chaps(user.drop_location())
 	chaps_uniform.greyscale_colors = greyscale_colors
 	chaps_uniform.update_greyscale()
-	user.balloon_alert(user, "changed to uniform!")
+	user.balloon_alert(user, "已更改为制服！")
 	qdel(src)
 	user.put_in_hands(chaps_uniform)
 
 /obj/item/clothing/accessory/chaps/examine(mob/user)
 	. = ..()
-	. += span_notice("It can be [EXAMINE_HINT("ctrl+shift clicked")] to be worn as a uniform.")
+	. += span_notice("它可以被[EXAMINE_HINT("ctrl+shift clicked")]以作为制服穿着。")
 
 /obj/item/clothing/accessory/chaps/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()

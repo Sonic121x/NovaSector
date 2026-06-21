@@ -1,8 +1,8 @@
 
 // aloe
 /obj/item/seeds/aloe
-	name = "aloe seed pack"
-	desc = "These seeds grow into aloe."
+	name = "芦荟种子包"
+	desc = "能长成芦荟的种子。"
 	icon_state = "seed-aloe"
 	species = "aloe"
 	plantname = "Aloe"
@@ -19,7 +19,7 @@
 /obj/item/food/grown/aloe
 	seed = /obj/item/seeds/aloe
 	name = "aloe"
-	desc = "Cut leaves from the aloe plant."
+	desc = "从芦荟上剪下叶子。"
 	icon_state = "aloe"
 	bite_consumption_mod = 3
 	foodtypes = VEGETABLES

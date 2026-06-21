@@ -1,11 +1,11 @@
 /datum/round_event_control/anomaly/anomaly_vortex
-	name = "Anomaly: Vortex"
+	name = "异常:旋涡"
 	typepath = /datum/round_event/anomaly/anomaly_vortex
 
 	min_players = 20
 	max_occurrences = 2
 	weight = 10
-	description = "This anomaly sucks in and detonates items."
+	description = "该异常会吸入并引爆物品。"
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 
@@ -17,4 +17,4 @@
 /datum/round_event/anomaly/anomaly_vortex/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("Localized high-intensity vortex anomaly detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]", "Anomaly Alert", ANNOUNCER_VORTEXANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Localized high-intensity vortex anomaly detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]", "Anomaly Alert")
+	priority_announce("在[ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]检测到局部高强度涡流异常", "异常警报", ANNOUNCER_VORTEXANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Localized high-intensity vortex anomaly detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]", "Anomaly Alert")

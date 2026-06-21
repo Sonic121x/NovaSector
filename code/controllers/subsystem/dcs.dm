@@ -1,5 +1,5 @@
 PROCESSING_SUBSYSTEM_DEF(dcs)
-	name = "Datum Component System"
+	name = "数据组件系统"
 	ss_flags = SS_NO_INIT
 	wait = 1 SECONDS
 

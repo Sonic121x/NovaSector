@@ -9,7 +9,7 @@ ADMIN_VERB(jump_to_area, R_ADMIN, "Jump To Area", "Jumps to the specified area."
 				break top_level
 
 	if(isnull(drop_location))
-		to_chat(user, span_warning("No valid drop location found in the area!"))
+		to_chat(user, span_warning("在该区域内未找到有效的投放位置！"))
 		return
 
 	user.mob.abstract_move(drop_location)
@@ -32,7 +32,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(jump_to_mob, R_ADMIN, "Jump To Mob", "Jump to any mo
 ADMIN_VERB(jump_to_coord, R_ADMIN, "Jump To Coordinate", "Jump to a specific coordinate in the game world.", ADMIN_CATEGORY_GAME, cx as num, cy as num, cz as num)
 	var/turf/where_we_droppin = locate(cx, cy, cz)
 	if(isnull(where_we_droppin))
-		to_chat(user, span_warning("Invalid coordinates."))
+		to_chat(user, span_warning("无效坐标。"))
 		return
 
 	user.mob.abstract_move(where_we_droppin)
@@ -46,9 +46,9 @@ ADMIN_VERB(jump_to_key, R_ADMIN, "Jump To Key", "Jump to a specific player.", AD
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = input(user, "Please, select a player!", "Admin Jumping") as null|anything in sort_key(keys)
+	var/client/selection = input(user, "请选择一名玩家！", "管理员传送") as null|anything in sort_key(keys)
 	if(!selection)
-		to_chat(user, "No keys found.", confidential = TRUE)
+		to_chat(user, "未找到按键。", confidential = TRUE)
 		return
 	var/mob/M = selection.mob
 	log_admin("[key_name(user)] jumped to [key_name(M)]")
@@ -97,7 +97,7 @@ ADMIN_VERB(get_key, R_ADMIN, "Get Key", "Teleport the player with the provided k
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = input(user, "Please, select a player!", "Admin Jumping") as null|anything in sort_key(keys)
+	var/client/selection = input(user, "请选择一名玩家！", "管理员传送") as null|anything in sort_key(keys)
 	if(!selection)
 		return
 	var/mob/M = selection.mob
@@ -112,12 +112,12 @@ ADMIN_VERB(get_key, R_ADMIN, "Get Key", "Teleport the player with the provided k
 		M.forceMove(get_turf(user))
 		BLACKBOX_LOG_ADMIN_VERB("Get Key")
 
-ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "Send Mob", "Teleport the specified mob to an area of your choosing.", ADMIN_CATEGORY_GAME, mob/jumper)
+ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "派送生物", "Teleport the specified mob to an area of your choosing.", ADMIN_CATEGORY_GAME, mob/jumper)
 	var/list/sorted_areas = get_sorted_areas()
 	if(!length(sorted_areas))
-		to_chat(user, "No areas found.", confidential = TRUE)
+		to_chat(user, "未找到区域。", confidential = TRUE)
 		return
-	var/area/target_area = tgui_input_list(user, "Pick an area", "Send Mob", sorted_areas)
+	var/area/target_area = tgui_input_list(user, "选择一个区域", "Send Mob", sorted_areas)
 	if(isnull(target_area))
 		return
 	if(!istype(target_area))
@@ -129,5 +129,5 @@ ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "Send Mob", "Teleport the specifi
 		message_admins(msg)
 		admin_ticket_log(jumper, msg)
 	else
-		to_chat(user, "Failed to move mob to a valid location.", confidential = TRUE)
+		to_chat(user, "未能将生物移动到有效位置。", confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Send Mob")

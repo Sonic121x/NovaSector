@@ -2,8 +2,8 @@
 #define WARP_ANIMATE_TIME 0.35 SECONDS
 
 /datum/action/cooldown/mob_cooldown/turtle_tree
-	name = "Tree Ability"
-	desc = "Invoke your tree's special ability."
+	name = "树木能力"
+	desc = "激活你树木的特殊能力。"
 	cooldown_time = 2 MINUTES
 	click_to_activate = FALSE
 	button_icon = 'icons/mob/simple/pets.dmi'

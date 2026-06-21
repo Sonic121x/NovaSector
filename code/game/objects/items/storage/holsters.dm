@@ -1,7 +1,7 @@
 
 /obj/item/storage/belt/holster
-	name = "shoulder holster"
-	desc = "A rather plain but still cool looking holster that can hold a handgun."
+	name = "肩挂式枪套"
+	desc = "一个相当朴素但看起来仍然很酷的枪套，可以容纳一把手枪。"
 	icon_state = "holster"
 	inhand_icon_state = "holster"
 	worn_icon_state = "holster"
@@ -19,13 +19,13 @@
 	REMOVE_CLOTHING_TRAIT(user, TRAIT_GUNFLIP)
 
 /obj/item/storage/belt/holster/energy
-	name = "energy shoulder holsters"
-	desc = "A rather plain pair of shoulder holsters with a bit of insulated padding inside. Designed to hold energy weaponry."
+	name = "能量武器肩挂枪套"
+	desc = "一对相当朴素的肩挂枪套，内部有一些绝缘衬垫。设计用于容纳能量武器。"
 	storage_type = /datum/storage/holster/energy
 
 /obj/item/storage/belt/holster/energy/thermal
-	name = "thermal shoulder holsters"
-	desc = "A rather plain pair of shoulder holsters with a bit of insulated padding inside. Meant to hold a twinned pair of thermal pistols, but can fit several kinds of energy handguns as well."
+	name = "热能武器肩挂枪套"
+	desc = "一副相当普通的肩挂式枪套，内部带有一点绝缘衬垫。旨在容纳一对双生热能手枪，但也能装下好几种能量手枪。"
 
 /obj/item/storage/belt/holster/energy/thermal/PopulateContents()
 	generate_items_inside(list(
@@ -34,19 +34,19 @@
 	),src)
 
 /obj/item/storage/belt/holster/energy/disabler
-	desc = "A rather plain pair of shoulder holsters with a bit of insulated padding inside. Designed to hold energy weaponry. A production stamp indicates that it was shipped with a disabler."
+	desc = "一副相当普通的肩挂式枪套，内部带有一点绝缘衬垫。设计用于容纳能量武器。生产标记表明它出厂时配有一把眩晕枪。"
 
 /obj/item/storage/belt/holster/energy/disabler/PopulateContents()
 	new /obj/item/gun/energy/disabler(src)
 
 /obj/item/storage/belt/holster/energy/laser_pistol
-	desc = "A rather plain pair of shoulder holsters with a bit of insulated padding inside. Designed to hold energy weaponry. A production stamp indicates that it was shipped with a Type 5C laser pistol."
+	desc = "一副相当普通的肩挂式枪套，内部带有一点绝缘衬垫。设计用于容纳能量武器。生产标记表明它出厂时配有一把5C型激光手枪。"
 
 /obj/item/storage/belt/holster/energy/laser_pistol/PopulateContents()
 	new /obj/item/gun/energy/laser/pistol(src)
 
 /obj/item/storage/belt/holster/energy/smoothbore
-	desc = "A rather plain pair of shoulder holsters with a bit of insulated padding inside. Designed to hold energy weaponry. Seems it was meant to fit two smoothbores."
+	desc = "一副相当普通的肩挂式枪套，内部带有一点绝缘衬垫。设计用于容纳能量武器。看起来它原本是用来装两把滑膛枪的。"
 
 /obj/item/storage/belt/holster/energy/smoothbore/PopulateContents()
 	generate_items_inside(list(
@@ -54,8 +54,8 @@
 	),src)
 
 /obj/item/storage/belt/holster/detective
-	name = "detective's holster"
-	desc = "A holster able to carry handguns and some ammo. WARNING: Badasses only."
+	name = "侦探枪套"
+	desc = "一个能携带手枪和一些弹药的枪套。警告：仅供狠人使用。"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/holster/detective
 
@@ -66,8 +66,8 @@
 	), src)
 
 /obj/item/storage/belt/holster/detective/full/ert
-	name = "marine's holster"
-	desc = "Wearing this makes you feel badass, but you suspect it's just a repainted detective's holster from the NT surplus."
+	name = "陆战队员枪套"
+	desc = "戴上这个让你感觉很酷，但你怀疑这只是从NT剩余物资里翻新喷漆的侦探枪套。"
 	icon_state = "syndicate_holster"
 	inhand_icon_state = "syndicate_holster"
 	worn_icon_state = "syndicate_holster"
@@ -79,8 +79,8 @@
 	),src)
 
 /obj/item/storage/belt/holster/chameleon
-	name = "syndicate holster"
-	desc = "A hip holster that uses chameleon technology to disguise itself, due to the added chameleon tech, it cannot be mounted onto armor."
+	name = "辛迪加枪套"
+	desc = "一种使用变色龙技术伪装自己的腰挂式枪套，由于增加了变色龙技术，它无法安装在护甲上。"
 	icon_state = "syndicate_holster"
 	inhand_icon_state = "syndicate_holster"
 	worn_icon_state = "syndicate_holster"
@@ -89,8 +89,8 @@
 	storage_type = /datum/storage/holster/chameleon
 
 /obj/item/storage/belt/holster/nukie
-	name = "operative holster"
-	desc = "A deep shoulder holster capable of holding almost any form of firearm and its ammo."
+	name = "特工枪套"
+	desc = "一个深肩式枪套，能够容纳几乎所有类型的枪支及其弹药。"
 	icon_state = "syndicate_holster"
 	inhand_icon_state = "syndicate_holster"
 	worn_icon_state = "syndicate_holster"
@@ -98,7 +98,7 @@
 	storage_type = /datum/storage/holster/nukie
 
 /obj/item/storage/belt/holster/nukie/cowboy
-	desc = "A deep shoulder holster capable of holding almost any form of small firearm and its ammo. This one's specialized for handguns."
+	desc = "一个深肩式枪套，能够容纳几乎所有类型的小型枪支及其弹药。这个是专门为手枪设计的。"
 	storage_type = /datum/storage/holster/nukie/cowboy
 
 /obj/item/storage/belt/holster/nukie/cowboy/full/PopulateContents()

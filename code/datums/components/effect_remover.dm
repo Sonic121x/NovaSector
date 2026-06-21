@@ -67,7 +67,7 @@
 		return NONE
 
 	if(HAS_TRAIT(target, TRAIT_ILLUSORY_EFFECT))
-		to_chat(user, span_notice("You pass [parent] through the [target], but nothing seems to happen. Is it really even there?"))
+		to_chat(user, span_notice("你将 [parent] 穿过 [target]，但似乎什么都没发生。它真的存在吗？"))
 		return NONE
 
 	if(is_type_in_typecache(target, effects_we_clear)) // Make sure we get all subtypes and everything

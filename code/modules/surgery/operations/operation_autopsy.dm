@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/autopsy
-	name = "autopsy"
+	name = "尸检"
 	rnd_name = "Androtomy (Dissection and Autopsy)"
-	desc = "Perform a detailed analysis of a deceased patient's body."
+	desc = "对已故患者的身体进行详细分析。"
 	implements = list(/obj/item/autopsy_scanner = 1)
 	time = 10 SECONDS
 	success_sound = 'sound/machines/printer.ogg'
@@ -16,8 +16,8 @@
 	. = list()
 	. += "operate on chest (target chest)"
 	. += ..()
-	. += "the patient must be deceased"
-	. += "the patient must not have been autopsied prior"
+	. += "患者必须已死亡"
+	. += "患者之前必须未进行过尸检"
 
 /datum/surgery_operation/limb/autopsy/state_check(obj/item/bodypart/limb)
 	if(limb.body_zone != BODY_ZONE_CHEST)
@@ -49,8 +49,8 @@
 	return ..()
 
 /datum/surgery_operation/limb/autopsy/mechanic
-	name = "system failure analysis"
+	name = "系统故障分析"
 	rnd_name = "System Failure Analysis (Dissection and Autopsy)"
-	desc = "Perform a detailed analysis of a robotic patient's deactivated systems."
+	desc = "对机器人患者已停机的系统进行详细分析。"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC

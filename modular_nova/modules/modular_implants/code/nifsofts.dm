@@ -3,7 +3,7 @@
 ///The base NIFSoft
 /datum/nifsoft
 	///What is the name of the NIFSoft?
-	var/name = "Generic NIFsoft"
+	var/name = "通用NIF软件"
 	///What is the name of the program when looking at the program from inside of a NIF? This is good if you want to mask a NIFSoft's name.
 	var/program_name
 	///A description of what the program does. This is used when looking at programs in the NIF, along with installing them from the store.
@@ -93,16 +93,16 @@
 		return FALSE
 
 	if(installed_nif.broken)
-		installed_nif.balloon_alert(installed_nif.linked_mob, "your NIF is broken")
+		installed_nif.balloon_alert(installed_nif.linked_mob, "你的NIF已损坏")
 		return FALSE
 
 	if(cooldown && on_cooldown)
-		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] is currently on cooldown.")
+		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] 目前处于冷却中。")
 		return FALSE
 
 	if(active)
 		active = FALSE
-		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] is no longer running")
+		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] 已停止运行")
 		installed_nif.power_usage -= active_cost
 		return TRUE
 
@@ -110,7 +110,7 @@
 		return FALSE
 
 	if(active_mode)
-		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] is now running")
+		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] 正在运行")
 		installed_nif.power_usage += active_cost
 		active = TRUE
 
@@ -163,7 +163,7 @@
 
 /// A disk that can upload NIFSofts to a recpient with a NIFSoft installed.
 /obj/item/disk/nifsoft_uploader
-	name = "Generic NIFSoft datadisk"
+	name = "通用NIF软件数据盘"
 	desc = "A stylised nanite-infused 'magnetic' tape is perpetually spinning inside. It can be used to upload a loaded NIFSoft to the user's NIF."
 	icon = 'modular_nova/modules/modular_implants/icons/obj/disks.dmi'
 	icon_state = "base_disk"
@@ -179,7 +179,7 @@
 	if(CONFIG_GET(flag/disable_lewd_items) && initial(loaded_nifsoft.lewd_nifsoft))
 		return INITIALIZE_HINT_QDEL
 
-	name = "[initial(loaded_nifsoft.name)] datadisk"
+	name = "[initial(loaded_nifsoft.name)] 数据盘"
 
 /obj/item/disk/nifsoft_uploader/setup_reskins()
 	return
@@ -190,7 +190,7 @@
 	var/nifsoft_desc = initial(loaded_nifsoft.program_desc)
 
 	if(nifsoft_desc)
-		. += span_cyan_nova("Program description: [nifsoft_desc]")
+		. += span_cyan_nova("程序描述：[nifsoft_desc]")
 
 
 /// Attempts to install the NIFSoft on the disk to the target
@@ -203,7 +203,7 @@
 	var/datum/nifsoft/installed_nifsoft = new loaded_nifsoft(installed_nif, TRUE)
 
 	if(!installed_nifsoft.parent_nif)
-		balloon_alert(target, "installation failed")
+		balloon_alert(target, "安装失败")
 		return FALSE
 
 	if(!reusable)
@@ -214,17 +214,17 @@
 
 /obj/item/disk/nifsoft_uploader/attack(mob/living/mob, mob/living/user, params)
 	if(mob != user && !do_after(user, 5 SECONDS, mob))
-		balloon_alert(user, "installation failed")
+		balloon_alert(user, "安装失败")
 		return FALSE
 
 	attempt_software_install(mob)
 
 /obj/item/disk/nifsoft_uploader/mil_grade
-	desc = "A high-performance, impact-resistant quantum drive that can be used to upload a loaded NIFSoft to the user's NIF."
+	desc = "一个高性能、抗冲击的量子驱动器，可用于将加载的NIF软件上传到用户的NIF中。"
 	icon_state = "mil_disk"
 
 /obj/item/disk/nifsoft_uploader/job
-	desc = "Enterprise-grade secure digital drive that can be used to upload a loaded NIFSoft to the user's NIF."
+	desc = "企业级安全数字驱动器，可用于将加载的NIF软件上传到用户的NIF中。"
 	icon_state = "job_disk"
 
 #undef DEFAULT_NIFSOFT_COOLDOWN

@@ -6,7 +6,7 @@
 	return team
 
 /datum/objective/blood_worm/kill
-	name = "KILL"
+	name = "杀戮"
 	explanation_text = "We must prevent all members of station command from escaping alive on the emergency shuttle."
 
 /datum/objective/blood_worm/kill/check_completion()
@@ -24,7 +24,7 @@
 	return TRUE
 
 /datum/objective/blood_worm/consume
-	name = "CONSUME"
+	name = "吞噬"
 
 	var/blood_required = 0
 
@@ -39,7 +39,7 @@
 	return get_blood_worm_team().blood_consumed_total >= blood_required
 
 /datum/objective/blood_worm/multiply
-	name = "MULTIPLY"
+	name = "繁殖"
 
 	var/times_required = 0
 
@@ -54,7 +54,7 @@
 	return get_blood_worm_team().times_reproduced_total >= times_required
 
 /datum/objective/blood_worm/conquer
-	name = "CONQUER"
+	name = "征服"
 
 	var/worms_required = 0
 

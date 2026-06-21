@@ -71,7 +71,7 @@
 	var/mob/living/our_mob = parent
 	if (our_mob.stat == DEAD || our_mob.key || awaiting_ghosts)
 		return
-	examine_text += span_boldnotice("You could take control of this mob by clicking on it.")
+	examine_text += span_boldnotice("你可以通过点击这个生物来接管控制权。")
 
 /// Send out a request for a brain
 /datum/component/ghost_direct_control/proc/request_ghost_control(poll_question, role_name, poll_length, poll_ignore_key, poll_announce_chosen, poll_chat_border_icon)
@@ -103,20 +103,20 @@
 	if (!hopeful_ghost.client)
 		return
 	if (!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
-		to_chat(hopeful_ghost, span_warning("Ghost roles have been temporarily disabled!"))
+		to_chat(hopeful_ghost, span_warning("幽灵角色已被暂时禁用！"))
 		return
 	if (awaiting_ghosts)
-		to_chat(hopeful_ghost, span_warning("Ghost candidate selection currently in progress!"))
+		to_chat(hopeful_ghost, span_warning("幽灵候选人选择正在进行中！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if (!SSticker.HasRoundStarted())
-		to_chat(hopeful_ghost, span_warning("You cannot assume control of this until after the round has started!"))
+		to_chat(hopeful_ghost, span_warning("你必须等到回合开始后才能控制这个！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	INVOKE_ASYNC(src, PROC_REF(attempt_possession), our_mob, hopeful_ghost)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /// We got far enough to establish that this mob is a valid target, let's try to posssess it
 /datum/component/ghost_direct_control/proc/attempt_possession(mob/our_mob, mob/dead/observer/hopeful_ghost)
-	var/ghost_asked = tgui_alert(usr, "Become [our_mob]?", "Are you sure?", list("Yes", "No"))
+	var/ghost_asked = tgui_alert(usr, "成为 [our_mob]？", "你确定吗？", list("Yes", "No"))
 	if (ghost_asked != "Yes" || QDELETED(our_mob))
 		return
 	assume_direct_control(hopeful_ghost)
@@ -124,20 +124,20 @@
 /// Grant possession of our mob, component is now no longer required
 /datum/component/ghost_direct_control/proc/assume_direct_control(mob/harbinger)
 	if (QDELETED(src))
-		to_chat(harbinger, span_warning("Offer to possess creature has expired!"))
+		to_chat(harbinger, span_warning("附身生物的提议已过期！"))
 		return
 	if (is_banned_from(harbinger.ckey, list(ban_type)))
-		to_chat(harbinger, span_warning("You are banned from playing as this role!"))
+		to_chat(harbinger, span_warning("你已被禁止扮演这个角色！"))
 		return
 	if (!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
-		to_chat(harbinger, span_warning("Ghost roles have been temporarily disabled!"))
+		to_chat(harbinger, span_warning("幽灵角色已被暂时禁用！"))
 		return
 	var/mob/living/new_body = parent
 	if (new_body.stat == DEAD)
-		to_chat(harbinger, span_warning("This body has passed away, it is of no use!"))
+		to_chat(harbinger, span_warning("这个身体已经死亡，没用了！"))
 		return
 	if (new_body.key)
-		to_chat(harbinger, span_warning("[parent] has already become sapient!"))
+		to_chat(harbinger, span_warning("[parent]已经获得了智慧！"))
 		qdel(src)
 		return
 	if (extra_control_checks && !extra_control_checks.Invoke(harbinger))

@@ -1,7 +1,7 @@
 //does tons of oxygen damage and a little stamina, immune to tesla bolts, weak to EMP
 /datum/blobstrain/reagent/energized_jelly
-	name = "Energized Jelly"
-	description = "will cause high stamina and medium oxygen damage, and cause targets to be unable to breathe."
+	name = "充能果冻"
+	description = "会造成高额耐力伤害和中等缺氧伤害，并使目标无法呼吸。"
 	effectdesc = "will also conduct electricity, but takes damage from EMPs."
 	analyzerdescdamage = "Does high stamina damage, medium oxygen damage, and prevents targets from breathing."
 	analyzerdesceffect = "Is immune to electricity and will easily conduct it, but is weak to EMPs."
@@ -22,7 +22,7 @@
 	B.take_damage(damage, BURN, ENERGY)
 
 /datum/reagent/blob/energized_jelly
-	name = "Energized Blob Jelly"
+	name = "充能孢子冻"
 	taste_description = "gelatin"
 	color = "#EFD65A"
 

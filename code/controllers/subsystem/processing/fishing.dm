@@ -1,6 +1,6 @@
 /// subsystem for the fishing minigame processing.
 PROCESSING_SUBSYSTEM_DEF(fishing)
-	name = "Fishing"
+	name = "钓鱼"
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
 	)

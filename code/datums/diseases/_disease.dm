@@ -9,7 +9,7 @@
 	/// What type of disease this is
 	var/form = "Virus"
 	/// The name of the disease (this one's kind of important)
-	var/name = "No disease"
+	var/name = "无疾病"
 	/// The description of what the disease is and does
 	var/desc = ""
 	/// The agent that causes the disease, for example "virus", "bacteria", "parasite", "curse"
@@ -139,7 +139,7 @@
 			cure_mod = cure_mod * 2 * cure_status // Advanced diseases can be cured up to 2x as fast if all symptoms are remedied
 		if(disease_flags & CHRONIC && SPT_PROB(cure_mod, seconds_per_tick))
 			update_stage(1)
-			to_chat(affected_mob, span_notice("Your chronic illness is alleviated a little, though it can't be cured!"))
+			to_chat(affected_mob, span_notice("你的慢性病稍微缓解了一点，尽管它无法被治愈！"))
 			return
 		if(disease_flags & CURABLE && SPT_PROB(cure_mod, seconds_per_tick))
 			if(disease_flags & INCREMENTAL_CURE)

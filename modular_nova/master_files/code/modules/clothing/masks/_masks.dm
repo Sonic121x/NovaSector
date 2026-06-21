@@ -49,12 +49,12 @@
 
 	if(src.flags_inv & HIDEFACE)
 		src.flags_inv &= ~HIDEFACE
-		to_chat(user, "You've revealed your face!")
+		to_chat(user, "你露出了你的脸！")
 		item_face_toggled = TRUE
 	else
 		src.flags_inv |= HIDEFACE
 		if (!force)
-			to_chat(user, "You've hidden your face!")
+			to_chat(user, "你遮住了你的脸！")
 		item_face_toggled = FALSE
 
 	return TRUE

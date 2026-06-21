@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/solfed/prometheus
-	desc = "A bipedal assault mech built for breach operations and urban warfare. Its heavy armament and reinforced chassis make it ideal for retaking compromised sectors."
-	name = "\improper MAI-2548A2 \"Prometheus\""
+	desc = "一款为突入行动和城市战设计的双足突击机甲。其重型武装和加固底盘使其成为夺回失守区域的理想选择。"
+	name = "\improper MAI-2548A2 \"普罗米修斯\""
 	icon_state = "prometheus" //Sprite by diltyrr on discord
 	base_icon_state = "prometheus"
 	movedelay = 3.5
@@ -52,15 +52,15 @@
 	update_part_values()
 
 /obj/structure/mecha_wreckage/solfed/prometheus
-	name = "\improper Prometheus wreckage"
-	desc = "The wreckage of a Prometheus-class breach mech. Its forward plating is buckled inward, and the hydraulic ram is fused in place. Something hit it harder than it was built to hit."
+	name = "\improper 普罗米修斯残骸"
+	desc = "普罗米修斯级突入机甲的残骸。其前部装甲向内凹陷，液压冲撞器已熔毁卡死。有什么东西的打击超出了它的设计承受极限。"
 	icon = 'modular_nova/modules/solfed_mechs/icons/solfed_mechs.dmi'
 	icon_state = "prometheus-broken"
 	welder_salvage = list(/obj/item/stack/sheet/iron, /obj/item/stack/rods)
 
 /datum/action/vehicle/sealed/mecha/prometheus_ram
-	name = "Hydraulic Ram"
-	desc = "Engage the Prometheus' chest-mounted hydraulic ram to smash targets directly ahead."
+	name = "液压冲撞器"
+	desc = "启动普罗米修斯胸部的液压冲撞器，猛击正前方的目标。"
 	button_icon = 'modular_nova/modules/sec_haul/icons/peacekeeper/peacekeeper_items.dmi'
 	button_icon_state = "peacekeeper_hammer"
 
@@ -102,7 +102,7 @@
 		ram_target = assembly_target
 
 	if(!ram_target)
-		to_chat(user, span_warning("No valid target directly ahead!"))
+		to_chat(user, span_warning("正前方没有有效目标！"))
 		return
 
 	// Wind-up with do_after (2 seconds)
@@ -111,8 +111,8 @@
 
 	playsound(chassis, 'sound/effects/clang.ogg', 70, TRUE)
 	user.visible_message(
-		span_danger("[chassis] slams its hydraulic ram into [ram_target] with a deafening clang!"),
-		span_danger("You slam the hydraulic ram into [ram_target]!"),
+		span_danger("[chassis] 将其液压冲撞器以震耳欲聋的巨响砸向 [ram_target]！"),
+		span_danger("你将液压冲撞器猛击向 [ram_target]！"),
 		null,
 		COMBAT_MESSAGE_RANGE
 	)

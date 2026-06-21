@@ -17,7 +17,7 @@
 	// AIs cannot speak if silent AI is on.
 	// Unless forced is set, as that's probably stating laws or something.
 	if(!forced && CONFIG_GET(flag/silent_ai))
-		to_chat(src, span_danger("The ability for AIs to speak is currently disabled via server config."))
+		to_chat(src, span_danger("人工智能的发言功能当前已通过服务器配置禁用。"))
 		return FALSE
 
 	return ..()
@@ -26,7 +26,7 @@
 	if(incapacitated)
 		return FALSE
 	if(!radio_enabled) //AI cannot speak if radio is disabled (via intellicard) or depowered.
-		to_chat(src, span_danger("Your radio transmitter is offline!"))
+		to_chat(src, span_danger("你的无线电发射器已离线！"))
 		return FALSE
 	. = ..()
 	if(.)
@@ -54,7 +54,7 @@
 	var/obj/machinery/holopad/active_pad = current
 	// Only continue if there is a hologram and its master is the user.
 	if(!istype(active_pad) || !active_pad.masters[src])
-		to_chat(src, span_alert("No holopad connected."))
+		to_chat(src, span_alert("没有全息台连接。"))
 		return
 
 	var/obj/effect/overlay/holo_pad_hologram/ai_holo = active_pad.masters[src]
@@ -102,13 +102,13 @@
 /mob/living/silicon/ai/proc/announcement()
 	var/static/announcing_vox = 0 // Stores the time of the last announcement
 	if(announcing_vox > world.time)
-		to_chat(src, span_notice("Please wait [DisplayTimeText(announcing_vox - world.time)]."))
+		to_chat(src, span_notice("请等待 [DisplayTimeText(announcing_vox - world.time)]。"))
 		return
 
 	var/message = tgui_input_text(
 		src,
-		"WARNING: Misuse of this verb can result in you being job banned. More help is available in 'Announcement Help'",
-		"Announcement",
+		"警告：滥用此动词可能导致您被禁止担任此职位。更多帮助请参阅‘公告帮助’",
+		"公告",
 		src.last_announcement,
 		max_length = MAX_MESSAGE_LEN,
 	)
@@ -122,7 +122,7 @@
 		return
 
 	if(control_disabled)
-		to_chat(src, span_warning("Wireless interface disabled, unable to interact with announcement PA."))
+		to_chat(src, span_warning("无线接口已禁用，无法与公告广播系统交互。"))
 		return
 
 	var/list/words = splittext(trim(message), " ")
@@ -140,7 +140,7 @@
 			incorrect_words += word
 
 	if(incorrect_words.len)
-		to_chat(src, span_notice("These words are not available on the announcement system: [english_list(incorrect_words)]."))
+		to_chat(src, span_notice("公告系统不支持以下词语：[english_list(incorrect_words)]。"))
 		return
 
 	announcing_vox = world.time + VOX_DELAY
@@ -154,7 +154,7 @@
 		var/turf/player_turf = get_turf(player_mob)
 		if(is_valid_z_level(ai_turf, player_turf))
 			players += player_mob
-	minor_announce(capitalize(message), "[name] announces:", players = players, should_play_sound = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(does_target_have_vox_off)))
+	minor_announce(capitalize(message), "[name] 宣布：", players = players, should_play_sound = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(does_target_have_vox_off)))
 
 	for(var/word in words)
 		play_vox_word(word, ai_turf, null)

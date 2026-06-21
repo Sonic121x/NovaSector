@@ -1,8 +1,8 @@
 
 // Gatfruit
 /obj/item/seeds/gatfruit
-	name = "gatfruit seed pack"
-	desc = "These seeds grow into pea-shooting revolvers."
+	name = "加特果种子包"
+	desc = "这些种子会长成发射豌豆的左轮手枪。"
 	icon_state = "seed-gatfruit"
 	species = "gatfruit"
 	plantname = "Gatfruit Tree"
@@ -21,8 +21,8 @@
 
 /obj/item/food/grown/gatfruit
 	seed = /obj/item/seeds/gatfruit
-	name = "gatfruit"
-	desc = "It smells like burning gunpowder."
+	name = "加特果"
+	desc = "闻起来像燃烧的火药。"
 	icon_state = "gatfruit"
 	trash_type = /obj/item/gun/ballistic/revolver/peashooter
 	bite_consumption_mod = 2

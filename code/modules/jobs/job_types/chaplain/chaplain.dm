@@ -55,7 +55,7 @@
 			holy_bible.icon_state = GLOB.bible_icon_state
 		if(GLOB.bible_inhand_icon_state)
 			holy_bible.inhand_icon_state = GLOB.bible_inhand_icon_state
-		to_chat(human_spawned, span_boldnotice("There is already an established religion onboard the station. You are an acolyte of [GLOB.deity]. Defer to the Chaplain."))
+		to_chat(human_spawned, span_boldnotice("空间站上已有既定的宗教。你是[GLOB.deity]的信徒。请听从牧师的指示。"))
 		human_spawned.equip_to_storage(holy_bible, ITEM_SLOT_BACK, indirect_action = TRUE, del_on_fail = TRUE)
 		var/nrt = GLOB.holy_weapon_type || /obj/item/nullrod
 		var/obj/item/nullrod/nullrod = new nrt(human_spawned)
@@ -93,7 +93,7 @@
 					holy_bible.deity_name = pick("Skibidi Toilet", "Skibidi Wizard", "Skibidi Bathtub", "John Skibidi", "Skibidi Skibidi", "G-Toilet 1.0", "John Freeman")
 			human_spawned.adjust_organ_loss(ORGAN_SLOT_BRAIN, 100) // also starts off brain damaged as fuck
 		if("servicianism", "partying")
-			holy_bible.desc = "Happy, Full, Clean. Live it and give it."
+			holy_bible.desc = "快乐，饱足，洁净。活出它，并给予它。"
 		if("weeaboo","kawaii")
 			new_bible = pick("Fanfiction Compendium","Japanese for Dummies","The Manganomicon","Establishing Your O.T.P")
 			holy_bible.deity_name = "Anime"
@@ -114,7 +114,7 @@
 	SSblackbox.record_feedback("text", "religion_bible", 1, "[new_bible]", 1)
 
 /datum/outfit/job/chaplain
-	name = "Chaplain"
+	name = "牧师"
 	jobtype = /datum/job/chaplain
 
 	id_trim = /datum/id_trim/job/chaplain

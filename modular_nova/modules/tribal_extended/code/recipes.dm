@@ -1,12 +1,12 @@
 /datum/crafting_recipe/silkstring
-	name = "Silk String"
+	name = "丝线"
 	result = /obj/item/weaponcrafting/silkstring
 	reqs = list(/obj/item/stack/sheet/cloth = 1)
 	time = 5 SECONDS
 	category = CAT_MISC
 
 /datum/crafting_recipe/pipebow
-	name = "Pipe Bow"
+	name = "管弓"
 	result = /obj/item/gun/ballistic/bow/tribalbow/pipe
 	reqs = list(
 		/obj/item/pipe = 5,
@@ -17,7 +17,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/bone_arrow
-	name = "Bone Arrow"
+	name = "骨箭"
 	result = /obj/item/ammo_casing/arrow/bone
 	reqs = list(
 		/obj/item/stack/sheet/bone = 1,
@@ -28,7 +28,7 @@
 	steps = list("Reinforce the arrow with sinew.")
 
 /datum/crafting_recipe/ashen_arrow
-	name = "Ashen Arrow"
+	name = "灰烬箭"
 	result = /obj/item/ammo_casing/arrow/ash
 	reqs = list(
 		/obj/item/ammo_casing/arrow = 1,
@@ -39,7 +39,7 @@
 	steps = list("Reinforce the arrow with sinew.")
 
 /datum/crafting_recipe/bronze_arrow
-	name = "Bronze arrow"
+	name = "青铜箭"
 	result = /obj/item/ammo_casing/arrow/bronze
 	reqs = list(
 		/obj/item/ammo_casing/arrow = 1,
@@ -50,7 +50,7 @@
 	steps = list("Reinforce the arrowhead with bronze.")
 
 /datum/crafting_recipe/goliathshield
-	name = "Goliath shield"
+	name = "歌利亚盾牌"
 	result = /obj/item/shield/goliath
 	reqs = list(
 		/obj/item/stack/sheet/bone = 4,
@@ -60,7 +60,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/bonesword
-	name = "Bone Sword"
+	name = "骨剑"
 	result = /obj/item/claymore/bone
 	reqs = list(
 		/obj/item/stack/sheet/bone = 2,
@@ -71,7 +71,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/quiver
-	name = "Quiver"
+	name = "箭袋"
 	result = /obj/item/storage/bag/quiver
 	reqs = list(
 		/obj/item/stack/sheet/leather = 2,
@@ -81,7 +81,7 @@
 	category = CAT_WEAPON_AMMO
 
 /datum/crafting_recipe/bone_bow
-	name = "Bone Bow"
+	name = "骨弓"
 	result = /obj/item/gun/ballistic/bow/tribalbow/ashen
 	reqs = list(
 		/obj/item/stack/sheet/bone = 4,
@@ -91,7 +91,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/torch
-	name = "Torch"
+	name = "火把"
 	reqs = list(/obj/item/grown/log = 1)
 	result = /obj/item/flashlight/flare/torch
 	category = CAT_MISC
@@ -99,7 +99,7 @@
 	steps = list("Use any dried leaf-like plant on a towercap log! (Ambrosia, cannabis, tobacco, etc!)")
 
 /datum/crafting_recipe/bonedice
-	name = "Bone Die"
+	name = "骨骰"
 	result = /obj/item/dice/d6/bone
 	time = 5 SECONDS
 	reqs = list(
@@ -108,7 +108,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/runic_greatsword
-	name = "Runic Greatsword"
+	name = "符文巨剑"
 	category = CAT_WEAPON_MELEE
 	//recipe given to hearthkins as part of their spawner/team setting
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
@@ -122,7 +122,7 @@
 	result = /obj/item/kinetic_crusher/runic_greatsword
 
 /datum/crafting_recipe/runic_greataxe
-	name = "Runic Greataxe"
+	name = "符文巨斧"
 	category = CAT_WEAPON_MELEE
 	//recipe given to hearthkins as part of their spawner/team setting
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
@@ -136,7 +136,7 @@
 	result = /obj/item/kinetic_crusher/runic_greataxe
 
 /datum/crafting_recipe/runic_spear
-	name = "Runic Spear"
+	name = "符文长矛"
 	category = CAT_WEAPON_MELEE
 	//recipe given to hearthkins as part of their spawner/team setting
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
@@ -150,8 +150,8 @@
 	result = /obj/item/kinetic_crusher/spear/runic_spear
 
 /datum/crafting_recipe/hearthkin_ship_fragment_inactive
-	name = "Salvage Useless Relics"
-	desc = "Sifting through all this junk, you find enough parts to rebuild a fragment of ancient hearthkin tech."
+	name = "回收无用遗物"
+	desc = "在所有这些垃圾中翻找，你找到了足够多的零件来重建一块古老炉心族科技的碎片。"
 	time = 10 SECONDS
 	category = CAT_MISC
 	//recipe given to hearthkins as part of their spawner/team setting

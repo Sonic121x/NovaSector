@@ -1,6 +1,6 @@
 /obj/machinery/transport/destination_sign
-	name = "destination sign"
-	desc = "A display to show you what direction the tram is travelling."
+	name = "目的地指示牌"
+	desc = "一个显示有轨电车行驶方向的显示屏。"
 	icon = 'icons/obj/tram/tram_display.dmi'
 	icon_state = "desto_blank"
 	base_icon_state = "desto"
@@ -35,8 +35,8 @@
 	flags_1 = NONE
 
 /obj/item/wallframe/indicator_display
-	name = "indicator display frame"
-	desc = "Used to build tram indicator displays, just secure to the wall."
+	name = "指示器显示屏框架"
+	desc = "用于建造有轨电车指示器显示屏，只需将其固定在墙上。"
 	icon_state = "indi_blank"
 	icon = 'icons/obj/tram/tram_indicator.dmi'
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7)
@@ -92,11 +92,11 @@
 
 /obj/machinery/transport/destination_sign/indicator/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "[anchored ? "un" : ""]securing...")
+	balloon_alert(user, "[anchored ? "un" : ""]固定中...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, "[anchored ? "un" : ""]secured")
+		balloon_alert(user, "[anchored ? "un" : ""]固定完成")
 		deconstruct()
 		return TRUE
 

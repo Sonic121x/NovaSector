@@ -20,7 +20,7 @@
 		return FALSE
 	if(HAS_TRAIT(equip_target, TRAIT_NODROP) && (equip_target in held_items))
 		if(!disable_warning)
-			to_chat(src, span_warning("[equip_target] won't budge, it's impossible to put it on!"))
+			to_chat(src, span_warning("[equip_target]纹丝不动，根本穿不上！"))
 		return FALSE
 	return dna.species.can_equip(equip_target, slot, disable_warning, src, bypass_equip_delay_self, ignore_equipped, indirect_action)
 
@@ -204,7 +204,7 @@
 			s_store = equipping
 			update_suit_storage()
 		else
-			to_chat(src, span_danger("You are trying to equip this item to an unsupported inventory slot. Report this to a coder!"))
+			to_chat(src, span_danger("你正试图将此物品装备到一个不受支持的物品栏槽位。请将此问题报告给程序员！"))
 			not_handled = TRUE
 
 	//Item is handled and in slot, valid to call callback, for this proc should always be true
@@ -324,13 +324,13 @@
 	// Notify user of missing valid breathing apparatus.
 	if (wear_mask)
 		// Invalid mask
-		to_chat(src, span_warning("[wear_mask] can't use [tank]!"))
+		to_chat(src, span_warning("[wear_mask]无法使用[tank]！"))
 	else if (head)
 		// Invalid headgear
-		to_chat(src, span_warning("[head] isn't airtight! You need a mask!"))
+		to_chat(src, span_warning("[head]不密封！你需要一个面罩！"))
 	else
 		// Not wearing any breathing apparatus.
-		to_chat(src, span_warning("You need a mask!"))
+		to_chat(src, span_warning("你需要一个面罩！"))
 
 /// Returns TRUE if the tank successfully toggles open/closed. Opens the tank only if a breathing apparatus is found.
 /mob/living/carbon/human/toggle_externals(obj/item/tank)
@@ -386,7 +386,7 @@
 		thing_reject = SEND_SIGNAL(thing, COMSIG_HUMAN_NON_STORAGE_HOTKEY, src, equipped_item)
 	if(!equipped_item) // We also let you equip an item like this
 		if(!thing)
-			to_chat(src, span_warning("You have no [slot_item_name] to take something out of!"))
+			to_chat(src, span_warning("你根本没有[slot_item_name]可以从中取出东西！"))
 			return
 		if(equip_to_slot_if_possible(thing, slot_type))
 			update_held_items()
@@ -398,19 +398,19 @@
 		else
 			if(thing_reject & COMPONENT_STORAGE_HOTKEY_HANDLED)
 				return
-			to_chat(src, span_warning("You can't fit [thing] into your [equipped_item.name]!"))
+			to_chat(src, span_warning("你没法把[thing]塞进你的[equipped_item.name]里！"))
 		return
 	if(!storage.supports_smart_equip)
 		return
 	if (equipped_item.atom_storage.locked) // Determines if container is locked before trying to put something in or take something out so we dont give out information on contents (or lack of)
-		to_chat(src, span_warning("\The [equipped_item] is locked!"))
+		to_chat(src, span_warning("\The [equipped_item] 被锁住了！"))
 		return
 	if(thing) // put thing in storage item
 		if(!equipped_item.atom_storage?.attempt_insert(thing, src))
-			to_chat(src, span_warning("You can't fit [thing] into your [equipped_item.name]!"))
+			to_chat(src, span_warning("你没法把[thing]塞进你的[equipped_item.name]里！"))
 		return
 	if(!storage.real_location.contents.len) // nothing to take out
-		to_chat(src, span_warning("There's nothing in your [equipped_item.name] to take out!"))
+		to_chat(src, span_warning("你的[equipped_item.name]里没有东西可以拿出来！"))
 		return
 	var/obj/item/stored = storage.real_location.contents[storage.real_location.contents.len]
 	if(!stored || stored.on_found(src))

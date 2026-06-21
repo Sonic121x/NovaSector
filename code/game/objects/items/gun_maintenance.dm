@@ -30,7 +30,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(!isgun(interacting_with))
-		balloon_alert(user, "not a gun!")
+		balloon_alert(user, "不是枪械！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/gun/gun_to_fix = interacting_with
@@ -57,10 +57,10 @@
 		use_charge = TRUE
 
 	if(!use_charge)
-		balloon_alert(user, "no need for repair!")
+		balloon_alert(user, "无需修理！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "maintenance complete")
+	balloon_alert(user, "维护完成")
 	use_the_kit()
 	return ITEM_INTERACT_SUCCESS
 

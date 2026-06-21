@@ -8,8 +8,8 @@
 */
 
 /datum/symptom/genetic_mutation
-	name = "Dormant DNA Activator"
-	desc = "The virus bonds with the DNA of the host, activating random dormant mutations within their DNA. When the virus is cured, the host's genetic alterations are undone."
+	name = "休眠DNA激活器"
+	desc = "该病毒与宿主的DNA结合，激活其DNA中随机的休眠突变。当病毒被治愈时，宿主的基因改变将被逆转。"
 	illness = "Lycanthropy"
 	stealth = -2
 	resistance = -3

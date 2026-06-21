@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/conjure/revive_rune
-	name = "Create Revival Rune"
+	name = "创造复活符文"
 	button_icon = 'icons/obj/antags/cult/rune.dmi'
 	button_icon_state = "1"
 	background_icon_state = "bg_cult"

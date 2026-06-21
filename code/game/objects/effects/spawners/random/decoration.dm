@@ -1,10 +1,10 @@
 /obj/effect/spawner/random/decoration
-	name = "decoration loot spawner"
-	desc = "Time for some bling bling."
+	name = "装饰品战利品生成器"
+	desc = "是时候来点闪亮亮的东西了。"
 	icon_state = "lamp"
 
 /obj/effect/spawner/random/decoration/material
-	name = "decoration material spawner"
+	name = "装饰材料生成器"
 	icon_state = "tile"
 	loot = list(
 		/obj/item/stack/ore/glass/thirty = 25,
@@ -18,7 +18,7 @@
 	)
 
 /obj/effect/spawner/random/decoration/carpet
-	name = "carpet spawner"
+	name = "地毯生成器"
 	icon_state = "carpet"
 	loot = list(
 		/obj/item/stack/tile/carpet{amount = 30} = 35,
@@ -29,7 +29,7 @@
 	)
 
 /obj/effect/spawner/random/decoration/ornament
-	name = "ornament spawner"
+	name = "装饰物生成器"
 	icon_state = "lamp"
 	loot = list(
 		/obj/item/flashlight/lamp = 35,
@@ -41,7 +41,7 @@
 	)
 
 /obj/effect/spawner/random/decoration/generic
-	name = "generic decoration spawner"
+	name = "通用装饰品生成器"
 	icon_state = "sandstone"
 	loot = list(
 		/obj/effect/spawner/random/decoration/ornament = 35,
@@ -50,7 +50,7 @@
 	)
 
 /obj/effect/spawner/random/decoration/statue
-	name = "statue spawner"
+	name = "雕像生成器"
 	icon_state = "statue"
 	loot = list(
 		/obj/structure/statue/bronze/marx = 50,
@@ -88,13 +88,13 @@
 	return statue
 
 /obj/effect/spawner/random/decoration/showcase
-	name = "showcase spawner"
+	name = "展品生成器"
 	icon_state = "showcase"
 	loot_type_path = /obj/structure/showcase
 	loot = list()
 
 /obj/effect/spawner/random/decoration/microwave
-	name = "microwave showcase spawner"
+	name = "微波炉展示生成器"
 	icon_state = "showcase"
 	loot = list(
 		/obj/structure/showcase/machinery/microwave,
@@ -102,7 +102,7 @@
 	)
 
 /obj/effect/spawner/random/decoration/glowstick
-	name = "random colored glowstick"
+	name = "随机颜色的荧光棒"
 	icon_state = "glowstick"
 	loot = list(
 		/obj/item/flashlight/glowstick,
@@ -115,7 +115,7 @@
 	)
 
 /obj/effect/spawner/random/decoration/glowstick/on
-	name = "random colored glowstick (on)"
+	name = "随机颜色荧光棒（已点亮）"
 	icon_state = "glowstick"
 	loot = list(
 		/obj/item/flashlight/glowstick,
@@ -135,13 +135,13 @@
 	glowstick.set_light_on(TRUE)
 
 /obj/effect/spawner/random/decoration/paint
-	name = "paint spawner"
+	name = "油漆生成器"
 	icon_state = "paint"
 	loot_subtype_path = /obj/item/paint
 	loot = list()
 
 /obj/effect/spawner/random/decoration/flower
-	name = "random flower spawner"
+	name = "随机花朵生成器"
 	icon_state = "flower"
 	loot = list(
 		/obj/item/food/grown/poppy,

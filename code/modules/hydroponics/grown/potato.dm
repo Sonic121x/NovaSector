@@ -1,7 +1,7 @@
 // Potato
 /obj/item/seeds/potato
-	name = "potato seed pack"
-	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
+	name = "土豆种子包"
+	desc = "煮了它们！碾碎它们！炖了它们！"
 	icon_state = "seed-potato"
 	species = "potato"
 	plantname = "Potato Plants"
@@ -21,8 +21,8 @@
 
 /obj/item/food/grown/potato
 	seed = /obj/item/seeds/potato
-	name = "potato"
-	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
+	name = "土豆"
+	desc = "煮了它们！碾碎它们！炖了它们！"
 	icon_state = "potato"
 	foodtypes = VEGETABLES
 	distill_reagent = /datum/reagent/consumable/ethanol/vodka
@@ -34,14 +34,14 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/baked_potato, rand(15 SECONDS, 25 SECONDS), TRUE, TRUE)
 
 /obj/item/food/grown/potato/wedges
-	name = "potato wedges"
-	desc = "Slices of neatly cut potato."
+	name = "土豆楔"
+	desc = "切得整整齐齐的土豆片。"
 	icon_state = "potato_wedges"
 	bite_consumption_mod = 100
 
 /obj/item/food/grown/potato/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(W.get_sharpness())
-		to_chat(user, span_notice("You cut the potato into wedges with [W]."))
+		to_chat(user, span_notice("你用[W]将土豆切成了楔形块。"))
 		var/obj/item/food/grown/potato/wedges/Wedges = new /obj/item/food/grown/potato/wedges
 		remove_item_from_storage(user)
 		qdel(src)
@@ -52,8 +52,8 @@
 
 // Sweet Potato
 /obj/item/seeds/potato/sweet
-	name = "sweet potato seed pack"
-	desc = "These seeds grow into sweet potato plants."
+	name = "红薯种子包"
+	desc = "能长成红薯植株的种子。"
 	icon_state = "seed-sweetpotato"
 	species = "sweetpotato"
 	plantname = "Sweet Potato Plants"
@@ -63,8 +63,8 @@
 
 /obj/item/food/grown/potato/sweet
 	seed = /obj/item/seeds/potato/sweet
-	name = "sweet potato"
-	desc = "It's sweet."
+	name = "红薯"
+	desc = "好甜哦。"
 	icon_state = "sweetpotato"
 	distill_reagent = /datum/reagent/consumable/ethanol/sbiten
 

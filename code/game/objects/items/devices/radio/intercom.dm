@@ -1,6 +1,6 @@
 /obj/item/radio/intercom
-	name = "station intercom"
-	desc = "A trusty station intercom, ready to spring into action even when the headsets go silent."
+	name = "空间站内部通话器"
+	desc = "一个可靠的空间站内部通话器，即使在耳机静默时也能随时投入使用。"
 	icon = 'icons/obj/machines/wallmounts.dmi' //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "intercom"
 	anchored = TRUE
@@ -23,8 +23,8 @@
 	unscrewed = TRUE
 
 /obj/item/radio/intercom/prison
-	name = "receive-only intercom"
-	desc = "A station intercom. It looks like it has been modified to not broadcast."
+	name = "只接收内部通话器"
+	desc = "一个空间站内部通话器。看起来它已被改装为无法广播。"
 	icon_state = "intercom_prison"
 	icon_off = "intercom_prison-p"
 
@@ -48,20 +48,20 @@
 
 /obj/item/radio/intercom/examine(mob/user)
 	. = ..()
-	. += span_notice("Use [MODE_TOKEN_INTERCOM] when nearby to speak into it.")
+	. += span_notice("在附近时使用 [MODE_TOKEN_INTERCOM] 来通过它说话。")
 	if(!unscrewed)
-		. += span_notice("It's <b>screwed</b> and secured to the wall.")
+		. += span_notice("它已被<b>拧紧</b>并固定在墙上。")
 	else
-		. += span_notice("It's <i>unscrewed</i> from the wall, and can be <b>detached</b>.")
+		. += span_notice("它已从墙上<i>拧下</i>，可以<b>拆卸</b>。")
 
 	if(anonymize)
-		. += span_notice("Speaking through this intercom will anonymize your voice.")
+		. += span_notice("通过此对讲机说话会匿名化你的声音。")
 
 	if(freqlock == RADIO_FREQENCY_UNLOCKED)
 		if((obj_flags & EMAGGED) && initial(freqlock) == RADIO_FREQENCY_EMAGGABLE_LOCK)
-			. += span_warning("Its frequency lock has been shorted...")
+			. += span_warning("它的频率锁已短路...")
 	else
-		. += span_notice("It has a frequency lock set to [frequency/10].")
+		. += span_notice("它有一个频率锁，设置为[frequency/10]。")
 
 	if(keylock == RADIO_KEYSLOT_UNLOCKED)
 		if((obj_flags & EMAGGED) && initial(keylock) == RADIO_KEYSLOT_EMAGGABLE_LOCK)
@@ -84,15 +84,15 @@
 
 /obj/item/radio/intercom/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	if(unscrewed)
-		user.visible_message(span_notice("[user] starts tightening [src]'s screws..."), span_notice("You start screwing in [src]..."))
+		user.visible_message(span_notice("[user]开始拧紧[src]的螺丝..."), span_notice("你开始拧紧[src]..."))
 		if(tool.use_tool(src, user, 30, volume=50))
-			user.visible_message(span_notice("[user] tightens [src]'s screws!"), span_notice("You tighten [src]'s screws."))
+			user.visible_message(span_notice("[user]拧紧了[src]的螺丝！"), span_notice("你拧紧了[src]的螺丝。"))
 			unscrewed = FALSE
 			update_appearance(UPDATE_OVERLAYS)
 	else
-		user.visible_message(span_notice("[user] starts loosening [src]'s screws..."), span_notice("You start unscrewing [src]..."))
+		user.visible_message(span_notice("[user]开始拧松[src]的螺丝..."), span_notice("你开始拧下[src]..."))
 		if(tool.use_tool(src, user, 40, volume=50))
-			user.visible_message(span_notice("[user] loosens [src]'s screws!"), span_notice("You unscrew [src], loosening it from the wall."))
+			user.visible_message(span_notice("[user]拧松了[src]的螺丝！"), span_notice("你拧下了[src]，使其从墙上松开。"))
 			unscrewed = TRUE
 			update_appearance(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS
@@ -104,12 +104,12 @@
 
 /obj/item/radio/intercom/wrench_act(mob/living/user, obj/item/tool)
 	if(!unscrewed)
-		to_chat(user, span_warning("You need to unscrew [src] from the wall first!"))
+		to_chat(user, span_warning("你需要先把[src]从墙上拧下来！"))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] starts unsecuring [src]..."), span_notice("You start unsecuring [src]..."))
+	user.visible_message(span_notice("[user]开始拆卸[src]..."), span_notice("你开始拆卸[src]..."))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 80))
-		user.visible_message(span_notice("[user] unsecures [src]!"), span_notice("You detach [src] from the wall."))
+		user.visible_message(span_notice("[user]拆下了[src]！"), span_notice("你将[src]从墙上拆下。"))
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -227,18 +227,18 @@
 
 //Created through the autolathe or through deconstructing intercoms. Can be applied to wall to make a new intercom on it!
 /obj/item/wallframe/intercom
-	name = "intercom frame"
-	desc = "A ready-to-go intercom. Just slap it on a wall and screw it in!"
+	name = "对讲机框架"
+	desc = "一个即装即用的对讲机。只需把它拍在墙上，然后拧紧螺丝！"
 	icon = 'icons/obj/machines/wallmounts.dmi'
-	icon_state = "intercom"
+	icon_state = "对讲机"
 	result_path = /obj/item/radio/intercom/unscrewed
 	pixel_shift = 26
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 // Used in the confessional booth in the chapel, locked to the confessional frequency and hides voices
 /obj/item/radio/intercom/chapel
-	name = "Confessional intercom"
-	desc = "Talk through this... to confess your many sins. Conceals your voice, to keep them secret."
+	name = "告解室对讲机"
+	desc = "通过这个说话……来忏悔你的诸多罪孽。它会隐藏你的声音，以保守秘密。"
 	anonymize = TRUE
 	freqlock = RADIO_FREQENCY_EMAGGABLE_LOCK
 
@@ -249,7 +249,7 @@
 
 // Special type of intercom for use in the bridge that can tune into any frequency and has loudmic (NOT FOR PUBLIC AREAS)
 /obj/item/radio/intercom/command
-	name = "command intercom"
+	name = "指挥对讲机"
 	desc = "The command's special free-frequency intercom. It's a versatile tool that can be tuned to any frequency, granting you access to channels you're not supposed to be on. Plus, it comes equipped with a built-in voice amplifier for crystal-clear communication."
 	icon_state = "intercom_command"
 	freerange = TRUE
@@ -294,20 +294,20 @@
 
 // Intercom with loudmic and innate syndicate channel access
 /obj/item/radio/intercom/syndicate
-	name = "syndicate intercom"
-	desc = "Talk smack through this."
+	name = "辛迪加对讲机"
+	desc = "通过这个说垃圾话。"
 	command = TRUE
 	special_channels = RADIO_SPECIAL_SYNDIE
 
 // Syndicate intercom that also has freefrange on top of syndicate channel
 /obj/item/radio/intercom/syndicate/freerange
-	name = "syndicate wide-band intercom"
-	desc = "A custom-made Syndicate-issue intercom used to transmit on all Nanotrasen frequencies. Particularly expensive."
+	name = "辛迪加宽频对讲机"
+	desc = "一种定制的辛迪加发行的对讲机，用于在所有纳米特拉森频率上传输。特别昂贵。"
 	freerange = TRUE
 
 /obj/item/radio/intercom/mi13
 	name = "intercom"
-	desc = "Talk through this to talk to whoever is in this facility with you."
+	desc = "通过这个说话，与设施里和你在一起的任何人交谈。"
 	freerange = TRUE
 
 /obj/item/radio/intercom/ai_private

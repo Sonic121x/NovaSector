@@ -49,7 +49,7 @@
 /obj/item/folder/biscuit/proc/crack_check(mob/user)
 	if (cracked)
 		return TRUE
-	balloon_alert(user, "open first!")
+	balloon_alert(user, "先打开！")
 	return FALSE
 
 /obj/item/folder/biscuit/examine()
@@ -93,7 +93,7 @@
 /obj/item/folder/biscuit/attack_self(mob/user)
 	add_fingerprint(user)
 	if (!cracked)
-		if (tgui_alert(user, "Do you want to crack it open?", "Biscuit Cracking", list("Yes", "No")) != "Yes")
+		if (tgui_alert(user, "你想要撬开它吗？", "饼干卡撬开", list("Yes", "No")) != "Yes")
 			return
 		cracked = TRUE
 		contents_hidden = FALSE
@@ -149,7 +149,7 @@
 		return ..()
 	if(has_been_sealed)
 		return
-	if(tgui_alert(user, "Do you want to seal it? This can only be done once.", "Biscuit Sealing", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, "你想要密封它吗？此操作只能进行一次。", "饼干卡密封", list("Yes", "No")) != "Yes")
 		return
 	cracked = FALSE
 	has_been_sealed = TRUE

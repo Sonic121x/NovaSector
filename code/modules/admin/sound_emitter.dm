@@ -7,8 +7,8 @@
 
 //Admin sound emitters with highly customizable functions!
 /obj/effect/sound_emitter
-	name = "sound emitter"
-	desc = "Emits sounds, presumably."
+	name = "发声器"
+	desc = "发出声音，大概。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield2"
 	invisibility = INVISIBILITY_OBSERVER
@@ -38,8 +38,8 @@
 	if(!isobserver(user))
 		return
 	. += "[span_boldnotice("Sound File:")] [sound_file ? sound_file : "None chosen"]"
-	. += span_boldnotice("Mode:</span> [motus_operandi]")
-	. += span_boldnotice("Range:</span> [emitter_range]")
+	. += span_boldnotice("模式：</span> [motus_operandi]")
+	. += span_boldnotice("范围：</span> [emitter_range]")
 	. += "<b>Sound is playing at [sound_volume]% volume.</b>"
 	if(user.client.holder)
 		. += "<b>Alt-click it to quickly activate it!</b>"
@@ -56,7 +56,7 @@
 		return CLICK_ACTION_BLOCKING
 
 	activate(user)
-	to_chat(user, span_notice("Sound emitter activated."), confidential = TRUE)
+	to_chat(user, span_notice("声音发射器已激活。"), confidential = TRUE)
 	return CLICK_ACTION_SUCCESS
 
 /obj/effect/sound_emitter/proc/edit_emitter(mob/user)
@@ -81,45 +81,45 @@
 		return
 	var/mob/user = usr
 	if(href_list["edit_label"])
-		var/new_label = tgui_input_text(user, "Choose a new label", "Sound Emitter", max_length = MAX_NAME_LEN)
+		var/new_label = tgui_input_text(user, "选择新标签", "发声器", max_length = MAX_NAME_LEN)
 		if(!new_label)
 			return
 		maptext = MAPTEXT(new_label)
-		to_chat(user, span_notice("Label set to [maptext]."), confidential = TRUE)
+		to_chat(user, span_notice("标签已设置为[maptext]。"), confidential = TRUE)
 	if(href_list["edit_sound_file"])
-		var/new_file = input(user, "Choose a sound file.", "Sound Emitter") as null|sound
+		var/new_file = input(user, "选择声音文件。", "发声器") as null|sound
 		if(!new_file)
 			return
 		sound_file = new_file
-		to_chat(user, span_notice("New sound file set to [sound_file]."), confidential = TRUE)
+		to_chat(user, span_notice("新声音文件已设置为[sound_file]。"), confidential = TRUE)
 	if(href_list["edit_volume"])
-		var/new_volume = tgui_input_number(user, "Choose a volume", "Sound Emitter", sound_volume, 100)
+		var/new_volume = tgui_input_number(user, "选择音量", "发声器", sound_volume, 100)
 		if(!new_volume)
 			return
 		sound_volume = new_volume
-		to_chat(user, span_notice("Volume set to [sound_volume]%."), confidential = TRUE)
+		to_chat(user, span_notice("音量已设置为[sound_volume]%。"), confidential = TRUE)
 	if(href_list["edit_mode"])
 		var/new_mode
 		var/mode_list = list("Local (normal sound)" = SOUND_EMITTER_LOCAL, "Direct (not affected by environment/location)" = SOUND_EMITTER_DIRECT)
-		new_mode = tgui_input_list(user, "Choose a new mode", "Sound Emitter", mode_list)
+		new_mode = tgui_input_list(user, "选择新模式", "发声器", mode_list)
 		if(!new_mode)
 			return
 		motus_operandi = mode_list[new_mode]
-		to_chat(user, span_notice("Mode set to [motus_operandi]."), confidential = TRUE)
+		to_chat(user, span_notice("模式已设置为[motus_operandi]。"), confidential = TRUE)
 	if(href_list["edit_range"])
 		var/new_range
 		var/range_list = list("Radius (all mobs within a radius)" = SOUND_EMITTER_RADIUS, "Z-Level (all mobs on the same z)" = SOUND_EMITTER_ZLEVEL, "Global (all players)" = SOUND_EMITTER_GLOBAL)
-		new_range = tgui_input_list(user, "Choose a new range", "Sound Emitter", range_list)
+		new_range = tgui_input_list(user, "选择新范围", "发声器", range_list)
 		if(!new_range)
 			return
 		emitter_range = range_list[new_range]
-		to_chat(user, span_notice("Range set to [emitter_range]."), confidential = TRUE)
+		to_chat(user, span_notice("范围已设置为 [emitter_range]。"), confidential = TRUE)
 	if(href_list["edit_radius"])
-		var/new_radius = tgui_input_number(user, "Choose a radius", "Sound Emitter", sound_volume, 127)
+		var/new_radius = tgui_input_number(user, "选择一个半径", "发声器", sound_volume, 127)
 		if(!new_radius)
 			return
 		play_radius = new_radius
-		to_chat(user, span_notice("Audible radius set to [play_radius]."), confidential = TRUE)
+		to_chat(user, span_notice("可听半径已设置为 [play_radius]。"), confidential = TRUE)
 	if(href_list["play"])
 		activate(user)
 	edit_emitter(user) //Refresh the UI to see our changes

@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/projectile/lightningbolt
-	name = "Lightning Bolt"
-	desc = "Fire a lightning bolt at your foes! It will jump between targets, but can't knock them down."
+	name = "Lightning Bolt-电击"
+	desc = "向你的敌人发射闪电!它会在目标之间跳跃，但不能击倒他们。"
 	button_icon_state = "lightning"
 	active_overlay_icon_state = "bg_spell_border_active_yellow"
 

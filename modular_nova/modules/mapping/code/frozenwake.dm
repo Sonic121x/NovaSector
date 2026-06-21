@@ -1,17 +1,17 @@
 /obj/item/paper/crumpled/bloody/fluff/stations/lavaland/frozenwake/
-	name = "ancient parchment"
-	desc = "A note written in Ættmál."
-	default_raw_text = "<i>They say the gods do not fall. But I saw it. I heard the silence after Baldr's light dimmed. The wind stopped singing. The fires would not answer. Even the stones wept — I swear it.<br><br>We carved these walls with aching hands, told his story in ice and stone, hoping the echo would reach the stars. Some say he will return, when the kinfire flares bright once more. I have waited a long time. My breath grows thin. My dreams colder.<br><br>If you’ve found this, you stand where hope froze. Perhaps you carry warmth yet. Perhaps you remember.</i><br><br>-Eldvarn Ice-Binder of the Lost Hall"
+	name = "古老羊皮纸"
+	desc = "一张用Ættmál语书写的便条。"
+	default_raw_text = "<i>他们说神明不会陨落。但我亲眼所见。我听见巴德尔之光黯淡后的寂静。风停止了歌唱。火焰不再回应。连石头都在哭泣——我发誓。<br><br>我们用疼痛的双手雕刻这些墙壁，在冰与石中讲述他的故事，希望回声能抵达星辰。有人说，当族火再次熊熊燃烧时，他会归来。我已等待了太久。我的呼吸变得稀薄。我的梦境愈发寒冷。<br><br>如果你找到了这个，你正站在希望冻结之地。或许你仍携带着温暖。或许你还记得。</i><br><br>-失落大厅的埃尔德瓦恩·冰缚者"
 
 /obj/item/paper/crumpled/bloody/fluff/stations/lavaland/frozenwake/ui_status(mob/user, datum/ui_state/state)
 	if(!user.has_language(/datum/language/primitive_catgirl))
-		to_chat(user, span_warning("This seems to be in a language you do not understand!"))
+		to_chat(user, span_warning("这似乎是一种你不理解的语言！"))
 		return UI_CLOSE
 	. = ..()
 
 /obj/structure/statue/hearthkin/frozenwake
-	name = "statue of Baldr, the Fallen Light"
-	desc = "A solemn sculpture of Baldr rises from a bed of wind-swept snow, his form draped in robes of carved frost. His face is peaceful — too peaceful. Cracks run through the stone base, as if the grief of the world split it over time. His arms are open, not in triumph, but in farewell. Around the base, ancient runes flicker dimly, half-buried in ice."
+	name = "巴德尔，陨落之光雕像"
+	desc = "一尊庄严的巴德尔雕塑从风扫过的雪床中升起，他的身形披着雕刻的霜袍。他的面容安详——过于安详。裂缝贯穿石基，仿佛世界的悲伤随时间将其撕裂。他张开双臂，并非为了胜利，而是为了告别。基座周围，古老的符文在冰中半埋，微弱地闪烁。"
 	icon = 'modular_nova/modules/primitive_catgirls/icons/gods_statue.dmi'
 	icon_state = "odin_statue"
 	anchored = 1
@@ -23,66 +23,66 @@
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/statue/hearthkin/frozenwake/stele
-	name = "\improper frozenwake stele"
-	desc = "A flat stone slab, worn smooth by time and scarred with ancient pitting. Hearthkin runes engraved deep into its surface, their edges aglow with faint emberlight when read, still radiating a quiet warmth. Soot-smudged fingerprints trail across the face — the marks of hands long vanished, as if the tale it tells was once traced in reverence, again and again."
+	name = "\improper 霜醒石碑"
+	desc = "一块平坦的石板，被时间磨得光滑，表面布满古老的凹坑。炉族符文深深镌刻其中，阅读时边缘泛着微弱的余烬之光，仍散发着静谧的温暖。烟灰沾染的指纹划过表面——那是早已消失之手的痕迹，仿佛它所讲述的故事曾被一遍又一遍地虔诚描摹。"
 	icon = 'modular_nova/modules/primitive_catgirls/icons/gods_statue.dmi' // needs its own sprite
 	icon_state = "runestone"
 	impressiveness = 30
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/statue/hearthkin/frozenwake/stele/dream
-	name = "stele of the dream"
+	name = "梦境石碑"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'In a season of shadowless sky, Baldr dreamt of his own demise. Kin gathered with worried breath, yet none could still the frost in his heart'."
 
 /obj/structure/statue/hearthkin/frozenwake/stele/oath
-	name = "stele of the oath of kin"
+	name = "族裔誓言石碑"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'All things that crawled or stood or flew were made to swear no harm. Stone, flame, beast, and breath — all but one'."
 
 /obj/structure/statue/hearthkin/frozenwake/stele/weeping_spear
-	name = "stele of the weeping spear"
+	name = "泣矛石碑"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'By a jest most cruel, the blind one threw — a lance of wood that wept no oath. It struck, and Baldr fell with no sound'."
 
 /obj/structure/statue/hearthkin/frozenwake/stele/mourning
-	name = "stele of  the mourning"
+	name = "哀悼石碑"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'The cavern shook. Ice wept. Kin wailed songs the winds remember. His brother, hooded in grief, struck silence into the halls of the betrayer'."
 
 /obj/structure/statue/hearthkin/frozenwake/stele/watch
-	name = "stele of  The Watch"
+	name = "守望石碑"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'Baldr was bound in a ring of runes. The cold held him, but the hearth remembered. One day, a voice may call him home'."
 
 /obj/structure/statue/hearthkin/frozenwake/puzzle/dreamer
-	name = "statue of the dreamer"
-	desc = "A noble Hearthkin with closed eyes, arms folded over his chest. A faint wisp curls from his brow like steam. Hearthkin runes are engraved on the base."
+	name = "梦者雕像"
+	desc = "一位高贵的炉族，双眼紧闭，双臂交叉于胸前。一缕微弱的雾气如蒸汽般从他额前盘旋升起。基座上刻有炉族符文。"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'He dreamed of a silence that could not be lifted.'"
 	puzzle_id = "dreamer"
 
 /obj/structure/statue/hearthkin/frozenwake/puzzle/circle
-	name = "statue of the circle of kin"
-	desc = "Multiple figures linked in a ring, palm to palm, beneath a looming sky. Hearthkin runes are engraved on the base"
+	name = "族裔之环雕像"
+	desc = "多个身影在低垂的天空下连接成环，手掌相抵。基座上刻有炉族符文。"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'They bound the world in oaths for his safety.'"
 	puzzle_id = "circle"
 
 /obj/structure/statue/hearthkin/frozenwake/puzzle/betrayer
-	name = "statue of the betrayer"
-	desc = "A blindfolded figure stands with arm outstretched, a wooden spear in hand. Their face is twisted in sorrow. Hearthkin runes are engraved on the base."
+	name = "背叛者雕像"
+	desc = "一个被蒙住双眼的身影站立着，手臂伸出，手持木矛。他们的面容因悲伤而扭曲。基座上刻有炉族符文。"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'One cast what he did not see.'"
 	puzzle_id = "betrayer"
 
 /obj/structure/statue/hearthkin/frozenwake/puzzle/fall
-	name = "statue of the fall of light"
-	desc = "A noble Hearthkin lies fallen, rays carved behind him like shattered halos. Runes spiral outward from his body. Hearthkin runes are engraved on the base."
+	name = "光陨之像"
+	desc = "一位高贵的炉心族人倒在地上，身后雕刻着如破碎光环般的光线。符文从他的身体向外螺旋延伸。基座上刻有炉心族符文。"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'The silence that followed was deeper than death.'"
 	puzzle_id = "fall"
 
 /obj/structure/statue/hearthkin/frozenwake/puzzle/avenger
-	name = "statue of the avenger"
-	desc = "A Hearthkin shrouded in a heavy hood, gripping an axe streaked with frost. Hearthkin runes are engraved on the base."
+	name = "复仇者之像"
+	desc = "一个炉心族人笼罩在厚重的兜帽下，紧握着一把带有霜痕的斧头。基座上刻有炉心族符文。"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'Grief made his hand swift.'"
 	puzzle_id = "avenger"
 
 /obj/structure/statue/hearthkin/frozenwake/puzzle/watcher
-	name = "statue of the tomb watcher"
-	desc = "A guardian carved with closed eyes, standing beside the frozen sword, a hand raised to the ceiling. Hearthkin runes are engraved on the base."
+	name = "墓穴守望者之像"
+	desc = "一位闭着眼睛的守护者雕像，站在冰封之剑旁，一只手举向天花板。基座上刻有炉心族符文。"
 	added_desc = "Your understanding of Ættmál lets you read the runes. 'He watches still.'"
 	puzzle_id = "watcher"
 
@@ -92,8 +92,8 @@
 		. += "<br>" + span_info(added_desc)
 
 /obj/structure/ice_stasis/frozenwake
-	name = "ice pillar"
-	desc = "Encased within a towering pillar of ancient ice stands a Hearthkin statue, solemn and proud. In its outstretched arms rests a greatsword, its blade wide and etched with runes that pulse faintly beneath the frost, like the heartbeat of a long-silenced memory. The hilt, wrapped in cracked leather, is held tight in stone hands weathered by time. Though imprisoned in stillness, both sword and statue seem to wait — not for freedom, but for remembrance."
+	name = "冰柱"
+	desc = "在古老的冰柱内，封存着一座炉心族雕像，肃穆而骄傲。它伸出的双臂中托着一把巨剑，剑身宽阔，剑刃上蚀刻的符文在冰霜下微弱地脉动，宛如一段久已沉寂记忆的心跳。包裹着开裂皮革的剑柄，被饱经风霜的石手紧紧握住。尽管被禁锢于静止之中，剑与雕像似乎都在等待——并非等待自由，而是等待被铭记。"
 	icon = 'icons/obj/science/slimecrossing.dmi'
 	icon_state = "frozen"
 	density = TRUE
@@ -151,7 +151,7 @@
 
 /obj/item/kinetic_crusher/runic_greatsword/vidrhefjandi
 	name = "viðrhefjandi"
-	desc = "This greatsword pulses faintly with emberlight. Its edge is inscribed in Hearthkin runes — a blade meant not for war, but remembrance. It feels warm in your grasp, like a forgotten promise."
+	desc = "这把巨剑微弱地脉动着余烬之光。其刃上铭刻着炉心族符文——一把并非为战争，而是为纪念而生的剑。握在手中感觉温暖，像一个被遗忘的承诺。"
 
 ///Breaks the ice and drops the sword if puzzle completed.
 /datum/frozenwake_puzzle/proc/trigger_success(success_area)
@@ -163,7 +163,7 @@
 	if (frozenwake_area.frozenwake_stasis_target)
 		var/turf/reward_loc = get_turf(frozenwake_area.frozenwake_stasis_target)
 		for (var/mob/emoted in view(7, reward_loc))
-			to_chat(emoted, span_notice("The ice cracks with a deep groan... and shatters!"))
+			to_chat(emoted, span_notice("冰层伴随着深沉的呻吟裂开……然后粉碎了！"))
 		qdel(frozenwake_area.frozenwake_stasis_target)
 		new /obj/item/kinetic_crusher/runic_greatsword/vidrhefjandi(reward_loc)
 
@@ -172,9 +172,9 @@
 	var/area/ruin/unpowered/frozenwake/puzzle_area = get_frozenwake_puzzle_area(src)
 	if (puzzle_area)
 		puzzle_area.frozenwake_puzzle_controller.register_click(puzzle_id, puzzle_area)
-		to_chat(user, "You touch the statue. The stone hums softly.")
+		to_chat(user, "你触摸了雕像。石头发出柔和的嗡鸣。")
 	else
-		to_chat(user, "DEBUG: Statue outside of puzzle area.")
+		to_chat(user, "调试：雕像位于谜题区域外。")
 
 
 //Initializing the glow for the steles.
@@ -197,8 +197,8 @@
 	)
 
 /mob/living/basic/ghost/swarm/frozenwake
-	name = "runebound echo"
-	desc = "A pale figure drifts silently through the frostbound halls. Faint, furred ears and a trailing tail mark it as once Hearthkin, though its steps follow a path long forgotten."
+	name = "符文束缚的回响"
+	desc = "一个苍白的身影无声地飘过冰封的大厅。模糊的毛茸茸耳朵和拖曳的尾巴表明它曾是炉心族人，尽管它的脚步正沿着一条早已被遗忘的道路前行。"
 	/// list of sayings that the echo can choose from
 	var/emotional_damage = list(
 		"The oath... it was broken...",
@@ -224,8 +224,8 @@
 	)
 
 /mob/living/basic/ghost/swarm/frozenwake/unproven
-	name = "small runebound echo"
-	desc = "This small, ghostly form flits between icy pillars, downy ears twitching and a thin tail curling behind it. It hums a tuneless melody, unaware of your presence."
+	name = "小型符文束缚的回响"
+	desc = "这个小小的幽灵形态在冰柱间穿梭，绒毛耳朵抽动着，细长的尾巴在身后卷曲。它哼着不成调的旋律，没有察觉到你的存在。"
 	emotional_damage = list(
 		"Where did the sun go?",
 		"He said he'd come back... he promised.",

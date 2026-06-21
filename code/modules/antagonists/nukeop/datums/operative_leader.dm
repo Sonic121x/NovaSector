@@ -1,5 +1,5 @@
 /datum/antagonist/nukeop/leader
-	name = "Nuclear Operative Leader"
+	name = "核弹特工队长"
 	nukeop_outfit = /datum/outfit/syndicate/leader
 	/// Whether to spawn the infiltrator
 	var/spawn_ship = TRUE
@@ -12,7 +12,7 @@
 	. = ..()
 	var/obj/item/paper/nuke_code_paper = new(get_turf(owner.current))
 	nuke_code_paper.add_raw_text("The nuclear authorization code is: <b>[nuke_team.memorized_code]</b>")
-	nuke_code_paper.name = "nuclear bomb code"
+	nuke_code_paper.name = "核弹密码"
 	nuke_code_paper.update_appearance()
 	owner.current.put_in_hands(nuke_code_paper)
 
@@ -50,8 +50,8 @@
 	var/randomname = pick(GLOB.last_names)
 	var/newname = tgui_input_text(
 		owner.current,
-		"You are the nuclear operative [title]. Please choose a last name for your family.",
-		"Name change",
+		"你是核行动特工[title]。请为你的家族选择一个姓氏。",
+		"更改姓名",
 		randomname,
 		max_length = MAX_NAME_LEN,
 	)

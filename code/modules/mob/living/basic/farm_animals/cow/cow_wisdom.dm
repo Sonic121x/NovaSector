@@ -1,7 +1,7 @@
 ///Wisdom cow, gives XP to a random skill and speaks wisdoms
 /mob/living/basic/cow/wisdom
-	name = "wisdom cow"
-	desc = "Known for its wisdom, shares it with all."
+	name = "智慧奶牛"
+	desc = "以智慧著称，与众人共享。"
 	gold_core_spawnable = FALSE
 	ai_controller = /datum/ai_controller/basic_controller/cow/wisdom
 	///The type of wisdom this cow will grant
@@ -17,7 +17,7 @@
 		src.granted_wisdom = pick(GLOB.skill_types)
 	src.granted_experience = granted_experience
 	if(granted_experience < 0)
-		name = "unwise cow"
+		name = "不明智的牛"
 
 /mob/living/basic/cow/wisdom/setup_eating()
 	return //cannot tame me! and I don't care about eatin' nothing, neither!
@@ -42,7 +42,7 @@
 ///Give intense wisdom to the attacker if they're being friendly about it
 /mob/living/basic/cow/wisdom/attack_hand(mob/living/carbon/user, list/modifiers)
 	if(!stat && !user.combat_mode)
-		to_chat(user, span_nicegreen("[src] whispers you some intense wisdoms and then disappears!"))
+		to_chat(user, span_nicegreen("[src] 向你低语了一些深刻的智慧，然后消失了！"))
 		user.mind?.adjust_experience(granted_wisdom, granted_experience)
 		do_smoke(1, src, get_turf(src))
 		qdel(src)

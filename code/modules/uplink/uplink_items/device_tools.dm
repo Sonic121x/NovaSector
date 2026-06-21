@@ -1,5 +1,5 @@
 /datum/uplink_category/device_tools
-	name = "Misc. Gadgets"
+	name = "杂项. 小工具"
 	weight = 3
 
 /datum/uplink_item/device_tools
@@ -111,7 +111,7 @@
 
 /datum/uplink_item/device_tools/military_belt
 	name = "Chest Rig"
-	desc = "A robust seven-slot set of webbing that is capable of holding all manner of tactical equipment."
+	desc = "一套强健的七槽织带，能够容纳各种战术装备。"
 	item = /obj/item/storage/belt/military
 	cost = 1
 
@@ -151,7 +151,7 @@
 
 /datum/uplink_item/device_tools/failsafe
 	name = "Failsafe Uplink Code"
-	desc = "When entered the uplink will self-destruct immediately."
+	desc = "一旦进入上行链路，它就会立即自行销毁。"
 	item = ABSTRACT_UPLINK_ITEM
 	cost = 1
 	surplus = 0
@@ -172,7 +172,7 @@
 	if(traitor_datum)
 		traitor_datum.antag_memory += "<b>Uplink Failsafe Code:</b> [code]" + "<br>"
 		traitor_datum.update_static_data_for_all_viewers()
-	to_chat(user, span_warning("The new failsafe code for this uplink is now: [code].[traitor_datum ? " You may check your antagonist info to recall this." : null]"))
+	to_chat(user, span_warning("这个上行链路的新故障安全代码现在是：[code].[traitor_datum ? " You may check your antagonist info to recall this." : null]"))
 	return source //For log icon
 
 /datum/uplink_item/device_tools/toolbox
@@ -194,7 +194,7 @@
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/device_tools/suspiciousphone
-	name = "Protocol CRAB-17 Phone"
+	name = "协议 CRAB-17 手机"
 	desc = "The Protocol CRAB-17 Phone, a phone borrowed from an unknown third party, it can be used to crash the space market, funneling the losses of the crew to your bank account.\
 	The crew can move their funds to a new banking site though, unless they HODL, in which case they deserve it."
 	item = /obj/item/suspiciousphone
@@ -244,13 +244,13 @@
 
 /datum/uplink_item/device_tools/hypnotic_flash
 	name = "Hypnotic Flash"
-	desc = "A modified flash able to hypnotize targets. If the target is not in a mentally vulnerable state, it will only confuse and pacify them temporarily."
+	desc = "一种经过改良的闪光装置，能够对目标进行催眠。但前提是目标必须处于精神脆弱的状态，否则它只会让目标暂时感到困惑和平静。"
 	item = /obj/item/assembly/flash/hypnotic
 	cost = 7
 
 /datum/uplink_item/device_tools/hypnotic_grenade
 	name = "Hypnotic Grenade"
-	desc = "A modified flashbang grenade able to hypnotize targets. The sound portion of the flashbang causes hallucinations, and will allow the flash to induce a hypnotic trance to viewers."
+	desc = "一种经过改良的闪光弹，能够对目标进行催眠。闪光弹中的声音部分会引发幻觉，并且能让观看者陷入催眠状态。"
 	item = /obj/item/grenade/hypnotic
 	cost = 12
 

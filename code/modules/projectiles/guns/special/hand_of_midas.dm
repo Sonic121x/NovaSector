@@ -1,8 +1,8 @@
 // Hand of Midas
 
 /obj/item/gun/magic/midas_hand
-	name = "The Hand of Midas"
-	desc = "An ancient Egyptian matchlock pistol imbued with the powers of the Greek King Midas. Don't question the cultural or religious implications of this."
+	name = "弥达斯之手"
+	desc = "一把注入了希腊国王弥达斯力量的古埃及火绳手枪。别质疑这其中的文化或宗教含义。"
 	ammo_type = /obj/item/ammo_casing/magic/midas_round
 	icon_state = "midas_hand"
 	inhand_icon_state = "gun"
@@ -28,13 +28,13 @@
 /obj/item/gun/magic/midas_hand/examine(mob/user)
 	. = ..()
 	var/gold_time_converted = gold_time_convert()
-	. += span_notice("Your next shot will inflict [gold_time_converted] second[gold_time_converted == 1 ? "" : "s"] of Midas Blight.")
-	. += span_notice("Right-Click on enemies to drain gold from their bloodstreams to reload [src].")
-	. += span_notice("[src] can be reloaded using gold coins in a pinch.")
+	. += span_notice("你的下一次射击将施加 [gold_time_converted] 秒[gold_time_converted == 1 ? "" : "s"]的迈达斯枯萎。")
+	. += span_notice("右键点击敌人，从其血液中吸取黄金来为[src]重新装弹。")
+	. += span_notice("紧急情况下，可以使用金币为[src]重新装弹。")
 
 /obj/item/gun/magic/midas_hand/shoot_with_empty_chamber(mob/living/user)
 	. = ..()
-	balloon_alert(user, "not enough gold")
+	balloon_alert(user, "黄金不足")
 
 // Siphon gold from a victim, recharging our gun & removing their Midas Blight debuff in the process.
 /obj/item/gun/magic/midas_hand/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
@@ -49,13 +49,13 @@
 
 /obj/item/gun/magic/midas_hand/proc/suck_gold(mob/living/victim, mob/living/user)
 	if(victim == user)
-		balloon_alert(user, "can't siphon from self!")
+		balloon_alert(user, "无法从自身吸取！")
 		return ITEM_INTERACT_BLOCKING
 	if(!victim.reagents)
 		return ITEM_INTERACT_BLOCKING
 	var/gold_amount = victim.reagents.get_reagent_amount(/datum/reagent/gold, type_check = REAGENT_SUB_TYPE)
 	if(!gold_amount)
-		balloon_alert(user, "no gold in bloodstream!")
+		balloon_alert(user, "血液中没有黄金！")
 		return ITEM_INTERACT_BLOCKING
 	var/gold_beam = user.Beam(victim, icon_state = "drain_gold")
 	if(!do_after(
@@ -66,7 +66,7 @@
 		extra_checks = CALLBACK(src, PROC_REF(check_gold_range), user, victim),
 	))
 		qdel(gold_beam)
-		balloon_alert(user, "link broken!")
+		balloon_alert(user, "链接已断开！")
 		return ITEM_INTERACT_BLOCKING
 	handle_gold_charges(user, gold_amount)
 	victim.reagents.remove_reagent(/datum/reagent/gold, gold_amount, include_subtypes = TRUE)
@@ -78,7 +78,7 @@
 /obj/item/gun/magic/midas_hand/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(charges || gold_timer)
-		balloon_alert(user, "already loaded")
+		balloon_alert(user, "已经装填完毕")
 		return
 	if(istype(I, /obj/item/coin/gold))
 		handle_gold_charges(user, 1.5 SECONDS)
@@ -88,7 +88,7 @@
 /obj/item/gun/magic/midas_hand/proc/handle_gold_charges(user, gold_amount)
 	gold_timer += gold_amount
 	var/gold_time_converted = gold_time_convert()
-	balloon_alert(user, "[gold_time_converted] second[gold_time_converted == 1 ? "" : "s"]")
+	balloon_alert(user, "[gold_time_converted] 秒[gold_time_converted == 1 ? "" : "s"]")
 	if(!charges)
 		instant_recharge()
 
@@ -105,11 +105,11 @@
 		return
 
 	var/mob/living/carbon/human/victim = user
-	victim.visible_message(span_suicide("[victim] holds the barrel of [src] to [victim.p_their()] head, lighting the fuse. It looks like [user.p_theyre()] trying to commit suicide!"))
+	victim.visible_message(span_suicide("[victim]将[src]的枪口对准[victim.p_their()]头部，点燃了引信。看起来[user.p_theyre()]想要自杀！"))
 	if(!do_after(victim, 1.5 SECONDS))
 		return SHAME
 	playsound(src, 'sound/items/weapons/gun/rifle/shot.ogg', 75, TRUE)
-	to_chat(victim, span_danger("You don't even have the time to register the gunshot by the time your body has completely converted into a golden statue."))
+	to_chat(victim, span_danger("你的身体完全转化为黄金雕像时，甚至来不及意识到枪声。"))
 	var/newcolors = list(rgb(206, 164, 50), rgb(146, 146, 139), rgb(28,28,28), rgb(0,0,0))
 	victim.petrify(statue_timer = INFINITY, save_brain = FALSE, colorlist = newcolors)
 	playsound(victim, 'sound/effects/coin2.ogg', 75, TRUE)
@@ -122,8 +122,8 @@
 
 /// Turns people into gold
 /obj/projectile/magic/midas_round
-	name = "gold pellet"
-	desc = "A typical flintlock ball, save for the fact it's made of cursed Egyptian gold."
+	name = "黄金弹丸"
+	desc = "一颗典型的燧发枪弹丸，只不过它是由受诅咒的埃及黄金制成的。"
 	damage_type = BRUTE
 	damage = 10
 	stamina = 20

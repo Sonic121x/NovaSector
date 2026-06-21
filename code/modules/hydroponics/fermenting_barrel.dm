@@ -1,6 +1,6 @@
 /obj/structure/fermenting_barrel
-	name = "wooden barrel"
-	desc = "A large wooden barrel. You can ferment fruits and such inside it, or just use it to hold reagents."
+	name = "木桶"
+	desc = "一个大型木桶。你可以在里面发酵水果等物品，或者仅用它来盛装试剂。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barrel"
 	base_icon_state = "barrel"
@@ -53,9 +53,9 @@
 		if(fruit_count)
 			. += span_notice("It contains [fruit_count] fruit\s ready to be fermented.")
 			. += span_notice("[EXAMINE_HINT("Right-click")] to take them out of [src].")
-		. += span_notice("It is currently open, letting you fill it with fruits or reagents.")
+		. += span_notice("它目前是打开的，允许你向其中填充水果或试剂。")
 	else
-		. += span_notice("It is currently closed, letting it ferment fruits or draw reagents from its tap.")
+		. += span_notice("它目前是关闭的，允许其发酵水果或从其龙头抽取试剂。")
 
 /obj/structure/fermenting_barrel/attackby(obj/item/object, mob/user, list/modifiers, list/attack_modifiers)
 	if(open)
@@ -101,11 +101,11 @@
 		return .
 
 	if(!length(contents))
-		balloon_alert(user, "empty!")
+		balloon_alert(user, "空的！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	dump_contents()
-	balloon_alert(user, "emptied [src]")
+	balloon_alert(user, "清空了 [src]")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/fermenting_barrel/wrench_act(mob/living/user, obj/item/tool)
@@ -150,16 +150,16 @@
 /// Adds the fruit to the barrel to queue the fermentation
 /obj/structure/fermenting_barrel/proc/insert_fruit(mob/user, obj/item/food/grown/fruit, obj/item/storage/bag/plants/bag = null)
 	if(reagents.total_volume + potential_volume > reagents.maximum_volume)
-		balloon_alert(user, "it's full!")
+		balloon_alert(user, "已经满了！")
 		return FALSE
 	if(!fruit.can_distill)
-		balloon_alert(user, "can't ferment this!")
+		balloon_alert(user, "这个不能发酵！")
 		return FALSE
 	if(bag && !bag.atom_storage.attempt_remove(fruit, src))
-		balloon_alert(user, "can't take from bag!")
+		balloon_alert(user, "不能从包里拿！")
 		return FALSE
 	else if (!user.transferItemToLoc(fruit, src))
-		balloon_alert(user, "can't take fruit!")
+		balloon_alert(user, "不能拿水果！")
 		return FALSE
 	potential_volume += fruit.reagents.total_volume
 	return TRUE
@@ -205,8 +205,8 @@
 
 /// Lil gunpowder barrel fer pirates since it's a nice reagent holder
 /obj/structure/fermenting_barrel/gunpowder
-	name = "gunpowder barrel"
-	desc = "A large wooden barrel for holding gunpowder. You'll need to take from this to load the cannons."
+	name = "火药桶"
+	desc = "一个用于装火药的大木桶。你需要从中取火药来装填大炮。"
 	can_open = FALSE
 
 /obj/structure/fermenting_barrel/gunpowder/Initialize(mapload)
@@ -215,8 +215,8 @@
 
 /// Medieval pirates can have a barrel as a treat
 /obj/structure/fermenting_barrel/thermite
-	name = "thermite barrel"
-	desc = "A large wooden barrel for holding thermite. Use this to make a big flipping hole on walls."
+	name = "铝热剂桶"
+	desc = "一个用来盛放铝热剂的大型木桶。用它可以在墙上开个大洞。"
 	can_open = FALSE
 
 /obj/structure/fermenting_barrel/thermite/Initialize(mapload)

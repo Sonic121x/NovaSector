@@ -1,14 +1,14 @@
 // Simple hidden event that adds a few more latejoins and midrounds to the round
 // Keeps Greenshifts on their toes and prevents metagaming
 /datum/round_event_control/dynamic_tweak
-	name = "Dynamic Tweak"
+	name = "动态调整"
 	typepath = /datum/round_event/dynamic_tweak
 	weight = 10
 	max_occurrences = 1
 	earliest_start = 20 MINUTES
 	alert_observers = FALSE
 	category = EVENT_CATEGORY_INVASION
-	description = "Allows Dynamic to spawn another midround or latejoin. Gives some spice to Greenshifts."
+	description = "允许动态系统生成另一波中期或后期加入事件。为绿色轮班增添趣味。"
 
 /datum/round_event_control/dynamic_tweak/New()
 	. = ..()

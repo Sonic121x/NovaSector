@@ -14,7 +14,7 @@
 
 /datum/reagent/medicine/sansufentanyl_base
 	name = "Experimental Fentanyl Base"
-	description = "The secret base reagent used to create sansufentanyl. Developed by Interdyne Pharmacuticals, it is a closely held secret recipe."
+	description = "用于制造桑苏芬太尼的秘密基础试剂。由Interdyne制药公司开发，是其严格保密的配方。"
 	color = "#8659a6"
 	ph = 5
 	chemical_flags = REAGENT_NO_RANDOM_RECIPE

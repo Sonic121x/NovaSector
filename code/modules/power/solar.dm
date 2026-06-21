@@ -3,8 +3,8 @@
 #define PANEL_EDGE_Z_OFFSET (PANEL_Z_OFFSET - 2)
 
 /obj/machinery/power/solar
-	name = "solar panel"
-	desc = "A solar panel. Generates electricity when in contact with sunlight."
+	name = "太阳能板"
+	desc = "太阳能电池板.阳光照射时产生电能."
 	icon = 'icons/obj/machines/solar.dmi'
 	icon_state = "sp_base"
 	density = TRUE
@@ -102,7 +102,7 @@
 /obj/machinery/power/solar/crowbar_act(mob/user, obj/item/I)
 	if(I.use_tool(src, user, 0))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		user.visible_message(span_notice("[user] takes the glass off [src]."), span_notice("You take the glass off [src]."))
+		user.visible_message(span_notice("[user] 将玻璃从 [src] 上取下。"), span_notice("你将玻璃从 [src] 上取下。"))
 		deconstruct(TRUE)
 	return TRUE
 
@@ -257,8 +257,8 @@
 //
 
 /obj/item/solar_assembly
-	name = "solar panel assembly"
-	desc = "A solar panel assembly kit, allows constructions of a solar panel, or with a tracking circuit board, a solar tracker."
+	name = "太阳能板组件"
+	desc = "一款太阳能板组装套件，可用于组装太阳能板，或者搭配跟踪电路板，制成太阳能跟踪器。"
 	icon = 'icons/obj/machines/solar.dmi'
 	icon_state = "sp_base"
 	inhand_icon_state = "electropack"
@@ -294,21 +294,21 @@
 
 	if(item_used.tool_behaviour == TOOL_WRENCH && isturf(loc))
 		if(!solarturf.can_have_cabling()) //allows catwalks
-			balloon_alert(user, "can't secure in space!")
+			balloon_alert(user, "不能在太空中固定！")
 			return
 		for(var/obj/stuff_in_the_way in solarturf) //prevent anchoring on other machinery or solar assemblies
 			if(stuff_in_the_way == src)
 				continue
 			if(istype(stuff_in_the_way, /obj/item/solar_assembly) && stuff_in_the_way.anchored)
-				balloon_alert(user, "secured assembly in the way!")
+				balloon_alert(user, "有已固定的组件挡路！")
 				return
 			if((stuff_in_the_way.density) && !(stuff_in_the_way.flags_1 & ON_BORDER_1))
-				balloon_alert(user, "something in the way!")
+				balloon_alert(user, "有东西挡路！")
 				return
 		set_anchored(!anchored)
 		user.visible_message(
-			span_notice("[user] [anchored ? null : "un"]wrenches the solar assembly[anchored ? " into place" : null]."),
-			span_notice("You [anchored ? null : "un"]wrench the solar assembly[anchored ? " into place" : null]."),
+			span_notice("[user] [anchored ? null : "un"]用扳手固定了太阳能组件[anchored ? " into place" : null]。"),
+			span_notice("你[anchored ? null : "un"]用扳手固定了太阳能组件[anchored ? " into place" : null]。"),
 		)
 		item_used.play_tool_sound(src, 75)
 		return TRUE
@@ -318,22 +318,22 @@
 			new /obj/item/electronics/tracker(src.loc)
 			tracker = FALSE
 			update_appearance()
-			user.visible_message(span_notice("[user] takes out the electronics from the solar assembly."), span_notice("You take out the electronics from the solar assembly."))
+			user.visible_message(span_notice("[user]从太阳能组件中取出了电子元件。"), span_notice("你从太阳能组件中取出了电子元件。"))
 			return TRUE
 
 		//prevent construction if something dense's on our tile
 		if(solarturf.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-			balloon_alert(user, "something in the way!")
+			balloon_alert(user, "有东西挡路！")
 			return
 		if(!istype(item_used, /obj/item/stack/sheet/glass))
-			to_chat(user, span_warning("The tracker only accepts standard, un-reinforced glass."))
+			to_chat(user, span_warning("追踪器只接受标准、未强化的玻璃。"))
 			return
 		var/obj/item/stack/sheet/my_sheet = item_used
 		if(!my_sheet.use(2))
-			to_chat(user, span_warning("You don't have enough glass to complete the tracker."))
+			to_chat(user, span_warning("你没有足够的玻璃来完成追踪器。"))
 			return
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-		user.visible_message(span_notice("[user] places the glass on the solar assembly."),span_notice("You place the glass on the solar assembly."))
+		user.visible_message(span_notice("[user]将玻璃放置在太阳能组件上。"),span_notice("你将玻璃放置在太阳能组件上。"))
 		new /obj/machinery/power/tracker/(get_turf(src), src)
 		return TRUE
 
@@ -344,7 +344,7 @@
 			tracker = TRUE
 			update_appearance()
 			qdel(item_used)
-			user.visible_message(span_notice("[user] inserts the electronics into the solar assembly."), span_notice("You insert the electronics into the solar assembly."))
+			user.visible_message(span_notice("[user]将电子元件插入太阳能组件。"), span_notice("你将电子元件插入太阳能组件。"))
 			return TRUE
 
 	//make a list of all the glass
@@ -359,18 +359,18 @@
 		//items that arent used above, or arent usable glass will make it here.
 		//so we check if its reinfocred glass, or some other item
 		if(istype(item_used, /obj/item/stack/sheet/rglass) || istype(item_used, /obj/item/stack/sheet/plasmarglass))
-			to_chat(user, span_warning("The solar array will only accept glass or glass alloys that have not been reinforced."))
+			to_chat(user, span_warning("太阳能阵列只接受未经强化的玻璃或玻璃合金。"))
 		//an else statement can be put here if you want something to happen to all the misc items that make it this far
 		return
 
 	//prevent construction if something dense's on our tile
 	if(solarturf.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		balloon_alert(user, "something in the way!")
+		balloon_alert(user, "有东西挡路！")
 		return
 
 	if(is_glass_sheet(item_used))
 		if(!anchored)
-			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
+			to_chat(user, span_warning("你需要先固定组件才能添加玻璃。"))
 			return
 
 		var/list/glass_material_to_tier = list(
@@ -382,12 +382,12 @@
 
 		var/obj/item/stack/sheet/my_sheet = item_used
 		if(!my_sheet.use(2))
-			to_chat(user, span_warning("You need at least two sheets of glass to complete a solar panel!"))
+			to_chat(user, span_warning("你至少需要两块玻璃板才能完成一个太阳能板！"))
 			return
 
 		var/datum/material/glass_material = my_sheet.material_type
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-		user.visible_message(span_notice("[user] places the glass on the solar assembly."), span_notice("You place the glass on the solar assembly."))
+		user.visible_message(span_notice("[user]将玻璃放置在太阳能组件上。"), span_notice("你将玻璃放置在太阳能组件上。"))
 		var/obj/machinery/power/solar/mySolar = new /obj/machinery/power/solar(get_turf(src), src)
 		mySolar.power_tier = glass_material_to_tier[glass_material]
 		mySolar.material_type = glass_material
@@ -401,8 +401,8 @@
 //
 
 /obj/machinery/power/solar_control
-	name = "solar panel control"
-	desc = "A controller for solar panel arrays."
+	name = "太阳能板控制器"
+	desc = "太阳能板阵列的控制器。"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
@@ -562,7 +562,7 @@
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(I.use_tool(src, user, 20, volume=50))
 			if (src.machine_stat & BROKEN)
-				to_chat(user, span_notice("The broken glass falls out."))
+				to_chat(user, span_notice("碎玻璃掉出来了。"))
 				var/obj/structure/frame/computer/A = new /obj/structure/frame/computer( src.loc )
 				new /obj/item/shard( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new /obj/item/circuitboard/computer/solar_control( A )
@@ -574,7 +574,7 @@
 				A.set_anchored(TRUE)
 				qdel(src)
 			else
-				to_chat(user, span_notice("You disconnect the monitor."))
+				to_chat(user, span_notice("你断开了监视器的连接。"))
 				var/obj/structure/frame/computer/A = new /obj/structure/frame/computer( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new /obj/item/circuitboard/computer/solar_control( A )
 				for (var/obj/C in src)

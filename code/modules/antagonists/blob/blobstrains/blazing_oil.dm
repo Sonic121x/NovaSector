@@ -1,8 +1,8 @@
 
 //sets you on fire, does burn damage, explodes into flame when burnt, weak to water
 /datum/blobstrain/reagent/blazing_oil
-	name = "Blazing Oil"
-	description = "will do medium-high burn damage ignoring armor, and set targets on fire."
+	name = "Blazing Oil-燃油"
+	description = "将造成中高烧伤伤害（无视护甲），并使目标着火。"
 	effectdesc = "will also release bursts of flame when burnt, but takes damage from water."
 	analyzerdescdamage = "Does medium-high burn damage and sets targets on fire."
 	analyzerdesceffect = "Releases fire when burnt, but takes damage from water and other extinguishing liquids."
@@ -27,7 +27,7 @@
 	return ..()
 
 /datum/reagent/blob/blazing_oil
-	name = "Blazing Oil"
+	name = "Blazing Oil-燃油"
 	taste_description = "burning oil"
 	color = "#B68D00"
 

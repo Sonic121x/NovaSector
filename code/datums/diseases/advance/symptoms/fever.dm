@@ -9,8 +9,8 @@
  */
 
 /datum/symptom/fever
-	name = "Fever"
-	desc = "The virus causes a febrile response from the host, raising its body temperature."
+	name = "发烧"
+	desc = "该病毒会引起宿主的发热反应，使其体温升高。"
 	illness = "Burning Desire"
 	stealth = 0
 	resistance = 3

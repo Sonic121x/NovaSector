@@ -4,14 +4,14 @@
 
 // AAS
 /obj/machinery/announcement_system/tarkonize()
-	AddElement(/datum/element/manufacturer_examine, "It has <b>[span_brown("Tarkon Industries")]</b> logo on it.")
+	AddElement(/datum/element/manufacturer_examine, "上面有 <b>[span_brown("Tarkon Industries")]</b> 的标志。")
 	radio_type = /obj/item/radio/headset/tarkon/command
 	QDEL_NULL(radio)
 	radio = new radio_type(src)
 	// Tweaking defaults a bit (requires TGcode tweaks to take effect, will be done for upstream)
 	var/datum/aas_config_entry/config = locate(/datum/aas_config_entry/newhead) in config_entries
 	if (config)
-		config.announcement_lines_map = list("Message" = "%PERSON, %RANK now represents Tarkon interests on this facility.")
+		config.announcement_lines_map = list("消息" = "%PERSON，%RANK 现在代表塔肯的利益在此设施工作。")
 
 // Cryosleep consoles
 /obj/machinery/computer/cryopod/tarkonize()

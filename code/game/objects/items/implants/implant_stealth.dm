@@ -1,6 +1,6 @@
 /obj/item/implant/stealth
-	name = "S3 implant"
-	desc = "Allows you to be hidden in plain sight."
+	name = "S3植入体"
+	desc = "允许你在众目睽睽之下隐藏自己。"
 	actions_types = list(/datum/action/item_action/agent_box)
 
 	implant_info = "Activated manually. \
@@ -13,7 +13,7 @@
 		the camouflage system has to recalibrate to its surroundings. However, once calibrated, it is invisible to the naked eye."
 
 /obj/item/implanter/stealth
-	name = "implanter" // NOVA EDIT , was originaly implanter (stealth)
+	name = "植入器" // NOVA EDIT , was originaly implanter (stealth)
 	imp_type = /obj/item/implant/stealth
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // NOVA EDIT
 	special_desc = "A Syndicate implanter used for a stealth implant" // NOVA EDIT
@@ -21,8 +21,8 @@
 //Box Object
 
 /obj/structure/closet/cardboard/agent
-	name = "inconspicious box"
-	desc = "It's so normal that you didn't notice it before."
+	name = "不起眼的盒子"
+	desc = "它太普通了，以至于你之前都没注意到它。"
 	icon_state = "agentbox"
 	max_integrity = 1 // "This dumb box shouldn't take more than one hit to make it vanish."
 	move_speed_multiplier = parent_type::move_speed_multiplier // NOVA EDIT CHANGE - nerfs agent box granting you movement speed when hurt or wounded - ORIGINAL: move_speed_multiplier = 0.5

@@ -1,6 +1,6 @@
 ///Used to change name for apcs on away missions
 /obj/machinery/power/apc/worn_out
-	name = "Worn out APC"
+	name = "磨损的APC"
 
 /obj/machinery/power/apc/auto_name
 	auto_name = TRUE

@@ -1,6 +1,6 @@
 ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/target in world)
 	// NOVA EDIT ADDITION START
-	if(tgui_alert(user, "This interface is resource-intensive. Are you sure you want to open it? Tip: You can also Ctrl-click a ghost to access a lighter version.", "Server Resources Warning", list("No", "Yes", "Sorry")) != "Yes")
+	if(tgui_alert(user, "此界面资源消耗较大。确定要打开吗？提示：你也可以Ctrl+点击幽灵来访问一个轻量版本。", "服务器资源警告", list("No", "Yes", "Sorry")) != "Yes")
 		return
 	// NOVA EDIT ADDITION END
 	var/datum/select_equipment/ui = new(user, target)
@@ -37,7 +37,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/ta
 	user = CLIENT_FROM_VAR(_user)
 
 	if(!ishuman(target) && !isobserver(target))
-		tgui_alert(usr,"Invalid mob")
+		tgui_alert(usr,"无效生物")
 		return
 	target_mob = target
 
@@ -198,7 +198,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/ta
 
 /client/proc/admin_apply_outfit(mob/target, dresscode)
 	if(!ishuman(target) && !isobserver(target))
-		tgui_alert(usr,"Invalid mob")
+		tgui_alert(usr,"无效生物")
 		return
 
 	if(!dresscode)
@@ -211,7 +211,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/ta
 	else
 		human_target = target
 		if(human_target.l_store || human_target.r_store || human_target.s_store) //saves a lot of time for admins and coders alike
-			if(tgui_alert(usr,"Do you need the items in your pockets?", "Pocket Items", list("Delete Them", "Drop Them")) == "Delete Them")
+			if(tgui_alert(usr,"你需要口袋里的物品吗？", "口袋物品", list("Delete Them", "Drop Them")) == "Delete Them")
 				delete_pocket = TRUE
 
 	BLACKBOX_LOG_ADMIN_VERB("Select Equipment")
@@ -228,6 +228,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/ta
 	human_target.regenerate_icons()
 
 	log_admin("[key_name(usr)] changed the equipment of [key_name(human_target)] to [dresscode].")
-	message_admins(span_adminnotice("[key_name_admin(usr)] changed the equipment of [ADMIN_LOOKUPFLW(human_target)] to [dresscode]."))
+	message_admins(span_adminnotice("[key_name_admin(usr)] 将 [ADMIN_LOOKUPFLW(human_target)] 的装备更改为 [dresscode]。"))
 
 	return dresscode

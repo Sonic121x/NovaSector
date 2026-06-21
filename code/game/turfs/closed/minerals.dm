@@ -224,7 +224,7 @@
 
 /turf/closed/mineral/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers, exp_multiplier = 1)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
+		to_chat(usr, span_warning("你没有足够的灵巧度来做这个！"))
 		return
 
 	if(I.tool_behaviour != TOOL_MINING)
@@ -258,7 +258,7 @@
 	var/mining_speed = mining_arms ? tool_mine_speed : hand_mine_speed
 	TIMER_COOLDOWN_START(src, REF(user), mining_speed)
 	var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER) || 1
-	balloon_alert(user, "pulling out pieces...")
+	balloon_alert(user, "正在取出碎片...")
 	if(!do_after(user, mining_speed * skill_modifier, target = src))
 		TIMER_COOLDOWN_END(src, REF(user)) //if we fail we can start again immediately
 		return
@@ -308,7 +308,7 @@
 		return gets_drilled(user, exp_multiplier)
 
 /turf/closed/mineral/attack_alien(mob/living/carbon/alien/user, list/modifiers)
-	balloon_alert(user, "digging...")
+	balloon_alert(user, "挖掘中...")
 	playsound(src, 'sound/effects/break_stone.ogg', 50, TRUE)
 	if(do_after(user, tool_mine_speed, target = src))
 		gets_drilled(user)
@@ -661,7 +661,7 @@
 	)
 
 /turf/closed/mineral/random/snow
-	name = "snowy mountainside"
+	name = "被雪覆盖的山坡"
 	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
@@ -758,7 +758,7 @@
 
 // Subtypes for mappers placing ores manually.
 /turf/closed/mineral/random/labormineral/ice
-	name = "snowy mountainside"
+	name = "被雪覆盖的山坡"
 	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
@@ -971,7 +971,7 @@
 
 /// Wall piece
 /turf/closed/mineral/ash_rock
-	name = "rock"
+	name = "岩石"
 	icon = 'icons/turf/mining.dmi'
 	icon = MAP_SWITCH('icons/turf/walls/rock_wall.dmi', 'icons/turf/mining.dmi')
 	icon_state = "rock2"
@@ -985,7 +985,7 @@
 	rust_resistance = RUST_RESISTANCE_ORGANIC
 
 /turf/closed/mineral/snowmountain
-	name = "snowy mountainside"
+	name = "被雪覆盖的山坡"
 	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
@@ -1008,7 +1008,7 @@
 	baseturfs = /turf/open/misc/asteroid/snow/icemoon/do_not_scrape
 
 /turf/closed/mineral/snowmountain/cavern
-	name = "ice cavern rock"
+	name = "冰洞岩石"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	icon_state = "icerock"
 	base_icon_state = "icerock_wall"
@@ -1030,7 +1030,7 @@
 //yoo RED ROCK RED ROCK
 
 /turf/closed/mineral/asteroid
-	name = "iron rock"
+	name = "铁质岩石"
 	icon = MAP_SWITCH('icons/turf/walls/red_rock.dmi', 'icons/turf/mining.dmi')
 	icon_state = "red_rock"
 	base_icon_state = "red_rock"
@@ -1041,7 +1041,7 @@
 	wall_icon_state = "red_rock"
 
 /turf/closed/mineral/random/stationside/asteroid
-	name = "iron rock"
+	name = "铁质岩石"
 	icon = MAP_SWITCH('icons/turf/walls/red_rock.dmi', 'icons/turf/mining.dmi')
 	icon_state = "red_rock"
 	base_icon_state = "red_rock"
@@ -1051,13 +1051,13 @@
 	wall_icon_state = "red_rock"
 
 /turf/closed/mineral/random/stationside/asteroid/porus
-	name = "porous iron rock"
-	desc = "This rock is filled with pockets of breathable air."
+	name = "多孔铁质岩石"
+	desc = "岩石中充满了存有可供呼吸的空气的空洞。"
 	baseturfs = /turf/open/misc/asteroid
 
 /turf/closed/mineral/asteroid/porous
-	name = "porous rock"
-	desc = "This rock is filled with pockets of breathable air."
+	name = "多孔岩石"
+	desc = "岩石中充满了存有可供呼吸的空气的空洞。"
 	baseturfs = /turf/open/misc/asteroid
 
 //GIBTONITE
@@ -1079,16 +1079,16 @@
 /turf/closed/mineral/gibtonite/attackby(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers, exp_multiplier = 1)
 	var/previous_stage = stage
 	if(istype(attacking_item, /obj/item/goliath_infuser_hammer) && stage == GIBTONITE_ACTIVE)
-		user.visible_message(span_notice("[user] digs [attacking_item] to [src]..."), span_notice("Your tendril hammer instictively digs and wraps around [src] to stop it..."))
+		user.visible_message(span_notice("[user] 将 [attacking_item] 掘向 [src]..."), span_notice("你的触须锤本能地挖掘并缠绕住 [src] 以阻止它..."))
 		defuse(user)
 	else if(istype(attacking_item, /obj/item/mining_scanner) || istype(attacking_item, /obj/item/t_scanner/adv_mining_scanner) && stage == GIBTONITE_ACTIVE)
-		user.visible_message(span_notice("[user] holds [attacking_item] to [src]..."), span_notice("You use [attacking_item] to locate where to cut off the chain reaction and attempt to stop it..."))
+		user.visible_message(span_notice("[user] 将 [attacking_item] 抵在 [src] 上..."), span_notice("你使用 [attacking_item] 定位连锁反应的切断点并试图阻止它..."))
 		defuse(user)
 	. = ..()
 	if(istype(attacking_item, /obj/item/clothing/gloves/gauntlets) && previous_stage == GIBTONITE_UNSTRUCK && stage == GIBTONITE_ACTIVE && istype(user))
 		user.Immobilize(0.5 SECONDS)
 		user.throw_at(get_ranged_target_turf(src, get_dir(src, user), 5), range = 5, speed = 3, spin = FALSE)
-		user.visible_message(span_danger("[user] hit gibtonite with [attacking_item.name], launching [user.p_them()] back!"), span_danger("You've struck gibtonite! Your [attacking_item.name] launched you back!"))
+		user.visible_message(span_danger("[user] 用 [attacking_item.name] 击中了吉布奈特，将 [user.p_them()] 炸飞了！"), span_danger("你击中了吉布奈特！你的 [attacking_item.name] 把你炸飞了！"))
 
 /turf/closed/mineral/gibtonite/proc/explosive_reaction(mob/user = null)
 	if(stage != GIBTONITE_UNSTRUCK)
@@ -1098,10 +1098,10 @@
 	activated_overlay.pixel_x = 2
 	activated_overlay.pixel_y = 2
 	add_overlay(activated_overlay)
-	name = "gibtonite deposit"
-	desc = "An active gibtonite reserve. Run!"
+	name = "爆裂闪矿沉积物"
+	desc = "一片活跃的爆裂闪矿矿藏,快跑!"
 	stage = GIBTONITE_ACTIVE
-	visible_message(span_danger("There's gibtonite inside! It's going to explode!"))
+	visible_message(span_danger("里面嵌有爆裂闪矿！它要炸了！"))
 
 	var/notify_admins = !is_mining_level(z)
 
@@ -1134,11 +1134,11 @@
 	cut_overlay(activated_overlay)
 	activated_overlay.icon_state = "rock_Gibtonite_inactive"
 	add_overlay(activated_overlay)
-	desc = "An inactive gibtonite reserve. The ore can be extracted."
+	desc = "一片不活跃的爆裂闪矿矿藏,其矿石可以被提取。"
 	stage = GIBTONITE_STABLE
 	if(det_time < 0)
 		det_time = 0
-	visible_message(span_notice("The chain reaction stopped! The gibtonite had [det_time] reactions left till the explosion!"))
+	visible_message(span_notice("链式反应停止了！爆裂闪矿距离爆炸还有[det_time]反应倒计时！"))
 	if(defuser)
 		SEND_SIGNAL(defuser, COMSIG_LIVING_DEFUSED_GIBTONITE, det_time)
 
@@ -1225,7 +1225,7 @@
 
 /turf/closed/mineral/strong
 	name = "very strong rock"
-	desc = "Seems to be stronger than the other rocks in the area. Only a master of mining techniques could destroy this."
+	desc = "似乎比该地区的其他岩石更坚固。只有采矿技术高手才能摧毁它。"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -1236,12 +1236,12 @@
 
 /turf/closed/mineral/strong/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers, exp_multiplier = 1)
 	if(!ishuman(user))
-		to_chat(usr, span_warning("Only a more advanced species could break a rock such as this one!"))
+		to_chat(usr, span_warning("只有更先进的种族才能打破这样的岩石！"))
 		return FALSE
 	if(user.mind?.get_skill_level(/datum/skill/mining) >= SKILL_LEVEL_MASTER)
 		. = ..()
 	else
-		to_chat(usr, span_warning("The rock seems to be too strong to destroy. Maybe I can break it once I become a master miner."))
+		to_chat(usr, span_warning("这块岩石似乎过于坚硬而无法破坏。也许等我成为采矿大师后就能打破它了。"))
 
 
 /turf/closed/mineral/strong/gets_drilled(mob/user, exp_multiplier = 0)

@@ -1,6 +1,6 @@
 /obj/machinery/chem_mass_spec
-	name = "high-performance liquid chromatography machine"
-	desc = "Allows you to purify reagents & separate out inverse reagents"
+	name = "高效液相色谱仪"
+	desc = "允许你提纯试剂并分离出逆反应试剂"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "HPLC"
 	base_icon_state = "HPLC"
@@ -88,23 +88,23 @@
 	. = ..()
 
 	if(!QDELETED(beaker1))
-		. += span_notice("Input beaker of [beaker1.reagents.maximum_volume]u capacity is inserted.")
-		. += span_notice("Its Input beaker Can be ejected with [EXAMINE_HINT("LMB Alt")] click.")
+		. += span_notice("已插入容量为[beaker1.reagents.maximum_volume]u的输入烧杯。")
+		. += span_notice("它的输入烧瓶可以通过[EXAMINE_HINT("LMB Alt")]点击弹出。")
 	else
 		. += span_warning("Its missing an input beaker. insert with [EXAMINE_HINT("Left Click")].")
 	if(!QDELETED(beaker2))
-		. += span_notice("Output beaker of [beaker2.reagents.maximum_volume]u capacity is inserted.")
-		. += span_notice("Its Output beaker can be ejected with [EXAMINE_HINT("RMB Alt")] click.")
+		. += span_notice("容量为[beaker2.reagents.maximum_volume]u的输出烧瓶已插入。")
+		. += span_notice("它的输出烧瓶可以通过[EXAMINE_HINT("RMB Alt")]点击弹出。")
 	else
-		. += span_warning("Its missing an output beaker, insert with [EXAMINE_HINT("Right Click")].")
+		. += span_warning("它缺少一个输出烧瓶，请用[EXAMINE_HINT("Right Click")]插入。")
 
 	if(anchored)
-		. += span_notice("Its [EXAMINE_HINT("anchored")] in place.")
+		. += span_notice("它已[EXAMINE_HINT("anchored")]就位。")
 	else
-		. += span_warning("Needs to be [EXAMINE_HINT("wrenched")] to use.")
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+		. += span_warning("需要[EXAMINE_HINT("wrenched")]才能使用。")
+	. += span_notice("它的维护区面板可以[EXAMINE_HINT("screwed")][panel_open ? "closed" : "open"]。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("它可以被[EXAMINE_HINT("pried")]开。")
 
 /obj/machinery/chem_mass_spec/update_overlays()
 	. = ..()
@@ -147,7 +147,7 @@
 
 /obj/machinery/chem_mass_spec/item_interaction(mob/living/user, obj/item/item, list/modifiers)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!item.can_insert_container(user, src))
@@ -157,7 +157,7 @@
 	if(!replace_beaker(user, !is_right_clicking, item))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You add [item] to [is_right_clicking ? "output" : "input"] slot."))
+	to_chat(user, span_notice("你将[item]添加到[is_right_clicking ? "output" : "input"]槽位。"))
 	update_appearance()
 	ui_interact(user)
 
@@ -166,7 +166,7 @@
 /obj/machinery/chem_mass_spec/wrench_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return .
 
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
@@ -174,14 +174,14 @@
 
 /obj/machinery/chem_mass_spec/screwdriver_act(mob/living/user, obj/item/tool)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/chem_mass_spec/crowbar_act(mob/living/user, obj/item/tool)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)
@@ -447,14 +447,14 @@
 
 /obj/machinery/chem_mass_spec/click_alt(mob/living/user)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return CLICK_ACTION_BLOCKING
 	replace_beaker(user, TRUE)
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/chem_mass_spec/click_alt_secondary(mob/living/user)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return
 	replace_beaker(user, FALSE)
 

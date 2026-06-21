@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/phazon
-	desc = "This is a Phazon exosuit. The pinnacle of scientific research and pride of Nanotrasen, it uses cutting edge anomalous technology and expensive materials."
-	name = "\improper Phazon"
+	desc = "这是一台法赞外骨骼。它是科学研究的顶峰，也是纳米传讯公司的骄傲，运用了尖端的异常技术和昂贵的材料。"
+	name = "\improper 法宗"
 	icon_state = "phazon"
 	base_icon_state = "phazon"
 	movedelay = 2
@@ -38,7 +38,7 @@
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_switch_damtype)
 
 /datum/action/vehicle/sealed/mecha/mech_switch_damtype
-	name = "Reconfigure arm microtool arrays"
+	name = "重新配置手臂工具阵列"
 	button_icon_state = "mech_damtype_brute"
 
 /datum/action/vehicle/sealed/mecha/mech_switch_damtype/Trigger(mob/clicker, trigger_flags)
@@ -51,20 +51,20 @@
 	switch(chassis.damtype)
 		if(TOX)
 			new_damtype = BRUTE
-			chassis.balloon_alert(owner, "your punches will now deal brute damage")
+			chassis.balloon_alert(owner, "你的拳击现在将造成钝击伤害")
 		if(BRUTE)
 			new_damtype = BURN
-			chassis.balloon_alert(owner, "your punches will now deal burn damage")
+			chassis.balloon_alert(owner, "你的拳头现在会造成灼烧伤害")
 		if(BURN)
 			new_damtype = TOX
-			chassis.balloon_alert(owner,"your punches will now deal toxin damage")
+			chassis.balloon_alert(owner,"你的拳头现在会造成毒素伤害")
 	chassis.damtype = new_damtype
 	button_icon_state = "mech_damtype_[new_damtype]"
 	playsound(chassis, 'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
 	build_all_button_icons()
 
 /datum/action/vehicle/sealed/mecha/mech_toggle_phasing
-	name = "Toggle Phasing"
+	name = "切换相位"
 	button_icon_state = "mech_phasing_off"
 
 /datum/action/vehicle/sealed/mecha/mech_toggle_phasing/Trigger(mob/clicker, trigger_flags)
@@ -75,5 +75,5 @@
 		return
 	chassis.phasing = chassis.phasing ? "" : "phasing"
 	button_icon_state = "mech_phasing_[chassis.phasing ? "on" : "off"]"
-	chassis.balloon_alert(owner, "[chassis.phasing ? "enabled" : "disabled"] phasing")
+	chassis.balloon_alert(owner, "[chassis.phasing ? "enabled" : "disabled"] 相位移动")
 	build_all_button_icons()

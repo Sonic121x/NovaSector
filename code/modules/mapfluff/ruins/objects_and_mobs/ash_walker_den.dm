@@ -1,8 +1,8 @@
 #define ASH_WALKER_SPAWN_THRESHOLD 2
 //The ash walker den consumes corpses or unconscious mobs to create ash walker eggs. For more info on those, check ghost_role_spawners.dm
 /obj/structure/lavaland/ash_walker
-	name = "necropolis tendril nest"
-	desc = "A vile tendril of corruption. It's surrounded by a nest of rapidly growing eggs..."
+	name = "灰烬墓地触须巢"
+	desc = "邪恶的腐败卷须。它周围是一窝快速生长的蛋"
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "ash_walker_nest"
 
@@ -53,18 +53,18 @@
 
 			if(issilicon(offeredmob)) //no advantage to sacrificing borgs...
 				offeredmob.investigate_log("has been gibbed by the necropolis tendril.", INVESTIGATE_DEATHS)
-				visible_message(span_notice("Serrated tendrils eagerly pull [offeredmob] apart, but find nothing of interest."))
+				visible_message(span_notice("锯齿状的触须急切地将 [offeredmob] 撕开，但没发现什么有趣的东西。"))
 				offeredmob.gib()
 				return
 
 			if(offeredmob.mind?.has_antag_datum(/datum/antagonist/ashwalker) && (offeredmob.ckey || offeredmob.get_ghost(FALSE, TRUE))) //special interactions for dead lava lizards with ghosts attached
-				visible_message(span_warning("Serrated tendrils carefully pull [offeredmob] to [src], absorbing the body and creating it anew."))
+				visible_message(span_warning("锯齿状的触须小心地将 [offeredmob] 拉向 [src]，吸收其身体并重塑一新。"))
 				var/mob/deadmob
 				if(offeredmob.ckey)
 					deadmob = offeredmob
 				else
 					deadmob = offeredmob.get_ghost(FALSE, TRUE)
-				to_chat(deadmob, "Your body has been returned to the nest. You are being remade anew, and will awaken shortly. </br><b>Your memories will remain intact in your new body, as your soul is being salvaged</b>")
+				to_chat(deadmob, "你的身体已被送回巢穴。你正在被重塑，很快就会醒来。</br><b>你的记忆将在新身体中保留，因为你的灵魂正在被回收</b>")
 				SEND_SOUND(deadmob, sound('sound/effects/magic/enter_blood.ogg',volume=100))
 				addtimer(CALLBACK(src, PROC_REF(remake_walker), offeredmob), 20 SECONDS)
 				offeredmob.forceMove(src)
@@ -74,13 +74,13 @@
 				meat_counter += 20
 			else
 				meat_counter++
-			visible_message(span_warning("Serrated tendrils eagerly pull [offeredmob] to [src], tearing the body apart as its blood seeps over the eggs."))
+			visible_message(span_warning("锯齿状的触须急切地将 [offeredmob] 拉向 [src]，将身体撕碎，鲜血渗入蛋中。"))
 			playsound(get_turf(src),'sound/effects/magic/demon_consume.ogg', 100, TRUE)
 			var/deliverykey = offeredmob.fingerprintslast //ckey of whoever brought the body
 			var/mob/living/deliverymob = get_mob_by_key(deliverykey) //mob of said ckey
 			//there is a 40% chance that the Lava Lizard unlocks their respawn with each sacrifice
 			if(deliverymob && (deliverymob.mind?.has_antag_datum(/datum/antagonist/ashwalker)) && (deliverykey in ashies.players_spawned) && (prob(40)))
-				to_chat(deliverymob, span_warning("<b>The Necropolis is pleased with your sacrifice. You feel confident your existence after death is secure.</b>"))
+				to_chat(deliverymob, span_warning("<b>死寂之城对你的献祭感到满意。你确信自己死后的存在是安全的。</b>"))
 				ashies.players_spawned -= deliverykey
 			offeredmob.investigate_log("has been gibbed by the necropolis tendril.", INVESTIGATE_DEATHS)
 			offeredmob.gib(DROP_ALL_REMAINS)
@@ -102,20 +102,20 @@
 	newwalker.remove_language(/datum/language/common)
 	oldmob.mind.transfer_to(newwalker)
 	newwalker.mind.grab_ghost()
-	to_chat(newwalker, "<b>You have been pulled back from beyond the grave, with a new body and renewed purpose. Glory to the Necropolis!</b>")
+	to_chat(newwalker, "<b>你已从坟墓之外被拉回，获得了一具新的身体和崭新的目标。荣耀归于死寂之城！</b>")
 	playsound(get_turf(newwalker),'sound/effects/magic/exit_blood.ogg', 100, TRUE)
 	qdel(oldmob)
 
 /obj/structure/lavaland/ash_walker/proc/spawn_mob()
 	if(meat_counter >= ASH_WALKER_SPAWN_THRESHOLD)
 		new /obj/effect/mob_spawn/ghost_role/human/ash_walker(get_step(loc, pick(GLOB.alldirs)), ashies)
-		visible_message(span_danger("One of the eggs swells to an unnatural size and tumbles free. It's ready to hatch!"))
+		visible_message(span_danger("其中一颗蛋膨胀到不自然的尺寸并滚落下来。它准备好孵化了！"))
 		meat_counter -= ASH_WALKER_SPAWN_THRESHOLD
 		ashies.eggs_created++
 
 /obj/structure/lavaland/ash_walker_fake
-	name = "necropolis tendril nest"
-	desc = "A vile tendril of corruption. It's surrounded by a nest of rapidly growing eggs..."
+	name = "灰烬墓地触须巢"
+	desc = "邪恶的腐败卷须。它周围是一窝快速生长的蛋"
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "ash_walker_nest"
 	move_resist = INFINITY

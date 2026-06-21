@@ -1,7 +1,7 @@
 //This one's from bay12
 /obj/machinery/vending/engineering
-	name = "\improper Robco Tool Maker"
-	desc = "Everything you need for do-it-yourself station repair."
+	name = "\improper 机械人工具售货机"
+	desc = "你自己动手修理车站所需要的一切。"
 	icon_state = "engi"
 	icon_deny = "engi-deny"
 	panel_type = "panel10"

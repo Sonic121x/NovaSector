@@ -1,6 +1,6 @@
 /// Space antagonist that murders everyone in space and nearby it using the power of loads of fire
 /datum/antagonist/sunwalker
-	name = "\improper Sunwalker"
+	name = "\improper 日行者"
 	antagpanel_category = ANTAG_GROUP_ABOMINATIONS
 	pref_flag = ROLE_SUNWALKER
 

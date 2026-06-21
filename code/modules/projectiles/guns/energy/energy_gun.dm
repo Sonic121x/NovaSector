@@ -1,6 +1,6 @@
 /obj/item/gun/energy/e_gun
-	name = "energy gun"
-	desc = "A basic hybrid energy gun with two settings: disable and kill."
+	name = "能量枪"
+	desc = "一把基本的混合能量枪，有两个设定：失能和杀伤。"
 	icon_state = "energy"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = null //so the human update icon uses the icon_state instead.
@@ -30,8 +30,8 @@
 		overlay_y = 10)
 
 /obj/item/gun/energy/e_gun/mini
-	name = "miniature energy gun"
-	desc = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: disable and kill."
+	name = "小型能量枪"
+	desc = "一把小型手枪尺寸的能量枪，带内置手电筒。它有两个模式：失能和杀伤。"
 	icon_state = "mini"
 	inhand_icon_state = "gun"
 	w_class = WEIGHT_CLASS_SMALL
@@ -51,22 +51,22 @@
 		overlay_y = 13)
 
 /obj/item/gun/energy/e_gun/stun
-	name = "tactical energy gun"
-	desc = "Military issue energy gun, is able to fire stun rounds."
+	name = "战术能量枪"
+	desc = "军用能量枪，能够发射电击弹。"
 	icon_state = "energytac"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/spec, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/e_gun/old
-	name = "prototype energy gun"
-	desc = "NT-P:01 Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command."
+	name = "原型能量枪"
+	desc = "NT-P:01 原型能量枪。早期开发阶段的一种独特镭射步枪，配备多功能能量透镜，使枪能够根据指令改变所发射镭射的形态。"
 	icon_state = "protolaser"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/electrode/old)
 
 /obj/item/gun/energy/e_gun/mini/practice_phaser
-	name = "practice phaser"
-	desc = "A modified version of the basic phaser gun, this one fires less concentrated energy bolts designed for target practice."
+	name = "练习相位枪"
+	desc = "这是基本相位能量枪的改良版本，发射的能量弹较为分散，专为靶场练习设计。"
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/practice)
 	icon_state = "decloner"
 	//You have no icons for energy types, you're a decloner
@@ -74,8 +74,8 @@
 	gun_flags = NOT_A_REAL_GUN
 
 /obj/item/gun/energy/e_gun/hos
-	name = "\improper X-01 MultiPhase Energy Gun"
-	desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to self-charge quite as fast over time." // NOVA EDIT CHANGE - ORIGINAL: desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time."
+	name = "\improper X-01 多相能量枪"
+	desc = "这是一款昂贵的、对古董激光枪的现代复刻品。这把枪拥有多种独特的射击模式，但缺乏随时间自我充电的能力，充电速度较慢。" // NOVA EDIT CHANGE - ORIGINAL: desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time."
 	cell_type = /obj/item/stock_parts/power_store/cell/hos_gun
 	icon_state = "hoslaser"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -86,7 +86,7 @@
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 
 /obj/item/gun/energy/e_gun/dragnet
-	name = "\improper DRAGnet translocation shotgun"
+	name = "\improper DRAGnet 传送霰弹枪"
 	desc = "The \"Dynamic Rapid-Apprehension of the Guilty Network\" translocation shotgun (or DRAGnet for short) is a revolution in law enforcement technology. \
 		By syncing the weapon to a DRAGnet beacon, the bluespace transportation fields produced by the weapon's 'snare' function can rapidly exfiltrate an entire \
 		security squad, with criminal in tow. Otherwise, the weapon is an entirely nonlethal apprehension tool. Exceptionally useful for nonlethal close-quarters battle."
@@ -117,24 +117,24 @@
 /obj/item/gun/energy/e_gun/dragnet/proc/link_beacon(mob/living/user, obj/item/dragnet_beacon/our_beacon)
 	if(linked_beacon)
 		if(our_beacon == linked_beacon)
-			balloon_alert(user, "already synced!")
+			balloon_alert(user, "已同步！")
 			return
 		else
 			UnregisterSignal(linked_beacon, COMSIG_QDELETING) //You're getting overridden dude.
 
 	linked_beacon = our_beacon
-	balloon_alert(user, "beacon synced")
+	balloon_alert(user, "信标已同步")
 	RegisterSignal(our_beacon, COMSIG_QDELETING, PROC_REF(handle_beacon_disable))
 
 ///Handles clearing the linked_beacon reference in the event that it is deleted.
 /obj/item/gun/energy/e_gun/dragnet/proc/handle_beacon_disable(datum/source)
 	SIGNAL_HANDLER
-	visible_message(span_warning("A light on the [src] flashes, indicating that it is no longer linked with a DRAGnet beacon!"))
+	visible_message(span_warning("[src]上的指示灯闪烁，表明它不再与DRAGnet信标链接！"))
 	linked_beacon = null
 
 /obj/item/gun/energy/e_gun/turret
-	name = "hybrid turret gun"
-	desc = "A heavy hybrid energy cannon with two settings: Stun and kill."
+	name = "混合炮塔枪"
+	desc = "一种强大的混合型能量炮，有两种设置模式：致晕模式和杀伤模式。"
 	icon_state = "turretlaser"
 	inhand_icon_state = "turretlaser"
 	slot_flags = null
@@ -148,8 +148,8 @@
 	return
 
 /obj/item/gun/energy/e_gun/nuclear
-	name = "advanced energy gun"
-	desc = "An energy gun with an experimental miniaturized nuclear reactor that automatically charges the internal power cell."
+	name = "高级能量枪"
+	desc = "一种带有实验性微型核反应堆的能量枪，可以自动为内部电池进行充电."
 	icon_state = "nucgun"
 	inhand_icon_state = "nucgun"
 	charge_delay = 10
@@ -184,12 +184,12 @@
 			if(0 to 200)
 				fail_tick += (2*(fail_chance))
 				M.adjust_fire_loss(3)
-				to_chat(M, span_userdanger("Your [name] feels warmer."))
+				to_chat(M, span_userdanger("你的[name]感觉变热了。"))
 			if(201 to INFINITY)
 				SSobj.processing.Remove(src)
 				M.adjust_fire_loss(10)
 				reactor_overloaded = TRUE
-				to_chat(M, span_userdanger("Your [name]'s reactor overloads!"))
+				to_chat(M, span_userdanger("你的[name]反应堆过载了！"))
 
 /obj/item/gun/energy/e_gun/nuclear/emp_act(severity)
 	. = ..()

@@ -8,7 +8,7 @@
 /datum/surgery_operation/basic/tend_wounds
 	name = "tend wounds"
 	rnd_name = "Tend Wounds"
-	desc = "Perform superficial wound care on a patient's bruises and burns."
+	desc = "对患者的瘀伤和烧伤进行浅表伤口护理。"
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_SCREWDRIVER = 1.5,
@@ -33,7 +33,7 @@
 	var/healing_multiplier = 0.07
 
 /datum/surgery_operation/basic/tend_wounds/all_required_strings()
-	return ..() + list("the patient must have brute or burn damage")
+	return ..() + list("患者必须有钝器伤或烧伤")
 
 /datum/surgery_operation/basic/tend_wounds/state_check(mob/living/patient)
 	return patient.get_brute_loss() > 0 || patient.get_fire_loss() > 0
@@ -50,7 +50,7 @@
 			all_healing = new()
 			all_healing.image = image(/obj/item/storage/medkit/advanced)
 			all_healing.name = "tend bruises and burns"
-			all_healing.info = "Heal a patient's superficial bruises, cuts, and burns."
+			all_healing.info = "治疗患者表层的瘀伤、割伤和烧伤。"
 			LAZYSET(cached_healing_options, "[COMBO_SURGERY]", all_healing)
 
 		options[all_healing] = list(
@@ -67,7 +67,7 @@
 			brute_healing = new()
 			brute_healing.image = image(/obj/item/storage/medkit/brute)
 			brute_healing.name = "tend bruises"
-			brute_healing.info = "Heal a patient's superficial bruises and cuts."
+			brute_healing.info = "治疗患者表层的瘀伤和割伤。"
 			LAZYSET(cached_healing_options, "[BRUTE_SURGERY]", brute_healing)
 
 		options[brute_healing] = list(
@@ -82,7 +82,7 @@
 			burn_healing = new()
 			burn_healing.image = image(/obj/item/storage/medkit/fire)
 			burn_healing.name = "tend burns"
-			burn_healing.info = "Heal a patient's superficial burns."
+			burn_healing.info = "治疗患者表层的烧伤。"
 			LAZYSET(cached_healing_options, "[BURN_SURGERY]", burn_healing)
 
 		options[burn_healing] = list(

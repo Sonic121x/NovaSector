@@ -3,8 +3,8 @@
 #define SCULPT_SOUND_INCREMENT 4
 
 /obj/structure/statue
-	name = "statue"
-	desc = "Placeholder. Yell at Firecage if you SOMEHOW see this."
+	name = "雕像"
+	desc = "占位符。如果你碰巧看到这条信息，就冲着Firecage大喊大叫。"
 	icon = 'icons/obj/art/statue.dmi'
 	icon_state = ""
 	/// Abstract root type
@@ -40,7 +40,7 @@
 	if(W.tool_behaviour == TOOL_WELDER)
 		if(!W.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 			return FALSE
-		user.balloon_alert(user, "slicing apart...")
+		user.balloon_alert(user, "正在切开...")
 		if(W.use_tool(src, user, 40, volume=50))
 			deconstruct(TRUE)
 		return
@@ -58,8 +58,8 @@
 //////////////////////////////////////STATUES/////////////////////////////////////////////////////////////
 
 /obj/structure/statue/drake
-	name = "drake statue"
-	desc = "Statue of a lesser drake. Its carved eye sockets glow slightly."
+	name = "幼龙雕像"
+	desc = "一座幼龙雕像。其雕刻的眼窝微微发光。"
 	icon_state = "drake"
 	anchored = TRUE
 
@@ -67,7 +67,7 @@
 	. = ..()
 	if (prob(25))
 		icon_state = "drake_headless"
-		desc = "Statue of a lesser drake. Time has not been kind."
+		desc = "一座幼龙雕像。岁月并未善待它。"
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/structure/statue/drake/update_overlays()
@@ -76,8 +76,8 @@
 		. += emissive_appearance(icon, "drake_emissive", src)
 
 /obj/structure/statue/dragonman
-	name = "dragonman statue"
-	desc = "Statue of a draconic humanoid warrior. Its glittering eyes seem to follow you around the room."
+	name = "龙人雕像"
+	desc = "一座龙形人战士雕像。它闪亮的眼睛似乎在房间里追随着你。"
 	icon_state = "dragonman"
 	anchored = TRUE
 
@@ -102,13 +102,13 @@
 	abstract_type = /obj/structure/statue/uranium
 
 /obj/structure/statue/uranium/nuke
-	name = "statue of a nuclear fission explosive"
-	desc = "This is a grand statue of a Nuclear Explosive. It has a sickening green colour."
+	name = "核裂变炸药雕像"
+	desc = "这是一座核爆炸物的宏大雕像。它呈令人作呕的绿色。"
 	icon_state = "nuke"
 
 /obj/structure/statue/uranium/eng
-	name = "Statue of an engineer"
-	desc = "This statue has a sickening green colour."
+	name = "工程师雕像"
+	desc = "这雕像是绿色的，好恶心。"
 	icon_state = "eng"
 
 ////////////////////////////plasma///////////////////////////////////////////////////////////////////////
@@ -116,16 +116,16 @@
 /obj/structure/statue/plasma
 	max_integrity = 200
 	impressiveness = 20
-	desc = "This statue is suitably made from plasma."
+	desc = "这座雕像是用等离子体制作的，非常合适。"
 	custom_materials = list(/datum/material/plasma=SHEET_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/plasma
 
 /obj/structure/statue/plasma/scientist
-	name = "statue of a scientist"
+	name = "科学家雕像"
 	icon_state = "sci"
 
 /obj/structure/statue/plasma/xeno
-	name = "statue of a xenomorph"
+	name = "异形雕像"
 	icon_state = "xeno"
 
 //////////////////////gold///////////////////////////////////////
@@ -133,32 +133,32 @@
 /obj/structure/statue/gold
 	max_integrity = 300
 	impressiveness = 25
-	desc = "This is a highly valuable statue made from gold."
+	desc = "这尊雕像很值钱，它是用黄金做成的。"
 	custom_materials = list(/datum/material/gold=SHEET_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/gold
 
 /obj/structure/statue/gold/hos
-	name = "statue of the head of security"
+	name = "安保部长雕像"
 	icon_state = "hos"
 
 /obj/structure/statue/gold/hop
-	name = "statue of the head of personnel"
+	name = "人事部长雕像"
 	icon_state = "hop"
 
 /obj/structure/statue/gold/cmo
-	name = "statue of the chief medical officer"
+	name = "医疗部长雕像"
 	icon_state = "cmo"
 
 /obj/structure/statue/gold/ce
-	name = "statue of the chief engineer"
+	name = "工程部长雕像"
 	icon_state = "ce"
 
 /obj/structure/statue/gold/rd
-	name = "statue of the research director"
+	name = "科研部长雕像"
 	icon_state = "rd"
 
 /obj/structure/statue/gold/qm
-	name = "statue of the quartermaster"
+	name = "军需官雕像"
 	icon_state = "qm"
 
 //////////////////////////silver///////////////////////////////////////
@@ -166,28 +166,28 @@
 /obj/structure/statue/silver
 	max_integrity = 300
 	impressiveness = 25
-	desc = "This is a valuable statue made from silver."
+	desc = "这尊雕像很值钱，它是用白银做成的。"
 	custom_materials = list(/datum/material/silver=SHEET_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/silver
 
 /obj/structure/statue/silver/md
-	name = "statue of a medical officer"
+	name = "医官雕像"
 	icon_state = "md"
 
 /obj/structure/statue/silver/janitor
-	name = "statue of a janitor"
+	name = "清洁工雕像"
 	icon_state = "jani"
 
 /obj/structure/statue/silver/sec
-	name = "statue of a security officer"
+	name = "安全官雕像"
 	icon_state = "sec"
 
 /obj/structure/statue/silver/secborg
-	name = "statue of a security cyborg"
+	name = "安保赛博雕像"
 	icon_state = "secborg"
 
 /obj/structure/statue/silver/medborg
-	name = "statue of a medical cyborg"
+	name = "医疗赛博雕像"
 	icon_state = "medborg"
 
 /////////////////////////diamond/////////////////////////////////////////
@@ -195,20 +195,20 @@
 /obj/structure/statue/diamond
 	max_integrity = 1000
 	impressiveness = 50
-	desc = "This is a very expensive diamond statue."
+	desc = "这是一尊十分昂贵的钻石雕像。"
 	custom_materials = list(/datum/material/diamond=SHEET_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/diamond
 
 /obj/structure/statue/diamond/captain
-	name = "statue of THE captain"
+	name = "那位船长的雕像"
 	icon_state = "cap"
 
 /obj/structure/statue/diamond/ai1
-	name = "statue of the AI hologram"
+	name = "AI全息影像雕像"
 	icon_state = "ai1"
 
 /obj/structure/statue/diamond/ai2
-	name = "statue of the AI core"
+	name = "AI核心雕像"
 	icon_state = "ai2"
 
 ////////////////////////bananium///////////////////////////////////////
@@ -221,7 +221,7 @@
 	abstract_type = /obj/structure/statue/bananium
 
 /obj/structure/statue/bananium/clown
-	name = "statue of a clown"
+	name = "小丑雕像"
 	icon_state = "clown"
 
 /////////////////////sandstone/////////////////////////////////////////
@@ -233,14 +233,14 @@
 	abstract_type = /obj/structure/statue/sandstone
 
 /obj/structure/statue/sandstone/assistant
-	name = "statue of an assistant"
-	desc = "A cheap statue of sandstone for a greyshirt."
+	name = "助手雕像"
+	desc = "一个灰衬衫用的廉价砂岩雕像。"
 	icon_state = "assist"
 
 
 /obj/structure/statue/sandstone/venus //call me when we add marble i guess
-	name = "statue of a pure maiden"
-	desc = "An ancient marble statue. The subject is depicted with a floor-length braid and is wielding a toolbox. By Jove, it's easily the most gorgeous depiction of a woman you've ever seen. The artist must truly be a master of his craft. Shame about the broken arm, though."
+	name = "纯洁少女的雕像"
+	desc = "一尊古老的大理石雕像。人物梳着拖地长辫，手持工具箱。天哪，这无疑是你见过的最美的女性描绘。艺术家一定是技艺高超的高手。不过，可惜手臂断了。"
 	icon = 'icons/obj/art/statuelarge.dmi'
 	icon_state = "venus"
 
@@ -252,13 +252,13 @@
 	abstract_type = /obj/structure/statue/snow
 
 /obj/structure/statue/snow/snowman
-	name = "snowman"
-	desc = "Several lumps of snow put together to form a snowman."
+	name = "雪人"
+	desc = "几团雪堆在一起形成了一个雪人。"
 	icon_state = "snowman"
 
 /obj/structure/statue/snow/snowlegion
-	name = "snowlegion"
-	desc = "Looks like that weird kid with the tiger plushie has been round here again."
+	name = "雪军团"
+	desc = "看起来那个抱着老虎玩偶的奇怪孩子又来了。"
 	icon_state = "snowlegion"
 
 ///////////////////////////////bronze///////////////////////////////////
@@ -268,16 +268,16 @@
 	abstract_type = /obj/structure/statue/bronze
 
 /obj/structure/statue/bronze/marx
-	name = "\improper Karl Marx bust"
-	desc = "A bust depicting a certain 19th century economist. You get the feeling a specter is haunting the station."
+	name = "\improper 卡尔·马克思的半身雕像"
+	desc = "一个19世纪的经济学家的半身像。你有一种一个幽灵在空间站游荡的感觉。"
 	icon_state = "marx"
 	art_type = /datum/element/art/rev
 
 ///////////Elder Atmosian///////////////////////////////////////////
 
 /obj/structure/statue/elder_atmosian
-	name = "Elder Atmosian"
-	desc = "A statue of an Elder Atmosian, capable of bending the laws of thermodynamics to their will."
+	name = "资深大气技术员"
+	desc = "一尊资深大气技术员雕像，能够随心所欲地扭曲热力学定律。"
 	icon_state = "eng"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30, /datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 20, /datum/material/zaukerite = SHEET_MATERIAL_AMOUNT * 15)
 	max_integrity = 1000
@@ -286,17 +286,17 @@
 
 ///////////Goliath//////////////////////////////////////////////////
 /obj/structure/statue/goliath
-	desc = "A lifelike statue of a horrifying monster."
+	desc = "一个栩栩如生的可怕怪物雕像。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "goliath"
 	pixel_x = -12
 	base_pixel_x = -12
-	name = "goliath"
+	name = "歌利亚"
 
 ///////////Other Stuff//////////////////////////////////////////////
 /obj/item/chisel
-	name = "chisel"
-	desc = "Breaking and making art since 4000 BC. This one uses advanced technology to allow the creation of lifelike moving statues."
+	name = "凿子"
+	desc = "自公元前4000年以来一直在破坏和创作艺术。这件作品使用先进技术来创造栩栩如生的动态雕像。"
 	icon = 'icons/obj/art/statue.dmi'
 	icon_state = "chisel"
 	inhand_icon_state = "screwdriver_nuke"
@@ -382,7 +382,7 @@ Moving interrupts
 
 /// Starts or continues the sculpting action on the carving block material
 /obj/item/chisel/proc/start_sculpting(mob/living/user)
-	user.balloon_alert(user, "sculpting block...")
+	user.balloon_alert(user, "正在雕刻石料...")
 	playsound(src, pick(usesound), 75, TRUE)
 	sculpting = TRUE
 	//How long whole process takes
@@ -406,7 +406,7 @@ Moving interrupts
 	total_progress_bar.end_progress()
 	if(!interrupted && !QDELETED(prepared_block))
 		prepared_block.create_statue()
-		user.balloon_alert(user, "statue finished")
+		user.balloon_alert(user, "雕像完成")
 		if(HAS_PERSONALITY(user, /datum/personality/creative))
 			user.add_mood_event("creative_sculpting", /datum/mood_event/creative_sculpting)
 		if(HAS_PERSONALITY(user, /datum/personality/unimaginative))
@@ -419,7 +419,7 @@ Moving interrupts
 	tracked_user = user
 	RegisterSignal(tracked_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	if(!silent)
-		user.balloon_alert(user, "select sculpt target")
+		user.balloon_alert(user, "选择雕刻目标")
 
 /obj/item/chisel/dropped(mob/user, silent)
 	. = ..()
@@ -433,7 +433,7 @@ Moving interrupts
 	prepared_block = null
 
 	if(!silent && tracked_user)
-		tracked_user.balloon_alert(tracked_user, "sculpting cancelled!")
+		tracked_user.balloon_alert(tracked_user, "雕刻已取消！")
 
 	if(tracked_user)
 		UnregisterSignal(tracked_user, COMSIG_MOVABLE_MOVED)
@@ -451,18 +451,18 @@ Moving interrupts
 		choices[statue_path] = image(icon = initial(abstract_statue.icon), icon_state = initial(abstract_statue.icon_state))
 
 	if(!choices.len)
-		user.balloon_alert(user, "no statues for material!")
+		user.balloon_alert(user, "该材料没有雕像！")
 
 	var/choice = show_radial_menu(user, prepared_block, choices, require_near = TRUE)
 	if(choice)
 		prepared_block.current_preset_type = choice
 		var/image/chosen_looks = choices[choice]
 		prepared_block.current_target = chosen_looks.appearance
-		user.balloon_alert(user, "statue selected")
+		user.balloon_alert(user, "雕像已选择")
 
 /obj/structure/carving_block
-	name = "block"
-	desc = "Ready for sculpting."
+	name = "方块"
+	desc = "准备好进行雕刻。"
 	icon = 'icons/obj/art/statue.dmi'
 	icon_state = "block"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS | MATERIAL_ADD_PREFIX
@@ -496,7 +496,7 @@ Moving interrupts
 	else
 		current_target = target.appearance
 	var/mutable_appearance/ma = current_target
-	user.balloon_alert(user, "sculpt target is [ma.name]")
+	user.balloon_alert(user, "雕刻目标是 [ma.name]")
 
 /obj/structure/carving_block/proc/reset_target()
 	current_target = null
@@ -514,12 +514,12 @@ Moving interrupts
 /obj/structure/carving_block/proc/is_viable_target(mob/living/user, atom/movable/target)
 	//Only things on turfs
 	if(!isturf(target.loc))
-		user.balloon_alert(user, "no sculpt target!")
+		user.balloon_alert(user, "没有雕刻目标！")
 		return FALSE
 	//No big icon things
 	var/list/icon_dimensions = get_icon_dimensions(target.icon)
 	if(icon_dimensions["width"] != ICON_SIZE_X || icon_dimensions["height"] != ICON_SIZE_Y)
-		user.balloon_alert(user, "sculpt target is too big!")
+		user.balloon_alert(user, "雕刻目标太大了！")
 		return FALSE
 	return TRUE
 
@@ -533,8 +533,8 @@ Moving interrupts
 		new_statue.set_visuals(current_target)
 		new_statue.set_custom_materials(custom_materials)
 		var/mutable_appearance/ma = current_target
-		new_statue.name = "statue of [ma.name]"
-		new_statue.desc = "A carved statue depicting [ma.name]."
+		new_statue.name = "[ma.name]雕像"
+		new_statue.desc = "一座描绘着[ma.name]的雕刻雕像。"
 		qdel(src)
 
 /obj/structure/carving_block/proc/set_completion(value)
@@ -586,7 +586,7 @@ Moving interrupts
 		qdel(fake_statue)
 
 /obj/structure/statue/custom
-	name = "custom statue"
+	name = "自定义雕像"
 	icon_state = "base"
 	obj_flags = CAN_BE_HIT | UNIQUE_RENAME
 	appearance_flags = TILE_BOUND | PIXEL_SCALE | KEEP_TOGETHER | LONG_GLIDE //Added keep together in case targets has weird layering

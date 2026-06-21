@@ -1,5 +1,5 @@
 /datum/surgery_operation/basic/implant_removal
-	name = "implant removal"
+	name = "植入物移除"
 	desc = "Attempt to find and remove an implant from a patient. \
 		Any implant found will be destroyed unless an implant case is held or nearby."
 	operation_flags = OPERATION_NOTABLE
@@ -17,15 +17,15 @@
 	return image('icons/obj/medical/syringe.dmi', "implantcase-b")
 
 /datum/surgery_operation/basic/implant_removal/any_optional_strings()
-	return ..() + list("have an implant case below or inhand to store removed implants")
+	return ..() + list("手边或下方备有植入物储存盒以存放取出的植入物")
 
 /datum/surgery_operation/basic/implant_removal/on_preop(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You search for implants in [patient]..."),
-		span_notice("[surgeon] searches for implants in [patient]."),
-		span_notice("[surgeon] searches for something in [patient]."),
+		span_notice("你在[patient]体内搜寻植入物..."),
+		span_notice("[surgeon]在[patient]体内搜寻植入物。"),
+		span_notice("[surgeon]在[patient]体内搜寻着什么。"),
 	)
 	if(LAZYLEN(patient.implants))
 		display_pain(patient, "You feel a serious pain as [surgeon] digs around inside you!")
@@ -36,9 +36,9 @@
 		display_results(
 			surgeon,
 			patient,
-			span_warning("You find no implant to remove from [patient]."),
-			span_warning("[surgeon] finds no implant to remove from [patient]."),
-			span_warning("[surgeon] finds nothing to remove from [patient]."),
+			span_warning("你在[patient]体内没有找到可移除的植入物。"),
+			span_warning("[surgeon]在[patient]体内没有找到可移除的植入物。"),
+			span_warning("[surgeon]在[patient]体内没有找到可移除的东西。"),
 		)
 		return
 

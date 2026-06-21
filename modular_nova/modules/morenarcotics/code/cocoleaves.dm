@@ -1,6 +1,6 @@
 /obj/item/seeds/cocaleaf
-	name = "coca leaf seed pack"
-	desc = "These seeds grow into coca shrubs. They make you feel energized just looking at them..."
+	name = "古柯叶种子包"
+	desc = "这些种子会长成古柯灌木。光是看着它们就让你感到精力充沛……"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	growing_icon = 'modular_nova/master_files/icons/obj/hydroponics/growing.dmi'
 	icon_state = "seed-cocoleaf"
@@ -15,7 +15,7 @@
 
 /obj/item/food/grown/cocaleaf
 	seed = /obj/item/seeds/cocaleaf
-	name = "coca leaf"
+	name = "古柯叶"
 	desc = "A leaf of the coca shrub, which contains a potent psychoactive alkaloid known as 'cocaine'."
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "cocoleaf"

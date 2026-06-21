@@ -28,7 +28,7 @@
 		to_chat(user, span_warning("This is not an advanced hammer, it cannot change its digging depth."))
 		return
 
-	var/user_choice = input(user, "Choose the digging depth. 1 to 30", "Digging Depth Selection") as null|num
+	var/user_choice = input(user, "选择挖掘深度。1 到 30", "挖掘深度选择") as null|num
 	if(!user_choice)
 		dig_amount = 1
 		dig_speed = 1

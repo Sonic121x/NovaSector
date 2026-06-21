@@ -1,6 +1,6 @@
 /obj/structure/fireaxecabinet
-	name = "fire axe cabinet"
-	desc = "There is a small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if."
+	name = "消防斧柜"
+	desc = "有一个小标签上写着“仅限紧急情况下使用”，并附有斧头安全使用的详细说明。好像真的有人会遵守似的。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fireaxe"
 	anchored = TRUE
@@ -54,20 +54,20 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 		if(atom_integrity < max_integrity)
 			if(!attacking_item.tool_start_check(user, amount = 2))
 				return
-			balloon_alert(user, "repairing...")
+			balloon_alert(user, "正在修理...")
 			if(attacking_item.use_tool(src, user, 4 SECONDS, volume= 50, amount = 2))
 				repair_damage(max_integrity - get_integrity())
 				update_appearance()
-				balloon_alert(user, "repaired")
+				balloon_alert(user, "已修复")
 		else
-			balloon_alert(user, "already repaired!")
+			balloon_alert(user, "已经修复过了！")
 		return
 	else if(istype(attacking_item, /obj/item/stack/sheet/glass) && broken)
 		var/obj/item/stack/sheet/glass/glass_stack = attacking_item
 		if(glass_stack.get_amount() < 2)
-			balloon_alert(user, "need more glass!")
+			balloon_alert(user, "需要更多玻璃！")
 			return
-		balloon_alert(user, "repairing")
+		balloon_alert(user, "正在修复")
 		if(do_after(user, 2 SECONDS, target = src) && glass_stack.use(2))
 			broken = FALSE
 			repair_damage(max_integrity - get_integrity())
@@ -75,7 +75,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 	else if(open || broken)
 		if(istype(attacking_item, item_path) && !held_item)
 			if(HAS_TRAIT(attacking_item, TRAIT_WIELDED))
-				balloon_alert(user, "unwield it!")
+				balloon_alert(user, "先解除双手持握！")
 				return
 			if(!user.transferItemToLoc(attacking_item, src))
 				return
@@ -196,13 +196,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 	to_chat(user, span_notice("Resetting circuitry..."))
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 	if(do_after(user, 2 SECONDS, target = src))
-		to_chat(user, span_notice("You [locked ? "disable" : "re-enable"] the locking modules."))
+		to_chat(user, span_notice("你[locked ? "disable" : "re-enable"]了锁定模块。"))
 		locked = !locked
 		update_appearance()
 
 /obj/structure/fireaxecabinet/proc/toggle_open(mob/user)
 	if(locked)
-		balloon_alert(user, "won't budge!")
+		balloon_alert(user, "纹丝不动！")
 		return
 	else
 		open = !open
@@ -216,7 +216,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet/empty, 32)
 
 /obj/item/wallframe/fireaxecabinet
-	name = "fire axe cabinet"
+	name = "消防斧柜"
 	desc = "Home to a window's greatest nightmare. Apply to wall to use."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fireaxe"

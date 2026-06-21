@@ -1,7 +1,7 @@
 #define MAX_OXYGEN_PRODUCED MOLES_CELLSTANDARD // Kind of a large amount, but realism vs fun tradeoff?
 /obj/structure/plant_tank
-	name = "plant tank"
-	desc = "A small little glass tank that is used to grow plants; this tank promotes the nitrogen and oxygen cycle."
+	name = "植物培养槽"
+	desc = "一个用于种植植物的小玻璃槽；这个槽能促进氮氧循环。"
 	icon = 'modular_nova/modules/ashwalkers/icons/structures.dmi'
 	icon_state = "plant_tank_e"
 	anchored = FALSE
@@ -22,11 +22,11 @@
 
 /obj/structure/plant_tank/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>Use food or worm fertilizer to allow nitrogen production and carbon dioxide processing!")
-	. += span_notice("There are [operation_number] cycles left!")
+	. += span_notice("<br>使用食物或蠕虫肥料来启动氮气生产和二氧化碳处理！")
+	. += span_notice("还剩 [operation_number] 个循环！")
 	var/datum/component/simple_farm/find_farm = GetComponent(/datum/component/simple_farm)
 	if(!find_farm)
-		. += span_notice("<br>Use five sand to allow planting!")
+		. += span_notice("<br>使用五份沙子来允许种植！")
 
 /obj/structure/plant_tank/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/food) || istype(tool, /obj/item/stack/worm_fertilizer))
@@ -40,7 +40,7 @@
 		else
 			qdel(tool)
 
-		balloon_alert(user, "[tool] placed inside")
+		balloon_alert(user, "[tool] 已放入内部")
 		user.mind?.adjust_experience(/datum/skill/primitive, 2)
 		operation_number += 2
 		if(prob(user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
@@ -54,10 +54,10 @@
 			foods += food_item
 
 		if(!length(foods))
-			balloon_alert(user, "no food to dump inside")
+			balloon_alert(user, "没有食物可倾倒进去")
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "dumped food inside!")
+		balloon_alert(user, "食物已倾倒进去！")
 
 		for(var/obj/item/food/food_item in foods)
 			qdel(food_item)
@@ -70,11 +70,11 @@
 
 	if(istype(tool, /obj/item/stack/ore/glass))
 		if(connected_farm)
-			balloon_alert(user, "no more [tool] required")
+			balloon_alert(user, "不再需要 [tool]")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!tool.use(5))
-			balloon_alert(user, "farms require five sand")
+			balloon_alert(user, "农场需要五份沙子")
 			return ITEM_INTERACT_BLOCKING
 
 		connected_farm = AddComponent(/datum/component/simple_farm, TRUE, TRUE, list(0, 12))
@@ -125,17 +125,17 @@
 	operation_number--
 
 /obj/structure/plant_tank/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "[anchored ? "un" : ""]bolting")
+	balloon_alert(user, "[anchored ? "un" : ""]固定中")
 	tool.play_tool_sound(src, 50)
 	if(!tool.use_tool(src, user, 2 SECONDS))
 		return TRUE
 
 	anchored = !anchored
-	balloon_alert(user, "[anchored ? "" : "un"]bolted")
+	balloon_alert(user, "[anchored ? "" : "un"]固定完毕")
 	return TRUE
 
 /obj/structure/plant_tank/screwdriver_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "deconstructing")
+	balloon_alert(user, "正在解构")
 	tool.play_tool_sound(src, 50)
 	if(!tool.use_tool(src, user, 2 SECONDS))
 		return TRUE
@@ -152,7 +152,7 @@
 	return ..()
 
 /datum/crafting_recipe/plant_tank
-	name = "Plant Tank"
+	name = "植物培养槽"
 	result = /obj/structure/plant_tank
 	reqs = list(
 		/obj/item/forging/complete/plate = 1,

@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure/carp
-	name = "Summon Carp"
-	desc = "This spell conjures a simple carp."
+	name = "召唤鲤鱼"
+	desc = "这个咒语能召唤出一条普通的鲤鱼。"
 	sound = 'sound/effects/magic/summon_karp.ogg'
 
 	school = SCHOOL_CONJURATION

@@ -1,6 +1,6 @@
 /obj/item/storage/cans
-	name = "can ring"
-	desc = "Holds up to six drink cans, and select bottles."
+	name = "易拉罐环"
+	desc = "最多可容纳六个饮料罐，以及部分瓶子。"
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "canholder"
 	inhand_icon_state = "cola"
@@ -11,7 +11,7 @@
 	storage_type = /datum/storage/sixcan
 
 /obj/item/storage/cans/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins popping open a final cold one with the boys! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始和兄弟们开最后一罐冰镇饮料！看起来[user.p_theyre()]试图自杀！"))
 	return BRUTELOSS
 
 /obj/item/storage/cans/update_icon_state()
@@ -23,24 +23,24 @@
 	update_appearance()
 
 /obj/item/storage/cans/sixsoda
-	name = "soda bottle ring"
-	desc = "Holds six soda cans. Remember to recycle when you're done!"
+	name = "苏打水瓶环"
+	desc = "可容纳六个苏打水罐。记得用完后回收！"
 
 /obj/item/storage/cans/sixsoda/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/cup/soda_cans/cola(src)
 
 /obj/item/storage/cans/sixbeer
-	name = "beer can ring"
-	desc = "Holds six beers. Remember to recycle when you're done!"
+	name = "啤酒罐环"
+	desc = "可容纳六罐啤酒。用完后记得回收！"
 
 /obj/item/storage/cans/sixbeer/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/cup/soda_cans/beer(src)
 
 /obj/item/storage/cans/sixgamerdrink
-	name = "gamer drink bottle ring"
-	desc = "Holds six gamer drink cans. Remember to recycle when you're done!"
+	name = "玩家饮料瓶环"
+	desc = "可容纳六罐玩家饮料。用完后记得回收！"
 
 	/// Pool of gamer drinks tm we may add from
 	var/list/gamer_drink_options = list(
@@ -57,8 +57,8 @@
 		new chosen_gamer_drink(src)
 
 /obj/item/storage/cans/sixenergydrink
-	name = "energy drink bottle ring"
-	desc = "Holds six energy drink cans. Remember to recycle when you're done!"
+	name = "能量饮料瓶环"
+	desc = "可容纳六罐能量饮料。用完后记得回收！"
 
 	/// Pool of energy drinks tm we may add from
 	var/list/energy_drink_options = list(

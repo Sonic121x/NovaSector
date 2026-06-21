@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/m223
-	name = "toploader magazine (.223)"
-	desc = "A top-loading .223 magazine, suitable for the M-90gl carbine."
+	name = "顶装式弹匣（.223）"
+	desc = "一个顶装式.223弹匣，适用于M-90gl卡宾枪。"
 	icon_state = ".223"
 	ammo_band_icon = "+.223ab"
 	ammo_type = /obj/item/ammo_casing/a223
@@ -9,15 +9,15 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/m223/phasic
-	name = "toploader magazine (.223 Phasic)"
-	desc = parent_type::desc + "<br>Carries phasic rounds, which completely ignore armor and phase through cover, but not targets."
+	name = "顶装式弹匣（.223相位）"
+	desc = parent_type::desc + "<br>携带相位子弹，能完全无视护甲并穿透掩体，但不会穿透目标。"
 	ammo_type = /obj/item/ammo_casing/a223/phasic
 
 // .38 (Battle Rifle) //
 
 /obj/item/ammo_box/magazine/m38
-	name = "battle rifle magazine (.38)"
-	desc = "A .38 magazine for a BR-38 battle rifle."
+	name = "战斗步枪弹匣（.38）"
+	desc = "一个用于BR-38战斗步枪的.38弹匣。"
 	icon_state = "38mag"
 	base_icon_state = "38mag"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -39,49 +39,49 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/m38/trac
-	name = "battle rifle magazine (.38 TRAC)"
-	desc = parent_type::desc + " TRAC bullets embed a tracking implant within the target's body and are entirely nonlethal."
+	name = "战斗步枪弹匣（.38追踪）"
+	desc = parent_type::desc + "追踪子弹会在目标体内植入一个追踪器，并且完全是非致命的。"
 	ammo_type = /obj/item/ammo_casing/c38/trac
 	ammo_band_color = COLOR_AMMO_TRACK
 
 /obj/item/ammo_box/magazine/m38/match
-	name = "battle rifle magazine (.38 Match)"
-	desc = parent_type::desc + " These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	name = "战斗步枪弹匣（.38竞赛）"
+	desc = parent_type::desc + "这些子弹在极其严格的公差范围内制造，使得它们易于展示特技射击。"
 	ammo_type = /obj/item/ammo_casing/c38/match
 	ammo_band_color = COLOR_AMMO_MATCH
 
 /obj/item/ammo_box/magazine/m38/match/bouncy
-	name = "battle rifle magazine (.38 Rubber)"
-	desc = parent_type::desc + " These rounds are incredibly bouncy and MOSTLY nonlethal, making them great to show off trickshots with."
+	name = "战斗步枪弹匣（.38橡胶）"
+	desc = parent_type::desc + "这些子弹具有极强的弹性并且基本是非致命的，非常适合展示特技射击。"
 	ammo_type = /obj/item/ammo_casing/c38/match/bouncy
 	ammo_band_color = COLOR_AMMO_RUBBER
 
 /obj/item/ammo_box/magazine/m38/true
-	name = "battle rifle magazine (.38 True Strike)"
-	desc = parent_type::desc + " Bullets bounce towards new targets with surprising accuracy and can strike through armored target"
+	name = "战斗步枪弹匣（.38真实打击）"
+	desc = parent_type::desc + "子弹会以惊人的准确度弹向新目标，并能击穿装甲目标"
 	ammo_type = /obj/item/ammo_casing/c38/match/true
 	ammo_band_color = COLOR_AMMO_TRUESTRIKE
 
 /obj/item/ammo_box/magazine/m38/dumdum
-	name = "battle rifle magazine (.38 DumDum)"
-	desc = parent_type::desc + " These rounds expand on impact, allowing them to shred the target and cause massive bleeding. Very weak against armor and distant targets."
+	name = "战斗步枪弹匣 (.38 达姆弹)"
+	desc = parent_type::desc + "这些弹头在撞击时会扩张，使其能够撕裂目标并造成大出血。对护甲和远距离目标效果极差。"
 	ammo_type = /obj/item/ammo_casing/c38/dumdum
 	ammo_band_color = COLOR_AMMO_DUMDUM
 
 /obj/item/ammo_box/magazine/m38/hotshot
-	name = "battle rifle magazine (.38 Hot Shot)"
-	desc = parent_type::desc + " Hot Shot bullets contain an incendiary payload."
+	name = "战斗步枪弹匣 (.38 热射弹)"
+	desc = parent_type::desc + "热射弹内含燃烧装药。"
 	ammo_type = /obj/item/ammo_casing/c38/hotshot
 	ammo_band_color = COLOR_AMMO_HOTSHOT
 
 /obj/item/ammo_box/magazine/m38/iceblox
-	name = "battle rifle magazine (.38 Iceblox)"
-	desc = parent_type::desc + " Iceblox bullets contain a cryogenic payload."
+	name = "战斗步枪弹匣 (.38 冰封弹)"
+	desc = parent_type::desc + "冰封弹内含冷冻装药。"
 	ammo_type = /obj/item/ammo_casing/c38/iceblox
 	ammo_band_color = COLOR_AMMO_ICEBLOX
 
 /obj/item/ammo_box/magazine/m38/flare
-	name = "battle rifle magazine (.38 Flare)"
-	desc = parent_type::desc + " Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	name = "战斗步枪弹匣 (.38 信号弹)"
+	desc = parent_type::desc + "信号弹壳会向目标发射一道集中的粒子束，使其在众人面前暴露无遗。"
 	ammo_type = /obj/item/ammo_casing/c38/flare
 	ammo_band_color = COLOR_AMMO_HELLFIRE

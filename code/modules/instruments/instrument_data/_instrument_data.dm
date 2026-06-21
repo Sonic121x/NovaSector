@@ -20,7 +20,7 @@
 	/// Used for categorization subtypes
 	abstract_type = /datum/instrument
 	/// Name of the instrument
-	var/name = "Generic instrument"
+	var/name = "通用乐器"
 	/// Uniquely identifies this instrument so runtime changes are possible as opposed to paths. If this is unset, things will use path instead.
 	var/id
 	/// Category

@@ -1,8 +1,8 @@
 /obj/structure/blob/special/resource
-	name = "resource blob"
+	name = "资源孢子"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blob_resource"
-	desc = "A thin spire of slightly swaying tendrils."
+	desc = "一个细长的尖顶，有轻微摆动的卷须。"
 	max_integrity = BLOB_RESOURCE_MAX_HP
 	point_return = BLOB_REFUND_RESOURCE_COST
 	resistance_flags = LAVA_PROOF

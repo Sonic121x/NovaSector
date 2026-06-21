@@ -30,8 +30,8 @@ and clear when youre done! if you dont i will use :newspaper2: on you
 GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf/open/floor/holofloor, /turf/closed)))
 
 /obj/machinery/computer/holodeck
-	name = "holodeck control console"
-	desc = "A computer used to control a nearby holodeck."
+	name = "全息舱控制台"
+	desc = "用于控制附近的虚拟现实舱的一台计算机。"
 	icon_screen = "holocontrol"
 
 	//new vars
@@ -346,9 +346,9 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(istype(holo_atom, /obj/item/organ))
 		var/obj/item/organ/holo_organ = holo_atom
 		if(holo_organ.owner) // a mob has the holo organ inside them... oh dear
-			to_chat(holo_organ.owner, span_warning("\The [holo_organ] inside of you fades away!"))
+			to_chat(holo_organ.owner, span_warning("\The [holo_organ] 在你体内逐渐消散了！"))
 	if(!silent)
-		visible_message(span_notice("[holo_atom] fades away!"))
+		visible_message(span_notice("[holo_atom]逐渐消失了！"))
 
 	if(is_type_in_list(holo_atom.loc, special_locs))
 		qdel(holo_atom.loc)
@@ -375,7 +375,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(!floorcheck()) //if any turfs in the floor of the holodeck are broken
 		emergency_shutdown()
 		damaged = TRUE
-		visible_message("The holodeck overloads!")
+		visible_message("全息甲板过载了！")
 		for(var/turf/holo_turf in linked)
 			if(prob(30))
 				do_sparks(2, 1, holo_turf)
@@ -435,13 +435,13 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(obj_flags & EMAGGED)
 		return FALSE
 	if(!LAZYLEN(emag_programs))
-		balloon_alert(user, "no card swipe port!")
+		balloon_alert(user, "没有刷卡口！")
 		return FALSE
 	playsound(src, SFX_SPARKS, 75, TRUE)
 	obj_flags |= EMAGGED
 	if (user)
-		balloon_alert(user, "safety protocols destroyed") // im gonna keep this once since this perfectly describes it
-		to_chat(user, span_warning("You override the safety and security protocols."))
+		balloon_alert(user, "安全协议已摧毁") // im gonna keep this once since this perfectly describes it
+		to_chat(user, span_warning("你覆盖了安全与安保协议。"))
 		user.log_message("emagged the Holodeck Control Console.", LOG_GAME)
 		message_admins("[ADMIN_LOOKUPFLW(user)] emagged the Holodeck Control Console.")
 

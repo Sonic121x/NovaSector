@@ -1,7 +1,7 @@
 /mob/living/basic/construct/wraith
-	name = "Wraith"
+	name = "怨灵"
 	real_name = "Wraith"
-	desc = "A wicked, clawed shell constructed to assassinate enemies and sow chaos behind enemy lines."
+	desc = "一种邪恶的带爪外壳构造体，旨在刺杀敌人并在敌后制造混乱。"
 	icon_state = "wraith"
 	icon_living = "wraith"
 	maxHealth = 65
@@ -16,7 +16,7 @@
 		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/shift,
 		/datum/action/innate/cult/create_rune/tele,
 	)
-	playstyle_string = span_bold("You are a Wraith. Though relatively fragile, you are fast, deadly, and can phase through walls. Your attacks will lower the cooldown on phasing, moreso for fatal blows.")
+	playstyle_string = span_bold("你是怨灵。虽然相对脆弱，但你速度快、致命，并能穿墙而过。你的攻击会减少穿墙的冷却时间，致命一击效果更甚。")
 
 /mob/living/basic/construct/wraith/Initialize(mapload)
 	. = ..()

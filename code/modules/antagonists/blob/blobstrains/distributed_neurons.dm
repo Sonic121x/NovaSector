@@ -1,7 +1,7 @@
 //kills unconscious targets and turns them into blob zombies, produces fragile spores when killed.  Spore produced by factories are sentient.
 /datum/blobstrain/reagent/distributed_neurons
-	name = "Distributed Neurons"
-	description = "will do medium-low toxin damage and turns unconscious targets into blob zombies."
+	name = "分布式神经元"
+	description = "将造成中低毒素伤害，并将昏迷目标转化为胞质僵尸。"
 	effectdesc = "will also produce fragile spores when killed.  Spores produced by factories are sentient."
 	shortdesc = "will do medium-low toxin damage and will kill any unconscious targets when attacked.  Spores produced by factories are sentient."
 	analyzerdescdamage = "Does medium-low toxin damage and kills unconscious humans."
@@ -13,12 +13,12 @@
 
 /datum/blobstrain/reagent/distributed_neurons/damage_reaction(obj/structure/blob/blob_tile, damage, damage_type, damage_flag)
 	if((damage_flag == MELEE || damage_flag == BULLET || damage_flag == LASER) && damage <= 20 && blob_tile.get_integrity() - damage <= 0 && prob(15)) //if the cause isn't fire or a bomb, the damage is less than 21, we're going to die from that damage, 15% chance of a shitty spore.
-		blob_tile.visible_message(span_boldwarning("A spore floats free of the blob!"))
+		blob_tile.visible_message(span_boldwarning("一个孢子从菌毯中飘了出来！"))
 		blob_tile.overmind.create_spore(blob_tile.loc, /mob/living/basic/blob_minion/spore/minion/weak)
 	return ..()
 
 /datum/reagent/blob/distributed_neurons
-	name = "Distributed Neurons"
+	name = "分布式神经元"
 	color = "#E88D5D"
 	taste_description = "fizzing"
 
@@ -34,4 +34,4 @@
 			var/mob/living/basic/blob_minion/spore/minion/spore = overmind.create_spore(get_turf(exposed_mob))
 			spore.zombify(exposed_mob)
 			overmind.add_points(-5)
-			to_chat(overmind, span_notice("Spent 5 resources for the zombification of [exposed_mob]."))
+			to_chat(overmind, span_notice("花费了5点资源用于[exposed_mob]的僵尸化。"))

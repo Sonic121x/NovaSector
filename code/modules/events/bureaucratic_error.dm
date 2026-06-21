@@ -1,16 +1,16 @@
 /datum/round_event_control/bureaucratic_error
-	name = "Bureaucratic Error"
+	name = "官僚错误"
 	typepath = /datum/round_event/bureaucratic_error
 	max_occurrences = 1
 	weight = 5
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "Randomly opens and closes job slots, along with changing the overflow role."
+	description = "随机开放和关闭职位槽位，并更改溢出角色。"
 
 /datum/round_event/bureaucratic_error
 	announce_when = 1
 
 /datum/round_event/bureaucratic_error/announce(fake)
-	priority_announce("A recent bureaucratic error in the Organic Resources Department may result in personnel shortages in some departments and redundant staffing in others.", "Paperwork Mishap Alert")
+	priority_announce("有机资源部门近期的文书错误可能导致某些部门人员短缺，而其他部门人员冗余。", "文书工作失误警报")
 
 /datum/round_event/bureaucratic_error/start()
 	var/list/jobs = SSjob.get_valid_overflow_jobs()

@@ -1,5 +1,5 @@
 /datum/uplink_category/implants
-	name = "Implants"
+	name = "植入物"
 	weight = 2
 
 

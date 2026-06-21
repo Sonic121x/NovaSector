@@ -81,7 +81,7 @@
 		finish_action(controller, FALSE)
 		return
 
-	victim.visible_message(span_warning("[living_pawn] starts trying to take [target] from [victim]!"), span_danger("[living_pawn] tries to take [target]!"))
+	victim.visible_message(span_warning("[living_pawn] 开始试图从 [victim] 那里拿走 [target]！"), span_danger("[living_pawn] 试图拿走 [target]！"))
 
 	controller.set_blackboard_key(BB_MONKEY_PICKPOCKETING, TRUE)
 
@@ -91,14 +91,14 @@
 
 		for(var/obj/item/I in victim.held_items)
 			if(I == target)
-				victim.visible_message(span_danger("[living_pawn] snatches [target] from [victim]."), span_userdanger("[living_pawn] snatched [target]!"))
+				victim.visible_message(span_danger("[living_pawn] 从 [victim] 那里抢走了 [target]。"), span_userdanger("[living_pawn] 抢走了 [target]！"))
 				if(victim.temporarilyRemoveItemFromInventory(target))
 					if(!QDELETED(target) && !equip_item(controller))
 						target.forceMove(living_pawn.drop_location())
 						success = TRUE
 						break
 				else
-					victim.visible_message(span_danger("[living_pawn] tried to snatch [target] from [victim], but failed!"), span_userdanger("[living_pawn] tried to grab [target]!"))
+					victim.visible_message(span_danger("[living_pawn] 试图从 [victim] 那里抢走 [target]，但失败了！"), span_userdanger("[living_pawn] 试图抓住 [target]！"))
 
 	finish_action(controller, success) //We either fucked up or got the item.
 

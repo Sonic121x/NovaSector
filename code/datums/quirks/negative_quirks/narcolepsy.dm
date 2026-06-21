@@ -24,7 +24,7 @@
 			LOCATION_RPOCKET,
 			LOCATION_HANDS,
 		),
-		flavour_text = "Given to you to aid in staying awake this shift...",
+		flavour_text = "这是给你的，帮你撑过这班保持清醒……",
 		notify_player = TRUE,
 	)
 

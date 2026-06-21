@@ -1,6 +1,6 @@
 /obj/machinery/plumbing/grinder_chemical
-	name = "chemical grinder"
-	desc = "Chemical grinder. Can either grind or juice stuff you put in."
+	name = "化学品研磨机"
+	desc = "化学研磨机。可以研磨或榨取你放入的物品。"
 	icon_state = "grinder_chemical"
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = ABOVE_GAME_PLANE
@@ -72,17 +72,17 @@
 			to_chat(user, span_warning("Anchor first to start [grinding ? "grind" : "juice"]."))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You dump items from [tool] into the grinder."))
+		to_chat(user, span_notice("你将[tool]中的物品倒入研磨机。"))
 		for(var/obj/item/obj_item in tool.contents)
 			blend(obj_item)
 		return ITEM_INTERACT_SUCCESS
 	else if(!tool.tool_behaviour)
 		var/action = "[grinding ? "grind" : "juice"]"
 		if(!anchored)
-			to_chat(user, span_warning("Anchor first to star [action]."))
+			to_chat(user, span_warning("请先固定以开始[action]。"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You attempt to [action] [tool]."))
+		to_chat(user, span_notice("你尝试[action][tool]。"))
 		blend(tool)
 		return ITEM_INTERACT_SUCCESS
 

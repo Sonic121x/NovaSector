@@ -1,6 +1,6 @@
 /obj/structure/urinal
-	name = "urinal"
-	desc = "The HU-452, an experimental urinal. Comes complete with experimental urinal cake."
+	name = "小便池"
+	desc = "HU-452，一款实验性小便池。配有实验性小便池芳香块。"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinal"
 	density = FALSE
@@ -32,38 +32,38 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
 		var/mob/living/grabbed_mob = user.pulling
 		if(user.grab_state >= GRAB_AGGRESSIVE)
 			if(grabbed_mob.loc != get_turf(src))
-				to_chat(user, span_notice("[grabbed_mob.name] needs to be on [src]."))
+				to_chat(user, span_notice("[grabbed_mob.name]需要在[src]上。"))
 				return
 			user.changeNext_move(CLICK_CD_MELEE)
-			user.visible_message(span_danger("[user] slams [grabbed_mob] into [src]!"), span_danger("You slam [grabbed_mob] into [src]!"))
+			user.visible_message(span_danger("[user]将[grabbed_mob]猛撞进[src]！"), span_danger("你将[grabbed_mob]猛撞进[src]！"))
 			grabbed_mob.emote("scream")
 			grabbed_mob.adjust_brute_loss(8)
 		else
-			to_chat(user, span_warning("You need a tighter grip!"))
+			to_chat(user, span_warning("你需要抓得更紧些！"))
 		return
 
 	if(exposed)
 		if(hidden_item)
-			to_chat(user, span_notice("You fish [hidden_item] out of the drain enclosure."))
+			to_chat(user, span_notice("你从排水槽里捞出了[hidden_item]。"))
 			user.put_in_hands(hidden_item)
 		else
-			to_chat(user, span_warning("There is nothing in the drain holder!"))
+			to_chat(user, span_warning("排水槽里什么都没有！"))
 		return
 	return ..()
 
 /obj/structure/urinal/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(exposed)
 		if(hidden_item)
-			to_chat(user, span_warning("There is already something in the drain enclosure!"))
+			to_chat(user, span_warning("排水槽里已经有东西了！"))
 			return
 		if(attacking_item.w_class > WEIGHT_CLASS_TINY)
-			to_chat(user, span_warning("[attacking_item] is too large for the drain enclosure."))
+			to_chat(user, span_warning("[attacking_item]太大了，放不进排水槽。"))
 			return
 		if(!user.transferItemToLoc(attacking_item, src))
-			to_chat(user, span_warning("[attacking_item] is stuck to your hand, you cannot put it in the drain enclosure!"))
+			to_chat(user, span_warning("[attacking_item]粘在你手上了，你无法把它放进排水槽！"))
 			return
 		hidden_item = attacking_item
-		to_chat(user, span_notice("You place [attacking_item] into the drain enclosure."))
+		to_chat(user, span_notice("你将[attacking_item]放入了排水槽中。"))
 		return
 	return ..()
 
@@ -75,14 +75,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
 	if(I.use_tool(src, user, 20))
 		user.visible_message(span_notice("[user] [exposed ? "screws the cap back into place" : "unscrew the cap to the drain protector"]!"),
 			span_notice("You [exposed ? "screw the cap back into place" : "unscrew the cap on the drain"]!"),
-			span_hear("You hear metal and squishing noises."))
+			span_hear("你听到了金属和挤压的声音。"))
 		exposed = !exposed
 	return TRUE
 
 /obj/structure/urinal/wrench_act_secondary(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(user)
 	deconstruct(TRUE)
-	balloon_alert(user, "removed urinal")
+	balloon_alert(user, "移除了小便池")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/urinal/atom_deconstruct(disassembled = TRUE)
@@ -90,16 +90,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
 	hidden_item?.forceMove(drop_location())
 
 /obj/item/wallframe/urinal
-	name = "urinal frame"
-	desc = "An unmounted urinal. Attach it to a wall to use."
+	name = "小便池框架"
+	desc = "一个未安装的小便池。将其固定在墙上即可使用。"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinal"
 	result_path = /obj/structure/urinal
 	pixel_shift = 32
 
 /obj/item/food/urinalcake
-	name = "urinal cake"
-	desc = "The noble urinal cake, protecting the station's pipes from the station's pee. Do not eat."
+	name = "小便池芳香块"
+	desc = "高贵的小便池芳香块，保护着空间站的管道免受空间站尿液的侵蚀。请勿食用。"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinalcake"
 	w_class = WEIGHT_CLASS_TINY
@@ -111,6 +111,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
 	preserved_food = TRUE
 
 /obj/item/food/urinalcake/attack_self(mob/living/user)
-	user.visible_message(span_notice("[user] squishes [src]!"), span_notice("You squish [src]."), "<i>You hear a squish.</i>")
+	user.visible_message(span_notice("[user]捏扁了[src]！"), span_notice("你捏扁了[src]。"), "<i>你听到一声挤压声。</i>")
 	icon_state = "urinalcake_squish"
 	addtimer(VARSET_CALLBACK(src, icon_state, "urinalcake"), 0.8 SECONDS)

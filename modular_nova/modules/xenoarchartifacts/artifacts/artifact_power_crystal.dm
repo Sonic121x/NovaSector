@@ -3,7 +3,7 @@
 // 2) Has wired = 1 (click on it with the cable to enable and with cutters to disable)
 
 /obj/machinery/power/crystal
-	name = "large crystal"
+	name = "大型晶体"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/artifacts.dmi'
 	icon_state = "artifact_11"
 	density = TRUE
@@ -19,7 +19,7 @@
 		connect_to_network()
 	icon_custom_crystal = pick("artifact_11", "artifact_12", "artifact_13")
 	icon_state = icon_custom_crystal
-	desc = pick("It shines faintly as it catches the light.", "It appears to have a faint inner glow.",
+	desc = pick("它在光照下微微闪烁。", "它似乎散发着微弱的内在光芒。",
 				"It seems to draw you inward as you look it at.", "Something twinkles faintly as you look at it.",
 				"It's mesmerizing to behold.")
 
@@ -32,43 +32,43 @@
 	if(attacking_item.tool_behaviour == TOOL_WIRECUTTER) // If we want to remove the wiring
 		if(wired)
 			user.visible_message(
-				span_notice("[user] starts cutting off the wiring of the [src]."),
-				span_notice("You start cutting off the wiring of the [src]."),
-				blind_message = span_hear("You hear cutting nearby."),
+				span_notice("[user]开始切断[src]的线路。"),
+				span_notice("你开始切断[src]的线路。"),
+				blind_message = span_hear("你听到附近有切割声。"),
 			)
 			if(attacking_item.use_tool(src, user, 20, volume = 50))
 				user.visible_message(
-					span_notice("[user] cuts off the wiring of the [src]."),
-					span_notice("You cut off the wiring of the [src]."),
-					blind_message = span_notice("Cutting sound stops."),
+					span_notice("[user]切断了[src]的线路。"),
+					span_notice("你切断了[src]的线路。"),
+					blind_message = span_notice("切割声停止了。"),
 				)
 				wired = FALSE
 				update_crystal()
 				return
 		else
-			to_chat(user, span_red("There is currently no wiring on the [src]."))
+			to_chat(user, span_red("[src]上目前没有线路。"))
 			return
 
 	if(istype(attacking_item, /obj/item/stack/cable_coil)) // If we want to put the wiring
 		if(!wired)
 			var/obj/item/stack/cable_coil/our_cable_coil = attacking_item
 			if(!our_cable_coil.use(2))
-				to_chat(user, span_red("There's not enough wire to finish the task."))
+				to_chat(user, span_red("没有足够的电线来完成这个任务。"))
 				return
 			user.visible_message(
-				span_notice("[user] starts putting the wiring all over the [src]."),
-				span_notice("You start putting the wiring all over the [src]."),
+				span_notice("[user] 开始将电线铺满整个 [src]。"),
+				span_notice("你开始将导线布满整个[src]。"),
 			)
 			if(attacking_item.use_tool(src, user, 20, volume = 50))
 				user.visible_message(
-					span_notice("[user] puts the wiring all over the [src]."),
-					span_notice("You put the wiring all over the [src]."),
+					span_notice("[user]把电线布满了[src]。"),
+					span_notice("你把电线布满了整个[src]。"),
 				)
 				wired = TRUE
 				update_crystal()
 			return
 		else
-			balloon_alert(user, "already wired!")
+			balloon_alert(user, "已经接线了！")
 			return
 	return ..()
 
@@ -77,19 +77,19 @@
 	if(.)
 		return
 	if(!Adjacent(user))
-		to_chat(user, span_warning("You can't reach [src] from here."))
+		to_chat(user, span_warning("你无法从这里够到[src]。"))
 		return TRUE
 	if(wired && anchored)
 		first_effect.ToggleActivate()
 		update_crystal()
-	to_chat(user, span_bold("You touch [src]."))
+	to_chat(user, span_bold("你触摸了[src]。"))
 
 /obj/machinery/power/crystal/Destroy()
 	if(first_effect)
 		QDEL_NULL(first_effect)
 	visible_message(
-		span_warning("[src] shatters!"),
-		blind_message = span_hear("You hear glass breaking nearby."),
+		span_warning("[src] 碎裂了！"),
+		blind_message = span_hear("你听见附近有玻璃破碎的声音。"),
 	)
 	var/turf/mainloc = get_turf(src)
 	var/count_crystal_bs = rand(1,3)
@@ -117,7 +117,7 @@
 /obj/machinery/power/crystal/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
 	if(istype(hitting_projectile, /obj/projectile/energy) || istype(hitting_projectile, /obj/projectile/beam))
 		visible_message(
-			span_danger("The [hitting_projectile] gets reflected by [src]!")
+			span_danger("这[hitting_projectile]被[src]反射了！")
 		)
 		// Find a turf near or on the original location to bounce to
 		if(hitting_projectile.starting)

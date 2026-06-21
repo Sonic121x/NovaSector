@@ -1,12 +1,12 @@
 /obj/structure/sign/shuttleg250
-	name = "Transfer Shuttle G250"
-	desc = "Transfer Shuttle G250."
+	name = "G250号转运穿梭机"
+	desc = "G250号转运穿梭机。"
 	icon = 'modular_nova/modules/advanced_shuttles/icons/g250.dmi' //LARGE icon
 	icon_state = "g250"
 
 /obj/structure/fans/tiny/forcefield
-	name = "forcefield"
-	desc = "A fluctuating forcefield for ships to cross."
+	name = "力场"
+	desc = "一个供飞船穿越的波动力场。"
 	icon = 'modular_nova/modules/advanced_shuttles/icons/effects.dmi'
 	icon_state = "forcefield"
 

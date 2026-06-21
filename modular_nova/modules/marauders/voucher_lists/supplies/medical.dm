@@ -63,7 +63,7 @@
 	)
 
 /datum/voucher_set/traitor/supplies/medical/kit_ez_clean
-	name = "acid space-cleaner grenades"
+	name = "酸性太空清洁剂手榴弹"
 	icon = /obj/item/storage/box/syndie_kit/ez_clean::icon
 	icon_state = /obj/item/storage/box/syndie_kit/ez_clean::icon_state
 	set_items = list(

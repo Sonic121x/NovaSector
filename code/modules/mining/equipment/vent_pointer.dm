@@ -1,6 +1,6 @@
 /obj/item/pinpointer/vent
-	name = "ventpointer"
-	desc = "A handheld tracking device. It will locate and point to nearby vents. A bit unreliable though."
+	name = "通风口定位器"
+	desc = "一种手持追踪设备。它能定位并指向附近的通风口。不过有点不可靠。"
 	icon_state = "pinpointer_vent"
 	minimum_range = 8 //gotta use them eyes
 	close_range = 12

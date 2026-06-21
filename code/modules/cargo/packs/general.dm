@@ -2,7 +2,7 @@
 	group = "Miscellaneous Supplies"
 
 /datum/supply_pack/misc/artsupply
-	name = "Art Supplies"
+	name = "艺术用品"
 	desc = "Make some happy little accidents with a rapid pipe cleaner layer, \
 		three spraycans, and lots of crayons!"
 	cost = CARGO_CRATE_VALUE * 1.8
@@ -18,8 +18,8 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/tattoo_kit
-	name = "Tattoo Kit"
-	desc = "A tattoo kit with some extra starting ink."
+	name = "纹身工具组"
+	desc = "一个纹身包，里面有一些额外的墨水。"
 	cost = CARGO_CRATE_VALUE * 1.8
 	contains = list(
 		/obj/item/tattoo_kit,
@@ -29,8 +29,8 @@
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/misc/bicycle
-	name = "Bicycle"
-	desc = "Nanotrasen reminds all employees to never toy with powers outside their control."
+	name = "自行车"
+	desc = "纳米传讯提醒所有员工永远不要玩弄自己无法控制的权力。"
 	cost = 1000000 //Special case, we don't want to make this in terms of crates because having bikes be a million credits is the whole meme.
 	contains = list(/obj/vehicle/ridden/bicycle)
 	crate_name = "bicycle crate"
@@ -38,7 +38,7 @@
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/misc/bigband
-	name = "Big Band Instrument Collection"
+	name = "大乐团乐器收藏品"
 	desc = "Get your sad station movin' and groovin' with this fine collection! \
 		Contains nine different instruments!"
 	cost = CARGO_CRATE_VALUE * 10
@@ -56,8 +56,8 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/book_crate
-	name = "Book Crate"
-	desc = "Surplus from the Nanotrasen Archives, these seven books are sure to be good reads."
+	name = "书籍板条箱"
+	desc = "这是纳米传讯档案馆的剩余书籍，这七本书肯定是很好的读物。（一定没有吴迪与木头吧*憋笑。译者注）"
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_LIBRARY
 	contains = list(/obj/item/book/codex_gigas,
@@ -79,15 +79,15 @@
 	crate_name = "command encryption key crate"
 
 /datum/supply_pack/misc/exploration_drone
-	name = "Exploration Drone"
+	name = "勘查无人机"
 	desc = "A replacement long-range exploration drone."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/exodrone)
 	crate_name = "exodrone crate"
 
 /datum/supply_pack/misc/exploration_fuel
-	name = "Drone Fuel Pellet"
-	desc = "A fresh tank of exploration drone fuel."
+	name = "无人机燃料颗粒"
+	desc = "一箱新的无人机燃料。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/fuel_pellet)
 	crate_name = "exodrone fuel crate"
@@ -120,7 +120,7 @@
 
 /datum/supply_pack/misc/fountainpens
 	name = "Calligraphy Crate"
-	desc = "Sign death warrants in style with these seven executive fountain pens."
+	desc = "用这七支行政钢笔来签署带个人特色的死刑执行令."
 	cost = CARGO_CRATE_VALUE * 1.45
 	contains = list(/obj/item/storage/box/fountainpens)
 	crate_type = /obj/structure/closet/crate/wooden
@@ -150,7 +150,7 @@
 	crate_type = /obj/structure/closet/crate/coffin
 
 /datum/supply_pack/misc/empty
-	name = "Empty Supplypod"
+	name = "空补给舱"
 	desc = "Presenting the New Nanotrasen-Brand Bluespace Supplypod! Transport cargo with grace and ease! \
 		Call today and we'll shoot over a demo unit for just 300 credits!"
 	cost = CARGO_CRATE_VALUE * 0.6 //Empty pod, so no crate refund
@@ -191,7 +191,7 @@
 	crate_name = "toner crate"
 
 /datum/supply_pack/misc/toner_large
-	name = "Toner Crate (Large)"
+	name = "墨粉板条箱（大）"
 	desc = "Tired of changing toner cartridges? These six extra heavy duty refills contain \
 		roughly five times as much toner as the base model!"
 	cost = CARGO_CRATE_VALUE * 6
@@ -208,8 +208,8 @@
 
 ///Special supply crate that generates random syndicate gear up to a determined TC value
 /datum/supply_pack/misc/syndicate
-	name = "Assorted Syndicate Gear"
-	desc = "Contains a random assortment of syndicate gear."
+	name = "各类辛迪加装备"
+	desc = "内含一套随机的辛迪加装备。"
 	order_flags = ORDER_SPECIAL //Cannot be ordered via cargo
 	contains = list()
 	crate_name = "syndicate gear crate"

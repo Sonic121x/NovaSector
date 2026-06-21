@@ -3,8 +3,8 @@
 #define DEFLATED "deflated"
 
 /obj/item/latexballoon
-	name = "latex glove"
-	desc = "Sterile and airtight."
+	name = "乳胶手套"
+	desc = "无菌且气密。"
 	icon_state = "latexballoon"
 	icon = 'icons/obj/weapons/hand.dmi'
 	inhand_icon_state = "greyscale_gloves"
@@ -47,9 +47,9 @@
 	. = ..()
 	switch(state)
 		if(INFLATED)
-			desc = "It's a blown up latex glove on a string."
+			desc = "这是一只吹起来、用绳子系着的乳胶手套。"
 		if(POPPED)
-			desc = "The remains of a latex glove."
+			desc = "一只乳胶手套的残骸。"
 
 /obj/item/latexballoon/proc/blow(obj/item/tank/tank, mob/user)
 	if(state == POPPED)
@@ -58,7 +58,7 @@
 	air_contents = tank.remove_air_volume(3)
 
 	if(isnull(air_contents))
-		balloon_alert(user, "tank is empty!")
+		balloon_alert(user, "气罐是空的！")
 		return
 
 	if(state == INFLATED)
@@ -67,7 +67,7 @@
 
 	playsound(src, 'sound/items/modsuit/inflate_bloon.ogg', 50, TRUE)
 
-	balloon_alert(user, "you blow up the balloon!") // because it's a balloon obviously
+	balloon_alert(user, "你把气球吹起来了！") // because it's a balloon obviously
 
 	set_state(INFLATED)
 

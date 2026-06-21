@@ -42,15 +42,15 @@
 						for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
 							. += "&bull; [round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING)] units of [current_reagent.name]"
 						if(reagents.is_reacting)
-							. += span_warning("It is currently reacting!")
-						. += span_notice("The solution's pH is [round(reagents.ph, 0.01)] and has a temperature of [reagents.chem_temp]K.")
+							. += span_warning("它正在发生反应！")
+						. += span_notice("溶液的pH值为[round(reagents.ph, 0.01)]，温度为[reagents.chem_temp]K。")
 				else
 					. += "It contains:<br>Nothing."
 			else if(reagents.flags & AMOUNT_VISIBLE)
 				if(reagents.total_volume)
-					. += span_notice("It has [reagents.total_volume] unit\s left.")
+					. += span_notice("它还剩下[reagents.total_volume] unit\s 。")
 				else
-					. += span_danger("It's empty.")
+					. += span_danger("它是空的。")
 
 		if(HAS_TRAIT(user, TRAIT_KEEN_NOSE))
 			var/sniff_text = get_sniff_examine(user)
@@ -98,7 +98,7 @@
 /atom/proc/examine_tags(mob/user)
 	. = list()
 	if(abstract_type == type)
-		.[span_hypnophrase("abstract")] = "This is an abstract concept, you should report this to a strange entity called GITHUB!"
+		.[span_hypnophrase("抽象概念")] = "这是一个抽象概念，你应该向一个名为GITHUB的奇怪实体报告此问题！"
 
 	if(resistance_flags & INDESTRUCTIBLE)
 		.["indestructible"] = "It is extremely robust! It'll probably withstand anything that could happen to it!"
@@ -135,7 +135,7 @@
 	var/mats_list = list()
 	for(var/custom_material in custom_materials)
 		var/datum/material/current_material = SSmaterials.get_material(custom_material)
-		mats_list += span_tooltip("It is made out of [current_material.name].", current_material.name)
+		mats_list += span_tooltip("它由[current_material.name]制成。", current_material.name)
 	. += "made of [english_list(mats_list)]"
 
 /**

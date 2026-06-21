@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 #define REFILL_RANGE_DEFAULT 10
 
 /obj/docking_port/mobile/supply
-	name = "supply shuttle"
+	name = "补给穿梭机"
 	shuttle_id = "cargo"
 	callTime = 60 SECONDS
 
@@ -154,8 +154,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	//already got let down by the botanists. So to open a new chance for cargo to also screw them over any more than is necessary is bad.
 	if(SSshuttle.chef_groceries.len)
 		var/obj/structure/closet/crate/freezer/grocery_crate = new(pick_n_take(empty_turfs))
-		grocery_crate.name = "kitchen produce freezer"
-		grocery_crate.desc = "Produce order for the Kitchen, deliver to the chef ASAP."
+		grocery_crate.name = "厨房农产品冷冻柜"
+		grocery_crate.desc = "厨房的农产品订单，请尽快交付给厨师。"
 		investigate_log("Chef's [SSshuttle.chef_groceries.len] sized produce order arrived. Cost was deducted from orderer, not cargo.", INVESTIGATE_CARGO)
 		for(var/datum/orderable_item/item as anything in SSshuttle.chef_groceries)//every order
 			for(var/amt in 1 to SSshuttle.chef_groceries[item])//every order amount
@@ -261,7 +261,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				our_crate.department_purchase = TRUE
 				our_crate.department_account = our_crate.buyer_account
 			/// NOVA EDIT ADDITION END
-			our_crate.name = "goody crate - purchased by [buyer]"
+			our_crate.name = "补给箱 - 由 [buyer] 购买"
 			miscboxes[buyer] = our_crate
 		else //free shipping in a case
 			miscboxes[buyer] = new /obj/item/storage/lockbox/order(pick_n_take(empty_turfs))
@@ -272,7 +272,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				our_case.department_purchase = TRUE
 				our_case.department_account = our_case.buyer_account
 			/// NOVA EDIT ADDITION END
-			miscboxes[buyer].name = "goody case - purchased by [buyer]"
+			miscboxes[buyer].name = "补给箱 - 由 [buyer] 购买"
 		misc_contents[buyer] = list()
 
 		for(var/datum/supply_order/our_order as anything in buying_account_orders)

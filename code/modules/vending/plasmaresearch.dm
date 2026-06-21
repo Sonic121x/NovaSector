@@ -1,7 +1,7 @@
 //This one's from bay12
 /obj/machinery/vending/plasmaresearch
-	name = "\improper Bombuddy 3000"
-	desc = "All the fine parts you need in one vending machine!"
+	name = "\improper Bombuddy 3000-炸弹人 3000"
+	desc = "滴滴,真主来电!"
 	products = list(
 		/obj/item/assembly/igniter = 6,
 		/obj/item/assembly/prox_sensor = 6,

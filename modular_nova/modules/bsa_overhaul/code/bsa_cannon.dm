@@ -21,28 +21,28 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/bsa/back
-	name = "Bluespace Artillery Generator"
-	desc = "Generates cannon pulse. Needs to be linked with a fusor."
+	name = "蓝空火炮发生器"
+	desc = "生成火炮脉冲。需要与聚变器链接。"
 	icon_state = "power_box"
 
 /obj/machinery/bsa/back/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.buffer = src
-	to_chat(user, span_notice("You store linkage information in [tool]'s buffer."))
+	to_chat(user, span_notice("你将链接信息存储到[tool]的缓冲区中。"))
 	return TRUE
 
 /obj/machinery/bsa/front
-	name = "Bluespace Artillery Bore"
-	desc = "Do not stand in front of cannon during operation. Needs to be linked with a fusor."
+	name = "蓝空火炮炮膛"
+	desc = "操作期间请勿站在火炮前方。需要与聚变器链接。"
 	icon_state = "emitter_center"
 
 /obj/machinery/bsa/front/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.buffer = src
-	to_chat(user, span_notice("You store linkage information in [tool]'s buffer."))
+	to_chat(user, span_notice("你将链接信息存储到[tool]的缓冲区中。"))
 	return TRUE
 
 /obj/machinery/bsa/middle
-	name = "Bluespace Artillery Fusor"
-	desc = "Contents classified by Nanotrasen Naval Command. Needs to be linked with the other BSA parts using a multitool."
+	name = "蓝空火炮聚变器"
+	desc = "内容由纳米传讯海军司令部机密分类。需要使用多功能工具与其他BSA部件进行链接。"
 	icon_state = "fuel_chamber"
 	/// Our linked back piece
 	var/datum/weakref/back_piece
@@ -53,14 +53,14 @@
 	if(tool.buffer)
 		if(istype(tool.buffer, /obj/machinery/bsa/back))
 			back_piece = WEAKREF(tool.buffer)
-			to_chat(user, span_notice("You link [src] with [tool.buffer]."))
+			to_chat(user, span_notice("你将[src]与[tool.buffer]链接。"))
 			tool.buffer = null
 		else if(istype(tool.buffer, /obj/machinery/bsa/front))
 			front_piece = WEAKREF(tool.buffer)
-			to_chat(user, span_notice("You link [src] with [tool.buffer]."))
+			to_chat(user, span_notice("你将[src]与[tool.buffer]链接。"))
 			tool.buffer = null
 	else
-		to_chat(user, span_warning("[tool]'s data buffer is empty!"))
+		to_chat(user, span_warning("[tool]的数据缓冲区为空！"))
 	return TRUE
 
 /obj/machinery/bsa/middle/proc/check_completion()
@@ -110,8 +110,8 @@
  * The capacitor bank is charged during the power up phase, it essentially drains the connected powernet until it reaches its target power, and then fires.
  */
 /obj/machinery/bsa/full
-	name = "Bluespace Artillery"
-	desc = "Long range bluespace artillery."
+	name = "蓝空火炮"
+	desc = "远程蓝空火炮。"
 	icon = 'icons/obj/machines/cannon.dmi'
 	icon_state = "cannon_west"
 	use_power = NO_POWER_USE // We use power when we're fired.
@@ -255,7 +255,7 @@
 	if(system_state != BSA_SYSTEM_READY)
 		return
 	system_state = BSA_SYSTEM_PREFIRE
-	priority_announce("BLUESPACE TARGETING PARAMETERS SET, PREIGNITION STARTING... CAPACITOR CHARGE AT [round(capacitor_power / BSA_FIRE_POWER_THRESHOLD, 0.1)] MW, FIRING IN T-20 SECONDS!", "BLUESPACE ARTILLERY", ANNOUNCER_BLUESPACEARTY)
+	priority_announce("蓝空目标参数已设定，预点火启动中...电容器充能 [round(capacitor_power / BSA_FIRE_POWER_THRESHOLD, 0.1)] 兆瓦，将于 T-20 秒后开火！", "蓝空火炮", ANNOUNCER_BLUESPACEARTY)
 	alert_sound_to_playing('modular_nova/modules/bsa_overhaul/sound/superlaser_prefire.ogg', override_volume = TRUE)
 	message_admins("[user] has started the fire cycle of [src]! Firing at: [ADMIN_VERBOSEJMP(bullseye)]")
 	log_game("[key_name(user)] has aimed the bluespace artillery strike at [bullseye].")
@@ -266,7 +266,7 @@
 /obj/machinery/bsa/full/proc/fire(mob/user, turf/bullseye)
 	// Check if the system is already firing or if the machine is broken
 	if(system_state != BSA_SYSTEM_PREFIRE || machine_stat)
-		minor_announce("BLUESPACE ARTILLERY FIRE FAILURE!", "BLUESPACE ARTILLERY", TRUE)
+		minor_announce("蓝空火炮开火失败！", "蓝空火炮", TRUE)
 		system_state = BSA_SYSTEM_READY
 		return
 	system_state = BSA_SYSTEM_FIRING
@@ -302,14 +302,14 @@
 	if(!blocker)
 		message_admins("[ADMIN_LOOKUPFLW(user)] has launched a bluespace artillery strike targeting [ADMIN_VERBOSEJMP(bullseye)].")
 		user.log_message("has launched a bluespace artillery strike targeting [AREACOORD(bullseye)].", LOG_GAME)
-		minor_announce("BLUESPACE ARTILLERY FIRE SUCCESSFUL! DIRECT HIT!", "BLUESPACE ARTILLERY", TRUE)
+		minor_announce("蓝空火炮开火成功！直接命中！", "蓝空火炮", TRUE)
 		create_calculated_explosion(bullseye)
 		alert_sound_to_playing('modular_nova/modules/bsa_overhaul/sound/superlaser_firing.ogg', override_volume = TRUE)
 		capacitor_power = 0
 	else
 		message_admins("[ADMIN_LOOKUPFLW(user)] has launched a bluespace artillery strike targeting [ADMIN_VERBOSEJMP(bullseye)] but it was blocked by [blocker] at [ADMIN_VERBOSEJMP(target)].")
 		user.log_message("has launched a bluespace artillery strike targeting [AREACOORD(bullseye)] but it was blocked by [blocker] at [AREACOORD(target)].", LOG_GAME)
-		minor_announce("BLUESPACE ARTILLERY MALFUNCTION!", "BLUESPACE ARTILLERY", TRUE)
+		minor_announce("蓝空火炮故障！", "蓝空火炮", TRUE)
 
 /// Reloads the BSA.
 /obj/machinery/bsa/full/proc/reload()
@@ -331,7 +331,7 @@
 	explosion(target, calculated_explosion_power, calculated_explosion_power * 2, calculated_explosion_power * 4, ignorecap = TRUE) // This should ignore cap so we can achieve our maximum potential
 
 /obj/structure/filler
-	name = "big machinery part"
+	name = "大型机械部件"
 	density = TRUE
 	anchored = TRUE
 	invisibility = INVISIBILITY_ABSTRACT

@@ -1,6 +1,6 @@
 
 /obj/effect/anomaly/grav
-	name = "gravitational anomaly"
+	name = "引力异常"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield2"
 	density = FALSE

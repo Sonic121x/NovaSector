@@ -1,6 +1,6 @@
 /obj/item/rna_extractor
-	name = "advanced virus RNA extractor"
-	desc = "A tool used to extract the RNA from viruses. Apply to skin."
+	name = "高级病毒RNA提取器"
+	desc = "一种用于从病毒中提取RNA的工具。需接触皮肤使用。"
 	icon = 'modular_nova/modules/mutants/icons/extractor.dmi'
 	icon_state = "extractor"
 	custom_materials = list(
@@ -14,12 +14,12 @@
 
 /obj/item/rna_extractor/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if((istype(attacking_item, /obj/item/rna_vial) && loaded_vial != null))
-		to_chat(user, span_warning("[src] can not hold more than one vial!"))
+		to_chat(user, span_warning("[src]无法容纳超过一个样本瓶！"))
 		return FALSE
 	if(istype(attacking_item, /obj/item/rna_vial))
 		if(!user.transferItemToLoc(attacking_item, src))
 			return FALSE
-		to_chat(user, span_notice("You insert [attacking_item] into [src]!"))
+		to_chat(user, span_notice("你将[attacking_item]插入[src]！"))
 		loaded_vial = attacking_item
 		playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 		update_appearance()
@@ -34,36 +34,36 @@
 		return
 	var/mob/living/carbon/human/target = interacting_with
 	if(!loaded_vial)
-		to_chat(user, span_danger("[src] is empty!"))
+		to_chat(user, span_danger("[src]是空的！"))
 		return
 	if(loaded_vial.contains_rna)
-		to_chat(user, span_danger("[src] already has RNA data in it, upload it to the combinator!"))
+		to_chat(user, span_danger("[src]中已有RNA数据，请将其上传至组合器！"))
 		return
 	if(!ismutant(target))
-		to_chat(user, span_danger("[target] does not register as infected!"))
+		to_chat(user, span_danger("[target]未检测到感染迹象！"))
 		return
 	var/datum/component/mutant_infection/target_infection = target.GetComponent(/datum/component/mutant_infection)
 	if(!target_infection)
-		to_chat(user, span_danger("[target] does not register as infected!"))
+		to_chat(user, span_danger("[target]未检测到感染迹象！"))
 		return
 	if(target_infection.extract_rna())
 		loaded_vial.load_rna(target)
-		to_chat(user, span_notice("[src] successfully scanned [target], and now holds a sample virus RNA data."))
+		to_chat(user, span_notice("[src]成功扫描了[target]，现在持有一份病毒RNA数据样本。"))
 		playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 		update_appearance()
 	else
-		to_chat(user, span_warning("[target] has no useable RNA!"))
+		to_chat(user, span_warning("[target]没有可用的RNA！"))
 
 /obj/item/rna_extractor/proc/unload_vial(mob/living/user)
 	if(loaded_vial)
 		loaded_vial.forceMove(user.loc)
 		user.put_in_hands(loaded_vial)
-		to_chat(user, span_notice("You remove [loaded_vial] from [src]."))
+		to_chat(user, span_notice("你从[src]中取出了[loaded_vial]。"))
 		loaded_vial = null
 		update_appearance()
 		playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
 	else
-		to_chat(user, span_notice("[src] isn't loaded!"))
+		to_chat(user, span_notice("[src]没有装载任何东西！"))
 		return
 
 /obj/item/rna_extractor/update_overlays()
@@ -83,8 +83,8 @@
 	return ..()
 
 /obj/item/rna_vial
-	name = "raw RNA vial"
-	desc = "A glass vial containing raw virus RNA. Slot this into the combinator to upload the sample."
+	name = "原始RNA样本瓶"
+	desc = "一个装有原始病毒RNA的玻璃瓶。将其插入重组器以上传样本。"
 	icon = 'modular_nova/modules/mutants/icons/extractor.dmi'
 	icon_state = "rnavial"
 	custom_materials = list(
@@ -109,8 +109,8 @@
 		. += "It has an RNA sample in it."
 
 /obj/item/hnz_cure
-	name = "HNZ-1 cure vial"
-	desc = "A counter to the HNZ-1 virus, used to rapidly reverse the effects of the virus."
+	name = "HNZ-1解药瓶"
+	desc = "一种针对HNZ-1病毒的抗剂，用于快速逆转病毒的影响。"
 	icon = 'modular_nova/modules/mutants/icons/extractor.dmi'
 	icon_state = "tvirus_cure"
 	var/used = FALSE
@@ -118,17 +118,17 @@
 /obj/item/hnz_cure/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	if(used)
-		to_chat(user, span_danger("[src] has been used and is useless!"))
+		to_chat(user, span_danger("[src]已被使用过，现在没用了！"))
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.GetComponent(/datum/component/mutant_infection))
-			to_chat(user, span_danger("[H] does not register as infected!"))
+			to_chat(user, span_danger("[H]并未显示为感染状态！"))
 			return
 		if(do_after(user, 4 SECONDS))
 			cure_target(H)
 			playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)
-			to_chat(user, span_notice("You inject [H] wth [src]!"))
+			to_chat(user, span_notice("你给[H]注射了[src]！"))
 			used = TRUE
 			update_appearance()
 
@@ -150,8 +150,8 @@
 #define RECOMBINATION_STEP_AMOUNT 25
 
 /obj/machinery/rnd/rna_recombinator
-	name = "RNA recombinator"
-	desc = "This machine is used to recombine RNA sequences from extracted vials of raw virus."
+	name = "RNA重组器"
+	desc = "这台机器用于重组从原始病毒提取瓶中获得的RNA序列。"
 	icon = 'modular_nova/modules/mutants/icons/cure_machine.dmi'
 	icon_state = "h_lathe"
 	base_icon_state = "h_lathe"
@@ -180,7 +180,7 @@
 	if(!user.transferItemToLoc(attacking_item, src))
 		return FALSE
 	loaded_item = attacking_item
-	to_chat(user, span_notice("You insert [attacking_item] to into [src] reciprocal."))
+	to_chat(user, span_notice("你将[attacking_item]插入[src]的接收口。"))
 	flick("h_lathe_load", src)
 	update_appearance()
 	playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
@@ -230,11 +230,11 @@
 		return
 	else
 		if(status != STATUS_IDLE)
-			to_chat(usr, span_warning("[src] is currently recombinating!"))
+			to_chat(usr, span_warning("[src]正在重组中！"))
 		else if(!loaded_item)
-			to_chat(usr, span_warning("[src] is not currently loaded!"))
+			to_chat(usr, span_warning("[src]当前未装载任何物品！"))
 		else if(!process || process != loaded_item) //Interface exploit protection (such as hrefs or swapping items with interface set to old item)
-			to_chat(usr, span_danger("Interface failure detected in [src]. Please try again."))
+			to_chat(usr, span_danger("检测到[src]界面故障。请重试。"))
 		else
 			if(operation == "virus")
 				status = STATUS_RECOMBINATING_VIRUS
@@ -350,8 +350,8 @@
 	try_to_mutant_infect(exposed_mob, TRUE)
 
 /obj/item/reagent_containers/cup/bottle/hnz
-	name = "HNZ-1 bottle"
-	desc = "A small bottle of the HNZ-1 pathogen. Nanotrasen Bioweapons inc."
+	name = "HNZ-1药瓶"
+	desc = "一小瓶HNZ-1病原体。纳米传讯生物武器公司出品。"
 	icon = 'modular_nova/modules/mutants/icons/extractor.dmi'
 	icon_state = "tvirus_infector"
 	list_reagents = list(/datum/reagent/hnz = 30)
@@ -364,8 +364,8 @@
 
 
 /obj/item/storage/briefcase/virology/hnz
-	name = "\improper HNZ-1 biocontainer"
-	desc = "An airtight biosealed box containing the highly reactive substance, HNZ1. Authorised personnel only."
+	name = "\improper HNZ-1生物容器"
+	desc = "一个气密生物密封盒，内含高活性物质HNZ1。仅限授权人员使用。"
 	w_class = WEIGHT_CLASS_SMALL
 	max_integrity = 500
 

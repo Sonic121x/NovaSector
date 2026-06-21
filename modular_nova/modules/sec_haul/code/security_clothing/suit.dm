@@ -22,8 +22,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_armor_vest_white)
 
 /obj/item/clothing/suit/armor/vest/brit
-	name = "high vis armored vest"
-	desc = "Oi bruv, you got a loicence for that?"
+	name = "高可见度装甲背心"
+	desc = "喂老兄，你有那玩意的许可证吗？"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "hazardbg"
@@ -53,8 +53,8 @@
 	new_icon_state = "vested_jacket_black"
 
 /obj/item/clothing/suit/armor/vest/vested_jacket
-	name = "vested security jacket"
-	desc = "The company standard armor now with a stylish zipper jacket stitched in for when you don't think you'll get shot!"
+	name = "带背心安保夹克"
+	desc = "公司标准装甲，现在缝上了一件时尚的拉链夹克，适用于你觉得不会挨枪子的时候！"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "vested_jacket"
@@ -69,14 +69,14 @@
 	AddComponent(/datum/component/toggle_icon, "zipper")
 
 /obj/item/clothing/head/hooded/winterhood/security/blue
-	desc = "A blue, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
+	desc = "一顶蓝色的、带有装甲衬垫的冬季兜帽。绝对不防弹，尤其是你脸要露出来的那部分。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/head/winterhood.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/winterhood.dmi'
 	icon_state = "winterhood_security"
 
 /obj/item/clothing/suit/hooded/wintercoat/security/blue
-	name = "security winter coat"
-	desc = "A blue, armour-padded winter coat. It glitters with a mild ablative coating and a robust air of authority."
+	name = "安保冬季大衣"
+	desc = "一件蓝色的、带有装甲衬垫的冬季大衣。它闪烁着微弱的消融涂层光泽，散发着一种不容置疑的权威感。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits/wintercoat.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suits/wintercoat.dmi'
 	icon_state = "coatsecurity_winter"

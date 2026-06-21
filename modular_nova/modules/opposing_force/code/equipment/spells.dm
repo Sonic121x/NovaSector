@@ -2,83 +2,83 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_SPELLS
 
 /datum/opposing_force_equipment/spells/fireball
-	name = "Fireball"
+	name = "火球术"
 	item_type = /obj/item/book/granter/action/spell/fireball
-	description = "This spells fires an explosive fireball at a target."
+	description = "这个法术会向目标发射一枚爆炸性的火球。"
 	admin_note = "WARNING: This spells has a fairly short cooldown, and can KO/kill on its own."
 
 /datum/opposing_force_equipment/spells/sacredflame
-	name = "Sacred Flame"
+	name = "神圣火焰"
 	item_type = /obj/item/book/granter/action/spell/sacredflame
-	description = "Makes everyone around you more flammable, and lights yourself on fire."
+	description = "使你周围的每个人都变得更易燃，并点燃你自己。"
 
 /datum/opposing_force_equipment/spells/smoke
-	name = "Smoke"
+	name = "烟雾术"
 	item_type = /obj/item/book/granter/action/spell/smoke
-	description = "This spells spawns a cloud of choking smoke at your location."
+	description = "这个法术会在你的位置生成一团令人窒息的烟雾。"
 
 /datum/opposing_force_equipment/spells/blind
-	name = "Blind"
+	name = "致盲术"
 	item_type = /obj/item/book/granter/action/spell/blind
-	description = "This spells temporarily blinds a single target."
+	description = "这个法术会暂时致盲单个目标。"
 	admin_note = "WARNING: Notably strong in 1-v-1s."
 
 /datum/opposing_force_equipment/spells/mindswap
-	name = "Mindswap"
+	name = "心灵交换"
 	item_type = /obj/item/book/granter/action/spell/mindswap
-	description = "This spells allows the user to switch bodies with a target next to them."
+	description = "这个法术允许使用者与身旁的目标交换身体。"
 	admin_note = "WARNING: This spells allows the user to swap minds with someone else, and is overall very strong."
 
 /datum/opposing_force_equipment/spells/forcewall
-	name = "Forcewall"
+	name = "力场墙"
 	item_type = /obj/item/book/granter/action/spell/forcewall
-	description = "Create a magical barrier that only you can pass through."
+	description = "创造一个只有你能通过的魔法屏障。"
 
 /datum/opposing_force_equipment/spells/knock
-	name = "Knock"
+	name = "敲击术"
 	item_type = /obj/item/book/granter/action/spell/knock
-	description = "This spells opens nearby doors and closets."
+	description = "这个法术会打开附近的门和储物柜。"
 
 /datum/opposing_force_equipment/spells/charge
-	name = "Charge"
+	name = "充能术"
 	item_type = /obj/item/book/granter/action/spell/charge
-	description = "This spells can be used to recharge a variety of things in your hands, from magical artifacts to electrical components. A creative wizard can even use it to grant magical power to a fellow magic user."
+	description = "这个法术可用于为你手中的各种物品充能，从魔法神器到电子元件。有创意的巫师甚至可以用它来为其他魔法使用者赋予魔力。"
 	admin_note = "This one can be used for some fuckery (such as recharging martial art granters, sometimes), be a bit careful."
 
 /datum/opposing_force_equipment/spells/summonitem
-	name = "Summon Item"
+	name = "物品召唤"
 	item_type = /obj/item/book/granter/action/spell/summonitem
-	description = "This spells can be used to recall a previously marked item to your hand from anywhere in the universe."
+	description = "这个法术可用于将先前标记过的物品从宇宙任何地方召回至你手中。"
 	admin_note = "WARNING: This spells lets them summon anything they can hold, for as long as it exists, or they can still cast the spells."
 
 /datum/opposing_force_equipment/martial_art
 	category = OPFOR_EQUIPMENT_CATEGORY_SCROLLS
 
 /datum/opposing_force_equipment/martial_art/cqc
-	name = "CQC Manual"
+	name = "CQC手册"
 	item_type = /obj/item/book/granter/martial/cqc
-	description = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
+	description = "一本在自毁前教授单名使用者战术性近身格斗的手册。"
 	admin_note = "CQC is capable of knocking out a target in 3 hits and is equivalent to 23 TC."
 
 /datum/opposing_force_equipment/martial_art/carp
-	name = "Sleeping Carp Scroll"
+	name = "睡鲤卷轴"
 	item_type = /obj/item/book/granter/martial/carp
 	description = "This scroll contains the secrets of an ancient martial arts technique. You will master unarmed combat \
 			and gain the ability to swat bullets from the air, but you will also refuse to use dishonorable ranged weaponry."
 	admin_note = "Sleeping Carp is capable of letting you reflect bullets."
 
 /datum/opposing_force_equipment/martial_art/kravmaga
-	name = "Krav Maga Implanter"
+	name = "马伽术植入器"
 	item_type = /obj/item/implanter/kaza_ruk
-	description = "No need for gloves! This handy implanter teaches you everything you need to know about Krav Maga."
+	description = "不需要手套！这个方便的植入器会教你所有关于马伽术的知识。"
 
 /datum/opposing_force_equipment/martial_art/wrestling
-	name = "Wrestling Belt"
+	name = "摔跤腰带"
 	item_type = /obj/item/storage/belt/champion/wrestling
-	description = "With the imbued MACHO POWERS of this belt, learn the MACHO art of wrestling!"
+	description = "凭借这条腰带所蕴含的MACHO力量，学习MACHO的摔跤艺术！"
 	admin_note = "Warning: Very powerful if questionably unbeatable in a 1v1, very capable of chain-stunning just about anyone (from range, if they can get on a table)"
 
 /datum/opposing_force_equipment/martial_art/mushpunch
-	name = "Mushpunch Mushroom"
+	name = "蘑菇拳蘑菇"
 	item_type = /obj/item/mushpunch
-	description = "Consume this mushroom to learn the Mushroom Punch! A powerful attack that allows you to send people flying."
+	description = "吃下这颗蘑菇以学习蘑菇拳！这是一种强大的攻击，能将人击飞。"

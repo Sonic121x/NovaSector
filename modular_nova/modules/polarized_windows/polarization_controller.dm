@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 	var/atom/parent_atom = parent
 
 	if(!polarizer.id)
-		parent_atom.balloon_alert(user, "set id on controller first!")
+		parent_atom.balloon_alert(user, "请先在控制器上设置ID！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(id)
@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 	id = "[polarizer.id]"
 
 	LAZYADDASSOC(GLOB.polarization_controllers, id, list(src))
-	parent_atom.balloon_alert(user, "linked polarizer!")
+	parent_atom.balloon_alert(user, "已链接偏振器！")
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -112,9 +112,9 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 /datum/component/polarization_controller/proc/on_window_examine(datum/source, mob/user, list/examine_strings)
 	SIGNAL_HANDLER
 
-	examine_strings += span_notice("It has a polarization controller installed.")
-	examine_strings += span_notice("Use a <b>window polarizing controller</b> on it to link it to that controller's current ID.")
-	examine_strings += span_notice("Use a <b>multitool</b> on it to remove the polarization controller.")
+	examine_strings += span_notice("它安装了一个偏光控制器。")
+	examine_strings += span_notice("使用<b>窗户偏光控制器</b>可将其链接到该控制器当前的ID。")
+	examine_strings += span_notice("使用<b>多功能工具</b>可移除偏光控制器。")
 
 
 /**
@@ -139,10 +139,10 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 
 	var/obj/managed_window = parent
 
-	managed_window.balloon_alert(user, "removing polarization controller")
+	managed_window.balloon_alert(user, "正在移除偏振控制器")
 
 	if(!do_after(user, 1 SECONDS, managed_window))
-		managed_window.balloon_alert(user, "cancelled removal")
+		managed_window.balloon_alert(user, "已取消移除")
 		return
 
 	toggle(FALSE)
@@ -158,6 +158,6 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 	UnregisterSignal(parent, COMSIG_ATOM_EXAMINE)
 	UnregisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL))
 
-	managed_window.balloon_alert(user, "removed polarization controller")
+	managed_window.balloon_alert(user, "偏振控制器已移除")
 
 	qdel(src)

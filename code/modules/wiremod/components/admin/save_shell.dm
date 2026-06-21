@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/save_shell
 	display_name = "Save Shell"
-	desc = "A component that saves a shell."
+	desc = "一种用于保存外壳的组件。"
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_ADMIN
 

@@ -3,8 +3,8 @@
 ////////////////////////////////////////
 
 /datum/design/rped
-	name = "Rapid Part Exchange Device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	name = "快捷零件更换器"
+	desc = "专门设计的机械模块，用于存储、分类和装配标准的机器零件。"
 	id = "rped"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5)
@@ -15,8 +15,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/bs_rped
-	name = "Bluespace RPED"
-	desc = "Powered by bluespace technology, this RPED variant can upgrade buildings from a distance, without needing to remove the panel first."
+	name = "蓝空RPED"
+	desc = "借助蓝空技术，这种零件交换装置变体能够从远处对建筑物进行升级，无需先拆除防护面板。"
 	id = "bs_rped"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT*2.5)
@@ -28,8 +28,8 @@
 
 //Capacitors
 /datum/design/basic_capacitor
-	name = "Basic Capacitor"
-	desc = "A stock part used in the construction of various devices."
+	name = "初级电容器-Capacitor"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "basic_capacitor"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -41,8 +41,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/adv_capacitor
-	name = "Advanced Capacitor"
-	desc = "A stock part used in the construction of various devices."
+	name = "高级电容器-Capacitor"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "adv_capacitor"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT*1.5)
@@ -54,8 +54,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/super_capacitor
-	name = "Super Capacitor"
-	desc = "A stock part used in the construction of various devices."
+	name = "超级电容器-Capacitor"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "super_capacitor"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/gold =SMALL_MATERIAL_AMOUNT)
@@ -67,8 +67,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/quadratic_capacitor
-	name = "Quadratic Capacitor"
-	desc = "A stock part used in the construction of various devices."
+	name = "二次电容器-Capacitor"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "quadratic_capacitor"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/gold =SMALL_MATERIAL_AMOUNT, /datum/material/diamond =SMALL_MATERIAL_AMOUNT)
@@ -81,8 +81,8 @@
 
 //Scanning modules
 /datum/design/basic_scanning
-	name = "Basic Scanning Module"
-	desc = "A stock part used in the construction of various devices."
+	name = "初级扫描模块-Scanning Module"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "basic_scanning"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -94,8 +94,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/adv_scanning
-	name = "Advanced Scanning Module"
-	desc = "A stock part used in the construction of various devices."
+	name = "高级扫描模块-Scanning Module"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "adv_scanning"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -107,8 +107,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/phasic_scanning
-	name = "Phasic Scanning Module"
-	desc = "A stock part used in the construction of various devices."
+	name = "相位扫描模块-Scanning Module"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "phasic_scanning"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/silver = SMALL_MATERIAL_AMOUNT*0.6)
@@ -120,8 +120,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/triphasic_scanning
-	name = "Triphasic Scanning Module"
-	desc = "A stock part used in the construction of various devices."
+	name = "三相扫描模块-Scanning Module"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "triphasic_scanning"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/diamond = SMALL_MATERIAL_AMOUNT*0.3, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT*0.5)
@@ -134,7 +134,7 @@
 
 //Maipulators
 /datum/design/micro_servo
-	name = "Micro Servo"
+	name = "微型伺服器"
 	desc = "A stock part used in the construction of various devices."
 	id = "micro_servo"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
@@ -147,7 +147,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/nano_servo
-	name = "Nano Servo"
+	name = "纳米伺服器"
 	desc = "A stock part used in the construction of various devices."
 	id = "nano_servo"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -160,7 +160,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/pico_servo
-	name = "Pico Servo"
+	name = "皮可伺服器"
 	desc = "A stock part used in the construction of various devices."
 	id = "pico_servo"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -173,7 +173,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/femto_servo
-	name = "Femto Servo"
+	name = "飞托伺服器"
 	desc = "A stock part used in the construction of various devices."
 	id = "femto_servo"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -187,8 +187,8 @@
 
 //Micro-lasers
 /datum/design/basic_micro_laser
-	name = "Basic Micro-Laser"
-	desc = "A stock part used in the construction of various devices."
+	name = "初级微型镭射-Micro Laser"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "basic_micro_laser"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -200,8 +200,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/high_micro_laser
-	name = "High-Power Micro-Laser"
-	desc = "A stock part used in the construction of various devices."
+	name = "高功率微型镭射-Micro Laser"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "high_micro_laser"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -213,8 +213,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/ultra_micro_laser
-	name = "Ultra-High-Power Micro-Laser"
-	desc = "A stock part used in the construction of various devices."
+	name = "超功率微型镭射-Micro Laser"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "ultra_micro_laser"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT*0.6)
@@ -226,8 +226,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/quadultra_micro_laser
-	name = "Quad-Ultra Micro-Laser"
-	desc = "A stock part used in the construction of various devices."
+	name = "二次极微型镭射-Micro Laser"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "quadultra_micro_laser"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/uranium =SMALL_MATERIAL_AMOUNT, /datum/material/diamond = SMALL_MATERIAL_AMOUNT*0.6)
@@ -239,8 +239,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/basic_matter_bin
-	name = "Basic Matter Bin"
-	desc = "A stock part used in the construction of various devices."
+	name = "初级物质仓-Matter Bin"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "basic_matter_bin"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT)
@@ -252,8 +252,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/adv_matter_bin
-	name = "Advanced Matter Bin"
-	desc = "A stock part used in the construction of various devices."
+	name = "高级物质仓-Matter Bin"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "adv_matter_bin"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5)
@@ -265,8 +265,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/super_matter_bin
-	name = "Super Matter Bin"
-	desc = "A stock part used in the construction of various devices."
+	name = "超级物质仓-Matter Bin"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "super_matter_bin"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2)
@@ -278,8 +278,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/bluespace_matter_bin
-	name = "Bluespace Matter Bin"
-	desc = "A stock part used in the construction of various devices."
+	name = "蓝空物质仓-Matter Bin"
+	desc = "一种在各类设备制造中使用的通用部件。"
 	id = "bluespace_matter_bin"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*2.5, /datum/material/diamond =SMALL_MATERIAL_AMOUNT, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT)
@@ -292,8 +292,8 @@
 
 //T-Comms devices
 /datum/design/subspace_ansible
-	name = "Subspace Ansible"
-	desc = "A compact module capable of sensing extradimensional activity."
+	name = "子空间安塞波器-Subspace Ansible"
+	desc = "一个小巧的模块，能够探测到超维度活动。"
 	id = "s_ansible"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/silver =SMALL_MATERIAL_AMOUNT)
@@ -304,8 +304,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/hyperwave_filter
-	name = "Hyperwave Filter"
-	desc = "A tiny device capable of filtering and converting super-intense radio waves."
+	name = "超波滤波器-Hyperwave Filter"
+	desc = "一种能够过滤并转换超强无线电波的微型设备。"
 	id = "s_filter"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/silver =SMALL_MATERIAL_AMOUNT)
@@ -316,8 +316,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/subspace_amplifier
-	name = "Subspace Amplifier"
-	desc = "A compact micro-machine capable of amplifying weak subspace transmissions."
+	name = "子空间放大器-Subspace Amplifier"
+	desc = "一种小巧的微型机器，能够增强微弱的子空间信号传输。"
 	id = "s_amplifier"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/gold =SMALL_MATERIAL_AMOUNT, /datum/material/uranium =SMALL_MATERIAL_AMOUNT)
@@ -328,8 +328,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/subspace_treatment
-	name = "Subspace Treatment Disk"
-	desc = "A compact micro-machine capable of stretching out hyper-compressed radio waves."
+	name = "子空间处理磁盘"
+	desc = "一种小巧的微型机器，能够将极度压缩的无线电波展开。"
 	id = "s_treatment"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/silver =SMALL_MATERIAL_AMOUNT * 2)
@@ -340,8 +340,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/subspace_analyzer
-	name = "Subspace Analyzer"
-	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
+	name = "子空间分析仪-Subspace Analyzer"
+	desc = "一种功能先进的分析器，能够分析隐秘的子空间波长。"
 	id = "s_analyzer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/gold =SMALL_MATERIAL_AMOUNT)
@@ -352,8 +352,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/subspace_crystal
-	name = "Ansible Crystal"
-	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
+	name = "安塞波晶体-Ansible Crystal"
+	desc = "一种功能先进的分析器，能够分析隐秘的子空间波长。"
 	id = "s_crystal"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT*8, /datum/material/silver =SMALL_MATERIAL_AMOUNT, /datum/material/gold =SMALL_MATERIAL_AMOUNT)
@@ -364,8 +364,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/subspace_transmitter
-	name = "Subspace Transmitter"
-	desc = "A large piece of equipment used to open a window into the subspace dimension."
+	name = "子空间发射机-Subspace Transmitter"
+	desc = "一种大型设备，用于打开通往次空间维度的通道。"
 	id = "s_transmitter"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT, /datum/material/silver =SMALL_MATERIAL_AMOUNT, /datum/material/uranium =SMALL_MATERIAL_AMOUNT)
@@ -376,8 +376,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/card_reader
-	name = "Card Reader"
-	desc = "A small magnetic card reader, used for devices that take and transmit holocredits."
+	name = "读卡器-Card Reader"
+	desc = "一个小型的磁卡读取器，用于接收和传输信用点的设备使用。"
 	id = "c-reader"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass=SMALL_MATERIAL_AMOUNT*0.1)
@@ -388,8 +388,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/water_recycler
-	name = "Water Recycler"
-	desc = "A small hydrostatic reclaimer, it takes moisture out of the air and returns it back to the source."
+	name = "水回收器-Water Recycler"
+	desc = "这是一种小型的静压式回收装置，它能从空气中吸收水分并将其送入装置。"
 	id = "w-recycler"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT * 2, /datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5)

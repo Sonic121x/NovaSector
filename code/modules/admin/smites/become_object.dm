@@ -2,15 +2,15 @@
 
 /// Turns the target into an object (for instance bread)
 /datum/smite/objectify
-	name = "Become Object"
+	name = "变成物体"
 	/// What are we going to turn them into?
 	var/atom/transform_path = /obj/item/food/bread/plain
 
 /datum/smite/objectify/configure(client/user)
 	var/attempted_target_path = input(
 		user,
-		"Enter typepath of an atom you'd like to turn your victim into.",
-		"Typepath",
+		"输入你想将受害者变成的原子的类型路径。",
+		"类型路径",
 		"[/obj/item/food/bread/plain]",
 	) as null|text
 
@@ -23,7 +23,7 @@
 	if(isnull(desired_object) || !ispath(desired_object))
 		return FALSE //The user pressed "Cancel"
 	if(!ispath(desired_object, /atom))
-		tgui_alert(user, "ERROR: Incorrect / improper path given.")
+		tgui_alert(user, "错误：给出的路径不正确/不合法。")
 		return FALSE
 	transform_path = desired_object
 
@@ -42,5 +42,5 @@
 #undef OBJECTIFY_TIME
 
 /datum/smite/objectify/divine
-	name = "Become Object (Divine)"
+	name = "变成物体（神圣）"
 	smite_flags = SMITE_DIVINE|SMITE_STUN

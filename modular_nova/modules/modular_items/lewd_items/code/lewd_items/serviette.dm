@@ -1,6 +1,6 @@
 /obj/item/serviette
-	name = "serviette"
-	desc = "To clean all the mess."
+	name = "餐巾"
+	desc = "用来清理所有污渍。"
 	icon_state = "serviette_clean"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	/// How much time it takes to clean something using it
@@ -11,8 +11,8 @@
 	item_flags = NOBLUDGEON
 
 /obj/item/serviette_used
-	name = "dirty serviette"
-	desc = "Eww... Throw it in the trash!"
+	name = "脏餐巾"
+	desc = "呃...把它扔进垃圾桶！"
 	icon_state = "serviette_dirty"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	w_class = WEIGHT_CLASS_TINY
@@ -28,7 +28,7 @@
 		to_chat(user, span_warning("You need to take \the [interacting_with.name] off before cleaning it!"))
 
 	else if(istype(interacting_with, /obj/effect/decal/cleanable))
-		user.visible_message(span_notice("[user] begins to clean \the [interacting_with.name] out with [src]."), span_warning("You begin to clean \the [interacting_with.name] out with [src]..."))
+		user.visible_message(span_notice("[user] 开始用 [interacting_with.name] 清理 \the [src]。"), span_warning("你开始用[interacting_with.name]清理\the [src]..."))
 		if(do_after(user, clean_speedies, target = interacting_with))
 			to_chat(user, span_notice("You clean \the [interacting_with.name] out."))
 			var/obj/effect/decal/cleanable/cleanies = interacting_with
@@ -52,7 +52,7 @@
 			user.put_in_hands(used_cloth)
 
 	else
-		user.visible_message(span_notice("[user] begins to clean \the [interacting_with.name] with [src]..."), span_notice("You begin to clean \the [interacting_with.name] with [src]..."))
+		user.visible_message(span_notice("[user]开始用[interacting_with.name]清洁\the [src]..."), span_notice("You begin to clean \the [interacting_with.name] with [src]..."))
 		if(do_after(user, clean_speedies, target = interacting_with))
 			to_chat(user, span_notice("You clean \the [interacting_with.name]."))
 			if(user && isturf(interacting_with))
@@ -72,8 +72,8 @@
 */
 
 /obj/item/serviette_pack
-	name = "pack of serviettes"
-	desc = "I wonder why LustWish makes them..."
+	name = "一包餐巾"
+	desc = "我在想为什么LustWish要生产它们..."
 	icon_state = "serviettepack_4"
 	base_icon_state = "serviettepack"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -93,11 +93,11 @@
 
 /obj/item/serviette_pack/attack_self(mob/user)
 	if(number_remaining)
-		to_chat(user, span_notice("You take a serviette from [src]."))
+		to_chat(user, span_notice("你从 [src] 中取出一张餐巾。"))
 		number_remaining--
 		var/obj/item/serviette/used_serviette = new /obj/item/serviette
 		user.put_in_hands(used_serviette)
 		update_icon()
 		update_icon_state()
 	else
-		to_chat(user, span_notice("There are no serviettes left!"))
+		to_chat(user, span_notice("没有餐巾剩下了！"))

@@ -102,7 +102,7 @@
 		return FALSE
 
 	if (COOLDOWN_FINISHED(src, message_cd) && SPT_PROB(15, seconds_per_tick))
-		to_chat(owner, span_warning("You feel trapped! Must escape... can't breathe..."))
+		to_chat(owner, span_warning("你感到被困住了！必须逃离...无法呼吸..."))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	return TRUE
@@ -154,7 +154,7 @@
 		return FALSE
 
 	if (COOLDOWN_FINISHED(src, message_cd) && SPT_PROB(15, seconds_per_tick))
-		to_chat(owner, span_warning("Santa Claus is here! I gotta get out of here!"))
+		to_chat(owner, span_warning("圣诞老人来了！我得离开这里！"))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	return TRUE
@@ -181,7 +181,7 @@
 			return FALSE
 
 	if (COOLDOWN_FINISHED(src, message_cd) && SPT_PROB(10, seconds_per_tick))
-		to_chat(owner, span_warning("You feel terribly lonely..."))
+		to_chat(owner, span_warning("你感到极度孤独..."))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	return TRUE

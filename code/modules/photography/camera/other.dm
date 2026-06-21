@@ -1,6 +1,6 @@
 /obj/item/camera/spooky
-	name = "camera obscura"
-	desc = "A polaroid camera, some say it can see ghosts!"
+	name = "昏沉相机"
+	desc = "拍立得相机，有人说它能看到鬼魂！"
 	see_ghosts = CAMERA_SEE_GHOSTS_BASIC
 
 /obj/item/camera/spooky/steal_souls(list/victims)
@@ -15,18 +15,18 @@
 			peek_a_boo.apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 
 		target.visible_message(
-			span_warning("[target] violently flinches!"),
-			span_revendanger("You feel your essence draining away from having your picture taken!"),
+			span_warning("[target] 剧烈地畏缩了一下！"),
+			span_revendanger("你感觉自己的精华因被拍照而正在流失！"),
 		)
 		target.apply_damage(rand(10, 15))
 
 /obj/item/camera/spooky/badmin
-	desc = "A polaroid camera, some say it can see ghosts! It seems to have an extra magnifier on the end."
+	desc = "拍立得相机，有人说它能看到鬼魂！它的末端似乎有一个额外的放大镜。"
 	see_ghosts = CAMERA_SEE_GHOSTS_ORBIT
 
 /obj/item/camera/detective
-	name = "detective's camera"
-	desc = "A silent polaroid camera with extra capacity for crime investigations."
+	name = "侦探的相机"
+	desc = "一台用于犯罪调查的、静音且容量更大的宝丽来相机。"
 	print_monochrome = TRUE
 	flash_enabled = FALSE
 	silent = TRUE

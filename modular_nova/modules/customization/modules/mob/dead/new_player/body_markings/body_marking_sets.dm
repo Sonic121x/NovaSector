@@ -22,75 +22,75 @@
 	recommended_species = null
 
 /datum/body_marking_set/tajaran
-	name = "Tajaran"
+	name = "塔亚兰"
 	body_marking_list = list("Tajaran")
 
 /datum/body_marking_set/fox
-	name = "Fox"
+	name = "狐狸"
 	body_marking_list = list("Fox", "Fox Sock")
 
 /datum/body_marking_set/sergal
-	name = "Sergal"
+	name = "塞尔加"
 	body_marking_list = list("Sergal")
 
 /datum/body_marking_set/husky
-	name = "Husky"
+	name = "哈士奇"
 	body_marking_list = list("Husky")
 
 /datum/body_marking_set/fennec
-	name = "Fennec"
+	name = "耳廓狐"
 	body_marking_list = list("Fennec")
 
 /datum/body_marking_set/redpanda
-	name = "Red Panda"
+	name = "小熊猫"
 	body_marking_list = list("Red Panda", "Red Panda Head")
 
 /datum/body_marking_set/dalmatian
-	name = "Dalmatian"
+	name = "斑点狗"
 	body_marking_list = list("Dalmatian")
 
 /datum/body_marking_set/shepherd
-	name = "Shepherd"
+	name = "牧羊犬"
 	body_marking_list = list("Shepherd", "Shepherd Spot")
 
 /datum/body_marking_set/wolf
-	name = "Wolf"
+	name = "狼"
 	body_marking_list = list("Wolf", "Wolf Spot")
 
 /datum/body_marking_set/raccoon
-	name = "Raccoon"
+	name = "浣熊"
 	body_marking_list = list("Raccoon")
 
 /datum/body_marking_set/bovine
-	name = "Bovine"
+	name = "牛科"
 	body_marking_list = list("Bovine", "Bovine Spot")
 
 /datum/body_marking_set/possum
-	name = "Possum"
+	name = "负鼠"
 	body_marking_list = list("Possum")
 
 /datum/body_marking_set/corgi
-	name = "Corgi"
+	name = "柯基"
 	body_marking_list = list("Corgi")
 
 /datum/body_marking_set/skunk
-	name = "Skunk"
+	name = "臭鼬"
 	body_marking_list = list("Skunk")
 
 /datum/body_marking_set/panther
-	name = "Panther"
+	name = "黑豹"
 	body_marking_list = list("Panther")
 
 /datum/body_marking_set/tiger
-	name = "Tiger"
+	name = "老虎"
 	body_marking_list = list("Tiger Spot", "Tiger Stripe")
 
 /datum/body_marking_set/otter
-	name = "Otter"
+	name = "水獭"
 	body_marking_list = list("Otter", "Otter Head")
 
 /datum/body_marking_set/otie
-	name = "Otie"
+	name = "奥提"
 	body_marking_list = list("Otie", "Otie Spot")
 
 /datum/body_marking_set/sabresune
@@ -174,43 +174,43 @@
 	body_marking_list = list("Belly")
 
 /datum/body_marking_set/belly_slim
-	name = "Belly Slim"
+	name = "腹部细纹"
 	body_marking_list = list("Belly Slim")
 
 /datum/body_marking_set/hands_feet
-	name = "Hands Feet"
+	name = "手足纹"
 	body_marking_list = list("Hands Feet")
 
 /datum/body_marking_set/frog
-	name = "Frog"
+	name = "蛙纹"
 	body_marking_list = list("Frog")
 
 /datum/body_marking_set/bee
-	name = "Bee"
+	name = "蜂纹"
 	body_marking_list = list("Bee")
 
 /datum/body_marking_set/gradient
-	name = "Gradient"
+	name = "渐变"
 	body_marking_list = list("Gradient")
 
 /datum/body_marking_set/harlequin
-	name = "Harlequin"
+	name = "杂色"
 	body_marking_list = list("Harlequin")
 
 /datum/body_marking_set/harlequin_reversed
-	name = "Harlequin Reversed"
+	name = "反向杂色"
 	body_marking_list = list("Harlequin Reversed")
 
 /datum/body_marking_set/plain
-	name = "Plain"
+	name = "素色"
 	body_marking_list = list("Plain")
 
 /datum/body_marking_set/splotches
-	name = "Splotches"
+	name = "斑驳"
 	body_marking_list = list("Splotches")
 
 /datum/body_marking_set/chitin
-	name = "Chitin"
+	name = "甲壳纹"
 	body_marking_list = list("Chitin")
 
 //AKULA MARKINGS
@@ -218,7 +218,7 @@
 	recommended_species = list(SPECIES_AKULA = 1)
 
 /datum/body_marking_set/akula/akula
-	name = "Akula"
+	name = "阿库拉纹"
 	body_marking_list = list("Akula", "Akula Highlight")
 
 //VOX MARKINGS
@@ -226,38 +226,38 @@
 	recommended_species = list(SPECIES_VOX = 1)
 
 /datum/body_marking_set/vox/vox
-	name = "Vox"
+	name = "沃克斯纹"
 	body_marking_list = list("Vox Talon")
 
 /datum/body_marking_set/vox/vox_tiger
-	name = "Vox Tiger"
+	name = "沃克斯虎纹"
 	body_marking_list = list("Vox Talon", "Vox Tiger Tattoo")
 
 /datum/body_marking_set/vox/vox_hive
-	name = "Vox Hive"
+	name = "沃克斯蜂巢纹"
 	body_marking_list = list("Vox Talon", "Vox Hive Tattoo")
 
 /datum/body_marking_set/vox/vox_nightling
-	name = "Vox Nightling"
+	name = "沃克斯夜灵纹"
 	body_marking_list = list("Vox Talon", "Vox Nightling Tattoo")
 
 /datum/body_marking_set/vox/vox_heart
-	name = "Vox Heart"
+	name = "沃克斯心形纹"
 	body_marking_list = list("Vox Talon", "Vox Heart Tattoo")
 
 /datum/body_marking_set/synthliz
 	recommended_species = list(SPECIES_SYNTH = 1)
 
 /datum/body_marking_set/synthliz/scutes
-	name = "Synth Scutes"
+	name = "合成鳞甲纹"
 	body_marking_list = list("Synth Scutes")
 
 /datum/body_marking_set/synthliz/pecs
-	name = "Synth Pecs"
+	name = "合成胸甲纹"
 	body_marking_list = list("Synth Pecs")
 
 /datum/body_marking_set/synthliz/pecs_light
-	name = "Synth Pecs Lights"
+	name = "合成胸甲光纹"
 	body_marking_list = list("Synth Pecs", "Synth Collar Lights")
 
 //MOTH
@@ -266,57 +266,57 @@
 	recommended_species = list(SPECIES_MOTH = 1)
 
 /datum/body_marking_set/moth/reddish
-	name = "Reddish"
+	name = "微红"
 	body_marking_list = list("Reddish")
 
 /datum/body_marking_set/moth/royal
-	name = "Royal"
+	name = "皇家"
 	body_marking_list = list("Royal")
 
 /datum/body_marking_set/moth/gothic
-	name = "Gothic"
+	name = "哥特"
 	body_marking_list = list("Gothic")
 
 /datum/body_marking_set/moth/whitefly
-	name = "Whitefly"
+	name = "白蝇"
 	body_marking_list = list("Whitefly")
 
 /datum/body_marking_set/moth/burnt_off
-	name = "Burnt Off"
+	name = "烧蚀"
 	body_marking_list = list("Burnt Off")
 
 /datum/body_marking_set/moth/deathhead
-	name = "Deathhead"
+	name = "死亡头"
 	body_marking_list = list("Deathhead")
 
 /datum/body_marking_set/moth/poison
-	name = "Poison"
+	name = "毒物"
 	body_marking_list = list("Poison")
 
 /datum/body_marking_set/moth/ragged
-	name = "Ragged"
+	name = "褴褛"
 	body_marking_list = list("Ragged")
 
 /datum/body_marking_set/moth/moonfly
-	name = "Moonfly"
+	name = "月蝇"
 	body_marking_list = list("Moonfly")
 
 /datum/body_marking_set/moth/oakworm
-	name = "Oakworm"
+	name = "橡木虫"
 	body_marking_list = list("Oakworm")
 
 /datum/body_marking_set/moth/jungle
-	name = "Jungle"
+	name = "丛林"
 	body_marking_list = list("Jungle")
 
 /datum/body_marking_set/moth/witchwing
-	name = "Witchwing"
+	name = "巫翼"
 	body_marking_list = list("Witchwing")
 
 /datum/body_marking_set/moth/lovers
-	name = "Lovers"
+	name = "恋人"
 	body_marking_list = list("Lovers")
 
 /datum/body_marking_set/moth/lightbearer
-	name = "Lightbearer"
+	name = "持光者"
 	body_marking_list = list("Lightbearer")

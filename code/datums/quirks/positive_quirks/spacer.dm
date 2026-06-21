@@ -7,8 +7,8 @@
 	desc = "You were born in space, and have never known the comfort of a planet's gravity. Your body has adapted to this. \
 		You are more comfortable in zero and artificial gravity and are more resistant to the effects of space, \
 		but travelling to a planet's surface for an extended period of time will make you feel sick."
-	gain_text = span_notice("You feel at home in space.")
-	lose_text = span_danger("You feel homesick.")
+	gain_text = span_notice("你在太空中感觉如鱼得水。")
+	lose_text = span_danger("你感到思乡。")
 	icon = FA_ICON_USER_ASTRONAUT
 	value = 5
 	quirk_flags = QUIRK_CHANGES_APPEARANCE //NOVA EDIT CHANGE - ORIGINAL: quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
@@ -72,7 +72,7 @@
 	var/obj/item/storage/medkit/civil_defense/comfort/stocked/disgust_killers = new() // NOVA EDIT CHANGE - a custom deforest cheesekit filled with much better meds - ORIGINAL: var/obj/item/storage/pill_bottle/ondansetron/disgust_killers = new()
 	//disgust_killers.desc += " Best to take one when travelling to a planet's surface." NOVA EDIT REMOVAL - remove extra blurb, unneeded
 	if(quirk_holder.equip_to_storage(disgust_killers, ITEM_SLOT_BACK, indirect_action = TRUE, del_on_fail = TRUE))
-		to_chat(quirk_holder, span_info("You have[isnull(spacer_account) ? " " : " also "]been given a kit of symptom-alleviating autoinjectors to aid in adjusting to planetary gravity.")) // NOVA EDIT CHANGE - rewords to make sense - ORIGINAL: to_chat(quirk_holder, span_info("You have[isnull(spacer_account) ? " " : " also "]been given some anti-emetic patches to assist in adjusting to planetary gravity."))
+		to_chat(quirk_holder, span_info("你[isnull(spacer_account) ? " " : " also "]获得了一套缓解症状的自动注射器套件，以帮助你适应行星重力。")) // NOVA EDIT CHANGE - rewords to make sense - ORIGINAL: to_chat(quirk_holder, span_info("You have[isnull(spacer_account) ? " " : " also "]been given some anti-emetic patches to assist in adjusting to planetary gravity."))
 
 /datum/quirk/spacer_born/remove()
 	UnregisterSignal(quirk_holder, COMSIG_MOVABLE_Z_CHANGED)
@@ -145,7 +145,7 @@
 	afflicted.add_mood_event("spacer", /datum/mood_event/spacer/on_planet)
 	afflicted.add_movespeed_modifier(/datum/movespeed_modifier/spacer/on_planet)
 	afflicted.remove_status_effect(/datum/status_effect/spacer) // removes the wellness effect.
-	to_chat(afflicted, span_danger("You feel a bit sick under the gravity here."))
+	to_chat(afflicted, span_danger("你感觉这里的重力让你有点不舒服。"))
 
 /**
  * Ran after remaining on a planet for too long.
@@ -168,7 +168,7 @@
 	afflicted.add_movespeed_modifier(movespeed_mod_picked)
 
 	if(!skip_timers)
-		to_chat(afflicted, span_danger("You've been here for too long. The gravity really starts getting to you."))
+		to_chat(afflicted, span_danger("你在这里待得太久了。重力真的开始让你受不了了。"))
 
 // Going back into space
 
@@ -196,7 +196,7 @@
 	afflicted.remove_status_effect(/datum/status_effect/spacer)
 	afflicted.clear_mood_event("spacer")
 	// Does not remove the movement modifier yet, it lingers until you fully recover
-	to_chat(afflicted, span_green("You start feeling better now that you're back in space."))
+	to_chat(afflicted, span_green("回到太空后，你开始感觉好多了。"))
 
 /**
  * Ran when living back in space, or just no-grav in general, for a long enough period.
@@ -213,7 +213,7 @@
 	afflicted.add_mood_event("spacer", /datum/mood_event/spacer/in_space)
 	afflicted.add_movespeed_modifier(/datum/movespeed_modifier/spacer/in_space)
 	if(!skip_timers)
-		to_chat(afflicted, span_green("You feel better."))
+		to_chat(afflicted, span_green("你感觉好多了。"))
 
 // On a planet but has no gravity
 

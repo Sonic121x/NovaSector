@@ -1,7 +1,7 @@
 /// Completely transform the station
 /datum/grand_finale/midas
-	name = "Transformation"
-	desc = "The ultimate use of your gathered power! Turn their precious station into something much MORE precious, materially speaking!"
+	name = "转化"
+	desc = "你收集力量的终极用途！将他们宝贵的空间站变成某种物质上更宝贵的东西！"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "sheet-gold_2"
 	glow_colour = "#dbdd4c48"

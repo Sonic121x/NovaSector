@@ -1,5 +1,5 @@
 /datum/antagonist/magic_servant
-	name = "\improper Magic Servant"
+	name = "\improper 魔法侍从"
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE

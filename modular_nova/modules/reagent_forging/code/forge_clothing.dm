@@ -39,8 +39,8 @@
 
 // Vests
 /obj/item/clothing/suit/armor/forging_plate_armor
-	name = "plate vest"
-	desc = "An armor vest made of hammered, interlocking plates."
+	name = "板甲背心"
+	desc = "一件由锤打、互锁的板甲片制成的护甲背心。"
 	icon = 'modular_nova/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_nova/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
 	worn_icon_better_vox = 'modular_nova/modules/reagent_forging/icons/mob/clothing/forge_clothing_newvox.dmi'
@@ -64,8 +64,8 @@
 	allowed += /obj/item/kinetic_crusher
 
 /obj/item/clothing/suit/armor/forging_chain_shirt
-	name = "chain mail"
-	desc = "An armor made by weaved chain links, allowing blows to be evenly distributed."
+	name = "锁子甲"
+	desc = "一种由编织的链环制成的护甲，能使打击力均匀分布。"
 	icon_state = "chained_leather_armor"
 	icon = 'modular_nova/modules/primitive_catgirls/icons/objects.dmi'
 	worn_icon = 'modular_nova/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
@@ -86,8 +86,8 @@
 
 // Gloves
 /obj/item/clothing/gloves/forging_plate_gloves
-	name = "plate gloves"
-	desc = "A set of leather gloves with protective armor plates connected to the wrists."
+	name = "板甲手套"
+	desc = "一副皮革手套，手腕处连接着防护甲板。"
 	icon = 'modular_nova/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_nova/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
 	worn_icon_better_vox = 'modular_nova/modules/reagent_forging/icons/mob/clothing/forge_clothing_newvox.dmi'
@@ -108,8 +108,8 @@
 
 // Helmets
 /obj/item/clothing/head/helmet/forging_plate_helmet
-	name = "plate helmet"
-	desc = "A helmet out of hammered plates with a leather neck guard and chin strap."
+	name = "板甲头盔"
+	desc = "一顶由锤打板甲制成的头盔，带有皮革护颈和下巴带。"
 	icon = 'modular_nova/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_nova/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
 	worn_icon_better_vox = 'modular_nova/modules/reagent_forging/icons/mob/clothing/forge_clothing_newvox.dmi'
@@ -130,8 +130,8 @@
 
 // Boots
 /obj/item/clothing/shoes/forging_plate_boots
-	name = "plate boots"
-	desc = "A pair of leather boots with protective armor plates over the shins and toes."
+	name = "板甲靴"
+	desc = "一双皮革靴子，胫骨和脚趾上方有防护甲板。"
 	icon = 'modular_nova/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_nova/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
 	worn_icon_digi = 'modular_nova/modules/reagent_forging/icons/mob/clothing/forge_clothing_digi.dmi'
@@ -155,8 +155,8 @@
 
 // Misc
 /obj/item/clothing/gloves/ring/reagent_clothing
-	name = "ring"
-	desc = "A tiny ring, sized to wrap around a finger."
+	name = "戒指"
+	desc = "一枚小戒指，尺寸刚好能绕在手指上。"
 	icon_state = "ringsilver"
 	worn_icon_state = "sring"
 	inhand_icon_state = "ringsilver"
@@ -169,8 +169,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -4)
 
 /obj/item/clothing/neck/collar/reagent_clothing
-	name = "collar"
-	desc = "A collar that is ready to be worn for certain individuals."
+	name = "项圈"
+	desc = "一个已准备好供特定个体佩戴的项圈。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 	icon_state = "thick_strip"
@@ -190,8 +190,8 @@
 	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_NECK)
 
 /obj/item/restraints/handcuffs/reagent_clothing
-	name = "handcuffs"
-	desc = "A pair of handcuffs that are ready to keep someone captive."
+	name = "手铐"
+	desc = "一副已准备好用来囚禁某人的手铐。"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	obj_flags_nova = ANVIL_REPAIR
 

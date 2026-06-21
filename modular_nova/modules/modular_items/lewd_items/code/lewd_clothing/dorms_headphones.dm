@@ -1,6 +1,6 @@
 /obj/item/clothing/ears/dorms_headphones
-	name = "padded headphones"
-	desc = "Protects your ears from loud noises - it has a little switch on the right-hand side."
+	name = "软垫耳机"
+	desc = "保护你的耳朵免受噪音侵扰——它的右侧有一个小开关。"
 	base_icon_state = "kinkphones"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_ears.dmi'
 	greyscale_colors = "#383840#dc7ef4#dc7ef4"
@@ -41,7 +41,7 @@
 	if(!(src == user.ears))
 		return
 	REMOVE_TRAIT(user, TRAIT_DEAF, CLOTHING_TRAIT)
-	to_chat(user, span_purple("You can finally hear the world around you once more."))
+	to_chat(user, span_purple("你终于能再次听到周围的世界了。"))
 
 /obj/item/clothing/ears/dorms_headphones/proc/toggle(owner)
 	playing_music = !playing_music
@@ -49,8 +49,8 @@
 	to_chat(owner, span_notice("You turn the music [playing_music ? "on. It plays relaxing music." : "off."]"))
 
 /datum/action/item_action/toggle_dorms_headphones
-	name = "Toggle Headphones' Music"
-	desc = "Plays a selection of some rather meditative music."
+	name = "切换耳机音乐"
+	desc = "播放一些相当冥想的音乐选集。"
 
 /datum/action/item_action/toggle_dorms_headphones/Trigger(trigger_flags)
 	. = ..()

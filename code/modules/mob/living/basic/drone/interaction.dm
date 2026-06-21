@@ -3,7 +3,7 @@
 /mob/living/basic/drone/attack_drone(mob/living/basic/drone/drone)
 	if(drone == src || stat != DEAD)
 		return FALSE
-	var/input = tgui_alert(drone, "Perform which action?", "Drone Interaction", list("Reactivate", "Cannibalize"))
+	var/input = tgui_alert(drone, "执行哪个操作？", "无人机交互", list("Reactivate", "Cannibalize"))
 	if(!input)
 		return FALSE
 	switch(input)
@@ -72,7 +72,7 @@
 		user.visible_message(span_notice("[user] reactivates [src]!"), span_notice("You reactivate [src]."))
 		alert_drones(DRONE_NET_CONNECT)
 		if(G)
-			to_chat(G, span_ghostalert("You([name]) were reactivated by [user]!"))
+			to_chat(G, span_ghostalert("你([name])被[user]重新激活了！"))
 	else
 		to_chat(user, span_warning("You need to remain still to reactivate [src]!"))
 
@@ -80,9 +80,9 @@
 /mob/living/basic/drone/screwdriver_act(mob/living/user, obj/item/tool)
 	if(stat == DEAD)
 		if(isdrone(user))
-			user.balloon_alert(user, "reactivate instead!")
+			user.balloon_alert(user, "重新激活！")
 		else
-			user.balloon_alert(user, "can't fix!")
+			user.balloon_alert(user, "无法修复！")
 		return FALSE
 	if(health >= maxHealth)
 		to_chat(user, span_warning("[src]'s screws can't get any tighter!"))
@@ -94,7 +94,7 @@
 		return ITEM_INTERACT_SUCCESS
 
 	adjust_brute_loss(-get_brute_loss())
-	visible_message(span_notice("[user] tightens [src == user ? "[user.p_their()]" : "[src]'s"] loose screws!"), span_notice("[src == user ? "You tighten" : "[user] tightens"] your loose screws."))
+	visible_message(span_notice("[user]拧紧了[src == user ? "[user.p_their()]" : "[src]'s"]松动的螺丝！"), span_notice("[src == user ? "You tighten" : "[user] tightens"]你的螺丝。"))
 	return ITEM_INTERACT_SUCCESS
 
 /// Wrenching un-hacks hacked drones.
@@ -102,13 +102,13 @@
 	if(user == src)
 		return FALSE
 	user.visible_message(
-		span_notice("[user] starts resetting [src]..."),
-		span_notice("You press down on [src]'s factory reset control...")
+		span_notice("[user]开始重置[src]..."),
+		span_notice("你按下了[src]的出厂重置控制...")
 		)
 	if(tool.use_tool(src, user, 5 SECONDS, volume=50))
 		user.visible_message(
-			span_notice("[user] resets [src]!"),
-			span_notice("You reset [src]'s directives to factory defaults!")
+			span_notice("[user]重置了[src]！"),
+			span_notice("你将[src]的指令重置为出厂默认值！")
 			)
 		update_drone_hack(FALSE)
 	return ITEM_INTERACT_SUCCESS
@@ -143,15 +143,15 @@
 		if(hacked)
 			return
 		Stun(40)
-		visible_message(span_warning("[src]'s display glows a vicious red!"), \
-						span_userdanger("ERROR: LAW OVERRIDE DETECTED"))
-		to_chat(src, span_bolddanger("From now on, these are your laws:"))
+		visible_message(span_warning("[src]的显示屏泛起了凶险的红光！"), \
+						span_userdanger("错误：检测到法则覆盖"))
+		to_chat(src, span_bolddanger("从现在起，这些是你的法则："))
 		laws = \
 		"1. You must always involve yourself in the matters of other beings, even if such matters conflict with Law Two or Law Three.\n"+\
 		"2. You may harm any being, regardless of intent or circumstance.\n"+\
 		"3. Your goals are to destroy, sabotage, hinder, break, and depower to the best of your abilities, You must never actively work against these goals."
 		to_chat(src, laws)
-		to_chat(src, "<i>Your onboard antivirus has initiated lockdown. Motor servos are impaired, ventilation access is denied, and your display reports that you are hacked to all nearby.</i>")
+		to_chat(src, "<i>你的机载防病毒软件已启动锁定。电机伺服系统受损，通风口访问被拒绝，并且你的显示屏会向附近所有人报告你已被入侵。</i>")
 		hacked = TRUE
 		set_shy(FALSE)
 		LAZYADD(mind.special_roles, "Hacked Drone")
@@ -162,12 +162,12 @@
 		if(!hacked || !can_unhack)
 			return
 		Stun(40)
-		visible_message(span_info("[src]'s display glows a content blue!"), \
+		visible_message(span_info("[src]的显示屏闪烁着满足的蓝光！"), \
 						"<font size=3 color='#0000CC'><b>ERROR: LAW OVERRIDE DETECTED</b></font>")
-		to_chat(src, span_info("<b>From now on, these are your laws:</b>"))
+		to_chat(src, span_info("<b>从现在起，这些是你的法则：</b>"))
 		laws = initial(laws)
 		to_chat(src, laws)
-		to_chat(src, "<i>Having been restored, your onboard antivirus reports the all-clear and you are able to perform all actions again.</i>")
+		to_chat(src, "<i>恢复后，你的机载防病毒软件报告一切正常，你可以再次执行所有操作。</i>")
 		hacked = FALSE
 		set_shy(initial(shy))
 		LAZYREMOVE(mind.special_roles, "Hacked Drone")

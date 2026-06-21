@@ -6,8 +6,8 @@
 
 /datum/antagonist/nukeop/support/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/machines/printer.ogg', 100, 0, use_reverb = FALSE)
-	to_chat(owner, span_big("You are a [name]! You've been temporarily assigned to provide camera overwatch and manage communications for a nuclear operative team!"))
-	to_chat(owner, span_red("Use your tools to set up your equipment however you like, but do NOT attempt to leave your outpost."))
+	to_chat(owner, span_big("你是一名[name]！你已被临时指派为核弹特工小队提供摄像头监控和通讯管理！"))
+	to_chat(owner, span_red("使用你的工具随意设置装备，但切勿试图离开你的前哨站。"))
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/support/on_gain()
@@ -25,7 +25,7 @@
 			emp_proof = FALSE, \
 		)
 		our_teammate.playsound_local(get_turf(owner.current), 'sound/items/weapons/egloves.ogg', 100, 0)
-		to_chat(our_teammate, span_notice("A Syndicate Overwatch Intelligence Agent has been assigned to your team. Smile, you're on camera!"))
+		to_chat(our_teammate, span_notice("一名辛迪加监控情报特工已被指派到你的小队。微笑吧，你正在被录像！"))
 
 	RegisterSignal(nuke_team, COMSIG_NUKE_TEAM_ADDITION, PROC_REF(late_bodycam))
 
@@ -48,7 +48,7 @@
 		network = OPERATIVE_CAMERA_NET, \
 		emp_proof = FALSE, \
 	)
-	to_chat(new_teammate, span_notice("You have been equipped with a bodycam, viewable by your Overwatch Intelligence Agent. Make sure to show them a good performance!"))
+	to_chat(new_teammate, span_notice("你已配备了一个可由你的监控情报特工查看的随身摄像头。务必为他们献上精彩表现！"))
 
 /datum/objective/overwatch
 	explanation_text = "Provide intelligence support and overwatch to your operative team!"

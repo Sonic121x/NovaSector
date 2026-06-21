@@ -16,33 +16,33 @@
 	item_path = /obj/item/clothing/shoes/sneakers
 */ // NOVA EDIT REMOVAL END
 /datum/loadout_item/shoes/sandals_laced
-	name = "Sandals (Velcro)"
+	name = "凉鞋（魔术贴）"
 	item_path = /obj/item/clothing/shoes/sandal/velcro
 
 /datum/loadout_item/shoes/sandals_laced_black
-	name = "Sandals (Black, Velcro)"
+	name = "凉鞋（黑色，魔术贴）"
 	item_path = /obj/item/clothing/shoes/sandal/alt/velcro
 
 /datum/loadout_item/shoes/laceup
-	name = "Shoes (Laceup)"
+	name = "鞋子（系带）"
 	item_path = /obj/item/clothing/shoes/laceup
 
 /datum/loadout_item/shoes/cowboy_brown
-	name = "Boots (Cowboy, Brown)"
+	name = "靴子（牛仔，棕色）"
 	item_path = /obj/item/clothing/shoes/cowboy/laced
 
 /datum/loadout_item/shoes/cowboy_white
-	name = "Boots (Cowboy, White)"
+	name = "靴子（牛仔，白色）"
 	item_path = /obj/item/clothing/shoes/cowboy/white/laced
 
 /datum/loadout_item/shoes/cowboy_black
-	name = "Boots (Cowboy, Black)"
+	name = "靴子（牛仔，黑色）"
 	item_path = /obj/item/clothing/shoes/cowboy/black/laced
 
 /datum/loadout_item/shoes/glow_shoes
-	name = "Shoes (Glowing, Colourable)"
+	name = "鞋子（发光，可着色）"
 	item_path = /obj/item/clothing/shoes/glow
 
 /datum/loadout_item/shoes/jackboots
-	name = "Workboots (Black)"
+	name = "工作靴（黑色）"
 	item_path = /obj/item/clothing/shoes/workboots/black

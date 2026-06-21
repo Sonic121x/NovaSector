@@ -11,7 +11,7 @@
 
 // Base type. Subtypes are found in /grown dir. Lavaland-based subtypes can be found in mining/ash_flora.dm
 /obj/item/food/grown
-	name = "fresh produce" // so recipe text doesn't say 'snack'
+	name = "新鲜农产品" // so recipe text doesn't say 'snack'
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "berrypile"
 	worn_icon = 'icons/mob/clothing/head/hydroponics.dmi'
@@ -110,7 +110,7 @@
 	if(!dry_grind || HAS_TRAIT(src, TRAIT_DRIED))
 		return TRUE
 	if (user)
-		to_chat(user, span_warning("[src] needs to be dry before it can be ground up!"))
+		to_chat(user, span_warning("[src]需要先干燥才能研磨！"))
 	return FALSE
 
 /// Turns the nutriments and vitamins into the distill reagent or fruit wine
@@ -162,8 +162,8 @@
 	//if we attack with paper and the grown is a mushroom, create a spore print.
 	if(istype(tool, /obj/item/paper) && seed?.get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
 		qdel(tool)
-		seed.name = "[LOWER_TEXT(seed.plantname)] spore print"
-		seed.desc = "A dusting of [LOWER_TEXT(seed.plantname)] spores have been deposited in a beautiful pattern on the surface of the paper. "
+		seed.name = "[LOWER_TEXT(seed.plantname)]孢子印"
+		seed.desc = "一层[LOWER_TEXT(seed.plantname)]孢子以优美的图案沉积在纸张表面。"
 		seed.icon_state = "spore_print[pick(1,2,3)]"
 		seed.forceMove(drop_location())
 		playsound(user, 'sound/items/paper_flip.ogg', 20)

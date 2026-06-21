@@ -1,6 +1,6 @@
 /obj/machinery/artifact/bluespace_crystal
 	name = "bluespace crystal"
-	desc = "A strange blue crystal."
+	desc = "一块奇怪的蓝色晶体。"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/artifacts.dmi'
 	icon_state = "artifact_13"
 	artifact_type_id = ARTIFACT_CRYSTAL_BLUE
@@ -57,9 +57,9 @@
 			continue
 
 		living_mob.visible_message(
-			span_warning("[living_mob] is displaced by a strange force!"),
-			span_warning("You are displaced by a strange force!"),
-			blind_message = span_hear("You hear zap nearby."),
+			span_warning("[living_mob]被一股奇怪的力量位移了！"),
+			span_warning("你被一股奇怪的力量位移了！"),
+			blind_message = span_hear("你听到附近传来一阵噼啪声。"),
 		)
 		if(living_mob.buckled)
 			living_mob.buckled.unbuckle_mob()

@@ -58,7 +58,7 @@
 		talk_action.Grant(the_real_ling)
 
 	else if(talk_action?.owner == the_real_ling)
-		to_chat(the_real_ling, span_ghostalert("We can no longer detect our decoy brain."))
+		to_chat(the_real_ling, span_ghostalert("我们无法再检测到诱饵大脑。"))
 		talk_action.Remove(the_real_ling)
 
 /// Clear up the decoy if the ling is de-linged

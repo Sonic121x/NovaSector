@@ -1,6 +1,6 @@
 /mob/living/basic/roro
 	name = "roro"
-	desc = "A little round, sharp beaked alien. It bears a striking resemblance to insulated gloves."
+	desc = "一种小小的、圆滚滚的、喙很尖的外星生物。它与绝缘手套有着惊人的相似之处。"
 	icon_state = "roro"
 	icon_living = "roro"
 	icon_dead = "roro_dead"

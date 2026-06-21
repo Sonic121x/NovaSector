@@ -272,7 +272,7 @@
 /datum/voucher_set/traitor/organ
 
 /datum/voucher_set/traitor/organ/xeno_kit
-	name = "xenomorph organ kit"
+	name = "异形器官套件"
 	icon = /obj/item/organ/alien/plasmavessel::icon
 	icon_state = /obj/item/organ/alien/plasmavessel::icon_state
 	set_items = list(
@@ -284,7 +284,7 @@
 	)
 
 /datum/voucher_set/traitor/organ/nightmare_kit
-	name = "nightmare organ kit"
+	name = "梦魇器官套件"
 	icon = /obj/item/light_eater::icon
 	icon_state = /obj/item/light_eater::icon_state
 	set_items = list(

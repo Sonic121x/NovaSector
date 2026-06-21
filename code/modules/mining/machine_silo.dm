@@ -24,8 +24,8 @@
 #define RESTRICT_CONFIRMATION (1<<11)
 
 /obj/machinery/ore_silo
-	name = "ore silo"
-	desc = "An all-in-one bluespace storage and transmission system for the station's mineral distribution needs."
+	name = "矿物筒仓"
+	desc = "一套一体化的蓝空存储和传输系统，用于满足空间站的矿物分配需求。"
 	icon = 'icons/obj/machines/ore_silo.dmi'
 	icon_state = "silo"
 	density = TRUE
@@ -124,10 +124,10 @@
 
 /obj/machinery/ore_silo/examine(mob/user)
 	. = ..()
-	. += span_notice("It can be linked to techfabs, circuit printers and protolathes with a multitool.")
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("它可以用多功能工具连接到科技制造机、电路打印机和原型制造机。")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("screwed")][panel_open ? "closed" : "open"]。")
 	if(panel_open)
-		. += span_notice("The whole machine can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("整个机器可以被[EXAMINE_HINT("pried")]。")
 
 /obj/machinery/ore_silo/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
@@ -166,7 +166,7 @@
 
 /obj/machinery/ore_silo/multitool_act(mob/living/user, obj/item/multitool/I)
 	I.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -351,7 +351,7 @@
 		CRASH("Bad arguments passed to [callee]")
 	var/emagged = obj_flags & EMAGGED
 	if((isAI(user) || iscyborg(user) || isdrone(user)) && !emagged)
-		to_chat(user, span_danger("A scroll of red text occludes your vision: ACCESS ENFORCEMENT _disabled_ for SILICON INTERFACE."))
+		to_chat(user, span_danger("一行红色文字遮蔽了你的视线：硅基接口的访问强制功能_已禁用_。"))
 		user.flash_act(intensity = 1, affect_silicon = TRUE)
 		handle_access_action_feedback(
 			BAN_ATTEMPT_FAILURE_SOULLESS_MACHINE,
@@ -367,7 +367,7 @@
 	// like ban people who haven't joined the round yet
 	var/haxxor_card_ban_immunity = !isnull(target_user_data[CHAMELEON_OVERRIDE])
 
-	to_chat(user, span_warning("You press the button to [target_is_banned ? "un" : ""]ban [target_user_data["name"]]'s account..."))
+	to_chat(user, span_warning("你按下按钮以[target_is_banned ? "un" : ""]封禁[target_user_data["name"]]的账户..."))
 	// No feedback if emagged
 	if(emagged)
 		if(!haxxor_card_ban_immunity && isnum(target_bank_id))

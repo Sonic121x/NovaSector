@@ -126,7 +126,7 @@
 	var/cant_speak = (HAS_TRAIT(traitor_mob, TRAIT_MUTE) || is_mime_job(assigned_role))
 	if(uplink_spawn_location == UPLINK_RADIO && cant_speak)
 		if(!silent)
-			to_chat(current, span_warning("You have been deemed ineligible for a radio uplink. Supplying standard uplink instead."))
+			to_chat(current, span_warning("你被判定为不符合获得无线电上行链路的资格。将提供标准上行链路作为替代。"))
 		uplink_spawn_location = UPLINK_PDA
 
 	if(uplink_spawn_location != UPLINK_IMPLANT)
@@ -138,7 +138,7 @@
 		var/obj/item/implant/uplink/starting/new_implant = new(traitor_mob)
 		new_implant.implant(traitor_mob, null, silent = TRUE)
 		if(!silent)
-			to_chat(current, span_boldnotice("Your Syndicate Uplink has been cunningly implanted in you, for a small TC fee. Simply trigger the uplink to access it."))
+			to_chat(current, span_boldnotice("你的辛迪加上行链路已巧妙地植入你体内，只需少量TC费用。只需触发上行链路即可访问。"))
 		add_memory(/datum/memory/key/traitor_uplink/implant, uplink_loc = "implant")
 		return new_implant
 
@@ -212,9 +212,9 @@
 
 /datum/mind/proc/announce_objectives()
 	var/obj_count = 1
-	to_chat(current, span_notice("Your current objectives:"))
+	to_chat(current, span_notice("你当前的目标："))
 	for(var/datum/objective/objective as anything in get_all_objectives())
-		to_chat(current, "<B>[objective.objective_name] #[obj_count]</B>: [objective.explanation_text]")
+		to_chat(current, "<B>[objective.objective_name] 目标 #[obj_count]</B>: [objective.explanation_text]")
 		obj_count++
 	// Objectives are often stored in the static data of antag uis, so we should update those as well
 	for(var/datum/antagonist/antag as anything in antag_datums)

@@ -3,8 +3,8 @@
 ///////////////////////////////////
 
 /datum/design/board/subspace_receiver
-	name = "Subspace Receiver Board"
-	desc = "Allows for the construction of Subspace Receiver equipment."
+	name = "子空间接收器电路板"
+	desc = "允许构建子空间接收器。"
 	id = "s_receiver"
 	build_path = /obj/item/circuitboard/machine/telecomms/receiver
 	category = list(
@@ -13,8 +13,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/telecomms_bus
-	name = "Bus Mainframe Board"
-	desc = "Allows for the construction of Telecommunications Bus Mainframes."
+	name = "总线主机电路板"
+	desc = "允许构建电信总线主机。"
 	id = "s_bus"
 	build_path = /obj/item/circuitboard/machine/telecomms/bus
 	category = list(
@@ -23,8 +23,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/telecomms_hub
-	name = "Hub Mainframe Board"
-	desc = "Allows for the construction of Telecommunications Hub Mainframes."
+	name = "主机枢纽电路板"
+	desc = "允许构建主机枢纽。"
 	id = "s_hub"
 	build_path = /obj/item/circuitboard/machine/telecomms/hub
 	category = list(
@@ -33,8 +33,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/telecomms_relay
-	name = "Relay Mainframe Board"
-	desc = "Allows for the construction of Telecommunications Relay Mainframes."
+	name = "中继主机电路板"
+	desc = "允许构建电信中继主机。"
 	id = "s_relay"
 	build_path = /obj/item/circuitboard/machine/telecomms/relay
 	category = list(
@@ -43,8 +43,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/telecomms_processor
-	name = "Processor Unit Board"
-	desc = "Allows for the construction of Telecommunications Processor equipment."
+	name = "处理器单元电路板"
+	desc = "可用于构建电信处理单元。"
 	id = "s_processor"
 	build_path = /obj/item/circuitboard/machine/telecomms/processor
 	category = list(
@@ -53,8 +53,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/telecomms_server
-	name = "Server Mainframe Board"
-	desc = "Allows for the construction of Telecommunications Servers."
+	name = "服务器主机电路板"
+	desc = "允许构建电信服务器。"
 	id = "s_server"
 	build_path = /obj/item/circuitboard/machine/telecomms/server
 	category = list(
@@ -63,8 +63,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/telecomms_messaging
-	name = "Messaging Server Board"
-	desc = "Allows for the construction of Telecommunications Messaging Servers."
+	name = "发信服务器电路板"
+	desc = "允许构建电信发信服务器。"
 	id = "s_messaging"
 	build_path = /obj/item/circuitboard/machine/telecomms/message_server
 	category = list(
@@ -73,8 +73,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/subspace_broadcaster
-	name = "Subspace Broadcaster Board"
-	desc = "Allows for the construction of Subspace Broadcasting equipment."
+	name = "子空间广播器电路板"
+	desc = "允许构建子空间广播器。"
 	id = "s_broadcaster"
 	build_path = /obj/item/circuitboard/machine/telecomms/broadcaster
 	category = list(

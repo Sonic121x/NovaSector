@@ -1,6 +1,6 @@
 /obj/item/clothing/under/colonial
-	name = "colonial outfit"
-	desc = "Fancy white satin shirt and a pair of cotton-blend pants with a black synthleather belt."
+	name = "殖民者服装"
+	desc = "一件精致的白色缎面衬衫和一条棉混纺裤子，配有一条黑色合成皮革腰带。"
 	icon = 'modular_nova/modules/food_replicator/icons/clothing.dmi'
 	worn_icon = 'modular_nova/modules/food_replicator/icons/clothing_worn.dmi'
 	worn_icon_digi = 'modular_nova/modules/food_replicator/icons/clothing_digi.dmi'
@@ -8,14 +8,14 @@
 
 /obj/item/clothing/under/colonial/mob_can_equip(mob/living/equipper, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(isteshari(equipper))
-		to_chat(equipper, span_warning("[src] is far too big for you!"))
+		to_chat(equipper, span_warning("[src] 对你来说太大了！"))
 		return FALSE
 
 	return ..()
 
 /obj/item/clothing/shoes/jackboots/colonial
-	name = "colonial half-boots"
-	desc = "Good old laceless boots, with a sturdy plastic toe to, theoretically, keep your toes uncrushed."
+	name = "殖民者半筒靴"
+	desc = "经典的无鞋带靴子，配有坚固的塑料鞋头，理论上可以保护你的脚趾不被压碎。"
 	icon = 'modular_nova/modules/food_replicator/icons/clothing.dmi'
 	worn_icon = 'modular_nova/modules/food_replicator/icons/clothing_worn.dmi'
 	worn_icon_digi = 'modular_nova/modules/food_replicator/icons/clothing_digi.dmi'
@@ -23,14 +23,14 @@
 
 /obj/item/clothing/shoes/jackboots/colonial/mob_can_equip(mob/living/equipper, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(isteshari(equipper))
-		to_chat(equipper, span_warning("[src] is far too big for you!"))
+		to_chat(equipper, span_warning("[src] 对你来说太大了！"))
 		return FALSE
 
 	return ..()
 
 /obj/item/clothing/neck/cloak/colonial
-	name = "colonial cloak"
-	desc = "A cloak made from heavy tarpaulin. Nigh wind- and waterproof thanks to its design."
+	name = "殖民斗篷"
+	desc = "一件用厚重防水布制成的斗篷。得益于其设计，几乎能防风防水。"
 	slot_flags = ITEM_SLOT_OCLOTHING|ITEM_SLOT_NECK
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'modular_nova/modules/food_replicator/icons/clothing.dmi'
@@ -41,14 +41,14 @@
 
 /obj/item/clothing/neck/cloak/colonial/mob_can_equip(mob/living/equipper, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(isteshari(equipper))
-		to_chat(equipper, span_warning("[src] is far too big for you!"))
+		to_chat(equipper, span_warning("[src] 对你来说太大了！"))
 		return FALSE
 
 	return ..()
 
 /obj/item/clothing/head/hats/colonial
-	name = "colonial cap"
-	desc = "A puffy cap made out of tarpaulin covered by some textile. It is sturdy and comfortable, and seems to retain its form very well."
+	name = "殖民帽"
+	desc = "一顶用防水布制成、外层覆有纺织物的蓬松帽子。它坚固舒适，并且似乎能很好地保持其形状。"
 	icon = 'modular_nova/modules/food_replicator/icons/clothing.dmi'
 	worn_icon = 'modular_nova/modules/food_replicator/icons/clothing_worn.dmi'
 	worn_icon_digi = 'modular_nova/modules/food_replicator/icons/clothing_digi.dmi'
@@ -58,14 +58,14 @@
 
 /obj/item/clothing/head/hats/colonial/mob_can_equip(mob/living/equipper, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(isteshari(equipper))
-		to_chat(equipper, span_warning("[src] is far too big for you!"))
+		to_chat(equipper, span_warning("[src] 对你来说太大了！"))
 		return FALSE
 
 	return ..()
 
 /obj/item/clothing/accessory/webbing/colonial
-	name = "slim colonial webbing vest"
-	desc = "A versatile individual carrying equipment, cherished by colonists and hoarders alike. Compact enough to be worn underneath bulky clothing."
+	name = "纤薄殖民携行背心"
+	desc = "一种多功能的个人携行装备，深受殖民者和囤积者的喜爱。足够紧凑，可以穿在笨重的衣物下面。"
 	icon = 'modular_nova/modules/food_replicator/icons/clothing.dmi'
 	worn_icon = 'modular_nova/modules/food_replicator/icons/clothing_worn.dmi'
 	icon_state = "accessory_webbing"

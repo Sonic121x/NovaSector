@@ -52,11 +52,11 @@
 		if(WIRE_CAMERA) // Pulse to disable the camera.
 			if(!QDELETED(R.builtInCamera) && !R.scrambledcodes)
 				R.builtInCamera.toggle_cam(usr, FALSE)
-				R.visible_message(span_notice("[R]'s camera lens focuses loudly."), span_notice("Your camera lens focuses loudly."))
+				R.visible_message(span_notice("[R]的摄像头镜头大声对焦。"), span_notice("你的摄像头镜头大声对焦。"))
 				log_silicon("[key_name(usr)] toggled [key_name(R)]'s camera to [R.builtInCamera.camera_enabled ? "on" : "off"] via pulse")
 		if(WIRE_LAWSYNC) // Forces a law update if possible.
 			if(R.lawupdate)
-				R.visible_message(span_notice("[R] gently chimes."), span_notice("LawSync protocol engaged."))
+				R.visible_message(span_notice("[R]轻轻鸣响。"), span_notice("法律同步协议已启动。"))
 				log_silicon("[key_name(usr)] forcibly synced [key_name(R)]'s laws via pulse")
 				// TODO, log the laws they gained here
 				R.lawsync()
@@ -67,7 +67,7 @@
 
 		if(WIRE_RESET_MODEL)
 			if(R.has_model())
-				R.visible_message(span_notice("[R]'s model servos twitch."), span_notice("Your model display flickers."))
+				R.visible_message(span_notice("[R]的型号伺服器抽搐了一下。"), span_notice("你的型号显示器闪烁了一下。"))
 
 /datum/wires/robot/on_cut(wire, mend, source)
 	var/mob/living/silicon/robot/R = holder
@@ -94,7 +94,7 @@
 				var/fixing_camera = !mend
 				R.builtInCamera.camera_enabled = fixing_camera
 				R.builtInCamera.toggle_cam(usr, 0)
-				R.visible_message(span_notice("[R]'s camera lens focuses loudly."), span_notice("Your camera lens focuses loudly."))
+				R.visible_message(span_notice("[R]的摄像头镜头大声对焦。"), span_notice("你的摄像头镜头大声对焦。"))
 				R.logevent("Camera Module fault [fixing_camera ? "cleared" : "detected"]")
 				log_silicon("[key_name(usr)] [fixing_camera ? "enabled" : "disabled"] [key_name(R)]'s camera via wire")
 		if(WIRE_LOCKDOWN) // Simple lockdown.

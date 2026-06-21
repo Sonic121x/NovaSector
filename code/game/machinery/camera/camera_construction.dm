@@ -4,7 +4,7 @@
 			if(!tool.tool_start_check(user, amount = 1))
 				return ITEM_INTERACT_BLOCKING
 			user.balloon_alert_to_viewers("[camera_construction_state == CAMERA_STATE_WELDED ? "un" : null]welding...")
-			audible_message(span_hear("You hear welding."))
+			audible_message(span_hear("你听到了焊接声。"))
 			if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
 				user.balloon_alert_to_viewers("stopped [camera_construction_state == CAMERA_STATE_WELDED ? "un" : null]welding!")
 				return
@@ -17,11 +17,11 @@
 				return ITEM_INTERACT_BLOCKING
 			if(!tool.tool_start_check(user, amount=2))
 				return ITEM_INTERACT_BLOCKING
-			audible_message(span_hear("You hear welding."))
+			audible_message(span_hear("你听到了焊接声。"))
 			if(!tool.use_tool(src, user, 100, volume=50))
 				return ITEM_INTERACT_BLOCKING
-			user.visible_message(span_warning("[user] unwelds [src], leaving it as just a frame bolted to the wall."),
-				span_warning("You unweld [src], leaving it as just a frame bolted to the wall"))
+			user.visible_message(span_warning("[user]拆除了[src]的焊接，使其只剩下一个固定在墙上的框架。"),
+				span_warning("你拆除了[src]的焊接，使其只剩下一个固定在墙上的框架。"))
 			deconstruct(TRUE)
 			return ITEM_INTERACT_SUCCESS
 	return ..()
@@ -35,7 +35,7 @@
 				return ITEM_INTERACT_BLOCKING
 			var/list/tempnetwork = splittext(input, ",")
 			if(!length(tempnetwork))
-				to_chat(user, span_warning("No network found, please hang up and try your call again!"))
+				to_chat(user, span_warning("未找到网络，请挂断后重试！"))
 				return ITEM_INTERACT_BLOCKING
 			for(var/i in tempnetwork)
 				tempnetwork -= i
@@ -46,7 +46,7 @@
 			return ITEM_INTERACT_SUCCESS
 		if(CAMERA_STATE_FINISHED)
 			toggle_panel_open()
-			to_chat(user, span_notice("You screw the camera's panel [panel_open ? "open" : "closed"]."))
+			to_chat(user, span_notice("你将摄像头的面板[panel_open ? "open" : "closed"]。"))
 			tool.play_tool_sound(src)
 			update_appearance()
 			return ITEM_INTERACT_SUCCESS
@@ -57,7 +57,7 @@
 		if(CAMERA_STATE_WIRED)
 			new /obj/item/stack/cable_coil(drop_location(), 2)
 			tool.play_tool_sound(src)
-			to_chat(user, span_notice("You cut the wires from the circuits."))
+			to_chat(user, span_notice("你切断了电路板上的电线。"))
 			camera_construction_state = CAMERA_STATE_WELDED
 			return ITEM_INTERACT_SUCCESS
 		if(CAMERA_STATE_FINISHED)
@@ -74,7 +74,7 @@
 	if(camera_construction_state != CAMERA_STATE_WRENCHED)
 		return NONE
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice("You detach [src] from its place."))
+	to_chat(user, span_notice("你将[src]从其位置上拆下。"))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -90,12 +90,12 @@
 		droppable_parts += proximity_monitor
 	if(!length(droppable_parts))
 		return ITEM_INTERACT_BLOCKING
-	var/obj/item/choice = tgui_input_list(user, "Select a part to remove", "Part Removal", sort_names(droppable_parts))
+	var/obj/item/choice = tgui_input_list(user, "选择要移除的部件", "部件移除", sort_names(droppable_parts))
 	if(isnull(choice))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You remove [choice] from [src]."))
+	to_chat(user, span_notice("你从[src]中取出了[choice]。"))
 	if(choice == xray_module)
 		drop_upgrade(xray_module)
 		removeXRay()
@@ -112,14 +112,14 @@
 	if(camera_construction_state != CAMERA_STATE_FINISHED || !panel_open)
 		return NONE
 	setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
-	to_chat(user, span_notice("You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus."))
+	to_chat(user, span_notice("你[(view_range == initial(view_range)) ? "restore" : "mess up"]了摄像头的焦距。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/camera/proc/gas_analyzer_act(mob/living/user, obj/item/tool)
 	if(camera_construction_state == CAMERA_STATE_FINISHED && !panel_open)
 		return NONE
 	if(isXRay(TRUE))
-		to_chat(user, span_warning("[src] already has that upgrade!"))
+		to_chat(user, span_warning("[src]已经拥有该升级了！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.temporarilyRemoveItemFromInventory(tool, newloc = src))
 		return ITEM_INTERACT_BLOCKING
@@ -132,7 +132,7 @@
 	if(camera_construction_state == CAMERA_STATE_FINISHED && !panel_open)
 		return NONE
 	if(isEmpProof(TRUE))
-		to_chat(user, span_warning("[src] already has that upgrade!"))
+		to_chat(user, span_warning("[src]已经拥有该升级了！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.use_tool(src, user, 0, amount = 1))
 		return ITEM_INTERACT_BLOCKING
@@ -144,7 +144,7 @@
 	if(camera_construction_state == CAMERA_STATE_FINISHED && !panel_open)
 		return NONE
 	if(isMotion())
-		to_chat(user, span_warning("[src] already has that upgrade!"))
+		to_chat(user, span_warning("[src]已经拥有该升级了！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.temporarilyRemoveItemFromInventory(tool, newloc = src))
 		return ITEM_INTERACT_BLOCKING
@@ -159,7 +159,7 @@
 	if(!astype(tool, /obj/item/stack/cable_coil)?.use(2))
 		to_chat(user, span_warning("You need two lengths of cable to wire [src]!"))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You add wires to [src]."))
+	to_chat(user, span_notice("你为[src]添加了电线。"))
 	camera_construction_state = CAMERA_STATE_WIRED
 	return ITEM_INTERACT_SUCCESS
 

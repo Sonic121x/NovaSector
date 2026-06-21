@@ -4,8 +4,8 @@ Recurring extracts:
 	If depleted of its last charge, stops working.
 */
 /obj/item/slimecross/recurring
-	name = "recurring extract"
-	desc = "A tiny, glowing core, wrapped in several layers of goo."
+	name = "循环提取物"
+	desc = "一个微小且发光的中心部分，被几层黏液包裹着。"
 	effect = "recurring"
 	icon_state = "recurring"
 	abstract_type = /obj/item/slimecross/recurring
@@ -17,7 +17,7 @@ Recurring extracts:
 /obj/item/slimecross/recurring/Initialize(mapload)
 	. = ..()
 	extract = new extract_type(src.loc)
-	visible_message(span_notice("[src] wraps a layer of goo around itself!"))
+	visible_message(span_notice("[src] 在自己周围包裹了一层粘液！"))
 	extract.name = name
 	extract.desc = desc
 	extract.icon = icon
@@ -34,8 +34,8 @@ Recurring extracts:
 		extract.extract_uses++
 		cooldown = max_cooldown
 	else if(extract.extract_uses <= 0)
-		extract.visible_message(span_warning("The light inside [extract] flickers and dies out."))
-		extract.desc = "A tiny, inert core, bleeding dark, cerulean-colored goo."
+		extract.visible_message(span_warning("[extract] 内部的光芒闪烁了几下，然后熄灭了。"))
+		extract.desc = "一个微小、毫无生机的中心，散发着暗沉的、天蓝色的黏稠体。"
 		extract.icon_state = "prismatic"
 		qdel(src)
 

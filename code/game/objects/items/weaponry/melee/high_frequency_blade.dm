@@ -147,6 +147,6 @@
 
 /obj/item/highfrequencyblade/wizard/attack_self(mob/user, modifiers)
 	if(!HAS_MIND_TRAIT(user, TRAIT_MAGICALLY_GIFTED))
-		balloon_alert(user, "you're too weak!")
+		balloon_alert(user, "你太弱了！")
 		return
 	return ..()

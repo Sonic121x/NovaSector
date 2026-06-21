@@ -57,7 +57,7 @@
 
 /mob/living/basic/construct/Initialize(mapload)
 	. = ..()
-	throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
+	throw_alert("血之感知", /atom/movable/screen/alert/bloodsense)
 	AddElement(/datum/element/simple_flying)
 	var/remains = remains_by_theme[theme]
 	if(remains)
@@ -126,9 +126,9 @@
 	. = list()
 	if(health < maxHealth)
 		if(health >= maxHealth/2)
-			. += span_warning("[p_They()] look[p_s()] slightly dented.")
+			. += span_warning("[p_They()] 看起来[p_s()]有点凹陷。")
 		else
-			. += span_warning(span_bold("[p_They()] look[p_s()] severely dented!"))
+			. += span_warning(span_bold("[p_They()] 看起来[p_s()]严重凹陷了！"))
 
 	return .
 
@@ -140,5 +140,5 @@
 
 /// Construct ectoplasm. Largely a placeholder, since the death drop element needs a unique list.
 /obj/item/ectoplasm/construct
-	name = "blood-red ectoplasm"
-	desc = "Has a pungent metallic smell."
+	name = "血红色的灵质"
+	desc = "有一股刺鼻的金属气味。"

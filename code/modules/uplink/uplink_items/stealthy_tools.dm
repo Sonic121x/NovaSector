@@ -1,5 +1,5 @@
 /datum/uplink_category/stealthy_tools
-	name = "Stealth Gadgets"
+	name = "隐蔽的道具"
 	weight = 4
 
 /datum/uplink_item/stealthy_tools
@@ -81,7 +81,7 @@
 
 /datum/uplink_item/stealthy_tools/jammer
 	name = "Radio Jammer"
-	desc = "This device will disrupt any nearby outgoing radio communication when activated. Does not affect binary chat."
+	desc = "此设备激活后见中断所有中距离内任何无线电通讯的传输. 不影响二进制通讯"
 	item = /obj/item/jammer
 	cost = 1
 
@@ -113,7 +113,7 @@
 
 /datum/uplink_item/stealthy_tools/telecomm_blackout
 	name = "Disable Telecomms"
-	desc = "When purchased, a virus will be uploaded to the telecommunication processing servers to temporarily disable themselves."
+	desc = "购买后通讯病毒将会被上传至通讯服务器以超载服务器并暂时使它们失效"
 	item = ABSTRACT_UPLINK_ITEM
 	surplus = 0
 	progression_minimum = 15 MINUTES
@@ -128,7 +128,7 @@
 
 /datum/uplink_item/stealthy_tools/blackout
 	name = "Trigger Stationwide Blackout"
-	desc = "When purchased, a virus will be uploaded to the engineering processing servers to force a routine power grid check, forcing all APCs on the station to be temporarily disabled."
+	desc = "购买后电力病毒将会被上传至工程处理服务器以强制进行电网检查，迫使站内的所有APC暂时停用"
 	item = ABSTRACT_UPLINK_ITEM
 	surplus = 0
 	progression_minimum = 15 MINUTES

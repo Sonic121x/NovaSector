@@ -1,6 +1,6 @@
 /obj/structure/statue/petrified
-	name = "statue"
-	desc = "An incredibly lifelike marble carving."
+	name = "雕像"
+	desc = "一个栩栩如生的大理石雕刻。"
 	icon_state = "human_male"
 	density = TRUE
 	anchored = TRUE
@@ -26,7 +26,7 @@
 	petrified_mob = living
 	if(living.buckled)
 		living.buckled.unbuckle_mob(living, force = TRUE)
-	living.visible_message(span_warning("[living]'s skin rapidly turns to marble!"), span_userdanger("Your body freezes up! Can't... move... can't... think..."))
+	living.visible_message(span_warning("[living]的皮肤迅速变成了大理石！"), span_userdanger("你的身体僵住了！动不了……也……无法思考……"))
 	living.forceMove(src)
 	living.add_traits(list(TRAIT_GODMODE, TRAIT_MUTE, TRAIT_NOBLOOD), STATUE_MUTE)
 	living.add_faction(FACTION_MIMIC) //Stops mimics from instaqdeling people in statues
@@ -63,7 +63,7 @@
 		if(statue_mob.mind)
 			if(petrified_mob)
 				statue_mob.mind.transfer_to(petrified_mob)
-				to_chat(petrified_mob, span_notice("You slowly come back to your senses. You are in control of yourself again!"))
+				to_chat(petrified_mob, span_notice("你慢慢恢复了知觉。你重新掌控了自己的身体！"))
 		qdel(statue_mob)
 
 	for(var/obj/statue_contents in src)
@@ -82,8 +82,8 @@
 				var/obj/item/organ/brain/carbon_brain = petrified_carbon.get_organ_slot(ORGAN_SLOT_BRAIN)
 				carbon_brain.Remove(petrified_carbon)
 				carbon_brain.forceMove(get_turf(src))
-				carbon_brain.name = "petrified [carbon_brain.name]"
-				carbon_brain.desc = "[carbon_brain.desc] This one seems a bit more... smooth than a normal brain. Probably'd still work."
+				carbon_brain.name = "石化的[carbon_brain.name]"
+				carbon_brain.desc = "[carbon_brain.desc] 这一个看起来比普通大脑更……光滑一些。可能还能用。"
 				carbon_brain.add_atom_colour(list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0)), FIXED_COLOUR_PRIORITY)
 				destruction_message = "[src] shatters, a solid brain tumbling out!"
 			petrified_mob.dust()
@@ -93,7 +93,7 @@
 	if(isnull(petrified_mob))
 		return ..()
 	var/mob/living/basic/statue/new_statue = new(drop_location())
-	new_statue.name = "statue of [petrified_mob.name]"
+	new_statue.name = "[petrified_mob.name]的雕像"
 	if(owner)
 		new_statue.befriend(owner)
 	new_statue.icon = 'icons/blanks/32x32.dmi'
@@ -103,7 +103,7 @@
 	new_statue.atom_colours = atom_colours.Copy()
 	new_statue.update_atom_colour()
 	petrified_mob.mind?.transfer_to(new_statue)
-	to_chat(new_statue, span_userdanger("You are an animate statue. You cannot move when monitored, but are nearly invincible and deadly when unobserved! [owner ? "Do not harm [owner], your creator" : ""]."))
+	to_chat(new_statue, span_userdanger("你是一个活化的雕像。在被注视时无法移动，但在不被观察时几乎无敌且致命！[owner ? "Do not harm [owner], your creator" : ""]。"))
 	forceMove(new_statue)
 	return new_statue
 
@@ -114,7 +114,7 @@
 	if(!isturf(loc))
 		return FALSE
 	var/obj/structure/statue/petrified/new_statue = new(loc, src, statue_timer, save_brain)
-	new_statue.name = "statue of [name]"
+	new_statue.name = "[name] 的雕像"
 	new_statue.icon = 'icons/blanks/32x32.dmi'
 	new_statue.icon_state = "nothing"
 	new_statue.appearance_flags |= KEEP_TOGETHER
@@ -126,7 +126,7 @@
 	if(!isturf(loc))
 		return FALSE
 	var/obj/structure/statue/petrified/new_statue = new (loc, src, statue_timer)
-	new_statue.name = "statue of a corgi"
+	new_statue.name = "柯基的雕像"
 	new_statue.icon_state = "corgi"
-	new_statue.desc = "If it takes forever, I will wait for you..."
+	new_statue.desc = "如果要永远等下去，我会等你……"
 	return TRUE

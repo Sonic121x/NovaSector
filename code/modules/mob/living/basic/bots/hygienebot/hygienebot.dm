@@ -1,8 +1,8 @@
 #define WASH_PERIOD 3 SECONDS
 
 /mob/living/basic/bot/hygienebot
-	name = "\improper Hygienebot"
-	desc = "A flying cleaning robot, he'll chase down people who can't shower properly!"
+	name = "\improper 卫生机器人"
+	desc = "一个飞行清洁机器人，他会追着那些不好好洗澡的人跑！"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "hygienebot"
 	base_icon_state = "hygienebot"

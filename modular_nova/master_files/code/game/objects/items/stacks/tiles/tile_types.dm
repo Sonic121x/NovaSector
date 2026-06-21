@@ -1,7 +1,7 @@
 /obj/item/stack/tile/carpet/kinaris
-	name = "kinaris carpet"
+	name = "基纳里斯地毯"
 	singular_name = "kinaris carpet tile"
-	desc = "a regal, beautiful, and radiant carpet from a long distant past."
+	desc = "一块来自遥远过去的华丽、精美且光彩夺目的地毯。"
 
 	icon_state = "kinaris"
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
@@ -20,7 +20,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/red
-	name = "red kinaris carpet"
+	name = "红色基纳里斯地毯"
 	singular_name = "red kinaris carpet tile"
 
 	icon_state = "kinaris_red"
@@ -33,7 +33,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/yellow
-	name = "yellow kinaris carpet"
+	name = "黄色基纳里斯地毯"
 	singular_name = "yellow kinaris carpet tile"
 
 	icon_state = "kinaris_yellow"
@@ -46,7 +46,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/orange
-	name = "orange kinaris carpet"
+	name = "橙色基纳里斯地毯"
 	singular_name = "orange kinaris carpet tile"
 
 	icon_state = "kinaris_orange"
@@ -59,7 +59,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/green
-	name = "green kinaris carpet"
+	name = "绿色基纳里斯地毯"
 	singular_name = "green kinaris carpet tile"
 
 	icon_state = "kinaris_green"
@@ -72,7 +72,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/purple
-	name = "purple kinaris carpet"
+	name = "紫色基纳里斯地毯"
 	singular_name = "purple kinaris carpet tile"
 
 	icon_state = "kinaris_purple"
@@ -85,7 +85,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/blacktrim
-	name = "black trim kinaris carpet"
+	name = "黑色镶边基纳里斯地毯"
 	singular_name = "black trim kinaris carpet tile"
 
 	icon_state = "kinaris_blacktrim"
@@ -98,7 +98,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/black
-	name = "black kinaris carpet"
+	name = "黑色基纳里斯地毯"
 	singular_name = "black trim kinaris carpet tile"
 
 	icon_state = "dark_kinaris"
@@ -111,7 +111,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/black/red
-	name = "dark red trim kinaris carpet"
+	name = "暗红色镶边基纳里斯地毯"
 	singular_name = "dark red trim kinaris carpet tile"
 
 	icon_state = "dark_kinaris_red"
@@ -124,7 +124,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/black/orange
-	name = "dark orange kinaris carpet"
+	name = "暗橙色基纳里斯地毯"
 	singular_name = "orange kinaris carpet tile"
 
 	icon_state = "dark_kinaris_orange"
@@ -137,7 +137,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/black/yellow
-	name = "dark yellow kinaris carpet"
+	name = "暗黄色基纳里斯地毯"
 	singular_name = "dark yellow kinaris carpet tile"
 
 	icon_state = "dark_kinaris_yellow"
@@ -150,7 +150,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/black/green
-	name = "dark green kinaris carpet"
+	name = "暗绿色基纳里斯地毯"
 	singular_name = "dark green kinaris carpet tile"
 
 	icon_state = "dark_kinaris_green"
@@ -163,7 +163,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/black/purple
-	name = "dark kinaris carpet"
+	name = "暗色基纳里斯地毯"
 	singular_name = "dark purple kinaris carpet tile"
 
 	icon_state = "dark_kinaris_purple"
@@ -176,7 +176,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/kinaris/black/whitetrim
-	name = "white trim kinaris carpet"
+	name = "白色镶边基纳里斯地毯"
 	singular_name = "white trim kinaris carpet tile"
 
 	icon_state = "dark_kinaris_whitetrim"
@@ -189,7 +189,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/polite
-	name = "black polite carpet tiles"
+	name = "黑色礼貌地毯砖"
 	singular_name = "black polite carpet tile"
 
 	icon = 'modular_nova/master_files/icons/obj/tiles.dmi'
@@ -202,7 +202,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/polite/red
-	name = "red polite carpet tiles"
+	name = "红色礼貌地毯砖"
 	singular_name = "red polite carpet tile"
 
 	icon_state = "carpet_polite_red"
@@ -214,7 +214,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/polite/orange
-	name = "orange polite carpet tiles"
+	name = "橙色礼貌地毯砖"
 	singular_name = "orange polite carpet tile"
 
 	icon_state = "carpet_polite_orange"
@@ -226,7 +226,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/polite/yellow
-	name = "yellow polite carpet tiles"
+	name = "黄色礼貌地毯砖"
 	singular_name = "yellow polite carpet tile"
 
 	icon_state = "carpet_polite_yellow"
@@ -238,7 +238,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/polite/green
-	name = "green polite carpet tiles"
+	name = "绿色礼貌地毯砖"
 	singular_name = "green polite carpet tile"
 
 	icon_state = "carpet_polite_green"
@@ -250,7 +250,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/polite/blue
-	name = "blue polite carpet tiles"
+	name = "蓝色礼貌地毯砖"
 	singular_name = "blue polite carpet tile"
 
 	icon_state = "carpet_polite_blue"
@@ -262,7 +262,7 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/polite/purple
-	name = "purple polite carpet tiles"
+	name = "紫色礼貌地毯砖"
 	singular_name = "purple polite carpet tile"
 
 	icon_state = "carpet_polite_purple"

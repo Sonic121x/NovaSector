@@ -7,7 +7,7 @@
 // Reels
 
 /obj/item/fishing_line
-	name = "fishing line reel"
+	name = "钓鱼卷线盘"
 	desc = "A fishing line. In spite of its simplicity, the added length will make fishing a speck easier."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "reel_blue"
@@ -22,7 +22,7 @@
 	var/cast_range = 2
 
 /obj/item/fishing_line/reinforced
-	name = "reinforced fishing line reel"
+	name = "强化钓鱼卷线盘"
 	desc = "Essential for fishing in extreme environments."
 	icon_state = "reel_green"
 	line_color = "#2aae34"
@@ -43,7 +43,7 @@
 	REMOVE_TRAIT(rod, TRAIT_ROD_LAVA_USABLE, REF(src))
 
 /obj/item/fishing_line/cloaked
-	name = "cloaked fishing line reel"
+	name = "隐蔽鱼线卷线盘"
 	desc = "Even harder to notice than the common variety."
 	icon_state = "reel_white"
 	fishing_line_traits = FISHING_LINE_CLOAKED
@@ -51,7 +51,7 @@
 	wiki_desc = "Fishing anxious and wary fish will be easier with this equipped."
 
 /obj/item/fishing_line/bouncy
-	name = "flexible fishing line reel"
+	name = "柔韧鱼线卷线盘"
 	desc = "This specialized line is much harder to snap."
 	icon_state = "reel_red"
 	fishing_line_traits = FISHING_LINE_BOUNCY
@@ -60,7 +60,7 @@
 	cast_range = 3
 
 /obj/item/fishing_line/sinew
-	name = "fishing sinew"
+	name = "钓鱼肌腱"
 	desc = "An all-natural fishing line made of stretched out sinew. A bit stiff, but usable to fish in extreme enviroments."
 	icon_state = "reel_sinew"
 	fishing_line_traits = FISHING_LINE_STIFF
@@ -157,7 +157,7 @@
 // Hooks
 
 /obj/item/fishing_hook
-	name = "simple fishing hook"
+	name = "简易钓鱼钩"
 	desc = "A simple fishing hook. Don't expect to hook onto anything without one."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "hook"
@@ -211,7 +211,7 @@
 
 
 /obj/item/fishing_hook/magnet
-	name = "magnetic hook"
+	name = "磁性鱼钩"
 	desc = "Won't make catching fish any easier, but it might help with looking for other things."
 	icon_state = "treasure"
 	rod_overlay_icon_state = "hook_treasure_overlay"
@@ -239,7 +239,7 @@
 	return MAGNET_HOOK_BONUS_MULTIPLIER
 
 /obj/item/fishing_hook/shiny
-	name = "shiny lure hook"
+	name = "诱光鱼钩"
 	icon_state = "gold_shiny"
 	rod_overlay_icon_state = "hook_shiny_overlay"
 	wiki_desc = "It's used to attract shiny-loving fish and make them easier to catch."
@@ -260,7 +260,7 @@
 	REMOVE_TRAIT(rod, TRAIT_ROD_ATTRACT_SHINY_LOVERS, REF(src))
 
 /obj/item/fishing_hook/weighted
-	name = "weighted hook"
+	name = "加重鱼钩"
 	icon_state = "weighted"
 	fishing_hook_traits = FISHING_HOOK_WEIGHTED
 	rod_overlay_icon_state = "hook_weighted_overlay"
@@ -300,8 +300,8 @@
 
 
 /obj/item/fishing_hook/bone
-	name = "bone hook"
-	desc = "A simple hook carved from sharpened bone"
+	name = "骨钩"
+	desc = "一个由磨尖的骨头制成的简易钩子"
 	icon_state = "hook_bone"
 	wiki_desc = "A generic fishing hook carved out of sharpened bone. Bone fishing rods come pre-equipped with it."
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
@@ -392,7 +392,7 @@
 
 /obj/item/survivalcapsule/fishing/examine(mob/user)
 	. = ..()
-	. += span_info("[EXAMINE_HINT("Right-Click")] to change the selected fishing spot when held.")
+	. += span_info("[EXAMINE_HINT("Right-Click")] 以在手持时更改选定的钓鱼点。")
 
 /obj/item/survivalcapsule/fishing/examine_more(mob/user)
 	. = ..()
@@ -402,7 +402,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "safeties disabled")
+	balloon_alert(user, "安全装置已禁用")
 	playsound(src, SFX_SPARKS, 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -523,9 +523,9 @@
 		return
 	var/info =  span_info("It's currently loaded with [loaded_injector]. Use it to ")
 	if(istype(loaded_injector, /obj/item/reagent_containers/syringe))
-		info += span_info("[EXAMINE_HINT("extract")] a gene from a fish or aquatic lifeform.")
+		info += span_info("[EXAMINE_HINT("extract")] 从鱼类或水生生物中提取基因。")
 	else
-		info += span_info("[EXAMINE_HINT("inject")] the gene in a fish or aquatic lifeform.")
+		info += span_info("[EXAMINE_HINT("inject")] 向鱼类或水生生物中注入基因。")
 	. += info
 
 /obj/item/fish_genegun/update_icon_state()
@@ -537,13 +537,13 @@
 
 /obj/item/fish_genegun/attack_self(mob/user)
 	if(!loaded_injector)
-		balloon_alert(user, "gene-gun is empty!")
+		balloon_alert(user, "基因枪是空的！")
 		return
 	var/obj/item/loaded = loaded_injector
 	loaded.forceMove(drop_location()) //this will unset the loaded_injector variable
 	if(IsReachableBy(user)) //check that the user can actually reach the loaded injector (telekinesis yadda yadda)
 		user.put_in_hands(loaded)
-	balloon_alert(user, "gene-gun unloaded")
+	balloon_alert(user, "基因枪已卸载")
 	playsound(src, 'sound/items/weapons/gun/general/magazine_remove_full.ogg', 30, TRUE)
 
 /obj/item/fish_genegun/Exited(atom/movable/gone)
@@ -575,7 +575,7 @@
 	if(!isfish(interacting_with))
 		return NONE
 	if(!loaded_injector)
-		balloon_alert(user, "gene-gun is empty!")
+		balloon_alert(user, "基因枪是空的！")
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with.flags_1 & HOLOGRAM_1)
 		to_chat(user, span_warning("[interacting_with] is incompatible with [src]"))
@@ -583,7 +583,7 @@
 	var/obj/item/fish/fish = interacting_with
 	var/is_syringe = istype(loaded_injector, /obj/item/reagent_containers/syringe)
 	if(fish.status == FISH_DEAD)
-		to_chat(user, span_warning("[src] cannot [is_syringe ? "extract traits from" : "inject traits into"] the deceased [fish.name]."))
+		to_chat(user, span_warning("[src] cannot [is_syringe ? "extract traits from" : "inject traits into"] the deceased [fish.name]。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!is_syringe)
 		var/obj/item/fish_gene/injector = loaded_injector
@@ -596,7 +596,7 @@
 	var/list/choices = list()
 	for(var/datum/fish_trait/trait_type as anything in fish.fish_traits)
 		choices[trait_type::name] = trait_type
-	var/choice = tgui_input_list(user, "Choose a trait to extract", "Fish Trait Extraction", choices)
+	var/choice = tgui_input_list(user, "选择要提取的特性", "鱼类性状提取", choices)
 	if(!choice || QDELETED(fish) || !user.is_holding(src) || !fish.IsReachableBy(user))
 		return ITEM_INTERACT_BLOCKING
 
@@ -604,7 +604,7 @@
 		to_chat(user, span_warning("[src] is not loaded with an syringe to extract fish traits with."))
 		return ITEM_INTERACT_BLOCKING
 	if(fish.status == FISH_DEAD)
-		to_chat(user, span_warning("[src] cannot extract traits from the deceased [fish.name]."))
+		to_chat(user, span_warning("[src] 无法从已死亡的 [fish.name] 提取性状。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!(choices[choice] in fish.fish_traits))
 		to_chat(user, span_warning("[fish] doesn't seem to have the \"[choice]\" trait anymore."))

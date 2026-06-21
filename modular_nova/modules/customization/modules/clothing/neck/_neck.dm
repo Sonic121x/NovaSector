@@ -1,12 +1,12 @@
 /obj/item/clothing/neck/mantle
-	name = "mantle"
-	desc = "A decorative drape over the shoulders. This one has a simple, dry color."
+	name = "披肩"
+	desc = "一件装饰性的肩部披挂。这款颜色朴素、干燥。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "mantle"
 
 /obj/item/clothing/neck/tesharian_mantle
-	name = "Tesharian mantle"
+	name = "泰沙里安披肩"
 	desc = "Locally sourced from 'Opalite Industries', sewed by the most gentle of packs; The Tesharian mantle is a comfortable knit to cover a decent amount of the average wearer's chest and neck in its luxurious fabric and wool, held together by adorned with stitching. Local Reviewers say: The human-sized ones seems to be made of some brandless knockoff 'eco-friendly' fabric..."
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/tesharian_mantle"
@@ -18,40 +18,40 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/mantle/regal
-	name = "regal mantle"
-	desc = "A colorful felt mantle. You feel posh just holding this thing."
+	name = "华贵披肩"
+	desc = "一件色彩鲜艳的毡制披肩。光是拿着这东西就让你感觉高贵。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "regal-mantle"
 
 /obj/item/clothing/neck/mantle/qm
-	name = "\proper the quartermaster's mantle"
-	desc = "A snug and comfortable looking shoulder covering garment, it has an air of rebellion and independence. Or annoyance and delusions, your call."
+	name = "\proper 军需官的披肩"
+	desc = "一件看起来舒适贴身的肩部覆盖衣物，散发着反叛和独立的气息。或者说是烦恼和妄想，随你怎么想。"
 	icon_state = "qmmantle"
 
 /obj/item/clothing/neck/mantle/hopmantle
-	name = "\proper the head of personnel's mantle"
-	desc = "A decorative draping of blue and red over your shoulders, signifying your stamping prowess."
+	name = "\proper 人事主管的披肩"
+	desc = "一件装饰性的蓝红双色肩部披挂，彰显着你盖章的娴熟技艺。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "hopmantle"
 
 /obj/item/clothing/neck/mantle/cmomantle
-	name = "\proper the chief medical officer's mantle"
-	desc = "A light blue shoulder draping for THE medical professional. Contrasts well with blood."
+	name = "\proper 首席医疗官的披肩"
+	desc = "为那位医疗专业人士准备的浅蓝色肩部披挂。与血液形成鲜明对比。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "cmomantle"
 
 /obj/item/clothing/neck/mantle/rdmantle
-	name = "\proper the research director's mantle"
-	desc = "A terribly comfortable shoulder draping for the discerning scientist of fashion."
+	name = "\proper 研究主管的披肩"
+	desc = "一件极其舒适的肩部披挂，专为有品位的时尚科学家准备。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "rdmantle"
 
 /obj/item/clothing/neck/mantle/cemantle
-	name = "\proper the chief engineer's mantle"
-	desc = "A bright white and yellow striped mantle. Do not wear around active machinery."
+	name = "\proper 首席工程师的披肩"
+	desc = "一件亮白色和黄色条纹的披肩。请勿在运转的机器附近穿着。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "cemantle"
@@ -68,7 +68,7 @@
 	new_icon_state = "hosmantle_blue"
 
 /obj/item/clothing/neck/mantle/hosmantle
-	name = "\proper the head of security's mantle"
+	name = "\proper 安全主管的披肩"
 	desc = "A plated mantle that one might wrap around the upper torso. The 'scales' of the garment signify the members of security and how you're carrying them on your shoulders."
 	icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
@@ -78,22 +78,22 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hosmantle)
 
 /obj/item/clothing/neck/mantle/bsmantle
-	name = "\proper the blueshield's mantle"
-	desc = "A plated mantle with command colors. Suitable for the one assigned to making sure they're still breathing."
+	name = "\proper 蓝盾的披肩"
+	desc = "一件带有指挥色彩的板甲披肩。适合被指派确保他们仍在呼吸的人。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "bsmantle"
 
 /obj/item/clothing/neck/mantle/capmantle
-	name = "\proper the captain's mantle"
-	desc = "A formal mantle to drape around the shoulders. Others stand on the shoulders of giants. You're the giant they stand on."
+	name = "\proper 舰长的披肩"
+	desc = "一件披在肩上的正式披肩。他人站在巨人的肩膀上。而你正是他们所站的巨人。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "capmantle"
 
 /obj/item/clothing/neck/mantle/recolorable
-	name = "mantle"
-	desc = "A simple drape over the shoulders."
+	name = "披肩"
+	desc = "一件简单的肩部披挂。"
 	worn_icon = 'modular_nova/modules/GAGS/icons/neck/neck.dmi'
 	worn_icon_teshari = 'modular_nova/modules/GAGS/icons/neck/neck_teshari.dmi'
 	greyscale_colors = "#ffffff"
@@ -108,8 +108,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/face_scarf
-	name = "face scarf"
-	desc = "A warm looking scarf that you can easily put around your face."
+	name = "面巾"
+	desc = "一条看起来很温暖的围巾，你可以轻松地围在脸上。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/face_scarf"
 	post_init_icon_state = "face_scarf"
@@ -133,8 +133,8 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/neck/maid_neck_cover
-	name = "maid neck cover"
-	desc = "A neckpiece for a maid costume, it smells faintly of disappointment."
+	name = "女仆颈饰"
+	desc = "女仆装的颈部饰物，闻起来有一丝失望的气息。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/maid_neck_cover"
 	post_init_icon_state = "maid_neck_cover"

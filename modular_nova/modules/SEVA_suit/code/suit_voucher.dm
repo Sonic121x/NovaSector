@@ -1,15 +1,15 @@
 //the suit voucher
 /obj/item/suit_voucher
-	name = "suit voucher"
-	desc = "A token to redeem a new suit. Use it on a mining equipment vendor."
+	name = "防护服兑换券"
+	desc = "一张用于兑换新防护服的代币。在采矿设备贩卖机上使用它。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "mining_voucher"
 	w_class = WEIGHT_CLASS_TINY
 
 
 /datum/voucher_set/mining_suits/seva
-	name = "SEVA Suit"
-	description = "Contains a whole new mining starter kit for one crewmember, consisting of a proto-kinetic accelerator, a survival knife, a seclite, an explorer's suit, mesons, an automatic mining scanner, a mining satchel, a gas mask, a mining radio key and a special ID card with a basic mining access."
+	name = "SEVA防护服"
+	description = "包含一套全新的矿工入门装备，供一名船员使用，内含：一把原型动能加速器、一把生存刀、一个手电筒、一套勘探服、一副透视眼镜、一个自动矿物扫描仪、一个矿工背包、一个防毒面具、一把矿工无线电钥匙以及一张带有基础矿工权限的特殊ID卡。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	icon_state = "seva"
 	set_items = list(
@@ -18,8 +18,8 @@
 	)
 
 /datum/voucher_set/mining_suits/explorer
-	name = "Explorer Suit"
-	description = "Contains a whole new mining starter kit for one crewmember, consisting of a proto-kinetic accelerator, a survival knife, a seclite, an explorer's suit, mesons, an automatic mining scanner, a mining satchel, a gas mask, a mining radio key and a special ID card with a basic mining access."
+	name = "探索者防护服"
+	description = "包含一套全新的矿工入门装备，供一名船员使用，内含：一把原型动能加速器、一把生存刀、一个手电筒、一套勘探服、一副透视眼镜、一个自动矿物扫描仪、一个矿工背包、一个防毒面具、一把矿工无线电钥匙以及一张带有基础矿工权限的特殊ID卡。"
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	icon_state = "explorer"
 	set_items = list(

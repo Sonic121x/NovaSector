@@ -1,5 +1,5 @@
 /datum/team/blood_worm
-	name = "\improper Blood Worms"
+	name = "\improper 血蠕虫"
 	member_name = "blood worm"
 
 	var/blood_consumed_total = 0
@@ -64,12 +64,12 @@
 	report += printplayerlist(members)
 
 	if (length(objectives))
-		report += span_header("Their collective goals:")
+		report += span_header("它们的集体目标：")
 		report += print_objective_list()
 
 	report += ""
 
-	report += did_we_win() ? span_greentext("The [name] were successful!") : span_redtext("The [name] have failed!")
+	report += did_we_win() ? span_greentext("[name]成功了！") : span_redtext("[name]失败了！")
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 

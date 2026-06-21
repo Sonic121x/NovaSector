@@ -1,6 +1,6 @@
 /mob/living/basic/bat
-	name = "Space Bat"
-	desc = "A rare breed of bat which roosts in spaceships, probably not vampiric."
+	name = "太空蝙蝠"
+	desc = "一种栖息在飞船上的稀有蝙蝠品种，可能不是吸血蝠。"
 	icon_state = "bat"
 	icon_living = "bat"
 	icon_dead = "bat_dead"
@@ -17,7 +17,7 @@
 	response_disarm_simple = "flail at"
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-	verb_say = "squeaks"
+	verb_say = "吱吱叫"
 
 	faction = list(FACTION_HOSTILE)
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST

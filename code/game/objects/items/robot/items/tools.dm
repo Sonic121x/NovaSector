@@ -2,8 +2,8 @@
 #define POWER_RECHARGE_CYBORG_DRAIN_MULTIPLIER (0.0004 * STANDARD_CELL_RATE)
 
 /obj/item/cautery/prt //it's a subtype of cauteries so that it inherits the cautery sprites and behavior and stuff, because I'm too lazy to make sprites for this thing
-	name = "plating repair tool"
-	desc = "A tiny heating device that's powered by a cyborg's excess heat. Its intended purpose is to repair burnt or damaged hull platings, but it can also be used as a crude lighter or cautery."
+	name = "板材修复工具"
+	desc = "一种由机械人多余热量供能的小型加热装置。其主要用途是修复烧焦或损坏的船体板，但也可用作粗糙的打火机或烧灼器。"
 	toolspeed = 1.5 //it's not designed to be used as a cautery (although it's close enough to one to be considered to be a proper cautery instead of just a hot object for the purposes of surgery)
 	heat = 3800 //this thing is intended for metal-shaping, so it's the same temperature as a lit welder
 	resistance_flags = FIRE_PROOF //if it's channeling a cyborg's excess heat, it's probably fireproof
@@ -14,7 +14,7 @@
 
 //Peacekeeper Cyborg Projectile Dampenening Field
 /obj/item/borg/projectile_dampen
-	name = "\improper Hyperkinetic Dampening projector"
+	name = "\improper 超动能阻尼投射器"
 	desc = "A device that projects a dampening field that weakens kinetic energy above a certain threshold. <span class='boldnotice'>Projects a field that drains power per second while active, that will weaken and slow damaging projectiles inside its field.</span> Still being a prototype, it tends to induce a charge on ungrounded metallic surfaces."
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "shield0"
@@ -65,18 +65,18 @@
 
 /obj/item/borg/projectile_dampen/attack_self(mob/user)
 	if (!COOLDOWN_FINISHED(src, cycle_cooldown))
-		to_chat(user, span_boldwarning("[src] is still recycling its projectors!"))
+		to_chat(user, span_boldwarning("[src] 仍在回收其投射器！"))
 		return
 	COOLDOWN_START(src, cycle_cooldown, PKBORG_DAMPEN_CYCLE_DELAY)
 	if(!active)
 		if(!user.has_buckled_mobs())
 			activate_field()
 		else
-			to_chat(user, span_warning("[src]'s safety cutoff prevents you from activating it due to living beings being ontop of you!"))
+			to_chat(user, span_warning("[src]的安全切断装置因有活物在你上方而阻止你激活它！"))
 	else
 		deactivate_field()
 	update_appearance()
-	to_chat(user, span_boldnotice("You [active ? "activate":"deactivate"] [src]."))
+	to_chat(user, span_boldnotice("你[active ? "activate":"deactivate"]了[src]。"))
 
 /obj/item/borg/projectile_dampen/update_icon_state()
 	icon_state = "[base_icon_state][active]"
@@ -94,7 +94,7 @@
 
 /obj/item/borg/projectile_dampen/proc/deactivate_field()
 	QDEL_NULL(dampening_field)
-	visible_message(span_warning("\The [src] shuts off!"))
+	visible_message(span_warning("\The [src] 关闭了！"))
 	tracked_bullet_cost.Cut()
 	active = FALSE
 
@@ -134,7 +134,7 @@
 	energy = clamp(energy - usage, 0, maxenergy)
 	if(energy <= 0)
 		deactivate_field()
-		visible_message(span_warning("[src] blinks \"ENERGY DEPLETED\"."))
+		visible_message(span_warning("[src] 闪烁显示“能量耗尽”。"))
 
 /obj/item/borg/projectile_dampen/proc/process_recharge(seconds_per_tick)
 	if(!istype(host))
@@ -159,8 +159,8 @@
 
 //bare minimum omni-toolset for modularity
 /obj/item/borg/cyborg_omnitool
-	name = "cyborg omni-toolset"
-	desc = "You shouldn't see this in-game normally."
+	name = "赛博格全能工具组"
+	desc = "正常情况下，你不应该在游戏中看到这个。"
 	icon = 'icons/mob/silicon/robot_items.dmi'
 	icon_state = "toolkit_medborg"
 
@@ -296,8 +296,8 @@
 	playsound(src, 'sound/items/tools/change_jaws.ogg', 50, TRUE)
 
 /obj/item/borg/cyborg_omnitool/medical
-	name = "surgical omni-toolset"
-	desc = "A set of surgical tools used by cyborgs to operate on various surgical operations."
+	name = "外科全能工具组"
+	desc = "一套赛博格用于进行各种外科手术的外科工具。"
 	omni_toolkit = list(
 		/obj/item/surgical_drapes/cyborg,
 		/obj/item/scalpel/cyborg,
@@ -311,8 +311,8 @@
 
 //Toolset for engineering cyborgs, this is all of the tools except for the welding tool. since it's quite hard to implement (read:can't be arsed to)
 /obj/item/borg/cyborg_omnitool/engineering
-	name = "engineering omni-toolset"
-	desc = "A set of engineering tools used by cyborgs to conduct various engineering tasks."
+	name = "工程全能工具组"
+	desc = "一套赛博格用于执行各种工程任务的工程工具。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg"
 	omni_toolkit = list(
@@ -331,8 +331,8 @@
 			. += span_notice("Multitool buffer contains [tool.buffer].")
 
 /obj/item/borg/cyborg_omnitool/botany
-	name = "botanical omni-toolset"
-	desc = "A set of botanical tools used by cyborgs to do gardening."
+	name = "植物学全能工具组"
+	desc = "一套赛博格用于园艺的植物学工具。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "sili"
 	omni_toolkit = list(

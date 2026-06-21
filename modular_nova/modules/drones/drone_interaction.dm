@@ -86,7 +86,7 @@
 			r_store = equipping
 			update_pockets()
 		else
-			to_chat(src, span_danger("You are trying to equip this item to an unsupported inventory slot!"))
+			to_chat(src, span_danger("你正试图将此物品装备到不支持的物品栏位！"))
 			return
 
 	has_equipped(equipping, slot)

@@ -1,10 +1,10 @@
 /datum/round_event_control/dark_matteor
-	name = "Dark Matt-eor"
+	name = "暗黑喵星"
 	typepath = /datum/round_event/dark_matteor
 	weight = 0
 	max_occurrences = 0
 	category = EVENT_CATEGORY_SPACE
-	description = "Throw a dark matt-eor somewhere near the station."
+	description = "在空间站附近某处投掷一个暗物质陨石。"
 	admin_setup = list(/datum/event_admin_setup/warn_admin/dark_matteor)
 	map_flags = EVENT_SPACE_ONLY
 

@@ -107,8 +107,8 @@
 /// Small little taunt when we epically troll someone
 /mob/living/basic/boss/proc/celebrate_kill(mob/living/poor_sap)
 	visible_message(
-		span_danger("[src] disembowels [poor_sap]!"),
-		span_userdanger("You feast on [poor_sap]'s organs, restoring your health!"),
+		span_danger("[src]将[poor_sap]开膛破肚！"),
+		span_userdanger("你吞食了[poor_sap]的器官，恢复了健康！"),
 	)
 
 /// Handles adding all relevant achievements when applicable (probably when we are defeated)

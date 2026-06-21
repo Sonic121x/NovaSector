@@ -1,6 +1,6 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/solfed_riotgun
-	name = "\improper S-12 \"Warder\" Kinetic Riotgun"
-	desc = "A Solfed riot-control weapon designed for suppression and area denial. Fires dense rubber slugs."
+	name = "\improper S-12 \"守望者\" 动能防暴枪"
+	desc = "一种太阳联邦防暴控制武器，设计用于压制和区域拒止。发射高密度橡胶弹。"
 	icon_state = "mecha_scatter"
 	equip_cooldown = 1.5 SECONDS
 	projectile = /obj/projectile/bullet/c85x20mm/rubber
@@ -15,8 +15,8 @@
 	detachable = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/solfed_rotary
-	name = "\improper VX-9 \"Brimstone\" Rotary Cannon"
-	desc = "A Solfed assault-grade rotary cannon. Fires high-velocity incendiary rounds in rapid bursts."
+	name = "\improper VX-9 \"硫磺\" 转轮机炮"
+	desc = "一种太阳联邦突击级转轮机炮。以高速连发射击燃烧弹。"
 	icon = 'modular_nova/modules/solfed_mechs/icons/mecha_equipment.dmi'
 	icon_state = "rotary"
 	equip_cooldown = 0.4 SECONDS
@@ -34,8 +34,8 @@
 	detachable = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/solfed_railgun
-	name = "\improper T-99 \"Hammerfall\" Mass Driver"
-	desc = "A siege-grade ballistic weapon mounted on the Thanatos platform. Fires hyperdense slugs capable of penetrating reinforced structures."
+	name = "\improper T-99 \"天坠\" 质量加速器"
+	desc = "安装在塔纳托斯平台上的攻城级弹道武器。发射能够穿透加固结构的超密度弹体。"
 	icon_state = "mecha_pulse"
 	equip_cooldown = 6 SECONDS
 	projectile = /obj/projectile/bullet/rocket/c250x40mm
@@ -50,8 +50,8 @@
 	detachable = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/solfed_teargas
-	name = "\improper SGL-7 \"Vigil\" Gas Launcher"
-	desc = "A weapon for peacekeeper exosuits. Launches primed tear gas grenades to disperse hostile crowds."
+	name = "\improper SGL-7 \"警戒\" 气体发射器"
+	desc = "一种用于维和外骨骼的武器。发射已启动的催泪瓦斯榴弹以驱散敌对人群。"
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/chem_grenade/solfed/teargas
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
@@ -76,14 +76,14 @@
 
 /obj/item/grenade/chem_grenade/solfed/attack_self(mob/user)
 	if (detonated)
-		to_chat(user, span_warning("This grenade has already been used."))
+		to_chat(user, span_warning("这颗手榴弹已经用过了。"))
 	else
-		to_chat(user, span_warning("You can't seem to find a way to hand-prime this mech grenade."))
+		to_chat(user, span_warning("你似乎找不到手动引爆这台机甲手榴弹的方法。"))
 	return FALSE
 
 /obj/item/grenade/chem_grenade/solfed/teargas
-	name = "tear gas grenade"
-	desc = "A non-lethal crowd control device that releases a cloud of irritating gas upon detonation. Used to disperse hostile gatherings and subdue uncooperative individuals."
+	name = "催泪瓦斯手榴弹"
+	desc = "一种非致命性人群控制装置，引爆后会释放刺激性气体云。用于驱散敌对集会并制服不合作的个体。"
 	base_icon_state = "teargas"
 	stage = GRENADE_READY
 	post_detonation_icon_state = "teargas_spent"
@@ -120,9 +120,9 @@
 		detonated = TRUE
 
 /obj/item/grenade/chem_grenade/solfed/napalm
-	name = "napalm grenade"
+	name = "凝固汽油手榴弹"
 	base_icon_state = "napalm"
-	desc = "A high-temperature incendiary device. Spreads gel-based compound that clings to surfaces and burns intensely. Handle with extreme caution."
+	desc = "一种高温燃烧装置。散布凝胶基化合物，能附着在表面并剧烈燃烧。请极其小心地处理。"
 	stage = GRENADE_READY
 	post_detonation_icon_state = "napalm_spent"
 	///Amount of sparks made by the grenade, used to light the napalm on fire.
@@ -140,8 +140,8 @@
 	beakers += beaker_two
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/solfed_napalm
-	name = "\improper VX-13 \"Ashmaker\" Incendiary Mortar"
-	desc = "A short-range mortar system mounted on Prometheus-class breach mechs. Fires incendiary gel shells engineered to cling, burn and flush entrenched targets without compromising hull integrity."
+	name = "\improper VX-13 \"灰烬制造者\" 燃烧迫击炮"
+	desc = "安装在普罗米修斯级突破机甲上的短程迫击炮系统。发射设计用于附着、燃烧和驱赶掩体内目标的燃烧凝胶弹，同时不损害船体完整性。"
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/chem_grenade/solfed/napalm
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
@@ -173,8 +173,8 @@
 	do_sparks(spark_amount, FALSE, src)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/turret/solfed_minigun
-	name = "\improper VX-2 \"Scythe\" Rotary Turret"
-	desc = "A twin-barrel rotary turret mounted on the Thanatos-class breacher. Fires alternating bursts of .40 Sol Long rounds for suppression and anti-personnel engagement."
+	name = "\improper VX-2 \"死神\" 旋转炮塔"
+	desc = "安装在塔纳托斯级突破机甲上的双管旋转炮塔。交替发射.40索尔长弹进行火力压制和反人员交战。"
 	icon = 'modular_nova/modules/solfed_mechs/icons/mecha_equipment.dmi'
 	icon_state = "rotary"
 	equip_cooldown = 0.3 SECONDS
@@ -192,8 +192,8 @@
 	detachable = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/solfed_emp_cannon
-	name = "\improper EMC-2521 EMP Cannon"
-	desc = "An advanced electromagnetic pulse cannon developed for Hermes-class recon mechs. Fires precision EMP bursts capable of disabling electronics and lightly shielded systems."
+	name = "\improper EMC-2521 EMP 炮"
+	desc = "为赫尔墨斯级侦察机甲开发的先进电磁脉冲炮。发射能够使电子设备和轻装甲系统失能的精确EMP脉冲。"
 	icon_state = "mecha_ion"
 	equip_cooldown = 2 SECONDS
 	projectile = /obj/projectile/ion/small
@@ -208,8 +208,8 @@
 	detachable = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/solfed_carbine
-	name = "\improper MMR-2543A \"Qarad\" Light Machinegun"
-	desc = "A mech-mounted adaptation of the Qarad Light Machine Gun, chambered in .40 Sol Long. Designed for Hermes-class recon mechs to deliver precise semi-automatic bursts."
+	name = "\improper MMR-2543A \"卡拉德\" 轻机枪"
+	desc = "卡拉德轻机枪的机甲适配版，使用.40索尔长弹。专为赫尔墨斯级侦察机甲设计，可进行精确的半自动点射。"
 	icon_state = "mecha_carbine"
 	equip_cooldown = 0.6 SECONDS
 	projectile = /obj/projectile/bullet/c40sol
@@ -226,12 +226,12 @@
 
 /obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam/solfed
 	name = "S-MBG 'Aegis' medical beamgun"
-	desc = "A SolFed-engineered medical beamgun designed for field deployment in hostile environments. Emits stabilized nanite pulses for rapid triage and wound closure."
+	desc = "索联工程设计的医疗射线枪，用于在敌对环境中进行战场部署。发射稳定的纳米脉冲，用于快速分诊和伤口闭合。"
 	detachable = FALSE
 	energy_drain = 12	//Slightly higher than NT, assuming NT tech is a bit better here.
 
 /obj/item/weldingtool/electric/arc_welder/mech_mounted
-	name = "Atlas-mounted torch"
+	name = "阿特拉斯机甲焊枪"
 	light_system = NO_LIGHT_SUPPORT
 	light_range = 0
 
@@ -241,8 +241,8 @@
 	RemoveElement(/datum/element/tool_flash)
 
 /obj/item/mecha_parts/mecha_equipment/solfed_welder
-	name = "Atlas Engineering Torch"
-	desc = "A SolFed-engineered torch for field repairs, structural welding, and tactical deconstruction."
+	name = "阿特拉斯工程焊枪"
+	desc = "索联工程设计的焊枪，用于战场维修、结构焊接和战术拆解。"
 	icon_state = "mecha_wholegen"
 	equip_cooldown = 1 SECONDS
 	force = 15
@@ -293,10 +293,10 @@
 	return ..()
 
 /datum/action/vehicle/sealed/mecha/solfed_toggle_welding
-	name = "Toggle Welder Mode"
+	name = "切换焊枪模式"
 	button_icon = 'modular_nova/modules/solfed_mechs/icons/action_mecha.dmi'
 	button_icon_state = "welder_off"
-	desc = "Switches between main and alternate welding modes."
+	desc = "在主焊接模式与备用焊接模式之间切换。"
 
 /datum/action/vehicle/sealed/mecha/solfed_toggle_welding/Trigger(mob/clicker, trigger_flags)
 	. = ..()
@@ -309,4 +309,4 @@
 	else
 		button_icon_state = "welder_off"
 	build_all_button_icons()
-	to_chat(clicker, "Welder mode toggled: [welder.welding ? "Alternate mode" : "Main mode"].")
+	to_chat(clicker, "焊枪模式已切换：[welder.welding ? "Alternate mode" : "Main mode"]。")

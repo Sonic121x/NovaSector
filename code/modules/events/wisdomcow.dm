@@ -1,10 +1,10 @@
 /datum/round_event_control/wisdomcow
-	name = "Wisdom Cow"
+	name = "智慧奶牛"
 	typepath = /datum/round_event/wisdomcow
 	max_occurrences = 1
 	weight = 20
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "A cow appears to tell you wise words."
+	description = "一头奶牛出现，向你讲述智慧箴言。"
 	admin_setup = list(
 		/datum/event_admin_setup/set_location/wisdom_cow,
 		/datum/event_admin_setup/listed_options/wisdom_cow_wisdom,
@@ -23,7 +23,7 @@
 	var/datum/reagent/forced_reagent_type
 
 /datum/round_event/wisdomcow/announce(fake)
-	priority_announce("A wise cow has been spotted in the area. Be sure to ask for her advice.", "Nanotrasen Cow Ranching Agency")
+	priority_announce("一头智慧奶牛在该区域被目击。请务必向她寻求建议。", "纳米传讯奶牛牧场管理局")
 
 /datum/round_event/wisdomcow/start()
 	var/turf/targetloc

@@ -3,8 +3,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/neck/greyscaled
-	name = "Antique Short Cloak"
-	desc = "An antique, fluffy shortcloak... not sure why it's so puffy and short."
+	name = "复古短斗篷"
+	desc = "一件复古、毛茸茸的短斗篷……不知道为什么它这么蓬松又短。"
 
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/greyscaled"
@@ -30,8 +30,8 @@
 	new_icon_state = "seecloak_trimonly"
 
 /obj/item/clothing/neck/greyscaled/seecloak
-	name = "Antique Seecloak"
-	desc = "An antique cloak, with a symbol whose meaning has been lost to time..."
+	name = "复古视界斗篷"
+	desc = "一件复古斗篷，上面有一个其含义已随时间流逝而湮没的符号……"
 
 	icon_state = "/obj/item/clothing/neck/greyscaled/seecloak"
 	post_init_icon_state = "seecloak"
@@ -45,8 +45,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/seecloak, initial_skin = "default")
 
 /obj/item/clothing/neck/greyscaled/matroncloak
-	name = "Antique Matron Cloak"
-	desc = "A large antique cloak with large puffy fluff."
+	name = "复古女族长斗篷"
+	desc = "一件带有大蓬松毛领的大型复古斗篷。"
 
 	icon_state = "/obj/item/clothing/neck/greyscaled/matroncloak"
 	post_init_icon_state = "matroncloak"
@@ -56,8 +56,8 @@
 	greyscale_colors = "#777777#ffffcc#66ffff"
 
 /obj/item/clothing/neck/greyscaled/xylixcloak
-	name = "Antique Xylix Cloak"
-	desc = "An antique poncho like cloak."
+	name = "复古西利克斯斗篷"
+	desc = "一件复古的披肩式斗篷。"
 
 	icon_state = "/obj/item/clothing/neck/greyscaled/xylixcloak"
 	post_init_icon_state = "xylixcloak"

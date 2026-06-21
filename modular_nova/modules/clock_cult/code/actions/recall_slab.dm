@@ -1,6 +1,6 @@
 /datum/action/innate/clockcult/recall_slab
-	name = "Recall Slab"
-	desc = "Recall your latest used Clockwork Slab from anywhere in the universe."
+	name = "召回石板"
+	desc = "从宇宙任何地方召回你最近使用的发条石板。"
 	button_icon_state = "Replicant"
 
 	///The slab marked for recall
@@ -27,7 +27,7 @@
 	SIGNAL_HANDLER
 
 	if(owner)
-		to_chat(owner, span_boldwarning("You sense your Clockwork Slab has been destroyed!"))
+		to_chat(owner, span_boldwarning("你感觉到你的发条石板已被摧毁！"))
 
 	unmark_item()
 
@@ -41,7 +41,7 @@
 	var/obj/item_to_retrieve = marked_slab
 
 	if(!item_to_retrieve)
-		to_chat(usr, span_brass("You don't have a slab attuned!"))
+		to_chat(usr, span_brass("你还没有共鸣的石板！"))
 
 	if(!item_to_retrieve.loc)
 		return
@@ -64,9 +64,9 @@
 
 			// Items in silicons warp the whole silicon
 			if(issilicon(holding_mark))
-				holding_mark.loc.visible_message(span_warning("[holding_mark] suddenly disappears!"))
+				holding_mark.loc.visible_message(span_warning("[holding_mark]突然消失了！"))
 				holding_mark.forceMove(usr.loc)
-				holding_mark.loc.visible_message(span_warning("[holding_mark] suddenly appears!"))
+				holding_mark.loc.visible_message(span_warning("[holding_mark]突然出现了！"))
 				item_to_retrieve = null
 				break
 
@@ -93,13 +93,13 @@
 	if(!item_to_retrieve)
 		return
 
-	item_to_retrieve.loc?.visible_message(span_warning("[item_to_retrieve] suddenly disappears!"))
+	item_to_retrieve.loc?.visible_message(span_warning("[item_to_retrieve]突然消失了！"))
 
 	if(isitem(item_to_retrieve) && usr.put_in_hands(item_to_retrieve))
-		item_to_retrieve.loc.visible_message(span_warning("[item_to_retrieve] suddenly appears in [usr]'s hand!"))
+		item_to_retrieve.loc.visible_message(span_warning("[item_to_retrieve]突然出现在[usr]的手中！"))
 
 	else
 		item_to_retrieve.forceMove(usr.drop_location())
-		item_to_retrieve.loc.visible_message(span_warning("[item_to_retrieve] suddenly appears!"))
+		item_to_retrieve.loc.visible_message(span_warning("[item_to_retrieve]突然出现了！"))
 
 	playsound(get_turf(item_to_retrieve), 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)

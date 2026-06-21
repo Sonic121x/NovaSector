@@ -1,6 +1,6 @@
 /obj/item/mine_bot_upgrade
-	name = "minebot melee upgrade"
-	desc = "A minebot upgrade."
+	name = "矿工机器人近战升级"
+	desc = "一个矿工机器人升级模块。"
 	icon_state = "door_electronics"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	item_flags = NOBLUDGEON
@@ -13,32 +13,32 @@
 
 /obj/item/mine_bot_upgrade/proc/upgrade_bot(mob/living/basic/mining_drone/minebot, mob/user)
 	if(minebot.melee_damage_upper != initial(minebot.melee_damage_upper))
-		user.balloon_alert(user, "already has armor!")
+		user.balloon_alert(user, "已有护甲！")
 		return
 	minebot.melee_damage_lower += 7
 	minebot.melee_damage_upper += 7
-	to_chat(user, span_notice("You increase the close-quarter combat abilities of [minebot]."))
+	to_chat(user, span_notice("你增强了[minebot]的近战格斗能力。"))
 	qdel(src)
 
 //Health
 
 /obj/item/mine_bot_upgrade/health
-	name = "minebot armor upgrade"
+	name = "矿工机器人护甲升级"
 
 /obj/item/mine_bot_upgrade/health/upgrade_bot(mob/living/basic/mining_drone/minebot, mob/user)
 	if(minebot.maxHealth != initial(minebot.maxHealth))
-		to_chat(user, span_warning("[minebot] already has reinforced armor!"))
+		to_chat(user, span_warning("[minebot]已有强化护甲！"))
 		return
 	minebot.maxHealth += 45
 	minebot.updatehealth()
-	to_chat(user, span_notice("You reinforce the armor of [minebot]."))
+	to_chat(user, span_notice("你强化了[minebot]的护甲。"))
 	qdel(src)
 
 //AI
 
 /obj/item/slimepotion/sentience/mining
-	name = "minebot AI upgrade"
-	desc = "Can be used to grant sentience to minebots. It's incompatible with minebot armor and melee upgrades, and will override them."
+	name = "矿工机器人AI升级"
+	desc = "可用于赋予矿工机器人感知能力。它与矿工机器人护甲和近战升级不兼容，并会覆盖它们。"
 	icon_state = "door_electronics"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	sentience_type = SENTIENCE_MINEBOT
@@ -61,12 +61,12 @@
 	minebot.stored_gun?.recharge_time += base_cooldown_add
 
 /obj/item/mine_bot_upgrade/regnerative_shield
-	name = "regenerative shield"
-	desc = "Allows your minebot to tank many hits before going down!"
+	name = "再生护盾"
+	desc = "让你的矿工机器人能承受多次攻击！"
 
 /obj/item/mine_bot_upgrade/regnerative_shield/upgrade_bot(mob/living/basic/mining_drone/minebot, mob/user)
 	if(HAS_TRAIT(minebot, TRAIT_REGEN_SHIELD))
-		user.balloon_alert(minebot, "already has it!")
+		user.balloon_alert(minebot, "已拥有此功能！")
 		return
 	var/static/list/shield_layers = list(
 		/obj/effect/overlay/minebot_top_shield,

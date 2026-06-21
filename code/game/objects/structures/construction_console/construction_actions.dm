@@ -1,5 +1,5 @@
 /datum/action/innate/camera_off/base_construction
-	name = "Log out"
+	name = "退出登陆"
 
 ///Generic construction action for base [construction consoles][/obj/machinery/computer/camera_advanced/base_construction].
 /datum/action/innate/construction
@@ -32,15 +32,15 @@
 	if (!area_constraint)
 		return TRUE
 	if(!istype(build_area, area_constraint))
-		to_chat(owner, span_warning("You can only build within [area_constraint::name]!"))
+		to_chat(owner, span_warning("你只能在[area_constraint::name]区域内建造！"))
 		return FALSE
 	if(only_station_z && !is_station_level(build_target.z))
-		to_chat(owner, span_warning("[area_constraint::name] has launched and can no longer be modified."))
+		to_chat(owner, span_warning("[area_constraint::name]已发射，无法再进行修改。"))
 		return FALSE
 	return TRUE
 
 /datum/action/innate/construction/build
-	name = "Build"
+	name = "建造"
 	button_icon_state = "build"
 
 /datum/action/innate/construction/build/Activate()
@@ -60,7 +60,7 @@
 	playsound(target_turf, 'sound/items/deconstruct.ogg', 60, TRUE)
 
 /datum/action/innate/construction/configure_mode
-	name = "Configure RCD"
+	name = "配置RCD"
 	button_icon = 'icons/obj/tools.dmi'
 	button_icon_state = "rcd"
 
@@ -73,7 +73,7 @@
 
 ///Generic action used with base construction consoles to build anything that can't be built with an RCD
 /datum/action/innate/construction/place_structure
-	name = "Place Generic Structure"
+	name = "放置通用结构"
 	var/obj/structure_path
 	var/structure_name
 	var/place_sound
@@ -83,17 +83,17 @@
 		return
 	var/turf/place_turf = get_turf(remote_eye)
 	if(!base_console.structures[structure_name])
-		to_chat(owner, span_warning("[base_console] is out of [structure_name]!"))
+		to_chat(owner, span_warning("[base_console]的[structure_name]已耗尽！"))
 		return
 	if(!check_spot())
 		return
 	//Can't place inside a closed turf
 	if(place_turf.density)
-		to_chat(owner, span_warning("[structure_name] may only be placed on a floor."))
+		to_chat(owner, span_warning("[structure_name]只能放置在地板上。"))
 		return
 	//Can't place two dense objects inside each other
 	if(initial(structure_path.density) && place_turf.is_blocked_turf())
-		to_chat(owner, span_warning("Location is obstructed by something. Please clear the location and try again."))
+		to_chat(owner, span_warning("该位置被某物阻挡。请清理该位置后重试。"))
 		return
 	var/obj/placed_structure = new structure_path(place_turf)
 	base_console.structures[structure_name]--
@@ -106,17 +106,17 @@
 	return
 
 /datum/action/innate/construction/place_structure/fan
-	name = "Place Tiny Fan"
+	name = "放置小型风扇"
 	button_icon_state = "build_fan"
 	structure_name = "fans"
 	structure_path = /obj/structure/fans/tiny
 	place_sound = 'sound/machines/click.ogg'
 
 /datum/action/innate/construction/place_structure/fan/after_place(obj/placed_structure, remaining)
-	to_chat(owner, span_notice("Tiny fan placed. [remaining] fans remaining."))
+	to_chat(owner, span_notice("微型风扇已放置。剩余[remaining]个风扇。"))
 
 /datum/action/innate/construction/place_structure/turret
-	name = "Install Plasma Anti-Wildlife Turret"
+	name = "安装等离子反野生动物炮塔"
 	button_icon_state = "build_turret"
 	structure_name = "turrets"
 	structure_path = /obj/machinery/porta_turret/aux_base
@@ -125,8 +125,8 @@
 /datum/action/innate/construction/place_structure/turret/after_place(obj/placed_structure, remaining)
 	var/obj/machinery/computer/auxiliary_base/turret_controller = locate() in get_area(placed_structure)
 	if(!turret_controller)
-		to_chat(owner, span_notice("<b>Warning:</b> Aux base controller not found. Turrets might not work properly."))
+		to_chat(owner, span_notice("<b>警告：</b>未找到辅助基地控制器。炮塔可能无法正常工作。"))
 		return
 
 	LAZYADD(turret_controller.turrets, WEAKREF(placed_structure))
-	to_chat(owner, span_notice("You've constructed an additional turret. [remaining] turrets remaining."))
+	to_chat(owner, span_notice("你已建造了一个额外的炮塔。剩余[remaining]个炮塔。"))

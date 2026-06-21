@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(starlight)
 /turf/open/space
 	icon = 'icons/turf/space.dmi'
 	icon_state = MAP_SWITCH("space", "space_map")
-	name = "\proper space"
+	name = "\proper 太空"
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	turf_flags = NO_RUST

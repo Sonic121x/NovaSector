@@ -1,7 +1,7 @@
 // The language of the podpeople. Yes, it's a shameless ripoff of elvish.
 /datum/language/sylvan
-	name = "Sylvan"
-	desc = "A complicated, ancient language spoken by sentient plants."
+	name = "植物语"
+	desc = "一种复杂而古老的语言，由有感知能力的植物所使用。"
 	key = "h"
 	space_chance = 10
 	sentence_chance = 0

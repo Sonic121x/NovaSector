@@ -17,6 +17,6 @@
 			LOCATION_BACKPACK,
 			LOCATION_HANDS,
 		),
-		flavour_text = "These will keep your mood stable until you can secure a supply of medication.",
+		flavour_text = "这些药片能稳定你的情绪，直到你获得稳定的药物供应。",
 		notify_player = TRUE,
 	)

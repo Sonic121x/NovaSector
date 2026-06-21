@@ -2,8 +2,8 @@
 #define REGULAR_POWER_COST (BRASS_POWER_COST / 2)
 
 /obj/item/clockwork/replica_fabricator
-	name = "replica fabricator"
-	desc = "A strange, brass device with many twisting cogs and vents."
+	name = "复制品制造机"
+	desc = "一个奇怪的黄铜装置，带有许多扭曲的齿轮和通风口。"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_objects.dmi'
 	lefthand_file = 'modular_nova/modules/clock_cult/icons/weapons/clockwork_lefthand.dmi'
 	righthand_file = 'modular_nova/modules/clock_cult/icons/weapons/clockwork_righthand.dmi'
@@ -40,10 +40,10 @@
 	. = ..()
 	if(IS_CLOCK(user))
 		. += "[span_brass("Current power: ")][span_clockyellow("[power]")] [span_brass("W / ")][span_clockyellow("[max_power]")] [span_brass("W.")]"
-		. += span_brass("Use on brass to convert it into power.")
-		. += span_brass("Use on other materials to convert them into power, but less efficiently.")
-		. += span_brass("<b>Use</b> in-hand to select what to fabricate.")
-		. += span_brass("<b>Right Click</b> in-hand to fabricate bronze sheets.")
+		. += span_brass("对黄铜使用以将其转化为能量。")
+		. += span_brass("对其他材料使用以将其转化为能量，但效率较低。")
+		. += span_brass("<b>手持使用</b>以选择要制造的物品。")
+		. += span_brass("<b>右键点击</b>手中的物品来制造青铜板材。")
 
 
 /obj/item/clockwork/replica_fabricator/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -60,11 +60,11 @@
 	var/turf/creation_turf = get_turf(interacting_with)
 
 	if(locate(selected_output.to_create_path) in creation_turf)
-		to_chat(user, span_clockyellow("There is already one of these on this tile!"))
+		to_chat(user, span_clockyellow("这个格子上已经有一个了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(power < selected_output.cost)
-		to_chat(user, span_clockyellow("[src] needs at least [selected_output.cost]W of power to create this."))
+		to_chat(user, span_clockyellow("[src] 需要至少 [selected_output.cost]W 的能量来制造此物品。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/effect/temp_visual/ratvar/constructing_effect/effect = new(creation_turf, selected_output.creation_delay)
@@ -101,10 +101,10 @@
 		return
 
 	if(power < BRASS_POWER_COST)
-		to_chat(user, span_clockyellow("You need at least [BRASS_POWER_COST]W of power to fabricate bronze."))
+		to_chat(user, span_clockyellow("你需要至少[BRASS_POWER_COST]W的能量来制造黄铜。"))
 		return
 
-	var/sheets = tgui_input_number(user, "How many sheets do you want to fabricate?", "Sheet Fabrication", 0, round(power / BRASS_POWER_COST), 0)
+	var/sheets = tgui_input_number(user, "你想要制造多少张板材？", "板材制造", 0, round(power / BRASS_POWER_COST), 0)
 	if(!sheets)
 		return
 
@@ -113,7 +113,7 @@
 	var/obj/item/stack/sheet/bronze/sheet_stack = new(null, sheets)
 	user.put_in_hands(sheet_stack)
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
-	to_chat(user, span_clockyellow("You fabricate [sheets] bronze."))
+	to_chat(user, span_clockyellow("你制造了[sheets]青铜。"))
 
 
 /obj/item/clockwork/replica_fabricator/attack_self(mob/user, modifiers)
@@ -139,7 +139,7 @@
 /// Attempt to convert the targeted item into power, if it's a sheet item
 /obj/item/clockwork/replica_fabricator/proc/attempt_convert_materials(atom/attacking_item, mob/user)
 	if(power >= max_power)
-		to_chat(user, span_clockyellow("[src] is already at maximum power!"))
+		to_chat(user, span_clockyellow("[src] 已经达到最大功率了！"))
 		return
 
 	if(istype(attacking_item, /obj/item/stack/sheet/bronze))
@@ -149,7 +149,7 @@
 			var/amount_to_take = clamp(round((max_power - power) / BRASS_POWER_COST), 0, bronze_stack.amount)
 
 			if(!amount_to_take)
-				to_chat(user, span_clockyellow("[src] can't be powered further using this!"))
+				to_chat(user, span_clockyellow("[src] 无法用这个进一步充能！"))
 				return
 
 			bronze_stack.use(amount_to_take)
@@ -160,7 +160,7 @@
 			qdel(bronze_stack)
 
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, span_clockyellow("You convert [bronze_stack.amount] bronze into [bronze_stack.amount * BRASS_POWER_COST] watts of power."))
+		to_chat(user, span_clockyellow("你将[bronze_stack.amount]青铜转化为[bronze_stack.amount * BRASS_POWER_COST]瓦特的能量。"))
 
 		return TRUE
 
@@ -171,7 +171,7 @@
 			var/amount_to_take = clamp(round((max_power - power) / REGULAR_POWER_COST), 0, stack.amount)
 
 			if(!amount_to_take)
-				to_chat(user, span_clockyellow("[src] can't be powered further using this!"))
+				to_chat(user, span_clockyellow("[src] 无法用这个进一步充能！"))
 				return
 
 			stack.use(amount_to_take)
@@ -182,7 +182,7 @@
 			qdel(stack)
 
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, span_clockyellow("You convert [stack.amount] [stack.name] into [stack.amount * REGULAR_POWER_COST] watts of power."))
+		to_chat(user, span_clockyellow("你将[stack.amount] [stack.name]转换成了[stack.amount * REGULAR_POWER_COST]瓦特的能量。"))
 
 		return TRUE
 
@@ -214,7 +214,7 @@
 
 
 /datum/replica_fabricator_output/brass_floor
-	name = "floor"
+	name = "地板"
 	cost = BRASS_POWER_COST * 0.25 // 1/4th the cost, since one sheet = 4 floor tiles
 
 
@@ -227,7 +227,7 @@
 
 
 /datum/replica_fabricator_output/brass_wall
-	name = "wall"
+	name = "墙壁"
 	cost = BRASS_POWER_COST * 4
 	creation_delay = 2.5 SECONDS
 
@@ -241,7 +241,7 @@
 
 
 /datum/replica_fabricator_output/wall_gear
-	name = "wall gear"
+	name = "墙壁齿轮"
 	cost = BRASS_POWER_COST * 2
 	to_create_path = /obj/structure/girder/bronze
 	creation_delay = 1.5 SECONDS
@@ -254,7 +254,7 @@
 
 
 /datum/replica_fabricator_output/brass_window
-	name = "window"
+	name = "窗户"
 	cost = BRASS_POWER_COST * 2
 	to_create_path = /obj/structure/window/bronze/fulltile
 	creation_delay = 2.5 SECONDS
@@ -267,7 +267,7 @@
 
 
 /datum/replica_fabricator_output/pinion_airlock
-	name = "airlock"
+	name = "气闸门"
 	cost = BRASS_POWER_COST * 5 // Breaking it only gets 2 but this is the exception to the rule of equivalent exchange, due to all the small parts inside
 	to_create_path = /obj/machinery/door/airlock/bronze/clock
 	creation_delay = 4 SECONDS
@@ -280,7 +280,7 @@
 
 
 /datum/replica_fabricator_output/pinion_airlock/glass
-	name = "glass airlock"
+	name = "玻璃气闸门"
 	to_create_path = /obj/machinery/door/airlock/bronze/clock/glass
 
 

@@ -252,7 +252,7 @@
 		ion_trail = new(src)
 
 	ionpulse_on = !ionpulse_on
-	to_chat(src, span_notice("You [ionpulse_on ? null :"de"]activate your ion thrusters."))
+	to_chat(src, span_notice("你[ionpulse_on ? null :"de"]激活了离子推进器。"))
 	if(ionpulse_on)
 		ion_trail.start()
 	else
@@ -469,7 +469,7 @@
 	. = ..()
 	if(lamp_enabled)
 		toggle_headlamp(TRUE)
-		balloon_alert(src, "headlamp off!")
+		balloon_alert(src, "头灯关闭！")
 	COOLDOWN_START(src, disabled_time, disrupt_duration)
 	return TRUE
 
@@ -504,7 +504,7 @@
 /mob/living/silicon/robot/proc/toggle_headlamp(turn_off = FALSE, update_color = FALSE)
 	//if both lamp is enabled AND the update_color flag is on, keep the lamp on. Otherwise, if anything listed is true, disable the lamp.
 	if(!COOLDOWN_FINISHED(src, disabled_time))
-		balloon_alert(src, "disrupted!")
+		balloon_alert(src, "受到干扰！")
 		return FALSE
 
 	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode))
@@ -914,8 +914,8 @@
 	undeployment_action.Grant(src)
 
 /datum/action/innate/undeployment
-	name = "Disconnect from shell"
-	desc = "Stop controlling your shell and resume normal core operations."
+	name = "断开与外壳的连接"
+	desc = "停止对系统的控制，恢复正常的核心运行。"
 	button_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
 
@@ -983,7 +983,7 @@
 
 /mob/living/silicon/robot/can_resist()
 	if(lockcharge)
-		balloon_alert(src, "locked down!")
+		balloon_alert(src, "已锁定！")
 		return FALSE
 	return ..()
 

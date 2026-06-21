@@ -1,6 +1,6 @@
 /datum/scripture/create_structure/technologists_lectern
-	name = "Technologist's Lectern"
-	desc = "Creates a technologist's lectern, usable in certain areas to research new, powerful scriptures and equipment. Research takes a while and unenlightened minds may take notice."
+	name = "技师讲坛"
+	desc = "创造一个技师讲坛，可在特定区域用于研究新的强大经文和装备。研究需要时间，且可能引起未开化者的注意。"
 	tip = "Create a technologist's lectern to research more powerful scriptures and equipment."
 	button_icon_state = "Technologist Lectern"
 	power_cost = 300

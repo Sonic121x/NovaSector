@@ -18,7 +18,7 @@
 
 /datum/component/shielded/suit/default_run_hit_callback(mob/living/owner, attack_text, current_charges)
 	var/obj/item/item_parent = parent
-	owner.visible_message(span_danger("[owner]'s armor absorbs [attack_text]!"))
+	owner.visible_message(span_danger("[owner]的盔甲吸收了[attack_text]！"))
 	if(current_charges <= 0)
-		owner.visible_message(span_warning("[owner]'s armor breaks!"))
+		owner.visible_message(span_warning("[owner]的护甲破碎了！"))
 		playsound(item_parent, 'sound/items/ceramic_break.ogg', 60, TRUE)

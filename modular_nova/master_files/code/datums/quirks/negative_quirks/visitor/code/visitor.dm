@@ -1,11 +1,11 @@
 /datum/quirk/visitor
 	name = "Visitor ID"
-	desc = "As assistant, you're given a visitor ID with limited background information. Your records will be sparse and require filling out during the shift."
+	desc = "作为助手，你会获得一张背景信息有限的访客ID。你的档案将是空白的，需要在值班期间填写。"
 	icon = FA_ICON_PERSON_CIRCLE_QUESTION
 	value = -2
 	medical_record_text = "Patient is a guest aboard the station, and has been issued a visitor's ID."
-	gain_text = span_notice("As a guest aboard the station, you've been given a special visitor ID!")
-	lose_text = span_danger("Your visitation rights have been revoked...")
+	gain_text = span_notice("作为空间站的访客，你获得了一张特殊的访客ID！")
+	lose_text = span_danger("你的访问权限已被撤销……")
 	quirk_flags = QUIRK_HIDE_FROM_SCAN
 	///holder of a copy of the user's old id
 	var/obj/item/card/id/advanced/old_id

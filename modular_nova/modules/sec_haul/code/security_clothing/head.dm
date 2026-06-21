@@ -27,8 +27,8 @@
 	new_icon_state = "garrison_blue"
 
 /obj/item/clothing/head/security_garrison
-	name = "security garrison cap"
-	desc = "A robust garrison cap with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	name = "安保驻防帽"
+	desc = "一顶坚固的驻防帽，上面印有安保徽章。采用强化面料以提供足够的防护。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "garrison_black"
@@ -55,8 +55,8 @@
 	new_icon_state = "security_cap_white"
 
 /obj/item/clothing/head/security_cap
-	name = "security cap"
-	desc = "A robust cap with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	name = "安保帽"
+	desc = "一顶坚固的帽子，上面印有安保徽章。采用强化面料以提供足够的防护。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "security_cap_black"
@@ -78,7 +78,7 @@
 	armor_type = /datum/armor/head_helmet
 
 /obj/item/clothing/head/beret/sec/navywarden/nova
-	desc = "A special beret with the Warden's insignia emblazoned on it. For wardens with class."
+	desc = "一顶特殊的贝雷帽，上面印有典狱长的徽章。为有品位的典狱长准备。"
 	icon_state = "/obj/item/clothing/head/beret/sec/navywarden/nova"
 	post_init_icon_state = "beret_badge_fancy_twist"
 	greyscale_config = /datum/greyscale_config/beret_badge_fancy
@@ -107,8 +107,8 @@
 	new_icon_state = "policecadetcap"
 
 /obj/item/clothing/head/hats/warden/police/patrol
-	name = "police patrol cap"
-	desc = "A dark colored hat with a silver badge, for the officer interested in style."
+	name = "警用巡逻帽"
+	desc = "一顶深色帽子，配有银色徽章，适合注重风格的警官。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "policeofficerpatrolcap"

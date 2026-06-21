@@ -5,8 +5,8 @@
 
 /obj/machinery/power/manufacturing
 	icon = 'icons/obj/machines/manufactorio.dmi'
-	name = "base manufacture receiving type"
-	desc = "this shouldnt exist"
+	name = "基础制造接收类型"
+	desc = "这不应该存在"
 	density = TRUE
 	/// Do we add the simple_rotation component and a text that we are powered by cable? Also allows unwrenching
 	var/may_be_moved = TRUE

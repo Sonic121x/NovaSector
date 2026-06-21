@@ -1,7 +1,7 @@
 /obj/item/clothing/glasses/hud
 	gender = NEUTER
 	name = "HUD"
-	desc = "A heads-up display that provides important info in (almost) real time."
+	desc = "一个平视显示器，提供（几乎）实时的重要信息。"
 	flags_1 = null //doesn't protect eyes because it's a monocle, duh
 	actions_types = list(/datum/action/item_action/toggle_wearable_hud)
 	/// Whether the HUD info is on or off
@@ -12,13 +12,13 @@
 	if(obj_flags & EMAGGED || . & EMP_PROTECT_SELF)
 		return
 	obj_flags |= EMAGGED
-	desc = "[desc] The display is flickering slightly."
+	desc = "[desc]发出微弱的光"
 
 /obj/item/clothing/glasses/hud/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "display scrambled")
+	balloon_alert(user, "显示已扰乱")
 	desc = "[desc] The display is flickering slightly."
 	return TRUE
 
@@ -45,17 +45,17 @@
 		display_active = FALSE
 		for(var/hud_trait in clothing_traits)
 			REMOVE_CLOTHING_TRAIT(eye_owner, hud_trait)
-		balloon_alert(eye_owner, "hud disabled")
+		balloon_alert(eye_owner, "HUD 已禁用")
 		return
 
 	display_active = TRUE
 	for(var/hud_trait in clothing_traits)
 		ADD_CLOTHING_TRAIT(eye_owner, hud_trait)
-	balloon_alert(eye_owner, "hud enabled")
+	balloon_alert(eye_owner, "HUD 已启用")
 
 /obj/item/clothing/glasses/hud/health
-	name = "health scanner HUD"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their health status."
+	name = "健康扫描目镜"
+	desc = "一个抬头显示器，能够扫描视野中的人型生物，并提供有关其健康状态的准确状况。"
 	icon_state = "healthhud"
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
@@ -67,7 +67,7 @@
 	clothing_traits = list(TRAIT_MEDICAL_HUD, TRAIT_SECURITY_HUD)
 
 /obj/item/clothing/glasses/hud/health/night
-	name = "night vision health scanner HUD"
+	name = "夜视健康扫描目镜"
 	desc = "An advanced medical heads-up display that allows doctors to find patients in complete darkness."
 	icon_state = "healthhudnight"
 	inhand_icon_state = "glasses"
@@ -95,8 +95,8 @@
 
 /obj/item/clothing/glasses/hud/health/sunglasses
 	gender = PLURAL
-	name = "medical HUDSunglasses"
-	desc = "Sunglasses with a medical HUD."
+	name = "医疗HUD太阳镜"
+	desc = "配有医疗HUD的太阳镜."
 	icon_state = "sunhudmed"
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
@@ -114,15 +114,15 @@
 	)
 
 /obj/item/clothing/glasses/hud/diagnostic
-	name = "diagnostic HUD"
-	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits."
+	name = "诊断HUD"
+	desc = "一个抬头显示器，能够分析赛博和机甲的完整性和电力状况。"
 	icon_state = "diagnostichud"
 	clothing_traits = list(TRAIT_DIAGNOSTIC_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
 
 /obj/item/clothing/glasses/hud/diagnostic/night
-	name = "night vision diagnostic HUD"
-	desc = "A robotics diagnostic HUD fitted with a light amplifier."
+	name = "夜视诊断目镜"
+	desc = "配有光放大器的诊断HUD."
 	icon_state = "diagnostichudnight"
 	inhand_icon_state = "glasses"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
@@ -138,8 +138,8 @@
 
 /obj/item/clothing/glasses/hud/diagnostic/sunglasses
 	gender = PLURAL
-	name = "diagnostic sunglasses"
-	desc = "Sunglasses with a diagnostic HUD."
+	name = "诊断太阳镜"
+	desc = "配有诊断HUD的太阳镜。"
 	icon_state = "sunhuddiag"
 	inhand_icon_state = "glasses"
 	flash_protect = FLASH_PROTECTION_FLASH
@@ -157,21 +157,21 @@
 	)
 
 /obj/item/clothing/glasses/hud/security
-	name = "security HUD"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records."
+	name = "安保目镜"
+	desc = "一个抬头显示器，能够扫描视野中的人型生物，并提供有关其身份和安全记录的准确状况。"
 	icon_state = "securityhud"
 	clothing_traits = list(TRAIT_SECURITY_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/hud/security/chameleon
-	name = "chameleon security HUD"
-	desc = "A stolen security HUD integrated with Syndicate chameleon technology. Provides flash protection."
+	name = "变色龙安保目镜"
+	desc = "一个被窃取的安保目镜，集成了辛迪加的变色龙技术，能够提供闪光防护."
 	flash_protect = FLASH_PROTECTION_FLASH
 	actions_types = list(/datum/action/item_action/chameleon/change/glasses/no_preset)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
-	name = "eyepatch HUD"
-	desc = "The cooler looking cousin of HUDSunglasses."
+	name = "眼罩HUD"
+	desc = "HUD太阳镜的帅表亲。"
 	icon_state = "hudpatch"
 	base_icon_state = "hudpatch"
 	actions_types = list(/datum/action/item_action/flip)
@@ -183,8 +183,8 @@
 
 /obj/item/clothing/glasses/hud/security/sunglasses
 	gender = PLURAL
-	name = "security HUDSunglasses"
-	desc = "Sunglasses with a security HUD."
+	name = "安保HUD太阳镜"
+	desc = "配有安保HUD的太阳镜."
 	icon_state = "sunhudsec"
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
@@ -202,8 +202,8 @@
 	)
 
 /obj/item/clothing/glasses/hud/security/night
-	name = "night vision security HUD"
-	desc = "An advanced heads-up display that provides ID data and vision in complete darkness."
+	name = "夜视安保目镜"
+	desc = "先进的头戴显示器，在完全黑暗中提供身份数据和视觉。"
 	icon_state = "securityhudnight"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	flags_cover = GLASSESCOVERSEYES
@@ -219,7 +219,7 @@
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
 	gender = PLURAL
 	name = "\improper HUD gar glasses"
-	desc = "GAR glasses with a HUD."
+	desc = "带有HUD的GAR眼镜。"
 	icon_state = "gar_sec"
 	inhand_icon_state = "gar_black"
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
@@ -240,7 +240,7 @@
 
 /obj/item/clothing/glasses/hud/toggle
 	name = "Toggle HUD"
-	desc = "A hud with multiple functions."
+	desc = "具有多种功能的hud。"
 	flags_cover = GLASSESCOVERSEYES
 	actions_types = list(/datum/action/item_action/switch_hud)
 
@@ -264,8 +264,8 @@
 	name = "Switch HUD"
 
 /obj/item/clothing/glasses/hud/toggle/thermal
-	name = "thermal HUD scanner"
-	desc = "Thermal imaging HUD in the shape of glasses."
+	name = "热量HUD扫描仪"
+	desc = "集成了热成像HUD的眼镜."
 	icon_state = "thermal"
 	vision_flags = SEE_MOBS
 	color_cutoffs = list(25, 8, 5)
@@ -301,8 +301,8 @@
 
 /obj/item/clothing/glasses/hud/spacecop
 	gender = PLURAL
-	name = "police aviators"
-	desc = "For thinking you look cool while brutalizing protestors and minorities."
+	name = "警察飞行员墨镜"
+	desc = "你血腥的镇压少数民族和抗议者，然后还觉得自己很酷。"
 	icon_state = "bigsunglasses"
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
@@ -312,7 +312,7 @@
 
 /obj/item/clothing/glasses/hud/spacecop/hidden // for the undercover cop
 	gender = PLURAL
-	name = "sunglasses"
-	desc = "These sunglasses are special, and let you view potential criminals."
+	name = "太阳镜"
+	desc = "这些太阳镜很特别，可以让你看到潜在的罪犯。"
 	icon_state = "sun"
 	inhand_icon_state = "sunglasses"

@@ -12,17 +12,17 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 	set name = "Setup Anonymous Names"
 
 	if(GLOB.current_anonymous_theme)
-		var/response = tgui_alert(usr, "Anon mode is currently enabled. Disable?", "cold feet", list("Disable Anon Names", "Keep it Enabled"))
+		var/response = tgui_alert(usr, "匿名模式当前已启用。要禁用吗？", "临阵退缩", list("Disable Anon Names", "Keep it Enabled"))
 		if(response != "Disable Anon Names")
 			return
-		message_admins(span_adminnotice("[key_name_admin(usr)] has disabled anonymous names."))
+		message_admins(span_adminnotice("[key_name_admin(usr)] 已禁用匿名名称。"))
 		QDEL_NULL(GLOB.current_anonymous_theme)
 		return
 	var/list/input_list = list("Cancel")
 	for(var/_theme in typesof(/datum/anonymous_theme))
 		var/datum/anonymous_theme/theme = _theme
 		input_list[initial(theme.name)] = theme
-	var/result = input(usr, "Choose an anonymous theme","going dark") as null|anything in input_list
+	var/result = input(usr, "选择一个匿名主题","转入地下") as null|anything in input_list
 	if(!usr || !result || result == "Cancel")
 		return
 	var/datum/anonymous_theme/chosen_theme = input_list[result]
@@ -30,8 +30,8 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 	var/alert_players = "No"
 	if(SSticker.current_state > GAME_STATE_PREGAME) //before anonnames is done, for asking a sleep
 		if(initial(chosen_theme.extras_enabled))
-			extras_enabled = tgui_alert(usr, extras_enabled, "extras", list("Yes", "No"))
-		alert_players = tgui_alert(usr, "Alert crew? These are IC Themed FROM centcom.", "announcement", list("Yes", "No"))
+			extras_enabled = tgui_alert(usr, extras_enabled, "额外内容", list("Yes", "No"))
+		alert_players = tgui_alert(usr, "通知船员吗？这些主题是来自中央司令部的IC主题。", "公告", list("Yes", "No"))
 	//turns "Yes" and "No" into TRUE and FALSE
 	extras_enabled = extras_enabled == "Yes"
 	alert_players = alert_players == "Yes"
@@ -41,7 +41,7 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 /* Datum singleton initialized by the client proc to hold the naming generation */
 /datum/anonymous_theme
 	///name of the anonymous theme, seen by admins pressing buttons to enable this
-	var/name = "Randomized Names"
+	var/name = "随机化名字"
 	///if admins get the option to enable extras, this is the prompt to enable it.
 	var/extras_prompt
 	///extra non-name related fluff that is optional for admins to enable. One example is the wizard theme giving everyone random robes.
@@ -78,7 +78,7 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
  * it's in a proc so it can be a non-constant expression.
  */
 /datum/anonymous_theme/proc/announce_to_all_players()
-	priority_announce("A recent bureaucratic error in the Organic Resources Department has resulted in a necessary full recall of all identities and names until further notice.", "Identity Loss", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("有机资源部近期的文书错误导致有必要全面召回所有身份和姓名，直至另行通知。", "身份丢失", SSstation.announcer.get_rand_alert_sound())
 
 /**
  * anonymous_all_players: sets all crewmembers on station anonymous.
@@ -106,7 +106,7 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
  * called when the anonymous theme is removed regardless of extra theming
  */
 /datum/anonymous_theme/proc/restore_all_players()
-	priority_announce("Names and Identities have been restored.", "Identity Restoration", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("姓名与身份已恢复。", "身份恢复", SSstation.announcer.get_rand_alert_sound())
 	for(var/mob/living/player in GLOB.player_list)
 		if(!player.mind || (!ishuman(player) && !issilicon(player)) || player.mind.assigned_role.faction != FACTION_STATION)
 			continue
@@ -148,10 +148,10 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 	return pick(GLOB.ai_names)
 
 /datum/anonymous_theme/employees
-	name = "Employees"
+	name = "雇员"
 
 /datum/anonymous_theme/employees/announce_to_all_players()
-	priority_announce("As punishment for this station's poor productivity when compared to neighbor stations, names and identities will be restricted until further notice.", "Finance Report", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("由于本空间站与邻近空间站相比生产力低下，作为惩罚，姓名与身份将被限制，直至另行通知。", "财务报告", SSstation.announcer.get_rand_alert_sound())
 
 /datum/anonymous_theme/employees/anonymous_name(mob/target)
 	var/is_head_of_staff = target.mind.assigned_role.job_flags & JOB_HEAD_OF_STAFF
@@ -169,7 +169,7 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 	return "Employee [is_ai ? "Core" : JOB_ASSISTANT] [verbs] [phonetic]"
 
 /datum/anonymous_theme/wizards
-	name = "Wizard Academy"
+	name = "巫师学院"
 	extras_prompt = "Give everyone random robes too?"
 
 /datum/anonymous_theme/wizards/player_extras(mob/living/player)
@@ -184,7 +184,7 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 	player.put_in_hands(new random_path())
 
 /datum/anonymous_theme/wizards/announce_to_all_players()
-	priority_announce("Your station has been caught by a Wizard Federation Memetic Hazard. You are not y0urself, and yo% a2E 34!NOT4--- Welcome to the Academy, apprentices!", "Memetic Hazard", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("你们的空间站已陷入巫师联邦模因危害。你不再是你自己，你% a2E 34!NOT4--- 欢迎来到学院，学徒们！", "模因危害", SSstation.announcer.get_rand_alert_sound())
 
 /datum/anonymous_theme/wizards/anonymous_name(mob/target)
 	var/wizard_name_first = pick(GLOB.wizard_first)
@@ -195,13 +195,13 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 	return "Crystallized Knowledge [is_ai ? "Nexus" : "Sliver"] +[rand(1,99)]" //Could two people roll the same number? Yeah, probably. Do I CARE? Nawww
 
 /datum/anonymous_theme/spider_clan
-	name = "Spider Clan"
+	name = "蜘蛛氏族"
 
 /datum/anonymous_theme/spider_clan/anonymous_name(mob/target)
 	return "[pick(GLOB.ninja_titles)] [pick(GLOB.ninja_names)]"
 
 /datum/anonymous_theme/spider_clan/announce_to_all_players()
-	priority_announce("Your station has been sold out to the Spider Clan. Your new designations will be applied now.", "New Management", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("你们的空间站已被出售给蜘蛛氏族。你们的新代号即将生效。", "新管理层", SSstation.announcer.get_rand_alert_sound())
 
 /datum/anonymous_theme/spider_clan/anonymous_ai_name(is_ai = FALSE)
 	var/posibrain_name = pick(GLOB.posibrain_names)

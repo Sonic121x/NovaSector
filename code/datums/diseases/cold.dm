@@ -1,5 +1,5 @@
 /datum/disease/cold
-	name = "The Cold"
+	name = "感冒"
 	desc = "A common, mildly annoying contagion. If left untreated the subject will contract the flu."
 	max_stages = 3
 	cure_text = /datum/reagent/medicine/spaceacillin::name + " or rest"
@@ -29,11 +29,11 @@
 			if(SPT_PROB(0.5, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your throat feels sore."))
+				to_chat(affected_mob, span_danger("你的喉咙感到疼痛。"))
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Mucous runs down the back of your throat."))
+				to_chat(affected_mob, span_danger("粘液顺着你的喉咙流下。"))
 			if((affected_mob.body_position == LYING_DOWN && SPT_PROB(23, seconds_per_tick)) || SPT_PROB(0.025, seconds_per_tick))  //changed FROM prob(10) until sleeping is fixed // Has sleeping been fixed yet?
-				to_chat(affected_mob, span_notice("You feel better."))
+				to_chat(affected_mob, span_notice("你感觉好些了。"))
 				cure()
 				return FALSE
 		if(3)
@@ -42,15 +42,15 @@
 			if(SPT_PROB(0.5, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your throat feels sore."))
+				to_chat(affected_mob, span_danger("你的喉咙感到疼痛。"))
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Mucous runs down the back of your throat."))
+				to_chat(affected_mob, span_danger("粘液顺着你的喉咙流下。"))
 			if(SPT_PROB(0.25, seconds_per_tick) && !LAZYFIND(affected_mob.disease_resistances, /datum/disease/flu))
 				var/datum/disease/Flu = new /datum/disease/flu()
 				affected_mob.ForceContractDisease(Flu, FALSE, TRUE)
 				cure()
 				return FALSE
 			if((affected_mob.body_position == LYING_DOWN && SPT_PROB(12.5, seconds_per_tick)) || SPT_PROB(0.005, seconds_per_tick))  //changed FROM prob(5) until sleeping is fixed
-				to_chat(affected_mob, span_notice("You feel better."))
+				to_chat(affected_mob, span_notice("你感觉好些了。"))
 				cure()
 				return FALSE

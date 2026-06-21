@@ -15,8 +15,8 @@
 	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_DEFAULT)
 
 /obj/structure/statue/bone/rib
-	name = "colossal rib"
-	desc = "It's staggering to think that something this big could have lived, let alone died."
+	name = "巨型生物肋骨"
+	desc = "这么大的东西居然还活着真是令人难以置信，更别说还能被杀死了。"
 	custom_materials = list(/datum/material/bone=SHEET_MATERIAL_AMOUNT * 10)
 	icon = 'icons/obj/art/statuelarge.dmi'
 	icon_state = "rib"
@@ -24,8 +24,8 @@
 	icon_state_preview = "rib"
 
 /obj/structure/statue/bone/skull
-	name = "colossal skull"
-	desc = "The gaping maw of a dead, titanic monster."
+	name = "巨型生物头骨"
+	desc = "一只死去的巨型怪物张着大嘴。"
 	custom_materials = list(/datum/material/bone=SHEET_MATERIAL_AMOUNT * 6)
 	icon = 'icons/obj/art/statuelarge.dmi'
 	icon_state = "skull"
@@ -33,7 +33,7 @@
 	icon_state_preview = "skull"
 
 /obj/structure/statue/bone/skull/half
-	desc = "The gaping maw of a dead, titanic monster. This one is cracked in half."
+	desc = "一只死去的巨型怪物张着大嘴。不过这个裂成两半了。"
 	custom_materials = list(/datum/material/bone=SHEET_MATERIAL_AMOUNT * 3)
 	icon = 'icons/obj/art/statuelarge.dmi'
 	icon_state = "skull-half"
@@ -42,7 +42,7 @@
 
 //***Wasteland floor and rock turfs here.
 /turf/open/misc/asteroid/basalt/wasteland //Like a more fun version of living in Arizona.
-	name = "cracked earth"
+	name = "龟裂的大地"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "wasteland"
 	base_icon_state = "wasteland"
@@ -67,7 +67,7 @@
 	dug = TRUE
 
 /turf/closed/mineral/strong/wasteland
-	name = "ancient dry rock"
+	name = "古老干燥岩石"
 	color = "#B5651D"
 	turf_type = /turf/open/misc/asteroid/basalt/wasteland
 	baseturfs = /turf/open/misc/asteroid/basalt/wasteland
@@ -85,8 +85,8 @@
 
 //***Oil well puddles.
 /obj/structure/sink/oil_well //You're not going to enjoy bathing in this...
-	name = "oil well"
-	desc = "A bubbling pool of oil. This would probably be valuable, had bluespace technology not destroyed the need for fossil fuels 200 years ago."
+	name = "油井"
+	desc = "一个冒着热气的油池。倘若蓝空间技术没有在 200 年前就终结了对化石燃料的需求，那么这些石油想必会很有价值。"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "puddle-oil"
 	capacity = 20
@@ -105,7 +105,7 @@
 /obj/structure/sink/oil_well/attack_hand(mob/user, list/modifiers)
 	flick("puddle-oil-splash",src)
 	reagents.expose(user, TOUCH, 20) //Covers target in 20u of oil.
-	to_chat(user, span_notice("You touch the pool of oil, only to get oil all over yourself. It would be wise to wash this off with water."))
+	to_chat(user, span_notice("你触碰了油池，结果弄得满身是油。最好用水洗掉。"))
 
 /obj/structure/sink/oil_well/wrench_act(mob/living/user, obj/item/tool)
 	//we deconstruct with a shovel
@@ -114,7 +114,7 @@
 /obj/structure/sink/oil_well/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	flick("puddle-oil-splash",src)
 	if(tool.tool_behaviour == TOOL_SHOVEL) //attempt to deconstruct the puddle with a shovel
-		to_chat(user, "You fill in the oil well with soil.")
+		to_chat(user, "你用泥土填平了油井。")
 		tool.play_tool_sound(src)
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
@@ -127,8 +127,8 @@
 //***Grave mounds.
 /// has no items inside unless you use the filled subtype
 /obj/structure/closet/crate/grave
-	name = "burial mound"
-	desc = "A marked patch of soil, showing signs of a burial long ago. You wouldn't disturb a grave... right?"
+	name = "坟堆"
+	desc = "一块有标记的土地，显示出很久以前埋葬过的痕迹。你不会打扰坟墓的……对吧?"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "grave"
 	base_icon_state = "grave"
@@ -174,7 +174,7 @@
 
 /obj/structure/closet/crate/grave/examine(mob/user)
 	. = ..()
-	. += span_notice("It can be [EXAMINE_HINT((opened ? "closed" : "dug open"))] with a shovel.")
+	. += span_notice("可以用铲子[EXAMINE_HINT((opened ? "closed" : "dug open"))]。")
 
 /obj/structure/closet/crate/grave/filled
 	affect_mood = TRUE
@@ -217,7 +217,7 @@
 		return FALSE
 
 	if(!force)
-		to_chat(user, span_notice("The ground here is too hard to dig up with your bare hands. You'll need a shovel."))
+		to_chat(user, span_notice("这里的土地太硬了，光用手挖不动。你需要一把铲子。"))
 		return FALSE
 
 	return TRUE
@@ -228,7 +228,7 @@
 		return FALSE
 
 	if(!dug_closed)
-		to_chat(user, span_notice("You'll need a shovel to cover it up."))
+		to_chat(user, span_notice("你需要一把铲子才能把它埋上。"))
 		return FALSE
 
 	dug_closed = FALSE
@@ -256,10 +256,10 @@
 			user.add_mood_event("graverobbing", is_chill_with_robbing ? /datum/mood_event/morbid_graverobbing : /datum/mood_event/graverobbing)
 			if(lead_tomb && first_open)
 				if(is_chill_with_robbing)
-					to_chat(user, span_notice("Did someone say something? I'm sure it was nothing."))
+					to_chat(user, span_notice("有人说了什么吗？肯定没什么。"))
 				else
 					user.gain_trauma(/datum/brain_trauma/magic/stalker)
-					to_chat(user, span_boldwarning("Oh no, no no no, THEY'RE EVERYWHERE! EVERY ONE OF THEM IS EVERYWHERE!"))
+					to_chat(user, span_boldwarning("哦不，不不不，他们无处不在！他们每一个都无处不在！"))
 				first_open = FALSE
 
 		return TRUE
@@ -270,13 +270,13 @@
 			return TRUE
 
 		user.visible_message(
-			span_notice("[user] Is attempting to remove [src]."),
-			span_notice("You start removing [src]."),
+			span_notice("[user] 正试图移除 [src]。"),
+			span_notice("你开始移除 [src]。"),
 		)
 		if(!weapon.use_tool(src, user, delay = 15, volume = 40) || !opened)
 			return TRUE
 
-		to_chat(user, span_notice("You remove \the [src] completely."))
+		to_chat(user, span_notice("你完全移除了\the [src]。"))
 		user.add_mood_event("graverobbing", /datum/mood_event/graverobbing)
 		deconstruct(TRUE)
 		return TRUE
@@ -288,33 +288,33 @@
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message(
-		span_warning("[src]'s dirt begins to shift and rumble!"),
-		span_notice("You desperately begin to claw at the dirt around you, trying to force yourself upwards through the soil... (this will take about [DisplayTimeText(breakout_time)].)"),
-		span_hear("You hear the sound of shifting dirt from [src]."),
+		span_warning("[src] 的泥土开始移动并隆隆作响！"),
+		span_notice("你绝望地开始抓挠周围的泥土，试图将自己从土壤中向上推挤出来...（这大约需要 [DisplayTimeText(breakout_time)]。）"),
+		span_hear("你听到 [src] 传来泥土移动的声音。"),
 	)
 	if(do_after(user, breakout_time, target = src))
 		if(opened)
 			return
 		user.visible_message(
-			span_danger("[user] emerges from [src], scattering dirt everywhere!"),
-			span_notice("You triumphantly surface out of [src], scattering dirt all around the grave!"),
+			span_danger("[user] 从 [src] 中钻了出来，泥土散落得到处都是！"),
+			span_notice("你胜利地从 [src] 中钻了出来，泥土散落在坟墓周围！"),
 		)
 		bust_open()
 	else
 		if(user.loc == src)
-			to_chat(user, span_warning("You fail to dig yourself out of [src]!"))
+			to_chat(user, span_warning("你没能把自己从 [src] 里挖出来！"))
 
 /obj/structure/closet/crate/grave/fresh
-	name = "makeshift grave"
-	desc = "A hastily-dug grave. This is definitely not six feet deep, but it'll hold a body."
+	name = "临时坟墓"
+	desc = "一个匆忙挖掘的坟墓。这绝对没有六英尺深，但足以容纳一具尸体。"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "grave_fresh"
 	base_icon_state = "grave_fresh"
 	material_drop_amount = 0
 
 /obj/structure/closet/crate/grave/filled/lead_researcher
-	name = "ominous burial mound"
-	desc = "Even in a place filled to the brim with graves, this one shows a level of preparation and planning that fills you with dread."
+	name = "不祥的坟堆"
+	desc = "即使在一个遍地都是坟墓的地方，这个坟墓所展现出的准备和规划程度也让你充满了恐惧。"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "grave_lead"
 	lead_tomb = TRUE
@@ -327,27 +327,27 @@
 
 //***Fluff items for lore/intrigue
 /obj/item/paper/crumpled/muddy/fluff/elephant_graveyard
-	name = "posted warning"
-	desc = "It seems to be smudged with mud and... oil?"
-	default_raw_text = "<B>TO WHOM IT MAY CONCERN</B><BR><BR>This area is property of the Nanotrasen Mining Division.<BR><BR>Trespassing in this area is illegal, highly dangerous, and subject to several NDAs.<br><br>Please turn back now, under intergalactic law section 48-R."
+	name = "发布警告"
+	desc = "它似乎被泥巴弄脏了……石油?"
+	default_raw_text = "<B>致相关人士</B><BR><BR>此区域为纳米传讯矿业部门所有。<BR><BR>擅自进入此区域是违法的、高度危险的，并且受多项保密协议约束。<br><br>请立即返回，依据星际法律第48-R条。"
 
 /obj/item/paper/crumpled/muddy/fluff/elephant_graveyard/rnd_notes
-	name = "Research Findings: Day 26"
-	desc = "Huh, this one page looks like it was torn out of a full book. How odd."
+	name = "研究成果：第26天"
+	desc = "这一页看起来像是从整本书里撕下来的。多么奇怪。"
 	icon_state = "docs_part"
 	default_raw_text = "<b>Researcher name:</b> B--*--* J--*s.<BR><BR>Detailed findings:<i>Today the camp site's cond-tion has wor--ene*. The ashst--ms keep blocking us off from le-ving the sit* for m-re supplies, and it's lo-king like we're out of pl*sma to p-wer the ge-erat*r. Can't rea-*y study c-*bon *ating with no li--ts, ya know? Da-*y's been going -*f again and ag-*n a-*ut h*w the company's left us to *ie here, but I j-s* keep tell-ng him to stop che*-in* out these damn graves. We m-y b*  archaeologists, but -e sho*ld have t-e dec-**cy to know these grav-s are *-l NEW.</i><BR><BR><b>The rest of the page is just semantics about carbon dating methods.</b>"
 
 /obj/item/paper/crumpled/muddy/fluff/elephant_graveyard/mutiny
-	name = "hastily scribbled note"
-	desc = "Seems like someone was in a hurry."
+	name = "字迹潦草的笔记"
+	desc = "看来当时有人在赶时间嘛。"
 	default_raw_text = "Alright, we all know that stuck up son a bitch is just doing this to keep us satisifed. Who the hell does he think he is, taking extra rations? We're OUT OF FOOD, CARL. Tomorrow at noon, we're going to try and take the ship by force. He HAS to be lying about the engine cooling down. He HAS TO BE. I'm tellin ya, with this implant I lifted off that last supply ship, I got the smarts to get us offa this shithole. Keep your knife handy carl."
 
 /obj/item/paper/fluff/ruins/elephant_graveyard/hypothesis
-	name = "research document"
-	desc = "Standard Nanotrasen typeface for important research documents."
+	name = "研究文件"
+	desc = "重要研究文件的标准纳米传讯字体。"
 	default_raw_text = "<b>Day 9: Tenative Conclusions</b><BR><BR>While the area appears to be of significant cultural importance to the lizard race, outside of some sparce contact with native wildlife, we're yet to find any exact reasoning for the nature of this phenomenon. It seems that organic life is communally drawn to this planet as though it functions as a final resting place for intelligent life. As per company guidelines, this site shall be given the following classification: 'LZ-0271 - Elephant Graveyard' <BR><BR><u>Compiled list of Artifact findings (Currently Sent Offsite)</u><BR>Cultist Blade Fragments: x8<BR>Brass Multiplicative Ore Sample: x105<BR>Syndicate Revolutionary Leader Implant (Broken) x1<BR>Extinct Cortical Borer Tissue Sample x1<BR>Space Carp Fossil x3"
 
 /obj/item/paper/fluff/ruins/elephant_graveyard/final_message
-	name = "important-looking note"
-	desc = "This note is well written, and seems to have been put here so you'd find it."
+	name = "好像很重要的笔记"
+	desc = "这张纸条写得很好，好像是特意放在这里的，所以你会发现。"
 	default_raw_text = "If you find this... you don't need to know who I am.<BR><BR>You need to leave this place. I dunno what shit they did to me out here, but I don't think I'm going to be making it out of here.<BR><BR>This place... it wears down your psyche. The other researchers out here laughed it off but... They were the first to go.<BR><BR>One by one they started turning on each other. The more they found out, the more they started fighting and arguing...<BR>As I speak now, I had to... I wound up having to put most of my men down. I know what I had to do, and I know there's no way left for me to live with myself.<BR> If anyone ever finds this, just don't touch the graves.<BR><BR>DO NOT. TOUCH. THE GRAVES. Don't be a dumbass, like we all were."

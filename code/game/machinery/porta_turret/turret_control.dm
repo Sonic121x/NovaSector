@@ -1,6 +1,6 @@
 /obj/machinery/turretid
-	name = "turret control panel"
-	desc = "Used to control a room's automated defenses."
+	name = "炮塔控制面板"
+	desc = "用于控制房间的自动防御系统。"
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control"
 	base_icon_state = "control"
@@ -78,8 +78,8 @@
 /obj/machinery/turretid/examine(mob/user)
 	. += ..()
 	if(issilicon(user) && !(machine_stat & BROKEN))
-		. += span_notice("Ctrl-click [src] to [ enabled ? "disable" : "enable"] turrets.")
-		. += span_notice("Alt-click [src] to set turrets to [ lethal ? "stun" : "kill"].")
+		. += span_notice("Ctrl-点击[src]以[ enabled ? "disable" : "enable"]炮塔。")
+		. += span_notice("Alt-点击[src]将炮塔设置为[ lethal ? "stun" : "kill"]模式。")
 
 /obj/machinery/turretid/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	. = NONE
@@ -105,18 +105,18 @@
 
 	if (check_access(id))
 		if(obj_flags & EMAGGED)
-			to_chat(user, span_warning("The turret control is unresponsive!"))
+			to_chat(user, span_warning("炮塔控制无响应！"))
 			return
 
 		locked = !locked
-		to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] the panel."))
+		to_chat(user, span_notice("你[ locked ? "lock" : "unlock"]了面板。"))
 	else
-		to_chat(user, span_alert("Access denied."))
+		to_chat(user, span_alert("访问被拒绝。"))
 
 /obj/machinery/turretid/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "access analysis module shorted")
+	balloon_alert(user, "访问分析模块短路")
 	obj_flags |= EMAGGED
 	locked = FALSE
 	return TRUE
@@ -125,7 +125,7 @@
 	if(!ailock || isAdminGhostAI(user))
 		return attack_hand(user)
 	else
-		to_chat(user, span_warning("There seems to be a firewall preventing you from accessing this device!"))
+		to_chat(user, span_warning("似乎有防火墙阻止你访问此设备！"))
 
 /obj/machinery/turretid/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -154,7 +154,7 @@
 			if(!HAS_SILICON_ACCESS(user))
 				return
 			if((obj_flags & EMAGGED) || (machine_stat & BROKEN))
-				to_chat(user, span_warning("The turret control is unresponsive!"))
+				to_chat(user, span_warning("炮塔控制台无响应！"))
 				return
 			locked = !locked
 			return TRUE
@@ -172,7 +172,7 @@
 	lethal = !lethal
 	if (user)
 		var/enabled_or_disabled = lethal ? "disabled" : "enabled"
-		balloon_alert(user, "safeties [enabled_or_disabled]")
+		balloon_alert(user, "安全装置[enabled_or_disabled]")
 		add_hiddenprint(user)
 		log_combat(user, src, "[enabled_or_disabled] lethals on")
 	updateTurrets()
@@ -205,8 +205,8 @@
 	update_appearance()
 
 /obj/item/wallframe/turret_control
-	name = "turret control frame"
-	desc = "Used for building turret control panels."
+	name = "炮塔控制台框架"
+	desc = "用于建造炮塔控制面板。"
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control_frame"
 	result_path = /obj/machinery/turretid

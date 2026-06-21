@@ -1,11 +1,11 @@
 /obj/item/clothing/glasses/sunglasses/oval
-	name = "oval sunglasses"
+	name = "椭圆形太阳镜"
 	flags_cover = GLASSESCOVERSEYES
-	desc = "Vintage wrap around sunglasses. Provides a little protection."
+	desc = "老式环绕太阳镜。提供少量保护。"
 	icon_state = "jensenshades"
 
 /obj/item/clothing/suit/jacket/leather_trenchcoat
-	name = "leather trenchcoat"
-	desc = "A long, black trenchcoat. Makes you feel like you're the one, but you're not."
+	name = "皮风衣"
+	desc = "一件长长的黑色风衣。让你感觉自己就是天选之子，但你不是。"
 	icon_state = "leather_trenchcoat"
 	flags_inv = HIDEBELT

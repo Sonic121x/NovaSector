@@ -105,12 +105,12 @@
 		if("import_song")
 			var/song_text = ""
 			do
-				song_text = tgui_input_text(user, "Please paste the entire song, formatted:", name, max_length = (MUSIC_MAXLINES * MUSIC_MAXLINECHARS), multiline = TRUE)
+				song_text = tgui_input_text(user, "请粘贴完整的歌曲，格式如下：", name, max_length = (MUSIC_MAXLINES * MUSIC_MAXLINECHARS), multiline = TRUE)
 				if(!in_range(parent, user))
 					return
 
 				if(length_char(song_text) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
-					var/should_continue = tgui_alert(user, "Your message is too long! Would you like to continue editing it?", "Warning", list("Yes", "No"))
+					var/should_continue = tgui_alert(user, "你的消息太长了！你想继续编辑它吗？", "警告", list("Yes", "No"))
 					if(should_continue != "Yes")
 						break
 			while(length_char(song_text) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
@@ -122,7 +122,7 @@
 			tempo = sanitize_tempo(5) // default 120 BPM
 			return TRUE
 		if("add_new_line")
-			var/newline = tgui_input_text(user, "Enter your line", parent.name, max_length = MUSIC_MAXLINECHARS)
+			var/newline = tgui_input_text(user, "输入你的乐谱行", parent.name, max_length = MUSIC_MAXLINECHARS)
 			if(!newline || !in_range(parent, user))
 				return
 			if(lines.len > MUSIC_MAXLINES)
@@ -140,7 +140,7 @@
 			var/line_to_edit = params["line_editing"]
 			if(line_to_edit > lines.len || line_to_edit < 1)
 				return FALSE
-			var/new_line_text = tgui_input_text(user, "Enter your line ", parent.name, lines[line_to_edit], max_length = MUSIC_MAXLINECHARS)
+			var/new_line_text = tgui_input_text(user, "输入你的乐谱行", parent.name, lines[line_to_edit], max_length = MUSIC_MAXLINECHARS)
 			if(isnull(new_line_text) || !in_range(parent, user))
 				return FALSE
 			lines[line_to_edit] = new_line_text
@@ -209,13 +209,13 @@
 			tempo = sanitize_tempo(5) // default 120 BPM
 		if(lines.len > MUSIC_MAXLINES)
 			if(user)
-				to_chat(user, "Too many lines!")
+				to_chat(user, "行数过多！")
 			lines.Cut(MUSIC_MAXLINES + 1)
 		var/linenum = 1
 		for(var/l in lines)
 			if(length_char(l) > MUSIC_MAXLINECHARS)
 				if(user)
-					to_chat(user, "Line [linenum] too long!")
+					to_chat(user, "第 [linenum] 行过长！")
 				lines.Remove(l)
 			else
 				linenum++

@@ -1,6 +1,6 @@
 /datum/language/skrell
 	name = "Skrelluq"
-	desc = "Popularly known as \"Skrellian\" by foreigners, this newly-discovered language that the Skrell employ follows no traditional speech patterns. It relies on various differently-pitched warbles and low-frequency sound to construct different sentences, and is nearly inaudible to non-Skrell and anyone lacking an appropriate implant."
+	desc = "被外族人普遍称为“Skrellian”，斯克瑞尔人所使用的这种新发现的语言不遵循传统的言语模式。它依靠各种不同音高的颤音和低频声音来构建不同的句子，对于非斯克瑞尔人和任何缺乏适当植入体的人来说几乎听不见。"
 	space_chance = 100
 	between_word_sentence_chance = 10
 	between_word_space_chance = 75

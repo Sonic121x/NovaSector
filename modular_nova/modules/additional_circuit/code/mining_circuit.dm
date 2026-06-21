@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/mining
 	display_name = "Mine"
-	desc = "A component that can force the shell to mine a target. Only works with drone shells. Only works on mining surfaces."
+	desc = "一个可以强制外壳挖掘目标的组件。仅对无人机外壳有效。仅对可挖掘表面有效。"
 	category = "Action"
 
 	/// Frequency input

@@ -15,7 +15,7 @@
 /obj/item/melee/energy/sword/surplus/improvised/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "Cobbled-together energy swords like this can be found across the frontier in the hands of... a lot of people, really. \
 			From ne'er-do-wells to enthusiasts and everything in between, the ease of acquiring parts means that anyone with a semblance of \
 			craftsmanship can make something that works as a sword.<br>\

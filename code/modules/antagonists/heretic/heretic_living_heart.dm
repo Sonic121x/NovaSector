@@ -66,8 +66,8 @@
  * Allows a heretic to track sacrifice targets.
  */
 /datum/action/cooldown/track_target
-	name = "Living Heartbeat"
-	desc = "LMB: Chose one of your sacrifice targets to track. RMB: Repeats last target you chose to track."
+	name = "鲜活心跳"
+	desc = "左键：选择追踪一位献祭品 右键：追踪一位选择过的献祭品"
 	check_flags = AB_CHECK_CONSCIOUS
 	background_icon_state = "bg_heretic"
 	button_icon = 'icons/obj/antags/eldritch.dmi'
@@ -110,7 +110,7 @@
 	var/datum/heretic_knowledge/sac_knowledge = heretic_datum.get_knowledge(/datum/heretic_knowledge/hunt_and_sacrifice)
 
 	if(!LAZYLEN(heretic_datum.sac_targets))
-		owner.balloon_alert(owner, "no targets, visit a rune!")
+		owner.balloon_alert(owner, "没有目标，去拜访一个符文！")
 		StartCooldown(1 SECONDS)
 		return TRUE
 

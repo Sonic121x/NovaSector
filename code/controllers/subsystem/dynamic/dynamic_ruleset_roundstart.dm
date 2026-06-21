@@ -32,7 +32,7 @@
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/traitor
-	name = "Traitors"
+	name = "叛徒"
 	config_tag = "Roundstart Traitor"
 	preview_antag_datum = /datum/antagonist/traitor
 	pref_flag = ROLE_TRAITOR
@@ -44,7 +44,7 @@
 	candidate.add_antag_datum(/datum/antagonist/traitor)
 
 /datum/dynamic_ruleset/roundstart/malf_ai
-	name = "Malfunctioning AI"
+	name = "故障AI"
 	config_tag = "Roundstart Malfunctioning AI"
 	pref_flag = ROLE_MALF
 	preview_antag_datum = /datum/antagonist/malf_ai
@@ -75,7 +75,7 @@
 	return ..() && !HAS_TRAIT(SSstation, STATION_TRAIT_HUMAN_AI)
 
 /datum/dynamic_ruleset/roundstart/blood_brother
-	name = "Blood Brothers"
+	name = "血盟兄弟"
 	config_tag = "Roundstart Blood Brothers"
 	preview_antag_datum = /datum/antagonist/brother
 	pref_flag = ROLE_BROTHER
@@ -87,7 +87,7 @@
 	candidate.add_antag_datum(/datum/antagonist/brother)
 
 /datum/dynamic_ruleset/roundstart/changeling
-	name = "Changelings"
+	name = "变形者"
 	config_tag = "Roundstart Changeling"
 	preview_antag_datum = /datum/antagonist/changeling
 	pref_flag = ROLE_CHANGELING
@@ -102,7 +102,7 @@
 // They have their static, so unlike blood worms who spawn in the middle of the round, they just kinda tend to do nothing. So having at least 2 is ideal.
 // This way, if one ends up being a fluke, the other can hopefully pick up the slack. It's a semi-rare event, so having a massive chance to just fizzle out isn't ideal.
 /datum/dynamic_ruleset/roundstart/blood_worm
-	name = "Blood Worms"
+	name = "血蠕虫"
 	config_tag = "Roundstart Blood Worm"
 	preview_antag_datum = /datum/antagonist/blood_worm
 	pref_flag = ROLE_BLOOD_WORM
@@ -133,7 +133,7 @@
 	worm.enter_host(host, silent = TRUE, gain_progress = FALSE)
 
 /datum/dynamic_ruleset/roundstart/heretic
-	name = "Heretics"
+	name = "异教徒"
 	config_tag = "Roundstart Heretics"
 	preview_antag_datum = /datum/antagonist/heretic
 	pref_flag = ROLE_HERETIC
@@ -145,7 +145,7 @@
 	candidate.add_antag_datum(/datum/antagonist/heretic)
 
 /datum/dynamic_ruleset/roundstart/wizard
-	name = "Wizard"
+	name = "巫师"
 	config_tag = "Roundstart Wizard"
 	preview_antag_datum = /datum/antagonist/wizard
 	pref_flag = ROLE_WIZARD
@@ -176,7 +176,7 @@
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/blood_cult
-	name = "Blood Cult"
+	name = "血教"
 	config_tag = "Roundstart Blood Cult"
 	preview_antag_datum = /datum/antagonist/cult
 	pref_flag = ROLE_CULTIST
@@ -237,7 +237,7 @@
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/nukies
-	name = "Nuclear Operatives"
+	name = "核弹特工"
 	config_tag = "Roundstart Nukeops"
 	preview_antag_datum = /datum/antagonist/nukeop
 	pref_flag = ROLE_OPERATIVE
@@ -374,7 +374,7 @@
 			SSticker.news_report = OPERATIVE_SKIRMISH
 
 /datum/dynamic_ruleset/roundstart/nukies/clown
-	name = "Clown Operatives"
+	name = "小丑特工"
 	config_tag = "Roundstart Clownops"
 	preview_antag_datum = /datum/antagonist/nukeop/clownop
 	pref_flag = ROLE_CLOWN_OPERATIVE
@@ -390,7 +390,7 @@
 		candidate.add_antag_datum(/datum/antagonist/nukeop/clownop)
 
 /datum/dynamic_ruleset/roundstart/revolution
-	name = "Revolution"
+	name = "革命"
 	config_tag = "Roundstart Revolution"
 	preview_antag_datum = /datum/antagonist/rev/head
 	pref_flag = ROLE_REV_HEAD
@@ -466,7 +466,7 @@
 	message_admins("[config_tag]: All headrevs were ineligible after the timer expired, and no replacements could be found. Ruleset canceled.")
 
 /datum/dynamic_ruleset/roundstart/spies
-	name = "Spies"
+	name = "间谍"
 	config_tag = "Roundstart Spies"
 	preview_antag_datum = /datum/antagonist/spy
 	pref_flag = ROLE_SPY
@@ -483,7 +483,7 @@
 	candidate.add_antag_datum(/datum/antagonist/spy)
 
 /datum/dynamic_ruleset/roundstart/extended
-	name = "Extended"
+	name = "扩展模式"
 	config_tag = "Extended"
 	weight = 0
 	min_antag_cap = 0
@@ -496,7 +496,7 @@
 		SSdynamic.rulesets_to_spawn[category] = 0
 
 /datum/dynamic_ruleset/roundstart/meteor
-	name = "Meteor"
+	name = "陨石"
 	config_tag = "Meteor"
 	weight = 0
 	min_antag_cap = 0
@@ -507,7 +507,7 @@
 	GLOB.meteor_mode.start_meteor()
 
 /datum/dynamic_ruleset/roundstart/nations
-	name = "Nations"
+	name = "国家"
 	config_tag = "Nations"
 	weight = 0
 	min_antag_cap = 0

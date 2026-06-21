@@ -1,5 +1,5 @@
 /obj/item/implant/mortis
-	name = "MORTIS implant"
+	name = "MORTIS植入体"
 
 /obj/item/implant/mortis/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -23,5 +23,5 @@
 	playsound(source.loc, 'modular_nova/modules/chaplain/sound/mortis.ogg', 50, 0)
 
 /obj/item/implanter/mortis
-	name = "implanter (MORTIS)"
+	name = "植入器（MORTIS）"
 	imp_type = /obj/item/implant/mortis

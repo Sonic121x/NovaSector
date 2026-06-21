@@ -5,8 +5,8 @@
 //Leaving His Grace alone for some time will reset His thirst and put Him to sleep.
 //Using His Grace effectively requires extreme speed and care.
 /obj/item/his_grace
-	name = "artistic toolbox"
-	desc = "A toolbox painted bright green. Looking at it makes you feel uneasy."
+	name = "艺术工具箱"
+	desc = "一个漆成亮绿色的工具箱。看着它让你感到不安。"
 	icon = 'icons/obj/storage/toolbox.dmi'
 	icon_state = "green"
 	inhand_icon_state = "toolbox_green"
@@ -38,21 +38,21 @@
 		if(gender == MALE)
 			gender = FEMALE
 			if(awakened)
-				name = "Her Grace"
+				name = "她的恩典"
 			else if (!ascended)
-				desc = "A toolbox painted bright pink. Looking at it makes you feel uneasy."
+				desc = "一个涂成亮粉色的工具箱。看着它让你感到不安。"
 			icon_state = "pink"
 			inhand_icon_state = "toolbox_pink"
-			T.visible_message(span_boldwarning("[src] starts to look a little... girly?"))
+			T.visible_message(span_boldwarning("[src] 看起来有点……女孩子气？"))
 		else if(gender == FEMALE)
 			gender = MALE
 			if(awakened)
-				name = "His Grace"
+				name = "祂的恩典"
 			else if (!ascended)
-				desc = "A toolbox painted bright green. Looking at it makes you feel uneasy."
+				desc = "一个涂成亮绿色的工具箱。看着它让你感到不安。"
 			icon_state = "green"
 			inhand_icon_state = "toolbox_green"
-			T.visible_message(span_boldwarning("[src] begins to look a little more... manly?"))
+			T.visible_message(span_boldwarning("[src] 开始看起来更……男子气概了？"))
 		if(holder)
 			holder.remove_status_effect(/datum/status_effect/his_grace)
 		qdel(tool)
@@ -120,24 +120,24 @@
 	if(awakened)
 		switch(bloodthirst)
 			if(HIS_GRACE_SATIATED to HIS_GRACE_PECKISH)
-				. += span_his_grace("[src] isn't very hungry. Not yet.")
+				. += span_his_grace("[src] 还不太饿。暂时如此。")
 			if(HIS_GRACE_PECKISH to HIS_GRACE_HUNGRY)
-				. += span_his_grace("[src] would like a snack.")
+				. += span_his_grace("[src] 想来点零食。")
 			if(HIS_GRACE_HUNGRY to HIS_GRACE_FAMISHED)
-				. += span_his_grace("[src] is quite hungry now.")
+				. += span_his_grace("[src] 现在相当饿了。")
 			if(HIS_GRACE_FAMISHED to HIS_GRACE_STARVING)
-				. += span_his_grace("[src] is openly salivating at the sight of you. Be careful.")
+				. += span_his_grace("[src] 正毫不掩饰地对着你流口水。小心点。")
 			if(HIS_GRACE_STARVING to HIS_GRACE_CONSUME_OWNER)
 				. += "<span class='his_grace bold'>You walk a fine line. [src] is very close to devouring you.</span>"
 			if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
 				. += "<span class='his_grace bold'>[src] is shaking violently and staring directly at you.</span>"
 	else
-		. += span_his_grace("[src] is latched closed.")
+		. += span_his_grace("[src] 的搭扣锁上了。")
 
 /obj/item/his_grace/relaymove(mob/living/user, direction) //Allows changelings, etc. to climb out of Him after they revive, provided He isn't active
 	if(!awakened)
 		user.forceMove(get_turf(src))
-		user.visible_message(span_warning("[user] scrambles out of [src]!"), span_notice("You climb out of [src]!"))
+		user.visible_message(span_warning("[user] 从 [src] 里爬了出来！"), span_notice("你从 [src] 里爬了出来！"))
 
 /obj/item/his_grace/process(seconds_per_tick)
 	if(!bloodthirst)
@@ -151,7 +151,7 @@
 	if(!isnull(master) && (src in master.held_items))
 		switch(bloodthirst)
 			if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
-				master.visible_message(span_boldwarning("[src] turns on [master]!"), "<span class='his_grace big bold'>[src] turns on you!</span>")
+				master.visible_message(span_boldwarning("[src] 对 [master] 发起了攻击！"), "<span class='his_grace big bold'>[src] 对你发起了攻击！</span>")
 				do_attack_animation(master, null, src)
 				master.emote("scream")
 				master.remove_status_effect(/datum/status_effect/his_grace)
@@ -177,7 +177,7 @@
 	step_to(src, L)
 	if(Adjacent(L))
 		if(!L.stat)
-			L.visible_message(span_warning("[src] lunges at [L]!"), "<span class='his_grace big bold'>[src] lunges at you!</span>")
+			L.visible_message(span_warning("[src] 扑向了 [L]！"), "<span class='his_grace big bold'>[src] 扑向了你！</span>")
 			do_attack_animation(L, null, src)
 			playsound(L, 'sound/items/weapons/smash.ogg', 50, TRUE)
 			playsound(L, 'sound/effects/desecration/desecration-01.ogg', 50, TRUE)
@@ -190,9 +190,9 @@
 	if(awakened)
 		return
 	awakened = TRUE
-	user.visible_message(span_boldwarning("[src] begins to rattle. [p_They()] thirsts."), span_his_grace("You flick [src]'s latch up. You hope this is a good idea."))
-	name = p_Their() + " Grace"
-	desc = "A bloodthirsty artifact created by a profane rite."
+	user.visible_message(span_boldwarning("[src] 开始咔哒作响。[p_They()] 渴望着。"), span_his_grace("你拨开了 [src] 的搭扣。你希望这是个好主意。"))
+	name = p_Their() + "Grace"
+	desc = "一个通过亵渎仪式创造的嗜血神器。"
 	adjust_bloodthirst(1)
 	force_bonus = HIS_GRACE_FORCE_BONUS * LAZYLEN(contents)
 	notify_ghosts(
@@ -216,13 +216,13 @@
 	if(!awakened || ascended)
 		return
 	var/turf/T = get_turf(src)
-	T.visible_message(span_boldwarning("[src] slowly stops rattling and falls still, [p_Their()] latch snapping shut."))
+	T.visible_message(span_boldwarning("[src] 缓缓停止了咔嗒声，归于静止，[p_Their()] 的锁扣啪嗒一声合上了。"))
 	playsound(loc, 'sound/items/weapons/batonextend.ogg', 100, TRUE)
 	name = initial(name)
 	if(gender == MALE)
-		desc = "A toolbox painted bright green. Looking at it makes you feel uneasy."
+		desc = "一个漆成亮绿色的工具箱。看着它让你感到不安。"
 	else if (gender == FEMALE)
-		desc = "A toolbox painted bright pink. Looking at it makes you feel uneasy."
+		desc = "一个漆成亮粉色的工具箱。看着它让你感到不安。"
 	animate(src, transform=matrix())
 	force = initial(force)
 	force_bonus = initial(force_bonus)
@@ -234,7 +234,7 @@
 	if(!meal)
 		return
 	var/victims = 0
-	meal.visible_message(span_warning("[src] swings open and devours [meal]!"), "<span class='his_grace big bold'>[src] consumes you!</span>")
+	meal.visible_message(span_warning("[src] 猛地打开，吞噬了 [meal]！"), "<span class='his_grace big bold'>[src] 吞噬了你！</span>")
 	meal.adjust_brute_loss(200)
 	playsound(meal, 'sound/effects/desecration/desecration-02.ogg', 75, TRUE)
 	playsound(src, 'sound/items/eatfood.ogg', 100, TRUE)
@@ -268,36 +268,36 @@
 	switch(bloodthirst)
 		if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
 			if(HIS_GRACE_CONSUME_OWNER > prev_bloodthirst)
-				master.visible_message(span_userdanger("[src] enters a frenzy!"))
+				master.visible_message(span_userdanger("[src] 陷入了狂暴！"))
 		if(HIS_GRACE_STARVING to HIS_GRACE_CONSUME_OWNER)
 			ADD_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 			if(HIS_GRACE_STARVING > prev_bloodthirst)
-				master.visible_message(span_boldwarning("[src] is starving!"), "<span class='his_grace big'>[src]'s bloodlust overcomes you. [src] must be fed, or you will become [p_Their()] meal.\
+				master.visible_message(span_boldwarning("[src] 正在挨饿！"), "<span class='his_grace big'>[src]'s bloodlust overcomes you. [src] must be fed, or you will become [p_Their()] meal.\
 				[force_bonus < 15 ? " And still, [p_Their()] power grows.":""]</span>")
 				force_bonus = max(force_bonus, 15)
 		if(HIS_GRACE_FAMISHED to HIS_GRACE_STARVING)
 			ADD_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 			if(HIS_GRACE_FAMISHED > prev_bloodthirst)
-				master.visible_message(span_warning("[src] is very hungry!"), "<span class='his_grace big'>Spines sink into your hand. [src] must feed immediately.\
+				master.visible_message(span_warning("[src] 非常饥饿！"), "<span class='his_grace big'>Spines sink into your hand. [src] must feed immediately.\
 				[force_bonus < 10 ? " [p_Their()] power grows.":""]</span>")
 				force_bonus = max(force_bonus, 10)
 			if(prev_bloodthirst >= HIS_GRACE_STARVING)
-				master.visible_message(span_warning("[src] is now only very hungry!"), "<span class='his_grace big'>Your bloodlust recedes.</span>")
+				master.visible_message(span_warning("[src] 现在只是非常饥饿了！"), "<span class='his_grace big'>你的嗜血欲望消退了。</span>")
 		if(HIS_GRACE_HUNGRY to HIS_GRACE_FAMISHED)
 			if(HIS_GRACE_HUNGRY > prev_bloodthirst)
-				master.visible_message(span_warning("[src] is getting hungry."), "<span class='his_grace big'>You feel [src]'s hunger within you.\
+				master.visible_message(span_warning("[src] 开始感到饥饿。"), "<span class='his_grace big'>You feel [src]'s hunger within you.\
 				[force_bonus < 5 ? " [p_Their()] power grows.":""]</span>")
 				force_bonus = max(force_bonus, 5)
 			if(prev_bloodthirst >= HIS_GRACE_FAMISHED)
-				master.visible_message(span_warning("[src] is now only somewhat hungry."), span_his_grace("[src]'s hunger recedes a little..."))
+				master.visible_message(span_warning("[src] 现在只是有些饥饿了。"), span_his_grace("[src] 的饥饿感消退了一点..."))
 		if(HIS_GRACE_PECKISH to HIS_GRACE_HUNGRY)
 			if(HIS_GRACE_PECKISH > prev_bloodthirst)
-				master.visible_message(span_warning("[src] is feeling snackish."), span_his_grace("[src] begins to hunger."))
+				master.visible_message(span_warning("[src] 感觉有点想吃零食。"), span_his_grace("[src] 开始感到饥饿。"))
 			if(prev_bloodthirst >= HIS_GRACE_HUNGRY)
-				master.visible_message(span_warning("[src] is now only a little peckish."), "<span class='his_grace big'>[src]'s hunger recedes somewhat...</span>")
+				master.visible_message(span_warning("[src] 现在只是有点嘴馋了。"), "<span class='his_grace big'>[src] 的饥饿感有所消退...</span>")
 		if(HIS_GRACE_SATIATED to HIS_GRACE_PECKISH)
 			if(prev_bloodthirst >= HIS_GRACE_PECKISH)
-				master.visible_message(span_warning("[src] is satiated."), "<span class='his_grace big'>[src]'s hunger recedes...</span>")
+				master.visible_message(span_warning("[src] 已饱足。"), "<span class='his_grace big'>[src]的饥渴正在消退...</span>")
 	force = initial(force) + force_bonus
 
 /obj/item/his_grace/proc/ascend()
@@ -305,12 +305,12 @@
 		return
 	var/mob/living/carbon/human/master = loc
 	force_bonus += ascend_bonus
-	desc = "A legendary toolbox and a distant artifact from The Age of Three Powers. On its three latches engraved are the words \"The Sun\", \"The Moon\", and \"The Stars\". The entire toolbox has the words \"The World\" engraved into its sides."
+	desc = "一件传说中的工具箱，一件来自三权时代的遥远遗物。它的三个搭扣上分别刻着“太阳”、“月亮”和“星辰”。整个工具箱的侧面则刻着“世界”二字。"
 	ascended = TRUE
 	update_appearance()
 	playsound(src, 'sound/effects/his_grace/his_grace_ascend.ogg', 100)
 	if(istype(master))
 		master.update_held_items()
-		master.visible_message("<span class='his_grace big bold'>Gods will be watching.</span>")
-		name = "[master]'s mythical toolbox of three powers"
+		master.visible_message("<span class='his_grace big bold'>诸神将注视着。</span>")
+		name = "[master]的三权神话工具箱"
 		master.client?.give_award(/datum/award/achievement/misc/ascension, master)

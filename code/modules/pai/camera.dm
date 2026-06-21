@@ -1,5 +1,5 @@
 /obj/item/camera/siliconcam/pai_camera
-	name = "pAI photo camera"
+	name = "pAI智能摄影相机"
 	light_color = COLOR_PAI_GREEN
 
 /obj/item/camera/siliconcam/pai_camera/after_picture(mob/user, datum/picture/picture)
@@ -7,7 +7,7 @@
 	picture.picture_name = "Image [number] (taken by [loc.name])"
 	stored[picture] = TRUE
 	playsound(src, SFX_POLAROID, 75, TRUE, -3)
-	balloon_alert(user, "image recorded")
+	balloon_alert(user, "图像已记录")
 
 /**
  * Handles selecting and printing stored images.
@@ -21,10 +21,10 @@
 	var/mob/living/silicon/pai/pai = loc
 	var/datum/picture/selection = selectpicture(user)
 	if(!istype(selection))
-		balloon_alert(user, "invalid image")
+		balloon_alert(user, "图像无效")
 		return FALSE
 	printpicture(user, selection)
-	user.visible_message(span_notice("A picture appears on top of the chassis of [pai.name]!"), span_notice("You print a photograph."))
+	user.visible_message(span_notice("一张照片出现在[pai.name]的底盘上！"), span_notice("你打印了一张照片。"))
 	return TRUE
 
 /**

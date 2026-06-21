@@ -1,7 +1,7 @@
 // testing the mob expose procs are working
 
 /datum/reagent/method_patch_test
-	name = "method patch test"
+	name = "方法补丁测试"
 
 /datum/reagent/method_patch_test/expose_mob(mob/living/target, methods = PATCH, reac_volume, show_message = TRUE)
 	. = ..()

@@ -2,8 +2,8 @@
 // Plantbag of Holding - 4x capacity but needs a bluespace core. Or a similar analogue.
 //
 /obj/item/storage/bag/plants/bluespace
-	name = "plant bag of holding"
-	desc = "A plant bag that holds a vast amount of botanicals."
+	name = "植物次元袋"
+	desc = "一个能容纳大量植物样本的植物袋。"
 	storage_type = /datum/storage/bag/plants/bluespace
 	icon = 'modular_nova/master_files/icons/obj/storage/plantbag_of_holding.dmi'
 	icon_state = "plantbag_of_holding"
@@ -21,15 +21,15 @@
 
 //Botany can make their own bluespace cores! Sort of.
 /obj/item/botany_bluespace_core
-	name = "botanical bluespace core"
+	name = "植物蓝空核心"
 	desc = "Botany's version of a bluespace core. Plenty of bluespace juice to go around! Let's ignore the fact that it's just a bunch of bluespace bananas wrapped around a tomato with some wire running through them."
 	icon = 'modular_nova/master_files/icons/obj/storage/plantbag_of_holding.dmi'
 	icon_state = "botanical_core"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.15, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.15)
 
 /obj/item/plantbag_of_holding_inert
-	name = "inert plantbag of holding"
-	desc = "An inert container ready to accept a bluespace core. This one is tuned to hold plants.."
+	name = "惰性植物次元袋"
+	desc = "一个准备接收蓝空核心的惰性容器。这个容器被调谐为用于存放植物。"
 	icon = 'modular_nova/master_files/icons/obj/storage/plantbag_of_holding.dmi'
 	icon_state = "plantbag_of_holding_inert"
 	w_class = WEIGHT_CLASS_BULKY
@@ -41,7 +41,7 @@
 
 //So while we CAN use a real refined bluespace core, we can also use a goofy botany-only "bluespace core" as well
 /datum/crafting_recipe/botany_bluespace_core
-	name = "Botanical Bluespace Core"
+	name = "植物蓝空核心"
 	result = /obj/item/botany_bluespace_core
 	reqs = list(
 		/obj/item/food/grown/banana/bluespace = 6,
@@ -52,7 +52,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/plantbag_of_holding_botanycore
-	name = "Plant Bag of Holding"
+	name = "植物次元袋"
 	result = /obj/item/storage/bag/plants/bluespace
 	reqs = list(
 		/obj/item/plantbag_of_holding_inert = 1,
@@ -63,7 +63,7 @@
 	category = CAT_CONTAINERS
 
 /datum/crafting_recipe/plantbag_of_holding_realcore
-	name = "Plant Bag of Holding"
+	name = "植物次元袋"
 	result = /obj/item/storage/bag/plants/bluespace
 	reqs = list(
 		/obj/item/plantbag_of_holding_inert = 1,
@@ -75,7 +75,7 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/design/plantbag_of_holding
-	name = "Plant Bag of Holding"
+	name = "植物次元袋"
 	id = "plantbag_holding"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*5, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)

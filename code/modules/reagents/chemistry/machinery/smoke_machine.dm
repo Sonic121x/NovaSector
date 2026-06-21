@@ -2,8 +2,8 @@
 #define REAGENTS_BASE_VOLUME 100
 
 /obj/machinery/smoke_machine
-	name = "smoke machine"
-	desc = "A machine with a centrifuge installed into it. It produces smoke with any reagents you put into the machine."
+	name = "造雾机"
+	desc = "一台安装了离心机的机器。它会用你放入机器的任何试剂产生烟雾。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "smoke0"
 	base_icon_state = "smoke"
@@ -66,17 +66,17 @@
 /obj/machinery/smoke_machine/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Reagent capacity <b>[reagents.total_volume]/[reagents.maximum_volume]</b>.")
-	. += span_notice("Operating at <b>[round((efficiency / 26) * 100)]%</b> efficiency.")
+	. += span_notice("试剂容量 <b>[reagents.total_volume]/[reagents.maximum_volume]</b>。")
+	. += span_notice("运行效率为<b>[round((efficiency / 26) * 100)]%</b>。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("它的维护区面板可以[EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"]。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("它可以被[EXAMINE_HINT("pried")]。")
 
 	if(anchored)
-		. += span_notice("It can be [EXAMINE_HINT("wrenched")] loose.")
+		. += span_notice("它可以被[EXAMINE_HINT("wrenched")]拧松。")
 	else
-		. += span_warning("It needs to be [EXAMINE_HINT("anchored")] in place to work.")
+		. += span_warning("它需要被[EXAMINE_HINT("anchored")]固定才能工作。")
 
 /obj/machinery/smoke_machine/update_icon_state()
 	if(!is_operational || !on || !reagents.total_volume)
@@ -116,13 +116,13 @@
 		var/obj/item/reagent_containers/RC = tool
 		var/units = RC.reagents.trans_to(src, RC.amount_per_transfer_from_this, transferred_by = user)
 		if(units)
-			to_chat(user, span_notice("You transfer [units] units of the solution to [src]."))
+			to_chat(user, span_notice("你将 [units] 单位的溶液转移到了 [src]。"))
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/smoke_machine/wrench_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, "turn off first!")
+		balloon_alert(user, "先关掉！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(default_unfasten_wrench(user, tool, time = 4 SECONDS) == SUCCESSFUL_UNFASTEN)
@@ -132,14 +132,14 @@
 
 /obj/machinery/smoke_machine/screwdriver_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, "turn off first!")
+		balloon_alert(user, "先关掉！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/smoke_machine/crowbar_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, "turn off first!")
+		balloon_alert(user, "先关掉！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)

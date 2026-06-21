@@ -6,8 +6,8 @@
 	), src)
 
 /obj/item/storage/box/survival/engineer/marine
-	name = "military survival box"
-	desc = "A box issued to Nanotrasen space marines, containing field essentials. This one is labelled to contain an extended-capacity tank."
+	name = "军用生存箱"
+	desc = "一个配发给纳米传讯太空陆战队的箱子，内含野外必需品。这个箱子标签注明内含一个扩容气罐。"
 	illustration = "extendedtank"
 	internal_type = /obj/item/tank/internals/emergency_oxygen/engi
 

@@ -1,5 +1,5 @@
 /datum/outfit/contractor
-	name = "Syndicate Contractor - Full Kit"
+	name = "辛迪加合约工 - 全套装备"
 
 	glasses = /obj/item/clothing/glasses/night
 	mask = /obj/item/clothing/mask/neck_gaiter/syndicate
@@ -61,12 +61,12 @@
 
 
 /datum/outfit/contractor_preview
-	name = "Syndicate Contractor (Preview only)"
+	name = "辛迪加合约工（仅预览）"
 
 	back = /obj/item/mod/control/pre_equipped/empty/contractor
 	uniform = /obj/item/clothing/under/syndicate
 	glasses = /obj/item/clothing/glasses/night
 
 /datum/outfit/contractor/upgraded
-	name = "Syndicate Contractor (Upgraded)"
+	name = "辛迪加合约工（升级版）"
 	back = /obj/item/mod/control/pre_equipped/contractor/upgraded/adminbus

@@ -1,6 +1,6 @@
 /obj/structure/signpost
-	name = "signpost"
-	desc = "Won't somebody give me a sign?"
+	name = "路标"
+	desc = "难道没人给我个指示吗？"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "signpost"
 	anchored = TRUE
@@ -26,14 +26,14 @@
 /* ----------------- */
 
 /obj/structure/signpost/salvation
-	name = "\proper salvation"
-	desc = "In the darkest times, we will find our way home."
+	name = "\proper 救赎"
+	desc = "在最黑暗的时刻，我们将找到回家的路。"
 	resistance_flags = INDESTRUCTIBLE
 	teleports = TRUE
 
 /obj/structure/signpost/void
-	name = "signpost at the edge of the universe"
-	desc = "A direction in the directionless void."
+	name = "宇宙边缘的路标"
+	desc = "无向虚空中的一个方向。"
 	density = FALSE
 	/// Brightness of the signpost.
 	var/range = 2

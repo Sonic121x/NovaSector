@@ -36,7 +36,7 @@
 
 
 /datum/outfit/job/cargo_tech
-	name = "Cargo Technician"
+	name = "货舱技工"
 	jobtype = /datum/job/cargo_technician
 
 	backpack_contents = list(
@@ -50,7 +50,7 @@
 	l_hand = /obj/item/universal_scanner
 
 /datum/outfit/job/cargo_tech/mod
-	name = "Cargo Technician (MODsuit)"
+	name = "货舱技工 (模块服)"
 
 	back = /obj/item/mod/control/pre_equipped/loader
 	suit = null

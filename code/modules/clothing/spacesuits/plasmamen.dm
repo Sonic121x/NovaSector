@@ -1,8 +1,8 @@
 //Suits for the pink and grey skeletons! //EVA version no longer used in favor of the Jumpsuit version
 
 /obj/item/clothing/suit/space/eva/plasmaman
-	name = "EVA plasma envirosuit"
-	desc = "A special plasma containment suit designed to be space-worthy, as well as worn over other clothing. Like its smaller counterpart, it can automatically extinguish the wearer in a crisis, and holds twice as many charges."
+	name = "等离子环境EVA服"
+	desc = "一套特殊的等离子防护服，旨在适用于太空环境，并且可穿在其他服装之上。类似于较小的同类产品，它可以在紧急情况下给穿戴者自动灭火，并具有两倍的电池电量。"
 	allowed = list(/obj/item/gun, /obj/item/ammo_casing, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/energy/sword, /obj/item/restraints/handcuffs, /obj/item/tank)
 	armor_type = /datum/armor/eva_plasmaman
 	resistance_flags = FIRE_PROOF
@@ -71,8 +71,8 @@
 
 //I just want the light feature of helmets
 /obj/item/clothing/head/helmet/space/plasmaman
-	name = "plasma envirosuit helmet"
-	desc = "A special containment helmet that allows plasma-based lifeforms to exist safely in an oxygenated environment. It is space-worthy, and may be worn in tandem with other EVA gear."
+	name = "等离子环境头盔"
+	desc = "一种特殊的防护头盔，可以让等离子体生命在含氧环境下安全生存。它适用于太空环境，并可与其他舱外活动装备配合使用。"
 	icon = 'icons/obj/clothing/head/plasmaman_hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/plasmaman_head.dmi'
 	clothing_flags = parent_type::clothing_flags | PLASMAMAN_PREVENT_IGNITION
@@ -220,8 +220,8 @@
 	return TRUE
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
-	name = "security plasma envirosuit helmet"
-	desc = "A plasmaman containment helmet designed for security officers, protecting them from burning alive, alongside other undesirables."
+	name = "安保等离子环境头盔"
+	desc = "为安全人员设计的等离子防护头盔，保护他们不被活活烧死，以及其他暴徒的侵害。"
 	icon_state = "security_envirohelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/head_helmet/plasmaman
@@ -244,8 +244,8 @@
 	acid = 75
 
 /obj/item/clothing/head/helmet/space/plasmaman/security/warden
-	name = "warden's plasma envirosuit helmet"
-	desc = "A plasmaman containment helmet designed for the warden. A pair of white stripes being added to differeciate them from other members of security."
+	name = "典狱长等离子环境头盔"
+	desc = "一个为典狱长而设计的等离子防护头盔，上面添有一对白色条纹以方便和其他安保人员区分开来。"
 	icon_state = "warden_envirohelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/hats_warden/plasmaman
@@ -256,8 +256,8 @@
 	acid = 75
 
 /obj/item/clothing/head/helmet/space/plasmaman/security/head_of_security
-	name = "head of security's plasma envirosuit helmet"
-	desc = "A special containment helmet designed for the Head of Security. A pair of gold stripes are added to differentiate them from other members of security."
+	name = "安保部长的等离子环境头盔"
+	desc = "一个为安保部长而设计的等离子防护头盔。上面添有一对金色条纹以方便和其他安保人员区分开来。"
 	icon_state = "hos_envirohelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/hats_hos/plasmaman
@@ -268,14 +268,14 @@
 	acid = 75
 
 /obj/item/clothing/head/helmet/space/plasmaman/prisoner
-	name = "prisoner's plasma envirosuit helmet"
-	desc = "A plasmaman containment helmet for prisoners."
+	name = "囚犯的等离子环境头盔"
+	desc = "一个为囚犯而设计的等离子防护头盔。"
 	icon_state = "prisoner_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/medical
-	name = "medical doctor's plasma envirosuit helmet"
-	desc = "An envirohelmet designed for plasmaman medical doctors, having two stripes down its length to denote as much."
+	name = "医生的等离子环境头盔"
+	desc = "一款为等离子人医生设计的头盔，其上标有两条纵贯的条纹以表明其所属部门。"
 	icon_state = "doctor_envirohelm"
 	inhand_icon_state = null
 
@@ -286,56 +286,56 @@
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/paramedic
-	name = "paramedic plasma envirosuit helmet"
-	desc = "An envirohelmet designed for plasmaman paramedics, with darker blue stripes compared to the medical model."
+	name = "急救员等离子环境头盔"
+	desc = "一个为等离子人急救员而设计的头盔，上面的蓝色条纹比起医生型的要更深。"
 	icon_state = "paramedic_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/viro
-	name = "virology plasma envirosuit helmet"
-	desc = "The helmet worn by the safest people on the station, those who are completely immune to the monstrosities they create."
+	name = "病毒学家等离子环境头盔"
+	desc = "这是空间站里最安全的人戴的头盔，他们对自己制造的灾难完全免疫。"
 	icon_state = "virologist_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/chemist
-	name = "chemistry plasma envirosuit helmet"
-	desc = "A plasmaman envirosuit designed for chemists, two orange stripes going down its face."
+	name = "化学家等离子环境头盔"
+	desc = "一个为等离子人化学家而设计的头盔，两条黄色条纹沿着头盔表面向下延伸。"
 	icon_state = "chemist_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/chief_medical_officer
-	name = "chief medical officer's plasma envirosuit helmet"
-	desc = "A special containment helmet designed for the Chief Medical Officer. A gold stripe applied to differentiate them from other medical staff."
+	name = "首席医疗官的等离子环境头盔"
+	desc = "一个为医疗部长而设计的特殊防护头盔。上面添有一对金色条纹以方便和其他医疗人员区分开来。"
 	icon_state = "cmo_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/science
-	name = "science plasma envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for scientists."
+	name = "科研等离子环境头盔"
+	desc = "一个为等离子人科学家而设计的头盔。"
 	icon_state = "scientist_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/robotics
-	name = "robotics plasma envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for roboticists."
+	name = "机械学家等离子环境头盔"
+	desc = "一个为等离子人机械学家而设计的头盔。"
 	icon_state = "roboticist_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/genetics
-	name = "geneticist's plasma envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for geneticists."
+	name = "基因学家的等离子环境头盔"
+	desc = "一个为等离子人基因学家而设计的头盔。"
 	icon_state = "geneticist_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/research_director
-	name = "research director's plasma envirosuit helmet"
-	desc = "A special containment helmet designed for the Research Director. A light brown design is applied to differentiate them from other scientists."
+	name = "科研部长的等离子环境头盔"
+	desc = "一个为科研部长而设计的特殊防护头盔。上面采用了浅棕色设计以方便和其他安保人员区分开来。"
 	icon_state = "rd_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering
-	name = "engineering plasma envirosuit helmet"
-	desc = "A space-worthy helmet specially designed for engineer plasmamen, the usual purple stripes being replaced by engineering's orange."
+	name = "工程等离子环境头盔"
+	desc = "一个为等离子人工程师而设计的太空头盔，常见的紫色条纹被代表工程部的橙色取而代之。"
 	icon_state = "engineer_envirohelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/space_plasmaman/engineering_atmos
@@ -344,7 +344,7 @@
 	acid = 95
 
 /obj/item/clothing/head/helmet/space/plasmaman/atmospherics
-	name = "atmospherics plasma envirosuit helmet"
+	name = "大气等离子环境头盔"
 	desc = "A space-worthy helmet specially designed for atmos technician plasmamen, the usual purple stripes being replaced by atmos' blue. Has improved thermal shielding."
 	icon_state = "atmos_envirohelm"
 	inhand_icon_state = null
@@ -352,40 +352,40 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT // Same protection as the Atmospherics Hardhat
 
 /obj/item/clothing/head/helmet/space/plasmaman/chief_engineer
-	name = "chief engineer's plasma envirosuit helmet"
-	desc = "A special containment helmet designed for the Chief Engineer, the usual purple stripes being replaced by the chief's green. Has improved thermal shielding."
+	name = "工程部长的等离子环境服头盔"
+	desc = "一个为工程部长而设计的特殊防护头盔。常见的紫色条纹被绿色的部长颜色取而代之。增强了热屏蔽功能。"
 	icon_state = "ce_envirohelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/space_plasmaman/engineering_atmos
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT // Same protection as the Atmospherics Hardhat
 
 /obj/item/clothing/head/helmet/space/plasmaman/cargo
-	name = "cargo plasma envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for cargo techs and quartermasters."
+	name = "货舱等离子环境头盔"
+	desc = "为货运技术员和军需官设计的等离子环境头盔。"
 	icon_state = "cargo_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/mining
-	name = "mining plasma envirosuit helmet"
-	desc = "A khaki helmet given to plasmamen miners operating on lavaland."
+	name = "采矿等离子环境服头盔"
+	desc = "一顶卡其色头盔，发给在拉瓦兰上作业的等离子矿工。"
 	icon_state = "explorer_envirohelm"
 	inhand_icon_state = null
 	visor_icon = "explorer_envisor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/chaplain
-	name = "chaplain's plasma envirosuit helmet"
-	desc = "An envirohelmet specially designed for only the most pious of plasmamen."
+	name = "牧师的等离子环境服头盔"
+	desc = "这顶等离子防护头盔专门设计给最虔诚的等离子人。"
 	icon_state = "chap_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/white
-	name = "white plasma envirosuit helmet"
-	desc = "A generic white envirohelm."
+	name = "白色等离子环境服头盔"
+	desc = "一顶普通的白色等离子防护头盔。"
 	icon_state = "white_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/curator
-	name = "curator's plasma envirosuit helmet"
+	name = "馆长的等离子环境头盔"
 	desc = "A slight modification on a traditional voidsuit helmet, this helmet was Nanotrasen's first solution to the *logistical problems* that come with employing plasmamen. Despite their limitations, these helmets still see use by historians and old-school plasmamen alike."
 	icon_state = "prototype_envirohelm"
 	inhand_icon_state = "void_helmet"
@@ -394,27 +394,27 @@
 	visor_icon = "prototype_envisor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/botany
-	name = "botany plasma envirosuit helmet"
-	desc = "A green and blue envirohelmet designating its wearer as a botanist. While not specifically designed for it, it would protect against minor plant-related injuries."
+	name = "植物学等离子环境头盔"
+	desc = "一款绿蓝相间的环保头盔，表明佩戴者是一名植物学家。虽然并非专门为此设计，但能防护轻微的植物相关伤害。"
 	icon_state = "botany_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/janitor
-	name = "janitor's plasma envirosuit helmet"
-	desc = "A grey helmet bearing a pair of purple stripes, designating the wearer as a janitor."
+	name = "清洁工等离子环境头盔"
+	desc = "一个灰色的头盔，上面有两条紫色的条纹，这表明佩戴者是清洁工。"
 	icon_state = "janitor_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/mime
-	name = "mime envirosuit helmet"
-	desc = "The make-up is painted on, it's a miracle it doesn't chip. It's not very colourful."
+	name = "默剧等离子环境头盔"
+	desc = "妆都画好了，不脱落真是奇迹。不过颜色不是很鲜艳。"
 	icon_state = "mime_envirohelm"
 	inhand_icon_state = null
 	visor_icon = "mime_envisor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/clown
-	name = "clown envirosuit helmet"
-	desc = "The make-up is painted on, it's a miracle it doesn't chip. <i>'HONK!'</i>"
+	name = "小丑等离子环境头盔"
+	desc = "妆都画好了，不脱落真是奇迹。<i>'HONK!'</i>"
 	icon_state = "clown_envirohelm"
 	inhand_icon_state = null
 	visor_icon = "clown_envisor"
@@ -425,8 +425,8 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0)
 
 /obj/item/clothing/head/helmet/space/plasmaman/head_of_personnel
-	name = "head of personnel's envirosuit helmet"
-	desc = "A special containment helmet designed for the Head of Personnel. Embarrassingly enough, it looks way too much like the captain's design save for the red stripes."
+	name = "人事部长的等离子环境头盔"
+	desc = "为人事主管设计的特殊安全帽。令人尴尬的是，除了红色条纹外，它看起来太像舰长的设计了。"
 	icon_state = "hop_envirohelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/hats_hopcap/plasmaman
@@ -437,8 +437,8 @@
 	acid = 75
 
 /obj/item/clothing/head/helmet/space/plasmaman/captain
-	name = "captain's plasma envirosuit helmet"
-	desc = "A special containment helmet designed for the Captain. Embarrassingly enough, it looks way too much like the Head of Personnel's design save for the gold stripes. I mean, come on. Gold stripes can fix anything."
+	name = "舰长的等离子环境头盔"
+	desc = "为船长设计的特殊安全帽。令人尴尬的是，除了金色的条纹，它看起来太像人事主管的设计了。我是说，拜托。金色条纹可以弥补任何东西。"
 	icon_state = "captain_envirohelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/hats_caphat/plasmaman
@@ -449,8 +449,8 @@
 	acid = 75
 
 /obj/item/clothing/head/helmet/space/plasmaman/centcom_commander
-	name = "CentCom commander plasma envirosuit helmet"
-	desc = "A special containment helmet designed for the Higher Central Command Staff. Not many of these exist, as CentCom does not usually employ plasmamen to higher staff positions due to their complications."
+	name = "中央指挥司令等离子环境头盔"
+	desc = "一种专为中央指挥部高层人员设计的特殊防护头盔。这类头盔数量稀少，因为指挥部通常不会因等离子人的复杂性而将其聘用至高层职位。"
 	icon_state = "commander_envirohelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/hats_centhat/plasmaman
@@ -461,14 +461,14 @@
 	acid = 75
 
 /obj/item/clothing/head/helmet/space/plasmaman/centcom_official
-	name = "CentCom official plasma envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. They sure do love their green."
+	name = "中央指挥官员等离子环境头盔"
+	desc = "一种为中央指挥部人员设计的特殊防护头盔。他们可真是钟爱自己的绿色。"
 	icon_state = "official_envirohelm"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/helmet/space/plasmaman/centcom_intern
-	name = "CentCom intern plasma envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. You know, so any coffee spills don't kill the poor sod."
+	name = "中央指挥实习生等离子环境头盔"
+	desc = "一种为中央指挥部人员设计的特殊防护头盔。你懂的，这样就算咖啡洒出来也不会要了那可怜家伙的命。"
 	icon_state = "intern_envirohelm"
 	inhand_icon_state = null
 

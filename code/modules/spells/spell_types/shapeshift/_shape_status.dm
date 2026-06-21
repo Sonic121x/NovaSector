@@ -244,7 +244,7 @@
 	return ..() // Kill our owner and revert, like normal
 
 /atom/movable/screen/alert/status_effect/shapeshifted
-	name = "Shapeshifted"
+	name = "变身"
 	desc = "Your form is not your own... you're shapeshifted into another creature! \
 		A wizard could turn you back - or maybe you're stuck like this for good?"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT

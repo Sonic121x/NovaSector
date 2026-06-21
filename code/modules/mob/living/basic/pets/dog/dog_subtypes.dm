@@ -1,9 +1,9 @@
 //Less exciting dog breeds
 
 /mob/living/basic/pet/dog/pug
-	name = "\improper pug"
+	name = "\improper 哈巴狗"
 	real_name = "pug"
-	desc = "They're a pug."
+	desc = "这是一只哈巴狗。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "pug"
 	icon_living = "pug"
@@ -19,16 +19,16 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_PUG, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 
 /mob/living/basic/pet/dog/pug/mcgriff
-	name = "McGriff"
+	name = "麦格里夫"
 	real_name = "McGriff"
-	desc = "This dog can tell something smells around here, and that something is CRIME!"
+	desc = "这只狗能闻出附近有什么不对劲，而那不对劲的东西就是犯罪！"
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 
 /mob/living/basic/pet/dog/bullterrier
-	name = "\improper bull terrier"
+	name = "\improper 斗牛梗"
 	real_name = "bull terrier"
-	desc = "They're a bull terrier."
+	desc = "这是一只斗牛梗。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "bullterrier"
 	icon_living = "bullterrier"
@@ -39,16 +39,16 @@
 	held_state = "bullterrier"
 
 /mob/living/basic/pet/dog/bullterrier/lavaland_party
-	name = "Saint Nick's Helpful Associate"
-	desc = "Undergraduate in 'Being a Good Boy'."
+	name = "圣尼克的好帮手"
+	desc = "“当好孩子”专业的在读本科生。"
 	habitable_atmos = null
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 
 /mob/living/basic/pet/dog/bullterrier/guarddog //hostile dog variant for space ruins
-	name = "\improper guard dog"
+	name = "\improper 护卫犬"
 	real_name = "guard dog"
-	desc = "A vicious bull terrier. They look aggressive and territorial."
+	desc = "一只凶猛的斗牛梗。它们看起来富有攻击性且领地意识很强。"
 	collar_icon_state = "spiked"
 	//slightly weaker than a bear, but not as slow
 	health = 60
@@ -80,9 +80,9 @@
 	)
 
 /mob/living/basic/pet/dog/breaddog //Most of the code originates from Cak
-	name = "Kobun"
+	name = "小面包"
 	real_name = "Kobun"
-	desc = "It is a dog made out of bread. 'The universe is definitely half full'."
+	desc = "这是一只用面包做成的狗。“宇宙绝对是半满的”。"
 	icon_state = "breaddog"
 	icon_living = "breaddog"
 	icon_dead = "breaddog_dead"
@@ -111,9 +111,9 @@
 	so quickly that it generally doesn't matter. You're remarkably resilient to any damage besides this and it's hard for you to really die at all. You should go around and bring happiness and \
 	free bread to the station!	'I’m not alone, and you aren’t either'</b>")
 	var/default_name = "Kobun"
-	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "You are \the [src]. Would you like to change your name to something else?", "Name change", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
+	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "You are \the [src]. Would you like to change your name to something else?", "名称更改", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
 	if(new_name)
-		to_chat(src, span_notice("Your name is now <b>[new_name]</b>!"))
+		to_chat(src, span_notice("你的名字现在是<b>[new_name]</b>了！"))
 		name = new_name
 		real_name = new_name
 

@@ -12,7 +12,7 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 
 /// Status display which can show images and scrolling text.
 /obj/machinery/status_display
-	name = "status display"
+	name = "状态显示器"
 	desc = null
 	icon = 'icons/obj/machines/status_display.dmi'
 	icon_state = "frame"
@@ -43,8 +43,8 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 	VAR_PRIVATE/obj/item/radio/entertainment/speakers/speakers
 
 /obj/item/wallframe/status_display
-	name = "status display frame"
-	desc = "Used to build status displays, just secure to the wall."
+	name = "状态显示器框架"
+	desc = "用于建造状态显示器，只需固定在墙上。"
 	icon_state = "unanchoredstatusdisplay"
 	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 7)
 	result_path = /obj/machinery/status_display/evac
@@ -57,11 +57,11 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 
 /obj/machinery/status_display/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "[anchored ? "un" : ""]securing...")
+	balloon_alert(user, "[anchored ? "un" : ""]固定中...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		balloon_alert(user, "[anchored ? "un" : ""]secured")
+		balloon_alert(user, "[anchored ? "un" : ""]固定")
 		deconstruct()
 		return TRUE
 
@@ -69,12 +69,12 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "它不需要修理！")
 		return TRUE
 	user.balloon_alert_to_viewers("repairing display...", "repairing...")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume=50))
 		return TRUE
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修复")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -664,7 +664,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 
 /// Supply display which shows the status of the supply shuttle.
 /obj/machinery/status_display/supply
-	name = "supply display"
+	name = "货运部显示器"
 	current_mode = SD_MESSAGE
 	text_color = COLOR_DISPLAY_ORANGE
 	header_text_color = COLOR_DISPLAY_YELLOW
@@ -697,7 +697,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 
 /// General-purpose shuttle status display.
 /obj/machinery/status_display/shuttle
-	name = "shuttle display"
+	name = "穿梭机显示器"
 	current_mode = SD_MESSAGE
 	var/shuttle_id
 
@@ -729,7 +729,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 /// Pictograph display which the AI can use to emote.
 /obj/machinery/status_display/ai
 	name = "\improper AI display"
-	desc = "A small screen which the AI can use to present itself."
+	desc = "人工智能用来显示自己的小屏幕。"
 	current_mode = SD_PICTURE
 	var/emotion = AI_DISPLAY_DONT_GLOW
 	var/frequency = FREQ_STATUS_DISPLAYS
@@ -796,7 +796,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/ai, 32)
 
 /obj/item/circuit_component/status_display
 	display_name = "Status Display"
-	desc = "Output text and pictures to a status display."
+	desc = "向状态显示器输出文本和图片。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	var/datum/port/input/option/command
@@ -1038,7 +1038,7 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 
 /obj/machinery/greenscreen_camera/examine(mob/user)
 	. = ..()
-	. += span_notice("It's currently [isnull(display) ? "not " : ""]broadcasting. <i>Click it to change that.</i>")
+	. += span_notice("它目前[isnull(display) ? "not " : ""]广播。<i>点击它以改变状态。</i>")
 
 /obj/machinery/greenscreen_camera/interact(mob/user)
 	. = ..()
@@ -1228,15 +1228,15 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 
 /// Send a biohazard alert signal to all status displays
 /proc/send_status_display_biohazard_alert()
-	send_status_display_alert("biohazard")
+	send_status_display_alert("生物危害")
 
 /// Send a lockdown alert signal to all status displays
 /proc/send_status_display_lockdown_alert()
-	send_status_display_alert("lockdown")
+	send_status_display_alert("封锁")
 
 /// Send a radiation alert signal to all status displays
 /proc/send_status_display_radiation_alert()
-	send_status_display_alert("radiation")
+	send_status_display_alert("辐射")
 
 /// Clear specific emergency types
 /proc/clear_status_display_biohazard()

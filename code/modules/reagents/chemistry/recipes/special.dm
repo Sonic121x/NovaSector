@@ -228,7 +228,7 @@
 	return possible_ingredients
 
 /obj/item/paper/secretrecipe
-	name = "Old Recipe"
+	name = "老配方"
 	/// The recipes we can spawn with
 	var/list/possible_recipes = list(/datum/chemical_reaction/randomized/metalgen, /datum/chemical_reaction/randomized/sansufentanyl) // NOVA EDIT CHANGE - ORIGINAL: var/list/possible_recipes = list(/datum/chemical_reaction/randomized/metalgen, /datum/chemical_reaction/randomized/secret_sauce)
 

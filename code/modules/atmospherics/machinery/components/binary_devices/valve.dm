@@ -6,8 +6,8 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 
 /obj/machinery/atmospherics/components/binary/valve
 	icon_state = "mvalve_map-3"
-	name = "manual valve"
-	desc = "A pipe with a valve that can be used to disable flow of gas through it."
+	name = "手动阀"
+	desc = "管道上装有一个可阻止气体流动的阀门。"
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_OPEN //Intentionally no allow_silicon flag
@@ -79,7 +79,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	icon_state = "dvalve_map-3"
 
 	name = "digital valve"
-	desc = "A digitally controlled valve."
+	desc = "由数码进行操控的阀门。"
 	valve_type = DIGITAL_VALVE
 	pipe_state = "dvalve"
 
@@ -91,7 +91,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 
 /obj/item/circuit_component/digital_valve
 	display_name = "Digital Valve"
-	desc = "The interface for communicating with a digital valve."
+	desc = "与数码阀进行通信的接口。"
 
 	var/obj/machinery/atmospherics/components/binary/valve/digital/attached_valve
 

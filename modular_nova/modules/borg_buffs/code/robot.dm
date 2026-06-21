@@ -94,28 +94,28 @@
 	icon_state = "misc"
 
 /obj/item/reagent_containers/borghypo/borgshaker/specific/juice
-	name = "cyborg juice shaker"
+	name = "机械人果汁摇酒器"
 	icon_state = "juice"
 	default_reagent_types = BASE_SHAKER_JUICE_REAGENTS
 
 /obj/item/reagent_containers/borghypo/borgshaker/specific/alcohol
-	name = "cyborg alcohol shaker"
+	name = "机械人酒精摇酒器"
 	icon_state = "alcohol"
 	default_reagent_types = BASE_SHAKER_ALCOHOL_REAGENTS
 
 /obj/item/reagent_containers/borghypo/borgshaker/specific/soda
-	name = "cyborg soda shaker"
+	name = "机械人苏打摇酒器"
 	icon_state = "soda"
 	default_reagent_types = BASE_SHAKER_SODA_REAGENTS
 
 /obj/item/reagent_containers/borghypo/borgshaker/specific/misc
-	name = "cyborg misc shaker"
+	name = "机械人杂项摇酒器"
 	icon_state = "misc"
 	default_reagent_types = BASE_SHAKER_MISC_REAGENTS
 
 /obj/item/cooking/cyborg/power
-	name =	"automated cooking tool"
-	desc = "A cyborg fitted module resembling the rolling pins and Knifes"
+	name =	"自动烹饪工具"
+	desc = "一个机械人装配模块，形似擀面杖和刀具"
 	icon = 'modular_nova/modules/borg_buffs/icons/items_cyborg.dmi'
 	icon_state = "knife_screw_cyborg"
 	hitsound = 'sound/items/tools/drill_hit.ogg'
@@ -131,16 +131,16 @@
 	playsound(get_turf(user), 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_ROLLINGPIN)
 		tool_behaviour = TOOL_ROLLINGPIN
-		to_chat(user, span_notice("You attach the rolling pin bit to [src]."))
+		to_chat(user, span_notice("你将擀面杖头安装到[src]上。"))
 		icon_state = "rolling_bolt_cyborg"
 	else
 		tool_behaviour = TOOL_KNIFE
-		to_chat(user, span_notice("You attach the knife bit to [src]."))
+		to_chat(user, span_notice("你将刀具头安装到[src]上。"))
 		icon_state = "knife_screw_cyborg"
 
 // Wirebrush for janiborg
 /datum/design/borg_wirebrush
-	name = "Wire-brush Module"
+	name = "钢丝刷模块"
 	id = "borg_upgrade_brush"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/wirebrush
@@ -153,8 +153,8 @@
 	)
 
 /obj/item/borg/upgrade/wirebrush
-	name = "janitor cyborg wire-brush"
-	desc = "A tool to remove rust from walls."
+	name = "清洁机械人钢丝刷"
+	desc = "一种用于清除墙上锈迹的工具。"
 	icon_state = "module_janitor"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/janitor)
@@ -182,8 +182,8 @@
 
 // Kinetic Crusher for Mining Borg
 /obj/item/kinetic_crusher/robot
-	name = "mining cyborg kinetic-crusher"
-	desc = "A tool fixed to a sillicon's actuators that hold a proto-kinetic crusher."
+	name = "采矿机械人动能破碎器"
+	desc = "一种固定在硅基生命体执行器上的工具，用于容纳一台原型动能破碎器。"
 	acts_as_if_wielded = TRUE
 	force = 20
 

@@ -136,7 +136,7 @@
 		if ((target_zone in allowedList) && affecting)
 
 			if (user.handcuffed)
-				to_chat(user, span_alert("You can't get a good enough grip with your hands bound."))
+				to_chat(user, span_alert("你的手被绑着，抓不牢。"))
 				return FALSE
 
 			// Robot Arms Fail
@@ -149,7 +149,7 @@
 			if (!do_after(user, 3 SECONDS, target))
 				return TRUE
 
-			user.visible_message("[user]'s [affecting.name] comes right off in their hand.", span_notice("Your [affecting.name] pops right off."))
+			user.visible_message("[user]的[affecting.name]直接弹了出来。", span_notice("Your [affecting.name] pops right off."))
 			playsound(get_turf(user), 'sound/effects/meatslap.ogg', 40, 1) //ill change these sounds later
 
 			// Destroy Limb, Drop Meat, Pick Up

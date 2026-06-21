@@ -44,7 +44,7 @@
  */
 /obj/machinery/camera/motion
 	start_active = TRUE
-	name = "motion-sensitive security camera"
+	name = "动作感应安保摄像头"
 
 /obj/machinery/camera/motion/Initialize(mapload)
 	. = ..()
@@ -98,8 +98,8 @@
  * cameras, and is indestructible (so bomb-proof).
  */
 /obj/machinery/camera/preset/ordnance
-	name = "Hardened Bomb-Test Camera"
-	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site. An external light is attached to the top."
+	name = "硬化炸弹测试摄像头"
+	desc = "一种特别加固的摄像头，配有长效电池，用于监控炸弹测试场。顶部附有外部照明灯。"
 	c_tag = "Bomb Testing Site"
 	network = list(CAMERANET_NETWORK_RD, CAMERANET_NETWORK_ORDNANCE)
 	use_power = NO_POWER_USE //Test site is an unpowered area
@@ -110,7 +110,7 @@
 ///The internal camera object for exosuits, applied by the camera upgrade
 /obj/machinery/camera/exosuit
 	c_tag = "Exosuit: unspecified"
-	desc = "This camera belongs in a mecha. If you see this, tell a coder!"
+	desc = "这个摄像头属于机甲。如果你看到这个，请告诉程序员！"
 	network = list(CAMERANET_NETWORK_SS13, CAMERANET_NETWORK_RD)
 	short_range = 1 //used when the camera gets EMPd
 	///Number of the camera and thus the name of the mech
@@ -204,7 +204,7 @@
 		return
 
 	if(name == initial(name))
-		name = "motion-sensitive security camera"
+		name = "动作感应安保摄像头"
 	if(!proximity_monitor)
 		proximity_monitor = new(src)
 	camera_upgrade_bitflags |= CAMERA_UPGRADE_MOTION
@@ -213,7 +213,7 @@
 
 /obj/machinery/camera/proc/removeMotion()
 	if(name == "motion-sensitive security camera")
-		name = "security camera"
+		name = "安保摄像头"
 	camera_upgrade_bitflags &= ~CAMERA_UPGRADE_MOTION
 	if(!area_motion)
 		QDEL_NULL(proximity_monitor)

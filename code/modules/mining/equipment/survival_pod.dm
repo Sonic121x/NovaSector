@@ -1,6 +1,6 @@
 /*****************************Survival Pod********************************/
 /area/misc/survivalpod
-	name = "\improper Emergency Shelter"
+	name = "\improper 紧急庇护所"
 	icon_state = "away"
 	static_lighting = TRUE
 	requires_power = FALSE
@@ -10,8 +10,8 @@
 
 //Survival Capsule
 /obj/item/survivalcapsule
-	name = "bluespace shelter capsule"
-	desc = "An emergency shelter stored within a pocket of bluespace."
+	name = "蓝空庇护所胶囊"
+	desc = "一个应急避难所被安置在一片蓝空的凹陷处。"
 	icon_state = "capsule"
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
@@ -52,7 +52,7 @@
 	if(used)
 		return FALSE
 
-	loc.visible_message(span_warning("[src] begins to shake. Stand back!"))
+	loc.visible_message(span_warning("[src] 开始震动。请退后！"))
 	used = TRUE
 	addtimer(CALLBACK(src, PROC_REF(expand), user), 5 SECONDS)
 	if(iscarbon(user))
@@ -88,9 +88,9 @@
 /obj/item/survivalcapsule/proc/fail_feedback(status)
 	switch(status)
 		if(SHELTER_DEPLOY_BAD_AREA)
-			loc.visible_message(span_warning("[src] will not function in this area."))
+			loc.visible_message(span_warning("[src] 在此区域无法使用。"))
 		if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS, SHELTER_DEPLOY_OUTSIDE_MAP, SHELTER_DEPLOY_BANNED_OBJECTS)
-			loc.visible_message(span_warning("[src] doesn't have room to deploy! You need to clear a [template.width]x[template.height] area!"))
+			loc.visible_message(span_warning("[src] 没有足够的空间展开！你需要清理出一块 [template.width]x[template.height] 的区域！"))
 
 /// Throws any mobs near the deployed location away from the item / shelter
 /// Does some math to make closer mobs get thrown further
@@ -134,25 +134,25 @@
 //Non-default pods
 
 /obj/item/survivalcapsule/luxury
-	name = "luxury bluespace shelter capsule"
-	desc = "An exorbitantly expensive luxury suite stored within a pocket of bluespace."
+	name = "豪华蓝空庇护所胶囊"
+	desc = "一个应急避难所被安置在一片蓝空的凹陷处。一间造价高昂的豪华套房，隐匿于一片深邃的蓝空之中。"
 	template_id = "shelter_beta"
 
 /obj/item/survivalcapsule/luxuryelite
-	name = "luxury elite bar capsule"
-	desc = "A luxury bar in a capsule. Bartender required and not included."
+	name = "豪华精英酒吧胶囊"
+	desc = "一家位于胶囊旅馆内的豪华酒吧。提供调酒师服务，但不包含在套餐内。"
 	template_id = "shelter_charlie"
 
 /obj/item/survivalcapsule/bathroom
-	name = "emergency relief capsule"
-	desc = "Provides vital emergency support to employees who are caught short in the field."
+	name = "紧急如厕舱"
+	desc = "为在野外突感内急的员工提供至关重要的紧急支援。"
 	template_id = "shelter_toilet"
 
 //Pod objects
 
 //Window
 /obj/structure/window/reinforced/shuttle/survival_pod
-	name = "pod window"
+	name = "吊舱窗户"
 	icon = 'icons/obj/smooth_structures/pod_window.dmi'
 	icon_state = "pod_window-0"
 	base_icon_state = "pod_window"
@@ -161,7 +161,7 @@
 	canSmoothWith = SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
 
 /obj/structure/window/reinforced/survival_pod
-	name = "pod window"
+	name = "吊舱窗"
 	icon = 'icons/obj/mining_zones/survival_pod.dmi'
 	icon_state = "pwindow"
 
@@ -169,7 +169,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/survival_pod/spawne
 
 //Door
 /obj/machinery/door/airlock/survival_pod
-	name = "Airlock"
+	name = "气闸"
 	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_pod
@@ -180,7 +180,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/survival_pod/spawne
 	glass = TRUE
 
 /obj/structure/door_assembly/door_assembly_pod
-	name = "pod airlock assembly"
+	name = "舱外气闸组件"
 	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
 	base_name = "pod airlock"
 	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
@@ -222,7 +222,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/survival_pod/left, 0)
 
 //Computer
 /obj/item/gps/computer
-	name = "pod computer"
+	name = "便携式电脑"
 	icon = 'icons/obj/mining_zones/pod_computer.dmi'
 	icon_state = "pod_computer"
 	anchored = TRUE
@@ -232,8 +232,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/survival_pod/left, 0)
 /obj/item/gps/computer/wrench_act(mob/living/user, obj/item/I)
 	..()
 
-	user.visible_message(span_warning("[user] disassembles [src]."),
-		span_notice("You start to disassemble [src]..."), span_hear("You hear clanking and banging noises."))
+	user.visible_message(span_warning("[user] 拆解了 [src]。"),
+		span_notice("你开始拆卸[src]..."), span_hear("你听见了叮叮当当的敲击声。"))
 	if(I.use_tool(src, user, 20, volume=50))
 		new /obj/item/gps(loc)
 		qdel(src)
@@ -256,8 +256,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/survival_pod/left, 0)
 
 //Survival Storage Unit
 /obj/machinery/smartfridge/survival_pod
-	name = "survival pod storage"
-	desc = "A heated storage unit."
+	name = "生存舱储存区"
+	desc = "一个加热存储单元。"
 	icon_state = "donkvendor"
 	icon = 'icons/obj/mining_zones/donkvendor.dmi'
 	base_build_path = /obj/machinery/smartfridge/survival_pod
@@ -294,13 +294,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/survival_pod/left, 0)
 /obj/structure/tubes
 	icon_state = "tubes"
 	icon = 'icons/obj/mining_zones/survival_pod.dmi'
-	name = "tubes"
+	name = "管线"
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
 	density = FALSE
 
 /obj/item/fakeartefact
-	name = "expensive forgery"
+	name = "昂贵的赝品"
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "x2"
 	var/static/possible = list(

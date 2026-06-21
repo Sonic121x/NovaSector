@@ -1,5 +1,5 @@
 /obj/item/shield/energy/returning
-	name = "returning energy shield"
+	name = "回旋能量盾"
 	active_throwforce = 27 // exactly 5 hits to kill.
 	reflection_probability  =  0 // no reflects.
 
@@ -12,10 +12,10 @@
 
 /obj/item/shield/energy/returning/examine(mob/user)
 	. = ..()
-	. += span_info("It has a propeller that allows it to return to its user after being thrown while it's active, as long as it's not grabbed in the air.")
+	. += span_info("它有一个螺旋桨，使其在激活状态下被投掷后，只要在空中未被抓住，就能返回使用者手中。")
 
 /obj/item/shield/energy/returning/blueshield
-	name = "blueshield energy shield"
+	name = "蓝盾能量盾"
 
 /obj/item/shield/energy/returning/blueshield/Initialize(mapload)
 	. = ..()

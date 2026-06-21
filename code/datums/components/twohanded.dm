@@ -217,22 +217,22 @@
 	var/atom/atom_parent = parent
 	if(HAS_TRAIT(user, TRAIT_NO_TWOHANDING))
 		if(HAS_TRAIT(parent, TRAIT_NEEDS_TWO_HANDS))
-			atom_parent.balloon_alert(user, "can't wield!")
+			atom_parent.balloon_alert(user, "无法双手持握！")
 			user.dropItemToGround(parent, force = TRUE)
 		else
-			atom_parent.balloon_alert(user, "can't wield with both hands!")
+			atom_parent.balloon_alert(user, "无法用双手持握！")
 		return COMPONENT_EQUIPPED_FAILED
 	if(user.get_inactive_held_item())
 		if(HAS_TRAIT(parent, TRAIT_NEEDS_TWO_HANDS))
-			atom_parent.balloon_alert(user, "can't carry in one hand!")
+			atom_parent.balloon_alert(user, "单手拿不动！")
 			user.dropItemToGround(parent, force = TRUE)
 		else
-			atom_parent.balloon_alert(user, "holding something in other hand!")
+			atom_parent.balloon_alert(user, "另一只手拿着东西！")
 		return COMPONENT_EQUIPPED_FAILED
 	if(user.usable_hands < 2)
 		if(HAS_TRAIT(parent, TRAIT_NEEDS_TWO_HANDS))
 			user.dropItemToGround(parent, force = TRUE)
-		atom_parent.balloon_alert(user, "not enough hands!")
+		atom_parent.balloon_alert(user, "手不够用！")
 		return COMPONENT_EQUIPPED_FAILED
 
 	// wield update status
@@ -253,13 +253,13 @@
 		parent_item.force = force_wielded
 	if(sharpened_increase)
 		parent_item.force += sharpened_increase
-	parent_item.name = "[parent_item.name] (Wielded)"
+	parent_item.name = "[parent_item.name] (已挥舞)"
 	parent_item.update_appearance()
 
 	if(iscyborg(user))
-		to_chat(user, span_notice("You dedicate your module to [parent]."))
+		to_chat(user, span_notice("你将你的模块专用于 [parent]。"))
 	else
-		to_chat(user, span_notice("You grab [parent] with both hands."))
+		to_chat(user, span_notice("你用双手抓住了 [parent]。"))
 
 	// Play sound if one is set
 	if(wieldsound)
@@ -267,8 +267,8 @@
 
 	// Let's reserve the other hand
 	offhand_item = new(user)
-	offhand_item.name = "[parent_item.name] - offhand"
-	offhand_item.desc = "Your second grip on [parent_item]."
+	offhand_item.name = "[parent_item.name] - 副手"
+	offhand_item.desc = "你对[parent_item]的第二处握持点。"
 	offhand_item.wielded = TRUE
 	RegisterSignal(offhand_item, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
 	RegisterSignal(offhand_item, COMSIG_QDELETING, PROC_REF(on_destroy))
@@ -325,11 +325,11 @@
 		// Show message if requested
 		if(show_message)
 			if(iscyborg(user))
-				to_chat(user, span_notice("You free up your module."))
+				to_chat(user, span_notice("你腾出了你的模块。"))
 			else if(HAS_TRAIT(parent, TRAIT_NEEDS_TWO_HANDS))
-				to_chat(user, span_notice("You drop [parent]."))
+				to_chat(user, span_notice("你放下了[parent]。"))
 			else
-				to_chat(user, span_notice("You are now carrying [parent] with one hand."))
+				to_chat(user, span_notice("你现在正用一只手拿着[parent]。"))
 
 	// Play sound if set
 	if(unwieldsound)
@@ -453,7 +453,7 @@
  * The offhand dummy item for two handed items
  */
 /obj/item/offhand
-	name = "offhand"
+	name = "副手"
 	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE

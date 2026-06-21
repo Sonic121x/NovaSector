@@ -1,6 +1,6 @@
 /datum/action/sing_tones
-	name = "Sing Tones"
-	desc = "Use your internal synthesizer to sing!"
+	name = "歌唱音调"
+	desc = "使用你内置的合成器来歌唱！"
 	button_icon = 'icons/obj/art/musician.dmi'
 	button_icon_state = "xylophone"
 	var/datum/song/song
@@ -17,7 +17,7 @@
 	RegisterSignal(grant_to, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
 	song = new(grant_to, allowed_instrument_ids, 15)
 	if(isethereal(grant_to))
-		desc = "Use your electric discharger to sing!"
+		desc = "使用你的放电装置来歌唱！"
 
 /datum/action/sing_tones/Remove(mob/remove_from)
 	..()

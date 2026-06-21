@@ -1,6 +1,6 @@
 /obj/item/target
-	name = "shooting target"
-	desc = "A shooting target."
+	name = "射击靶"
+	desc = "一个射击靶。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "target_h"
 	density = FALSE
@@ -12,7 +12,7 @@
 /obj/item/target/welder_act(mob/living/user, obj/item/tool)
 	if(tool.use_tool(src, user, 0 SECONDS, volume = 40))
 		LAZYNULL(bullethole_overlays)
-		balloon_alert(user, "target repaired")
+		balloon_alert(user, "靶子已修复")
 		update_appearance(UPDATE_OVERLAYS)
 	return TRUE
 
@@ -66,12 +66,12 @@
 
 /obj/item/target/syndicate
 	icon_state = "target_s"
-	desc = "A shooting target that looks like syndicate scum."
+	desc = "一个看起来像辛迪加渣滓的射击靶。"
 	max_integrity = 2600
 
 /obj/item/target/alien
 	icon_state = "target_q"
-	desc = "A shooting target that looks like a xenomorphic alien."
+	desc = "一个看起来像异形的射击靶。"
 	max_integrity = 2350
 
 /obj/item/target/alien/anchored
@@ -79,7 +79,7 @@
 
 /obj/item/target/clown
 	icon_state = "target_c"
-	desc = "A shooting target that looks like a useless clown."
+	desc = "一个看起来像无用小丑的射击靶。"
 	max_integrity = 2000
 
 /obj/item/target/clown/bullet_act(obj/projectile/proj)

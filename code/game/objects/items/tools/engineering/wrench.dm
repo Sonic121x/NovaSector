@@ -1,6 +1,6 @@
 /obj/item/wrench
-	name = "wrench"
-	desc = "A wrench with common uses. Can be found in your hand."
+	name = "扳手"
+	desc = "一把用途广泛的扳手。通常就在你手里。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench"
 	inhand_icon_state = "wrench"
@@ -40,8 +40,8 @@
 	return BRUTELOSS
 
 /obj/item/wrench/abductor
-	name = "alien wrench"
-	desc = "A polarized wrench. It causes anything placed between the jaws to turn."
+	name = "外星扳手"
+	desc = "一把极化扳手。任何卡在钳口之间的东西都会被拧动。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	inside_belt_icon_state = "wrench_alien"
 	icon_angle = -135
@@ -51,8 +51,8 @@
 
 
 /obj/item/wrench/medical
-	name = "medical wrench"
-	desc = "A medical wrench with common(medical?) uses. Can be found in your hand."
+	name = "医疗扳手"
+	desc = "一把用途广泛（医疗？）的医疗扳手。通常就在你手里。"
 	icon_state = "wrench_medical"
 	inhand_icon_state = "wrench_medical"
 	force = 2 //MEDICAL
@@ -65,10 +65,10 @@
 /obj/item/wrench/medical/examine(mob/user)
 	. = ..()
 	if(suicider)
-		. += span_notice("For some reason, it reminds you of [suicider].")
+		. += span_notice("不知为何，它让你想起了[suicider]。")
 
 /obj/item/wrench/medical/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is praying to the medical wrench to take [user.p_their()] soul. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正在向医疗扳手祈祷，祈求它带走[user.p_their()]的灵魂。看起来[user.p_theyre()]试图自杀！"))
 	user.Stun(100, ignore_canstun = TRUE)// Stun stops them from wandering off
 	user.set_light_color(COLOR_VERY_SOFT_YELLOW)
 	user.set_light(2)
@@ -87,16 +87,16 @@
 	return OXYLOSS
 
 /obj/item/wrench/cyborg
-	name = "hydraulic wrench"
-	desc = "An advanced robotic wrench, powered by internal hydraulics. Twice as fast as the handheld version."
+	name = "液压扳手"
+	desc = "一种先进的机器人扳手，由内部液压系统驱动。速度是手持版本的两倍。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_wrench"
 	icon_angle = 0
 	toolspeed = 0.5
 
 /obj/item/wrench/combat
-	name = "combat wrench"
-	desc = "It's like a normal wrench but edgier. Can be found on the battlefield."
+	name = "战斗扳手"
+	desc = "就像普通扳手，但更带劲。可以在战场上找到。"
 	icon_state = "wrench_combat"
 	inhand_icon_state = "wrench_combat"
 	inside_belt_icon_state = "wrench_combat"
@@ -132,8 +132,8 @@
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/wrench/bolter
-	name = "bolter wrench"
-	desc = "A wrench designed to grab into airlock's bolting system and raise it regardless of the airlock's power status."
+	name = "螺栓扳手"
+	desc = "一种设计用于卡入气闸螺栓系统并提升它的扳手，无论气闸的电源状态如何。"
 	icon_state = "bolter_wrench"
 	inhand_icon_state = "bolter_wrench"
 	icon_angle = -90

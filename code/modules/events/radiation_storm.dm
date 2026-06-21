@@ -1,9 +1,9 @@
 /datum/round_event_control/radiation_storm
-	name = "Radiation Storm"
+	name = "辐射风暴"
 	typepath = /datum/round_event/radiation_storm
 	max_occurrences = 1
 	category = EVENT_CATEGORY_SPACE
-	description = "Radiation storm affects the station, forcing the crew to escape to maintenance."
+	description = "辐射风暴影响空间站，迫使船员逃往维护区。"
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 
@@ -21,7 +21,7 @@
 	announce_when = 1
 
 /datum/round_event/radiation_storm/announce(fake)
-	priority_announce("High levels of radiation detected near the station. Maintenance is best shielded from radiation.", "Anomaly Alert", ANNOUNCER_RADIATION)
+	priority_announce("在空间站附近检测到高浓度辐射。维护区对辐射的屏蔽效果最佳。", "异常警报", ANNOUNCER_RADIATION)
 	//sound not longer matches the text, but an audible warning is probably good
 
 /datum/round_event/radiation_storm/start()

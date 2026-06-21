@@ -1,5 +1,5 @@
 /obj/item/ammo_workbench_module
-	name = "ammo module"
+	name = "弹药模块"
 
 	icon = 'modular_nova/modules/ammo_workbench/icons/ammo_workbench.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -16,35 +16,35 @@
 	var/ammo_categories = NONE
 
 /obj/item/ammo_workbench_module/gimmick
-	name = "niche nonlethal " + parent_type::name
+	name = "特殊非致命" + parent_type::name
 	desc = "A hardware authentication module for ammunition workbenches, \
 		with keys to print niche non- or less-lethal ammunition."
 	icon_state = "nonlethal_mod"
 	ammo_categories = AMMO_CATEGORY_NICHE
 
 /obj/item/ammo_workbench_module/lethal
-	name = "standard lethal " + parent_type::name
+	name = "标准致命" + parent_type::name
 	desc = "A hardware authentication module for ammunition workbenches, \
 		with keys to allow fabricating standard lethal ammunition."
 	icon_state = "lethal_mod"
 	ammo_categories = AMMO_CATEGORY_LETHAL
 
 /obj/item/ammo_workbench_module/lethal_variant
-	name = "variant lethal " + parent_type::name
+	name = "变种致命" + parent_type::name
 	desc = "A hardware authentication module for ammunition workbenches, \
 		with keys to allow fabricating standard or enhanced lethal ammunition."
 	icon_state = "lethal_plus_mod"
 	ammo_categories = AMMO_CATEGORY_LETHAL | AMMO_CATEGORY_PLUS
 
 /obj/item/ammo_workbench_module/lethal_super
-	name = "advanced lethal " + parent_type::name
+	name = "高级致命" + parent_type::name
 	desc = "A hardware authentication module for ammunition workbenches, \
 		with keys to allow fabricating standard, enhanced, or premium lethal ammunition."
 	icon_state = "lethal_super_mod"
 	ammo_categories = AMMO_CATEGORY_LETHAL | AMMO_CATEGORY_PLUS | AMMO_CATEGORY_SUPER
 
 /obj/item/ammo_workbench_module/lethal_super/evil
-	name = "marauder " + parent_type::name
+	name = "掠夺者" + parent_type::name
 	desc = parent_type::desc + " This one's been marked with a stylized imprint of a Gorlex Marauders MODsuit helmet, \
 		and is specifically labeled as being of Scarborough Arms manufacture, which probably makes it less than legal to use \
 		on corporate installations."
@@ -54,7 +54,7 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SCARBOROUGH)
 
 /obj/item/ammo_workbench_module/lethal_gimmick
-	name = "niche lethal " + parent_type::name
+	name = "特殊致命" + parent_type::name
 	desc = "A hardware authentication module for ammunition workbenches, \
 		with keys to allow fabricating standard or niche ammunition."
 	icon_state = "lethal_gimmick_mod"

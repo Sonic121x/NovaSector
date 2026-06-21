@@ -2,11 +2,11 @@
  * The base object for the quantum server
  */
 /obj/machinery/quantum_server
-	name = "quantum server"
+	name = "量子服务器"
 
 	circuit = /obj/item/circuitboard/machine/quantum_server
 	density = TRUE
-	desc = "A hulking computational machine designed to fabricate virtual domains."
+	desc = "一台庞大的计算设备，用于生成虚拟领域。"
 	icon = 'icons/obj/machines/bitrunning.dmi'
 	base_icon_state = "qserver"
 	icon_state = "qserver"
@@ -88,30 +88,30 @@
 /obj/machinery/quantum_server/examine(mob/user)
 	. = ..()
 
-	. += span_infoplain("Can be resource intensive to run. Ensure adequate power supply.")
+	. += span_infoplain("运行时可能占用大量资源。请确保供电充足。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+	. += span_notice("它的维护区面板可以 [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"]。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("它可以被 [EXAMINE_HINT("pried")] 拆开。")
 
 	var/upgraded = FALSE
 	if(capacitor_coefficient < 1)
-		. += span_infoplain("- Its coolant capacity reduces cooldown time by [(1 - capacitor_coefficient) * 100]%.")
+		. += span_infoplain("- 其冷却剂容量可将冷却时间减少 [(1 - capacitor_coefficient) * 100]%。")
 		upgraded = TRUE
 
 	if(servo_bonus > 0.2)
-		. += span_infoplain("- Its manipulation potential is increasing rewards by [servo_bonus]x.")
-		. += span_infoplain("- Injury from unsafe ejection reduced [servo_bonus * 100]%.")
+		. += span_infoplain("- 其操控潜力正将奖励提升至[servo_bonus]倍。")
+		. += span_infoplain("- 不安全弹出的伤害降低了[servo_bonus * 100]%。")
 		upgraded = TRUE
 
 	if(!upgraded)
-		. += span_notice("Its output is suboptimal. Improved components will grant domain information, reduce cooldowns and increase rewards.")
+		. += span_notice("其输出未达最佳状态。改进组件将提供域信息、减少冷却时间并增加奖励。")
 
 	if(!is_ready)
-		. += span_notice("It is currently cooling down. Give it a few moments.")
+		. += span_notice("它目前正在冷却。请稍等片刻。")
 
 	if(isobserver(user) && (obj_flags & EMAGGED))
-		. += span_notice("Ominous warning lights are blinking red. This server has been tampered with.")
+		. += span_notice("不祥的警告灯正闪烁着红光。此服务器已被篡改。")
 
 
 /obj/machinery/quantum_server/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -125,7 +125,7 @@
 	threat_prob_max *= 2
 
 	add_overlay(mutable_appearance('icons/obj/machines/bitrunning.dmi', "emag_overlay"))
-	balloon_alert(user, "system jailbroken...")
+	balloon_alert(user, "系统越狱中...")
 	playsound(src, 'sound/effects/sparks/sparks1.ogg', 35, vary = TRUE)
 
 
@@ -154,7 +154,7 @@
 	if(!istype(tool, /obj/item/bitrunning_debug))
 		return NONE
 
-	balloon_alert(user, "*hacker voice* i'm in")
+	balloon_alert(user, "*黑客口吻* 我进来了")
 	obj_flags |= EMAGGED
 	glitch_chance = 0.5
 	capacitor_coefficient = 0.1
@@ -163,16 +163,16 @@
 
 /obj/machinery/quantum_server/crowbar_act(mob/living/user, obj/item/crowbar)
 	if(!is_ready)
-		balloon_alert(user, "it's scalding hot!")
+		balloon_alert(user, "它烫得要命！")
 		return ITEM_INTERACT_FAILURE
 	if(length(avatar_connection_refs))
-		balloon_alert(user, "all clients must disconnect!")
+		balloon_alert(user, "所有客户端必须断开连接！")
 		return ITEM_INTERACT_FAILURE
 	return default_deconstruction_crowbar(user, crowbar)
 
 /obj/machinery/quantum_server/screwdriver_act(mob/living/user, obj/item/screwdriver)
 	if(!is_ready)
-		balloon_alert(user, "it's scalding hot!")
+		balloon_alert(user, "它烫得要命！")
 		return ITEM_INTERACT_FAILURE
 	return default_deconstruction_screwdriver(user, screwdriver)
 
@@ -196,8 +196,8 @@
 	return ..()
 
 /datum/aas_config_entry/bitrunning_QS_ready_announcement
-	name = "Cargo Alert: Bitrunning QS Ready"
-	general_tooltip = "Announces when the quantum server is ready to be used. No variables provided"
+	name = "货物警报：位面运行量子服务器就绪"
+	general_tooltip = "宣布量子服务器何时准备就绪可供使用。未提供变量"
 	announcement_lines_map = list(
-		"Message" = "Quantum Server report: Thermal systems within operational parameters. Proceeding to domain configuration."
+		"Message" = "量子服务器报告：热力系统处于运行参数内。正在进行域配置。"
 	)

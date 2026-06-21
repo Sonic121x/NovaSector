@@ -1,6 +1,6 @@
 /obj/machinery/vending/barbervend
-	name = "Fab-O-Vend"
-	desc = "It would seem it vends dyes, and other stuff to make you pretty."
+	name = "时尚贩卖机"
+	desc = "看起来它出售染发剂，以及其他让你变漂亮的东西。"
 	icon = 'modular_nova/modules/salon/icons/vendor.dmi'
 	icon_state = "barbervend"
 	product_slogans = "Spread the colour, like butter, onto toast... Onto their hair.; Sometimes, I dream about dyes...; Paint 'em up and call me Mr. Painter.; Look brother, I'm a vendomat, I solve practical problems."

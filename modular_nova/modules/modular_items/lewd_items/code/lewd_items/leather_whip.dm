@@ -1,8 +1,8 @@
 //Yes, whip is mask item, because character can take it in mouth. For some BDSM scenarios it would be cool, but if you make it better with same functionality - go ahead, make me proud.
 
 /obj/item/clothing/mask/leatherwhip
-	name = "leather whip"
-	desc = "A tool used for domination. Hurts in a way you like it."
+	name = "皮革鞭"
+	desc = "一种用于支配的工具。以一种你喜欢的方式造成痛感。"
 	icon_state = "leather_whip_pink_hard"
 	worn_icon_state = "leather_whip"
 	base_icon_state = "leather"
@@ -168,13 +168,13 @@
 	var/targetedsomewhere = FALSE
 //and there is code for successful check, so we are whipping someone
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[target] doesn't want you to do that."))
+		to_chat(user, span_danger("[target] 不想让你这么做。"))
 		return
 	switch(user.zone_selected) //to let code know what part of body we gonna whip
 		if(BODY_ZONE_L_LEG)
 			targetedsomewhere = TRUE
 			if(!target.has_feet())
-				to_chat(user, span_danger("[target] is missing their left leg!"))
+				to_chat(user, span_danger("[target] 的左腿不见了！"))
 				return
 			if(current_whip_type == "hard")
 				message = (user == target) ? pick("Knocks [target.p_them()]self down with [src]", "Uses [src] to knock [target.p_them()]self on the ground") : pick("drops [target] to the ground with [src]", "uses [src] to put [target] on [target.p_their()] knees")
@@ -200,7 +200,7 @@
 		if(BODY_ZONE_R_LEG)
 			targetedsomewhere = TRUE
 			if(!target.has_feet())
-				to_chat(user, span_danger("[target] is missing their right leg!"))
+				to_chat(user, span_danger("[target] 的右腿不见了！"))
 				return
 			if(current_whip_type == "hard")
 				message = (user == target) ? pick("knocks [target.p_them()]self down with [src]", "uses [src] to knock [target.p_them()]self on the ground") : pick("Hardly drops [target] on the ground with [src]", "uses [src] to put [target] on [target.p_their()] knees")
@@ -235,7 +235,7 @@
 		if(BODY_ZONE_PRECISE_GROIN)
 			targetedsomewhere = TRUE
 			if(!target.is_bottomless())
-				to_chat(user, span_danger("[target]'s butt is covered!"))
+				to_chat(user, span_danger("[target]的屁股被遮住了！"))
 				return
 			if(current_whip_type == "weak")
 				message = (user == target) ? pick("whips [target.p_them()]self with [src]", "flogs [target.p_them()]self with [src]") :pick("playfully flogs [target]'s thighs with [src]", "flogs [target] with [src]", "mercilessly flogs [target] with [src]")
@@ -289,16 +289,16 @@
 				playsound_if_pref(loc, 'sound/items/weapons/whip.ogg', 60)
 	if(!targetedsomewhere)
 		return
-	user.visible_message(span_purple("[user] [message]!"))
+	user.visible_message(span_purple("[user][message]！"))
 
 //toggle low pain mode. Because sometimes screaming isn't good
 /obj/item/clothing/mask/leatherwhip/attack_self(mob/user)
 	toggle_mode()
 	switch(current_whip_type)
 		if("hard")
-			to_chat(user, span_notice("[src] is now hard. Someone need to be punished!"))
+			to_chat(user, span_notice("[src]现在变硬了。有人需要被惩罚！"))
 		if("weak")
-			to_chat(user, span_notice("[src] feels softer. Easy mode!"))
+			to_chat(user, span_notice("[src]感觉变软了。轻松模式！"))
 	update_icon()
 	update_icon_state()
 

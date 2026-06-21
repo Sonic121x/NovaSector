@@ -1,6 +1,6 @@
 /obj/machinery/abductor/pad
-	name = "Alien Telepad"
-	desc = "Use this to transport to and from the humans' habitat."
+	name = "外星传送平台"
+	desc = "用它来往返人类栖息地。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "alien-pad-idle"
 	var/turf/teleport_target
@@ -23,7 +23,7 @@
 	for(var/mob/living/target in loc)
 		target.forceMove(teleport_target)
 		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(target), target.dir)
-		to_chat(target, span_warning("The instability of the warp leaves you disoriented!"))
+		to_chat(target, span_warning("扭曲的不稳定性让你感到晕头转向！"))
 		target.Stun(60)
 
 /obj/machinery/abductor/pad/proc/Retrieve(mob/living/target)
@@ -51,7 +51,7 @@
 	addtimer(CALLBACK(src, PROC_REF(doPadToLoc), place), 8 SECONDS)
 
 /obj/effect/temp_visual/teleport_abductor
-	name = "Huh"
+	name = "哈"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "teleport"
 	duration = 8 SECONDS
@@ -61,7 +61,7 @@
 	do_sparks(10, FALSE, loc)
 
 /obj/effect/temp_visual/teleport_golem
-	name = "bluespace silhouette"
+	name = "蓝空轮廓"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "teleport"
 	duration = 6 SECONDS

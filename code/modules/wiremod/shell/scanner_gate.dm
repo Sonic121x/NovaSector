@@ -1,6 +1,6 @@
 /obj/structure/scanner_gate_shell
-	name = "circuit scanner gate"
-	desc = "A gate able to perform mid-depth scans on any organisms who pass under it."
+	name = "电子扫描门"
+	desc = "一扇门，可以对任何通过它的生物进行深度扫描。"
 	icon = 'icons/obj/machines/scangate.dmi'
 	icon_state = "scangate_black"
 	var/locked = FALSE
@@ -22,7 +22,7 @@
 		return
 	set_anchored(!anchored)
 	tool.play_tool_sound(src)
-	balloon_alert(user, anchored ? "secured" : "unsecured")
+	balloon_alert(user, anchored ? "已固定" : "未固定")
 	return TRUE
 
 /obj/structure/scanner_gate_shell/proc/on_entered(datum/source, atom/movable/AM)
@@ -38,7 +38,7 @@
 
 /obj/item/circuit_component/scanner_gate
 	display_name = "Scanner Gate"
-	desc = "A gate able to perform mid-depth scans on any object that pass through it."
+	desc = "能够对通过它的任何对象执行深度扫描。"
 
 	var/datum/port/output/scanned
 

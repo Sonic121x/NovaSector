@@ -58,8 +58,8 @@
 	new_icon_state = "security_white"
 
 /obj/item/clothing/under/rank/security/nova/officer
-	name = "security uniform"
-	desc = "A tactical security uniform for officers complete with Nanotrasen belt buckle."
+	name = "安保制服"
+	desc = "一套为警官设计的战术安保制服，配有纳米传讯皮带扣。"
 	icon_state = "security_blue_black"
 	alt_covers_chest = TRUE
 
@@ -67,8 +67,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_uniform_blue)
 
 /obj/item/clothing/under/rank/security/nova/formal
-	name = "security formal suit"
-	desc = "A formal security suit for officers complete with Nanotrasen belt buckle."
+	name = "安保正装"
+	desc = "一套为警官设计的正式安保西装，配有纳米传讯皮带扣。"
 	icon_state = "formal"
 
 /obj/item/clothing/under/rank/security/nova/formal/blue
@@ -86,8 +86,8 @@
 	new_icon_state = "jumpskirt_black"
 
 /obj/item/clothing/under/rank/security/nova/skirt
-	name = "security jumpskirt"
-	desc = "A \"tactical\" security uniform with the legs replaced by a skirt."
+	name = "安保连身裙"
+	desc = "一套“战术”安保制服，腿部被替换成了裙子。"
 	icon_state = "jumpskirt_blue"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
@@ -107,8 +107,8 @@
 	new_icon_state = "plain_skirt_black"
 
 /obj/item/clothing/under/rank/security/nova/skirt/plain
-	name = "security plain skirt"
-	desc = "Plain-shirted uniform commonly worn by Nanotrasen officers, attached with a skirt."
+	name = "安保素色裙"
+	desc = "纳米传讯警官常穿的素色衬衫制服，搭配一条裙子。"
 	icon_state = "plain_skirt_blue"
 
 /obj/item/clothing/under/rank/security/nova/skirt/plain/setup_reskins()
@@ -126,8 +126,8 @@
 	new_icon_state = "miniskirt_black"
 
 /obj/item/clothing/under/rank/security/nova/skirt/mini
-	name = "security miniskirt"
-	desc = "This miniskirt was originally featured in a gag calendar, but entered official use once they realized its potential for arid climates."
+	name = "安保迷你裙"
+	desc = "这款迷你裙最初出现在一个搞笑日历上，但当人们意识到它在干旱气候下的潜力后，便进入了正式使用。"
 	icon_state = "miniskirt"
 
 /obj/item/clothing/under/rank/security/nova/skirt/mini/setup_reskins()
@@ -151,8 +151,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_miniskirt_blue)
 
 /obj/item/clothing/under/rank/security/nova/utility
-	name = "security utility uniform"
-	desc = "A utility uniform worn by trained Security officers."
+	name = "安保实用制服"
+	desc = "由训练有素的安保干员穿着的实用制服。"
 	icon_state = "util_sec"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_BIG_LEGS_MASK
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -162,8 +162,8 @@
 	icon_state = "util_sec_blue"
 
 /obj/item/clothing/under/rank/security/nova/dress
-	name = "security battle dress"
-	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt."
+	name = "安保战斗裙装"
+	desc = "一套不对称、男女皆宜的制服，腿部被一条实用裙取代。"
 	icon_state = "security_skirt"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	alt_covers_chest = FALSE
@@ -194,8 +194,8 @@
 	new_icon_state = "cargoshorts_black"
 
 /obj/item/clothing/under/rank/security/nova/trousers/shorts
-	name = "cargo shorts"
-	desc = "Some \"combat\" shorts. Please don't actually wear these."
+	name = "货运短裤"
+	desc = "一些“战斗”短裤。拜托，请别真的穿这些。"
 	icon_state = "cargoshorts"
 
 /obj/item/clothing/under/rank/security/nova/trousers/shorts/setup_reskins()
@@ -221,8 +221,8 @@
 	new_icon_state = "cargopants_black"
 
 /obj/item/clothing/under/rank/security/nova/trousers
-	name = "pair of security trousers"
-	desc = "Some \"combat\" trousers. Probably should pair it with a vest for safety."
+	name = "安保长裤"
+	desc = "一些“战斗”长裤。或许应该搭配一件防弹背心以确保安全。"
 	icon_state = "cargopants"
 	body_parts_covered = GROIN|LEGS
 	can_adjust = FALSE
@@ -236,8 +236,8 @@
 	abstract_type = /datum/atom_skin/security_modskin
 
 /obj/item/clothing/under/rank/security/nova/modskin
-	name = "security M.O.D. skinsuit"
-	desc = "A M.O.D. skinsuit worn by trained Security officers."
+	name = "安保M.O.D.紧身服"
+	desc = "由训练有素的安保干员穿着的M.O.D.紧身服。"
 	icon_state = "modsec"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -262,8 +262,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_modskin)
 
 /obj/item/clothing/under/rank/security/nova/turtleneck
-	name = "security turtleneck"
-	desc = "Turtleneck sweater commonly worn by trained Officers, attached with pants."
+	name = "安保高领衫"
+	desc = "训练有素的干员常穿的高领毛衣，附有裤子。"
 	icon_state = "secturtleneck"
 	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_BIG_LEGS_MASK
@@ -283,8 +283,8 @@
 	icon_state = "warden_blue_black"
 
 /obj/item/clothing/under/rank/security/warden/nova/suit
-	name = "warden's suit"
-	desc = "A formal security suit for officers complete with Nanotrasen belt buckle."
+	name = "典狱长西装"
+	desc = "一套正式的安保西装，配有纳米传讯皮带扣。"
 	icon_state = "formal_warden"
 
 /obj/item/clothing/under/rank/security/warden/nova/suit/blue
@@ -301,8 +301,8 @@
 	icon_state = "hos_blue_black"
 
 /obj/item/clothing/under/rank/security/head_of_security/nova/formal
-	name = "head of security's formal suit"
-	desc = "A security suit decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "安全主管的正式西装"
+	desc = "一套为那些有决心晋升至安全主管职位的少数人而装饰的安保西装。"
 	icon_state = "formal_hos"
 
 /obj/item/clothing/under/rank/security/head_of_security/nova/formal/blue
@@ -310,42 +310,42 @@
 
 
 /obj/item/clothing/under/imperialvest/hos
-	name = "head of security's naval jumpsuit"
-	desc = "A tar black naval suit with a rank badge denoting the officer of The Internal Security Division. Be careful your underlings don't bump their head on a door."
+	name = "安全主管的海军连体服"
+	desc = "一套焦黑色的海军制服，配有表示内部安全部门军官的军衔徽章。小心别让你的下属撞到门框上。"
 	icon_state = "/obj/item/clothing/under/imperialvest/hos"
 	greyscale_colors = "#39393f#39393f#39393f#373741#f8d860#21212B#f8d860#a52f29"
 	flags_1 = NONE
 
 /obj/item/clothing/under/imperialskirtvest/hos
-	name = "head of security's naval jumpsuit"
-	desc = "A tar black naval skirt with a rank badge denoting the officer of The Internal Security Division. Be careful your underlings don't bump their head on a door."
+	name = "安全主管的海军连体服"
+	desc = "一件焦黑色的海军裙，配有表示内部安全部门军官的军衔徽章。小心别让你的下属撞到门框上。"
 	greyscale_colors = "#39393f#39393f#373741#f8d860#21212B#f8d860#a52f29"
 	icon_state = "/obj/item/clothing/under/imperialskirtvest/hos"
 	flags_1 = NONE
 
 /obj/item/clothing/under/rank/security/head_of_security/nova/parade
-	name = "head of security's parade uniform"
-	desc = "A male head of security's luxury-wear, for special occasions."
+	name = "安全主管的阅兵制服"
+	desc = "男性安全主管的奢华着装，适用于特殊场合。"
 	icon_state = "hos_parade_male_blue"
 	inhand_icon_state = "r_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/head_of_security/nova/parade/female
-	name = "head of security's formal uniform"
-	desc = "A female head of security's luxury-wear, for special occasions."
+	name = "安全主管的正装制服"
+	desc = "女性安全主管的奢华着装，适用于特殊场合。"
 	icon_state = "hos_parade_fem_blue"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/rank/security/head_of_security/nova/alt
-	name = "head of security's turtleneck"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with tactical pants."
+	name = "安全主管的高领衫"
+	desc = "一件时尚的替代品，用以替换常规的安全主管连体服，并配有战术长裤。"
 	icon_state = "hosalt_blue"
 	inhand_icon_state = "bl_suit"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/head_of_security/nova/alt/skirt
-	name = "head of security's turtleneck skirt"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with a tactical skirt."
+	name = "安全主管的高领衫裙"
+	desc = "一件时尚的替代品，用以替换常规的安全主管连体服，并配有战术短裙。"
 	icon_state = "hosalt_skirt_blue"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT

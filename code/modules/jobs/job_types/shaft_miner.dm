@@ -29,7 +29,7 @@
 
 
 /datum/outfit/job/miner
-	name = "Shaft Miner"
+	name = "竖井矿工"
 	jobtype = /datum/job/shaft_miner
 
 	id_trim = /datum/id_trim/job/shaft_miner
@@ -59,7 +59,7 @@
 	chameleon_extras = /obj/item/gun/energy/recharge/kinetic_accelerator
 
 /datum/outfit/job/miner/equipped
-	name = "Shaft Miner (Equipment)"
+	name = "矿工（设备）"
 
 	suit = /obj/item/clothing/suit/hooded/explorer
 	suit_store = /obj/item/tank/internals/oxygen
@@ -76,13 +76,13 @@
 	internals_slot = ITEM_SLOT_SUITSTORE
 
 /datum/outfit/job/miner/equipped/mod
-	name = "Shaft Miner (Equipment + MODsuit)"
+	name = "矿工 (模块服)"
 	back = /obj/item/mod/control/pre_equipped/mining
 	suit = null
 	mask = /obj/item/clothing/mask/gas/explorer
 
 /datum/outfit/job/miner/equipped/combat
-	name = "Shaft Miner (Combat-Ready)"
+	name = "矿井矿工 (战斗就绪)"
 	glasses = /obj/item/clothing/glasses/hud/health/night/meson
 	gloves = /obj/item/clothing/gloves/bracer
 	accessory = /obj/item/clothing/accessory/talisman

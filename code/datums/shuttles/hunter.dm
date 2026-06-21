@@ -5,20 +5,20 @@
 
 /datum/map_template/shuttle/hunter/space_cop
 	suffix = "space_cop"
-	name = "Police Spacevan"
+	name = "警察太空货车"
 
 /datum/map_template/shuttle/hunter/russian
 	suffix = "russian"
-	name = "Russian Cargo Ship"
+	name = "俄罗斯货船"
 
 /datum/map_template/shuttle/hunter/bounty
 	suffix = "bounty"
-	name = "Bounty Hunter Ship"
+	name = "赏金猎人飞船"
 
 /datum/map_template/shuttle/hunter/psyker
 	suffix = "psyker"
-	name = "Psyker Fortune-Telling Ship"
+	name = "灵能占卜船"
 
 /datum/map_template/shuttle/hunter/mi13_foodtruck
 	suffix = "mi13_foodtruck"
-	name = "Perfectly Ordinary Food Truck"
+	name = "完全普通的餐车"

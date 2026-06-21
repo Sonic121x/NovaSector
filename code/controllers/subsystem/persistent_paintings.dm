@@ -119,7 +119,7 @@
 	canvas.update_icon()
 
 SUBSYSTEM_DEF(persistent_paintings)
-	name = "Persistent Paintings"
+	name = "持久化画作"
 	ss_flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/persistence,

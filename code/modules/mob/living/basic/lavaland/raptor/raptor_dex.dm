@@ -1,6 +1,6 @@
 /obj/item/raptor_dex
-	name = "\improper RaptorDex"
-	desc = "A device used to analyze lavaland raptors!"
+	name = "\improper 迅猛龙图鉴"
+	desc = "一种用于分析熔岩地迅猛龙的设备！"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "raptor_dex"
 	item_flags = NOBLUDGEON
@@ -65,7 +65,7 @@
 			scan_data["inherited_traits"] += GLOB.raptor_inherit_traits[index]
 
 	playsound(src, 'sound/mobs/non-humanoids/orbie/orbie_send_out.ogg', 20)
-	my_raptor.balloon_alert(user, "scanned")
+	my_raptor.balloon_alert(user, "已扫描")
 	ui_interact(user)
 	return ITEM_INTERACT_SUCCESS
 

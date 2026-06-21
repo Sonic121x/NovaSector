@@ -17,7 +17,7 @@
 	var/content_overlays = FALSE //If this is true, the belt will gain overlays based on what it's holding
 
 /obj/item/storage/belt/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始用 \the [user.p_them()] 抽打 [src]自己！看起来 [user.p_theyre()] 试图自杀！"))
 	return BRUTELOSS
 
 /obj/item/storage/belt/update_overlays()
@@ -702,7 +702,7 @@
 
 /obj/item/storage/belt/sheath/click_alt(mob/user)
 	if(!length(contents))
-		balloon_alert(user, "it's empty!")
+		balloon_alert(user, "它是空的！")
 		return CLICK_ACTION_BLOCKING
 	var/obj/item/stored_item = contents[1]
 	user.visible_message(span_notice("[user] takes [stored_item] out of [src]."), span_notice("You take [stored_item] out of [src]."))
@@ -783,7 +783,7 @@
 	RegisterSignal(swordsman, COMSIG_LIVING_CHECK_BLOCK, PROC_REF(counter_attack))
 	swordsman.Immobilize(1 SECONDS)
 	eyed_fool = WEAKREF(cast_on)
-	swordsman.visible_message(span_danger("[swordsman] widens [swordsman.p_their()] stance, [swordsman.p_their()] hand hovering over \the [used_sheath]!"), span_notice("You prepare to counterattack [cast_on]!"))
+	swordsman.visible_message(span_danger("[swordsman] 拉开 [swordsman.p_their()] 架势，[swordsman.p_their()] 手悬停在 \the [used_sheath] 上方！"), span_notice("You prepare to counterattack [cast_on]!"))
 	addtimer(CALLBACK(src, PROC_REF(relax), swordsman, used_sheath), 1 SECONDS)
 	COOLDOWN_START(used_sheath, full_ability_cooldown, 60 SECONDS)
 	unset_ranged_ability(swordsman)
@@ -808,7 +808,7 @@
 
 /datum/action/innate/blade_counter/proc/do_strike(mob/living/fool, mob/living/forward_thinker, obj/item/justicetool)
 	var/obj/item/bodypart/offending_hand = fool.get_active_hand()
-	forward_thinker.visible_message(span_danger("[forward_thinker] swiftly draws \the [justicetool] and strikes [fool] during [fool.p_their()] attack!"), span_notice("You swiftly draw \the [justicetool] and counter-attack [fool]!"))
+	forward_thinker.visible_message(span_danger("[forward_thinker] 迅速拔出 \the [justicetool]，在 [fool] 攻击中途击中 [fool.p_their()]！"), span_notice("你迅速拔出 \the [justicetool] 并反击 [fool]！"))
 	fool.apply_damage(
 		damage = justicetool.force * COUNTERMULTIPLIER,
 		damagetype = justicetool.damtype,
@@ -844,8 +844,8 @@
 	var/obj/item/bodypart/offending_hand = fool.get_active_hand()
 	var/obj/item/bodypart/risked_hand = forward_thinker.get_active_hand()
 	if(iscarbon(fool) && offending_hand.dismember(BRUTE, FALSE, WOUND_SLASH))
-		forward_thinker.visible_message(span_danger("[forward_thinker] swiftly draws \the [justicetool] and strikes [fool] during [fool.p_their()] attack, sending [fool.p_their()] arm flying!"),
-										span_notice("You swiftly draw \the [justicetool] and cut off [fool]'s arm!"))
+		forward_thinker.visible_message(span_danger("[forward_thinker] 迅速拔出 \the [justicetool]，在 [fool] 攻击中途击中 [fool.p_their()]，将 [fool.p_their()] 手臂打飞！"),
+										span_notice("你迅速拔出 \the [justicetool] 并砍下 [fool] 的手臂！"))
 	else
 		fool.apply_damage(
 			damage = justicetool.force * COUNTERMULTIPLIER,
@@ -858,7 +858,7 @@
 			attack_direction = get_dir(forward_thinker, fool),
 			attacking_item = justicetool,
 		)
-		forward_thinker.visible_message(span_danger("[forward_thinker] swiftly draws \the [justicetool] and strikes [fool] during [fool.p_their()] attack!"),
+		forward_thinker.visible_message(span_danger("[forward_thinker] 迅速拔出 \the [justicetool]，在 [fool] 攻击中途击中 [fool.p_their()]！"),
 										span_notice("You swiftly draw \the [justicetool] and strike them mid-attack!"))
 	if(!IS_ROBOTIC_LIMB(risked_hand))
 		forward_thinker.visible_message(span_danger("[forward_thinker]'s arm is unable to withstand the force of the attack!"),

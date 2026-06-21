@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/set_variable
 	display_name = "Set Variable"
-	desc = "A component that sets a variable on an object."
+	desc = "一种用于在对象上设置变量的组件"
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 

@@ -1,4 +1,4 @@
 /atom/movable/screen/alert/numbed
-	name = "Numbed"
-	desc = "Your body is numb, painless. You're under the effect of some kind of anaesthetic."
+	name = "麻木"
+	desc = "你的身体麻木，感觉不到疼痛。你正处于某种麻醉剂的影响下。"
 	icon_state = "stasis"

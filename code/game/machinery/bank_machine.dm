@@ -1,6 +1,6 @@
 /obj/machinery/computer/bank_machine
-	name = "bank machine"
-	desc = "A machine used to deposit and withdraw station funds."
+	name = "金库"
+	desc = "用于存取空间站资金的机器。"
 	circuit = /obj/item/circuitboard/computer/bankmachine
 	icon_screen = "vault"
 	icon_keyboard = "security_key"

@@ -20,8 +20,8 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 
 /// Exploration drone
 /obj/item/exodrone
-	name = "exploration drone"
-	desc = "A long range, semi-autonomous exploration drone."
+	name = "勘查无人机"
+	desc = "一种长距离、半自主的探索无人机。"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "drone"
 	w_class = WEIGHT_CLASS_BULKY
@@ -350,8 +350,8 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 
 /// Exploration drone launcher
 /obj/machinery/exodrone_launcher
-	name = "exploration drone launcher"
-	desc = "A launch pad designed to send exploration drones into the great beyond."
+	name = "勘查无人机发射器"
+	desc = "一个用于将探索无人机送入遥远太空的发射台。"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "launcher"
 	/// Loaded fuel pellet.
@@ -364,12 +364,12 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 /obj/machinery/exodrone_launcher/examine(user)
 	. = ..()
 	if(fuel_canister)
-		. += span_notice("You can remove the [fuel_canister] with a <b>prying tool</b>.")
+		. += span_notice("你可以用<b>撬棍工具</b>取出[fuel_canister]。")
 
 /obj/machinery/exodrone_launcher/attackby(obj/item/weapon, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(weapon, /obj/item/fuel_pellet))
 		if(fuel_canister)
-			to_chat(user, span_warning("There's already fuel loaded inside [src]!"))
+			to_chat(user, span_warning("[src]里面已经装载了燃料！"))
 			return TRUE
 		if(!user.transferItemToLoc(weapon, src))
 			return
@@ -386,7 +386,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 	if(!fuel_canister)
 		return
 
-	to_chat(user, span_notice("You remove [fuel_canister] from [src]."))
+	to_chat(user, span_notice("你从[src]中取出了[fuel_canister]。"))
 	fuel_canister.forceMove(drop_location())
 	fuel_canister = null
 	update_icon()
@@ -457,8 +457,8 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 			return travel_cost_coeff
 
 /obj/item/fuel_pellet
-	name = "standard fuel pellet"
-	desc = "A compressed fuel pellet for long-distance drone flight."
+	name = "标准燃料颗粒"
+	desc = "用于长距离无人机飞行的压缩燃料芯块。"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "fuel_basic"
 	/// The type of fuel this pellet has within.
@@ -472,12 +472,12 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 		qdel(src)
 
 /obj/item/fuel_pellet/advanced
-	name = "advanced fuel pellet"
+	name = "高级燃料颗粒"
 	fuel_type = FUEL_ADVANCED
 	icon_state = "fuel_advanced"
 
 /obj/item/fuel_pellet/exotic
-	name = "exotic fuel pellet"
+	name = "进口燃料颗粒"
 	fuel_type = FUEL_EXOTIC
 	icon_state = "fuel_exotic"
 

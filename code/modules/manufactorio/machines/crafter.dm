@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/crafter
-	name = "manufacturing assembling machine"
-	desc = "Assembles (crafts) the set recipe until it runs out of resources. Only resources on it will be used."
+	name = "制造组装机"
+	desc = "持续组装（合成）设定的配方，直至资源耗尽。仅使用其上的资源。"
 	icon_state = "crafter"
 	density = FALSE
 	circuit = /obj/item/circuitboard/machine/manucrafter
@@ -26,10 +26,10 @@
 
 /obj/machinery/power/manufacturing/crafter/examine(mob/user)
 	. = ..()
-	. += span_notice("It is currently manufacturing <b>[isnull(recipe) ? "nothing. Use a multitool to set it" : recipe.name]</b>.")
+	. += span_notice("它当前正在制造 <b>[isnull(recipe) ? "nothing. Use a multitool to set it" : recipe.name]</b>。")
 	if(isnull(recipe))
 		return
-	. += span_notice("It needs:")
+	. += span_notice("它需要：")
 	for(var/valid_type in recipe.reqs)
 		// Check if they're datums, specifically reagents.
 		var/datum/reagent/reagent_ingredient = valid_type
@@ -57,7 +57,7 @@
 		if(!(ispath(as_obj, /obj) && !ispath(as_obj, /obj/effect) && initial(as_obj.anchored)) && craftsman.is_recipe_available(potential_recipe, user))
 			continue
 		unavailable += potential_recipe
-	var/result = tgui_input_list(usr, "Recipe", "Select Recipe", (cooking ? GLOB.cooking_recipes : GLOB.crafting_recipes) - unavailable)
+	var/result = tgui_input_list(usr, "配方", "选择配方", (cooking ? GLOB.cooking_recipes : GLOB.crafting_recipes) - unavailable)
 	if(isnull(result) || result == recipe || !user.can_perform_action(src))
 		return ITEM_INTERACT_FAILURE
 	recipe = result
@@ -120,6 +120,6 @@
 	send_withheld()
 
 /obj/machinery/power/manufacturing/crafter/cooker
-	name = "manufacturing cooking machine" // maybe this shouldnt be available dont wanna make chef useless, though otherwise it would need a sprite
-	desc = "Cooks the set recipe until it runs out of resources. Inputs irrelevant to the recipe are ignored."
+	name = "制造用烹饪机" // maybe this shouldnt be available dont wanna make chef useless, though otherwise it would need a sprite
+	desc = "持续烹饪设定的配方，直至资源耗尽。与配方无关的输入将被忽略。"
 	cooking = TRUE

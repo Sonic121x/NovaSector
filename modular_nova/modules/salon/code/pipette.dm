@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/dropper/precision
-	name = "pipette"
-	desc = "A high precision pippette. Holds 1 unit."
+	name = "移液器"
+	desc = "一支高精度移液器。可容纳1单位。"
 	icon = 'modular_nova/modules/salon/icons/items.dmi'
 	icon_state = "pipette1"
 	amount_per_transfer_from_this = 1

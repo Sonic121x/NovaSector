@@ -72,7 +72,7 @@
 
 	switch(action)
 		if("select-new-DMI")
-			var/icon/new_icon = input("Select a new icon file:", "Icon") as null|icon
+			var/icon/new_icon = input("选择一个新的图标文件：", "图标") as null|icon
 			if(new_icon)
 				selected_atom_icon = new_icon
 				available_icon_states = icon_states(selected_atom_icon)

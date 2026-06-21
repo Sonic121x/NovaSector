@@ -1,9 +1,9 @@
 /obj/item/chromosome
-	name = "blank chromosome"
+	name = "空白染色体"
 	icon = 'icons/obj/science/chromosomes.dmi'
 	icon_state = ""
 	abstract_type = /obj/item/chromosome
-	desc = "A tube holding chromosomal data."
+	desc = "一个装有染色体数据的试管。"
 	force = 0
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -58,26 +58,26 @@
 
 
 /obj/item/chromosome/stabilizer
-	name = "stabilizer chromosome"
-	desc = "A chromosome that reduces mutation instability by 20%."
+	name = "稳定剂染色体"
+	desc = "一种能将突变不稳定性降低20%的染色体。"
 	icon_state = "stabilizer"
 	stabilizer_coeff = 0.8
 	weight = 1
 
 /obj/item/chromosome/synchronizer
-	name = "synchronizer chromosome"
-	desc = "A chromosome that reduces mutation knockback and downsides by 50%."
+	name = "同步器染色体"
+	desc = "一种能将突变击退和副作用降低50%的染色体。"
 	icon_state = "synchronizer"
 	synchronizer_coeff = 0.5
 
 /obj/item/chromosome/power
-	name = "power chromosome"
-	desc = "A chromosome that increases mutation power by 50%."
+	name = "力量染色体"
+	desc = "一种能将突变强度提高50%的染色体。"
 	icon_state = "power"
 	power_coeff = 1.5
 
 /obj/item/chromosome/energy
-	name = "energetic chromosome"
-	desc = "A chromosome that reduces action based mutation cooldowns by 50%."
+	name = "能量染色体"
+	desc = "一种能将基于动作的突变冷却时间减少50%的染色体。"
 	icon_state = "energy"
 	energy_coeff = 0.5

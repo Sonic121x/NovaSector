@@ -1,6 +1,6 @@
 /datum/language/piratespeak
-	name = "Spatial Sea-tongue"
-	desc = "The language of Space Pirates. It's rough, convoluted, and tough to decipher on purpose."
+	name = "星际海舌"
+	desc = "太空海盗的语言。它粗糙、复杂，并且故意设计得难以破译。"
 	space_chance = 60
 	sentence_chance = 10
 	between_word_sentence_chance = 10

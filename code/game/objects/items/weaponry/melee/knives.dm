@@ -6,7 +6,7 @@
 
 // Knife Template, should not appear in game normaly //
 /obj/item/knife
-	name = "knife"
+	name = "刀"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "knife"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
@@ -14,7 +14,7 @@
 	inhand_icon_state = "knife"
 	worn_icon_state = "knife"
 	icon_angle = -90
-	desc = "The original knife, it is said that all other knives are only copies of this one."
+	desc = "最初的刀，据说所有其他的刀都只是它的仿制品。"
 	obj_flags = CONDUCTS_ELECTRICITY
 	force = 10
 	demolition_mod = 0.75
@@ -64,14 +64,14 @@
 	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple)
 
 /obj/item/knife/suicide_act(mob/living/user)
-	user.visible_message(pick(span_suicide("[user] is slitting [user.p_their()] wrists with \the [src]! It looks like [user.p_theyre()] trying to commit suicide."), \
-		span_suicide("[user] is slitting [user.p_their()] throat with \the [src]! It looks like [user.p_theyre()] trying to commit suicide."), \
-		span_suicide("[user] is slitting [user.p_their()] stomach open with \the [src]! It looks like [user.p_theyre()] trying to commit seppuku.")))
+	user.visible_message(pick(span_suicide("[user]正用\the [user.p_their()]割开[src]的手腕！看起来[user.p_theyre()]试图自杀。"), \
+		span_suicide("[user]正用\the [user.p_their()]割开[src]的喉咙！看起来[user.p_theyre()]试图自杀。"), \
+		span_suicide("[user] 正用\the [user.p_their()]切开[src]的腹部！看起来[user.p_theyre()]试图切腹自尽。")))
 	return BRUTELOSS
 
 /obj/item/knife/ritual
-	name = "ritual knife"
-	desc = "The unearthly energies that once powered this blade are now dormant."
+	name = "仪式刀"
+	desc = "曾为这把刀提供力量的非尘世能量现已沉寂。"
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "bone_blade"
 	inhand_icon_state = "bone_blade"
@@ -88,8 +88,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/knife/bloodletter
-	name = "bloodletter"
-	desc = "An occult looking dagger that is cold to the touch. Somehow, the flawless orb on the pommel is made entirely of liquid blood."
+	name = "放血者"
+	desc = "一把触感冰冷的、带有神秘色彩的匕首。不知为何，其柄头上那颗完美无瑕的球体完全由液态血液构成。"
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "bloodletter"
 	worn_icon_state = "render"
@@ -111,8 +111,8 @@
 		B.add_stacks(bleed_stacks_per_hit)
 
 /obj/item/knife/butcher
-	name = "butcher's cleaver"
-	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown by-products."
+	name = "屠夫的切肉刀"
+	desc = "一把用于砍剁肉类的大玩意儿。这包括小丑和小丑副产品。"
 	icon_state = "butch"
 	inhand_icon_state = "butch"
 	icon_angle = -45
@@ -130,8 +130,8 @@
 	return
 
 /obj/item/knife/hunting
-	name = "hunting knife"
-	desc = "Despite its name, it's mainly used for cutting meat from dead prey rather than actual hunting."
+	name = "猎刀"
+	desc = "尽管名为猎刀，它主要用于从死去的猎物身上切肉，而非实际狩猎。"
 	icon = 'icons/obj/weapons/stabby.dmi'
 	inhand_icon_state = "huntingknife"
 	icon_state = "huntingknife"
@@ -149,8 +149,8 @@
 	return
 
 /obj/item/knife/combat
-	name = "combat knife"
-	desc = "A military combat utility survival knife."
+	name = "战斗刀"
+	desc = "一把军用战斗多功能生存刀。"
 	icon = 'icons/obj/weapons/stabby.dmi'
 	icon_state = "buckknife"
 	worn_icon_state = "buckknife"
@@ -180,19 +180,19 @@
 	if(user.get_item_by_slot(ITEM_SLOT_MASK) == src && !user.has_status_effect(/datum/status_effect/choke) && prob(20))
 		user.apply_damage(5, BRUTE, BODY_ZONE_HEAD)
 		playsound(user, 'sound/items/weapons/slice.ogg', 50, TRUE)
-		user.visible_message(span_danger("[user] accidentally cuts [user.p_them()]self while pulling [src] out of [user.p_them()] teeth! What a doofus!"), span_userdanger("You accidentally cut your mouth with [src]!"))
+		user.visible_message(span_danger("[user] 在把 [src] 从 [user.p_them()] 牙齿里拔出来时不小心割伤了 [user.p_them()] 自己！真是个笨蛋！"), span_userdanger("你不小心用 [src] 割伤了自己的嘴！"))
 
 /obj/item/knife/combat/equipped(mob/living/user, slot, initial = FALSE)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(20))
 		if(user.get_item_by_slot(ITEM_SLOT_MASK) == src)
 			user.apply_status_effect(/datum/status_effect/choke, src)
-			user.visible_message(span_danger("[user] accidentally swallows [src]!"))
+			user.visible_message(span_danger("[user] 不小心吞下了 [src]！"))
 			playsound(user, 'sound/items/eatfood.ogg', 100, TRUE)
 
 /obj/item/knife/combat/survival
-	name = "survival knife"
-	desc = "A hunting grade survival knife."
+	name = "生存刀"
+	desc = "一把狩猎级别的生存刀。"
 	icon_state = "survivalknife"
 	worn_icon_state = "survivalknife"
 	embed_type = /datum/embedding/combat_knife/weak
@@ -200,8 +200,8 @@
 	throwforce = 15
 
 /obj/item/knife/combat/root
-	name = "cahn'root dagger"
-	desc = "A root dagger, deceptively sharp. Perfect to hide and stab someone with, or make a couple and throw them at enemies."
+	name = "卡恩根匕首"
+	desc = "一把根制匕首，锋利得令人意外。非常适合隐藏并用来刺人，或者做几把扔向敌人。"
 	icon_state = "rootdagger"
 	worn_icon_state = "root_dagger"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -212,8 +212,8 @@
 	throwforce = 15
 
 /obj/item/knife/combat/bone
-	name = "bone dagger"
-	desc = "A sharpened bone. The bare minimum in survival."
+	name = "骨制匕首"
+	desc = "一根磨尖的骨头。生存的最低限度。"
 	inhand_icon_state = "bone_dagger"
 	icon_state = "bone_dagger"
 	worn_icon_state = "bone_dagger"
@@ -229,16 +229,16 @@
 	embed_chance = 35
 
 /obj/item/knife/combat/cyborg
-	name = "cyborg knife"
-	desc = "A cyborg-mounted plasteel knife. Extremely sharp and durable."
+	name = "赛博格刀"
+	desc = "一把赛博格搭载的塑钢刀。极其锋利且耐用。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "knife_cyborg"
 	worn_icon_state = "knife_cyborg" //error sprite - this shouldn't have been dropped
 	slot_flags = NONE //you can't put this in your mouth
 
 /obj/item/knife/shiv
-	name = "glass shiv"
-	desc = "A makeshift glass shiv."
+	name = "玻璃剃刀"
+	desc = "一把临时制作的玻璃剃刀。"
 	icon = 'icons/obj/weapons/stabby.dmi'
 	icon_state = "shiv"
 	inhand_icon_state = "shiv"
@@ -257,8 +257,8 @@
 	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple, -3)
 
 /obj/item/knife/shiv/plasma
-	name = "plasma shiv"
-	desc = "A makeshift plasma glass shiv."
+	name = "等离子剃刀"
+	desc = "一把临时制作的等离子玻璃剃刀。"
 	icon_state = "plasmashiv"
 	inhand_icon_state = "plasmashiv"
 	force = 9
@@ -276,8 +276,8 @@
 	acid = 50
 
 /obj/item/knife/shiv/titanium
-	name = "titanium shiv"
-	desc = "A makeshift titanium-infused glass shiv."
+	name = "钛合金剃刀"
+	desc = "一把临时制作的钛合金强化玻璃剃刀。"
 	icon_state = "titaniumshiv"
 	inhand_icon_state = "titaniumshiv"
 	throwforce = 14
@@ -296,8 +296,8 @@
 	acid = 50
 
 /obj/item/knife/shiv/plastitanium
-	name = "plastitanium shiv"
-	desc = "A makeshift titanium-infused plasma glass shiv."
+	name = "塑钛刮刀"
+	desc = "一把临时制作的、注入了钛的等离子玻璃刮刀。"
 	icon_state = "plastitaniumshiv"
 	inhand_icon_state = "plastitaniumshiv"
 	force = 10
@@ -319,19 +319,19 @@
 	acid = 75
 
 /obj/item/knife/shiv/carrot
-	name = "carrot shiv"
-	desc = "Unlike other carrots, you should probably keep this far away from your eyes."
+	name = "胡萝卜刮刀"
+	desc = "与其他胡萝卜不同，你最好让这东西离你的眼睛远点。"
 	icon_state = "carrotshiv"
 	inhand_icon_state = "carrotshiv"
 	icon_angle = -45
 	custom_materials = null
 
 /obj/item/knife/shiv/carrot/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 用力将\the [src]刺入[user.p_their()]的眼睛！看起来[user.p_theyre()]试图自杀！"))
 	return BRUTELOSS
 
 /obj/item/knife/shiv/parsnip
-	name = "parsnip shiv"
+	name = "欧防风刮刀"
 	desc = "Truly putting 'snip' in the 'parsnip', and it's not sub-par either!"
 	icon_state = "parsnipshiv"
 	inhand_icon_state = "parsnipshiv"
@@ -339,22 +339,22 @@
 	custom_materials = null
 
 /obj/item/knife/shiv/root
-	name = "cahn'root shiv"
-	desc = "A root sharpened into a shiv. A root source of someone's stab wounds soon, most likely."
+	name = "卡恩根刮刀"
+	desc = "一根被磨尖成刮刀的根茎。很可能很快就要成为某人刺伤的根本原因了。"
 	icon_state = "rootshiv"
 	inhand_icon_state = "rootshiv"
 	icon_angle = -45
 	custom_materials = null
 
 /obj/item/switchblade
-	name = "switchblade"
+	name = "弹簧刀"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "switchblade"
 	base_icon_state = "switchblade"
 	icon_angle = -90
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	desc = "A sharp, concealable, spring-loaded knife."
+	desc = "一把锋利、隐蔽、弹簧驱动的刀。"
 	obj_flags = CONDUCTS_ELECTRICITY
 	force = 3
 	w_class = WEIGHT_CLASS_SMALL
@@ -407,15 +407,15 @@
 	tool_behaviour = (active ? TOOL_KNIFE : NONE)
 
 /obj/item/switchblade/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is slitting [user.p_their()] own throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在用 [src] 割开 [user.p_their()] 自己的喉咙！看起来 [user.p_theyre()] 想自杀！"))
 	return BRUTELOSS
 
 /obj/item/switchblade/extended
 	start_extended = TRUE
 
 /obj/item/boxcutter
-	name = "boxcutter"
-	desc = "A tool for cutting boxes, or throats."
+	name = "开箱刀"
+	desc = "一个用来切割箱子，或者喉咙的工具。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "boxcutter"
 	inhand_icon_state = "boxcutter"

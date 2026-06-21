@@ -2,12 +2,12 @@
 #define RANDOM_DEPARTMENT "Random Department"
 
 /datum/round_event_control/wizard/deprevolt //stationwide!
-	name = "Departmental Uprising"
+	name = "部门暴动"
 	weight = 0 //An order that requires order in a round of chaos was maybe not the best idea. Requiescat in pace departmental uprising August 2014 - March 2015 //hello motherfucker i fixed your shit in 2021
 	typepath = /datum/round_event/wizard/deprevolt
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "A department is turned into an independent state."
+	description = "一个部门变成了独立国家。"
 	admin_setup = list(
 		/datum/event_admin_setup/listed_options/departmental_revolt,
 		/datum/event_admin_setup/question/departmental_revolt_annouce,

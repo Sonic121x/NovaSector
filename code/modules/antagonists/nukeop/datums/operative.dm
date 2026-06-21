@@ -39,7 +39,7 @@
 
 /datum/antagonist/nukeop/greet()
 	play_stinger()
-	to_chat(owner, span_big("You are a [nuke_team ? nuke_team.syndicate_name : "syndicate"] agent!"))
+	to_chat(owner, span_big("你是一名[nuke_team ? nuke_team.syndicate_name : "syndicate"]特工！"))
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/on_gain()
@@ -158,9 +158,9 @@
 			break
 	if (code)
 		antag_memory += "<B>Syndicate Nuclear Bomb Code</B>: [code]<br>"
-		to_chat(owner.current, "The nuclear authorization code is: <B>[code]</B>")
+		to_chat(owner.current, "核弹授权代码是：<B>[code]</B>")
 	else
-		to_chat(admin, span_danger("No valid nuke found!"))
+		to_chat(admin, span_danger("未找到有效的核弹！"))
 
 /datum/antagonist/nukeop/proc/give_alias()
 	if(nuke_team?.syndicate_name)
@@ -176,7 +176,7 @@
 /datum/antagonist/nukeop/proc/memorize_code()
 	antag_memory += "<B>[nuke_team.tracked_nuke] Code</B>: [nuke_team.memorized_code]<br>"
 	owner.add_memory(/datum/memory/key/nuke_code, nuclear_code = nuke_team.memorized_code)
-	to_chat(owner, "The nuclear authorization code is: <B>[nuke_team.memorized_code]</B>")
+	to_chat(owner, "核弹授权码是：<B>[nuke_team.memorized_code]</B>")
 
 /// Actually moves our nukie to where they should be
 /datum/antagonist/nukeop/proc/move_to_spawnpoint()

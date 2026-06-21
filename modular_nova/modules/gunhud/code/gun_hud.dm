@@ -13,7 +13,7 @@
 */
 
 /atom/movable/screen/ammo_counter
-	name = "ammo counter"
+	name = "弹药计数器"
 	icon = 'modular_nova/modules/gunhud/icons/gun_hud.dmi'
 	icon_state = "backing"
 	screen_loc = ui_ammocounter

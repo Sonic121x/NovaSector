@@ -279,7 +279,7 @@
 
 /// Called when an overdose starts. Returning UPDATE_MOB_HEALTH will cause updatehealth() to be called on the holder mob by /datum/reagents/proc/metabolize.
 /datum/reagent/proc/overdose_start(mob/living/affected_mob, metabolization_ratio)
-	to_chat(affected_mob, span_userdanger("You feel like you took too much of [name]!"))
+	to_chat(affected_mob, span_userdanger("你觉得你摄入了太多[name]！"))
 	affected_mob.add_mood_event("[type]_overdose", /datum/mood_event/overdose, name)
 	return
 

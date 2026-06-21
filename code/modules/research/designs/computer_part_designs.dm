@@ -3,7 +3,7 @@
 ////////////////////////////////////////
 // Data disks
 /datum/design/portabledrive/basic
-	name = "Data Disk"
+	name = "数据盘"
 	id = "portadrive_basic"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
@@ -15,7 +15,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/portabledrive/advanced
-	name = "Advanced Data Disk"
+	name = "高级数据盘"
 	id = "portadrive_advanced"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2)
@@ -27,7 +27,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/portabledrive/super
-	name = "Super Data Disk"
+	name = "超级数据盘"
 	id = "portadrive_super"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 4)

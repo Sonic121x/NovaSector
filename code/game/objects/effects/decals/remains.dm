@@ -1,5 +1,5 @@
 /obj/effect/decal/remains
-	name = "remains"
+	name = "残骸"
 	gender = PLURAL
 	icon = 'icons/effects/blood.dmi'
 
@@ -11,15 +11,15 @@
 	return TRUE
 
 /obj/effect/decal/remains/human
-	desc = "They look like human remains. They have a strange aura about them."
+	desc = "看起来像是人类的遗骸。他身上有一种奇怪的光环。"
 	icon_state = "remains"
 
 /obj/effect/decal/remains/human/NeverShouldHaveComeHere(turf/here_turf)
 	return !istype(here_turf, /obj/structure/closet/crate/grave/filled) && ..()
 
 /obj/effect/decal/remains/human/smokey
-	name = "remains of Charles Morlbaro"
-	desc = "I guess we figured out what happened to the guy who lives here. You'd best tread lightly around this..."
+	name = "查尔斯·莫尔巴罗的遗骸"
+	desc = "我想我们搞清楚住在这里的家伙遭遇了什么了。你最好小心点绕着这个走..."
 	///Our proximity monitor, for detecting nearby looters.
 	var/datum/proximity_monitor/proximity_monitor
 	///The reagent we will release when our remains are disturbed.
@@ -48,13 +48,13 @@
 
 ///Releases a cloud of smoke based on the randomly generated reagent in Initialize().
 /obj/effect/decal/remains/human/smokey/proc/release_smoke(mob/living/smoke_releaser)
-	visible_message(span_warning("[smoke_releaser] disturbs [src], which releases a huge cloud of gas!"))
+	visible_message(span_warning("[smoke_releaser]惊扰了[src]，它释放出一大团气体！"))
 	do_chem_smoke(2, src, get_turf(src), that_shit_that_killed_saddam, 15)
 
 ///Subtype of smokey remains used for rare maintenance spawns.
 /obj/effect/decal/remains/human/smokey/maintenance
-	name = "smokey remains"
-	desc = "They look like human remains. They have a strange, smokey aura about them... You should tread lightly when walking near this."
+	name = "烟熏残骸"
+	desc = "它们看起来像是人类遗骸。周围萦绕着一种奇异的、烟熏般的气息……靠近时最好小心行走。"
 
 /obj/effect/decal/remains/human/smokey/maintenance/Initialize(mapload)
 	. = ..()
@@ -67,17 +67,17 @@
 	return isclosedturf(here_turf)
 
 /obj/effect/decal/remains/xeno
-	desc = "They look like the remains of something... alien. They have a strange aura about them."
+	desc = "看起来像是…外星人的遗骸。他身上有一种奇怪的光环。"
 	icon_state = "remainsxeno"
 
 /obj/effect/decal/remains/xeno/larva
 	icon_state = "remainslarva"
 
 /obj/effect/decal/remains/robot
-	desc = "They look like the remains of something mechanical. They have a strange aura about them."
+	desc = "看起来像是机械的残骸。它身上有一种奇怪的光环。"
 	icon = 'icons/mob/silicon/robots.dmi'
 	icon_state = "remainsrobot"
 
 /obj/effect/decal/cleanable/blood/gibs/robot_debris/old
-	name = "dusty robot debris"
-	desc = "Looks like nobody has touched this in a while."
+	name = "布满灰尘的机器人残骸"
+	desc = "看起来很久没人碰过它了。"

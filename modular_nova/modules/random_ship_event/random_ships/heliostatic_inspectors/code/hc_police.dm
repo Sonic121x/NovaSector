@@ -1,5 +1,5 @@
 /datum/random_ship_event/hc_police
-	name = "HC Safety Inspection Team"
+	name = "HC 安全检查小组"
 
 	ship_template_id = "hc_police"
 	ship_name_pool = "hc_police_prefix"

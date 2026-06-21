@@ -21,8 +21,8 @@
 	new_icon_state = "dephelmet_earless"
 
 /obj/item/clothing/head/deprivation_helmet
-	name = "deprivation helmet"
-	desc = "When configured, completely cuts off the wearer from the outside world. Three switches rest on the back."
+	name = "感官剥夺头盔"
+	desc = "当配置好后，能完全切断佩戴者与外部世界的联系。背面有三个开关。"
 	base_icon_state = "dephelmet"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_hats.dmi'
 	greyscale_colors = "#383840#dc7ef4#383840#dc7ef4"
@@ -54,8 +54,8 @@
 
 /// VISION CONTROL
 /datum/action/item_action/toggle_vision
-	name = "Vision Switch"
-	desc = "Makes it impossible to see anything."
+	name = "视觉开关"
+	desc = "使佩戴者无法看见任何东西。"
 
 /datum/action/item_action/toggle_vision/Trigger(trigger_flags)
 	. = ..()
@@ -65,14 +65,14 @@
 	var/mob/living/carbon/affected_carbon = usr
 	if(istype(deprivation_helmet))
 		if(deprivation_helmet == affected_carbon.head)
-			to_chat(usr, span_notice("You can't reach the deprivation helmet switch!"))
+			to_chat(usr, span_notice("你够不到感官剥夺头盔的开关！"))
 		else
 			deprivation_helmet.SwitchHelmet("vision")
 
 /// HEARING CONTROL
 /datum/action/item_action/toggle_hearing
-	name = "Hearing Switch"
-	desc = "Makes it impossible to hear anything."
+	name = "听觉开关"
+	desc = "使佩戴者无法听见任何声音。"
 
 /datum/action/item_action/toggle_hearing/Trigger(trigger_flags)
 	. = ..()
@@ -82,14 +82,14 @@
 	var/mob/living/carbon/affected_carbon = usr
 	if(istype(deprivation_helmet))
 		if(deprivation_helmet == affected_carbon.head)
-			to_chat(usr, span_notice("You can't reach the deprivation helmet switch!"))
+			to_chat(usr, span_notice("你够不到感官剥夺头盔的开关！"))
 		else
 			deprivation_helmet.SwitchHelmet("hearing")
 
 
 /datum/action/item_action/toggle_speech
-	name = "Speech Switch"
-	desc = "Makes it impossible to say anything."
+	name = "言语开关"
+	desc = "使佩戴者无法说出任何话语。"
 
 /datum/action/item_action/toggle_speech/Trigger(trigger_flags)
 	. = ..()
@@ -99,7 +99,7 @@
 	var/mob/living/carbon/affected_carbon = usr
 	if(istype(deprivation_helmet))
 		if(deprivation_helmet == affected_carbon.head)
-			to_chat(usr, span_notice("You can't reach the deprivation helmet switch!"))
+			to_chat(usr, span_notice("你够不到感官剥夺头盔的开关！"))
 		else
 			deprivation_helmet.SwitchHelmet("speech")
 
@@ -111,12 +111,12 @@
 		if("speech")
 			if(muzzle == TRUE)
 				playsound_if_pref(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
-				to_chat(usr, span_notice("Speech switch off."))
+				to_chat(usr, span_notice("言语开关关闭。"))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					REMOVE_TRAIT(usr, TRAIT_MUTE, CLOTHING_TRAIT)
 			else
 				playsound_if_pref(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
-				to_chat(usr, span_notice("Speech switch on."))
+				to_chat(usr, span_notice("言语开关开启。"))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					ADD_TRAIT(usr, TRAIT_MUTE, CLOTHING_TRAIT)
 					to_chat(usr, DEPHELMET_GAGGED_TEXT)
@@ -124,12 +124,12 @@
 		if("hearing")
 			if(earmuffs == TRUE)
 				playsound_if_pref(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
-				to_chat(usr, span_notice("Hearing switch off."))
+				to_chat(usr, span_notice("听觉开关关闭。"))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					REMOVE_TRAIT(usr, TRAIT_DEAF, CLOTHING_TRAIT)
 			else
 				playsound_if_pref(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
-				to_chat(usr, span_notice("Hearing switch on."))
+				to_chat(usr, span_notice("听觉开关开启。"))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					ADD_TRAIT(usr, TRAIT_DEAF, CLOTHING_TRAIT)
 					to_chat(usr, DEPHELMET_DEAF_TEXT)
@@ -138,12 +138,12 @@
 			var/mob/living/carbon/human/user = usr
 			if(prevent_vision == TRUE)
 				playsound_if_pref(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
-				to_chat(usr, span_notice("Vision switch off."))
+				to_chat(usr, span_notice("视觉开关关闭。"))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					user.cure_blind("deprivation_helmet_[REF(src)]")
 			else
 				playsound_if_pref(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
-				to_chat(usr, span_notice("Vision switch on."))
+				to_chat(usr, span_notice("视觉开关开启。"))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					user.become_blind("deprivation_helmet_[REF(src)]")
 					to_chat(usr, DEPHELMET_BLIND_TEXT)

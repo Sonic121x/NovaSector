@@ -6,9 +6,9 @@
  * Link to Processor Units in case receiver can't send to a telecommunication hub.
  */
 /obj/machinery/telecomms/receiver
-	name = "subspace receiver"
+	name = "子空间接收器"
 	icon_state = "broadcast receiver"
-	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
+	desc = "这台机器呈碟状，带有绿色灯光。它被设计用来检测和处理子空间无线电活动。"
 	telecomms_type = /obj/machinery/telecomms/receiver
 	density = TRUE
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.05
@@ -75,5 +75,5 @@
 		freq_listening |= i
 
 /obj/machinery/telecomms/receiver/preset_left/birdstation
-	name = "Receiver"
+	name = "接收器"
 	freq_listening = list()

@@ -8,8 +8,8 @@
  *
  */
 /obj/machinery/computer/camera_advanced/base_construction
-	name = "generic base construction console"
-	desc = "An industrial computer integrated with a camera-assisted rapid construction drone."
+	name = "通用基地建设控制台"
+	desc = "一台集成了摄像头辅助功能的快速建造无人机。"
 	networks = list(CAMERANET_NETWORK_SS13)
 	circuit = /obj/item/circuitboard/computer/base_construction
 	off_action = /datum/action/innate/camera_off/base_construction
@@ -96,7 +96,7 @@
  *
  */
 /mob/eye/camera/remote/base_construction
-	name = "construction holo-drone"
+	name = "建筑全息无人机"
 	//Allows any curious crew to watch the base after it leaves. (This is safe as the base cannot be modified once it leaves)
 	move_on_shuttle = TRUE
 	icon = 'icons/obj/mining.dmi'
@@ -125,6 +125,6 @@
 
 ///[Base console's][/obj/machinery/computer/camera_advanced/base_construction] internal RCD. Has a large material capacity and a fast buildspeed.
 /obj/item/construction/rcd/internal
-	name = "internal RCD"
+	name = "内置RCD-快捷建设装置"
 	max_matter = 600
 	delay_mod = 0.5

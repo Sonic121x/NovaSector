@@ -7,7 +7,7 @@
 
 /obj/item/circuit_component/target_intercept
 	display_name = "Target Intercept"
-	desc = "Requires a BCI shell. When activated, this component will allow user to target an object using their brain and will output the reference to said object."
+	desc = "激活后，该组件将使用户能够通过大脑来瞄准某个物体，并输出该物体的定位信息。需要一个脑机接口外壳。"
 	category = "BCI"
 
 	required_shells = list(/obj/item/organ/cyberimp/bci)
@@ -45,7 +45,7 @@
 	if(TIMER_COOLDOWN_RUNNING(parent.shell, COOLDOWN_CIRCUIT_TARGET_INTERCEPT))
 		return
 
-	to_chat(owner, "<B>Left-click to trigger target interceptor!</B>")
+	to_chat(owner, "<B>左键点击以触发目标拦截器！</B>")
 	owner.client.click_intercept = src
 
 /obj/item/circuit_component/target_intercept/proc/on_organ_removed(datum/source, mob/living/carbon/owner)

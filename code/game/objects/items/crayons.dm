@@ -22,8 +22,8 @@
  */
 
 /obj/item/toy/crayon
-	name = "crayon"
-	desc = "A colourful crayon. Looks tasty. Mmmm..."
+	name = "蜡笔"
+	desc = "一支彩色蜡笔。看起来很好吃。嗯……"
 	icon = 'icons/obj/art/crayons.dmi'
 	icon_state = "crayonred"
 	worn_icon_state = "crayon"
@@ -202,7 +202,7 @@
 	return isfloorturf(surface)
 
 /obj/item/toy/crayon/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is jamming [src] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正把[src]塞进[user.p_their()]鼻子并捅入[user.p_their()]大脑。看起来[user.p_theyre()]想自杀！"))
 	user.add_atom_colour(color_transition_filter(paint_color, SATURATION_OVERRIDE), ADMIN_COLOUR_PRIORITY)
 	return (BRUTELOSS|OXYLOSS)
 
@@ -306,10 +306,10 @@
 		if(self_contained)
 			qdel(src)
 		else
-			balloon_alert(user, "empty!")
+			balloon_alert(user, "空了！")
 		return TRUE
 	if(charges_left < amount && requires_full)
-		balloon_alert(user, "not enough left!")
+		balloon_alert(user, "剩余量不足！")
 		return TRUE
 
 	return FALSE
@@ -351,17 +351,17 @@
 		D_items += list(list("item" = D))
 
 	var/list/O_items = list()
-	. += list(list(name = "Oriented", "items" = O_items))
+	. += list(list(name = "定向", "items" = O_items))
 	for(var/O in oriented)
 		O_items += list(list("item" = O))
 
 	var/list/R_items = list()
-	. += list(list(name = "Runes", "items" = R_items))
+	. += list(list(name = "符文", "items" = R_items))
 	for(var/R in runes)
 		R_items += list(list("item" = R))
 
 	var/list/rand_items = list()
-	. += list(list(name = "Random", "items" = rand_items))
+	. += list(list(name = "随机", "items" = rand_items))
 	for(var/i in randoms)
 		if(!is_literate_user) // no spelling allowed
 			if(i == RANDOM_LETTER || i == RANDOM_NUMBER || i == RANDOM_PUNCTUATION)
@@ -416,7 +416,7 @@
 			set_painting_tool_color(paint_color)
 			. = TRUE
 		if("enter_text")
-			var/txt = tgui_input_text(usr, "Choose what to write", "Scribbles", text_buffer, max_length = MAX_MESSAGE_LEN)
+			var/txt = tgui_input_text(usr, "选择要写的内容", "涂鸦", text_buffer, max_length = MAX_MESSAGE_LEN)
 			if(isnull(txt))
 				return
 			txt = crayon_text_strip(txt)
@@ -448,7 +448,7 @@
 		target = target.loc
 
 	if(!isValidSurface(target))
-		target.balloon_alert(user, "can't use there!")
+		target.balloon_alert(user, "不能在那里使用！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/drawing = drawtype
@@ -525,7 +525,7 @@
 		to_chat(user, span_notice("You start drawing a [temp] on \the [target]..."))
 
 	if(pre_noise)
-		audible_message(span_notice("You hear spraying."))
+		audible_message(span_notice("你听到喷涂声。"))
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
 
 	var/wait_time = DRAW_TIME
@@ -561,7 +561,7 @@
 					affected_turfs += left
 					affected_turfs += right
 				else
-					balloon_alert(user, "no room!")
+					balloon_alert(user, "没地方了！")
 					return ITEM_INTERACT_BLOCKING
 		created_art.add_hiddenprint(user)
 		if(istagger)
@@ -579,7 +579,7 @@
 		SStgui.update_uis(src)
 
 	if(post_noise)
-		audible_message(span_hear("You hear spraying."))
+		audible_message(span_hear("你听到喷涂声。"))
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
 
 	var/fraction = min(1, . / reagents.maximum_volume)
@@ -594,7 +594,7 @@
 ///Checks if the user is still adjacent to the target (used for do_after extra_checks)
 /obj/item/toy/crayon/proc/adjacency_check(mob/user, atom/target)
 	if(!user.Adjacent(target))
-		user.balloon_alert(user, "moved too far away!")
+		user.balloon_alert(user, "移动得太远了！")
 		return FALSE
 	return TRUE
 
@@ -612,13 +612,13 @@
 	if(!(pwned_human.stat == DEAD || HAS_TRAIT(pwned_human, TRAIT_FAKEDEATH)))
 		return NONE
 
-	interacting_with.balloon_alert(user, "drawing outline...")
+	interacting_with.balloon_alert(user, "正在绘制轮廓...")
 	if(!do_after(user, DRAW_TIME, target = pwned_human))
 		return ITEM_INTERACT_FAILURE
 	if(!use_charges(user, 1))
 		return ITEM_INTERACT_FAILURE
 
-	to_chat(user, span_notice("You draw a chalk outline around [pwned_human]."))
+	to_chat(user, span_notice("你在[pwned_human]周围画了一个粉笔轮廓。"))
 	var/obj/effect/decal/cleanable/crayon/chalk_line = new(get_turf(pwned_human), paint_color, "body", "chalk outline", null, null, "A vaguely [pwned_human] shaped body outline.", outline_strength)
 	chalk_line.pixel_y = (pwned_human.pixel_y + pwned_human.pixel_z)
 	chalk_line.pixel_x = (pwned_human.pixel_x + pwned_human.pixel_w)
@@ -634,7 +634,7 @@
 	)
 
 /obj/item/toy/crayon/red
-	name = "red crayon"
+	name = "红色蜡笔"
 	icon_state = "crayonred"
 	paint_color = COLOR_CRAYON_RED
 	crayon_color = "red"
@@ -642,7 +642,7 @@
 	dye_color = DYE_RED
 
 /obj/item/toy/crayon/orange
-	name = "orange crayon"
+	name = "橙色蜡笔"
 	icon_state = "crayonorange"
 	paint_color = COLOR_CRAYON_ORANGE
 	crayon_color = "orange"
@@ -650,7 +650,7 @@
 	dye_color = DYE_ORANGE
 
 /obj/item/toy/crayon/yellow
-	name = "yellow crayon"
+	name = "黄色蜡笔"
 	icon_state = "crayonyellow"
 	paint_color = COLOR_CRAYON_YELLOW
 	crayon_color = "yellow"
@@ -658,7 +658,7 @@
 	dye_color = DYE_YELLOW
 
 /obj/item/toy/crayon/green
-	name = "green crayon"
+	name = "绿色蜡笔"
 	icon_state = "crayongreen"
 	paint_color = COLOR_CRAYON_GREEN
 	crayon_color = "green"
@@ -666,7 +666,7 @@
 	dye_color = DYE_GREEN
 
 /obj/item/toy/crayon/blue
-	name = "blue crayon"
+	name = "蓝色蜡笔"
 	icon_state = "crayonblue"
 	paint_color = COLOR_CRAYON_BLUE
 	crayon_color = "blue"
@@ -674,7 +674,7 @@
 	dye_color = DYE_BLUE
 
 /obj/item/toy/crayon/purple
-	name = "purple crayon"
+	name = "紫色蜡笔"
 	icon_state = "crayonpurple"
 	paint_color = COLOR_CRAYON_PURPLE
 	crayon_color = "purple"
@@ -682,7 +682,7 @@
 	dye_color = DYE_PURPLE
 
 /obj/item/toy/crayon/black
-	name = "black crayon"
+	name = "黑色蜡笔"
 	icon_state = "crayonblack"
 	paint_color = COLOR_CRAYON_BLACK
 	crayon_color = "black"
@@ -690,8 +690,8 @@
 	dye_color = DYE_BLACK
 
 /obj/item/toy/crayon/white
-	name = "stick of chalk"
-	desc = "A stark-white stick of chalk."
+	name = "粉笔"
+	desc = "一支纯白的粉笔。"
 	icon_state = "crayonwhite"
 	paint_color = COLOR_WHITE
 	crayon_color = "white"
@@ -700,9 +700,9 @@
 	outline_strength = 1
 
 /obj/item/toy/crayon/mime
-	name = "mime crayon"
+	name = "默剧蜡笔"
 	icon_state = "crayonmime"
-	desc = "A very sad-looking crayon."
+	desc = "一支看起来非常悲伤的蜡笔。"
 	paint_color = COLOR_WHITE
 	crayon_color = "mime"
 	reagent_contents = list(/datum/reagent/consumable/nutriment = 0.5, /datum/reagent/colorful_reagent/powder/invisible = 1.5)
@@ -710,7 +710,7 @@
 	dye_color = DYE_MIME
 
 /obj/item/toy/crayon/rainbow
-	name = "rainbow crayon"
+	name = "彩虹蜡笔"
 	icon_state = "crayonrainbow"
 	paint_color = COLOR_CRAYON_RAINBOW
 	crayon_color = "rainbow"
@@ -728,8 +728,8 @@
  */
 
 /obj/item/storage/crayons
-	name = "box of crayons"
-	desc = "A box of crayons for all your rune drawing needs."
+	name = "蜡笔盒"
+	desc = "一盒蜡笔，满足你绘制符文的所有需求。"
 	icon = 'icons/obj/art/crayons.dmi'
 	icon_state = "crayonbox"
 	w_class = WEIGHT_CLASS_SMALL
@@ -754,20 +754,20 @@
 /obj/item/storage/crayons/attack_self(mob/user)
 	. = ..()
 	if(contents.len > 0)
-		balloon_alert(user, "too full to fold!")
+		balloon_alert(user, "太满了，无法折叠！")
 		return
 	if(flags_1 & HOLOGRAM_1)
 		return
 
 	var/obj/item/stack/sheet/cardboard/cardboard = new (user.drop_location())
-	to_chat(user, span_notice("You fold the [src] into cardboard."))
+	to_chat(user, span_notice("你将[src]折叠成了纸板。"))
 	user.put_in_active_hand(cardboard)
 	qdel(src)
 
 //Spraycan stuff
 
 /obj/item/toy/crayon/spraycan
-	name = "spray can"
+	name = "喷漆罐"
 	icon_state = "spraycan"
 	worn_icon_state = "spraycan"
 
@@ -779,7 +779,7 @@
 	inhand_icon_state = "spraycan"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
-	desc = "A metallic container containing tasty paint."
+	desc = "一个装有美味油漆的金属容器。"
 	w_class = WEIGHT_CLASS_SMALL
 	custom_price = PAYCHECK_CREW * 2.5
 
@@ -851,11 +851,11 @@
 /obj/item/toy/crayon/spraycan/suicide_act(mob/living/user)
 	var/used = min(charges_left, 10)
 	if(is_capped || !actually_paints || !use_charges(user, 10, FALSE))
-		user.visible_message(span_suicide("[user] shakes up [src] with a rattle and lifts it to [user.p_their()] mouth, but nothing happens!"))
+		user.visible_message(span_suicide("[user]摇晃着[src]发出咔啦声，然后举到[user.p_their()]嘴边，但什么都没发生！"))
 		user.say("MEDIOCRE!!", forced = "spraycan suicide")
 		return SHAME
 
-	user.visible_message(span_suicide("[user] shakes up [src] with a rattle and lifts it to [user.p_their()] mouth, spraying paint across [user.p_their()] teeth!"))
+	user.visible_message(span_suicide("[user]摇晃着[src]发出咔啦声，然后举到[user.p_their()]嘴边，将油漆喷在了[user.p_their()]牙齿上！"))
 	user.say("WITNESS ME!!", forced = "spraycan suicide")
 	if(pre_noise || post_noise)
 		playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
@@ -874,7 +874,7 @@
 			. += "It's roughly [PERCENT(charges_left/charges)]% full."
 		else
 			. += "It is empty."
-	. += span_notice("Alt-click [src] to [ is_capped ? "take the cap off" : "put the cap on"].")
+	. += span_notice("Alt-点击 [src] 来 [ is_capped ? "take the cap off" : "put the cap on"]。")
 
 
 /obj/item/toy/crayon/spraycan/can_use_on(atom/target, mob/user, list/modifiers)
@@ -891,7 +891,7 @@
 
 /obj/item/toy/crayon/spraycan/use_on(atom/target, mob/user, list/modifiers)
 	if(is_capped)
-		balloon_alert(user, "take the cap off first!")
+		balloon_alert(user, "先把盖子取下来！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(check_empty(user))
@@ -909,8 +909,8 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/mob/living/carbon/carbon_target = target
-		user.visible_message(span_danger("[user] sprays [src] into the face of [target]!"))
-		to_chat(target, span_userdanger("[user] sprays [src] into your face!"))
+		user.visible_message(span_danger("[user] 将 [src] 喷到了 [target] 的脸上！"))
+		to_chat(target, span_userdanger("[user] 将 [src] 喷到了你的脸上！"))
 
 		if(carbon_target.client)
 			carbon_target.set_eye_blur_if_lower(6 SECONDS)
@@ -927,7 +927,7 @@
 		reagents.expose(carbon_target, VAPOR, fraction * volume_multiplier)
 
 	else if(actually_paints && target.is_atom_colour(paint_color, min_priority_index = WASHABLE_COLOUR_PRIORITY))
-		balloon_alert(user, "[target.p_theyre()] already that color!")
+		balloon_alert(user, "[target.p_theyre()] 已经是那个颜色了！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/saturation_mode = SATURATION_MULTIPLY
@@ -943,7 +943,7 @@
 
 		if(pre_noise || post_noise)
 			playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
-		user.visible_message(span_notice("[user] coats [target] with spray paint!"), span_notice("You coat [target] with spray paint."))
+		user.visible_message(span_notice("[user] 用喷漆覆盖了 [target]！"), span_notice("你用喷漆覆盖了 [target]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!isobj(target) || (target.flags_1 & UNPAINTABLE_1))
@@ -957,24 +957,24 @@
 
 		if(pre_noise || post_noise)
 			playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
-		user.visible_message(span_notice("[user] coats [target] with spray paint!"), span_notice("You coat [target] with spray paint."))
+		user.visible_message(span_notice("[user] 用喷漆覆盖了 [target]！"), span_notice("你用喷漆覆盖了 [target]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if (color_is_dark && saturation_mode == SATURATION_OVERRIDE && !(target.flags_1 & ALLOW_DARK_PAINTS_1))
-		to_chat(user, span_warning("A color that dark on an object like this? Surely not..."))
+		to_chat(user, span_warning("在这种物体上用这么深的颜色？肯定不行..."))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(target, /obj/item/pipe))
 		if(!GLOB.pipe_color_name.Find(paint_color))
-			balloon_alert(user, "invalid pipe color!")
+			balloon_alert(user, "无效的管道颜色！")
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/pipe/target_pipe = target
 		target_pipe.pipe_color = paint_color
 		target.add_atom_colour(paint_color, FIXED_COLOUR_PRIORITY)
-		balloon_alert(user, "painted in [GLOB.pipe_color_name[paint_color]] color")
+		balloon_alert(user, "已喷涂为 [GLOB.pipe_color_name[paint_color]] 颜色")
 	else if(istype(target, /obj/machinery/atmospherics))
 		if(!GLOB.pipe_color_name.Find(paint_color))
-			balloon_alert(user, "invalid pipe color!")
+			balloon_alert(user, "无效的管道颜色！")
 			return ITEM_INTERACT_BLOCKING
 		var/obj/machinery/atmospherics/target_pipe = target
 		target_pipe.paint(paint_color)
@@ -998,7 +998,7 @@
 
 	if(pre_noise || post_noise)
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
-	user.visible_message(span_notice("[user] coats [target] with spray paint!"), span_notice("You coat [target] with spray paint."))
+	user.visible_message(span_notice("[user] 用喷漆覆盖了 [target]！"), span_notice("你用喷漆覆盖了 [target]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/toy/crayon/spraycan/proc/color_limb(obj/item/bodypart/limb, mob/living/user)
@@ -1030,7 +1030,7 @@
 	if(!has_cap)
 		return CLICK_ACTION_BLOCKING
 	is_capped = !is_capped
-	balloon_alert(user, is_capped ? "capped" : "cap removed")
+	balloon_alert(user, is_capped ? "已盖上盖子" : "盖子已取下")
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
@@ -1046,13 +1046,13 @@
 		. += spray_overlay
 
 /obj/item/toy/crayon/spraycan/borg
-	name = "cyborg spraycan"
-	desc = "A metallic container containing shiny synthesised paint."
+	name = "赛博格喷漆罐"
+	desc = "一个装有闪亮合成涂料的金属容器。"
 	charges = INFINITE_CHARGES
 
 /obj/item/toy/crayon/spraycan/borg/use_charges(mob/user, amount = 1, requires_full = TRUE, override_infinity = FALSE)
 	if(!iscyborg(user))
-		to_chat(user, span_notice("How did you get this?"))
+		to_chat(user, span_notice("你怎么拿到这个的？"))
 		qdel(src)
 		return FALSE
 
@@ -1065,8 +1065,8 @@
 
 
 /obj/item/toy/crayon/spraycan/hellcan
-	name = "hellcan"
-	desc = "This spraycan doesn't seem to be filled with paint..."
+	name = "地狱喷罐"
+	desc = "这个喷漆罐里装的似乎不是油漆..."
 	icon_state = "deathcan2_cap"
 	icon_capped = "deathcan2_cap"
 	icon_uncapped = "deathcan2"
@@ -1083,8 +1083,8 @@
 	return isfloorturf(surface)
 
 /obj/item/toy/crayon/spraycan/lubecan
-	name = "slippery spraycan"
-	desc = "You can barely keep hold of this thing."
+	name = "滑溜溜喷漆罐"
+	desc = "你几乎抓不住这东西。"
 	icon_state = "clowncan2_cap"
 	icon_capped = "clowncan2_cap"
 	icon_uncapped = "clowncan2"
@@ -1098,8 +1098,8 @@
 	return isfloorturf(surface)
 
 /obj/item/toy/crayon/spraycan/mimecan
-	name = "silent spraycan"
-	desc = "Art is best seen, not heard."
+	name = "无声喷漆罐"
+	desc = "艺术最好用眼看，而非用耳听。"
 	icon_state = "mimecan_cap"
 	icon_capped = "mimecan_cap"
 	icon_uncapped = "mimecan"
@@ -1113,13 +1113,13 @@
 	reagent_contents = list(/datum/reagent/consumable/nothing = 1, /datum/reagent/toxin/mutetoxin = 1)
 
 /obj/item/toy/crayon/spraycan/infinite
-	name = "infinite spraycan"
+	name = "无限喷漆罐"
 	charges = INFINITE_CHARGES
-	desc = "Now with 30% more bluespace technology."
+	desc = "现在蓝空技术含量增加了30%。"
 
 /obj/item/toy/crayon/spraycan/roboticist
-	name = "roboticist spraycan"
-	desc = "Paint for restyling unattached robotic limbs. Sadly doesn't shine like chrome."
+	name = "机械师喷漆罐"
+	desc = "用于重新喷涂未安装的机械肢体的喷漆。可惜不像铬那样闪闪发光。"
 	icon_state = "robocan"
 	icon_capped = "robocan_cap"
 	icon_uncapped = "robocan"

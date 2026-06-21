@@ -1,6 +1,6 @@
 /obj/structure/lattice
-	name = "lattice"
-	desc = "A lightweight support lattice. These hold our station together."
+	name = "格架"
+	desc = "一种轻质的支撑框架。就是这些东西把我们的站点拼在了一起。"
 	icon = 'icons/obj/smooth_structures/lattice.dmi'
 	icon_state = "lattice-255"
 	base_icon_state = "lattice"
@@ -53,7 +53,7 @@
 		set_turf_to_area(turfloc, GLOB.areas_by_type[/area/space])
 
 /obj/structure/lattice/proc/deconstruction_hints(mob/user)
-	return span_notice("The rods look like they could be <b>cut</b>. There's space for more <i>rods</i> or a <i>tile</i>.")
+	return span_notice("这些杆子看起来可以被<b>切断</b>。这里还有空间放置更多<i>杆子</i>或一块<i>地砖</i>。")
 
 /obj/structure/lattice/Initialize(mapload)
 	. = ..()
@@ -70,7 +70,7 @@
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	if(C.tool_behaviour == TOOL_WIRECUTTER)
-		to_chat(user, span_notice("Slicing [name] joints ..."))
+		to_chat(user, span_notice("正在切割[name]接缝……"))
 		deconstruct()
 	else
 		var/turf/T = get_turf(src)
@@ -114,7 +114,7 @@
 
 /obj/structure/lattice/catwalk
 	name = "catwalk"
-	desc = "A catwalk for easier EVA maneuvering and cable placement."
+	desc = "便于舱外工作和电缆放置的脚手架。"
 	icon = 'icons/obj/smooth_structures/catwalk.dmi'
 	icon_state = "catwalk-0"
 	base_icon_state = "catwalk"
@@ -126,7 +126,7 @@
 	give_turf_traits = list(TRAIT_TURF_IGNORE_SLOWDOWN, TRAIT_LAVA_STOPPED, TRAIT_CHASM_STOPPED, TRAIT_IMMERSE_STOPPED, TRAIT_HYPERSPACE_STOPPED)
 
 /obj/structure/lattice/catwalk/deconstruction_hints(mob/user)
-	return span_notice("The supporting rods look like they could be <b>cut</b>.")
+	return span_notice("支撑杆看起来可以<b>切断</b>。")
 
 /obj/structure/lattice/catwalk/Move()
 	var/turf/T = loc
@@ -154,8 +154,8 @@
 		return TRUE
 
 /obj/structure/lattice/catwalk/mining
-	name = "reinforced catwalk"
-	desc = "A heavily reinforced catwalk used to build bridges in hostile environments. It doesn't look like anything could make this budge."
+	name = "加固脚手架"
+	desc = "一块经过严密加固的支架，用于在恶劣环境下建造桥梁。看起来它坚不可摧，没有任何东西能撼动它。"
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/lattice/catwalk/mining/attackby(obj/item/C, mob/user, list/modifiers, list/attack_modifiers)
@@ -169,8 +169,8 @@
 	return
 
 /obj/structure/lattice/catwalk/lava
-	name = "heatproof catwalk"
-	desc = "A specialized catwalk for building across lava. Watch your step."
+	name = "耐热网格走道"
+	desc = "一种专为在熔岩上建造而设计的格栅走道。小心脚下。"
 	icon = 'icons/obj/smooth_structures/catwalk.dmi'
 	icon_state = "catwalk-0"
 	base_icon_state = "catwalk"
@@ -179,7 +179,7 @@
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/structure/lattice/catwalk/lava/deconstruction_hints(mob/user)
-	return span_notice("The rods look like they could be <b>cut</b>, but the <i>heat treatment will shatter off</i>. There's space for a <i>tile</i>.")
+	return span_notice("这些杆子看起来可以<b>切断</b>，但<i>热处理层会碎裂脱落</i>。这里有空间放置一块<i>地砖</i>。")
 
 /obj/structure/lattice/catwalk/lava/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -187,9 +187,9 @@
 		return
 	var/obj/item/stack/tile/iron/attacking_tiles = attacking_item
 	if(!attacking_tiles.use(1))
-		to_chat(user, span_warning("You need one floor tile to build atop [src]."))
+		to_chat(user, span_warning("你需要在[src]上铺一块地板砖。"))
 		return
-	to_chat(user, span_notice("You construct new plating with [src] as support."))
+	to_chat(user, span_notice("你以[src]为支撑建造了新的地板。"))
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 
 	var/turf/turf_we_place_on = get_turf(src)
@@ -198,8 +198,8 @@
 	qdel(src)
 
 /obj/structure/lattice/catwalk/boulder
-	name = "boulder platform"
-	desc = "A boulder, floating on the molten hot deadly lava. More like a BOATlder."
+	name = "巨石平台"
+	desc = "一块巨石，漂浮在熔融、滚烫、致命的岩浆上。更像是一艘BOATlder（船石）。"
 	icon = 'icons/obj/smooth_structures/boulder_platform.dmi'
 	icon_state = "boulder_platform-0"
 	base_icon_state = "boulder_platform"
@@ -216,7 +216,7 @@
 
 /obj/structure/lattice/catwalk/boulder/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(ismetaltile(attacking_item))
-		balloon_alert(user, "too unstable!")
+		balloon_alert(user, "太不稳定了！")
 		return FALSE
 	return ..()
 
@@ -237,7 +237,7 @@
  * Handles platforms deleting themselves with a visual effect and message.
  */
 /obj/structure/lattice/catwalk/boulder/proc/self_destruct()
-	visible_message(span_notice("\The [src] sinks and dissapears!"))
+	visible_message(span_notice("\The [src] 沉没并消失了！"))
 	playsound(src, 'sound/effects/gas_hissing.ogg', 20)
 	remove_shared_particles(warning_particle)
 	deconstruct()

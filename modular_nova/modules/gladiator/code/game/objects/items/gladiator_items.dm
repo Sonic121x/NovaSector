@@ -6,8 +6,8 @@
 #define BERSERK_ATTACK_SPEED_MODIFIER 0.25
 
 /obj/item/crusher_trophy/gladiator
-	name = "ashen bones"
-	desc = "A set of soot-coated ribs from a worthy warrior. Suitable as a trophy for a kinetic crusher."
+	name = "灰烬骸骨"
+	desc = "一套来自一位值得尊敬的战士的、覆盖着煤灰的肋骨。适合作为动能粉碎者的战利品。"
 	icon_state = "demon_claws"
 	color = "#808080"
 	gender = PLURAL
@@ -28,8 +28,8 @@
 		incomingchance.block_chance -= bonus_value
 
 /obj/item/clothing/neck/warrior_cape
-	name = "cloak of the marked one"
-	desc = "A cloak worn by those that have faced death in the eyes and prevailed."
+	name = "受印者披风"
+	desc = "一件由那些曾直面死亡并最终获胜者所穿戴的披风。"
 	icon = 'modular_nova/modules/gladiator/icons/berserk_icons.dmi'
 	worn_icon = 'modular_nova/modules/gladiator/icons/berserk_suit.dmi'
 	icon_state = "berk_cape"
@@ -38,11 +38,11 @@
 
 /obj/item/clothing/neck/warrior_cape/examine()
 	. = ..()
-	. += span_warning("Struggle against the tide, no matter how strong it may be.")
+	. += span_warning("无论潮水多么汹涌，都要与之抗争。")
 
 /obj/item/clothing/suit/hooded/berserker/gatsu
-	name = "berserker armor"
-	desc = "A suit of ancient body armor imbued with potent spiritual magnetism, capable of massively boosting a wearer's close combat skills at the cost of ravaging their mind and overexerting their body."
+	name = "狂战士盔甲"
+	desc = "一套古老的身体盔甲，注入了强大的精神磁力，能够大幅提升穿戴者的近战技能，代价是摧残其心智并使其身体过度劳累。"
 	icon_state = "berk_suit"
 	icon = 'modular_nova/modules/gladiator/icons/berserk_icons.dmi'
 	worn_icon = 'modular_nova/modules/gladiator/icons/berserk_suit.dmi'
@@ -64,11 +64,11 @@
 
 /obj/item/clothing/suit/hooded/berserker/gatsu/examine()
 	. = ..()
-	. += span_warning("Berserk mode requires the suit's helmet to be equipped, and can only be charged by taking damage.")
+	. += span_warning("狂怒模式需要装备盔甲的头盔，并且只能通过承受伤害来充能。")
 
 /obj/item/clothing/head/hooded/berserker/gatsu
-	name = "berserker helmet"
-	desc = "A uniquely styled helmet with ghastly red eyes that seals its user inside."
+	name = "狂战士头盔"
+	desc = "一顶风格独特的头盔，有着骇人的红色眼睛，能将使用者密封在内。"
 	icon_state = "berk_helm"
 	icon = 'modular_nova/modules/gladiator/icons/berserk_icons.dmi'
 	worn_icon = 'modular_nova/modules/gladiator/icons/berserk_suit.dmi'
@@ -83,7 +83,7 @@
 
 /obj/item/clothing/head/hooded/berserker/gatsu/examine()
 	. = ..()
-	. += span_warning("Berserk mode is usable at 100% charge and requires the helmet to be closed in order to remain active.") //woag!!!
+	. += span_warning("狂怒模式在充能达到100%时可用，并且需要头盔保持关闭状态才能维持激活。") //woag!!!
 
 /obj/item/clothing/head/hooded/berserker/gatsu/process(seconds_per_tick)
 	if(berserk_active)
@@ -104,15 +104,15 @@
 		berserk_value *= PROJECTILE_HIT_MULTIPLIER
 	berserk_charge = clamp(round(berserk_charge + berserk_value), 0, BERSERK_MAX_CHARGE)
 	if(berserk_charge >= BERSERK_MAX_CHARGE)
-		balloon_alert(owner, "berserk charged")
+		balloon_alert(owner, "狂暴充能完毕")
 
 /obj/item/clothing/head/hooded/berserker/gatsu/IsReflect()
 	if(berserk_active)
 		return TRUE
 
 /obj/item/claymore/dragonslayer
-	name = "\proper Dragonslayer"
-	desc = "A blade that seems too big to be called a sword. Too big, too thick, too heavy, and too rough, it's more like a large hunk of raw iron."
+	name = "\proper 斩龙剑"
+	desc = "一把大到不该被称为剑的刀刃。太大、太厚、太重、太粗糙，它更像是一大块生铁。"
 	icon = 'modular_nova/modules/gladiator/icons/dragonslayer.dmi'
 	icon_state = "dragonslayer"
 	inhand_icon_state = "dragonslayer"
@@ -141,7 +141,7 @@
 
 /obj/item/claymore/dragonslayer/examine()
 	. = ..()
-	. += span_warning("Tempered against lavaland foes and bosses through supernatural energies. Right click to dodge at the cost of stamina.")
+	. += span_warning("通过超自然能量，在熔岩地敌人和首领的对抗中得到锤炼。右键点击以消耗耐力进行闪避。")
 
 /obj/item/claymore/dragonslayer/attack(mob/living/target, mob/living/carbon/human/user)
 	var/is_nemesis_faction = FALSE
@@ -187,19 +187,19 @@
 	return SUCCESSFUL_BLOCK
 
 /obj/item/claymore/dragonslayer/very_fucking_loud
-	name = "\proper Tempered Dragonslayer"
+	name = "\proper 锤炼斩龙剑"
 	desc = null
 	hitsound = 'modular_nova/modules/gladiator/Clang_cut.ogg'
 
 /obj/item/claymore/dragonslayer/very_fucking_loud/examine()
 	. = ..()
-	. += span_userdanger("CLANG")
+	. += span_userdanger("哐当")
 
 /obj/structure/closet/crate/necropolis/gladiator
-	name = "gladiator chest"
+	name = "角斗士宝箱"
 
 /obj/structure/closet/crate/necropolis/gladiator/crusher
-	name = "dreadful gladiator chest"
+	name = "可怖角斗士宝箱"
 
 /obj/structure/closet/crate/necropolis/gladiator/PopulateContents()
 	if(prob(5))

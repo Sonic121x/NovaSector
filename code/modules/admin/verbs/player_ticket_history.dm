@@ -57,7 +57,7 @@ ADMIN_VERB(player_ticket_history, R_ADMIN, "Player Ticket History", "Allows you 
 	)
 	if(!ticket_lookup.Execute())
 		qdel(ticket_lookup)
-		to_chat(usr, "Failed to query ticket history for [ckey]!")
+		to_chat(usr, "查询 [ckey] 的工单历史失败！")
 		return
 
 	var/list/lookup_targets = list()
@@ -108,11 +108,11 @@ ADMIN_VERB(player_ticket_history, R_ADMIN, "Player Ticket History", "Allows you 
 	UNTIL(lookup_targets.len == 0)
 
 	if(!length(history_cache))
-		to_chat(usr, span_adminnotice("No ticket history found for [ckey]!"))
+		to_chat(usr, span_adminnotice("未找到 [ckey] 的工单历史记录！"))
 		ticket_histories -= ckey
 		return
 
-	to_chat(usr, span_adminnotice("Finished caching ticket history for [ckey]!"))
+	to_chat(usr, span_adminnotice("已完成对 [ckey] 的工单历史缓存！"))
 
 /datum/ticket_history_holder/ui_state(mob/user)
 	return ADMIN_STATE(R_ADMIN)

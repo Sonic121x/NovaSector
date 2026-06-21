@@ -8,9 +8,9 @@
 /// MODsuit theme, instanced once and then used by MODsuits to grab various statistics.
 /datum/mod_theme
 	/// Theme name for the MOD.
-	var/name = "standard"
+	var/name = "标准"
 	/// Description added to the MOD.
-	var/desc = "A civilian class suit by Nakamura Engineering, doesn't offer much other than slightly quicker movement."
+	var/desc = "中村工程公司的这一平民级产品，除了能带来略微更快的移动速度之外，并没有其他特别突出的优点。"
 	/// Extended description on examine_more
 	var/extended_desc = "A third-generation, modular civilian class suit by Nakamura Engineering, \
 		this suit is a staple across the galaxy for civilian applications. These suits are oxygenated, \
@@ -188,8 +188,8 @@
 	wound = 5
 
 /datum/mod_theme/civilian
-	name = "civilian"
-	desc = "A light-weight civilian suit that offers unmatched ease of movement but no protection from the vacuum of space."
+	name = "民用型"
+	desc = "一款轻量级民用防护服，提供无与伦比的移动便利性，但无法提供太空真空防护。"
 	extended_desc = "An experimental design by Nakamura Engineering, intended to be marketed towards planet-bound customers. \
 		This model sacrifices the protection from biological and chemical threats and the vacuum of space in exchange for \
 		vastly improved mobility. Due to the slimmed-down profile, it also has less capacity for modifications compared to \
@@ -241,8 +241,8 @@
 	wound = 5
 
 /datum/mod_theme/portable_suit
-	name = "portable suit"
-	desc = "A one-piece three-piece suit designed for maximum negotiating power. Provides no meaningful protection."
+	name = "便携式防护服"
+	desc = "一款为最大化谈判能力设计的一体式三件套防护服。不提供实质性保护。"
 	extended_desc = "The \"secret weapon\" of the Moonrakers Conglomerate, designed for maximum bureaucratic efficiency. \
 		While giving practically no protection against any physical threat, the aura of affluence it exudes is said to ward off \
 		bear markets."
@@ -277,8 +277,8 @@
 	bio = 50
 
 /datum/mod_theme/engineering
-	name = "engineering"
-	desc = "An engineer-fit suit with heat and shock resistance. Nakamura Engineering's classic."
+	name = "工程"
+	desc = "一件具备耐热抗震性能的工程师版型服装。中村工程的经典设计。"
 	extended_desc = "A classic by Nakamura Engineering, and surely their claim to fame. This model is an \
 		improvement upon the first-generation prototype models from before the Void War, boasting an array of features. \
 		The modular flexibility of the base design has been combined with a blast-dampening insulated inner layer and \
@@ -343,8 +343,8 @@
 	wound = 10
 
 /datum/mod_theme/atmospheric
-	name = "atmospheric"
-	desc = "An atmospheric-resistant suit by Nakamura Engineering, offering extreme heat resistance compared to the engineer suit."
+	name = "大气"
+	desc = "中村工程设计的耐环境防护服，相比标准工程师服提供更强的极端高温抗性。"
 	extended_desc = "A modified version of the Nakamura Engineering industrial model. This one has been \
 		augmented with the latest in heat-resistant alloys, paired with a series of advanced heatsinks. \
 		Additionally, the materials used to construct this suit have rendered it extremely hardy against \
@@ -411,8 +411,8 @@
 	wound = 10
 
 /datum/mod_theme/advanced
-	name = "advanced"
-	desc = "An advanced version of Nakamura Engineering's classic suit, shining with a white, acid and fire resistant polish."
+	name = "先进"
+	desc = "这是中村工程公司经典款式的升级版，表面覆盖着一层洁白、耐酸且防火的光泽涂层。"
 	extended_desc = "The flagship version of the Nakamura Engineering industrial model, and their latest product. \
 		Combining all the features of their other industrial model suits inside, with blast resistance almost approaching \
 		some EOD suits, the outside has been coated with a white polish rumored to be a corporate secret. \
@@ -482,8 +482,8 @@
 	wound = 10
 
 /datum/mod_theme/mining
-	name = "mining"
-	desc = "A Nanotrasen mining suit for on-site operations, fit with accreting ash armor and a sphere form."
+	name = "采矿"
+	desc = "一款由纳米传讯公司制造的用于矿产作业的防护服，装备有吸灰护甲以及球形结构。"
 	extended_desc = "A high-powered Nanotrasen-designed suit, based off the work of Nakamura Engineering. \
 		While initial designs were built for the rigors of asteroid mining, given blast resistance through inbuilt ceramics, \
 		mining teams have since heavily tweaked the suit themselves with assistance from devices crafted by \
@@ -592,8 +592,8 @@
 	wound = 15
 
 /datum/mod_theme/loader
-	name = "loader"
-	desc = "An unsealed experimental motorized harness manufactured by Scarborough Arms for quick and efficient munition supplies."
+	name = "装卸"
+	desc = "由斯卡伯勒军备制造的未密封式电动牵引装置，用于快速高效地供应弹药。"
 	extended_desc = "This powered suit is an experimental spinoff of in-atmosphere Engineering suits. \
 		This fully articulated titanium exoskeleton is Scarborough Arms' suit of choice for their munition delivery men, \
 		and what it lacks in EVA protection, it makes up for in strength and flexibility. The primary feature of \
@@ -659,8 +659,8 @@
 	wound = 10
 
 /datum/mod_theme/medical
-	name = "medical"
-	desc = "A lightweight suit by DeForest Medical Corporation, allows for easier movement."
+	name = "医疗"
+	desc = "德福雷斯特医疗公司的一款轻便防护服，便于人员活动。"
 	extended_desc = "A lightweight suit produced by the DeForest Medical Corporation, based off the work of \
 		Nakamura Engineering. The latest in technology has been employed in this suit to render it immunized against \
 		allergens, airborne toxins, and regular pathogens. The primary asset of this suit is the speed, \
@@ -769,8 +769,8 @@
 	wound = 5
 
 /datum/mod_theme/rescue
-	name = "rescue"
-	desc = "An advanced version of DeForest Medical Corporation's medical suit, designed for quick rescue of bodies from the most dangerous environments."
+	name = "救援"
+	desc = "这是德福雷斯特医疗公司的一款高级防护服的改进版，专为在最危险的环境中迅速营救伤者而设计。"
 	extended_desc = "An upgraded, armor-plated version of DeForest Medical Corporation's medical suit, \
 		designed for quick rescue of bodies from the most dangerous environments. The same advanced leg servos \
 		as the base version are seen here, giving paramedics incredible speed, but the same servos are also in the arms. \
@@ -850,8 +850,8 @@
 	wound = 5
 
 /datum/mod_theme/research
-	name = "research"
-	desc = "A private military EOD suit by Aussec Armory, intended for explosive research. Bulky, but expansive."
+	name = "科研"
+	desc = "一款由奥斯塞斯军火公司生产的私人军事爆炸物处理装备，专为爆炸物研究而设计。体积较大，但功能完备。"
 	extended_desc = "A private military EOD suit by Aussec Armory, based off the work of Nakamura Engineering. \
 		This suit is intended for explosive research, built incredibly bulky and well-covering. \
 		Featuring an inbuilt chemical scanning array, this suit uses two layers of plastitanium armor, \
@@ -922,8 +922,8 @@
 	wound = 15
 
 /datum/mod_theme/security
-	name = "security"
-	desc = "An Apadyne Technologies security suit, offering quicker speed at the cost of carrying capacity."
+	name = "安保"
+	desc = "一款阿帕迪尼科技公司的安全防护装备，其优点是速度更快，但缺点是携带能力较弱。"
 	extended_desc = "An Apadyne Technologies classic, this model of MODsuit has been designed for quick response to \
 		hostile situations. These suits have been layered with plating worthy enough for fires or corrosive environments, \
 		and come with composite cushioning and an advanced honeycomb structure underneath the hull to ensure protection \
@@ -989,8 +989,8 @@
 	wound = 20
 
 /datum/mod_theme/safeguard
-	name = "safeguard"
-	desc = "An Apadyne Technologies advanced security suit, offering greater speed and fire protection than the standard security model."
+	name = "保卫"
+	desc = "一款由阿帕迪尼科技公司生产的高级安全防护装备，其速度和防火性能均优于常规的安全防护型号。"
 	extended_desc = "An Apadyne Technologies advanced security suit, and their latest model. This variant has \
 		ditched the presence of a reinforced glass visor entirely, replacing it with a 'blast visor' utilizing a \
 		small camera on the left side to display the outside to the user. The plating on the suit has been \
@@ -1056,8 +1056,8 @@
 	wound = 25
 
 /datum/mod_theme/magnate
-	name = "magnate"
-	desc = "A fancy, very protective suit for Nanotrasen's captains. Shock, fire and acid-proof while also having a large capacity and high speed."
+	name = "富豪"
+	desc = "这是纳米传讯舰长们所穿的精美且极具防护性的制服。它具备防冲击、防火和防酸的功能，同时还拥有较大的容量和极高的速度。"
 	extended_desc = "They say it costs four hundred thousand credits to run this MODsuit... for twelve seconds. \
 		The Magnate suit is designed for protection, comfort, and luxury for Nanotrasen Captains. \
 		The onboard air filters have been preprogrammed with an additional five hundred different fragrances that can \
@@ -1129,8 +1129,8 @@
 	wound = 15
 
 /datum/mod_theme/cosmohonk
-	name = "cosmohonk"
-	desc = "A suit by Honk Ltd. Protects against low humor environments. Most of the tech went to lower the power cost."
+	name = "宇宙喇叭"
+	desc = "“洪克有限公司”的这套设备能够有效抵御低幽默环境。大部分技术改进旨在降低能耗成本。"
 	extended_desc = "The Cosmohonk MODsuit was originally designed for interstellar comedy in low-humor environments. \
 		It utilizes tungsten electro-ceramic casing and chromium bipolars, coated in zirconium-boron paint underneath \
 		a dermatiraelian subspace alloy. Despite the glaringly obvious optronic vacuum drive pedals, \
@@ -1196,8 +1196,8 @@
 	wound = 5
 
 /datum/mod_theme/syndicate
-	name = "syndicate"
-	desc = "A suit designed by Gorlex Marauders, offering armor ruled illegal in most of Spinward Stellar."
+	name = "辛迪加"
+	desc = "一款由格掠斯设计的盔甲，其防护装备在星域的大部分地区均属违禁品。"
 	extended_desc = "An advanced combat suit adorned in a sinister crimson red color scheme, produced and manufactured \
 		for special mercenary operations. The build is a streamlined layering consisting of shaped Plasteel, \
 		and composite ceramic, while the under suit is lined with a lightweight Kevlar and durathread hybrid weave \
@@ -1304,8 +1304,8 @@
 	wound = 25
 
 /datum/mod_theme/elite
-	name = "elite"
-	desc = "An elite suit upgraded by Cybersun Industries, offering upgraded armor values."
+	name = "精英"
+	desc = "一款由赛博森工业公司升级的精英套装，其护甲值得到了提升。"
 	extended_desc = "An evolution of the syndicate suit, featuring a bulkier build and a matte black color scheme, \
 		this suit is only produced for high ranking Syndicate officers and elite strike teams. \
 		It comes built with a secondary layering of ceramic and Kevlar into the plating providing it with \
@@ -1377,8 +1377,8 @@
 	wound = 25
 
 /datum/mod_theme/infiltrator
-	name = "infiltrator"
-	desc = "A specialized infiltration suit, developed by the Roseus Galactic Actors Guild to strike fear and awe into the hearts of the public."
+	name = "渗透"
+	desc = "一款由罗苏斯银河演员公会研发的特殊渗透装备，旨在让公众心生恐惧与敬畏之情"
 	extended_desc = "Several questions have been raised over the years in regards to the clandestine Infiltrator modular suit. \
 		Why is the suit blood red despite being a sneaking suit? Why did a movie company of all things develop a stealth suit? \
 		The simplest answer is that Roseus Galactic hire more than a few eccentric individuals who know more about \
@@ -1449,8 +1449,8 @@
 	wound = 25
 
 /datum/mod_theme/interdyne
-	name = "interdyne"
-	desc = "A corpse-snatching and rapid-retrieval modsuit, resulting from a lucrative tech exchange between Interdyne Pharmaceutics and Cybersun Industries."
+	name = "英特戴恩"
+	desc = "一款用于尸体抢夺和快速回收的MOD防护服，源自英特戴恩制药与赛博太阳工业之间一次利润丰厚的技术交换。"
 	extended_desc = "While Waffle Corp. and Azik Interstellar provide the means, Donk Co., Tiger Cooperative, Animal Rights Consortium and \
 		Gorlex Marauders willing or easily bribable brawn, S.E.L.F. and MI13 information, the clear syndicate tech providers would be Interdyne and Cybersun, \
 		their combined knowledge in technologies rivaled by only the most enigmatic of aliens, and certainly not by any Nanotrasen scientist. \
@@ -1537,8 +1537,8 @@
 	wound = 30
 
 /datum/mod_theme/enchanted
-	name = "enchanted"
-	desc = "The Wizard Federation's relatively low-tech MODsuit. Is very protective, though."
+	name = "附魔"
+	desc = "巫师联盟使用的这种相对较为简陋的模块服，防护效果却相当出色。"
 	extended_desc = "The Wizard Federation's relatively low-tech MODsuit. This armor employs not \
 		plasteel or carbon fibre, but space dragon scales for its protection. Recruits are expected to \
 		gather these themselves, but the effort is well worth it, the suit being well-armored against threats \
@@ -1608,8 +1608,8 @@
 	wound = 30
 
 /datum/mod_theme/ninja
-	name = "ninja"
-	desc = "A unique, vacuum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
+	name = "忍者"
+	desc = "一套独一无二的、防真空的纳米增强型护甲，专为蜘蛛家族的刺客们设计。"
 	extended_desc = "A suit of nano-enhanced armor designed specifically for Spider Clan assassin-saboteurs. \
 		This MODsuit employs the cutting edge of stealth and combat technology, built skin-tight but just as durable as \
 		suits two or three times as thick. The nanomachines making up the outermost layer of armor \
@@ -1677,8 +1677,8 @@
 	wound = 10
 
 /datum/mod_theme/prototype
-	name = "prototype"
-	desc = "A prototype modular suit powered by locomotives. While it is comfortable and has a big capacity, it remains very bulky and power-inefficient."
+	name = "原型"
+	desc = "一种由机械驱动的模块化防护服。虽然它穿着舒适且容量大，但仍然十分笨重且能源利用效率低下。"
 	extended_desc = "This is a prototype powered exoskeleton, a design not seen in hundreds of years, the first \
 		post-void war era modular suit to ever be safely utilized by an operator. This ancient clunker is still functional, \
 		though it's missing several modern-day luxuries from updated Nakamura Engineering designs. \
@@ -1747,8 +1747,8 @@
 	wound = 5
 
 /datum/mod_theme/glitch
-	name = "glitch"
-	desc = "A modsuit outfitted for elite Cyber Authority units to track, capture, and eliminate organic intruders."
+	name = "故障型"
+	desc = "一款为赛博管理局精英单位配备的MOD防护服，用于追踪、捕获和消灭有机入侵者。"
 	extended_desc = "The Cyber Authority function as a digital police force, patrolling the digital realm and enforcing the law. Cyber Tac units are \
 		the elite of the elite, outfitted with lethal weaponry and fast mobility specially designed to quell organic uprisings."
 	default_skin = "glitch"
@@ -1815,8 +1815,8 @@
 	wound = 100
 
 /datum/mod_theme/responsory
-	name = "responsory"
-	desc = "A high-speed rescue suit by Nanotrasen, intended for its emergency response teams."
+	name = "响应"
+	desc = "一款由纳米传讯公司制造的高速救援防护服，专为其应急响应团队设计。"
 	extended_desc = "A streamlined suit of Nanotrasen design, these sleek black suits are only worn by \
 		elite emergency response personnel to help save the day. While the slim and nimble design of the suit \
 		cuts the ceramics and ablatives in it down, dropping the protection, \
@@ -1914,8 +1914,8 @@
 	wound = 10
 
 /datum/mod_theme/responsory/traitor
-	name = "dark paladin"
-	desc = "A high-speed suit <s>stolen</s> by the Gorlex Maradeurs, purposed for less than honest intents."
+	name = "黑暗圣骑士"
+	desc = "一套由戈莱克斯掠夺者<s>窃取</s>的高速套装，用于不那么诚实的意图。"
 	extended_desc = "A streamlined suit of <s>Nanotrasen</s> Syndicate design, these sleek black suits are only worn by \
 		elite <s>emergency response personnel</s> traitors to help <s>save</s> ruin the day. While the slim and nimble design of the suit \
 		cuts the ceramics and ablatives in it down, dropping the protection, \
@@ -1927,8 +1927,8 @@
 	inbuilt_modules = list(/obj/item/mod/module/welding/syndicate)
 
 /datum/mod_theme/apocryphal
-	name = "apocryphal"
-	desc = "A high-tech, only technically legal, armored suit created by a collaboration effort between Nanotrasen and Apadyne Technologies."
+	name = "虚构"
+	desc = "这是一款高科技、仅在技术层面合法的装甲防护服，由纳米传讯公司和阿帕迪尼科技公司联合研发而成。"
 	extended_desc = "A bulky and only legal by technicality suit, this ominous black and red MODsuit is only worn by \
 		Nanotrasen Black Ops teams. If you can see this suit, you fucked up. A collaborative joint effort between \
 		Apadyne and Nanotrasen the construction and modules gives the user robust protection against \
@@ -1997,8 +1997,8 @@
 	wound = 25
 
 /datum/mod_theme/corporate
-	name = "corporate"
-	desc = "A fancy, high-tech suit for Nanotrasen's high ranking officers."
+	name = "公司"
+	desc = "一套精美的、高科技的制服，专为纳米传讯的高级官员设计。"
 	extended_desc = "An even more costly version of the Magnate model, the corporate suit is a thermally insulated, \
 		anti-corrosion coated suit for high-ranking CentCom Officers, deploying pristine protective armor and \
 		advanced actuators, feeling practically weightless when turned on. Scraping the paint of this suit is \
@@ -2066,8 +2066,8 @@
 	wound = 15
 
 /datum/mod_theme/chrono
-	name = "chrono"
-	desc = "A suit beyond our time, beyond time itself. Used to traverse timelines and \"correct their course\"."
+	name = "时空"
+	desc = "这是一件超越我们时代、甚至超越时间本身的装备。它能够穿越各个时代，并“修正历史的进程”。"
 	extended_desc = "A suit whose tech goes beyond this era's understanding. The internal mechanisms are all but \
 		completely alien, but the purpose is quite simple. The suit protects the user from the many incredibly lethal \
 		and sometimes hilariously painful side effects of jumping timelines, while providing inbuilt equipment for \
@@ -2130,8 +2130,8 @@
 	wound = 15
 
 /datum/mod_theme/debug
-	name = "debug"
-	desc = "Strangely nostalgic."
+	name = "除错"
+	desc = "有一种莫名的怀旧感。"
 	extended_desc = "An advanced suit that has dual ion engines powerful enough to grant a humanoid flight. \
 		Contains an internal self-recharging high-current capacitor for short, powerful bo- \
 		Oh wait, this is not actually a flight suit. Fuck."
@@ -2195,8 +2195,8 @@
 	acid = 100
 
 /datum/mod_theme/administrative
-	name = "administrative"
-	desc = "A suit made of adminium. Who comes up with these stupid mineral names?"
+	name = "管理"
+	desc = "一件由艾德米合金制成的服装。这些人到底想出这些多么愚蠢的矿物质名称来呢？"
 	extended_desc = "Yeah, okay, I guess you can call that an event. What I consider an event is something actually \
 		fun and engaging for the players- instead, most were sitting out, dead or gibbed, while the lucky few got to \
 		have all the fun. If this continues to be a pattern for your \"events\" (Admin Abuse) \

@@ -7,8 +7,8 @@
 //As long as this is working, solar panels on same powernet will track automatically
 
 /obj/machinery/power/tracker
-	name = "solar tracker"
-	desc = "A solar directional tracker."
+	name = "太阳能跟踪装置"
+	desc = "一个太阳能跟踪器。"
 	icon = 'icons/obj/machines/solar.dmi'
 	icon_state = "tracker_base"
 	density = TRUE
@@ -127,7 +127,7 @@
 /obj/machinery/power/tracker/crowbar_act(mob/user, obj/item/I)
 	if(I.use_tool(src, user, 0))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		user.visible_message(span_notice("[user] takes the glass off [src]."), span_notice("You take the glass off [src]."))
+		user.visible_message(span_notice("[user] 从 [src] 上取下了玻璃。"), span_notice("你从 [src] 上取下了玻璃。"))
 		deconstruct(TRUE)
 	return TRUE
 
@@ -159,7 +159,7 @@
 // Tracker Electronic
 
 /obj/item/electronics/tracker
-	name = "tracker electronics"
+	name = "追踪电子设备"
 
 #undef TRACKER_Z_OFFSET
 #undef TRACKER_EDGE_Z_OFFSET

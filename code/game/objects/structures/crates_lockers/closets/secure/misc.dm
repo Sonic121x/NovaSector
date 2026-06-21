@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/ert_com
-	name = "emergency response team commander's locker"
-	desc = "A storage unit containing equipment for an Emergency Response Team Commander."
+	name = "应急反应部队指挥官的储物柜"
+	desc = "存放应急反应部队装备的储藏柜。"
 	req_access = list(ACCESS_CENT_CAPTAIN)
 	icon_state = "cap"
 
@@ -25,8 +25,8 @@
 	new /obj/item/aicard(src)
 
 /obj/structure/closet/secure_closet/ert_sec
-	name = "emergency response team security locker"
-	desc = "A storage unit containing equipment for an Emergency Response Team Security Officer."
+	name = "应急反应部队安全储物柜"
+	desc = "一个存储单元，内有应急反应部队安全官的装备。"
 	req_access = list(ACCESS_CENT_SPECOPS)
 	icon_state = "hos"
 
@@ -39,8 +39,8 @@
 	new /obj/item/shield/riot/tele(src)
 
 /obj/structure/closet/secure_closet/ert_med
-	name = "emergency response team medical locker"
-	desc = "A storage unit containing equipment for an Emergency Response Team Medical Officer."
+	name = "应急反应部队医疗储物柜"
+	desc = "一个存储单元，应急反应部队医疗官的装备。"
 	req_access = list(ACCESS_CENT_MEDICAL)
 	icon_state = "cmo"
 
@@ -55,8 +55,8 @@
 	new /obj/item/defibrillator/compact/combat/loaded/nanotrasen(src)
 
 /obj/structure/closet/secure_closet/ert_engi
-	name = "emergency response team engineer locker"
-	desc = "A storage unit containing equipment for an Emergency Response Team Engineer."
+	name = "应急反应部队工程师储物柜"
+	desc = "一个储存单元，包含应急反应部队工程师的装备。"
 	req_access = list(ACCESS_CENT_STORAGE)
 	icon_state = "ce"
 

@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 
 /datum/electrolyzer_reaction
 	var/list/requirements
-	var/name = "reaction"
+	var/name = "反应"
 	var/id = "r"
 	var/desc = ""
 	var/list/factor
@@ -48,9 +48,9 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 	return TRUE
 
 /datum/electrolyzer_reaction/h2o_conversion
-	name = "H2O Conversion"
+	name = "水转化"
 	id = "h2o_conversion"
-	desc = "Conversion of H2o into O2 and H2"
+	desc = "将水（H2O）转化为氧气（O2）和氢气（H2）"
 	requirements = list(
 		/datum/gas/water_vapor = MINIMUM_MOLE_COUNT
 	)
@@ -74,9 +74,9 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 		air_mixture.temperature = max(air_mixture.temperature * old_heat_capacity / new_heat_capacity, TCMB)
 
 /datum/electrolyzer_reaction/nob_conversion
-	name = "Hypernob conversion"
+	name = "超铌转换"
 	id = "nob_conversion"
-	desc = "Conversion of Hypernoblium into Antinoblium"
+	desc = "超铌转化为反铌"
 	requirements = list(
 		/datum/gas/hypernoblium = MINIMUM_MOLE_COUNT,
 	)
@@ -109,9 +109,9 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 		air_mixture.temperature = max(air_mixture.temperature * old_heat_capacity / new_heat_capacity, TCMB)
 
 /datum/electrolyzer_reaction/halon_generation
-	name = "Halon generation"
+	name = "合成哈龙"
 	id = "halon_generation"
-	desc = "Production of halon from the electrolysis of BZ."
+	desc = "通过电解BZ生产哈龙。"
 	requirements = list(
 		/datum/gas/bz = MINIMUM_MOLE_COUNT,
 	)

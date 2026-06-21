@@ -1,7 +1,7 @@
 /// Caused by dirty food. Makes you burp out Tritium, sometimes burning hot!
 /datum/disease/gastritium
-	name = "Gastritium"
-	desc = "If left untreated, may manifest in severe Tritium heartburn."
+	name = "胃灼氚"
+	desc = "若不及时治疗，可能引发严重的氚灼烧感。"
 	form = "Bacteria"
 	agent = "Atmobacter Polyri"
 	cure_text = /datum/reagent/consumable/milk::name
@@ -26,17 +26,17 @@
 				affected_mob.emote("burp")
 		if(3)
 			if(SPT_PROB(1, seconds_per_tick) && affected_mob.stat == CONSCIOUS)
-				to_chat(affected_mob, span_warning("Your stomach makes turbine noises..."))
+				to_chat(affected_mob, span_warning("你的胃发出涡轮般的噪音……"))
 			else if(SPT_PROB(1, seconds_per_tick))
 				affected_mob.emote("burp")
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick) && affected_mob.stat == CONSCIOUS)
-				to_chat(affected_mob, span_warning("You're starting to feel like a burn chamber..."))
+				to_chat(affected_mob, span_warning("你开始感觉自己像个燃烧室……"))
 			else if(SPT_PROB(1, seconds_per_tick))
 				tritium_burp()
 		if(5)
 			if(SPT_PROB(1, seconds_per_tick) && affected_mob.stat == CONSCIOUS)
-				to_chat(affected_mob, span_warning("You feel like you're about to delam..."))
+				to_chat(affected_mob, span_warning("你感觉自己快要解离了……"))
 			else if(SPT_PROB(1, seconds_per_tick))
 				tritium_burp(hot_chance = TRUE)
 	var/change_limit = max(affected_mob.get_body_temp_heat_damage_limit() - 5 - affected_mob.get_body_temp_normal(apply_change=FALSE), 0)
@@ -49,6 +49,6 @@
 	if(hot_chance && prob(tritium_burp_hot_chance))
 		burp.set_temperature(TRITIUM_MINIMUM_BURN_TEMPERATURE)
 		if(affected_mob.stat == CONSCIOUS)
-			to_chat(affected_mob, span_warning("Your throat feels hot!"))
-	affected_mob.visible_message("burps out green gas.", visible_message_flags = EMOTE_MESSAGE)
+			to_chat(affected_mob, span_warning("你的喉咙感觉发烫！"))
+	affected_mob.visible_message("打嗝喷出绿色气体。", visible_message_flags = EMOTE_MESSAGE)
 	affected_mob.loc.assume_air(burp)

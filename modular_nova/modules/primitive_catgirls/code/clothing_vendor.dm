@@ -1,6 +1,6 @@
 /obj/machinery/vending/primitive_catgirl_clothing_vendor
-	name = "wardrobe"
-	desc = "It's a big wardrobe filled up with all sorts of clothing."
+	name = "衣柜"
+	desc = "这是一个装满各种衣物的大衣柜。"
 	icon = 'icons/obj/storage/closet.dmi'
 	icon_state = "cabinet"
 	use_power = FALSE

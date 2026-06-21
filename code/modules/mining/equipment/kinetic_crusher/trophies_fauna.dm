@@ -4,8 +4,8 @@
 
 //watcher
 /obj/item/crusher_trophy/watcher_wing
-	name = "watcher wing"
-	desc = "A wing ripped from a watcher. Suitable as a trophy for a kinetic crusher."
+	name = "观察者之翼"
+	desc = "从观察者身上撕下的翅膀。适合作为动能粉碎器的战利品。"
 	icon_state = "watcher_wing"
 	denied_type = /obj/item/crusher_trophy/watcher_wing
 	trophy_id = TROPHY_WATCHER
@@ -29,8 +29,8 @@
 
 //magmawing watcher
 /obj/item/crusher_trophy/blaster_tubes/magma_wing
-	name = "magmawing watcher wing"
-	desc = "A still-searing wing from a magmawing watcher. Suitable as a trophy for a kinetic crusher."
+	name = "熔岩翼观察者之翼"
+	desc = "从熔岩翼观察者身上取下的、仍在灼烧的翅膀。适合作为动能粉碎器的战利品。"
 	icon_state = "magma_wing"
 	gender = NEUTER
 	bonus_value = 5
@@ -41,23 +41,23 @@
 
 /obj/item/crusher_trophy/blaster_tubes/magma_wing/on_projectile_fire(obj/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
-		marker.name = "heated [marker.name]"
+		marker.name = "加热的[marker.name]"
 		marker.icon_state = "lava"
 		marker.damage = bonus_value
 		deadly_shot = FALSE
 
 //icewing watcher
 /obj/item/crusher_trophy/watcher_wing/ice_wing
-	name = "icewing watcher wing"
-	desc = "A carefully preserved frozen wing from an icewing watcher. Suitable as a trophy for a kinetic crusher."
+	name = "冰翼观察者之翼"
+	desc = "从冰翼观察者身上小心保存下来的冰冻翅膀。适合作为动能粉碎器的战利品。"
 	icon_state = "ice_wing"
 	bonus_value = 8
 	wildhunter_drop = /obj/item/stack/sheet/sinew
 
 //legion
 /obj/item/crusher_trophy/legion_skull
-	name = "legion skull"
-	desc = "A dead and lifeless legion skull. Suitable as a trophy for a kinetic crusher."
+	name = "军团颅骨"
+	desc = "一个死寂的军团颅骨。适合作为动能粉碎器的战利品。"
 	icon_state = "legion_skull"
 	denied_type = /obj/item/crusher_trophy/legion_skull
 	bonus_value = 3
@@ -78,8 +78,8 @@
 
 // Goliath - Increases damage as your health decreases.
 /obj/item/crusher_trophy/goliath_tentacle
-	name = "goliath tentacle"
-	desc = "A sliced-off goliath tentacle. Suitable as a trophy for a kinetic crusher."
+	name = "歌利亚触手"
+	desc = "一段被切下的歌利亚触手。适合作为动能粉碎机的战利品。"
 	icon_state = "goliath_tentacle"
 	denied_type = /obj/item/crusher_trophy/goliath_tentacle
 	bonus_value = 2
@@ -107,9 +107,9 @@
 
 // Lobstrosity - Rebukes targets, increasing their click cooldown.
 /obj/item/crusher_trophy/lobster_claw
-	name = "lobster claw"
+	name = "龙虾钳"
 	icon_state = "lobster_claw"
-	desc = "A lobster claw."
+	desc = "一只龙虾钳。"
 	denied_type = /obj/item/crusher_trophy/lobster_claw
 	trophy_id = TROPHY_LOBSTER_CLAW
 	bonus_value = 1
@@ -124,9 +124,9 @@
 
 // Brimdemon - makes a funny sound, the most essential trophy out of all
 /obj/item/crusher_trophy/brimdemon_fang
-	name = "brimdemon's fang"
+	name = "熔岩恶魔之牙"
 	icon_state = "brimdemon_fang"
-	desc = "A fang from a brimdemon's corpse."
+	desc = "取自熔岩恶魔尸体的尖牙。"
 	denied_type = /obj/item/crusher_trophy/brimdemon_fang
 	trophy_id = TROPHY_BRIMDEMON_FANG
 	wildhunter_drop = /obj/item/organ/monster_core/brimdust_sac
@@ -143,10 +143,10 @@
 
 // Bileworm
 /obj/item/crusher_trophy/bileworm_spewlet
-	name = "bileworm spewlet"
+	name = "胆汁蠕虫幼体"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "bileworm_spewlet"
-	desc = "A baby bileworm. Suitable as a trophy for a kinetic crusher."
+	desc = "一只胆汁蠕虫幼体。适合作为动能粉碎机的战利品。"
 	denied_type = /obj/item/crusher_trophy/bileworm_spewlet
 	wildhunter_drop = /obj/item/stack/sheet/animalhide/bileworm
 	///item ability that handles the effect
@@ -225,8 +225,8 @@
 
 // demonic watcher
 /obj/item/crusher_trophy/ice_demon_cube
-	name = "demonic cube"
-	desc = "A stone cold cube dropped from an ice demon."
+	name = "恶魔立方"
+	desc = "一块从冰霜恶魔身上掉落的冰冷石块。"
 	icon_state = "ice_demon_cube"
 	denied_type = /obj/item/crusher_trophy/ice_demon_cube
 	trophy_id = TROPHY_ICE_DEMON
@@ -262,8 +262,8 @@
 // Wolf
 
 /obj/item/crusher_trophy/wolf_ear
-	name = "wolf ear"
-	desc = "It's a wolf ear."
+	name = "狼耳"
+	desc = "这是一只狼耳。"
 	icon_state = "wolf_ear"
 	trophy_id = TROPHY_WOLF_EAR
 	denied_type = /obj/item/crusher_trophy/wolf_ear
@@ -277,8 +277,8 @@
 
 // Polar bear - If you're hurt, you attack twice when you detonate a mark
 /obj/item/crusher_trophy/bear_paw
-	name = "polar bear paw"
-	desc = "It's a polar bear paw."
+	name = "北极熊掌"
+	desc = "这是一只北极熊掌。"
 	icon_state = "bear_paw"
 	trophy_id = TROPHY_BEAR_PAW
 	denied_type = /obj/item/crusher_trophy/bear_paw
@@ -296,8 +296,8 @@
 
 // Raptor - Your shots now go through your allied mobs. You monster.
 /obj/item/crusher_trophy/raptor_feather
-	name = "raptor feather"
-	desc = "A feather of an innocent raptor. You'd go to hell for this one, if you weren't already mining in it."
+	name = "迅猛龙羽毛"
+	desc = "一根无辜迅猛龙的羽毛。你会因此下地狱的，如果你不是已经在地狱里采矿的话。"
 	icon_state = "raptor_feather"
 	denied_type = /obj/item/crusher_trophy/raptor_feather
 	trophy_id = TROPHY_RAPTOR_FEATHER

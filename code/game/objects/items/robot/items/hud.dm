@@ -18,12 +18,12 @@
 	return ..()
 
 /obj/item/borg/sight/xray
-	name = "\proper X-ray vision"
+	name = "\proper X射线视觉"
 	icon_state = "securityhudnight"
 	sight_mode = BORGXRAY
 
 /obj/item/borg/sight/material
-	name = "\proper material vision"
+	name = "\proper 材料视觉"
 	sight_mode = BORGMATERIAL
 	icon_state = "material"
 
@@ -37,11 +37,11 @@
 	return ..()
 
 /obj/item/borg/sight/hud/med
-	name = "medical hud"
+	name = "医疗hud"
 	icon_state = "healthhud"
 	hud = /obj/item/clothing/glasses/hud/health
 
 /obj/item/borg/sight/hud/sec
-	name = "security hud"
+	name = "安保hud"
 	icon_state = "securityhud"
 	hud = /obj/item/clothing/glasses/hud/security

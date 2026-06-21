@@ -1,6 +1,6 @@
 /mob/living/basic/spaceman
-	name = "Spaceman"
-	desc = "What in the actual hell..?"
+	name = "太空人"
+	desc = "这到底是什么鬼东西..？"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "old"
 	icon_living = "old"

@@ -16,8 +16,8 @@
 */
 
 /obj/item/clothing/under/rank/cargo/tech/nova/utility
-	name = "supply utility uniform"
-	desc = "A utility uniform worn by employees of the Supply department."
+	name = "货运实用制服"
+	desc = "货运部门员工穿着的实用制服。"
 	icon_state = "util_cargo"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_BIG_LEGS_MASK
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -28,26 +28,26 @@
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/rank/cargo/tech/nova/long
-	name = "cargo technician's long jumpsuit"
-	desc = "For crate-pushers who'd rather protect their legs than show them off."
+	name = "货运技工长款连体服"
+	desc = "适合那些宁愿保护双腿也不愿展示它们的板条箱搬运工。"
 	icon_state = "cargo_long"
 	alt_covers_chest = FALSE
 
 /obj/item/clothing/under/rank/cargo/tech/nova/gorka
-	name = "supply gorka"
-	desc = "A rugged, utilitarian gorka worn by the Supply department."
+	name = "货运戈尔卡服"
+	desc = "货运部门穿着的坚固实用的戈尔卡服。"
 	icon_state = "gorka_cargo"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/cargo/tech/nova/turtleneck
-	name = "supply turtleneck"
-	desc = "A snug turtleneck sweater worn by the Supply department."
+	name = "货运高领衫"
+	desc = "货运部门穿着的舒适高领毛衣。"
 	icon_state = "turtleneck_cargo"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/cargo/tech/nova/turtleneck/skirt
-	name = "supply skirtleneck"
-	desc = "A snug turtleneck sweater worn by Supply, this time with a skirt attached!"
+	name = "货运裙领衫"
+	desc = "货运部门穿着的舒适高领毛衣，这次配了条裙子！"
 	icon_state = "skirtleneck"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	alt_covers_chest = TRUE
@@ -55,14 +55,14 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON | CLOTHING_BIG_LEGS_MASK
 
 /obj/item/clothing/under/rank/cargo/tech/nova/evil
-	name = "black cargo uniform"
-	desc = "A standard cargo uniform with a more... Venerable touch to it."
+	name = "黑色货运制服"
+	desc = "一件标准的货运制服，带有一种更……令人敬畏的格调。"
 	icon_state = "qmsynd"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/cargo/tech/nova/casualman
-	name = "cargo technician casualwear"
-	desc = "A pair of stylish black jeans and a regular sweater for the relaxed technician."
+	name = "货运技工便服"
+	desc = "一条时尚的黑色牛仔裤和一件普通毛衣，适合休闲的技工。"
 	icon_state = "cargotechjean"
 	can_adjust = FALSE
 
@@ -71,40 +71,40 @@
 */
 
 /obj/item/clothing/under/rank/cargo/qm/nova/gorka
-	name = "quartermaster's gorka"
-	desc = "A rugged, utilitarian gorka with silver markings. Unlike the regular employees', this one is lined with silk on the inside."
+	name = "军需官戈尔卡服"
+	desc = "一件结实耐用的戈尔卡制服，带有银色标记。与普通员工的制服不同，这件内衬是丝绸的。"
 	icon_state = "gorka_qm"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/imperial/quartermaster
-	name = "quartermaster's naval uniform"
-	desc = "A uniform of the grand navy questionably granted to Nanotrasen's favorite union representative."
+	name = "军需官的海军制服"
+	desc = "一件来自伟大海军的制服，被可疑地授予了纳米传讯最喜爱的工会代表。"
 	icon_state = "/obj/item/clothing/under/imperial/quartermaster"
 	greyscale_colors = "#8B4C31#8B4C31#3E3E48#373741#ccced1#DEB63D#DEB63D"
 	flags_1 = NONE
 
 /obj/item/clothing/under/imperialskirt/quartermaster
-	name = "quartermaster's naval skirt"
-	desc = "A uniform of the grand navy questionably granted to Nanotrasen's favorite union representative."
+	name = "军需官的海军裙"
+	desc = "一件被可疑地授予纳米传讯最爱的工会代表的帝国海军制服。"
 	greyscale_colors = "#8B4C31#3E3E48#373741#ccced1#DEB63D#DEB63D"
 	icon_state = "/obj/item/clothing/under/imperialskirt/quartermaster"
 	flags_1 = NONE
 
 /obj/item/clothing/under/rank/cargo/qm/nova/turtleneck
-	name = "quartermaster's turtleneck"
-	desc = "A snug turtleneck sweater worn by the Quartermaster, characterized by the expensive-looking pair of suit pants."
+	name = "军需官的高领衫"
+	desc = "一件军需官穿着的紧身高领毛衣，特点是搭配了一条看起来价格不菲的西裤。"
 	icon_state = "turtleneck_qm"
 
 /obj/item/clothing/under/rank/cargo/qm/nova/turtleneck/skirt
-	name = "quartermaster's skirtleneck"
-	desc = "A snug turtleneck sweater worn by the Quartermaster, as shown by the elegant double-lining of its silk skirt."
+	name = "军需官的裙领衫"
+	desc = "一件军需官穿着的舒适高领毛衣，其丝绸裙摆优雅的双层衬里彰显了这一点。"
 	icon_state = "skirtleneckQM"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/rank/cargo/qm/nova/interdyne
-	name = "deck officer's jumpsuit"
-	desc = "A dark suit with a classic cargo vest. For the ultimate master of all things paper."
+	name = "甲板军官连体服"
+	desc = "一套带有经典货运背心的深色西装。献给所有纸质事务的终极掌控者。"
 	icon_state = "qmsynd"
 	has_sensor = NO_SENSORS
 	armor_type = /datum/armor/clothing_under/nova_interdyne
@@ -116,14 +116,14 @@
 	acid = 40
 
 /obj/item/clothing/under/rank/cargo/qm/nova/formal
-	name = "quartermaster's formal jumpsuit"
-	desc = "A western-like alternate uniform for the old fashioned QM."
+	name = "军需官的正式连体服"
+	desc = "一款西部风格、为守旧派仓库主管准备的备用制服。"
 	icon_state = "supply_chief"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/cargo/qm/nova/formal/skirt
-	name = "quartermaster's formal jumpskirt"
-	desc = "A western-like alternate uniform for the old fashioned QM. Skirt included!"
+	name = "军需官的正式连身裙"
+	desc = "为守旧的仓库主管准备的西部风格备用制服。包含裙子！"
 	icon_state = "supply_chief_skirt"
 	can_adjust = FALSE
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -133,6 +133,6 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/rank/cargo/qm/nova/casual
-	name = "quartermaster's casualwear"
-	desc = "A brown jacket with matching trousers for the relaxed Quartermaster."
+	name = "军需官的便服"
+	desc = "一件棕色夹克搭配同色长裤，适合休闲的军需官。"
 	icon_state = "qmc"

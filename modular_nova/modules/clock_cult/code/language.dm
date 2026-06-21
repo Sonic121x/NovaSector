@@ -7,8 +7,8 @@
 // For any other language nerds: https://pastebin.com/ngFMZHNV
 
 /datum/language/ratvar
-	name = "Ratvarian"
-	desc = "A timeless language full of power and incomprehensible to the unenlightened."
+	name = "拉特瓦语"
+	desc = "一种充满力量的永恒语言，未开悟者无法理解。"
 	icon_state = "ratvar"
 	key = "r"
 	default_priority = 10

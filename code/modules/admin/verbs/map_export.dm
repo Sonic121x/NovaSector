@@ -2,14 +2,14 @@ ADMIN_VERB(map_export, R_DEBUG, "Map Export", "Select a part of the map by coord
 	var/user_x = user.mob.x
 	var/user_y = user.mob.y
 	var/user_z = user.mob.z
-	var/z_level = tgui_input_number(user, "Export Which Z-Level?", "Map Exporter", user_z || 2)
-	var/start_x = tgui_input_number(user, "Start X?", "Map Exporter", user_x || 1, world.maxx, 1)
-	var/start_y = tgui_input_number(user, "Start Y?", "Map Exporter", user_y || 1, world.maxy, 1)
-	var/end_x = tgui_input_number(user, "End X?", "Map Exporter", user_x || 1, world.maxx, 1)
-	var/end_y = tgui_input_number(user, "End Y?", "Map Exporter", user_y || 1, world.maxy, 1)
+	var/z_level = tgui_input_number(user, "导出哪个Z层级？", "地图导出器", user_z || 2)
+	var/start_x = tgui_input_number(user, "起始X坐标？", "地图导出器", user_x || 1, world.maxx, 1)
+	var/start_y = tgui_input_number(user, "起始Y坐标？", "地图导出器", user_y || 1, world.maxy, 1)
+	var/end_x = tgui_input_number(user, "结束X坐标？", "地图导出器", user_x || 1, world.maxx, 1)
+	var/end_y = tgui_input_number(user, "结束Y坐标？", "地图导出器", user_y || 1, world.maxy, 1)
 	var/date = time2text(world.timeofday, "YYYY-MM-DD_hh-mm-ss", TIMEZONE_UTC)
-	var/file_name = sanitize_filename(tgui_input_text(user, "Filename?", "Map Exporter", "exported_map_[date]"))
-	var/confirm = tgui_alert(user, "Are you sure you want to do this? This will cause extreme lag!", "Map Exporter", list("Yes", "No"))
+	var/file_name = sanitize_filename(tgui_input_text(user, "Filename?", "地图导出器", "exported_map_[date]"))
+	var/confirm = tgui_alert(user, "你确定要这样做吗？这会导致严重的延迟！", "地图导出器", list("Yes", "No"))
 
 	if(confirm != "Yes")
 		return

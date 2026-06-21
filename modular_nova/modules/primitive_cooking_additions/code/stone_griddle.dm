@@ -1,6 +1,6 @@
 /obj/machinery/griddle/stone
-	name = "stone griddle"
-	desc = "You could probably cook an egg on this... the griddle slab looks very unsanitary."
+	name = "石制煎板"
+	desc = "你大概能在这上面煎个蛋……这块石板看起来非常不卫生。"
 	icon = 'modular_nova/modules/primitive_cooking_additions/icons/stone_kitchen_machines.dmi'
 	icon_state = "griddle1_off"
 	density = TRUE
@@ -21,7 +21,7 @@
 /obj/machinery/griddle/stone/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It can be taken apart with a <b>crowbar</b>.")
+	. += span_notice("可以用<b>撬棍</b>将其拆解。")
 
 /obj/machinery/griddle/stone/crowbar_act(mob/living/user, obj/item/tool)
 	user.balloon_alert_to_viewers("disassembling...")

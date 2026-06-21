@@ -1,6 +1,6 @@
 /obj/item/storage/pouch/cin_medipens
-	name = "colonial medipen pouch"
-	desc = "A pouch for your (medi-)pens that goes in your pocket."
+	name = "殖民医疗笔袋"
+	desc = "一个可以放进口袋的（医疗）笔袋。"
 	icon = 'modular_nova/modules/food_replicator/icons/pouch.dmi'
 	icon_state = "medipen_pouch"
 	storage_type = /datum/storage/pouch/medipens
@@ -27,8 +27,8 @@
 	))
 
 /obj/item/storage/pouch/cin_medkit
-	name = "colonial first aid kit"
-	desc = "A medical case that goes in your pocket. Can be used to store things unrelated to medicine, except for guns, ammo and raw materials."
+	name = "殖民急救包"
+	desc = "一个可以放进口袋的医疗箱。也可用于存放与医疗无关的物品，但枪支、弹药和原材料除外。"
 	icon = 'modular_nova/modules/food_replicator/icons/pouch.dmi'
 	icon_state = "cfak"
 	storage_type = /datum/storage/pouch/colonial_med
@@ -50,8 +50,8 @@
 	)
 
 /obj/item/storage/pouch/cin_general
-	name = "colonial general pouch"
-	desc = "A synthleather general purpose pouch that goes in your pocket."
+	name = "殖民通用袋"
+	desc = "一个可以放进口袋的合成皮革通用袋。"
 	icon = 'modular_nova/modules/food_replicator/icons/pouch.dmi'
 	icon_state = "gen_pouch"
 	storage_type = /datum/storage/colonial_gen

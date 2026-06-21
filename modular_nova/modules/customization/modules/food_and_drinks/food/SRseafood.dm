@@ -1,6 +1,6 @@
 /obj/item/food/canned/tuna
-	name = "can of tuna"
-	desc = "You can tune a piano, but you can't tuna fish."
+	name = "金枪鱼罐头"
+	desc = "你可以给钢琴调音，但你不能给金枪鱼调音。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "tunacan"
 	trash_type = /obj/item/trash/can/food/tuna
@@ -13,7 +13,7 @@
 	foodtypes = SEAFOOD
 
 /obj/item/trash/can/food/tuna
-	name = "can of tuna"
+	name = "金枪鱼罐头"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "tunacan_empty"
 

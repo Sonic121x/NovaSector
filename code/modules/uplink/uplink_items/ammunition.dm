@@ -1,5 +1,5 @@
 /datum/uplink_category/ammo
-	name = "Ammunition"
+	name = "弹药"
 	weight = 7
 
 /datum/uplink_item/ammo

@@ -94,13 +94,13 @@
 	set category = "IC"
 
 	if(!able_to_leave)
-		to_chat(src, span_warning("You are unable to leave the soulcatcher."))
+		to_chat(src, span_warning("你无法离开灵魂捕获器。"))
 		return FALSE
 
-	if(tgui_alert(src, "Are you sure you wish to leave the soulcatcher? IF you had a body, this will return you to your body", "Soulcatcher", list("Yes", "No")) != "Yes")
+	if(tgui_alert(src, "你确定要离开灵魂捕捉器吗？如果你有身体，这将使你返回自己的身体", "灵魂捕捉器", list("Yes", "No")) != "Yes")
 		return FALSE
 
-	if(tgui_alert(src, "Are you really sure about this?", "Soulcatcher", list("Yes", "No")) != "Yes")
+	if(tgui_alert(src, "你真的确定要这样做吗？", "灵魂捕捉器", list("Yes", "No")) != "Yes")
 		return FALSE
 
 	return_to_body()
@@ -129,7 +129,7 @@
 		return
 
 	if((!able_to_speak && !communicating_externally) || (!able_to_speak_as_container && communicating_externally))
-		to_chat(src, span_warning("You are unable to speak!"))
+		to_chat(src, span_warning("你无法说话！"))
 		return FALSE
 
 	var/datum/soulcatcher_room/room = current_room.resolve()
@@ -145,7 +145,7 @@
 		return FALSE
 
 	if((!able_to_emote && !communicating_externally) || (!able_to_emote_as_container && communicating_externally))
-		to_chat(src, span_warning("You are unable to emote!"))
+		to_chat(src, span_warning("你无法做表情动作！"))
 		return FALSE
 
 	var/datum/soulcatcher_room/room = current_room.resolve()
@@ -205,7 +205,7 @@
 	mob_type_blacklist_typecache = list(/mob/living/brain, /mob/living/soulcatcher_soul)
 
 /datum/action/innate/leave_soulcatcher
-	name = "Leave Soulcatcher"
+	name = "离开灵魂捕获器"
 	background_icon = 'modular_nova/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_nova/master_files/icons/mob/actions/actions_nif.dmi'
@@ -220,7 +220,7 @@
 	parent_soul.leave_soulcatcher()
 
 /datum/action/innate/soulcatcher_user
-	name = "Soulcatcher"
+	name = "灵魂捕捉器"
 	background_icon = 'modular_nova/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_nova/master_files/icons/mob/actions/actions_nif.dmi'

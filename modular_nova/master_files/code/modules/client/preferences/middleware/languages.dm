@@ -2,7 +2,7 @@
 #define MAX_LANGUAGES_LINGUIST 4
 
 /datum/asset/spritesheet/languages
-	name = "languages"
+	name = "语言"
 	early = TRUE
 	cross_round_cachable = TRUE
 
@@ -112,7 +112,7 @@
 
 	var/max_languages = preferences.all_quirks.Find(TRAIT_LINGUIST) ? MAX_LANGUAGES_LINGUIST : MAX_LANGUAGES_NORMAL
 	if(preferences.languages && !(name_to_language[language_name] in preferences.languages) && preferences.languages.len == max_languages) // this is a new language and we're at the limit
-		to_chat(user, span_warning("You have too many languages learned!"))
+		to_chat(user, span_warning("你学习的语言太多了！"))
 		return TRUE
 
 	preferences.languages[name_to_language[language_name]] = LANGUAGE_SPOKEN
@@ -129,7 +129,7 @@
 
 	var/max_languages = preferences.all_quirks.Find(TRAIT_LINGUIST) ? MAX_LANGUAGES_LINGUIST : MAX_LANGUAGES_NORMAL
 	if(preferences.languages && !(name_to_language[language_name] in preferences.languages) && preferences.languages.len == max_languages) // this is a new language and we're at the limit
-		to_chat(user, span_warning("You have too many languages learned!"))
+		to_chat(user, span_warning("你学习的语言太多了！"))
 		return TRUE
 
 	preferences.languages[name_to_language[language_name]] = LANGUAGE_UNDERSTOOD

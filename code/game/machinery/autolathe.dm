@@ -1,6 +1,6 @@
 /obj/machinery/autolathe
-	name = "autolathe"
-	desc = "It produces items using iron, glass, plastic and maybe some more."
+	name = "车床"
+	desc = "它能够用铁，玻璃，塑料或者什么其他的东西去生产物品。"
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "autolathe"
 	base_icon_state = "autolathe"
@@ -61,16 +61,16 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice("Material usage cost at <b>[creation_efficiency * 100]%</b>.")
+	. += span_notice("材料使用成本为<b>[creation_efficiency * 100]%</b>。")
 	if(drop_direction)
-		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
+		. += span_notice("当前配置为将打印物体掉落至<b>[dir2text(drop_direction)]</b>方向。")
 		. += span_notice("[EXAMINE_HINT("Alt-click")] to reset.")
 	else
 		. += span_notice("[EXAMINE_HINT("Drag")] towards a direction (while next to it) to change drop direction.")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("它的维护区面板可以[EXAMINE_HINT("screwed")][panel_open ? "closed" : "open"]。")
 	if(panel_open)
-		. += span_notice("The machine can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("这台机器可以被[EXAMINE_HINT("pried")]开。")
 
 /obj/machinery/autolathe/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(drop_direction)
@@ -310,7 +310,7 @@
 		var/chosen = tgui_input_list(
 			ui.user,
 			"Select the material to use[slot ? " for [LOWER_TEXT(slot.name)]" : ""]",
-			"Material Selection",
+			"材料选择",
 			sort_list(choices),
 		)
 		if(isnull(chosen))
@@ -456,21 +456,21 @@
 	if(!can_interact(user) || (!HAS_SILICON_ACCESS(user) && !isAdminGhostAI(user)) && !Adjacent(user))
 		return
 	if(busy)
-		balloon_alert(user, "printing started!")
+		balloon_alert(user, "打印已开始！")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+	balloon_alert(user, "掉落方向设置为[dir2text(drop_direction)]")
 
 /obj/machinery/autolathe/click_alt(mob/user)
 	if(!drop_direction)
 		return CLICK_ACTION_BLOCKING
 	if(busy)
-		balloon_alert(user, "busy printing!")
+		balloon_alert(user, "正忙于打印！")
 		return CLICK_ACTION_SUCCESS
-	balloon_alert(user, "drop direction reset")
+	balloon_alert(user, "掉落方向已重置")
 	drop_direction = 0
 	return CLICK_ACTION_SUCCESS
 
@@ -479,7 +479,7 @@
 		return ..()
 
 	if(busy)
-		balloon_alert(user, "it's busy!")
+		balloon_alert(user, "它正忙！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(panel_open && is_wire_tool(tool))
@@ -493,18 +493,18 @@
 		return ..()
 
 	if(panel_open)
-		balloon_alert(user, "close the panel first!")
+		balloon_alert(user, "请先关闭面板！")
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] begins to load \the [tool] in \the [src]..."),
-		balloon_alert(user, "uploading design..."),
-		span_hear("You hear the chatter of a floppy drive."))
+	user.visible_message(span_notice("[user]开始将\the [tool]装入\the [src]..."),
+		balloon_alert(user, "正在上传设计..."),
+		span_hear("你听见软盘驱动器吱吱作响."))
 	busy = TRUE
 
 	if(!do_after(user, 1.5 SECONDS, target = src))
 		busy = FALSE
 		update_static_data_for_all_viewers()
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "已中断！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/disk/design_disk/disky = tool
@@ -518,7 +518,7 @@
 			LAZYADD(not_imported, blueprint.name)
 
 	if(not_imported)
-		to_chat(user, span_warning("The following design[length(not_imported) > 1 ? "s" : ""] couldn't be imported: [english_list(not_imported)]"))
+		to_chat(user, span_warning("以下设计[length(not_imported) > 1 ? "s" : ""]无法被导入: [english_list(not_imported)]"))
 
 	busy = FALSE
 	update_static_data_for_all_viewers()

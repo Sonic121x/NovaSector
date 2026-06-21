@@ -18,7 +18,7 @@
 	return icon(resulting_icon)
 
 /obj/effect/abstract/held_tk_effect
-	name = "held_tk_effect"
+	name = "念力持物效果"
 	icon = 'modular_nova/master_files/icons/effects/tele_effects.dmi'
 	icon_state = "holder"
 	layer = HANDS_LAYER

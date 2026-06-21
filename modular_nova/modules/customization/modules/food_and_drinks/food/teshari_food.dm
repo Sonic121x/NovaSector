@@ -1,6 +1,6 @@
 /obj/item/food/piru_dough
-	name = "piru dough"
-	desc = "A coarse, stretchy dough made from piru flour and muli juice in a striking purple color, acting as the basis for most teshari cuisine. Puffs up dramatically when grilled or baked."
+	name = "皮鲁面团"
+	desc = "一种由皮鲁面粉和穆利果汁制成的粗糙、有弹性的面团，呈醒目的紫色，是大多数特莎丽菜肴的基础。在烧烤或烘烤时会显著膨胀。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "piru_dough"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
@@ -19,8 +19,8 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/piru_loaf, rand(15 SECONDS, 25 SECONDS), TRUE, TRUE)
 
 /obj/item/food/piru_loaf
-	name = "piru loaf"
-	desc = "A loaf of soft piru bread in a striking dark purple color, ready to be cut into slices. It's surprisingly stretchy, and smells quite minty."
+	name = "皮鲁面包条"
+	desc = "一条柔软的皮鲁面包，呈醒目的深紫色，可以切片。它出奇地有弹性，闻起来有相当浓的薄荷味。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "piru_loaf"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20)
@@ -33,8 +33,8 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/piru, 4, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice")
 
 /obj/item/food/breadslice/piru
-	name = "piru bread slice"
-	desc = "A slice of stretchy piru bread."
+	name = "皮鲁面包片"
+	desc = "一片有弹性的皮鲁面包。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "piru_bread_slice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
@@ -43,8 +43,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/flat_piru_dough
-	name = "flattened piru dough"
-	desc = "Flattened piru dough, can be cooked on a griddle or sliced into pasta."
+	name = "压平的皮鲁面团"
+	desc = "压平的皮鲁面团，可以在煎锅上烹饪或切成意大利面。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "flat_piru_dough"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
@@ -62,8 +62,8 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/grilled_piru_flatbread, rand(15 SECONDS, 25 SECONDS), TRUE, TRUE)
 
 /obj/item/food/grilled_piru_flatbread
-	name = "grilled piru flatbread"
-	desc = "Crispy, grilled piru flatbread. No longer as stretchy, but it smells absolutely amazing."
+	name = "烤皮鲁扁面包"
+	desc = "酥脆的烤皮鲁扁面包。不再那么有弹性，但闻起来绝对棒极了。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "grilled_piru_flatbread"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8)
@@ -72,8 +72,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/piru_pasta
-	name = "piru pasta"
-	desc = "Thick-cut segments of piru dough formed into chewy pasta."
+	name = "皮鲁意大利面"
+	desc = "由皮鲁面团切成厚片制成的有嚼劲的意大利面。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "piru_pasta"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
@@ -83,8 +83,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/baked_kiri
-	name = "baked kiri fruit"
-	desc = "A kiri fruit baked in an oven, causing the jelly inside to caramelize into a jelly donut-like crispy treat. Try not to get addicted."
+	name = "烤基里果"
+	desc = "在烤箱中烘烤过的奇里果，使其内部的果冻焦糖化，形成类似果冻甜甜圈的酥脆点心。小心别上瘾。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "baked_kiri"
 	food_reagents = list(
@@ -97,8 +97,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/baked_muli
-	name = "baked muli pod"
-	desc = "A muli pod baked in an oven, causing the minty liquid inside to condense and the exterior to soften, giving the vegetable a hard-boiled egg consistency. Remarkably tasty and healthy!"
+	name = "烤穆里豆荚"
+	desc = "在烤箱中烘烤过的穆里豆荚，使其内部的薄荷液体凝结，外皮软化，让这种蔬菜具有类似煮硬鸡蛋的口感。异常美味且健康！"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "baked_muli"
 	food_reagents = list(
@@ -112,8 +112,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spiced_jerky
-	name = "spiced jerky"
-	desc = "A segment of meat seasoned with nakati spice and dehydrated. Makes for a tasty, chewy snack."
+	name = "香料肉干"
+	desc = "用纳卡蒂香料调味并脱水处理的一块肉。是一种美味耐嚼的零食。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "spiced_jerky"
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
@@ -127,8 +127,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/sirisai_wrap
-	name = "sirisai wrap"
-	desc = "Meat and cabbage seasoned with nakati spice and wrapped tightly in flattened piru bread. Simple, light, delicious."
+	name = "西里赛卷饼"
+	desc = "用纳卡蒂香料调味的肉和卷心菜，紧紧包裹在压平的皮鲁面包里。简单、清淡、美味。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "sirisai_wrap"
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
@@ -143,8 +143,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/sweet_piru_noodles
-	name = "sweet piru noodles"
-	desc = "Piru pasta mixed in a bowl with chopped kiri fruit, muli pods, and carrots. It looks bizarre and seems kind of slimy, but the taste cannot be denied."
+	name = "甜皮鲁面条"
+	desc = "皮鲁意面与切碎的奇里果、穆里豆荚和胡萝卜在碗中混合而成。看起来很奇怪，似乎有点黏糊糊的，但味道无可否认。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "sweet_piru_noodles"
 	trash_type = /obj/item/reagent_containers/cup/bowl
@@ -160,8 +160,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/kiri_curry
-	name = "kiri curry"
-	desc = "Spiced meat mixed with finely sliced piru pasta and minced chili all drizzled in piru jelly sauce, just the perfect balance of spicy and sweet."
+	name = "奇里咖喱"
+	desc = "香料肉与细切皮鲁意面和剁碎的辣椒混合，淋上皮鲁果冻酱，正是辣味与甜味的完美平衡。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "kiri_curry"
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
@@ -178,8 +178,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_5
 
 /obj/item/food/sirisai_flatbread
-	name = "sirisai flatbread"
-	desc = "Piru flatbread grilled until crispy and topped with meat, chopped muli pods, and tomato sauce. Looks similar to a pizza, but way more purple and blue. Can be sliced!"
+	name = "西里赛扁面包"
+	desc = "皮鲁扁面包烤至酥脆，上面铺有肉、切碎的穆里豆荚和番茄酱。看起来类似披萨，但颜色更偏紫和蓝。可以切片！"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "sirisai_flatbread"
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
@@ -198,8 +198,8 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/sirisai_flatbread_slice, 4, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice")
 
 /obj/item/food/sirisai_flatbread_slice
-	name = "sirisai flatbread slice"
-	desc = "A slice of piru flatbread grilled until crispy and topped with meat, chopped muli pods, and tomato sauce. Looks similar to a slice of pizza, but way more purple and blue."
+	name = "西里赛扁面包切片"
+	desc = "一片烤至酥脆的皮鲁扁面包，上面铺有肉、切碎的穆里豆荚和番茄酱。看起来类似一片披萨，但颜色更偏紫和蓝。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "sirisai_flatbread_slice"
 	food_reagents = list(
@@ -215,8 +215,8 @@
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 3/4)
 
 /obj/item/food/bluefeather_crisp
-	name = "bluefeather crisp"
-	desc = "A spiced cracker made of flattened, dried piru bread. The name comes from the blue stain often left on feathers when eaten with muli dip."
+	name = "蓝羽脆片"
+	desc = "一种用压平、干燥的皮鲁面包制成的香料薄脆饼干。其名称来源于食用时搭配穆里蘸酱常会在羽毛上留下的蓝色污渍。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "bluefeather_crisp"
 	food_reagents = list(
@@ -229,8 +229,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bluefeather_crisps_and_dip
-	name = "bluefeather crisps and dip"
-	desc = "Bluefeather crisp crackers, now with dip made of muli juice and tomatoes. The name comes from the blue stain often left on feathers when dripped onto them."
+	name = "蓝羽脆片配蘸酱"
+	desc = "蓝羽脆片饼干，现在配有穆里果汁和番茄制成的蘸酱。其名称来源于滴到羽毛上时常会留下的蓝色污渍。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "bluefeather_crisps_and_dip"
 	food_reagents = list(
@@ -244,8 +244,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/stewed_muli
-	name = "stewed muli"
-	desc = "A simple stew of meat, carrots and cabbage all cooked in muli juice. For the growing teshari."
+	name = "炖穆里"
+	desc = "一道简单的炖菜，由肉、胡萝卜和卷心菜在穆利汁中炖煮而成。专为成长中的特莎里准备。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "stewed_muli"
 	trash_type = /obj/item/reagent_containers/cup/bowl
@@ -262,8 +262,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_5
 
 /obj/item/food/stuffed_muli_pod
-	name = "stuffed muli pod"
-	desc = "A cooked muli pod, now stuffed with meat, minced kiri fruit, and chili. Chewy sweet and spicy all in one!"
+	name = "酿穆利荚"
+	desc = "一个煮熟的穆利荚，现在塞满了肉、切碎的基里果和辣椒。嚼劲十足，甜辣兼备！"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "stuffed_muli_pod"
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
@@ -279,8 +279,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/caramel_jelly_toast
-	name = "caramel jelly toast"
-	desc = "A toasted slice of piru bread with a generous slathering of thick caramel and sweet kiri jelly. Is this supposed to be breakfast or desert?"
+	name = "焦糖果酱吐司"
+	desc = "一片烤过的皮鲁面包，厚厚地涂满了浓稠的焦糖和甜美的基里果酱。这到底是早餐还是甜点？"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "caramel_jelly_toast"
 	food_reagents = list(
@@ -293,8 +293,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/kiri_jellypuff
-	name = "kiri jellypuff"
-	desc = "A piece of piru bread puffed and rolled into a thick disk, containing a kiri jelly and cream filling and sprinkled with piru flour. Just one will never be enough."
+	name = "基里果酱泡芙"
+	desc = "一块皮鲁面包被膨化并卷成厚圆盘，内含基里果酱和奶油馅料，并撒上了皮鲁面粉。一个永远不够吃。"
 	icon = 'modular_nova/master_files/icons/obj/food/irnbru.dmi'
 	icon_state = "kiri_jellypuff"
 	food_reagents = list(

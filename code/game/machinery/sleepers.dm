@@ -1,6 +1,6 @@
 /obj/machinery/sleeper
-	name = "sleeper"
-	desc = "An enclosed machine used to stabilize and heal patients."
+	name = "休眠舱"
+	desc = "用于稳定和治疗病人的封闭式机器。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	base_icon_state = "sleeper"
@@ -22,7 +22,7 @@
 	///Whether this sleeper can be deconstructed and drop the board, if its on mapload.
 	var/deconstructable = FALSE
 	///Message sent when a user enters the machine.
-	var/enter_message = span_boldnotice("You feel cool air surround you. You go numb as your senses turn inward.")
+	var/enter_message = span_boldnotice("你感到凉爽的空气包围了你。随着感官向内收敛，你逐渐麻木。")
 
 	///List of currently available chems.
 	var/list/available_chems = list()
@@ -82,8 +82,8 @@
 	return ..()
 
 /obj/machinery/sleeper/container_resist_act(mob/living/user)
-	visible_message(span_notice("[occupant] emerges from [src]!"),
-		span_notice("You climb out of [src]!"))
+	visible_message(span_notice("[occupant] 从 [src] 出现!"),
+		span_notice("你爬出了 [src]!"))
 	open_machine()
 
 /obj/machinery/sleeper/Exited(atom/movable/gone, direction)
@@ -122,10 +122,10 @@
 
 /obj/machinery/sleeper/screwdriver_act(mob/living/user, obj/item/I)
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src] 当前已被占用!"))
 		return ITEM_INTERACT_BLOCKING
 	if(state_open)
-		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
+		to_chat(user, span_warning("[src] 必须关闭才能[panel_open ? "close" : "open"]其维护区舱口！"))
 		return ITEM_INTERACT_BLOCKING
 	return default_deconstruction_screwdriver(user, I)
 
@@ -158,7 +158,7 @@
 
 /obj/machinery/sleeper/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click [src] to [state_open ? "close" : "open"] it.")
+	. += span_notice("Alt-点击[src]来[state_open ? "close" : "open"]它。")
 
 /obj/machinery/sleeper/process()
 	use_energy(idle_power_usage)
@@ -185,16 +185,16 @@
 		data["occupant"]["name"] = mob_occupant.name
 		switch(mob_occupant.stat)
 			if(CONSCIOUS)
-				data["occupant"]["stat"] = "Conscious"
+				data["occupant"]["stat"] = "清醒"
 				data["occupant"]["statstate"] = "good"
 			if(SOFT_CRIT)
-				data["occupant"]["stat"] = "Conscious"
+				data["occupant"]["stat"] = "清醒"
 				data["occupant"]["statstate"] = "average"
 			if(UNCONSCIOUS, HARD_CRIT)
-				data["occupant"]["stat"] = "Unconscious"
+				data["occupant"]["stat"] = "昏迷"
 				data["occupant"]["statstate"] = "average"
 			if(DEAD)
-				data["occupant"]["stat"] = "Dead"
+				data["occupant"]["stat"] = "死亡"
 				data["occupant"]["statstate"] = "bad"
 		data["occupant"]["health"] = mob_occupant.health
 		data["occupant"]["maxHealth"] = mob_occupant.maxHealth
@@ -240,13 +240,13 @@
 			if(inject_chem(chem, usr))
 				. = TRUE
 				if((obj_flags & EMAGGED) && prob(5))
-					to_chat(usr, span_warning("Chemical system re-route detected, results may not be as expected!"))
+					to_chat(usr, span_warning("检测到化学系统被重新路由，结果可能不符合预期！"))
 
 /obj/machinery/sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 
-	balloon_alert(user, "interface scrambled")
+	balloon_alert(user, "界面被扰乱")
 	obj_flags |= EMAGGED
 
 	var/list/av_chem = available_chems.Copy()
@@ -280,7 +280,7 @@
  * Can be controlled from the inside and can be deconstructed.
  */
 /obj/machinery/sleeper/syndie
-	name = "syndicate sleeper"
+	name = "辛迪加休眠舱"
 	icon_state = "sleeper_s"
 	base_icon_state = "sleeper_s"
 	controls_inside = TRUE
@@ -289,12 +289,12 @@
 
 ///Fully upgraded variant, the circuit using tier 4 parts.
 /obj/machinery/sleeper/syndie/fullupgrade
-	name = "upgraded syndicate sleeper"
+	name = "升级版辛迪加休眠舱"
 	circuit = /obj/item/circuitboard/machine/sleeper/fullupgrade
 
 ///Fully upgraded, not deconstructable, while using the normal sprite.
 /obj/machinery/sleeper/syndie/fullupgrade/nt
-	name = "\improper Nanotrasen sleeper"
+	name = "\improper 纳米特拉森休眠舱"
 	icon_state = "sleeper"
 	base_icon_state = "sleeper"
 	deconstructable = FALSE
@@ -307,14 +307,14 @@
 	base_icon_state = "oldpod"
 
 /obj/machinery/sleeper/party
-	name = "party pod"
+	name = "派对舱"
 	desc = "'Sleeper' units were once known for their healing properties, until a lengthy investigation revealed they were also dosing patients with deadly lead acetate. This appears to be one of those old 'sleeper' units repurposed as a 'Party Pod'. It’s probably not a good idea to use it."
 	icon_state = "partypod"
 	base_icon_state = "partypod"
 	circuit = /obj/item/circuitboard/machine/sleeper/party
 	controls_inside = TRUE
 	deconstructable = TRUE
-	enter_message = span_boldnotice("You're surrounded by some funky music inside the chamber. You zone out as you feel waves of krunk vibe within you.")
+	enter_message = span_boldnotice("你在房间里被一些充满活力的音乐所环绕,随着音乐的节奏,你渐渐的进入恍惚状态,内心涌起一股疯狂的悸动.")
 
 	//Exclusively uses non-lethal, "fun" chems. At an obvious downside.
 	possible_chems = list(

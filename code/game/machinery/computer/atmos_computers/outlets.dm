@@ -8,76 +8,76 @@
 	disconnect_from_area()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/plasma_output
-	name = "plasma tank output inlet"
+	name = "等离子气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/oxygen_output
-	name = "oxygen tank output inlet"
+	name = "氧气气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/nitrogen_output
-	name = "nitrogen tank output inlet"
+	name = "氮气气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/mix_output
-	name = "mix tank output inlet"
+	name = "混合气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/nitrous_output
-	name = "nitrous oxide tank output inlet"
+	name = "一氧化二氮气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/carbon_output
-	name = "carbon dioxide tank output inlet"
+	name = "二氧化碳气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/bz_output
-	name = "bz tank output inlet"
+	name = "BZ气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/freon_output
-	name = "freon tank output inlet"
+	name = "氟利昂气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/halon_output
-	name = "halon tank output inlet"
+	name = "哈龙气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/healium_output
-	name = "healium tank output inlet"
+	name = "疗气气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/hydrogen_output
-	name = "hydrogen tank output inlet"
+	name = "氢气气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/hypernoblium_output
-	name = "hypernoblium tank output inlet"
+	name = "超铌气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/miasma_output
-	name = "miasma tank output inlet"
+	name = "瘴气气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/nitrium_output
-	name = "nitrium tank output inlet"
+	name = "亚硝基兴奋气气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/pluoxium_output
-	name = "pluoxium tank output inlet"
+	name = "钚罗索仑气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/proto_nitrate_output
-	name = "proto-nitrate tank output inlet"
+	name = "原硝酸气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/tritium_output
-	name = "tritium tank output inlet"
+	name = "氚气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/water_vapor_output
-	name = "water vapor tank output inlet"
+	name = "水蒸气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/zauker_output
-	name = "zauker tank output inlet"
+	name = "祖克气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/helium_output
-	name = "helium tank output inlet"
+	name = "氦气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/antinoblium_output
-	name = "antinoblium tank output inlet"
+	name = "反铌气瓶输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/incinerator_output
-	name = "incinerator chamber output inlet"
+	name = "焚烧室输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/ordnance_burn_chamber_output
-	name = "ordnance burn chamber output inlet"
+	name = "军械燃烧室输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/ordnance_freezer_chamber_output
-	name = "ordnance freezer chamber output inlet"
+	name = "军械冷冻室输出喷注器"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/siphon/monitored
 	on = TRUE
@@ -90,4 +90,4 @@
 	disconnect_from_area()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/siphon/monitored/air_output
-	name = "air mix tank output inlet"
+	name = "空气混合罐输出口"

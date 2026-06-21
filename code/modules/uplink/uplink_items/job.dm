@@ -1,5 +1,5 @@
 /datum/uplink_category/role_restricted
-	name = "Role-Restricted"
+	name = "职业受限类"
 	weight = 1
 
 /datum/uplink_item/role_restricted
@@ -7,7 +7,7 @@
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/role_restricted/haunted_magic_eightball
-	name = "Haunted Magic Eightball"
+	name = "诅咒魔法八号球"
 	desc = "Most magic eightballs are toys with dice inside. Although identical in appearance to the harmless toys, this occult device reaches into the spirit world to find its answers. \
 			Be warned, that spirits are often capricious or just little assholes. To use, simply speak your question aloud, then begin shaking."
 	item = /obj/item/toy/eightball/haunted
@@ -44,7 +44,7 @@
 
 /datum/uplink_item/role_restricted/clumsinessinjector //clown ops can buy this too, but it's in the pointless badassery section for them
 	name = "Clumsiness Injector"
-	desc = "Inject yourself with this to become as clumsy as a clown... or inject someone ELSE with it to make THEM as clumsy as a clown. Useful for clowns who wish to reconnect with their former clownish nature or for clowns who wish to torment and play with their prey before killing them."
+	desc = "给自己注射这种物质，让自己变得像小丑一样笨拙……或者给其他人注射这种物质，让对方变得像小丑一样笨拙。这种物质对于那些希望重新找回自己昔日小丑特质的喜剧行动人员，或者对于那些希望在杀害猎物之前对其进行折磨和戏弄的喜剧行动人员来说非常有用。"
 	item = /obj/item/dnainjector/clumsymut
 	cost = 1
 	restricted_roles = list(JOB_CLOWN)
@@ -53,7 +53,7 @@
 
 /datum/uplink_item/role_restricted/ancient_jumpsuit
 	name = "Ancient Jumpsuit"
-	desc = "A tattered old jumpsuit that will provide absolutely no benefit to you."
+	desc = "一件破旧不堪的连体服，对你毫无任何帮助。"
 	item = /obj/item/clothing/under/color/grey/ancient
 	cost = 20
 	restricted_roles = list(JOB_ASSISTANT)
@@ -69,7 +69,7 @@
 
 /datum/uplink_item/role_restricted/clownpin
 	name = "Ultra Hilarious Firing Pin"
-	desc = "A firing pin that, when inserted into a gun, makes that gun only usable by clowns and clumsy people and makes that gun honk whenever anyone tries to fire it."
+	desc = "一种撞针使插入枪时只能由小丑和不太聪明的人使用，并使枪在开火时Honk."
 	cost = 4
 	item = /obj/item/firing_pin/clown/ultra
 	restricted_roles = list(JOB_CLOWN)
@@ -77,8 +77,8 @@
 	surplus = 25
 
 /datum/uplink_item/role_restricted/clownsuperpin
-	name = "Super Ultra Hilarious Firing Pin"
-	desc = "Like the ultra hilarious firing pin, except the gun you insert this pin into explodes when someone who isn't clumsy or a clown tries to fire it."
+	name = "究超滑稽撞针"
+	desc = "就像极其滑稽的撞针，不同的是，当一个既不笨拙也不是小丑的人尝试开枪时，插入这种撞针的枪会爆炸。"
 	cost = 7
 	item = /obj/item/firing_pin/clown/ultra/selfdestruct
 	restricted_roles = list(JOB_CLOWN)
@@ -94,7 +94,7 @@
 	surplus = 0
 
 /datum/uplink_item/role_restricted/explosive_hot_potato
-	name = "Exploding Hot Potato"
+	name = "爆炸式热土豆"
 	desc = "A potato rigged with explosives. On activation, a special mechanism is activated that prevents it from being dropped. \
 			The only way to get rid of it if you are holding it is to attack someone else with it, causing it to latch to that person instead."
 	item = /obj/item/hot_potato/syndicate
@@ -110,7 +110,7 @@
 	restricted_roles = list(JOB_COOK, JOB_MIME)
 
 /datum/uplink_item/role_restricted/ez_clean_bundle
-	name = "EZ Clean Grenade Bundle"
+	name = "EZ清洁手雷包"
 	desc = "A box with three cleaner grenades using the trademark Waffle Corp. formula. Serves as a cleaner and causes acid damage to anyone standing nearby. \
 			The acid only affects carbon-based creatures."
 	item = /obj/item/storage/box/syndie_kit/ez_clean
@@ -119,7 +119,7 @@
 	restricted_roles = list(JOB_JANITOR)
 
 /datum/uplink_item/role_restricted/reverse_bear_trap
-	name = "Reverse Bear Trap"
+	name = "反向捕熊器"
 	desc = "An ingenious execution device worn on (or forced onto) the head. Arming it starts a 1-minute kitchen timer mounted on the bear trap. When it goes off, the trap's jaws will \
 	violently open, instantly killing anyone wearing it by tearing their jaws in half. To arm, attack someone with it while they're not wearing headgear, and you will force it onto their \
 	head after three seconds uninterrupted."
@@ -128,15 +128,15 @@
 	restricted_roles = list(JOB_CLOWN)
 
 /datum/uplink_item/role_restricted/modified_syringe_gun
-	name = "Modified Syringe Gun"
-	desc = "A syringe gun that fires DNA injectors instead of normal syringes."
+	name = "修饰注射枪"
+	desc = "一种可以发射DNA注射器而不是普通注射器的注射枪."
 	item = /obj/item/gun/syringe/dna
 	cost = 14
 	restricted_roles = list(JOB_GENETICIST, JOB_RESEARCH_DIRECTOR)
 
 /datum/uplink_item/role_restricted/meathook
-	name = "Butcher's Meat Hook"
-	desc = "A brutal cleaver on a long chain, it allows you to pull people to your location."
+	name = "屠夫肉钩"
+	desc = "一根长长的链条上绑着一把锋利的斧头，它能让你把人们拉到你的所在位置。"
 	item = /obj/item/gun/magic/hook
 	cost = 11
 	restricted_roles = list(JOB_COOK)
@@ -150,8 +150,8 @@
 	restricted_roles = list(JOB_COOK)
 
 /datum/uplink_item/role_restricted/turretbox
-	name = "Disposable Sentry Gun"
-	desc = "A disposable sentry gun deployment system cleverly disguised as a toolbox, apply wrench for functionality."
+	name = "一次性警戒枪"
+	desc = "一个一次性哨兵枪部署系统，巧妙地伪装成工具箱，使用扳手以启用功能。"
 	item = /obj/item/storage/toolbox/emergency/turret
 	cost = 11
 	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER)
@@ -164,7 +164,7 @@
 	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 
 /datum/uplink_item/role_restricted/magillitis_serum
-	name = "Magillitis Serum Autoinjector"
+	name = "猴化特征剂血清自动注射器"
 	desc = "A single-use autoinjector which contains an experimental serum that causes rapid muscular growth in Hominidae. \
 			Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas. \
 			Now also contains regenerative chemicals to keep users healthy as they exercise their newfound muscles."
@@ -200,7 +200,7 @@
 	surplus = 50
 
 /datum/uplink_item/role_restricted/springlock_module
-	name = "Heavily Modified Springlock MODsuit Module"
+	name = "大幅修改的弹簧锁模块服模块"
 	desc = "A module that spans the entire size of the MOD unit, sitting under the outer shell. \
 		This mechanical exoskeleton pushes out of the way when the user enters and it helps in booting \
 		up, but was taken out of modern suits because of the springlock's tendency to \"snap\" back \
@@ -221,7 +221,7 @@
 	restricted_roles = list(JOB_CLOWN)
 
 /datum/uplink_item/role_restricted/pressure_mod
-	name = "Kinetic Accelerator Pressure Mod"
+	name = "动能加速器压力调节器"
 	desc = "A modification kit which allows Kinetic Accelerators to do greatly increased damage while indoors. \
 			Occupies 35% mod capacity."
 	item = /obj/item/borg/upgrade/modkit/indoors
@@ -231,7 +231,7 @@
 	surplus = 20
 
 /datum/uplink_item/role_restricted/mimery
-	name = "Guide to Advanced Mimery Series"
+	name = "高级模拟系列指南"
 	desc = "The classical two part series on how to further hone your mime skills. Upon studying the series, the user should be able to make 3x1 invisible walls, and shoot bullets out of their fingers. \
 			Obviously only works for Mimes."
 	cost = 12
@@ -241,7 +241,7 @@
 
 /datum/uplink_item/role_restricted/laser_arm
 	name = "Laser Arm Implant"
-	desc = "An implant that grants you a recharging laser gun inside your arm. Weak to EMPs. Comes with a syndicate autosurgeon for immediate self-application."
+	desc = "一种植入物，可在你手臂内安装一把可充电的激光枪。对电磁脉冲（EMP）敏感。随附一个辛迪加自动手术器，供立即自行植入使用。"
 	cost = 10
 	item = /obj/item/autosurgeon/syndicate/laser_arm
 	restricted_roles = list(JOB_ROBOTICIST, JOB_RESEARCH_DIRECTOR)
@@ -313,7 +313,7 @@
 	purchasable_from = ~UPLINK_SPY
 
 /datum/uplink_item/role_restricted/concealed_weapon_bay
-	name = "Concealed Weapon Bay"
+	name = "隐蔽型武器舱"
 	desc = "A modification for non-combat exosuits that allows them to equip one piece of equipment designed for combat units. \
 			Attach to an exosuit with an existing equipment to disguise the bay as that equipment. The sacrificed equipment will be lost.\
 			Alternatively, you can attach the bay to an empty equipment slot, but the bay will not be concealed. Once the bay is \

@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/foam_dart
-	name = "foam dart"
-	desc = "It's Donk or Don't! Ages 8 and up."
+	name = "泡沫飞镖"
+	desc = "要么唐克，要么别玩！适合8岁及以上。"
 	projectile_type = /obj/projectile/bullet/foam_dart
 	caliber = CALIBER_FOAM
 	icon = 'icons/obj/weapons/guns/toy.dmi'
@@ -30,7 +30,7 @@
 
 /obj/item/ammo_casing/foam_dart/update_desc()
 	. = ..()
-	desc = "It's Donk or Don't! [modified ? "... Although, this one doesn't look too safe." : "Ages 8 and up."]"
+	desc = "要么唐克，要么别玩！[modified ? "... Although, this one doesn't look too safe." : "Ages 8 and up."]"
 
 /obj/item/ammo_casing/foam_dart/examine_more(mob/user)
 	. = ..()
@@ -52,12 +52,12 @@
 	dart.modified = TRUE
 	dart.damage_type = BRUTE
 	dart.set_embed(null) // Cap is what makes them sticky
-	to_chat(user, span_notice("You pop the safety cap off [src]."))
+	to_chat(user, span_notice("你取下了[src]的安全帽。"))
 	update_appearance()
 
 /obj/item/ammo_casing/foam_dart/riot
-	name = "riot foam dart"
-	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	name = "防暴泡沫弹"
+	desc = "是谁想出的聪明主意，用玩具来控制人群？适合18岁及以上人群。"
 	projectile_type = /obj/projectile/bullet/foam_dart/riot
 	icon_state = "foamdart_riot"
 	base_icon_state = "foamdart_riot"

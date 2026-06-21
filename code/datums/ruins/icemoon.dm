@@ -13,77 +13,77 @@
 // above ground only
 
 /datum/map_template/ruin/icemoon/gas
-	name = "Ice-Ruin Lizard Gas Station"
+	name = "冰原遗迹-蜥蜴加油站"
 	id = "lizgasruin"
-	description = "A gas station. It appears to have been recently open and is in mint condition."
+	description = "一个加油站。它看起来最近还在营业，并且状态完好如新。"
 	suffix = "icemoon_surface_gas.dmm"
 
 /datum/map_template/ruin/icemoon/lust
-	name = "Ice-Ruin Ruin of Lust"
+	name = "冰原遗迹-欲望废墟"
 	id = "lust"
-	description = "Not exactly what you expected."
+	description = "和你预想的不太一样。"
 	suffix = "icemoon_surface_lust.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/asteroid
-	name = "Ice-Ruin Asteroid Site"
+	name = "冰原遗迹-小行星站点"
 	id = "asteroidsite"
-	description = "Surprised to see us here?"
+	description = "没想到会在这里见到我们吧？"
 	suffix = "icemoon_surface_asteroid.dmm"
 
 /datum/map_template/ruin/icemoon/engioutpost
-	name = "Ice-Ruin Engineer Outpost"
+	name = "冰原遗迹-工程师前哨站"
 	id = "engioutpost"
-	description = "Blown up by an unfortunate accident."
+	description = "被一场不幸的事故炸毁了。"
 	suffix = "icemoon_surface_engioutpost.dmm"
 
 /datum/map_template/ruin/icemoon/fountain
-	name = "Ice-Ruin Fountain Hall"
+	name = "冰原遗迹-喷泉大厅"
 	id = "ice_fountain"
-	description = "The fountain has a warning on the side. DANGER: May have undeclared side effects that only become obvious when implemented."
+	description = "喷泉侧面有一个警告。危险：可能具有未声明的副作用，只有在实现时才会变得明显。"
 	prefix = "_maps/RandomRuins/AnywhereRuins/"
 	suffix = "fountain_hall.dmm"
 
 /datum/map_template/ruin/icemoon/abandoned_homestead
-	name = "Ice-Ruin Abandoned Homestead"
+	name = "冰原遗迹-废弃家园"
 	id = "abandoned_homestead"
-	description = "This homestead was once host to a happy homesteading family. It's now host to hungry bears."
+	description = "这个家园曾是一个快乐拓荒家庭的住所。现在则是饥饿的熊的家。"
 	suffix = "icemoon_underground_abandoned_homestead.dmm"
 
 /datum/map_template/ruin/icemoon/entemology
-	name = "Ice-Ruin Insect Research Station"
+	name = "冰原遗迹-昆虫研究站"
 	id = "bug_habitat"
-	description = "An independently funded research outpost, long abandoned. Their mission, to boldly go where no insect life would ever live, ever, and look for bugs."
+	description = "一个独立资助的研究前哨站，早已废弃。他们的使命是勇敢前往任何昆虫生命都永远不会生存的地方，寻找虫子。"
 	suffix = "icemoon_surface_bughabitat.dmm"
 
 /datum/map_template/ruin/icemoon/pizza
-	name = "Ice-Ruin Moffuchi's Pizzeria"
+	name = "冰原遗迹-莫夫奇披萨店"
 	id = "pizzeria"
-	description = "Moffuchi's Family Pizzeria chain has a reputation for providing affordable artisanal meals of questionable edibility. This particular pizzeria seems to have been abandoned for some time."
+	description = "Moffuchi家族披萨连锁店以提供价格实惠但可食用性存疑的手工餐点而闻名。这家披萨店似乎已被遗弃了一段时间。"
 	suffix = "icemoon_surface_pizza.dmm"
 
 /datum/map_template/ruin/icemoon/Lodge
-	name = "Ice-Ruin Hunters Lodge"
+	name = "冰原遗迹-猎人小屋"
 	id = "lodge"
-	description = "An old hunting lodge. I wonder if anyone is still home?"
+	description = "一个古老的狩猎小屋。不知道是否还有人住在这里？"
 	suffix = "icemoon_surface_lodge.dmm"
 
 /datum/map_template/ruin/icemoon/frozen_phonebooth
-	name = "Ice-Ruin Frozen Phonebooth"
+	name = "冰原遗迹-冰冻电话亭"
 	id = "frozen_phonebooth"
-	description = "A venture by Nanotrasen to help popularize the use of holopads. This one was sent to an ice moon."
+	description = "纳米传讯为推广全息板使用而进行的一项尝试。这个被送到了冰卫星上。"
 	suffix = "icemoon_surface_phonebooth.dmm"
 
 /datum/map_template/ruin/icemoon/smoking_room
-	name = "Ice-Ruin Smoking Room"
+	name = "冰原遗迹-吸烟室"
 	id = "smoking_room"
-	description = "Here lies Charles Morlbaro. He died the way he lived."
+	description = "查尔斯·莫尔巴罗长眠于此。他死得其所。"
 	suffix = "icemoon_surface_smoking_room.dmm"
 
 /datum/map_template/ruin/icemoon/roro
-	name = "Ice-Ruin RoroCo Factory"
+	name = "冰原废墟-罗罗科工厂"
 	id = "gloves"
-	description = "A manufacturing and packaging facility producing insulated gloves."
+	description = "一个生产和包装绝缘手套的设施。"
 	suffix = "icemoon_surface_gloves.dmm"
 
 /datum/map_template/ruin/icemoon/shoe_facotry
@@ -118,64 +118,64 @@
 // below ground only
 
 /datum/map_template/ruin/icemoon/underground
-	name = "Ice-Ruin underground ruin"
+	name = "冰原废墟-地下废墟"
 	ruin_type = ZTRAIT_ICE_RUINS_UNDERGROUND
 	default_area = /area/icemoon/underground/unexplored
 
 /datum/map_template/ruin/icemoon/underground/abandonedvillage
-	name = "Ice-Ruin Abandoned Village"
+	name = "冰原废墟-废弃村庄"
 	id = "abandonedvillage"
-	description = "Who knows what lies within?"
+	description = "谁知道里面藏着什么？"
 	suffix = "icemoon_underground_abandoned_village.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/library
-	name = "Ice-Ruin Buried Library"
+	name = "冰原废墟-埋藏图书馆"
 	id = "buriedlibrary"
-	description = "A once grand library, now lost to the confines of the Ice Moon."
+	description = "一座曾经宏伟的图书馆，如今迷失在冰卫星的深处。"
 	suffix = "icemoon_underground_library.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/wrath
-	name = "Ice-Ruin Ruin of Wrath"
+	name = "冰原废墟-愤怒遗迹"
 	id = "wrath"
-	description = "You'll fight and fight and just keep fighting."
+	description = "你会战斗、战斗、永不停歇地战斗。"
 	suffix = "icemoon_underground_wrath.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/hermit
-	name = "Ice-Ruin Frozen Shack"
+	name = "冰原废墟-冰封小屋"
 	id = "hermitshack"
-	description = "A place of shelter for a lone hermit, scraping by to live another day."
+	description = "一位孤独隐士的栖身之所，勉强维持生计，只为活过又一天。"
 	suffix = "icemoon_underground_hermit.dmm"
 
 /datum/map_template/ruin/icemoon/underground/lavaland
-	name = "Ice-Ruin Lavaland Incursion"
+	name = "冰原废墟-熔岩地入侵点"
 	id = "lavalandsite"
-	description = "I guess we never really left you huh?"
+	description = "我想我们从未真正离开过你，是吧？"
 	suffix = "icemoon_underground_lavaland.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/puzzle
-	name = "Ice-Ruin Ancient Puzzle"
+	name = "冰原废墟-远古谜题"
 	id = "puzzle"
-	description = "Mystery to be solved."
+	description = "有待解开的谜团。"
 	suffix = "icemoon_underground_puzzle.dmm"
 
 /datum/map_template/ruin/icemoon/underground/bathhouse
-	name = "Ice-Ruin Bath House"
+	name = "冰原废墟-浴场"
 	id = "bathhouse"
-	description = "A warm, safe place."
+	description = "一个温暖、安全的地方。"
 	suffix = "icemoon_underground_bathhouse.dmm"
 
 /datum/map_template/ruin/icemoon/underground/wendigo_cave
-	name = "Ice-Ruin Wendigo Cave"
+	name = "冰原废墟-温迪戈洞穴"
 	id = "wendigocave"
-	description = "Into the jaws of the beast."
+	description = "深入野兽之口。"
 	suffix = "icemoon_underground_wendigo_cave.dmm"
 
 /datum/map_template/ruin/icemoon/underground/free_golem
-	name = "Ice-Ruin Free Golem Ship"
+	name = "冰原废墟-自由魔像飞船"
 	id = "golem-ship"
 	description = "Lumbering humanoids, made out of precious metals, move inside this ship. They frequently leave to mine more minerals, which they somehow turn into more of them. \
 	Seem very intent on research and individual liberty, and also geology-based naming?"
@@ -183,62 +183,62 @@
 	suffix = "golem_ship.dmm"
 
 /datum/map_template/ruin/icemoon/underground/mailroom
-	name = "Ice-Ruin Frozen-over Post Office"
+	name = "冰原废墟-冰封邮局"
 	id = "mailroom"
-	description = "This is where all of your paychecks went. Signed, the management."
+	description = "这就是你所有工资的去向。此致，管理层。"
 	suffix = "icemoon_underground_mailroom.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/biodome
-	name = "Ice-Ruin Syndicate Bio-Dome"
+	name = "冰原废墟-辛迪加生物穹顶"
 	id = "biodome"
-	description = "Unchecked experimentation gone awry."
+	description = "失控的实验出了岔子。"
 	suffix = "icemoon_underground_syndidome.dmm"
 
 /datum/map_template/ruin/icemoon/underground/frozen_comms
-	name = "Ice-Ruin Frozen Communicatons Outpost"
+	name = "冰原废墟-冰封通讯前哨站"
 	id = "frozen_comms"
-	description = "3 Peaks Radio, where the 2000's live forever."
+	description = "三峰电台，2000年代永存之地。"
 	suffix = "icemoon_underground_frozen_comms.dmm"
 
 /datum/map_template/ruin/icemoon/underground/comms_agent
-	name = "Ice-Ruin Listening Post"
+	name = "冰原废墟-监听站"
 	id = "icemoon_comms_agent"
-	description = "Radio signals are being detected and the source is this completely innocent pile of snow."
+	description = "检测到无线电信号，源头是这堆完全无辜的雪。"
 	suffix = "icemoon_underground_comms_agent.dmm"
 
 /datum/map_template/ruin/icemoon/underground/syndie_lab
-	name = "Ice-Ruin Syndicate Lab"
+	name = "冰原废墟-辛迪加实验室"
 	id = "syndie_lab"
-	description = "A small laboratory and living space for Syndicate agents."
+	description = "辛迪加特工的小型实验室和生活空间。"
 	suffix = "icemoon_underground_syndielab.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/o31
-	name = "Ice-Ruin Outpost 31"
+	name = "冰原废墟-31号前哨站"
 	id = "o31"
-	description = "Suspiciously dead silent. May or may not contain megafauna"
+	description = "可疑的死寂。可能包含巨型生物，也可能没有。"
 	suffix = "icemoon_underground_outpost31.dmm"
 
 //TODO: Bottom-Level ONLY Spawns after Refactoring Related Code
 /datum/map_template/ruin/icemoon/underground/plasma_facility
-	name = "Ice-Ruin Abandoned Plasma Facility"
+	name = "冰原废墟-废弃等离子设施"
 	id = "plasma_facility"
 	description = "Rumors have developed over the many years of Freyja plasma mining. These rumors suggest that the ghosts of dead mistreated excavation staff have returned to \
 	exact revenge on their (now former) employers. Coorperate reminds all staff that rumors are just that: Old Housewife tales meant to scare misbehaving kids to bed."
 	suffix = "icemoon_underground_abandoned_plasma_facility.dmm"
 
 /datum/map_template/ruin/icemoon/underground/hotsprings
-	name = "Ice-Ruin Hot Springs"
+	name = "冰原废墟-温泉"
 	id = "hotsprings"
-	description = "Just relax and take a dip, nothing will go wrong, I swear!"
+	description = "放松一下，泡个澡，我发誓不会出任何问题的！"
 	suffix = "icemoon_underground_hotsprings.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/vent
-	name = "Ice-Ruin Icemoon Ore Vent"
+	name = "冰原废墟-冰月矿脉喷口"
 	id = "ore_vent_i"
-	description = "A vent that spews out ore. Seems to be a natural phenomenon." //Make this a subtype that only spawns medium and large vents. Some smalls will go to the top level.
+	description = "一个喷出矿石的喷口。似乎是自然现象。" //Make this a subtype that only spawns medium and large vents. Some smalls will go to the top level.
 	suffix = "icemoon_underground_ore_vent.dmm"
 	allow_duplicates = TRUE
 	cost = 0
@@ -246,9 +246,9 @@
 	always_place = TRUE
 
 /datum/map_template/ruin/icemoon/ruin/vent
-	name = "Ice-Ruin Surface Icemoon Ore Vent"
+	name = "冰原遗迹-冰月地表矿脉喷口"
 	id = "ore_vent_i"
-	description = "A vent that spews out ore. Seems to be a natural phenomenon. Smaller than the underground ones."
+	description = "一个喷出矿石的喷口。似乎是自然现象。比地下的那些要小。"
 	suffix = "icemoon_surface_ore_vent.dmm"
 	allow_duplicates = TRUE
 	cost = 0

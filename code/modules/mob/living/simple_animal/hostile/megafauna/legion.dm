@@ -22,13 +22,13 @@
 #define LEGION_SMALL 1
 
 /mob/living/simple_animal/hostile/megafauna/legion
-	name = "Legion"
+	name = "军团"
 	health = 700
 	maxHealth = 700
 	icon_state = "mega_legion"
 	icon_living = "mega_legion"
 	health_doll_icon = "mega_legion"
-	desc = "One of many."
+	desc = "众多之一。"
 	icon = 'icons/mob/simple/lavaland/96x96megafauna.dmi'
 	attack_verb_continuous = "chomps"
 	attack_verb_simple = "chomp"

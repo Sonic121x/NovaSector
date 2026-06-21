@@ -58,7 +58,7 @@
 			return
 		if(NOT_ENOUGH_PLAYERS)
 			message_admins("[role_name] cannot be spawned due to lack of players signing up.")
-			deadchat_broadcast(" did not get enough candidates ([minimum_required]) to spawn.", "<b>[role_name]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
+			deadchat_broadcast("未能获得足够的候选人（[minimum_required]）来生成。", "<b>[role_name]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
 			kill()
 			return
 		if(SUCCESSFUL_SPAWN)

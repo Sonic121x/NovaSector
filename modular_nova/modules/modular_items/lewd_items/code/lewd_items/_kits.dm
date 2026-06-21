@@ -1,8 +1,8 @@
 
 // Milking machine
 /obj/item/storage/box/milking_kit
-	name = "DIY milking machine kit"
-	desc = "Contains everything you need to build your own milking machine!"
+	name = "DIY挤奶机套件"
+	desc = "包含了你建造自己的挤奶机所需的一切！"
 
 /obj/item/storage/box/milking_kit/PopulateContents()
 	var/static/items_inside = list(
@@ -11,8 +11,8 @@
 
 // X-Stand
 /obj/item/storage/box/xstand_kit
-	name = "DIY x-stand kit"
-	desc = "Contains everything you need to build your own X-stand!"
+	name = "DIY X型支架套件"
+	desc = "包含了你建造自己的X型支架所需的一切！"
 
 /obj/item/storage/box/xstand_kit/PopulateContents()
 	var/static/items_inside = list(
@@ -21,8 +21,8 @@
 
 // BDSM bed
 /obj/item/storage/box/bdsmbed_kit
-	name = "DIY BDSM bed kit"
-	desc = "Contains everything you need to build your own BDSM bed!"
+	name = "DIY BDSM床套件"
+	desc = "包含了你建造自己的BDSM床所需的一切！"
 
 /obj/item/storage/box/bdsmbed_kit/PopulateContents()
 	var/static/items_inside = list(
@@ -31,8 +31,8 @@
 
 // Striptease pole
 /obj/item/storage/box/strippole_kit
-	name = "DIY stripper pole kit"
-	desc = "Contains everything you need to build your own stripper pole!"
+	name = "DIY脱衣舞钢管套件"
+	desc = "包含了你建造自己的脱衣舞钢管所需的一切！"
 
 /obj/item/storage/box/strippole_kit/PopulateContents()
 	var/static/items_inside = list(
@@ -41,8 +41,8 @@
 
 // Shibari stand
 /obj/item/storage/box/shibari_stand
-	name = "DIY shibari stand kit"
-	desc = "Contains everything you need to build your own shibari stand!"
+	name = "DIY缚绳架套件"
+	desc = "包含了你建造自己的缚绳架所需的一切！"
 
 /obj/item/storage/box/shibari_stand/PopulateContents()
 	var/static/items_inside = list(
@@ -53,4 +53,4 @@
 // Paper instructions for shibari kit
 
 /obj/item/paper/shibari_kit_instructions
-	default_raw_text = "Hello! Congratulations on your purchase of the shibari kit by LustWish! Some newbies may get confused by our ropes, so we prepared a small instructions for you! First of all, you have to have a wrench to construct the stand itself. Secondly, you can use screwdrivers to change the color of your shibari stand. Just replace the plastic fittings! Thirdly, if you want to tie somebody to a bondage stand you need to fully tie their body, on both groin and chest!. To do that you need to use rope on body and then on groin of character, then you can just buckle them to the stand like any chair. Don't forget to have some ropes on your hand to actually tie them to the stand, as there's no ropes included with it! And that's it!"
+	default_raw_text = "你好！恭喜你购买了LustWish的缚绳套件！有些新手可能会对我们的绳子感到困惑，所以我们为你准备了一份简短的说明！首先，你需要一把扳手来组装支架本身。其次，你可以使用螺丝刀来改变你的缚绳架的颜色。只需更换塑料配件即可！第三，如果你想将某人绑在束缚架上，你需要完全绑住他们的身体，包括胯部和胸部！要做到这一点，你需要先用绳子绑住身体，然后再绑住角色的胯部，之后你就可以像对待任何椅子一样将他们扣在架子上了。别忘了手上要留一些绳子来真正把他们绑在架子上，因为套件里不包含绳子！就是这样！"

@@ -22,8 +22,8 @@
 	icon_door = "wallcloset_white"
 
 /obj/structure/closet/shuttle/emergency
-	name = "emergency closet"
-	desc = "It's a storage unit for emergency breath masks and O2 tanks."
+	name = "应急储物柜"
+	desc = "这是一个用于存放应急呼吸面罩和氧气罐的存储单元。"
 	icon_door = "wallcloset_o2"
 
 /obj/structure/closet/shuttle/emergency/PopulateContents()
@@ -36,8 +36,8 @@
 	icon_state = "wallcloset_white"
 
 /obj/structure/closet/shuttle/medical
-	name = "first-aid closet"
-	desc = "It's a storage unit for emergency medical supplies."
+	name = "急救储物柜"
+	desc = "这是一个用于存放应急医疗用品的存储单元。"
 	icon_door = "wallcloset_med"
 
 /obj/structure/closet/shuttle/medical/PopulateContents()
@@ -49,7 +49,7 @@
 	icon_state = "wallcloset_white"
 
 /obj/structure/closet/shuttle/mining
-	desc = "It's a storage unit for emergency breath masks, O2 tanks, and a pressure suit."
+	desc = "这是一个用于存放应急呼吸面罩、氧气罐和压力服的存储单元。"
 	icon_state = "wallcloset_white"
 	icon_door = "wallcloset_mining"
 
@@ -63,8 +63,8 @@
 
 /obj/structure/closet/shuttle/engivent
 	wall_mounted = TRUE
-	name = "engine ventilation"
-	desc = "An exhaust vent for the shuttle's engines. It looks just big enough to fit a person..."
+	name = "引擎通风"
+	desc = "穿梭机引擎的排气口。看起来刚好能容纳一个人..."
 	icon_state = "vent"
 	icon_door = "vent"
 
@@ -149,24 +149,24 @@
 
 //Wallmounts, for rebuilding the wall lockers above
 /obj/item/wallframe/closet
-	name = "wall mounted closet"
-	desc = "It's a wall mounted storage unit for... well, whatever you put in this one. Apply to wall to use."
+	name = "壁挂式储物柜"
+	desc = "这是一个壁挂式储物单元，用来存放...嗯，你想放进去的任何东西。贴在墙上使用。"
 	icon = 'modular_nova/master_files/icons/obj/closet_wall.dmi'
 	icon_state = "locker_mount"
 	result_path = /obj/structure/closet/generic/wall/empty
 	pixel_shift = 32
 
 /obj/item/wallframe/emcloset
-	name = "wall mounted emergency closet"
-	desc = "It's a wall mounted storage unit for emergency breath masks and O2 tanks. Apply to wall to use."
+	name = "壁挂式应急储物柜"
+	desc = "这是一个用于存放应急呼吸面罩和氧气罐的壁挂式储物单元。贴在墙上使用。"
 	icon = 'modular_nova/master_files/icons/obj/closet_wall.dmi'
 	icon_state = "emergency_mount"
 	result_path = /obj/structure/closet/emcloset/wall/empty
 	pixel_shift = 32
 
 /obj/item/wallframe/firecloset
-	name = "wall mounted fire-safety closet"
-	desc = "It's a wall mounted storage unit for fire-fighting supplies. Apply to wall to use."
+	name = "壁挂式消防安全柜"
+	desc = "这是一个用于存放消防用品的壁挂式储物单元。贴在墙上使用。"
 	icon = 'modular_nova/master_files/icons/obj/closet_wall.dmi'
 	icon_state = "fire_mount"
 	result_path = /obj/structure/closet/firecloset/wall/empty

@@ -96,13 +96,13 @@
 	if(constant_dose_time < CONSTANT_DOSE_SAFE_LIMIT) // Anything less than this and you'll come out fiiiine, aside from a big hit of stamina damage
 		if(!(our_guy.mob_biotypes & MOB_ROBOTIC))
 			our_guy.visible_message(
-				span_danger("[our_guy] suddenly slows from [our_guy.p_their()] inhuman speeds, coming back with a wicked nosebleed!"),
-				span_danger("You suddenly slow back to normal, a stream of blood gushing from your nose!")
+				span_danger("[our_guy] 突然从 [our_guy.p_their()] 非人的速度中慢了下来，还伴随着严重的鼻血！"),
+				span_danger("你突然恢复到正常速度，一股鲜血从你的鼻子涌出！")
 			)
 		else
 			our_guy.visible_message(
-				span_danger("[our_guy] suddenly slows from [our_guy.p_their()] inhuman speeds!"),
-				span_danger("You suddenly slow back to normal speed!")
+				span_danger("[our_guy] 突然从 [our_guy.p_their()] 非人的速度中慢了下来！"),
+				span_danger("你突然恢复到正常速度！")
 			)
 		our_guy.adjust_stamina_loss(constant_dose_time)
 
@@ -111,13 +111,13 @@
 			our_guy.spray_blood(our_guy.dir, 2) // The before mentioned coughing up blood
 			our_guy.emote("cough")
 			our_guy.visible_message(
-				span_danger("[our_guy] suddenly snaps back from [our_guy.p_their()] inhuman speeds, coughing up a spray of blood!"),
-				span_danger("As you snap back to normal speed you cough up a worrying amount of blood. You feel like you've just been run over by a power loader.")
+				span_danger("[our_guy] 突然从 [our_guy.p_their()] 非人的速度中弹回，咳出一片血雾！"),
+				span_danger("当你弹回正常速度时，你咳出了令人担忧的大量鲜血。你感觉自己像是被动力装载机碾过一样。")
 			)
 		else
 			our_guy.visible_message(
-				span_danger("[our_guy] suddenly snaps back from [our_guy.p_their()] inhuman speeds!"),
-				span_danger("You suddenly snap back to normal speeds. You feel like you've just been run over by a power loader.")
+				span_danger("[our_guy] 突然从 [our_guy.p_their()] 非人的速度中弹回！"),
+				span_danger("你突然弹回正常速度。你感觉自己像是被动力装载机碾过一样。")
 			)
 		our_guy.adjust_stamina_loss(constant_dose_time)
 		if(!HAS_TRAIT(our_guy, TRAIT_TWITCH_ADAPTED))
@@ -138,9 +138,9 @@
 		return
 	var/mob/living/our_guy = source
 	if(get_dist(attacker, source) <= 1)
-		our_guy.visible_message(span_warning("[our_guy] is thrown off-balance by [attacker], staggering them badly!"),
-		span_warning("Being struck by [attacker] in such close range while TWitched staggers you!"),
-		span_warning("You hear the sound of someone being hit by something up close, and a subsequent loss of footing."))
+		our_guy.visible_message(span_warning("[our_guy] 被 [attacker] 打得失去平衡，踉跄得厉害！"),
+		span_warning("在 TWitch 状态下被 [attacker] 如此近距离地击中让你踉跄不已！"),
+		span_warning("你听到有人被什么东西近距离击中的声音，以及随后失去平衡的声音。"))
 		our_guy.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, STAGGERED_SLOWDOWN_LENGTH * 4) // staggers for +6 seconds, caps at 12
 
 /// Signal sent by COMSIG_ATOM_PREHITBY (from being hit with a thrown item). If someone hits you with a thrown, apply a stagger.
@@ -154,9 +154,9 @@
 	var/obj/item/hit_item = hit_atom
 	if(!hit_item.throwforce)
 		return
-	our_guy.visible_message(span_warning("[our_guy] is thrown off-balance by [hit_atom], staggering them!"),
-	span_warning("Being struck by [hit_atom] while TWitched staggers you!"),
-	span_warning("You hear the sound of someone being hit by something, and a subsequent loss of footing."))
+	our_guy.visible_message(span_warning("[our_guy] 被 [hit_atom] 打得失去平衡，踉跄了一下！"),
+	span_warning("在TWitch状态下被[hit_atom]击中让你踉跄了一下！"),
+	span_warning("你听到有人被什么东西击中的声音，随后失去了平衡。"))
 	our_guy.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, STAGGERED_SLOWDOWN_LENGTH) // staggers for +3 seconds, caps at 3
 
 /// Leaves an afterimage behind the mob when they move
@@ -175,8 +175,8 @@
 	if(source.legcuffed) // if legcuffed, no bullet dodge
 		return NONE
 	source.visible_message(
-		span_danger("[source] effortlessly dodges [hitting_projectile]!"),
-		span_userdanger("You effortlessly evade [hitting_projectile]!"),
+		span_danger("[source]轻松地躲开了[hitting_projectile]！"),
+		span_userdanger("你轻松地避开了[hitting_projectile]！"),
 	)
 	playsound(source, pick('sound/items/weapons/bulletflyby.ogg', 'sound/items/weapons/bulletflyby2.ogg', 'sound/items/weapons/bulletflyby3.ogg'), 75, TRUE)
 	source.add_filter(TWITCH_BLUR_EFFECT, 2, gauss_blur_filter(5))
@@ -241,7 +241,7 @@
 	our_guy.adjust_tox_loss(0.77 * seconds_per_tick * metabolization_ratio, updating_health = FALSE, forced = TRUE, required_biotype = affected_biotype)
 
 	if(SPT_PROB(5, seconds_per_tick) && !(our_guy.mob_biotypes & MOB_ROBOTIC))
-		to_chat(our_guy, span_danger("You cough up a splatter of blood!"))
+		to_chat(our_guy, span_danger("你咳出了一滩血！"))
 		our_guy.spray_blood(our_guy.dir, 1)
 		our_guy.emote("cough")
 

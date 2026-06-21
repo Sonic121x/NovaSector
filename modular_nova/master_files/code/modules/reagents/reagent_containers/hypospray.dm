@@ -18,7 +18,7 @@
 	if(label_examine)
 		var/reagent_types = assoc_to_keys(list_reagents)
 		// Set label text via list_reagents, due to actual reagents being empty
-		label_text = span_notice("There is a sticker pasted onto the side which reads, 'WARNING: This medipen contains [pretty_string_from_reagent_list(reagent_types, names_only = TRUE, join_text = ", ", final_and = TRUE, capitalize_names = TRUE)], do not use if allergic to any listed chemicals.")
+		label_text = span_notice("侧面贴着一张标签，上面写着：'警告：此医疗笔含有[pretty_string_from_reagent_list(reagent_types, names_only = TRUE, join_text = ", ", final_and = TRUE, capitalize_names = TRUE)]，如果对任何所列化学品过敏，请勿使用。'")
 
 // Sends a more generic chat message when an unused medipen is empty
 /obj/item/reagent_containers/hypospray/medipen/inject(mob/living/affected_mob, mob/user)

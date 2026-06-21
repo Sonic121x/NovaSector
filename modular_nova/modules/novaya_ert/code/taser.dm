@@ -1,5 +1,5 @@
 /obj/item/gun/energy/taser/crank
-	name = "\improper Mírotvůrce personal pacifier"
+	name = "\improper 和平使者个人镇静器"
 	desc = "A low-capacity, electrode-based taser, outfitted with an efficient dynamo machine to replenish its charge. \
 		Utilised first as a means of first line of defense among colonial militiamen, now outclassed by more modern variations; \
 		thus, resold in the civilian market as a cheap way of deterring assistants. Or was it 'assailants'?"
@@ -29,7 +29,7 @@
 	tase_stamina = 15
 
 /obj/item/stock_parts/power_store/cell/crank_taser
-	name = "\improper Mírotvůrce power cell"
+	name = "\improper 和平使者能量电池"
 	maxcharge = STANDARD_CELL_CHARGE * 0.4
 
 /obj/item/gun/energy/taser/crank/Initialize(mapload)

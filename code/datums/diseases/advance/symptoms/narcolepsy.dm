@@ -7,8 +7,8 @@
  * Bonus: Causes drowsiness and sleep.
 */
 /datum/symptom/narcolepsy
-	name = "Narcolepsy"
-	desc = "The virus causes a hormone imbalance, making the host sleepy and narcoleptic."
+	name = "发作性睡病"
+	desc = "病毒导致激素失衡，使宿主嗜睡并患上发作性睡病。"
 	illness = "Aurora Snorealis"
 	stealth = -1
 	resistance = -2
@@ -45,22 +45,22 @@
 	switch(A.stage)
 		if(1)
 			if(prob(50))
-				to_chat(M, span_warning("You feel tired."))
+				to_chat(M, span_warning("你感到疲倦。"))
 		if(2)
 			if(prob(50))
-				to_chat(M, span_warning("You feel very tired."))
+				to_chat(M, span_warning("你感到非常疲倦。"))
 		if(3)
 			if(prob(50))
-				to_chat(M, span_warning("You try to focus on staying awake."))
+				to_chat(M, span_warning("你努力集中精神保持清醒。"))
 
 			M.adjust_drowsiness_up_to(10 SECONDS, 140 SECONDS)
 
 		if(4)
 			if(prob(50))
 				if(yawning)
-					to_chat(M, span_warning("You try and fail to suppress a yawn."))
+					to_chat(M, span_warning("你试图忍住哈欠，但失败了。"))
 				else
-					to_chat(M, span_warning("You nod off for a moment.")) //you can't really yawn while nodding off, can you?
+					to_chat(M, span_warning("你打了个盹。")) //you can't really yawn while nodding off, can you?
 
 			M.adjust_drowsiness_up_to(20 SECONDS, 140 SECONDS)
 

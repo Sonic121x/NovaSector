@@ -13,7 +13,7 @@
 	///What level is our passive currently on
 	var/passive_level = HERETIC_LEVEL_START
 	/// Name of the passive, used by the UI
-	var/name = "Heretic Passive"
+	var/name = "异教徒被动"
 	var/list/passive_descriptions = list(
 		"Grants you a passive ability based on your heretic type. This ability will upgrade as you gain more power.",
 		"Your passive ability has been upgraded, doing something else.",
@@ -70,7 +70,7 @@
 // Level 2 grants lava immunity
 // Level 3 grants resistance to high pressure
 /datum/status_effect/heretic_passive/ash
-	name = "Vow of Destruction"
+	name = "毁灭誓言"
 	passive_descriptions = list(
 		"Heat and ash storm immunity.",
 		"Lava immunity.",
@@ -100,7 +100,7 @@
 // Level 2 Makes you immune to fall damage/stun from falling
 // Level 3 only has the cooldown reduction (nothing else added)
 /datum/status_effect/heretic_passive/blade
-	name = "Dance of the Brand"
+	name = "烙印之舞"
 	id = "blade_passive"
 	passive_descriptions = list(
 		"Being attacked while wielding a Heretic Blade in either hand will deliver a free, instant counterattack to the attacker. This effect can only trigger once every 20 seconds.",
@@ -131,7 +131,7 @@
 /datum/status_effect/heretic_passive/blade/proc/z_impact_react(datum/source, levels, turf/fell_on)
 	SIGNAL_HANDLER
 	new /obj/effect/temp_visual/mook_dust(fell_on)
-	owner.visible_message(span_notice("[owner] lands on [fell_on] safely, and quite stylishly on [p_their()] feet!"))
+	owner.visible_message(span_notice("[owner]安全地落在[fell_on]上，并且相当潇洒地用[p_their()]双脚着地！"))
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/atom, SpinAnimation), 0.5 SECONDS, 0)
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/, emote), "flip")
 	return ZIMPACT_CANCEL_DAMAGE | ZIMPACT_NO_MESSAGE | ZIMPACT_NO_SPIN
@@ -196,25 +196,25 @@
 /// Does the actual counter-attack
 /datum/status_effect/heretic_passive/blade/proc/counter_attack(mob/living/carbon/human/source, mob/living/target, obj/item/melee/sickly_blade/weapon, attack_text)
 	playsound(get_turf(source), 'sound/items/weapons/parry.ogg', 100, TRUE)
-	source.balloon_alert(source, "riposte used")
+	source.balloon_alert(source, "还击已使用")
 	source.visible_message(
-		span_warning("[source] leans into [attack_text] and delivers a sudden riposte back at [target]!"),
-		span_warning("You lean into [attack_text] and deliver a sudden riposte back at [target]!"),
-		span_hear("You hear a clink, followed by a stab."),
+		span_warning("[source]迎向[attack_text]，并突然向[target]发起还击！"),
+		span_warning("你迎向[attack_text]，并突然向[target]发起还击！"),
+		span_hear("你听到一声叮当，紧接着是刺击声。"),
 	)
 	weapon.melee_attack_chain(source, target)
 
 /// Gives feedback to the user
 /datum/status_effect/heretic_passive/blade/proc/reset_riposte(mob/living/carbon/human/source)
 	riposte_ready = TRUE
-	source.balloon_alert(source, "riposte ready")
+	source.balloon_alert(source, "还击准备就绪")
 
 //---- Cosmic Passive
 // Level 1 Cosmic fields will speed up the caster and provide stamina regen
 // Level 2 Cosmic fields will disable any nearby bombs/TTVs/Syndicate Bombs
 // Level 3 Cosmic fields will temporarily slow down bullets that pass through them
 /datum/status_effect/heretic_passive/cosmic
-	name = "Chosen of the Stars"
+	name = "星辰眷者"
 	id = "cosmic_passive"
 	passive_descriptions = list(
 		"Cosmic fields speed you up and regenerate stamina.",
@@ -259,7 +259,7 @@
 // Level 2, organs and raw meat heals you. You also become a voracious glutton who likes all food. No slowdown from being fat
 // Level 3, being fat gives damage resistance
 /datum/status_effect/heretic_passive/flesh
-	name = "Ravenous Hunger"
+	name = "饕餮饥渴"
 	id = "flesh_passive"
 	passive_descriptions = list(
 		"Immunity to Diseases, Disgust and space ants.",
@@ -353,7 +353,7 @@
 // Level 2 Gains X-ray Vision
 // Level 3 your grasp no longer goes on cooldown when opening things
 /datum/status_effect/heretic_passive/lock
-	name = "Open Invitation"
+	name = "开放邀请"
 	id = "lock_passive"
 	passive_descriptions = list(
 		"Shock insulation, all knowledges researched from the shop are cheaper",
@@ -395,7 +395,7 @@
 // Level 2 grants sleep immunity
 // Level 3, Mind gate + Ringleader's rise will channel the moon amulet effects
 /datum/status_effect/heretic_passive/moon
-	name = "Do You Hear The Voices Too?"
+	name = "你也听到那些声音了吗？"
 	id = "moon_passive"
 	passive_descriptions = list(
 		"Can no longer develop brain traumas, passively regenerates brain health, (this bonus is halved in combat).",
@@ -465,7 +465,7 @@
 // Level 2 will heal wounds when standing on rust
 // Level 3 will restore lost limbs when standing on rust
 /datum/status_effect/heretic_passive/rust
-	name = "Leeching Walk"
+	name = "汲取行步"
 	id = "rust_passive"
 	passive_descriptions = list(
 		"Standing on Rusted tiles heals and purge chems off your body.",
@@ -558,7 +558,7 @@
 // Level 2 No breathe
 // Level 3 No slip on water/ice
 /datum/status_effect/heretic_passive/void
-	name = "Aristocrat's Way"
+	name = "贵族之道"
 	id = "void_passive"
 	passive_descriptions = list(
 		"Cold and low pressure immunity.",

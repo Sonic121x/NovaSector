@@ -1,5 +1,5 @@
 /obj/item/circuitboard/machine/artifact_analyser
-	name = "Artifact Scanner"
+	name = "遗物扫描仪"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/artifact_analyser
 	req_components = list(
@@ -8,8 +8,8 @@
 	)
 
 /obj/machinery/artifact_analyser
-	name = "Anomaly Analyser"
-	desc = "Studies the emissions of anomalous materials to discover their uses."
+	name = "异常现象分析仪"
+	desc = "通过研究异常物质的辐射来发现其用途。"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/machinery.dmi'
 	icon_state = "xenoarch_console"
 	anchored = TRUE
@@ -101,7 +101,7 @@
 		owned_scanner.icon_state = "xenoarch_scanner"
 		say("Scanning complete.")
 		var/obj/item/paper/artifact_info/artifact_report = new(get_turf(src))
-		artifact_report.name = "[src] report #[++report_num]"
+		artifact_report.name = "[src]报告#[++report_num]"
 		artifact_report.add_raw_text("<b>[src] analysis report #[report_num]</b><br>")
 		artifact_report.add_raw_text("<br>")
 		artifact_report.add_raw_text("[scanned_object] -- [results]")

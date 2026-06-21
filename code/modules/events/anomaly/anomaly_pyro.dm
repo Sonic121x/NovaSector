@@ -1,10 +1,10 @@
 /datum/round_event_control/anomaly/anomaly_pyro
-	name = "Anomaly: Pyroclastic"
+	name = "异常:火成碎屑"
 	typepath = /datum/round_event/anomaly/anomaly_pyro
 
 	max_occurrences = 5
 	weight = 20
-	description = "This anomaly sets things on fire, and creates a pyroclastic slime."
+	description = "该异常会引燃物体，并产生火山碎屑史莱姆。"
 	min_wizard_trigger_potency = 1
 	max_wizard_trigger_potency = 4
 
@@ -16,4 +16,4 @@
 /datum/round_event/anomaly/anomaly_pyro/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("Pyroclastic anomaly detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert", ANNOUNCER_PYROANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Pyroclastic anomaly detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在[ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name]检测到火山碎屑异常。", "异常警报", ANNOUNCER_PYROANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Pyroclastic anomaly detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")

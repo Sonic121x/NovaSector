@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/lathe // this is a heavily gutted autolathe
-	name = "manufacturing lathe"
-	desc = "Lathes the set recipe until it runs out of resources. Only accepts sheets or other kinds of material stacks."
+	name = "制造用车床"
+	desc = "持续车削设定的配方，直至资源耗尽。仅接受板材或其他类型的材料堆。"
 	icon_state = "lathe"
 	circuit = /obj/item/circuitboard/machine/manulathe
 	/// power cost for lathing
@@ -57,10 +57,10 @@
 	var/datum/design/design
 	if(!isnull(design_id))
 		design = SSresearch.techweb_design_by_id(design_id)
-	. += span_notice("It is set to print [!isnull(design) ? design.name : "nothing, set with a multitool"].")
+	. += span_notice("它被设置为打印[!isnull(design) ? design.name : "nothing, set with a multitool"]。")
 	if(isnull(design))
 		return
-	. += span_notice("It needs:")
+	. += span_notice("它需要：")
 	for(var/valid_type, amount in design.materials)
 		var/atom/ingredient = valid_type
 

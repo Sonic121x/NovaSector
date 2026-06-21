@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/gas/full
-	name = "full gas mask"
-	desc = "A close-fitting mask. Equipment beloved by many trenchers, mooks and romantically apocalyptic people."
+	name = "全覆盖式防毒面具"
+	desc = "一个贴合面部的面具。深受许多堑壕兵、小喽啰和浪漫末世情怀者喜爱的装备。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
 	worn_icon_muzzled = 'modular_nova/master_files/icons/mob/clothing/mask_muzzled.dmi'

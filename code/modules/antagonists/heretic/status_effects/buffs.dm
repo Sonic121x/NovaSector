@@ -124,8 +124,8 @@
 
 
 /atom/movable/screen/alert/status_effect/crucible_soul
-	name = "Blessing of Crucible Soul"
-	desc = "You phased through reality. You are halfway to your final destination..."
+	name = "坩埚之魂的祝福"
+	desc = "你穿越了现实。你已经到达终点的一半路程..."
 	icon_state = "crucible"
 
 /atom/movable/screen/alert/status_effect/crucible_soul/cooldown
@@ -133,12 +133,12 @@
 	icon_state = "crucible_cooldown"
 
 /atom/movable/screen/alert/status_effect/duskndawn
-	name = "Blessing of Dusk and Dawn"
-	desc = "Many things hide beyond the horizon. With Owl's help I managed to slip past Sun's guard and Moon's watch."
+	name = "昏与黎明之祝福"
+	desc = "许多事物隐藏在地平线之外。在猫头鹰的帮助下，我设法悄悄地避开了太阳的守卫和月亮的监视。"
 	icon_state = "duskndawn"
 
 /atom/movable/screen/alert/status_effect/marshal
-	name = "Blessing of Wounded Soldier"
+	name = "伤之勇者的祝福"
 	desc = "Some people seek power through redemption. One thing many people don't know is that battle \
 		is the ultimate redemption, and wounds let you bask in eternal glory."
 	icon_state = "wounded_soldier"
@@ -342,7 +342,7 @@
 /datum/status_effect/caretaker_refuge/proc/prevent_spell_usage(datum/source, datum/spell)
 	SIGNAL_HANDLER
 	if(!istype(spell, /datum/action/cooldown/spell/caretaker))
-		owner.balloon_alert(owner, "may not cast spells in refuge!")
+		owner.balloon_alert(owner, "不能在庇护所内施放法术！")
 		return SPELL_CANCEL_CAST
 
 /datum/status_effect/caretaker_refuge/proc/prevent_cuff(datum/source, mob/attemptee)

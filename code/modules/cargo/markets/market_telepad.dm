@@ -2,7 +2,7 @@
 #define PLACE_ON_MARKET_COST PAYCHECK_LOWER * 1.2
 
 /obj/item/circuitboard/machine/ltsrbt
-	name = "Long-To-Short-Range Bluespace Transceiver"
+	name = "长距-短距蓝空间收发器"
 	icon_state = "bluespacearray"
 	build_path = /obj/machinery/ltsrbt
 	req_components = list(
@@ -13,7 +13,7 @@
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/machinery/ltsrbt
-	name = "Long-To-Short-Range Bluespace Transceiver"
+	name = "长距-短距蓝空间收发器"
 	desc = "The LTSRBT is a compact teleportation machine for sending and receiving items both inside and outside the station.\nUsing teleportation frequencies stolen from NT, it is near undetectable.\nEssential for any illegal market operations on NT stations."
 	icon = 'icons/obj/machines/ltsrbt.dmi'
 	icon_state = "ltsrbt_idle"
@@ -92,7 +92,7 @@
 /obj/machinery/ltsrbt/examine(mob/user)
 	. = ..()
 	if(!(machine_stat & NOPOWER))
-		. += span_info("A small display reads:")
+		. += span_info("一个小型显示屏显示：")
 		. += span_tinynoticeital("Current market restock price: [EXAMINE_HINT("[restock_cost] [MONEY_SYMBOL]")].")
 		. += span_tinynoticeital("Market placement fee: [EXAMINE_HINT("[PLACE_ON_MARKET_COST] [MONEY_SYMBOL]")].")
 		. += span_tinynoticeital("Withholding tax on local items: [EXAMINE_HINT("[MARKET_WITHHOLDING_TAX * 100]%")].")
@@ -153,16 +153,16 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	if(state_open)
-		balloon_alert(user, "close it first!")
+		balloon_alert(user, "先关上它！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!occupant)
-		balloon_alert(user, "nothing loaded!")
+		balloon_alert(user, "没有装载物品！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(machine_stat & NOPOWER)
-		balloon_alert(user, "machine unpowered!")
+		balloon_alert(user, "机器未通电！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!COOLDOWN_FINISHED(src, recharge_cooldown))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "正在冷却中！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	ui_interact(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -179,13 +179,13 @@
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, "stuck to your hands!")
+			balloon_alert(user, "粘在你手上了！")
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "item loaded")
+		balloon_alert(user, "物品已装载")
 		close_machine(tool)
 		return ITEM_INTERACT_SUCCESS
 	else if(!creds_value)
-		balloon_alert(user, "open the machine!")
+		balloon_alert(user, "打开机器！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(machine_stat & NOPOWER)

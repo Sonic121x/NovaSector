@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/fake_explosion //Oh no the station is gone!
-	name = "Fake Nuclear Explosion"
+	name = "假核爆"
 	weight = 0 //Badmin exclusive now because once it's expected its not funny
 	typepath = /datum/round_event/wizard/fake_explosion
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "The nuclear explosion cutscene begins to play to scare the crew."
+	description = "核爆过场动画开始播放，以惊吓船员。"
 
 /datum/round_event/wizard/fake_explosion/start()
 	sound_to_playing_players('sound/announcer/alarm/nuke_alarm.ogg', 70)

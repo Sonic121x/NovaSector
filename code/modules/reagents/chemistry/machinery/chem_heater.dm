@@ -1,5 +1,5 @@
 /obj/machinery/chem_heater
-	name = "reaction chamber" //Maybe this name is more accurate?
+	name = "反应室" //Maybe this name is more accurate?
 	density = TRUE
 	pass_flags_self = PASSMACHINE | LETPASSTHROW
 	icon = 'icons/obj/medical/chemical.dmi'
@@ -65,19 +65,19 @@
 /obj/machinery/chem_heater/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Heating reagents at <b>[heater_coefficient * 1000]%</b> speed.")
+		. += span_notice("状态显示屏显示：正在以<b>[heater_coefficient * 1000]%</b>的速度加热试剂。")
 		if(!QDELETED(beaker))
-			. += span_notice("It has a beaker of [beaker.reagents.total_volume] units capacity.")
+			. += span_notice("它有一个容量为[beaker.reagents.total_volume]单位的烧杯。")
 			if(beaker.reagents.is_reacting)
-				. += span_notice("Its contents are currently reacting.")
+				. += span_notice("其内容物正在发生反应。")
 		else
-			. += span_warning("There is no beaker inserted.")
-		. += span_notice("Its heating is turned [on ? "On" : "Off"].")
-		. += span_notice("The status display reads: Heating reagents at <b>[heater_coefficient * 1000]%</b> speed.")
+			. += span_warning("没有插入烧杯。")
+		. += span_notice("它的加热功能已[on ? "On" : "Off"]。")
+		. += span_notice("状态显示屏显示：以<b>[heater_coefficient * 1000]%</b>的速度加热试剂。")
 		if(panel_open)
-			. += span_notice("Its panel is open and can now be [EXAMINE_HINT("pried")] apart.")
+			. += span_notice("它的面板已经打开，现在可以[EXAMINE_HINT("pried")]开。")
 		else
-			. += span_notice("Its panel can be [EXAMINE_HINT("pried")] open")
+			. += span_notice("它的面板可以[EXAMINE_HINT("pried")]开")
 
 /obj/machinery/chem_heater/update_icon_state()
 	icon_state = "[base_icon_state][(beaker && !panel_open) ? 1 : 0]b"
@@ -103,7 +103,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	ui_interact(user)
-	balloon_alert(user, "beaker added")
+	balloon_alert(user, "烧瓶已添加")
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -379,8 +379,8 @@
 
 //Has a lot of buffer and is upgraded
 /obj/machinery/chem_heater/debug
-	name = "Debug Reaction Chamber"
-	desc = "Now with even more buffers!"
+	name = "Debug 反应室"
+	desc = "现在拥有更多缓冲区！"
 
 /obj/machinery/chem_heater/debug/Initialize(mapload)
 	. = ..()
@@ -391,7 +391,7 @@
 
 //map load types
 /obj/machinery/chem_heater/withbuffer
-	desc = "This Reaction Chamber comes with a bit of buffer to help get you started."
+	desc = "这个反应室配备了一定的缓冲空间，以便帮助您顺利开始操作。"
 
 /obj/machinery/chem_heater/withbuffer/Initialize(mapload)
 	. = ..()

@@ -1,7 +1,7 @@
 //Basic computer meant for basic detailing in ruins and away missions, NOT meant for the station
 /obj/machinery/computer/terminal
-	name = "terminal"
-	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old."
+	name = "终端机"
+	desc = "用于处理内部计算、内部网络邮件和日志记录的技术相对较低的解决方案。这个模型看起来很旧。"
 	circuit = /obj/item/circuitboard/computer/terminal //Deconstruction still wipes contents but this is easier than smashing the console
 	///Text that displays on top of the actual 'lore' funnies.
 	var/upperinfo = "COPYRIGHT 2487 NANOSOFT-TM - DO NOT REDISTRIBUTE"

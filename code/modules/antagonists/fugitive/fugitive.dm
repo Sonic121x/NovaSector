@@ -1,6 +1,6 @@
 
 /datum/antagonist/fugitive
-	name = "\improper Fugitive"
+	name = "\improper 逃亡者"
 	roundend_category = "Fugitive"
 	pref_flag = ROLE_FUGITIVE
 	show_in_antagpanel = FALSE

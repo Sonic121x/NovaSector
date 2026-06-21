@@ -467,14 +467,14 @@
 
 /obj/item/storage/box/syndie_kit/mail_counterfeit
 	name = "mail counterfeit kit"
-	desc = "A GLA Postal Service branded box. It's emblazoned with the motto: *Nothing stops the mail*."
+	desc = "一个GLA邮政服务品牌的盒子。上面印着格言：*没有什么能阻止邮件*。"
 
 /obj/item/storage/box/syndie_kit/mail_counterfeit/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/storage/mail_counterfeit_device(src)
 
 /obj/item/storage/box/syndie_kit/chemical
-	name = "chemical kit"
+	name = "化学工具包"
 	storage_type = /datum/storage/box/syndicate_chemical
 
 /obj/item/storage/box/syndie_kit/chemical/PopulateContents()
@@ -500,8 +500,8 @@
 	new /obj/item/food/meat/slab/human(src)
 
 /obj/item/storage/box/syndie_kit/nuke
-	name = "nuke core extraction kit"
-	desc = "A box containing the equipment and instructions for extracting the plutonium cores of most Nanotrasen nuclear explosives."
+	name = "核弹核心提取工具包"
+	desc = "一个包含设备和说明的盒子，用于提取大多数纳米传讯核爆炸物的钚核心。"
 
 /obj/item/storage/box/syndie_kit/nuke/PopulateContents()
 	new /obj/item/screwdriver/nuke(src)
@@ -509,8 +509,8 @@
 	new /obj/item/paper/guides/antag/nuke_instructions(src)
 
 /obj/item/storage/box/syndie_kit/supermatter
-	name = "supermatter sliver extraction kit"
-	desc = "A box containing the equipment and instructions for extracting a sliver of supermatter."
+	name = "超物质碎片提取工具包"
+	desc = "一个包含设备和说明的盒子，用于提取一小片超物质。"
 
 /obj/item/storage/box/syndie_kit/supermatter/PopulateContents()
 	new /obj/item/scalpel/supermatter(src)
@@ -519,7 +519,7 @@
 	new /obj/item/paper/guides/antag/supermatter_sliver(src)
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade
-	name = "virus grenade kit"
+	name = "病毒手榴弹工具包"
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade/PopulateContents()
 	new /obj/item/grenade/chem_grenade/tuberculosis(src)
@@ -529,7 +529,7 @@
 	new /obj/item/reagent_containers/cup/bottle/tuberculosiscure(src)
 
 /obj/item/storage/box/syndie_kit/chameleon
-	name = "chameleon kit"
+	name = "变色龙工具包"
 
 /obj/item/storage/box/syndie_kit/chameleon/PopulateContents()
 	new /obj/item/clothing/under/chameleon(src)
@@ -626,8 +626,8 @@
 	// No chameleon laser, they can't randomise for //REASONS//
 
 /obj/item/storage/box/syndie_kit/bee_grenades
-	name = "buzzkill grenade box"
-	desc = "A sleek, sturdy box with a buzzing noise coming from the inside. Uh oh."
+	name = "蜂鸣杀手手榴弹盒"
+	desc = "一个光滑、坚固的盒子，里面传来嗡嗡声。哦不。"
 
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()
 	for(var/i in 1 to 3)
@@ -658,8 +658,8 @@
 		new /obj/item/clothing/head/hats/hos/shako(src)
 
 /obj/item/storage/box/syndie_kit/core_gear
-	name = "core equipment box"
-	desc = "Contains all the necessary gear for success for any nuclear operative unsure of what is needed for success in the field. Everything here WILL help you."
+	name = "核心装备箱"
+	desc = "包含所有成功所需的必要装备，适合任何不确定现场需要什么才能成功的核弹特工。这里的一切都WILL帮助你。"
 
 /obj/item/storage/box/syndie_kit/core_gear/PopulateContents()
 	new /obj/item/implanter/freedom (src)
@@ -671,15 +671,15 @@
 /// Surplus Ammo Box
 
 /obj/item/storage/box/syndie_kit/sniper_surplus
-	name = "surplus .50 BMG magazine box"
-	desc = "A shoddy box full of surplus .50 BMG magazines. Not as strong, but good enough to keep lead in the air."
+	name = "剩余 .50 BMG 弹匣盒"
+	desc = "一个装满剩余 .50 BMG 弹匣的劣质盒子。威力没那么强，但足以让铅弹在空中飞舞。"
 
 /obj/item/storage/box/syndie_kit/sniper_surplus/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/ammo_box/magazine/sniper_rounds/surplus(src)
 
 /obj/item/storage/box/syndie_kit/shotgun_surplus
-	name = "\improper Donk Co. 'Donk Spike' flechette 12g Bulldog magazine box"
+	name = "\improper Donk公司 'Donk Spike' 12号口径箭弹斗牛犬弹匣盒"
 	desc = "A shoddy box full of Donk Co. 'Donk Spike' flechette 12g. It is debatable whether or not these are actually \
 		better or worse than standard flechette. Donk Co. did genuinely believe in this product being the future of military \
 		ammunition production. The only reason it didn't see wider adoption was a lack of faith in the product. Do you \
@@ -701,16 +701,16 @@
 	new /obj/item/storage/box/syndie_kit/signaler(src)
 
 /obj/item/storage/box/syndie_kit/signaler
-	name = "signaler box"
-	desc = "Contains everything an agent would need to remotely detonate their bombs."
+	name = "信号器盒"
+	desc = "包含特工远程引爆炸弹所需的一切。"
 
 /obj/item/storage/box/syndie_kit/signaler/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/assembly/signaler(src)
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle
-	name = "deathrattle implant box"
-	desc = "Contains eight linked deathrattle implants."
+	name = "死亡信号植入体盒"
+	desc = "包含八个链接的死亡信号植入体。"
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle/PopulateContents()
 	new /obj/item/implanter(src)

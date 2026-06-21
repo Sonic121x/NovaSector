@@ -36,7 +36,7 @@
 	var/honorific_title
 
 /obj/item/card/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to swipe [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始用 \the [user.p_their()] 划 [src] 的脖子！看起来 [user.p_theyre()] 试图自杀！"))
 	return BRUTELOSS
 
 /obj/item/card/update_overlays()
@@ -609,10 +609,10 @@
 
 /obj/item/card/id/proc/try_project_paystand(mob/user, turf/target)
 	if(!COOLDOWN_FINISHED(src, last_holopay_projection))
-		balloon_alert(user, "still recharging")
+		balloon_alert(user, "仍在充能")
 		return
 	if(!can_be_used_in_payment(user))
-		balloon_alert(user, "no account!")
+		balloon_alert(user, "无账户！")
 		to_chat(user, span_warning("You need a valid bank account to do this."))
 		return
 	/// Determines where the holopay will be placed based on tile contents
@@ -802,12 +802,12 @@
 /obj/item/card/id/proc/set_new_account(mob/living/user)
 	. = FALSE
 	if(loc != user)
-		to_chat(user, span_warning("You must be holding the ID to continue!"))
+		to_chat(user, span_warning("你需要拿着ID卡才能继续！"))
 		return FALSE
 	var/list/user_memories = user.mind.memories
 	var/datum/memory/key/account/user_key = user_memories[/datum/memory/key/account]
 	var/default_account = (istype(user_key) && user_key.remembered_id) || 11111
-	var/new_bank_id = tgui_input_number(user, "Enter the account ID to associate with this card.", "Link Bank Account", default_account, 999999, 111111)
+	var/new_bank_id = tgui_input_number(user, "输入要与此卡关联的账户ID。", "关联银行账户", default_account, 999999, 111111)
 	if(!new_bank_id || QDELETED(user) || QDELETED(src) || issilicon(user) || !alt_click_can_use_id(user) || loc != user)
 		return FALSE
 	if(registered_account?.account_id == new_bank_id)
@@ -828,7 +828,7 @@
 		registered_account.bank_card_talk(span_warning("内部服务器错误"), TRUE)
 		return CLICK_ACTION_SUCCESS
 	if(registered_account.account_debt)
-		var/choice = tgui_alert(user, "Choose An Action", "Bank Account", list("Withdraw", "Pay Debt"))
+		var/choice = tgui_alert(user, "选择操作", "银行账户", list("Withdraw", "Pay Debt"))
 		if(!choice || QDELETED(user) || QDELETED(src) || !alt_click_can_use_id(user) || loc != user)
 			return CLICK_ACTION_BLOCKING
 		if(choice == "Pay Debt")
@@ -838,13 +838,13 @@
 		to_chat(user, span_warning("You must be holding the ID to continue!"))
 		return CLICK_ACTION_BLOCKING
 	if(registered_account.replaceable && !registered_account.account_balance)
-		var/choice = tgui_alert(user, "This card's account is unassigned. Would you like to link a bank account?", "Bank Account", list("Link Account", "Leave Unassigned"))
+		var/choice = tgui_alert(user, "此ID卡的账户未分配。你想要关联一个银行账户吗？", "银行账户", list("Link Account", "Leave Unassigned"))
 		if(!choice || QDELETED(user) || QDELETED(src) || !alt_click_can_use_id(user) || loc != user)
 			return CLICK_ACTION_BLOCKING
 		if(choice == "Link Account")
 			set_new_account(user)
 			return CLICK_ACTION_SUCCESS
-	var/amount_to_remove = tgui_input_number(user, "How much do you want to withdraw? (Max: [registered_account.account_balance] [MONEY_SYMBOL])", "Withdraw Funds", max_value = registered_account.account_balance)
+	var/amount_to_remove = tgui_input_number(user, "你想要提取多少？（最多：[registered_account.account_balance] [MONEY_SYMBOL]）", "提取资金", max_value = registered_account.account_balance)
 	if(!amount_to_remove || QDELETED(user) || QDELETED(src) || issilicon(user) || loc != user)
 		return CLICK_ACTION_BLOCKING
 	if(!alt_click_can_use_id(user))
@@ -868,7 +868,7 @@
 		set_new_account(user)
 
 /obj/item/card/id/proc/pay_debt(user)
-	var/amount_to_pay = tgui_input_number(user, "How much do you want to pay? (Max: [registered_account.account_balance] [MONEY_SYMBOL])", "Debt Payment", max_value = min(registered_account.account_balance, registered_account.account_debt))
+	var/amount_to_pay = tgui_input_number(user, "你想要偿还多少？（最多：[registered_account.account_balance] [MONEY_SYMBOL]）", "债务偿还", max_value = min(registered_account.account_balance, registered_account.account_debt))
 	if(!amount_to_pay || QDELETED(src) || loc != user || !alt_click_can_use_id(user))
 		return
 	var/prev_debt = registered_account.account_debt
@@ -924,30 +924,30 @@
 	. += span_notice("<i>You examine [src] closer, and note the following...</i>")
 
 	if(registered_age)
-		. += "The card indicates that the holder is [registered_age] years old. [(registered_age < AGE_MINOR) ? "There's a holographic stripe that reads <b>[span_danger("'MINOR: DO NOT SERVE ALCOHOL OR TOBACCO'")]</b> along the bottom of the card." : ""]"
+		. += "卡片显示持有者年龄为 [registered_age] 岁。[(registered_age < AGE_MINOR) ? "There's a holographic stripe that reads <b>[span_danger("'MINOR: DO NOT SERVE ALCOHOL OR TOBACCO'")]</b> along the bottom of the card." : ""]"
 	if(registered_account)
 		if(registered_account.mining_points)
 			. += "There's [registered_account.mining_points] mining point\s loaded onto the card's bank account."
 		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of [registered_account.account_balance] [MONEY_SYMBOL]."
 		if(registered_account.account_debt)
-			. += span_warning("The account is currently indebted for [registered_account.account_debt] [MONEY_SYMBOL]. [100*DEBT_COLLECTION_COEFF]% of all earnings will go towards extinguishing it.")
+			. += span_warning("该账户目前负债 [registered_account.account_debt] [MONEY_SYMBOL]。所有收入的 [100*DEBT_COLLECTION_COEFF]% 将用于偿还债务。")
 		if(registered_account.account_job)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
 				. += "The [D.account_holder] reports a balance of [D.account_balance] [MONEY_SYMBOL]."
-		. += span_info("Alt-Click the ID to pull money from the linked account in the form of holochips.")
-		. += span_info("You can insert [MONEY_NAME] into the linked account by pressing holochips, cash, or coins against the ID.")
+		. += span_info("Alt-点击ID卡可从关联账户提取全息筹码形式的现金。")
+		. += span_info("你可以将 [MONEY_NAME] 通过按压全息筹码、现金或硬币的方式存入关联账户。")
 		if(registered_account.replaceable)
-			. += span_info("Alt-Right-Click the ID to change the linked bank account.")
+			. += span_info("Alt-右键点击ID卡可更改关联的银行账户。")
 		if(registered_account.civilian_bounty)
-			. += span_info("<b>There is an active civilian bounty.</b>")
+			. += span_info("<b>有一项活跃的平民悬赏任务。</b>")
 			. += span_info("<i>[registered_account.bounty_text()]</i>")
-			. += span_info("Quantity: [registered_account.bounty_num()]")
-			. += span_info("Reward: [registered_account.bounty_value()]")
+			. += span_info("数量：[registered_account.bounty_num()]")
+			. += span_info("奖励：[registered_account.bounty_value()]")
 		if(registered_account.account_holder == user.real_name)
-			. += span_boldnotice("If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.")
+			. += span_boldnotice("如果你丢失了这张ID卡，你可以通过按住一张空白ID卡并Alt-点击它，然后输入你的账户ID号来重新认领你的账户。")
 	else
-		. += span_info("There is no registered account linked to this card. Alt-Click to add one.")
+		. += span_info("此卡没有关联的注册账户。Alt-点击以添加一个。")
 
 	return .
 
@@ -1035,11 +1035,11 @@
 		return
 
 	if(!trim)
-		balloon_alert(user, "card has no trim!")
+		balloon_alert(user, "卡没有装饰边！")
 		return
 
 	if(!length(trim.honorifics))
-		balloon_alert(user, "card has no honorific to use!")
+		balloon_alert(user, "卡没有可用的尊称！")
 		return
 
 	var/list/choices = list()
@@ -1048,7 +1048,7 @@
 		if(trim.honorific_positions & readable_names[i]) //If the positions list has the same bit value as the readable list.
 			choices += i
 
-	var/chosen_position = tgui_input_list(user, "What position do you want your honorific in?", "Flair!", choices)
+	var/chosen_position = tgui_input_list(user, "你希望尊称放在什么位置？", "个性化！", choices)
 	if(user.incapacitated || !in_contents_of(user))
 		return
 	var/honorific_position_to_use = readable_names[chosen_position]
@@ -1057,25 +1057,25 @@
 	honorific_title = null //We reset this regardless so that we don't stack titles on accident.
 
 	if(honorific_position_to_use & HONORIFIC_POSITION_NONE)
-		balloon_alert(user, "honorific disabled")
+		balloon_alert(user, "尊称已禁用")
 	else
-		var/new_honorific = tgui_input_list(user, "What honorific do you want to use?", "Flair!!!", trim.honorifics)
+		var/new_honorific = tgui_input_list(user, "你想使用什么尊称？", "个性化！！！", trim.honorifics)
 		if(!new_honorific || user.incapacitated || !in_contents_of(user))
 			return
 		chosen_honorific = new_honorific
 		switch(honorific_position_to_use)
 			if(HONORIFIC_POSITION_FIRST)
 				honorific_position = HONORIFIC_POSITION_FIRST
-				balloon_alert(user, "honorific set: display first name")
+				balloon_alert(user, "尊称设置：显示名字")
 			if(HONORIFIC_POSITION_LAST)
 				honorific_position = HONORIFIC_POSITION_LAST
-				balloon_alert(user, "honorific set: display last name")
+				balloon_alert(user, "尊称设置：显示姓氏")
 			if(HONORIFIC_POSITION_FIRST_FULL)
 				honorific_position = HONORIFIC_POSITION_FIRST_FULL
-				balloon_alert(user, "honorific set: start of full name")
+				balloon_alert(user, "尊称设置：全名开头")
 			if(HONORIFIC_POSITION_LAST_FULL)
 				honorific_position = HONORIFIC_POSITION_LAST_FULL
-				balloon_alert(user, "honorific set: end of full name")
+				balloon_alert(user, "尊称设置：全名结尾")
 
 	update_label()
 
@@ -1226,9 +1226,9 @@
 
 /obj/item/card/id/advanced/proc/recolor_id(mob/living/user, obj/item/toy/crayon/our_crayon)
 	if(our_crayon.is_capped)
-		balloon_alert(user, "take the cap off first!")
+		balloon_alert(user, "先把笔帽取下来！")
 		return ITEM_INTERACT_BLOCKING
-	var/choice = tgui_alert(usr, "Recolor Department or Subdepartment?", "Recoloring ID...", list("Department", "Subdepartment"))
+	var/choice = tgui_alert(usr, "重新着色部门还是子部门？", "重新着色身份识别卡...", list("Department", "Subdepartment"))
 	if(isnull(choice) \
 		|| QDELETED(user) \
 		|| QDELETED(src) \
@@ -1243,12 +1243,12 @@
 			if(!do_after(user, 2 SECONDS))
 				return ITEM_INTERACT_BLOCKING
 			department_color_override = our_crayon.paint_color
-			balloon_alert(user, "recolored")
+			balloon_alert(user, "已重新着色")
 		if("Subdepartment")
 			if(!do_after(user, 1 SECONDS))
 				return ITEM_INTERACT_BLOCKING
 			subdepartment_color_override = our_crayon.paint_color
-			balloon_alert(user, "recolored")
+			balloon_alert(user, "已重新着色")
 	update_icon()
 	return ITEM_INTERACT_SUCCESS
 
@@ -1462,50 +1462,50 @@
 	trim = /datum/id_trim/centcom/ert/militia/general
 
 /obj/item/card/id/advanced/black
-	name = "black identification card"
-	desc = "This card is telling you one thing and one thing alone. The person holding this card is an utter badass."
+	name = "黑色ID卡"
+	desc = "这张卡只告诉你一件事，而且只有一件事：拿着这张卡的人是个十足的狠角色。"
 	icon_state = "card_black"
 	assigned_icon_state = "assigned_syndicate"
 	wildcard_slots = WILDCARD_LIMIT_GOLD
 
 /obj/item/card/id/advanced/black/deathsquad
-	name = "\improper Death Squad ID"
-	desc = "A Death Squad ID card."
+	name = "\improper 死亡小队ID"
+	desc = "一张死亡小队ID卡。"
 	registered_name = JOB_ERT_DEATHSQUAD
 	trim = /datum/id_trim/centcom/deathsquad
 	wildcard_slots = WILDCARD_LIMIT_DEATHSQUAD
 
 /obj/item/card/id/advanced/black/syndicate_command
-	name = "syndicate ID card"
-	desc = "An ID straight from the Syndicate."
+	name = "辛迪加ID卡"
+	desc = "一张直接来自辛迪加的ID。"
 	registered_name = "Syndicate"
 	registered_age = null
 	trim = /datum/id_trim/syndicom
 	wildcard_slots = WILDCARD_LIMIT_SYNDICATE
 
 /obj/item/card/id/advanced/black/syndicate_command/crew_id
-	name = "syndicate ID card"
-	desc = "An ID straight from the Syndicate."
+	name = "辛迪加ID卡"
+	desc = "一张直接来自辛迪加的ID。"
 	registered_name = "Syndicate"
 	trim = /datum/id_trim/syndicom/crew
 
 /obj/item/card/id/advanced/black/syndicate_command/captain_id
-	name = "syndicate captain ID card"
-	desc = "An ID straight from the Syndicate."
+	name = "辛迪加舰长ID卡"
+	desc = "一张直接来自辛迪加的ID。"
 	registered_name = "Syndicate"
 	trim = /datum/id_trim/syndicom/captain
 
 
 /obj/item/card/id/advanced/black/syndicate_command/captain_id/syndie_spare
-	name = "syndicate captain's spare ID"
-	desc = "The spare ID of the Dark Lord himself."
+	name = "辛迪加舰长备用ID卡"
+	desc = "黑暗领主本人的备用ID卡。"
 	registered_name = "Captain"
 	registered_age = null
 	inherent_assigned_name = "Captain"
 
 /obj/item/card/id/advanced/debug
-	name = "\improper Debug ID"
-	desc = "A debug ID card. Has ALL the all access and a boatload of money, you really shouldn't have this."
+	name = "\improper 调试ID卡"
+	desc = "一张调试ID卡。拥有所有权限和一大笔钱，你本不该拥有这个。"
 	icon_state = "card_centcom"
 	assigned_icon_state = "assigned_centcom"
 	trim = /datum/id_trim/admin
@@ -1521,7 +1521,7 @@
 /obj/item/card/id/advanced/debug/alt_click_can_use_id(mob/living/user)
 	. = ..()
 	if(!. || isnull(user.client?.holder)) // admins only as a safety so people don't steal all the dollars. spawn in a holochip if you want them to get some dosh
-		registered_account.bank_card_talk(span_warning("Only authorized representatives of Nanotrasen may use this card."), force = TRUE)
+		registered_account.bank_card_talk(span_warning("只有纳米传讯的授权代表才可以使用此卡。"), force = TRUE)
 		return FALSE
 
 	return TRUE
@@ -1529,14 +1529,14 @@
 /obj/item/card/id/advanced/debug/can_be_used_in_payment(mob/living/user)
 	. = ..()
 	if(!. || isnull(user.client?.holder))
-		registered_account.bank_card_talk(span_warning("Only authorized representatives of Nanotrasen may use this card."), force = TRUE)
+		registered_account.bank_card_talk(span_warning("只有纳米传讯的授权代表才可以使用此卡。"), force = TRUE)
 		return FALSE
 
 	return TRUE
 
 /obj/item/card/id/advanced/prisoner
-	name = "prisoner ID card"
-	desc = "You are a number, you are not a free man."
+	name = "囚犯ID卡"
+	desc = "你只是一个编号，不是一个自由人。"
 	icon_state = "card_prisoner"
 	inhand_icon_state = "orange-id"
 	registered_name = "Scum"
@@ -1573,7 +1573,7 @@
 /obj/item/card/id/advanced/prisoner/proc/set_sentence_time(mob/living/user, obj/item/card/id/our_card)
 	var/list/id_access = our_card.GetAccess()
 	if(!(ACCESS_BRIG in id_access))
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "访问被拒绝！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.is_holding(src))
 		to_chat(user, span_warning("You must be holding the ID to continue!"))
@@ -1584,10 +1584,10 @@
 		time_to_assign = initial(time_to_assign)
 		registered_name = initial(registered_name)
 		STOP_PROCESSING(SSobj, src)
-		to_chat(user, "Resetting prisoner ID to default parameters.")
+		to_chat(user, "正在将囚犯ID重置为默认参数。")
 		return ITEM_INTERACT_SUCCESS
 
-	var/choice = tgui_input_number(user, "Sentence time in seconds", "Sentencing")
+	var/choice = tgui_input_number(user, "刑期秒数", "判刑")
 	if(isnull(choice) || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH) || !user.is_holding(src))
 		return ITEM_INTERACT_BLOCKING
 	time_to_assign = choice
@@ -1612,8 +1612,8 @@
 		else
 			. += span_notice("The digital timer on the card has [DisplayTimeText(time_left * 10)] remaining. Don't do the crime if you can't do the time.")
 
-	. += span_notice("[EXAMINE_HINT("Swipe")] a security ID on the card to [timed ? "re" : ""]set the genpop sentence time.")
-	. += span_notice("Remember to [EXAMINE_HINT("swipe")] the card on a genpop locker to link it.")
+	. += span_notice("[EXAMINE_HINT("Swipe")] 一张安保ID卡来[timed ? "re" : ""]设置普通囚犯的刑期时间。")
+	. += span_notice("记得在普通囚犯储物柜上[EXAMINE_HINT("swipe")]以关联此卡。")
 
 /obj/item/card/id/advanced/prisoner/process(seconds_per_tick)
 	if(!timed)
@@ -1694,12 +1694,12 @@
 		. += span_smallnotice("flip it to switch to the plainclothes identity.")
 
 /obj/item/card/id/advanced/plainclothes/attack_self(mob/user)
-	var/popup_input = tgui_input_list(user, "Choose Action", "Two-Sided ID", list("Show", "Flip"))
+	var/popup_input = tgui_input_list(user, "选择操作", "双面ID卡", list("Show", "Flip"))
 	if(!popup_input || !after_input_check(user))
 		return TRUE
 	if(popup_input == "Show")
 		return ..()
-	balloon_alert(user, "flipped")
+	balloon_alert(user, "已翻转")
 	if(trim_assignment_override)
 		SSid_access.remove_trim_override(src)
 	else
@@ -1760,21 +1760,21 @@
 	// to sneakily steal their accesses by swiping our agent ID card near them. As a result, we
 	// return ITEM_INTERACT_BLOCKING to cancel any part of the following the attack chain.
 	if(ishuman(interacting_with))
-		interacting_with.balloon_alert(user, "scanning ID card...")
+		interacting_with.balloon_alert(user, "正在扫描ID卡...")
 
 		if(!do_after(user, 2 SECONDS, interacting_with, hidden = TRUE))
-			interacting_with.balloon_alert(user, "interrupted!")
+			interacting_with.balloon_alert(user, "已中断！")
 			return ITEM_INTERACT_BLOCKING
 
 		var/mob/living/carbon/human/human_target = interacting_with
 		var/list/target_id_cards = human_target.get_all_contents_type(/obj/item/card/id)
 
 		if(!length(target_id_cards))
-			interacting_with.balloon_alert(user, "no IDs!")
+			interacting_with.balloon_alert(user, "没有ID卡！")
 			return ITEM_INTERACT_BLOCKING
 
 		var/selected_id = pick(target_id_cards)
-		interacting_with.balloon_alert(user, UNLINT("IDs synced"))
+		interacting_with.balloon_alert(user, UNLINT("ID卡已同步"))
 		theft_target = WEAKREF(selected_id)
 		ui_interact(user)
 		return ITEM_INTERACT_SUCCESS
@@ -1782,7 +1782,7 @@
 	if(isitem(interacting_with))
 		var/obj/item/target_item = interacting_with
 
-		interacting_with.balloon_alert(user, "scanning ID card...")
+		interacting_with.balloon_alert(user, "正在扫描ID卡...")
 
 		var/list/target_id_cards = target_item.get_all_contents_type(/obj/item/card/id)
 		var/target_item_id = target_item.GetID()
@@ -1791,11 +1791,11 @@
 			target_id_cards |= target_item_id
 
 		if(!length(target_id_cards))
-			interacting_with.balloon_alert(user, "no IDs!")
+			interacting_with.balloon_alert(user, "没有ID卡！")
 			return ITEM_INTERACT_BLOCKING
 
 		var/selected_id = pick(target_id_cards)
-		interacting_with.balloon_alert(user, UNLINT("IDs synced"))
+		interacting_with.balloon_alert(user, UNLINT("ID卡已同步"))
 		theft_target = WEAKREF(selected_id)
 		ui_interact(user)
 		return ITEM_INTERACT_SUCCESS
@@ -1916,7 +1916,7 @@
 /obj/item/card/id/advanced/chameleon/attack_self(mob/user)
 	if(!user.can_perform_action(user, NEED_DEXTERITY| FORBID_TELEKINESIS_REACH))
 		return ..()
-	var/popup_input = tgui_input_list(user, "Choose Action", "Agent ID", list("Show", "Forge/Reset", "Change Account ID"))
+	var/popup_input = tgui_input_list(user, "选择操作", "特工ID卡", list("Show", "Forge/Reset", "Change Account ID"))
 	if(!popup_input || !after_input_check(user))
 		return TRUE
 	switch(popup_input)
@@ -1936,11 +1936,11 @@
 		update_label()
 		update_appearance()
 		forged = FALSE
-		to_chat(user, span_notice("You successfully reset the ID card."))
+		to_chat(user, span_notice("你成功重置了ID卡."))
 		return
 
 	///forge the ID if not forged.s
-	var/input_name = tgui_input_text(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN, encode = FALSE)
+	var/input_name = tgui_input_text(user, "你想在这张卡上填写什么名字？留空以随机生成。", "特工卡姓名", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN, encode = FALSE)
 
 	if(!after_input_check(user))
 		return TRUE
@@ -1955,18 +1955,18 @@
 		else
 			input_name = "[pick(GLOB.first_names)] [pick(GLOB.last_names)]"
 
-	var/target_occupation = tgui_input_text(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels.", "Agent card job assignment", assignment ? assignment : "Assistant", max_length = MAX_NAME_LEN)
+	var/target_occupation = tgui_input_text(user, "你想在这张卡上填写什么职业？\nNote：这不会授予任何访问权限。", "特工卡职务分配", assignment ? assignment : "助手", max_length = MAX_NAME_LEN)
 	if(!after_input_check(user))
 		return TRUE
 	var/default_age = AGE_MIN
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		default_age = human_user.age ? clamp(human_user.age, AGE_MIN, AGE_MAX) : AGE_MIN
-	var/new_age = tgui_input_number(user, "Choose the ID's age", "Agent card age", default_age, AGE_MAX, AGE_MIN)
+	var/new_age = tgui_input_number(user, "选择ID卡的年龄", "特工卡年龄", default_age, AGE_MAX, AGE_MIN)
 	if(!after_input_check(user))
 		return TRUE
 
-	var/wallet_spoofing = tgui_alert(user, "Activate wallet ID spoofing, allowing this card to force itself to occupy the visible ID slot in wallets?", "Wallet ID Spoofing", list("Yes", "No"))
+	var/wallet_spoofing = tgui_alert(user, "激活钱包ID欺骗功能，允许此卡强制占据钱包中的可见ID卡槽位？", "钱包ID欺骗", list("Yes", "No"))
 	if(!after_input_check(user))
 		return
 
@@ -2103,12 +2103,12 @@
 /obj/item/card/cardboard/proc/modify_card(mob/living/user, obj/item/item)
 	if(!user.mind)
 		return
-	var/popup_input = tgui_input_list(user, "What To Change", "Cardboard ID", list("Name", "Assignment", "Trim", "Reset"))
+	var/popup_input = tgui_input_list(user, "修改内容", "纸板身份识别卡", list("Name", "Assignment", "Trim", "Reset"))
 	if(!after_input_check(user, item, popup_input))
 		return
 	switch(popup_input)
 		if("Name")
-			var/raw_input = tgui_input_text(user, "What name would you like to put on this card?", "Cardboard card name", scribbled_name || (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN)
+			var/raw_input = tgui_input_text(user, "你想在这张卡上写什么名字？", "纸板身份识别卡名称", scribbled_name || (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN)
 			var/input_name = sanitize_name(raw_input, allow_numbers = TRUE)
 			if(!after_input_check(user, item, input_name, scribbled_name))
 				return
@@ -2117,7 +2117,7 @@
 			var/list/details = item.get_writing_implement_details()
 			details_colors[INDEX_NAME_COLOR] = details["color"] || COLOR_BLACK
 		if("Assignment")
-			var/input_assignment = tgui_input_text(user, "What assignment would you like to put on this card?", "Cardboard card job ssignment", scribbled_assignment || "Assistant", max_length = MAX_NAME_LEN)
+			var/input_assignment = tgui_input_text(user, "你想在这张卡片上填写什么职务？", "纸板卡片职务分配", scribbled_assignment || "助手", max_length = MAX_NAME_LEN)
 			if(!after_input_check(user, item, input_assignment, scribbled_assignment))
 				return
 			playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
@@ -2133,7 +2133,7 @@
 					if(trim?.trim_state && trim.assignment)
 						possible_trims |= replacetext(trim.trim_state, "trim_", "")
 				sortTim(possible_trims, GLOBAL_PROC_REF(cmp_typepaths_asc))
-			var/input_trim = tgui_input_list(user, "Select trim to apply to your card.\nNote: This will not grant any trim accesses.", "Forge Trim", possible_trims)
+			var/input_trim = tgui_input_list(user, "Select trim to apply to your card.\nNote: This will not grant any trim accesses.", "伪造装饰边", possible_trims)
 			if(!input_trim || !after_input_check(user, item, input_trim, scribbled_trim))
 				return
 			playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)

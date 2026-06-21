@@ -2,8 +2,8 @@
 #define POWER_SIPHON 20
 
 /obj/structure/destructible/clockwork/sigil/transmission
-	name = "sigil of transmission"
-	desc = "A strange sigil, swirling with a yellow light."
+	name = "传输印记"
+	desc = "一个奇怪的印记，闪烁着黄色的光芒。"
 	clockwork_desc = "A glorious sigil used to power Rat'varian structures and recharge energy-based objects."
 	icon_state = "sigiltransmission"
 	effect_stand_time = 1 SECONDS

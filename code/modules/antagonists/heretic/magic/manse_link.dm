@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/pointed/manse_link
-	name = "Manse Link"
+	name = "牧师链接"
 	desc = "This spell allows you to pierce through reality and connect minds to one another \
 		via your Mansus Link. All minds connected to your Mansus Link will be able to communicate discreetly across great distances."
 	background_icon_state = "bg_heretic"

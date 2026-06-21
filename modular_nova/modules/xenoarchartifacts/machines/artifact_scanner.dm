@@ -1,5 +1,5 @@
 /obj/item/circuitboard/machine/artifact_scanpad
-	name = "Artifact Scanpad"
+	name = "文物扫描台"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/artifact_scanpad
 	req_components = list(
@@ -9,8 +9,8 @@
 	)
 
 /obj/machinery/artifact_scanpad
-	name = "Anomaly Scanner Pad"
-	desc = "Place things here for scanning."
+	name = "异常扫描板"
+	desc = "将物品放置于此进行扫描。"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/machinery.dmi'
 	icon_state = "xenoarch_scanner"
 	anchored = TRUE

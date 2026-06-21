@@ -6,17 +6,17 @@
 #define CAPTIVE_XENO_PASS "captive_xeno_escaped"
 
 /datum/team/xeno
-	name = "\improper Aliens"
+	name = "\improper 外星人"
 
 //Simply lists them.
 /datum/team/xeno/roundend_report()
 	var/list/parts = list()
-	parts += span_header("The [name] were:")
+	parts += span_header("这些[name]是：")
 	parts += printplayerlist(members)
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/antagonist/xeno
-	name = "\improper Xenomorph"
+	name = "\improper 异形"
 	pref_flag = ROLE_ALIEN
 	show_in_antagpanel = FALSE
 	antagpanel_category = ANTAG_GROUP_XENOS
@@ -52,7 +52,7 @@
 	objectives += objective
 
 /datum/antagonist/xeno/captive
-	name = "\improper Captive Xenomorph"
+	name = "\improper 被俘异形"
 	///Our associated antagonist team for captive xenomorphs
 	var/datum/team/xeno/captive/captive_team
 
@@ -99,7 +99,7 @@
 
 ///Captive Xenomorphs team
 /datum/team/xeno/captive
-	name = "\improper Captive Aliens"
+	name = "\improper 被俘外星人"
 	///The first member of this team, presumably the queen.
 	var/datum/mind/progenitor
 
@@ -108,12 +108,12 @@
 	var/escape_count = 0 //counts the number of xenomorphs that were born in captivity who ended the round outside of it
 	var/captive_count = 0 //counts the number of xenomorphs born in captivity who remained there until the end of the round (losers)
 
-	parts += span_header("The [name] were: <br>")
+	parts += span_header("这些[name]是：<br>")
 
 	if(check_captivity(progenitor.current) == CAPTIVE_XENO_PASS)
-		parts += span_greentext("The progenitor of this hive was [progenitor.key], as [progenitor], who successfully escaped captivity!") + "<br>"
+		parts += span_greentext("这个蜂巢的始祖是[progenitor.key]，扮演着[progenitor]，成功逃离了囚禁！") + "<br>"
 	else
-		parts += span_redtext("The progenitor of this hive was [progenitor.key], as [progenitor], who failed to escape captivity") + "<br>"
+		parts += span_redtext("这个蜂巢的始祖是[progenitor.key]，扮演着[progenitor]，未能逃脱囚禁") + "<br>"
 
 	for(var/datum/mind/alien_mind in members)
 		if(alien_mind == progenitor)

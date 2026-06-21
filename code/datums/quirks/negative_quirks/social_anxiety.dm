@@ -115,6 +115,6 @@
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/mood_event/anxiety_eyecontact
-	description = "Sometimes eye contact makes me so nervous..."
+	description = "有时眼神接触会让我非常紧张..."
 	mood_change = -5
 	timeout = 3 MINUTES

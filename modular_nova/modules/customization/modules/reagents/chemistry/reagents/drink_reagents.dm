@@ -1,8 +1,8 @@
 // Modular DRINK REAGENTS, see the following file for the mixes: modular_nova\modules\customization\modules\food_and_drinks\recipes\drinks_recipes.dm
 
 /datum/reagent/consumable/pinkmilk
-	name = "Strawberry Milk"
-	description = "A drink of a bygone era of milk and artificial sweetener back on a rock."
+	name = "草莓牛奶"
+	description = "来自岩石故乡、由牛奶和人造甜味剂制成的旧时代饮品。"
 	color = "#f76aeb"//rgb(247, 106, 235)
 	quality = DRINK_VERYGOOD
 	taste_description = "sweet strawberry and milk cream"
@@ -11,8 +11,8 @@
 	required_drink_type = /datum/reagent/consumable/pinkmilk
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "pinkmilk"
-	name = "tall glass of strawberry milk"
-	desc = "Delicious flavored strawberry syrup mixed with milk."
+	name = "高杯草莓牛奶"
+	desc = "美味的调味草莓糖浆与牛奶混合而成。"
 
 /datum/reagent/consumable/pinkmilk/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -20,8 +20,8 @@
 		to_chat(affected_mob, span_notice("[pick("You cant help to smile.","You feel nostalgia all of sudden.","You remember to relax.")]"))
 
 /datum/reagent/consumable/pinktea //Tiny Tim song
-	name = "Strawberry Tea"
-	description = "A timeless classic!"
+	name = "草莓茶"
+	description = "永恒的经典！"
 	color = "#f76aeb"//rgb(247, 106, 235)
 	quality = DRINK_VERYGOOD
 	taste_description = "sweet tea with a hint of strawberry"
@@ -30,8 +30,8 @@
 	required_drink_type = /datum/reagent/consumable/pinktea
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "pinktea"
-	name = "mug of strawberry tea"
-	desc = "Delicious traditional tea flavored with strawberries."
+	name = "一杯草莓茶"
+	desc = "用草莓调味的传统美味茶饮。"
 
 /datum/reagent/consumable/pinktea/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -39,8 +39,8 @@
 		to_chat(affected_mob, span_notice("[pick("Diamond skies where white deer fly.","Sipping strawberry tea.","Silver raindrops drift through timeless, Neverending June.","Crystal ... pearls free, with love!","Beaming love into me.")]"))
 
 /datum/reagent/consumable/catnip_tea
-	name = "Catnip Tea"
-	description = "A sleepy and tasty catnip tea!"
+	name = "猫薄荷茶"
+	description = "一杯令人昏昏欲睡又美味的猫薄荷茶！"
 	color = "#101000" // rgb: 16, 16, 0
 	taste_description = "sugar and catnip"
 
@@ -48,8 +48,8 @@
 	required_drink_type = /datum/reagent/consumable/catnip_tea
 	icon = 'modular_nova/master_files/icons/obj/drinks.dmi'
 	icon_state = "catnip_tea"
-	name = "glass of catnip tea"
-	desc = "A purrfect drink for a cat."
+	name = "一杯猫薄荷茶"
+	desc = "为猫咪准备的完美饮品。"
 
 /datum/reagent/consumable/catnip_tea/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -64,8 +64,8 @@
 		to_chat(affected_mob, span_notice("[pick("I feel oddly calm.", "I feel relaxed.", "Mew?")]"))
 
 /datum/reagent/consumable/ethanol/beerbatter
-	name = "Beer Batter"
-	description = "Probably not the greatest idea to drink...sludge."
+	name = "啤酒面糊"
+	description = "喝下这玩意儿可能不是个好主意……这简直是泥浆。"
 	color = "#f5f4e9"
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	taste_description = "flour and cheap booze"
@@ -76,8 +76,8 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/beerbatter
 	icon = 'icons/obj/drinks/shakes.dmi'
 	icon_state = "chocolatepudding"
-	name = "glass of beer batter"
-	desc = "Used in cooking, pure cholesterol, Scottish people eat it."
+	name = "一杯啤酒面糊"
+	desc = "用于烹饪，纯胆固醇，苏格兰人吃这个。"
 
 // Reagent metabolize: Nuka Cola
 /datum/reagent/consumable/nuka_cola/on_mob_metabolize(mob/living/affected_mob)

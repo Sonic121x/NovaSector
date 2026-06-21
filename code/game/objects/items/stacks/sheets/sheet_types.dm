@@ -190,9 +190,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 
 /obj/item/stack/sheet/iron/examine(mob/user)
 	. = ..()
-	. += span_notice("Right click on floor to build:")
-	. += span_notice("- Unanchored wall girder")
-	. += span_notice("- Computer or Machine frame (with circuitboard)")
+	. += span_notice("在地板上右键点击以建造：")
+	. += span_notice("- 未固定的墙壁龙骨")
+	. += span_notice("- 计算机或机器框架（需配合电路板）")
 
 /obj/item/stack/sheet/iron/fifty
 	amount = 50
@@ -211,14 +211,14 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	. += GLOB.metal_recipes
 
 /obj/item/stack/sheet/iron/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins whacking [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始用 \the [user.p_them()] 猛敲 [src]自己的头！看起来 [user.p_theyre()] 想自杀！"))
 	return BRUTELOSS
 
 /obj/item/stack/sheet/iron/welder_act(mob/living/user, obj/item/tool)
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/rods/two/new_item = new(user.loc)
 		user.visible_message(
-			span_notice("[user.name] shaped [src] into floor rods with [tool]."),
+			span_notice("[user.name] 用 [src] 将 [tool] 塑造成了地板支撑杆。"),
 			blind_message = span_hear("You hear welding."),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/tile/iron/four/new_item = new(user.loc)
 		user.visible_message(
-			span_notice("[user.name] shaped [src] into floor tiles with [tool]."),
+			span_notice("[user.name] 用 [src] 将 [tool] 塑造成了地板砖。"),
 			blind_message = span_hear("You hear welding."),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
@@ -247,10 +247,10 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	if(!user.Adjacent(build_on))
 		return ITEM_INTERACT_BLOCKING
 	if(isgroundlessturf(build_on))
-		user.balloon_alert(user, "can't place it here!")
+		user.balloon_alert(user, "无法放置在这里！")
 		return ITEM_INTERACT_BLOCKING
 	if(build_on.is_blocked_turf())
-		user.balloon_alert(user, "something is blocking the tile!")
+		user.balloon_alert(user, "有东西挡住了地砖！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/frame_path = null
@@ -268,25 +268,25 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 				cost = recipe.req_amount
 				break
 	if(get_amount() < cost)
-		user.balloon_alert(user, "need [cost] metal sheets!")
+		user.balloon_alert(user, "需要 [cost] 块金属板！")
 		return ITEM_INTERACT_BLOCKING
 	var/experience = floor(time * CONSTRUCTION_XP_MULTIPLIER) // NOVA EDIT ADDITION: Construction Skill
 	time *= user.mind?.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) // NOVA EDIT ADDITION: Construction Skill
 	if(!do_after(user, time, build_on))
 		return ITEM_INTERACT_BLOCKING
 	if(build_on.is_blocked_turf())
-		user.balloon_alert(user, "something is blocking the tile!")
+		user.balloon_alert(user, "有东西挡住了这个格子！")
 		return ITEM_INTERACT_BLOCKING
 	if(!use(cost))
-		user.balloon_alert(user, "not enough material!")
+		user.balloon_alert(user, "材料不足！")
 		return ITEM_INTERACT_BLOCKING
 	if(frame_path)
 		var/obj/structure/frame/constructed_frame = new frame_path(build_on)
 		constructed_frame.setDir(REVERSE_DIR(user.dir)) //to align computer frame with player direction
-		user.balloon_alert(user, "frame created")
+		user.balloon_alert(user, "框架已创建")
 	else
 		new/obj/structure/girder/displaced(build_on)
-		user.balloon_alert(user, "girder created")
+		user.balloon_alert(user, "梁柱已创建")
 	// NOVA EDIT ADDITION START: Construction Skill
 	if(experience)
 		user.mind?.adjust_experience(/datum/skill/construction, experience)
@@ -444,7 +444,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	var/obj/item/bodypart/affecting = target.get_bodypart(check_zone(user.zone_selected))
 	if(affecting && IS_PEG_LIMB(affecting))
 		if(user == target)
-			user.visible_message(span_notice("[user] starts to fix their [affecting.name]."), span_notice("You start fixing [target == user ? "your" : "[target]'s"] [affecting.name]."))
+			user.visible_message(span_notice("[user] starts to fix their [affecting.name]."), span_notice("你开始修复 [target == user ? "your" : "[target]'s"] [affecting.name]。"))
 			if(!do_after(user, 5 SECONDS, target))
 				return ITEM_INTERACT_FAILURE
 		if(target.item_heal(user, brute_heal = 15, burn_heal = 15, heal_message_brute = "splintering", heal_message_burn = "charring", required_bodytype = BODYTYPE_PEG))
@@ -475,8 +475,8 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	))
 
 /obj/item/stack/sheet/mineral/bamboo
-	name = "bamboo cuttings"
-	desc = "Finely cut bamboo sticks."
+	name = "竹材"
+	desc = "精细切割的竹棍。"
 	singular_name = "cut bamboo stick"
 	icon_state = "sheet-bamboo"
 	inhand_icon_state = "sheet-bamboo"
@@ -545,8 +545,8 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	))
 
 /obj/item/stack/sheet/cloth
-	name = "cloth"
-	desc = "Is it cotton? Linen? Denim? Burlap? Canvas? You can't tell."
+	name = "布料"
+	desc = "这是棉花？亚麻？牛仔布？粗麻布？帆布？你分辨不出来。"
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
 	inhand_icon_state = null
@@ -580,8 +580,8 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	))
 
 /obj/item/stack/sheet/durathread
-	name = "durathread"
-	desc = "A fabric sown from incredibly durable threads, known for its usefulness in armor production."
+	name = "耐拉线"
+	desc = "一种由极其耐用的线编织而成的织物，以其在护甲生产中的实用性而闻名。"
 	singular_name = "durathread roll"
 	icon_state = "sheet-durathread"
 	inhand_icon_state = null
@@ -610,8 +610,8 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	created.set_armor_rating(CONSUME, max(50, created.get_armor_rating(CONSUME)))
 
 /obj/item/stack/sheet/cotton
-	name = "raw cotton bundle"
-	desc = "A bundle of raw cotton ready to be spun on the loom."
+	name = "原棉捆"
+	desc = "一捆准备好在织布机上纺纱的原棉。"
 	singular_name = "raw cotton ball"
 	icon_state = "sheet-cotton"
 	resistance_flags = FLAMMABLE
@@ -632,16 +632,16 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	return list(/datum/reagent/cellulose = 20)
 
 /obj/item/stack/sheet/cotton/durathread
-	name = "raw durathread bundle"
-	desc = "A bundle of raw durathread ready to be spun on the loom."
+	name = "原耐拉线捆"
+	desc = "一捆准备好在织布机上纺纱的原耐拉线。"
 	singular_name = "raw durathread ball"
 	icon_state = "sheet-durathreadraw"
 	merge_type = /obj/item/stack/sheet/cotton/durathread
 	loom_result = /obj/item/stack/sheet/durathread
 
 /obj/item/stack/sheet/cotton/wool
-	name = "raw wool bundle"
-	desc = "A bundle of raw wool ready to be spun on the loom."
+	name = "原羊毛捆"
+	desc = "一捆准备好在织布机上纺纱的原羊毛。"
 	singular_name = "raw wool ball"
 	icon_state = "sheet-wool"
 	merge_type = /obj/item/stack/sheet/cotton/wool
@@ -721,8 +721,8 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 ))
 
 /obj/item/stack/sheet/cardboard
-	name = "cardboard"
-	desc = "Large sheets of card, like boxes folded flat."
+	name = "纸板"
+	desc = "大张的硬纸板，就像压扁的盒子。"
 	singular_name = "cardboard sheet"
 	icon_state = "sheet-card"
 	inhand_icon_state = "sheet-card"
@@ -756,13 +756,13 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		var/atom/droploc = drop_location()
 		if(use(1))
 			playsound(I, 'sound/items/bikehorn.ogg', 50, TRUE, -1)
-			to_chat(user, span_notice("You stamp the cardboard! It's a clown box! Honk!"))
+			to_chat(user, span_notice("你给纸板盖了章！现在它是个小丑盒子了！Honk！"))
 			if (amount >= 0)
 				new/obj/item/storage/box/clown(droploc) //bugfix
 	if(istype(I, /obj/item/stamp/chameleon) && !istype(loc, /obj/item/storage))
 		var/atom/droploc = drop_location()
 		if(use(1))
-			to_chat(user, span_notice("You stamp the cardboard in a sinister way."))
+			to_chat(user, span_notice("你以一种邪恶的方式给纸板盖了章。"))
 			if (amount >= 0)
 				new/obj/item/storage/box/syndie_kit(droploc)
 	else
@@ -790,7 +790,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 
 /obj/item/stack/sheet/bronze
 	name = "bronze"
-	desc = "On closer inspection, what appears to be wholly-unsuitable-for-building brass is actually more structurally stable bronze."
+	desc = "仔细一看，这看似完全不适合建筑的黄铜，实际上是结构更稳定的青铜。"
 	singular_name = "bronze sheet"
 	icon_state = "sheet-brass"
 	inhand_icon_state = "sheet-brass"
@@ -799,7 +799,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	lefthand_file = 'icons/mob/inhands/items/sheets_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/sheets_righthand.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	construction_path_type = "bronze"
+	construction_path_type = "青铜"
 	force = 5
 	throwforce = 10
 	max_amount = 50
@@ -823,8 +823,8 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
  * Lesser and Greater gems - unused
  */
 /obj/item/stack/sheet/lessergem
-	name = "lesser gems"
-	desc = "Rare kind of gems which are only gained by blood sacrifice to minor deities. They are needed in crafting powerful objects."
+	name = "次级宝石"
+	desc = "一种稀有宝石，只能通过向次要神祇献祭鲜血获得。它们是制作强大物品所必需的。"
 	singular_name = "lesser gem"
 	icon_state = "sheet-lessergem"
 	inhand_icon_state = null
@@ -832,8 +832,8 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/lessergem
 
 /obj/item/stack/sheet/greatergem
-	name = "greater gems"
-	desc = "Rare kind of gems which are only gained by blood sacrifice to minor deities. They are needed in crafting powerful objects."
+	name = "高级宝石"
+	desc = "一种稀有宝石，只能通过向次要神祇献祭鲜血获得。它们是制作强大物品所必需的。"
 	singular_name = "greater gem"
 	icon_state = "sheet-greatergem"
 	inhand_icon_state = null
@@ -844,13 +844,13 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
  * Bones
  */
 /obj/item/stack/sheet/bone
-	name = "bones"
+	name = "骨头"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "bone"
 	inhand_icon_state = null
 	mats_per_unit = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 	singular_name = "bone"
-	desc = "Someone's been drinking their milk."
+	desc = "看来有人一直在喝牛奶。"
 	force = 7
 	throwforce = 5
 	max_amount = 12
@@ -902,7 +902,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 
 /obj/item/stack/sheet/plastic
 	name = "plastic"
-	desc = "Compress dinosaur over millions of years, then refine, split and mold, and voila! You have plastic."
+	desc = "将恐龙压缩数百万年，然后精炼、分割、塑形，瞧！你就得到了塑料。"
 	singular_name = "plastic sheet"
 	icon_state = "sheet-plastic"
 	inhand_icon_state = "sheet-plastic"
@@ -930,8 +930,8 @@ GLOBAL_LIST_INIT(paperframe_recipes, list(
 ))
 
 /obj/item/stack/sheet/paperframes
-	name = "paper frames"
-	desc = "A thin wooden frame with paper attached."
+	name = "纸框架"
+	desc = "一个附着纸张的薄木框。"
 	singular_name = "paper frame"
 	icon_state = "sheet-paper"
 	inhand_icon_state = "sheet-paper"
@@ -953,8 +953,8 @@ GLOBAL_LIST_INIT(paperframe_recipes, list(
 	amount = 50
 
 /obj/item/stack/sheet/meat
-	name = "meat sheets"
-	desc = "Something's bloody meat compressed into a nice solid sheet."
+	name = "肉片"
+	desc = "某种血淋淋的肉被压缩成了一张结实平整的薄片。"
 	singular_name = "meat sheet"
 	icon_state = "sheet-meat"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_NO_DESCRIPTORS
@@ -978,8 +978,8 @@ GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
 
 /obj/item/stack/sheet/pizza
 	name = "sheet pizza"
-	desc = "It's a deliciously rectangular sheet of pizza!"
-	singular_name = "sheet pizza"
+	desc = "这是一片美味的长方形披萨！"
+	singular_name = "披萨片"
 	icon_state = "sheet-pizza"
 	mats_per_unit = list(/datum/material/pizza = SHEET_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/pizza
@@ -1000,8 +1000,8 @@ GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
 	amount = 5
 
 /obj/item/stack/sheet/hauntium
-	name = "haunted sheets"
-	desc = "These sheets seem cursed."
+	name = "闹鬼板材"
+	desc = "这些板材看起来被诅咒了。"
 	singular_name = "haunted sheet"
 	icon_state = "sheet-meat"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_NO_DESCRIPTORS

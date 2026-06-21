@@ -151,10 +151,10 @@
 	var/turf/our_turf = get_turf(src)
 	var/obj/structure/cable/cable_under_us = locate() in our_turf
 	if(!cable_under_us && powernet)
-		balloon_alert(user, "not connected to wire")
+		balloon_alert(user, "未连接到电线")
 		return
 	if(!avail(active_power_usage))
-		balloon_alert(user, "not enough power")
+		balloon_alert(user, "电力不足")
 		return
 
 	thumping = TRUE
@@ -163,7 +163,7 @@
 	if(callback_tracker)
 		deltimer(callback_tracker)
 
-	balloon_alert(user, "thumper started")
+	balloon_alert(user, "震击器已启动")
 
 	callback_tracker = addtimer(CALLBACK(src, PROC_REF(slam_it_down)), SLAM_JAM_DELAY, TIMER_DELETE_ME | TIMER_STOPPABLE)
 
@@ -173,7 +173,7 @@
 	thumping = FALSE
 	soundloop.stop()
 	if(user)
-		balloon_alert(user, "thumper stopped")
+		balloon_alert(user, "震击器已停止")
 
 
 /// Makes the machine slam down, producing a box of ore if it has been slamming long enough

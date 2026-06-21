@@ -71,7 +71,7 @@
 	. = ..()
 
 	var/obj/item/inhaler/albuterol/asthma/rescue_inhaler = new(get_turf(quirk_holder))
-	give_item_to_holder(rescue_inhaler, list(LOCATION_BACKPACK, LOCATION_HANDS), flavour_text = "You can use this to quickly relieve the symptoms of your asthma.")
+	give_item_to_holder(rescue_inhaler, list(LOCATION_BACKPACK, LOCATION_HANDS), flavour_text = "你可以用它来快速缓解哮喘症状。")
 
 	COOLDOWN_START(src, next_attack_cooldown, time_first_attack_can_happen)
 

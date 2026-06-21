@@ -1,7 +1,7 @@
 /datum/lazy_template/virtual_domain/ash_drake
-	name = "Ashen Inferno"
+	name = "灰烬炼狱"
 	cost = BITRUNNER_COST_MEDIUM
-	desc = "Home of the ash drake, a powerful dragon that scours the surface of Lavaland."
+	desc = "灰烬巨龙的家园，这是一种在熔岩地表巡弋的强大巨龙。"
 	difficulty = BITRUNNER_DIFFICULTY_MEDIUM
 	forced_outfit = /datum/outfit/job/miner
 	key = "ash_drake"

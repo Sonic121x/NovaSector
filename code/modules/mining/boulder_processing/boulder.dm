@@ -5,8 +5,8 @@
  * The objects that ore vents produce, which is refined into minerals.
  */
 /obj/item/boulder
-	name = "boulder"
-	desc = "This rocks."
+	name = "巨岩"
+	desc = "这很摇滚。"
 	icon_state = "ore"
 	icon = 'icons/obj/ore.dmi'
 	item_flags = NO_MAT_REDEMPTION | SLOWS_WHILE_IN_HAND
@@ -54,9 +54,9 @@
 
 /obj/item/boulder/examine(mob/user)
 	. = ..()
-	. += span_notice("This boulder would take [durability] more steps to refine or break.")
+	. += span_notice("这块巨岩还需要[durability]步才能精炼或打碎。")
 	if(HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
-		. += span_notice("You can crush this boulder with your bare hands.")
+		. += span_notice("你可以徒手捏碎这块巨岩。")
 
 /obj/item/boulder/examine_more(mob/user)
 	. = ..()
@@ -128,7 +128,7 @@
 /obj/item/boulder/proc/create_platform(atom/interacting_with, mob/living/user, timer_override = null)
 	if(locate(/obj/structure/lattice/catwalk/boulder, interacting_with))
 		if(user)
-			to_chat(user, span_warning("There is already a boulder platform here!"))
+			to_chat(user, span_warning("这里已经有一个巨岩平台了！"))
 		return null
 
 	var/active_platform_lifespan = platform_lifespan //Default to the assigned value.
@@ -138,7 +138,7 @@
 	var/obj/structure/lattice/catwalk/boulder/platform = new(interacting_with)
 	addtimer(CALLBACK(platform, TYPE_PROC_REF(/obj/structure/lattice/catwalk/boulder, pre_self_destruct)), active_platform_lifespan)
 	// See Lattice.dm for more info
-	visible_message(span_notice("\The [src] floats on \the [interacting_with], forming a temporary platform!"))
+	visible_message(span_notice("\The [src]漂浮在\the [interacting_with]上，形成了一个临时平台！"))
 	qdel(src)
 	return platform
 
@@ -159,7 +159,7 @@
 		process_speed = weapon.toolspeed
 		weapon.play_tool_sound(src, 50)
 		if(!continued)
-			to_chat(user, span_notice("You swing at \the [src]..."))
+			to_chat(user, span_notice("你挥动武器砸向\the [src]..."))
 
 	// Handle user conditions/override conditions.
 	else if (override_speed_multiplier || HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
@@ -171,7 +171,7 @@
 			process_speed = INATE_BOULDER_SPEED_MULTIPLIER
 		playsound(src, 'sound/effects/rock/rocktap1.ogg', 50)
 		if(!continued)
-			to_chat(user, span_notice("You scrape away at \the [src]..."))
+			to_chat(user, span_notice("你刮擦着\the [src]..."))
 	else
 		CRASH("No weapon, acceptable user, or override speed multiplier passed to manual_process()")
 	if(durability > 0)
@@ -183,7 +183,7 @@
 		user.apply_damage(4 * skill_modifier, STAMINA)
 	if(durability <= 0)
 		convert_to_ore()
-		to_chat(user, span_notice("You finish working on \the [src], and it crumbles into ore."))
+		to_chat(user, span_notice("你完成了对\the [src]的处理，它碎裂成了矿石。"))
 		playsound(src, 'sound/effects/rock/rock_break.ogg', 50)
 		user.mind?.adjust_experience(/datum/skill/mining, MINING_SKILL_BOULDER_SIZE_XP * 0.2)
 		user.mind?.adjust_experience(/datum/skill/athletics, MINING_SKILL_BOULDER_SIZE_XP * 0.2)
@@ -218,7 +218,7 @@
 /obj/item/boulder/proc/break_apart()
 	if(length(contents))
 		var/list/quips = list("Clang!", "Crack!", "Bang!", "Clunk!", "Clank!")
-		visible_message(span_notice("[pick(quips)] Something falls out of \the [src]!"))
+		visible_message(span_notice("[pick(quips)] 有东西从\the [src]里掉了出来！"))
 		playsound(loc, 'sound/effects/pickaxe/picaxe1.ogg', 60, FALSE)
 		for(var/obj/item/content as anything in contents)
 			content.forceMove(get_turf(src))

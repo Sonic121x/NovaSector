@@ -5,8 +5,8 @@
 /// Can hear deadchat, but are NOT normal ghosts and do NOT have x-ray vision
 /// Admin-spawn or random event
 /mob/living/basic/revenant
-	name = "revenant"
-	desc = "A malevolent spirit."
+	name = "复仇亡魂"
+	desc = "一个恶意的灵体。"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "revenant_idle"
 	mob_biotypes = MOB_SPIRIT | MOB_UNDEAD
@@ -204,7 +204,7 @@
 
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, span_boldwarning("You cannot send IC messages (muted)."))
+			to_chat(src, span_boldwarning("你无法发送IC消息（已禁言）。"))
 			return
 		if (!(ignore_spam || forced) && client.handle_spam_prevention(message, MUTE_IC))
 			return
@@ -213,7 +213,7 @@
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	log_talk(message, LOG_SAY)
-	var/rendered = span_deadsay("<b>UNDEAD: [src]</b> says, \"[message]\"")
+	var/rendered = span_deadsay("<b>亡灵：[src]</b> 说道：“[message]”")
 	relay_to_list_and_observers(rendered, GLOB.revenant_relay_mobs, src)
 
 /mob/living/basic/revenant/ClickOn(atom/A, params) //revenants can't interact with the world directly, so we gotta do some wacky override stuff
@@ -327,7 +327,7 @@
 	update_mob_action_buttons()
 
 	visible_message(
-		span_warning("[src] lets out a waning screech as violet mist swirls around its dissolving body!"),
+		span_warning("[src]发出一声渐弱的尖啸，紫罗兰色的雾气在其溶解的身体周围盘旋！"),
 		span_revendanger("NO! No... it's too late, you can feel your essence [pick("breaking apart", "drifting away")]..."),
 	)
 
@@ -343,14 +343,14 @@
 	if(QDELETED(src) || !dormant) // something fucky happened, abort. we MUST be dormant to go inside the ectoplasm.
 		return
 
-	visible_message(span_danger("[src]'s body breaks apart into a fine pile of blue dust."))
+	visible_message(span_danger("[src]的身体碎裂成一堆细小的蓝色尘埃。"))
 
 	new /obj/item/ectoplasm/revenant(get_turf(src), src) // the ectoplasm will handle moving us out of dormancy
 
 /mob/living/basic/revenant/proc/on_move(datum/source, atom/entering_loc)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM)) // just in case it occurs, need to provide some feedback
-		balloon_alert(src, "can't move!")
+		balloon_alert(src, "无法移动！")
 		return
 
 	if(isnull(orbiting) || incorporeal_move_check(entering_loc))
@@ -364,13 +364,13 @@
 /mob/living/basic/revenant/proc/create_login_string()
 	RETURN_TYPE(/list)
 	var/list/returnable_list = list()
-	returnable_list += span_deadsay(span_boldbig("You are a revenant."))
-	returnable_list += span_bold("Your formerly mundane spirit has been infused with alien energies and empowered into a revenant.")
-	returnable_list += span_bold("You are not dead, not alive, but somewhere in between. You are capable of limited interaction with both worlds.")
-	returnable_list += span_bold("You are invincible and invisible to everyone but other ghosts. Most abilities will reveal you, rendering you vulnerable.")
-	returnable_list += span_bold("To function, you are to drain the life essence from humans. This essence is a resource, as well as your health, and will power all of your abilities.")
-	returnable_list += span_bold("<i>You do not remember anything of your past lives, nor will you remember anything about this one after your death.</i>")
-	returnable_list += span_bold("Be sure to read <a href=\"https://tgstation13.org/wiki/Revenant\">the wiki page</a> to learn more.")
+	returnable_list += span_deadsay(span_boldbig("你是一个亡魂。"))
+	returnable_list += span_bold("你原本平凡的灵体已被异星能量灌注，强化成了一个复仇之魂。")
+	returnable_list += span_bold("你并非死亡，也非活着，而是介于两者之间。你能够与两个世界进行有限的互动。")
+	returnable_list += span_bold("你对除其他幽灵外的所有人都是无敌且隐形的。使用大多数能力会暴露你，使你变得脆弱。")
+	returnable_list += span_bold("要维持机能，你必须从人类身上汲取生命精华。这种精华是一种资源，也是你的生命值，并将为你所有的能力提供能量。")
+	returnable_list += span_bold("<i>你记不起任何前世，死后也不会记得此生的任何事情。</i>")
+	returnable_list += span_bold("请务必阅读<a href=\"https://tgstation13.org/wiki/Revenant\">维基页面</a>以了解更多信息。")
 	return returnable_list
 
 /mob/living/basic/revenant/generate_random_mob_name()
@@ -384,8 +384,8 @@
 /mob/living/basic/revenant/proc/on_baned(obj/item/weapon, mob/living/user)
 	SIGNAL_HANDLER
 	visible_message(
-		span_warning("[src] violently flinches!"),
-		span_revendanger("As [weapon] passes through you, you feel your essence draining away!"),
+		span_warning("[src] 剧烈地畏缩了一下！"),
+		span_revendanger("当[weapon]穿过你时，你感到自己的精华正在流失！"),
 	)
 	apply_status_effect(/datum/status_effect/revenant/inhibited, 3 SECONDS)
 
@@ -396,17 +396,17 @@
 		return TRUE // what? whatever let it happen
 
 	if(step_turf.turf_flags & NOJAUNT)
-		to_chat(src, span_warning("Some strange aura is blocking the way."))
+		to_chat(src, span_warning("某种奇怪的光环阻挡了去路。"))
 		return FALSE
 
 	if(locate(/obj/effect/decal/cleanable/food/salt) in step_turf)
-		balloon_alert(src, "blocked by salt!")
+		balloon_alert(src, "被盐阻挡了！")
 		apply_status_effect(/datum/status_effect/revenant/revealed, 2 SECONDS)
 		apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 		return FALSE
 
 	if(locate(/obj/effect/blessing) in step_turf)
-		to_chat(src, span_warning("Holy energies block your path!"))
+		to_chat(src, span_warning("神圣能量阻挡了你的去路！"))
 		return FALSE
 
 	return TRUE
@@ -419,14 +419,14 @@
 
 	if(isclosedturf(current))
 		if(!silent)
-			to_chat(src, span_revenwarning("You cannot use abilities from inside of a wall."))
+			to_chat(src, span_revenwarning("你无法在墙内使用能力。"))
 		return FALSE
 
 	for(var/obj/thing in current)
 		if(!thing.density || thing.CanPass(src, get_dir(current, src)))
 			continue
 		if(!silent)
-			to_chat(src, span_revenwarning("You cannot use abilities inside of a dense object."))
+			to_chat(src, span_revenwarning("你无法在致密物体内部使用能力。"))
 		return FALSE
 
 	if(dormant)
@@ -436,7 +436,7 @@
 
 	if(HAS_TRAIT(src, TRAIT_REVENANT_INHIBITED))
 		if(!silent)
-			to_chat(src, span_revenwarning("Your powers have been suppressed by a nullifying energy!"))
+			to_chat(src, span_revenwarning("你的能力被一股虚无能量压制了！"))
 		return FALSE
 
 	essence_cost = abs(essence_cost) * -1
@@ -486,9 +486,9 @@
 	update_mob_action_buttons()
 	if(!silent)
 		if(essence_to_change_by > 0)
-			to_chat(src, span_revennotice("Gained [essence_to_change_by]E [source ? "from [source]":""]."))
+			to_chat(src, span_revennotice("获得了[essence_to_change_by]E[source ? "from [source]":""]。"))
 		else
-			to_chat(src, span_revenminor("Lost [essence_to_change_by]E [source ? "from [source]":""]."))
+			to_chat(src, span_revenminor("失去了[essence_to_change_by]E[source ? "from [source]":""]。"))
 	return TRUE
 
 /mob/living/basic/revenant/mob_negates_gravity()

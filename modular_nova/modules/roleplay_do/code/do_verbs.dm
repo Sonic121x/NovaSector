@@ -4,7 +4,7 @@
 	set instant = TRUE
 
 	if(GLOB.say_disabled)
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("发言当前已被管理员禁用。"))
 		return
 
 	if(message)

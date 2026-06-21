@@ -1,10 +1,10 @@
 /datum/round_event_control/processor_overload
-	name = "Processor Overload"
+	name = "处理器过载"
 	typepath = /datum/round_event/processor_overload
 	weight = 15
 	min_players = 20
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Emps the telecomm processors, scrambling radio speech. Might blow up a few."
+	description = "电磁脉冲影响电信处理器，扰乱无线电语音。可能会炸毁几个。"
 
 /datum/round_event/processor_overload
 	announce_when = 1
@@ -26,7 +26,7 @@
 	// whether it's, say, a tesla zapping tcomms, or some selective
 	// modification of the tcomms bus
 	if(prob(80) || fake)
-		priority_announce(alert, "Anomaly Alert")
+		priority_announce(alert, "异常警报")
 
 /datum/round_event/processor_overload/start()
 	for(var/obj/machinery/telecomms/processor/spinny_thing in GLOB.telecomm_machines)

@@ -1,7 +1,7 @@
 //Space bears!
 /mob/living/basic/bear
-	name = "space bear"
-	desc = "You don't need to be faster than a space bear, you just need to outrun your crewmates."
+	name = "太空熊"
+	desc = "你不需要比太空熊更快，你只需要跑赢你的船员同伴就行。"
 	icon_state = "bear"
 	icon_living = "bear"
 	icon_dead = "bear_dead"
@@ -70,21 +70,21 @@
 
 //SPACE BEARS! SQUEEEEEEEE~     OW! FUCK! IT BIT MY HAND OFF!!
 /mob/living/basic/bear/hudson
-	name = "Hudson"
+	name = "哈德森"
 	gender = MALE
-	desc = "Feared outlaw, this guy is one bad news bear." //I'm sorry...
+	desc = "令人畏惧的法外之徒，这家伙是个十足的坏消息熊。" //I'm sorry...
 
 /mob/living/basic/bear/snow
-	name = "space polar bear"
+	name = "太空北极熊"
 	icon_state = "snowbear"
 	icon_living = "snowbear"
 	icon_dead = "snowbear_dead"
-	desc = "It's a polar bear, in space, but not actually in space."
+	desc = "这是一只北极熊，在太空里，但并非真的在太空里。"
 
 /mob/living/basic/bear/snow/misha
-	name = "Misha"
+	name = "米莎"
 	real_name = "Misha"
-	desc = "Tamed and trained by the Head of Security. Only beasts are above deceit."
+	desc = "由安全主管驯养和训练。只有野兽才不屑于欺骗。"
 	gold_core_spawnable = NO_SPAWN
 	maxHealth = 250
 	health = 250
@@ -92,8 +92,8 @@
 	status_flags = CANPUSH | CANSTUN
 
 /mob/living/basic/bear/snow/ancient
-	name = "ancient polar bear"
-	desc = "A grizzled old polar bear, its hide thick enough to make it impervious to almost all weapons."
+	name = "远古北极熊"
+	desc = "一只毛发斑白的老年北极熊，其厚实的毛皮足以让它几乎免疫所有武器。"
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/bear/snow/ancient/Initialize(mapload)
@@ -101,8 +101,8 @@
 	ADD_TRAIT(src, TRAIT_GODMODE, INNATE_TRAIT)
 
 /mob/living/basic/bear/russian
-	name = "combat bear"
-	desc = "A ferocious brown bear decked out in armor plating, a red star with yellow outlining details the shoulder plating."
+	name = "战斗熊"
+	desc = "一只凶猛的棕熊，全身覆盖着装甲板，肩甲上饰有黄色描边的红星。"
 	icon_state = "combatbear"
 	icon_living = "combatbear"
 	icon_dead = "combatbear_dead"
@@ -118,11 +118,11 @@
 	armored = TRUE
 
 /mob/living/basic/bear/butter //The mighty companion to Cak. Several functions used from it.
-	name = "Terrygold"
+	name = "特里金"
 	icon_state = "butterbear"
 	icon_living = "butterbear"
 	icon_dead = "butterbear_dead"
-	desc = "I can't believe its not a bear!"
+	desc = "真不敢相信这居然不是熊！"
 	faction = list(FACTION_NEUTRAL, FACTION_RUSSIAN)
 	obj_damage = 11
 	melee_damage_lower = 0
@@ -174,9 +174,9 @@
 	so quickly that it generally doesn't matter. You're remarkably resilient to any damage besides this and it's hard for you to really die at all. You should go around and bring happiness and \
 	free butter to the station!</b>")
 	var/default_name = "Terrygold"
-	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "You are \the [src]. Would you like to change your name to something else?", "Name change", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
+	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "你是\the [src]。你想把名字改成别的吗？", "改名", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
 	if(new_name)
-		to_chat(src, span_notice("Your name is now <b>[new_name]</b>!"))
+		to_chat(src, span_notice("你的名字现在是 <b>[new_name]</b> 了！"))
 		name = new_name
 
 /mob/living/basic/bear/butter/UnarmedAttack(atom/target, proximity_flag, list/modifiers) //Makes the butter bear's attacks against vertical targets slip said targets
@@ -188,4 +188,4 @@
 		return
 	victim.Knockdown(20)
 	playsound(loc, 'sound/misc/slip.ogg', 15)
-	victim.visible_message(span_danger("[victim] slips on [src]'s butter!"))
+	victim.visible_message(span_danger("[victim] 踩在 [src] 的黄油上滑倒了！"))

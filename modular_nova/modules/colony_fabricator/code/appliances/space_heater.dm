@@ -29,7 +29,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 	efficiency = src::efficiency
 
 /obj/machinery/space_heater/wall_mounted/default_unfasten_wrench(mob/living/user, obj/item/wrench, time)
-	user.balloon_alert(user, "deconstructing...")
+	user.balloon_alert(user, "正在解构...")
 	wrench.play_tool_sound(src)
 	if(wrench.use_tool(src, user, 1 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -84,7 +84,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 	user.transferItemToLoc(tool, src)
 	if(!isnull(cell))
 		user.put_in_hands(cell)
-		user.balloon_alert(user, "swapped")
+		user.balloon_alert(user, "已交换")
 	cell = tool
 	return ITEM_INTERACT_SUCCESS
 
@@ -106,7 +106,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 	if(cell)
 		. += span_notice("It contains a [ispath(cell) ? cell::name : cell.name], which could be replaced.")
 	else
-		. += span_notice("It is empty. You could insert a [span_bold("cell")].")
+		. += span_notice("它是空的。你可以插入一个[span_bold("cell")]。")
 
 /obj/item/wallframe/wall_heater/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()

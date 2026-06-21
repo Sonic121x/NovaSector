@@ -2,7 +2,7 @@
 *	GUNSET BOXES
 */
 /obj/item/storage/toolbox/guncase/nova
-	desc = "A thick gun case with foam inserts laid out to fit a weapon, magazines, and gear securely."
+	desc = "一个厚实的枪盒，配有泡沫内衬，可稳妥地放置武器、弹匣和装备。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/gunsets.dmi'
 	icon_state = "guncase"
 	worn_icon = 'modular_nova/modules/modular_weapons/icons/mob/worn/cases.dmi'
@@ -51,7 +51,7 @@
 
 // Small case for pistols and whatnot
 /obj/item/storage/toolbox/guncase/nova/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "guncase_s"
 	slot_flags = NONE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -70,7 +70,7 @@
 	inhand_icon_state = "greencase"
 
 /obj/item/storage/toolbox/guncase/nova/green/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "greencase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -81,7 +81,7 @@
 	inhand_icon_state = "redcase"
 
 /obj/item/storage/toolbox/guncase/nova/red/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "redcase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -92,7 +92,7 @@
 	inhand_icon_state = "bluecase"
 
 /obj/item/storage/toolbox/guncase/nova/blue/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "bluecase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -103,7 +103,7 @@
 	inhand_icon_state = "purplecase"
 
 /obj/item/storage/toolbox/guncase/nova/purple/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "purplecase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -114,7 +114,7 @@
 	inhand_icon_state = "orangecase"
 
 /obj/item/storage/toolbox/guncase/nova/orange/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "orangecase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -132,10 +132,10 @@
 
 /obj/item/storage/toolbox/guncase/nova/ntcase/examine(mob/user)
 	. = ..()
-	. += "<i>It is emblazoned with the <b>[span_blue("Nanotrasen")]</b> logo.</i>"
+	. += "<i>它上面印有<b>[span_blue("Nanotrasen")]</b>的徽标。</i>"
 
 /obj/item/storage/toolbox/guncase/nova/ntcase/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "ntcase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -148,11 +148,11 @@
 
 /obj/item/storage/toolbox/guncase/nova/ntspecial/examine(mob/user)
 	. = ..()
-	. += "<i>It is emblazoned with a gilded <b>[span_blue("Nanotrasen")]</b> logo.</i>"
+	. += "<i>它饰有镀金的<b>[span_blue("Nanotrasen")]</b>标志。</i>"
 
 
 /obj/item/storage/toolbox/guncase/nova/ntspecial/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "cc_case_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -168,7 +168,7 @@
 	. += "<i>It is stamped with the <b>[span_cyan_nova("Solar Federation")]</b> emblem.</i>"
 
 /obj/item/storage/toolbox/guncase/nova/solfed/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "solfedcase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -184,7 +184,7 @@
 	. += "<i>It is stamped with the <b>[span_cyan_nova("Solar Federation")]</b> emblem.</i>"
 
 /obj/item/storage/toolbox/guncase/nova/solfedspec/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "solfedspeccase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -200,7 +200,7 @@
 	. += "<i>It is marked with <b>[span_red("Syndicate Conglomerate")]</b> insignia.</i>"
 
 /obj/item/storage/toolbox/guncase/nova/syndicate/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "syndicase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -216,7 +216,7 @@
 	. += "<i>It is stamped with the <b>[span_green("Interdyne Pharmaceuticals")]</b> logo.</i>"
 
 /obj/item/storage/toolbox/guncase/nova/interdyne/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "dynecase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol
@@ -232,7 +232,7 @@
 	. += "<i>It is stamped with the <b>[span_green("Interdyne Pharmaceuticals")]</b> logo.</i>"
 
 /obj/item/storage/toolbox/guncase/nova/interdynespec/pistol
-	name = "small gun case"
+	name = "小型枪盒"
 	icon_state = "dynespeccase_s"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/guncase/nova/pistol

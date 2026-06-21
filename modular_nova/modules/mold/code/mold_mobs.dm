@@ -10,8 +10,8 @@
 #define CENTAUR_ATTACK_SCREAM_VOLUME 60
 
 /mob/living/basic/mold
-	name = "mold mob"
-	desc = "A debug mob for molds. You should report seeing this."
+	name = "霉菌生物"
+	desc = "用于霉菌的调试生物。如果你看到这个，请报告。"
 	icon = 'modular_nova/modules/mold/icons/blob_mobs.dmi'
 	gold_core_spawnable = NO_SPAWN
 	faction = list(FACTION_MOLD)
@@ -24,8 +24,8 @@
  * They're immune to burn damage and have a chance to add fire stacks on melee attack
  */
 /mob/living/basic/mold/oil_shambler
-	name = "oil shambler"
-	desc = "Humanoid figure covered in oil, or maybe they're just oil? They seem to be perpetually on fire."
+	name = "油污蹒跚者"
+	desc = "被油覆盖的人形生物，或者也许它们本身就是油？它们看起来似乎永远在燃烧。"
 	icon_state = "oil_shambler"
 	icon_living = "oil_shambler"
 	icon_dead = "oil_shambler"
@@ -108,8 +108,8 @@
  * They try to inject their target on melee attacks and, if successful, make them contract a disease
  */
 /mob/living/basic/mold/diseased_rat
-	name = "diseased rat"
-	desc = "An incredibly large, rabid looking rat. There are shrooms growing out of it"
+	name = "病鼠"
+	desc = "一只体型巨大、看起来狂躁的老鼠。有蘑菇从它身上长出来"
 	icon_state = "diseased_rat"
 	icon_living = "diseased_rat"
 	icon_dead = "diseased_rat_dead"
@@ -143,7 +143,7 @@
 
 	var/mob/living/carbon/disease_target = target
 	if(can_inject(disease_target))
-		to_chat(disease_target, span_danger("[src] manages to penetrate your clothing with its teeth!"))
+		to_chat(disease_target, span_danger("[src] 的牙齿成功穿透了你的衣物！"))
 		disease_target.ForceContractDisease(new given_disease(), FALSE, TRUE)
 
 /datum/ai_controller/basic_controller/diseased_rat
@@ -173,8 +173,8 @@
  * They inject their target with teslium on melee attacks
  */
 /mob/living/basic/mold/electric_mosquito
-	name = "electric mosquito"
-	desc = "An oversized mosquito with what seems like electricity inside its body."
+	name = "电蚊"
+	desc = "一只体型过大的蚊子，其体内似乎有电流。"
 	icon_state = "electric_mosquito"
 	icon_living = "electric_mosquito"
 	icon_dead = "electric_mosquito_dead"
@@ -231,8 +231,8 @@
  * They have a chance to irradiate their target on hit
  */
 /mob/living/basic/mold/centaur
-	name = "centaur"
-	desc = "A horrific combination of bone and flesh with multiple sets of legs and feet."
+	name = "半人马怪"
+	desc = "一种由骨骼和血肉组成的恐怖结合体，有多组腿和脚。"
 	icon_state = "centaur"
 	icon_living = "centaur"
 	icon_dead = "centaur_dead"

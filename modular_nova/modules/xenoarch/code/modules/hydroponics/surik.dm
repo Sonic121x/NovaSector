@@ -1,6 +1,6 @@
 /obj/item/seeds/surik
-	name = "surik seed pack"
-	desc = "These seeds grow into surik plants. Said to contain the very essence of Indecipheres."
+	name = "苏里克种子包"
+	desc = "这些种子会长成苏里克植株。据说蕴含着不可解星球的精髓。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "surik"
 	species = "surik"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/surik
 	seed = /obj/item/seeds/surik
-	name = "surik"
-	desc = "A shimmering surik crystal. The center of the gem thrums with volcanic activity."
+	name = "苏里克"
+	desc = "一块闪烁的苏里克水晶。宝石中心随着火山活动而脉动。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "surik"
 	filling_color = "#FF4500"

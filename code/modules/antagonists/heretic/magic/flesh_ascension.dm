@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/shapeshift/shed_human_form
-	name = "Shed form"
+	name = "摆脱形态"
 	desc = "Shed your fragile form, become one with the arms, become one with the emperor. \
 		Causes heavy amounts of brain damage and sanity loss to nearby mortals."
 	background_icon_state = "bg_heretic"

@@ -1,6 +1,6 @@
 /obj/item/anomaly_neutralizer
-	name = "anomaly neutralizer"
-	desc = "A one-use device capable of instantly neutralizing anomalous or otherworldly entities."
+	name = "异常中和器"
+	desc = "一种一次性设备，能够瞬间中和异常或异界实体。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "neutralyzer"
 	inhand_icon_state = "electronic"

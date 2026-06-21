@@ -9,22 +9,22 @@
 	var/list/mob/living/carbon/human/broadcasted_mobs = list()
 
 /obj/item/organ/heart/gland/mindshock/activate()
-	to_chat(owner, span_notice("You get a headache."))
+	to_chat(owner, span_notice("你感到头痛。"))
 
 	var/turf/owner_turf = get_turf(owner)
 	for(var/mob/living/carbon/target in orange(4,owner_turf))
 		if(target == owner)
 			continue
 		if(HAS_MIND_TRAIT(target, TRAIT_MINDSHIELD))
-			to_chat(target, span_notice("You hear a faint hum fill your ears, which quickly dies down."))
+			to_chat(target, span_notice("你听到一阵微弱的嗡嗡声充满了你的耳朵，但很快就消失了。"))
 			continue
 
 		switch(pick(1,3))
 			if(1)
-				to_chat(target, span_userdanger("You hear a loud buzz in your head, silencing your thoughts!"))
+				to_chat(target, span_userdanger("你听到脑海中响起一阵巨大的嗡嗡声，压制了你的思绪！"))
 				target.Stun(50)
 			if(2)
-				to_chat(target, span_warning("You hear an annoying buzz in your head."))
+				to_chat(target, span_warning("你听到脑海中响起一阵恼人的嗡嗡声。"))
 				target.adjust_confusion(15 SECONDS)
 				target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 160)
 			if(3)
@@ -42,11 +42,11 @@
 			continue
 
 		if(HAS_MIND_TRAIT(target_human, TRAIT_UNCONVERTABLE))
-			to_chat(target_human, span_notice("You hear a low drone as something foreign attempts to enter your mind, but the noise fades after a few moments."))
+			to_chat(target_human, span_notice("你听到一阵低沉的嗡鸣，仿佛有什么异物正试图侵入你的意识，但片刻之后这声音便消退了。"))
 			continue
 
 		broadcasted_mobs += target_human
-		to_chat(target_human, span_userdanger("You suddenly feel an irresistible compulsion to follow an order..."))
+		to_chat(target_human, span_userdanger("你突然感到一股无法抗拒的冲动，想要遵从某个指令……"))
 		to_chat(target_human, span_mind_control("[command]"))
 
 		message_admins("[key_name(user)] broadcasted an abductor mind control message from [key_name(owner)] to [key_name(target_human)]: [command]")
@@ -67,7 +67,7 @@
 		return FALSE
 	for(var/target_mob in broadcasted_mobs)
 		var/mob/living/carbon/human/target_human = target_mob
-		to_chat(target_human, span_userdanger("You feel the compulsion fade, and you <i>completely forget</i> about your previous orders."))
+		to_chat(target_human, span_userdanger("你感到那股冲动逐渐消退，并且你<i>完全忘记</i>了之前的指令。"))
 		target_human.clear_alert(ALERT_MIND_CONTROL)
 	active_mind_control = FALSE
 	return TRUE

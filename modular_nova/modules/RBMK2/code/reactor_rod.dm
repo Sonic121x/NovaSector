@@ -1,6 +1,6 @@
 /obj/item/tank/rbmk2_rod
-	name = "\improper RB-MK2 reactor rod"
-	desc = "A rod for the RB-MK2 reactor. Usually filled with tritium."
+	name = "\improper RB-MK2反应堆燃料棒"
+	desc = "用于RB-MK2反应堆的燃料棒。通常填充有氚。"
 	icon = 'modular_nova/modules/RBMK2/icons/reactor_stuff.dmi'
 	icon_state = "platform_rod"
 	inhand_icon_state = null
@@ -57,11 +57,11 @@
 
 /obj/item/tank/rbmk2_rod/examine(user)
 	. = ..()
-	. += span_notice("A sticker on its side says <b>MAX SAFE PRESSURE: [siunit_pressure(pressure_limit, 0)]; MAX SAFE TEMPERATURE: [siunit(temperature_limit, "K", 0)]</b>.")
+	. += span_notice("侧面贴着一张标签，上面写着<b>最大安全压力：[siunit_pressure(pressure_limit, 0)]；最大安全温度：[siunit(temperature_limit, "K", 0)]</b>。")
 
 // Prevents putting the reactor rod on a TTV.
 /obj/item/transfer_valve/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/tank/rbmk2_rod))
-		to_chat(user, span_warning("[attacking_item] doesn't fit!"))
+		to_chat(user, span_warning("[attacking_item] 装不进去！"))
 		return
 	return ..()

@@ -20,7 +20,7 @@
 	var/hotness = tool.get_temperature()
 	if(hotness)
 		source.reagents.expose_temperature(hotness)
-		source.balloon_alert(user, "heated [source]")
+		source.balloon_alert(user, "加热了[source]")
 		return ITEM_INTERACT_SUCCESS
 
 	//Cooling method
@@ -29,11 +29,11 @@
 		if(extinguisher.safety)
 			return NONE
 		if (extinguisher.reagents?.total_volume < 1)
-			extinguisher.balloon_alert(user, "extinguisher is empty!") // being a bit more verbose to clarify the extinguisher - not source - is empty
+			extinguisher.balloon_alert(user, "灭火器空了！") // being a bit more verbose to clarify the extinguisher - not source - is empty
 			return ITEM_INTERACT_BLOCKING
 		var/cooling = (0 - source.reagents.chem_temp) * extinguisher.cooling_power * 2
 		source.reagents.expose_temperature(cooling)
-		source.balloon_alert(user, "cooled [source]")
+		source.balloon_alert(user, "冷却了[source]")
 		playsound(source, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
 		extinguisher.reagents.remove_all(1)
 		return ITEM_INTERACT_SUCCESS

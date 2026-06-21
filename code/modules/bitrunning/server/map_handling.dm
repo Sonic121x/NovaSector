@@ -14,9 +14,9 @@
 	balloon_alert_to_viewers("notifying clients...")
 	playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 100, vary = TRUE)
 	user.visible_message(
-		span_danger("[user] begins depowering the server!"),
-		span_notice("You start disconnecting clients..."),
-		span_danger("You hear frantic keying on a keyboard."),
+		span_danger("[user]开始关闭服务器电源！"),
+		span_notice("你开始断开客户端连接..."),
+		span_danger("你听到键盘上传来一阵疯狂的敲击声。"),
 	)
 
 	SEND_SIGNAL(src, COMSIG_BITRUNNER_SHUTDOWN_ALERT, user)

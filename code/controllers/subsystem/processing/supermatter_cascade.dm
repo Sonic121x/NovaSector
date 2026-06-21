@@ -1,5 +1,5 @@
 PROCESSING_SUBSYSTEM_DEF(supermatter_cascade)
-	name = "Supermatter Cascade"
+	name = "超物质级联"
 	wait = 0.5 SECONDS
 	stat_tag = "SC"
 	can_fire = FALSE

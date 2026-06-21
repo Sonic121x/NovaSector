@@ -1,23 +1,23 @@
 /obj/structure/closet/secure_closet/des_two/prisoner_locker
-	name = "prisoner item locker"
+	name = "囚犯物品柜"
 	req_access = list("syndicate_leader")
 
 /obj/structure/closet/secure_closet/des_two/brig_officer_locker
 	icon_door = "sec"
 	icon_state = "sec"
-	name = "brig officer gear locker"
+	name = "禁闭室军官装备柜"
 	req_access = list("syndicate_leader")
 
 /obj/item/clothing/suit/toggle/jacket/nova/sec/old/syndicate
-	name = "brig officer jacket"
+	name = "禁闭室军官夹克"
 
 /obj/item/clothing/accessory/armband/syndicate
-	name = "brig officer armband"
-	desc ="An armband, worn by the FOB's operatives to display which department they're assigned to."
+	name = "禁闭室军官臂章"
+	desc ="一种臂章，由前哨基地的行动人员佩戴，以显示他们被分配到的部门。"
 
 /obj/item/storage/bag/garment/brig_officer
-	name = "brig officer's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to a brig officer."
+	name = "禁闭室军官服装袋"
+	desc = "一个用于存放额外衣物和鞋子的袋子。这个属于一位禁闭室军官。"
 
 /obj/item/storage/bag/garment/brig_officer/PopulateContents()
 	new /obj/item/clothing/under/rank/security/nova/utility/syndicate(src)
@@ -46,7 +46,7 @@
 	icon = 'modular_nova/master_files/icons/obj/closet.dmi'
 	icon_door = "riot"
 	icon_state = "riot"
-	name = "armory gear locker"
+	name = "军械库装备柜"
 	req_access = list("syndicate_leader")
 
 /obj/structure/closet/secure_closet/des_two/armory_gear_locker/PopulateContents()
@@ -70,7 +70,7 @@
 	icon = 'modular_nova/master_files/icons/obj/closet.dmi'
 	icon_door = "riot"
 	icon_state = "riot"
-	name = "armory munitions locker"
+	name = "军械库弹药柜"
 
 /obj/structure/closet/secure_closet/des_two/munitions_locker/PopulateContents()
 	..()

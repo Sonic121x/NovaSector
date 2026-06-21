@@ -1,6 +1,6 @@
 /obj/effect/mob_spawn/ghost_role/borer_egg
-	name = "borer egg"
-	desc = "An egg of a creature that is known to crawl inside of you, be careful."
+	name = "钻虫卵"
+	desc = "一种已知会爬进你体内的生物的卵，请小心。"
 	icon = 'modular_nova/modules/cortical_borer/icons/animal.dmi'
 	icon_state = "brainegg"
 	layer = BELOW_MOB_LAYER
@@ -10,8 +10,8 @@
 	mob_type = /mob/living/basic/cortical_borer
 	role_ban = ROLE_ALIEN
 	show_flavor = FALSE
-	prompt_name = "cortical borer"
-	you_are_text = "You are a Cortical Borer."
+	prompt_name = "皮层钻孔虫"
+	you_are_text = "你是一只皮层钻孔虫。"
 	flavour_text = "You are a cortical borer! You can fear someone to make them stop moving, but make sure to inhabit them! \
 					You only grow/heal/talk when inside a host!"
 	important_text = "As a borer, you have the option to be friendly or not. \
@@ -31,7 +31,7 @@
 /obj/effect/mob_spawn/ghost_role/borer_egg/special(mob/living/spawned_mob, mob/mob_possessor, apply_prefs)
 	. = ..()
 	spawned_mob.mind.add_antag_datum(/datum/antagonist/cortical_borer)
-	spawned_mob.name = "cortical borer ([generation]-[rand(100,999)])"
+	spawned_mob.name = "脑皮层钻虫 ([generation]-[rand(100,999)])"
 	QDEL_NULL(host_egg)
 
 /obj/effect/mob_spawn/ghost_role/borer_egg/Initialize(mapload, datum/team/cortical_borers/borer_team)
@@ -49,8 +49,8 @@
 		)
 
 /obj/item/borer_egg
-	name = "borer egg"
-	desc = "An egg of a creature that is known to crawl inside of you, be careful."
+	name = "钻虫卵"
+	desc = "一种已知会爬进你体内的生物的卵，请小心。"
 	icon = 'modular_nova/modules/cortical_borer/icons/animal.dmi'
 	icon_state = "brainegg"
 	layer = BELOW_MOB_LAYER
@@ -63,7 +63,7 @@
 	return ..()
 
 /obj/item/borer_egg/attack_self(mob/user, modifiers)
-	to_chat(user, span_notice("You crush [src] within your grasp."))
+	to_chat(user, span_notice("你将[src]在手中捏碎。"))
 	new /obj/effect/decal/cleanable/food/egg_smudge(get_turf(user))
 	if(host_spawner)
 		QDEL_NULL(host_spawner)
@@ -79,17 +79,17 @@
 	qdel(src)
 
 /obj/item/borer_egg/empowered
-	name = "empowered borer egg"
+	name = "强化脑蛭卵"
 	icon_state = "empowered_brainegg"
 
 /obj/effect/mob_spawn/ghost_role/borer_egg/traitor
-	prompt_name = "cortical borer (traitor spawned)"
+	prompt_name = "皮层钻孔虫（叛徒生成）"
 
 /obj/effect/mob_spawn/ghost_role/borer_egg/opfor
-	prompt_name = "cortical borer (OPFOR spawned)"
+	prompt_name = "皮层钻孔虫（敌对势力生成）"
 
 /obj/effect/mob_spawn/ghost_role/borer_egg/empowered
-	name = "empowered borer egg"
-	desc = "An egg of a creature that came crawling out of someone instead of into them."
+	name = "强化脑蛭卵"
+	desc = "一种从人体内爬出而非爬入的生物的卵。"
 	mob_type = /mob/living/basic/cortical_borer/empowered
 	host_egg = /obj/item/borer_egg/empowered

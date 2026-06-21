@@ -2,26 +2,26 @@
 #define MODULAR_SHOES_WORN_ICON 'modular_nova/master_files/icons/mob/clothing/feet.dmi'
 
 /obj/item/clothing/shoes/wraps
-	name = "gilded leg wraps"
-	desc = "Ankle coverings. These ones have a golden design."
+	name = "镀金腿带"
+	desc = "脚踝覆盖物。这些带有金色图案。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	icon_state = "gildedcuffs"
 	body_parts_covered = FALSE
 
 /obj/item/clothing/shoes/wraps/silver
-	name = "silver leg wraps"
-	desc = "Ankle coverings. Not made of real silver."
+	name = "银色腿带"
+	desc = "脚踝护套。并非由真银制成。"
 	icon_state = "silvergildedcuffs"
 
 /obj/item/clothing/shoes/wraps/red
-	name = "red leg wraps"
-	desc = "Ankle coverings. Show off your style with these shiny red ones!"
+	name = "红色腿部绑带"
+	desc = "脚踝护套。用这些闪亮的红色款式来展示你的风格吧！"
 	icon_state = "redcuffs"
 
 /obj/item/clothing/shoes/wraps/blue
-	name = "blue leg wraps"
-	desc = "Ankle coverings. Hang ten, brother."
+	name = "蓝色腿部绑带"
+	desc = "脚踝护套。冲浪去吧，兄弟。"
 	icon_state = "bluecuffs"
 
 /obj/item/clothing/shoes/cowboy/laced/recolorable
@@ -36,8 +36,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/high_heels
-	name = "high heels"
-	desc = "A fancy pair of high heels. Won't compensate for your below average height that much."
+	name = "高跟鞋"
+	desc = "一双漂亮的高跟鞋。对你低于平均的身高不会有太大补偿作用。"
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/high_heels"
@@ -53,8 +53,8 @@
 	AddComponent(/datum/component/squeak, list('modular_nova/master_files/sound/effects/heel1.ogg' = 1, 'modular_nova/master_files/sound/effects/heel2.ogg' = 1), 50)
 
 /obj/item/clothing/shoes/fancy_heels
-	name = "fancy heels"
-	desc = "A pair of fancy high heels that are much smaller on your feet."
+	name = "华丽高跟鞋"
+	desc = "一双穿在脚上显得小巧许多的华丽高跟鞋。"
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	greyscale_colors = "#FFFFFF"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
@@ -70,8 +70,8 @@
 	AddComponent(/datum/component/squeak, list('modular_nova/master_files/sound/effects/heel1.ogg' = 1, 'modular_nova/master_files/sound/effects/heel2.ogg' = 1), 50)
 
 /obj/item/clothing/shoes/jungleboots
-	name = "jungle boots"
-	desc = "Take me to your paradise, I want to see the Jungle. A brown pair of boots."
+	name = "丛林靴"
+	desc = "带我去你的天堂，我想看看丛林。一双棕色的靴子。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	icon_state = "jungle"
@@ -86,15 +86,15 @@
 	create_storage(storage_type = /datum/storage/pockets/shoes)
 
 /obj/item/clothing/shoes/jackboots/black
-	name = "dark jackboots"
-	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. These are fully black."
+	name = "深色及踝靴"
+	desc = "纳米传讯安保部门配发的战斗靴，适用于战斗场景或战斗情境。一切皆为战斗，时刻准备战斗。这双靴子是全黑色的。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	icon_state = "blackjack"
 
 /obj/item/clothing/shoes/wraps/cloth
-	name = "cloth foot wraps"
-	desc = "Boxer tape or bandages wrapped like a mummy, all left up to the choice of the wearer."
+	name = "布质足部绑带"
+	desc = "像木乃伊一样缠绕的拳击绷带或普通绷带，具体样式全凭穿着者选择。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/wraps/cloth"
 	post_init_icon_state = "clothwrap"
@@ -106,8 +106,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/wraps/colourable
-	name = "colourable foot wraps"
-	desc = "Ankle coverings. These ones have a customisable colour design."
+	name = "可着色足部绑带"
+	desc = "脚踝护套。这些款式拥有可自定义的颜色设计。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/wraps/colourable"
 	post_init_icon_state = "legwrap"
@@ -119,30 +119,30 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/sports
-	name = "sport shoes"
-	desc = "Shoes for the sporty individual. The giants of Charlton play host to the titans of Ipswich - making them both seem normal sized."
+	name = "运动鞋"
+	desc = "为运动型人士准备的鞋子。查尔顿的巨人们招待着伊普斯维奇的泰坦们——让双方都显得尺寸正常。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	icon_state = "sportshoe"
 
 /obj/item/clothing/shoes/jackboots/knee
-	name = "knee boots"
-	desc = "A pair of typical Nanotrasen-issue combat jackboots, long enough to reach the wearer's knee. Most commonly worn by commanding officers."
+	name = "及膝靴"
+	desc = "一双典型的纳米传讯制式战斗长靴，长度足以覆盖穿戴者的膝盖。通常由指挥军官穿着。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	icon_state = "kneeboots"
 
 /obj/item/clothing/shoes/jackboots/timbs
-	name = "hiking boots"
-	desc = "While not quite as protective as Nanotrasen-issue workboots, these fashionable boots are still plenty effective in harsh climates."
+	name = "徒步靴"
+	desc = "虽然防护性不如纳米传讯配发的工作靴，但这些时尚的靴子在恶劣气候下依然相当有效。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	icon_state = "timbs"
 	fastening_type = SHOES_LACED
 
 /obj/item/clothing/shoes/jackboots/duckboots
-	name = "northeastern duck boots"
-	desc = "A sturdy pair of winter boots. A cowhide top stitched to a rubber bottom provides unparalleled water resistance, while the tread pattern ensures high grip in rough terrain."
+	name = "东北鸭靴"
+	desc = "一双坚固的冬季靴子。牛皮鞋面缝合在橡胶鞋底上，提供了无与伦比的防水性，而鞋底花纹确保了在崎岖地形中的高抓地力。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	icon_state = "duckboots"
@@ -150,27 +150,27 @@
 
 /obj/item/clothing/shoes/jackboots/duckboots/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/manufacturer_examine, "It has a small <b>[span_red("red five pointed star")]</b> stamped onto the heel, and <b>[span_red("DIRIGO")]</b> etched under the soles.")
+	AddElement(/datum/element/manufacturer_examine, "它的鞋跟上印有一个小小的<b>[span_red("red five pointed star")]</b>，鞋底下方蚀刻着<b>[span_red("DIRIGO")]</b>。")
 
 /obj/item/clothing/shoes/jackboots/toeless // Ported from SPLURT
-	name = "toe-less jackboots"
-	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
+	name = "无趾军靴"
+	desc = "经过改装的短靴，对脚趾长有爪子的种族特别友好。"
 	icon = MODULAR_SHOES_ICON
 	icon_state = "jackboots-toeless"
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/feet_digi.dmi'
 
 /obj/item/clothing/shoes/workboots/toeless // Ported from SPLURT
-	name = "toe-less workboots"
-	desc = "A pair of toe-less work boots designed for use in industrial settings. Modified for species whose toes have claws."
+	name = "无趾工作靴"
+	desc = "一双无趾工作靴，专为工业环境设计。为脚趾带爪的种族进行了改装。"
 	icon = MODULAR_SHOES_ICON
 	icon_state = "workboots-toeless"
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/feet_digi.dmi'
 
 /obj/item/clothing/shoes/winterboots/christmas
-	name = "christmas boots"
-	desc = "A pair of fluffy christmas boots!"
+	name = "圣诞靴"
+	desc = "一双毛茸茸的圣诞靴子！"
 	greyscale_colors = "#cc0f0f#c4c2c2"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/winterboots/christmas"
@@ -181,15 +181,15 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/clown_shoes/pink
-	name = "pink clown shoes"
-	desc = "A particularly pink pair of punny shoes."
+	name = "粉色小丑鞋"
+	desc = "一双特别粉红的、充满双关意味的鞋子。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	icon_state = "pink_clown_shoes"
 
 /obj/item/clothing/shoes/clown_shoes/pink/heels
-	name = "pink clown heels"
-	desc = "A particularly pink pair of punny heels."
+	name = "粉色小丑高跟鞋"
+	desc = "一双特别粉色的双关语高跟鞋。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/feet_digi.dmi'
@@ -198,8 +198,8 @@
 
 // No clown squeak version
 /obj/item/clothing/shoes/pink_clown_heels
-	name = "pink clown heels"
-	desc = "A particularly pink pair of heels."
+	name = "粉色小丑高跟鞋"
+	desc = "一双特别粉的高跟鞋。"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/feet_digi.dmi'
@@ -211,8 +211,8 @@
 	AddComponent(/datum/component/squeak, list('modular_nova/master_files/sound/effects/heel1.ogg' = 1, 'modular_nova/master_files/sound/effects/heel2.ogg' = 1), 50)
 
 /obj/item/clothing/shoes/colorable_laceups
-	name = "laceup shoes"
-	desc = "These don't seem to come pre-polished, how saddening."
+	name = "系带鞋"
+	desc = "这些鞋似乎没有预先抛光，真令人扫兴。"
 	worn_icon = 'modular_nova/modules/GAGS/icons/shoes/shoes.dmi'
 	worn_icon_teshari = 'modular_nova/modules/GAGS/icons/shoes/shoes_teshari.dmi'
 	greyscale_colors = "#383631"
@@ -227,8 +227,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/colorable_sandals
-	name = "sandals"
-	desc = "Rumor has it that wearing these with socks puts you on a no entry list in several sectors."
+	name = "凉鞋"
+	desc = "传闻说穿着这玩意儿配袜子会让你被好几个星区列入禁止入境名单。"
 	worn_icon = 'modular_nova/modules/GAGS/icons/shoes/shoes.dmi'
 	worn_icon_teshari = 'modular_nova/modules/GAGS/icons/shoes/shoes_teshari.dmi'
 	greyscale_colors = "#383631"
@@ -259,8 +259,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/jackboots/knee/recolorable
-	name = "knee boots"
-	desc = "A pair of typical Nanotrasen-issue combat jackboots, long enough to reach the wearer's knee. Most commonly worn by commanding officers."
+	name = "及膝靴"
+	desc = "一双典型的纳米传讯制式战斗长筒靴，长度足以覆盖穿着者的膝盖。通常由指挥军官穿着。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	greyscale_colors = "#2D2D30"
 	icon_state = "/obj/item/clothing/shoes/jackboots/knee/recolorable"
@@ -270,8 +270,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/sport_boots
-	name = "sport boots"
-	desc = "A pair of comfortable athletic boots suitable for running and sports activities."
+	name = "运动靴"
+	desc = "一双舒适的运动靴，适合跑步和体育活动。"
 	worn_icon = MODULAR_SHOES_WORN_ICON
 	greyscale_colors = "#292929#ffffff#ff9900"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
@@ -283,8 +283,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/wraps/cloth
-	name = "cloth foot wraps"
-	desc = "Boxer tape or bandages wrapped like a mummy, all left up to the choice of the wearer."
+	name = "布质足部绑带"
+	desc = "像木乃伊一样缠绕的拳击绷带或普通绷带，具体样式全凭穿着者选择。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/wraps/cloth"
 	post_init_icon_state = "clothwrap"
@@ -296,8 +296,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/galoshes/heeled
-	name = "heeled galoshes"
-	desc = "A pair of yellow rubber heels, designed to prevent slipping on wet surfaces. These are even harder to walk in than normal heels."
+	name = "高跟雨靴"
+	desc = "一双黄色的橡胶高跟，旨在防止在湿滑表面打滑。这比普通高跟鞋更难行走。"
 	icon_state = "galoshes_heeled"
 	icon = MODULAR_SHOES_ICON
 	worn_icon = MODULAR_SHOES_WORN_ICON

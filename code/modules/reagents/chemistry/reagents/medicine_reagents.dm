@@ -17,7 +17,7 @@
 
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
-	description = "Leporazine will effectively regulate a patient's body temperature, ensuring it never leaves safe levels."
+	description = "兔热嗪能有效调节患者的体温，确保其始终处于安全水平。"
 	ph = 8.4
 	color = "#DB90C6"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -76,13 +76,13 @@
 
 /datum/reagent/medicine/adminordrazine/quantum_heal
 	name = "Quantum Medicine"
-	description = "Rare and experimental particles, that apparently swap the user's body with one from an alternate dimension where it's completely healthy."
+	description = "稀有且实验性的粒子，显然能将使用者的身体与来自一个完全健康的平行维度的身体交换。"
 	taste_description = "science"
 	full_heal_flags = ~(HEAL_ADMIN|HEAL_BRUTE|HEAL_BURN|HEAL_TOX|HEAL_RESTRAINTS|HEAL_ALL_REAGENTS|HEAL_ORGANS)
 
 /datum/reagent/medicine/synaptizine
 	name = "Synaptizine"
-	description = "Increases resistance to stuns as well as reducing drowsiness and hallucinations."
+	description = "增加对击晕的抗性，并减少困倦和幻觉。"
 	color = COLOR_MAGENTA
 	ph = 4
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -102,7 +102,7 @@
 
 /datum/reagent/medicine/synaphydramine
 	name = "Diphen-Synaptizine"
-	description = "Reduces drowsiness, hallucinations, and Histamine from body."
+	description = "减少困倦、幻觉以及体内的组胺。"
 	color = "#EC536D" // rgb: 236, 83, 109
 	ph = 5.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
@@ -122,7 +122,7 @@
 
 /datum/reagent/medicine/sansufentanyl
 	name = "Sansufentanyl"
-	description = "Temporary side effects include - nausea, dizziness, impaired motor coordination."
+	description = "暂时的副作用包括——恶心、头晕、运动协调能力受损。"
 	color = "#07e4d1"
 	ph = 6.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -142,7 +142,7 @@
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
-	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the patient's body temperature must be under 270K for it to metabolise correctly."
+	description = "一种具有近乎神奇治愈能力的化学混合物。其主要限制是患者的体温必须低于270K才能正常代谢。"
 	color = "#0000C8"
 	taste_description = "blue"
 	ph = 11
@@ -180,7 +180,7 @@
 
 /datum/reagent/medicine/pyroxadone
 	name = "Pyroxadone"
-	description = "A mixture of cryoxadone and slime jelly, that apparently inverses the requirement for its activation."
+	description = "一种由低温多酮和史莱姆果冻的混合物，显然逆转了其激活所需的条件。"
 	color = "#f7832a"
 	taste_description = "spicy jelly"
 	ph = 12
@@ -218,7 +218,7 @@
 
 /datum/reagent/medicine/rezadone
 	name = "Rezadone"
-	description = "A powder derived from fish toxin, Rezadone can effectively restore corpses husked by burns as well as treat minor wounds. Overdose will cause intense nausea and minor toxin damage."
+	description = "一种从鱼毒素中提取的粉末，复活酮能有效恢复被烧伤掏空的尸体，并治疗轻微伤口。过量会导致剧烈恶心和轻微毒素伤害。"
 	color = "#669900" // rgb: 102, 153, 0
 	overdose_threshold = 30
 	ph = 12.2
@@ -263,7 +263,7 @@
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
-	description = "Spaceacillin will provide limited resistance against disease and parasites. Also reduces infection in serious burns."
+	description = "太空青霉素能提供对疾病和寄生虫的有限抵抗力。同时能减少严重烧伤的感染。"
 	color = "#E1F2E6"
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 	ph = 8.1
@@ -277,7 +277,7 @@
 
 /datum/reagent/medicine/oxandrolone
 	name = "Oxandrolone"
-	description = "Stimulates the healing of severe burns. Extremely rapidly heals severe burns and slowly heals minor ones. Overdose will worsen existing burns."
+	description = "刺激严重烧伤的愈合。能极快地治愈严重烧伤，并缓慢治愈轻微烧伤。过量会加重现有烧伤。"
 	color = "#1E8BFF"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 25
@@ -305,7 +305,7 @@
 
 /datum/reagent/medicine/salglu_solution
 	name = "Saline-Glucose Solution"
-	description = "Has a 33% chance per metabolism cycle to heal brute and burn damage. Can be used as a temporary blood substitute, as well as slowly speeding blood regeneration."
+	description = "每个代谢周期有33%的几率治愈钝器伤和烧伤。可作为临时的血液替代品，同时能缓慢加速血液再生。"
 	color = "#DCDCDC"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 60
@@ -363,7 +363,7 @@
 
 /datum/reagent/medicine/mine_salve
 	name = "Miner's Salve"
-	description = "A powerful painkiller. Restores bruising and burns in addition to making the patient believe they are fully healed. Also great for treating severe burn wounds in a pinch."
+	description = "一种强效止痛药。除了让患者相信自己已完全康复外，还能恢复瘀伤和烧伤。在紧急情况下治疗严重烧伤伤口也很有效。"
 	color = "#6D6374"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
 	ph = 2.6
@@ -410,7 +410,7 @@
 
 /datum/reagent/medicine/omnizine
 	name = "Omnizine"
-	description = "Slowly heals all damage types. Overdose will cause damage in all types instead."
+	description = "缓慢治愈所有类型的伤害。过量反而会造成所有类型的伤害。"
 	color = "#DCDCDC"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	overdose_threshold = 30
@@ -443,7 +443,7 @@
 
 /datum/reagent/medicine/omnizine/protozine
 	name = "Protozine"
-	description = "A less environmentally friendly and somewhat weaker variant of omnizine."
+	description = "一种环保性较差且效果稍弱的全效宁变体。"
 	color = "#d8c7b7"
 	healing = 0.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -511,7 +511,7 @@
 
 /datum/reagent/medicine/potass_iodide
 	name = "Potassium Iodide"
-	description = "Heals low toxin damage while the patient is irradiated, and will halt the damaging effects of radiation."
+	description = "在患者受到辐射时治疗低量毒素伤害，并会阻止辐射的破坏性影响。"
 	color = "#BAA15D"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	ph = 12 //It's a reducing agent
@@ -527,7 +527,7 @@
 
 /datum/reagent/medicine/pen_acid
 	name = "Pentetic Acid"
-	description = "Reduces massive amounts of toxin damage while purging other chemicals from the body."
+	description = "在清除体内其他化学物质的同时，大幅减少毒素伤害。"
 	color = "#E6FFF0"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	ph = 1 //One of the best buffers, NEVERMIND!
@@ -547,7 +547,7 @@
 
 /datum/reagent/medicine/sal_acid
 	name = "Salicylic Acid"
-	description = "Stimulates the healing of severe bruises. Extremely rapidly heals severe bruising and slowly heals minor ones. Overdose will worsen existing bruising."
+	description = "刺激严重瘀伤的愈合。极快地治愈严重瘀伤，并缓慢治愈轻微瘀伤。过量会加重现有瘀伤。"
 	color = "#D2D2D2"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 25
@@ -575,7 +575,7 @@
 
 /datum/reagent/medicine/salbutamol
 	name = "Salbutamol"
-	description = "Rapidly restores oxygen deprivation as well as preventing more of it to an extent."
+	description = "快速恢复缺氧状态，并在一定程度上防止其进一步发生。"
 	color = COLOR_CYAN
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	ph = 2
@@ -681,7 +681,7 @@
 
 /datum/reagent/medicine/ephedrine
 	name = "Ephedrine"
-	description = "Increases resistance to batons and movement speed, giving you hand cramps. Overdose deals toxin damage and inhibits breathing."
+	description = "增加对警棍的抵抗力和移动速度，但会导致手部痉挛。过量会造成毒素伤害并抑制呼吸。"
 	color = "#D2FFFA"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 30
@@ -734,7 +734,7 @@
 
 /datum/reagent/medicine/diphenhydramine
 	name = "Diphenhydramine"
-	description = "Rapidly purges the body of Histamine and reduces jitteriness. Slight chance of causing drowsiness."
+	description = "能快速清除体内的组胺并减轻颤抖。有轻微几率导致嗜睡。"
 	color = "#64FFE6"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	ph = 11.5
@@ -750,7 +750,7 @@
 
 /datum/reagent/medicine/morphine
 	name = "Morphine"
-	description = "A painkiller that allows the patient to move at full speed even when injured. Causes drowsiness and eventually unconsciousness in high doses. Overdose will cause a variety of effects, ranging from minor to lethal."
+	description = "一种止痛剂，能让受伤的患者以全速移动。高剂量会导致嗜睡并最终失去意识。过量服用会导致从轻微到致命的一系列副作用。"
 	color = "#A9FBFB"
 	taste_description = "a perfumy, bitter vanilla"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -806,7 +806,7 @@
 
 /datum/reagent/medicine/oculine
 	name = "Oculine"
-	description = "Quickly restores eye damage, cures nearsightedness, and has a chance to restore vision to the blind."
+	description = "能快速修复眼部损伤，治愈近视，并有一定几率让盲人恢复视力。"
 	color = "#404040" //oculine is dark grey, inacusiate is light grey
 	overdose_threshold = 30
 	taste_description = "earthy bitterness"
@@ -887,7 +887,7 @@
 
 /datum/reagent/medicine/oculine/flumpuline
 	name = "Flumpuline"
-	description = "Often confused for, or sold as, Oculine or a variation thereof. Slowly transmogrifies the eyes of the patient into grotesque stalks - but you'll never need glasses again."
+	description = "常被误认或当作奥库林或其变体出售。会缓慢地将患者的眼睛变形为怪异的眼柄——但你再也用不着眼镜了。"
 	color = "#6c596d"
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 	overdose_threshold = 5
@@ -935,7 +935,7 @@
 	new_eyes = new new_eyes(affected_mob)
 	new_eyes.Insert(affected_mob)
 	playsound(affected_mob, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 50, TRUE)
-	affected_mob.visible_message(span_danger("[affected_mob]'s [eyes ? eyes : "eye holes"] suddenly sprout stalks and turn into [new_eyes]!"))
+	affected_mob.visible_message(span_danger("[affected_mob]的[eyes ? eyes : "eye holes"]突然长出眼柄，变成了[new_eyes]！"))
 	ASYNC
 		affected_mob.emote("scream")
 		sleep(5 SECONDS)
@@ -945,7 +945,7 @@
 
 /datum/reagent/medicine/inacusiate
 	name = "Inacusiate"
-	description = "Rapidly repairs damage to the patient's ears to cure deafness, assuming the source of said deafness isn't from genetic mutations, chronic deafness, or a total deficit of ears." //by "chronic" deafness, we mean people with the "deaf" quirk
+	description = "能快速修复患者耳部损伤以治疗耳聋，前提是耳聋的原因并非基因突变、慢性耳聋或完全缺失耳朵。" //by "chronic" deafness, we mean people with the "deaf" quirk
 	color = "#606060" // ditto
 	ph = 2
 	purity = REAGENT_STANDARD_PURITY
@@ -979,7 +979,7 @@
 
 /datum/reagent/medicine/atropine
 	name = "Atropine"
-	description = "If a patient is in critical condition, rapidly heals all damage types as well as regulating oxygen in the body. Excellent for stabilizing wounded patients, and said to neutralize blood-activated internal explosives found amongst clandestine black op agents."
+	description = "若患者处于危急状态，可快速治愈所有伤害类型并调节体内氧气。极佳地用于稳定受伤患者，据称能中和潜伏黑特工体内发现的血液激活式内置炸药。"
 	color = "#1D3535" //slightly more blue, like epinephrine
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	overdose_threshold = 35
@@ -1080,7 +1080,7 @@
 
 /datum/reagent/medicine/strange_reagent
 	name = "Strange Reagent"
-	description = "A miracle drug capable of bringing the dead back to life. Works topically unless anatomically complex, in which case works orally. Cannot revive targets under -%MAXHEALTHRATIO% health."
+	description = "一种能将死者复活的奇迹药物。通常外用，但对于解剖结构复杂的对象需口服。无法复活生命值低于-%MAXHEALTHRATIO%的目标。"
 	color = "#A0E85E"
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
 	taste_description = "magnets"
@@ -1196,7 +1196,7 @@
 
 /datum/reagent/medicine/strange_reagent/fishy_reagent
 	name = "Fishy Reagent"
-	description = "This reagent has a chemical composition very similar to that of Strange Reagent, however, it seems to work purely and only on... fish. Or at least, aquatic creatures."
+	description = "这种试剂的化学成分与奇异试剂非常相似，然而，它似乎只对……鱼有效。或者至少，是对水生生物有效。"
 	color = "#5ee8b3"
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
 	taste_description = "magnetic scales"
@@ -1217,7 +1217,7 @@
 
 /datum/reagent/medicine/mannitol
 	name = "Mannitol"
-	description = "Efficiently restores brain damage."
+	description = "能有效修复脑损伤。"
 	taste_description = "pleasant sweetness"
 	color = "#A0A0A0" //mannitol is light grey, neurine is lighter grey
 	ph = 10.4
@@ -1254,7 +1254,7 @@
 
 /datum/reagent/medicine/neurine
 	name = "Neurine"
-	description = "Reacts with neural tissue, helping reform damaged connections. Can cure minor traumas."
+	description = "与神经组织反应，帮助重建受损的连接。可以治愈轻微的精神创伤。"
 	color = COLOR_SILVER //ditto
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED | REAGENT_DEAD_PROCESS
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -1296,7 +1296,7 @@
 
 /datum/reagent/medicine/mutadone
 	name = "Mutadone"
-	description = "Removes jitteriness and restores genetic defects."
+	description = "消除颤抖并修复基因缺陷。"
 	color = "#5096C8"
 	taste_description = "acid"
 	ph = 2
@@ -1327,7 +1327,7 @@
 
 /datum/reagent/medicine/antihol
 	name = "Antihol"
-	description = "Purges alcoholic substance from the patient's body and eliminates its side effects."
+	description = "清除患者体内的酒精物质并消除其副作用。"
 	color = "#00B4C8"
 	taste_description = "raw egg"
 	ph = 4
@@ -1363,7 +1363,7 @@
 
 /datum/reagent/medicine/stimulants
 	name = "Stimulants"
-	description = "Increases resistance to batons and movement speed in addition to restoring minor damage and weakness. Overdose causes weakness and toxin damage."
+	description = "除了修复轻微损伤和虚弱外，还能增加对警棍的抵抗力和移动速度。过量会导致虚弱和毒素伤害。"
 	color = "#78008C"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 60
@@ -1406,7 +1406,7 @@
 
 /datum/reagent/medicine/insulin
 	name = "Insulin"
-	description = "Increases sugar depletion rates."
+	description = "提高糖分消耗率。"
 	color = "#FFFFF0"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	ph = 6.7
@@ -1422,7 +1422,7 @@
 
 /datum/reagent/medicine/inaprovaline //is this used anywhere?
 	name = "Inaprovaline"
-	description = "Stabilizes the breathing of patients. Good for those in critical condition."
+	description = "稳定患者的呼吸。对危重病人有好处。"
 	color = "#A4D8D8"
 	ph = 8.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
@@ -1436,7 +1436,7 @@
 
 /datum/reagent/medicine/regen_jelly
 	name = "Regenerative Jelly"
-	description = "Gradually regenerates all types of damage, without harming slime anatomy."
+	description = "逐渐再生所有类型的损伤，且不伤害史莱姆的生理结构。"
 	color = "#CC23FF"
 	taste_description = "jelly"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1466,7 +1466,7 @@
 
 /datum/reagent/medicine/syndicate_nanites //Used exclusively by Syndicate medical cyborgs
 	name = "Restorative Nanites"
-	description = "Miniature medical robots that swiftly restore bodily damage."
+	description = "微型医疗机器人，能迅速修复身体损伤。"
 	color = "#555555"
 	overdose_threshold = 30
 	ph = 11
@@ -1492,7 +1492,7 @@
 
 /datum/reagent/medicine/earthsblood //Created by ambrosia gaia plants
 	name = "Earthsblood"
-	description = "Ichor from an extremely powerful plant. Great for restoring wounds, but it's a little heavy on the brain. For some strange reason, it also induces temporary pacifism in those who imbibe it and semi-permanent pacifism in those who overdose on it."
+	description = "来自一种极其强大植物的汁液。对治疗伤口非常有效，但对大脑负担稍重。出于某种奇怪的原因，它还会导致服用者暂时变得和平主义，而服用过量者则会变得半永久性和平主义。"
 	color = "#FFAF00"
 	overdose_threshold = 25
 	ph = 11
@@ -1555,7 +1555,7 @@
 
 /datum/reagent/medicine/haloperidol
 	name = "Haloperidol"
-	description = "Increases depletion rates for most stimulating/hallucinogenic drugs. Reduces druggy effects and jitteriness. Severe stamina regeneration penalty, causes drowsiness. Small chance of brain damage."
+	description = "增加大多数兴奋剂/致幻药物的代谢率。减轻药物成瘾效果和颤抖。严重降低耐力恢复速度，导致嗜睡。有较小几率造成脑损伤。"
 	color = "#27870a"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
 	ph = 4.3
@@ -1587,7 +1587,7 @@
 //used for changeling's adrenaline power
 /datum/reagent/medicine/changelingadrenaline
 	name = "Changeling Adrenaline"
-	description = "Reduces the duration of unconsciousness, knockdown and stuns. Restores stamina, but deals toxin damage when overdosed."
+	description = "减少昏迷、击倒和眩晕的持续时间。恢复耐力，但服用过量会造成毒素伤害。"
 	color = "#C1151D"
 	overdose_threshold = 30
 	chemical_flags = REAGENT_NO_RANDOM_RECIPE
@@ -1628,7 +1628,7 @@
 
 /datum/reagent/medicine/changelinghaste
 	name = "Changeling Haste"
-	description = "Drastically increases movement speed, but deals toxin damage."
+	description = "大幅提高移动速度，但会造成毒素伤害。"
 	color = "#AE151D"
 	metabolization_rate = 2.5 * REAGENTS_METABOLISM
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
@@ -1649,7 +1649,7 @@
 
 /datum/reagent/medicine/higadrite
 	name = "Higadrite"
-	description = "A medication utilized to treat ailing livers."
+	description = "一种用于治疗受损肝脏的药物。"
 	color = "#FF3542"
 	self_consuming = TRUE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1658,7 +1658,7 @@
 
 /datum/reagent/medicine/cordiolis_hepatico
 	name = "Cordiolis Hepatico"
-	description = "A strange, pitch-black reagent that seems to absorb all light. Effects unknown."
+	description = "一种奇怪的、漆黑的试剂，似乎能吸收所有光线。效果未知。"
 	color = COLOR_BLACK
 	self_consuming = TRUE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
@@ -1674,7 +1674,7 @@
 
 /datum/reagent/medicine/muscle_stimulant
 	name = "Muscle Stimulant"
-	description = "A potent chemical that allows someone under its influence to be at full physical ability even when under massive amounts of pain."
+	description = "一种强效化学物质，能让受其影响的人在承受巨大痛苦时仍保持完整的身体机能。"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_ANALGESIA)
@@ -1689,7 +1689,7 @@
 
 /datum/reagent/medicine/modafinil
 	name = "Modafinil"
-	description = "Long-lasting sleep suppressant that very slightly reduces stun and knockdown times. Overdosing has horrendous side effects and deals lethal oxygen damage, will knock you unconscious if not dealt with."
+	description = "长效的睡眠抑制剂，能略微减少眩晕和击倒时间。服用过量会产生可怕的副作用并造成致命的氧气损伤，如果不处理会使你昏迷。"
 	color = "#BEF7D8" // palish blue white
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 	overdose_threshold = 20 // with the random effects this might be awesome or might kill you at less than 10u (extensively tested)
@@ -1756,7 +1756,7 @@
 
 /datum/reagent/medicine/psicodine
 	name = "Psicodine"
-	description = "Suppresses anxiety and other various forms of mental distress. Overdose causes hallucinations and minor toxin damage."
+	description = "抑制焦虑及其他多种形式的精神困扰。过量会导致幻觉和轻微毒素伤害。"
 	color = "#07E79E"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	overdose_threshold = 30
@@ -1782,7 +1782,7 @@
 
 /datum/reagent/medicine/metafactor
 	name = "Mitogen Metabolism Factor"
-	description = "This enzyme catalyzes the conversion of nutritious food into healing peptides."
+	description = "这种酶能催化营养食物转化为愈合肽。"
 	metabolization_rate = 0.0625  * REAGENTS_METABOLISM //slow metabolism rate so the patient can self heal with food even after the troph has metabolized away for amazing reagent efficency.
 	color = "#FFBE00"
 	overdose_threshold = 10
@@ -1802,7 +1802,7 @@
 
 /datum/reagent/medicine/silibinin
 	name = "Silibinin"
-	description = "A thistle-derived hepatoprotective flavolignan mixture that help reverse damage to the liver."
+	description = "一种源自蓟草的保肝黄酮木脂素混合物，有助于逆转肝脏损伤。"
 	color = "#FFFFD0"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1815,7 +1815,7 @@
 
 /datum/reagent/medicine/polypyr  //This is intended to be an ingredient in advanced chems.
 	name = "Polypyrylium Oligomers"
-	description = "A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. It is valued as an intermediate in the synthesis of the cutting edge pharmaceuticals."
+	description = "一种不易在实验室合成的短聚电解质链紫色混合物。作为合成尖端药物的中间体而备受重视。"
 	color = "#9423FF"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	overdose_threshold = 50
@@ -1845,7 +1845,7 @@
 
 /datum/reagent/medicine/granibitaluri
 	name = "Granibitaluri" //achieve "GRANular" amounts of C2
-	description = "A mild painkiller useful as an additive alongside more potent medicines. Speeds up the healing of small wounds and burns, but is ineffective at treating severe injuries. Extremely large doses are toxic, and may eventually cause liver failure."
+	description = "一种温和的止痛剂，可作为强效药物的添加剂使用。能加速小伤口和烧伤的愈合，但对严重损伤无效。极大剂量有毒，并可能最终导致肝功能衰竭。"
 	color = "#E0E0E0"
 	overdose_threshold = 50
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM //same as C2s
@@ -1873,7 +1873,7 @@
 // helps bleeding wounds clot faster
 /datum/reagent/medicine/coagulant
 	name = "Sanguirite"
-	description = "A proprietary coagulant used to help bleeding wounds clot faster. It is purged by heparin."
+	description = "一种专利促凝剂，用于帮助出血伤口更快凝结。可被肝素清除。"
 	color = "#bb2424"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	overdose_threshold = 20
@@ -1945,7 +1945,7 @@
 // i googled "natural coagulant" and a couple of results came up for banana peels, so after precisely 30 more seconds of research, i now dub grinding banana peels good for your blood
 /datum/reagent/medicine/coagulant/banana_peel
 	name = "Pulped Banana Peel"
-	description = "Ancient Clown Lore says that pulped banana peels are good for your blood, but are you really going to take medical advice from a clown about bananas?"
+	description = "远古小丑典籍记载，捣成糊状的香蕉皮有益血液健康——但你真的要听一个小丑关于香蕉的医疗建议吗？"
 	color = "#50531a" // rgb: 175, 175, 0
 	taste_description = "horribly stringy, bitter pulp"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -1956,13 +1956,13 @@
 
 /datum/glass_style/drinking_glass/banana_peel
 	required_drink_type = /datum/reagent/medicine/coagulant/banana_peel
-	name = "glass of banana peel pulp"
+	name = "一杯香蕉皮浆"
 	desc = "Ancient Clown Lore says that pulped banana peels are good for your blood, \
 		but are you really going to take medical advice from a clown about bananas?"
 
 /datum/reagent/medicine/coagulant/seraka_extract
 	name = "Seraka Extract"
-	description = "A deeply coloured oil present in small amounts in Seraka Mushrooms. Acts as an effective blood clotting agent, but has a low overdose threshold."
+	description = "一种深色油状物，少量存在于塞拉卡蘑菇中。是一种有效的血液凝固剂，但过量阈值较低。"
 	color = "#00767C"
 	taste_description = "intensely savoury bitterness"
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
@@ -1972,12 +1972,12 @@
 
 /datum/glass_style/drinking_glass/seraka_extract
 	required_drink_type = /datum/reagent/medicine/coagulant/seraka_extract
-	name = "glass of seraka extract"
-	desc = "Deeply savoury, bitter, and makes your blood clot up in your veins. A great drink, all things considered."
+	name = "一杯蛇栗菇提取物"
+	desc = "又咸又苦，让你的血液在血管里凝结。总的来说，这是一杯很好的酒。"
 
 /datum/reagent/medicine/ondansetron
 	name = "Ondansetron"
-	description = "Prevents nausea and vomiting. May cause drowsiness and wear."
+	description = "防止恶心和呕吐。可能导致嗜睡和疲劳。"
 	color = "#74d3ff"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	ph = 10.6
@@ -1995,7 +1995,7 @@
 
 /datum/reagent/medicine/naloxone
 	name = "Naloxone"
-	description = "Opioid antagonist that purges drowsiness and narcotics from the patient, restores breath loss and accelerates addiction recovery."
+	description = "阿片类拮抗剂，可清除患者体内的嗜睡和麻醉剂，恢复呼吸损失并加速成瘾恢复。"
 	color = "#f5f5dc"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	ph = 4

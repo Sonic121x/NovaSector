@@ -3,7 +3,7 @@
 /datum/techweb_node/teshari_cyber
 	id = TECHWEB_NODE_CYBERNETICS_TESHARI
 	display_name = "Raptoral Cybernetics"
-	description = "Specialized civilian-grade cybernetic limb designs."
+	description = "专门的民用级赛博肢体设计。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"teshari_cyber_chest",
@@ -20,7 +20,7 @@
 /datum/techweb_node/adv_teshari_cyber
 	id = TECHWEB_NODE_CYBERNETICS_TESHARI_ADVANCED
 	display_name = "Advanced Raptoral Cybernetics"
-	description = "Specialized industrial-grade cybernetic limb designs."
+	description = "专门的工业级赛博肢体设计。"
 	prereq_ids = list(TECHWEB_NODE_CYBERNETICS, TECHWEB_NODE_CYBERNETICS_TESHARI)
 	design_ids = list(
 		"teshari_advanced_l_arm",

@@ -2,7 +2,7 @@
 #define TRAM_DOOR_RELEASE_THRESHOLD 17
 
 /obj/machinery/door/airlock/tram
-	name = "tram door"
+	name = "有轨电车门"
 	icon = 'icons/obj/doors/airlocks/tram/tram.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/tram/tram-overlays.dmi'
 	multi_tile = TRUE
@@ -151,7 +151,7 @@
 /obj/machinery/door/airlock/tram/crush()
 	for(var/turf/checked_turf in locs)
 		for(var/mob/living/future_pancake in checked_turf)
-			future_pancake.visible_message(span_warning("[src] beeps angrily and closes on [future_pancake]!"), span_userdanger("[src] beeps angrily and closes on you!"))
+			future_pancake.visible_message(span_warning("[src]愤怒地哔哔作响并关向[future_pancake]！"), span_userdanger("[src] 愤怒地哔了一声，朝你关了过来！"))
 			var/sig_return = SEND_SIGNAL(future_pancake, COMSIG_LIVING_DOORCRUSHED, src)
 			future_pancake.add_splatter_floor(loc)
 			log_combat(src, future_pancake, "crushed")
@@ -211,7 +211,7 @@
  */
 /obj/machinery/door/airlock/tram/examine(mob/user)
 	. = ..()
-	. += span_notice("It has an emergency mechanism to open using [EXAMINE_HINT("just your hands")] in the event of an emergency.")
+	. += span_notice("它有一个紧急机制，在紧急情况下可以使用[EXAMINE_HINT("just your hands")]来打开。")
 
 /**
  * Tram doors can be opened with hands when unpowered

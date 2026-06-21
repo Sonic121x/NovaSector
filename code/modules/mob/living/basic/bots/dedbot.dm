@@ -4,7 +4,7 @@
 #define SPIN_SLASH_ABILITY_TYPEPATH /datum/action/cooldown/mob_cooldown/exenterate
 
 /mob/living/basic/bot/dedbot
-	name = "\improper Donk Exenteration Drone" //Exenteration means ripping entrails out, ouch!
+	name = "\improper 唐克清剿无人机" //Exenteration means ripping entrails out, ouch!
 	desc = "A bladed commercial defence drone, often called an 'Ex-Drone' or 'D.E.D.bot'. It follows a simple programmed patrol route, and slashes at anyone who doesn't have an identity implant."
 	icon_state = "ded_drone0"
 	base_icon_state = "ded_drone"
@@ -75,8 +75,8 @@
 	finish_planning = FALSE
 
 /datum/action/cooldown/mob_cooldown/exenterate
-	name = "Exenterate"
-	desc = "Disembowel every living thing in range with your blades."
+	name = "清剿"
+	desc = "用你的刀刃将范围内的所有生物开膛破肚。"
 	button_icon = 'icons/obj/weapons/stabby.dmi'
 	button_icon_state = "huntingknife"
 	click_to_activate = FALSE
@@ -102,7 +102,7 @@
 	if(!COOLDOWN_FINISHED(src, cooldown_time))
 		return FALSE
 	caster.Shake(1.4, 0.8, 0.3 SECONDS)
-	caster.visible_message(span_danger("[caster] shakes violently!"))
+	caster.visible_message(span_danger("[caster] 剧烈震动！"))
 	playsound(caster, 'sound/items/weapons/drill.ogg', 120 , TRUE)
 	slash_em(caster)
 	StartCooldown(cooldown_time)
@@ -111,8 +111,8 @@
 	for(var/mob/living/victim in range(ability_range, caster))
 		if(victim.has_faction(immune_factions) && victim.IsReachableBy(owner))
 			continue
-		to_chat(caster, span_warning("You slice [victim]!"))
-		to_chat(victim, span_warning("You are cut by [caster]'s blades!"))
+		to_chat(caster, span_warning("你切到了 [victim]！"))
+		to_chat(victim, span_warning("你被 [caster] 的刀刃割伤了！"))
 		victim.apply_damage(damage = damage_dealt, damagetype = BRUTE, def_zone = pick(valid_targets), sharpness = SHARP_EDGED)
 
 #undef SPIN_SLASH_ABILITY_TYPEPATH

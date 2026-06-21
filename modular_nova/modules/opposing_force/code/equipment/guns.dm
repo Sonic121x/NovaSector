@@ -2,8 +2,8 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_RANGED
 
 /datum/opposing_force_equipment/ranged/riot_sol
-	name = "M64 Shotgun"
-	description = "A case with a twelve gauge shotgun with an eight shell capacity underneath, and two 15-shell boxes of buckshot."
+	name = "M64霰弹枪"
+	description = "一个箱子，内有一把十二号口径霰弹枪，下方有八发弹容，以及两盒15发的鹿弹。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/riot_sol
 
 /obj/item/storage/toolbox/guncase/nova/opfor/riot_sol/PopulateContents()
@@ -12,8 +12,8 @@
 	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
 
 /datum/opposing_force_equipment/ranged/sol_rifle
-	name = "MMR-2543E Assault Rifle"
-	description = "A case featuring a tacticool black and red heavy assault rifle, and two magazines. Accepts any standard SolFed rifle magazine."
+	name = "MMR-2543E突击步枪"
+	description = "一个装有战术风格黑红配色重型突击步枪和两个弹匣的箱子。可兼容任何标准的太阳联邦步枪弹匣。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/sol_rifle
 
 /obj/item/storage/toolbox/guncase/nova/opfor/sol_rifle/PopulateContents()
@@ -32,7 +32,7 @@
 	new /obj/item/ammo_box/magazine/miecz(src)
 
 /datum/opposing_force_equipment/ranged/pulse_rifle
-	name = "'Žaibas' Plasma Pulse Projector"
+	name = "'Žaibas'等离子脉冲投射器"
 	description = "A high-capacity, hybrid assault rifle running on fifteen shot 'plugs' instead of conventional bullets; with three available per magazine."
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/pulse_rifle
 
@@ -42,7 +42,7 @@
 	new /obj/item/ammo_box/magazine/pulse(src)
 
 /datum/opposing_force_equipment/ranged/pulse_sniper
-	name = "'Žaibas-A' Sniper Rifle"
+	name = "'Žaibas-A'狙击步枪"
 	description = "A high-power, hybrid sniper rifle running on fifteen shot 'plugs' instead of conventional bullets; pulling three shots per use."
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/pulse_sniper
 
@@ -51,8 +51,8 @@
 	new /obj/item/ammo_box/pulse_cargo_box(src)
 
 /datum/opposing_force_equipment/ranged/kiboko
-	name = "Kiboko Grenade Launcher"
-	description = "A unique grenade launcher firing .980 grenades. A laser sight system allows its user to specify a range for the grenades it fires to detonate at"
+	name = "Kiboko榴弹发射器"
+	description = "一把独特的发射.980榴弹的榴弹发射器。其激光瞄准系统允许使用者设定发射榴弹的引爆距离"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/kiboko
 
 /obj/item/storage/toolbox/guncase/nova/opfor/kiboko/PopulateContents()
@@ -61,8 +61,8 @@
 	new /obj/item/ammo_box/magazine/c980_grenade/drum/thunderdome_shrapnel(src)
 
 /datum/opposing_force_equipment/ranged/amr
-	name = "'Wyłom' AMR"
-	description = "A massive, outdated beast of an anti materiel rifle that was once in use by CIN military forces. Fires the devastating .60 Strela caseless round, the massively overperforming penetration of which being the reason this weapon was discontinued."
+	name = "'Wyłom'反器材步枪"
+	description = "一把庞大、过时的反器材步枪巨兽，曾为CIN军事力量所用。发射毁灭性的.60 Strela无壳弹，其严重过度的穿透力是此武器停产的原因。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/amr
 
 /obj/item/storage/toolbox/guncase/nova/opfor/amr/PopulateContents()
@@ -71,8 +71,8 @@
 	new /obj/item/ammo_box/magazine/wylom(src)
 
 /datum/opposing_force_equipment/ranged/lmg
-	name = "L6 SAW LMG"
-	description = "A heavily modified 7mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2531' engraved on the receiver below the designation."
+	name = "L6 SAW轻机枪"
+	description = "一把经过大量改装的7毫米轻机枪，型号为'L6 SAW'。机匣下方型号处刻有'Aussec Armoury - 2531'字样。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/lmg
 
 /obj/item/storage/toolbox/guncase/nova/opfor/lmg/PopulateContents()
@@ -81,13 +81,13 @@
 	new /obj/item/ammo_box/magazine/m7mm(src)
 
 /datum/opposing_force_equipment/ranged/shitzu
-	name = "Shitzu Shotgun"
+	name = "Shitzu霰弹枪"
 	description = "A modified magfed shotgun gun, designated 'Shitzu'."
 	item_type = /obj/item/storage/toolbox/guncase/nova/syndicate/shitzu
 
 /datum/opposing_force_equipment/ranged/hook_shotgun
-	name = "Hook Modified Sawn-off Shotgun"
-	description = "Range isn't an issue when you can bring your victim to you."
+	name = "胡克改装短管霰弹枪"
+	description = "当你能把受害者拉到你面前时，射程就不是问题了。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/hook_shotgun
 
 /obj/item/storage/toolbox/guncase/nova/opfor/hook_shotgun/PopulateContents()
@@ -96,7 +96,7 @@
 	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
 
 /datum/opposing_force_equipment/ranged/rebar_crossbow
-	name = "Syndicate Rebar Crossbow"
+	name = "辛迪加钢筋弩"
 	description = "The syndicate liked the bootleg rebar crossbow NT engineers made, so they showed what it could be if properly developed. \
 			Holds three shots without a chance of exploding, and features a built in scope. Normally uses special syndicate jagged iron bars, but can be wrenched to shoot inferior normal ones."
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/rebar_crossbow
@@ -107,8 +107,8 @@
 
 //laser
 /datum/opposing_force_equipment/ranged/ion
-	name = "ion carbine"
-	description = "The MK.II Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
+	name = "离子卡宾枪"
+	description = "MK.II原型离子投射器是大型离子步枪的轻量化卡宾枪版本，专为人体工程学和高效能而设计。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/ion
 
 /obj/item/storage/toolbox/guncase/nova/opfor/ion/PopulateContents()
@@ -116,8 +116,8 @@
 	new /obj/item/storage/box/syndie_kit/recharger(src)
 
 /datum/opposing_force_equipment/ranged/carbine
-	name = "laser carbine"
-	description = "A modified laser gun which can shoot far faster, but each shot is far less damaging."
+	name = "激光卡宾枪"
+	description = "一种经过改装的激光枪，射速极快，但每发子弹的伤害要低得多。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/carbine
 
 /obj/item/storage/toolbox/guncase/nova/opfor/carbine/PopulateContents()
@@ -125,8 +125,8 @@
 	new /obj/item/storage/box/syndie_kit/recharger(src)
 
 /datum/opposing_force_equipment/ranged/carbines120
-	name = "Cybersun S-120"
-	description = "A laser gun primarily used by syndicate security guards. It fires a rapid spray of low-power plasma beams."
+	name = "赛博阳光S-120"
+	description = "一种主要由辛迪加安保人员使用的激光枪。它能快速喷射出低功率的等离子光束。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/carbines120
 
 /obj/item/storage/toolbox/guncase/nova/opfor/carbines120/PopulateContents()
@@ -134,8 +134,8 @@
 	new /obj/item/storage/box/syndie_kit/recharger(src)
 
 /datum/opposing_force_equipment/ranged/laser
-	name = "laser gun"
-	description = "A basic energy-based laser gun that fires concentrated beams of light which pass through glass and thin metal."
+	name = "激光枪"
+	description = "一种基本的能量型激光枪，发射能穿透玻璃和薄金属的浓缩光束。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/laser
 
 /obj/item/storage/toolbox/guncase/nova/opfor/laser/PopulateContents()
@@ -144,8 +144,8 @@
 
 //foamforce
 /datum/opposing_force_equipment/ranged/foamforce_lmg
-	name = "Foamforce LMG"
-	description = "A heavily modified toy light machine gun, designated 'L6 SAW'. Ages 8 and up."
+	name = "泡沫轻机枪"
+	description = "一款经过大幅改装的玩具轻机枪，型号为'L6 SAW'。适合8岁及以上儿童。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/foamforce_lmg
 
 /obj/item/storage/toolbox/guncase/nova/opfor/foamforce_lmg/PopulateContents()
@@ -158,8 +158,8 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_RANGED_STEALTH
 
 /datum/opposing_force_equipment/ranged_stealth/rapid_syringe
-	name = "Compact Rapid Syringe Gun"
-	description = "A modification of the syringe gun design to be more compact and use a rotating cylinder to store up to six syringes."
+	name = "紧凑型快速注射枪"
+	description = "对注射枪设计的改进，使其更紧凑，并使用旋转弹巢储存最多六支注射器。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/rapid_syringe
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/rapid_syringe/PopulateContents()
@@ -171,8 +171,8 @@
 	new /obj/item/reagent_containers/syringe/piercing(src)
 
 /datum/opposing_force_equipment/ranged_stealth/c20r
-	name = "C-20r SMG"
-	description = "A bullpup three-round burst .45 SMG, designated 'C-20r'. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
+	name = "C-20r冲锋枪"
+	description = "一款无托式三连发.45口径冲锋枪，型号为'C-20r'。枪托上印有'Scarborough Arms - Per falcis, per pravitas'字样。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/c20r
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/c20r/PopulateContents()
@@ -181,8 +181,8 @@
 	new /obj/item/ammo_box/magazine/smgm45(src)
 
 /datum/opposing_force_equipment/ranged_stealth/sindano
-	name = "Sindano SMG"
-	description = "A small submachinegun, this one is painted in tacticool black. Accepts any standard Sol pistol magazine."
+	name = "辛达诺冲锋枪"
+	description = "一款小型冲锋枪，涂有战术黑色。可兼容任何标准索尔手枪弹匣。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/sindano
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/sindano/PopulateContents()
@@ -203,8 +203,8 @@
 	new /obj/item/ammo_box/magazine/alacran_pdw(src)
 
 /datum/opposing_force_equipment/ranged_stealth/wespe
-	name = "Wespe Pistol"
-	description = "The standard issue service pistol of SolFed's various military branches. Comes with attached light."
+	name = "韦斯佩手枪"
+	description = "索尔联邦各军事部队的标准制式手枪。配有附装手电筒。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/wespe
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/wespe/PopulateContents()
@@ -213,8 +213,8 @@
 	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
 
 /datum/opposing_force_equipment/ranged_stealth/makarov
-	name = "Makarov Pistol"
-	description = "A small, easily concealable 9mm handgun. This one is packed with a suppressor."
+	name = "马卡洛夫手枪"
+	description = "一款小巧、易于隐藏的9毫米手枪。这把配备了消音器。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/makarov
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/makarov/PopulateContents()
@@ -224,8 +224,8 @@
 	new /obj/item/ammo_box/magazine/m9mm(src)
 
 /datum/opposing_force_equipment/ranged_stealth/m1911
-	name = "M1911 Pistol"
-	description = "A classic .45 handgun with a small magazine capacity."
+	name = "M1911手枪"
+	description = "一款经典的.45口径手枪，弹匣容量较小。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/m1911
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/m1911/PopulateContents()
@@ -234,8 +234,8 @@
 	new /obj/item/ammo_box/magazine/m45(src)
 
 /datum/opposing_force_equipment/ranged_stealth/plasma_pistol
-	name = "'Słońce' Plasma Projector"
-	description = "An outdated sidearm rarely seen in use by some members of the CIN. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power and the trigger is pulled."
+	name = "'斯沃采'等离子投射器"
+	description = "一款过时的副武器，偶尔可见于CIN部分成员使用。只要还有能量且扣动扳机，它就会从磁性枪管中喷出不精确的灼热等离子流。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/plasma_pistol
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/plasma_pistol/PopulateContents()
@@ -245,7 +245,7 @@
 
 /datum/opposing_force_equipment/ranged_stealth/plasma_marksman
 	name = "'Gwiazda' Plasma Sharpshooter"
-	description = "An outdated sidearm rarely seen in use by some members of the CIN. Fires relatively accurate globs of searing plasma."
+	description = "一种过时的副武器，鲜见于CIN部分成员使用。发射相对精准的灼热等离子团。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/plasma_marksman
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/plasma_marksman/PopulateContents()
@@ -254,8 +254,8 @@
 	new /obj/item/ammo_box/magazine/recharge/plasma_battery(src)
 
 /datum/opposing_force_equipment/ranged_stealth/syndie_revolver
-	name = "Syndicate Revolver"
-	description = "A modernized 7 round revolver manufactured by Scarborough."
+	name = "辛迪加左轮手枪"
+	description = "一款斯卡伯勒公司制造的现代化7发左轮手枪。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/syndie_revolver
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/syndie_revolver/PopulateContents()
@@ -264,9 +264,9 @@
 	new /obj/item/ammo_box/speedloader/c357(src)
 
 /datum/opposing_force_equipment/ranged_stealth/ocelot
-	name = "Colt Peacemaker revolver"
+	name = "柯尔特和平缔造者左轮手枪"
 	admin_note = "Is packed with peacemaker .357, which deals significantly less damage but has a cool ricochet!"
-	description = "A modified Peacemaker revolver that chambers .357 ammo. Less powerful than the regular .357, but ricochets a lot more."
+	description = "一款改装过的和平缔造者左轮手枪，使用.357弹药。威力不如常规.357，但跳弹次数多得多。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/ocelot
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/ocelot/PopulateContents()
@@ -275,7 +275,7 @@
 	new /obj/item/ammo_box/speedloader/c357/peacemaker(src)
 
 /datum/opposing_force_equipment/ranged_stealth/ansem
-	name = "Ansem Pistol Case"
+	name = "安瑟姆手枪箱"
 	description = "A small, easily concealable handgun that uses 10mm auto rounds in 8-round magazines and is compatible \
 			with suppressors. Comes with three spare magazines."
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/ansem
@@ -289,7 +289,7 @@
 	new /obj/item/ammo_box/magazine/m10mm(src)
 
 /datum/opposing_force_equipment/ranged/rpg
-	name = "Dardo-RE Rocket Propelled Grenade Launcher"
+	name = "达尔多-RE火箭推进榴弹发射器"
 	description = "A reusable rocket propelled grenade launcher preloaded with a low-yield 84mm HE round. \
 			Guaranteed to take your target out with a bang, or your money back! Comes with a bouquet of additional rockets!"
 	item_type = /obj/item/storage/toolbox/guncase/nova/opfor/rpg
@@ -303,8 +303,8 @@
 
 //foamforce
 /datum/opposing_force_equipment/ranged_stealth/foamforce_smg
-	name = "Donksoft SMG"
-	description = "A bullpup three-round burst toy SMG, designated 'C-20r'. Ages 8 and up."
+	name = "唐克软冲锋枪"
+	description = "一款无托式三连发玩具冲锋枪，型号为'C-20r'。适合8岁及以上年龄。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/foamforce_smg
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/foamforce_smg/PopulateContents()
@@ -313,8 +313,8 @@
 	new /obj/item/ammo_box/magazine/toy/smgm45/riot(src)
 
 /datum/opposing_force_equipment/ranged_stealth/foamforce_smg_basic
-	name = "Foamforce SMG"
-	description = "A prototype three-round burst toy submachine gun. Ages 8 and up."
+	name = "泡沫部队冲锋枪"
+	description = "一款原型三连发玩具冲锋枪。适合8岁及以上年龄。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/foamforce_smg_basic
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/foamforce_smg_basic/PopulateContents()
@@ -330,8 +330,8 @@
 	item_type = /obj/item/gun/energy/recharge/ebow
 
 /datum/opposing_force_equipment/ranged_stealth/egun_mini
-	name = "miniature energy gun"
-	description = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: disable and kill."
+	name = "微型能量枪"
+	description = "一款小型、手枪尺寸的能量枪，内置手电筒。有两种设置：失能与击杀。"
 	item_type = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/egun_mini
 
 /obj/item/storage/toolbox/guncase/nova/pistol/opfor/egun_mini/PopulateContents()

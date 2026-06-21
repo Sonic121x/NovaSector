@@ -20,8 +20,8 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 //
 
 /obj/machinery/gravity_generator
-	name = "gravitational generator"
-	desc = "A device which produces a graviton field when set up."
+	name = "重力产生器"
+	desc = "一种设备，安装后可产生引力场."
 	icon = 'icons/obj/machines/gravity_generator.dmi'
 	density = TRUE
 	move_resist = INFINITY
@@ -425,9 +425,9 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	if(!SSmapping.level_has_any_trait(z, ZTRAIT_STATION)) // SHUT THE FUCK UP ABANDONED STATIONS, I DON'T CARE
 		return
 	if(on)
-		priority_announce("A gravity generator has successfully restarted its graviton field, artificial gravity is online.", "Gravity Generator", ANNOUNCER_GRAVGENON)
+		priority_announce("一台重力发生器已成功重启其引力子场，人造重力已上线。", "重力发生器", ANNOUNCER_GRAVGENON)
 	else
-		priority_announce("A gravity generator has lost its graviton field integrity ballast, artificial gravity is offline.", "Gravity Generator", ANNOUNCER_GRAVGENOFF)
+		priority_announce("一台重力发生器已失去其引力子场完整性压载，人造重力已离线。", "重力发生器", ANNOUNCER_GRAVGENOFF)
 	//NOVA EDIT END
 
 /obj/machinery/gravity_generator/main/proc/gravity_in_level()
@@ -502,7 +502,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 /// Gravity generator instruction guide
 /obj/item/paper/guides/jobs/engi/gravity_gen
-	name = "paper- 'Generate your own gravity!'"
+	name = "纸张 - “创造你自己的重力！”"
 	default_raw_text = {"<h1>Gravity Generator Instructions For Dummies</h1>
 	<p>Surprisingly, gravity isn't that hard to make! All you have to do is inject deadly radioactive minerals into a ball of
 	energy and you have yourself gravity! You can turn the machine on or off when required.

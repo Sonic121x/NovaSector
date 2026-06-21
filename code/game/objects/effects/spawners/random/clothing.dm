@@ -1,16 +1,16 @@
 /obj/effect/spawner/random/clothing
 	name = "clothing loot spawner"
-	desc = "Time to look pretty."
+	desc = "是时候打扮一下了。"
 	icon_state = "hat"
 
 /obj/effect/spawner/random/clothing/costume
-	name = "random costume spawner"
+	name = "随机服装生成器"
 	icon_state = "costume"
 	loot_subtype_path = /obj/effect/spawner/costume
 	loot = list()
 
 /obj/effect/spawner/random/clothing/beret_or_rabbitears
-	name = "beret or rabbit ears spawner"
+	name = "贝雷帽或兔耳生成器"
 	loot = list(
 		/obj/item/clothing/head/beret,
 		/obj/item/clothing/head/costume/rabbitears,
@@ -24,7 +24,7 @@
 	)
 
 /obj/effect/spawner/random/clothing/kittyears_or_rabbitears
-	name = "kitty ears or rabbit ears spawner"
+	name = "猫耳或兔耳生成器"
 	loot = list(
 		/obj/item/clothing/head/costume/kitty,
 		/obj/item/clothing/head/costume/rabbitears,
@@ -43,7 +43,7 @@
 	loot = list(/obj/item/clothing/mask/gas/cyborg)
 
 /obj/effect/spawner/random/clothing/mafia_outfit
-	name = "mafia outfit spawner"
+	name = "黑手党套装生成器"
 	icon_state = "costume"
 	loot = list(
 		/obj/effect/spawner/costume/mafia = 20,
@@ -53,7 +53,7 @@
 	)
 
 /obj/effect/spawner/random/clothing/syndie
-	name = "syndie outfit spawner"
+	name = "辛迪加套装生成器"
 	icon_state = "syndicate"
 	loot = list(
 		/obj/item/clothing/under/syndicate,
@@ -70,8 +70,8 @@
 	)
 
 /obj/effect/spawner/random/clothing/gloves
-	name = "random gloves"
-	desc = "These gloves are supposed to be a random color..."
+	name = "随机手套"
+	desc = "手套的颜色应该是随机的……"
 	icon_state = "gloves"
 	loot = list(
 		/obj/item/clothing/gloves/color/orange,

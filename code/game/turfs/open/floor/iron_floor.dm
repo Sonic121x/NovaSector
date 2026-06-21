@@ -12,7 +12,7 @@
 
 /turf/open/floor/iron/examine(mob/user)
 	. = ..()
-	. += span_notice("There's a <b>small crack</b> on the edge of it.")
+	. += span_notice("它的边缘有一道<b>小裂缝</b>。")
 
 /turf/open/floor/iron/update_icon_state()
 	if(broken || burnt)
@@ -452,7 +452,7 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/iron/kitchen_coldroom
-	name = "cold room floor"
+	name = "冷库地板"
 	initial_gas_mix = KITCHEN_COLDROOM_ATMOS
 
 /turf/open/floor/iron/kitchen_coldroom/dark
@@ -482,8 +482,8 @@
 	floor_tile = /obj/item/stack/tile/iron/vaporwave
 
 /turf/open/floor/iron/goonplaque
-	name = "commemorative plaque"
-	desc = "\"This is a plaque in honour of our comrades on the G4407 Stations. Hopefully TG4407 model can live up to your fame and fortune.\" Scratched in beneath that is a crude image of a meteor and a spaceman. The spaceman is laughing. The meteor is exploding."
+	name = "纪念牌匾"
+	desc = "\"这是一块纪念我们在G4407空间站战友们的铭牌。希望TG4407模型能够继承你们的荣耀与财富。\"下方刻着一幅陨石与太空人的粗糙图案。太空人在大笑。陨石正在爆炸。"
 	icon_state = "plaque"
 	base_icon_state = "plaque"
 	tiled_turf = FALSE
@@ -528,11 +528,11 @@
 /turf/open/floor/iron/bluespace
 	icon_state = "bluespace"
 	base_icon_state = "bluespace"
-	desc = "Sadly, these don't seem to make you faster..."
+	desc = "可惜，这些似乎并不能让你跑得更快..."
 	floor_tile = /obj/item/stack/tile/iron/bluespace
 
 /turf/open/floor/iron/sepia
 	icon_state = "sepia"
 	base_icon_state = "sepia"
-	desc = "Well, the flow of time is normal on these tiles, weird."
+	desc = "唉，这些地砖上的时间流动是正常的，奇怪"
 	floor_tile = /obj/item/stack/tile/iron/sepia

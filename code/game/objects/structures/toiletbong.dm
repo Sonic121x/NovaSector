@@ -1,6 +1,6 @@
 /obj/structure/toiletbong
-	name = "toilet bong"
-	desc = "A repurposed toilet with re-arranged piping and an attached flamethrower. Why would anyone build this?"
+	name = "马桶“烟斗”"
+	desc = "一个经过改造的厕所，重新布局了管道并加装了喷火器，为什么会有人建造这个？"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toiletbong"
 	base_icon_state = "toiletbong"
@@ -23,13 +23,13 @@
 	if(toilet)
 		for(var/obj/item/cistern_item in toilet.contents)
 			cistern_item.forceMove(crafter.drop_location())
-			to_chat(crafter, span_warning("[cistern_item] falls out of the toilet!"))
+			to_chat(crafter, span_warning("[cistern_item]从马桶里掉了出来！"))
 		setDir(toilet.dir)
 		forceMove(toilet.loc)
 
 	crafter.visible_message(
-		span_notice("[crafter] attaches the flamethrower to the repurposed toilet."),
-		span_notice("You attach the flamethrower to the repurposed toilet."),
+		span_notice("[crafter]将火焰喷射器连接到改造过的马桶上。"),
+		span_notice("你将火焰喷射器连接到改造过的马桶上。"),
 	)
 	return ..()
 
@@ -44,16 +44,16 @@
 		user.balloon_alert(user, "secure it first!")
 		return
 	if (!LAZYLEN(contents))
-		user.balloon_alert(user, "it's empty!")
+		user.balloon_alert(user, "它是空的！")
 		return
-	user.visible_message(span_boldnotice("[user] takes a huge drag on the [src]."))
+	user.visible_message(span_boldnotice("[user]对着[src]猛吸了一大口。"))
 	if (!do_after(user, 2 SECONDS, target = src))
 		return
 	var/turf/toiletbong_location = loc
 	toiletbong_location.hotspot_expose(1000, 5)
 	for (var/obj/item/item in contents)
 		if (item.resistance_flags & INDESTRUCTIBLE)
-			user.balloon_alert(user, "[item.name] is blocking the pipes!")
+			user.balloon_alert(user, "[item.name] 堵住了管道！")
 			continue
 		playsound(src, 'sound/items/modsuit/flamethrower.ogg', 50)
 
@@ -61,11 +61,11 @@
 		do_chem_smoke(amount = smoke_amount, holder = src, location = loc, carry = item.reagents, carry_limit = 20, smoke_type = /datum/effect_system/fluid_spread/smoke/chem/smoke_machine)
 		if (prob(5) && !(obj_flags & EMAGGED))
 			if(user.get_liked_foodtypes() & GORE)
-				user.balloon_alert(user, "a hidden treat!")
-				user.visible_message(span_danger("[user] fishes a mouse out of the pipes."))
+				user.balloon_alert(user, "一份隐藏的惊喜！")
+				user.visible_message(span_danger("[user] 从管道里捞出了一只老鼠。"))
 			else
-				to_chat(user, span_userdanger("There was something disgusting in the pipes!"))
-				user.visible_message(span_danger("[user] spits out a mouse."))
+				to_chat(user, span_userdanger("管道里有恶心的东西！"))
+				user.visible_message(span_danger("[user] 吐出了一只老鼠。"))
 				user.adjust_disgust(50)
 				user.vomit(VOMIT_CATEGORY_DEFAULT)
 			var/mob/living/spawned_mob = new /mob/living/basic/mouse(get_turf(user))
@@ -90,7 +90,7 @@
 	if(anchored)
 		return FALSE
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice("You begin taking apart the [src]."))
+	to_chat(user, span_notice("你开始拆解[src]。"))
 	if (!do_after(user, 10 SECONDS, target = src))
 		return FALSE
 	new /obj/item/flamethrower(get_turf(src))
@@ -106,9 +106,9 @@
 	obj_flags |= EMAGGED
 	smokeradius = 2
 	playsound(src, 'sound/effects/fish_splash.ogg', 50)
-	balloon_alert(user, "toilet broke")
+	balloon_alert(user, "马桶坏了")
 	if (emag_card)
-		to_chat(user, span_boldwarning("The [emag_card] falls into the toilet. You fish it back out. Looks like you broke the toilet."))
+		to_chat(user, span_boldwarning("[emag_card]掉进了马桶里。你把它捞了出来。看来你把马桶弄坏了。"))
 	return TRUE
 
 /obj/structure/toiletbong/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)

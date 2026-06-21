@@ -6,8 +6,8 @@
 	required_limb_biostate = (BIO_METAL)
 
 /datum/wound/muscle/robotic/moderate
-	name = "Overworked Servo"
-	desc = "A servo has been overworked, and will operate with reduced efficiency until rested."
+	name = "伺服器过载"
+	desc = "一个伺服器已过载，在得到休息前将以降低的效率运行。"
 	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
 	examine_desc = "appears to be moving sluggishly"
 	occur_text = "jitters for a moment before moving sluggishly"
@@ -25,9 +25,9 @@
 	threshold_minimum = 35
 
 /datum/wound/muscle/robotic/severe
-	name = "Exhausted Piston"
+	name = "活塞疲劳"
 	sound_effect = 'sound/effects/wounds/blood2.ogg'
-	desc = "An important hydraulic piston has been critically overused, resulting in total dysfunction until it recovers."
+	desc = "一个重要的液压活塞被严重过度使用，导致其在恢复前完全功能障碍。"
 	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
 	examine_desc = "is stiffly limp, the extremities splayed out widely"
 	occur_text = "goes completely stiff, seeming to lock into position"

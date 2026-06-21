@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/blood/gibs/robot_debris
-	name = "robot debris"
-	desc = "It's a useless heap of junk... <i>or is it?</i>"
+	name = "机器人残骸"
+	desc = "这是一堆没用的垃圾…… <i>真是这样？</i>"
 	icon = 'icons/mob/silicon/robots.dmi'
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6", "gib7")
 	has_overlay = FALSE
@@ -39,9 +39,9 @@
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6", "gib7","gibdown","gibdown")
 
 /obj/effect/decal/cleanable/blood/oil
-	name = "motor oil"
+	name = "机油"
 	// This is fetched in /datum/blood_type/oil/set_up_blood() for all blood decals with default desc
-	desc = "It's black and greasy. Looks like Beepsky made another mess."
+	desc = "它又黑又油，看起来比普斯基又搞砸了。"
 	color = /datum/blood_type/oil::color // For mapper sanity
 
 /obj/effect/decal/cleanable/blood/oil/get_default_blood_type()
@@ -52,7 +52,7 @@
 	AddComponent(/datum/component/slippery, 80, (NO_SLIP_WHEN_WALKING | SLIDE))
 
 /obj/effect/decal/cleanable/blood/splatter/oil
-	name = "motor oil"
+	name = "机油"
 	color = /datum/blood_type/oil::color
 
 /obj/effect/decal/cleanable/blood/splatter/oil/get_default_blood_type()

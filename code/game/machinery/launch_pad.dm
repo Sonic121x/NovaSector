@@ -1,8 +1,8 @@
 #define BEAM_FADE_TIME (1 SECONDS)
 
 /obj/machinery/launchpad
-	name = "bluespace launchpad"
-	desc = "A bluespace pad able to thrust matter through bluespace, teleporting it to or from nearby locations."
+	name = "蓝空发射台"
+	desc = "一种能够将物质通过蓝空传送到附近位置或从附近位置传送出去的蓝空发射台。"
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "lpad-idle"
 	base_icon_state = "lpad"
@@ -63,7 +63,7 @@
 /obj/machinery/launchpad/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Maximum range: <b>[range]</b> units.")
+		. += span_notice("状态显示屏显示：最大射程：<b>[range]</b> 单位。")
 
 /obj/machinery/launchpad/multitool_act(mob/living/user, obj/item/multitool/multi)
 	. = NONE
@@ -71,7 +71,7 @@
 		return
 
 	multi.set_buffer(src)
-	balloon_alert(user, "saved to buffer")
+	balloon_alert(user, "已保存到缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/launchpad/screwdriver_act(mob/living/user, obj/item/tool)
@@ -275,8 +275,8 @@
 
 //Starts in the briefcase. Don't spawn this directly, or it will runtime when closing.
 /obj/machinery/launchpad/briefcase
-	name = "briefcase launchpad"
-	desc = "A portable bluespace pad able to thrust matter through bluespace, teleporting it to or from nearby locations. Controlled via remote."
+	name = "公文传送包"
+	desc = "一种能够将物质通过蓝空传送到附近位置或从附近位置传送出去的便携式蓝空发射台。通过远程遥控。"
 	icon_state = "blpad-idle"
 	base_icon_state = "blpad"
 	anchored = FALSE
@@ -313,7 +313,7 @@
 	if(over_object == user)
 		if(!briefcase)
 			return
-		user.visible_message(span_notice("[usr] starts closing [src]..."), span_notice("You start closing [src]..."))
+		user.visible_message(span_notice("[usr] 开始关闭 [src]..."), span_notice("你开始关闭 [src]..."))
 		if(do_after(user, 3 SECONDS, target = user))
 			user.put_in_hands(briefcase)
 			moveToNullspace() //hides it from suitcase contents
@@ -326,13 +326,13 @@
 		if(IS_WEAKREF_OF(src, launch.pad)) //do not attempt to link when already linked
 			return ..()
 		launch.pad = WEAKREF(src)
-		to_chat(user, span_notice("You link [src] to [launch]."))
+		to_chat(user, span_notice("你将 [src] 链接到 [launch]。"))
 	else
 		return ..()
 
 /obj/item/launchpad_remote
-	name = "folder"
-	desc = "A folder."
+	name = "文件夹"
+	desc = "一个文件夹"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "folder"
 	w_class = WEIGHT_CLASS_SMALL
@@ -347,7 +347,7 @@
 /obj/item/launchpad_remote/attack_self(mob/user)
 	. = ..()
 	ui_interact(user)
-	to_chat(user, span_notice("[src] projects a display onto your retina."))
+	to_chat(user, span_notice("[src] 将显示内容投影到 Retina 上。"))
 
 
 /obj/item/launchpad_remote/ui_state(mob/user)
@@ -377,7 +377,7 @@
 
 /obj/item/launchpad_remote/proc/teleport(mob/user, obj/machinery/launchpad/pad)
 	if(QDELETED(pad))
-		to_chat(user, span_warning("ERROR: Launchpad not responding. Check launchpad integrity."))
+		to_chat(user, span_warning("错误：Launchpad 没有响应。检查 launchpad 完整性。"))
 		return
 	var/error_reason = pad.teleport_checks()
 	if(error_reason)
@@ -425,7 +425,7 @@
 			our_pad.display_name = new_name
 		if("remove")
 			. = TRUE
-			if(tgui_alert(user, "Are you sure?", "Unlink Launchpad", list("I'm Sure", "Abort")) == "I'm Sure")
+			if(tgui_alert(user, "你确定吗？", "解除连接发射台", list("I'm Sure", "Abort")) == "I'm Sure")
 				pad = null
 		if("launch")
 			sending = TRUE
@@ -440,7 +440,7 @@
 
 /obj/item/circuit_component/bluespace_launchpad
 	display_name = "Bluespace Launchpad"
-	desc = "Teleports anything to and from any location on the station. Doesn't use actual GPS coordinates, but rather offsets from the launchpad itself. Can only go as far as the launchpad can go, which depends on its parts."
+	desc = "将任何东西传送到太空站的任何位置。不使用实际的GPS坐标，而是使用与发射台本身的支距。只能到达发射台所能到达的距离，这取决于其部件。"
 
 	var/datum/port/input/x_pos
 	var/datum/port/input/y_pos

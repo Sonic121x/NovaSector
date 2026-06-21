@@ -1,8 +1,8 @@
 #define SAFETY_COOLDOWN 100
 
 /obj/machinery/recycler
-	name = "recycler"
-	desc = "A large crushing machine used to recycle small items inefficiently. There are lights on the side."
+	name = "回收机"
+	desc = "一种大型粉碎机，用于低效地回收小型物品。侧面有灯。"
 	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "grinder-o0"
 	base_icon_state = "grinder-o"
@@ -60,7 +60,7 @@
 
 /obj/machinery/recycler/examine(mob/user)
 	. = ..()
-	. += span_notice("Reclaiming <b>[amount_produced]%</b> of materials salvaged.")
+	. += span_notice("回收材料中<b>[amount_produced]%</b>可被重新利用。")
 	. += {"The power light is [(machine_stat & NOPOWER) ? "off" : "on"].
 	The safety-mode light is [safety_mode ? "on" : "off"].
 	The safety-sensors status light is [obj_flags & EMAGGED ? "off" : "on"]."}
@@ -71,7 +71,7 @@
 
 /obj/machinery/recycler/can_be_unfasten_wrench(mob/user, silent)
 	if(!(isfloorturf(loc) || isindestructiblefloor(loc)) && !anchored)
-		to_chat(user, span_warning("[src] needs to be on the floor to be secured!"))
+		to_chat(user, span_warning("[src]需要放置在地板上才能被固定！"))
 		return FAILED_UNFASTEN
 	return SUCCESSFUL_UNFASTEN
 
@@ -89,7 +89,7 @@
 		safety_mode = FALSE
 		update_appearance()
 	playsound(src, SFX_SPARKS, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
-	balloon_alert(user, "safeties disabled")
+	balloon_alert(user, "安全装置已禁用")
 	return FALSE
 
 /obj/machinery/recycler/update_icon_state()
@@ -157,7 +157,7 @@
 		if(thing.flags_1 & HOLOGRAM_1)
 			for(var/atom/movable/hologram_content as anything in thing.contents)
 				hologram_content.forceMove(loc) // we shouldn't qdel() the non-holographic content of the hologram.
-			visible_message(span_notice("[thing] fades away!"))
+			visible_message(span_notice("[thing]逐渐消失了！"))
 			qdel(thing)
 			continue
 
@@ -296,7 +296,7 @@
 	safety_mode = TRUE
 
 /obj/machinery/recycler/deathtrap
-	name = "dangerous old crusher"
+	name = "危险的旧破碎机"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	crush_damage = 120
 
@@ -306,7 +306,7 @@
 	AddElement(/datum/element/tool_blocker, TOOL_CROWBAR)
 
 /obj/item/paper/guides/recycler
-	name = "paper - 'garbage duty instructions'"
-	default_raw_text = "<h2>New Assignment</h2> You have been assigned to collect garbage from trash bins, located around the station. The crewmembers will put their trash into it and you will collect said trash.<br><br>There is a recycling machine near your closet, inside maintenance; use it to recycle the trash for a small chance to get useful minerals. Then, deliver these minerals to cargo or engineering. You are our last hope for a clean station. Do not screw this up!"
+	name = "纸 - 《垃圾处理说明》"
+	default_raw_text = "<h2>新任务</h2>你被指派从空间站各处的垃圾桶中收集垃圾。船员会将垃圾放入其中，而你需要收集这些垃圾。<br><br>维护通道内你的储物柜附近有一台回收机；用它回收垃圾，有小概率获得有用的矿物。然后，将这些矿物运送到货物部或工程部。你是保持空间站清洁的最后希望。别搞砸了！"
 
 #undef SAFETY_COOLDOWN

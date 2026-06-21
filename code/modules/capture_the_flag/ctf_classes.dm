@@ -1,7 +1,7 @@
 // GENERIC CLASSES
 
 /datum/outfit/ctf
-	name = "CTF Rifleman (Solo)"
+	name = "夺旗步枪手（单人）"
 	ears = /obj/item/radio/headset
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/armor/vest/ctf
@@ -59,14 +59,14 @@
 	human_to_equip.dna.species.stunmod = 0
 
 /datum/outfit/ctf/instagib
-	name = "CTF Instagib (Solo)"
+	name = "夺旗模式：一击必杀（单人）"
 	l_hand = /obj/item/gun/energy/laser/instakill/ctf
 	shoes = /obj/item/clothing/shoes/jackboots/fast
 	icon_state = "ctf_instakill"
 	class_description = "General purpose combat class. Armed with a laser rifle and backup pistol."
 
 /datum/outfit/ctf/assault
-	name = "CTF Assaulter (Solo)"
+	name = "夺旗突击手（单人）"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/light
 	l_hand = /obj/item/gun/ballistic/shotgun/ctf
 	gloves = /obj/item/clothing/gloves/tackler/rocket
@@ -77,7 +77,7 @@
 	class_description = "Close combat class. Armed with a shotgun and rocket gloves. Has significantly lower shield values due to higher moving speed."
 
 /datum/outfit/ctf/marksman
-	name = "CTF Marksman (Solo)"
+	name = "夺旗狙击手（单人）"
 	l_hand = /obj/item/gun/ballistic/automatic/laser/ctf/marksman
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/marksman
 	r_pocket = /obj/item/ammo_box/magazine/recharge/ctf/marksman
@@ -88,7 +88,7 @@
 // RED TEAM CLASSES
 
 /datum/outfit/ctf/red
-	name = "CTF Rifleman (Red)"
+	name = "CTF步枪手(红队)"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/red
 	l_hand = /obj/item/gun/ballistic/automatic/laser/ctf/red
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/rifle/red
@@ -97,13 +97,13 @@
 	team_radio_freq = FREQ_CTF_RED
 
 /datum/outfit/ctf/red/instagib
-	name = "CTF Instagib (Red)"
+	name = "夺旗模式：一击必杀（红队）"
 	l_hand = /obj/item/gun/energy/laser/instakill/ctf/red
 	shoes = /obj/item/clothing/shoes/jackboots/fast
 	team_radio_freq = FREQ_CTF_RED
 
 /datum/outfit/ctf/assault/red
-	name = "CTF Assaulter (Red)"
+	name = "夺旗突击手（红队）"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/light/red
 	l_hand = /obj/item/gun/ballistic/shotgun/ctf/red
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/shotgun/red
@@ -112,7 +112,7 @@
 	team_radio_freq = FREQ_CTF_RED
 
 /datum/outfit/ctf/marksman/red
-	name = "CTF Marksman (Red)"
+	name = "夺旗狙击手（红队）"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/red
 	l_hand = /obj/item/gun/ballistic/automatic/laser/ctf/marksman/red
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/marksman/red
@@ -123,7 +123,7 @@
 // BLUE TEAM CLASSES
 
 /datum/outfit/ctf/blue
-	name = "CTF Rifleman (Blue)"
+	name = "CTF步枪手(蓝队)"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/blue
 	l_hand = /obj/item/gun/ballistic/automatic/laser/ctf/blue
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/rifle/blue
@@ -132,13 +132,13 @@
 	team_radio_freq = FREQ_CTF_BLUE
 
 /datum/outfit/ctf/blue/instagib
-	name = "CTF Instagib (Blue)"
+	name = "CTF 一击必杀（蓝队）"
 	l_hand = /obj/item/gun/energy/laser/instakill/ctf/blue
 	shoes = /obj/item/clothing/shoes/jackboots/fast
 	team_radio_freq = FREQ_CTF_BLUE
 
 /datum/outfit/ctf/assault/blue
-	name = "CTF Assaulter (Blue)"
+	name = "夺旗突击手（蓝队）"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/light/blue
 	l_hand = /obj/item/gun/ballistic/shotgun/ctf/blue
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/shotgun/blue
@@ -147,7 +147,7 @@
 	team_radio_freq = FREQ_CTF_BLUE
 
 /datum/outfit/ctf/marksman/blue
-	name = "CTF Marksman (Blue)"
+	name = "夺旗狙击手（蓝队）"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/blue
 	l_hand = /obj/item/gun/ballistic/automatic/laser/ctf/marksman/blue
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/marksman/blue
@@ -158,7 +158,7 @@
 // GREEN TEAM CLASSES
 
 /datum/outfit/ctf/green
-	name = "CTF Rifleman (Green)"
+	name = "CTF步枪手(绿队)"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/green
 	l_hand = /obj/item/gun/ballistic/automatic/laser/ctf/green
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/rifle/green
@@ -167,13 +167,13 @@
 	team_radio_freq = FREQ_CTF_GREEN
 
 /datum/outfit/ctf/green/instagib
-	name = "CTF Instagib (Green)"
+	name = "CTF 一击必杀（绿队）"
 	l_hand = /obj/item/gun/energy/laser/instakill/ctf/green
 	shoes = /obj/item/clothing/shoes/jackboots/fast
 	team_radio_freq = FREQ_CTF_GREEN
 
 /datum/outfit/ctf/assault/green
-	name = "CTF Assaulter (Green)"
+	name = "CTF 突击兵（绿队）"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/light/green
 	l_hand = /obj/item/gun/ballistic/shotgun/ctf/green
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/shotgun/green
@@ -182,7 +182,7 @@
 	team_radio_freq = FREQ_CTF_GREEN
 
 /datum/outfit/ctf/marksman/green
-	name = "CTF Marksman (Green)"
+	name = "CTF 神射手（绿队）"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/green
 	l_hand = /obj/item/gun/ballistic/automatic/laser/ctf/marksman/green
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/marksman/green
@@ -193,7 +193,7 @@
 // YELLOW TEAM CLASSES
 
 /datum/outfit/ctf/yellow
-	name = "CTF Rifleman (Yellow)"
+	name = "CTF步枪手(黄队)"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/yellow
 	l_hand = /obj/item/gun/ballistic/automatic/laser/ctf/yellow
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/rifle/yellow
@@ -202,13 +202,13 @@
 	team_radio_freq = FREQ_CTF_YELLOW
 
 /datum/outfit/ctf/yellow/instagib
-	name = "CTF Instagib (Yellow)"
+	name = "CTF 一击必杀（黄队）"
 	l_hand = /obj/item/gun/energy/laser/instakill/ctf/yellow
 	shoes = /obj/item/clothing/shoes/jackboots/fast
 	team_radio_freq = FREQ_CTF_YELLOW
 
 /datum/outfit/ctf/assault/yellow
-	name = "CTF Assaulter (Yellow)"
+	name = "CTF 突击兵（黄队）"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/light/yellow
 	l_hand = /obj/item/gun/ballistic/shotgun/ctf/yellow
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/shotgun/yellow
@@ -217,7 +217,7 @@
 	team_radio_freq = FREQ_CTF_YELLOW
 
 /datum/outfit/ctf/marksman/yellow
-	name = "CTF Marksman (Yellow)"
+	name = "CTF 神射手（黄队）"
 	suit = /obj/item/clothing/suit/armor/vest/ctf/yellow
 	l_hand = /obj/item/gun/ballistic/automatic/laser/ctf/marksman/yellow
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/marksman/yellow

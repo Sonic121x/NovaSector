@@ -30,14 +30,14 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 	var/in_use = FALSE
 
 /obj/item/forging/tongs
-	name = "forging tongs"
+	name = "锻造钳"
 	desc = "A set of tongs specifically crafted for use in forging. A wise man once said 'I lift things up and put them down.'"
 	icon = 'modular_nova/modules/reagent_forging/icons/obj/forge_items.dmi'
 	icon_state = "tong_empty"
 	tool_behaviour = TOOL_TONG
 
 /obj/item/forging/tongs/primitive
-	name = "primitive forging tongs"
+	name = "原始锻造钳"
 	toolspeed = 2
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
@@ -50,8 +50,8 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 		return
 
 /obj/item/forging/hammer
-	name = "forging mallet"
-	desc = "A mallet specifically crafted for use in forging. Used to slowly shape metal; careful, you could break something with it!"
+	name = "锻造木槌"
+	desc = "专为锻造打造的槌子。用于缓慢塑形金属；小心，你可能会用它砸坏东西！"
 	icon_state = "hammer"
 	inhand_icon_state = "hammer"
 	worn_icon_state = "hammer_back"
@@ -69,24 +69,24 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 	user.changeNext_move(CLICK_CD_RAPID)
 
 /obj/item/forging/hammer/primitive
-	name = "primitive forging hammer"
+	name = "原始锻造锤"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/forging/billow
-	name = "forging billow"
-	desc = "A billow specifically crafted for use in forging. Used to stoke the flames and keep the forge lit."
+	name = "锻造风箱"
+	desc = "专为锻造打造的风箱。用于鼓风助燃，保持锻炉火势。"
 	icon_state = "billow"
 	tool_behaviour = TOOL_BILLOW
 
 /obj/item/forging/billow/primitive
-	name = "primitive forging billow"
+	name = "原始锻造风箱"
 	toolspeed = 2
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 //incomplete pre-complete items
 /obj/item/forging/incomplete
-	name = "parent dev item"
-	desc = "An incomplete forge item, continue to work hard to be rewarded for your efforts."
+	name = "父级开发物品"
+	desc = "一件未完成的锻造物品，继续努力，你的付出终将获得回报。"
 	//the time remaining that you can hammer before too cool
 	COOLDOWN_DECLARE(heating_remainder)
 	//the time between each strike
@@ -105,79 +105,79 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 /obj/item/forging/incomplete/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(length(tool.contents) > 0)
-		user.balloon_alert(user, "tongs are full already!")
+		user.balloon_alert(user, "钳子已经满了！")
 		return
 	forceMove(tool)
 	tool.icon_state = "tong_full"
 
 /obj/item/forging/incomplete/chain
-	name = "incomplete chain"
+	name = "未完成的链条"
 	icon_state = "hot_chain"
 	average_hits = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/chain
 
 /obj/item/forging/incomplete/plate
-	name = "incomplete plate"
+	name = "未完成的板材"
 	icon_state = "hot_plate"
 	average_hits = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/plate
 
 /obj/item/forging/incomplete/sword
-	name = "incomplete sword blade"
+	name = "未完成的剑刃"
 	icon_state = "hot_blade"
 	spawn_item = /obj/item/forging/complete/sword
 
 /obj/item/forging/incomplete/katana
-	name = "incomplete katana blade"
+	name = "未完成的武士刀刃"
 	icon_state = "hot_katanablade"
 	spawn_item = /obj/item/forging/complete/katana
 
 /obj/item/forging/incomplete/dagger
-	name = "incomplete dagger blade"
+	name = "未完成的匕首刃"
 	icon_state = "hot_daggerblade"
 	spawn_item = /obj/item/forging/complete/dagger
 
 /obj/item/forging/incomplete/staff
-	name = "incomplete staff head"
+	name = "未完成的杖头"
 	icon_state = "hot_staffhead"
 	spawn_item = /obj/item/forging/complete/staff
 
 /obj/item/forging/incomplete/spear
-	name = "incomplete spear head"
+	name = "未完成的矛头"
 	icon_state = "hot_spearhead"
 	spawn_item = /obj/item/forging/complete/spear
 
 /obj/item/forging/incomplete/axe
-	name = "incomplete axe head"
+	name = "未完成的斧头"
 	icon_state = "hot_axehead"
 	spawn_item = /obj/item/forging/complete/axe
 
 /obj/item/forging/incomplete/hammer
-	name = "incomplete hammer head"
+	name = "未完成的锤头"
 	icon_state = "hot_hammerhead"
 	spawn_item = /obj/item/forging/complete/hammer
 
 /obj/item/forging/incomplete/pickaxe
-	name = "incomplete pickaxe head"
+	name = "未完成的镐头"
 	icon_state = "hot_pickaxehead"
 	spawn_item = /obj/item/forging/complete/pickaxe
 
 /obj/item/forging/incomplete/shovel
-	name = "incomplete shovel head"
+	name = "未完成的铲头"
 	icon_state = "hot_shovelhead"
 	spawn_item = /obj/item/forging/complete/shovel
 
 /obj/item/forging/incomplete/arrowhead
-	name = "incomplete arrowhead"
+	name = "未完成的箭头"
 	icon_state = "hot_arrowhead"
 	average_hits = 12
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/arrowhead
 
 /obj/item/forging/incomplete/rail_nail
-	name = "incomplete rail nail"
+	name = "未完成的轨道钉"
 	icon = 'modular_nova/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "hot_nail"
 	average_hits = 10
@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 	spawn_item = /obj/item/forging/complete/rail_nail
 
 /obj/item/forging/incomplete/rail_cart
-	name = "incomplete rail cart"
+	name = "未完成的轨道车"
 	icon = 'modular_nova/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "hot_cart"
 	spawn_item = /obj/vehicle/ridden/rail_cart
@@ -200,93 +200,93 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 /obj/item/forging/complete/examine(mob/user)
 	. = ..()
 	if(spawning_item)
-		. += span_notice("<br>In order to finish this item, a workbench will be necessary!")
+		. += span_notice("<br>要完成这件物品，需要一个工作台！")
 
 /obj/item/forging/complete/chain
-	name = "chain"
-	desc = "A singular chain, best used in combination with multiple chains."
+	name = "链条"
+	desc = "一根单独的链条，最好与多根链条组合使用。"
 	icon_state = "chain"
 
 /obj/item/forging/complete/plate
-	name = "plate"
-	desc = "A plate, best used in combination with multiple plates."
+	name = "板材"
+	desc = "一块板材，最好与多块板材组合使用。"
 	icon_state = "plate"
 
 /obj/item/forging/complete/sword
-	name = "sword blade"
-	desc = "A sword blade, ready to get some wood for completion."
+	name = "剑刃"
+	desc = "一把剑刃，准备好配上木柄即可完成。"
 	icon_state = "blade"
 	spawning_item = /obj/item/forging/reagent_weapon/sword
 
 /obj/item/forging/complete/katana
-	name = "katana blade"
-	desc = "A katana blade, ready to get some wood for completion."
+	name = "武士刀刃"
+	desc = "一把武士刀刃，准备好配上木柄即可完成。"
 	icon_state = "katanablade"
 	spawning_item = /obj/item/forging/reagent_weapon/katana
 
 /obj/item/forging/complete/dagger
-	name = "dagger blade"
-	desc = "A dagger blade, ready to get some wood for completion."
+	name = "匕首刃"
+	desc = "一把匕首刃，准备好配上木柄即可完成。"
 	icon_state = "daggerblade"
 	spawning_item = /obj/item/forging/reagent_weapon/dagger
 
 /obj/item/forging/complete/staff
-	name = "staff head"
-	desc = "A staff head, ready to get some wood for completion."
+	name = "杖头"
+	desc = "一个杖头，准备好配上木柄即可完成。"
 	icon_state = "staffhead"
 	spawning_item = /obj/item/forging/reagent_weapon/staff
 
 /obj/item/forging/complete/spear
-	name = "spear head"
-	desc = "A spear head, ready to get some wood for completion."
+	name = "矛头"
+	desc = "一个矛头，准备好配上木柄即可完成。"
 	icon_state = "spearhead"
 	spawning_item = /obj/item/forging/reagent_weapon/spear
 
 /obj/item/forging/complete/axe
-	name = "axe head"
-	desc = "An axe head, ready to get some wood for completion."
+	name = "斧头"
+	desc = "一个斧头，准备好获取一些木材来完成制作。"
 	icon_state = "axehead"
 	spawning_item = /obj/item/forging/reagent_weapon/axe
 
 /obj/item/forging/complete/hammer
-	name = "hammer head"
-	desc = "A hammer head, ready to get some wood for completion."
+	name = "锤头"
+	desc = "一个锤头，准备好获取一些木材来完成制作。"
 	icon_state = "hammerhead"
 	spawning_item = /obj/item/forging/reagent_weapon/hammer
 
 /obj/item/forging/complete/pickaxe
-	name = "pickaxe head"
-	desc = "A pickaxe head, ready to get some wood for completion."
+	name = "镐头"
+	desc = "一个镐头，准备好获取一些木材来完成制作。"
 	icon_state = "pickaxehead"
 	spawning_item = /obj/item/pickaxe/reagent_weapon
 
 /obj/item/forging/complete/shovel
-	name = "shovel head"
-	desc = "A shovel head, ready to get some wood for completion."
+	name = "铲头"
+	desc = "一个铲头，准备好获取一些木材来完成制作。"
 	icon_state = "shovelhead"
 	spawning_item = /obj/item/shovel/reagent_weapon
 
 /obj/item/forging/complete/arrowhead
-	name = "arrowhead"
-	desc = "An arrowhead, ready to get some wood for completion."
+	name = "箭头"
+	desc = "一个箭头，准备好获取一些木材来完成制作。"
 	icon_state = "arrowhead"
 	spawning_item = /obj/item/arrow_spawner
 
 /obj/item/forging/complete/rail_nail
-	name = "rail nail"
-	desc = "A nail, ready to be used with some wood in order to make tracks."
+	name = "轨道钉"
+	desc = "一颗钉子，准备好与一些木材一起使用来制作轨道。"
 	icon = 'modular_nova/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "nail"
 	spawning_item = /obj/item/stack/rail_track/ten
 
 /obj/item/forging/coil
-	name = "coil"
-	desc = "A simple coil, comprised of coiled iron rods."
+	name = "线圈"
+	desc = "一个简单的线圈，由卷曲的铁棒组成。"
 	icon_state = "coil"
 
 /obj/item/forging/incomplete_bow
-	name = "incomplete longbow"
-	desc = "A wooden bow that has yet to be strung."
+	name = "未完成的长弓"
+	desc = "一把尚未上弦的木弓。"
 	icon_state = "nostring_bow"
 
 /obj/item/forging/incomplete_bow/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
@@ -298,8 +298,8 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 	return ..()
 
 /obj/item/arrow_spawner
-	name = "arrow spawner"
-	desc = "You shouldn't see this."
+	name = "箭矢生成器"
+	desc = "你不应该看到这个。"
 	/// the amount of arrows that are spawned from the spawner
 	var/spawning_amount = 4
 
@@ -323,13 +323,13 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 /obj/item/stack/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!(material_type in GLOB.allowed_forging_materials))
-		user.balloon_alert(user, "can only forge metal!")
+		user.balloon_alert(user, "只能锻造金属！")
 		return
 	if(length(tool.contents) > 0)
-		user.balloon_alert(user, "tongs are full already!")
+		user.balloon_alert(user, "钳子已经满了！")
 		return FALSE
 	if(!material_type && !custom_materials)
-		user.balloon_alert(user, "invalid material!")
+		user.balloon_alert(user, "无效材料！")
 		return
 	forceMove(tool)
 	tool.icon_state = "tong_full"
@@ -337,7 +337,7 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 /obj/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(length(tool.contents))
-		user.balloon_alert(user, "tongs are full already!")
+		user.balloon_alert(user, "钳子已经满了！")
 		return FALSE
 	if(obj_flags_nova & ANVIL_REPAIR)
 		forceMove(tool)

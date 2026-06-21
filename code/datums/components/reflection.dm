@@ -201,7 +201,7 @@
 		reflection.pixel_y += 5
 
 	// purely for vv
-	reflection.name = "[target.name]'s reflection"
+	reflection.name = "[target.name]的倒影"
 
 	SEND_SIGNAL(target, COMSIG_REFLECTION_UPDATED, parent, reflection)
 	SEND_SIGNAL(parent, COMSIG_REFLECTED_IMAGE_UPDATED, reflection)

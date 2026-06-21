@@ -14,7 +14,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/makeshift/crowbar
-	name = "Makeshift Crowbar"
+	name = "临时撬棍"
 	result = /obj/item/crowbar/makeshift
 	reqs = list(
 		/obj/item/stack/sheet/iron = 4,
@@ -24,7 +24,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/screwdriver
-	name = "Makeshift Screwdriver"
+	name = "临时螺丝刀"
 	tool_paths = list(/obj/item/crowbar/makeshift)
 	result = /obj/item/screwdriver/makeshift
 	reqs = list(
@@ -35,7 +35,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/welder
-	name = "Makeshift Welder"
+	name = "临时焊枪"
 	tool_paths = list(/obj/item/crowbar/makeshift)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	result = /obj/item/weldingtool/makeshift
@@ -48,7 +48,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/wirecutters
-	name = "Makeshift Wirecutters"
+	name = "临时线钳"
 	tool_paths = list(/obj/item/crowbar/makeshift)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	result = /obj/item/wirecutters/makeshift
@@ -57,7 +57,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/wrench
-	name = "Makeshift Wrench"
+	name = "临时扳手"
 	tool_paths = list(/obj/item/crowbar/makeshift)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	result = /obj/item/wrench/makeshift

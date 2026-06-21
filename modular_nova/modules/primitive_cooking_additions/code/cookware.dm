@@ -15,7 +15,7 @@
 
 // Oven Trays
 /obj/item/plate/oven_tray/material
-	desc = "Time to bake hardtack!"
+	desc = "是时候烤硬饼干了！"
 	icon = 'modular_nova/modules/primitive_cooking_additions/icons/cookware.dmi'
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	fragile = FALSE

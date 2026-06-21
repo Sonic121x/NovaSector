@@ -1,6 +1,6 @@
 /obj/item/grenade/empgrenade //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
-	name = "classic EMP grenade"
-	desc = "It is designed to wreak havoc on electronic systems."
+	name = "经典EMP手榴弹"
+	desc = "它被设计用来对电子系统造成严重破坏。"
 	icon_state = "emp"
 	inhand_icon_state = "emp"
 

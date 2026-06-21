@@ -88,7 +88,7 @@
 	return new /datum/tgs_message_content(keywords_lookup(params, 1))
 
 /datum/tgs_chat_command/validated/adminwho
-	name = "adminwho"
+	name = "检查管理员"
 	help_text = "Lists administrators currently on the server"
 	admin_only = TRUE
 	required_rights = 0
@@ -111,7 +111,7 @@
 	return new /datum/tgs_message_content("[text_res.Join("\n")][refs ? "\nRefs: [refs.Join(" ")]" : ""]")
 
 /datum/tgs_chat_command/validated/tgsstatus
-	name = "status"
+	name = "状态"
 	help_text = "Gets the admincount, playercount, gamemode, and true game mode of the server"
 	admin_only = TRUE
 	required_rights = R_ADMIN

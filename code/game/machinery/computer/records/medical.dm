@@ -1,6 +1,6 @@
 /obj/machinery/computer/records/medical
-	name = "medical records console"
-	desc = "This can be used to check medical records."
+	name = "医疗记录控制台"
+	desc = "这可用于检查医疗记录。"
 	icon_screen = "medcomp"
 	icon_keyboard = "med_key"
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_DETECTIVE, ACCESS_GENETICS)
@@ -12,8 +12,8 @@
 	req_one_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/records/medical/laptop
-	name = "medical laptop"
-	desc = "A cheap Nanotrasen medical laptop, it functions as a medical records computer. It's bolted to the table."
+	name = "医用笔记本电脑"
+	desc = "这是一台廉价的纳米传讯医用笔记本电脑，它可以作为医疗记录计算机。它用螺栓固定在桌子上。"
 	icon_state = "laptop"
 	icon_screen = "medlaptop"
 	icon_keyboard = "laptop_key"

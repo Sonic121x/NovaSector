@@ -84,13 +84,13 @@
 			data.set_title(book_deets[1], trusted = TRUE)
 			data.set_author(book_deets[2], trusted = TRUE)
 			data.set_content(book_deets[3], trusted = TRUE)
-			to_randomize.name = "Book: [to_randomize.book_data.title]"
+			to_randomize.name = "书: [to_randomize.book_data.title]"
 			if(!existing_book)
 				to_randomize.gen_random_icon_state()
 	qdel(query_get_random_books)
 
 /obj/structure/bookcase/random/fiction
-	name = "bookcase (Fiction)"
+	name = "书架（科幻类）"
 	random_category = BOOK_CATEGORY_FICTION
 	///have we spawned the chuuni granter
 	var/static/chuuni_book_spawned = FALSE
@@ -101,19 +101,19 @@
 		new /obj/item/book/granter/chuunibyou(src)
 
 /obj/structure/bookcase/random/nonfiction
-	name = "bookcase (Non-Fiction)"
+	name = "书架（非科幻类）"
 	random_category = BOOK_CATEGORY_NONFICTION
 
 /obj/structure/bookcase/random/religion
-	name = "bookcase (Religion)"
+	name = "书架（宗教类）"
 	random_category = BOOK_CATEGORY_RELIGION
 
 /obj/structure/bookcase/random/adult
-	name = "bookcase (Adult)"
+	name = "书架（成人类）"
 	random_category = BOOK_CATEGORY_ADULT
 
 /obj/structure/bookcase/random/reference
-	name = "bookcase (Reference)"
+	name = "书架（参考书）"
 	random_category = BOOK_CATEGORY_REFERENCE
 	///Chance to spawn a random manual book
 	var/ref_book_prob = 20
@@ -125,7 +125,7 @@
 		new /obj/item/book/manual/random(src)
 
 /obj/structure/bookcase/random/reference/wizard
-	desc = "It reeks of cheese..."
+	desc = "它散发着奶酪的臭味……"
 	///Whether this shelf has spawned a cheese granter
 	var/static/cheese_granter_spawned = FALSE
 

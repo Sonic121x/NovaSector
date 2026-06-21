@@ -79,7 +79,7 @@
 		to_chat(caster, span_warning("Despite your best efforts, there are no scents to be found on [sniffed]..."))
 		return
 
-	var/mob/living/carbon/new_target = tgui_input_list(caster, "Scent to remember", "Scent Tracking", sort_names(possibles))
+	var/mob/living/carbon/new_target = tgui_input_list(caster, "要记住的气味", "气味追踪", sort_names(possibles))
 	if(QDELETED(src) || QDELETED(caster))
 		return
 

@@ -53,23 +53,23 @@
 	if(is_type_in_typecache(target, carriable_cache))
 		var/atom/movable/movable_target = target
 		if(LAZYLEN(crates_in_hand) >= crate_limit)
-			source.balloon_alert(source, "too many crates!")
+			source.balloon_alert(source, "箱子太多了！")
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 		for(var/mob/living/inside_mob in movable_target.get_all_contents())
 			if(inside_mob.mob_size < MOB_SIZE_HUMAN)
 				continue
-			source.balloon_alert(source, "crate too heavy!")
+			source.balloon_alert(source, "箱子太重了！")
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 		LAZYADD(crates_in_hand, target)
 		movable_target.forceMove(source)
-		source.balloon_alert(source, "grabbed crate")
+		source.balloon_alert(source, "抓住了箱子")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(isopenturf(target) && LAZYLEN(crates_in_hand))
 		drop_all_crates(target)
-		source.balloon_alert(source, "dropped crate")
+		source.balloon_alert(source, "放下了箱子")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /// Signal proc for [COMSIG_LIVING_DEATH], so we drop crates on death or gib

@@ -1,6 +1,6 @@
 /obj/item/grenade/hypnotic
-	name = "flashbang"
-	desc = "A modified flashbang which uses hypnotic flashes and mind-altering soundwaves to induce an instant trance upon detonation."
+	name = "闪光弹"
+	desc = "一种经过改造的闪光弹，利用催眠闪光和致幻声波在引爆时瞬间诱导目标进入恍惚状态。"
 	icon_state = "flashbang"
 	inhand_icon_state = "flashbang"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -44,7 +44,7 @@
 	if(!distance)
 		living_mob.Paralyze(1 SECONDS)
 		living_mob.Knockdown(10 SECONDS)
-		to_chat(living_mob, span_hypnophrase("The sound echoes in your brain..."))
+		to_chat(living_mob, span_hypnophrase("声音在你脑海中回荡……"))
 		living_mob.adjust_hallucinations(150 SECONDS)
 
 	else
@@ -52,7 +52,7 @@
 			living_mob.Paralyze(0.5 SECONDS)
 			living_mob.Knockdown(3 SECONDS)
 		if(hypno_sound)
-			to_chat(living_mob, span_hypnophrase("The sound echoes in your brain..."))
+			to_chat(living_mob, span_hypnophrase("声音在你脑海中回荡……"))
 			living_mob.adjust_hallucinations(150 SECONDS)
 
 	//Flash
@@ -63,7 +63,7 @@
 	if(living_mob.hypnosis_vulnerable()) //The sound causes the necessary conditions unless the target has mindshield or hearing protection
 		living_mob.apply_status_effect(/datum/status_effect/trance, 10 SECONDS, TRUE)
 		return
-	to_chat(living_mob, span_hypnophrase("The light is so pretty..."))
+	to_chat(living_mob, span_hypnophrase("这光芒真美……"))
 	living_mob.adjust_drowsiness_up_to(20 SECONDS, 40 SECONDS)
 	living_mob.adjust_confusion_up_to(10 SECONDS, 20 SECONDS)
 	living_mob.adjust_dizzy_up_to(20 SECONDS, 40 SECONDS)

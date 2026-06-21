@@ -2,8 +2,8 @@
 
 //Controller stuff
 /obj/item/mind_controller
-	name = "mind controller"
-	desc = "A small remote for sending basic emotion patterns to a collar."
+	name = "思维控制器"
+	desc = "一个用于向项圈发送基本情绪模式的小型遥控器。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	lefthand_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
 	righthand_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_right.dmi'
@@ -24,15 +24,15 @@
 /obj/item/mind_controller/attack_self(mob/user)
 	if(!collar)
 		return
-	var/new_emotion_pattern = tgui_input_text(user, "Change the emotion pattern.", max_length = MAX_MESSAGE_LEN)
+	var/new_emotion_pattern = tgui_input_text(user, "更改情绪模式。", max_length = MAX_MESSAGE_LEN)
 	if(!isnull(new_emotion_pattern))
 		collar.emoting = new_emotion_pattern
 	collar.emoting_proc()
 
 //Collar stuff
 /obj/item/clothing/neck/mind_collar
-	name = "mind collar"
-	desc = "A tight collar. It has some strange high-tech emitters on the side."
+	name = "思维项圈"
+	desc = "一个紧身的项圈。侧面有一些奇怪的高科技发射器。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 	icon_state = "mindcollar"

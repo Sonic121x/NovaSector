@@ -22,14 +22,14 @@
 	if(!check_rights(R_SPAWN))
 		return
 
-	var/send_notice = tgui_alert(usr, "Add a paper notice about sending [name] into a cryopod?", "Leave a paper?", list("Yes", "No", "Cancel"))
+	var/send_notice = tgui_alert(usr, "添加一份关于将 [name] 送入低温舱的纸质通知？", "留下纸条？", list("Yes", "No", "Cancel"))
 	if(send_notice != "Yes" && send_notice != "No")
 		return
 
 	//log/message
-	to_chat(usr, "Put [src] in cryopod.")
+	to_chat(usr, "将 [src] 放入低温休眠舱。")
 	log_admin("[key_name(usr)] has put [key_name(src)] into a cryopod.")
-	var/msg = span_notice("[key_name_admin(usr)] has put [key_name(src)] into a cryopod from [ADMIN_VERBOSEJMP(src)].")
+	var/msg = span_notice("[key_name_admin(usr)] 已将 [key_name(src)] 从 [ADMIN_VERBOSEJMP(src)] 放入低温休眠舱。")
 	message_admins(msg)
 	admin_ticket_log(src, msg)
 
@@ -44,14 +44,14 @@
 		return
 
 	if(!client)
-		to_chat(usr, span_warning("No client found!"))
+		to_chat(usr, span_warning("未找到客户端！"))
 		return
 
 	if(!ishuman(src))
-		to_chat(usr, span_warning("Mob is not human!"))
+		to_chat(usr, span_warning("目标不是人类！"))
 		return
 
-	var/notice = tgui_alert(usr, "Are you sure you want to load the clients current prefs onto their mob?", "Load Preferences", list("Yes", "No"))
+	var/notice = tgui_alert(usr, "你确定要将客户端的当前偏好设置加载到其角色上吗？", "加载偏好设置", list("Yes", "No"))
 	if(notice != "Yes")
 		return
 	var/quirks_prompt = tgui_alert(usr, "Reload their quirks too? This will clear any existing quirks on the mob.", "Load Quirks", list("Yes", "No"))
@@ -66,6 +66,6 @@
 		human_mob.cleanse_quirk_datums()
 		SSquirks.AssignQuirks(src, client)
 	SEND_SIGNAL(human_mob, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
-	var/msg = span_notice("[key_name_admin(usr)] has loaded [key_name(src)]'s preferences onto their current mob [ADMIN_VERBOSEJMP(src)].")
+	var/msg = span_notice("[key_name_admin(usr)] 已将 [key_name(src)] 的偏好设置加载到其当前角色 [ADMIN_VERBOSEJMP(src)] 上。")
 	message_admins(msg)
 	admin_ticket_log(src, msg)

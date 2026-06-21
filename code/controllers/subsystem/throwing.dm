@@ -2,7 +2,7 @@
 #define MAX_TICKS_TO_MAKE_UP 3 //how many missed ticks will we attempt to make up for this run.
 
 SUBSYSTEM_DEF(throwing)
-	name = "Throwing"
+	name = "投掷"
 	priority = FIRE_PRIORITY_THROWING
 	wait = 1
 	ss_flags = SS_NO_INIT | SS_TICKER

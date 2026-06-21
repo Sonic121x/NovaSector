@@ -2,8 +2,8 @@
 /obj/item/clothing/suit/fedcoat
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
-	name = "Federation uniform jacket"
-	desc = "A uniform jacket from the United Federation. Set phasers to awesome."
+	name = "联邦制服夹克"
+	desc = "来自联合联邦的制服夹克。将相位器调到超棒档。"
 	icon_state = "fedcoat"
 	inhand_icon_state = "coatsecurity"
 	allowed = list(
@@ -40,22 +40,22 @@
 
 //fedcoat but modern
 /obj/item/clothing/suit/fedcoat/modern
-	name = "modern Federation uniform jacket"
-	desc = "A modern uniform jacket from the United Federation."
+	name = "现代联邦制服夹克"
+	desc = "一件来自联合联邦的现代制服夹克。"
 	icon_state = "fedmodern"
 	inhand_icon_state = "coatsecurity"
 
 /obj/item/clothing/suit/fedcoat/modern/medsci
-	name = "modern medsci Federation jacket"
+	name = "现代医学科联邦夹克"
 	icon_state = "fedmodernblue"
 	inhand_icon_state = "coatmedical"
 
 /obj/item/clothing/suit/fedcoat/modern/eng
-	name = "modern engineering Federation jacket"
+	name = "现代工程联邦夹克"
 	icon_state = "fedmoderneng"
 	inhand_icon_state = "coatengineer"
 
 /obj/item/clothing/suit/fedcoat/modern/sec
-	name = "modern security Federation jacket"
+	name = "现代安保联邦夹克"
 	icon_state = "fedmodernsec"
 	inhand_icon_state = "coatcaptain"

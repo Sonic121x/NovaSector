@@ -1,8 +1,8 @@
 /// Pretty simple mob which creates areas of rust and has a rust-creating projectile spell
 /mob/living/basic/heretic_summon/rust_walker
-	name = "\improper Rust Walker"
+	name = "\improper 锈蚀行者"
 	real_name = "Rusty"
-	desc = "A grinding, clanking construct which leaches life from its surroundings with every armoured step."
+	desc = "一个嘎吱作响、叮当作响的构造体，其装甲的每一步都在从周围环境中汲取生命。"
 	icon_state = "rust_walker_s"
 	base_icon_state = "rust_walker"
 	icon_living = "rust_walker_s"

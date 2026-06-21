@@ -3,8 +3,8 @@
 /// Will differentiate into the base giant spider (known colloquially as the "guard" spider).
 /mob/living/basic/spider/growing/young/guard
 	grow_as = /mob/living/basic/spider/giant/guard
-	name = "young guard spider"
-	desc = "Furry and brown, it looks defenseless. This one has sparkling red eyes."
+	name = "幼年守卫蜘蛛"
+	desc = "毛茸茸的棕色身躯，看起来毫无防御能力。这一只有着闪闪发光的红色眼睛。"
 	maxHealth = 70
 	health = 70
 	melee_damage_lower = 10
@@ -19,8 +19,8 @@
 /// Will differentiate into the "ambush" giant spider.
 /mob/living/basic/spider/growing/young/ambush
 	grow_as = /mob/living/basic/spider/giant/ambush
-	name = "young ambush spider"
-	desc = "Furry and white, it looks defenseless. This one has sparkling pink eyes."
+	name = "幼年伏击蜘蛛"
+	desc = "毛茸茸的白色身躯，看起来毫无防御能力。这一只有着闪闪发光的粉色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_ambush"
 	icon_dead = "young_ambush_dead"
@@ -39,8 +39,8 @@
 /// Will differentiate into the "scout" giant spider.
 /mob/living/basic/spider/growing/young/scout
 	grow_as = /mob/living/basic/spider/giant/scout
-	name = "young scout spider"
-	desc = "Furry and black, it looks defenseless. This one has sparkling blue eyes."
+	name = "幼年侦察蜘蛛"
+	desc = "毛茸茸的黑色身躯，看起来毫无防备。这一只有着闪闪发亮的蓝色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_scout"
 	icon_dead = "young_scout_dead"
@@ -60,8 +60,8 @@
 /// Will differentiate into the "hunter" giant spider.
 /mob/living/basic/spider/growing/young/hunter
 	grow_as = /mob/living/basic/spider/giant/hunter
-	name = "young hunter spider"
-	desc = "Furry and black, it looks defenseless. This one has sparkling purple eyes."
+	name = "幼年猎手蜘蛛"
+	desc = "毛茸茸的黑色身躯，看起来毫无防备。这一只有着闪闪发亮的紫色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_hunter"
 	icon_dead = "young_hunter_dead"
@@ -80,8 +80,8 @@
 /// Will differentiate into the "nurse" giant spider.
 /mob/living/basic/spider/growing/young/nurse
 	grow_as = /mob/living/basic/spider/giant/nurse
-	name = "young nurse spider"
-	desc = "Furry and black, it looks defenseless. This one has sparkling green eyes."
+	name = "幼年护士蜘蛛"
+	desc = "毛茸茸的黑色身躯，看起来毫无防备。这一只有着闪闪发亮的绿色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_nurse"
 	icon_dead = "young_nurse_dead"
@@ -111,8 +111,8 @@
 /// Will differentiate into the "tangle" giant spider.
 /mob/living/basic/spider/growing/young/tangle
 	grow_as = /mob/living/basic/spider/giant/tangle
-	name = "young tangle spider"
-	desc = "Furry and brown, it looks defenseless. This one has dim brown eyes."
+	name = "幼年缠结蜘蛛"
+	desc = "毛茸茸的棕色身躯，看起来毫无防备。这一只有着暗淡的棕色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_tangle"
 	icon_dead = "young_tangle_dead"
@@ -145,7 +145,7 @@
 /// Prevent you from healing other tangle spiders, or healing when on fire
 /mob/living/basic/spider/growing/young/tangle/proc/can_mend(mob/living/source, mob/living/target)
 	if (on_fire)
-		balloon_alert(src, "on fire!")
+		balloon_alert(src, "着火了！")
 		return FALSE
 	return TRUE
 
@@ -153,8 +153,8 @@
 /// Will differentiate into the "tank" giant spider.
 /mob/living/basic/spider/growing/young/tank
 	grow_as = /mob/living/basic/spider/giant/tank
-	name = "young tank spider"
-	desc = "Furry and purple, it looks defenseless. This one has dim yellow eyes."
+	name = "幼年坦克蜘蛛"
+	desc = "毛茸茸的紫色身躯，看起来毫无防备。这一只有着暗淡的黄色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_tank"
 	icon_dead = "young_tank_dead"
@@ -184,15 +184,15 @@
 /// Prevent you from healing when on fire
 /mob/living/basic/spider/growing/young/tank/proc/can_mend(mob/living/source, mob/living/target)
 	if (on_fire)
-		balloon_alert(src, "on fire!")
+		balloon_alert(src, "着火了！")
 		return FALSE
 	return TRUE
 
 /// Will differentiate into the "breacher" giant spider.
 /mob/living/basic/spider/growing/young/breacher
 	grow_as = /mob/living/basic/spider/giant/breacher
-	name = "young breacher spider"
-	desc = "Furry and beige, it looks defenseless. This one has dim red eyes."
+	name = "幼年破门蜘蛛"
+	desc = "毛茸茸的米色身躯，看起来毫无防备。这一只有着暗淡的红色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_breacher"
 	icon_dead = "young_breacher_dead"
@@ -210,8 +210,8 @@
 /// Will differentiate into the "midwife" giant spider.
 /mob/living/basic/spider/growing/young/midwife
 	grow_as = /mob/living/basic/spider/giant/midwife
-	name = "young broodmother spider"
-	desc = "Furry and black, it looks defenseless. This one has scintillating green eyes. Might also be hiding a real knife somewhere."
+	name = "幼年育母蜘蛛"
+	desc = "毛茸茸的黑色身躯，看起来毫无防备。这一只有着闪烁的绿色眼睛。说不定还在哪里藏着一把真刀呢。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_midwife"
 	icon_dead = "young_midwife_dead"
@@ -231,8 +231,8 @@
 /// Will differentiate into the "viper" giant spider.
 /mob/living/basic/spider/growing/young/viper
 	grow_as = /mob/living/basic/spider/giant/viper
-	name = "young viper spider"
-	desc = "Furry and black, it looks defenseless. This one has sparkling magenta eyes."
+	name = "幼年毒蛇蜘蛛"
+	desc = "毛茸茸的黑色身躯，看起来毫无防备。这一只有着闪闪发亮的品红色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_viper"
 	icon_dead = "young_viper_dead"
@@ -247,8 +247,8 @@
 /// Will differentiate into the "tarantula" giant spider.
 /mob/living/basic/spider/growing/young/tarantula
 	grow_as = /mob/living/basic/spider/giant/tarantula
-	name = "young tarantula spider"
-	desc = "Furry and black, it looks defenseless. This one has abyssal red eyes."
+	name = "幼年狼蛛"
+	desc = "毛茸茸的黑色身躯，看起来毫无防备。这一只有着深渊般的红色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "young_tarantula"
 	icon_dead = "young_tarantula_dead"

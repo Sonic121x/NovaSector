@@ -1,5 +1,5 @@
 /obj/vehicle/sealed/mecha/solfed
-	desc ="generic solfed mech, should not see this."
+	desc ="通用太阳联邦机甲，不应看到此描述。"
 	icon = 'modular_nova/modules/solfed_mechs/icons/solfed_mechs.dmi'
 	mecha_flags = CAN_STRAFE | IS_ENCLOSED | HAS_LIGHTS
 

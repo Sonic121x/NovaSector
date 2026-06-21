@@ -1,6 +1,6 @@
 /obj/crystal_mass
-	name = "crystal mass"
-	desc = "You see this massive crystal mass looming towards you, cracking and screeching at every seemingly random movement."
+	name = "结晶状物"
+	desc = "你看，那巨大的晶体块正朝着你逼近，每出现一次看似毫无规律的移动，它就会发出破裂和嘎吱作响的声音。"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "crystal_cascade_1"
 	layer = AREA_LAYER
@@ -107,8 +107,8 @@
 	return ..()
 
 /obj/cascade_portal
-	name = "Bluespace Rift"
-	desc = "Your mind begins to spin as it tries to comprehend what it sees."
+	name = "蓝空裂痕"
+	desc = "当你的大脑试图理解眼前所见之物时，它便开始变得混乱起来。"
 	icon = 'icons/effects/224x224.dmi'
 	icon_state = "reality"
 	anchored = TRUE

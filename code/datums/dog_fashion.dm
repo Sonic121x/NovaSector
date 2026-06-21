@@ -133,8 +133,8 @@
 	name = "[pick("Ol'","Scurvy","Black","Rum","Gammy","Bloody","Gangrene","Death","Long-John")] [pick("kibble","leg","beard","tooth","poop-deck","Threepwood","Le Chuck","corsair","Silver","Crusoe")]"
 
 /datum/dog_fashion/head/ushanka
-	name = "Communist-title Realname"
-	desc = "A follower of Karl Barx."
+	name = "共产主义者头衔 真实姓名"
+	desc = "卡尔·巴克斯的追随者。"
 	emote_see = list("contemplates the failings of the capitalist economic model.", "ponders the pros and cons of vanguardism.")
 
 /datum/dog_fashion/head/ushanka/New(mob/M)
@@ -142,78 +142,78 @@
 	return ..()
 
 /datum/dog_fashion/head/warden
-	name = "Officer %REAL_NAME%"
-	desc = "Stop right there criminal scum!"
+	name = "警官 %REAL_NAME%"
+	desc = "站住别动，罪犯渣滓！"
 	emote_see = list("drools.","looks for donuts.")
 
 /datum/dog_fashion/head/warden_red
-	name = "Officer %REAL_NAME%"
-	desc = "Stop right there criminal scum!"
+	name = "警官 %REAL_NAME%"
+	desc = "站住，罪犯渣滓！"
 	emote_see = list("drools.","looks for donuts.")
 
 /datum/dog_fashion/head/blue_wizard
-	name = "Grandwizard %REAL_NAME%"
+	name = "大法师 %REAL_NAME%"
 	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU", "EI NATH!")
 
 /datum/dog_fashion/head/red_wizard
-	name = "Pyromancer %REAL_NAME%"
+	name = "纵火法师 %REAL_NAME%"
 	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU", "ONI SOMA!")
 
 /datum/dog_fashion/head/cardborg
-	name = "Borgi"
-	desc = "Result of robotics budget cuts."
+	name = "博格犬"
+	desc = "机器人学预算削减的产物。"
 	speak = list("Ping!","Beep!","Woof!")
 	emote_see = list("goes rogue.", "sniffs out non-humans.")
 
 /datum/dog_fashion/head/ghost
-	name = "\improper Ghost"
-	desc = "Spooky!"
+	name = "\improper 幽灵"
+	desc = "真吓人！"
 	obj_icon_state = "sheet"
 	speak = list("WoooOOOooo~","AUUUUUUUUUUUUUUUUUU")
 	emote_see = list("stumbles around.", "shivers.")
 	emote_hear = list("howls!","groans.")
 
 /datum/dog_fashion/head/santa
-	name = "Santa's Corgi Helper"
-	desc = "They're very fond of milk and cookies."
+	name = "圣诞老人的柯基助手"
+	desc = "它们非常喜欢牛奶和饼干。"
 	emote_hear = list("barks Christmas songs.", "yaps merrily!")
 	emote_see = list("looks for presents.", "checks their list.")
 
 /datum/dog_fashion/head/cargo_tech
-	name = "Corgi Tech %REAL_NAME%"
-	desc = "The reason your yellow gloves have chew-marks."
+	name = "柯基技术员 %REAL_NAME%"
+	desc = "你的黄手套上有牙印的原因。"
 
 /datum/dog_fashion/head/reindeer
-	name = "%REAL_NAME% the red-nosed Corgi"
-	desc = "They have a very shiny nose."
+	name = "%REAL_NAME% 红鼻子柯基"
+	desc = "他们有一个非常闪亮的鼻子。"
 	emote_hear = list("lights the way!", "illuminates.", "yaps!")
 
 /datum/dog_fashion/head/sombrero
-	name = "Segnor %REAL_NAME%"
-	desc = "You must respect Elder %REAL_NAME%."
+	name = "塞尼奥尔 %REAL_NAME%"
+	desc = "你必须尊敬长者 %REAL_NAME%。"
 
 /datum/dog_fashion/head/hop
-	name = "Lieutenant %REAL_NAME%"
-	desc = "Can actually be trusted to not run off on their own."
+	name = "%REAL_NAME% 中尉"
+	desc = "实际上可以信任他们不会自己跑掉。"
 
 /datum/dog_fashion/head/deathsquad
-	name = "Trooper %REAL_NAME%"
+	name = "%REAL_NAME% 突击队员"
 	desc = "That's not red paint. That's real corgi blood."
 
 /datum/dog_fashion/head/clown
-	name = "%REAL_NAME% the Clown"
-	desc = "Honkman's best friend."
+	name = "%REAL_NAME% 小丑"
+	desc = "Honkman 最好的朋友。"
 	speak = list("HONK!", "Honk!")
 	emote_see = list("plays tricks.", "slips.")
 
 /datum/dog_fashion/head/festive
-	name = "Festive %REAL_NAME%"
-	desc = "Ready to party!"
+	name = "节日 %REAL_NAME%"
+	desc = "准备好派对了！"
 	obj_icon_state = "festive"
 
 /datum/dog_fashion/head/pumpkin/unlit
-	name = "Headless HoP-less %REAL_NAME%"
-	desc = "A spooky dog spirit of a beloved pet who lost their owner."
+	name = "无头无主管的%REAL_NAME%"
+	desc = "一只失去主人的心爱宠物所化的幽灵犬。"
 	obj_icon_state = "pumpkin0"
 	speak = list("BOO!", "AUUUUUUU", "RAAARGH!")
 	emote_see = list("shambles around.", "yaps ominously.", "shivers.")
@@ -223,8 +223,8 @@
 	obj_icon_state = "pumpkin1"
 
 /datum/dog_fashion/head/blumpkin/unlit
-	name = "Hue-less Headless HoP-less %REAL_NAME%"
-	desc = "An evil dog spirit of a beloved pet that haunts your treats pantries!"
+	name = "无色的无头无主管的%REAL_NAME%"
+	desc = "一只在心爱宠物零食柜里作祟的邪恶犬灵！"
 	obj_icon_state = "blumpkin0"
 	speak = list("BOO!", "AUUUUUUU", "RAAARGH!")
 	emote_see = list("shambles around.", "yaps ominously.", "shivers.")
@@ -234,31 +234,31 @@
 	obj_icon_state = "blumpkin1"
 
 /datum/dog_fashion/head/butter
-	name = "Butter %REAL_NAME%"
-	desc = "%NAME%. %CAPITAL_REAL_NAME% with the butter. %NAME%. %CAPITAL_REAL_NAME% with a butter on 'em."
+	name = "黄油%REAL_NAME%"
+	desc = "%NAME%。带着黄油的%CAPITAL_REAL_NAME%。%NAME%。带着黄油的%CAPITAL_REAL_NAME%。"
 	obj_icon_state = "butter"
 	speak = null //they're very patient and focused on holding the butter on 'em
 	emote_see = list("shakes a little.", "looks around.")
 	emote_hear = list("licks a trickle of the butter up.", "smiles.")
 
 /datum/dog_fashion/head/eyepatch
-	name = "Punished %REAL_NAME%"
-	desc = "%REAL_NAME% has really been going through it today."
+	name = "受罚的%REAL_NAME%"
+	desc = "%REAL_NAME%今天真是受够了。"
 	obj_icon_state = "eyepatch"
 	emote_hear = list("sighs gruffly.", "groans.")
 	emote_see = list("considers their own mortality.", "stares bleakly into the middle distance.", "ponders the horrors of warfare.")
 
 /datum/dog_fashion/head/watermelon
-	name = "Watermelon Warrior %REAL_NAME%"
-	desc = "5% safer than normal and ready to take on advantage!"
+	name = "西瓜战士%REAL_NAME%"
+	desc = "比平常安全5%，随时准备抓住优势！"
 	obj_icon_state = "watermelon"
 
 /datum/dog_fashion/head/holymelon
-	name = "Holymelon Paladin %REAL_NAME%"
-	desc = "Extraterrestrial powers beware, %NAME% is here to smite you down!"
+	name = "圣瓜圣骑士%REAL_NAME%"
+	desc = "外星力量小心了，%NAME%在此将你击溃！"
 	obj_icon_state = "holymelon"
 
 /datum/dog_fashion/head/barrelmelon
-	name = "Barrelmelon Berserk %REAL_NAME%"
-	desc = "Either the sturdiness of the helmet gave %REAL_NAME% a confidence boost, or its bit tight on their head..."
+	name = "桶瓜狂战士 %REAL_NAME%"
+	desc = "不知是头盔的坚固给了 %REAL_NAME% 信心，还是它戴在头上有点紧..."
 	obj_icon_state = "barrelmelon"

@@ -105,7 +105,7 @@
 /datum/supply_order/proc/generateRequisition(turf/T)
 	var/obj/item/paper/requisition/requisition_paper = new(T)
 
-	requisition_paper.name = "requisition form - #[id] ([pack.name])"
+	requisition_paper.name = "请购单 - #[id] ([pack.name])"
 	var/requisition_text = "<h2>[station_name()] Supply Requisition</h2>"
 	requisition_text += "<hr/>"
 	requisition_text += "Order #[id]<br/>"
@@ -127,7 +127,7 @@
 
 	var/station_name = (manifest_paper.errors & MANIFEST_ERROR_NAME) ? new_station_name() : station_name()
 
-	manifest_paper.name = "shipping manifest - [packname?"#[id] ([pack.name])":"(Grouped Item Crate)"]"
+	manifest_paper.name = "航运舱单 - [packname?"#[id] ([pack.name])":"(Grouped Item Crate)"]"
 
 	var/manifest_text = "<h2>[command_name()] Shipping Manifest</h2>"
 	manifest_text += "<hr/>"

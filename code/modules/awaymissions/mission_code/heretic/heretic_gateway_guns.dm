@@ -38,7 +38,7 @@
 	spawnwithmagazine = FALSE
 
 /obj/item/ammo_box/magazine/napad
-	name = "\improper Napad submachinegun magazine"
+	name = "\improper Napad冲锋枪弹匣"
 	desc = "A magazine for a submachine gun. Holds twenty five rounds of 9mm ammunition."
 	icon = 'icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "napad_mag"

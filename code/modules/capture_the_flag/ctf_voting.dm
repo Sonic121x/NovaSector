@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(ctf_voting_controllers)
 		volunteers.Cut()
 		toggle_id_ctf(activated_id = game_id)
 	else
-		to_chat(user, span_notice("CTF has been requested. [volunteer_count]/[CTF_REQUIRED_PLAYERS] have readied up."))
+		to_chat(user, span_notice("CTF已被请求。[volunteer_count]/[CTF_REQUIRED_PLAYERS]已准备就绪。"))
 
 /// Removes an existing vote for user.
 /datum/ctf_voting_controller/proc/unvote(mob/user)
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(ctf_voting_controllers)
 		return
 
 	volunteers -= user.ckey
-	to_chat(user, span_notice("Removed vote for CTF."))
+	to_chat(user, span_notice("已移除对CTF的投票。"))
 
 /// Returns the existing [/datum/ctf_voting_controller] for the given ID, or makes one
 /proc/get_ctf_voting_controller(game_id)

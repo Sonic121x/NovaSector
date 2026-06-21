@@ -4,7 +4,7 @@
  * A handheld device that lets you flash it over people.
  */
 /obj/item/wiremod_scanner
-	name = "scanner"
+	name = "扫描仪"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_small"
 	inhand_icon_state = "electronic"
@@ -23,7 +23,7 @@
 
 /obj/item/circuit_component/wiremod_scanner
 	display_name = "Scanner"
-	desc = "Used to receive scanned entities from the scanner."
+	desc = "用于接收来自扫描仪的扫描实体。"
 
 	/// Called when afterattack is called on the shell.
 	var/datum/port/output/signal
@@ -52,7 +52,7 @@
  */
 /obj/item/circuit_component/wiremod_scanner/proc/handle_interaction(atom/source, mob/user, atom/target, ...)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, "scanned object")
+	source.balloon_alert(user, "已扫描对象")
 	playsound(source, SFX_TERMINAL_TYPE, 25, FALSE)
 	attacker.set_output(user)
 	attacking.set_output(target)

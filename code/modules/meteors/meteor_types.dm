@@ -1,8 +1,8 @@
 #define DEFAULT_METEOR_LIFETIME 1800
 
 /obj/effect/meteor
-	name = "\proper the concept of meteor"
-	desc = "You should probably run instead of gawking at this."
+	name = "\proper 流星的概念"
+	desc = "你或许应该赶紧跑，而不是傻站在这里盯着看。"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small"
 	density = TRUE
@@ -100,7 +100,7 @@
 /obj/effect/meteor/proc/ram_turf(turf/T)
 	//first yell at mobs about them dying horribly
 	for(var/mob/living/thing in T)
-		thing.visible_message(span_warning("[src] slams into [thing]."), span_userdanger("[src] slams into you!."))
+		thing.visible_message(span_warning("[src] 猛撞在 [thing] 上。"), span_userdanger("[src] 猛撞在你身上！"))
 
 	//then, ram the turf
 	switch(hitpwr)
@@ -124,7 +124,7 @@
 	. = ..()
 
 	if((user.mind?.get_skill_level(/datum/skill/athletics) >= SKILL_LEVEL_LEGENDARY))
-		. += span_notice("On second thought, it doesn't look too tough.")
+		. += span_notice("仔细想想，它看起来也没那么硬。")
 	check_examine_award(user)
 
 ///Called by component/meteor_combat to send us moving to the edge of the map away from whoever punched us
@@ -186,7 +186,7 @@
 
 //Sand
 /obj/effect/meteor/sand
-	name = "space sand"
+	name = "太空沙"
 	icon_state = "dust"
 	hits = 2
 	hitpwr = EXPLODE_LIGHT
@@ -213,7 +213,7 @@
 
 //Dust
 /obj/effect/meteor/dust
-	name = "space dust"
+	name = "太空尘埃"
 	icon_state = "dust"
 	pass_flags = PASSTABLE | PASSGRILLE
 	hits = 1
@@ -224,7 +224,7 @@
 
 //Medium-sized
 /obj/effect/meteor/medium
-	name = "meteor"
+	name = "陨石"
 	dropamt = 3
 	threat = 5
 
@@ -234,7 +234,7 @@
 
 //Large-sized
 /obj/effect/meteor/big
-	name = "big meteor"
+	name = "大型陨石"
 	icon_state = "large"
 	hits = 6
 	heavy = TRUE
@@ -247,8 +247,8 @@
 
 //Flaming meteor
 /obj/effect/meteor/flaming
-	name = "flaming meteor"
-	desc = "A veritable shooting star, both beautiful and frightening. You should probably keep your distance from this."
+	name = "燃烧的陨石"
+	desc = "一颗真正的流星，既美丽又骇人。你最好离它远点。"
 	icon_state = "flaming"
 	hits = 5
 	heavy = TRUE
@@ -263,8 +263,8 @@
 
 //Radiation meteor
 /obj/effect/meteor/irradiated
-	name = "glowing meteor"
-	desc = "An irradiated chunk of space rock. You could probably stop and appreciate its incandescent green glow, if it weren't moving so fast."
+	name = "发光的陨石"
+	desc = "一块受到辐射的太空岩石。如果不是它飞得这么快，你或许可以停下来欣赏它那白炽的绿光。"
 	icon_state = "glowing"
 	heavy = TRUE
 	hits = 9
@@ -281,8 +281,8 @@
 
 //Cluster meteor
 /obj/effect/meteor/cluster
-	name = "cluster meteor"
-	desc = "A cluster of densely packed rocks, with a volatile core. You should probably get out of the way."
+	name = "集群陨石"
+	desc = "一团密集的岩石簇，核心极不稳定。你最好躲开。"
 	icon_state = "sharp"
 	hits = 9
 	heavy = TRUE
@@ -306,15 +306,15 @@
 	explosion(src, heavy_impact_range = 2, light_impact_range = 3, flash_range = 4, adminlog = FALSE)
 
 /obj/effect/meteor/cluster_fragment
-	name = "cluster meteor fragment"
-	desc = "A fast-moving fragment of exploded cluster-rock."
+	name = "集群陨石碎片"
+	desc = "一块爆炸后高速飞行的集群岩石碎片。"
 	icon_state = "dust"
 
 //frozen carp "meteor"
 /obj/effect/meteor/carp
-	name = "frozen carp"
+	name = "冰冻鲤鱼"
 	icon_state = "carp"
-	desc = "Am I glad he's frozen in there, and that we're out here."
+	desc = "我真高兴它被冻在里面，而我们在外面。"
 	hits = 4
 	meteorsound = 'sound/mobs/humanoids/ethereal/ethereal_revive_fail.ogg'
 	meteordrop = list(/mob/living/basic/carp)
@@ -329,8 +329,8 @@
 
 //bluespace meteor
 /obj/effect/meteor/bluespace
-	name = "bluespace meteor"
-	desc = "A large geode containing bluespace dust at its core, hurtling through space. That's the stuff the crew are here to research. How convenient for them."
+	name = "蓝空陨石"
+	desc = "一颗巨大的晶洞，其核心含有蓝空尘埃，正疾速穿越太空。这正是船员们来此研究的东西。对他们来说可真方便。"
 	icon_state = "bluespace"
 	dropamt = 3
 	hits = 12
@@ -344,8 +344,8 @@
 		do_teleport(src, get_turf(src), 6, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/effect/meteor/banana
-	name = "bananium meteor"
-	desc = "Maybe it's a chunk blasted off of the legendary Clown Planet... How annoying."
+	name = "香蕉矿陨石"
+	desc = "这或许是传说中的小丑星球炸裂出的一块碎片……真烦人。"
 	icon_state = "bananium"
 	dropamt = 4
 	hits = 175 //Honks everything, including space tiles. Depending on the angle/how much stuff it hits, there's a fair chance that it will spare the station from the actual explosion
@@ -365,12 +365,12 @@
 /obj/effect/meteor/banana/ram_turf(turf/bumped)
 	for(var/mob/living/slipped in get_turf(bumped))
 		slipped.slip(100, slipped.loc,- GALOSHES_DONT_HELP|SLIDE)
-		slipped.visible_message(span_warning("[src] honks [slipped] to the floor!"), span_userdanger("[src] harmlessly passes through you, knocking you over."))
+		slipped.visible_message(span_warning("[src] 把 [slipped] 按倒在地并发出喇叭声！"), span_userdanger("[src] 无害地穿过你的身体，将你撞倒在地。"))
 	get_hit()
 
 /obj/effect/meteor/emp
-	name = "electromagnetically charged meteor"
-	desc = "It radiates with captive energy, ready to be let loose upon the world."
+	name = "电磁充能陨石"
+	desc = "它散发着被禁锢的能量，随时准备向世界释放。"
 	icon_state = "bluespace"
 	hits = 6
 	threat = 10
@@ -388,9 +388,9 @@
 
 //Meaty Ore
 /obj/effect/meteor/meaty
-	name = "meaty ore"
+	name = "肉矿"
 	icon_state = "meateor"
-	desc = "Just... don't think too hard about where this thing came from."
+	desc = "只是……别太深究这东西是从哪儿来的。"
 	hits = 2
 	heavy = TRUE
 	meteorsound = 'sound/effects/blob/blobattack.ogg'
@@ -441,9 +441,9 @@
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska
-	name = "tunguska meteor"
+	name = "通古斯陨石"
 	icon_state = "flaming"
-	desc = "Your life briefly passes before your eyes the moment you lay them on this monstrosity."
+	desc = "当你看到这个庞然巨物的瞬间，你的一生在你眼前一闪而过。"
 	hits = 30
 	hitpwr = EXPLODE_DEVASTATE
 	heavy = TRUE
@@ -467,8 +467,8 @@
 		explosion(src, devastation_range = 2, heavy_impact_range = 4, light_impact_range = 6, flash_range = 8, adminlog = FALSE)
 
 /obj/effect/meteor/pumpkin
-	name = "PUMPKING"
-	desc = "THE PUMPKING'S COMING!"
+	name = "南瓜王"
+	desc = "南瓜王来了！"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "spooky"
 	hits = 10

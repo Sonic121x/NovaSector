@@ -2,7 +2,7 @@
 
 
 /obj/item/knife/bowie
-	name = "\improper Bowie knife"
+	name = "\improper 博伊刀"
 	desc = "A frontiersman's classic, closer to a shortsword than a knife. It boasts a full-tanged build, a brass handguard and pommel, a wicked sharp point, and a large, heavy blade, It's almost everything you could want in a knife, besides portability."
 	icon = 'modular_nova/modules/knives/icons/bowie.dmi'
 	icon_state = "bowiehand"
@@ -17,8 +17,8 @@
 	exposed_wound_bonus = 20 // Very-bigly
 
 /obj/item/storage/belt/bowie_sheath
-	name = "\improper Bowie knife sheath"
-	desc = "A dressed-up leather sheath featuring a brass tip. It has a large pocket clip right in the center, for ease of carrying an otherwise burdensome knife."
+	name = "\improper 博伊刀刀鞘"
+	desc = "一个装饰过的皮革刀鞘，配有黄铜鞘尖。正中央有一个大口袋夹，便于携带这把原本笨重的刀。"
 	icon = 'modular_nova/modules/knives/icons/bowiepocket.dmi'
 	icon_state = "bowiesheath"
 	slot_flags = ITEM_SLOT_POCKETS
@@ -38,12 +38,12 @@
 /obj/item/storage/belt/bowie_sheath/click_alt(mob/user)
 	if(length(contents))
 		var/obj/item/knife = contents[1]
-		user.visible_message(span_notice("[user] takes [knife] out of [src]."), span_notice("You take [knife] out of [src]."))
+		user.visible_message(span_notice("[user] 从 [src] 中取出了 [knife]。"), span_notice("你从 [src] 中取出了 [knife]。"))
 		user.put_in_hands(knife)
 		update_appearance()
 		return CLICK_ACTION_SUCCESS
 	else
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 		return CLICK_ACTION_BLOCKING
 
 /obj/item/storage/belt/bowie_sheath/update_icon_state()

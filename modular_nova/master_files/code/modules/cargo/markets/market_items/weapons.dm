@@ -1,6 +1,6 @@
 /datum/market_item/weapon/mosin_pro
 	name = "Xhihao 'Rengo' Precision Rifle Stock"
-	desc = "Sure, it doesn't come with any of the actual bits that go bang, but who's gonna be laughing when you spook 'em with five more rounds?"
+	desc = "当然，它不包含任何真正会响的部件，但当你用多出的五发子弹吓唬他们时，谁还会笑呢？"
 	item = /obj/item/crafting_conversion_kit/mosin_pro
 	price_min = CARGO_CRATE_VALUE * 2
 	price_max = CARGO_CRATE_VALUE * 4
@@ -8,8 +8,8 @@
 	availability_prob = 80
 
 /datum/market_item/weapon/ablative_bat
-	name = "Ablative Baseball Bat"
-	desc = "A baseball bat made completely out of metal, its seller informs you this once belonged to a famous sportsman and won't be sold for cheap..."
+	name = "消融棒球棍"
+	desc = "一把完全由金属制成的棒球棍，卖家告诉你这曾属于一位著名运动员，不会便宜出售……"
 	item = /obj/item/melee/baseball_bat/ablative
 	price_min = CARGO_CRATE_VALUE * 6
 	price_max = CARGO_CRATE_VALUE * 10
@@ -17,8 +17,8 @@
 	availability_prob = 55
 
 /datum/market_item/weapon/edagger
-	name = "Inconspicuous Pen"
-	desc = "A seemingly normal pen with some sort of generator installed in the cam (the bit that toggles the tip)."
+	name = "不起眼的钢笔"
+	desc = "一支看似普通的钢笔，笔夹（切换笔尖的部分）内安装了某种发生器。"
 	item = /obj/item/pen/edagger
 	price_min = CARGO_CRATE_VALUE * 3
 	price_max = CARGO_CRATE_VALUE * 7
@@ -26,8 +26,8 @@
 	availability_prob = 25
 
 /datum/market_item/weapon/telescopic_bronze
-	name = "Bronze-capped Telescopic Baton"
-	desc = "A reinforced telescopic baton, likely stolen from some unfortunate Quartermaster."
+	name = "青铜头伸缩警棍"
+	desc = "一根加固的伸缩警棍，很可能是从某个倒霉的军需官那里偷来的。"
 	item = /obj/item/melee/baton/telescopic/bronze
 	price_min = CARGO_CRATE_VALUE * 8
 	price_max = CARGO_CRATE_VALUE * 13
@@ -35,8 +35,8 @@
 	availability_prob = 45
 
 /datum/market_item/weapon/Assasin_kit
-	name = "Assassin Starter Kit"
-	desc = "An extremely illegal gun kit that somehow ended up on the black market. Seller claims no responsibility for the contents of the kit, their functionality, or the actions of future owners."
+	name = "刺客入门套件"
+	desc = "一套极度非法的枪械套件，不知何故流入了黑市。卖家声明对套件内容、其功能或未来所有者的行为概不负责。"
 	item = /obj/item/storage/toolbox/guncase/nova/pistol/opfor/makarov
 	price_min = CARGO_CRATE_VALUE * 15
 	price_max = CARGO_CRATE_VALUE * 25
@@ -44,8 +44,8 @@
 	availability_prob = 5
 
 /datum/market_item/weapon/hollowpoint9mm
-	name = "9mm HP Magazine"
-	desc = "8-round magazine of 9mm hollowpoint. Obviously, this is illegally acquired, and likely made to fit into an even more illegal weapon."
+	name = "9毫米空尖弹弹匣"
+	desc = "8发装9毫米空尖弹弹匣。显然，这是非法获取的，而且很可能适配一把更非法的武器。"
 	item = /obj/item/ammo_box/magazine/m9mm/hp
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE * 0.7
@@ -54,7 +54,7 @@
 
 /datum/market_item/weapon/sord
 	name = "SORD"
-	desc = "This thing is so unspeakably shitty that the only thing more foolish than trying to sell it, is to buy it."
+	desc = "这东西烂得难以言喻，唯一比试图卖掉它更愚蠢的事，就是买下它。"
 	item = /obj/item/sord
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE * 0.7
@@ -62,8 +62,8 @@
 	availability_prob = 100
 
 /datum/market_item/weapon/carrotshiv
-	name = "Carrot Shiv"
-	desc = "Unlike other carrots, you should probably keep this far away from your eyes."
+	name = "胡萝卜匕首"
+	desc = "与其他胡萝卜不同，你最好让这东西离你的眼睛远点。"
 	item = /obj/item/knife/shiv/carrot
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE * 0.7
@@ -71,7 +71,7 @@
 	availability_prob = 75
 
 /datum/market_item/weapon/ultranif
-	name = "Blood Steal NIFsoft"
+	name = "血液窃取NIF软件"
 	desc = "Reverse-engineered nanite template smuggled through so many customs and bounty hunters you're lucky to even see one. Won't go for cheap - it took us too much to get them."
 	item = /obj/item/disk/nifsoft_uploader/mil_grade/blood_steal
 	price_min = CARGO_CRATE_VALUE * 12
@@ -85,8 +85,8 @@
 	price_max = CARGO_CRATE_VALUE * 200
 
 /datum/market_item/weapon/milspec_buck
-	name = "Mil-Spec Buckshot Box"
-	desc = "A standard-sized box of 15 Scarborough-manufactured, hot-loaded buckshot shells, for those with a penchant for grievous bodily harm."
+	name = "军用规格鹿弹盒"
+	desc = "一盒标准尺寸、斯卡伯勒制造、高装药量的鹿弹，共15发，专为那些热衷于造成严重身体伤害的人士准备。"
 	item = /obj/item/ammo_box/advanced/s12gauge/buckshot/milspec
 	price_min = CARGO_CRATE_VALUE * 3
 	price_max = CARGO_CRATE_VALUE * 6
@@ -94,8 +94,8 @@
 	stock_max = 3
 
 /datum/market_item/weapon/milspec_slugs
-	name = "Mil-Spec Slug Box"
-	desc = "A standard-sized box of 15 Scarborough-manufactured, hot-loaded slug shells, for those with a penchant for grievous bodily harm."
+	name = "军用规格独头弹盒"
+	desc = "一盒标准尺寸、斯卡伯勒制造、高装药量的独头弹，共15发，专为那些热衷于造成严重身体伤害的人士准备。"
 	item = /obj/item/ammo_box/advanced/s12gauge/milspec
 	price_min = CARGO_CRATE_VALUE * 3
 	price_max = CARGO_CRATE_VALUE * 6

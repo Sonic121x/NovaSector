@@ -13,7 +13,7 @@
 	sparks.start()
 
 /obj/effect/particle_effect/sparks
-	name = "sparks"
+	name = "火花"
 	icon_state = "sparks"
 	anchored = TRUE
 	light_system = OVERLAY_LIGHT
@@ -78,7 +78,7 @@
 		affect_location(location)
 
 /obj/effect/particle_effect/sparks/quantum
-	name = "quantum sparks"
+	name = "量子火花"
 	icon_state = "quantum_sparks"
 
 /*
@@ -143,7 +143,7 @@
 //electricity
 
 /obj/effect/particle_effect/sparks/electricity
-	name = "lightning"
+	name = "闪电"
 	icon_state = "electricity"
 	animated = FALSE
 

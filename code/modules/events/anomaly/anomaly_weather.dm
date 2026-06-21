@@ -1,5 +1,5 @@
 /datum/round_event_control/anomaly/anomaly_weather
-	name = "Anomaly: Weather"
+	name = "异常：天气"
 	typepath = /datum/round_event/anomaly/anomaly_weather
 
 	max_occurrences = 2
@@ -30,13 +30,13 @@
 /datum/round_event/anomaly/anomaly_weather/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("Barometric anomaly detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在[ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name]检测到气压异常。", "异常警报")
 
 /datum/round_event/anomaly/anomaly_weather/make_anomaly(turf/anomaly_turf)
 	return new anomaly_path(anomaly_turf, null, null, forced_weather_type, forced_thunder_chance)
 
 /datum/round_event_control/anomaly/anomaly_weather/thundering
-	name = "Anomaly: Thundering Weather"
+	name = "异常：雷暴天气"
 	typepath = /datum/round_event/anomaly/anomaly_weather/thundering
 
 	max_occurrences = 1
@@ -54,7 +54,7 @@
 /datum/round_event/anomaly/anomaly_weather/thundering/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("Severe barometric anomaly detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在[ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]检测到严重气压异常。", "异常警报")
 
 /datum/event_admin_setup/listed_options/weather_anomaly
 	input_text = "Weather type? Be very careful with the dangerous ones!"

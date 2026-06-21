@@ -81,11 +81,11 @@ GLOBAL_VAR(antag_prototypes)
 /datum/mind/proc/get_special_statuses()
 	var/list/result = LAZYCOPY(special_statuses)
 	if(!current)
-		result += span_bad("No body!")
+		result += span_bad("没有身体！")
 	if(current && HAS_TRAIT(current, TRAIT_MINDSHIELD))
-		result += span_good("Mindshielded")
+		result += span_good("思维屏蔽")
 	if(current && HAS_MIND_TRAIT(current, TRAIT_UNCONVERTABLE))
-		result += span_good("Unconvertable")
+		result += span_good("不可转化")
 	return result
 
 /**
@@ -101,10 +101,10 @@ GLOBAL_VAR(antag_prototypes)
 
 /datum/mind/proc/traitor_panel()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr, "Not before round-start!", "Alert")
+		tgui_alert(usr, "不能在回合开始前！", "警告")
 		return
 	if(QDELETED(src))
-		tgui_alert(usr, "This mind doesn't have a mob, or is deleted! For some reason!", "Edit Memory")
+		tgui_alert(usr, "这个意识体没有对应的生物体，或者已被删除！不知为何！", "编辑记忆")
 		return
 
 	var/out = "<B>[name]</B>[(current && (current.real_name != name))?" (as [current.real_name])":""]<br>"
@@ -156,7 +156,7 @@ GLOBAL_VAR(antag_prototypes)
 
 		if(!current_antag) //Show antagging options
 			if(possible_admin_antags.len)
-				antag_header_parts += span_highlight("None")
+				antag_header_parts += span_highlight("无")
 				antag_header_parts += possible_admin_antags
 			else
 				//If there's no antags to show in this category skip the section completely

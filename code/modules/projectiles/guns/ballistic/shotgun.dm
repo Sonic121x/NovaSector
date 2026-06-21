@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/shotgun
-	name = "shotgun"
-	desc = "A traditional shotgun with wood furniture and a four-shell capacity underneath."
+	name = "猎枪"
+	desc = "一支传统的木制枪身猎枪，弹容量为四发。"
 	icon_state = "shotgun"
 	worn_icon_state = null
 	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
@@ -42,8 +42,8 @@
 // RIOT SHOTGUN //
 
 /obj/item/gun/ballistic/shotgun/riot
-	name = "riot shotgun"
-	desc = "A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control."
+	name = "镇暴霰弹枪"
+	desc = "一款坚固的霰弹枪，配备更长的弹匣和固定战术枪托，专为非致命性的防暴控制设计。"
 	icon_state = "riotshotgun"
 	inhand_icon_state = "shotgun"
 	fire_delay = 8 DECISECONDS
@@ -84,8 +84,8 @@
 	rack()
 
 /obj/item/gun/ballistic/shotgun/automatic/combat //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
-	name = "combat shotgun"
-	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	name = "战斗霰弹枪"
+	desc = "一把半自动霰弹枪，配有战术配件，下方可容纳六发子弹。"
 	icon_state = "cshotgun"
 	inhand_icon_state = "shotgun_combat"
 	projectile_damage_multiplier = 1.5
@@ -119,8 +119,8 @@
 //Dual Feed Shotgun
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube
-	name = "cycler shotgun"
-	desc = "An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types."
+	name = "“循环” 霰弹枪"
+	desc = "一款先进的霰弹枪，配备两个独立的弹筒，可让你快速在不同弹药类型之间切换。"
 	icon_state = "cycler"
 	inhand_icon_state = "bulldog"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -139,7 +139,7 @@
 	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/bounty
-	name = "bounty cycler shotgun"
+	name = "赏金猎人的 “循环” 霰弹枪"
 	desc = "An advanced shotgun with two separate magazine tubes. This one shows signs of bounty hunting customization, meaning it likely has a dual rubber shot/fire slug load."
 	alt_mag_type = /obj/item/ammo_box/magazine/internal/shot/tube/fire
 
@@ -173,9 +173,9 @@
 	alternate_magazine = current_mag
 	toggled = !toggled
 	if(toggled)
-		balloon_alert(user, "switched to tube B")
+		balloon_alert(user, "切换到 B 管")
 	else
-		balloon_alert(user, "switched to tube A")
+		balloon_alert(user, "切换到 A 管")
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/click_alt(mob/living/user)
 	rack()
@@ -184,7 +184,7 @@
 // Bulldog shotgun //
 
 /obj/item/gun/ballistic/shotgun/bulldog
-	name = "\improper Bulldog Shotgun"
+	name = "\improper 斗牛犬霰弹枪"
 	desc = "A 2-round burst fire, mag-fed shotgun for combat in narrow corridors, \
 		nicknamed 'Bulldog' by boarding parties. Compatible only with specialized 8-round drum magazines. \
 		Can have a secondary magazine attached to quickly swap between ammo types, or just to keep shooting."
@@ -278,7 +278,7 @@
 	secondary_magazine = tool
 	if(old_mag)
 		user.put_in_hands(old_mag)
-	balloon_alert(user, "secondary [magazine_wording] loaded")
+	balloon_alert(user, "副[magazine_wording]已装填")
 	playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -336,8 +336,8 @@
 /////////////////////////////
 
 /obj/item/gun/ballistic/shotgun/doublebarrel
-	name = "double-barreled shotgun"
-	desc = "A true classic."
+	name = "双管猎枪"
+	desc = "经典中的经典。"
 	icon_state = "dshotgun"
 	base_icon_state = "dshotgun"
 	inhand_icon_state = "shotgun_db"
@@ -364,20 +364,20 @@
 		weapon_weight = WEAPON_MEDIUM
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/slugs
-	name = "hunting shotgun"
-	desc = "A hunting shotgun used by the wealthy to hunt \"game\"."
+	name = "猎枪"
+	desc = "一把富人用来打猎“野味”的霰弹枪。"
 	sawn_desc = "A sawn-off hunting shotgun. In its new state, it's remarkably less effective at hunting... anything."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/dual/slugs
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/breacherslug
-	name = "breaching shotgun"
-	desc = "A normal double-barrel shotgun that has been rechambered to fit breaching shells. Useful in breaching airlocks and windows, not much else."
+	name = "破门霰弹枪"
+	desc = "一把经过重新膛室改造以适配破门弹的双管霰弹枪。在破坏气闸门和窗户时很有用，其他方面用处不大。"
 	sawn_desc = "A sawn-off breaching shotgun, making for a more compact configuration while still having the same capability as before."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/dual/breacherslug
 
 /obj/item/gun/ballistic/shotgun/hook
-	name = "hook modified sawn-off shotgun"
-	desc = "Range isn't an issue when you can bring your victim to you."
+	name = "改装的短管霰弹枪"
+	desc = "只要能把受害者带到你这里来，距离就不是问题了。"
 	icon_state = "hookshotgun"
 	inhand_icon_state = "hookshotgun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -406,7 +406,7 @@
 
 /obj/item/gun/ballistic/shotgun/hook/examine(mob/user)
 	. = ..()
-	. += span_notice("Right-click to shoot the hook.")
+	. += span_notice("右键点击发射钩爪。")
 
 /obj/item/gun/ballistic/shotgun/hook/try_fire_gun(atom/target, mob/living/user, params)
 	if(LAZYACCESS(params2list(params), RIGHT_CLICK))
@@ -415,8 +415,8 @@
 
 ///An underpowered shotgun given to Pun Pun when the station job trait roll.
 /obj/item/gun/ballistic/shotgun/monkey
-	name = "\improper Barback's Shot"
-	desc = "A chimp-sized, single-shot and break-action shotgun with an unpractical stock."
+	name = "\improper 酒保的霰弹"
+	desc = "一把黑猩猩尺寸、单发、撅把式的霰弹枪，配有一个不实用的枪托。"
 	icon_state = "chimp_shottie"
 	inhand_icon_state = "shotgun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -440,12 +440,12 @@
 	pb_knockback = 1
 
 /obj/item/gun/ballistic/shotgun/musket
-	name = "\improper Donk Co. Musket"
+	name = "\improper 唐克公司滑膛枪"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "donk_musket"
 	inhand_icon_state = "donk_musket"
 	worn_icon_state = "donk_musket"
-	desc = "A large-bore boltloading firearm with a classy wooden frame. Cheap, accurate, and easy to maintain. Reload and rack after every shot."
+	desc = "一把大口径、前装式、带优雅木制框架的火器。便宜、精准且易于维护。每次射击后都需要重新装填并上膛。"
 	semi_auto = TRUE
 	alternative_caliber = CALIBER_50BMG
 	casing_ejector = TRUE

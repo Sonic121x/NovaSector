@@ -1,6 +1,6 @@
 /obj/structure/cat_house
-	name = "cat house"
-	desc = "Cozy home for cats."
+	name = "猫屋"
+	desc = "猫咪的温馨小窝。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "cat_house"
 	density = TRUE

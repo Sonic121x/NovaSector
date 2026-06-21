@@ -2,8 +2,8 @@
 #define CREATE_AND_INCREMENT(L, I, increment) if(!(I in L)) { L[I] = 0; } L[I] += increment;
 
 /obj/machinery/flatpacker
-	name = "flatpacker"
-	desc = "It produces items using iron, glass, plastic and maybe some more."
+	name = "扁平包装机"
+	desc = "它使用铁、玻璃、塑料以及可能的一些其他材料来生产物品。"
 	icon = 'icons/obj/machines/lathes.dmi'
 	base_icon_state = "flatpacker"
 	icon_state = "flatpacker"
@@ -76,16 +76,16 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice("The status display reads:")
-	. += span_notice("Capable of packing up to <b>Tier [max_part_tier]</b>.")
-	. += span_notice("Storing up to <b>[materials.max_amount]</b> material units.")
-	. += span_notice("Material consumption at <b>[creation_efficiency * 100]%</b>.")
+	. += span_notice("状态显示屏显示：")
+	. += span_notice("能够打包最高<b>第[max_part_tier]级</b>的部件。")
+	. += span_notice("最多存储<b>[materials.max_amount]</b>个材料单位。")
+	. += span_notice("材料消耗率为<b>[creation_efficiency * 100]%</b>。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"]。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("它可以[EXAMINE_HINT("pried")]开。")
 	if(!QDELETED(inserted_board))
-		. += span_notice("The board can be ejected via [EXAMINE_HINT("Ctrl Click")].")
+		. += span_notice("电路板可以通过[EXAMINE_HINT("Ctrl Click")]弹出。")
 		if(length(inserted_board.flatpack_components))
 			var/list/obj/item/to_insert
 			for(var/obj/item/component as anything in inserted_board.flatpack_components)
@@ -95,9 +95,9 @@
 					continue
 				LAZYADDASSOC(to_insert, get_flatpack_component_name(component), "[inserted]/[required]")
 			if(length(to_insert))
-				. += span_warning("The following components must be inserted by hand before packaging:")
+				. += span_warning("包装前必须手动插入以下组件：")
 				for(var/component_name in to_insert)
-					. += span_warning("[component_name]: [to_insert[component_name]].")
+					. += span_warning("[component_name]: [to_insert[component_name]]。")
 
 /obj/machinery/flatpacker/update_overlays()
 	. = ..()
@@ -224,7 +224,7 @@
 
 	if(istype(attacking_item, /obj/item/circuitboard/machine))
 		if(busy)
-			balloon_alert(user, "busy!")
+			balloon_alert(user, "正忙！")
 			return ITEM_INTERACT_BLOCKING
 		if (!user.transferItemToLoc(attacking_item, src))
 			return ITEM_INTERACT_BLOCKING
@@ -249,11 +249,11 @@
 		return ITEM_INTERACT_SUCCESS
 	else if(!QDELETED(inserted_board) && (attacking_item.type in inserted_board.flatpack_components))
 		if(get_flatpack_component_count(attacking_item.type) == inserted_board.req_components[attacking_item.type])
-			balloon_alert(user, "max count reached!")
+			balloon_alert(user, "已达最大数量！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(attacking_item, src))
-			to_chat(user, span_warning("[attacking_item] is stuck in hand!"))
+			to_chat(user, span_warning("[attacking_item] 卡在手里了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		LAZYADD(flatpacked_components, attacking_item)

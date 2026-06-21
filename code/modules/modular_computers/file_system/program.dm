@@ -137,7 +137,7 @@
 /datum/computer_file/program/proc/is_supported_by_hardware(hardware_flag = NONE, loud = FALSE, mob/user)
 	if(!(hardware_flag & can_run_on_flags))
 		if(loud && computer && user)
-			to_chat(user, span_danger("\The [computer] flashes a \"Hardware Error - Incompatible software\" warning."))
+			to_chat(user, span_danger("\The [computer]闪烁一条\"硬件错误 - 软件不兼容\"的警告。"))
 		return FALSE
 	return TRUE
 
@@ -181,7 +181,7 @@
 
 		if(!accesscard)
 			if(loud && user)
-				to_chat(user, span_danger("\The [computer] flashes an \"RFID Error - Unable to scan ID\" warning."))
+				to_chat(user, span_danger("\The [computer]闪烁一条\"RFID错误 - 无法扫描ID\"的警告。"))
 			return FALSE
 		access = accesscard.GetAccess()
 
@@ -190,7 +190,7 @@
 			return TRUE
 
 	if(loud && user)
-		to_chat(user, span_danger("\The [computer] flashes an \"Access Denied\" warning."))
+		to_chat(user, span_danger("\The [computer]闪烁一条\"访问被拒绝\"的警告。"))
 	return FALSE
 
 /**

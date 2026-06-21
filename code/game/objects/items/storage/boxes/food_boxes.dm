@@ -52,7 +52,7 @@
 
 /obj/item/storage/box/papersack
 	name = "paper sack"
-	desc = "A sack neatly crafted out of paper."
+	desc = "一个用纸精心制作而成的袋子。"
 	icon = 'icons/obj/storage/paperbag.dmi'
 	icon_state = "paperbag_None"
 	inhand_icon_state = null
@@ -90,13 +90,13 @@
 		if("None")
 			desc = "A sack neatly crafted out of paper."
 		if("NanotrasenStandard")
-			desc = "A standard Nanotrasen paper lunch sack for loyal employees on the go."
+			desc = "一个标准的纳米传讯纸制午餐袋，专为忠诚的在途员工准备。"
 		if("SyndiSnacks")
 			desc = "The design on this paper sack is a remnant of the notorious 'SyndieSnacks' program."
 		if("Heart")
-			desc = "A paper sack with a heart etched onto the side."
+			desc = "一个侧面蚀刻着心形图案的纸袋。"
 		if("SmileyFace")
-			desc = "A paper sack with a crude smile etched onto the side."
+			desc = "一个侧面蚀刻着粗糙笑脸的纸袋。"
 	return ..()
 
 /obj/item/storage/box/papersack/tool_act(mob/living/user, obj/item/tool, list/modifiers)
@@ -110,12 +110,12 @@
 		return ITEM_INTERACT_SUCCESS
 	if(tool.get_sharpness() && !contents.len)
 		if(design_choice == "None")
-			user.show_message(span_notice("You cut eyeholes into [src]."), MSG_VISUAL)
+			user.show_message(span_notice("你在[src]上剪出了眼洞。"), MSG_VISUAL)
 			new /obj/item/clothing/head/costume/papersack(drop_location())
 			qdel(src)
 			return ITEM_INTERACT_SUCCESS
 		else if(design_choice == "SmileyFace")
-			user.show_message(span_notice("You cut eyeholes into [src] and modify the design."), MSG_VISUAL)
+			user.show_message(span_notice("你在[src]上剪出眼洞并修改了设计。"), MSG_VISUAL)
 			new /obj/item/clothing/head/costume/papersack/smiley(drop_location())
 			qdel(src)
 			return ITEM_INTERACT_SUCCESS
@@ -134,37 +134,37 @@
 	if(user.incapacitated)
 		return FALSE
 	if(contents.len)
-		balloon_alert(user, "items inside!")
+		balloon_alert(user, "里面有物品！")
 		return FALSE
 	if(!P || !user.is_holding(P))
-		balloon_alert(user, "needs pen!")
+		balloon_alert(user, "需要笔！")
 		return FALSE
 	return TRUE
 
 /obj/item/storage/box/papersack/meat
-	desc = "It's slightly moist and smells like a slaughterhouse."
+	desc = "它有点潮湿，闻起来像屠宰场。"
 
 /obj/item/storage/box/papersack/meat/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/food/meat/slab(src)
 
 /obj/item/storage/box/papersack/wheat
-	desc = "It's a bit dusty, and smells like a barnyard."
+	desc = "有点灰尘味，闻起来像谷仓。"
 
 /obj/item/storage/box/papersack/wheat/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/food/grown/wheat(src)
 
 /obj/item/storage/box/ingredients //This box is for the randomly chosen version the chef used to spawn with, it shouldn't actually exist.
-	name = "ingredients box"
+	name = "食材盒"
 	illustration = "fruit"
 	var/theme_name
 
 /obj/item/storage/box/ingredients/Initialize(mapload)
 	. = ..()
 	if(theme_name)
-		name = "[name] ([theme_name])"
-		desc = "A box containing supplementary ingredients for the aspiring chef. The box's theme is '[theme_name]'."
+		name = "[name]（[theme_name]）"
+		desc = "一个包含为有抱负的厨师准备的补充食材的盒子。盒子的主题是'[theme_name]'。"
 		inhand_icon_state = "syringe_kit"
 
 /obj/item/storage/box/ingredients/wildcard
@@ -322,7 +322,7 @@
 
 /obj/item/storage/box/ingredients/random
 	theme_name = "random"
-	desc = "This box should not exist, contact the proper authorities."
+	desc = "这个盒子不应该存在，请联系有关部门。"
 
 /obj/item/storage/box/ingredients/random/Initialize(mapload)
 	. = ..()
@@ -331,8 +331,8 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/storage/box/gum
-	name = "bubblegum packet"
-	desc = "The packaging is entirely in Japanese, apparently. You can't make out a single word of it."
+	name = "泡泡糖包"
+	desc = "包装上显然全是日文。你一个字都看不懂。"
 	icon = 'icons/obj/storage/gum.dmi'
 	icon_state = "bubblegum_generic"
 	w_class = WEIGHT_CLASS_TINY
@@ -349,7 +349,7 @@
 		new /obj/item/storage/bubblegum_wrapper(src, spawning_gum_type)
 
 /obj/item/storage/box/gum/wake_up
-	name = "\improper Activin 12 Hour medicated gum packet"
+	name = "\improper 安醒宁12小时药用口香糖包"
 	desc = "Stay awake during long shifts in the maintenance tunnels with Activin! The approval seal of the Mothic Nomad Fleet \
 		is emblazoned on the packaging, alongside a litany of health and safety disclaimers in both Mothic and Galactic Common."
 	icon_state = "bubblegum_wake_up"
@@ -357,7 +357,7 @@
 
 /obj/item/storage/box/gum/wake_up/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<i>You read some of the health and safety information...</i>")
+	. += span_notice("<i>你阅读了一些健康与安全信息...</i>")
 	. += "\t[span_info("For the relief of tiredness and drowsiness while working.")]"
 	. += "\t[span_info("Do not chew more than one strip every 12 hours. Do not use as a complete substitute for sleep.")]"
 	. += "\t[span_info("Do not give to children under 16. Do not exceed the maximum dosage. Do not ingest. Do not take for more than 3 days consecutively. Do not take in conjunction with other medication. May cause adverse reactions in patients with pre-existing heart conditions.")]"
@@ -373,7 +373,7 @@
 		new/obj/item/food/bubblegum/wake_up(src)
 
 /obj/item/storage/bubblegum_wrapper
-	name = "bubblegum wrapper"
+	name = "泡泡糖包装纸"
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "bubblegum_wrapper"
 	w_class = WEIGHT_CLASS_TINY
@@ -429,15 +429,15 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/storage/box/gum/nicotine
-	name = "nicotine gum packet"
-	desc = "Designed to help with nicotine addiction and oral fixation all at once without destroying your lungs in the process. Mint flavored!"
+	name = "尼古丁口香糖包"
+	desc = "旨在一次性解决尼古丁成瘾和口腔固着问题，同时避免损害肺部。薄荷口味！"
 	icon_state = "bubblegum_nicotine"
 	custom_premium_price = PAYCHECK_CREW * 1.5
 	spawning_gum_type = /obj/item/food/bubblegum/nicotine
 
 /obj/item/storage/box/gum/happiness
-	name = "HP+ gum packet"
-	desc = "A seemingly homemade packaging with an odd smell. It has a weird drawing of a smiling face sticking out its tongue."
+	name = "HP+ 口香糖包"
+	desc = "一个看起来是自制的包装，散发着奇怪的气味。上面画着一个吐着舌头的笑脸，样子很诡异。"
 	icon_state = "bubblegum_happiness"
 	custom_price = PAYCHECK_COMMAND * 3
 	custom_premium_price = PAYCHECK_COMMAND * 3
@@ -449,14 +449,14 @@
 		desc += " You can faintly make out the word 'Hemopagopril' was once scribbled on it."
 
 /obj/item/storage/box/gum/bubblegum
-	name = "bubblegum gum packet"
-	desc = "The packaging is entirely in Demonic, apparently. You feel like even opening this would be a sin."
+	name = "泡泡糖口香糖包"
+	desc = "包装上似乎全是恶魔语。你觉得打开这东西都是一种罪过。"
 	icon_state = "bubblegum_bubblegum"
 	spawning_gum_type = /obj/item/food/bubblegum/bubblegum
 
 /obj/item/storage/box/mothic_rations
-	name = "Mothic Rations Pack"
-	desc = "A box containing a few rations and some Activin gum, for keeping a starving moth going."
+	name = "飞蛾族口粮包"
+	desc = "一个装着几份口粮和一些活性素口香糖的盒子，用于维持饥饿飞蛾的生存。"
 	icon_state = "moth_package"
 	illustration = null
 
@@ -473,8 +473,8 @@
 	new /obj/item/storage/box/gum/wake_up(src)
 
 /obj/item/storage/box/tiziran_goods
-	name = "Tiziran Farm-Fresh Pack"
-	desc = "A box containing an assortment of fresh Tiziran goods- perfect for making the foods of the Lizard Empire."
+	name = "提兹拉农场新鲜包"
+	desc = "一个装着各种新鲜提兹拉产品的盒子——非常适合制作蜥蜴帝国的食物。"
 	icon_state = "lizard_package"
 	illustration = null
 
@@ -495,8 +495,8 @@
 		new random_food(src)
 
 /obj/item/storage/box/tiziran_cans
-	name = "Tiziran Canned Goods Pack"
-	desc = "A box containing an assortment of canned Tiziran goods- to be eaten as is, or used in cooking."
+	name = "提兹拉罐头食品包"
+	desc = "一个装着各种提兹拉罐头的盒子——可以直接食用，也可用于烹饪。"
 	icon_state = "lizard_package"
 	illustration = null
 
@@ -510,8 +510,8 @@
 		new random_food(src)
 
 /obj/item/storage/box/tiziran_meats
-	name = "Tiziran Meatmarket Pack"
-	desc = "A box containing an assortment of fresh-frozen Tiziran meats and fish- the keys to lizard cooking."
+	name = "提兹拉肉市包"
+	desc = "一个装有各种新鲜冷冻的提兹兰肉类和鱼类的盒子——蜥蜴烹饪的关键。"
 	icon_state = "lizard_package"
 	illustration = null
 
@@ -526,8 +526,8 @@
 		new random_food(src)
 
 /obj/item/storage/box/mothic_goods
-	name = "Mothic Farm-Fresh Pack"
-	desc = "A box containing an assortment of Mothic cooking supplies."
+	name = "飞蛾族农场新鲜包"
+	desc = "一个装有各种飞蛾族烹饪用品的盒子。"
 	icon_state = "moth_package"
 	illustration = null
 
@@ -547,8 +547,8 @@
 		new random_food(src)
 
 /obj/item/storage/box/mothic_cans_sauces
-	name = "Mothic Pantry Pack"
-	desc = "A box containing an assortment of Mothic canned goods and premade sauces."
+	name = "飞蛾族食品储藏包"
+	desc = "一个装有各种飞蛾族罐头食品和预制酱料的盒子。"
 	icon_state = "moth_package"
 	illustration = null
 
@@ -564,8 +564,8 @@
 		new random_food(src)
 
 /obj/item/storage/box/condimentbottles
-	name = "box of condiment bottles"
-	desc = "It has a large ketchup smear on it."
+	name = "调味瓶盒"
+	desc = "上面有一大块番茄酱污渍。"
 	illustration = "condiment"
 
 /obj/item/storage/box/condimentbottles/PopulateContents()
@@ -575,8 +575,8 @@
 
 /obj/item/storage/box/coffeepack
 	icon_state = "arabica_beans"
-	name = "arabica beans"
-	desc = "A bag containing fresh, dry coffee arabica beans. Ethically sourced and packaged by Waffle Corp."
+	name = "阿拉比卡咖啡豆"
+	desc = "一个装有新鲜、干燥的阿拉比卡咖啡豆的袋子。由华夫公司以符合道德的方式采购和包装。"
 	illustration = null
 	icon = 'icons/obj/food/containers.dmi'
 	storage_type = /datum/storage/box/coffee
@@ -590,8 +590,8 @@
 
 /obj/item/storage/box/coffeepack/robusta
 	icon_state = "robusta_beans"
-	name = "robusta beans"
-	desc = "A bag containing fresh, dry coffee robusta beans. Ethically sourced and packaged by Waffle Corp."
+	name = "罗布斯塔咖啡豆"
+	desc = "一个装有新鲜、干燥的罗布斯塔咖啡豆的袋子。由华夫公司以符合道德的方式采购和包装。"
 	beantype = /obj/item/food/grown/coffee/robusta
 
 /obj/item/storage/box/ramen_beef

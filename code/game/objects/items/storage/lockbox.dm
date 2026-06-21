@@ -1,6 +1,6 @@
 /obj/item/storage/lockbox
-	name = "lockbox"
-	desc = "A locked box."
+	name = "上锁的箱子"
+	desc = "一个上了锁的箱子。"
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "lockbox+l"
 	inhand_icon_state = "lockbox"
@@ -50,12 +50,12 @@
 	if(check_access(id_card))
 		return TRUE
 	if(!silent)
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "访问被拒绝！")
 	return FALSE
 
 /obj/item/storage/lockbox/proc/toggle_locked(mob/living/user)
 	atom_storage.set_locked(atom_storage.locked ? STORAGE_NOT_LOCKED : STORAGE_FULLY_LOCKED)
-	balloon_alert(user, atom_storage.locked ? "locked" : "unlocked")
+	balloon_alert(user, atom_storage.locked ? "已锁定" : "已解锁")
 
 /obj/item/storage/lockbox/update_icon_state()
 	. = ..()
@@ -72,16 +72,16 @@
 	if(!broken)
 		broken = TRUE
 		atom_storage.set_locked(STORAGE_NOT_LOCKED)
-		balloon_alert(user, "lock destroyed")
+		balloon_alert(user, "锁已破坏")
 		if (emag_card && user)
-			user.visible_message(span_warning("[user] swipes [emag_card] over [src], breaking it!"))
+			user.visible_message(span_warning("[user] 用 [emag_card] 划过 [src]，把它弄坏了！"))
 		return TRUE
 	return FALSE
 
 /obj/item/storage/lockbox/examine(mob/user)
 	. = ..()
 	if(broken)
-		. += span_notice("It appears to be broken.")
+		. += span_notice("它看起来已经损坏了。")
 
 /obj/item/storage/lockbox/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -94,7 +94,7 @@
 	update_appearance()
 
 /obj/item/storage/lockbox/loyalty
-	name = "lockbox of mindshield implants"
+	name = "精神护盾植入物保险箱"
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/loyalty/PopulateContents()
@@ -103,16 +103,16 @@
 	new /obj/item/implanter/mindshield(src)
 
 /obj/item/storage/lockbox/clusterbang
-	name = "lockbox of clusterbangs"
-	desc = "You have a bad feeling about opening this."
+	name = "集束炸弹保险箱"
+	desc = "你有一种不祥的预感，最好不要打开它。"
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/clusterbang/PopulateContents()
 	new /obj/item/grenade/clusterbuster(src)
 
 /obj/item/storage/lockbox/medal
-	name = "medal box"
-	desc = "A locked box used to store medals of honor."
+	name = "勋章盒"
+	desc = "一个用于存放荣誉勋章的带锁盒子。"
 	icon_state = "medalbox+l"
 	inhand_icon_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -164,8 +164,8 @@
 		. += medalicon
 
 /obj/item/storage/lockbox/medal/hop
-	name = "Head of Personnel medal box"
-	desc = "A locked box used to store medals to be given to those exhibiting excellence in management."
+	name = "人事部长勋章盒"
+	desc = "一个用于存放授予在管理方面表现卓越者的勋章的带锁盒子。"
 	req_access = list(ACCESS_HOP)
 	icon_state = "hopbox+l"
 	icon_locked = "hopbox+l"
@@ -177,16 +177,16 @@
 	new /obj/item/clothing/accessory/medal/gold/ordom(src)
 
 /obj/item/storage/lockbox/medal/sec
-	name = "security medal box"
-	desc = "A locked box used to store medals to be given to members of the security department."
+	name = "安保勋章盒"
+	desc = "一个用于存放授予安保部门成员的勋章的带锁盒子。"
 	req_access = list(ACCESS_HOS)
 	icon_state = "secbox+l"
 	icon_locked = "secbox+l"
 	icon_closed = "secbox"
 
 /obj/item/storage/lockbox/medal/med
-	name = "medical medal box"
-	desc = "A locked box used to store medals to be given to members of the medical department."
+	name = "医疗勋章盒"
+	desc = "一个用于存放授予医疗部门成员的勋章的带锁盒子。"
 	req_access = list(ACCESS_CMO)
 	icon_state = "medbox+l"
 	icon_locked = "medbox+l"
@@ -203,8 +203,8 @@
 		new /obj/item/clothing/accessory/medal/silver/security(src)
 
 /obj/item/storage/lockbox/medal/cargo
-	name = "cargo award box"
-	desc = "A locked box used to store awards to be given to members of the cargo department."
+	name = "货舱奖励盒"
+	desc = "一个用于存放授予货舱部门成员的奖励的带锁盒子。"
 	req_access = list(ACCESS_QM)
 	icon_state = "cargobox+l"
 	icon_locked = "cargobox+l"
@@ -214,8 +214,8 @@
 	new /obj/item/clothing/accessory/medal/ribbon/cargo(src)
 
 /obj/item/storage/lockbox/medal/service
-	name = "service award box"
-	desc = "A locked box used to store awards to be given to members of the service department."
+	name = "服务奖励盒"
+	desc = "一个用于存放授予服务部门成员的奖励的带锁盒子。"
 	req_access = list(ACCESS_HOP)
 	icon_state = "srvbox+l"
 	icon_locked = "srvbox+l"
@@ -225,8 +225,8 @@
 	new /obj/item/clothing/accessory/medal/silver/excellence(src)
 
 /obj/item/storage/lockbox/medal/sci
-	name = "science medal box"
-	desc = "A locked box used to store medals to be given to members of the science department."
+	name = "科学勋章盒"
+	desc = "一个用于存放准备授予科学部门成员的勋章的带锁盒子。"
 	req_access = list(ACCESS_RD)
 	icon_state = "scibox+l"
 	icon_locked = "scibox+l"
@@ -238,8 +238,8 @@
 		new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
 
 /obj/item/storage/lockbox/medal/engineering
-	name = "engineering medal box"
-	desc = "A locked box used to store awards to be given to members of the engineering department."
+	name = "工程部勋章盒"
+	desc = "一个用于存放准备授予工程部门成员的奖励的带锁盒子。"
 	req_access = list(ACCESS_CE)
 	icon_state = "engbox+l"
 	icon_locked = "engbox+l"
@@ -251,8 +251,8 @@
 	new /obj/item/clothing/accessory/medal/silver/elder_atmosian(src)
 
 /obj/item/storage/lockbox/order
-	name = "order lockbox"
-	desc = "A box used to secure small cargo orders from being looted by those who didn't order it. Yeah, cargo tech, that means you."
+	name = "订单锁箱"
+	desc = "一个用于保护小型货物订单不被未订购者掠夺的箱子。没错，货运技术员，说的就是你。"
 	icon_state = "secure"
 	icon_closed = "secure"
 	icon_locked = "secure_locked"
@@ -283,12 +283,12 @@
 		return TRUE
 	//NOVA EDIT ADDITION END
 	if(!silent)
-		balloon_alert(user, "incorrect bank account!")
+		balloon_alert(user, "银行账户不正确！")
 	return FALSE
 
 /obj/item/storage/lockbox/dueling
-	name = "dueling pistol case"
-	desc = "Let's solve this like gentlespacemen."
+	name = "决斗手枪箱"
+	desc = "让我们像太空绅士一样解决此事。"
 	icon_state = "medalbox+l"
 	inhand_icon_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -309,8 +309,8 @@
 	new /datum/duel(gun_A, gun_B)
 
 /obj/item/storage/lockbox/bitrunning
-	name = "base class curiosity"
-	desc = "Talk to a coder."
+	name = "基础级奇物"
+	desc = "去找程序员谈谈。"
 	req_access = list(ACCESS_INACCESSIBLE)
 	icon_state = "bitrunning+l"
 	inhand_icon_state = "bitrunning"
@@ -321,8 +321,8 @@
 	icon_open = "bitrunning"
 
 /obj/item/storage/lockbox/bitrunning/encrypted
-	name = "encrypted curiosity"
-	desc = "Needs to be decrypted at the safehouse to be opened."
+	name = "加密奇物"
+	desc = "需要在安全屋解密后才能打开。"
 	resistance_flags =  INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	/// Path for the loot we are assigned
 	var/loot_path
@@ -331,8 +331,8 @@
 	return FALSE
 
 /obj/item/storage/lockbox/bitrunning/decrypted
-	name = "decrypted curiosity"
-	desc = "Compiled from the virtual domain. An extra reward of a successful bitrunner."
+	name = "已解密奇物"
+	desc = "从虚拟域编译而来。是成功比特行者获得的额外奖励。"
 	storage_type = /datum/storage/lockbox/bitrunning_decrypted
 
 	/// What virtual domain did we come from.

@@ -7,8 +7,8 @@
 	var/can_melt = TRUE
 
 /atom/movable/screen/alert/status_effect/freon
-	name = "Frozen Solid"
-	desc = "You're frozen inside an ice cube, and cannot move! You can still do stuff, like shooting. Resist out of the cube!"
+	name = "冻成冰块"
+	desc = "你被冻在一个冰块里，无法移动！你仍然可以做些事情，比如射击。通过抵抗挣脱冰块！"
 	icon_state = "frozen"
 
 /datum/status_effect/freon/on_apply()
@@ -18,7 +18,7 @@
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
 	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(owner_resist))
 	if(!owner.stat)
-		to_chat(owner, span_userdanger("You become frozen in a cube!"))
+		to_chat(owner, span_userdanger("你被冻进了一个冰块里！"))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
 	owner.add_overlay(cube)
 
@@ -32,14 +32,14 @@
 	INVOKE_ASYNC(src, PROC_REF(do_resist))
 
 /datum/status_effect/freon/proc/do_resist()
-	to_chat(owner, span_notice("You start breaking out of the ice cube..."))
+	to_chat(owner, span_notice("你开始挣脱冰块..."))
 	if(do_after(owner, 4 SECONDS, target = owner))
-		to_chat(owner, span_notice("You break out of the ice cube!"))
+		to_chat(owner, span_notice("你挣脱了冰块！"))
 		qdel(src)
 
 /datum/status_effect/freon/on_remove()
 	if(!owner.stat)
-		to_chat(owner, span_notice("The cube melts!"))
+		to_chat(owner, span_notice("冰块融化了！"))
 	owner.cut_overlay(cube)
 	owner.adjust_bodytemperature(100)
 	UnregisterSignal(owner, COMSIG_LIVING_RESIST)
@@ -67,8 +67,8 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/hypernob_protection
-	name = "Hyper-Noblium Protection"
-	desc = "The Hyper-Noblium around your body is protecting it from self-combustion and fires, but you feel sluggish..."
+	name = "超导氖保护"
+	desc = "环绕你身体的超导氖正在保护你免于自燃和火焰伤害，但你感觉行动迟缓..."
 	icon_state = "hypernob_protection"
 
 /datum/status_effect/hypernob_protection/on_apply()

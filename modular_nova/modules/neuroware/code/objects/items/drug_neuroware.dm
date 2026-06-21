@@ -1,6 +1,6 @@
 /obj/item/disk/neuroware/blastoff
-	name = "\improper ElektroHaus 3B neuroware"
-	desc = "A neuroware chip containing ElektroHaus 3B, which is a hardcore database of thrilling and dangerous dance-moves."
+	name = "\improper ElektroHaus 3B 神经软件"
+	desc = "一块神经软件芯片，内含 ElektroHaus 3B，这是一个包含刺激且危险舞步的硬核数据库。"
 	icon_state = "/obj/item/disk/neuroware/blastoff"
 	post_init_icon_state = "chip_donk"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
@@ -8,8 +8,8 @@
 	manufacturer_tag = NEUROWARE_DONK
 
 /obj/item/disk/neuroware/cocaine
-	name = "\improper Zeng-Hu Accelerator neuroware"
-	desc = "A neuroware chip containing Zeng-Hu Accelerator, a powerful cyberware accelerator and overclock program. Reduces stun times, but causes drowsiness and severe system corruption if overloaded."
+	name = "\improper 曾氏加速器神经软件"
+	desc = "一块包含曾氏加速器的神经软件芯片，这是一种强大的赛博义体加速器和超频程序。能减少眩晕时间，但超载时会导致嗜睡和严重的系统损坏。"
 	icon_state = "/obj/item/disk/neuroware/cocaine"
 	post_init_icon_state = "chip_zenghu"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
@@ -17,8 +17,8 @@
 	manufacturer_tag = NEUROWARE_ZENGHU
 
 /obj/item/disk/neuroware/happiness
-	name = "\improper SmileML 2565 neuroware"
-	desc = "A neuroware chip containing the 2565 edition of SmileML, which induces happiness and blocks psychological pain. Multi-user license included."
+	name = "\improper SmileML 2565 神经软件"
+	desc = "一块神经软件芯片，内含2565年版的SmileML，能诱发幸福感并阻断心理痛苦。包含多用户许可。"
 	icon_state = "/obj/item/disk/neuroware/happiness"
 	post_init_icon_state = "chip_zenghu"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
@@ -27,8 +27,8 @@
 	uses = 2
 
 /obj/item/disk/neuroware/mushroomhallucinogen
-	name = "\improper PsychoRot neuroware"
-	desc = "A neuroware chip containing PsychoRot, which emulates the vivid psychoactive effects found in mushroom hallucinaogens."
+	name = "\improper 精神腐化神经软件"
+	desc = "一块包含迷幻腐菌的神经软件芯片，能模拟蘑菇致幻剂中发现的生动精神活性效果。"
 	icon_state = "/obj/item/disk/neuroware/mushroomhallucinogen"
 	post_init_icon_state = "chip_donk"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
@@ -36,8 +36,8 @@
 	manufacturer_tag = NEUROWARE_DONK
 
 /obj/item/disk/neuroware/pumpup
-	name = "homebrew overclock neuroware"
-	desc = "A neuroware chip containing someone's DIY homebrew neurocomputing program. It seems to mimic the effects of adrenaline."
+	name = "自制超频神经软件"
+	desc = "一块神经软件芯片，内含某人自制的神经计算程序。它似乎能模拟肾上腺素的效果。"
 	icon_state = "/obj/item/disk/neuroware/pumpup"
 	post_init_icon_state = "chip_maint"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
@@ -45,8 +45,8 @@
 	manufacturer_tag = NEUROWARE_MAINT
 
 /obj/item/disk/neuroware/space_drugs
-	name = "\improper Kaleido Demo neuroware"
-	desc = "A neuroware chip containing a demo version of Kaleido, a fun and colorful demonstration of a \"neuromorphic kaleidoscope\"."
+	name = "\improper 万花筒演示版神经软件"
+	desc = "一个包含Kaleido演示版的神经软件芯片，是对\"神经形态万花筒\"的一次有趣而多彩的展示。"
 	icon_state = "/obj/item/disk/neuroware/space_drugs"
 	post_init_icon_state = "chip_donk"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
@@ -54,8 +54,8 @@
 	manufacturer_tag = NEUROWARE_DONK
 
 /obj/item/disk/neuroware/thc
-	name = "\improper Mr.Stoned v1 neuroware"
-	desc = "A neuroware chip containing version 1.0 of Mr.Stoned, which emulates the effects of cannabis and THC."
+	name = "\improper 石头先生 v1 神经软件"
+	desc = "一块包含石头先生1.0版的神经软件芯片，能模拟大麻和四氢大麻酚的效果。"
 	icon_state = "/obj/item/disk/neuroware/thc"
 	post_init_icon_state = "chip_donk"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC

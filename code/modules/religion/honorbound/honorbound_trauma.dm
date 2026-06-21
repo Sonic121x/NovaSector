@@ -3,15 +3,15 @@
 
 ///Honorbound prevents you from attacking the unready, the just, or the innocent
 /datum/brain_trauma/special/honorbound
-	name = "Dogmatic Compulsions"
-	desc = "Patient feels compelled to follow supposed \"rules of combat\"."
+	name = "教条强迫症"
+	desc = "患者感到被迫遵守所谓的\"战斗规则\"。"
 	scan_desc = "damaged frontal lobe"
 	symptoms = "Gains a strict code of honor that governs their behavior, \
 		forbidding them from attacking those who are unready, just, or innocent. \
 		This code often leads to strife, both external and internal, \
 		as the patient struggles to reconcile their beliefs with the realities of combat and survival."
-	gain_text = span_notice("You feel honorbound!")
-	lose_text = span_warning("You feel unshackled from your code of honor!")
+	gain_text = span_notice("你感到受荣誉约束！")
+	lose_text = span_warning("你感到从你的荣誉准则中解脱了！")
 	random_gain = FALSE
 	/// list of guilty people
 	var/list/guilty = list()
@@ -141,8 +141,8 @@
 		var/datum/job/job = guilty_conscience.assigned_role
 		if(job.departments_bitflags & (DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SECURITY))
 			return
-	to_chat(owner, span_notice("[user] is now considered guilty by [GLOB.deity] [reason]"))
-	to_chat(user, span_danger("[GLOB.deity] no longer considers you innocent!"))
+	to_chat(owner, span_notice("[user] 现在被 [GLOB.deity] 视为有罪 [reason]"))
+	to_chat(user, span_danger("[GLOB.deity] 不再视你为无辜者！"))
 	guilty += user
 
 ///Signal sent by the relay_attackers element. It makes the attacker guilty unless the damage was stamina or it was a shove.
@@ -165,7 +165,7 @@
 	if(honorbound_human == target_creature)
 		return TRUE //oh come on now
 	if(target_creature.IsSleeping() || target_creature.IsUnconscious() || HAS_TRAIT(target_creature, TRAIT_RESTRAINED))
-		to_chat(honorbound_human, span_warning("There is no honor in attacking the <b>unready</b>."))
+		to_chat(honorbound_human, span_warning("攻击<b>未准备就绪者</b>毫无荣誉可言。"))
 		return FALSE
 	//THE JUST (Applies over guilt except for med, so you best be careful!)
 	if(is_human)
@@ -173,14 +173,14 @@
 		var/datum/job/job = target_human.mind?.assigned_role
 		var/is_holy = target_human.mind?.holy_role
 		if(is_holy || (job?.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY))
-			to_chat(honorbound_human, span_warning("There is nothing righteous in attacking the <b>just</b>."))
+			to_chat(honorbound_human, span_warning("攻击<b>正义者</b>毫无公义可言。"))
 			return FALSE
 		if(job?.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL && !is_guilty)
-			to_chat(honorbound_human, span_warning("If you truly think this healer is not <b>innocent</b>, declare them guilty."))
+			to_chat(honorbound_human, span_warning("如果你真认为这位医者并非<b>无辜</b>，就宣告他们有罪。"))
 			return FALSE
 	//THE INNOCENT (human and borg exclusive)
 	if(!is_guilty && (is_human || issilicon(target_creature)))
-		to_chat(target_creature, span_warning("There is nothing righteous in attacking the <b>innocent</b>."))
+		to_chat(target_creature, span_warning("攻击<b>无辜者</b>毫无公义可言。"))
 		return FALSE
 	return TRUE
 
@@ -208,20 +208,20 @@
 		if(SCHOOL_HOLY, SCHOOL_MIME, SCHOOL_RESTORATION, SCHOOL_PSYCHIC)
 			return
 		if(SCHOOL_NECROMANCY, SCHOOL_FORBIDDEN, SCHOOL_SANGUINE)
-			to_chat(user, span_userdanger("[GLOB.deity] is enraged by your use of forbidden magic!"))
+			to_chat(user, span_userdanger("[GLOB.deity] 因你使用禁忌魔法而震怒！"))
 			lightningbolt(user)
 			user.mind.set_holy_role(NONE)
 			qdel(src)
 			owner.add_mood_event("honorbound", /datum/mood_event/banished) //add mood event after we already cleared our events
-			to_chat(user, span_userdanger("You have been excommunicated! You are no longer holy!"))
+			to_chat(user, span_userdanger("你已被逐出教门！你不再神圣！"))
 		else
-			to_chat(user, span_userdanger("[GLOB.deity] is angered by your use of [school == SCHOOL_UNSET ? "strange" : school] magic!"))
+			to_chat(user, span_userdanger("[GLOB.deity] 对你使用 [school == SCHOOL_UNSET ? "strange" : school] 魔法感到愤怒！"))
 			lightningbolt(user)
 			owner.add_mood_event("honorbound", /datum/mood_event/holy_smite)//permanently lose your moodlet after this
 
 /datum/action/cooldown/spell/pointed/declare_evil
-	name = "Declare Evil"
-	desc = "If someone is so obviously an evil of this world you can spend a huge amount of favor to declare them guilty."
+	name = "宣告邪恶"
+	desc = "若某人显然为此世之恶，你可消耗大量恩惠来宣告其有罪。"
 	button_icon_state = "declaration"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/honorbound.dmi'
 
@@ -277,12 +277,12 @@
 
 	if(!GLOB.religious_sect)
 		if(feedback)
-			to_chat(owner, span_warning("There are no deities around to approve your declaration!"))
+			to_chat(owner, span_warning("周围没有神明来批准你的宣告！"))
 		return FALSE
 
 	if(GLOB.religious_sect.favor < required_favor)
 		if(feedback)
-			to_chat(owner, span_warning("You need at least 150 favor to declare someone evil!"))
+			to_chat(owner, span_warning("你需要至少150点恩惠才能宣告某人为邪恶！"))
 		return FALSE
 
 	return TRUE
@@ -292,28 +292,28 @@
 	if(!.)
 		return FALSE
 	if(!isliving(cast_on))
-		to_chat(owner, span_warning("You can only declare living beings evil!"))
+		to_chat(owner, span_warning("你只能宣告活着的生灵为邪恶！"))
 		return FALSE
 
 	var/mob/living/living_cast_on = cast_on
 	if(living_cast_on.stat == DEAD)
-		to_chat(owner, span_warning("Declaration on the dead? Really?"))
+		to_chat(owner, span_warning("对死者宣告？认真的吗？"))
 		return FALSE
 
 	// sec and medical are immune to becoming guilty through attack
 	// (we don't check holy, because holy shouldn't be able to attack eachother anyways)
 	if(!living_cast_on.key || !living_cast_on.mind)
-		to_chat(owner, span_warning("There is no evil a vacant mind can do."))
+		to_chat(owner, span_warning("空洞的头脑无法行恶。"))
 		return FALSE
 
 	// also handles any kind of issues with self declarations
 	if(living_cast_on.mind.holy_role)
-		to_chat(owner, span_warning("Followers of [GLOB.deity] cannot be evil!"))
+		to_chat(owner, span_warning("[GLOB.deity] 的信徒不可能是邪恶的！"))
 		return FALSE
 
 	// cannot declare security as evil
 	if(living_cast_on.mind.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
-		to_chat(owner, span_warning("Members of security are uncorruptable! You cannot declare one evil!"))
+		to_chat(owner, span_warning("安保部门的成员是不可腐蚀的！你不能宣告他们为邪恶！"))
 		return FALSE
 
 	return TRUE

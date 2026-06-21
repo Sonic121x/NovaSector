@@ -1,7 +1,7 @@
 
 /obj/machinery/vending/cola
-	name = "\improper Robust Softdrinks"
-	desc = "A soft drinks vendor provided by Robust Industries, LLC."
+	name = "\improper 强健汽水"
+	desc = "由鲁棒工业有限责任公司提供的软饮料贩卖机。"
 	icon_state = "Cola_Machine"
 	panel_type = "panel2"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
@@ -90,8 +90,8 @@
 
 /obj/machinery/vending/cola/red
 	icon_state = "red_cola"
-	name = "\improper Space Cola Vendor"
-	desc = "It vends cola, in space."
+	name = "\improper 太空可乐饮料售货机"
+	desc = "太空也能卖可乐。"
 	product_slogans = "Cola in space!"
 	light_mask = "red_cola-light-mask"
 	light_color = COLOR_DARK_RED
@@ -99,8 +99,8 @@
 
 /obj/machinery/vending/cola/space_up
 	icon_state = "space_up"
-	name = "\improper Space-up! Vendor"
-	desc = "Indulge in an explosion of flavor."
+	name = "\improper 空喜饮料售货机"
+	desc = "尽情享受味觉盛宴。"
 	product_slogans = "Space-up! Like a hull breach in your mouth."
 	light_mask = "space_up-light-mask"
 	light_color = COLOR_DARK_MODERATE_LIME_GREEN
@@ -108,8 +108,8 @@
 
 /obj/machinery/vending/cola/starkist
 	icon_state = "starkist"
-	name = "\improper Star-kist Vendor"
-	desc = "The taste of a star in liquid form."
+	name = "\improper 星吻饮料售货机"
+	desc = "液态星星的味道。"
 	product_slogans = "Drink the stars! Star-kist!"
 	panel_type = "panel7"
 	light_mask = "starkist-light-mask"
@@ -125,16 +125,16 @@
 
 /obj/machinery/vending/cola/pwr_game
 	icon_state = "pwr_game"
-	name = "\improper Pwr Game Vendor"
-	desc = "You want it, we got it. Brought to you in partnership with Vlad's Salads."
+	name = "\improper 泡玩饮料售货机"
+	desc = "你想要的，我们都有。由弗拉德沙拉公司与我们联合出品。"
 	product_slogans = "The POWER that gamers crave! PWR GAME!"
 	light_mask = "pwr_game-light-mask"
 	light_color = COLOR_STRONG_VIOLET
 	allow_custom = FALSE
 
 /obj/machinery/vending/cola/shamblers
-	name = "\improper Shambler's Vendor"
-	desc = "~Shake me up some of that Shambler's Juice!~"
+	name = "\improper 空虚饮料售货机"
+	desc = "~给我摇起点空虚果汁!~"
 	icon_state = "shamblers_juice"
 	products = list(
 		/obj/item/reagent_containers/cup/soda_cans/cola = 10,

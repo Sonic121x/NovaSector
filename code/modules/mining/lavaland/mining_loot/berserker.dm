@@ -103,7 +103,7 @@
 	if(berserk_charge >= MAX_BERSERK_CHARGE)
 		var/datum/action/item_action/berserk_mode/ragemode = locate() in actions
 		to_chat(owner, span_cult_large("Berserk mode is fully charged."))
-		balloon_alert(owner, "berserk charged")
+		balloon_alert(owner, "狂暴充能完毕")
 		ragemode?.build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /obj/item/clothing/head/hooded/berserker/IsReflect()

@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/projectile/fireball
-	name = "Fireball"
-	desc = "This spell fires an explosive fireball at a target."
+	name = "Fireball-火球"
+	desc = "这个咒语向目标发射一个爆炸火球。"
 	button_icon_state = "fireball0"
 
 	sound = 'sound/effects/magic/fireball.ogg'

@@ -1,5 +1,5 @@
 /obj/item/stack/spacecash  //Don't use base space cash stacks. Any other space cash stack can merge with them, and could cause potential money duping exploits.
-	name = "space cash"
+	name = "太空钞票"
 	singular_name = "bill"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = null
@@ -25,7 +25,7 @@
 /obj/item/stack/spacecash/update_desc()
 	. = ..()
 	var/total_worth = get_item_credit_value()
-	desc = "It's worth [total_worth] [MONEY_NAME_AUTOPURAL(total_worth)] in total."
+	desc = "它总共价值 [total_worth] [MONEY_NAME_AUTOPURAL(total_worth)]。"
 
 /obj/item/stack/spacecash/get_item_credit_value()
 	return (amount*value)

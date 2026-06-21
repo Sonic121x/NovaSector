@@ -17,8 +17,8 @@
  */
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald
-	name = "herald"
-	desc = "A monstrous beast which fires deadly projectiles at threats and prey."
+	name = "预兆"
+	desc = "一种体型巨大的怪兽，它能发射致命的弹丸来对付威胁和猎物。"
 	icon = 'icons/mob/simple/lavaland/lavaland_elites_64.dmi'
 	icon_state = "herald"
 	icon_living = "herald"
@@ -71,27 +71,27 @@
 	playsound(src, 'sound/effects/magic/clockwork/invoke_general.ogg', 20, TRUE)
 
 /datum/action/innate/elite_attack/herald_trishot
-	name = "Triple Shot"
+	name = "三连发"
 	button_icon_state = "herald_trishot"
-	chosen_message = span_boldwarning("You are now firing three shots in your chosen direction.")
+	chosen_message = span_boldwarning("你现在将朝你选择的方向发射三发子弹。")
 	chosen_attack_num = HERALD_TRISHOT
 
 /datum/action/innate/elite_attack/herald_directionalshot
-	name = "Circular Shot"
+	name = "环形射击"
 	button_icon_state = "herald_directionalshot"
-	chosen_message = span_boldwarning("You are firing projectiles in all directions.")
+	chosen_message = span_boldwarning("你正在朝所有方向发射投射物。")
 	chosen_attack_num = HERALD_DIRECTIONALSHOT
 
 /datum/action/innate/elite_attack/herald_teleshot
-	name = "Teleport Shot"
+	name = "传送射击"
 	button_icon_state = "herald_teleshot"
-	chosen_message = span_boldwarning("You will now fire a shot which teleports you where it lands.")
+	chosen_message = span_boldwarning("你现在将发射一发子弹，它会将你传送到其落点。")
 	chosen_attack_num = HERALD_TELESHOT
 
 /datum/action/innate/elite_attack/herald_mirror
-	name = "Summon Mirror"
+	name = "召唤镜"
 	button_icon_state = "herald_mirror"
-	chosen_message = span_boldwarning("You will spawn a mirror which duplicates your attacks.")
+	chosen_message = span_boldwarning("你将生成一面镜子来复制你的攻击。")
 	chosen_attack_num = HERALD_MIRROR
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/OpenFire()
@@ -199,8 +199,8 @@
 	SET_FACTION_AND_ALLIES_FROM(my_mirror, src)
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/mirror
-	name = "herald's mirror"
-	desc = "This fiendish work of magic copies the herald's attacks.  Seems logical to smash it."
+	name = "先驱者之镜"
+	desc = "这个邪恶的魔法阵效仿了传令官的攻击方式。显然应该将其摧毁。"
 	health = 60
 	maxHealth = 60
 	icon_state = "herald_mirror"
@@ -225,7 +225,7 @@
 	. = ..()
 
 /obj/projectile/herald
-	name ="death bolt"
+	name ="死亡箭矢"
 	icon_state= "chronobolt"
 	damage = 20
 	armour_penetration = 60
@@ -249,7 +249,7 @@
 		rock_target.gets_drilled()
 
 /obj/projectile/herald/teleshot
-	name = "golden bolt"
+	name = "黄金箭矢"
 	damage = 0
 	color = rgb(255,255,102)
 
@@ -261,8 +261,8 @@
 //Herald's loot: Cloak of the Prophet
 
 /obj/item/clothing/neck/cloak/herald_cloak
-	name = "cloak of the prophet"
-	desc = "A cloak which protects you from the heresy of the world."
+	name = "先知法衣"
+	desc = "一件能保护你免受世间邪说影响的斗篷。"
 	icon = 'icons/obj/mining_zones/elite_trophies.dmi'
 	icon_state = "herald_cloak"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -285,7 +285,7 @@
 	. = ..()
 	if(prob(hit_reaction_chance))
 		return
-	owner.visible_message(span_danger("[owner]'s [src] emits a loud noise as [owner] is struck!"))
+	owner.visible_message(span_danger("[owner]的[src]在[owner]被击中时发出巨响！"))
 	var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
 	playsound(get_turf(owner), 'sound/effects/magic/clockwork/invoke_general.ogg', 20, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(reactionshot), owner), 1 SECONDS)

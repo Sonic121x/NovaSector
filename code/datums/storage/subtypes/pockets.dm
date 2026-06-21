@@ -14,9 +14,9 @@
 		return
 
 	if(quickdraw)
-		to_chat(user, span_notice("You discreetly slip [to_insert] into [parent]. Right-click to remove it."))
+		to_chat(user, span_notice("你悄悄地将[to_insert]塞进了[parent]。右键点击以取出。"))
 	else
-		to_chat(user, span_notice("You discreetly slip [to_insert] into [parent]."))
+		to_chat(user, span_notice("你悄悄地将[to_insert]塞进了[parent]。"))
 
 ///Small pockets
 /datum/storage/pockets/small

@@ -51,7 +51,7 @@
 		return
 
 	if (DOING_INTERACTION_WITH_TARGET(surgeon, victim))
-		surgeon.balloon_alert(surgeon, "already busy!")
+		surgeon.balloon_alert(surgeon, "正忙！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(pre_hit_callback && !pre_hit_callback.Invoke(victim))
@@ -74,7 +74,7 @@
 /// Chop one off
 /datum/component/amputating_limbs/proc/amputate(mob/living/surgeon, mob/living/carbon/victim, obj/item/bodypart/to_remove)
 	if(surgery_time > 0 SECONDS)
-		surgeon.visible_message(span_warning("[surgeon] is [surgery_verb] the [to_remove] off of [victim]!"))
+		surgeon.visible_message(span_warning("[surgeon]正在[surgery_verb][victim]的[to_remove]！"))
 	if (surgery_time > 0 && !do_after(surgeon, delay = surgery_time, target = victim))
 		return
 	to_remove.dismember()

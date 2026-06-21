@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/hypospray/medipen/universal
-	name = "universal medipen"
+	name = "通用医疗笔"
 	article = "a"
-	desc = "It's an auto-injecting syringe with a universal refill port on the side."
+	desc = "这是一支带有侧面通用补充口的自动注射器。"
 	icon = 'modular_nova/modules/lathe_medipens/icons/syringe.dmi'
 	lefthand_file = 'modular_nova/modules/lathe_medipens/icons/medical_lefthand.dmi'
 	righthand_file = 'modular_nova/modules/lathe_medipens/icons//medical_righthand.dmi'
@@ -35,8 +35,8 @@
 		reset_container_flags()
 
 /obj/item/reagent_containers/hypospray/medipen/universal/lowpressure
-	name = "universal low-pressure medipen"
-	desc = "It's a low-pressure auto-injecting syringe with a universal refill port on the side. WARNING: This device is designed to be operated in low-pressure environments only."
+	name = "通用低压医疗笔"
+	desc = "这是一支带有侧面通用补充口的低压自动注射器。警告：此设备设计为仅在低压环境下使用。"
 	icon_state = "medipen_red_unused"
 	base_icon_state = "medipen_red"
 	inhand_icon_state = "medipen_red"
@@ -72,7 +72,7 @@
 			to_chat(user,span_notice("You are too busy to use \the [src]!"))
 			return
 
-		to_chat(user,span_notice("You start manually releasing the low-pressure gauge..."))
+		to_chat(user,span_notice("你开始手动释放低压压力表..."))
 		if(!do_after(user, 10 SECONDS, affected_mob, interaction_key = DOAFTER_SOURCE_SURVIVALPEN))
 			return
 

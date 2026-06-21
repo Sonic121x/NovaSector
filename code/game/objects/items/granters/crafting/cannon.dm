@@ -1,6 +1,6 @@
 /obj/item/book/granter/crafting_recipe/trash_cannon
-	name = "diary of a demoted engineer"
-	desc = "A lost journal. The engineer seems very deranged about their demotion."
+	name = "被降职工程师的日记"
+	desc = "一本遗失的日志。这位工程师似乎对自己的降职感到非常狂乱。"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/trash_cannon,
 		/datum/crafting_recipe/trashball,
@@ -15,5 +15,5 @@
 	)
 
 /obj/item/book/granter/crafting_recipe/trash_cannon/recoil(mob/living/user)
-	to_chat(user, span_warning("The book turns to dust in your hands."))
+	to_chat(user, span_warning("这本书在你手中化为尘埃。"))
 	qdel(src)

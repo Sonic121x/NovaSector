@@ -4,12 +4,12 @@
 //Note: Everything in modules/clothing/spacesuits should have the entire suit grouped together.
 //      Meaning the the suit is defined directly after the corrisponding helmet. Just like below!
 /obj/item/clothing/head/helmet/space
-	name = "space helmet"
+	name = "太空头盔"
 	icon = 'icons/obj/clothing/head/spacehelm.dmi'
 	worn_icon = 'icons/mob/clothing/head/spacehelm.dmi'
 	icon_state = "spaceold"
 	inhand_icon_state = "space_helmet"
-	desc = "A special helmet with solar UV shielding to protect your eyes from harmful rays."
+	desc = "带有紫外线滤镜的特制头盔，它能够过滤掉有害射线，保护你的眼睛。"
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT | STACKABLE_HELMET_EXEMPT | HEADINTERNALS
 	armor_type = /datum/armor/helmet_space
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -78,8 +78,8 @@
 	acid = 70
 
 /obj/item/clothing/suit/space
-	name = "space suit"
-	desc = "A suit that protects against low pressure environments. Has a big 13 on the back."
+	name = "太空服"
+	desc = "防止低压环境的宇航服。后面有个大大的13。"
 	icon_state = "spaceold"
 	icon = 'icons/obj/clothing/suits/spacesuit.dmi'
 	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
@@ -175,7 +175,7 @@
 	if(!cell.use(THERMAL_REGULATOR_COST))
 		toggle_spacesuit(user, FALSE)
 		update_hud_icon(user)
-		to_chat(user, span_warning("The thermal regulator cuts off as [cell] runs out of charge."))
+		to_chat(user, span_warning("随着[cell]电量耗尽，热调节器关闭了。"))
 		return
 
 	// If we got here, it means thermals are on, the cell is in and the cell has
@@ -205,7 +205,7 @@
 // support for items that interact with the cell
 /obj/item/clothing/suit/space/get_cell(atom/movable/interface, mob/user)
 	if(istype(interface, /obj/item/inducer))
-		to_chat(user, span_alert("Error: unable to interface with [interface]."))
+		to_chat(user, span_alert("错误：无法与 [interface] 交互。"))
 		return null
 	return cell
 
@@ -238,7 +238,7 @@
 		([range_low]-[range_high] degrees celcius)") as null|num
 	if(deg_c && deg_c >= range_low && deg_c <= range_high)
 		temperature_setting = round(T0C + deg_c, 0.1)
-		to_chat(user, span_notice("You see the readout change to [deg_c] c."))
+		to_chat(user, span_notice("你看到读数变为[deg_c]摄氏度。"))
 	return ITEM_INTERACT_SUCCESS
 
 // object handling for accessing features of the suit
@@ -246,11 +246,11 @@
 	if(!cell_cover_open || !istype(I, /obj/item/stock_parts/power_store/cell))
 		return ..()
 	if(cell)
-		to_chat(user, span_warning("[src] already has a cell installed."))
+		to_chat(user, span_warning("[src]已经安装了一个电池。"))
 		return
 	if(user.transferItemToLoc(I, src))
 		cell = I
-		to_chat(user, span_notice("You successfully install \the [cell] into [src]."))
+		to_chat(user, span_notice("你成功将\the [cell]安装到[src]中。"))
 		update_hud_icon(user)
 		return
 
@@ -274,8 +274,8 @@
 /obj/item/clothing/suit/space/proc/remove_cell(mob/user)
 	if(!cell_cover_open || isnull(cell))
 		return
-	user.visible_message(span_notice("[user] removes \the [cell] from [src]!"), \
-		span_notice("You remove [cell]."))
+	user.visible_message(span_notice("[user]从[cell]中取出了\the [src]！"), \
+		span_notice("你取出了 [cell]。"))
 	cell.add_fingerprint(user)
 	user.put_in_hands(cell)
 	cell = null
@@ -301,7 +301,7 @@
 	// thermal protection value and should just return out early.
 	if(!thermal_on && (!cell || cell.charge < THERMAL_REGULATOR_COST))
 		if(toggler)
-			to_chat(toggler, span_warning("The thermal regulator on [src] has no charge."))
+			to_chat(toggler, span_warning("[src] 上的热调节器没有电量了。"))
 		return
 
 	thermal_on = !thermal_on
@@ -314,9 +314,9 @@
 	if(!toggler)
 		return
 	if(manual_toggle)
-		to_chat(toggler, span_notice("You turn [thermal_on ? "on" : "off"] [src]'s thermal regulator."))
+		to_chat(toggler, span_notice("你打开了[thermal_on ? "on" : "off"][src]的热量调节器。"))
 	else
-		to_chat(toggler, span_danger("You feel [src]'s thermal regulator switch [thermal_on ? "on" : "off"] by itself!"))
+		to_chat(toggler, span_danger("你感觉到[src]的热量调节器自行[thermal_on ? "on" : "off"]了！"))
 
 /obj/item/clothing/suit/space/ui_action_click(mob/user, actiontype)
 	toggle_spacesuit(user)
@@ -327,7 +327,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	if (user)
-		balloon_alert(user, "thermal regulator restrictions overridden")
+		balloon_alert(user, "热量调节器限制已覆盖")
 		user.log_message("emagged [src], overwriting thermal regulator restrictions.", LOG_GAME)
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -374,10 +374,10 @@
 /obj/item/clothing/head/helmet/space/suicide_act(mob/living/carbon/user)
 	var/datum/gas_mixture/environment = user.loc.return_air()
 	if(HAS_TRAIT(user, TRAIT_RESISTCOLD) || !environment || environment.return_temperature() >= user.get_body_temp_cold_damage_limit())
-		user.visible_message(span_suicide("[user] is beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正在用\the [user.p_them()]猛击[src]自己！看起来[user.p_theyre()]试图自杀！"))
 		return BRUTELOSS
 	user.say("You want proof? I'll give you proof! Here's proof of what'll happen to you if you stay here with your stuff!", forced = "space helmet suicide")
-	user.visible_message(span_suicide("[user] is removing [user.p_their()] helmet to make a point! Yo, holy shit, [user.p_they()] dead!")) //the use of p_they() instead of p_their() here is intentional
+	user.visible_message(span_suicide("[user] 正在摘下[user.p_their()]头盔以表明立场！哟，我靠，[user.p_they()]死了！")) //the use of p_they() instead of p_their() here is intentional
 	user.adjust_bodytemperature(-300)
 	user.apply_status_effect(/datum/status_effect/freon)
 	if(!ishuman(user))

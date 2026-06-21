@@ -3,7 +3,7 @@
 	/// These types will be ignored in event creation
 	abstract_type = /datum/exploration_event
 	///This name will show up in exploration list if it's repeatable
-	var/name = "Something interesting"
+	var/name = "有趣的东西"
 	/// encountered at least once
 	var/visited = FALSE
 	/// Modifies site scan results by these
@@ -49,7 +49,7 @@
 	/// Action text, can be further parametrized in get_action_text()
 	var/action_text = "encounter"
 	/// Description, can be further parametrized in get_description()
-	var/description = "You encounter a bug."
+	var/description = "你遇到了一个错误。"
 
 /// On exploration, only display our information with the act/ignore options
 /datum/exploration_event/simple/encounter(obj/item/exodrone/drone)

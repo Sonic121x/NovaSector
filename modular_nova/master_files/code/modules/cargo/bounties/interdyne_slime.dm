@@ -3,37 +3,37 @@
 
 /datum/bounty/item/interdyne_slime/New()
 	..()
-	description = "Our science leads are looking for [name]. A bounty has been offered for finding it, good luck."
+	description = "我们的科研主管正在寻找 [name]。已为此提供赏金，祝你好运。"
 	reward += rand(0, 4) * 500
 
 /datum/bounty/item/interdyne_slime/green
-	name = "Green Slime Extract"
+	name = "绿色史莱姆提取物"
 	wanted_types = list(/obj/item/slime_extract/green = TRUE)
 
 /datum/bounty/item/interdyne_slime/pink
-	name = "Pink Slime Extract"
+	name = "粉色史莱姆提取物"
 	wanted_types = list(/obj/item/slime_extract/pink = TRUE)
 
 /datum/bounty/item/interdyne_slime/gold
-	name = "Gold Slime Extract"
+	name = "金色史莱姆提取物"
 	wanted_types = list(/obj/item/slime_extract/gold = TRUE)
 
 /datum/bounty/item/interdyne_slime/oil
-	name = "Oil Slime Extract"
+	name = "油性史莱姆提取物"
 	wanted_types = list(/obj/item/slime_extract/oil = TRUE)
 
 /datum/bounty/item/interdyne_slime/black
-	name = "Black Slime Extract"
+	name = "黑色史莱姆提取物"
 	wanted_types = list(/obj/item/slime_extract/black = TRUE)
 
 /datum/bounty/item/interdyne_slime/lightpink
-	name = "Light Pink Slime Extract"
+	name = "浅粉色史莱姆提取物"
 	wanted_types = list(/obj/item/slime_extract/lightpink = TRUE)
 
 /datum/bounty/item/interdyne_slime/adamantine
-	name = "Adamantine Slime Extract"
+	name = "精金史莱姆提取物"
 	wanted_types = list(/obj/item/slime_extract/adamantine = TRUE)
 
 /datum/bounty/item/interdyne_slime/rainbow
-	name = "Rainbow Slime Extract"
+	name = "彩虹史莱姆提取物"
 	wanted_types = list(/obj/item/slime_extract/rainbow = TRUE)

@@ -1,7 +1,7 @@
 ///?
 /obj/structure/tank_holder
-	name = "tank holder"
-	desc = "A metallic frame that can hold tanks and extinguishers."
+	name = "气瓶固定器"
+	desc = "可以容纳气瓶和灭火器的金属框架。"
 	icon = 'icons/obj/canisters.dmi'
 	icon_state = "holder"
 
@@ -36,14 +36,14 @@
 /obj/structure/tank_holder/examine(mob/user)
 	. = ..()
 	if(anchored)
-		. += span_notice("It is <b>bolted</b> to the floor.")
+		. += span_notice("它被<b>螺栓</b>固定在地板上。")
 	else
-		. += span_notice("The <i>bolts</i> on the bottom are unsecured.")
+		. += span_notice("底部的<i>螺栓</i>没有固定。")
 	if(tank)
 		. += span_notice("It is holding \a [tank].")
 	else
-		. += span_notice("It is empty.")
-	. += span_notice("It is held together by some <b>screws</b>.")
+		. += span_notice("它是空的。")
+	. += span_notice("它由一些<b>螺丝</b>固定在一起。")
 
 /obj/structure/tank_holder/attackby(obj/item/W, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(user.combat_mode)
@@ -54,7 +54,7 @@
 			to_chat(user, span_notice("You successfully [anchored ? "unwrench" : "wrench"] [src]."))
 			set_anchored(!anchored)
 	else if(!SEND_SIGNAL(W, COMSIG_CONTAINER_TRY_ATTACH, src, user))
-		to_chat(user, span_warning("[W] does not fit in [src]."))
+		to_chat(user, span_warning("[W]无法放入[src]。"))
 	return
 
 /obj/structure/tank_holder/screwdriver_act(mob/living/user, obj/item/I)
@@ -80,7 +80,7 @@
 		return ..()
 	if(!Adjacent(user) || issilicon(user))
 		return ..()
-	to_chat(user, span_notice("You take [tank] from [src]."))
+	to_chat(user, span_notice("你从[src]中取出了[tank]。"))
 	add_fingerprint(user)
 	tank.add_fingerprint(user)
 	user.put_in_hands(tank)

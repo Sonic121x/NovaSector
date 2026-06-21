@@ -1,5 +1,5 @@
 /mob/living/basic/alien/sentinel
-	name = "alien sentinel"
+	name = "异形哨兵"
 	icon_state = "aliens"
 	icon_living = "aliens"
 	icon_dead = "aliens_dead"

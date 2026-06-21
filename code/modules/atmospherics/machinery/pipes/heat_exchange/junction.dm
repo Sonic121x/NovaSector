@@ -2,8 +2,8 @@
 	icon = 'icons/obj/pipes_n_cables/he-junction.dmi'
 	icon_state = "pipe11-3"
 
-	name = "junction"
-	desc = "A one meter junction that connects regular and heat-exchanging pipe."
+	name = "链接器"
+	desc = "一个连接常规管道和热交换管道的一米接头。"
 
 	minimum_temperature_difference = 300
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT

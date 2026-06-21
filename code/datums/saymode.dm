@@ -37,12 +37,12 @@
 /datum/saymode/changeling/can_be_used_by(mob/living/user)
 	if(user.mind?.has_antag_datum(/datum/antagonist/fallen_changeling))
 		// special message for you
-		to_chat(user, span_changeling("<b>We're cut off from the hivemind! We've lost everything! EVERYTHING!!</b>"))
+		to_chat(user, span_changeling("<b>我们与蜂巢思维断开了连接！我们失去了一切！一切！！</b>"))
 		return FALSE
 	if(!HAS_TRAIT(user, TRAIT_CHANGELING_HIVEMIND))
 		return FALSE
 	if(is_muted(user))
-		to_chat(user, span_warning("The poison in the air hinders our ability to interact with the hivemind."))
+		to_chat(user, span_warning("空气中的毒素阻碍了我们与蜂巢思维互动的能力。"))
 		return FALSE
 	return TRUE
 

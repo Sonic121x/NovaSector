@@ -15,7 +15,7 @@
 
 ///Very weak meteors, but may very rarely actually hit the shuttle!
 /datum/shuttle_event/simple_spawner/meteor/dust
-	name = "Dust Meteors! (Mostly Safe)"
+	name = "尘埃流星！（基本安全）"
 	event_probability = 2
 	activation_fraction = 0.1
 
@@ -31,7 +31,7 @@
 
 ///Okay this spawns a lot of really bad meteors, but they never hit the shuttle so it's perfectly safe (unless you go outside lol)
 /datum/shuttle_event/simple_spawner/meteor/safe
-	name = "Various Meteors! (Safe)"
+	name = "各种流星！（安全）"
 	event_probability = 5
 	activation_fraction = 0.1
 
@@ -42,7 +42,7 @@
 	/obj/effect/meteor/irradiated = 3, /obj/effect/meteor/bluespace = 2)
 
 /datum/shuttle_event/simple_spawner/meteor/dust/meaty
-	name = "Meaty Meteors! (Mostly Safe)"
+	name = "肉块流星！（基本安全）"
 	spawning_list = list(/obj/effect/meteor/meaty = 1)
 	spawning_flags = SHUTTLE_EVENT_MISS_SHUTTLE | SHUTTLE_EVENT_HIT_SHUTTLE
 

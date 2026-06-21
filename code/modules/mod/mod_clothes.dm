@@ -1,6 +1,6 @@
 /obj/item/clothing/head/mod
-	name = "MOD helmet"
-	desc = "A helmet for a MODsuit."
+	name = "模块服头盔"
+	desc = "模块服专用头盔。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-helmet"
 	base_icon_state = "helmet"
@@ -17,8 +17,8 @@
 	AddComponent(/datum/component/hat_stabilizer, loose_hat = TRUE)
 
 /obj/item/clothing/suit/mod
-	name = "MOD chestplate"
-	desc = "A chestplate for a MODsuit."
+	name = "模块服胸板"
+	desc = "模块服专用胸板。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-chestplate"
 	base_icon_state = "chestplate"
@@ -40,8 +40,8 @@
 	ADD_TRAIT(src, TRAIT_NO_SPEED_POTION, INNATE_TRAIT)
 
 /obj/item/clothing/gloves/mod
-	name = "MOD gauntlets"
-	desc = "A pair of gauntlets for a MODsuit."
+	name = "模块服手套"
+	desc = "模块服专用手套。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-gauntlets"
 	base_icon_state = "gauntlets"
@@ -59,8 +59,8 @@
 	ADD_TRAIT(src, TRAIT_NO_SPEED_POTION, INNATE_TRAIT)
 
 /obj/item/clothing/shoes/mod
-	name = "MOD boots"
-	desc = "A pair of boots for a MODsuit."
+	name = "模块服靴"
+	desc = "模块服专用靴。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-boots"
 	base_icon_state = "boots"
@@ -78,8 +78,8 @@
 	ADD_TRAIT(src, TRAIT_NO_SPEED_POTION, INNATE_TRAIT)
 
 /obj/item/clothing/glasses/mod
-	name = "MOD glasses"
-	desc = "A pair of glasses for a MODsuit."
+	name = "MOD眼镜"
+	desc = "一套用于MOD防护服的眼镜。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-glasses"
 	base_icon_state = "glasses"
@@ -94,8 +94,8 @@
 	ADD_TRAIT(src, TRAIT_NO_SPEED_POTION, INNATE_TRAIT)
 
 /obj/item/clothing/neck/mod
-	name = "MOD tie"
-	desc = "An tie for a MODsuit."
+	name = "MOD领带"
+	desc = "一条用于MOD防护服的领带。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-tie"
 	base_icon_state = "tie"

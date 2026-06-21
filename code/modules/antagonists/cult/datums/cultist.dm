@@ -1,5 +1,5 @@
 /datum/antagonist/cult
-	name = "Cultist"
+	name = "邪教徒"
 	roundend_category = "cultists"
 	antagpanel_category = "Cult"
 	antag_moodlet = /datum/mood_event/cult
@@ -44,8 +44,8 @@
 		return ..()
 
 	if(!silent)
-		owner.current.visible_message(span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just reverted to [owner.current.p_their()] old faith!"), ignored_mobs = owner.current)
-		to_chat(owner.current, span_userdanger("An unfamiliar white light flashes through your mind, cleansing the taint of the Geometer and all your memories as her servant."))
+		owner.current.visible_message(span_deconversion_message("[owner.current] 看起来[owner.current.p_theyve()]刚刚回归了[owner.current.p_their()]旧日信仰！"), ignored_mobs = owner.current)
+		to_chat(owner.current, span_userdanger("一道陌生的白光闪过你的脑海，净化了几何学者的污染以及你作为其仆从的所有记忆。"))
 		owner.current.log_message("has renounced the cult of Nar'Sie!", LOG_ATTACK, color=COLOR_CULT_RED)
 
 	for(var/datum/action/innate/cult/cult_buttons in owner.current.actions)
@@ -92,7 +92,7 @@
 
 /datum/antagonist/cult/on_mindshield(mob/implanter)
 	if(!silent)
-		to_chat(owner.current, span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
+		to_chat(owner.current, span_warning("你感觉到有什么东西在干扰你的精神控制，但你抵抗住了！"))
 	return
 
 /datum/antagonist/cult/admin_add(datum/mind/new_owner,mob/admin)
@@ -143,7 +143,7 @@
 	. += cult_give_item(/obj/item/melee/cultblade/dagger, H)
 	if(metal)
 		. += cult_give_item(/obj/item/stack/sheet/runed_metal/ten, H)
-	to_chat(owner, "These will help you start the cult on this station. Use them well, and remember - you are not the only one.</span>")
+	to_chat(owner, "这些将帮助你在空间站上建立邪教。善用它们，记住——你并非孤身一人。</span>")
 
 ///Attempts to make a new item and put it in a potential inventory slot in the provided mob.
 /datum/antagonist/cult/proc/cult_give_item(obj/item/item_path, mob/living/carbon/human/mob)
@@ -151,21 +151,21 @@
 	ADD_TRAIT(item, TRAIT_CONTRABAND, INNATE_TRAIT)
 	var/where = mob.equip_conspicuous_item(item)
 	if(!where)
-		to_chat(mob, span_userdanger("Unfortunately, you weren't able to get [item]. This is very bad and you should adminhelp immediately (press F1)."))
+		to_chat(mob, span_userdanger("不幸的是，你没能拿到[item]。这非常糟糕，你应该立即向管理员求助（按F1）。"))
 		return FALSE
 
-	to_chat(mob, span_danger("You have [item] in your [where]."))
+	to_chat(mob, span_danger("你的[item]里有[where]。"))
 	if(where == "backpack")
 		mob.back.atom_storage?.show_contents(mob)
 	return TRUE
 
 /datum/antagonist/cult/proc/admin_give_dagger(mob/admin)
 	if(!equip_cultist(metal = FALSE))
-		to_chat(admin, span_danger("Spawning dagger failed!"))
+		to_chat(admin, span_danger("生成匕首失败！"))
 
 /datum/antagonist/cult/proc/admin_give_metal(mob/admin)
 	if (!equip_cultist(metal = TRUE))
-		to_chat(admin, span_danger("Spawning runed metal failed!"))
+		to_chat(admin, span_danger("生成符文金属失败！"))
 
 /datum/antagonist/cult/proc/admin_take_all(mob/admin)
 	var/mob/living/current = owner.current
@@ -235,7 +235,7 @@
 	if(pass_role)
 		pass_role.Remove(owner.current)
 	owner.current.update_mob_action_buttons()
-	to_chat(owner.current, span_cult_large("You have been demoted from being the cult's Master, you are now a mere acolyte!"))
+	to_chat(owner.current, span_cult_large("你已被从教团大师的职位上降级，现在你只是一名普通的侍僧！"))
 	return TRUE
 
 ///If dead (and Narsie isn't summoned), will alert all Cultists of their death, sending their location out.
@@ -252,7 +252,7 @@
 	var/area/current_area = get_area(owner.current)
 	for(var/datum/mind/cult_mind as anything in cult_team.members)
 		SEND_SOUND(cult_mind, sound('sound/effects/hallucinations/veryfar_noise.ogg'))
-		to_chat(cult_mind, span_cult_large("The Cult's Master, [owner.current.name], has fallen in \the [current_area]!"))
+		to_chat(cult_mind, span_cult_large("教团的大师，[owner.current.name]，已在\the [current_area]陨落！"))
 
 /datum/antagonist/cult/get_preview_icon()
 	var/datum/universal_icon/icon = render_preview_outfit(preview_outfit)

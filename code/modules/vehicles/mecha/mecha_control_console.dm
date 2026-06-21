@@ -1,6 +1,6 @@
 /obj/machinery/computer/mecha
-	name = "exosuit control console"
-	desc = "Used to remotely locate or lockdown exosuits."
+	name = "机甲操作控制台"
+	desc = "用于远程定位或锁定机甲。"
 	icon_screen = "mecha"
 	icon_keyboard = "tech_key"
 	req_access = list(ACCESS_ROBOTICS)
@@ -59,7 +59,7 @@
 			var/obj/vehicle/sealed/mecha/our_mecha = our_mecha_tracker.chassis
 			if(trim(message) && our_mecha)
 				to_chat(our_mecha.occupants, message)
-				to_chat(usr, span_notice("Message sent."))
+				to_chat(usr, span_notice("消息已发送。"))
 				. = TRUE
 		if("shock")
 			var/obj/item/mecha_parts/mecha_tracking/our_mecha_tracker = locate(params["tracker_ref"])
@@ -74,8 +74,8 @@
 				. = TRUE
 
 /obj/item/mecha_parts/mecha_tracking
-	name = "exosuit tracking beacon"
-	desc = "Device used to transmit exosuit data."
+	name = "机甲追踪信标"
+	desc = "用于传输外骨骼数据的设备。"
 	icon = 'icons/obj/devices/new_assemblies.dmi'
 	icon_state = "motion2"
 	w_class = WEIGHT_CLASS_SMALL
@@ -120,12 +120,12 @@
 
 /obj/item/mecha_parts/mecha_tracking/try_attach_part(mob/user, obj/vehicle/sealed/mecha/mecha_to_attach, attach_right = FALSE)
 	if(!(mecha_to_attach.mecha_flags & flag_to_check))
-		to_chat(user, span_notice("[src] is incompatible with [mecha_to_attach]."))
+		to_chat(user, span_notice("[src] 与 [mecha_to_attach] 不兼容。"))
 		return
 
 	for(var/obj/item/mecha_parts/mecha_tracking/tracker as anything in mecha_to_attach.trackers)
 		if(tracker.flag_to_check == flag_to_check)
-			to_chat(user, span_notice("There already exists a version of [src] attached to [mecha_to_attach]."))
+			to_chat(user, span_notice("[mecha_to_attach] 上已存在一个 [src] 的版本。"))
 			return
 
 	if(!..())
@@ -153,7 +153,7 @@
 	recharging = FALSE
 
 /obj/item/mecha_parts/mecha_tracking/ai_control
-	name = "exosuit AI control beacon"
-	desc = "A device used to transmit exosuit data. Also allows active AI units to take control of said exosuit."
+	name = "机甲AI控制信标"
+	desc = "一种用于传输外骨骼机甲数据的装置。也允许AI单位主动控制机甲"
 	ai_beacon = TRUE
 	flag_to_check = BEACON_CONTROLLABLE

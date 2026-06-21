@@ -1,8 +1,8 @@
 GLOBAL_DATUM(cargo_sloth, /mob/living/basic/sloth)
 
 /mob/living/basic/sloth
-	name = "sloth"
-	desc = "An adorable, sleepy creature."
+	name = "树懒"
+	desc = "一种可爱、嗜睡的生物。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "sloth"
 	icon_living = "sloth"
@@ -69,13 +69,13 @@ GLOBAL_DATUM(cargo_sloth, /mob/living/basic/sloth)
 	return ..()
 
 /mob/living/basic/sloth/paperwork
-	name = "Paperwork"
-	desc = "Cargo's pet sloth. About as useful as the rest of the techs."
+	name = "文书工作"
+	desc = "货运的宠物树懒。和其他技术员一样有用。"
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/sloth/citrus
-	name = "Citrus"
+	name = "柑橘"
 	desc = "Cargo's pet sloth. She's dressed in a horrible sweater."
 	icon_state = "cool_sloth"
 	icon_living = "cool_sloth"

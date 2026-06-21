@@ -125,7 +125,7 @@
 	if(blood_flow > WOUND_MAX_BLOODFLOW)
 		blood_flow = WOUND_MAX_BLOODFLOW
 	if(blood_flow <= 0 && !QDELETED(src))
-		to_chat(victim, span_green("The holes on your [limb.plaintext_zone] have [!limb.can_bleed() ? "healed up" : "stopped bleeding"]!"))
+		to_chat(victim, span_green("你[limb.plaintext_zone]上的孔洞已经[!limb.can_bleed() ? "healed up" : "stopped bleeding"]！"))
 		qdel(src)
 
 /datum/wound/pierce/bleed/check_grab_treatments(obj/item/tool, mob/user)
@@ -169,7 +169,7 @@
 	playsound(user, 'sound/items/handling/surgery/cautery2.ogg', 75, TRUE)
 
 	var/bleeding_wording = (limb.can_bleed() ? "bleeding" : "holes")
-	user.visible_message(span_green("[user] cauterizes some of the [bleeding_wording] on [victim]."), span_green("You cauterize some of the [bleeding_wording] on [victim]."))
+	user.visible_message(span_green("[user] 烧灼了 [bleeding_wording] 身上的一些 [victim]。"), span_green("你烧灼了 [bleeding_wording] 身上的一些 [victim]。"))
 	victim.apply_damage(2 + severity, BURN, limb, wound_bonus = CANT_WOUND)
 	if(prob(30))
 		victim.emote("scream")
@@ -188,11 +188,11 @@
 	wound_series = WOUND_SERIES_FLESH_PUNCTURE_BLEED
 
 /datum/wound/pierce/get_limb_examine_description()
-	return span_warning("The flesh on this limb appears badly perforated.")
+	return span_warning("该肢体的皮肉看起来严重穿孔。")
 
 /datum/wound/pierce/bleed/moderate
-	name = "Minor Skin Breakage"
-	desc = "Patient's skin has been broken open, causing severe bruising and minor internal bleeding in affected area."
+	name = "轻微皮肤破损"
+	desc = "患者皮肤被破开，导致严重瘀伤和受影响区域的轻微内出血。"
 	treat_text = "Apply bandaging or suturing to the wound, make use of blood clotting agents, \
 		cauterization, or in extreme circumstances, exposure to extreme cold or vaccuum. \
 		Follow with food and a rest period."
@@ -231,8 +231,8 @@
 	return weight
 
 /datum/wound/pierce/bleed/moderate/needle_fail //for blood testamajig
-	name = "Pinprick Pierce"
-	desc = "Patient's skin has been deeply pierced, causing mild bleeding."
+	name = "针刺穿孔"
+	desc = "患者皮肤被深深刺穿，导致轻微出血。"
 	treat_text_short = "Apply bandaging or suturing."
 	examine_desc = "has a small red pinprick, gently bleeding"
 	initial_flow = 0.5 //very minor, mostly there as fluff and "dont do that idiot" reminder
@@ -247,8 +247,8 @@
 	abstract = FALSE
 
 /datum/wound/pierce/bleed/moderate/projectile
-	name = "Minor Skin Penetration"
-	desc = "Patient's skin has been pierced through, causing severe bruising and minor internal bleeding in affected area."
+	name = "轻微皮肤穿透"
+	desc = "患者皮肤被刺穿，导致严重瘀伤和受影响区域的轻微内出血。"
 	treat_text = "Apply bandaging or suturing to the wound, make use of blood clotting agents, \
 		cauterization, or in extreme circumstances, exposure to extreme cold or vaccuum. \
 		Follow with food and a rest period."
@@ -269,8 +269,8 @@
 	return weight
 
 /datum/wound/pierce/bleed/severe
-	name = "Open Stab Puncture"
-	desc = "Patient's internal tissue is penetrated, causing sizeable internal bleeding and reduced limb stability."
+	name = "开放性刺伤"
+	desc = "患者内部组织被穿透，导致大量内出血并降低肢体稳定性。"
 	treat_text = "Swiftly apply bandaging or suturing to the wound, make use of blood clotting agents or saline-glucose, \
 		cauterization, or in extreme circumstances, exposure to extreme cold or vaccuum. \
 		Follow with iron supplements and a rest period."
@@ -308,7 +308,7 @@
 	return weight
 
 /datum/wound/pierce/bleed/severe/projectile
-	name = "Open Bullet Puncture"
+	name = "开放性子弹穿孔"
 	examine_desc = "is pierced clear through, with bits of tissue obscuring the cleanly torn hole"
 	clot_rate = 0
 
@@ -321,8 +321,8 @@
 	return weight
 
 /datum/wound/pierce/bleed/severe/eye
-	name = "Eyeball Puncture"
-	desc = "Patient's eye has sustained extreme damage, causing severe bleeding from the ocular cavity."
+	name = "眼球穿刺"
+	desc = "患者眼球遭受严重损伤，导致眼腔严重出血。"
 	occur_text = "looses a violent spray of blood, revealing a crushed eyeball"
 	var/right_side = FALSE
 
@@ -364,8 +364,8 @@
 	return ..()
 
 /datum/wound/pierce/bleed/severe/magicalearpain //what happens if you try to listen to the heartbeat of a corrupt heart while not a heretic
-	name = "Bleeding Ears"
-	desc = "Patient's ears are bleeding heavily as blood seeps through the inner flesh of the ear through some unknown means."
+	name = "耳朵出血"
+	desc = "患者的耳朵正在大量出血，血液通过某种未知方式从耳朵内部组织渗出。"
 	examine_desc = "is covered in blood, black-purple fluid flowing from its ears"
 	occur_text = "is soaked as two spurts of black liquid spray from its ears"
 	internal_bleeding_chance = 0 // just your ears
@@ -382,8 +382,8 @@
 	. = ..()
 
 /datum/wound/pierce/bleed/critical
-	name = "Ruptured Cavity"
-	desc = "Patient's internal tissue and circulatory system is shredded, causing significant internal bleeding and damage to internal organs."
+	name = "腔体破裂"
+	desc = "患者的内部组织和循环系统被撕裂，导致严重内出血和内脏损伤。"
 	treat_text = "Immediately apply bandaging or suturing to the wound, make use of blood clotting agents or saline-glucose, \
 		cauterization, or in extreme circumstances, exposure to extreme cold or vaccuum. \
 		Follow with supervised resanguination."

@@ -1,5 +1,5 @@
-#define DEFAULT_UPLOAD_CATAGORY "Fiction"
-#define DEFAULT_SEARCH_CATAGORY "Any"
+#define DEFAULT_UPLOAD_CATAGORY "小说"
+#define DEFAULT_SEARCH_CATAGORY "任意"
 
 ///How many books should we load per page?
 #define BOOKS_PER_PAGE 18

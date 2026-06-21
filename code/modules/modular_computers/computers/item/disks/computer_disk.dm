@@ -46,12 +46,12 @@
 	return TRUE
 
 /obj/item/disk/computer/advanced
-	name = "advanced data disk"
+	name = "高级数据磁盘"
 	icon_state = "datadisk5"
 	max_capacity = 64
 
 /obj/item/disk/computer/super
-	name = "super data disk"
-	desc = "Removable disk used to store large amounts of data."
+	name = "超级数据磁盘"
+	desc = "用于存储大量数据的可移动磁盘。"
 	icon_state = "datadisk3"
 	max_capacity = 256

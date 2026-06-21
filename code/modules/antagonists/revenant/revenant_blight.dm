@@ -1,5 +1,5 @@
 /datum/disease/revblight
-	name = "Unnatural Wasting"
+	name = "不自然的浪费"
 	desc = "A strange condition which causes the victim to feel as if they were wasting away, despite being otherwise (almost) perfectly healthy."
 	form = "Condition"
 	max_stages = 5
@@ -22,7 +22,7 @@
 		affected_mob.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#1d2953")
 		if(affected_mob.dna && affected_mob.dna.species)
 			affected_mob.set_haircolor(null, override = TRUE)
-		to_chat(affected_mob, span_notice("You feel better."))
+		to_chat(affected_mob, span_notice("你感觉好多了。"))
 	..()
 
 
@@ -37,7 +37,7 @@
 			cure()
 			return FALSE
 		if(SPT_PROB(1.5 * stage, seconds_per_tick))
-			to_chat(affected_mob, span_revennotice("You suddenly feel [pick("sick and tired", "disoriented", "tired and confused", "nauseated", "faint", "dizzy")]..."))
+			to_chat(affected_mob, span_revennotice("你突然感到[pick("sick and tired", "disoriented", "tired and confused", "nauseated", "faint", "dizzy")]..."))
 			affected_mob.adjust_confusion(8 SECONDS)
 			need_mob_update += affected_mob.adjust_stamina_loss(20, updating_stamina = FALSE)
 			new /obj/effect/temp_visual/revenant(affected_mob.loc)
@@ -63,11 +63,11 @@
 		if(5)
 			if(!finalstage)
 				finalstage = TRUE
-				to_chat(affected_mob, span_revenbignotice("You feel like [pick("nothing's worth it anymore", "nobody ever needed your help", "nothing you did mattered", "everything you tried to do was worthless")]."))
+				to_chat(affected_mob, span_revenbignotice("你觉得[pick("nothing's worth it anymore", "nobody ever needed your help", "nothing you did mattered", "everything you tried to do was worthless")]。"))
 				affected_mob.adjust_stamina_loss(22.5 * seconds_per_tick, updating_stamina = FALSE)
 				new /obj/effect/temp_visual/revenant(affected_mob.loc)
 				if(affected_mob.dna && affected_mob.dna.species)
 					affected_mob.set_haircolor("#1d2953", override = TRUE)
-				affected_mob.visible_message(span_warning("[affected_mob] looks terrifyingly gaunt..."), span_revennotice("You suddenly feel like your skin is <i>wrong</i>..."))
+				affected_mob.visible_message(span_warning("[affected_mob]看起来瘦得吓人……"), span_revennotice("你突然觉得自己的皮肤<i>不对劲</i>……"))
 				affected_mob.add_atom_colour("#1d2953", TEMPORARY_COLOUR_PRIORITY)
 				addtimer(CALLBACK(src, PROC_REF(cure)), 10 SECONDS)

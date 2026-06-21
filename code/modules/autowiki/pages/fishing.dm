@@ -354,7 +354,7 @@
 		var/name = initial(type.name)
 		//snowflake case because the default holographic fish is called goldfish but we don't want to confuse readers.
 		if(type == /obj/item/fish/holo)
-			name = "holographic Fish"
+			name = "全息鱼"
 		output += include_template("Autowiki/FishScanRequirements", list(
 			"name" = full_capitalize(escape_value(name)),
 			"amount" = scan.required_atoms[type],

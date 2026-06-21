@@ -15,9 +15,9 @@
 		return
 	if(locate(/obj/item/storage/toolbox/emergency/turret/mag_fed) in src) //If loaded with a turret, stops more from being put in
 		if(user)
-			to_chat(user, span_warning("\The [I] is blocked from \the [src]'s loader!"))
+			to_chat(user, span_warning("\The [I] 被阻挡，无法装入\the [src]的装载器！"))
 		return FALSE
 	if(istype(I, /obj/item/storage/toolbox/emergency/turret/mag_fed) && length(loadedItems) >= 1)
 		if(user)
-			to_chat(user, span_warning("\The [I] needs an empty cannon!"))
+			to_chat(user, span_warning("\The [I] 需要一个空的气动炮！"))
 		return FALSE

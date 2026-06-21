@@ -88,7 +88,7 @@
 	var/obj/item/hat = remove_hat()
 	if(!hat)
 		return
-	hat.visible_message(span_danger("[hat] goes flying off [hatless]'s head!"))
+	hat.visible_message(span_danger("[hat]从[hatless]的头上飞了出去！"))
 	hat.throw_at(get_edge_target_turf(get_turf(hat), pick(GLOB.alldirs)), 2, 1, spin = TRUE)
 
 /datum/component/hat_stabilizer/proc/drop_hat(mob/hatless)
@@ -102,7 +102,7 @@
 	if(attached_hat)
 		base_examine += span_notice("There's \a [attached_hat] [loose_hat ? "loosely" : ""] placed on [parent].")
 	else
-		base_examine += span_notice("There's nothing placed on [parent]. Yet.")
+		base_examine += span_notice("base_examine += span_notice(\"[parent]上什么都没放。暂时还没有。\")")
 
 /datum/component/hat_stabilizer/proc/get_worn_overlays(atom/movable/source, list/overlays, mutable_appearance/standing, isinhands, icon_file)
 	SIGNAL_HANDLER

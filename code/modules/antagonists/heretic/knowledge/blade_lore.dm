@@ -51,7 +51,7 @@
 	ascension = /datum/heretic_knowledge/ultimate/blade_final
 
 /datum/heretic_knowledge/limited_amount/starting/base_blade
-	name = "The Cutting Edge"
+	name = "尖刃"
 	desc = "Opens up the Path of Blades to you. \
 		Allows you to transmute a knife with one bar of silver or titanium to create a Sundered Blade. \
 		You can create up to four at a time."
@@ -76,7 +76,7 @@
 	// We're officially behind them, apply effects
 	target.AdjustParalyzed(1.5 SECONDS)
 	target.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
-	target.balloon_alert(source, "backstab!")
+	target.balloon_alert(source, "背刺！")
 	playsound(target, 'sound/items/weapons/guillotine.ogg', 100, TRUE)
 
 /datum/heretic_knowledge/limited_amount/starting/base_blade/create_mark(mob/living/source, mob/living/target)
@@ -106,7 +106,7 @@
 #define BLOOD_FLOW_PER_SEVEIRTY -1
 
 /datum/heretic_knowledge/duel_stance
-	name = "Stance of the Torn Champion"
+	name = "撕裂冠王的姿态"
 	desc = "Grants resilience to blood loss from wounds and immunity to having your limbs dismembered. \
 		Additionally, when damaged below 50% of your maximum health, \
 		you gain increased resistance to gaining wounds and resistance to slowdown."
@@ -143,7 +143,7 @@
 
 	var/obj/item/held_item = source.get_active_held_item()
 	if(in_duelist_stance)
-		examine_list += span_warning("[source] looks unnaturally poised[held_item?.force >= 15 ? " and ready to strike out":""].")
+		examine_list += span_warning("[source] 看起来异常沉着[held_item?.force >= 15 ? " and ready to strike out":""]。")
 
 /datum/heretic_knowledge/duel_stance/proc/on_wound_gain(mob/living/source, datum/wound/gained_wound, obj/item/bodypart/limb)
 	SIGNAL_HANDLER
@@ -157,14 +157,14 @@
 	SIGNAL_HANDLER
 
 	if(in_duelist_stance && source.health > source.maxHealth * 0.5)
-		source.balloon_alert(source, "exited duelist stance")
+		source.balloon_alert(source, "退出了决斗者架势")
 		in_duelist_stance = FALSE
 		source.remove_traits(list(TRAIT_HARDLY_WOUNDED), type)
 		source.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown, TRUE)
 		return
 
 	if(!in_duelist_stance && source.health <= source.maxHealth * 0.5)
-		source.balloon_alert(source, "entered duelist stance")
+		source.balloon_alert(source, "进入了决斗者架势")
 		in_duelist_stance = TRUE
 		ADD_TRAIT(source, TRAIT_HARDLY_WOUNDED, type)
 		source.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown, TRUE)
@@ -297,7 +297,7 @@
 		equipped.demolition_mod = 2.5
 
 /datum/heretic_knowledge/spell/furious_steel
-	name = "Furious Steel"
+	name = "狂怒钢"
 	desc = "Grants you Furious Steel, a targeted spell. Using it will summon three \
 		orbiting blades around you. These blades will protect you from all attacks, \
 		but are consumed on use. Additionally, you can click to fire the blades \
@@ -308,7 +308,7 @@
 	cost = 2
 
 /datum/heretic_knowledge/ultimate/blade_final
-	name = "Maelstrom of Silver"
+	name = "闪银漩涡"
 	desc = "The ascension ritual of the Path of Blades. \
 		Bring 3 corpses with either no head or a split skull to a transmutation rune to complete the ritual. \
 		When completed, you will be surrounded in a constant, regenerating orbit of blades. \
@@ -320,7 +320,7 @@
 		I AM UNMATCHED! A STORM OF STEEL AND SILVER IS UPON US! WITNESS MY ASCENSION!"
 
 	ascension_achievement = /datum/award/achievement/misc/blade_ascension
-	announcement_text = "%SPOOKY% Master of blades, the Torn Champion's disciple, %NAME% has ascended! Their steel is that which will cut reality in a maelstom of silver! %SPOOKY%"
+	announcement_text = "%SPOOKY% 裂刃大师，撕裂冠军的门徒，%NAME% 已经飞升！他们的钢铁将在银色的漩涡中切割现实！%SPOOKY%"
 	announcement_sound = 'sound/music/antag/heretic/ascend_blade.ogg'
 
 /datum/heretic_knowledge/ultimate/blade_final/is_valid_sacrifice(mob/living/carbon/human/sacrifice)

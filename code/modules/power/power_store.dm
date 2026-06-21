@@ -9,7 +9,7 @@
  * Abstract type for a stock part that holds power.
  */
 /obj/item/stock_parts/power_store
-	name = "power store abstract"
+	name = "电源存储抽象部件"
 	/// The size icon overlay prefix.
 	var/cell_size_prefix = "cell"
 	///Current charge in cell units
@@ -193,7 +193,7 @@
 /obj/item/stock_parts/power_store/examine(mob/user)
 	. = ..()
 	if(corrupted)
-		. += span_danger("This [name] seems to be faulty!")
+		. += span_danger("这个[name]似乎有故障！")
 	else if(!isnull(charge_light_type))
 		. += "The charge meter reads [CEILING(percent(), 0.1)]%." //so it doesn't say 0% charge when the overlay indicates it still has charge
 
@@ -255,13 +255,13 @@
 	return TRUE
 
 /obj/item/stock_parts/power_store/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is licking the electrodes of [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正在舔舐[src]的电极！看起来[user.p_theyre()]试图自杀！"))
 	do_sparks(2, TRUE, user)
 	var/eating_success = do_after(user, 5 SECONDS, src)
 	if(QDELETED(user))
 		return SHAME
 	if(!eating_success || QDELETED(src) || charge == 0)
-		user.visible_message(span_suicide("[user] chickens out!"))
+		user.visible_message(span_suicide("[user]退缩了！"))
 		return SHAME
 	playsound(user, 'sound/effects/sparks/sparks1.ogg', charge / maxcharge)
 	var/damage = charge / (1 KILO JOULES)
@@ -270,7 +270,7 @@
 	charge = 0
 	update_appearance()
 	if(user.stat != DEAD)
-		to_chat(user, span_suicide("There's not enough charge in [src] to kill you!"))
+		to_chat(user, span_suicide("[src]里的电量不足以杀死你！"))
 		return SHAME
 	addtimer(CALLBACK(src, PROC_REF(gib_user), user, discharged_energy), 3 SECONDS)
 	return MANUAL_SUICIDE
@@ -305,16 +305,16 @@
 /// Handles letting an ethereal drain our charge into their stomach
 /obj/item/stock_parts/power_store/proc/ethereal_drain(mob/living/carbon/human/user, obj/item/organ/stomach/ethereal/used_stomach)
 	if(charge() <= 0)
-		balloon_alert(user, "out of charge!")
+		balloon_alert(user, "电量耗尽！")
 		return
 
 	var/obj/item/stock_parts/power_store/stomach_cell = used_stomach.cell
 	used_stomach.drain_time = world.time + ETHEREAL_CELL_DRAIN_TIME
-	user.visible_message(span_notice("[user] hovers their fingers above [src], arcs forming from its surface!")) // NOVA EDIT CHANGE - Ethereal Rework 2024 - ORIGINAL: to_chat(user, span_notice("You begin clumsily channeling power from [src] into your body."))
+	user.visible_message(span_notice("[user]将手指悬停在[src]上方，其表面形成了电弧！")) // NOVA EDIT CHANGE - Ethereal Rework 2024 - ORIGINAL: to_chat(user, span_notice("You begin clumsily channeling power from [src] into your body."))
 
 	while(do_after(user, ETHEREAL_CELL_DRAIN_TIME, target = src))
 		if(isnull(used_stomach) || (used_stomach != user.get_organ_slot(ORGAN_SLOT_STOMACH)))
-			balloon_alert(user, "stomach removed!?")
+			balloon_alert(user, "胃被移除了！？")
 			return
 
 		var/our_charge = charge()
@@ -326,10 +326,10 @@
 		update_appearance(UPDATE_OVERLAYS)
 
 		if(stomach_cell.used_charge() <= 0)
-			balloon_alert(user, "your charge is full!")
+			balloon_alert(user, "你的电量已满！")
 			return
 		if(charge() <= 0)
-			balloon_alert(user, "out of charge!")
+			balloon_alert(user, "电量耗尽！")
 			return
 
 /obj/item/stock_parts/power_store/blob_act(obj/structure/blob/B)

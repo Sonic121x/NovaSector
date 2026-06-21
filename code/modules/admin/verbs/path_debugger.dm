@@ -109,7 +109,7 @@ GLOBAL_DATUM_INIT(pathfind_dude, /obj/pathfind_guy, new())
 	return SSpathfinder.render_path_arrow(draw, direction)
 
 /datum/action/innate/path_debug/jps
-	name = "JPS Test"
+	name = "JPS 测试"
 	button_icon = 'icons/turf/debug.dmi'
 	button_icon_state = "jps"
 
@@ -126,16 +126,16 @@ GLOBAL_DATUM_INIT(pathfind_dude, /obj/pathfind_guy, new())
 
 /datum/action/innate/path_debug/jps/Activate()
 	. = ..()
-	max_distance = tgui_input_number(owner, "How far should we be allowed to try and path", "Max Distance", min_value = 1, default = 30)
-	min_distance = tgui_input_number(owner, "How close should we try and get to the target before stopping", "Min Distance", min_value = 0, default = 0)
-	allowed_on_space = tgui_alert(owner, "Are we allowed to path over space?", "Space Pathing", buttons = list("Yes", "No")) == "Yes"
-	var/text_blacklist = tgui_input_text(owner, "Enter any turf path you want to blacklist (You get one)", "Turf Blacklist")
+	max_distance = tgui_input_number(owner, "我们应该允许尝试寻路多远", "最大距离", min_value = 1, default = 30)
+	min_distance = tgui_input_number(owner, "在停止前，我们应该尝试接近目标到多近的距离", "最小距离", min_value = 0, default = 0)
+	allowed_on_space = tgui_alert(owner, "我们是否允许在太空上寻路？", "太空寻路", buttons = list("Yes", "No")) == "Yes"
+	var/text_blacklist = tgui_input_text(owner, "输入任何你想加入黑名单的地板路径（只能输入一个）", "地板黑名单")
 	if(text_blacklist)
 		blacklisted_turf = pick_closest_path(text_blacklist)
 	else
 		blacklisted_turf = null
 	diagonal_handling = DIAGONAL_DO_NOTHING
-	switch(tgui_input_list(owner, "Pick how you want to handle diagonal moves", "Diagonal Moves", list("Leave Them Be", "Drop All", "Drop Odd Ones")))
+	switch(tgui_input_list(owner, "选择你希望如何处理对角线移动", "对角线移动", list("Leave Them Be", "Drop All", "Drop Odd Ones")))
 		if("Leave Them Be")
 			diagonal_handling = DIAGONAL_DO_NOTHING
 		if("Drop All")
@@ -179,7 +179,7 @@ GLOBAL_DATUM_INIT(pathfind_dude, /obj/pathfind_guy, new())
 	update_visuals()
 
 /datum/action/innate/path_debug/sssp
-	name = "Pathmap Test"
+	name = "路径图测试"
 	button_icon = 'icons/turf/debug.dmi'
 	button_icon_state = "sssp"
 
@@ -195,9 +195,9 @@ GLOBAL_DATUM_INIT(pathfind_dude, /obj/pathfind_guy, new())
 
 /datum/action/innate/path_debug/sssp/Activate()
 	. = ..()
-	max_distance = tgui_input_number(owner, "How far should we be allowed to try and path", "Max Distance", min_value = 1, default = 30)
-	allowed_on_space = tgui_alert(owner, "Are we allowed to path over space?", "Space Pathing", buttons = list("Yes", "No")) == "Yes"
-	var/text_blacklist = tgui_input_text(owner, "Enter any turf path you want to blacklist (You get one)", "Turf Blacklist")
+	max_distance = tgui_input_number(owner, "我们应该被允许尝试寻路多远", "最大距离", min_value = 1, default = 30)
+	allowed_on_space = tgui_alert(owner, "我们是否允许在太空上寻路？", "太空寻路", buttons = list("Yes", "No")) == "Yes"
+	var/text_blacklist = tgui_input_text(owner, "输入你想要加入黑名单的任何地板路径（只能选一个）", "地板黑名单")
 	if(text_blacklist)
 		blacklisted_turf = pick_closest_path(text_blacklist)
 	else

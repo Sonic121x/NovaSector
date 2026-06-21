@@ -1,6 +1,6 @@
 /obj/machinery/vending/access/command
 	name = "\improper CommanDrobe"
-	desc = "A vending machine for specialised clothing for members of Command."
+	desc = "为指挥部门成员提供专用服装的自动售货机。"
 	product_ads = "File paperwork in style!;It's red so you can't see the blood!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
 	icon = 'modular_nova/modules/command_vendor/icons/vending.dmi'
 	icon_state = "commdrobe"

@@ -1,6 +1,6 @@
 /obj/item/implant/abductor
-	name = "recall implant"
-	desc = "Returns you to the mothership."
+	name = "召回植入物"
+	desc = "将你传送回母舰。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "implant"
 	var/obj/machinery/abductor/pad/home
@@ -10,11 +10,11 @@
 /obj/item/implant/abductor/activate()
 	. = ..()
 	if(on_cooldown)
-		to_chat(imp_in, span_warning("You must wait [timeleft(on_cooldown)*0.1] seconds to use [src] again!"))
+		to_chat(imp_in, span_warning("你必须等待[timeleft(on_cooldown)*0.1]秒才能再次使用[src]！"))
 		return
 
 	if(isnull(home) && !link_pad())
-		imp_in.balloon_alert(imp_in, "no teleport pads detected!")
+		imp_in.balloon_alert(imp_in, "未检测到传送台！")
 		return
 
 	home.Retrieve(imp_in)

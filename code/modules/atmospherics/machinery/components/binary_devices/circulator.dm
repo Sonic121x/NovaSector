@@ -2,8 +2,8 @@
 //node1, air1, network1 correspond to output
 
 /obj/machinery/atmospherics/components/binary/circulator
-	name = "circulator/heat exchanger"
-	desc = "A gas circulator pump and heat exchanger."
+	name = "循环器/换热器"
+	desc = "一台气体循环泵和热交换器。"
 	icon_state = "circ_base"
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 	vent_movement = VENTCRAWL_CAN_SEE
@@ -81,7 +81,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
 	if(!panel_open)
-		balloon_alert(user, "open the panel!")
+		balloon_alert(user, "打开面板！")
 		return
 	set_anchored(!anchored)
 	I.play_tool_sound(src)
@@ -140,16 +140,16 @@
 	if(generator)
 		disconnectFromGenerator()
 	mode = !mode
-	balloon_alert(user, "set to [mode ? "cold" : "hot"]")
+	balloon_alert(user, "设置为[mode ? "cold" : "hot"]模式")
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
 	if(!anchored)
-		balloon_alert(user, "anchor it down!")
+		balloon_alert(user, "将其固定住！")
 		return
 	toggle_panel_open()
 	I.play_tool_sound(src)
-	balloon_alert(user, "panel [panel_open ? "open" : "closed"]")
+	balloon_alert(user, "面板[panel_open ? "open" : "closed"]")
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)

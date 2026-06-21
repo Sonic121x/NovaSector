@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/list_pick
 	display_name = "List Pick"
-	desc = "A component that lets a user pick 1 element from a list. Returns the selected element."
+	desc = "一个允许用户从列表中选择1个元素的组件。返回所选元素。"
 	category = "List"
 
 	/// The data type of the input_list

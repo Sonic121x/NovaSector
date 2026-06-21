@@ -1,7 +1,7 @@
 ///MGS BOX!
 /datum/action/item_action/agent_box
-	name = "Deploy Box"
-	desc = "Find inner peace, here, in the box."
+	name = "部署箱子"
+	desc = "在箱子里寻找内心的平静。"
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	background_icon_state = "bg_agent"
 	overlay_icon_state = "bg_agent_border"
@@ -23,7 +23,7 @@
 		return FALSE
 	//Box closing from here on out.
 	if(!isturf(owner.loc)) //Don't let the player use this to escape mechs/welded closets.
-		to_chat(owner, span_warning("You need more space to activate this implant!"))
+		to_chat(owner, span_warning("你需要更多空间来激活这个植入物！"))
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, box_cooldown))
 		return FALSE
@@ -51,7 +51,7 @@
 	var/obj/structure/closet/cardboard/agent/box = owner.loc
 	owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
 	box.open()
-	owner.visible_message(span_suicide("[owner] falls out of [box]! It looks like [owner.p_they()] committed suicide!"))
+	owner.visible_message(span_suicide("[owner] 从 [box] 里掉了出来！看起来像是 [owner.p_they()] 自杀了！"))
 	owner.throw_at(get_turf(owner))
 	if(isliving(owner))
 		var/mob/living/suicider = owner

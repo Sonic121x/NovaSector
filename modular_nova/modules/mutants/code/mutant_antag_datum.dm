@@ -1,5 +1,5 @@
 /datum/antagonist/mutant
-	name = "\improper Mutated Abomination"
+	name = "\improper 变异憎恶体"
 	pref_flag = ROLE_MUTANT
 	roundend_category = "mutants"
 	antagpanel_category = "Mutant"

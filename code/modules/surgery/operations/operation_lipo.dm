@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/lipoplasty
-	name = "excise excess fat"
+	name = "切除多余脂肪"
 	rnd_name = "Lipoplasty (Excise Fat)"
-	desc = "Remove excess fat from a patient's body."
+	desc = "移除病人体内多余的脂肪。"
 	operation_flags = OPERATION_NOTABLE | OPERATION_AFFECTS_MOOD
 	implements = list(
 		TOOL_SAW = 1,
@@ -23,16 +23,16 @@
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
 
 /datum/surgery_operation/limb/lipoplasty/get_any_tool()
-	return "Any sharp edged item"
+	return "任何锋利的物品"
 
 /datum/surgery_operation/limb/lipoplasty/get_default_radial_image()
 	return image(/obj/item/food/meat/slab/human)
 
 /datum/surgery_operation/limb/lipoplasty/all_required_strings()
 	. = list()
-	. += "operate on chest (target chest)"
+	. += "对胸部进行手术（目标胸部）"
 	. += ..()
-	. += "the patient must have excess fat to remove"
+	. += "患者必须有可移除的多余脂肪"
 
 /datum/surgery_operation/limb/lipoplasty/tool_check(obj/item/tool)
 	// Require edged sharpness OR a tool behavior match
@@ -90,7 +90,7 @@
 	newmeat.reagents.add_reagent(/datum/reagent/consumable/nutriment, (removednutriment / /datum/reagent/consumable/nutriment::nutriment_factor))
 
 /datum/surgery_operation/limb/lipoplasty/mechanic
-	name = "engage expulsion valve" //gross
+	name = "启动排出阀" //gross
 	rnd_name = "Nutrient Reserve Expulsion (Excise Fat)"
 	implements = list(
 		TOOL_WRENCH = 1.05,

@@ -113,7 +113,7 @@
 /datum/dynamic_tier/greenshift
 	tier = DYNAMIC_TIER_GREEN
 	config_tag = "Greenshift"
-	name = "Greenshift"
+	name = "绿班"
 	weight = 2
 
 	advisory_report = "Advisory Level: <b>Green Star</b></center><BR>\
@@ -124,7 +124,7 @@
 /datum/dynamic_tier/low
 	tier = DYNAMIC_TIER_LOW
 	config_tag = "Low Chaos"
-	name = "Low Chaos"
+	name = "低混乱度"
 	weight = 8
 
 	advisory_report = "Advisory Level: <b>Yellow Star</b></center><BR>\
@@ -171,7 +171,7 @@
 /datum/dynamic_tier/lowmedium
 	tier = DYNAMIC_TIER_LOWMEDIUM
 	config_tag = "Low-Medium Chaos"
-	name = "Low-Medium Chaos"
+	name = "低-中混乱度"
 	weight = 46
 
 	advisory_report = "Advisory Level: <b>Red Star</b></center><BR>\
@@ -219,7 +219,7 @@
 /datum/dynamic_tier/mediumhigh
 	tier = DYNAMIC_TIER_MEDIUMHIGH
 	config_tag = "Medium-High Chaos"
-	name = "Medium-High Chaos"
+	name = "中-高混乱度"
 	weight = 36
 
 	advisory_report = "Advisory Level: <b>Black Orbit</b></center><BR>\
@@ -268,7 +268,7 @@
 /datum/dynamic_tier/high
 	tier = DYNAMIC_TIER_HIGH
 	config_tag = "High Chaos"
-	name = "High Chaos"
+	name = "高混乱度"
 	weight = 10
 
 	min_pop = 25

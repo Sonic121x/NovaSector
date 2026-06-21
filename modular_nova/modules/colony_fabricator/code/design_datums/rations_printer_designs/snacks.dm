@@ -1,5 +1,5 @@
 /datum/design/frontier_ration_gum
-	name = "Gum"
+	name = "口香糖"
 	id = "frontier_ration_gum"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/frontier_ration_gum_wakeup
-	name = "Activin 12 Hour Medicated Gum"
+	name = "活力素12小时药用口香糖"
 	id = "frontier_ration_gum_wakeup"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -21,7 +21,7 @@
 	)
 
 /datum/design/frontier_ration_energy_bar
-	name = "High Power Energy Bar"
+	name = "高能能量棒"
 	id = "frontier_ration_energy_bar"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/frontier_ration_ciggies
-	name = "Cigarettes"
+	name = "香烟"
 	id = "frontier_ration_ciggies"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -43,7 +43,7 @@
 	)
 
 /datum/design/frontier_ration_engine_fodder
-	name = "Engine Fodder"
+	name = "引擎饲料"
 	id = "frontier_ration_engine_fodder"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -54,7 +54,7 @@
 	)
 
 /datum/design/frontier_ration_fueljak_snack
-	name = "Fueljack's Snack"
+	name = "燃料杰克的零食"
 	id = "frontier_ration_fueljak_snack"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -65,7 +65,7 @@
 	)
 
 /datum/design/frontier_ration_ricecracker
-	name = "Rice Crackers"
+	name = "米饼"
 	id = "frontier_ration_ricecracker"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)

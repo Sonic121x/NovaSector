@@ -15,8 +15,8 @@
 */
 
 /obj/item/clothing/under/misc/nova/gear_harness
-	name = "gear harness"
-	desc = "A simple, inconspicuous harness replacement for a jumpsuit."
+	name = "装备背带"
+	desc = "一种简单、不显眼的背带，用于替代连体服。"
 	icon_state = "gear_harness"
 	body_parts_covered = NONE
 	attachment_slot_override = CHEST
@@ -31,32 +31,32 @@
 	allowed += GLOB.colonist_suit_allowed
 
 /obj/item/clothing/under/misc/nova/gear_harness/eve
-	name = "collection of leaves"
-	desc = "Three leaves, designed to cover the nipples and genetalia of the wearer. A foe so proud will first the weaker seek."
+	name = "树叶集"
+	desc = "三片树叶，设计用于遮盖穿着者的乳头和生殖器。如此骄傲的敌人，必先寻找弱者。"
 	icon_state = "eve"
 	body_parts_covered = CHEST|GROIN
 
 /obj/item/clothing/under/misc/nova/gear_harness/adam
-	name = "leaf"
-	desc = "A single leaf, designed to cover the genitalia of the wearer. Seek not temptation."
+	name = "树叶"
+	desc = "一片树叶，设计用于遮盖穿着者的生殖器。勿寻诱惑。"
 	icon_state = "adam"
 	body_parts_covered = GROIN
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/misc/nova/taccas
-	name = "tacticasual uniform"
-	desc = "A white wifebeater on top of some cargo pants. For when you need to carry various beers."
+	name = "战术休闲制服"
+	desc = "一件白色背心搭配一条货运裤。适合需要携带各种啤酒的时候。"
 	icon_state = "tac_s"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_BIG_LEGS_MASK
 
 /obj/item/clothing/under/misc/nova/mechanic
-	name = "mechanic's overalls"
-	desc = "An old-fashioned pair of brown overalls, along with assorted pockets and belt-loops."
+	name = "技工连体裤"
+	desc = "一条老式的棕色连体裤，配有各种口袋和腰带环。"
 	icon_state = "mechanic"
 
 /obj/item/clothing/under/misc/nova/utility
-	name = "general utility uniform"
-	desc = "A utility uniform worn by civilian-ranked crew."
+	name = "通用勤务制服"
+	desc = "平民级别船员穿着的勤务制服。"
 	icon_state = "utility"
 	body_parts_covered = CHEST|ARMS|GROIN|LEGS
 	can_adjust = FALSE

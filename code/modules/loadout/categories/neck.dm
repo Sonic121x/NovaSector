@@ -12,11 +12,11 @@
 	outfit.neck = item_path
 
 /datum/loadout_item/neck/scarf_greyscale
-	name = "Scarf (Colorable)"
+	name = "围巾（可着色）"
 	item_path = /obj/item/clothing/neck/scarf
 
 /datum/loadout_item/neck/greyscale_large
-	name = "Scarf (Large, Colorable)"
+	name = "围巾（大号，可着色）"
 	item_path = /obj/item/clothing/neck/large_scarf
 
 /* NOVA EDIT REMOVAL - Already exists in our loadout (/datum/loadout_item/neck/scarf_infinity)
@@ -26,15 +26,15 @@
 */ // NOVA REMOVAL END
 
 /datum/loadout_item/neck/necktie
-	name = "Necktie (Colorable)"
+	name = "领带（可着色）"
 	item_path = /obj/item/clothing/neck/tie
 
 /datum/loadout_item/neck/necktie_disco
-	name = "Necktie (Ugly)"
+	name = "领带（丑陋款）"
 	item_path = /obj/item/clothing/neck/tie/horrible
 
 /datum/loadout_item/neck/necktie_loose
-	name = "Necktie (Loose)"
+	name = "领带（宽松款）"
 	item_path = /obj/item/clothing/neck/tie/detective
 
 /* // NOVA EDIT REMOVAL START - Already exists in our loadout (/datum/loadout_item/neck/bowtie_black)

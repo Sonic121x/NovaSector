@@ -157,7 +157,7 @@
 	magnitizm.orbit(user, 20)
 
 /obj/effect/wizard_magnetism
-	name = "magnetic anomaly"
+	name = "磁力异常"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield2"
 	/// We need to orbit around someone.

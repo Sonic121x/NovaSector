@@ -87,13 +87,13 @@
 	var/obj/item/bodypart/limb = patient.get_bodypart(healed_zone)
 	if(isnull(limb))
 		if(!silent)
-			patient.balloon_alert(user, "no [parse_zone(healed_zone)]!")
+			patient.balloon_alert(user, "没有[parse_zone(healed_zone)]！")
 		return FALSE
 	if(patient.reagents.has_reagent(/datum/reagent/medicine/nanite_slurry, 2))
 		patient.balloon_alert(user, "patch already applied on patient!")
 		return FALSE
 	if(!IS_ROBOTIC_LIMB(limb))
-		patient.balloon_alert(user, "[limb.plaintext_zone] is not synthetic!")
+		patient.balloon_alert(user, "[limb.plaintext_zone]不是合成材料！")
 		return FALSE
 	return TRUE
 
@@ -126,7 +126,7 @@
 	if(!ishuman(target_mob))
 		return ..()
 	if(uses <= 0)
-		balloon_alert(user, "it's been used up!")
+		balloon_alert(user, "它已经用完了！")
 		return ..()
 	var/obj/item/organ/target_organ = select_organ(target_mob, user)
 	if(isnull(target_organ))
@@ -154,7 +154,7 @@
 		surgery_step_bitflags = SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_BONE_SAWED
 
 	if(!LIMB_HAS_SURGERY_STATE(part_to_repair, (surgery_step_bitflags)))
-		balloon_alert(user, "requires open surgery!")
+		balloon_alert(user, "需要开放手术！")
 		return
 
 	var/list/obj/item/organ/cyber_organs = list()
@@ -162,13 +162,13 @@
 		if(organ.organ_flags & ORGAN_ROBOTIC)
 			cyber_organs += organ
 	if(!length(cyber_organs))
-		balloon_alert(user, "lacks robotic organ!")
+		balloon_alert(user, "缺少机械器官！")
 		return
-	var/obj/item/organ/chosen_organ = tgui_input_list(user, "Repair which organ?", "Surgery", sort_list(cyber_organs))
+	var/obj/item/organ/chosen_organ = tgui_input_list(user, "修复哪个器官？", "手术", sort_list(cyber_organs))
 	// Brains specifically also require the bone saw, so check that as well.
 	if(chosen_organ.slot == ORGAN_SLOT_BRAIN)
 		if(!LIMB_HAS_SURGERY_STATE(part_to_repair, (SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_BONE_SAWED)))
-			balloon_alert(user, "requires the bones to be sawed open!")
+			balloon_alert(user, "需要先锯开骨骼！")
 			return
 
 	return chosen_organ
@@ -176,17 +176,17 @@
 ///Attempts to repair the given robotic organ, and returns TRUE if successful.
 /obj/item/cybernetic_repair_paste/proc/repair_organ(obj/item/organ/target_organ, mob/living/user, mob/living/target_mob)
 	if(uses <= 0)
-		balloon_alert(user, "it's been used up!")
+		balloon_alert(user, "它已经用完了！")
 		return
 	if(target_organ.damage <= NONE)
-		balloon_alert(user, "organ isn't broken!")
+		balloon_alert(user, "器官没有损坏！")
 		return
 	if(!do_after(user, 5 SECONDS, target_mob))
-		balloon_alert(user, "repair cancelled!")
+		balloon_alert(user, "修复已取消！")
 		return
 
 	target_organ.apply_organ_damage(-repair_amount, required_organ_flag = ORGAN_ROBOTIC)
-	balloon_alert(user, "organ repaired")
+	balloon_alert(user, "器官已修复")
 	to_chat(user, span_notice("You successfully repair [target_organ]."))
 	if(target_organ.damage  > NONE)
 		to_chat(user, "The [target_organ] still has some lasting system damage that can be cleared.")

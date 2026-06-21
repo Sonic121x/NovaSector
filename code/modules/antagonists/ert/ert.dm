@@ -1,10 +1,10 @@
 //Both ERT and DS are handled by the same datums since they mostly differ in equipment in objective.
 /datum/team/ert
-	name = "Emergency Response Team"
+	name = "应急反应部队"
 	var/datum/objective/mission //main mission
 
 /datum/antagonist/ert
-	name = "Emergency Response Officer"
+	name = "应急反应军官"
 	can_elimination_hijack = ELIMINATION_PREVENT
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
@@ -49,7 +49,7 @@
 	owner.current.fully_replace_character_name(owner.current.real_name,"[role] [pick(name_source)]")
 
 /datum/antagonist/ert/official
-	name = "CentCom Official"
+	name = "中央指挥官员"
 	show_name_in_check_antagonists = TRUE
 	var/datum/objective/mission
 	role = "Inspector"
@@ -111,7 +111,7 @@
 	outfit = /datum/outfit/centcom/ert/janitor/heavy
 
 /datum/antagonist/ert/deathsquad
-	name = "Deathsquad Trooper"
+	name = "死亡小队装甲兵"
 	outfit = /datum/outfit/centcom/death_commando
 	plasmaman_outfit = /datum/outfit/plasmaman/centcom_commander
 	role = "Trooper"
@@ -122,7 +122,7 @@
 	name_source = GLOB.commando_names
 
 /datum/antagonist/ert/deathsquad/leader
-	name = "Deathsquad Officer"
+	name = "死亡小队军官"
 	outfit = /datum/outfit/centcom/death_commando/officer
 	role = "Officer"
 
@@ -159,7 +159,7 @@
 	owner.set_holy_role(HOLY_ROLE_PRIEST)
 
 /datum/antagonist/ert/intern
-	name = "CentCom Intern"
+	name = "中央指挥部实习生"
 	outfit = /datum/outfit/centcom/centcom_intern
 	plasmaman_outfit = /datum/outfit/plasmaman/centcom_intern
 	random_names = FALSE
@@ -167,7 +167,7 @@
 	suicide_cry = "FOR MY INTERNSHIP!!"
 
 /datum/antagonist/ert/intern/leader
-	name = "CentCom Head Intern"
+	name = "中央指挥部实习主管"
 	outfit = /datum/outfit/centcom/centcom_intern/leader
 	random_names = FALSE
 	role = "Head Intern"
@@ -264,32 +264,32 @@
 	to_chat(owner,missiondesc)
 
 /datum/antagonist/ert/marine
-	name = "Marine Commander"
+	name = "海军陆战队指挥官"
 	outfit = /datum/outfit/centcom/ert/marine
 	role = "Commander"
 
 /datum/antagonist/ert/marine/security
-	name = "Marine Heavy"
+	name = "海军陆战队重型装备"
 	outfit = /datum/outfit/centcom/ert/marine/security
 	role = "Trooper"
 
 /datum/antagonist/ert/marine/engineer
-	name = "Marine Engineer"
+	name = "海军陆战队工程师"
 	outfit = /datum/outfit/centcom/ert/marine/engineer
 	role = "Engineer"
 
 /datum/antagonist/ert/marine/medic
-	name = "Marine Medic"
+	name = "海军陆战队医务兵"
 	outfit = /datum/outfit/centcom/ert/marine/medic
 	role = "Medical Officer"
 
 /datum/antagonist/ert/militia
-	name = "Frontier Militia"
+	name = "边疆民兵"
 	outfit = /datum/outfit/centcom/militia
 	role = "Volunteer"
 
 /datum/antagonist/ert/militia/general
-	name = "Frontier Militia General"
+	name = "边疆民兵将军"
 	outfit = /datum/outfit/centcom/militia/general
 	role = "General"
 

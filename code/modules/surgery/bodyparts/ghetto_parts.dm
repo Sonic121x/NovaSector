@@ -1,6 +1,6 @@
 /obj/item/bodypart/arm/left/ghetto
-	name = "left peg arm"
-	desc = "A roughly hewn wooden peg replaces where a forearm should be. It's simple and sturdy, clearly made in a hurry with whatever materials were at hand. Despite its crude appearance, it gets the job done."
+	name = "左木桩手臂"
+	desc = "一根粗削的木桩取代了本应是前臂的位置。它简单而坚固，显然是匆忙用随手可得的材料制成的。尽管外观粗糙，但足以完成工作。"
 	icon = 'icons/mob/human/species/ghetto.dmi'
 	icon_static = 'icons/mob/human/species/ghetto.dmi'
 	limb_id = BODYPART_ID_PEG
@@ -25,8 +25,8 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/arm/right/ghetto
-	name = "right peg arm"
-	desc = "A roughly hewn wooden peg replaces where a forearm should be. It's simple and sturdy, clearly made in a hurry with whatever materials were at hand. Despite its crude appearance, it gets the job done."
+	name = "右木桩手臂"
+	desc = "一根粗削的木桩取代了前臂应有的位置。它简单而坚固，显然是匆忙间用随手可得的材料制成的。尽管外观粗糙，但能派上用场。"
 	icon = 'icons/mob/human/species/ghetto.dmi'
 	icon_static = 'icons/mob/human/species/ghetto.dmi'
 	limb_id = BODYPART_ID_PEG
@@ -51,7 +51,7 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/leg/left/ghetto
-	name = "left peg leg"
+	name = "左木腿"
 	desc = "Fashioned from what looks suspiciously like a table leg, this peg leg brings a whole new meaning to 'dining on the go.' It's a bit wobbly and creaks ominously with every step, but at least you can claim to have the most well-balanced diet on the seven seas."
 	icon = 'icons/mob/human/species/ghetto.dmi'
 	icon_static = 'icons/mob/human/species/ghetto.dmi'
@@ -75,7 +75,7 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/leg/right/ghetto
-	name = "right peg leg"
+	name = "右木腿"
 	desc = "Fashioned from what looks suspiciously like a table leg, this peg leg brings a whole new meaning to 'dining on the go.' It's a bit wobbly and creaks ominously with every step, but at least you can claim to have the most well-balanced diet on the seven seas."
 	icon = 'icons/mob/human/species/ghetto.dmi'
 	icon_static = 'icons/mob/human/species/ghetto.dmi'

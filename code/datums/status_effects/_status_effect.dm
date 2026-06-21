@@ -241,8 +241,8 @@
 
 /// Alert base type for status effect alerts
 /atom/movable/screen/alert/status_effect
-	name = "Curse of Mundanity"
-	desc = "You don't feel any different..."
+	name = "平凡诅咒"
+	desc = "你感觉没什么不同..."
 	maptext_y = 2
 	/// The status effect we're linked to
 	var/datum/status_effect/attached_effect

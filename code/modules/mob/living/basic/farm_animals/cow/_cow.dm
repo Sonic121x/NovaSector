@@ -1,7 +1,7 @@
 //cow
 /mob/living/basic/cow
-	name = "cow"
-	desc = "Known for their milk, just don't tip them over."
+	name = "奶牛"
+	desc = "以牛奶闻名，但可别把它们打翻了。"
 	icon = 'icons/mob/simple/cows.dmi'
 	icon_state = "cow"
 	icon_living = "cow"
@@ -80,7 +80,7 @@
 
 /mob/living/basic/cow/tamed(mob/living/tamer, atom/food)
 	. = ..()
-	visible_message("[src] [tame_message] as it seems to bond with [tamer].", "You [self_tame_message], recognizing [tamer] as your new pal.")
+	visible_message("[src] [tame_message]，看起来它和[tamer]建立了联系。", "你[self_tame_message]，将[tamer]认作你的新伙伴。")
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/cow)
 
 /*

@@ -2,20 +2,20 @@
 	var/list/text = list()
 	var/mob/living/basic/cortical_borer/player_borer = borer.current
 	if(!player_borer)
-		text += span_redtext("[span_bold(borer.name)] had their body destroyed.")
+		text += span_redtext("[span_bold(borer.name)]的躯体已被摧毁。")
 		return text.Join("<br>")
 	if(borer.current.stat != DEAD)
 		text += "[span_bold(player_borer.name)] [span_greentext("survived")]"
 	else
 		text += "[span_bold(player_borer.name)] [span_redtext("died")]"
-	text += span_bold("[span_bold(player_borer.name)] produced [player_borer.children_produced] borers.")
+	text += span_bold("[span_bold(player_borer.name)] 繁殖了 [player_borer.children_produced] 只脑皮层钻虫。")
 	var/list/string_of_genomes = list()
 
 	for(var/evo_index in player_borer.past_evolutions)
 		var/datum/borer_evolution/evolution = player_borer.past_evolutions[evo_index]
 		string_of_genomes += evolution.name
 
-	text += "[span_bold(player_borer.name)] had the following evolutions: [english_list(string_of_genomes)]"
+	text += "[span_bold(player_borer.name)] 拥有以下进化：[english_list(string_of_genomes)]"
 	return text.Join("<br>")
 
 /proc/printborerlist(list/players,fleecheck)
@@ -28,7 +28,7 @@
 	return parts.Join("<br>")
 
 /datum/antagonist/cortical_borer
-	name = "Cortical Borer"
+	name = "脑皮层钻虫"
 	pref_flag = ROLE_BORER
 	show_in_antagpanel = TRUE
 	roundend_category = "cortical borers"
@@ -60,11 +60,11 @@
 	borers = new_team
 
 /datum/team/cortical_borers
-	name = "\improper Cortical Borers"
+	name = "\improper 脑皮层钻虫"
 
 /datum/team/cortical_borers/roundend_report()
 	var/list/parts = list()
-	parts += span_header("The [name] were:")
+	parts += span_header("[name] 的成员是：")
 	parts += printborerlist(members)
 	var/survival = FALSE
 	for(var/mob/living/basic/cortical_borer/check_borer in GLOB.cortical_borers)
@@ -72,25 +72,25 @@
 			continue
 		survival = TRUE
 	if(survival)
-		parts += span_greentext("Borers were able to survive the shift!")
+		parts += span_greentext("钻虫成功在本次轮班中存活！")
 	else
-		parts += span_redtext("Borers were unable to survive the shift!")
+		parts += span_redtext("钻虫未能在本次轮班中存活！")
 	if(GLOB.successful_egg_number >= GLOB.objective_egg_borer_number)
-		parts += span_greentext("Borers were able to produce enough eggs!")
+		parts += span_greentext("钻虫成功产出了足够的卵！")
 	else
-		parts += span_redtext("Borers were unable to produce enough eggs!")
+		parts += span_redtext("钻虫未能产出足够的卵！")
 	if(length(GLOB.willing_hosts) >= GLOB.objective_willing_hosts)
-		parts += span_greentext("Borers were able to gather enough willing hosts!")
+		parts += span_greentext("钻虫成功聚集了足够数量的自愿宿主！")
 	else
-		parts += span_redtext("Borers were unable to gather enough willing hosts!")
+		parts += span_redtext("钻虫未能聚集足够数量的自愿宿主！")
 	if(GLOB.successful_blood_chem >= GLOB.objective_blood_borer)
-		parts += span_greentext("Borers were able to learn enough chemicals through the blood!")
+		parts += span_greentext("钻虫成功通过血液学习了足够的化学物质！")
 	else
-		parts += span_redtext("Borers were unable to learn enough chemicals through the blood!")
+		parts += span_redtext("钻虫未能通过血液学习足够的化学物质！")
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/dynamic_ruleset/midround/from_ghosts/cortical_borer
-	name = "Cortical Borer Infestation"
+	name = "脑皮层钻虫感染"
 	config_tag = "Cortical Borers"
 	preview_antag_datum = /datum/antagonist/cortical_borer
 	midround_type = LIGHT_MIDROUND

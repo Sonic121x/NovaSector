@@ -2,36 +2,36 @@
 	group = "Canisters & Materials"
 
 /datum/supply_pack/materials/cardboard50
-	name = "50 Cardboard Sheets"
-	desc = "Create a bunch of boxes."
+	name = "50张纸板"
+	desc = "制作一堆盒子。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/cardboard/fifty)
 	crate_name = "cardboard sheets crate"
 
 /datum/supply_pack/materials/license50
-	name = "50 Empty License Plates"
-	desc = "Create a bunch of license plates."
+	name = "50张空车牌"
+	desc = "制作一堆车牌。"
 	cost = CARGO_CRATE_VALUE * 2  // 50 * 25 + 700 - 1000 = 950 credits profit
 	access_view = ACCESS_BRIG_ENTRANCE
 	contains = list(/obj/item/stack/license_plates/empty/fifty)
 	crate_name = "empty license plate crate"
 
 /datum/supply_pack/materials/plastic50
-	name = "50 Plastic Sheets"
-	desc = "Build a limitless amount of toys with fifty plastic sheets!"
+	name = "50块塑料板"
+	desc = "用50张塑料制作无限数量的玩具！"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/plastic/fifty)
 	crate_name = "plastic sheets crate"
 
 /datum/supply_pack/materials/sandstone30
-	name = "30 Sandstone Blocks"
+	name = "30块砂岩块"
 	desc = "Neither sandy nor stony, these thirty blocks will still get the job done."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/mineral/sandstone/thirty)
 	crate_name = "sandstone blocks crate"
 
 /datum/supply_pack/materials/wood50
-	name = "50 Wood Planks"
+	name = "50块木板"
 	desc = "Turn cargo's boring metal groundwork into beautiful \
 		panelled flooring and much more with fifty wooden planks!"
 	cost = CARGO_CRATE_VALUE * 4
@@ -39,8 +39,8 @@
 	crate_name = "wood planks crate"
 
 /datum/supply_pack/materials/foamtank
-	name = "Firefighting Foam Tank Crate"
-	desc = "Contains a tank of firefighting foam. Also known as \"plasmaman's bane.\""
+	name = "消防泡沫箱"
+	desc = "装有一罐消防泡沫。也被称为“等离子人的克星”。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/structure/reagent_dispensers/foamtank)
 	crate_name = "foam tank crate"
@@ -48,15 +48,15 @@
 
 /datum/supply_pack/materials/fueltank
 	name = "Fuel Tank Crate"
-	desc = "Contains a welding fuel tank. Caution, highly flammable."
+	desc = "包含一个焊接油箱。小心，高度易燃。"
 	cost = CARGO_CRATE_VALUE * 1.6
 	contains = list(/obj/structure/reagent_dispensers/fueltank)
 	crate_name = "fuel tank crate"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/materials/hightankfuel
-	name = "Large Fuel Tank Crate"
-	desc = "Contains a high-capacity fuel tank. Keep contents away from open flame."
+	name = "大型燃料箱板条箱"
+	desc = "包含一个高容量油箱。请将物品远离明火。"
 	cost = CARGO_CRATE_VALUE * 4
 	access_view = ACCESS_ENGINEERING
 	contains = list(/obj/structure/reagent_dispensers/fueltank/large)
@@ -65,7 +65,7 @@
 
 /datum/supply_pack/materials/watertank
 	name = "Water Tank Crate"
-	desc = "Contains a tank of dihydrogen monoxide... sounds dangerous."
+	desc = "装有一罐一氧化二氢.....听起来很危险。"
 	cost = CARGO_CRATE_VALUE * 1.2
 	contains = list(/obj/structure/reagent_dispensers/watertank)
 	crate_name = "water tank crate"
@@ -91,7 +91,7 @@
 			continue
 		var/datum/supply_pack/materials/pack = new
 		pack.name = "[name] Canister"
-		pack.desc = "Contains a canister of [name]."
+		pack.desc = "包含一气罐的[name]"
 		if(initial(gas.dangerous))
 			pack.access = ACCESS_ATMOSPHERICS
 			pack.access_view = ACCESS_ATMOSPHERICS

@@ -54,7 +54,7 @@
 			for(var/obj/structure/closet/crate/crate_to_check in area_turf)
 				if(istype(crate_to_check, /obj/structure/closet/crate/secure/bitrunning/encrypted))
 					encrypted_crate = crate_to_check
-					crate_to_check.desc += span_hypnophrase(" This feels like the crate we're looking for!")
+					crate_to_check.desc += span_hypnophrase("这感觉就是我们要找的板条箱！")
 				else
 					crate_list += crate_to_check
 				crate_to_check.name = "Unidentified Crate"

@@ -15,7 +15,7 @@
 	return ..()
 
 /datum/design/tongue/snail
-	name = "Snail Tongue"
+	name = "蜗牛舌头"
 	id = "snailtongue"
 	build_path = /obj/item/organ/tongue/snail
 	category = list(
@@ -24,7 +24,7 @@
 	)
 
 /datum/design/liver/snail
-	name = "Snail Liver"
+	name = "蜗牛肝脏"
 	id = "snailliver"
 	build_path = /obj/item/organ/liver/snail
 	category = list(
@@ -33,7 +33,7 @@
 	)
 
 /datum/design/heart/snail
-	name = "Snail Heart"
+	name = "蜗牛心脏"
 	id = "snailheart"
 	build_path = /obj/item/organ/heart/snail
 	category = list(

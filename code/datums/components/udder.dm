@@ -37,11 +37,11 @@
 	var/udder_filled_percentage = PERCENT(udder.reagents.total_volume / udder.reagents.maximum_volume)
 	switch(udder_filled_percentage)
 		if(0 to 10)
-			examine_list += span_notice("[parent]'s [udder.name] is dry.")
+			examine_list += span_notice("[parent]的[udder.name]是干的。")
 		if(11 to 99)
-			examine_list += span_notice("[parent]'s [udder.name] can be milked if you have something to contain it.")
+			examine_list += span_notice("[parent]的[udder.name]可以被挤奶，如果你有容器来装的话。")
 		if(100)
-			examine_list += span_notice("[parent]'s [udder.name] is round and full, and can be milked if you have something to contain it.")
+			examine_list += span_notice("[parent]的[udder.name]圆润饱满，可以被挤奶，如果你有容器来装的话。")
 
 
 ///signal called on parent being attacked with an item
@@ -62,7 +62,7 @@
  * While perhaps reagents created by udder component COULD be managed in the mob, it would be somewhat finnicky and I actually like the abstract udders.
  */
 /obj/item/udder
-	name = "udder"
+	name = "乳房"
 	///typepath of reagent produced by the udder
 	var/reagent_produced_typepath = /datum/reagent/consumable/milk
 	///how much the udder holds
@@ -112,10 +112,10 @@
 /obj/item/udder/proc/handle_consumption(atom/movable/food, mob/user)
 	if(locate(food.type) in src)
 		if(user)
-			user.balloon_alert(user, "already full!")
+			user.balloon_alert(user, "已经满了！")
 		return
 	playsound(udder_mob.loc,'sound/items/eatfood.ogg', 50, TRUE)
-	udder_mob.visible_message(span_notice("[udder_mob] gobbles up [food]!"), span_notice("You gobble up [food]!"))
+	udder_mob.visible_message(span_notice("[udder_mob]狼吞虎咽地吃掉了[food]！"), span_notice("你狼吞虎咽地吃掉了[food]！"))
 	var/atom/movable/final_food = food
 	if(isstack(food)) //if stack, only consume 1
 		var/obj/item/stack/food_stack = food
@@ -177,20 +177,20 @@
  */
 /obj/item/udder/proc/milk(obj/item/reagent_containers/cup/milk_holder, mob/user)
 	if(milk_holder.reagents.total_volume >= milk_holder.volume)
-		to_chat(user, span_warning("[milk_holder] is full."))
+		to_chat(user, span_warning("[milk_holder]已经满了。"))
 		return
 	var/transferred = reagents.trans_to(milk_holder, rand(5,10))
 	if(transferred)
-		user.visible_message(span_notice("[user] milks [udder_mob] using \the [milk_holder]."), span_notice("You milk [udder_mob] using \the [milk_holder]."))
+		user.visible_message(span_notice("[user] 用 \the [udder_mob] 给 [milk_holder] 挤奶。"), span_notice("你用 \the [udder_mob] 给 [milk_holder] 挤奶。"))
 	else
-		to_chat(user, span_warning("The udder is dry. Wait a bit longer..."))
+		to_chat(user, span_warning("乳房是干的。再等一会儿..."))
 
 /**
  * # gutlunch udder subtype
  */
 
 /obj/item/udder/gutlunch
-	name = "nutrient sac"
+	name = "营养囊"
 	require_consume_type = /obj/item/stack/ore
 	reagent_produced_typepath = /datum/reagent/medicine/mine_salve
 
@@ -206,7 +206,7 @@
 		on_generate_callback.Invoke(reagents.total_volume, reagents.maximum_volume)
 
 /obj/item/udder/raptor
-	name = "bird udder"
+	name = "鸟类乳房"
 
 /obj/item/udder/raptor/generate()
 	if(!prob(production_probability))

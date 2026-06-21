@@ -226,7 +226,7 @@
 		The Labyrinth will be Locked no more, and freedom will be ours! WITNESS US!"
 	required_atoms = list(/mob/living/carbon/human = 3)
 	ascension_achievement = /datum/award/achievement/misc/lock_ascension
-	announcement_text = "Delta-class dimensional anomaly detec%SPOOKY% Reality rended, torn. Gates open, doors open, %NAME% has ascended! Fear the tide! %SPOOKY%"
+	announcement_text = "检测到德尔塔级维度异常%SPOOKY% 现实被撕裂、扯开。大门敞开，门户洞开，%NAME% 已经飞升！恐惧这浪潮吧！%SPOOKY%"
 	announcement_sound = 'sound/music/antag/heretic/ascend_knock.ogg'
 
 /datum/heretic_knowledge/ultimate/lock_final/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
@@ -244,7 +244,7 @@
 		selected_atoms += body
 
 	if(!LAZYLEN(selected_atoms))
-		loc.balloon_alert(user, "ritual failed, not enough valid bodies!")
+		loc.balloon_alert(user, "仪式失败，有效尸体不足！")
 		return FALSE
 	return TRUE
 

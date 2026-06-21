@@ -1,5 +1,5 @@
 /datum/crafting_recipe/strobeshield
-	name = "Strobe Shield"
+	name = "闪光盾牌"
 	result = /obj/item/shield/riot/flash
 	reqs = list(
 		/obj/item/wallframe/flasher = 1,
@@ -14,7 +14,7 @@
 	return ..()
 
 /datum/crafting_recipe/improvisedshield
-	name = "Improvised Shield"
+	name = "简易盾牌"
 	result = /obj/item/shield/improvised
 	reqs = list(
 		/obj/item/stack/sheet/iron = 10,
@@ -24,7 +24,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/moonflowershield
-	name = "Moonflower Shield"
+	name = "月花盾牌"
 	result = /obj/item/shield/buckler/moonflower
 	reqs = list(
 		/obj/item/seeds/sunflower/moonflower = 3,
@@ -46,7 +46,7 @@
 	return ..()
 
 /datum/crafting_recipe/radio_containing/radiogloves
-	name = "Radio Gloves"
+	name = "无线电手套"
 	result = /obj/item/clothing/gloves/radio
 	time = 1.5 SECONDS
 	reqs = list(
@@ -58,7 +58,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/wheelchair
-	name = "Wheelchair"
+	name = "轮椅"
 	result = /obj/vehicle/ridden/wheelchair
 	reqs = list(
 		/obj/item/stack/sheet/iron = 4,
@@ -69,7 +69,7 @@
 	removed_mats = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/motorized_wheelchair
-	name = "Motorized Wheelchair"
+	name = "电动轮椅"
 	result = /obj/vehicle/ridden/wheelchair/motorized
 	reqs = list(
 		/obj/item/stack/sheet/iron = 10,
@@ -88,7 +88,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/secured_freezer_cabinet
-	name = "Secure Freezer Cabinet"
+	name = "安全冷冻柜"
 	result = /obj/structure/closet/secure_closet/freezer/empty
 	reqs = list(
 		/obj/item/stack/sheet/iron = 5,
@@ -99,7 +99,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/barbeque_grill
-	name = "Barbeque grill"
+	name = "烧烤架"
 	result = /obj/machinery/grill
 	reqs = list(
 		/obj/item/stack/sheet/iron = 5,
@@ -110,7 +110,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/secure_closet
-	name = "Secure Closet"
+	name = "安全储物柜"
 	result = /obj/structure/closet/secure_closet
 	reqs = list(
 		/obj/item/stack/sheet/iron = 5,
@@ -120,7 +120,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/trapdoor_kit
-	name = "Trapdoor Construction Kit"
+	name = "活板门建造套件"
 	result = /obj/item/trapdoor_kit
 	reqs = list(
 		/obj/item/stack/sheet/iron = 4,
@@ -134,7 +134,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/trapdoor_remote
-	name = "Trapdoor Remote"
+	name = "活板门遥控器"
 	result = /obj/item/trapdoor_remote/preloaded // since its useless without its assembly just require an assembly to craft it
 	reqs = list(
 		/obj/item/compact_remote = 1,
@@ -146,7 +146,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/mousetrap
-	name = "Mouse Trap"
+	name = "捕鼠夹"
 	result = /obj/item/assembly/mousetrap
 	time = 1 SECONDS
 	reqs = list(
@@ -156,7 +156,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/flashlight_eyes
-	name = "Flashlight Eyes"
+	name = "手电筒眼睛"
 	result = /obj/item/organ/eyes/robotic/flashlight
 	time = 1 SECONDS
 	reqs = list(
@@ -173,7 +173,7 @@
 	return ..()
 
 /datum/crafting_recipe/extendohand_r
-	name = "Extendo-Hand (Right Arm)"
+	name = "伸缩手（右臂）"
 	reqs = list(
 		/obj/item/bodypart/arm/right/robot = 1,
 		/obj/item/clothing/gloves/boxing = 1,
@@ -182,7 +182,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/extendohand_l
-	name = "Extendo-Hand (Left Arm)"
+	name = "伸缩手（左臂）"
 	reqs = list(
 		/obj/item/bodypart/arm/left/robot = 1,
 		/obj/item/clothing/gloves/boxing = 1,
@@ -191,7 +191,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/ore_sensor
-	name = "Ore Sensor"
+	name = "矿石传感器"
 	time = 3 SECONDS
 	reqs = list(
 		/datum/reagent/brimdust = 15,
@@ -202,7 +202,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/material_sniffer
-	name = "Material Sniffer"
+	name = "材料嗅探器"
 	time = 3 SECONDS
 	reqs = list(
 		/obj/item/analyzer = 1,
@@ -213,7 +213,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/pressureplate
-	name = "Pressure Plate"
+	name = "压力板"
 	result = /obj/item/pressure_plate
 	time = 0.5 SECONDS
 	reqs = list(
@@ -225,7 +225,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/rcl
-	name = "Makeshift Rapid Pipe Cleaner Layer"
+	name = "临时快速管道清洁层"
 	result = /obj/item/rcl/ghetto
 	time = 4 SECONDS
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
@@ -233,7 +233,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/ghettojetpack
-	name = "Improvised Jetpack"
+	name = "临时喷气背包"
 	result = /obj/item/tank/jetpack/improvised
 	time = 3 SECONDS
 	reqs = list(
@@ -246,7 +246,7 @@
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
 
 /datum/crafting_recipe/gripperoffbrand
-	name = "Improvised Gripper Gloves"
+	name = "临时抓握手套"
 	reqs = list(
 		/obj/item/clothing/gloves/fingerless = 1,
 		/obj/item/stack/medical/wrap/sticky_tape = 1,
@@ -255,7 +255,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/rebar_quiver
-	name = "Rebar Storage Quiver"
+	name = "钢筋存储箭袋"
 	result = /obj/item/storage/bag/rebar_quiver
 	time = 1 SECONDS
 	reqs = list(
@@ -281,7 +281,7 @@
 // NOVA EDIT REMOVAL END
 
 /datum/crafting_recipe/tether_anchor
-	name = "Tether Anchor"
+	name = "系绳锚点"
 	result = /obj/item/tether_anchor
 	reqs = list(
 		/obj/item/stack/sheet/iron = 5,
@@ -293,7 +293,7 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/morbid_surgical_toolset
-	name = "Morbid Surgical Toolset Implant"
+	name = "病态手术工具组植入物"
 	result = /obj/item/organ/cyberimp/arm/toolkit/surgery/cruel
 	reqs = list(
 		/obj/item/organ/cyberimp/arm/toolkit/surgery = 1
@@ -307,7 +307,7 @@
 	return ..()
 
 /datum/crafting_recipe/surgical_toolset
-	name = "Surgical Toolset Implant"
+	name = "手术工具组植入物"
 	result = /obj/item/organ/cyberimp/arm/toolkit/surgery
 	reqs = list(
 		/obj/item/organ/cyberimp/arm/toolkit/surgery/cruel = 1

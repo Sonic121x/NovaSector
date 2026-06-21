@@ -54,7 +54,7 @@
 		return
 	user.dropItemToGround(src, silent = TRUE)
 	if(throwforce && (HAS_TRAIT(user, TRAIT_PACIFISM)) || HAS_TRAIT(user, TRAIT_NO_THROWING))
-		to_chat(user, span_notice("You set [src] down gently on the ground."))
+		to_chat(user, span_notice("你轻轻地将 [src] 放在地上。"))
 		return
 	undo_messy()
 	do_messy(duration = 0.4 SECONDS)

@@ -1,9 +1,9 @@
 ///A single type of growth.
 /datum/micro_organism
 	///Name, shown on microscope
-	var/name = "Unknown fluids"
+	var/name = "未知的液体"
 	///Desc, shown by science goggles
-	var/desc = "White fluid that tastes like salty coins and milk"
+	var/desc = "一种带有咸硬币和牛奶味道的白色液体"
 
 ///Returns a short description of the cell line
 /datum/micro_organism/proc/get_details(show_details)
@@ -88,7 +88,7 @@
 	for(var/x in 1 to resulting_atom_count)
 		var/atom/thing = new resulting_atom(get_turf(vat))
 		ADD_TRAIT(thing, TRAIT_VATGROWN, "vatgrowing")
-		vat.visible_message(span_nicegreen("[thing] pops out of [vat]!"))
+		vat.visible_message(span_nicegreen("[thing]从[vat]里蹦了出来！"))
 		//We maybe add some color. the chance is static for now, but idewally we would be able to manipulate it in the future.
 		if(prob(CYTO_SHINY_CHANCE))
 			var/mob/living/basic/vat_creature = thing

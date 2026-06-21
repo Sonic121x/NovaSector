@@ -27,8 +27,8 @@
 /// Will allow other players to take your eyes out of your head, and slipping
 /// will cause your brain to fall out of your head.
 /datum/wound/cranial_fissure
-	name = "Cranial Fissure"
-	desc = "Patient's crown is agape, revealing severe damage to the skull."
+	name = "颅骨裂隙"
+	desc = "患者的颅顶裂开，暴露出颅骨的严重损伤。"
 	treat_text = "Surgical reconstruction of the skull is necessary."
 	treat_text_short = "Surgical reconstruction required."
 	examine_desc = "is split open"
@@ -79,8 +79,8 @@
 	brain.throw_at(get_step(source_turf, source.dir), 1, 1)
 
 	source.visible_message(
-		span_boldwarning("[source]'s brain spills right out of [source.p_their()] head!"),
-		span_userdanger("Your brain spills right out of your head!"),
+		span_boldwarning("[source]的大脑直接从[source.p_their()]脑袋里流了出来！"),
+		span_userdanger("你的大脑直接从你的脑袋里流了出来！"),
 	)
 
 /datum/wound/cranial_fissure/try_handling(mob/living/user)
@@ -95,19 +95,19 @@
 
 	var/obj/item/organ/eyes/eyes = victim.get_organ_by_type(/obj/item/organ/eyes)
 	if (isnull(eyes))
-		victim.balloon_alert(user, "no eyes to take!")
+		victim.balloon_alert(user, "没有眼睛可取！")
 		return TRUE
 
 	playsound(victim, 'sound/items/handling/surgery/organ2.ogg', 50, TRUE)
-	victim.balloon_alert(user, "pulling out eyes...")
+	victim.balloon_alert(user, "正在取出眼睛...")
 	user.visible_message(
-		span_boldwarning("[user] reaches inside [victim]'s skull..."),
+		span_boldwarning("[user]将手伸进[victim]的头骨里..."),
 		ignored_mobs = user
 	)
 	victim.show_message(
-		span_userdanger("[victim] starts to pull out your eyes!"),
+		span_userdanger("[victim]开始挖出你的眼睛！"),
 		MSG_VISUAL,
-		span_userdanger("An arm reaches inside your brain, and starts pulling on your eyes!"),
+		span_userdanger("一条手臂伸进你的大脑，开始拉扯你的眼睛！"),
 	)
 
 	if (!do_after(user, 10 SECONDS, victim, extra_checks = CALLBACK(src, PROC_REF(still_has_eyes), eyes)))
@@ -120,15 +120,15 @@
 
 	playsound(victim, 'sound/items/handling/surgery/organ1.ogg', 75, TRUE)
 	user.visible_message(
-		span_boldwarning("[user] rips out [victim]'s eyes!"),
-		span_boldwarning("You rip out [victim]'s eyes!"),
+		span_boldwarning("[user]扯出了[victim]的眼睛！"),
+		span_boldwarning("你扯出了[victim]的眼睛！"),
 		ignored_mobs = victim,
 	)
 
 	victim.show_message(
-		span_userdanger("[user] rips out your eyes!"),
+		span_userdanger("[user]扯出了你的眼睛！"),
 		MSG_VISUAL,
-		span_userdanger("You feel an arm yank from inside your head, as you feel something very important is missing!"),
+		span_userdanger("你感到一条手臂从你脑袋里猛地抽出，同时感觉某个非常重要的东西不见了！"),
 	)
 
 	return TRUE

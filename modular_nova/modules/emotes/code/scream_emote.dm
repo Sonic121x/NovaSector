@@ -38,7 +38,7 @@
 		var/mob/living/silicon/robot/robot_user = user
 
 		if(robot_user.cell?.charge < STANDARD_CELL_CHARGE * 0.2)
-			to_chat(robot_user , span_warning("Scream module deactivated. Please recharge."))
+			to_chat(robot_user , span_warning("尖啸模块已停用。请重新充能。"))
 			return FALSE
 		robot_user.cell.use(STANDARD_CELL_CHARGE * 0.2)
 	return ..()

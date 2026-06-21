@@ -1,7 +1,7 @@
 // .50 BMG (Sniper)
 
 /obj/projectile/bullet/p50
-	name =".50 BMG bullet"
+	name =".50 BMG子弹"
 	speed = 2.5
 	range = 400 // Enough to travel from one corner of the Z to the opposite corner and then some.
 	damage = 70
@@ -26,14 +26,14 @@
 	return ..()
 
 /obj/projectile/bullet/p50/surplus
-	name =".50 BMG surplus bullet"
+	name =".50 BMG 剩余子弹"
 	armour_penetration = 0
 	paralyze = 0
 	dismemberment = 0
 	catastropic_dismemberment = FALSE
 
 /obj/projectile/bullet/p50/disruptor
-	name =".50 BMG disruptor bullet"
+	name =".50 BMG 干扰弹"
 	damage_type = STAMINA
 	paralyze = 0
 	dismemberment = 0
@@ -53,7 +53,7 @@
 	empulse(target, emp_radius, emp_radius, emp_source = src)
 
 /obj/projectile/bullet/p50/incendiary
-	name =".50 BMG incendiary bullet"
+	name =".50 BMG 燃烧弹"
 	damage_type = BURN
 	paralyze = 0
 	dismemberment = 0
@@ -71,7 +71,7 @@
 		new /obj/effect/hotspot(nearby_turf)
 
 /obj/projectile/bullet/p50/penetrator
-	name = ".50 BMG penetrator round"
+	name = ".50 BMG 穿甲弹"
 	icon_state = "gauss"
 	damage = 60
 	range = 50
@@ -84,14 +84,14 @@
 	object_damage = 0
 
 /obj/projectile/bullet/p50/penetrator/shuttle //Nukeop Shuttle Variety
-	name = ".50 BMG aggression dissuasion round"
+	name = ".50 BMG 攻击劝阻弹"
 	icon_state = "gaussstrong"
 	damage = 25
 	speed = 3
 	range = 16
 
 /obj/projectile/bullet/p50/marksman
-	name = ".50 BMG marksman round"
+	name = ".50 BMG 神射手弹"
 	icon_state = null
 	damage = 50
 	range = 50
@@ -121,7 +121,7 @@
 // 20x138mm bullet (lahti-l39) //
 
 /obj/projectile/bullet/mm20x138
-	name ="20x138mm bullet"
+	name ="20x138mm 子弹"
 	speed = 3.5
 	range = 400 // same as sniper rifle
 	damage = 400

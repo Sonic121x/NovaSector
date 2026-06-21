@@ -1,7 +1,7 @@
 /datum/skill/language
-	name = "Language"
+	name = "语言"
 	title = "Linguist"
-	desc = "Do not limit yourself to one language. Languages are doors to different cultures."
+	desc = "不要将自己局限于一种语言。语言是通往不同文化的大门。"
 	modifiers = list(SKILL_SPEED_MODIFIER = list(1, 0.95, 0.9, 0.85, 0.75, 0.6, 0.5))
 	skill_item_path = /obj/item/clothing/accessory/language
 
@@ -26,11 +26,11 @@
 
 		learned_string = "[learned_string][separator][index > 1 ? " " : ""][initial(language.name)]"
 
-	to_chat(mind.current, span_nicegreen("I feel like my understanding of [learned_string] became a lot better!"))
+	to_chat(mind.current, span_nicegreen("我感觉我对[learned_string]的理解变得更好了！"))
 
 /obj/item/clothing/accessory/language
-	name = "language master badge"
-	desc = "A small medal showing your dedication to learning all languages across the galaxy"
+	name = "语言大师徽章"
+	desc = "一枚小小的奖章，彰显了你学习银河系所有语言的奉献精神"
 	icon_state = "bronze"
 
 /obj/item/clothing/accessory/language/Initialize(mapload)

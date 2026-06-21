@@ -1,20 +1,20 @@
 /obj/item/clothing/glasses/hud/gun_permit
-	name = "permit HUD"
-	desc = "A heads-up display that scans humanoids in view, and displays if their current ID possesses a firearms permit or not."
+	name = "许可证HUD"
+	desc = "一种平视显示器，可扫描视野内的人形生物，并显示其当前ID是否持有枪支许可证。"
 	icon = 'modular_nova/modules/company_imports/icons/hud_goggles.dmi'
 	worn_icon = 'modular_nova/modules/company_imports/icons/hud_goggles_worn.dmi'
 	icon_state = "permithud"
 	clothing_traits = list(TRAIT_PERMIT_HUD)
 
 /obj/item/clothing/glasses/hud/gun_permit/sunglasses
-	name = "permit HUD sunglasses"
-	desc = "A pair of sunglasses with a heads-up display that scans humanoids in view, and displays if their current ID possesses a firearms permit or not."
+	name = "许可证HUD太阳镜"
+	desc = "一副带有平视显示功能的太阳镜，可扫描视野内的人形生物，并显示其当前ID是否持有枪支许可证。"
 	flash_protect = FLASH_PROTECTION_FLASH
 	tint = 1
 
 /datum/design/permit_hud
-	name = "Gun Permit HUD glasses"
-	desc = "A heads-up display that scans humanoids in view, and displays if their current ID possesses a firearms permit or not."
+	name = "枪支许可证HUD眼镜"
+	desc = "一种平视显示器，可扫描视野内的人形生物，并显示其当前ID是否持有枪支许可证。"
 	id = "permit_glasses"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(

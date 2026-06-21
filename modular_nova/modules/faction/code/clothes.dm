@@ -1,3 +1,3 @@
 /obj/item/clothing/head/hats/hos/beret/faction
-	name = "faction beret"
-	desc = "A black beret with thick armor padding inside. Stylish and robust. There's an unknown insignia emblazoned on it."
+	name = "派系贝雷帽"
+	desc = "一顶内部带有厚重装甲衬垫的黑色贝雷帽。时尚且坚固。上面饰有一个未知的徽章。"

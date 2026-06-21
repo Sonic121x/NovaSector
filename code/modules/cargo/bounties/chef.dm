@@ -1,6 +1,6 @@
 /datum/bounty/item/chef/birthday_cake
-	name = "Birthday Cake"
-	description = "Nanotrasen's birthday is coming up! Ship Central Command a birthday cake to celebrate!"
+	name = "生日蛋糕"
+	description = "纳米传讯的生日快到了！给中央指挥部运送一个生日蛋糕来庆祝吧！"
 	reward = CARGO_CRATE_VALUE * 8
 	wanted_types = list(
 		/obj/item/food/cake/birthday = TRUE,
@@ -8,8 +8,8 @@
 	)
 
 /datum/bounty/reagent/chef/soup
-	name = "Soup"
-	description = "To quell the homeless uprising, Nanotrasen will be serving soup to all underpaid workers."
+	name = "汤"
+	description = "为了平息无家可归者的起义，纳米传讯将为所有低薪工人提供汤品。"
 
 /datum/bounty/reagent/chef/soup/New()
 	. = ..()
@@ -21,36 +21,36 @@
 	description += " Send us [required_volume] units of [initial(wanted_reagent.name)]."
 
 /datum/bounty/item/chef/popcorn
-	name = "Popcorn Bags"
-	description = "Upper management wants to host a movie night. Ship bags of popcorn for the occasion."
+	name = "爆米花袋"
+	description = "高层管理人员想举办一个电影之夜。为此运送一些袋装爆米花过来。"
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 3
 	wanted_types = list(/obj/item/food/popcorn = TRUE)
 
 /datum/bounty/item/chef/onionrings
-	name = "Onion Rings"
-	description = "Nanotrasen is remembering Saturn day. Ship onion rings to show the station's support."
+	name = "洋葱圈"
+	description = "纳米传讯正在纪念土星日。运送洋葱圈以示空间站的支持。"
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 3
 	wanted_types = list(/obj/item/food/onionrings = TRUE)
 
 /datum/bounty/item/chef/icecreamsandwich
-	name = "Ice Cream Sandwiches"
-	description = "Upper management has been screaming non-stop for ice cream sandwiches. Please send some."
+	name = "冰淇淋三明治"
+	description = "高层管理人员一直在不停地尖叫着要冰淇淋三明治。请送一些过来。"
 	reward = CARGO_CRATE_VALUE * 8
 	required_count = 3
 	wanted_types = list(/obj/item/food/icecreamsandwich = TRUE)
 
 /datum/bounty/item/chef/strawberryicecreamsandwich
-	name = "Strawberry Ice Cream Sandwiches"
-	description = "Upper management has been screaming non-stop for more flavourful ice cream sandwiches. Please send some."
+	name = "草莓冰淇淋三明治"
+	description = "高层管理人员一直在不停地尖叫着要更多口味的冰淇淋三明治。请送一些过来。"
 	reward = CARGO_CRATE_VALUE * 10
 	required_count = 3
 	wanted_types = list(/obj/item/food/strawberryicecreamsandwich = TRUE)
 
 /datum/bounty/item/chef/bread
-	name = "Bread"
-	description = "Problems with central planning have led to bread prices skyrocketing. Ship some bread to ease tensions."
+	name = "面包"
+	description = "中央计划出了问题，导致面包价格飞涨。运送一些面包来缓解紧张局势。"
 	reward = CARGO_CRATE_VALUE * 2
 	wanted_types = list(
 		/obj/item/food/bread = TRUE,
@@ -61,106 +61,106 @@
 	)
 
 /datum/bounty/item/chef/pie
-	name = "Pie"
-	description = "3.14159? No! CentCom management wants edible pie! Ship a whole one."
+	name = "馅饼"
+	description = "3.14159？不！中央司令部管理层想要能吃的派！运送一个完整的过来。"
 	reward = 3142 //Screw it I'll do this one by hand
 	wanted_types = list(/obj/item/food/pie = TRUE)
 
 /datum/bounty/item/chef/salad
-	name = "Salad or Rice Bowls"
-	description = "CentCom management is going on a health binge. Your order is to ship salad or rice bowls."
+	name = "沙拉或米饭碗"
+	description = "中央司令部管理层正在推行健康饮食。你的任务是运送沙拉或米饭碗。"
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 3
 	wanted_types = list(/obj/item/food/salad = TRUE)
 
 /datum/bounty/item/chef/carrotfries
-	name = "Carrot Fries"
-	description = "Night sight can mean life or death! A shipment of carrot fries is the order."
+	name = "胡萝卜油炸条"
+	description = "夜视能力可能意味着生与死！订单是运送一批胡萝卜薯条。"
 	reward = CARGO_CRATE_VALUE * 7
 	required_count = 3
 	wanted_types = list(/obj/item/food/carrotfries = TRUE)
 
 /datum/bounty/item/chef/superbite
-	name = "Super Bite Burger"
-	description = "Commander Tubbs thinks he can set a competitive eating world record. All he needs is a super bite burger shipped to him."
+	name = "巨亨堡"
+	description = "塔布斯指挥官认为他可以创造一项竞技饮食世界纪录。他只需要一个超级一口汉堡运送给他。"
 	reward = CARGO_CRATE_VALUE * 24
 	wanted_types = list(/obj/item/food/burger/superbite = TRUE)
 
 /datum/bounty/item/chef/poppypretzel
-	name = "Poppy Pretzel"
-	description = "Central Command needs a reason to fire their HR head. Send over a poppy pretzel to force a failed drug test."
+	name = "罂粟椒盐卷饼"
+	description = "中央司令部需要一个理由解雇他们的人力资源主管。送一个罂粟椒盐卷饼过来，好让他药检失败。"
 	reward = CARGO_CRATE_VALUE * 6
 	wanted_types = list(/obj/item/food/poppypretzel = TRUE)
 
 /datum/bounty/item/chef/cubancarp
-	name = "Cuban Carp"
-	description = "To celebrate the birth of Castro XXVII, ship one cuban carp to CentCom."
+	name = "古巴鲤鱼"
+	description = "为了庆祝卡斯特罗二十七世的诞生，运送一条古巴鲤鱼到中央司令部。"
 	reward = CARGO_CRATE_VALUE * 16
 	wanted_types = list(/obj/item/food/cubancarp = TRUE)
 
 /datum/bounty/item/chef/hotdog
-	name = "Hot Dog"
-	description = "Nanotrasen is conducting taste tests to determine the best hot dog recipe. Ship your station's version to participate."
+	name = "热狗"
+	description = "纳米传讯正在进行口味测试，以确定最佳热狗配方。运送你空间站的版本以参与评选。"
 	reward = CARGO_CRATE_VALUE * 16
 	wanted_types = list(/obj/item/food/hotdog = TRUE)
 
 /datum/bounty/item/chef/eggplantparm
-	name = "Eggplant Parmigianas"
-	description = "A famous singer will be arriving at CentCom, and their contract demands that they only be served Eggplant Parmigiana. Ship some, please!"
+	name = "撒有帕玛森奶酪的茄子"
+	description = "一位著名歌手将抵达中央司令部，他们的合同要求只供应茄子帕尔马干酪。请运送一些过来！"
 	reward = CARGO_CRATE_VALUE * 7
 	required_count = 3
 	wanted_types = list(/obj/item/food/eggplantparm = TRUE)
 
 /datum/bounty/item/chef/muffin
-	name = "Muffins"
-	description = "The Muffin Man is visiting CentCom, but he's forgotten his muffins! Your order is to rectify this."
+	name = "玛芬蛋糕"
+	description = "松饼人正在访问中央司令部，但他忘记带他的松饼了！你的任务是纠正这一点。"
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 3
 	wanted_types = list(/obj/item/food/muffin = TRUE)
 
 /datum/bounty/item/chef/chawanmushi
-	name = "Chawanmushi"
-	description = "Nanotrasen wants to improve relations with its sister company, Japanotrasen. Ship Chawanmushi immediately."
+	name = "日式蒸蛋"
+	description = "纳米传讯希望改善与其姊妹公司Japanotrasen的关系。立即运送茶碗蒸。"
 	reward = CARGO_CRATE_VALUE * 16
 	wanted_types = list(/obj/item/food/chawanmushi = TRUE)
 
 /datum/bounty/item/chef/kebab
-	name = "Kebabs"
-	description = "Remove all kebab from station you are best food. Ship to CentCom to remove from the premises."
+	name = "烤肉串"
+	description = "把空间站上所有的烤肉串都弄走，你们是最好的食物。运到中央司令部以将其移出此地。"
 	reward = CARGO_CRATE_VALUE * 7
 	required_count = 3
 	wanted_types = list(/obj/item/food/kebab = TRUE)
 
 /datum/bounty/item/chef/soylentgreen
-	name = "Soylent Green"
-	description = "CentCom has heard wonderful things about the product 'Soylent Green', and would love to try some. If you indulge them, expect a pleasant bonus."
+	name = "Soylent green-绿色食品"
+	description = "中央司令部听说了关于产品'索伦绿'的美妙传闻，很想尝尝。如果你能满足他们，预计会有不错的奖励。"
 	reward = CARGO_CRATE_VALUE * 10
 	wanted_types = list(/obj/item/food/soylentgreen = TRUE)
 
 /datum/bounty/item/chef/pancakes
-	name = "Pancakes"
-	description = "Here at Nanotrasen we consider employees to be family. And you know what families love? Pancakes. Ship a baker's dozen."
+	name = "煎饼"
+	description = "在纳米传讯，我们把员工视为家人。你知道家人喜欢什么吗？煎饼。运送一打（13个）。"
 	reward = CARGO_CRATE_VALUE * 10
 	required_count = 13
 	wanted_types = list(/obj/item/food/pancakes = TRUE)
 
 /datum/bounty/item/chef/nuggies
-	name = "Chicken Nuggets"
-	description = "The vice president's son won't shut up about chicken nuggies. Would you mind shipping some?"
+	name = "鸡块"
+	description = "副总裁的儿子不停地念叨鸡块。你能运送一些过来吗？"
 	reward = CARGO_CRATE_VALUE * 8
 	required_count = 6
 	wanted_types = list(/obj/item/food/nugget = TRUE)
 
 /datum/bounty/item/chef/corgifarming //Butchering is a chef's job.
-	name = "Corgi Hides"
-	description = "Admiral Weinstein's space yacht needs new upholstery. A dozen Corgi furs should do just fine."
+	name = "柯基毛皮"
+	description = "温斯坦上将的太空游艇需要新的内饰。一打柯基毛皮应该正好。"
 	reward = CARGO_CRATE_VALUE * 60 //that's a lot of dead dogs
 	required_count = 12
 	wanted_types = list(/obj/item/stack/sheet/animalhide/corgi = TRUE)
 
 /datum/bounty/item/chef/pickles
-	name = "Pickles"
-	description = "The food control department lacks enough pickles to properly evaluate some of the different types of hard liquor."
+	name = "柯基毛皮"
+	description = "食品控制部门没有足够的腌黄瓜来恰当地评估某些不同类型的烈酒。"
 	reward = CARGO_CRATE_VALUE * 10
 	required_count = 7
 	wanted_types = list(/obj/item/food/pickle = TRUE)

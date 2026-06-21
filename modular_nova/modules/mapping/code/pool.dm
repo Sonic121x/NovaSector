@@ -8,7 +8,7 @@
 */
 
 /obj/effect/overlay/water
-	name = "water"
+	name = "水"
 	icon = 'modular_nova/modules/mapping/icons/unique/pool.dmi'
 	icon_state = "bottom"
 	density = FALSE
@@ -27,8 +27,8 @@
  * Use this for indoors.
  */
 /turf/open/water/overlay
-	name = "shallow water"
-	desc = "A natural body of shallow water."
+	name = "浅水"
+	desc = "一片天然的浅水水域。"
 	icon = 'modular_nova/modules/mapping/icons/unique/pool.dmi'
 	icon_state = "rocky"
 	baseturfs = /turf/open/water/overlay
@@ -64,7 +64,7 @@
 	swimmer.add_mood_event("hotspring", /datum/mood_event/hotspring)
 
 /datum/mood_event/hotspring
-	description = span_nicegreen("I recently had a paddle in some nice warm water! It was so refreshing!\n")
+	description = span_nicegreen("我最近在温暖舒适的水里划了划水！真是太提神了！\n")
 	mood_change = 4
 	timeout = 20 MINUTES
 
@@ -81,8 +81,8 @@
  * Hotpsrings! They give a positive mood event.
  */
 /turf/open/water/overlay/hotspring
-	name = "hotspring"
-	desc = "A warm, steamy swimming pool."
+	name = "温泉"
+	desc = "一个温暖、冒着蒸汽的游泳池。"
 	icon_state = "hotspring_tile"
 	baseturfs = /turf/open/floor/plating
 	planetary_atmos = FALSE
@@ -95,8 +95,8 @@
 	planetary_atmos = TRUE
 
 /turf/open/water/overlay/hotspring/planet
-	name = "natural hotspring"
-	desc = "A natural body of water kept warm by geothermal activity."
+	name = "天然温泉"
+	desc = "一片由地热活动保持温暖的天然水域。"
 	icon_state = "hotspring"
 	baseturfs = /turf/open/water/overlay/hotspring/planet
 // Use this for indoors. It has a roof!

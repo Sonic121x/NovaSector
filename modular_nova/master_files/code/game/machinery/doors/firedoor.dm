@@ -4,11 +4,11 @@
 
 /obj/machinery/door/firedoor/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click the door to use the manual override.")
+	. += span_notice("Alt-点击此门以使用手动覆盖。")
 
 /obj/machinery/door/proc/try_manual_override(mob/user)
 	if(density && !welded && !operating)
-		balloon_alert(user, "opening...")
+		balloon_alert(user, "正在打开...")
 		if(do_after(user, 5 SECONDS, target = src))
 			try_to_crowbar(null, user)
 			return TRUE
@@ -33,8 +33,8 @@
 	alarm_type = FIRELOCK_ALARM_TYPE_GENERIC
 
 /obj/machinery/door/firedoor/solid
-	name = "solid emergency shutter"
-	desc = "Emergency air-tight shutter, capable of sealing off breached areas. It has a mechanism to open it with just your hands."
+	name = "实体应急百叶窗"
+	desc = "应急气密百叶窗，能够封闭破损区域。它有一个可以用手打开的机制。"
 	icon = 'modular_nova/modules/aesthetics/firedoor/icons/firedoor.dmi'
 	glass = FALSE
 

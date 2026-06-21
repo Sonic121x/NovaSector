@@ -1,7 +1,7 @@
 // Tomato
 /obj/item/seeds/tomato
-	name = "tomato seed pack"
-	desc = "These seeds grow into tomato plants."
+	name = "番茄种子包"
+	desc = "能长成番茄植株的种子。"
 	icon_state = "seed-tomato"
 	species = "tomato"
 	plantname = "Tomato Plants"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/tomato
 	seed = /obj/item/seeds/tomato
-	name = "tomato"
-	desc = "I say to-mah-to, you say tom-mae-to."
+	name = "番茄"
+	desc = "我说“tomah-to”，你却说“tom-mae-to”。"
 	icon_state = "tomato"
 	splat_type = /obj/effect/decal/cleanable/food/tomato_smudge
 	foodtypes = VEGETABLES
@@ -33,8 +33,8 @@
 
 // Blood Tomato
 /obj/item/seeds/tomato/blood
-	name = "blood-tomato seed pack"
-	desc = "These seeds grow into blood-tomato plants."
+	name = "血番茄种子包"
+	desc = "能长成血番茄植株的种子。"
 	icon_state = "seed-bloodtomato"
 	species = "bloodtomato"
 	plantname = "Blood-Tomato Plants"
@@ -45,8 +45,8 @@
 
 /obj/item/food/grown/tomato/blood
 	seed = /obj/item/seeds/tomato/blood
-	name = "blood-tomato"
-	desc = "So bloody...so...very...bloody....AHHHH!!!!"
+	name = "血番茄"
+	desc = "好血腥……好……超……血腥……啊啊啊！！！！"
 	icon_state = "bloodtomato"
 	bite_consumption_mod = 3
 	splat_type = /obj/effect/gibspawner/generic
@@ -58,8 +58,8 @@
 
 // Blue Tomato
 /obj/item/seeds/tomato/blue
-	name = "blue-tomato seed pack"
-	desc = "These seeds grow into blue-tomato plants."
+	name = "蓝番茄种子包"
+	desc = "能长成蓝番茄植株的种子。"
 	icon_state = "seed-bluetomato"
 	species = "bluetomato"
 	plantname = "Blue-Tomato Plants"
@@ -74,8 +74,8 @@
 
 /obj/item/food/grown/tomato/blue
 	seed = /obj/item/seeds/tomato/blue
-	name = "blue-tomato"
-	desc = "I say blue-mah-to, you say blue-mae-to."
+	name = "蓝番茄"
+	desc = "我说“蓝玛托”，你却说“蓝梅托”。"
 	icon_state = "bluetomato"
 	bite_consumption_mod = 2
 	splat_type = /obj/effect/decal/cleanable/blood/oil
@@ -83,8 +83,8 @@
 
 // Bluespace Tomato
 /obj/item/seeds/tomato/blue/bluespace
-	name = "bluespace tomato seed pack"
-	desc = "These seeds grow into bluespace tomato plants."
+	name = "蓝空番茄种子包"
+	desc = "能长成蓝空番茄植株的种子。"
 	icon_state = "seed-bluespacetomato"
 	species = "bluespacetomato"
 	plantname = "Bluespace Tomato Plants"
@@ -98,8 +98,8 @@
 
 /obj/item/food/grown/tomato/blue/bluespace
 	seed = /obj/item/seeds/tomato/blue/bluespace
-	name = "\improper bluespace tomato"
-	desc = "So lubricated, you might slip through space-time."
+	name = "\improper 蓝空番茄"
+	desc = "被润滑得如此完美，你甚至有可能在时空之中自由穿梭。"
 	icon_state = "bluespacetomato"
 	bite_consumption_mod = 3
 	distill_reagent = null
@@ -107,8 +107,8 @@
 
 // Killer Tomato
 /obj/item/seeds/tomato/killer
-	name = "killer-tomato seed pack"
-	desc = "These seeds grow into killer-tomato plants."
+	name = "杀手番茄种子包"
+	desc = "能长成杀手番茄植株的种子。"
 	icon_state = "seed-killertomato"
 	species = "killertomato"
 	plantname = "Killer-Tomato Plants"
@@ -124,7 +124,7 @@
 
 /obj/item/food/grown/tomato/killer
 	seed = /obj/item/seeds/tomato/killer
-	name = "\improper killer-tomato"
-	desc = "I say to-mah-to, you say tom-mae-to... OH GOD IT'S EATING MY LEGS!!"
+	name = "\improper 杀手番茄"
+	desc = "我说“tomah-to”，你却说“tom-mae-to”……哦，天哪，它正在啃我的腿啊！"
 	icon_state = "killertomato"
 	distill_reagent = /datum/reagent/consumable/ethanol/demonsblood

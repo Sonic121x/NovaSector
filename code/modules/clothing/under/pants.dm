@@ -10,8 +10,8 @@
 	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/under/pants/slacks
-	name = "slacks"
-	desc = "A pair of comfy slacks."
+	name = "松身裤"
+	desc = "一条舒适的松身裤。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/slacks"
 	post_init_icon_state = "slacks"
@@ -22,8 +22,8 @@
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/under/pants/jeans
-	name = "jeans"
-	desc = "A nondescript pair of tough jeans."
+	name = "牛仔裤"
+	desc = "一条普通的结实牛仔裤。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/jeans"
 	post_init_icon_state = "jeans"
@@ -33,11 +33,11 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/pants/track
-	name = "track pants"
-	desc = "A pair of track pants, for the athletic."
+	name = "田径裤"
+	desc = "一条运动裤，专为运动爱好者设计。"
 	icon_state = "trackpants"
 
 /obj/item/clothing/under/pants/camo
-	name = "camo pants"
-	desc = "A pair of woodland camouflage pants. Probably not the best choice for a space station."
+	name = "迷彩裤"
+	desc = "一条林地迷彩裤。对空间站来说可能不是最佳选择。"
 	icon_state = "camopants"

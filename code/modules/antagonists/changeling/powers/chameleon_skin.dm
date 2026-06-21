@@ -1,6 +1,6 @@
 /datum/action/changeling/chameleon_skin
-	name = "Chameleon Skin"
-	desc = "Our skin pigmentation rapidly changes to suit our current environment. Costs 10 chemicals."
+	name = "变色皮肤"
+	desc = "我们的皮肤色素会迅速改变以适应当前环境。消耗10点化学物质。"
 	helptext = "Allows us to become invisible after a few seconds of standing still. Can be toggled on and off."
 	button_icon_state = "chameleon_skin"
 	category = "stealth"

@@ -2,8 +2,8 @@
 
 /// Screen alert for the below status effect.
 /atom/movable/screen/alert/status_effect/unholy_determination
-	name = "Unholy Determination"
-	desc = "You appear in a unfamiliar room. The darkness begins to close in. Panic begins to set in. There is no time. Fight on, or die!"
+	name = "恶之决心"
+	desc = "你出现在一个陌生的房间里。黑暗开始逼近。恐慌开始蔓延。没有时间了。是战斗到底，还是死去！"
 	icon_state = "heretic_template"
 	overlay_state = "wounded"
 
@@ -37,12 +37,12 @@
 	// In softcrit you're, strong enough to stay up.
 	if(owner.health <= owner.crit_threshold && owner.health >= owner.hardcrit_threshold)
 		if(prob(5))
-			to_chat(owner, span_hypnophrase("Your body feels like giving up, but you fight on!"))
+			to_chat(owner, span_hypnophrase("你的身体想要放弃，但你仍在坚持！"))
 		healing_amount *= 2
 	// ...But reach hardcrit and you're done. You now die faster.
 	if (owner.health < owner.hardcrit_threshold)
 		if(prob(5))
-			to_chat(owner, span_big(span_hypnophrase("You can't hold on for much longer...")))
+			to_chat(owner, span_big(span_hypnophrase("你坚持不了多久了……")))
 		healing_amount *= -0.5
 
 	if(owner.health > owner.crit_threshold && prob(4))

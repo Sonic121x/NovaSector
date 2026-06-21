@@ -3,7 +3,7 @@
 //Multi area shuttles are a thing now, use subtypes! ~ninjanomnom
 
 /area/shuttle
-	name = "Shuttle"
+	name = "穿梭机"
 	requires_power = FALSE
 	static_lighting = TRUE
 	default_gravity = STANDARD_GRAVITY
@@ -37,92 +37,92 @@
 ////////////////////////////Syndicate infiltrator////////////////////////////
 
 /area/shuttle/syndicate
-	name = "Syndicate Infiltrator"
+	name = "辛迪加渗透者号"
 	ambience_index = AMBIENCE_DANGER
 	area_limited_icon_smoothing = /area/shuttle/syndicate
 
 /area/shuttle/syndicate/bridge
-	name = "Syndicate Infiltrator Control"
+	name = "辛迪加渗透者号控制室"
 
 /area/shuttle/syndicate/medical
-	name = "Syndicate Infiltrator Medbay"
+	name = "辛迪加渗透者号医疗舱"
 
 /area/shuttle/syndicate/armory
-	name = "Syndicate Infiltrator Armory"
+	name = "辛迪加渗透者号军械库"
 
 /area/shuttle/syndicate/eva
-	name = "Syndicate Infiltrator EVA"
+	name = "辛迪加渗透者号舱外活动区"
 
 /area/shuttle/syndicate/hallway
-	name = "Syndicate Infiltrator Hall"
+	name = "辛迪加渗透者号走廊"
 
 /area/shuttle/syndicate/engineering
-	name = "Syndicate Infiltrator Engineering"
+	name = "辛迪加渗透者号工程部"
 
 /area/shuttle/syndicate/airlock
-	name = "Syndicate Infiltrator Airlock"
+	name = "辛迪加渗透者气闸"
 
 ////////////////////////////Pirate Shuttle////////////////////////////
 
 /area/shuttle/pirate
-	name = "Pirate Shuttle"
+	name = "海盗穿梭机"
 	requires_power = TRUE
 
 /area/shuttle/pirate/flying_dutchman
-	name = "Flying Dutchman"
+	name = "飞翔的荷兰人号"
 	requires_power = FALSE
 
 ////////////////////////////Bounty Hunter Shuttles////////////////////////////
 
 /area/shuttle/hunter
-	name = "Hunter Shuttle"
+	name = "猎人穿梭机"
 
 /area/shuttle/hunter/russian
-	name = "Russian Cargo Hauler"
+	name = "俄罗斯货运船"
 	requires_power = TRUE
 
 /area/shuttle/hunter/mi13_foodtruck
-	name = "Perfectly Ordinary Food Truck"
+	name = "完全普通的餐车"
 	requires_power = TRUE
 	ambience_index = AMBIENCE_DANGER
 
 ////////////////////////////White Ship////////////////////////////
 
 /area/shuttle/abandoned
-	name = "Abandoned Ship"
+	name = "废弃飞船"
 	requires_power = TRUE
 	area_limited_icon_smoothing = /area/shuttle/abandoned
 
 /area/shuttle/abandoned/bridge
-	name = "Abandoned Ship Bridge"
+	name = "废弃飞船舰桥"
 
 /area/shuttle/abandoned/engine
-	name = "Abandoned Ship Engine"
+	name = "废弃飞船引擎室"
 
 /area/shuttle/abandoned/bar
-	name = "Abandoned Ship Bar"
+	name = "废弃飞船酒吧"
 
 /area/shuttle/abandoned/crew
-	name = "Abandoned Ship Crew Quarters"
+	name = "废弃飞船船员宿舍"
 
 /area/shuttle/abandoned/cargo
-	name = "Abandoned Ship Cargo Bay"
+	name = "废弃飞船货舱"
 
 /area/shuttle/abandoned/medbay
-	name = "Abandoned Ship Medbay"
+	name = "废弃飞船医疗舱"
 
 /area/shuttle/abandoned/pod
-	name = "Abandoned Ship Pod"
+	name = "废弃飞船逃生舱"
 
 ////////////////////////////Single-area shuttles////////////////////////////
 /area/shuttle/transit
-	name = "Hyperspace"
+	name = "超空间"
 	desc = "Weeeeee"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 
 /area/shuttle/arrival
-	name = "Arrival Shuttle"
+	name = "抵达穿梭机"
 	area_flags_mapping = UNIQUE_AREA // SSjob refers to this area for latejoiners
 
 /area/shuttle/arrival/on_joining_game(mob/living/boarder)
@@ -133,134 +133,134 @@
 	boarder.update_parallax_teleport()
 
 /area/shuttle/pod_1
-	name = "Escape Pod One"
+	name = "逃生舱一号"
 
 /area/shuttle/pod_2
-	name = "Escape Pod Two"
+	name = "逃生舱二号"
 
 /area/shuttle/pod_3
-	name = "Escape Pod Three"
+	name = "逃生舱三号"
 
 /area/shuttle/pod_4
-	name = "Escape Pod Four"
+	name = "逃生舱四号"
 
 /area/shuttle/mining
-	name = "Mining Shuttle"
+	name = "采矿穿梭机"
 
 /area/shuttle/mining/large
-	name = "Mining Shuttle"
+	name = "采矿穿梭机"
 	requires_power = TRUE
 
 /area/shuttle/labor
-	name = "Labor Camp Shuttle"
+	name = "劳改营穿梭机"
 
 /area/shuttle/supply
-	name = "NLV Consign" //NOVA EDIT CHANGE
+	name = "NLV 康赛恩号" //NOVA EDIT CHANGE
 	area_flags = NOTELEPORT
 
 /area/shuttle/escape
-	name = "Emergency Shuttle"
+	name = "紧急穿梭机"
 	area_flags = CULT_PERMITTED
 	area_limited_icon_smoothing = /area/shuttle/escape
 	flags_1 = CAN_BE_DIRTY_1
 
 /area/shuttle/escape/backup
-	name = "Backup Emergency Shuttle"
+	name = "备用紧急穿梭机"
 
 /area/shuttle/escape/brig
-	name = "Escape Shuttle Brig"
+	name = "逃生穿梭机禁闭舱"
 	icon_state = "shuttlered"
 
 /area/shuttle/escape/luxury
-	name = "Luxurious Emergency Shuttle"
+	name = "豪华紧急穿梭机"
 	area_flags = NOTELEPORT
 
 /area/shuttle/escape/simulation
-	name = "Medieval Reality Simulation Dome"
+	name = "中世纪实境模拟穹顶"
 	icon_state = "shuttlectf"
 	area_flags = NOTELEPORT
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 
 /area/shuttle/escape/arena
-	name = "The Arena"
+	name = "竞技场"
 	area_flags = NOTELEPORT
 
 /area/shuttle/escape/meteor
-	name = "\proper a meteor with engines strapped to it"
+	name = "\proper 一台绑着引擎的陨石"
 	luminosity = NONE
 
 /area/shuttle/escape/engine
-	name = "Escape Shuttle Engine"
+	name = "逃生穿梭机引擎"
 
 /area/shuttle/transport
-	name = "Transport Shuttle"
+	name = "运输穿梭机"
 
 /area/shuttle/assault_pod
-	name = "Steel Rain"
+	name = "钢铁之雨"
 
 /area/shuttle/sbc_starfury
-	name = "SBC Starfury"
+	name = "SBC 星际狂怒号"
 
 /area/shuttle/sbc_fighter1
-	name = "SBC Fighter 1"
+	name = "SBC 战斗机 1"
 
 /area/shuttle/sbc_fighter2
-	name = "SBC Fighter 2"
+	name = "SBC 战斗机 2"
 
 /area/shuttle/sbc_fighter3
-	name = "SBC Fighter 3"
+	name = "SBC 战斗机 3"
 
 /area/shuttle/sbc_corvette
-	name = "SBC corvette"
+	name = "SBC 护卫舰"
 
 /area/shuttle/syndicate_scout
-	name = "Syndicate Scout"
+	name = "辛迪加侦察舰"
 
 /area/shuttle/ruin
-	name = "Ruined Shuttle"
+	name = "废弃穿梭机"
 
 /// Special shuttles made for the Caravan Ambush ruin.
 /area/shuttle/ruin/caravan
 	requires_power = TRUE
-	name = "Ruined Caravan Shuttle"
+	name = "废弃商队穿梭机"
 
 /area/shuttle/ruin/caravan/syndicate1
-	name = "Syndicate Fighter"
+	name = "辛迪加战斗机"
 
 /area/shuttle/ruin/caravan/syndicate2
-	name = "Syndicate Fighter"
+	name = "辛迪加战斗机"
 
 /area/shuttle/ruin/caravan/syndicate3
-	name = "Syndicate Drop Ship"
+	name = "辛迪加空降舰"
 
 /area/shuttle/ruin/caravan/pirate
-	name = "Pirate Cutter"
+	name = "海盗快艇"
 
 /area/shuttle/ruin/caravan/freighter1
-	name = "Small Freighter"
+	name = "小型货船"
 
 /area/shuttle/ruin/caravan/freighter2
-	name = "Tiny Freighter"
+	name = "微型货船"
 
 /area/shuttle/ruin/caravan/freighter3
-	name = "Tiny Freighter"
+	name = "微型货船"
 
 // ----------- Cyborg Mothership
 
 /area/shuttle/ruin/cyborg_mothership
-	name = "Cyborg Mothership"
+	name = "赛博格母舰"
 	requires_power = TRUE
 	area_limited_icon_smoothing = /area/shuttle/ruin/cyborg_mothership
 
 // ----------- Arena Shuttle
 /area/shuttle/shuttle_arena
-	name = "arena"
+	name = "竞技场"
 	default_gravity = STANDARD_GRAVITY
 	requires_power = FALSE
 
 /obj/effect/forcefield/arena_shuttle
-	name = "portal"
+	name = "传送门"
 	initial_duration = 0
 	var/list/warp_points = list()
 
@@ -275,29 +275,29 @@
 
 	var/mob/living/L = AM
 	if(L.pulling && istype(L.pulling, /obj/item/bodypart/head))
-		to_chat(L, span_notice("Your offering is accepted. You may pass."), confidential = TRUE)
+		to_chat(L, span_notice("你的祭品被容纳了. 你现在可以通过."), confidential = TRUE)
 		qdel(L.pulling)
 		var/turf/LA = get_turf(pick(warp_points))
 		L.forceMove(LA)
 		L.remove_status_effect(/datum/status_effect/hallucination)
-		to_chat(L, "<span class='reallybig redtext'>The battle is won. Your bloodlust subsides.</span>", confidential = TRUE)
+		to_chat(L, "<span class='reallybig redtext'>战斗胜利。你的嗜血欲望逐渐消退。</span>", confidential = TRUE)
 		for(var/obj/item/chainsaw/doomslayer/chainsaw in L)
 			qdel(chainsaw)
 		var/obj/item/skeleton_key/key = new(L)
 		L.put_in_hands(key)
 	else
-		to_chat(L, span_warning("You are not yet worthy of passing. Drag a severed head to the barrier to be allowed entry to the hall of champions."), confidential = TRUE)
+		to_chat(L, span_warning("你还没有资格通过. 将一个断头放至屏障以被允许通过冠军之厅."), confidential = TRUE)
 
 /obj/effect/landmark/shuttle_arena_safe
 	name = "hall of champions"
-	desc = "For the winners."
+	desc = "献给胜利者。"
 
 /obj/effect/landmark/shuttle_arena_entrance
 	name = "\proper the arena"
-	desc = "A lava filled battlefield."
+	desc = "一片岩浆遍布的战场。"
 
 /obj/effect/forcefield/arena_shuttle_entrance
-	name = "portal"
+	name = "传送门"
 	initial_duration = 0
 	var/list/warp_points = list()
 
@@ -312,5 +312,5 @@
 	var/obj/effect/landmark/LA = pick(warp_points)
 	var/mob/living/M = AM
 	M.forceMove(get_turf(LA))
-	to_chat(M, "<span class='reallybig redtext'>You're trapped in a deadly arena! To escape, you'll need to drag a severed head to the escape portals.</span>", confidential = TRUE)
+	to_chat(M, "<span class='reallybig redtext'>你被困在致命的竞技场中！要逃脱，你需要将一颗斩下的头颅拖到逃生传送门。</span>", confidential = TRUE)
 	M.apply_status_effect(/datum/status_effect/mayhem)

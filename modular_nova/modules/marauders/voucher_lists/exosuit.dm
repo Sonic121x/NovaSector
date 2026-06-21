@@ -1,7 +1,7 @@
 /datum/voucher_set/traitor/mod
 
 /datum/voucher_set/traitor/mod/nukie
-	name = "Syndicate MODsuit"
+	name = "辛迪加MOD防护服"
 	description = /datum/mod_theme/syndicate::desc
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "syndicate-helmet-sealed"
@@ -18,7 +18,7 @@
 	)
 
 /datum/voucher_set/traitor/mod/elite
-	name = "Elite MODsuit"
+	name = "精英MOD防护服"
 	description = /datum/mod_theme/elite::desc
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "elite-helmet-sealed"
@@ -32,7 +32,7 @@
 	)
 
 /datum/voucher_set/traitor/mod/infiltrator
-	name = "Infiltrator MODsuit"
+	name = "渗透者MOD防护服"
 	description = /datum/mod_theme/infiltrator::desc
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "infiltrator-helmet-sealed"

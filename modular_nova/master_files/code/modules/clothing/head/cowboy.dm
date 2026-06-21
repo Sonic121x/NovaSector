@@ -2,8 +2,8 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/cowboy/nova
-	name = "SR COWBOY HAT DEBUG"
-	desc = "REPORT THIS IF FOUND"
+	name = "SR 牛仔帽 调试"
+	desc = "发现此物品请上报"
 	icon = 'modular_nova/master_files/icons/obj/clothing/head/cowboy.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/cowboy.dmi'
 	icon_state = null //Keeps this from showing up under the chameleon hat
@@ -13,8 +13,8 @@
 	resistance_flags = NONE //TG defaults cowboy hats to fireproof/acidproof
 
 /obj/item/clothing/head/cowboy/nova/wide
-	name = "wide brimmed hat"
-	desc = "A wide-brimmed hat, to keep the sun out of your eyes in style."
+	name = "宽檐帽"
+	desc = "一顶宽檐帽，让你有型地遮挡阳光。"
 	greyscale_colors = "#4D4D4D#DE9754"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/cowboy/nova/wide"
@@ -24,8 +24,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/head/cowboy/nova/wide/feathered
-	name = "wide brimmed feathered hat"
-	desc = "A wide-brimmed hat adorned with a feather, the perfect flourish to a rugged outfit."
+	name = "宽檐羽毛帽"
+	desc = "一顶饰有羽毛的宽檐帽，为粗犷的装束增添完美的点缀。"
 	greyscale_colors = "#4D4D4D#DE9754#D5D5B9"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/cowboy/nova/wide/feathered"
@@ -34,8 +34,8 @@
 	greyscale_config_worn = /datum/greyscale_config/cowboy_wide_feathered/worn
 
 /obj/item/clothing/head/cowboy/nova/flat
-	name = "flat brimmed hat"
-	desc = "A finely made hat with a short flat brim, perfect for an old fashioned shootout."
+	name = "平檐帽"
+	desc = "一顶做工精良、带有短平帽檐的帽子，非常适合老式的枪战。"
 	greyscale_colors = "#BE925B#914C2F"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/cowboy/nova/flat"
@@ -45,8 +45,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/head/cowboy/nova/flat/cowl
-	name = "flat brimmed hat with cowl"
-	desc = "A finely made hat with a short flat brim, paired with a snug and warm cowl. Today's a cold day to die..."
+	name = "带兜帽的平檐帽"
+	desc = "一顶做工精良、带有短平帽檐的帽子，搭配舒适保暖的兜帽。今天是个赴死的寒冷日子..."
 	greyscale_colors = "#c26934#8f89ae#774B2D"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/cowboy/nova/flat/cowl"
@@ -58,8 +58,8 @@
 	flags_inv = HIDEHAIR | SHOWSPRITEEARS
 
 /obj/item/clothing/head/cowboy/nova/cattleman
-	name = "cattleman hat"
-	desc = "A hat with a creased brim and a tall crown, intended to be pushed down further on the head to stay on in harsh weather. Not as relevant in space but still comes in handy."
+	name = "牧人帽"
+	desc = "一顶带有折痕帽檐和高顶的帽子，旨在恶劣天气中能更紧实地戴在头上。在太空中不那么相关，但仍然派得上用场。"
 	greyscale_colors = "#725443#B2977C"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/cowboy/nova/cattleman"
@@ -69,8 +69,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/head/cowboy/nova/cattleman/wide
-	name = "wide brimmed cattleman hat"
-	desc = "A hat with a wide, slightly creased brim. Good for working in the sun, not so much for fitting through tight gaps."
+	name = "宽檐牛仔帽"
+	desc = "一顶帽檐宽大、略有褶皱的帽子。适合在阳光下工作，但不怎么适合穿过狭窄的缝隙。"
 	greyscale_colors = "#4D4D4D#5F666E"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/cowboy/nova/cattleman/wide"
@@ -81,38 +81,38 @@
 
 //Presets
 /obj/item/clothing/head/cowboy/nova/flat/sheriff
-	name = "sheriff hat"
-	desc = "A dark brown hat with a smell of whiskey. There's a small set of antlers embroidered on the inside."
+	name = "警长帽"
+	desc = "一顶深棕色的帽子，带着威士忌的气味。内侧绣着一小对鹿角。"
 	icon_state = "/obj/item/clothing/head/cowboy/nova/flat/sheriff"
 	greyscale_colors = "#704640#8f89ae"
 	flags_1 = NONE //No recoloring presets
 
 /obj/item/clothing/head/cowboy/nova/flat/deputy
-	name = "deputy hat"
-	desc = "A light brown hat with a smell of iron. There's a small set of antlers embroidered on the inside."
+	name = "副警长帽"
+	desc = "一顶浅棕色的帽子，带着铁的气味。内侧绣着一小对鹿角。"
 	icon_state = "/obj/item/clothing/head/cowboy/nova/flat/deputy"
 	greyscale_colors = "#c26934#8f89ae"
 	flags_1 = NONE //No recoloring presets
 
 /obj/item/clothing/head/cowboy/nova/flat/cowl/sheriff
-	name = "winter sheriff hat"
-	desc = "A dark hat with a matching dark cowl, warm yet breathable. There's a small set of antlers embroidered on the inside."
+	name = "冬季警长帽"
+	desc = "一顶深色帽子，配有同色的深色兜帽，温暖又透气。内侧绣着一小对鹿角。"
 	icon_state = "/obj/item/clothing/head/cowboy/nova/flat/cowl/sheriff"
 	icon_state = "/obj/item/clothing/head/cowboy/nova/flat/cowl/sheriff"
 	greyscale_colors = "#3F3F3F#716349#3F3F3F"
 	flags_1 = NONE //No recoloring presets
 
 /obj/item/clothing/head/cowboy/nova/cattleman/sec
-	name = "security cattleman hat"
-	desc = "A security cattleman hat, perfect for any true lawman."
+	name = "安保牛仔帽"
+	desc = "一顶安保牛仔帽，是任何真正执法者的完美选择。"
 	icon_state = "/obj/item/clothing/head/cowboy/nova/cattleman/sec"
 	greyscale_colors = "#39393F#3F6E9E"
 	armor_type = /datum/armor/head_helmet
 	flags_1 = NONE //No recoloring presets
 
 /obj/item/clothing/head/cowboy/nova/cattleman/wide/sec
-	name = "wide brimmed security cattleman hat"
-	desc = "A bandit turned sheriff, his enforcement is brutal but effective - whether out of fear or respect is unclear, though not many bodies hang high. A peaceful land, a quiet people."
+	name = "宽檐安保牛仔帽"
+	desc = "一个强盗出身的警长，他的执法手段残酷但有效——究竟是出于恐惧还是尊重尚不清楚，不过高悬的尸体倒也不多。一片和平的土地，一群安静的人民。"
 	icon_state = "/obj/item/clothing/head/cowboy/nova/cattleman/wide/sec"
 	greyscale_colors = "#39393F#3F6E9E"
 	armor_type = /datum/armor/head_helmet

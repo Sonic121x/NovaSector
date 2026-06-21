@@ -1,8 +1,8 @@
 /// Mail is tamper-evident and unresealable, postmarked by CentCom for an individual recepient.
 /obj/item/mail
-	name = "mail"
+	name = "邮件"
 	gender = NEUTER
-	desc = "An officially postmarked, tamper-evident parcel regulated by CentCom and made of high-quality materials."
+	desc = "一个由中央司令部监管、带有官方邮戳、防拆封的高质量材料包裹。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "mail_small"
 	inhand_icon_state = "paper"
@@ -45,7 +45,7 @@
 	var/static/list/department_colors
 
 /obj/item/mail/envelope
-	name = "envelope"
+	name = "信封"
 	icon_state = "mail_large"
 	goodie_count = 2
 	stamp_max = 2
@@ -113,9 +113,9 @@
 
 /obj/item/mail/multitool_act(mob/living/user, obj/item/tool)
 	if(user.get_inactive_held_item() == src)
-		balloon_alert(user, "nothing to disable!")
+		balloon_alert(user, "没有可禁用的东西！")
 		return TRUE
-	balloon_alert(user, "hold it!")
+	balloon_alert(user, "拿稳了！")
 	return FALSE
 
 
@@ -131,10 +131,10 @@
 		// If the recipient's mind has gone, then anyone can open their mail
 		// whether a mind can actually be qdel'd is an exercise for the reader
 		if(recipient && recipient != user?.mind)
-			to_chat(user, span_notice("You can't open somebody else's mail! That's <em>illegal</em>!"))
+			to_chat(user, span_notice("你不能打开别人的信件！那是 <em>违法</em>的!"))
 			return FALSE
 
-	balloon_alert(user, "unwrapping...")
+	balloon_alert(user, "正在拆开...")
 	if(!do_after(user, 1.5 SECONDS, target = user))
 		return FALSE
 	return TRUE
@@ -155,21 +155,21 @@
 /obj/item/mail/examine_more(mob/user)
 	. = ..()
 	if(!postmarked)
-		. += span_info("This mail has no postmarking of any sort...")
+		. += span_info("这封邮件没有任何形式的邮戳...")
 	else
-		. += span_notice("<i>You notice the postmarking on the front of the mail...</i>")
+		. += span_notice("<i>你注意到信件上正面的邮戳...</i>")
 	var/datum/mind/recipient = recipient_ref.resolve()
 	if(recipient)
-		. += span_info("[postmarked ? "Certified NT" : "Uncertfieid"] mail for [recipient].")
+		. += span_info("[postmarked ? "Certified NT" : "Uncertfieid"] 给 [recipient] 的邮件。")
 	else if(postmarked)
-		. += span_info("Certified mail for [GLOB.station_name].")
+		. += span_info("给[GLOB.station_name]的认证信件.")
 	else
-		. += span_info("This is a dead letter mail with no recipient.")
-	. += span_info("Distribute by hand or via destination tagger using the certified NT disposal system.")
+		. += span_info("这是一封无主邮件，没有收件人。")
+	. += span_info("手动派送或使用目的地标记器通过纳米传讯认证的处置系统进行分发.")
 
 /// Accepts a mind to initialize goodies for a piece of mail.
 /obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient)
-	name = "[initial(name)] for [recipient.name] ([recipient.assigned_role.title])"
+	name = "给 [recipient.name] ([recipient.assigned_role.title]) 的 [initial(name)]"
 	recipient_ref = WEAKREF(recipient)
 
 	var/mob/living/body = recipient.current
@@ -233,7 +233,7 @@
 	)
 
 	color = pick(department_colors) //eh, who gives a shit.
-	name = special_name ? junk_names[junk] : "important [initial(name)]"
+	name = special_name ? junk_names[junk] : "重要的 [initial(name)]"
 
 	junk = new junk(src)
 	return TRUE
@@ -250,8 +250,8 @@
 
 /// Crate for mail from CentCom.
 /obj/structure/closet/crate/mail
-	name = "mail crate"
-	desc = "A certified post crate from CentCom."
+	name = "邮件板条箱"
+	desc = "一个来自中央司令部的认证邮政板条箱。"
 	icon_state = "mail"
 	base_icon_state = "mail"
 	can_install_electronics = FALSE
@@ -316,8 +316,8 @@
 
 /// Crate for mail that automatically generates a lot of mail. Usually only normal mail, but on lowpop it may end up just being junk.
 /obj/structure/closet/crate/mail/full
-	name = "brimming mail crate"
-	desc = "A certified post crate from CentCom. Looks stuffed to the gills."
+	name = "满溢的邮件板条箱"
+	desc = "一个来自中央司令部的认证邮政板条箱。看起来塞得满满当当。"
 
 /obj/structure/closet/crate/mail/full/Initialize(mapload)
 	. = ..()
@@ -325,7 +325,7 @@
 
 ///Used in the mail strike shuttle loan event
 /obj/structure/closet/crate/mail/full/mail_strike
-	desc = "A post crate from somewhere else. It has no NT logo on it."
+	desc = "一个来自其他地方的邮政板条箱。上面没有NT标志。"
 	postmarked = FALSE
 
 /obj/structure/closet/crate/mail/full/mail_strike/populate(amount)
@@ -344,8 +344,8 @@
 
 /// Mailbag.
 /obj/item/storage/bag/mail
-	name = "mail bag"
-	desc = "A bag for letters, envelopes, and other postage."
+	name = "邮件袋"
+	desc = "一个用于存放信件、信封和其他邮件的袋子。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "mailbag"
 	worn_icon_state = "mailbag"
@@ -354,7 +354,7 @@
 	storage_type = /datum/storage/bag/mail
 
 /obj/item/paper/fluff/junkmail_redpill
-	name = "smudged paper"
+	name = "污迹斑斑的纸张"
 	icon_state = "scrap"
 	show_written_words = FALSE
 	var/nuclear_option_odds = 0.1
@@ -375,7 +375,7 @@
 	nuclear_option_odds = 100
 
 /obj/item/paper/fluff/junkmail_generic
-	name = "important document"
+	name = "重要文件"
 	icon_state = "paper_words"
 	show_written_words = FALSE
 
@@ -393,7 +393,7 @@
 	goodie_count = 0
 
 /obj/item/mail/traitor/envelope
-	name = "envelope"
+	name = "信封"
 	icon_state = "mail_large"
 	stamp_max = 2
 	stamp_offset_y = 5
@@ -421,20 +421,20 @@
 	if(armed == FALSE || user.get_inactive_held_item() != src)
 		return ..()
 	if(IS_WEAKREF_OF(user.mind, made_by_ref))
-		balloon_alert(user, "disarming trap...")
+		balloon_alert(user, "正在解除陷阱...")
 		if(!do_after(user, 2 SECONDS, target = src))
 			return FALSE
-		balloon_alert(user, "disarmed")
+		balloon_alert(user, "已解除")
 		playsound(src, 'sound/machines/defib/defib_ready.ogg', vol = 100, vary = TRUE)
 		armed = FALSE
 		return TRUE
-	balloon_alert(user, "tinkering with something...")
+	balloon_alert(user, "正在摆弄着什么...")
 
 	if(!do_after(user, 2 SECONDS, target = src))
 		after_unwrap(user)
 		return FALSE
 	if(prob(50))
-		balloon_alert(user, "disarmed something...?")
+		balloon_alert(user, "解除了什么...？")
 		playsound(src, 'sound/machines/defib/defib_ready.ogg', vol = 100, vary = TRUE)
 		armed = FALSE
 		return TRUE
@@ -443,8 +443,8 @@
 
 ///Generic mail used in the mail strike shuttle loan event
 /obj/item/mail/mail_strike
-	name = "dead mail"
-	desc = "An unmarked parcel of unknown origins, effectively undeliverable."
+	name = "死信"
+	desc = "一个来源不明的未标记包裹，实际上无法投递。"
 	postmarked = FALSE
 	generic_goodies = list(
 		/obj/effect/spawner/random/entertainment/money_medium = 2,
@@ -460,7 +460,7 @@
 	if(prob(35))
 		stamped = FALSE
 	if(prob(35))
-		name = "dead envelope"
+		name = "死信信封"
 		icon_state = "mail_large"
 		goodie_count = 2
 		stamp_max = 2
@@ -473,15 +473,15 @@
 
 ///Also found in the mail strike shuttle loan. It contains a random grenade that'll be triggered when unwrapped
 /obj/item/mail/traitor/mail_strike
-	name = "dead mail"
-	desc = "An unmarked parcel of unknown origins, effectively undeliverable."
+	name = "死信"
+	desc = "一个来源不明的未标记包裹，实际上无法投递。"
 	postmarked = FALSE
 
 /obj/item/mail/traitor/mail_strike/Initialize(mapload)
 	if(prob(35))
 		stamped = FALSE
 	if(prob(35))
-		name = "dead envelope"
+		name = "死信信封"
 		icon_state = "mail_large"
 		goodie_count = 2
 		stamp_max = 2
@@ -491,8 +491,8 @@
 	new /obj/effect/spawner/random/contraband/grenades/dangerous(src)
 
 /obj/item/storage/mail_counterfeit_device
-	name = "GLA-2 mail counterfeit device"
-	desc = "A single-use device for spoofing official NT envelopes. Can hold one normal sized object, and can be programmed to arm its contents when opened."
+	name = "GLA-2 邮件伪造装置"
+	desc = "一种用于伪造官方 NT 信封的一次性装置。可容纳一个正常大小的物品，并可编程设定在打开时启动其内容物。"
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "mail_counterfeit_device"
@@ -500,20 +500,20 @@
 
 /obj/item/storage/mail_counterfeit_device/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<i>You notice the manufacturer information on the side of the device...</i>")
+	. += span_notice("<i>你注意到装置侧面的制造商信息...</i>")
 	. += "\t[span_info("Guerilla Letter Assembler")]"
 	. += "\t[span_info("GLA Postal Service, right on schedule.")]"
 	return .
 
 /obj/item/storage/mail_counterfeit_device/attack_self(mob/user, modifiers)
-	var/mail_type = tgui_alert(user, "Make it look like an envelope or like normal mail?", "Mail Counterfeiting", list("Mail", "Envelope"))
+	var/mail_type = tgui_alert(user, "让它看起来像一个信封还是像普通邮件？", "邮件伪造", list("Mail", "Envelope"))
 	if(isnull(mail_type))
 		return FALSE
 	if(loc != user)
 		return FALSE
 	mail_type = LOWER_TEXT(mail_type)
 
-	var/mail_armed = tgui_alert(user, "Arm it?", "Mail Counterfeiting", list("Yes", "No")) == "Yes"
+	var/mail_armed = tgui_alert(user, "要设置陷阱吗？", "邮件伪造", list("Yes", "No")) == "Yes"
 	if(isnull(mail_armed))
 		return FALSE
 	if(loc != user)
@@ -529,7 +529,7 @@
 		mail_recipients += locked_mind
 		mail_recipients_for_input += avoid_assoc_duplicate_keys(person.name, used_names)
 
-	var/recipient = tgui_input_list(user, "Choose a recipient", "Mail Counterfeiting", mail_recipients_for_input)
+	var/recipient = tgui_input_list(user, "选择收件人", "邮件伪造", mail_recipients_for_input)
 	if(isnull(recipient))
 		return FALSE
 	if(!(src in user.contents))
@@ -547,7 +547,7 @@
 	shady_mail.made_by_cached_name = user.mind.name
 
 	if(index == 1)
-		var/mail_name = tgui_input_text(user, "Enter mail title, or leave it blank", "Mail Counterfeiting", max_length = MAX_LABEL_LEN)
+		var/mail_name = tgui_input_text(user, "输入邮件标题，或留空", "邮件伪造", max_length = MAX_LABEL_LEN)
 		if(!(src in user.contents))
 			return FALSE
 		if(reject_bad_text(mail_name, max_length = MAX_LABEL_LEN, ascii_only = FALSE))
@@ -567,7 +567,7 @@
 
 /// Unobtainable item mostly for (b)admin purposes.
 /obj/item/storage/mail_counterfeit_device/advanced
-	name = "GLA-MACRO mail counterfeit device"
+	name = "GLA-MACRO邮件伪造装置"
 	storage_type = /datum/storage/mail_counterfeit/advanced
 
 /obj/item/storage/mail_counterfeit_device/advanced/Initialize(mapload)
@@ -576,7 +576,7 @@
 
 /// Unobtainable item mostly for (b)admin purposes.
 /obj/item/storage/mail_counterfeit_device/bluespace
-	name = "GLA-ULTRA mail counterfeit device"
+	name = "GLA-ULTRA邮件伪造装置"
 	storage_type = /datum/storage/mail_counterfeit/bluespace
 
 /obj/item/storage/mail_counterfeit_device/bluespace/Initialize(mapload)

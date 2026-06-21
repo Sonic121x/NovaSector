@@ -48,7 +48,7 @@
 	if(!tucker.transfer_item_to_turf(tucked, target_bed.drop_location()))
 		return
 
-	to_chat(tucker, span_notice("You lay [tucked] out on [target_bed]."))
+	to_chat(tucker, span_notice("你将[tucked]铺在了[target_bed]上。"))
 	tuck(tucked, target_bed)
 	return COMPONENT_NO_AFTERATTACK
 

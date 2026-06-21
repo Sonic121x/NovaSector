@@ -1,6 +1,6 @@
 /turf/closed/wall/mineral/cult
-	name = "runed metal wall"
-	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound."
+	name = "符文金属墙"
+	desc = "一堵刻满无法辨识符号的冰冷金属墙。凝视它们会让你的头阵阵作痛。"
 	icon = 'icons/turf/walls/cult_wall.dmi'
 	icon_state = "cult_wall-0"
 	base_icon_state = "cult_wall"
@@ -19,8 +19,8 @@
 	new sheet_type(get_turf(src), sheet_amount)
 
 /turf/closed/wall/mineral/cult/artificer
-	name = "runed stone wall"
-	desc = "A cold stone wall engraved with indecipherable symbols. Studying them causes your head to pound."
+	name = "符文石墙"
+	desc = "一堵刻满无法辨识符号的冰冷石墙。凝视它们会让你的头阵阵作痛。"
 
 /turf/closed/wall/mineral/cult/artificer/break_wall()
 	new /obj/effect/temp_visual/cult/turf(get_turf(src))
@@ -33,7 +33,7 @@
 	icon = 'icons/turf/walls/icedmetal_wall.dmi'
 	icon_state = "icedmetal_wall-0"
 	base_icon_state = "icedmetal_wall"
-	desc = "A wall covered in a thick sheet of ice."
+	desc = "一堵被厚冰板包裹的墙。"
 	turf_flags = IS_SOLID
 	smoothing_flags = SMOOTH_BITMASK
 	canSmoothWith = null
@@ -74,8 +74,8 @@
 	AddElement(/datum/element/rust/heretic)
 
 /turf/closed/wall/mineral/bronze
-	name = "clockwork wall"
-	desc = "A huge chunk of bronze, decorated like gears and cogs."
+	name = "钟表墙"
+	desc = "一堵巨大的青铜墙，上面装饰有齿轮。"
 	icon = 'icons/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall-0"
 	base_icon_state = "clockwork_wall"
@@ -86,8 +86,8 @@
 	girder_type = /obj/structure/girder/bronze
 
 /turf/closed/wall/rock
-	name = "reinforced rock"
-	desc = "It has metal struts that need to be welded away before it can be mined."
+	name = "坚硬的岩石"
+	desc = "它带有金属支架，需要先焊接掉才能进行开采"
 	icon = 'icons/turf/walls/reinforced_rock.dmi'
 	icon_state = "porous_rock-0"
 	base_icon_state = "porous_rock"
@@ -98,12 +98,12 @@
 	decon_type = /turf/closed/mineral/asteroid
 
 /turf/closed/wall/rock/porous
-	name = "reinforced porous rock"
-	desc = "This rock is filled with pockets of breathable air. It has metal struts to protect it from mining."
+	name = "坚硬的多孔岩石"
+	desc = "这块岩石充满了可呼吸的空气囊。它装有金属支架以抵御采矿冲击"
 	decon_type = /turf/closed/mineral/asteroid/porous
 
 /turf/closed/wall/space
-	name = "illusionist wall"
+	name = "幻术墙"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "space"
 	plane = PLANE_SPACE
@@ -113,7 +113,7 @@
 	smoothing_groups = null
 
 /turf/closed/wall/material/meat
-	name = "living wall"
+	name = "活体墙"
 	baseturfs = /turf/open/floor/material/meat
 	girder_type = null
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
@@ -126,8 +126,8 @@
 	baseturfs = /turf/open/floor/material/meat/airless
 
 /turf/closed/wall/tomb
-	name = "tomb wall"
-	desc = "The carved surface of a dusty tomb. It's not clear who built this."
+	name = "墓穴墙"
+	desc = "布满灰尘的墓穴雕刻表面。不清楚是谁建造了它。"
 	icon = 'icons/turf/walls/boss_wall.dmi'
 	icon_state = "boss_wall-0"
 	base_icon_state = "boss_wall"

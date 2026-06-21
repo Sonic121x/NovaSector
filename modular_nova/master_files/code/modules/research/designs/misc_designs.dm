@@ -1,6 +1,6 @@
 /datum/design/monkey_helmet
-	name = "Monkey Mind Magnification Helmet"
-	desc = "A fragile, circuitry embedded helmet for boosting the intelligence of a monkey to a higher level."
+	name = "猴子思维放大头盔"
+	desc = "一个脆弱的、嵌入电路的头盔，用于将猴子的智力提升到更高水平。"
 	id = "monkey_helmet"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -15,8 +15,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/plumbing_eng
-	name = "Engineering Plumbing Constructor"
-	desc = "A type of plumbing constructor designed to manipulate fluid."
+	name = "工程管道构造器"
+	desc = "一种设计用于操纵流体的管道构造器。"
 	id = "plumbing_eng"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -31,8 +31,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/smartdartgun
-	name = "Medical SmartDart Gun"
-	desc = "An adjusted version of the medical syringe gun that only allows SmartDarts to be chambered."
+	name = "医疗智能飞镖枪"
+	desc = "医疗注射枪的改良版本，仅允许装填智能飞镖。"
 	id = "smartdartgun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -47,8 +47,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/anesthetic_machine
-	name = "Anesthetic Machine Parts Kit"
-	desc = "All-in-one kit containing the parts to create a portable anesthetic stand, tank not included."
+	name = "麻醉机零件套件"
+	desc = "一体化套件，包含组装便携式麻醉支架所需的零件，不含气罐。"
 	id = "anesthetic_machine"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -63,7 +63,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/vox_gas_filter
-	name = "Vox Gas Filter"
+	name = "沃克斯气体过滤器"
 	id = "vox_gas_filter"
 	build_type = PROTOLATHE | AUTOLATHE | COLONY_FABRICATOR
 	materials = list(
@@ -76,7 +76,7 @@
 	departmental_flags = ALL
 
 /datum/design/d2
-	name = "D2 Die"
+	name = "D2骰子"
 	id = "d2"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -87,7 +87,7 @@
 	)
 
 /datum/design/d4
-	name = "D4 Die"
+	name = "D4骰子"
 	id = "d4"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -98,7 +98,7 @@
 	)
 
 /datum/design/d6
-	name = "D6 Die"
+	name = "D6骰子"
 	id = "d6"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -109,7 +109,7 @@
 	)
 
 /datum/design/d8
-	name = "D8 Die"
+	name = "D8骰子"
 	id = "d8"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -120,7 +120,7 @@
 	)
 
 /datum/design/d10
-	name = "D10 Die"
+	name = "D10骰子"
 	id = "d10"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -131,7 +131,7 @@
 	)
 
 /datum/design/d00
-	name = "D00 Die"
+	name = "D00骰子"
 	id = "d00"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -143,7 +143,7 @@
 
 
 /datum/design/d12
-	name = "D12 Die"
+	name = "D12骰子"
 	id = "d12"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -154,7 +154,7 @@
 	)
 
 /datum/design/d20
-	name = "D20 Die"
+	name = "D20骰子"
 	id = "d20"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -165,7 +165,7 @@
 	)
 
 /datum/design/fudge
-	name = "Fudge Die"
+	name = "命运骰"
 	id = "fudge"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -176,7 +176,7 @@
 	)
 
 /datum/design/d100
-	name = "D100 Die"
+	name = "D100骰子"
 	id = "d100"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.4) //Uses more plastic, because it's a chunky boy.

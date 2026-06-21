@@ -7,8 +7,8 @@
  * Bonus: Causes blindness.
 */
 /datum/symptom/visionloss
-	name = "Hyphema"
-	desc = "Sufferers exhibit dangerously low levels of frames per second in the eyes, leading to damage and eventually blindness."
+	name = "前房积血"
+	desc = "患者眼部表现出危险的低帧率，导致损伤并最终失明。"
 	illness = "Diluted Pupils"
 	stealth = 0
 	resistance = -2
@@ -49,10 +49,10 @@
 	switch(source_disease.stage)
 		if(1, 2)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(infected_mob, span_warning("Your eyes itch."))
+				to_chat(infected_mob, span_warning("你的眼睛发痒。"))
 
 		if(3, 4)
-			to_chat(infected_mob, span_boldwarning("Your eyes burn!"))
+			to_chat(infected_mob, span_boldwarning("你的眼睛在燃烧！"))
 			infected_mob.set_eye_blur_if_lower(20 SECONDS)
 			eyes.apply_organ_damage(1)
 
@@ -67,15 +67,15 @@
 			if(prob(eyes.damage - eyes.low_threshold + 1))
 				if(remove_eyes)
 					infected_mob.visible_message(
-						span_warning("[infected_mob]'s eyes fall out of their sockets!"),
-						span_userdanger("Your eyes fall out of their sockets!"),
+						span_warning("[infected_mob]的眼球从眼窝里掉出来了！"),
+						span_userdanger("你的眼球从眼窝里掉出来了！"),
 					)
 					eyes.Remove(infected_mob)
 					eyes.forceMove(get_turf(infected_mob))
 
 				else if(!infected_mob.is_blind_from(EYE_DAMAGE))
-					to_chat(infected_mob, span_userdanger("You go blind!"))
+					to_chat(infected_mob, span_userdanger("你失明了！"))
 					eyes.apply_organ_damage(eyes.maxHealth)
 
 			else
-				to_chat(infected_mob, span_userdanger("Your eyes burn horrifically!"))
+				to_chat(infected_mob, span_userdanger("你的眼睛在剧烈燃烧！"))

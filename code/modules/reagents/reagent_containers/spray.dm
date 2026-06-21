@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/spray
-	name = "spray bottle"
-	desc = "A spray bottle, with an unscrewable top."
+	name = "喷雾瓶"
+	desc = "一个带可旋开盖的喷雾瓶。"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "sprayer_large"
 	inhand_icon_state = "cleaner"
@@ -59,7 +59,7 @@
 			return FALSE
 
 		var/trans = target.reagents.trans_to(src, 50, transferred_by = user) //transfer 50u , using the spray's transfer amount would take too long to refill
-		to_chat(user, span_notice("You fill \the [src] with [trans] units of the contents of \the [target]."))
+		to_chat(user, span_notice("你将 \the [src] 中的 [trans] 单位内容物装入了 \the [target]。"))
 		return FALSE
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
@@ -135,17 +135,17 @@
 		current_range = stream_range
 	else
 		current_range = spray_range
-	to_chat(user, span_notice("You switch the nozzle setting to [stream_mode ? "\"stream\"":"\"spray\""]."))
+	to_chat(user, span_notice("你将喷嘴设置切换为 [stream_mode ? "\"stream\"":"\"spray\""]。"))
 
 /obj/item/reagent_containers/spray/verb/empty()
 	set name = "Empty Spray Bottle"
 	set src in usr
 	if(usr.incapacitated)
 		return
-	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
+	if (tgui_alert(usr, "你确定要清空它吗？", "清空瓶子：", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc) && src.loc == usr)
-		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
+		to_chat(usr, span_notice("你将 \the [src] 倒在了地上。"))
 		reagents.expose(usr.loc)
 		log_combat(usr, usr.loc, "emptied onto", src, addition="which had [reagents.get_reagent_log_string()]")
 		src.reagents.clear_reagents()
@@ -182,8 +182,8 @@
 
 //space cleaner
 /obj/item/reagent_containers/spray/cleaner
-	name = "space cleaner"
-	desc = "BLAM!-brand non-foaming space cleaner!"
+	name = "空间清洁剂"
+	desc = "BLAM！品牌无泡沫空间清洁剂！"
 	icon_state = "cleaner"
 	volume = 100
 	list_reagents = list(/datum/reagent/space_cleaner = 100)
@@ -191,31 +191,31 @@
 	possible_transfer_amounts = list(2,5)
 
 /obj/item/reagent_containers/spray/cleaner/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is putting the nozzle of \the [src] in [user.p_their()] mouth. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正把 \the [src] 的喷嘴放进 [user.p_their()] 嘴里。看起来 [user.p_theyre()] 想自杀！"))
 	if(do_after(user, 3 SECONDS, user))
 		if(reagents.total_volume >= amount_per_transfer_from_this)//if not empty
-			user.visible_message(span_suicide("[user] pulls the trigger!"))
+			user.visible_message(span_suicide("[user] 扣动了扳机！"))
 			spray(user, user)
 			return BRUTELOSS
 		else
-			user.visible_message(span_suicide("[user] pulls the trigger...but \the [src] is empty!"))
+			user.visible_message(span_suicide("[user] 扣动了扳机……但 \the [src] 是空的！"))
 			return SHAME
 	else
-		user.visible_message(span_suicide("[user] decided life was worth living."))
+		user.visible_message(span_suicide("[user] 觉得生命还是值得的。"))
 		return MANUAL_SUICIDE_NONLETHAL
 
 //spray tan
 /obj/item/reagent_containers/spray/spraytan
-	name = "spray tan"
+	name = "喷涂晒痕"
 	volume = 50
-	desc = "Gyaro brand spray tan. Do not spray near eyes or other orifices."
+	desc = "Gyaro牌喷雾美黑产品。请勿喷洒在眼睛或其他孔口附近。"
 	list_reagents = list(/datum/reagent/spraytan = 50)
 
 
 //pepperspray
 /obj/item/reagent_containers/spray/pepper
-	name = "pepperspray"
-	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly."
+	name = "胡椒喷雾"
+	desc = "用于快速致盲与击倒对手的道具. 由'UhangInc'制造"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pepperspray"
 	inhand_icon_state = "pepperspray"
@@ -237,8 +237,8 @@
 
 //water flower
 /obj/item/reagent_containers/spray/waterflower
-	name = "water flower"
-	desc = "A seemingly innocent sunflower...with a twist."
+	name = "水之花"
+	desc = "一朵看似无辜的向日葵……却另有隐情。"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "sunflower"
 	inhand_icon_state = "sunflower"
@@ -257,8 +257,8 @@
 
 ///Subtype used for the lavaland clown ruin.
 /obj/item/reagent_containers/spray/waterflower/superlube
-	name = "clown flower"
-	desc = "A delightfully devilish flower... you've got a feeling where this is going."
+	name = "小丑花"
+	desc = "一朵令人愉悦的邪恶花朵……你大概能猜到接下来会发生什么。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "clownflower"
 	volume = 30
@@ -275,8 +275,8 @@
 	can_fill_from_container = FALSE
 
 /obj/item/reagent_containers/spray/waterflower/cyborg/hacked
-	name = "nova flower"
-	desc = "This doesn't look safe at all..."
+	name = "新星花"
+	desc = "这看起来一点都不安全……"
 	list_reagents = list(/datum/reagent/clf3 = 3)
 	volume = 3
 	generate_type = /datum/reagent/clf3
@@ -298,7 +298,7 @@
 	generate_reagents()
 
 /obj/item/reagent_containers/spray/waterflower/cyborg/empty()
-	to_chat(usr, span_warning("You can not empty this!"))
+	to_chat(usr, span_warning("你无法清空这个！"))
 	return
 
 /obj/item/reagent_containers/spray/waterflower/cyborg/proc/generate_reagents()
@@ -306,8 +306,8 @@
 
 //chemsprayer
 /obj/item/reagent_containers/spray/chemsprayer
-	name = "chem sprayer"
-	desc = "A utility used to spray large amounts of reagents in a given area."
+	name = "化学喷雾器"
+	desc = "用于在特定区域喷洒大量试剂的装置。"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "chemsprayer"
 	inhand_icon_state = "chemsprayer"
@@ -339,8 +339,8 @@
 
 
 /obj/item/reagent_containers/spray/chemsprayer/janitor
-	name = "janitor chem sprayer"
-	desc = "A utility used to spray large amounts of cleaning reagents in a given area. It regenerates space cleaner by itself but it's unable to be fueled by normal means."
+	name = "清洁工化学喷雾器"
+	desc = "一种用于向特定区域喷洒大量清洁试剂的装置。它可以自行再生空间清洁剂，但无法通过常规方式补充燃料。"
 	icon_state = "chemsprayer_janitor"
 	inhand_icon_state = "chemsprayer_janitor"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -369,8 +369,8 @@
 	reagents.add_reagent(generate_type, generate_amount)
 
 /obj/item/reagent_containers/spray/chemsprayer/party
-	name = "party popper"
-	desc = "A small device used for celebrations and annoying the janitor."
+	name = "派对拉炮"
+	desc = "一种用于庆祝和烦扰清洁工的小装置。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "party_popper"
 	inhand_icon_state = "party_popper"
@@ -396,8 +396,8 @@
 
 // Plant-B-Gone
 /obj/item/reagent_containers/spray/plantbgone // -- Skie
-	name = "Plant-B-Gone"
-	desc = "Kills those pesky weeds!"
+	name = "Plant-B-Gone-百草枯"
+	desc = "消灭那些讨厌的杂草！"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "plantbgone"
 	inhand_icon_state = "plantbgone"
@@ -407,8 +407,8 @@
 	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
 
 /obj/item/reagent_containers/spray/syndicate
-	name = "suspicious spray bottle"
-	desc = "A spray bottle, with a high performance plastic nozzle. The color scheme makes you feel slightly uneasy."
+	name = "可疑的喷雾瓶"
+	desc = "一个喷雾瓶，配有高性能塑料喷嘴。其配色方案让你感到些许不安。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "sprayer_sus_8"
 	inhand_icon_state = "sprayer_sus"
@@ -441,7 +441,7 @@
 	new_icon_state = "sprayer_med_blue"
 
 /obj/item/reagent_containers/spray/medical
-	name = "medical spray bottle"
+	name = "医疗喷雾瓶"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "sprayer_med_red"
 	inhand_icon_state = "sprayer_med_red"
@@ -453,8 +453,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/med_spray)
 
 /obj/item/reagent_containers/spray/hercuri
-	name = "medical spray (hercuri)"
-	desc = "A medical spray bottle. This one contains hercuri, a medicine used to negate the effects of dangerous high-temperature environments. Careful not to freeze the patient!"
+	name = "医疗喷雾（赫库里）"
+	desc = "一个医疗喷雾瓶。这个里面装着赫库里，一种用于抵消危险高温环境影响的药物。小心别把病人冻坏了！"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "sprayer_med_yellow"
 	list_reagents = list(/datum/reagent/medicine/c2/hercuri = 100)

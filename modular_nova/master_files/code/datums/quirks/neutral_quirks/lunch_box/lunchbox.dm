@@ -103,7 +103,7 @@
 		list(
 			LOCATION_HANDS,
 		),
-		flavour_text = "Looks well packed... delicious!",
+		flavour_text = "看起来包装得很好……美味！",
 		notify_player = TRUE,
 	)
 

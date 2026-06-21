@@ -1,6 +1,6 @@
 /obj/item/seeds/nettle
-	name = "nettle seed pack"
-	desc = "These seeds grow into nettles."
+	name = "荨麻种子包"
+	desc = "能长成荨麻的种子。"
 	icon_state = "seed-nettle"
 	plant_icon_offset = 0
 	species = "nettle"
@@ -17,8 +17,8 @@
 	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
 
 /obj/item/seeds/nettle/death
-	name = "death-nettle seed pack"
-	desc = "These seeds grow into death-nettles."
+	name = "死亡荨麻种子包"
+	desc = "能长成死亡荨麻的种子。"
 	icon_state = "seed-deathnettle"
 	species = "deathnettle"
 	plantname = "Death Nettles"
@@ -34,8 +34,8 @@
 
 /obj/item/food/grown/nettle // "snack"
 	seed = /obj/item/seeds/nettle
-	name = "\improper nettle"
-	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
+	name = "\improper 荨麻"
+	desc = "徒手去摸它可能并<B>不是</B>个明智的做法……"
 	icon_state = "nettle"
 	inhand_icon_state = "nettle"
 	bite_consumption_mod = 2
@@ -52,12 +52,12 @@
 	attack_verb_simple = list("sting")
 
 /obj/item/food/grown/nettle/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is eating some of [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正在吃一些[src]！看起来[user.p_theyre()]想自杀！"))
 	return (BRUTELOSS|TOXLOSS)
 
 /obj/item/food/grown/nettle/death
 	seed = /obj/item/seeds/nettle/death
-	name = "\improper deathnettle"
+	name = "\improper 死亡荨麻"
 	desc = "The <span class='danger'>glowing</span> nettle incites <span class='bolddanger'>rage</span> in you just from looking at it!"
 	icon_state = "deathnettle"
 	inhand_icon_state = "deathnettle"

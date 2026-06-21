@@ -1,6 +1,6 @@
 /datum/job/janitor
 	title = JOB_JANITOR
-	description = "Clean up trash and blood, replace broken lights, slip people over."
+	description = "清理垃圾和血迹，更换损坏的灯，让人滑倒。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 1
@@ -32,7 +32,7 @@
 	job_tone = "slip"
 
 /datum/outfit/job/janitor
-	name = "Janitor"
+	name = "清洁工"
 	jobtype = /datum/job/janitor
 
 	id_trim = /datum/id_trim/job/janitor

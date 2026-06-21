@@ -1,6 +1,6 @@
 /// The subsystem for controlling drastic performance enhancements aimed at reducing server load for a smoother albeit slightly duller gaming experience
 SUBSYSTEM_DEF(lag_switch)
-	name = "Lag Switch"
+	name = "延迟开关"
 	ss_flags = SS_NO_FIRE
 
 	/// If the lag switch measures should attempt to trigger automatically, TRUE if a config value exists
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(lag_switch)
 
 	slowmode_cooldown = length_secs
 	if(measures[SLOWMODE_SAY])
-		to_chat(world, span_boldannounce("Slowmode timer has been changed to [length] seconds by an admin."))
+		to_chat(world, span_boldannounce("管理员已将慢速模式计时器更改为[length]秒。"))
 	return TRUE
 
 /// Handle the state change for individual measures
@@ -93,10 +93,10 @@ SUBSYSTEM_DEF(lag_switch)
 					if(observer.client?.holder) // Don't freeze admins
 						continue
 					GLOB.keyloop_list -= observer
-				deadchat_broadcast(span_big("To increase performance Observer freelook is now disabled. Please use Orbit, Teleport, and Jump to look around."), message_type = DEADCHAT_ANNOUNCEMENT)
+				deadchat_broadcast(span_big("为提升性能，观察者自由视角现已禁用。请使用轨道、传送和跳跃来观察周围。"), message_type = DEADCHAT_ANNOUNCEMENT)
 			else
 				GLOB.keyloop_list |= GLOB.player_list
-				deadchat_broadcast("Observer freelook has been re-enabled. Enjoy your wooshing.", message_type = DEADCHAT_ANNOUNCEMENT)
+				deadchat_broadcast("观察者自由视角已重新启用。享受您的嗖嗖声吧。", message_type = DEADCHAT_ANNOUNCEMENT)
 		if(DISABLE_GHOST_ZOOM_TRAY)
 			if(state) // if enabling make sure current ghosts are updated
 				for(var/mob/dead/observer/ghost in GLOB.dead_mob_list)
@@ -106,32 +106,32 @@ SUBSYSTEM_DEF(lag_switch)
 						ghost.client.view_size.resetToDefault()
 		if(SLOWMODE_SAY)
 			if(state)
-				to_chat(world, span_boldannounce("Slowmode for IC/dead chat has been enabled with [slowmode_cooldown/10] seconds between messages."))
+				to_chat(world, span_boldannounce("IC/死亡聊天慢速模式已启用，消息间隔为[slowmode_cooldown/10]秒。"))
 			else
 				for(var/client/C as anything in GLOB.clients)
 					COOLDOWN_RESET(C, say_slowmode)
-				to_chat(world, span_boldannounce("Slowmode for IC/dead chat has been disabled by an admin."))
+				to_chat(world, span_boldannounce("管理员已禁用IC/死亡聊天慢速模式。"))
 		if(DISABLE_NON_OBSJOBS)
 			world.update_status()
 		if(DISABLE_PARALLAX)
 			if (state)
-				to_chat(world, span_boldannounce("Parallax has been disabled for performance concerns."))
+				to_chat(world, span_boldannounce("出于性能考虑，视差效果已被禁用。"))
 			else
-				to_chat(world, span_boldannounce("Parallax has been re-enabled."))
+				to_chat(world, span_boldannounce("视差效果已重新启用。"))
 
 			for (var/mob/mob as anything in GLOB.mob_list)
 				mob.hud_used?.update_parallax_pref()
 		if (DISABLE_FOOTSTEPS)
 			if (state)
-				to_chat(world, span_boldannounce("Footstep sounds have been disabled for performance concerns."))
+				to_chat(world, span_boldannounce("出于性能考虑，脚步声已禁用。"))
 			else
-				to_chat(world, span_boldannounce("Footstep sounds have been re-enabled."))
+				to_chat(world, span_boldannounce("脚步声已重新启用。"))
 		// NOVA EDIT ADDITION
 		if (DISABLE_CREATOR)
 			if (state)
-				to_chat(world, span_boldannounce("The character creator and preferences menu has been disabled for performance metrics."))
+				to_chat(world, span_boldannounce("角色创建器和偏好设置菜单已因性能指标而禁用。"))
 			else
-				to_chat(world, span_boldannounce("The character creator has been re-enabled."))
+				to_chat(world, span_boldannounce("角色创建器已重新启用。"))
 		// NOVA EDIT END
 
 	return TRUE

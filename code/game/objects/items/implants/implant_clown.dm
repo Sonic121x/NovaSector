@@ -1,6 +1,6 @@
 /// A passive implant that plays a funny noise (defaults to sound/misc/sadtrombone.ogg) when you deathgasp for any reason
 /obj/item/implant/sad_trombone
-	name = "sad trombone implant"
+	name = "悲伤长号植入物"
 	actions_types = null
 
 	/// What do we play when the implantee deathgasps?
@@ -28,11 +28,11 @@
 
 ///Implanter that spawns with a sad trombone implant, as well as an appropriate name
 /obj/item/implanter/sad_trombone
-	name = "implanter (sad trombone)"
+	name = "植入器（悲伤长号）"
 	imp_type = /obj/item/implant/sad_trombone
 
 ///Implant case that spawns with a sad trombone implant, as well as an appropriate name and description
 /obj/item/implantcase/sad_trombone
-	name = "implant case - 'Sad Trombone'"
-	desc = "A glass case containing a sad trombone implant."
+	name = "植入物盒 - '悲伤长号'"
+	desc = "一个装有悲伤长号植入物的玻璃盒。"
 	imp_type = /obj/item/implant/sad_trombone

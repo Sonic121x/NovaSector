@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/pipe_scrubber
-	name = "pipe scrubber"
-	desc = "A machine for cleaning out pipes of lingering gases. It is a huge tank with a pump attached to it."
+	name = "管道洗涤器"
+	desc = "一种用于清除管道中残留气体的机器。它是一个连接着泵的大型储罐。"
 	icon_state = "pipe_scrubber"
 	density = TRUE
 	max_integrity = 250

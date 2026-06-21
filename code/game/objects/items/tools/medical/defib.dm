@@ -124,7 +124,7 @@
 		if(user.get_slot_by_item(src) & slot_flags)
 			ui_action_click(user, modifiers)
 		else
-			balloon_alert(user, "equip the unit first!")
+			balloon_alert(user, "请先装备该设备！")
 		return
 	else if(istype(loc, /obj/machinery/defibrillator_mount))
 		ui_action_click(user, modifiers) //checks for this are handled in defibrillator.mount.dm
@@ -135,7 +135,7 @@
 		return FALSE
 
 	cell.forceMove(get_turf(src))
-	balloon_alert(user, "removed [cell]")
+	balloon_alert(user, "取出了 [cell]")
 	cell = null
 	tool.play_tool_sound(src, 50)
 	update_power()
@@ -168,7 +168,7 @@
 	safety = !safety
 
 	var/enabled_or_disabled = (safety ? "enabled" : "disabled")
-	balloon_alert(user, "safety protocols [enabled_or_disabled]")
+	balloon_alert(user, "安全协议 [enabled_or_disabled]")
 
 	return TRUE
 
@@ -527,7 +527,7 @@
 		var/turf/T = get_turf(defib)
 		playsound(src, 'sound/machines/defib/defib_charge.ogg', 50, FALSE)
 		if(req_defib)
-			T.audible_message(span_warning("\The [defib] lets out an urgent beep and lets out a steadily rising hum..."))
+			T.audible_message(span_warning("\The [defib] 发出一阵急促的哔哔声，并开始发出稳定上升的嗡鸣声..."))
 		else
 			user.audible_message(span_warning("[src] let out an urgent beep."))
 		if(do_after(user, 1.5 SECONDS, H, extra_checks = CALLBACK(src, PROC_REF(is_wielded)))) //Takes longer due to overcharging
@@ -562,7 +562,7 @@
 	if (target_synthetic)
 		to_chat(user, span_boldwarning("[H] is a synthetic lifeform! This defibrillator probably isn't calibrated to revive [H.p_them()] properly and could have some serious consequences! \
 		[span_warning("You might want to [span_blue("surgically revive [H.p_them()]")]...")]"))
-		balloon_alert(user, "target is synthetic!") // immediately grabs their attention even if they dont see chat
+		balloon_alert(user, "目标是合成体！") // immediately grabs their attention even if they dont see chat
 	// NOVA EDIT ADDITION END - SYNTH REVIVAL
 	user.visible_message(span_warning("[user] begins to place [src] on [H]'s chest."), span_warning("You begin to place [src] on [H]'s chest..."))
 	busy = TRUE
@@ -575,7 +575,7 @@
 			if((!combat && !req_defib) || (req_defib && !defib.combat))
 				for(var/obj/item/clothing/C in H.get_equipped_items())
 					if((C.body_parts_covered & CHEST) && (C.clothing_flags & THICKMATERIAL)) //check to see if something is obscuring their chest.
-						user.audible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Patient's chest is obscured. Operation aborted."))
+						user.audible_message(span_warning("[req_defib ? "[defib]" : "[src]"] 发出嗡嗡声：患者胸部被遮挡。操作中止。"))
 						playsound(src, 'sound/machines/defib/defib_failed.ogg', 50, FALSE)
 						do_cancel()
 						return
@@ -618,7 +618,7 @@
 					//NOVA EDIT ADDITION END - DNR TRAIT
 
 				if(fail_reason)
-					user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - [fail_reason]"))
+					user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] 发出嗡嗡声：复苏失败 - [fail_reason]"))
 					playsound(src, 'sound/machines/defib/defib_failed.ogg', 50, FALSE)
 				else
 					var/total_brute = H.get_brute_loss()
@@ -637,7 +637,7 @@
 						need_mob_update += H.adjust_brute_loss((mobhealth - HALFWAYCRITDEATH) * (total_brute / overall_damage), updating_health = FALSE)
 					if(need_mob_update)
 						H.updatehealth() // Previous "adjust" procs don't update health, so we do it manually.
-					user.visible_message(span_notice("[req_defib ? "[defib]" : "[src]"] pings: Resuscitation successful."))
+					user.visible_message(span_notice("[req_defib ? "[defib]" : "[src]"] 发出提示音：复苏成功。"))
 					playsound(src, 'sound/machines/defib/defib_success.ogg', 50, FALSE)
 					H.set_heartattack(FALSE)
 					if(defib_result == DEFIB_POSSIBLE)
@@ -672,23 +672,23 @@
 				do_success()
 				return
 			else if (!H.get_organ_by_type(/obj/item/organ/heart))
-				user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Patient's heart is missing. Operation aborted."))
+				user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] 发出嗡嗡声：患者心脏缺失。操作中止。"))
 				playsound(src, 'sound/machines/defib/defib_failed.ogg', 50, FALSE)
 			else if(H.undergoing_cardiac_arrest())
 				playsound(src, 'sound/machines/defib/defib_zap.ogg', 50, TRUE, -1)
 				if(!(heart.organ_flags & ORGAN_FAILING))
 					H.set_heartattack(FALSE)
 					do_success()
-					user.visible_message(span_notice("[req_defib ? "[defib]" : "[src]"] pings: Patient's heart is now beating again."))
+					user.visible_message(span_notice("[req_defib ? "[defib]" : "[src]"] 发出提示音：患者心脏已恢复跳动。"))
 				else
-					user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed, heart damage detected."))
+					user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] 发出嗡嗡声：复苏失败，检测到心脏损伤。"))
 			else if(H.has_status_effect(/datum/status_effect/heart_attack))
-				user.visible_message(span_notice("[req_defib ? "[defib]" : "[src]"] pings: Patient's heart has stabilized, further applications may be necessary."))
+				user.visible_message(span_notice("[req_defib ? "[defib]" : "[src]"] 发出提示音：患者心脏已稳定，可能需要进一步使用。"))
 				SEND_SIGNAL(H, COMSIG_HEARTATTACK_DEFIB)
 				playsound(src, 'sound/machines/defib/defib_zap.ogg', 50, TRUE, -1)
 				do_success()
 			else
-				user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Patient is not in a valid state. Operation aborted."))
+				user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] 发出嗡嗡声：患者状态无效。操作中止。"))
 				playsound(src, 'sound/machines/defib/defib_failed.ogg', 50, FALSE)
 	do_cancel()
 

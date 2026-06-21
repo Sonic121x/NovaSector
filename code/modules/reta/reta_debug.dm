@@ -5,7 +5,7 @@
 /// Admin command to manually trigger RETA access grant for admins
 ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA Door Access", "Manually trigger RETA access for testing", ADMIN_CATEGORY_EVENTS)
 
-	var/calling_dept = tgui_input_list(user, "RETA - Which department is CALLING for help?", "Calling Department", list("Security", "Engineering", "Medical", "Science", "Service", "Command", "Cargo", "Mining"))
+	var/calling_dept = tgui_input_list(user, "RETA - 哪个部门正在呼叫求助？", "呼叫部门", list("Security", "Engineering", "Medical", "Science", "Service", "Command", "Cargo", "Mining"))
 	if(!calling_dept)
 		return
 
@@ -18,7 +18,7 @@ ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA Door Access", "Manually trigger R
 
 	while(length(remaining_depts))
 		remaining_depts += "DONE - Finish selection"
-		var/choice = tgui_input_list(user, "RETA - Select departments to RESPOND to [calling_dept]\nCurrently selected: [english_list(selected_depts)]\n\nSelect another department or DONE:", "Responding Departments", remaining_depts)
+		var/choice = tgui_input_list(user, "RETA - 选择要响应的部门 [calling_dept]\nCurrently 当前已选：[english_list(selected_depts)]\n\nSelect 选择另一个部门或完成：", "响应部门", remaining_depts)
 
 		if(!choice || choice == "DONE - Finish selection")
 			break
@@ -31,7 +31,7 @@ ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA Door Access", "Manually trigger R
 		message_admins("No departments selected for RETA response.")
 		return
 
-	var/duration = tgui_input_number(user, "Duration in minutes:", "RETA Duration", 5, 60, 1)
+	var/duration = tgui_input_number(user, "持续时间（分钟）：", "RETA 持续时间", 5, 60, 1)
 	if(!duration)
 		return
 

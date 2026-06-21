@@ -1,6 +1,6 @@
 /obj/machinery/vending/games
-	name = "\improper Good Clean Fun"
-	desc = "Vends things that the Captain and Head of Personnel are probably not going to appreciate you fiddling with instead of your job..."
+	name = "\improper 愉快的放松时光售货机"
+	desc = "处理一些舰长和人事主管可能不会喜欢你不顾工作而去摆弄的事情……"
 	product_ads = "Escape to a fantasy world!;Fuel your gambling addiction!;Ruin your friendships!;Roll for initiative!;Elves and dwarves!;Paranoid computers!;Totally not satanic!;Fun times forever!"
 	icon_state = "games"
 	panel_type = "panel4"

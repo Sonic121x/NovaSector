@@ -39,7 +39,7 @@
 		return
 
 	var/mob/living/owner = parent
-	to_chat(owner, span_userdanger("You feel a strange sensation..."))
+	to_chat(owner, span_userdanger("你感到一阵奇怪的悸动..."))
 
 	var/obj/machinery/byteforge/forge = forge_ref?.resolve()
 	forge?.setup_particles()
@@ -56,14 +56,14 @@
 		/atom/movable/screen/alert/bitrunning,
 		new_master = source,
 	)
-	alert.name = "Source Broken"
-	alert.desc = "Our byteforge has been broken."
+	alert.name = "源点已损坏"
+	alert.desc = "我们的字节熔炉已被破坏。"
 
 	if(!iscarbon(parent)) // Too powerful!
 		return
 
 	player.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/glitch_slowdown)
-	to_chat(player, span_danger("Your body feels sluggish..."))
+	to_chat(player, span_danger("你的身体感到迟缓..."))
 
 /// Power restored
 /datum/component/glitch/proc/on_forge_power_restored(datum/source)

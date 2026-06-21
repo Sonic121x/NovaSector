@@ -1,5 +1,5 @@
 /obj/projectile/bullet/kineticball
-	name = "kinetic orb"
+	name = "动能球"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/bolt_fabrications/riotrubberbullet.dmi'
 	icon_state = "riotrubberbullet"
 	damage = 0
@@ -12,8 +12,8 @@
 	exposed_wound_bonus = -10
 
 /obj/item/ammo_casing/kineticball
-	name = "kinetic ball casing"
-	desc = "A kinetic ball casing."
+	name = "动能球弹壳"
+	desc = "一枚动能球弹壳。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/bolt_fabrications/stingtop.dmi'
 	icon_state = "stingstop"
 	ammo_stack_type = /obj/item/ammo_box/magazine/ammo_stack/kineticball
@@ -23,8 +23,8 @@
 	ammo_categories = AMMO_CLASS_NONE
 
 /obj/item/ammo_box/magazine/ammo_stack/kineticball
-	name = "kinetic ball casings"
-	desc = "A stack of kinetic ball cartridges."
+	name = "动能球弹壳"
+	desc = "一叠动能球弹药。"
 	caliber = CALIBER_KINETICBALL
 	ammo_type = /obj/item/ammo_casing/kineticball
 	max_ammo = 13

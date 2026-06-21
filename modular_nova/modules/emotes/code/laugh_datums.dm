@@ -16,11 +16,11 @@ GLOBAL_LIST_EMPTY(laugh_types_by_name)
 	return ..()
 
 /datum/laugh_type/none //Why would you want this?
-	name = "No Laugh"
+	name = "无笑声"
 	laugh_sounds = null
 
 /datum/laugh_type/human
-	name = "Human Laugh"
+	name = "人类笑声"
 	laugh_sounds = list('sound/mobs/humanoids/human/laugh/manlaugh1.ogg',
 						'sound/mobs/humanoids/human/laugh/manlaugh2.ogg',)
 	female_laugh_type = /datum/laugh_type/human/female
@@ -37,29 +37,29 @@ GLOBAL_LIST_EMPTY(laugh_types_by_name)
 	)
 
 /datum/laugh_type/felinid
-	name = "Felinid Laugh"
+	name = "猫族笑声"
 	laugh_sounds = list('modular_nova/modules/emotes/sound/emotes/nyahaha1.ogg',
 			'modular_nova/modules/emotes/sound/emotes/nyahaha2.ogg',
 			'modular_nova/modules/emotes/sound/emotes/nyaha.ogg',
 			'modular_nova/modules/emotes/sound/emotes/nyahehe.ogg')
 
 /datum/laugh_type/moth
-	name = "Insect Laugh (Moth)"
+	name = "昆虫笑声（蛾族）"
 	laugh_sounds = list('sound/mobs/humanoids/moth/moth_laugh1.ogg')
 
 /datum/laugh_type/lizard
-	name = "Lizard Laugh"
+	name = "蜥蜴笑声"
 	laugh_sounds = list('sound/mobs/humanoids/lizard/lizard_laugh1.ogg')
 
 /datum/laugh_type/skrell
-	name = "Skrell Laugh"
+	name = "斯克莱尔笑声"
 	laugh_sounds = list(
 		'modular_nova/modules/emotes/sound/emotes/skrelllaugh1.ogg',
 		'modular_nova/modules/emotes/sound/emotes/skrelllaugh2.ogg',
 	)
 
 /datum/laugh_type/slugcat
-	name = "Slugcat Laugh"
+	name = "蛞蝓猫笑声"
 	laugh_sounds = list('modular_nova/modules/emotes/sound/voice/scuglaugh_1.ogg')
 
 /datum/laugh_type/clown

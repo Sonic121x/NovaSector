@@ -41,11 +41,11 @@ ADMIN_VERB(toggledchat, R_ADMIN, "Toggle Dead Chat", "Toggle dis bitch.", ADMIN_
 		return TRUE
 
 	if(handler && handler != usr.ckey)
-		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
+		var/response = tgui_alert(usr, "此工单已由 [handler] 处理。是否要继续？", "工单已分配", list("Yes", "No"))
 		if(!response || response == "No")
 			return FALSE
 
-	var/msg = span_adminhelp("Your ticket is now being handled by [usr?.client?.holder?.fakekey ? usr?.client?.holder?.fakekey : "an administrator"]! Please wait while they type their response and/or gather relevant information.")
+	var/msg = span_adminhelp("您的工单现正由 [usr?.client?.holder?.fakekey ? usr?.client?.holder?.fakekey : "an administrator"] 处理！请等待他们输入回复和/或收集相关信息。")
 
 	if(initiator)
 		to_chat(initiator, msg)
@@ -65,13 +65,13 @@ ADMIN_VERB(toggledchat, R_ADMIN, "Toggle Dead Chat", "Toggle dis bitch.", ADMIN_
 		return FALSE
 
 	if(handler && handler != usr.ckey)
-		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
+		var/response = tgui_alert(usr, "此工单已由 [handler] 处理。是否要继续？", "工单已分配", list("Yes", "No"))
 		if(!response || response == "No")
 			return FALSE
 
 	add_verb(initiator, /client/verb/mentorhelp) // Way to override mentorhelp cooldown.
 
-	to_chat(initiator, span_adminhelp("Your ticket was converted to Mentorhelp"))
+	to_chat(initiator, span_adminhelp("您的工单已转换为导师求助"))
 	initiator.mentorhelp(full_text)
 	initiator.giveadminhelpverb()
 

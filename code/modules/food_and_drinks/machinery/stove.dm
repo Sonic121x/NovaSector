@@ -1,6 +1,6 @@
 /obj/machinery/stove
-	name = "stove"
-	desc = "You'd think this thing would be more useful in here."
+	name = "炉灶"
+	desc = "你会觉得这东西在这里应该更有用。"
 	icon = 'icons/obj/machines/kitchen_stove.dmi'
 	icon_state = "stove"
 	base_icon_state = "stove"
@@ -26,8 +26,8 @@
 // - Thermostat you can stick in the pot to see in examine the temperature
 // - Tasting the pot to learn its exact contents w/o sci goggles (chef skillchip?)
 /obj/item/reagent_containers/cup/soup_pot
-	name = "soup pot"
-	desc = "A tall soup designed to mix and cook all kinds of soup."
+	name = "汤锅"
+	desc = "一个高大的汤锅，用于混合和烹饪各种汤品。"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "pot"
 	base_icon_state = "pot"
@@ -102,15 +102,15 @@
 
 		if(reagents.total_volume > 0)
 			if(can_see_insides)
-				examine_list += span_notice("The contents of [src] have a temperature of [reagents.chem_temp]K.")
+				examine_list += span_notice("[src]的内容物温度为[reagents.chem_temp]K。")
 			else if(reagents.chem_temp > WATER_BOILING_POINT) // boiling point
-				examine_list += span_notice("The contents of [src] are boiling.")
+				examine_list += span_notice("[src]的内容物正在沸腾。")
 
 	else
 		examine_list += "Nothing."
 
 	if(reagents.is_reacting)
-		examine_list += span_warning("It is currently mixing!")
+		examine_list += span_warning("它正在搅拌中！")
 
 	return STOP_GENERIC_REAGENT_EXAMINE
 
@@ -136,7 +136,7 @@
 		if(!can_add_ingredient(tray_item))
 			continue
 		if(LAZYLEN(added_ingredients) >= max_ingredients)
-			balloon_alert(user, "it's full!")
+			balloon_alert(user, "已经满了！")
 			return TRUE
 		if(tray.atom_storage.attempt_remove(tray_item, src))
 			loaded++
@@ -159,15 +159,15 @@
 
 	// Too many ingredients
 	if(LAZYLEN(added_ingredients) >= max_ingredients)
-		balloon_alert(user, "too many ingredients!")
+		balloon_alert(user, "配料太多了！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(item, src))
-		balloon_alert(user, "can't add that!")
+		balloon_alert(user, "无法添加那个！")
 		return ITEM_INTERACT_BLOCKING
 
 	// Ensures that faceatom works correctly, since we can can often be in another atom's loc (a stove)
 	var/atom/movable/balloon_loc = ismovable(loc) ? loc : src
-	balloon_loc.balloon_alert(user, "ingredient added")
+	balloon_loc.balloon_alert(user, "已添加配料")
 	user.face_atom(balloon_loc)
 
 	LAZYADD(added_ingredients, item)
@@ -187,7 +187,7 @@
 
 	// Ensures that faceatom works correctly, since we can can often be in another atom's loc (a stove)
 	var/atom/movable/balloon_loc = ismovable(loc) ? loc : src
-	balloon_loc.balloon_alert(user, "ingredient removed")
+	balloon_loc.balloon_alert(user, "已移除配料")
 	user.face_atom(balloon_loc)
 
 	update_appearance(UPDATE_OVERLAYS)

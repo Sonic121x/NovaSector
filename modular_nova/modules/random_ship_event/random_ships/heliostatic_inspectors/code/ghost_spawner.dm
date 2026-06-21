@@ -1,14 +1,14 @@
 /obj/effect/mob_spawn/ghost_role/human/hc_officer
 	name = "HC Patrol Officer"
 	desc = "A comfortable-looking sleeper unit adorned with the insignia of the Heliostatic Coalition Internal Affairs Department."
-	prompt_name = "an HC Expeditionary Patrol Officer"
+	prompt_name = "一名HC远征巡逻警官"
 	icon = 'modular_nova/modules/cryosleep/icons/cryogenics.dmi'
 	icon_state = "cryopod"
 	mob_species = /datum/species/human
 	faction = list(FACTION_NEUTRAL)
-	you_are_text = "You are an officer of the Heliostatic Coalition Expeditionary Patrol."
-	flavour_text = "Your patrol vessel is conducting a Standard Compliance and Inspection operation on this remote facility. Your mandate, derived from Coalition Accords, grants you the authority to inspect, seize contraband, and use necessary force to protect Coalition interests. Vigilance is paramount; these stations are self-governing and not inherently trustworthy. Adhere to the Standard Operating Procedures at all times."
-	important_text = "Follow the chain of command. Your patrol leader's callsign is appended with 'Actual'. Maintain professional discipline and be prepared to escalate appropriately as the situation demands."
+	you_are_text = "你是日心联盟远征巡逻队的一名警官。"
+	flavour_text = "你的巡逻舰正在对这个偏远设施进行标准合规与检查行动。你的授权源自联盟协定，赋予你检查、没收违禁品以及使用必要武力保护联盟利益的权力。保持警惕至关重要；这些空间站是自治的，并非天生可信。务必始终遵守标准操作程序。"
+	important_text = "遵循指挥链。你的巡逻队长呼号后缀为'Actual'。保持专业纪律，并根据情况需要做好适当升级的准备。"
 	outfit = /datum/outfit/hc_officer
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 	quirks_enabled = TRUE

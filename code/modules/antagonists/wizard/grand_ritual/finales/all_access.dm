@@ -1,7 +1,7 @@
 /// Open all of the doors
 /datum/grand_finale/all_access
-	name = "Connection"
-	desc = "The ultimate use of your gathered power! Unlock every single door that they have! Nobody will be able to keep you out now, or anyone else for that matter!"
+	name = "连接"
+	desc = "你收集力量的终极运用！解锁他们拥有的每一扇门！现在没人能拦住你，其他人也一样！"
 	icon = 'icons/mob/actions/actions_spells.dmi'
 	icon_state = "knock"
 

@@ -6,8 +6,8 @@
  * All spiders can produce webbing.
  */
 /mob/living/basic/spider/giant
-	name = "giant spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
+	name = "巨型蜘蛛"
+	desc = "毛茸茸的黑色身躯，光是看着就让你不寒而栗。这只蜘蛛有着深红色的眼睛。"
 	icon_state = "guard"
 	icon_living = "guard"
 	icon_dead = "guard_dead"
@@ -34,8 +34,8 @@
  * This spider is only slightly slower than a human.
  */
 /mob/living/basic/spider/giant/ambush
-	name = "ambush spider"
-	desc = "Furry and white, it makes you shudder to look at it. This one has sparkling pink eyes."
+	name = "伏击蜘蛛"
+	desc = "毛茸茸的白色身躯，光是看着就让你不寒而栗。这只蜘蛛有着闪亮的粉色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "ambush"
 	icon_living = "ambush"
@@ -64,8 +64,8 @@
  * This spider is only slightly slower than a human.
  */
 /mob/living/basic/spider/giant/guard
-	name = "guard spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
+	name = "守卫蜘蛛"
+	desc = "毛茸茸的黑色身躯，光是看着就让你不寒而栗。这只蜘蛛有着深红色的眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "guard"
 	icon_living = "guard"
@@ -91,8 +91,8 @@
  * This spider is only slightly slower than a human.
  */
 /mob/living/basic/spider/giant/hunter
-	name = "hunter spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
+	name = "猎手蜘蛛"
+	desc = "毛茸茸的黑色身躯，光是看着就让你不寒而栗。这只蜘蛛有着闪亮的紫色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "hunter"
 	icon_living = "hunter"
@@ -116,8 +116,8 @@
  * This spider is only slightly faster than a human.
  */
 /mob/living/basic/spider/giant/scout
-	name = "scout spider"
-	desc = "Furry and blueish black, it makes you shudder to look at it. This one has sparkling blue eyes."
+	name = "侦察蜘蛛"
+	desc = "毛茸茸的蓝黑色身躯，光是看着就让你不寒而栗。这只蜘蛛有着闪亮的蓝色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "scout"
 	icon_living = "scout"
@@ -147,8 +147,8 @@
  * Note that it cannot heal itself.
  */
 /mob/living/basic/spider/giant/nurse
-	name = "nurse spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes."
+	name = "护士蜘蛛"
+	desc = "毛茸茸的黑色身躯，光是看着就让你不寒而栗。这只蜘蛛有着明亮的绿色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "nurse"
 	icon_living = "nurse"
@@ -189,8 +189,8 @@
  * Note that it can heal itself.
  */
 /mob/living/basic/spider/giant/tangle
-	name = "tangle spider"
-	desc = "Furry and brown, it makes you shudder to look at it. This one has dim brown eyes."
+	name = "缠网蜘蛛"
+	desc = "毛茸茸的棕色身躯，光是看着就让你不寒而栗。这只蜘蛛有着暗淡的棕色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "tangle"
 	icon_living = "tangle"
@@ -236,7 +236,7 @@
 /// Prevent you from healing other tangle spiders, or healing when on fire
 /mob/living/basic/spider/giant/tangle/proc/can_mend(mob/living/source, mob/living/target)
 	if (on_fire)
-		balloon_alert(src, "on fire!")
+		balloon_alert(src, "着火了！")
 		return FALSE
 	return TRUE
 
@@ -246,8 +246,8 @@
  * This spider is only slightly slower than a human.
  */
 /mob/living/basic/spider/giant/tank
-	name = "tank spider"
-	desc = "Furry and Purple with a white top, it makes you shudder to look at it. This one has bright yellow eyes."
+	name = "坦克蜘蛛"
+	desc = "紫色带白色顶部的毛茸茸身躯，光是看着就让你不寒而栗。这只蜘蛛有着明亮的黄色眼睛。"
 	icon_state = "tank"
 	icon_living = "tank"
 	icon_dead = "tank_dead"
@@ -286,7 +286,7 @@
 /// Prevent you from healing when on fire
 /mob/living/basic/spider/giant/tank/proc/can_mend(mob/living/source, mob/living/target)
 	if (on_fire)
-		balloon_alert(src, "on fire!")
+		balloon_alert(src, "着火了！")
 		return FALSE
 	return TRUE
 
@@ -296,8 +296,8 @@
  * This spider is only slightly slower than a human.
  */
 /mob/living/basic/spider/giant/breacher
-	name = "breacher spider"
-	desc = "Furry and light brown with dark brown and red highlights, it makes you shudder to look at it. This one has bright red eyes."
+	name = "破门蛛"
+	desc = "毛茸茸的浅棕色身躯上点缀着深棕色与红色的斑纹，光是看着它就让你不寒而栗。这只蜘蛛有着鲜红色的眼睛。"
 	icon_state = "breacher"
 	icon_living = "breacher"
 	icon_dead = "breacher_dead"
@@ -339,10 +339,10 @@
  */
 /mob/living/basic/spider/giant/tarantula
 	name = "tarantula"
-	desc = "Furry and black, it makes you shudder to look at it. This one has abyssal red eyes."
+	desc = "毛茸茸的黑色身躯，光是看着它就让你不寒而栗。这只蜘蛛有着深渊般的红色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "tarantula"
-	icon_living = "tarantula"
+	icon_living = "狼蛛"
 	icon_dead = "tarantula_dead"
 	maxHealth = 400 // woah nelly
 	health = 400
@@ -387,8 +387,8 @@
  * Injects a deadlier toxin than other spiders, moves extremely fast, but has a limited amount of health.
  */
 /mob/living/basic/spider/giant/viper
-	name = "viper spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has effervescent purple eyes."
+	name = "毒蛛"
+	desc = "毛茸茸的黑色身躯，光是看着它就让你不寒而栗。这只蜘蛛有着闪烁的紫色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "viper"
 	icon_living = "viper"
@@ -420,8 +420,8 @@
  * They are also capable of sending messages to all living spiders and setting directives for their children.
  */
 /mob/living/basic/spider/giant/midwife
-	name = "broodmother spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has scintillating green eyes. Might also be hiding a real knife somewhere."
+	name = "育母蛛"
+	desc = "毛茸茸的黑色身躯，光是看着它就让你不寒而栗。这只蜘蛛有着闪烁的绿色眼睛。说不定还在哪里藏着一把真刀呢。"
 	gender = FEMALE
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "midwife"
@@ -462,7 +462,7 @@
  * Currently unused in the game unless spawned by admins.
  */
 /mob/living/basic/spider/giant/ice
-	name = "giant ice spider"
+	name = "巨型冰蛛"
 	habitable_atmos = null
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = 1500
@@ -476,7 +476,7 @@
  * A temperature-proof nurse spider. Also unused.
  */
 /mob/living/basic/spider/giant/nurse/ice
-	name = "giant ice spider"
+	name = "巨型冰蛛"
 	habitable_atmos = null
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = 1500
@@ -490,7 +490,7 @@
  * A temperature-proof hunter with chilling venom. Also unused.
  */
 /mob/living/basic/spider/giant/hunter/ice
-	name = "giant ice spider"
+	name = "巨型冰蛛"
 	habitable_atmos = null
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = 1500
@@ -506,12 +506,12 @@
  * Used as a minor threat in abandoned places, such as areas in maintenance or a ruin.
  */
 /mob/living/basic/spider/giant/hunter/scrawny
-	name = "scrawny spider"
+	name = "瘦弱蛛"
 	health = 60
 	maxHealth = 60
 	melee_damage_lower = 5
 	melee_damage_upper = 10
-	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes, and looks abnormally thin and frail."
+	desc = "毛茸茸的黑色身躯，光是看着它就让你不寒而栗。这只蜘蛛有着闪亮的紫色眼睛，看起来异常瘦弱。"
 	menu_description = "Fast spider variant specializing in catching running prey and toxin injection, but has less damage than a normal hunter spider at the cost of a little more health."
 	ai_controller = /datum/ai_controller/basic_controller/giant_spider/weak
 
@@ -522,12 +522,12 @@
  * Used as a moderately strong but slow threat in abandoned places, such as areas in maintenance or a ruin.
  */
 /mob/living/basic/spider/giant/tarantula/scrawny
-	name = "scrawny tarantula"
+	name = "瘦弱狼蛛"
 	health = 150
 	maxHealth = 150
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	desc = "Furry and black, it makes you shudder to look at it. This one has abyssal red eyes, and looks abnormally thin and frail."
+	desc = "毛茸茸的黑色身躯，光是看着它就让你不寒而栗。这只蜘蛛有着深渊般的红色眼睛，看起来异常瘦弱。"
 	menu_description = "A weaker variant of the tarantula with reduced amount of health and damage, very slow when not on webbing. It also has a charge ability to close distance with a target after a small windup."
 	ai_controller = /datum/ai_controller/basic_controller/giant_spider/weak
 
@@ -539,10 +539,10 @@
  * In the future we should give this AI so that it actually heals its teammates.
  */
 /mob/living/basic/spider/giant/nurse/scrawny
-	name = "scrawny nurse spider"
+	name = "瘦弱护士蛛"
 	health = 30
 	maxHealth = 30
-	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes, and looks abnormally thin and frail."
+	desc = "毛茸茸的黑色身躯，光是看着它就让你不寒而栗。这只蜘蛛有着明亮的绿色眼睛，看起来异常瘦弱。"
 	menu_description = "Weaker version of the nurse spider, specializing in healing their brethren and placing webbings very swiftly, but has very low amount of health and deals low damage."
 	ai_controller = /datum/ai_controller/basic_controller/giant_spider/weak
 
@@ -552,8 +552,8 @@
  * A spider form for wizards. Has the viper spider's extreme speed and strong venom, with additional health and vent crawling abilities.
  */
 /mob/living/basic/spider/giant/viper/wizard
-	name = "water spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has effervescent orange eyes."
+	name = "水蛛"
+	desc = "毛茸茸的黑色身躯，光是看着它就让你不寒而栗。这只蜘蛛有着闪烁的橙色眼睛。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "water"
 	icon_living = "water"
@@ -581,8 +581,8 @@
  */
 /mob/living/basic/spider/giant/sgt_araneus
 	name = "Sergeant Araneus"
-	real_name = "Sergeant Araneus"
-	desc = "A fierce companion of the Head of Security, this spider has been carefully trained by Nanotrasen specialists. Its beady, staring eyes send shivers down your spine."
+	real_name = "阿兰纽斯中士"
+	desc = "安全主管的凶猛伙伴，这只蜘蛛经过纳米传讯专家的精心训练。它那圆溜溜、直勾勾的眼睛让你脊背发凉。"
 	faction = list(FACTION_SPIDER)
 	gold_core_spawnable = NO_SPAWN
 	maxHealth = 250

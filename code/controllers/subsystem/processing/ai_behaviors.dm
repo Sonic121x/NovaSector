@@ -1,6 +1,6 @@
 /// The subsystem used to tick [/datum/ai_behavior] instances. Handling the individual actions an AI can take like punching someone in the fucking NUTS
 PROCESSING_SUBSYSTEM_DEF(ai_behaviors)
-	name = "AI Behavior Ticker"
+	name = "AI行为计时器"
 	ss_flags = SS_POST_FIRE_TIMING|SS_BACKGROUND
 	priority = FIRE_PRIORITY_NPC_ACTIONS
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME

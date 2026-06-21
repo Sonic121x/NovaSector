@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/cardboard
-	name = "cardboard box"
-	desc = "A box, in which you can place things. Revolutionary, I know."
+	name = "纸板盒"
+	desc = "一个箱子，能放东西。很有革命性对吧，我懂。"
 	material_drop = /obj/item/stack/sheet/cardboard
 	material_drop_amount = 4
 	custom_materials = list(/datum/material/cardboard = SHEET_MATERIAL_AMOUNT * 4)
@@ -16,14 +16,14 @@
 	lid_icon_state = "cardboardopen"
 
 /obj/structure/closet/crate/cardboard/mothic
-	name = "\improper Mothic Fleet box"
-	desc = "For holding moths, presumably."
+	name = "\improper 飞蛾舰队盒"
+	desc = "用来装蛾人,大概"
 	icon_state = "cardboard_moth"
 	base_icon_state = "cardboard_moth"
 
 /obj/structure/closet/crate/cardboard/tiziran
-	name = "\improper Tiziran shipment box"
-	desc = "For holding lizards, presumably."
+	name = "\improper 泰泽拉运输盒"
+	desc = "用来装蜥蜴人,大概"
 	icon_state = "cardboard_tiziran"
 	base_icon_state = "cardboard_tiziran"
 

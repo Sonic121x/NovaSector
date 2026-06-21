@@ -17,7 +17,7 @@
 	/// The character's initial rank at roundstart
 	var/initial_rank
 	/// The character's name
-	var/name = "Unknown"
+	var/name = "未知"
 	/// The character's rank
 	var/rank
 	/// The character's species
@@ -36,7 +36,7 @@
 	fingerprint = "?????",
 	gender = "Other",
 	initial_rank = "Unassigned",
-	name = "Unknown",
+	name = "未知",
 	rank = "Unassigned",
 	species = "Human",
 	trim = "Unassigned",
@@ -100,7 +100,7 @@
 	fingerprint = "?????",
 	gender = "Other",
 	initial_rank = "Unassigned",
-	name = "Unknown",
+	name = "未知",
 	rank = "Unassigned",
 	species = "Human",
 	trim = "Unassigned",
@@ -165,7 +165,7 @@
 	fingerprint = "?????",
 	gender = "neuter",
 	initial_rank = "Unassigned",
-	name = "Unknown",
+	name = "未知",
 	rank = "Unassigned",
 	species = "Human",
 	trim = "Unassigned",

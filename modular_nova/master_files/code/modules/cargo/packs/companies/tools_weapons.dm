@@ -30,14 +30,14 @@
 /datum/supply_pack/companies/tools_weapons/blacksteel/blade/bowie_knife
 	contains = list(/obj/item/storage/belt/bowie_sheath)
 	cost = CARGO_CRATE_VALUE
-	desc = "A frontiersman's classic, closer to a shortsword than a knife. Comes with a sheath."
-	name = "Bowie Knife"
+	desc = "拓荒者的经典装备，与其说是刀不如说是短剑。附带刀鞘。"
+	name = "博伊刀"
 	auto_name = FALSE
 
 /datum/supply_pack/companies/tools_weapons/blacksteel/blade/shamshir_sabre
 	contains = list(/obj/item/storage/belt/sheath/sabre/cargo)
-	name = "authentic shamshir sabre"
-	desc = "An expertly crafted historical human sword once used by the Persians. Includes sheath!"
+	name = "正宗舍施尔弯刀"
+	desc = "一把由波斯人使用过的精工制作历史人类剑。包含刀鞘！"
 	cost = CARGO_CRATE_VALUE
 	auto_name = FALSE
 
@@ -84,8 +84,8 @@
 	contains = list(/obj/item/binoculars)
 
 /datum/supply_pack/companies/tools_weapons/hc_surplus/screwdriver_pen
-	name = "Screwdriver Pen"
-	desc = "It's a pen that also works a screwdriver! The wonders of the HC engineering!"
+	name = "螺丝刀笔"
+	desc = "这是一支也能当螺丝刀用的笔！HC工程的奇迹！"
 	contains = list(/obj/item/pen/screwdriver)
 	auto_name = FALSE
 

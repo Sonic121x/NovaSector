@@ -1,7 +1,7 @@
 // Base medigun code
 /obj/item/gun/energy/cell_loaded/medigun
-	name = "\improper medigun"
-	desc = "This is my smart gun. It won't hurt anyone friendly; in fact, it will make them heal! Please tell the GitHub if you somehow manage to get this gun."
+	name = "\improper 医疗枪"
+	desc = "这是我的智能枪。它不会伤害任何友善目标；事实上，它会治疗他们！如果你以某种方式获得了这把枪，请告知GitHub。"
 	icon = 'modular_nova/modules/cellguns/icons/obj/guns/mediguns/projectile.dmi'
 	icon_state = "medigun"
 	inhand_icon_state = "chronogun" // Fits best with how the medigun looks, might be changed in the future
@@ -23,13 +23,13 @@
 
 // Standard medigun - this is what you will get from Cargo, most likely.
 /obj/item/gun/energy/cell_loaded/medigun/standard
-	name = "\improper Vey-Medical CWM-479 cell-powered medigun"
-	desc = "This is a standard model medigun produced by Vey-Med for healing in less-than-ideal scenarios. Its chamber is rated to fit three medicells."
+	name = "\improper Vey-Medical CWM-479 单元驱动医疗枪"
+	desc = "这是Vey-Med为在非理想场景下治疗而生产的标准型号医疗枪。其弹仓额定可容纳三个医疗单元。"
 
 // Upgraded medigun
 /obj/item/gun/energy/cell_loaded/medigun/upgraded
-	name = "\improper Vey-Medical CWM-479-FC cell-powered medigun"
-	desc = "This is an upgraded variant of the standard CWM-479 medigun. The chamber has been expanded to fit another medicell, in addition to a larger, faster charging battery."
+	name = "\improper Vey-Medical CWM-479-FC 单元驱动医疗枪"
+	desc = "这是标准CWM-479医疗枪的升级型号。其弹仓经过扩容，可容纳额外的医疗单元，并配备了更大、充电更快的电池。"
 	cell_type = /obj/item/stock_parts/power_store/cell/medigun/upgraded
 	maxcells = 4
 
@@ -40,8 +40,8 @@
 
 // CMO and CC MediGun
 /obj/item/gun/energy/cell_loaded/medigun/cmo
-	name = "\improper Vey-Medical CWM-479-CC cell-powered medigun"
-	desc = "The most advanced version of the CWM-479 line of mediguns. It features slots for five medicells and the largest battery produced by Vey-Med."
+	name = "\improper Vey-Medical CWM-479-CC 单元供能医疗枪"
+	desc = "这是CWM-479系列医疗枪中最先进的型号。它拥有五个医疗单元插槽，并配备了Vey-Med生产的最大的电池。"
 	cell_type = /obj/item/stock_parts/power_store/cell/medigun/experimental
 	maxcells = 5
 	selfcharge = 1
@@ -54,17 +54,17 @@
 
 // Medigun power cells
 /obj/item/stock_parts/power_store/cell/medigun // This is the cell that mediguns from cargo will come with
-	name = "basic medigun cell"
+	name = "基础医疗枪单元"
 	maxcharge = STANDARD_CELL_CHARGE * 1.2
 	emp_damage_modifier = 5
 
 /obj/item/stock_parts/power_store/cell/medigun/upgraded
-	name = "upgraded medigun cell"
+	name = "升级型医疗枪单元"
 	maxcharge = STANDARD_CELL_CHARGE * 1.5
 	chargerate = STANDARD_CELL_CHARGE * 0.1
 
 /obj/item/stock_parts/power_store/cell/medigun/experimental // This cell type is meant to be used in self charging mediguns like CMO and ERT one.
-	name = "experimental medigun cell"
+	name = "实验型医疗枪单元"
 	maxcharge = STANDARD_CELL_CHARGE * 1.8
 	chargerate = STANDARD_CELL_CHARGE * 0.1
 
@@ -73,7 +73,7 @@
 //Medigun lore
 /obj/item/gun/energy/cell_loaded/medigun/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以 [EXAMINE_HINT("look closer")] 来了解更多关于 [src] 的信息。"), \
 		lore = "The Vey-Medical CWM-479 line of mediguns is widely considered the foothold that brought the medical titan into \
 			the niche where it is today, opening many lucrative doors for the continued development of luxury medical equipment.<br>\
 			<br>\
@@ -97,8 +97,8 @@
 
 // Upgrade Kit
 /obj/item/device/custom_kit/medigun_fastcharge
-	name = "Vey-Medical CWM-479 upgrade kit"
-	desc = "Upgrades the internal battery inside of the medigun, allowing for faster charging, an extra medicell slot, and a higher battery capacity. Requires the medigun's cells to be removed first!"
+	name = "Vey-Medical CWM-479 升级套件"
+	desc = "升级医疗枪的内部电池，以实现更快的充电速度、一个额外的医疗单元插槽以及更高的电池容量。升级前需先取出医疗枪内的所有单元！"
 	// don't tinker with a loaded (medi)gun. fool
 	from_obj = /obj/item/gun/energy/cell_loaded/medigun/standard
 	to_obj = /obj/item/gun/energy/cell_loaded/medigun/upgraded
@@ -106,13 +106,13 @@
 /obj/item/device/custom_kit/medigun_fastcharge/pre_convert_check(obj/target_obj, mob/user)
 	var/obj/item/gun/energy/cell_loaded/medigun/standard/our_medigun = target_obj
 	if(length(our_medigun.installedcells))
-		balloon_alert(user, "unload it first!")
+		balloon_alert(user, "先把它卸下来！")
 		return FALSE
 	return TRUE
 
 // Medigun wiki book
 /obj/item/book/manual/wiki/mediguns
-	name = "medigun operating manual"
+	name = "医疗枪操作手册"
 	icon = 'modular_nova/modules/cellguns/icons/obj/guns/mediguns/misc.dmi'
 	icon_state = "manual"
 	starting_author = "Vey-Medical"
@@ -121,8 +121,8 @@
 
 // Medigun Gunsets
 /obj/item/storage/briefcase/medicalgunset
-	name = "medigun supply kit"
-	desc = "A supply kit for the medigun."
+	name = "医疗枪补给套件"
+	desc = "一个医疗枪的补给套件。"
 	icon = 'modular_nova/modules/cellguns/icons/obj/guns/mediguns/misc.dmi'
 	icon_state = "case_standard"
 	inhand_icon_state = "lockbox"
@@ -132,16 +132,16 @@
 	pickup_sound =  'sound/items/handling/ammobox_pickup.ogg'
 
 /obj/item/storage/briefcase/medicalgunset/standard
-	name = "Vey-Medical CWM-479 cell-powered medigun case"
-	desc = "A briefcase that contains the CWM-479 medigun and an instruction manual."
+	name = "Vey-Medical CWM-479 单元供能医疗枪箱"
+	desc = "一个装有CWM-479医疗枪和说明手册的公文箱。"
 
 /obj/item/storage/briefcase/medicalgunset/standard/PopulateContents()
 	new /obj/item/gun/energy/cell_loaded/medigun/standard(src)
 	new /obj/item/book/manual/wiki/mediguns(src)
 
 /obj/item/storage/briefcase/medicalgunset/cmo
-	name = "Vey-Medical CWM-479-CC cell-powered medigun case"
-	desc = "A briefcase that contains the experimental CWM-479-CC medigun, a basic set of three medigun cells, and an instruction manual."
+	name = "Vey-Medical CWM-479-CC 单元供能医疗枪箱"
+	desc = "一个装有实验型CWM-479-CC医疗枪、一套三枚基础医疗枪单元和一本说明手册的公文箱。"
 	icon_state = "case_cmo"
 
 /obj/item/storage/briefcase/medicalgunset/cmo/PopulateContents()
@@ -157,8 +157,8 @@
 
 // Default Cell
 /obj/item/weaponcell/medical
-	name = "default medicell"
-	desc = "The standard oxygen cell. Most guns come with this already installed."
+	name = "默认医疗单元"
+	desc = "标准的氧气单元。大多数枪械出厂时已预装此单元。"
 	icon = 'modular_nova/modules/cellguns/icons/obj/guns/mediguns/medicells.dmi'
 	icon_state = "Oxy1"
 	w_class = WEIGHT_CLASS_SMALL
@@ -166,8 +166,8 @@
 	medicell_examine = TRUE
 
 /obj/item/weaponcell/medical/oxygen
-	name = "oxygen I medicell"
-	desc = "A small cell with a slight blue glow. Can be used on mediguns to enable basic oxygen deprivation healing functionality."
+	name = "氧气 I 型医疗电池"
+	desc = "一个散发着微弱蓝光的小型电池。可用于医疗枪，以启用基础缺氧治疗功能。"
 
 /*
 * Tier I cells
@@ -175,21 +175,21 @@
 
 // Brute I
 /obj/item/weaponcell/medical/brute
-	name = "brute I medicell"
-	desc = "A small cell with a slight red glow. Can be used on mediguns to enable basic brute damage healing functionality."
+	name = "钝伤 I 型医疗电池"
+	desc = "一个散发着微弱红光的小型电池。可用于医疗枪，以启用基础钝伤治疗功能。"
 	icon_state = "Brute1"
 	ammo_type = /obj/item/ammo_casing/energy/medical/brute1
 
 // Burn I
 /obj/item/weaponcell/medical/burn
-	name = "burn I medicell"
-	desc = "A small cell with a slight yellow glow. Can be used on mediguns to enable basic burn damage healing functionality."
+	name = "烧伤 I 型医疗电池"
+	desc = "一个散发着微弱黄光的小型电池。可用于医疗枪，以启用基础烧伤治疗功能。"
 	icon_state = "Burn1"
 	ammo_type = /obj/item/ammo_casing/energy/medical/burn1
 
 /obj/item/weaponcell/medical/toxin
-	name = "toxin I medicell"
-	desc = "A small cell with a slight green glow. Can be used on mediguns to enable basic toxin damage healing functionality."
+	name = "毒素 I 型医疗电池"
+	desc = "一个散发着微弱绿光的小型电池。可用于医疗枪，以启用基础毒素伤害治疗功能。"
 	icon_state = "Toxin1"
 	ammo_type = /obj/item/ammo_casing/energy/medical/toxin1
 
@@ -199,29 +199,29 @@
 
 // Brute II
 /obj/item/weaponcell/medical/brute/tier_2
-	name = "brute II medicell"
-	desc = "A small cell with a noticeable red glow. Can be used on mediguns to enable improved brute damage healing functionality."
+	name = "钝伤 II 型医疗电池"
+	desc = "一个散发着明显红光的小型电池。可用于医疗枪，以启用改进的钝伤治疗功能。"
 	icon_state = "Brute2"
 	ammo_type = /obj/item/ammo_casing/energy/medical/brute2
 
 // Burn II
 /obj/item/weaponcell/medical/burn/tier_2
-	name = "burn II medicell"
-	desc = "A small cell with a noticeable yellow glow. Can be used on mediguns to enable improved burn damage healing functionality."
+	name = "烧伤 II 型医疗电池"
+	desc = "一个散发着明显黄光的小型电池。可用于医疗枪，以启用改进的烧伤治疗功能。"
 	icon_state = "Burn2"
 	ammo_type = /obj/item/ammo_casing/energy/medical/burn2
 
 // Toxin II
 /obj/item/weaponcell/medical/toxin/tier_2
-	name = "toxin II medicell"
-	desc = "A small cell with a noticeable green glow. Can be used on mediguns to enable improved toxin damage healing functionality."
+	name = "毒素 II 型医疗电池"
+	desc = "一个散发着明显绿光的小型电池。可用于医疗枪，以启用改进的毒素伤害治疗功能。"
 	icon_state = "Toxin2"
 	ammo_type = /obj/item/ammo_casing/energy/medical/toxin2
 
 // Oxygen II
 /obj/item/weaponcell/medical/oxygen/tier_2
-	name = "oxygen II medicell"
-	desc = "A small cell with a noticeable blue glow. Can be used on mediguns to enable improved oxygen deprivation healing functionality."
+	name = "氧气 II 型医疗电池"
+	desc = "一个散发着明显蓝光的小型电池。可用于医疗枪，以启用改进的缺氧治疗功能。"
 	icon_state = "Oxy2"
 	ammo_type = /obj/item/ammo_casing/energy/medical/oxy2
 
@@ -231,29 +231,29 @@
 
 // Brute III
 /obj/item/weaponcell/medical/brute/tier_3
-	name = "brute III medicell"
-	desc = "A small cell with an intense red glow and a reinforced casing. Can be used on mediguns to enable advanced brute damage healing functionality."
+	name = "钝伤 III 型医疗电池"
+	desc = "一个散发着强烈红光并带有加固外壳的小型电池。可用于医疗枪，以启用高级钝伤治疗功能。"
 	icon_state = "Brute3"
 	ammo_type = /obj/item/ammo_casing/energy/medical/brute3
 
 // Burn III
 /obj/item/weaponcell/medical/burn/tier_3
-	name = "burn III medicell"
-	desc = "A small cell with an intense yellow glow and a reinforced casing. Can be used on mediguns to enable advanced burn damage healing functionality."
+	name = "烧伤 III 型医疗电池"
+	desc = "一个散发着强烈黄光并带有加固外壳的小型电池。可用于医疗枪，以启用高级烧伤治疗功能。"
 	icon_state = "Burn3"
 	ammo_type = /obj/item/ammo_casing/energy/medical/burn3
 
 // Toxin III
 /obj/item/weaponcell/medical/toxin/tier_3
-	name = "toxin III medicell"
-	desc = "A small cell with an intense green glow and a reinforced casing. Can be used on mediguns to enable advanced toxin damage healing functionality."
+	name = "毒素 III 型医疗单元"
+	desc = "一个发出强烈绿光、外壳加固的小型单元。可用于医疗枪，以启用高级毒素伤害治疗功能。"
 	icon_state = "Toxin3"
 	ammo_type = /obj/item/ammo_casing/energy/medical/toxin3
 
 // Oxygen III
 /obj/item/weaponcell/medical/oxygen/tier_3
-	name = "oxygen III medicell"
-	desc = "A small cell with an intense blue glow and a reinforced casing. Can be used on mediguns to enable advanced oxygen deprivation healing functionality."
+	name = "氧气 III 型医疗单元"
+	desc = "一个发出强烈蓝光、外壳加固的小型单元。可用于医疗枪，以启用高级缺氧治疗功能。"
 	icon_state = "Oxy3"
 	ammo_type = /obj/item/ammo_casing/energy/medical/oxy3
 
@@ -262,62 +262,62 @@
 */
 
 /obj/item/weaponcell/medical/utility
-	name = "utility class medicell"
-	desc = "You really shouldn't be seeing this. If you do, please yell at your local coders."
+	name = "通用型医疗单元"
+	desc = "你本不该看到这个。如果你看到了，请向你本地的程序员大喊大叫。"
 
 /obj/item/weaponcell/medical/utility/clotting
-	name = "clotting medicell"
-	desc = "A medicell designed to help deal with bleeding patients."
+	name = "凝血医疗单元"
+	desc = "一种设计用于帮助处理出血患者的医疗单元。"
 	icon_state = "clotting"
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/clotting
 
 /obj/item/weaponcell/medical/utility/temperature
-	name = "temperature readjustment medicell"
-	desc = "A medicell that adjusts a patient's temperature to the sweet spot between \"blood frozen in veins\" and \"blood flash-boiling in veins\"."
+	name = "体温调节医疗单元"
+	desc = "一种将患者体温调整到“血液在血管中冻结”和“血液在血管中闪沸”之间理想点的医疗单元。"
 	icon_state = "temperature"
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/temperature
 
 /obj/item/weaponcell/medical/utility/hardlight_gown
-	name = "hardlight gown medicell"
-	desc = "A medicell that creates a hardlight surgical gown on the target."
+	name = "硬光手术袍医疗单元"
+	desc = "一种在目标身上生成硬光手术袍的医疗单元。"
 	icon_state = "gown"
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/gown
 
 /obj/item/weaponcell/medical/utility/salve
-	name = "hardlight salve medicell"
-	desc = "A medicell that applies a healing globule of synthetic plant matter to a patient."
+	name = "硬光药膏医疗单元"
+	desc = "一种向患者施用合成植物物质愈合小球的医疗单元。"
 	icon_state = "salve"
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/salve
 
 /obj/item/weaponcell/medical/utility/bed
-	name = "hardlight roller bed medicell"
-	desc = "A medicell that summons a temporary roller bed underneath a patient already lying on the floor."
+	name = "硬光担架床医疗单元"
+	desc = "一种在已躺在地板上的患者下方召唤临时担架床的医疗单元。"
 	icon_state = "gown"
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/bed
 
 /obj/item/weaponcell/medical/utility/body_teleporter
-	name = "body transporter medicell"
-	desc = "A medicell that allows the user to transport a dead body to themselves."
+	name = "躯体传送医疗单元"
+	desc = "一种允许使用者将一具尸体传送到自己身边的医疗单元。"
 	icon_state = "body"
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/body_teleporter
 
 /obj/item/weaponcell/medical/utility/relocation
-	name = "oppressive force relocation medicell"
-	desc = "A medicell that safely relocates personnel after a given grace period, if used by someone with the appropriate access and within an appropriately designated area (usually Medbay)."
+	name = "压迫性力量转移医疗单元"
+	desc = "一种医疗单元，如果由拥有适当权限的人员在适当指定区域（通常是医疗湾）内使用，可在给定宽限期后安全转移人员。"
 	icon_state =  "body"
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/relocation/standard
 
 /obj/item/weaponcell/medical/utility/relocation/upgraded
-	name = "upgraded oppressive force relocation medicell"
-	desc = "An upgraded version of the Relocation Medicell. It has the access and area requirements removed, along with having the standard grace period disabled."
+	name = "升级版压迫力场重定位医疗单元"
+	desc = "重定位医疗单元的升级版本。它移除了访问权限和区域要求，并禁用了标准的宽限期。"
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/relocation
 
 //Empty Medicell//
 /obj/item/device/custom_kit/empty_cell //Having the empty cell as an upgrade kit sounds jank, but it should work well.
-	name = "empty salve medicell"
+	name = "空药膏医疗单元"
 	icon = 'modular_nova/modules/cellguns/icons/obj/guns/mediguns/medicells.dmi'
 	icon_state = "empty"
-	desc = "An inactive salve medicell. Use this on an aloe leaf to make this into a usable cell."
+	desc = "一个未激活的药膏医疗单元。将其用于芦荟叶上，即可将其制成可用的单元。"
 	from_obj = /obj/item/food/grown/aloe
 	to_obj = /obj/item/weaponcell/medical/utility/salve
 
@@ -326,13 +326,13 @@
 	AddElement(/datum/element/item_scaling, 0.5, 1)
 
 /obj/item/device/custom_kit/empty_cell/body_teleporter
-	name = "empty body teleporter medicell"
-	desc = "An inactive body teleporter medicell. Use this on a bluespace slime extract to make this into a usable cell."
+	name = "空身体传送医疗单元"
+	desc = "一个未激活的身体传送医疗单元。将其用于蓝空黏液提取物上，即可将其制成可用的单元。"
 	from_obj = /obj/item/slime_extract/bluespace
 	to_obj = /obj/item/weaponcell/medical/utility/body_teleporter
 
 /obj/item/device/custom_kit/empty_cell/relocator
-	name = "empty oppressive force relocator medicell"
-	desc = "An inactive oppressive force relocator medicell. Use this on a bluespace slime extract to make this into a usable cell."
+	name = "空压迫力场重定位医疗单元"
+	desc = "一个未激活的压迫力场重定位医疗单元。将其用于蓝空黏液提取物上，即可将其制成可用的单元。"
 	from_obj = /obj/item/slime_extract/bluespace
 	to_obj = /obj/item/weaponcell/medical/utility/relocation

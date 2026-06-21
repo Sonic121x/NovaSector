@@ -8,4 +8,4 @@
 	fusion_power = 30
 	rarity = 1
 	base_value = 8
-	desc = "A strange byproduct of using tritium in a RB-MK2 reactor. Has interesting effects when inhaled."
+	desc = "在RB-MK2反应堆中使用氚时产生的奇异副产物。吸入时会产生有趣的效果。"

@@ -114,8 +114,8 @@ GLOBAL_LIST_INIT(mystery_fishing, list(
 ))
 
 /obj/structure/mystery_box
-	name = "mystery box"
-	desc = "A wooden crate that seems equally magical and mysterious, capable of granting the user all kinds of different pieces of gear."
+	name = "神秘盒子"
+	desc = "一个木箱，看起来同样神奇和神秘，能够为用户提供各种不同的装备。"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "wooden"
 	pixel_y = -4
@@ -255,13 +255,13 @@ GLOBAL_LIST_INIT(mystery_fishing, list(
 		user.put_in_hands(extra_mag)
 
 /obj/structure/mystery_box/guns
-	desc = "A wooden crate that seems equally magical and mysterious, capable of granting the user all kinds of different pieces of gear. This one seems focused on firearms."
+	desc = "一个木箱，看起来同样神奇和神秘，能够为用户提供各种不同的装备，这一次的焦点似乎是枪支。"
 
 /obj/structure/mystery_box/guns/generate_valid_types()
 	valid_types = GLOB.summoned_guns
 
 /obj/structure/mystery_box/tdome
-	desc = "A wooden crate that seems equally magical and mysterious, capable of granting the user all kinds of different pieces of gear. This one has an extended array of weaponry."
+	desc = "一个木箱，看起来同样神奇和神秘，能够为用户提供各种不同的装备，这一次有一系列扩展的武器。"
 
 /obj/structure/mystery_box/tdome/generate_valid_types()
 	valid_types = GLOB.mystery_box_guns + GLOB.mystery_box_extended
@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(mystery_fishing, list(
 /// This represents the item that comes out of the box and is constantly changing before the box finishes deciding. Can probably be just an /atom or /movable.
 /obj/effect/abstract/mystery_box_item
 	name = "???"
-	desc = "Who knows what it'll be??"
+	desc = "谁知道结果会如何呢？？"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "revolver"
 	pixel_z = -4

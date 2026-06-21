@@ -2,8 +2,8 @@
  * An indicator display aka an elevator hall lantern w/ floor number
  */
 /obj/machinery/lift_indicator
-	name = "elevator indicator"
-	desc = "Indicates what floor the elevator is at and which way it's going."
+	name = "电梯指示器"
+	desc = "指示电梯位于哪一层以及它的运行方向。"
 	icon = 'icons/obj/machines/lift_indicator.dmi'
 	icon_state = "lift_indo-base"
 	base_icon_state = "lift_indo-"
@@ -50,7 +50,7 @@
 	. = ..()
 
 	if(!is_operational)
-		. += span_notice("The display is dark.")
+		. += span_notice("显示屏是暗的。")
 		return
 
 	var/dirtext
@@ -62,7 +62,7 @@
 		else
 			dirtext = "stopped"
 
-	. += span_notice("The elevator is at floor [current_lift_floor], [dirtext].")
+	. += span_notice("电梯位于第 [current_lift_floor] 层，[dirtext]。")
 
 /**
  * Update state, and only process if elevator is moving.

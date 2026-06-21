@@ -9,7 +9,7 @@
  * Allows the heretic to sacrifice living heart targets.
  */
 /datum/heretic_knowledge/hunt_and_sacrifice
-	name = "Heartbeat of the Mansus"
+	name = "茫惚的心跳"
 	desc = "Allows you to sacrifice targets to the Mansus by bringing them to a rune in critical (or worse) condition. \
 		If you have no targets, stand on a transmutation rune and invoke it to acquire some."
 	required_atoms = list(/mob/living/carbon/human = 1)
@@ -70,7 +70,7 @@
 	// You may wonder why we don't straight up prevent them from invoking the ritual if they don't have one -
 	// Hunt and sacrifice should always be invokable for clarity's sake, even if it'll fail immediately.
 	if(heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-		loc.balloon_alert(user, "ritual failed, no living heart!")
+		loc.balloon_alert(user, "仪式失败，没有活体心脏！")
 		return FALSE
 
 	// We've got no targets set, let's try to set some.
@@ -94,7 +94,7 @@
 		return TRUE
 
 	// or FALSE if we don't
-	loc.balloon_alert(user, "ritual failed, no sacrifice found!")
+	loc.balloon_alert(user, "仪式失败，未找到献祭品！")
 	return FALSE
 
 /datum/heretic_knowledge/hunt_and_sacrifice/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
@@ -105,7 +105,7 @@
 		if(obtain_targets(user, heretic_datum = heretic_datum))
 			return TRUE
 		else
-			loc.balloon_alert(user, "ritual failed, no targets found!")
+			loc.balloon_alert(user, "仪式失败，未找到目标！")
 			return FALSE
 
 	sacrifice_process(user, selected_atoms, loc)
@@ -611,8 +611,8 @@
 	to_chat(sac_target, span_big(span_hypnophrase("The experience leaves your mind torn and memories tattered. You will not remember anything leading up to the experience if revived.")))
 
 	var/obj/effect/visible_heretic_influence/illusion = new(get_turf(sac_target))
-	illusion.name = "\improper weakened rift in reality"
-	illusion.desc = "A rift wide enough for something... or someone... to come through."
+	illusion.name = "\improper 虚弱的现实裂缝"
+	illusion.desc = "一个足够宽的裂口，可以让某物……或某人……通过。"
 	illusion.color = COLOR_DARK_RED
 
 /**

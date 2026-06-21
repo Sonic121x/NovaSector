@@ -22,8 +22,8 @@
 	new_icon_state = "blastwave_helmet_y"
 
 /obj/item/clothing/head/blastwave
-	name = "blastwave helmet"
-	desc = "A plastic helmet with paint applied. Protects as much as cardboard box named 'Bomb Shelter'."
+	name = "冲击波头盔"
+	desc = "一个涂了漆的塑料头盔。其防护力与一个名为'防空洞'的纸板箱相当。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "blastwave_helmet"
@@ -56,8 +56,8 @@
 	new_icon_state = "blastwave_offcap_y"
 
 /obj/item/clothing/head/blastwave/officer
-	name = "blastwave peaked cap"
-	desc = "A simple, militaristic cap."
+	name = "冲击波大檐帽"
+	desc = "一顶简单的军帽。"
 	icon_state = "blastwave_offcap"
 	flags_inv = NONE
 

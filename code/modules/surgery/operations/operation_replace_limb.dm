@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/replace_limb
-	name = "augment limb"
+	name = "肢体增强"
 	rnd_name = "Augmentation"
-	desc = "Replace a patient's limb with a robotic or prosthetic one."
+	desc = "用机械或假肢替换病人的肢体。"
 	operation_flags = OPERATION_NOTABLE
 	implements = list(
 		/obj/item/bodypart = 1,
@@ -12,7 +12,7 @@
 	VAR_PRIVATE/list/cached_augment_options
 
 /datum/surgery_operation/limb/replace_limb/get_recommended_tool()
-	return "cybernetic limb"
+	return "赛博格肢体"
 
 /datum/surgery_operation/limb/replace_limb/get_default_radial_image()
 	return image(/obj/item/bodypart/chest/robot)
@@ -22,7 +22,7 @@
 	if(!option)
 		option = new()
 		option.name = "augment with [initial(tool.name)]"
-		option.info = "Replace the patient's [initial(limb.name)] with [initial(tool.name)]."
+		option.info = "将患者的[initial(limb.name)]替换为[initial(tool.name)]。"
 		option.image = image(tool.type)
 		LAZYSET(cached_augment_options, tool.type, option)
 

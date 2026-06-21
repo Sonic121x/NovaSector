@@ -1,7 +1,7 @@
 
 /obj/item/bodybag
-	name = "body bag"
-	desc = "A folded bag designed for the storage and transportation of cadavers."
+	name = "尸体袋"
+	desc = "一种设计用于储存和运输尸体的折叠袋。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "bodybag_folded"
 	w_class = WEIGHT_CLASS_SMALL
@@ -41,7 +41,7 @@
 
 /obj/item/bodybag/suicide_act(mob/living/user)
 	if(isopenturf(user.loc))
-		user.visible_message(span_suicide("[user] is crawling into [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 正爬进 [src]！看起来 [user.p_theyre()] 试图自杀！"))
 		var/obj/structure/closet/body_bag/R = new unfoldedbag_path(user.loc)
 		R.add_fingerprint(user)
 		qdel(src)
@@ -52,8 +52,8 @@
 // Bluespace bodybag
 
 /obj/item/bodybag/bluespace
-	name = "bluespace body bag"
-	desc = "A folded bluespace body bag designed for the storage and transportation of cadavers."
+	name = "蓝空尸体袋"
+	desc = "一种设计用于储存和运输尸体的折叠蓝空尸体袋。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "bluebodybag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/bluespace
@@ -64,13 +64,13 @@
 	. = ..()
 	if(contents.len)
 		var/s = contents.len == 1 ? "" : "s"
-		. += span_notice("You can make out the shape[s] of [contents.len] object[s] through the fabric.")
+		. += span_notice("你可以透过布料辨认出[s]个物体[contents.len]的形状[s]。")
 
 /obj/item/bodybag/bluespace/Destroy()
 	for(var/atom/movable/A in contents)
 		A.forceMove(get_turf(src))
 		if(isliving(A))
-			to_chat(A, span_notice("You suddenly feel the space around you torn apart! You're free!"))
+			to_chat(A, span_notice("你突然感到周围的空间被撕裂了！你自由了！"))
 	return ..()
 
 /obj/item/bodybag/bluespace/deploy_bodybag(mob/user, atom/location)
@@ -78,7 +78,7 @@
 	for(var/atom/movable/inside in contents)
 		inside.forceMove(item_bag)
 		if(isliving(inside))
-			to_chat(inside, span_notice("You suddenly feel air around you! You're free!"))
+			to_chat(inside, span_notice("你突然感觉到周围的空气！你自由了！"))
 	item_bag.open(user)
 	item_bag.add_fingerprint(user)
 	item_bag.foldedbag_instance = src
@@ -87,25 +87,25 @@
 
 /obj/item/bodybag/bluespace/container_resist_act(mob/living/user)
 	if(user.incapacitated)
-		to_chat(user, span_warning("You can't get out while you're restrained like this!"))
+		to_chat(user, span_warning("你这样被束缚着是出不去的！"))
 		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	to_chat(user, span_notice("You claw at the fabric of [src], trying to tear it open..."))
-	to_chat(loc, span_warning("Someone starts trying to break free of [src]!"))
+	to_chat(user, span_notice("你抓挠着 [src] 的织物，试图将其撕开……"))
+	to_chat(loc, span_warning("有人开始试图挣脱 [src]！"))
 	if(!do_after(user, 12 SECONDS, src, timed_action_flags = (IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM)))
 		return
 	// you are still in the bag? time to go unless you KO'd, honey!
 	// if they escape during this time and you rebag them the timer is still clocking down and does NOT reset so they can very easily get out.
 	if(user.incapacitated)
-		to_chat(loc, span_warning("The pressure subsides. It seems that they've stopped resisting..."))
+		to_chat(loc, span_warning("压力减轻了。看来他们已经停止反抗了……"))
 		return
-	loc.visible_message(span_warning("[user] suddenly appears in front of [loc]!"), span_userdanger("[user] breaks free of [src]!"))
+	loc.visible_message(span_warning("[user] 突然出现在 [loc] 面前！"), span_userdanger("[user] 挣脱了 [src]！"))
 	qdel(src)
 
 /obj/item/bodybag/environmental
-	name = "environmental protection bag"
-	desc = "A folded, reinforced bag designed to protect against exoplanetary environmental storms."
+	name = "环境防护袋"
+	desc = "一种折叠的加固袋，设计用于抵御外行星环境风暴。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "envirobag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental
@@ -113,26 +113,26 @@
 	resistance_flags = ACID_PROOF | FIRE_PROOF | FREEZE_PROOF
 
 /obj/item/bodybag/environmental/nanotrasen
-	name = "elite environmental protection bag"
-	desc = "A folded, heavily reinforced, and insulated bag, capable of fully isolating its contents from external factors."
+	name = "精英环境防护袋"
+	desc = "一种折叠的、高度加固且隔热的袋子，能够将其内容物与外部因素完全隔离。"
 	icon_state = "ntenvirobag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/nanotrasen
 	resistance_flags = ACID_PROOF | FIRE_PROOF | FREEZE_PROOF | LAVA_PROOF
 
 /obj/item/bodybag/environmental/prisoner
-	name = "prisoner transport bag"
-	desc = "Intended for transport of prisoners through hazardous environments, this folded environmental protection bag comes with straps to keep an occupant secure."
+	name = "囚犯运输袋"
+	desc = "专为在危险环境中运输囚犯而设计，这种折叠式环境防护袋配有固定带，可将乘员安全固定。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "prisonerenvirobag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/prisoner
 
 /obj/item/bodybag/environmental/prisoner/pressurized
-	name = "pressurized prisoner transport bag"
+	name = "加压囚犯运输袋"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/prisoner/pressurized
 
 /obj/item/bodybag/environmental/prisoner/syndicate
-	name = "syndicate prisoner transport bag"
-	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured until they are transported to a required location."
+	name = "辛迪加囚犯运输袋"
+	desc = "对纳米特拉森环境防护袋的改造，已用于数起高调绑架案。旨在使受害者保持昏迷、存活并安全固定，直至被运送到指定地点。"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "syndieenvirobag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/prisoner/pressurized/syndicate

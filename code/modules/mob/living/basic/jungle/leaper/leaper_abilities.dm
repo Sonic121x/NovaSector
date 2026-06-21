@@ -1,9 +1,9 @@
 // fire leaper bubble ability
 /datum/action/cooldown/mob_cooldown/projectile_attack/leaper_bubble
-	name = "Fire Leaper Bubble"
+	name = "发射跳跃者气泡"
 	button_icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	button_icon_state = "leaper"
-	desc = "Fires a poisonous leaper bubble towards the victim!"
+	desc = "向目标发射一个有毒的跳跃者气泡！"
 	background_icon_state = "bg_revenant"
 	overlay_icon_state = "bg_revenant_border"
 	cooldown_time = 7 SECONDS
@@ -13,7 +13,7 @@
 
 // bubble ability objects and effects
 /obj/projectile/leaper
-	name = "leaper bubble"
+	name = "跳跃者气泡"
 	icon_state = "leaper"
 	paralyze = 5 SECONDS
 	damage = 0
@@ -37,7 +37,7 @@
 	return ..()
 
 /obj/effect/temp_visual/leaper_projectile_impact
-	name = "leaper bubble"
+	name = "跳跃者气泡"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "leaper_bubble_pop"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -48,15 +48,15 @@
 	new /obj/effect/decal/cleanable/leaper_sludge(get_turf(src))
 
 /obj/effect/decal/cleanable/leaper_sludge
-	name = "leaper sludge"
-	desc = "A small pool of sludge, containing trace amounts of leaper venom."
+	name = "跳跃者粘液"
+	desc = "一小滩粘液，含有微量的跳跃者毒液。"
 	icon = 'icons/effects/tomatodecal.dmi'
 	icon_state = "tomato_floor1"
 
 // bubble ability reagent
 /datum/reagent/toxin/leaper_venom
-	name = "Leaper venom"
-	description = "A toxin spat out by leapers that, while harmless in small doses, quickly creates a toxic reaction if too much is in the body."
+	name = "跳跃者毒液"
+	description = "一种由跳跃者喷出的毒素，少量时无害，但若体内积聚过多则会迅速引发毒性反应。"
 	color = "#801E28" // rgb: 128, 30, 40
 	toxpwr = 0
 	taste_description = "french cuisine"
@@ -71,8 +71,8 @@
 
 // bubble ability structure
 /obj/structure/leaper_bubble
-	name = "leaper bubble"
-	desc = "A floating bubble containing leaper venom. The contents are under a surprising amount of pressure."
+	name = "跳跃者气泡"
+	desc = "一个漂浮的、含有跳跃者毒液的气泡。其内容物承受着惊人的压力。"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "leaper"
 	max_integrity = 10
@@ -109,12 +109,12 @@
 
 // blood rain ability
 /datum/action/cooldown/mob_cooldown/blood_rain
-	name = "Blood Rain"
+	name = "血雨"
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "blood_effect_falling"
 	background_icon_state = "bg_revenant"
 	overlay_icon_state = "bg_revenant_border"
-	desc = "Rain down poisonous droplets of blood!"
+	desc = "降下有毒的血滴雨！"
 	cooldown_time = 10 SECONDS
 	click_to_activate = FALSE
 	shared_cooldown = NONE
@@ -153,7 +153,7 @@
 
 // blood rain effects
 /obj/effect/temp_visual/blood_drop_rising
-	name = "leaper bubble"
+	name = "跳跃者气泡"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "leaper"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -164,7 +164,7 @@
 	animate(src, pixel_y = base_pixel_y + 150, time = duration)
 
 /obj/effect/temp_visual/blood_drop_falling
-	name = "leaper bubble"
+	name = "跳跃者气泡"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "blood_effect_falling"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -181,7 +181,7 @@
 	new /obj/structure/leaper_bubble(get_turf(src))
 
 /obj/effect/temp_visual/shadow_telegraph
-	name = "shadow"
+	name = "阴影"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shadow_telegraph"
 	duration = 1.5 SECONDS
@@ -189,8 +189,8 @@
 
 // flop ability
 /datum/action/cooldown/mob_cooldown/belly_flop
-	name = "Belly Flop"
-	desc = "Belly flop your enemy!"
+	name = "肚皮重压"
+	desc = "用腹部猛砸你的敌人！"
 	cooldown_time = 14 SECONDS
 	background_icon_state = "bg_revenant"
 	overlay_icon_state = "bg_revenant_border"
@@ -199,7 +199,7 @@
 /datum/action/cooldown/mob_cooldown/belly_flop/Activate(atom/target)
 	var/turf/target_turf = get_turf(target)
 	if(isclosedturf(target_turf) || isspaceturf(target_turf))
-		owner.balloon_alert(owner, "base not suitable!")
+		owner.balloon_alert(owner, "落脚点不合适！")
 		return FALSE
 	new /obj/effect/temp_visual/leaper_crush(target_turf)
 	owner.throw_at(target = target_turf, range = 7, speed = 1, spin = FALSE, callback = CALLBACK(src, PROC_REF(flop_on_turf), target_turf))
@@ -217,12 +217,12 @@
 		var/throw_dir = victim.loc == owner.loc ? get_dir(owner, victim) : pick(GLOB.alldirs)
 		var/throwtarget = get_edge_target_turf(victim, throw_dir)
 		victim.throw_at(target = throwtarget, range = 3, speed = 1)
-		victim.visible_message(span_warning("[victim] is thrown clear of [owner]!"))
+		victim.visible_message(span_warning("[victim] 被从 [owner] 身上甩飞了出去！"))
 
 // flop ability effects
 /obj/effect/temp_visual/leaper_crush
-	name = "grim tidings"
-	desc = "Incoming leaper!"
+	name = "不祥之兆"
+	desc = "跳跃者来袭！"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "lily_pad"
 	layer = BELOW_MOB_LAYER
@@ -232,7 +232,7 @@
 
 // summon toads ability
 /datum/action/cooldown/spell/conjure/limit_summons/create_suicide_toads
-	name = "Summon Suicide Toads"
+	name = "召唤自爆蟾蜍"
 	button_icon = 'icons/mob/simple/animal.dmi'
 	button_icon_state = "frog_trash"
 	background_icon_state = "bg_revenant"

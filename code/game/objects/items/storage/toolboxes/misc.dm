@@ -1,6 +1,6 @@
 
 /obj/item/storage/toolbox/drone
-	name = "mechanical toolbox"
+	name = "机械工具箱"
 	icon_state = "blue"
 	inhand_icon_state = "toolbox_blue"
 	material_flags = NONE
@@ -16,8 +16,8 @@
 	new /obj/item/multitool(src)
 
 /obj/item/storage/toolbox/artistic
-	name = "artistic toolbox"
-	desc = "A toolbox painted bright green. Why anyone would store art supplies in a toolbox is beyond you, but it has plenty of extra space."
+	name = "艺术工具箱"
+	desc = "一个漆成亮绿色的工具箱。为什么有人会把美术用品放在工具箱里，这让你无法理解，但它确实有很多额外空间。"
 	icon_state = "green"
 	inhand_icon_state = "toolbox_green"
 	w_class = WEIGHT_CLASS_GIGANTIC //Holds more than a regular toolbox!
@@ -34,12 +34,12 @@
 	new /obj/item/paint/anycolor(src)
 
 /obj/item/storage/toolbox/haunted
-	name = "old toolbox"
+	name = "旧工具箱"
 	custom_materials = list(/datum/material/hauntium = SMALL_MATERIAL_AMOUNT*5)
 
 /obj/item/storage/toolbox/crafter
-	name = "crafter toolbox"
-	desc = "A toolbox painted hot pink. Full of crafting supplies!"
+	name = "工匠工具箱"
+	desc = "一个漆成亮粉色的工具箱。装满了手工材料！"
 	icon_state = "pink"
 	inhand_icon_state = "toolbox_pink"
 	w_class = WEIGHT_CLASS_GIGANTIC //Holds more than a regular toolbox!

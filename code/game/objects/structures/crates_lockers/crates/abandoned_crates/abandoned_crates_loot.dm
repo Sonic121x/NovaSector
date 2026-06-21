@@ -4,8 +4,8 @@
  * Base spawner for generating loot contents in abandoned crates
  */
 /obj/effect/spawner/abandoned_crate
-	name = "abandoned crate loot spawner"
-	desc = "i feel lucky"
+	name = "废弃板条箱战利品生成器"
+	desc = "我感觉很幸运"
 	/// Associative list with actual loot: item_type = quantity
 	var/list/loot
 

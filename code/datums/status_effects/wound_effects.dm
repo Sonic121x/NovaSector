@@ -1,8 +1,8 @@
 
 // The shattered remnants of your broken limbs fill you with determination!
 /atom/movable/screen/alert/status_effect/determined
-	name = "Determined"
-	desc = "The serious wounds you've sustained have put your body into fight-or-flight mode! Now's the time to look for an exit!"
+	name = "决意"
+	desc = "你所受的严重创伤让你的身体进入了战斗或逃跑模式！现在是时候寻找退路了！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "wounded"
 
@@ -20,7 +20,7 @@
 		human_owner.physiology.bleed_mod *= WOUND_DETERMINATION_BLEED_MOD
 
 /datum/status_effect/determined/on_remove()
-	owner.visible_message(span_danger("[owner]'s body slackens noticeably!"), span_warning("<b>Your adrenaline rush dies off, and the pain from your wounds come aching back in...</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
+	owner.visible_message(span_danger("[owner]的身体明显松弛了下来！"), span_warning("<b>你的肾上腺素激增消退，伤口的疼痛再次阵阵袭来...</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology.bleed_mod /= WOUND_DETERMINATION_BLEED_MOD
@@ -66,8 +66,8 @@
 	right = null
 
 /atom/movable/screen/alert/status_effect/limp
-	name = "Limping"
-	desc = "One or more of your legs has been wounded, slowing down steps with that leg! Get it fixed, or at least in a sling of gauze!"
+	name = "跛行"
+	desc = "你的一条或多条腿受伤了，导致那条腿的步伐变慢！快去处理伤口，或者至少用纱布包扎一下！"
 	icon_state = "injury"
 
 /datum/status_effect/limp/proc/check_step(mob/whocares, OldLoc, Dir, forced)

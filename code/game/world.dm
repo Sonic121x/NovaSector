@@ -356,9 +356,9 @@ GLOBAL_VAR_INIT(last_maptick_time, 0)
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
-		to_chat(world, span_boldannounce("Rebooting World immediately due to host request."))
+		to_chat(world, span_boldannounce("因主机请求，正在立即重启世界。"))
 	else
-		to_chat(world, span_boldannounce("Rebooting world..."))
+		to_chat(world, span_boldannounce("正在重启世界..."))
 		Master.Shutdown() //run SS shutdowns
 
 	#ifdef UNIT_TESTS

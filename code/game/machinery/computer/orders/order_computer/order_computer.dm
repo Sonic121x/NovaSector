@@ -2,17 +2,17 @@
 GLOBAL_LIST_EMPTY(order_console_products)
 
 /obj/machinery/computer/order_console
-	name = "Orders Console"
-	desc = "An interface for ordering specific ingredients from Cargo, with an express option at the cost of more money."
+	name = "订购控制台"
+	desc = "一个用于从货舱订购特定原料的界面，提供加急选项但需支付更多费用。"
 	icon_screen = "request"
 	icon_keyboard = "generic_key"
 	light_color = LIGHT_COLOR_ORANGE
 	///Tooltip for the express button in TGUI
-	var/express_tooltip = @{"Sends your purchases instantly,
-	but locks the console longer and increases the price!"}
+	var/express_tooltip = @{"立即发送您的购买物品，
+但会延长控制台锁定时间并提高价格！"}
 	///Tooltip for the purchase button in TGUI
-	var/purchase_tooltip = @{"Your purchases will arrive at cargo,
-	and hopefully get delivered by them."}
+	var/purchase_tooltip = @{"您的购买物品将送达货舱，
+并希望由他们进行配送。"}
 
 	///Cooldown between order uses.
 	COOLDOWN_DECLARE(order_cooldown)
@@ -234,9 +234,9 @@ GLOBAL_LIST_EMPTY(order_console_products)
 	return
 
 /datum/aas_config_entry/order_console
-	name = "Cargo Alert: Local Ordering Console Announcements"
+	name = "货舱警报：本地订购控制台通知"
 	announcement_lines_map = list()
-	general_tooltip = "Used to make announces, when consoles listed here placing new order"
+	general_tooltip = "用于在此处列出的控制台下达新订单时发布通知"
 
 /datum/aas_config_entry/order_console/New()
 	. = ..()
@@ -246,6 +246,6 @@ GLOBAL_LIST_EMPTY(order_console_products)
 
 /datum/aas_config_entry/order_console/compile_announce(list/variables_map, announcement_line)
 	if (!announcement_lines_map.len)
-		announcement_lines_map["Error"] = "Unknown Error happened, while we tried to procceed an order, please report this to Nanotrasen."
+		announcement_lines_map["错误"] = "处理订单时发生未知错误，请向纳米传讯报告此问题。"
 	. = ..()
 

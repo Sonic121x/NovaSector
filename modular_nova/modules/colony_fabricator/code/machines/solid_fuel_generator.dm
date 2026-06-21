@@ -1,5 +1,5 @@
 /obj/machinery/power/port_gen/pacman/solid_fuel
-	name = "\improper A.W-type portable generator"
+	name = "\improper A.W型便携式发电机"
 	desc = "The second most common generator design in the galaxy, second only to the P.A.C.M.A.N. \
 		This new and improved Akhter design of the A.W (Atomic Whisperer) is similar to other micro fission reactors in its use, using a hybrid temperature moderated design, \
 		this design opts for spinning panels used to absorb radiation using an advanced decay process to turn the radiation into 520C helium and water. \
@@ -41,7 +41,7 @@
 // Item for creating the generator or carrying it around
 
 /obj/item/flatpacked_machine/fuel_generator
-	name = "flat-packed A.W-type portable generator"
+	name = "扁平包装的A.W型便携式发电机"
 	desc = /obj/machinery/power/port_gen/pacman/solid_fuel::desc
 	icon_state = "fuel_generator_packed"
 	type_to_deploy = /obj/machinery/power/port_gen/pacman/solid_fuel

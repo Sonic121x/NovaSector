@@ -56,11 +56,11 @@
 		else
 			receiver.random_mutate_unique_features()
 	to_chat(receiver, pick(
-		span_notice("You feel a little different."),
-		span_notice("You feel very strange."),
-		span_notice("Your stomach churns."),
-		span_notice("Your skin feels loose."),
-		span_notice("You feel a stabbing pain in your head."),
-		span_notice("You feel a tingling sensation in your chest."),
-		span_notice("Your entire body vibrates."),
+		span_notice("你感觉有点不一样了。"),
+		span_notice("你感觉非常奇怪。"),
+		span_notice("你的胃在翻腾。"),
+		span_notice("你的皮肤感觉松弛了。"),
+		span_notice("你感到头部一阵刺痛。"),
+		span_notice("你感到胸口一阵刺痛。"),
+		span_notice("你的整个身体都在震动。"),
 	))

@@ -15,7 +15,7 @@
 
 /obj/machinery/fax/interdyne
 	fax_name = "Interdyne Pharmaceuticals";
-	name = "Interdyne Fax Machine";
+	name = "Interdyne传真机";
 	req_access = list("syndicate");
 	syndicate_network = 1
 
@@ -25,7 +25,7 @@
 
 /obj/machinery/fax/tarkon
 	fax_name = "Tarkon Industries";
-	name = "Tarkon Fax Machine";
+	name = "Tarkon传真机";
 	req_access = list("syndicate");
 	syndicate_network = 0
 

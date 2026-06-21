@@ -2,7 +2,7 @@
 #define KEEP_ROUNDS_MAP 3
 
 SUBSYSTEM_DEF(persistence)
-	name = "Persistence"
+	name = "持久化"
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
 		/datum/controller/subsystem/atoms,

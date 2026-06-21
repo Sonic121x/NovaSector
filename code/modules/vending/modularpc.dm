@@ -1,6 +1,6 @@
 /obj/machinery/vending/modularpc
-	name = "\improper Deluxe Silicate Selections"
-	desc = "All the parts you need to build your own custom pc."
+	name = "\improper 豪华掌上电脑售货机"
+	desc = "垃圾佬用来组装自己电脑的所有零件售货机"
 	icon_state = "modularpc"
 	icon_deny = "modularpc-deny"
 	panel_type = "panel21"

@@ -89,8 +89,8 @@
 		qdel(bag)
 
 /obj/item/storage/backpack/snail
-	name = "snail shell"
-	desc = "Worn by snails as armor and storage compartment."
+	name = "蜗壳"
+	desc = "蜗牛的盔甲和储藏室。"
 	icon_state = "snailshell"
 	inhand_icon_state = null
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'

@@ -19,11 +19,11 @@
 	if(computer)
 		if(istype(computer, /obj/item/modular_computer/pda/silicon)) //If this is a borg's integrated tablet
 			var/obj/item/modular_computer/pda/silicon/modularInterface = computer
-			to_chat(modularInterface.silicon_owner,span_userdanger("SYSTEM PURGE DETECTED/"))
+			to_chat(modularInterface.silicon_owner,span_userdanger("检测到系统清除/"))
 			addtimer(CALLBACK(modularInterface.silicon_owner, TYPE_PROC_REF(/mob/living/silicon/robot/, death)), 2 SECONDS, TIMER_UNIQUE)
 			return
 
-		computer.visible_message(span_notice("\The [computer]'s screen brightly flashes and loud electrical buzzing is heard."))
+		computer.visible_message(span_notice("\The [computer]的屏幕发出明亮闪光，并听到响亮的电流嗡嗡声。"))
 		computer.enabled = FALSE
 		computer.update_appearance()
 
@@ -33,7 +33,7 @@
 
 		if(computer.internal_cell && prob(25))
 			QDEL_NULL(computer.internal_cell)
-			computer.visible_message(span_notice("\The [computer]'s battery explodes in rain of sparks."))
+			computer.visible_message(span_notice("\The [computer]的电池在火花雨中爆炸。"))
 			do_sparks(3, FALSE, src)
 
 /datum/computer_file/program/revelation/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)

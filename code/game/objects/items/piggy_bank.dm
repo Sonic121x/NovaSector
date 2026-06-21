@@ -3,8 +3,8 @@
  * If the persistence id is set, money will be carried between rounds until broken.
  */
 /obj/item/piggy_bank
-	name = "piggy bank"
-	desc = "A pig-shaped money container made of porkelain, oink. <i>Do not throw.</i>" //pun very intended.
+	name = "存钱罐"
+	desc = "一个猪形的猪肉瓷制钱罐，呼噜。<i>请勿投掷。</i>" //pun very intended.
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "piggy_bank"
 	max_integrity = 8
@@ -102,7 +102,7 @@
 	. = ..()
 	if(DOING_INTERACTION_WITH_TARGET(user, src))
 		return
-	balloon_alert(user, "rattle rattle...")
+	balloon_alert(user, "哐啷哐啷...")
 	if(!do_after(user, 0.5 SECONDS, src))
 		return
 	var/percentile = round(calculate_dosh_amount()/maximum_value * 100, 1)
@@ -110,19 +110,19 @@
 		playsound(src, SFX_RATTLE, percentile * 0.5, FALSE, FALSE)
 	switch(percentile)
 		if(0)
-			balloon_alert(user, "it's empty")
+			balloon_alert(user, "它是空的")
 		if(1 to 9)
-			balloon_alert(user, "it's almost empty")
+			balloon_alert(user, "它几乎是空的")
 		if(10 to 25)
-			balloon_alert(user, "it's some cash")
+			balloon_alert(user, "里面有些现金")
 		if(25 to 45)
-			balloon_alert(user, "it's plenty of cash")
+			balloon_alert(user, "里面有不少现金")
 		if(45 to 70)
-			balloon_alert(user, "it feels almost full")
+			balloon_alert(user, "感觉快满了")
 		if(70 to 95)
-			balloon_alert(user, "it feels full")
+			balloon_alert(user, "感觉满了")
 		if(95 to INFINITY)
-			balloon_alert(user, "brimming with cash")
+			balloon_alert(user, "塞满了现金")
 
 /obj/item/piggy_bank/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
 	var/creds_value = item.get_item_credit_value()
@@ -132,13 +132,13 @@
 	var/dosh_amount = calculate_dosh_amount()
 
 	if(dosh_amount >= maximum_value)
-		balloon_alert(user, "it's full!")
+		balloon_alert(user, "它满了！")
 	else if(dosh_amount + creds_value > maximum_value)
-		balloon_alert(user, "too much cash!")
+		balloon_alert(user, "现金太多了！")
 	else if(!user.transferItemToLoc(item, src))
-		balloon_alert(user, "stuck in your hands!")
+		balloon_alert(user, "卡在你手里了！")
 	else
-		balloon_alert(user, "inserted [creds_value] creds")
+		balloon_alert(user, "插入了[creds_value]信用点")
 		sanitize_piggy_bank_contents_len()
 	return TRUE
 
@@ -150,8 +150,8 @@
 	return total_value
 
 /obj/item/piggy_bank/museum
-	name = "Pigston Swinelord VI"
-	desc = "The museum's mascot piggy bank and favorite embezzler, known to carry donations between shifts without paying taxes. The space IRS hates him."
+	name = "猪斯顿·斯温洛德六世"
+	desc = "博物馆的吉祥物存钱罐兼最爱的贪污犯，以在班次间运送捐款且从不缴税而闻名。太空国税局恨死他了。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/piggy_bank/museum"
 	post_init_icon_state = "piggy_bank"
@@ -165,8 +165,8 @@
 	AddComponent(/datum/component/areabound) //do not steal.
 
 /obj/item/piggy_bank/vault
-	name = "vault piggy bank"
-	desc = "A pig-shaped money container made of porkelain, containing the station's emergency funds carried between shifts, oink. <i>Do not throw.</i>"
+	name = "金库存钱罐"
+	desc = "一个由猪瓷制成的猪形钱罐，装着空间站在班次间运送的应急资金，呼噜。<i>请勿投掷。</i>"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/piggy_bank/vault"
 	post_init_icon_state = "piggy_bank"

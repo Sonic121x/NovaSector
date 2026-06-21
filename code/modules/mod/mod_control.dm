@@ -1,13 +1,13 @@
 /// MODsuits, trade-off between armor and utility
 /obj/item/mod
-	name = "Base MOD"
-	desc = "You should not see this, yell at a coder!"
+	name = "基本模块服"
+	desc = "你不应该看到这个，去训斥程序员！"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	worn_icon = 'icons/mob/clothing/modsuit/mod_clothing.dmi'
 
 /obj/item/mod/control
-	name = "MOD control unit"
-	desc = "The control unit of a Modular Outerwear Device, a powered suit that protects against various environments."
+	name = "模块服控制单元"
+	desc = "模块化外套装置的控制单元，一种能够抵御各种环境影响的动力服."
 	icon_state = "standard-control"
 	inhand_icon_state = "mod_control"
 	base_icon_state = "control"
@@ -130,7 +130,7 @@
 	var/atom/visible_atom = wearer || src
 	if(wearer)
 		clean_up()
-	visible_atom.visible_message(span_bolddanger("[src] fall[p_s()] apart, completely destroyed!"), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_atom.visible_message(span_bolddanger("[src] 散落[p_s()]开来，完全被摧毁了！"), vision_distance = COMBAT_MESSAGE_RANGE)
 	for(var/obj/item/mod/module/module as anything in modules)
 		uninstall(module)
 	if(ai_assistant)
@@ -146,28 +146,28 @@
 /obj/item/mod/control/examine(mob/user)
 	. = ..()
 	if(active)
-		. += span_notice("Charge: [core ? "[get_charge_percent()]%" : "No core"].")
-		. += span_notice("Selected module: [selected_module || "None"].")
+		. += span_notice("电量：[core ? "[get_charge_percent()]%" : "No core"]。")
+		. += span_notice("选定模块：[selected_module || "None"]。")
 	if(!open && !active)
 		if(!wearer)
-			. += span_notice("You could equip it to turn it on.")
-		. += span_notice("You could open the cover with a <b>screwdriver</b>.")
+			. += span_notice("你可以装备它以将其启动。")
+		. += span_notice("你可以用<b>螺丝刀</b>打开外壳。")
 	else if(open)
-		. += span_notice("You could close the cover with a <b>screwdriver</b>.")
-		. += span_notice("You could use <b>modules</b> on it to install them.")
-		. += span_notice("You could remove modules with a <b>crowbar</b>.")
-		. += span_notice("You could update the access lock with an <b>ID</b>.")
-		. += span_notice("You could access the wire panel with a <b>wire tool</b>.")
+		. += span_notice("你可以用<b>螺丝刀</b>关闭外壳。")
+		. += span_notice("你可以使用<b>模块</b>来安装它们。")
+		. += span_notice("你可以用<b>撬棍</b>移除模块。")
+		. += span_notice("你可以用<b>ID卡</b>更新访问锁。")
+		. += span_notice("你可以用<b>线缆工具</b>访问线缆面板。")
 		if(core)
-			. += span_notice("You could remove [core] with a <b>wrench</b>.")
+			. += span_notice("你可以用<b>扳手</b>移除[core]。")
 		else
-			. += span_notice("You could use a <b>MOD core</b> on it to install one.")
+			. += span_notice("你可以使用<b>MOD核心</b>来安装一个。")
 		if(isnull(ai_assistant))
-			. += span_notice("You could install a pAI with a <b>pAI card</b>.") // NOVA EDIT CHANGE - ORIGINAL: . += span_notice("You could install an AI or pAI using their <b>storage card</b>.")
+			. += span_notice("你可以用<b>pAI卡</b>安装一个pAI。") // NOVA EDIT CHANGE - ORIGINAL: . += span_notice("You could install an AI or pAI using their <b>storage card</b>.")
 		else if(isAI(ai_assistant))
-			. += span_notice("You could remove [ai_assistant] with an <b>intellicard</b>.")
-	. += span_notice("You could copy/set link frequency with a <b>multitool</b>.")
-	. += span_notice("<i>You could examine it more thoroughly...</i>")
+			. += span_notice("你可以用<b>智能卡</b>移除[ai_assistant]。")
+	. += span_notice("你可以用<b>多功能工具</b>复制/设置链接频率。")
+	. += span_notice("<i>你可以更仔细地检查它...</i>")
 
 /obj/item/mod/control/examine_more(mob/user)
 	. = ..()
@@ -223,13 +223,13 @@
 		return ..()
 
 	if(active)
-		balloon_alert(wearer, "unit active!")
+		balloon_alert(wearer, "单元已激活！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 
 	for(var/obj/item/part as anything in get_parts())
 		if(part.loc != src)
-			balloon_alert(user, "parts extended!")
+			balloon_alert(user, "部件已展开！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 			return FALSE
 
@@ -240,44 +240,44 @@
 		return ITEM_INTERACT_BLOCKING
 	if(open)
 		if(!core)
-			balloon_alert(user, "no core!")
+			balloon_alert(user, "无核心！")
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "removing core...")
+		balloon_alert(user, "正在移除核心...")
 		wrench.play_tool_sound(src, 100)
 		if(!wrench.use_tool(src, user, 3 SECONDS) || !open)
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, "被打断了！")
 			return ITEM_INTERACT_BLOCKING
 		wrench.play_tool_sound(src, 100)
-		balloon_alert(user, "core removed")
+		balloon_alert(user, "核心已移除")
 		core.forceMove(drop_location())
 		return ITEM_INTERACT_SUCCESS
 	return NONE
 
 /obj/item/mod/control/screwdriver_act(mob/living/user, obj/item/screwdriver)
 	if(active || activating || ai_controller)
-		balloon_alert(user, "unit active!")
+		balloon_alert(user, "单元已激活！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "[open ? "closing" : "opening"] cover...")
+	balloon_alert(user, "[open ? "closing" : "opening"] 外壳...")
 	screwdriver.play_tool_sound(src, 100)
 	if(screwdriver.use_tool(src, user, 1 SECONDS))
 		if(active || activating)
-			balloon_alert(user, "unit active!")
+			balloon_alert(user, "单元已激活！")
 			return ITEM_INTERACT_SUCCESS
 		screwdriver.play_tool_sound(src, 100)
-		balloon_alert(user, "cover [open ? "closed" : "opened"]")
+		balloon_alert(user, "外壳 [open ? "closed" : "opened"]")
 		open = !open
 	else
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/control/crowbar_act(mob/living/user, obj/item/crowbar)
 	if(!open)
-		balloon_alert(user, "cover closed!")
+		balloon_alert(user, "外壳已关闭！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 	if(!allowed(user))
-		balloon_alert(user, "insufficient access!")
+		balloon_alert(user, "权限不足！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 	if(SEND_SIGNAL(src, COMSIG_MOD_MODULE_REMOVAL, user) & MOD_CANCEL_REMOVAL)
@@ -289,7 +289,7 @@
 			if(!module.removable)
 				continue
 			removable_modules += module
-		var/obj/item/mod/module/module_to_remove = tgui_input_list(user, "Which module to remove?", "Module Removal", removable_modules)
+		var/obj/item/mod/module/module_to_remove = tgui_input_list(user, "要移除哪个模块？", "模块移除", removable_modules)
 		if(!module_to_remove?.mod)
 			return ITEM_INTERACT_BLOCKING
 		uninstall(module_to_remove)
@@ -297,7 +297,7 @@
 		crowbar.play_tool_sound(src, 100)
 		SEND_SIGNAL(src, COMSIG_MOD_MODULE_REMOVED, user)
 		return ITEM_INTERACT_SUCCESS
-	balloon_alert(user, "no modules!")
+	balloon_alert(user, "没有模块！")
 	playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return ITEM_INTERACT_BLOCKING
 
@@ -305,14 +305,14 @@
 /obj/item/mod/control/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/pai_card))
 		if(!open)
-			balloon_alert(user, "cover closed!")
+			balloon_alert(user, "外壳已关闭！")
 			return NONE // shoves the card in the storage anyways
 		insert_pai(user, tool)
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/mod/paint))
 		var/obj/item/mod/paint/paint_kit = tool
 		if(active || activating)
-			balloon_alert(user, "unit active!")
+			balloon_alert(user, "单元已激活！")
 			return ITEM_INTERACT_BLOCKING
 		if(LAZYACCESS(modifiers, RIGHT_CLICK)) // Right click
 			if(paint_kit.editing_mod == src)
@@ -330,7 +330,7 @@
 			return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/mod/module))
 		if(!open)
-			balloon_alert(user, "cover closed!")
+			balloon_alert(user, "外壳已关闭！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return ITEM_INTERACT_BLOCKING
 		install(tool, user)
@@ -342,12 +342,12 @@
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return ITEM_INTERACT_BLOCKING
 		if(core)
-			balloon_alert(user, "already has core!")
+			balloon_alert(user, "已有核心！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/mod/core/attacking_core = tool
 		attacking_core.install(src)
-		balloon_alert(user, "core installed")
+		balloon_alert(user, "核心已安装")
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 	if(open)
@@ -374,19 +374,19 @@
 
 /obj/item/mod/control/emag_act(mob/user, obj/item/card/emag/emag_card)
 	locked = !locked
-	balloon_alert(user, "access [locked ? "locked" : "unlocked"]")
+	balloon_alert(user, "访问权限[locked ? "locked" : "unlocked"]")
 	return TRUE
 
 /obj/item/mod/control/emp_act(severity)
 	. = ..()
 	if(!active || !wearer)
 		return
-	to_chat(wearer, span_notice("[severity > 1 ? "Light" : "Strong"] electromagnetic pulse detected!"))
+	to_chat(wearer, span_notice("检测到[severity > 1 ? "Light" : "Strong"]电磁脉冲！"))
 	if(. & EMP_PROTECT_CONTENTS)
 		return
 	selected_module?.deactivate(display_message = TRUE)
 	wearer.apply_damage(5 / severity, BURN, spread_damage=TRUE)
-	to_chat(wearer, span_danger("You feel [src] heat up from the EMP, burning you slightly."))
+	to_chat(wearer, span_danger("你感到[src]因EMP而发热，轻微地灼伤了你。"))
 	if(wearer.stat < UNCONSCIOUS && prob(10))
 		wearer.emote("scream")
 
@@ -621,24 +621,24 @@
 	for(var/obj/item/mod/module/old_module as anything in modules)
 		if(is_type_in_list(new_module, old_module.incompatible_modules) || is_type_in_list(old_module, new_module.incompatible_modules))
 			if(user)
-				balloon_alert(user, "incompatible with [old_module]!")
+				balloon_alert(user, "与[old_module]不兼容！")
 				playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 	var/complexity_with_module = complexity
 	complexity_with_module += new_module.complexity
 	if(complexity_with_module > complexity_max)
 		if(user)
-			balloon_alert(user, "above complexity max!")
+			balloon_alert(user, "超出复杂度上限！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	if(!new_module.has_required_parts(mod_parts))
 		if(user)
-			balloon_alert(user, "lacking required parts!")
+			balloon_alert(user, "缺少必要部件！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	if(!new_module.can_install(src))
 		if(user)
-			balloon_alert(user, "can't install!")
+			balloon_alert(user, "无法安装！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_MOD_TRY_INSTALL_MODULE, new_module, user) & MOD_ABORT_INSTALL)
@@ -659,7 +659,7 @@
 		new_module.on_part_activation()
 		new_module.part_activated = TRUE
 	if(user)
-		balloon_alert(user, "[new_module] added")
+		balloon_alert(user, "[new_module] 已添加")
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 
 /obj/item/mod/control/proc/uninstall(obj/item/mod/module/old_module, deleting = FALSE)
@@ -681,11 +681,11 @@
 
 /obj/item/mod/control/proc/update_access(mob/user, obj/item/card/id/card)
 	if(!allowed(user))
-		balloon_alert(user, "insufficient access!")
+		balloon_alert(user, "权限不足！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	req_access = card.access.Copy()
-	balloon_alert(user, "access updated")
+	balloon_alert(user, "权限已更新")
 
 /obj/item/mod/control/proc/get_charge_source()
 	return core?.charge_source()
@@ -751,7 +751,7 @@
 	wearer?.update_equipment_speed_mods()
 
 /obj/item/mod/control/proc/power_off()
-	balloon_alert(wearer, "no power!")
+	balloon_alert(wearer, "没有电力！")
 	toggle_activate(wearer, force_deactivate = TRUE)
 
 /obj/item/mod/control/proc/set_mod_color(new_color)
@@ -807,14 +807,14 @@
 	SIGNAL_HANDLER
 
 	if(HAS_TRAIT(src, TRAIT_SPEED_POTIONED))
-		to_chat(user, span_warning("[src] has already been coated with red, that's as fast as it'll go!"))
+		to_chat(user, span_warning("[src]已经涂过红色了，这已经是它能达到的最快速度了！"))
 		return SPEED_POTION_STOP
 
 	if(active)
-		to_chat(user, span_warning("It's too dangerous to smear [speed_potion] on [src] while it's active!"))
+		to_chat(user, span_warning("在[src]处于激活状态时将[speed_potion]涂抹上去太危险了！"))
 		return SPEED_POTION_STOP
 
-	to_chat(user, span_notice("You slather the red gunk over [src], making it faster."))
+	to_chat(user, span_notice("你将红色粘稠物涂抹在[src]上，使其变得更快。"))
 	set_mod_color(color_transition_filter(COLOR_RED))
 	ADD_TRAIT(src, TRAIT_SPEED_POTIONED, SLIME_POTION_TRAIT)
 	update_speed()

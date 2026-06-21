@@ -1,7 +1,7 @@
 //base one is setup to IFF on NT & centcom trims for future proofing.
 /obj/item/mecha_parts/mecha_equipment/swarm_rocket_pod
-	name = "Swarm Rocket Pod"
-	desc = "A sealed multi-launch rocket pod mounted to the mecha's chassis. Fires a precision barrage of micro-rockets at nearby targets when activated. Targets lacking Nanotrasen or CentCom ID clearance will be marked for impact."
+	name = "蜂群火箭发射巢"
+	desc = "一个安装在机甲底盘上的密封多联装火箭发射巢。激活时，会向附近目标发射一波精确的微型火箭弹幕。缺乏纳米传讯或中央司令部ID许可的目标将被标记为打击对象。"
 	icon_state = "mecha_missilerack_six"
 	equipment_slot = MECHA_UTILITY
 	detachable = FALSE
@@ -11,7 +11,7 @@
 
 //IFF'ed on Solfed trims.
 /obj/item/mecha_parts/mecha_equipment/swarm_rocket_pod/solfed
-	desc = "A sealed multi-launch rocket pod mounted to the mecha's chassis. Fires a precision barrage of micro-rockets at nearby targets when activated. Targets without SolFed ID clearance will be marked for impact."
+	desc = "一个安装在机甲底盘上的密封多联装火箭发射巢。激活时，会向附近目标发射一波精确的微型火箭弹幕。没有太阳联邦ID许可的目标将被标记为打击对象。"
 	friendly_trims = list(/datum/id_trim/solfed)
 
 /obj/item/mecha_parts/mecha_equipment/swarm_rocket_pod/attach(obj/vehicle/sealed/mecha/new_mecha, attach_right)
@@ -45,7 +45,7 @@
 				valid_targets += thing
 
 	if (!length(valid_targets))
-		to_chat(source, span_warning("No valid targets in range."))
+		to_chat(source, span_warning("射程内无有效目标。"))
 		return FALSE
 
 	var/rocket_count = 12
@@ -85,8 +85,8 @@
 	return TRUE
 
 /datum/action/vehicle/sealed/mecha/swarm_rocket_pod
-	name = "Rocket Pod Barrage"
-	desc = "Launches a spread of micro-rockets at all nearby hostiles. Targets without SolFed ID clearance will be marked for impact."
+	name = "火箭发射巢弹幕"
+	desc = "向所有附近的敌对目标发射一波微型火箭弹幕。没有太阳联邦ID许可的目标将被标记为打击对象。"
 	button_icon_state = "mech_ivanov"
 
 /datum/action/vehicle/sealed/mecha/swarm_rocket_pod/Trigger(mob/clicker, trigger_flags)
@@ -173,7 +173,7 @@
 	timer_ids += addtimer(CALLBACK(src, PROC_REF(step_or_drop)), move_delay, TIMER_STOPPABLE | TIMER_DELETE_ME)
 
 /obj/effect/temp_visual/swarm_rocket_rise
-	name = "Swarm Micro-Rocket"
+	name = "蜂群微型火箭"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "84mm-heap"
 	duration = 20
@@ -193,7 +193,7 @@
 	playsound(src, 'sound/items/weapons/minebot_rocket.ogg', 100, FALSE)
 
 /obj/effect/temp_visual/swarm_rocket_fall
-	name = "Swarm Micro-Rocket"
+	name = "蜂群微型火箭"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "84mm-heap"
 	duration = 14

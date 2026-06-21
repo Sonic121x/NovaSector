@@ -4,8 +4,8 @@
  * A disk should contain several of these in a list. Only one should get picked for the final paper.
  */
 /datum/experiment/ordnance
-	name = "Toxin Research"
-	description = "An experiment conducted in the ordnance subdepartment."
+	name = "毒素研究"
+	description = "一项在军械子部门进行的实验。"
 	exp_tag = "ordnance"
 	performance_hint = "Perform research experiments in the ordnance lab using the specified equipment, print them unto a data disk, and publish them with the NT Frontier app."
 	/// Lookup experiments are initialized using subtypes, 

@@ -1,5 +1,5 @@
 PROCESSING_SUBSYSTEM_DEF(instruments)
-	name = "Instruments"
+	name = "乐器"
 	wait = 0.5
 	ss_flags = SS_KEEP_TIMING
 	priority = FIRE_PRIORITY_INSTRUMENTS

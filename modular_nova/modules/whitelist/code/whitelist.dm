@@ -66,10 +66,10 @@ GLOBAL_PROTECT(whitelist)
 
 ADMIN_VERB(add_whitelist, R_ADMIN, "Add Whitelist", "Adds a given ckey to the whitelist, allowing them access to the server.", ADMIN_CATEGORY_MAIN)
 	if(!SSdbcore.Connect())
-		to_chat(user, span_warning("Couldn't connect to the SQL database!"))
+		to_chat(user, span_warning("无法连接到SQL数据库！"))
 		return
 
-	var/ckey_to_whitelist = input(user, "Enter a ckey to add to the whitelist.", "Ckey Input") as text|null
+	var/ckey_to_whitelist = input(user, "输入要加入白名单的ckey。", "Ckey输入") as text|null
 	ckey_to_whitelist = ckey(ckey_to_whitelist)
 	if(!ckey_to_whitelist)
 		return

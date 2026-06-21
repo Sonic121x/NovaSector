@@ -1,9 +1,9 @@
 /obj/item/disk/nifsoft_uploader/summoner/tools
-	name = "Grimoire Opera"
+	name = "工典·欧佩拉"
 	loaded_nifsoft = /datum/nifsoft/summoner/job/tools
 
 /datum/nifsoft/summoner/job/tools
-	name = "Grimoire Opera"
+	name = "工典·欧佩拉"
 	program_desc = "Grimoire Opera is a fork of the Grimoire Caeruleam NIFSoft engineered by and for contracted technicians operating for the Altspace Coven. \
 	Its entirely functional aspect and high requirement for fidelity makes it more expensive and taxing than many other Grimoires."
 	summonable_items = list(

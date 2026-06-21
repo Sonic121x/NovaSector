@@ -32,15 +32,15 @@
 	if(item)
 		var/atom/item_to_create = new item(get_turf(user))
 		if(user.put_in_hands(item_to_create))
-			to_chat(user, span_notice("Your purchase materializes into your hands!"))
+			to_chat(user, span_notice("你购买的物品出现在了你手中！"))
 		else
-			to_chat(user, span_notice("Your purchase materializes onto the floor."))
+			to_chat(user, span_notice("你购买的物品出现在了地板上。"))
 
 	return TRUE
 
 /datum/contractor_item/contract_reroll
-	name = "Contract Reroll"
-	desc = "Request a reroll of your current contract list. Will generate a new target, payment, and dropoff for the contracts you currently have available."
+	name = "合同重掷"
+	desc = "请求重掷你当前的合同列表。将为你当前可用的合同生成新的目标、报酬和投放点。"
 	item_icon = "dice"
 	limited = 3
 	cost = 0
@@ -70,31 +70,31 @@
 	hub.assigned_targets = new_target_list
 
 /datum/contractor_item/contractor_pinpointer
-	name = "Contractor Pinpointer"
-	desc = "A pinpointer that finds targets even without active suit sensors. Due to taking advantage of an exploit within the system, it can't pinpoint to the same accuracy as the traditional models. Becomes permanently locked to the user that first activates it."
+	name = "合约工定位仪"
+	desc = "一种即使目标防护服传感器未激活也能定位的仪器。由于利用了系统内的一个漏洞，其定位精度无法与传统型号相比。首次激活后将被永久锁定给该用户。"
 	item = /obj/item/pinpointer/crew/contractor
 	item_icon = "search-location"
 	limited = 2
 	cost = 1
 
 /datum/contractor_item/fulton_extraction_kit
-	name = "Fulton Extraction Kit"
-	desc = "For getting your target across the station to those difficult dropoffs. Place the beacon somewhere secure, and link the pack. Activating the pack on your target will send them over to the beacon - make sure they're not just going to run away though!"
+	name = "富尔顿提取套件"
+	desc = "用于将你的目标运过空间站，送达那些难以抵达的交接点。将信标放置在安全位置，并连接背包。对目标激活背包会将其传送至信标处——但要确保他们不会直接跑掉！"
 	item = /obj/item/storage/box/contractor/fulton_extraction
 	item_icon = "parachute-box"
 	limited = 1
 	cost = 1
 
 /datum/contractor_item/contractor_partner
-	name = "Reinforcements"
+	name = "增援"
 	desc = "Upon purchase we'll contact available units in the area. Should there be an agent free, we'll send them down to assist you immediately. If no units are free, we give a full refund."
 	item_icon = "user-friends"
 	limited = 1
 	cost = 2
 
 /datum/contractor_item/blackout
-	name = "Blackout"
-	desc = "Request Syndicate Command to distrupt the station's powernet. Disables power across the station for a short duration."
+	name = "停电"
+	desc = "请求辛迪加指挥部干扰空间站的电网。使整个空间站断电一小段时间。"
 	item_icon = "bolt"
 	limited = 2
 	cost = 2
@@ -108,8 +108,8 @@
 	priority_announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", ANNOUNCER_POWEROFF)
 
 /datum/contractor_item/comms_blackout
-	name = "Comms Outage"
-	desc = "Request Syndicate Command to disable station Telecommunications. Disables telecommunications across the station for a medium duration."
+	name = "通讯中断"
+	desc = "请求辛迪加指挥部禁用空间站的电信系统。使整个空间站的电信中断中等时长。"
 	item_icon = "phone-slash"
 	limited = 2
 	cost = 2
@@ -123,16 +123,16 @@
 	event.run_event()
 
 /datum/contractor_item/mod_magnetic_suit
-	name = "Magnetic Deployment Module"
-	desc = "A module that utilizes magnets to largely reduce the time needed to deploy and retract your MODsuit."
+	name = "磁力部署模块"
+	desc = "一个利用磁力大幅缩短MOD防护服部署与收回所需时间的模块。"
 	item = /obj/item/mod/module/springlock/contractor
 	item_icon = "magnet"
 	limited = 1
 	cost = 2
 
 /datum/contractor_item/mod_scorpion_hook
-	name = "SCORPION Hook Module"
-	desc = "A module that allows you to launch a hardlight hook from your MODsuit, pulling a target into range of your baton."
+	name = "SCORPION钩爪模块"
+	desc = "一个允许你从MOD防护服发射硬光钩爪的模块，可将目标拉入你的警棍攻击范围。"
 	item = /obj/item/mod/module/scorpion_hook
 	item_icon = "arrow-left" //replace if fontawesome gets an actual hook icon
 	limited = 1

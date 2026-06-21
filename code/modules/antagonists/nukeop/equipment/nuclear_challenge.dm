@@ -5,7 +5,7 @@
 GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 /obj/item/nuclear_challenge
-	name = "Declaration of War (Challenge Mode)"
+	name = "宣战 (挑战模式)"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "nukietalkie"
 	inhand_icon_state = "nukietalkie"
@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		return
 
 	declaring_war = TRUE
-	var/are_you_sure = tgui_alert(user, "Consult your team carefully before you declare war on [station_name()]. Are you sure you want to alert the enemy crew? You have [DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)] to decide.", "Declare war?", list("Yes", "No"))
+	var/are_you_sure = tgui_alert(user, "在向[station_name()]宣战前，请与你的团队仔细商议。你确定要警告敌方船员吗？你有[DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)]的时间来决定。", "宣战？", list("Yes", "No"))
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	var/war_declaration = "A syndicate fringe group has declared their intent to utterly destroy [station_name()] with a nuclear device, and dares the crew to try and stop them."
 
 	declaring_war = TRUE
-	var/custom_threat = tgui_alert(user, "Do you want to customize your declaration?", "Customize?", list("Yes", "No"))
+	var/custom_threat = tgui_alert(user, "你想要自定义你的宣战声明吗？", "Customize?", list("Yes", "No"))
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 	if(custom_threat == "Yes")
 		declaring_war = TRUE
-		war_declaration = tgui_input_text(user, "Insert your custom declaration", "Declaration", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+		war_declaration = tgui_input_text(user, "输入你的自定义声明", "声明", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 		declaring_war = FALSE
 
 	if(!check_allowed(user) || !war_declaration)
@@ -54,25 +54,25 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 ///Admin only proc to bypass checks and force a war declaration. Button on antag panel.
 /obj/item/nuclear_challenge/proc/force_war()
-	var/are_you_sure = tgui_alert(usr, "Are you sure you wish to force a war declaration?[GLOB.player_list.len < CHALLENGE_MIN_PLAYERS ? " Note, the player count is under the required limit." : ""]", "Declare war?", list("Yes", "No"))
+	var/are_you_sure = tgui_alert(usr, "你确定要强制进行宣战声明吗？[GLOB.player_list.len < CHALLENGE_MIN_PLAYERS ? " Note, the player count is under the required limit." : ""]", "宣战？", list("Yes", "No"))
 
 	if(are_you_sure != "Yes")
 		return
 
 	var/war_declaration = "A syndicate fringe group has declared their intent to utterly destroy [station_name()] with a nuclear device, and dares the crew to try and stop them."
 
-	var/custom_threat = tgui_alert(usr, "Do you want to customize the declaration?", "Customize?", list("Yes", "No"))
+	var/custom_threat = tgui_alert(usr, "你想要自定义声明吗？", "Customize?", list("Yes", "No"))
 
 	if(custom_threat == "Yes")
-		war_declaration = tgui_input_text(usr, "Insert your custom declaration", "Declaration", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+		war_declaration = tgui_input_text(usr, "输入你的自定义声明", "宣言", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	if(!war_declaration)
-		tgui_alert(usr, "Invalid war declaration.", "Poor Choice of Words")
+		tgui_alert(usr, "无效的战争宣言。", "措辞不当")
 		return
 
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
 		if(board.challenge_start_time)
-			tgui_alert(usr, "War has already been declared!", "War Was Declared")
+			tgui_alert(usr, "战争已经宣战了！", "战争已宣")
 			return
 
 	war_was_declared(memo = war_declaration)
@@ -80,10 +80,10 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 /obj/item/nuclear_challenge/proc/war_was_declared(mob/living/user, memo)
 	priority_announce(
 		text = memo,
-		title = "Declaration of War",
+		title = "战争宣言",
 		sound = announcement_sound,
 		has_important_message = TRUE,
-		sender_override = "Nuclear Operative Outpost",
+		sender_override = "核行动者前哨站",
 		color_override = "red",
 	)
 	if(user)
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 	for (var/mob/living/L in orphans)
 		var/TC = new /obj/item/stack/telecrystal(L.drop_location(), tc_per_nukie)
-		to_chat(L, span_warning("Your uplink could not be found so your share of the team's bonus telecrystals has been bluespaced to your [L.put_in_hands(TC) ? "hands" : "feet"]."))
+		to_chat(L, span_warning("未能找到你的上行链路，因此你团队奖励的远程水晶份额已通过蓝空传送至你的[L.put_in_hands(TC) ? "hands" : "feet"]。"))
 		tc_to_distribute -= tc_per_nukie
 
 	if (tc_to_distribute > 0) // What shall we do with the remainder...
@@ -193,10 +193,10 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 	priority_announce(
 		text = memo,
-		title = "Declaration of War",
+		title = "宣战声明",
 		sound = announcement_sound,
 		has_important_message = TRUE,
-		sender_override = "Nuclear Operative Outpost",
+		sender_override = "核行动者前哨站",
 		color_override = "red",
 	)
 

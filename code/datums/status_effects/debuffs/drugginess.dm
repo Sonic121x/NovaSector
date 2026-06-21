@@ -34,7 +34,7 @@
 
 /// The status effect for "drugginess"
 /atom/movable/screen/alert/status_effect/high
-	name = "High"
-	desc = "Whoa man, you're tripping balls! Careful you don't get addicted... if you aren't already."
+	name = "嗨了"
+	desc = "哇哦老兄，你嗨过头了！小心别上瘾……如果你还没上的话。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "high"

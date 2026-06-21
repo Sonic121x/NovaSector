@@ -2,7 +2,7 @@
 
 ///Cloaking - Lowers the user's visibility, can be interrupted by being touched or attacked.
 /obj/item/mod/module/stealth
-	name = "MOD prototype cloaking module"
+	name = "MOD隐形原型模块"
 	desc = "A complete retrofitting of the suit, this is a form of visual concealment tech employing esoteric technology \
 		to bend light around the user, as well as mimetic materials to make the surface of the suit match the \
 		surroundings based off sensor data. For some reason, this tech is rarely seen."
@@ -58,7 +58,7 @@
 
 //Advanced Cloaking - Doesn't turf off on bump, less power drain, more stealthy.
 /obj/item/mod/module/stealth/ninja
-	name = "MOD advanced cloaking module"
+	name = "MOD高级隐形模块"
 	desc = "The latest in stealth technology, this module is a definite upgrade over previous versions. \
 		The field has been tuned to be even more responsive and fast-acting, with enough stability to \
 		continue operation of the field even if the user bumps into others. \
@@ -82,7 +82,7 @@
 
 ///Camera Vision - Prevents flashes, blocks tracking.
 /obj/item/mod/module/welding/camera_vision
-	name = "MOD camera vision module"
+	name = "MOD摄像视觉模块"
 	desc = "A module installed into the suit's helmet. This specialized piece of technology is built for subterfuge, \
 		replacing the standard visor with a nanotech display; capable of displaying specialized imagery at \
 		just the right frequency to jam all known forms of camera tracking and facial recognition, \
@@ -116,7 +116,7 @@
 
 //Ninja Star Dispenser - Dispenses ninja stars.
 /obj/item/mod/module/dispenser/ninja
-	name = "MOD ninja star dispenser module"
+	name = "MOD忍者星分配模块"
 	desc = "This piece of Spider Clan technology can exploit known energy-matter equivalence principles, \
 		using the nanites already hosted in the wearer's suit to transmute into monomolecular shuriken. \
 		While these lack the intense bleeding edge of conventional throwing stars, \
@@ -175,7 +175,7 @@
 
 ///Hacker - This module hooks onto your right-clicks with empty hands and causes ninja actions.
 /obj/item/mod/module/hacker
-	name = "MOD hacker module"
+	name = "MOD黑客模块"
 	desc = "Built for one purpose, electronic warfare, this module is built into the hands. \
 		Using near-field communication alongside precise electro-stimulation of the wires in machines, \
 		this decker's dream is normally used to pass through doors like a phantom. \
@@ -215,7 +215,7 @@
 	if(drain_amount)
 		to_chat(mod.wearer, span_notice("Gained <B>[drain_amount]</B> units of energy from [drained_atom]."))
 	else
-		to_chat(mod.wearer, span_warning("[drained_atom] has run dry of energy, you must find another source!"))
+		to_chat(mod.wearer, span_warning("[drained_atom]的能量已经耗尽，你必须寻找另一个来源！"))
 
 //Security Records, Ninja objective This notifies the AI and sets everyone on arrest.
 /obj/machinery/computer/records/security/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
@@ -245,12 +245,12 @@
 /obj/machinery/computer/records/security/proc/can_hack(mob/living/hacker, feedback = FALSE)
 	if(machine_stat & (NOPOWER|BROKEN))
 		if(feedback && hacker)
-			balloon_alert(hacker, "can't hack!")
+			balloon_alert(hacker, "无法骇入！")
 		return FALSE
 	var/area/console_area = get_area(src)
 	if(!console_area || !(console_area.area_flags & VALID_TERRITORY))
 		if(feedback && hacker)
-			balloon_alert(hacker, "signal too weak!")
+			balloon_alert(hacker, "信号太弱！")
 		return FALSE
 	return TRUE
 
@@ -350,7 +350,7 @@
 		return ..()
 	to_chat(ninja, span_notice("Hacking \the [src]..."))
 	AI_notify_hack()
-	to_chat(ninja, span_notice("Encrypted source code detected. Overloading storage device..."))
+	to_chat(ninja, span_notice("检测到加密源代码。正在超载存储设备..."))
 	INVOKE_ASYNC(src, PROC_REF(ninjadrain_charge), ninja, hacking_module)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -358,7 +358,7 @@
 	if(!do_after(ninja, 30 SECONDS, target = src, hidden = TRUE))
 		return
 	overload_source_code_hdd()
-	to_chat(ninja, span_notice("Sabotage complete. Storage device overloaded."))
+	to_chat(ninja, span_notice("破坏完成。存储设备已超载。"))
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	if(!ninja_antag)
 		return
@@ -369,7 +369,7 @@
 /obj/machinery/rnd/server/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(!ninja || !hacking_module)
 		return NONE
-	to_chat(ninja, span_notice("Research notes detected. Corrupting data..."))
+	to_chat(ninja, span_notice("检测到研究笔记。正在破坏数据..."))
 	INVOKE_ASYNC(src, PROC_REF(ninjadrain_charge), ninja, hacking_module)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -377,7 +377,7 @@
 	if(!do_after(ninja, 30 SECONDS, target = src, hidden = TRUE))
 		return
 	stored_research.modify_points_all(0)
-	to_chat(ninja, span_notice("Sabotage complete. Research notes corrupted."))
+	to_chat(ninja, span_notice("破坏完成。研究笔记已损坏。"))
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	if(!ninja_antag)
 		return
@@ -419,7 +419,7 @@
 			return NONE
 		var/datum/objective/door_jack/objective = locate() in ninja_antag.objectives
 		if(objective && objective.doors_required == hacking_module.door_hack_counter)
-			ninja.balloon_alert(ninja, "all doors hacked")
+			ninja.balloon_alert(ninja, "所有门已骇入")
 		if(objective && objective.doors_required <= hacking_module.door_hack_counter)
 			objective.completed = TRUE
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -494,7 +494,7 @@
 	if(!ninja || !hacking_module || (has_faction(ROLE_NINJA)))
 		return NONE
 
-	to_chat(src, span_danger("Warni-***BZZZZZZZZZRT*** UPLOADING SPYDERPATCHER VERSION 9.5.2..."))
+	to_chat(src, span_danger("警告-***BZZZZZZZZZRT*** 正在上传间谍补丁程序版本 9.5.2..."))
 	INVOKE_ASYNC(src, PROC_REF(ninjadrain_charge), ninja, hacking_module)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -503,7 +503,7 @@
 		return
 	spark_system.start()
 	playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	to_chat(src, span_danger("UPLOAD COMPLETE. NEW CYBORG MODEL DETECTED.  INSTALLING..."))
+	to_chat(src, span_danger("上传完成。检测到新型机械人模型。正在安装..."))
 	faction = list(ROLE_NINJA)
 	bubble_icon = "syndibot"
 	UnlinkSelf()
@@ -516,7 +516,7 @@
 		"Medical" = "/obj/item/robot_model/ninja/ninja_medical",
 		"Saboteur" = "/obj/item/robot_model/ninja_saboteur",
 	)
-	var/choice = input(src,"What role do you wish to become?","Select Role") in sort_list(modelselected)
+	var/choice = input(src,"你希望成为什么角色？","选择角色") in sort_list(modelselected)
 	model.transform_to(modelselected[choice])
 	//NOVA EDIT ADDITION END
 
@@ -535,7 +535,7 @@
 	if(hacking_module.mod.subtract_charge(DEFAULT_CHARGE_DRAIN*10))
 		//Got that electric touch
 		do_sparks(5, FALSE, loc)
-		visible_message(span_danger("[ninja] electrocutes [src] with [ninja.p_their()] touch!"), span_userdanger("[ninja] electrocutes you with [ninja.p_their()] touch!"))
+		visible_message(span_danger("[ninja] 用 [src] 触摸电击了 [ninja.p_their()]！"), span_userdanger("[ninja] 用 [ninja.p_their()] 触摸电击了你！"))
 		addtimer(CALLBACK(src, PROC_REF(ninja_knockdown)), 0.3 SECONDS)
 	return NONE
 
@@ -546,7 +546,7 @@
 //CAMERAS, emps cameras disabling AI vision
 /obj/machinery/camera/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(isEmpProof(TRUE))
-		balloon_alert(ninja, "camera is shielded!")
+		balloon_alert(ninja, "摄像头被屏蔽了！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!hacking_module.mod.subtract_charge(DEFAULT_CHARGE_DRAIN * 5))
@@ -557,7 +557,7 @@
 
 //BOTS, overloads them and causes a explosion
 /mob/living/basic/bot/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
-	to_chat(src, span_boldwarning("Your circutry suddenly begins heating up!"))
+	to_chat(src, span_boldwarning("你的电路突然开始发热！"))
 	if(!do_after(ninja, 1.5 SECONDS, target = src, hidden = TRUE))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -566,7 +566,7 @@
 
 	do_sparks(number = 3, cardinal_only = FALSE, source = src)
 	playsound(get_turf(src), 'sound/machines/warning-buzzer.ogg', 35, TRUE)
-	balloon_alert(ninja, "stand back!")
+	balloon_alert(ninja, "退后！")
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), src, 0, 1, 2, 3), 2.5 SECONDS)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -581,7 +581,7 @@
 //ENERGY WEAPONS, drains power from the weapon to supply your modsuit
 /obj/item/gun/energy/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(cell.charge == 0)
-		balloon_alert(ninja, "no energy!")
+		balloon_alert(ninja, "没有能量！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!do_after(ninja, 1.5 SECONDS, target = src, hidden = TRUE))
@@ -598,7 +598,7 @@
 //VENDING MACHINES, overload vending machines to throw its suppy at people
 /obj/machinery/vending/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(shoot_inventory)
-		balloon_alert(ninja, "already hacked!")
+		balloon_alert(ninja, "已经破解过了！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!do_after(ninja, 2 SECONDS, target = src, hidden = TRUE))
@@ -608,14 +608,14 @@
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	do_sparks(number = 3, cardinal_only = FALSE, source = src)
-	balloon_alert(ninja, "system overloaded!")
+	balloon_alert(ninja, "系统过载！")
 	wires.on_pulse(WIRE_THROW)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 //RECYCLER, emaggs the recycler disabling its safety
 /obj/machinery/recycler/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(obj_flags & EMAGGED)
-		balloon_alert(ninja, "already hacked!")
+		balloon_alert(ninja, "已被入侵！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	AI_notify_hack()
@@ -630,7 +630,7 @@
 //ELEVATOR CONTROLS//
 /obj/machinery/elevator_control_panel/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(obj_flags & EMAGGED)
-		balloon_alert(ninja, "already hacked!")
+		balloon_alert(ninja, "已被入侵！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!do_after(ninja, 2 SECONDS, target = src, hidden = TRUE))
@@ -645,11 +645,11 @@
 /obj/machinery/computer/tram_controls/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	var/datum/round_event/tram_malfunction/malfunction_event = locate(/datum/round_event/tram_malfunction) in SSevents.running
 	if(malfunction_event)
-		balloon_alert(ninja, "tram is already malfunctioning!")
+		balloon_alert(ninja, "电车已发生故障！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(specific_transport_id != TRAMSTATION_LINE_1)
-		balloon_alert(ninja, "cannot hack this tram!")
+		balloon_alert(ninja, "无法入侵此电车！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	AI_notify_hack()
@@ -687,7 +687,7 @@
 #undef NINJA_MAX_DRAIN
 ///Weapon Recall - Teleports your katana to you, prevents gun use.
 /obj/item/mod/module/weapon_recall
-	name = "MOD weapon recall module"
+	name = "MOD武器召回模块"
 	desc = "The cornerstone of a clanmember's life as a blademaster, and a module symbolizing their eternal bond with their weapon. \
 		This hooks to the micro bluespace drive inside an energy katana's handle, capable of recalling it to the user's \
 		skilled hands wherever they are. However, those that make such a bond with their weapon are cursed to \
@@ -716,18 +716,18 @@
 	if(!linked_weapon)
 		var/obj/item/weapon_to_link = mod.wearer.is_holding_item_of_type(accepted_type)
 		if(!weapon_to_link)
-			balloon_alert(mod.wearer, "no linked weapon!")
+			balloon_alert(mod.wearer, "未链接武器！")
 			return
 		set_weapon(weapon_to_link)
-		balloon_alert(mod.wearer, "[linked_weapon.name] linked")
+		balloon_alert(mod.wearer, "[linked_weapon.name] 已链接")
 		return
 	if(linked_weapon in mod.wearer.get_all_contents())
-		balloon_alert(mod.wearer, "already on self!")
+		balloon_alert(mod.wearer, "已在自身处！")
 		return
 	var/distance = get_dist(mod.wearer, linked_weapon)
 	var/in_view = (linked_weapon in view(mod.wearer)) && !(linked_weapon in get_turf(mod.wearer))
 	if(!in_view && !drain_power(use_energy_cost * distance))
-		balloon_alert(mod.wearer, "not enough charge!")
+		balloon_alert(mod.wearer, "能量不足！")
 		return
 	linked_weapon.forceMove(linked_weapon.drop_location())
 	if(in_view)
@@ -778,7 +778,7 @@
 
 //Reinforced DNA Lock - Gibs if wrong DNA, emp-proof.
 /obj/item/mod/module/dna_lock/reinforced
-	name = "MOD reinforced DNA lock module"
+	name = "MOD加固DNA锁模块"
 	desc = "A module which engages with the various locks and seals tied to the suit's systems, \
 		enabling it to only be worn by someone corresponding with the user's exact DNA profile. \
 		Due to utilizing a skintight dampening shield, this one is entirely sealed against electromagnetic interference; \
@@ -791,10 +791,10 @@
 	if(. != MOD_CANCEL_ACTIVATE || !isliving(user) || user != mod.wearer)
 		return
 	if(mod.ai_assistant == user)
-		to_chat(mod.ai_assistant, span_danger("<B>fATaL EERRoR</B>: 381200-*#00CODE <B>BLUE</B>\nAI INTErFERenCE DEtECted\nACTi0N DISrEGArdED"))
+		to_chat(mod.ai_assistant, span_danger("<B>致命错误</B>：381200-*#00代码 <B>蓝色</B>\nAI 检测到AI干扰\nACTi 操作已忽略"))
 		return
 	var/mob/living/living_user = user
-	to_chat(living_user, span_danger("<B>fATaL EERRoR</B>: 382200-*#00CODE <B>RED</B>\nUNAUTHORIZED USE DETECteD\nCoMMENCING SUB-R0UTIN3 13...\nTERMInATING U-U-USER..."))
+	to_chat(living_user, span_danger("<B>致命错误</B>：382200-*#00代码 <B>红色</B>\nUNAUTHORIZED 检测到未授权使用\nCoMMENCING 启动子程序13...\nTERMInATING 终-终-终止用户..."))
 	living_user.investigate_log("has been gibbed by using a MODsuit equipped with [src].", INVESTIGATE_DEATHS)
 	living_user.gib(DROP_ALL_REMAINS)
 
@@ -803,7 +803,7 @@
 
 //EMP Pulse - In addition to normal shielding, can also launch an EMP itself.
 /obj/item/mod/module/emp_shield/pulse
-	name = "MOD EMP pulse module"
+	name = "MOD电磁脉冲模块"
 	desc = "This module is normally set to activate on dramatic gestures, inverting and expanding the suit's \
 		EMP dampening shield to cause an electromagnetic pulse of its own. While this won't interfere with the wearer, \
 		it will piss off everyone around them."
@@ -833,7 +833,7 @@
 
 ///Energy Net - Ensnares enemies in a net that prevents movement.
 /obj/item/mod/module/energy_net
-	name = "MOD energy net module"
+	name = "MOD能量网模块"
 	desc = "A custom-built net-thrower. While conventional implementations of this capturing device \
 		utilize monomolecular fibers or cutting razorwire, this uses hardlight technology to deploy a \
 		trapping field capable of immobilizing even the strongest opponents."
@@ -955,7 +955,7 @@
 
 ///Adrenaline Boost - Stops all stuns the ninja is affected with, increases his speed.
 /obj/item/mod/module/adrenaline_boost
-	name = "MOD adrenaline boost module"
+	name = "MOD刺激物助推模块"
 	desc = "The secrets of the Spider Clan are many. The exact specifications of their suits, \
 		the techniques they use to make every singular cut make their enemies weep with admiration, \
 		but one of their greatest mysteries is the chemical compound their assassin-saboteurs use in times of need. \
@@ -981,7 +981,7 @@
 
 /obj/item/mod/module/adrenaline_boost/used()
 	if(!reagents.has_reagent(reagent_required, reagent_required_amount))
-		balloon_alert(mod.wearer, "no charge!")
+		balloon_alert(mod.wearer, "没有充能！")
 		return FALSE
 	return ..()
 
@@ -1014,11 +1014,11 @@
 	if(!attacking_item.is_open_container())
 		return FALSE
 	if(reagents.has_reagent(reagent_required, reagent_required_amount))
-		balloon_alert(mod.wearer, "already charged!")
+		balloon_alert(mod.wearer, "已经充能完毕！")
 		return FALSE
 	if(!attacking_item.reagents.trans_to(src, reagent_required_amount, target_id = reagent_required))
 		return FALSE
-	balloon_alert(mod.wearer, "charge [reagents.has_reagent(reagent_required, reagent_required_amount) ? "fully" : "partially"] reloaded")
+	balloon_alert(mod.wearer, "充能[reagents.has_reagent(reagent_required, reagent_required_amount) ? "fully" : "partially"]重新加载")
 	return TRUE
 
 /obj/item/mod/module/adrenaline_boost/proc/boost_aftereffects(mob/affected_mob)

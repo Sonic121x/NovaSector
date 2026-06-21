@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 		"dir" = SOUTH,
 		"moving" = FALSE,
 	)
-	var/list/description = list("A heretic knowledge tree column, used to define a path of knowledge.")
+	var/list/description = list("一个异教徒知识树列，用于定义一条知识路径。")
 	var/list/pros = list("Is bad", "Is very bad", "Is extremely bad")
 	var/list/cons = list("Smells bad", "Looks bad", "Tastes bad")
 	var/list/tips = list("Don't use it", "Don't touch it", "Don't look at it")

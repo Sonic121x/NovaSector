@@ -19,7 +19,7 @@
 // Not quite meant for the armory, features a generic John Halo rifle.
 
 /obj/item/storage/toolbox/guncase/nova/carwo_large_case/sol_rifle
-	name = "\improper Carwo 'MMR-2543E' rifle gunset"
+	name = "\improper Carwo 'MMR-2543E' 步枪套装"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/sol_rifle/no_mag
 	extra_to_spawn = /obj/item/ammo_box/magazine/c40sol_rifle/starts_empty
 
@@ -73,7 +73,7 @@
 	), src)
 
 /obj/structure/closet/secure_closet/armory_kiboko
-	name = "heavy equipment locker"
+	name = "重型装备储物柜"
 	req_access = list(ACCESS_ARMORY)
 	icon_state = "shotguncase"
 
@@ -88,7 +88,7 @@
 	), src)
 
 /obj/structure/closet/secure_closet/armory_kiboko_but_evil
-	name = "heavy equipment locker"
+	name = "重型装备储物柜"
 	icon = 'modular_nova/master_files/icons/obj/closet.dmi'
 	icon_door = "riot"
 	icon_state = "riot"

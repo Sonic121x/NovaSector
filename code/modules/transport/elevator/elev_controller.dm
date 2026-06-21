@@ -1,6 +1,6 @@
 /obj/machinery/button/elevator
-	name = "elevator button"
-	desc = "Go back. Go back. Go back. Can you operate the elevator."
+	name = "电梯按钮"
+	desc = "回去。回去。回去。你能操作电梯吗。"
 	base_icon_state = "tram"
 	icon_state = "tram"
 	can_alter_skin = FALSE
@@ -17,8 +17,8 @@
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 
 /obj/item/assembly/control/elevator
-	name = "elevator controller"
-	desc = "A small device used to call elevators to the current floor."
+	name = "电梯控制器"
+	desc = "一种用于将电梯呼叫至当前楼层的小型设备。"
 	/// A weakref to the transport_controller datum we control
 	var/datum/weakref/lift_weakref
 	COOLDOWN_DECLARE(elevator_cooldown)
@@ -70,7 +70,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	// Note that we can either be emagged by having the button we are inside swiped,
 	// or by someone emagging the assembly directly after removing it (to be cheeky)
 	var/atom/balloon_alert_loc = get(src, /obj/machinery/button) || src
-	balloon_alert_loc.balloon_alert(user, "safeties overridden")
+	balloon_alert_loc.balloon_alert(user, "安全装置已覆盖")
 	return TRUE
 
 // Multitooling emagged elevator buttons will fix the safeties
@@ -96,7 +96,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 		INVOKE_ASYNC(elevator_door, TYPE_PROC_REF(/obj/machinery/door, close))
 
 	// We can only be multitooled directly so just throw up the balloon alert
-	balloon_alert(user, "safeties reset")
+	balloon_alert(user, "安全装置已重置")
 	obj_flags &= ~EMAGGED
 
 /obj/item/assembly/control/elevator/activate(mob/activator)
@@ -118,30 +118,30 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	// We can't call an elevator that doesn't exist
 	var/datum/transport_controller/linear/lift = lift_weakref?.resolve()
 	if(!lift)
-		loc.balloon_alert(activator, "no elevator connected!")
+		loc.balloon_alert(activator, "未连接电梯！")
 		return FALSE
 
 	// We can't call an elevator that's moving. You may say "you totally can do that", but that's not modelled
 	if(lift.controller_status & CONTROLS_LOCKED)
-		loc.balloon_alert(activator, "elevator is moving!")
+		loc.balloon_alert(activator, "电梯正在移动！")
 		return FALSE
 
 	// If the elevator is already here, open the doors.
 	var/obj/structure/transport/linear/prime_lift = lift.return_closest_platform_to_z(loc.z)
 	if(prime_lift.z == loc.z)
 		INVOKE_ASYNC(lift, TYPE_PROC_REF(/datum/transport_controller/linear, open_lift_doors_callback))
-		loc.balloon_alert(activator, "elevator is here!")
+		loc.balloon_alert(activator, "电梯已在此处！")
 		return TRUE
 
 	// At this point, we can start moving.
 
 	// Give the user, if supplied, a balloon alert.
 	if(activator)
-		loc.balloon_alert(activator, "elevator called")
+		loc.balloon_alert(activator, "已呼叫电梯")
 
 	// Actually try to move the lift. This will sleep.
 	if(!lift.move_to_zlevel(loc.z, CALLBACK(src, PROC_REF(check_button))))
-		loc.balloon_alert(activator, "elevator out of service!")
+		loc.balloon_alert(activator, "电梯停止服务！")
 		return FALSE
 
 	// From here on all returns are TRUE, as we successfully moved the lift, even if we maybe didn't reach our floor
@@ -153,13 +153,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	// Our lift platform survived, but it didn't reach our landing z.
 	if(!QDELETED(prime_lift) && prime_lift.z != loc.z)
 		if(!QDELETED(activator))
-			loc.balloon_alert(activator, "elevator out of service!")
+			loc.balloon_alert(activator, "电梯停止服务！")
 		playsound(loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 		return TRUE
 
 	// Everything went according to plan
 	if(!QDELETED(activator))
-		loc.balloon_alert(activator, "elevator arrived")
+		loc.balloon_alert(activator, "电梯已抵达")
 
 	return TRUE
 

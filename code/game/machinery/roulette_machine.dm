@@ -19,8 +19,8 @@
 
 ///Machine that lets you play roulette. Odds are pre-defined to be the same as European Roulette without the "En Prison" rule
 /obj/machinery/roulette
-	name = "Roulette Table"
-	desc = "A computerized roulette table. Swipe your ID to play or register yourself as owner!"
+	name = "轮盘赌桌"
+	desc = "电脑轮盘赌桌。轻扫您的ID即可玩游戏或将自己注册为所有者！"
 	icon = 'icons/obj/machines/roulette.dmi'
 	icon_state = "idle"
 	density = TRUE
@@ -130,7 +130,7 @@
 			playsound(src, 'sound/machines/terminal/terminal_success.ogg', 50, TRUE)
 
 		if(machine_stat & MAINT || !on || locked)
-			to_chat(user, span_notice("The machine appears to be disabled."))
+			to_chat(user, span_notice("这台机器似乎坏了."))
 			return FALSE
 
 		if(!player_card.registered_account)
@@ -187,14 +187,14 @@
 			addtimer(CALLBACK(src, PROC_REF(play), user, player_card, chosen_bet_type, chosen_bet_amount, potential_payout), 4) //Animation first
 			return TRUE
 		else
-			var/msg = tgui_input_text(user, "Name of your roulette wheel", "Roulette Customization", "Roulette Machine", max_length = MAX_NAME_LEN)
+			var/msg = tgui_input_text(user, "你的轮盘赌轮名称", "轮盘赌自定义", "轮盘赌机器", max_length = MAX_NAME_LEN)
 			if(!msg)
 				return
 			name = msg
-			desc = "Owned by [player_card.registered_account.account_holder], draws directly from [user.p_their()] account."
+			desc = "归[player_card.registered_account.account_holder]所有，从[user.p_their()]账户中提取"
 			my_card = player_card
 			RegisterSignal(my_card, COMSIG_QDELETING, PROC_REF(on_my_card_deleted))
-			to_chat(user, span_notice("You link the wheel to your account."))
+			to_chat(user, span_notice("你将轮盘连接到你的账户。"))
 			power_change()
 			return
 	return ..()
@@ -429,15 +429,15 @@
 /obj/machinery/roulette/welder_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(machine_stat & MAINT)
-		to_chat(user, span_notice("You start re-attaching the top section of [src]..."))
+		to_chat(user, span_notice("你开始重新安装[src]的顶部部分..."))
 		if(I.use_tool(src, user, 30, volume=50))
-			to_chat(user, span_notice("You re-attach the top section of [src]."))
+			to_chat(user, span_notice("你将[src]的顶部重新装了回去。"))
 			set_machine_stat(machine_stat & ~MAINT)
 			icon_state = "idle"
 	else
-		to_chat(user, span_notice("You start welding the top section from [src]..."))
+		to_chat(user, span_notice("你开始将顶部部分从[src]上焊下来..."))
 		if(I.use_tool(src, user, 30, volume=50))
-			to_chat(user, span_notice("You removed the top section of [src]."))
+			to_chat(user, span_notice("你移除了[src]的顶部部分。"))
 			set_machine_stat(machine_stat | MAINT)
 			icon_state = "open"
 
@@ -447,8 +447,8 @@
 	return ..()
 
 /obj/item/roulette_wheel_beacon
-	name = "roulette wheel beacon"
-	desc = "N.T. approved roulette wheel beacon, toss it down and you will have a complementary roulette wheel delivered to you."
+	name = "轮盘信标"
+	desc = "N.T.批准的轮盘信标，扔下它，就能得到一个补充用的轮盘。"
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "floor_beacon"
 	var/used
@@ -456,7 +456,7 @@
 /obj/item/roulette_wheel_beacon/attack_self()
 	if(used)
 		return
-	loc.visible_message(span_warning("\The [src] begins to beep loudly!"))
+	loc.visible_message(span_warning("\The [src] 开始大声哔哔作响！"))
 	used = TRUE
 	addtimer(CALLBACK(src, PROC_REF(launch_payload)), 4 SECONDS)
 

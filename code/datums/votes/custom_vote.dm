@@ -2,7 +2,7 @@
 #define MAX_CUSTOM_VOTE_OPTIONS 10
 
 /datum/vote/custom_vote
-	name = "Custom"
+	name = "自定义"
 	default_message = "Click here to start a custom vote."
 
 // Custom votes ares always accessible.
@@ -29,10 +29,10 @@
 /datum/vote/custom_vote/create_vote(mob/vote_creator)
 	var/custom_count_method = tgui_input_list(
 		user = vote_creator,
-		message = "Single or multiple choice?",
-		title = "Choice Method",
+		message = "单选还是多选？",
+		title = "选择方式",
 		items = list("Single", "Multiple"),
-		default = "Single",
+		default = "单选",
 	)
 	switch(custom_count_method)
 		if("Single")
@@ -43,15 +43,15 @@
 			return FALSE
 		else
 			stack_trace("Got '[custom_count_method]' in create_vote() for custom voting.")
-			to_chat(vote_creator, span_boldwarning("Unknown choice method. Contact a coder."))
+			to_chat(vote_creator, span_boldwarning("未知的选择方法。请联系程序员。"))
 			return FALSE
 
 	var/custom_win_method = tgui_input_list(
 		user = vote_creator,
-		message = "How should the vote winner be determined?",
-		title = "Winner Method",
+		message = "应如何确定投票获胜者？",
+		title = "胜出方式",
 		items = list("Simple", "Weighted Random", "No Winner"),
-		default = "Simple",
+		default = "简单",
 	)
 	switch(custom_win_method)
 		if("Simple")
@@ -64,13 +64,13 @@
 			return FALSE
 		else
 			stack_trace("Got '[custom_win_method]' in create_vote() for custom voting.")
-			to_chat(vote_creator, span_boldwarning("Unknown winner method. Contact a coder."))
+			to_chat(vote_creator, span_boldwarning("未知的获胜方法。请联系程序员。"))
 			return FALSE
 
 	var/display_stats = tgui_alert(
 		vote_creator,
-		"Should voting statistics be public?",
-		"Show voting stats?",
+		"投票统计是否应该公开？",
+		"显示投票统计？",
 		list("Yes", "No"),
 	)
 
@@ -78,13 +78,13 @@
 		return FALSE
 	display_statistics = display_stats == "Yes"
 
-	override_question = tgui_input_text(vote_creator, "What is the vote for?", "Custom Vote")
+	override_question = tgui_input_text(vote_creator, "本次投票的主题是什么？", "自定义投票")
 	if(!override_question)
 		return FALSE
 
 	default_choices = list()
 	for(var/i in 1 to MAX_CUSTOM_VOTE_OPTIONS)
-		var/option = tgui_input_text(vote_creator, "Please enter an option, or hit cancel to finish. [MAX_CUSTOM_VOTE_OPTIONS] max.", "Options", max_length = MAX_NAME_LEN)
+		var/option = tgui_input_text(vote_creator, "请输入一个选项，或点击取消以完成。最多 [MAX_CUSTOM_VOTE_OPTIONS] 个。", "选项", max_length = MAX_NAME_LEN)
 		if(!vote_creator?.client)
 			return FALSE
 		if(!option)

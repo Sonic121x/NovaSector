@@ -3,8 +3,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp
-	name = "hydraulic clamp"
-	desc = "Equipment for engineering exosuits. Lifts objects and loads them into cargo."
+	name = "液动压板"
+	desc = "工程型机甲,用于吊起物品并装载进货舱中。"
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 0.01 * STANDARD_CELL_CHARGE
@@ -106,7 +106,7 @@
 		else
 			to_chat(source, "[icon2html(src, source)][span_notice("You push [target] out of the way.")]")
 			chassis.visible_message(span_notice("[chassis] pushes [target] out of the way."), \
-			span_notice("[chassis] pushes you aside."))
+			span_notice("[chassis] 把你推开了。"))
 		return ..()
 
 	if(victim.check_block(chassis, clamp_damage, name, attack_type = OVERWHELMING_ATTACK))
@@ -126,13 +126,13 @@
 		if(torn_off)
 			playsound(src, get_dismember_sound(), 80, TRUE)
 			carbon_victim.visible_message(span_danger("[chassis] rips [carbon_victim]'s arms off!"), \
-						span_userdanger("[chassis] rips your arms off!"))
+						span_userdanger("[chassis] 扯断了你的手臂！"))
 			log_combat(source, carbon_victim, "removed both arms with a real clamp,", "[name]", "(COMBAT MODE: [uppertext(source.combat_mode)] (DAMTYPE: [uppertext(damtype)])")
 			return ..()
 	var/armor_check = clamp(victim.run_armor_check(null, MELEE) / 3, 0, 100) //our target only benefits from a third of their armor. Because it's a huge ass clamp
 	victim.visible_message(span_danger("[chassis] squeezes [victim]!"), \
-						span_userdanger("[chassis] squeezes you!"),\
-						span_hear("You hear something crack."))
+						span_userdanger("[chassis] 挤压了你！"),\
+						span_hear("你听到什么东西裂开了。"))
 	log_combat(source, victim, "attacked", "[name]", "(Combat mode: [source.combat_mode ? "On" : "Off"]) (DAMTYPE: [uppertext(damtype)])")
 	var/final_damage = isalien(victim) ? clamp_damage * 3 : clamp_damage
 	chassis.do_attack_animation(victim)
@@ -142,19 +142,19 @@
 
 //This is pretty much just for the death-ripley
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill
-	name = "\improper KILL CLAMP"
-	desc = "They won't know what clamped them! This time for real!"
+	name = "\improper 夹死"
+	desc = "他们不知道是什么夹住了他们！这次是真的！"
 	killer_clamp = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/fake//harmless fake for pranks
-	desc = "They won't know what clamped them!"
+	desc = "他们不知道是什么夹住了他们！"
 	energy_drain = 0
 	clamp_damage = 0
 	killer_clamp = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher
-	name = "exosuit extinguisher"
-	desc = "Equipment for engineering exosuits. A rapid-firing high capacity fire extinguisher."
+	name = "机甲灭火器"
+	desc = "工程外骨骼机甲设备。一种快速发射的高容量灭火器。"
 	icon_state = "mecha_exting"
 	equip_cooldown = 5
 	energy_drain = 0
@@ -198,10 +198,10 @@
 	var/turf/in_front = get_step(chassis, chassis.dir)
 	var/obj/structure/reagent_dispensers/watertank/refill_source = locate(/obj/structure/reagent_dispensers/watertank) in in_front
 	if(!refill_source)
-		to_chat(user, span_notice("Refill failed. No compatible tank found."))
+		to_chat(user, span_notice("补充失败。未找到兼容的储罐。"))
 		return
 	if(!refill_source.reagents?.total_volume)
-		to_chat(user, span_notice("Refill failed. Source tank empty."))
+		to_chat(user, span_notice("补充失败。源储罐已空。"))
 		return
 
 	refill_source.reagents.trans_to(src, reagents.maximum_volume)
@@ -228,8 +228,8 @@
 #define RCD_RANGE 3
 
 /obj/item/mecha_parts/mecha_equipment/rcd
-	name = "mounted RCD"
-	desc = "An exosuit-mounted Rapid Construction Device."
+	name = "机载RCD"
+	desc = "一种安装在机甲上的快捷建设装置。"
 	icon_state = "mecha_rcd"
 	equip_cooldown = 0 // internal RCD already handles it
 	energy_drain = 0 // internal RCD handles power consumption based on matter use
@@ -304,7 +304,7 @@
 	if (!(target in view(RCD_RANGE, get_turf(chassis))))
 		return
 	if(get_dist(chassis, target) > RCD_RANGE)
-		balloon_alert(source, "out of range!")
+		balloon_alert(source, "超出范围！")
 		return
 	initial_location = chassis.loc
 
@@ -327,28 +327,28 @@
 
 //Dunno where else to put this so shrug
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade
-	name = "Ripley MK-II Conversion Kit"
-	desc = "A pressurized canopy attachment kit for an Autonomous Power Loader Unit \"Ripley\" MK-I exosuit, to convert it to the slower, but space-worthy MK-II design. This kit cannot be removed, once applied."
+	name = "Ripley MK-II-雷普利转换组件"
+	desc = "一套用于“里普利”MK-I 外骨骼（自主动力装载单元）的加压座舱附件套件，可将其转换为速度较慢但适合太空环境的 MK-II 型号。此套件一旦安装便无法移除。"
 	icon_state = "ripleyupgrade"
 	mech_flags = EXOSUIT_MODULE_RIPLEY
 	var/result = /obj/vehicle/sealed/mecha/ripley/mk2
 
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade/can_attach(obj/vehicle/sealed/mecha/ripley/mecha, attach_right = FALSE, mob/user)
 	if(mecha.type != /obj/vehicle/sealed/mecha/ripley)
-		to_chat(user, span_warning("This conversion kit can only be applied to APLU MK-I models."))
+		to_chat(user, span_warning("此转换套件只能应用于 APLU MK-I 型号。"))
 		return FALSE
 	var/obj/vehicle/sealed/mecha/ripley/workmech = mecha
 	if(LAZYLEN(workmech.cargo_hold))
-		to_chat(user, span_warning("[mecha]'s cargo hold must be empty before this conversion kit can be applied."))
+		to_chat(user, span_warning("[mecha] 的货舱必须清空才能应用此转换套件。"))
 		return FALSE
 	if(!(mecha.mecha_flags & PANEL_OPEN)) //non-removable upgrade, so lets make sure the pilot or owner has their say.
-		to_chat(user, span_warning("[mecha] panel must be open in order to allow this conversion kit."))
+		to_chat(user, span_warning("[mecha]的面板必须打开才能安装此改装套件。"))
 		return FALSE
 	if(LAZYLEN(mecha.occupants)) //We're actually making a new mech and swapping things over, it might get weird if players are involved
-		to_chat(user, span_warning("[mecha] must be unoccupied before this conversion kit can be applied."))
+		to_chat(user, span_warning("[mecha]必须无人乘坐才能应用此改装套件。"))
 		return FALSE
 	if(!mecha.cell) //Turns out things break if the cell is missing
-		to_chat(user, span_warning("The conversion process requires a cell installed."))
+		to_chat(user, span_warning("改装过程需要安装一个电池。"))
 		return FALSE
 	return TRUE
 
@@ -398,8 +398,8 @@
 	playsound(get_turf(newmech),'sound/items/tools/ratchet.ogg',50,TRUE)
 
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade/paddy
-	name = "Paddy Conversion Kit"
-	desc = "A hardpoint modification kit for an Autonomous Power Loader Unit \"Ripley\" MK-I exosuit, to convert it to the Paddy lightweight security design. This kit cannot be removed, once applied."
+	name = "帕迪改装套件"
+	desc = "一种用于\"里普利\"MK-I自动动力装载机外骨骼的硬点改装套件，可将其转换为帕迪轻型安保设计。此套件一旦应用便无法移除。"
 	icon_state = "paddyupgrade"
 	mech_flags = EXOSUIT_MODULE_RIPLEY
 	result = /obj/vehicle/sealed/mecha/ripley/paddy

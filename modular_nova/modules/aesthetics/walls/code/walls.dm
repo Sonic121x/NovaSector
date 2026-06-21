@@ -27,8 +27,8 @@
 	fake_icon = 'modular_nova/modules/aesthetics/walls/icons/wall.dmi'
 
 /obj/structure/falsewall/reinforced
-	name = "reinforced wall"
-	desc = "A huge chunk of reinforced metal used to separate rooms."
+	name = "强化墙"
+	desc = "一大块用于分隔房间的强化金属。"
 	icon = 'modular_nova/modules/aesthetics/walls/icons/reinforced_wall.dmi'
 	fake_icon = 'modular_nova/modules/aesthetics/walls/icons/reinforced_wall.dmi'
 

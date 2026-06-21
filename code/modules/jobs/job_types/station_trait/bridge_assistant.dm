@@ -1,6 +1,6 @@
 /datum/job/bridge_assistant
 	title = JOB_BRIDGE_ASSISTANT
-	description = "Watch over the Bridge, command its consoles, and spend your days brewing coffee for higher-ups."
+	description = "看守舰桥，指挥其控制台，并花时间为上级煮咖啡。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD //not really a head but close enough
 	faction = FACTION_STATION
 	total_positions = 0
@@ -61,7 +61,7 @@
 	return ..() //if the bridge has no turfs, spawn on the arrivals shuttle
 
 /datum/outfit/job/bridge_assistant
-	name = "Bridge Assistant"
+	name = "舰桥助手"
 	jobtype = /datum/job/bridge_assistant
 
 	id_trim = /datum/id_trim/job/bridge_assistant

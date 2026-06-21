@@ -167,9 +167,9 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 	if(player_client)
 		if(department)
-			to_chat(player_client, "<b>You have been assigned to [department]!</b>")
+			to_chat(player_client, "<b>你已被分配到[department]！</b>")
 		else
-			to_chat(player_client, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
+			to_chat(player_client, "<b>你未被分配到任何部门。请在走廊巡逻并在需要时提供帮助。</b>")
 
 	return department
 
@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	)
 
 /datum/outfit/job/security
-	name = "Security Officer"
+	name = "安全官"
 	jobtype = /datum/job/security_officer
 
 	id_trim = /datum/id_trim/job/security_officer
@@ -269,7 +269,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	implants = list(/obj/item/implant/mindshield)
 
 /datum/outfit/job/security/mod
-	name = "Security Officer (MODsuit)"
+	name = "安保 (模块服)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/security

@@ -1,6 +1,6 @@
 /obj/effect/forcefield
-	name = "FORCEWALL"
-	desc = "A space wizard's magic wall."
+	name = "立场屏障"
+	desc = "太空巫师的魔法墙。"
 	icon_state = "m_shield"
 	anchored = TRUE
 	opacity = FALSE
@@ -42,8 +42,8 @@
 
 /// Cult forcefields
 /obj/effect/forcefield/cult
-	name = "glowing wall"
-	desc = "An unholy shield that blocks all attacks."
+	name = "光墙"
+	desc = "阻挡所有攻击的邪恶盾牌。"
 	icon = 'icons/effects/cult.dmi'
 	icon_state = "cultshield"
 	can_atmos_pass = ATMOS_PASS_NO
@@ -58,8 +58,8 @@
 
 /obj/effect/forcefield/mime
 	icon_state = "nothing"
-	name = "invisible wall"
-	desc = "You have a bad feeling about this."
+	name = "透明墙"
+	desc = "你对它有种不详的预感。"
 	alpha = 0
 
 /obj/effect/forcefield/mime/Initialize(mapload)
@@ -81,14 +81,14 @@
 	LoadComponent(/datum/component/leanable, dropping)
 
 /obj/effect/forcefield/mime/advanced
-	name = "invisible blockade"
-	desc = "You're gonna be here awhile."
+	name = "隐形枷锁"
+	desc = "你得在这里待一会了。"
 	initial_duration = 1 MINUTES
 
 /// Psyker forcefield
 /obj/effect/forcefield/psychic
-	name = "psychic forcefield"
-	desc = "A wall of psychic energy powerful enough stop the motion of objects. Projectiles ricochet."
+	name = "灵能力场"
+	desc = "一道足以阻止物体运动的灵能墙。抛射物会被弹开。"
 	icon_state = "psychic"
 	can_atmos_pass = ATMOS_PASS_YES
 	flags_ricochet = RICOCHET_SHINY | RICOCHET_HARD
@@ -99,8 +99,8 @@ GLOBAL_LIST_EMPTY_TYPED(active_cosmic_fields, /obj/effect/forcefield/cosmic_fiel
 
 /// The cosmic heretics forcefield
 /obj/effect/forcefield/cosmic_field
-	name = "Cosmic Field"
-	desc = "A field that cannot be passed by people marked with a cosmic star."
+	name = "宇宙力场"
+	desc = "一个带有宇宙之星标记的人无法通过的力场。"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "cosmic_carpet"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

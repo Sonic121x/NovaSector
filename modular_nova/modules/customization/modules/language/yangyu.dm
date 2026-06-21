@@ -1,6 +1,6 @@
 /datum/language/yangyu
-	name = "Yangyu"
-	desc = "Also popularly known as \"Konjin\", this language group formally regarded as Orbital Sino-Tibetan is a result of a genetic relationship between Chinese, Tibetan, Burmese, and other Human languages of similar characteristics that was first proposed in the early 19th century and is extremely popular even in the space age. Originating from Asia, this group of tongues is the second most spoken by Human and Human-derived populations since the birth of Sol Common - and was a primary contender to be the Sol Federation's official language. Many loanwords, idioms, and cultural relics of Japanese, Ryukyuan, Korean, and other societies have managed to persist within it, especially in the daily lives of speakers coming from Martian cities."
+	name = "洋语"
+	desc = "亦广为人知地被称为“近音”，这一被正式视为轨道汉藏语系的语言群体，源于汉语、藏语、缅甸语及其他具有相似特征的人类语言之间的谱系关系，该关系最早于19世纪初被提出，即便在太空时代也极为流行。起源于亚洲，自太阳通用语诞生以来，这一语系是人类及人类衍生族群中使用第二广泛的语言——并且曾是太阳联邦官方语言的主要竞争者。许多来自日语、琉球语、韩语及其他社会的借词、习语和文化遗存得以在其中延续，尤其是在来自火星城市的说话者的日常生活中。"
 	key = "Y"
 	flags = TONGUELESS_SPEECH
 	space_chance = 70

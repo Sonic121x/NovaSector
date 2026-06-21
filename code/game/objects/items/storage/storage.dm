@@ -1,5 +1,5 @@
 /obj/item/storage
-	name = "storage"
+	name = "储物容器"
 	icon = 'icons/obj/storage/storage.dmi'
 	abstract_type = /obj/item/storage
 	w_class = WEIGHT_CLASS_NORMAL
@@ -115,4 +115,4 @@
 	if(user.equip_to_slot_if_possible(finger, ITEM_SLOT_MASK, qdel_on_fail = FALSE, disable_warning = TRUE))
 		finger.forceMove(user)
 		return
-	balloon_alert(user, "mouth is covered!")
+	balloon_alert(user, "嘴被遮住了！")

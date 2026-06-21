@@ -1,7 +1,7 @@
 ///Represents the abstract concept of a food venue in the code.
 /datum/venue
 	///Name of the venue, also used for the icon state of any radials it can be selected in
-	var/name = "unnamed venue"
+	var/name = "未命名场所"
 	///What kind of Venue are we
 	var/venue_type = VENUE_RESTAURANT
 	///Max amount of guests at any time
@@ -159,8 +159,8 @@
 		robot_customer.ai_controller.set_blackboard_key(BB_CUSTOMER_LEAVING, TRUE) //LEAVEEEEEE
 
 /obj/machinery/restaurant_portal
-	name = "restaurant portal"
-	desc = "A robot-only gate into the wonders of Space Station cuisine!"
+	name = "餐厅传送门"
+	desc = "一个仅限机器人通行的入口，带你进入空间站美食的奇妙世界！"
 	icon = 'icons/obj/machines/restaurant_portal.dmi'
 	icon_state = "portal"
 	base_icon_state = "portal"
@@ -221,7 +221,7 @@
 		return ..()
 
 	if(!(linked_venue.req_access in used_id.GetAccess()))
-		to_chat(user, span_warning("This card lacks the access to change this venue's status."))
+		to_chat(user, span_warning("此卡权限不足，无法更改此场所的状态。"))
 		return
 
 	linked_venue.toggle_open()
@@ -232,7 +232,7 @@
 		return NONE
 
 	if(!allowed(user))
-		balloon_alert(user, "insufficient access!")
+		balloon_alert(user, "权限不足！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/radial_items = list()
@@ -255,7 +255,7 @@
 
 	turned_on_portal = WEAKREF(user)
 
-	balloon_alert(user, "venue changed to [chosen_venue.name]")
+	balloon_alert(user, "场地已更改为[chosen_venue.name]")
 
 	if(linked_venue && (src in linked_venue.restaurant_portals)) //We're already linked, unlink us.
 		linked_venue.restaurant_portals -= src
@@ -275,7 +275,7 @@
 
 /obj/machinery/restaurant_portal/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open the panel first!")
+		balloon_alert(user, "先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (default_unfasten_wrench(user, tool))
@@ -304,11 +304,11 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/holosign_creator/robot_seat
-	name = "seating indicator placer"
+	name = "座位指示器放置器"
 	icon_state = "signmaker_service"
 	creation_time = 1 SECONDS
 	holosign_type = /obj/structure/holosign/robot_seat
-	desc = "Use this to place seats for your restaurant guests!"
+	desc = "用它来为您的餐厅客人安排座位吧！"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/item/holosign_creator/robot_seat/attack_self(mob/user)
@@ -316,7 +316,7 @@
 
 /obj/structure/holosign/robot_seat
 	density = FALSE
-	desc = "Used to indicate a place to sit for a robot tourist. I better be careful."
+	desc = "这里是用来指示机器人游客坐的地方。我可得小心点。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "eating_zone"
 	layer = BELOW_MOB_LAYER

@@ -5,8 +5,8 @@
 #define FLOODLIGHT_HIGH 4
 
 /obj/structure/floodlight_frame
-	name = "floodlight frame"
-	desc = "A metal frame that requires wiring and a light tube to become a flood light."
+	name = "泛光灯支架"
+	desc = "一个金属框架，需要接上电线和灯管才能成为泛光灯。"
 	max_integrity = 100
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floodlight_c1"
@@ -55,14 +55,14 @@
 /obj/structure/floodlight_frame/examine(mob/user)
 	. = ..()
 	if(state == FLOODLIGHT_NEEDS_WIRES)
-		. += span_notice("It can be wired with [EXAMINE_HINT("5 cable pieces")].")
-		. += span_notice("The frame can be deconstructed by [EXAMINE_HINT("unwrenching")].")
+		. += span_notice("它可以用 [EXAMINE_HINT("5 cable pieces")] 来布线。")
+		. += span_notice("这个框架可以通过 [EXAMINE_HINT("unwrenching")] 来解构。")
 	else if(state == FLOODLIGHT_NEEDS_SECURING)
-		. += span_notice("The cable needs to be [EXAMINE_HINT("screwed")] on to the frame.")
-		. += span_notice("The hanging cable could be [EXAMINE_HINT("cut")] apart.")
+		. += span_notice("电缆需要 [EXAMINE_HINT("screwed")] 到框架上。")
+		. += span_notice("悬垂的电缆可以 [EXAMINE_HINT("cut")] 分开。")
 	else if(state == FLOODLIGHT_NEEDS_LIGHTS)
-		. += span_notice("It needs a [EXAMINE_HINT("light tube")] to finish it.")
-		. += span_notice("The cable could be [EXAMINE_HINT("unscrewed")] from the frame.")
+		. += span_notice("它需要一个 [EXAMINE_HINT("light tube")] 来完成。")
+		. += span_notice("电缆可以从框架上 [EXAMINE_HINT("unscrewed")] 下来。")
 
 /obj/structure/floodlight_frame/screwdriver_act(mob/living/user, obj/item/O)
 	. = ..()
@@ -80,7 +80,7 @@
 	if(state != FLOODLIGHT_NEEDS_WIRES)
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "deconstructing...")
+	balloon_alert(user, "正在解构...")
 	if(!tool.use_tool(src, user, 30, volume=50))
 		return ITEM_INTERACT_BLOCKING
 	new /obj/item/stack/sheet/iron(loc, 5)
@@ -106,12 +106,12 @@
 			state = FLOODLIGHT_NEEDS_SECURING
 			return
 		else
-			balloon_alert(user, "need 5 cable pieces!")
+			balloon_alert(user, "需要 5 段电缆！")
 			return
 
 	if(istype(O, /obj/item/light/tube))
 		if(state != FLOODLIGHT_NEEDS_LIGHTS)
-			balloon_alert(user, "construction not completed!")
+			balloon_alert(user, "建造未完成！")
 			return
 		var/obj/item/light/tube/L = O
 		if(L.status != LIGHT_BROKEN) // light tube not broken.
@@ -120,19 +120,19 @@
 			qdel(O)
 			return
 		else //A minute of silence for all the accidentally broken light tubes.
-			balloon_alert(user, "light tube is broken!")
+			balloon_alert(user, "灯管坏了！")
 			return
 	..()
 
 /obj/structure/floodlight_frame/completed
 	name = "floodlight frame"
-	desc = "A bare metal frame that looks like a floodlight. Requires a light tube to complete."
+	desc = "一个类似泛光灯的裸金属框架。需要一个灯管才能完成安装。"
 	icon_state = "floodlight_c3"
 	state = FLOODLIGHT_NEEDS_LIGHTS
 
 /obj/machinery/power/floodlight
-	name = "floodlight"
-	desc = "A pole with powerful mounted lights on it. Due to its high power draw, it must be powered by a direct connection to a wire node."
+	name = "泛光灯"
+	desc = "一根固定有大功率灯具的泛光灯，由于其高功率消耗，必须通过直连到电力节点来供电."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floodlight"
 	density = TRUE
@@ -207,14 +207,14 @@
 /obj/machinery/power/floodlight/examine(mob/user)
 	. = ..()
 	if(!anchored)
-		. += span_notice("It needs to be wrenched on top of a wire.")
+		. += span_notice("它需要用扳手固定在电线上方。")
 	else
-		. += span_notice("It's at power level [setting].")
+		. += span_notice("它的功率等级为[setting]。")
 	if(panel_open)
-		. += span_notice("Its maintenance hatch is open but can be [EXAMINE_HINT("screwed")] closed.")
-		. += span_notice("You can remove the light tube by [EXAMINE_HINT("hand")].")
+		. += span_notice("它的维护舱盖开着，但可以[EXAMINE_HINT("screwed")]关闭。")
+		. += span_notice("你可以[EXAMINE_HINT("hand")]取下灯管。")
 	else
-		. += span_notice("Its maintenance hatch can be [EXAMINE_HINT("screwed")] open.")
+		. += span_notice("它的维护舱盖可以[EXAMINE_HINT("screwed")]打开。")
 
 /obj/machinery/power/floodlight/process()
 	var/turf/T = get_turf(src)
@@ -253,11 +253,11 @@
 		if(FLOODLIGHT_HIGH)
 			setting_text = "high power"
 	if(user)
-		to_chat(user, span_notice("You set [src] to [setting_text]."))
+		to_chat(user, span_notice("你将[src]设置为[setting_text]。"))
 
 /obj/machinery/power/floodlight/cable_layer_act(mob/living/user, obj/item/tool)
 	if(anchored)
-		balloon_alert(user, "unanchor first!")
+		balloon_alert(user, "先解除固定！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -275,7 +275,7 @@
 	. = ..()
 	change_setting(FLOODLIGHT_OFF)
 	panel_open = TRUE
-	balloon_alert(user, "opened panel")
+	balloon_alert(user, "打开了面板")
 	return TRUE
 
 /obj/machinery/power/floodlight/attack_hand(mob/user, list/modifiers)

@@ -1,12 +1,12 @@
 /obj/item/soulstone
-	name = "soulstone shard"
+	name = "灵魂石碎片"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "soulstone"
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	layer = HIGH_OBJ_LAYER
-	desc = "A fragment of the legendary treasure known simply as the 'Soul Stone'. The shard still flickers with a fraction of the full artefact's power."
+	desc = "传说中的宝物“灵魂石”的一部分碎片。碎片仍闪烁着完整神器的一部分力量。"
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_BELT
 	/// The base name of the soulstone, set to the initial name by default. Used in name updating
@@ -99,7 +99,7 @@
 /obj/item/soulstone/proc/attempt_exorcism(mob/exorcist)
 	if(IS_CULTIST(exorcist) || theme == THEME_HOLY)
 		return
-	balloon_alert(exorcist, "exorcising...")
+	balloon_alert(exorcist, "驱魔中...")
 	playsound(src, 'sound/effects/hallucinations/veryfar_noise.ogg', 40, TRUE)
 	if(!do_after(exorcist, 4 SECONDS, target = src))
 		return
@@ -260,7 +260,7 @@
 		to_chat(user, span_userdanger("Your body is wracked with debilitating pain!"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] holds [src] above [user.p_their()] head and forces it into [target_toolbox] with a flash of light!"), \
+	user.visible_message(span_notice("[user]将[src]举过[user.p_their()]头顶，然后将其强行塞入[target_toolbox]，伴随着一道闪光！"), \
 		span_notice("You hold [src] above your head briefly, then force it into [target_toolbox], transferring the [occupant]'s soul!"), ignored_mobs = occupant)
 	to_chat(occupant, span_userdanger("[user] holds you up briefly, then forces you into [target_toolbox]!"))
 	to_chat(occupant, span_deadsay("<b>Your eternal soul has been sacrificed to restore the soul of a toolbox. Them's the breaks!</b>"))
@@ -270,7 +270,7 @@
 	release_shades(user, TRUE)
 	occupant.death()
 
-	target_toolbox.name = "soulful toolbox"
+	target_toolbox.name = "充满灵魂的工具箱"
 	target_toolbox.icon = 'icons/obj/storage/toolbox.dmi'
 	target_toolbox.icon_state = "toolbox_blue_old"
 	target_toolbox.has_soul = TRUE
@@ -279,10 +279,10 @@
 
 ///////////////////////////Transferring to constructs/////////////////////////////////////////////////////
 /obj/structure/constructshell
-	name = "empty shell"
+	name = "空壳"
 	icon = 'icons/mob/shells.dmi'
 	icon_state = "construct_cult"
-	desc = "A wicked machine used by those skilled in magical arts. It is inactive."
+	desc = "一个被魔法高手使用的邪恶机器。它目前不活跃。"
 	var/extra_desc = span_cult("A construct shell, used to house bound souls from a soulstone.\n\
 		Placing a soulstone with a soul into this shell allows you to produce your choice of the following:\n\
 		An <b>Artificer</b>, which can produce <b>more shells and soulstones</b>, as well as fortifications.\n\
@@ -384,7 +384,7 @@
 /obj/item/soulstone/proc/transfer_to_construct(obj/structure/constructshell/shell, mob/user)
 	var/mob/living/basic/shade/shade = locate() in src
 	if(!shade)
-		to_chat(user, "[span_userdanger("Creation failed!")]: [src] is empty! Go kill someone!")
+		to_chat(user, "[span_userdanger("Creation failed!")]：[src]是空的！去杀个人！")
 		return FALSE
 	var/construct_class = show_radial_menu(user, src, GLOB.construct_radial_images, custom_check = CALLBACK(src, PROC_REF(check_menu), user, shell), require_near = TRUE, tooltips = TRUE)
 	if(QDELETED(shell) || !construct_class)
@@ -581,9 +581,9 @@
 	if(newstruct.mind && !IS_CULTIST(newstruct) && ((stoner && IS_CULTIST(stoner)) || cultoverride) && SSticker.HasRoundStarted())
 		newstruct.mind.add_antag_datum(/datum/antagonist/cult/construct)
 	if(cultoverride || (stoner && IS_CULTIST(stoner)))
-		to_chat(newstruct, span_cult_bold("You are still bound to serve the cult[stoner ? " and [stoner]" : ""], follow [stoner?.p_their() || "their"] orders and help [stoner?.p_them() || "them"] complete [stoner?.p_their() || "their"] goals at all costs."))
+		to_chat(newstruct, span_cult_bold("你仍然必须侍奉邪教[stoner ? " and [stoner]" : ""]，遵循 [stoner?.p_their() || "their"] 的命令并不惜一切代价帮助 [stoner?.p_them() || "them"] 完成 [stoner?.p_their() || "their"] 的目标。"))
 	else if(stoner)
-		to_chat(newstruct, span_boldwarning("You are still bound to serve your creator, [stoner], follow [stoner.p_their()] orders and help [stoner.p_them()] complete [stoner.p_their()] goals at all costs."))
+		to_chat(newstruct, span_boldwarning("你仍然必须侍奉你的创造者 [stoner]，遵循 [stoner.p_their()] 的命令并不惜一切代价帮助 [stoner.p_them()] 完成 [stoner.p_their()] 的目标。"))
 	newstruct.clear_alert("bloodsense")
 	sense_alert = newstruct.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
 	if(sense_alert)
@@ -628,13 +628,13 @@
 	icon_state = "angelplasm"
 
 /obj/item/soulstone/anybody/chaplain
-	name = "mysterious old shard"
+	name = "神秘的古老碎片"
 	one_use = TRUE
 	grab_sleeping = FALSE
 
 /obj/item/soulstone/anybody/chaplain/sparring
-	name = "divine punishment"
-	desc = "A prison for those who lost a divine game."
+	name = "天谴"
+	desc = "为那些输掉神圣游戏的人准备的监狱。"
 	icon_state = "purified_soulstone"
 	theme = THEME_HOLY
 
@@ -642,7 +642,7 @@
 	. = ..()
 	name = "[GLOB.deity]'s punishment"
 	base_name = name
-	desc = "A prison for those who lost [GLOB.deity]'s game."
+	desc = "一个关押在[GLOB.deity]的游戏失败的人的监狱"
 
 /obj/item/soulstone/anybody/mining
 	grab_sleeping = FALSE

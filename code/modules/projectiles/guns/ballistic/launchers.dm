@@ -49,8 +49,8 @@
 	pin = null
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/cyborg
-	desc = "A 6-shot grenade launcher."
-	name = "multi grenade launcher"
+	desc = "一支6发装榴弹发射器。"
+	name = "多功能榴弹发射器"
 	icon = 'icons/obj/devices/mecha_equipment.dmi'
 	icon_state = "mecha_grenadelnchr"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/grenademulti
@@ -60,8 +60,8 @@
 	return
 
 /obj/item/gun/ballistic/automatic/gyropistol
-	name = "gyrojet pistol"
-	desc = "A prototype pistol designed to fire self propelled rockets."
+	name = "火箭手枪"
+	desc = "一种设计用于发射自行推进式火箭的原型手枪。"
 	icon_state = "gyropistol"
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m75
@@ -71,7 +71,7 @@
 	casing_ejector = FALSE
 
 /obj/item/gun/ballistic/rocketlauncher
-	name = "\improper Dardo-RE Rocket Launcher"
+	name = "\improper 达尔多-RE火箭发射器"
 	desc = "A reusable rocket propelled grenade launcher. An arrow pointing toward the front of the launcher \
 		alongside the words \"Front Toward Enemy\" are printed on the tube. Someone seems to have crossed out \
 		that last word and written \"NT\" over it at some point. A sticker near the back of the launcher warn \
@@ -151,7 +151,7 @@
 		sleep(0.5 SECONDS)
 		shoot_with_empty_chamber(user)
 		sleep(2 SECONDS)
-		user.visible_message(span_warning("[user] looks about the room realizing [user.p_theyre()] still there. [user.p_They()] proceed to shove [src] down their throat and choke [user.p_them()]self with it!"), \
+		user.visible_message(span_warning("[user] 环顾四周，意识到 [user.p_theyre()] 还在那里。[user.p_They()] 接着把 [src] 塞进喉咙，用它把自己 [user.p_them()] 噎死！"), \
 			span_userdanger("You look around after realizing you're still here, then proceed to choke yourself to death with [src]!"))
 		sleep(2 SECONDS)
 		return OXYLOSS

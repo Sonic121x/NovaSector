@@ -74,7 +74,7 @@ ADMIN_VERB(spawn_obj_as_mob, R_SPAWN, "Spawn Object-Mob", "Spawn an object as if
 
 	basemob = text2path(mainsettings["mobtype"]["value"])
 	if (!ispath(basemob, /mob/living/basic/mimic/copy) || !ispath(chosen_obj, /obj))
-		to_chat(user.mob, "Mob or object path invalid", confidential = TRUE)
+		to_chat(user.mob, "生物或对象路径无效", confidential = TRUE)
 
 	basemob = new basemob(get_turf(user.mob), new chosen_obj(get_turf(user.mob)), user.mob, mainsettings["dropitem"]["value"] == "Yes" ? FALSE : TRUE, (mainsettings["googlyeyes"]["value"] == "Yes" ? FALSE : TRUE))
 

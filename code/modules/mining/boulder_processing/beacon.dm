@@ -1,14 +1,14 @@
 ///Beacon to launch a new mining setup when activated. For testing and speed!
 /obj/item/boulder_beacon
-	name = "boulder beacon"
-	desc = "N.T. approved boulder beacon, toss it down and you will have a full bouldertech mining station."
+	name = "巨石信标"
+	desc = "纳米传讯批准使用的巨石信标，把它扔下去，你就会拥有一个完整的巨石科技采矿空间站。"
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "floor_beacon"
 	/// Number of activations left on this beacon. Uses will be removed as the beacon is used and each triggers a different machine to be spawned from it.
 	var/uses = 3
 
 /obj/item/boulder_beacon/attack_self()
-	visible_message(span_warning("\The [src] begins to beep loudly!"))
+	visible_message(span_warning("\The [src]开始大声哔哔作响！"))
 	addtimer(CALLBACK(src, PROC_REF(launch_payload)), 1 SECONDS)
 
 /**

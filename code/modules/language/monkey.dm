@@ -1,6 +1,6 @@
 /datum/language/monkey
-	name = "Chimpanzee"
-	desc = "Ook ook ook."
+	name = "黑猩猩语"
+	desc = "好吧，好吧， 好吧。"
 	key = "1"
 	space_chance = 0
 	sentence_chance = 0

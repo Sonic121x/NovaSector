@@ -1,8 +1,8 @@
 
 //Cleanbot
 /mob/living/basic/bot/cleanbot
-	name = "\improper Cleanbot"
-	desc = "A little cleaning robot, he looks so excited!"
+	name = "\improper 清洁机器人"
+	desc = "一个小小的清洁机器人，它看起来兴奋极了！"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "cleanbot0"
 	health = 25
@@ -205,7 +205,7 @@
 	if(weapon)
 		weapon.force = initial(weapon.force)
 	balloon_alert(user, "safeties disabled")
-	audible_message(span_danger("[src] buzzes oddly!"))
+	audible_message(span_danger("[src] 发出奇怪的嗡嗡声！"))
 
 /mob/living/basic/bot/cleanbot/explode()
 	var/atom/drop_loc = drop_location()
@@ -265,16 +265,16 @@
 	return COMPONENT_NO_AFTERATTACK
 
 /mob/living/basic/bot/cleanbot/proc/attach_knife(mob/living/user, obj/item/used_item)
-	balloon_alert(user, "attaching knife...")
+	balloon_alert(user, "正在安装刀片...")
 	if(!do_after(user, 2.5 SECONDS, target = src))
 		return
 	deputize(used_item, user)
 
 /mob/living/basic/bot/cleanbot/proc/deputize(obj/item/knife, mob/user)
 	if(!in_range(src, user) || !user.transferItemToLoc(knife, src))
-		balloon_alert(user, "couldn't attach!")
+		balloon_alert(user, "无法安装！")
 		return FALSE
-	balloon_alert(user, "attached")
+	balloon_alert(user, "已安装")
 	if(!(bot_access_flags & BOT_COVER_EMAGGED))
 		weapon.force *= 0.5
 	var/static/list/loc_connections = list(
@@ -292,7 +292,7 @@
 		ADD_TRAIT(src, TRAIT_COMMISSIONED, INNATE_TRAIT)
 
 	var/name_to_add = job_titles[new_job_title]
-	name = (new_job_title in suffix_job_titles) ? "[name] " + name_to_add : name_to_add + " [name]"
+	name = (new_job_title in suffix_job_titles) ? "[name]" + name_to_add : name_to_add + "[name]"
 
 	if(length(stolen_valor) == length(job_titles))
 		ascended = TRUE
@@ -329,7 +329,7 @@
 	if(!(iscarbon(target) && (bot_access_flags & BOT_COVER_EMAGGED)) && !is_type_in_typecache(target, huntable_trash))
 		return NONE
 
-	visible_message(span_danger("[src] sprays hydrofluoric acid at [target]!"))
+	visible_message(span_danger("[src] 向 [target] 喷射氢氟酸！"))
 	playsound(src, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 	target.acid_act(75, 10)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -346,6 +346,6 @@
 	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED | BOT_MODE_CAN_BE_SAPIENT | BOT_MODE_ROUNDSTART_POSSESSION
 
 /mob/living/basic/bot/cleanbot/medbay
-	name = "Scrubs, MD"
+	name = "斯克拉布斯，医学博士"
 	req_one_access = list(ACCESS_ROBOTICS, ACCESS_JANITOR, ACCESS_MEDICAL)
 	bot_mode_flags = ~(BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED)

@@ -1,6 +1,6 @@
 /obj/machinery/implantchair
-	name = "mindshield implanter"
-	desc = "Used to implant occupants with mindshield implants."
+	name = "思维盾牌植入器"
+	desc = "用于为乘员植入思维盾牌植入体。"
 	icon = 'icons/obj/machines/implant_chair.dmi'
 	icon_state = "implantchair"
 	density = TRUE
@@ -92,12 +92,12 @@
 	if(istype(I, /obj/item/implant))
 		var/obj/item/implant/P = I
 		if(P.implant(M))
-			visible_message(span_warning("[M] is implanted by [src]."))
+			visible_message(span_warning("[M]被[src]植入了植入物。"))
 			return TRUE
 	else if(isorgan(I))
 		var/obj/item/organ/P = I
 		P.Insert(M, FALSE, FALSE)
-		visible_message(span_warning("[M] is implanted by [src]."))
+		visible_message(span_warning("[M]被[src]植入了植入物。"))
 		return TRUE
 
 /obj/machinery/implantchair/update_icon_state()
@@ -128,20 +128,20 @@
 /obj/machinery/implantchair/container_resist_act(mob/living/user)
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
-		span_hear("You hear a metallic creaking from [src]."))
+	user.visible_message(span_notice("你看见[user]正在踢[src]的门！"), \
+		span_notice("你靠在[src]的椅背上，开始把门推开...（这大约需要[DisplayTimeText(breakout_time)]。）"), \
+		span_hear("你听到[src]传来金属的嘎吱声。"))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
 			return
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user]成功从[src]里挣脱出来了！"), \
+			span_notice("你成功从[src]里挣脱出来了！"))
 		open_machine()
 
 /obj/machinery/implantchair/relaymove(mob/living/user, direction)
 	if(message_cooldown <= world.time)
 		message_cooldown = world.time + 50
-		to_chat(user, span_warning("[src]'s door won't budge!"))
+		to_chat(user, span_warning("[src]的门纹丝不动！"))
 
 /obj/machinery/implantchair/mouse_drop_receive(mob/target, mob/user, params)
 	if(!isliving(target))
@@ -155,8 +155,8 @@
 			implant(user,null)
 
 /obj/machinery/implantchair/genepurge
-	name = "Genetic purifier"
-	desc = "Used to purge a human genome of foreign influences."
+	name = "基因净化器"
+	desc = "用于净化人类基因组中的外来影响。"
 	special = TRUE
 	special_name = "Purge genome"
 	injection_cooldown = 0
@@ -172,8 +172,8 @@
 
 
 /obj/machinery/implantchair/brainwash
-	name = "Neural Imprinter"
-	desc = "Used to <s>indoctrinate</s> rehabilitate hardened recidivists."
+	name = "神经印记器"
+	desc = "用于<s>灌输思想</s>改造顽固的累犯。"
 	special_name = "Imprint"
 	injection_cooldown = 3000
 	auto_inject = FALSE
@@ -188,7 +188,7 @@
 	if(custom)
 		if(!user || !user.Adjacent(src))
 			return FALSE
-		objective = tgui_input_text(user, "What order do you want to imprint on [C]?", "Brainwashing", max_length = 120)
+		objective = tgui_input_text(user, "你想给[C]印刻什么指令？", "洗脑", max_length = 120)
 		message_admins("[ADMIN_LOOKUPFLW(user)] set brainwash machine objective to '[objective]'.")
 		user.log_message("set brainwash machine objective to '[objective]'.", LOG_GAME)
 	if(HAS_MIND_TRAIT(C, TRAIT_UNCONVERTABLE))

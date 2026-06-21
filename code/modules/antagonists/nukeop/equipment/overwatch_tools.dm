@@ -3,18 +3,16 @@
 	name = "OVERWATCH NOTES #1"
 	color = COLOR_RED
 	desc = "A note from Syndicate leadership regarding your new job. You should read this!"
-	default_raw_text = @{"
-Congratulations! You have been picked to be the Sole Survivor of an anti-Nanotrasen suicide mission!
-We're kidding of course, these types of missions tend to have abnormally high survival rates. I guess that says a lot about who your team will be going up against.
+	default_raw_text = @{"恭喜！你被选为一次反纳米传讯自杀任务的唯一幸存者！
+我们开玩笑的，这类任务的存活率通常高得反常。我想这充分说明了你的团队将要面对的是什么样的对手。
 <br>
-You've been assigned to provide intelligence support to the ground-pounders carrying out the operation.
-Each operative has been equipped with a bodycam that can be accessed via your Overwatch Camera Console.
-Additionally, you have been given the boards to access station alerts, cameras, and remotely control the infiltrator shuttle.
+你被指派为执行此次行动的地面部队提供情报支持。
+每位特工都配备了随身摄像头，你可以通过你的监视者摄像头控制台访问。
+此外，我们还为你提供了访问空间站警报、摄像头以及远程控制渗透者穿梭机的电路板。
 <br>
-Feel free to set up your workplace however you like. We've provided the tools and boards in your backroom.
+请随意布置你的工作场所。我们已经在你后方的房间里提供了工具和电路板。
 <br>
-Happy hunting!
-	"}
+狩猎愉快！"}
 
 /obj/machinery/computer/security/overwatch
 	name = "overwatch camera console"

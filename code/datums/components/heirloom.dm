@@ -29,12 +29,12 @@
 	var/datum/mind/examiner_mind = user.mind
 
 	if(examiner_mind == owner)
-		examine_list += span_notice("It is your precious [family_name] family heirloom. Keep it safe!")
+		examine_list += span_notice("这是你珍贵的[family_name]家族传家宝。务必保管好！")
 		return
 
 	var/datum/antagonist/obsessed/our_creeper = examiner_mind?.has_antag_datum(/datum/antagonist/obsessed)
 	if(our_creeper?.trauma.obsession == owner)
-		examine_list += span_nicegreen("This must be [owner]'s family heirloom! It smells just like them...")
+		examine_list += span_nicegreen("这一定是[owner]的家族传家宝！闻起来就像他们本人……")
 		return
 
-	examine_list += span_notice("It is the [family_name] family heirloom, belonging to [owner].")
+	examine_list += span_notice("这是[family_name]家族的传家宝，属于[owner]。")

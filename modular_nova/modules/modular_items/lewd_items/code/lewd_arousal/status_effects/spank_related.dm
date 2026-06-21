@@ -17,7 +17,7 @@
 	target.clear_mood_event("subspace")
 
 /datum/mood_event/subspace
-	description = span_purple("Everything is so woozy... Pain feels so... Awesome.\n")
+	description = span_purple("一切都这么晕乎乎的……疼痛感觉……真棒。\n")
 
 
 //Hips are red after spanking
@@ -31,9 +31,9 @@
 	if(stat >= DEAD || HAS_TRAIT(src, TRAIT_FAKEDEATH) || src == user || !has_status_effect(/datum/status_effect/spanked) || !is_bottomless())
 		return
 
-	. += span_purple("[user.p_Their()] butt has a red tint to it.") + "\n"
+	. += span_purple("[user.p_Their()]的臀部泛着红晕。") + "\n"
 
 //Mood boost for masochist
 /datum/mood_event/perv_spanked
-	description = span_purple("Ah, yes! More! Punish me!\n")
+	description = span_purple("啊，是的！再来！惩罚我吧！\n")
 	timeout = 5 MINUTES

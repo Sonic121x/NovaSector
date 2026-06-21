@@ -1,7 +1,7 @@
 /// A fake nuke that actually contains beer.
 /obj/machinery/nuclearbomb/beer
-	name = "\improper Nanotrasen-brand nuclear fission explosive"
-	desc = "One of the more successful achievements of the Nanotrasen Corporate Warfare Division, their nuclear fission explosives are renowned for being cheap to produce and devastatingly effective. Signs explain that though this particular device has been decommissioned, every Nanotrasen station is equipped with an equivalent one, just in case. All Captains carefully guard the disk needed to detonate them - at least, the sign says they do. There seems to be a tap on the back."
+	name = "\improper 纳米传讯牌核裂变炸弹"
+	desc = "作为纳米传讯公司战争部较为成功的产品之一，其核裂变爆炸装置以生产成本低廉且威力巨大而闻名。标识说明，尽管这台特定装置已经退役，但每一个纳米传讯空间站都配备了一台等效装置，以防万一。所有船长都小心保管着起爆所需的认证盘——至少，说明上是这么说的。后面好像有个水龙头。"
 	proper_bomb = FALSE
 	is_on_minimap = FALSE
 	/// The keg located within the beer nuke.
@@ -24,9 +24,9 @@
 /obj/machinery/nuclearbomb/beer/examine(mob/user)
 	. = ..()
 	if(keg.reagents.total_volume)
-		. += span_notice("It has [keg.reagents.total_volume] unit\s left.")
+		. += span_notice("它还剩下[keg.reagents.total_volume] unit\s 。")
 	else
-		. += span_danger("It's empty.")
+		. += span_danger("它是空的。")
 
 /obj/machinery/nuclearbomb/beer/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	if(weapon.is_refillable())
@@ -47,7 +47,7 @@
 	if(is_station_level(bomb_location.z))
 		addtimer(CALLBACK(src, PROC_REF(really_actually_explode)), 11 SECONDS)
 	else
-		visible_message(span_notice("[src] fizzes ominously."))
+		visible_message(span_notice("[src]不祥地嘶嘶作响。"))
 		addtimer(CALLBACK(src, PROC_REF(local_foam)), 11 SECONDS)
 
 /obj/machinery/nuclearbomb/beer/disarm_nuke(mob/disarmer)

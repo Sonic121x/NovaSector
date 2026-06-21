@@ -19,9 +19,9 @@
 #define POSITIVE_INSTABILITY_MAJOR 35
 
 /datum/mutation
-	var/name = "mutation"
+	var/name = "突变"
 	/// Description of the mutation
-	var/desc = "A mutation."
+	var/desc = "一种突变。"
 	/// Is this mutation currently locked?
 	var/locked
 	/// Quality of the mutation
@@ -117,7 +117,7 @@
 		return FALSE
 	// NOVA EDIT ADDITION START
 	if(acquirer.has_borer())
-		to_chat(acquirer, span_warning("Something inside holds dearly to your humanity!"))
+		to_chat(acquirer, span_warning("内心深处有什么东西在紧紧守护着你的人性！"))
 	// NOVA EDIT ADDITION END
 	if(species_allowed && !species_allowed.Find(acquirer.dna.species.id))
 		return FALSE
@@ -128,7 +128,7 @@
 	for(var/datum/mutation/mewtayshun as anything in acquirer.dna.mutations) //check for conflicting powers
 		if(!(mewtayshun.type in conflicts) && !(type in mewtayshun.conflicts))
 			continue
-		to_chat(acquirer, span_warning("You feel your genes resisting something."))
+		to_chat(acquirer, span_warning("你感觉你的基因在抗拒某些东西。"))
 		return FALSE
 	owner = acquirer
 	dna = acquirer.dna

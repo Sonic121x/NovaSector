@@ -1,6 +1,6 @@
 /obj/item/book/granter/action/spell/summon_cheese
-	name = "Lusty Xenomorph Maid vol. III - Cheese Bakery"
-	desc = "Wonderful! Time for a celebration... Cheese for everyone!"
+	name = "《欲望异形女仆 卷三 - 奶酪烘焙坊》"
+	desc = "太棒了！是时候庆祝一下了...人人都有奶酪！"
 	icon_state = "bookcheese"
 	action_name = "summon cheese"
 	granted_action = /datum/action/cooldown/spell/conjure/cheese
@@ -21,7 +21,7 @@
 	)
 
 /obj/item/book/granter/action/spell/summon_cheese/recoil(mob/living/user)
-	to_chat(user, span_warning("\The [src] turns into a wedge of cheese!"))
+	to_chat(user, span_warning("\The [src]变成了一块楔形奶酪！"))
 	var/obj/item/food/cheese/wedge/book_cheese = new
 	user.temporarilyRemoveItemFromInventory(src, force = TRUE)
 	user.put_in_hands(book_cheese)

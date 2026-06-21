@@ -1,36 +1,36 @@
 // Syndicate
 
 /mob/living/basic/trooper/syndicate/melee/anthro
-	name = "Syndicate Shanker"
-	desc = "An anthromorphic red panda member of the Syndicate, wielding a knife."
+	name = "辛迪加捅刀者"
+	desc = "一名手持匕首的辛迪加拟人化小熊猫成员。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "syndiredpan"
 	icon_living = "syndiredpan"
 
 /mob/living/basic/trooper/syndicate/melee/sword/anthro
-	name = "Syndicate Sword Beast"
-	desc = "An anthromorphic fennec member of the Syndicate, wielding an energy sword and shield."
+	name = "辛迪加剑兽"
+	desc = "一名手持能量剑与盾牌的辛迪加拟人化耳廓狐成员。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "syndifennec"
 	icon_living = "syndifennec"
 
 /mob/living/basic/trooper/syndicate/ranged/anthro
-	name = "Syndicate Pistoleer"
-	desc = "An anthromorphic member of the Syndicate, wielding a pistol."
+	name = "辛迪加手枪手"
+	desc = "一名手持手枪的辛迪加拟人化成员。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "syndisquirrel"
 	icon_living = "syndisquirrel"
 
 /mob/living/basic/trooper/syndicate/ranged/smg/anthro
-	name = "Syndicate Rapid Gunnder"
-	desc = "A moth-person member of the Syndicate, wielding an SMG."
+	name = "辛迪加速射枪手"
+	desc = "一名手持冲锋枪的辛迪加蛾人成员。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "syndimoth"
 	icon_living = "syndimoth"
 
 /mob/living/basic/trooper/syndicate/melee/space/anthro/lizard
-	name = "Syndicate Commando Lizard"
-	desc = "A reptilian member of the Syndicate!"
+	name = "辛迪加突击队蜥蜴"
+	desc = "辛迪加的爬行类成员！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "syndilizard"
 	icon_living = "syndilizard"
@@ -39,21 +39,21 @@
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "syndicat"
 	icon_living = "syndicat"
-	name = "Syndicate Commando Feline"
-	desc = "An anthromorphic feline member of the Syndicate."
+	name = "辛迪加突击队猫科"
+	desc = "辛迪加的拟人化猫科成员。"
 
 /mob/living/basic/trooper/syndicate/ranged/shotgun/space/stormtrooper/anthro/fox
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "syndifox"
 	icon_living = "syndifox"
-	name = "Syndicate Stormtrooper Fox"
-	desc = "An anthromorphic fox member of the Syndicate."
+	name = "辛迪加冲锋队狐狸"
+	desc = "辛迪加的拟人化狐狸成员。"
 
 // Beasts
 
 /mob/living/simple_animal/hostile/bigcrab
-	name = "giant crab"
-	desc = "Clickity Clack!"
+	name = "巨型螃蟹"
+	desc = "咔嗒咔嗒！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "giantcrab"
 	icon_living = "giantcrab"
@@ -88,8 +88,8 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 
 /mob/living/simple_animal/hostile/trog
-	name = "mutated human"
-	desc = "Either some kind of experiment gone wrong, or the result of mutations from plasma exposure."
+	name = "变异人类"
+	desc = "要么是某种出了差错的实验，要么是等离子体暴露导致突变的结果。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "trog"
 	icon_living = "trog"
@@ -127,8 +127,8 @@
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/simple_animal/hostile/plantmutant
-	name = "plant mutant"
-	desc = "Some sort of humanoid mutated by plants or fungus spores into a horrific monster."
+	name = "植物突变体"
+	desc = "某种被植物或真菌孢子变异成可怕怪物的人形生物。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "plantmonster"
 	icon_living = "plantmonster"
@@ -165,8 +165,8 @@
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/simple_animal/hostile/cazador
-	name = "cazador"
-	desc = "You feel a little whoozy..."
+	name = "卡萨多"
+	desc = "你感觉有点头晕……"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "cazador"
 	icon_living = "cazador"
@@ -204,8 +204,8 @@
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/simple_animal/hostile/mutantliz
-	name = "mutant lizard"
-	desc = "A large, mutated lizard-creature with jagged teeth and sharp claws."
+	name = "变异蜥蜴"
+	desc = "一只巨大的变异蜥蜴生物，长着锯齿状的牙齿和锋利的爪子。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs64x64.dmi'
 	icon_state = "mutantliz"
 	icon_living = "mutantliz"
@@ -239,8 +239,8 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/scorpion
-	name = "big scorpion"
-	desc = "An abnormally large scorpion. Watch that stinger!"
+	name = "大蝎子"
+	desc = "一只异常巨大的蝎子。小心它的毒刺！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "scorpion"
 	icon_living = "scorpion"
@@ -271,8 +271,8 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 
 /mob/living/simple_animal/hostile/syndimouse
-	name = "Syndicate Mousepretive"
-	desc = "A mouse in a Syndicate combat MODsuit, built for mice!"
+	name = "辛迪加鼠装特工"
+	desc = "一只穿着辛迪加战斗MOD服的鼠鼠，专为鼠鼠打造！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "mouse_operative"
 	icon_living = "mouse_operative"
@@ -311,8 +311,8 @@
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/simple_animal/hostile/mannequin
-	name = "living mannequin"
-	desc = "A strange, living, wooden mannequin. Spooky!"
+	name = "活体人偶"
+	desc = "一个奇怪的、活着的木质人偶。真吓人！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "mannequin"
 	icon_living = "mannequin"

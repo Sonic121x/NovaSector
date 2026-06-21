@@ -3,8 +3,8 @@
 //Used to transport little animals without having to drag them across the station.
 //Comes with a handy lock to prevent them from running off.
 /obj/item/pet_carrier
-	name = "pet carrier"
-	desc = "A big white-and-blue pet carrier. Good for carrying <s>meat to the chef</s> cute animals around."
+	name = "宠物运输箱"
+	desc = "一个蓝白相间的大号宠物运输箱。很适合用来运送<s>给厨师的肉</s>可爱的小动物。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/pet_carrier"
 	post_init_icon_state = "pet_carrier_open"
@@ -67,25 +67,25 @@
 	if(occupants.len)
 		for(var/V in occupants)
 			var/mob/living/L = V
-			. += span_notice("It has [L] inside.")
+			. += span_notice("里面装着[L]。")
 	else
-		. += span_notice("It has nothing inside.")
+		. += span_notice("里面是空的。")
 
 	// At some point these need to be converted to contextual screentips
-	. += span_notice("Activate it in your hand to [open ? "close" : "open"] its door. Click-drag onto floor to release its occupants.")
+	. += span_notice("在手中激活以 [open ? "close" : "open"] 它的门。点击拖动到地板上以释放其内的生物。")
 	if(!open && allows_locking)
-		. += span_notice("Alt-click to [locked ? "unlock" : "lock"] its door.")
+		. += span_notice("Alt+点击来[locked ? "unlock" : "lock"]它的门。")
 
 /obj/item/pet_carrier/attack_self(mob/living/user)
 	if(open)
-		to_chat(user, span_notice("You close [src]'s door."))
+		to_chat(user, span_notice("你关上了[src]的门。"))
 		playsound(user, close_sound, 50, TRUE)
 		open = FALSE
 	else
 		if(locked)
-			to_chat(user, span_warning("[src] is locked!"))
+			to_chat(user, span_warning("[src]被锁住了！"))
 			return
-		to_chat(user, span_notice("You open [src]'s door."))
+		to_chat(user, span_notice("你打开[src]的门."))
 		playsound(user, open_sound, 50, TRUE)
 		open = TRUE
 	update_appearance()
@@ -94,7 +94,7 @@
 	if(open || !allows_locking)
 		return CLICK_ACTION_BLOCKING
 	locked = !locked
-	to_chat(user, span_notice("You flip the lock switch [locked ? "down" : "up"]."))
+	to_chat(user, span_notice("你将锁扣开关拨到了[locked ? "down" : "up"]。"))
 	if(locked)
 		playsound(user, 'sound/machines/airlock/boltsdown.ogg', 30, TRUE)
 	else
@@ -106,34 +106,34 @@
 	if(user.combat_mode || !isliving(interacting_with))
 		return NONE
 	if(!open)
-		to_chat(user, span_warning("You need to open [src]'s door!"))
+		to_chat(user, span_warning("你需要先打开[src]的门！"))
 		return ITEM_INTERACT_BLOCKING
 	var/mob/living/target = interacting_with
 	if(target.mob_size > max_occupant_weight)
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(isfeline(H)) // NOVA EDIT - FELINE TRAITS. Was: isfelinid(H)
-				to_chat(user, span_warning("You'd need a lot of catnip and treats, plus maybe a laser pointer, for that to work."))
+				to_chat(user, span_warning("你需要很多猫薄荷和零食，或许再加个激光笔，才能让它乖乖进去。"))
 			else
-				to_chat(user, span_warning("Humans, generally, do not fit into pet carriers."))
+				to_chat(user, span_warning("人类，一般来说，是塞不进宠物运输箱的。"))
 		else
-			to_chat(user, span_warning("You get the feeling [target] isn't meant for a [name]."))
+			to_chat(user, span_warning("你觉得[target]并不适合放进[name]里。"))
 		return ITEM_INTERACT_BLOCKING
 	if(user == target)
-		to_chat(user, span_warning("Why would you ever do that?"))
+		to_chat(user, span_warning("你为什么要这么做？"))
 		return ITEM_INTERACT_BLOCKING
 	load_occupant(user, target)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/pet_carrier/relaymove(mob/living/user, direction)
 	if(open)
-		loc.visible_message(span_notice("[user] climbs out of [src]!"), \
-		span_warning("[user] jumps out of [src]!"))
+		loc.visible_message(span_notice("[user]从[src]里爬了出来！"), \
+		span_warning("[user]从[src]里跳了出来！"))
 		remove_occupant(user)
 		return
 	else if(!locked)
-		loc.visible_message(span_notice("[user] pushes open the door to [src]!"), \
-		span_warning("[user] pushes open the door of [src]!"))
+		loc.visible_message(span_notice("[user]推开了[src]的门！"), \
+		span_warning("[user]推开了[src]的门！"))
 		open = TRUE
 		update_appearance()
 		return
@@ -144,22 +144,22 @@
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	if(user.mob_size <= MOB_SIZE_SMALL)
-		to_chat(user, span_notice("You poke a limb through [src]'s bars and start fumbling for the lock switch... (This will take some time.)"))
-		to_chat(loc, span_warning("You see [user] reach through the bars and fumble for the lock switch!"))
+		to_chat(user, span_notice("你将肢体探出[src]的栅栏，开始摸索锁扣开关...（这需要一些时间。）"))
+		to_chat(loc, span_warning("你看见[user]从栅栏间伸出手，摸索着锁扣开关！"))
 		if(!do_after(user, rand(300, 400), target = user) || open || !locked || !(user in occupants))
 			return
-		loc.visible_message(span_warning("[user] flips the lock switch on [src] by reaching through!"), null, null, null, user)
-		to_chat(user, span_bolddanger("Bingo! The lock pops open!"))
+		loc.visible_message(span_warning("[user]伸手从栅栏间拨动了[src]的锁扣开关！"), null, null, null, user)
+		to_chat(user, span_bolddanger("搞定！锁扣弹开了！"))
 		locked = FALSE
 		playsound(src, 'sound/machines/airlock/boltsup.ogg', 30, TRUE)
 		update_appearance()
 	else
-		loc.visible_message(span_warning("[src] starts rattling as something pushes against the door!"), null, null, null, user)
-		to_chat(user, span_notice("You start pushing out of [src]... (This will take about 20 seconds.)"))
+		loc.visible_message(span_warning("[src]开始晃动，有什么东西在推门！"), null, null, null, user)
+		to_chat(user, span_notice("你开始从[src]里往外挤...（这大约需要20秒。）"))
 		if(!do_after(user, 20 SECONDS, target = user) || open || !locked || !(user in occupants))
 			return
-		loc.visible_message(span_warning("[user] shoves out of [src]!"), null, null, null, user)
-		to_chat(user, span_notice("You shove open [src]'s door against the lock's resistance and fall out!"))
+		loc.visible_message(span_warning("[user]从[src]里挤了出来！"), null, null, null, user)
+		to_chat(user, span_notice("你用力顶开[src]的门，挣脱了锁扣的束缚，摔了出来！"))
 		locked = FALSE
 		open = TRUE
 		update_appearance()
@@ -174,8 +174,8 @@
 
 /obj/item/pet_carrier/mouse_drop_dragged(atom/over_atom, mob/user, src_location, over_location, params)
 	if(isopenturf(over_atom) && open && occupants.len)
-		user.visible_message(span_notice("[user] unloads [src]."), \
-		span_notice("You unload [src] onto [over_atom]."))
+		user.visible_message(span_notice("[user]卸下了[src]。"), \
+		span_notice("你将[src]卸到了[over_atom]上。"))
 		for(var/V in occupants)
 			remove_occupant(V, over_atom)
 
@@ -191,21 +191,21 @@
 
 /obj/item/pet_carrier/proc/load_occupant(mob/living/user, mob/living/target)
 	if(pet_carrier_full(src))
-		to_chat(user, span_warning("[src] is already carrying too much!"))
+		to_chat(user, span_warning("[src]已经装得太满了！"))
 		return
-	user.visible_message(span_notice("[user] starts loading [target] into [src]."), \
-	span_notice("You start loading [target] into [src]..."), null, null, target)
-	to_chat(target, span_userdanger("[user] starts loading you into [user.p_their()] [name]!"))
+	user.visible_message(span_notice("[user]开始将[target]装进[src]。"), \
+	span_notice("你开始将[target]装进[src]..."), null, null, target)
+	to_chat(target, span_userdanger("[user]开始把你装进[user.p_their()]的[name]里！"))
 	if(!do_after(user, 3 SECONDS, target))
 		return
 	if(target in occupants)
 		return
 	if(pet_carrier_full(src)) //Run the checks again, just in case
-		to_chat(user, span_warning("[src] is already carrying too much!"))
+		to_chat(user, span_warning("[src]已经装得太满了！"))
 		return
-	user.visible_message(span_notice("[user] loads [target] into [src]!"), \
-	span_notice("You load [target] into [src]."), null, null, target)
-	to_chat(target, span_userdanger("[user] loads you into [user.p_their()] [name]!"))
+	user.visible_message(span_notice("[user]把[target]装进了[src]！"), \
+	span_notice("你将[target]装进了[src]。"), null, null, target)
+	to_chat(target, span_userdanger("[user]将你装进了[user.p_their()]的[name]里！"))
 	add_occupant(target)
 
 /obj/item/pet_carrier/proc/add_occupant(mob/living/occupant)
@@ -224,8 +224,8 @@
 	occupant.setDir(SOUTH)
 
 /obj/item/pet_carrier/biopod
-	name = "biopod"
-	desc = "Alien device used for undescribable purpose. Or carrying pets."
+	name = "生物舱"
+	desc = "用于不明目的的外星装置。或者用来装宠物。"
 	icon = 'icons/obj/pet_carrier.dmi'
 	icon_state = "biopod_open"
 	post_init_icon_state = null
@@ -237,8 +237,8 @@
 	greyscale_colors = null
 
 /obj/item/pet_carrier/small
-	name = "small pet carrier"
-	desc = "A small pet carrier for miniature sized animals."
+	name = "小型宠物笼"
+	desc = "一个用于微型尺寸动物的小型宠物笼。"
 	icon = 'icons/obj/pet_carrier.dmi'
 	icon_state = "small_carrier_open"
 	post_init_icon_state = null
@@ -256,8 +256,8 @@
 	allows_locking = FALSE
 
 /obj/item/pet_carrier/small/mouse
-	name = "small mouse carrier"
-	desc = "A small pet carrier for miniature sized animals. This looks prepared for a mouse."
+	name = "小型老鼠笼"
+	desc = "一个用于微型尺寸动物的小型宠物笼。这个看起来是为老鼠准备的。"
 	icon_state = "small_carrier_occupied_unlocked"
 	open = FALSE
 

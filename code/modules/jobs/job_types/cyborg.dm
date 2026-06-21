@@ -1,6 +1,6 @@
 /datum/job/cyborg
 	title = JOB_CYBORG
-	description = "Assist the crew, follow your laws, obey your AI."
+	description = "协助船员，遵守你的法则，服从你的AI。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
 	faction = FACTION_STATION
 	total_positions = 3	// NOVA EDIT: Original value (0)
@@ -49,7 +49,7 @@
 			robot_spawn.notify_ai(AI_NOTIFICATION_AI_SHELL)
 		else
 			robot_spawn.notify_ai(TRUE)
-		robot_spawn.visible_message(span_notice("[robot_spawn] gently chimes."), span_notice("LawSync protocol engaged."))
+		robot_spawn.visible_message(span_notice("[robot_spawn] 轻轻鸣响。"), span_notice("法律同步协议已启动。"))
 		robot_spawn.lawsync()
 		robot_spawn.lawupdate = TRUE
 		robot_spawn.show_laws()

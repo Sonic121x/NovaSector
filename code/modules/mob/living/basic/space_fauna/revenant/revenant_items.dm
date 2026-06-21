@@ -1,7 +1,7 @@
 //reforming
 /obj/item/ectoplasm/revenant
-	name = "glimmering residue"
-	desc = "A pile of fine blue dust. Small tendrils of violet mist swirl around it."
+	name = "微光残渣"
+	desc = "一堆细腻的蓝色尘埃。微小的紫罗兰色雾状触须环绕着它。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "revenantEctoplasm"
 	w_class = WEIGHT_CLASS_SMALL
@@ -29,7 +29,7 @@
 	if(inert)
 		return ..()
 	user.visible_message(
-		span_notice("[user] scatters [src] in all directions."),
+		span_notice("[user] 将 [src] 向四面八方撒开。"),
 		span_notice("You scatter [src] across the area."),
 	)
 	var/obj/structure/mirror/nearby_mirror = check_for_mirrors(drop_location(), 5)
@@ -44,7 +44,7 @@
 		return
 	var/obj/structure/mirror/nearby_mirror = check_for_mirrors(get_turf(hit_atom), 3)
 	if(!nearby_mirror)
-		visible_message(span_notice("[src] breaks into particles upon impact, which fade away to nothingness."))
+		visible_message(span_notice("[src] 在撞击时碎裂成粒子，随后消散于无形。"))
 	else
 		transfer_to_mirror(nearby_mirror)
 	qdel(src)
@@ -59,12 +59,12 @@
 /obj/item/ectoplasm/revenant/examine(mob/user)
 	. = ..()
 	if(inert)
-		. += span_revennotice("It seems inert.")
+		. += span_revennotice("它似乎没有活性。")
 	else
-		. += span_revenwarning("It is shifting and distorted. It would be wise to destroy this.")
+		. += span_revenwarning("它正在变幻扭曲。明智之举是将其摧毁。")
 
 /obj/item/ectoplasm/revenant/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is inhaling [src]! It looks like [user.p_theyre()] trying to visit the shadow realm!"))
+	user.visible_message(span_suicide("[user] 正在吸入 [src]！看起来 [user.p_theyre()] 试图前往暗影界！"))
 	qdel(src)
 	return OXYLOSS
 
@@ -76,5 +76,5 @@
 		return
 	message_admins("Revenant ectoplasm was left undestroyed for 1 minute and is reforming into a new revenant.")
 	SEND_SIGNAL(src, COMSIG_REVENANT_RELEASE, cause = "ectoplasm reforming")
-	visible_message(span_revenboldnotice("[src] suddenly rises into the air before fading away."))
+	visible_message(span_revenboldnotice("[src] 突然升到空中，随后消散。"))
 	qdel(src)

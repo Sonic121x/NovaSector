@@ -41,7 +41,7 @@
 	if(prob(OD_CHANCE_NO_TRAUMA) || HAS_TRAIT(exposed_mob, TRAIT_BIMBO))
 		return ..()
 
-	to_chat(exposed_mob, span_purple("Your libido is going haywire! It feels like speaking is much harder..."))
+	to_chat(exposed_mob, span_purple("你的性欲正在失控！感觉说话都困难多了..."))
 	exposed_mob.gain_trauma(/datum/brain_trauma/very_special/bimbo, TRAUMA_RESILIENCE_BASIC)
 	ADD_TRAIT(exposed_mob, TRAIT_BIMBO, TRAIT_LEWDCHEM)
 

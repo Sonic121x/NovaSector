@@ -9,8 +9,8 @@ Bonus
 	Deals brute damage over time.
 */
 /datum/symptom/flesh_eating
-	name = "Necrotizing Fasciitis"
-	desc = "The virus aggressively attacks bone cells, causing excessive wobbliness and falling down a lot."
+	name = "坏死性筋膜炎"
+	desc = "该病毒会猛烈攻击骨细胞，导致身体极度摇晃并频繁摔倒。"
 	illness = "Jellyitis"
 	stealth = -2
 	resistance = -1
@@ -83,8 +83,8 @@ Bonus
 
 /datum/symptom/flesh_death
 
-	name = "Autophagocytosis Necrosis"
-	desc = "The virus rapidly consumes infected cells, leading to heavy and widespread damage."
+	name = "自噬性坏死"
+	desc = "该病毒会迅速吞噬受感染的细胞，导致严重且广泛的损伤。"
 	illness = "Premature Mummification"
 	stealth = -2
 	resistance = -2

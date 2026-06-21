@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/list_literal
 	display_name = "List Literal"
-	desc = "A component that creates a list from whatever input you give it."
+	desc = "一种能够根据您所提供的任何输入生成列表的组件。"
 	category = "List"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -53,7 +53,7 @@
 		var/value = entry_port.value
 		// To prevent people from infinitely making lists to crash the server
 		if(islist(value) && get_list_count(value, max_list_count) >= max_list_count)
-			visible_message("[src] begins to overheat!")
+			visible_message("[src] 开始过热！")
 			return
 		var/value_to_add = handler.convert_value(list_output, value)
 		if(isdatum(value_to_add))

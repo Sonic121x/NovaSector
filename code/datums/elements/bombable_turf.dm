@@ -42,4 +42,4 @@
 /// Show a little extra on examine
 /datum/element/bombable_turf/proc/on_examined(turf/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("It seems to be slightly cracked...")
+	examine_list += span_notice("它似乎有些轻微的裂痕...")

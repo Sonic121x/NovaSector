@@ -32,5 +32,5 @@ ADMIN_VERB(cmd_admin_say, R_NONE, "ASay", "Send a message to other admins", ADMI
 	BLACKBOX_LOG_ADMIN_VERB("Asay")
 
 /client/proc/get_admin_say()
-	var/msg = input(src, null, "asay \"text\"") as text|null
+	var/msg = input(src, null, "asay \"文本\"") as text|null
 	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/cmd_admin_say, msg)

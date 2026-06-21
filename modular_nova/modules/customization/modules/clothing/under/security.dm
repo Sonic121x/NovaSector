@@ -2,8 +2,8 @@
 
 // DETECTIVE
 /obj/item/clothing/under/rank/security/detective/cowboy
-	name = "blonde cowboy uniform"
-	desc = "A blue shirt and dark jeans, with a pair of spurred cowboy boots to boot."
+	name = "金发牛仔制服"
+	desc = "一件蓝色衬衫和深色牛仔裤，外加一双带马刺的牛仔靴。"
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/uniform.dmi'	//Donator item-ish? See the /armorless one below it
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/uniform.dmi'
 	icon_state = "cowboy_uniform"
@@ -15,8 +15,8 @@
 	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/suit/cowboyvest
-	name = "blonde cowboy vest"
-	desc = "A white cream vest lined with... fur, of all things, for desert weather. There's a small deer head logo sewn into the vest."
+	name = "金发牛仔背心"
+	desc = "一件白色奶油色背心，内衬……竟然是毛皮，专为沙漠天气设计。背心上缝有一个小鹿头标志。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "cowboy_vest"
@@ -26,8 +26,8 @@
 	heat_protection = CHEST|ARMS
 
 /obj/item/clothing/suit/toggle/jacket/nova/det_trench/cowboyvest
-	name = "blonde cowboy vest"
-	desc = "A white cream vest lined with... fur, of all things, for desert weather. There's a small deer head logo sewn into the vest."
+	name = "金发牛仔背心"
+	desc = "一件白色奶油色背心，内衬……竟然是毛皮，专为沙漠天气设计。背心上缝有一个小鹿头标志。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "cowboy_vest"
@@ -37,8 +37,8 @@
 	heat_protection = CHEST|ARMS
 
 /obj/item/clothing/under/rank/security/detective/runner
-	name = "runner sweater"
-	desc = "<i>\"You look lonely.\"</i>"
+	name = "奔跑者毛衣"
+	desc = "<i>\"你看起来很孤独。\"</i>"
 	icon = 'modular_nova/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "runner"
@@ -47,60 +47,60 @@
 
 /// PRISONER
 /obj/item/clothing/under/rank/prisoner/protcust
-	name = "protective custody prisoner jumpsuit"
-	desc = "A mustard coloured prison jumpsuit, often worn by former Security members, informants and former CentCom employees. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "保护性监禁囚犯连体服"
+	desc = "一件芥末色的囚犯连体服，通常由前安保成员、线人和前中央司令部雇员穿着。其套装传感器卡在\"完全开启\"位置。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/protcust"
 	greyscale_colors = "#FFB600"
 
 /obj/item/clothing/under/rank/prisoner/skirt/protcust
-	name = "protective custody prisoner jumpskirt"
-	desc = "A mustard coloured prison jumpskirt, often worn by former Security members, informants and former CentCom employees. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "保护性监禁囚犯连体裙"
+	desc = "一件芥末色的囚犯连体裙，通常由前安保成员、线人和前中央司令部雇员穿着。其套装传感器卡在\"完全开启\"位置。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/protcust"
 	greyscale_colors = "#FFB600"
 	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/lowsec
-	name = "low security prisoner jumpsuit"
-	desc = "A pale, almost creamy prison jumpsuit, this one denotes a low security prisoner, things like fraud and anything white collar. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "低安全级别囚犯连体服"
+	desc = "一件苍白、近乎奶油色的囚犯连体服，代表低安全级别囚犯，例如欺诈等白领犯罪。其套装传感器卡在\"完全开启\"位置。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/lowsec"
 	greyscale_colors = "#AB9278"
 
 /obj/item/clothing/under/rank/prisoner/skirt/lowsec
-	name = "low security prisoner jumpskirt"
-	desc = "A pale, almost creamy prison jumpskirt, this one denotes a low security prisoner, things like fraud and anything white collar. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "低安全级别囚犯连体裙"
+	desc = "一件苍白、近乎奶油色的囚犯连体裙，代表低安全级别囚犯，例如欺诈等白领犯罪。其套装传感器卡在\"完全开启\"位置。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/lowsec"
 	greyscale_colors = "#AB9278"
 	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/highsec
-	name = "high risk prisoner jumpsuit"
-	desc = "A bright red prison jumpsuit, depending on who sees it, either a badge of honour or a sign to avoid. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "高风险囚犯连体服"
+	desc = "一件鲜红色的囚犯连体服，在不同人眼中，它要么是荣誉的象征，要么是需要避开的标志。其套装传感器卡在\"完全开启\"位置。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/highsec"
 	greyscale_colors = "#FF3400"
 
 /obj/item/clothing/under/rank/prisoner/skirt/highsec
-	name = "high risk prisoner jumpskirt"
-	desc = "A bright red prison jumpskirt, depending on who sees it, either a badge of honour or a sign to avoid. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "高风险囚犯连体裙"
+	desc = "一件鲜红色的囚犯连体裙，在不同人眼中，它要么是荣誉的象征，要么是需要避开的标志。其套装传感器卡在\"完全开启\"位置。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/highsec"
 	greyscale_colors = "#FF3400"
 	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/supermax
-	name = "supermax prisoner jumpsuit"
-	desc = "A dark crimson red prison jumpsuit, for the worst of the worst, or the Clown. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "超级囚犯连体服"
+	desc = "一件深绯红色的囚犯连体服，专为最恶劣的罪犯或小丑准备。其服装传感器被卡在“完全开启”的位置。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/supermax"
 	greyscale_colors = "#992300"
 
 /obj/item/clothing/under/rank/prisoner/skirt/supermax
-	name = "supermax prisoner jumpskirt"
-	desc = "A dark crimson red prison jumpskirt, for the worst of the worst, or the Clown. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "超级囚犯连体裙"
+	desc = "一件深绯红色的囚犯连体裙，专为最恶劣的罪犯或小丑准备。其服装传感器被卡在“完全开启”的位置。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/supermax"
 	greyscale_colors = "#992300"
 	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/classic
-	name = "classic prisoner jumpsuit"
-	desc = "A black and white striped jumpsuit, like something out of a movie."
+	name = "经典囚犯连体服"
+	desc = "一件黑白条纹的连体服，就像电影里的一样。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/costume.dmi'
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/under/costume_digi.dmi'
@@ -114,16 +114,16 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK | CLOTHING_BIG_LEGS_MASK
 
 /obj/item/clothing/under/rank/prisoner/syndicate
-	name = "syndicate prisoner jumpsuit"
-	desc = "A crimson red jumpsuit worn by syndicate captives. Its sensors have been shorted out."
+	name = "辛迪加囚犯连体服"
+	desc = "辛迪加俘虏穿着的绯红色连体服。其传感器已被短路。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/supermax" // same as supermax
 	greyscale_colors = "#992300"
 	has_sensor = FALSE
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/under/rank/prisoner/skirt/syndicate
-	name = "syndicate prisoner jumpskirt"
-	desc = "A crimson red jumpskirt worn by syndicate captives. Its sensors have been shorted out."
+	name = "辛迪加囚犯连体裙"
+	desc = "辛迪加俘虏穿着的绯红色连体裙。其传感器已被短路。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/supermax" // same as supermax
 	greyscale_colors = "#992300"
 	has_sensor = FALSE

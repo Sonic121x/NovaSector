@@ -1,7 +1,7 @@
 // Muli
 /obj/item/seeds/muli
-	name = "pack of muli starters"
-	desc = "This bacterial colony forms into muli pods."
+	name = "一包穆利菌种"
+	desc = "这种细菌菌落会形成穆利豆荚。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-muli"
 	species = "muli"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/muli
 	seed = /obj/item/seeds/muli
-	name = "muli pod"
-	desc = "A soft, oval-shaped pod. Contains a minty pale-blue juice used for many applications in teshari cuisine."
+	name = "穆利豆荚"
+	desc = "一种柔软的椭圆形豆荚。内含薄荷味的淡蓝色汁液，在特莎莉料理中有多种用途。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "muli"
 	foodtypes = VEGETABLES

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/index
 	display_name = "Index List"
-	desc = "A component that returns the value of a list at a given index."
+	desc = "一个能返回列表中指定索引处值的组件。"
 	category = "List"
 
 	/// The list type
@@ -56,7 +56,7 @@
 
 /obj/item/circuit_component/index/assoc_string
 	display_name = "Index Associative List"
-	desc = "A component that is commonly used to access a row from a table. Accesses data from a key, value list."
+	desc = "一种常用于从表格中获取行数据的组件。它通过键值列表来访问数据。"
 
 	index_type = PORT_TYPE_STRING
 

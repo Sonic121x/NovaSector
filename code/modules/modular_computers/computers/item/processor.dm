@@ -1,8 +1,8 @@
 // Held by /obj/machinery/modular_computer to reduce amount of copy-pasted code.
 //TODO: REFACTOR THIS SPAGHETTI CODE
 /obj/item/modular_computer/processor
-	name = "processing unit"
-	desc = "An advanced computer." //modular PCs examine us
+	name = "处理器"
+	desc = "一种高级计算机。" //modular PCs examine us
 	icon = null
 	icon_state = null
 	icon_state_unpowered = null

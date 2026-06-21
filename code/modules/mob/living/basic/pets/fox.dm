@@ -4,8 +4,8 @@
 */
 
 /mob/living/basic/pet/fox
-	name = "fox"
-	desc = "They're a fox."
+	name = "狐狸"
+	desc = "这是一只狐狸。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "fox"
 	icon_living = "fox"
@@ -89,8 +89,8 @@
 
 // The captain's fox, Renault
 /mob/living/basic/pet/fox/renault
-	name = "Renault"
-	desc = "Renault, the Captain's trustworthy fox."
+	name = "雷诺"
+	desc = "雷诺，舰长值得信赖的狐狸。"
 	gender = FEMALE
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
@@ -100,8 +100,8 @@
 	ai_controller = /datum/ai_controller/basic_controller/fox/docile
 
 /mob/living/basic/pet/fox/icemoon
-	name = "icemoon fox"
-	desc = "A fox, scraping by the icemoon hostile atmosphere."
+	name = "冰月狐"
+	desc = "一只在冰月恶劣环境中勉强生存的狐狸。"
 	gold_core_spawnable = NO_SPAWN
 	habitable_atmos = null
 	minimum_survivable_temperature = ICEBOX_MIN_TEMPERATURE

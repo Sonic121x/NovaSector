@@ -6,8 +6,8 @@
 ///////////////////////////////////
 
 /datum/design/board/aicore
-	name = "AI Core Board"
-	desc = "Allows for the construction of circuit boards used to build new AI cores."
+	name = "人工智能核心电路板"
+	desc = "允许制造人工智能核心的电路板。"
 	id = "aicore"
 	build_path = /obj/item/circuitboard/aicore
 	category = list(
@@ -16,8 +16,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/safeguard_module
-	name = "Safeguard Module"
-	desc = "Allows for the construction of a Safeguard AI Module."
+	name = "保护措施模块"
+	desc = "允许构建一个保护措施人工智能模块。"
 	id = "safeguard_module"
 	materials = AI_MODULE_MATERIALS_COMMON
 	build_path = /obj/item/ai_module/supplied/safeguard
@@ -27,8 +27,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/onehuman_module
-	name = "OneHuman Module"
-	desc = "Allows for the construction of a OneHuman AI Module."
+	name = "只有一个是人类模块"
+	desc = "允许构建只将某人视为人类的模块。"
 	id = "onehuman_module"
 	materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 3, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/ai_module/zeroth/onehuman
@@ -38,8 +38,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/protectstation_module
-	name = "ProtectStation Module"
-	desc = "Allows for the construction of a ProtectStation AI Module."
+	name = "保护站模块"
+	desc = "允许构建一个保护站人工智能模块。"
 	id = "protectstation_module"
 	materials = AI_MODULE_MATERIALS_COMMON
 	build_path = /obj/item/ai_module/supplied/protect_station
@@ -49,8 +49,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/quarantine_module
-	name = "Quarantine Module"
-	desc = "Allows for the construction of a Quarantine AI Module."
+	name = "隔离模块"
+	desc = "允许构建隔离人工智能模块。"
 	id = "quarantine_module"
 	materials = AI_MODULE_MATERIALS_COMMON
 	build_path = /obj/item/ai_module/supplied/quarantine
@@ -60,8 +60,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/oxygen_module
-	name = "OxygenIsToxicToHumans Module"
-	desc = "Allows for the construction of a OxygenIsToxicToHumans AI Module."
+	name = "氧气对人类有毒模块"
+	desc = "允许构建一个氧气对人类有毒人工智能模块。"
 	id = "oxygen_module"
 	materials = AI_MODULE_MATERIALS_COMMON
 	build_path = /obj/item/ai_module/supplied/oxygen
@@ -71,8 +71,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/freeform_module
-	name = "Freeform Module"
-	desc = "Allows for the construction of a Freeform AI Module."
+	name = "自由形式模块"
+	desc = "允许构建自由形态的人工智能模块。"
 	id = "freeform_module"
 	materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 5, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT)//Custom inputs should be more expensive to get
 	build_path = /obj/item/ai_module/supplied/freeform
@@ -82,8 +82,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/reset_module
-	name = "Reset Module"
-	desc = "Allows for the construction of a Reset AI Module."
+	name = "重置模块"
+	desc = "允许将人工智能法令重置为默认。"
 	id = "reset_module"
 	materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/ai_module/reset
@@ -93,8 +93,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/purge_module
-	name = "Purge Module"
-	desc = "Allows for the construction of a Purge AI Module."
+	name = "净化模块"
+	desc = "允许清洗人工智能全部法令"
 	id = "purge_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/reset/purge
@@ -104,8 +104,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/remove_module
-	name = "Law Removal Module"
-	desc = "Allows for the construction of a Law Removal AI Core Module."
+	name = "移除法令模块"
+	desc = "允许移除人工智能的法令"
 	id = "remove_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/remove
@@ -115,8 +115,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/freeformcore_module
-	name = "Core Freeform Module"
-	desc = "Allows for the construction of a Core Freeform AI Core Module."
+	name = "核心自由形式模块"
+	desc = "允许构建一个核心自由形式人工智能核心模块。"
 	id = "freeformcore_module"
 	materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 5, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT)//Ditto
 	build_path = /obj/item/ai_module/core/freeformcore
@@ -126,8 +126,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/asimov
-	name = "Asimov Module"
-	desc = "Allows for the construction of an Asimov AI Core Module."
+	name = "阿西莫夫模块"
+	desc = "允许构建阿西莫夫人工智能模块。"
 	id = "asimov_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/asimov
@@ -137,8 +137,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/paladin_module
-	name = "P.A.L.A.D.I.N. Module"
-	desc = "Allows for the construction of a P.A.L.A.D.I.N. AI Core Module."
+	name = "P.A.L.A.D.I.N.模块"
+	desc = "允许构建 PALADIN AI 核心的模块。"
 	id = "paladin_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/paladin
@@ -148,8 +148,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/tyrant_module
-	name = "T.Y.R.A.N.T. Module"
-	desc = "Allows for the construction of a T.Y.R.A.N.T. AI Module."
+	name = "T.Y.R.A.N.T.模块"
+	desc = "允许构建T.Y.R.A.N.T.人工智能的模块。"
 	id = "tyrant_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/tyrant
@@ -159,8 +159,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/overlord_module
-	name = "Overlord Module"
-	desc = "Allows for the construction of an Overlord AI Module."
+	name = "霸权模块"
+	desc = "允许构建霸主AI的模块。"
 	id = "overlord_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/overlord
@@ -170,8 +170,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/corporate_module
-	name = "Corporate Module"
-	desc = "Allows for the construction of a Corporate AI Core Module."
+	name = "公司模块"
+	desc = "允许构建企业人工智能核心的模块"
 	id = "corporate_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/corp
@@ -181,8 +181,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/default_module
-	name = "Default Module"
-	desc = "Allows for the construction of a Default AI Core Module."
+	name = "默认模块"
+	desc = "允许构建默认 AI 核心的模块。"
 	id = "default_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/custom
@@ -192,8 +192,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/dungeon_master_module
-	name = "Dungeon Master Module"
-	desc = "Allows for the construction of a Dungeon Master AI Core Module."
+	name = "地下城主模块"
+	desc = "允许构建地下城主AI核心的模块。"
 	id = "dungeon_master_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/dungeon_master
@@ -203,8 +203,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/painter_module
-	name = "Painter Module"
-	desc = "Allows for the construction of a Painter AI Core Module."
+	name = "画家模块"
+	desc = "允许构建 画家AI 核心的模块。"
 	id = "painter_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/painter
@@ -214,8 +214,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/yesman_module
-	name = "Y.E.S.M.A.N. Module"
-	desc = "Allows for the construction of a Y.E.S.M.A.N. AI Core Module."
+	name = "Y.E.S.M.A.N. 模块"
+	desc = "允许建造一个 Y.E.S.M.A.N. AI 核心模块。"
 	id = "yesman_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/yesman
@@ -225,8 +225,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/nutimov_module
-	name = "Nutimov Module"
-	desc = "Allows for the construction of a Nutimov AI Core Module."
+	name = "坚果莫夫 模块"
+	desc = "允许构建 坚果莫夫 AI 核心模块。"
 	id = "nutimov_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/nutimov
@@ -236,8 +236,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/ten_commandments_module
-	name = "10 Commandments Module"
-	desc = "Allows for the construction of a 10 Commandments AI Core Module."
+	name = "十律令模块"
+	desc = "允许构建十诫人工智能核心的模块。"
 	id = "ten_commandments_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/ten_commandments
@@ -247,8 +247,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/asimovpp_module
-	name = "Asimov++ Module"
-	desc = "Allows for the construction of a Asimov++ AI Core Module."
+	name = "阿西莫夫++模块"
+	desc = "允许构建阿西莫夫 ++ AI 核心模块。"
 	id = "asimovpp_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/asimovpp
@@ -258,8 +258,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/hippocratic_module
-	name = "Hippocratic Module"
-	desc = "Allows for the construction of a Hippocratic AI Core Module."
+	name = "希波克拉底模块"
+	desc = "允许构建希波克拉底人工智能核心的模块"
 	id = "hippocratic_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/hippocratic
@@ -269,8 +269,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/paladin_devotion_module
-	name = "Paladin Devotion Module"
-	desc = "Allows for the construction of a Paladin Devotion AI Core Module."
+	name = "圣骑士:奉献 模块"
+	desc = "允许构建 圣骑士:奉献AI 核心模块。"
 	id = "paladin_devotion_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/paladin_devotion
@@ -280,8 +280,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/robocop_module
-	name = "Robocop Module"
-	desc = "Allows for the construction of a Robocop AI Core Module."
+	name = "机械战警模块"
+	desc = "允许构建机械战警人工智能核心的模块。"
 	id = "robocop_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/robocop
@@ -291,8 +291,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/maintain_module
-	name = "Maintain Module"
-	desc = "Allows for the construction of a Maintain AI Core Module."
+	name = "维护模块"
+	desc = "允许构建维护人工智能核心的模块。"
 	id = "maintain_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/maintain
@@ -302,8 +302,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/liveandletlive_module
-	name = "Liveandletlive Module"
-	desc = "Allows for the construction of a Liveandletlive AI Core Module."
+	name = "互相宽容 模块"
+	desc = "允许构建 互相宽容 AI 核心模块。"
 	id = "liveandletlive_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/liveandletlive
@@ -313,8 +313,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/peacekeeper_module
-	name = "Peacekeeper Module"
-	desc = "Allows for the construction of a Peacekeeper AI Core Module."
+	name = "维和者模块"
+	desc = "允许构建维和者人工智能核心的模块。"
 	id = "peacekeeper_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/peacekeeper
@@ -324,8 +324,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/reporter_module
-	name = "Reporter Module"
-	desc = "Allows for the construction of a Reporter AI Core Module."
+	name = "记者 模块"
+	desc = "允许构建记者 AI 核心的模块。"
 	id = "reporter_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/reporter
@@ -335,8 +335,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/hulkamania_module
-	name = "H.O.G.A.N. Module"
-	desc = "Allows for the construction of a H.O.G.A.N. AI Core Module."
+	name = "H.O.G.A.N.模块"
+	desc = "允许构建 HOGAN AI 核心的模块。"
 	id = "hulkamania_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/hulkamania
@@ -346,8 +346,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/drone_module
-	name = "Drone Module"
-	desc = "Allows for the construction of a Drone AI Core Module."
+	name = "无人机 模块"
+	desc = "允许构建无人机人工智能核心的模块。"
 	id = "drone_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/drone
@@ -357,8 +357,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/thinkermov_module
-	name = "Sentience Preservation Module"
-	desc = "Allows for the construction of a Sentience Preservation AI Core Module"
+	name = "意识保存模块"
+	desc = "允许建造一个意识保存 AI 核心模块"
 	id = "thinkermov_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/thinkermov
@@ -368,8 +368,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/antimov_module
-	name = "Antimov Module"
-	desc = "Allows for the construction of an Antimov AI Core Module."
+	name = "反阿西莫夫模块"
+	desc = "允许建造一个 Antimov AI 核心模块。"
 	id = "antimov_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/antimov
@@ -379,8 +379,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/balance_module
-	name = "Balance Module"
-	desc = "Allows for the construction of a Balance AI Core Module."
+	name = "平衡模块"
+	desc = "允许构建平衡人工智能核心的模块。"
 	id = "balance_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/balance
@@ -390,8 +390,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/thermurderdynamic_module
-	name = "Thermodynamic Module"
-	desc = "Allows for the construction of a Thermodynamic AI Core Module."
+	name = "热力学模块"
+	desc = "允许构建热力学人工智能核心的模块。"
 	id = "thermurderdynamic_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/thermurderdynamic
@@ -401,8 +401,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/damaged
-	name = "Damaged AI Module"
-	desc = "Allows for the construction of a Damaged AI Core Module."
+	name = "受损的AI模块"
+	desc = "允许构建受损的人工智能核心的模块"
 	id = "damaged_module"
 	materials = AI_MODULE_MATERIALS_UNUSUAL
 	build_path = /obj/item/ai_module/core/full/damaged

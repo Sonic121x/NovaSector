@@ -1,5 +1,5 @@
 /obj/effect/anomaly/weather
-	name = "weather anomaly"
+	name = "天气异常"
 	anomaly_core = /obj/item/assembly/signaler/anomaly/weather
 	lifespan = ANOMALY_COUNTDOWN_TIMER * 2.5
 
@@ -91,7 +91,7 @@
 	return ..()
 
 /obj/effect/anomaly/weather/thundering
-	name = "thundering weather anomaly"
+	name = "雷暴天气异常"
 
 	thunder_chance = THUNDER_CHANCE_HIGH
 	// maybe we can put acid rain in this later?

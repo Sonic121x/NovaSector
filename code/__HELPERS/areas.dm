@@ -142,20 +142,20 @@
 		if(!isnull(place.apc))
 			apc_map[place.name] = place.apc
 		if(length(apc_map) > 1) // When merging 2 or more areas make sure we arent merging their apc into 1 area
-			to_chat(creator, span_warning("Multiple APC's detected in the vicinity. only 1 is allowed."))
+			to_chat(creator, span_warning("检测到附近存在多个APC。只允许存在1个。"))
 			return
 		areas[place.name] = place
 
-	var/area_choice = tgui_input_list(creator, "Choose an area to expand or make a new area", "Area Expansion", areas)
+	var/area_choice = tgui_input_list(creator, "选择一个区域进行扩展或创建新区域", "区域扩展", areas)
 	if(isnull(area_choice))
-		to_chat(creator, span_warning("No choice selected. The area remains undefined."))
+		to_chat(creator, span_warning("未选择任何选项。区域保持未定义状态。"))
 		return
 	area_choice = areas[area_choice]
 
 	var/area/newA
 	var/area/oldA = get_area(get_turf(creator))
 	if(!isarea(area_choice))
-		var/str = tgui_input_text(creator, "New area name", "Blueprint Editing", max_length = MAX_NAME_LEN)
+		var/str = tgui_input_text(creator, "新区域名称", "蓝图编辑", max_length = MAX_NAME_LEN)
 		if(!str)
 			return
 		newA = new area_choice
@@ -169,7 +169,7 @@
 
 	//we haven't done anything. let's get outta here
 	if(newA == oldA)
-		to_chat(creator, span_warning("Selected choice is same as the area your standing in. No area changes were requested."))
+		to_chat(creator, span_warning("所选选项与您当前所在区域相同。未请求任何区域变更。"))
 		return
 
 	/**
@@ -189,7 +189,7 @@
 	for(var/area_name in affected_areas)
 		area_list += affected_areas[area_name]
 	SEND_GLOBAL_SIGNAL(COMSIG_AREA_CREATED, newA, area_list, creator)
-	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
+	to_chat(creator, span_notice("你已创建了一个名为[newA.name]的新区域。它现在可以抵御天气，建造一个APC即可为其供电。"))
 	creator.log_message("created a new area: [AREACOORD(creator)] (previously \"[oldA.name]\")", LOG_GAME)
 
 	//purge old areas that had all their turfs merged into the new one i.e. old empty areas. also recompute fire doors

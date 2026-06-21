@@ -80,7 +80,7 @@
 		CHECK_TICK
 
 /area/mine/planetgeneration
-	name = "planet generation area"
+	name = "行星生成区域"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 
@@ -88,18 +88,18 @@
 
 /// This turf doesn't actually do anything beyond provide contrast for mappers and be very visible when stuff breaks in game. The actual areas are what drive cave generation.
 /turf/open/genturf
-	name = "green ungenerated turf"
-	desc = "If you see this, and you're not a ghost, yell at coders"
+	name = "绿色未生成地块"
+	desc = "如果你看到这个，而且你不是幽灵，就对着程序员大喊大叫"
 	icon = 'icons/turf/debug.dmi'
 	icon_state = "genturf_green"
 
 // following two are currently used for edge cases in which you want a certain type of map generation intermingled with other genturfs
 /turf/open/genturf/blue
-	name = "blue ungenerated turf"
+	name = "蓝色未生成地块"
 	icon_state = "genturf_blue"
 
 /turf/open/genturf/orange
-	name = "orange ungenerated turf"
+	name = "橙色未生成地块"
 	icon_state = "genturf_orange"
 
 #undef BIOME_RANDOM_SQUARE_DRIFT

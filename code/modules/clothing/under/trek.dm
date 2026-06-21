@@ -9,8 +9,8 @@
 *	The Original Series (Technically not THE original because these have a black undershirt while the very-original didn't but IDC)
 */
 /obj/item/clothing/under/trek/command
-	name = "command uniform"
-	desc = "An outdated uniform worn by command officers."
+	name = "指挥官制服"
+	desc = "指挥官穿的过时制服。"
 	inhand_icon_state = "y_suit"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/trek/command"
@@ -20,8 +20,8 @@
 	greyscale_colors = "#fab342"
 
 /obj/item/clothing/under/trek/engsec
-	name = "engsec uniform"
-	desc = "An outdated uniform worn by engineering/security officers."
+	name = "工程安保制服"
+	desc = "一套曾由工程/安全官穿着的过时制服。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/trek/engsec"
 	post_init_icon_state = "trek_tos_sec"
@@ -31,8 +31,8 @@
 	greyscale_colors = "#B72B2F"
 
 /obj/item/clothing/under/trek/medsci
-	name = "medsci uniform"
-	desc = "An outdated worn by medical/science officers."
+	name = "医疗安保制服"
+	desc = "一件供医疗/科研人员使用的过时装备。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/trek/medsci"
 	post_init_icon_state = "trek_tos"
@@ -92,7 +92,7 @@
 
 //Q
 /obj/item/clothing/under/trek/q
-	name = "french marshall's uniform"
-	desc = "Something about this uniform feels off..."
+	name = "法国元帅制服"
+	desc = "这件制服有点不对劲……"
 	icon_state = "trek_Q"
 	inhand_icon_state = "r_suit"

@@ -17,76 +17,76 @@
 	)
 
 /datum/design/xenoarch/tool/hammer
-	name = "Hammer (cm 1)"
-	desc = "A hammer that can slowly remove debris on strange rocks."
+	name = "锤子 (厘米 1)"
+	desc = "一把可以缓慢清除奇异岩石上碎屑的锤子。"
 	id = "hammer_cm1"
 	build_path = /obj/item/xenoarch/hammer
 
 /datum/design/xenoarch/tool/hammer/cm2
-	name = "Hammer (cm 2)"
+	name = "锤子 (厘米 2)"
 	id = "hammer_cm2"
 	build_path = /obj/item/xenoarch/hammer/cm2
 
 /datum/design/xenoarch/tool/hammer/cm3
-	name = "Hammer (cm 3)"
+	name = "锤子 (厘米 3)"
 	id = "hammer_cm3"
 	build_path = /obj/item/xenoarch/hammer/cm3
 
 /datum/design/xenoarch/tool/hammer/cm4
-	name = "Hammer (cm 4)"
+	name = "锤子 (厘米 4)"
 	id = "hammer_cm4"
 	build_path = /obj/item/xenoarch/hammer/cm4
 
 /datum/design/xenoarch/tool/hammer/cm5
-	name = "Hammer (cm 5)"
+	name = "锤子 (厘米 5)"
 	id = "hammer_cm5"
 	build_path = /obj/item/xenoarch/hammer/cm5
 
 /datum/design/xenoarch/tool/hammer/cm6
-	name = "Hammer (cm 6)"
+	name = "锤子 (厘米 6)"
 	id = "hammer_cm6"
 	build_path = /obj/item/xenoarch/hammer/cm6
 
 /datum/design/xenoarch/tool/hammer/cm10
-	name = "Hammer (cm 10)"
+	name = "锤子 (厘米 10)"
 	id = "hammer_cm10"
 	build_path = /obj/item/xenoarch/hammer/cm10
 
 /datum/design/xenoarch/tool/brush
-	name = "Brush"
-	desc = "A brush that can slowly remove debris on a strange rock."
+	name = "刷子"
+	desc = "一把可以缓慢清除奇异岩石上碎屑的刷子。"
 	id = "xenoarch_brush"
 	build_path = /obj/item/xenoarch/brush
 
 /datum/design/xenoarch/tool/xeno_tape
-	name = "Xenoarch Tape Measure"
-	desc = "A tape measure used to measure the dug depth of strange rocks."
+	name = "异星考古卷尺"
+	desc = "一把用于测量奇异岩石挖掘深度的卷尺。"
 	id = "xenoarch_tapemeasure"
 	build_path = /obj/item/xenoarch
 
 /datum/design/xenoarch/tool/scanner
-	name = "Xenoarch Handheld Scanner"
-	desc = "A handheld scanner for strange rocks, capable of tagging a \"safe\" depth and maximum depth."
+	name = "异星考古手持扫描仪"
+	desc = "一种用于奇异岩石的手持扫描仪，能够标记“安全”深度和最大深度。"
 	id = "xenoarch_handscanner"
 	build_path = /obj/item/xenoarch/handheld_scanner
 
 /datum/design/xenoarch/tool/stabilizer
-	name = "Xenoarch Artifact Stabilizer"
-	desc = "An outdated tech to stabilize boulders."
+	name = "异星考古文物稳定器"
+	desc = "一种用于稳定巨石的过时技术。"
 	id = "xenoarch_artifact_stabilizer"
 	build_path = /obj/item/xenoarch/anomaly_stabilizer
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/xenoarch/tool/core_sampler
-	name = "Core Sampler"
-	desc = "An outdated way to take a sample of rocks and dirt."
+	name = "岩芯取样器"
+	desc = "一种采集岩石和泥土样本的过时方法。"
 	id = "xenoarch_core_sampler"
 	build_path = /obj/item/xenoarch/core_sampler
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/xenoarch/tool/particles_battery
-	name = "Exotic particles power battery"
-	desc = "A battery, that can collect exotic particles and release them later, if used properly."
+	name = "奇异粒子能量电池"
+	desc = "一种可以收集奇异粒子并在适当使用时将其释放的电池。"
 	id = "xenoarch_particles_battery"
 	build_path = /obj/item/xenoarch/particles_battery
 	materials = list(
@@ -97,8 +97,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/xenoarch/tool/xenoarch_utilizer
-	name = "Exotic particles power utilizer"
-	desc = "A device used to discharge exotic particle batteries."
+	name = "奇异粒子能量利用器"
+	desc = "一种用于释放奇异粒子电池能量的设备。"
 	id = "xenoarch_utilizer"
 	build_path = /obj/item/xenoarch/xenoarch_utilizer
 	materials = list(
@@ -108,8 +108,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/xenoarch/tool/wave_scanner_backpack
-	name = "Wave scanner backpack"
-	desc = "An outdated way to find exotic particles."
+	name = "波形扫描背包"
+	desc = "一种寻找奇异粒子的过时方法。"
 	id = "xenoarch_wave_scanner"
 	build_path = /obj/item/xenoarch/wave_scanner_backpack
 	materials = list(
@@ -132,13 +132,13 @@
 	)
 
 /datum/design/xenoarch/tool/advanced/scanner
-	name = "Xenoarch Advanced Handheld Scanner"
+	name = "异星考古高级手持扫描仪"
 	id = "xenoarch_handscanner_adv"
 	build_path = /obj/item/xenoarch/handheld_scanner/advanced
 
 /datum/design/xenoarch/tool/radar
 	name = "Xenoarch Handheld Radar"
-	desc = "A device with the capabilities to recover items lost due to time."
+	desc = "一种能够回收因时间流逝而丢失物品的设备。"
 	id = "xenoarch_radar"
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -147,14 +147,14 @@
 	build_path = /obj/item/xenoarch/handheld_radar
 
 /datum/design/xenoarch/tool/advanced/adv_hammer
-	name = "Advanced Hammer"
-	desc = "A hammer that can quickly remove debris on a strange rock and change digging depths."
+	name = "高级锤"
+	desc = "一种能快速清除奇异岩石上的碎屑并改变挖掘深度的锤子。"
 	id = "xenoarch_adv_hammer"
 	build_path = /obj/item/xenoarch/hammer/adv
 
 /datum/design/xenoarch/tool/advanced/adv_brush
-	name = "Advanced Brush"
-	desc = "A brush that can quickly remove debris on a strange rock."
+	name = "高级刷"
+	desc = "一种能快速清除奇异岩石上碎屑的刷子。"
 	id = "xenoarch_adv_brush"
 	build_path = /obj/item/xenoarch/brush/adv
 
@@ -166,20 +166,20 @@
 	)
 
 /datum/design/xenoarch/equipment/bag
-	name = "Xenoarchaeology Bag"
-	desc = "A bag that can hold about twenty-five strange rocks."
+	name = "异星考古学背包"
+	desc = "一个可以容纳大约二十五块奇异岩石的背包。"
 	id = "xenoarch_bag"
 	build_path = /obj/item/storage/bag/xenoarch
 
 /datum/design/xenoarch/equipment/belt
-	name = "Xenoarchaeology Belt"
-	desc = "A belt that can hold all of the essential tools for xenoarchaeology."
+	name = "异星考古学腰带"
+	desc = "一条可以容纳所有异星考古学必备工具的腰带。"
 	id = "xenoarch_belt"
 	build_path = /obj/item/storage/belt/utility/xenoarch
 
 /datum/design/xenoarch/equipment/bag_adv
-	name = "Advanced Xenoarch Bag"
-	desc = "A bag that can hold about fifty strange rocks."
+	name = "高级异星考古背包"
+	desc = "一个能容纳约五十块奇异岩石的袋子。"
 	id = "xenoarch_bag_adv"
 	materials = list(/datum/material/gold = SMALL_MATERIAL_AMOUNT*2.5, /datum/material/uranium =SMALL_MATERIAL_AMOUNT*5) // same materials as the mining bag of holding.
 	build_path = /obj/item/storage/bag/xenoarch/adv
@@ -192,45 +192,45 @@
 
 /datum/design/board/xenoarch/researcher
 	name = "Xenoarch Researcher Board"
-	desc = "Allows for the construction of circuit boards used to build a new xenoarch researcher."
+	desc = "允许建造用于组装新型异星考古研究员的电路板。"
 	id = "xeno_researcher"
 	build_path = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_researcher
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/xenoarch/scanner
 	name = "Xenoarch Scanner Board"
-	desc = "Allows for the construction of circuit boards used to build a new xenoarch scanner."
+	desc = "允许建造用于组装新型异星考古扫描仪的电路板。"
 	id = "xeno_scanner"
 	build_path = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_scanner
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/xenoarch/artifact_analyzer
 	name = "Artifact Analyzer Board"
-	desc = "Allows for the construction of circuit boards used to build a new xenoarch artifact analyzer."
+	desc = "允许建造用于组装新型异星考古文物分析仪的电路板。"
 	id = "artifact_analyzer"
 	build_path = /obj/item/circuitboard/machine/artifact_analyser
 
 /datum/design/board/xenoarch/radiocarbon_spectrometer
 	name = "Radiocarbon spectrometer Board"
-	desc = "Allows for the construction of circuit boards used to build a new xenoarch radiocarbon spectrometer."
+	desc = "允许建造用于组装新型异星考古放射性碳光谱仪的电路板。"
 	id = "radiocarbon spectrometer"
 	build_path = /obj/item/circuitboard/machine/radiocarbon_spectrometer
 
 /datum/design/board/xenoarch/artifact_harvester
 	name = "Exotic Particle Harvester Board"
-	desc = "Allows for the construction of circuit boards used to build a new xenoarch exotic particle harvester."
+	desc = "允许建造用于组装新型异星考古奇异粒子收集器的电路板。"
 	id = "artifact_harvester"
 	build_path = /obj/item/circuitboard/machine/artifact_harvester
 
 /datum/design/board/xenoarch/artifact_scanpad
 	name = "Artifact Scanpad Board"
-	desc = "Allows for the construction of circuit boards used to build a new xenoarch artifact scanpad."
+	desc = "允许建造用于组装新型异星考古文物扫描台的电路板。"
 	id = "artifact_scanpad"
 	build_path = /obj/item/circuitboard/machine/artifact_scanpad
 
 /datum/design/board/xenoarch/digger
 	name = "Xenoarch Digger Board"
-	desc = "Allows for the construction of circuit boards used to build a new xenoarch digger."
+	desc = "允许建造用于组装新型异星考古挖掘机的电路板。"
 	id = "xeno_digger"
 	build_path = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_digger
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SERVICE
@@ -239,7 +239,7 @@
 	id = TECHWEB_NODE_XENOARCH_BASIC
 	starting_node = TRUE
 	display_name = "Basic Xenoarchaeology"
-	description = "The basic designs of xenoarchaeology."
+	description = "外星考古学的基本设计。"
 	design_ids = list(
 		"hammer_cm1",
 		"hammer_cm2",
@@ -267,7 +267,7 @@
 /datum/techweb_node/xenoarch_machines
 	id = TECHWEB_NODE_XENOARCH_MACHINES
 	display_name = "Xenoarchaeology Machines"
-	description = "Sometimes, xenoarchaeology can be time consuming, perhaps machines can help?"
+	description = "有时，外星考古学可能很耗时，也许机器能帮上忙？"
 	prereq_ids = list(TECHWEB_NODE_XENOARCH_BASIC)
 	design_ids = list(
 		"artifact_analyzer",
@@ -281,7 +281,7 @@
 /datum/techweb_node/adv_xenoarch
 	id = TECHWEB_NODE_XENOARCH_ADVANCED
 	display_name = "Advanced Archeology"
-	description = "After some time, those tools we used have become antiquated-- we need an upgrade."
+	description = "一段时间后，我们使用的那些工具已经过时了——我们需要升级。"
 	prereq_ids = list(TECHWEB_NODE_XENOARCH_BASIC)
 	design_ids = list(
 		"xenoarch_adv_hammer",

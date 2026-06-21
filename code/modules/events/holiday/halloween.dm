@@ -1,12 +1,12 @@
 /datum/round_event_control/spooky
-	name = "2 SPOOKY! (Halloween)"
+	name = "2 重吓人！(万圣节)"
 	holidayID = HALLOWEEN
 	typepath = /datum/round_event/spooky
 	weight = -1 //forces it to be called, regardless of weight
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
 	category = EVENT_CATEGORY_HOLIDAY
-	description = "Gives everyone treats, and turns Ian and Poly into their festive versions."
+	description = "给每个人分发糖果，并将伊恩和波利变成节日版本。"
 
 /datum/round_event/spooky/start()
 	..()
@@ -23,12 +23,12 @@
 		qdel(bird)
 
 /datum/round_event/spooky/announce(fake)
-	priority_announce(pick("RATTLE ME BONES!","THE RIDE NEVER ENDS!", "A SKELETON POPS OUT!", "SPOOKY SCARY SKELETONS!", "CREWMEMBERS BEWARE, YOU'RE IN FOR A SCARE!") , "THE CALL IS COMING FROM INSIDE THE HOUSE")
+	priority_announce(pick("我的骨头在咯咯作响！","这趟旅程永无止境！", "一具骷髅跳了出来！", "恐怖骷髅惊魂夜！", "船员们当心，你们要吓破胆了！") , "电话是从房子里面打来的")
 
 //spooky foods (you can't actually make these when it's not halloween)
 /obj/item/food/cookie/sugar/spookyskull
-	name = "skull cookie"
-	desc = "Spooky! It's got delicious calcium flavouring!"
+	name = "头骨饼干"
+	desc = "好诡异！它还带有美味的钙味呢！"
 	icon = 'icons/obj/holiday/halloween_items.dmi'
 	icon_state = "skeletoncookie"
 	crafting_complexity = FOOD_COMPLEXITY_2
@@ -38,8 +38,8 @@
 	return ..(mapload, seasonal_changes)
 
 /obj/item/food/cookie/sugar/spookycoffin
-	name = "coffin cookie"
-	desc = "Spooky! It's got delicious coffee flavouring!"
+	name = "棺椁饼干"
+	desc = "好诡异！它还带有美味的咖啡香味呢！"
 	icon = 'icons/obj/holiday/halloween_items.dmi'
 	icon_state = "coffincookie"
 	crafting_complexity = FOOD_COMPLEXITY_2
@@ -51,8 +51,8 @@
 //spooky items
 
 /obj/item/storage/spooky
-	name = "trick-o-treat bag"
-	desc = "A pumpkin-shaped bag that holds all sorts of goodies!"
+	name = "不给糖就捣蛋篮"
+	desc = "一个南瓜形状的袋子，里面装着各种各样的糖果"
 	icon = 'icons/obj/holiday/halloween_items.dmi'
 	icon_state = "treatbag"
 

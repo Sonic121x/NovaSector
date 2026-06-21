@@ -1,7 +1,7 @@
 // Memento Mori
 /obj/item/clothing/neck/necklace/memento_mori
-	name = "Memento Mori"
-	desc = "A mysterious pendant. An inscription on it says: \"Certain death tomorrow means certain life today.\""
+	name = "死亡纪念"
+	desc = "一个神秘的吊坠。上面刻着一行字：“明日必死，今日必生。”"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "memento_mori"
 	worn_icon_state = "memento"
@@ -24,11 +24,11 @@
 	return ..()
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/memento(mob/living/carbon/human/user)
-	to_chat(user, span_warning("You feel your life being drained by the pendant..."))
+	to_chat(user, span_warning("你感到吊坠正在吸取你的生命力……"))
 	if (!do_after(user, 4 SECONDS, target = user))
 		return
 
-	to_chat(user, span_notice("Your lifeforce is now linked to the pendant! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die."))
+	to_chat(user, span_notice("你的生命本源现已与吊坠相连！你觉得取下它会杀死你，但你又本能地知道，在此之前，你不会死去。"))
 	user.add_traits(list(TRAIT_NODEATH, TRAIT_NOHARDCRIT, TRAIT_NOCRITDAMAGE), CLOTHING_TRAIT)
 	RegisterSignal(user, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(check_health))
 	icon_state = "memento_mori_active"
@@ -41,7 +41,7 @@
 	UnregisterSignal(active_owner, COMSIG_LIVING_HEALTH_UPDATE)
 	var/mob/living/carbon/human/stored_owner = active_owner //to avoid infinite looping when dust unequips the pendant
 	active_owner = null
-	to_chat(stored_owner, span_userdanger("You feel your life rapidly slipping away from you!"))
+	to_chat(stored_owner, span_userdanger("你感到生命正从你体内飞速流逝！"))
 	stored_owner.dust(just_ash = TRUE, drop_items = TRUE)
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/check_health(mob/living/source)
@@ -65,19 +65,19 @@
 	new /obj/effect/temp_visual/guardian/phase/out(get_turf(guardian))
 	guardian.locked = TRUE
 	guardian.forceMove(src)
-	to_chat(guardian, span_userdanger("You have been locked away in your summoner's pendant!"))
+	to_chat(guardian, span_userdanger("你已被锁进召唤者的吊坠里！"))
 	guardian.playsound_local(get_turf(guardian), 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/regurgitate_guardian(mob/living/basic/guardian/guardian)
 	guardian.locked = FALSE
 	guardian.recall(forced = TRUE)
-	to_chat(guardian, span_notice("You have been returned back from your summoner's pendant!"))
+	to_chat(guardian, span_notice("你已从召唤者的吊坠中归来！"))
 	guardian.playsound_local(get_turf(guardian), 'sound/effects/magic/repulse.ogg', 50, TRUE)
 
 /datum/action/item_action/hands_free/memento_mori
 	check_flags = NONE
-	name = "Memento Mori"
-	desc = "Bind your life to the pendant."
+	name = "死亡纪念"
+	desc = "将你的生命与吊坠绑定。"
 
 /datum/action/item_action/hands_free/memento_mori/do_effect(trigger_flags)
 	var/obj/item/clothing/neck/necklace/memento_mori/memento = target
@@ -90,8 +90,8 @@
 // Concussive Gauntlets
 
 /obj/item/clothing/gloves/gauntlets
-	name = "concussive gauntlets"
-	desc = "Pickaxes... for your hands!"
+	name = "震荡护手"
+	desc = "镐子……不过是戴在手上的！"
 	icon_state = "concussive_gauntlets"
 	inhand_icon_state = null
 	toolspeed = 0.1

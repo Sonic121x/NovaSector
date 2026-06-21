@@ -17,7 +17,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/secbot
-	name = "Secbot"
+	name = "安保机器人"
 	result = /mob/living/basic/bot/secbot
 	reqs = list(
 		/obj/item/assembly/signaler = 1,
@@ -31,7 +31,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/cleanbot
-	name = "Cleanbot"
+	name = "清洁机器人"
 	result = /mob/living/basic/bot/cleanbot
 	reqs = list(
 		/obj/item/reagent_containers/cup/bucket = 1,
@@ -43,7 +43,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/repairbot
-	name = "Repairbot"
+	name = "维修机器人"
 	result = /mob/living/basic/bot/repairbot
 	reqs = list(
 		/obj/item/storage/toolbox = 1,
@@ -55,7 +55,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/medbot
-	name = "Medbot"
+	name = "医疗机器人"
 	result = /mob/living/basic/bot/medbot
 	reqs = list(
 		/obj/item/healthanalyzer = 1,
@@ -71,7 +71,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/honkbot
-	name = "Honkbot"
+	name = "小丑机器人"
 	result = /mob/living/basic/bot/secbot/honkbot
 	reqs = list(
 		/obj/item/storage/box/clown = 1,
@@ -83,7 +83,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/firebot
-	name = "Firebot"
+	name = "消防机器人"
 	result = /mob/living/basic/bot/firebot
 	reqs = list(
 		/obj/item/extinguisher = 1,
@@ -95,7 +95,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/vibebot
-	name = "Vibebot"
+	name = "氛围机器人"
 	result = /mob/living/basic/bot/vibebot
 	reqs = list(
 		/obj/item/light/bulb = 2,
@@ -107,7 +107,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/hygienebot
-	name = "Hygienebot"
+	name = "卫生机器人"
 	result = /mob/living/basic/bot/hygienebot
 	reqs = list(
 		/obj/item/bot_assembly/hygienebot = 1,
@@ -119,7 +119,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/vim
-	name = "Vim"
+	name = "维姆"
 	result = /obj/vehicle/sealed/car/vim
 	reqs = list(
 		/obj/item/clothing/head/helmet/space/eva = 1,
@@ -133,7 +133,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/aitater
-	name = "intelliTater"
+	name = "智能土豆"
 	result = /obj/item/aicard/aitater
 	time = 3 SECONDS
 	tool_behaviors = list(TOOL_WIRECUTTER)
@@ -145,7 +145,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/aitater/aispook
-	name = "intelliLantern"
+	name = "智能提灯"
 	result = /obj/item/aicard/aispook
 	reqs = list(
 		/obj/item/aicard = 1,
@@ -154,7 +154,7 @@
 	)
 
 /datum/crafting_recipe/mod_core_standard
-	name = "MOD core (Standard)"
+	name = "MOD核心（标准型）"
 	result = /obj/item/mod/core/standard
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 10 SECONDS
@@ -167,7 +167,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/mod_core_ethereal
-	name = "MOD core (Ethereal)"
+	name = "MOD核心（灵体型）"
 	result = /obj/item/mod/core/ethereal
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 10 SECONDS
@@ -181,7 +181,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/mod_core_soul
-	name = "MOD core (Soul)"
+	name = "MOD核心（灵魂型）"
 	result = /obj/item/mod/core/soul
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 10 SECONDS

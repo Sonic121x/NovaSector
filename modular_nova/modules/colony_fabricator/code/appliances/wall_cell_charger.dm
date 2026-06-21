@@ -1,6 +1,6 @@
 /obj/machinery/cell_charger_multi/wall_mounted
-	name = "mounted multi-cell charging rack"
-	desc = "The innovative technology of a cell charging rack, but mounted neatly on a wall out of the way!"
+	name = "壁挂式多电池充电架"
+	desc = "电池充电架的创新技术，但整洁地安装在墙上，不占空间！"
 	icon = 'modular_nova/modules/colony_fabricator/icons/cell_charger.dmi'
 	icon_state = "wall_charger"
 	base_icon_state = "wall_charger"
@@ -22,7 +22,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/cell_charger_multi/wall_mounted, 29)
 
 /obj/machinery/cell_charger_multi/wall_mounted/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
-	user.balloon_alert(user, "deconstructing...")
+	user.balloon_alert(user, "正在解构...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 1 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -40,8 +40,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/cell_charger_multi/wall_mounted, 29)
 // Item for creating the arc furnace or carrying it around
 
 /obj/item/wallframe/cell_charger_multi
-	name = "unmounted wall multi-cell charging rack"
-	desc = "The innovative technology of a cell charging rack, but able to be mounted neatly on a wall out of the way!"
+	name = "未安装的墙上多电池充电架"
+	desc = "电池充电架的创新技术，但可以整齐地安装在墙上，不占地方！"
 	icon = 'modular_nova/modules/colony_fabricator/icons/packed_machines.dmi'
 	icon_state = "cell_charger_packed"
 	w_class = WEIGHT_CLASS_NORMAL

@@ -2,8 +2,8 @@
 // Only one should exist ideally, if other types are created they must have different camera_networks
 // Broadcasts its surroundings to entertainment monitors and its audio to entertainment radio channel
 /obj/item/broadcast_camera
-	name = "broadcast camera"
-	desc = "A large camera that streams its live feed and audio to entertainment monitors across the station, allowing everyone to watch the broadcast."
+	name = "广播摄像机"
+	desc = "一种大型摄像机，可将其实时画面和音频流传输到空间站各处的娱乐监视器上，让所有人都能观看广播。"
 	desc_controls = "Right-click to change the broadcast name. Alt-click to toggle microphone."
 	icon = 'icons/obj/service/broadcast.dmi'
 	icon_state = "broadcast_cam0"
@@ -59,11 +59,11 @@
 
 /obj/item/broadcast_camera/attack_self_secondary(mob/user, modifiers)
 	. = ..()
-	broadcast_name = tgui_input_text(user = user, title = "Broadcast Name", message = "What will be the name of your broadcast?", default = "[broadcast_name]", max_length = MAX_CHARTER_LEN)
+	broadcast_name = tgui_input_text(user = user, title = "广播名称", message = "你的广播将叫什么名字？", default = "[broadcast_name]", max_length = MAX_CHARTER_LEN)
 
 /obj/item/broadcast_camera/examine(mob/user)
 	. = ..()
-	. += span_notice("Broadcast name is <b>[broadcast_name]</b>")
+	. += span_notice("广播名称为<b>[broadcast_name]</b>")
 	. += span_notice("The microphone is <b>[active_microphone ? "On" : "Off"]</b>")
 
 /obj/item/broadcast_camera/on_enter_storage(datum/storage/master_storage)
@@ -119,7 +119,7 @@
 	active_microphone = !active_microphone
 
 	/// Text popup for letting the user know that the microphone has changed state
-	balloon_alert(user, "microphone [active_microphone ? "" : "de"]activated")
+	balloon_alert(user, "麦克风 [active_microphone ? "" : "de"]激活")
 
 	///If the radio exists as an object, set its state accordingly
 	if(active)

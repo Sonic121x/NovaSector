@@ -1,9 +1,9 @@
 /datum/outfit/ert
-	name = "Default ERT outfit"
+	name = "默认ERT装备"
 
 
 /datum/outfit/ert/weedkiller
-	name = "Fumigator"
+	name = "熏蒸员"
 	id = /obj/item/card/id/advanced/centcom/ert
 	suit = /obj/item/clothing/suit/apron/waders
 	glasses = /obj/item/clothing/glasses/biker
@@ -22,7 +22,7 @@
 		)
 
 /datum/outfit/ert/weedkiller/leader
-	name = "Fumigator Leader"
+	name = "熏蒸员队长"
 	id = /obj/item/card/id/advanced/centcom/ert
 	suit = /obj/item/clothing/suit/bio_suit/scientist
 	glasses = /obj/item/clothing/glasses/biker

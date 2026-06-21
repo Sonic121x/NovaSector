@@ -1,6 +1,6 @@
 /obj/item/megaphone
-	name = "megaphone"
-	desc = "A device used to project your voice. Loudly."
+	name = "扩音器"
+	desc = "一种用来放大你声音的设备。非常响亮。"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "megaphone"
 	inhand_icon_state = "megaphone"
@@ -12,7 +12,7 @@
 	var/list/voicespan = list(SPAN_COMMAND)
 
 /obj/item/megaphone/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is uttering [user.p_their()] last words into \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在对着 \the [src] 说出[user.p_their()]的遗言！看起来[user.p_theyre()]想要自杀！"))
 	spamcheck = 0//so they dont have to worry about recharging
 	user.say("AAAAAAAAAAAARGHHHHH", forced="megaphone suicide")//he must have died while coding this
 	return OXYLOSS
@@ -32,7 +32,7 @@
 	if(HAS_TRAIT(user, TRAIT_SIGN_LANG) || user.get_active_held_item() != src)
 		return
 	if(spamcheck > world.time)
-		to_chat(user, span_warning("\The [src] needs to recharge!"))
+		to_chat(user, span_warning("\The [src] 需要重新充电！"))
 	else
 		playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
 		speech_args[SPEECH_SPANS] |= voicespan
@@ -54,29 +54,29 @@
 /obj/item/megaphone/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "voice synthesizer overloaded")
+	balloon_alert(user, "语音合成器过载")
 	obj_flags |= EMAGGED
 	voicespan = list(SPAN_REALLYBIG, "userdanger")
 	return TRUE
 
 /obj/item/megaphone/sec
-	name = "security megaphone"
+	name = "安保扩音器"
 	icon_state = "megaphone-sec"
 	inhand_icon_state = "megaphone-sec"
 
 /obj/item/megaphone/command
-	name = "command megaphone"
+	name = "指挥扩音器"
 	icon_state = "megaphone-command"
 	inhand_icon_state = "megaphone-command"
 
 /obj/item/megaphone/cargo
-	name = "supply megaphone"
+	name = "补给扩音器"
 	icon_state = "megaphone-cargo"
 	inhand_icon_state = "megaphone-cargo"
 
 /obj/item/megaphone/clown
-	name = "clown's megaphone"
-	desc = "Something that should not exist."
+	name = "小丑的扩音器"
+	desc = "本不应存在之物。"
 	icon_state = "megaphone-clown"
 	inhand_icon_state = "megaphone-clown"
 	voicespan = list(SPAN_CLOWN)

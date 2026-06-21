@@ -217,7 +217,7 @@
 
 /obj/effect/step_trigger/sound_effect/lavaland_cult_altar
 	happens_once = TRUE
-	name = "a grave mistake";
+	name = "一个严重的错误";
 	sound = 'sound/effects/hallucinations/i_see_you1.ogg'
 	triggerer_only = 1
 

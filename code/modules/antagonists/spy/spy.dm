@@ -1,5 +1,5 @@
 /datum/antagonist/spy
-	name = "\improper Spy"
+	name = "\improper 间谍"
 	roundend_category = "spies"
 	antagpanel_category = "Spy"
 	antag_hud_name = "spy"
@@ -51,7 +51,7 @@
 
 	var/datum/component/spy_uplink/uplink = uplink_weakref?.resolve()
 	if(isnull(uplink))
-		tgui_alert(usr, "No spy uplink!", "Mission Failed")
+		tgui_alert(usr, "没有间谍上行链路！", "任务失败")
 		return
 
 	uplink.ui_interact(usr)
@@ -62,18 +62,18 @@
 
 	var/datum/component/spy_uplink/uplink = uplink_weakref?.resolve()
 	if(isnull(uplink))
-		tgui_alert(usr, "No spy uplink!", "Mission Failed")
+		tgui_alert(usr, "没有间谍上行链路！", "任务失败")
 		return
 
 	uplink.handler.force_refresh()
-	tgui_alert(usr, "Bounties refreshed.", "Mission Success")
+	tgui_alert(usr, "悬赏已刷新。", "任务成功")
 
 /datum/antagonist/spy/proc/admin_create_spy_uplink()
 	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	if(!auto_create_spy_uplink(owner.current, give_backup = FALSE))
-		tgui_alert(usr, "Failed to give [owner.current] a spy uplink - likely don't have a valid item to host it.", "Mission Failed")
+		tgui_alert(usr, "未能给[owner.current]间谍上行链路——可能没有有效的物品来承载它。", "任务失败")
 
 /datum/antagonist/spy/proc/bounty_handler_vv()
 	if(!check_rights(R_ADMIN|R_DEBUG))
@@ -81,7 +81,7 @@
 
 	var/datum/component/spy_uplink/uplink = uplink_weakref?.resolve()
 	if(isnull(uplink))
-		tgui_alert(usr, "No spy uplink!", "Mission Failed")
+		tgui_alert(usr, "没有间谍上行链路！", "任务失败")
 		return
 
 	usr.client?.debug_variables(uplink.handler)
@@ -99,7 +99,7 @@
 		if(give_backup)
 			var/datum/action/backup_uplink/backup = new(src)
 			backup.Grant(spy)
-			to_chat(spy, span_boldnotice("You were unable to be supplied with an uplink, so you have been given the ability to create one yourself."))
+			to_chat(spy, span_boldnotice("我们无法为您提供上行链路，因此您获得了自行创建一个的能力。"))
 		return FALSE
 
 	return TRUE
@@ -202,7 +202,7 @@
 	return finish_preview_icon(dummy_icon)
 
 /datum/outfit/spy
-	name = "Spy (Preview only)"
+	name = "间谍（仅预览）"
 	// Balaclava sprite is ass, otherwise I would use it for this
 	uniform = /obj/item/clothing/under/suit/black
 	gloves = /obj/item/clothing/gloves/color/black
@@ -213,8 +213,8 @@
 	ears = /obj/item/radio/headset
 
 /datum/action/backup_uplink
-	name = "Create Uplink"
-	desc = "Fashion a PDA, Pen or Radio Headset into a swanky Spy Uplink."
+	name = "创建上行链路"
+	desc = "将PDA、钢笔或无线电耳机改装成一个时髦的间谍上行链路。"
 	var/list/valid_types = list(
 		/obj/item/modular_computer/pda,
 		/obj/item/pen,
@@ -235,15 +235,15 @@
 	var/mob/living/spy = usr
 	var/obj/item/held_thing = spy.get_active_held_item()
 	if(isnull(held_thing))
-		spy.balloon_alert(spy, "you need to hold something!")
+		spy.balloon_alert(spy, "你需要拿着什么东西！")
 		return
 
 	if(!is_type_in_list(held_thing, valid_types))
-		held_thing.balloon_alert(spy, "invalid item!")
+		held_thing.balloon_alert(spy, "无效物品！")
 		return
 
 	var/datum/antagonist/spy/spy_datum = target
 	spy_datum.create_spy_uplink(spy, held_thing)
-	held_thing.balloon_alert(spy, "uplink created")
+	held_thing.balloon_alert(spy, "上行链路已创建")
 
 	qdel(src)

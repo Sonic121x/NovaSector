@@ -8,118 +8,118 @@
 	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
 
 /area/mine/lobby
-	name = "Mining Station"
+	name = "采矿站"
 	icon_state = "mining_lobby"
 
 /area/mine/storage
-	name = "Mining Station Production Storage"
+	name = "采矿站生产存储区"
 	icon_state = "mining_storage"
 
 /area/mine/storage/public
-	name = "Mining Station Public Storage"
+	name = "采矿站公共存储区"
 	icon_state = "mining_storage"
 
 /area/mine/lobby/raptor
-	name = "Nanotrasen Raptor Farm"
+	name = "纳米特拉森迅猛龙农场"
 	icon_state = "mining_storage"
 
 /area/mine/production
-	name = "Mining Station Production Wing"
+	name = "采矿站生产区"
 	icon_state = "mining_production"
 
 /area/mine/abandoned
-	name = "Abandoned Mining Station"
+	name = "废弃采矿站"
 
 /area/mine/living_quarters
-	name = "Mining Station Living Quarters"
+	name = "采矿站生活区"
 	icon_state = "mining_living"
 
 /area/mine/eva
-	name = "Mining Station EVA"
+	name = "采矿站舱外活动区"
 	icon_state = "mining_eva"
 
 /area/mine/eva/lower
-	name = "Mining Station Lower EVA"
+	name = "采矿站下层舱外活动区"
 	icon_state = "mining_eva"
 
 /area/mine/maintenance
-	name = "Mining Station Maintenance"
+	name = "采矿站维护区"
 
 /area/mine/maintenance/production
-	name = "Mining Station Production Maintenance"
+	name = "采矿站生产维护区"
 
 /area/mine/maintenance/living
-	name = "Mining Station Living Quarters Maintenance"
+	name = "采矿站生活区维护区"
 
 /area/mine/maintenance/living/north
-	name = "Mining Station Living Quarters North Maintenance"
+	name = "采矿站生活区北部维护区"
 
 /area/mine/maintenance/living/south
-	name = "Mining Station Living Quarters South Maintenance"
+	name = "采矿站生活区南部维护区"
 
 /area/mine/maintenance/public
-	name = "Mining Station Public Maintenance"
+	name = "采矿站公共维护区"
 
 /area/mine/maintenance/public/north
-	name = "Mining Station Public North Maintenance"
+	name = "采矿站公共北部维护区"
 
 /area/mine/maintenance/public/south
-	name = "Mining Station Public South Maintenance"
+	name = "采矿站公共南部维护区"
 
 /area/mine/maintenance/service
-	name = "Mining Station Service Maintenance"
+	name = "采矿站服务维护区"
 
 /area/mine/maintenance/service/disposals
-	name = "Mining Station Disposals"
+	name = "采矿站废弃物处理区"
 
 /area/mine/maintenance/service/comms
-	name = "Mining Station Communications"
+	name = "采矿站通信区"
 
 /area/mine/maintenance/labor
-	name = "Labor Camp Maintenance"
+	name = "劳改营维护区"
 
 /area/mine/cafeteria
-	name = "Mining Station Cafeteria"
+	name = "采矿站食堂"
 	icon_state = "mining_cafe"
 
 /area/mine/cafeteria/labor
-	name = "Labor Camp Cafeteria"
+	name = "劳改营食堂"
 	icon_state = "mining_labor_cafe"
 
 /area/mine/hydroponics
-	name = "Mining Station Hydroponics"
+	name = "采矿站水培区"
 	icon_state = "mining_hydro"
 
 /area/mine/medical
-	name = "Mining Station Emergency Medbay"
+	name = "采矿站紧急医疗舱"
 
 /area/mine/mechbay
-	name = "Mining Station Mech Bay"
+	name = "采矿站机甲舱"
 	icon_state = "mechbay"
 
 /area/mine/lounge
-	name = "Mining Station Public Lounge"
+	name = "采矿站公共休息室"
 	icon_state = "mining_lounge"
 
 /area/mine/laborcamp
-	name = "Labor Camp"
+	name = "劳改营"
 	icon_state = "mining_labor"
 
 /area/mine/laborcamp/quarters
-	name = "Labor Camp Quarters"
+	name = "劳改营宿舍"
 	icon_state = "mining_labor_quarters"
 
 /area/mine/laborcamp/production
-	name = "Labor Camp Production"
+	name = "劳改营生产区"
 	icon_state = "mining_labor_production"
 
 /area/mine/laborcamp/security
-	name = "Labor Camp Security"
+	name = "劳改营安保区"
 	icon_state = "labor_camp_security"
 	ambience_index = AMBIENCE_DANGER
 
 /area/mine/laborcamp/security/maintenance
-	name = "Labor Camp Security Maintenance"
+	name = "劳改营安保维护区"
 	icon_state = "labor_camp_security"
 	ambience_index = AMBIENCE_DANGER
 
@@ -141,7 +141,7 @@
 	use_mapgen = FALSE
 
 /area/lavaland/surface
-	name = "Lavaland"
+	name = "熔岩地"
 	icon_state = "explored"
 	always_unpowered = TRUE
 	power_environ = FALSE
@@ -152,7 +152,7 @@
 	area_flags = VALID_TERRITORY
 
 /area/lavaland/underground
-	name = "Lavaland Caves"
+	name = "熔岩地洞穴"
 	icon_state = "unexplored"
 	always_unpowered = TRUE
 	requires_power = TRUE
@@ -162,7 +162,7 @@
 	ambience_index = AMBIENCE_MINING
 
 /area/lavaland/surface/outdoors
-	name = "Lavaland Wastes"
+	name = "熔岩地荒原"
 	outdoors = TRUE
 
 /area/lavaland/surface/outdoors/unexplored //monsters and ruins spawn here
@@ -181,7 +181,7 @@
 	map_generator = /datum/map_generator/cave_generator/lavaland/ruin_version
 
 /area/lavaland/surface/outdoors/explored
-	name = "Lavaland Labor Camp"
+	name = "熔岩地劳改营"
 	area_flags = VALID_TERRITORY
 
 /**********************Ice Moon Areas**************************/
@@ -199,7 +199,7 @@
 	skip_minimap_rendering = TRUE
 
 /area/icemoon/surface
-	name = "Icemoon"
+	name = "冰月"
 	icon_state = "explored"
 	always_unpowered = TRUE
 	power_environ = FALSE
@@ -208,7 +208,7 @@
 	requires_power = TRUE
 
 /area/icemoon/surface/outdoors // parent that defines if something is on the exterior of the station.
-	name = "Icemoon Wastes"
+	name = "冰月荒原"
 	outdoors = TRUE
 
 /area/icemoon/surface/outdoors/Initialize(mapload)
@@ -250,7 +250,7 @@
 	map_generator = /datum/map_generator/cave_generator/icemoon/surface/noruins
 
 /area/icemoon/surface/outdoors/labor_camp
-	name = "Icemoon Labor Camp"
+	name = "冰月劳改营"
 	area_flags_mapping = /area::area_flags_mapping
 
 /area/icemoon/surface/outdoors/unexplored //monsters and ruins spawn here
@@ -271,7 +271,7 @@
 	area_flags_mapping = /area/icemoon/::area_flags_mapping | CAVES_ALLOWED
 
 /area/icemoon/underground
-	name = "Icemoon Caves"
+	name = "冰月洞穴"
 	outdoors = TRUE
 	always_unpowered = TRUE
 	requires_power = TRUE
@@ -280,7 +280,7 @@
 	power_light = FALSE
 
 /area/icemoon/underground/unexplored // mobs and megafauna and ruins spawn here
-	name = "Icemoon Caves"
+	name = "冰月洞穴"
 	icon_state = "unexplored"
 	area_flags_mapping = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
 
@@ -301,15 +301,15 @@
 	area_flags_mapping = /area/icemoon/::area_flags_mapping | CAVES_ALLOWED
 
 /area/icemoon/underground/explored // ruins can't spawn here
-	name = "Icemoon Underground"
+	name = "冰月地下"
 	area_flags_mapping = /area::area_flags_mapping
 
 /area/icemoon/underground/explored/graveyard
-	name = "Graveyard"
+	name = "墓地"
 	area_flags_mapping = /area::area_flags_mapping
 	ambience_index = AMBIENCE_SPOOKY
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "graveyard"
 
 /area/icemoon/underground/explored/graveyard/chapel
-	name = "Chapel Graveyard"
+	name = "教堂墓地"

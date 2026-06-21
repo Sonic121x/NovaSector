@@ -1,6 +1,6 @@
 /obj/item/undertile_circuit
-	name = "circuit panel"
-	desc = "A panel for an integrated circuit. It needs to be fit under a floor tile to operate."
+	name = "电路面板"
+	desc = "一个用于集成电路的面板。需要安装在地板砖下方才能运作。"
 	icon = 'icons/obj/science/circuits.dmi'
 	inhand_icon_state = "flashtool"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'

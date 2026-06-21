@@ -5,7 +5,7 @@
 		return TRUE
 
 /obj/projectile/energy/fisher
-	name = "attenuated kinetic force"
+	name = "衰减动能力场"
 	icon_state = null
 	damage = 0
 	damage_type = BRUTE
@@ -29,7 +29,7 @@
 			success = TRUE
 
 	if(success && ismob(firer))
-		target.balloon_alert(firer, "disrupted")
+		target.balloon_alert(firer, "已干扰")
 
 /obj/projectile/energy/fisher/melee
 	range = 1

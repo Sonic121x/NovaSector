@@ -3,7 +3,7 @@
 //Uniform items are in command.dm
 
 /obj/item/radio/headset/headset_bs
-	name = "\proper the blueshield's headset"
+	name = "\proper 蓝盾的耳机"
 	icon = 'modular_nova/modules/blueshield/icons/radio.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/ears.dmi'
 	icon_state = "bshield_headset"
@@ -20,15 +20,15 @@
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/clothing/head/helmet/space/plasmaman/blueshield
-	name = "blueshield envirosuit helmet"
-	desc = "A plasmaman containment helmet designed for certified blueshields, who's job guarding heads should not include self-combustion... most of the time."
+	name = "蓝盾环境防护服头盔"
+	desc = "为认证蓝盾设计的等离子人防护头盔，其保护头部的工作不应包括自燃……大多数时候。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/head/plasmaman_hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/plasmaman_head.dmi'
 	icon_state = "bs_envirohelm"
 
 /obj/item/clothing/under/plasmaman/blueshield
-	name = "blueshield envirosuit"
-	desc = "A plasmaman containment suit designed for certified blueshields, offering a limited amount of extra protection."
+	name = "蓝盾环境防护服"
+	desc = "为认证蓝盾设计的等离子人防护服，提供有限的额外保护。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/under/plasmaman.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/plasmaman.dmi'
 	icon_state = "bs_envirosuit"
@@ -43,8 +43,8 @@
 	acid = 95
 
 /obj/item/clothing/head/beret/blueshield
-	name = "blueshield's beret"
-	desc = "A blue beret made of durathread with a genuine golden badge, denoting its owner as a Blueshield Lieutenant. It seems to be padded with nano-kevlar, making it tougher than standard reinforced berets."
+	name = "蓝盾的贝雷帽"
+	desc = "一顶由杜拉线制成的蓝色贝雷帽，配有真金徽章，表明其主人是蓝盾中尉。它似乎填充了纳米凯夫拉，使其比标准强化贝雷帽更坚韧。"
 	icon_state = "/obj/item/clothing/head/beret/blueshield"
 	post_init_icon_state = "beret_badge_police"
 	greyscale_config = /datum/greyscale_config/beret_badge
@@ -54,8 +54,8 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/soft/blueshield
-	name = "blueshield's cap"
-	desc = "A navy-blue baseball cap made of durathread with a genuine golden badge, denoting its owner as a Blueshield Lieutenant. It seems to be padded with nano-kevlar, making it tougher than standard caps."
+	name = "蓝盾的帽子"
+	desc = "一顶由杜拉线制成的海军蓝棒球帽，配有真金徽章，表明其主人是蓝盾中尉。它似乎填充了纳米凯夫拉，使其比标准帽子更坚韧。"
 	icon_state = "blueshieldsoft"
 	soft_type = "blueshield"
 	inhand_icon_state = "greyscale_softcap"
@@ -63,14 +63,14 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/beret/blueshield/navy
-	name = "navy blueshield's beret"
-	desc = "A navy-blue beret made of durathread with a silver badge, denoting its owner as a Blueshield Lieutenant. It seems to be padded with nano-kevlar, making it tougher than standard reinforced berets."
+	name = "海军蓝盾贝雷帽"
+	desc = "一顶由杜拉纤维制成的海军蓝色贝雷帽，配有银色徽章，表明其佩戴者为蓝盾中尉。它似乎填充了纳米凯夫拉材料，使其比标准强化贝雷帽更坚韧。"
 	icon_state = "/obj/item/clothing/head/beret/blueshield/navy"
 	greyscale_colors = "#3C485A#BBBBBB"
 
 /obj/item/storage/backpack/blueshield
-	name = "blueshield backpack"
-	desc = "A robust backpack issued to Nanotrasen's finest."
+	name = "蓝盾背包"
+	desc = "一款颁发给纳米传讯最优秀员工的坚固背包。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/backpacks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_nova/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
@@ -79,8 +79,8 @@
 	inhand_icon_state = "backpack_blueshield"
 
 /obj/item/storage/backpack/satchel/blueshield
-	name = "blueshield satchel"
-	desc = "A robust satchel issued to Nanotrasen's finest."
+	name = "蓝盾挎包"
+	desc = "一款颁发给纳米传讯最优秀员工的坚固挎包。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/backpacks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_nova/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
@@ -89,8 +89,8 @@
 	inhand_icon_state = "satchel_blueshield"
 
 /obj/item/storage/backpack/duffelbag/blueshield
-	name = "blueshield duffelbag"
-	desc = "A robust duffelbag issued to Nanotrasen's finest."
+	name = "蓝盾行李袋"
+	desc = "一款颁发给纳米传讯最优秀员工的坚固行李袋。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/backpacks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_nova/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
@@ -118,8 +118,8 @@
 /obj/item/clothing/suit/armor/vest/blueshield
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suits/armor.dmi'
-	name = "blueshield's armor"
-	desc = "A tight-fitting kevlar-lined vest with a blue badge on the chest of it."
+	name = "蓝盾护甲"
+	desc = "一件紧身凯夫拉内衬背心，胸前有一枚蓝色徽章。"
 	icon_state = "blueshieldarmor"
 	body_parts_covered = CHEST
 
@@ -127,8 +127,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/blueshield_jacket)
 
 /obj/item/clothing/suit/armor/vest/blueshield/jacket
-	name = "blueshield's jacket"
-	desc = "An expensive kevlar-lined jacket with a golden badge on the chest and \"NT\" emblazoned on the back. It weighs surprisingly little, despite how heavy it looks."
+	name = "蓝盾夹克"
+	desc = "一件昂贵的凯夫拉内衬夹克，胸前有一枚金色徽章，背部印有“NT”字样。尽管看起来厚重，但重量却出奇地轻。"
 	icon_state = "blueshield"
 	body_parts_covered = CHEST|ARMS
 
@@ -136,9 +136,9 @@
 	return
 
 /obj/item/clothing/suit/hooded/wintercoat/nova/blueshield
-	name = "blueshield's winter coat"
+	name = "蓝盾冬季大衣"
 	icon_state = "coatblueshield"
-	desc = "A comfy kevlar-lined coat with blue highlights, fit to keep the blueshield armored and warm."
+	desc = "一件舒适的凯夫拉内衬大衣，带有蓝色点缀，适合让蓝盾保持防护与温暖。"
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/nova/blueshield
 	allowed = list(/obj/item/melee/baton/security/loaded)
 	armor_type = /datum/armor/suit_armor
@@ -149,5 +149,5 @@
 
 /obj/item/clothing/head/hooded/winterhood/nova/blueshield
 	icon_state = "hood_blueshield"
-	desc = "A comfy kevlar-lined hood to go with the comfy kevlar-lined coat."
+	desc = "一顶舒适的凯夫拉内衬兜帽，与舒适的凯夫拉内衬大衣相配。"
 	armor_type = /datum/armor/suit_armor

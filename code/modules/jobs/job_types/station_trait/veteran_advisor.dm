@@ -58,7 +58,7 @@
 		veteran.gain_trauma(/datum/brain_trauma/special/ptsd) //War, war never changes...
 
 /datum/outfit/job/veteran_advisor
-	name = "Veteran Security Advisor"
+	name = "资深安保顾问"
 	jobtype = /datum/job/veteran_advisor
 
 	id_trim = /datum/id_trim/job/veteran_advisor

@@ -13,283 +13,283 @@
 		icon = NOVA_BARSIGN_FILE
 
 /datum/barsign/nova/topmen
-	name = "Top Men"
+	name = "顶尖人物"
 	icon_state = "topmen"
 	neon_color = "#C2AACA"
 
 /datum/barsign/nova/spaceballgrille
-	name = "Spaceball Grille"
+	name = "太空球烧烤"
 	icon_state = "spaceballgrille"
 	neon_color = "#827973"
 
 /datum/barsign/nova/clubee
-	name = "Club Bee"
+	name = "蜜蜂俱乐部"
 	icon_state = "clubee"
 	neon_color = "#F2EEEE"
 
 /datum/barsign/nova/thesun
-	name = "The Sun"
+	name = "太阳"
 	icon_state = "thesun"
 	neon_color = "#F8F0B8"
 
 /datum/barsign/nova/limbo
-	name = "The Limbo"
+	name = "灵薄狱"
 	icon_state = "limbo"
-	desc = "A popular haunt for lost souls. The mood lighting is killer!"
+	desc = "迷失灵魂的流行聚集地。氛围灯光简直绝了！"
 	neon_color = "#777777"
 
 /datum/barsign/nova/meadbay
-	name = "Meadbay"
+	name = "蜜酒湾"
 	icon_state = "meadbay"
 	neon_color = "#EBB823"
 
 /datum/barsign/nova/cindikate
-	name = "Cindi Kate's"
+	name = "辛迪·凯特"
 	icon_state = "cindikate"
 	neon_color = "#FF3403"
 
 /datum/barsign/nova/theclownshead
-	name = "The Clown's Head"
+	name = "小丑之首"
 	icon_state = "theclownshead"
-	desc = "Home of Headdy, the honking clown head!"
+	desc = "这里是Headdy的家，那个会按喇叭的小丑头！"
 	neon_color = "#FFD800"
 
 /datum/barsign/nova/theorchard
-	name = "The Orchard"
+	name = "果园"
 	icon_state = "theorchard"
 	neon_color = "#CFFF47"
 
 /datum/barsign/nova/thesaucyclown
-	name = "The Saucy Clown"
+	name = "俏皮小丑"
 	icon_state = "thesaucyclown"
-	desc = "A known gathering site for the annual clown courtship rituals."
+	desc = "一年一度小丑求偶仪式的知名聚集地。"
 	neon_color = "#FF66CC"
 
 /datum/barsign/nova/thedamnwall
-	name = "The Damn Wall"
+	name = "该死的墙"
 	icon_state = "thedamnwall"
-	desc = "When you're up against a wall, it's best to have stout friends and stout liquor right there beside you."
+	desc = "当你被逼到墙角时，最好的伙伴就是身边可靠的烈酒和可靠的朋友。"
 	neon_color = "#CC3333"
 
 /datum/barsign/nova/whiskeyimplant
-	name = "Whiskey Implant"
+	name = "威士忌植入体"
 	icon_state = "whiskeyimplant"
 	neon_color = "#E9F517"
 
 /datum/barsign/nova/carpecarp
-	name = "Carpe Carp"
+	name = "抓住鲤鱼"
 	icon_state = "carpecarp"
 	neon_color = "#C717FE"
 
 /datum/barsign/nova/robustroadhouse
-	name = "Robust Roadhouse"
+	name = "强健路边酒馆"
 	icon_state = "robustroadhouse"
 	neon_color = "#F7A804"
 
 /datum/barsign/nova/theredshirt
-	name = "The Redshirt"
+	name = "红衫客"
 	icon_state = "theredshirt"
 	neon_color = "#FF92E0"
 
 /datum/barsign/nova/maltesefalconmk2
-	name = "Maltese Falcon MK2"
+	name = "马耳他猎鹰MK2"
 	icon_state = "maltesefalconmk2"
-	desc = "The Maltese Falcon mark two, now extra hard boiled."
+	desc = "马耳他猎鹰第二代，现在更加硬核了。"
 	neon_color = "#E30000"
 
 /datum/barsign/nova/thecavernmk2
-	name = "The Cavern MK2"
+	name = "洞穴MK2"
 	icon_state = "thecavernmk2"
-	desc = "Fine drinks while listening to some fine tunes."
+	desc = "美酒配佳音。"
 	neon_color = "#AA9393"
 
 /datum/barsign/nova/lv426
 	name = "LV-426"
 	icon_state = "lv426"
-	desc = "Drinking with fancy facemasks is clearly more important than going to medbay."
+	desc = "戴着花哨面罩喝酒显然比去医疗室更重要。"
 	neon_color = "#00F206"
 
 /datum/barsign/nova/zocalo
-	name = "Zocalo"
+	name = "索卡洛"
 	icon_state = "zocalo"
 	desc = "Anteriormente ubicado en Spessmerica."
 	neon_color = "#E5AF1C"
 
 /datum/barsign/nova/fourtheemprah
-	name = "4 The Emprah"
+	name = "为了帝皇"
 	icon_state = "4theemprah"
-	desc = "Enjoyed by fanatics, heretics, and brain-damaged patrons alike."
+	desc = "狂热者、异端分子和脑损伤的顾客都乐在其中。"
 	neon_color = "#E5AF1C"
 
 /datum/barsign/nova/ishimura
-	name = "Ishimura"
+	name = "石村"
 	icon_state = "ishimura"
-	desc = "Well known for their quality brownstar and delicious crackers."
+	desc = "以其优质的棕星酒和美味的饼干而闻名。"
 	neon_color = "#FF0000"
 
 /datum/barsign/nova/tardis
-	name = "Tardis"
+	name = "塔迪斯"
 	icon_state = "tardis"
-	desc = "This establishment has been through at least 5,343 iterations."
+	desc = "这家店至少经历了5,343次迭代。"
 	neon_color = "#2739AA"
 
 /datum/barsign/nova/quarks
-	name = "Quark's"
+	name = "夸克酒吧"
 	icon_state = "quarks"
-	desc = "Frequenters of this establishment are often seen wearing meson scanners; how quaint."
+	desc = "这家店的常客经常戴着介子扫描仪；多么别致。"
 	neon_color = "#10E500"
 
 /datum/barsign/nova/tenforward
-	name = "Ten Forward"
+	name = "十前区"
 	icon_state = "tenforward"
 	neon_color = "#E5AF1C"
 
 /datum/barsign/nova/theprancingpony
-	name = "The Prancing Pony"
+	name = "跃马客栈"
 	icon_state = "theprancingpony"
-	desc = "Ok, we don't take to kindly to you short folk pokin' round looking for some ranger scum."
+	desc = "好吧，我们可不太喜欢你们这些小个子到处打探，寻找什么游侠渣滓。"
 	neon_color = "#FF9100"
 
 /datum/barsign/nova/vault13
-	name = "Vault 13"
+	name = "13号避难所"
 	icon_state = "vault13"
-	desc = "Coincidence is intentional."
+	desc = "巧合是刻意的。"
 	neon_color = "#FFA800"
 
 /datum/barsign/nova/thehive
-	name = "The Hive"
+	name = "蜂巢"
 	icon_state = "thehive"
 	neon_color = "#FFC62A"
 
 /datum/barsign/nova/cantina
-	name = "Chalmun's Cantina"
+	name = "查尔蒙的坎蒂娜"
 	icon_state = "cantina"
-	desc = "The bar was founded on the principles of originality; they have the same music playing 24/7."
+	desc = "这家酒吧建立在原创性原则之上；他们24/7播放着同样的音乐。"
 	neon_color = "#0078FF"
 
 /datum/barsign/nova/milliways42
-	name = "Milliways 42"
+	name = "42号尽头餐厅"
 	icon_state = "milliways42"
-	desc = "It's not really the end; it's the beginning, meaning, and answer for all your beverage needs."
+	desc = "这并非真正的终结；它是你所有饮品需求的开始、意义与答案。"
 	neon_color = "#FF00F6"
 
 /datum/barsign/nova/timeofeve
-	name = "The Time of Eve"
+	name = "夏娃的时间"
 	icon_state = "thetimeofeve"
-	desc = "Vintage drinks from 2453!."
+	desc = "来自2453年的复古饮品！"
 	neon_color = "#EB52F8"
 
 /datum/barsign/nova/spaceasshole
-	name = "Space Asshole"
+	name = "太空混蛋"
 	icon_state = "spaceasshole"
-	desc = "Open since 2125, Not much has changed since then; the engineers still release the singulo and the damn miners still are more likely to cave your face in that deliver ores."
+	desc = "自2125年开业以来，变化不大；工程师们仍然会释放奇点，而那些该死的矿工仍然更可能砸烂你的脸而不是送来矿石。"
 	neon_color = "#FF0000"
 
 /datum/barsign/nova/birdcage
-	name = "The Bird Cage"
+	name = "鸟笼酒吧"
 	icon_state = "birdcage"
-	desc = "Caw."
+	desc = "呱。"
 	neon_color = "#FFD21E"
 
 /datum/barsign/nova/narsie
-	name = "Narsie Bistro"
+	name = "纳尔西小馆"
 	icon_state = "narsiebistro"
-	desc = "The last pub before the World's End."
+	desc = "世界终结前的最后一家酒馆。"
 	neon_color = "#FF0000"
 
 /datum/barsign/nova/fallout
-	name = "The Booze Bunker"
+	name = "酒窖掩体"
 	icon_state = "boozebunker"
-	desc = "Never duck for cover without a drink!"
+	desc = "躲避炮火时，怎能没有一杯酒！"
 	neon_color = "#FCC41B"
 
 /datum/barsign/nova/brokendreams
-	name = "The Cafe of Broken Dreams"
+	name = "破碎梦想咖啡馆"
 	icon_state = "brokendreams"
-	desc = "Try our new dogmeat sliders!"
+	desc = "尝尝我们新出的狗肉小汉堡！"
 	neon_color = "#E8E8A5"
 
 /datum/barsign/nova/toolboxtavern
-	name = "Toolbox Tavern"
+	name = "工具箱酒馆"
 	icon_state = "toolboxtavern"
-	desc = "Free lodging with every Screwdriver purchased!"
+	desc = "每购买一杯螺丝刀鸡尾酒，即可获赠免费住宿！"
 	neon_color = ""
 
 /datum/barsign/nova/blueoyster
-	name = "The Blue Oyster"
+	name = "蓝牡蛎酒吧"
 	icon_state = "blueoyster"
-	desc = "The totally heterosexual bar for totally heterosexual men, just come inside and see."
+	desc = "专为完全异性恋男士开设的完全异性恋酒吧，进来看看就知道了。"
 	neon_color = ""
 
 /datum/barsign/nova/foreign
-	name = "Foreign Food Sign"
+	name = "异国美食招牌"
 	icon_state = "foreign"
-	desc = "A sign written in some dead language advertising some non-descript foreign food."
+	desc = "一块用某种死语言书写的招牌，宣传着某种难以名状的异国美食。"
 	neon_color = ""
 
 /datum/barsign/nova/commie
-	name = "Prole's Preferred"
+	name = "无产者首选"
 	icon_state = "commie"
-	desc = "The only bar you will ever need, comrade!"
+	desc = "同志，这是你唯一需要的酒吧！"
 	neon_color = "#E46F6F"
 
 /datum/barsign/nova/brokenheros
-	name = "The Bar of Broken Heros"
+	name = "破碎英雄酒吧"
 	icon_state = "brokenheros"
-	desc = "Do you enjoy hurting other people?"
+	desc = "你喜欢伤害别人吗？"
 	neon_color = ""
 
 /datum/barsign/nova/sociallubricator
-	name = "The Social Lubricator"
+	name = "社交润滑剂"
 	icon_state = "sociallubricator"
-	desc = "The perfect thing to make you like people you hate."
+	desc = "让你喜欢上你讨厌的人的完美之物。"
 	neon_color = ""
 
 /datum/barsign/nova/chemlab
-	name = "The Chem Lab"
+	name = "化学实验室"
 	icon_state = "chemlab"
-	desc = "Try our new plasma martinis!"
+	desc = "尝尝我们的新款等离子马提尼！"
 	neon_color = ""
 
 /datum/barsign/nova/mime
-	name = "Moonshine Mime"
+	name = "月光哑剧"
 	icon_state = "mime"
-	desc = "Silent, not stirred."
+	desc = "静默，非搅拌。"
 	neon_color = ""
 
 /datum/barsign/nova/clown
-	name = "Honking Clown"
+	name = "鸣叫小丑"
 	icon_state = "clown"
-	desc = "Bananas not included."
+	desc = "香蕉不包含在内。"
 	neon_color = ""
 
 /datum/barsign/nova/progressive
-	name = "A Modern and Progressive Tavern"
+	name = "一家现代而进步的酒吧"
 	icon_state = "progressive"
-	desc = "Whatever that means."
+	desc = "管它什么意思。"
 	neon_color = "#DB9B9A"
 
 /datum/barsign/nova/va11halla
 	name = "VA-11 HALL-A"
 	icon_state = "va11halla"
-	desc = "Not as dangerous as N1-RV Ann-A."
+	desc = "不像 N1-RV Ann-A 那么危险。"
 	neon_color = "#FB3F7D"
 
 /datum/barsign/nova/squatopia
-	name = "Squatopia"
+	name = "蹲踞乌托邦"
 	icon_state = "squatopia"
-	desc = "The crystal belonged to my father. He was murdered."
+	desc = "这水晶曾属于我父亲。他被谋杀了。"
 	neon_color = "#CC0033"
 
 /datum/barsign/nova/bug
-	name = "The Hungry Bug"
+	name = "饥饿虫虫"
 	icon_state = "hungrybug"
-	desc = "Stop by and enjoy some of the Hole's famous gyoza!"
+	desc = "快来品尝“洞窟”著名的饺子吧！"
 	neon_color = "#E2B001"
 
 // 96x96 signs
 
 /datum/barsign/nova/large/cyberslyph
-	name = "Cyberslyph"
+	name = "赛博精灵"
 	icon_state = "cyberslyph"
 	neon_color = "#00FFFF"

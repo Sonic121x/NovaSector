@@ -1,19 +1,19 @@
 //Darude sandstorm starts playing
 /datum/weather/sand_storm
-	name = "severe sandstorm"
-	desc = "A severe dust storm that engulfs an area, dealing intense damage to the unprotected."
+	name = "严重沙尘暴"
+	desc = "一场吞噬区域的严重沙尘暴，对无防护者造成剧烈伤害。"
 
-	telegraph_message = span_danger("You see a dust cloud rising over the horizon. That can't be good...")
+	telegraph_message = span_danger("你看到地平线上升起一片沙尘云。这可不妙……")
 	telegraph_duration = 30 SECONDS
 	telegraph_overlay = "dust_med"
 	telegraph_sound = 'sound/effects/siren.ogg'
 
-	weather_message = span_userdanger("<i>Hot sand and wind batter you! Get inside!</i>")
+	weather_message = span_userdanger("<i>灼热的沙子和狂风拍打着你！快进到室内！</i>")
 	weather_duration_lower = 1 MINUTES
 	weather_duration_upper = 2 MINUTES
 	weather_overlay = "dust_high"
 
-	end_message = span_bolddanger("The shrieking wind whips away the last of the sand and falls to its usual murmur. It should be safe to go outside now.")
+	end_message = span_bolddanger("呼啸的风卷走了最后的沙尘，恢复为平常的低语。现在应该可以安全外出了。")
 	end_duration = 30 SECONDS
 	end_overlay = "dust_med"
 
@@ -50,17 +50,17 @@
 	return ..()
 
 /datum/weather/sand_storm/harmless
-	name = "sandfall"
-	desc = "A passing sandstorm blankets the area in sand."
+	name = "沙落"
+	desc = "一场经过的沙尘暴给该区域覆盖上了一层沙子。"
 
-	telegraph_message = span_danger("The wind begins to intensify, blowing sand up from the ground...")
+	telegraph_message = span_danger("风开始增强，从地面卷起沙子……")
 	telegraph_overlay = "dust_low"
 	telegraph_sound = null
 
-	weather_message = span_notice("Gentle sand wafts down around you like grotesque snow. The storm seems to have passed you by...")
+	weather_message = span_notice("轻柔的沙子像怪异的雪花般在你周围飘落。风暴似乎已经过去了……")
 	weather_overlay = "dust_med"
 
-	end_message = span_notice("The sandfall slows, stops. Another layer of sand on the mesa beneath your feet.")
+	end_message = span_notice("沙落减缓，停止。台地上你的脚下又多了一层沙子。")
 	end_overlay = "dust_low"
 
 	probability = 10

@@ -1,5 +1,5 @@
 /mob/living/silicon/ai
-	name = "AI"
+	name = "人工智能"
 	real_name = "AI"
 	icon = 'icons/mob/silicon/ai.dmi'
 	icon_state = "ai-core"

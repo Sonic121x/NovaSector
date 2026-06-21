@@ -1,6 +1,6 @@
 /obj/item/gun/energy/e_gun/advtaser/mounted
-	name = "mounted taser"
-	desc = "An arm mounted dual-mode weapon that fires electrodes and disabler shots."
+	name = "手臂泰瑟枪"
+	desc = "一种安装在手臂上的双模式武器，能够发射电极和致盲弹。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "taser"
 	inhand_icon_state = "armcannonstun4"
@@ -13,8 +13,8 @@
 	return
 
 /obj/item/gun/energy/laser/mounted
-	name = "mounted laser"
-	desc = "An arm mounted cannon that fires lethal lasers."
+	name = "手臂激光炮"
+	desc = "一种可以发射致命激光的手臂加农炮。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "laser_cyborg"
 	inhand_icon_state = "armcannonlase"

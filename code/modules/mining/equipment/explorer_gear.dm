@@ -1,7 +1,7 @@
 /****************Explorer's Suit and Mask****************/
 /obj/item/clothing/suit/hooded/explorer
-	name = "explorer suit"
-	desc = "An armoured suit for exploring harsh environments."
+	name = "探险者套装"
+	desc = "用于探索恶劣环境的盔甲。"
 	icon_state = "explorer"
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	worn_icon = 'icons/mob/clothing/suits/utility.dmi'
@@ -30,8 +30,8 @@
 	wound = 10
 
 /obj/item/clothing/head/hooded/explorer
-	name = "explorer hood"
-	desc = "An armoured hood for exploring harsh environments."
+	name = "探险者头罩"
+	desc = "用于探索恶劣环境的装甲兜帽。"
 	icon = 'icons/obj/clothing/head/utility.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	icon_state = "explorer"
@@ -54,8 +54,8 @@
 	AddComponent(/datum/component/armor_plate)
 
 /obj/item/clothing/mask/gas/explorer
-	name = "explorer gas mask"
-	desc = "A military-grade gas mask that can be connected to an air supply."
+	name = "探险者防毒面具"
+	desc = "军用防毒面具，可以连接到空气供应系统。"
 	icon_state = "gas_mining"
 	inhand_icon_state = "explorer_gasmask"
 	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH
@@ -95,7 +95,7 @@
 	. = ..()
 	if(up || w_class == WEIGHT_CLASS_SMALL)
 		return
-	. += span_notice("You could fit this into a box if you adjusted it.")
+	. += span_notice("如果你调整一下，可以把它放进盒子里。")
 
 /obj/item/clothing/mask/gas/explorer/folded
 	w_class = WEIGHT_CLASS_SMALL
@@ -109,8 +109,8 @@
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 
 /obj/item/clothing/suit/hooded/cloak/goliath
-	name = "goliath cloak"
-	desc = "A staunch, practical cape made out of numerous monster materials, it is coveted amongst exiles & hermits."
+	name = "歌利亚斗篷"
+	desc = "一件由多种稀有材料制成的坚固实用的披风，深受流亡者和隐士们的喜爱。"
 	icon_state = "goliath_cloak"
 	alternate_worn_layer = NECK_LAYER
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
@@ -142,31 +142,31 @@
 		return NONE
 	var/mob/living/carbon/char = user
 	if((char.get_item_by_slot(ITEM_SLOT_NECK) == src) || (char.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src))
-		to_chat(user, span_warning("You can't adjust [src] while wearing it!"))
+		to_chat(user, span_warning("你不能在穿着[src]时调整它！"))
 		return CLICK_ACTION_BLOCKING
 	if(!user.is_holding(src))
-		to_chat(user, span_warning("You must be holding [src] in order to adjust it!"))
+		to_chat(user, span_warning("你必须手持[src]才能调整它！"))
 		return CLICK_ACTION_BLOCKING
 	if(slot_flags & ITEM_SLOT_OCLOTHING)
 		slot_flags = ITEM_SLOT_NECK
 		cold_protection = null
 		heat_protection = null
 		set_armor(/datum/armor/none)
-		user.visible_message(span_notice("[user] adjusts their [src] for ceremonial use."), span_notice("You adjust your [src] for ceremonial use."))
+		user.visible_message(span_notice("[user]将他们的[src]调整为仪式用途。"), span_notice("你将你的[src]调整为仪式用途。"))
 	else
 		slot_flags = initial(slot_flags)
 		cold_protection = initial(cold_protection)
 		heat_protection = initial(heat_protection)
 		set_armor(initial(armor_type))
-		user.visible_message(span_notice("[user] adjusts their [src] for defensive use."), span_notice("You adjust your [src] for defensive use."))
+		user.visible_message(span_notice("[user]将他们的[src]调整为防御用途。"), span_notice("你将你的[src]调整为防御用途。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/head/hooded/cloakhood/goliath
-	name = "goliath cloak hood"
+	name = "歌利亚斗篷头罩"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "golhood"
-	desc = "A protective & concealing hood."
+	desc = "一种具有保护性和遮蔽性的头罩。"
 	armor_type = /datum/armor/hooded_goliath
 	body_parts_covered = HEAD
 	cold_protection = HEAD
@@ -182,8 +182,8 @@
 	. = ..()
 
 /obj/item/clothing/suit/armor/bone
-	name = "bone armor"
-	desc = "A tribal armor plate, crafted from animal bone."
+	name = "骨制护甲"
+	desc = "一件部落护甲板，由动物骨骼制成。"
 	icon_state = "bonearmor"
 	inhand_icon_state = null
 	blood_overlay_type = "armor"
@@ -202,8 +202,8 @@
 	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/head/helmet/skull
-	name = "skull helmet"
-	desc = "An intimidating tribal helmet, it doesn't look very comfortable."
+	name = "颅骨头盔"
+	desc = "一顶令人生畏的部落头盔，看起来不太舒服。"
 	icon_state = "skull"
 	inhand_icon_state = null
 	strip_delay = 10 SECONDS
@@ -222,8 +222,8 @@
 	AddComponent(/datum/component/armor_plate, upgrade_item = /obj/item/clothing/accessory/talisman)
 
 /obj/item/clothing/suit/hooded/explorer/syndicate
-	name = "syndicate explorer suit"
-	desc = "An armoured suit for exploring harsh environments, dyed in the sinister red and black of the Syndicate. This one seems better armored than the ones Nanotrasen gives out."
+	name = "辛迪加勘探服"
+	desc = "一件用于探索恶劣环境的装甲服，染上了辛迪加那险恶的红黑色。这件似乎比纳米传讯发放的那些防护更好。"
 	icon_state = "explorer_syndicate"
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	worn_icon = 'icons/mob/clothing/suits/utility.dmi'
@@ -241,7 +241,7 @@
 	wound = 10
 
 /obj/item/clothing/head/hooded/explorer/syndicate
-	name = "syndicate explorer hood"
-	desc = "An armoured hood for exploring harsh environments."
+	name = "辛迪加勘探兜帽"
+	desc = "用于探索恶劣环境的装甲兜帽。"
 	icon_state = "explorer_syndicate"
 	armor_type = /datum/armor/hooded_explorer_syndicate

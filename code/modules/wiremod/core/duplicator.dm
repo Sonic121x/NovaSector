@@ -223,13 +223,13 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 ADMIN_VERB(load_circuit, R_VAREDIT, "Load Circuit", "Loads a circuit from a file or direct input.", ADMIN_CATEGORY_FUN)
 	var/list/errors = list()
 
-	var/option = alert(user, "Load by file or direct input?", "Load by file or string", "File", "Direct Input")
+	var/option = alert(user, "通过文件还是直接输入加载？", "通过文件或字符串加载", "File", "Direct Input")
 	var/txt
 	switch(option)
 		if("File")
-			txt = file2text(input(user, "Input File") as null|file)
+			txt = file2text(input(user, "输入文件") as null|file)
 		if("Direct Input")
-			txt = input(user, "Input JSON", "Input JSON") as text|null
+			txt = input(user, "输入 JSON", "输入 JSON") as text|null
 
 	if(!txt)
 		return
@@ -238,6 +238,6 @@ ADMIN_VERB(load_circuit, R_VAREDIT, "Load Circuit", "Loads a circuit from a file
 	circuit.load_circuit_data(txt, errors)
 
 	if(length(errors))
-		to_chat(user, span_warning("The following errors were found whilst compiling the circuit data:"))
+		to_chat(user, span_warning("编译电路数据时发现以下错误："))
 		for(var/error in errors)
 			to_chat(user, span_warning(error))

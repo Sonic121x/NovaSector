@@ -1,6 +1,6 @@
 // The mawed crucible, a heretic structure that can create potions from bodyparts and organs.
 /obj/structure/destructible/eldritch_crucible
-	name = "mawed crucible"
+	name = "无效化坩埚"
 	desc = "A deep basin made of cast iron, immortalized by steel-like teeth holding it in place. \
 		Staring at the vile extract within fills your mind with terrible ideas."
 	icon = 'icons/obj/antags/eldritch.dmi'
@@ -21,7 +21,7 @@
 
 /obj/structure/destructible/eldritch_crucible/Initialize(mapload)
 	. = ..()
-	break_message = span_warning("[src] falls apart with a thud!")
+	break_message = span_warning("[src]轰然倒塌！")
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/destructible/eldritch_crucible/process(seconds_per_tick)
@@ -37,7 +37,7 @@
 /obj/structure/destructible/eldritch_crucible/atom_deconstruct(disassembled = TRUE)
 	// Create a spillage if we were destroyed with leftover mass
 	if(current_mass)
-		break_message = span_warning("[src] falls apart with a thud, spilling shining extract everywhere!")
+		break_message = span_warning("[src]轰然倒塌，闪光的萃取物洒得到处都是！")
 		var/turf/our_turf = get_turf(src)
 
 		new /obj/effect/decal/cleanable/greenglow(our_turf)
@@ -54,15 +54,15 @@
 		return
 
 	if(current_mass > 0)
-		. += span_notice("You can refill an eldritch flask with this")
+		. += span_notice("你可以用它来补充一个邪术烧瓶")
 
 	if(current_mass < max_mass)
 		var/to_fill = max_mass - current_mass
-		. += span_notice("[src] requires <b>[to_fill]</b> more organ[to_fill == 1 ? "":"s"] or bodypart[to_fill == 1 ? "":"s"].")
+		. += span_notice("[src] 还需要 <b>[to_fill]</b> 个器官[to_fill == 1 ? "":"s"]或身体部位[to_fill == 1 ? "":"s"]。")
 	else
 		. += span_boldnotice("[src] is bubbling to the brim with viscous liquid, and is ready to use.")
 
-	. += span_notice("You can <b>[anchored ? "unanchor and move":"anchor in place"]</b> [src] with a <b>Codex Cicatrix</b> or <b>Mansus Grasp</b>.")
+	. += span_notice("你可以用<b>《伤疤法典》</b>或<b>曼苏斯之握</b><b>[anchored ? "unanchor and move":"anchor in place"]</b>[src]。")
 	. += span_info("The following potions can be brewed:")
 	for(var/obj/item/eldritch_potion/potion as anything in subtypesof(/obj/item/eldritch_potion))
 		var/potion_string = span_info("\tThe " + initial(potion.name) + " - " + initial(potion.crucible_tip))
@@ -81,26 +81,26 @@
 	if(istype(tool, /obj/item/codex_cicatrix) || istype(tool, /obj/item/melee/touch_attack/mansus_fist))
 		playsound(src, 'sound/items/deconstruct.ogg', 30, TRUE, ignore_walls = FALSE)
 		set_anchored(!anchored)
-		balloon_alert(user, "[anchored ? "":"un"]anchored")
+		balloon_alert(user, "[anchored ? "":"un"]固定")
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/reagent_containers/cup/beaker/eldritch))
 		if(current_mass < max_mass)
-			balloon_alert(user, "not full enough!")
+			balloon_alert(user, "还不够满！")
 			return ITEM_INTERACT_SUCCESS
 		var/obj/item/reagent_containers/cup/beaker/eldritch/to_fill = tool
 		if(to_fill.reagents.total_volume >= to_fill.reagents.maximum_volume)
-			balloon_alert(user, "flask is full!")
+			balloon_alert(user, "烧瓶已满！")
 			return ITEM_INTERACT_SUCCESS
 		to_fill.reagents.add_reagent(/datum/reagent/eldritch, 50)
 		do_item_attack_animation(src, used_item = tool, animation_type = ATTACK_ANIMATION_BLUNT)
 		current_mass--
-		balloon_alert(user, "refilled flask")
+		balloon_alert(user, "已补充烧瓶")
 		return ITEM_INTERACT_SUCCESS
 
 	if(isbodypart(tool))
 		var/obj/item/bodypart/consumed = tool
 		if(!IS_ORGANIC_LIMB(consumed))
-			balloon_alert(user, "not organic!")
+			balloon_alert(user, "不是有机物！")
 			return ITEM_INTERACT_BLOCKING
 		if(!IS_HERETIC_OR_MONSTER(user))
 			if(user.combat_mode)
@@ -113,10 +113,10 @@
 	if(isorgan(tool))
 		var/obj/item/organ/consumed = tool
 		if(!IS_ORGANIC_ORGAN(consumed))
-			balloon_alert(user, "not organic!")
+			balloon_alert(user, "不是有机物！")
 			return ITEM_INTERACT_BLOCKING
 		if(consumed.organ_flags & ORGAN_VITAL) // Basically, don't eat organs like brains
-			balloon_alert(user, "invalid organ!")
+			balloon_alert(user, "无效器官！")
 			return ITEM_INTERACT_BLOCKING
 		if(!IS_HERETIC_OR_MONSTER(user))
 			if(user.combat_mode)
@@ -142,11 +142,11 @@
 		return TRUE
 
 	if(in_use)
-		balloon_alert(user, "in use!")
+		balloon_alert(user, "使用中！")
 		return TRUE
 
 	if(current_mass < max_mass)
-		balloon_alert(user, "not full enough!")
+		balloon_alert(user, "还不够满！")
 		return TRUE
 
 	INVOKE_ASYNC(src, PROC_REF(show_radial), user)
@@ -194,7 +194,7 @@
 
 	playsound(src, 'sound/effects/desecration/desecration-02.ogg', 75, TRUE)
 	visible_message(span_notice("[src]'s shining liquid drains into a flask, creating a [spawned_pot.name]!"))
-	balloon_alert(user, "potion created")
+	balloon_alert(user, "药水已创造")
 
 	current_mass = 0
 	update_appearance(UPDATE_ICON_STATE)
@@ -223,7 +223,7 @@
 /obj/structure/destructible/eldritch_crucible/proc/consume_fuel(mob/living/feeder, obj/item/consumed)
 	if(current_mass >= max_mass)
 		if(feeder)
-			balloon_alert(feeder, "crucible full!")
+			balloon_alert(feeder, "坩埚已满！")
 		return
 
 	current_mass++
@@ -231,7 +231,7 @@
 	visible_message(span_notice("[src] devours [consumed] and fills itself with a little bit of liquid!"))
 
 	if(feeder)
-		balloon_alert(feeder, "crubile fed ([current_mass] / [max_mass])")
+		balloon_alert(feeder, "坩埚已喂食（[current_mass] / [max_mass]）")
 
 	qdel(consumed)
 	update_appearance(UPDATE_ICON_STATE)
@@ -242,8 +242,8 @@
 
 // Potions created by the mawed crucible.
 /obj/item/eldritch_potion
-	name = "brew of day and night"
-	desc = "You should never see this"
+	name = "日与夜的酿造"
+	desc = "你从不应该看到这个"
 	icon = 'icons/obj/antags/eldritch.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	pickup_sound = 'sound/items/handling/materials/glass_pick_up.ogg'
@@ -297,7 +297,7 @@
 	carbon_user.apply_status_effect(status_effect)
 
 /obj/item/eldritch_potion/crucible_soul
-	name = "brew of the crucible soul"
+	name = "坩埚之魂的酿造"
 	desc = "A glass bottle containing a bright orange, translucent liquid."
 	icon_state = "crucible_soul"
 	status_effect = /datum/status_effect/crucible_soul
@@ -306,19 +306,19 @@
 
 /obj/item/eldritch_potion/crucible_soul/attack_self(mob/user)
 	if(user.has_status_effect(/datum/status_effect/crucible_soul_cooldown))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "冷却中！")
 		return TRUE
 	return ..()
 
 /obj/item/eldritch_potion/duskndawn
-	name = "brew of dusk and dawn"
+	name = "昏与黎明之酿造"
 	desc = "A glass bottle containing a dull yellow liquid. It seems to fade in and out with regularity."
 	icon_state = "clarity"
 	status_effect = /datum/status_effect/duskndawn
 	crucible_tip = "Allows you to see through walls and objects. Lasts 90 seconds."
 
 /obj/item/eldritch_potion/wounded
-	name = "brew of the wounded soldier"
+	name = "伤之勇者的酿造"
 	desc = "A glass bottle containing a colorless, dark liquid."
 	icon_state = "marshal"
 	status_effect = /datum/status_effect/marshal

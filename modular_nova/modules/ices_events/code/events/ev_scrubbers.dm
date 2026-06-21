@@ -1,10 +1,10 @@
 /datum/round_event_control/scrubber_overflow/ices
-	name = "Scrubber Overflow: ICES"
+	name = "洗涤器溢出：ICES"
 	typepath = /datum/round_event/scrubber_overflow/ices
 	weight = 10
 	max_occurrences = 2
 	earliest_start = 20 MINUTES
-	description = "The scrubbers release a tide of moderately harmless froth, custom reagent set."
+	description = "洗涤器释放出一股相对无害的泡沫潮，内含定制试剂。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 4
 

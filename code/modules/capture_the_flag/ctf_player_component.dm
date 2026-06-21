@@ -60,7 +60,7 @@
 ///Called after a period of time pulled from ctf_game, allows the player to respawn in CTF.
 /datum/component/ctf_player/proc/allow_respawns()
 	can_respawn = TRUE
-	send_message(span_notice("You can now respawn in CTF!"))
+	send_message(span_notice("你现在可以在CTF中重生了！"))
 
 ///Sends a message to the player.
 /datum/component/ctf_player/proc/send_message(message)

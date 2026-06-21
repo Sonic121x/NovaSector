@@ -1,7 +1,7 @@
 // 9mm (Makarov and Stechkin APS)
 
 /obj/projectile/bullet/c9mm
-	name = "9mm bullet"
+	name = "9mm 子弹"
 	damage = 30
 	embed_type = /datum/embedding/bullet/c9mm
 
@@ -16,47 +16,47 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/c9mm/ap
-	name = "9mm armor-piercing bullet"
+	name = "9mm 穿甲弹"
 	damage = 27
 	armour_penetration = 40
 	embed_type = null
 	shrapnel_type = null
 
 /obj/projectile/bullet/c9mm/hp
-	name = "9mm hollow-point bullet"
+	name = "9mm 空尖弹"
 	damage = 40
 	weak_against_armour = TRUE
 
 /obj/projectile/bullet/incendiary/c9mm
-	name = "9mm incendiary bullet"
+	name = "9mm 燃烧弹"
 	damage = 15
 	fire_stacks = 2
 
 // 10mm
 
 /obj/projectile/bullet/c10mm
-	name = "10mm bullet"
+	name = "10mm 子弹"
 	damage = 40
 
 /obj/projectile/bullet/c10mm/ap
-	name = "10mm armor-piercing bullet"
+	name = "10mm 穿甲弹"
 	damage = 35
 	armour_penetration = 40
 
 /obj/projectile/bullet/c10mm/hp
-	name = "10mm hollow-point bullet"
+	name = "10mm 空尖弹"
 	damage = 50
 	weak_against_armour = TRUE
 
 /obj/projectile/bullet/incendiary/c10mm
-	name = "10mm incendiary bullet"
+	name = "10mm 燃烧弹"
 	damage = 20
 	fire_stacks = 3
 
 // .160 Smart
 
 /obj/projectile/bullet/c160smart
-	name = ".160 smart bullet"
+	name = ".160智能子弹"
 	icon_state = "smartgun"
 	damage = 10
 	embed_type = /datum/embedding/bullet/c160smart

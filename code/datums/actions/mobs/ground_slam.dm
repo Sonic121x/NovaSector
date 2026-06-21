@@ -1,8 +1,8 @@
 /datum/action/cooldown/mob_cooldown/ground_slam
-	name = "Ground Slam"
+	name = "地面重击"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	desc = "Slams the ground sending out a shockwave around you."
+	desc = "重击地面，向周围释放冲击波。"
 	cooldown_time = 10 SECONDS
 	/// The range of the slam
 	var/range = 5

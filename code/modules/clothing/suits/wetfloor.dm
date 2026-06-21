@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/caution
-	name = "wet floor sign"
-	desc = "Caution! Wet Floor!"
+	name = "地板潮湿标识"
+	desc = "小心地滑!"
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	icon_state = "caution"
 	worn_icon = 'icons/mob/clothing/suits/utility.dmi'

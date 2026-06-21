@@ -2,10 +2,10 @@
 #define SWOOP_DIRECTION_CHANGE_RANGE 5 //the range our x has to be within to not change the direction we slam from
 
 /datum/action/cooldown/mob_cooldown/lava_swoop
-	name = "Lava Swoop"
+	name = "熔岩俯冲"
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "lavastaff_warn"
-	desc = "Allows you to chase a target while raining lava down."
+	desc = "允许你追击目标并降下熔岩雨。"
 	cooldown_time = 4 SECONDS
 	/// Check to see if we are enraged
 	var/enraged = FALSE
@@ -40,7 +40,7 @@
 	// stop swooped target movement
 	swooping = TRUE
 	owner.add_traits(list(TRAIT_GODMODE, TRAIT_UNDENSE), SWOOPING_TRAIT)
-	owner.visible_message(span_boldwarning("[owner] swoops up high!"))
+	owner.visible_message(span_boldwarning("[owner]高高地俯冲而起！"))
 
 	var/negative
 	var/initial_x = owner.x
@@ -104,7 +104,7 @@
 				throw_dir = pick(GLOB.alldirs)
 			var/throwtarget = get_edge_target_turf(owner, throw_dir)
 			victim.throw_at(throwtarget, 3)
-			owner.visible_message(span_warning("[victim] is thrown clear of [owner]!"))
+			owner.visible_message(span_warning("[victim]被[owner]甩飞了！"))
 	for(var/obj/vehicle/sealed/mecha/mech in orange(1, owner))
 		mech.take_damage(75, BRUTE, MELEE, 1)
 
@@ -120,7 +120,7 @@
 /datum/action/cooldown/mob_cooldown/lava_swoop/proc/lava_pools(atom/target, amount = 30, delay = 0.8)
 	if(!target)
 		return
-	target.visible_message(span_boldwarning("Lava starts to pool up around you!"))
+	target.visible_message(span_boldwarning("熔岩开始在你周围汇聚！"))
 
 	while(amount > 0)
 		if(QDELETED(target))
@@ -136,7 +136,7 @@
 	var/turf/target_turf = get_turf(target)
 	if(QDELETED(target) || !isliving(target) || target_turf.z != owner.z)
 		return
-	target.visible_message(span_boldwarning("[owner] encases you in an arena of fire!"))
+	target.visible_message(span_boldwarning("[owner]用火焰竞技场将你困住了！"))
 	var/amount = 3
 	var/turf/center = get_turf(owner)
 	var/list/walled = RANGE_TURFS(3, center) - RANGE_TURFS(2, center)
@@ -189,8 +189,8 @@
 	return TRUE // attack finished completely
 
 /obj/effect/temp_visual/dragon_swoop
-	name = "certain death"
-	desc = "Don't just stand there, move!"
+	name = "必死无疑"
+	desc = "别光站着，快动起来！"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "landing"
 	layer = BELOW_MOB_LAYER

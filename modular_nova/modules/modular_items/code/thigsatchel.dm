@@ -1,6 +1,6 @@
 /obj/item/storage/belt/thigh_satchel
-	name = "thigh satchel"
-	desc = "A little satchel that goes on your thigh!"
+	name = "大腿挎包"
+	desc = "一个可以绑在大腿上的小挎包！"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_belts.dmi'
 	lefthand_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
 	righthand_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_right.dmi'

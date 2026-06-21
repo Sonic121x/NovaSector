@@ -4,8 +4,8 @@
 /obj/structure/ore_box
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox"
-	name = "ore box"
-	desc = "A heavy wooden box, which can be filled with a lot of ores or boulders"
+	name = "矿石箱"
+	desc = "一个沉重的木箱，可以装下大量矿石或巨石"
 	density = TRUE
 	pressure_resistance = 5 * ONE_ATMOSPHERE
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 4)
@@ -44,15 +44,15 @@
 /obj/structure/ore_box/examine(mob/living/user)
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
-		. += span_notice("Can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("可以被[EXAMINE_HINT("pried")]。")
 		ui_interact(user)
 
 /obj/structure/ore_box/crowbar_act(mob/living/user, obj/item/I)
 	. = ITEM_INTERACT_BLOCKING
 	if(I.use_tool(src, user, 50, volume = 50))
-		user.visible_message(span_notice("[user] pries \the [src] apart."),
+		user.visible_message(span_notice("[user]将\the [src]撬开。"),
 			span_notice("You pry apart \the [src]."),
-			span_hear("You hear splitting wood."))
+			span_hear("你听到木头裂开的声音。"))
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -62,7 +62,7 @@
 		return TRUE
 	else if(weapon.atom_storage)
 		weapon.atom_storage.remove_type(/obj/item/stack/ore, src, INFINITY, TRUE, FALSE, user, null)
-		to_chat(user, span_notice("You empty the ore in [weapon] into \the [src]."))
+		to_chat(user, span_notice("你将[weapon]里的矿石倒入了\the [src]。"))
 		return TRUE
 	else
 		return ..()
@@ -89,7 +89,7 @@
 			name = potental_ore.name
 			amount = potental_ore.amount
 		else
-			name = "Boulders"
+			name = "巨石"
 			amount = 1
 
 		var/item_found = FALSE

@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/shibari_hands
-	name = "shibari arms bondage"
-	desc = "Bondage ropes that cover arms."
+	name = "缚臂绳艺"
+	desc = "覆盖手臂的束缚绳索。"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
 	body_parts_covered = NONE
 	//strip_delay = 100

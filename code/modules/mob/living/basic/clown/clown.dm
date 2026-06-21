@@ -1,6 +1,6 @@
 /mob/living/basic/clown
-	name = "Clown"
-	desc = "A denizen of Clown Planet."
+	name = "小丑"
+	desc = "小丑星球的居民。"
 	icon = 'icons/mob/simple/clown_mobs.dmi'
 	icon_state = "clown"
 	icon_living = "clown"
@@ -72,8 +72,8 @@
 	return ..()
 
 /mob/living/basic/clown/lube
-	name = "Living Lube"
-	desc = "A puddle of lube brought to life by the Honkmother."
+	name = "活体润滑剂"
+	desc = "一滩被Honkmother赋予生命的润滑剂。"
 	icon_state = "lube"
 	icon_living = "lube"
 	maxHealth = 50
@@ -100,7 +100,7 @@
 
 /mob/living/basic/clown/honkling
 	name = "Honkling"
-	desc = "A divine being sent by the Honkmother to spread joy. It's not dangerous, but it's a bit of a nuisance."
+	desc = "Honkmother派来传播欢乐的神圣存在。它不危险，但有点烦人。"
 	icon_state = "honkling"
 	icon_living = "honkling"
 	speed = -0.5
@@ -128,8 +128,8 @@
 	)
 
 /mob/living/basic/clown/fleshclown
-	name = "Fleshclown"
-	desc = "A being forged out of the pure essence of pranking, cursed into existence by a cruel maker."
+	name = "血肉小丑"
+	desc = "由恶作剧的纯粹精华锻造而成，被残酷的创造者诅咒而存在的生物。"
 	icon_state = "fleshclown"
 	icon_living = "fleshclown"
 	response_help_continuous = "reluctantly pokes"
@@ -171,8 +171,8 @@
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/basic/clown/longface
-	name = "Longface"
-	desc = "Often found walking into the bar."
+	name = "长脸"
+	desc = "经常出现在走进酒吧的路上。"
 	icon_state = "long face"
 	icon_living = "long face"
 	move_resist = INFINITY
@@ -206,8 +206,8 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_LONGFACE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 
 /mob/living/basic/clown/clownhulk
-	name = "Honk Hulk"
-	desc = "A cruel and fearsome clown. Don't make him angry."
+	name = "轰克浩克"
+	desc = "一个残忍而可怕的小丑。别惹他生气。"
 	icon_state = "honkhulk"
 	icon_living = "honkhulk"
 	move_resist = INFINITY
@@ -242,8 +242,8 @@
 	)
 
 /mob/living/basic/clown/clownhulk/chlown
-	name = "Chlown"
-	desc = "A real lunkhead who somehow gets all the girls."
+	name = "丑佬"
+	desc = "一个真正的蠢货，却不知怎的能吸引所有女孩。"
 	icon_state = "chlown"
 	icon_living = "chlown"
 	gender = MALE
@@ -272,8 +272,8 @@
 	)
 
 /mob/living/basic/clown/clownhulk/honkmunculus
-	name = "Honkmunculus"
-	desc = "A slender wiry figure of alchemical origin."
+	name = "轰克魔像"
+	desc = "一个源自炼金术的纤细而结实的身影。"
 	icon_state = "honkmunculus"
 	icon_living = "honkmunculus"
 	response_help_continuous = "skeptically pokes"
@@ -310,8 +310,8 @@
 	) // I don't really know what a clown is using to inject people but let's assume it doesn't need to penetrate at all
 
 /mob/living/basic/clown/clownhulk/destroyer
-	name = "The Destroyer"
-	desc = "An ancient being born of arcane honking."
+	name = "毁灭者"
+	desc = "一个由古老轰克魔法诞生的存在。"
 	icon_state = "destroyer"
 	icon_living = "destroyer"
 	response_disarm_continuous = "bounces off of"
@@ -341,8 +341,8 @@
 	)
 
 /mob/living/basic/clown/mutant
-	name = "Unknown"
-	desc = "Kill it for its own sake."
+	name = "未知"
+	desc = "为了它本身而消灭它。"
 	icon_state = "mutant"
 	icon_living = "mutant"
 	move_resist = INFINITY
@@ -378,8 +378,8 @@
 
 
 /mob/living/basic/clown/mutant/glutton
-	name = "banana glutton"
-	desc = "Something that was once a clown."
+	name = "香蕉贪食者"
+	desc = "曾经是小丑的某种东西。"
 	icon_state = "glutton"
 	icon_living = "glutton"
 	health = 200
@@ -443,7 +443,7 @@
 
 	if(IS_EDIBLE(potential_food))
 		if(prank_pouch.len >= 8)
-			to_chat(src, span_warning("Your prank pouch is filled to the brim! You don't think you can swallow any more morsels right now."))
+			to_chat(src, span_warning("你的恶作剧口袋已经塞满了！你觉得现在吞不下更多东西了。"))
 			return FALSE
 		return TRUE
 
@@ -457,7 +457,7 @@
 		/obj/item/food/ink_sac,
 	)
 
-	visible_message(span_warning("[src] eats [eaten_atom]!"), span_notice("You eat [eaten_atom]."))
+	visible_message(span_warning("[src] 吃掉了 [eaten_atom]！"), span_notice("你吃掉了 [eaten_atom]。"))
 	if(is_type_in_list(eaten_atom, funny_items))
 		eaten_atom.forceMove(src)
 		prank_pouch += eaten_atom
@@ -466,7 +466,7 @@
 		//Encourage gluttony RP by giving a litle bonus for each obj eaten.
 		foods_eaten++
 		if(!(foods_eaten % 5) && foods_eaten <= 100)
-			balloon_alert(src, "weight gained!")
+			balloon_alert(src, "体重增加了！")
 			maxHealth += 10
 			health += 10
 		if(istype(eaten_atom, /obj/item/food/grown/banana))
@@ -491,8 +491,8 @@
 
 ///This ability will let you fire one random item from your pouch,
 /datum/action/cooldown/regurgitate
-	name = "Regurgitate"
-	desc = "Regurgitates a single item from the depths of your pouch."
+	name = "反刍"
+	desc = "从你的口袋深处反刍出一件物品。"
 	background_icon_state = "bg_changeling"
 	overlay_icon_state = "bg_changeling_border"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
@@ -505,7 +505,7 @@
 	if(!.)
 		return
 
-	to_chat(on_who, span_notice("Your throat muscles tense up. <B>Left-click to regurgitate a funny morsel!</B>"))
+	to_chat(on_who, span_notice("你的喉咙肌肉绷紧了。<B>左键点击以反刍一个有趣的小点心！</B>"))
 	on_who.icon_state = "glutton_tongue"
 	on_who.update_appearance(UPDATE_ICON)
 
@@ -515,7 +515,7 @@
 		return
 
 	if(refund_cooldown)
-		to_chat(on_who, span_notice("Your throat muscles relax."))
+		to_chat(on_who, span_notice("你的喉咙肌肉放松了。"))
 	on_who.icon_state = initial(on_who.icon_state)
 	on_who.update_appearance(UPDATE_ICON)
 
@@ -533,7 +533,7 @@
 	var/mob/living/basic/clown/mutant/glutton/pouch_owner = owner
 	if(!length(pouch_owner.prank_pouch))
 		pouch_owner.icon_state = initial(pouch_owner.icon_state)
-		to_chat(pouch_owner, span_notice("Your prank pouch is empty."))
+		to_chat(pouch_owner, span_notice("你的恶作剧口袋空了。"))
 		return TRUE
 
 	var/obj/item/projected_morsel = pick(pouch_owner.prank_pouch)
@@ -546,8 +546,8 @@
 	return TRUE
 
 /mob/living/basic/clown/banana
-	name = "Clownana"
-	desc = "A fusion of clown and banana DNA birthed from a botany experiment gone wrong."
+	name = "小丑蕉"
+	desc = "一个由小丑和香蕉DNA融合而成的产物，源于一次失败的植物学实验。"
 	icon_state = "banana tree"
 	icon_living = "banana tree"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_PLANT
@@ -583,8 +583,8 @@
 
 ///drops peels around the mob when activated
 /datum/action/cooldown/rustle
-	name = "Rustle"
-	desc = "Shake loose a few banana peels."
+	name = "沙沙作响"
+	desc = "抖落几根香蕉皮。"
 	cooldown_time = 8 SECONDS
 	button_icon_state = "rustle"
 	button_icon = 'icons/mob/actions/actions_clown.dmi'
@@ -614,8 +614,8 @@
 
 ///spawns a plumb bunch of bananas imbued with mystical power.
 /datum/action/cooldown/exquisite_bunch
-	name = "Exquisite Bunch"
-	desc = "Pluck your finest bunch of bananas from your head. This bunch is especially nutrious to monkeykind. A gentle tap will trigger an explosive ripening process."
+	name = "精致的一串"
+	desc = "从你的头上摘下你最棒的一串香蕉。这串香蕉对猴类尤其有营养。轻轻一碰就会触发爆炸性的成熟过程。"
 	button_icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	cooldown_time = 60 SECONDS
 	button_icon_state = "banana_bunch"
@@ -633,7 +633,7 @@
 	if(!bunch_turf)
 		return
 	if(!bunch_turf.IsReachableBy(owner) || !isopenturf(bunch_turf))
-		owner.balloon_alert(owner, "can't do that here!")
+		owner.balloon_alert(owner, "不能在这里这么做！")
 		return
 	activating = TRUE
 	if(!do_after(owner, 1 SECONDS))

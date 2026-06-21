@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/rpgloot //its time to minmax your shit
-	name = "RPG Loot"
+	name = "RPG战利品"
 	weight = 3
 	typepath = /datum/round_event/wizard/rpgloot
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "Every item in the world will have fantastical names."
+	description = "世界上的每件物品都将拥有奇幻的名字。"
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 
@@ -12,8 +12,8 @@
 	GLOB.rpgloot_controller = new /datum/rpgloot_controller
 
 /obj/item/upgradescroll
-	name = "item fortification scroll"
-	desc = "Somehow, this piece of paper can be applied to items to make them \"better\". Apparently there's a risk of losing the item if it's already \"too good\". <i>This all feels so arbitrary...</i>"
+	name = "强化物品卷轴"
+	desc = "不知怎的，这张纸能够被用于改变物品的状况，使其变得“更好”。但显然，如果一件物品已经“太好了”了，就有可能会失去其原有的价值。<i>这一切感觉都太随意了……</i>"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "scroll"
 	worn_icon_state = "scroll"
@@ -41,13 +41,13 @@
 	target.AddComponent(/datum/component/fantasy, upgrade_amount, null, null, can_backfire, TRUE)
 	uses -= 1
 	if(!uses)
-		visible_message(span_warning("[src] vanishes, its magic completely consumed from the fortification."))
+		visible_message(span_warning("[src] 消失了，其魔力已完全从强化中耗尽。"))
 		qdel(src)
 	return TRUE
 
 /obj/item/upgradescroll/unlimited
-	name = "unlimited foolproof item fortification scroll"
-	desc = "Somehow, this piece of paper can be applied to items to make them \"better\". This scroll is made from the tongues of dead paper wizards, and can be used an unlimited number of times, with no drawbacks."
+	name = "无限可靠的防伪物品强化卷轴"
+	desc = "不知怎的，这张纸能够被用于物品上，从而让它们变得“更好”。这张卷轴是由死去的纸魔法师的舌头制成的，可以无限制地使用，而且没有任何缺点。"
 	uses = INFINITY
 	can_backfire = FALSE
 

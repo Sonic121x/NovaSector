@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(traitor)
-	name = "Traitor"
+	name = "叛徒"
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
 		/datum/controller/subsystem/atoms,

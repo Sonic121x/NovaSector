@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(area_spawn)
-	name = "Area Spawn"
+	name = "区域生成"
 	ss_flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
@@ -351,7 +351,7 @@ SUBSYSTEM_DEF(area_spawn)
 						break
 
 /obj/effect/turf_test
-	name = "PASS"
+	name = "通过"
 	icon = 'modular_nova/modules/automapper/icons/area_test.dmi'
 	icon_state = "area_test"
 	color = COLOR_BLUE

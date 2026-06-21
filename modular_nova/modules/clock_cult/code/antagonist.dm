@@ -3,7 +3,7 @@
 // However, the bundle gives `/datum/antagonist/clock_cultist/solo`, which is the same as `/datum/antagonist/clock_cultist`, but lacks conversion.
 
 /datum/antagonist/clock_cultist
-	name = "\improper Clock Cultist"
+	name = "\improper 钟表邪教徒"
 	antagpanel_category = "Clock Cultist"
 	preview_outfit = /datum/outfit/clock/preview
 	pref_flag = ROLE_CLOCK_CULTIST
@@ -56,11 +56,11 @@
 
 	recall.unmark_item()
 	recall.mark_item(slab)
-	to_chat(owner.current, span_brass("You re-attune yourself to a new Clockwork Slab."))
+	to_chat(owner.current, span_brass("你重新将自己调谐至一个新的钟表石板。"))
 
 
 /datum/outfit/clock/preview
-	name = "Clock Cultist (Preview only)"
+	name = "钟表邪教徒（仅预览）"
 
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/clockwork
@@ -69,6 +69,6 @@
 
 
 /datum/antagonist/clock_cultist/solo
-	name = "Clock Cultist (Solo)"
+	name = "钟表邪教徒（单人）"
 	show_to_ghosts = FALSE
 	can_convert = FALSE

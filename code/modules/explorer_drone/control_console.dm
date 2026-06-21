@@ -1,6 +1,6 @@
 /obj/machinery/computer/exodrone_control_console
-	name = "exploration drone control console"
-	desc = "Control exploration drones from interstellar distances. Communication lag not included."
+	name = "勘探无人机控制台"
+	desc = "从星际距离控制探索无人机。通信延迟不包括在内。"
 	circuit = /obj/item/circuitboard/computer/exodrone_console
 	//Currently controlled drone
 	var/obj/item/exodrone/controlled_drone

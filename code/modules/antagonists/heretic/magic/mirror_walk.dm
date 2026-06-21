@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/jaunt/mirror_walk
-	name = "Mirror Walk"
+	name = "镜走"
 	desc = "Allows you to traverse invisibly and freely across the station within the realm of the mirror. \
 		You can only enter and exit the realm of mirrors when nearby reflective surfaces and items, \
 		such as windows, mirrors, and reflective walls or equipment. \
@@ -40,12 +40,12 @@
 	var/turf/owner_turf = get_turf(owner)
 	if(!is_reflection_nearby(get_turf(owner_turf)))
 		if(feedback)
-			to_chat(owner, span_warning("There are no reflective surfaces nearby to [we_are_phasing ? "exit":"enter"] the mirror's realm here!"))
+			to_chat(owner, span_warning("附近没有反光表面可以[we_are_phasing ? "exit":"enter"]镜中领域！"))
 		return FALSE
 
 	if(owner_turf.is_blocked_turf(exclude_mobs = TRUE))
 		if(feedback)
-			to_chat(owner, span_warning("Something is blocking you from [we_are_phasing ? "exiting":"entering"] the mirror's realm here!"))
+			to_chat(owner, span_warning("有什么东西阻挡了你在这里[we_are_phasing ? "exiting":"entering"]镜中领域！"))
 		return FALSE
 
 	return TRUE
@@ -156,7 +156,7 @@
 	return null
 
 /obj/effect/dummy/phased_mob/mirror_walk
-	name = "reflection"
+	name = "反射"
 
 /obj/effect/dummy/phased_mob/mirror_walk/Initialize(mapload, atom/movable/jaunter)
 	. = ..()

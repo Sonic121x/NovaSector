@@ -20,7 +20,7 @@
 	ambientsounds = list('sound/ambience/engineering/ambisin2.ogg')
 
 /area/awaymission/centcom_away/cafe
-	name = "XCC-P5831 Kitchen Arena"
+	name = "XCC-P5831 厨房竞技场"
 	icon_state = "away3"
 	ambientsounds = list('sound/ambience/engineering/ambisin3.ogg')
 
@@ -37,7 +37,7 @@
 //centcomAway items
 
 /obj/item/paper/pamphlet/centcom/visitor_info
-	name = "Visitor Info Pamphlet"
+	name = "游客信息手册"
 	default_raw_text = "<b> XCC-P5831 Visitor Information </b><br>\
 	Greetings, visitor, to  XCC-P5831! As you may know, this outpost was once \
 	used as Nanotrasen's CENTRAL COMMAND STATION, organizing and coordinating company \

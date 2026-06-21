@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(security_level)
-	name = "Security Level"
+	name = "安全等级"
 	can_fire = FALSE // We will control when we fire in this subsystem
 	/// Currently set security level
 	var/datum/security_level/current_security_level

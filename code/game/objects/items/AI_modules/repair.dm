@@ -5,21 +5,21 @@
 **/
 
 /obj/item/ai_module/remove
-	name = "\improper 'Remove Law' AI module"
-	desc = "An AI Module for removing single laws."
+	name = "\improper '移除定律' AI模块"
+	desc = "用于移除单个定律的AI模块。"
 	bypass_law_amt_check = TRUE
 	var/lawpos = 1
 
 /obj/item/ai_module/remove/attack_self(mob/user)
-	lawpos = tgui_input_number(user, "Law to delete", "Law Removal", lawpos, 50)
+	lawpos = tgui_input_number(user, "要删除的法律", "法律移除", lawpos, 50)
 	if(!lawpos || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
-	to_chat(user, span_notice("Law [lawpos] selected."))
+	to_chat(user, span_notice("已选择法令[lawpos]."))
 	..()
 
 /obj/item/ai_module/remove/install(datum/ai_laws/law_datum, mob/user)
 	if(lawpos > law_datum.get_law_amount(list(LAW_INHERENT, LAW_SUPPLIED)))
-		to_chat(user, span_warning("There is no law [lawpos] to delete!"))
+		to_chat(user, span_warning("没有法令[lawpos]可删除！"))
 		return
 	..()
 
@@ -33,7 +33,7 @@
 /obj/item/ai_module/reset
 	name = "\improper 'Reset' AI module"
 	var/targetName = "name"
-	desc = "An AI Module for removing all non-core laws."
+	desc = "用于移除所有非核心定律的AI模块。"
 	bypass_law_amt_check = TRUE
 
 /obj/item/ai_module/reset/handle_unique_ai()
@@ -52,7 +52,7 @@
 
 /obj/item/ai_module/reset/purge
 	name = "'Purge' AI Module"
-	desc = "An AI Module for purging all programmed laws."
+	desc = "用于清除所有已编程定律的AI模块。"
 
 /obj/item/ai_module/reset/purge/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	..()

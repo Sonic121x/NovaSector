@@ -1,5 +1,5 @@
 /obj/item/station_charter
-	name = "station charter"
+	name = "空间站宪章"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "charter"
 	desc = "An official document entrusting the governance of the station \
@@ -26,19 +26,19 @@
 
 /obj/item/station_charter/attack_self(mob/living/user)
 	if(used)
-		to_chat(user, span_warning("The [name_type] has already been named!"))
+		to_chat(user, span_warning("该[name_type]已被命名！"))
 		return
 	if(!ignores_timeout && (world.time-SSticker.round_start_time > STATION_RENAME_TIME_LIMIT)) //5 minutes
-		to_chat(user, span_warning("The crew has already settled into the shift. It probably wouldn't be good to rename the [name_type] right now."))
+		to_chat(user, span_warning("船员们已经适应了本轮班次。现在可能不适合重命名[name_type]。"))
 		return
 	if(response_timer_id)
-		to_chat(user, span_warning("You're still waiting for approval from your employers about your proposed name change, it'd be best to wait for now."))
+		to_chat(user, span_warning("你还在等待雇主对你提出的更名申请进行批复，最好再等等。"))
 		return
 
 	var/new_name = tgui_input_text(user, "What do you want to name \
 		[station_name()]? Keep in mind particularly terrible names may be \
 		rejected by your employers, while names using the standard format \
-		will be accepted automatically.", "Station Name", max_length = MAX_CHARTER_LEN)
+		will be accepted automatically.", "空间站名称", max_length = MAX_CHARTER_LEN)
 
 	if(response_timer_id)
 		to_chat(user, span_warning("You're still waiting for approval from your employers about your proposed name change, it'd be best to wait for now."))
@@ -50,11 +50,11 @@
 		[new_name]", LOG_GAME)
 
 	if(standard_station_regex.Find(new_name))
-		to_chat(user, span_notice("Your name has been automatically approved."))
+		to_chat(user, span_notice("你的命名已自动获批。"))
 		rename_station(new_name, user.name, user.real_name, key_name(user))
 		return
 
-	to_chat(user, span_notice("Your name has been sent to your employers for approval."))
+	to_chat(user, span_notice("你的命名已发送给雇主等待批准。"))
 	// Autoapproves after a certain time
 	response_timer_id = addtimer(CALLBACK(src, PROC_REF(rename_station), new_name, user.name, user.real_name, key_name(user)), approval_time, TIMER_STOPPABLE)
 	to_chat(GLOB.admins,
@@ -83,10 +83,10 @@
 
 /obj/item/station_charter/proc/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)
-	minor_announce("[ureal_name] has designated your station as [html_decode(station_name())]", "Captain's Charter") //decode station_name to avoid minor_announce double encode
+	minor_announce("[ureal_name] 已将你们的空间站命名为 [html_decode(station_name())]", "舰长宪章") //decode station_name to avoid minor_announce double encode
 	log_game("[ukey] has renamed the station as [station_name()].")
 
-	name = "station charter for [station_name()]"
+	name = "[station_name()] 的空间站宪章"
 	desc = "An official document entrusting the governance of \
 		[station_name()] and surrounding space to Captain [uname]."
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
@@ -99,23 +99,23 @@
 
 
 /obj/item/station_charter/banner
-	name = "\improper Nanotrasen banner"
+	name = "\improper 纳米传讯旗帜"
 	icon = 'icons/obj/banner.dmi'
 	name_type = "planet"
 	icon_state = "banner"
 	inhand_icon_state = "banner"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
-	desc = "A cunning device used to claim ownership of celestial bodies."
+	desc = "一种用于宣称天体所有权的巧妙装置。"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
 
 /obj/item/station_charter/banner/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)
-	minor_announce("[ureal_name] has designated the [name_type] as [html_decode(station_name())]", "Captain's Banner") //decode station_name to avoid minor_announce double encode
+	minor_announce("[ureal_name] 已将 [name_type] 命名为 [html_decode(station_name())]", "舰长旗帜") //decode station_name to avoid minor_announce double encode
 	log_game("[ukey] has renamed the [name_type] as [station_name()].")
-	name = "banner of [station_name()]"
-	desc = "The banner bears the official coat of arms of Nanotrasen, signifying that [station_name()] has been claimed by Captain [uname] in the name of the company."
+	name = "[station_name()] 的旗帜"
+	desc = "这面旗帜上印有纳米传讯的官方徽章，标志着 [station_name()] 已被舰长 [uname] 以公司名义宣示主权。"
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE

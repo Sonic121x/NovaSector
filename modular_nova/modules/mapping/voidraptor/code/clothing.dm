@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/duffelbag/science/robo/surgery
-	name = "robotics surgical duffelbag"
-	desc = "A sleek, industrial-strength duffelbag issued to robotics personnel. This one has a tag implying it came stocked with surgical tools."
+	name = "机器人外科手术行李袋"
+	desc = "一款发给机器人技术人员的流线型、工业级行李袋。这个袋子上的标签暗示它原本配备了外科手术工具。"
 
 /obj/item/storage/backpack/duffelbag/science/robo/surgery/PopulateContents()
 	new /obj/item/scalpel(src)

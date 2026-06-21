@@ -1,6 +1,6 @@
 /obj/machinery/computer/atmos_alert
-	name = "atmospheric alert console"
-	desc = "Used to monitor the station's air alarms."
+	name = "大气警报控制台"
+	desc = "用于监测太空站的空气警报。"
 	circuit = /obj/item/circuitboard/computer/atmos_alert
 	icon_screen = "alert:0"
 	icon_keyboard = "atmos_key"
@@ -12,7 +12,7 @@
 /obj/machinery/computer/atmos_alert/examine(mob/user)
 	. = ..()
 	var/obj/item/circuitboard/computer/atmos_alert/my_circuit = circuit
-	. += span_info("The console is set to [my_circuit.station_only ? "track all station and mining alarms" : "track alarms on the same z-level"].")
+	. += span_info("该控制台设置为[my_circuit.station_only ? "track all station and mining alarms" : "track alarms on the same z-level"]。")
 
 /obj/machinery/computer/atmos_alert/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -42,11 +42,11 @@
 		if("clear")
 			var/zone = params["zone"]
 			if(zone in priority_alarms)
-				to_chat(usr, span_notice("Priority alarm for [zone] cleared."))
+				to_chat(usr, span_notice("区域[zone]的优先警报已清除。"))
 				priority_alarms -= zone
 				. = TRUE
 			if(zone in minor_alarms)
-				to_chat(usr, span_notice("Minor alarm for [zone] cleared."))
+				to_chat(usr, span_notice("区域[zone]的次要警报已清除。"))
 				minor_alarms -= zone
 				. = TRUE
 	update_appearance()

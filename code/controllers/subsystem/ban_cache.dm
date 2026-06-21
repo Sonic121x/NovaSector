@@ -3,7 +3,7 @@
 SUBSYSTEM_DEF(ban_cache)
 
 /datum/controller/subsystem/ban_cache
-	name = "Ban Cache"
+	name = "封禁缓存"
 	init_stage = INITSTAGE_LAST
 	ss_flags = SS_NO_FIRE
 	var/query_started = FALSE

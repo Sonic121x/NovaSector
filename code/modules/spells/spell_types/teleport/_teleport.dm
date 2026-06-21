@@ -117,7 +117,7 @@
 	if(randomise_selection)
 		target_area = pick(GLOB.teleportlocs)
 	else
-		target_area = tgui_input_list(cast_on, "Chose an area to teleport to.", "Teleport", GLOB.teleportlocs)
+		target_area = tgui_input_list(cast_on, "选择要传送到的区域。", "传送", GLOB.teleportlocs)
 
 	if(QDELETED(src) || QDELETED(cast_on) || (owner && !can_cast_spell()))
 		return . | SPELL_CANCEL_CAST

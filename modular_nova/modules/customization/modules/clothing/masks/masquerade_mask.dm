@@ -1,7 +1,7 @@
 
 /obj/item/clothing/mask/masquerade
-	name = "masquerade mask"
-	desc = "You'll never guess who's under that mask, it's the perfect disguise!"
+	name = "化装舞会面具"
+	desc = "你绝对猜不到面具下是谁，这伪装堪称完美！"
 	worn_icon = 'modular_nova/modules/GAGS/icons/mask/masquerade_mask_worn.dmi'
 	flags_1 = IS_PLAYER_COLORABLE_1
 	clothing_flags = MASKINTERNALS
@@ -29,19 +29,19 @@
 	flags_inv ^= visor_flags_inv
 
 /obj/item/clothing/mask/masquerade/feathered
-	name = "feathered masquerade mask"
-	desc = "You'll never guess who's under that mask, it's the perfect disguise! This one even has a feather, to make it fancier!"
+	name = "羽毛化装舞会面具"
+	desc = "你绝对猜不到面具下是谁，这伪装堪称完美！这个面具甚至还带有一根羽毛，让它更显华丽！"
 	icon_state = "/obj/item/clothing/mask/masquerade/feathered"
 	post_init_icon_state = "maskerade_feather"
 
 /obj/item/clothing/mask/masquerade/two_colors
-	name = "split masquerade mask"
-	desc = "You'll never guess who's under that mask, it's the perfect disguise! There's even two colors, to add to the confusion!"
+	name = "双色化装舞会面具"
+	desc = "你绝对猜不到面具下是谁，这伪装堪称完美！它甚至有两种颜色，更添迷惑性！"
 	icon_state = "/obj/item/clothing/mask/masquerade/two_colors"
 	post_init_icon_state = "maskerade_two_colors"
 
 /obj/item/clothing/mask/masquerade/two_colors/feathered
-	name = "feathered split masquerade mask"
-	desc = "You'll never guess who's under that mask, it's the perfect disguise! There's even two colors AND a feather, making it the most fancy masquerade mask yet!"
+	name = "羽毛双色化装舞会面具"
+	desc = "你绝对猜不到面具下是谁，这伪装堪称完美！它甚至有两种颜色和一根羽毛，堪称迄今为止最华丽的化装舞会面具！"
 	icon_state = "/obj/item/clothing/mask/masquerade/two_colors/feathered"
 	post_init_icon_state = "maskerade_two_colors_feather"

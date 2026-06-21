@@ -2,8 +2,8 @@
 //This includes: The structures, their produce, their seeds and the crafting recipe for the mushroom bowl
 
 /obj/structure/flora/ash
-	name = "large mushrooms"
-	desc = "A number of large mushrooms, covered in a faint layer of ash and what can only be spores."
+	name = "大蘑菇"
+	desc = "有许多硕大的蘑菇，表面覆盖着一层淡淡的灰烬以及只能是孢子的物质。"
 	icon = 'icons/obj/mining_zones/ash_flora.dmi'
 	icon_state = "l_mushroom1"
 	base_icon_state = "l_mushroom"
@@ -43,8 +43,8 @@
 	regrowth_time_low = 7 MINUTES
 
 /obj/structure/flora/ash/leaf_shroom
-	name = "leafy mushrooms"
-	desc = "A number of mushrooms, each of which surrounds a greenish sporangium with a number of leaf-like structures."
+	name = "长叶蘑菇"
+	desc = "有许多蘑菇，每一种蘑菇周围都环绕着一个带有若干片叶状结构的绿色孢子囊。"
 	icon_state = "s_mushroom1"
 	base_icon_state = "s_mushroom"
 	harvested_name = "leafless mushrooms"
@@ -61,8 +61,8 @@
 	return list(/obj/item/food/grown/ash_flora/mushroom_leaf = 1)
 
 /obj/structure/flora/ash/cap_shroom
-	name = "tall mushrooms"
-	desc = "Several mushrooms, the larger of which have a ring of conks at the midpoint of their stems."
+	name = "高大蘑菇"
+	desc = "有几种蘑菇，其中较大的那些在菌柄的中部都有一个菌盖环。"
 	icon_state = "r_mushroom1"
 	base_icon_state = "r_mushroom"
 	harvested_name = "small mushrooms"
@@ -79,8 +79,8 @@
 	return list(/obj/item/food/grown/ash_flora/mushroom_cap = 1)
 
 /obj/structure/flora/ash/stem_shroom
-	name = "numerous mushrooms"
-	desc = "A large number of mushrooms, some of which have long, fleshy stems. They're radiating light!"
+	name = "大量蘑菇"
+	desc = "大量的蘑菇，其中有些有着长长的、多汁的茎部。它们正在发出光芒！"
 	icon_state = "t_mushroom1"
 	base_icon_state = "t_mushroom"
 	light_range = 1.5
@@ -99,8 +99,8 @@
 	return list(/obj/item/food/grown/ash_flora/mushroom_stem = 1)
 
 /obj/structure/flora/ash/cacti
-	name = "fruiting cacti"
-	desc = "Several prickly cacti, brimming with ripe fruit and covered in a thin layer of ash."
+	name = "水果仙人掌"
+	desc = "几株多刺的仙人掌，果实已成熟饱满，表面覆盖着一层薄薄的灰烬。"
 	icon_state = "cactus1"
 	base_icon_state = "cactus"
 	harvested_name = "cacti"
@@ -122,8 +122,8 @@
 	return list(/obj/item/food/grown/ash_flora/cactus_fruit = 20, /obj/item/seeds/lavaland/cactus = 1)
 
 /obj/structure/flora/ash/seraka
-	name = "seraka mushrooms"
-	desc = "A small cluster of seraka mushrooms. These must have come with the ashlizards."
+	name = "蛇栗菇"
+	desc = "一小簇蛇栗菇蘑菇。这些肯定是随阿什利蜥蜴一同带来的。"
 	icon_state = "seraka_mushroom1"
 	base_icon_state = "seraka_mushroom"
 	harvested_name = "harvested seraka mushrooms"
@@ -142,8 +142,8 @@
 	return list(/obj/item/food/grown/ash_flora/seraka = 1)
 
 /obj/structure/flora/ash/fireblossom
-	name = "fire blossom"
-	desc = "An odd flower that grows commonly near bodies of lava."
+	name = "火焰花"
+	desc = "一种奇特的、常见于熔岩体附近生长的花朵。"
 	icon_state = "fireblossom1"
 	base_icon_state = "fireblossom"
 	light_range = LIGHT_FIRE_BLOSSOM
@@ -220,8 +220,8 @@
 
 ///Snow flora to exist on icebox.
 /obj/structure/flora/ash/chilly
-	name = "springy grassy fruit"
-	desc = "A number of bright, springy blue fruiting plants. They seem to be unconcerned with the hardy, cold environment."
+	name = "富有弹性的青草状果实"
+	desc = "有许多色泽鲜艳、富有弹性的蓝色果实植物。它们似乎并不在意严寒的寒冷环境。"
 	icon_state = "chilly_pepper1"
 	base_icon_state = "chilly_pepper"
 	harvested_name = "springy grass"
@@ -241,8 +241,8 @@
 //SNACKS
 
 /obj/item/food/grown/ash_flora
-	name = "mushroom shavings"
-	desc = "Some shavings from a tall mushroom. With enough, might serve as a bowl."
+	name = "蘑菇屑"
+	desc = "一根高大蘑菇的几片屑。如果数量足够的话，或许可以用来做成一个碗。"
 	icon = 'icons/obj/mining_zones/ash_flora.dmi'
 	icon_state = "mushroom_shavings"
 	abstract_type = /obj/item/food/grown/ash_flora
@@ -262,29 +262,29 @@
 	return list(/datum/reagent/toxin/mushroom_powder = 5)
 
 /obj/item/food/grown/ash_flora/mushroom_leaf
-	name = "mushroom leaf"
-	desc = "A leaf, from a mushroom."
+	name = "蘑菇叶"
+	desc = "一片蘑菇上的叶子。"
 	icon_state = "mushroom_leaf"
 	seed = /obj/item/seeds/lavaland/porcini
 	wine_power = 40
 
 /obj/item/food/grown/ash_flora/mushroom_cap
-	name = "mushroom cap"
-	desc = "The cap of a large mushroom."
+	name = "菇帽"
+	desc = "大蘑菇的菇帽。"
 	icon_state = "mushroom_cap"
 	seed = /obj/item/seeds/lavaland/inocybe
 	wine_power = 70
 
 /obj/item/food/grown/ash_flora/mushroom_stem
-	name = "mushroom stem"
-	desc = "A long mushroom stem. It's slightly glowing."
+	name = "菇柄"
+	desc = "一根长长的菇柄。它闪着微光。"
 	icon_state = "mushroom_stem"
 	seed = /obj/item/seeds/lavaland/ember
 	wine_power = 60
 
 /obj/item/food/grown/ash_flora/cactus_fruit
-	name = "cactus fruit"
-	desc = "A cactus fruit covered in a thick, reddish skin. And some ash."
+	name = "仙人掌果实"
+	desc = "一个长满了厚厚的、略带红色外皮的仙人掌果实，上面还沾有一些灰烬。"
 	icon_state = "cactus_fruit"
 	seed = /obj/item/seeds/lavaland/cactus
 	wine_power = 50
@@ -295,8 +295,8 @@
 	AddElement(/datum/element/raptor_food, growth_modifier = 0.1, ability_modifier = -0.05)
 
 /obj/item/food/grown/ash_flora/seraka
-	name = "seraka cap"
-	desc = "Small, deeply flavourful mushrooms originally native to Tizira."
+	name = "蛇栗菇"
+	desc = "小巧而味道浓郁的蘑菇，原产于泰泽拉。"
 	icon_state = "seraka_cap"
 	seed = /obj/item/seeds/lavaland/seraka
 	wine_power = 40
@@ -306,8 +306,8 @@
 	AddElement(/datum/element/raptor_food, ability_modifier = 0.1)
 
 /obj/item/food/grown/ash_flora/fireblossom
-	name = "fire blossom"
-	desc = "A flower from a fire blossom."
+	name = "火之花"
+	desc = "一朵来自火之花的花。"
 	icon_state = "fireblossom"
 	slot_flags = ITEM_SLOT_HEAD
 	seed = /obj/item/seeds/lavaland/fireblossom
@@ -328,8 +328,8 @@
 // SEEDS
 
 /obj/item/seeds/lavaland
-	name = "lavaland seeds"
-	desc = "You should never see this."
+	name = "拉瓦兰种子"
+	desc = "你绝对不应该看到这个。"
 	lifespan = 50
 	endurance = 25
 	maturation = 7
@@ -344,8 +344,8 @@
 	graft_gene = /datum/plant_gene/trait/fire_resistance
 
 /obj/item/seeds/lavaland/cactus
-	name = "fruiting cactus seed pack"
-	desc = "These seeds grow into fruiting cacti."
+	name = "结果仙人掌种子包"
+	desc = "这些种子会长成结果的仙人掌。"
 	icon_state = "seed-cactus"
 	species = "cactus"
 	plantname = "Fruiting Cactus"
@@ -358,8 +358,8 @@
 
 ///Star Cactus seeds, mutation of lavaland cactus.
 /obj/item/seeds/star_cactus
-	name = "star cacti seed pack"
-	desc = "These seeds grow into star cacti."
+	name = "星仙人掌种子包"
+	desc = "能长成星辰仙人掌的种子。"
 	icon_state = "seed-starcactus"
 	species = "starcactus"
 	plantname = "Star Cactus Cluster"
@@ -378,16 +378,16 @@
 ///Star Cactus Plants.
 /obj/item/food/grown/star_cactus
 	seed = /obj/item/seeds/star_cactus
-	name = "star cacti"
-	desc = "A spikey, round cluster of prickly star cacti. And no, it's not called a star cactus because it's in space."
+	name = "星辰仙人掌"
+	desc = "一簇尖刺状、圆形的带刺星状仙人掌。而且，它之所以被称为“星状仙人掌”，并不是因为它是存在于太空中的植物。"
 	icon_state = "starcactus"
 	filling_color = "#1c801c"
 	foodtypes = VEGETABLES
 	distill_reagent = /datum/reagent/consumable/ethanol/tequila
 
 /obj/item/seeds/lavaland/polypore
-	name = "polypore mycelium pack"
-	desc = "This mycelium grows into bracket mushrooms, also known as polypores. Woody and firm, shaft miners often use them for makeshift crafts."
+	name = "多孔菌菌丝包"
+	desc = "这种菌丝体会长成菌盖蘑菇，也被称为多孔菌。这种木质且坚硬的菌体常被矿工们用于制作临时工具。"
 	icon_state = "mycelium-polypore"
 	species = "polypore"
 	plantname = "Polypore Mushrooms"
@@ -397,8 +397,8 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.04, /datum/reagent/consumable/ethanol = 0.04, /datum/reagent/stabilizing_agent = 0.06, /datum/reagent/consumable/mintextract = 0.02)
 
 /obj/item/seeds/lavaland/porcini
-	name = "porcini mycelium pack"
-	desc = "This mycelium grows into Boletus edulus, also known as porcini. Native to the late Earth, but discovered on Lavaland. Has culinary, medicinal and relaxant effects."
+	name = "牛肝菌菌丝包"
+	desc = "这种菌丝体能长成牛肝菌（也被称为猪肝菌）。这种菌类原产于地球的末期时期，但在拉瓦兰星球被发现。它具有烹饪、药用和放松的功效。"
 	icon_state = "mycelium-porcini"
 	species = "porcini"
 	plantname = "Porcini Mushrooms"
@@ -408,8 +408,8 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.06,  /datum/reagent/consumable/sugar = 0.06, /datum/reagent/consumable/vitfro = 0.04, /datum/reagent/drug/nicotine = 0.04)
 
 /obj/item/seeds/lavaland/inocybe
-	name = "inocybe mycelium pack"
-	desc = "This mycelium grows into an inocybe mushroom, a species of Lavaland origin with hallucinatory and toxic effects."
+	name = "丝盖菇菌丝包"
+	desc = "这种菌丝体会发育成一种名为丝盖伞菌的蘑菇，这是一种源自拉瓦兰地区的蘑菇，具有致幻和毒性作用。"
 	icon_state = "mycelium-inocybe"
 	species = "inocybe"
 	plantname = "Inocybe Mushrooms"
@@ -419,8 +419,8 @@
 	reagents_add = list(/datum/reagent/toxin/mindbreaker = 0.04, /datum/reagent/consumable/entpoly = 0.08, /datum/reagent/drug/mushroomhallucinogen = 0.04)
 
 /obj/item/seeds/lavaland/ember
-	name = "embershroom mycelium pack"
-	desc = "This mycelium grows into embershrooms, a species of bioluminescent mushrooms native to Lavaland."
+	name = "余烬菇菌丝包"
+	desc = "这种菌丝体会长成余烬菌这种蘑菇，它是来自拉瓦兰地区的会发光的蘑菇的一种。"
 	icon_state = "mycelium-ember"
 	species = "ember"
 	plantname = "Embershroom Mushrooms"
@@ -430,8 +430,8 @@
 	reagents_add = list(/datum/reagent/consumable/tinlux = 0.04, /datum/reagent/consumable/nutriment/vitamin = 0.02, /datum/reagent/drug/space_drugs = 0.02)
 
 /obj/item/seeds/lavaland/seraka
-	name = "seraka mycelium pack"
-	desc = "This mycelium grows into seraka mushrooms, a species of savoury mushrooms originally native to Tizira used in food and traditional medicine."
+	name = "塞拉卡菌丝包"
+	desc = "这种菌丝体会发育成蛇栗蘑菇，这是一种味道鲜美的蘑菇，原产于泰泽拉地区，常用于食品制作和传统医药中。"
 	icon_state = "mycelium-seraka"
 	species = "seraka"
 	plantname = "Seraka Mushrooms"
@@ -441,8 +441,8 @@
 	reagents_add = list(/datum/reagent/toxin/mushroom_powder = 0.1, /datum/reagent/medicine/coagulant/seraka_extract = 0.02)
 
 /obj/item/seeds/lavaland/fireblossom
-	name = "fire blossom seed pack"
-	desc = "These seeds grow into fire blossoms."
+	name = "火之花种子包"
+	desc = "这些种子会长成火之花。"
 	plantname = "Fire Blossom"
 	icon_state = "seed-fireblossom"
 	species = "fireblossom"
@@ -473,8 +473,8 @@
 	category = CAT_CONTAINERS
 
 /obj/item/reagent_containers/cup/bowl/mushroom_bowl
-	name = "mushroom bowl"
-	desc = "A bowl made out of mushrooms. Not food, though it might have contained some at some point."
+	name = "蘑菇碗"
+	desc = "一个用蘑菇制成的碗。不过这并非食物，尽管它可能曾经盛放过一些食物。"
 	icon = 'icons/obj/mining_zones/ash_flora.dmi'
 	base_icon_state = "mushroom_bowl"
 	icon_state = "mushroom_bowl"

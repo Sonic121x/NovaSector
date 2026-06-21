@@ -14,19 +14,19 @@
 	outfit.glasses = item_path
 
 /datum/loadout_item/glasses/regular
-	name = "Glasses"
+	name = "眼镜"
 	item_path = /obj/item/clothing/glasses/regular
 
 /datum/loadout_item/glasses/circle_glasses
-	name = "Circle Glasses"
+	name = "圆形眼镜"
 	item_path = /obj/item/clothing/glasses/regular/circle
 
 /datum/loadout_item/glasses/hipster_glasses
-	name = "Hipster Glasses"
+	name = "复古眼镜"
 	item_path = /obj/item/clothing/glasses/regular/hipster
 
 /datum/loadout_item/glasses/jamjar_glasses
-	name = "Jamjar Glasses"
+	name = "果酱瓶眼镜"
 	item_path = /obj/item/clothing/glasses/regular/jamjar
 
 /* NOVA EDIT REMOVAL - Already exists in our loadout
@@ -36,23 +36,23 @@
 */ // NOVA REMOVAL END
 
 /datum/loadout_item/glasses/cold_glasses
-	name = "Cold Glasses"
+	name = "防寒眼镜"
 	item_path = /obj/item/clothing/glasses/cold
 
 /datum/loadout_item/glasses/heat_glasses
-	name = "Heat Glasses"
+	name = "热感眼镜"
 	item_path = /obj/item/clothing/glasses/heat
 
 /datum/loadout_item/glasses/orange_glasses
-	name = "Orange Glasses"
+	name = "橙色眼镜"
 	item_path = /obj/item/clothing/glasses/orange
 
 /datum/loadout_item/glasses/red_glasses
-	name = "Red Glasses"
+	name = "红色眼镜"
 	item_path = /obj/item/clothing/glasses/red
 
 /datum/loadout_item/glasses/eyepatch
-	name = "Eyepatch"
+	name = "眼罩"
 	item_path = /obj/item/clothing/glasses/eyepatch
 
 /** NOVA EDIT REMOVAL - We already have it in the loadout.
@@ -62,9 +62,9 @@
 */ // NOVA EDIT REMOVAL END
 
 /datum/loadout_item/glasses/kim
-	name = "Thin Glasses"
+	name = "细框眼镜"
 	item_path = /obj/item/clothing/glasses/regular/kim
 
 /datum/loadout_item/glasses/monocle
-	name = "Monocle"
+	name = "单片眼镜"
 	item_path = /obj/item/clothing/glasses/monocle

@@ -6,8 +6,8 @@
 #define MAX_MINERAL_PICK_ATTEMPTS 10
 
 /obj/structure/ore_vent
-	name = "ore vent"
-	desc = "An ore vent, brimming with underground ore. Scan with an advanced mining scanner to start extracting ore from it."
+	name = "矿脉喷口"
+	desc = "一个矿脉喷口，充满了地下矿石。使用高级采矿扫描仪扫描以开始从中提取矿石。"
 	icon = 'icons/obj/mining_zones/terrain.dmi'
 	icon_state = "ore_vent"
 	base_icon_state = "ore_vent"
@@ -126,9 +126,9 @@
 	if(!HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
 		return
 	if(!discovered)
-		to_chat(user, span_notice("You can't quite find the weakpoint of [src]... Perhaps it needs to be scanned first?"))
+		to_chat(user, span_notice("你找不到[src]的薄弱点……或许需要先扫描一下？"))
 		return
-	to_chat(user, span_notice("You start striking [src] with your golem's fist, attempting to dredge up a boulder..."))
+	to_chat(user, span_notice("你开始用你的魔像拳头击打[src]，试图挖出一块巨石..."))
 	for(var/i in 1 to 3)
 		/* // NOVA EDIT REMOVAL START - ORIGINAL:
 		if(do_after(user, boulder_size * 1 SECONDS, src))
@@ -137,14 +137,14 @@
 		*/ // NOVA EDIT REMOVAL END
 		// NOVA EDIT ADDITION START
 		if(!do_after(user, boulder_size * 1 SECONDS, src))
-			user.balloon_alert(user, "stay still!")
+			user.balloon_alert(user, "保持不动！")
 			return
-		user.balloon_alert(user, i > 2 ? "got one!" : "digging around...")
+		user.balloon_alert(user, i > 2 ? "找到了一个！" : "正在挖掘...")
 		user.apply_damage(20, STAMINA)
 		playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 		// NOVA EDIT ADDITION END
 	produce_boulder(TRUE)
-	visible_message(span_notice("You've successfully produced a boulder! Boy are your arms tired."))
+	visible_message(span_notice("你成功挖出了一块巨石！你的手臂可真累啊。"))
 
 /obj/structure/ore_vent/attack_basic_mob(mob/user, list/modifiers)
 	. = ..()
@@ -164,13 +164,13 @@
 	if(discovered)
 		switch(boulder_size)
 			if(BOULDER_SIZE_SMALL)
-				. += span_notice("This vent produces [span_bold("small")] boulders containing [ore_string]")
+				. += span_notice("这个通风口会产出[span_bold("small")]的、含有[ore_string]的巨石")
 			if(BOULDER_SIZE_MEDIUM)
-				. += span_notice("This vent produces [span_bold("medium")] boulders containing [ore_string]")
+				. += span_notice("这个通风口会产出[span_bold("medium")]含有[ore_string]的巨石")
 			if(BOULDER_SIZE_LARGE)
-				. += span_notice("This vent produces [span_bold("large")] boulders containing [ore_string]")
+				. += span_notice("这个通风口会产出[span_bold("large")]含有[ore_string]的巨石")
 	else
-		. += span_notice("This vent can be scanned with a [span_bold("Mining Scanner")].")
+		. += span_notice("这个通风口可以用[span_bold("Mining Scanner")]扫描。")
 	if(artifact_chance)
 		. += span_notice("This vent has a low chance to produce an [span_bold("artifact boulder.")] These may contain rare minerals or strange artifacts.")
 
@@ -241,7 +241,7 @@
  * This confirms that the user wants to start the wave defense event, and that they can start it.
  */
 /obj/structure/ore_vent/proc/pre_wave_defense(mob/user, spawn_drone = TRUE, mech_scan = FALSE)
-	if(tgui_alert(user, excavation_warning, "Begin defending ore vent?", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, excavation_warning, "开始保卫矿石通风口？", list("Yes", "No")) != "Yes")
 		return FALSE
 	if(!can_interact(user) && !mech_scan)
 		return FALSE
@@ -489,15 +489,15 @@
 		return
 	if(!discovered)
 		if(DOING_INTERACTION_WITH_TARGET(user, src))
-			balloon_alert(user, "already scanning!")
+			balloon_alert(user, "已在扫描中！")
 			return
-		balloon_alert(user, "scanning...")
+		balloon_alert(user, "扫描中...")
 		playsound(src, 'sound/items/timer.ogg', 30, TRUE)
 		if(!do_after(user, 4 SECONDS, src))
 			return
 
 		discovered = TRUE
-		balloon_alert(user, "vent scanned!")
+		balloon_alert(user, "通风口已扫描！")
 		generate_description(user)
 		AddComponent(/datum/component/gps, name)
 		var/obj/item/card/id/user_id_card = user.get_idcard(TRUE)
@@ -630,7 +630,7 @@
 	else if(random)
 		string_boulder_size = pick_weight(ore_vent_options)
 
-	name = "[string_boulder_size] ore vent"
+	name = "[string_boulder_size]矿石喷口"
 	switch(string_boulder_size)
 		if(LARGE_VENT_TYPE)
 			boulder_size = BOULDER_SIZE_LARGE
@@ -654,8 +654,8 @@
 
 //comes with the station, and is already tapped.
 /obj/structure/ore_vent/starter_resources
-	name = "active ore vent"
-	desc = "An ore vent, brimming with underground ore. It's already supplying the station with iron and glass."
+	name = "活跃的矿石喷口"
+	desc = "一个矿石喷口，充满了地下矿石。它已经在为空间站供应铁和玻璃。"
 	tapped = TRUE
 	discovered = TRUE
 	unique_vent = TRUE
@@ -710,8 +710,8 @@
 	)
 
 /obj/structure/ore_vent/boss
-	name = "menacing ore vent"
-	desc = "An ore vent, brimming with underground ore. This one has an evil aura about it. Better be careful."
+	name = "险恶的矿石喷口"
+	desc = "一个矿石喷口，充满了地下矿石。这一个散发着邪恶的气息。最好小心点。"
 	unique_vent = TRUE
 	spawn_drone_on_tap = FALSE
 	boulder_size = BOULDER_SIZE_LARGE
@@ -754,7 +754,7 @@
 			boss_string = "A bloody drillmark"
 		if(/mob/living/simple_animal/hostile/megafauna/wendigo/noportal)
 			boss_string = "A chilling skull"
-	. += span_notice("[boss_string] is etched onto the side of the vent.")
+	. += span_notice("[boss_string]被蚀刻在喷口的侧面。")
 
 /obj/structure/ore_vent/boss/start_wave_defense()
 	if(!COOLDOWN_FINISHED(src, wave_cooldown))

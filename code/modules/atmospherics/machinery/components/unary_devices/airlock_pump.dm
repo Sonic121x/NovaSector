@@ -19,8 +19,8 @@
  */
 /// A vent, scrubber and a sensor in a single device meant specifically for cycling airlocks. Ideal for airlocks of up to 3x3 tiles in size to avoid wind and timing out.
 /obj/machinery/atmospherics/components/unary/airlock_pump
-	name = "external airlock pump"
-	desc = "A pump for cycling an external airlock controlled by the connected doors."
+	name = "外部气闸泵"
+	desc = "一个用于循环外部气闸的泵，由连接的门控制。"
 	icon = 'icons/obj/machines/atmospherics/unary_devices.dmi'
 	icon_state = "airlock_pump"
 	pipe_state = "airlock_pump"
@@ -166,10 +166,10 @@
 /obj/machinery/atmospherics/components/unary/airlock_pump/can_unwrench(mob/user)
 	. = ..()
 	if(!.)
-		to_chat(user, span_warning("You cannot unwrench [src], it is secured firmly in place!"))
+		to_chat(user, span_warning("你无法拆下 [src]，它被牢固地固定住了！"))
 		return FALSE
 	if(. && on)
-		to_chat(user, span_warning("You cannot unwrench [src], wait for the cycle completion!"))
+		to_chat(user, span_warning("你无法拆下 [src]，请等待循环完成！"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/airlock_pump/set_on(active)
@@ -604,7 +604,7 @@
 		// unbolt all the doors but don't open them
 		for(var/obj/machinery/door/airlock/airlock as anything in (internal_airlocks + external_airlocks))
 			airlock.unbolt()
-		audible_message(span_notice("[src] whirrs as [p_they()] loses power, disengaging airlock bolts."))
+		audible_message(span_notice("[src] 在 [p_they()] 断电时发出嗡嗡声，解除了气闸螺栓。"))
 	else if(!was_operational && is_operational)
 		// upon regaining power, re-bolt relevant airlocks
 		for(var/obj/machinery/door/airlock/airlock as anything in external_airlocks)
@@ -612,7 +612,7 @@
 		for(var/obj/machinery/door/airlock/airlock as anything in internal_airlocks)
 			if(open_airlock_on_cycle)
 				INVOKE_ASYNC(airlock, TYPE_PROC_REF(/obj/machinery/door/airlock, secure_open))
-		audible_message(span_notice("[src] whirrs as [p_they()] regains power, re-engaging airlock bolts."))
+		audible_message(span_notice("[src] 在 [p_they()] 恢复供电时发出嗡嗡声，重新接合了气闸螺栓。"))
 
 /obj/machinery/atmospherics/components/unary/airlock_pump/unbolt_only
 	open_airlock_on_cycle = FALSE

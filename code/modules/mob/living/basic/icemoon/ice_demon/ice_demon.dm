@@ -1,6 +1,6 @@
 /mob/living/basic/mining/ice_demon
-	name = "demonic watcher"
-	desc = "A creature formed entirely out of ice, bluespace energy emanates from inside of it."
+	name = "恶魔监视者"
+	desc = "一个完全由冰构成的生物，蓝空能量从其内部散发出来。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "ice_demon"
 	icon_living = "ice_demon"
@@ -50,8 +50,8 @@
 	return ..()
 
 /mob/living/basic/mining/demon_afterimage
-	name = "afterimage demonic watcher"
-	desc = "Is this some sort of illusion?"
+	name = "残像恶魔监视者"
+	desc = "这是某种幻象吗？"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "ice_demon"
 	icon_living = "ice_demon"

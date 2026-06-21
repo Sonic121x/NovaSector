@@ -2,8 +2,8 @@
 #define DEFAULT_SHELF_VERTICAL_OFFSET 10 // Vertical pixel offset of shelving-related things. Set to 10 by default due to this leaving more of the crate on-screen to be clicked.
 
 /obj/structure/cargo_shelf //Crate shelf port from Shiptest: https://github.com/shiptest-ss13/Shiptest/pull/2374
-	name = "crate shelf"
-	desc = "It's a shelf! For storing crates!"
+	name = "板条箱货架"
+	desc = "这是个货架！用来存放板条箱！"
 	icon = 'modular_nova/modules/shelves/structures.dmi'
 	icon_state = "shelf_base"
 	density = TRUE
@@ -38,12 +38,12 @@
 
 /obj/structure/cargo_shelf/examine(mob/user)
 	. = ..()
-	. += span_notice("There are some <b>bolts</b> holding [src] together.")
+	. += span_notice("有一些<b>螺栓</b>将[src]固定在一起。")
 	if(crate_count() < capacity) // If there's an empty space in the shelf, let the examiner know.
-		. += span_notice("You could <b>drag and drop</b> a crate into [src].")
+		. += span_notice("你可以将板条箱<b>拖放</b>到[src]中。")
 	if(crate_count()) // If there are any crates in the shelf, let the examiner know.
-		. += span_notice("You could <b>drag and drop</b> a crate out of [src].")
-		. += span_notice("[src] contains:")
+		. += span_notice("你可以将板条箱从[src]中<b>拖拽出来</b>。")
+		. += span_notice("[src] 包含：")
 		for(var/obj/structure/closet/crate/crate in contents)
 			. += span_notice("[icon2html(crate, user)] \A [crate]")
 
@@ -53,13 +53,13 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/cargo_shelf/relay_container_resist_act(mob/living/user, obj/structure/closet/crate)
-	to_chat(user, span_notice("You begin attempting to knock [crate] out of [src]"))
+	to_chat(user, span_notice("你开始尝试将[crate]从[src]中敲出来"))
 	if(do_after(user, 30 SECONDS, target = crate))
 		if(!user || user.stat != CONSCIOUS || user.loc != crate || crate.loc != src)
 			return // If the user is in a strange condition, return early.
-		visible_message(span_warning("[crate] falls off of [src]!"),
-			span_notice("You manage to knock [crate] free of [src]"),
-			span_notice("You hear a thud."))
+		visible_message(span_warning("[crate] 从 [src] 上掉了下来！"),
+			span_notice("你设法把[crate]从[src]上敲了下来"),
+			span_notice("你听到一声闷响。"))
 		crate.forceMove(get_spill_location()) // Try to push it somewhere
 
 /// Spits out how many crates are currently stored, counting the non nulls
@@ -73,19 +73,19 @@
 /// Returns if this crate can actually be loaded
 /obj/structure/cargo_shelf/proc/can_load(obj/structure/closet/crate/crate, mob/user, y_offset)
 	if(crate_count() >= capacity) // If we don't find an empty slot, return early.
-		balloon_alert(user, "shelf full!")
+		balloon_alert(user, "货架已满！")
 		return FALSE
 	if (y_offset <= 12)
 		if(crates_stored[1])
-			balloon_alert(user, "shelf occupied!")
+			balloon_alert(user, "货架已被占用！")
 			return FALSE
 	else if (y_offset <= 21)
 		if(crates_stored[2])
-			balloon_alert(user, "shelf occupied!")
+			balloon_alert(user, "货架已被占用！")
 			return FALSE
 	else
 		if(crates_stored[3])
-			balloon_alert(user, "shelf occupied!")
+			balloon_alert(user, "货架已被占用！")
 			return FALSE
 	return TRUE
 
@@ -103,12 +103,12 @@
 /obj/structure/cargo_shelf/proc/unload(obj/structure/closet/crate/crate, mob/user, turf/unload_turf)
 	var/unloading_to_turf = istype(unload_turf)
 	if(unloading_to_turf && unload_turf.is_blocked_turf(exclude_mobs = TRUE)) // Shelf to shelf
-		unload_turf.balloon_alert(user, "no room!")
+		unload_turf.balloon_alert(user, "没有空间了！")
 		return FALSE
 	if(!do_after(user, use_delay, target = crate))
 		return FALSE
 	if(unloading_to_turf && unload_turf.is_blocked_turf(exclude_mobs = TRUE)) // make sure we still are able to put it here
-		unload_turf.balloon_alert(user, "no room!")
+		unload_turf.balloon_alert(user, "没有空间了！")
 		return FALSE
 	if(!locate(crate) in src)
 		return FALSE // If something has happened to the crate while we were waiting, abort!
@@ -140,7 +140,7 @@
 			if(crate.welded || crate.locked)
 				continue
 			crate.open(force = TRUE) // Break some open, cause a little chaos.
-			crate.visible_message(span_warning("[crate]'s lid falls open!"))
+			crate.visible_message(span_warning("[crate]的盖子打开了！"))
 
 // Returns a valid open turf to scatter crates
 /obj/structure/cargo_shelf/proc/get_spill_location(radius = 2)
@@ -174,7 +174,7 @@
 	// -----------------------------------------
 	if (istype(over, /turf/open) && istype(loc, /obj/structure/cargo_shelf))
 		if(get_dist(user, over_location) > 1)
-			balloon_alert(user, "too far!")
+			balloon_alert(user, "太远了！")
 			return
 		var/obj/structure/cargo_shelf/shelf = loc
 		shelf.unload(src, user, over)
@@ -247,24 +247,24 @@
 	return ..()
 
 /obj/item/rack_parts/cargo_shelf
-	name = "crate shelf parts"
+	name = "板条箱货架零件"
 	icon = 'modular_nova/modules/shelves/structures.dmi'
 	icon_state = "rack_parts"
-	desc = "Parts of a crate shelf, for storing crates."
+	desc = "板条箱货架的部件，用于存放板条箱。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/rack_parts/cargo_shelf/attack_self(mob/user)
 	if(building)
 		return
 	building = TRUE
-	to_chat(user, span_notice("You start constructing [src]..."))
+	to_chat(user, span_notice("你开始建造[src]..."))
 	if(do_after(user, 5 SECONDS, target = user, progress=TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			building = FALSE
 			return
 		var/obj/structure/cargo_shelf/rack = new /obj/structure/cargo_shelf(get_turf(src))
 		user.visible_message(
-			span_notice("[user] assembles \a [rack]."),
+			span_notice("[user] 组装了\a [rack]。"),
 			span_notice("You assemble \a [rack]."),
 		)
 		rack.add_fingerprint(user)

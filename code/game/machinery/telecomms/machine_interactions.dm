@@ -95,7 +95,7 @@
 		if("id")
 			if(params["value"])
 				if(length(params["value"]) > 32)
-					to_chat(current_user, span_warning("Error: Machine ID too long!"))
+					to_chat(current_user, span_warning("错误：机器ID过长！"))
 					playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 					return
 				else
@@ -105,7 +105,7 @@
 		if("network")
 			if(params["value"])
 				if(length(params["value"]) > 15)
-					to_chat(current_user, span_warning("Error: Network name too long!"))
+					to_chat(current_user, span_warning("错误：网络名称过长！"))
 					playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 					return
 				else
@@ -120,7 +120,7 @@
 				tempfreq = text2num(params["value"]) * 10
 		if("freq")
 			if(tempfreq in banned_frequencies)
-				to_chat(current_user, span_warning("Error: Interference preventing filtering frequency: \"[tempfreq / 10] kHz\""))
+				to_chat(current_user, span_warning("错误：干扰阻止过滤频率：\"[tempfreq / 10] kHz\""))
 				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 			else
 				if(!(tempfreq in freq_listening))
@@ -305,7 +305,7 @@
 			var/freq = params["freq"]
 			var/info = frequency_infos[freq]
 			if(info)
-				var/new_name = tgui_input_text(usr, "Please enter new frequency name", "Modifying Frequency Information", info["name"], MAX_NAME_LEN)
+				var/new_name = tgui_input_text(usr, "请输入新的频率名称", "Modifying Frequency Information", info["name"], MAX_NAME_LEN)
 				if(new_name)
 					for(var/list/channel in get_channels())
 						if(num2text(channel["freq"]) != freq && channel["name"] == new_name)
@@ -313,26 +313,26 @@
 				info["name"] = new_name
 				// No color changing for channels with theme settings
 				if(!GLOB.freqtospan["[freq]"])
-					var/new_color = tgui_color_picker(usr, "Choose color for frequency", "Modifying Frequency Information", info["color"])
+					var/new_color = tgui_color_picker(usr, "Choose color for frequency", "修改频率信息", info["color"])
 					if(new_color)
 						info["color"] = new_color
 				frequency_infos[params["freq"]] = info
 				. = TRUE
 		if("add_freq_info")
-			var/freq = tgui_input_number(usr, "Please enter frequency", "Adding Frequency Information", 145.9, 160, 120, round_value = FALSE)
+			var/freq = tgui_input_number(usr, "请输入频率", "Adding Frequency Information", 145.9, 160, 120, round_value = FALSE)
 			if(!freq)
 				return
 			freq = round(freq*10)
 			if(!(freq in freq_listening))
 				return
-			var/name = tgui_input_text(usr, "Please enter frequency name", "Adding Frequency Information", max_length = MAX_NAME_LEN)
+			var/name = tgui_input_text(usr, "请输入频率名称", "添加频率信息", max_length = MAX_NAME_LEN)
 			if(!name)
 				return
 
 			for(var/list/channel in get_channels())
 				if(channel["freq"] == freq || channel["name"] == name)
 					return
-			var/color = tgui_color_picker(usr, "Choose color for frequency", "Adding Frequency Information")
+			var/color = tgui_color_picker(usr, "Choose color for frequency", "添加频率信息")
 			if(!color)
 				return
 			frequency_infos[num2text(freq)] = list(

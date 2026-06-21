@@ -1,5 +1,5 @@
 /obj/structure/spawner
-	name = "monster nest"
+	name = "怪物巢穴"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "hole"
 	max_integrity = 100
@@ -35,9 +35,9 @@
 	if(!scanner_taggable)
 		return
 	if(gps_tagged)
-		. += span_notice("A holotag's been attached, projecting \"<b>[assigned_tag]</b>\".")
+		. += span_notice("一个全息标签已被附着，正投射着\"<b>[assigned_tag]</b>\"。")
 	else
-		. += span_notice("It looks like you could probably scan and tag it with a <b>[scanner_descriptor]</b>.")
+		. += span_notice("看起来你或许可以用一个<b>[scanner_descriptor]</b>来扫描并标记它。")
 
 /obj/structure/spawner/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -50,9 +50,9 @@
 /// Tag the spawner, prefixing its GPS entry with an identifier - or giving it one, if nonexistent.
 /obj/structure/spawner/proc/gps_tag(mob/user)
 	if(gps_tagged)
-		to_chat(user, span_warning("[src] already has a holotag attached!"))
+		to_chat(user, span_warning("[src] 已经附有一个全息标签了！"))
 		return
-	to_chat(user, span_notice("You affix a holotag to [src]."))
+	to_chat(user, span_notice("你将一枚全息标签贴在了[src]上。"))
 	playsound(src, 'sound/machines/beep/twobeep.ogg', 100)
 	gps_tagged = TRUE
 	assigned_tag = "\[[mob_gps_id]-[rand(100,999)]\] " + spawner_gps_id
@@ -84,7 +84,7 @@
 	return
 
 /obj/structure/spawner/syndicate
-	name = "warp beacon"
+	name = "跃迁灯标"
 	icon = 'icons/obj/machines/beacon.dmi'
 	icon_state = "syndbeacon"
 	spawn_text = "warps in from"
@@ -94,8 +94,8 @@
 	spawner_gps_id = "Hostile Warp Beacon"
 
 /obj/structure/spawner/skeleton
-	name = "bone pit"
-	desc = "A pit full of bones, and some still seem to be moving..."
+	name = "骨坑"
+	desc = "一个满是骨头的坑，有些似乎还在移动。"
 	icon_state = "hole"
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	max_integrity = 150
@@ -108,8 +108,8 @@
 	spawner_gps_id = "Bone Pit"
 
 /obj/structure/spawner/clown
-	name = "Laughing Larry"
-	desc = "A laughing, jovial figure. Something seems stuck in his throat."
+	name = "大笑的拉里"
+	desc = "一个欢笑、快乐的身影，好像有什么东西卡在他的喉咙里。"
 	icon_state = "clownbeacon"
 	icon = 'icons/obj/machines/beacon.dmi'
 	max_integrity = 200
@@ -133,8 +133,8 @@
 	spawner_gps_id = "Clown Planet Distortion"
 
 /obj/structure/spawner/mining
-	name = "monster den"
-	desc = "A hole dug into the ground, harboring all kinds of monsters found within most caves or mining asteroids."
+	name = "怪物巢洞"
+	desc = "洞穴在地下挖的洞，藏匿在大多数洞穴或采矿小行星中的各种怪物。"
 	icon_state = "hole"
 	max_integrity = 200
 	max_mobs = 3
@@ -150,37 +150,37 @@
 	faction = list(FACTION_MINING)
 
 /obj/structure/spawner/mining/goldgrub
-	name = "goldgrub den"
-	desc = "A den housing a nest of goldgrubs, annoying but arguably much better than anything else you'll find in a nest."
+	name = "金蛆巢洞"
+	desc = "一个藏有金蛆窝的洞，令人讨厌，但可以说比你在巢中找到的任何东西都要好得多。"
 	mob_types = list(/mob/living/basic/mining/goldgrub)
 	mob_gps_id = "GG"
 
 /obj/structure/spawner/mining/goliath
-	name = "goliath den"
-	desc = "A den housing a nest of goliaths, oh god why?"
+	name = "歌利亚巢洞"
+	desc = "一个洞穴，里面住着一窝歌利亚，哦天呐，为什么？"
 	mob_types = list(/mob/living/basic/mining/goliath/ancient)
 	mob_gps_id = "GL|A"
 
 /obj/structure/spawner/mining/hivelord
-	name = "hivelord den"
-	desc = "A den housing a nest of hivelords."
+	name = "幼虫领主巢穴"
+	desc = "一个栖息着一窝幼虫领主的巢穴。"
 	mob_types = list(/mob/living/basic/mining/hivelord)
 	mob_gps_id = "HL"
 
 /obj/structure/spawner/mining/basilisk
-	name = "basilisk den"
-	desc = "A den housing a nest of basilisks, bring a coat."
+	name = "蛇怪石蛛巢穴"
+	desc = "一个栖息着一窝蛇怪石蛛的巢穴，记得带点保暖的衣服。"
 	mob_types = list(/mob/living/basic/mining/basilisk)
 	mob_gps_id = "BK"
 
 /obj/structure/spawner/mining/wumborian
-	name = "wumborian fugu den"
-	desc = "A den housing a nest of wumborian fugus, how do they all even fit in there?"
+	name = "wumborian fugu巢穴"
+	desc = "一个栖息着一窝wumborian fugu的巢穴，它们到底怎么全塞进这个小地方的。"
 	mob_types = list(/mob/living/basic/wumborian_fugu)
 	mob_gps_id = "WF"
 
 /obj/structure/spawner/nether
-	name = "netherworld link"
+	name = "幽冥界链接"
 	desc = null //see examine()
 	icon_state = "nether"
 	max_integrity = 50
@@ -212,10 +212,10 @@
 /obj/structure/spawner/nether/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(isskeleton(user) || iszombie(user))
-		to_chat(user, span_notice("You don't feel like going home yet..."))
+		to_chat(user, span_notice("你还不想回家..."))
 	else
-		user.visible_message(span_warning("[user] is violently pulled into the link!"), \
-							span_userdanger("Touching the portal, you are quickly pulled through into a world of unimaginable horror!"))
+		user.visible_message(span_warning("[user] 被猛地拽进了连接中！"), \
+							span_userdanger("触摸传送门，你被迅速拉入了一个充满难以想象的恐怖的世界！"))
 		contents.Add(user)
 
 /obj/structure/spawner/nether/process(seconds_per_tick)
@@ -226,8 +226,8 @@
 		if(living_mob.stat == DEAD)
 			var/mob/living/basic/blankbody/newmob = new(loc)
 			newmob.name = "[living_mob]"
-			newmob.desc = "It's [living_mob], but [living_mob.p_their()] flesh has an ashy texture, and [living_mob.p_their()] face is featureless save an eerie smile."
-			src.visible_message(span_warning("[living_mob] reemerges from the link!"))
+			newmob.desc = "这是[living_mob]，但[living_mob.p_their()]的皮肤有着灰烬般的质感，并且[living_mob.p_their()]的脸除了诡异的微笑外没有任何特征。"
+			src.visible_message(span_warning("[living_mob]从连接中重新出现了！"))
 			qdel(living_mob)
 
 /obj/structure/spawner/sentient
@@ -255,7 +255,7 @@
 	return
 
 /obj/structure/spawner/sentient/proteon_spawner
-	name = "eldritch gateway"
+	name = "邪神传送门"
 	desc = "A dizzying structure that somehow links into Nar'Sie's own domain. The screams of the damned echo continously."
 	icon = 'icons/obj/antags/cult/structures.dmi'
 	icon_state = "hole"
@@ -273,7 +273,7 @@
 
 /obj/structure/spawner/sentient/proteon_spawner/examine_status(mob/user)
 	if(IS_CULTIST(user) || !isliving(user))
-		return span_cult("It's at <b>[round(atom_integrity * 100 / max_integrity)]%</b> stability.")
+		return span_cult("它的稳定性为<b>[round(atom_integrity * 100 / max_integrity)]%</b>。")
 	return ..()
 
 /obj/structure/spawner/sentient/proteon_spawner/examine(mob/user)
@@ -281,14 +281,14 @@
 	if(!IS_CULTIST(user) && isliving(user))
 		var/mob/living/living_user = user
 		living_user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 15)
-		. += span_danger("The voices of the damned echo relentlessly in your mind, continously rebounding on the walls of your self the more you focus on [src]. Your head pounds, better keep away...")
+		. += span_danger("受诅咒者的声音在你脑海中无情地回响，你越是专注于[src]，它们就越是在你自我的壁垒上不断反弹。你的头阵阵作痛，最好离远点……")
 	else
-		. += span_cult("The gateway will create one weak proteon construct every [spawn_time * 0.1] seconds, up to a total of [max_mobs], that may be controlled by the spirits of the dead.")
+		. += span_cult("传送门每[spawn_time * 0.1]秒会创造一个弱小的普洛提恩构造体，最多可达[max_mobs]个，这些构造体可能被死者的灵魂所控制。")
 
 /obj/structure/spawner/sentient/proteon_spawner/became_player_controlled(mob/living/basic/construct/proteon/proteon)
 	proteon.mind.add_antag_datum(/datum/antagonist/cult)
 	proteon.add_filter("awoken_proteon", 3, list("type" = "outline", "color" = COLOR_CULT_RED, "size" = 2))
-	visible_message(span_cult_bold("[proteon] awakens, glowing an eerie red as it stirs from its stupor!"))
+	visible_message(span_cult_bold("[proteon]苏醒了，散发出诡异的红光，从它的恍惚状态中活动起来！"))
 	playsound(proteon, 'sound/items/haunted/ghostitemattack.ogg', 100, TRUE)
 	proteon.balloon_alert_to_viewers("awoken!")
 	addtimer(CALLBACK(src, PROC_REF(remove_wake_outline), proteon), 8 SECONDS)
@@ -299,4 +299,4 @@
 
 /obj/structure/spawner/sentient/proteon_spawner/handle_deconstruct(disassembled)
 	playsound(src, 'sound/effects/hallucinations/veryfar_noise.ogg', 75)
-	visible_message(span_cult_bold("[src] completely falls apart, the screams of the damned reaching a feverous pitch before slowly fading away into nothing."))
+	visible_message(span_cult_bold("[src]完全解体了，受诅咒者的尖叫声达到狂热的顶点，然后慢慢消逝，归于虚无。"))

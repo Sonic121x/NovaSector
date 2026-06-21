@@ -3,7 +3,7 @@
 
 /// Controls making objects irradiated when Radioactive Nebula is in effect.
 SUBSYSTEM_DEF(radioactive_nebula)
-	name = "Radioactive Nebula"
+	name = "放射性星云"
 	dependencies = list(
 		/datum/controller/subsystem/processing/station,
 	)

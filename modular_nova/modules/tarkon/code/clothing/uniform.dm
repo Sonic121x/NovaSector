@@ -1,6 +1,6 @@
 /obj/item/clothing/under/tarkon
-	name = "tarkon cargo uniform"
-	desc = "A uniform worn by cargo-ranked crew, provided by Tarkon Industries."
+	name = "塔康货运制服"
+	desc = "由塔康工业提供的、供货运部门船员穿着的制服。"
 	worn_icon = 'modular_nova/modules/tarkon/icons/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_nova/modules/tarkon/icons/mob/clothing/uniform_digi.dmi'
 	body_parts_covered = CHEST|ARMS|GROIN|LEGS
@@ -14,45 +14,45 @@
 	greyscale_colors = "#B7793D"
 
 /obj/item/clothing/under/tarkon/sci
-	name = "tarkon research uniform"
-	desc = "A uniform worn by research-ranked crew, provided by Tarkon Industries."
+	name = "塔康研究制服"
+	desc = "由塔康工业提供的、供研究部门船员穿着的制服。"
 	icon_state = "/obj/item/clothing/under/tarkon/sci"
 	post_init_icon_state = "tarkon_recolor"
 	greyscale_colors = "#9E00EA"
 
 /obj/item/clothing/under/tarkon/sec
-	name = "tarkon guard uniform"
-	desc = "A uniform worn by security-ranked crew, provided by Tarkon Industries."
+	name = "塔康安保制服"
+	desc = "由塔康工业提供的、供安保部门船员穿着的制服。"
 	icon_state = "/obj/item/clothing/under/tarkon/sec"
 	post_init_icon_state = "tarkon_recolor"
 	armor_type = /datum/armor/clothing_under/tarkon
 	greyscale_colors = "#B72B2F"
 
 /obj/item/clothing/under/tarkon/med
-	name = "tarkon medical uniform"
-	desc = "A uniform worn by medical-ranked crew, provided by Tarkon Industries."
+	name = "塔康医疗制服"
+	desc = "由塔康工业提供的、供医疗部门船员穿着的制服。"
 	icon_state = "/obj/item/clothing/under/tarkon/med"
 	post_init_icon_state = "tarkon_recolor"
 	greyscale_colors = "#85C1E6"
 
 /obj/item/clothing/under/tarkon/eng
-	name = "tarkon maintenance uniform"
-	desc = "A uniform worn by maintenance-ranked crew, provided by Tarkon Industries."
+	name = "塔康维护区制服"
+	desc = "由塔康工业提供的、供维护区船员穿着的制服。"
 	icon_state = "/obj/item/clothing/under/tarkon/eng"
 	post_init_icon_state = "tarkon_recolor"
 	greyscale_colors = "#ff9900"
 
 /obj/item/clothing/under/tarkon/com
-	name = "tarkon command uniform"
-	desc = "A uniform worn by command-ranked crew, provided by Tarkon Industries."
+	name = "塔康指挥制服"
+	desc = "由塔康工业提供的、供指挥部门船员穿着的制服。"
 	icon_state = "/obj/item/clothing/under/tarkon/com"
 	post_init_icon_state = "tarkon_recolor"
 	armor_type = /datum/armor/clothing_under/tarkon
 	greyscale_colors = "#3F6E9E"
 
 /obj/item/clothing/under/tarkon/general
-	name = "tarkon general uniform"
-	desc = "A uniform worn by civilian-ranked crew, provided by Tarkon Industries."
+	name = "塔康通用制服"
+	desc = "由塔康工业提供的、供文职船员穿着的制服。"
 	icon = 'modular_nova/modules/tarkon/icons/obj/clothing/uniform.dmi'
 	icon_state = "tarkon"
 	post_init_icon_state = null

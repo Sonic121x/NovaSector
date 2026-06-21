@@ -8,7 +8,7 @@
  */
 /obj/item/circuit_component/compare/typecheck
 	display_name = "Typecheck"
-	desc = "A component that checks the type of its input."
+	desc = "一种能够检查其输入类型的功能组件。"
 	category = "Utility"
 
 	var/datum/port/input/option/typecheck_options

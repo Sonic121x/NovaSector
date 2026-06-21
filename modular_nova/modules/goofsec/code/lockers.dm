@@ -1,6 +1,6 @@
 // Departmental guard lockers
 /obj/structure/closet/secure_closet/security/cargo
-	name = "\proper customs agent's locker"
+	name = "\proper 海关特工储物柜"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_CARGO)
 	icon_state = "qm"
 	icon = 'icons/obj/storage/closet.dmi'
@@ -12,7 +12,7 @@
 	new /obj/item/storage/bag/garment/customs_agent(src)
 
 /obj/structure/closet/secure_closet/security/engine
-	name = "\proper engineering guard's locker"
+	name = "\proper 工程守卫储物柜"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_ENGINEERING)
 	icon_state = "eng_secure"
 	icon = 'icons/obj/storage/closet.dmi'
@@ -24,7 +24,7 @@
 	new /obj/item/storage/bag/garment/engineering_guard(src)
 
 /obj/structure/closet/secure_closet/security/science
-	name = "\proper science guard's locker"
+	name = "\proper 科研守卫储物柜"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_RESEARCH)
 	icon_state = "science"
 	icon = 'icons/obj/storage/closet.dmi'
@@ -36,7 +36,7 @@
 	new /obj/item/storage/bag/garment/science_guard(src)
 
 /obj/structure/closet/secure_closet/security/med
-	name = "\proper orderly's locker"
+	name = "\proper 医护兵储物柜"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_MEDICAL)
 	icon_state = "med_secure"
 	icon = 'icons/obj/storage/closet.dmi'
@@ -48,7 +48,7 @@
 	new /obj/item/storage/bag/garment/orderly(src)
 
 /obj/structure/closet/secure_closet/security/service
-	name = "\proper the service guard's locker"
+	name = "\proper 服务区守卫储物柜"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_SERVICE)
 	icon_state = "serviceguard"
 	icon = 'modular_nova/master_files/icons/obj/closet.dmi'

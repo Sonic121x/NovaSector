@@ -1,6 +1,6 @@
 /mob/living/basic/pet/cat/feral
-	name = "feral cat"
-	desc = "Kitty!! Wait, no no DON'T BITE-"
+	name = "野猫"
+	desc = "小猫咪！！等等，不不不，别咬——"
 	health = 30
 	maxHealth = 30
 	melee_damage_lower = 15

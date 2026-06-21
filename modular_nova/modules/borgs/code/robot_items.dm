@@ -8,14 +8,14 @@
 #define MAX_PAPER_INTEGRATED_CLIPBOARD 10
 
 /obj/item/pen/cyborg
-	name = "integrated pen"
+	name = "集成式钢笔"
 	font = CYBORG_FONT
-	desc = "You can almost hear the sound of gears grinding against one another as you write with this pen. Almost."
+	desc = "用这支笔写字时，你几乎能听到齿轮相互摩擦的声音。几乎。"
 
 
 /obj/item/clipboard/cyborg
-	name = "\improper integrated clipboard"
-	desc = "A clipboard which seems to come adapted with a paper synthetizer, carefully hidden in its paper clip."
+	name = "\improper 集成剪贴板"
+	desc = "一个似乎配备了纸张合成器的剪贴板，合成器巧妙地隐藏在它的回形针里。"
 	integrated_pen = TRUE
 	/// When was the last time the printer was used?
 	COOLDOWN_DECLARE(printer_cooldown)
@@ -39,12 +39,12 @@
 
 /obj/item/clipboard/cyborg/click_alt(mob/user)
 	if(!iscyborg(user))
-		to_chat(user, span_warning("You do not seem to understand how to use [src]."))
+		to_chat(user, span_warning("你似乎不知道如何使用[src]。"))
 		return CLICK_ACTION_BLOCKING
 	var/mob/living/silicon/robot/cyborg_user = user
 	// Not enough charge? Tough luck.
 	if(cyborg_user?.cell.charge < paper_charge_cost)
-		to_chat(user, span_warning("Your internal cell doesn't have enough charge left to use [src]'s integrated printer."))
+		to_chat(user, span_warning("你的内部电池电量不足，无法使用[src]的集成打印机。"))
 		return CLICK_ACTION_BLOCKING
 	// Check for cooldown to avoid paper spamming
 	if(COOLDOWN_FINISHED(src, printer_cooldown))
@@ -59,24 +59,24 @@
 			RegisterSignal(new_paper, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_top_paper_change))
 			top_paper = new_paper
 			update_appearance()
-			to_chat(user, span_notice("[src]'s integrated printer whirs to life, spitting out a fresh piece of paper and clipping it into place."))
+			to_chat(user, span_notice("[src]的内置打印机嗡嗡作响，吐出一张崭新的纸并将其夹好。"))
 			return CLICK_ACTION_SUCCESS
 		else
-			to_chat(user, span_warning("[src]'s integrated printer refuses to print more paper, as [src] already contains enough paper."))
+			to_chat(user, span_warning("[src]的集成打印机拒绝打印更多纸张，因为[src]已经包含了足够的纸张。"))
 	else
-		to_chat(user, span_warning("[src]'s integrated printer refuses to print more paper, its bluespace paper synthesizer not having finished recovering from its last synthesis."))
+		to_chat(user, span_warning("[src]的集成打印机拒绝打印更多纸张，其蓝空纸张合成器尚未从上一次合成中恢复完毕。"))
 	return CLICK_ACTION_BLOCKING
 
 
 /obj/item/hand_labeler/cyborg
-	name = "integrated hand labeler"
+	name = "集成手持标签机"
 	labels_left = 9000 // I don't want to bother forcing them to recharge, honestly, that's a lot of code for a very niche functionality
 
 
 /// THE CLAMPS!!
 /obj/item/borg/hydraulic_clamp
-	name = "integrated hydraulic clamp"
-	desc = "A neat way to lift and move around few small packages for quick and painless deliveries!"
+	name = "集成液压夹具"
+	desc = "一种便捷的方式，可以提起并搬运少量小包裹，实现快速无痛的配送！"
 	icon = 'icons/obj/devices/mecha_equipment.dmi' // Just some temporary sprites because I don't have any unique one yet
 	icon_state = "mecha_clamp"
 	/// How much power does it draw per operation?
@@ -133,9 +133,9 @@
 
 /obj/item/borg/hydraulic_clamp/examine(mob/user)
 	. = ..()
-	. += span_notice("Its cargo hold has a capacity of [storage_capacity] and is currently holding <b>[contents.len ? contents.len : 0]</b> items in it!")
+	. += span_notice("它的货舱容量为[storage_capacity]，目前存放着<b>[contents.len ? contents.len : 0]</b>件物品！")
 	if(storage_capacity > 1)
-		. += span_notice("Use in hand to select an item you want to prioritize taking out of the storage.")
+		. += span_notice("在手中使用以选择您想优先从存储中取出的物品。")
 
 
 /// A simple proc to empty the contents of the hydraulic clamp, forcing them on the turf it's on. Also forces `selected_item_index` to 0, to avoid any possible issues resulting from it.
@@ -152,7 +152,7 @@
 	if(spilled_amount)
 		var/holder = cyborg_holding_me?.resolve()
 		if(holder)
-			visible_message(span_warning("[cyborg_holding_me?.resolve()] spills the content of [src]'s cargo hold all over the floor!"))
+			visible_message(span_warning("[cyborg_holding_me?.resolve()]将[src]货舱里的东西洒了一地！"))
 
 
 /obj/item/borg/hydraulic_clamp/attack_self(mob/user, modifiers)
@@ -173,7 +173,7 @@
 		choices[item] = index
 		index++
 
-	var/selection = tgui_input_list(user, "Which item would you like to prioritize?", "Choose an item to prioritize", choices)
+	var/selection = tgui_input_list(user, "你想要优先处理哪个物品？", "选择要优先处理的物品", choices)
 	if(!selection)
 		return
 
@@ -182,7 +182,7 @@
 		return
 
 	selected_item_index = new_index
-	to_chat(user, span_notice("[src] will now prioritize unloading [selection]."))
+	to_chat(user, span_notice("[src]现在将优先卸载[selection]。"))
 
 
 /obj/item/borg/hydraulic_clamp/emp_act(severity)
@@ -196,7 +196,7 @@
 
 	// Not enough charge? Tough luck.
 	if(user?.cell.charge < charge_cost)
-		to_chat(user, span_warning("Your internal cell doesn't have enough charge left to use [src]."))
+		to_chat(user, span_warning("您的内部电池电量不足以使用[src]。"))
 		return
 
 	user.cell.use(charge_cost)
@@ -214,7 +214,7 @@
 		selected_item_index = 0
 
 		if(unloading_time > 0.5 SECONDS) // We don't want too much chat spam if the clamp works fast.
-			to_chat(user, span_notice("You start unloading something from [src]..."))
+			to_chat(user, span_notice("您开始从[src]卸载某物..."))
 		playsound(src, clamp_sound, clamp_sound_volume, FALSE, -5)
 		COOLDOWN_START(src, clamp_cooldown, cooldown_duration)
 
@@ -224,7 +224,7 @@
 
 		var/turf/extraction_turf = get_turf(attacked_atom)
 		extracted_item.forceMove(extraction_turf)
-		visible_message(span_notice("[src.loc] unloads [extracted_item] from [src]."))
+		visible_message(span_notice("[src.loc]从[src]卸载了[extracted_item]。"))
 		log_silicon("[user] unloaded [extracted_item] onto [extraction_turf] ([AREACOORD(extraction_turf)]).")
 		in_use = FALSE
 		return
@@ -232,26 +232,26 @@
 	// We're trying to load something in the clamp
 	else
 		if(whitelisted_contents && !is_type_in_list(attacked_atom, whitelisted_item_types))
-			to_chat(user, span_warning("[src] can only pick up [whitelisted_item_description]!"))
+			to_chat(user, span_warning("[src]只能拾取[whitelisted_item_description]！"))
 			in_use = FALSE
 			return
 
 		if(contents.len >= storage_capacity)
-			to_chat(user, span_warning("[src] is already at full capacity!"))
+			to_chat(user, span_warning("[src]已达到最大容量！"))
 			in_use = FALSE
 			return
 
 		if(item_weight_limit)
 			var/obj/item/to_lift = attacked_atom
 			if(!to_lift || to_lift.w_class > item_weight_limit)
-				to_chat(user, span_warning("[to_lift] is too big for [src]!"))
+				to_chat(user, span_warning("[to_lift]对[src]来说太大了！"))
 				in_use = FALSE
 				return
 
 		var/atom/movable/lifting_up = attacked_atom
 
 		if(lifting_up.anchored)
-			to_chat(user, span_warning("[lifting_up] is firmly secured, it's not currently possible to move it into [src]!"))
+			to_chat(user, span_warning("[lifting_up]被牢牢固定，目前无法将其移入[src]！"))
 			in_use = FALSE
 			return
 
@@ -261,7 +261,7 @@
 			var/obj/item/delivery/big/parcel = lifting_up
 			if(parcel.contains_mobs)
 				if(!can_hold_mobs)
-					to_chat(user, span_warning("[src]'s warning light blinks red: There's something with the potential to be alive inside of [parcel]!"))
+					to_chat(user, span_warning("[src]的警告灯闪烁红光：[parcel]内部可能存在有生命潜力的东西！"))
 					in_use = FALSE
 					return
 				contains_mobs = TRUE
@@ -270,7 +270,7 @@
 		lifting_up.add_fingerprint(user)
 
 		if(loading_time > 0.5 SECONDS) // We don't want too much chat spam if the clamp works fast.
-			to_chat(user, span_notice("You start loading [lifting_up] into [src]'s cargo hold..."))
+			to_chat(user, span_notice("您开始将[lifting_up]装载到[src]的货舱中..."))
 		playsound(src, clamp_sound, clamp_sound_volume, FALSE, -5)
 
 		if(!do_after(user, loading_time, lifting_up)) // It takes two seconds to put stuff into the clamp's cargo hold
@@ -282,13 +282,13 @@
 		lifting_up.forceMove(src)
 		var/turf/lifting_up_from = get_turf(lifting_up.loc)
 		log_silicon("[user] loaded [lifting_up] (Contains mobs: [contains_mobs]) into [src] at ([AREACOORD(lifting_up_from)]).")
-		visible_message(span_notice("[src.loc] loads [lifting_up] into [src]'s cargo hold."))
+		visible_message(span_notice("[src.loc]将[lifting_up]装载到[src]的货舱中。"))
 		in_use = FALSE
 
 /// The fabled paper plane crossbow and its hardlight paper planes.
 /obj/item/paperplane/syndicate/hardlight
-	name = "hardlight paper plane"
-	desc = "Hard enough to hurt, fickle enough to be impossible to pick up."
+	name = "硬光纸飞机"
+	desc = "硬到足以伤人，又任性到无法拾起。"
 	impact_eye_damage_lower = 10
 	impact_eye_damage_higher = 10
 	delete_on_impact = TRUE
@@ -304,8 +304,8 @@
 
 
 /obj/item/borg/paperplane_crossbow
-	name = "paper plane crossbow"
-	desc = "Be careful, don't aim for the eyes- Who am I kidding, <i>definitely</i> aim for the eyes!"
+	name = "纸飞机弩"
+	desc = "小心点，别瞄准眼睛——我在开玩笑吗，<i>当然要</i>瞄准眼睛！"
 	icon = 'icons/obj/weapons/guns/energy.dmi'
 	icon_state = "crossbow"
 	/// How many planes does the crossbow currently have in its internal magazine?
@@ -324,9 +324,9 @@
 
 /obj/item/borg/paperplane_crossbow/examine(mob/user)
 	. = ..()
-	. += span_notice("There is <b>[planes]</b> left inside of its internal magazine, out of [max_planes].")
+	. += span_notice("其内置弹匣中剩余 <b>[planes]</b> 架，总容量为 [max_planes] 架。")
 	var/charging_speed = 10 / charge_delay
-	. += span_notice("It recharges at a rate of <b>[charging_speed]</b> plane[charging_speed >= 2 ? "s" : ""] per second.")
+	. += span_notice("它以每秒 <b>[charging_speed]</b> 架纸飞机[charging_speed >= 2 ? "s" : ""] 的速度充能。")
 
 
 /obj/item/borg/paperplane_crossbow/equipped()
@@ -358,7 +358,7 @@
 	if(!COOLDOWN_FINISHED(src, shooting_cooldown))
 		return ITEM_INTERACT_BLOCKING
 	if(planes <= 0)
-		to_chat(user, span_warning("Not enough paper planes left!"))
+		to_chat(user, span_warning("纸飞机数量不足！"))
 		return ITEM_INTERACT_BLOCKING
 	planes--
 
@@ -367,7 +367,7 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	plane_to_fire.throw_at(target, plane_to_fire.throw_range, plane_to_fire.throw_speed, user)
 	COOLDOWN_START(src, shooting_cooldown, shooting_delay)
-	user.visible_message(span_warning("[user] shoots a paper plane at [target]!"))
+	user.visible_message(span_warning("[user] 向 [target] 射出了一架纸飞机！"))
 	check_amount()
 	return ITEM_INTERACT_SUCCESS
 
@@ -379,32 +379,32 @@
 
 	var/mob/living/silicon/robot/robot_user = user
 	if(!robot_user.cell.use(STANDARD_CELL_CHARGE * 0.1))
-		to_chat(user, span_warning("Not enough power."))
+		to_chat(user, span_warning("能量不足。"))
 		return ITEM_INTERACT_BLOCKING
 	return shoot(interacting_with, user)
 
 /// Holders for the package wrap and the wrapping paper synthetizers.
 
 /datum/robot_energy_storage/package_wrap
-	name ="package wrapper synthetizer"
+	name ="包装纸合成器"
 	max_energy = 25
 	recharge_rate = 2
 
 
 /datum/robot_energy_storage/wrapping_paper
-	name ="wrapping paper synthetizer"
+	name ="礼品包装纸合成器"
 	max_energy = 25
 	recharge_rate = 2
 
 
 /obj/item/stack/package_wrap/cyborg
-	name = "integrated package wrapper"
+	name = "集成式包装纸"
 	is_cyborg = TRUE
 	source = /datum/robot_energy_storage/package_wrap
 
 
 /obj/item/stack/wrapping_paper/xmas/cyborg
-	name = "integrated wrapping paper"
+	name = "集成式礼品包装纸"
 	is_cyborg = TRUE
 	source = /datum/robot_energy_storage/wrapping_paper
 
@@ -433,22 +433,22 @@
 
 
 /obj/item/katana/ninja_blade
-	name = "energy katana"
-	desc = "A katana infused with strong energy."
+	name = "能量武士刀"
+	desc = "一把注入了强大能量的武士刀。"
 	force = 30
 	icon_state = "energy_katana"
 	inhand_icon_state = "energy_katana"
 	worn_icon_state = "energy_katana"
 
 /obj/item/shockpaddles/syndicate/cyborg/ninja
-	name = "modified defibrillator paddles"
+	name = "改良除颤器电极板"
 	icon = 'modular_nova/modules/borgs/icons/robot_items.dmi'
 	icon_state = "ninjapaddles0"
 	base_icon_state = "ninjapaddles"
 
 /obj/item/reagent_containers/borghypo/syndicate/ninja
-	name = "modified cyborg hypospray"
-	desc = "An experimental piece of technology used to produce powerful restorative nanites used to very quickly restore injuries of all types. metabolizes potassium iodide for radiation poisoning, inacusiate for ear damage and morphine for offense and nutriment for the operative in the field."
+	name = "改良机械人皮下注射器"
+	desc = "一种用于产生强大修复性纳米机器的实验性技术，可极快地修复所有类型的损伤。可代谢碘化钾治疗辐射中毒、耳康治疗耳部损伤、吗啡用于进攻，并为现场特工提供营养。"
 	icon = 'modular_nova/modules/borgs/icons/robot_items.dmi'
 	icon_state = "borghypo_n"
 	charge_cost = 20
@@ -458,8 +458,8 @@
 
 /// Engineering Modules ///
 /obj/item/crowbar/cyborg/power
-	name = "modular crowbar"
-	desc = "A cyborg fitted module resembling the jaws of life."
+	name = "模块化撬棍"
+	desc = "一个类似救生钳的机械人装配模块。"
 	icon = 'modular_nova/modules/borgs/icons/robot_items.dmi'
 	icon_state = "jaws_pry_cyborg"
 	usesound = 'sound/items/tools/jaws_pry.ogg'
@@ -474,18 +474,18 @@
 	playsound(get_turf(user), 'sound/items/tools/change_jaws.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_CROWBAR)
 		tool_behaviour = TOOL_WIRECUTTER
-		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
+		to_chat(user, span_notice("你将切割钳口安装到[src]上。"))
 		icon_state = "jaws_cutter_cyborg"
 		usesound = 'sound/items/tools/jaws_cut.ogg'
 	else
 		tool_behaviour = TOOL_CROWBAR
-		to_chat(user, span_notice("You attach the prying jaws to [src]."))
+		to_chat(user, span_notice("你将撬动钳口安装到[src]上。"))
 		icon_state = "jaws_pry_cyborg"
 		usesound = 'sound/items/tools/jaws_pry.ogg'
 
 /obj/item/screwdriver/cyborg/power
-	name =	"automated drill"
-	desc = "A cyborg fitted module resembling the hand drill"
+	name =	"自动钻头"
+	desc = "一个类似手持钻的机械人装配模块"
 	icon = 'modular_nova/modules/borgs/icons/robot_items.dmi'
 	icon_state = "drill_screw_cyborg"
 	hitsound = 'sound/items/tools/drill_hit.ogg'
@@ -501,16 +501,16 @@
 	playsound(get_turf(user), 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_SCREWDRIVER)
 		tool_behaviour = TOOL_WRENCH
-		to_chat(user, span_notice("You attach the bolt bit to [src]."))
+		to_chat(user, span_notice("你将螺栓钻头安装到[src]上。"))
 		icon_state = "drill_bolt_cyborg"
 	else
 		tool_behaviour = TOOL_SCREWDRIVER
-		to_chat(user, span_notice("You attach the screw bit to [src]."))
+		to_chat(user, span_notice("你将螺丝钻头安装到[src]上。"))
 		icon_state = "drill_screw_cyborg"
 
 /// Shapeshifter
 /obj/item/borg_shapeshifter
-	name = "cyborg chameleon projector"
+	name = "机械人变色龙投影仪"
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "shield0"
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -583,9 +583,9 @@
 		if (isturf(user.loc))
 			toggle(user)
 		else
-			to_chat(user, span_warning("You can't use [src] while inside something!"))
+			to_chat(user, span_warning("你在某物内部时无法使用[src]！"))
 	else
-		to_chat(user, span_warning("You need at least [activationCost] charge in your cell to use [src]!"))
+		to_chat(user, span_warning("你需要至少[activationCost]电量才能使用[src]！"))
 
 /obj/item/borg_shapeshifter/proc/toggle(mob/living/silicon/robot/user)
 	if(active)
@@ -661,10 +661,10 @@
 			animate(offset=f:offset-1, time=rand()*20+10)
 		if (do_after(user, 5 SECONDS, target=user) && (!activationCost || user.cell.use(activationCost)))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
-			to_chat(user, span_notice("You are now disguised."))
+			to_chat(user, span_notice("你现在已伪装。"))
 			activate(user)
 		else
-			to_chat(user, span_warning("The chameleon field fizzles."))
+			to_chat(user, span_warning("变色龙力场失效了。"))
 			do_sparks(3, FALSE, user)
 			for(i=1, i<=min(7, user.filters.len), ++i) // removing filters that are animating does nothing, we gotta stop the animations first
 				f = user.filters[start+i]
@@ -750,20 +750,20 @@
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER
 	if(active)
-		to_chat(user, span_danger("Your chameleon field deactivates."))
+		to_chat(user, span_danger("你的变色龙力场已停用。"))
 		deactivate(user)
 
 /obj/item/borg/apparatus/sheet_manipulator/chemistry
-	name = "material manipulation apparatus"
-	desc = "An apparatus for carrying, deploying, and manipulating sheets of material used in advanced chemistry operations."
+	name = "材料操控装置"
+	desc = "一种用于携带、部署和操控高级化学操作中使用的材料薄片的装置。"
 	icon_state = "borg_stack_apparatus"
 	storable = list(
 		/obj/item/stack/sheet,
 	) // technically can store any sheet, but it's meant for chemistry materials primarily.
 
 /obj/item/construction/rld/cyborg
-	name = "cyborg rapid-light-device"
-	desc = "A device used to rapidly provide lighting sources to an area. Runs off a cyborg's internal power supply"
+	name = "机械人快速照明装置"
+	desc = "一种用于快速为区域提供光源的设备。依靠机械人的内部电源运行"
 	/// The multiplier that determines the energy use for each use. Same as the cost for a borg RCD
 	var/energy_factor = /obj/item/construction/rcd/borg::energyfactor
 
@@ -782,11 +782,11 @@
 	var/mob/living/silicon/robot/borgy = user
 	if(!borgy.cell)
 		if(user)
-			balloon_alert(user, "no cell found!")
+			balloon_alert(user, "未找到电池！")
 		return 0
 	. = borgy.cell.use(amount * energy_factor)
 	if(!. && user)
-		balloon_alert(user, "insufficient charge!")
+		balloon_alert(user, "电量不足！")
 	return .
 
 #undef CYBORG_FONT

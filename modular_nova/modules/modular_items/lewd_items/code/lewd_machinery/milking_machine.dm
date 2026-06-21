@@ -10,8 +10,8 @@
 #define MILKING_PUMP_MAX_CAPACITY 100
 
 /obj/structure/chair/milking_machine
-	name = "milking machine"
-	desc = "A stationary device for milking... things."
+	name = "挤奶机"
+	desc = "一个用于挤...东西的固定装置。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/milking_machine.dmi'
 	icon_state = "milking_pink_off"
 	max_buckled_mobs = 1
@@ -75,24 +75,24 @@
 	AddElement(/datum/element/tool_blocker, TOOL_WRENCH, TOOL_ACT_SECONDARY)
 
 	milk_vessel = new()
-	milk_vessel.name = "MilkContainer"
+	milk_vessel.name = "乳汁容器"
 	milk_vessel.reagents.maximum_volume = MILKING_PUMP_MAX_CAPACITY
 	girlcum_vessel = new()
-	girlcum_vessel.name = "GirlcumContainer"
+	girlcum_vessel.name = "爱液容器"
 	girlcum_vessel.reagents.maximum_volume = MILKING_PUMP_MAX_CAPACITY
 	semen_vessel = new()
-	semen_vessel.name = "SemenContainer"
+	semen_vessel.name = "精液容器"
 	semen_vessel.reagents.maximum_volume = MILKING_PUMP_MAX_CAPACITY
 	current_vessel = milk_vessel
 
 	vessel_overlay = mutable_appearance('modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/milking_machine.dmi', "liquid_empty", LYING_MOB_LAYER)
-	vessel_overlay.name = "vessel_overlay"
+	vessel_overlay.name = "容器覆盖层"
 	indicator_overlay = mutable_appearance('modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/milking_machine.dmi', "indicator_empty", ABOVE_MOB_LAYER + 0.1)
-	indicator_overlay.name = "indicator_overlay"
+	indicator_overlay.name = "指示器覆盖层"
 	locks_overlay = mutable_appearance('modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/milking_machine.dmi', "locks_open", BELOW_MOB_LAYER)
-	locks_overlay.name = "locks_overlay"
+	locks_overlay.name = "锁具覆盖层"
 	organ_overlay = mutable_appearance('modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/milking_machine.dmi', "none", ABOVE_MOB_LAYER)
-	organ_overlay.name = "organ_overlay"
+	organ_overlay.name = "器官覆盖层"
 
 	add_overlay(locks_overlay)
 	add_overlay(vessel_overlay)
@@ -126,7 +126,7 @@
 // Additional examine text
 /obj/structure/chair/milking_machine/examine(mob/user)
 	. = ..()
-	. += span_notice("What are these metal mounts on the armrests for...?")
+	. += span_notice("这些扶手处的金属支架是用来做什么的...？")
 
 /*
 *	APPEARANCE MANAGEMENT
@@ -148,7 +148,7 @@
 		return TRUE
 	machine_color = choice
 	update_icon()
-	to_chat(user, span_notice("You change the color of the milking machine."))
+	to_chat(user, span_notice("你改变了挤奶机的颜色。"))
 	return TRUE
 
 // Checking if we can use the menu
@@ -248,8 +248,8 @@
 	update_hud_handcuffed()
 
 /obj/item/restraints/handcuffs/milker
-	name = "chair cuffs"
-	desc = "A thick metal cuff for restraining hands."
+	name = "座椅手铐"
+	desc = "一副用于束缚双手的厚重金属手铐。"
 	lefthand_file = null
 	righthand_file = null
 	breakouttime = 45 SECONDS
@@ -279,12 +279,12 @@
 		return ..()
 
 	if(affected_mob.arousal >= 60 && (current_mode != MILKING_PUMP_MODE_OFF) && (current_mode != MILKING_PUMP_MODE_LOW))
-		to_chat(affected_mob, span_purple("You are too horny to try to get out!"))
+		to_chat(affected_mob, span_purple("你欲火焚身，无法尝试脱身！"))
 		return FALSE
 
-	affected_mob.visible_message(span_notice("[affected_mob] unbuckles [affected_mob.p_them()]self from [src]."),\
-		span_notice("You unbuckle yourself from [src]."),\
-		span_hear("You hear metal clanking."))
+	affected_mob.visible_message(span_notice("[affected_mob] 从 [src] 上解开了[affected_mob.p_them()]自己。"),\
+		span_notice("你从 [src] 上解开了自己。"),\
+		span_hear("你听到金属的哐当声。"))
 	unbuckle_mob(affected_mob)
 	return TRUE
 
@@ -321,17 +321,17 @@
 	if(beaker && new_beaker)
 		try_put_in_hand(beaker, user)
 		beaker = new_beaker
-		to_chat(user, span_notice("You swap out the current beaker with a new one in a single uninterrupted motion."))
+		to_chat(user, span_notice("你以一连串不间断的动作，将当前烧杯换成了一个新的。"))
 		return TRUE
 
 	if(beaker)
 		try_put_in_hand(beaker, user)
 		beaker = null
-		to_chat(user, span_notice("You take the beaker out of [src]"))
+		to_chat(user, span_notice("你从[src]中取出了烧杯。"))
 
 	if(new_beaker)
 		beaker = new_beaker
-		to_chat(user, span_notice("You put the beaker in [src]"))
+		to_chat(user, span_notice("你将烧杯放入[src]。"))
 
 	return TRUE
 
@@ -408,13 +408,13 @@
 	current_mob.adjust_pain(pain_amounts[current_mode] * seconds_per_tick)
 
 /obj/structure/chair/milking_machine/click_ctrl_shift(mob/user)
-	to_chat(user, span_notice("You begin to disassemble [src]..."))
+	to_chat(user, span_notice("你开始拆卸[src]……"))
 	if(!do_after(user, 8 SECONDS, src))
-		to_chat(user, span_warning("You fail to disassemble [src]!"))
+		to_chat(user, span_warning("你未能拆卸[src]！"))
 		return
 
 	deconstruct(TRUE)
-	to_chat(user, span_notice("You disassemble [src]."))
+	to_chat(user, span_notice("你拆卸了[src]。"))
 
 // Machine deconstruction process handler
 /obj/structure/chair/milking_machine/atom_deconstruct(disassembled)
@@ -590,7 +590,7 @@
 		return
 	if(action == "ejectCreature")
 		unbuckle_mob(current_mob)
-		to_chat(usr, span_notice("You eject [current_mob] from [src]"))
+		to_chat(usr, span_notice("你将[current_mob]从[src]中弹出。"))
 		return TRUE
 
 	if(action == "ejectBeaker")
@@ -602,28 +602,28 @@
 		current_mode = MILKING_PUMP_MODE_OFF
 		pump_state = MILKING_PUMP_STATE_OFF
 		update_all_visuals()
-		to_chat(usr, span_notice("You turn off [src]"))
+		to_chat(usr, span_notice("你关闭了[src]。"))
 		return TRUE
 
 	if(action == "setLowMode")
 		current_mode = MILKING_PUMP_MODE_LOW
 		pump_state = MILKING_PUMP_STATE_ON
 		update_all_visuals()
-		to_chat(usr, span_notice("You switch [src] onto low mode"))
+		to_chat(usr, span_notice("你将[src]切换到低档模式。"))
 		return TRUE
 
 	if(action == "setMediumMode")
 		current_mode = MILKING_PUMP_MODE_MEDIUM
 		pump_state = MILKING_PUMP_STATE_ON
 		update_all_visuals()
-		to_chat(usr, span_notice("You switch [src] onto medium mode"))
+		to_chat(usr, span_notice("你将[src]切换到中档模式。"))
 		return TRUE
 
 	if(action == "setHardMode")
 		current_mode = MILKING_PUMP_MODE_HARD
 		pump_state = MILKING_PUMP_STATE_ON
 		update_all_visuals()
-		to_chat(usr, span_notice("You switch [src] onto hard mode"))
+		to_chat(usr, span_notice("你将[src]切换到高档模式。"))
 		return TRUE
 
 	if(action == "unplug")
@@ -632,25 +632,25 @@
 		pump_state = MILKING_PUMP_STATE_OFF
 		current_selected_organ = null
 		update_all_visuals()
-		to_chat(usr, span_notice("You detach the liner."))
+		to_chat(usr, span_notice("你取下了衬垫。"))
 		return TRUE
 
 	if(action == "setBreasts")
 		current_selected_organ = current_breasts
 		update_all_visuals()
-		to_chat(usr, span_notice("You attach the liner to [current_selected_organ]."))
+		to_chat(usr, span_notice("你将衬垫连接到[current_selected_organ]。"))
 		return TRUE
 
 	if(action == "setVagina")
 		current_selected_organ = current_vagina
 		update_all_visuals()
-		to_chat(usr, span_notice("You attach the liner to [current_selected_organ]."))
+		to_chat(usr, span_notice("你将衬垫连接到[current_selected_organ]。"))
 		return TRUE
 
 	if(action == "setTesticles")
 		current_selected_organ = current_testicles
 		update_all_visuals()
-		to_chat(usr, span_notice("You attach the liner to [current_selected_organ]."))
+		to_chat(usr, span_notice("你将衬垫连接到[current_selected_organ]。"))
 		return TRUE
 
 	if(action == "setMilk")
@@ -682,7 +682,7 @@
 
 /obj/structure/chair/milking_machine/examine(mob/user)
 	. = ..()
-	. += span_purple("[src] can be disassembled by using Ctrl+Shift+Click")
+	. += span_purple("使用Ctrl+Shift+点击可以拆卸[src]。")
 
 #undef MILKING_PUMP_MODE_OFF
 #undef MILKING_PUMP_MODE_LOW

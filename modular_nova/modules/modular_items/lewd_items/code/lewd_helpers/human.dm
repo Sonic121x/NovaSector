@@ -239,7 +239,7 @@
 		dna.features["body_model"] = ngender
 		if(!silent)
 			var/adj = ngender == MALE ? "masculine" : "feminine"
-			visible_message(span_boldnotice("[src] suddenly looks more [adj]!"), span_boldwarning("You suddenly feel more [adj]!"))
+			visible_message(span_boldnotice("[src]突然看起来更[adj]了！"), span_boldwarning("你突然感觉自己更[adj]了！"))
 	else if(ngender == NEUTER)
 		dna.features["body_model"] = MALE
 	gender = ngender

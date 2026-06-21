@@ -1,6 +1,6 @@
 /datum/bounty/item/interdyne_med/heart
-	name = "Heart"
-	description = "Corporate needs a few new hearts for scientific study. They will allow cybernetic ones to be submitted, but won't accept any basic cybernetics."
+	name = "心脏"
+	description = "公司需要一些新的心脏用于科学研究。他们允许提交赛博格心脏，但不会接受任何基础赛博格部件。"
 	reward = CARGO_CRATE_VALUE * 10
 	wanted_types = list(
 		/obj/item/organ/heart = TRUE,
@@ -11,8 +11,8 @@
 	)
 
 /datum/bounty/item/interdyne_med/lung
-	name = "Lungs"
-	description = "Corporate needs a few new lungs after an unfavorable event, the details of which do not matter. Organic lungs are preferred, but cybernetic are acceptable. Basic cybernetics won't be accepted."
+	name = "肺"
+	description = "在一次不利事件后，公司需要一些新的肺，具体细节无关紧要。有机肺是首选，但赛博格肺也可以接受。基础赛博格部件不会被接受。"
 	reward = CARGO_CRATE_VALUE * 10
 	required_count = 3
 	wanted_types = list(
@@ -24,14 +24,14 @@
 	)
 
 /datum/bounty/item/interdyne_med/appendix
-	name = "Appendix"
-	description = "Some executives at a... cooperative company need a brand new appendix, get one and they'll pay."
+	name = "阑尾"
+	description = "一家……合作公司的几位高管需要一个全新的阑尾，弄一个来他们会付钱。"
 	reward = CARGO_CRATE_VALUE * 5
 	wanted_types = list(/obj/item/organ/appendix = TRUE)
 
 /datum/bounty/item/interdyne_med/ears
-	name = "Ears"
-	description = "After a chemical incident at Interdyne Vessel 29 left them deaf, new ears need to be provided. Cybernetic ones are fine, but basic cybernetics will not be accepted."
+	name = "耳朵"
+	description = "因特戴恩29号船发生化学事故导致船员失聪后，需要提供新的耳朵。赛博格耳朵可以，但基础赛博格部件不会被接受。"
 	reward = CARGO_CRATE_VALUE * 10
 	required_count = 3
 	wanted_types = list(
@@ -44,8 +44,8 @@
 	)
 
 /datum/bounty/item/interdyne_med/liver
-	name = "Livers"
-	description = "One of our facilities has recently been overwhelmed by many patients with liver failure. Send some organic ones preferably, but cybernetic ones will do. Basic cybernetics will not be accepted."
+	name = "肝脏"
+	description = "我们的一处设施最近收治了大量肝衰竭患者。最好送一些有机肝脏来，但赛博格肝脏也行。基础赛博格部件不会被接受。"
 	reward = CARGO_CRATE_VALUE * 5
 	required_count = 3
 	wanted_types = list(
@@ -57,8 +57,8 @@
 	)
 
 /datum/bounty/item/interdyne_med/eye
-	name = "Organic Eyes"
-	description = "A leading researcher upon IPMV-113 ran out of corpses with organic eyes... Just supply them more, I'll spare you from the details. Cybernetics will not be accepted."
+	name = "有机眼球"
+	description = "IPMV-113上的一位首席研究员用完了带有有机眼睛的尸体……再给他们供应一些，细节我就不多说了。赛博格眼睛不会被接受。"
 	reward = CARGO_CRATE_VALUE * 10
 	required_count = 3
 	wanted_types = list(
@@ -68,8 +68,8 @@
 	)
 
 /datum/bounty/item/interdyne_med/tongue
-	name = "Tongues"
-	description = "IPMV-25 recently played a dare based game and decided to be stupid with sulfuric acid. They need some new tongues, so send some if you can. Synthetic tongues will not be accepted."
+	name = "舌头"
+	description = "IPMV-25最近玩了个大冒险游戏，结果傻乎乎地碰了硫酸。他们需要一些新舌头，能送就送点过来。合成舌头不接受。"
 	reward = CARGO_CRATE_VALUE * 10
 	required_count = 3
 	wanted_types = list(
@@ -78,31 +78,31 @@
 	)
 
 /datum/bounty/item/interdyne_med/lizard_tail
-	name = "Lizard Tail"
-	description = "A recent near fatal accident happened in a partner company, the patient needs a lizard tail. Supply it and we'll make it worth your while."
+	name = "蜥蜴尾巴"
+	description = "一家合作公司最近发生了一起近乎致命的事故，病人需要一条蜥蜴尾巴。提供它，我们会让你觉得物有所值。"
 	reward = CARGO_CRATE_VALUE * 6
 	wanted_types = list(/obj/item/organ/tail/lizard = TRUE)
 
 /datum/bounty/item/interdyne_med/cat_tail
-	name = "Cat Tail"
-	description = "Due to a mixture of alcohol, unethical thoughts, and questioning if felinids are just humans with cat ears, one of our staff has lost their tail. Send a new cat tail ASAP."
+	name = "猫尾巴"
+	description = "由于酒精、不道德的想法以及质疑猫耳族是否只是长了猫耳朵的人类，我们的一名员工失去了尾巴。尽快送一条新的猫尾巴过来。"
 	reward = CARGO_CRATE_VALUE * 6
 	wanted_types = list(/obj/item/organ/tail/cat = TRUE)
 
 /datum/bounty/item/interdyne_med/chainsaw
-	name = "Chainsaw"
-	description = "Doctor Izazel on IPMV-2201 wants a chainsaw for... nevermind, just send one and they'll pay handsomely."
+	name = "链锯"
+	description = "IPMV-2201上的伊扎泽尔医生想要一把链锯……算了，别问了，送一把过来，他们会慷慨付款的。"
 	reward = CARGO_CRATE_VALUE * 5
 	wanted_types = list(/obj/item/chainsaw = TRUE)
 
 /datum/bounty/item/interdyne_med/surgerycomp
-	name = "Surgery Computer"
-	description = "After a recent freak accident with bombs and alcohol, one of our surgical computers went full fubar. Send us one and you'll be paid nicely."
+	name = "手术计算机"
+	description = "最近发生了一起炸弹和酒精引发的离奇事故，我们的一台外科手术电脑彻底报废了。给我们送一台，你会得到丰厚报酬。"
 	reward = CARGO_CRATE_VALUE * 12
 	wanted_types = list(/obj/machinery/computer/operating = TRUE)
 
 /datum/bounty/item/interdyne_med/surgerytable
-	name = "Operating Table"
-	description = "After a recent influx of infected crew members, we've seen that masks just aren't cutting it alone. Silver operating tables might just do the trick though, send us one to use."
+	name = "手术台"
+	description = "最近受感染的船员激增，我们发现光靠口罩已经不够了。也许银质手术台能解决问题，送一张给我们用用。"
 	reward = CARGO_CRATE_VALUE * 6
 	wanted_types = list(/obj/structure/table/optable = TRUE)

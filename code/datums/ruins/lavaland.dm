@@ -10,7 +10,7 @@
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/biodome/beach
-	name = "Lava-Ruin Biodome Beach"
+	name = "熔岩遗迹-生物穹顶海滩"
 	id = "biodome-beach"
 	description = "Seemingly plucked from a tropical destination, this beach is calm and cool, with the salty waves roaring softly in the background. \
 	Comes with a rustic wooden bar and suicidal bartender."
@@ -18,36 +18,36 @@
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/biodome/winter
-	name = "Lava-Ruin Biodome Winter"
+	name = "熔岩遗迹-生物穹顶冬日"
 	id = "biodome-winter"
 	description = "For those getaways where you want to get back to nature, but you don't want to leave the fortified military compound where you spend your days. \
 	Includes a unique(*) laser pistol display case, and the recently introduced I.C.E(tm)."
 	suffix = "lavaland_surface_biodome_winter.dmm"
 
 /datum/map_template/ruin/lavaland/biodome/clown
-	name = "Lava-Ruin Biodome Clown Planet"
+	name = "熔岩遗迹-生物穹顶小丑星球"
 	id = "biodome-clown"
-	description = "WELCOME TO CLOWN PLANET! HONK HONK HONK etc.!"
+	description = "欢迎来到小丑星球！哔哔哔哔哔哔等等！"
 	suffix = "lavaland_biodome_clown_planet.dmm"
 
 /datum/map_template/ruin/lavaland/lizgas
-	name = "Lava-Ruin The Lizard's Gas"
+	name = "熔岩遗迹-蜥蜴的气体"
 	id = "lizgas2"
-	description = "A recently opened gas station from the Lizard's Gas franchise."
+	description = "一家新开业的蜥蜴加油站，属于蜥蜴燃气连锁品牌。"
 	suffix = "lavaland_surface_gas.dmm"
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/cube
-	name = "Lava-Ruin The Wishgranter Cube"
+	name = "熔岩遗迹-许愿者立方体"
 	id = "wishgranter-cube"
-	description = "Nothing good can come from this. Learn from their mistakes and turn around."
+	description = "这里不会有什么好事。吸取他们的教训，转身离开吧。"
 	suffix = "lavaland_surface_cube.dmm"
 	cost = 10
 	allow_duplicates = FALSE
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/seed_vault
-	name = "Lava-Ruin Seed Vault"
+	name = "熔岩遗迹-种子库"
 	id = "seed-vault"
 	description = "The creators of these vaults were a highly advanced and benevolent race, and launched many into the stars, hoping to aid fledgling civilizations. \
 	However, all the inhabitants seem to do is grow drugs and guns."
@@ -79,7 +79,7 @@
 //NOVA EDIT REMOVAL END
 
 /datum/map_template/ruin/lavaland/free_golem
-	name = "Lava-Ruin Free Golem Ship"
+	name = "熔岩遗迹-自由魔像飞船"
 	id = "golem-ship"
 	description = "Lumbering humanoids, made out of precious metals, move inside this ship. They frequently leave to mine more minerals, which they somehow turn into more of them. \
 	Seem very intent on research and individual liberty, and also geology-based naming?"
@@ -89,9 +89,9 @@
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/gaia
-	name = "Lava-Ruin Patch of Eden"
+	name = "熔岩遗迹-伊甸园碎片"
 	id = "gaia"
-	description = "Who would have thought that such a peaceful place could be on such a horrific planet?"
+	description = "谁能想到在这样一个可怕的星球上会有如此宁静的地方？"
 	cost = 5
 	suffix = "lavaland_surface_gaia.dmm"
 	allow_duplicates = FALSE
@@ -102,32 +102,32 @@
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/sin/envy
-	name = "Lava-Ruin Ruin of Envy"
+	name = "熔岩遗迹-嫉妒之墟"
 	id = "envy"
-	description = "When you get what they have, then you'll finally be happy."
+	description = "当你得到他们所拥有的东西时，你最终就会快乐。"
 	suffix = "lavaland_surface_envy.dmm"
 
 /datum/map_template/ruin/lavaland/sin/gluttony
-	name = "Lava-Ruin Ruin of Gluttony"
+	name = "熔岩遗迹-暴食之墟"
 	id = "gluttony"
-	description = "If you eat enough, then eating will be all that you do."
+	description = "如果你吃得足够多，那么吃就会成为你唯一做的事。"
 	suffix = "lavaland_surface_gluttony.dmm"
 
 /datum/map_template/ruin/lavaland/sin/greed
-	name = "Lava-Ruin Ruin of Greed"
+	name = "熔岩遗迹-贪婪之墟"
 	id = "greed"
 	description = "Sure you don't need magical powers, but you WANT them, and \
 		that's what's important."
 	suffix = "lavaland_surface_greed.dmm"
 
 /datum/map_template/ruin/lavaland/sin/pride
-	name = "Lava-Ruin Ruin of Pride"
+	name = "熔岩遗迹-傲慢之墟"
 	id = "pride"
-	description = "Wormhole lifebelts are for LOSERS, whom you are better than."
+	description = "虫洞救生带是给失败者用的，而你比他们强多了。"
 	suffix = "lavaland_surface_pride.dmm"
 
 /datum/map_template/ruin/lavaland/sin/sloth
-	name = "Lava-Ruin Ruin of Sloth"
+	name = "熔岩遗迹-懒惰之墟"
 	id = "sloth"
 	description = "..."
 	suffix = "lavaland_surface_sloth.dmm"
@@ -136,43 +136,43 @@
 	terrain_padding = 2
 
 /datum/map_template/ruin/lavaland/ratvar
-	name = "Lava-Ruin Dead God"
+	name = "熔岩遗迹-陨落神祇"
 	id = "ratvar"
-	description = "Ratvar's final resting place."
+	description = "拉特瓦尔的最终安息之地。"
 	suffix = "lavaland_surface_dead_ratvar.dmm"
 	cost = 0
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/hierophant
-	name = "Lava-Ruin Hierophant's Arena"
+	name = "熔岩遗迹-圣职者竞技场"
 	id = "hierophant"
-	description = "A strange, square chunk of metal of massive size. Inside awaits only death and many, many squares."
+	description = "一块巨大而奇特的方形金属块。里面等待着的只有死亡和许许多多的方块。"
 	suffix = "lavaland_surface_hierophant.dmm"
 	always_place = TRUE
 	allow_duplicates = FALSE
 	terrain_padding = 2
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner
-	name = "Lava-Ruin Blood-Drunk Miner"
+	name = "熔岩遗迹-嗜血矿工"
 	id = "blooddrunk"
-	description = "A strange arrangement of stone tiles and an insane, beastly miner contemplating them."
+	description = "一组奇怪的石板排列，以及一个疯狂、野兽般的矿工正在沉思。"
 	suffix = "lavaland_surface_blooddrunk1.dmm"
 	cost = 0
 	allow_duplicates = FALSE //will only spawn one variant of the ruin
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner/guidance
-	name = "Lava-Ruin Blood-Drunk Miner (Guidance)"
+	name = "熔岩遗迹-嗜血矿工（指引）"
 	suffix = "lavaland_surface_blooddrunk2.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner/hunter
-	name = "Lava-Ruin Blood-Drunk Miner (Hunter)"
+	name = "熔岩遗迹-嗜血矿工（猎手）"
 	suffix = "lavaland_surface_blooddrunk3.dmm"
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner/random
-	name = "Lava-Ruin Blood-Drunk Miner (Random)"
+	name = "熔岩遗迹-嗜血矿工（随机）"
 	suffix = null
 	always_place = TRUE
 
@@ -181,15 +181,15 @@
 	return ..()
 
 /datum/map_template/ruin/lavaland/ufo_crash
-	name = "Lava-Ruin UFO Crash"
+	name = "熔岩遗迹-UFO坠毁点"
 	id = "ufo-crash"
-	description = "Turns out that keeping your abductees unconscious is really important. Who knew?"
+	description = "事实证明，让被绑架者保持昏迷真的非常重要。谁知道呢？"
 	suffix = "lavaland_surface_ufo_crash.dmm"
 	cost = 5
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/xeno_nest
-	name = "Lava-Ruin Xenomorph Nest"
+	name = "熔岩遗迹-异形巢穴"
 	id = "xeno-nest"
 	description = "These xenomorphs got bored of horrifically slaughtering people on space stations, and have settled down on a nice lava-filled hellscape to focus on what's really important in life. \
 	Quality memes."
@@ -198,123 +198,123 @@
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/fountain
-	name = "Lava-Ruin Fountain Hall"
+	name = "熔岩遗迹-喷泉大厅"
 	id = "lava_fountain"
-	description = "The fountain has a warning on the side. DANGER: May have undeclared side effects that only become obvious when implemented."
+	description = "喷泉侧面有一个警告。危险：可能具有未声明的副作用，只有在实现时才会变得明显。"
 	prefix = "_maps/RandomRuins/AnywhereRuins/"
 	suffix = "fountain_hall.dmm"
 	cost = 5
 
 /datum/map_template/ruin/lavaland/survivalcapsule
-	name = "Lava-Ruin Survival Capsule Ruins"
+	name = "熔岩遗迹-生存舱废墟"
 	id = "survivalcapsule"
-	description = "What was once sanctuary to the common miner, is now their tomb."
+	description = "这里曾是普通矿工的庇护所，如今却成了他们的坟墓。"
 	suffix = "lavaland_surface_survivalpod.dmm"
 	cost = 5
 
 /datum/map_template/ruin/lavaland/pizza
-	name = "Lava-Ruin Ruined Pizza Party"
+	name = "熔岩遗迹-废墟披萨派对"
 	id = "pizza"
-	description = "Little Timmy's birthday pizza bash took a turn for the worse when a bluespace anomaly passed by."
+	description = "小蒂米的生日披萨派对在蓝空异常经过时急转直下。"
 	suffix = "lavaland_surface_pizzaparty.dmm"
 	allow_duplicates = FALSE
 	cost = 5
 
 /datum/map_template/ruin/lavaland/cultaltar
-	name = "Lava-Ruin Summoning Ritual"
+	name = "熔岩遗迹-召唤仪式"
 	id = "cultaltar"
-	description = "A place of vile worship, the scrawling of blood in the middle glowing eerily. A demonic laugh echoes throughout the caverns."
+	description = "一个进行邪恶崇拜的地方，中央的血迹涂鸦诡异地发着光。恶魔般的笑声在洞穴中回荡。"
 	suffix = "lavaland_surface_cultaltar.dmm"
 	allow_duplicates = FALSE
 	cost = 10
 
 /datum/map_template/ruin/lavaland/hermit
-	name = "Lava-Ruin Makeshift Shelter"
+	name = "熔岩遗迹-临时避难所"
 	id = "hermitcave"
-	description = "A place of shelter for a lone hermit, scraping by to live another day."
+	description = "一个孤独隐士的栖身之所，勉强维持生计，苟延残喘。"
 	suffix = "lavaland_surface_hermit.dmm"
 	allow_duplicates = FALSE
 	cost = 10
 
 /datum/map_template/ruin/lavaland/miningripley
-	name = "Lava-Ruin Ripley"
+	name = "熔岩遗迹-里普利机甲"
 	id = "ripley"
-	description = "A heavily-damaged mining ripley, property of a very unfortunate miner. You might have to do a bit of work to fix this thing up."
+	description = "一台严重受损的矿用里普利，属于一位非常不幸的矿工。你可能得花点功夫才能修好这东西。"
 	suffix = "lavaland_surface_random_ripley.dmm"
 	allow_duplicates = FALSE
 	cost = 5
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/dark_wizards
-	name = "Lava-Ruin Dark Wizard Altar"
+	name = "熔岩遗迹-黑暗巫师祭坛"
 	id = "dark_wizards"
-	description = "A ruin with dark wizards. What secret do they guard?"
+	description = "一处黑暗巫师盘踞的遗迹。他们守护着什么秘密？"
 	suffix = "lavaland_surface_wizard.dmm"
 	cost = 5
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/strong_stone
-	name = "Lava-Ruin Strong Stone"
+	name = "熔岩遗迹-坚固之石"
 	id = "strong_stone"
-	description = "A stone that seems particularly powerful."
+	description = "一块看起来特别强大的石头。"
 	suffix = "lavaland_strong_rock.dmm"
 	allow_duplicates = FALSE
 	cost = 2
 
 /datum/map_template/ruin/lavaland/puzzle
-	name = "Lava-Ruin Ancient Puzzle"
+	name = "熔岩遗迹-远古谜题"
 	id = "puzzle"
-	description = "Mystery to be solved."
+	description = "有待解开的谜题。"
 	suffix = "lavaland_surface_puzzle.dmm"
 	cost = 5
 
 /datum/map_template/ruin/lavaland/elite_tumor
-	name = "Lava-Ruin Pulsating Tumor"
+	name = "熔岩遗迹-搏动肿瘤"
 	id = "tumor"
-	description = "A strange tumor which houses a powerful beast..."
+	description = "一个寄宿着强大野兽的奇怪肿瘤……"
 	suffix = "lavaland_surface_elite_tumor.dmm"
 	cost = 5
 	always_place = TRUE
 	allow_duplicates = TRUE
 
 /datum/map_template/ruin/lavaland/elephant_graveyard
-	name = "Lava-Ruin Elephant Graveyard"
+	name = "熔岩遗迹-巨象坟场"
 	id = "Graveyard"
-	description = "An abandoned graveyard, calling to those unable to continue."
+	description = "一处废弃的墓地，召唤着那些无法继续前行的人。"
 	suffix = "lavaland_surface_elephant_graveyard.dmm"
 	allow_duplicates = FALSE
 	cost = 10
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/bileworm_nest
-	name = "Lava-Ruin Bileworm Nest"
+	name = "熔岩遗迹-胆汁蠕虫巢穴"
 	id = "bileworm_nest"
-	description = "A small sanctuary from the harsh wilderness... if you're a bileworm, that is."
+	description = "一个远离严酷荒野的小小庇护所……如果你是胆汁蠕虫的话。"
 	cost = 5
 	suffix = "lavaland_surface_bileworm_nest.dmm"
 	allow_duplicates = FALSE
 	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/lava_phonebooth
-	name = "Lava-Ruin Phonebooth"
+	name = "熔岩遗迹-电话亭"
 	id = "lava_phonebooth"
-	description = "A venture by Nanotrasen to help popularize the use of holopads. This one somehow made its way here."
+	description = "纳米传讯为推广全息板使用而进行的一次尝试。这台不知怎么流落到了这里。"
 	suffix = "lavaland_surface_phonebooth.dmm"
 	allow_duplicates = FALSE
 	cost = 5
 
 /datum/map_template/ruin/lavaland/battle_site
-	name = "Lava-Ruin Battle Site"
+	name = "熔岩遗迹-战场遗址"
 	id = "battle_site"
-	description = "The long past site of a battle between beast and humanoids. The victor is unknown, but the losers are clear."
+	description = "很久以前野兽与人形生物战斗的遗址。胜者未知，但败者一目了然。"
 	suffix = "lavaland_battle_site.dmm"
 	allow_duplicates = TRUE
 	cost = 3
 
 /datum/map_template/ruin/lavaland/vent
-	name = "Lava-Ruin Ore Vent"
+	name = "熔岩遗迹-矿脉喷口"
 	id = "ore_vent"
-	description = "A vent that spews out ore. Seems to be a natural phenomenon."
+	description = "一个喷出矿石的喷口。似乎是自然现象。"
 	suffix = "lavaland_surface_ore_vent.dmm"
 	allow_duplicates = TRUE
 	cost = 0
@@ -322,34 +322,34 @@
 	always_place = TRUE
 
 /datum/map_template/ruin/lavaland/watcher_grave
-	name = "Lava-Ruin Watchers' Grave"
+	name = "熔岩遗迹-守望者之墓"
 	id = "watcher-grave"
-	description = "A lonely cave where an orphaned child awaits a new parent."
+	description = "一个孤独的洞穴，一个孤儿正在等待新的父母。"
 	suffix = "lavaland_surface_watcher_grave.dmm"
 	cost = 5
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/mook_village
-	name = "Lava-Ruin Mook Village"
+	name = "熔岩遗迹-穆克村落"
 	id = "mook_village"
-	description = "A village hosting a community of friendly mooks!"
+	description = "一个居住着友善穆克族群的村庄！"
 	suffix = "lavaland_surface_mookvillage.dmm"
 	allow_duplicates = FALSE
 	cost = 5
 
 /datum/map_template/ruin/lavaland/shuttle_wreckage
-	name = "Lava-Ruin Shuttle Wreckage"
+	name = "熔岩遗迹-穿梭机残骸"
 	id = "shuttle_wreckage"
-	description = "Not every shuttle makes it back to CentCom."
+	description = "并非每艘穿梭机都能返回中央司令部。"
 	suffix = "lavaland_surface_shuttle_wreckage.dmm"
 	allow_duplicates = FALSE
 	enclosed_for_terrain = TRUE
 
 
 /datum/map_template/ruin/lavaland/crashsite
-	name = "Lava-Ruin Pod Crashsite"
+	name = "熔岩遗迹-逃生舱坠毁点"
 	id = "crashsite"
-	description = "They launched too early"
+	description = "他们发射得太早了"
 	suffix = "lavaland_surface_crashsite.dmm"
 	allow_duplicates = FALSE
 	enclosed_for_terrain = TRUE

@@ -2,7 +2,7 @@
 
 /// Adding or removing specific organs
 /datum/surgery_operation/limb/organ_manipulation
-	name = "organ manipulation"
+	name = "器官操作"
 	abstract_type = /datum/surgery_operation/limb/organ_manipulation
 	operation_flags = OPERATION_MORBID | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
 	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = ~BODYTYPE_ROBOTIC
@@ -109,7 +109,7 @@
 			option.image = image('icons/hud/surgery_radial.dmi', "base")
 			option.image.overlays += add_radial_overlays(organ.type)
 			option.name = "remove [initial(organ.name)]"
-			option.info = "Remove [initial(organ.name)] from the [limb.owner ? "patient" : "limb"]."
+			option.info = "从[initial(organ.name)]移除[limb.owner ? "patient" : "limb"]。"
 			LAZYSET(cached_organ_manipulation_options, "[organ.type]_remove", option)
 
 		options[option] = list("[OPERATION_ACTION]" = "remove", "[OPERATION_REMOVED_ORGAN]" = organ)
@@ -123,7 +123,7 @@
 		option.image = image('icons/hud/surgery_radial.dmi', "base")
 		option.image.overlays += add_radial_overlays(list(image('icons/hud/screen_gen.dmi', "arrow_large_still"), organ.type))
 		option.name = "insert [initial(organ.name)]"
-		option.info = "insert [initial(organ.name)] into the [limb.owner ? "patient" : "limb"]."
+		option.info = "将[initial(organ.name)]植入[limb.owner ? "patient" : "limb"]。"
 		LAZYSET(cached_organ_manipulation_options, "[organ.type]_insert", option)
 
 	var/list/result = list()
@@ -217,8 +217,8 @@
 	display_pain(limb.owner, "Your [limb.plaintext_zone] throbs with pain as your new [organ.name] comes to life!")
 
 /datum/surgery_operation/limb/organ_manipulation/internal
-	name = "internal organ manipulation"
-	desc = "Manipulate a patient's internal organs."
+	name = "内部器官操作"
+	desc = "操作病人的内部器官。"
 	replaced_by = /datum/surgery_operation/limb/organ_manipulation/internal/abductor
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT
 
@@ -234,12 +234,12 @@
 
 /datum/surgery_operation/limb/organ_manipulation/internal/any_required_strings()
 	return ..() + list(
-		"if operating on [bone_locked_organs], the bone MUST be sawed",
-		"otherwise, the state of the bone doesn't matter",
+		"如果对[bone_locked_organs]进行手术，骨骼必须被锯开",
+		"否则，骨骼的状态无关紧要",
 	)
 
 /datum/surgery_operation/limb/organ_manipulation/internal/mechanic
-	name = "mechanical organ manipulation"// NOVA EDIT CHANGE - ORIGINAL: name = "prosthetic organ manipulation"
+	name = "机械器官操作"// NOVA EDIT CHANGE - ORIGINAL: name = "prosthetic organ manipulation"
 	required_bodytype = (BODYTYPE_ROBOTIC| BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = BODYTYPE_ROBOTIC
 	remove_implements = list(
 		TOOL_CROWBAR = 1,
@@ -250,7 +250,7 @@
 
 /// Abductor subtype that works through clothes and lets you extract the heart without sawing bones
 /datum/surgery_operation/limb/organ_manipulation/internal/abductor
-	name = "experimental organ manipulation"
+	name = "实验性器官操作"
 	operation_flags = parent_type::operation_flags | OPERATION_IGNORE_CLOTHES | OPERATION_LOCKED | OPERATION_NO_WIKI
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
@@ -262,7 +262,7 @@
 // All external organ manipulation requires bones sawed
 /datum/surgery_operation/limb/organ_manipulation/external
 	name = "feature manipulation"
-	desc = "Manipulate features of the patient, such as a moth's wings or a lizard's tail."
+	desc = "操作病人的特征器官，例如飞蛾的翅膀或蜥蜴的尾巴。"
 	replaced_by = /datum/surgery_operation/limb/organ_manipulation/external/abductor
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
@@ -271,7 +271,7 @@
 	return (organ.organ_flags & ORGAN_EXTERNAL)
 
 /datum/surgery_operation/limb/organ_manipulation/external/mechanic
-	name = "mechanical feature manipulation" // NOVA EDIT: ORIGINAL: name = "prosthetic feature manipulation"
+	name = "机械特征器官操作" // NOVA EDIT: ORIGINAL: name = "prosthetic feature manipulation"
 	required_bodytype = (BODYTYPE_ROBOTIC| BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS - ORIGINAL: required_bodytype = BODYTYPE_ROBOTIC
 	remove_implements = list(
 		TOOL_CROWBAR = 1,
@@ -283,7 +283,7 @@
 
 /// Abductor subtype that works through clothes
 /datum/surgery_operation/limb/organ_manipulation/external/abductor
-	name = "experimental feature manipulation"
+	name = "实验性特征器官操作"
 	operation_flags = parent_type::operation_flags | OPERATION_IGNORE_CLOTHES | OPERATION_LOCKED | OPERATION_NO_WIKI
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED

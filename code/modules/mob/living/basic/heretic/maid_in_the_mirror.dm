@@ -1,8 +1,8 @@
 /// Scout and assassin who can appear and disappear from glass surfaces. Damaged by being examined.
 /mob/living/basic/heretic_summon/maid_in_the_mirror
-	name = "\improper Maid in the Mirror"
+	name = "\improper 镜中女仆"
 	real_name = "Maid in the Mirror"
-	desc = "A floating and flowing wisp of chilled air. Glancing at it causes it to shimmer slightly."
+	desc = "一团飘浮流动的冰冷空气。瞥视它时，它会微微闪烁。"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "stand"
 	icon_living = "stand" // Placeholder sprite... still
@@ -53,8 +53,8 @@
 	// If we have health, we take some damage
 	if(health > (maxHealth * 0.02))
 		visible_message(
-				span_warning("[src] seems to fade in and out slightly."),
-				span_userdanger("[user]'s gaze pierces your every being!"),
+				span_warning("[src] 似乎在微微地淡入淡出。"),
+				span_userdanger("[user] 的目光穿透了你的整个存在！"),
 		)
 
 		recent_examiner_refs += user_ref
@@ -67,8 +67,8 @@
 	// If we're examined on low enough health we die straight up
 	else
 		visible_message(
-				span_danger("[src] vanishes from existence!"),
-				span_userdanger("[user]'s gaze shatters your form, destroying you!"),
+				span_danger("[src] 从存在中消失了！"),
+				span_userdanger("[user] 的目光粉碎了你的形态，摧毁了你！"),
 		)
 
 		death()

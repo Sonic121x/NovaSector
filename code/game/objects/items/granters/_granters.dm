@@ -25,10 +25,10 @@
 
 /obj/item/book/granter/attack_self(mob/living/user)
 	if(reading)
-		to_chat(user, span_warning("You're already reading this!"))
+		to_chat(user, span_warning("你已经读过这个了!"))
 		return FALSE
 	if(user.is_blind())
-		to_chat(user, span_warning("You are blind and can't read anything!"))
+		to_chat(user, span_warning("失明让你无法阅读任何东西!"))
 		return FALSE
 	if(!isliving(user) || !user.can_read(src))
 		return FALSE
@@ -56,16 +56,16 @@
 
 /// Called when the user starts to read the granter.
 /obj/item/book/granter/proc/on_reading_start(mob/living/user)
-	to_chat(user, span_notice("You start reading [name]..."))
+	to_chat(user, span_notice("你开始阅读[name]..."))
 	return TRUE
 
 /// Called when the reading is interrupted without finishing.
 /obj/item/book/granter/proc/on_reading_stopped(mob/living/user)
-	to_chat(user, span_notice("You stop reading..."))
+	to_chat(user, span_notice("你停止阅读..."))
 
 /// Called when the reading is completely finished. This is where the actual granting should happen.
 /obj/item/book/granter/proc/on_reading_finished(mob/living/user)
-	to_chat(user, span_notice("You finish reading [name]!"))
+	to_chat(user, span_notice("你读完了[name]!"))
 
 /// The actual "turning over of the page" flavor bit that happens while someone is reading the granter.
 /obj/item/book/granter/proc/turn_page(mob/living/user)
@@ -95,16 +95,16 @@
 	if(!granted_action)
 		CRASH("Someone attempted to learn [type], which did not have an action set.")
 	if(locate(granted_action) in user.actions)
-		to_chat(user, span_warning("You already know all about [action_name]!"))
+		to_chat(user, span_warning("你已经了解了有关[action_name]的所有事情!"))
 		return FALSE
 	return TRUE
 
 /obj/item/book/granter/action/on_reading_start(mob/living/user)
-	to_chat(user, span_notice("You start reading about [action_name]..."))
+	to_chat(user, span_notice("你开始阅读[action_name]相关的事情..."))
 	return TRUE
 
 /obj/item/book/granter/action/on_reading_finished(mob/living/user)
-	to_chat(user, span_notice("You feel like you've got a good handle on [action_name]!"))
+	to_chat(user, span_notice("你觉得你已经很好地掌握了[action_name]！"))
 	// Action goes on the mind as the user actually learns the thing in your brain
 	var/datum/action/new_action = new granted_action(user.mind || user)
 	new_action.Grant(user)

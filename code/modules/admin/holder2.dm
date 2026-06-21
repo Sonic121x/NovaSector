@@ -13,7 +13,7 @@ GLOBAL_PROTECT(href_token)
 	var/list/datum/admin_rank/ranks
 
 	var/target
-	var/name = "nobody's admin datum (no rank)" //Makes for better runtimes
+	var/name = "无人管理的数据（无等级）" //Makes for better runtimes
 	var/client/owner = null
 	var/fakekey = null
 
@@ -67,7 +67,7 @@ GLOBAL_PROTECT(href_token)
 		QDEL_IN(src, 0)
 		CRASH("Admin datum created with invalid ranks: [ranks] ([json_encode(ranks)])")
 	target = ckey
-	name = "[ckey]'s admin datum ([join_admin_ranks(ranks)])"
+	name = "[ckey]的管理员数据（[join_admin_ranks(ranks)]）"
 	src.ranks = ranks
 	admin_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	href_token = GenerateToken()

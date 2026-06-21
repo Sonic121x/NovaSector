@@ -1,6 +1,6 @@
 /obj/item/paperplane
-	name = "paper plane"
-	desc = "Paper, folded in the shape of a plane."
+	name = "纸飞机"
+	desc = "用纸折成了飞机的形状。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "paperplane"
 	base_icon_state = "paperplane"
@@ -28,7 +28,7 @@
 	// NOVA EDIT END
 
 /obj/item/paperplane/syndicate
-	desc = "Paper, masterfully folded in the shape of a plane."
+	desc = "用纸熟练地折成了飞机的形状。"
 	throwforce = 20
 	hit_probability = 100
 
@@ -67,7 +67,7 @@
 /obj/item/paperplane/suicide_act(mob/living/user)
 	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	user.Stun(20 SECONDS)
-	user.visible_message(span_suicide("[user] jams [src] in [user.p_their()] nose. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 把 [src] 塞进了 [user.p_their()] 鼻子里。看起来 [user.p_theyre()] 想自杀！"))
 	user.adjust_eye_blur(12 SECONDS)
 	if(eyes)
 		eyes.apply_organ_damage(rand(impact_eye_damage_lower, impact_eye_damage_higher)) // NOVA EDIT START - Better paper planes
@@ -80,7 +80,7 @@
 		. += "[base_icon_state]_[stamp]"
 
 /obj/item/paperplane/attack_self(mob/user)
-	balloon_alert(user, "unfolded")
+	balloon_alert(user, "展开")
 
 	var/atom/location = drop_location()
 	// Need to keep a reference to the internal paper
@@ -93,7 +93,7 @@
 
 /obj/item/paperplane/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(IS_WRITING_UTENSIL(attacking_item))
-		to_chat(user, span_warning("You should unfold [src] before changing it!"))
+		to_chat(user, span_warning("你应该先展开[src]再修改它！"))
 		return
 	else if(istype(attacking_item, /obj/item/stamp)) //we don't randomize stamps on a paperplane
 		internal_paper.attackby(attacking_item, user) //spoofed attack to update internal paper.
@@ -117,7 +117,7 @@
 		return
 	if(hit_human.is_eyes_covered())
 		return
-	visible_message(span_danger("\The [src] hits [hit_human] in the eye[eyes ? "" : " socket"]!"))
+	visible_message(span_danger("\The [src]击中了[hit_human]的眼睛[eyes ? "" : " socket"]！"))
 	hit_human.adjust_eye_blur(12 SECONDS)
 	eyes?.apply_organ_damage(rand(6, 8))
 	hit_human.Paralyze(4 SECONDS)

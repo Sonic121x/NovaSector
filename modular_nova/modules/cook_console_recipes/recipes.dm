@@ -96,7 +96,7 @@
 	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/can_of_chap
-	name = "Can of CHAP"
+	name = "CHAP罐头"
 	time = 1 SECONDS
 	requirements_mats_blacklist = list(
 		/obj/item/stack/sheet/iron,

@@ -1,6 +1,6 @@
 /mob/living/basic/revolutionary
-	name = "Revolutionary"
-	desc = "They stand for a cause..."
+	name = "革命者"
+	desc = "他们为了一项事业而奋斗..."
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	faction = list(FACTION_HOSTILE)
 	icon = 'icons/mob/simple/simple_human.dmi'
@@ -103,18 +103,18 @@
 			death_sound = pick(male_screams + female_screams + monkey_screeches)
 
 	fully_replace_character_name(name, "[first_name] [pick(GLOB.last_names)]")
-	desc += span_infoplain("\nToday, that cause is: ")
+	desc += span_infoplain("\nToday，今天的目标是：")
 	shuffle_inplace(causes)
-	desc += span_notice("#[pick(causes)].")
+	desc += span_notice("#[pick(causes)]。")
 
 
 /obj/effect/mob_spawn/corpse/human/revolutionary
-	name = "Revolutionary"
+	name = "革命者"
 	outfit = /datum/outfit/revolution
 
 
 /datum/outfit/revolution
-	name = "Revolution"
+	name = "革命"
 	uniform = /obj/item/clothing/under/color/grey
 	head = /obj/item/clothing/head/costume/ushanka
 	mask = /obj/item/clothing/mask/gas

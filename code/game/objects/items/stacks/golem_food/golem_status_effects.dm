@@ -22,8 +22,8 @@
 	var/filter_color = LIGHT_COLOR_DEFAULT
 
 /atom/movable/screen/alert/status_effect/golem_status
-	name = "Metamorphic %SOMETHING%"
-	desc = "You've enjoyed a tasty meal and are now experiencing a bug."
+	name = "蜕变 %SOMETHING%"
+	desc = "你享用了一顿美餐，现在正经历一个增益效果。"
 	icon_state = "template"
 	/// Overlay we show on top of the template icon
 	var/mutable_appearance/mineral_overlay
@@ -112,13 +112,13 @@
 	status_alert?.update_details(buff_time = buff_duration)
 
 /datum/status_effect/golem/on_remove()
-	to_chat(owner, span_warning("The effect of the [mineral_name] fades."))
+	to_chat(owner, span_warning("[mineral_name]的效果消退了。"))
 	QDEL_LIST(active_overlays)
 	owner.remove_filter("[id]_filter")
 	return ..()
 
 /datum/status_effect/golem/get_examine_text()
-	return span_notice("[owner.p_Their()] body has been augmented with veins of [mineral_name].")
+	return span_notice("[owner.p_Their()]的身体已被[mineral_name]的脉络所增强。")
 
 /// Body part overlays applied by golem status effects
 /datum/bodypart_overlay/simple/golem_overlay
@@ -485,14 +485,14 @@
 	. = ..()
 	if (!.)
 		return
-	to_chat(owner, span_notice("You start to emit a healthy glow."))
+	to_chat(owner, span_notice("你开始散发出健康的辉光。"))
 	lightbulb = owner.mob_light(glow_range, glow_power, glow_color)
 	owner.add_filter(LIGHTBULB_FILTER, 2, list("type" = "outline", "color" = glow_color, "alpha" = 60, "size" = 1))
 
 /datum/status_effect/golem_lightbulb/on_remove()
 	QDEL_NULL(lightbulb)
 	owner.remove_filter(LIGHTBULB_FILTER)
-	to_chat(owner, span_warning("Your glow fades."))
+	to_chat(owner, span_warning("你的辉光消退了。"))
 	return ..()
 
 #undef LIGHTBULB_FILTER

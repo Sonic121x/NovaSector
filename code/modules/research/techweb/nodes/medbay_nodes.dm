@@ -2,7 +2,7 @@
 	id = TECHWEB_NODE_MEDBAY_EQUIP
 	starting_node = TRUE
 	display_name = "Medbay Equipment"
-	description = "Essential medical tools to patch you up while medbay is still intact."
+	description = "在医疗部完好时为你提供急救的基本医疗工具。"
 	design_ids = list(
 		"beaker",
 		"blood_filter",
@@ -46,7 +46,7 @@
 /datum/techweb_node/chem_synthesis
 	id = TECHWEB_NODE_CHEM_SYNTHESIS
 	display_name = "Chemical Synthesis"
-	description = "Synthesizing complex chemicals from electricity and thin air... Don't ask how..."
+	description = "从电力和稀薄空气中合成复杂的化学品……别问怎么做到的……"
 	prereq_ids = list(TECHWEB_NODE_MEDBAY_EQUIP)
 	design_ids = list(
 		"med_spray_bottle",
@@ -72,7 +72,7 @@
 /datum/techweb_node/medbay_equip_adv
 	id = TECHWEB_NODE_MEDBAY_EQUIP_ADV
 	display_name = "Advanced Medbay Equipment"
-	description = "State-of-the-art medical gear for keeping the crew in one piece — mostly."
+	description = "用于让船员保持完整——大部分情况下——的尖端医疗设备。"
 	prereq_ids = list(TECHWEB_NODE_CHEM_SYNTHESIS)
 	design_ids = list(
 		"chem_mass_spec",
@@ -94,7 +94,7 @@
 /datum/techweb_node/cryostasis
 	id = TECHWEB_NODE_CRYOSTASIS
 	display_name = "Cryostasis"
-	description = "The result of clown accidentally drinking a chemical, now repurposed for safely preserving crew members in suspended animation."
+	description = "小丑意外喝下某种化学品的结果，现被重新用于将船员安全保存在休眠状态。"
 	prereq_ids = list(TECHWEB_NODE_MEDBAY_EQUIP_ADV, TECHWEB_NODE_FUSION)
 	design_ids = list(
 		"cryo_grenade",

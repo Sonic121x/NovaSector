@@ -1,6 +1,6 @@
 /datum/action/item_action/mod/sprite_accessories
-	name = "Hide/Show mutant parts"
-	desc = "LMB: Deploy/Undeploy part. RMB: Deploy/Undeploy all parts."
+	name = "隐藏/显示突变部位"
+	desc = "左键：部署/收起部位。右键：部署/收起所有部位。"
 	button_icon = 'modular_nova/modules/customization/modules/mob/living/carbon/human/MOD_sprite_accessories/icons/radial.dmi' // What a great var name
 	button_icon_state = "open"
 

@@ -4,7 +4,7 @@
 #define BREAKDOWN_TIME (60 SECONDS)
 
 /obj/item/paper/guides/jobs/medical/morgue
-	name = "morgue memo"
+	name = "停尸房备忘录"
 	default_raw_text = "<font size='2'>Since this station's medbay never seems to fail to be staffed by the mindless monkeys \
 		meant for genetics experiments, I'm leaving a reminder here for anyone handling the pile of cadavers the quacks are sure \
 		to leave.</font><BR><BR><font size='4'><font color=red>Red lights mean there's a plain ol' dead body inside.</font><BR><BR>\
@@ -227,7 +227,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
  * Morgue
  */
 /obj/structure/bodycontainer/morgue
-	name = "morgue"
+	name = "停尸房"
 	desc = "Used to keep bodies in until someone fetches them. Includes a high-tech alert system."
 	icon_state = "morgue1"
 	base_icon_state = "morgue"
@@ -366,17 +366,17 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/morgue/examine(mob/user)
 	. = ..()
-	. += span_notice("The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.")
+	. += span_notice("扬声器是[beeper ? "enabled" : "disabled"]。Alt-点击以切换它。")
 
 /obj/structure/bodycontainer/morgue/click_alt(mob/user)
 	beeper = !beeper
-	to_chat(user, span_notice("You turn the speaker function [beeper ? "on" : "off"]."))
+	to_chat(user, span_notice("你将扬声器功能[beeper ? "on" : "off"]。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/bodycontainer/morgue/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "alert system overloaded")
+	balloon_alert(user, "警报系统过载")
 	obj_flags |= EMAGGED
 	update_appearance(UPDATE_ICON)
 	return TRUE
@@ -419,8 +419,8 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
  */
 GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/bodycontainer/crematorium
-	name = "crematorium"
-	desc = "A human incinerator. Works well on barbecue nights."
+	name = "焚化炉"
+	desc = "一个人类焚化炉，在烧烤之夜效果很好。"
 	icon = 'icons/obj/machines/crematorium.dmi'
 	icon_state = "crema1"
 	base_icon_state = "crema"
@@ -513,8 +513,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE) // You horrible people
 
 /obj/structure/bodycontainer/crematorium/creamatorium
-	name = "creamatorium"
-	desc = "A human incinerator. Works well during ice cream socials."
+	name = "焚化炉"
+	desc = "人体焚化炉。在冰淇淋社交聚会上效果很好。"
 
 /obj/structure/bodycontainer/crematorium/creamatorium/cremate(mob/user)
 	var/list/icecreams = list()
@@ -595,8 +595,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
  * Crematorium tray
  */
 /obj/structure/tray/c_tray
-	name = "crematorium tray"
-	desc = "Apply body before burning."
+	name = "焚化炉托盘"
+	desc = "焚化前先放上尸体。"
 	icon_state = "cremat"
 	layer = /obj/structure/bodycontainer/crematorium::layer - 0.03
 
@@ -604,8 +604,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
  * Morgue tray
  */
 /obj/structure/tray/m_tray
-	name = "morgue tray"
-	desc = "Apply corpse before closing."
+	name = "停尸房托盘"
+	desc = "关闭前先放上尸体。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "morguet"
 	pass_flags_self = PASSTABLE | LETPASSTHROW

@@ -102,7 +102,7 @@
 		hallucinator.client.images |= funny_image
 
 	if(play_wabbajack)
-		to_chat(hallucinator, span_hear("...wabbajack...wabbajack..."))
+		to_chat(hallucinator, span_hear("...瓦巴杰克...瓦巴杰克..."))
 		hallucinator.playsound_local(get_turf(hallucinator), 'sound/effects/magic/staff_change.ogg', 50, TRUE)
 
 	if(duration > 0)

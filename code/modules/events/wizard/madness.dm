@@ -1,9 +1,9 @@
 /datum/round_event_control/wizard/madness
-	name = "Curse of Madness"
+	name = "癫狂之咒"
 	weight = 1
 	typepath = /datum/round_event/wizard/madness
 	earliest_start = 0 MINUTES
-	description = "Reveals a horrifying truth to everyone, giving them a trauma."
+	description = "向所有人揭示一个可怕的真相，并给他们带来精神创伤。"
 	admin_setup = list(/datum/event_admin_setup/text_input/madness)
 
 /datum/round_event/wizard/madness

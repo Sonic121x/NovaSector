@@ -1,8 +1,8 @@
 
 /// For map generation, has a chance to instantiate as a special subtype
 /obj/effect/spawner/random/lavaland_mob
-	name = "random lavaland mob"
-	desc = "Spawns a random lavaland mob."
+	name = "随机熔岩地生物"
+	desc = "生成一个随机的熔岩地生物。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	loot = list(
@@ -17,8 +17,8 @@
 
 /// Spawns random watcher variants during map generation
 /obj/effect/spawner/random/lavaland_mob/watcher
-	name = "random watcher"
-	desc = "Chance to spawn a rare shiny version."
+	name = "随机监视者"
+	desc = "有几率生成稀有的闪光变种。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "watcher"
 	pixel_x = -12
@@ -30,8 +30,8 @@
 
 /// Spawns random goliath variants during map generation
 /obj/effect/spawner/random/lavaland_mob/goliath
-	name = "random goliath"
-	desc = "Chance to spawn a rare shiny version."
+	name = "随机歌利亚"
+	desc = "有几率生成稀有的闪光变种。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "goliath"
 	pixel_x = -12
@@ -42,8 +42,8 @@
 
 /// Spawns random legion variants during map generation
 /obj/effect/spawner/random/lavaland_mob/legion
-	name = "random legion"
-	desc = "Chance to spawn a rare shiny version."
+	name = "随机军团"
+	desc = "有几率生成稀有的闪光变种。"
 	icon_state = "legion"
 	loot = list(
 		/mob/living/basic/mining/legion = 19,
@@ -51,8 +51,8 @@
 	)
 
 /obj/effect/spawner/random/lavaland_mob/raptor
-	name = "random raptor"
-	desc = "Chance to spawn a rare shiny version."
+	name = "随机迅猛龙"
+	desc = "有几率生成稀有的闪光变种。"
 	icon = 'icons/mob/simple/lavaland/raptor_big.dmi'
 	icon_state = "raptor_red"
 	pixel_x = -12
@@ -67,7 +67,7 @@
 	)
 
 /obj/effect/spawner/random/lavaland_mob/raptor/young
-	name = "random raptor youngling"
+	name = "随机迅猛龙幼崽"
 	icon_state = "young_red"
 	loot = list(
 		/mob/living/basic/raptor/young/red = 25,
@@ -80,7 +80,7 @@
 	)
 
 /obj/effect/spawner/random/lavaland_mob/raptor/baby
-	name = "random raptor chick"
+	name = "随机迅猛龙雏鸟"
 	icon = 'icons/mob/simple/lavaland/raptor_baby.dmi'
 	icon_state = "baby_red"
 	pixel_x = 0

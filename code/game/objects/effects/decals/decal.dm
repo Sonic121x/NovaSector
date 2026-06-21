@@ -1,5 +1,5 @@
 /obj/effect/decal
-	name = "decal"
+	name = "气闸"
 	layer = ABOVE_OPEN_TURF_LAYER
 	plane = FLOOR_PLANE
 	abstract_type = /obj/effect/decal

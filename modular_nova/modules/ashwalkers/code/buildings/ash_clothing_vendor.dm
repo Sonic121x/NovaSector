@@ -1,6 +1,6 @@
 /obj/machinery/vending/ashclothingvendor
-	name = "\improper Ashland Clothing Storage"
-	desc = "A large container, filled with various clothes for the Ash Walkers."
+	name = "\improper 灰烬之地衣物存储"
+	desc = "一个巨大的容器，里面装满了供灰烬行者使用的各种衣物。"
 	product_ads = "Praise the Necropolis"
 	icon = 'modular_nova/modules/ashwalkers/icons/vending.dmi'
 	icon_state = "ashclothvendor"

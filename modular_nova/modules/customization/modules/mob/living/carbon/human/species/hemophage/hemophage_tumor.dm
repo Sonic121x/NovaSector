@@ -11,7 +11,7 @@
 
 
 /obj/item/organ/heart/hemophage
-	name = "pulsating tumor"
+	name = "搏动的肿瘤"
 	icon = 'modular_nova/modules/organs/icons/hemophage_organs.dmi'
 	icon_state = "tumor-on"
 	base_icon_state = "tumor"
@@ -76,7 +76,7 @@
 		owner.adjust_blood_volume(round(-bloodloss_rate * seconds_per_tick, CHEMICAL_VOLUME_ROUNDING))
 
 	if(owner.get_blood_volume() <= BLOOD_VOLUME_SURVIVE)
-		to_chat(owner, span_danger("You ran out of blood!"))
+		to_chat(owner, span_danger("你的血液耗尽了！"))
 		owner.investigate_log("starved to death from lack of blood caused by [src].", INVESTIGATE_DEATHS)
 		owner.death() // Owch! Ran out of blood.
 

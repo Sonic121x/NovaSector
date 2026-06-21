@@ -1,6 +1,6 @@
 /// Inflicts crippling brain damage on the target
 /datum/smite/brain_damage
-	name = "Brain damage"
+	name = "Brain damage-脑损伤"
 
 /datum/smite/brain_damage/effect(client/user, mob/living/target)
 	. = ..()

@@ -1,10 +1,10 @@
 /obj/effect/spawner/random/engineering
-	name = "engineering loot spawner"
-	desc = "All engineering related spawners go here"
+	name = "工程战利品生成器"
+	desc = "所有工程相关的生成器都放在这里"
 	icon_state = "toolbox"
 
 /obj/effect/spawner/random/engineering/tool
-	name = "Tool spawner"
+	name = "工具生成器"
 	icon_state = "wrench"
 	loot = list(
 		/obj/item/wrench = 2,
@@ -22,7 +22,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/tool_advanced
-	name = "Advanced tool spawner"
+	name = "高级工具生成器"
 	icon_state = "wrench"
 	loot = list( // Mail loot spawner. Some sort of random and rare building tool. No alien tech here.
 		/obj/item/wrench/caravan,
@@ -33,7 +33,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/tool_alien
-	name = "Rare tool spawner"
+	name = "稀有工具生成器"
 	icon_state = "wrench"
 	loot = list(
 		/obj/item/wrench/abductor,
@@ -45,7 +45,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/material_cheap
-	name = "Cheap material spawner"
+	name = "廉价材料生成器"
 	icon_state = "cardboard"
 	loot = list(
 		/obj/item/stack/sheet/mineral/wood{amount = 30},
@@ -54,7 +54,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/material
-	name = "Material spawner"
+	name = "材料生成器"
 	icon_state = "metal"
 	loot = list(
 		/obj/item/stack/sheet/iron/fifty = 5,
@@ -64,7 +64,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/material_rare
-	name = "Rare material spawner"
+	name = "稀有材料生成器"
 	icon_state = "diamond"
 	spawn_loot_count = 3
 	loot = list( // Space loot spawner. Random selecton of a few rarer materials.
@@ -78,7 +78,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/toolbox
-	name = "toolbox spawner"
+	name = "工具箱生成器"
 	icon_state = "toolbox"
 	loot = list(
 		/obj/item/storage/toolbox/emergency = 4,
@@ -87,7 +87,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/flashlight
-	name = "flashlight spawner"
+	name = "手电筒生成器"
 	icon_state = "flashlight"
 	loot = list(
 		/obj/item/flashlight = 20,
@@ -99,7 +99,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/canister
-	name = "air canister spawner"
+	name = "空气罐生成器"
 	icon_state = "canister"
 	loot = list( // use this for emergency storage areas and maint
 		/obj/machinery/portable_atmospherics/canister/air = 4,
@@ -107,7 +107,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/tank
-	name = "tank spawner"
+	name = "储罐生成器"
 	icon_state = "tank"
 	loot = list( // use this for emergency storage areas and maint
 		/obj/structure/reagent_dispensers/fueltank = 5,
@@ -116,7 +116,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/vending_restock
-	name = "vending restock spawner"
+	name = "自动售货机补货生成器"
 	icon_state = "vending_restock"
 	loot = list(
 		/obj/effect/spawner/random/engineering/vending_restock/common = 935,
@@ -125,7 +125,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/vending_restock/wardrobe
-	name = "wardrobe vending restock spawner"
+	name = "衣柜自动售货机补货生成器"
 	icon_state = "vending_restock"
 	loot = list(
 		/obj/item/vending_refill/wardrobe/det_wardrobe = 1,
@@ -151,7 +151,7 @@
 
 
 /obj/effect/spawner/random/engineering/vending_restock/food_and_drink
-	name = "food & drink vending restock spawner"
+	name = "食品饮料自动售货机补货生成器"
 	icon_state = "vending_restock"
 	loot = list(
 		/obj/item/vending_refill/cigarette = 1,
@@ -165,7 +165,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/vending_restock/medical
-	name = "medical vending restock spawner"
+	name = "医疗自动售货机补货生成器"
 	icon_state = "vending_restock"
 	loot = list(
 		/obj/item/vending_refill/wallmed = 1,
@@ -174,7 +174,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/vending_restock/engineering
-	name = "engineering vending restock spawner"
+	name = "工程自动售货机补货生成器"
 	icon_state = "vending_restock"
 	loot = list(
 		/obj/item/vending_refill/engivend = 1,
@@ -187,7 +187,7 @@
 
 //common everyday vendors
 /obj/effect/spawner/random/engineering/vending_restock/common
-	name = "common vending restock spawner"
+	name = "普通自动售货机补货生成器"
 	icon_state = "vending_restock"
 	loot = list(
 		/obj/effect/spawner/random/engineering/vending_restock/wardrobe = 8, //roughtly reduced to half weight due to lameness of drobe contents
@@ -208,7 +208,7 @@
 
 //vendors that should feel rare and special but are unlikely to warp the shift too much
 /obj/effect/spawner/random/engineering/vending_restock/rare
-	name = "rare vending restock spawner"
+	name = "稀有自动售货机补货生成器"
 	icon_state = "vending_restock"
 	loot = list(
 		/obj/item/vending_refill/syndichem = 1,
@@ -221,7 +221,7 @@
 
 //high chance to derail the shift, use cautiously
 /obj/effect/spawner/random/engineering/vending_restock/oddity
-	name = "oddity vending restock spawner"
+	name = "奇物自动售货机补货生成器"
 	icon_state = "vending_restock"
 	loot = list(
 
@@ -232,7 +232,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/atmospherics_portable
-	name = "portable atmospherics machine spawner"
+	name = "便携式大气设备生成器"
 	icon_state = "heater"
 	loot = list(
 		/obj/machinery/space_heater = 8,
@@ -242,7 +242,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/tracking_beacon
-	name = "tracking beacon spawner"
+	name = "追踪信标生成器"
 	icon_state = "beacon"
 	spawn_loot_chance = 35
 	loot = list(/obj/item/beacon)

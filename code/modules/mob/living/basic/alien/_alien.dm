@@ -1,6 +1,6 @@
 /mob/living/basic/alien
-	name = "alien hunter"
-	desc = "Hiss!"
+	name = "异形猎手"
+	desc = "嘶！"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	icon_state = "alienh"
 	icon_living = "alienh"
@@ -73,7 +73,7 @@
 		return
 	if(locate(/obj/structure/alien/weeds/node) in get_turf(src))
 		return
-	visible_message(span_alertalien("[src] plants some alien weeds!"))
+	visible_message(span_alertalien("[src] 种下了一些异形菌毯！"))
 	new /obj/structure/alien/weeds/node(loc)
 
 ///Lays an egg on the turf the mob is currently standing on.
@@ -82,7 +82,7 @@
 		return
 	if(locate(/obj/structure/alien/egg) in get_turf(src))
 		return
-	visible_message(span_alertalien("[src] lays an egg!"))
+	visible_message(span_alertalien("[src] 产下了一颗卵！"))
 	new /obj/structure/alien/egg(loc)
 
 /mob/living/basic/alien/get_bloodtype()

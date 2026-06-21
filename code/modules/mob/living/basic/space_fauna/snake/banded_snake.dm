@@ -1,5 +1,5 @@
 /mob/living/basic/snake/banded
-	name = "banded snake"
+	name = "环带蛇"
 	desc = "A colourful stripy snake. It's either a harmless asteroid kingsnake or a highly venomous and aggressive nebula viper. There's a mnemonic to tell them apart, you just need to look at the colours and examine them closely..."
 	icon_state = "bandedsnake"
 	icon_living = "bandedsnake"
@@ -32,13 +32,13 @@
 
 /mob/living/basic/snake/banded/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<i>You examine the bands on the snake very closely...</i>")
+	. += span_notice("<i>你非常仔细地检查着蛇身上的环带...</i>")
 	if(src.poison_reagent == (/datum/reagent/consumable/milk))
 		. += span_info("[pick(src.rhymes_harmless)]")
-		. += span_notice("This snake is not dangerous!")
+		. += span_notice("这条蛇没有危险！")
 	else
 		. += span_info("[pick(src.rhymes_dangerous)]")
-		. += span_notice("This snake is dangerous!")
+		. += span_notice("这条蛇很危险！")
 	return .
 
 /datum/ai_controller/basic_controller/snake/banded

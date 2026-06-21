@@ -1,5 +1,5 @@
 /datum/objective/destroy_nation
-	name = "nation destruction"
+	name = "国家毁灭"
 	explanation_text = "Make sure no member of the enemy nation escapes alive!"
 	team_explanation_text = "Make sure no member of the enemy nation escapes alive!"
 	var/datum/team/nation/target_team

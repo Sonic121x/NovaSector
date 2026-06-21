@@ -4,8 +4,8 @@
  * Player-controlled slugs that arise from a changeling ability in order to live on in an extremely limited capacity until they can find a suitable corpse to inhabit.
  */
 /mob/living/basic/headslug
-	name = "headslug"
-	desc = "A small, slug-like creature with a large, gaping maw. It's covered in a thick, slimy mucus."
+	name = "头蛭"
+	desc = "一种小型、蛞蝓状的生物，长着一张巨大的裂口。它覆盖着一层厚厚的粘液。"
 	icon_state = "headslug"
 	icon_living = "headslug"
 	icon_dead = "headslug_dead"
@@ -46,11 +46,11 @@
 	. = ..()
 	if(stat != DEAD)
 		if(isnull(client))
-			. += span_notice("It appears to be moving around listlessly.")
+			. += span_notice("它看起来正漫无目的地移动着。")
 		else
-			. += span_warning("It's moving around intelligently!")
+			. += span_warning("它正在智能地移动！")
 	if (egg_lain)
-		. += span_notice("Its reproductive equipment appears to have withered.")
+		. += span_notice("它的生殖器官似乎已经萎缩了。")
 
 /// Signal Handler proc that runs on every attack and checks to see if this is a valid target for implantation. If so, it implants the egg and starts the countdown to death.
 /mob/living/basic/headslug/proc/check_and_implant(mob/living/basic/attacker, atom/target)
@@ -63,16 +63,16 @@
 	if(victim.stat != DEAD)
 		return
 	if(HAS_TRAIT(victim, TRAIT_XENO_HOST))
-		target.balloon_alert(src, "already pregnant!") // Maybe the worst balloon alert in the codebase
+		target.balloon_alert(src, "已经怀孕了！") // Maybe the worst balloon alert in the codebase
 		return
 
 	if(!infect(victim))
-		target.balloon_alert(src, "failed to implant egg!")
+		target.balloon_alert(src, "植入卵失败！")
 		stack_trace("[key] in [src] failed to implant egg in [victim], despite all checks suggesting it should have worked!")
 		return
 
 	egg_lain = TRUE
-	to_chat(src, span_userdanger("With our egg laid, our death approaches rapidly..."))
+	to_chat(src, span_userdanger("随着我们的卵被产下，我们的死亡正迅速临近……"))
 	addtimer(CALLBACK(src, PROC_REF(death)), 10 SECONDS)
 
 /// Simply infects the target corpse with our changeling eggs. This shouldn't fail, because all checks should have been done in check_and_implant()
@@ -86,8 +86,8 @@
 		target.forceMove(egg)
 
 	visible_message(
-		span_warning("[src] plants something in [victim]'s flesh!"),
-		span_danger("We inject our egg into [victim]'s body!"),
+		span_warning("[src]在[victim]的血肉中植入了什么东西！"),
+		span_danger("我们将卵注入了[victim]的体内！"),
 	)
 
 	return TRUE

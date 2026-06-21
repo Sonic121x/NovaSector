@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/assault_pod
-	name = "assault pod"
+	name = "突击舱"
 	shuttle_id = "steel_rain"
 
 /obj/docking_port/mobile/assault_pod/request(obj/docking_port/stationary/S)
@@ -15,13 +15,13 @@
 
 
 /obj/item/assault_pod
-	name = "Assault Pod Targeting Device"
+	name = "突击舱目标定位装置"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "designator_syndicate"
 	inhand_icon_state = "nukietalkie"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	desc = "Used to select a landing zone for assault pods."
+	desc = "用于为突击舱选择着陆区。"
 	var/shuttle_id = "steel_rain"
 	var/dwidth = 3
 	var/dheight = 0
@@ -32,7 +32,7 @@
 
 
 /obj/item/assault_pod/attack_self(mob/living/user)
-	var/target_area = tgui_input_list(user, "Area to land", "Landing Zone", GLOB.teleportlocs)
+	var/target_area = tgui_input_list(user, "着陆区域", "着陆区", GLOB.teleportlocs)
 	if(isnull(target_area))
 		return
 	if(isnull(GLOB.teleportlocs[target_area]))
@@ -48,7 +48,7 @@
 	var/obj/docking_port/stationary/landing_zone = new /obj/docking_port/stationary(T)
 	landing_zone.shuttle_id = "[lzname]([REF(src)])"
 	landing_zone.port_destinations = "[lzname]([REF(src)])"
-	landing_zone.name = "Landing Zone"
+	landing_zone.name = "着陆区"
 	landing_zone.dwidth = dwidth
 	landing_zone.dheight = dheight
 	landing_zone.width = width
@@ -59,16 +59,16 @@
 		if(S.shuttleId == shuttle_id)
 			S.possible_destinations = "[landing_zone.shuttle_id]"
 
-	to_chat(user, span_notice("Landing zone set."))
+	to_chat(user, span_notice("着陆区域已设定。"))
 
 	qdel(src)
 
 /obj/item/assault_pod/medieval //for the medieval pirates
-	name = "Shuttle placement designator"
+	name = "穿梭机部署指示器"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "blueprints"
 	inhand_icon_state = null
-	desc = "A map of the station used to select where you want to land your shuttle."
+	desc = "一张用于选择您希望穿梭机着陆位置的空间站地图。"
 	shuttle_id = "pirate"
 	dwidth = 1
 	dheight = 1

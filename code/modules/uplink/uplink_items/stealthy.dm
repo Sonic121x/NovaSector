@@ -1,5 +1,5 @@
 /datum/uplink_category/stealthy
-	name = "Stealthy Weapons"
+	name = "隐蔽的武器"
 	weight = 8
 
 /datum/uplink_item/stealthy_weapons
@@ -25,7 +25,7 @@
 
 /datum/uplink_item/stealthy_weapons/edagger
 	name = "Energy Dagger"
-	desc = "A dagger made of energy that looks and functions as a pen when off."
+	desc = "一把笔状外形的能量匕首，启动前隐藏性极高"
 	item = /obj/item/pen/edagger
 	cost = 2
 
@@ -39,7 +39,7 @@
 
 /datum/uplink_item/stealthy_weapons/traitor_chem_bottle
 	name = "Poison Kit"
-	desc = "An assortment of deadly chemicals packed into a compact box. Comes with a syringe for more precise application."
+	desc = "装在一个盒子里的各种致命性药物. 与注射枪使用更搭"
 	item = /obj/item/storage/box/syndie_kit/chemical
 	cost = 6
 	surplus = 50
@@ -54,7 +54,7 @@
 
 /datum/uplink_item/stealthy_weapons/suppressor
 	name = "Suppressor"
-	desc = "This suppressor will silence the shots of the weapon it is attached to for increased stealth and superior ambushing capability. It is compatible with many small ballistic guns including the Makarov, Stechkin APS and C-20r, but not revolvers or energy guns."
+	desc = "装上该消音器可使所附的武器射击消音，以增强隐蔽性与伏击能力  它与许多中小型武器兼容如-马卡洛夫、斯捷奇金APS与C-20r"
 	item = /obj/item/suppressor
 	cost = 1
 	surplus = 10
@@ -62,7 +62,7 @@
 
 /datum/uplink_item/stealthy_weapons/holster
 	name = "Syndicate Holster"
-	desc = "A useful little device that allows for inconspicuous carrying of guns using chameleon technology. It also allows for badass gun-spinning."
+	desc = "一个有用的小装置，利用变色龙技术可以隐蔽携带枪支。它还能让你炫酷地旋转枪械。"
 	item = /obj/item/storage/belt/holster/chameleon
 	cost = 1
 

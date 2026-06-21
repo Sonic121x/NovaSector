@@ -2,8 +2,8 @@
 
 ///Base Visor - Adds a specific HUD and traits to you.
 /obj/item/mod/module/visor
-	name = "MOD visor module"
-	desc = "A heads-up display installed into the visor of the suit. They say these also let you see behind you."
+	name = "MOD面罩模块"
+	desc = "一种显示装置安装在防护服的面罩内。据说这些装置还能让你看到身后的情况。"
 	module_type = MODULE_TOGGLE
 	complexity = 1
 	active_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
@@ -24,7 +24,7 @@
 
 //Medical Visor - Gives you a medical HUD.
 /obj/item/mod/module/visor/medhud
-	name = "MOD medical visor module"
+	name = "MOD医疗目镜模块"
 	desc = "A heads-up display installed into the visor of the suit. This cross-references suit sensor data with a modern \
 		biological scanning suite, allowing the user to visualize the current health of organic lifeforms, as well as \
 		access data such as patient files in a convenient readout. They say these also let you see behind you."
@@ -33,7 +33,7 @@
 
 //Diagnostic Visor - Gives you a diagnostic HUD.
 /obj/item/mod/module/visor/diaghud
-	name = "MOD diagnostic visor module"
+	name = "MOD诊断目镜模块"
 	desc = "A heads-up display installed into the visor of the suit. This uses a series of advanced sensors to access data \
 		from advanced machinery, exosuits, and other devices, allowing the user to visualize current power levels \
 		and integrity of such. They say these also let you see behind you."
@@ -42,7 +42,7 @@
 
 //Security Visor - Gives you a security HUD.
 /obj/item/mod/module/visor/sechud
-	name = "MOD security visor module"
+	name = "MOD安保目镜模块"
 	desc = "A heads-up display installed into the visor of the suit. This module is a heavily-retrofitted targeting system, \
 		plugged into various criminal databases to be able to view arrest records, command simple security-oriented robots, \
 		and generally know who to shoot. They say these also let you see behind you."
@@ -51,7 +51,7 @@
 
 //Meson Visor - Gives you meson vision.
 /obj/item/mod/module/visor/meson
-	name = "MOD meson visor module"
+	name = "MOD介子目镜模块"
 	desc = "A heads-up display installed into the visor of the suit. This module is based off well-loved meson scanner \
 		technology, used by construction workers and miners across the galaxy to see basic structural and terrain layouts \
 		through walls, regardless of lighting conditions. They say these also let you see behind you."
@@ -60,7 +60,7 @@
 
 //Thermal Visor - Gives you thermal vision.
 /obj/item/mod/module/visor/thermal
-	name = "MOD thermal visor module"
+	name = "MOD热成像目镜模块"
 	desc = "A heads-up display installed into the visor of the suit. This uses a small IR scanner to detect and identify \
 		the thermal radiation output of objects near the user. While it can detect the heat output of even something as \
 		small as a rodent, it still produces irritating red overlay. They say these also let you see behind you."
@@ -69,7 +69,7 @@
 
 //Night Visor - Gives you night vision.
 /obj/item/mod/module/visor/night
-	name = "MOD night visor module"
+	name = "MOD夜视目镜模块"
 	desc = "A heads-up display installed into the visor of the suit. Typical for both civilian and military applications, \
 		this allows the user to perceive their surroundings while in complete darkness, enhancing the view by tenfold; \
 		yet brightening everything into a spooky green glow. They say these also let you see behind you."

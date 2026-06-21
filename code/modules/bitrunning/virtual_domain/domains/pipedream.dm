@@ -1,7 +1,7 @@
 /datum/lazy_template/virtual_domain/pipedream
-	name = "Disposal Pipe Factory"
+	name = "废料管道工厂"
 	cost = BITRUNNER_COST_LOW
-	desc = "An abandoned and infested factory manufacturing disposal pipes."
+	desc = "一个被遗弃且被侵扰的废料管道制造工厂。"
 	difficulty = BITRUNNER_DIFFICULTY_LOW
 	completion_loot = list(/obj/item/stack/pipe_cleaner_coil/random/five = 1)
 	help_text = "Not long ago, this place was thriving with activity. The workers \
@@ -41,16 +41,16 @@
 
 // ID Cards
 /obj/item/card/id/advanced/factory
-	name = "factory worker ID"
+	name = "工厂工人ID"
 	trim = /datum/id_trim/factory
 
 /obj/item/card/id/advanced/factory/qm
-	name = "factory quartermaster ID"
+	name = "工厂军需官ID"
 	trim = /datum/id_trim/factory/qm
 
 //Outfits
 /datum/outfit/factory
-	name = "Factory Worker"
+	name = "工厂工人"
 
 	id_trim = /datum/id_trim/factory
 	id = /obj/item/card/id/advanced/
@@ -63,7 +63,7 @@
 	l_pocket = /obj/item/flashlight/seclite
 
 /datum/outfit/factory/guard
-	name = "Factory Guard"
+	name = "工厂守卫"
 
 	uniform = /obj/item/clothing/under/rank/security/officer/grey
 	suit = /obj/item/clothing/suit/armor/vest/alt
@@ -75,7 +75,7 @@
 	r_pocket = /obj/item/assembly/flash/handheld
 
 /datum/outfit/factory/qm
-	name = "Factory Quartermaster"
+	name = "工厂军需官"
 
 	id_trim = /datum/id_trim/factory/qm
 	id = /obj/item/card/id/advanced/silver
@@ -89,16 +89,16 @@
 
 // Corpses
 /obj/effect/mob_spawn/corpse/human/factory
-	name = "Factory Worker"
+	name = "工厂工人"
 	outfit = /datum/outfit/factory
 	icon_state = "corpsecargotech"
 
 /obj/effect/mob_spawn/corpse/human/factory/guard
-	name = "Factory Guard"
+	name = "工厂守卫"
 	outfit = /datum/outfit/factory/guard
 	icon_state = "corpsecargotech"
 
 /obj/effect/mob_spawn/corpse/human/factory/qm
-	name = "Factory Quartermaster"
+	name = "工厂军需官"
 	outfit = /datum/outfit/factory/qm
 	icon_state = "corpsecargotech"

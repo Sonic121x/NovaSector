@@ -9,8 +9,8 @@
  */
 
 /datum/symptom/chills
-	name = "Chills"
-	desc = "The virus inhibits the body's thermoregulation, cooling the body down."
+	name = "寒颤"
+	desc = "该病毒会抑制身体的体温调节功能，使体温下降。"
 	illness = "Cold Shoulder"
 	stealth = 1
 	resistance = 2

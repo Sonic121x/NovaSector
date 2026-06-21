@@ -37,9 +37,9 @@
 	. = ..()
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		if(resistance_flags & ON_FIRE)
-			. += span_warning("It's on fire!")
+			. += span_warning("它着火了!")
 		if(broken)
-			. += span_notice("It appears to be broken.")
+			. += span_notice("它看起来坏了.")
 		var/examine_status = examine_status(user)
 		if(examine_status)
 			. += examine_status
@@ -53,7 +53,7 @@
 			return  "It appears heavily damaged."
 		if(0 to 25)
 			if(!broken)
-				return  span_warning("It's falling apart!")
+				return  span_warning("它碎裂了!")
 
 /obj/structure/examine_descriptor(mob/user)
 	return "structure"

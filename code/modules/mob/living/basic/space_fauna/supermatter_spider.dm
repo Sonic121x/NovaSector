@@ -1,7 +1,7 @@
 /// A nasty little robotic bug that dusts people on attack. Jeepers. This should be a very, very, very rare spawn.
 /mob/living/basic/supermatter_spider
-	name = "supermatter spider"
-	desc= "A sliver of supermatter placed upon a robotically enhanced pedestal."
+	name = "超物质蜘蛛"
+	desc= "一小片超物质被放置在机器人强化的基座上。"
 
 	icon = 'icons/mob/simple/smspider.dmi'
 	icon_state = "smspider"
@@ -71,11 +71,11 @@
 /// Simple proc that plays the supermatter dusting sound and sends a visible message.
 /mob/living/basic/supermatter_spider/proc/dust_feedback(atom/target)
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
-	visible_message(span_danger("[src] knocks into [target], turning [target.p_them()] to dust in a brilliant flash of light!"))
+	visible_message(span_danger("[src] 撞上了 [target]，在一道炫目的闪光中将 [target.p_them()] 化为了尘埃！"))
 
 /mob/living/basic/supermatter_spider/overcharged
-	name = "overcharged supermatter spider"
-	desc = "A sliver of overcharged supermatter placed upon a robotically enhanced pedestal. This one seems especially dangerous."
+	name = "过载超物质蜘蛛"
+	desc = "一小片过载的超物质被放置在机器人强化的基座上。这一个看起来尤其危险。"
 	icon_state = "smspideroc"
 	icon_living = "smspideroc"
 	maxHealth = 25

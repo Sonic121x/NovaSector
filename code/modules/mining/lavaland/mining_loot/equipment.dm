@@ -1,7 +1,7 @@
 // Rod of Asclepius
 /obj/item/rod_of_asclepius
-	name = "\improper Rod of Asclepius"
-	desc = "A wooden rod about the size of your forearm with a snake carved around it, winding its way up the sides of the rod. Something about it seems to inspire in you the responsibilty and duty to help others."
+	name = "\improper 阿斯克勒庇俄斯之杖"
+	desc = "一根约前臂长度的木杖，上面雕刻着一条蛇，蜿蜒盘绕在杖身两侧。它似乎能激发你帮助他人的责任感和使命感。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
@@ -22,7 +22,7 @@
 
 /obj/item/rod_of_asclepius/update_desc(updates)
 	. = ..()
-	desc = activated ? "A short wooden rod with a mystical snake inseparably gripping itself and the rod to your forearm. It flows with a healing energy that disperses amongst yourself and those around you." : initial(desc)
+	desc = activated ? "一根短木杖，一条神秘的蛇将其自身与木杖不可分割地缠绕在你的前臂上。它流淌着一种治疗能量，在你自身和周围人之间扩散。" : initial(desc)
 
 /obj/item/rod_of_asclepius/update_icon_state()
 	. = ..()
@@ -37,15 +37,15 @@
 	if(activated)
 		return
 	if(!iscarbon(user))
-		to_chat(user, span_warning("The snake carving seems to come alive, if only for a moment, before returning to its dormant state, almost as if it finds you incapable of holding its oath."))
+		to_chat(user, span_warning("蛇形雕刻似乎活了过来，但仅仅是一瞬间，便又回到了休眠状态，仿佛它认为你无法坚守它的誓言。"))
 		return
 	var/mob/living/carbon/itemUser = user
 	if(itemUser.has_status_effect(/datum/status_effect/hippocratic_oath))
-		to_chat(user, span_warning("You can't possibly handle the responsibility of more than one rod!"))
+		to_chat(user, span_warning("你不可能承担得起多于一柄权杖的责任！"))
 		return
 
-	var/static/failText = span_warning("The snake seems unsatisfied with your incomplete oath and returns to its previous place on the rod, returning to its dormant, wooden state. You must stand still while completing your oath!")
-	to_chat(itemUser, span_notice("The wooden snake that was carved into the rod seems to suddenly come alive and begins to slither down your arm! The compulsion to help others grows abnormally strong..."))
+	var/static/failText = span_warning("这条蛇似乎对你未完成的誓言感到不满，回到了权杖上原来的位置，恢复了它休眠的木质状态。你必须在完成誓言时保持静止！")
+	to_chat(itemUser, span_notice("雕刻在权杖上的木蛇似乎突然活了过来，开始沿着你的手臂滑下！帮助他人的冲动变得异常强烈……"))
 	for(var/oath_line in oath_lines)
 		if(do_after(itemUser, 3 SECONDS, target = itemUser))
 			itemUser.say(oath_line, forced = "hippocratic oath")
@@ -58,7 +58,7 @@
 	apply_oath(itemUser)
 
 /obj/item/rod_of_asclepius/proc/apply_oath(mob/living/carbon/user)
-	to_chat(user, span_notice("The snake, satisfied with your oath, attaches itself and the rod to your forearm with an inseparable grip. Your thoughts seem to only revolve around the core idea of helping others, and harm is nothing more than a distant, wicked memory..."))
+	to_chat(user, span_notice("这条蛇对你的誓言感到满意，将自己和权杖以不可分离的抓握方式附着在你的前臂上。你的思绪似乎只围绕着帮助他人这一核心想法，而伤害只不过是一个遥远、邪恶的记忆……"))
 	var/datum/status_effect/hippocratic_oath/effect = user.apply_status_effect(/datum/status_effect/hippocratic_oath)
 	effect.hand = user.get_held_index_of_item(src)
 	activated()
@@ -72,8 +72,8 @@
 // Red/Blue Cubes
 
 /obj/item/warp_cube
-	name = "blue cube"
-	desc = "A mysterious blue cube."
+	name = "蓝色方块"
+	desc = "一个神秘的蓝色方块。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "blue_cube"
 	var/teleport_color = "#3FBAFD"
@@ -89,7 +89,7 @@
 /obj/item/warp_cube/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)
 	if(!linked || isnull(get_turf(linked)) || !check_teleport_valid(src, current_location))
-		to_chat(user, span_warning("[src] fizzles uselessly."))
+		to_chat(user, span_warning("[src] 无力地嘶嘶作响。"))
 		return
 	if(teleporting)
 		return
@@ -121,8 +121,8 @@
 	qdel(link_holder)
 
 /obj/item/warp_cube/red
-	name = "red cube"
-	desc = "A mysterious red cube."
+	name = "红色方块"
+	desc = "一个神秘的红色方块。"
 	icon_state = "red_cube"
 	teleport_color = "#FD3F48"
 
@@ -140,8 +140,8 @@
 // Immortality Talisman
 
 /obj/item/immortality_talisman
-	name = "\improper Immortality Talisman"
-	desc = "A dread talisman that can render you completely invulnerable."
+	name = "\improper 不朽护符"
+	desc = "一个能让你完全无敌的恐怖护符。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "talisman"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -153,7 +153,7 @@
 	AddComponent(/datum/component/anti_magic, ALL)
 
 /datum/action/item_action/immortality
-	name = "Immortality"
+	name = "不朽"
 
 /obj/item/immortality_talisman/attack_self(mob/user)
 	if(cooldown < world.time)
@@ -161,11 +161,11 @@
 		cooldown = world.time + 600
 		new /obj/effect/immortality_talisman(get_turf(user), user)
 	else
-		to_chat(user, span_warning("[src] is not ready yet!"))
+		to_chat(user, span_warning("[src] 还没准备好！"))
 
 /obj/effect/immortality_talisman
-	name = "hole in reality"
-	desc = "It's shaped an awful lot like a person."
+	name = "现实裂隙"
+	desc = "它的形状非常像一个人。"
 	icon_state = "blank"
 	icon = 'icons/effects/effects.dmi'
 	var/vanish_description = "vanishes from reality"
@@ -192,12 +192,12 @@
 
 	user.remove_traits(list(TRAIT_GODMODE, TRAIT_NO_TRANSFORM), REF(src))
 	user.forceMove(get_turf(src))
-	user.visible_message(span_danger("[user] pops back into reality!"))
+	user.visible_message(span_danger("[user] 突然重新出现在现实中！"))
 
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
 	user.visible_message(span_danger("[user] [vanish_description], leaving a hole in [user.p_their()] place!"))
 
-	desc = "It's shaped an awful lot like [user.name]."
+	desc = "它的形状非常像 [user.name]。"
 	setDir(user.dir)
 
 	user.forceMove(src)
@@ -227,8 +227,8 @@
 // Shared Bag
 
 /obj/item/shared_storage
-	name = "paradox bag"
-	desc = "Somehow, it's in two places at once."
+	name = "悖论袋"
+	desc = "不知何故，它同时存在于两个地方。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "paradox_bag"
 	worn_icon_state = "paradoxbag"

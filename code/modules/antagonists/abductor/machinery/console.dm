@@ -13,8 +13,8 @@
 //Console
 
 /obj/machinery/abductor/console
-	name = "abductor console"
-	desc = "Ship command center."
+	name = "劫持者控制台"
+	desc = "飞船指挥中心。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "console"
 	density = TRUE
@@ -67,7 +67,7 @@
 	if(.)
 		return
 	if(!HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_TRAINING))
-		to_chat(user, span_warning("You start mashing alien buttons at random!"))
+		to_chat(user, span_warning("你开始胡乱敲击外星按钮！"))
 		if(do_after(user,100, target = src))
 			TeleporterSend()
 
@@ -200,12 +200,12 @@
 
 /obj/machinery/abductor/console/proc/SetDroppoint(turf/open/location,user)
 	if(!istype(location))
-		to_chat(user, span_warning("That place is not safe for the specimen."))
+		to_chat(user, span_warning("那个地方对样本不安全。"))
 		return
 
 	if(pad)
 		pad.teleport_target = location
-		to_chat(user, span_notice("Location marked as test subject release point."))
+		to_chat(user, span_notice("位置已标记为测试对象释放点。"))
 
 /obj/machinery/abductor/console/post_machine_initialize()
 	. = ..()
@@ -268,9 +268,9 @@
 
 /obj/machinery/abductor/console/attackby(obj/O, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(O, /obj/item/abductor/gizmo) && AddGizmo(O))
-		to_chat(user, span_notice("You link the tool to the console."))
+		to_chat(user, span_notice("你将工具链接到控制台。"))
 	else if(istype(O, /obj/item/clothing/suit/armor/abductor/vest) && AddVest(O))
-		to_chat(user, span_notice("You link the vest to the console."))
+		to_chat(user, span_notice("你将背心链接到控制台。"))
 	else
 		return ..()
 

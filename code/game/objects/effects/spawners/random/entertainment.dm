@@ -1,10 +1,10 @@
 /obj/effect/spawner/random/entertainment
-	name = "entertainment loot spawner"
-	desc = "It's time to paaaaaarty!"
+	name = "娱乐战利品生成器"
+	desc = "是派对时间！"
 
 /obj/effect/spawner/random/entertainment/arcade
-	name = "spawn random arcade machine"
-	desc = "Automagically transforms into a random arcade machine. If you see this while in a shift, please create a bug report."
+	name = "生成随机街机游戏机"
+	desc = "变成一个随机街机游戏机。"
 	icon_state = "arcade"
 	loot = list(
 		/obj/machinery/computer/arcade/orion_trail = 49,
@@ -30,7 +30,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/musical_instrument
-	name = "musical instrument spawner"
+	name = "乐器生成器"
 	icon_state = "eguitar"
 	loot = list(
 		/obj/item/instrument/violin = 5,
@@ -50,7 +50,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/gambling
-	name = "gambling valuables spawner"
+	name = "赌博贵重品生成器"
 	icon_state = "dice"
 	loot = list(
 		/obj/item/gun/ballistic/revolver/russian = 5,
@@ -63,7 +63,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/coin
-	name = "coin spawner"
+	name = "硬币生成器"
 	icon_state = "coin"
 	loot = list(
 		/obj/item/coin/iron = 5,
@@ -82,7 +82,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/money_small
-	name = "small money spawner"
+	name = "小额金钱生成器"
 	icon_state = "cash"
 	spawn_loot_count = 3
 	spawn_loot_split = TRUE
@@ -93,7 +93,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/money
-	name = "money spawner"
+	name = "金钱生成器"
 	icon_state = "cash"
 	spawn_loot_count = 3
 	spawn_loot_split = TRUE
@@ -106,7 +106,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/money_medium
-	name = "money spawner"
+	name = "金钱生成器"
 	icon_state = "cash"
 	loot = list(
 		/obj/item/stack/spacecash/c100 = 25,
@@ -117,7 +117,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/money_large
-	name = "large money spawner"
+	name = "大额钞票生成器"
 	icon_state = "cash"
 	spawn_loot_count = 5
 	spawn_loot_split = TRUE
@@ -134,7 +134,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/drugs
-	name = "recreational drugs spawner"
+	name = "娱乐性药物生成器"
 	icon_state = "pill"
 	loot = list(
 		/obj/item/reagent_containers/cup/glass/bottle/hooch = 50,
@@ -145,7 +145,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/dice
-	name = "dice spawner"
+	name = "骰子生成器"
 	icon_state = "dice_bag"
 	loot = list(
 		/obj/item/dice/d4,
@@ -157,7 +157,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/cigarette_pack
-	name = "cigarette pack spawner"
+	name = "香烟包生成器"
 	icon_state = "cigarettes"
 	loot = list(
 		/obj/item/storage/fancy/cigarettes = 3,
@@ -172,7 +172,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/cigarette
-	name = "cigarette spawner"
+	name = "香烟生成器"
 	icon_state = "cigarettes"
 	loot = list(
 		/obj/item/cigarette/space_cigarette = 3,
@@ -187,7 +187,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/cigar
-	name = "cigar spawner"
+	name = "雪茄生成器"
 	icon_state = "cigarettes"
 	loot = list(
 		/obj/item/cigarette/cigar = 3,
@@ -196,7 +196,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/wallet_lighter
-	name = "lighter wallet spawner"
+	name = "打火机钱包生成器"
 	icon_state = "lighter"
 	loot = list( // these fit inside a wallet
 		/obj/item/match = 10,
@@ -205,7 +205,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/lighter
-	name = "lighter spawner"
+	name = "打火机生成器"
 	icon_state = "lighter"
 	loot = list(
 		/obj/item/storage/box/matches = 10,
@@ -214,7 +214,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/wallet_storage
-	name = "wallet contents spawner"
+	name = "钱包内容物生成器"
 	icon_state = "wallet"
 	spawn_loot_count = 1
 	loot = list(	// random photos would go here. IF I HAD ONE. :'(
@@ -235,7 +235,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/deck
-	name = "deck spawner"
+	name = "纸牌生成器"
 	icon_state = "deck"
 	loot = list(
 		/obj/item/toy/cards/deck = 5,
@@ -245,13 +245,13 @@
 	)
 
 /obj/effect/spawner/random/entertainment/toy_figure
-	name = "toy figure spawner"
+	name = "玩具人偶生成器"
 	icon_state = "toy"
 	loot_subtype_path = /obj/item/toy/figure
 	loot = list()
 
 /obj/effect/spawner/random/entertainment/toy
-	name = "toy spawner"
+	name = "玩具生成器"
 	icon_state = "toy"
 	loot = list()
 
@@ -260,7 +260,7 @@
 	return ..()
 
 /obj/effect/spawner/random/entertainment/plushie
-	name = "plushie spawner"
+	name = "毛绒玩具生成器"
 	icon_state = "plushie"
 	loot = list( // the plushies that aren't of things trying to kill you
 		/obj/item/toy/plush/carpplushie, // well, maybe they can be something that tries to kill you a little bit
@@ -277,7 +277,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/plushie_delux
-	name = "plushie delux spawner"
+	name = "豪华毛绒玩具生成器"
 	icon_state = "plushie"
 	loot = list(
 		// common plushies
@@ -310,7 +310,7 @@
 	)
 
 /obj/effect/spawner/random/entertainment/colorful_grenades
-	name = "colorful/glitter grenades spawner"
+	name = "彩色/闪粉手榴弹生成器"
 	loot = list(
 		/obj/item/grenade/chem_grenade/glitter/pink,
 		/obj/item/grenade/chem_grenade/glitter/blue,

@@ -1,6 +1,6 @@
 /// Turf type that appears to be a world border, completely impassable and non-interactable to all physical (alive) entities.
 /turf/cordon
-	name = "cordon"
+	name = "封锁线"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "cordon"
 	invisibility = INVISIBILITY_ABSTRACT
@@ -54,7 +54,7 @@
 
 /// Area used in conjunction with the cordon turf to create a fully functioning world border.
 /area/misc/cordon
-	name = "CORDON"
+	name = "封锁线"
 	icon_state = "cordon"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
@@ -64,12 +64,12 @@
 /area/misc/cordon/Entered(atom/movable/arrived, area/old_area)
 	. = ..()
 	for(var/mob/living/enterer as anything in arrived.get_all_contents_type(/mob/living))
-		to_chat(enterer, span_userdanger("This was a bad idea..."))
+		to_chat(enterer, span_userdanger("这真是个馊主意..."))
 		enterer.dust(just_ash = TRUE, drop_items = FALSE, force = TRUE)
 
 /// This type of cordon will block ghosts from passing through it. Useful for stuff like Away Missions, where you feasibly want to block ghosts from entering to keep a certain map section a secret.
 /turf/cordon/secret
-	name = "secret cordon (ghost blocking)"
+	name = "秘密封锁区（阻挡幽灵）"
 
 /turf/cordon/secret/attack_ghost(mob/dead/observer/user)
 	return FALSE

@@ -8,8 +8,8 @@ and your disease can spread via people walking on vomit.
 */
 
 /datum/symptom/vomit
-	name = "Vomiting"
-	desc = "The virus causes nausea and irritates the stomach, causing occasional vomit."
+	name = "呕吐"
+	desc = "病毒引起恶心并刺激胃部，导致偶尔呕吐。"
 	illness = "Cyclonic Irritation"
 	stealth = -3
 	resistance = 2
@@ -72,8 +72,8 @@ and your disease can spread via people walking on vomit.
 	vomiter.vomit(vomit_flags = constructed_flags, vomit_type = type_of_vomit, lost_nutrition = deductable_nutrition, distance = proj_vomit)
 
 /datum/symptom/vomit/nebula
-	name = "Nebula Vomiting"
-	desc = "The condition irritates the stomach, causing occasional vomit with stars that does not stun."
+	name = "星云呕吐"
+	desc = "该症状刺激胃部，导致偶尔呕吐出不会造成眩晕的星星。"
 	illness = "Nebula Nausea"
 	vomit_nebula = TRUE
 	naturally_occuring = FALSE

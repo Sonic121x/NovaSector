@@ -86,8 +86,8 @@
 		step_away(hallucinator, fake_bubbles)
 		shake_camera(hallucinator, 4, 3)
 		hallucinator.visible_message(
-			span_warning("[hallucinator] jumps backwards, falling on the ground!"),
-			span_userdanger("[fake_bubbles] slams into you!"),
+			span_warning("[hallucinator]向后跳去，摔倒在地！"),
+			span_userdanger("[fake_bubbles]猛撞向你！"),
 		)
 		QDEL_IN(src, 3 SECONDS)
 
@@ -96,7 +96,7 @@
 
 /// Fake bubblegum hallucination effect for the oh yeah hallucination
 /obj/effect/client_image_holder/hallucination/bubblegum
-	name = "Bubblegum"
+	name = "泡泡糖"
 	image_icon = 'icons/mob/simple/lavaland/96x96megafauna.dmi'
 	image_state = "bubblegum"
 	image_pixel_x = -32

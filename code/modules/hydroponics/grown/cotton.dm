@@ -1,5 +1,5 @@
 /obj/item/seeds/cotton
-	name = "cotton seed pack"
+	name = "棉花种子包"
 	desc = "A pack of seeds that'll grow into a cotton plant."
 	icon_state = "seed-cotton"
 	species = "cotton"
@@ -20,8 +20,8 @@
 
 /obj/item/grown/cotton
 	seed = /obj/item/seeds/cotton
-	name = "cotton bundle"
-	desc = "A fluffy bundle of cotton."
+	name = "棉包"
+	desc = "一捆毛茸茸的棉包."
 	icon_state = "cotton"
 	force = 0
 	throwforce = 0
@@ -38,15 +38,15 @@
 	if(seed)
 		cotton_count += round(seed.potency / 25)
 
-	user.balloon_alert(user, "pulled [cotton_count] piece\s")
+	user.balloon_alert(user, "扯出了 [cotton_count] piece\s")
 	new cotton_type(user.drop_location(), cotton_count)
 	qdel(src)
 
 
 //reinforced mutated variant
 /obj/item/seeds/cotton/durathread
-	name = "durathread seed pack"
-	desc = "A pack of seeds that'll grow into an extremely durable thread that could easily rival plasteel if woven properly."
+	name = "耐拉线种子包"
+	desc = "一包种子，如果按照正确的方法进行编织，将会长成一种极其坚固的线，其强度甚至可以与等离子钢相媲美。"
 	icon_state = "seed-durathread"
 	species = "durathread"
 	plantname = "Durathread"
@@ -65,8 +65,8 @@
 
 /obj/item/grown/cotton/durathread
 	seed = /obj/item/seeds/cotton/durathread
-	name = "durathread bundle"
-	desc = "A tough bundle of durathread, good luck unraveling this."
+	name = "杜拉棉包"
+	desc = "这是一根结实的杜拉棉织带，祝你顺利解开它吧。"
 	icon_state = "durathread"
 	force = 5
 	throwforce = 5

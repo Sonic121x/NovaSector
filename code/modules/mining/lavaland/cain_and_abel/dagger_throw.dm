@@ -4,19 +4,19 @@
 /obj/item/cain_and_abel/on_thrown(mob/living/carbon/user, atom/target)
 	. = null
 	if(!COOLDOWN_FINISHED(src, throw_cooldown))
-		user.balloon_alert(user, "on cooldown!")
+		user.balloon_alert(user, "冷却中！")
 		return
 
 	if(user.incapacitated || HAS_TRAIT(user, TRAIT_NO_THROWING) || !isturf(user.loc) || user.buckled)
-		user.balloon_alert(user, "unable!")
+		user.balloon_alert(user, "无法做到！")
 		return
 
 	if(!check_wield(user))
-		user.balloon_alert(user, "offhand busy!")
+		user.balloon_alert(user, "副手正忙！")
 		return
 
 	if(get_dist(target, user) > 9)
-		user.balloon_alert(user, "too far away!")
+		user.balloon_alert(user, "距离太远！")
 		return
 
 	var/static/list/throw_options = list(

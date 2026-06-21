@@ -47,7 +47,7 @@
 
 
 /datum/outfit/job/detective
-	name = "Detective"
+	name = "侦探"
 	jobtype = /datum/job/detective
 
 	id = /obj/item/card/id/advanced/plainclothes

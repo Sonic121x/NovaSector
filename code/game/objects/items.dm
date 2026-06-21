@@ -1,6 +1,6 @@
 /// Anything you can pick up and hold.
 /obj/item
-	name = "item"
+	name = "物品"
 	icon = 'icons/obj/anomaly.dmi'
 	abstract_type = /obj/item
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
@@ -442,7 +442,7 @@
 	.[weight_class_to_text(w_class)] = weight_class_to_tooltip(w_class)
 
 	if(item_flags & CRUEL_IMPLEMENT)
-		.[span_red("morbid")] = "It seems quite practical for particularly morbid procedures and experiments."
+		.[span_red("病态")] = "它对于某些特别病态的手术和实验来说似乎相当实用。"
 	if(item_flags & BLUESPACE_INTERFERENCE)
 		.["bluespace-active"] = "It is highly active in bluespace and will cause malfunctions in teleporters."
 	if (siemens_coefficient == 0)
@@ -532,7 +532,7 @@
 		affixes.Add("---SUFFIXES---")
 		affixes.Add(suffixes)
 		//admin picks, cleanup the ones we didn't do and handle chosen
-		var/picked_affix_name = tgui_input_list(usr, "Affix to add to [src]", "Enchant [src]", affixes)
+		var/picked_affix_name = tgui_input_list(usr, "要附加到[src]的词缀", "附魔[src]", affixes)
 		if(isnull(picked_affix_name))
 			return
 		if(!affixes[picked_affix_name] || QDELETED(src))
@@ -551,11 +551,11 @@
 		var/announce = FALSE
 		//Apply fantasy with affix. failing this should never happen, but if it does it should not be silent.
 		if(AddComponent(/datum/component/fantasy, fantasy_quality, list(affix), canFail, announce) == COMPONENT_INCOMPATIBLE)
-			to_chat(usr, span_warning("Fantasy component not compatible with [src]."))
+			to_chat(usr, span_warning("幻想组件与[src]不兼容。"))
 			CRASH("fantasy component incompatible with object of type: [type]")
-		to_chat(usr, span_notice("[before_name] now has [picked_affix_name]!"))
+		to_chat(usr, span_notice("[before_name] 现在有了 [picked_affix_name]！"))
 		log_admin("[key_name(usr)] has added [picked_affix_name] fantasy affix to [before_name]")
-		message_admins(span_notice("[key_name(usr)] has added [picked_affix_name] fantasy affix to [before_name]"))
+		message_admins(span_notice("[key_name(usr)] 已为 [picked_affix_name] 添加了 [before_name] 幻想词缀"))
 
 /obj/item/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -577,7 +577,7 @@
 		var/grav = user.has_gravity()
 		if(grav > STANDARD_GRAVITY)
 			var/grav_power = min(3,grav - STANDARD_GRAVITY)
-			to_chat(user,span_notice("You start picking up [src]..."))
+			to_chat(user,span_notice("你开始拾取[src]..."))
 			if(!do_after(user, 30 * grav_power, src))
 				return
 
@@ -626,7 +626,7 @@
 	if(!ayy.can_hold_items(src))
 		if(src in ayy.contents) // To stop Aliens having items stuck in their pockets
 			ayy.dropItemToGround(src)
-		to_chat(user, span_warning("Your claws aren't capable of such fine manipulation!"))
+		to_chat(user, span_warning("你的爪子无法进行如此精细的操作！"))
 		return
 	attack_paw(ayy, modifiers)
 
@@ -644,7 +644,7 @@
 		return TRUE
 
 	if(prob(final_block_chance))
-		owner.visible_message(span_danger("[owner] blocks [attack_text] with [src]!"))
+		owner.visible_message(span_danger("[owner] 用 [attack_text] 格挡了 [src]！"))
 		var/owner_turf = get_turf(owner)
 		new block_effect(owner_turf, COLOR_YELLOW)
 		playsound(src, block_sound, BLOCK_SOUND_VOLUME, vary = TRUE)
@@ -992,7 +992,7 @@
 /// If an object can successfully be used as a fire starter it will return a message
 /obj/item/proc/ignition_effect(atom/A, mob/user)
 	if(get_temperature() >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
-		. = span_notice("[user] lights [A] with [src].")
+		. = span_notice("[user] 用 [A] 点燃了 [src]。")
 	else
 		. = ""
 
@@ -1383,7 +1383,7 @@
 		return
 	user.dropItemToGround(src, silent = TRUE)
 	if(throwforce && (HAS_TRAIT(user, TRAIT_PACIFISM)) || HAS_TRAIT(user, TRAIT_NO_THROWING))
-		to_chat(user, span_notice("You set [src] down gently on the ground."))
+		to_chat(user, span_notice("你将[src]轻轻地放在地上。"))
 		return
 	return src
 
@@ -1410,8 +1410,8 @@
 /obj/item/proc/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
 	if(get_sharpness() && force >= 5) //if we've got something sharp with a decent force (ie, not plastic)
 		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream")
-		victim.visible_message(span_warning("[victim] looks like [victim.p_theyve()] just bit something they shouldn't have!"), \
-							span_boldwarning("OH GOD! Was that a crunch? That didn't feel good at all!!"))
+		victim.visible_message(span_warning("[victim] 看起来[victim.p_theyve()]刚刚咬到了不该咬的东西！"), \
+							span_boldwarning("天啊！刚才那是嘎嘣一声吗？感觉糟透了！！"))
 
 		victim.apply_damage(max(15, force), BRUTE, BODY_ZONE_HEAD, wound_bonus = 10, sharpness = TRUE)
 		victim.losebreath += 2
@@ -1455,8 +1455,8 @@
 			discover_after = FALSE
 
 		victim.adjust_disgust(33)
-		victim.visible_message(span_warning("[victim] looks like [victim.p_theyve()] just bitten into something hard."), \
-						span_warning("Eugh! Did I just bite into something?"))
+		victim.visible_message(span_warning("[victim] 看起来像是[victim.p_theyve()]刚刚咬到了什么硬东西。"), \
+						span_warning("呃！我刚刚是不是咬到了什么东西？"))
 		return discover_after
 
 	if(w_class > WEIGHT_CLASS_TINY) //small items like soap or toys that don't have mat datums
@@ -1466,7 +1466,7 @@
 	var/obj/item/organ/stomach/stomach = victim.get_organ_by_type(/obj/item/organ/stomach)
 	if (stomach?.consume_thing(src))
 		victim.losebreath += 2
-		to_chat(victim, span_warning("You swallow hard. [source_item? "Something small was in \the [source_item]..." : ""]"))
+		to_chat(victim, span_warning("你艰难地咽了下去。[source_item? "Something small was in \the [source_item]..." : ""]"))
 		return FALSE
 
 	// victim's chest (for cavity implanting the item)
@@ -1876,10 +1876,10 @@
 					LAZYADD(victim_human.afk_thefts, new_entry)
 
 			else if(victim_human.is_blind())
-				to_chat(target, span_userdanger("You feel someone trying to put something on you."))
+				to_chat(target, span_userdanger("你感觉到有人正试图给你穿上什么东西。"))
 	user.do_item_attack_animation(target, used_item = equipping, animation_type = ATTACK_ANIMATION_BLUNT)
 
-	to_chat(user, span_notice("You try to put [equipping] on [target]..."))
+	to_chat(user, span_notice("你尝试将[equipping]放至[target]..."))
 
 	user.log_message("is putting [equipping] on [key_name(target)]", LOG_ATTACK, color="red")
 	target.log_message("is having [equipping] put on them by [key_name(user)]", LOG_VICTIM, color="orange", log_globally=FALSE)

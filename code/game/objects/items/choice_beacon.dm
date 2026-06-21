@@ -1,6 +1,6 @@
 /obj/item/choice_beacon
-	name = "choice beacon"
-	desc = "Hey, why are you viewing this?!! Please let CentCom know about this odd occurrence."
+	name = "选择信标"
+	desc = "嘿，你为什么要查看这个？！请将此异常情况报告给中央司令部。"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "generic_delivery"
 	inhand_icon_state = "generic_delivery"
@@ -11,7 +11,7 @@
 	/// Used in the deployment message - What company is sending the equipment, flavor
 	var/company_source = "Central Command"
 	/// Used inthe deployment message - What is the company saying with their message, flavor
-	var/company_message = span_bold("Item request received. Your package is inbound, please stand back from the landing site.")
+	var/company_message = span_bold("物品请求已收到。您的包裹正在运送中，请远离着陆点。")
 
 /obj/item/choice_beacon/interact(mob/user)
 	. = ..()
@@ -38,7 +38,7 @@
 	var/list/display_names = generate_display_names()
 	if(!length(display_names))
 		return
-	var/choice = tgui_input_list(user, "Which item would you like to order?", "Select an Item", display_names)
+	var/choice = tgui_input_list(user, "您想订购哪个物品？", "选择物品", display_names)
 	if(isnull(choice) || isnull(display_names[choice]))
 		return
 	if(!can_use_beacon(user))
@@ -58,7 +58,7 @@
 		qdel(src)
 		return
 
-	to_chat(user, span_notice("[uses] use[uses > 1 ? "s" : ""] remain[uses > 1 ? "" : "s"] on [src]."))
+	to_chat(user, span_notice("[uses] 次使用[uses > 1 ? "s" : ""] 剩余[uses > 1 ? "" : "s"] 在 [src] 上。"))
 
 /// Actually spawns the item selected by the user
 /obj/item/choice_beacon/proc/spawn_option(obj/choice_path, mob/living/user)

@@ -1,18 +1,18 @@
 /obj/item/bloodcrawl_bottle
-	name = "bloodlust in a bottle"
-	desc = "Drinking this will give you unimaginable powers... and mildly disgust you because of its metallic taste."
+	name = "瓶中血欲"
+	desc = "喝下这个会赋予你难以想象的力量……并且因其金属味让你感到些许恶心。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "vial"
 
 /obj/item/bloodcrawl_bottle/attack_self(mob/user)
-	to_chat(user, span_notice("You drink the contents of [src]."))
+	to_chat(user, span_notice("你喝下了[src]的内容物。"))
 	var/datum/action/cooldown/spell/jaunt/bloodcrawl/mining/new_spell =  new(user)
 	new_spell.Grant(user)
 	user.log_message("learned the spell bloodcrawl (Mining) ([new_spell])", LOG_ATTACK, color="orange")
 	qdel(src)
 
 /datum/action/cooldown/spell/jaunt/bloodcrawl/mining
-	name = "Necropolis Blood Crawl"
+	name = "死城血潜"
 	/// Instant was a bit too much.
 	enter_blood_time = 2 SECONDS
 	/// special snowflake jaunt type to eject on mining areas.

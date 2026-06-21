@@ -1,5 +1,5 @@
 /datum/smite/ghost_control
-	name = "Ghost Control"
+	name = "幽灵控制"
 
 /datum/smite/ghost_control/effect(client/user, mob/living/target)
 	target.AddComponent(/datum/component/deadchat_control/cardinal_movement, ANARCHY_MODE, list(
@@ -20,7 +20,7 @@
 		"walk" = CALLBACK(src, PROC_REF(ghost_speed), target, MOVE_INTENT_WALK),
 		), 7 SECONDS)
 
-	to_chat(target, span_revenwarning("You feel a ghastly presence!!!"))
+	to_chat(target, span_revenwarning("你感到一股阴森的存在！！！"))
 
 
 /datum/smite/ghost_control/proc/ghost_shove(mob/living/carbon/target)

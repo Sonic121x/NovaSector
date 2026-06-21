@@ -53,10 +53,10 @@
 /datum/component/omen/Destroy(force)
 	var/mob/living/person = parent
 	REMOVE_TRAIT(person, TRAIT_CURSED, SMITE_TRAIT)
-	to_chat(person, span_nicegreen("You feel a horrible omen lifted off your shoulders!"))
+	to_chat(person, span_nicegreen("你感到一个可怕的预兆从肩头卸下了！"))
 
 	if(vessel)
-		vessel.visible_message(span_warning("[vessel] burns up in a sinister flash, taking an evil energy with it..."))
+		vessel.visible_message(span_warning("[vessel]在一阵不祥的闪光中燃烧殆尽，连同那股邪恶能量一起带走了..."))
 		UnregisterSignal(vessel, COMSIG_QDELETING)
 		vessel.burn()
 		vessel = null
@@ -92,7 +92,7 @@
 	var/mob/living/living_guy = our_guy
 
 	if(prob(0.001) && (living_guy.stat != DEAD)) // You hit the lottery! Kinda.
-		living_guy.visible_message(span_danger("[living_guy] suddenly bursts into flames!"), span_danger("You suddenly burst into flames!"))
+		living_guy.visible_message(span_danger("[living_guy]突然燃起火焰！"), span_danger("你突然燃起火焰！"))
 		INVOKE_ASYNC(living_guy, TYPE_PROC_REF(/mob, emote), "scream")
 		living_guy.adjust_fire_stacks(20)
 		living_guy.ignite_mob(silent = TRUE)
@@ -123,7 +123,7 @@
 		if(darth_airlock.locked || !darth_airlock.hasPower())
 			continue
 
-		to_chat(living_guy, span_warning("A malevolent force launches your body to the floor..."))
+		to_chat(living_guy, span_warning("一股邪恶的力量将你的身体猛地摔向地面..."))
 		living_guy.Paralyze(1 SECONDS, ignore_canstun = TRUE)
 		INVOKE_ASYNC(src, PROC_REF(slam_airlock), darth_airlock)
 		return
@@ -132,7 +132,7 @@
 		if(istype(the_turf, /turf/open/floor/glass/reinforced/tram)) // don't fall off the tram bridge, we want to hit you instead
 			return
 		if(living_guy.can_z_move(DOWN, the_turf, z_move_flags = ZMOVE_FALL_FLAGS))
-			to_chat(living_guy, span_warning("A malevolent force guides you towards the edge..."))
+			to_chat(living_guy, span_warning("一股邪恶的力量将你引向边缘..."))
 			living_guy.throw_at(the_turf, 1, 10, force = MOVE_FORCE_EXTREMELY_STRONG)
 			consume_omen()
 			return
@@ -140,19 +140,19 @@
 		for(var/obj/machinery/vending/darth_vendor in the_turf)
 			if(!darth_vendor.tiltable || darth_vendor.tilted)
 				continue
-			to_chat(living_guy, span_warning("A malevolent force tugs at the [darth_vendor]..."))
+			to_chat(living_guy, span_warning("一股邪恶的力量拉扯着[darth_vendor]..."))
 			INVOKE_ASYNC(darth_vendor, TYPE_PROC_REF(/obj/machinery/vending, tilt), living_guy)
 			consume_omen()
 			return
 
 		for(var/obj/machinery/light/evil_light in the_turf)
 			if((evil_light.status == LIGHT_BURNED || evil_light.status == LIGHT_BROKEN) || (HAS_TRAIT(living_guy, TRAIT_SHOCKIMMUNE))) // we can't do anything :( // Why in the world is there no get_siemens_coeff proc???
-				to_chat(living_guy, span_warning("[evil_light] sparks weakly for a second."))
+				to_chat(living_guy, span_warning("[evil_light]微弱地闪烁了一下。"))
 				do_sparks(2, FALSE, evil_light) // hey maybe it'll ignite them
 				return
 
-			to_chat(living_guy, span_warning("[evil_light] glows ominously...")) // ominously
-			evil_light.visible_message(span_boldwarning("[evil_light] suddenly flares brightly and sparks!"))
+			to_chat(living_guy, span_warning("[evil_light]不祥地发着光...")) // ominously
+			evil_light.visible_message(span_boldwarning("[evil_light]突然明亮地闪烁并迸出火花！"))
 			evil_light.break_light_tube(skip_sound_and_sparks = FALSE)
 			do_sparks(number = 4, cardinal_only = FALSE, source = evil_light)
 			evil_light.Beam(living_guy, icon_state = "lightning[rand(1,12)]", time = 0.5 SECONDS)
@@ -161,35 +161,35 @@
 			consume_omen()
 
 		for(var/obj/structure/mirror/evil_mirror in the_turf)
-			to_chat(living_guy, span_warning("You pass by the mirror and glance at it..."))
+			to_chat(living_guy, span_warning("你经过镜子并瞥了它一眼..."))
 			if(evil_mirror.broken)
-				to_chat(living_guy, span_notice("You feel lucky, somehow."))
+				to_chat(living_guy, span_notice("不知怎的，你感到幸运。"))
 				return
 			switch(rand(1, 5))
 				if(1)
-					to_chat(living_guy, span_warning("The mirror explodes into a million pieces! Wait, does that mean you're even more unlucky?"))
+					to_chat(living_guy, span_warning("镜子炸成了无数碎片！等等，这是否意味着你更加倒霉了？"))
 					evil_mirror.take_damage(evil_mirror.max_integrity, BRUTE, MELEE, FALSE)
 					if(prob(50 * effective_luck)) // sometimes
 						luck_mod += 0.25
 						damage_mod += 0.25
 				if(2 to 3)
-					to_chat(living_guy, span_big(span_hypnophrase("Oh god, you can't see your reflection!!")))
+					to_chat(living_guy, span_big(span_hypnophrase("天啊，你看不到自己的倒影！！")))
 					if(HAS_TRAIT(living_guy, TRAIT_NO_MIRROR_REFLECTION)) // not so living i suppose
-						to_chat(living_guy, span_green("Well, obviously."))
+						to_chat(living_guy, span_green("嗯，显然如此。"))
 						return
 					INVOKE_ASYNC(living_guy, TYPE_PROC_REF(/mob, emote), "scream")
 
 				if(4 to 5)
 					if(HAS_TRAIT(living_guy, TRAIT_NO_MIRROR_REFLECTION))
-						to_chat(living_guy, span_warning("You don't see anything of notice. Huh."))
+						to_chat(living_guy, span_warning("你没看到什么值得注意的东西。呃。"))
 						return
-					to_chat(living_guy, span_userdanger("You see your reflection, but it is grinning malevolently and staring directly at you!"))
+					to_chat(living_guy, span_userdanger("你看到了自己的倒影，但它正恶毒地狞笑着，直勾勾地盯着你！"))
 					INVOKE_ASYNC(living_guy, TYPE_PROC_REF(/mob, emote), "scream")
 
 			living_guy.set_jitter_if_lower(25 SECONDS)
 			if(prob(7 * effective_luck))
-				to_chat(living_guy, span_warning("You are completely shocked by this turn of events!"))
-				to_chat(living_guy, span_userdanger("You clutch at your heart!"))
+				to_chat(living_guy, span_warning("你被这突如其来的变故完全震惊了！"))
+				to_chat(living_guy, span_userdanger("你紧紧捂住自己的心脏！"))
 				var/mob/living/carbon/carbon_guy = living_guy
 				if(istype(carbon_guy))
 					carbon_guy.set_heartattack(status = TRUE)
@@ -207,11 +207,11 @@
 
 	if(prob(30)) // AAAA
 		INVOKE_ASYNC(our_guy, TYPE_PROC_REF(/mob, emote), "scream")
-		to_chat(our_guy, span_warning("What a horrible night... To have a curse!"))
+		to_chat(our_guy, span_warning("多么可怕的夜晚...竟然被诅咒了！"))
 
 	if(prob(30 * luck_mod) && our_guy.get_bodypart(BODY_ZONE_HEAD)) /// Bonk!
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
-		our_guy.visible_message(span_danger("[our_guy] hits [our_guy.p_their()] head really badly falling down!"), span_userdanger("You hit your head really badly falling down!"))
+		our_guy.visible_message(span_danger("[our_guy] hits [our_guy.p_their()] head really badly falling down!"), span_userdanger("你重重地摔倒在地，脑袋磕得很厉害！"))
 		our_guy.apply_damage(75 * damage_mod, BRUTE, BODY_ZONE_HEAD, attacking_item = "slipping")
 		our_guy.apply_damage(100 * damage_mod, BRAIN)
 		consume_omen()
@@ -226,7 +226,7 @@
 		return
 
 	playsound(our_guy, 'sound/effects/pray_chaplain.ogg', 40, TRUE)
-	to_chat(our_guy, span_green("You feel fantastic!"))
+	to_chat(our_guy, span_green("你感觉棒极了！"))
 	qdel(src)
 
 /// Severe deaths. Normally lifts the curse.

@@ -2,8 +2,8 @@
 #define DUMPSTER_LOOT "dumpster_loot"
 
 /obj/effect/spawner/random/maintenance
-	name = "maintenance loot spawner"
-	desc = "Come on Lady Luck, spawn me a pair of sunglasses."
+	name = "维修通道资源生成器"
+	desc = "来吧，老天，赐给我一副太阳镜。"
 	icon_state = "loot"
 	remove_if_cant_spawn = FALSE //don't remove stuff from the global maint list, which other can use.
 	/// The global loot list we are going to use to spawn loot from
@@ -21,7 +21,7 @@
 
 /obj/effect/spawner/random/maintenance/examine(mob/user)
 	. = ..()
-	. += span_info("This spawner has an effective loot count of [get_effective_lootcount()].")
+	. += span_info("此生成器的有效战利品数量为[get_effective_lootcount()]。")
 
 /obj/effect/spawner/random/maintenance/Initialize(mapload)
 	switch(loot_table)
@@ -72,63 +72,63 @@
 			closet.take_contents()
 
 /obj/effect/spawner/random/maintenance/two
-	name = "2 x maintenance loot spawner"
+	name = "2倍维修通道资源生成器"
 	spawn_loot_count = 2
 
 /obj/effect/spawner/random/maintenance/three
-	name = "3 x maintenance loot spawner"
+	name = "3倍维修通道资源生成器"
 	spawn_loot_count = 3
 
 /obj/effect/spawner/random/maintenance/four
-	name = "4 x maintenance loot spawner"
+	name = "4倍维修通道资源生成器"
 	spawn_loot_count = 4
 
 /obj/effect/spawner/random/maintenance/five
-	name = "5 x maintenance loot spawner"
+	name = "5倍维修通道资源生成器"
 	spawn_loot_count = 5
 
 /obj/effect/spawner/random/maintenance/six
-	name = "6 x maintenance loot spawner"
+	name = "6倍维修通道资源生成器"
 	spawn_loot_count = 6
 
 /obj/effect/spawner/random/maintenance/seven
-	name = "7 x maintenance loot spawner"
+	name = "7倍维修通道资源生成器"
 	spawn_loot_count = 7
 
 /obj/effect/spawner/random/maintenance/eight
-	name = "8 x maintenance loot spawner"
+	name = "8倍维修通道资源生成器"
 	spawn_loot_count = 8
 
 /obj/effect/spawner/random/maintenance/no_decals/two
-	name = "2 x maintenance loot spawner"
+	name = "2倍维修通道资源生成器"
 	spawn_loot_count = 2
 
 /obj/effect/spawner/random/maintenance/no_decals/three
-	name = "3 x maintenance loot spawner"
+	name = "3倍维修通道资源生成器"
 	spawn_loot_count = 3
 
 /obj/effect/spawner/random/maintenance/no_decals/four
-	name = "4 x maintenance loot spawner"
+	name = "4倍维修通道资源生成器"
 	spawn_loot_count = 4
 
 /obj/effect/spawner/random/maintenance/no_decals/five
-	name = "5 x maintenance loot spawner"
+	name = "5倍维修通道资源生成器"
 	spawn_loot_count = 5
 
 /obj/effect/spawner/random/maintenance/no_decals/six
-	name = "6 x maintenance loot spawner"
+	name = "6倍维修通道资源生成器"
 	spawn_loot_count = 6
 
 /obj/effect/spawner/random/maintenance/no_decals/seven
-	name = "7 x maintenance loot spawner"
+	name = "7倍维修通道资源生成器"
 	spawn_loot_count = 7
 
 /obj/effect/spawner/random/maintenance/no_decals/eight
-	name = "8 x maintenance loot spawner"
+	name = "8倍维修通道资源生成器"
 	spawn_loot_count = 8
 
 /obj/effect/spawner/random/maintenance/dumpster
-	name = "dumpster loot spawner"
+	name = "垃圾箱战利品生成器"
 	spawn_loot_count = 3
 	loot_table = DUMPSTER_LOOT
 

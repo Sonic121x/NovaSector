@@ -67,7 +67,7 @@
 		var/found_table = locate(/obj/structure/table) in found_location
 		var/found_tray = locate(/obj/item/storage/bag/tray) in found_location || locate(/obj/item/plate/oven_tray) in found_location
 		if(!found_turf && !istype(found_location, /obj/item/storage/bag/tray) || found_turf && !(found_table || found_tray))
-			to_chat(user, span_notice("You cannot make [initial(result_atom_type.name)] here! You need a table or at least a tray."))
+			to_chat(user, span_notice("你无法在这里制作 [initial(result_atom_type.name)]！你需要一张桌子或至少一个托盘。"))
 			return
 
 	mutable_recipes += list(list(TOOL_PROCESSING_RESULT = result_atom_type, TOOL_PROCESSING_AMOUNT = amount_created, TOOL_PROCESSING_TIME = time_to_process, TOOL_PROCESSING_SOUND = sound_to_play))
@@ -84,15 +84,15 @@
 	// but at least it's readable?
 	if(amount_created > 1)
 		if(result_gender == PLURAL)
-			examine_list += span_notice("It can be turned into [amount_created] [result_name] with [span_bold(tool_desc)]!")
+			examine_list += span_notice("它可以用 [span_bold(tool_desc)] 制成 [amount_created] 个 [result_name]！")
 		else
-			examine_list += span_notice("It can be turned into [amount_created] [result_name][plural_s(result_name)] with [span_bold(tool_desc)]!")
+			examine_list += span_notice("它可以用 [span_bold(tool_desc)] 制成 [amount_created] 个 [result_name][plural_s(result_name)]！")
 
 	else
 		if(result_gender == PLURAL)
-			examine_list += span_notice("It can be turned into some [result_name] with [span_bold(tool_desc)]!")
+			examine_list += span_notice("它可以用 [span_bold(tool_desc)] 制成一些 [result_name]！")
 		else
-			examine_list += span_notice("It can be turned into \a [result_name] with [span_bold(tool_desc)]!")
+			examine_list += span_notice("它可以用[result_name]加工成\a [span_bold(tool_desc)]！")
 
 /**
  * Adds context sensitivy directly to the processable file for screentips

@@ -70,7 +70,7 @@
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
 /datum/supply_pack/engineering/inducers
-	name = "NT-75 Electromagnetic Power Inducers Crate"
+	name = "NT-75型电磁感应无线快充器板条箱"
 	desc = "No rechargers? No problem, with the NT-75 EPI, you can recharge any standard \
 		cell-based equipment anytime, anywhere. Contains two Inducers."
 	cost = CARGO_CRATE_VALUE * 4
@@ -79,7 +79,7 @@
 	crate_type = /obj/structure/closet/crate/nakamura
 
 /datum/supply_pack/engineering/pacman
-	name = "P.A.C.M.A.N Generator Crate"
+	name = "P.A.C.M.A.N.发电机板条箱"
 	desc = "Engineers can't set up the engine? Not an issue for you, once you get your hands \
 		on this P.A.C.M.A.N. Generator! Takes in plasma and spits out sweet sweet energy."
 	cost = CARGO_CRATE_VALUE * 5
@@ -130,7 +130,7 @@
 
 /datum/supply_pack/engineering/portascrubber
 	name = "Portable Scrubber Crate"
-	desc = "Clean up that pesky plasma leak with your very own set of two portable scrubbers."
+	desc = "两套你自己的便携式虹吸器，用来清理讨人厌的等离子泄露。"
 	cost = CARGO_CRATE_VALUE * 4.5
 	access_view = ACCESS_ATMOSPHERICS
 	contains = list(/obj/machinery/portable_atmospherics/scrubber = 2)
@@ -139,7 +139,7 @@
 
 /datum/supply_pack/engineering/hugescrubber
 	name = "Huge Portable Scrubber Crate"
-	desc = "A huge portable scrubber for huge atmospherics mistakes."
+	desc = "一台巨大的便携式虹吸器，用来处理巨大的大气事故。"
 	cost = CARGO_CRATE_VALUE * 7.5
 	access_view = ACCESS_ATMOSPHERICS
 	contains = list(/obj/machinery/portable_atmospherics/scrubber/huge/movable/cargo)
@@ -148,14 +148,14 @@
 
 /datum/supply_pack/engineering/space_heater
 	name = "Space Heater Crate"
-	desc = "A dual purpose heater/cooler for when things are too chilly/toasty."
+	desc = "一个冷热两用的加热器/冷却器。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/machinery/space_heater)
 	crate_name = "space heater crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering/atmos
 
 /datum/supply_pack/engineering/bsa
-	name = "Bluespace Artillery Parts"
+	name = "蓝空巨炮部件箱"
 	desc = "The pride of Nanotrasen Naval Command. The legendary Bluespace Artillery Cannon is a \
 		devastating feat of human engineering and testament to wartime determination. \
 		Highly advanced research is required for proper construction."
@@ -171,7 +171,7 @@
 	crate_name= "bluespace artillery parts crate"
 
 /datum/supply_pack/engineering/dna_vault
-	name = "DNA Vault Parts"
+	name = "DNA库部件箱"
 	desc = "Secure the longevity of the current state of humanity within this massive \
 		library of scientific knowledge, capable of granting superhuman powers and abilities. \
 		Highly advanced research is required for proper construction. Also contains five DNA probes."
@@ -184,8 +184,8 @@
 	crate_name= "dna vault parts crate"
 
 /datum/supply_pack/engineering/dna_probes
-	name = "DNA Vault Samplers"
-	desc = "Contains five DNA probes for use in the DNA vault."
+	name = "DNA库采样器箱"
+	desc = "包含5个DNA探针，用于DNA库。"
 	cost = CARGO_CRATE_VALUE * 6
 	order_flags = ORDER_SPECIAL
 	access_view = ACCESS_COMMAND
@@ -194,7 +194,7 @@
 
 
 /datum/supply_pack/engineering/shield_sat
-	name = "Shield Generator Satellite"
+	name = "护盾生成器卫星"
 	desc = "Protect the very existence of this station with these Anti-Meteor defenses. \
 		Contains three Shield Generator Satellites."
 	cost = CARGO_CRATE_VALUE * 6
@@ -204,8 +204,8 @@
 
 
 /datum/supply_pack/engineering/shield_sat_control
-	name = "Shield System Control Board"
-	desc = "A control system for the Shield Generator Satellite system."
+	name = "护盾系统控制台电路板"
+	desc = "一个用于护盾发生器卫星的控制系统。"
 	cost = CARGO_CRATE_VALUE * 10
 	access_view = ACCESS_COMMAND
 	contains = list(/obj/item/circuitboard/computer/sat_control)
@@ -248,7 +248,7 @@
 
 /datum/supply_pack/engine/grounding_rods
 	name = "Grounding Rod Crate"
-	desc = "Four grounding rods guaranteed to keep any uppity tesla coil's lightning under control."
+	desc = "四根接地棒，用来确保能控制特斯拉线圈泄露出的闪电。"
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(/obj/machinery/power/energy_accumulator/grounding_rod = 4)
 	crate_name = "grounding rod crate"

@@ -20,8 +20,8 @@
 	trait = TRAIT_SHOCKIMMUNE
 
 /atom/movable/screen/alert/status_effect/shockimmune
-	name = "Grounded"
-	desc = "That meal made me feel like a superconductor..."
+	name = "接地"
+	desc = "那顿饭让我感觉自己像个超导体..."
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "shock_immune"
 
@@ -40,8 +40,8 @@
 	trait = TRAIT_ASHSTORM_IMMUNE
 
 /atom/movable/screen/alert/status_effect/ashstorm_immune
-	name = "Ashstorm-proof"
-	desc = "That meal makes me feel born on Lavaland."
+	name = "灰烬风暴免疫"
+	desc = "那顿饭让我感觉自己出生在熔岩地。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "ashstorm_immune"
 
@@ -54,8 +54,8 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/waddle
-	name = "Waddling"
-	desc = "That meal makes me want to joke around."
+	name = "摇摇摆摆"
+	desc = "那顿饭让我想开开玩笑。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_icon = /obj/item/clothing/mask/gas/clown_hat::icon
 	overlay_state = /obj/item/clothing/mask/gas/clown_hat::icon_state

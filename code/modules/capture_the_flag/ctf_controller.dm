@@ -117,10 +117,10 @@
 			continue
 		var/list/enemy_team_members = get_players(team)
 		if(user.ckey in enemy_team_members)
-			to_chat(user, span_warning("No switching teams while the round is going!"))
+			to_chat(user, span_warning("回合进行中不能切换队伍！"))
 			return FALSE
 		else if(friendly_team_members.len > enemy_team_members.len)
-			to_chat(user, span_warning("[team_color] has more team members than [team]! Try joining [team] team to even things up."))
+			to_chat(user, span_warning("[team_color] 的队员比 [team] 多！试试加入 [team] 队来平衡人数。"))
 			return FALSE
 	return TRUE
 

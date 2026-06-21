@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/rifle
-	name = "Bolt Rifle"
-	desc = "Some kind of bolt action rifle. You get the feeling you shouldn't have this."
+	name = "栓动步枪"
+	desc = "某种栓式步枪。你会有种不该拥有它的感觉。"
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "sakhno"
 	w_class = WEIGHT_CLASS_BULKY
@@ -21,7 +21,7 @@
 
 /obj/item/gun/ballistic/rifle/rack(mob/user = null)
 	if (bolt_locked == FALSE)
-		balloon_alert(user, "bolt opened")
+		balloon_alert(user, "枪栓已打开")
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 		process_chamber(FALSE, FALSE, FALSE)
 		bolt_locked = TRUE
@@ -32,7 +32,7 @@
 
 /obj/item/gun/ballistic/rifle/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(need_bolt_lock_to_interact && !bolt_locked && !istype(tool, /obj/item/knife))
-		balloon_alert(user, "bolt closed!")
+		balloon_alert(user, "枪栓已关闭！")
 		return
 
 	return ..()
@@ -51,7 +51,7 @@
 ///////////////////////
 
 /obj/item/gun/ballistic/rifle/boltaction
-	name = "\improper Sakhno Precision Rifle"
+	name = "\improper 萨赫诺精密步枪"
 	desc = "A Sakhno Precision Rifle, a bolt action weapon that was (and certainly still is) popular with \
 		frontiersmen, cargo runners, private security forces, explorers, and other unsavoury types. This particular \
 		pattern of the rifle dates back all the way to 2440."
@@ -93,7 +93,7 @@
 			unjam_chance = initial(unjam_chance)
 		else
 			unjam_chance += 10
-			balloon_alert(user, "jammed!")
+			balloon_alert(user, "卡弹了！")
 			playsound(user,'sound/items/weapons/jammed.ogg', 75, TRUE)
 			return FALSE
 	return ..()
@@ -114,8 +114,8 @@
 		. = TRUE
 
 /obj/item/gun/ballistic/rifle/boltaction/harpoon
-	name = "ballistic harpoon gun"
-	desc = "A weapon favored by carp hunters, but just as infamously employed by agents of the Animal Rights Consortium against human aggressors. Because it's ironic."
+	name = "弹道鱼叉枪"
+	desc = "这是鲤鱼猎人常用的武器，但同样也因被动保协会的人员用作对付人类而臭名昭著。因为这实在是太讽刺了。"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "speargun"
 	inhand_icon_state = "speargun"
@@ -127,7 +127,7 @@
 	SET_BASE_PIXEL(0, 0)
 
 /obj/item/gun/ballistic/rifle/boltaction/surplus
-	name = "\improper Sakhno M2442 Army"
+	name = "\improper 萨赫诺 M2442 陆军步枪"
 	desc = "A modification of the Sakhno Precision Rifle, \"Sakhno M2442 Army\" is stamped into the side. \
 		It is unknown what army this pattern of rifle was made for or if it was ever even used by an army \
 		of any sort. What you can discern, however, is that its previous owner did not treat the weapon well. \
@@ -225,7 +225,7 @@
 	if (bolt_locked)
 		drop_bolt(user)
 		return
-	balloon_alert(user, "bowstring loosened")
+	balloon_alert(user, "弓弦已松开")
 	playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 	handle_chamber(empty_chamber =  FALSE, from_firing = FALSE, chamber_next_round = FALSE)
 	bolt_locked = TRUE
@@ -235,7 +235,7 @@
 	if(!do_after(user, draw_time, target = src))
 		return
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
-	balloon_alert(user, "bowstring drawn")
+	balloon_alert(user, "弓弦已拉紧")
 	chamber_round()
 	bolt_locked = FALSE
 	update_appearance()
@@ -293,7 +293,7 @@
 /// PIPE GUNS ///
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun
-	name = "pipegun"
+	name = "管道枪"
 	desc = "A symbol that the true masters of this place are not those who merely inhabit it, but the one willing to twist it towards a killing intent."
 	icon_state = "pipegun"
 	inhand_icon_state = "pipegun"
@@ -313,7 +313,7 @@
 /obj/item/gun/ballistic/rifle/boltaction/pipegun/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to recall a tale about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来回忆一段关于[src]的故事。"), \
 		lore = "<b>You were told this story, in hushed tones, from a wizened man in a grey jumpsuit...</b><br><br>\
 		It is said that the first slaying committed on a Nanotrasen space station was by an assistant.<br><br>\
 		That this act, done by toolbox, maybe spear, was what consigned their kind to a life of destitution, rejection and violence.<br><br>\
@@ -355,7 +355,7 @@
 	return
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun/prime
-	name = "regal pipegun"
+	name = "帝王管道枪"
 	desc = "To call this 'regal' is a cruel irony. For the only noteworthy quality of nobility is in how it is wielded to kill. \
 		All monarchs deserve to be crowned. But none will remember the dead tyrant for the red stain they left on the carpet."
 	icon_state = "regal_pipegun"
@@ -385,8 +385,8 @@
 /// MAGICAL BOLT ACTIONS ///
 
 /obj/item/gun/ballistic/rifle/enchanted
-	name = "enchanted bolt action rifle"
-	desc = "Careful not to lose your head."
+	name = "有魔法的栓动步枪"
+	desc = "小心别丢了脑袋。"
 	icon_state = "enchanted_rifle"
 	inhand_icon_state = "enchanted"
 	worn_icon_state = "enchanted_rifle"

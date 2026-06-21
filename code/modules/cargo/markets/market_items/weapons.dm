@@ -3,8 +3,8 @@
 	abstract_path = /datum/market_item/weapon
 
 /datum/market_item/weapon/bear_trap
-	name = "Bear Trap"
-	desc = "Get the janitor back at his own game with this affordable prank kit."
+	name = "捕熊陷阱"
+	desc = "用这个经济实惠的恶作剧工具让清洁工回到他工作的热情当中。"
 	item = /obj/item/restraints/legcuffs/beartrap
 
 	price_min = CARGO_CRATE_VALUE * 1.5
@@ -58,8 +58,8 @@
 	availability_prob = 90
 
 /datum/market_item/weapon/bone_spear
-	name = "Bone Spear"
-	desc = "Authentic tribal spear, made from real bones! A steal at any price, especially if you're a caveman."
+	name = "骨矛"
+	desc = "正宗的部落长矛，用真骨头做的！任何价格都是划算的，尤其是如果你是山顶洞人。"
 	item = /obj/item/spear/bonespear
 
 	price_min = CARGO_CRATE_VALUE
@@ -68,8 +68,8 @@
 	availability_prob = 60
 
 /datum/market_item/weapon/chainsaw
-	name = "Chainsaw"
-	desc = "A lumberjack's best friend, perfect for cutting trees or limbs efficiently."
+	name = "链锯"
+	desc = "光头强的得力伙伴，在臭狗熊反应过来之前砍下100棵美人松。"
 	item = /obj/item/chainsaw
 
 	price_min = CARGO_CRATE_VALUE * 1.75
@@ -78,8 +78,8 @@
 	availability_prob = 35
 
 /datum/market_item/weapon/switchblade
-	name = "Switchblade"
-	desc = "Tunnel Snakes rule!"
+	name = "弹簧刀"
+	desc = "隧道蛇万岁!"
 	item = /obj/item/switchblade
 
 	price_min = CARGO_CRATE_VALUE * 1.25
@@ -98,8 +98,8 @@
 	availability_prob = 65
 
 /datum/market_item/weapon/emp_grenade
-	name = "EMP Grenade"
-	desc = "Use this grenade for SHOCKING results!"
+	name = "EMP手榴弹"
+	desc = "使用这个手榴弹将带来令人震惊的结果！"
 	item = /obj/item/grenade/empgrenade
 
 	price_min = CARGO_CRATE_VALUE * 0.5

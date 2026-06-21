@@ -92,12 +92,12 @@
 			if(length(named_cameras) == 1)
 				chosen_camera = named_cameras[1]
 			else
-				chosen_camera = tgui_input_list(ai, "Choose a camera to jump to", "Camera Selection", named_cameras)
+				chosen_camera = tgui_input_list(ai, "选择要跳转的摄像头", "摄像头选择", named_cameras)
 				if(isnull(chosen_camera))
 					return
 			var/obj/machinery/camera/selected_camera = named_cameras[chosen_camera]
 			if(!selected_camera.can_use())
-				to_chat(ai, span_warning("Camera is unavailable!"))
+				to_chat(ai, span_warning("摄像头不可用！"))
 				return
 			ai.switchCamera(selected_camera)
 			return TRUE

@@ -1,5 +1,5 @@
 /obj/item/circuitboard/machine/radiocarbon_spectrometer
-	name = "Radiocarbon spectrometer"
+	name = "放射性碳光谱仪"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/radiocarbon_spectrometer
 	req_components = list(
@@ -9,8 +9,8 @@
 	)
 
 /obj/machinery/radiocarbon_spectrometer
-	name = "Radiocarbon spectrometer"
-	desc = "A specialised, complex scanner for gleaning information on all manner of small things."
+	name = "放射性碳光谱仪"
+	desc = "一种专门用于从各种微小物体上获取信息的复杂扫描仪。"
 	anchored = TRUE
 	density = TRUE
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/machinery.dmi'
@@ -34,27 +34,27 @@
 
 /obj/machinery/radiocarbon_spectrometer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/xenoarch/core_sampler))
-		balloon_alert(user, "geosamples only!")
+		balloon_alert(user, "仅限地质样本！")
 		return NONE
 
 	var/obj/item/xenoarch/core_sampler/sampler = tool
 	if(!powered())
 		return ITEM_INTERACT_BLOCKING
 	if(scanning)
-		to_chat(user, span_notice("The machine is currently working."))
+		to_chat(user, span_notice("机器正在工作中。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!sampler.sample)
-		balloon_alert(user, "core sampler is empty!")
+		balloon_alert(user, "岩芯取样器是空的！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(sampler, src))
-		to_chat(user, span_warning("\The [sampler] is stuck to your hand, you cannot put it in the machine!"))
+		to_chat(user, span_warning("\The [sampler] 粘在你手上了，你没法把它放进机器里！"))
 		return ITEM_INTERACT_BLOCKING
 	current_sample = sampler
 	scanning = TRUE
 	user.visible_message(
-		span_notice("[user] inserts [sampler] into [src]."),
-		span_notice("You insert [sampler] into [src]."),
-		blind_message = span_notice("You hear click nearby."),
+		span_notice("[user] 将 [sampler] 插入 [src]。"),
+		span_notice("你将[sampler]插入[src]。"),
+		blind_message = span_notice("你听见附近传来咔哒声。"),
 	)
 	process_sample()
 	return ITEM_INTERACT_SUCCESS
@@ -86,7 +86,7 @@
 		return
 	if(powered()) // Double check if still powered after sleep
 		var/obj/item/paper/artifact_info/artifact_report = new(get_turf(src))
-		artifact_report.name = "[src] report"
+		artifact_report.name = "[src] 报告"
 		artifact_report.add_raw_text(data)
 		artifact_report.update_icon()
 		var/obj/item/stamp/granted/our_stamp = new
@@ -109,6 +109,6 @@
 	icon_state = "spectrometer"
 	update_use_power(IDLE_POWER_USE)
 	visible_message(
-		span_warning("[src] destroys core sampler due to internal error."),
-		blind_message = span_warning("You hear machine whirling."),
+		span_warning("[src] 因内部错误摧毁了岩芯取样器。"),
+		blind_message = span_warning("你听到机器发出嗡嗡声。"),
 	)

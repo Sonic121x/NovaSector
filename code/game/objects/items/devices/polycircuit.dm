@@ -1,6 +1,6 @@
 /obj/item/stack/circuit_stack
-	name = "polycircuit aggregate"
-	desc = "A dense, overdesigned cluster of electronics which attempted to function as a multipurpose circuit electronic. Circuits can be removed from it... if you don't bleed out in the process."
+	name = "聚合多用途电路"
+	desc = "一个密集、过度设计的电子元件集群，试图作为多用途电路电子设备运行。可以从它上面移除电路板……如果你在这个过程中没有失血过多的话。"
 	icon_state = "circuit_mess"
 	inhand_icon_state = "rods"
 	w_class = WEIGHT_CLASS_TINY
@@ -11,7 +11,7 @@
 	var/chosen_circuit = "airlock"
 
 /obj/item/stack/circuit_stack/attack_self(mob/user)// Prevents the crafting menu, and tells you how to use it.
-	to_chat(user, span_warning("You can't use [src] by itself, you'll have to try and remove one of these circuits by hand... carefully."))
+	to_chat(user, span_warning("你不能直接使用[src]，你得尝试手动移除其中一个电路……小心点。"))
 
 /obj/item/stack/circuit_stack/attack_hand(mob/user, list/modifiers)
 	var/mob/living/carbon/human/H = user
@@ -20,9 +20,9 @@
 	else
 		if(is_zero_amount(delete_if_zero = TRUE))
 			return
-		chosen_circuit = tgui_input_list(user, "Circuit to remove", "Circuit Removal", list("airlock","firelock","fire alarm","air alarm","APC"), chosen_circuit)
+		chosen_circuit = tgui_input_list(user, "要移除的电路", "电路移除", list("airlock","firelock","fire alarm","air alarm","APC"), chosen_circuit)
 		if(isnull(chosen_circuit))
-			to_chat(user, span_notice("You wisely avoid putting your hands anywhere near [src]."))
+			to_chat(user, span_notice("你明智地避免将手放在[src]附近。"))
 			return
 		if(is_zero_amount(delete_if_zero = TRUE))
 			return
@@ -39,7 +39,7 @@
 				circuit_type = /obj/item/electronics/airalarm
 			if("APC")
 				circuit_type = /obj/item/electronics/apc
-		to_chat(user, span_notice("You spot your circuit, and carefully attempt to remove it from [src], hold still!"))
+		to_chat(user, span_notice("你发现了想要的电路，并小心翼翼地尝试将它从[src]上取下来，别动！"))
 		if(do_after(user, 3 SECONDS, target = user))
 			if(!src || QDELETED(src))//Sanity Check.
 				return
@@ -47,12 +47,12 @@
 			user.put_in_hands(returned_circuit)
 			use(1)
 			if(!amount)
-				to_chat(user, span_notice("You navigate the sharp edges of circuitry and remove the last board."))
+				to_chat(user, span_notice("你绕开电路板锋利的边缘，取下了最后一块板子。"))
 			else
-				to_chat(user, span_notice("You navigate the sharp edges of circuitry and remove a single board from [src]"))
+				to_chat(user, span_notice("你绕开电路板锋利的边缘，从[src]上取下了一块板子。"))
 		else
 			H.apply_damage(15, BRUTE, pick(GLOB.arm_zones))
-			to_chat(user, span_warning("You give yourself a wicked cut on [src]'s many sharp corners and edges!"))
+			to_chat(user, span_warning("你被[src]上众多锋利的边角划出了一道很深的伤口！"))
 
 /obj/item/stack/circuit_stack/full
 	amount = 8

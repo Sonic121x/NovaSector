@@ -1,5 +1,5 @@
 /datum/outfit/syndicate/stealth
-	name = "Syndicate Operative - Stealth Kit"
+	name = "辛迪加特工 - 潜行装备"
 	uniform = /obj/item/clothing/under/syndicate
 	ears = /obj/item/radio/headset/chameleon
 	glasses = /obj/item/clothing/glasses/hud/health/night/meson

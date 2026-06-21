@@ -11,7 +11,7 @@
 	// Metadata; you should define these.
 
 	/// Name of the subsystem - you must change this
-	name = "fire coderbus"
+	name = "点燃程序员巴士"
 
 	/// Determines which subsystems this subsystem is dependant on to initialize. Will initialize after all specified subsystems.
 	/// If init_stage is earlier than a dependent subsystem, will throw an error and push the init stage forward to that subsystem.

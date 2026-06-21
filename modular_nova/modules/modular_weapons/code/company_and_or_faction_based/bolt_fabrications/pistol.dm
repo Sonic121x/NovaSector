@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol/type207
-	name = "\improper Type 207 Kinetic Pistol"
-	desc = "A completly non lethal sidearm used by Sol Fed Peacekeeping forces. It uses kinetic rounds to temporarily disable adversaries."
+	name = "\improper 207型动能手枪"
+	desc = "太阳联邦维和部队使用的完全非致命性副武器。它使用动能弹头暂时使对手丧失行动能力。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/bolt_fabrications/type207.dmi'
 	icon_state = "type207"
 	lefthand_file = 'modular_nova/modules/modular_weapons/icons/mob/company_and_or_faction_based/bolt_fabrications/guns_lefthand.dmi'

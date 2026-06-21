@@ -1,6 +1,6 @@
 /obj/item/food/honeycomb
-	name = "honeycomb"
-	desc = "A hexagonal mesh of honeycomb."
+	name = "蜂巢"
+	desc = "一个六边形的蜂巢状网格。"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "honeycomb"
 	max_volume = 10
@@ -26,7 +26,7 @@
 /obj/item/food/honeycomb/proc/set_reagent(reagent)
 	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent]
 	if(istype(R))
-		name = "honeycomb ([R.name])"
+		name = "蜂巢([R.name])"
 		honey_color = R.color
 		reagents.add_reagent(R.type,5)
 	else

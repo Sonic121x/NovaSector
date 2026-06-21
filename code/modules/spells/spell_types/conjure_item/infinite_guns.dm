@@ -23,7 +23,7 @@
 	return new item_type(caster.loc)
 
 /datum/action/cooldown/spell/conjure_item/infinite_guns/gun
-	name = "Lesser Summon Guns"
+	name = "次级召唤枪"
 	desc = "Why reload when you have infinite guns? \
 		Summons an unending stream of bolt action rifles that deal little damage, \
 		but will knock targets down. Requires both hands free to use. \
@@ -33,7 +33,7 @@
 	item_type = /obj/item/gun/ballistic/rifle/enchanted
 
 /datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage
-	name = "Arcane Barrage"
+	name = "奥术齐射"
 	desc = "Fire a torrent of arcane energy at your foes with this (powerful) spell. \
 		Deals much more damage than Lesser Summon Guns, but won't knock targets down. Requires both hands free to use. \
 		Learning this spell makes you unable to learn Lesser Summon Gun."

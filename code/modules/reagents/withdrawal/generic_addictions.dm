@@ -1,7 +1,7 @@
 ///Opioids
 /datum/addiction/opioids
-	name = "opioid"
-	description = "Patient has developed a dependence on opioid substances."
+	name = "阿片类药物"
+	description = "患者已对阿片类物质产生依赖。"
 	symptoms = "Expresses a desire for painkillers, and when in withdrawl, experiences drowsiness, high blood pressure, and nausea."
 	withdrawal_stage_messages = list("I feel aches in my bodies..", "I need some pain relief...", "It aches all over...I need some opioids!")
 
@@ -27,8 +27,8 @@
 ///Stimulants
 
 /datum/addiction/stimulants
-	name = "stimulant"
-	description = "Patient has developed a dependence on stimulant substances."
+	name = "兴奋剂"
+	description = "患者已对兴奋剂类物质产生依赖。"
 	symptoms = "Expresses a desire for stimulants, and when in withdrawal, experiences fatigue, slowness, and difficulty concentrating."
 	withdrawal_stage_messages = list("You feel a bit tired...You could really use a pick me up.", "You are getting a bit woozy...", "So...Tired...")
 
@@ -52,8 +52,8 @@
 
 ///Alcohol
 /datum/addiction/alcohol
-	name = "alcohol"
-	description = "Patient has developed a dependence on alcohol."
+	name = "酒精"
+	description = "患者已对酒精产生依赖。"
 	symptoms = "Expresses a desire for alcoholic beverages, and when in withdrawal, experiences jitteriness, hallucinations, and potentially seizures."
 	withdrawal_stage_messages = list("I could use a drink...", "Maybe the bar is still open?..", "God I need a drink!")
 
@@ -74,8 +74,8 @@
 		affected_carbon.apply_status_effect(/datum/status_effect/seizure)
 
 /datum/addiction/hallucinogens
-	name = "hallucinogen"
-	description = "Patient has developed a dependence on hallucinogenic substances."
+	name = "致幻剂"
+	description = "患者已对致幻剂类物质产生依赖。"
 	symptoms = "Expresses a desire for hallucinogens, and when in withdrawal, experiences feelings of emptiness, difficulty seeing, and disconnection from reality."
 	withdrawal_stage_messages = list("I feel so empty...", "I wonder what the machine elves are up to?..", "I need to see the beautiful colors again!!")
 
@@ -98,8 +98,8 @@
 	affected_carbon.remove_status_effect(/datum/status_effect/trance, 40 SECONDS, TRUE)
 
 /datum/addiction/maintenance_drugs
-	name = "maintenance drug"
-	description = "Patient has developed a dependence on maintenance drugs."
+	name = "维护管道毒品"
+	description = "患者已对维护区药物产生依赖。"
 	symptoms = "Expresses a desire for maintenance drugs, and when in withdrawal, experiences various adaptions \
 		such as light sensitivity, numbness, changes to taste, enhanced hair growth, and greater low light vision."
 	withdrawal_stage_messages = list("", "", "")
@@ -119,7 +119,7 @@
 		return
 	var/mob/living/carbon/human/affected_human = affected_carbon
 	if(affected_human.gender == MALE)
-		to_chat(affected_human, span_warning("Your chin itches."))
+		to_chat(affected_human, span_warning("你的下巴发痒。"))
 		affected_human.set_facial_hairstyle("Beard (Full)", update = TRUE)
 	//Only like gross food
 	var/obj/item/organ/tongue/tongue = affected_carbon.get_organ_slot(ORGAN_SLOT_TONGUE)
@@ -133,7 +133,7 @@
 	. = ..()
 	if(!ishuman(affected_carbon))
 		return
-	to_chat(affected_carbon, span_warning("You feel yourself adapt to the darkness."))
+	to_chat(affected_carbon, span_warning("你感觉自己适应了黑暗。"))
 	var/mob/living/carbon/human/affected_human = affected_carbon
 	var/obj/item/organ/eyes/empowered_eyes = affected_human.get_organ_by_type(/obj/item/organ/eyes)
 	if(empowered_eyes)
@@ -171,8 +171,8 @@
 
 ///Makes you a hypochondriac - I'd like to call it hypochondria, but "I could use some hypochondria" doesn't work
 /datum/addiction/medicine
-	name = "medicine"
-	description = "Patient has developed a dependence on medicine, similar to that of Hypochondria."
+	name = "药品"
+	description = "患者已对药物产生依赖，类似于疑病症。"
 	symptoms = "Expresses a need for medication despite being otherwise healthy, and when in withdrawal, \
 		experiences coughing fits, hallucinations, and distorted health perceptions."
 	withdrawal_stage_messages = list("", "", "")
@@ -275,7 +275,7 @@
 		to_chat(affected_carbon, organ.high_threshold_passed)
 		return
 
-	to_chat(affected_carbon, span_warning("You feel a dull pain in your [organ.name]."))
+	to_chat(affected_carbon, span_warning("你感到你的[organ.name]传来一阵钝痛。"))
 
 /datum/addiction/medicine/end_withdrawal(mob/living/carbon/affected_carbon)
 	. = ..()
@@ -285,8 +285,8 @@
 
 ///Nicotine
 /datum/addiction/nicotine
-	name = "nicotine"
-	description = "Patient has developed a dependence on nicotine."
+	name = "尼古丁"
+	description = "患者已对尼古丁产生依赖。"
 	symptoms = "Expresses a desire for nicotine products, and when in withdrawal, experiences jitteriness, coughing, and difficulty concentrating."
 	addiction_relief_treshold = MIN_NICOTINE_ADDICTION_REAGENT_AMOUNT //much less because your intake is probably from ciggies
 	withdrawal_stage_messages = list("Feel like having a smoke...", "Getting antsy. Really need a smoke now.", "I can't take it! Need a smoke NOW!")

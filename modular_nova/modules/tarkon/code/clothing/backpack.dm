@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/tarkon
-	name = "tarkon industries backpack"
-	desc = "A rugged backpack for colony and port life. Made in the typical tarkon colours"
+	name = "塔康工业背包"
+	desc = "一款为殖民地和港口生活设计的耐用背包。采用典型的塔康配色。"
 	icon = 'modular_nova/modules/tarkon/icons/obj/clothing/backpack.dmi'
 	icon_state = "backpack-tarkon"
 	worn_icon = 'modular_nova/modules/tarkon/icons/mob/clothing/backpack.dmi'
@@ -8,8 +8,8 @@
 	resistance_flags = FIRE_PROOF //Industrial grade
 
 /obj/item/storage/backpack/satchel/tarkon
-	name = "tarkon industries satchel"
-	desc = "A rugged satchel for colony and port life. Made in the typical tarkon colours"
+	name = "塔康工业挎包"
+	desc = "一款为殖民地和港口生活设计的耐用挎包。采用典型的塔康配色。"
 	icon = 'modular_nova/modules/tarkon/icons/obj/clothing/backpack.dmi'
 	icon_state = "satchel-tarkon"
 	worn_icon = 'modular_nova/modules/tarkon/icons/mob/clothing/backpack.dmi'
@@ -17,8 +17,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/duffelbag/tarkon
-	name = "tarkon industries duffelbag"
-	desc = "A rugged duffelbag for colony and port life. Made in the typical tarkon colours"
+	name = "塔康工业行李袋"
+	desc = "一款为殖民地和港口生活设计的耐用行李袋。采用典型的塔康配色。"
 	icon = 'modular_nova/modules/tarkon/icons/obj/clothing/backpack.dmi'
 	icon_state = "duffel-tarkon"
 	worn_icon = 'modular_nova/modules/tarkon/icons/mob/clothing/backpack.dmi'
@@ -29,8 +29,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/messenger/tarkon
-	name = "tarkon industries messenger bag"
-	desc = "A rugged messenger bag for colony and port life. Made in the typical tarkon colours"
+	name = "塔康工业信使包"
+	desc = "一款为殖民地和港口生活设计的耐用信使包。采用典型的塔康配色。"
 	icon = 'modular_nova/modules/tarkon/icons/obj/clothing/backpack.dmi'
 	icon_state = "messenger-tarkon"
 	worn_icon = 'modular_nova/modules/tarkon/icons/mob/clothing/backpack.dmi'

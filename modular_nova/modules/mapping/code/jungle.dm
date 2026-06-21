@@ -11,21 +11,21 @@
 /datum/map_template/ruin/jungle/luna
 	id = "surface_luna"
 	suffix = "surface_luna.dmm"
-	name = "JungleSurface-Ruin LUNA"
-	description = "The dream of a dead dreamer."
+	name = "丛林地表-遗迹 LUNA"
+	description = "一位逝去梦想家的梦想。"
 	cost = 0
 	always_place = TRUE
 
 /datum/map_template/ruin/jungle/blooddraw
 	id = "surface_blooddraw"
 	suffix = "surface_blooddraw.dmm"
-	name = "JungleSurface-Ruin Bloodworking Site"
-	description = "For some asinine reason, a lot of blood donor clinics closed when cloning was outlawed. This is one of those."
+	name = "丛林地表-遗迹血液作业场"
+	description = "出于某些愚蠢的原因，许多献血诊所在克隆技术被禁止后就关闭了。这就是其中之一。"
 
 /datum/map_template/ruin/jungle/fountain
-	name = "JungleSurface-Ruin Fountain Hall"
+	name = "丛林地表-遗迹喷泉大厅"
 	id = "jungle_fountain"
-	description = "The fountain has a warning on the side. DANGER: May have undeclared side effects that only become obvious when implemented."
+	description = "喷泉侧面有一个警告。危险：可能具有未声明的副作用，仅在实施后才会显现。"
 	prefix = "_maps/RandomRuins/AnywhereRuins/"
 	suffix = "fountain_hall.dmm"
 
@@ -40,5 +40,5 @@
 /datum/map_template/ruin/jungle_cave/trilogy_research
 	id = "caves_trilogy_research"
 	suffix = "caves_trilogy_research.dmm"
-	name = "JungleCave-Ruin Trilogy (Research Department)"
-	description = "We tried making millions; didn't quite work out. Something else had better marketshare."
+	name = "丛林洞穴-遗迹三部曲（研究部门）"
+	description = "我们曾试图赚取数百万；但没成功。其他东西拥有更好的市场份额。"

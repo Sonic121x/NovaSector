@@ -10,10 +10,10 @@
 /obj/machinery/cell_charger/click_alt(mob/user, list/modifiers)
 	if(. || !charging)
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice("You activate the quick release as the cell pops out!"))
+	to_chat(user, span_notice("你启动了快速释放装置，电池弹了出来！"))
 	removecell(charging.forceMove(drop_location()))
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/cell_charger/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt click it to engage the ejection lever!")
+	. += span_notice("Alt点击它以启动弹出杆！")

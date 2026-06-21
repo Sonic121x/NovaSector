@@ -10,7 +10,7 @@
 	icon_state = "airlock_control_standby"
 	base_icon_state = "airlock_control"
 
-	name = "airlock console"
+	name = "气闸控制台"
 	density = FALSE
 
 	power_channel = AREA_USAGE_ENVIRON

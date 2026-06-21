@@ -94,7 +94,7 @@
 
 	if(type == "audio/protected")
 		if(!admins_warned)
-			message_admins(span_notice("Audio returned a protected playback error, likely due to being copyrighted."))
+			message_admins(span_notice("音频返回了受保护的播放错误，很可能是因为受版权保护。"))
 			admins_warned = TRUE
 			addtimer(VARSET_CALLBACK(src, admins_warned, FALSE), 10 SECONDS)
 		return TRUE

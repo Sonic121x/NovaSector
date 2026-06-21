@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/syringe
-	name = "syringe"
-	desc = "A syringe that can hold up to 15 units."
+	name = "注射器"
+	desc = "可容纳15个单位的注射器。"
 	icon = 'icons/obj/medical/syringe.dmi'
 	base_icon_state = "syringe"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -58,23 +58,23 @@
 	log_combat(user, target, "attempted to inject", src, addition="which had [contained]")
 
 	if(!reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty! Right-click to draw."))
+		to_chat(user, span_warning("[src] 是空的！右键点击抽取。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!isliving(target) && !target.is_injectable(user))
-		to_chat(user, span_warning("You cannot directly fill [target]!"))
+		to_chat(user, span_warning("你不能直接填充[target]！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(target.reagents.holder_full())
-		to_chat(user, span_notice("[target] is full."))
+		to_chat(user, span_notice("[target] 已满。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target != user)
 			living_target.visible_message(
-				span_danger("[user] is trying to inject [living_target]!"),
-				span_userdanger("[user] is trying to inject you!"),
+				span_danger("[user] 正试图给 [living_target] 注射！"),
+				span_userdanger("[user]正试图给你注射！"),
 			)
 			if(!do_after(user, CHEM_INTERACT_DELAY(3 SECONDS, user), living_target, extra_checks = CALLBACK(src, PROC_REF(try_syringe), living_target, user)))
 				return ITEM_INTERACT_BLOCKING
@@ -83,8 +83,8 @@
 			if(living_target.reagents.holder_full())
 				return ITEM_INTERACT_BLOCKING
 			living_target.visible_message(
-				span_danger("[user] injects [living_target] with the syringe!"),
-				span_userdanger("[user] injects you with the syringe!"),
+				span_danger("[user]用注射器给[living_target]注射了！"),
+				span_userdanger("[user]用注射器给你注射了！"),
 			)
 
 		if(living_target == user)
@@ -93,7 +93,7 @@
 			log_combat(user, living_target, "injected", src, addition="which had [contained]")
 
 	if(reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user, methods = INJECT))
-		to_chat(user, span_notice("You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units."))
+		to_chat(user, span_notice("你注射了[amount_per_transfer_from_this]单位溶液。注射器现在含有[reagents.total_volume]单位。"))
 		target.update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -108,7 +108,7 @@
 	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE_WITHDRAW, user)
 
 	if(reagents.holder_full())
-		to_chat(user, span_notice("[src] is full."))
+		to_chat(user, span_notice("[src]已满。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isliving(target))
@@ -116,30 +116,30 @@
 		var/drawn_amount = reagents.maximum_volume - reagents.total_volume
 		if(target != user)
 			target.visible_message(
-				span_danger("[user] is trying to take a blood sample from [target]!"),
-				span_userdanger("[user] is trying to take a blood sample from you!"),
+				span_danger("[user]正试图从[target]身上抽取血样！"),
+				span_userdanger("[user]正试图从你身上抽取血样！"),
 			)
 			if(!do_after(user, CHEM_INTERACT_DELAY(3 SECONDS, user), target, extra_checks = CALLBACK(src, PROC_REF(try_syringe), living_target, user)))
 				return ITEM_INTERACT_BLOCKING
 			if(reagents.holder_full())
 				return ITEM_INTERACT_BLOCKING
 		if(living_target.transfer_blood_to(src, drawn_amount))
-			user.visible_message(span_notice("[user] takes a blood sample from [living_target]."))
+			user.visible_message(span_notice("[user]从[living_target]身上抽取了血样。"))
 		else
-			to_chat(user, span_warning("You are unable to draw any blood from [living_target]!"))
+			to_chat(user, span_warning("你无法从[living_target]身上抽取任何血液！"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!target.reagents.total_volume)
-		to_chat(user, span_warning("[target] is empty!"))
+		to_chat(user, span_warning("[target]是空的！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!target.is_drawable(user))
-		to_chat(user, span_warning("You cannot directly remove reagents from [target]!"))
+		to_chat(user, span_warning("你不能直接从[target]中移除试剂！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user) // transfer from, transfer to - who cares?
 	if(trans)
-		to_chat(user, span_notice("You fill [src] with [trans] units of the solution. It now contains [reagents.total_volume] units."))
+		to_chat(user, span_notice("你向[src]中注入了[trans]单位溶液。它现在含有[reagents.total_volume]单位。"))
 	target.update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -150,7 +150,7 @@
 	if(source_item)
 		to_chat(victim, span_boldwarning("There's \a [src] in [source_item]!!"))
 	else
-		to_chat(victim, span_boldwarning("[src] injects you!"))
+		to_chat(victim, span_boldwarning("[src]注射了你！"))
 
 	victim.apply_damage(5, BRUTE, BODY_ZONE_HEAD)
 	reagents?.trans_to(victim, round(reagents.total_volume*(2/3)), transferred_by = user, methods = INJECT)
@@ -252,48 +252,48 @@
 	embed_chance = initial(embed_chance)
 
 /obj/item/reagent_containers/syringe/epinephrine
-	name = "syringe (epinephrine)"
-	desc = "Contains epinephrine - used to stabilize patients."
+	name = "注射器（肾上腺素）-'Epinephrine'"
+	desc = "含有肾上腺素——用于稳定患者病情。"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 15)
 
 /obj/item/reagent_containers/syringe/multiver
-	name = "syringe (multiver)"
-	desc = "Contains multiver. Diluted with granibitaluri."
+	name = "注射器（木太尔）-'Multiver'"
+	desc = "含有木太尔成分。用格拉尼比塔鲁里稀释。"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 6, /datum/reagent/medicine/granibitaluri = 9)
 
 /obj/item/reagent_containers/syringe/calomel
-	name = "syringe (calomel)"
-	desc = "Contains calomel - a toxic drug for rapidly removing chemicals from the body."
+	name = "注射器（甘汞）-'Calomel'"
+	desc = "含有甘汞——一种用于快速清除体内化学物质的有毒药物。"
 	list_reagents = list(/datum/reagent/medicine/calomel = 15)
 
 /obj/item/reagent_containers/syringe/convermol
-	name = "syringe (convermol)"
-	desc = "Contains convermol. Diluted with granibitaluri."
+	name = "注射器(肯尔莫)-'Convermol'"
+	desc = "含有康维莫尔。用格拉尼比塔鲁里稀释。"
 	list_reagents = list(/datum/reagent/medicine/c2/convermol = 6, /datum/reagent/medicine/granibitaluri = 9)
 
 /obj/item/reagent_containers/syringe/antiviral
-	name = "syringe (spaceacillin)"
-	desc = "Contains antiviral agents."
+	name = "注射器(太空西林)-'Spaceacillin'"
+	desc = "装有抗病毒剂。"
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
 /obj/item/reagent_containers/syringe/bioterror
-	name = "bioterror syringe"
-	desc = "Contains several paralyzing reagents."
+	name = "生化武器注射器"
+	desc = "含有多种麻痹剂。"
 	list_reagents = list(/datum/reagent/consumable/ethanol/neurotoxin = 5, /datum/reagent/toxin/mutetoxin = 5, /datum/reagent/toxin/sodium_thiopental = 5)
 
 /obj/item/reagent_containers/syringe/calomel
 	name = "syringe (calomel)"
-	desc = "Contains calomel."
+	desc = "装有甘汞。"
 	list_reagents = list(/datum/reagent/medicine/calomel = 15)
 
 /obj/item/reagent_containers/syringe/plasma
-	name = "syringe (plasma)"
-	desc = "Contains plasma."
+	name = "注射器（等离子体）-'Plasma'"
+	desc = "装有等离子体。"
 	list_reagents = list(/datum/reagent/toxin/plasma = 15)
 
 /obj/item/reagent_containers/syringe/lethal
-	name = "lethal injection syringe"
-	desc = "A syringe used for lethal injections. It can hold up to 50 units."
+	name = "致命注射注射器"
+	desc = "用于注射死刑的注射器，最多可容纳50单位药物。"
 	amount_per_transfer_from_this = 50
 	has_variable_transfer_amount = FALSE
 	volume = 50
@@ -305,24 +305,24 @@
 	list_reagents = list(/datum/reagent/toxin/plasma = 15, /datum/reagent/toxin/formaldehyde = 15, /datum/reagent/toxin/cyanide = 10, /datum/reagent/toxin/acid/fluacid = 10)
 
 /obj/item/reagent_containers/syringe/mulligan
-	name = "Mulligan"
-	desc = "A syringe used to completely change the users identity."
+	name = "穆利根"
+	desc = "一种用于彻底改变使用者身份的注射器。"
 	amount_per_transfer_from_this = 1
 	has_variable_transfer_amount = FALSE
 	volume = 1
 	list_reagents = list(/datum/reagent/mulligan = 1)
 
 /obj/item/reagent_containers/syringe/gluttony
-	name = "Gluttony's Blessing"
-	desc = "A syringe recovered from a dread place. It probably isn't wise to use."
+	name = "暴食的祝福"
+	desc = "从一个可怕的地方找到的注射器。最好不要用它。"
 	amount_per_transfer_from_this = 1
 	has_variable_transfer_amount = FALSE
 	volume = 1
 	list_reagents = list(/datum/reagent/gluttonytoxin = 1)
 
 /obj/item/reagent_containers/syringe/bluespace
-	name = "bluespace syringe"
-	desc = "An advanced syringe that can hold 60 units of chemicals."
+	name = "蓝空注射器"
+	desc = "一种高级注射器，可容纳60单位化学药剂。"
 	icon_state = "bluespace_0"
 	inhand_icon_state = "bluespace_0"
 	base_icon_state = "bluespace"
@@ -333,8 +333,8 @@
 	dart_insert_projectile_icon_state = "overlay_syringe_bluespace_proj"
 
 /obj/item/reagent_containers/syringe/piercing
-	name = "piercing syringe"
-	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
+	name = "穿刺型注射器"
+	desc = "一种尖端镶嵌钻石的注射器，高速发射时可穿透装甲。它最多可容纳10个单位的钻石。"
 	icon_state = "piercing_0"
 	inhand_icon_state = "piercing_0"
 	base_icon_state = "piercing"
@@ -353,8 +353,8 @@
 	transfer_per_second = 1
 
 /obj/item/reagent_containers/syringe/crude
-	name = "crude syringe"
-	desc = "A crudely made syringe. The flimsy wooden construction makes it hold a minimal amounts of reagents, but its very disposable."
+	name = "粗制注射器"
+	desc = "一个做工粗糙的注射器。由于木质结构单薄，它只能容纳极少量的试剂，但它是一次性的。"
 	icon_state = "crude_0"
 	base_icon_state = "crude"
 	possible_transfer_amounts = list(1,5)
@@ -379,8 +379,8 @@
 
 // Used by monkeys from the elemental plane of bananas. Reagents come from bungo pit, death berries, destroying angel, jupiter cups, and jumping beans.
 /obj/item/reagent_containers/syringe/crude/tribal
-	name = "tribal syringe"
-	desc = "A crudely made syringe. Smells like bananas."
+	name = "部落注射器"
+	desc = "一个粗制滥造的注射器。闻起来有香蕉味。"
 
 /obj/item/reagent_containers/syringe/crude/tribal/Initialize(mapload)
 	var/toxin_to_get = pick(/datum/reagent/toxin/bungotoxin, /datum/reagent/toxin/coniine, /datum/reagent/toxin/amanitin, /datum/reagent/consumable/liquidelectricity/enriched, /datum/reagent/ants)
@@ -394,33 +394,33 @@
 	list_reagents = list(/datum/reagent/drug/blastoff = 5)
 
 /obj/item/reagent_containers/syringe/spider_extract
-	name = "spider extract syringe"
-	desc = "Contains crikey juice - makes any gold core create the most deadly companions in the world."
+	name = "蜘蛛提取物注射器"
+	desc = "含有克里克汁液——可使任何金核创造出世界上最致命的伙伴。"
 	list_reagents = list(/datum/reagent/spider_extract = 1)
 
 /obj/item/reagent_containers/syringe/oxandrolone
-	name = "syringe (oxandrolone)"
-	desc = "Contains oxandrolone, used to treat severe burns."
+	name = "注射器（氧雄龙）-'Oxandrolone'"
+	desc = "装有氧雄龙，可用于治疗严重烧伤。"
 	list_reagents = list(/datum/reagent/medicine/oxandrolone = 15)
 
 /obj/item/reagent_containers/syringe/salacid
-	name = "syringe (salicylic acid)"
-	desc = "Contains salicylic acid, used to treat severe brute damage."
+	name = "注射器（水杨酸）-'Salicylic Acid'"
+	desc = "装有水杨酸，可用于治疗严重创伤。"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 15)
 
 /obj/item/reagent_containers/syringe/penacid
-	name = "syringe (pentetic acid)"
-	desc = "Contains pentetic acid, used to reduce high levels of radiation and heal severe toxins."
+	name = "注射器（喷替酸）-'pentetic acid'"
+	desc = "含有喷替酸，用于降低高剂量辐射和治疗严重毒素。"
 	list_reagents = list(/datum/reagent/medicine/pen_acid = 15)
 
 /obj/item/reagent_containers/syringe/syriniver
-	name = "syringe (syriniver)"
-	desc = "Contains syriniver, used to treat toxins and purge chemicals.The tag on the syringe states 'Inject one time per minute'"
+	name = "注射器（塞维尔）-'Syriniver'"
+	desc = "内含塞维尔，用于治疗毒素与清除体内化学物质。注射器标签注明：“每分钟仅限注射一次”。"
 	list_reagents = list(/datum/reagent/medicine/c2/syriniver = 15)
 
 /obj/item/reagent_containers/syringe/contraband
-	name = "unlabeled syringe"
-	desc = "A syringe containing some sort of unknown chemical cocktail."
+	name = "未贴标签的注射器"
+	desc = "一支装有某种未知化学混合物的注射器。"
 
 /obj/item/reagent_containers/syringe/contraband/Initialize(mapload)
 	. = ..()

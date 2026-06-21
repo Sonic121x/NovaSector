@@ -14,30 +14,30 @@
 
 /obj/item/organ/heart/vox
 	icon = 'modular_nova/modules/voxes/icons/organs.dmi'
-	name = "vox heart"
-	desc = "Seems like it belongs to bird or raptor."
+	name = "沃克斯心脏"
+	desc = "看起来像是属于鸟类或猛禽。"
 	icon_state = "heart-on"
 	base_icon_state = "heart"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 
 /obj/item/organ/eyes/vox
 	icon = 'modular_nova/modules/voxes/icons/organs.dmi'
-	name = "vox eyes"
+	name = "沃克斯眼睛"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 
 /obj/item/organ/ears/vox
 	icon = 'modular_nova/modules/voxes/icons/organs.dmi'
-	name = "vox ears"
+	name = "沃克斯耳朵"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 
 /obj/item/organ/liver/vox
 	icon = 'modular_nova/modules/voxes/icons/organs.dmi'
-	name = "vox liver"
+	name = "沃克斯肝脏"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 
 /obj/item/organ/stomach/vox
 	icon = 'modular_nova/modules/voxes/icons/organs.dmi'
-	name = "vox stomach"
+	name = "沃克斯胃"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 
 /obj/item/organ/lungs/nitrogen/vox

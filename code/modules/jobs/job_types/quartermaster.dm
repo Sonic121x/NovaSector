@@ -38,7 +38,7 @@
 	human_authority = JOB_AUTHORITY_NON_HUMANS_ALLOWED
 
 /datum/outfit/job/quartermaster
-	name = "Quartermaster"
+	name = "军需官"
 	jobtype = /datum/job/quartermaster
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic/bronze = 1,

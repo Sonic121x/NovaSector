@@ -1,5 +1,5 @@
 /obj/item/implant/radio/headset/dullahan
-	name = "internal headset implant"
+	name = "内置耳机植入体"
 	radio_type = /obj/item/radio/headset/dullahan
 	subspace_transmission =  TRUE
 
@@ -16,7 +16,7 @@
 
 	var/obj/item/radio/headset/headset = radio // cast as headset so we can access keyslot2 var
 
-	radio.name = "internal headset"
+	radio.name = "内置耳机"
 	icon = 'icons/obj/clothing/headsets.dmi'
 	icon_state = "headset"
 
@@ -27,7 +27,7 @@
 /obj/item/radio/headset/dullahan
 
 /datum/outfit/dullahan // empty outfit, we are basically just making use of post_equip() in order to set them up with a headset
-	name = "dullahan essentials"
+	name = "杜拉汉必需品"
 
 /datum/outfit/dullahan/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
 	. = ..()

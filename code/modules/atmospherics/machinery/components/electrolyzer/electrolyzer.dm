@@ -7,8 +7,8 @@
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi'
 	icon_state = "electrolyzer-off"
-	name = "space electrolyzer"
-	desc = "Thanks to the fast and dynamic response of our electrolyzers, on-site hydrogen production is guaranteed. Warranty void if used by clowns"
+	name = "太空电解器"
+	desc = "由于我们的电解器反应快速且灵活，能够保证现场制氢。如被小丑使用，保修无效"
 	max_integrity = 250
 	armor_type = /datum/armor/machinery_electrolyzer
 	circuit = /obj/item/circuitboard/machine/electrolyzer
@@ -72,9 +72,9 @@
 	else
 		. += "There is no power cell installed."
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("<b>Alt-click</b> to toggle [on ? "off" : "on"].")
-		. += span_notice("<b>Anchor</b> to drain power from APC instead of cell")
-	. += span_notice("It will drain power from the [anchored ? "area's APC" : "internal power cell"].")
+		. += span_notice("<b>Alt-点击</b>以切换[on ? "off" : "on"]。")
+		. += span_notice("<b>锚定</b>以从APC而非电池汲取电力")
+	. += span_notice("它会从[anchored ? "area's APC" : "internal power cell"]汲取电力。")
 
 
 /obj/machinery/electrolyzer/update_icon_state()
@@ -148,7 +148,7 @@
 /obj/machinery/electrolyzer/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	toggle_panel_open()
-	balloon_alert(user, "[panel_open ? "opened" : "closed"] panel")
+	balloon_alert(user, "[panel_open ? "opened" : "closed"]面板")
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
@@ -164,16 +164,16 @@
 	add_fingerprint(user)
 	if(istype(I, /obj/item/stock_parts/power_store/cell))
 		if(!panel_open)
-			balloon_alert(user, "open panel!")
+			balloon_alert(user, "打开面板！")
 			return
 		if(cell)
-			balloon_alert(user, "cell inside!")
+			balloon_alert(user, "里面有电池！")
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		cell = I
 		I.add_fingerprint(usr)
-		balloon_alert(user, "inserted cell")
+		balloon_alert(user, "已插入电池")
 		SStgui.update_uis(src)
 
 		return
@@ -181,19 +181,19 @@
 
 /obj/machinery/electrolyzer/click_alt(mob/user)
 	if(panel_open)
-		balloon_alert(user, "close panel!")
+		balloon_alert(user, "关闭面板！")
 		return CLICK_ACTION_BLOCKING
 	toggle_power(user)
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/electrolyzer/proc/toggle_power(mob/user)
 	if(!anchored && !cell)
-		balloon_alert(user, "insert cell or anchor!")
+		balloon_alert(user, "插入电池或固定！")
 		return
 	on = !on
 	mode = ELECTROLYZER_MODE_STANDBY
 	update_appearance(UPDATE_ICON)
-	balloon_alert(user, "turned [on ? "on" : "off"]")
+	balloon_alert(user, "已[on ? "on" : "off"]")
 	if(on)
 		SSair.start_processing_machine(src)
 

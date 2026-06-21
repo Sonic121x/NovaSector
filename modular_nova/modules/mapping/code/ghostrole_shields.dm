@@ -1,6 +1,6 @@
 /obj/machinery/button/door/indestructible/blackmarket_trader
-	name = "Stasis shield controller"
-	desc = "Button that disables the long-term stasis field surrounding your environment.."
+	name = "停滞护盾控制器"
+	desc = "用于关闭环绕你环境的长期停滞场的按钮。"
 	id = "bmt_control"
 
 /obj/machinery/button/door/indestructible/blackmarket_trader/Initialize(mapload, ndir, built)
@@ -25,8 +25,8 @@
 	qdel(src)
 
 /obj/machinery/door/poddoor/blackmarket_trader
-	name = "stasis shield"
-	desc = "Keeps those pesky tiders out, but also prevents you from leaving!"
+	name = "停滞护盾"
+	desc = "能把那些讨厌的拾荒者挡在外面，但也让你出不去！"
 	icon = 'icons/effects/anomalies.dmi'
 	icon_state = "dimensional_overlay"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

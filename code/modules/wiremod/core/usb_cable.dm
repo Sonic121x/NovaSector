@@ -1,7 +1,7 @@
 /// A cable that can connect integrated circuits to anything with a USB port, such as computers and machines.
 /obj/item/usb_cable
-	name = "usb cable"
-	desc = "A cable that can connect integrated circuits to anything with a USB port, such as computers and machines."
+	name = "USB 接口线"
+	desc = "一种可以将集成电路连接到任何带有USB端口的设备上的电缆，比如计算机和机器。"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "usb_cable"
 	inhand_icon_state = "coil_yellow"
@@ -36,7 +36,7 @@
 	. = ..()
 
 	if (!isnull(attached_circuit))
-		. += span_notice("It is attached to [attached_circuit.shell || attached_circuit].")
+		. += span_notice("它连接到了[attached_circuit.shell || attached_circuit]。")
 
 /obj/item/usb_cable/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -44,7 +44,7 @@
 		return
 
 	if (prob(1))
-		balloon_alert(user, "wrong way, god damnit")
+		balloon_alert(user, "方向错了，该死的")
 		return TRUE
 
 	var/signal_result = SEND_SIGNAL(target, COMSIG_ATOM_USB_CABLE_TRY_ATTACH, src, user)
@@ -52,7 +52,7 @@
 	if (signal_result & COMSIG_USB_CABLE_CONNECTED_TO_CIRCUIT)
 		if (isnull(attached_circuit))
 			CRASH("Producers of COMSIG_USB_CABLE_CONNECTED_TO_CIRCUIT must set attached_circuit")
-		balloon_alert(user, "connected to circuit\nconnect to a port")
+		balloon_alert(user, "已连接到电路\nconnect连接到端口")
 
 		playsound(src, 'sound/machines/pda_button/pda_button1.ogg', 20, TRUE)
 
@@ -66,7 +66,7 @@
 		else if (ismachinery(target))
 			connection_description = "machine"
 
-		balloon_alert(user, "connected to [connection_description]")
+		balloon_alert(user, "已连接到[connection_description]")
 		playsound(src, 'sound/items/tools/screwdriver2.ogg', 20, TRUE)
 
 		return TRUE
@@ -77,7 +77,7 @@
 	return FALSE
 
 /obj/item/usb_cable/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is wrapping [src] around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正把 [src] 绕在 [user.p_their()] 脖子上！看起来 [user.p_theyre()] 想自杀！"))
 	return OXYLOSS
 
 /obj/item/usb_cable/proc/on_moved()

@@ -1,7 +1,7 @@
 /// Say something and play a corresponding sound effect
 /datum/action/cooldown/bot_announcement
-	name = "Make automated announcement"
-	desc = "Play a prerecorded message for the benefit of those around you."
+	name = "发布自动通告"
+	desc = "播放一段预录信息，让周围的人听到。"
 	background_icon_state = "bg_tech_blue"
 	overlay_icon_state = "bg_tech_blue_border"
 	button_icon = 'icons/obj/machines/wallmounts.dmi'
@@ -25,11 +25,11 @@
 		return
 	if (!isbot(owner))
 		if (feedback)
-			owner.balloon_alert(owner, "no announcement system!")
+			owner.balloon_alert(owner, "没有广播系统！")
 		return FALSE
 	if (!length(automated_announcements))
 		if (feedback)
-			owner.balloon_alert(owner, "no valid announcements!")
+			owner.balloon_alert(owner, "没有有效的广播内容！")
 		return FALSE
 	return TRUE
 
@@ -170,7 +170,7 @@
 	return ..()
 
 /datum/action/cooldown/bot_announcement_shortcut
-	desc = "Play a prerecorded message for the benefit of those around you."
+	desc = "播放一段预录信息，让周围的人听到。"
 	shared_cooldown = MOB_SHARED_COOLDOWN_BOT_ANNOUNCMENT
 	background_icon_state = "bg_tech_blue"
 	overlay_icon_state = "bg_tech_blue_border"

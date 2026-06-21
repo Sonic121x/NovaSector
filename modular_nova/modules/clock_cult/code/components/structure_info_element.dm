@@ -60,4 +60,4 @@
 	if(!IS_CLOCK(examiner))
 		return
 
-	examine_text += span_brass("You can gain more information by using a <b>Clockwork Slab</b>.")
+	examine_text += span_brass("你可以使用<b>钟表石板</b>来获取更多信息。")

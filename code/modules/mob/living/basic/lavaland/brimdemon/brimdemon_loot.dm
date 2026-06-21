@@ -1,7 +1,7 @@
 /// Reagent pool left by dying brimdemon
 /obj/effect/decal/cleanable/brimdust
-	name = "brimdust"
-	desc = "Dust from a brimdemon. It is considered valuable for its botanical abilities."
+	name = "狱炎尘"
+	desc = "来自狱炎恶魔的尘埃。因其对植物学的助益而被视为有价值之物。"
 	icon_state = "brimdust"
 	icon = 'icons/obj/mining.dmi'
 	plane = GAME_PLANE
@@ -12,8 +12,8 @@
 
 /// Ashwalker ore sensor crafted from brimdemon ash
 /obj/item/ore_sensor
-	name = "ore sensor"
-	desc = "Using demonic frequencies, this ear-mounted tool detects ores in the nearby terrain."
+	name = "矿石传感器"
+	desc = "这个耳戴式工具利用恶魔频率来探测附近地形中的矿石。"
 	icon_state = "oresensor"
 	icon = 'icons/obj/mining.dmi'
 	slot_flags = ITEM_SLOT_EARS

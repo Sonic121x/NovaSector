@@ -6,8 +6,8 @@
  * Critical level
 */
 /datum/symptom/mind_restoration
-	name = "Mind Restoration"
-	desc = "The virus strengthens the bonds between neurons, reducing the duration of any ailments of the mind."
+	name = "心智恢复"
+	desc = "该病毒能强化神经元间的连接，缩短任何精神异常状态的持续时间。"
 	stealth = -1
 	resistance = -2
 	stage_speed = 1
@@ -76,8 +76,8 @@
 
 
 /datum/symptom/sensory_restoration
-	name = "Sensory Restoration"
-	desc = "The virus stimulates the production and replacement of sensory tissues, causing the host to regenerate eyes and ears when damaged."
+	name = "感官恢复"
+	desc = "该病毒刺激感觉组织的生成与替换，使宿主在眼睛或耳朵受损时能够再生。"
 	stealth = 0
 	resistance = 1
 	stage_speed = -2
@@ -109,11 +109,11 @@
 			eyes.apply_organ_damage(-2)
 			if(prob(20))
 				if(infected_mob.is_blind_from(EYE_DAMAGE))
-					to_chat(infected_mob, span_warning("Your vision slowly returns..."))
+					to_chat(infected_mob, span_warning("你的视力慢慢恢复了……"))
 					infected_mob.adjust_eye_blur(20 SECONDS)
 
 				else if(infected_mob.is_nearsighted_from(EYE_DAMAGE))
-					to_chat(infected_mob, span_warning("The blackness in your peripheral vision begins to fade."))
+					to_chat(infected_mob, span_warning("你视野边缘的黑暗开始消退。"))
 					infected_mob.adjust_eye_blur(5 SECONDS)
 
 		else

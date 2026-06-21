@@ -187,14 +187,14 @@
 	COOLDOWN_START(src, ore_bag_balloon_cooldown, ORE_BAG_BALOON_COOLDOWN)
 
 	if (box)
-		balloon_alert(user, "scoops ore into box")
+		balloon_alert(user, "将矿石舀入箱子")
 		user.visible_message(
 			span_notice("[user] offloads the ores beneath [user.p_them()] into [box]."),
 			ignored_mobs = user
 		)
 		return
 
-	balloon_alert(user, "scoops ore into bag")
+	balloon_alert(user, "将矿石舀入袋子")
 	user.visible_message(
 		span_notice("[user] scoops up the ores beneath [user.p_them()]."),
 		ignored_mobs = user
@@ -221,7 +221,7 @@
 		return TRUE
 
 	if (!spam_protection)
-		balloon_alert(user, "bag full!")
+		balloon_alert(user, "袋子满了！")
 		spam_protection = TRUE
 	return FALSE
 
@@ -556,15 +556,15 @@
 
 /obj/item/storage/bag/rebar_quiver/syndicate/proc/reload_held_rebar(mob/user)
 	if(!contents.len)
-		user.balloon_alert(user, "no bolts left!")
+		user.balloon_alert(user, "没有弩箭了！")
 		return
 	var/obj/held_item = user.get_active_held_item()
 	if(!held_item || !istype(held_item, /obj/item/gun/ballistic/rifle/rebarxbow))
-		user.balloon_alert(user, "no held crossbow!")
+		user.balloon_alert(user, "没有手持弩！")
 		return
 	var/obj/item/gun/ballistic/rifle/rebarxbow/held_crossbow = held_item
 	if(held_crossbow.magazine.contents.len >= held_crossbow.magazine.max_ammo)
-		user.balloon_alert(user, "no more room!")
+		user.balloon_alert(user, "没有空间了！")
 		return
 	if(!do_after(user, 1.2 SECONDS, user))
 		return

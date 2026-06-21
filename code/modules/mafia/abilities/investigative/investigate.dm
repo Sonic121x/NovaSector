@@ -4,7 +4,7 @@
  * During the night, Investigating will reveal the person's faction.
  */
 /datum/mafia_ability/investigate
-	name = "Investigate"
+	name = "调查"
 	ability_action = "investigate"
 
 /datum/mafia_ability/investigate/perform_action_target(datum/mafia_controller/game, datum/mafia_role/day_target)
@@ -20,5 +20,5 @@
 			if(MAFIA_TEAM_SOLO)
 				fluff = "rogue, with their own objectives..."
 
-	host_role.send_message_to_player(span_warning("Your investigations reveal that [target_role.body.real_name] is [fluff]"))
+	host_role.send_message_to_player(span_warning("你的调查显示[target_role.body.real_name]是[fluff]"))
 	return TRUE

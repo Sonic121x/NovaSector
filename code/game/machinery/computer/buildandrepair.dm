@@ -1,6 +1,6 @@
 /obj/structure/frame/computer
-	name = "computer frame"
-	desc = "A frame for constructing your own computer. Or console. Whichever name you prefer."
+	name = "电脑框架"
+	desc = "一个用于组装你自己的电脑的框架。或者叫控制台也行。随你喜欢。"
 	icon_state = "0"
 	base_icon_state = ""
 	state = FRAME_COMPUTER_STATE_EMPTY
@@ -76,23 +76,23 @@
 
 	switch(state)
 		if(FRAME_STATE_EMPTY)
-			. += span_notice("It can be [EXAMINE_HINT("anchored")] [anchored ? "loose." : "into place."]")
+			. += span_notice("它可以被[EXAMINE_HINT("anchored")][anchored ? "loose." : "into place."]")
 			if(anchored)
-				. += span_warning("It's missing a circuit board!")
+				. += span_warning("它缺少一块电路板！")
 			else
-				. += span_notice("It can be [EXAMINE_HINT("welded")] or [EXAMINE_HINT("screwed")] apart.")
+				. += span_notice("它可以被[EXAMINE_HINT("welded")]或[EXAMINE_HINT("screwed")]拆开。")
 		if(FRAME_COMPUTER_STATE_BOARD_INSTALLED)
-			. += span_notice("The circuit board can be [EXAMINE_HINT("pried")] out.")
-			. += span_info("A circuit board is installed and should be [EXAMINE_HINT("screwed")] in place.")
+			. += span_notice("电路板可以被[EXAMINE_HINT("pried")]出来。")
+			. += span_info("已安装电路板，应[EXAMINE_HINT("screwed")]到位。")
 		if(FRAME_COMPUTER_STATE_BOARD_SECURED)
-			. += span_notice("The circuit board can be [EXAMINE_HINT("screwed")] loose.")
-			. += span_info("It should be [EXAMINE_HINT("wired")] with 5 cables.")
+			. += span_notice("电路板可以[EXAMINE_HINT("screwed")]。")
+			. += span_info("它应该用5根[EXAMINE_HINT("wired")]连接。")
 		if(FRAME_COMPUTER_STATE_WIRED)
-			. += span_notice("Its wires can be [EXAMINE_HINT("cut")].")
-			. += span_info("It should be [EXAMINE_HINT("fitted")] with 2 glass panels.")
+			. += span_notice("它的电线可以[EXAMINE_HINT("cut")]。")
+			. += span_info("它应该安装2块[EXAMINE_HINT("fitted")]。")
 		if(FRAME_COMPUTER_STATE_GLASSED)
-			. += span_notice("The screen can be [EXAMINE_HINT("pried")] out.")
-			. += span_info("The monitor should be [EXAMINE_HINT("screwed")] on to complete it.")
+			. += span_notice("屏幕可以[EXAMINE_HINT("pried")]。")
+			. += span_info("应该将显示器[EXAMINE_HINT("screwed")]以完成组装。")
 
 /obj/structure/frame/computer/circuit_added(obj/item/circuitboard/added)
 	state = FRAME_COMPUTER_STATE_BOARD_INSTALLED
@@ -104,7 +104,7 @@
 
 /obj/structure/frame/computer/install_board(mob/living/user, obj/item/circuitboard/computer/board, by_hand)
 	if(state != FRAME_COMPUTER_STATE_EMPTY)
-		balloon_alert(user, "circuit already installed!")
+		balloon_alert(user, "已安装电路板！")
 		return FALSE
 	. = ..()
 	if(. && !by_hand) // Installing via RPED auto-secures it
@@ -171,21 +171,21 @@
 	switch(state)
 		if(FRAME_COMPUTER_STATE_BOARD_INSTALLED)
 			tool.play_tool_sound(src)
-			balloon_alert(user, "circuit secured")
+			balloon_alert(user, "电路板已固定")
 			state = FRAME_COMPUTER_STATE_BOARD_SECURED
 			update_appearance(UPDATE_ICON_STATE)
 			return ITEM_INTERACT_SUCCESS
 
 		if(FRAME_COMPUTER_STATE_BOARD_SECURED)
 			tool.play_tool_sound(src)
-			balloon_alert(user, "circuit unsecured")
+			balloon_alert(user, "电路板已松开")
 			state = FRAME_COMPUTER_STATE_BOARD_INSTALLED
 			update_appearance(UPDATE_ICON_STATE)
 			return ITEM_INTERACT_SUCCESS
 
 		if(FRAME_COMPUTER_STATE_WIRED)
 			if(!user.combat_mode)
-				balloon_alert(user, "no glass!")
+				balloon_alert(user, "没有玻璃！")
 				return ITEM_INTERACT_BLOCKING
 
 		if(FRAME_COMPUTER_STATE_GLASSED)
@@ -200,22 +200,22 @@
 	switch(state)
 		if(FRAME_COMPUTER_STATE_BOARD_INSTALLED)
 			tool.play_tool_sound(src)
-			balloon_alert(user, "circuit removed")
+			balloon_alert(user, "电路板已移除")
 			circuit.add_fingerprint(user)
 			circuit.forceMove(drop_location())
 			return ITEM_INTERACT_SUCCESS
 
 		if(FRAME_COMPUTER_STATE_BOARD_SECURED)
-			balloon_alert(user, "unsecure the circuit!")
+			balloon_alert(user, "先松开电路板！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(FRAME_COMPUTER_STATE_WIRED)
-			balloon_alert(user, "remove the wiring!")
+			balloon_alert(user, "移除线路！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(FRAME_COMPUTER_STATE_GLASSED)
 			tool.play_tool_sound(src)
-			balloon_alert(user, "glass removed")
+			balloon_alert(user, "玻璃已移除")
 			state = FRAME_COMPUTER_STATE_WIRED
 			update_appearance(UPDATE_ICON_STATE)
 			var/obj/item/stack/sheet/glass/dropped_glass = new (drop_location(), 2)
@@ -231,7 +231,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	tool.play_tool_sound(src)
-	balloon_alert(user, "cables removed")
+	balloon_alert(user, "线缆已移除")
 	state = FRAME_COMPUTER_STATE_BOARD_SECURED
 	update_appearance(UPDATE_ICON_STATE)
 
@@ -256,7 +256,7 @@
 	if(!cable.tool_start_check(user, amount = 5))
 		return FALSE
 	if(time > 0)
-		balloon_alert(user, "adding cables...")
+		balloon_alert(user, "正在添加线缆...")
 	if(!cable.use_tool(src, user, time, volume = 50, amount = 5) || state != FRAME_COMPUTER_STATE_BOARD_SECURED)
 		return FALSE
 
@@ -281,7 +281,7 @@
 		return FALSE
 	if(time > 0)
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-		balloon_alert(user, "adding glass...")
+		balloon_alert(user, "正在添加玻璃...")
 	if(!glass.use_tool(src, user, time, amount = 2) || state != FRAME_COMPUTER_STATE_WIRED)
 		return FALSE
 
@@ -291,12 +291,12 @@
 
 /obj/structure/frame/computer/finalize_construction(mob/living/user, obj/item/tool)
 	if(!anchored)
-		balloon_alert(user, "frame must be anchored!")
+		balloon_alert(user, "框架必须被固定！")
 		return FALSE
 
 	tool.play_tool_sound(src)
 	var/obj/machinery/new_machine = new circuit.build_path(loc)
-	new_machine.balloon_alert(user, "monitor connected")
+	new_machine.balloon_alert(user, "显示器已连接")
 	new_machine.setDir(dir)
 	transfer_fingerprints_to(new_machine)
 	// NOVA EDIT ADDITION BEGIN - Connecting Computers
@@ -335,7 +335,7 @@
 
 /obj/structure/frame/computer/rcd/Initialize(mapload)
 	// yeah...
-	name = "computer frame"
+	name = "电脑框架"
 	icon = 'icons/obj/devices/stock_parts.dmi'
 	return ..()
 

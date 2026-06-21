@@ -1,5 +1,5 @@
 /obj/machinery/computer/camera_advanced/abductor
-	name = "Human Observation Console"
+	name = "人类观察控制台"
 	var/team_number = 0
 	networks = list(CAMERANET_NETWORK_SS13, CAMERANET_NETWORK_ABDUCTOR)
 	var/obj/machinery/abductor/console/console
@@ -47,7 +47,7 @@
 	var/abductor_pad_cooldown = 8 SECONDS
 ///Is used to compare to world.time in order to determine if the action should early return
 	var/use_delay
-	name = "Send To"
+	name = "送至"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "beam_down_pad"
 
@@ -55,7 +55,7 @@
 	if(!target || !iscarbon(owner))
 		return
 	if(world.time < use_delay)
-		to_chat(owner, span_warning("You must wait [DisplayTimeText(use_delay - world.time)] to use the [target] again!"))
+		to_chat(owner, span_warning("你必须等待 [DisplayTimeText(use_delay - world.time)] 才能再次使用 [target]！"))
 		return
 	var/mob/living/carbon/human/C = owner
 	var/mob/eye/camera/remote/remote_eye = C.remote_control
@@ -63,11 +63,11 @@
 
 	var/area/target_area = get_area(remote_eye)
 	if((target_area.area_flags & NOTELEPORT) && !istype(target_area, /area/centcom/abductor_ship))
-		to_chat(owner, span_warning("This area is too heavily shielded to safely transport to."))
+		to_chat(owner, span_warning("该区域屏蔽过强，无法安全传送。"))
 		return
 
 	if(target_area.motion_monitored)
-		to_chat(owner, span_warning("This area is too heavily shielded to safely transport to."))
+		to_chat(owner, span_warning("该区域屏蔽过强，无法安全传送。"))
 		return
 
 	use_delay = (world.time + abductor_pad_cooldown)
@@ -76,7 +76,7 @@
 		P.PadToLoc(remote_eye.loc)
 
 /datum/action/innate/teleport_out
-	name = "Retrieve"
+	name = "收回"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "beam_up"
 
@@ -91,7 +91,7 @@
 ///Is the amount of time required between uses
 	var/teleport_self_cooldown = 9 SECONDS
 	var/use_delay
-	name = "Send Self"
+	name = "自身送至"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "beam_down"
 
@@ -99,7 +99,7 @@
 	if(!target || !iscarbon(owner))
 		return
 	if(world.time < use_delay)
-		to_chat(owner, span_warning("You can only teleport to one place at a time!"))
+		to_chat(owner, span_warning("你一次只能传送到一个地方！"))
 		return
 	var/mob/living/carbon/human/C = owner
 	var/mob/eye/camera/remote/remote_eye = C.remote_control
@@ -107,11 +107,11 @@
 
 	var/area/target_area = get_area(remote_eye)
 	if((target_area.area_flags & NOTELEPORT) && !istype(target_area, /area/centcom/abductor_ship))
-		to_chat(owner, span_warning("This area is too heavily shielded to safely transport to."))
+		to_chat(owner, span_warning("该区域屏蔽过强，无法安全传送。"))
 		return
 
 	if(target_area.motion_monitored)
-		to_chat(owner, span_warning("This area is too heavily shielded to safely transport to."))
+		to_chat(owner, span_warning("该区域屏蔽过强，无法安全传送。"))
 		return
 
 	use_delay = (world.time + teleport_self_cooldown)
@@ -120,7 +120,7 @@
 		P.MobToLoc(remote_eye.loc,C)
 
 /datum/action/innate/vest_mode_swap
-	name = "Switch Vest Mode"
+	name = "切换背心模式"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "vest_mode"
 
@@ -132,7 +132,7 @@
 
 
 /datum/action/innate/vest_disguise_swap
-	name = "Switch Vest Disguise"
+	name = "切换背心伪装"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "vest_disguise"
 
@@ -143,7 +143,7 @@
 	console.SelectDisguise(remote=1)
 
 /datum/action/innate/set_droppoint
-	name = "Set Experiment Release Point"
+	name = "设置实验释放点"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "set_drop"
 

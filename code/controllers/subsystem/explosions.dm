@@ -6,7 +6,7 @@
 GLOBAL_LIST_EMPTY(explosions)
 
 SUBSYSTEM_DEF(explosions)
-	name = "Explosions"
+	name = "爆炸"
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	wait = 1
 	ss_flags = SS_TICKER|SS_NO_INIT
@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(explosions)
 	held_throwturf -= T
 
 ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effect of a bomb would be.", ADMIN_CATEGORY_DEBUG)
-	var/newmode = tgui_alert(user, "Use reactionary explosions?","Check Bomb Impact", list("Yes", "No"))
+	var/newmode = tgui_alert(user, "使用连锁爆炸？","检查炸弹影响", list("Yes", "No"))
 	var/turf/epicenter = get_turf(user.mob)
 	if(!epicenter)
 		return
@@ -96,7 +96,7 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effec
 	var/heavy = 0
 	var/light = 0
 	var/list/choices = list("Small Bomb","Medium Bomb","Big Bomb","Custom Bomb")
-	var/choice = tgui_input_list(user, "Pick the bomb size", "Bomb Size?", choices)
+	var/choice = tgui_input_list(user, "选择炸弹大小", "炸弹大小？", choices)
 	switch(choice)
 		if(null)
 			return 0
@@ -113,9 +113,9 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effec
 			heavy = 5
 			light = 7
 		if("Custom Bomb")
-			dev = input(user, "Devastation range (Tiles):") as num
-			heavy = input(user, "Heavy impact range (Tiles):") as num
-			light = input(user, "Light impact range (Tiles):") as num
+			dev = input(user, "毁灭范围（格）：") as num
+			heavy = input(user, "严重冲击范围（格）：") as num
+			light = input(user, "轻微冲击范围（格）：") as num
 
 	var/max_range = max(dev, heavy, light)
 	var/x0 = epicenter.x

@@ -64,7 +64,7 @@
 	if(!foldable_result || (flags_1 & HOLOGRAM_1))
 		return
 	var/obj/item/result = new foldable_result(user.drop_location())
-	balloon_alert(user, "folded")
+	balloon_alert(user, "已折叠")
 	// Gotta delete first, so then the cardboard appears in the same hand
 	qdel(src)
 	user.put_in_hands(result)
@@ -88,8 +88,8 @@
  */
 
 /obj/item/storage/fancy/donut_box
-	name = "donut box"
-	desc = "Mmm. Donuts."
+	name = "甜甜圈盒"
+	desc = "嗯。甜甜圈。"
 	icon = 'icons/obj/food/donuts.dmi'
 	icon_state = "donutbox_open" //composite image used for mapping
 	base_icon_state = "donutbox"
@@ -140,8 +140,8 @@
 	base_icon_state = "eggbox"
 	lefthand_file = 'icons/mob/inhands/items/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/food_righthand.dmi'
-	name = "egg box"
-	desc = "A carton for containing eggs."
+	name = "鸡蛋盒"
+	desc = "一个用来装鸡蛋的纸盒。"
 	spawn_type = /obj/item/food/egg
 	spawn_count = 12
 	contents_tag = "egg"
@@ -152,8 +152,8 @@
  */
 
 /obj/item/storage/fancy/egg_box/fertile
-	name = "fertile egg box"
-	desc = "Only one thing here is fertile, and it's not the eggs."
+	name = "受精鸡蛋盒"
+	desc = "这里只有一样东西是能生育的，而且不是鸡蛋。"
 	spawn_type = /obj/item/food/egg/fertile
 	spawn_count = 6
 
@@ -162,8 +162,8 @@
  */
 
 /obj/item/storage/fancy/candle_box
-	name = "candle pack"
-	desc = "A pack of red candles."
+	name = "蜡烛包"
+	desc = "一包红色蜡烛。"
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candlebox5"
 	base_icon_state = "candlebox"
@@ -181,8 +181,8 @@
 //CIG PACK//
 ////////////
 /obj/item/storage/fancy/cigarettes
-	name = "\improper Space Cigarettes packet"
-	desc = "The most popular brand of cigarettes, sponsors of the Space Olympics. On the back it advertises to be the only brand that can be smoked in the vacuum of space."
+	name = "\improper 太空牌香烟包"
+	desc = "最受欢迎的香烟品牌，太空奥运会的赞助商。包装背面宣传自己是唯一能在太空真空中吸食的品牌。"
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig"
 	inhand_icon_state = "cigpacket"
@@ -217,14 +217,14 @@
 
 	playsound(src, storage_type.rustle_sound, 50, TRUE)
 
-	balloon_alert(user, "ooh, free coupon")
+	balloon_alert(user, "哦，免费优惠券")
 	var/obj/item/coupon/attached_coupon = new
 	user.put_in_hands(attached_coupon)
 	attached_coupon.generate(rigged_omen ? COUPON_OMEN : null, null, user)
 	attached_coupon = null
 	spawn_coupon = FALSE
-	name = "discarded cigarette packet"
-	desc = "An old cigarette packet with the back torn off, worth less than nothing now."
+	name = "丢弃的香烟盒"
+	desc = "一个背面被撕掉的旧香烟盒，现在一文不值。"
 	atom_storage.max_slots = 0
 
 /obj/item/storage/fancy/cigarettes/Initialize(mapload)
@@ -264,7 +264,7 @@
 	. = ..()
 
 	if(spawn_coupon)
-		. += span_notice("There's a coupon on the back of the pack! You can tear it off once it's empty.")
+		. += span_notice("包装背面有一张优惠券！等它空了你可以把它撕下来。")
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
 	. = ..()
@@ -305,8 +305,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
-	name = "\improper DromedaryCo packet"
-	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
+	name = "\improper 单峰驼公司烟包"
+	desc = "一包六支进口的单峰驼公司癌症棒。包装上的标签写着：“缓慢的死亡不也是一种改变吗？”"
 	icon_state = "dromedary"
 	base_icon_state = "dromedary"
 	spawn_type = /obj/item/cigarette/dromedary
@@ -317,8 +317,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_uplift
-	name = "\improper Uplift Smooth packet"
-	desc = "Your favorite brand, now menthol flavored."
+	name = "\improper 提神顺滑烟包"
+	desc = "你最喜欢的品牌，现在是薄荷味。"
 	icon_state = "uplift"
 	base_icon_state = "uplift"
 	spawn_type = /obj/item/cigarette/uplift
@@ -329,8 +329,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_robust
-	name = "\improper Robust packet"
-	desc = "Smoked by the robust."
+	name = "\improper 劲道烟包"
+	desc = "劲道之人所吸。"
 	icon_state = "robust"
 	base_icon_state = "robust"
 	spawn_type = /obj/item/cigarette/robust
@@ -341,8 +341,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_robustgold
-	name = "\improper Robust Gold packet"
-	desc = "Smoked by the truly robust."
+	name = "\improper 劲道金装烟包"
+	desc = "唯有真正的强者才配享用。"
 	icon_state = "robustg"
 	base_icon_state = "robustg"
 	spawn_type = /obj/item/cigarette/robustgold
@@ -353,8 +353,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_greytide
-	name = "\improper Mainthol Grey packet"
-	desc = "The thin grey line."
+	name = "\improper 薄荷灰潮烟包"
+	desc = "那道单薄的灰色防线。"
 	icon_state = "greytide"
 	base_icon_state = "greytide"
 	spawn_type = /obj/item/cigarette/greytide
@@ -365,8 +365,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_carp
-	name = "\improper Carp Classic packet"
-	desc = "Since 2313."
+	name = "\improper 鲤鱼经典烟包"
+	desc = "自2313年至今。"
 	icon_state = "carp"
 	base_icon_state = "carp"
 	spawn_type = /obj/item/cigarette/carp
@@ -377,8 +377,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_syndicate
-	name = "cigarette packet"
-	desc = "An obscure brand of cigarettes."
+	name = "香烟包"
+	desc = "一个鲜为人知的香烟品牌。"
 	icon_state = "syndie"
 	base_icon_state = "syndie"
 	spawn_type = /obj/item/cigarette/syndicate
@@ -389,8 +389,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_midori
-	name = "\improper Midori Tabako packet"
-	desc = "You can't understand the runes, but the packet smells funny."
+	name = "\improper 绿牌烟草包"
+	desc = "你看不懂上面的符文，但这烟包闻起来怪怪的。"
 	icon_state = "midori"
 	base_icon_state = "midori"
 	spawn_type = /obj/item/cigarette/rollie/nicotine
@@ -401,8 +401,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_candy
-	name = "\improper Timmy's First Candy Smokes packet"
-	desc = "Unsure about smoking? Want to bring your children safely into the family tradition? Look no more with this special packet! Includes 100%* Nicotine-Free candy cigarettes."
+	name = "\improper 提米的初代糖果烟包"
+	desc = "对吸烟犹豫不决？想让孩子安全地融入家族传统？别再找了，试试这款特别烟包！内含100%*无尼古丁糖果香烟。"
 	icon_state = "candy"
 	base_icon_state = "candy"
 	contents_tag = "candy cigarette"
@@ -421,8 +421,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_shadyjims
-	name = "\improper Shady Jim's Super Slims packet"
-	desc = "Is your weight slowing you down? Having trouble running away from gravitational singularities? Can't stop stuffing your mouth? Smoke Shady Jim's Super Slims and watch all that fat burn away. Guaranteed results!"
+	name = "\improper  shady Jim's超细烟包"
+	desc = "体重拖累了你？难以逃离引力奇点？管不住嘴？抽shady Jim's超细烟，看着脂肪燃烧殆尽。效果保证！"
 	icon_state = "shadyjim"
 	base_icon_state = "shadyjim"
 	spawn_type = /obj/item/cigarette/shadyjims
@@ -433,8 +433,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_xeno
-	name = "\improper Xeno Filtered packet"
-	desc = "Loaded with 100% pure slime. And also nicotine."
+	name = "\improper 异形过滤嘴烟包"
+	desc = "满载100%纯史莱姆精华。当然还有尼古丁。"
 	icon_state = "slime"
 	base_icon_state = "slime"
 	spawn_type = /obj/item/cigarette/xeno
@@ -445,8 +445,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_cannabis
-	name = "\improper Freak Brothers' Special packet"
-	desc = "A label on the packaging reads, \"Endorsed by Phineas, Freddy and Franklin.\""
+	name = "\improper 怪胎兄弟特供烟包"
+	desc = "包装上的标签写着：“菲尼亚斯、弗雷迪和富兰克林倾情推荐。”"
 	icon_state = "midori"
 	base_icon_state = "midori"
 	spawn_type = /obj/item/cigarette/rollie/cannabis
@@ -457,8 +457,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
-	name = "\improper Leary's Delight packet"
-	desc = "Banned in over 36 galaxies."
+	name = "\improper 利瑞的欢愉烟包"
+	desc = "在超过36个星系中被禁止。"
 	icon_state = "shadyjim"
 	base_icon_state = "shadyjim"
 	spawn_type = /obj/item/cigarette/rollie/mindbreaker
@@ -472,8 +472,8 @@
 	spawn_type = /obj/item/cigarette/flash_powder
 
 /obj/item/storage/fancy/rollingpapers
-	name = "rolling paper pack"
-	desc = "A pack of Nanotrasen brand rolling papers."
+	name = "卷烟纸包"
+	desc = "一包纳米传讯品牌的卷烟纸。"
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig_paper_pack"
@@ -504,8 +504,8 @@
 /////////////
 
 /obj/item/storage/fancy/cigarettes/cigars
-	name = "\improper premium cigar case"
-	desc = "A case of premium cigars. Very expensive."
+	name = "\improper 高级雪茄盒"
+	desc = "一盒高级雪茄。非常昂贵。"
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigarcase"
 	base_icon_state = "cigarcase"
@@ -536,8 +536,8 @@
 		cigar_position++
 
 /obj/item/storage/fancy/cigarettes/cigars/cohiba
-	name = "\improper Cohiba Robusto cigar case"
-	desc = "A case of imported Cohiba cigars, renowned for their strong flavor."
+	name = "\improper 高希霸罗伯图雪茄盒"
+	desc = "一盒进口的高希霸雪茄，以其浓郁的风味而闻名。"
 	icon_state = "cohibacase"
 	base_icon_state = "cohibacase"
 	spawn_type = /obj/item/cigarette/cigar/cohiba
@@ -547,8 +547,8 @@
 	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigars/havana
-	name = "\improper premium Havanian cigar case"
-	desc = "A case of classy Havanian cigars."
+	name = "\improper 高级哈瓦那雪茄盒"
+	desc = "一盒经典的古巴哈瓦那雪茄。"
 	icon_state = "havanacase"
 	base_icon_state = "havanacase"
 	spawn_type = /obj/item/cigarette/cigar/havana
@@ -566,8 +566,8 @@
  */
 
 /obj/item/storage/fancy/heart_box
-	name = "heart-shaped box"
-	desc = "A heart-shaped box for holding tiny chocolates."
+	name = "心形盒子"
+	desc = "一个用来装小巧克力的心形盒子。"
 	icon = 'icons/obj/food/containers.dmi'
 	inhand_icon_state = "chocolatebox"
 	icon_state = "chocolatebox"
@@ -586,8 +586,8 @@
 	storage_type = /datum/storage/heart_box
 
 /obj/item/storage/fancy/nugget_box
-	name = "nugget box"
-	desc = "A cardboard box used for holding chicken nuggies."
+	name = "鸡块盒"
+	desc = "一个用来装鸡块块的纸板盒。"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "nuggetbox"
 	base_icon_state = "nuggetbox"
@@ -651,8 +651,8 @@
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "pickles"
 	base_icon_state = "pickles"
-	name = "pickles"
-	desc = "A jar for containing pickles."
+	name = "腌黄瓜"
+	desc = "一个用来装腌黄瓜的罐子。"
 	spawn_type = /obj/item/food/pickle
 	spawn_count = 10
 	contents_tag = "pickle"
@@ -680,8 +680,8 @@
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "coffee_condi_display"
 	base_icon_state = "coffee_condi_display"
-	name = "coffee condiments display"
-	desc = "A neat small wooden box, holding all your favorite coffee condiments."
+	name = "咖啡调味品展示架"
+	desc = "一个整洁的小木盒，里面装着你最喜欢的咖啡调味品。"
 	contents_tag = "coffee condiment"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT/2)
 	resistance_flags = FLAMMABLE

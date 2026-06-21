@@ -4,8 +4,8 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
  * Fireaxe
  */
 /obj/item/fireaxe  // DEM AXES MAN, marker -Agouri
-	name = "fire axe"
-	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
+	name = "消防斧"
+	desc = "这真是疯子的武器。谁会想到用斧头来对抗火灾呢？"
 	icon = 'icons/obj/weapons/fireaxe.dmi'
 	icon_state = "fireaxe0"
 	base_icon_state = "fireaxe"
@@ -78,8 +78,8 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
  * Bone Axe
  */
 /obj/item/fireaxe/boneaxe  // Blatant imitation of the fireaxe, but made out of bone.
-	name = "bone axe"
-	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
+	name = "骨斧"
+	desc = "一把由数块磨利的骨板粗糙捆绑而成的大型凶残斧头。由怪物制成，通过杀戮怪物，为了杀戮怪物。"
 	icon_state = "bone_axe0"
 	base_icon_state = "bone_axe"
 	icon_angle = 180
@@ -91,8 +91,8 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
  * Metal Hydrogen Axe
  */
 /obj/item/fireaxe/metal_h2_axe
-	name = "metallic hydrogen axe"
-	desc = "A lightweight crowbar with an extreme sharp fire axe head attached. It trades its heft as a weapon by making it easier to carry around when holstered to suits without having to sacrifice your backpack."
+	name = "金属氢斧"
+	desc = "一把轻量级撬棍，附有极其锋利的消防斧头。它通过牺牲作为武器的沉重感，使其在挂载到太空服上时更容易携带，而无需牺牲你的背包。"
 	icon_state = "metalh2_axe0"
 	base_icon_state = "metalh2_axe"
 	icon_angle = -45
@@ -105,8 +105,8 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
 
 //boarding axe
 /obj/item/fireaxe/boardingaxe
-	name = "boarding axe"
-	desc = "A hulking cleaver that feels like a burden just looking at it. Seems excellent at halving obstacles like windows, airlocks, barricades and people."
+	name = "登船斧"
+	desc = "一把庞大的砍刀，光是看着就感觉是个负担。似乎非常擅长将窗户、气闸、路障和人等障碍物一分为二。"
 	icon_state = "boarding_axe0"
 	base_icon_state = "boarding_axe"
 	force_unwielded = 5

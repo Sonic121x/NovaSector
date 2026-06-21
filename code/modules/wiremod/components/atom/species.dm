@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/species
 	display_name = "Get Species"
-	desc = "A component that returns the species of its input."
+	desc = "一个能返回其输入物种类型的组件。"
 	category = "Entity"
 
 	/// The input port

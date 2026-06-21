@@ -3,7 +3,7 @@
  * Branch, subtypes have behavior
 */
 /atom/movable/render_step
-	name = "render step"
+	name = "渲染步骤"
 	plane = DEFAULT_PLANE
 	layer = FLOAT_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -52,7 +52,7 @@
  * Other stuff too I'm sure
  */
 /atom/movable/render_step/color
-	name = "color step"
+	name = "颜色步骤"
 	//RESET_COLOR is obvious I hope
 	appearance_flags = KEEP_APART|KEEP_TOGETHER|RESET_COLOR|RESET_TRANSFORM
 
@@ -69,7 +69,7 @@
  * almost guaranteed to be doing something wrong.
  */
 /atom/movable/render_step/emissive_blocker
-	name = "emissive blocker"
+	name = "自发光遮罩"
 	plane = EMISSIVE_PLANE
 	appearance_flags = EMISSIVE_APPEARANCE_FLAGS|RESET_TRANSFORM
 
@@ -83,7 +83,7 @@
  * Copies an appearance vis render_target and render_source on to the emissive plane
  */
 /atom/movable/render_step/emissive
-	name = "emissive"
+	name = "自发光"
 	plane = EMISSIVE_PLANE
 	appearance_flags = EMISSIVE_APPEARANCE_FLAGS|RESET_TRANSFORM
 

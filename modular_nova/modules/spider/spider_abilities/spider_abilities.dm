@@ -5,8 +5,8 @@
  */
 /// Webslinger snare
 /datum/action/cooldown/spell/pointed/projectile/web_restraints
-	name = "sticky restraints"
-	desc = "Launch at your prey to immobilize them."
+	name = "粘性束缚"
+	desc = "向你的猎物发射以使其无法动弹。"
 	button_icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	button_icon_state = "spideregg"
 	background_icon_state = "bg_alien"
@@ -20,7 +20,7 @@
 	projectile_type = /obj/projectile/webslinger_snare
 
 /obj/projectile/webslinger_snare
-	name = "web snare"
+	name = "蛛网陷阱"
 	icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	icon_state = "spideregg"
 	damage = 0
@@ -36,8 +36,8 @@
 	restraint.spring_trap(target, ignore_movetypes = TRUE)
 
 /obj/item/restraints/legcuffs/beartrap/webslinger_snare
-	name = "sticky restraints"
-	desc = "Used by mega-arachnids to immobilize their prey."
+	name = "粘性束缚"
+	desc = "巨型蛛形纲动物用来固定猎物的工具。"
 	icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	flags_1 = NONE
 	item_flags = DROPDEL
@@ -52,8 +52,8 @@
 
 /// Webslinger sneak
 /datum/action/cooldown/mob_cooldown/sneak/webslinger
-	name = "Webslinger Spider Sneak"
-	desc = "Blend into the webs to stalk your prey."
+	name = "蛛网潜行"
+	desc = "融入蛛网以潜行追踪你的猎物。"
 	button_icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	button_icon_state = "webslinger"
 	background_icon_state = "bg_alien"
@@ -66,8 +66,8 @@
 
 // leap ability
 /datum/action/cooldown/mob_cooldown/spider_leap
-	name = "Leap"
-	desc = "Leap on your enemy!"
+	name = "飞跃"
+	desc = "扑向你的敌人！"
 	cooldown_time = 20 SECONDS
 	background_icon_state = "bg_revenant"
 	overlay_icon_state = "bg_revenant_border"
@@ -76,7 +76,7 @@
 /datum/action/cooldown/mob_cooldown/spider_leap/Activate(atom/target)
 	var/turf/target_turf = get_turf(target)
 	if(isclosedturf(target_turf) || isspaceturf(target_turf))
-		owner.balloon_alert(owner, "base not suitable!")
+		owner.balloon_alert(owner, "落脚点不合适！")
 		return FALSE
 	new /obj/effect/temp_visual/leaper_crush(target_turf)
 	owner.throw_at(target = target_turf, range = 7, speed = 1, spin = FALSE, callback = CALLBACK(src, PROC_REF(flop_on_turf), target_turf))
@@ -94,11 +94,11 @@
 		var/throw_dir = victim.loc == owner.loc ? get_dir(owner, victim) : pick(GLOB.alldirs)
 		var/throwtarget = get_edge_target_turf(victim, throw_dir)
 		victim.throw_at(target = throwtarget, range = 1, speed = 1)
-		victim.visible_message(span_warning("[victim] is thrown clear of [owner]!"))
+		victim.visible_message(span_warning("[victim] 被从 [owner] 身边甩开了！"))
 
 // Baron's snare
 /datum/action/cooldown/spell/pointed/projectile/web_restraints/baron
-	name = "Baron Web Restraint"
+	name = "男爵蛛网束缚"
 	cooldown_time = 5 SECONDS
 	projectile_type = /obj/projectile/webslinger_snare
 
@@ -108,8 +108,8 @@
  */
 // Create Effigy
 /datum/action/cooldown/mob_cooldown/lay_web/create_totem
-	name = "Plant Totem"
-	desc = "Plant a Spider Totem to spread webs."
+	name = "安放图腾"
+	desc = "安放一个蜘蛛图腾来扩散蛛网。"
 	button_icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	cooldown_time = 6 MINUTES
 	button_icon_state = "spider_effigy"
@@ -176,8 +176,8 @@
 * Spider Totem - Placing this will mirror how resin works for xenmorphs, but for webs
 */
 /obj/structure/spider/stickyweb/alive/spider_effigy
-	name = "spider effigy"
-	desc = "an organic structure that seems to spread webs"
+	name = "蜘蛛雕像"
+	desc = "一个似乎能扩散蛛网的有机结构"
 	icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	icon_state = "spider_effigy"
 	base_icon_state = "spider_effigy"
@@ -222,9 +222,9 @@
 	for(var/mob/living/carbon/carbon_target in view(2,src))
 		if(carbon_target.soundbang_act(intensity = 1, stun_pwr = 0, damage_pwr = 5, deafen_pwr = 5)) // if you don't have earpro you get brain damage
 			carbon_target.gain_trauma(/datum/brain_trauma/magic/spider)
-			visible_message(span_userdanger("The spider totem screeches as it breaks, piercing your mind! You can't trust your mind!"))
+			visible_message(span_userdanger("蜘蛛图腾在碎裂时发出刺耳的尖啸，穿透了你的心智！你无法再相信自己的思维了！"))
 		else
-			visible_message(span_notice("The spider totem screeches as it breaks, but it's not enough to unsettle you."))
+			visible_message(span_notice("蜘蛛图腾在碎裂时发出尖啸，但这不足以让你动摇。"))
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -241,8 +241,8 @@
 * Ceiling Climb - Let's the spider crawl up the wall and be extra menacing by being on the ceiling
 */
 /datum/action/cooldown/mob_cooldown/ceiling_walk
-	name = "Climb"
-	desc = "Climb up the walls and onto the ceiling! Those pesky crew will never look up!"
+	name = "攀爬"
+	desc = "爬上墙壁，登上天花板！那些讨厌的船员永远不会抬头看！"
 	background_icon_state = "bg_revenant"
 	overlay_icon_state = "bg_revenant_border"
 	shared_cooldown = NONE
@@ -256,14 +256,14 @@
 /datum/action/cooldown/mob_cooldown/ceiling_walk/Activate(atom/target)
 	if(HAS_TRAIT(owner, TRAIT_SNEAK))
 
-		owner.balloon_alert(owner, "you flop down off the ceiling")
+		owner.balloon_alert(owner, "你从天花板上扑通一声掉了下来")
 		owner.RemoveElement(/datum/element/forced_gravity, NEGATIVE_GRAVITY)
 		owner.density = TRUE
 		REMOVE_TRAIT(owner, TRAIT_SNEAK, ACTION_TRAIT)
 		animate(owner, alpha = initial(owner.alpha), time = animation_time, delay = animation_time, flags = ANIMATION_PARALLEL)
 
 	else
-		owner.balloon_alert(owner, "you skitter up the wall")
+		owner.balloon_alert(owner, "你沿着墙壁快速爬了上去")
 		owner.AddElement(/datum/element/forced_gravity, NEGATIVE_GRAVITY)
 		owner.density = FALSE // if we're on the ceiling...
 		ADD_TRAIT(owner, TRAIT_SNEAK, ACTION_TRAIT)
@@ -276,8 +276,8 @@
 */
 // the cooldown
 /datum/action/cooldown/spell/pointed/projectile/webhook
-	name = "hooked web"
-	desc = "Launch at your prey to pull them in closer."
+	name = "钩网"
+	desc = "向你的猎物发射，将其拉近。"
 	button_icon = 'modular_nova/modules/spider/icons/abilities.dmi'
 	button_icon_state = "webhook"
 	background_icon_state = "bg_alien"
@@ -292,14 +292,14 @@
 
 // webhook projectile, keeps every but subtypes the icons
 /obj/projectile/hook/web
-	name = "webhook"
+	name = "钩网"
 	icon_state = "webhook"
 	icon = 'modular_nova/modules/spider/icons/abilities.dmi'
 	chain_icon = 'modular_nova/modules/spider/icons/abilities.dmi'
 
 // Baron's
 /datum/action/cooldown/spell/pointed/projectile/webhook/greater
-	name = "enhanced hooked web"
+	name = "强化钩网"
 	cooldown_time = 1 MINUTES
 
 #undef BUILDING_EMP_TOTEM

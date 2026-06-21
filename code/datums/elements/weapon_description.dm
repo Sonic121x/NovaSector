@@ -79,16 +79,16 @@
 			readout += "It's pointy and could cause piercing wounds."
 		// Make sure not to divide by 0 on accident
 		if(source.force > 0)
-			readout += "It takes about [span_warning("[HITS_TO_CRIT(source.force)] melee hit\s")] to take down an enemy."
+			readout += "大约需要 [span_warning("[HITS_TO_CRIT(source.force)] melee hit\s")] 来击倒一个敌人。"
 		else
 			readout += "It does not deal noticeable melee damage."
 
 		if(source.throwforce > 0)
-			readout += "It takes about [span_warning("[HITS_TO_CRIT(source.throwforce)] throwing hit\s")] to take down an enemy."
+			readout += "大约需要 [span_warning("[HITS_TO_CRIT(source.throwforce)] throwing hit\s")] 来击倒一个敌人。"
 		else
 			readout += "It does not deal noticeable throwing damage."
 		if(source.armour_penetration > 0 || source.block_chance > 0)
-			readout += "It has [span_warning("[weapon_tag_convert(source.armour_penetration)]")] armor-piercing capability and [span_warning("[weapon_tag_convert(source.block_chance)]")] blocking capability."
+			readout += "它具有 [span_warning("[weapon_tag_convert(source.armour_penetration)]")] 的穿甲能力和 [span_warning("[weapon_tag_convert(source.block_chance)]")] 的格挡能力。"
 	// Custom manual notes
 	if(source.offensive_notes)
 		readout += source.offensive_notes

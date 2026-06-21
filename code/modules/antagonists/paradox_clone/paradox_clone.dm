@@ -72,7 +72,7 @@
 	return completed || considered_alive(owner)
 
 /datum/outfit/paradox_clone
-	name = "Paradox Clone (Preview only)"
+	name = "悖论克隆体（仅预览）"
 
 	uniform = /obj/item/clothing/under/rank/civilian/janitor
 	gloves = /obj/item/clothing/gloves/color/black
@@ -80,6 +80,6 @@
 
 ///Static bluespace stream used in its ghost poll icon.
 /obj/effect/bluespace_stream
-	name = "bluespace stream"
+	name = "蓝空流"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "bluestream"

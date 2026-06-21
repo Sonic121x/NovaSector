@@ -9,8 +9,8 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 #define ACCESS_GRANTING_COOLDOWN (30 SECONDS)
 
 /obj/machinery/keycard_auth
-	name = "keycard authentication device"
-	desc = "This device is used to trigger station functions which require more than one ID card to authenticate, or to give the Janitor access to a department."
+	name = "ID卡身份认证器"
+	desc = "该设备用于触发需要多张ID卡认证的空间站功能，或授予清洁工对某个部门的访问权限。"
 	icon = 'icons/obj/machines/keycard_auth_table.dmi'
 	icon_state = "auth_off"
 	power_channel = AREA_USAGE_ENVIRON
@@ -62,7 +62,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	if(!isanimal_or_basicmob(user))
 		return ..()
 	if(!HAS_TRAIT(user, TRAIT_CAN_HOLD_ITEMS))
-		balloon_alert(user, "no hands!")
+		balloon_alert(user, "没有手！")
 		return UI_CLOSE
 	return ..()
 
@@ -105,7 +105,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 			if(!living_user || !istype(living_user))
 				return TRUE
 			if(!COOLDOWN_FINISHED(src, access_grant_cooldown))
-				balloon_alert(usr, "on cooldown!")
+				balloon_alert(usr, "正在冷却中！")
 				return TRUE
 			var/obj/item/card/id/advanced/card = living_user.get_idcard(hand_first = TRUE)
 			if(!card)
@@ -116,7 +116,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 					continue
 				COOLDOWN_START(src, access_grant_cooldown, ACCESS_GRANTING_COOLDOWN)
 				SEND_GLOBAL_SIGNAL(COMSIG_ON_DEPARTMENT_ACCESS, info["regions"])
-				balloon_alert(usr, "key access sent")
+				balloon_alert(usr, "密钥访问权限已发送")
 				return
 
 /obj/machinery/keycard_auth/update_appearance(updates)
@@ -160,10 +160,10 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	message_admins("[ADMIN_LOOKUPFLW(triggerer)] triggered and [ADMIN_LOOKUPFLW(confirmer)] confirmed event [event]")
 
 	var/area/A1 = get_area(triggerer)
-	deadchat_broadcast(" triggered [event] at [span_name("[A1.name]")].", span_name("[triggerer]"), triggerer, message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("在 [event] 触发了 [span_name("[A1.name]")]。", span_name("[triggerer]"), triggerer, message_type=DEADCHAT_ANNOUNCEMENT)
 
 	var/area/A2 = get_area(confirmer)
-	deadchat_broadcast(" confirmed [event] at [span_name("[A2.name]")].", span_name("[confirmer]"), confirmer, message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("在 [event] 确认了 [span_name("[A2.name]")]。", span_name("[confirmer]"), confirmer, message_type=DEADCHAT_ANNOUNCEMENT)
 	switch(event)
 		if(KEYCARD_RED_ALERT)
 			SSsecurity_level.set_level(SEC_LEVEL_RED)
@@ -193,7 +193,7 @@ GLOBAL_VAR_INIT(emergency_access, FALSE)
 					airlock.emergency = TRUE
 					airlock.update_icon(ALL, 0)
 
-	minor_announce("Access restrictions on maintenance and external airlocks have been lifted.", "Attention! Station-wide emergency declared!",1)
+	minor_announce("维护区和外部气闸门的访问限制已解除。", "注意！已宣布全站紧急状态！",1)
 	GLOB.emergency_access = TRUE
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("emergency maintenance access", "enabled"))
 
@@ -205,13 +205,13 @@ GLOBAL_VAR_INIT(emergency_access, FALSE)
 					airlock.emergency = FALSE
 					airlock.update_icon(ALL, 0)
 
-	minor_announce("Access restrictions in maintenance areas have been restored.", "Attention! Station-wide emergency rescinded:")
+	minor_announce("维护区的访问限制已恢复。", "注意！全站紧急状态已解除：")
 	GLOB.emergency_access = FALSE
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("emergency maintenance access", "disabled"))
 
 /proc/toggle_bluespace_artillery()
 	GLOB.bsa_unlock = !GLOB.bsa_unlock
-	minor_announce("Bluespace Artillery firing protocols have been [GLOB.bsa_unlock? "unlocked" : "locked"]", "Weapons Systems Update:")
+	minor_announce("蓝空火炮射击协议已[GLOB.bsa_unlock? "unlocked" : "locked"]", "武器系统更新：")
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("bluespace artillery", GLOB.bsa_unlock? "unlocked" : "locked"))
 
 #undef ACCESS_GRANTING_COOLDOWN

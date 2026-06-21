@@ -1,15 +1,15 @@
 /obj/item/stack/tile/iron/elevated
-	name = "elevated floor tile"
+	name = "抬升地板砖"
 	singular_name = "elevated floor tile"
 	turf_type = /turf/open/floor/iron/elevated
 
 /obj/item/stack/tile/iron/lowered
-	name = "lowered floor tile"
+	name = "下沉地板砖"
 	singular_name = "lowered floor tile"
 	turf_type = /turf/open/floor/iron/lowered
 
 /obj/item/stack/tile/iron/pool
-	name = "pool floor tile"
+	name = "泳池地板砖"
 	singular_name = "pool floor tile"
 	turf_type = /turf/open/floor/iron/pool
 	tile_reskin_types = list(
@@ -20,24 +20,24 @@
 	)
 
 /obj/item/stack/tile/iron/pool/cobble
-	name = "cobblestone pool floor tile"
+	name = "鹅卵石泳池地板砖"
 	singular_name = "cobblestone pool floor tile"
 	turf_type = /turf/open/floor/iron/pool/cobble
 
 /obj/item/stack/tile/iron/pool/cobble/side
-	name = "cobblestone side pool floor tile"
+	name = "鹅卵石泳池侧边地板砖"
 	singular_name = "cobblestone side pool floor tile"
 	turf_type = /turf/open/floor/iron/pool/cobble/side
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
 /obj/item/stack/tile/iron/pool/cobble/corner
-	name = "cobblestone corner pool floor tile"
+	name = "鹅卵石泳池角落地板砖"
 	singular_name = "cobblestone corner pool floor tile"
 	turf_type = /turf/open/floor/iron/pool/cobble/corner
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
 /turf/open/floor/iron/pool
-	name = "pool floor"
+	name = "泳池地板"
 	floor_tile = /obj/item/stack/tile/iron/pool
 	icon = 'modular_nova/modules/liquids/icons/turf/pool_tile.dmi'
 	base_icon_state = "pool_tile"
@@ -49,7 +49,7 @@
 	return
 
 /turf/open/floor/iron/pool/cobble
-	name = "cobblestone pool floor"
+	name = "鹅卵石泳池地板"
 	icon = 'modular_nova/master_files/icons/turf/floors/floor.dmi'
 	base_icon_state = "cobble"
 	icon_state = "cobble"
@@ -67,7 +67,7 @@
 	icon_state = "cobble_corner"
 
 /turf/open/floor/iron/elevated
-	name = "elevated floor"
+	name = "抬升地板"
 	floor_tile = /obj/item/stack/tile/iron/elevated
 	icon = 'modular_nova/modules/liquids/icons/turf/elevated_plasteel.dmi'
 	icon_state = "elevated_plasteel-0"
@@ -82,7 +82,7 @@
 	return
 
 /turf/open/floor/iron/lowered
-	name = "lowered floor"
+	name = "下沉地板"
 	floor_tile = /obj/item/stack/tile/iron/lowered
 	icon = 'modular_nova/modules/liquids/icons/turf/lowered_plasteel.dmi'
 	icon_state = "lowered_plasteel-0"

@@ -28,8 +28,8 @@
 	source.forceMove(worm)
 
 /mob/living/basic/wizard_worm
-	name = "Magic Worm"
-	desc = "Large blue worm. What happens if you put your hand in his mouth?."
+	name = "魔法蠕虫"
+	desc = "大型蓝色蠕虫。把手伸进它嘴里会发生什么？"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "wizard_start"
 	icon_living = "wizard_start"

@@ -47,7 +47,7 @@
 
 /obj/item/screwdriver/omni_drill/examine(mob/user)
 	. = ..()
-	. += span_notice("Use <b>in hand</b> to switch configuration.\n")
+	. += span_notice("使用<b>在手中</b>来切换配置。\n")
 	. += span_notice("It functions as a <b>[tool_behaviour]</b> tool.")
 
 /obj/item/screwdriver/omni_drill/update_icon_state()

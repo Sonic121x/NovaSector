@@ -19,8 +19,8 @@
 	)
 
 /mob/living/basic/living_floor
-	name = "floor"
-	desc = "The floor you walk on. It looks near-impervious to damage."
+	name = "地板"
+	desc = "你行走的地板。它看起来几乎坚不可摧。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 	icon_living = "floor"
@@ -84,7 +84,7 @@
 /mob/living/basic/living_floor/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	if(weapon.tool_behaviour != TOOL_CROWBAR)
 		return ..()
-	balloon_alert(user, "prying...")
+	balloon_alert(user, "撬动中...")
 	playsound(src, 'sound/items/tools/crowbar.ogg', 45, TRUE)
 	if(!do_after(user, 5 SECONDS, src))
 		return

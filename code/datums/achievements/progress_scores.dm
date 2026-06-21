@@ -1,6 +1,6 @@
 
 /datum/award/score/progress/fish
-	name = "Fish Species Caught"
+	name = "捕获鱼类物种数"
 	desc = "How many different species of fish you've caught so far. Gotta fish 'em all."
 	database_id = FISH_SCORE
 	var/list/early_entries_to_validate = list()
@@ -71,11 +71,11 @@
 	return data
 
 /datum/award/score/progress/fish/get_progress_string(progress_string)
-	return span_greenannounce("This is the first time you've caught a <B>[progress_string]</B>!")
+	return span_greenannounce("这是你第一次钓到一条<B>[progress_string]</B>！")
 
 /datum/award/score/progress/pda_themes
-	name = "Unlocked PDA Themes"
-	desc = "Any special PDA theme that you've installed on your PDA, which will then be added to your roundstart PDA on future rounds as well."
+	name = "已解锁的PDA主题"
+	desc = "任何你在PDA上安装的特殊PDA主题，也将在未来的回合中添加到你的回合起始PDA上。"
 	database_id = PDA_THEMES_SCORE
 	track_high_scores = FALSE //This is purely personal progress
 	var/list/cheevo_icons
@@ -93,7 +93,7 @@
 	return "pda_themes_progress"
 
 /datum/award/score/progress/pda_themes/get_progress_string(progress_string)
-	return span_greenannounce(span_tooltip("You can now select it on future rounds without having to install it again", "New PDA theme unlocked : <B>[progress_string]!</B>"))
+	return span_greenannounce(span_tooltip("你现在可以在未来的回合中选择它，而无需再次安装", "新PDA主题已解锁：<B>[progress_string]!</B>"))
 
 /datum/award/score/progress/pda_themes/get_progress(datum/achievement_data/holder)
 	var/list/data = list(

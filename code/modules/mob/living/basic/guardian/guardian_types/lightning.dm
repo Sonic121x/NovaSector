@@ -9,7 +9,7 @@
 	attack_sound = 'sound/machines/defib/defib_zap.ogg'
 	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, STAMINA = 0, OXY = 0.7)
 	range = 7
-	playstyle_string = span_holoparasite("As a <b>lightning</b> type, you will apply lightning chains to targets on attack and have a lightning chain to your summoner. Lightning chains will shock anyone near them.")
+	playstyle_string = span_holoparasite("作为 <b>闪电</b> 类型，你会在攻击时对目标施加闪电链，并与你的召唤者之间有一条闪电链。闪电链会电击附近的任何人。")
 	creator_name = "Lightning"
 	creator_desc = "Attacks apply lightning chains to targets. Has a lightning chain to the user. Lightning chains shock everything near them, doing constant damage."
 	creator_icon = "lightning"
@@ -83,12 +83,12 @@
 /mob/living/basic/guardian/lightning/proc/on_chain_zap(mob/living/target)
 	target.electrocute_act(shock_damage = 0, source = "lightning chain")
 	target.visible_message(
-		span_danger("[target] was shocked by the lightning chain!"),
-		span_userdanger("You are shocked by the lightning chain!"),
-		span_hear("You hear a heavy electrical crack."),
+		span_danger("[target] 被闪电链电击了！"),
+		span_userdanger("你被闪电链电击了！"),
+		span_hear("你听到一声沉重的电击爆裂声。"),
 	)
 
 /// Beam definition for our lightning chain
 /obj/effect/ebeam/chain
-	name = "lightning chain"
+	name = "闪电链"
 	layer = LYING_MOB_LAYER

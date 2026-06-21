@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/amputate
-	name = "amputate limb"
+	name = "截肢"
 	rnd_name = "Disarticulation (Amputation)"
-	desc = "Sever a limb from a patient's body."
+	desc = "将肢体从患者身体上切断。"
 	operation_flags = OPERATION_MORBID | OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE
 	required_bodytype = ~(BODYTYPE_ROBOTIC|BODYTYPE_PEG)
 	implements = list(
@@ -62,7 +62,7 @@
 	limb.drop_limb()
 
 /datum/surgery_operation/limb/amputate/mechanic
-	name = "disassemble limb"
+	name = "拆卸肢体"
 	rnd_name = "Dissassembly (Amputation)"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
@@ -84,15 +84,15 @@
 
 /datum/surgery_operation/limb/amputate/mechanic/any_required_strings()
 	return ..() + list(
-		"if operating on the head, the bone MUST be sawed",
-		"otherwise, the state of the bone doesn't matter",
+		"如果对头部进行手术，骨头必须被锯开",
+		"否则，骨骼的状态无关紧要",
 	)
 
 /datum/surgery_operation/limb/amputate/mechanic/get_recommended_tool()
 	return "[TOOL_WRENCH] / [TOOL_SAW]"
 
 /datum/surgery_operation/limb/amputate/pegleg
-	name = "detach wooden limb"
+	name = "拆卸木制假肢"
 	rnd_name = "Detach Wooden Limb (Amputation)"
 	required_bodytype = BODYTYPE_PEG
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
@@ -113,4 +113,4 @@
 
 /datum/surgery_operation/limb/amputate/pegleg/all_required_strings()
 	. = ..()
-	. += "the limb must be wooden"
+	. += "肢体必须是木制的"

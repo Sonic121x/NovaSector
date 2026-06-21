@@ -1,5 +1,5 @@
 /obj/item/organ/stomach/synth
-	name = "synthetic fuel cell"
+	name = "合成燃料电池"
 	icon = 'modular_nova/master_files/icons/obj/surgery.dmi'
 	icon_state = "stomach-ipc"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -8,7 +8,7 @@
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
 	zone = "chest"
 	slot = "stomach"
-	desc = "A mini electrochemical reactor, for synthetic use only. Converts the chemical energy of a fuel into electricity to power synthetic bodies. Has a low-power mode to ensure baseline functions. Without this, synthetics are unable to stay powered."
+	desc = "一个微型电化学反应器，仅供合成人使用。将燃料的化学能转化为电能，为合成身体供电。具有低功耗模式以确保基本功能。没有它，合成人将无法保持供电状态。"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 
 /obj/item/organ/stomach/synth/emp_act(severity)
@@ -24,16 +24,16 @@
 		if(EMP_HEAVY)
 			owner.nutrition = max(0, owner.nutrition - SYNTH_STOMACH_HEAVY_EMP_CHARGE_LOSS)
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
-			to_chat(owner, span_warning("Alert: Severe battery discharge!"))
+			to_chat(owner, span_warning("警报：电池严重放电！"))
 
 		if(EMP_LIGHT)
 			owner.nutrition = max(0, owner.nutrition - SYNTH_STOMACH_LIGHT_EMP_CHARGE_LOSS)
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
-			to_chat(owner, span_warning("Alert: Minor battery discharge!"))
+			to_chat(owner, span_warning("警报：电池轻微放电！"))
 
 /datum/design/synth_stomach
-	name = "Synthetic Fuel Cell"
-	desc = "A mini electrochemical reactor, for synthetic use only. Converts the chemical energy of a fuel into electricity to power synthetic bodies. Has a low-power mode to ensure baseline functions. Without this, synthetics are unable to stay powered."
+	name = "合成燃料电池"
+	desc = "一个微型电化学反应器，仅供合成人使用。将燃料的化学能转化为电能，为合成身体供电。具有低功耗模式以确保基本功能。没有它，合成人将无法保持供电状态。"
 	id = "synth_stomach"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS

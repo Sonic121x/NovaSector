@@ -2,11 +2,11 @@
 #define MAX_DISARM_CHANCE 75
 
 /obj/item/toy/basketball
-	name = "basketball"
+	name = "篮球"
 	icon = 'icons/obj/toys/balls.dmi'
 	icon_state = "basketball"
 	inhand_icon_state = "basketball"
-	desc = "Here's your chance, do your dance at the Space Jam."
+	desc = "这是你的机会，在太空大灌篮中秀出你的舞步。"
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 	/// The person dribbling the basketball
 	var/mob/living/wielder
@@ -74,7 +74,7 @@
 		return
 
 	if((user.ckey in pickup_restriction_ckeys) && !COOLDOWN_FINISHED(src, pickup_cooldown))
-		user.balloon_alert(user, "cant pickup for [COOLDOWN_TIMELEFT(src, pickup_cooldown) *0.1] seconds!")
+		user.balloon_alert(user, "还要 [COOLDOWN_TIMELEFT(src, pickup_cooldown) *0.1] 秒才能捡起！")
 		return
 
 	reset_pickup_restriction()

@@ -7,5 +7,5 @@
 /atom/movable/screen/ooze_nutrition_display
 	icon = 'icons/hud/screen_alien.dmi'
 	icon_state = "power_display"
-	name = "nutrition"
+	name = "营养值"
 	screen_loc = ui_alienplasmadisplay

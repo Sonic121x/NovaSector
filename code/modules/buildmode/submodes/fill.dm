@@ -14,23 +14,23 @@
 	)
 
 /datum/buildmode_mode/fill/change_settings(client/c)
-	var/target_path = input(c, "Enter typepath:" ,"Typepath","/obj/structure/closet")
+	var/target_path = input(c, "输入类型路径：" ,"类型路径","/obj/structure/closet")
 	objholder = text2path(target_path)
 	if(!ispath(objholder))
 		objholder = pick_closest_path(target_path)
 		if(!objholder)
-			tgui_alert(usr,"No path has been selected.")
+			tgui_alert(usr,"未选择路径。")
 			return
 		else if(ispath(objholder, /area))
 			objholder = null
-			tgui_alert(usr,"Area paths are not supported for this mode, use the area edit mode instead.")
+			tgui_alert(usr,"此模式不支持区域路径，请使用区域编辑模式。")
 			return
 	BM.preview_selected_item(objholder)
 	deselect_region()
 
 /datum/buildmode_mode/fill/handle_click(client/c, params, obj/object)
 	if(isnull(objholder))
-		to_chat(c, span_warning("Select an object type first."))
+		to_chat(c, span_warning("请先选择物体类型。"))
 		deselect_region()
 		return
 	..()
@@ -57,7 +57,7 @@
 			var/selection_size = abs(cornerA.x - cornerB.x) * abs(cornerA.y - cornerB.y)
 
 			if(selection_size > FILL_WARNING_MIN) // Confirm fill if the number of tiles in the selection is greater than FILL_WARNING_MIN
-				var/choice = tgui_alert(usr,"Your selected area is [selection_size] tiles! Continue?", "Large Fill Confirmation", list("Yes", "No"))
+				var/choice = tgui_alert(usr,"你选择的区域有 [selection_size] 格！继续吗？", "大型填充确认", list("Yes", "No"))
 				if(choice != "Yes")
 					return
 

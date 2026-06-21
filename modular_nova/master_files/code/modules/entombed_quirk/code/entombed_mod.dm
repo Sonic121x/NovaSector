@@ -1,6 +1,6 @@
 /datum/mod_theme/entombed
-	name = "fused"
-	desc = "Circumstances have rendered this protective suit into someone's second skin. Literally."
+	name = "融合"
+	desc = "环境已将这身防护服变成了某人的第二层皮肤。字面意义上的。"
 	extended_desc = "Some great aspect of someone's past has permanently bound them to this device, for better or worse."
 
 	default_skin = "standard"
@@ -32,15 +32,15 @@
 	wound = WOUND_ARMOR_WEAK
 
 /obj/item/mod/module/joint_torsion/entombed
-	name = "internal joint torsion adaptation"
-	desc = "Your adaptation to life in this MODsuit shell allows you to ambulate in such a way that your movements recharge the suit's internal batteries slightly, but only while under the effect of gravity."
+	name = "内部关节扭转适应"
+	desc = "你对这套MOD防护服内生活的适应，使你能够以某种方式行走，从而略微为防护服的内置电池充电，但这仅在重力环境下有效。"
 	removable = FALSE
 	complexity = 0
 	power_per_step = DEFAULT_CHARGE_DRAIN * 0.6
 
 /obj/item/mod/module/plasma_stabilizer/entombed
-	name = "colony-stabilized interior seal"
-	desc = "Your colony has fully integrated the internal segments of your suit's plate into your skeleton, forming a hermetic seal between you and the outside world from which none of your atmosphere can escape. This is enough to allow your head to view the world with your helmet retracted."
+	name = "菌落稳定化内部密封"
+	desc = "你的菌落已完全将防护服甲板的内层部分整合进你的骨骼，在你与外部世界之间形成了一个密封层，使你的大气无法逸出。这足以让你的头部在头盔缩回时观察世界。"
 	complexity = 0
 	idle_power_cost = 0
 	removable = FALSE
@@ -77,8 +77,8 @@
 		piece.doMove(host_suit)
 
 /obj/item/mod/module/anomaly_locked/antigrav/entombed
-	name = "assistive anti-gravity ambulator"
-	desc = "An obligatory addition from the Nanotrasen science division as part of the Space Disabilities Act, this augmentation allows your suit to project a limited anti-gravity field to aid in your ambulation around the station for both general use and emergencies. It is powered by a tiny sliver of a gravitational anomaly core, inextricably linked to the power systems that keep you alive. Warning: not rated for EMP protection."
+	name = "辅助反重力行走器"
+	desc = "这是纳米传讯科研部门根据《太空残障法案》强制加装的增补装置，该增强功能允许你的防护服投射一个有限的反重力场，以协助你在空间站内进行日常和紧急情况下的移动。它由一小片引力异常核心碎片供能，该碎片与维持你生命的供能系统密不可分。警告：未针对电磁脉冲防护进行评级。"
 	complexity = 1
 	allow_flags = MODULE_ALLOW_INACTIVE // the suit is never off, so this just allows this to be used w/o being parts-deployed for cosmetic reasons
 	removable = FALSE
@@ -102,12 +102,12 @@
 	var/obj/item/mod/module/storage/inventory = locate() in src.modules
 	if (!isnull(inventory))
 		src.atom_storage.remove_all()
-		to_chat(who, span_notice("You empty out all the items from the MODsuit's storage module!"))
-		who.balloon_alert(who, "emptied out MOD storage items!")
+		to_chat(who, span_notice("你清空了MOD防护服存储模块中的所有物品！"))
+		who.balloon_alert(who, "清空了MOD存储物品！")
 		return TRUE
 
-	to_chat(who, span_warning("The suit seems permanently fused to their frame - you can't remove it!"))
-	who.balloon_alert(who, "can't strip a fused MODsuit!")
+	to_chat(who, span_warning("这身防护服似乎永久地融合在了他们的躯体上——你无法将其移除！"))
+	who.balloon_alert(who, "无法脱下融合的MOD防护服！")
 	return ..()
 
 /obj/item/mod/control/pre_equipped/entombed/retract(mob/user, obj/item/part, instant)
@@ -118,7 +118,7 @@
 		if (tomb_quirk && tomb_quirk.deploy_locked)
 			if (istype(part, /obj/item/clothing)) // make sure it's a modsuit piece and not a module, we retract those too
 				if (!istype(part, /obj/item/clothing/head/mod)) // they can only retract the helmet, them's the sticks
-					human_user.balloon_alert(human_user, "part is fused to you - can't retract!")
+					human_user.balloon_alert(human_user, "部件已与你融合 - 无法收回！")
 					playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 					return
 	return ..()
@@ -129,7 +129,7 @@
 		var/datum/quirk/equipping/entombed/tomb_quirk = human_user.get_quirk(/datum/quirk/equipping/entombed)
 		//if we're deploy_locked, just disable this functionality entirely
 		if (tomb_quirk && tomb_quirk.deploy_locked)
-			human_user.balloon_alert(human_user, "you can only retract your helmet, and only manually!")
+			human_user.balloon_alert(human_user, "你只能收回头盔，且只能手动操作！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 	return ..()

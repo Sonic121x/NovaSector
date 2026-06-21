@@ -5,8 +5,8 @@
 #define CRACK_LENGTH_DEFAULT 8
 
 /obj/effect/weakpoint
-	name = "weakpoint crack"
-	desc = "A suspicious crack runs along the ground."
+	name = "弱点裂隙"
+	desc = "一道可疑的裂缝沿着地面延伸。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "weakpoint"
 	base_icon_state = "weakpoint"
@@ -65,10 +65,10 @@
 	qdel(src)
 
 /obj/effect/weakpoint/welder_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You begin to strengthen [src]..."))
+	to_chat(user, span_notice("你开始加固[src]..."))
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 1, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("\The [src] is fully sealed, eliminating the risk of the weakpoint growing."))
+	to_chat(user, span_notice("\The [src]已被完全密封，消除了弱点扩大的风险。"))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -77,7 +77,7 @@
 		var/obj/item/stack/medical/wrap/sticky_tape/duct_tape = tool
 		if(!duct_tape.use(1))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("\The [src] is sealed with a little elbow grease and a mound of [duct_tape]."))
+		to_chat(user, span_notice("\The [src]用一点力气和一大堆[duct_tape]被密封好了。"))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 	return ..()
@@ -91,8 +91,8 @@
 
 /obj/effect/weakpoint/examine(mob/user)
 	. = ..()
-	. += span_notice("\The [src] could be repaired with a welder.")
-	. += span_warning("A strong enough explosion will cause [src] to expand.")
+	. += span_notice("\The [src]可以用焊枪修复。")
+	. += span_warning("足够强烈的爆炸会导致[src]扩大。")
 
 /**
  * Generates a list of turfs from the start location meandering along a randomized set of turns.
@@ -184,8 +184,8 @@
 	)
 
 /obj/effect/weakpoint/big
-	name = "dangerous weakpoint"
-	desc = "A suspicious crack runs along the ground. This one makes you feel particuarly uneasy."
+	name = "危险弱点"
+	desc = "一道可疑的裂缝沿着地面延伸。这一个让你感到格外不安。"
 	icon_state = "weakpoint"
 	crack_length = 15
 	crack_split_count = 6

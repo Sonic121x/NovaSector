@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/pinpointer
 	display_name = "Proximity Pinpointer"
-	desc = "A component that returns the xyz co-ordinates of its entity input, as long as its in view."
+	desc = "一个能其处于可视范围内，就会返回其输入实体的 xyz 坐标的组件。"
 	category = "Entity"
 
 	var/datum/port/input/target

@@ -1,36 +1,36 @@
 /obj/item/keycard/meatderelict/director
-	name = "directors keycard"
-	desc = "A fancy keycard. Likely unlocks the directors office. The name tag is all smudged."
+	name = "主管门禁卡"
+	desc = "一张花哨的门禁卡。很可能能打开主管办公室。姓名标签已经模糊不清了。"
 	color = "#990000"
 	puzzle_id = "md_director"
 
 /obj/item/keycard/meatderelict/engpost
-	name = "post keycard"
-	desc = "A fancy keycard. Has the engineering insignia on it."
+	name = "哨站门禁卡"
+	desc = "一张花哨的门禁卡。上面有工程部门的徽记。"
 	color = "#f0da12"
 	puzzle_id = "md_engpost"
 
 /obj/item/keycard/meatderelict/armory
-	name = "armory keycard"
-	desc = "A red keycard. Has a really cool image of a gun on it. Fancy."
+	name = "军械库门禁卡"
+	desc = "一张红色的门禁卡。上面有一把枪的酷炫图案。真花哨。"
 	color = "#FF7276"
 	puzzle_id = "md_armory"
 
 /obj/item/paper/crumpled/bloody/fluff/meatderelict/directoroffice
-	name = "directors note"
-	default_raw_text = "<i>The research was going smooth... but the experiment did not go as planned. He convulsed and screamed as he slowly mutated into... that thing. It started to spread everywhere, outside the lab too. There is no way we can cover up that we are not a teleport research outpost, so I locked down the lab, but they already know. They sent a squad to rescue us, but...</i>"
+	name = "主管便条"
+	default_raw_text = "<i>研究进展顺利……但实验没有按计划进行。他抽搐着、尖叫着，慢慢变成了……那个东西。它开始到处蔓延，实验室外面也是。我们无法掩盖这里不是传送研究前哨站的事实，所以我封锁了实验室，但他们已经知道了。他们派了一个小队来营救我们，但是……</i>"
 
 /obj/item/paper/crumpled/fluff/meatderelict/shieldgens
-	name = "shield gate marketing sketch"
-	default_raw_text = "The <b>QR-109 Shield Gate</b> is a robust hardlight machine capable of producing a strong shield to bar entry. With control panel integration, it can be enabled or disabled from anywhere, such as ship's Bridge, <b>Engineering Bay</b>, or wherever else! <i>The rest is faded...</i>"
+	name = "护盾门营销草图"
+	default_raw_text = "<b>QR-109 护盾门</b>是一种坚固的硬光机器，能够产生强大的护盾以阻挡进入。通过控制面板集成，可以从任何地方启用或禁用它，例如舰桥、<b>工程舱</b>，或其他任何地方！<i>其余部分已褪色……</i>"
 
 /obj/item/paper/crumpled/fluff/meatderelict
-	name = "engineer note"
-	default_raw_text = "I've overclocked the power generators to add that needed juice to the experiment, though they're a bit unstable."
+	name = "工程师便条"
+	default_raw_text = "我已经超频了发电机，为实验提供所需的额外电力，不过它们有点不稳定。"
 
 /obj/item/paper/crumpled/fluff/meatderelict/fridge
-	name = "engineer complaint"
-	default_raw_text = "Whoever keeps stealing my fucking ice cream from my fridge, I swear I will actually fuck you up. It is not cheap to get this delicious ice cream here, nor is it for you. <b>And don't touch my snacks in the drawer!</b>"
+	name = "工程师投诉"
+	default_raw_text = "不管是谁一直在偷我冰箱里的他妈冰淇淋，我发誓我真的会揍你。把这种美味的冰淇淋弄到这里可不便宜，也不是给你准备的。<b>还有，别碰我抽屉里的零食！</b>"
 
 /obj/machinery/computer/terminal/meatderelict
 	upperinfo = "COPYRIGHT 2500 NANOSOFT-TM - DO NOT REDISTRIBUTE - Now with audio!" //not that old
@@ -41,8 +41,8 @@
 	)
 
 /obj/machinery/door/puzzle/meatderelict
-	name = "lockdown door"
-	desc = "A beaten door, still sturdy. Impervious to conventional methods of destruction, must be a way to open it nearby."
+	name = "封锁门"
+	desc = "一扇饱经风霜但仍坚固的门。对常规破坏方法免疫，附近一定有打开它的方法。"
 	icon = 'icons/obj/doors/puzzledoor/danger.dmi'
 	puzzle_id = "md_prevault"
 
@@ -77,18 +77,18 @@
 	qdel(src)
 
 /obj/machinery/puzzle/button/meatderelict
-	name = "lockdown panel"
-	desc = "A panel that controls the lockdown of this outpost."
+	name = "封锁面板"
+	desc = "一个控制该前哨站封锁状态的控制面板。"
 	id = "md_prevault"
 
 /obj/machinery/puzzle/button/meatderelict/on_puzzle_complete()
 	. = ..()
 	playsound(src, 'sound/effects/alert.ogg', 100, TRUE)
-	visible_message(span_warning("[src] lets out an alarm as the lockdown is lifted!"))
+	visible_message(span_warning("[src] 在封锁解除时发出警报！"))
 
 /obj/structure/puzzle_blockade/meat
-	name = "mass of meat and teeth"
-	desc = "A horrible mass of meat and teeth. Can it see you? You hope not. Virtually indestructible, must be a way around."
+	name = "肉与齿的聚合体"
+	desc = "一团由肉和牙齿构成的可怕聚合体。它能看见你吗？你希望不能。它几乎坚不可摧，肯定有办法绕过去。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "meatblockade"
 	opacity = TRUE
@@ -102,8 +102,8 @@
 	qdel(src)
 
 /obj/lightning_thrower
-	name = "overcharged SMES"
-	desc = "An overclocked SMES, bursting with power."
+	name = "过载的SMES"
+	desc = "一个超频的SMES，充满了能量。"
 	anchored = TRUE
 	density = TRUE
 	icon = 'icons/obj/machines/engine/other.dmi'

@@ -1,8 +1,8 @@
 #define ORBIE_MAXIMUM_HEALTH 300
 
 /mob/living/basic/orbie
-	name = "Orbie"
-	desc = "An orb shaped hologram."
+	name = "奥比"
+	desc = "一个球形的全息影像。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "orbie"
 	icon_living = "orbie"

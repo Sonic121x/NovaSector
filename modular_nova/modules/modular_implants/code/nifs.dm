@@ -13,8 +13,8 @@
 
 // This is the original NIF that other NIFs are based on.
 /obj/item/organ/cyberimp/brain/nif
-	name = "Nanite Implant Framework"
-	desc = "A brain implant that infuses the user with nanites, and exposes a neuroware chip slot."
+	name = "纳米植入框架"
+	desc = "一种向使用者注入纳米机器人的大脑植入物，并暴露一个神经软件芯片插槽。"
 	icon = 'modular_nova/modules/modular_implants/icons/obj/nifs.dmi'
 	icon_state = "base_nif"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -131,7 +131,7 @@
 	. = ..()
 
 	if(stored_ckey && stored_ckey != insertee.ckey && theft_protection)
-		insertee.audible_message(span_warning("[src] lets out a negative buzz before forcefully removing itself from [insertee]'s brain."))
+		insertee.audible_message(span_warning("[src] 发出一声负面的嗡鸣，随后强行从 [insertee] 的大脑中脱离。"))
 		playsound(insertee, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		Remove(insertee)
 		forceMove(get_turf(insertee))
@@ -265,11 +265,11 @@
 	if(!blood_drain)
 		power_usage += (blood_drain_rate * blood_conversion_rate)
 
-		balloon_alert(linked_mob, "blood draining disabled")
+		balloon_alert(linked_mob, "血液抽取已禁用")
 		return TRUE
 
 	power_usage -= (blood_drain_rate * blood_conversion_rate)
-	balloon_alert(linked_mob, "blood draining enabled")
+	balloon_alert(linked_mob, "血液抽取已启用")
 	return TRUE
 
 ///Checks if the NIF is able to draw blood as a power source?
@@ -297,10 +297,10 @@
 			var/random_ailment = rand(1, side_effect_risk)
 			switch(random_ailment)
 				if(1)
-					to_chat(linked_mob, span_warning("You feel sick to your stomach!"))
+					to_chat(linked_mob, span_warning("你感到一阵恶心！"))
 					linked_mob.adjust_disgust(25)
 				if(2)
-					to_chat(linked_mob, span_warning("You feel a wave of fatigue roll over you!"))
+					to_chat(linked_mob, span_warning("你感到一阵强烈的疲惫感席卷全身！"))
 					linked_mob.adjust_stamina_loss(50)
 
 		if(NIF_CALIBRATION_STAGE_FINISHED to INFINITY)
@@ -380,11 +380,11 @@
 		nif_icon = tag
 
 	if(alert)
-		to_chat(linked_mob, span_warning("[nif_icon] <b>NIF Alert</b>: [message_to_send]"))
+		to_chat(linked_mob, span_warning("[nif_icon] <b>NIF 警报</b>: [message_to_send]"))
 		linked_mob.playsound_local(linked_mob, bad_sound, 60, FALSE)
 		return
 
-	to_chat(linked_mob, span_cyan_nova("[nif_icon] <b>NIF Message</b>: [message_to_send]"))
+	to_chat(linked_mob, span_cyan_nova("[nif_icon] <b>NIF 消息</b>: [message_to_send]"))
 	linked_mob.playsound_local(linked_mob, good_sound, 60, FALSE)
 
 
@@ -411,7 +411,7 @@
 		return
 	var/added_stun_duration = 20 SECONDS / severity // the previous stun duration added by the parent call
 	owner.AdjustStun(-added_stun_duration) // we want to negate that stun here
-	to_chat(owner, span_warning("You feel a stinging pain in your head!"))
+	to_chat(owner, span_warning("你感到头部一阵刺痛！"))
 	if(!durability_loss_vulnerable)
 		return FALSE
 
@@ -506,8 +506,8 @@
 	uses = 1
 
 /obj/item/storage/box/nif_ghost_box
-	name = "\improper NIF Starter Kit"
-	desc = "Contains a calibration-free NIF along with a variety of NIFSofts."
+	name = "\improper NIF 入门套件"
+	desc = "包含一个无需校准的NIF以及多种NIF软件。"
 	illustration = "disk_kit"
 
 /obj/item/storage/box/nif_ghost_box/PopulateContents()

@@ -3,8 +3,8 @@
 #define MAX_PAY_MOD 1.5
 
 /obj/machinery/computer/accounting
-	name = "account lookup console"
-	desc = "Used to view crew member accounts and purchases."
+	name = "账号查询控制台"
+	desc = "用于查看船员的帐户和购买清单。"
 	icon_screen = "accounts"
 	icon_keyboard = "id_key"
 	circuit = /obj/item/circuitboard/computer/accounting

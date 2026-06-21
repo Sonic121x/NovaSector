@@ -1,5 +1,5 @@
 /obj/machinery/computer/shuttle/trader
-	name = "trader shuttle console"
+	name = "贸易穿梭机控制台"
 	shuttleId = "tradership"
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
@@ -8,8 +8,8 @@
 	circuit = /obj/item/circuitboard/computer/trader_ship
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/trader
-	name = "trader shuttle navigation computer"
-	desc = "Used to designate a precise transit location for the trade shuttle."
+	name = "贸易穿梭机导航计算机"
+	desc = "用于为贸易穿梭机指定精确的过境位置。"
 	shuttleId = "tradership"
 	shuttlePortId = "tradership_custom"
 	view_range = 8
@@ -26,12 +26,12 @@
 	build_path = /obj/machinery/computer/shuttle/trader
 
 /obj/docking_port/mobile/tradership
-	name = "trade shuttle"
+	name = "贸易穿梭机"
 	shuttle_id = "tradership"
 	rechargeTime = 2 MINUTES
 
 /obj/docking_port/stationary/picked/tradership
-	name = "Deep Space"
+	name = "深空"
 	shuttle_id = "tradership_away"
 	dheight = 0
 	dir = 2
@@ -75,8 +75,8 @@
 			new /obj/item/tank/internals/plasmaman/belt/full(src)
 			for(var/i in 1 to 7)
 				new /obj/item/clothing/mask/breath()
-			desc = "An internals crate."
-			name = "internals crate"
+			desc = "一个内务箱。"
+			name = "内务箱"
 			icon_state = "o2crate"
 		if(4)
 			new /obj/item/storage/medkit/regular(src)
@@ -84,8 +84,8 @@
 			new /obj/item/storage/medkit/toxin(src)
 			new /obj/item/reagent_containers/hypospray/medipen(src)
 			new /obj/item/reagent_containers/hypospray/medipen/ekit(src)
-			desc = "A medical crate."
-			name = "medical crate"
+			desc = "一个医疗箱。"
+			name = "医疗箱"
 			icon_state = "medicalcrate"
 		if(5)
 			new /obj/item/storage/toolbox/artistic(src)
@@ -93,7 +93,7 @@
 			new /obj/item/storage/toolbox/electrical(src)
 			new /obj/item/storage/toolbox/mechanical(src)
 			new /obj/item/storage/toolbox/mechanical(src)
-			name = "engineering crate"
+			name = "工程箱"
 			icon_state = "engi_crate"
 
 // traitor objective items

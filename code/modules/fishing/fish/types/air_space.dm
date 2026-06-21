@@ -1,7 +1,7 @@
 /obj/item/fish/sand_surfer
-	name = "sand surfer"
+	name = "沙地冲浪者"
 	fish_id = "sand_surfer"
-	desc = "A bronze alien \"fish\" living and swimming underneath faraway sandy places."
+	desc = "一种生活在遥远沙地之下的青铜色外星“鱼”。"
 	icon_state = "sand_surfer"
 	sprite_height = 6
 	sprite_width = 6
@@ -19,9 +19,9 @@
 	beauty = FISH_BEAUTY_GOOD
 
 /obj/item/fish/sand_crab
-	name = "burrower crab"
+	name = "掘穴蟹"
 	fish_id = "sand_crab"
-	desc = "A sand-dwelling crustacean. It looks like a crab and tastes like a crab, but waddles like a fish."
+	desc = "一种栖息在沙地中的甲壳动物。它看起来像螃蟹，尝起来也像螃蟹，但走起路来像鱼。"
 	icon_state = "crab"
 	dedicated_in_aquarium_icon_state = "crab_small"
 	sprite_height = 6
@@ -50,9 +50,9 @@
 	return list("cooked crab" = 2)
 
 /obj/item/fish/bumpy
-	name = "bump-fish"
+	name = "碰撞鱼"
 	fish_id = "bumpy"
-	desc = "A misshapen fish-thing all covered in stubby little tendrils."
+	desc = "一条畸形的鱼状生物，浑身覆盖着粗短的触须。"
 	icon_state = "bumpy"
 	sprite_height = 4
 	sprite_width = 5
@@ -70,9 +70,9 @@
 	)
 
 /obj/item/fish/starfish
-	name = "cosmostarfish"
+	name = "宇宙海星"
 	fish_id = "cosmostarfish"
-	desc = "A peculiar, gravity-defying, echinoderm-looking critter from hyperspace."
+	desc = "一种来自超空间的奇特、无视重力的棘皮动物样生物。"
 	icon_state = "starfish"
 	icon_state_dead = "starfish_dead"
 	sprite_height = 3
@@ -112,23 +112,23 @@
 	DO_FLOATING_ANIM(src)
 
 /obj/item/fish/starfish/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swallows [src], and looks upwards..."))
+	user.visible_message(span_suicide("[user] 吞下了 [src]，并向上看去……"))
 	if (prob(20))
 		user.say("I must go. My people need me.", forced = "starfish suicide")
 	addtimer(CALLBACK(src, PROC_REF(ascension), user), 1 SECONDS)
 	return MANUAL_SUICIDE
 
 /obj/item/fish/starfish/proc/ascension(mob/living/user)
-	user.visible_message(span_suicide("[user] abandons [user.p_their()] corporeal form!"))
+	user.visible_message(span_suicide("[user] 抛弃了 [user.p_their()] 的肉体形态！"))
 	user.drop_everything()
 	user.add_filter("space", 1, layering_filter(icon = icon('icons/mob/human/textures.dmi', "spacey"), blend_mode = BLEND_INSET_OVERLAY))
 	user.apply_status_effect(/datum/status_effect/go_away/deletes_mob)
 	qdel(src)
 
 /obj/item/fish/baby_carp
-	name = "baby space carp"
+	name = "太空鲤鱼幼崽"
 	fish_id = "baby_carp"
-	desc = "A juvenile spawn of the dreaded space carp. Don't let the innocent looks fool you, they're aggressive little bastards."
+	desc = "可怕的太空鲤鱼的幼年个体。别被它无辜的外表骗了，它们是具有攻击性的小混蛋。"
 	icon_state = "baby_carp"
 	sprite_height = 3
 	sprite_width = 5
@@ -171,16 +171,16 @@
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/fish/baby_carp/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swallows [src] whole!"))
+	user.visible_message(span_suicide("[user] 把 [src] 整个吞了下去！"))
 	src.forceMove(user)
 	if(status == FISH_DEAD)
 		user.emote("gasp")
-		user.visible_message(span_suicide("[user] chokes on [src] and dies!"))
+		user.visible_message(span_suicide("[user] 被 [src] 噎住并死去了！"))
 		return OXYLOSS
 
 	// the fish grows
 	addtimer(CALLBACK(src, PROC_REF(gestation), user), 20 SECONDS)
-	user.visible_message(span_suicide("[user] starts growing unnaturally..."))
+	user.visible_message(span_suicide("[user] 开始不自然地生长……"))
 
 	var/matrix/M = matrix()
 	M.Scale(1.8, 1.2)
@@ -192,7 +192,7 @@
 		return
 	// carp grow big and strong inside the nutritious innards of the human
 	var/mob/living/basic/carp/mega/babby = new(get_turf(user))
-	babby.name = user.name + " Jr."
+	babby.name = user.name + "二世"
 
 	var/obj/item/bodypart/chest = user.get_bodypart(BODY_ZONE_CHEST)
 	if(chest)

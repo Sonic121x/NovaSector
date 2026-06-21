@@ -43,8 +43,8 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 ))
 
 /obj/item/clothing/mask/gas/sechailer
-	name = "security gas mask"
-	desc = "A standard issue Security gas mask with integrated 'Compli-o-nator 3000' device. Plays over a dozen pre-recorded compliance phrases designed to get scumbags to stand still whilst you tase them. Do not tamper with the device."
+	name = "安保防毒面具"
+	desc = "标准的安全防毒面具，内置了“欺负-老百姓-3000”装置。能够播放超过十几个预先录制的合规短语，旨在让恶棍在你电击他们时站在原地。请勿擅自改动设备。"
 	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/adjust)
 	icon_state = "sechailer"
 	inhand_icon_state = "sechailer"
@@ -77,8 +77,8 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	starting_filter_type = /obj/item/gas_filter/plasmaman
 
 /obj/item/clothing/mask/gas/sechailer/swat
-	name = "\improper SWAT mask"
-	desc = "A close-fitting tactical mask with an especially aggressive Compli-o-nator 3000."
+	name = "\improper 特警面具"
+	desc = "一个贴合面部的战术面具，搭配了特别具有攻击性的欺负-老百姓-3000。"
 	actions_types = list(/datum/action/item_action/halt)
 	icon_state = "swat"
 	inhand_icon_state = "swat"
@@ -91,16 +91,16 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	pepper_tint = FALSE
 
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol
-	name = "spacepol mask"
-	desc = "A close-fitting tactical mask created in cooperation with a certain megacorporation, comes with an especially aggressive Compli-o-nator 3000."
+	name = "太空防护面罩"
+	desc = "与某大公司合作制作的贴合战术面罩，配有特别具有侵略性的欺负-老百姓-3000。"
 	icon_state = "spacepol"
 	inhand_icon_state = "spacepol_mask"
 	flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
 	visor_flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
 
 /obj/item/clothing/mask/gas/sechailer/cyborg
-	name = "security hailer"
-	desc = "A set of recognizable pre-recorded messages for cyborgs to use when apprehending criminals."
+	name = "安保警告"
+	desc = "一套可赛博使用、便于识别的预先录制的语音系统，用于在抓捕罪犯时使用。"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "taperecorder_idle"
 	slot_flags = null
@@ -111,16 +111,16 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 /obj/item/clothing/mask/gas/sechailer/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(aggressiveness == AGGR_BROKEN)
-		to_chat(user, span_danger("You adjust the restrictor but nothing happens, probably because it's broken."))
+		to_chat(user, span_danger("你调整了限制器但什么也没发生，可能是因为它坏了。"))
 		return
 	var/position = aggressiveness == AGGR_GOOD_COP ? "middle" : aggressiveness == AGGR_BAD_COP ? "last" : "first"
-	to_chat(user, span_notice("You set the restrictor to the [position] position."))
+	to_chat(user, span_notice("你将限制器设置到[position]位置。"))
 	aggressiveness = aggressiveness % 3 + 1 // loop AGGR_GOOD_COP -> AGGR_SHIT_COP
 
 /obj/item/clothing/mask/gas/sechailer/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(aggressiveness != AGGR_BROKEN)
-		to_chat(user, span_danger("You broke the restrictor!"))
+		to_chat(user, span_danger("你破坏了限制器！"))
 		aggressiveness = AGGR_BROKEN
 		return
 
@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 /obj/item/clothing/mask/gas/sechailer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(safety)
 		safety = FALSE
-		balloon_alert(user, "vocal circuit fried")
+		balloon_alert(user, "语音电路烧坏了")
 		return TRUE
 	return FALSE
 
@@ -140,7 +140,7 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	if(!isliving(usr) || !can_use(usr) || !COOLDOWN_FINISHED(src, hailer_cooldown))
 		return
 	if(broken_hailer)
-		to_chat(usr, span_warning("\The [src]'s hailing system is broken."))
+		to_chat(usr, span_warning("\The [src]的喊话系统坏了。"))
 		return
 
 	// handle recent uses for overuse
@@ -152,12 +152,12 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 
 	switch(recent_uses)
 		if(3)
-			to_chat(usr, span_warning("\The [src] is starting to heat up."))
+			to_chat(usr, span_warning("\The [src] 开始发热了。"))
 		if(4)
-			to_chat(usr, span_userdanger("\The [src] is heating up dangerously from overuse!"))
+			to_chat(usr, span_userdanger("\The [src] 因过度使用而危险地发烫！"))
 		if(5) // overload
 			broken_hailer = TRUE
-			to_chat(usr, span_userdanger("\The [src]'s power modulator overloads and breaks."))
+			to_chat(usr, span_userdanger("\The [src]的功率调制器过载并损坏了。"))
 			return
 
 	// select phrase to play
@@ -189,8 +189,8 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	overuse_cooldown = FALSE
 
 /obj/item/clothing/mask/whistle
-	name = "police whistle"
-	desc = "A police whistle for when you need to make sure the criminals hear you."
+	name = "警笛"
+	desc = "这是一种警笛，用于在需要确保罪犯能听到你的声音时使用。"
 	icon_state = "whistle"
 	inhand_icon_state = null
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_NECK
@@ -208,11 +208,11 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	playsound(src, 'sound/items/whistle/whistle.ogg', 50, FALSE, 4)
 
 /datum/action/item_action/halt
-	name = "HALT!"
+	name = "别动！"
 
 /obj/item/clothing/mask/party_horn
-	name = "party horn"
-	desc = "A paper tube used at parties that makes a noise when blown into."
+	name = "派对喇叭"
+	desc = "一种在派对上使用的纸管，吹气时会发出响声。"
 	icon_state = "party_horn"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_SMALL
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	flick("party_horn_animated", src)
 
 /datum/action/item_action/toot
-	name = "TOOT!"
+	name = "鸣笛！"
 
 #undef PHRASE_COOLDOWN
 #undef OVERUSE_COOLDOWN

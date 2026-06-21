@@ -10,8 +10,8 @@
  *
  */
 /obj/item/energy_katana
-	name = "energy katana"
-	desc = "A katana infused with strong energy."
+	name = "能量武士刀"
+	desc = "一把注入了强大能量的武士刀。"
 	desc_controls = "Right-click to dash."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "energy_katana"

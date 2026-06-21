@@ -1,5 +1,5 @@
 /datum/antagonist/ert/asset_protection
-	name = "Asset Protection Specialist"
+	name = "资产保护专员"
 	outfit = /datum/outfit/centcom/asset_protection
 	role = "Specialist"
 	rip_and_tear = TRUE
@@ -9,12 +9,12 @@
 	name_source = GLOB.commando_names
 
 /datum/antagonist/ert/asset_protection/leader
-	name = "Asset Protection Officer"
+	name = "资产保护官"
 	outfit = /datum/outfit/centcom/asset_protection
 	role = "Officer"
 
 /datum/antagonist/ert/solfed
-	name = "SolFed Auditor"
+	name = "太阳联邦审计员"
 	outfit = /datum/outfit/solfed/lowrank
 	role = "Auditor"
 	suicide_cry = "FOR THE FEDERATION!!!!"
@@ -28,13 +28,13 @@
 	role = "Civil Services Worker"
 
 /datum/antagonist/ert/solfed/leader
-	name = "Lead SolFed Auditor"
+	name = "首席太阳联邦审计员"
 	outfit = /datum/outfit/solfed
 	role = "Lead Auditor"
 	leader = TRUE
 
 /datum/antagonist/ert/solfed/espatier
-	name = "SolFed Espatier"
+	name = "太阳联邦太空陆战队员"
 	outfit = /datum/outfit/solfed/espatier
 	role = "Rifleman"
 
@@ -43,17 +43,17 @@
 	name_source = GLOB.last_names
 
 /datum/antagonist/ert/solfed/espatier/engineer
-	name = "SolFed Espatier Engineer"
+	name = "太阳联邦太空陆战队工程师"
 	outfit = /datum/outfit/solfed/espatier/engineer
 	role = "Engineer"
 
 /datum/antagonist/ert/solfed/espatier/corpsman
-	name = "SolFed Espatier Corpsman"
+	name = "太阳联邦太空陆战队医护兵"
 	outfit = /datum/outfit/solfed/espatier/corpsman
 	role = "Corpsman"
 
 /datum/antagonist/ert/solfed/espatier/leader
-	name = "SolFed Espatier Squad Leader"
+	name = "太阳联邦太空陆战队小队长"
 	outfit = /datum/outfit/solfed/espatier/squadleader
 	role = "Squad Leader"
 	leader = TRUE
@@ -76,17 +76,17 @@
 
 /// Grand Response variant
 /datum/antagonist/ert/solfed/grand_espatier/engineer
-	name = "SolFed Espatier Engineer"
+	name = "太阳联邦太空陆战队工程师"
 	outfit = /datum/outfit/solfed/grand_espatier/engineer
 	role = "Engineer"
 
 /datum/antagonist/ert/solfed/grand_espatier/corpsman
-	name = "SolFed Espatier Corpsman"
+	name = "太阳联邦太空陆战队医护兵"
 	outfit = /datum/outfit/solfed/grand_espatier/corpsman
 	role = "Corpsman"
 
 /datum/antagonist/ert/solfed/grand_espatier/leader
-	name = "SolFed Espatier Squad Leader"
+	name = "太阳联邦太空陆战队小队长"
 	outfit = /datum/outfit/solfed/grand_espatier/squadleader
 	role = "Squad Leader"
 	leader = TRUE

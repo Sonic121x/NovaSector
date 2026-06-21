@@ -1,6 +1,6 @@
 // This could probably be an aoe spell but it's a little cursed, so I'm not touching it
 /datum/action/cooldown/spell/spacetime_dist
-	name = "Spacetime Distortion"
+	name = "时空扭曲"
 	desc = "Entangle the strings of space-time in an area around you, \
 		randomizing the layout and making proper movement impossible. The strings vibrate..."
 	sound = 'sound/effects/magic.ogg'
@@ -89,13 +89,13 @@
 
 
 /obj/effect/cross_action
-	name = "cross me"
+	name = "惩罚我"
 	desc = "for crossing"
 	anchored = TRUE
 
 /obj/effect/cross_action/spacetime_dist
-	name = "spacetime distortion"
-	desc = "A distortion in spacetime. You can hear faint music..."
+	name = "时空扭曲"
+	desc = "时空发生了扭曲。你能听到隐约传来的音乐声……"
 	icon_state = ""
 	/// A flags which save people from being thrown about
 	var/antimagic_flags = MAGIC_RESISTANCE

@@ -11,7 +11,7 @@
  * paper and getting rid of that crashing bug
  */
 /obj/item/paper
-	name = "paper"
+	name = "纸张"
 	gender = NEUTER
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "paper"
@@ -334,11 +334,11 @@
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		if(HAS_TRAIT(H, TRAIT_CLUMSY) && prob(25))
-			to_chat(H, span_warning("You cut yourself on the paper! Ahhhh! Ahhhhh!"))
+			to_chat(H, span_warning("你被纸割伤了！啊！啊啊啊！"))
 			H.damageoverlaytemp = 9001
 			H.update_damage_hud()
 			return
-	var/n_name = tgui_input_text(usr, "Enter a paper label", "Paper Labelling", max_length = MAX_NAME_LEN)
+	var/n_name = tgui_input_text(usr, "输入纸张标签", "纸张标签", max_length = MAX_NAME_LEN)
 	if(isnull(n_name) || n_name == "")
 		return
 	if(((loc == usr || istype(loc, /obj/item/clipboard)) && usr.stat == CONSCIOUS))
@@ -347,24 +347,24 @@
 	update_static_data()
 
 /obj/item/paper/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] scratches a grid on [user.p_their()] wrist with the paper! It looks like [user.p_theyre()] trying to commit sudoku..."))
+	user.visible_message(span_suicide("[user] 用纸在[user.p_their()]手腕上划了个格子！看起来[user.p_theyre()]想玩数独自杀..."))
 	return BRUTELOSS
 
 /obj/item/paper/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click [src] to fold it into a paper plane.")
+	. += span_notice("Alt-点击 [src] 将其折成纸飞机。")
 	if(!in_range(user, src) && !isobserver(user))
-		. += span_warning("You're too far away to read it!")
+		. += span_warning("你离得太远，读不到上面的内容！")
 		return
 
 	if(user.is_blind())
-		to_chat(user, span_warning("You are blind and can't read anything!"))
+		to_chat(user, span_warning("你失明了，什么也读不了！"))
 		return
 
 	if(user.can_read(src))
 		ui_interact(user)
 		return
-	. += span_warning("You cannot read it!")
+	. += span_warning("你无法阅读它！")
 
 /obj/item/paper/ui_status(mob/user, datum/ui_state/state)
 	// Are we on fire?  Hard to read if so
@@ -379,7 +379,7 @@
 	// Even harder to read if your blind...braile? humm
 	// .. or if you cannot read
 	if(user.is_blind())
-		to_chat(user, span_warning("You are blind and can't read anything!"))
+		to_chat(user, span_warning("你失明了，什么也读不了！"))
 		return UI_CLOSE
 	if(!user.can_read(src))
 		return UI_CLOSE
@@ -410,7 +410,7 @@
  * * plane_type - what it will be folded into (path)
  */
 /obj/item/paper/proc/make_plane(mob/living/user, plane_type = /obj/item/paperplane)
-	loc.balloon_alert(user, "folded into a plane")
+	loc.balloon_alert(user, "折成了一架纸飞机")
 	user.temporarilyRemoveItemFromInventory(src)
 	var/obj/item/paperplane/new_plane = new plane_type(loc, src)
 	if(user.Adjacent(new_plane))
@@ -434,7 +434,7 @@
 		if(!user.can_write(attacking_item))
 			return
 		if(get_total_length() >= MAX_PAPER_LENGTH)
-			to_chat(user, span_warning("This sheet of paper is full!"))
+			to_chat(user, span_warning("这张纸已经写满了！"))
 			return
 
 		ui_interact(user)
@@ -445,11 +445,11 @@
 		if(!user.can_read(src) || user.is_blind())
 			//The paper's stampable window area is assumed approx 300x400
 			add_stamp(writing_stats["stamp_class"], rand(0, 300), rand(0, 400), rand(0, 360), writing_stats["stamp_icon_state"], stamp_icon = writing_stats["stamp_icon"])
-			user.visible_message(span_notice("[user] blindly stamps [src] with \the [attacking_item]!"))
-			to_chat(user, span_notice("You stamp [src] with \the [attacking_item] the best you can!"))
+			user.visible_message(span_notice("[user]闭着眼睛用\the [src]在[attacking_item]上盖了个章！"))
+			to_chat(user, span_notice("你尽力用\the [src]在[attacking_item]上盖了个章！"))
 			playsound(src, 'sound/items/handling/standard_stamp.ogg', 50, vary = TRUE)
 		else
-			to_chat(user, span_notice("You ready your stamp over the paper! "))
+			to_chat(user, span_notice("你将印章悬在纸张上方准备盖章！"))
 			ui_interact(user)
 		return
 
@@ -469,8 +469,8 @@
 
 	add_stamp(writing_stats["stamp_class"], rand(1, 300), rand(1, 400), stamp_icon_state = writing_stats["stamp_icon_state"], stamp_icon = writing_stats["stamp_icon"])
 	user.visible_message(
-		span_notice("[user] quickly stamps [src] with [tool] without looking."),
-		span_notice("You quickly stamp [src] with [tool] without looking."),
+		span_notice("[user] 看都没看就用 [tool] 快速盖在了 [src] 上。"),
+		span_notice("你看都没看就用 [tool] 快速盖在了 [src] 上。"),
 	)
 	playsound(src, 'sound/items/handling/standard_stamp.ogg', 50, vary = TRUE)
 
@@ -668,7 +668,7 @@
 			var/obj/item/holding = user.get_active_held_item()
 			var/stamp_info = holding?.get_writing_implement_details()
 			if(!stamp_info || (stamp_info["interaction_mode"] != MODE_STAMPING))
-				to_chat(src, span_warning("You can't stamp with the [holding]!"))
+				to_chat(src, span_warning("你不能用 [holding] 盖章！"))
 				return TRUE
 
 			var/stamp_class = stamp_info["stamp_class"];
@@ -687,11 +687,11 @@
 			var/stamp_icon = stamp_info["stamp_icon"]
 
 			if (LAZYLEN(raw_stamp_data) >= MAX_PAPER_STAMPS)
-				to_chat(usr, pick("You try to stamp but you miss!", "There is nowhere else you can stamp!"))
+				to_chat(usr, pick("你试图盖章但没盖中！", "没有其他地方可以盖章了！"))
 				return TRUE
 
 			add_stamp(stamp_class, stamp_x, stamp_y, stamp_rotation, stamp_icon_state, stamp_icon)
-			user.visible_message(span_notice("[user] stamps [src] with \the [holding.name]!"), span_notice("You stamp [src] with \the [holding.name]!"))
+			user.visible_message(span_notice("[user]用\the [src]给[holding.name]盖章！"), span_notice("You stamp [src] with \the [holding.name]!"))
 			playsound(src, 'sound/items/handling/standard_stamp.ogg', 50, vary = TRUE)
 
 			update_appearance()
@@ -702,7 +702,7 @@
 			var/this_input_length = length_char(paper_input)
 
 			if(this_input_length == 0)
-				to_chat(user, pick("Writing block strikes again!", "You forgot to write anything!"))
+				to_chat(user, pick("写作瓶颈又来了！", "你忘了写任何东西！"))
 				return TRUE
 
 			// If the paper is on an unwritable noticeboard, this usually shouldn't be possible.
@@ -741,7 +741,7 @@
 			add_raw_text(paper_input, writing_implement_data["font"], writing_implement_data["color"], writing_implement_data["use_bold"], check_rights_for(user?.client, R_FUN))
 
 			log_paper("[key_name(user)] wrote to [name]: \"[paper_input]\"")
-			to_chat(user, "You have added to your paper masterpiece!");
+			to_chat(user, "你为你的纸张杰作增添了内容！");
 
 			update_static_data_for_all_viewers()
 			update_appearance()
@@ -909,7 +909,7 @@
 	)
 
 /obj/item/paper/construction
-	name = "construction paper"
+	name = "美术纸"
 	icon = 'icons/effects/random_spawners.dmi'
 
 /obj/item/paper/construction/Initialize(mapload)
@@ -919,11 +919,11 @@
 	update_appearance()
 
 /obj/item/paper/natural
-	name = "natural paper"
+	name = "原浆纸"
 	color = COLOR_OFF_WHITE
 
 /obj/item/paper/crumpled
-	name = "paper scrap"
+	name = "废纸"
 	icon_state = "scrap"
 	slot_flags = null
 	show_written_words = FALSE

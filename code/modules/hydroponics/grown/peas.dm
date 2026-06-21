@@ -1,7 +1,7 @@
 // Finally, peas. Base plant.
 /obj/item/seeds/peas
-	name = "pea pod pack"
-	desc = "These seeds grows into vitamin rich peas!"
+	name = "豌豆荚包"
+	desc = "这些种子能长成维生素含量丰富的豌豆！"
 	icon_state = "seed-peas"
 	species = "peas"
 	plantname = "Pea Vines"
@@ -19,8 +19,8 @@
 
 /obj/item/food/grown/peas
 	seed = /obj/item/seeds/peas
-	name = "peapod"
-	desc = "Finally... peas."
+	name = "豌豆荚"
+	desc = "最后……豌豆。"
 	icon_state = "peas"
 	foodtypes = VEGETABLES
 	tastes = list ("peas" = 1, "chalky saltiness" = 1)
@@ -29,8 +29,8 @@
 
 // Laughin' Peas
 /obj/item/seeds/peas/laugh
-	name = "laughin' pea pack"
-	desc = "These seeds give off a very soft purple glow.. they should grow into Laughin' Peas."
+	name = "笑豆包"
+	desc = "这些种子会发出一种非常柔和的紫色光芒……它们应该会长成欢笑豌豆。"
 	icon_state = "seed-laughpeas"
 	species = "laughpeas"
 	plantname = "Laughin' Peas"
@@ -50,8 +50,8 @@
 
 /obj/item/food/grown/laugh
 	seed = /obj/item/seeds/peas/laugh
-	name = "pod of laughin' peas"
-	desc = "Ridens Cicer, guaranteed to improve your mood dramatically upon consumption!"
+	name = "一荚笑豆"
+	desc = "食用后绝对能让你的心情大为改善！"
 	icon_state = "laughpeas"
 	foodtypes = VEGETABLES
 	tastes = list ("a prancing rabbit" = 1) //Vib Ribbon sends her regards.. wherever she is.
@@ -63,8 +63,8 @@
 
 // World Peas - Peace at last, peace at last...
 /obj/item/seeds/peas/laugh/peace
-	name = "world pea pack"
-	desc = "These rather large seeds give off a soothing blue glow..."
+	name = "世界豌豆包"
+	desc = "这些相当大的种子会发出柔和的蓝光。"
 	icon_state = "seed-worldpeas"
 	species = "worldpeas"
 	plantname = "World Peas"
@@ -85,7 +85,7 @@
 
 /obj/item/food/grown/peace
 	seed = /obj/item/seeds/peas/laugh/peace
-	name = "cluster of world peas"
+	name = "世界豌豆丛"
 	desc = "A plant discovered through extensive genetic engineering, and iterative graft work. It's rumored to bring peace to any who consume it. In the wider AgSci community, it's attained the nickname of 'Pax Mundi'." //at last... world peas. I'm not sorry.
 	icon_state = "worldpeas"
 	bite_consumption_mod = 2

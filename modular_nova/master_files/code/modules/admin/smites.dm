@@ -1,9 +1,9 @@
 /// Applies the dreaded cone of shame to a target.
 /datum/smite/cone_of_shame
-	name = "Cone of Shame"
+	name = "耻辱之锥"
 
 /datum/smite/cone_of_shame/divine
-	name = "Cone of Shame (Divine)"
+	name = "耻辱之锥（神圣）"
 	smite_flags = SMITE_DIVINE
 
 /*
@@ -17,13 +17,13 @@
 	ADD_TRAIT(protected_item, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/head/cone_of_shame/bad_dog
-	name = "THE CONE."
-	desc = "You've been VERY BAD."
+	name = "耻辱之锥。"
+	desc = "你表现得非常糟糕。"
 
 /datum/smite/cone_of_shame/effect(client/user, mob/living/target)
 	. = ..()
 	if (!iscarbon(target) && !iscyborg(target))
-		to_chat(user, span_warning("This must be used on a carbon or cyborg mob."), confidential = TRUE)
+		to_chat(user, span_warning("必须对碳基或机械人生物使用。"), confidential = TRUE)
 		return
 	var/obj/item/clothing/head/cone_of_shame/bad_dog/thecone = new
 	if(iscarbon(target))
@@ -33,13 +33,13 @@
 			shamed.dropItemToGround(worn_necky)
 		if(shamed.equip_to_slot_if_possible(thecone, ITEM_SLOT_NECK, qdel_on_fail = TRUE, disable_warning = TRUE, redraw_mob = TRUE))
 			smite_item_protection(thecone)
-			shamed.visible_message(span_warning("A Cone of Shame appears around [shamed]'s neck!"))
+			shamed.visible_message(span_warning("一个耻辱之锥出现在 [shamed] 的脖子上！"))
 		return
 	if(iscyborg(target))
 		var/mob/living/silicon/robot/borgy = target
 		borgy.place_on_head(thecone)
 		smite_item_protection(thecone)
-		borgy.visible_message(span_warning("A Cone of Shame appears around [borgy]'s neck!"))
+		borgy.visible_message(span_warning("一个耻辱之锥出现在 [borgy] 的脖子上！"))
 		return
 	qdel(thecone)
 

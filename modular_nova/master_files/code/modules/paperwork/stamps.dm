@@ -1,6 +1,6 @@
 /obj/item/stamp/cat
-	name = "\improper Official Cat Stamp"
-	desc = "A rubber stamp for stamping documents of questionable importance."
+	name = "\improper 官方猫咪印章"
+	desc = "一个用于给重要性存疑的文件盖章的橡皮图章。"
 	icon = 'modular_nova/master_files/icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-cat_blue"
 	inhand_icon_state = "stamp"
@@ -32,63 +32,63 @@
 		if("cat_blue")
 			icon_state = "stamp-cat_blue"
 			dye_color = DYE_HOP
-			name = "\improper Official Cat Stamp"
+			name = "\improper 官方猫咪印章"
 		if("paw_blue")
 			icon_state = "stamp-paw_blue"
 			dye_color = DYE_HOP
-			name = "\improper Paw Stamp"
+			name = "\improper 爪印印章"
 
 		if("cat_red")
 			icon_state = "stamp-cat_red"
 			dye_color = DYE_HOS
-			name = "\improper Official Cat Stamp"
+			name = "\improper 官方猫咪印章"
 		if("paw_red")
 			icon_state = "stamp-paw_red"
 			dye_color = DYE_HOS
-			name = "\improper Paw Stamp"
+			name = "\improper 爪印印章"
 
 		if("cat_orange")
 			icon_state = "stamp-cat_orange"
 			dye_color = DYE_QM
-			name = "\improper Official Cat Stamp"
+			name = "\improper 官方猫咪印章"
 		if("paw_orange")
 			icon_state = "stamp-paw_orange"
 			dye_color = DYE_QM
-			name = "\improper Paw Stamp"
+			name = "\improper 爪印印章"
 
 		if("cat_green")
 			icon_state = "stamp-cat_green"
 			dye_color = DYE_CENTCOM
-			name = "\improper Official Cat Stamp"
+			name = "\improper 官方猫咪印章"
 		if("paw_green")
 			icon_state = "stamp-paw_green"
 			dye_color = DYE_CENTCOM
-			name = "\improper Paw Stamp"
+			name = "\improper 爪印印章"
 
 		else
 			return
 
 /obj/item/stamp/nri
-	name = "\improper Novaya Rossiyskaya Imperia stamp"
-	desc = "A rubber stamp for stamping important documents. Used in various NRI documents."
+	name = "\improper 新俄罗斯帝国印章"
+	desc = "一个用于在重要文件上盖章的橡皮图章。用于各种新罗西亚帝国文件。"
 	icon = 'modular_nova/master_files/icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-nri"
 	dye_color = DYE_CENTCOM
 
 /obj/item/stamp/solfed
-	name = "\improper Solar Federation stamp"
+	name = "\improper 太阳联邦印章"
 	icon = 'modular_nova/master_files/icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-solfed"
 	dye_color = DYE_CE
 
 /obj/item/stamp/tarkon
-	name = "Port Tarkon rubber stamp"
+	name = "塔康港橡皮图章"
 	icon = 'modular_nova/master_files/icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-tarkon"
 	dye_color = DYE_QM
 
 /obj/item/stamp/warden
-	name = "warden's rubber stamp"
+	name = "典狱长的橡皮图章"
 	icon = 'modular_nova/master_files/icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-warden"
 	dye_color = DYE_HOS

@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(mentor_href_token, GenerateToken())
 GLOBAL_PROTECT(mentor_href_token)
 
 /datum/mentors
-	var/name = "someone's mentor datum"
+	var/name = "某人的导师数据"
 	var/client/owner // the actual mentor, client type
 	var/target // the mentor's ckey
 	var/href_token // href token for mentor commands, uses the same token used by admins.
@@ -16,7 +16,7 @@ GLOBAL_PROTECT(mentor_href_token)
 		QDEL_IN(src, 0)
 		CRASH("Mentor datum created without a ckey")
 	target = ckey(ckey)
-	name = "[ckey]'s mentor datum"
+	name = "[ckey]的导师数据"
 	href_token = GenerateToken()
 	GLOB.mentor_datums[target] = src
 	//set the owner var and load commands

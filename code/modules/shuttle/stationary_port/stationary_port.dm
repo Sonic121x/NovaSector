@@ -1,6 +1,6 @@
 
 /obj/docking_port/stationary
-	name = "dock"
+	name = "船坞"
 
 	var/last_dock_time
 
@@ -58,7 +58,7 @@
 		port_destinations = shuttle_id
 
 	if(!name)
-		name = "dock"
+		name = "船坞"
 
 	var/counter = SSshuttle.assoc_stationary[shuttle_id]
 	if(!replace || !counter)

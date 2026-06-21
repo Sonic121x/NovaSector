@@ -1,15 +1,15 @@
 /turf/closed/wall/mineral/titanium/shielded
-	name = "shielded wall"
-	desc = "A reinforced titanium wall with additional plating resistant to anomalous energy."
+	name = "屏蔽墙"
+	desc = "一种加固的钛合金墙壁，带有额外的镀层，能抵抗异常能量。"
 
 /turf/closed/wall/mineral/titanium/nodiagonal/shielded
-	name = "shielded wall"
-	desc = "A reinforced titanium wall with additional plating resistant to anomalous energy."
+	name = "屏蔽墙"
+	desc = "一种加固的钛合金墙壁，带有额外的镀层，能抵抗异常能量。"
 
 /turf/closed/wall/r_wall/plastitanium/syndicate/shielded
-	name = "shielded wall"
-	desc = "The armored hull of an ominous looking ship, with special plating resistant to anomalous energy."
+	name = "护盾墙"
+	desc = "一艘外观不祥的飞船的装甲船体，带有能抵抗异常能量的特殊覆层。"
 
 /turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal/shielded
-	name = "shielded wall"
-	desc = "The armored hull of an ominous looking ship, with special plating resistant to anomalous energy."
+	name = "护盾墙"
+	desc = "一艘外观不祥的飞船的装甲船体，带有能抵抗异常能量的特殊覆层。"

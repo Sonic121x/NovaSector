@@ -1,7 +1,7 @@
 /// Become the official Captain of the station
 /datum/grand_finale/usurp
-	name = "Usurpation"
-	desc = "The ultimate use of your gathered power! Rewrite time such that you have been Captain of this station the whole time."
+	name = "篡位"
+	desc = "你收集力量的终极运用！重写时间线，让你成为这个空间站一直以来的船长。"
 	icon = 'icons/obj/card.dmi'
 	icon_state = "card_gold"
 
@@ -33,7 +33,7 @@
 
 	dress_candidate(invoker)
 	GLOB.manifest.modify(invoker.real_name, JOB_CAPTAIN, JOB_CAPTAIN)
-	minor_announce("Captain [invoker.real_name] on deck!")
+	minor_announce("舰长 [invoker.real_name] 已就位！")
 
 	// Enlist some crew to try and restore the natural order
 	for (var/mob/living/carbon/human/former_captain as anything in former_captains)
@@ -95,7 +95,7 @@
 
 /// An outfit which replaces parts of a wizard's clothes with captain's clothes but keeps the robes
 /datum/outfit/job/wizard_captain
-	name = "Captain (Wizard Transformation)"
+	name = "船长（巫师变身）"
 	jobtype = /datum/job/captain
 	id = /obj/item/card/id/advanced/gold
 	id_trim = /datum/id_trim/job/captain

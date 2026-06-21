@@ -1,6 +1,6 @@
 /obj/item/grenade/c4
-	name = "C-4 charge"
-	desc = "Used to put holes in specific areas without too much extra hole. A saboteur's favorite."
+	name = "C-4炸药"
+	desc = "用于在特定区域开洞而不造成过多额外破坏。破坏分子的最爱。"
 	icon_state = "plastic-explosive0"
 	inhand_icon_state = "plastic-explosive"
 	worn_icon_state = "c4"
@@ -55,7 +55,7 @@
 	return ..()
 
 /obj/item/grenade/c4/screwdriver_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("The wire panel can be accessed without a screwdriver."))
+	to_chat(user, span_notice("无需螺丝刀即可访问电线面板。"))
 	return TRUE
 
 /obj/item/grenade/c4/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
@@ -97,11 +97,11 @@
 	detonate()
 
 /obj/item/grenade/c4/attack_self(mob/user)
-	var/newtime = tgui_input_number(user, "Please set the timer", "C4 Timer", minimum_timer, maximum_timer, minimum_timer)
+	var/newtime = tgui_input_number(user, "请设置计时器", "C4计时器", minimum_timer, maximum_timer, minimum_timer)
 	if(!newtime || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	det_time = newtime
-	to_chat(user, "Timer set for [det_time] seconds.")
+	to_chat(user, "定时器设置为[det_time]秒。")
 
 /obj/item/grenade/c4/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	// Here lies C4 ghosts. We hardly knew ye
@@ -112,10 +112,10 @@
 
 /obj/item/grenade/c4/proc/plant_c4(atom/bomb_target, mob/living/user)
 	if(bomb_target != user && HAS_TRAIT(user, TRAIT_PACIFISM) && isliving(bomb_target))
-		to_chat(user, span_warning("You don't want to harm other living beings!"))
+		to_chat(user, span_warning("你不想伤害其他生物！"))
 		return FALSE
 
-	to_chat(user, span_notice("You start planting [src]. The timer is set to [det_time]..."))
+	to_chat(user, span_notice("你开始安放[src]。定时器设置为[det_time]……"))
 
 	if(!do_after(user, 3 SECONDS, target = bomb_target))
 		return FALSE
@@ -148,7 +148,7 @@
 		plastic_overlay.layer = FLOAT_LAYER
 
 	target.add_overlay(plastic_overlay)
-	to_chat(user, span_notice("You plant the bomb. Timer counting down from [det_time]."))
+	to_chat(user, span_notice("你安放了炸弹。定时器从[det_time]开始倒计时。"))
 	addtimer(CALLBACK(src, PROC_REF(detonate)), det_time*10)
 	return TRUE
 
@@ -171,7 +171,7 @@
 	message_admins("[ADMIN_LOOKUPFLW(user)] suicided with [src] at [ADMIN_VERBOSEJMP(user)]")
 	user.log_message("suicided with [src].", LOG_ATTACK)
 	log_game("[key_name(user)] suicided with [src] at [AREACOORD(user)]")
-	user.visible_message(span_suicide("[user] activates [src] and holds it above [user.p_their()] head! It looks like [user.p_theyre()] going out with a bang!"))
+	user.visible_message(span_suicide("[user] 激活了 [src] 并将其举在 [user.p_their()] 头顶！看来 [user.p_theyre()] 要来个轰轰烈烈的退场了！"))
 	shout_syndicate_crap(user)
 	explosion(user, heavy_impact_range = 2, explosion_cause = src) //Cheap explosion imitation because putting detonate() here causes runtimes
 	user.gib(DROP_BODYPARTS)
@@ -182,8 +182,8 @@
 // Intended to replace C4 for nukeops, and to be a randomdrop in surplus/random traitor purchases.
 
 /obj/item/grenade/c4/x4
-	name = "X-4 charge"
-	desc = "A shaped high-explosive breaching charge. Designed to ensure user safety and wall nonsafety."
+	name = "X-4炸药"
+	desc = "一种定向高爆破门炸药。专为确保使用者安全与墙体不安全而设计。"
 	icon_state = "plasticx40"
 	inhand_icon_state = "plasticx4"
 	worn_icon_state = "x4"

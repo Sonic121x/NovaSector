@@ -1,6 +1,6 @@
 /datum/action/changeling/biodegrade
-	name = "Biodegrade"
-	desc = "Dissolves restraints or other objects preventing free movement. Costs 30 chemicals."
+	name = "生物降解"
+	desc = "溶解束缚或解除其他阻碍自由行动的物体. 使用消耗30化学点"
 	helptext = "This is obvious to nearby people, and can destroy standard restraints and closets. Works against grabs."
 	button_icon_state = "biodegrade"
 	category = "utility"
@@ -31,7 +31,7 @@
 		straitjacket = null
 
 	if(!handcuffs && !legcuffs && !straitjacket && !prisoner_shoes && !knotted_shoes && !some_manner_of_cage && !space_invader)
-		user.balloon_alert(user, "already free!")
+		user.balloon_alert(user, "已经自由了！")
 		return .
 	..()
 
@@ -50,11 +50,11 @@
 
 	for(var/obj/restraint as anything in restraints)
 		if(restraint.obj_flags & (INDESTRUCTIBLE | ACID_PROOF | UNACIDABLE))
-			to_chat(user, span_changeling("We cannot use bio-acid to destroy [restraint]!"))
+			to_chat(user, span_changeling("我们无法用生物酸来摧毁[restraint]！"))
 			continue
 
 		if(restraint == user.loc)
-			restraint.visible_message(span_warning("Bubbling acid start spewing out of [restraint]..."))
+			restraint.visible_message(span_warning("冒着泡的酸液开始从[restraint]涌出..."))
 			addtimer(CALLBACK(restraint, TYPE_PROC_REF(/atom, atom_destruction), ACID), 4 SECONDS)
 			for(var/beat in 1 to 3)
 				addtimer(CALLBACK(src, PROC_REF(make_puddle), restraint), beat SECONDS)
@@ -65,9 +65,9 @@
 		addtimer(CALLBACK(restraint, TYPE_PROC_REF(/atom, atom_destruction), ACID), 1.5 SECONDS)
 		log_combat(user = user, target = restraint, what_done = "melted restraining item", addition = "(biodegrade)")
 		user.visible_message(
-			span_warning("[user] spews torrents of acid onto [restraint], melting them with horrifying ease."),
-			user.balloon_alert(user, "melting restraints..."),
-			span_danger("You hear retching, then the sizzling of powerful acid, closer to the sound of hissing steam."))
+			span_warning("[user] 向 [restraint] 喷涌出大量酸液，以骇人的轻松将其融化。"),
+			user.balloon_alert(user, "融化束缚中..."),
+			span_danger("你听到一阵干呕声，接着是强酸嘶嘶作响的声音，更接近于蒸汽嘶嘶的声响。"))
 		playsound(user, 'sound/items/tools/welder.ogg', 50, TRUE)
 		. = TRUE
 
@@ -94,16 +94,16 @@
 	playsound(user, 'sound/mobs/non-humanoids/bileworm/bileworm_spit.ogg', 50, TRUE)
 	if(IS_CHANGELING(hapless_manhandler))
 		user.visible_message(
-			span_danger("[user] spews a mist of sizzling acid onto [hapless_manhandler]... but nothing happens!"),
+			span_danger("[user] 向 [hapless_manhandler] 喷出一团嘶嘶作响的酸雾……但什么都没发生！"),
 			span_changeling("We prepare our escape, spraying bio-acid on our captor... [span_danger("But nothing happened?!")]"),
-			span_danger("You hear retching, then a sizzling that terminates quite abruptly.")
+			span_danger("你听到一阵干呕声，然后是嘶嘶作响，但很快就戛然而止。")
 			)
-		to_chat(hapless_manhandler, span_changeling("Our prey attempts to dissuade us with one of our biology's simplest adaptions. Quaint."))
+		to_chat(hapless_manhandler, span_changeling("我们的猎物试图用我们生物学中最简单的适应性来阻止我们。天真。"))
 		return
 	user.visible_message(
-		span_danger("[user] spews a mist of sizzling acid onto [hapless_manhandler], using the opportunity to wrestle away."),
+		span_danger("[user] 向 [hapless_manhandler] 喷出一团嘶嘶作响的酸雾，趁机挣脱了。"),
 		user.balloon_alert(user, "dissuading captor..."),
-		span_danger("You hear retching, then sizzling, quickly muffled by a loud keening of pain."))
+		span_danger("你听到一阵干呕声，然后是嘶嘶作响，很快被一声响亮的痛苦哀嚎所掩盖。"))
 	hapless_manhandler.Stun(2 SECONDS)
 	hapless_manhandler.emote("scream")
 	hapless_manhandler.stop_pulling()

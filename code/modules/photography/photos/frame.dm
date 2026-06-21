@@ -1,8 +1,8 @@
 // Picture frames
 
 /obj/item/wallframe/picture
-	name = "picture frame"
-	desc = "The perfect showcase for your favorite deathtrap memories."
+	name = "相框"
+	desc = "这是展示您最珍贵死亡陷阱式回忆的绝佳场所。"
 	icon = 'icons/obj/signs.dmi'
 	custom_materials = list(/datum/material/wood =SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE
@@ -62,8 +62,8 @@
 		I.forceMove(PF)
 
 /obj/structure/sign/picture_frame
-	name = "picture frame"
-	desc = "Every time you look it makes you laugh."
+	name = "相框"
+	desc = "每次你看到它都会让你发笑。"
 	icon = 'icons/obj/signs.dmi'
 	icon_state = "frame-overlay"
 	custom_materials = list(/datum/material/wood =SHEET_MATERIAL_AMOUNT)
@@ -182,8 +182,8 @@
 	showcase.update_appearance()
 
 /obj/structure/sign/picture_frame/showroom
-	name = "distinguished crew display"
-	desc = "A photo frame to commemorate crewmembers that distinguished themselves in the line of duty. WARNING: unauthorized tampering will be severely punished."
+	name = "杰出的船员表现"
+	desc = "一个纪念在执行任务中表现出色的船员们的相框。 注意：未经授权的篡改行为将受到严厉惩罚。"
 	can_decon = FALSE
 
 /// This used to be a plaque portrait of a monkey. Now it's been revamped into something more.
@@ -199,19 +199,19 @@
 	. = ..()
 	switch(rand(1,4))
 		if(1) // Deempisi
-			name = "\improper Mr. Deempisi portrait"
+			name = "\improper 德埃皮西先生的肖像"
 			icon_state = "frame-monkey"
 			desc = "Under the portrait a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'"
 		if(2) // A fruit
-			name = "picture of a fruit"
+			name = "水果的相片"
 			icon_state = "frame-fruit"
 			desc = "<i>Ceci n'est pas une orange.</i>"
 		if(3) // Rat
 			name = "\improper Tom portrait"
-			desc = "Jerry the cat is still not amused."
+			desc = "杰瑞猫依然很不开心。"
 			icon_state = "frame-rat"
 		if(4) // Ratvar
-			name = "portrait of the imprisoned god"
+			name = "被囚禁之神的画像"
 			desc = "Under the portrait a plaque reads: 'In loving memory of Ratvar, ancient powerful entity and rival of Nar'Sie, \
 				ultimately struck down by NT bluespace artillery at the hands of Outpost 17 crew. Rust in peace.'" // common core lore.
 			icon_state = "frame-ratvar"
@@ -236,7 +236,7 @@
 /obj/structure/sign/picture_frame/portrait/update_desc(updates)
 	. = ..()
 	if(framed)
-		desc = "Every time you look it makes you laugh."
+		desc = "每次你看到它都会让你发笑。"
 	else
 		desc = portrait_desc
 

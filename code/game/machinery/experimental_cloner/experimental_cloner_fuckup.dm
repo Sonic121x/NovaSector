@@ -122,8 +122,8 @@
 
 /datum/experimental_cloner_fuckup/monkey/post_emerged(mob/living/carbon/victim)
 	victim.visible_message(\
-		span_boldwarning("[victim]'s hair begins to grow rapidly!"),\
-		span_boldwarning("As you emerge from the pod, all the hair on your body starts to grow!"))
+		span_boldwarning("[victim]的毛发开始快速生长！"),\
+		span_boldwarning("当你从舱中出来时，全身的毛发都开始生长！"))
 	victim.monkeyize()
 
 /// No skin
@@ -133,8 +133,8 @@
 /datum/experimental_cloner_fuckup/skeletised/post_emerged(mob/living/victim)
 	victim.emote("scream")
 	victim.visible_message(\
-		span_boldwarning("[victim]'s flesh slithers off in a disgusting heap!"),\
-		span_boldwarning("As you emerge from the pod, your skin slithers off onto the ground!"))
+		span_boldwarning("[victim]的肉体滑落成一堆令人作呕的肉块！"),\
+		span_boldwarning("当你从舱中出来时，你的皮肤滑落到了地上！"))
 	victim.set_species(/datum/species/skeleton)
 	new /obj/effect/gibspawner/human/bodypartless(victim.drop_location(), victim)
 
@@ -152,8 +152,8 @@
 /datum/experimental_cloner_fuckup/total_failure/post_emerged(mob/living/victim)
 	victim.emote("scream")
 	victim.visible_message(\
-		span_boldwarning("[victim] collapses bonelessly into a writhing heap of flesh!"),\
-		span_boldwarning("As you emerge from the pod, your boneless flesh collapses into a writhing heap!"))
+		span_boldwarning("[victim]软绵绵地瘫倒成一堆蠕动的肉块！"),\
+		span_boldwarning("当你从舱中出来时，你无骨的肉体瘫倒成一堆蠕动的肉块！"))
 	var/mob/living/basic/fleshblob/blob = new(victim.drop_location())
 	blob.name = victim.real_name
 	blob.real_name = victim.real_name

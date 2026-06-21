@@ -4,8 +4,8 @@
  * Fluff structures serve no purpose and exist only for enriching the environment. By default, they can be deconstructed with a wrench.
  */
 /obj/structure/fluff
-	name = "fluff structure"
-	desc = "Fluffier than a sheep. This shouldn't exist."
+	name = "杂乱结构"
+	desc = "比绵羊还要蓬松。这东西本不该存在。"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "minibar"
 	anchored = TRUE
@@ -30,8 +30,8 @@
  * Empty terrariums are created when a preserved terrarium in a lavaland seed vault is activated.
  */
 /obj/structure/fluff/empty_terrarium
-	name = "empty terrarium"
-	desc = "An ancient machine that seems to be used for storing plant matter. Its hatch is ajar."
+	name = "空的玻璃饲养箱"
+	desc = "一种古老的机器，似乎用来储存植物。它的舱门半开着。"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "terrarium_open"
 	density = TRUE
@@ -40,13 +40,13 @@
  * Empty sleepers are created by a good few ghost roles in lavaland.
  */
 /obj/structure/fluff/empty_sleeper
-	name = "empty sleeper"
-	desc = "An open sleeper. It looks as though it would be awaiting another patient, were it not broken."
+	name = "空休眠舱"
+	desc = "一个敞开的休眠仓。看起来就像是在等待另一个病人，如果它没有坏掉的话。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper-open"
 
 /obj/structure/fluff/empty_sleeper/nanotrasen
-	name = "broken hypersleep chamber"
+	name = "坏了的冬眠舱"
 	desc = "A Nanotrasen hypersleep chamber - this one appears broken. \
 		There are exposed bolts for easy disassembly using a wrench."
 	icon_state = "sleeper-o"
@@ -58,8 +58,8 @@
  * Empty cryostasis sleepers are created when a malfunctioning cryostasis sleeper in a lavaland shelter is activated.
  */
 /obj/structure/fluff/empty_cryostasis_sleeper
-	name = "empty cryostasis sleeper"
-	desc = "Although comfortable, this sleeper won't function as anything but a bed ever again."
+	name = "空冷冻休眠舱"
+	desc = "虽然很舒服，但这款睡眠机除了当床外什么也不能做。"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "cryostasis_sleeper_open"
 
@@ -67,8 +67,8 @@
  * Ash drake status spawn on either side of the necropolis gate in lavaland.
  */
 /obj/structure/fluff/drake_statue
-	name = "drake statue"
-	desc = "A towering basalt sculpture of a proud and regal drake. Its eyes are six glowing gemstones."
+	name = "灰烬雕像"
+	desc = "一块高耸的玄武岩雕像，雕刻了一只骄傲而威严的龙的形象。它的六只眼睛闪烁着宝石的光芒。"
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "drake_statue"
 	pixel_x = -16
@@ -93,13 +93,13 @@
  * A variety of statue in disrepair; parts are broken off and a gemstone is missing
  */
 /obj/structure/fluff/drake_statue/falling
-	desc = "A towering basalt sculpture of a drake. Cracks run down its surface and parts of it have fallen off."
+	desc = "一块高耸的玄武岩雕像，雕刻了一只龙的形象。它的表面布满了裂纹，而且一部分垮塌了。"
 	icon_state = "drake_statue_falling"
 
 
 /obj/structure/fluff/bus
-	name = "bus"
-	desc = "GO TO SCHOOL. READ A BOOK."
+	name = "巴士"
+	desc = "上学去。读本书。"
 	icon = 'icons/obj/fluff/bus.dmi'
 	icon_state = null
 	density = TRUE
@@ -119,8 +119,8 @@
 
 
 /obj/structure/fluff/bus/passable/seat
-	name = "seat"
-	desc = "Buckle up! ...What do you mean, there's no seatbelts?!"
+	name = "座位"
+	desc = "系好安全带！...你说没有安全带是什么意思？！"
 	icon_state = "backseat"
 	pixel_y = 17
 	layer = OBJ_LAYER
@@ -128,8 +128,8 @@
 
 
 /obj/structure/fluff/bus/passable/seat/driver
-	name = "driver's seat"
-	desc = "Space Jesus is my copilot."
+	name = "驾驶员座椅"
+	desc = "太空耶稣是我的副驾驶。"
 	icon_state = "driverseat"
 
 /obj/structure/fluff/bus/passable/seat/driver/attack_hand(mob/user, list/modifiers)
@@ -137,8 +137,8 @@
 	. = ..()
 
 /obj/structure/fluff/paper
-	name = "dense lining of papers"
-	desc = "A lining of paper scattered across the bottom of a wall."
+	name = "厚厚一层纸"
+	desc = "墙角散落着厚厚一层纸。"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "paper"
 	deconstructible = FALSE
@@ -147,13 +147,13 @@
 	icon_state = "papercorner"
 
 /obj/structure/fluff/paper/stack
-	name = "dense stack of papers"
-	desc = "A stack of various papers, childish scribbles scattered across each page."
+	name = "厚厚一叠纸"
+	desc = "一堆各种各样的文件，每一页上都散落着孩子们的涂鸦。"
 	icon_state = "paperstack"
 
 
 /obj/structure/fluff/divine
-	name = "Miracle"
+	name = "神迹"
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "error"
 	anchored = TRUE
@@ -193,14 +193,14 @@
 	icon_state = "shrine"
 
 /obj/structure/fluff/fokoff_sign
-	name = "crude sign"
-	desc = "A crudely-made sign with the words 'fok of' written in some sort of red paint."
+	name = "粗制标牌"
+	desc = "一块做工粗糙的标志牌，上面用红色颜料写着“滚开”。"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "fokof"
 
 /obj/structure/fluff/big_chain
-	name = "giant chain"
-	desc = "A towering link of chains leading up to the ceiling."
+	name = "巨大铁链"
+	desc = "一条延申至天花板的巨大铁链"
 	icon = 'icons/effects/32x96.dmi'
 	icon_state = "chain"
 	anchored = TRUE
@@ -210,8 +210,8 @@
 	plane = ABOVE_GAME_PLANE
 
 /obj/structure/fluff/beach_towel
-	name = "beach towel"
-	desc = "A towel decorated in various beach-themed designs."
+	name = "沙滩毛巾"
+	desc = "一条用各种沙滩主题图案装饰的毛巾。"
 	icon = 'icons/obj/railings.dmi'
 	icon_state = "railing"
 	density = FALSE
@@ -219,8 +219,8 @@
 	deconstructible = FALSE
 
 /obj/structure/fluff/beach_umbrella
-	name = "beach umbrella"
-	desc = "A fancy umbrella designed to keep the sun off beach-goers."
+	name = "沙滩伞"
+	desc = "一款精美的遮阳伞，专为保护游客免受沙滩阳光直射而设计。"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "brella"
 	density = FALSE
@@ -243,14 +243,14 @@
 	icon_state = "syndi_brella"
 
 /obj/structure/fluff/clockwork
-	name = "Clockwork Fluff"
+	name = "钟表杂物"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "error"
 	deconstructible = FALSE
 
 /obj/structure/fluff/clockwork/alloy_shards
-	name = "replicant alloy shards"
-	desc = "Broken shards of some oddly malleable metal. They occasionally move and seem to glow."
+	name = "复制合金碎片"
+	desc = "一些具有奇特可塑性的金属碎片。它们偶尔会自行移动而且看起来似乎在发光。"
 	icon_state = "alloy_shards"
 
 /obj/structure/fluff/clockwork/alloy_shards/small
@@ -266,23 +266,23 @@
 	icon_state = "shard_large1"
 
 /obj/structure/fluff/clockwork/blind_eye
-	name = "blind eye"
-	desc = "A heavy brass eye, its red iris fallen dark."
+	name = "盲眼"
+	desc = "一只沉重的铜制眼球，它的红色瞳孔暗淡无光。"
 	icon_state = "blind_eye"
 
 /obj/structure/fluff/clockwork/fallen_armor
-	name = "fallen armor"
-	desc = "Lifeless chunks of armor. They're designed in a strange way and won't fit on you."
+	name = "残破盔甲"
+	desc = "毫无生气的盔甲碎片。它们的设计方式很奇特，你穿不进去。"
 	icon_state = "fallen_armor"
 
 /obj/structure/fluff/clockwork/clockgolem_remains
-	name = "clockwork golem scrap"
-	desc = "A pile of scrap metal. It seems damaged beyond repair."
+	name = "钟表傀儡残骸"
+	desc = "一堆废金属。看起来已经没法修复了。"
 	icon_state = "clockgolem_dead"
 
 /obj/structure/fluff/tram_rail
-	name = "tram rail"
-	desc = "Great for trams, not so great for skating."
+	name = "电车轨道"
+	desc = "对于有轨电车来说很棒，但对于滑板来说就不那么好了。"
 	icon = 'icons/obj/tram/tram_rails.dmi'
 	icon_state = "rail"
 	layer = TRAM_RAIL_LAYER
@@ -317,7 +317,7 @@
 	icon_state = "railend"
 
 /obj/structure/fluff/tram_rail/anchor
-	name = "tram rail anchor"
+	name = "电车轨道防爬器"
 	icon_state = "anchor"
 
 /obj/structure/fluff/tram_rail/electric
@@ -326,7 +326,7 @@
 	var/power_channel = AREA_USAGE_ENVIRON
 
 /obj/structure/fluff/tram_rail/electric/anchor
-	name = "tram rail anchor"
+	name = "电车轨道防爬器"
 	icon_state = "anchor"
 
 /obj/structure/fluff/tram_rail/electric/Initialize(mapload)

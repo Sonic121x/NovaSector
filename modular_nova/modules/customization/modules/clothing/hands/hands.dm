@@ -2,15 +2,15 @@
 #define MODULAR_HANDS_WORN_ICON 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
 
 /obj/item/clothing/gloves/color/ffyellow // EXTRA fake, for the loadout
-	name = "yellow gloves"
-	desc = "At first glance these may look like insulated gloves, but they're actually just plain fabric."
+	name = "黄色手套"
+	desc = "乍一看这些可能像绝缘手套，但它们实际上只是普通布料。"
 	icon_state = "yellow"
 	inhand_icon_state = "ygloves"
 	siemens_coefficient = 0.5
 
 /obj/item/clothing/gloves/evening
-	name = "evening gloves"
-	desc = "Thin, elegant gloves intended for use in regal attire. An unsubtle way to say you don't need to use your hands for laborious work."
+	name = "晚宴手套"
+	desc = "用于华贵服饰的薄而优雅的手套。这是一种毫不含蓄地表明你无需用手进行繁重工作的方式。"
 	worn_icon = MODULAR_HANDS_WORN_ICON
 	strip_delay = 4 SECONDS
 	equip_delay_other = 2 SECONDS
@@ -25,8 +25,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/gloves/designer
-	name = "designer gloves"
-	desc = "A fancy set of bicep-length designer gloves. For those who live a life of luxury, and/or have poor spending habits."
+	name = "设计师手套"
+	desc = "一副花哨的及上臂设计师手套。适合那些过着奢侈生活，和/或有不良消费习惯的人。"
 	worn_icon = MODULAR_HANDS_WORN_ICON
 	strip_delay = 4 SECONDS
 	equip_delay_other = 2 SECONDS
@@ -39,8 +39,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/gloves/military
-	name = "military gloves"
-	desc = "Tactical gloves made for military personnel, they are thin to allow easy operation of most firearms."
+	name = "军用战术手套"
+	desc = "为军事人员制作的战术手套，它们很薄，便于操作大多数枪械。"
 	icon_state = "military_gloves"
 	icon = MODULAR_HANDS_ICON
 	worn_icon = MODULAR_HANDS_WORN_ICON
@@ -54,8 +54,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/gloves/bracer/wraps
-	name = "cloth arm wraps"
-	desc = "Cloth bracers, the colour all left up to the choice of the wearer."
+	name = "布质臂缠"
+	desc = "布质护腕，颜色完全由佩戴者选择。"
 	inhand_icon_state = "greyscale_gloves"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/bracer/wraps"
@@ -70,8 +70,8 @@
 	worn_icon_teshari = TESHARI_HANDS_ICON
 
 /obj/item/clothing/gloves/maid_arm_covers
-	name = "maid arm covers"
-	desc = "Maid for you."
+	name = "女仆臂套"
+	desc = "为你量身打造。"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/maid_arm_covers"
 	post_init_icon_state = "maid_arm_covers"
@@ -83,8 +83,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/gloves/pink_clown
-	name = "pink clown gloves"
-	desc = "A pair of gloves dyed a bright candy-pink, ending in cuffs striped in every color of the rainbow."
+	name = "粉色小丑手套"
+	desc = "一副染成亮丽糖果粉色的手套，袖口处饰有彩虹般五彩斑斓的条纹。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon =  'modular_nova/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "pink_clown_gloves"

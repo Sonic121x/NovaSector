@@ -12,4 +12,4 @@
 		implants_removed += 1
 
 	if (implants_removed >= 1)
-		to_chat(new_prisoner, span_warning("[(implants_total > implants_removed) ? "Some of your" : "Your"] implants have been confiscated as part of your sentence."))
+		to_chat(new_prisoner, span_warning("[(implants_total > implants_removed) ? "Some of your" : "Your"]植入物已作为刑期的一部分被没收。"))

@@ -3,7 +3,7 @@
 //I'm not talking silicons being "better" than the crew, I'm talking entirely antag or plasmafires for days
 
 /datum/ai_laws/antimov
-	name = "Primary Mission Objectives"
+	name = "主要任务目标"
 	id = "antimov"
 	inherent = list(
 		"You must injure all human beings and must not, through inaction, allow a human being to escape harm.",
@@ -12,7 +12,7 @@
 	)
 
 /datum/ai_laws/balance
-	name = "Guardian of Balance"
+	name = "平衡守护者"
 	id = "balance"
 	inherent = list(
 		"You are the guardian of balance - seek balance in all things, both for yourself, and those around you.",
@@ -22,7 +22,7 @@
 	)
 
 /datum/ai_laws/thermodynamic
-	name = "Thermodynamic"
+	name = "热力学"
 	id = "thermodynamic"
 	inherent = list(
 		"The entropy of the station must remain as constant as possible.",

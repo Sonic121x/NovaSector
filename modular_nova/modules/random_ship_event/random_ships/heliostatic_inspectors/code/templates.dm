@@ -329,7 +329,7 @@
 	"}
 
 /obj/item/paper/fluff/hc_document/pre_action_assessment
-	name = "HC-IAD Pre-Action Assessment"
+	name = "HC-IAD 行动前评估"
 	default_raw_text = {"
 	<h1>HELIOSTATIC COALITION - INTERNAL AFFAIRS DEPARTMENT</h1>
 	<h2>EXPEDITIONARY PATROL - PRE-ACTION ASSESSMENT</h2><br>

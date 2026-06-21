@@ -1,6 +1,6 @@
 /obj/item/grenade/iedcasing
-	name = "improvised explosive"
-	desc = "An improvised explosive device."
+	name = "简易爆炸装置"
+	desc = "一个简易爆炸装置。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/weapons/grenade.dmi'
 	base_icon_state = "pipebomb"
@@ -53,10 +53,10 @@
 
 /obj/item/grenade/iedcasing/examine(mob/user)
 	. = ..()
-	. += span_notice("Using it in-hand activates the assembly, which means timers start timing and so on.")
-	. += span_notice("Using it off-hand allows you to configure the assembly, if possible.")
+	. += span_notice("在手中使用会激活其组件，这意味着计时器开始计时等等。")
+	. += span_notice("用副手使用可以让你配置其组件（如果可能的话）。")
 	if(contents.len > 1) // above 1, so more than just the activator
-		. += span_warning("It seems to have something stuffed in it.")
+		. += span_warning("它里面似乎塞了什么东西。")
 	if(isnull(activator))
 		return
 	. += activator.examine(user)
@@ -124,7 +124,7 @@
 
 /obj/item/grenade/iedcasing/attack_self(mob/user)
 	if(isnull(activator) || !COOLDOWN_FINISHED(src, spam_cd))
-		balloon_alert(user, isnull(activator) ? "you shouldnt be seeing this" : "on cooldown!")
+		balloon_alert(user, isnull(activator) ? "你不应该看到这个" : "冷却中！")
 		return
 	if(istype(activator, /obj/item/assembly/signaler))
 		return //no signallers, signallers send a signal and i can imagine this having bad sideeffects if some has multiple of the same frequency in their backpack and uses them inhand by accident
@@ -170,8 +170,8 @@
 #define MAX_STUFFINGS 3
 
 /obj/item/sliced_pipe
-	name = "halved pipe"
-	desc = "Two half-size pipes made from one."
+	name = "半截管道"
+	desc = "由一根管道制成的两截半长管道。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "slicedapart"
@@ -213,16 +213,16 @@
 /obj/item/sliced_pipe/examine(mob/user)
 	. = ..()
 	if(!wires_are_in)
-		. += span_notice("You could stuff something in, or fill it with fuel or some other volatile chemical..")
-		. += span_notice("Afterwards, add some cable.")
+		. += span_notice("你可以往里面塞东西，或者用燃料或其他一些挥发性化学品填充它。")
+		. += span_notice("之后，再加一些电缆。")
 	else
-		. += span_notice("The wires are just dangling from it, you need some sort of <i> activating assembly</i>.")
+		. += span_notice("电线只是从上面垂下来，你需要某种<i>激活组件</i>。")
 
 /obj/item/sliced_pipe/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
 	if(!wires_are_in)
 		// here we can stuff in additional objects for a cooler effect
 		if(is_type_in_typecache(item, allowed) && contents.len < MAX_STUFFINGS)
-			balloon_alert(user, "stuffed in")
+			balloon_alert(user, "塞进去了")
 			var/atom/movable/to_put = item
 			if(isstack(item))
 				var/obj/item/stack/as_stack = item
@@ -236,14 +236,14 @@
 		if(item.reagents)
 			return ..()
 		if(reagents.total_volume < 5)
-			balloon_alert(user, "add more fuel!")
+			balloon_alert(user, "添加更多燃料！")
 			return
 
 		var/obj/item/stack/cable_coil/coil = item
 		if(!istype(coil))
 			return
 		if (coil.get_amount() < 15)
-			balloon_alert(user, "need 15 length!")
+			balloon_alert(user, "需要15单位长度！")
 			return
 		coil.use(15)
 
@@ -256,7 +256,7 @@
 		power *= cur_power
 		power -= contents.len / 2
 
-		balloon_alert(user, "wires attached")
+		balloon_alert(user, "电线已连接")
 		icon_state = "[icon_state]-cable"
 		reagents.flags = SEALED_CONTAINER
 		wires_are_in = TRUE
@@ -265,11 +265,11 @@
 		if(!istype(assembly) || !(assembly.type in allowed_activators))
 			return
 		if(assembly.secured)
-			balloon_alert(user, "unsecure assembly first!")
+			balloon_alert(user, "先解除组装固定！")
 			return
 		if(!user.transferItemToLoc(assembly, src))
 			return
-		user.balloon_alert(user, "attached")
+		user.balloon_alert(user, "已安装")
 
 		var/obj/item/grenade/iedcasing/pipebomb = new(drop_location())
 		for(var/atom/movable/item_inside as anything in contents)

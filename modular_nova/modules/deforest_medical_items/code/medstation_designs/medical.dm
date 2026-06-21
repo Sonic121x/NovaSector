@@ -1,5 +1,5 @@
 /datum/design/organic_printer_balm
-	name = "Red Sun Balm"
+	name = "红日药膏"
 	id = "organic_sun_balm"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/organic_printer_gauze
-	name = "Sealed Aseptic Guaze"
+	name = "密封无菌纱布"
 	id = "organic_gauze"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -21,7 +21,7 @@
 	)
 
 /datum/design/organic_printer_coagulant_f
-	name = "Coagulant-F Packet"
+	name = "凝血剂-F 包"
 	id = "organic_coagulant_pack"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/organic_printer_ointment
-	name = "Ointment"
+	name = "药膏"
 	id = "organic_ointment"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
@@ -43,7 +43,7 @@
 	)
 
 /datum/design/organic_printer_bruise_pack
-	name = "Bruise Packs"
+	name = "瘀伤敷料包"
 	id = "organic_bruise_packs"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
@@ -54,7 +54,7 @@
 	)
 
 /datum/design/organic_printer_amollin_pill
-	name = "Amollin Painkiller"
+	name = "阿莫林止痛药"
 	id = "organic_printer_amollin_pill"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
@@ -65,7 +65,7 @@
 	)
 
 /datum/design/organic_printer_bandaid
-	name = "First Aid Bandage"
+	name = "急救绷带"
 	id = "organic_bandaid"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -76,7 +76,7 @@
 	)
 
 /datum/design/organic_printer_synth_patch
-	name = "Robotic Repair Patch"
+	name = "机器人修复贴片"
 	id = "organic_repair_patch"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -87,7 +87,7 @@
 	)
 
 /datum/design/organic_printer_repair_foam
-	name = "Robotic Repair Spray"
+	name = "机器人修复喷雾"
 	id = "organic_repair_foam"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -98,7 +98,7 @@
 	)
 
 /datum/design/organic_printer_bone_gel
-	name = "Bone Gel"
+	name = "骨胶"
 	id = "organic_bone_gel"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -109,7 +109,7 @@
 	)
 
 /datum/design/organic_printer_surgical_tape
-	name = "Surgical Tape"
+	name = "手术胶带"
 	id = "organic_surgical_tape"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -120,7 +120,7 @@
 	)
 
 /datum/design/organic_printer_protozine
-	name = "Bottle Of Protozine"
+	name = "一瓶原体素"
 	id = "organic_protozine"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 200)

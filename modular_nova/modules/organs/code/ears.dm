@@ -1,7 +1,7 @@
 /// Teshari ears, hold the teshari
 /obj/item/organ/ears/sensitive
-	name = "sensitive ears"
-	desc = "Highly sensitive ears capable of detecting even the smallest noises."
+	name = "灵敏耳朵"
+	desc = "能够侦测最细微声响的高度灵敏耳朵。"
 	damage_multiplier = 2
 	organ_traits = list(TRAIT_SENSITIVE_HEARING)
 	actions_types = list(/datum/action/cooldown/spell/teshari_hearing)
@@ -15,8 +15,8 @@
 	REMOVE_TRAIT(ear_owner, TRAIT_GOOD_HEARING, ORGAN_TRAIT)
 
 /obj/item/organ/ears/teshari
-	name = "teshari ears"
-	desc = "A set of four long rabbit-like ears, a Teshari's main tool while hunting. Naturally extremely sensitive to loud sounds."
+	name = "特莎里耳朵"
+	desc = "四只长长的、兔耳般的耳朵，是特莎里狩猎时的主要工具。天生对巨大声响极为敏感。"
 	damage_multiplier = 1.5
 	actions_types = list(/datum/action/cooldown/spell/teshari_hearing)
 
@@ -29,8 +29,8 @@
 	REMOVE_TRAIT(ear_owner, TRAIT_GOOD_HEARING, ORGAN_TRAIT)
 
 /datum/action/cooldown/spell/teshari_hearing
-	name = "Toggle Sensitive Hearing"
-	desc = "Listen for quiet sounds, useful for picking up whispering."
+	name = "切换灵敏听觉"
+	desc = "聆听微弱声音，对捕捉耳语很有用。"
 	button_icon = 'modular_nova/master_files/icons/hud/actions.dmi'
 	button_icon_state = "echolocation_off"
 	background_icon_state = "bg_alien"

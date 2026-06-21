@@ -1,5 +1,5 @@
 /obj/item/clothing/neck/collar/thick
-	name = "thick choker"
+	name = "厚项圈"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/collar/thick"
 	post_init_icon_state = "thick_choker"
@@ -8,7 +8,7 @@
 
 
 /obj/item/clothing/neck/collar/thick/bell
-	name = "thick bell collar"
+	name = "厚铃铛项圈"
 	desc = /obj/item/clothing/neck/collar/bell::desc
 	greyscale_colors = /obj/item/clothing/neck/collar/bell::greyscale_colors
 	icon = 'icons/map_icons/clothing/neck.dmi'
@@ -24,8 +24,8 @@
 
 
 /obj/item/clothing/neck/collar/thick/cowbell // I'd give this jingling too but it's harder to source a good sample
-	name = "thick cowbell collar"
-	desc = "A collar, fit with a locking buckle - only slight smaller compared to the cowbell attached to it's front!"
+	name = "厚牛铃项圈"
+	desc = "一个项圈，配有锁扣——与挂在它前面的牛铃相比，只是稍微小一点！"
 	icon_state = "/obj/item/clothing/neck/collar/thick/cowbell"
 	post_init_icon_state = "thick_cowbell_collar"
 	greyscale_colors = /obj/item/clothing/neck/collar/cowbell::greyscale_colors
@@ -34,7 +34,7 @@
 
 
 /obj/item/clothing/neck/collar/thick/cross
-	name = "thick cross collar"
+	name = "厚十字项圈"
 	desc = /obj/item/clothing/neck/collar/cross::desc
 	greyscale_colors = /obj/item/clothing/neck/collar/cross::greyscale_colors
 	icon = 'icons/map_icons/clothing/neck.dmi'
@@ -45,7 +45,7 @@
 
 
 /obj/item/clothing/neck/collar/thick/tagged
-	name = "thick tagged collar"
+	name = "厚标签项圈"
 	desc = /obj/item/clothing/neck/collar/tagged::desc
 	greyscale_colors = /obj/item/clothing/neck/collar/tagged::greyscale_colors
 	icon = 'icons/map_icons/clothing/neck.dmi'
@@ -56,7 +56,7 @@
 
 
 /obj/item/clothing/neck/collar/thick/holocollar
-	name = "thick holocollar"
+	name = "厚实全息项圈"
 	desc = /obj/item/clothing/neck/collar/holocollar::desc
 	greyscale_colors = /obj/item/clothing/neck/collar/holocollar::greyscale_colors
 	icon = 'icons/map_icons/clothing/neck.dmi'

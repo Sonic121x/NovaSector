@@ -9,7 +9,7 @@
 	for(var/obj/item/stock_parts/power_store/cell in user.contents)
 		cell.use(1e10, TRUE) // uh oh
 	if(issilicon(user))
-		to_chat(user, span_notice("SYSTEM ALERT: Massive energy drain detected!"))
+		to_chat(user, span_notice("系统警报：检测到大规模能量流失！"))
 
 /datum/artifact_effect/celldrain/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -58,7 +58,7 @@
 	if(issilicon(receiver_atmon))
 		for(var/obj/item/stock_parts/power_store/cell in receiver_atmon.contents)
 			cell.use(power, TRUE)
-		to_chat(receiver_atmon, span_warning("SYSTEM ALERT: Energy drain detected!"))
+		to_chat(receiver_atmon, span_warning("系统警报：检测到能量流失！"))
 
 /**
  * Tries to discharge every rechargable item in artifact range

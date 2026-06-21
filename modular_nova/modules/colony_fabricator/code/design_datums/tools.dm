@@ -1,7 +1,7 @@
 /datum/techweb_node/colony_fabricator_special_tools
 	id = TECHWEB_NODE_COLONY_TOOLS
 	display_name = "Colony Fabricator Tool Designs"
-	description = "Contains all of the colony fabricator's tool designs."
+	description = "包含殖民地制造机的所有工具设计。"
 	design_ids = list(
 		"colony_power_drive",
 		"colony_crowbar",
@@ -16,7 +16,7 @@
 // Screw-Wrench-Wirecutter combo machine
 
 /datum/design/colony_power_driver
-	name = "Powered Driver"
+	name = "动力驱动器"
 	id = "colony_power_drive"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/screwdriver/omni_drill
@@ -33,7 +33,7 @@
 // Regular Crowbar until we invent something else.
 
 /datum/design/colony_crowbar
-	name = "Crowbar"
+	name = "撬棍"
 	id = "colony_crowbar"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/crowbar
@@ -48,7 +48,7 @@
 // Welder that takes no fuel or power to run but is quite slow, at least it sounds cool as hell
 
 /datum/design/colony_arc_welder
-	name = "Arc Welder"
+	name = "电弧焊枪"
 	id = "colony_arc_welder"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/weldingtool/electric/arc_welder
@@ -65,7 +65,7 @@
 // Slightly slower drill that fits in backpacks
 
 /datum/design/colony_compact_drill
-	name = "Compact Mining Drill"
+	name = "紧凑型采矿钻"
 	id = "colony_compact_drill"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/pickaxe/drill/compact

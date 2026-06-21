@@ -1,6 +1,6 @@
 /obj/machinery/vending/dinnerware
-	name = "\improper Plasteel Chef's Dinnerware Vendor"
-	desc = "A kitchen and restaurant equipment vendor."
+	name = "\improper 绝世好钢厨具售货机"
+	desc = "一台厨房和餐厅设备售货机。"
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
 	panel_type = "panel4"

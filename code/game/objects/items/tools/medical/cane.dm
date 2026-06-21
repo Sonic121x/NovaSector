@@ -1,6 +1,6 @@
 /obj/item/cane
-	name = "cane"
-	desc = "A cane used by a true gentleman. Or a clown."
+	name = "手杖"
+	desc = "真正绅士使用的手杖。或者小丑。"
 	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "cane"
 	inhand_icon_state = "stick"
@@ -27,8 +27,8 @@
 	return null
 
 /obj/item/cane/crutch
-	name = "medical crutch"
-	desc = "A medical crutch used by people missing a leg. Not all that useful if you're missing both of them, though."
+	name = "医用拐杖"
+	desc = "供缺腿人士使用的医用拐杖。不过，如果你两条腿都没了，就没那么有用了。"
 	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "crutch_med"
 	inhand_icon_state = "crutch_med"
@@ -49,15 +49,15 @@
 	AddElement(/datum/element/cuffable_item)
 
 /obj/item/cane/crutch/wood
-	name = "wooden crutch"
-	desc = "A handmade crutch. Also makes a decent bludgeon if you need it."
+	name = "木制拐杖"
+	desc = "手工制作的拐杖。如果需要，也能当不错的钝器用。"
 	icon_state = "crutch_wood"
 	inhand_icon_state = "crutch_wood"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/cane/white
-	name = "white cane"
-	desc = "Traditionally used by the blind to help them see. Folds down to be easier to transport."
+	name = "白手杖"
+	desc = "传统上由盲人使用以帮助他们“看见”。可折叠以便于携带。"
 	icon_state = "cane_white"
 	inhand_icon_state = "cane_white"
 	icon_angle = 45
@@ -94,7 +94,7 @@
 	SIGNAL_HANDLER
 
 	if(user)
-		balloon_alert(user, active ? "extended" : "collapsed")
+		balloon_alert(user, active ? "展开" : "收起")
 
 	if(!HAS_TRAIT(src, TRAIT_BLIND_TOOL))
 		ADD_TRAIT(src, TRAIT_BLIND_TOOL, INNATE_TRAIT)

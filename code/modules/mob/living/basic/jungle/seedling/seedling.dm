@@ -7,8 +7,8 @@
  * It can pick up watering cans and look after plants.
  */
 /mob/living/basic/seedling
-	name = "seedling"
-	desc = "This oversized, predatory flower conceals what can only be described as an organic energy cannon."
+	name = "幼苗"
+	desc = "这朵超大的捕食性花朵隐藏着一个只能被描述为有机能量炮的东西。"
 	icon = 'icons/mob/simple/jungle/seedling.dmi'
 	icon_state = "seedling"
 	icon_living = "seedling"
@@ -104,12 +104,12 @@
 /mob/living/basic/seedling/proc/treat_hydro_tray(obj/machinery/hydroponics/hydro)
 
 	if(hydro.plant_status == HYDROTRAY_PLANT_DEAD)
-		balloon_alert(src, "dead plant removed")
+		balloon_alert(src, "已移除死去的植物")
 		hydro.set_seed(null)
 		return
 
 	if(hydro.weedlevel > 0)
-		balloon_alert(src, "weeds uprooted")
+		balloon_alert(src, "已拔除杂草")
 		hydro.set_weedlevel(0)
 		return
 
@@ -221,10 +221,10 @@
 
 //abilities
 /datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/seedling
-	name = "Solar Energy"
+	name = "太阳能"
 	button_icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	button_icon_state = "seedling"
-	desc = "Fire small beams of solar energy."
+	desc = "发射小型太阳能光束。"
 	cooldown_time = 10 SECONDS
 	projectile_type = /obj/projectile/seedling
 	default_projectile_spread = 10
@@ -251,7 +251,7 @@
 	var/mob/living/basic/seedling/seed_owner = owner
 	if(seed_owner.combatant_state != SEEDLING_STATE_NEUTRAL)
 		if(feedback)
-			seed_owner.balloon_alert(seed_owner, "charging!")
+			seed_owner.balloon_alert(seed_owner, "充能中！")
 		return FALSE
 	return TRUE
 
@@ -273,10 +273,10 @@
 
 
 /datum/action/cooldown/mob_cooldown/solarbeam
-	name = "Solar Beam"
+	name = "日光束"
 	button_icon = 'icons/effects/beam.dmi'
 	button_icon_state = "solar_beam"
-	desc = "Concentrate the power of the sun onto your target!"
+	desc = "将太阳的力量聚焦到你的目标上！"
 	cooldown_time = 30 SECONDS
 	shared_cooldown = NONE
 	///how long will it take for us to charge up the beam
@@ -299,7 +299,7 @@
 	var/mob/living/basic/seedling/seed_owner = owner
 	if(seed_owner.combatant_state != SEEDLING_STATE_NEUTRAL)
 		if(feedback)
-			seed_owner.balloon_alert(seed_owner, "charging!")
+			seed_owner.balloon_alert(seed_owner, "充能中！")
 		return FALSE
 	return TRUE
 

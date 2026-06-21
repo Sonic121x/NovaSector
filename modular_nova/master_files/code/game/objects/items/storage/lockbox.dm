@@ -1,7 +1,7 @@
 // Syndicate Admiral's Medals box
 /obj/item/storage/lockbox/medal/nova/synd
-	name = "syndicate medal box"
-	desc = "A locked box used to store medals of honor."
+	name = "辛迪加勋章盒"
+	desc = "一个用于存放荣誉勋章的带锁盒子。"
 	icon = 'modular_nova/master_files/icons/obj/box.dmi'
 	icon_state = "syndbox+l"
 	inhand_icon_state = "syringe_kit"

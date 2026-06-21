@@ -1,8 +1,8 @@
 /obj/structure/blob/special/node
-	name = "blob node"
+	name = "孢子节点"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blank_blob"
-	desc = "A large, pulsating yellow mass."
+	desc = "一个大的、跳动的黄色团块。"
 	max_integrity = BLOB_NODE_MAX_HP
 	health_regen = BLOB_NODE_HP_REGEN
 	armor_type = /datum/armor/special_node

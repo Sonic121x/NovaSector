@@ -1,6 +1,6 @@
 /obj/item/implant/freedom
-	name = "freedom implant"
-	desc = "Use this to escape from those evil Red Shirts."
+	name = "自由植入物"
+	desc = "用这个来逃离那些邪恶的红衫军。"
 	icon_state = "freedom"
 	implant_color = "r"
 	uses = FREEDOM_IMPLANT_CHARGES
@@ -19,7 +19,7 @@
 	if(!.)
 		return FALSE
 	if(!iscarbon(target)) //This is pretty much useless for anyone else since they can't be cuffed
-		balloon_alert(user, "that would be a waste!")
+		balloon_alert(user, "那太浪费了！")
 		return FALSE
 	return TRUE
 
@@ -27,7 +27,7 @@
 	. = ..()
 	var/mob/living/carbon/carbon_imp_in = imp_in
 	if(!can_trigger(carbon_imp_in))
-		balloon_alert(carbon_imp_in, "no restraints!")
+		balloon_alert(carbon_imp_in, "没有束缚！")
 		return
 
 	uses--
@@ -58,12 +58,12 @@
 
 
 /obj/item/implanter/freedom
-	name = "implanter" // NOVA EDIT , was implanter (freedom)
+	name = "植入器" // NOVA EDIT , was implanter (freedom)
 	imp_type = /obj/item/implant/freedom
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // NOVA EDIT
 	special_desc = "A Syndicate implanter used for a freedom implant" // NOVA EDIT
 
 /obj/item/implantcase/freedom
 	name = "implant case - 'Freedom'"
-	desc = "A glass case containing a freedom implant."
+	desc = "一个装有自由植入物的玻璃盒。"
 	imp_type = /obj/item/implant/freedom

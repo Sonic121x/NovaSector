@@ -1,6 +1,6 @@
 
 /obj/effect/anomaly/bioscrambler
-	name = "bioscrambler anomaly"
+	name = "生物扰乱异常"
 	icon_state = "bioscrambler"
 	anomaly_core = /obj/item/assembly/signaler/anomaly/bioscrambler
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS

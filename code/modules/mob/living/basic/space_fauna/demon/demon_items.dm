@@ -1,7 +1,7 @@
 /// The loot from killing a slaughter demon - can be consumed to allow the user to blood crawl
 /obj/item/organ/heart/demon
-	name = "demon heart"
-	desc = "Still it beats furiously, emanating an aura of utter hate."
+	name = "恶魔心脏"
+	desc = "它仍在剧烈跳动，散发着彻底的憎恨气息。"
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "demon_heart-on"
 	decay_factor = 0
@@ -15,19 +15,19 @@
 		return ..()
 
 	user.visible_message(
-		span_warning("[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!"),
-		span_danger("An unnatural hunger consumes you. You raise [src] your mouth and devour it!"),
+		span_warning("[user]将[src]举到[user.p_their()]嘴边，用[user.p_their()]的牙齿撕咬它！"),
+		span_danger("一股非自然的饥饿感吞噬了你。你将[src]举到嘴边并吞食了它！"),
 	)
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 
 	if(locate(/datum/action/cooldown/spell/jaunt/bloodcrawl) in user.actions)
-		to_chat(user, span_warning("...and you don't feel any different."))
+		to_chat(user, span_warning("...而你并没有感到任何不同。"))
 		qdel(src)
 		return
 
 	user.visible_message(
-		span_warning("[user]'s eyes flare a deep crimson!"),
-		span_userdanger("You feel a strange power seep into your body... you have absorbed the demon's blood-travelling powers!"),
+		span_warning("[user]的双眼迸发出深红色的光芒！"),
+		span_userdanger("你感到一股奇异的力量渗入你的身体……你已吸收了恶魔的血行能力！"),
 	)
 
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -48,8 +48,8 @@
 	return FALSE // Always beating.
 
 /obj/effect/decal/cleanable/blood/innards
-	name = "pile of viscera"
-	desc = "A repulsive pile of guts and gore."
+	name = "一堆内脏"
+	desc = "一堆令人作呕的肠子和血块。"
 	gender = NEUTER
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "innards"

@@ -1,56 +1,56 @@
 /obj/item/ammo_box/advanced/s12gauge
-	name = "shell box (slugs)"
-	desc = "A box of 15 slug shells. Large, singular shots that pack a punch."
+	name = "弹药盒（独头弹）"
+	desc = "一盒15发独头弹。威力强大的单发大口径子弹。"
 	icon = 'modular_nova/modules/shotgunrebalance/icons/shotbox.dmi'
 	icon_state = "slug"
 	ammo_type = /obj/item/ammo_casing/shotgun
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/buckshot
-	name = "shell box (buckshot)"
-	desc = "A box of 15 buckshot shells. These have a modest spread of weaker projectiles."
+	name = "弹药盒（鹿弹）"
+	desc = "一盒15发鹿弹。这些子弹会散射出威力较弱的弹丸。"
 	icon_state = "buckshot"
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/rubber
-	name = "shell box (rubber shot)"
-	desc = "A box of 15 rubber shot shells. These have a modest spread of weaker, less-lethal projectiles."
+	name = "弹药盒（橡胶弹）"
+	desc = "一盒15发橡胶弹。这些子弹会散射出威力较弱、非致命的弹丸。"
 	icon_state = "rubber"
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/bean
-	name = "shell box (beanbag slugs)"
-	desc = "A box of 15 beanbag slug shells. These are large, singular beanbags that pack a less-lethal punch."
+	name = "弹药盒（豆袋弹）"
+	desc = "一盒15发豆袋独头弹。这些是大型的单发豆袋，具有非致命的冲击力。"
 	icon_state = "bean"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/magnum
-	name = "shell box (magnum blockshot)"
-	desc = "A box of 15 magnum blockshot shells. The size of the pellet is larger in diameter than the typical shot, but there are less of them inside each shell."
+	name = "弹药盒（马格南块状弹）"
+	desc = "一盒15发马格南块状弹。弹丸直径比典型霰弹更大，但每发弹壳内含的弹丸数量较少。"
 	icon_state = "magnum"
 	ammo_type = /obj/item/ammo_casing/shotgun/magnum
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/express
-	name = "shell box (express pelletshot)"
-	desc = "A box of 15 express pelletshot shells. The size of the pellet is smaller in diameter than the typical shot, but there are more of them inside each shell."
+	name = "弹药盒（高速霰弹）"
+	desc = "一盒15发高速霰弹。弹丸直径比典型霰弹更小，但每发弹壳内含的弹丸数量更多。"
 	icon_state = "express"
 	ammo_type = /obj/item/ammo_casing/shotgun/express
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/hunter
-	name = "shell box (hunter slug)"
-	desc = "A box of 15 hunter slug shells. These shotgun slugs excel at damaging the local fauna."
+	name = "弹药盒（猎手独头弹）"
+	desc = "一盒15发猎手独头弹。这些霰弹独头弹擅长伤害当地动物。"
 	icon_state = "hunter"
 	ammo_type = /obj/item/ammo_casing/shotgun/hunter
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/flechette
-	name = "shell box (ripper flechette)"
-	desc = "A box of 15 ripper flechette shells. Each shell contains a small group of tumbling blades that excel at causing terrible wounds."
+	name = "弹药盒（撕裂者箭弹）"
+	desc = "一盒15发撕裂者箭弹。每发弹壳内含有一组翻滚的刀片，擅长造成可怕的伤口。"
 	icon_state = "flechette"
 	ammo_type = /obj/item/ammo_casing/shotgun/flechette_nova
 	max_ammo = 15
@@ -63,36 +63,36 @@
 	max_ammo = 10
 
 /obj/item/ammo_box/advanced/s12gauge/beehive
-	name = "shell box (hornet's nest)"
-	desc = "A box of 15 hornet's nest shells. These are less-lethal shells that will bounce off walls and direct themselves toward nearby targets."
+	name = "弹药盒（蜂巢弹）"
+	desc = "一盒15发蜂巢弹。这些是低致命性弹头，会从墙壁反弹并导向附近的目标。"
 	icon_state = "beehive"
 	ammo_type = /obj/item/ammo_casing/shotgun/beehive
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/antitide
-	name = "shell box (stardust)"
-	desc = "A box of 15 stardust shells. These are less-lethal, firing a cable that embeds in target, draining stamina while connected in a manner similar to tasers."
+	name = "弹药盒（星尘弹）"
+	desc = "一盒15发星尘弹。这些是低致命性弹头，发射一根电缆嵌入目标，在连接时以类似电击枪的方式消耗体力。"
 	icon_state = "antitide"
 	ammo_type = /obj/item/ammo_casing/shotgun/antitide
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/incendiary
-	name = "shell box (incendiary slug)"
-	desc = "A box of 15 incendiary slug shells. These will ignite targets and leave a trail of fire behind them."
+	name = "弹药盒（燃烧独头弹）"
+	desc = "一盒15发燃烧独头弹。这些弹头会点燃目标并在身后留下一道火焰轨迹。"
 	icon_state = "incendiary"
 	ammo_type = /obj/item/ammo_casing/shotgun/incendiary
 	max_ammo = 15
 
 /obj/item/ammo_box/advanced/s12gauge/honkshot
-	name = "shell box (confetti)"
-	desc = "A box of 35 confetti shells, for making a gratuitous mess."
+	name = "弹药盒（彩花弹）"
+	desc = "一盒35发彩花弹，用于制造不必要的混乱。"
 	icon_state = "honk"
 	ammo_type = /obj/item/ammo_casing/shotgun/honkshot
 	max_ammo = 35
 
 /obj/item/ammo_box/advanced/s12gauge/milspec
-	name = "shell box (milspec slug)"
-	desc = "A box of 15 hot-loaded milspec slug shells manufactured by Scarborough Arms. Faster and harder-hitting than conventional slugs."
+	name = "弹药盒（军用规格独头弹）"
+	desc = "一盒15发斯卡伯勒武器公司制造的热装药军用规格独头弹。比传统独头弹更快、威力更强。"
 	icon_state = "mslug"
 	ammo_type = /obj/item/ammo_casing/shotgun/milspec
 	max_ammo = 15
@@ -102,8 +102,8 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SCARBOROUGH)
 
 /obj/item/ammo_box/advanced/s12gauge/buckshot/milspec
-	name = "shell box (milspec buckshot)"
-	desc = "A box of 15 hot-loaded milspec buckshot shells manufactured by Scarborough Arms. Faster and harder-hitting than conventional buckshot."
+	name = "弹药盒（军用规格鹿弹）"
+	desc = "一盒15发斯卡伯勒武器公司制造的热装药军用规格鹿弹。比传统鹿弹更快、威力更强。"
 	icon_state = "mbuckshot"
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot/milspec
 	max_ammo = 15

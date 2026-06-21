@@ -5,112 +5,112 @@
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/moth/reddish
-	name = "Reddish"
+	name = "微红"
 	icon_state = "reddish"
 
 /datum/body_marking/moth/royal
-	name = "Royal"
+	name = "皇家"
 	icon_state = "royal"
 
 /datum/body_marking/moth/gothic
-	name = "Gothic"
+	name = "哥特"
 	icon_state = "gothic"
 
 /datum/body_marking/moth/whitefly
-	name = "Whitefly"
+	name = "白蝇"
 	icon_state = "whitefly"
 
 /datum/body_marking/moth/burnt_off
-	name = "Burnt Off"
+	name = "烧蚀"
 	icon_state = "burnt_off"
 
 /datum/body_marking/moth/deathhead
-	name = "Deathhead"
+	name = "死亡头"
 	icon_state = "deathhead"
 
 /datum/body_marking/moth/poison
-	name = "Poison"
+	name = "剧毒"
 	icon_state = "poison"
 
 /datum/body_marking/moth/ragged
-	name = "Ragged"
+	name = "褴褛"
 	icon_state = "ragged"
 
 /datum/body_marking/moth/moonfly
-	name = "Moonfly"
+	name = "月蛾"
 	icon_state = "moonfly"
 
 /datum/body_marking/moth/oakworm
-	name = "Oakworm"
+	name = "橡木虫"
 	icon_state = "oakworm"
 
 /datum/body_marking/moth/jungle
-	name = "Jungle"
+	name = "丛林"
 	icon_state = "jungle"
 
 /datum/body_marking/moth/witchwing
-	name = "Witchwing"
+	name = "巫翼"
 	icon_state = "witchwing"
 
 /datum/body_marking/moth/lovers
-	name = "Lovers"
+	name = "爱侣"
 	icon_state = "lovers"
 
 /datum/body_marking/moth/lightbearer
-	name = "Lightbearer"
+	name = "持光者"
 	icon_state = "lightbearer"
 
 /datum/body_marking/moth/grayscale
 	icon = 'modular_nova/master_files/icons/mob/body_markings/moth_grayscale_markings.dmi'
 
 /datum/body_marking/moth/grayscale/reddish
-	name = "Reddish Grayscale"
+	name = "微红灰阶"
 	icon_state = "reddish"
 
 /datum/body_marking/moth/grayscale/royal
-	name = "Royal Grayscale"
+	name = "皇家灰阶"
 	icon_state = "royal"
 
 /datum/body_marking/moth/grayscale/gothic
-	name = "Gothic Grayscale"
+	name = "哥特灰阶"
 	icon_state = "gothic"
 
 /datum/body_marking/moth/grayscale/whitefly
-	name = "Whitefly Grayscale"
+	name = "白蝇灰阶"
 	icon_state = "whitefly"
 
 /datum/body_marking/moth/grayscale/burnt_off
-	name = "Burnt Off Grayscale"
+	name = "烧蚀灰阶"
 	icon_state = "burnt_off"
 
 /datum/body_marking/moth/grayscale/deathhead
-	name = "Deathhead Grayscale"
+	name = "死亡头灰阶"
 	icon_state = "deathhead"
 
 /datum/body_marking/moth/grayscale/poison
-	name = "Poison Grayscale"
+	name = "毒物灰阶"
 	icon_state = "poison"
 
 /datum/body_marking/moth/grayscale/ragged
-	name = "Ragged Grayscale"
+	name = "破败灰阶"
 	icon_state = "ragged"
 
 /datum/body_marking/moth/grayscale/moonfly
-	name = "Moonfly Grayscale"
+	name = "月蛾灰阶"
 	icon_state = "moonfly"
 
 /datum/body_marking/moth/grayscale/oakworm
-	name = "Oakworm Grayscale"
+	name = "橡木虫灰阶"
 	icon_state = "oakworm"
 
 /datum/body_marking/moth/grayscale/jungle
-	name = "Jungle Grayscale"
+	name = "丛林灰阶"
 	icon_state = "jungle"
 
 /datum/body_marking/moth/grayscale/witchwing
-	name = "Witchwing Grayscale"
+	name = "巫翼灰阶"
 	icon_state = "witchwing"
 
 /datum/body_marking/moth/grayscale/lovers
-	name = "Lovers Grayscale"
+	name = "恋人灰阶"
 	icon_state = "lovers"

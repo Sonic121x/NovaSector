@@ -1,6 +1,6 @@
 /obj/item/stack/sheet/mineral/stone
-	name = "stone"
-	desc = "Stone brick."
+	name = "石材"
+	desc = "石砖。"
 	singular_name = "stone block"
 	icon = 'modular_nova/modules/stone/icons/ore.dmi'
 	icon_state = "sheet-stone"
@@ -34,8 +34,8 @@ GLOBAL_LIST_INIT(stone_recipes, list (
 	. += GLOB.stone_recipes
 
 /datum/material/stone
-	name = "stone"
-	desc = "It's stone."
+	name = "石材"
+	desc = "这是石头。"
 	mat_flags = MATERIAL_CLASS_RIGID | MATERIAL_BASIC_RECIPES
 	mat_properties = list(
 		MATERIAL_DENSITY = 5,
@@ -53,8 +53,8 @@ GLOBAL_LIST_INIT(stone_recipes, list (
 	turf_sound_override = FOOTSTEP_PLATING
 
 /obj/item/stack/stone
-	name = "rough stone"
-	desc = "Large chunks of uncut stone, tough enough to safely build out of... if you could manage to cut them into something usable."
+	name = "粗石"
+	desc = "大块的未切割石头，足够坚固可以安全地用于建造……如果你能设法把它们切割成可用的东西。"
 	icon = 'modular_nova/modules/stone/icons/ore.dmi'
 	icon_state = "stone_ore"
 	singular_name = "rough stone boulder"
@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(stone_recipes, list (
 
 /obj/item/stack/stone/examine()
 	. = ..()
-	. += span_notice("With a <b>chisel</b> or even a <b>pickaxe</b> of some kind, you could cut this into <b>blocks</b>.")
+	. += span_notice("用<b>凿子</b>或某种<b>镐</b>，你可以把它切割成<b>石块</b>。")
 
 /obj/item/stack/stone/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if((attacking_item.tool_behaviour != TOOL_MINING) && !(istype(attacking_item, /obj/item/chisel)))
@@ -79,9 +79,9 @@ GLOBAL_LIST_INIT(stone_recipes, list (
 	qdel(src)
 
 /obj/item/stack/tile/mineral/stone
-	name = "stone tile"
+	name = "石砖地砖"
 	singular_name = "stone floor tile"
-	desc = "A tile made of stone bricks, for that fortress look."
+	desc = "由石砖制成的地砖，营造出堡垒般的外观。"
 	icon_state = "tile_herringbone"
 	inhand_icon_state = "tile"
 	turf_type = /turf/open/floor/stone
@@ -90,11 +90,11 @@ GLOBAL_LIST_INIT(stone_recipes, list (
 	merge_type = /obj/item/stack/tile/mineral/stone
 
 /turf/open/floor/stone
-	desc = "Blocks of stone arranged in a tile-like pattern, odd, really, how it looks like real stone too, because it is!" //A play on the original description for stone tiles
+	desc = "以类似地砖的图案排列的石块，奇怪的是，它看起来也像真石头，因为它就是！" //A play on the original description for stone tiles
 
 /turf/closed/wall/mineral/stone
-	name = "stone wall"
-	desc = "A wall made of solid stone bricks."
+	name = "石墙"
+	desc = "由坚固石砖砌成的墙。"
 	icon = 'modular_nova/modules/stone/icons/wall.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
@@ -122,8 +122,8 @@ GLOBAL_LIST_INIT(stone_recipes, list (
 	return TRUE
 
 /turf/closed/indestructible/stone
-	name = "stone wall"
-	desc = "A wall made of unusually solid stone bricks."
+	name = "石墙"
+	desc = "一堵由异常坚固的石砖砌成的墙。"
 	icon = 'modular_nova/modules/stone/icons/wall.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
@@ -135,8 +135,8 @@ GLOBAL_LIST_INIT(stone_recipes, list (
 	)
 
 /obj/structure/falsewall/stone
-	name = "stone wall"
-	desc = "A wall made of solid stone bricks."
+	name = "石墙"
+	desc = "一堵由坚固石砖砌成的墙。"
 	icon = 'modular_nova/modules/stone/icons/wall.dmi'
 	icon_state = "wall-open"
 	base_icon_state = "wall"

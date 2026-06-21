@@ -1,10 +1,10 @@
 /datum/round_event_control/shuttle_catastrophe
-	name = "Shuttle Catastrophe"
+	name = "穿梭机灾难"
 	typepath = /datum/round_event/shuttle_catastrophe
 	weight = 10
 	max_occurrences = 1
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "Replaces the emergency shuttle with a random one."
+	description = "用随机一艘穿梭机替换紧急穿梭机。"
 	admin_setup = list(/datum/event_admin_setup/warn_admin/shuttle_catastrophe, /datum/event_admin_setup/listed_options/shuttle_catastrophe)
 
 /datum/round_event_control/shuttle_catastrophe/can_spawn_event(players, allow_magic = FALSE)
@@ -35,7 +35,7 @@
 			message += " You have been awarded a bonus from [command_name()] for smart spending."
 	else
 		message += "Your replacement shuttle will be the [new_shuttle.name] until further notice."
-	priority_announce(message, "[command_name()] Spacecraft Engineering")
+	priority_announce(message, "[command_name()] 航天器工程部")
 
 /datum/round_event/shuttle_catastrophe/setup()
 	if(SSshuttle.shuttle_insurance || !isnull(new_shuttle)) //If an admin has overridden it don't re-roll it

@@ -57,7 +57,7 @@
 	var/datum/gas_mixture/env = .
 	env.temperature = clamp(env.temperature - 100, target_temp_low, target_temp_high)
 	holder.air_update_turf(FALSE, FALSE)
-	to_chat(user, span_warning("A chill passes up your spine!"))
+	to_chat(user, span_warning("一股寒意顺着你的脊背爬了上来！"))
 
 /datum/artifact_effect/temperature/cold/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -93,7 +93,7 @@
 	var/amount_to_change = (target_temp_high - env.temperature) / 4
 	env.temperature = clamp(env.temperature + amount_to_change, target_temp_low, target_temp_high)
 	holder.air_update_turf(FALSE, FALSE)
-	to_chat(user, span_warning("You feel a wave of heat travel up your spine!"))
+	to_chat(user, span_warning("你感到一股热浪顺着你的脊背涌了上来！"))
 
 /datum/artifact_effect/temperature/heat/do_effect_aura(seconds_per_tick)
 	. = ..()

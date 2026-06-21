@@ -1,7 +1,7 @@
 /datum/surgery_operation/organ/fix_wings
-	name = "repair wings"
+	name = "修复翅膀"
 	rnd_name = "Pteroplasty (Wing Repair)"
-	desc = "Repair a patient's damaged wings to restore flight capability."
+	desc = "修复患者受损的翅膀以恢复飞行能力。"
 	rnd_desc = "A surgical procedure that repairs damaged wings using Synthflesh."
 	implements = list(
 		TOOL_HEMOSTAT = 1.15,
@@ -19,10 +19,10 @@
 	return image(icon = 'icons/mob/human/species/moth/moth_wings.dmi', icon_state = "m_moth_wings_monarch_BEHIND")
 
 /datum/surgery_operation/organ/fix_wings/all_required_strings()
-	return ..() + list("the wings must be burnt", "the patient must be dosed with >=5u [/datum/reagent/medicine/c2/synthflesh::name]")
+	return ..() + list("翅膀必须被烧焦", "患者必须摄入 >=5u [/datum/reagent/medicine/c2/synthflesh::name]")
 
 /datum/surgery_operation/organ/fix_wings/all_blocked_strings()
-	return ..() + list("if the limb has bones, they must be intact")
+	return ..() + list("如果肢体有骨骼，它们必须完好无损")
 
 /datum/surgery_operation/organ/fix_wings/state_check(obj/item/organ/wings/moth/organ)
 	if(!organ.burnt)

@@ -161,7 +161,7 @@
 	var/successful_toggle = light.toggle_light(user)
 	if(!successful_toggle)
 		return TRUE
-	user.balloon_alert(user, "[light.name] toggled [light.light_on ? "on":"off"]")
+	user.balloon_alert(user, "[light.name] 切换了 [light.light_on ? "on":"off"]")
 	update_light()
 	return TRUE
 
@@ -219,14 +219,14 @@
 		return
 
 	if(light)
-		source.balloon_alert(attacker, "already has \a [light]!")
+		source.balloon_alert(attacker, "已经有一个 \a [light] 了！")
 		return
 
 	if(!attacker.transferItemToLoc(attacking_item, source))
 		return
 
 	add_light(attacking_item, attacker)
-	source.balloon_alert(attacker, "attached [attacking_item]")
+	source.balloon_alert(attacker, "安装了 [attacking_item]")
 	return COMPONENT_NO_AFTERATTACK
 
 /// Signal proc for [COMSIG_ATOM_TOOL_ACT] via [TOOL_SCREWDRIVER] that removes any attached seclite.
@@ -242,7 +242,7 @@
 /// Invoked asyncronously from [proc/on_screwdriver]. Handles removing the light from our parent.
 /datum/component/seclite_attachable/proc/unscrew_light(obj/item/source, mob/user, obj/item/tool)
 	tool?.play_tool_sound(source)
-	source.balloon_alert(user, "unscrewed [light]")
+	source.balloon_alert(user, "拧下了[light]")
 
 	var/obj/item/flashlight/seclite/to_remove = light
 

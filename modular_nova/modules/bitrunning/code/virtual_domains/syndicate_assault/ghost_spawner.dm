@@ -1,13 +1,13 @@
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/syndie
-	name = "delayed secure connection"
-	desc = "Constant 'handshake no response' errors are flickering across the static-covered figure."
+	name = "延迟安全连接"
+	desc = "持续不断的'握手无响应'错误在覆盖着静电的人形上闪烁。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "static"
-	prompt_name = "a cybersun counter-bitrunner avatar"
-	you_are_text = "You are a virtual avatar of a Cybersun-aligned counter-bitrunner, or an aligned SNPC."
+	prompt_name = "一个赛博太阳反比特行者化身"
+	you_are_text = "你是一个赛博太阳阵营的反比特行者虚拟化身，或一个友方SNPC。"
 	flavour_text = "Servers are throwing intrusion errors - you are here to fix the problem. \
 	Running from your own servers, you have the ability to revive your colleagues without the fear of being tossed out."
-	important_text = "Stalling for long enough will also allow us to recoup the costs. Complete denial is still preferable."
+	important_text = "拖延足够长的时间也能让我们收回成本。当然，完全阻止入侵仍是首选。"
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/syndie/proc/apply_pref_alias(mob/living/carbon/human/spawned_human)
@@ -29,8 +29,8 @@
 	apply_pref_alias(spawned_human)
 
 /datum/action/cooldown/spell/home_network
-	name = "Home Network"
-	desc = "Makes the caster immune to many forms of practical hacks, backing themselves to the home network."
+	name = "主网络"
+	desc = "使施法者对多种形式的实用黑客攻击免疫，将自身连接到主网络。"
 
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "bci_shield"
@@ -47,8 +47,8 @@
 /datum/action/cooldown/spell/home_network/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.visible_message(
-		span_warning("Numerous loading bars and nano-scale hexagonal energy shields briefly cover [cast_on]!"),
-		span_notice("You protect yourself from foreign intrusion!"),
+		span_warning("众多加载条和纳米级六边形能量护盾短暂覆盖了[cast_on]！"),
+		span_notice("你保护自己免受外部入侵！"),
 	)
 	ADD_TRAIT(cast_on, TRAIT_ANTIMAGIC, REF(src))
 	Remove(cast_on)

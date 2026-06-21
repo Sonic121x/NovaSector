@@ -1,6 +1,6 @@
 /obj/item/clothing/under/abductor
-	desc = "The most advanced form of jumpsuit known to reality, looks uncomfortable."
-	name = "alien jumpsuit"
+	desc = "现实中所知最先进的连体服，看起来不太舒服。"
+	name = "外星连体服"
 	icon = 'icons/obj/clothing/under/syndicate.dmi'
 	icon_state = "abductor"
 	inhand_icon_state = "bl_suit"
@@ -13,8 +13,8 @@
 
 //AGENT VEST
 /obj/item/clothing/suit/armor/abductor/vest
-	name = "agent vest"
-	desc = "A vest outfitted with advanced stealth technology. It has two modes - combat and stealth."
+	name = "特工背心"
+	desc = "一件配备了先进隐形技术的背心。它有两种模式——战斗和潜行。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "vest_stealth"
 	inhand_icon_state = "armor"
@@ -62,7 +62,7 @@
 	else
 		ADD_TRAIT(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT)
 	if(ismob(loc))
-		to_chat(loc, span_notice("Your vest is now [HAS_TRAIT_FROM(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT) ? "locked" : "unlocked"]."))
+		to_chat(loc, span_notice("你的背心现在已[HAS_TRAIT_FROM(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT) ? "locked" : "unlocked"]。"))
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/flip_mode()
 	switch(mode)
@@ -157,7 +157,7 @@
 /obj/item/clothing/suit/armor/abductor/vest/proc/Adrenaline()
 	if(ishuman(loc))
 		if(combat_cooldown < initial(combat_cooldown))
-			to_chat(loc, span_warning("Combat injection is still recharging."))
+			to_chat(loc, span_warning("战斗注射剂仍在充能中。"))
 			return
 		var/mob/living/carbon/human/wearer = loc
 		wearer.adjust_stamina_loss(-75)

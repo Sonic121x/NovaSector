@@ -1,7 +1,7 @@
 //does brute, burn, and toxin damage, and cools targets down
 /datum/blobstrain/reagent/cryogenic_poison
-	name = "Cryogenic Poison"
-	description = "will inject targets with a freezing poison, applying little impact damage but dealing high damage over time."
+	name = "Cryogenic Poison-低温毒药"
+	description = "将向目标注入一种冷冻毒素，造成较低的冲击伤害，但会随时间造成高伤害。"
 	analyzerdescdamage = "Injects targets with a freezing poison that will gradually solidify the target's internal organs."
 	color = "#8BA6E9"
 	complementary_color = "#7D6EB4"
@@ -11,8 +11,8 @@
 	reagent = /datum/reagent/blob/cryogenic_poison
 
 /datum/reagent/blob/cryogenic_poison
-	name = "Cryogenic Poison"
-	description = "A freezing poison that does high damage over time. Cryogenic poison blobs inject this into their victims."
+	name = "Cryogenic Poison-低温毒药"
+	description = "一种造成高持续伤害的冷冻毒素。冷冻毒素胞质将此注入受害者体内。"
 	color = "#8BA6E9"
 	taste_description = "brain freeze"
 

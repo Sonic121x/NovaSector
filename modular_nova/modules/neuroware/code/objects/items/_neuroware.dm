@@ -12,7 +12,7 @@
 ///Data chip which contextualizes drugs as "software" for synthetic brains.
 ///Like pills, but doesn't directly contain reagents, instead adds them manually.
 /obj/item/disk/neuroware
-	name = "neuroware chip"
+	name = "神经软件芯片"
 	special_desc = "A neuroware chip uploads neurocomputing programs to the user's brain. The recipient must have a NIF implant or a synthetic brain. \
 		Neurocomputing software, also known as neuroware, are programs designed to execute their code within the synaptic connections of neural networks."
 	icon = 'modular_nova/modules/neuroware/icons/neuroware.dmi'
@@ -74,23 +74,23 @@
 /obj/item/disk/neuroware/examine()
 	. = ..()
 	if(uses <= 0)
-		. += span_notice("It is spent.")
+		. += span_notice("它已耗尽。")
 		return
 	if(can_hack)
-		. += span_notice("Its overload safety could be [can_overdose ? "enabled" : "disabled"] with a screwdriver.")
-	. += span_notice("It has [uses] user license[uses > 1 ? "s" : ""] left.")
+		. += span_notice("它的过载安全装置可以用螺丝刀[can_overdose ? "enabled" : "disabled"]。")
+	. += span_notice("它还有[uses]个用户许可证[uses > 1 ? "s" : ""]剩余。")
 
 // Toggle reagent overdose (overload) prevention
 /obj/item/disk/neuroware/screwdriver_act(mob/living/user, obj/item/screwdriver)
 	if(!can_hack)
 		return FALSE
 	if(uses <= 0)
-		balloon_alert(user, "it's been used up!")
+		balloon_alert(user, "它已经用完了！")
 		return FALSE
-	balloon_alert(user, "[can_overdose ? "enabling" : "disabling"] safety...")
+	balloon_alert(user, "[can_overdose ? "enabling" : "disabling"]安全模式...")
 	screwdriver.play_tool_sound(src, 100)
 	if(!screwdriver.use_tool(src, user, 2 SECONDS))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return FALSE
 
 	can_overdose = !can_overdose
@@ -102,7 +102,7 @@
 		vary = TRUE,
 		extrarange = SILENCED_SOUND_EXTRARANGE
 	)
-	balloon_alert(user, "safety [can_overdose ? "disabled" : "enabled"]")
+	balloon_alert(user, "安全模式[can_overdose ? "disabled" : "enabled"]")
 	return TRUE
 
 /obj/item/disk/neuroware/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -140,7 +140,7 @@
 	if(!ishuman(target))
 		return
 	if(uses == 0)
-		balloon_alert(user, "it's been used up!")
+		balloon_alert(user, "它已经用完了！")
 		return
 
 	var/slot_name = SYNTH_SLOT_NAME
@@ -150,36 +150,36 @@
 	if(isnull(owner_brain) || !(owner_brain.organ_flags & ORGAN_ROBOTIC))
 		var/obj/item/organ/cyberimp/brain/nif/nif_implant = target.get_organ_slot(ORGAN_SLOT_BRAIN_NIF)
 		if(isnull(nif_implant) || nif_implant.broken)
-			balloon_alert(user, "synthetic brain or NIF required!")
+			balloon_alert(user, "需要合成大脑或NIF！")
 			return
 		// Target lacks a robotic brain, so use the NIF
 		slot_name = "[nif_implant] slot"
 
 	if(is_lewd && !(target.client?.prefs.read_preference(/datum/preference/toggle/erp/aphro)))
-		balloon_alert(user, "installation failed!")
+		balloon_alert(user, "安装失败！")
 		return
 
 	if(target != user)
 		target.visible_message(
-			span_danger("[user] tries to force [src] into [target]'s [slot_name]!"),
-			span_userdanger("[user] tries to force [src] into your [slot_name]!")
+			span_danger("[user]试图将[src]强行塞入[target]的[slot_name]！"),
+			span_userdanger("[user]试图将[src]强行塞入你的[slot_name]！")
 		)
 		if(target.is_blind())
-			to_chat(target, span_userdanger("You feel something being inserted into your [slot_name]!"))
+			to_chat(target, span_userdanger("你感觉到有什么东西被塞进了你的[slot_name]！"))
 		if(external_delay > 0)
 			user.balloon_alert_to_viewers("inserting chip...")
 			if(!do_after(user, 5 SECONDS, target))
 				return
 		target.visible_message(
-			span_danger("[user] forces [src] into [target]'s [slot_name]!"),
-			span_userdanger("[user] forces [src] into your [slot_name]!")
+			span_danger("[user]将[src]强行塞入了[target]的[slot_name]！"),
+			span_userdanger("[user]将[src]强行塞入了你的[slot_name]！")
 		)
 		if(target.is_blind())
-			to_chat(target, span_userdanger("Something was inserted into your [slot_name]!"))
+			to_chat(target, span_userdanger("有什么东西被塞进了你的[slot_name]！"))
 
 	// Prevent reagent overdose if safety is enabled
 	if(length(list_reagents) && !can_overdose && check_overdose(target, list_reagents))
-		balloon_alert(user, "overload prevented!")
+		balloon_alert(user, "过载已阻止！")
 		return
 
 	// Actually perform the installation

@@ -18,7 +18,7 @@
 		var/obj/colored_item = new /obj/item/stack/ore/glass/zero_cost(get_turf(src))
 		colored_item.add_atom_colour(added_color, FIXED_COLOUR_PRIORITY)
 		new /obj/effect/decal/cleanable/glass(get_turf(src))
-		user.balloon_alert(user, "[src] shatters!")
+		user.balloon_alert(user, "[src] 碎裂了！")
 		playsound(src, SFX_SHATTER, 30, TRUE)
 		qdel(src)
 		return TRUE
@@ -32,4 +32,4 @@
 /obj/item/stack/ore/examine(mob/user)
 	. = ..()
 	if(points == 0)
-		. += span_warning("<br> [src] is worthless and will not reward any mining points!")
+		. += span_warning("<br> [src] 毫无价值，不会奖励任何采矿点数！")

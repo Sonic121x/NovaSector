@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/rpgtitles //its time to adventure on boys
-	name = "RPG Titles"
+	name = "RPG标题"
 	weight = 3
 	typepath = /datum/round_event/wizard/rpgtitles
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "Everyone gains an RPG title hovering above them."
+	description = "每个人都会获得一个悬浮在头顶的RPG头衔。"
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 
@@ -98,8 +98,8 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 	var/obj/item/card/id/card = new_crewmember.get_idcard()
 	if(!card)//since this is called on current crew, some may not have IDs. shame on them for missing out!
 		return
-	card.name = "adventuring license"
-	card.desc = "A written license from the adventuring guild. You're good to go!"
+	card.name = "冒险许可证"
+	card.desc = "一份来自冒险公会的书面许可。你可以出发了！"
 	card.icon_state = "card_rpg"
 	card.assignment = job.rpg_title
 	if(istype(card, /obj/item/card/id/advanced))

@@ -1,6 +1,6 @@
 /datum/reagent/medicine/brain_neuroware
 	name = "ntnetsys.robot-diag.exe"
-	description = "Repairs basic brain traumas."
+	description = "修复基本的脑部创伤。"
 	chemical_flags = REAGENT_NEUROWARE
 	process_flags = REAGENT_SYNTHETIC
 	self_consuming = TRUE
@@ -15,7 +15,7 @@ NEUROWARE_METABOLIZE_HELPER(/datum/reagent/medicine/brain_neuroware)
 
 /datum/reagent/medicine/reset_neuroware
 	name = "ntnetsys.robot-antivirus.exe"
-	description = "Deletes neuroware programs."
+	description = "删除神经软件程序。"
 	chemical_flags = REAGENT_NEUROWARE
 	process_flags = REAGENT_SYNTHETIC
 	self_consuming = TRUE

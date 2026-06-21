@@ -11,7 +11,7 @@
  * Similar to smoke, but slower and mobs absorb its reagent through their exposed skin.
  */
 /obj/effect/particle_effect/fluid/foam
-	name = "foam"
+	name = "泡沫"
 	icon_state = "foam"
 	opacity = FALSE
 	anchored = TRUE
@@ -271,7 +271,7 @@
 // Firefighting foam
 /// A variant of foam which absorbs plasma in the air if there is a fire.
 /obj/effect/particle_effect/fluid/foam/firefighting
-	name = "firefighting foam"
+	name = "消防泡沫"
 	lifetime = 20 //doesn't last as long as normal foam
 	result_type = /obj/effect/decal/cleanable/plasma
 	allow_duplicate_results = FALSE
@@ -325,7 +325,7 @@
 
 /// A foam variant which
 /obj/effect/particle_effect/fluid/foam/metal
-	name = "aluminium foam"
+	name = "铝泡沫"
 	result_type = /obj/structure/foamedmetal
 	icon_state = "mfoam"
 	slippery_foam = FALSE
@@ -343,8 +343,8 @@
 	anchored = TRUE
 	layer = EDGED_TURF_LAYER
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	name = "foamed metal"
-	desc = "A lightweight foamed metal wall that can be used as base to construct a wall."
+	name = "泡沫金属"
+	desc = "一种轻质的泡沫金属墙，可作为建造墙壁的基础。"
 	gender = PLURAL
 	max_integrity = 20
 	can_atmos_pass = ATMOS_PASS_DENSITY
@@ -378,12 +378,12 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-	to_chat(user, span_warning("You hit [src] but bounce off it!"))
+	to_chat(user, span_warning("你击打了[src]但被弹开了！"))
 	playsound(src.loc, 'sound/items/weapons/tap.ogg', 100, TRUE)
 
 /// A metal foam variant which produces slightly sturdier walls.
 /obj/effect/particle_effect/fluid/foam/metal/iron
-	name = "iron foam"
+	name = "金属泡沫"
 	result_type = /obj/structure/foamedmetal/iron
 
 /// A factory which produces iron metal foam.
@@ -397,7 +397,7 @@
 
 /// A variant of metal foam which only produces walls at area boundaries.
 /obj/effect/particle_effect/fluid/foam/metal/smart
-	name = "smart foam"
+	name = "智能泡沫"
 
 /// A factory which produces smart aluminium metal foam.
 /datum/effect_system/fluid_spread/foam/metal/smart
@@ -419,13 +419,13 @@
 
 /// A foam variant which produces atmos resin walls.
 /obj/effect/particle_effect/fluid/foam/metal/resin
-	name = "resin foam"
+	name = "树脂泡沫"
 	result_type = /obj/structure/foamedmetal/resin
 
 /// Atmos Backpack Resin, transparent, prevents atmos and filters the air
 /obj/structure/foamedmetal/resin
-	name = "\improper ATMOS Resin"
-	desc = "A lightweight, transparent resin used to suffocate fires, scrub the air of toxins, and restore the air to a safe temperature. It can be used as base to construct a wall."
+	name = "\improper 大气树脂"
+	desc = "一种轻质、透明的树脂，可用于扑灭火灾、清除空气中的有害物质并使空气恢复到安全的温度。它还可以作为基础材料用于建造墙壁。"
 	opacity = FALSE
 	icon_state = "atmos_resin"
 	alpha = 120
@@ -462,7 +462,7 @@
 		if(!comp.welded)
 			comp.welded = TRUE
 			comp.update_appearance()
-			comp.visible_message(span_danger("[comp] sealed shut!"))
+			comp.visible_message(span_danger("[comp]被密封了！"))
 
 	for(var/mob/living/potential_tinder in location)
 		potential_tinder.extinguish_mob()
@@ -489,7 +489,7 @@
 	effect_type = /obj/effect/particle_effect/fluid/foam/dirty
 
 /obj/effect/particle_effect/fluid/foam/dirty
-	name = "dirty foam"
+	name = "脏污泡沫"
 	allow_duplicate_results = FALSE
 	result_type = /obj/effect/decal/cleanable/dirt
 

@@ -1,7 +1,7 @@
 /// Cowardly mob with a charging attack
 /mob/living/basic/mining/lobstrosity
-	name = "arctic lobstrosity"
-	desc = "These hairy crustaceans creep and multiply in underground lakes deep below the ice. They have a particular taste for fingers."
+	name = "极地龙虾怪"
+	desc = "这些多毛的甲壳动物在冰层深处的地下湖中潜行和繁殖。它们对手指有特别的嗜好。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "arctic_lobstrosity"
 	icon_living = "arctic_lobstrosity"
@@ -108,15 +108,15 @@
 
 /// Lavaland lobster variant, it basically just looks different
 /mob/living/basic/mining/lobstrosity/lava
-	name = "chasm lobstrosity"
-	desc = "Twitching crustaceans boiled red by the sulfurous fumes of the chasms in which they lurk. They have a particular taste for fingers."
+	name = "裂隙龙虾怪"
+	desc = "这些抽搐的甲壳动物被其潜伏的裂隙中的硫磺烟雾煮得通红。它们对手指有特别的嗜好。"
 	icon_state = "lobstrosity"
 	icon_living = "lobstrosity"
 	icon_dead = "lobstrosity_dead"
 
 /// Charge a long way, knock down for longer, and perform an instant melee attack
 /datum/action/cooldown/mob_cooldown/charge/basic_charge/lobster
-	name = "Lobster Rush"
+	name = "龙虾冲锋"
 	charge_distance = 8
 	knockdown_duration = 2.5 SECONDS
 
@@ -141,8 +141,8 @@
 
 ///A weaker, yet somewhat faster lobstrosity. Sources include aquarium chasm chrabs, chasms, plasma rivers and perhaps xenobio.
 /mob/living/basic/mining/lobstrosity/juvenile
-	name = "juvenile arctic lobstrosity"
-	desc = "A youngling of the behemothic arctic lobstrosity. They usually stay put in the underground lakes they reside in until they're fully grown."
+	name = "幼年极地龙虾怪"
+	desc = "巨型极地龙虾怪的幼体。它们通常待在栖身的地下湖中，直到完全长大。"
 	icon_state = "arctic_juveline_lobstrosity"
 	icon_living = "arctic_juveline_lobstrosity"
 	icon_dead = "arctic_juveline_lobstrosity_dead"
@@ -244,8 +244,8 @@
 	qdel(src) //We called change_mob_type without 'delete_old_mob = TRUE' since we had to pass down friends and damage
 
 /mob/living/basic/mining/lobstrosity/juvenile/lava
-	name = "juvenile chasm lobstrosity"
-	desc = "A youngling of the behemothic lobstrosity. They usually don't crawl out of the vents they reside in until they're fully grown."
+	name = "幼年裂谷龙虾怪"
+	desc = "巨型龙虾怪的幼体。它们通常不会从栖身的通风口中爬出，直到完全长大。"
 	icon_state = "juveline_lobstrosity"
 	icon_living = "juveline_lobstrosity"
 	icon_dead = "juveline_lobstrosity_dead"
@@ -253,7 +253,7 @@
 
 /// Shorter, weaker version of the Lobster Rush
 /datum/action/cooldown/mob_cooldown/charge/basic_charge/lobster/shrimp
-	name = "Shrimp Rush"
+	name = "虾米冲锋"
 	charge_distance = 4
 	knockdown_duration = 1.8 SECONDS
 	charge_delay = 0.2 SECONDS

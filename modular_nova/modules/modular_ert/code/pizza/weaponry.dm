@@ -1,9 +1,9 @@
 /obj/item/knife/hotknife
-	name = "thousand degree knife"
+	name = "千度刀"
 	icon = 'modular_nova/modules/modular_ert/icons/pizza/hotknife.dmi'
 	icon_state = "hotknife"
 	inhand_icon_state = "hotknife"
-	desc = "Once known as Lightbringer, this sword has been demoted to a simple pizza cutting knife... It may still have its fire attack powers."
+	desc = "这把剑曾被称为“光明使者”，如今已降级为简单的披萨切刀……它可能仍保留着火焰攻击能力。"
 	righthand_file = 'modular_nova/modules/modular_ert/icons/pizza/righthand.dmi'
 	lefthand_file = 'modular_nova/modules/modular_ert/icons/pizza/lefthand.dmi'
 

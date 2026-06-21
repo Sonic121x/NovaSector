@@ -36,7 +36,7 @@
 	CES.headset_override = headset_override
 	CES.flavor_text = flavor_text
 	CES.disappear_after_spawn = disappear_after_spawn
-	CES.name = "[job_name] cryogenic sleeper"
+	CES.name = "[job_name] 低温睡眠舱"
 	if(prompt_players)
 		for(var/mob/dead/observer/ghost in GLOB.player_list)
 			if(length(ckey_whitelist) && !(LOWER_TEXT(ghost.ckey) in ckey_whitelist))
@@ -245,11 +245,11 @@
 				ShowPanel(usr, null)
 				return
 			if("job_name")
-				var/msg = input(usr, "Set the job name of this spawner.", "Job name", ESI.job_name) as text|null
+				var/msg = input(usr, "设置此生成器的职位名称。", "职位名称", ESI.job_name) as text|null
 				if(msg)
 					ESI.job_name = msg
 			if("flavor_text")
-				var/msg = input(usr, "Set the flavor text of this spawner.", "Flavor Text", ESI.flavor_text) as message|null
+				var/msg = input(usr, "设置此生成器的背景描述文本。", "背景描述文本", ESI.flavor_text) as message|null
 				if(msg)
 					ESI.flavor_text = msg
 			if("used_outfit")
@@ -265,30 +265,30 @@
 			if("prompt_players")
 				ESI.prompt_players = !ESI.prompt_players
 			if("add_ckey")
-				var/msg = input(usr, "Add allowed CKEY to the spawner.", "Add CKEY", "") as text|null
+				var/msg = input(usr, "向生成器添加允许的CKEY。", "添加CKEY", "") as text|null
 				if(msg)
 					ESI.ckey_whitelist += LOWER_TEXT(msg)
 			if("add_species")
-				var/result = input(usr, "Select a species", "Add species") as null|anything in GLOB.roundstart_races
+				var/result = input(usr, "选择一个物种", "添加物种") as null|anything in GLOB.roundstart_races
 				if(result)
 					ESI.species_whitelist += result
 			if("add_gender")
-				var/result = input(usr, "Select a gender", "Add Gender") as null|anything in list("male", "female", "plural")
+				var/result = input(usr, "选择一个性别", "添加性别") as null|anything in list("男性", "女性", "复数")
 				if(result)
 					ESI.gender_whitelist += result
 			if("add_access")
-				var/msg = input(usr, "Add access type to the spawner(as number)", "Add Access", "") as num|null
+				var/msg = input(usr, "向生成器添加访问类型（作为数字）", "添加访问权限", "") as num|null
 				if(msg != null)
 					if(!(msg in ESI.access_override))
 						ESI.access_override += msg
 			if("add_equip")
-				var/msg = input(usr, "Add an equipment piece, as typed path (ex. /obj/item/gun/energy/e_gun).", "Add equipment", "") as text|null
+				var/msg = input(usr, "Add an equipment piece, as typed path (ex. /obj/item/gun/energy/e_gun).", "添加装备", "") as text|null
 				if(!isnull(msg))
 					var/typed = text2path(msg)
 					if(!isnull(typed))
 						ESI.additional_equipment += typed
 			if("set_headset")
-				var/result = input(usr, "Select a headset", "Set Headset") as null|anything in radio_typecache
+				var/result = input(usr, "选择一个耳机", "设置耳机") as null|anything in radio_typecache
 				if(result)
 					ESI.headset_override = result
 			if("remove_ckey")
@@ -317,19 +317,19 @@
 				usr << browse("<code>[output]</code>", "window=export_spawner;size=500x600;border=1;can_resize=1;can_close=1;can_minimize=1")
 				return
 			if("import")
-				var/input = input(usr, "Input the spawner savefile here.", "Import Spawner") as message|null
+				var/input = input(usr, "在此输入生成器存档文件。", "导入生成器") as message|null
 				if(input)
 					ESI.DoImport(input)
 		ShowPanel(usr, numb)
 	if(href_list["pref"])
 		switch(href_list["pref"])
 			if("create_new_instance")
-				var/action = tgui_alert(usr, "Create a new instance, or import?", "", list("New", "Import"))
+				var/action = tgui_alert(usr, "创建新实例，还是导入？", "", list("New", "Import"))
 				if(!action)
 					return
 				var/import_input
 				if(action == "Import")
-					import_input = input(usr, "Input the spawner savefile here.", "Import Spawner") as message|null
+					import_input = input(usr, "在此输入生成器存档文件。", "导入生成器") as message|null
 					if(!import_input)
 						return
 				next_id++

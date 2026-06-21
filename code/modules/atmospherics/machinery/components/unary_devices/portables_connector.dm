@@ -1,8 +1,8 @@
 /obj/machinery/atmospherics/components/unary/portables_connector
 	icon_state = "connector_map-3"
 
-	name = "connector port"
-	desc = "For connecting portables devices related to atmospherics control."
+	name = "连接端口"
+	desc = "用于连接与大气控制相关的便携设备。"
 
 	can_unwrench = TRUE
 
@@ -54,7 +54,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/can_unwrench(mob/user)
 	. = ..()
 	if(. && connected_device)
-		to_chat(user, span_warning("You cannot unwrench [src], detach [connected_device] first!"))
+		to_chat(user, span_warning("你无法拆下[src]，请先断开[connected_device]！"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/portables_connector/layer2

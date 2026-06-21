@@ -1,7 +1,7 @@
 /// The Greatest (animal) Of All Time. Cud chewing, shin-kicking, kitchen-dwelling nuisance.
 /mob/living/basic/goat
-	name = "goat"
-	desc = "Not known for their pleasant disposition."
+	name = "山羊"
+	desc = "不以好脾气著称。"
 	icon_state = "goat"
 	icon_living = "goat"
 	icon_dead = "goat_dead"
@@ -83,8 +83,8 @@
 		edible_bodypart.dismember()
 
 	living_target.visible_message(
-		span_warning("[src] takes a big chomp out of [living_target]!"),
-		span_userdanger("[src] takes a big chomp out of your [edible_bodypart || "body"]!"),
+		span_warning("[src] 狠狠咬了[living_target]一大口！"),
+		span_userdanger("[src] 狠狠咬了你一口[edible_bodypart || "body"]！"),
 	)
 
 	return COMPONENT_HOSTILE_NO_ATTACK
@@ -94,7 +94,7 @@
 	if (!COOLDOWN_FINISHED(src, gleam_cooldown))
 		return
 	visible_message(
-		span_danger("[src] gets an evil-looking gleam in [p_their()] eye."),
+		span_danger("[src]的[p_their()]眼中闪过一丝邪恶的光芒。"),
 	)
 	COOLDOWN_START(src, gleam_cooldown, gleam_delay)
 

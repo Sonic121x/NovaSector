@@ -172,5 +172,5 @@
 			ui.user.put_in_hands(new_photo)
 			playsound(computer.physical, 'sound/machines/printer.ogg', 100, TRUE)
 			computer.stored_paper--
-			computer.visible_message(span_notice("\The [computer] prints out a paper."))
+			computer.visible_message(span_notice("\The [computer] 打印出了一张纸。"))
 			return TRUE

@@ -1,7 +1,7 @@
 //Bluespace crystals, used in telescience and when crushed it will blink you to a random turf.
 /obj/item/stack/ore/bluespace_crystal
 	name = "bluespace crystal"
-	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
+	desc = "一块发光的蓝空晶体，关于它们如何运作所知甚少。它看起来非常脆弱。"
 	icon = 'icons/obj/ore.dmi'
 	icon_state = "bluespace_crystal"
 	singular_name = "bluespace crystal"
@@ -21,7 +21,7 @@
 	var/blink_range = 8
 
 /obj/item/stack/ore/bluespace_crystal/refined
-	name = "refined bluespace crystal"
+	name = "精炼蓝空晶体"
 	points = 0
 	refined_type = null
 	merge_type = /obj/item/stack/ore/bluespace_crystal/refined
@@ -38,7 +38,7 @@
 	return 1
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
-	user.visible_message(span_warning("[user] crushes [src]!"), span_danger("You crush [src]!"))
+	user.visible_message(span_warning("[user]捏碎了[src]！"), span_danger("你捏碎了[src]！"))
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	blink_mob(user)
@@ -49,7 +49,7 @@
 
 /obj/item/stack/ore/bluespace_crystal/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) // not caught in mid-air
-		visible_message(span_notice("[src] fizzles and disappears upon impact!"))
+		visible_message(span_notice("[src]在撞击时嘶嘶作响并消失了！"))
 		var/turf/T = get_turf(hit_atom)
 		new /obj/effect/particle_effect/sparks(T)
 		playsound(loc, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
@@ -62,8 +62,8 @@
 
 //Artificial bluespace crystal, doesn't give you much research.
 /obj/item/stack/ore/bluespace_crystal/artificial
-	name = "artificial bluespace crystal"
-	desc = "An artificially made bluespace crystal, it looks delicate."
+	name = "人工蓝晶"
+	desc = "一块人工制造的蓝晶，看起来十分脆弱。"
 	mats_per_unit = list(/datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 	blink_range = 4 // Not as good as the organic stuff!
 	points = 0 //nice try
@@ -74,9 +74,9 @@
 
 // Polycrystals, aka stacks
 /obj/item/stack/sheet/bluespace_crystal
-	name = "bluespace polycrystal"
+	name = "蓝晶聚合体"
 	singular_name = "bluespace polycrystal"
-	desc = "A stable polycrystal, made of fused-together bluespace crystals. You could probably break one off."
+	desc = "一种稳定的聚合晶体，由融合在一起的蓝晶构成。你或许可以掰下一块来。"
 	icon_state = "polycrystal"
 	inhand_icon_state = null
 	material_flags = MATERIAL_NO_DESCRIPTORS
@@ -101,9 +101,9 @@
 	user.put_in_hands(BC)
 	use(1)
 	if(!amount)
-		to_chat(user, span_notice("You break the final crystal off."))
+		to_chat(user, span_notice("你掰下了最后一块晶体。"))
 	else
-		to_chat(user, span_notice("You break off a crystal."))
+		to_chat(user, span_notice("你掰下了一块晶体。"))
 
 /obj/item/stack/sheet/bluespace_crystal/fifty
 	amount = 50

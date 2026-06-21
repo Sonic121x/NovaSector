@@ -8,8 +8,8 @@
 #define GOLFCART_RUN_OVER_DAMAGE (25)
 
 /obj/vehicle/ridden/golfcart
-	name = "golf cart"
-	desc = "An all-purpose cargo hauling vehicle."
+	name = "高尔夫球车"
+	desc = "一种多用途货运车辆。"
 	icon = 'icons/obj/toys/golfcart_split.dmi'
 	icon_state = "front"
 	max_integrity = 100
@@ -57,13 +57,13 @@
 	var/hood_open = FALSE
 
 /obj/item/key/golfcart
-	name = "golfcart key"
-	desc = "A small grey key for using the golf cart."
+	name = "高尔夫球车钥匙"
+	desc = "一把用于启动高尔夫球车的灰色小钥匙。"
 	icon = 'icons/obj/toys/golfcart_split.dmi'
 
 /obj/item/golfcart_kit
-	name = "golfcart parts kit"
-	desc = "A box containing a golf cart. Some assembly required. Batteries not included."
+	name = "高尔夫球车零件套件"
+	desc = "一个装着高尔夫球车的箱子。需要自行组装。电池不含在内。"
 	icon = 'icons/obj/toys/golfcart_split.dmi'
 	icon_state = "parts_kit"
 	w_class = WEIGHT_CLASS_HUGE
@@ -74,7 +74,7 @@
 
 /obj/item/golfcart_kit/examine(mob/user)
 	. = ..()
-	. += span_notice("The instructions say that it needs to be [EXAMINE_HINT("screwed")] together.")
+	. += span_notice("说明书上说需要[EXAMINE_HINT("screwed")]组装。")
 
 /obj/item/golfcart_kit/proc/play_building_noises(mob/living/user, duration)
 	duration = max(duration - (1 SECONDS), 0.5 SECONDS)
@@ -94,9 +94,9 @@
 
 /obj/item/golfcart_kit/screwdriver_act(mob/living/user, obj/item/tool)
 	if (!isturf(loc))
-		user.balloon_alert(user, "set down first!")
+		user.balloon_alert(user, "先放下来！")
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] starts putting together the [src]..."), span_notice("You start assembling the [src]..."))
+	user.visible_message(span_notice("[user] 开始组装 [src]..."), span_notice("你开始组装[src]……"))
 	var/unboxing_duration = 7 SECONDS
 	INVOKE_ASYNC(src, PROC_REF(play_building_noises), user, unboxing_duration * tool.toolspeed)
 	if(!tool.use_tool(src, user, unboxing_duration))
@@ -104,7 +104,7 @@
 	if (!isturf(loc))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/vehicle/ridden/golfcart/cart = new(get_turf(src))
-	user.visible_message(span_notice("[user] assembles the [cart]!"), span_notice("You assemble the [cart]."))
+	user.visible_message(span_notice("[user] 组装了 [cart]！"), span_notice("你组装好了[cart]。"))
 	qdel(src)
 
 /obj/vehicle/ridden/golfcart/atom_break()
@@ -156,8 +156,8 @@
 	mob.throw_at(get_edge_target_turf(mob, dir), 2, 3)
 	RegisterSignal(mob, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(thrown_mob_landed))
 	mob.visible_message(
-		span_danger("[src] hits [mob] at full speed!"),
-		span_userdanger("[src] slams into you!"),
+		span_danger("[src] 以全速撞上了 [mob]！"),
+		span_userdanger("[src] 猛地撞上了你！"),
 	)
 
 ///Called when a resting victim is run over
@@ -173,8 +173,8 @@
 			playsound(src, 'sound/effects/pop_expl.ogg', 50, TRUE)
 			playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
 			victim.visible_message(
-				span_danger("[src] drives over [victim]!"),
-				span_userdanger("[src] drives over you!"),
+				span_danger("[src] 从 [victim] 身上碾了过去！"),
+				span_userdanger("[src] 从你身上碾了过去！"),
 			)
 
 			var/damage = rand(GOLFCART_RUN_OVER_DAMAGE - GOLFCART_RUN_OVER_DAMAGE / 5, GOLFCART_RUN_OVER_DAMAGE + GOLFCART_RUN_OVER_DAMAGE / 5)
@@ -214,7 +214,7 @@
 		return ..()
 	if (istype(attacking_item, /obj/item/v8_engine))
 		if (engine || cell)
-			balloon_alert(user, "already has an engine!")
+			balloon_alert(user, "已经有引擎了！")
 			return ITEM_INTERACT_BLOCKING
 		user.transferItemToLoc(attacking_item, src)
 		engine = attacking_item
@@ -223,11 +223,11 @@
 		return ITEM_INTERACT_SUCCESS
 	if (istype(attacking_item, /obj/item/stock_parts/power_store/cell))
 		if (cell || engine)
-			balloon_alert(user, "already has an engine!")
+			balloon_alert(user, "已经有引擎了！")
 			return ITEM_INTERACT_BLOCKING
 		user.transferItemToLoc(attacking_item, src)
 		cell = attacking_item
-		balloon_alert(user, "installed \the [cell]")
+		balloon_alert(user, "已安装\the [cell]")
 		return ITEM_INTERACT_SUCCESS
 	return ..()
 
@@ -294,18 +294,18 @@
 			set_engine_state(ENGINE_WRENCHED)
 	else
 		if(DOING_INTERACTION(user, src))
-			balloon_alert(user, "already repairing it!")
+			balloon_alert(user, "已经在修理了！")
 			return
 		if(atom_integrity >= max_integrity)
-			balloon_alert(user, "it's not damaged!")
+			balloon_alert(user, "它没坏！")
 			return
 		// takes 10 seconds to repair from full
-		balloon_alert(user, "started repairing")
+		balloon_alert(user, "开始修理")
 		if (!tool.use_tool(src, user, ((max_integrity - atom_integrity) / max_integrity * 10) SECONDS, volume = 50))
-			balloon_alert(user, "repair interrupted!")
+			balloon_alert(user, "修理中断！")
 			return
 		repair_damage(max_integrity - atom_integrity)
-		balloon_alert(user, "repaired")
+		balloon_alert(user, "已修复")
 	return
 
 /obj/vehicle/ridden/golfcart/proc/toggle_hood()
@@ -316,7 +316,7 @@
 	if (user in buckled_mobs)
 		return ..()
 	else
-		to_chat(user, span_warning("You must be sitting down to remove the key!"))
+		to_chat(user, span_warning("你必须坐在车上才能取下钥匙！"))
 	. = CLICK_ACTION_SUCCESS
 	toggle_hood()
 	if (hood_open)
@@ -328,36 +328,36 @@
 	. = ..()
 	if (!child.cargo)
 		return
-	. += span_slightly_larger("It is currently transporting the [child.cargo]")
+	. += span_slightly_larger("它目前正在运输 [child.cargo]")
 	. += child.cargo.examine(user)
 
 /obj/vehicle/ridden/golfcart/examine(mob/user)
 	. = ..()
-	. += span_notice("Pop the hood by alt-clicking while not riding it.")
+	. += span_notice("在不驾驶时，按住Alt键点击以打开引擎盖。")
 	if (child.cargo)
 		. += span_info("The bed is holding \the [child.cargo].")
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += span_warning("You're too far away to examine [src] closely.")
+		. += span_warning("你离得太远，无法仔细检查 [src]。")
 		return
 	if (!engine)
 		var/power = 0
 		if (cell)
 			power = floor(cell.charge / cell.maxcharge * 100)
-		. += span_info("It is currently is at [power]% charge.")
+		. += span_info("它目前的电量是 [power]%。")
 	if (hood_open)
-		. += span_warning("The hood is open!")
+		. += span_warning("引擎盖是开着的！")
 		if (engine)
 			. += span_info("You can see \the [engine] inside.")
 			if (engine_state == ENGINE_UNWRENCHED)
-				. += span_notice("It needs to be [EXAMINE_HINT("wrenched")] into place.")
+				. += span_notice("它需要被[EXAMINE_HINT("wrenched")]到位。")
 			else if (engine_state == ENGINE_WRENCHED)
-				. += span_notice("It needs to be [EXAMINE_HINT("welded")] down.")
+				. += span_notice("它需要被[EXAMINE_HINT("welded")]固定。")
 			// last state is ENGINE_WELDED
 		else if (cell)
 			. += span_info("You can see \the [cell] inside.")
-			. += span_smallnotice("If you remove the cell you could probably install another power source...")
+			. += span_smallnotice("如果你取出电池，或许可以安装另一个电源……")
 		else
-			. += span_info("There is no power cell installed.")
+			. += span_info("没有安装电源电池。")
 
 ///Called when something tries to pass us. Returns TRUE if it is trying to crawl past us.
 /obj/vehicle/ridden/golfcart/proc/allow_crawler_through(atom/crawler)

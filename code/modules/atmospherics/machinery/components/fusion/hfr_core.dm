@@ -2,8 +2,8 @@
  * This section contain the hfr core with all the variables and the Initialize() and Destroy() procs
  */
 /obj/machinery/atmospherics/components/unary/hypertorus/core
-	name = "HFR core"
-	desc = "This is the Hypertorus Fusion Reactor core, an advanced piece of technology to finely tune the reaction inside of the machine. It has I/O for cooling gases."
+	name = "超聚反应堆核心"
+	desc = "这是超聚反应堆核心，一种先进的技术，用于精确调节机器内部的反应。它具有用于冷却气体的输入/输出接口。"
 	icon = 'icons/obj/machines/atmospherics/hypertorus.dmi'
 	icon_state = "core"
 	base_icon_state = "core"

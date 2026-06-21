@@ -78,7 +78,7 @@ Potential future ideas:
 
 /obj/item/clothing/accessory/nova/acc_medal
 	name = "circle medal"
-	desc = "You shouldn't have this, make a bug report!"
+	desc = "你不该有这个，请提交错误报告！"
 	icon = 'icons/map_icons/clothing/accessory.dmi'
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal"
 	post_init_icon_state = "medal_alt"
@@ -114,8 +114,8 @@ Potential future ideas:
 // Shield Medals
 */
 /obj/item/clothing/accessory/nova/acc_medal/shield
-	name = "shield medal"
-	desc = "A regular everyday medal."
+	name = "盾形勋章"
+	desc = "一枚普普通通的勋章。"
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/shield"
 	post_init_icon_state = "medal"
 	greyscale_config = /datum/greyscale_config/medals/shield
@@ -133,8 +133,8 @@ Potential future ideas:
 // Bar Medals
 */
 /obj/item/clothing/accessory/nova/acc_medal/bar
-	name = "bar medal"
-	desc = "A regular everyday medal."
+	name = "条形勋章"
+	desc = "一枚普普通通的勋章。"
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/bar"
 	post_init_icon_state = "medal"
 	greyscale_config = /datum/greyscale_config/medals/bar
@@ -152,8 +152,8 @@ Potential future ideas:
 // Heart Medals
 */
 /obj/item/clothing/accessory/nova/acc_medal/heart
-	name = "heart medal"
-	desc = "A regular everyday medal."
+	name = "心形勋章"
+	desc = "一枚普普通通的勋章。"
 	icon = 'icons/map_icons/clothing/accessory.dmi'
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/heart"
 	post_init_icon_state = "medal"
@@ -176,8 +176,8 @@ Potential future ideas:
 // Crown Medals
 */
 /obj/item/clothing/accessory/nova/acc_medal/crown
-	name = "crown medal"
-	desc = "A regular everyday medal."
+	name = "王冠勋章"
+	desc = "一枚普普通通的勋章。"
 	icon = 'icons/map_icons/clothing/accessory.dmi'
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/crown"
 	post_init_icon_state = "medal"
@@ -245,8 +245,8 @@ Potential future ideas:
 	new_icon_state = "necklace_circle"
 
 /obj/item/clothing/accessory/nova/acc_medal/glowcrystal
-	name = "glowcrystal necklace"
-	desc = "A glowing rock strung from a necklace, a token of gratitude similar to a medal."
+	name = "发光水晶项链"
+	desc = "一条串着发光石头的项链，一种类似勋章的感谢信物。"
 	icon = 'icons/map_icons/clothing/accessory.dmi'
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/glowcrystal"
 	post_init_icon_state = "necklace_crystal"
@@ -258,8 +258,8 @@ Potential future ideas:
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/glow_crystal_necklace)
 
 /obj/item/clothing/accessory/nova/acc_medal/dogtags
-	name = "dogtags"
-	desc = "A pair of standard issue dogtags. Rather outdated concept, but still do their job."
+	name = "身份识别牌"
+	desc = "一副标准配发的狗牌。概念相当过时，但依然能派上用场。"
 	icon = 'icons/map_icons/clothing/accessory.dmi'
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/dogtags"
 	post_init_icon_state = "dogtags"
@@ -271,8 +271,8 @@ Potential future ideas:
 // Rank pins
 */
 /obj/item/clothing/accessory/nova/acc_medal/rankpin
-	name = "rank pin"
-	desc = "A pin used to display accomplishments, advancements, or otherwise earned recognition."
+	name = "军衔别针"
+	desc = "一枚用于展示成就、晋升或其他获得认可的别针。"
 	icon = 'icons/map_icons/clothing/accessory.dmi'
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/rankpin"
 	post_init_icon_state = "star"
@@ -292,8 +292,8 @@ Potential future ideas:
 // Neckpins
 */
 /obj/item/clothing/accessory/nova/acc_medal/neckpin
-	name = "\improper NT company neckpin"
-	desc = "A pin specially dedicated to show loyalty to your company!"
+	name = "\improper NT公司颈针"
+	desc = "一枚专门用来展示对公司忠诚的别针！"
 	icon = 'icons/map_icons/clothing/accessory.dmi'
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/neckpin"
 	post_init_icon_state = "ntpin"
@@ -302,13 +302,13 @@ Potential future ideas:
 	greyscale_colors = "#FFFFFF#CCCED1"
 
 /obj/item/clothing/accessory/nova/acc_medal/neckpin/centcom
-	name = "\improper Central Command neckpin"
+	name = "\improper 中央指挥部颈针"
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/neckpin/centcom"
 	post_init_icon_state = "ccpin"
 
 /obj/item/clothing/accessory/nova/acc_medal/neckpin/solfed
-	name = "\improper Solfed neckpin"
-	desc = "A pin specially dedicated to show loyalty to your federation!"
+	name = "\improper 太阳联邦颈针"
+	desc = "一枚专门用来展示对联邦忠诚的别针！"
 	icon_state = "/obj/item/clothing/accessory/nova/acc_medal/neckpin/solfed"
 	post_init_icon_state = "sfpin"
 

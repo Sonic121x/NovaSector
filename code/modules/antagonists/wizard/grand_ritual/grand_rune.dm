@@ -11,8 +11,8 @@
  * Then something (usually bad) happens.
  */
 /obj/effect/grand_rune
-	name = "grand rune"
-	desc = "A flowing circle of shapes and runes is etched into the floor, the lines twist and move before your eyes."
+	name = "宏伟符文"
+	desc = "一个由形状和符文构成的流动圆环蚀刻在地板上，线条在你眼前扭曲移动。"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "wizard_rune"
 	pixel_x = -33
@@ -85,20 +85,20 @@
 /obj/effect/grand_rune/proc/announce_rune()
 	var/area/created_area = get_area(src)
 	if (potency >= GRAND_RITUAL_IMMINENT_FINALE_POTENCY)
-		priority_announce("Major anomalous fluctuations to local spacetime detected in: [created_area.name].", "Anomaly Alert")
+		priority_announce("在 [created_area.name] 检测到局部时空出现重大异常波动。", "异常警报")
 		return
 	if (potency >= GRAND_RITUAL_RUNES_WARNING_POTENCY)
-		priority_announce("Unusual anomalous energy fluctuations detected in: [created_area.name].", "Anomaly Alert")
+		priority_announce("在 [created_area.name] 检测到不寻常的异常能量波动。", "异常警报")
 		return
 
 /obj/effect/grand_rune/examine(mob/user)
 	. = ..()
 	if (times_invoked >= GRAND_RUNE_INVOKES_TO_COMPLETE)
-		. += span_notice("Its power seems to have been expended.")
+		. += span_notice("它的力量似乎已经耗尽了。")
 		return
 	if(!IS_WIZARD(user))
 		return
-	. += span_notice("Invoke this rune [GRAND_RUNE_INVOKES_TO_COMPLETE - times_invoked] more times to complete the ritual.")
+	. += span_notice("再激活此符文 [GRAND_RUNE_INVOKES_TO_COMPLETE - times_invoked] 次以完成仪式。")
 
 /obj/effect/grand_rune/can_interact(mob/living/user)
 	. = ..()
@@ -121,11 +121,11 @@
 /obj/effect/grand_rune/proc/invoke_rune(mob/living/user)
 	is_in_use = TRUE
 	add_channel_effect(user)
-	user.balloon_alert(user, "invoking rune...")
+	user.balloon_alert(user, "正在激活符文...")
 
 	if(!do_after(user, invoke_time, src))
 		remove_channel_effect(user)
-		user.balloon_alert(user, "interrupted!")
+		user.balloon_alert(user, "被打断了！")
 		is_in_use = FALSE
 		return
 
@@ -149,7 +149,7 @@
 			haunt_color = spell_colour, \
 			haunt_duration = 10 SECONDS, \
 			aggro_radius = 0, \
-			spawn_message = span_revenwarning("[sacrifice] begins to float and twirl into the air as it becomes enveloped in otherworldly energies..."), \
+			spawn_message = span_revenwarning("[sacrifice] 开始漂浮并在空中旋转，被异界能量包裹..."), \
 		)
 		addtimer(CALLBACK(sacrifice, TYPE_PROC_REF(/obj/item/food/cheese/wheel, consume_cheese)), 10 SECONDS)
 	cheese_sacrificed += length(cheese_to_haunt)
@@ -211,12 +211,12 @@
 		possible_events += possible_event
 
 	if (!length(possible_events))
-		visible_message(span_notice("[src] makes a sad whizzing noise."))
+		visible_message(span_notice("[src] 发出悲伤的嗡嗡声。"))
 		return
 
 	var/datum/round_event_control/final_event = pick (possible_events)
 	final_event.run_event(event_cause = "a Grand Ritual Rune")
-	to_chat(user, span_notice("Your released magic afflicts the crew: [final_event.name]!"))
+	to_chat(user, span_notice("你释放的魔法影响了船员：[final_event.name]！"))
 
 /// Applies some local side effects to the area
 /obj/effect/grand_rune/proc/trigger_side_effects(mob/living/user)
@@ -301,7 +301,7 @@
 		if (2)
 			announce = "Imminent local reality failure in: [created_area.name]. All crew please prepare to evacuate."
 	if (announce)
-		priority_announce(announce, "Anomaly Alert")
+		priority_announce(announce, "异常警报")
 	dire_warnings_given++
 	return ..()
 
@@ -311,7 +311,7 @@
 		return
 	var/round_time_passed = world.time - SSticker.round_start_time
 	if (chosen_effect && finale_effect.minimum_time >= round_time_passed)
-		to_chat(user, span_warning("The chosen grand finale will only be available in <b>[DisplayTimeText(finale_effect.minimum_time - round_time_passed)]</b>!"))
+		to_chat(user, span_warning("选定的盛大终局效果仅在 <b>[DisplayTimeText(finale_effect.minimum_time - round_time_passed)]</b> 后可用！"))
 		return
 	return ..()
 
@@ -344,8 +344,8 @@
 	if (istype(picked_finale))
 		var/round_time_passed = world.time - SSticker.round_start_time
 		if(picked_finale.minimum_time >= round_time_passed)
-			to_chat(user, span_warning("The chosen grand finale will only be available in <b>[DisplayTimeText(picked_finale.minimum_time - round_time_passed)]</b>!"))
-			to_chat(user, span_warning("Be patient, or select another option."))
+			to_chat(user, span_warning("选定的盛大终局效果仅在 <b>[DisplayTimeText(picked_finale.minimum_time - round_time_passed)]</b> 后可用！"))
+			to_chat(user, span_warning("请耐心等待，或选择其他选项。"))
 			return
 	chosen_effect = TRUE
 	if (pick == PICK_NOTHING)
@@ -375,8 +375,8 @@
  * Sorry, no narwal fighting on the open ocean this time.
  */
 /obj/effect/grand_rune/finale/cheesy
-	name = "especially grand rune"
-	desc = "A ritual circle of maddening shapes and outlines, its mere presence an insult to reason."
+	name = "特别宏伟符文"
+	desc = "一个由疯狂形状和轮廓构成的仪式圈，其存在本身就是对理性的侮辱。"
 	icon_state = "wizard_rune_cheese"
 	magic_words = list("Greetings! Salutations!", "Welcome! Now go away.", "Leave. Run. Or die.")
 	remains_typepath = /obj/effect/decal/cleanable/grand_remains/cheese
@@ -392,8 +392,8 @@
  * Spawned when we are done with the rune
  */
 /obj/effect/decal/cleanable/grand_remains
-	name = "circle of ash"
-	desc = "Looks like someone's been drawing weird shapes with ash on the ground."
+	name = "灰烬之环"
+	desc = "看起来有人用灰烬在地上画了些奇怪的形状。"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "wizard_rune_burned"
 	pixel_x = -28
@@ -405,8 +405,8 @@
 	layer = RUNE_LAYER
 
 /obj/effect/decal/cleanable/grand_remains/cheese
-	name = "cheese soot marks"
-	desc = "The bizarre shapes on the ground turn out to be a cheese crust burned to black tar."
+	name = "奶酪烟灰痕迹"
+	desc = "地上那些奇怪的形状原来是烧成黑色焦油的奶酪皮。"
 	icon_state = "wizard_rune_cheese_burned"
 
 #undef PICK_NOTHING

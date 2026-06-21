@@ -3,8 +3,8 @@
 ///Much of the actual structural damage is done through the explosions subsystem. Objects, machines, and especially people
 ///that aren't moved out of the epicenter area (indicated by the wobbly tiles) will not just be thrown down a z-level, but also be destroyed/maimed in the process.
 /datum/round_event_control/earthquake
-	name = "Chasmic Earthquake"
-	description = "Causes an earthquake, demolishing anything caught in the fault."
+	name = "深渊地震"
+	description = "引发地震，摧毁断层带上的任何物体。"
 	typepath = /datum/round_event/earthquake
 	category = EVENT_CATEGORY_ENGINEERING
 	min_players = 20
@@ -95,7 +95,7 @@
 		underbelly += GET_TURF_BELOW(turf_to_quake)
 
 /datum/round_event/earthquake/announce(fake)
-	priority_announce("Planetary monitoring systems indicate a devastating seismic event in the near future.", "Seismic Report")
+	priority_announce("行星监测系统显示近期将发生破坏性地震事件。", "地震报告")
 
 /datum/round_event/earthquake/start()
 	notify_ghosts(
@@ -134,12 +134,12 @@
 			for(var/mob/living/quake_victim in turf_to_quake)
 				quake_victim.Knockdown(7 SECONDS)
 				quake_victim.Paralyze(5 SECONDS)
-				to_chat(quake_victim, span_warning("The ground quakes violently beneath you, throwing you off your feet!"))
+				to_chat(quake_victim, span_warning("地面在你脚下剧烈震动，把你摔倒在地！"))
 
 		for(var/turf/turf_to_quake in underbelly)
 			turf_to_quake.Shake(pixelshiftx = 0.5, pixelshifty = 0.5, duration = 1 SECONDS)
 			for(var/mob/living/carbon/quake_victim in turf_to_quake)
-				to_chat(quake_victim, span_warning("Damn, I wonder what that rumbling noise is?")) ///You're about to find out
+				to_chat(quake_victim, span_warning("该死，那隆隆声到底是什么？")) ///You're about to find out
 
 	// Step one of the destruction, which clears natural tiles out from the underbelly and does a bit of initial damage to the topside.
 	if(activeFor == end_when - 1)

@@ -1,7 +1,7 @@
 /mob/living/basic/construct/juggernaut
-	name = "Juggernaut"
+	name = "巨像"
 	real_name = "Juggernaut"
-	desc = "A massive, armored construct built to spearhead attacks and soak up enemy fire."
+	desc = "一种庞大的装甲构造体，旨在发起攻击并吸收敌方火力。"
 	icon_state = "juggernaut"
 	icon_living = "juggernaut"
 	maxHealth = 150
@@ -22,7 +22,7 @@
 		/datum/action/cooldown/spell/forcewall/cult,
 		/datum/action/innate/cult/create_rune/wall,
 	)
-	playstyle_string = span_bold("You are a Juggernaut. Though slow, your shell can withstand heavy punishment, create shield walls, rip apart enemies and walls alike, and even deflect energy weapons.")
+	playstyle_string = span_bold("你是巨像。虽然行动缓慢，但你的外壳能承受重击，创造护盾墙，撕裂敌人和墙壁，甚至能偏转能量武器。")
 
 	smashes_walls = TRUE
 
@@ -44,8 +44,8 @@
 
 	apply_damage(hitting_projectile.damage * 0.5, hitting_projectile.damage_type)
 	visible_message(
-		span_danger("\The [hitting_projectile] is reflected by [src]'s armored shell!"),
-		span_userdanger("\The [hitting_projectile] is reflected by your armored shell!"),
+		span_danger("\The [hitting_projectile]被[src]的装甲外壳弹开了！"),
+		span_userdanger("\The [hitting_projectile] 被你的装甲外壳反射了！"),
 	)
 
 	hitting_projectile.reflect(src)

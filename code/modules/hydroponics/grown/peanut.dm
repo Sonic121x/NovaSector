@@ -1,7 +1,7 @@
 // Peanuts!
 /obj/item/seeds/peanut
-	name = "peanut seed pack"
-	desc = "These seeds grow into peanut plants."
+	name = "花生种子包"
+	desc = "能长成花生植株的种子。"
 	icon_state = "seed-peanut"
 	species = "peanut"
 	plantname = "Peanut Plant"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/peanut
 	seed = /obj/item/seeds/peanut
-	name = "peanut"
-	desc = "A tasty pair of groundnuts concealed in a tough shell."
+	name = "花生"
+	desc = "一粒粒美味的花生藏在坚硬的外壳之中。"
 	icon_state = "peanut"
 	foodtypes = NUTS
 	tastes = list("peanuts" = 1)

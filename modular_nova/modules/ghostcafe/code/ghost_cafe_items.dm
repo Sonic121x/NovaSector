@@ -1,12 +1,12 @@
 /obj/structure/showcase/fake_cafe_console
-	name = "civilian console"
-	desc = "A stationary computer. This one comes preloaded with generic programs."
+	name = "民用控制台"
+	desc = "一台固定式计算机。这台预装了通用程序。"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 
 /obj/structure/showcase/fake_cafe_console/rd
-	name = "R&D Console"
-	desc = "A console used to interface with R&D tools."
+	name = "研发控制台"
+	desc = "一台用于连接研发工具的控制台。"
 
 /obj/structure/showcase/fake_cafe_console/rd/Initialize(mapload)
 	. = ..()

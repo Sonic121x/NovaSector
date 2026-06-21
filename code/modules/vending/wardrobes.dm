@@ -38,8 +38,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 		roach.forceMove(drop_location())
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper SecDrobe"
-	desc = "A vending machine for security and security-related clothing!"
+	name = "\improper 安全服装售货机"
+	desc = "一个安保与安全相关服装的服装售货机！"
 	icon_state = "secdrobe"
 	product_ads = "Beat perps in style!;It's red so you can't see the blood!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
 	vend_reply = "Thank you for using the SecDrobe!"
@@ -79,8 +79,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "SecDrobe"
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
-	name = "\improper MediDrobe"
-	desc = "A vending machine rumoured to be capable of dispensing clothing for medical personnel."
+	name = "\improper 医疗服装售货机"
+	desc = "一台据称为医疗人员提供服装的自动贩卖机。"
 	icon_state = "medidrobe"
 	product_ads = "Make those blood stains look fashionable!!"
 	vend_reply = "Thank you for using the MediDrobe!"
@@ -125,8 +125,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "MediDrobe"
 
 /obj/machinery/vending/wardrobe/engi_wardrobe
-	name = "EngiDrobe"
-	desc = "A vending machine renowned for vending industrial grade clothing."
+	name = "工程服装售货机"
+	desc = "以出售工业级服装而闻名的自动售货机。"
 	icon_state = "engidrobe"
 	product_ads = "Guaranteed to protect your feet from industrial accidents!;Afraid of radiation? Then wear yellow!"
 	vend_reply = "Thank you for using the EngiDrobe!"
@@ -155,8 +155,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "EngiDrobe"
 
 /obj/machinery/vending/wardrobe/atmos_wardrobe
-	name = "AtmosDrobe"
-	desc = "This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job."
+	name = "大气服装售货机"
+	desc = "这台相对不为人知的自动售货机为大气技术员提供衣服，这也是一份同样不为人知的工作。"
 	icon_state = "atmosdrobe"
 	product_slogans = "Get your inflammable clothing right here!!!"
 	vend_reply = "Thank you for using the AtmosDrobe!"
@@ -180,8 +180,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "AtmosDrobe"
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
-	name = "CargoDrobe"
-	desc = "A highly advanced vending machine for buying cargo related clothing for free."
+	name = "货舱服装售货机"
+	desc = "一个非常先进的自动售货机，用于免费购买与货舱相关的服装。"
 	icon_state = "cargodrobe"
 	product_ads = "Upgraded Assistant Style! Pick yours today!;These shorts are comfy and easy to wear, get yours now!"
 	vend_reply = "Thank you for using the CargoDrobe!"
@@ -223,8 +223,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "CargoDrobe"
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
-	name = "RoboDrobe"
-	desc = "A vending machine designed to dispense clothing known only to roboticists."
+	name = "机器人学家服装售货机"
+	desc = "一台专为机器人学家设计的自动售货机,其出售的物品只有机械师们知道。"
 	icon_state = "robodrobe"
 	product_ads = "You turn me TRUE, use defines!;0110001101101100011011110111010001101000011001010111001101101000011001010111001001100101"
 	vend_reply = "Thank you for using the RoboDrobe!"
@@ -257,8 +257,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "RoboDrobe"
 
 /obj/machinery/vending/wardrobe/science_wardrobe
-	name = "SciDrobe"
-	desc = "A simple vending machine suitable to dispense well tailored science clothing. Endorsed by Space Cubans."
+	name = "科学服装售货机"
+	desc = "一个简单的自动售货机，适合分发精心剪裁的科学服装。由太空人代言。"
 	icon_state = "scidrobe"
 	product_ads = "Longing for the smell of plasma burnt flesh? Buy your science clothing now!;Made with 10% Auxetics, so you don't have to worry about losing your arm!"
 	vend_reply = "Thank you for using the SciDrobe!"
@@ -286,8 +286,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "SciDrobe"
 
 /obj/machinery/vending/wardrobe/hydro_wardrobe
-	name = "Hydrobe"
-	desc = "A machine with a catchy name. It dispenses botany related clothing and gear."
+	name = "植物学服装售货机"
+	desc = "一台名字朗朗上口的机器。它出售与植物学有关的衣服和装备。"
 	icon_state = "hydrobe"
 	product_ads = "Do you love soil? Then buy our clothes!;Get outfits to match your green thumb here!"
 	vend_reply = "Thank you for using the Hydrobe!"
@@ -314,8 +314,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "HyDrobe"
 
 /obj/machinery/vending/wardrobe/curator_wardrobe
-	name = "CuraDrobe"
-	desc = "A low-stock vendor only capable of vending clothing for curators and librarians."
+	name = "图书管理员服装售货机"
+	desc = "一款低库存的贩卖机，仅能提供馆长和图书管理员所需的服装。"
 	icon_state = "curadrobe"
 	product_slogans = "Glasses for your eyes and literature for your soul, Curadrobe has it all!; Impress & enthrall your library guests with Curadrobe's extended line of pens!"
 	vend_reply = "Thank you for using the CuraDrobe!"
@@ -347,8 +347,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "CuraDrobe"
 
 /obj/machinery/vending/wardrobe/coroner_wardrobe
-	name = "MortiDrobe"
-	desc = "A favorite among nihilists."
+	name = "殓尸衣橱"
+	desc = "虚无主义者的最爱。"
 	icon_state = "coroner_drobe"
 	product_ads = "Any day above ground is a good one!;My day starts when yours ends!;And they call this a dying business!;See you when you're dead!"
 	vend_reply = "Don't forget your \"Buy one get one free\" burial deal!"
@@ -396,8 +396,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "MortiDrobe"
 
 /obj/machinery/vending/wardrobe/bar_wardrobe
-	name = "BarDrobe"
-	desc = "A stylish vendor to dispense the most stylish bar clothing!"
+	name = "酒保服装售货机"
+	desc = "一个时尚的小贩分发最时尚的酒吧服装！"
 	icon_state = "bardrobe"
 	product_ads = "Guaranteed to prevent stains from spilled drinks!"
 	vend_reply = "Thank you for using the BarDrobe!"
@@ -434,8 +434,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "BarDrobe"
 
 /obj/machinery/vending/wardrobe/chef_wardrobe
-	name = "ChefDrobe"
-	desc = "This vending machine might not dispense meat, but it certainly dispenses chef related clothing."
+	name = "厨师服装售货机"
+	desc = "这个自动贩卖机可能不卖肉，但它肯定卖厨师相关的衣服。"
 	icon_state = "chefdrobe"
 	product_ads = "Our clothes are guaranteed to protect you from food splatters!"
 	vend_reply = "Thank you for using the ChefDrobe!"
@@ -464,8 +464,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "ChefDrobe"
 
 /obj/machinery/vending/wardrobe/jani_wardrobe
-	name = "JaniDrobe"
-	desc = "A self cleaning vending machine capable of dispensing clothing for janitors."
+	name = "清洁服装售货机"
+	desc = "一种自动清洁自动售货机，出售看门人所需的衣物。"
 	icon_state = "janidrobe"
 	product_ads = "Come and get your janitorial clothing, now endorsed by lizard janitors everywhere!"
 	vend_reply = "Thank you for using the JaniDrobe!"
@@ -503,8 +503,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "JaniDrobe"
 
 /obj/machinery/vending/wardrobe/law_wardrobe
-	name = "LawDrobe"
-	desc = "Objection! This wardrobe dispenses the rule of law... and lawyer clothing."
+	name = "律师服装售货机"
+	desc = "一斤鸭梨！这个服装售货机摒弃了法治……还有律师服。"
 	icon_state = "lawdrobe"
 	product_ads = "OBJECTION! Get the rule of law for yourself!"
 	vend_reply = "Thank you for using the LawDrobe!"
@@ -550,8 +550,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "LawDrobe"
 
 /obj/machinery/vending/wardrobe/chap_wardrobe
-	name = "DeusVend"
-	desc = "God wills your purchase."
+	name = "牧师服装售货机"
+	desc = "太空神会批准你的订单。"
 	icon_state = "chapdrobe"
 	product_ads = "Are you being bothered by cultists or pesky revenants? Then come and dress like the holy man!;Clothes for men of the cloth!"
 	vend_reply = "Thank you for using the DeusVend!"
@@ -597,8 +597,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "DeusVend"
 
 /obj/machinery/vending/wardrobe/chem_wardrobe
-	name = "ChemDrobe"
-	desc = "A vending machine for dispensing chemistry related clothing."
+	name = "化学服装售货机"
+	desc = "一台用于提供化学相关衣物的自动售货机。"
 	icon_state = "chemdrobe"
 	product_ads = "Our clothes are 0.5% more resistant to acid spills! Get yours now!"
 	vend_reply = "Thank you for using the ChemDrobe!"
@@ -628,8 +628,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "ChemDrobe"
 
 /obj/machinery/vending/wardrobe/gene_wardrobe
-	name = "GeneDrobe"
-	desc = "A machine for dispensing clothing related to genetics."
+	name = "基因服装售货机"
+	desc = "一台提供遗传学相关衣物的自动售货机"
 	icon_state = "genedrobe"
 	product_ads = "Perfect for the mad scientist in you!"
 	vend_reply = "Thank you for using the GeneDrobe!"
@@ -653,8 +653,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "GeneDrobe"
 
 /obj/machinery/vending/wardrobe/viro_wardrobe
-	name = "ViroDrobe"
-	desc = "An unsterilized machine for dispensing virology related clothing."
+	name = "病毒学服装售货机"
+	desc = "一台未经消毒、用于分发病毒学相关服装的机器。"
 	icon_state = "virodrobe"
 	product_slogans = " Viruses getting you down? Then upgrade to sterilized clothing today!"
 	vend_reply = "Thank you for using the ViroDrobe"
@@ -680,8 +680,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "ViroDrobe"
 
 /obj/machinery/vending/wardrobe/det_wardrobe
-	name = "\improper DetDrobe"
-	desc = "A machine for all your detective needs, as long as you need clothes."
+	name = "\improper 侦探服装售货机"
+	desc = "只要你需要衣服，一台自动售货机就能满足你侦探的一切需求。"
 	icon_state = "detdrobe"
 	product_ads = "Apply your brilliant deductive methods in style!"
 	vend_reply = "Thank you for using the DetDrobe!"
@@ -726,8 +726,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "DetDrobe"
 
 /obj/machinery/vending/wardrobe/cent_wardrobe
-	name = "\improper CentDrobe"
-	desc = "A one-of-a-kind vending machine for all your centcom aesthetic needs!"
+	name = "\improper 中央指挥部服装售货机"
+	desc = "一台独一无二的自动售货机，满足您所有的中央指挥部美学需求！"
 	icon_state = "centdrobe"
 	product_ads = "Show those ERTs who's the most stylish in the briefing room!"
 	vend_reply = "Thank you for using the CentDrobe!"

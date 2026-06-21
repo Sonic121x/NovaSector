@@ -18,7 +18,7 @@
 
 /datum/wound
 	/// What it's named
-	var/name = "Wound"
+	var/name = "伤口"
 	/// Optional, what is the wound named when someone is checking themselves (IE, no scanner - just with their eyes and hands)
 	var/undiagnosed_name
 	/// The description shown on the scanners
@@ -222,14 +222,14 @@
 		return
 
 	if(!silent && !demoted)
-		var/msg = span_danger("[victim]'s [limb.plaintext_zone] [occur_text]!")
+		var/msg = span_danger("[victim]的[limb.plaintext_zone][occur_text]！")
 		var/vis_dist = COMBAT_MESSAGE_RANGE
 
 		if(severity > WOUND_SEVERITY_SEVERE)
 			msg = "<b>[msg]</b>"
 			vis_dist = DEFAULT_MESSAGE_RANGE
 
-		victim.visible_message(msg, span_userdanger("Your [limb.plaintext_zone] [occur_text]!"), vision_distance = vis_dist)
+		victim.visible_message(msg, span_userdanger("你的[limb.plaintext_zone][occur_text]！"), vision_distance = vis_dist)
 		if(sound_effect)
 			playsound(limb.owner, sound_effect, sound_volume + (20 * severity), TRUE, falloff_exponent = SOUND_FALLOFF_EXPONENT + 2,  ignore_walls = FALSE, falloff_distance = 0)
 
@@ -521,7 +521,7 @@
 	// now that we've determined we have a valid attempt at treating,
 	// we can stomp on their dreams if we're already interacting with the patient or if their part is obscured
 	if(DOING_INTERACTION_WITH_TARGET(user, victim))
-		to_chat(user, span_warning("You're already interacting with [victim]!"))
+		to_chat(user, span_warning("你已经在与[victim]互动了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	// next we check if the bodypart in actually accessible (not under thick clothing). We skip the species trait check since skellies
@@ -642,7 +642,7 @@
 /datum/wound/proc/get_examine_description(mob/user)
 	. = get_wound_description(user)
 	if(HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
-		. += span_notice("<br>There is a holo-image next to the wound that seems to contain indications for treatment.")
+		. += span_notice("<br>伤口旁有一个全息图像，似乎包含治疗指示。")
 
 	return .
 
@@ -654,7 +654,7 @@
 		var/sling_condition = get_gauze_condition()
 		desc = "[victim.p_Their()] [limb.plaintext_zone] is [sling_condition]fastened in a sling of [current_gauze.name]"
 	else
-		desc = "[victim.p_Their()] [limb.plaintext_zone] [examine_desc]"
+		desc = "[victim.p_Their()]的[limb.plaintext_zone][examine_desc]"
 
 	desc = modify_desc_before_span(desc, user)
 
@@ -708,7 +708,7 @@
 /datum/wound/proc/get_desc_intensity(desc)
 	SHOULD_BE_PURE(TRUE)
 	if (severity > WOUND_SEVERITY_MODERATE)
-		return span_bold("[desc]!")
+		return span_bold("[desc]！")
 	return "[desc]."
 
 /**

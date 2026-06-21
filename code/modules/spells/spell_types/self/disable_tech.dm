@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/emp
-	name = "Emplosion"
-	desc = "This spell causes an EMP in an area."
+	name = "Emplosion-EMP爆破"
+	desc = "这个咒语会在一个区域产生EMP。"
 	button_icon_state = "emp"
 	sound = 'sound/items/weapons/zapbang.ogg'
 
@@ -16,8 +16,8 @@
 	empulse(get_turf(cast_on), emp_heavy, emp_light, emp_source = src)
 
 /datum/action/cooldown/spell/emp/disable_tech
-	name = "Disable Tech"
-	desc = "This spell disables all weapons, cameras and most other technology in range."
+	name = "Disable Tech-技术封印"
+	desc = "这个咒语使射程内的所有武器、摄像机和大多数其他技术失效。"
 	sound = 'sound/effects/magic/disable_tech.ogg'
 
 	cooldown_time = 40 SECONDS

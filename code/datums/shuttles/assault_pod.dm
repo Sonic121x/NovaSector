@@ -4,4 +4,4 @@
 
 /datum/map_template/shuttle/assault_pod/default
 	suffix = "default"
-	name = "assault pod (Default)"
+	name = "突击舱（默认）"

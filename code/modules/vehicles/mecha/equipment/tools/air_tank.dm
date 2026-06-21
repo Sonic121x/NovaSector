@@ -1,7 +1,7 @@
 ///Mech air tank module
 /obj/item/mecha_parts/mecha_equipment/air_tank
-	name = "mounted air tank"
-	desc = "An internal air tank used to pressurize mech cabin, scrub CO2 and power RCS thrusters. Comes with a pump and a set of sensors."
+	name = "挂载式空气罐"
+	desc = "一个用于给机甲驾驶舱加压、清除二氧化碳并为RCS推进器供能的内部空气罐。配备一个泵和一套传感器。"
 	icon_state = "mecha_air_tank"
 	equipment_slot = MECHA_UTILITY
 	can_be_toggled = TRUE

@@ -2,7 +2,7 @@
 	id = TECHWEB_NODE_FUNDIMENTAL_SCI
 	starting_node = TRUE
 	display_name = "Fundamental Science"
-	description = "Establishing the bedrock of scientific understanding, paving the way for deeper exploration and theoretical inquiry."
+	description = "奠定科学理解的基石，为更深入的探索和理论研究铺平道路。"
 	design_ids = list(
 		"rdserver",
 		"rdservercontrol",
@@ -22,7 +22,7 @@
 /datum/techweb_node/bluespace_theory
 	id = TECHWEB_NODE_BLUESPACE_THEORY
 	display_name = "Bluespace Theory"
-	description = "Basic studies into the mysterious alternate dimension known as bluespace."
+	description = "对被称为蓝空的神秘异次元维度进行基础研究。"
 	prereq_ids = list(TECHWEB_NODE_FUNDIMENTAL_SCI)
 	design_ids = list(
 		"bluespace_crystal",
@@ -33,7 +33,7 @@
 /datum/techweb_node/applied_bluespace
 	id = TECHWEB_NODE_APPLIED_BLUESPACE
 	display_name = "Applied Bluespace Research"
-	description = "With a heightened grasp of bluespace dynamics, sophisticated applications and technologies can be devised using data from bluespace crystal analyses."
+	description = "随着对蓝空动力学理解的加深，可以利用蓝空晶体分析数据设计出复杂的应用和技术。"
 	prereq_ids = list(TECHWEB_NODE_BLUESPACE_THEORY)
 	design_ids = list(
 		"ore_silo",
@@ -55,7 +55,7 @@
 /datum/techweb_node/bluespace_travel
 	id = TECHWEB_NODE_BLUESPACE_TRAVEL
 	display_name = "Bluespace Travel"
-	description = "Facilitate teleportation methods based on bluespace principles to revolutionize logistical efficiency."
+	description = "基于蓝空原理促进传送方法，以革新物流效率。"
 	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE)
 	design_ids = list(
 		"teleconsole",
@@ -74,7 +74,7 @@
 /datum/techweb_node/anomaly_research
 	id = TECHWEB_NODE_ANOMALY_RESEARCH
 	display_name = "Anomaly Research"
-	description = "Delving into the study of mysterious anomalies to investigate methods to refine and harness their unpredictable energies."
+	description = "深入研究神秘异常现象，探索精炼并利用其不可预测能量的方法。"
 	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE)
 	design_ids = list(
 		"anomaly_refinery",
@@ -88,7 +88,7 @@
 /datum/techweb_node/anomaly_shells
 	id = TECHWEB_NODE_ANOMALY_SHELLS
 	display_name = "Advanced Anomaly Shells"
-	description = "New shells designed to utilize anomaly cores, maximizing their potential in innovative ways."
+	description = "旨在利用异常核心的新外壳设计，以创新的方式最大化其潜力。"
 	prereq_ids = list(TECHWEB_NODE_ANOMALY_RESEARCH)
 	design_ids = list(
 		"bag_holding",

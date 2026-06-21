@@ -1,5 +1,5 @@
 /datum/martial_art/spiders_bite
-	name = "Spider's Bite"
+	name = "蜘蛛之噬"
 	id = MARTIALART_SPIDERSBITE
 	help_verb = "Recall Teachings"
 	grab_damage_modifier = 10
@@ -50,8 +50,8 @@
 		return
 	source.visible_message(
 		span_warning("[source] knocks [target]'s [weapon.name] out of [target.p_their()] hands with a kick!"),
-		span_notice("You channel the flow of gravity and knock [target]'s [weapon.name] out of [target.p_their()] hands with a kick!"),
-		span_hear("You hear a thud, followed by a clatter."),
+		span_notice("你引导重力流，一脚将[target]的[weapon.name]从[target.p_their()]手中踢飞！"),
+		span_hear("你听到一声闷响，接着是东西落地的声音。"),
 	)
 
 /datum/martial_art/spiders_bite/get_prefered_attacking_limb(mob/living/martial_artist, mob/living/target)

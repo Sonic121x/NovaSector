@@ -1,6 +1,6 @@
 /obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer
-	name = "FOBricator Module"
-	desc = "A deployable structure printer for SolFed field mechs. Allows fabrication of tactical infrastructure."
+	name = "FOB制造器模块"
+	desc = "一款为太阳联邦野战机甲配备的可部署结构打印机。允许制造战术基础设施。"
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "autolathe"
 	equipment_slot = MECHA_UTILITY
@@ -10,57 +10,57 @@
 	///List of printables items
 	var/list/printables = list(
 		/obj/structure/deployable_barricade/metal/plasteel = list(
-			name = "Plasteel Barricade",
+			name = "塑钢路障",
 			energy = 100,
 			time = 2.5 SECONDS
 		),
 		/obj/structure/deployable_barricade/metal = list(
-			name = "Metal Barricade",
+			name = "金属路障",
 			energy = 75,
 			time = 2 SECONDS
 		),
 		/obj/structure/barricade/sandbags = list(
-			name = "Sandbags",
+			name = "沙袋",
 			energy = 50,
 			time = 1.5 SECONDS
 		),
 		/turf/closed/wall/r_wall = list(
-			name = "Reinforced Wall",
+			name = "强化墙",
 			energy = 120,
 			time = 3 SECONDS
 		),
 		/turf/closed/wall = list(
-			name = "Wall",
+			name = "墙",
 			energy = 90,
 			time = 2.5 SECONDS
 		),
 		/obj/machinery/power/smes/battery_pack = list(
-			name = "Stationary Battery",
+			name = "固定式电池",
 			energy = 200,
 			time = 4 SECONDS
 		),
 		/obj/machinery/power/rtg/portable = list(
-			name = "RTG Generator",
+			name = "RTG发电机",
 			energy = 250,
 			time = 5 SECONDS
 		),
 		/obj/machinery/power/floodlight = list(
-			name = "Floodlight",
+			name = "泛光灯",
 			energy = 80,
 			time = 2 SECONDS
 		),
 		/turf/open/floor/plating = list(
-			name = "Plating",
+			name = "底板",
 			energy = 30,
 			time = 1 SECONDS
 		),
 		/obj/machinery/mech_bay_recharge_port = list(
-			name = "Mech Bay Power Port",
+			name = "机甲泊位电源接口",
 			energy = 150,
 			time = 3.5 SECONDS
 		),
 		/obj/machinery/computer/mech_bay_power_console = list(
-			name = "Mech Bay Console",
+			name = "机甲泊位控制台",
 			energy = 100,
 			time = 3 SECONDS
 		)
@@ -82,10 +82,10 @@
 	return ..()
 
 /datum/action/vehicle/sealed/mecha/solfed_3d_printer_open_menu
-	name = "Deployable Structures"
+	name = "可部署结构"
 	button_icon = 'modular_nova/modules/solfed_mechs/icons/action_mecha.dmi'
 	button_icon_state = "rcd"
-	desc = "Deploy SolFed field structures."
+	desc = "部署太阳联邦野战结构。"
 
 /datum/action/vehicle/sealed/mecha/solfed_3d_printer_open_menu/Trigger(mob/user, trigger_flags)
 	. = ..()
@@ -93,7 +93,7 @@
 		return
 	var/obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer/printer = locate(/obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer) in chassis.equip_by_category[MECHA_UTILITY]
 	if (!printer)
-		to_chat(user, "No printer module detected.")
+		to_chat(user, "未检测到打印机模块。")
 		return
 
 	var/list/choices = list()
@@ -101,17 +101,17 @@
 		var/name = printer.printables[typepath]["name"]
 		choices[name] = typepath
 
-	var/choice = input(user, "Select a structure to deploy:", "FOBricator") in choices
+	var/choice = input(user, "选择要部署的结构：", "FOBricator") in choices
 	if (!choice)
 		return
 
 	printer.deploy_structure(user, choices[choice])
 
 /datum/action/vehicle/sealed/mecha/toggle_cablelay
-	name = "Toggle Cable-Laying Mode"
+	name = "切换电缆铺设模式"
 	button_icon = 'modular_nova/modules/solfed_mechs/icons/action_mecha.dmi'
 	button_icon_state = "rcl_off"
-	desc = "Automatically lays cable while moving across valid tiles."
+	desc = "在有效格子上移动时自动铺设电缆。"
 
 /datum/action/vehicle/sealed/mecha/toggle_cablelay/Trigger(mob/clicker, trigger_flags)
 	. = ..()
@@ -119,13 +119,13 @@
 		return
 	var/obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer/printer = locate(/obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer) in chassis.equip_by_category[MECHA_UTILITY]
 	if (!printer)
-		to_chat(clicker, "No cable-laying module detected.")
+		to_chat(clicker, "未检测到电缆铺设模块。")
 		return
 
 	printer.cablelay_mode = !printer.cablelay_mode
 	button_icon_state = printer.cablelay_mode ? "rcl_on" : "rcl_off"
 	build_all_button_icons()
-	to_chat(clicker, "Cable-laying mode [printer.cablelay_mode ? "enabled" : "disabled"].")
+	to_chat(clicker, "电缆铺设模式[printer.cablelay_mode ? "enabled" : "disabled"]。")
 
 /obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer/Move(newloc, dir)
 	. = ..()
@@ -156,9 +156,9 @@
 	chassis.use_energy(25)
 
 /datum/action/vehicle/sealed/mecha/open_fob_menu
-	name = "Deployable Structures"
+	name = "可部署结构"
 	button_icon_state = "build"
-	desc = "Deploy SolFed field structures."
+	desc = "部署太阳联邦野外结构。"
 
 /datum/action/vehicle/sealed/mecha/open_fob_menu/Trigger(mob/user, trigger_flags)
 	. = ..()
@@ -173,7 +173,7 @@
 		var/name = printer.printables[typepath]["name"]
 		choices[name] = typepath
 
-	var/choice = input(user, "Select a structure to deploy:", "FOBricator") in choices
+	var/choice = input(user, "选择要部署的结构：", "FOBricator") in choices
 	if(!choice)
 		return
 
@@ -191,7 +191,7 @@
 		source_atom = user,
 		ignore_atoms = list(/obj/item, /obj/effect),
 		type_list = TRUE))
-		balloon_alert(user, "something is on the tile!")
+		balloon_alert(user, "该格子上有东西！")
 		return FALSE
 
 	// Rule 3: Plating can only be built on openspace
@@ -211,11 +211,11 @@
 	var/turf/target = get_step(src, usr.dir)
 
 	if(!can_build_here(target, typepath))
-		to_chat(user, "Not a valid space to deploy.")
+		to_chat(user, "不是有效的部署空间。")
 		return
 
 	if(!chassis.use_energy(energy_cost))
-		to_chat(user, "Insufficient energy to fabricate [data["name"]].")
+		to_chat(user, "能量不足，无法制造[data["name"]]。")
 		return
 
 	to_chat(user, "Beginning deployment of [data["name"]]...")
@@ -224,4 +224,4 @@
 		chassis.use_energy(energy_cost)
 		var/obj/structure/item = new typepath(target)
 		item.setDir(user.dir)
-		to_chat(user, "[item] deployed successfully.")
+		to_chat(user, "[item]部署成功。")

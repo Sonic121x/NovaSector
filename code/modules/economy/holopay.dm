@@ -1,6 +1,6 @@
 /obj/structure/holopay
-	name = "holographic pay stand"
-	desc = "an unregistered pay stand"
+	name = "全息支付台"
+	desc = "一个未登记的收费亭"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "card_scanner"
 	alpha = 150
@@ -27,7 +27,7 @@
 /obj/structure/holopay/examine(mob/user)
 	. = ..()
 	if(force_fee)
-		. += span_boldnotice("This holopay forces a payment of <b>[force_fee]</b> [MONEY_NAME_AUTOPURAL(force_fee)] per swipe instead of a variable amount.")
+		. += span_boldnotice("此全息支付器强制每次刷卡支付<b>[force_fee]</b> [MONEY_NAME_AUTOPURAL(force_fee)]，而非可变金额。")
 
 /obj/structure/holopay/Initialize(mapload)
 	. = ..()
@@ -81,10 +81,10 @@
 	/// Users can pay with an ID to skip the UI
 	if(isidcard(held_item))
 		if(istype(held_item, /obj/item/card/id/departmental_budget))
-			balloon_alert(user, "invalid payment card")
-			to_chat(user, span_warning("You cannot use a departamental card for this."))
+			balloon_alert(user, "无效的支付卡")
+			to_chat(user, span_warning("您不能为此使用部门卡。"))
 			return FALSE
-		if(force_fee && tgui_alert(item_holder, "This holopay has a [force_fee] [MONEY_SYMBOL] fee. Confirm?", "Holopay Fee", list("Pay", "Cancel")) != "Pay")
+		if(force_fee && tgui_alert(item_holder, "此全息支付终端收取 [force_fee] [MONEY_SYMBOL] 费用。确认？", "全息支付终端费用", list("Pay", "Cancel")) != "Pay")
 			return TRUE
 		process_payment(user)
 		return TRUE
@@ -93,29 +93,29 @@
 		/// Account checks
 		var/obj/item/holochip/chip = held_item
 		if(!chip.credits)
-			balloon_alert(user, "holochip is empty")
-			to_chat(user, span_warning("There doesn't seem to be any [MONEY_NAME] here."))
+			balloon_alert(user, "全息芯片是空的")
+			to_chat(user, span_warning("这里似乎没有任何[MONEY_NAME]。"))
 			return FALSE
 		/// Charges force fee or uses pay what you want
-		var/cash_deposit = force_fee || tgui_input_number(user, "How much? (Max: [chip.credits])", "Patronage", max_value = chip.credits)
+		var/cash_deposit = force_fee || tgui_input_number(user, "支付多少？（最多：[chip.credits]）", "支付", max_value = chip.credits)
 		/// Exit sanity checks
 		if(!cash_deposit)
 			return TRUE
 		if(QDELETED(held_item) || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 			return FALSE
 		if(!chip.spend(cash_deposit, FALSE))
-			balloon_alert(user, "insufficient [MONEY_NAME]")
-			to_chat(user, span_warning("You don't have enough [MONEY_NAME] to pay with this chip."))
+			balloon_alert(user, "[MONEY_NAME] 不足")
+			to_chat(user, span_warning("你的这张芯片没有足够的[MONEY_NAME]来支付。"))
 			return FALSE
 		/// Success: Alert buyer
 		alert_buyer(user, cash_deposit)
 		return TRUE
 	/// Throws errors if they try to use space cash
 	if(istype(held_item, /obj/item/stack/spacecash))
-		to_chat(user, "What is this, the 2000s? We only take card here.")
+		to_chat(user, "这是什么，2000年代吗？我们这里只收卡。")
 		return TRUE
 	if(istype(held_item, /obj/item/coin))
-		to_chat(user, "What is this, the 1800s? We only take card here.")
+		to_chat(user, "这是什么，1800年代吗？我们这里只收卡。")
 		return TRUE
 	return ..()
 
@@ -202,13 +202,13 @@
  */
 /obj/structure/holopay/proc/assign_card(turf/target, obj/item/card/id/card)
 	linked_card = card
-	desc = "Pays directly into [card.registered_account.account_holder]'s bank account."
+	desc = "转账至[card.registered_account.account_holder]的银行账户"
 	force_fee = card.holopay_fee
 	shop_logo = card.holopay_logo
 	name = card.holopay_name
 	add_atom_colour("#77abff", FIXED_COLOUR_PRIORITY)
 	set_light(2)
-	visible_message(span_notice("A holographic pay stand appears."))
+	visible_message(span_notice("一个全息支付台出现了。"))
 	/// Start checking if the source projection is in range
 	track(linked_card)
 	return TRUE
@@ -244,7 +244,7 @@
  */
 /obj/structure/holopay/proc/dissipate()
 	playsound(loc, 'sound/effects/empulse.ogg', 40, TRUE)
-	visible_message(span_notice("The pay stand vanishes."))
+	visible_message(span_notice("支付台消失了。"))
 	qdel(src)
 
 /**
@@ -260,26 +260,26 @@
 	var/obj/item/card/id/id_card
 	id_card = user.get_idcard(TRUE)
 	if(isnull(id_card) || id_card.can_be_used_in_payment(user))
-		balloon_alert(user, "invalid account")
-		to_chat(user, span_warning("You don't have a valid account."))
+		balloon_alert(user, "无效账户")
+		to_chat(user, span_warning("你没有有效的账户。"))
 		return FALSE
 	var/datum/bank_account/payee = id_card.registered_account
 	if(payee == linked_card?.registered_account)
-		balloon_alert(user, "invalid transaction")
-		to_chat(user, span_warning("You can't pay yourself."))
+		balloon_alert(user, "交易无效")
+		to_chat(user, span_warning("你不能支付给自己。"))
 		return FALSE
 	if(istype(id_card, /obj/item/card/id/departmental_budget))
-		balloon_alert(user, "invalid payment card")
-		to_chat(user, span_warning("You cannot use a departamental card for this."))
+		balloon_alert(user, "支付卡无效")
+		to_chat(user, span_warning("你不能使用部门卡进行此操作。"))
 		return FALSE
 	/// If the user has enough money, ask them the amount or charge the force fee
-	var/amount = force_fee || tgui_input_number(user, "How much? (Max: [payee.account_balance])", "Patronage", max_value = payee.account_balance)
+	var/amount = force_fee || tgui_input_number(user, "支付多少？(上限：[payee.account_balance])", "赞助", max_value = payee.account_balance)
 	/// Exit checks in case the user cancelled or entered an invalid amount
 	if(!amount || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return FALSE
 	if(!payee.adjust_money(-amount, "Holopay: [capitalize(name)]"))
-		balloon_alert(user, "insufficient [MONEY_NAME]")
-		to_chat(user, span_warning("You don't have the money to pay for this."))
+		balloon_alert(user, "[MONEY_NAME] 不足")
+		to_chat(user, span_warning("你没有足够的钱来支付这个。"))
 		return FALSE
 	/// Success: Alert the buyer
 	alert_buyer(user, amount)

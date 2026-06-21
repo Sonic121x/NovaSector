@@ -56,7 +56,7 @@
 /// Returns FALSE if we don't bind, TRUE if we succeed.
 /datum/component/object_possession/proc/bind_to_new_object(obj/target)
 	if((target.obj_flags & DANGEROUS_POSSESSION) && CONFIG_GET(flag/forbid_singulo_possession))
-		to_chat(parent, "[target] is too powerful for you to possess.", confidential = TRUE)
+		to_chat(parent, "[target]过于强大，你无法附身。", confidential = TRUE)
 		return FALSE
 
 	var/mob/user = parent

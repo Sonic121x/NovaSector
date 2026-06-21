@@ -1,6 +1,6 @@
 /obj/item/stack/sheet/animalhide
-	name = "hide"
-	desc = "Something went wrong."
+	name = "皮革"
+	desc = "出了点问题。"
 	icon_state = "sheet-hide"
 	inhand_icon_state = null
 	novariants = TRUE
@@ -47,8 +47,8 @@
 	return null
 
 /obj/item/stack/sheet/animalhide/carbon/human
-	name = "human skin"
-	desc = "The by-product of human farming."
+	name = "人皮"
+	desc = "人类养殖的副产品。"
 	singular_name = "human skin piece"
 	novariants = FALSE
 	merge_type = /obj/item/stack/sheet/animalhide/carbon/human
@@ -66,15 +66,15 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/generic
-	name = "skin"
-	desc = "A piece of skin."
+	name = "皮"
+	desc = "一块皮。"
 	singular_name = "skin piece"
 	novariants = FALSE
 	merge_type = /obj/item/stack/sheet/animalhide/generic
 
 /obj/item/stack/sheet/animalhide/corgi
-	name = "corgi hide"
-	desc = "The by-product of corgi farming."
+	name = "柯基皮"
+	desc = "柯基养殖的副产品。"
 	singular_name = "corgi hide piece"
 	icon_state = "sheet-corgi"
 	inhand_icon_state = null
@@ -84,8 +84,8 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/mothroach
-	name = "mothroach hide"
-	desc = "A thin layer of mothroach hide."
+	name = "蛾螂皮"
+	desc = "一层薄薄的蛾螂皮。"
 	singular_name = "mothroach hide piece"
 	icon_state = "sheet-mothroach"
 	inhand_icon_state = null
@@ -101,8 +101,8 @@ GLOBAL_LIST_INIT(gondola_recipes, list ( \
 	))
 
 /obj/item/stack/sheet/animalhide/gondola
-	name = "gondola hide"
-	desc = "The extremely valuable product of gondola hunting."
+	name = "冈多拉皮"
+	desc = "冈多拉狩猎的极其珍贵的产物。"
 	singular_name = "gondola hide piece"
 	icon_state = "sheet-gondola"
 	inhand_icon_state = null
@@ -121,8 +121,8 @@ GLOBAL_LIST_INIT(corgi_recipes, list ( \
 	. += GLOB.corgi_recipes
 
 /obj/item/stack/sheet/animalhide/cat
-	name = "cat hide"
-	desc = "The by-product of cat farming."
+	name = "猫皮"
+	desc = "猫咪养殖的副产品。"
 	singular_name = "cat hide piece"
 	icon_state = "sheet-cat"
 	inhand_icon_state = null
@@ -132,8 +132,8 @@ GLOBAL_LIST_INIT(corgi_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/carbon/monkey
-	name = "monkey hide"
-	desc = "The by-product of monkey farming."
+	name = "猴皮"
+	desc = "猴子养殖的副产品。"
 	singular_name = "monkey hide piece"
 	icon_state = "sheet-monkey"
 	inhand_icon_state = null
@@ -152,8 +152,8 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/carbon/lizard
-	name = "lizard skin"
-	desc = "Sssssss..."
+	name = "蜥蜴皮"
+	desc = "嘶嘶嘶..."
 	singular_name = "lizard skin piece"
 	icon_state = "sheet-lizard"
 	inhand_icon_state = null
@@ -167,9 +167,9 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/xeno
-	name = "alien chitin"
+	name = "异形甲壳"
 	singular_name = "alien chitin piece"
-	desc = "The skin of a terrible creature."
+	desc = "一种可怕生物的皮肤。"
 	icon_state = "sheet-xeno"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/xeno
@@ -187,8 +187,8 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/carp
-	name = "carp scales"
-	desc = "The scaly skin of a space carp. It looks quite beautiful when detached from the foul creature who once wore it."
+	name = "鲤鱼鳞片"
+	desc = "太空鲤鱼的鳞状皮肤。从曾经穿着它的丑陋生物身上剥离后，看起来相当美丽。"
 	singular_name = "carp scale"
 	icon_state = "sheet-carp"
 	inhand_icon_state = null
@@ -211,8 +211,8 @@ GLOBAL_LIST_INIT(carp_recipes, list ( \
 	amount = 5
 
 /obj/item/xenos_claw
-	name = "alien claw"
-	desc = "The claw of a terrible creature."
+	name = "异形爪"
+	desc = "一只可怕生物的爪子。"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	icon_state = "claw"
 
@@ -220,8 +220,8 @@ GLOBAL_LIST_INIT(carp_recipes, list ( \
  * Leather SHeet
  */
 /obj/item/stack/sheet/leather
-	name = "leather"
-	desc = "The by-product of mob grinding."
+	name = "皮革"
+	desc = "生物研磨的副产品。"
 	singular_name = "leather piece"
 	icon_state = "sheet-leather"
 	inhand_icon_state = null
@@ -278,8 +278,8 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 /obj/item/stack/sheet/sinew
 	name = "watcher sinew"
 	icon = 'icons/obj/mining.dmi'
-	desc = "Long stringy filaments which presumably came from a watcher's wings."
-	singular_name = "watcher sinew"
+	desc = "长条状的细丝，可能来自观察者的翅膀。"
+	singular_name = "观察者肌腱"
 	icon_state = "sinew"
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/sinew
@@ -303,8 +303,8 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 
 /obj/item/stack/sheet/sinew/wolf
 	name = "wolf sinew"
-	desc = "Long stringy filaments which came from the insides of a wolf."
-	singular_name = "wolf sinew"
+	desc = "长条状的细丝，来自狼的体内。"
+	singular_name = "狼肌腱"
 	merge_type = /obj/item/stack/sheet/sinew/wolf
 
 GLOBAL_LIST_INIT(sinew_recipes, list ( \
@@ -318,8 +318,8 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 
 /*Plates*/
 /obj/item/stack/sheet/animalhide/goliath_hide
-	name = "goliath hide plates"
-	desc = "Pieces of a goliath's rocky hide, these might be able to make your suit a bit more durable to attack from the local fauna."
+	name = "歌利亚兽皮板"
+	desc = "歌利亚岩石外皮的碎片，或许能让你的防护服更能抵御当地野生动物的攻击。"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "goliath_hide"
 	singular_name = "hide plate"
@@ -332,15 +332,15 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/animalhide/goliath_hide
 
 /obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide
-	name = "polar bear hides"
-	desc = "Pieces of a polar bear's fur, these might be able to make your suit a bit more durable to attack from the local fauna."
+	name = "北极熊皮"
+	desc = "北极熊皮毛的碎片，或许能让你的防护服更能抵御当地野生动物的攻击。"
 	icon_state = "polar_bear_hide"
 	singular_name = "polar bear hide"
 	merge_type = /obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide
 
 /obj/item/stack/sheet/animalhide/ashdrake
-	name = "ash drake hide"
-	desc = "The strong, scaled hide of an ash drake."
+	name = "灰烬龙皮"
+	desc = "灰烬龙强韧的鳞皮。"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "dragon_hide"
 	singular_name = "drake plate"
@@ -362,8 +362,8 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	)
 
 /obj/item/stack/sheet/animalhide/bear
-	name = "bear hide"
-	desc = "Fuzzy pelts from a bear. Imagine how warm you could be, wrapped up in a coat of this stuff."
+	name = "熊皮"
+	desc = "熊的毛茸茸的毛皮。想象一下，用这东西做成大衣裹在身上该有多暖和。"
 	icon_state = "bear_hide" //change
 	singular_name = "bear pelt"
 	merge_type = /obj/item/stack/sheet/animalhide/bear
@@ -383,9 +383,9 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 /obj/item/stack/sheet/animalhide/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(W.get_sharpness())
 		playsound(loc, 'sound/items/weapons/slice.ogg', 50, TRUE, -1)
-		user.visible_message(span_notice("[user] starts cutting hair off \the [src]."), span_notice("You start cutting the hair off \the [src]..."), span_hear("You hear the sound of a knife rubbing against flesh."))
+		user.visible_message(span_notice("[user] 开始从\the [src]上割下毛发。"), span_notice("你开始从\the [src]上割下毛发..."), span_hear("你听到刀子摩擦皮肉的声音。"))
 		if(do_after(user, 5 SECONDS, target = src))
-			to_chat(user, span_notice("You cut the hair from [src.name]."))
+			to_chat(user, span_notice("你从[src.name]上剪下了毛发。"))
 			new /obj/item/stack/sheet/hairlesshide(user.drop_location(), amount)
 			use(amount)
 	else
@@ -393,13 +393,13 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 
 /obj/item/stack/sheet/animalhide/examine(mob/user)
 	. = ..()
-	. += span_notice("You can remove the hair with any sharp object.")
+	. += span_notice("你可以用任何锋利的物体去除毛发。")
 
 //Step two - washing..... it's actually in washing machine code.
 
 /obj/item/stack/sheet/hairlesshide
-	name = "hairless hide"
-	desc = "This hide was stripped of its hair, but still needs washing and tanning."
+	name = "无毛兽皮"
+	desc = "这张兽皮的毛发已被去除，但仍需清洗和鞣制。"
 	singular_name = "hairless hide piece"
 	icon_state = "sheet-hairlesshide"
 	inhand_icon_state = null
@@ -409,12 +409,12 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 
 /obj/item/stack/sheet/hairlesshide/examine(mob/user)
 	. = ..()
-	. += span_notice("You can clean it up by washing in the water.")
+	. += span_notice("你可以用水清洗它。")
 
 //Step three - drying
 /obj/item/stack/sheet/wethide
-	name = "wet hide"
-	desc = "This hide has been cleaned but still needs to be dried."
+	name = "湿兽皮"
+	desc = "这张兽皮已经清洗过，但仍需晾干。"
 	singular_name = "wet hide piece"
 	icon_state = "sheet-wetleather"
 	inhand_icon_state = null
@@ -428,7 +428,7 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 
 /obj/item/stack/sheet/wethide/examine(mob/user)
 	. = ..()
-	. += span_notice("You can dry it up to make leather.")
+	. += span_notice("你可以把它晾干来制作皮革。")
 
 /obj/item/stack/sheet/wethide/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()
@@ -439,7 +439,7 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 	AddComponent(/datum/component/bakeable, /obj/item/stack/sheet/leather, rand(15 SECONDS, 20 SECONDS), TRUE, TRUE)
 
 /obj/item/stack/sheet/wethide/burn()
-	visible_message(span_notice("[src] dries up!"))
+	visible_message(span_notice("[src]变干了！"))
 	new /obj/item/stack/sheet/leather(loc, amount) // all the sheets to incentivize not losing your whole stack by accident
 	qdel(src)
 

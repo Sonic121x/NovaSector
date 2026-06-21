@@ -1,6 +1,6 @@
 /obj/machinery/vending/magivend
-	name = "\improper MagiVend"
-	desc = "A magic vending machine."
+	name = "\improper 巫师服装售货机"
+	desc = "一台神奇的自动售货机"
 	icon_state = "MagiVend"
 	panel_type = "panel10"
 	product_slogans = "Sling spells the proper way with MagiVend!;Be your own Houdini! Use MagiVend!"

@@ -8,8 +8,8 @@
 /turf/open/floor/catwalk_floor	//the base type, meant to look like a maintenance panel
 	icon = 'icons/turf/floors/catwalk_plating.dmi'
 	icon_state = "maint_above"
-	name = "catwalk floor"
-	desc = "Flooring that shows its contents underneath. Engineers love it!"
+	name = "脚手架地板"
+	desc = "能显示下方内容的铺地材料。工程师们的最爱！"
 	baseturfs = /turf/open/floor/plating
 	floor_tile = /obj/item/stack/tile/catwalk_tile
 	layer = CATWALK_LAYER
@@ -29,10 +29,10 @@
 	. = ..()
 
 	if(covered)
-		. += span_notice("You can <b>unscrew</b> it to reveal the contents beneath.")
+		. += span_notice("你可以<b>拧下</b>螺丝来露出下面的内容。")
 	else
-		. += span_notice("You can <b>screw</b> it to hide the contents beneath.")
-		. += span_notice("There's a <b>small crack</b> on the edge of it.")
+		. += span_notice("你可以<b>拧上</b>螺丝来隐藏下面的内容。")
+		. += span_notice("它的边缘有一条<b>小裂缝</b>。")
 
 /turf/open/floor/catwalk_floor/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -60,38 +60,38 @@
 
 /turf/open/floor/catwalk_floor/crowbar_act(mob/user, obj/item/crowbar)
 	if(covered)
-		user.balloon_alert(user, "remove cover first!")
+		user.balloon_alert(user, "先移除盖板！")
 		return FALSE
 	. = ..()
 
 //Reskins! More fitting with most of our tiles, and appear as a radial on the base type
 /turf/open/floor/catwalk_floor/iron
-	name = "iron plated catwalk floor"
+	name = "铁板镀层猫道地板，"
 	icon_state = "iron_above"
 	floor_tile = /obj/item/stack/tile/catwalk_tile/iron
 	catwalk_type = "iron"
 
 /turf/open/floor/catwalk_floor/iron_white
-	name = "white plated catwalk floor"
+	name = "白色镀层猫道地板，"
 	icon_state = "whiteiron_above"
 	floor_tile = /obj/item/stack/tile/catwalk_tile/iron_white
 	catwalk_type = "whiteiron"
 
 /turf/open/floor/catwalk_floor/iron_dark
-	name = "dark plated catwalk floor"
+	name = "黑色镀层猫道地板，"
 	icon_state = "darkiron_above"
 	floor_tile = /obj/item/stack/tile/catwalk_tile/iron_dark
 	catwalk_type = "darkiron"
 
 /turf/open/floor/catwalk_floor/titanium
-	name = "titanium plated catwalk floor"
+	name = "钛钢镀层猫道地板，"
 	icon_state = "titanium_above"
 	floor_tile = /obj/item/stack/tile/catwalk_tile/titanium
 	catwalk_type = "titanium"
 	rust_resistance = RUST_RESISTANCE_TITANIUM
 
 /turf/open/floor/catwalk_floor/iron_smooth //the original green type
-	name = "smooth plated catwalk floor"
+	name = "光滑镀层猫道地板，"
 	icon_state = "smoothiron_above"
 	floor_tile = /obj/item/stack/tile/catwalk_tile/iron_smooth
 	catwalk_type = "smoothiron"

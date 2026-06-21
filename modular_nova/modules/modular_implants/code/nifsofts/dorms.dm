@@ -1,5 +1,5 @@
 /obj/item/disk/nifsoft_uploader/dorms
-	name = "Grimoire Libidine"
+	name = "情欲魔典"
 	loaded_nifsoft = /datum/nifsoft/summoner/dorms
 	obj_flags_nova = ERP_ITEM
 
@@ -64,7 +64,7 @@
 	purchase_price = 150
 
 /obj/item/disk/nifsoft_uploader/dorms/contract
-	name = "\improper Libidine Contract"
+	name = "\improper 力比多契约"
 	loaded_nifsoft = /datum/nifsoft/hypno
 	reusable = TRUE //This is set to true because of how this handles updating laws
 	///What laws will be assigned when using the NIFSoft on someone?
@@ -87,7 +87,7 @@
 	target_nifsoft.fake_laws = laws_to_assign
 
 /obj/item/disk/nifsoft_uploader/dorms/contract/attack_self(mob/user, list/modifiers)
-	var/new_law = tgui_input_text(user, "Input a new law to add", src, laws_to_assign, max_length = MAX_MESSAGE_LEN)
+	var/new_law = tgui_input_text(user, "输入要添加的新法律", src, laws_to_assign, max_length = MAX_MESSAGE_LEN)
 	if(!new_law)
 		return FALSE
 
@@ -95,7 +95,7 @@
 	return TRUE
 
 /datum/nifsoft/hypno
-	name = "Libidine Contract"
+	name = "力比多契约"
 	program_desc = "Once installed, the Libidine Contract compells the user to follow the rules stored in the data of the NIFSoft. \n OOC NOTE: This is strictly here for adult roleplay. None of the laws here actually need to be obeyed and you can uninstall this NIFSoft at any time."
 	purchase_price = 0
 	lewd_nifsoft = TRUE

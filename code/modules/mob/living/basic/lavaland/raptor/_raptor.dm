@@ -8,8 +8,8 @@ GLOBAL_LIST_INIT(raptor_inherit_traits, list(
 GLOBAL_LIST_EMPTY(raptor_population)
 
 /mob/living/basic/raptor
-	name = "raptor"
-	desc = "A trusty, powerful steed. Taming it might prove difficult..."
+	name = "迅猛龙"
+	desc = "一匹可靠、强大的坐骑。驯服它可能很困难..."
 	icon = 'icons/mob/simple/lavaland/raptor_big.dmi'
 	icon_state = "raptor_red"
 	base_icon_state = "raptor"
@@ -146,15 +146,15 @@ GLOBAL_LIST_EMPTY(raptor_population)
 
 	switch (health / maxHealth)
 		if (0 to 0.2)
-			. += span_italics(span_bolddanger("[p_They()] [p_are()] gruesomly wounded, barely staying up on [p_their()] feet!"))
+			. += span_italics(span_bolddanger("[p_They()] [p_are()] 身受重伤，几乎无法用 [p_their()] 脚站立！"))
 		if (0.2 to 0.4)
 			. += span_danger("[p_They()] [p_have()] heavy injuries and open wounds all around [p_their()] body!")
 		if (0.4 to 0.6)
-			. += span_warning("[p_They()] [p_are()] noticeably hurt, limping from [p_their()] cuts and bruises.")
+			. += span_warning("[p_They()] [p_are()] 明显受伤了，因[p_their()]的割伤和瘀伤而跛行。")
 		if (0.6 to 0.8)
-			. += span_warning("[p_They()] [p_are()] visibly injured, a few bruises and cuts showing between [p_their()] feathers.")
+			. += span_warning("[p_They()] [p_are()] 明显受伤了，几处瘀伤和割伤在[p_their()]的羽毛间显露出来。")
 		if (0.8 to 0.999)
-			. += span_notice("[p_They()] [p_have()] a few minor bruises and scratches.")
+			. += span_notice("[p_They()] [p_have()] 一些轻微的瘀伤和擦伤。")
 
 /mob/living/basic/raptor/Life(seconds_per_tick)
 	. = ..()
@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(raptor_population)
 		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	var/obj/ore_food = locate(/obj/item/stack/ore) in target
 	if(isnull(ore_food))
-		balloon_alert(src, "no food!")
+		balloon_alert(src, "没有食物！")
 	else
 		UnarmedAttack(ore_food, TRUE, modifiers)
 	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
@@ -340,15 +340,15 @@ GLOBAL_LIST_EMPTY(raptor_population)
 	// Visuals
 	switch (new_stage)
 		if (RAPTOR_BABY)
-			name = "baby raptor"
-			desc = "Will this grow into something useful?"
+			name = "幼年迅猛龙"
+			desc = "这玩意儿能长成有用的东西吗？"
 			icon = 'icons/mob/simple/lavaland/raptor_baby.dmi'
 			base_icon_state = "baby"
 			base_pixel_w = 0
 			mob_size = MOB_SIZE_TINY
 		if (RAPTOR_YOUNG)
-			name = "raptor youngling"
-			desc = "A young raptor that can grow into a robust, trusty steed. Rather naive at such an age, it shouldn't be too hard to tame."
+			name = "迅猛龙幼崽"
+			desc = "一只年轻的迅猛龙，可以成长为强壮可靠的坐骑。在这个年纪相当天真，驯服起来应该不难。"
 			icon = 'icons/mob/simple/lavaland/raptor_big.dmi'
 			base_icon_state = "young"
 			base_pixel_w = initial(base_pixel_w)

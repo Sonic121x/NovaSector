@@ -2,8 +2,8 @@
 #define VISOR_MOUNT_SLEEP_TIME 5 SECONDS
 
 /obj/item/clothing/suit/clockwork
-	name = "bronze armor"
-	desc = "A strong, bronze suit worn by the soldiers of the Ratvarian armies."
+	name = "青铜护甲"
+	desc = "一套坚固的青铜护甲，由拉特瓦里安军队的士兵穿着。"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_cuirass"
@@ -36,8 +36,8 @@
 
 
 /obj/item/clothing/suit/clockwork/speed
-	name = "robes of divinity"
-	desc = "A shiny suit, glowing with a vibrant energy. The wearer will be able to move quickly across battlefields, but will be able to withstand less damage before falling."
+	name = "神性长袍"
+	desc = "一套闪亮的护甲，散发着充满活力的能量光芒。穿着者将能够在战场上快速移动，但在倒下前所能承受的伤害会减少。"
 	icon_state = "clockwork_cuirass_speed"
 	slowdown = -0.3
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -54,8 +54,8 @@
 	acid = 100
 
 /obj/item/clothing/suit/clockwork/cloak
-	name = "shrouding cloak"
-	desc = "A faltering cloak that bends light around it, distorting the user's appearance, making it hard to see them with the naked eye. However, it provides very little protection."
+	name = "遮蔽斗篷"
+	desc = "一件摇曳的斗篷，能弯曲周围的光线，扭曲使用者的外观，使其难以用肉眼看清。然而，它提供的保护非常有限。"
 	icon_state = "clockwork_cloak"
 	armor_type = /datum/armor/clockwork_cloak
 	actions_types = list(/datum/action/item_action/toggle/clock)
@@ -131,7 +131,7 @@
 
 
 /obj/item/clothing/glasses/clockwork
-	name = "base clock glasses"
+	name = "基础时钟眼镜"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_cuirass"
@@ -147,8 +147,8 @@
 
 // Thermal goggles, no protection from eye stuff
 /obj/item/clothing/glasses/clockwork/wraith_spectacles
-	name = "wraith spectacles"
-	desc = "Mystical glasses that glow with a bright energy. Some say they can see things that shouldn't be seen."
+	name = "幽灵眼镜"
+	desc = "散发着明亮能量光芒的神秘眼镜。有人说它们能看到本不该被看见的东西。"
 	icon_state = "wraith_specs_0"
 	base_icon_state = "wraith_specs"
 	invis_view = SEE_INVISIBLE_OBSERVER
@@ -223,13 +223,13 @@
 /// The start of application of the actual effects, including eye damage
 /obj/item/clothing/glasses/clockwork/wraith_spectacles/proc/on_toggle_eyes()
 	wearer.update_sight()
-	to_chat(wearer, span_clockgray("You suddenly see so much more."))
+	to_chat(wearer, span_clockgray("你突然看到了更多东西。"))
 
 
 /// The stopping of effect application, will remove the wearer's eye damage a minute after
 /obj/item/clothing/glasses/clockwork/wraith_spectacles/proc/de_toggle_eyes()
 	wearer.update_sight()
-	to_chat(wearer, span_clockgray("You feel your eyes slowly readjusting."))
+	to_chat(wearer, span_clockgray("你感觉你的眼睛正在慢慢重新适应。"))
 
 
 /obj/item/clothing/glasses/clockwork/wraith_spectacles/equipped(mob/living/user, slot)
@@ -252,8 +252,8 @@
 
 // Flash protected and generally info-granting with huds
 /obj/item/clothing/glasses/clockwork/judicial_visor
-	name = "judicial visor"
-	desc = "A purple visor gilt with Ratvarian runes, allowing a user to see, unfettered by others. The cogs on the sides look pretty tight..."
+	name = "审判目镜"
+	desc = "一副镶有拉特瓦里安符文的紫色目镜，能让使用者不受阻碍地看清事物。侧面的齿轮看起来相当紧……"
 	icon_state = "judicial_visor_0"
 	base_icon_state = "judicial_visor"
 	flash_protect = FLASH_PROTECTION_WELDER
@@ -363,7 +363,7 @@
 			apply_to_wearer()
 
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
-		to_chat(wearer, span_userdanger("You feel the cogs on the visor clamp to the sides of your head, drilling in!"))
+		to_chat(wearer, span_userdanger("你感觉到目镜上的齿轮夹住了你的头部两侧，正在钻入！"))
 		if(damaging)
 			wearer.emote("scream")
 			wearer.Sleeping(VISOR_MOUNT_SLEEP_TIME)
@@ -382,8 +382,8 @@
 
 
 /obj/item/clothing/head/helmet/clockwork
-	name = "brass helmet"
-	desc = "A strong, brass helmet worn by the soldiers of the Ratvarian armies. Includes an integrated light-dimmer for flash protection, as well as occult-grade muffling for factory based environments."
+	name = "黄铜头盔"
+	desc = "一顶坚固的黄铜头盔，由拉特瓦里安军队的士兵佩戴。包含用于闪光防护的集成调光器，以及适用于工厂环境的秘术级消音功能。"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_helmet"
@@ -409,8 +409,8 @@
 
 
 /obj/item/clothing/shoes/clockwork
-	name = "brass treads"
-	desc = "A strong pair of brass boots worn by the soldiers of the Ratvarian armies."
+	name = "黄铜踏靴"
+	desc = "一双坚固的黄铜靴子，由拉特瓦里安军队的士兵穿着。"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_treads"
@@ -421,8 +421,8 @@
 
 
 /obj/item/clothing/gloves/clockwork
-	name = "brass gauntlets"
-	desc = "A strong pair of brass gloves worn by the soldiers of the Ratvarian armies."
+	name = "黄铜护手"
+	desc = "一副坚固的黄铜手套，曾由拉特瓦里安军队的士兵佩戴。"
 	icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_nova/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_gauntlets"

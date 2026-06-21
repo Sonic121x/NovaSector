@@ -205,8 +205,8 @@
 	return ..()
 
 /datum/action/vehicle/sealed/climb_out
-	name = "Climb Out"
-	desc = "Climb out of your vehicle!"
+	name = "爬出"
+	desc = "从你的车里出来！"
 	button_icon_state = "car_eject"
 
 /datum/action/vehicle/sealed/climb_out/Trigger(mob/clicker, trigger_flags)
@@ -217,8 +217,8 @@
 	var/obj/vehicle/ridden/vehicle_ridden_target
 
 /datum/action/vehicle/sealed/remove_key
-	name = "Remove key"
-	desc = "Take your key out of the vehicle's ignition."
+	name = "移除钥匙"
+	desc = "请将钥匙从车辆的点火装置中取出来。"
 	button_icon_state = "car_removekey"
 
 /datum/action/vehicle/sealed/remove_key/Trigger(mob/clicker, trigger_flags)
@@ -229,8 +229,8 @@
 
 //CLOWN CAR ACTION DATUMS
 /datum/action/vehicle/sealed/horn
-	name = "Honk Horn"
-	desc = "Honk your classy horn."
+	name = "摁喇叭"
+	desc = "按响你那优雅的喇叭。"
 	button_icon_state = "car_horn"
 	var/hornsound = 'sound/items/carhorn.ogg'
 
@@ -241,44 +241,44 @@
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CAR_HONK))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_CAR_HONK, 2 SECONDS)
-	vehicle_entered_target.visible_message(span_danger("[vehicle_entered_target] loudly honks!"))
-	to_chat(owner, span_notice("You press [vehicle_entered_target]'s horn."))
+	vehicle_entered_target.visible_message(span_danger("[vehicle_entered_target]大声地鸣响了喇叭！"))
+	to_chat(owner, span_notice("你按下了[vehicle_entered_target]的喇叭。"))
 	if(istype(vehicle_target.inserted_key, /obj/item/bikehorn))
 		vehicle_target.inserted_key.attack_self(owner) //The bikehorn plays a sound instead
 		return
 	playsound(vehicle_entered_target, hornsound, 75)
 
 /datum/action/vehicle/sealed/headlights
-	name = "Toggle Headlights"
-	desc = "Turn on your brights!"
+	name = "切换前照灯"
+	desc = "打开你的远光灯！"
 	button_icon_state = "car_headlights"
 
 /datum/action/vehicle/sealed/headlights/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
-	to_chat(owner, span_notice("You flip the switch for the vehicle's headlights."))
+	to_chat(owner, span_notice("你拨动了载具前灯的开关。"))
 	vehicle_entered_target.headlights_toggle = !vehicle_entered_target.headlights_toggle
 	vehicle_entered_target.set_light_on(vehicle_entered_target.headlights_toggle)
 	vehicle_entered_target.update_appearance()
 	playsound(owner, vehicle_entered_target.headlights_toggle ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 
 /datum/action/vehicle/sealed/dump_kidnapped_mobs
-	name = "Dump Kidnapped Mobs"
-	desc = "Dump all objects and people in your car on the floor."
+	name = "抛弃被绑架的生物"
+	desc = "把车里的所有物品和人员都倒在地板上。"
 	button_icon_state = "car_dump"
 
 /datum/action/vehicle/sealed/dump_kidnapped_mobs/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
-	vehicle_entered_target.visible_message(span_danger("[vehicle_entered_target] starts dumping the people inside of it."))
+	vehicle_entered_target.visible_message(span_danger("[vehicle_entered_target]开始把里面的人往外倾倒。"))
 	vehicle_entered_target.dump_specific_mobs(VEHICLE_CONTROL_KIDNAPPED)
 
 
 /datum/action/vehicle/sealed/roll_the_dice
-	name = "Press Colorful Button"
-	desc = "Press one of those colorful buttons on your display panel!"
+	name = "按下多彩按钮"
+	desc = "按下你显示屏面板上那些彩色按钮中的任意一个！"
 	button_icon_state = "car_rtd"
 
 /datum/action/vehicle/sealed/roll_the_dice/Trigger(mob/clicker, trigger_flags)
@@ -291,8 +291,8 @@
 	C.roll_the_dice(owner)
 
 /datum/action/vehicle/sealed/cannon
-	name = "Toggle Siege Mode"
-	desc = "Destroy them with their own fodder!"
+	name = "切换围困模式"
+	desc = "用他们自己制造的武器来摧毁他们！"
 	button_icon_state = "car_cannon"
 
 /datum/action/vehicle/sealed/cannon/Trigger(mob/clicker, trigger_flags)
@@ -306,8 +306,8 @@
 
 
 /datum/action/vehicle/sealed/thank
-	name = "Thank the Clown Car Driver"
-	desc = "They're just doing their job."
+	name = "感谢小丑车司机"
+	desc = "他们只是在履行自己的职责而已。"
 	button_icon_state = "car_thanktheclown"
 	COOLDOWN_DECLARE(thank_time_cooldown)
 
@@ -324,15 +324,15 @@
 	var/obj/vehicle/sealed/car/clowncar/clown_car = vehicle_entered_target
 	var/list/mob/drivers = clown_car.return_drivers()
 	if(!length(drivers))
-		to_chat(owner, span_danger("You prepare to thank the driver, only to realize that they don't exist."))
+		to_chat(owner, span_danger("你正准备感谢司机，却发现他们根本不存在。"))
 		return
 	var/mob/clown = pick(drivers)
 	owner.say("Thank you for the fun ride, [clown.name]!")
 	clown_car.increment_thanks_counter()
 
 /datum/action/vehicle/ridden/wheelchair/bell
-	name = "Bell Ring"
-	desc = "Ring the bell."
+	name = "鸣钟"
+	desc = "敲响警钟"
 	button_icon = 'icons/obj/service/bureaucracy.dmi'
 	button_icon_state = "desk_bell"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
@@ -349,8 +349,8 @@
 	SEND_SIGNAL(vehicle_ridden_target, COMSIG_WHEELCHAIR_BELL_RANG, owner)
 
 /datum/action/vehicle/ridden/scooter/skateboard/ollie
-	name = "Ollie"
-	desc = "Get some air! Land on a table to do a gnarly grind."
+	name = "翱骊"
+	desc = "呼吸一下新鲜空气吧！然后趴在桌子上进行一番激烈的滑行。"
 	button_icon_state = "skateboard_ollie"
 	check_flags = AB_CHECK_CONSCIOUS
 
@@ -394,8 +394,8 @@
 	passtable_off(vehicle, VEHICLE_TRAIT)
 
 /datum/action/vehicle/ridden/scooter/skateboard/kickflip
-	name = "Kickflip"
-	desc = "Kick your board up and catch it."
+	name = "踢板翻转"
+	desc = "将滑板踢起并接住。"
 	button_icon_state = "skateboard_ollie"
 	check_flags = AB_CHECK_CONSCIOUS
 
@@ -414,20 +414,20 @@
 		if(prob(15))
 			rider.visible_message(
 				span_danger("[rider] misses the landing and falls on [rider.p_their()] face!)"),
-				span_userdanger("You smack against the board, hard."),
+				span_userdanger("你重重地撞在了滑板上。"),
 			)
 			rider.emote("scream")
 			rider.adjust_brute_loss(10)  // thats gonna leave a mark
 			return
 		rider.visible_message(
 			span_danger("[rider] misses the landing and falls on [rider.p_their()] face!"),
-			span_userdanger("You fall flat onto the board!"),
+			span_userdanger("你直挺挺地摔在了滑板上！"),
 		)
 		return
 
 	rider.visible_message(
-		span_notice("[rider] does a sick kickflip and catches [rider.p_their()] board in midair."),
-		span_notice("You do a sick kickflip, catching the board in midair! Stylish."),
+		span_notice("[rider]做了一个超酷的踢板翻转，并在半空中接住了[rider.p_their()]的滑板。"),
+		span_notice("你做了个超酷的踢翻动作，在半空中接住了滑板！真有型。"),
 	)
 	playsound(board, 'sound/vehicles/skateboard_ollie.ogg', 50, vary = TRUE)
 	rider.spin(spintime = 4, speed = 1)
@@ -444,7 +444,7 @@
 //VIM ACTION DATUMS
 
 /datum/action/vehicle/sealed/climb_out/vim
-	name = "Eject From Mech"
+	name = "离开机甲"
 	button_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_eject"
 
@@ -458,7 +458,7 @@
 		return FALSE
 	var/obj/vehicle/sealed/car/vim/vim_mecha = vehicle_entered_target
 	if(!COOLDOWN_FINISHED(vim_mecha, sound_cooldown))
-		vim_mecha.balloon_alert(owner, "on cooldown!")
+		vim_mecha.balloon_alert(owner, "冷却中！")
 		return FALSE
 	COOLDOWN_START(vim_mecha, sound_cooldown, VIM_SOUND_COOLDOWN)
 	vehicle_entered_target.visible_message(span_notice("[vehicle_entered_target] [sound_message]"))
@@ -466,8 +466,8 @@
 	return TRUE
 
 /datum/action/vehicle/sealed/noise/chime
-	name = "Chime!"
-	desc = "Affirmative!"
+	name = "鸣响！"
+	desc = "赞成！"
 	button_icon_state = "vim_chime"
 	sound_path = 'sound/machines/chime.ogg'
 	sound_message = "chimes!"
@@ -477,8 +477,8 @@
 		SEND_SIGNAL(vehicle_entered_target, COMSIG_VIM_CHIME_USED)
 
 /datum/action/vehicle/sealed/noise/buzz
-	name = "Buzz."
-	desc = "Negative!"
+	name = "嗡嗡声。"
+	desc = "拒绝!"
 	button_icon_state = "vim_buzz"
 	sound_path = 'sound/machines/buzz/buzz-sigh.ogg'
 	sound_message = "buzzes."

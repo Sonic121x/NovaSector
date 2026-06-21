@@ -1,5 +1,5 @@
 /turf/open/openspace/ocean
-	name = "ocean"
+	name = "海洋"
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/openspace/ocean
 	var/replacement_turf = /turf/open/misc/ocean
@@ -51,8 +51,8 @@
 
 
 /turf/open/misc/ocean/rock
-	name = "rock"
-	desc = "Polished over centuries of undersea weather conditions and a distinct lack of light."
+	name = "岩石"
+	desc = "历经数个世纪的海底气候条件与明显缺乏光照的打磨。"
 	baseturfs = /turf/open/misc/ocean/rock
 	icon = 'modular_nova/modules/liquids/icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
@@ -63,8 +63,8 @@
 	liquid_type = /obj/effect/abstract/liquid_turf/immutable/ocean/warm
 
 /turf/open/misc/ocean/rock/warm/fissure
-	name = "fissure"
-	desc = "A comfortable, warm tempature eminates from these - followed immediately after by toxic chemicals in liquid or gaseous forms; but warmth all the same!"
+	name = "裂隙"
+	desc = "一股舒适的暖流从中散发出来——紧接着便是液态或气态的有毒化学物质；但温暖总归是温暖！"
 	icon = 'modular_nova/modules/liquids/icons/turf/fissure.dmi'
 	icon_state = "fissure-0"
 	base_icon_state = "fissure"
@@ -86,8 +86,8 @@
 
 /turf/open/misc/ocean
 	gender = PLURAL
-	name = "ocean sand"
-	desc = "If you can't escape sandstorms underwater, is anywhere safe?"
+	name = "海洋沙地"
+	desc = "如果在水下都躲不过沙尘暴，哪里还有安全之地？"
 	baseturfs = /turf/open/misc/ocean
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
@@ -241,8 +241,8 @@
 
 /turf/open/misc/canal
 	gender = PLURAL
-	name = "canal"
-	desc = "A section of the earth given way to form a natural aqueduct."
+	name = "水道"
+	desc = "一段地表塌陷形成的天然导水渠。"
 	baseturfs = /turf/open/misc/canal
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
@@ -266,8 +266,8 @@
 
 /turf/open/misc/canal_mutable
 	gender = PLURAL
-	name = "canal"
-	desc = "A section of the earth given way to form a natural aqueduct."
+	name = "水道"
+	desc = "一段地表塌陷形成的天然导水渠。"
 	baseturfs = /turf/open/misc/canal_mutable
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
@@ -280,7 +280,7 @@
 	turf_height = -30
 
 /turf/open/floor/iron/submarine
-	name = "submarine floor"
+	name = "潜艇地板"
 	icon = 'modular_nova/modules/liquids/icons/turf/submarine.dmi'
 	base_icon_state = "submarine_floor"
 	icon_state = "submarine_floor"
@@ -291,7 +291,7 @@
 	return
 
 /turf/open/floor/iron/submarine_vents
-	name = "submarine floor"
+	name = "潜艇地板"
 	icon = 'modular_nova/modules/liquids/icons/turf/submarine.dmi'
 	base_icon_state = "submarine_vents"
 	icon_state = "submarine_vents"
@@ -302,7 +302,7 @@
 	return
 
 /turf/open/floor/iron/submarine_perf
-	name = "submarine floor"
+	name = "潜艇地板"
 	icon = 'modular_nova/modules/liquids/icons/turf/submarine.dmi'
 	base_icon_state = "submarine_perf"
 	icon_state = "submarine_perf"
@@ -317,7 +317,7 @@
 
 //For now just a titanium wall. I'll make sprites for it later
 /turf/closed/wall/mineral/titanium/submarine
-	name = "submarine wall"
+	name = "潜艇墙壁"
 
 /turf/open/water/deep_beach/planet_surface
 	planetary_atmos = TRUE
@@ -348,7 +348,7 @@
 
 */
 /turf/open/water/beach/planet_surface/nofishy
-	desc = "The water's great, but the immediate area seems completely devoid of fish..."
+	desc = "水很不错，但附近区域似乎完全没有鱼……"
 	fishing_datum = null
 
 /turf/open/misc/beach

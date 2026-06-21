@@ -19,7 +19,7 @@
 	if(istype(cast_on.loc, /obj/structure/closet))
 		var/obj/structure/closet/open_closet = cast_on.loc
 		open_closet.open(force = TRUE)
-		open_closet.visible_message(span_warning("[open_closet] suddenly flies open!"))
+		open_closet.visible_message(span_warning("[open_closet] 突然猛地打开了！"))
 
 	return ..()
 
@@ -49,7 +49,7 @@
 			var/mob/living/victim_living = victim
 			victim_living.Paralyze(10 SECONDS)
 			victim_living.adjust_brute_loss(5)
-			to_chat(victim, span_userdanger("You're slammed into the floor by [caster]!"))
+			to_chat(victim, span_userdanger("你被 [caster] 狠狠地砸在地板上！"))
 	else
 		if(sparkle_path)
 			// Created sparkles will disappear on their own
@@ -58,7 +58,7 @@
 		if(isliving(victim))
 			var/mob/living/victim_living = victim
 			victim_living.Paralyze(4 SECONDS)
-			to_chat(victim, span_userdanger("You're thrown back by [caster]!"))
+			to_chat(victim, span_userdanger("你被 [caster] 击退了！"))
 
 		// So stuff gets tossed around at the same time.
 		victim.safe_throw_at(
@@ -70,8 +70,8 @@
 		)
 
 /datum/action/cooldown/spell/aoe/repulse/wizard
-	name = "Repulse"
-	desc = "This spell throws everything around the user away."
+	name = "击退术"
+	desc = "这个咒语会把使用者周围的一切都推开。"
 	button_icon_state = "repulse"
 	sound = 'sound/effects/magic/repulse.ogg'
 
@@ -84,8 +84,8 @@
 	cooldown_reduction_per_rank = 6.25 SECONDS
 
 /datum/action/cooldown/spell/aoe/repulse/xeno
-	name = "Tail Sweep"
-	desc = "Throw back attackers with a sweep of your tail."
+	name = "尾扫动作"
+	desc = "用尾巴一扫就能把攻击者打退。"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	button_icon = 'icons/mob/actions/actions_xeno.dmi'

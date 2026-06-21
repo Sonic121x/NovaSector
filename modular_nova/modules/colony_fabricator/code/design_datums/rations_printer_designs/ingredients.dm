@@ -1,5 +1,5 @@
 /datum/design/frontier_ration_egg
-	name = "Egg"
+	name = "鸡蛋"
 	id = "frontier_ration_egg"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/frontier_ration_chicken
-	name = "Chicken"
+	name = "鸡肉"
 	id = "frontier_ration_chicken"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -21,7 +21,7 @@
 	)
 
 /datum/design/frontier_ration_mystery_meat
-	name = "Meat Product"
+	name = "肉制品"
 	id = "frontier_ration_mystery_meat"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/frontier_ration_butter
-	name = "Butter"
+	name = "黄油"
 	id = "frontier_ration_butter"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
@@ -43,7 +43,7 @@
 	)
 
 /datum/design/frontier_ration_cheese
-	name = "Cheese"
+	name = "奶酪"
 	id = "frontier_ration_cheese"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
@@ -54,7 +54,7 @@
 	)
 
 /datum/design/frontier_ration_cheese_firm
-	name = "Firm Cheese"
+	name = "硬质奶酪"
 	id = "frontier_ration_firm_cheese"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)

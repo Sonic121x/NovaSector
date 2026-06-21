@@ -1,6 +1,6 @@
 /// "Immerses" the player, making them unable to use some OOC terms IC
 /datum/smite/ocky_icky
-	name = "Ocky icky phobia"
+	name = "Ocky icky恐惧症"
 
 /datum/smite/ocky_icky/effect(client/user, mob/living/target)
 	. = ..()

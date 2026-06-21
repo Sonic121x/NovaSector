@@ -27,31 +27,31 @@
 */
 
 /datum/loadout_item/mask/driscoll
-	name = "Driscoll Mask"
+	name = "德里斯科尔面具"
 	item_path = /obj/item/clothing/mask/gas/driscoll
 
 /datum/loadout_item/mask/facescarf
-	name = "Facescarf"
+	name = "面巾"
 	item_path = /obj/item/clothing/mask/facescarf
 
 /datum/loadout_item/mask/lollipop
-	name = "Lollipop"
+	name = "棒棒糖"
 	item_path = /obj/item/food/lollipop
 
 /datum/loadout_item/mask/neck_gaiter
-	name = "Neck Gaiter"
+	name = "颈套"
 	item_path = /obj/item/clothing/mask/neck_gaiter
 
 /datum/loadout_item/mask/pipe
-	name = "Pipe"
+	name = "烟斗"
 	item_path = /obj/item/cigarette/pipe
 
 /datum/loadout_item/mask/corn_pipe
-	name = "Pipe - Corn Cob"
+	name = "烟斗 - 玉米芯"
 	item_path = /obj/item/cigarette/pipe/cobpipe
 
 /datum/loadout_item/mask/surgical
-	name = "Sterile Mask (Colorable)"
+	name = "无菌口罩（可着色）"
 	item_path = /obj/item/clothing/mask/surgical/greyscale
 
 /*
@@ -59,54 +59,54 @@
 */
 
 /datum/loadout_item/mask/bandana
-	name = "Bandana  (Colorable)"
+	name = "头巾（可着色）"
 	item_path = /obj/item/clothing/mask/bandana
 
 /datum/loadout_item/mask/bandana_striped
-	name = "Bandana  (Colorable, Striped)"
+	name = "头巾（可着色，条纹）"
 	item_path = /obj/item/clothing/mask/bandana/striped
 
 /datum/loadout_item/mask/skull_bandana
-	name = "Bandana  (Colorable, Skull)"
+	name = "头巾（可着色，骷髅图案）"
 	item_path = /obj/item/clothing/mask/bandana/skull
 
 /datum/loadout_item/mask/black_bandana
-	name = "Bandana (Black)"
+	name = "头巾（黑色）"
 	item_path = /obj/item/clothing/mask/bandana/black
 
 /datum/loadout_item/mask/blue_bandana
-	name = "Bandana (Blue)"
+	name = "头巾（蓝色）"
 	item_path = /obj/item/clothing/mask/bandana/blue
 
 /datum/loadout_item/mask/gold_bandana
-	name = "Bandana (Gold)"
+	name = "头巾（金色）"
 	item_path = /obj/item/clothing/mask/bandana/gold
 
 /datum/loadout_item/mask/green_bandana
-	name = "Bandana (Green)"
+	name = "头巾（绿色）"
 	item_path = /obj/item/clothing/mask/bandana/green
 
 /datum/loadout_item/mask/red_bandana
-	name = "Bandana (Red)"
+	name = "头巾（红色）"
 	item_path = /obj/item/clothing/mask/bandana/red
 /*
 *	BALACLAVAS
 */
 
 /datum/loadout_item/mask/balaclava
-	name = "Balaclava"
+	name = "巴拉克拉瓦头套"
 	item_path = /obj/item/clothing/mask/balaclava
 
 /datum/loadout_item/mask/balaclavaadj
-	name = "Balaclava - Adjustable"
+	name = "巴拉克拉瓦头套 - 可调节"
 	item_path = /obj/item/clothing/mask/balaclava/adjustable
 
 /datum/loadout_item/mask/balaclavathree
-	name = "Balaclava - Three-Hole (Black)"
+	name = "巴拉克拉瓦头套 - 三孔式（黑色）"
 	item_path = /obj/item/clothing/mask/balaclava/threehole
 
 /datum/loadout_item/mask/balaclavagreen
-	name = "Balaclava - Three-Hole (Green)"
+	name = "巴拉克拉瓦头套 - 三孔式（绿色）"
 	item_path = /obj/item/clothing/mask/balaclava/threehole/green
 
 /*
@@ -114,19 +114,19 @@
 */
 
 /datum/loadout_item/mask/gas_mask
-	name = "Gas Mask"
+	name = "防毒面具"
 	item_path = /obj/item/clothing/mask/gas
 
 /datum/loadout_item/mask/gas_alt
-	name = "Gas Mask - Alt"
+	name = "防毒面具 - 替代款"
 	item_path = /obj/item/clothing/mask/gas/alt
 
 /datum/loadout_item/mask/gas_glass
-	name = "Gas Mask - Glass"
+	name = "防毒面具 - 玻璃款"
 	item_path = /obj/item/clothing/mask/gas/glass
 
 /datum/loadout_item/mask/respirator
-	name = "Half Mask Respirator"
+	name = "半面式呼吸器"
 	item_path = /obj/item/clothing/mask/gas/respirator
 
 /datum/loadout_item/mask/cyborg_mask
@@ -138,68 +138,68 @@
 */
 
 /datum/loadout_item/mask/fake_mustache
-	name = "Fake Moustache"
+	name = "假胡子"
 	item_path = /obj/item/clothing/mask/fakemoustache
 	group = "Costumes"
 
 /datum/loadout_item/mask/joy
-	name = "Joy Mask"
+	name = "喜悦面具"
 	item_path = /obj/item/clothing/mask/joy
 	group = "Costumes"
 
 /datum/loadout_item/mask/kitsune
-	name = "Kitsune Mask"
+	name = "狐面"
 	item_path = /obj/item/clothing/mask/kitsune
 	group = "Costumes"
 
 /datum/loadout_item/mask/monkey
-	name = "Monkey Mask"
+	name = "猴子面具"
 	item_path = /obj/item/clothing/mask/gas/monkeymask
 	group = "Costumes"
 
 /datum/loadout_item/mask/owl
-	name = "Owl Mask"
+	name = "猫头鹰面具"
 	item_path = /obj/item/clothing/mask/gas/owl_mask
 	group = "Costumes"
 
 /datum/loadout_item/mask/pink_clown_wig
-	name = "Pink Clown Wig"
+	name = "粉色小丑假发"
 	item_path = /obj/item/clothing/mask/gas/pink_clown_wig
 	group = "Costumes"
 
 /datum/loadout_item/mask/paper
-	name = "Paper Mask"
+	name = "纸面具"
 	item_path = /obj/item/clothing/mask/paper
 	group = "Costumes"
 
 /datum/loadout_item/mask/plague_doctor
-	name = "Plague Doctor Mask"
+	name = "瘟疫医生面具"
 	item_path = /obj/item/clothing/mask/gas/plaguedoctor
 	group = "Costumes"
 
 /datum/loadout_item/mask/rebellion
-	name = "Rebellion Mask"
+	name = "反抗军面具"
 	item_path = /obj/item/clothing/mask/rebellion
 	group = "Costumes"
 
 // MASQUERADE MASKS
 /datum/loadout_item/mask/masquerade
-	name = "Masquerade Mask"
+	name = "化装舞会面具"
 	item_path = /obj/item/clothing/mask/masquerade
 	group = "Costumes"
 
 /datum/loadout_item/mask/masquerade/two_colors
-	name = "Masquerade Mask - Split"
+	name = "化装舞会面具 - 分色款"
 	item_path = /obj/item/clothing/mask/masquerade/two_colors
 	group = "Costumes"
 
 /datum/loadout_item/mask/masquerade/feathered
-	name = "Masquerade Mask - Feathered"
+	name = "化装舞会面具 - 羽饰款"
 	item_path = /obj/item/clothing/mask/masquerade/feathered
 	group = "Costumes"
 
 /datum/loadout_item/mask/masquerade/two_colors/feathered
-	name = "Masquerade Mask - Feathered, Split"
+	name = "化装舞会面具 - 羽饰分色款"
 	item_path = /obj/item/clothing/mask/masquerade/two_colors/feathered
 	group = "Costumes"
 
@@ -209,7 +209,7 @@
 // No group (groups should be ~5+ items)
 
 /datum/loadout_item/mask/whistlesec
-	name = "Police Whistle"
+	name = "警哨"
 	item_path = /obj/item/clothing/mask/whistle
 	restricted_roles = list(ALL_JOBS_SEC)
 

@@ -1,6 +1,6 @@
 /datum/action/item_action/adjust/papermask
-	name = "Adjust paper mask"
-	desc = "LMB: Change mask face. RMB: Adjust mask."
+	name = "调整纸面具"
+	desc = "左键：改变面具图案。右键：调整面具。"
 
 /datum/action/item_action/adjust/papermask/Trigger(trigger_flags)
 	. = ..()
@@ -18,7 +18,7 @@
 /datum/atom_skin/paper_mask/apply(atom/apply_to, mob/user)
 	. = ..()
 	if(!user.is_holding_item_of_type(/obj/item/pen))
-		user.balloon_alert(user, "must be holding a pen!")
+		user.balloon_alert(user, "必须手持一支笔！")
 		return
 
 	var/mob/living/carbon/carbon_user
@@ -128,8 +128,8 @@
 	new_icon_state = "mask_sad"
 
 /obj/item/clothing/mask/paper
-	name = "paper mask"
-	desc = "It's true. Once you wear a mask for so long, you forget about who you are. Wonder if that happens with shitty paper ones."
+	name = "纸面具"
+	desc = "确实如此。面具戴久了，你就会忘记自己是谁。不知道这种破烂纸面具会不会也有这种效果。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "mask_paper"
@@ -180,10 +180,10 @@
 		wear_hair_over = !wear_hair_over
 		if(wear_hair_over)
 			alternate_worn_layer = BACK_LAYER
-			to_chat(user, "You [is_worn ? "" : "will "]sweep your hair over the mask.")
+			to_chat(user, "你[is_worn ? "" : "will "]把头发拨到面具上方。")
 		else
 			alternate_worn_layer = initial(alternate_worn_layer)
-			to_chat(user, "You [is_worn ? "" : "will "]sweep your hair under the mask.")
+			to_chat(user, "你[is_worn ? "" : "will "]把头发拨到面具下方。")
 
 		user.update_worn_mask()
 
@@ -193,7 +193,7 @@
 	if(!user.incapacitated)
 		var/is_worn = user.wear_mask == src
 		strap_hidden = !strap_hidden
-		to_chat(user, "You [is_worn ? "" : "will "][strap_hidden ? "hide" : "show"] the mask strap.")
+		to_chat(user, "你[is_worn ? "" : "will "][strap_hidden ? "hide" : "show"]面具的带子。")
 
 		user.update_worn_mask()
 

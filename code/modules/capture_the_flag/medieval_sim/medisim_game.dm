@@ -37,21 +37,21 @@
 	human_knight.name = human_knight.real_name
 
 /obj/machinery/ctf/spawner/medisim/red
-	name = "\improper Redfield Data Realizer"
+	name = "\improper 红方数据实现器"
 	icon_state = "syndbeacon"
 	team = REDFIELD_TEAM
 	team_span = "redteamradio"
 	ctf_gear = list("knight" = /datum/outfit/ctf/medisim, "archer" = /datum/outfit/ctf/medisim/archer)
 
 /obj/machinery/ctf/spawner/medisim/blue
-	name = "\improper Bluesworth Data Realizer"
+	name = "\improper 蓝方数据实现器"
 	icon_state = "bluebeacon"
 	team = BLUESWORTH_TEAM
 	team_span = "blueteamradio"
 	ctf_gear = list("knight" = /datum/outfit/ctf/medisim/blue, "archer" = /datum/outfit/ctf/medisim/archer/blue)
 
 /obj/item/ctf_flag/red/medisim
-	name = "\improper Redfield Castle Fair Maiden"
+	name = "\improper 红方美少女"
 	desc = "Protect your maiden, and capture theirs!"
 	icon = 'icons/obj/toys/plushes.dmi'
 	icon_state = "plushie_nuke"
@@ -60,7 +60,7 @@
 	game_id = CTF_MEDISIM_CTF_GAME_ID
 
 /obj/item/ctf_flag/blue/medisim
-	name = "\improper Bluesworth Hold Fair Maiden"
+	name = "\improper 蓝方美少女"
 	desc = "Protect your maiden, and capture theirs!"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/ctf_flag/blue/medisim"

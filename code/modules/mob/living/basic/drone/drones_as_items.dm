@@ -5,8 +5,8 @@
  */
 
 /obj/effect/mob_spawn/ghost_role/drone
-	name = "drone shell"
-	desc = "A shell of a maintenance drone, an expendable robot built to perform station repairs."
+	name = "无人机外壳"
+	desc = "一个维护区无人机的空壳，一种为执行空间站维修而建造的消耗型机器人。"
 	icon = 'icons/mob/silicon/drone.dmi'
 	icon_state = "drone_maint_hat" //yes reuse the _hat state.
 	layer = BELOW_MOB_LAYER
@@ -16,10 +16,10 @@
 	mob_type = /mob/living/basic/drone
 	role_ban = ROLE_DRONE
 	show_flavor = FALSE
-	prompt_name = "maintenance drone"
-	you_are_text = "You are a Maintenance Drone."
-	flavour_text = "Born out of science, your purpose is to maintain Space Station 13. Maintenance Drones can become the backbone of a healthy station."
-	important_text = "You MUST read and follow your laws carefully."
+	prompt_name = "维护区无人机"
+	you_are_text = "你是一台维护区无人机。"
+	flavour_text = "你诞生于科研，你的使命是维护空间站13。维护区无人机可以成为健康空间站的支柱。"
+	important_text = "你必须仔细阅读并遵守你的法则。"
 	spawner_job_path = /datum/job/maintenance_drone
 
 /obj/effect/mob_spawn/ghost_role/drone/Initialize(mapload)
@@ -53,6 +53,6 @@
 		var/minutes_left = required_playtime - current_playtime
 		var/playtime_left = DisplayTimeText(minutes_left * (1 MINUTES))
 		if(!silent)
-			to_chat(user, span_danger("You need to play [playtime_left] more as [required_role] to spawn as a Maintenance Drone!"))
+			to_chat(user, span_danger("你需要再以[required_role]的身份游玩[playtime_left]才能以维护区无人机身份生成！"))
 		return FALSE
 	return ..()

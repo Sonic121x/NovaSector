@@ -2,7 +2,7 @@
 GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 /datum/controller/global_vars
-	name = "Global Variables"
+	name = "全局变量"
 
 	var/static/list/gvars_datum_protected_varlist
 	var/list/gvars_datum_in_built_vars

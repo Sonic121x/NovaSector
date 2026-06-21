@@ -9,7 +9,7 @@
 	. = ..()
 
 	if (was_working_synth)
-		to_chat(affected_mob, span_warning("The chemicals sealing your faulty wires loses its effect!"))
+		to_chat(affected_mob, span_warning("封住你故障线路的化学物质失效了！"))
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -22,7 +22,7 @@
 
 	if (zappiest_wound)
 		if (!was_working_synth)
-			to_chat(affected_mob, span_warning("Your damaged circuitry is encased in a insulative substance!"))
+			to_chat(affected_mob, span_warning("你受损的电路被包裹在一种绝缘物质中！"))
 			was_working_synth = TRUE
 		zappiest_wound.adjust_intensity(-clot_rate * CLOT_RATE_INTENSITY_MULT * seconds_per_tick)
 	else

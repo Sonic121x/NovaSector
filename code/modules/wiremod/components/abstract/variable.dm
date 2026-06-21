@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/variable
 	display_name = "Abstract Variable Component"
-	desc = "You shouldn't be seeing this."
+	desc = "你不应该看到这个。"
 
 	/// Variable name
 	var/datum/port/input/option/variable_name

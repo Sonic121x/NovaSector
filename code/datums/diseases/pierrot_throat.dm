@@ -1,5 +1,5 @@
 /datum/disease/pierrot_throat
-	name = "Pierrot's Throat"
+	name = "小丑喉症"
 	max_stages = 4
 	spread_text = "Airborne"
 	cure_text = "Banana products, especially banana bread."
@@ -21,13 +21,13 @@
 	switch(stage)
 		if(1)
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel a little silly."))
+				to_chat(affected_mob, span_danger("你觉得有点傻乎乎的。"))
 		if(2)
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You start seeing rainbows."))
+				to_chat(affected_mob, span_danger("你开始看见彩虹了。"))
 		if(3)
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your thoughts are interrupted by a loud <b>HONK!</b>"))
+				to_chat(affected_mob, span_danger("你的思绪被一声响亮的<b>HONK！</b>打断了。"))
 		if(4)
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.say( pick( list("HONK!", "Honk!", "Honk.", "Honk?", "Honk!!", "Honk?!", "Honk...") ) , forced = "pierrot's throat")

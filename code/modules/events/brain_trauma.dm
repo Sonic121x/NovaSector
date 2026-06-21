@@ -1,10 +1,10 @@
 /datum/round_event_control/brain_trauma
-	name = "Spontaneous Brain Trauma"
+	name = "自发性脑创伤"
 	typepath = /datum/round_event/brain_trauma
 	weight = 25
 	min_players = 13
 	category = EVENT_CATEGORY_HEALTH
-	description = "A crewmember gains a random trauma."
+	description = "一名船员获得随机脑损伤。"
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 6
 

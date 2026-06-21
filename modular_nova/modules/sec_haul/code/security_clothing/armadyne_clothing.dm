@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/security/armadyne
-	name = "armadyne corporate uniform"
-	desc = "A sleek uniform worn by Armadyne corporate. Its metallic red belt buckle is made in the shape of the Armadyne logo."
+	name = "阿玛戴恩公司制服"
+	desc = "阿玛戴恩公司人员穿着的时尚制服。其金属红色的皮带扣制成了阿玛戴恩标志的形状。"
 	icon_state = "armadyne_shirt"
 	worn_icon_state = "armadyne_shirt"
 	icon = 'modular_nova/master_files/icons/obj/clothing/under/centcom.dmi'	//This can probably be moved to centcom.dm when the suits are sorted
@@ -8,14 +8,14 @@
 	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/under/centcom_digi.dmi'
 
 /obj/item/clothing/under/rank/security/armadyne/tactical
-	name = "armadyne tactical uniform"
-	desc = "A robust tactical uniform worn by Armadyne corporate."
+	name = "阿玛戴恩战术制服"
+	desc = "阿玛戴恩公司人员穿着的坚固战术制服。"
 	icon_state = "armadyne_tac"
 	worn_icon_state = "armadyne_tac"
 
 /obj/item/clothing/head/beret/sec/armadyne
-	name = "armadyne corporate beret"
-	desc = "A comfy yet robust beret worn by Armadyne corporate."
+	name = "阿玛戴恩公司贝雷帽"
+	desc = "阿玛戴恩公司人员佩戴的舒适而坚固的贝雷帽。"
 	icon_state = "/obj/item/clothing/head/beret/sec/armadyne"
 	post_init_icon_state = "beret_badge_fancy_diagonal"
 	greyscale_config = /datum/greyscale_config/beret_badge_fancy
@@ -24,15 +24,15 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/armadyne
-	name = "armadyne trenchcoat"
-	desc = "A large and warm Armadyne-red trenchcoat worn by the wealthy higher-ups. A good half of its warmth - and bulk - actually comes from the polymer armor plating beneath it."
+	name = "阿玛戴恩风衣"
+	desc = "富有的高层人士穿着的宽大而温暖的阿玛戴恩红色风衣。其一半的温暖感——以及体积感——实际上来自其下方的聚合物装甲板。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "armadyne_trench"
 
 /obj/item/clothing/suit/armor/vest/armadyne
-	name = "armadyne jacket"
-	desc = "An Armadyne branded track jacket, with a thin nanocarbon lining inside for protective purposes. Worn by Armadyne corporate, or wealthy supporters."
+	name = "阿玛戴恩夹克"
+	desc = "一件阿玛戴恩品牌的运动夹克，内部有薄纳米碳衬里用于防护目的。由阿玛戴恩公司人员或富有的支持者穿着。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "armadyne_jacket"
@@ -44,20 +44,20 @@
 	AddComponent(/datum/component/toggle_icon, "zipper")
 
 /obj/item/clothing/suit/armor/vest/armadyne/armor
-	name = "armadyne armor vest"
-	desc = "A nanocarbon and high-grade polymer vest, with the worn-red Armadyne logo printed on the back. Used by Armadyne corporate when they need emergency armor."
+	name = "阿玛戴恩装甲背心"
+	desc = "一件纳米碳和高级聚合物背心，背面印有磨损红色的阿玛戴恩标志。供阿玛戴恩公司人员在需要应急装甲时使用。"
 	icon_state = "armadyne_armor"
 	worn_icon_state = "armadyne_armor"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/armadyne
-	name = "armadyne hud glasses"
+	name = "阿玛戴恩平视显示器眼镜"
 	icon_state = "armadyne_glasses"
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/eyes.dmi'
 	icon = 'modular_nova/master_files/icons/obj/clothing/glasses.dmi'
 
 /obj/item/clothing/gloves/combat/armadyne
-	name = "armadyne combat gloves"
-	desc = "Tactical and sleek. Worn by Armadyne representatives."
+	name = "阿玛戴恩战斗手套"
+	desc = "战术且时尚。由阿玛戴恩代表佩戴。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "armadyne_gloves"
@@ -65,8 +65,8 @@
 	cut_type = null
 
 /obj/item/clothing/gloves/color/black/security/armadyne
-	name = "armadyne gloves"
-	desc = "Tactical and sleek. Worn by Armadyne representatives."
+	name = "阿玛戴恩手套"
+	desc = "战术风格，流线型设计。由阿玛戴恩代表佩戴。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "armadyne_gloves"
@@ -74,8 +74,8 @@
 	cut_type = null
 
 /obj/item/clothing/shoes/jackboots/armadyne
-	name = "armadyne combat boots"
-	desc = "Tactical and sleek. Worn by Armadyne representatives."
+	name = "阿玛戴恩作战靴"
+	desc = "战术风格，流线型设计。由阿玛戴恩代表佩戴。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "armadyne_boots"
@@ -83,8 +83,8 @@
 	worn_icon_state = "armadyne_boots"
 
 /obj/item/storage/belt/security/armadyne
-	name = "armadyne belt"
-	desc = "Can hold security gear like handcuffs and flashes. Has a holster for a gun."
+	name = "阿玛戴恩腰带"
+	desc = "可容纳安保装备，如手铐和闪光弹。配有手枪枪套。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/belt.dmi'
 	icon_state = "armadyne_belt"
@@ -94,7 +94,7 @@
 	return
 
 /obj/item/storage/belt/security/webbing/armadyne
-	name = "armadyne webbing"
+	name = "阿玛戴恩战术织带"
 	icon = 'modular_nova/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/belt.dmi'
 	icon_state = "red_webbing"
@@ -104,7 +104,7 @@
 	return
 
 /datum/outfit/armadyne_rep
-	name = "Armadyne Corporate Representative"
+	name = "阿玛戴恩企业代表"
 
 	suit_store = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_cent/commander
@@ -128,7 +128,7 @@
 
 
 /datum/outfit/armadyne_security
-	name = "Armadyne Corporate Security"
+	name = "阿玛戴恩企业安保"
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security/armadyne/tactical
@@ -151,7 +151,7 @@
 
 
 /datum/outfit/armadyne_security/commander
-	name = "Armadyne Corporate Security Commander"
+	name = "阿玛戴恩企业安保指挥官"
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security/armadyne/tactical
@@ -176,7 +176,7 @@
 
 
 /datum/outfit/armadyne_security/high_alert
-	name = "Armadyne Corporate Security (High Alert)"
+	name = "阿玛戴恩企业安保（高度警戒）"
 	belt = /obj/item/storage/belt/security/webbing/armadyne
 	suit_store = /obj/item/gun/ballistic/automatic/sol_rifle
 	backpack_contents = list(
@@ -188,7 +188,7 @@
 
 
 /datum/outfit/armadyne_security/commander/high_alert
-	name = "Armadyne Corporate Security Commander (High Alert)"
+	name = "阿玛戴恩企业安保指挥官（高度警戒）"
 	suit_store = /obj/item/gun/ballistic/automatic/sol_rifle
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic,
@@ -198,8 +198,8 @@
 	)
 
 /obj/item/card/id/advanced/armadyne
-	name = "\improper Armadyne ID"
-	desc = "An Armadyne ID card."
+	name = "\improper 阿玛戴恩ID卡"
+	desc = "一张阿玛戴恩ID卡。"
 	icon_state = "card_centcom"
 	assigned_icon_state = "assigned_centcom"
 	registered_age = null
@@ -244,22 +244,22 @@
 
 
 /datum/antagonist/ert/armadyne
-	name = "Armadyne Corporate Security"
+	name = "阿玛戴恩企业安保"
 	outfit = /datum/outfit/armadyne_security
 	role = "Security"
 
 /datum/antagonist/ert/armadyne/high_alert
-	name = "Armadyne Corporate Security (High Alert)"
+	name = "阿玛戴恩企业安保（高度警戒）"
 	outfit = /datum/outfit/armadyne_security/high_alert
 	role = "Security"
 
 /datum/antagonist/ert/armadyne/leader
-	name = "Armadyne Corporate Security Commander"
+	name = "阿玛戴恩企业安保指挥官"
 	outfit = /datum/outfit/armadyne_security/commander
 	role = "Commander"
 
 /datum/antagonist/ert/armadyne/leader/high_alert
-	name = "Armadyne Corporate Security Commander (High Alert)"
+	name = "阿玛戴恩企业安保指挥官（高度警戒）"
 	outfit = /datum/outfit/armadyne_security/commander/high_alert
 	role = "Commander"
 

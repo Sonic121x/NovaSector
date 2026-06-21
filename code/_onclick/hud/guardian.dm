@@ -32,7 +32,7 @@
 	return ..()
 
 /datum/inventory_slot/guardian_storage
-	name = "internal storage"
+	name = "内部存储"
 	icon_state = "suit_storage"
 	slot_id = ITEM_SLOT_DEX_STORAGE
 	screen_loc = ui_back

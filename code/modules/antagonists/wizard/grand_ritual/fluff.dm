@@ -2,7 +2,7 @@
  * Fluff book to hint at the cheesy grand ritual.
  */
 /obj/item/book/manual/ancient_parchment
-	name = "ancient parchment"
+	name = "古老羊皮纸"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "scroll-ancient"
 	unique = TRUE

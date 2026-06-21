@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/spawn_atom
 	display_name = "Spawn Atom"
-	desc = "Spawns an atom at a desired location"
+	desc = "在指定位置生成一个原子"
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 

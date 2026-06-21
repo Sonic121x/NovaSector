@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/expeditionary_corps
-	name = "expeditionary corps uniform"
-	desc = "A rugged uniform for those who see the worst at the edges of the galaxy."
+	name = "远征军团制服"
+	desc = "为那些在银河边缘见识最险恶景象之人准备的耐用制服。"
 	icon_state = "exp_corps"
 	icon = 'modular_nova/master_files/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/uniform.dmi'
@@ -26,8 +26,8 @@
 	new_icon_state = "belt_exp_corps"
 
 /obj/item/storage/belt/military/expeditionary_corps
-	name = "expeditionary corps chest rig"
-	desc = "A set of tactical webbing worn by the now-defunct Vanguard Expeditionary Corps."
+	name = "远征军团胸挂"
+	desc = "一套由现已解散的先驱者远征军团穿戴的战术携行具。"
 	icon_state = "webbing_exp_corps"
 	worn_icon_state = "webbing_exp_corps"
 	icon = 'modular_nova/master_files/icons/obj/clothing/belts.dmi'
@@ -37,7 +37,7 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/expeditionary_corps_chest_rig)
 
 /obj/item/storage/belt/military/expeditionary_corps/combat_tech
-	name = "combat tech's chest rig"
+	name = "战斗技术员胸挂"
 
 /obj/item/storage/belt/military/expeditionary_corps/combat_tech/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -49,7 +49,7 @@
 	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/belt/military/expeditionary_corps/field_medic
-	name = "field medic's chest rig"
+	name = "战地医护兵胸挂"
 
 /obj/item/storage/belt/military/expeditionary_corps/field_medic/PopulateContents()
 	new /obj/item/scalpel(src)
@@ -61,7 +61,7 @@
 	new /obj/item/bonesetter(src)
 
 /obj/item/storage/belt/military/expeditionary_corps/pointman
-	name = "pointman's chest rig"
+	name = "尖兵胸挂"
 
 /obj/item/storage/belt/military/expeditionary_corps/pointman/PopulateContents()
 	new /obj/item/reagent_containers/cup/glass/bottle/whiskey(src)
@@ -69,7 +69,7 @@
 	new /obj/item/reagent_containers/cup/bottle/morphine(src)
 
 /obj/item/storage/belt/military/expeditionary_corps/marksman
-	name = "marksman's chest rig"
+	name = "神射手胸挂"
 
 /obj/item/storage/belt/military/expeditionary_corps/marksman/PopulateContents()
 	new /obj/item/binoculars(src)
@@ -78,15 +78,15 @@
 	new /obj/item/clothing/mask/bandana/skull(src)
 
 /obj/item/clothing/shoes/combat/expeditionary_corps
-	name = "expeditionary corps boots"
-	desc = "High speed, low drag combat boots."
+	name = "远征军军靴"
+	desc = "高速低阻作战靴。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "exp_corps"
 	inhand_icon_state = "jackboots"
 
 /obj/item/clothing/gloves/color/black/expeditionary_corps
-	name = "expeditionary corps gloves"
+	name = "远征军手套"
 	icon_state = "exp_corps"
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
@@ -97,7 +97,7 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/gloves/chief_engineer/expeditionary_corps
-	name = "expeditionary corps insulated gloves"
+	name = "远征军绝缘手套"
 	icon_state = "exp_corps_eng"
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
@@ -111,7 +111,7 @@
 	acid = 50
 
 /obj/item/clothing/gloves/latex/nitrile/expeditionary_corps
-	name = "expeditionary corps medic gloves"
+	name = "远征军医疗手套"
 	icon_state = "exp_corps_med"
 	icon = 'modular_nova/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/hands.dmi'
@@ -139,8 +139,8 @@
 	new_icon_state = "exp_corps_satchel"
 
 /obj/item/storage/backpack/duffelbag/expeditionary_corps
-	name = "expeditionary corps bag"
-	desc = "A large bag for holding extra tactical supplies."
+	name = "远征军背包"
+	desc = "用于存放额外战术补给的大型背包。"
 	icon_state = "exp_corps"
 	inhand_icon_state = "backpack"
 	icon = 'modular_nova/modules/exp_corps/icons/backpack.dmi'
@@ -150,8 +150,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/expeditionary_corps_bag)
 
 /obj/item/clothing/suit/armor/vest/expeditionary_corps
-	name = "expeditionary corps armor vest"
-	desc = "An armored vest that provides okay protection against most types of damage. Includes concealable sleeves for your arms."
+	name = "远征军装甲背心"
+	desc = "一件能对大多数类型伤害提供尚可防护的装甲背心。包含可隐藏的臂套。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "exp_corps"
@@ -187,8 +187,8 @@
 	wound = 10
 
 /obj/item/clothing/head/helmet/expeditionary_corps
-	name = "expeditionary corps helmet"
-	desc = "A robust helmet worn by Expeditionary Corps troopers. Alt+click it to toggle the NV system."
+	name = "远征军头盔"
+	desc = "远征军士兵佩戴的坚固头盔。Alt+点击以切换夜视系统。"
 	icon_state = "exp_corps"
 	icon = 'modular_nova/master_files/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/helmet.dmi'
@@ -209,7 +209,7 @@
 	wound = 10
 
 /datum/action/item_action/toggle_nv_helmet
-	name = "Toggle Nightvision"
+	name = "切换夜视"
 
 /datum/action/item_action/toggle_nv_helmet/Trigger(trigger_flags)
 	. = ..()
@@ -220,10 +220,10 @@
 		return
 	my_helmet.nightvision = !my_helmet.nightvision
 	if(my_helmet.nightvision)
-		to_chat(owner, span_notice("You flip the NV goggles down."))
+		to_chat(owner, span_notice("你将夜视护目镜翻了下来。"))
 		my_helmet.enable_nv()
 	else
-		to_chat(owner, span_notice("You flip the NV goggles up."))
+		to_chat(owner, span_notice("你将夜视护目镜翻了上去。"))
 		my_helmet.disable_nv()
 	my_helmet.update_appearance()
 
@@ -254,10 +254,10 @@
 
 	nightvision = !nightvision
 	if(nightvision)
-		to_chat(user, span_notice("You flip the NV goggles down."))
+		to_chat(user, span_notice("你将夜视护目镜翻了下来。"))
 		enable_nv()
 	else
-		to_chat(user, span_notice("You flip the NV goggles up."))
+		to_chat(user, span_notice("你将夜视护目镜翻了上去。"))
 		disable_nv()
 	update_appearance()
 	return CLICK_ACTION_SUCCESS

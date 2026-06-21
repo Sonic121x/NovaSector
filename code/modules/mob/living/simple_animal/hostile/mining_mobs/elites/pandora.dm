@@ -17,8 +17,8 @@
  */
 
 /mob/living/simple_animal/hostile/asteroid/elite/pandora
-	name = "pandora"
-	desc = "A large magic box with similar power and design to the Hierophant.  Once it opens, it's not easy to close it."
+	name = "潘多拉魔盒"
+	desc = "一个与教皇图符具有相似魔力和设计的大型魔法盒子。一旦打开，就很难再将其合上。"
 	icon_state = "pandora"
 	icon_living = "pandora"
 	icon_aggro = "pandora"
@@ -50,27 +50,27 @@
 	var/cooldown_time = 2 SECONDS
 
 /datum/action/innate/elite_attack/singular_shot
-	name = "Singular Shot"
+	name = "单发射击"
 	button_icon_state = "singular_shot"
-	chosen_message = span_boldwarning("You are now creating a single linear magic square.")
+	chosen_message = span_boldwarning("你现在正在创造一个单一的线性魔法方块。")
 	chosen_attack_num = SINGULAR_SHOT
 
 /datum/action/innate/elite_attack/magic_box
-	name = "Magic Box"
+	name = "魔法盒"
 	button_icon_state = "magic_box"
-	chosen_message = span_boldwarning("You are now attacking with a box of magic squares.")
+	chosen_message = span_boldwarning("你现在正用一个魔法方块盒进行攻击。")
 	chosen_attack_num = MAGIC_BOX
 
 /datum/action/innate/elite_attack/pandora_teleport
-	name = "Line Teleport"
+	name = "线传送"
 	button_icon_state = "pandora_teleport"
-	chosen_message = span_boldwarning("You will now teleport to your target.")
+	chosen_message = span_boldwarning("你现在将传送到你的目标处。")
 	chosen_attack_num = PANDORA_TELEPORT
 
 /datum/action/innate/elite_attack/aoe_squares
-	name = "AOE Blast"
+	name = "范围爆炸"
 	button_icon_state = "aoe_squares"
-	chosen_message = span_boldwarning("Your attacks will spawn an AOE blast at your target location.")
+	chosen_message = span_boldwarning("你的攻击将在目标位置生成一个范围爆炸。")
 	chosen_attack_num = AOE_SQUARES
 
 /mob/living/simple_animal/hostile/asteroid/elite/pandora/OpenFire()
@@ -147,7 +147,7 @@
 	for(var/t in RANGE_TURFS(1, source))
 		new /obj/effect/temp_visual/hierophant/blast/damaging/pandora(t, src)
 	animate(src, alpha = 0, time = 2, easing = SINE_EASING|EASE_OUT) //fade out
-	visible_message(span_hierophant_warning("[src] fades out!"))
+	visible_message(span_hierophant_warning("[src] 逐渐淡出！"))
 	ADD_TRAIT(src, TRAIT_UNDENSE, VANISHING_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(pandora_teleport_3), T), 0.2 SECONDS)
 
@@ -155,7 +155,7 @@
 	forceMove(T)
 	animate(src, alpha = 255, time = 2, easing = CIRCULAR_EASING|EASE_IN) //fade IN
 	REMOVE_TRAIT(src, TRAIT_UNDENSE, VANISHING_TRAIT)
-	visible_message(span_hierophant_warning("[src] fades in!"))
+	visible_message(span_hierophant_warning("[src] 逐渐显现！"))
 
 /mob/living/simple_animal/hostile/asteroid/elite/pandora/proc/aoe_squares(target)
 	ranged_cooldown = world.time + cooldown_time
@@ -179,8 +179,8 @@
 
 //Pandora's loot: Hope
 /obj/item/clothing/accessory/pandora_hope
-	name = "Hope"
-	desc = "Found at the bottom of Pandora. After all the evil was released, this was the only thing left inside."
+	name = "希望"
+	desc = "在潘多拉星球的底部被发现。在所有邪恶力量被释放之后，这是里面唯一留存下来的物品。"
 	icon = 'icons/obj/mining_zones/elite_trophies.dmi'
 	icon_state = "hope"
 	resistance_flags = FIRE_PROOF

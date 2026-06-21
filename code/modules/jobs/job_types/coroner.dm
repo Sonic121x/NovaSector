@@ -45,7 +45,7 @@
 	rpg_title = "Undertaker"
 
 /datum/outfit/job/coroner
-	name = "Coroner"
+	name = "验尸官"
 	jobtype = /datum/job/coroner
 	id_trim = /datum/id_trim/job/coroner
 

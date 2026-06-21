@@ -149,8 +149,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/cyberimp_flash
-	name = "Photon Projector Implant"
-	desc = "An integrated projector mounted onto a user's arm that is able to be used as a powerful flash."
+	name = "光子投射器植入物"
+	desc = "一个集成在使用者手臂上的投射器，可用作强力闪光灯。"
 	id = "ci-flash"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	materials = list (
@@ -166,8 +166,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cyberimp_botany
-	name = "Botany Arm Implant"
-	desc = "Everything a botanist needs in an arm implant, designed to be installed on a subject's arm."
+	name = "植物学手臂植入物"
+	desc = "植物学家所需的一切功能都集成在一个手臂植入物中，设计用于安装在对象的手臂上。"
 	id = "ci-botany"
 	build_type = MECHFAB | PROTOLATHE
 	materials = list (
@@ -184,8 +184,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/cyberimp_nv
-	name = "Night Vision Eyes"
-	desc = "These cybernetic eyes will give you Night Vision. Big, mean, and green."
+	name = "夜视义眼"
+	desc = "这些赛博义眼将赋予你夜视能力。又大、又凶、又绿。"
 	id = "ci-nv"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 6 SECONDS
@@ -203,8 +203,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cyberimp_antisleep
-	name = "CNS Jumpstarter Implant"
-	desc = "This implant will automatically attempt to jolt you awake from unconsciousness, with a short cooldown between jolts. Conflicts with the CNS Rebooter."
+	name = "中枢神经系统起搏器植入体"
+	desc = "该植入体会自动尝试将你从无意识状态中电击唤醒，每次电击之间有短暂的冷却时间。与中枢神经系统重启器冲突。"
 	id = "ci-antisleep"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 6 SECONDS
@@ -221,8 +221,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cyberimp_scanner
-	name = "Internal Medical Analyzer"
-	desc = "This implant interfaces with a host's body, sending detailed readouts of the vessel's condition on command via the mind."
+	name = "内置医疗分析仪"
+	desc = "该植入体与宿主的身体连接，可通过意念指令发送关于该容器状况的详细读数。"
 	id = "ci-scanner"
 	build_type = MECHFAB | PROTOLATHE
 	construction_time = 4 SECONDS
@@ -239,8 +239,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cyberimp_janitor
-	name = "Janitor Arm Implant"
-	desc = "A set of janitor tools fitted into an arm implant, designed to be installed on subject's arm."
+	name = "清洁工手臂植入体"
+	desc = "一套安装在手臂植入体中的清洁工具，设计用于安装在受试者的手臂上。"
 	id = "ci-janitor"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list (
@@ -256,8 +256,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/cyberimp_lighter
-	name = "Lighter Arm Implant"
-	desc = "A lighter, installed into the subject's arm. Incredibly useless."
+	name = "打火机手臂植入体"
+	desc = "一个安装在受试者手臂上的打火机。极其无用。"
 	id = "ci-lighter"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list (
@@ -273,13 +273,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/cyberimp_thermals
-	name = "Thermal Eyes"
+	name = "热成像义眼"
 	id = "ci-thermals"
 	build_type = AWAY_LATHE | MECHFAB
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/cyberimp_reviver
-	name = "Reviver Implant"
+	name = "复活者植入体"
 	id = "ci-reviver"
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT,

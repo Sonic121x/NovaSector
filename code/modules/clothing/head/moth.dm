@@ -1,6 +1,6 @@
 /obj/item/clothing/head/mothcap
-	name = "mothic softcap"
-	desc = "A padded leather cap with goggles, standard issue aboard the moth fleet. Keeps your head warm and debris away from those big eyes."
+	name = "飞蛾软帽"
+	desc = "带护目镜的软皮帽，飞蛾舰队的标准装备。让你的头保持温暖，还能防止杂物进入你的大眼睛。"
 	icon_state = "mothcap"
 	icon = 'icons/obj/clothing/head/moth.dmi'
 	worn_icon = 'icons/mob/clothing/head/moth.dmi'
@@ -10,7 +10,7 @@
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/head/mothcap/original
-	desc = "An authentic, padded leather cap with magnifying goggles, standard issue aboard the moth fleet. Keeps your head warm and debris away from those big eyes."
+	desc = "一顶配有放大镜护目镜的正宗加垫皮帽，飞蛾舰队标准配备。保暖头部，保护大眼睛免受碎屑侵扰。"
 
 /obj/item/clothing/head/mothcap/original/Initialize(mapload)
 	. = ..()

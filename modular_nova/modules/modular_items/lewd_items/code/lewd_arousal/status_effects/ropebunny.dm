@@ -15,5 +15,5 @@
 	target.clear_mood_event("ropebunny")
 
 /datum/mood_event/ropebunny
-	description = span_purple("I'm tied! Cannot move! These ropes... Ah!~")
+	description = span_purple("我被绑住了！动不了！这些绳子……啊！~")
 	mood_change = 0 // I don't want to doom the station to sonic-speed perverts, but still want to keep this as mood modifier.

@@ -7,8 +7,8 @@
 	icon_state = "core"
 	base_icon_state = "core"
 
-	name = "thermomachine"
-	desc = "Heats or cools gas in connected pipes."
+	name = "空调"
+	desc = "用于加热或冷却管道中的气体。"
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
@@ -42,9 +42,9 @@
 		return FALSE
 	if(user.combat_mode)
 		return FALSE
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "正在修复...")
 	if(tool.use_tool(src, user, 10 SECONDS, volume=30))
-		balloon_alert(user, "repaired")
+		balloon_alert(user, "已修复")
 		cracked = FALSE
 		update_appearance(UPDATE_ICON)
 
@@ -70,22 +70,22 @@
 	return
 
 /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
-	name = "HFR fuel input port"
+	name = "超聚反应堆燃料输入口"
 	desc = "Input port for the Hypertorus Fusion Reactor, designed to take in fuels with the optimal fuel mix being a 50/50 split."
 	icon_state = "fuel_input"
 	base_icon_state = "fuel_input"
 	circuit = /obj/item/circuitboard/machine/HFR_fuel_input
 
 /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
-	name = "HFR waste output port"
-	desc = "Waste port for the Hypertorus Fusion Reactor, designed to output the hot waste gases coming from the core of the machine."
+	name = "超聚反应堆废气排出口"
+	desc = "超聚反应堆的废气口，用于排出来自机器核心的高温废气。"
 	icon_state = "waste_output"
 	base_icon_state = "waste_output"
 	circuit = /obj/item/circuitboard/machine/HFR_waste_output
 
 /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
-	name = "HFR moderator input port"
-	desc = "Moderator port for the Hypertorus Fusion Reactor, designed to move gases inside the machine to cool and control the flow of the reaction."
+	name = "超聚反应堆慢化剂输入口"
+	desc = "超聚反应堆的调节口，设计用于在机器内部移动气体，以冷却并控制反应流动。"
 	icon_state = "moderator_input"
 	base_icon_state = "moderator_input"
 	circuit = /obj/item/circuitboard/machine/HFR_moderator_input
@@ -94,8 +94,8 @@
 * Interface and corners
 */
 /obj/machinery/hypertorus
-	name = "hypertorus_core"
-	desc = "hypertorus_core"
+	name = "超聚反应堆核心"
+	desc = "超聚反应堆核心"
 	icon = 'icons/obj/machines/atmospherics/hypertorus.dmi'
 	icon_state = "core"
 	base_icon_state = "core"
@@ -135,8 +135,8 @@
 		. += emissive_appearance(icon, "[base_icon_state]_active", src, alpha = src.alpha)
 
 /obj/machinery/hypertorus/interface
-	name = "HFR interface"
-	desc = "Interface for the HFR to control the flow of the reaction."
+	name = "超聚反应堆人机界面"
+	desc = "用于控制超聚反应堆的界面"
 	icon_state = "interface"
 	base_icon_state = "interface"
 	circuit = /obj/item/circuitboard/machine/HFR_interface
@@ -189,7 +189,7 @@
 /obj/machinery/hypertorus/interface/ui_static_data()
 	var/data = list()
 	data["base_max_temperature"] = FUSION_MAXIMUM_TEMPERATURE
-	data["selectable_fuel"] = list(list("name" = "Nothing", "id" = null))
+	data["selectable_fuel"] = list(list("name" = "无", "id" = null))
 	for(var/path in GLOB.hfr_fuels_list)
 		var/datum/hfr_fuel/recipe = GLOB.hfr_fuels_list[path]
 
@@ -375,14 +375,14 @@
 				. = TRUE
 
 /obj/machinery/hypertorus/corner
-	name = "HFR corner"
-	desc = "Structural piece of the machine."
+	name = "超聚反应堆转角组件"
+	desc = "机械的结构组件。"
 	icon_state = "corner"
 	base_icon_state = "corner"
 	circuit = /obj/item/circuitboard/machine/HFR_corner
 
 /obj/item/paper/guides/jobs/atmos/hypertorus
-	name = "paper- 'Quick guide to safe handling of the HFR'"
+	name = "纸——《HFR安全操作快捷指南》"
 	default_raw_text = "<B>How to safely(TM) operate the Hypertorus</B><BR>\
 	-Build the machine as it�s shown in the main guide.<BR>\
 	-Make a 50/50 gasmix of tritium and hydrogen totalling around 2000 moles.<BR>\
@@ -407,8 +407,8 @@
 	use more advanced guides to understando how the various gases will act as moderators."
 
 /obj/item/hfr_box
-	name = "HFR box"
-	desc = "If you see this, call the police."
+	name = "超聚反应堆盒"
+	desc = "如果你见到了这东西，马上报警。"
 	icon = 'icons/obj/machines/atmospherics/hypertorus.dmi'
 	icon_state = "error"
 	///What kind of box are we handling?
@@ -417,40 +417,40 @@
 	var/part_path
 
 /obj/item/hfr_box/corner
-	name = "HFR box corner"
-	desc = "Place this as the corner of your 3x3 multiblock fusion reactor"
+	name = "超聚反应堆转角组件盒"
+	desc = "将其放置在你的3x3多方块超聚反应堆的角落"
 	icon_state = "box_corner"
 	box_type = "corner"
 	part_path = /obj/machinery/hypertorus/corner
 
 /obj/item/hfr_box/body
-	name = "HFR box body"
-	desc = "Place this on the sides of the core box of your 3x3 multiblock fusion reactor"
+	name = "超聚反应堆盒体"
+	desc = "将其放置在你的3x3多方块超聚反应堆的两侧"
 	box_type = "body"
 	icon_state = "box_body"
 
 /obj/item/hfr_box/body/fuel_input
-	name = "HFR box fuel input"
+	name = "超聚反应堆燃料输入口盒"
 	icon_state = "box_fuel"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
 
 /obj/item/hfr_box/body/moderator_input
-	name = "HFR box moderator input"
+	name = "超聚反应堆慢化剂输入口盒"
 	icon_state = "box_moderator"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
 
 /obj/item/hfr_box/body/waste_output
-	name = "HFR box waste output"
+	name = "超聚反应堆废气排出口盒"
 	icon_state = "box_waste"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
 
 /obj/item/hfr_box/body/interface
-	name = "HFR box interface"
+	name = "超聚反应堆人机界面盒"
 	part_path = /obj/machinery/hypertorus/interface
 
 /obj/item/hfr_box/core
-	name = "HFR box core"
-	desc = "Activate this with a multitool to deploy the full machine after setting up the other boxes"
+	name = "超聚反应堆核心盒"
+	desc = "使用多功能工具激活此装置，在设置好其他箱子后部署完整机器"
 	icon_state = "box_core"
 	box_type = "core"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/core

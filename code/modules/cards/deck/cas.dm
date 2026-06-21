@@ -4,8 +4,8 @@
 // https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode
 // Original code by Zuhayr, Polaris Station, ported with modifications
 /obj/item/toy/cards/deck/cas
-	name = "\improper CAS deck (white)"
-	desc = "A deck for the game Cards Against Spess, still popular after all these centuries. Warning: may include traces of broken fourth wall. This is the white deck."
+	name = "\improper CAS牌组（白色）"
+	desc = "一套《太空大冒险》卡牌，这款游戏历经数百年依然流行。警告：可能包含打破第四面墙的内容。这是白色牌组。"
 	cardgame_desc = "Cards Against Spess game"
 	icon_state = "deck_white_full"
 	deckstyle = "white"
@@ -14,8 +14,8 @@
 	can_play_52_card_pickup = FALSE
 
 /obj/item/toy/cards/deck/cas/black
-	name = "\improper CAS deck (black)"
-	desc = "A deck for the game Cards Against Spess, still popular after all these centuries. Warning: may include traces of broken fourth wall. This is the black deck."
+	name = "\improper CAS牌组（黑色）"
+	desc = "一套《太空大冒险》卡牌，这款游戏历经数百年依然流行。警告：可能包含打破第四面墙的内容。这是黑色牌组。"
 	icon_state = "deck_black_full"
 	deckstyle = "black"
 	decksize = 50

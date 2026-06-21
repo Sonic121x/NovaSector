@@ -1,5 +1,5 @@
 /datum/crafting_recipe/trickblindfold
-	name = "Fake Blindfold"
+	name = "假眼罩"
 	result = /obj/item/clothing/glasses/trickblindfold
 	time = 20
 	tool_behaviors = list(TOOL_WIRECUTTER)
@@ -7,7 +7,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/paper_mask
-	name = "Paper Mask"
+	name = "纸面具"
 	result = /obj/item/clothing/mask/paper
 	time = 30
 	tool_behaviors = list(TOOL_WIRECUTTER)
@@ -15,7 +15,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/crusader_belt
-	name = "Crusader Belt and Sheath"
+	name = "十字军腰带与剑鞘"
 	result = /obj/item/storage/belt/crusader
 	reqs = list(/obj/item/storage/belt/utility = 1, /obj/item/stack/sheet/leather = 3, /obj/item/stack/sheet/cloth = 2, /obj/item/stack/sheet/mineral/gold = 1)
 	tool_behaviors = list(TOOL_WIRECUTTER, TOOL_SCREWDRIVER, TOOL_WELDER)	//To cut the leather and fasten/weld the sheath detailing
@@ -24,7 +24,7 @@
 	delete_contents = FALSE
 
 /datum/crafting_recipe/crusader_satchel
-	name = "Crusader Satchel"
+	name = "十字军挎包"
 	result = /obj/item/storage/backpack/satchel/crusader
 	reqs = list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/sheet/leather = 1)	//Cheap because it's really just a re-texture of the satchel
 	tool_behaviors = list(TOOL_WIRECUTTER)
@@ -32,14 +32,14 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/single_leaf
-	name = "Single Leaf"
+	name = "单片叶子"
 	result = /obj/item/clothing/under/misc/nova/gear_harness/adam
 	reqs = list(/obj/item/food/grown/grass = 1, /obj/item/stack/sheet/leather = 2)
 	time = 3 SECONDS
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/collection_leaves
-	name = "Collection of Leaves"
+	name = "叶片集"
 	result = /obj/item/clothing/under/misc/nova/gear_harness/eve
 	reqs = list(/obj/item/food/grown/grass = 3, /obj/item/stack/sheet/leather = 2)
 	time = 6 SECONDS
@@ -47,14 +47,14 @@
 
 //Eyepatches//
 /datum/crafting_recipe/secpatch
-	name = "Security Eyepatch HUD"
+	name = "安保眼罩式平视显示器"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	reqs = list(/obj/item/clothing/glasses/hud/security = 1, /obj/item/clothing/glasses/eyepatch = 1, /obj/item/stack/cable_coil = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER) //Tools needed and requirements are kept the same as craftable HUD sunglasses//
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/secpatchremoval
-	name = "Security Eyepatch HUD removal"
+	name = "安保眼罩式平视显示器移除"
 	result = /obj/item/clothing/glasses/eyepatch
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/eyepatch = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -62,14 +62,14 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/medpatch
-	name = "Medical Eyepatch HUD"
+	name = "医疗眼罩式平视显示器"
 	result = /obj/item/clothing/glasses/hud/eyepatch/med
 	reqs = list(/obj/item/clothing/glasses/hud/health = 1, /obj/item/clothing/glasses/eyepatch = 1, /obj/item/stack/cable_coil = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/medpatchremoval
-	name = "Medical Eyepatch HUD removal"
+	name = "医疗眼罩式平视显示器移除"
 	result = /obj/item/clothing/glasses/eyepatch
 	reqs = list(/obj/item/clothing/glasses/hud/eyepatch/med = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -77,14 +77,14 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/mesonpatch
-	name = "Meson Eyepatch HUD"
+	name = "介子眼罩式平视显示器"
 	result = /obj/item/clothing/glasses/hud/eyepatch/meson
 	reqs = list(/obj/item/clothing/glasses/meson = 1, /obj/item/clothing/glasses/eyepatch = 1, /obj/item/stack/cable_coil = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/mesonpatchremoval
-	name = "Meson Eyepatch HUD removal"
+	name = "介子眼罩式平视显示器移除"
 	result = /obj/item/clothing/glasses/eyepatch
 	reqs = list(/obj/item/clothing/glasses/hud/eyepatch/meson = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -92,14 +92,14 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/robopatch
-	name = "Diagnostic Eyepatch HUD"
+	name = "诊断眼罩式平视显示器"
 	result = /obj/item/clothing/glasses/hud/eyepatch/diagnostic
 	reqs = list(/obj/item/clothing/glasses/hud/diagnostic = 1, /obj/item/clothing/glasses/eyepatch = 1, /obj/item/stack/cable_coil = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/robopatchremoval
-	name = "Diagnostic Eyepatch HUD removal"
+	name = "诊断眼罩式平视显示器移除"
 	result = /obj/item/clothing/glasses/eyepatch
 	reqs = list(/obj/item/clothing/glasses/hud/eyepatch/diagnostic = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -107,14 +107,14 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/scipatch
-	name = "Science Eyepatch HUD"
+	name = "科研眼罩式平视显示器"
 	result = /obj/item/clothing/glasses/hud/eyepatch/sci
 	reqs = list(/obj/item/clothing/glasses/science = 1, /obj/item/clothing/glasses/eyepatch = 1, /obj/item/stack/cable_coil = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/scipatchremoval
-	name = "Science Eyepatch HUD removal"
+	name = "科研眼罩式平视显示器移除"
 	result = /obj/item/clothing/glasses/eyepatch
 	reqs = list(/obj/item/clothing/glasses/hud/eyepatch/sci = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)

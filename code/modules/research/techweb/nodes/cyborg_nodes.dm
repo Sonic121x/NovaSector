@@ -2,7 +2,7 @@
 	id = TECHWEB_NODE_AUGMENTATION
 	starting_node = TRUE
 	display_name = "Augmentation"
-	description = "For those who prefer shiny metal over squishy flesh."
+	description = "献给那些偏爱闪亮金属胜过柔软血肉的人。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"borg_chest",
@@ -28,7 +28,7 @@
 /datum/techweb_node/cybernetics
 	id = TECHWEB_NODE_CYBERNETICS
 	display_name = "Cybernetics"
-	description = "Sapient robots with preloaded tool modules and programmable laws."
+	description = "具有预载工具模块和可编程定律的智慧机器人。"
 	prereq_ids = list(TECHWEB_NODE_AUGMENTATION)
 	design_ids = list(
 		"robocontrol",
@@ -50,7 +50,7 @@
 /datum/techweb_node/borg_service
 	id = TECHWEB_NODE_BORG_SERVICES
 	display_name = "Service Cyborg Upgrades"
-	description = "Let them do the cookin' by the book."
+	description = "让他们按部就班地做饭。"
 	prereq_ids = list(TECHWEB_NODE_CYBERNETICS)
 	design_ids = list(
 		"borg_upgrade_rolling_table",
@@ -67,7 +67,7 @@
 /datum/techweb_node/borg_mining
 	id = TECHWEB_NODE_BORG_MINING
 	display_name = "Mining Cyborg Upgrades"
-	description = "To mine places too dangerous for humans."
+	description = "用于开采对人类来说过于危险的地方。"
 	prereq_ids = list(TECHWEB_NODE_CYBERNETICS)
 	design_ids = list(
 		"borg_upgrade_lavaproof",
@@ -80,7 +80,7 @@
 /datum/techweb_node/borg_medical
 	id = TECHWEB_NODE_BORG_MEDICAL
 	display_name = "Medical Cyborg Upgrades"
-	description = "Let them follow Asimov's First Law."
+	description = "让他们遵循阿西莫夫第一定律。"
 	prereq_ids = list(TECHWEB_NODE_BORG_SERVICES, TECHWEB_NODE_SURGERY_ADV)
 	design_ids = list(
 		"borg_upgrade_pinpointer",
@@ -98,7 +98,7 @@
 /datum/techweb_node/borg_utility
 	id = TECHWEB_NODE_BORG_UTILITY
 	display_name = "Utility Cyborg Upgrades"
-	description = "Let them wipe our floors for us."
+	description = "让他们替我们擦地板。"
 	prereq_ids = list(TECHWEB_NODE_BORG_SERVICES, TECHWEB_NODE_SANITATION)
 	design_ids = list(
 		"borg_upgrade_advancedmop",
@@ -122,7 +122,7 @@
 /datum/techweb_node/borg_engi
 	id = TECHWEB_NODE_BORG_ENGI
 	display_name = "Engineering Cyborg Upgrades"
-	description = "To slack even more."
+	description = "为了更加偷懒。"
 	prereq_ids = list(TECHWEB_NODE_BORG_MINING, TECHWEB_NODE_PARTS_UPG)
 	design_ids = list(
 		//"borg_upgrade_rped", // NOVA EDIT REMOVAL: Added to starting modules.
@@ -137,7 +137,7 @@
 /datum/techweb_node/passive_implants
 	id = TECHWEB_NODE_PASSIVE_IMPLANTS
 	display_name = "Passive Implants"
-	description = "Implants designed to operate seamlessly without active user input, enhancing various physiological functions or providing continuous benefits."
+	description = "这些植入体设计为无需用户主动输入即可无缝运作，增强各种生理功能或提供持续益处。"
 	prereq_ids = list(TECHWEB_NODE_AUGMENTATION)
 	design_ids = list(
 		"skill_station",
@@ -157,7 +157,7 @@
 /datum/techweb_node/cyber/cyber_implants
 	id = TECHWEB_NODE_CYBER_IMPLANTS
 	display_name = "Cybernetic Implants"
-	description = "Advanced technological enhancements integrated into the body, offering improved physical capabilities."
+	description = "集成到身体中的先进技术增强装置，提供改进的物理能力。"
 	prereq_ids = list(TECHWEB_NODE_PASSIVE_IMPLANTS, TECHWEB_NODE_CYBERNETICS)
 	design_ids = list(
 		"ci-breather",
@@ -177,7 +177,7 @@
 /datum/techweb_node/cyber/combat_implants
 	id = TECHWEB_NODE_COMBAT_IMPLANTS
 	display_name = "Combat Implants"
-	description = "To make sure that you can wake the f*** up, samurai."
+	description = "确保你能他妈的醒过来，武士。"
 	prereq_ids = list(TECHWEB_NODE_CYBER_IMPLANTS)
 	design_ids = list(
 		"ci-reviver",
@@ -191,7 +191,7 @@
 /datum/techweb_node/cyber/integrated_toolsets
 	id = TECHWEB_NODE_INTERGRATED_TOOLSETS
 	display_name = "Integrated Toolsets"
-	description = "Decades of contraband smuggling by assistants have led to the development of a full toolbox that fits seamlessly into your arm."
+	description = "助手们数十年的违禁品走私，促成了能无缝融入你手臂的完整工具箱的开发。"
 	prereq_ids = list(TECHWEB_NODE_COMBAT_IMPLANTS, TECHWEB_NODE_EXP_TOOLS)
 	design_ids = list(
 		"ci-nutrimentplus",
@@ -205,7 +205,7 @@
 /datum/techweb_node/cyber/cyber_organs
 	id = TECHWEB_NODE_CYBER_ORGANS
 	display_name = "Cybernetic Organs"
-	description = "We have the technology to rebuild him."
+	description = "我们拥有重建他的技术。"
 	prereq_ids = list(TECHWEB_NODE_CYBERNETICS)
 	design_ids = list(
 		"cybernetic_eyes_improved",
@@ -223,7 +223,7 @@
 /datum/techweb_node/cyber/cyber_organs_upgraded
 	id = TECHWEB_NODE_CYBER_ORGANS_UPGRADED
 	display_name = "Upgraded Cybernetic Organs"
-	description = "We have the technology to upgrade him."
+	description = "我们拥有升级他的技术。"
 	prereq_ids = list(TECHWEB_NODE_CYBER_ORGANS)
 	design_ids = list(
 		"ci-gloweyes",
@@ -246,7 +246,7 @@
 /datum/techweb_node/cyber/cyber_organs_adv
 	id = TECHWEB_NODE_CYBER_ORGANS_ADV
 	display_name = "Advanced Cybernetic Organs"
-	description = "Cutting-edge cybernetic organs offering enhanced sensory capabilities, making it easier than ever to detect ERP."
+	description = "提供增强感官能力的尖端赛博器官，让检测ERP比以往任何时候都更容易。"
 	prereq_ids = list(TECHWEB_NODE_CYBER_ORGANS_UPGRADED, TECHWEB_NODE_NIGHT_VISION)
 	design_ids = list(
 		"cybernetic_ears_xray",

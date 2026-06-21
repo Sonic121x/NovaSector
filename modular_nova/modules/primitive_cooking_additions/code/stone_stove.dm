@@ -1,6 +1,6 @@
 /obj/machinery/primitive_stove
-	name = "stone stove"
-	desc = "You think you'll stick to just putting pots on this, the grill part looks very unsanitary."
+	name = "石炉"
+	desc = "你觉得还是只把锅放上去就好，烤架部分看起来很不卫生。"
 	icon = 'modular_nova/modules/primitive_cooking_additions/icons/stone_kitchen_machines.dmi'
 	icon_state = "stove_off"
 	base_icon_state = "stove"
@@ -13,7 +13,7 @@
 	custom_materials = list(/datum/material/stone = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/machinery/primitive_stove/clay
-	name = "clay stove"
+	name = "陶炉"
 	custom_materials = list(/datum/material/clay = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/machinery/primitive_stove/Initialize(mapload)
@@ -29,7 +29,7 @@
 /obj/machinery/primitive_stove/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It can be taken apart with a <b>crowbar</b>.")
+	. += span_notice("可以用<b>撬棍</b>将其拆开。")
 
 /obj/machinery/primitive_stove/crowbar_act(mob/living/user, obj/item/tool)
 	user.balloon_alert_to_viewers("disassembling...")

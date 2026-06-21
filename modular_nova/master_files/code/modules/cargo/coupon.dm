@@ -5,4 +5,4 @@
 		if(length(pack.contains))
 			var/obj/item/first_item = pack.contains[1]
 			if(first_item)
-				name = "coupon - [round(discount_pct_off * 100)]% off [first_item.name]"
+				name = "优惠券 - [round(discount_pct_off * 100)]% 折扣 [first_item.name]"

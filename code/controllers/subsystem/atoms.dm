@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(atoms)
-	name = "Atoms"
+	name = "原子"
 	dependencies = list(
 		/datum/controller/subsystem/processing/reagents,
 		/datum/controller/subsystem/fluids,

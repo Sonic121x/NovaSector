@@ -1,9 +1,9 @@
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain
 	outfit = /datum/outfit/virtual_pirate
-	prompt_name = "a virtual domain debug entity"
-	flavour_text = "You probably shouldn't be seeing this, contact a coder!"
-	you_are_text = "You are NOT supposed to be here. How did you let this happen?"
-	important_text = "Bitrunning is a crime, and your primary threat."
+	prompt_name = "一个虚拟域调试实体"
+	flavour_text = "你大概不该看到这个，联系程序员！"
+	you_are_text = "你根本不该出现在这里。你是怎么让这事发生的？"
+	important_text = "比特跑者是一种犯罪行为，也是你的主要威胁。"
 	temp_body = TRUE
 	///Does this bit-entity get an antag datum with the goal of hunting bitrunners? TRUE by default
 	var/antag = TRUE
@@ -27,19 +27,19 @@
 //Beach Bums (Friendly)
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/beach
 	prompt_name = "a virtual beach bum"
-	name = "virtual beach bum sleeper"
-	you_are_text = "You're, like, totally a virtual simulation of a dudebro, bruh."
+	name = "虚拟海滩流浪者休眠舱"
+	you_are_text = "你，就像，完全是一个虚拟模拟出来的老兄，兄弟。"
 	flavour_text = "Ch'yea. You came here, like, on spring break, hopin' to pick up some bangin' hot e-chicks, y'knaw?"
-	important_text = "You have no qualms with Bitrunning: in fact, you aren't even aware you're in a simulation."
+	important_text = "你对比特跑者毫无芥蒂：事实上，你甚至没意识到自己身处模拟之中。"
 	outfit = /datum/outfit/beachbum
 	spawner_job_path = /datum/job/beach_bum
 	antag = FALSE
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/beach/lifeguard
-	name = "virtual lifeguard sleeper"
-	you_are_text = "You are a spunky virtual lifeguard!"
-	flavour_text = "It's up to you to make sure nobody lags or gets eaten by malware and stuff."
+	name = "虚拟救生员休眠舱"
+	you_are_text = "你是一个充满活力的虚拟救生员！"
+	flavour_text = "你的职责是确保没人掉线或被恶意软件之类的东西吞噬。"
 	outfit = /datum/outfit/beachbum/lifeguard
 	allow_custom_character = NONE
 
@@ -49,25 +49,25 @@
 	lifeguard.update_body()
 
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/beach/bartender
-	name = "virtual bartender sleeper"
-	you_are_text = "You are a virtual beach bartender!"
-	flavour_text = "Your job is to keep the virtually rendered drinks coming, and help the dudebros engage drunkness simulations."
+	name = "虚拟酒保休眠舱"
+	you_are_text = "你是一个虚拟海滩酒保！"
+	flavour_text = "你的工作是源源不断地提供虚拟渲染的饮品，并帮助老兄们体验醉酒模拟。"
 	outfit = /datum/outfit/spacebartender
 	allow_custom_character = ALL
 
 //Skeleton Pirates
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/pirate
-	name = "Virtual Pirate Remains"
-	desc = "Some inanimate bones. They feel like they could spring to life at any moment!"
+	name = "虚拟海盗遗骸"
+	desc = "一些无生命的骨头。感觉它们随时都可能活过来！"
 	density = FALSE
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remains"
-	prompt_name = "a virtual skeleton pirate"
-	you_are_text = "You are a virtual pirate. Yarrr!"
-	flavour_text = " There's a LANDLUBBER after yer booty. Stop them!"
+	prompt_name = "一个虚拟骷髅海盗"
+	you_are_text = "你是一个虚拟海盗。哟嚯！"
+	flavour_text = "有个旱鸭子盯上你的财宝了。阻止他们！"
 
 /datum/outfit/virtual_pirate
-	name = "Virtual Pirate"
+	name = "虚拟海盗"
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/pirate
 	uniform = /obj/item/clothing/under/costume/pirate
@@ -82,17 +82,17 @@
 
 //Syndicate
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/syndie
-	name = "Virtual Syndicate Sleeper"
+	name = "虚拟辛迪加休眠舱"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	prompt_name = "a virtual syndicate operative"
-	you_are_text = "You are a virtual syndicate operative."
-	flavour_text = "Alarms blare! We are being boarded!"
+	prompt_name = "一名虚拟辛迪加特工"
+	you_are_text = "你是一名虚拟辛迪加特工。"
+	flavour_text = "警报大作！我们正遭到登船袭击！"
 	outfit = /datum/outfit/virtual_syndicate
 	spawner_job_path = /datum/job/space_syndicate
 
 /datum/outfit/virtual_syndicate
-	name = "Virtual Syndie"
+	name = "虚拟辛迪加成员"
 	id = /obj/item/card/id/advanced/chameleon
 	id_trim = /datum/id_trim/chameleon/operative
 	uniform = /obj/item/clothing/under/syndicate

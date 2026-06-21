@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/conjure/soulstone
-	name = "Summon Soulstone"
+	name = "召唤灵魂石"
 	desc = "This spell reaches into Nar'Sie's realm, summoning one of the legendary fragments across time and space."
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
@@ -16,17 +16,17 @@
 	summon_type = list(/obj/item/soulstone)
 
 /datum/action/cooldown/spell/conjure/soulstone/cult
-	name = "Create Nar'sian Soulstone"
+	name = "制作纳里西亚灵魂石"
 	cooldown_time = 6 MINUTES
 
 /datum/action/cooldown/spell/conjure/soulstone/noncult
-	name = "Create Soulstone"
+	name = "创建灵魂石"
 	summon_type = list(/obj/item/soulstone/anybody)
 
 /datum/action/cooldown/spell/conjure/soulstone/purified
-	name = "Create Purified Soulstone"
+	name = "创造纯净的灵魂石"
 	summon_type = list(/obj/item/soulstone/anybody/purified)
 
 /datum/action/cooldown/spell/conjure/soulstone/mystic
-	name = "Create Mystic Soulstone"
+	name = "创建神秘灵魂石"
 	summon_type = list(/obj/item/soulstone/mystic)

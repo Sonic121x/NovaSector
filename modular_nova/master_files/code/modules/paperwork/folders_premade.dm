@@ -1,6 +1,6 @@
 /obj/item/folder/ancient_paperwork/five
-	name = "packed dusty folder"
-	desc = "You're pretty sure folders shouldn't be packed this full, especially if they look this old."
+	name = "塞满的积尘文件夹"
+	desc = "你相当确定文件夹不该塞得这么满，尤其是看起来这么旧的。"
 
 /obj/item/folder/ancient_paperwork/five/Initialize(mapload)
 	. = ..()

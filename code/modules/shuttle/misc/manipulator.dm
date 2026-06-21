@@ -1,5 +1,5 @@
 /obj/machinery/shuttle_manipulator
-	name = "shuttle manipulator"
+	name = "穿梭机操控器"
 	desc = "I shall be telling this with a sigh\n\
 		Somewhere ages and ages hence:\n\
 		Two roads diverged in a wood, and I,\n\

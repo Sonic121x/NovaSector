@@ -1,13 +1,13 @@
 
 /obj/structure/window/reinforced/fulltile/indestructible
-	name = "robust window"
+	name = "强化窗"
 	move_resist = MOVE_FORCE_OVERPOWERING
 	flags_1 = PREVENT_CLICK_UNDER_1
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 
 /obj/structure/grille/indestructible
-	desc = "A STRONG framework of hardened plasteel rods, that you cannot possibly get through. If you were an engineer you would be drooling over its construction right now."
+	desc = "一个由硬化塑钢棒构成的坚固框架，你绝不可能穿过它。如果你是工程师，此刻一定会为它的构造垂涎三尺。"
 	move_resist = MOVE_FORCE_OVERPOWERING
 	obj_flags = CONDUCTS_ELECTRICITY
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -21,15 +21,15 @@
 	spawn_list = list(/obj/structure/grille/indestructible, /obj/structure/window/reinforced/fulltile/indestructible)
 
 /obj/structure/barricade/security/murderdome
-	name = "respawnable barrier"
-	desc = "A barrier. Provides cover in firefights."
+	name = "可再生屏障"
+	desc = "屏障。在交火中提供掩护。"
 
 /obj/structure/barricade/security/murderdome/make_debris()
 	new /obj/effect/murderdome/dead_barricade(get_turf(src))
 
 /obj/effect/murderdome/dead_barricade
-	name = "dead barrier"
-	desc = "It provided cover in fire fights. And now it's gone."
+	name = "无效屏障"
+	desc = "它在交火中提供了掩护。现在它没了。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barrier0"
 	alpha = 100

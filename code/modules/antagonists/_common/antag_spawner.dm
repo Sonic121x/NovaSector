@@ -15,8 +15,8 @@
 ///////////WIZARD
 
 /obj/item/antag_spawner/contract
-	name = "contract"
-	desc = "A magic contract previously signed by an apprentice. In exchange for instruction in the magical arts, they are bound to answer your call for aid."
+	name = "契约"
+	desc = "一份由学徒之前签署的魔法契约。作为接受魔法技艺指导的交换条件，他们有义务在你需要帮助时前来相助。"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state ="scroll2"
 	var/polling = FALSE
@@ -26,7 +26,7 @@
 	if(!.)
 		return FALSE
 	if(polling)
-		balloon_alert(user, "already calling an apprentice!")
+		balloon_alert(user, "已经在召唤学徒了！")
 		return FALSE
 
 /obj/item/antag_spawner/contract/ui_interact(mob/user, datum/tgui/ui)
@@ -61,12 +61,12 @@
 			SStgui.close_uis(src)
 
 /obj/item/antag_spawner/contract/proc/poll_for_student(mob/living/carbon/human/teacher, apprentice_school)
-	balloon_alert(teacher, "contacting apprentice...")
+	balloon_alert(teacher, "正在联系学徒...")
 	polling = TRUE
-	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [span_danger("[teacher]'s")] [span_notice("[apprentice_school] apprentice")]?", check_jobban = ROLE_WIZARD_MIDROUND, role = ROLE_WIZARD_MIDROUND, poll_time = 15 SECONDS, checked_target = src, alert_pic = /obj/item/clothing/head/wizard/red, jump_target = src, role_name_text = "wizard apprentice", chat_text_border_icon = /obj/item/clothing/head/wizard/red)
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("您想扮演[span_danger("[teacher]'s")][span_notice("[apprentice_school] apprentice")]吗？", check_jobban = ROLE_WIZARD_MIDROUND, role = ROLE_WIZARD_MIDROUND, poll_time = 15 SECONDS, checked_target = src, alert_pic = /obj/item/clothing/head/wizard/red, jump_target = src, role_name_text = "巫师学徒", chat_text_border_icon = /obj/item/clothing/head/wizard/red)
 	polling = FALSE
 	if(isnull(chosen_one))
-		to_chat(teacher, span_warning("Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later."))
+		to_chat(teacher, span_warning("无法联系到你的学徒！你可以用契约攻击法术书来退还点数，或者稍后再试。"))
 		return
 	if(QDELETED(src) || used)
 		return
@@ -101,8 +101,8 @@
  * Device to request reinforcments from ghost pop
  */
 /obj/item/antag_spawner/nuke_ops
-	name = "syndicate operative beacon"
-	desc = "A single-use beacon designed to quickly launch reinforcement operatives into the field."
+	name = "辛迪加行动队信标"
+	desc = "一种一次性使用的信标，旨在迅速将增援人员送入战场。"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "nukietalkie"
 	/// The name of the special role given to the recruit
@@ -120,10 +120,10 @@
 
 /obj/item/antag_spawner/nuke_ops/proc/check_usability(mob/user)
 	if(used)
-		to_chat(user, span_warning("[src] is out of power!"))
+		to_chat(user, span_warning("[src] 没电了！"))
 		return FALSE
 	if(!user.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
-		to_chat(user, span_danger("AUTHENTICATION FAILURE. ACCESS DENIED."))
+		to_chat(user, span_danger("认证失败。访问被拒绝。"))
 		return FALSE
 	return TRUE
 
@@ -138,7 +138,7 @@
 	if(!(check_usability(user)))
 		return
 
-	to_chat(user, span_notice("You activate [src] and wait for confirmation."))
+	to_chat(user, span_notice("你激活了[src]并等待确认。"))
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates("Do you want to play as a reinforcement [special_role_name]?", check_jobban = ROLE_OPERATIVE_MIDROUND, role = ROLE_OPERATIVE_MIDROUND, poll_time = 15 SECONDS, ignore_category = POLL_IGNORE_SYNDICATE, alert_pic = src, role_name_text = special_role_name, amount_to_pick = 1)
 	if(chosen_one)
 		if(QDELETED(src) || !check_usability(user))
@@ -148,7 +148,7 @@
 		do_sparks(4, TRUE, src)
 		qdel(src)
 	else
-		to_chat(user, span_warning("Unable to connect to Syndicate command. Please wait and try again later or use the beacon on your uplink to get your points refunded."))
+		to_chat(user, span_warning("无法连接到辛迪加指挥部。请稍后再试，或使用你上行链路中的信标来退还点数。"))
 
 /obj/item/antag_spawner/nuke_ops/spawn_antag(client/our_client, turf/T, kind, datum/mind/user)
 	var/mob/living/carbon/human/nukie = new()
@@ -190,8 +190,8 @@
 
 //////CLOWN OP
 /obj/item/antag_spawner/nuke_ops/clown
-	name = "clown operative beacon"
-	desc = "A single-use beacon designed to quickly launch reinforcement clown operatives into the field."
+	name = "小丑行动队信标"
+	desc = "一种一次性使用的信号装置，旨在迅速派遣增援的特工人员进入战场。"
 	special_role_name = ROLE_CLOWN_OPERATIVE
 	outfit = /datum/outfit/syndicate/clownop/no_crystals
 	antag_datum = /datum/antagonist/nukeop/reinforcement/clownop
@@ -200,21 +200,21 @@
 
 //////SYNDICATE BORG
 /obj/item/antag_spawner/nuke_ops/borg_tele
-	name = "syndicate cyborg beacon"
-	desc = "A single-use beacon designed to quickly launch reinforcement cyborgs into the field."
+	name = "辛迪加赛博信标"
+	desc = "一种被用于快速将增援赛博发射到场上的一次性信标"
 	antag_datum = /datum/antagonist/nukeop/reinforcement/cyborg
 	special_role_name = "Syndicate Cyborg"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/assault
-	name = "syndicate assault cyborg beacon"
+	name = "辛迪加突袭者赛博信标"
 	special_role_name = ROLE_SYNDICATE_ASSAULTBORG
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/medical
-	name = "syndicate medical beacon"
+	name = "辛迪加医疗信标"
 	special_role_name = ROLE_SYNDICATE_MEDBORG
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/saboteur
-	name = "syndicate saboteur beacon"
+	name = "辛迪加破坏赛博召唤信标"
 	special_role_name = ROLE_SYNDICATE_SABOBORG
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/spawn_antag(client/C, turf/T, kind, datum/mind/user)
@@ -257,8 +257,8 @@
 ///////////SLAUGHTER DEMON
 
 /obj/item/antag_spawner/slaughter_demon //Warning edgiest item in the game
-	name = "vial of blood"
-	desc = "A magically infused bottle of blood, distilled from countless murder victims. Used in unholy rituals to attract horrifying creatures."
+	name = "一瓶血液"
+	desc = "一瓶被神奇力量注入的血液，由无数被杀者的血液提炼而成。它被用于邪恶的仪式中，以吸引那些可怕的生物。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "vial"
 
@@ -293,8 +293,8 @@
 	spawned.PossessByPlayer(C.key)
 
 /obj/item/antag_spawner/slaughter_demon/laughter
-	name = "vial of tickles"
-	desc = "A magically infused bottle of clown love, distilled from countless hugging attacks. Used in funny rituals to attract adorable creatures."
+	name = "一瓶笑声"
+	desc = "一瓶被神奇力量加持的“小丑之爱”液体，由无数的拥抱行为提炼而成。它被用于有趣的仪式中，以吸引可爱的生物。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "vial"
 	color = "#FF69B4" // HOT PINK

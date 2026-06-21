@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/ds2atmos
-	name = "energy axe cabinet"
-	desc = "A cabinet storing an energy fire axe along with basic firefighting tools."
+	name = "能量斧柜"
+	desc = "一个存放能量消防斧以及基本消防工具的柜子。"
 	icon = 'modular_nova/modules/ds2_fluff/icons/closet_wide.dmi'
 	icon_state = "energyaxe"
 	req_access = list(ACCESS_SYNDICATE)

@@ -1,8 +1,8 @@
 //Not to be confused with /obj/item/reagent_containers/cup/glass/bottle
 
 /obj/item/reagent_containers/cup/bottle
-	name = "bottle"
-	desc = "A small bottle."
+	name = "瓶子"
+	desc = "一个小瓶子。"
 	icon_state = "bottle"
 	fill_icon_state = "bottle"
 	inhand_icon_state = "atoxinbottle"
@@ -21,18 +21,18 @@
 	update_appearance()
 
 /obj/item/reagent_containers/cup/bottle/epinephrine
-	name = "epinephrine bottle"
-	desc = "A small bottle. Contains epinephrine - used to stabilize patients."
+	name = "肾上腺素瓶-'Epinephrine'"
+	desc = "小瓶子。内含肾上腺素——用于稳定患者病情。"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 30)
 
 /obj/item/reagent_containers/cup/bottle/toxin
-	name = "toxin bottle"
-	desc = "A small bottle of toxins. Do not drink, it is poisonous."
+	name = "毒素瓶-'Toxin'"
+	desc = "一小瓶有毒物质。切勿饮用，有毒。"
 	list_reagents = list(/datum/reagent/toxin = 30)
 
 /obj/item/reagent_containers/cup/bottle/cyanide
-	name = "cyanide bottle"
-	desc = "A small bottle of cyanide. Bitter almonds?"
+	name = "氰化物瓶-'Cyanide'"
+	desc = "一小瓶氰化物。苦杏仁？"
 	list_reagents = list(/datum/reagent/toxin/cyanide = 30)
 
 /obj/item/reagent_containers/cup/bottle/anacea
@@ -41,8 +41,8 @@
 	list_reagents = list(/datum/reagent/toxin/anacea = 30)
 
 /obj/item/reagent_containers/cup/bottle/spewium
-	name = "spewium bottle"
-	desc = "A small bottle of spewium."
+	name = "喷吐素瓶-'spewium'"
+	desc = "一小瓶喷吐素。"
 	list_reagents = list(/datum/reagent/toxin/spewium = 30)
 
 /obj/item/reagent_containers/cup/bottle/syndol
@@ -51,8 +51,8 @@
 	list_reagents = list(/datum/reagent/drug/syndol = 30)
 
 /obj/item/reagent_containers/cup/bottle/morphine
-	name = "morphine bottle"
-	desc = "A small bottle of morphine."
+	name = "吗啡瓶-'Morphine'"
+	desc = "一小瓶吗啡。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	list_reagents = list(/datum/reagent/medicine/morphine = 30)
 
@@ -63,23 +63,23 @@
 	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 15)
 
 /obj/item/reagent_containers/cup/bottle/mannitol
-	name = "mannitol bottle"
-	desc = "A small bottle of Mannitol. Useful for healing brain damage."
+	name = "甘露醇瓶-'Mannitol'"
+	desc = "一小瓶甘露醇。用于治疗脑损伤。"
 	list_reagents = list(/datum/reagent/medicine/mannitol = 30)
 
 /obj/item/reagent_containers/cup/bottle/multiver
-	name = "multiver bottle"
-	desc = "A small bottle of multiver, which removes toxins and other chemicals from the bloodstream but causes shortness of breath. All effects scale with the amount of reagents in the patient."
+	name = "木太尔瓶-'Multiver'"
+	desc = "一小瓶“木太尔”，它能清除血液中的毒素及其他化学物质，但会导致呼吸短促。所有效果均随患者体内该药剂的含量而增强。"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 30)
 
 /obj/item/reagent_containers/cup/bottle/calomel
-	name = "calomel bottle"
+	name = "甘汞瓶-'Calomel'"
 	desc = "A small bottle of calomel, a toxic drug which quickly removes chemicals from the bloodstream. Does not cause additional harm in heavily-injured people."
 	list_reagents = list(/datum/reagent/medicine/calomel = 30)
 
 /obj/item/reagent_containers/cup/bottle/phlogiston
 	name = "Phlogiston bottle"
-	desc = "A small bottle of Phlogiston, that will set you on fire if used."
+	desc = "一小瓶燃素，用了会把你点着的。"
 	list_reagents = list(/datum/reagent/phlogiston = 30)
 
 /obj/item/reagent_containers/cup/bottle/ammoniated_mercury
@@ -90,56 +90,56 @@
 	list_reagents = list(/datum/reagent/medicine/ammoniated_mercury = 30)
 
 /obj/item/reagent_containers/cup/bottle/syriniver
-	name = "syriniver bottle"
-	desc = "A small bottle of syriniver."
+	name = "塞维尔瓶-'Syriniver'"
+	desc = "一小瓶塞维尔。"
 	list_reagents = list(/datum/reagent/medicine/c2/syriniver = 30)
 
 /obj/item/reagent_containers/cup/bottle/mutagen
 	name = "unstable mutagen bottle"
-	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
+	desc = "一小瓶不稳定的诱变剂。会随机改变任何接触者的DNA结构。"
 	list_reagents = list(/datum/reagent/toxin/mutagen = 30)
 
 /obj/item/reagent_containers/cup/bottle/plasma
-	name = "liquid plasma bottle"
-	desc = "A small bottle of liquid plasma. Extremely toxic and reacts with micro-organisms inside blood."
+	name = "液态等离子体瓶"
+	desc = "一小瓶液态等离子体。剧毒，可与血液内的微生物发生反应。"
 	list_reagents = list(/datum/reagent/toxin/plasma = 30)
 
 /obj/item/reagent_containers/cup/bottle/synaptizine
 	name = "synaptizine bottle"
-	desc = "A small bottle of synaptizine."
+	desc = "一瓶突触蛋白"
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 30)
 
 /obj/item/reagent_containers/cup/bottle/ammonia
-	name = "ammonia bottle"
-	desc = "A small bottle of ammonia."
+	name = "氨瓶"
+	desc = "一小瓶氨。"
 	list_reagents = list(/datum/reagent/ammonia = 30)
 
 /obj/item/reagent_containers/cup/bottle/diethylamine
-	name = "diethylamine bottle"
-	desc = "A small bottle of diethylamine."
+	name = "二乙胺瓶"
+	desc = "一小瓶二乙胺。"
 	list_reagents = list(/datum/reagent/diethylamine = 30)
 
 /obj/item/reagent_containers/cup/bottle/facid
-	name = "Fluorosulfuric Acid Bottle"
-	desc = "A small bottle. Contains a small amount of fluorosulfuric acid."
+	name = "氟硫酸瓶"
+	desc = "小瓶子。内含少量氟硫酸。"
 	list_reagents = list(/datum/reagent/toxin/acid/fluacid = 30)
 
 /obj/item/reagent_containers/cup/bottle/adminordrazine
 	name = "Adminordrazine Bottle"
-	desc = "A small bottle. Contains the liquid essence of the gods."
+	desc = "一个小瓶子。里面装着神明的精华液体。"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "holyflask"
 	inhand_icon_state = "holyflask"
 	list_reagents = list(/datum/reagent/medicine/adminordrazine = 30)
 
 /obj/item/reagent_containers/cup/bottle/capsaicin
-	name = "Capsaicin Bottle"
-	desc = "A small bottle. Contains hot sauce."
+	name = "辣椒油瓶"
+	desc = "一个小瓶子。里面装有辛辣的酱汁。"
 	list_reagents = list(/datum/reagent/consumable/capsaicin = 30)
 
 /obj/item/reagent_containers/cup/bottle/frostoil
 	name = "Frost Oil Bottle"
-	desc = "A small bottle. Contains cold sauce."
+	desc = "一个小瓶子。里面装有冰冷的酱汁。"
 	list_reagents = list(/datum/reagent/consumable/frostoil = 30)
 
 /obj/item/reagent_containers/cup/bottle/strange_reagent
@@ -154,7 +154,7 @@
 
 /obj/item/reagent_containers/cup/bottle/traitor
 	name = "syndicate bottle"
-	desc = "A small bottle. Contains a random nasty chemical."
+	desc = "一个小瓶子。里面装着一种随机的、令人不适（或有害）的化学品。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	var/extra_reagent = null
 
@@ -165,7 +165,7 @@
 
 /obj/item/reagent_containers/cup/bottle/polonium
 	name = "polonium bottle"
-	desc = "A small bottle. Contains Polonium."
+	desc = "小瓶装。含有钋。"
 	list_reagents = list(/datum/reagent/toxin/polonium = 30)
 
 /obj/item/reagent_containers/cup/bottle/magillitis
@@ -174,53 +174,53 @@
 	list_reagents = list(/datum/reagent/magillitis = 5)
 
 /obj/item/reagent_containers/cup/bottle/venom
-	name = "venom bottle"
-	desc = "A small bottle. Contains Venom."
+	name = "毒液瓶-'Venom'"
+	desc = "一个小瓶子。里面装有毒液。"
 	list_reagents = list(/datum/reagent/toxin/venom = 30)
 
 /obj/item/reagent_containers/cup/bottle/fentanyl
-	name = "fentanyl bottle"
-	desc = "A small bottle. Contains Fentanyl."
+	name = "芬太尼瓶-'fentanyl'"
+	desc = "小瓶装。含有芬太尼。"
 	list_reagents = list(/datum/reagent/toxin/fentanyl = 30)
 
 /obj/item/reagent_containers/cup/bottle/formaldehyde
 	name = "formaldehyde bottle"
-	desc = "A small bottle. Contains formaldehyde, a chemical that prevents organs from decaying."
+	desc = "一个小瓶子，里面装有甲醛，一种具有防腐作用的化学物质。"
 	list_reagents = list(/datum/reagent/toxin/formaldehyde = 30)
 
 /obj/item/reagent_containers/cup/bottle/initropidril
 	name = "initropidril bottle"
-	desc = "A small bottle. Contains initropidril."
+	desc = "一个小瓶子。包含心急停。"
 	list_reagents = list(/datum/reagent/toxin/initropidril = 30)
 
 /obj/item/reagent_containers/cup/bottle/pancuronium
 	name = "pancuronium bottle"
-	desc = "A small bottle. Contains pancuronium."
+	desc = "一个小瓶子。含有泮库溴铵"
 	list_reagents = list(/datum/reagent/toxin/pancuronium = 30)
 
 /obj/item/reagent_containers/cup/bottle/sodium_thiopental
 	name = "sodium thiopental bottle"
-	desc = "A small bottle. Contains sodium thiopental."
+	desc = "一瓶硫喷妥钠"
 	list_reagents = list(/datum/reagent/toxin/sodium_thiopental = 30)
 
 /obj/item/reagent_containers/cup/bottle/coniine
-	name = "coniine bottle"
-	desc = "A small bottle. Contains coniine."
+	name = "毒芹碱瓶-'coniine'"
+	desc = "一瓶毒芹碱"
 	list_reagents = list(/datum/reagent/toxin/coniine = 30)
 
 /obj/item/reagent_containers/cup/bottle/curare
 	name = "curare bottle"
-	desc = "A small bottle. Contains curare."
+	desc = "一瓶箭毒"
 	list_reagents = list(/datum/reagent/toxin/curare = 30)
 
 /obj/item/reagent_containers/cup/bottle/amanitin
-	name = "amanitin bottle"
-	desc = "A small bottle. Contains amanitin."
+	name = "鹅膏菌素瓶'amanitin'"
+	desc = "一瓶鹅膏菌素"
 	list_reagents = list(/datum/reagent/toxin/amanitin = 30)
 
 /obj/item/reagent_containers/cup/bottle/histamine
 	name = "histamine bottle"
-	desc = "A small bottle. Contains Histamine."
+	desc = "一瓶组胺"
 	list_reagents = list(/datum/reagent/toxin/histamine = 30)
 
 /obj/item/reagent_containers/cup/bottle/carnivorous_blood
@@ -230,47 +230,47 @@
 
 /obj/item/reagent_containers/cup/bottle/diphenhydramine
 	name = "antihistamine bottle"
-	desc = "A small bottle of diphenhydramine."
+	desc = "一瓶抗组胺"
 	list_reagents = list(/datum/reagent/medicine/diphenhydramine = 30)
 
 /obj/item/reagent_containers/cup/bottle/potass_iodide
-	name = "anti-radiation bottle"
-	desc = "A small bottle of potassium iodide."
+	name = "防辐射瓶-'Potassium Iodide'"
+	desc = "一小瓶碘化钾。"
 	list_reagents = list(/datum/reagent/medicine/potass_iodide = 30)
 
 /obj/item/reagent_containers/cup/bottle/salglu_solution
 	name = "saline-glucose solution bottle"
-	desc = "A small bottle of saline-glucose solution."
+	desc = "一小瓶葡萄糖溶液。"
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 30)
 
 /obj/item/reagent_containers/cup/bottle/atropine
-	name = "atropine bottle"
-	desc = "A small bottle of atropine."
+	name = "Atropine-阿托品瓶"
+	desc = "一小瓶阿托品。"
 	list_reagents = list(/datum/reagent/medicine/atropine = 30)
 
 /obj/item/reagent_containers/cup/bottle/random_buffer
-	name = "Buffer bottle"
-	desc = "A small bottle of chemical buffer."
+	name = "缓冲液瓶"
+	desc = "一小瓶化学缓冲剂。"
 
 /obj/item/reagent_containers/cup/bottle/random_buffer/Initialize(mapload)
 	. = ..()
 	if(prob(50))
-		name = "Acidic buffer bottle"
-		desc = "A small bottle of acidic buffer."
+		name = "酸性缓冲液瓶-'Acidic buffer'"
+		desc = "一小瓶酸性缓冲液"
 		reagents.add_reagent(/datum/reagent/reaction_agent/acidic_buffer, 30)
 	else
-		name = "Basic buffer bottle"
-		desc = "A small bottle of basic buffer."
+		name = "基础碱缓冲液瓶-'Basic buffer'"
+		desc = "一小瓶基础碱缓冲液"
 		reagents.add_reagent(/datum/reagent/reaction_agent/basic_buffer, 30)
 
 /obj/item/reagent_containers/cup/bottle/acidic_buffer
-	name = "Acidic buffer bottle"
-	desc = "A small bottle of acidic buffer."
+	name = "酸性缓冲液瓶-'Acidic buffer'"
+	desc = "一小瓶酸性缓冲液"
 	list_reagents = list(/datum/reagent/reaction_agent/acidic_buffer = 30)
 
 /obj/item/reagent_containers/cup/bottle/basic_buffer
-	name = "Basic buffer bottle"
-	desc = "A small bottle of basic buffer."
+	name = "基础碱缓冲液瓶-'Basic buffer'"
+	desc = "一小瓶基础碱缓冲液"
 	list_reagents = list(/datum/reagent/reaction_agent/basic_buffer = 30)
 
 /obj/item/reagent_containers/cup/bottle/inversing_buffer
@@ -280,7 +280,7 @@
 
 /obj/item/reagent_containers/cup/bottle/romerol
 	name = "romerol bottle"
-	desc = "A small bottle of Romerol. The REAL zombie powder."
+	desc = "一小瓶罗梅罗。这才是真正的尸粉。"
 	list_reagents = list(/datum/reagent/romerol = 30)
 
 /obj/item/reagent_containers/cup/bottle/moltobeso
@@ -291,7 +291,7 @@
 
 /obj/item/reagent_containers/cup/bottle/random_virus
 	name = "Experimental disease culture bottle"
-	desc = "A small bottle. Contains an untested viral culture in synthblood medium."
+	desc = "一个小合成血培养基。其中含有未经测试的病毒培养物。"
 	spawned_disease = /datum/disease/advance/random
 
 /obj/item/reagent_containers/cup/bottle/pierrot_throat
@@ -300,45 +300,45 @@
 	spawned_disease = /datum/disease/pierrot_throat
 
 /obj/item/reagent_containers/cup/bottle/cold
-	name = "Rhinovirus culture bottle"
-	desc = "A small bottle. Contains XY-rhinovirus culture in synthblood medium."
+	name = "鼻病毒培养瓶-'Rhinovirus'"
+	desc = "一个合成血培养基。含有xy -鼻病毒培养物。"
 	spawned_disease = /datum/disease/advance/cold
 
 /obj/item/reagent_containers/cup/bottle/flu_virion
-	name = "Flu virion culture bottle"
-	desc = "A small bottle. Contains H13N1 flu virion culture in synthblood medium."
+	name = "流感病毒培养瓶-'Flu virion'"
+	desc = "一个合成血培养基。含有H13N1流感病毒粒子培养物。"
 	spawned_disease = /datum/disease/advance/flu
 
 /obj/item/reagent_containers/cup/bottle/retrovirus
-	name = "Retrovirus culture bottle"
-	desc = "A small bottle. Contains a retrovirus culture in a synthblood medium."
+	name = "逆转录病毒培养瓶-'Retrovirus'"
+	desc = "一个合成血培养基。含有逆转录病毒培养物。"
 	spawned_disease = /datum/disease/dna_retrovirus
 
 /obj/item/reagent_containers/cup/bottle/gbs
-	name = "GBS culture bottle"
-	desc = "A small bottle. Contains Gravitokinetic Bipotential SADS+ culture in synthblood medium."//Or simply - General BullShit
+	name = "吉兰 - 巴雷综合征培养瓶-'GBS culture bottle'"
+	desc = "一个合成血培养基。含有重力动力学双势SADS+培养物。"//Or simply - General BullShit
 	amount_per_transfer_from_this = 5
 	spawned_disease = /datum/disease/gbs
 
 /obj/item/reagent_containers/cup/bottle/fake_gbs
-	name = "GBS culture bottle"
-	desc = "A small bottle. Contains Gravitokinetic Bipotential SADS- culture in synthblood medium."//Or simply - General BullShit
+	name = "吉兰 - 巴雷综合征培养瓶-'GBS culture bottle'"
+	desc = "一个合成血培养基。含有重力动力学双势SADS+培养物。"//Or simply - General BullShit
 	spawned_disease = /datum/disease/fake_gbs
 
 /obj/item/reagent_containers/cup/bottle/brainrot
-	name = "Brainrot culture bottle"
-	desc = "A small bottle. Contains Cryptococcus Cosmosis culture in synthblood medium."
+	name = "脑腐病培养瓶-'Brainrot'"
+	desc = "一个合成血培养基。含有脑腐病菌。"
 	icon_state = "bottle3"
 	spawned_disease = /datum/disease/brainrot
 
 /obj/item/reagent_containers/cup/bottle/magnitis
-	name = "Magnitis culture bottle"
+	name = "磁侵症培养瓶-'Magnitis'"
 	desc = "A small bottle. Contains a small dosage of Fukkos Miracos."
 	spawned_disease = /datum/disease/magnitis
 
 /obj/item/reagent_containers/cup/bottle/wizarditis
-	name = "Wizarditis culture bottle"
-	desc = "A small bottle. Contains a sample of Rincewindus Vulgaris."
+	name = "巫师培养瓶-'Wizarditis'"
+	desc = "一个小小的瓶子。里面含有巫师综合症。"
 	spawned_disease = /datum/disease/wizarditis
 
 /obj/item/reagent_containers/cup/bottle/anxiety
@@ -352,7 +352,7 @@
 	spawned_disease = /datum/disease/beesease
 
 /obj/item/reagent_containers/cup/bottle/fluspanish
-	name = "Spanish flu culture bottle"
+	name = "西班牙流感病毒培养瓶-'Spanish'"
 	desc = "A small bottle. Contains a sample of Inquisitius."
 	spawned_disease = /datum/disease/fluspanish
 
@@ -362,7 +362,7 @@
 	spawned_disease = /datum/disease/tuberculosis
 
 /obj/item/reagent_containers/cup/bottle/tuberculosiscure
-	name = "BVAK bottle"
+	name = "真菌性结核病疫苗培养瓶-‘BVAK’"
 	desc = "A small bottle containing Bio Virus Antidote Kit."
 	list_reagents = list(/datum/reagent/vaccine/fungal_tb = 30)
 
@@ -421,7 +421,7 @@
 	list_reagents = list(/datum/reagent/potassium = 30)
 
 /obj/item/reagent_containers/cup/bottle/iron
-	name = "iron bottle"
+	name = "Iron-铁瓶"
 	list_reagents = list(/datum/reagent/iron = 30)
 
 /obj/item/reagent_containers/cup/bottle/copper
@@ -453,7 +453,7 @@
 	list_reagents = list(/datum/reagent/toxin/acid = 30)
 
 /obj/item/reagent_containers/cup/bottle/welding_fuel
-	name = "welding fuel bottle"
+	name = "WeldingFuel-焊料瓶"
 	list_reagents = list(/datum/reagent/fuel = 30)
 
 /obj/item/reagent_containers/cup/bottle/silver
@@ -469,7 +469,7 @@
 	list_reagents = list(/datum/reagent/bromine = 30)
 
 /obj/item/reagent_containers/cup/bottle/thermite
-	name = "thermite bottle"
+	name = "Thermite-铝热剂瓶"
 	list_reagents = list(/datum/reagent/thermite = 50)
 
 // Bottles for mail goodies.
@@ -485,8 +485,8 @@
 	list_reagents = list(/datum/reagent/saltpetre = 30)
 
 /obj/item/reagent_containers/cup/bottle/flash_powder
-	name = "flash powder bottle"
-	desc = "A small bottle. Contains flash powder."
+	name = "闪光粉瓶"
+	desc = "一个小瓶子。里面装有闪光粉。"
 	list_reagents = list(/datum/reagent/flash_powder = 30)
 
 /obj/item/reagent_containers/cup/bottle/exotic_stabilizer
@@ -500,7 +500,7 @@
 	list_reagents = list(/datum/reagent/toxin/leadacetate = 30)
 
 /obj/item/reagent_containers/cup/bottle/caramel
-	name = "bottle of caramel"
+	name = "一瓶焦糖"
 	desc = "A bottle containing caramelized sugar, also known as caramel. Do not lick."
 	list_reagents = list(/datum/reagent/consumable/caramel = 30)
 
@@ -554,15 +554,15 @@
 
 /obj/item/reagent_containers/cup/bottle/syrup_bottle/proc/refillable_act(mob/user, obj/item/tool)
 	if(!reagents.total_volume)
-		balloon_alert(user, "bottle empty!")
+		balloon_alert(user, "瓶子空了！")
 		return ITEM_INTERACT_BLOCKING
 	if(tool.reagents.holder_full())
-		balloon_alert(user, "container full!")
+		balloon_alert(user, "容器已满！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/transfer_amount = round(reagents.trans_to(tool, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
 	if(transfer_amount)
-		balloon_alert(user, "transferred [transfer_amount] unit\s")
+		balloon_alert(user, "转移了[transfer_amount] unit\s 单位")
 	flick("syrup_anim",src)
 	tool.update_appearance()
 	update_appearance()
@@ -577,10 +577,10 @@
 
 /obj/item/reagent_containers/cup/bottle/syrup_bottle/click_alt(mob/user)
 	if(is_open_container())
-		balloon_alert(user, "put pump cap on")
+		balloon_alert(user, "装上泵盖")
 		update_container_flags(SEALED_CONTAINER | TRANSPARENT)
 	else
-		balloon_alert(user, "removed pump cap")
+		balloon_alert(user, "移除了泵盖")
 		reset_container_flags()
 
 	update_appearance()

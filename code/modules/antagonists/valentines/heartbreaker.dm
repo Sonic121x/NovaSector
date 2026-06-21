@@ -1,5 +1,5 @@
 /datum/antagonist/heartbreaker
-	name = "\improper Heartbreaker"
+	name = "\improper 碎心者"
 	roundend_category = "valentines"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
@@ -16,5 +16,5 @@
 
 /datum/antagonist/heartbreaker/greet()
 	. = ..()
-	to_chat(owner, span_boldwarning("You didn't get a date! They're all having fun without you! You'll show them though..."))
+	to_chat(owner, span_boldwarning("你没有约会对象！他们都在开心玩耍，却把你晾在一边！你会让他们好看的……"))
 	owner.announce_objectives()

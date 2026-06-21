@@ -4,7 +4,7 @@
 /// Will return FALSE if we can't execute `harvest()`, or will otherwise the result of `harvest()`: a boolean value.
 /mob/living/basic/revenant/proc/attempt_harvest(mob/living/carbon/human/target)
 	if(LAZYFIND(drained_mobs, REF(target)))
-		to_chat(src, span_revenwarning("[target]'s soul is dead and empty."))
+		to_chat(src, span_revenwarning("[target]的灵魂已死且空无一物。"))
 		return FALSE
 
 	if(!cast_check(0))
@@ -83,36 +83,36 @@
 			to_chat(src, span_revenbignotice("Ah, the perfect soul. [target] will yield massive amounts of essence to you."))
 
 	if(!do_after(src, (rand(15, 25) DECISECONDS), target, timed_action_flags = IGNORE_HELD_ITEM)) //how about now
-		to_chat(src, span_revenwarning("You are not close enough to siphon [target ? "[target]'s" : "[target_their]"] soul. The link has been broken."))
+		to_chat(src, span_revenwarning("你距离太远，无法汲取[target ? "[target]'s" : "[target_their]"]的灵魂。连接已中断。"))
 		return FALSE
 
 	if(target.stat == CONSCIOUS)
-		to_chat(src, span_revenwarning("[target_Theyre] now powerful enough to fight off your draining!"))
-		to_chat(target, span_bolddanger("You feel something tugging across your body before subsiding.")) //hey, wait a minute...
+		to_chat(src, span_revenwarning("[target_Theyre]现在足够强大，足以抵抗你的汲取了！"))
+		to_chat(target, span_bolddanger("你感觉有什么东西拉扯着你的身体，随后又平息了。")) //hey, wait a minute...
 		return FALSE
 
-	to_chat(src, span_revenminor("You begin siphoning essence from [target]'s soul."))
+	to_chat(src, span_revenminor("你开始从[target]的灵魂中汲取精华。"))
 	if(target.stat != DEAD)
-		to_chat(target, span_warning("You feel a horribly unpleasant draining sensation as your grip on life weakens..."))
+		to_chat(target, span_warning("你感到一种极其不适的抽离感，仿佛生命正从你手中流逝……"))
 	if(target.stat == SOFT_CRIT)
 		target.Stun(46)
 
 	apply_status_effect(/datum/status_effect/revenant/revealed, 5 SECONDS)
 	apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 5 SECONDS)
 
-	target.visible_message(span_warning("[target] suddenly rises slightly into the air, [target_their] skin turning an ashy gray."))
+	target.visible_message(span_warning("[target]突然微微飘离地面，[target_their]皮肤变成了灰白色。"))
 
 	if(target.can_block_magic(MAGIC_RESISTANCE_HOLY))
-		to_chat(src, span_revenminor("Something's wrong! [target] seems to be resisting the siphoning, leaving you vulnerable!"))
+		to_chat(src, span_revenminor("不对劲！[target]似乎在抵抗汲取，让你变得脆弱！"))
 		target.visible_message(
-			span_warning("[target] slumps onto the ground."),
-			span_revenwarning("Violet lights, dancing in your vision, receding--"),
+			span_warning("[target] 瘫倒在地。"),
+			span_revenwarning("紫罗兰色的光芒，在你视野中舞动，逐渐远去——"),
 		)
 		return FALSE
 
 	var/datum/beam/draining_beam = Beam(target, icon_state = "drain_life")
 	if(!do_after(src, 4.6 SECONDS, target, timed_action_flags = (IGNORE_HELD_ITEM | IGNORE_INCAPACITATED))) //As one cannot prove the existence of ghosts, ghosts cannot prove the existence of the target they were draining.
-		to_chat(src, span_revenwarning("[target ? "[target]'s soul has" : "[target_They_have]"] been drawn out of your grasp. The link has been broken."))
+		to_chat(src, span_revenwarning("[target ? "[target]'s soul has" : "[target_They_have]"]从你的掌控中被抽离。链接已被切断。"))
 		if(target)
 			target.visible_message(
 				span_warning("[target] slumps onto the ground."),

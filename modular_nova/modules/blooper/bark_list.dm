@@ -1,26 +1,26 @@
 /datum/blooper/synthetic_grunt
-	name = "Synthetic (Grunt)"
+	name = "合成音（咕哝）"
 	id = "synthgrunt"
 	soundpath = 'sound/misc/bloop.ogg'
 
 /datum/blooper/synthetic
-	name = "Synthetic (Normal)"
+	name = "合成音（普通）"
 	id = "synth"
 	soundpath = 'sound/machines/uplink/uplinkerror.ogg'
 
 /datum/blooper/coggers
-	name = "Brassy"
+	name = "黄铜音"
 	id = "coggers"
 	soundpath = 'sound/machines/clockcult/integration_cog_install.ogg'
 
 /datum/blooper/moff
-	name = "Moff squeak"
+	name = "蛾子吱吱声"
 	id = "moffsqueak"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/mothsqueak.ogg'
 	allow_random = TRUE
 
 /datum/blooper/meow //Meow blooper?
-	name = "Meow"
+	name = "喵"
 	id = "meow"
 	allow_random = TRUE
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/meow1.ogg'
@@ -28,49 +28,49 @@
 	maxspeed = 11
 
 /datum/blooper/chirp
-	name = "Chirp"
+	name = "啾啾"
 	id = "chirp"
 	allow_random = TRUE
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/chirp.ogg'
 
 /datum/blooper/caw
-	name = "Caw"
+	name = "呱"
 	id = "caw"
 	allow_random = TRUE
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/caw.ogg'
 
 /datum/blooper/monster1
-	name = "Monster 1"
+	name = "怪物音 1"
 	id = "monster1"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster1.ogg'
 	minvariance = 0
 
 /datum/blooper/monster2
-	name = "Monster 2"
+	name = "怪物音 2"
 	id = "monster2"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster2.ogg'
 	minvariance = 0
 
 /datum/blooper/monster3
-	name = "Monster 3"
+	name = "怪物 3"
 	id = "monster3"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster3.ogg'
 	minvariance = 0
 
 /datum/blooper/monster4
-	name = "Monster 4"
+	name = "怪物 4"
 	id = "monster4"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster4.ogg'
 	minvariance = 0
 
 /datum/blooper/monster5
-	name = "Monster 5"
+	name = "怪物 5"
 	id = "monster5"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster5.ogg'
 	minvariance = 0
 
 /datum/blooper/monster6
-	name = "Monster 6"
+	name = "怪物 6"
 	id = "monster6"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster6.ogg'
 	minvariance = 0
@@ -85,310 +85,310 @@
 */
 
 /datum/blooper/monster8
-	name = "Monster 8"
+	name = "怪物 8"
 	id = "monster8"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster8.ogg'
 	minvariance = 0
 	maxpitch = BLOOPER_DEFAULT_MAXPITCH*2
 
 /datum/blooper/monster9
-	name = "Monster 9"
+	name = "怪物 9"
 	id = "monster9"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster9.ogg'
 	minvariance = 0
 
 /datum/blooper/monster10
-	name = "Monster 10"
+	name = "怪物 10"
 	id = "monster10"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster10.ogg'
 	minvariance = 0
 
 /datum/blooper/monster11
-	name = "Monster 11"
+	name = "怪物 11"
 	id = "monster11"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster11.ogg'
 	minvariance = 0
 
 /datum/blooper/monster12
-	name = "Monster 12"
+	name = "怪物 12"
 	id = "monster12"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster12.ogg'
 	minvariance = 0
 
 /datum/blooper/monster13
-	name = "Monster 13"
+	name = "怪物 13"
 	id = "monster13"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/monster13.ogg'
 	minvariance = 0
 
 /datum/blooper/gen_monster
-	name = "Generic Monster 1"
+	name = "通用怪物 1"
 	id = "gen_monster_1"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/voice_monster1.ogg'
 	minvariance = 0
 
 /datum/blooper/gen_monster/alt
-	name = "Generic Monster 2"
+	name = "通用怪物 2"
 	id = "gen_monster_2"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/voice_monster2.ogg'
 	minvariance = 0
 
 /datum/blooper/blerp
-	name = "Blerp"
+	name = "布勒普"
 	id = "blerp"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/blerp.ogg'
 
 /datum/blooper/brrp
-	name = "Brrp"
+	name = "布噜噜"
 	id = "brrp"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/brrp.ogg'
 	minspeed = 3
 	maxspeed = 9
 
 /datum/blooper/blub
-	name = "Blub"
+	name = "布拉布"
 	id = "blub"
 	soundpath = 'goon/sounds/blub.ogg'
 
 /datum/blooper/bottalk
-	name = "Bottalk 1"
+	name = "机器人语音 1"
 	id = "bottalk1"
 	soundpath = 'goon/sounds/bottalk_1.ogg'
 	minspeed = 3
 	maxspeed = 9
 
 /datum/blooper/bottalk/alt1
-	name = "Bottalk 2"
+	name = "机器人语音 2"
 	id = "bottalk2"
 	soundpath = 'goon/sounds/bottalk_2.ogg'
 
 /datum/blooper/bottalk/alt2
-	name = "Bottalk 3"
+	name = "机器人语音 3"
 	id = "bottalk3"
 	soundpath = 'goon/sounds/bottalk_3.ogg'
 
 /datum/blooper/bottalk/alt3
-	name = "Bottalk 4"
+	name = "机器人语音 4"
 	id = "bottalk4"
 	soundpath = 'goon/sounds/bottalk_4.ogg'
 
 /datum/blooper/buwoo
-	name = "Buwoo"
+	name = "布呜"
 	id = "buwoo"
 	soundpath = 'goon/sounds/buwoo.ogg'
 
 /datum/blooper/cow
-	name = "Cow"
+	name = "牛"
 	id = "cow"
 	soundpath = 'goon/sounds/cow.ogg'
 
 /datum/blooper/lizard
-	name = "Lizard"
+	name = "蜥蜴人"
 	id = "lizard"
 	soundpath = 'goon/sounds/lizard.ogg'
 
 /datum/blooper/pug
-	name = "Pug"
+	name = "哈巴狗"
 	id = "pug"
 	soundpath = 'goon/sounds/pug.ogg'
 
 /datum/blooper/pugg
-	name = "Pugg"
+	name = "帕格"
 	id = "pugg"
 	soundpath = 'goon/sounds/pugg.ogg'
 
 /datum/blooper/radio
-	name = "Radio 1"
+	name = "无线电 1"
 	id = "radio1"
 	soundpath = 'goon/sounds/radio.ogg'
 
 /datum/blooper/radio/short
-	name = "Radio 2"
+	name = "无线电 2"
 	id = "radio2"
 	soundpath = 'goon/sounds/radio2.ogg'
 
 /datum/blooper/radio/ai
-	name = "Radio (AI)"
+	name = "无线电 (AI)"
 	id = "radio_ai"
 	soundpath = 'goon/sounds/radio_ai.ogg'
 
 /datum/blooper/roach //Turkish characters be like
-	name = "Roach"
+	name = "蟑螂"
 	id = "roach"
 	soundpath = 'goon/sounds/roach.ogg'
 
 /datum/blooper/skelly
-	name = "Skelly"
+	name = "骷髅"
 	id = "skelly"
 	soundpath = 'goon/sounds/skelly.ogg'
 
 /datum/blooper/speak
-	name = "Speak 1"
+	name = "说话 1"
 	id = "speak1"
 	soundpath = 'goon/sounds/speak_1.ogg'
 
 /datum/blooper/speak/alt1
-	name = "Speak 2"
+	name = "说话 2"
 	id = "speak2"
 	soundpath = 'goon/sounds/speak_2.ogg'
 
 /datum/blooper/speak/alt2
-	name = "Speak 3"
+	name = "说话 3"
 	id = "speak3"
 	soundpath = 'goon/sounds/speak_3.ogg'
 
 /datum/blooper/speak/alt3
-	name = "Speak 4"
+	name = "说话 4"
 	id = "speak4"
 	soundpath = 'goon/sounds/speak_4.ogg'
 
 /datum/blooper/whistle
-	name = "Whistle 1"
+	name = "口哨 1"
 	id = "whistle1"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/birdwhistle.ogg'
 
 /datum/blooper/whistle/alt1
-	name = "Whistle 2"
+	name = "口哨 2"
 	id = "whistle2"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/birdwhistle2.ogg'
 
 /datum/blooper/caw/alt1
-	name = "Caw 2"
+	name = "鸦叫 2"
 	id = "caw2"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/caw2.ogg'
 	minspeed = 4
 	maxspeed = 9
 
 /datum/blooper/caw/alt2
-	name = "Caw 3"
+	name = "鸦叫 3"
 	id = "caw3"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/caw3.ogg'
 	minspeed = 3
 	maxspeed = 9
 
 /datum/blooper/caw/alt3
-	name = "Caw 4"
+	name = "鸦叫 4"
 	id = "caw4"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/caw4.ogg'
 	minspeed = 3
 	maxspeed = 9
 
 /datum/blooper/ehh
-	name = "Ehh 1"
+	name = "呃 1"
 	id = "ehh1"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/ehh.ogg'
 	minspeed = 3
 	maxspeed = 9
 
 /datum/blooper/ehh/alt1
-	name = "Ehh 2"
+	name = "呃 2"
 	id = "ehh2"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/ehh2.ogg'
 
 /datum/blooper/ehh/alt2
-	name = "Ehh 3"
+	name = "呃 3"
 	id = "ehh3"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/ehh3.ogg'
 
 /datum/blooper/ehh/alt5
-	name = "Ehh 5"
+	name = "呃 5"
 	id = "ehh5"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/ehh5.ogg'
 
 /datum/blooper/faucet
-	name = "Faucet 1"
+	name = "水龙头 1"
 	id = "faucet1"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/faucet.ogg'
 
 /datum/blooper/faucet/alt1
-	name = "Faucet 2"
+	name = "水龙头 2"
 	id = "faucet2"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/faucet2.ogg'
 
 /datum/blooper/ribbit
-	name = "Ribbit"
+	name = "呱呱"
 	id = "ribbit"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/ribbit.ogg'
 
 /datum/blooper/hoot
-	name = "Hoot"
+	name = "呼呜"
 	id = "hoot"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/hoot.ogg'
 	minspeed = 4
 	maxspeed = 9
 
 /datum/blooper/tweet
-	name = "Tweet"
+	name = "啾啾"
 	id = "tweet"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/tweet.ogg'
 
 /datum/blooper/dwoop
-	name = "Dwoop"
+	name = "嘟呜"
 	id = "dwoop"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/dwoop.ogg'
 	minspeed = 3
 	maxspeed = 9
 
 /datum/blooper/uhm
-	name = "Uhm"
+	name = "嗯"
 	id = "uhm"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/uhm.ogg'
 
 /datum/blooper/wurtesh
-	name = "Wurtesh"
+	name = "沃特什"
 	id = "wurtesh"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/wurble1.ogg'
 
 /datum/blooper/chitter2
-	name = "Chitter2"
+	name = "吱吱2"
 	id = "chitter2"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/chitter1.ogg'
 
 // Aganoo barks
 
 /datum/blooper/genius
-	name = "Genius"
+	name = "天才"
 	id = "genius"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/genius.ogg'
 
 /datum/blooper/jester
-	name = "Jester"
+	name = "小丑"
 	id = "jester"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/jester.ogg'
 
 /datum/blooper/goober
-	name = "Goober"
+	name = "呆瓜"
 	id = "goober"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/goober.ogg'
 
 /datum/blooper/royal
-	name = "Royal"
+	name = "皇家"
 	id = "royal"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/royal.ogg'
 
 /datum/blooper/salesman
-	name = "Salesman"
+	name = "推销员"
 	id = "salesman"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/salesman.ogg'
 
 /datum/blooper/old
-	name = "Old"
+	name = "老式"
 	id = "old"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/old.ogg'
 
 // splet barks
 // commission for rett jester. speak & spell bloops
 /datum/blooper/spell1
-	name = "SpeechSynth 1"
+	name = "语音合成器 1"
 	id = "spell1"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/spell1.ogg'
 
 /datum/blooper/spell2
-	name = "SpeechSynth 2"
+	name = "语音合成器 2"
 	id = "spell2"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/spell2.ogg'
 
 /datum/blooper/spell3
-	name = "SpeechSynth 3"
+	name = "语音合成器 3"
 	id = "spell3"
 	soundpath = 'modular_nova/modules/blooper/voice/bloopers/spell3.ogg'

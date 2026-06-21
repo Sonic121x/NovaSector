@@ -1,5 +1,5 @@
 /obj/effect/spawner/random/peel_or_nana
-	name = "peel or banana spawner"
+	name = "香蕉皮或香蕉生成器"
 	icon_state = "peel"
 	spawn_random_offset =  TRUE
 	loot = list(
@@ -8,7 +8,7 @@
 	)
 
 /obj/effect/spawner/random/bananas_or_nothing
-	name = "bananas or nothing spawner"
+	name = "香蕉或无生成器"
 	icon_state = "bunch"
 	spawn_random_offset =  TRUE
 	spawn_loot_chance = 66
@@ -18,7 +18,7 @@
 	)
 
 /obj/effect/spawner/random/chance_for_freedom
-	name = "freedom heart or nothing spawner"
+	name = "自由之心或无生成器"
 	icon_state = "cap"
 	spawn_loot_chance = 40
 	loot = list(

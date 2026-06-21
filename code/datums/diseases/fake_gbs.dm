@@ -26,7 +26,7 @@
 			else if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.emote("gasp")
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You're starting to feel very weak..."))
+				to_chat(affected_mob, span_danger("你开始感到非常虚弱..."))
 		if(4)
 			if(SPT_PROB(5, seconds_per_tick))
 				affected_mob.emote("cough")

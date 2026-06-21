@@ -1,10 +1,10 @@
 /datum/mutation/farsight
-	name = "Farsight"
-	desc = "The subject's eyes are able to see further than normal."
+	name = "远视"
+	desc = "主体的眼睛能够看到比正常更远的距离。"
 	quality = POSITIVE
 	instability = POSITIVE_INSTABILITY_MINOR
-	text_gain_indication = span_notice("You feel your eyes tingle.")
-	text_lose_indication = span_notice("Your eyes feel normal.")
+	text_gain_indication = span_notice("你感觉眼睛有些刺痛。")
+	text_lose_indication = span_notice("你的眼睛感觉恢复正常了。")
 	difficulty = 16
 	power_coeff = 1
 	power_path = /datum/action/cooldown/spell/farsight
@@ -16,8 +16,8 @@
 		to_modify.set_sight_range(initial(to_modify.sight_range) * (GET_MUTATION_POWER(src) == 1 ? 1 : 3))
 
 /datum/action/cooldown/spell/farsight
-	name = "Farsight"
-	desc = "You can see further than normal."
+	name = "远视"
+	desc = "你能看到比正常更远的距离。"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "eye"
 

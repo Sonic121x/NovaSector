@@ -14,7 +14,7 @@
 	if(!length(honor.guilty))
 		to_chat(user, span_warning("[GLOB.deity] is holding no grudges to forgive."))
 		return FALSE
-	var/forgiven_choice = tgui_input_list(user, "Choose one of [GLOB.deity]'s guilty to forgive", "Forgive", honor.guilty)
+	var/forgiven_choice = tgui_input_list(user, "选择[GLOB.deity]的一名罪人以宽恕", "宽恕", honor.guilty)
 	if(isnull(forgiven_choice))
 		return FALSE
 	who = forgiven_choice
@@ -141,7 +141,7 @@
 	return ..()
 
 /datum/religion_rites/deaconize/crusader/invite_deacon(mob/living/carbon/human/invited)
-	var/ask = tgui_alert(invited, "Join [GLOB.deity]? You will be bound to a code of honor.", "Invitation", list("Yes", "No"), 60 SECONDS)
+	var/ask = tgui_alert(invited, "加入 [GLOB.deity]？你将受荣誉准则约束。", "邀请", list("Yes", "No"), 60 SECONDS)
 	if(ask != "Yes")
 		return
 	potential_deacon = invited

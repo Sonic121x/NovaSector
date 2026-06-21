@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(statpanels)
-	name = "Stat Panels"
+	name = "状态面板"
 	wait = 4
 	priority = FIRE_PRIORITY_STATPANEL
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY

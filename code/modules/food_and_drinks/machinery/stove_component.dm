@@ -203,7 +203,7 @@
 /datum/component/stove/proc/on_examine(obj/machinery/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("You can turn the stovetop burners [on ? "off" : "on"] with <i>right click</i>.")
+	examine_list += span_notice("你可以通过<i>右键点击</i>来[on ? "off" : "on"]炉灶的燃烧器。")
 
 /datum/component/stove/proc/on_refresh_parts(obj/machinery/source)
 	SIGNAL_HANDLER

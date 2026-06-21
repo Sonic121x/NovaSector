@@ -7,7 +7,7 @@
 */
 // For consistency with other armbands
 /obj/item/clothing/accessory/armband/nonsec
-	desc = "An armband, worn to signify proficiency in a skill or association with a department. This one is red."
+	desc = "一种臂章，佩戴以表示精通某项技能或隶属于某个部门。这个是红色的。"
 
 /*
 * BELTS + HOLSTER
@@ -67,7 +67,7 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_webbing)
 
 /obj/item/storage/belt/holster
-	desc = "A rather plain but still cool looking holster that can hold a handgun and some ammo."
+	desc = "一个相当朴素但看起来仍然很酷的枪套，可以容纳一把手枪和一些弹药。"
 
 /datum/storage/holster
 	max_slots = 3
@@ -98,7 +98,7 @@
 /datum/storage/holster/can_insert(obj/item/to_insert, mob/user, messages, force)
 	. = ..()
 	if(is_type_in_list(to_insert, limited_hold_types) && (limited_held >= max_limited_store))
-		user.balloon_alert(user, "no suitable space!")
+		user.balloon_alert(user, "没有合适的空间！")
 		return FALSE
 
 /datum/storage/holster/energy
@@ -140,8 +140,8 @@
 	STOP_PROCESSING(SSobj, parent)
 
 /obj/item/storage/belt/holster/detective
-	name = "detective's holster"
-	desc = "A holster able to carry handguns and extra ammo, thanks to an additional hand-sewn pouch. WARNING: Badasses only."
+	name = "侦探的枪套"
+	desc = "一个能够携带手枪和额外弹药的枪套，这要归功于一个额外手工缝制的口袋。警告：仅供硬汉使用。"
 
 /datum/storage/holster/detective
 	max_slots = 4
@@ -157,7 +157,7 @@
 		return
 
 	if(!resolve_parent.IsReachableBy(to_show))
-		resolve_parent.balloon_alert(to_show, "can't reach!")
+		resolve_parent.balloon_alert(to_show, "够不着！")
 		return FALSE
 
 	if(!isliving(to_show) || to_show.incapacitated)
@@ -168,7 +168,7 @@
 		return ..()
 	resolve_parent.add_fingerprint(to_show)
 	INVOKE_ASYNC(to_show, TYPE_PROC_REF(/mob, put_in_hands), gun_to_draw)
-	to_show.visible_message(span_warning("[to_show] draws [gun_to_draw] from [resolve_parent]!"), span_notice("You draw [gun_to_draw] from [resolve_parent]."))
+	to_show.visible_message(span_warning("[to_show] 从 [resolve_parent] 中抽出了 [gun_to_draw]！"), span_notice("你从 [resolve_parent] 中抽出了 [gun_to_draw]。"))
 
 /*
 * GLASSES
@@ -373,7 +373,7 @@
 * SUITS
 */
 /obj/item/clothing/suit/armor/vest/alt/sec
-	desc = "A Type-II-NT-P armored vest that provides decent protection against most types of damage."
+	desc = "一件 II-NT-P 型装甲背心，能提供对大多数类型伤害的可靠防护。"
 
 /datum/atom_skin/hos_coat
 	abstract_type = /datum/atom_skin/hos_coat
@@ -410,7 +410,7 @@
 	return
 
 /obj/item/clothing/suit/armor/bulletproof
-	desc = "A Type-III-NT-P heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	desc = "一件 III-NT-P 型重型防弹背心，在保护穿戴者免受传统抛射武器伤害方面表现出色，对爆炸物也有一定程度的防护。"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 //Ablative Armor

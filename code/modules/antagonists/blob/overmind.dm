@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 /mob/eye/blob
 	name = "Blob Overmind"
 	real_name = "Blob Overmind"
-	desc = "The overmind. It controls the blob."
+	desc = "超意识。它控制着孢子"
 	icon = 'icons/mob/eyemob.dmi'
 	icon_state = "marker"
 	mouse_opacity = MOUSE_OPACITY_ICON
@@ -121,10 +121,10 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	blobstrain.on_gain()
 
 	if (had_strain)
-		to_chat(src, span_notice("Your strain is now: <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>!"))
-		to_chat(src, span_notice("The <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> strain [blobstrain.description]"))
+		to_chat(src, span_notice("你的菌株现在是：<b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>！"))
+		to_chat(src, span_notice("这种<b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>菌株[blobstrain.description]"))
 		if(blobstrain.effectdesc)
-			to_chat(src, span_notice("The <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> strain [blobstrain.effectdesc]"))
+			to_chat(src, span_notice("这种<b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>菌株[blobstrain.effectdesc]"))
 	SEND_SIGNAL(src, COMSIG_BLOB_SELECTED_STRAIN, blobstrain)
 
 /mob/eye/blob/can_z_move(direction, turf/start, turf/destination, z_move_flags = NONE, mob/living/rider)
@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/turf/target_turf = .
 	if(!is_valid_turf(target_turf)) // Allows unplaced blobs to travel through station z-levels
 		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(src, span_warning("Your destination is invalid. Move somewhere else and try again."))
+			to_chat(src, span_warning("你的目标位置无效。移动到其他地方再试一次。"))
 		return null
 
 /mob/eye/blob/proc/is_valid_turf(turf/tile)
@@ -149,8 +149,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(!blob_core)
 		if(!placed)
 			if(manualplace_min_time && world.time >= manualplace_min_time)
-				to_chat(src, span_boldnotice("You may now place your blob core."))
-				to_chat(src, span_bolddanger("You will automatically place your blob core in [DisplayTimeText(autoplace_max_time - world.time)]."))
+				to_chat(src, span_boldnotice("你现在可以放置菌毯核心了。"))
+				to_chat(src, span_bolddanger("你将在[DisplayTimeText(autoplace_max_time - world.time)]后自动放置菌毯核心。"))
 				manualplace_min_time = 0
 			if(autoplace_max_time && world.time >= autoplace_max_time)
 				place_blob_core(BLOB_RANDOM_PLACEMENT)
@@ -166,14 +166,14 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		begin_victory()
 
 	else if(!free_strain_rerolls && (last_reroll_time + BLOB_POWER_REROLL_FREE_TIME<world.time))
-		to_chat(src, span_boldnotice("You have gained another free strain re-roll."))
+		to_chat(src, span_boldnotice("你获得了另一次免费的变种重选机会。"))
 		free_strain_rerolls = 1
 
 	if(!victory_in_progress && max_count < blobs_legit.len)
 		max_count = blobs_legit.len
 
 	if(announcement_time && (world.time >= announcement_time || blobs_legit.len >= announcement_size) && !has_announced)
-		priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_OUTBREAK5)
+		priority_announce("确认在[station_name()]上爆发5级生物危害。所有人员必须控制疫情。", "生物危害警报", ANNOUNCER_OUTBREAK5)
 
 		// Set status displays to biohazard alert
 		send_status_display_biohazard_alert()
@@ -197,7 +197,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 /// Announce the blob's victory! Tell everyone that they're about to explode and/or turn into biomass soup and give the overmind a victory lap.
 /mob/eye/blob/proc/begin_victory()
 	victory_in_progress = TRUE
-	priority_announce("Biohazard has reached critical mass. Station loss is imminent.", "Biohazard Alert")
+	priority_announce("生物危害已达到临界质量。空间站损失迫在眉睫。", "生物危害警报")
 	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 
 	// Set status displays to biohazard alert - critical level
@@ -219,7 +219,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			main_objective.completed = TRUE
 
 	if(end_round_on_victory)
-		to_chat(world, span_blobannounce("[real_name] consumed the station in an unstoppable tide!"))
+		to_chat(world, span_blobannounce("[real_name]以不可阻挡的浪潮吞噬了空间站！"))
 		SSticker.news_report = BLOB_WIN
 		SSticker.force_ending = FORCE_END_ROUND
 
@@ -261,7 +261,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		if(!(check_area.area_flags & BLOBS_ALLOWED))
 			continue
 		check_area.color = blobstrain.color
-		check_area.name = "blob"
+		check_area.name = "孢子"
 		check_area.icon = 'icons/mob/nonhuman-player/blob.dmi'
 		check_area.icon_state = "blob_shield"
 		check_area.layer = BELOW_MOB_LAYER
@@ -293,10 +293,10 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	. = ..()
 	if(!. || !client)
 		return FALSE
-	to_chat(src, span_blobannounce("You are the overmind!"))
+	to_chat(src, span_blobannounce("你就是主宰！"))
 	if(!placed && autoplace_max_time <= world.time)
-		to_chat(src, span_bolddanger("You will automatically place your blob core in [DisplayTimeText(autoplace_max_time - world.time)]."))
-		to_chat(src, span_bolddanger("You [manualplace_min_time ? "will be able to":"can"] manually place your blob core by pressing the Place Blob Core button in the bottom right corner of the screen."))
+		to_chat(src, span_bolddanger("你将在[DisplayTimeText(autoplace_max_time - world.time)]后自动放置菌毯核心。"))
+		to_chat(src, span_bolddanger("你[manualplace_min_time ? "will be able to":"can"]通过按下屏幕右下角的“放置噬星核心”按钮来手动放置你的噬星核心。"))
 	update_health_hud()
 	add_points(0)
 
@@ -338,7 +338,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, span_boldwarning("You cannot send IC messages (muted)."))
+			to_chat(src, span_boldwarning("你无法发送IC消息（已被禁言）。"))
 			return
 		if (!(ignore_spam || forced) && src.client.handle_spam_prevention(message, MUTE_IC))
 			return
@@ -359,7 +359,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/adjusted_message = check_for_custom_say_emote(message, message_mods)
 	log_sayverb_talk(message, message_mods, tag = "blob hivemind telepathy")
 	var/messagepart = generate_messagepart(adjusted_message, message_mods = message_mods)
-	var/rendered = span_big(span_blob("<b>\[Blob Telepathy\] [name](<font color=\"[blobstrain.color]\">[blobstrain.name]</font>)</b> [messagepart]"))
+	var/rendered = span_big(span_blob("<b>\[母巢心灵感应\] [name](<font color=\"[blobstrain.color]\">[blobstrain.name]</font>)</b> [messagepart]"))
 	relay_to_list_and_observers(rendered, GLOB.blob_telepathy_mobs, src, MESSAGE_TYPE_RADIO)
 
 /mob/eye/blob/blob_act(obj/structure/blob/B)

@@ -1,5 +1,5 @@
 /datum/design/bsc_nt
-	name = "NT BSC Refinery Box"
+	name = "NT BSC 精炼箱"
 	id = "bsc_nt"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(

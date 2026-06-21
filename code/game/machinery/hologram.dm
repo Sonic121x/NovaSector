@@ -34,8 +34,8 @@ Possible to do for anyone motivated enough:
 #define HOLOGRAM_POWER_USAGE 2
 
 /obj/machinery/holopad
-	name = "holopad"
-	desc = "It's a floor-mounted device for projecting holographic images."
+	name = "全息板"
+	desc = "这是一种用于投影全息图像的地面设备。"
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "holopad0"
 	base_icon_state = "holopad"
@@ -114,8 +114,8 @@ Possible to do for anyone motivated enough:
 		holopads += src
 
 /obj/machinery/holopad/secure
-	name = "secure holopad"
-	desc = "It's a floor-mounted device for projecting holographic images. This one will refuse to auto-connect incoming calls."
+	name = "安全全息板"
+	desc = "这是一种用于投影全息图像的落地设备。这个将拒绝自动连接来电。"
 	secure = TRUE
 
 /obj/machinery/holopad/secure/Initialize(mapload)
@@ -228,15 +228,15 @@ Possible to do for anyone motivated enough:
 /obj/machinery/holopad/examine(mob/user)
 	. = ..()
 	if(isAI(user) || in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Current projection range: <b>[holo_range]</b> units.")
+		. += span_notice("状态显示显示：当前投影范围：<b>[holo_range]</b> 个单位。")
 
 	if(!isAI(user))
 		return
 
-	. += span_info("Use :[/datum/saymode/holopad::key] to speak through the projection.")
-	. += span_info("Right-click to project or cancel a projection.")
-	. += span_info("Alt-click to hangup all active and incomming calls.")
-	. += span_info("Ctrl-click to end projection without jumping to your last location.")
+	. += span_info("使用 :[/datum/saymode/holopad::key] 通过投影说话。")
+	. += span_info("右键点击以投射或取消投射。")
+	. += span_info("Alt-点击以挂断所有活跃和来电。")
+	. += span_info("Ctrl-点击以结束投射而不跳转回上次位置。")
 
 /obj/machinery/holopad/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -268,7 +268,7 @@ Possible to do for anyone motivated enough:
 /obj/machinery/holopad/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/disk/holodisk))
 		if(disk)
-			to_chat(user,span_warning("There's already a disk inside [src]!"))
+			to_chat(user,span_warning("[src]已经放入了一张磁盘！"))
 			return
 		if (!user.transferItemToLoc(tool, src))
 			return
@@ -327,11 +327,11 @@ Possible to do for anyone motivated enough:
 			if(isAI(usr))
 				var/mob/living/silicon/ai/ai_user = usr
 				ai_user.eyeobj.setLoc(get_turf(src))
-				to_chat(usr, span_info("AIs can not request AI presence. Jumping instead."))
+				to_chat(usr, span_info("AI 无法请求 AI 存在，请求中断。"))
 				return
 			if(last_request + 200 < world.time)
 				last_request = world.time
-				to_chat(usr, span_info("You requested an AI's presence."))
+				to_chat(usr, span_info("您请求了 AI 的存在。"))
 				var/area/area = get_area(src)
 				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 					if(!AI.client)
@@ -339,7 +339,7 @@ Possible to do for anyone motivated enough:
 					to_chat(AI, span_info("Your presence is requested at <a href='byond://?src=[REF(AI)];jump_to_holopad=[REF(src)]'>\the [area]</a>. <a href='byond://?src=[REF(AI)];project_to_holopad=[REF(src)]'>Project Hologram?</a>"))
 				return TRUE
 			else
-				to_chat(usr, span_info("A request for AI presence was already sent recently."))
+				to_chat(usr, span_info("关于呼叫AI的请求已在近期发出."))
 				return
 		if("holocall")
 			if(outgoing_call)
@@ -351,7 +351,7 @@ Possible to do for anyone motivated enough:
 					if(A)
 						LAZYADD(callnames[A], I)
 				callnames -= get_area(src)
-				var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sort_names(callnames))
+				var/result = tgui_input_list(usr, "选择要呼叫的区域", "全息呼叫", sort_names(callnames))
 				if(isnull(result))
 					return
 				if(QDELETED(usr) || outgoing_call)
@@ -365,7 +365,7 @@ Possible to do for anyone motivated enough:
 					calling = TRUE
 					return TRUE
 			else
-				to_chat(usr, span_warning("You must stand on the holopad to make a call!"))
+				to_chat(usr, span_warning("你必须站在全息显示器上才能打电话!"))
 		if("connectcall")
 			var/datum/holocall/call_to_connect = locate(params["holopad"]) in holo_calls
 			if(!QDELETED(call_to_connect))
@@ -569,7 +569,7 @@ Possible to do for anyone motivated enough:
 		set_holo(user, hologram)
 
 		set_holo(user, hologram)
-		visible_message(span_notice("A holographic image of [user] flickers to life before your eyes!"))
+		visible_message(span_notice("[user]的全息影像在你眼前闪烁浮现！"))
 
 		return hologram
 	else
@@ -755,10 +755,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 	SET_PLANE_EXPLICIT(hologram, ABOVE_GAME_PLANE, src)
 	hologram.set_anchored(TRUE)//So space wind cannot drag it.
-	hologram.name = "[record.caller_name] (Hologram)"//If someone decides to right click.
+	hologram.name = "[record.caller_name] (全息图)"//If someone decides to right click.
 	set_holo(record, hologram)
 
-	visible_message(span_notice("A holographic image of [record.caller_name] flickers to life before your eyes!"))
+	visible_message(span_notice("一个由 [record.caller_name] 构成的全息影像在你眼前浮现!"))
 	return hologram
 
 /obj/machinery/holopad/proc/replay_start()
@@ -856,7 +856,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			replay_holo.icon_state = work_off.icon_state
 			replay_holo.copy_overlays(work_off, TRUE)
 		if(HOLORECORD_RENAME)
-			replay_holo.name = entry[2] + " (Hologram)"
+			replay_holo.name = entry[2] + "(全息影像)"
 	.(entry_number+1)
 
 /obj/machinery/holopad/proc/record_stop()
@@ -896,7 +896,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	return ..()
 
 /obj/effect/overlay/holoray
-	name = "holoray"
+	name = "全息射线"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "holoray"
 	layer = FLY_LAYER

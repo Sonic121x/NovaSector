@@ -39,8 +39,8 @@
 
 	if(prob(50))
 		cached_pawn.visible_message(
-			span_warning("[src] scrambles into the ventilation ducts!"),
-			span_hear("You hear something scampering through the ventilation ducts."),
+			span_warning("[src] 钻进了通风管道！"),
+			span_hear("你听到有什么东西在通风管道里窸窣爬行。"),
 		)
 
 	var/lower_vent_time_limit = controller.blackboard[BB_LOWER_VENT_TIME_LIMIT] // the least amount of time we spend in the vents

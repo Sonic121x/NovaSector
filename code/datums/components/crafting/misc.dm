@@ -1,5 +1,5 @@
 /datum/crafting_recipe/naturalpaper
-	name = "Hand-Pressed Paper"
+	name = "手工压纸"
 	time = 3 SECONDS
 	reqs = list(/datum/reagent/water = 50, /obj/item/stack/sheet/mineral/wood = 1)
 	tool_paths = list(/obj/item/hatchet)
@@ -7,7 +7,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/skeleton_key
-	name = "Skeleton Key"
+	name = "骷髅钥匙"
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 5)
 	result = /obj/item/skeleton_key
@@ -15,7 +15,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/coffee_cartridge
-	name = "Bootleg Coffee Cartridge"
+	name = "山寨咖啡粉盒"
 	result = /obj/item/coffee_cartridge/bootleg
 	time = 2 SECONDS
 	reqs = list(
@@ -25,7 +25,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/corporate_paper_slip
-	name = "Corporate Plastic Card"
+	name = "公司塑料卡"
 	result = /obj/item/paper/paperslip/corporate
 	time = 3 SECONDS
 	reqs = list(
@@ -36,7 +36,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/clipboard
-	name = "Clipboard"
+	name = "写字夹板"
 	result = /obj/item/clipboard
 	time = 3 SECONDS
 	reqs = list(
@@ -47,7 +47,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/cardboard_id
-	name = "Cardboard ID Card"
+	name = "纸板ID卡"
 	tool_behaviors = list(TOOL_WIRECUTTER)
 	result = /obj/item/card/cardboard
 	time = 4 SECONDS
@@ -57,7 +57,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/battery_match
-	name = "Battery Match"
+	name = "电池火柴"
 	result = /obj/item/match/battery
 	time = 4 SECONDS
 	reqs = list(

@@ -9,8 +9,8 @@
 /obj/item/gravity_harness
 	icon = 'modular_nova/master_files/icons/obj/clothing/backpacks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/back.dmi'
-	name = "gravity suspension harness"
-	desc = "A bootleg derivative of common Skrellian construction equipment, manufactured and heavily used by Deep Spacer tribes, this harness employs suspensor tech to either nullify or magnify gravity around the wearer."
+	name = "重力悬浮背带"
+	desc = "这是斯克莱尔人常见建筑设备的山寨衍生品，由深空部落制造并广泛使用，该背带利用悬浮技术来消除或增强穿戴者周围的重力。"
 	slot_flags = ITEM_SLOT_BACK
 	icon_state = "gravityharness-off"
 	worn_icon_state = "gravityharness-off"
@@ -66,7 +66,7 @@
 
 	if(!gravity_on && (!current_cell || current_cell.charge < GRAVITY_FIELD_COST))
 		if(user)
-			to_chat(user, span_warning("The gravitic engine on [src] has no charge."))
+			to_chat(user, span_warning("[src] 上的重力引擎没有能量了。"))
 
 		return FALSE
 
@@ -111,7 +111,7 @@
 
 			user.AddElement(/datum/element/forced_gravity, 0)
 			playsound(src, 'sound/effects/gravhit.ogg', 50)
-			to_chat(user, span_notice("[src] releases a metallic hum, projecting a local anti-gravity field."))
+			to_chat(user, span_notice("[src] 发出一阵金属嗡鸣，投射出一个局部反重力场。"))
 			gravity_on = TRUE
 			icon_state = ANTIGRAVITY_STATE
 			worn_icon_state = ANTIGRAVITY_STATE
@@ -128,7 +128,7 @@
 
 			ADD_TRAIT(user, TRAIT_NEGATES_GRAVITY, CLOTHING_TRAIT)
 			playsound(src, 'modular_nova/master_files/sound/effects/robot_sit.ogg', 25)
-			to_chat(user, span_notice("[src] shudders and hisses, projecting a local extra-gravity field."))
+			to_chat(user, span_notice("[src] 震颤并嘶嘶作响，投射出一个局部超重力场。"))
 			gravity_on = TRUE
 			icon_state = EXTRAGRAVITY_STATE
 			worn_icon_state = EXTRAGRAVITY_STATE
@@ -141,14 +141,14 @@
 			if(!user.has_gravity() && mode != MODE_GRAVOFF)
 				new /obj/effect/temp_visual/mook_dust/robot(get_turf(src))
 				playsound(src, 'modular_nova/master_files/sound/effects/robot_sit.ogg', 25)
-				to_chat(user, span_notice("[src] lets out a soft whine as your suspension field dissipates, gravity around you normalizing."))
+				to_chat(user, span_notice("[src] 发出一声轻微的嗡鸣，你的悬浮场消散了，周围的重力恢复正常。"))
 				mode = MODE_GRAVOFF
 
 			else
 				if(user.has_gravity() && mode != MODE_GRAVOFF)
 					new /obj/effect/temp_visual/mook_dust(get_turf(src))
 					playsound(src, 'sound/effects/gravhit.ogg', 50)
-					to_chat(user, span_notice("[src] lets out a soft whine as your suspension field dissipates, gravity around you normalizing."))
+					to_chat(user, span_notice("[src] 发出一声轻微的嗡鸣，你的悬浮场消散了，周围的重力恢复正常。"))
 					mode = MODE_GRAVOFF
 
 			icon_state = OFF_STATE
@@ -202,7 +202,7 @@
 
 	// cell.use will return FALSE if charge is lower than GRAVITY_FIELD_COST
 	if(!current_cell.use(GRAVITY_FIELD_COST))
-		to_chat(user, span_warning("The gravitic engine cuts off as [current_cell] runs out of charge."))
+		to_chat(user, span_warning("重力引擎因 [current_cell] 电量耗尽而关闭。"))
 		change_mode(MODE_GRAVOFF)
 
 /obj/item/gravity_harness/get_cell()
@@ -219,22 +219,22 @@
 		if(cell_cover_open)
 			. += "The cell cover is open, exposing the battery."
 			if(!current_cell)
-				. += span_warning("The cell slot is empty, showing bare connectors.")
+				. += span_warning("电池槽是空的，露出了裸露的连接器。")
 			else
 				. += "\The [current_cell] is firmly in place."
 
 	return .
 
 /obj/item/gravity_harness/screwdriver_act(mob/living/user, obj/item/screwdriver)
-	balloon_alert(user, "[cell_cover_open ? "closing" : "opening"] cover...")
+	balloon_alert(user, "[cell_cover_open ? "closing" : "opening"]盖板...")
 	screwdriver.play_tool_sound(src, 100)
 
 	if(!screwdriver.use_tool(src, user, 1 SECONDS))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return FALSE
 
 	screwdriver.play_tool_sound(src, 100)
-	balloon_alert(user, "cover [cell_cover_open ? "closed" : "opened"]")
+	balloon_alert(user, "盖板[cell_cover_open ? "closed" : "opened"]")
 	cell_cover_open = !cell_cover_open
 	return TRUE
 
@@ -243,16 +243,16 @@
 		return ..()
 
 	if(!current_cell)
-		balloon_alert(user, "no cell!")
+		balloon_alert(user, "没有电池！")
 		return
 
-	balloon_alert(user, "removing cell...")
+	balloon_alert(user, "正在取出电池...")
 	if(!do_after(user, 1.5 SECONDS, target = src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
 
 	change_mode(MODE_GRAVOFF)
-	balloon_alert(user, "cell removed")
+	balloon_alert(user, "电池已取出")
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(!user.put_in_hands(current_cell))
 		current_cell.forceMove(drop_location())
@@ -271,19 +271,19 @@
 		return ..()
 
 	if(!cell_cover_open)
-		balloon_alert(user, "open the cell cover first!")
+		balloon_alert(user, "请先打开电池盖板！")
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 
 	if(current_cell)
-		balloon_alert(user, "cell already installed!")
+		balloon_alert(user, "电池已安装！")
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 
 	/// Shadow realm? I'm sending you to Lake City, FL!
 	tool.moveToNullspace()
 	current_cell = tool
-	balloon_alert(user, "cell installed")
+	balloon_alert(user, "电池已安装")
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return ITEM_INTERACT_SUCCESS
 

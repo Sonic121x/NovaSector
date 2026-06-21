@@ -1,5 +1,5 @@
 /obj/projectile/temp/ice_demon
-	name = "ice blast"
+	name = "冰霜冲击"
 	icon_state = "ice_2"
 	damage = 5
 	damage_type = BURN
@@ -8,8 +8,8 @@
 	temperature = -75
 
 /datum/action/cooldown/mob_cooldown/ice_demon_teleport
-	name = "Bluespace Teleport"
-	desc = "Teleport towards a destination target!"
+	name = "蓝空传送"
+	desc = "向一个目标位置传送！"
 	button_icon = 'icons/obj/ore.dmi'
 	button_icon_state = "bluespace_crystal"
 	cooldown_time = 3 SECONDS
@@ -18,7 +18,7 @@
 
 /datum/action/cooldown/mob_cooldown/ice_demon_teleport/Activate(atom/target_atom)
 	if(isclosedturf(get_turf(target_atom)))
-		owner.balloon_alert(owner, "blocked!")
+		owner.balloon_alert(owner, "被阻挡了！")
 		return FALSE
 	animate(owner, transform = matrix().Scale(0.8), time = time_delay, easing = SINE_EASING)
 	addtimer(CALLBACK(src, PROC_REF(teleport_to_turf), target_atom), time_delay)
@@ -30,8 +30,8 @@
 	do_teleport(teleatom = owner, destination = target, channel = TELEPORT_CHANNEL_BLUESPACE, forced = TRUE)
 
 /datum/action/cooldown/mob_cooldown/slippery_ice_floors
-	name = "Iced Floors"
-	desc = "Summon slippery ice floors all around!"
+	name = "冰封地面"
+	desc = "在周围召唤光滑的冰面！"
 	button_icon = 'icons/effects/freeze.dmi'
 	button_icon_state = "ice_cube"
 	cooldown_time = 2 SECONDS
@@ -59,7 +59,7 @@
 		new /obj/effect/temp_visual/slippery_ice(location)
 
 /obj/effect/temp_visual/slippery_ice
-	name = "slippery acid"
+	name = "光滑酸液"
 	icon = 'icons/turf/floors/ice_turf.dmi'
 	icon_state = "ice_turf-6"
 	layer = BELOW_MOB_LAYER
@@ -80,8 +80,8 @@
 	AddComponent(/datum/component/slippery, 2 SECONDS)
 
 /datum/action/cooldown/spell/conjure/limit_summons/create_afterimages
-	name = "Create After Images"
-	desc = "Creates two illusionary doubles to increase your firepower, but which share some of your life force."
+	name = "创造残影"
+	desc = "创造两个幻象分身来增强你的火力，但它们会分享你的一部分生命力。"
 	button_icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	button_icon_state = "ice_demon"
 	spell_requirements = NONE

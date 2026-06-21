@@ -1,5 +1,5 @@
 /datum/round_event_control/radiation_leak
-	name = "Radiation Leak"
+	name = "辐射泄漏"
 	description = "A radiation leak happens somewhere on the station, emanating radiation around a machine in the area. \
 		Engineering can stop the leak by using certain tools on it."
 	typepath = /datum/round_event/radiation_leak
@@ -60,7 +60,7 @@
 
 	priority_announce("A radiation leak has been detected in [location_descriptor || "an unknown area"]. \
 		All crew are to evacuate the affected area. Our [pick("mechanics", "engineers", "scientists", "interns", "sensors", "readings")] \
-		report that a machine within is causing it - repair it quickly to stop the leak.", "[command_name()] Engineering Division")
+		report that a machine within is causing it - repair it quickly to stop the leak.", "[command_name()] 工程部")
 
 /datum/round_event/radiation_leak/start()
 	var/obj/machinery/the_source_of_our_problems = picked_machine_ref?.resolve()
@@ -92,14 +92,14 @@
 	for(var/tool_method in methods_to_fix)
 		signals_to_add += COMSIG_ATOM_TOOL_ACT(how_do_we_fix_it[tool_method])
 
-	the_source_of_our_problems.visible_message(span_danger("[the_source_of_our_problems] starts to emanate a horrible green gas!"))
+	the_source_of_our_problems.visible_message(span_danger("[the_source_of_our_problems]开始散发出可怕的绿色气体！"))
 	// Add the component that makes the thing radioactive
 	the_source_of_our_problems.AddComponent(
 		/datum/component/radioactive_emitter, \
 		cooldown_time = 2 SECONDS, \
 		range = 5, \
 		threshold = RAD_MEDIUM_INSULATION, \
-		examine_text = span_green("<i>It's emanating a green gas... You could probably stop it by [english_list(methods_to_fix, and_text = " or ")].</i>"), \
+		examine_text = span_green("<i>它正在散发出绿色的气体……你或许可以通过[english_list(methods_to_fix, and_text = " or ")]来阻止它。</i>"), \
 	)
 	// Register signals to make it fixable
 	if(length(signals_to_add))
@@ -126,7 +126,7 @@
 	if(!the_end_of_our_problems)
 		return
 
-	the_end_of_our_problems.visible_message(span_notice("The gas emanating from [the_end_of_our_problems] dissipates."))
+	the_end_of_our_problems.visible_message(span_notice("从[the_end_of_our_problems]散发出的气体消散了。"))
 	qdel(the_end_of_our_problems.GetComponent(/datum/component/radioactive_emitter))
 	if(length(signals_to_add))
 		UnregisterSignal(the_end_of_our_problems, signals_to_add)
@@ -153,15 +153,15 @@
 
 /// Attempts a do_after, and if successful, stops the event
 /datum/round_event/radiation_leak/proc/try_remove_radiation(obj/machinery/source, mob/living/user, obj/item/tool)
-	source.balloon_alert(user, "fixing leak...")
+	source.balloon_alert(user, "正在修复泄漏...")
 	// Fairly long do after. It shouldn't be SUPER easy to just run in and stop it.
 	// A tider can fix it if they want to soak a bunch of rads and inhale noxious fumes,
 	// but only an equipped engineer should be able to handle it painlessly.
 	if(!tool.use_tool(source, user, 30 SECONDS, amount = (tool.tool_behaviour == TOOL_WELDER ? 2 : 0), volume = 50))
-		source.balloon_alert(user, "interrupted!")
+		source.balloon_alert(user, "被打断了！")
 		return
 
-	source.balloon_alert(user, "leak repaired")
+	source.balloon_alert(user, "泄漏已修复")
 	// Force end the event
 	processing = FALSE
 	end()

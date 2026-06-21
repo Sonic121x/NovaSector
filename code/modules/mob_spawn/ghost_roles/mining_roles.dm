@@ -3,13 +3,13 @@
 
 //Malfunctioning cryostasis sleepers: Spawns in makeshift shelters in lavaland. Ghosts become hermits with knowledge of how they got to where they are now.
 /obj/effect/mob_spawn/ghost_role/human/hermit
-	name = "malfunctioning cryostasis sleeper"
-	desc = "A humming sleeper with a silhouetted occupant inside. Its stasis function is broken and it's likely being used as a bed."
-	prompt_name = "a stranded hermit"
+	name = "故障的低温停滞休眠舱"
+	desc = "一个嗡嗡作响的休眠舱，内有轮廓模糊的居住者。其停滞功能已损坏，很可能被当作床铺使用。"
+	prompt_name = "一名被困的隐士"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
 	outfit = /datum/outfit/hermit
-	you_are_text = "You've been stranded in this godless prison of a planet for longer than you can remember."
+	you_are_text = "你被困在这个如监狱般无神的星球上，时间久到你自己都记不清了。"
 	flavour_text = "Each day you barely scrape by, and between the terrible conditions of your makeshift shelter, \
 	the hostile creatures, and the ash drakes swooping down from the cloudless skies, all you can wish for is the feel of soft grass between your toes and \
 	the fresh air of Earth. These thoughts are dispelled by yet another recollection of how you got here... "
@@ -48,7 +48,7 @@
 	return ..()
 
 /datum/outfit/hermit
-	name = "Lavaland Hermit"
+	name = "熔岩地隐士"
 	uniform = /obj/item/clothing/under/color/grey/ancient
 	back = /obj/item/storage/backpack
 	mask = /obj/item/clothing/mask/breath
@@ -58,13 +58,13 @@
 
 //Icebox version of hermit
 /obj/effect/mob_spawn/ghost_role/human/hermit/icemoon
-	name = "cryostasis bed"
-	desc = "A humming sleeper with a silhouetted occupant inside. Its stasis function is broken and it's likely being used as a bed."
-	prompt_name = "a grumpy old man"
+	name = "低温停滞床铺"
+	desc = "一个嗡嗡作响的休眠舱，内有轮廓模糊的居住者。其停滞功能已损坏，很可能被当作床铺使用。"
+	prompt_name = "一个脾气暴躁的老头"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
 	outfit = /datum/outfit/hermit
-	you_are_text = "You've been hunting polar bears for 40 years now! What do these 'NaniteTrans' newcomers want?"
+	you_are_text = "你猎杀北极熊已经40年了！这些'纳米传讯'新来者想要什么？"
 	flavour_text = "You were fine hunting polar bears and taming wolves out here on your own, \
 		but now that there are corporate stooges around, you need to watch your step. "
 	spawner_job_path = /datum/job/hermit
@@ -73,19 +73,19 @@
 
 /obj/effect/mob_spawn/ghost_role/human/beach
 	prompt_name = "a beach bum"
-	name = "beach bum sleeper"
+	name = "海滩流浪汉休眠舱"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	you_are_text = "You're, like, totally a dudebro, bruh."
+	you_are_text = "你，就像，完全是个潮男，兄弟。"
 	flavour_text = "Ch'yea. You came here, like, on spring break, hopin' to pick up some bangin' hot chicks, y'knaw?"
 	spawner_job_path = /datum/job/beach_bum
 	outfit = /datum/outfit/beachbum
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 
 /obj/effect/mob_spawn/ghost_role/human/beach/lifeguard
-	you_are_text = "You're a spunky lifeguard!"
-	flavour_text = "It's up to you to make sure nobody drowns or gets eaten by sharks and stuff."
-	name = "lifeguard sleeper"
+	you_are_text = "你是个精力充沛的救生员！"
+	flavour_text = "确保没人溺水或被鲨鱼之类的东西吃掉，就靠你了。"
+	name = "救生员休眠舱"
 	outfit = /datum/outfit/beachbum/lifeguard
 	allow_custom_character = NONE
 
@@ -95,7 +95,7 @@
 	lifeguard.update_body()
 
 /datum/outfit/beachbum
-	name = "Beach Bum"
+	name = "海滩流浪汉"
 	id = /obj/item/card/id/advanced
 	uniform = /obj/item/clothing/under/pants/jeans
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -109,23 +109,23 @@
 	bum.dna.add_mutation(/datum/mutation/stoner, MUTATION_SOURCE_GHOST_ROLE)
 
 /datum/outfit/beachbum/lifeguard
-	name = "Beach Lifeguard"
+	name = "沙滩救生员"
 	id_trim = /datum/id_trim/lifeguard
 	uniform = /obj/item/clothing/under/shorts/red
 
 /obj/effect/mob_spawn/ghost_role/human/bartender
-	name = "bartender sleeper"
+	name = "酒保休眠舱"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a space bartender"
-	you_are_text = "You are a space bartender!"
-	flavour_text = "Time to mix drinks and change lives. Smoking space drugs makes it easier to understand your patrons' odd dialect."
+	prompt_name = "一个太空酒保"
+	you_are_text = "你是一位太空酒保！"
+	flavour_text = "是时候调酒并改变人生了。吸食太空毒品能让你更容易理解顾客们古怪的方言。"
 	spawner_job_path = /datum/job/space_bartender
 	outfit = /datum/outfit/spacebartender
 	allow_custom_character = ALL
 
 /datum/outfit/spacebartender
-	name = "Space Bartender"
+	name = "太空酒保"
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/space_bartender
 	neck = /obj/item/clothing/neck/bowtie
@@ -140,18 +140,18 @@
 	var/obj/item/card/id/id_card = bartender.wear_id
 	if(bartender.age < AGE_MINOR)
 		id_card.registered_age = AGE_MINOR
-		to_chat(bartender, span_notice("You're not technically old enough to access or serve alcohol, but your ID has been discreetly modified to display your age as [AGE_MINOR]. Try to keep that a secret!"))
+		to_chat(bartender, span_notice("你实际上未达到接触或提供酒精的法定年龄，但你的身份证已被秘密修改，将年龄显示为 [AGE_MINOR]。尽量保守这个秘密！"))
 
 //Preserved terrarium/seed vault: Spawns in seed vault structures in lavaland. Ghosts become plantpeople and are advised to begin growing plants in the room near them.
 /obj/effect/mob_spawn/ghost_role/human/seed_vault
-	name = "preserved terrarium"
-	desc = "An ancient machine that seems to be used for storing plant matter. The glass is obstructed by a mat of vines."
-	prompt_name = "lifebringer"
+	name = "保存完好的玻璃容器"
+	desc = "一种古老的机器，似乎用来储存植物。玻璃被藤蔓盖住了。"
+	prompt_name = "生命使者"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "terrarium"
 	density = TRUE
 	mob_species = /datum/species/pod
-	you_are_text = "You are a sentient ecosystem, an example of the mastery over life that your creators possessed."
+	you_are_text = "你是一个有知觉的生态系统，是你的创造者所拥有的生命掌控力的典范。"
 	flavour_text = "Your masters, benevolent as they were, created uncounted seed vaults and spread them across \
 	the universe to every planet they could chart. You are in one such seed vault. \
 	Your goal is to protect the vault you are assigned to, cultivate the seeds passed onto you, \
@@ -171,8 +171,8 @@
 //Ash walker eggs: Spawns in ash walker dens in lavaland. Ghosts become unbreathing lizards that worship the Necropolis and are advised to retrieve corpses to create more ash walkers.
 
 /obj/structure/ash_walker_eggshell
-	name = "ash walker egg"
-	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within. The egg shell looks resistant to temperature but otherwise rather brittle."
+	name = "灰烬行者蛋"
+	desc = "一个和人差不多大的黄色蛋，由某种深不可测的生物孕育而成。一个人形轮廓潜伏在里面。蛋壳看起来耐温，但其他方面很脆。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | FREEZE_PROOF
@@ -209,16 +209,16 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker
-	name = "ash walker egg"
-	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within."
-	prompt_name = "necropolis ash walker"
+	name = "灰烬行者蛋"
+	desc = "一个和人差不多大的黄色蛋，由某种深不可测的生物孕育而成。一个人形轮廓潜伏在里面。"
+	prompt_name = "灰烬行者大墓地"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	mob_species = /datum/species/lizard/ashwalker
 	outfit = /datum/outfit/ashwalker
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
-	you_are_text = "You are an ash walker. Your tribe worships the Necropolis."
+	you_are_text = "你是一名灰烬行者。你的部落崇拜着死城。"
 	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. \
 	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. \
 	Fresh sacrifices for your nest."
@@ -236,13 +236,13 @@
 	if(!(user.ckey in team.players_spawned))//one per person unless you get a bonus spawn
 		return TRUE
 	if(!silent)
-		to_chat(user, span_warning("You have exhausted your usefulness to the Necropolis."))
+		to_chat(user, span_warning("你对死灵城已无利用价值。"))
 	return FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/special(mob/living/carbon/human/spawned_human, mob/mob_possessor, apply_prefs)
 	. = ..()
 	spawned_human.fully_replace_character_name(null, spawned_human.generate_random_mob_name(TRUE))
-	to_chat(spawned_human, "<b>Drag the corpses of men and beasts to your nest. It will absorb them to create more of your kind. Invade the strange structure of the outsiders if you must. Do not cause unnecessary destruction, as littering the wastes with ugly wreckage is certain to not gain you favor. Glory to the Necropolis!</b>")
+	to_chat(spawned_human, "<b>将人类与野兽的尸体拖回你的巢穴。它将吸收它们以繁衍你的同类。若有必要，可入侵外来者的奇异建筑。切勿造成不必要的破坏，在荒原上散落丑陋的残骸必定不会为你赢得青睐。死灵城万岁！</b>")
 
 	spawned_human.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
@@ -269,24 +269,24 @@
 		)
 
 /datum/outfit/ashwalker
-	name = "Ash Walker"
+	name = "灰烬行者"
 	head = /obj/item/clothing/head/helmet/gladiator
 	uniform = /obj/item/clothing/under/costume/gladiator/ash_walker
 
 /datum/outfit/ashwalker/spear
-	name = "Ash Walker - Spear"
+	name = "灰烬行者 - 长矛"
 	back = /obj/item/spear/bonespear
 
 ///Syndicate Listening Post
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate
-	name = "Syndicate Bioweapon Scientist"
+	name = "辛迪加生物武器科学家"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	prompt_name = "a syndicate science technician"
-	you_are_text = "You are a syndicate science technician, employed in a top secret research facility developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Continue your research as best you can, and try to keep a low profile."
-	important_text = "The base is rigged with explosives, DO NOT abandon it or let it fall into enemy hands!"
+	prompt_name = "一名辛迪加科学技术人员"
+	you_are_text = "你是一名辛迪加科研技术员，受雇于一个研发生物武器的绝密研究设施。"
+	flavour_text = "不幸的是，你们憎恨的敌人——纳米传讯，已开始在这个星区采矿。尽你所能继续你的研究，并尽量保持低调。"
+	important_text = "基地已布设炸药，切勿放弃它或让它落入敌手！"
 	outfit = /datum/outfit/lavaland_syndicate
 	spawner_job_path = /datum/job/lavaland_syndicate
 	deletes_on_zero_uses_left = FALSE
@@ -297,15 +297,15 @@
 	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_MIND)
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/comms
-	name = "Syndicate Comms Agent"
-	prompt_name = "a syndicate comms agent"
-	you_are_text = "You are a syndicate comms agent, employed in a top secret research facility developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!"
-	important_text = "DO NOT abandon the base."
+	name = "辛迪加通讯代理"
+	prompt_name = "辛迪加通讯特工"
+	you_are_text = "你是一名辛迪加通讯特工，受雇于一个研发生物武器的绝密研究设施。"
+	flavour_text = "不幸的是，你们憎恨的敌人——纳米传讯，已开始在这个星区采矿。尽你所能监视敌方活动，并尽量保持低调。使用通讯设备为任何外勤特工提供支援，并散布虚假信息以误导纳米传讯，使其无法追踪你们。绝不能让基地落入敌手！"
+	important_text = "切勿放弃基地。"
 	outfit = /datum/outfit/lavaland_syndicate/comms
 
 /datum/outfit/lavaland_syndicate
-	name = "Lavaland Syndicate Agent"
+	name = "拉瓦兰辛迪加特工"
 	id = /obj/item/card/id/advanced/chameleon
 	id_trim = /datum/id_trim/chameleon/operative
 	uniform = /obj/item/clothing/under/syndicate
@@ -325,7 +325,7 @@
 	syndicate.add_faction(ROLE_SYNDICATE)
 
 /datum/outfit/lavaland_syndicate/comms
-	name = "Lavaland Syndicate Comms Agent"
+	name = "拉瓦兰 辛迪加通讯代理"
 	suit = /obj/item/clothing/suit/armor/vest
 	mask = /obj/item/clothing/mask/chameleon/gps
 	r_hand = /obj/item/melee/energy/sword/saber
@@ -333,7 +333,7 @@
 	glasses = /obj/item/clothing/glasses/welding/up
 
 /datum/outfit/lavaland_syndicate/comms/icemoon
-	name = "Icemoon Syndicate Comms Agent"
+	name = "冰月辛迪加通讯特工"
 	mask = /obj/item/clothing/mask/chameleon
 	shoes = /obj/item/clothing/shoes/winterboots/ice_boots/eva
 
@@ -344,9 +344,9 @@
 ///Icemoon Syndicate Comms Agent
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/comms/icemoon
-	name = "Icemoon Comms Agent"
-	prompt_name = "a syndicate comms agent"
-	you_are_text = "You are a syndicate comms agent, assigned in an underground secret listening post close to your enemy's facility."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the outpost fall into enemy hands!"
-	important_text = "Do NOT let the outpost fall into enemy hands"
+	name = "冰月通讯特工"
+	prompt_name = "辛迪加通讯特工"
+	you_are_text = "你是一名辛迪加通讯特工，被派往靠近敌方设施的地下秘密监听站。"
+	flavour_text = "不幸的是，你憎恨的敌人——纳米传讯，已开始在这个星区采矿。尽你所能监视敌人的活动，并尽量保持低调。使用通讯设备为任何现场特工提供支持，并散布虚假信息以误导纳米传讯，使其无法追踪到你。绝不能让前哨站落入敌手！"
+	important_text = "绝不能让前哨站落入敌手"
 	outfit = /datum/outfit/lavaland_syndicate/comms/icemoon

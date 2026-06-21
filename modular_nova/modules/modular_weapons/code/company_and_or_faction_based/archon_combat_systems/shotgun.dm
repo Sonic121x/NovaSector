@@ -75,9 +75,9 @@
 /obj/item/gun/ballistic/shotgun/riot/sol/super/proc/on_booster_toggle(datum/component/source, mob/user, amped)
 	SIGNAL_HANDLER
 	if(amped)
-		balloon_alert(user, "barrel amped, firerate limited")
+		balloon_alert(user, "枪管已蓄能，射速受限")
 	else
-		balloon_alert(user, "barrel de-amped, firerate released")
+		balloon_alert(user, "枪管解除蓄能，射速释放")
 
 // todo send COMSIG_GUN_RACK and COMSIG_GUN_BEFORE_FIRING signals to upstream if they'll take it
 /obj/item/gun/ballistic/shotgun/riot/sol/super/rack(mob/user)
@@ -267,12 +267,12 @@
 		fire_sound = amped_fire_sound
 		recoil = amped_recoil
 		pb_knockback = 5 // i hope you're throwing them into a wall
-		balloon_alert(user, "barrels amped")
+		balloon_alert(user, "枪管已蓄能")
 	else
 		fire_sound = base_fire_sound
 		recoil = base_recoil
 		pb_knockback = initial(pb_knockback)
-		balloon_alert(user, "barrels de-amped")
+		balloon_alert(user, "枪管解除蓄能")
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/super/unload_ammo(mob/living/user, forced)
 	. = ..()

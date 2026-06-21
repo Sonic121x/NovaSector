@@ -1,5 +1,5 @@
 /datum/team/nation
-	name = "\improper Nation"
+	name = "\improper 国家"
 	member_name = "separatist"
 	///a list of ranks that can join this nation.
 	var/list/potential_recruits
@@ -68,7 +68,7 @@
 	var/datum/objective/destroy = new /datum/objective/destroy_nation(null, attacking_nation)
 	destroy.team = src
 	objectives += destroy
-	update_all_member_objectives(span_danger("The nation of [attacking_nation] has declared the intent to conquer [src]! You have new objectives."))
+	update_all_member_objectives(span_danger("[attacking_nation] 国已宣布意图征服 [src]！你有新的目标。"))
 
 /datum/team/nation/proc/update_all_member_objectives(message)
 	for(var/datum/mind/member in members)
@@ -79,7 +79,7 @@
 		needs_objectives.owner.announce_objectives()
 
 /datum/antagonist/separatist
-	name = "\improper Separatists"
+	name = "\improper 分离主义"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	suicide_cry = "FOR THE MOTHERLAND!!"

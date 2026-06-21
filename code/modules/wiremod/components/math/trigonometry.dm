@@ -14,7 +14,7 @@
  */
 /obj/item/circuit_component/trigonometry
 	display_name = "Trigonometry"
-	desc = "General trigonometry component with main and inverse trigonometry functions."
+	desc = "包含正弦和余弦基本运算功能以及正弦和余弦逆运算功能的通用三角函数组件。"
 	category = "Math"
 
 	var/datum/port/input/option/trigonometric_function

@@ -1,5 +1,5 @@
 /datum/outfit/clock
-	name = "Default Clock Cultist"
+	name = "默认发条邪教徒"
 
 	uniform = /obj/item/clothing/under/occult //meh.
 	suit = /obj/item/clothing/suit/clockwork/cloak
@@ -18,7 +18,7 @@
 
 
 /datum/outfit/clock/armor
-	name = "Armored Clock Cultist"
+	name = "重装发条邪教徒"
 
 	suit = /obj/item/clothing/suit/clockwork
 	head = /obj/item/clothing/head/helmet/clockwork
@@ -26,7 +26,7 @@
 	l_hand = /obj/item/clockwork/weapon/brass_battlehammer
 
 /datum/outfit/clock/archer
-	name = "Archer Clock Cultist"
+	name = "弓手发条邪教徒"
 
 	suit = /obj/item/clothing/suit/clockwork/speed
 	head = /obj/item/clothing/head/helmet/clockwork
@@ -34,7 +34,7 @@
 	l_hand = /obj/item/gun/ballistic/bow/clockwork
 
 /datum/outfit/clock/gun
-	name = "Seer Clock Cultist"
+	name = "先知发条邪教徒"
 
 	glasses = /obj/item/clothing/glasses/clockwork/wraith_spectacles
 	suit = /obj/item/clothing/suit/clockwork
@@ -43,7 +43,7 @@
 	l_hand = /obj/item/gun/ballistic/rifle/lionhunter/clockwork
 
 /datum/outfit/clock/support
-	name = "Support Clock Cultist"
+	name = "支援发条邪教徒"
 
 	suit = /obj/item/clothing/suit/clockwork
 	head = /obj/item/clothing/head/helmet/clockwork
@@ -61,7 +61,7 @@
 
 
 /datum/outfit/clockwork_armaments
-	name = "Clockwork Cultist Base"
+	name = "发条邪教徒基础装备"
 
 	suit = /obj/item/clothing/suit/clockwork
 	shoes = /obj/item/clothing/shoes/clockwork

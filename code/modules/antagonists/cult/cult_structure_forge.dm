@@ -5,13 +5,13 @@
 
 // Cult forge. Gives out combat weapons.
 /obj/structure/destructible/cult/item_dispenser/forge
-	name = "daemon forge"
-	desc = "A forge used in crafting the unholy weapons used by the armies of Nar'Sie."
+	name = "守护神锻炉"
+	desc = "用于制造纳西军队装备的锻造厂"
 	cult_examine_tip = "Can be used to create Nar'Sien hardened armor and eldritch longswords."
 	icon_state = "forge"
 	light_range = 2
 	light_color = LIGHT_COLOR_LAVA
-	break_message = span_warning("The forge breaks apart into shards with a howling scream!")
+	break_message = span_warning("熔炉伴随着一声嚎叫碎裂成无数碎片！")
 	mansus_conversion_path = /obj/structure/destructible/eldritch_crucible
 	custom_materials = list(/datum/material/runedmetal = SHEET_MATERIAL_AMOUNT * 3)
 
@@ -47,11 +47,11 @@
 
 
 /obj/structure/destructible/cult/item_dispenser/forge/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cult_italic("You work [src] as dark knowledge guides your hands, creating [spawned_item]!"))
+	to_chat(user, span_cult_italic("你操作着[src]，黑暗知识引导着你的双手，创造出了[spawned_item]！"))
 
 /obj/structure/destructible/cult/item_dispenser/forge/engine
-	name = "magma engine"
-	desc = "An arcane engine used for powering a shuttle."
+	name = "熔岩引擎"
+	desc = "一种为穿梭机提供动力的神秘引擎"
 	debris = list()
 
 #undef NARSIE_ARMOR

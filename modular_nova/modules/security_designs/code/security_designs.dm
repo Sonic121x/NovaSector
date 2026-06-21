@@ -18,7 +18,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/mag_katyusha // sec printable so that the blueshield can get more mags for the katyusha, which takes the katyusha drum mags
-	name = "Magazine (12 Gauge Shells)"
+	name = "弹匣 (12号霰弹)"
 	desc = "A 10-shell magazine designed to fit in the NT-Katyusha, which fires 12 gauge."
 	id = "mag_katyusha"
 	build_type = PROTOLATHE | AWAY_LATHE

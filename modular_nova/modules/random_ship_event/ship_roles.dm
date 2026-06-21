@@ -1,17 +1,17 @@
 //ship crew from the random ship event.
 
 /obj/effect/mob_spawn/ghost_role/human/ship_crew
-	name = "ship crew sleeper"
-	desc = "A cryo sleeper for ship crew."
+	name = "飞船船员休眠舱"
+	desc = "一个供飞船船员使用的低温休眠舱。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a ship crew member"
+	prompt_name = "一名舰船船员"
 	outfit = /datum/outfit/ship_crew
 	anchored = TRUE
 	density = FALSE
 	show_flavor = FALSE //Flavour only exists for spawners menu
-	you_are_text = "You are a member of a ship crew."
-	flavour_text = "You are part of a ship crew. Follow your captain's orders and complete your mission."
+	you_are_text = "你是一艘舰船的船员。"
+	flavour_text = "你是一艘舰船船员的一部分。遵循舰长的命令并完成你的任务。"
 	spawner_job_path = /datum/job/ship_crew
 	///Rank of the crew member on the ship, it's used in generating names!
 	var/rank = "Crewman"
@@ -51,12 +51,12 @@
 	rank = "Gunner"
 
 /obj/effect/mob_spawn/ghost_role/human/ship_crew/rogue_trader
-	name = "rogue trader sleeper"
-	desc = "A cryo sleeper smelling faintly of rum."
-	prompt_name = "a rogue trader"
+	name = "浪迹商人休眠舱"
+	desc = "一个散发着淡淡朗姆酒味的低温休眠舱。"
+	prompt_name = "一名不法商人"
 	outfit = /datum/outfit/ship_crew/rogue_trader
-	you_are_text = "You are a rogue trader."
-	flavour_text = "You are a rogue trader looking to make a profit. Trade with the station or take what you need by force."
+	you_are_text = "你是一名不法商人。"
+	flavour_text = "你是一名寻求利润的不法商人。与空间站交易，或用武力夺取你所需之物。"
 
 /obj/effect/mob_spawn/ghost_role/human/ship_crew/rogue_trader/captain
 	rank = "Trader Captain"

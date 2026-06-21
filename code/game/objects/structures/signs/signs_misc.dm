@@ -1,7 +1,7 @@
 /obj/structure/sign/gym
-	name = "\improper Gym Encouragement Sign"
+	name = "\improper 健身房励志标牌"
 	sign_change_name = "gym_left"
-	desc = "A sign of a hulking green man encouraging you to 'Unleash Your Inner Hulk'."
+	desc = "一个绿巨人像，鼓励你去“释放内心的绿巨人”。"
 	icon_state = "gym-left"
 
 /obj/structure/sign/gym/right

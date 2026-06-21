@@ -32,8 +32,8 @@
 #define BULB_SHARDS_REQUIRED 4
 
 /obj/item/lightreplacer
-	name = "light replacer"
-	desc = "A device to automatically replace lights. Refill with broken or working light bulbs, or sheets of glass."
+	name = "灯泡更换器"
+	desc = "一种自动更换灯泡的设备。可用损坏或完好的灯泡，或玻璃片补充。"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "lightreplacer"
 	inhand_icon_state = "electronic"
@@ -79,24 +79,24 @@
 /obj/item/lightreplacer/attackby(obj/item/insert, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(uses >= max_uses)
-		user.balloon_alert(user, "already full!")
+		user.balloon_alert(user, "已经满了！")
 		return TRUE
 
 	if(istype(insert, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/glass_to_insert = insert
 		if(glass_to_insert.use(LIGHTBULB_COST))
 			add_uses(GLASS_SHEET_USES)
-			user.balloon_alert(user, "glass inserted")
+			user.balloon_alert(user, "玻璃已插入")
 		else
-			user.balloon_alert(user, "need [LIGHTBULB_COST] glass sheets!")
+			user.balloon_alert(user, "需要 [LIGHTBULB_COST] 张玻璃板！")
 		return TRUE
 
 	if(insert.type == /obj/item/shard) //we don't want to insert plasma, titanium or other types of shards
 		if(!user.temporarilyRemoveItemFromInventory(insert))
-			user.balloon_alert(user, "stuck in your hand!")
+			user.balloon_alert(user, "卡在你手里了！")
 			return TRUE
 		if(!add_shard(user)) //add_shard will display a message if it created a bulb from the shard so only display message when that does not happen
-			user.balloon_alert(user, "shard inserted")
+			user.balloon_alert(user, "碎片已插入")
 		qdel(insert)
 		return TRUE
 
@@ -104,7 +104,7 @@
 		var/obj/item/light/light_to_insert = insert
 		//remove from player's hand
 		if(!user.temporarilyRemoveItemFromInventory(light_to_insert))
-			user.balloon_alert(user, "stuck in your hand!")
+			user.balloon_alert(user, "卡在你手里了！")
 			return TRUE
 
 		//insert light. display message only if adding a shard did not create a new bulb else the messages will conflict
@@ -114,7 +114,7 @@
 		else if(add_shard(user))
 			display_msg = FALSE
 		if(display_msg)
-			user.balloon_alert(user, "light inserted")
+			user.balloon_alert(user, "灯泡已插入")
 		qdel(light_to_insert)
 
 		return TRUE
@@ -154,12 +154,12 @@
 
 		if(!replaced_something)
 			if(uses == max_uses)
-				user.balloon_alert(user, "already full!")
+				user.balloon_alert(user, "已经满了！")
 			else
-				user.balloon_alert(user, "nothing usable in [storage_to_empty]!")
+				user.balloon_alert(user, "[storage_to_empty]里没有可用的东西！")
 			return TRUE
 
-		user.balloon_alert(user, "lights inserted")
+		user.balloon_alert(user, "灯泡已插入")
 		return TRUE
 
 /obj/item/lightreplacer/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -168,12 +168,12 @@
 	obj_flags |= EMAGGED
 	playsound(loc, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	update_appearance()
-	to_chat(user, span_warning("[src]'s lights are now filled with plasma! Be careful to only install them in disabled light fixtures, lest they explode!"))
+	to_chat(user, span_warning("[src]的灯泡现在充满了等离子体！注意只能将其安装在已断电的灯具中，否则可能会爆炸！"))
 	return FALSE
 
 /obj/item/lightreplacer/update_name(updates)
 	. = ..()
-	name = (obj_flags & EMAGGED) ? "shortcircuited [initial(name)]" : initial(name)
+	name = (obj_flags & EMAGGED) ? "短路的[initial(name)]" : initial(name)
 
 /obj/item/lightreplacer/update_icon_state()
 	icon_state = "[initial(icon_state)][(obj_flags & EMAGGED ? "-emagged" : "")]"
@@ -205,7 +205,7 @@
 		replace_light(target, user)
 		on_a_light = TRUE
 	if(!on_a_light) //So we don't give a balloon alert when we just used replace_light
-		user.balloon_alert(user, "[uses] lights, [bulb_shards]/[BULB_SHARDS_REQUIRED] fragments")
+		user.balloon_alert(user, "[uses]个灯泡，[bulb_shards]/[BULB_SHARDS_REQUIRED]个碎片")
 
 /**
  * attempts to fix lights, flood lights & lights on a turf
@@ -230,7 +230,7 @@
 			if(bluespace_toggle)
 				user.Beam(target, icon_state = "rped_upgrade", time = 0.5 SECONDS)
 				playsound(src, 'sound/items/pshoom/pshoom.ogg', 40, 1)
-			to_chat(user, span_notice("You finish \the [frame] with a light tube."))
+			to_chat(user, span_notice("你用一根灯管完成了\the [frame]。"))
 			qdel(frame)
 		return TRUE
 
@@ -269,7 +269,7 @@
 	if(bulb_shards >= BULB_SHARDS_REQUIRED)
 		bulb_shards = 0
 		add_uses(1)
-		to_chat(user, span_notice("\The [src] fabricates a new bulb from the broken glass it has stored. [status_string()]"))
+		to_chat(user, span_notice("\The [src] 利用其储存的碎玻璃制造了一个新灯泡。[status_string()]"))
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE)
 		return TRUE
 	return FALSE
@@ -289,12 +289,12 @@
 		return FALSE
 	//If the light source is ok then what are we doing here
 	if(target.status == LIGHT_OK)
-		user.balloon_alert(user, "light already installed!")
+		user.balloon_alert(user, "灯泡已经安装好了！")
 		return FALSE
 	//Were all out
 	if(!Use(user))
 		//This balloon alert text is a little redundant, but I want to avoid a new player "yeah i know the light is empty" moment
-		user.balloon_alert(user, "light replacer empty!")
+		user.balloon_alert(user, "灯泡替换器空了！")
 		return FALSE
 
 	//remove any broken light on the fixture & add it as a shard
@@ -318,8 +318,8 @@
 	return TRUE
 
 /obj/item/lightreplacer/advanced
-	name = "high capacity light replacer"
-	desc = "A higher capacity light replacer. Refill with broken or working lightbulbs, or sheets of glass."
+	name = "高容量换灯器"
+	desc = "一种更高容量的换灯器。可以用损坏或完好的灯泡，或者玻璃板来补充。"
 	icon_state = "lightreplacer_high"
 	max_uses = 50
 
@@ -328,8 +328,8 @@
 #define BLIGHTREPLACER_SPOT_LIFE (5 SECONDS)
 
 /obj/item/lightreplacer/blue
-	name = "bluespace light replacer"
-	desc = "A modified light replacer that zaps lights into place. Refill with broken or working lightbulbs, or sheets of glass."
+	name = "蓝空换灯器"
+	desc = "一种经过改造的换灯器，能将灯瞬间传送到位。可以用损坏或完好的灯泡，或者玻璃板来补充。"
 	icon_state = "lightreplacer_blue"
 	bluespace_toggle = TRUE
 	actions_types = list(/datum/action/item_action/lightreplacer_scan)
@@ -341,7 +341,7 @@
 
 /obj/item/lightreplacer/blue/ui_action_click(mob/user, actiontype)
 	if(!COOLDOWN_FINISHED(src, lightreplacer_spot_cooldown))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "冷却中！")
 		return
 	COOLDOWN_START(src, lightreplacer_spot_cooldown, BLIGHTREPLACER_SPOT_COOLDOWN)
 	lightreplacer_scan()
@@ -356,11 +356,11 @@
 		animate(firefly, alpha = 0, time = BLIGHTREPLACER_SPOT_LIFE, easing = CIRCULAR_EASING | EASE_IN)
 
 /datum/action/item_action/lightreplacer_scan
-	name = "Scan for broken lamps"
-	desc = "Scans the surrounding area for fixtures with broken light bulbs and marks them."
+	name = "扫描损坏的灯具"
+	desc = "扫描周围区域，标记出灯泡损坏的灯具。"
 
 /obj/effect/temp_visual/blue_firefly
-	name = "bluespace firefly"
+	name = "蓝空萤火虫"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "bluespace_firefly"
 	light_power = 1

@@ -1,6 +1,6 @@
 /obj/machinery/vending/boozeomat
-	name = "\improper Booze-O-Mat"
-	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
+	name = "\improper 酒精考验机"
+	desc = "这是一项令人惊叹的科技产品，据说只要您已提出想要喝的饮品，它就能调制出您所要求的饮料。"
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	panel_type = "panel22"

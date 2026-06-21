@@ -6,7 +6,7 @@
 
 /obj/item/circuit_component/compare/health_state
 	display_name = "Compare Health State"
-	desc = "A component that compares the health state of an organism, and returns true or false."
+	desc = "一个比较生物体健康状态并返回真或假的组件。"
 	category = "Entity"
 
 	/// The input port

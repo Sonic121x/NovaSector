@@ -42,7 +42,7 @@
 
 
 /datum/outfit/job/virologist
-	name = "Virologist"
+	name = "病毒学家"
 	jobtype = /datum/job/virologist
 
 	id_trim = /datum/id_trim/job/virologist
@@ -62,7 +62,7 @@
 	box = /obj/item/storage/box/survival/medical
 
 /obj/item/modular_computer/pda/viro
-	name = "virology PDA"
+	name = "病毒学PDA"
 	icon_state = "/obj/item/modular_computer/pda/viro"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#FAFAFA#355FAC#57C451"

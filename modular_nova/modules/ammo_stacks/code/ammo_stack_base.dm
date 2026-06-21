@@ -1,7 +1,7 @@
 /// Object for holding stacks of loose ammo as a handful of shells
 /obj/item/ammo_box/magazine/ammo_stack
-	name = "ammo stack"
-	desc = "A stack of ammo."
+	name = "弹药堆"
+	desc = "一叠弹药。"
 	icon = 'modular_nova/modules/ammo_stacks/icons/ammo_stacks.dmi'
 	icon_state = "stack_regular"
 	base_icon_state = "ammo_stack"
@@ -122,7 +122,7 @@
 /obj/item/ammo_casing/examine(mob/user)
 	. = ..()
 	if(ammo_stack_type)
-		. += span_notice("[src] can be stacked with other casings of a similar type.")
+		. += span_notice("[src] 可以与同类型的其他弹壳堆叠。")
 	return .
 
 /obj/item/ammo_casing/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -131,16 +131,16 @@
 
 	var/obj/item/ammo_casing/used_casing = tool
 	if(!used_casing.ammo_stack_type)
-		balloon_alert(user, "used casing can't stack")
+		balloon_alert(user, "已使用的弹壳无法堆叠")
 		return ITEM_INTERACT_BLOCKING
 	if(!ammo_stack_type)
-		balloon_alert(user, "target can't stack!")
+		balloon_alert(user, "目标无法堆叠！")
 		return ITEM_INTERACT_BLOCKING
 	if(ammo_stack_type != used_casing.ammo_stack_type)
-		balloon_alert(user, "can't stack together!")
+		balloon_alert(user, "无法堆叠在一起！")
 		return ITEM_INTERACT_BLOCKING
 	if(!loaded_projectile || !used_casing.loaded_projectile)
-		balloon_alert(user, "can't stack empty casings!")
+		balloon_alert(user, "无法堆叠空弹壳！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/ammo_box/magazine/ammo_stack = new ammo_stack_type(drop_location())

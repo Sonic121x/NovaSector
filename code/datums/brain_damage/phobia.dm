@@ -1,13 +1,13 @@
 /datum/brain_trauma/mild/phobia
-	name = "Phobia"
-	desc = "Patient is unreasonably afraid of something."
+	name = "恐惧症"
+	desc = "患者对某事物产生了不合理的恐惧。"
 	scan_desc = "phobia"
 	symptoms = "When exposed to a specific stimulus, experiences \
 		an immediate anxiety or fear response far greater than typically expected, \
 		leading to panic attacks or impaired social and occupational functioning. \
 		Physical contact such as hugging, or medication such as Psicodine may lessen the severity of the reaction."
-	gain_text = span_warning("You start finding default values very unnerving...")
-	lose_text = span_notice("You no longer feel afraid of default values.")
+	gain_text = span_warning("你开始觉得默认值非常令人不安...")
+	lose_text = span_notice("你不再害怕默认值了。")
 	/// What do we fear exactly?
 	var/phobia_type
 	/// Specific terror handler to apply, in case we want
@@ -22,8 +22,8 @@
 	if(!phobia_type)
 		phobia_type = pick(GLOB.phobia_types)
 
-	gain_text = span_warning("You start finding [phobia_type] very unnerving...")
-	lose_text = span_notice("You no longer feel afraid of [phobia_type].")
+	gain_text = span_warning("你开始觉得[phobia_type]非常令人不安...")
+	lose_text = span_notice("你不再害怕[phobia_type]了。")
 	scan_desc += " of [phobia_type]"
 	return ..()
 

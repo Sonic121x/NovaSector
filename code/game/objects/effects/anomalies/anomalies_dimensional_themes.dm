@@ -3,7 +3,7 @@
  */
 /datum/dimension_theme
 	/// Human readable name of the theme
-	var/name = "Unnamed Theme"
+	var/name = "未命名主题"
 	/// An icon to display to represent the theme
 	var/icon/icon
 	/// Icon state to use to represent the theme
@@ -264,28 +264,28 @@
 	material = /datum/material/plasma
 
 /datum/dimension_theme/clown
-	name = "Clown"
+	name = "小丑"
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "clown"
 	material = /datum/material/bananium
 	sound = 'sound/items/bikehorn.ogg'
 
 /datum/dimension_theme/radioactive
-	name = "Radioactive"
+	name = "放射性"
 	icon = 'icons/obj/ore.dmi'
 	icon_state = "uranium"
 	material = /datum/material/uranium
 	sound = 'sound/items/tools/welder.ogg'
 
 /datum/dimension_theme/meat
-	name = "Meat"
+	name = "血肉"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "meat"
 	material = /datum/material/meat
 	sound = 'sound/items/eatfood.ogg'
 
 /datum/dimension_theme/pizza
-	name = "Pizza"
+	name = "披萨"
 	icon = 'icons/obj/food/pizza.dmi'
 	icon_state = "pizzamargherita"
 	material = /datum/material/pizza
@@ -299,7 +299,7 @@
 	)
 
 /datum/dimension_theme/natural
-	name = "Natural"
+	name = "自然"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "map_flower"
 	window_colour = "#00f7ff"
@@ -313,7 +313,7 @@
 	)
 
 /datum/dimension_theme/bamboo
-	name = "Bamboo"
+	name = "竹林"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "bamboo"
 	replace_floors = list(/turf/open/floor/bamboo = 1)
@@ -327,7 +327,7 @@
 	)
 
 /datum/dimension_theme/icebox
-	name = "Winter"
+	name = "寒冬"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "snowman_h"
 	window_colour = "#00f7ff"
@@ -342,7 +342,7 @@
 	random_spawn_chance = 8
 
 /datum/dimension_theme/icebox/winter_cabin
-	name = "Winter Cabin"
+	name = "冬日小屋"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	icon_state = "iceboots"
 	replace_walls = /turf/closed/wall/mineral/wood
@@ -354,7 +354,7 @@
 	)
 
 /datum/dimension_theme/lavaland
-	name = "Lavaland"
+	name = "熔岩地"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "goliath_hide"
 	window_colour = "#860000"
@@ -368,7 +368,7 @@
 	random_spawn_chance = 1
 
 /datum/dimension_theme/space
-	name = "Space"
+	name = "太空"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "blessed"
 	window_colour = COLOR_BLACK
@@ -386,7 +386,7 @@
 	sound = SFX_SHATTER
 
 /datum/dimension_theme/fancy
-	name = "Fancy"
+	name = "华丽"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "fancycrown"
 	replace_floors = null
@@ -433,7 +433,7 @@
 	return ..()
 
 /datum/dimension_theme/disco
-	name = "Disco"
+	name = "迪斯科"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "lbulb"
 	material = /datum/material/glass
@@ -448,7 +448,7 @@
 	disco_floor.update_appearance()
 
 /datum/dimension_theme/jungle
-	name = "Jungle"
+	name = "丛林"
 	icon = 'icons/obj/tiles.dmi'
 	icon_state = "tile_grass"
 	sound = SFX_CRUNCHY_BUSH_WHACK
@@ -472,7 +472,7 @@
 	random_spawn_chance = 20
 
 /datum/dimension_theme/ayylmao
-	name = "Alien"
+	name = "外星"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "sheet-abductor"
 	material = /datum/material/alloy/alien
@@ -487,7 +487,7 @@
 	)
 
 /datum/dimension_theme/bronze
-	name = "Bronze"
+	name = "青铜"
 	icon = 'icons/obj/weapons/spear.dmi'
 	icon_state = "ratvarian_spear"
 	material = /datum/material/bronze

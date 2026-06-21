@@ -366,7 +366,7 @@
 	var/obj/item/disk/nuclear/disk = locate() in SSpoints_of_interest.real_nuclear_disks
 	var/list/disk_info = list(
 		ref = REF(disk),
-		name = "Nuke Auth. Disk",
+		name = "核认证磁盘",
 		)
 	objects += list(disk_info)
 
@@ -374,7 +374,7 @@
 	var/obj/docking_port/mobile/infiltrator = SSshuttle.getShuttle("syndicate")
 	var/list/ship_info = list(
 		ref = REF(infiltrator),
-		name = "Infiltrator",
+		name = "渗透号",
 		)
 	objects += list(ship_info)
 
@@ -384,7 +384,7 @@
 
 	for(var/obj/machinery/nuclearbomb/bomb as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb))
 		if(bomb.timing)
-			examine_list += span_danger("Extreme danger. Arming signal detected. Time remaining: [bomb.get_time_left()].")
+			examine_list += span_danger("极度危险。检测到武装信号。剩余时间：[bomb.get_time_left()]。")
 	return examine_list
 
 /*
@@ -399,11 +399,11 @@
 
 	playsound(computer, 'sound/items/nuke_toy_lowpower.ogg', 50, FALSE)
 	if(isliving(computer.loc))
-		to_chat(computer.loc, span_userdanger("Your [computer.name] vibrates and lets out an ominous alarm. Uh oh."))
+		to_chat(computer.loc, span_userdanger("你的[computer.name]震动并发出不祥的警报。哦不。"))
 	else
 		computer.audible_message(
-			span_danger("[computer] vibrates and lets out an ominous alarm. Uh oh."),
-			span_notice("[computer] begins to vibrate rapidly. Wonder what that means..."),
+			span_danger("[computer]震动并发出不祥的警报。哦不。"),
+			span_notice("[computer]开始快速震动。不知道这意味着什么……"),
 		)
 
 

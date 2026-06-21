@@ -22,26 +22,26 @@
 /* --------- */
 
 /area/station/ai/upload
-	name = "\improper AI Upload Area"
+	name = "\improper AI上传区"
 	icon_state = "unknown" // this is supposed to be for sorting, but if you want to make an upload hallway you can change this
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/ai/upload/chamber
-	name = "\improper AI Upload Chamber"
+	name = "\improper AI上传室"
 	icon_state = "ai_upload"
 
 /area/station/ai/upload/foyer
-	name = "\improper AI Upload Access"
+	name = "\improper AI上传通道"
 	icon_state = "ai_upload_foyer"
 
 /* SATELLITE */
 
 /area/station/ai/satellite
-	name = "\improper AI Satellite"
+	name = "\improper AI卫星"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/station/ai/satellite/chamber
-	name = "\improper AI Chamber"
+	name = "\improper AI核心室"
 	icon_state = "ai_chamber"
 	annoying_ambience = null
 
@@ -50,48 +50,48 @@
 	AddElement(/datum/element/block_area_power_fail)
 
 /area/station/ai/satellite/exterior
-	name = "\improper AI Satellite Exterior"
+	name = "\improper AI卫星外部"
 	secure = FALSE
 
 /area/station/ai/satellite/maintenance
-	name = "\improper AI Satellite Maintenance"
+	name = "\improper AI卫星维护区"
 	icon_state = "ai_maint"
 
 /area/station/ai/satellite/maintenance/storage
-	name = "\improper AI Satellite Storage"
+	name = "\improper AI卫星储藏室"
 	icon_state = "ai_storage"
 	ambience_index = AMBIENCE_DANGER
 
 /* Interior */
 
 /area/station/ai/satellite/interior
-	name = "\improper AI Satellite Antechamber"
+	name = "\improper AI卫星前厅"
 	icon_state = "ai_interior"
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/station/ai/satellite/foyer
-	name = "\improper AI Satellite Foyer"
+	name = "\improper AI卫星门厅"
 	icon_state = "ai_foyer"
 
 /area/station/ai/satellite/hallway
-	name = "\improper AI Satellite Hallway"
+	name = "\improper AI卫星走廊"
 
 /area/station/ai/satellite/uppernorth
-	name = "\improper AI Satellite Upper Fore"
+	name = "\improper AI卫星上层前部"
 
 /area/station/ai/satellite/uppersouth
-	name = "\improper AI Satellite Upper Aft"
+	name = "\improper AI卫星上层后部"
 
 /* Functions */
 
 /area/station/ai/satellite/atmos
-	name = "\improper AI Satellite Atmospherics"
+	name = "\improper AI卫星大气处理区"
 
 /area/station/ai/satellite/service
-	name = "\improper AI Satellite Service"
+	name = "\improper AI卫星服务区"
 
 /area/station/ai/satellite/teleporter
-	name ="\improper AI Satellite Teleporter"
+	name ="\improper AI卫星传送室"
 
 /area/station/ai/satellite/equipment
-	name ="\improper AI Satellite Equipment"
+	name ="\improper AI卫星设备间"

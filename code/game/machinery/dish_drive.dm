@@ -1,5 +1,5 @@
 /obj/machinery/dish_drive
-	name = "dish drive"
+	name = "盘驱动器"
 	desc = "A culinary marvel that uses matter-to-energy conversion to store dishes and shards. Convenient! \
 	Additional features include a vacuum function to suck in nearby dishes, and an automatic transfer beam that empties its contents into nearby disposal bins every now and then. \
 	Or you can just drop your plates on the floor, like civilized folk."
@@ -44,7 +44,7 @@
 /obj/machinery/dish_drive/examine(mob/user)
 	. = ..()
 	if(user.Adjacent(src))
-		. += span_notice("Alt-click it to beam its contents to any nearby disposal bins.")
+		. += span_notice("按住 Alt 键并单击它可将其内容传送到附近的任何处理箱。")
 	if(!LAZYLEN(dish_drive_contents))
 		. += "[src] is empty!"
 		return
@@ -67,12 +67,12 @@
 /obj/machinery/dish_drive/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!LAZYLEN(dish_drive_contents))
-		balloon_alert(user, "drive empty")
+		balloon_alert(user, "驱动器已空")
 		return
 	var/obj/item/dish = LAZYACCESS(dish_drive_contents, LAZYLEN(dish_drive_contents)) //the most recently-added item
 	LAZYREMOVE(dish_drive_contents, dish)
 	user.put_in_hands(dish)
-	balloon_alert(user, "[dish] taken")
+	balloon_alert(user, "已取出[dish]")
 	playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 	flick("synthesizer_beam", src)
 
@@ -133,7 +133,7 @@
 		if(is_type_in_list(dish, collectable_items) && dish.loc != src && (!dish.reagents || !dish.reagents.total_volume) && (dish.contents.len < 1))
 			if(dish.Adjacent(src))
 				LAZYADD(dish_drive_contents, dish)
-				visible_message(span_notice("[src] beams up [dish]!"))
+				visible_message(span_notice("[src]传送走了[dish]！"))
 				dish.forceMove(src)
 				playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 				flick("synthesizer_beam", src)
@@ -143,7 +143,7 @@
 /obj/machinery/dish_drive/attack_ai(mob/living/user)
 	if(machine_stat)
 		return
-	balloon_alert(user, "disposal signal sent")
+	balloon_alert(user, "已发送处理信号")
 	do_the_dishes(TRUE)
 
 /obj/machinery/dish_drive/click_alt(mob/living/user)
@@ -158,7 +158,7 @@
 	var/obj/machinery/disposal/bin/bin = locate() in view(binrange, src) //NOVA EDIT CHANGE
 	if(!bin)
 		if(manual)
-			visible_message(span_warning("[src] buzzes. There are no disposal bins in range!"))
+			visible_message(span_warning("[src] 嗡嗡作响。范围内没有垃圾桶！"))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 		return
 	var/disposed = 0
@@ -171,7 +171,7 @@
 			dish.forceMove(bin)
 			disposed++
 	if (disposed)
-		visible_message(span_notice("[src] [pick("whooshes", "bwooms", "fwooms", "pshooms")] and beams [disposed] stored item\s into the nearby [bin.name]."))
+		visible_message(span_notice("[src] [pick("whooshes", "bwooms", "fwooms", "pshooms")]着，并将[disposed]个存储的item\s 传送光束送入附近的[bin.name]。"))
 		playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 		playsound(bin, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 		Beam(bin, icon_state = "rped_upgrade", time = 5)
@@ -179,6 +179,6 @@
 		flick("synthesizer_beam", src)
 	else
 		if(manual)
-			visible_message(span_notice("There are no disposable items in [src]!"))
+			visible_message(span_notice("[src] 中没有一次性物品！"))
 		return
 	COOLDOWN_START(src, time_since_dishes, 1 MINUTES)

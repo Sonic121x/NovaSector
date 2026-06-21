@@ -4,8 +4,8 @@
 #define HEATER_COEFFICIENT 0.05
 
 /obj/machinery/plumbing/reaction_chamber
-	name = "mixing chamber"
-	desc = "Keeps chemicals separated until given conditions are met."
+	name = "混合室"
+	desc = "（该装置）可将化学品分隔保存，直至满足设定的条件才进行混合。"
 	icon_state = "reaction_chamber"
 	buffer = 200
 	reagents = /datum/reagents/plumbing/reaction_chamber
@@ -101,7 +101,7 @@
 
 	switch(action)
 		if("add")
-			var/selected_reagent = tgui_input_list(ui.user, "Select reagent", "Reagent", GLOB.name2reagent)
+			var/selected_reagent = tgui_input_list(ui.user, "选择试剂", "试剂", GLOB.name2reagent)
 			if(!selected_reagent)
 				return FALSE
 			if(QDELETED(ui) || ui.status != UI_INTERACTIVE)
@@ -168,7 +168,7 @@
 
 ///Chemistry version of reaction chamber that allows for acid and base buffers to be used while reacting
 /obj/machinery/plumbing/reaction_chamber/chem
-	name = "reaction chamber"
+	name = "反应室"
 
 	///If below this pH, we start dumping buffer into it
 	var/acidic_limit = 5

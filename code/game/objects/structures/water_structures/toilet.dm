@@ -136,7 +136,7 @@
 			return
 		if(cover_open)
 			if(!reagents.total_volume)
-				to_chat(user, span_notice("\The [src] is dry!"))
+				to_chat(user, span_notice("\The [src] 是干的！"))
 				return
 			grabbed_mob.visible_message(span_danger("[user] starts to give [grabbed_mob] a swirlie!"), span_userdanger("[user] starts to give you a swirlie..."))
 			swirlie = grabbed_mob
@@ -145,7 +145,7 @@
 				swirlie = null
 				return
 			if(!reagents.total_volume)
-				to_chat(user, span_notice("\The [src] is dry!"))
+				to_chat(user, span_notice("\The [src] 是干的！"))
 				return
 			grabbed_mob.visible_message(span_danger("[user] gives [grabbed_mob] a swirlie!"), span_userdanger("[user] gives you a swirlie!"), span_hear("You hear a toilet flushing."))
 			if(iscarbon(grabbed_mob))
@@ -336,12 +336,12 @@
 	LAZYADD(cistern_items, thing)
 
 /obj/structure/toilet/crowbar_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You start to [cistern_open ? "replace the lid on" : "lift the lid off"] the cistern..."))
+	to_chat(user, span_notice("你开始[cistern_open ? "replace the lid on" : "lift the lid off"]水箱盖..."))
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, TRUE)
 	if(tool.use_tool(src, user, 30))
 		user.visible_message(
-			span_notice("[user] [cistern_open ? "replaces the lid on" : "lifts the lid off"] the cistern!"),
-			span_notice("You [cistern_open ? "replace the lid on" : "lift the lid off"] the cistern!"),
+			span_notice("[user] [cistern_open ? "replaces the lid on" : "lifts the lid off"]水箱盖！"),
+			span_notice("你[cistern_open ? "replace the lid on" : "lift the lid off"]了水箱盖！"),
 			span_hear("You hear grinding porcelain."))
 		cistern_open = !cistern_open
 		update_appearance(UPDATE_ICON_STATE)

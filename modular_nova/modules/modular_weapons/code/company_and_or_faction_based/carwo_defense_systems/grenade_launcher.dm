@@ -1,8 +1,8 @@
 // Low caliber grenade launcher (fun & games)
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher
-	name = "\improper Kiboko Grenade Launcher"
-	desc = "A unique grenade launcher firing .980 grenades. A laser sight system allows its user to specify a range for the grenades it fires to detonate at."
+	name = "\improper 基博科榴弹发射器"
+	desc = "一款独特的榴弹发射器，发射.980口径榴弹。其激光瞄准系统允许使用者设定发射榴弹的引爆距离。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns48x.dmi'
 	icon_state = "kiboko"
@@ -59,8 +59,8 @@
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/examine(mob/user)
 	. = ..()
 
-	. += span_notice("With <b>Right Click</b> you can set the range that shells will detonate at.")
-	. += span_notice("A small indicator in the sight notes the current detonation range is: <b>[target_range]</b>.")
+	. += span_notice("使用<b>右键点击</b>可以设置炮弹的引爆距离。")
+	. += span_notice("瞄准镜上的一个小指示器显示当前引爆距离为：<b>[target_range]</b>。")
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!interacting_with || !user)
@@ -68,11 +68,11 @@
 
 	var/distance_ranged = get_dist(user, interacting_with)
 	if(distance_ranged > maximum_target_range)
-		user.balloon_alert(user, "out of range")
+		user.balloon_alert(user, "超出射程")
 		return ITEM_INTERACT_BLOCKING
 
 	target_range = distance_ranged
-	user.balloon_alert(user, "range set: [target_range]")
+	user.balloon_alert(user, "射程设定：[target_range]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/no_mag

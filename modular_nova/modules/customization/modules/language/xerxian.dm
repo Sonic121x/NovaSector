@@ -1,6 +1,6 @@
 /datum/language/xerxian
-	name = "Xerxian"
-	desc = "An evolved, streamlined form of Semitic tongues that come from the Middle East - primarily Arabic. Despite its ancient origins, it's still spoken by many cultures and colonies that came from the Arab League and general Middle Eastern regions."
+	name = "泽尔西安语"
+	desc = "一种源自中东——主要是阿拉伯语——的闪米特语族的进化、精简形式。尽管起源古老，它仍被许多来自阿拉伯联盟及中东地区的文化和殖民地所使用。"
 	key = "a"
 	space_chance = 40
 	sentence_chance = 0

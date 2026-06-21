@@ -1,6 +1,6 @@
 /mob/living/basic/creature
-	name = "creature"
-	desc = "A sanity-destroying otherthing from the netherworld."
+	name = "异界生物"
+	desc = "来自幽冥世界的、会摧毁理智的异界之物。"
 	icon_state = "otherthing"
 	icon_living = "otherthing"
 	icon_dead = "otherthing-dead"
@@ -68,8 +68,8 @@
 
 /// Jaunt spell used by creature. Can only jaunt or unjaunt if nothing can see you.
 /datum/action/cooldown/spell/jaunt/creature_teleport
-	name = "Uncanny Movement"
-	desc = "Enter or leave an alternate plane where you can travel through walls. You can only enter or emerge if unobserved."
+	name = "诡秘移动"
+	desc = "进入或离开一个可以穿墙而过的异次元平面。你只能在未被观察时进入或现身。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "blink"
 	background_icon_state = "bg_default"
@@ -92,7 +92,7 @@
 	if (!owner)
 		return SPELL_CANCEL_CAST
 	if (!do_after(owner, 6 SECONDS, target = owner.loc))
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 		return SPELL_CANCEL_CAST
 	return ..()
 
@@ -105,11 +105,11 @@
 	enter_jaunt(cast_on)
 
 /mob/living/basic/creature/tiggles
-	name = "Miss Tiggles"
+	name = "提格尔斯小姐"
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/creature/hatchling
-	name = "hatchling"
+	name = "幼体"
 	health = 25
 	maxHealth = 25
 	health_scaling = FALSE

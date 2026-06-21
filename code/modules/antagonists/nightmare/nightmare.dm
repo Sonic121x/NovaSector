@@ -1,5 +1,5 @@
 /datum/antagonist/nightmare
-	name = "\improper Nightmare"
+	name = "\improper 梦魇"
 	antagpanel_category = ANTAG_GROUP_ABOMINATIONS
 	pref_flag = ROLE_NIGHTMARE
 	show_in_antagpanel = FALSE
@@ -26,7 +26,7 @@
 	nightmare.mob_mood.mood_modifier += 1
 
 /datum/outfit/nightmare
-	name = "Nightmare (Preview only)"
+	name = "梦魇(预览)"
 
 /datum/outfit/nightmare/post_equip(mob/living/carbon/human/human, visuals_only)
 	human.set_species(/datum/species/shadow/nightmare)

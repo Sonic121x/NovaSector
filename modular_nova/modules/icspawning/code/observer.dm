@@ -11,13 +11,13 @@
 		outfits["Show All"] = "Show All"
 
 		var/dresscode
-		var/teleport_option = tgui_alert(usr, "How would you like to be spawned in?", "IC Quick Spawn", list("Bluespace", "Pod", "Cancel"))
+		var/teleport_option = tgui_alert(usr, "你希望以何种方式生成？", "IC快速生成", list("Bluespace", "Pod", "Cancel"))
 		if (teleport_option == "Cancel")
 			return
-		var/character_option = tgui_alert(usr, "Which character?", "IC Quick Spawn", list("Selected Character", "Randomly Created", "Cancel"))
+		var/character_option = tgui_alert(usr, "选择哪个角色？", "IC快速生成", list("Selected Character", "Randomly Created", "Cancel"))
 		if (character_option == "Cancel")
 			return
-		var/initial_outfits = tgui_alert(usr, "Select outfit", "Quick Dress", list("Bluespace Tech", "Show All", "Cancel"))
+		var/initial_outfits = tgui_alert(usr, "选择服装", "快速着装", list("Bluespace Tech", "Show All", "Cancel"))
 		if (initial_outfits == "Cancel")
 			return
 
@@ -32,13 +32,13 @@
 		// We're spawning someone else
 		var/give_return
 		if (user != usr)
-			give_return = tgui_alert(usr, "Do you want to give them the power to return? Not recommended for non-admins.", "Give power?", list("Yes", "No"))
+			give_return = tgui_alert(usr, "你希望赋予他们返回的能力吗？不建议非管理员使用。", "赋予能力？", list("Yes", "No"))
 			if(!give_return)
 				return
 
 		var/addquirks
 		if(character_option == "Selected Character")
-			addquirks = tgui_input_list(src, "Include quirks?", "Quirky", list("Quirks & Loadout", "Quirks Only", "Loadout Only", "Neither"))
+			addquirks = tgui_input_list(src, "包含特质？", "特性", list("Quirks & Loadout", "Quirks Only", "Loadout Only", "Neither"))
 			if(!addquirks)
 				return
 
@@ -89,7 +89,7 @@
 				empty_pod.style = /datum/pod_style/advanced
 				empty_pod.bluespace = TRUE
 				empty_pod.explosionSize = list(0,0,0,0)
-				empty_pod.desc = "A sleek, and slightly worn bluespace pod - its probably seen many deliveries..."
+				empty_pod.desc = "一个流线型、略显磨损的蓝空舱——它可能已经运送过许多货物了……"
 
 				spawned_player.forceMove(empty_pod)
 
@@ -105,7 +105,7 @@
 		var/datum/outfit/path_as_outfit = path
 		outfits[initial(path_as_outfit.name)] = path
 
-	var/dresscode = tgui_input_list(src, "Select outfit", "Robust quick dress shop", baseoutfits + sort_list(outfits))
+	var/dresscode = tgui_input_list(src, "选择服装", "强力快速换装商店", baseoutfits + sort_list(outfits))
 
 	if (isnull(dresscode))
 		return
@@ -120,7 +120,7 @@
 			var/datum/outfit/O = path
 			job_outfits[initial(O.name)] = path
 
-		dresscode = input("Select job equipment", "Robust quick dress shop") as null|anything in sort_list(job_outfits)
+		dresscode = input("选择职业装备", "强力快速换装商店") as null|anything in sort_list(job_outfits)
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -132,7 +132,7 @@
 			var/datum/outfit/O = path
 			plasmaman_outfits[initial(O.name)] = path
 
-		dresscode = input("Select plasmeme equipment", "Robust quick dress shop") as null|anything in sort_list(plasmaman_outfits)
+		dresscode = input("选择等离子人装备", "强力快速换装商店") as null|anything in sort_list(plasmaman_outfits)
 		dresscode = plasmaman_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -141,7 +141,7 @@
 		var/list/custom_names = list()
 		for(var/datum/outfit/req_outfit in GLOB.custom_outfits)
 			custom_names[req_outfit.name] = req_outfit
-		var/selected_name = input("Select outfit", "Robust quick dress shop") as null|anything in sort_list(custom_names)
+		var/selected_name = input("选择服装", "强力快速换装商店") as null|anything in sort_list(custom_names)
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return

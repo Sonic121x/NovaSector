@@ -1,6 +1,6 @@
 /datum/experiment/exploration_scan
-	name = "Exploration Experiment"
-	description = "An experiment requiring drone exploration to progress"
+	name = "勘查实验"
+	description = "一项需要无人机探索才能推进的实验"
 	exp_tag = "Exploration"
 	performance_hint = "Find a site with specific characteristics and perform the scan."
 	// Site type, scan needs to be of that type
@@ -33,20 +33,20 @@
 	return !is_complete()
 
 /datum/experiment/exploration_scan/asteroid_belt
-	name = "Scan Asteroid Belt"
-	description = "We're looking for a site to test our asteroid blasting caps. Perform point scan of one."
+	name = "扫描小行星带"
+	description = "我们正在寻找一个测试小行星爆破雷管的场地。对一个小行星带进行点扫描。"
 	required_site_type = /datum/exploration_site/asteroid_belt
 	required_scan_type = EXOSCAN_POINT
 
 /datum/experiment/exploration_scan/black_hole
-	name = "Deep scan a black hole"
-	description = "We require more research data on black holes, perform deep scan of a system affected by one."
+	name = "对黑洞进行深度探测"
+	description = "我们需要更多关于黑洞的研究数据，请对一个受其影响的星系进行深度扫描。"
 	required_condition = /datum/scan_condition/black_hole
 	required_scan_type = EXOSCAN_DEEP
 
 /datum/experiment/exploration_scan/random
-	name = "Random Exoscan Experiment"
-	description = "We need scan data of specific site type"
+	name = "随机外扫描实验"
+	description = "我们需要特定类型场地的扫描数据"
 	/// If not null the required_site_type will be picked from this list
 	var/list/possible_random_conditions
 	/// If not null the required_condition will be picked from this list

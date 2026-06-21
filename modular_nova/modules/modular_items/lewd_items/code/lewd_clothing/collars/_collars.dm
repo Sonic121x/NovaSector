@@ -119,7 +119,7 @@
 /obj/item/clothing/neck/collar/click_alt_secondary(mob/user) //Adds a toggle to wear above or below suit slot items, for hiding it under a big coat or something :3
 	alternate_worn_layer = (alternate_worn_layer == initial(alternate_worn_layer) ? LOW_NECK_LAYER : initial(alternate_worn_layer))
 	user.update_clothing(ITEM_SLOT_NECK)
-	balloon_alert(user, "wearing [alternate_worn_layer == initial(alternate_worn_layer) ? "above" : "below"] suits")
+	balloon_alert(user, "穿戴在 [alternate_worn_layer == initial(alternate_worn_layer) ? "above" : "below"] 套装")
 
 /// This is a KEY moment of this code. You got it. Key.
 /// ...

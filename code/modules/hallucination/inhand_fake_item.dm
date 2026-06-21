@@ -114,7 +114,7 @@
 		// Yes this can break if someone changse grenade icon stuff
 		hallucinated_item.icon_state = "[hallucinated_item.icon_state]_active"
 		hallucinator.playsound_local(get_turf(hallucinator), 'sound/items/weapons/armbomb.ogg', 60, TRUE)
-		to_chat(hallucinator, span_warning("You prime [hallucinated_item]! 5 seconds!"))
+		to_chat(hallucinator, span_warning("你拉开了[hallucinated_item]的保险！5秒！"))
 
 	return hallucinated_item
 
@@ -137,7 +137,7 @@
 	hallucinator.playsound_local(get_turf(hallucinator), 'sound/effects/magic/summon_magic.ogg', 50, TRUE)
 
 /obj/item/hallucinated
-	name = "mirage"
+	name = "幻象"
 	plane = ABOVE_HUD_PLANE
 	interaction_flags_item = NONE
 	item_flags = ABSTRACT | DROPDEL | HAND_ITEM | NOBLUDGEON // Most of these flags don't matter, but better safe than sorry

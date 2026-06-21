@@ -1,6 +1,6 @@
 /obj/item/organ/empowered_borer_egg
-	name = "strange egg"
-	desc = "All slimy and yuck."
+	name = "奇怪的蛋"
+	desc = "全是黏糊糊的恶心东西。"
 	icon_state = "innards" // not like you'll be seeing this anyway
 	visual = TRUE
 	zone = BODY_ZONE_CHEST
@@ -12,7 +12,7 @@
 
 /obj/item/organ/empowered_borer_egg/on_find(mob/living/finder)
 	..()
-	to_chat(finder, span_warning("You found an unknown egg in [owner]'s [zone]!"))
+	to_chat(finder, span_warning("你在[owner]的[zone]里发现了一枚未知的蛋！"))
 
 /obj/item/organ/empowered_borer_egg/Initialize(mapload)
 	. = ..()
@@ -25,7 +25,7 @@
 
 /obj/item/organ/empowered_borer_egg/on_mob_remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
-	visible_message(span_warning(span_italics("As [src] is cut out of [M], it quickly vibrates and shatters, leaving nothing but some goop!")))
+	visible_message(span_warning(span_italics("当[src]从[M]体内被切出时，它迅速振动并碎裂，只留下一些粘液！")))
 	new/obj/effect/decal/cleanable/food/egg_smudge(get_turf(src))
 	qdel(src)
 
@@ -50,13 +50,13 @@
 		borer_egg.generation = generation
 		var/obj/item/bodypart/chest/chest = owner.get_bodypart(BODY_ZONE_CHEST)
 		chest.dismember()
-		owner.visible_message(span_danger("An egg explodes out of [owner]'s chest, sending gore flying everywhere!"), span_danger("An egg explodes out of your chest, giblets flying everywhere!"))
+		owner.visible_message(span_danger("一枚蛋从[owner]的胸口爆裂而出，血肉碎块四处飞溅！"), span_danger("一枚蛋从你的胸口爆裂而出，内脏碎块四处飞溅！"))
 		return
 	var/mob/dead/observer/new_borer = pick(candidates)
 	var/mob/living/basic/cortical_borer/empowered/spawned_cb = new(get_turf(owner))
 	var/obj/item/bodypart/chest/chest = owner.get_bodypart(BODY_ZONE_CHEST)
 	chest.dismember()
-	owner.visible_message(span_danger("[spawned_cb] explodes out of [owner]'s chest, sending gore flying everywhere!"), span_danger("[spawned_cb] explodes out of your chest, giblets flying everywhere!"))
+	owner.visible_message(span_danger("[spawned_cb]从[owner]的胸口爆裂而出，血肉碎块四处飞溅！"), span_danger("[spawned_cb]从你的胸口爆裂而出，内脏碎块四处飞溅！"))
 	spawned_cb.generation = generation
 	spawned_cb.ckey = new_borer.ckey
 	spawned_cb.mind.add_antag_datum(/datum/antagonist/cortical_borer)

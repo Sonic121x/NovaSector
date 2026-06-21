@@ -58,7 +58,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 	recovered_items += paper
 
 	if(!HAS_TRAIT(new_body, TRAIT_HUSK))
-		paper.name = "DO NOT REMOVE BRAIN"
+		paper.name = "请勿移除大脑"
 		paper.add_raw_text("Body swapping is not covered by medical insurance for unhusked bodies. Chemical brain explosives have been administered to enforce stipend.")
 		var/obj/item/organ/brain/boombrain = new_body.get_organ_by_type(/obj/item/organ/brain)
 		//I swear to fuck I will explode you. you're not clever
@@ -68,7 +68,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 		//(no one abused it yet but I am already getting pinged by people who think they've broken the system when really I just expected better of them)
 		boombrain.AddElement(/datum/element/dangerous_organ_removal)
 	else
-		paper.name = "BODYSWAPPING PERMITTED"
+		paper.name = "允许身体交换"
 		paper.add_raw_text("Body swapping is covered by medical insurance in case of husking and a lack of skill in the practictioner.")
 
 	var/obj/item/organ/brain/hersens = new_body.get_organ_by_type(/obj/item/organ/brain)
@@ -120,8 +120,8 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 
 /// A box for recovered items that can only be opened by the new crewmember
 /obj/item/storage/lockbox/mind
-	name = "mind lockbox"
-	desc = "A locked box, openable only by one mind."
+	name = "意识锁箱"
+	desc = "一个上锁的盒子，仅能被一个意识打开。"
 
 	/// The mind needed to unlock the box
 	var/datum/mind/mind
@@ -144,7 +144,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 	if (user.mind == mind)
 		return TRUE
 	if (!silent)
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "访问被拒绝！")
 	return FALSE
 
 /obj/item/storage/lockbox/mind/toggle_locked(mob/living/user)
@@ -152,7 +152,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 		return
 
 	atom_storage.set_locked(STORAGE_NOT_LOCKED)
-	balloon_alert(user, "unlocked")
+	balloon_alert(user, "已解锁")
 
 /obj/item/storage/lockbox/mind/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(broken || user.mind != mind)
@@ -161,13 +161,13 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 	return CONTEXTUAL_SCREENTIP_SET
 
 /datum/aas_config_entry/medical_lost_crew_reward
-	name = "Medical Alert: Lost Crew Revival Program"
+	name = "医疗警报：失踪船员复苏计划"
 	announcement_lines_map = list(
-		"Deceased" = "Sensors indicate lifesigns of %PERSON have seized. Please inform their family of your failure.",
-		"Revived" = "Sensors indicate continued survival of %PERSON. Well done, %AWARDcr has been transferred to the medical budget."
+		"Deceased" = "传感器显示%PERSON的生命体征已停止。请将你们的失败告知其家人。",
+		"Revived" = "传感器显示%PERSON继续存活。干得好，%AWARDcr已转入医疗部门预算。"
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with body's name",
-		"AWARD" = "with money that medical department receive, if any"
+		"PERSON" = "将被替换为尸体的名字",
+		"AWARD" = "医疗部门收到的金额（如果有的话）"
 	)
 	modifiable = FALSE

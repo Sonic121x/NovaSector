@@ -3,8 +3,8 @@
  * This allows users to manually trigger working out.
  */
 /datum/action/push_weights
-	name = "Work out"
-	desc = "Start working out"
+	name = "锻炼"
+	desc = "开始锻炼"
 	button_icon = 'icons/obj/fluff/gym_equipment.dmi'
 	button_icon_state = "stacklifter"
 	///Reference to the weightpress we are created inside of.

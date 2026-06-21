@@ -1,164 +1,164 @@
 /// CHOKER / THIN COLLARS ///
 
 /datum/greyscale_config/thin_collar
-	name = "Thin Choker"
+	name = "细项圈"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thin_choker.json'
 
 /datum/greyscale_config/thin_collar/worn
-	name = "Thin Choker (Worn)"
+	name = "细项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/thin_collar/bell
-	name = "Thin Bell Collar"
+	name = "细铃铛项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thin_bell_collar.json'
 
 /datum/greyscale_config/thin_collar/bell/worn
-	name = "Thin Bell Collar (Worn)"
+	name = "细铃铛项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/thin_collar/cowbell
-	name = "Thin Cowbell Collar"
+	name = "细牛铃项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thin_cowbell_collar.json'
 
 /datum/greyscale_config/thin_collar/cowbell/worn
-	name = "Thin Cowbell Collar (Worn)"
+	name = "细牛铃项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/thin_collar/cross
-	name = "Thin Cross Collar"
+	name = "细十字项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thin_cross_collar.json'
 
 /datum/greyscale_config/thin_collar/cross/worn
-	name = "Thin Cross Collar (Worn)"
+	name = "细十字项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/thin_collar/tagged
-	name = "Thin Tagged Collar"
+	name = "细标签项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thin_tagged_collar.json'
 
 /datum/greyscale_config/thin_collar/tagged/worn
-	name = "Thin Tagged Collar (Worn)"
+	name = "细标签项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 /datum/greyscale_config/thin_collar/holo
-	name = "Thin Holocollar"
+	name = "细全息项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thin_holocollar.json'
 
 /datum/greyscale_config/thin_collar/holo/worn
-	name = "Thin Holocollar (Worn)"
+	name = "细全息项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 /// THICK CHOKER / THICK COLLARS ///
 
 /datum/greyscale_config/thick_collar
-	name = "Thick Choker"
+	name = "粗项圈"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thick_choker.json'
 
 /datum/greyscale_config/thick_collar/worn
-	name = "Thick Choker (Worn)"
+	name = "粗项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/thick_collar/bell
-	name = "Thick Bell Collar"
+	name = "粗铃铛项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thick_bell_collar.json'
 
 /datum/greyscale_config/thick_collar/bell/worn
-	name = "Thick Bell Collar (Worn)"
+	name = "粗铃铛项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/thick_collar/cowbell
-	name = "Thick Cowbell Collar"
+	name = "粗牛铃项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thick_cowbell_collar.json'
 
 /datum/greyscale_config/thick_collar/cowbell/worn
-	name = "Thick Cowbell Collar (Worn)"
+	name = "粗牛铃项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/thick_collar/cross
-	name = "Thick Cross Collar"
+	name = "粗十字项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thick_cross_collar.json'
 
 /datum/greyscale_config/thick_collar/cross/worn
-	name = "Thick Cross Collar (Worn)"
+	name = "粗十字项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/thick_collar/tagged
-	name = "Thick Tagged Collar"
+	name = "粗标签项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thick_tagged_collar.json'
 
 /datum/greyscale_config/thick_collar/tagged/worn
-	name = "Thick Tagged Collar (Worn)"
+	name = "厚实挂牌项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 /datum/greyscale_config/thick_collar/holo
-	name = "Thick Holocollar"
+	name = "厚实全息项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/thick_holocollar.json'
 
 /datum/greyscale_config/thick_collar/holo/worn
-	name = "Thick Holocollar (Worn)"
+	name = "厚实全息项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 /// THICK & LINED / LEATHER COLLARS ///
 
 /datum/greyscale_config/leather_collar
-	name = "Leather Collar"
+	name = "皮革项圈"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/leather_collar.json'
 
 /datum/greyscale_config/leather_collar/worn
-	name = "Leather Collar (Worn)"
+	name = "皮革项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/leather_collar/bell
-	name = "Leather Bell Collar"
+	name = "皮革铃铛项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/leather_bell_collar.json'
 
 /datum/greyscale_config/leather_collar/bell/worn
-	name = "Leather Bell Collar (Worn)"
+	name = "皮革铃铛项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/leather_collar/cowbell
-	name = "Leather Cowbell Collar"
+	name = "皮革牛铃项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/leather_cowbell_collar.json'
 
 /datum/greyscale_config/leather_collar/cowbell/worn
-	name = "Leather Cowbell Collar (Worn)"
+	name = "皮革牛铃项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/leather_collar/cross
-	name = "Leather Cross Collar"
+	name = "皮革十字项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/leather_cross_collar.json'
 
 /datum/greyscale_config/leather_collar/cross/worn
-	name = "Leather Cross Collar (Worn)"
+	name = "皮革十字项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 
 /datum/greyscale_config/leather_collar/tagged
-	name = "Leather Tagged Collar"
+	name = "皮革挂牌项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/leather_tagged_collar.json'
 
 /datum/greyscale_config/leather_collar/tagged/worn
-	name = "Leather Tagged Collar (Worn)"
+	name = "皮革挂牌项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 
 /datum/greyscale_config/leather_collar/holo
-	name = "Leather Holocollar"
+	name = "皮革全息项圈"
 	json_config = 'modular_nova/modules/GAGS/nsfw/json_configs/clothing/collars/leather_holocollar.json'
 
 /datum/greyscale_config/leather_collar/holo/worn
-	name = "Leather Holocollar (Worn)"
+	name = "皮革全息项圈（已佩戴）"
 	icon_file = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'

@@ -145,7 +145,7 @@
 		return
 	var/obj/item/card/id/contractor_id = contract.owner.current?.get_idcard(TRUE)
 	if(!contractor_id?.registered_account.account_id) // NOVA EDIT CHANGE - ORIGINAL: if(!contractor_id || !contractor_id.registered_account)
-		to_chat(contract.owner.current, span_notice("A briefcase appears at your feet!")) // NOVA EDIT ADDITION
+		to_chat(contract.owner.current, span_notice("一个公文包出现在你脚边！")) // NOVA EDIT ADDITION
 		var/obj/item/storage/briefcase/secure/case = new(get_turf(contract.owner.current)) // NOVA EDIT ADDITION
 		for(var/i in 1 to (round((ransom * CONTRACTOR_RANSOM_CUT) / 1000))) // NOVA EDIT ADDITION - Gets slightly less/more but whatever
 			new /obj/item/stack/spacecash/c1000(case) // NOVA EDIT ADDITION
@@ -187,20 +187,20 @@
 			victim.flash_act()
 			victim.adjust_confusion(1 SECONDS)
 			victim.adjust_eye_blur(5 SECONDS)
-			to_chat(victim, span_warning("You feel strange..."))
+			to_chat(victim, span_warning("你感觉有点奇怪..."))
 			time_until_next = 6 SECONDS
 		if(VICTIM_EXPERIENCE_FIRST_HIT)
-			to_chat(victim, span_warning("That pod did something to you..."))
+			to_chat(victim, span_warning("那个舱对你做了什么..."))
 			victim.adjust_dizzy(3.5 SECONDS)
 			time_until_next = 6.5 SECONDS
 		if(VICTIM_EXPERIENCE_SECOND_HIT)
-			to_chat(victim, span_warning("Your head pounds... It feels like it's going to burst out your skull!"))
+			to_chat(victim, span_warning("你的头阵阵作痛...感觉像是要冲破你的颅骨！"))
 			victim.flash_act()
 			victim.adjust_confusion(2 SECONDS)
 			victim.adjust_eye_blur(3 SECONDS)
 			time_until_next = 3 SECONDS
 		if(VICTIM_EXPERIENCE_THIRD_HIT)
-			to_chat(victim, span_warning("Your head pounds..."))
+			to_chat(victim, span_warning("你的头阵阵作痛..."))
 			time_until_next = 10 SECONDS
 		if(VICTIM_EXPERIENCE_LAST_HIT)
 			victim.flash_act()

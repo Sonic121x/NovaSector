@@ -1,7 +1,7 @@
 // Interdyne survival box
 /obj/item/storage/box/survival/interdyne
-	name = "operation-ready survival box"
-	desc = "A box with the essentials of your operation. This one is labelled to contain an extended-capacity tank."
+	name = "行动就绪生存箱"
+	desc = "一个装有您行动必需品的箱子。这个箱子的标签显示它内含一个扩展容量气罐。"
 	icon_state = "syndiebox"
 	illustration = "extendedtank"
 	mask_type = /obj/item/clothing/mask/neck_gaiter

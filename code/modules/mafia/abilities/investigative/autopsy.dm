@@ -4,7 +4,7 @@
  * During the night, choose someone to check their role.
  */
 /datum/mafia_ability/autopsy
-	name = "Autopsy"
+	name = "验尸"
 	ability_action = "perform an autopsy on"
 	use_flags = CAN_USE_ON_OTHERS|CAN_USE_ON_DEAD
 

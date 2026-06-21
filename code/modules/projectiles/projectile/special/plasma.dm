@@ -1,5 +1,5 @@
 /obj/projectile/plasma
-	name = "plasma blast"
+	name = "等离子爆炸"
 	icon_state = "plasmacutter"
 	damage_type = BURN
 	armor_flag = ENERGY
@@ -38,7 +38,7 @@
 
 /obj/projectile/plasma/turret
 	//Between normal and advanced for damage, made a beam so not the turret does not destroy glass
-	name = "plasma beam"
+	name = "等离子束"
 	damage = 24
 	range = 7
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE

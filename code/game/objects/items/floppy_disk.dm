@@ -39,8 +39,8 @@
 	new_icon_state = "datadisk7"
 
 /obj/item/disk
-	name = "floppy disk"
-	desc = "A generic floppy disk. No way Nanotrasen still uses those, right?"
+	name = "软盘"
+	desc = "一张普通的软盘。纳米特拉森总不会还在用这玩意儿吧？"
 	icon = 'icons/obj/devices/floppy_disks.dmi'
 	icon_state = "datadisk3"
 	w_class = WEIGHT_CLASS_TINY
@@ -101,16 +101,16 @@
 	. += span_notice("The write-protect tab is set to [span_bold("[read_only ? "protected" : "unprotected"]")].")
 
 	if(custom_description)
-		. += span_notice("There's something scribbled on the sticker:")
-		. += span_notice(span_italics("\"[custom_description]\""))
+		. += span_notice("贴纸上潦草地写着：")
+		. += span_notice(span_italics("[custom_description]"))
 
 /obj/item/disk/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/pen))
 		if(sticker_icon_state != STARTING_STICKER)
-			to_chat(user, span_warning("You can't add anything else!"))
+			to_chat(user, span_warning("你不能再添加任何东西了！"))
 			return ITEM_INTERACT_FAILURE
 
-		var/newdescription = sanitize_text(tgui_input_text(user, "What do you want to write?", "Floppy Disk", max_length = MAX_TEXT_LENGTH, multiline = TRUE))
+		var/newdescription = sanitize_text(tgui_input_text(user, "你想写些什么？", "软盘", max_length = MAX_TEXT_LENGTH, multiline = TRUE))
 		if(!newdescription)
 			return ITEM_INTERACT_FAILURE
 
@@ -118,7 +118,7 @@
 			return ITEM_INTERACT_FAILURE
 
 		playsound(src, SFX_WRITING_PEN, 30)
-		to_chat(user, span_notice("You sign the [src]."))
+		to_chat(user, span_notice("你在[src]上签了名。"))
 
 		custom_description = newdescription
 		set_sticker_icon_state(pick("o_text1", "o_text2", "o_text3"))
@@ -128,7 +128,7 @@
 
 /obj/item/disk/attack_self(mob/user)
 	if(read_only_locked)
-		to_chat(user, span_warning("The write-protect tab seems to be stuck in place!"))
+		to_chat(user, span_warning("写保护标签似乎卡住了！"))
 		return
 	read_only = !read_only
 	to_chat(user, span_notice("You flip the write-protect tab to [span_bold("[read_only ? "protected" : "unprotected"]")]."))
@@ -156,7 +156,7 @@
 		return CLICK_ACTION_BLOCKING
 
 	set_sticker_icon_state(sticker_variants[pick])
-	to_chat(user, span_notice("You change the sticker on [src] to '[pick]'."))
+	to_chat(user, span_notice("你将[src]上的贴纸更换为'[pick]'。"))
 	return CLICK_ACTION_SUCCESS
 
 /// Can we select a new sticker?
@@ -203,8 +203,8 @@
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/disk_stack
-	name = "stack of floppy disks"
-	desc = "A stack of floppy disks. You wonder what happens if you pull out the bottom one..."
+	name = "一叠软盘"
+	desc = "一叠软盘。你想知道如果抽出最底下那张会发生什么……"
 	icon = null
 	icon_state = null
 	w_class = WEIGHT_CLASS_SMALL
@@ -226,7 +226,7 @@
 
 /obj/item/disk_stack/examine(mob/user)
 	. = ..()
-	. += span_notice("There are [span_bold("[length(stacked_disks)]")] disks in the stack.")
+	. += span_notice("这叠里有[span_bold("[length(stacked_disks)]")]张磁盘。")
 
 /obj/item/disk_stack/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/disk_stack))
@@ -237,12 +237,12 @@
 
 /obj/item/disk_stack/proc/add_to_stack(mob/living/user, obj/item/disk/newdisk)
 	if(length(stacked_disks) >= MAX_DISK_STACK_SIZE)
-		balloon_alert(user, "can't add more!")
+		balloon_alert(user, "无法添加更多！")
 		return ITEM_INTERACT_BLOCKING
 
 	newdisk.forceMove(src)
 	stacked_disks += newdisk
-	balloon_alert(user, "added to top")
+	balloon_alert(user, "已添加到顶部")
 	update_appearance(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS
 
@@ -264,7 +264,7 @@
 
 	var/obj/item/disk/top = stacked_disks[length(stacked_disks)]
 	user.put_in_hands(top)
-	balloon_alert(user, "removed top disk")
+	balloon_alert(user, "已移除顶部磁盘")
 
 	if(length(stacked_disks) > 1)
 		update_appearance(UPDATE_OVERLAYS)
@@ -301,11 +301,11 @@
 	diskstack.update_appearance(UPDATE_OVERLAYS)
 
 	if(!amount_counter)
-		balloon_alert(user, "no space!")
+		balloon_alert(user, "没有空间了！")
 		return ITEM_INTERACT_BLOCKING
 
 	update_appearance(UPDATE_OVERLAYS)
-	to_chat(user, span_notice("You merge two stacks of disks together."))
+	to_chat(user, span_notice("你将两叠磁盘合并在一起。"))
 
 	if(!length(diskstack.stacked_disks))
 		qdel(diskstack)
@@ -324,7 +324,7 @@
 		each_disk.forceMove(landing)
 		each_disk.throw_at(get_step(src, pick(NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST)), 1, 0.8)
 
-	visible_message(span_warning("The stack falls apart!"))
+	visible_message(span_warning("磁盘叠散开了！"))
 	qdel(src)
 
 /obj/item/disk_stack/attack_hand_secondary(mob/user, list/modifiers)
@@ -349,8 +349,8 @@
 	return FALSE
 
 /obj/item/delivery/small/floppy
-	name = "flat parcel"
-	desc = "A flat paper parcel."
+	name = "扁平包裹"
+	desc = "一个扁平的纸包裹。"
 	icon_state = "deliveryfloppy"
 	base_icon_state = "deliveryfloppy"
 

@@ -1,5 +1,5 @@
 /datum/crafting_recipe/satchelholding
-	name = "Satchel of Holding"
+	name = "次元挎包"
 	reqs = list(
 		/obj/item/satchel_of_holding_inert = 1,
 		/obj/item/assembly/signaler/anomaly/bluespace = 1,
@@ -8,7 +8,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/duffelholding
-	name = "Duffel Bag of Holding"
+	name = "次元旅行包"
 	reqs = list(
 		/obj/item/duffel_of_holding_inert = 1,
 		/obj/item/assembly/signaler/anomaly/bluespace = 1,

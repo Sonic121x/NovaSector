@@ -1,6 +1,6 @@
 /obj/item/storage/toolbox/medical
-	name = "medical toolbox"
-	desc = "A toolbox painted soft white and light blue. This is getting ridiculous."
+	name = "医疗工具箱"
+	desc = "一个漆成柔白色和浅蓝色的工具箱。这越来越离谱了。"
 	icon_state = "medical"
 	inhand_icon_state = "toolbox_medical"
 	attack_verb_continuous = list("treats", "surgeries", "tends", "tends wounds on")
@@ -28,8 +28,8 @@
 	tray_type = /obj/item/surgery_tray/full
 
 /obj/item/storage/toolbox/medical/coroner
-	name = "coroner toolbox"
-	desc = "A toolbox painted soft white and dark grey. This is getting beyond ridiculous."
+	name = "验尸官工具箱"
+	desc = "一个漆成柔白色和深灰色的工具箱。这简直离谱到家了。"
 	icon_state = "coroner"
 	inhand_icon_state = "toolbox_coroner"
 	attack_verb_continuous = list("dissects", "autopsies", "corones")

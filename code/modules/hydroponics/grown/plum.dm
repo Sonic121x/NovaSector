@@ -1,7 +1,7 @@
 // Plum
 /obj/item/seeds/plum
-	name = "plum seed pack"
-	desc = "These seeds grow into plum trees."
+	name = "李子种子包"
+	desc = "能长成李子的种子。"
 	icon_state = "seed-plum"
 	species = "plum"
 	plantname = "Plum Tree"
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/plum
 	seed = /obj/item/seeds/plum
-	name = "plum"
-	desc = "A poet's favorite fruit. Noice."
+	name = "李子"
+	desc = "诗人最钟爱的水果。不错。"
 	icon_state = "plum"
 	foodtypes = FRUIT
 	tastes = list("plum" = 1)
@@ -30,8 +30,8 @@
 
 // Plumb
 /obj/item/seeds/plum/plumb
-	name = "plumb seed pack"
-	desc = "These seeds grow into plumb trees."
+	name = "铅锤种子包"
+	desc = "能长成铅李的种子。"
 	icon_state = "seed-plumb"
 	species = "plumb"
 	plantname = "Plumb Tree"
@@ -43,8 +43,8 @@
 
 /obj/item/food/grown/plum/plumb
 	seed = /obj/item/seeds/plum/plumb
-	name = "plumb"
-	desc = "It feels very heavy."
+	name = "铅李"
+	desc = "这东西特别沉。"
 	icon_state = "plumb"
 	distill_reagent = null
 	wine_power = 50

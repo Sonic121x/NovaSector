@@ -1,5 +1,5 @@
 /obj/item/gun/ballistic/automatic/pistol/pepperball
-	name = "\improper Bolt Pepperball AHG"
+	name = "\improper 博尔特胡椒球AHG"
 	desc = "An incredibly mediocre 'firearm' designed to fire soft pepper balls meant to easily subdue targets."
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/pepperball/pepperball.dmi'
 	icon_state = "peppergun"
@@ -20,8 +20,8 @@
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
 
 /obj/item/ammo_box/magazine/pepperball
-	name = "pistol magazine (pepperball)"
-	desc = "A gun magazine filled with balls, the kind that make your face itch. Holds eight rounds."
+	name = "手枪弹匣（胡椒球）"
+	desc = "一个装满小球的枪用弹匣，就是那种会让你脸发痒的那种。可容纳八发。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/pepperball/pepperball.dmi'
 	icon_state = "pepperball"
 	ammo_type = /obj/item/ammo_casing/pepperball
@@ -31,15 +31,15 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_casing/pepperball
-	name = "pepperball"
-	desc = "A pepperball casing."
+	name = "胡椒球"
+	desc = "一个胡椒球弹壳。"
 	caliber = CALIBER_PEPPERBALL
 	projectile_type = /obj/projectile/bullet/pepperball
 	harmful = FALSE
 	ammo_categories = AMMO_CLASS_NONE
 
 /obj/projectile/bullet/pepperball
-	name = "pepperball orb"
+	name = "胡椒球弹"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/pepperball/projectiles.dmi'
 	icon_state = "pepperball"
 	damage = 0
@@ -60,7 +60,7 @@
 	. = ..()
 
 /datum/design/pepperballs
-	name = "Pepperball Ammo Box"
+	name = "胡椒球弹药箱"
 	id = "pepperballs"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -74,10 +74,10 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /obj/item/ammo_box/advanced/pepperballs
-	name = "pepperball ammo box"
+	name = "胡椒球弹药箱"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/pepperball/ammoboxes.dmi'
 	icon_state = "box10x24"
-	desc = "A box of pepper ball rounds, holds eighteen rounds."
+	desc = "一盒胡椒球弹药，可容纳十八发。"
 	custom_price = PAYCHECK_CREW * 2
 	ammo_type = /obj/item/ammo_casing/pepperball
 	custom_materials = list(

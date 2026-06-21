@@ -120,7 +120,7 @@
 /datum/browser/proc/open(use_on_close = TRUE)
 	if(isnull(window_id)) //null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
-		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on GitHub!"))
+		to_chat(user, span_userdanger("你试图打开的 [title] 浏览器未能通过安全检查！请在 GitHub 上报告此问题！"))
 		return
 
 	var/window_size = ""
@@ -427,7 +427,7 @@
 			if ("boolean")
 				setting["value"] = (setting["value"] == "Yes") ? "No" : "Yes"
 			if ("ckey")
-				setting["value"] = input(user, "[setting["desc"]]?") in (list("none") + GLOB.directory)
+				setting["value"] = input(user, "[setting["desc"]]？") in (list("none") + GLOB.directory)
 		if (setting["callback"])
 			var/datum/callback/callback = setting["callback"]
 			settings = callback.Invoke(settings)

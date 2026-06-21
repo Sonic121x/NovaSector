@@ -1,7 +1,7 @@
 
 /datum/action/cooldown/spell/list_target/telepathy
-	name = "Telepathy"
-	desc = "Telepathically transmits a message to the target."
+	name = "Telepathy-心灵感应"
+	desc = "用心灵感应向目标传递信息。"
 	button_icon = 'icons/mob/actions/actions_revenant.dmi'
 	button_icon_state = "r_transmit"
 
@@ -22,12 +22,12 @@
 	if(. & SPELL_CANCEL_CAST)
 		return
 
-	message = tgui_input_text(owner, "What do you wish to whisper to [cast_on]?", "[src]", max_length = MAX_MESSAGE_LEN)
+	message = tgui_input_text(owner, "你想对[cast_on]耳语什么？", "[src]", max_length = MAX_MESSAGE_LEN)
 	if(QDELETED(src) || QDELETED(owner) || QDELETED(cast_on) || !can_cast_spell())
 		return . | SPELL_CANCEL_CAST
 
 	if(get_dist(cast_on, owner) > target_radius)
-		owner.balloon_alert(owner, "they're too far!")
+		owner.balloon_alert(owner, "他们太远了！")
 		return . | SPELL_CANCEL_CAST
 
 	if(!message)
@@ -42,13 +42,13 @@
 
 	var/failure_message_for_ghosts = ""
 
-	to_chat(owner, "<span class='[bold_telepathy_span]'>You transmit to [cast_on]:</span> [formatted_message]")
+	to_chat(owner, "<span class='[bold_telepathy_span]'>你向[cast_on]传讯：</span> [formatted_message]")
 	if(!cast_on.can_block_magic(antimagic_flags, charge_cost = 0) && !(HAS_TRAIT(cast_on, TRAIT_PSIONIC_DAMPENER))) // NOVA EDIT CHANGE - ORIGINAL: if(!cast_on.can_block_magic(antimagic_flags, charge_cost = 0)) //hear no evil
-		cast_on.balloon_alert(cast_on, "you hear a voice")
-		to_chat(cast_on, "<span class='[bold_telepathy_span]'>You hear a voice in your head...</span> [formatted_message]")
+		cast_on.balloon_alert(cast_on, "你听到了一个声音")
+		to_chat(cast_on, "<span class='[bold_telepathy_span]'>你脑海中响起一个声音...</span> [formatted_message]")
 	else
-		owner.balloon_alert(owner, "transmission blocked!")
-		to_chat(owner, span_warning("Something has blocked your transmission!"))
+		owner.balloon_alert(owner, "传输被阻挡！")
+		to_chat(owner, span_warning("有什么东西阻挡了你的传讯！"))
 		failure_message_for_ghosts = "<span class='[bold_telepathy_span]'> (blocked by antimagic)</span>"
 
 	for(var/mob/dead/ghost as anything in GLOB.dead_mob_list)

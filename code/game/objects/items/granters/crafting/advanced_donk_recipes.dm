@@ -1,7 +1,7 @@
 
 /obj/item/book/granter/crafting_recipe/donk_secret_recipe
-	name = "Donk Co. Secret Recipe"
-	desc = "Documents detailing how to make several Donk Co. branded prototypes."
+	name = "Donk公司秘制配方"
+	desc = "详细记载了如何制作几种Donk公司品牌原型产品的文件。"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/food/donkpocket/deluxe,
 		/datum/crafting_recipe/food/donkpocket/deluxe/nocarb,

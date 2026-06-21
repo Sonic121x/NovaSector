@@ -6,40 +6,40 @@
 
 // Command areas
 /area/station/command/captain_kitchen
-	name = "Captain's Kitchen"
+	name = "舰长厨房"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "capt_kitchen"
 
 /area/station/command/captain_dining
-	name = "Captain's Dining Room"
+	name = "舰长餐厅"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "capt_dining"
 
 /area/station/command/cc_dock
-	name = "Central Command Ferry Dock"
+	name = "中央指挥部渡轮码头"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "cc_dock"
 
 /area/station/command/secure_bunker
-	name = "Secure Bunker"
+	name = "安全掩体"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "secure_bunker"
 
 // NT Consultant area
 /area/station/command/heads_quarters/nt_rep
-	name = "Nanotrasen Consultant's Office"
+	name = "纳米传讯顾问办公室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "nt_rep"
 
 // Blueshield area
 /area/station/command/heads_quarters/blueshield
-	name = "Blueshield's Office"
+	name = "蓝盾办公室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "blueshield"
 
 //Bridge Officer area
 /area/station/command/heads_quarters/bridge_officer
-	name = "Bridge Officer Quarters"
+	name = "舰桥军官宿舍"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "nt_rep"
 /*
@@ -48,85 +48,85 @@
 
 // Engineering Areas
 /area/station/engineering/power_room
-	name = "Ship Power Storage Room"
+	name = "舰船电力储存室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "power_room"
 
 // Atmos Areas
 /area/station/engineering/atmos/hallway
-	name = "Atmos Hall"
+	name = "大气大厅"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "atmos_hall"
 
 /area/station/engineering/atmos/test_chambers
-	name = "Atmospherics Testing Chambers"
+	name = "大气测试室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "atmos_test"
 
 // Medical Areas
 /area/station/medical/aslyum
-	name = "Aslyum"
+	name = "收容所"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "aslyum"
 
 // Science Areas
 /area/station/science/tele_sci
-	name = "Tele Sci Room"
+	name = "传送科研室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "tele_sci"
 
 // Security areas
 /area/station/security/checkpoint/service
-	name = "Security Post - Service"
+	name = "安保哨站 - 服务区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "checkpoint_serv"
 
 // CO Office
 /area/station/security/corrections_officer
-	name = "Corrections Officer Lounge"
+	name = "惩戒官休息室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "corrections_officer"
 
 // Department power stations
 /area/station/cargo/power_station
-	name = "Cargo Power Station"
+	name = "货运电力站"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "cargo_power"
 
 /area/station/cargo/power_station/lower
-	name = "Lower Cargo Power Station"
+	name = "下层货运电力站"
 
 /area/station/cargo/power_station/upper
-	name = "Upper Cargo Power Station"
+	name = "上层货运电力站"
 
 /area/station/engineering/power_station
-	name = "Engineering Power Station"
+	name = "工程电力站"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "engie_power"
 
 /area/station/engineering/power_station/lower
-	name = "Lower Engineering Power Station"
+	name = "下层工程电力站"
 
 /area/station/engineering/power_station/upper
-	name = "Upper Engineering Power Station"
+	name = "上层工程电力站"
 
 /area/station/medical/power_station
-	name = "Medical Power Station"
+	name = "医疗电力站"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "med_power"
 
 /area/station/science/power_station
-	name = "Science Power Station"
+	name = "科研电力站"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "sci_power"
 
 /area/station/security/power_station
-	name = "Security Power Station"
+	name = "安保电力站"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "sec_power"
 
 /area/station/service/power_station
-	name = "Service Power Station"
+	name = "服务电力站"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "serv_power"
 
@@ -136,131 +136,131 @@
 
 // Generic/Civ areas, typical a non-restricted room
 /area/station/common/pool
-	name = "Pool"
+	name = "泳池"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "pool"
 
 /area/station/common/spa
-	name = "Public Spa"
+	name = "公共水疗中心"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "spa"
 
 /area/station/common/carpshop
-	name = "Carp Pro Shop"
+	name = "鲤鱼专业商店"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "carp_pro_shop"
 
 /area/station/common/cryopods
-	name = "Cryopods Room"
+	name = "低温舱室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "cryopods"
 
 /area/station/service/salon
-	name = "\improper Salon"
+	name = "\improper 沙龙"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "salon"
 
 /area/station/service/forge
-	name = "Forge"
+	name = "锻造间"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "forge"
 
 // Wrestling areas for BlueShift
 /area/station/common/wrestling
-	name = "Wrestling"
+	name = "摔跤区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "wrestle"
 
 /area/station/common/wrestling/arena
-	name = "Wrestling Arena"
+	name = "摔跤竞技场"
 	icon_state = "wrestle_arena"
 
 /area/station/common/wrestling/lobby
-	name = "Wrestling Arena Lobby"
+	name = "摔跤竞技场大厅"
 	icon_state = "wrestle_lobby"
 
 /area/station/common/wrestling/locker
-	name = "Wrestling Arena Locker Room"
+	name = "摔跤竞技场更衣室"
 	icon_state = "wrestle_locker"
 
 /area/station/common/tailoring
-	name = "Tailoring Shop"
+	name = "裁缝店"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "tailoring"
 
 // BlueShift Night Club
 /area/station/common/night_club
-	name = "Night Club"
+	name = "夜总会"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "nightclub"
 
 /area/station/common/night_club/back_stage
-	name = "Night Club Backstage"
+	name = "夜总会后台"
 	icon_state = "nightclub_backstage"
 
 /area/station/common/night_club/changing_room
-	name = "Night Club Changing Room"
+	name = "夜总会更衣室"
 	icon_state = "nightclub_changing_room"
 
 // Rec related areas
 /area/station/common/laser_tag
-	name = "Laser Tag"
+	name = "激光枪战"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "laser_tag"
 
 /area/station/common/arcade
-	name = "Arcade"
+	name = "街机厅"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "arcade"
 
 /area/station/common/locker_room_shower
-	name = "Locker Room Shower"
+	name = "更衣室淋浴间"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "locker_room_shower"
 
 /area/station/common/cafeteria
-	name = "Cafeteria"
+	name = "自助餐厅"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "cafeteria"
 
 /area/station/common/gaskiosk
-	name = "\improper Internals Kiosk"
+	name = "\improper 内部设备售货亭"
 	icon_state = "vacant_commissary"
 
 /area/station/commons/dorms/room5
-	name = "\improper Dorms Room 5"
+	name = "\improper 宿舍 5 号房"
 	icon_state = "room1"
 
 /area/station/commons/dorms/room6
-	name = "\improper Dorms Room 6"
+	name = "\improper 宿舍 6 号房"
 	icon_state = "room2"
 
 /area/station/commons/dorms/room7
-	name = "\improper Dorms Room 7"
+	name = "\improper 宿舍 7 号房"
 	icon_state = "room3"
 
 /area/station/commons/dorms/room8
-	name = "\improper Dorms Room 8"
+	name = "\improper 宿舍 8 号房"
 	icon_state = "room4"
 
 /area/station/commons/dorms/vacantroom
-	name = "\improper Vacant Dorms Room"
+	name = "\improper 空置宿舍房间"
 	icon_state = "vacant_room"
 
 /area/station/common/wrestling/beverage
-	name = "\improper Arena Beverage Stand"
+	name = "\improper 竞技场饮料摊"
 	icon_state = "wrestle_maint"
 
 /area/station/common/wrestling/concessions
-	name = "\improper Arena Concessions Stand"
+	name = "\improper 竞技场小吃摊"
 	icon_state = "wrestle_maint"
 
 /area/station/common/pool/sauna
-	name = "\improper Pool Sauna"
+	name = "\improper 泳池桑拿房"
 	icon_state = "pool"
 
 /area/station/service/barber/spa
-	name = "\improper Spa"
+	name = "\improper 水疗中心"
 	icon_state = "barber"
 
 /*
@@ -269,466 +269,466 @@
 
 // Generic
 /area/station/maintenance/evac_maintenance
-	name = "Departures Maintenance"
+	name = "离港区维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "evac_maint"
 
 /area/station/maintenance/evac_maintenance/upper
-	name = "Upper Departures Maintenance"
+	name = "离港区上层维护区"
 	icon_state = "evac_maint_upper"
 
 /area/station/maintenance/pool_maintenance
-	name = "Pool Maintenance"
+	name = "泳池维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "pool_maint"
 
 /area/station/maintenance/port/upper
-	name = "Upper Port Maintenance"
+	name = "上层左舷维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "port_maint_upper"
 
 // Science
 /area/station/maintenance/department/science/lower
-	name = "Lower Science Maintenance"
+	name = "下层科研维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "lower_sci_maint"
 
 /area/station/maintenance/department/science/upper
-	name = "Upper Science Maintenance"
+	name = "上层科研维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "upper_sci_maint"
 
 /area/station/maintenance/department/science/ordnance_maint
-	name = "Ordnance Maintenance"
+	name = "军械维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "ord_maint"
 
 /area/station/maintenance/department/science/ordnance_maint_lesser
-	name = "Lesser Ordnance Maintenace"
+	name = "次级军械维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "lesser_ord_maint"
 
 // Engineering
 /area/station/maintenance/department/engineering/atmos/aft_maint
-	name = "Aft Atmospherics Maintenance"
+	name = "后部大气维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "atmos_maint_aft"
 
 /area/station/maintenance/department/engineering/atmos/port_maint
-	name = "Port Atmospherics Maintenance"
+	name = "左舷大气维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "atmos_maint_port"
 
 /area/station/maintenance/department/engineering/atmos_aux_port
-	name = "Port Atmospherics Auxiliary"
+	name = "左舷大气辅助区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "atmos_aux_port"
 
 /area/station/maintenance/department/engineering/atmos/hfr_maint
-	name = "HFR Maintenance"
+	name = "HFR维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "hfr_maint"
 
 /area/station/maintenance/department/engineering/central
-	name = "Central Engineering Maintenance"
+	name = "中央工程维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "engie_maint_cent"
 
 /area/station/maintenance/department/engineering/engie_aft_starboard
-	name = "Aft Starboard Engineering Maintenance"
+	name = "后部右舷工程维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "engie_maint_as"
 
 /area/station/maintenance/department/engineering/engine_aft_port
-	name = "Aft Port Engine Maintenance"
+	name = "后部左舷引擎维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "engine_maint_ap"
 
 /area/station/maintenance/department/engineering/engine_aft_starboard
-	name = "Aft Starboard Engine Maintenance"
+	name = "后部右舷引擎维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "engine_maint_as"
 
 /area/station/maintenance/department/engineering/lesser
-	name = "Lesser Engineering Maintenance"
+	name = "次级工程维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "engie_maint_lesser"
 
 /area/station/maintenance/department/engine/atmos/lesser
-	name = "Lesser Atmospherics Maintenance"
+	name = "次级大气维护区"
 
 // Security
 /area/station/maintenance/law
-	name = "Law Office Maintenance"
+	name = "法律办公室维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "law_maint"
 
 /area/station/maintenance/department/security/lesser
-	name = "Lesser Security Maintenance"
+	name = "次级安保维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "sec_maint_lesser"
 
 /area/station/maintenance/department/security/lower
-	name = "Lower Security Maintenance"
+	name = "下层安保维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "sec_maint_lower"
 
 /area/station/maintenance/department/security/greater
-	name = "Greater Security Maintenance"
+	name = "上层安保维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "sec_maint_greater"
 
 /area/station/maintenance/department/security/prison_lower
-	name = "Lower Prison Maintenance"
+	name = "下层监狱维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "prison_maint_lower"
 
 /area/station/maintenance/department/security/prison_upper
-	name = "Upper Prison Maintenance"
+	name = "上层监狱维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "prison_maint_upper"
 
 /area/station/maintenance/department/security/upper
-	name = "Upper Security Maintenance"
+	name = "上层安保维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "sec_maint_upper"
 
 // Service
 /area/station/maintenance/library
-	name = "Library Maintenance"
+	name = "图书馆维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "library_maint"
 
 /area/station/maintenance/library/lower
-	name = "Lower Library Maintenance"
+	name = "下层图书馆维护区"
 	icon_state = "library_maint_lower"
 
 /area/station/maintenance/library/upper
-	name = "Upper Library Maintenance"
+	name = "上层图书馆维护区"
 	icon_state = "library_maint_upper"
 
 /area/station/maintenance/night_club
-	name = "Night Club Maintenance"
+	name = "夜总会维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "nightclub_maint"
 
 /area/station/maintenance/salon
-	name = "Salon Maintenance"
+	name = "沙龙维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "salon_maint"
 
 /area/station/maintenance/salon/lower
-	name = "Lower Salon Maintenance"
+	name = "下层沙龙维护区"
 	icon_state = "salon_maint_lower"
 
 /area/station/maintenance/salon/upper
-	name = "Upper Salon Maintenance"
+	name = "上层沙龙维护区"
 	icon_state = "salon_maint_upper"
 
 /area/station/maintenance/wrestle
-	name = "Wrestling Arena Lobby Maintenance"
+	name = "摔跤竞技场大厅维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "wrestle_maint"
 
 // Abandon rooms
 /area/station/maintenance/abandon_arcade
-	name = "Abandoned Arcade"
+	name = "废弃街机厅"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abadn_arcade"
 
 /area/station/maintenance/abandon_art_studio
-	name = "Abandoned Art Studio"
+	name = "废弃艺术工作室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abadn_art_studio"
 
 /area/station/maintenance/abandon_cafeteria
-	name = "Abandoned Cafeteria"
+	name = "废弃食堂"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abandon_cafe"
 
 /area/station/maintenance/abandon_diner
-	name = "Abandoned Diner"
+	name = "废弃小餐馆"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abadn_diner"
 
 /area/station/maintenance/abandon_exam
-	name = "Abandoned Exam"
+	name = "废弃检查室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abadn_exam"
 
 // Subtype used for Blueshift
 /area/station/maintenance/abandon_exam/cat
-	name = "Abandoned Cat Exam"
+	name = "废弃猫咪检查室"
 
 /area/station/maintenance/abandon_holding_cell
-	name = "Abandoned Holding Cell"
+	name = "废弃拘留室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abadn_hold_cell"
 
 /area/station/maintenance/abandon_cafeteria/hydro
-	name = "Abandoned Cafeteria Hydroponics"
+	name = "废弃食堂水培区"
 	icon_state = "abandon_cafe_hydro"
 
 /area/station/maintenance/abandon_cafeteria/hydro_walk
-	name = "Abandoned Cafeteria Hydroponics Walkway"
+	name = "废弃食堂水培区走道"
 	icon_state = "abandon_cafe_hydro_walk"
 
 /area/station/maintenance/abandon_kitchen_upper
-	name = "Abandoned Secondary Kitchen"
+	name = "废弃备用厨房"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abadn_kitchen_up"
 
 /area/station/maintenance/abandon_office
-	name = "Abandoned Office"
+	name = "废弃办公室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abadn_office"
 
 /area/station/maintenance/abandon_psych
-	name = "Abandoned Psychologist Office"
+	name = "废弃心理医生办公室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abadn_psych"
 
 /area/station/maintenance/abandon_wrestle
-	name = "Abandoned Wrestle Arena"
+	name = "废弃摔跤竞技场"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abandon_wrestle"
 
 /area/station/maintenance/abandon_surgery
-	name = "Abandoned Surgery"
+	name = "废弃手术室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "abandon_surgery"
 
 // Regular maint rooms
 /area/station/maintenance/aux_eva
-	name = "Auxiliary EVA Room"
+	name = "辅助舱外活动室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "aux_eva"
 
 /area/station/maintenance/coffin_supply
-	name = "Coffin Supplies Room"
+	name = "棺材供应室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "coffin_supply"
 
 /area/station/maintenance/clown_chamber
-	name = "Clown Chamber"
+	name = "小丑密室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "clown_chamber"
 
 /area/station/maintenance/console_room
-	name = "Console Room"
+	name = "控制台室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "console_room"
 
 /area/station/maintenance/cult_chapel
-	name = "Forbidden Chapel"
+	name = "禁忌礼拜堂"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "cult_chapel"
 
 /area/station/maintenance/cult_chapel_maint
-	name = "Forbidden Chapel's Maintenance"
+	name = "禁忌礼拜堂维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "cult_chapel_maint"
 
 /area/station/maintenance/dorm_room
-	name = "Maintenance Dorm Room"
+	name = "维护区宿舍房间"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "dorm_room_maint"
 
 /area/station/maintenance/gag_room
-	name = "Gag Room"
+	name = "恶搞房间"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "gag_room"
 
 /area/station/maintenance/gamer_lair
-	name = "Gamer Lair"
+	name = "玩家巢穴"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "gamer_lair"
 
 /area/station/maintenance/rus_gambling
-	name = "Russian Gambling Den"
+	name = "俄罗斯赌场"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "russ_gambling"
 
 /area/station/maintenance/rus_surgery
-	name = "Russian Organ Extraction Room"
+	name = "俄罗斯器官摘取室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "russ_surgery"
 
 /area/station/maintenance/xenobio_disposals
-	name = "Xenobiology Disposals"
+	name = "异种生物学废弃物处理"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "xenobio_dispose"
 
 // BlueShift unique rooms, or rooms for ship-class "stations"
 // Thruster rooms
 /area/station/maintenance/thruster_room
-	name = "Thruster Room"
+	name = "推进器室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "thrust_room"
 
 /area/station/maintenance/thruster_room/aft
-	name = "Aft Thruster Room"
+	name = "舰尾推进器室"
 	icon_state = "aft_thrust_room"
 
 /area/station/maintenance/thruster_room/central
-	name = "Central Thruster Room"
+	name = "中央推进器室"
 	icon_state = "cent_thrust_room"
 
 /area/station/maintenance/thruster_room/port
-	name = "Port Thruster Room"
+	name = "左舷推进器室"
 	icon_state = "port_thrust_room"
 
 /area/station/maintenance/thruster_room/starboard
-	name = "Starboard Thruster Room"
+	name = "右舷推进器室"
 	icon_state = "sb_thrust_room"
 
 // EVA Sheds used on BlueShift
 /area/station/maintenance/eva_shed
-	name = "EVA Shed"
+	name = "舱外活动设备间"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "eva_shed"
 
 /area/station/maintenance/eva_shed/port
-	name = "Port EVA Shed"
+	name = "左舷舱外活动设备间"
 	icon_state = "eva_shed_port"
 
 /area/station/maintenance/eva_shed/starboard
-	name = "Starboard EVA Shed"
+	name = "右舷舱外活动设备间"
 	icon_state = "eva_shed_sb"
 
 // Department Rooms
 /area/station/science/xenobiology/control
-	name = "\improper Xenobiology Control Room"
+	name = "\improper 异种生物学控制室"
 	icon_state = "xenobio"
 
 // SerenityStation Rooms
 /area/station/commons/dorms/cyborgA
-	name = "\improper Cyborg Storage A"
+	name = "\improper 机械人存储区 A"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "room_a"
 
 /area/station/commons/dorms/cyborgB
-	name = "\improper Cyborg Storage B"
+	name = "\improper 机械人存储区 B"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "room_b"
 
 /area/station/cargo/cargo_projects
-	name = "\improper Cargo Project Room"
+	name = "\improper 货运项目室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "cargo_projects"
 
 /area/station/commons/orbital_dock
-	name = "\improper Orbital Dock"
+	name = "\improper 轨道对接舱"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "orbital_dock"
 
 /area/station/commons/orbital_lounge
-	name = "\improper Orbital Lounge"
+	name = "\improper 轨道休息室"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "orbital_lounge"
 
 /area/station/engineering/orbital_utilities
-	name = "\improper Orbital Utilities"
+	name = "\improper 轨道公共设施区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "orbital_utilities"
 
 /area/station/security/orbital_checkpoint
-	name = "\improper Orbital Checkpoint"
+	name = "\improper 轨道检查站"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "orbital_checkpoint"
 
 /area/station/maintenance/orbital_maints
-	name = "\improper Orbital Maintenance"
+	name = "\improper 轨道维护区"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "orbital_maints"
 
 /area/station/solars/orbital
-	name = "\improper Orbital Solar Array"
+	name = "\improper 轨道太阳能阵列"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "orbital_solars"
 
 /area/station/maintenance/sushi_maint
-	name = "\improper Maintenance Sushi Shop"
+	name = "\improper 维护区寿司店"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "sushi_maint"
 
 //Snowglobe Areas
 
 /area/station/hallway/primary/primaryservicestairs
-	name = "Primary Service Stairwell"
+	name = "主要服务楼梯间"
 	icon_state = "primaryhall"
 
 /area/station/commons/arrivalsshop
-	name = "Gift Shop"
+	name = "礼品店"
 	icon_state = "vacant_commissary"
 
 /area/station/hallway/primary/aftstarboardhall
-	name = "Aft Starboard Primary Hallway"
+	name = "后部右舷主走廊"
 	icon_state = "primaryhall"
 
 /area/station/hallway/primary/aftporthall
-	name = "Aft Port Primary Hallway"
+	name = "后部左舷主走廊"
 	icon_state = "primaryhall"
 
 /area/station/hallway/primary/forestarboardhall
-	name = "Fore Starboard Primary Hallway"
+	name = "前部右舷主走廊"
 	icon_state = "primaryhall"
 
 /area/station/hallway/primary/foreporthall
-	name = "Fore Port Primary Hallway"
+	name = "前部左舷主走廊"
 	icon_state = "primaryhall"
 
 /area/station/service/greenroom
-	name = "Theater Greenroom"
+	name = "剧院后台"
 	icon_state = "theatre"
 
 /area/station/service/quietroom
-	name = "Quiet Room"
+	name = "静室"
 	icon_state = "theatre"
 
 /area/station/common/shipyardlobby
-	name = "Shipyard Lobby"
+	name = "船坞大厅"
 	icon_state = "mining"
 
 /area/station/cargo/miningstairs
-	name = "Mining Stairwell"
+	name = "采矿楼梯间"
 	icon_state = "mining"
 
 /area/station/cargo/miningfoyer
-	name = "Mining Foyer"
+	name = "采矿前厅"
 	icon_state = "mining_lobby"
 
 /area/station/common/nightclubbooth1
-	name = "Private Booth A"
+	name = "私人包厢 A"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "nightclub"
 
 /area/station/common/nightclubbooth2
-	name = "Private Booth B"
+	name = "私人包厢 B"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "nightclub"
 
 /area/station/maintenance/bloodcasino
-	name = "Casino That Kills You If You Lose"
+	name = "输光即死赌场"
 	icon_state = "abandoned_gambling_den"
 
 /area/station/maintenance/condemnedroom
-	name = "Extremely Normal Room"
+	name = "极其正常的房间"
 	icon = 'modular_nova/modules/mapping/icons/areas/areas_station.dmi'
 	icon_state = "cult_chapel"
 
 /area/station/maintenance/hiddenlibrary
-	name = "Old Library"
+	name = "旧图书馆"
 	icon_state = "abandoned_library"
 
 /area/station/maintenance/hiddengarden
-	name = "Old Garden"
+	name = "旧花园"
 	icon_state = "abandoned_garden"
 
 /area/station/maintenance/condemned_sci
-	name = "Old Sci"
+	name = "旧科研区"
 	icon_state = "abandoned_sci"
 
 /area/station/maintenance/condemned_med
-	name = "Old Medbay"
+	name = "旧医疗湾"
 	icon_state = "abandoned_medbay"

@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/hash
-	name = "hash"
-	desc = "Concentrated cannabis extract. Delivers a much better high when used in a bong."
+	name = "哈希"
+	desc = "浓缩大麻提取物。在烟枪中使用时能带来更强烈的快感。"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "hash"
 	volume = 20
@@ -8,8 +8,8 @@
 	list_reagents = list(/datum/reagent/drug/thc = 15, /datum/reagent/toxin/lipolicide = 5)
 
 /obj/item/reagent_containers/hash/dabs
-	name = "dab"
-	desc = "Oil extract from cannabis plants. Just delivers a different type of hit."
+	name = "浓缩大麻油"
+	desc = "从大麻植物中提取的油。只是提供另一种类型的冲击。"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "dab"
 	volume = 40
@@ -17,8 +17,8 @@
 	list_reagents = list(/datum/reagent/drug/thc/concentrated = 40) //horrendously powerful
 
 /obj/item/reagent_containers/hashbrick
-	name = "hash brick"
-	desc = "A brick of hash. Good for transport!"
+	name = "哈希砖块"
+	desc = "一块大麻砖。便于运输！"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "hashbrick"
 	volume = 80
@@ -27,15 +27,15 @@
 
 
 /obj/item/reagent_containers/hashbrick/attack_self(mob/user)
-	user.visible_message(span_notice("[user] starts breaking up the [src]."))
+	user.visible_message(span_notice("[user] 开始拆解 [src]。"))
 	if(do_after(user,10))
-		to_chat(user, span_notice("You finish breaking up the [src]."))
+		to_chat(user, span_notice("你完成了对[src]的粉碎。"))
 		for(var/i = 1 to 4)
 			new /obj/item/reagent_containers/hash(user.loc)
 		qdel(src)
 
 /datum/crafting_recipe/hashbrick
-	name = "Hash brick"
+	name = "哈希砖块"
 	result = /obj/item/reagent_containers/hashbrick
 	reqs = list(/obj/item/reagent_containers/hash = 4)
 	parts = list(/obj/item/reagent_containers/hash = 4)
@@ -62,8 +62,8 @@
 	include_subtypes = FALSE
 
 /obj/item/food/brownie/thc
-	name = "hash brownie"
-	desc = "A square slice of delicious, chewy brownie infused with THC. A favorite among cannabis enthusiasts."
+	name = "哈希布朗尼"
+	desc = "一块方形的美味耐嚼布朗尼，注入了四氢大麻酚。是大麻爱好者的最爱。"
 	icon = 'modular_nova/modules/morenarcotics/icons/thcsnacks.dmi'
 	icon_state = "brownieweed"
 	food_reagents = list(
@@ -73,8 +73,8 @@
 	)
 
 /obj/item/storage/fancy/cigarettes/crownhaze
-	name = "\improper Crown Smoke King's Haze"
-	desc = "Ethically sourced from the finest cannabis plants, these pre-rolls are sure to leave you feeling like royalty. Please smoke responsibly."
+	name = "\improper 皇冠烟王之雾"
+	desc = "这些预卷烟丝来自最优质的大麻植株，保证让你感觉如同皇室成员。请负责任地吸食。"
 	icon = 'modular_nova/modules/morenarcotics/icons/thcsnacks.dmi'
 	icon_state = "weedpack"
 	base_icon_state = "weedpack"
@@ -84,16 +84,16 @@
 	list_reagents = list(/datum/reagent/drug/thc = 15)
 
 /obj/item/reagent_containers/cup/soda_cans/thc
-	name = "\improper Orchard Green"
-	desc = "The taste of a star in liquid form. Spiked with an orange-flavored THC blend to make the day go by a little easier."
+	name = "\improper 果园绿"
+	desc = "液态星辰的味道。加入了橙子味的THC混合物，让日子过得轻松一点。"
 	icon = 'modular_nova/modules/morenarcotics/icons/thcsnacks.dmi'
 	icon_state = "thcdrink"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 11, /datum/reagent/consumable/orangejuice = 11, /datum/reagent/drug/thc = 8)
 	drink_type = SUGAR | FRUIT | JUNKFOOD
 
 /obj/item/food/thcgummies
-	name = "sour-apple THC gummies"
-	desc = "Just a little bit too hard to chew comfortably, but with all the right flavors. This Product contains THC."
+	name = "酸苹果味THC软糖"
+	desc = "嚼起来有点太硬了，不太舒服，但味道都对。本产品含有四氢大麻酚。"
 	icon = 'modular_nova/modules/morenarcotics/icons/thcsnacks.dmi'
 	icon_state = "thcgummy"
 	bite_consumption = 1
@@ -108,8 +108,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/cookie/thc
-	name = "THC cookie"
-	desc = "COOKIE!!! But with a twist!"
+	name = "THC曲奇"
+	desc = "饼干！！！但有点不一样！"
 	icon = 'modular_nova/modules/morenarcotics/icons/thcsnacks.dmi'
 	icon_state = "thccookie"
 	bite_consumption = 1

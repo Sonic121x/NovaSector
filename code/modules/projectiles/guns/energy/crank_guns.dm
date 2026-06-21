@@ -154,7 +154,7 @@
 
 /obj/item/gun/energy/laser/musket/repeater
 	name = "iconoclast's repeater"
-	desc = "A weapon of incredible bulk, this ratvarian repeater has been permanently severed from its stand to be carried by hand. Cumbersome, Yes - but powerful."
+	desc = "一件极其笨重的武器，这把拉特瓦连发枪已从其支架上永久分离，需手持携带。笨重，是的——但威力强大。"
 	icon_state = "repeater"
 	inhand_icon_state = "repeater"
 	slowdown = 1
@@ -192,7 +192,7 @@
 
 /obj/item/gun/energy/laser/musket/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("think carefully")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("think carefully")]来了解更多关于[src]的信息。"), \
 		lore = "The first examples of laser muskets emerged somewhat recently, even though improvised firearms have had \
 		a rich history throughout human, Mothic and Tiziran history.<br>\
 		<br>\
@@ -210,7 +210,7 @@
 
 /obj/item/gun/energy/laser/thermal/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "A weapon with no name, more a pattern of design. Examples of thermal pistols vary heavily based on the \
 		manufacturer or craftsperson. However, the original inventor of the thermal pistol is largely clouded in mystery. \
 		Replica versions of the pistol were circulating long before weaponized nanites were banned by the \

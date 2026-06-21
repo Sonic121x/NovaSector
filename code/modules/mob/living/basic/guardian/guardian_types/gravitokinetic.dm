@@ -4,7 +4,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	damage_coeff = list(BRUTE = 0.75, BURN = 0.75, TOX = 0.75, STAMINA = 0, OXY = 0.75)
-	playstyle_string = span_holoparasite("As a <b>gravitokinetic</b> type, you can right-click to make the gravity on the ground stronger, and punching applies this effect to a target.")
+	playstyle_string = span_holoparasite("作为<b>重力操控</b>类型，你可以通过右键点击使地面重力增强，并且拳击会将此效果施加于目标。")
 	creator_name = "Gravitokinetic"
 	creator_desc = "Attacks will apply crushing gravity to the target. Can target the ground as well to slow targets advancing on you, but you are not immune to your own such effects."
 	creator_icon = "gravitokinetic"
@@ -44,16 +44,16 @@
 /mob/living/basic/guardian/gravitokinetic/recall_effects()
 	. = ..()
 	if (length(gravity_targets))
-		to_chat(src, span_bolddanger("You have released your gravitokinetic powers!"))
+		to_chat(src, span_bolddanger("你已经释放了你的重力操控能力！"))
 	clear_gravity()
 
 /mob/living/basic/guardian/gravitokinetic/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
 	if (!. || !isliving(target) || target == src || target == summoner || shares_summoner(target) || gravity_targets[target])
 		return
-	to_chat(src, span_bolddanger("Your punch has applied heavy gravity to [target]!"))
+	to_chat(src, span_bolddanger("你的拳击已对[target]施加了强重力！"))
 	add_gravity(target, punch_gravity)
-	to_chat(target, span_userdanger("Everything feels really heavy!"))
+	to_chat(target, span_userdanger("一切都感觉非常沉重！"))
 	return TRUE
 
 /mob/living/basic/guardian/gravitokinetic/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
@@ -66,7 +66,7 @@
 /mob/living/basic/guardian/gravitokinetic/proc/slam_turf(turf/open/slammed)
 	if (!isopenturf(slammed) || isgroundlessturf(slammed))
 		return
-	visible_message(span_danger("[src] slams their fist into the [slammed]!"), span_notice("You amplify gravity around the [slammed]."))
+	visible_message(span_danger("[src] 一拳砸进了 [slammed]！"), span_notice("你放大了 [slammed] 周围的重力。"))
 	do_attack_animation(slammed)
 	add_gravity(slammed, turf_gravity)
 
@@ -89,7 +89,7 @@
 	if (isnull(gravity_targets[target]))
 		return
 	if (too_far)
-		to_chat(src, span_bolddanger("You are too far away from [target] to amplify gravity's hold on them!"))
+		to_chat(src, span_bolddanger("你离 [target] 太远，无法放大重力对其的束缚！"))
 	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 	target.RemoveElement(/datum/element/forced_gravity, gravity_targets[target])
 	gravity_targets -= target

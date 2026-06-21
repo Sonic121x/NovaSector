@@ -1,8 +1,8 @@
 /// Slime Extracts ///
 
 /obj/item/slime_extract
-	name = "slime extract"
-	desc = "Goo extracted from a slime. Legends claim these to have \"magical powers\"."
+	name = "史莱姆提取物"
+	desc = "这种“ goo ”物质是从史莱姆中提取出来的。传说中称其具有“神奇的力量”。"
 	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "grey-core"
 	force = 0
@@ -86,7 +86,7 @@
 
 	target_slime.applied_crossbreed_amount++
 	qdel(src)
-	to_chat(user, span_notice("You feed the slime [src], [target_slime.applied_crossbreed_amount == 1 ? "starting to mutate its core." : "further mutating its core."]"))
+	to_chat(user, span_notice("你将史莱姆喂食了[src]，[target_slime.applied_crossbreed_amount == 1 ? "starting to mutate its core." : "further mutating its core."]"))
 	playsound(target_slime, 'sound/effects/blob/attackblob.ogg', 50, TRUE)
 
 	if(target_slime.applied_crossbreed_amount >= SLIME_EXTRACT_CROSSING_REQUIRED)
@@ -153,7 +153,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 
 /obj/item/slime_extract/grey
-	name = "grey slime extract"
+	name = "灰史莱姆提取物"
 	icon_state = "grey-core"
 	crossbreed_modification = "reproductive"
 
@@ -177,7 +177,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 				return 0
 
 /obj/item/slime_extract/gold
-	name = "gold slime extract"
+	name = "金史莱姆提取物"
 	icon_state = "gold-core"
 	crossbreed_modification = "symbiont"
 
@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 				return 600
 
 /obj/item/slime_extract/silver
-	name = "silver slime extract"
+	name = "银史莱姆提取物"
 	icon_state = "silver-core"
 	crossbreed_modification = "consuming"
 
@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 200
 
 /obj/item/slime_extract/metal
-	name = "metal slime extract"
+	name = "金属史莱姆提取物"
 	icon_state = "metal-core"
 	crossbreed_modification = "industrial"
 
@@ -257,7 +257,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 200
 
 /obj/item/slime_extract/purple
-	name = "purple slime extract"
+	name = "紫史莱姆提取物"
 	icon_state = "purple-core"
 	crossbreed_modification = "regenerative"
 
@@ -275,7 +275,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 600
 
 /obj/item/slime_extract/darkpurple
-	name = "dark purple slime extract"
+	name = "深紫史莱姆提取物"
 	icon_state = "dark-purple-core"
 	crossbreed_modification = "self-sustaining"
 
@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 900
 
 /obj/item/slime_extract/orange
-	name = "orange slime extract"
+	name = "橙史莱姆提取物"
 	icon_state = "orange-core"
 	crossbreed_modification = "burning"
 
@@ -316,7 +316,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 450
 
 /obj/item/slime_extract/yellow
-	name = "yellow slime extract"
+	name = "黄史莱姆提取物"
 	icon_state = "yellow-core"
 	crossbreed_modification = "charged"
 
@@ -339,7 +339,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 				return 600
 
 /obj/item/slime_extract/red
-	name = "red slime extract"
+	name = "红史莱姆提取物"
 	icon_state = "red-core"
 	crossbreed_modification = "sanguine"
 
@@ -358,7 +358,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 600
 
 /obj/item/slime_extract/blue
-	name = "blue slime extract"
+	name = "蓝史莱姆提取物"
 	icon_state = "blue-core"
 	crossbreed_modification = "stabilized"
 
@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 600
 
 /obj/item/slime_extract/darkblue
-	name = "dark blue slime extract"
+	name = "深蓝史莱姆提取物"
 	icon_state = "dark-blue-core"
 	crossbreed_modification = "chilling"
 
@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 900
 
 /obj/item/slime_extract/pink
-	name = "pink slime extract"
+	name = "粉史莱姆提取物"
 	icon_state = "pink-core"
 	crossbreed_modification = "gentle"
 
@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 600
 
 /obj/item/slime_extract/green
-	name = "green slime extract"
+	name = "绿史莱姆提取物"
 	icon_state = "green-core"
 	crossbreed_modification = "mutative"
 
@@ -448,7 +448,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			to_chat(user, span_notice("You stop the transformation."))
 
 /obj/item/slime_extract/lightpink
-	name = "light pink slime extract"
+	name = "浅粉史莱姆提取物"
 	icon_state = "light-pink-core"
 	crossbreed_modification = "loyal"
 
@@ -471,7 +471,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 450
 
 /obj/item/slime_extract/black
-	name = "black slime extract"
+	name = "黑史莱姆提取物"
 	icon_state = "black-core"
 	crossbreed_modification = "transformative"
 
@@ -491,7 +491,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			to_chat(user, span_notice("You stop feeding [src]."))
 
 /obj/item/slime_extract/oil
-	name = "oil slime extract"
+	name = "油史莱姆提取物"
 	icon_state = "oil-core"
 	crossbreed_modification = "detonating"
 
@@ -514,7 +514,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			to_chat(user, span_notice("You stop feeding [src], and the feeling passes."))
 
 /obj/item/slime_extract/adamantine
-	name = "adamantine slime extract"
+	name = "精金史莱姆提取物"
 	icon_state = "adamantine-core"
 	crossbreed_modification = "crystalline"
 
@@ -543,7 +543,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	user.physiology.damage_resistance -= 25
 
 /obj/item/slime_extract/bluespace
-	name = "bluespace slime extract"
+	name = "蓝空史莱姆提取物"
 	icon_state = "bluespace-core"
 	crossbreed_modification = "warping"
 	var/teleport_ready = FALSE
@@ -578,7 +578,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 
 /obj/item/slime_extract/pyrite
-	name = "pyrite slime extract"
+	name = "黄铁史莱姆提取物"
 	icon_state = "pyrite-core"
 	crossbreed_modification = "prismatic"
 
@@ -604,7 +604,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			return 250
 
 /obj/item/slime_extract/cerulean
-	name = "cerulean slime extract"
+	name = "天蓝史莱姆提取物"
 	icon_state = "cerulean-core"
 	crossbreed_modification = "recurring"
 
@@ -623,7 +623,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 				return 600
 
 /obj/item/slime_extract/sepia
-	name = "sepia slime extract"
+	name = "棕史莱姆提取物"
 	icon_state = "sepia-core"
 	crossbreed_modification = "lengthened"
 
@@ -644,7 +644,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 				return 900
 
 /obj/item/slime_extract/rainbow
-	name = "rainbow slime extract"
+	name = "彩虹史莱姆提取物"
 	icon_state = "rainbow-core"
 	crossbreed_modification = "hyperchromatic"
 
@@ -680,8 +680,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 */
 
 /obj/item/slimepotion
-	name = "slime potion"
-	desc = "A hard yet gelatinous capsule excreted by a slime, containing mysterious substances."
+	name = "史莱姆药水"
+	desc = "一种坚硬但呈胶状的囊体，由史莱姆排出，内含神秘物质。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	w_class = WEIGHT_CLASS_TINY
 
@@ -706,8 +706,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return
 
 /obj/item/slimepotion/slime/docility
-	name = "docility potion"
-	desc = "A potent chemical mix that nullifies a slime's hunger, causing it to become docile and tame."
+	name = "驯服药水"
+	desc = "一种强效化学混合物，能消除史莱姆的饥饿感，使其变得温顺且易于驯服。"
 	icon_state = "potsilver"
 
 /obj/item/slimepotion/slime/docility/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
@@ -723,7 +723,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	interacting_slime.set_pacified_behaviour()
 	to_chat(interacting_slime, span_warning("You absorb the potion and feel your intense desire to feed melt away."))
 	to_chat(user, span_notice("You feed the slime the potion, removing its hunger and calming it."))
-	var/newname = sanitize_name(tgui_input_text(user, "Would you like to give the slime a name?", "Name your new pet", "Pet Slime", MAX_NAME_LEN))
+	var/newname = sanitize_name(tgui_input_text(user, "你想给史莱姆起个名字吗？", "给你的新宠物起名", "宠物史莱姆", MAX_NAME_LEN))
 
 	if (!newname)
 		newname = "Pet Slime"
@@ -733,8 +733,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/sentience
-	name = "intelligence potion"
-	desc = "A miraculous chemical mix that grants human like intelligence to living beings."
+	name = "智力药水"
+	desc = "一种神奇的化学混合物，能赋予生物类人的智能。"
 	icon_state = "potpink"
 	/// Are we being offered to a mob, and therefore is a ghost poll currently in progress for the sentient mob?
 	var/being_used = FALSE
@@ -744,7 +744,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 /obj/item/slimepotion/sentience/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to set potion offer reason. [potion_reason ? "Current reason: [span_warning(potion_reason)]" : null]")
+	. += span_notice("Alt-点击设置药水提供理由。[potion_reason ? "Current reason: [span_warning(potion_reason)]" : null]")
 
 /obj/item/slimepotion/sentience/Initialize(mapload)
 	register_context()
@@ -755,7 +755,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/slimepotion/sentience/click_alt(mob/living/user)
-	potion_reason = tgui_input_text(user, "Enter reason for offering potion", "Intelligence Potion", potion_reason, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+	potion_reason = tgui_input_text(user, "输入提供药水的理由", "智力药水", potion_reason, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/slimepotion/sentience/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -768,18 +768,18 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	if(being_used)
 		return ITEM_INTERACT_BLOCKING
 	if(dumb_mob.ckey) //only works on animals that aren't player controlled
-		balloon_alert(user, "already sentient!")
+		balloon_alert(user, "已经有智能了！")
 		return ITEM_INTERACT_BLOCKING
 	if(dumb_mob.stat)
-		balloon_alert(user, "it's dead!")
+		balloon_alert(user, "它死了！")
 		return ITEM_INTERACT_BLOCKING
 	if(!dumb_mob.compare_sentience_type(sentience_type)) // Will also return false if not a basic or simple mob, which are the only two we want anyway
-		balloon_alert(user, "invalid creature!")
+		balloon_alert(user, "无效的生物！")
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "offering...")
+	balloon_alert(user, "正在提供...")
 	being_used = TRUE
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
-		question = "[span_danger(user.name)] is offering [span_notice(dumb_mob.name)] an intelligence potion![potion_reason ? " Reason: [span_boldnotice(potion_reason)]" : ""]",
+		question = "[span_danger(user.name)] 正在向 [span_notice(dumb_mob.name)] 提供一瓶智能药水！[potion_reason ? " Reason: [span_boldnotice(potion_reason)]" : ""]",
 		check_jobban = ROLE_SENTIENCE,
 		poll_time = 20 SECONDS,
 		checked_target = dumb_mob,
@@ -794,7 +794,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /// Assign the chosen ghost to the mob
 /obj/item/slimepotion/sentience/proc/on_poll_concluded(mob/user, mob/living/dumb_mob, mob/dead/observer/ghost)
 	if(isnull(ghost))
-		balloon_alert(user, "try again later!")
+		balloon_alert(user, "稍后再试！")
 		being_used = FALSE
 		return
 
@@ -807,7 +807,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 		smart_animal.sentience_act()
 
 	dumb_mob.mind.add_antag_datum(/datum/antagonist/sentient_creature)
-	balloon_alert(user, "success")
+	balloon_alert(user, "成功")
 	after_success(user, dumb_mob)
 	qdel(src)
 
@@ -815,8 +815,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return
 
 /obj/item/slimepotion/sentience/nuclear
-	name = "syndicate intelligence potion"
-	desc = "A miraculous chemical mix that grants human like intelligence to living beings. It has been modified with Syndicate technology to also grant an internal radio implant to the target and authenticate with identification systems."
+	name = "辛迪加自感知药水"
+	desc = "一种赋予生物类人智能的神奇化学混合物。它已通过辛迪加技术进行改造，还能为目标植入内部无线电组件，并与身份识别系统进行认证。"
 
 /obj/item/slimepotion/sentience/nuclear/after_success(mob/living/user, mob/living/smart_mob)
 	var/obj/item/implant/radio/syndicate/imp = new(src)
@@ -831,8 +831,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	sentience_type = SENTIENCE_PONY
 
 /obj/item/slimepotion/transference
-	name = "consciousness transference potion"
-	desc = "A strange slime-based chemical that, when used, allows the user to transfer their consciousness to a lesser being."
+	name = "意识转移药剂"
+	desc = "一种基于史莱姆的奇特化学品，使用时可将使用者的意识转移至一个较低等的生物体内。"
 	icon_state = "potorange"
 	var/prompted = 0
 	var/animal_type = SENTIENCE_ORGANIC
@@ -847,13 +847,13 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	if(prompted)
 		return ITEM_INTERACT_BLOCKING
 	if(switchy_mob.ckey) //much like sentience, these will not work on something that is already player controlled
-		balloon_alert(user, "already sentient!")
+		balloon_alert(user, "已有智能！")
 		return ITEM_INTERACT_BLOCKING
 	if(switchy_mob.stat)
-		balloon_alert(user, "it's dead!")
+		balloon_alert(user, "它死了！")
 		return ITEM_INTERACT_BLOCKING
 	if(!switchy_mob.compare_sentience_type(animal_type))
-		balloon_alert(user, "invalid creature!")
+		balloon_alert(user, "无效生物！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/job_banned = is_banned_from(user.ckey, ROLE_MIND_TRANSFER)
@@ -861,12 +861,12 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 		return ITEM_INTERACT_BLOCKING
 
 	if(job_banned)
-		balloon_alert(user, "you're banned!")
+		balloon_alert(user, "你被禁止了！")
 		return ITEM_INTERACT_BLOCKING
 
 	user.do_attack_animation(interacting_with)
 	prompted = 1
-	if(tgui_alert(usr,"This will permanently transfer your consciousness to [switchy_mob]. Are you sure you want to do this?",,list("Yes","No")) != "Yes")
+	if(tgui_alert(usr,"这将永久地将你的意识转移到[switchy_mob]。你确定要这样做吗？",,list("Yes","No")) != "Yes")
 		prompted = 0
 		return ITEM_INTERACT_BLOCKING
 
@@ -887,8 +887,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/slime/steroid
-	name = "slime steroid"
-	desc = "A potent chemical mix that will cause a baby slime to generate more extract."
+	name = "史莱姆类固醇"
+	desc = "一种强效化学混合物，能促使幼体史莱姆生成更多提取物。"
 	icon_state = "potred"
 
 /obj/item/slimepotion/slime/steroid/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
@@ -908,13 +908,13 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/enhancer
-	name = "extract enhancer"
-	desc = "A potent chemical mix that will give a slime extract an additional use."
+	name = "提取增强"
+	desc = "一种强效化学混合物，能使一份史莱姆提取物获得一次额外的使用次数。"
 	icon_state = "potpurple"
 
 /obj/item/slimepotion/slime/stabilizer
-	name = "slime stabilizer"
-	desc = "A potent chemical mix that will reduce the chance of a slime mutating."
+	name = "史莱姆稳定剂"
+	desc = "一种强效化学混合物，能降低史莱姆发生突变的概率。"
 	icon_state = "potcyan"
 
 /obj/item/slimepotion/slime/stabilizer/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
@@ -931,8 +931,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/slime/mutator
-	name = "slime mutator"
-	desc = "A potent chemical mix that will increase the chance of a slime mutating."
+	name = "史莱姆变异体"
+	desc = "一种强效化学混合物，能增加史莱姆发生突变的概率。"
 	icon_state = "potgreen"
 
 /obj/item/slimepotion/slime/mutator/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
@@ -953,8 +953,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/speed
-	name = "slime speed potion"
-	desc = "A potent chemical mix that will remove the slowdown from any item."
+	name = "史莱姆加速药水"
+	desc = "一种强效化学混合物，能消除任何物品的减速效果。"
 	icon_state = "potred"
 
 /obj/item/slimepotion/speed/interact_with_atom(obj/interacting_with, mob/living/user, list/modifiers)
@@ -993,8 +993,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/fireproof
-	name = "slime chill potion"
-	desc = "A potent chemical mix that will fireproof any article of clothing. Has three uses."
+	name = "史莱姆冷却药水"
+	desc = "一种强效化学混合物，可使任何衣物具备防火性能。可使用三次。"
 	icon_state = "potblue"
 	resistance_flags = FIRE_PROOF
 	var/uses = 3
@@ -1026,8 +1026,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/slimepotion/genderchange
-	name = "gender change potion"
-	desc = "An interesting chemical mix that changes the biological gender of what its applied to. Cannot be used on things that lack gender entirely."
+	name = "性别转换药剂"
+	desc = "一种能改变施用对象生物性别的奇特化学混合物。无法用于完全没有性别的对象。"
 	icon_state = "potrainbow"
 
 /obj/item/slimepotion/genderchange/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -1061,7 +1061,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/renaming
-	name = "renaming potion"
+	name = "改名药水"
 	desc = "A potion that allows a self-aware being to change what name it subconsciously presents to the world."
 	icon_state = "potbrown"
 
@@ -1084,13 +1084,13 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 	to_chat(user, span_notice("You offer [src] to [user]..."))
 
-	var/new_name = sanitize_name(tgui_input_text(renaming_mob, "What would you like your name to be?", "Input a name", renaming_mob.real_name, MAX_NAME_LEN))
+	var/new_name = sanitize_name(tgui_input_text(renaming_mob, "你希望自己的名字是什么？", "输入名字", renaming_mob.real_name, MAX_NAME_LEN))
 
 	if(!new_name || QDELETED(src) || QDELETED(renaming_mob) || new_name == renaming_mob.real_name || !renaming_mob.Adjacent(user))
 		being_used = FALSE
 		return ITEM_INTERACT_BLOCKING
 
-	renaming_mob.visible_message(span_notice("[span_name("[renaming_mob]")] has a new name, [span_name("[new_name]")]."), span_notice("Your old name of [span_name("[renaming_mob.real_name]")] fades away, and your new name [span_name("[new_name]")] anchors itself in your mind."))
+	renaming_mob.visible_message(span_notice("[span_name("[renaming_mob]")] 有了一个新名字，[span_name("[new_name]")]。"), span_notice("你旧的名字 [span_name("[renaming_mob.real_name]")] 逐渐淡去，新的名字 [span_name("[new_name]")] 在你的脑海中扎根。"))
 	message_admins("[ADMIN_LOOKUPFLW(user)] used [src] on [ADMIN_LOOKUPFLW(renaming_mob)], letting them rename themselves into [new_name].")
 	user.log_message("used [src] on [key_name(renaming_mob)], letting them rename themselves into [new_name].", LOG_GAME)
 
@@ -1101,8 +1101,8 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/slimeradio
-	name = "bluespace radio potion"
-	desc = "A strange chemical that grants those who ingest it the ability to broadcast and receive subscape radio waves."
+	name = "蓝空无线电药水"
+	desc = "一种奇特的化学品，摄入后可赋予使用者收发亚空间无线电波的能力。"
 	icon_state = "potbluespace"
 
 /obj/item/slimepotion/slimeradio/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -1131,7 +1131,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/stack/tile/bluespace
 	name = "stabilized bluespace floor tile"
 	singular_name = "floor tile"
-	desc = "Through a series of micro-teleports these tiles let people move at incredible speeds."
+	desc = "通过一系列的微型传送操作，这些方块能让人们以惊人的速度移动。"
 	icon_state = "tile_bluespace"
 	inhand_icon_state = "tile-bluespace"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -1146,9 +1146,9 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	merge_type = /obj/item/stack/tile/bluespace
 
 /obj/item/stack/tile/sepia
-	name = "sepia floor tile"
+	name = "棕褐色的地砖"
 	singular_name = "floor tile"
-	desc = "Time seems to flow very slowly around these tiles."
+	desc = "在这些瓷砖周围，时间似乎流动得非常缓慢。"
 	icon_state = "tile_sepia"
 	inhand_icon_state = "tile-sepia"
 	w_class = WEIGHT_CLASS_NORMAL

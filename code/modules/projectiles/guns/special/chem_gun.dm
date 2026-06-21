@@ -1,8 +1,8 @@
 //his isn't a subtype of the syringe gun because the syringegun subtype is made to hold syringes
 //this is meant to hold reagents/obj/item/gun/syringe
 /obj/item/gun/chem
-	name = "reagent gun"
-	desc = "A Nanotrasen syringe gun, modified to automatically synthesise chemical darts, and instead hold reagents."
+	name = "试剂枪"
+	desc = "一把经过改装的纳米传讯注射枪，可自动合成化学镖弹并储存试剂。"
 	icon_state = "chemgun"
 	inhand_icon_state = "chemgun"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -51,7 +51,7 @@
 		return
 	if(world.time < last_synth+time_per_syringe)
 		return
-	to_chat(loc, span_warning("You hear a click as [src] synthesizes a new dart."))
+	to_chat(loc, span_warning("你听到[src]在合成新飞镖时发出了一声咔哒声。"))
 	syringes_left++
 	if(chambered && !chambered.loaded_projectile)
 		chambered.newshot()

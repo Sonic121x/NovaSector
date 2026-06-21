@@ -1,8 +1,8 @@
 // This file contains all boxes used by the Engineering department and its purpose on the station. Also contains stuff we use when we wanna fix up stuff as well or helping us live when shit goes southwardly.
 
 /obj/item/storage/box/metalfoam
-	name = "box of metal foam grenades"
-	desc = "To be used to rapidly seal hull breaches."
+	name = "金属泡沫手雷盒"
+	desc = "用于快速封堵船体破口。"
 	illustration = "grenade"
 
 /obj/item/storage/box/metalfoam/PopulateContents()
@@ -10,8 +10,8 @@
 		new /obj/item/grenade/chem_grenade/metalfoam(src)
 
 /obj/item/storage/box/smart_metal_foam
-	name = "box of smart metal foam grenades"
-	desc = "Used to rapidly seal hull breaches. This variety conforms to the walls of its area."
+	name = "智能金属泡沫手雷盒"
+	desc = "用于快速封堵船体破口。这种类型会贴合所在区域的墙壁形状。"
 	illustration = "grenade"
 
 /obj/item/storage/box/smart_metal_foam/PopulateContents()
@@ -19,7 +19,7 @@
 		new/obj/item/grenade/chem_grenade/smart_metal_foam(src)
 
 /obj/item/storage/box/debugtools
-	name = "box of debug tools"
+	name = "调试工具盒"
 	icon_state = "syndiebox"
 	storage_type = /datum/storage/box/debug
 
@@ -46,16 +46,16 @@
 	generate_items_inside(items_inside, src)
 
 /obj/item/storage/box/plastic
-	name = "plastic box"
-	desc = "It's a solid, plastic shell box."
+	name = "塑料盒"
+	desc = "这是一个坚固的塑料外壳盒子。"
 	icon_state = "plasticbox"
 	foldable_result = null
 	illustration = "writing"
 	custom_materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT) //You lose most if recycled.
 
 /obj/item/storage/box/emergencytank
-	name = "emergency oxygen tank box"
-	desc = "A box of emergency oxygen tanks."
+	name = "应急氧气罐盒"
+	desc = "一盒应急氧气罐。"
 	illustration = "emergencytank"
 
 /obj/item/storage/box/emergencytank/PopulateContents()
@@ -64,8 +64,8 @@
 		new /obj/item/tank/internals/emergency_oxygen(src) //in case anyone ever wants to do anything with spawning them, apart from crafting the box
 
 /obj/item/storage/box/engitank
-	name = "extended-capacity emergency oxygen tank box"
-	desc = "A box of extended-capacity emergency oxygen tanks."
+	name = "扩容应急氧气罐盒"
+	desc = "一盒扩容应急氧气罐。"
 	illustration = "extendedtank"
 
 /obj/item/storage/box/engitank/PopulateContents()
@@ -74,8 +74,8 @@
 		new /obj/item/tank/internals/emergency_oxygen/engi(src) //in case anyone ever wants to do anything with spawning them, apart from crafting the box
 
 /obj/item/storage/box/stickers/chief_engineer
-	name = "CE approved sticker pack"
-	desc = "With one of these stickers, inform the crew that the contraption in the corridor is COMPLETELY SAFE!"
+	name = "总工程师认证贴纸包"
+	desc = "用这些贴纸之一，告知船员走廊里的装置绝对安全！"
 	illustration = "label_ce"
 
 /obj/item/storage/box/stickers/chief_engineer/PopulateContents()

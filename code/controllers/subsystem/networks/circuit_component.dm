@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(circuit_component)
-	name = "Circuit Components"
+	name = "电路组件"
 	wait = 0.1 SECONDS
 	priority = FIRE_PRIORITY_DEFAULT
 	ss_flags = SS_NO_INIT

@@ -1,6 +1,6 @@
 /obj/machinery/computer/station_goal
-	name = "station goal console"
-	desc = "A console used for setting the stations goal."
+	name = "空间站目标控制台"
+	desc = "用于设定空间站目标的终端。"
 	icon_screen = "comm"
 	icon_keyboard = "tech_key"
 	req_access = list(ACCESS_CENT_CAPTAIN)
@@ -12,7 +12,7 @@
 	var/goal_assigned = FALSE
 
 /obj/item/circuitboard/computer/station_goal
-	name = "Station Goal (Computer Board)"
+	name = "空间站目标（电脑主板）"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/computer/station_goal
 

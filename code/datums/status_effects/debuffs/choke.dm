@@ -58,8 +58,8 @@
 	choke_loop = new /datum/looping_sound/choking(owner)
 	check_audio_state()
 
-	owner.visible_message(span_bolddanger("[owner] tries to speak, but can't! They're choking!"), \
-		span_userdanger("You try to breathe, but there's a block! You're choking!"), \
+	owner.visible_message(span_bolddanger("[owner] 试图说话，但做不到！他们被掐住了！"), \
+		span_userdanger("你试图呼吸，但有东西堵住了！你被噎住了！"), \
 	)
 
 	//barticles
@@ -122,7 +122,7 @@
 		choking_on.throw_at(target, distance, 1, source)
 
 /datum/status_effect/choke/get_examine_text()
-	return span_boldwarning("[owner.p_They()] [owner.p_are()] choking!")
+	return span_boldwarning("[owner.p_They()] [owner.p_are()]被噎住了！")
 
 /datum/status_effect/choke/proc/remove_choke(datum/source)
 	SIGNAL_HANDLER
@@ -162,7 +162,7 @@
 
 /datum/status_effect/choke/proc/attempt_eat(mob/source, atom/eating)
 	SIGNAL_HANDLER
-	source.balloon_alert(source, "can't get it down!")
+	source.balloon_alert(source, "咽不下去！")
 	return BLOCK_EAT_ATTEMPT
 
 /datum/status_effect/choke/proc/helped(mob/source, mob/helping)
@@ -179,10 +179,10 @@
 	if(victim == aggressor)
 		return
 	if(DOING_INTERACTION_WITH_TARGET(aggressor, victim))
-		victim.balloon_alert(aggressor, "already helping!")
+		victim.balloon_alert(aggressor, "已经在帮忙了！")
 		return
 	if(DOING_INTERACTION(aggressor, "heimlich"))
-		victim.balloon_alert(aggressor, "already helping someone!")
+		victim.balloon_alert(aggressor, "已经在帮别人了！")
 		return
 
 	if(!thrusting_continues(victim, aggressor, before_work = TRUE))
@@ -197,12 +197,12 @@
 
 	var/mob/living/livin_victim = victim
 	if(iscarbon(aggressor) && livin_victim.body_position == STANDING_UP)
-		owner.visible_message(span_warning("[aggressor] wraps [aggressor.p_their()] arms around [victim]'s stomach, and begins thrusting [aggressor.p_their()] fists towards themselves!"), \
-			span_boldwarning("[aggressor] wraps [aggressor.p_their()] arms around you, and begins thrusting their hands into your chest. [capitalize(GLOB.deity)] that hurts!"), \
+		owner.visible_message(span_warning("[aggressor]用[aggressor.p_their()]手臂环抱住[victim]的腹部，并开始将[aggressor.p_their()]拳头向自己方向猛推！"), \
+			span_boldwarning("[aggressor]用[aggressor.p_their()]手臂环抱住你，开始用手猛击你的胸口。[capitalize(GLOB.deity)]好痛！"), \
 			)
 	else
-		owner.visible_message(span_warning("[aggressor] places [aggressor.p_their()] [hand_name]s on [victim]'s back, and begins forcefully striking it!"), \
-			span_boldwarning("You feel [aggressor]\s [hand_name]s on your back, and then repeated striking!"))
+		owner.visible_message(span_warning("[aggressor]将[aggressor.p_their()][hand_name]放在[victim]的背上，并开始用力拍打！"), \
+			span_boldwarning("你感到[aggressor]\s [hand_name]按在你的背上，然后是连续的击打！"))
 
 	if(!do_after(aggressor, 7 SECONDS, victim, extra_checks = CALLBACK(src, PROC_REF(thrusting_continues), victim, aggressor), interaction_key = "heimlich"))
 		aggressor.stop_pulling()
@@ -210,8 +210,8 @@
 	aggressor.stop_pulling()
 
 	var/atom/movable/choking_on = choking_on_ref?.resolve()
-	owner.visible_message(span_green("[victim] vomits up \the[choking_on]. [victim.p_theyre()] gonna make it!"), \
-			span_green("You vomit up that accursed blockage. YOU CAN BREATHE! The broken chest is a hell of a price to pay."))
+	owner.visible_message(span_green("[victim]吐出了\the [choking_on]。[victim.p_theyre()]能挺过去了！"), \
+			span_green("你吐出了那该死的堵塞物。你能呼吸了！但代价是胸骨断裂，这代价可真够呛。"))
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
 		var/obj/item/bodypart/chest = carbon_victim.get_bodypart(BODY_ZONE_CHEST)
@@ -233,13 +233,13 @@
 				continue
 			free_hands += 1
 		if(free_hands < 2)
-			victim.balloon_alert(aggressor, "need 2 free hands!")
+			victim.balloon_alert(aggressor, "需要两只空手！")
 			return FALSE
 
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
 		if(!carbon_victim.appears_alive())
-			victim.balloon_alert(aggressor, "too late...")
+			victim.balloon_alert(aggressor, "太迟了...")
 			return FALSE
 
 	if(!choking_on_ref)
@@ -248,17 +248,17 @@
 	if(!before_work)
 		// This check isn't valid at first because it looks dumb if other things fail
 		if(victim.pulledby != aggressor)
-			victim.balloon_alert(aggressor, "must be able to move them!")
+			victim.balloon_alert(aggressor, "必须能移动他们！")
 			return FALSE
 
 		// Similarly, but also this is a burden of knowhow that's cringe
 		if(aggressor.dir != get_dir(aggressor, victim))
-			victim.balloon_alert(aggressor, "must be facing them!")
+			victim.balloon_alert(aggressor, "必须面对他们！")
 			return FALSE
 
 		// See above
 		if(victim.dir != aggressor.dir)
-			victim.balloon_alert(aggressor, "must be facing the same way!")
+			victim.balloon_alert(aggressor, "必须面朝同一个方向！")
 			return FALSE
 
 	// If we ain't starting, deal a tad bit of brute, as a treat

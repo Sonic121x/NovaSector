@@ -17,10 +17,10 @@
 #define JOB_AUTHORITY_HUMANS_ONLY "HUMANS_ONLY"
 #define JOB_AUTHORITY_NON_HUMANS_ALLOWED "NON_HUMANS_ALLOWED"
 
-#define DEFAULT_RELIGION "Christianity"
+#define DEFAULT_RELIGION "基督教"
 #define DEFAULT_DEITY "Space Jesus"
 #define DEFAULT_BIBLE "Default Bible Name"
-#define DEFAULT_BIBLE_REPLACE(religion) "The Holy Book of [religion]"
+#define DEFAULT_BIBLE_REPLACE(religion) "[religion]之圣书"
 
 #define JOB_DISPLAY_ORDER_DEFAULT 0
 

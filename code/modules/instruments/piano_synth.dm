@@ -1,7 +1,7 @@
 
 /obj/item/instrument/piano_synth
-	name = "synthesizer"
-	desc = "An advanced electronic synthesizer that can be used as various instruments."
+	name = "合成器"
+	desc = "一种先进的电子合成器，可被用作多种乐器。"
 	icon_state = "synth"
 	inhand_icon_state = "synth"
 	allowed_instrument_ids = "piano"
@@ -21,8 +21,8 @@
 	song.ui_interact(user)
 
 /obj/item/instrument/piano_synth/headphones
-	name = "headphones"
-	desc = "Unce unce unce unce. Boop!"
+	name = "耳机"
+	desc = "嘟嘟嘟嘟。哔！"
 	icon = 'icons/obj/clothing/accessories.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	lefthand_file = 'icons/mob/inhands/clothing/ears_lefthand.dmi'
@@ -57,8 +57,8 @@
 	icon_state = "[initial(icon_state)][song?.playing ? "_on" : null]"
 
 /obj/item/instrument/piano_synth/headphones/spacepods
-	name = "\improper Nanotrasen space pods"
-	desc = "Flex your money, AND ignore what everyone else says, all at once!"
+	name = "\improper 纳米传讯太空耳机"
+	desc = "灵活运用你的资金，同时也不要理会其他人的意见！"
 	icon_state = "spacepods"
 	worn_icon = 'icons/mob/clothing/ears.dmi'
 	inhand_icon_state = null
@@ -69,7 +69,7 @@
 
 /obj/item/circuit_component/synth
 	display_name = "Synthesizer"
-	desc = "An advanced electronic synthesizer that can be used as various instruments."
+	desc = "一种先进的电子合成器，可被用作多种乐器。"
 
 	/// The song, represented in latin alphabet A to G, that'll be played when play is triggered.
 	var/datum/port/input/song
@@ -199,4 +199,4 @@
 
 /obj/item/circuit_component/synth/headphones
 	display_name = "Headphones"
-	desc = "An advanced electronic device that plays music into your ears."
+	desc = "一种可以在耳内播放音乐的高级电子设备。"

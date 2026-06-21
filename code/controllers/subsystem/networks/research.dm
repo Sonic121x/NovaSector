@@ -1,6 +1,6 @@
 
 SUBSYSTEM_DEF(research)
-	name = "Research"
+	name = "研究"
 	priority = FIRE_PRIORITY_RESEARCH
 	wait = 10
 	dependencies = list(

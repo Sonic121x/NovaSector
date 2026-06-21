@@ -4,8 +4,8 @@
 #define MAX_POSSIBLE_HEALTH 100
 
 /mob/living/basic/mining/gutlunch
-	name = "gutlunch"
-	desc = "A scavenger that eats raw ores, often found alongside ash walkers. Produces a thick, nutritious milk."
+	name = "肠食兽"
+	desc = "一种以生矿石为食的食腐动物，常与灰烬行者一同出现。能产出浓稠、营养丰富的乳汁。"
 	combat_mode = FALSE
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "gutlunch"
@@ -53,7 +53,7 @@
 		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	var/obj/ore_food = locate(/obj/item/stack/ore) in target
 	if(isnull(ore_food))
-		balloon_alert(src, "no food!")
+		balloon_alert(src, "没有食物！")
 	else
 		UnarmedAttack(ore_food, TRUE, modifiers)
 	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
@@ -87,7 +87,7 @@
 	)
 
 /mob/living/basic/mining/gutlunch/milk
-	name = "gubbuck"
+	name = "古巴克"
 	gender = FEMALE
 	possible_colors = list("#E39FBB","#817178","#9d667d")
 	ai_controller = /datum/ai_controller/basic_controller/gutlunch/gutlunch_milk
@@ -107,7 +107,7 @@
 	full_udder.color = LAZYACCESS(atom_colours, FIXED_COLOUR_PRIORITY) || COLOR_GRAY
 
 /mob/living/basic/mining/gutlunch/warrior
-	name = "gunther"
+	name = "冈瑟"
 	gender = MALE
 	melee_damage_lower = 8
 	melee_damage_upper = 13
@@ -141,7 +141,7 @@
 	. += full_udder
 
 /mob/living/basic/mining/gutlunch/grub
-	name = "grublunch"
+	name = "幼蛹兽"
 	possible_colors = list("#cc9797", "#b74c4c")
 	can_breed = FALSE
 	gender = NEUTER

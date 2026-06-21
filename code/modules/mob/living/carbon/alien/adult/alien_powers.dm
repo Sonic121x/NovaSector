@@ -7,7 +7,7 @@ Doesn't work on other aliens/AI.*/
 
 
 /datum/action/cooldown/alien
-	name = "Alien Power"
+	name = "异形能力"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	button_icon = 'icons/mob/actions/actions_xeno.dmi'
@@ -84,7 +84,7 @@ Doesn't work on other aliens/AI.*/
 /datum/action/cooldown/alien/make_structure/proc/check_for_duplicate()
 	var/obj/structure/existing_thing = locate(made_structure_type) in owner.loc
 	if(existing_thing)
-		to_chat(owner, span_warning("There is already \a [existing_thing] here!"))
+		to_chat(owner, span_warning("这里已经有一个\a [existing_thing]了！"))
 		return FALSE
 
 	return TRUE
@@ -93,7 +93,7 @@ Doesn't work on other aliens/AI.*/
 /datum/action/cooldown/alien/make_structure/proc/check_for_vents()
 	var/obj/machinery/atmospherics/components/unary/atmos_thing = locate() in owner.loc
 	if(atmos_thing)
-		var/are_you_sure = tgui_alert(owner, "Laying eggs and shaping resin here would block access to [atmos_thing]. Do you want to continue?", "Blocking Atmospheric Component", list("Yes", "No"))
+		var/are_you_sure = tgui_alert(owner, "在此处产卵或塑造树脂会阻塞对[atmos_thing]的访问。你确定要继续吗？", "阻塞大气组件", list("Yes", "No"))
 		if(are_you_sure != "Yes")
 			return FALSE
 		if(QDELETED(src) || QDELETED(owner) || !check_for_duplicate())
@@ -102,19 +102,19 @@ Doesn't work on other aliens/AI.*/
 	return TRUE
 
 /datum/action/cooldown/alien/make_structure/plant_weeds
-	name = "Plant Weeds"
-	desc = "Plants some alien weeds."
+	name = "种植异形菌毯"
+	desc = "种植一些异形菌毯。"
 	button_icon_state = "alien_plant"
 	plasma_cost = 50
 	made_structure_type = /obj/structure/alien/weeds/node
 
 /datum/action/cooldown/alien/make_structure/plant_weeds/Activate(atom/target)
-	owner.visible_message(span_alertalien("[owner] plants some alien weeds!"))
+	owner.visible_message(span_alertalien("[owner] 种下了一些异形菌毯！"))
 	return ..()
 
 /datum/action/cooldown/alien/whisper
-	name = "Whisper"
-	desc = "Whisper to someone."
+	name = "心灵低语"
+	desc = "对某人进行心灵低语。"
 	button_icon_state = "alien_whisper"
 	plasma_cost = 10
 
@@ -124,14 +124,14 @@ Doesn't work on other aliens/AI.*/
 		possible_recipients += recipient
 
 	if(!length(possible_recipients))
-		to_chat(owner, span_noticealien("There's no one around to whisper to."))
+		to_chat(owner, span_noticealien("周围没有人可以让你进行心灵低语。"))
 		return FALSE
 
-	var/mob/living/chosen_recipient = tgui_input_list(owner, "Select whisper recipient", "Whisper", sort_names(possible_recipients))
+	var/mob/living/chosen_recipient = tgui_input_list(owner, "选择低语接收者", "低语", sort_names(possible_recipients))
 	if(!chosen_recipient)
 		return FALSE
 
-	var/to_whisper = tgui_input_text(owner, title = "Alien Whisper", max_length = MAX_MESSAGE_LEN)
+	var/to_whisper = tgui_input_text(owner, title = "异形低语", max_length = MAX_MESSAGE_LEN)
 	if(QDELETED(chosen_recipient) || QDELETED(src) || QDELETED(owner) || !IsAvailable(feedback = TRUE) || !to_whisper)
 		return FALSE
 	if(chosen_recipient.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
@@ -140,7 +140,7 @@ Doesn't work on other aliens/AI.*/
 
 	log_directed_talk(owner, chosen_recipient, to_whisper, LOG_SAY, tag = "alien whisper")
 	to_chat(chosen_recipient, "[span_noticealien("You hear a strange, alien voice in your head...")][to_whisper]")
-	to_chat(owner, span_noticealien("You said: \"[to_whisper]\" to [chosen_recipient]"))
+	to_chat(owner, span_noticealien("你对[chosen_recipient]说：\"[to_whisper]\""))
 	for(var/mob/dead_mob as anything in GLOB.dead_mob_list)
 		if(!isobserver(dead_mob))
 			continue
@@ -151,8 +151,8 @@ Doesn't work on other aliens/AI.*/
 	return TRUE
 
 /datum/action/cooldown/alien/transfer
-	name = "Transfer Plasma"
-	desc = "Transfer Plasma to another alien."
+	name = "转移等离子体"
+	desc = "将等离子体转移给另一个外星人。"
 	plasma_cost = 0
 	button_icon_state = "alien_transfer"
 
@@ -165,26 +165,26 @@ Doesn't work on other aliens/AI.*/
 		aliens_around += alien
 
 	if(!length(aliens_around))
-		to_chat(owner, span_noticealien("There are no other aliens around."))
+		to_chat(owner, span_noticealien("周围没有其他外星人。"))
 		return FALSE
 
-	var/mob/living/carbon/donation_target = tgui_input_list(owner, "Target to transfer to", "Plasma Donation", sort_names(aliens_around))
+	var/mob/living/carbon/donation_target = tgui_input_list(owner, "转移目标", "等离子体捐赠", sort_names(aliens_around))
 	if(!donation_target)
 		return FALSE
 
-	var/amount = tgui_input_number(owner, "Amount", "Transfer Plasma to [donation_target]", max_value = carbon_owner.getPlasma())
+	var/amount = tgui_input_number(owner, "数量", "转移等离子体至[donation_target]", max_value = carbon_owner.getPlasma())
 	if(QDELETED(donation_target) || QDELETED(src) || QDELETED(owner) || !IsAvailable(feedback = TRUE) || isnull(amount) || amount <= 0)
 		return FALSE
 
 	if(get_dist(owner, donation_target) > 1)
-		to_chat(owner, span_noticealien("You need to be closer!"))
+		to_chat(owner, span_noticealien("你需要靠得更近！"))
 		return FALSE
 
 	donation_target.adjustPlasma(amount)
 	carbon_owner.adjustPlasma(-amount)
 
-	to_chat(donation_target, span_noticealien("[owner] has transferred [amount] plasma to you."))
-	to_chat(owner, span_noticealien("You transfer [amount] plasma to [donation_target]."))
+	to_chat(donation_target, span_noticealien("[owner]已将[amount]等离子体转移给你。"))
+	to_chat(owner, span_noticealien("你将[amount]等离子体转移给[donation_target]。"))
 	return TRUE
 
 /datum/action/cooldown/alien/acid
@@ -192,8 +192,8 @@ Doesn't work on other aliens/AI.*/
 	unset_after_click = FALSE
 
 /datum/action/cooldown/alien/acid/corrosion
-	name = "Corrosive Acid"
-	desc = "Drench an object in acid, destroying it over time."
+	name = "腐蚀性酸液"
+	desc = "用酸液浸透物体，使其随时间逐渐被摧毁。"
 	button_icon_state = "alien_acid"
 	plasma_cost = 200
 	/// The acid power for the aliens acid corrosion, will ignore mobs
@@ -206,7 +206,7 @@ Doesn't work on other aliens/AI.*/
 	if(!.)
 		return
 
-	to_chat(on_who, span_noticealien("You prepare to vomit acid. <b>Click a target to acid it!</b>"))
+	to_chat(on_who, span_noticealien("你准备好喷吐酸液。<b>点击目标以对其使用酸液！</b>"))
 	on_who.update_icons()
 
 /datum/action/cooldown/alien/acid/corrosion/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
@@ -215,14 +215,14 @@ Doesn't work on other aliens/AI.*/
 		return
 
 	if(refund_cooldown)
-		to_chat(on_who, span_noticealien("You empty your corrosive acid glands."))
+		to_chat(on_who, span_noticealien("你清空了腐蚀性酸液腺体。"))
 	on_who.update_icons()
 
 /datum/action/cooldown/alien/acid/corrosion/PreActivate(atom/target)
 	if(get_dist(owner, target) > 1)
 		return FALSE
 	if(ismob(target)) //If it could corrode mobs, it would one-shot them.
-		owner.balloon_alert(owner, "doesn't work on creatures!")
+		owner.balloon_alert(owner, "对生物无效！")
 		return FALSE
 
 	return ..()
@@ -231,18 +231,18 @@ Doesn't work on other aliens/AI.*/
 	if(isturf(target))
 		target.AddComponent(/datum/component/acid, corrosion_acid_power, corrosion_acid_volume, GLOB.acid_overlay, /particles/acid, turf_acid_ignores_mobs = TRUE)
 	else if(!target.acid_act(corrosion_acid_power, corrosion_acid_volume))
-		to_chat(owner, span_noticealien("You cannot dissolve this object."))
+		to_chat(owner, span_noticealien("你无法溶解此物体。"))
 		return FALSE
 
 	owner.visible_message(
-		span_alertalien("[owner] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!"),
-		span_noticealien("You vomit globs of acid over [target]. It begins to sizzle and melt."),
+		span_alertalien("[owner] 朝 [target] 喷吐出大量恶心的粘液。它在翻腾的酸液中开始嘶嘶作响并融化！"),
+		span_noticealien("你朝 [target] 喷吐出酸液团。它开始嘶嘶作响并融化。"),
 	)
 	return TRUE
 
 /datum/action/cooldown/alien/acid/neurotoxin
-	name = "Spit Neurotoxin"
-	desc = "Spits neurotoxin at someone, dealing large amounts of stamina damage."
+	name = "喷射神经毒素"
+	desc = "向某人喷射神经毒素，造成大量耐力伤害。"
 	button_icon_state = "alien_neurotoxin_0"
 	plasma_cost = 50
 
@@ -259,7 +259,7 @@ Doesn't work on other aliens/AI.*/
 	if(!.)
 		return
 
-	to_chat(on_who, span_notice("You prepare your neurotoxin gland. <B>Left-click to fire at a target!</B>"))
+	to_chat(on_who, span_notice("你准备好了你的神经毒素腺体。<B>左键点击以向目标开火！</B>"))
 
 	button_icon_state = "alien_neurotoxin_1"
 	build_all_button_icons()
@@ -271,7 +271,7 @@ Doesn't work on other aliens/AI.*/
 		return
 
 	if(refund_cooldown)
-		to_chat(on_who, span_notice("You empty your neurotoxin gland."))
+		to_chat(on_who, span_notice("你清空了你的神经毒素腺体。"))
 
 	button_icon_state = "alien_neurotoxin_0"
 	build_all_button_icons()
@@ -288,8 +288,8 @@ Doesn't work on other aliens/AI.*/
 
 	var/modifiers = params2list(params)
 	clicker.visible_message(
-		span_danger("[clicker] spits neurotoxin!"),
-		span_alertalien("You spit neurotoxin."),
+		span_danger("[clicker] 喷射了神经毒素！"),
+		span_alertalien("你喷射了神经毒素。"),
 	)
 	var/obj/projectile/neurotoxin/neurotoxin = new /obj/projectile/neurotoxin(clicker.loc)
 	neurotoxin.aim_projectile(target, clicker, modifiers)
@@ -303,8 +303,8 @@ Doesn't work on other aliens/AI.*/
 	return TRUE
 
 /datum/action/cooldown/alien/make_structure/resin
-	name = "Secrete Resin"
-	desc = "Secrete tough malleable resin."
+	name = "分泌树脂"
+	desc = "分泌坚韧可塑的树脂。"
 	button_icon_state = "alien_resin"
 	plasma_cost = 55
 	/// A list of all structures we can make.
@@ -319,13 +319,13 @@ Doesn't work on other aliens/AI.*/
 	for(var/blocker_name in structures)
 		var/obj/structure/blocker_type = structures[blocker_name]
 		if(locate(blocker_type) in owner.loc)
-			to_chat(owner, span_warning("There is already a resin structure there!"))
+			to_chat(owner, span_warning("那里已经有一个树脂结构了！"))
 			return FALSE
 
 	return TRUE
 
 /datum/action/cooldown/alien/make_structure/resin/Activate(atom/target)
-	var/choice = tgui_input_list(owner, "Select a shape to build", "Resin building", structures)
+	var/choice = tgui_input_list(owner, "选择要建造的形状", "树脂建造", structures)
 	if(isnull(choice) || QDELETED(src) || QDELETED(owner) || !check_for_duplicate() || !IsAvailable(feedback = TRUE))
 		return FALSE
 
@@ -334,20 +334,20 @@ Doesn't work on other aliens/AI.*/
 		return FALSE
 
 	owner.visible_message(
-		span_notice("[owner] vomits up a thick purple substance and begins to shape it."),
-		span_notice("You shape a [choice] out of resin."),
+		span_notice("[owner] 呕吐出一团浓稠的紫色物质并开始塑形。"),
+		span_notice("你用树脂塑造了一个 [choice]。"),
 	)
 	//NOVA EDIT START - Roundstart xenohybrid organs
 	if(build_duration && !do_after(owner, build_duration))
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 		return
 	//NOVA EDIT END
 	new choice_path(owner.loc)
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/sneak/alien
-	name = "Alien Sentinel Sneak"
-	desc = "Blend into the shadows to stalk your prey."
+	name = "异形哨兵潜行"
+	desc = "融入阴影以潜行追踪你的猎物。"
 	button_icon = 'icons/mob/actions/actions_xeno.dmi'
 	button_icon_state = "alien_sneak"
 	background_icon_state = "bg_alien"
@@ -355,8 +355,8 @@ Doesn't work on other aliens/AI.*/
 	sneak_alpha = 25
 
 /datum/action/cooldown/alien/regurgitate
-	name = "Regurgitate"
-	desc = "Empties the contents of your stomach."
+	name = "反刍"
+	desc = "清空你胃里的内容物。"
 	button_icon_state = "alien_barf"
 	var/angle_delta = 45
 	var/mob_speed = 1.5
@@ -368,14 +368,14 @@ Doesn't work on other aliens/AI.*/
 	var/mob/living/carbon/alien/adult/alieninated_owner = owner
 	var/obj/item/organ/stomach/alien/melting_pot = alieninated_owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!melting_pot)
-		owner.visible_message(span_clown("[src] gags, and spits up a bit of purple liquid. Ewwww."), \
-			span_alien("You feel a pain in your... chest? There's nothing there there's nothing there no no n-"))
+		owner.visible_message(span_clown("[src] 作呕，并吐出了一点紫色液体。呃……"), \
+			span_alien("你感到胸口一阵疼痛？那里什么都没有那里什么都没有不不不——"))
 		return
 
 	if(!length(melting_pot.stomach_contents))
-		to_chat(owner, span_alien("There's nothing in your stomach, what exactly do you plan on spitting up?"))
+		to_chat(owner, span_alien("你的胃里空空如也，你到底打算吐出什么？"))
 		return
-	owner.visible_message(span_danger("[owner] hurls out the contents of their stomach!"))
+	owner.visible_message(span_danger("[owner] 猛地吐出了胃里的东西！"))
 	var/dir_angle = dir2angle(owner.dir)
 
 	playsound(owner, 'sound/mobs/non-humanoids/alien/alien_york.ogg', 100)

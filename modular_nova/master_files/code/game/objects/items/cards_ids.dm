@@ -1,33 +1,33 @@
 // GENERIC
 /obj/item/card/id/advanced/silver/generic
-	name = "generic silver identification card"
+	name = "通用银色身份卡"
 	icon = 'modular_nova/master_files/icons/obj/card.dmi'
 	icon_state = "card_silvergen"
 	assigned_icon_state = null
 
 /obj/item/card/id/advanced/gold/generic
-	name = "generic gold identification card"
+	name = "通用金色身份卡"
 	icon = 'modular_nova/master_files/icons/obj/card.dmi'
 	icon_state = "card_goldgen"
 	assigned_icon_state = null
 
 // Interdyne (Deck Officer's)
 /obj/item/card/id/advanced/chameleon/elite/black/silver
-	name = "silver identification card"
-	desc = "A silver card which shows honour and dedication."
+	name = "银色身份卡"
+	desc = "一张象征荣誉与奉献的银色卡片。"
 	icon_state = "card_silver"
 	inhand_icon_state = "silver_id"
 	assigned_icon_state = "assigned_silver"
 
 // DS2
 /obj/item/card/id/advanced/prisoner/ds2
-	name = "syndicate prisoner card"
+	name = "辛迪加囚犯卡"
 	icon = 'modular_nova/master_files/icons/obj/card.dmi'
 	icon_state = "card_ds2prisoner"
 
 // SOLFED
 /obj/item/card/id/advanced/solfed
-	name = "solfed identification card"
+	name = "太阳联邦身份卡"
 	icon = 'modular_nova/master_files/icons/obj/card.dmi'
 	icon_state = "card_solfed"
 	assigned_icon_state = "assigned_solfed"
@@ -40,6 +40,6 @@
 	. = ..()
 
 	if(ACCESS_WEAPONS in GetAccess())
-		. += span_info("This ID authorizes the bearer to carry bulky firearms and automatic weapons.")
+		. += span_info("此ID授权持卡人携带大型枪械和自动武器。")
 	else
-		. += span_info("This ID does not authorize the bearer to carry bulky firearms or automatic weapons.")
+		. += span_info("此ID不授权持卡人携带大型枪械或自动武器。")

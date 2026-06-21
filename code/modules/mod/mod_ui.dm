@@ -87,7 +87,7 @@
 	if(.)
 		return
 	if(malfunctioning && prob(MOD_MALFUNCTION_PROB))
-		balloon_alert(ui.user, "button malfunctions!")
+		balloon_alert(ui.user, "按钮故障！")
 		return
 	switch(action)
 		if("lock")
@@ -95,7 +95,7 @@
 				locked = !locked
 				balloon_alert(ui.user, "[locked ? "locked" : "unlocked"]")
 			else
-				balloon_alert(ui.user, "access insufficent!")
+				balloon_alert(ui.user, "权限不足！")
 				playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		if("call")
 			if(!mod_link.link_call)

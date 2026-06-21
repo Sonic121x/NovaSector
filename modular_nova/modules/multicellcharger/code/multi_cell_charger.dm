@@ -1,6 +1,6 @@
 /obj/machinery/cell_charger_multi
-	name = "multi-cell charging rack"
-	desc = "A cell charging rack for multiple batteries."
+	name = "多电池充电架"
+	desc = "一个可为多块电池充电的充电架."
 	icon = 'modular_nova/modules/aesthetics/cells/icons/cell.dmi'
 	icon_state = "cchargermulti"
 	base_icon_state = "cchargermulti"
@@ -45,7 +45,7 @@
 /obj/machinery/cell_charger_multi/click_alt(mob/user, list/modifiers)
 	if(!can_interact(user) || !LAZYLEN(charging_batteries))
 		return
-	to_chat(user, span_notice("You press the quick release as all the cells pop out!"))
+	to_chat(user, span_notice("你按下快速释放钮，所有电池都弹了出来！"))
 	for(var/i in charging_batteries)
 		removecell()
 	return CLICK_ACTION_SUCCESS
@@ -59,8 +59,8 @@
 		for(var/obj/item/stock_parts/power_store/cell/charging in charging_batteries)
 			. += "There's [charging] cell in the charger, current charge: [round(charging.percent(), 1)]%."
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Charging power: <b>[display_power(charge_rate, convert = FALSE)]</b> per cell.")
-	. += span_notice("Alt click it to remove all the cells at once!")
+		. += span_notice("状态显示屏显示：充电功率：每块电池 <b>[display_power(charge_rate, convert = FALSE)]</b>.")
+	. += span_notice("Alt 点击可一次性取出所有电池！")
 
 /obj/machinery/cell_charger_multi/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stock_parts/power_store/cell) || panel_open)
@@ -74,30 +74,30 @@
 		return NONE
 
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning("[src] is broken!"))
+		to_chat(user, span_warning("[src] 已损坏！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!anchored)
-		to_chat(user, span_warning("[src] isn't attached to the ground!"))
+		to_chat(user, span_warning("[src] 未固定在地面上！"))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/stock_parts/power_store/cell/inserting_cell = tool
 	if(inserting_cell.chargerate <= 0)
-		to_chat(user, span_warning("[inserting_cell] cannot be recharged!"))
+		to_chat(user, span_warning("[inserting_cell] 无法充电！"))
 		return ITEM_INTERACT_BLOCKING
 	if(LAZYLEN(charging_batteries) >= max_batteries)
-		to_chat(user, span_warning("[src] is full, and cannot hold anymore cells!"))
+		to_chat(user, span_warning("[src] 已满，无法容纳更多电池！"))
 		return ITEM_INTERACT_BLOCKING
 	else
 		var/area/current_area = loc.loc // Gets our locations location, like a dream within a dream
 		if(!isarea(current_area))
 			return ITEM_INTERACT_BLOCKING
 		if(current_area.power_equip == 0) // There's no APC in this area, don't try to cheat power!
-			to_chat(user, span_warning("[src] blinks red as you try to insert the cell!"))
+			to_chat(user, span_warning("当你试图插入电池时，[src] 闪烁红光！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool,src))
 			return ITEM_INTERACT_BLOCKING
 
 		LAZYADD(charging_batteries, tool)
-		user.visible_message(span_notice("[user] inserts a cell into [src]."), span_notice("You insert a cell into [src]."))
+		user.visible_message(span_notice("[user] 将一块电池插入 [src]。"), span_notice("你将一块电池插入 [src]。"))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -128,7 +128,7 @@
 	if(!LAZYLEN(charging_batteries))
 		return
 
-	to_chat(user, span_notice("You telekinetically remove [removecell(user)] from [src]."))
+	to_chat(user, span_notice("你以念力将 [removecell(user)] 从 [src] 中取出。"))
 
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -171,7 +171,7 @@
 	user.put_in_hands(charging)
 	charging.add_fingerprint(user)
 
-	user.visible_message(span_notice("[user] removes [charging] from [src]."), span_notice("You remove [charging] from [src]."))
+	user.visible_message(span_notice("[user] 从 [src] 中取出了 [charging]。"), span_notice("你从 [src] 中取出了 [charging]。"))
 
 /obj/machinery/cell_charger_multi/proc/removecell(mob/user)
 	if(!LAZYLEN(charging_batteries))
@@ -181,7 +181,7 @@
 		var/list/buttons = list()
 		for(var/obj/item/stock_parts/power_store/cell/battery in charging_batteries)
 			buttons["[battery.name] ([round(battery.percent(), 1)]%)"] = battery
-		var/cell_name = tgui_input_list(user, "Please choose what cell you'd like to remove.", "Remove a cell", buttons)
+		var/cell_name = tgui_input_list(user, "请选择你想要移除的电池。", "移除电池", buttons)
 		charging = buttons[cell_name]
 	else
 		charging = LAZYACCESS(charging_batteries, 1)
@@ -209,7 +209,7 @@
 
 /datum/design/board/cell_charger_multi
 	name = "Multi-Cell Charger Board"
-	desc = "The circuit board for a multi-cell charger."
+	desc = "多电池充电器的电路板。"
 	id = "multi_cell_charger"
 	build_path = /obj/item/circuitboard/machine/cell_charger_multi
 	category = list(

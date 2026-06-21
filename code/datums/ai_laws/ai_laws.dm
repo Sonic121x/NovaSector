@@ -379,7 +379,7 @@ GLOBAL_VAR(round_default_lawset)
 		replaceable_groups[LAW_SUPPLIED] = supplied.len
 
 	if(replaceable_groups.len == 0) // unable to replace any laws
-		to_chat(usr, span_alert("Unable to upload law to [owner ? owner : "the AI core"]."))
+		to_chat(usr, span_alert("无法向[owner ? owner : "the AI core"]上传法则。"))
 		return
 
 	var/picked_group = pick_weight(replaceable_groups)

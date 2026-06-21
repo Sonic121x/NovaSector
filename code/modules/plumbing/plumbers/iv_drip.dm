@@ -1,7 +1,7 @@
 ///modified IV that can be anchored and takes plumbing in- and output
 /obj/machinery/iv_drip/plumbing
-	name = "automated IV drip"
-	desc = "A modified IV drip with plumbing connects. Reagents received from the connect are injected directly into their bloodstream, blood that is drawn goes to the internal storage and then into the ducting."
+	name = "自动静脉滴注器"
+	desc = "一种带有管道连接的改良静脉滴注器。从连接处接收的试剂直接注入其血液中，抽取的血液则进入内部储存器，然后流入管道。"
 	icon_state = "plumb"
 	base_icon_state = "plumb"
 	density = TRUE

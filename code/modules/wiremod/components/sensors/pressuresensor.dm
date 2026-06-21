@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/pressuresensor
 	display_name = "Pressure Sensor"
-	desc = "Outputs the current pressure of the tile"
+	desc = "输出地砖当前的压力值"
 	category = "Sensor"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

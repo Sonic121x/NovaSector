@@ -61,7 +61,7 @@
 		holder_mind.transfer_to(human_holder, TRUE)
 
 /datum/augment_item/organ/brain/cortical
-	name = "Cortically-Augmented Brain"
+	name = "皮层增强大脑"
 	slot = AUGMENT_SLOT_BRAIN
 	path = /obj/item/organ/brain/cybernetic/cortical
 
@@ -73,15 +73,15 @@
 	species_blacklist = list(SPECIES_HEMOPHAGE = 1)
 
 /datum/augment_item/organ/heart/normal
-	name = "Organic heart"
+	name = "有机心脏"
 	path = /obj/item/organ/heart
 
 /datum/augment_item/organ/heart/cybernetic
-	name = "Cybernetic heart"
+	name = "赛博格心脏"
 	path = /obj/item/organ/heart/cybernetic
 
 /datum/augment_item/organ/heart/synth
-	name = "Hydraulic pump engine"
+	name = "液压泵引擎"
 	path =/obj/item/organ/heart/synth
 
 //LUNGS
@@ -91,11 +91,11 @@
 	icon = FA_ICON_LUNGS
 
 /datum/augment_item/organ/lungs/normal
-	name = "Organic lungs"
+	name = "有机肺"
 	path = /obj/item/organ/lungs
 
 /datum/augment_item/organ/lungs/cybernetic
-	name = "Cybernetic lungs"
+	name = "赛博格肺"
 	path = /obj/item/organ/lungs/cybernetic
 
 //LIVERS
@@ -105,15 +105,15 @@
 	icon = "tg-znova-liver"
 
 /datum/augment_item/organ/liver/normal
-	name = "Organic Liver"
+	name = "有机肝脏"
 	path = /obj/item/organ/liver
 
 /datum/augment_item/organ/liver/cybernetic
-	name = "Cybernetic liver"
+	name = "赛博格肝脏"
 	path = /obj/item/organ/liver/cybernetic
 
 /datum/augment_item/organ/liver/synth
-	name = "Reagent processing unit"
+	name = "试剂处理单元"
 	path = /obj/item/organ/liver/synth
 
 //STOMACHES
@@ -123,15 +123,15 @@
 	icon = "tg-znova-stomach"
 
 /datum/augment_item/organ/stomach/normal
-	name = "Organic stomach"
+	name = "有机胃"
 	path = /obj/item/organ/stomach
 
 /datum/augment_item/organ/stomach/cybernetic
-	name = "Cybernetic stomach"
+	name = "赛博格胃"
 	path = /obj/item/organ/stomach/cybernetic
 
 /datum/augment_item/organ/stomach/lithovore
-	name = "Lithovore Stomach"
+	name = "石食胃"
 	path = /obj/item/organ/stomach/lithovore
 
 /datum/augment_item/organ/stomach/lithovore/apply(mob/living/carbon/human/H, character_setup = FALSE, datum/preferences/prefs)
@@ -146,29 +146,29 @@
 	icon = FA_ICON_EYE
 
 /datum/augment_item/organ/eyes/normal
-	name = "Organic eyes"
+	name = "有机眼"
 	path = /obj/item/organ/eyes
 
 /datum/augment_item/organ/eyes/cybernetic
-	name = "Cybernetic eyes"
+	name = "赛博格眼"
 	path = /obj/item/organ/eyes/robotic
 
 /datum/augment_item/organ/eyes/cybernetic/moth
-	name = "Cybernetic moth eyes"
+	name = "赛博化蛾眼"
 	path = /obj/item/organ/eyes/robotic/moth
 
 /datum/augment_item/organ/eyes/highlumi
-	name = "High-luminosity eyes"
+	name = "高亮度眼睛"
 	path = /obj/item/organ/eyes/robotic/glow
 	cost = 1
 
 /datum/augment_item/organ/eyes/highlumi/moth
-	name = "High Luminosity Moth Eyes"
+	name = "高亮度蛾眼"
 	path = /obj/item/organ/eyes/robotic/glow/moth
 	cost = 1
 
 /datum/augment_item/organ/eyes/binoculars
-	name = "Digital Magnification Optics (x3)"
+	name = "数字放大光学镜片 (x3)"
 	cost = 4
 	path = /obj/item/organ/eyes/robotic/binoculars
 
@@ -196,31 +196,31 @@
 	icon = "tg-znova-tongue"
 
 /datum/augment_item/organ/tongue/normal
-	name = "Organic tongue"
+	name = "有机舌头"
 	path = /obj/item/organ/tongue/human
 
 /datum/augment_item/organ/tongue/robo
-	name = "Robotic voicebox"
+	name = "机械发声器"
 	path = /obj/item/organ/tongue/robot
 
 /datum/augment_item/organ/tongue/robo/forked
-	name = "Robotic lizard voicebox"
+	name = "机械蜥蜴发声器"
 	path = /obj/item/organ/tongue/lizard/robot
 
 /datum/augment_item/organ/tongue/cybernetic
-	name = "Cybernetic tongue"
+	name = "赛博化舌头"
 	path = /obj/item/organ/tongue/cybernetic
 
 /datum/augment_item/organ/tongue/cybernetic/forked
-	name = "Forked cybernetic tongue"
+	name = "分叉赛博化舌头"
 	path = /obj/item/organ/tongue/lizard/cybernetic
 
 /datum/augment_item/organ/tongue/forked
-	name = "Forked tongue"
+	name = "分叉舌头"
 	path = /obj/item/organ/tongue/lizard
 
 /datum/augment_item/organ/tongue/forked/filterless
-	name = "Forked tongue (Without TTS Filter)"
+	name = "分叉舌头 (无TTS过滤器)"
 	path = /obj/item/organ/tongue/lizard/filterless
 
 //EARS
@@ -230,11 +230,11 @@
 	icon = "tg-znova-ear"
 
 /datum/augment_item/organ/ears/normal
-	name = "Organic ears"
+	name = "有机耳朵"
 	path = /obj/item/organ/ears
 
 /datum/augment_item/organ/ears/cybernetic
-	name = "Cybernetic ears"
+	name = "赛博化耳朵"
 	path = /obj/item/organ/ears/cybernetic
 
 /// Cyber cat ears - Cosmetic types for augments only
@@ -248,13 +248,13 @@
 	bodypart_overlay = /datum/bodypart_overlay/mutant/cat_ears/cybernetic/green
 
 /datum/augment_item/organ/ears/cybernetic/cat
-	name = "Cybernetic cat ears"
+	name = "赛博化猫耳"
 	path = /obj/item/organ/ears/cat/cybernetic
 
 /datum/augment_item/organ/ears/cybernetic/cat/blue
-	name = "Cybernetic cat ears (blue)"
+	name = "赛博化猫耳 (蓝色)"
 	path = /obj/item/organ/ears/cat/cybernetic/blue
 
 /datum/augment_item/organ/ears/cybernetic/cat/green
-	name = "Cybernetic cat ears (green)"
+	name = "赛博化猫耳 (绿色)"
 	path = /obj/item/organ/ears/cat/cybernetic/green

@@ -10,7 +10,7 @@
 	AddElement(/datum/element/caseless)
 
 /obj/projectile/beam/laser/plasma_glob
-	name = "plasma globule"
+	name = "等离子体团"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "plasma_glob"
 	damage = 10

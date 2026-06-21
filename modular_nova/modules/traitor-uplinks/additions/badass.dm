@@ -1,31 +1,31 @@
 // LOW COST
 /datum/uplink_item/badass/guerilla_gloves
-	name = "Guerilla Gloves"
-	desc = "A pair of highly robust combat gripper gloves that excels at performing takedowns at close range, with an added lining of insulation. Careful not to hit a wall!"
+	name = "游击手套"
+	desc = "一副极其坚固的战斗抓握手套，擅长在近距离执行制服动作，并额外衬有绝缘层。小心别打到墙！"
 	item = /obj/item/clothing/gloves/tackler/combat/insulated
 	cost = 1
 	uplink_item_flags = NONE
 	purchasable_from = UPLINK_TRAITORS | UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/badass/combat_shoes
-	name = "Combat Jackboots"
-	desc = "High speed, low drag combat boots."
+	name = "战斗长筒靴"
+	desc = "高速、低阻力的战斗靴。"
 	item = /obj/item/clothing/shoes/combat
 	cost = 1
 	uplink_item_flags = NONE
 	purchasable_from = UPLINK_TRAITORS | UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/badass/bulletproof_armor
-	name = "Bulletproof Armor Vest"
-	desc = "A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	name = "防弹背心"
+	desc = "一件 III 型重型防弹背心，在保护穿戴者免受传统抛射武器和一定程度爆炸伤害方面表现出色。"
 	item = /obj/item/clothing/suit/armor/bulletproof
 	cost = /datum/uplink_item/low_cost::cost
 	uplink_item_flags = NONE
 	purchasable_from = UPLINK_TRAITORS | UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/badass/swat_helmet
-	name = "Syndicate Helmet"
-	desc = "An extremely robust, space-worthy helmet in a nefarious red and black stripe pattern."
+	name = "辛迪加头盔"
+	desc = "一顶极其坚固、适合太空环境的头盔，带有不祥的红黑条纹图案。"
 	item = /obj/item/clothing/head/helmet/swat
 	cost = /datum/uplink_item/low_cost::cost
 	uplink_item_flags = NONE

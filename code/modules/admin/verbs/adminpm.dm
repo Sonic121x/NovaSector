@@ -18,7 +18,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_pm_context, R_NONE, "Admin PM Mob", mob/t
 		to_chat(
 			src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Context: Target mob is not a mob, somehow."),
+			html = span_danger("错误：管理员私信-上下文：目标生物不是生物，不知何故。"),
 			confidential = TRUE,
 		)
 		return
@@ -42,7 +42,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 			nametag = "[real_mob_name](as [mob_name])"
 		targets["[nametag] - [client]"] = client
 
-	var/target = input(src,"To whom shall we send a message?", "Admin PM", null) as null|anything in sort_list(targets)
+	var/target = input(src,"我们要向谁发送消息？", "管理员私信", null) as null|anything in sort_list(targets)
 	if (isnull(target))
 		return
 	user.cmd_admin_pm(targets[target], null)
@@ -56,7 +56,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Reply: You are unable to use admin PM-s (muted)."),
+			html = span_danger("错误：管理员私信-回复：你无法使用管理员私信（已被禁言）。"),
 			confidential = TRUE)
 		return
 
@@ -70,7 +70,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		if(holder)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Reply: Client not found."),
+				html = span_danger("错误：管理员私信-回复：未找到客户端。"),
 				confidential = TRUE)
 		return
 
@@ -129,7 +129,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		else
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Reply: Client not found."),
+				html = span_danger("错误：管理员私信-回复：未找到客户端。"),
 				confidential = TRUE)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
@@ -147,18 +147,18 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM: You are unable to use admin PM-s (muted)."),
+			html = span_danger("错误：管理员私信：你无法使用管理员私信（已被禁言）。"),
 			confidential = TRUE)
 		return
 
 	if(!holder && !current_ticket) //no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be."),
+			html = span_danger("你无法再回复此工单，如有需要，请使用 Adminhelp 动词另开一个。"),
 			confidential = TRUE)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("Message: [message]"),
+			html = span_notice("消息：[message]"),
 			confidential = TRUE)
 		return
 
@@ -191,26 +191,26 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		if(!externalreplyamount) //to prevent people from spamming irc/discord
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Message: External reply cap hit."),
+				html = span_danger("错误：管理员私信消息：外部回复次数上限已满。"),
 				confidential = TRUE)
 			return null
 		var/msg = ""
 		if(existing_message)
 			msg = existing_message
 		else
-			msg = input(src,"Message:", "Private message to Administrator") as message|null
+			msg = input(src,"Message:", "发送给管理员的私信") as message|null
 
 		if(!msg)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Message: No message input."),
+				html = span_danger("错误：管理员私信消息：未输入消息。"),
 				confidential = TRUE)
 			return null
 
 		if(holder)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Message: Use the admin IRC/Discord channel, nerd."),
+				html = span_danger("错误：管理员私信消息：请使用管理员 IRC/Discord 频道，书呆子。"),
 				confidential = TRUE)
 			return null
 		return msg
@@ -218,7 +218,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(!istype(ambiguious_recipient, /client))
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Message: Client not found."),
+			html = span_danger("错误：管理员私信消息：未找到客户端。"),
 			confidential = TRUE)
 		return null
 
@@ -253,7 +253,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(!msg)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Message: No message input."),
+			html = span_danger("错误：管理员私信消息：未输入消息。"),
 			confidential = TRUE)
 		return null
 
@@ -269,7 +269,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(holder)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Message: Client not found."),
+			html = span_danger("错误：管理员私信消息：未找到客户端。"),
 			confidential = TRUE)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
@@ -329,7 +329,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(!istype(ambiguious_recipient, /client))
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Send: Client not found."),
+			html = span_danger("错误：管理员私信发送：未找到客户端。"),
 			confidential = TRUE)
 		return FALSE
 
@@ -394,7 +394,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("Admin PM to-<b>[their_name_with_link]</b>: [span_linkify(send_message)]"),
+			html = span_notice("管理员私信至-<b>[their_name_with_link]</b>：[span_linkify(send_message)]"),
 			confidential = TRUE)
 
 		admin_ticket_log(recipient,
@@ -421,7 +421,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		if(!ticket)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Send: Non-admin to non-admin PM communication is forbidden."),
+				html = span_danger("错误：管理员私信发送：禁止非管理员之间进行私信通信。"),
 				confidential = TRUE)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
@@ -438,11 +438,11 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(!ticket)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Send: Attempted to send a reply to a closed ticket."),
+			html = span_danger("错误：管理员私信发送：试图向已关闭的工单发送回复。"),
 			confidential = TRUE)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("Relaying message to a new admin help."),
+			html = span_notice("正在将消息转发至新的管理员求助。"),
 			confidential = TRUE)
 		GLOB.admin_help_ui_handler.perform_adminhelp(src, raw_message, FALSE)
 		return FALSE
@@ -463,7 +463,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("Admin PM to-<b>[their_name_with_link]</b>: [span_linkify(keyword_parsed_msg)]"),
+			html = span_notice("管理员私信至-<b>[their_name_with_link]</b>：[span_linkify(keyword_parsed_msg)]"),
 			confidential = TRUE)
 
 		//omg this is dumb, just fill in both their logs
@@ -483,8 +483,8 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		return TRUE
 
 	// This is us (a player) trying to talk to the recipient (an admin)
-	var/replymsg = "Reply PM from-<b>[name_key_with_link]</b>: [span_linkify(keyword_parsed_msg)]"
-	var/player_replymsg = "Reply PM from-<b>[link_to_us]</b>: [span_linkify(send_message)]"
+	var/replymsg = "回复私信来自-<b>[name_key_with_link]</b>：[span_linkify(keyword_parsed_msg)]"
+	var/player_replymsg = "回复私信来自-<b>[link_to_us]</b>：[span_linkify(send_message)]"
 	admin_ticket_log(src,
 		"<font color='red'>[replymsg]</font>",
 		log_in_blackbox = FALSE,
@@ -537,13 +537,13 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		for(var/client/lad in GLOB.admins)
 			to_chat(lad,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_notice("<B>PM: [our_linked_ckey]-&gt;External:</B> [keyword_parsed_msg]"),
+				html = span_notice("<B>私信：[our_linked_ckey]-&gt;外部：</B>[keyword_parsed_msg]"),
 				confidential = TRUE)
 		return
 	if(!istype(ambiguious_recipient, /client))
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Notify: Client not found."),
+			html = span_danger("错误：管理员私信通知：未找到客户端。"),
 			confidential = TRUE)
 		return
 
@@ -566,7 +566,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 			continue
 		to_chat(lad,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("<B>PM: [our_linked_ckey]-&gt;[recipient_linked_ckey]:</B> [keyword_parsed_msg]") ,
+			html = span_notice("<B>私信：[our_linked_ckey]-&gt;[recipient_linked_ckey]:</B> [keyword_parsed_msg]") ,
 			confidential = TRUE)
 
 /// Accepts a message and an ambiguious recipient (some sort of client representative, or [EXTERNAL_PM_USER])
@@ -575,7 +575,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Filter: You are unable to use admin PM-s (muted)."),
+			html = span_danger("错误：管理员私信过滤器：你无法使用管理员私信（已被禁言）。"),
 			confidential = TRUE)
 		return
 
@@ -585,7 +585,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		if(!message)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Filter: Your message contained only HTML, it's been sanitized away and the message disregarded."),
+				html = span_danger("错误：管理员私信过滤器：你的消息仅包含HTML，已被清理且消息被忽略。"),
 				confidential = TRUE)
 			return
 	return message
@@ -754,7 +754,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		src,
 		type = MESSAGE_TYPE_ADMINPM,
 		html = fieldset_block(
-			span_adminhelp("Administrator private message"),
+			span_adminhelp("管理员私信"),
 			"<span class='[span_class]'>Admin PM from-<b>[reply_to]</b></span>\n\n\
 			<span class='[span_class]'>[message]</span>\n\n\
 			<i class='adminsay'>Click on the administrator's name to reply.</i>",

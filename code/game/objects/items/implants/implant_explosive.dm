@@ -11,8 +11,8 @@
 #define MICROBOMB_EXPLOSION_DEVASTATE 0.4
 
 /obj/item/implant/explosive
-	name = "microbomb implant"
-	desc = "And boom goes the weasel."
+	name = "微型炸弹植入物"
+	desc = "然后鼬鼠就炸了。"
 	icon_state = "explosive"
 	actions_types = list(/datum/action/item_action/explosive_implant) //Explosive implant action is always available.
 	///Whether the implant's explosion sequence has been activated or not
@@ -67,14 +67,14 @@
 		if(popup)
 			return FALSE
 		popup = TRUE
-		var/response = tgui_alert(imp_in, "Are you sure you want to activate your [name]? This will cause you to explode!", "[name] Confirmation", list("Yes", "No"))
+		var/response = tgui_alert(imp_in, "你确定要激活你的[name]吗？这会导致你爆炸！", "[name] 确认", list("Yes", "No"))
 		popup = FALSE
 		if(response != "Yes")
 			return FALSE
 	if(cause == "death" && HAS_TRAIT(imp_in, TRAIT_PREVENT_IMPLANT_AUTO_EXPLOSION))
 		return FALSE
 	if(announce_activation)
-		to_chat(imp_in, span_notice("You activate your [name]."))
+		to_chat(imp_in, span_notice("你激活了你的[name]。"))
 	active = TRUE
 	var/turf/boomturf = get_turf(imp_in)
 	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(boomturf)], with cause of [cause].")
@@ -89,7 +89,7 @@
 		if(istype(target_implant, /obj/item/implant/explosive)) //we don't use our own type here, because macrobombs inherit this proc and need to be able to upgrade microbombs
 			var/obj/item/implant/explosive/other_implant = target_implant
 			if(other_implant.master_implant && master_implant) //we cant have two master implants at once
-				target.balloon_alert(user, "cannot fit implant!")
+				target.balloon_alert(user, "无法植入！")
 				return FALSE
 			if(master_implant)
 				merge_implants(src, other_implant)
@@ -124,9 +124,9 @@
  */
 /obj/item/implant/explosive/proc/timed_explosion()
 	if (isnull(imp_in))
-		visible_message(span_warning("[src] starts beeping ominously!"))
+		visible_message(span_warning("[src]开始发出不祥的哔哔声！"))
 	else
-		imp_in.visible_message(span_warning("[imp_in] starts beeping ominously!"))
+		imp_in.visible_message(span_warning("[imp_in]开始发出不祥的哔哔声！"))
 		if(notify_ghosts)
 			notify_ghosts(
 				"[imp_in.real_name] is about to detonate their explosive implant!",
@@ -141,7 +141,7 @@
 	if(!panic_beep_sound)
 		sleep(delay * 0.25)
 	if(imp_in && !imp_in.stat && !no_paralyze)
-		imp_in.visible_message(span_warning("[imp_in] doubles over in pain!"))
+		imp_in.visible_message(span_warning("[imp_in]痛苦地弯下了腰！"))
 		imp_in.Paralyze(14 SECONDS)
 
 	if(!panic_beep_sound)
@@ -175,8 +175,8 @@
 
 ///Macrobomb has the strength and delay of 10 microbombs
 /obj/item/implant/explosive/macro
-	name = "macrobomb implant"
-	desc = "And boom goes the weasel. And everything else nearby."
+	name = "巨型炸弹植入物"
+	desc = "然后鼬鼠就炸了。还有附近的一切。"
 	icon_state = "explosive"
 	delay = 10 * MICROBOMB_DELAY
 	explosion_light = 10 * MICROBOMB_EXPLOSION_LIGHT
@@ -191,8 +191,8 @@
 
 ///Microbomb which prevents you from going into critical condition but also explodes after a timer when you reach critical condition in the first place.
 /obj/item/implant/explosive/deniability
-	name = "tactical deniability implant"
-	desc = "An enhanced version of the microbomb that directly plugs into the brain. No downsides, promise!"
+	name = "战术可否认性植入物"
+	desc = "微型炸弹的增强版本，直接接入大脑。没有缺点，保证！"
 	delay = 10 SECONDS
 	panic_beep_sound = TRUE
 	no_paralyze = TRUE
@@ -229,32 +229,32 @@
 		INVOKE_ASYNC(src, PROC_REF(activate), "deniability")
 
 /obj/item/implant/explosive/deathmatch
-	name = "deathmatch microbomb implant"
+	name = "死亡竞赛微型炸弹植入物"
 	delay = 0.5 SECONDS
 	actions_types = null
 	instant_explosion = FALSE
 	notify_ghosts = FALSE
 
 /obj/item/implanter/explosive
-	name = "implanter (microbomb)"
+	name = "植入器（微型炸弹）"
 	imp_type = /obj/item/implant/explosive
 
 /obj/item/implantcase/explosive
 	name = "implant case - 'Explosive'"
-	desc = "A glass case containing an explosive implant."
+	desc = "一个装有爆炸物植入物的玻璃盒。"
 	imp_type = /obj/item/implant/explosive
 
 /obj/item/implanter/explosive_macro
-	name = "implanter (macrobomb)"
+	name = "植入器（巨型炸弹）"
 	imp_type = /obj/item/implant/explosive/macro
 
 /obj/item/implanter/tactical_deniability
-	name = "implanter (tactical deniability)"
+	name = "植入器（战术可否认性）"
 	imp_type = /obj/item/implant/explosive/deniability
 
 /datum/action/item_action/explosive_implant
 	check_flags = NONE
-	name = "Activate Explosive Implant"
+	name = "激活爆炸植入物"
 
 #undef MICROBOMB_DELAY
 #undef MICROBOMB_EXPLOSION_LIGHT

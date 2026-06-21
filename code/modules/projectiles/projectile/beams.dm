@@ -1,5 +1,5 @@
 /obj/projectile/beam
-	name = "laser"
+	name = "激光"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 20
@@ -29,18 +29,18 @@
 	exposed_wound_bonus = 40
 
 /obj/projectile/beam/laser/rapid
-	name = "rapid fire laser"
+	name = "速射激光"
 	icon_state = "carbine_laser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
 	damage = 20
 
 /obj/projectile/beam/laser/rapid/practice
-	name = "practice rapid fire laser"
+	name = "训练用速射激光"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
 	damage = 0
 
 /obj/projectile/beam/laser/cybersun
-	name = "red plasma beam"
+	name = "红色等离子束"
 	icon_state = "lava"
 	light_color = COLOR_DARK_RED
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
@@ -49,7 +49,7 @@
 	speed = 0.9
 
 /obj/projectile/beam/laser/accelerator
-	name = "accelerator laser"
+	name = "加速器激光"
 	icon_state = "scatterlaser"
 	range = 255
 	damage = 6
@@ -64,7 +64,7 @@
 
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
 /obj/projectile/beam/laser/hellfire
-	name = "hellfire laser"
+	name = "地狱火激光"
 	icon_state = "hellfire"
 	wound_bonus = 0
 	damage = 30
@@ -72,7 +72,7 @@
 	light_color = "#FF969D"
 
 /obj/projectile/beam/laser/flare
-	name = "flare particle"
+	name = "耀斑粒子"
 	icon_state = "flare"
 	light_range = 2
 	light_power = 3
@@ -88,7 +88,7 @@
 	designated_target.apply_status_effect(/datum/status_effect/designated_target)
 
 /obj/projectile/beam/laser/heavylaser
-	name = "heavy laser"
+	name = "重型镭射"
 	icon_state = "heavylaser"
 	damage = 40
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
@@ -104,7 +104,7 @@
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
 
 /obj/projectile/beam/laser/musket
-	name = "low-power laser"
+	name = "低功率激光"
 	icon_state = "laser_musket"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	damage = 28
@@ -113,13 +113,13 @@
 	weak_against_armour = TRUE
 
 /obj/projectile/beam/laser/musket/prime
-	name = "mid-power laser"
+	name = "中功率激光"
 	damage = 25
 	stamina = 20
 	weak_against_armour = FALSE
 
 /obj/projectile/beam/laser/repeater
-	name = "clockwork laser"
+	name = "发条激光"
 	icon_state = "laser_repeater"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
 	damage = 15
@@ -133,11 +133,11 @@
 	armour_penetration = 50
 
 /obj/projectile/beam/practice
-	name = "practice laser"
+	name = "练习用镭射"
 	damage = 0
 
 /obj/projectile/beam/scatter
-	name = "laser pellet"
+	name = "激光弹丸"
 	icon_state = "scatterlaser"
 	damage = 7.5
 	wound_bonus = 5
@@ -146,7 +146,7 @@
 	wound_falloff_tile = -2.5
 
 /obj/projectile/beam/scatter/pathetic
-	name = "extremely weak laser pellet"
+	name = "极度虚弱的激光弹丸"
 	damage = 1
 	wound_bonus = 0
 	damage_falloff_tile = -0.1
@@ -155,7 +155,7 @@
 	hitsound_wall = 'sound/items/bikehorn.ogg'
 
 /obj/projectile/beam/xray
-	name = "\improper X-ray beam"
+	name = "\improper X射线"
 	icon_state = "xray"
 	damage = 15
 	range = 15
@@ -169,7 +169,7 @@
 	impact_type = /obj/effect/projectile/impact/xray
 
 /obj/projectile/beam/disabler
-	name = "disabler beam"
+	name = "镇暴光束"
 	icon_state = "omnilaser"
 	damage = 30
 	speed = 1.6
@@ -186,7 +186,7 @@
 	damage = 15
 
 /obj/projectile/beam/disabler/scatter
-	name = "scatter disabler"
+	name = "散射型瘫痪光束"
 	icon_state = "scatterdisabler"
 	damage = 5.5
 	damage_falloff_tile = -0.5
@@ -197,16 +197,16 @@
 	impact_type = /obj/effect/projectile/impact/xray
 
 /obj/projectile/beam/disabler/smoothbore
-	name = "unfocused disabler beam"
+	name = "未聚焦瘫痪光束"
 	weak_against_armour = TRUE
 
 /obj/projectile/beam/disabler/smoothbore/prime
-	name = "focused disabler beam"
+	name = "聚焦瘫痪光束"
 	weak_against_armour = FALSE
 	damage = 35 //slight increase in damage just for the hell of it
 
 /obj/projectile/beam/pulse
-	name = "pulse"
+	name = "脉冲"
 	icon_state = "u_laser"
 	damage = 50
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
@@ -228,7 +228,7 @@
 	damage = 30
 
 /obj/projectile/beam/pulse/heavy
-	name = "heavy pulse laser"
+	name = "重脉冲激光"
 	icon_state = "pulse1_bl"
 	projectile_piercing = ALL
 	var/pierce_hits = 2
@@ -240,7 +240,7 @@
 	return ..()
 
 /obj/projectile/beam/emitter
-	name = "emitter beam"
+	name = "发射器光束"
 	icon_state = "emitter"
 	damage = 30
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
@@ -275,7 +275,7 @@
 	var/psi_change
 
 /obj/projectile/beam/emitter/hitscan/bluelens
-	name = "electrodisruptive beam"
+	name = "电子干扰光束"
 	light_color = LIGHT_COLOR_BLUE
 	muzzle_type = /obj/effect/projectile/muzzle/pulse
 	tracer_type = /obj/effect/projectile/tracer/laser/emitter/bluelens
@@ -288,7 +288,7 @@
 	energy_reduction = 60
 
 /obj/projectile/beam/emitter/hitscan/bioregen
-	name = "bioregenerative beam"
+	name = "生物再生光束"
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
 	muzzle_type = /obj/effect/projectile/muzzle/solar
 	tracer_type = /obj/effect/projectile/tracer/laser/emitter/bioregen
@@ -308,7 +308,7 @@
 	healed_guy.heal_bodypart_damage(brute = healing_done, burn = healing_done, updating_health = FALSE)
 
 /obj/projectile/beam/emitter/hitscan/incend
-	name = "conflagratory beam"
+	name = "纵火光束"
 	light_color = LIGHT_COLOR_ORANGE
 	muzzle_type = /obj/effect/projectile/muzzle/heavy_laser
 	tracer_type = /obj/effect/projectile/tracer/laser/emitter/redlens
@@ -330,7 +330,7 @@
 	burnt_guy.ignite_mob()
 
 /obj/projectile/beam/emitter/hitscan/psy
-	name = "psychosiphoning beam"
+	name = "精神虹吸光束"
 	light_color = LIGHT_COLOR_PINK
 	muzzle_type = /obj/effect/projectile/muzzle/laser/emitter/psy
 	tracer_type = /obj/effect/projectile/tracer/laser/emitter/psy
@@ -348,10 +348,10 @@
 		return
 	var/mob/living/siphoned = target
 	siphoned.mob_mood.adjust_sanity(-25)
-	to_chat(siphoned, span_warning("Suddenly, everything feels just a little bit worse!"))
+	to_chat(siphoned, span_warning("突然间，一切都感觉更糟了一点！"))
 
 /obj/projectile/beam/emitter/hitscan/magnetic
-	name = "magnetogenerative beam"
+	name = "磁力生成光束"
 	light_color = COLOR_SILVER
 	muzzle_type = /obj/effect/projectile/muzzle/laser/emitter/magnetic
 	tracer_type = /obj/effect/projectile/tracer/laser/emitter/magnetic
@@ -367,7 +367,7 @@
 	goonchem_vortex(turf_to_magnet, FALSE, 4)
 
 /obj/projectile/beam/emitter/hitscan/blast
-	name = "hyperconcussive beam"
+	name = "超震荡光束"
 	light_color = LIGHT_COLOR_ORANGE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/emitter/magnetic
 	tracer_type = /obj/effect/projectile/tracer/laser/emitter/magnetic
@@ -387,7 +387,7 @@
 
 
 /obj/projectile/beam/lasertag
-	name = "laser tag beam"
+	name = "激光标签光束"
 	icon_state = "omnilaser"
 	hitsound = null
 	damage = 0

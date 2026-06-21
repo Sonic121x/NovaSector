@@ -1,6 +1,6 @@
 //OUTFITS FOR NEW LEGION CORPSES
 /datum/outfit/consumed_engineer
-	name = "Legion-Consumed Engineer"
+	name = "军团-吞噬工程师"
 	uniform = /obj/item/clothing/under/rank/engineering/engineer
 	mask = /obj/item/clothing/mask/breath
 	head = /obj/item/clothing/head/utility/hardhat/welding/up
@@ -14,7 +14,7 @@
 	)
 
 /datum/outfit/consumed_scientist
-	name = "Legion-Consumed Scientist"
+	name = "军团-吞噬科学家"
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	mask = /obj/item/clothing/mask/breath
@@ -27,7 +27,7 @@
 	)
 
 /datum/outfit/consumed_cargotech
-	name = "Legion-Consumed Cargo-Tech"
+	name = "军团-吞噬货运技术员"
 	uniform = /obj/item/clothing/under/rank/cargo/tech
 	suit = /obj/item/clothing/suit/toggle/cargo_tech
 	mask = /obj/item/clothing/mask/breath
@@ -41,7 +41,7 @@
 	)
 
 /datum/outfit/consumed_cook
-	name = "Legion-Consumed Cook"
+	name = "军团-吞噬厨师"
 	uniform = /obj/item/clothing/under/costume/buttondown/slacks/service
 	suit = /obj/item/clothing/suit/toggle/chef
 	mask = /obj/item/clothing/mask/breath
@@ -55,7 +55,7 @@
 	)
 
 /datum/outfit/consumed_doctor
-	name = "Legion-Consumed Doctor"
+	name = "军团-吞噬医生"
 	uniform = /obj/item/clothing/under/rank/medical/doctor
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	suit_store = /obj/item/flashlight/pen

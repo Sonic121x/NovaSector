@@ -1,9 +1,9 @@
 /datum/round_event_control/wizard/identity_spoof //now EVERYONE is the wizard!
-	name = "Mass Identity Spoof"
+	name = "群体身份冒充"
 	weight = 5
 	typepath = /datum/round_event/wizard/identity_spoof
 	max_occurrences = 1
-	description = "Makes everyone dressed up like a wizard."
+	description = "让所有人都打扮得像巫师一样。"
 
 /datum/round_event_control/wizard/identity_spoof/can_spawn_event(players_amt, allow_magic = FALSE)
 	. = ..()

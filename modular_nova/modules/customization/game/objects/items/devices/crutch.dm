@@ -1,6 +1,6 @@
 /obj/item/cane/crutch
-	name = "crutch"
-	desc = "A crutch usually employed by those recovering from a leg injury."
+	name = "拐杖"
+	desc = "一种通常由腿部受伤恢复期人员使用的拐杖。"
 	icon = 'modular_nova/master_files/icons/obj/staff.dmi'
 	icon_state = "crutch"
 	inhand_icon_state = "crutch"

@@ -6,7 +6,7 @@
 // An implant that injects you with twitch on demand, acting like a bootleg sandevistan
 
 /obj/item/organ/cyberimp/sensory_enhancer
-	name = "\improper Qani-Laaca sensory computer"
+	name = "\improper 卡尼-拉卡感官计算机"
 	desc = "An experimental implant replacing the spine of organics. When activated, it can give a temporary boost to mental processing speed, \
 		which many users perceive as a slowing of time and quickening of their ability to act. Due to its nature, it is incompatible with \
 		systems that heavily influence the user's nervous system, like the central nervous system rebooter."
@@ -157,11 +157,11 @@
 	. = ..()
 
 	if(ismob(cast_on) || is_type_in_list(cast_on, emag_blacklist))
-		owner.balloon_alert(owner, "can't find data access point!")
+		owner.balloon_alert(owner, "找不到数据接入点！")
 		return FALSE
 
 	if(get_dist(owner, cast_on) > hack_range)
-		owner.balloon_alert(owner, "too far away!")
+		owner.balloon_alert(owner, "距离太远！")
 		return FALSE
 
 	return TRUE
@@ -183,7 +183,7 @@
 		return
 
 	if(!cast_on.emag_act(owner))
-		owner.balloon_alert(owner, "can't hack this!")
+		owner.balloon_alert(owner, "无法骇入这个！")
 		StartCooldown(1 SECONDS) // Resets the spell to working after a second, just so its not spammed
 		return
 

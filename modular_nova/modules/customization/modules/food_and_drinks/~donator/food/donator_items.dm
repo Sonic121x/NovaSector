@@ -1,7 +1,7 @@
 // mrsanderp's donator item
 /obj/item/book/granter/crafting_recipe/mrsanderp_donator_cookbook
-	name = "Riva Family Cookbook"
-	desc = "An old dusty notebook that is filled with several recipes, some more recent than others. There is a hand-written note scrawled behind the front cover which says \"Current Holder: Pasquale\"."
+	name = "里瓦家族食谱"
+	desc = "一本布满灰尘的旧笔记本，里面写满了各种食谱，有些比较新，有些则比较旧。扉页背面潦草地写着一行手写笔记：“当前持有者：帕斯夸莱”。"
 	icon_state = "book1"
 	uses = INFINITY
 	crafting_recipe_types = list(

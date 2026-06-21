@@ -3,8 +3,8 @@
 #define SAFE_DRUNK_LEVEL 39
 
 /obj/structure/weightmachine
-	name = "chest press machine"
-	desc = "Just looking at this thing makes you feel tired."
+	name = "胸推机"
+	desc = "光是看着这东西就让你感到疲惫。"
 	icon = 'icons/obj/fluff/gym_equipment.dmi'
 	icon_state = "stacklifter"
 	base_icon_state = "stacklifter"
@@ -78,14 +78,14 @@
 
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice("[buckler] lays down on [src]."),
-			span_notice("You lay down on [src]."),
+			span_notice("[buckler] 躺在了 [src] 上。"),
+			span_notice("你躺在了 [src] 上。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice("[buckler] lays [being_buckled] down on [src]."),
-			span_notice("[buckler] lays you down on [src]."),
+			span_notice("[buckler] 将 [being_buckled] 放在了 [src] 上。"),
+			span_notice("[buckler] 将你放在了 [src] 上。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -95,14 +95,14 @@
 
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] gets up from [src]."),
-			span_notice("You get up from [src]."),
+			span_notice("[unbuckler] 从 [src] 上起来了。"),
+			span_notice("你从 [src] 上起来了。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] pulls [being_unbuckled] up from [src]."),
-			span_notice("[unbuckler] pulls you up from [src]."),
+			span_notice("[unbuckler] 将 [being_unbuckled] 从 [src] 上拉了起来。"),
+			span_notice("[unbuckler] 将你从 [src] 上拉了起来。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -116,16 +116,16 @@
 
 /obj/structure/weightmachine/wrench_act_secondary(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
-	balloon_alert(user, anchored ? "unsecured" : "secured")
+	balloon_alert(user, anchored ? "未固定" : "已固定")
 	anchored = !anchored
 	return TRUE
 
 /obj/structure/weightmachine/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	if(anchored)
-		balloon_alert(user, "still secured!")
+		balloon_alert(user, "仍然固定着！")
 		return FALSE
 	tool.play_tool_sound(src)
-	balloon_alert(user, "deconstructing...")
+	balloon_alert(user, "正在解构...")
 	if (!do_after(user, 10 SECONDS, target = src))
 		return FALSE
 	new /obj/item/stack/sheet/iron(get_turf(src), 5)
@@ -136,7 +136,7 @@
 
 /obj/structure/weightmachine/proc/perform_workout(mob/living/user)
 	if(user.nutrition <= NUTRITION_LEVEL_STARVING)
-		user.balloon_alert(user, "too hungry to workout!")
+		user.balloon_alert(user, "太饿了，无法锻炼！")
 		return
 
 	user.balloon_alert_to_viewers("[pick(more_weight)]")
@@ -225,7 +225,7 @@
  * Weight lifter subtype
  */
 /obj/structure/weightmachine/weightlifter
-	name = "incline bench press"
+	name = "上斜卧推机"
 	icon_state = "benchpress"
 	base_icon_state = "benchpress"
 

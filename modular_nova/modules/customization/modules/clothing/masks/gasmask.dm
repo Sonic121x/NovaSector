@@ -1,16 +1,16 @@
 /obj/item/clothing/mask/gas/glass
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
-	name = "glass gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. This one doesn't obscure your face however."
+	name = "玻璃面罩防毒面具"
+	desc = "一种可以连接到供气系统的面部遮盖面罩。不过这款不会遮挡你的面容。"
 	icon_state = "gas_clear"
 	flags_inv = NONE
 
 /obj/item/clothing/mask/gas/atmos/glass
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
-	name = "advanced gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. This one doesn't obscure your face however."
+	name = "高级防毒面具"
+	desc = "一种可以连接到供气系统的面部遮盖面罩。不过这款不会遮挡你的面容。"
 	icon_state = "gas_clear"
 	flags_inv = NONE
 
@@ -21,16 +21,16 @@
 	dirt_state = "gas_wide_dirt"
 
 /obj/item/clothing/mask/gas/hecu
-	name = "M40 gas mask"
-	desc = "A deprecated field protective mask developed during the 20th century in Sol-3. It's designed to protect from chemical agents, biological agents, and nuclear fallout particles. It does not protect the user from ammonia or from lack of oxygen, though the filter can be replaced with a tube for any air tank."
+	name = "M40防毒面具"
+	desc = "一种在20世纪于索尔-3开发的、现已过时的野战防护面具。设计用于防护化学战剂、生物战剂和核辐射尘埃颗粒。它不能保护使用者免受氨气或缺氧的伤害，不过其过滤器可以替换为连接任何气罐的软管。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
 	worn_icon_teshari = 'modular_nova/master_files/icons/mob/clothing/species/teshari/mask.dmi'
 	icon_state = "hecu"
 
 /obj/item/clothing/mask/gas/clown_colourable
-	name = "colourable clown mask"
-	desc = "The face of pure evil, now multicoloured."
+	name = "可着色小丑面具"
+	desc = "纯粹邪恶的面孔，如今色彩斑斓。"
 	clothing_flags = MASKINTERNALS
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
@@ -43,8 +43,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/mask/gas/clownbald
-	name = "bald clown mask"
-	desc = "HE'S BALD, HE'S FUCKIN' BALDIN!"
+	name = "秃头小丑面具"
+	desc = "他秃了！他他妈秃了！"
 	clothing_flags = MASKINTERNALS
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
@@ -54,8 +54,8 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/gas/pink_clown_wig
-	name = "pink clown wig"
-	desc = "A cotton candy pink wig. Comes with a round, glossy red clown nose that fastens snugly to the face."
+	name = "粉色小丑假发"
+	desc = "一团棉花糖粉色的假发。配有一个圆润、光泽的红色小丑鼻子，可以紧密地固定在脸上。"
 	clothing_flags = MASKINTERNALS
 	icon = 'modular_nova/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/mask.dmi'
@@ -65,8 +65,8 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/gas/respirator
-	name = "half mask respirator"
-	desc = "A half mask respirator that's really just a standard gas mask with the glass taken off."
+	name = "半面罩呼吸器"
+	desc = "一个半面罩呼吸器，其实就是把标准防毒面具的玻璃镜片取掉了。"
 	worn_icon = 'modular_nova/modules/GAGS/icons/masks.dmi'
 	inhand_icon_state = "sechailer"
 	w_class = WEIGHT_CLASS_SMALL
@@ -88,16 +88,16 @@
 
 /obj/item/clothing/mask/gas/respirator/examine(mob/user)
 	. = ..()
-	. += span_notice("You can toggle its ability to muffle your TTS voice with <b>control click</b>.")
+	. += span_notice("你可以用<b>Ctrl+点击</b>来切换其是否模糊你的TTS语音。")
 
 /obj/item/clothing/mask/gas/respirator/item_ctrl_click(mob/user)
 	if(!isliving(user))
 		return CLICK_ACTION_BLOCKING
 	if(user.get_active_held_item() != src)
-		to_chat(user, span_warning("You must hold the [src] in your hand to do this!"))
+		to_chat(user, span_warning("你必须将[src]拿在手中才能这样做！"))
 		return CLICK_ACTION_BLOCKING
 	voice_filter = voice_filter ? null : initial(voice_filter)
-	to_chat(user, span_notice("Mask voice muffling [voice_filter ? "enabled" : "disabled"]."))
+	to_chat(user, span_notice("面罩声音模糊[voice_filter ? "enabled" : "disabled"]。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/mask/gas/clown_hat/vox
@@ -139,7 +139,7 @@
 		icon_state = options[choice]
 		user.update_worn_mask()
 		update_item_action_buttons()
-		to_chat(user, span_notice("Your Clown Mask has now morphed into [choice], all praise the Honkmother!"))
+		to_chat(user, span_notice("你的小丑面具现已变形为[choice]，赞美Honkmother！"))
 		return TRUE
 
 /obj/item/clothing/mask/gas/mime/vox
@@ -186,11 +186,11 @@
 
 		user.update_worn_mask()
 		update_item_action_buttons()
-		to_chat(user, span_notice("Your Mime Mask has now morphed into [choice]!"))
+		to_chat(user, span_notice("你的默剧面具现已变形为[choice]！"))
 		return TRUE
 
 /obj/item/clothing/mask/gas/atmos/vox
-	desc = "Improved gas mask utilized by atmospheric technicians. It's flameproof! This one's got an easily accessible feeding port to be more suitable for the Vox crewmembers."
+	desc = "大气技术人员使用的改进型防毒面具。它是防火的！这款面具有一个易于使用的进食口，更适合沃克斯族船员。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/species/vox/mask.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/species/vox/mask.dmi'
 	worn_icon_vox = 'modular_nova/master_files/icons/mob/clothing/species/vox/mask.dmi'
@@ -198,7 +198,7 @@
 	starting_filter_type = /obj/item/gas_filter/vox
 
 /obj/item/clothing/mask/gas/sechailer/vox
-	desc = "A standard issue Security gas mask with integrated 'Compli-o-nator 3000' device. Plays over a dozen pre-recorded compliance phrases designed to get scumbags to stand still whilst you tase them. Do not tamper with the device. This one's got an easily accessible feeding port to be more suitable for the Vox crewmembers."
+	desc = "安保部门标准配发的防毒面具，集成了'Compli-o-nator 3000'装置。可播放十几种预先录制的合规短语，旨在让渣滓在你电击他们时保持不动。请勿篡改该装置。这款面具有一个易于使用的进食口，更适合沃克斯族船员。"
 	icon = 'modular_nova/master_files/icons/mob/clothing/species/vox/mask.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/species/vox/mask.dmi'
 	worn_icon_vox = 'modular_nova/master_files/icons/mob/clothing/species/vox/mask.dmi'

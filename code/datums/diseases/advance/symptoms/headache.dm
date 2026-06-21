@@ -7,8 +7,8 @@
  * Bonus: Displays an annoying message! Should be used for buffing your disease.
 */
 /datum/symptom/headache
-	name = "Headache"
-	desc = "The virus causes inflammation inside the brain, causing constant headaches."
+	name = "头痛"
+	desc = "该病毒会引起大脑内部炎症，导致持续头痛。"
 	illness = "Brain Freeze"
 	stealth = -1
 	resistance = 4

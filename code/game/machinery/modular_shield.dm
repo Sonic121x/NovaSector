@@ -1,6 +1,6 @@
 /obj/machinery/modular_shield_generator
-	name = "modular shield generator"
-	desc = "A forcefield generator, it seems more stationary than its cousins. It can't handle G-force and will require frequent reboots when built on mobile craft."
+	name = "模块化护盾发生器"
+	desc = "一个力场发生器，看起来比它的同类更固定。它无法承受G力，如果安装在移动载具上则需要频繁重启。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "gen_recovering_closed"
 	density = TRUE
@@ -392,8 +392,8 @@
 		random_shield.alpha = max(255 * (stored_strength/max_strength), 40)
 
 /obj/machinery/modular_shield_generator/gate
-	name = "modular shield gate"
-	desc = "A forcefield generator that can deploy a flat wall, it seems more stationary than its cousins. It can't handle G-force and will require frequent reboots when built on mobile craft."
+	name = "模块化护盾闸门"
+	desc = "一个可以部署平坦墙壁的力场发生器，看起来比它的同类更固定。它无法承受G力，如果安装在移动载具上则需要频繁重启。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "gate_recovering_closed"
 	density = FALSE
@@ -449,8 +449,8 @@
 //Start of other machines
 ///The general code used for machines that want to connect to the network
 /obj/machinery/modular_shield/module
-	name = "modular shield debugger" //Filler name and sprite for testing
-	desc = "This is filler for testing you shouldn't see this."
+	name = "模块化护盾调试器" //Filler name and sprite for testing
+	desc = "这是用于测试的占位符，你不应该看到这个。"
 	icon = 'icons/obj/machines/mech_bay.dmi'
 	icon_state = "recharge_port"
 	density = TRUE
@@ -587,8 +587,8 @@
 	balloon_alert(user, "no connection!")
 
 /obj/machinery/modular_shield/module/node
-	name = "modular shield node"
-	desc = "A waist high mess of humming pipes and wires that extend the modular shield network."
+	name = "模块化护盾节点"
+	desc = "一个齐腰高的、嗡嗡作响的管道和电线堆，用于扩展模块化护盾网络。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "node_off_closed"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.5
@@ -668,8 +668,8 @@
 		connected.update_icon_state()
 
 /obj/machinery/modular_shield/module/node/cable
-	name = "modular shield cable"
-	desc = "An ankle high mess of cables packed as low as possible at the cost of lacking connection components necessary for anything other than nodes and the generator itself."
+	name = "模块化护盾电缆"
+	desc = "一团脚踝高的电缆乱麻，被尽可能地压低了高度，代价是缺少除节点和发生器本身外与其他任何设备连接所需的组件。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "cable_node_closed_r_b_l"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.1
@@ -694,8 +694,8 @@
 	icon_state = "cable_node_[panel_open ? "open" : "closed"]_[connected_right ? "r" : "nr"]_[connected_back ? "b" : "nb"]_[connected_left ? "l" : "nl"]"
 
 /obj/machinery/modular_shield/module/charger
-	name = "modular shield charger"
-	desc = "A machine that somehow fabricates hardlight using electrons."
+	name = "模块化护盾充能器"
+	desc = "一台用电子制造硬光的机器。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "charger_off_closed"
 	is_booster = TRUE
@@ -722,8 +722,8 @@
 		shield_generator.calculate_boost()
 
 /obj/machinery/modular_shield/module/relay
-	name = "modular shield relay"
-	desc = "It helps the shield generator project farther out."
+	name = "模块化护盾中继器"
+	desc = "它帮助护盾发生器投射得更远。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "relay_off_closed"
 	is_booster = TRUE
@@ -750,8 +750,8 @@
 		shield_generator.calculate_boost()
 
 /obj/machinery/modular_shield/module/well
-	name = "modular shield well"
-	desc = "A device used to hold more hardlight for the modular shield generator."
+	name = "模块化护盾井"
+	desc = "一种用于为模块化护盾发生器储存更多硬光的设备。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "well_off_closed"
 	is_booster = TRUE
@@ -779,8 +779,8 @@
 
 //The shield itself
 /obj/structure/emergency_shield/modular
-	name = "modular energy shield"
-	desc = "An energy shield with varying configurations."
+	name = "模块化能量护盾"
+	desc = "一种具有多种配置的能量护盾。"
 	color = "#00ffff"
 	density = FALSE
 	alpha = 100

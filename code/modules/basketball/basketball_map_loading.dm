@@ -23,7 +23,7 @@
 	name = "Referee Spawn"
 
 /area/centcom/basketball
-	name = "Basketball Minigame"
+	name = "篮球小游戏"
 	icon_state = "b_ball"
 	requires_power = FALSE
 	static_lighting = FALSE
@@ -46,64 +46,64 @@
 	var/home_team_uniform
 
 /datum/lazy_template/basketball/stadium
-	name = "Stadium"
-	description = "The homecourt for the Nanotrasen Basketball Department."
+	name = "体育场"
+	description = "纳米传讯篮球部门的主场。"
 	map_name = "stadium"
 	key = "stadium"
 	team_name = "Nanotrasen Basketball Department"
 	home_team_uniform = /datum/outfit/basketball/nanotrasen
 
 /datum/lazy_template/basketball/lusty_xenomorphs
-	name = "Lusty Xenomorphs Stadium"
-	description = "The homecourt of the Lusty Xenomorphs."
+	name = "欲望异形体育场"
+	description = "“欲望异形”队的主场。"
 	map_name = "lusty_xenomorphs"
 	key = "lusty_xenomorphs"
 	team_name = "Lusty Xenomorphs"
 	home_team_uniform = /datum/outfit/basketball/lusty_xenomorphs
 
 /datum/lazy_template/basketball/space_surfers
-	name = "Space Surfers Stadium"
-	description = "The homecourt of the Space Surfers."
+	name = "太空冲浪者体育场"
+	description = "“太空冲浪者”队的主场。"
 	map_name = "space_surfers"
 	key = "space_surfers"
 	team_name = "Space Surfers"
 	home_team_uniform = /datum/outfit/basketball/space_surfers
 
 /datum/lazy_template/basketball/greytide_worldwide
-	name = "Greytide Worldwide Stadium"
-	description = "The homecourt of the Greytide Worldwide."
+	name = "全球灰潮体育场"
+	description = "“全球灰潮”队的主场。"
 	map_name = "greytide_worldwide"
 	key = "greytide_worldwide"
 	team_name = "Greytide Worldwide"
 	home_team_uniform = /datum/outfit/basketball/greytide_worldwide
 
 /datum/lazy_template/basketball/ass_blast_usa
-	name = "Ass Blast USA Stadium"
-	description = "The homecourt of the Ass Blast USA."
+	name = "美国爆菊体育场"
+	description = "“美利坚爆菊”队的主场。"
 	map_name = "ass_blast_usa"
 	key = "ass_blast_usa"
 	team_name = "Ass Blast USA"
 	home_team_uniform = /datum/outfit/basketball/ass_blast_usa
 
 /datum/lazy_template/basketball/soviet_bears
-	name = "Soviet Bears Stadium"
-	description = "The homecourt of the Soviet Bears."
+	name = "苏维埃熊体育场"
+	description = "“苏维埃巨熊”队的主场。"
 	map_name = "soviet_bear"
 	key = "soviet_bear"
 	team_name = "Soviet Bears"
 	home_team_uniform = /datum/outfit/basketball/soviet_bears
 
 /datum/lazy_template/basketball/ash_gladiators
-	name = "Ash Gladiators Stadium"
-	description = "The homecourt of the Ash Gladiators."
+	name = "灰烬角斗士体育场"
+	description = "灰烬角斗士的主场。"
 	map_name = "ash_gladiators"
 	key = "ash_gladiators"
 	team_name = "Ash Gladiators"
 	home_team_uniform = /datum/outfit/basketball/ash_gladiators
 
 /datum/lazy_template/basketball/beach_bums
-	name = "Beach Bums Stadium"
-	description = "The homecourt of the Beach Bums."
+	name = "沙滩流浪者体育场"
+	description = "沙滩流浪者的主场。"
 	map_name = "beach_bums"
 	key = "beach_bums"
 	team_name = "Beach Bums"

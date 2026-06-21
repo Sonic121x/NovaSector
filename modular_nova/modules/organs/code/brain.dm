@@ -2,8 +2,8 @@
 
 //The accessible cybernetic brain
 /obj/item/organ/brain/cybernetic/cortical
-	name = "cortically-augmented brain"
-	desc = "A brain which has been in some part mechanized."
+	name = "皮层增强大脑"
+	desc = "一个部分机械化了的大脑。"
 	icon = 'modular_nova/master_files/icons/obj/medical/organs.dmi'
 	icon_state = "brain-c"
 	emp_dmg_mult = 1.5 //Note that the base damage is 20/10
@@ -69,29 +69,29 @@
 // It's still organic
 /obj/item/organ/brain/cybernetic/cortical/brain_damage_examine()
 	if(suicided)
-		return span_info("Its circuitry is smoking slightly. They must not have been able to handle the stress of it all.")
+		return span_info("它的电路正微微冒烟。他们肯定没能承受住这一切的压力。")
 
 	// Must have a brainmob that is either active, a decoy, or has a ghost
 	if(!(brainmob && (decoy_override || brainmob.client || brainmob.get_ghost())))
-		return span_info("This one is completely devoid of life.")
+		return span_info("这一个已完全失去生命迹象。")
 
 	if(organ_flags & ORGAN_FAILING)
-		return span_info("It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.")
+		return span_info("它内部似乎还残留着一点能量，但受损相当严重……或许可以用一些<b>甘露醇</b>来修复。")
 
 	if(damage >= BRAIN_DAMAGE_DEATH * 0.5)
-		return span_info("You can feel the small spark of life still left in this one, but it's got some bruises. You may be able to restore it with some <b>mannitol</b>.")
+		return span_info("你能感觉到这一个里面尚存一丝微弱的生命火花，但它有些瘀伤。或许可以用一些<b>甘露醇</b>来修复。")
 
-	return span_info("You can feel the small spark of life still left in this one.")
+	return span_info("你能感觉到这一个里面尚存一丝微弱的生命火花。")
 
 //New vox Brain
 /obj/item/organ/brain/cybernetic/cortical/vox
-	name = "vox-augmented brain"
-	desc = "A brain which has been in some part mechanized. The components are seamlessly integrated into the flesh."
+	name = "沃克斯增强大脑"
+	desc = "一个部分机械化了的大脑。组件与肉体无缝集成。"
 	emp_dmg_mult = 1 //Vox get what they used to.
 
 //surplus; TBI to prosthetic organ quirk
 /obj/item/organ/brain/cybernetic/cortical/surplus
-	name = "surplus augmented brain"
-	desc = "A brain which has been in some part mechanized. It looks a bit cheap."
+	name = "过剩增强大脑"
+	desc = "一个部分机械化了的大脑。看起来有点廉价。"
 	maxHealth = BRAIN_DAMAGE_DEATH*0.5 //200 -> 100, by default
 	emp_dmg_max = INFINITY

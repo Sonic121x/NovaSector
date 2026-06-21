@@ -1,9 +1,9 @@
 /obj/item/kirbyplants
-	name = "potted plant"
+	name = "盆栽植物"
 	icon = 'icons/obj/fluff/flora/plants.dmi'
 	icon_state = "plant-01"
 	base_icon_state = "plant-01"
-	desc = "A little bit of nature contained in a pot."
+	desc = "一小片被装在花盆里的自然。"
 	layer = ABOVE_MOB_LAYER
 	w_class = WEIGHT_CLASS_HUGE
 	force = 10
@@ -39,7 +39,7 @@
 
 /obj/item/kirbyplants/update_desc(updates)
 	. = ..()
-	desc = dead ? "The unidentifiable plant remnants make you feel like planting something new in the pot." : initial(desc)
+	desc = dead ? "这些无法辨认的植物残骸让你想往花盆里种点新东西。" : initial(desc)
 
 /obj/item/kirbyplants/vv_edit_var(vname, vval)
 	. = ..()
@@ -59,12 +59,12 @@
 /obj/item/kirbyplants/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(!dead && trimmable && HAS_TRAIT(user,TRAIT_BONSAI) && isturf(loc) && I.get_sharpness())
-		to_chat(user,span_notice("You start trimming [src]."))
+		to_chat(user,span_notice("你开始修剪[src]。"))
 		if(do_after(user,3 SECONDS,target=src))
-			to_chat(user,span_notice("You finish trimming [src]."))
+			to_chat(user,span_notice("你修剪完了[src]。"))
 			change_visual()
 	if(dead && istype(I, /obj/item/seeds))
-		to_chat(user,span_notice("You start planting a new seed into the pot."))
+		to_chat(user,span_notice("你开始往花盆里种一颗新种子。"))
 		if(do_after(user,3 SECONDS,target=src))
 			qdel(I)
 			dead = FALSE
@@ -115,7 +115,7 @@
 	dead = TRUE
 
 /obj/item/kirbyplants/random/dead/research_director
-	name = "RD's potted plant"
+	name = "研究主管的盆栽植物"
 	custom_plant_name = TRUE
 
 /obj/item/kirbyplants/random/dead/update_desc(updates)
@@ -123,8 +123,8 @@
 	desc = "A gift from the botanical staff, presented after the RD's reassignment. There's a tag on it that says \"Y'all come back now, y'hear?\"[dead ? "\nIt doesn't look very healthy...":null]"
 
 /obj/item/kirbyplants/random/fullysynthetic
-	name = "plastic potted plant"
-	desc = "A fake, cheap looking, plastic tree. Perfect for people who kill every plant they touch."
+	name = "塑料盆栽植物"
+	desc = "一棵看起来廉价又虚假的塑料树。非常适合那些碰什么植物就死什么植物的人。"
 	icon_state = "plant-26"
 	custom_materials = (list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 4))
 	trimmable = FALSE
@@ -135,15 +135,15 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/item/kirbyplants/photosynthetic
-	name = "photosynthetic potted plant"
-	desc = "A bioluminescent plant."
+	name = "光合作用盆栽植物"
+	desc = "一株生物发光植物。"
 	icon_state = "plant-09"
 	light_color = COLOR_BRIGHT_BLUE
 	light_range = 3
 
 /obj/item/kirbyplants/potty
-	name = "Potty the Potted Plant"
-	desc = "A secret agent staffed in the station's bar to protect the mystical cakehat."
+	name = "盆栽植物波蒂"
+	desc = "一名秘密特工，被安插在空间站的酒吧里，以保护那顶神秘的蛋糕帽。"
 	icon_state = "potty"
 	base_icon_state = "potty"
 	custom_plant_name = TRUE
@@ -177,8 +177,8 @@
 		. += "[base_icon_state]_light"
 
 /obj/item/kirbyplants/fern
-	name = "neglected fern"
-	desc = "An old botanical research sample collected on a long forgotten jungle planet."
+	name = "被忽视的蕨类植物"
+	desc = "一个古老的植物学研究样本，采集自一个早已被遗忘的丛林星球。"
 	icon_state = "fern"
 	trimmable = FALSE
 

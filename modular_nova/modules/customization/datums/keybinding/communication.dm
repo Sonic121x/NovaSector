@@ -47,7 +47,7 @@
 	. = ..()
 	if(.)
 		return
-	var/message_text = tgui_input_text(user, "Write out your Do action:", "Do (Longer)", max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+	var/message_text = tgui_input_text(user, "写下你的Do动作：", "Do（详细）", max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 	if (!message_text)
 		return
 

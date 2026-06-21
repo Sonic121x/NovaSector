@@ -6,8 +6,8 @@
 #define LOWER_BOUND_VOLUME 10
 
 /mob/living/basic/turtle
-	name = "turtle"
-	desc = "Dog."
+	name = "乌龟"
+	desc = "狗。"
 	icon_state = "turtle"
 	icon_living = "turtle"
 	icon_dead = "turtle_dead"
@@ -19,10 +19,10 @@
 	health = 100
 	maxHealth = 100
 	speed = 5
-	verb_say = "snaps"
-	verb_ask = "snaps curiously"
-	verb_exclaim = "snaps loudly"
-	verb_yell = "snaps loudly"
+	verb_say = "咔哒"
+	verb_ask = "好奇地咔哒"
+	verb_exclaim = "大声咔哒"
+	verb_yell = "大声咔哒"
 	faction = list(FACTION_NEUTRAL)
 	ai_controller = /datum/ai_controller/basic_controller/turtle
 	///our displayed tree
@@ -120,7 +120,7 @@
 	. = ..()
 
 	if(stat == DEAD)
-		. += span_notice("Its tree seems to be all withered...")
+		. += span_notice("它背上的树似乎全都枯萎了...")
 		return
 
 	var/destined_path = retrieve_destined_path()
@@ -195,11 +195,11 @@
 		return NONE
 
 	if(isnull(used_item.reagents))
-		balloon_alert(user, "empty!")
+		balloon_alert(user, "空的！")
 		return ITEM_INTERACT_SUCCESS
 
 	if(stat == DEAD)
-		balloon_alert(user, "its dead!")
+		balloon_alert(user, "它死了！")
 		return ITEM_INTERACT_SUCCESS
 
 	var/should_transfer = FALSE
@@ -209,14 +209,14 @@
 			break
 
 	if(!should_transfer)
-		balloon_alert(user, "refuses to drink!")
+		balloon_alert(user, "拒绝饮用！")
 		return ITEM_INTERACT_SUCCESS
 
 	if(!do_after(user, 1.5 SECONDS, target = src))
 		return ITEM_INTERACT_SUCCESS
 
 	used_item.reagents.trans_to(reagents, 5)
-	balloon_alert(user, "drinks happily")
+	balloon_alert(user, "开心地喝了起来")
 	playsound(src, 'sound/items/drink.ogg', vol = 25, vary = TRUE)
 	return ITEM_INTERACT_SUCCESS
 

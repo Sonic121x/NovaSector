@@ -1,5 +1,5 @@
 /obj/machinery/rnd/server/oldstation
-	name = "\improper Ancient R&D Server"
+	name = "\improper 古代研发服务器"
 	circuit = /obj/item/circuitboard/machine/rdserver/oldstation
 	req_access = list(ACCESS_AWAY_SCIENCE)
 
@@ -21,7 +21,7 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice("Insert [EXAMINE_HINT("Research Notes")] to generate points.")
+	. += span_notice("插入[EXAMINE_HINT("Research Notes")]以生成点数。")
 
 /obj/machinery/rnd/server/oldstation/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/research_notes) && stored_research)
@@ -35,5 +35,5 @@
 
 ///Ancient computer that starts with dissection to tell players they have it.
 /obj/machinery/computer/operating/oldstation
-	name = "ancient operating computer"
+	name = "古代手术电脑"
 	advanced_surgeries = list(/datum/surgery_operation/basic/dissection)

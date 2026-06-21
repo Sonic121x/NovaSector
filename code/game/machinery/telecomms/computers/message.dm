@@ -9,8 +9,8 @@
 #define MSG_MON_SCREEN_HACKED 3
 
 /obj/machinery/computer/message_monitor
-	name = "message monitor console"
-	desc = "Used to monitor the crew's PDA messages, as well as request console messages."
+	name = "信息监控器控制器"
+	desc = "用于监控船员的PDA消息以及请求控制台消息"
 	icon_screen = "comm_logs"
 	circuit = /obj/item/circuitboard/computer/message_monitor
 	light_color = LIGHT_COLOR_GREEN
@@ -59,7 +59,7 @@
 /obj/machinery/computer/message_monitor/screwdriver_act(mob/living/user, obj/item/I)
 	if(obj_flags & EMAGGED)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
-		to_chat(user, span_warning("It is too hot to mess with!"))
+		to_chat(user, span_warning("它太烫了，没法操作！"))
 		return TRUE
 	return ..()
 
@@ -67,7 +67,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	if(isnull(linked_server))
-		to_chat(user, span_notice("A no server error appears on the screen."))
+		to_chat(user, span_notice("屏幕上出现了一个无服务器错误。"))
 		return FALSE
 
 	obj_flags |= EMAGGED
@@ -150,7 +150,7 @@
 				message_servers += message_server
 
 			if(length(message_servers) > 1)
-				set_linked_server(tgui_input_list(usr, "Please select a server", "Server Selection", message_servers))
+				set_linked_server(tgui_input_list(usr, "请选择一个服务器", "服务器选择", message_servers))
 				if(linked_server)
 					notice_message = "NOTICE: Server selected."
 			else if(length(message_servers) == 1)
@@ -182,10 +182,10 @@
 			notice_message = "NOTICE: Logs cleared."
 			return TRUE
 		if("set_key")
-			var/dkey = tgui_input_text(usr, "Please enter the decryption key", "Telecomms Decryption", max_length = 16)
+			var/dkey = tgui_input_text(usr, "请输入解密密钥", "电信解密", max_length = 16)
 			if(dkey && dkey != "")
 				if(linked_server.decryptkey == dkey)
-					var/newkey = tgui_input_text(usr, "Please enter the new key (3 - 16 characters max)", "New Key", max_length = 16)
+					var/newkey = tgui_input_text(usr, "请输入新密钥（最多 3 - 16 个字符）", "新密钥", max_length = 16)
 					if(length(newkey) <= 3)
 						notice_message = "NOTICE: Decryption key too short!"
 					else if(newkey && newkey != "")
@@ -213,8 +213,8 @@
 				break
 			return TRUE
 		if("send_fake_message")
-			var/sender = tgui_input_text(usr, "What is the sender's name?", "Sender", max_length = MAX_NAME_LEN)
-			var/job = tgui_input_text(usr, "What is the sender's job?", "Job", max_length = 60)
+			var/sender = tgui_input_text(usr, "发件人姓名是什么？", "发件人", max_length = MAX_NAME_LEN)
+			var/job = tgui_input_text(usr, "发件人的职务是什么？", "职务", max_length = 60)
 
 			var/recipient
 			var/list/tablet_to_messenger = list()
@@ -228,11 +228,11 @@
 				viewable_tablets += message_app.computer
 				tablet_to_messenger[message_app.computer] = message_app
 			if(length(viewable_tablets) > 0)
-				recipient = tgui_input_list(usr, "Select a tablet from the list", "Tablet Selection", viewable_tablets)
+				recipient = tgui_input_list(usr, "从列表中选择一个平板电脑", "平板电脑选择", viewable_tablets)
 			else
 				recipient = null
 
-			var/message = tgui_input_text(usr, "Please enter your message", "Message", max_length = MAX_MESSAGE_LEN)
+			var/message = tgui_input_text(usr, "请输入你的消息", "消息", max_length = MAX_MESSAGE_LEN)
 			if(isnull(sender) || sender == "")
 				sender = "UNKNOWN"
 
@@ -283,7 +283,7 @@
 /// Monitor decryption key paper
 
 /obj/item/paper/monitorkey
-	name = "monitor decryption key"
+	name = "监视器解密密钥"
 
 /obj/item/paper/monitorkey/Initialize(mapload, obj/machinery/telecomms/message_server/server)
 	. = ..()

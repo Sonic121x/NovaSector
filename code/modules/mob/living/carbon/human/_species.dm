@@ -626,7 +626,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
 			if(!H.w_uniform && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (!O || IS_ORGANIC_LIMB(O)))
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上连体服才能安装这个[I.name]！"))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_EYES)
@@ -650,7 +650,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
 			if(!H.w_uniform && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (!O || IS_ORGANIC_LIMB(O)))
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上连体服才能安装这个[I.name]！"))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_LPOCKET)
@@ -663,7 +663,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 			if(!H.w_uniform && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (!O || IS_ORGANIC_LIMB(O)))
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上连体服才能安装这个[I.name]！"))
 				return FALSE
 			return TRUE
 		if(ITEM_SLOT_RPOCKET)
@@ -676,7 +676,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 			if(!H.w_uniform && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (!O || IS_ORGANIC_LIMB(O)))
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上连体服才能安装这个[I.name]！"))
 				return FALSE
 			return TRUE
 		if(ITEM_SLOT_SUITSTORE)
@@ -684,14 +684,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			if(!H.wear_suit)
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a suit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上防护服才能安装这个[I.name]！"))
 				return FALSE
 			var/any_suit_storage = (is_type_in_typecache(I, GLOB.any_suit_storage) || I.w_class == WEIGHT_CLASS_TINY)
 			if(any_suit_storage)
 				return TRUE
 			if(I.w_class > WEIGHT_CLASS_BULKY)
 				if(!disable_warning)
-					to_chat(H, span_warning("\The [I] is too big to attach!")) //should be src?
+					to_chat(H, span_warning("\The [I]太大了，无法安装！")) //should be src?
 				return FALSE
 			if( is_type_in_list(I, H.wear_suit.allowed) )
 				return TRUE
@@ -713,7 +713,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/equip_delay_self_check(obj/item/I, mob/living/carbon/human/H, bypass_equip_delay_self)
 	if(!I.equip_delay_self || bypass_equip_delay_self)
 		return TRUE
-	H.visible_message(span_notice("[H] start putting on [I]..."), span_notice("You start putting on [I]..."))
+	H.visible_message(span_notice("[H]开始穿上[I]..."), span_notice("你开始穿上[I]..."))
 	return do_after(H, I.equip_delay_self, target = H)
 
 
@@ -743,13 +743,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(!source.IsParalyzed())
 			source.emote("collapse")
 		source.Paralyze(RAD_MOB_KNOCKDOWN_AMOUNT)
-		to_chat(source, span_danger("You feel weak."))
+		to_chat(source, span_danger("你感到虚弱。"))
 
 	if(time_since_irradiated > RAD_MOB_VOMIT && SPT_PROB(RAD_MOB_VOMIT_PROB, seconds_per_tick))
 		source.vomit(VOMIT_CATEGORY_BLOOD, lost_nutrition = 10)
 
 	if(time_since_irradiated > RAD_MOB_MUTATE && SPT_PROB(RAD_MOB_MUTATE_PROB, seconds_per_tick))
-		to_chat(source, span_danger("You mutate!"))
+		to_chat(source, span_danger("你变异了！"))
 		source.easy_random_mutate(NEGATIVE + MINOR_NEGATIVE)
 		source.emote("gasp")
 		source.domutcheck()
@@ -757,7 +757,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(time_since_irradiated > RAD_MOB_HAIRLOSS && SPT_PROB(RAD_MOB_HAIRLOSS_PROB, seconds_per_tick))
 		var/obj/item/bodypart/head/head = source.get_bodypart(BODY_ZONE_HEAD)
 		if(!(source.hairstyle == "Bald") && (head?.head_flags & (HEAD_HAIR|HEAD_FACIAL_HAIR)))
-			to_chat(source, span_danger("Your hair starts to fall out in clumps..."))
+			to_chat(source, span_danger("你的头发开始大把大把地脱落..."))
 			addtimer(CALLBACK(src, PROC_REF(go_bald), source), 5 SECONDS)
 
 /**
@@ -791,7 +791,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 ///This proc handles punching damage. IMPORTANT: Our owner is the TARGET and not the USER in this proc. For whatever reason...
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(HAS_TRAIT(user, TRAIT_PACIFISM) && !attacker_style?.pacifist_style)
-		to_chat(user, span_warning("You don't want to harm [target]!"))
+		to_chat(user, span_warning("你不想伤害[target]！"))
 		return FALSE
 
 	var/obj/item/organ/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
@@ -820,7 +820,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				atk_verb_continuous = attacking_bodypart.unarmed_attack_verbs_continuous[atk_verb_index]
 			atk_effect = attacking_bodypart.unarmed_attack_effect
 		else  //Nothing? Okay. Fail.
-			user.balloon_alert(user, "can't attack!")
+			user.balloon_alert(user, "无法攻击！")
 			return FALSE
 
 	user.do_attack_animation(target, atk_effect)
@@ -893,9 +893,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 		playsound(target.loc, attacking_bodypart.unarmed_miss_sound, 25, TRUE, -1)
-		target.visible_message(span_danger("[user]'s [atk_verb] misses [target]!"), \
-						span_danger("You avoid [user]'s [atk_verb]!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_warning("Your [atk_verb] misses [target]!"))
+		target.visible_message(span_danger("[user]的[atk_verb]没有击中[target]！"), \
+						span_danger("你躲开了[user]的[atk_verb]！"), span_hear("你听到一阵嗖嗖声！"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_warning("你的[atk_verb]没有击中[target]！"))
 		log_combat(user, target, "attempted to punch")
 		return FALSE
 
@@ -923,9 +923,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		atk_verb = attacking_bodypart.grappled_attack_verb
 		atk_verb_continuous = attacking_bodypart.grappled_attack_verb_continuous
 
-	target.visible_message(span_danger("[user] [atk_verb_continuous] [target]!"), \
-					span_userdanger("[user] [atk_verb_continuous] you!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_danger("You [atk_verb] [target]!"))
+	target.visible_message(span_danger("[user]正在[atk_verb_continuous][target]！"), \
+					span_userdanger("[user]正在[atk_verb_continuous]你！"), span_hear("你听到肉体撞击的恶心声响！"), COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger("你[atk_verb]了[target]！"))
 
 	target.lastattacker = user.real_name
 	target.lastattackerckey = user.ckey
@@ -982,45 +982,45 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	switch(roll_them_bones)
 		if (-INFINITY to 0) //Mostly a gimmie, this one just keeps them staggered briefly
 			target.adjust_staggered_up_to(1 SECONDS, 10 SECONDS)
-			target.visible_message(span_warning("[user]'s [atk_verb] briefly winds [target]!"), \
-				span_warning("You are briefly winded by [user]'s [atk_verb]!"), span_hear("You hear a thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] briefly winds [target]!"))
+			target.visible_message(span_warning("[user]的[atk_verb]让[target]短暂地喘不过气来！"), \
+				span_warning("你被[user]的[atk_verb]打得短暂喘不过气！"), span_hear("你听到一声闷响！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的[atk_verb]让[target]短暂地喘不过气来！"))
 
 		if (1 to 10)
 			target.adjust_eye_blur_up_to(5 SECONDS, 10 SECONDS)
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, their eyes water! Ouch!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb], and your eyes begin to water!"), span_hear("You hear a thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] causes [target] to tear up!"))
+			target.visible_message(span_warning("[user]的[atk_verb]重重地击中了[target]，打得他们眼泪都出来了！哎哟！"), \
+				span_warning("你被[user]的[atk_verb]狠狠击中，眼睛开始流泪！"), span_hear("你听到一声闷响！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的[atk_verb]让[target]流泪了！"))
 
 		if (11 to 30)
 			target.adjust_dizzy_up_to(5 SECONDS, 10 SECONDS)
 			target.adjust_eye_blur_up_to(5 SECONDS, 10 SECONDS)
 			target.adjust_confusion_up_to(5 SECONDS, 10 SECONDS)
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, they are sent reeling in agony! Damn!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb], and everything becomes a dizzying blur!"), span_hear("You hear a thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] causes [target] to go stumbling about in a confuzed daze!"))
+			target.visible_message(span_warning("[user]的[atk_verb]重重地击中了[target]，打得他们痛苦地踉跄后退！该死！"), \
+				span_warning("你被[user]的[atk_verb]狠狠击中，眼前的一切都变成了一片令人眩晕的模糊！"), span_hear("你听到一声闷响！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的[atk_verb]让[target]晕头转向，踉跄不已！"))
 
 		if(31 to 40)
 			target.adjust_dizzy_up_to(5 SECONDS, 10 SECONDS)
 			target.adjust_confusion_up_to(5 SECONDS, 10 SECONDS)
 			target.adjust_temp_blindness_up_to(5 SECONDS, 10 SECONDS)
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, they are sent reeling blindly in agony! Goddamn!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb], and everything becomes a dizzying, blinding blur!"), span_hear("You hear a thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] causes [target] to go stumbling about in a confuzed, blind daze!"))
+			target.visible_message(span_warning("[user]的[atk_verb]狠狠击中[target]，打得他们痛苦地踉跄后退！天哪！"), \
+				span_warning("你被[user]的[atk_verb]狠狠击中，眼前的一切都变成了一片令人眩晕、目眩的模糊！"), span_hear("你听到一声闷响！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的[atk_verb]让[target]晕头转向、目眩地踉跄不已！"))
 
 		if (41 to 45)
 			target.apply_effect(4 SECONDS, EFFECT_KNOCKDOWN, armor_block)
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, you knock them off their feet! Holy shit!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb] and sent toppling head over heels!"), span_hear("You hear a sickening thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] lands, and you send [target] sailing off their feet!"))
+			target.visible_message(span_warning("[user]的[atk_verb]狠狠击中[target]，把他们打得双脚离地！我的天！"), \
+				span_warning("你被[user]的[atk_verb]狠狠击中，整个人头朝下栽倒！"), span_hear("你听到一声令人作呕的闷响！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的[atk_verb]命中，把[target]打得双脚离地飞了出去！"))
 
 		if (46 to INFINITY)
 			target.apply_effect(4 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 			var/obj/item/bodypart/affecting = target.get_bodypart(target.get_random_valid_zone(user.zone_selected))
 			target.apply_damage(5, BRUTE, affecting, armor_block, wound_bonus = limb_accuracy * 2) //Mostly for the crunchy wounding effect than actually doing damage
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, you hit them off their feet with a loud crunch! Fucking hell!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb], and suddenly feel an overwhelming pain as you topple head over heels!"), span_hear("You hear a sickening crack and a loud thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] lands, and [target] is sent crashing to the floor with the immense force! Good god!"))
+			target.visible_message(span_warning("[user]的[atk_verb]狠狠击中[target]，伴随着响亮的碎裂声把他们打得双脚离地！他妈的！"), \
+				span_warning("你被[user]的[atk_verb]狠狠击中，突然感到一阵剧痛，整个人头朝下栽倒！"), span_hear("你听到一声令人作呕的碎裂声和一声响亮的闷响！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的[atk_verb]命中，[target]被巨大的力量狠狠砸倒在地！老天爷！"))
 
 
 /datum/species/proc/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
@@ -1044,9 +1044,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		attacker_style = GET_ACTIVE_MARTIAL_ART(owner)
 	if((owner != target) && target.check_block(owner, 0, owner.name, attack_type = UNARMED_ATTACK))
 		log_combat(owner, target, "attempted to touch")
-		target.visible_message(span_warning("[owner] attempts to touch [target]!"), \
-						span_danger("[owner] attempts to touch you!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, owner)
-		to_chat(owner, span_warning("You attempt to touch [target]!"))
+		target.visible_message(span_warning("[owner]试图触碰[target]！"), \
+						span_danger("[owner]试图触碰你！"), span_hear("你听到一阵嗖嗖声！"), COMBAT_MESSAGE_RANGE, owner)
+		to_chat(owner, span_warning("你试图触碰[target]！"))
 		return
 
 	SEND_SIGNAL(owner, COMSIG_MOB_ATTACK_HAND, owner, target, attacker_style)

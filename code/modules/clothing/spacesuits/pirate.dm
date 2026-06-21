@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/space/pirate
-	name = "modified EVA helmet"
-	desc = "A modified helmet to allow space pirates to intimidate their customers whilst staying safe from the void. Comes with some additional protection."
+	name = "改良版EVA头盔"
+	desc = "一种改进的头盔，可以让太空海盗在隔绝太空环境的同时能恐吓他们的顾客。该头盔提供了一些额外的防护。"
 	icon_state = "spacepirate"
 	inhand_icon_state = "space_pirate_helmet"
 	armor_type = /datum/armor/space_pirate
@@ -24,7 +24,7 @@
 	icon_state = "spacebandana"
 
 /obj/item/clothing/suit/space/pirate
-	name = "modified EVA suit"
+	name = "改良版EVA服"
 	desc = "A modified suit to allow space pirates to board shuttles and stations while avoiding the maw of the void. Comes with additional protection and is lighter to move in."
 	icon_state = "spacepirate"
 	w_class = WEIGHT_CLASS_NORMAL

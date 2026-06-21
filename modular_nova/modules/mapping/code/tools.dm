@@ -1,7 +1,7 @@
 //WRENCHES//
 /obj/item/wrench/advanced
-	name = "advanced wrench"
-	desc = "A wrench that uses the same magnetic technology that abductor tools use, but slightly more ineffeciently. It looks cobbled together."
+	name = "高级扳手"
+	desc = "一种使用与绑架者工具相同磁力技术的扳手，但效率稍低。它看起来是拼凑而成的。"
 	icon = 'modular_nova/modules/mapping/icons/obj/items/advancedtools.dmi'
 	icon_state = "wrench"
 	usesound = 'sound/effects/empulse.ogg'
@@ -9,8 +9,8 @@
 
 //WIRECUTTERS//
 /obj/item/wirecutters/advanced
-	name = "advanced wirecutters"
-	desc = "A set of reproduction alien wirecutters, they have a silver handle with an exceedingly sharp blade. There's a sticker attached declaring that it needs updating from 'the latest samples'."
+	name = "高级钢丝钳"
+	desc = "一套仿制的外星钢丝钳，它们有银色的手柄和极其锋利的刀片。上面贴着一张标签，声明需要根据'最新样本'进行更新。"
 	icon = 'modular_nova/modules/mapping/icons/obj/items/advancedtools.dmi'
 	icon_state = "cutters"
 	toolspeed = 0.2
@@ -22,8 +22,8 @@
 
 //WELDING TOOLS//
 /obj/item/weldingtool/advanced
-	name = "advanced welding tool"
-	desc = "A modern, experimental welding tool combined with an alien welding tool's generation methods, it never runs out of fuel and works almost as fast."
+	name = "高级焊接工具"
+	desc = "一种结合了现代实验性焊接工具与外星焊接工具生成方法的工具，它永远不会耗尽燃料，并且工作速度几乎一样快。"
 	icon = 'modular_nova/modules/mapping/icons/obj/items/advancedtools.dmi'
 	icon_state = "welder"
 	toolspeed = 0.2
@@ -38,8 +38,8 @@
 
 //SCREWDRIVERS//
 /obj/item/screwdriver/advanced
-	name = "advanced screwdriver"
-	desc = "A classy silver screwdriver with an alien alloy tip, it works almost as well as the real thing. There's a sticker attached declaring that it needs updating from 'the latest samples'."
+	name = "高级螺丝刀"
+	desc = "一把优雅的银色螺丝刀，配有外星合金尖端，其效果几乎与真品一样好。上面贴着一张标签，声明需要根据'最新样本'进行更新。"
 	icon = 'modular_nova/modules/mapping/icons/obj/items/advancedtools.dmi'
 	icon_state = "screwdriver_a"
 	post_init_icon_state = null
@@ -55,8 +55,8 @@
 
 //CROWBAR//
 /obj/item/crowbar/advanced
-	name = "advanced crowbar"
-	desc = "A scientist's almost successful reproduction of an abductor's crowbar, it uses the same technology combined with a handle that can't quite hold it."
+	name = "高级撬棍"
+	desc = "科学家对绑架者撬棍的一次几乎成功的仿制品，它使用了相同的技术，但配有一个无法完全握持的手柄。"
 	icon = 'modular_nova/modules/mapping/icons/obj/items/advancedtools.dmi'
 	usesound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	icon_state = "crowbar"
@@ -64,7 +64,7 @@
 
 //MULTITOOLS//
 /obj/item/multitool/advanced
-	name = "advanced multitool"
+	name = "高级多功能工具"
 	desc = "The reproduction of an abductor's multitool, this multitool is a classy silver. There's a sticker attached declaring that it needs updating from 'the latest samples'."
 	icon = 'modular_nova/modules/mapping/icons/obj/items/advancedtools.dmi'
 	icon_state = "multitool"

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/garland
-	name = "floral garland"
-	desc = "Someone, somewhere, is starving while wearing this. And it's definitely not you."
+	name = "花环"
+	desc = "在某个地方，有人穿着这个正挨饿。而那绝对不是你。"
 	icon_state = "garland"
 	worn_icon_state = "garland"
 
@@ -14,8 +14,8 @@
 	user.clear_mood_event("garland")
 
 /obj/item/clothing/head/costume/garland/rainbowbunch
-	name = "rainbow flower crown"
-	desc = "A flower crown made out of the flowers of the rainbow bunch plant."
+	name = "彩虹花冠"
+	desc = "一顶用彩虹束植物的花朵制成的花冠。"
 	icon_state = "rainbow_bunch_crown_1"
 	base_icon_state = "rainbow_bunch_crown"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.3) //tied together with cable coil
@@ -35,22 +35,22 @@
 			desc += " This one has yellow, green, and white flowers."
 
 /obj/item/clothing/head/costume/garland/sunflower
-	name = "sunflower crown"
-	desc = "A bright flower crown made out sunflowers that is sure to brighten up anyone's day!"
+	name = "向日葵花冠"
+	desc = "一顶用向日葵制成的明亮花冠，保证能让任何人的一天都亮起来！"
 	icon_state = "sunflower_crown"
 	worn_icon_state = "sunflower_crown"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.3) //tied together with cable coil
 
 /obj/item/clothing/head/costume/garland/poppy
-	name = "poppy crown"
-	desc = "A flower crown made out of a string of bright red poppies."
+	name = "罂粟花花冠"
+	desc = "一顶用一串鲜红罂粟花制成的花冠。"
 	icon_state = "poppy_crown"
 	worn_icon_state = "poppy_crown"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.3) //tied together with cable coil
 
 /obj/item/clothing/head/costume/garland/lily
-	name = "lily crown"
-	desc = "A leafy flower crown with a cluster of large white lilies at the front."
+	name = "百合花花冠"
+	desc = "一顶绿叶花冠，正面有一簇大白百合花。"
 	icon_state = "lily_crown"
 	worn_icon_state = "lily_crown"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.3) //tied together with cable coil

@@ -13,58 +13,58 @@
 	default_gravity = ZERO_GRAVITY
 
 /area/station/solars/fore
-	name = "\improper Fore Solar Array"
+	name = "\improper 前部太阳能阵列"
 	icon_state = "panelsF"
 	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/solars/aft
-	name = "\improper Aft Solar Array"
+	name = "\improper 后部太阳能阵列"
 	icon_state = "panelsAF"
 
 /area/station/solars/aux/port
-	name = "\improper Port Bow Auxiliary Solar Array"
+	name = "\improper 左舷船首辅助太阳能阵列"
 	icon_state = "panelsA"
 
 /area/station/solars/aux/starboard
-	name = "\improper Starboard Bow Auxiliary Solar Array"
+	name = "\improper 右舷船首辅助太阳能阵列"
 	icon_state = "panelsA"
 
 /area/station/solars/starboard
-	name = "\improper Starboard Solar Array"
+	name = "\improper 右舷太阳能阵列"
 	icon_state = "panelsS"
 
 /area/station/solars/starboard/aft
-	name = "\improper Starboard Quarter Solar Array"
+	name = "\improper 右舷船尾太阳能阵列"
 	icon_state = "panelsAS"
 
 /area/station/solars/starboard/fore
-	name = "\improper Starboard Bow Solar Array"
+	name = "\improper 右舷船首太阳能阵列"
 	icon_state = "panelsFS"
 
 /area/station/solars/starboard/fore/asteriod
-	name = "\improper Starboard Bow Asteriod Solar Array"
+	name = "\improper 右舷船首小行星太阳能阵列"
 	icon_state = "panelsFS"
 	area_flags = NONE // solar areas directly on asteriod have gravity
 
 /area/station/solars/port
-	name = "\improper Port Solar Array"
+	name = "\improper 左舷太阳能阵列"
 	icon_state = "panelsP"
 
 /area/station/solars/port/asteriod
-	name = "\improper Port Asteriod Solar Array"
+	name = "\improper 左舷小行星太阳能阵列"
 	icon_state = "panelsP"
 	area_flags = NONE // solar areas directly on asteriod have gravity
 
 /area/station/solars/port/aft
-	name = "\improper Port Quarter Solar Array"
+	name = "\improper 左舷船尾太阳能阵列"
 	icon_state = "panelsAP"
 
 /area/station/solars/port/fore
-	name = "\improper Port Bow Solar Array"
+	name = "\improper 左舷船首太阳能阵列"
 	icon_state = "panelsFP"
 
 /area/station/solars/aisat
-	name = "\improper AI Satellite Solars"
+	name = "\improper AI卫星太阳能阵列"
 	icon_state = "panelsAI"
 
 
@@ -75,30 +75,30 @@
 */
 
 /area/station/maintenance/solars
-	name = "Solar Maintenance"
+	name = "太阳能阵列维护区"
 	icon_state = "yellow"
 	tacmap_color = TACMAP_AREA_ENGINEERING
 
 /area/station/maintenance/solars/port
-	name = "Port Solar Maintenance"
+	name = "左舷太阳能阵列维护区"
 	icon_state = "SolarcontrolP"
 
 /area/station/maintenance/solars/port/aft
-	name = "Port Quarter Solar Maintenance"
+	name = "左舷船尾太阳能阵列维护区"
 	icon_state = "SolarcontrolAP"
 
 /area/station/maintenance/solars/port/fore
-	name = "Port Bow Solar Maintenance"
+	name = "左舷船首太阳能阵列维护区"
 	icon_state = "SolarcontrolFP"
 
 /area/station/maintenance/solars/starboard
-	name = "Starboard Solar Maintenance"
+	name = "右舷太阳能阵列维护区"
 	icon_state = "SolarcontrolS"
 
 /area/station/maintenance/solars/starboard/aft
-	name = "Starboard Quarter Solar Maintenance"
+	name = "右舷船尾太阳能阵列维护区"
 	icon_state = "SolarcontrolAS"
 
 /area/station/maintenance/solars/starboard/fore
-	name = "Starboard Bow Solar Maintenance"
+	name = "右舷船首太阳能阵列维护区"
 	icon_state = "SolarcontrolFS"

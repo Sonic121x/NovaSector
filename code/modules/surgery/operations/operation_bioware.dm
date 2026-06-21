@@ -43,18 +43,18 @@
 		SSblackbox.record_feedback("tally", "bioware", 1, status_effect_gained)
 
 /datum/surgery_operation/limb/bioware/vein_threading
-	name = "thread veins"
+	name = "血管编织"
 	rnd_name = "Symvasculodesis (Vein Threading)" // "together vessel fusion"
-	desc = "Weave a patient's veins into a reinforced mesh, reducing blood loss from injuries."
+	desc = "将患者的静脉编织成强化网状结构，减少受伤时的失血量。"
 	status_effect_gained = /datum/status_effect/bioware/heart/threaded_veins
 
 /datum/surgery_operation/limb/bioware/vein_threading/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start weaving [limb.owner]'s blood vessels."),
-		span_notice("[surgeon] starts weaving [limb.owner]'s blood vessels."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s blood vessels."),
+		span_notice("你开始编织[limb.owner]的血管。"),
+		span_notice("[surgeon] 开始编织 [limb.owner] 的血管。"),
+		span_notice("[surgeon] 开始操作 [limb.owner] 的血管。"),
 	)
 	display_pain(limb.owner, "Your entire body burns in agony!")
 
@@ -63,31 +63,31 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You weave [limb.owner]'s blood vessels into a resistant mesh!"),
-		span_notice("[surgeon] weaves [limb.owner]'s blood vessels into a resistant mesh!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s blood vessels."),
+		span_notice("你将 [limb.owner] 的血管编织成了一张坚韧的网！"),
+		span_notice("[surgeon] 将 [limb.owner] 的血管编织成了一张坚韧的网！"),
+		span_notice("[surgeon] 完成了对 [limb.owner] 血管的操作。"),
 	)
 	display_pain(limb.owner, "You can feel your blood pumping through reinforced veins!")
 
 /datum/surgery_operation/limb/bioware/vein_threading/mechanic
 	rnd_name = "Hydraulics Routing Optimization (Threaded Veins)"
-	desc = "Optimize the routing of a robotic patient's hydraulic system, reducing fluid loss from leaks."
+	desc = "优化机器人患者的液压系统管路，减少泄漏造成的液体流失。"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/limb/bioware/muscled_veins
-	name = "muscled veins"
+	name = "肌肉化血管"
 	rnd_name = "Myovasculoplasty (Muscled Veins)" // "muscle vessel reshaping"
-	desc = "Add a muscled membrane to a patient's veins, allowing them to pump blood without a heart."
+	desc = "在患者的血管上添加肌肉膜，使其无需心脏也能泵血。"
 	status_effect_gained = /datum/status_effect/bioware/heart/muscled_veins
 
 /datum/surgery_operation/limb/bioware/muscled_veins/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start wrapping muscles around [limb.owner]'s blood vessels."),
-		span_notice("[surgeon] starts wrapping muscles around [limb.owner]'s blood vessels."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s blood vessels."),
+		span_notice("你开始将肌肉包裹在 [limb.owner] 的血管周围。"),
+		span_notice("[surgeon] 开始将肌肉包裹在 [limb.owner] 的血管周围。"),
+		span_notice("[surgeon] 开始操作 [limb.owner] 的血管。"),
 	)
 	display_pain(limb.owner, "Your entire body burns in agony!")
 
@@ -96,22 +96,22 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You reshape [limb.owner]'s blood vessels, adding a muscled membrane!"),
-		span_notice("[surgeon] reshapes [limb.owner]'s blood vessels, adding a muscled membrane!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s blood vessels."),
+		span_notice("你重塑了 [limb.owner] 的血管，添加了一层肌肉膜！"),
+		span_notice("[surgeon]重塑了[limb.owner]的血管，添加了一层肌肉膜！"),
+		span_notice("[surgeon]完成了对[limb.owner]血管的操控。"),
 	)
 	display_pain(limb.owner, "You can feel your heartbeat's powerful pulses ripple through your body!")
 
 /datum/surgery_operation/limb/bioware/muscled_veins/mechanic
 	rnd_name = "Hydraulics Redundancy Subroutine (Muscled Veins)"
-	desc = "Add redundancies to a robotic patient's hydraulic system, allowing it to pump fluids without an engine or pump."
+	desc = "为机械患者的液压系统增加冗余，使其无需引擎或泵即可输送流体。"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/limb/bioware/nerve_splicing
-	name = "splice nerves"
+	name = "神经接合"
 	rnd_name = "Symneurodesis (Spliced Nerves)" // "together nerve fusion"
-	desc = "Splice a patient's nerves together to make them more resistant to stuns."
+	desc = "将患者的神经接合在一起，使其对击晕效果更具抵抗力。"
 	time = 15.5 SECONDS
 	status_effect_gained = /datum/status_effect/bioware/nerves/spliced
 
@@ -119,9 +119,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start splicing together [limb.owner]'s nerves."),
-		span_notice("[surgeon] starts splicing together [limb.owner]'s nerves."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s nervous system."),
+		span_notice("你开始接合[limb.owner]的神经。"),
+		span_notice("[surgeon]开始接合[limb.owner]的神经。"),
+		span_notice("[surgeon]开始操控[limb.owner]的神经系统。"),
 	)
 	display_pain(limb.owner, "Your entire body goes numb!")
 
@@ -130,22 +130,22 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully splice [limb.owner]'s nervous system!"),
-		span_notice("[surgeon] successfully splices [limb.owner]'s nervous system!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s nervous system."),
+		span_notice("你成功接合了[limb.owner]的神经系统！"),
+		span_notice("[surgeon]成功接合了[limb.owner]的神经系统！"),
+		span_notice("[surgeon]完成了对[limb.owner]神经系统的操控。"),
 	)
 	display_pain(limb.owner, "You regain feeling in your body; It feels like everything's happening around you in slow motion!")
 
 /datum/surgery_operation/limb/bioware/nerve_splicing/mechanic
 	rnd_name = "System Automatic Reset Subroutine (Spliced Nerves)"
-	desc = "Upgrade a robotic patient's automatic systems, allowing it to better resist stuns."
+	desc = "升级机械患者的自动系统，使其能更好地抵抗击晕效果。"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/limb/bioware/nerve_grounding
-	name = "ground nerves"
+	name = "神经接地"
 	rnd_name = "Xanthoneuroplasty (Grounded Nerves)" // "yellow nerve reshaping". see: yellow gloves
-	desc = "Reroute a patient's nerves to act as grounding rods, protecting them from electrical shocks."
+	desc = "将患者的神经重新布线，使其充当接地棒，保护其免受电击。"
 	time = 15.5 SECONDS
 	status_effect_gained = /datum/status_effect/bioware/nerves/grounded
 
@@ -153,9 +153,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start rerouting [limb.owner]'s nerves."),
-		span_notice("[surgeon] starts rerouting [limb.owner]'s nerves."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s nervous system."),
+		span_notice("你开始重新布线[limb.owner]的神经。"),
+		span_notice("[surgeon]开始重新布线[limb.owner]的神经。"),
+		span_notice("[surgeon]开始操纵[limb.owner]的神经系统。"),
 	)
 	display_pain(limb.owner, "Your entire body goes numb!")
 
@@ -164,31 +164,31 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully reroute [limb.owner]'s nervous system!"),
-		span_notice("[surgeon] successfully reroutes [limb.owner]'s nervous system!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s nervous system."),
+		span_notice("你成功重新布线了[limb.owner]的神经系统！"),
+		span_notice("[surgeon]成功重新布线了[limb.owner]的神经系统！"),
+		span_notice("[surgeon]完成了对[limb.owner]神经系统的操纵。"),
 	)
 	display_pain(limb.owner, "You regain feeling in your body! You feel energized!")
 
 /datum/surgery_operation/limb/bioware/nerve_grounding/mechanic
 	rnd_name = "System Shock Dampening (Grounded Nerves)"
-	desc = "Install grounding rods into a robotic patient's nervous system, protecting it from electrical shocks."
+	desc = "将接地棒安装到机器人患者的神经系统中，保护其免受电击。"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/limb/bioware/ligament_hook
-	name = "reshape ligaments"
+	name = "重塑韧带"
 	rnd_name = "Arthroplasty (Ligament Hooks)" // "joint reshaping"
-	desc = "Reshape a patient's ligaments to allow limbs to be manually reattached if severed - at the cost of making them easier to detach."
+	desc = "重塑患者的韧带，允许肢体在切断后手动重新连接——代价是使其更容易脱落。"
 	status_effect_gained = /datum/status_effect/bioware/ligaments/hooked
 
 /datum/surgery_operation/limb/bioware/ligament_hook/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start reshaping [limb.owner]'s ligaments into a hook-like shape."),
-		span_notice("[surgeon] starts reshaping [limb.owner]'s ligaments into a hook-like shape."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s ligaments."),
+		span_notice("你开始将[limb.owner]的韧带重塑成钩状。"),
+		span_notice("[surgeon] 开始将 [limb.owner] 的韧带重塑成钩状。"),
+		span_notice("[surgeon] 开始操纵 [limb.owner] 的韧带。"),
 	)
 	display_pain(limb.owner, "Your limbs burn with severe pain!")
 
@@ -197,9 +197,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You reshape [limb.owner]'s ligaments into a connective hook!"),
-		span_notice("[surgeon] reshapes [limb.owner]'s ligaments into a connective hook!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s ligaments."),
+		span_notice("你将 [limb.owner] 的韧带重塑成了一个连接钩！"),
+		span_notice("[surgeon] 将 [limb.owner] 的韧带重塑成了一个连接钩！"),
+		span_notice("[surgeon] 完成了对 [limb.owner] 韧带的操纵。"),
 	)
 	display_pain(limb.owner, "Your limbs feel... strangely loose.")
 
@@ -211,18 +211,18 @@
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/limb/bioware/ligament_reinforcement
-	name = "strengthen ligaments"
+	name = "强化韧带"
 	rnd_name = "Arthrorrhaphy (Ligament Reinforcement)" // "joint strengthening" / "joint stitching"
-	desc = "Strengthen a patient's ligaments to make dismemberment more difficult, at the cost of making nerve connections easier to interrupt."
+	desc = "强化患者的韧带，使其更难被肢解，但代价是神经连接更容易被中断。"
 	status_effect_gained = /datum/status_effect/bioware/ligaments/reinforced
 
 /datum/surgery_operation/limb/bioware/ligament_reinforcement/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start reinforcing [limb.owner]'s ligaments."),
-		span_notice("[surgeon] starts reinforcing [limb.owner]'s ligaments."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s ligaments."),
+		span_notice("你开始加固 [limb.owner] 的韧带。"),
+		span_notice("[surgeon] 开始加固 [limb.owner] 的韧带。"),
+		span_notice("[surgeon] 开始操纵 [limb.owner] 的韧带。"),
 	)
 	display_pain(limb.owner, "Your limbs burn with severe pain!")
 
@@ -231,22 +231,22 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You reinforce [limb.owner]'s ligaments!"),
-		span_notice("[surgeon] reinforces [limb.owner]'s ligaments!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s ligaments."),
+		span_notice("你加固了 [limb.owner] 的韧带！"),
+		span_notice("[surgeon] 加固了 [limb.owner] 的韧带！"),
+		span_notice("[surgeon] 完成了对[limb.owner]韧带的操作。"),
 	)
 	display_pain(limb.owner, "Your limbs feel more secure, but also more frail.")
 
 /datum/surgery_operation/limb/bioware/ligament_reinforcement/mechanic
 	rnd_name = "Anchor Point Reinforcement (Ligament Reinforcement)"
-	desc = "Reinforce a robotic patient's limb joints to prevent dismemberment, at the cost of making nerve connections easier to interrupt."
+	desc = "加固机械病人的肢体关节以防止截肢，代价是使神经连接更容易中断。"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/limb/bioware/cortex_folding
-	name = "cortex folding"
+	name = "皮层折叠"
 	rnd_name = "Encephalofractoplasty (Cortex Folding)" // it's a stretch - "brain fractal reshaping"
-	desc = "A biological upgrade which folds a patient's cerebral cortex into a fractal pattern, increasing neural density and flexibility."
+	desc = "一种生物升级，将病人的大脑皮层折叠成分形图案，增加神经密度和灵活性。"
 	operation_flags = OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_MORBID | OPERATION_LOCKED | OPERATION_NO_PATIENT_REQUIRED
 	status_effect_gained = /datum/status_effect/bioware/cortex // Not actually applied, simply for compatibility checks
 	required_zone = BODY_ZONE_HEAD
@@ -270,9 +270,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start folding [limb.owner]'s cerebral cortex."),
-		span_notice("[surgeon] starts folding [limb.owner]'s cerebral cortex."),
-		span_notice("[surgeon] starts performing surgery on [limb.owner]'s brain."),
+		span_notice("你开始折叠[limb.owner]的大脑皮层。"),
+		span_notice("[surgeon] 开始折叠[limb.owner]的大脑皮层。"),
+		span_notice("[surgeon] 开始对[limb.owner]的大脑进行手术。"),
 	)
 	display_pain(limb.owner, "Your head throbs with gruesome pain, it's nearly too much to handle!")
 
@@ -281,9 +281,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You fold [limb.owner]'s cerebral cortex into a fractal pattern!"),
-		span_notice("[surgeon] folds [limb.owner]'s cerebral cortex into a fractal pattern!"),
-		span_notice("[surgeon] completes the surgery on [limb.owner]'s brain."),
+		span_notice("你将[limb.owner]的大脑皮层折叠成了分形图案！"),
+		span_notice("[surgeon] 将[limb.owner]的大脑皮层折叠成了分形图案！"),
+		span_notice("[surgeon] 完成了对[limb.owner]大脑的手术。"),
 	)
 	display_pain(limb.owner, "Your brain feels stronger... and more flexible!")
 
@@ -294,9 +294,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_warning("You screw up, damaging the brain!"),
-		span_warning("[surgeon] screws up, damaging the brain!"),
-		span_notice("[surgeon] completes the surgery on [limb.owner]'s brain."),
+		span_warning("你搞砸了，损伤了大脑！"),
+		span_warning("[surgeon] 搞砸了，损伤了大脑！"),
+		span_notice("[surgeon] 完成了对[limb.owner]大脑的手术。"),
 	)
 	display_pain(limb.owner, "Your head throbs with excruciating pain!")
 	brain.apply_organ_damage(60)
@@ -304,14 +304,14 @@
 
 /datum/surgery_operation/limb/bioware/cortex_folding/mechanic
 	rnd_name = "Wetware OS Labyrinthian Programming (Cortex Folding)"
-	desc = "Reprogram a robotic patient's neural network in a downright eldritch programming language, giving space to non-standard neural patterns."
+	desc = "用一种极其诡异的编程语言重新编程机器人患者的神经网络，为非标准神经模式腾出空间。"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 /datum/surgery_operation/limb/bioware/cortex_imprint
-	name = "cortex imprinting"
+	name = "皮层印记"
 	rnd_name = "Encephalopremoplasty (Cortex Imprinting)" // it's a stretch - "brain print reshaping"
-	desc = "A biological upgrade which carves a patient's cerebral cortex into a self-imprinting pattern, increasing neural density and resilience."
+	desc = "一种生物升级，将患者的大脑皮层雕刻成自我印记模式，增加神经密度和韧性。"
 	status_effect_gained = /datum/status_effect/bioware/cortex/imprinted
 	required_zone = BODY_ZONE_HEAD
 
@@ -319,9 +319,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start carving [limb.owner]'s outer cerebral cortex into a self-imprinting pattern."),
-		span_notice("[surgeon] starts carving [limb.owner]'s outer cerebral cortex into a self-imprinting pattern."),
-		span_notice("[surgeon] starts performing surgery on [limb.owner]'s brain."),
+		span_notice("你开始将[limb.owner]的外层大脑皮层雕刻成自我印记模式。"),
+		span_notice("[surgeon] 开始将[limb.owner]的外层大脑皮层雕刻成自我印记模式。"),
+		span_notice("[surgeon] 开始对[limb.owner]的大脑进行手术。"),
 	)
 	display_pain(limb.owner, "Your head throbs with gruesome pain, it's nearly too much to handle!")
 
@@ -330,9 +330,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You reshape [limb.owner]'s outer cerebral cortex into a self-imprinting pattern!"),
-		span_notice("[surgeon] reshapes [limb.owner]'s outer cerebral cortex into a self-imprinting pattern!"),
-		span_notice("[surgeon] completes the surgery on [limb.owner]'s brain."),
+		span_notice("你将[limb.owner]的外层大脑皮层重塑成了自我印记模式！"),
+		span_notice("[surgeon] 将[limb.owner]的外层大脑皮层重塑成了自我印记模式！"),
+		span_notice("[surgeon] 完成了对[limb.owner]大脑的手术。"),
 	)
 	display_pain(limb.owner, "Your brain feels stronger... and more resilient!")
 
@@ -342,9 +342,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_warning("You screw up, damaging the brain!"),
-		span_warning("[surgeon] screws up, damaging the brain!"),
-		span_notice("[surgeon] completes the surgery on [limb.owner]'s brain."),
+		span_warning("你搞砸了，损伤了大脑！"),
+		span_warning("[surgeon] 搞砸了，损伤了大脑！"),
+		span_notice("[surgeon] 完成了对 [limb.owner] 大脑的手术。"),
 	)
 	display_pain(limb.owner, "Your brain throbs with intense pain; Thinking hurts!")
 	limb.owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, 60)

@@ -104,7 +104,7 @@
 	last_pipe = null
 	active = FALSE
 	for(var/mob/living/piperider in contents)
-		to_chat(piperider, span_notice("Your movement has slowed to a stop. If you tried, you could probably <b>struggle</b> free."))
+		to_chat(piperider, span_notice("你的移动已逐渐停止。如果你尝试的话，或许可以<b>挣扎</b>脱身。"))
 
 /**
  * Starts the struggle code
@@ -130,11 +130,11 @@
 		return //Somehow we're not in a pipe, shits probably fucked
 	var/obj/structure/disposalpipe/transport_cylinder = loc
 	if(active)
-		to_chat(escapee, span_danger("You slide past [loc] and are unable to keep your grip!"))
+		to_chat(escapee, span_danger("你滑过了 [loc]，无法保持抓握！"))
 		return
 	if(src in escapee.do_afters)
 		return //already trying to escape
-	to_chat(escapee, span_warning("You push against the thin pipe walls..."))
+	to_chat(escapee, span_warning("你推挤着薄薄的管道壁..."))
 	playsound(loc, 'sound/machines/airlock/airlock_alien_prying.ogg', vol = 30, vary = FALSE, extrarange = 3) //yeah I know but at least it sounds like metal being bent.
 
 	if(!do_after(escapee, 20 SECONDS, get_turf(loc)))

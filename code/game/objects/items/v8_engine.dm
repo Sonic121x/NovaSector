@@ -10,8 +10,8 @@
  */
 
 /obj/item/v8_engine
-	name = "ancient engine"
-	desc = "An extremely well-preserved, massive V8 engine from the early 2000s. It seems to be missing the rest of the vehicle. There's a tiny label on the side."
+	name = "古代引擎"
+	desc = "一台保存极为完好的、来自21世纪初的巨型V8发动机。它似乎缺少了车辆的其余部分。侧面有一个小小的标签。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "v8_engine"
 	w_class = WEIGHT_CLASS_HUGE
@@ -31,7 +31,7 @@
 		return
 	playsound(src, 'sound/items/car_engine_start.ogg', vol = 75, vary = FALSE, extrarange = 3)
 	Shake(duration = ENGINE_COOLDOWN)
-	to_chat(user, span_notice("Darn thing... it's too old to keep on without retrofitting it! Without modifications, it works like it's junk."))
+	to_chat(user, span_notice("这破玩意儿……太旧了，不改造根本没法用！不进行改装的话，它就跟废铁一样。"))
 	COOLDOWN_START(src, engine_sound_cooldown, ENGINE_COOLDOWN)
 
 /obj/item/v8_engine/examine_more(mob/user)
@@ -43,14 +43,14 @@
 		return
 	if(user.mind.has_crafting_recipe(user = user, potential_recipe = /datum/crafting_recipe/house_edge))
 		return
-	to_chat(user, span_notice("You peer at the label on the side, reading about some unique modifications that could be made to the engine..."))
+	to_chat(user, span_notice("你仔细看了看侧面的标签，上面写着一些可以对引擎进行的独特改装..."))
 	if(do_after(user, 15 SECONDS, src))
 		user.mind.teach_crafting_recipe(/datum/crafting_recipe/house_edge)
-		to_chat(user, span_notice("You learned how to make the House Edge."))
+		to_chat(user, span_notice("你学会了如何制造“豪斯之刃”。"))
 
 /obj/item/house_edge
-	name = "House Edge"
-	desc = "Dangerous. Loud. Sleek. It has a built in roulette wheel. This thing could easily rip your arm off if you're not careful."
+	name = "庄家优势"
+	desc = "危险。吵闹。时髦。它内置了一个轮盘赌轮。这东西一不小心就能把你的胳膊扯下来。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "house_edge"
 	base_icon_state = "house_edge"
@@ -94,9 +94,9 @@
 	if(!COOLDOWN_FINISHED(src, fire_charge_cooldown))
 		return ITEM_INTERACT_BLOCKING
 	if(fire_charges <= 0)
-		balloon_alert(user, "no fire charges!")
+		balloon_alert(user, "没有射击次数了！")
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_boldnotice("You take aim at [interacting_with]..."))
+	to_chat(user, span_boldnotice("你瞄准了[interacting_with]..."))
 	user.add_shared_particles(/particles/bonfire)
 
 	if(!do_after(user, SLASH_WINDUP, target = src))
@@ -155,7 +155,7 @@
 	projectile.fire(null, interacting_with)
 
 	user.visible_message(span_danger("[user] makes a[upgraded ? " devastating" : "" ] blazing slash at [interacting_with]!"),\
-		span_notice("You take a blazing swipe at [interacting_with]!"))
+		span_notice("你向[interacting_with]挥出一记烈焰斩击！"))
 	playsound(src, 'sound/items/modsuit/flamethrower.ogg', vol = 75, vary = FALSE, extrarange = 3)
 	playsound(src, 'sound/items/weapons/slash.ogg', vol = 50, vary = FALSE, extrarange = 3)
 
@@ -165,8 +165,8 @@
 
 /// Flaming slash for the special attack at max charges.
 /obj/projectile/flaming_slash
-	name = "flaming slash"
-	desc = "Someone is about to cash out."
+	name = "烈焰斩击"
+	desc = "有人要完蛋了。"
 	icon_state = "flaming_slash"
 	damage_type = BURN
 	armor_flag = MELEE //We're operating off of anime remote slash logic here. As such, we can treat this as a hybrid burn/brute this way.

@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 
 /datum/hfr_fuel/plasma_oxy_fuel
 	id = "plasma_o2_fuel"
-	name = "Plasma + Oxygen fuel"
+	name = "等离子体 + 氧燃料"
 	negative_temperature_multiplier = 2.5
 	positive_temperature_multiplier = 0.1
 	energy_concentration_multiplier = 10
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 
 /datum/hfr_fuel/hydrogen_oxy_fuel
 	id = "h2_o2_fuel"
-	name = "Hydrogen + Oxygen fuel"
+	name = "氢 + 氧燃料"
 	negative_temperature_multiplier = 2
 	positive_temperature_multiplier = 0.6
 	energy_concentration_multiplier = 3
@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 
 /datum/hfr_fuel/tritium_oxy_fuel
 	id = "t2_o2_fuel"
-	name = "Tritium + Oxygen fuel"
+	name = "氚 + 氧燃料"
 	negative_temperature_multiplier = 2.1
 	positive_temperature_multiplier = 0.5
 	energy_concentration_multiplier = 2
@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 
 /datum/hfr_fuel/hydrogen_tritium_fuel
 	id = "h2_t2_fuel"
-	name = "Hydrogen + Tritium fuel"
+	name = "氢 + 氚燃料"
 	negative_temperature_multiplier = 1
 	positive_temperature_multiplier = 1
 	energy_concentration_multiplier = 1
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 
 /datum/hfr_fuel/hypernob_hydrogen_fuel
 	id = "hypernob_hydrogen_fuel"
-	name = "Hypernoblium + Hydrogen fuel"
+	name = "超铌 + 氢燃料"
 	negative_temperature_multiplier = 0.2
 	positive_temperature_multiplier = 2.2
 	energy_concentration_multiplier = 0.2
@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 
 /datum/hfr_fuel/hypernob_trit_fuel
 	id = "hypernob_trit_fuel"
-	name = "Hypernoblium + Tritium fuel"
+	name = "超铌 + 氚燃料"
 	negative_temperature_multiplier = 0.1
 	positive_temperature_multiplier = 2.5
 	energy_concentration_multiplier = 0.1
@@ -127,7 +127,7 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 
 /datum/hfr_fuel/hypernob_antinob_fuel
 	id = "hypernob_antinob_fuel"
-	name = "Hypernoblium + Antinoblium fuel"
+	name = "超铌 + 反铌燃料"
 	negative_temperature_multiplier = 0.01
 	positive_temperature_multiplier = 3.5
 	energy_concentration_multiplier = 2

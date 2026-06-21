@@ -1,6 +1,6 @@
 // Folder which supplies the vouchers to the player
 /obj/item/folder/syndicate/vouchers
-	name = "equipment voucher folder"
+	name = "装备凭证文件夹"
 	icon_state = "folder_sblue"
 
 /obj/item/folder/syndicate/vouchers/Initialize(mapload)
@@ -30,7 +30,7 @@
 	icon_state = "slip_red"
 
 /obj/item/paper/paperslip/corporate/syndicate/traitor
-	desc = "A plastic card with a data string printed on it. These cards act as equipment vouchers, and its data string can be downloaded by various machinery to unlock gear."
+	desc = "一张印有数据字符串的塑料卡片。这些卡片作为装备凭证，其数据字符串可被各种机器下载以解锁装备。"
 
 /obj/item/paper/paperslip/corporate/syndicate/traitor/Initialize(mapload)
 	. = ..()
@@ -43,21 +43,21 @@
 	update_appearance()
 
 /obj/item/paper/paperslip/corporate/syndicate/traitor/primary
-	name = "primary weapon voucher"
+	name = "主武器凭证"
 	icon_state = "slip_red_stripe"
 
 /obj/item/paper/paperslip/corporate/syndicate/traitor/secondary
-	name = "secondary weapon voucher"
+	name = "副武器凭证"
 	icon_state = "slip_red"
 
 /obj/item/paper/paperslip/corporate/syndicate/traitor/exosuit
-	name = "robotics exosuit voucher"
+	name = "机器人外骨骼凭证"
 	icon_state = "slip_purple"
 
 /obj/item/paper/paperslip/corporate/syndicate/traitor/implant
-	name = "medical implant voucher"
+	name = "医疗植入体凭证"
 	icon_state = "slip_lightblue"
 
 /obj/item/paper/paperslip/corporate/syndicate/traitor/supplies
-	name = "general supplies voucher"
+	name = "通用补给凭证"
 	icon_state = "slip_brown"

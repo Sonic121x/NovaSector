@@ -14,8 +14,8 @@
 */
 
 /obj/item/clothing/under/greyscale/turtleneck
-	name = "turtleneck with pants"
-	desc = "A rather comfortable turtleneck worn with pants. Talk about robust threads."
+	name = "高领衫配长裤"
+	desc = "一件相当舒适的高领衫搭配长裤。真是结实的线头啊。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/greyscale/turtleneck"
 	post_init_icon_state = "turtleneck"
@@ -27,8 +27,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/greyscale/turtleneck/skirt
-	name = "turtleneck with skirt"
-	desc = "A rather comfortable turtleneck worn with a skirt. A skirtleneck, if you would."
+	name = "高领衫配短裙"
+	desc = "一件相当舒适的高领衫搭配短裙。可以称之为裙领衫。"
 	icon_state = "/obj/item/clothing/under/greyscale/turtleneck/skirt"
 	post_init_icon_state = "skirtleneck"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -37,8 +37,8 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/greyscale/gorkas
-	name = "gorka jumpsuit"
-	desc = "A somewhat comfortable gorka, as comfy as a regular jumpsuit but with a more unique design."
+	name = "戈尔卡连体服"
+	desc = "一件还算舒适的戈尔卡，和普通连体服一样舒适，但设计更独特。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/greyscale/gorkas"
 	post_init_icon_state = "gags_gorka"
@@ -49,8 +49,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/greyscale/overalls
-	name = "turtleneck with overalls"
-	desc = "Overalls worn over a turtleneck. A combination providing comfort and coverage... or, at the least, the coverage."
+	name = "高领衫配背带裤"
+	desc = "穿在高领衫外面的背带裤。这种组合提供了舒适和覆盖……或者，至少是覆盖。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/greyscale/overalls"
 	post_init_icon_state = "overalls"
@@ -62,8 +62,8 @@
 	can_adjust = TRUE
 
 /obj/item/clothing/under/greyscale/overalls/skirt
-	name = "turtleneck with overalls-skirt"
-	desc = "An overalls-skirt worn over a turtleneck. A combination providing comfort and coverage... or, at the least- no, wait, this doesn't really provide either."
+	name = "高领衫配背带裙"
+	desc = "穿在高领衫外面的背带裙。这种组合提供了舒适和覆盖……或者，至少——不，等等，这个其实两样都没提供。"
 	icon_state = "/obj/item/clothing/under/greyscale/overalls/skirt"
 	post_init_icon_state = "overalls_skirt"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -72,8 +72,8 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/greyscale/playsuit
-	name = "playsuit"
-	desc = "For the love of the game."
+	name = "连衣裤"
+	desc = "为了对游戏的热爱。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/greyscale/playsuit"
 	post_init_icon_state = "playsuit"

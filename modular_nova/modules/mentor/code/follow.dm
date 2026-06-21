@@ -11,7 +11,7 @@
 	else
 		var/mob/dead/observer/O = usr
 		O.ManualFollow(M)
-	to_chat(GLOB.admins, span_mentor(span_prefix("MENTOR:</span> <EM>[key_name(usr)]</EM> is now [orbiting ? "orbiting" : "following"] <EM>[key_name(M)][key_name(M)][orbiting ? " as a ghost" : ""].")))
+	to_chat(GLOB.admins, span_mentor(span_prefix("导师：</span> <EM>[key_name(usr)]</EM> 现在正在 [orbiting ? "orbiting" : "following"] <EM>[key_name(M)][key_name(M)][orbiting ? " as a ghost" : ""]。")))
 	log_mentor("[key_name(usr)] [orbiting ? "is now orbiting" : "began following"][key_name(M)][orbiting ? " as a ghost" : ""].")
 
 /client/proc/mentor_unfollow()
@@ -23,6 +23,6 @@
 		return
 	usr.reset_perspective()
 	remove_verb(src,/client/proc/mentor_unfollow)
-	to_chat(GLOB.admins, span_mentor(span_prefix("MENTOR:</span> <EM>[key_name(usr)]</EM> is no longer following <EM>[key_name(mentor_datum.following)].")))
+	to_chat(GLOB.admins, span_mentor(span_prefix("MENTOR:</span> <EM>[key_name(usr)]</EM> 不再跟随 <EM>[key_name(mentor_datum.following)]。")))
 	log_mentor("[key_name(usr)] stopped following [key_name(mentor_datum.following)].")
 	mentor_datum.following = null

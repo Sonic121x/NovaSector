@@ -40,7 +40,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 /datum/newspanel/ui_static_data(mob/user)
 	. = ..()
 	if (!is_admin(user))
-		to_chat(usr, "Error: you are not an admin!", confidential = TRUE)
+		to_chat(usr, "错误：你不是管理员！", confidential = TRUE)
 		return
 
 /datum/newspanel/ui_data(mob/user)
@@ -50,7 +50,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 	var/list/message_list = list()
 
 	data["user"] = list()
-	data["user"]["name"] = "Centcom Official"
+	data["user"]["name"] = "中央司令部官方"
 	data["user"]["job"] = "Official"
 	data["user"]["department"] = "Department of News"
 
@@ -151,7 +151,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 
 		if("createStory")
 			if(!current_channel)
-				to_chat(usr, "select a channel first!")
+				to_chat(usr, "请先选择一个频道！")
 				return TRUE
 			var/current_channel_id = params["current"]
 			create_story(channel_id = current_channel_id)
@@ -237,14 +237,14 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 			return TRUE
 
 		if("setCriminalName")
-			var/temp_name = tgui_input_text(usr, "Write the Criminal's Name", "Warrent Alert Handler", "John Doe", max_length = MAX_NAME_LEN, multiline = FALSE)
+			var/temp_name = tgui_input_text(usr, "写下罪犯姓名", "通缉警报处理器", "约翰·多伊", max_length = MAX_NAME_LEN, multiline = FALSE)
 			if(!temp_name)
 				return TRUE
 			criminal_name = temp_name
 			return TRUE
 
 		if("setCrimeData")
-			var/temp_desc = tgui_input_text(usr, "Write the Criminal's Crimes", "Warrent Alert Handler", "Unknown", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
+			var/temp_desc = tgui_input_text(usr, "写下罪犯罪行", "通缉警报处理器", "未知", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
 			if(!temp_desc)
 				return TRUE
 			crime_description = temp_desc
@@ -277,7 +277,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
  * *user: The mob who is being checked for a held photo object.
  */
 /datum/newspanel/proc/attach_photo(mob/user)
-	to_chat(user, "I didn't add this!")
+	to_chat(user, "这不是我添加的！")
 	return
 
 /**
@@ -289,13 +289,13 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 		return
 	var/datum/feed_channel/potential_channel = GLOB.news_network.network_channels_by_name[channel_name]
 	if(potential_channel)
-		tgui_alert(usr, "ERROR: Feed channel with that name already exists on the Network.", list("Okay"))
+		tgui_alert(usr, "错误：网络中已存在同名新闻频道。", list("确定"))
 		return TRUE
 	if(!channel_desc)
 		return TRUE
 	if(isnull(channel_locked))
 		return TRUE
-	var/choice = tgui_alert(usr, "Please confirm feed channel creation","Network Channel Handler", list("Confirm","Cancel"))
+	var/choice = tgui_alert(usr, "请确认创建新闻频道","网络频道处理器", list("Confirm","Cancel"))
 	if(choice == "Confirm")
 		GLOB.news_network.create_feed_channel(channel_name, "Centcom Official", channel_desc, locked = channel_locked)
 		SSblackbox.record_feedback("text", "newscaster_channels", 1, "[channel_name]")
@@ -343,7 +343,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 		return
 	current_channel = potential_channel
 
-	var/temp_message = tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", feed_channel_message, max_length = MAX_BROADCAST_LEN, multiline = TRUE)
+	var/temp_message = tgui_input_text(usr, "撰写你的新闻故事", "网络频道处理器", feed_channel_message, max_length = MAX_BROADCAST_LEN, multiline = TRUE)
 	if(length(temp_message) <= 1)
 		return TRUE
 	if(temp_message)

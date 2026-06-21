@@ -1,5 +1,5 @@
 /obj/item/grenade/flashbang
-	name = "flashbang"
+	name = "闪光弹"
 	icon_state = "flashbang"
 	inhand_icon_state = "flashbang"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -51,7 +51,7 @@
 /obj/item/grenade/flashbang/proc/bang(turf/turf, mob/living/living_mob, soundbang = TRUE)
 	if(living_mob.stat == DEAD) //They're dead!
 		return
-	living_mob.show_message(span_warning("BANG"), MSG_AUDIBLE)
+	living_mob.show_message(span_warning("砰"), MSG_AUDIBLE)
 	var/distance = get_dist(get_turf(src), turf)
 	var/sweetspot_range = clamp(ceil(flashbang_range/sweetspot_divider), 0, flashbang_range)
 
@@ -91,7 +91,7 @@
 
 
 /obj/item/grenade/stingbang
-	name = "stingbang"
+	name = "刺痛弹"
 	icon_state = "timeg_locked"
 	base_icon_state = "timeg"
 	inhand_icon_state = "flashbang"
@@ -103,7 +103,7 @@
 	custom_premium_price = PAYCHECK_COMMAND * 3.5 // mostly gotten through cargo, but throw in one for the sec vendor ;)
 
 /obj/item/grenade/stingbang/mega
-	name = "mega stingbang"
+	name = "超级刺痛弹"
 	icon_state = "timeg_mega_locked"
 	base_icon_state = "timeg_mega"
 	shrapnel_type = /obj/projectile/bullet/pellet/stingball/mega
@@ -121,7 +121,7 @@
 		if(bodypart)
 			forceMove(get_turf(user))
 			var/did_dismember = bodypart.dismember()
-			user.visible_message("<b>[span_danger("[src] goes off in [user]'s hand[did_dismember ? ", blowing [user.p_their()] [bodypart.plaintext_zone] to bloody shreds" : ""]!")]</b>", span_userdanger("[src] goes off in your hand[did_dismember ? ", blowing your [bodypart.plaintext_zone] to bloody shreds" : ""]!"))
+			user.visible_message("<b>[span_danger("[src] goes off in [user]'s hand[did_dismember ? ", blowing [user.p_their()] [bodypart.plaintext_zone] to bloody shreds" : ""]!")]</b>", span_userdanger("[src] 在你手中爆炸了[did_dismember ? ", blowing your [bodypart.plaintext_zone] to bloody shreds" : ""]！"))
 
 	. = ..()
 	if(!.)
@@ -142,7 +142,7 @@
 /obj/item/grenade/stingbang/proc/pop(turf/turf, mob/living/living_mob)
 	if(living_mob.stat == DEAD) //They're dead!
 		return
-	living_mob.show_message(span_warning("POP"), MSG_AUDIBLE)
+	living_mob.show_message(span_warning("砰"), MSG_AUDIBLE)
 	var/distance = get_dist(get_turf(src), turf)
 //Flash
 	if(living_mob.flash_act(affect_silicon = 1))
@@ -161,8 +161,8 @@
 
 // Grenade that releases more shrapnel the more times you use it in hand between priming and detonation (sorta like the 9bang from MW3), for admin goofs
 /obj/item/grenade/primer
-	name = "rotfrag grenade"
-	desc = "A grenade that generates more shrapnel the more you rotate it in your hand after pulling the pin. This one releases shrapnel shards."
+	name = "旋转破片手榴弹"
+	desc = "一种手榴弹，拔掉保险销后在手中旋转得越多，产生的破片就越多。这一种会释放破片弹片。"
 	icon_state = "timeg_locked"
 	base_icon_state = "timeg"
 	inhand_icon_state = "flashbang"
@@ -188,8 +188,8 @@
 	qdel(src)
 
 /obj/item/grenade/primer/stingbang
-	name = "rotsting"
-	desc = "A grenade that generates more shrapnel the more you rotate it in your hand after pulling the pin. This one releases stingballs."
+	name = "旋转刺痛弹"
+	desc = "一种手榴弹，拔掉保险销后在手中旋转得越多，产生的破片就越多。这一种会释放刺痛球。"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	rots_per_mag = 2

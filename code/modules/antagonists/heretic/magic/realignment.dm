@@ -1,6 +1,6 @@
 // Realignment. It's like Fleshmend but solely for stamina damage and stuns. Sec meta
 /datum/action/cooldown/spell/realignment
-	name = "Realignment"
+	name = "自我调谐"
 	desc = "Realign yourself, rapidly regenerating stamina and reducing any stuns or knockdowns. \
 		You cannot attack while realigning. Can be casted multiple times in short succession, but each cast lengthens the cooldown."
 	background_icon_state = "bg_heretic"
@@ -24,7 +24,7 @@
 /datum/action/cooldown/spell/realignment/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.apply_status_effect(/datum/status_effect/realignment)
-	to_chat(cast_on, span_notice("We begin to realign ourselves."))
+	to_chat(cast_on, span_notice("我们开始调谐自身。"))
 
 /datum/action/cooldown/spell/realignment/after_cast(atom/cast_on)
 	. = ..()
@@ -58,7 +58,7 @@
 	var/list/realignment_traits = list(TRAIT_BATON_RESISTANCE, TRAIT_PACIFISM)
 
 /datum/status_effect/realignment/get_examine_text()
-	return span_notice("[owner.p_Theyre()] glowing a soft white.")
+	return span_notice("[owner.p_Theyre()]正散发着柔和的白色光芒。")
 
 /datum/status_effect/realignment/on_apply()
 	owner.add_traits(realignment_traits, TRAIT_STATUS_EFFECT(id))
@@ -77,6 +77,6 @@
 	owner.AdjustAllImmobility(-1 SECONDS)
 
 /atom/movable/screen/alert/status_effect/realignment
-	name = "Realignment"
-	desc = "You're realignment yourself. You cannot attack, but are rapidly regenerating stamina."
+	name = "自我调谐"
+	desc = "你正在调谐自身。你无法攻击，但正在快速恢复耐力。"
 	icon_state = "realignment"

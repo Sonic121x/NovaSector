@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/tonumber
 	display_name = "To Number"
-	desc = "A component that converts its input (a string) to a number. If there's text in the input, it'll only consider it if it starts with a number. It will take that number and ignore the rest."
+	desc = "一个将输入（一个字符串）转换为数字的组件。如果输入中有文本，那么它只会考虑文本开头是数字的部分。它会提取出那个数字，并忽略其余部分。"
 	category = "String"
 
 	/// The input port

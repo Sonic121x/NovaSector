@@ -1,6 +1,6 @@
 // Basetype for developer usage only. Shouldn't be visible ingame.
 /datum/design/medipen
-	name = "Medipen Basetype"
+	name = "医疗注射笔基础类型"
 	id = DESIGN_ID_IGNORE
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -17,41 +17,41 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/medipen/universal
-	name = "Universal Medipen"
+	name = "通用医疗注射笔"
 	id = "medipen_universal"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/universal
 
 /datum/design/medipen/universal_lowpressure
-	name = "Universal Low-Pressure Medipen"
+	name = "通用低压医疗注射笔"
 	id = "medipen_universal_lowpressure"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/universal/lowpressure
 
 /datum/design/medipen/epinephrine
-	name = "Epinephrine Medipen"
+	name = "肾上腺素医疗注射笔"
 	id = "medipen_epinephrine"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/empty
 
 /datum/design/medipen/atropine
-	name = "Atropine Medipen"
+	name = "阿托品医疗注射笔"
 	id = "medipen_atropine"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/atropine/empty
 
 /datum/design/medipen/salbutamol
-	name = "Salbutamol Medipen"
+	name = "沙丁胺醇医疗注射笔"
 	id = "medipen_salbutamol"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/salbutamol/empty
 
 /datum/design/medipen/oxandrolone
-	name = "Oxandrolone Medipen"
+	name = "氧雄龙医疗笔"
 	id = "medipen_oxandrolone"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/oxandrolone/empty
 
 /datum/design/medipen/salacid
-	name = "Salicylic Acid Medipen"
+	name = "水杨酸医疗笔"
 	id = "medipen_salacid"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/salacid/empty
 
 /datum/design/medipen/penacid
-	name = "Pentetic Acid Medipen"
+	name = "喷替酸医疗笔"
 	id = "medipen_penacid"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/penacid/empty

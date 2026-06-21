@@ -2,5 +2,5 @@
 	id = "drones_derelict"
 	prefix = "_maps/RandomRuins/SpaceRuins/nova/"
 	suffix = "drones_derelict.dmm"
-	name = "Babylon Station 13"
-	description = "Babylon Station 13 was meant to be a stepping stone towards a better future, but it ended up being an astronomical financial burden. The owners realized that there was no ability to recoup their losses, and decided to cut the program."
+	name = "巴比伦空间站 13"
+	description = "巴比伦13号空间站本应是通往更美好未来的垫脚石，但最终却成了天文数字般的财务负担。所有者意识到无法挽回损失，于是决定终止该项目。"

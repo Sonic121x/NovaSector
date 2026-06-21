@@ -38,7 +38,7 @@
 INITIALIZE_IMMEDIATE(/atom/movable/mirage_holder)
 // Using /atom/movable because this is a heavily used path
 /atom/movable/mirage_holder
-	name = "Mirage holder"
+	name = "幻影持有者"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /// If we, hypothetically, spawned on a turf that calls init (so non-space tiles), we would be transported to the other Z, which would be very bad

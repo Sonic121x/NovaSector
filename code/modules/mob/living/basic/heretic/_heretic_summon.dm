@@ -1,7 +1,7 @@
 /mob/living/basic/heretic_summon
 	name = "Eldritch Demon"
 	real_name = "Eldritch Demon"
-	desc = "A horror from beyond this realm, summoned by bad code."
+	desc = "来自此领域之外的恐怖，由糟糕的代码召唤而来。"
 	icon = 'icons/mob/nonhuman-player/eldritch_mobs.dmi'
 	faction = list(FACTION_HERETIC)
 	basic_mob_flags = DEL_ON_DEATH

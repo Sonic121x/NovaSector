@@ -9,7 +9,7 @@
 	hotkey_keys = list("E")
 	name = "quick_equip"
 	full_name = "Quick equip"
-	description = "Quickly puts an item in the best slot available"
+	description = "快速将物品放入最佳可用槽位"
 	keybind_signal = COMSIG_KB_HUMAN_QUICKEQUIP_DOWN
 
 /datum/keybinding/human/quick_equip/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -24,7 +24,7 @@
 	hotkey_keys = list("ShiftE")
 	name = "quick_equip_belt"
 	full_name = "Quick equip belt"
-	description = "Put held thing in belt or take out most recent thing from belt"
+	description = "将手持物品放入腰带，或从腰带中取出最近放入的物品"
 	///which slot are we trying to quickdraw from/quicksheathe into?
 	var/slot_type = ITEM_SLOT_BELT
 	///what we should call slot_type in messages (including failure messages)
@@ -43,7 +43,7 @@
 	hotkey_keys = list("ShiftB")
 	name = "quick_equip_bag"
 	full_name = "Quick equip bag"
-	description = "Put held thing in backpack or take out most recent thing from backpack"
+	description = "将手持物品放入背包，或从背包中取出最近放入的物品"
 	slot_type = ITEM_SLOT_BACK
 	slot_item_name = "backpack"
 	keybind_signal = COMSIG_KB_HUMAN_BAGEQUIP_DOWN
@@ -52,7 +52,7 @@
 	hotkey_keys = list("ShiftQ")
 	name = "quick_equip_suit_storage"
 	full_name = "Quick equip suit storage slot"
-	description = "Put held thing in suit storage slot item or take out most recent thing from suit storage slot item"
+	description = "将手持物品放入防护服储物槽物品，或从防护服储物槽物品中取出最近放入的物品"
 	slot_type = ITEM_SLOT_SUITSTORE
 	slot_item_name = "suit storage slot item"
 	keybind_signal = COMSIG_KB_HUMAN_SUITEQUIP_DOWN
@@ -61,7 +61,7 @@
 	hotkey_keys = list("Ctrl1")
 	name = "quick_equip_lpocket"
 	full_name = "Quick equip left pocket"
-	description = "Put in or take out an item in left pocket"
+	description = "放入或取出左口袋中的物品"
 	slot_type = ITEM_SLOT_LPOCKET
 	slot_item_name = "left pocket"
 	keybind_signal = COMSIG_KB_HUMAN_LPOCKETEQUIP_DOWN
@@ -70,7 +70,7 @@
 	hotkey_keys = list("Ctrl2")
 	name = "quick_equip_rpocket"
 	full_name = "Quick equip right pocket"
-	description = "Put in or take out an item in right pocket"
+	description = "放入或取出右口袋中的物品"
 	slot_type = ITEM_SLOT_RPOCKET
 	slot_item_name = "right pocket"
 	keybind_signal = COMSIG_KB_HUMAN_RPOCKETEQUIP_DOWN

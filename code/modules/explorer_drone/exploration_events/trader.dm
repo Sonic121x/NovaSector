@@ -57,7 +57,7 @@
 /// Trade events
 
 /datum/exploration_event/simple/trader/vendor_ai
-	name = "sentient drug vending machine"
+	name = "有知觉的售货机"
 	required_site_traits = list(EXPLORATION_SITE_TECHNOLOGY)
 	band_values = list(EXOSCANNER_BAND_TECH=2)
 	requires_translator = FALSE
@@ -66,7 +66,7 @@
 	amount = 3
 
 /datum/exploration_event/simple/trader/farmer_market
-	name = "farmer's market"
+	name = "农产品市场"
 	deep_scan_description = "You detect an area with an unusually high concentration of edibles on site."
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_SURFACE)
 	band_values = list(EXOSCANNER_BAND_LIFE=2)
@@ -75,7 +75,7 @@
 	amount = 1
 
 /datum/exploration_event/simple/trader/fish
-	name = "interstellar fish trader"
+	name = "星际鱼商"
 	requires_translator = FALSE
 	deep_scan_description = "You spot a giant \"FRESH FISH\" sign on site."
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_SURFACE)
@@ -85,7 +85,7 @@
 	amount = 3
 
 /datum/exploration_event/simple/trader/shady_merchant
-	name = "shady merchant"
+	name = "可疑商人"
 	requires_translator = FALSE
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_CIVILIZED)
 	band_values = list(EXOSCANNER_BAND_LIFE=1)
@@ -94,7 +94,7 @@
 	amount = 1
 
 /datum/exploration_event/simple/trader/surplus
-	name = "military surplus trader"
+	name = "军事补给商"
 	deep_scan_description = "You decrypt a transmission advertising military surplus for sale on site."
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_CIVILIZED)
 	band_values = list(EXOSCANNER_BAND_LIFE=1)
@@ -103,7 +103,7 @@
 	amount = 3
 
 /datum/exploration_event/simple/trader/flame_card
-	name = "id card artisan"
+	name = "身份卡工匠"
 	deep_scan_description = "You spy an advertisment for an ID card customisation workshop."
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_CIVILIZED)
 	band_values = list(EXOSCANNER_BAND_TECH=1)

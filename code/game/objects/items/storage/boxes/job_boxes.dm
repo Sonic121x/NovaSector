@@ -191,12 +191,12 @@
 	if(!istype(tool, /obj/item/bodypart/arm/left/robot) && !istype(tool, /obj/item/bodypart/arm/right/robot))
 		return ..()
 	if(contents.len) //prevent accidently deleting contents
-		balloon_alert(user, "items inside!")
+		balloon_alert(user, "里面有东西！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.temporarilyRemoveItemFromInventory(tool))
 		return ITEM_INTERACT_BLOCKING
 	qdel(tool)
-	loc.balloon_alert(user, "wheels added, honk!")
+	loc.balloon_alert(user, "轮子装好了，叭叭！")
 	var/obj/item/bot_assembly/honkbot/assembly = new(drop_location())
 	var/held_index = user.is_holding(src)
 	qdel(src)

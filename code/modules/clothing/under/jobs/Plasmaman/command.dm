@@ -1,6 +1,6 @@
 /obj/item/clothing/under/plasmaman/captain
-	name = "captain's plasma envirosuit"
-	desc = "It's a blue envirosuit with some gold markings denoting the rank of \"Captain\"."
+	name = "舰长的等离子环境服"
+	desc = "那是件蓝色的环境防护服，上面有一些金色的标记，代表着“上尉”的军衔。"
 	icon_state = "captain_envirosuit"
 	inhand_icon_state = null
 	sensor_mode = SENSOR_COORDS
@@ -13,14 +13,14 @@
 	acid = 95
 
 /obj/item/clothing/under/plasmaman/head_of_personnel
-	name = "head of personnel's plasma envirosuit"
-	desc = "It's an envirosuit worn by someone who works in the position of \"Head of Personnel\"."
+	name = "人事部长的等离子环境服"
+	desc = "那些获得了“人事主管”职位的人所穿的环境防护服。"
 	icon_state = "hop_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/security/head_of_security
-	name = "head of security's envirosuit"
-	desc = "A plasmaman containment suit decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "安保部长的等离子环境服"
+	desc = "一套等离子人防护服，上面装饰着一些字样，彰显着那些有幸获得安保部长职位者的荣誉与决心。"
 	icon_state = "hos_envirosuit"
 	inhand_icon_state = null
 	armor_type = /datum/armor/clothing_under/security_head_of_security/plasmaman
@@ -33,8 +33,8 @@
 	acid = 95
 
 /obj/item/clothing/under/plasmaman/chief_engineer
-	name = "chief engineer's plasma envirosuit"
-	desc = "An airtight suit designed to be used by plasmamen insane enough to achieve the rank of \"Chief Engineer\"."
+	name = "工程部长的等离子环境服"
+	desc = "这是一套专为那些疯狂到足以获得“总工程师”头衔的等离子人设计的密封防护服。"
 	icon_state = "ce_envirosuit"
 	inhand_icon_state = null
 	armor_type = /datum/armor/clothing_under/engineering_chief_engineer/plasmaman
@@ -45,14 +45,14 @@
 	acid = 95
 
 /obj/item/clothing/under/plasmaman/chief_medical_officer
-	name = "chief medical officer's plasma envirosuit"
-	desc = "It's an envirosuit worn by those with the experience to be \"Chief Medical Officer\"."
+	name = "首席医疗官的等离子环境服"
+	desc = "这是一种环境防护服，只有具备担任“首席医疗官”职责资格的人才能穿戴使用。"
 	icon_state = "cmo_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/research_director
-	name = "research director's plasma envirosuit"
-	desc = "It's an envirosuit worn by those with the know-how to achieve the position of \"Research Director\"."
+	name = "科研部长的等离子环境服"
+	desc = "这是一套由那些有能力担任“研究总监”职位的人所穿的环境防护服。"
 	icon_state = "rd_envirosuit"
 	inhand_icon_state = null
 	armor_type = /datum/armor/clothing_under/rnd_research_director/plasmaman

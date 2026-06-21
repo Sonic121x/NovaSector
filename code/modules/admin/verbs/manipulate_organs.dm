@@ -1,6 +1,6 @@
 ADMIN_VERB_VISIBILITY(manipulate_organs, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(manipulate_organs, R_DEBUG, "Manipulate Organs", "Manipulate the organs of a living carbon.", ADMIN_CATEGORY_DEBUG, mob/living/carbon/carbon_victim in world)
-	var/operation = tgui_input_list(user, "Select organ operation", "Organ Manipulation", list("Add organ", "Add implant", "Drop organ/implant", "Remove organ/implant"))
+	var/operation = tgui_input_list(user, "选择器官操作", "器官操作", list("Add organ", "Add implant", "Drop organ/implant", "Remove organ/implant"))
 	if (isnull(operation))
 		return
 
@@ -12,7 +12,7 @@ ADMIN_VERB(manipulate_organs, R_DEBUG, "Manipulate Organs", "Manipulate the orga
 				var/dat = replacetext("[path]", "/obj/item/organ/", ":")
 				organs[dat] = path
 
-			var/obj/item/organ/organ_to_grant = tgui_input_list(user, "Select organ type", "Organ Manipulation", organs)
+			var/obj/item/organ/organ_to_grant = tgui_input_list(user, "选择器官类型", "器官操作", organs)
 			if(isnull(organ_to_grant))
 				return
 			if(isnull(organs[organ_to_grant]))
@@ -28,7 +28,7 @@ ADMIN_VERB(manipulate_organs, R_DEBUG, "Manipulate Organs", "Manipulate the orga
 				var/dat = replacetext("[path]", "/obj/item/implant/", ":")
 				organs[dat] = path
 
-			var/obj/item/implant/implant_to_grant = tgui_input_list(user, "Select implant type", "Organ Manipulation", organs)
+			var/obj/item/implant/implant_to_grant = tgui_input_list(user, "选择植入物类型", "器官操作", organs)
 			if(isnull(implant_to_grant))
 				return
 			if(isnull(organs[implant_to_grant]))
@@ -36,7 +36,7 @@ ADMIN_VERB(manipulate_organs, R_DEBUG, "Manipulate Organs", "Manipulate the orga
 			implant_to_grant = organs[implant_to_grant]
 			implant_to_grant = new implant_to_grant
 			if(!implant_to_grant.implant(carbon_victim))
-				to_chat(user, span_notice("[carbon_victim] is unable to hold this implant!"))
+				to_chat(user, span_notice("[carbon_victim] 无法容纳这个植入物！"))
 				qdel(implant_to_grant)
 				return
 			log_admin("[key_name(user)] has added implant [implant_to_grant.type] to [key_name(carbon_victim)]")
@@ -49,7 +49,7 @@ ADMIN_VERB(manipulate_organs, R_DEBUG, "Manipulate Organs", "Manipulate the orga
 			for(var/obj/item/implant/user_implants as anything in carbon_victim.implants)
 				organs["[user_implants.name] ([user_implants.type])"] = user_implants
 
-			var/obj/item/organ_to_modify = tgui_input_list(user, "Select organ/implant", "Organ Manipulation", organs)
+			var/obj/item/organ_to_modify = tgui_input_list(user, "选择器官/植入物", "器官操作", organs)
 			if(isnull(organ_to_modify))
 				return
 			if(isnull(organs[organ_to_modify]))

@@ -1,6 +1,6 @@
 /obj/item/shield/goliath
-	name = "goliath shield"
-	desc = "A shield made from interwoven plates of goliath hide."
+	name = "歌利亚盾牌"
+	desc = "一块由歌利亚兽皮板条交织而成的盾牌。"
 	icon = 'modular_nova/modules/tribal_extended/icons/shields.dmi'
 	icon_state = "goliath_shield"
 	lefthand_file = 'modular_nova/modules/tribal_extended/icons/shields_lefthand.dmi'

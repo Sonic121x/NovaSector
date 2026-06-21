@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/cell_charge
 	display_name = "Cell Charge"
-	desc = "A component that can read out the max and current charge of the cell."
+	desc = "一个可以读取电池最大电量和当前电量的组件。"
 	category = "Sensor"
 
 	/// max and current charge for the cell

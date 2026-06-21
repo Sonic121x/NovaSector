@@ -1,7 +1,7 @@
 /datum/surgery_operation/basic/revive_synth
-	name = "reboot neural network"
+	name = "重启神经网络"
 	rnd_name = "Restart Neural Network (Revival)"
-	desc = "A mechanical surgical procedure that restarts an android's neural network."
+	desc = "一种机械外科手术，用于重启仿生人的神经网络。"
 	implements = list(
 		TOOL_MULTITOOL = 1,
 		/obj/item/shockpaddles = 1.43,
@@ -20,7 +20,7 @@
 	return image(/obj/item/multitool)
 
 /datum/surgery_operation/basic/revive_synth/all_required_strings()
-	return ..() + list("the patient must be deceased", "the patient must be in a revivable state", "the patient must be synthetic")
+	return ..() + list("患者必须已死亡", "患者必须处于可复活状态", "患者必须是合成人")
 
 /datum/surgery_operation/basic/revive_synth/state_check(mob/living/patient)
 	if(patient.stat != DEAD)

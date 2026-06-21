@@ -1,6 +1,6 @@
 /obj/item/holochip
-	name = "credit holochip"
-	desc = "A hard-light chip encoded with an amount of credits. It is a modern replacement for physical money that can be directly converted to virtual currency and vice-versa. Keep away from magnets."
+	name = "信用全息芯片"
+	desc = "一种编码了信用额度的硬光芯片。它是实体货币的现代替代品，可以直接转换为虚拟货币，反之亦然。请远离磁体。"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "holochip"
 	base_icon_state = "holochip"
@@ -25,7 +25,7 @@
 /obj/item/holochip/examine(mob/user)
 	. = ..()
 	. += "[span_notice("It's loaded with [credits] [MONEY_NAME_AUTOPURAL(credits)]")]\n"+\
-	span_notice("Alt-Click to split.")
+	span_notice("Alt+点击以拆分.")
 
 /obj/item/holochip/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(istype(held_item, /obj/item/holochip))
@@ -37,7 +37,7 @@
 	return credits
 
 /obj/item/holochip/update_name()
-	name = "\improper [credits] [MONEY_NAME_SINGULAR] holochip"
+	name = "\improper [credits] [MONEY_NAME_SINGULAR] 全息芯片"
 	return ..()
 
 /obj/item/holochip/update_icon_state()
@@ -108,16 +108,16 @@
 
 	var/obj/item/holochip/merged_holochip = tool
 	credits += merged_holochip.credits
-	balloon_alert(user, "merged!")
+	balloon_alert(user, "已合并！")
 	update_appearance()
 	qdel(merged_holochip)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/holochip/click_alt(mob/user)
 	if(loc != user)
-		to_chat(user, span_warning("You must be holding the holochip to continue!"))
+		to_chat(user, span_warning("你必须手持全息芯片才能继续！"))
 		return CLICK_ACTION_BLOCKING
-	var/split_amount = tgui_input_number(user, "How many [MONEY_NAME] do you want to extract from the holochip? (Max: [credits] [MONEY_SYMBOL])", "Holochip", max_value = credits)
+	var/split_amount = tgui_input_number(user, "你想从全息芯片中提取多少 [MONEY_NAME]？（最多：[credits] [MONEY_SYMBOL]）", "全息芯片", max_value = credits)
 	if(!split_amount || QDELETED(user) || QDELETED(src) || issilicon(user) || !usr.can_perform_action(src, NEED_DEXTERITY|FORBID_TELEKINESIS_REACH) || loc != user)
 		return CLICK_ACTION_BLOCKING
 	var/new_credits = spend(split_amount, TRUE)
@@ -126,7 +126,7 @@
 		if(!user.put_in_hands(chip))
 			chip.forceMove(user.drop_location())
 		add_fingerprint(user)
-	to_chat(user, span_notice("You extract [split_amount] [MONEY_NAME] into a new holochip."))
+	to_chat(user, span_notice("你将 [split_amount] [MONEY_NAME] 提取到一个新的全息芯片中。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/holochip/emp_act(severity)
@@ -135,7 +135,7 @@
 		return
 	var/wipe_chance = 60 / severity
 	if(prob(wipe_chance))
-		visible_message(span_warning("[src] fizzles and disappears!"))
+		visible_message(span_warning("[src] 嘶嘶作响并消失了！"))
 		qdel(src) //rip cash
 
 /obj/item/holochip/thousand

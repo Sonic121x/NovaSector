@@ -1,14 +1,14 @@
 // Normal strength
 
 /datum/round_event_control/meteor_wave
-	name = "Meteor Wave: Normal"
+	name = "流星雨：普通"
 	typepath = /datum/round_event/meteor_wave
 	weight = 4
 	min_players = 15
 	max_occurrences = 3
 	earliest_start = 25 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "A regular meteor wave."
+	description = "一次常规的陨石雨。"
 	map_flags = EVENT_SPACE_ONLY
 
 /datum/round_event/meteor_wave
@@ -50,54 +50,54 @@
 			kill()
 
 /datum/round_event/meteor_wave/announce(fake)
-	priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", ANNOUNCER_METEORS)
+	priority_announce("检测到流星正与空间站发生碰撞。", "流星警报", ANNOUNCER_METEORS)
 
 /datum/round_event/meteor_wave/tick()
 	if(ISMULTIPLE(activeFor, 3))
 		spawn_meteors(5, wave_type) //meteor list types defined in gamemode/meteor/meteors.dm
 
 /datum/round_event_control/meteor_wave/threatening
-	name = "Meteor Wave: Threatening"
+	name = "流星雨：威胁"
 	typepath = /datum/round_event/meteor_wave/threatening
 	weight = 5
 	min_players = 20
 	max_occurrences = 3
 	earliest_start = 35 MINUTES
-	description = "A meteor wave with higher chance of big meteors."
+	description = "一次出现大型流星概率更高的流星雨。"
 
 /datum/round_event/meteor_wave/threatening
 	wave_name = "threatening"
 
 /datum/round_event_control/meteor_wave/catastrophic
-	name = "Meteor Wave: Catastrophic"
+	name = "流星雨：灾难"
 	typepath = /datum/round_event/meteor_wave/catastrophic
 	weight = 7
 	min_players = 25
 	max_occurrences = 3
 	earliest_start = 45 MINUTES
-	description = "A meteor wave that might summon a tunguska class meteor."
+	description = "一次可能召唤通古斯级流星的流星雨。"
 
 /datum/round_event/meteor_wave/catastrophic
 	wave_name = "catastrophic"
 
 /datum/round_event_control/meteor_wave/meaty
-	name = "Meteor Wave: Meaty"
+	name = "流星雨：肉块"
 	typepath = /datum/round_event/meteor_wave/meaty
 	weight = 2
 	max_occurrences = 1
-	description = "A meteor wave made of meat."
+	description = "一次由肉构成的流星雨。"
 
 /datum/round_event/meteor_wave/meaty
 	wave_name = "meaty"
 
 /datum/round_event/meteor_wave/meaty/announce(fake)
-	priority_announce("Meaty ores have been detected on collision course with the station.", "Oh crap, get the mop.", ANNOUNCER_METEORS)
+	priority_announce("检测到肉质矿石正与空间站发生碰撞。", "哦糟了，快拿拖把来。", ANNOUNCER_METEORS)
 
 /datum/round_event_control/meteor_wave/dust_storm
-	name = "Major Space Dust"
+	name = "重大太空尘埃"
 	typepath = /datum/round_event/meteor_wave/dust_storm
 	weight = 14
-	description = "The station is pelted by sand."
+	description = "空间站正遭受沙尘冲击。"
 	earliest_start = 15 MINUTES
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
@@ -129,4 +129,4 @@
 	reasons += "[station_name()] has hit a particularly rough patch of space. \
 		Please mind any turbulence or damage from debris."
 
-	priority_announce(pick(reasons), "Collision Alert")
+	priority_announce(pick(reasons), "碰撞警报")

@@ -1,11 +1,11 @@
 /obj/machinery/harvester
-	name = "organ harvester"
-	desc = "An advanced machine used for harvesting organs and limbs from the deceased."
+	name = "器官收割器"
+	desc = "一种用于从死者身上摘取器官和四肢的先进机器。"
 	density = TRUE
 	icon = 'icons/obj/machines/harvester.dmi'
 	icon_state = "harvester"
 	base_icon_state = "harvester"
-	verb_say = "states"
+	verb_say = "陈述"
 	state_open = FALSE
 	circuit = /obj/item/circuitboard/machine/harvester
 	light_color = LIGHT_COLOR_BLUE
@@ -20,7 +20,7 @@
 /obj/machinery/harvester/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		name = "auto-autopsy"
+		name = "自动尸检机"
 
 /obj/machinery/harvester/RefreshParts()
 	. = ..()
@@ -63,7 +63,7 @@
 /obj/machinery/harvester/click_alt(mob/user)
 	if(panel_open)
 		output_dir = turn(output_dir, -90)
-		to_chat(user, span_notice("You change [src]'s output settings, setting the output to [dir2text(output_dir)]."))
+		to_chat(user, span_notice("你更改了[src]的输出设置，将输出方向设置为[dir2text(output_dir)]。"))
 		return CLICK_ACTION_SUCCESS
 	if(harvesting || state_open || !can_harvest())
 		return CLICK_ACTION_BLOCKING
@@ -107,7 +107,7 @@
 	operation_order = reverse_range(carbon_occupant.get_bodyparts())   //Chest and head are first in bodyparts, so we invert it to make them suffer more
 	warming_up = TRUE
 	harvesting = TRUE
-	visible_message(span_notice("\The [src] begins warming up!"))
+	visible_message(span_notice("\The [src] 开始预热！"))
 	say("Initializing harvest protocol.")
 	update_appearance()
 	addtimer(CALLBACK(src, PROC_REF(harvest)), interval)
@@ -151,10 +151,10 @@
 
 /obj/machinery/harvester/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src] 当前已被占用！"))
 		return ITEM_INTERACT_BLOCKING
 	if(state_open)
-		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
+		to_chat(user, span_warning("[src] 必须关闭才能[panel_open ? "close" : "open"]其维护区舱门！"))
 		return ITEM_INTERACT_BLOCKING
 	return default_deconstruction_screwdriver(user, tool)
 
@@ -170,16 +170,16 @@
 	obj_flags |= EMAGGED
 	allow_living = TRUE
 	allow_clothing = TRUE
-	balloon_alert(user, "lifesign scanners overloaded")
+	balloon_alert(user, "生命体征扫描器过载")
 	return TRUE
 
 /obj/machinery/harvester/container_resist_act(mob/living/user)
 	if(!harvesting)
-		visible_message(span_notice("[occupant] emerges from [src]!"),
-			span_notice("You climb out of [src]!"))
+		visible_message(span_notice("[occupant] 从 [src] 中出现！"),
+			span_notice("你爬出了 [src]!"))
 		open_machine()
 	else
-		to_chat(user,span_warning("[src] is active and can't be opened!")) //rip
+		to_chat(user,span_warning("[src] 处于活动状态，无法打开！")) //rip
 
 /obj/machinery/harvester/Exited(atom/movable/gone, direction)
 	if (!state_open && gone == occupant)
@@ -195,8 +195,8 @@
 	if(machine_stat & BROKEN)
 		return
 	if(state_open)
-		. += span_notice("[src] must be closed before harvesting.")
+		. += span_notice("[src] 必须在收获前关闭。")
 	else if(!harvesting)
-		. += span_notice("Alt-click [src] to start harvesting.")
+		. += span_notice("按住 Alt 键并单击 [src] 开始采集。")
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Harvest speed at <b>[interval*0.1]</b> seconds per organ. Outputting to the <b>[dir2text(output_dir)]</b>.")
+		. += span_notice("状态显示屏显示：器官收割速度为 <b>[interval*0.1]</b> 秒每个。输出方向为 <b>[dir2text(output_dir)]</b>。")

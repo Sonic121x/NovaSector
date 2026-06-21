@@ -1,7 +1,7 @@
 /datum/voucher_set/traitor/supplies/surgery
 
 /datum/voucher_set/traitor/supplies/surgery/brainwashing
-	name = "Brainwashing surgery disk"
+	name = "洗脑手术磁盘"
 	description = /obj/item/disk/surgery/brainwashing::desc
 	icon = /obj/item/disk/surgery/brainwashing::icon
 	icon_state = /obj/item/disk/surgery/brainwashing::icon_state

@@ -35,7 +35,7 @@
 /datum/element/attack_equip/proc/equip(obj/item/attire, mob/living/carbon/human/sharp_dresser, mob/living/user)
 
 	if(HAS_TRAIT(attire, TRAIT_NODROP))
-		to_chat(user, span_warning("You can't put [attire] on [sharp_dresser], it's stuck to your hand!"))
+		to_chat(user, span_warning("你不能把[attire]穿在[sharp_dresser]上，它粘在你手上了！"))
 		return
 	var/equip_time = attire.equip_delay_other
 

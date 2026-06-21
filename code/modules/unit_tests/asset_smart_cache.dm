@@ -1,5 +1,5 @@
 /datum/asset/spritesheet_batched/test
-	name = "test"
+	name = "测试"
 	load_immediately = TRUE
 	force_cache = TRUE
 	// Don't let the asset subsystem load this. This is how we trick it.

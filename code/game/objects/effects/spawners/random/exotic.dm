@@ -1,9 +1,9 @@
 /obj/effect/spawner/random/exotic
-	name = "exotic spawner"
-	desc = "Super duper rare stuff."
+	name = "异域物品生成器"
+	desc = "稀罕玩意"
 
 /obj/effect/spawner/random/exotic/technology
-	name = "technology spawner"
+	name = "科技物品生成器"
 	icon_state = "disk"
 	spawn_loot_count = 2
 	loot = list( // Space loot spawner. Couple of random bits of technology-adjacent stuff including anomaly cores and BEPIS techs.
@@ -13,7 +13,7 @@
 	)
 
 /obj/effect/spawner/random/exotic/languagebook
-	name = "language book spawner"
+	name = "语言书籍生成器"
 	icon_state = "book"
 	loot = list( // A single roundstart species language book.
 		/obj/item/language_manual/roundstart_species = 96,
@@ -24,7 +24,7 @@
 	)
 
 /obj/effect/spawner/random/exotic/tool
-	name = "exotic tool spawner"
+	name = "异域工具生成器"
 	icon_state = "wrench"
 	loot = list( // Some sort of random and rare tool.
 		/obj/effect/spawner/random/engineering/tool_alien,
@@ -33,7 +33,7 @@
 	)
 
 /obj/effect/spawner/random/exotic/syndie
-	name = "syndie cosmetic spawner"
+	name = "辛迪加装饰品生成器"
 	icon_state = "syndicate"
 	spawn_loot_count = 2
 	loot = list( // A selection of cosmetic syndicate items. Just a couple. No space suits or weapons.
@@ -61,7 +61,7 @@
 	)
 
 /obj/effect/spawner/random/exotic/antag_gear
-	name = "antag gear"
+	name = "反派装配"
 	icon_state = "esword"
 	loot = list(
 		/obj/item/storage/box/stockparts/deluxe = 13,
@@ -101,7 +101,7 @@
 	)
 
 /obj/effect/spawner/random/exotic/snow_gear
-	name = "snow gear"
+	name = "雪地装备"
 	icon_state = "snowman"
 	loot = list(
 		/obj/item/toy/snowball = 6,
@@ -110,7 +110,7 @@
 	)
 
 /obj/effect/spawner/random/exotic/ripley
-	name = "ripley spawner"
+	name = "里普利生成器"
 	icon_state = "ripley"
 	loot = list(
 		/obj/structure/mecha_wreckage/ripley = 3,

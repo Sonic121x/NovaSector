@@ -1,6 +1,6 @@
 /obj/item/poker_chip
-	name = "poker chip"
-	desc = "A small plastic chip used for gambling. A clever substitution to make the gambling addict feel like his losses are less real."
+	name = "扑克筹码"
+	desc = "一种用于赌博的小塑料筹码。一个巧妙的替代品，让赌徒觉得他的损失不那么真实。"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "pokerchip_white_black"
 	w_class = WEIGHT_CLASS_TINY
@@ -15,30 +15,30 @@
 	return redeem_value
 
 /obj/item/poker_chip/white_black
-	name = "1₵ poker chip"
+	name = "1₵扑克筹码"
 	redeem_value = 1
 
 /obj/item/poker_chip/white_blue
-	name = "10₵ poker chip"
+	name = "10₵扑克筹码"
 	icon_state = "pokerchip_white_blue"
 	redeem_value = 10
 
 /obj/item/poker_chip/red
-	name = "25₵ poker chip"
+	name = "25₵扑克筹码"
 	icon_state = "pokerchip_red"
 	redeem_value = 25
 
 /obj/item/poker_chip/blue
-	name = "100₵ poker chip"
+	name = "100₵扑克筹码"
 	icon_state = "pokerchip_blue"
 	redeem_value = 100
 
 /obj/item/poker_chip/green
-	name = "250₵ poker chip"
+	name = "250₵ 扑克筹码"
 	icon_state = "pokerchip_green"
 	redeem_value = 250
 
 /obj/item/poker_chip/black
-	name = "1000₵ poker chip"
+	name = "1000₵ 扑克筹码"
 	icon_state = "pokerchip_black"
 	redeem_value = 1000

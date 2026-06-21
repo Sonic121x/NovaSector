@@ -109,7 +109,7 @@
 	playsound(src, shield_break_sound, 50)
 	new shield_break_leftover(get_turf(src))
 	if(isliving(loc))
-		loc.balloon_alert(loc, "shield broken!")
+		loc.balloon_alert(loc, "盾牌损坏！")
 	return ..()
 
 /obj/item/shield/buckler
@@ -367,7 +367,7 @@
 	SIGNAL_HANDLER
 
 	if(user)
-		balloon_alert(user, active ? "activated" : "deactivated")
+		balloon_alert(user, active ? "已激活" : "已停用")
 	playsound(src, active ? 'sound/items/weapons/saberon.ogg' : 'sound/items/weapons/saberoff.ogg', 35, TRUE)
 	is_bashable = !is_bashable
 	return COMPONENT_NO_DEFAULT_MESSAGE
@@ -376,7 +376,7 @@
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		if(send_message)
-			balloon_alert(user, "activate it first!")
+			balloon_alert(user, "先激活它！")
 		return COMPONENT_BLOCK_ITEM_DISARM_ATTACK
 
 /obj/item/shield/energy/advanced
@@ -432,7 +432,7 @@
 
 	slot_flags = active ? ITEM_SLOT_BACK : null
 	if(user)
-		balloon_alert(user, active ? "extended" : "collapsed")
+		balloon_alert(user, active ? "已展开" : "已收起")
 	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
@@ -440,7 +440,7 @@
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		if(send_message)
-			balloon_alert(user, "extend it first!")
+			balloon_alert(user, "先展开它！")
 		return COMPONENT_BLOCK_ITEM_DISARM_ATTACK
 
 /datum/armor/item_shield/ballistic

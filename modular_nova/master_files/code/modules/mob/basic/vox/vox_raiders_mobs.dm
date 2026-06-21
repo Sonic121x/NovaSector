@@ -1,8 +1,8 @@
 // Vox Raiders
 
 /mob/living/basic/vox
-	name = "Vox Raider"
-	desc = "Vox are typically one of two things: shady traders or hostile raiders. This one seems to be pretty hostile."
+	name = "沃克斯掠夺者"
+	desc = "沃克斯人通常有两种身份：可疑的商人或敌对的掠夺者。这个家伙看起来相当有敌意。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	sentience_type = SENTIENCE_HUMANOID
@@ -52,8 +52,8 @@
 */
 
 /mob/living/basic/vox/melee
-	name = "Vox Shanker"
-	desc = "A Vox pirate armed with a knife."
+	name = "沃克斯持刀匪"
+	desc = "一名手持匕首的沃克斯海盗。"
 	icon_state = "voxmelee"
 	icon_living = "voxmelee"
 	icon_dead = "voxmeleedead"
@@ -73,8 +73,8 @@
 */
 
 /mob/living/basic/vox/ranged
-	name = "Vox Gunman"
-	desc = "SKREEEEE!"
+	name = "沃克斯枪手"
+	desc = "SKREEEEE！"
 	icon_state = "voxbow"
 	icon_living = "voxbow"
 	icon_dead = "voxdead"
@@ -101,8 +101,8 @@
 */
 
 /mob/living/basic/vox/ranged/laser
-	name = "Vox Laser Gunman"
-	desc = "Vox pirates often utilize a mix of energy and ballistic weapons in combat."
+	name = "沃克斯激光枪手"
+	desc = "沃克斯海盗在战斗中经常混合使用能量武器和动能武器。"
 	icon_state = "voxlaser"
 	icon_living = "voxlaser"
 	icon_dead = "voxsuitdead"
@@ -117,8 +117,8 @@
 */
 
 /mob/living/basic/vox/ranged/space
-	name = "Vox Space Raider"
-	desc = "A Vox in a space suit, with a gun!"
+	name = "沃克斯太空掠夺者"
+	desc = "一名穿着太空服、手持枪械的沃克斯人！"
 	icon_state = "voxspace"
 	icon_living = "voxspace"
 	icon_dead = "voxspacedead"
@@ -138,8 +138,8 @@
 */
 
 /mob/living/basic/vox/ranged/space/laser
-	name = "Vox Helmsman"
-	desc = "Space-faring Vox raider, armed with a laser rifle and wearing a MODsuit."
+	name = "沃克斯舵手"
+	desc = "太空航行的沃克斯掠夺者，装备激光步枪并穿着MOD防护服。"
 	icon_state = "voxspacelaser"
 	icon_living = "voxspacelaser"
 	icon_dead = "voxspacedead"

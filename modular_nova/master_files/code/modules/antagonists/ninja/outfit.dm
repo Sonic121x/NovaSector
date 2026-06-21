@@ -76,8 +76,8 @@
 	new /obj/item/card/id/advanced/visitor(src) //keep last for quick keys
 
 /obj/item/radio/headset/ninja
-	name = "\improper Spider-Clan radio headset"
-	desc = "A Spider-Clan labeled headset that can be used to hear from the command radio frequency. Protects ears from flashbangs."
+	name = "\improper 蜘蛛氏族无线电耳机"
+	desc = "一个标有蜘蛛氏族标签的耳机，可用于收听指挥无线电频率。保护耳朵免受闪光弹伤害。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/headsets.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/ears.dmi'
 	icon_state = "ninja_headset"

@@ -128,8 +128,8 @@
 		if("select_config")
 			var/datum/greyscale_config/new_config = input(
 				usr,
-				"Choose a new greyscale configuration to use",
-				"Greyscale Modification Menu",
+				"选择要使用的新灰度配置",
+				"灰度修改菜单",
 				"[config.type]"
 			) as anything in allowed_configs
 			new_config = allowed_configs[new_config]
@@ -204,7 +204,7 @@
 					user,
 {"Other players are connected to the server, are you sure you want to refresh all greyscale configurations?\n
 This is highly likely to cause a lag spike for a few seconds."},
-					"Refresh Greyscale Configurations",
+					"刷新灰度配置",
 					"Yes",
 					"Cancel"
 				)
@@ -232,7 +232,7 @@ This is highly likely to cause a lag spike for a few seconds."},
 					user,
 {"Other players are connected to the server, are you sure you want to automatically refresh all greyscale configurations?\n
 This is highly likely to cause massive amounts of lag as every object in the game will be iterated over every few seconds."},
-					"Auto-Refresh Greyscale Configurations",
+					"自动刷新灰度配置",
 					"Yes",
 					"Cancel"
 				)

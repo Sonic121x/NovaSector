@@ -1,7 +1,7 @@
 /// Greed's slot machine: Used in the Greed ruin. Deals damage on each use, with a successful use giving a d20 of fate.
 /obj/structure/cursed_slot_machine
-	name = "greed's slot machine"
-	desc = "High stakes, high rewards."
+	name = "贪婪的老虎机"
+	desc = "高风险，高回报。"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "slots"
 	anchored = TRUE
@@ -39,7 +39,7 @@
 
 	user.visible_message(
 		span_warning("[user] pulls [src]'s lever with a glint in [user.p_their()] eyes!"),
-		span_warning("You feel a draining as you pull the lever, but you know it'll be worth it."),
+		span_warning("拉动拉杆时你感到一阵虚弱，但你知道这是值得的。"),
 	)
 
 	icon_screen = "slots_screen_working"
@@ -62,7 +62,7 @@
 	var/signal_value = SEND_SIGNAL(user, COMSIG_CURSED_SLOT_MACHINE_USE, max_curse_amount)
 
 	if(!COOLDOWN_FINISHED(src, spin_cooldown) || (signal_value & SLOT_MACHINE_USE_POSTPONE))
-		to_chat(user, span_danger("The machine doesn't engage. You get the compulsion to try again in a few seconds."))
+		to_chat(user, span_danger("机器没有启动。你感到一股冲动，想要几秒钟后再试一次。"))
 		return FALSE
 
 	if(signal_value & SLOT_MACHINE_USE_CANCEL) // failsafe in case we don't want to let the machine be used for some reason (like if we're maxed out on curses but not getting gibbed)
@@ -91,15 +91,15 @@
 	playsound(src, 'sound/machines/lavaland/cursed_slot_machine_jackpot.ogg', 50, FALSE)
 	new prize(get_turf(src))
 	if(user)
-		to_chat(user, span_boldwarning("You've hit the jackpot!!! Laughter echoes around you as your reward appears in the machine's place."))
+		to_chat(user, span_boldwarning("你中了大奖！！！笑声在你周围回荡，你的奖励出现在机器原来的位置上。"))
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CURSED_SLOT_MACHINE_WON)
 	qdel(src)
 
 /// Prize given out by the cursed slot machine that will give the user one Die of Fate and then delete itself.
 /obj/structure/cursed_money
-	name = "bag of money"
-	desc = "RICH! YES! YOU KNEW IT WAS WORTH IT! YOU'RE RICH! RICH! RICH!"
+	name = "一袋钱"
+	desc = "发财了！是的！你早就知道这是值得的！你发财了！发财了！发财了！"
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "moneybag"
 	anchored = FALSE
@@ -112,7 +112,7 @@
 /obj/structure/cursed_money/proc/collapse()
 	if(QDELETED(src))
 		return
-	visible_message(span_warning("[src] falls in on itself, with the canvas rotting away and contents vanishing."))
+	visible_message(span_warning("[src] 向内塌陷，帆布腐烂，里面的东西消失了。"))
 	qdel(src)
 
 /obj/structure/cursed_money/attack_hand(mob/living/user, list/modifiers)
@@ -120,7 +120,7 @@
 	if(.)
 		return
 	user.visible_message(
-		span_warning("[user] opens the bag and removes a die."),
+		span_warning("[user] 打开袋子，取出了一枚骰子。"),
 		span_warning("[span_boldwarning("You open the bag...!")] But all you see is a bag full of dice. Confused, you take one..."),
 	)
 	var/turf/location = get_turf(user)

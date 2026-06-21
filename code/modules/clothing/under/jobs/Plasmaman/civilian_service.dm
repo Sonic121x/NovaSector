@@ -1,7 +1,7 @@
 //Basically the assistant suit
 /obj/item/clothing/under/plasmaman
-	name = "plasma envirosuit"
-	desc = "A special containment suit that allows plasma-based lifeforms to exist safely in an oxygenated environment, and automatically extinguishes them in a crisis. Despite being airtight, it's not spaceworthy."
+	name = "等离子环境服"
+	desc = "一套特殊的等离子防护服，能保证以等离子为存在基础的生物在富含氧气的环境下安全生存，并在紧急情况下为穿戴者灭火。尽管密封性良好，但是无法适用于太空环境。"
 	icon_state = "plasmaman"
 	inhand_icon_state = "plasmaman"
 	icon = 'icons/obj/clothing/under/plasmaman.dmi'
@@ -23,7 +23,7 @@
 
 /obj/item/clothing/under/plasmaman/examine(mob/user)
 	. = ..()
-	. += span_notice("There [extinguishes_left == 1 ? "is" : "are"] [extinguishes_left] extinguisher charges left in this suit.")
+	. += span_notice("这套防护服里还有[extinguishes_left == 1 ? "is" : "are"] [extinguishes_left]次灭火器充能。")
 
 /obj/item/clothing/under/plasmaman/equipped(mob/living/user, slot)
 	. = ..()
@@ -54,7 +54,7 @@
 	COOLDOWN_START(src, extinguish_timer, extinguish_cooldown)
 	// Check if our (possibly other) wearer is on fire once the cooldown ends
 	addtimer(CALLBACK(src, PROC_REF(check_fire_state)), extinguish_cooldown)
-	owner.visible_message(span_warning("[owner]'s suit automatically extinguishes [owner.p_them()]!"), span_warning("Your suit automatically extinguishes you."))
+	owner.visible_message(span_warning("[owner]的服装自动扑灭了[owner.p_them()]！"), span_warning("你的服装自动扑灭了你身上的火焰。"))
 	owner.extinguish_mob()
 	new /obj/effect/particle_effect/water(get_turf(owner))
 
@@ -63,84 +63,84 @@
 		return ..()
 
 	if (extinguishes_left == 5)
-		to_chat(user, span_notice("The inbuilt extinguisher is full."))
+		to_chat(user, span_notice("内置灭火器已充满。"))
 		return ITEM_INTERACT_BLOCKING
 
 	extinguishes_left = 5
-	to_chat(user, span_notice("You refill the suit's built-in extinguisher, using up the cartridge."))
+	to_chat(user, span_notice("你补充了服装内置灭火器的充能，用完了这个灭火器罐。"))
 	check_fire_state()
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/extinguisher_refill
-	name = "envirosuit extinguisher cartridge"
-	desc = "A cartridge loaded with a compressed extinguisher mix, used to refill the automatic extinguisher on plasma envirosuits."
+	name = "环境服灭火器补充盒"
+	desc = "一种装有压缩灭火器混合物的弹药筒，用于在等离子防护服上的自动灭火器补充燃料。"
 	icon_state = "plasmarefill"
 	icon = 'icons/obj/canisters.dmi'
 
 /obj/item/clothing/under/plasmaman/cargo
-	name = "cargo plasma envirosuit"
-	desc = "A joint envirosuit used by plasmamen quartermasters and cargo techs alike, due to the logistical problems of differentiating the two with the length of their pant legs."
+	name = "货舱等离子环境服"
+	desc = "一种等离子人军需官和货运技术员通用的环境防护服，因为从裤腿长度区分两者的后勤问题而设计。"
 	icon_state = "cargo_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/mining
-	name = "mining plasma envirosuit"
-	desc = "An airtight khaki suit designed for operations on lavaland by plasmamen."
+	name = "采矿等离子环境服"
+	desc = "为等离子人在熔岩地作业设计的密封卡其色服装。"
 	icon_state = "explorer_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/chef
-	name = "chef's plasma envirosuit"
-	desc = "A white plasmaman envirosuit designed for culinary practices. One might question why a member of a species that doesn't need to eat would become a chef."
+	name = "厨师的等离子环境服"
+	desc = "为烹饪实践设计的白色等离子人环境防护服。有人可能会质疑，一个不需要进食的种族成员为何要成为厨师。"
 	icon_state = "chef_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/enviroslacks
-	name = "enviroslacks"
-	desc = "The pet project of a particularly posh plasmaman, this custom suit was quickly appropriated by Nanotrasen for its lawyers, and bartenders alike."
+	name = "时髦等离子环境服"
+	desc = "这是一位特别讲究的等离子人的个人项目，这套定制服装很快被纳米特拉森公司征用，供其律师和调酒师使用。"
 	icon_state = "enviroslacks"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/chaplain
-	name = "chaplain's plasma envirosuit"
-	desc = "An envirosuit specially designed for only the most pious of plasmamen."
+	name = "牧师的等离子环境服"
+	desc = "一套专为最虔诚的等离子人设计的防护服"
 	icon_state = "chap_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/curator
-	name = "curator's plasma envirosuit"
-	desc = "Made out of a modified voidsuit, this suit was Nanotrasen's first solution to the *logistical problems* that come with employing plasmamen. Due to the modifications, the suit is no longer space-worthy. Despite their limitations, these suits are still in used by historian and old-styled plasmamen alike."
+	name = "馆长的等离子环境服"
+	desc = "这套装备是由改良后的真空服改造而成的，是纳米传讯公司为解决使用等离子人所带来的“后勤问题”而推出的首个解决方案。由于进行了改造，这套装备已不再具备太空行走能力。尽管存在一些限制，但这些装备仍被历史学家和传统等离子人所使用。"
 	icon_state = "prototype_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/janitor
-	name = "janitor's plasma envirosuit"
-	desc = "A grey and purple envirosuit designated for plasmamen janitors."
+	name = "清洁工等离子环境服"
+	desc = "一套灰色和紫色相间的环保防护服，专为等离子人清洁工设计。"
 	icon_state = "janitor_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/botany
-	name = "botany envirosuit"
-	desc = "A green and blue envirosuit designed to protect plasmamen from minor plant-related injuries."
+	name = "植物学等离子环境防护服"
+	desc = "一款绿色和蓝色相间的环境防护服，可以为等离子人防护轻微的植物相关伤害。"
 	icon_state = "botany_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/mime
-	name = "mime envirosuit"
-	desc = "It's not very colourful."
+	name = "默剧等离子环境防护服"
+	desc = "颜色不是很鲜艳"
 	icon_state = "mime_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/clown
-	name = "clown envirosuit"
-	desc = "<i>'HONK!'</i>"
+	name = "小丑等离子环境防护服"
+	desc = "<i>' honk！'</i>"
 	icon_state = "clown_envirosuit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/bitrunner
-	name = "bitrunner envirosuit"
-	desc = "An envirosuit specially designed for plasmamen with bad posture."
+	name = "比特行者环境防护服"
+	desc = "专为有不良姿势的等离子人设计的环境防护服。"
 	icon_state = "bitrunner_envirosuit"
 	inhand_icon_state = null
 
@@ -149,8 +149,8 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0)
 
 /obj/item/clothing/under/plasmaman/prisoner
-	name = "prisoner envirosuit"
-	desc = "An orange envirosuit identifying and protecting a criminal plasmaman. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "囚犯等离子环境防护服"
+	desc = "一套橙色的环境防护服，可以识别并保护一个犯罪的等离子人。它的服装传感器被卡在“完全开启”的位置。"
 	icon_state = "prisoner_envirosuit"
 	inhand_icon_state = null
 	has_sensor = LOCKED_SENSORS
@@ -174,6 +174,6 @@
 	COOLDOWN_START(src, extinguish_timer, extinguish_cooldown)
 	// Check if our (possibly other) wearer is on fire once the cooldown ends
 	addtimer(CALLBACK(src, PROC_REF(check_fire_state)), extinguish_cooldown)
-	owner.visible_message(span_warning("[owner]'s suit spews space lube everywhere!"), span_warning("Your suit spews space lube everywhere!"))
+	owner.visible_message(span_warning("[owner]的服装喷得到处都是太空润滑剂！"), span_warning("你的防护服喷得到处都是太空润滑剂！"))
 	owner.extinguish_mob()
 	do_foam(4, src, get_turf(owner), /datum/reagent/lube, 15)

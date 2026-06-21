@@ -1,6 +1,6 @@
 /// Used for all kinds of weather, ex. lavaland ash storms.
 SUBSYSTEM_DEF(weather)
-	name = "Weather"
+	name = "天气"
 	ss_flags = SS_BACKGROUND
 	dependencies = list(
 		/datum/controller/subsystem/mapping,

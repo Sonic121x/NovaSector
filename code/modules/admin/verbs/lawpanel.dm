@@ -21,10 +21,10 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 
 /datum/law_panel/proc/add_law_helper(mob/living/user, mob/living/silicon/borgo)
 	var/list/lawtypes = list(LAW_ZEROTH, LAW_HACKED, LAW_ION, LAW_INHERENT, LAW_SUPPLIED) // in order of priority
-	var/lawtype = tgui_input_list(user, "Select law type", "Law type", lawtypes)
+	var/lawtype = tgui_input_list(user, "选择法律类型", "法律类型", lawtypes)
 	if(isnull(lawtype))
 		return FALSE
-	var/lawtext = tgui_input_text(user, "Input law text", "Law text") // admin verb so no max length and also any user-level input is config based already so ehhhh
+	var/lawtext = tgui_input_text(user, "输入法律文本", "法律文本") // admin verb so no max length and also any user-level input is config based already so ehhhh
 	if(!lawtext)
 		return FALSE
 	if(QDELETED(src) || QDELETED(borgo))
@@ -34,7 +34,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 		if(LAW_ZEROTH)
 			if(borgo.laws.zeroth || borgo.laws.zeroth_borg)
 				var/zero_override_alert = tgui_alert(user, "This silicon already has a zeroth law, \
-					this will override their existing one. Are you sure?", "Zeroth law override", list("Yes", "No"))
+					this will override their existing one. Are you sure?", "第零定律覆盖", list("Yes", "No"))
 				if(zero_override_alert != "Yes" || QDELETED(src) || QDELETED(borgo))
 					return FALSE
 
@@ -56,19 +56,19 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 	var/list/relevant_laws = borgo.laws.inherent
 	var/lawindex = relevant_laws.Find(law)
 	if(!lawindex)
-		to_chat(user, span_danger("Something went wrong, we couldn't move that law."))
+		to_chat(user, span_danger("出错了，我们无法移动那条定律。"))
 		return FALSE
 
 	switch(direction)
 		if("up")
 			if(lawindex == length(relevant_laws)) // Already at the top? Sanity
-				to_chat(user, span_danger("Something went wrong, we couldn't move that law."))
+				to_chat(user, span_danger("出错了，我们无法移动那条定律。"))
 				return FALSE
 
 			relevant_laws.Swap(lawindex + 1, lawindex)
 		if("down")
 			if(lawindex == 1) // Already at the bottom? Sanity
-				to_chat(user, span_danger("Something went wrong, we couldn't move that law."))
+				to_chat(user, span_danger("出错了，我们无法移动那条定律。"))
 				return FALSE
 
 			relevant_laws.Swap(lawindex - 1, lawindex)
@@ -77,7 +77,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 	return TRUE
 
 /datum/law_panel/proc/edit_law_text_helper(mob/living/user, mob/living/silicon/borgo, lawtype, oldlaw)
-	var/newlaw = tgui_input_text(user, "Edit this law's text.", "Edit law", oldlaw)
+	var/newlaw = tgui_input_text(user, "编辑此定律的文本。", "编辑定律", oldlaw)
 	if(!newlaw || QDELETED(src) || QDELETED(borgo))
 		return FALSE
 
@@ -101,7 +101,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 
 	var/lawindex = relevant_laws.Find(oldlaw)
 	if(!lawindex)
-		to_chat(user, span_danger("Something went wrong, we couldn't edit that law."))
+		to_chat(user, span_danger("出错了，我们无法编辑那条定律。"))
 		return FALSE
 
 	relevant_laws[lawindex] = newlaw
@@ -113,16 +113,16 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 /datum/law_panel/proc/edit_law_priority_helper(mob/living/user, mob/living/silicon/borgo, law)
 	var/old_prio = borgo.laws.supplied.Find(law)
 	if(!old_prio)
-		to_chat(user, span_danger("Something went wrong, we couldn't edit that law."))
+		to_chat(user, span_danger("出错了，我们无法编辑那条定律。"))
 		return FALSE
 
-	var/new_prio = tgui_input_number(user, "Enter a new priority.", "Edit priority", old_prio, 50, 0)
+	var/new_prio = tgui_input_number(user, "输入新的优先级。", "编辑优先级", old_prio, 50, 0)
 	if(!new_prio || QDELETED(src) || QDELETED(borgo))
 		return FALSE
 
 	// Sanity
 	if(old_prio != borgo.laws.supplied.Find(law))
-		to_chat(user, span_danger("[borgo]'s laws may have changed since you have edited priority, please re-try."))
+		to_chat(user, span_danger("[borgo] 的定律可能在你编辑优先级后发生了变化，请重试。"))
 		return FALSE
 
 	// If it's far beyond any existing values, just re-add it normally
@@ -139,12 +139,12 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 			// Nowhere to go from here
 			options -= "Move down"
 
-		var/swap_or_remove = tgui_alert(user, "There's already a law at that priority level. What should be done to it?", "Existing law", options)
+		var/swap_or_remove = tgui_alert(user, "该优先级已有一条定律。要如何处理它？", "现有定律", options)
 		if(swap_or_remove == "Cancel" || !swap_or_remove || QDELETED(src) || QDELETED(borgo))
 			return FALSE
 		// Sanity
 		if(law != borgo.laws.supplied[old_prio] || existing_law != borgo.laws.supplied[new_prio])
-			to_chat(user, span_danger("[borgo]'s laws have changed since you have edited priority, please re-try."))
+			to_chat(user, span_danger("[borgo] 的定律在你编辑优先级后已发生变化，请重试。"))
 			return FALSE
 
 		if(swap_or_remove == "Swap")
@@ -168,7 +168,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 
 	// Sanity
 	if(old_prio != borgo.laws.supplied.Find(law))
-		to_chat(user, span_danger("[borgo]'s may laws have changed since you have edited priority, please re-try."))
+		to_chat(user, span_danger("[borgo] 的定律可能在你编辑优先级后发生了变化，请重试。"))
 		return FALSE
 
 	// At this point the slot is free, insert it as normal
@@ -210,7 +210,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 	if(params["ref"])
 		borgo = locate(params["ref"]) in GLOB.silicon_mobs
 		if(QDELETED(borgo))
-			to_chat(usr, span_danger("That cyborg is invalid."))
+			to_chat(usr, span_danger("那个机器人无效。"))
 			return TRUE
 
 	switch(action)

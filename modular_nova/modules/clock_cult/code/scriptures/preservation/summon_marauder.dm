@@ -1,8 +1,8 @@
 #define MAXIMUM_MARAUDERS 2
 
 /datum/scripture/marauder
-	name = "Summon Clockwork Marauder"
-	desc = "Summons a Clockwork Marauder, a powerful warrior that can deflect ranged attacks. Requires 100 vitality."
+	name = "召唤发条掠夺者"
+	desc = "召唤一名发条掠夺者，这是一种能够偏转远程攻击的强大战士。需要100点活力。"
 	tip = "Use Clockwork Marauders as a powerful soldier to send into combat when the fighting gets rough."
 	button_icon_state = "Clockwork Marauder"
 	power_cost = 2000
@@ -35,7 +35,7 @@
 		selected = pick(candidates)
 
 	if(!selected)
-		to_chat(invoker, span_brass("<i>There are no ghosts willing to be a Clockwork Marauder!</i>"))
+		to_chat(invoker, span_brass("<i>没有幽灵愿意成为发条掠夺者！</i>"))
 		invoke_fail()
 
 		if(invocation_chant_timer)
@@ -49,9 +49,9 @@
 
 /datum/scripture/marauder/invoke_success()
 	var/mob/living/basic/clockwork_marauder/new_mob = new (get_turf(invoker))
-	new_mob.visible_message(span_notice("[new_mob] flashes into existance!"))
+	new_mob.visible_message(span_notice("[new_mob]闪现而出！"))
 	new_mob.PossessByPlayer(selected.key)
-	to_chat(new_mob, span_brass("You are a Clockwork Marauder! You have a [new_mob.shield_health]-hit shield that will protect you against any damage taken. Have a servant repair you with a welder, should you or your shield become too damaged."))
+	to_chat(new_mob, span_brass("你是一名发条掠夺者！你拥有一个能抵挡[new_mob.shield_health]次攻击的护盾，可以保护你免受任何伤害。如果你或你的护盾受损严重，请让仆从用焊枪修复你。"))
 	selected = null
 
 
@@ -61,7 +61,7 @@
 		return FALSE
 
 	if(length(GLOB.clockwork_marauders) >= MAXIMUM_MARAUDERS)
-		to_chat(user, span_brass("Your limited power prevents you from creating more than [MAXIMUM_MARAUDERS] Clockwork Marauders."))
+		to_chat(user, span_brass("你有限的力量阻止你创造超过[MAXIMUM_MARAUDERS]个发条掠夺者。"))
 		return FALSE
 
 	return TRUE

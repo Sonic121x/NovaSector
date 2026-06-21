@@ -1,5 +1,5 @@
 /datum/action/cooldown/mob_cooldown/lights
-	name = "Toggle Lights"
+	name = "切换灯光"
 	button_icon = 'icons/mob/simple/pets.dmi'
 	button_icon_state = "orbie_light_action"
 	background_icon_state = "bg_default"
@@ -12,7 +12,7 @@
 
 
 /datum/action/cooldown/mob_cooldown/capture_photo
-	name = "Camera"
+	name = "相机"
 	button_icon = 'icons/mob/simple/pets.dmi'
 	button_icon_state = "orbie_light_action"
 	background_icon_state = "bg_default"

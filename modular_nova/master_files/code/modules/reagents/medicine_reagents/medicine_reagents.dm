@@ -17,9 +17,9 @@
 
 		if(current_volume >= REZADONE_LING_UNHUSK_AMOUNT)
 			exposed_mob.cure_husk(CHANGELING_DRAIN)
-			exposed_mob.visible_message(span_nicegreen("A rubbery liquid coats [exposed_mob]'s tissues. [exposed_mob] looks a lot healthier!"))
+			exposed_mob.visible_message(span_nicegreen("一种橡胶状液体覆盖了[exposed_mob]的组织。[exposed_mob]看起来健康多了！"))
 		else if (show_message)
-			exposed_mob.visible_message(span_boldnotice("A rubbery liquid partially coats [exposed_mob]'s tissues... It seems more is required to fully unhusk!"))
+			exposed_mob.visible_message(span_boldnotice("一种橡胶状液体部分覆盖了[exposed_mob]的组织……看来需要更多剂量才能完全解除外壳化！"))
 
 // Allowing us to cure husks created by changeling. Requires 2 times more synthflesh to cure than a normal husk
 /datum/reagent/medicine/c2/synthflesh/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE)
@@ -34,7 +34,7 @@
 
 		if(current_volume >= SYNTHFLESH_LING_UNHUSK_MAX || current_volume * current_purity >= SYNTHFLESH_LING_UNHUSK_AMOUNT)
 			exposed_mob.cure_husk(CHANGELING_DRAIN)
-			exposed_mob.visible_message(span_nicegreen("A rubbery liquid coats [exposed_mob]'s tissues. [exposed_mob] looks a lot healthier!"))
+			exposed_mob.visible_message(span_nicegreen("一种橡胶状液体覆盖了[exposed_mob]的组织。[exposed_mob]看起来健康多了！"))
 		else if (show_message)
-			exposed_mob.visible_message(span_boldnotice("A rubbery liquid partially coats [exposed_mob]'s tissues... It seems more is required to fully unhusk!"))
+			exposed_mob.visible_message(span_boldnotice("一种橡胶状液体部分覆盖了[exposed_mob]的组织……看来需要更多剂量才能完全解除外壳化！"))
 

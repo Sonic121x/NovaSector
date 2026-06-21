@@ -1,6 +1,6 @@
 /obj/item/holosign_creator/privacy
-	name = "personal holosign projector"
-	desc = "A holographic projector which creates privacy barriers to inform people that you are looking for privacy. Right-click to switch between pink (lewd advisory) and grey (privacy)."
+	name = "个人全息标志投影仪"
+	desc = "一种全息投影仪，可创建隐私屏障，告知他人您需要隐私。右键单击可在粉色（情色警示）和灰色（隐私）之间切换。"
 	icon = 'modular_nova/master_files/icons/obj/devices/tools.dmi'
 	icon_state = "signmaker_erp"
 	holosign_type = /obj/structure/holosign/privacy
@@ -23,16 +23,16 @@
 	if(erp_mode)
 		erp_mode = FALSE
 		holosign_type = /obj/structure/holosign/privacy
-		balloon_alert(user, "turned off Lewd Advisory Mode")
+		balloon_alert(user, "已关闭成人内容警示模式")
 	else
 		erp_mode = TRUE
 		holosign_type = /obj/structure/holosign/privacy/erp
-		balloon_alert(user, "turned on Lewd Advisory Mode")
+		balloon_alert(user, "已开启色情咨询模式")
 	return ..()
 
 /obj/structure/holosign/privacy
-	name = "privacy holosign"
-	desc = "A holographic sign which flickers with the word \"Private\". It would be polite to proceed no further if you aren't invited, even if the door isn't locked."
+	name = "隐私全息标志"
+	desc = "一个闪烁着“私人”字样的全息标志。即使门没锁，如果您未被邀请，礼貌起见也不应再向前走。"
 	icon = 'modular_nova/master_files/icons/effects/holosigns.dmi'
 	icon_state = "holosign_privacy"
 	base_icon_state = "holosign_privacy"
@@ -44,7 +44,7 @@
 	qdel(src)
 
 /obj/structure/holosign/privacy/erp
-	name = "lewd advisory holosign"
-	desc = "A holographic sign which flickers with the word \"Lewd\". If you choose to proceed, you can expect sexual activity."
+	name = "情色警示全息标志"
+	desc = "一个闪烁着“情色”字样的全息标志。如果您选择继续前进，可能会遇到性活动。"
 	icon_state = "holosign_erp"
 	base_icon_state = "holosign_erp"

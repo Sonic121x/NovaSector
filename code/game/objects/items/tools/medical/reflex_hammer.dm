@@ -1,6 +1,6 @@
 /obj/item/reflexhammer
-	name = "reflex hammer"
-	desc = "A small plastic headed hammer, used to test for neurological damage."
+	name = "反射锤"
+	desc = "一个塑料头的小锤子，用于测试神经损伤。"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "reflex_hammer"
 	icon_angle = -135

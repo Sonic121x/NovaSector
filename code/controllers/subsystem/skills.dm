@@ -3,7 +3,7 @@ This subsystem mostly exists to populate and manage the skill singletons.
 */
 
 SUBSYSTEM_DEF(skills)
-	name = "Skills"
+	name = "技能"
 	ss_flags = SS_NO_FIRE
 	///Dictionary of skill.type || skill ref
 	var/list/all_skills = list()

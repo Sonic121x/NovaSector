@@ -39,27 +39,27 @@
 
 /// Solfed Helmets
 /obj/item/clothing/head/helmet/solfed/mk2/corpsman
-	name = "\improper SolFed Corpsman MK II Combat Helmet"
+	name = "\improper 太阳联邦医护兵 MK II 作战头盔"
 	greyscale_colors = "#1dd2ff"
 
 /obj/item/clothing/head/helmet/solfed/mk2/engineer
-	name = "\improper SolFed Engineer MK II Combat Helmet"
+	name = "\improper 太阳联邦工程师 MK II 作战头盔"
 	greyscale_colors = "#ff1d1d"
 
 /obj/item/clothing/head/helmet/solfed/mk2/squadlead
-	name = "\improper SolFed Squad Leader MK II Combat Helmet"
+	name = "\improper 太阳联邦小队队长 MK II 作战头盔"
 	greyscale_colors = "#ffe81d"
 
 /obj/item/clothing/head/helmet/solfed/corpsman
-	name = "\improper SolFed Corpsman MK I Combat Helmet"
+	name = "\improper 太阳联邦医护兵 MK I 作战头盔"
 	greyscale_colors = "#1dd2ff"
 
 /obj/item/clothing/head/helmet/solfed/engineer
-	name = "\improper SolFed Engineer MK I Combat Helmet"
+	name = "\improper 太阳联邦工程师 MK I 作战头盔"
 	greyscale_colors = "#ff1d1d"
 
 /obj/item/clothing/head/helmet/solfed/squadlead
-	name = "\improper SolFed Squad Leader MK I Combat Helmet"
+	name = "\improper 太阳联邦小队队长 MK I 作战头盔"
 	greyscale_colors = "#ffe81d"
 
 /// Multi-Cam pattern

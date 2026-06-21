@@ -7,7 +7,7 @@
 **/
 
 /obj/item/ai_module/supplied
-	name = "Optional Law board"
+	name = "可选定律板"
 	var/lawpos = 50
 
 /obj/item/ai_module/supplied/transmitInstructions(datum/ai_laws/law_datum, mob/sender)
@@ -27,7 +27,7 @@
 	lawpos = 4
 
 /obj/item/ai_module/supplied/safeguard/attack_self(mob/user)
-	var/targName = tgui_input_text(user, "Subject to safeguard.", "Safeguard", user.name, max_length = MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, "要保护的对象。", "安全保护", user.name, max_length = MAX_NAME_LEN)
 	if(!targName || !user.is_holding(src))
 		return
 	targetName = targName
@@ -36,7 +36,7 @@
 
 /obj/item/ai_module/supplied/safeguard/install(datum/ai_laws/law_datum, mob/user)
 	if(!targetName)
-		to_chat(user, span_alert("No name detected on module, please enter one."))
+		to_chat(user, span_alert("模块上未检测到名称，请输入一个。"))
 		return 0
 	..()
 

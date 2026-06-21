@@ -1,7 +1,7 @@
 #define PING_BUFFER_TIME 25
 
 SUBSYSTEM_DEF(server_maint)
-	name = "Server Tasks"
+	name = "服务器任务"
 	wait = 6
 	ss_flags = SS_POST_FIRE_TIMING
 	priority = FIRE_PRIORITY_SERVER_MAINT
@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(server_maint)
 /datum/controller/subsystem/server_maint/Shutdown()
 	if (fexists("tmp/"))
 		fdel("tmp/")
-	kick_clients_in_lobby(span_boldannounce("The round came to an end with you in the lobby."), TRUE) //second parameter ensures only afk clients are kicked
+	kick_clients_in_lobby(span_boldannounce("本轮结束时您仍在大厅中。"), TRUE) //second parameter ensures only afk clients are kicked
 	var/server = CONFIG_GET(string/server)
 	for(var/thing in GLOB.clients)
 		if(!thing)

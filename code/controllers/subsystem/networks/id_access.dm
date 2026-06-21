@@ -2,7 +2,7 @@
  * Non-processing subsystem that holds various procs and data structures to manage ID cards, trims and access.
  */
 SUBSYSTEM_DEF(id_access)
-	name = "IDs and Access"
+	name = "ID与权限"
 	ss_flags = SS_NO_FIRE
 
 	/// Dictionary of access flags. Keys are accesses. Values are their associated bitflags.

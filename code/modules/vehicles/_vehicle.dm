@@ -1,6 +1,6 @@
 /obj/vehicle
-	name = "generic vehicle"
-	desc = "Yell at coderbus."
+	name = "通用车辆"
+	desc = "对笨比程序员大喊大叫。"
 	icon = 'icons/mob/rideables/vehicles.dmi'
 	icon_state = "error"
 	abstract_type = /obj/vehicle
@@ -81,7 +81,7 @@
 		if(25 to 50)
 			examine_text = "It appears heavily damaged."
 		if(0 to 25)
-			examine_text = span_warning("It's falling apart!")
+			examine_text = span_warning("它快要散架了！")
 
 	return examine_text
 

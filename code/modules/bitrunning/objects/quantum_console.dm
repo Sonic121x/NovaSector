@@ -1,5 +1,5 @@
 /obj/machinery/computer/quantum_console
-	name = "quantum console"
+	name = "量子控制台"
 
 	circuit = /obj/item/circuitboard/computer/quantum_console
 	icon_keyboard = "mining"
@@ -10,7 +10,7 @@
 
 /obj/machinery/computer/quantum_console/Initialize(mapload, obj/item/circuitboard/circuit)
 	. = ..()
-	desc = "Even in the distant year [CURRENT_STATION_YEAR], Nanotrasen is still using REST APIs. How grim."
+	desc = "即使在遥远的[CURRENT_STATION_YEAR]年，纳星公司仍在使用REST API。多么可怕。"
 
 /obj/machinery/computer/quantum_console/post_machine_initialize()
 	. = ..()
@@ -19,7 +19,7 @@
 /obj/machinery/computer/quantum_console/examine(mob/user)
 	. = ..()
 	if(!server_ref)
-		. += span_warning("Please install an quantum server in any tile next to this console.")
+		. += span_warning("请在此控制台相邻的任何一格安装量子服务器。")
 
 /obj/machinery/computer/quantum_console/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()

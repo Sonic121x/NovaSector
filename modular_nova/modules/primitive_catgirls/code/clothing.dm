@@ -3,7 +3,7 @@
 // Outfit Datum
 
 /datum/outfit/primitive_catgirl
-	name = "Icemoon Dweller"
+	name = "冰月住民"
 
 	uniform = /obj/item/clothing/under/dress/skirt/primitive_catgirl_body_wraps
 	shoes = /obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots
@@ -16,8 +16,8 @@
 // Under
 
 /obj/item/clothing/under/dress/skirt/primitive_catgirl_body_wraps
-	name = "body wraps"
-	desc = "Some pretty simple wraps to cover up your lower bits."
+	name = "缠身布"
+	desc = "一些相当简单的缠布，用来遮盖你的下半身。"
 	worn_icon = 'modular_nova/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	body_parts_covered = GROIN
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
@@ -30,8 +30,8 @@
 	has_sensor = FALSE
 
 /obj/item/clothing/under/dress/skirt/primitive_catgirl_tailored_dress
-	name = "tailored dress"
-	desc = "A handmade dress, tailored to fit perfectly to its wearer's body measurements."
+	name = "定制连衣裙"
+	desc = "一件手工制作的连衣裙，根据穿着者的身体尺寸完美剪裁。"
 	worn_icon = 'modular_nova/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	body_parts_covered = GROIN|CHEST
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
@@ -44,8 +44,8 @@
 	has_sensor = FALSE
 
 /obj/item/clothing/under/dress/skirt/primitive_catgirl_tunic
-	name = "handmade tunic"
-	desc = "A simple garment that reaches from the shoulders to above the knee. This one has a belt to secure it."
+	name = "手工束腰外衣"
+	desc = "一种简单的服装，从肩部延伸到膝盖上方。这件配有腰带固定。"
 	worn_icon = 'modular_nova/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	body_parts_covered = GROIN|CHEST
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
@@ -60,8 +60,8 @@
 // Hands
 
 /obj/item/clothing/gloves/fingerless/primitive_catgirl_armwraps
-	name = "arm wraps"
-	desc = "Simple cloth to wrap around one's arms."
+	name = "臂缠"
+	desc = "缠绕手臂的简单布料。"
 	worn_icon = 'modular_nova/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/fingerless/primitive_catgirl_armwraps"
@@ -72,8 +72,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/gloves/fingerless/primitive_catgirl_gauntlets
-	name = "gauntlets"
-	desc = "Simple cloth arm wraps with overlying metal protection."
+	name = "臂铠"
+	desc = "带有覆盖金属保护的简单布质臂缠。"
 	worn_icon = 'modular_nova/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/fingerless/primitive_catgirl_gauntlets"
@@ -88,8 +88,8 @@
 // Suit
 
 /obj/item/clothing/suit/jacket/primitive_catgirl_coat
-	name = "primitive fur coat"
-	desc = "A large piece of animal hide stuffed with fur, likely from the same animal."
+	name = "原始毛皮大衣"
+	desc = "一大块动物毛皮，内部填充了毛皮，很可能来自同一只动物。"
 	worn_icon = 'modular_nova/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	body_parts_covered = CHEST
 	cold_protection = CHEST
@@ -110,8 +110,8 @@
 // Shoes
 
 /obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots
-	name = "primitive hiking boots"
-	desc = "A pair of heavy boots lined with fur and with soles special built to prevent slipping on ice."
+	name = "原始徒步靴"
+	desc = "一双厚重的靴子，内衬毛皮，鞋底经过特殊设计，可防止在冰面上打滑。"
 	worn_icon = 'modular_nova/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots"
@@ -156,8 +156,8 @@
 	greyscale_colors = "#594032#364660"
 
 /obj/item/clothing/head/primitive_catgirl_ferroniere
-	name = "Ferroniere"
-	desc = "A style of headband that encircles the wearer's forehead, with a small jewel suspended in the centre."
+	name = "额饰"
+	desc = "一种环绕佩戴者前额的头带，中央悬挂着一颗小宝石。"
 	worn_icon = 'modular_nova/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/primitive_catgirl_ferroniere"

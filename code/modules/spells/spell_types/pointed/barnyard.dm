@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/barnyardcurse
-	name = "Curse of the Barnyard"
-	desc = "This spell dooms an unlucky soul to possess the speech and facial attributes of a barnyard animal."
+	name = "谷仓之咒"
+	desc = "这个咒语会让不幸之人丧失理智，变得像牲畜一样，说话和表情都像牲畜一般。"
 	button_icon_state = "barn"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/barn_target.dmi'
 
@@ -32,18 +32,18 @@
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
 		cast_on.visible_message(
-			span_danger("[cast_on]'s face bursts into flames, which instantly burst outward, leaving [cast_on.p_them()] unharmed!"),
-			span_danger("Your face starts burning up, but the flames are repulsed by your anti-magic protection!"),
+			span_danger("[cast_on]的脸突然燃起火焰，火焰瞬间向外爆开，但[cast_on.p_them()]却毫发无伤！"),
+			span_danger("你的脸开始燃烧，但火焰被你的反魔法防护弹开了！"),
 		)
-		to_chat(owner, span_warning("The spell had no effect!"))
+		to_chat(owner, span_warning("法术没有产生效果！"))
 		return FALSE
 
 	var/chosen_type = pick(GLOB.cursed_animal_masks)
 	var/obj/item/clothing/mask/animal/cursed_mask = new chosen_type(get_turf(target))
 
 	cast_on.visible_message(
-		span_danger("[target]'s face bursts into flames, and a barnyard animal's head takes its place!"),
-		span_userdanger("Your face burns up, and shortly after the fire you realise you have the face of a [cursed_mask.animal_type]!"),
+		span_danger("[target]的脸突然燃起火焰，一个农畜的脑袋取代了它的位置！"),
+		span_userdanger("你的脸燃烧起来，火焰过后不久，你意识到自己长着一张[cursed_mask.animal_type]的脸！"),
 	)
 
 	// Can't drop? Nuke it

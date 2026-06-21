@@ -41,14 +41,14 @@
 	if(QDELETED(source) || !mod.wearer || newloc == mod.wearer || !mod.wearer.s_store)
 		return
 	if(!atom_storage?.attempt_insert(mod.wearer.s_store, mod.wearer, override = TRUE))
-		balloon_alert(mod.wearer, "storage failed!")
+		balloon_alert(mod.wearer, "存储失败！")
 		to_chat(mod.wearer, span_warning("[src] fails to store [mod.wearer.s_store] inside itself!"))
 		return
 	to_chat(mod.wearer, span_notice("[src] stores [mod.wearer.s_store] inside itself."))
 	mod.wearer.temporarilyRemoveItemFromInventory(mod.wearer.s_store)
 
 /obj/item/mod/module/storage/large_capacity
-	name = "MOD storage module"
+	name = "MOD存储模块"
 	desc = "Reverse engineered by Nakamura Engineering from Donk Company designs, this system of hidden compartments \
 		is entirely within the suit, distributing items and weight evenly to ensure a comfortable experience for the user; \
 		whether smuggling, or simply hauling."
@@ -57,7 +57,7 @@
 	storage_type = /datum/storage/mod_storage/expanded
 
 /obj/item/mod/module/storage/syndicate
-	name = "MOD syndicate storage module"
+	name = "MOD辛迪存储模块"
 	desc = "A storage system using nanotechnology developed by Cybersun Industries, these compartments use \
 		esoteric technology to compress the physical matter of items put inside of them, \
 		essentially shrinking items for much easier and more portable storage."
@@ -66,7 +66,7 @@
 	storage_type = /datum/storage/mod_storage/syndicate
 
 /obj/item/mod/module/storage/belt
-	name = "MOD case storage module"
+	name = "MOD板条箱存储模块"
 	desc = "Some concessions had to be made when creating a compressed modular suit core. \
 		As a result, Roseus Galactic equipped their suit with a slimline storage case.  \
 		If you find this equipped to a standard modular suit, then someone has almost certainly shortchanged you on a proper storage module."
@@ -76,7 +76,7 @@
 	storage_type = /datum/storage/mod_storage/belt
 
 /obj/item/mod/module/storage/bluespace
-	name = "MOD bluespace storage module"
+	name = "MOD蓝空存储模块"
 	desc = "A storage system developed by Nanotrasen, these compartments employ \
 		miniaturized bluespace pockets for the ultimate in storage technology; regardless of the weight of objects put inside."
 	complexity = 3
@@ -85,7 +85,7 @@
 
 ///Ion Jetpack - Lets the user fly freely through space using battery charge.
 /obj/item/mod/module/jetpack
-	name = "MOD ion jetpack module"
+	name = "MOD离子喷气模块"
 	desc = "A series of electric thrusters installed across the suit, this is a module highly anticipated by trainee Engineers. \
 		Rather than using gasses for combustion thrust, these jets are capable of accelerating ions using \
 		charge from the suit's charge. Some say this isn't Nakamura Engineering's first foray into jet-enabled suits."
@@ -167,7 +167,7 @@
 	REMOVE_TRAIT(mod.wearer, TRAIT_NOGRAV_ALWAYS_DRIFT, REF(src))
 
 /obj/item/mod/module/jetpack/advanced
-	name = "MOD advanced ion jetpack module"
+	name = "MOD高级离子喷气模块"
 	desc = "An improvement on the previous model of electric thrusters. This one achieves higher precision \
 		and spartial stability through mounting of more jets and application of red paint."
 	icon_state = "jetpack_advanced"
@@ -193,9 +193,9 @@
 
 /obj/item/mod/module/jump_jet/on_use(mob/activator)
 	if (DOING_INTERACTION(mod.wearer, mod.wearer))
-		balloon_alert(activator, "busy!")
+		balloon_alert(activator, "正忙！")
 		return
-	balloon_alert(mod.wearer, "launching...")
+	balloon_alert(mod.wearer, "发射中...")
 	mod.wearer.Shake(duration = 1 SECONDS)
 	if (!do_after(mod.wearer, 1 SECONDS, target = mod.wearer))
 		start_cooldown(FAILED_ACTIVATION_COOLDOWN) // Don't go on full cooldown if we failed to launch
@@ -311,7 +311,7 @@
 
 ///Eating Apparatus - Lets the user eat/drink with the suit on.
 /obj/item/mod/module/mouthhole
-	name = "MOD eating apparatus module"
+	name = "MOD进食模块"
 	desc = "A favorite by Miners, this modification to the helmet utilizes a nanotechnology barrier infront of the mouth \
 		to allow eating and drinking while retaining protection and atmosphere. However, it won't free you from masks, \
 		lets pepper spray pass through and it will do nothing to improve the taste of a goliath steak."
@@ -367,7 +367,7 @@
 
 ///EMP Shield - Protects the suit from EMPs.
 /obj/item/mod/module/emp_shield
-	name = "MOD EMP shield module"
+	name = "MOD抗电磁脉冲模块"
 	desc = "A field inhibitor installed into the suit, protecting it against feedback such as \
 		electromagnetic pulses that would otherwise damage the electronic systems of the suit or it's modules. \
 		However, it will take from the suit's power to do so."
@@ -386,7 +386,7 @@
 	mod.RemoveElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 
 /obj/item/mod/module/emp_shield/advanced
-	name = "MOD advanced EMP shield module"
+	name = "MOD高级抗电磁脉冲模块"
 	desc = "An advanced field inhibitor installed into the suit, protecting it against feedback such as \
 		electromagnetic pulses that would otherwise damage the electronic systems of the suit or electronic devices on the wearer, \
 		including augmentations. However, it will take from the suit's power to do so."
@@ -400,7 +400,7 @@
 
 ///Flashlight - Gives the suit a customizable flashlight.
 /obj/item/mod/module/flashlight
-	name = "MOD flashlight module"
+	name = "MOD闪光灯模块"
 	desc = "A simple pair of configurable flashlights installed on the left and right sides of the helmet, \
 		useful for providing light in a variety of ranges and colors. \
 		Some survivalists prefer the color green for their illumination, for reasons unknown."
@@ -462,7 +462,7 @@
 			if(!value)
 				return
 			if(is_color_dark(value, 50))
-				balloon_alert(mod.wearer, "too dark!")
+				balloon_alert(mod.wearer, "太暗了！")
 				return
 			set_light_color(value)
 			update_clothing_slots()
@@ -486,7 +486,7 @@
 
 ///Dispenser - Dispenses an item after a time passes.
 /obj/item/mod/module/dispenser
-	name = "MOD burger dispenser module"
+	name = "MOD汉堡分配模块"
 	desc = "A rare piece of technology reverse-engineered from a prototype found in a Donk Company vessel. \
 		This can draw incredible amounts of power from the suit's charge to create edible organic matter in the \
 		palm of the wearer's glove; however, research seemed to have entirely stopped at burgers. \
@@ -505,18 +505,18 @@
 
 /obj/item/mod/module/dispenser/on_use(mob/activator)
 	if(dispense_time && !do_after(mod.wearer, dispense_time, target = mod))
-		balloon_alert(mod.wearer, "interrupted!")
+		balloon_alert(mod.wearer, "被打断了！")
 		return FALSE
 	var/obj/item/dispensed = new dispense_type(mod.wearer.loc)
 	mod.wearer.put_in_hands(dispensed)
-	balloon_alert(activator, "[dispensed] dispensed")
+	balloon_alert(activator, "[dispensed] 已分发")
 	playsound(src, 'sound/machines/click.ogg', 100, TRUE)
 	drain_power(use_energy_cost)
 	return dispensed
 
 ///Longfall - Nullifies fall damage, removing charge instead.
 /obj/item/mod/module/longfall
-	name = "MOD longfall module"
+	name = "MOD长落模块"
 	desc = "Useful for protecting both the suit and the wearer, \
 		utilizing commonplace systems to convert the possible damage from a fall into kinetic charge, \
 		as well as internal gyroscopes to ensure the user's safe falling. \
@@ -547,14 +547,14 @@
 		mod.wearer.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * levels, 10 SECONDS)
 
 	mod.wearer.visible_message(
-		span_notice("[mod.wearer] lands on [fell_on] safely[extreme_fall ? ", but barely manages to stay on [p_their()] feet." : ", and quite stylishly on [p_their()] feet" ]."),
+		span_notice("[mod.wearer] 安全地落在 [fell_on] 上[extreme_fall ? ", but barely manages to stay on [p_their()] feet." : ", and quite stylishly on [p_their()] feet" ]。"),
 		span_notice("[src] protects you from the damage!"),
 	)
 	return ZIMPACT_CANCEL_DAMAGE|ZIMPACT_NO_MESSAGE|ZIMPACT_NO_SPIN
 
 ///Thermal Regulator - Regulates the wearer's core temperature.
 /obj/item/mod/module/thermal_regulator
-	name = "MOD thermal regulator module"
+	name = "MOD恒温模块"
 	desc = "Advanced climate control, using an inner body glove interwoven with thousands of tiny, \
 		flexible cooling lines. This circulates coolant at various user-controlled temperatures, \
 		ensuring they're comfortable; even if they're some that like it hot."
@@ -585,7 +585,7 @@
 
 ///DNA Lock - Prevents people without the set DNA from activating the suit.
 /obj/item/mod/module/dna_lock
-	name = "MOD DNA lock module"
+	name = "MOD基因锁模块"
 	desc = "A module which engages with the various locks and seals tied to the suit's systems, \
 		enabling it to only be worn by someone corresponding with the user's exact DNA profile; \
 		however, this incredibly sensitive module is shorted out by EMPs. Luckily, cloning has been outlawed."
@@ -614,7 +614,7 @@
 
 /obj/item/mod/module/dna_lock/on_use(mob/activator)
 	dna = mod.wearer.dna.unique_enzymes
-	balloon_alert(activator, "dna updated")
+	balloon_alert(activator, "DNA已更新")
 	drain_power(use_energy_cost)
 
 /obj/item/mod/module/dna_lock/emp_act(severity)
@@ -631,7 +631,7 @@
 	var/mob/living/carbon/carbon_user = user
 	if(!dna  || (carbon_user.has_dna() && carbon_user.dna.unique_enzymes == dna))
 		return TRUE
-	balloon_alert(user, "dna locked!")
+	balloon_alert(user, "DNA已锁定！")
 	return FALSE
 
 /obj/item/mod/module/dna_lock/proc/on_emp(datum/source, severity, protection)
@@ -660,7 +660,7 @@
 
 ///Plasma Stabilizer - Prevents plasmamen from igniting in the suit
 /obj/item/mod/module/plasma_stabilizer
-	name = "MOD plasma stabilizer module"
+	name = "MOD等离子稳定器模块"
 	desc = "This system essentially forms an atmosphere of its own, within the suit, \
 		efficiently and quickly preventing oxygen from causing the user's head to burst into flame. \
 		This allows plasmamen to safely remove their helmet, allowing for easier \
@@ -692,7 +692,7 @@
 //Finally, https://pipe.miroware.io/5b52ba1d94357d5d623f74aa/mspfa/Nuke%20Ops/Panels/0648.gif can be real:
 ///Hat Stabilizer - Allows displaying a hat over the MOD-helmet, à la plasmamen helmets.
 /obj/item/mod/module/hat_stabilizer
-	name = "MOD hat stabilizer module"
+	name = "MOD帽模块"
 	desc = "A simple set of deployable stands, directly atop one's head; \
 		these will deploy under a hat to keep it from falling off, allowing them to be worn atop the sealed helmet. \
 		You still need to take the hat off your head while the helmet deploys, though. \
@@ -733,7 +733,7 @@
 
 ///Sign Language Translator - allows people to sign over comms using the modsuit's gloves.
 /obj/item/mod/module/signlang_radio
-	name = "MOD glove translator module"
+	name = "MOD手套传输模块"
 	desc = "A module that adds motion sensors into the suit's gloves, \
 		which works in tandem with a short-range subspace transmitter, \
 		letting the audibly impaired use sign language over comms."
@@ -887,10 +887,10 @@
 
 /obj/item/mod/module/recycler/proc/dispense(atom/target)
 	if(container.retrieve_all(target))
-		balloon_alert(mod.wearer, "material dispensed")
+		balloon_alert(mod.wearer, "材料已分发")
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 50, TRUE)
 		return
-	balloon_alert(mod.wearer, "not enough material")
+	balloon_alert(mod.wearer, "材料不足")
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 
 /obj/item/mod/module/recycler/proc/InsertSheets(obj/item/recycler, obj/item/stack/sheets, atom/context)
@@ -919,12 +919,12 @@
 
 /obj/item/mod/module/recycler/donk/dispense(atom/target)
 	if(!container.use_amount_mat(required_amount, /datum/material/iron))
-		balloon_alert(mod.wearer, "not enough material")
+		balloon_alert(mod.wearer, "材料不足")
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 		return
 	var/obj/item/ammo_box/product = new ammobox_type(target)
 	attempt_insert_storage(product)
-	balloon_alert(mod.wearer, "ammo box dispensed.")
+	balloon_alert(mod.wearer, "弹药箱已分发。")
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 50, TRUE)
 
 /obj/item/mod/module/fishing_glove
@@ -951,19 +951,19 @@
 
 /obj/item/mod/module/fishing_glove/examine(mob/user)
 	. = ..()
-	. += span_info("You can [EXAMINE_HINT("right-click")] the modsuit gloves to open the fishing rod interface once attached and activated.")
+	. += span_info("一旦安装并激活，你可以[EXAMINE_HINT("right-click")]MOD服手套来打开鱼竿界面。")
 	if(equipped)
-		. += span_info("it has a [icon2html(equipped, user)] installed. [EXAMINE_HINT("Right-Click")] to remove it.")
+		. += span_info("它已安装了一个[icon2html(equipped, user)]。[EXAMINE_HINT("Right-Click")]以移除它。")
 
 /obj/item/mod/module/fishing_glove/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/fishing_rod))
 		return ..()
 	if(equipped)
-		balloon_alert(user, "already has rod!")
+		balloon_alert(user, "已有鱼竿！")
 	if(!user.transferItemToLoc(tool, src))
-		user.balloon_alert(user, "it's stuck!")
+		user.balloon_alert(user, "它卡住了！")
 	equipped = tool
-	balloon_alert(user, "rod inserted")
+	balloon_alert(user, "鱼竿已插入")
 	playsound(src, 'sound/items/click.ogg', 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -974,7 +974,7 @@
 	if(!equipped)
 		return
 	user.put_in_hands(equipped)
-	balloon_alert(user, "rod removed")
+	balloon_alert(user, "鱼竿已移除")
 	playsound(src, 'sound/items/click.ogg', 50, TRUE)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 

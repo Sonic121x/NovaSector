@@ -19,8 +19,8 @@
 
 /obj/structure/sauna_oven/examine(mob/user)
 	. = ..()
-	. += span_notice("The rocks are [water_amount ? "moist" : "dry"].")
-	. += span_notice("There's [fuel_amount ? "some fuel" : "no fuel"] in the oven.")
+	. += span_notice("石头是[water_amount ? "moist" : "dry"]。")
+	. += span_notice("炉子里[fuel_amount ? "some fuel" : "no fuel"]。")
 
 /obj/structure/sauna_oven/Destroy()
 	if(lit)
@@ -53,9 +53,9 @@
 
 /obj/structure/sauna_oven/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(attacking_item.tool_behaviour == TOOL_WRENCH)
-		balloon_alert(user, "deconstructing...")
+		balloon_alert(user, "拆除中...")
 		if(attacking_item.use_tool(src, user, 60, volume = 50))
-			balloon_alert(user, "deconstructed")
+			balloon_alert(user, "已拆除")
 			new /obj/item/stack/sheet/mineral/wood(get_turf(src), 30)
 			qdel(src)
 
@@ -70,12 +70,12 @@
 			some water to [src]."))
 			water_amount += 5 * SAUNA_WATER_PER_WATER_UNIT
 		else
-			balloon_alert(user, "no water!")
+			balloon_alert(user, "没有水！")
 
 	else if(istype(attacking_item, /obj/item/stack/sheet/mineral/wood))
 		var/obj/item/stack/sheet/mineral/wood/wood = attacking_item
 		if(fuel_amount > SAUNA_MAXIMUM_FUEL)
-			balloon_alert(user, "it's full!")
+			balloon_alert(user, "已经满了！")
 			return
 		fuel_amount += SAUNA_LOG_FUEL * wood.amount
 		wood.use(wood.amount)

@@ -1,6 +1,6 @@
 /obj/item/cigarette/pipe/crackpipe
-	name = "crack pipe"
-	desc = "A slick, glass pipe made for smoking one thing: crack."
+	name = "快克烟斗"
+	desc = "一个光滑的玻璃烟斗，专为吸食一种东西而制：快克。"
 	icon = 'modular_nova/modules/morenarcotics/icons/crack.dmi'
 	worn_icon = 'modular_nova/modules/morenarcotics/icons/mask.dmi'
 	icon_state = "glass_pipeoff" //it seems like theres some unused crack pipe sprite in masks.dmi, sweet!
@@ -14,13 +14,13 @@
 	if(smoketime <= 0)
 		if(ismob(loc))
 			var/mob/living/smoking_mob = loc
-			to_chat(smoking_mob, span_notice("Your [name] goes out."))
+			to_chat(smoking_mob, span_notice("你的[name]熄灭了。"))
 			lit = FALSE
 			icon_state = icon_off
 			inhand_icon_state = icon_off
 			smoking_mob.update_worn_mask()
 			packeditem = FALSE
-			name = "empty [initial(name)]"
+			name = "空的 [initial(name)]"
 		STOP_PROCESSING(SSobj, src)
 		return
 	open_flame()
@@ -30,9 +30,9 @@
 
 /obj/item/cigarette/pipe/crackpipe/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(is_type_in_list(attacking_item, list(/obj/item/reagent_containers/crack,/obj/item/reagent_containers/blacktar)))
-		to_chat(user, span_notice("You stuff [attacking_item] into [src]."))
+		to_chat(user, span_notice("你将 [attacking_item] 塞进了 [src]。"))
 		smoketime = 2 * 60
-		name = "[attacking_item.name]-packed [initial(name)]"
+		name = "[attacking_item.name]-填充的 [initial(name)]"
 		if(attacking_item.reagents)
 			attacking_item.reagents.trans_to(src, attacking_item.reagents.total_volume, transferred_by = user)
 		qdel(attacking_item)
@@ -42,12 +42,12 @@
 			if(smoketime > 0)
 				light(lighting_text)
 			else
-				to_chat(user, span_warning("There is nothing to smoke!"))
+				to_chat(user, span_warning("没有东西可抽！"))
 		else
 			return ..()
 
 /datum/crafting_recipe/crackpipe
-	name = "Crack pipe"
+	name = "快克烟斗"
 	result = /obj/item/cigarette/pipe/crackpipe
 	reqs = list(/obj/item/stack/cable_coil = 5,
 				/obj/item/shard = 1,

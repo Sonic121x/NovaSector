@@ -40,43 +40,43 @@
 
 /datum/loadout_item/toys/crayons
 	//Extra space forces the "Toys" Group to the top
-	name = " Box of Crayons"
+	name = "一盒蜡笔"
 	item_path = /obj/item/storage/crayons
 
 /datum/loadout_item/toys/cat_toy
-	name = "Cat Toy"
+	name = "猫玩具"
 	item_path = /obj/item/toy/cattoy
 
 /datum/loadout_item/toys/dog_bone
-	name = "Jumbo Dog Bone"
+	name = "巨型狗骨头"
 	item_path = /obj/item/dog_bone
 
 /datum/loadout_item/toys/red_laser
-	name = "Laser Pointer (Red)"
+	name = "激光笔（红色）"
 	item_path = /obj/item/laser_pointer/limited/red
 
 /datum/loadout_item/toys/green_laser
-	name = "Laser Pointer (Green)"
+	name = "激光笔（绿色）"
 	item_path = /obj/item/laser_pointer/limited/green
 
 /datum/loadout_item/toys/blue_laser
-	name = "Laser Pointer (Blue)"
+	name = "激光笔（蓝色）"
 	item_path = /obj/item/laser_pointer/limited/blue
 
 /datum/loadout_item/toys/purple_laser
-	name = "Laser Pointer (Purple)"
+	name = "激光笔（紫色）"
 	item_path = /obj/item/laser_pointer/limited/purple
 
 /datum/loadout_item/toys/eightball
-	name = "Magic Eightball"
+	name = "魔法八号球"
 	item_path = /obj/item/toy/eightball
 
 /datum/loadout_item/toys/spray_can
-	name = "Spray Can"
+	name = "喷漆罐"
 	item_path = /obj/item/toy/crayon/spraycan
 
 /datum/loadout_item/toys/toykatana
-	name = "Toy Katana"
+	name = "玩具武士刀"
 	item_path = /obj/item/toy/katana
 
 /datum/loadout_item/toys/toykatanasheath
@@ -112,31 +112,31 @@
 */
 
 /datum/loadout_item/toys/tennis
-	name = "Tennis Ball (Classic)"
+	name = "网球（经典款）"
 	item_path = /obj/item/toy/tennis
 
 /datum/loadout_item/toys/tennisred
-	name = "Tennis Ball (Red)"
+	name = "网球（红色）"
 	item_path = /obj/item/toy/tennis/red
 
 /datum/loadout_item/toys/tennisyellow
-	name = "Tennis Ball (Yellow)"
+	name = "网球（黄色）"
 	item_path = /obj/item/toy/tennis/yellow
 
 /datum/loadout_item/toys/tennisgreen
-	name = "Tennis Ball (Green)"
+	name = "网球（绿色）"
 	item_path = /obj/item/toy/tennis/green
 
 /datum/loadout_item/toys/tenniscyan
-	name = "Tennis Ball (Cyan)"
+	name = "网球（青色）"
 	item_path = /obj/item/toy/tennis/cyan
 
 /datum/loadout_item/toys/tennisblue
-	name = "Tennis Ball (Blue)"
+	name = "网球（蓝色）"
 	item_path = /obj/item/toy/tennis/blue
 
 /datum/loadout_item/toys/tennispurple
-	name = "Tennis Ball (Purple)"
+	name = "网球（紫色）"
 	item_path = /obj/item/toy/tennis/purple
 
 /*
@@ -144,23 +144,23 @@
 */
 
 /datum/loadout_item/toys/card_binder
-	name = "Card Binder"
+	name = "卡牌收纳册"
 	item_path = /obj/item/storage/card_binder
 
 /datum/loadout_item/toys/card_deck
-	name = "Card Deck"
+	name = "卡牌组"
 	item_path = /obj/item/toy/cards/deck
 
 /datum/loadout_item/toys/kotahi_deck
-	name = "Card Deck - Kotahi"
+	name = "卡牌组 - 科塔希"
 	item_path = /obj/item/toy/cards/deck/kotahi
 
 /datum/loadout_item/toys/tarot
-	name = "Card Deck - Tarot"
+	name = "卡牌组 - 塔罗牌"
 	item_path = /obj/item/toy/cards/deck/tarot
 
 /datum/loadout_item/toys/wizoff_deck
-	name = "Card Deck - Wizoff"
+	name = "卡牌组 - 巫师对决"
 	item_path = /obj/item/toy/cards/deck/wizoff
 
 /*
@@ -173,7 +173,7 @@
 
 /datum/loadout_item/toys/dice/d00
 	//Extra space forces "Dice" Group above "Plushies"
-	name = " D00"
+	name = "D00"
 	item_path = /obj/item/dice/d00
 
 //I am NOT alphabetizing numbers dawg. It's not actually number order 11 comes before 2
@@ -194,11 +194,11 @@
 	item_path = /obj/item/dice/d6
 
 /datum/loadout_item/toys/dice/d6_ebony
-	name = "D6 (Ebony)"
+	name = "D6 (乌木)"
 	item_path = /obj/item/dice/d6/ebony
 
 /datum/loadout_item/toys/dice/d6_space
-	name = "D6 (Space)"
+	name = "D6 (太空)"
 	item_path = /obj/item/dice/d6/space
 
 /datum/loadout_item/toys/dice/d8
@@ -218,11 +218,11 @@
 	item_path = /obj/item/dice/d20
 
 /datum/loadout_item/toys/dice/d20_weighted_low
-	name = "D20 (Weighted, Low)"
+	name = "D20 (加重，低值)"
 	item_path = /obj/item/dice/d20/nat1
 
 /datum/loadout_item/toys/dice/d20_weighted_high
-	name = "D20 (Weighted, High)"
+	name = "D20 (加重，高值)"
 	item_path = /obj/item/dice/d20/nat20
 
 /datum/loadout_item/toys/dice/d100
@@ -230,5 +230,5 @@
 	item_path = /obj/item/dice/d100
 
 /datum/loadout_item/toys/dice/dice_bag
-	name = "Dice Bag"
+	name = "骰子袋"
 	item_path = /obj/item/storage/dice

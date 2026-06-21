@@ -1,7 +1,7 @@
 #define MAP_AREA_TYPE "area_type"
 #define MAP_ALLOW_AREA_SUBTYPES "allow_area_subtypes"
-#define DEFAULT_GAIN_MESSAGE span_big(span_green("You are now invulnerable."))
-#define DEFAULT_LOSE_MESSAGE span_big(span_red("You are no longer invulnerable."))
+#define DEFAULT_GAIN_MESSAGE span_big(span_green("你现在是无敌的。"))
+#define DEFAULT_LOSE_MESSAGE span_big(span_red("你不再是无敌的。"))
 
 /**
  * Area-based godmode.

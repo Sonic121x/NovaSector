@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/solfed/atlas
-	desc = "A field support mech equipped for engineering and medical aid. Deployed to stabilize infrastructure and patch up wounded personnel under fire."
-	name = "\improper MSU-2539B1 \"Atlas\""
+	desc = "一款为工程和医疗援助配备的战场支援机甲。部署用于在火力下稳定基础设施并救治伤员。"
+	name = "\improper MSU-2539B1 \"擎天神\""
 	icon_state = "atlas" //Sprite by diltyrr on discord
 	base_icon_state = "atlas"
 	movedelay = 3.75
@@ -54,8 +54,8 @@
 	update_part_values()
 
 /obj/structure/mecha_wreckage/solfed/atlas
-	name = "\improper Atlas wreckage"
-	desc = "The remains of an Atlas-class support mech. Its pincer module is warped and half-melted, and the chassis is scorched."
+	name = "\improper 擎天神残骸"
+	desc = "擎天神级支援机甲的残骸。其钳形模块扭曲且半熔化，底盘烧焦。"
 	icon = 'modular_nova/modules/solfed_mechs/icons/solfed_mechs.dmi'
 	icon_state = "atlas-broken"
 	welder_salvage = list(/obj/item/stack/sheet/iron, /obj/item/stack/rods)

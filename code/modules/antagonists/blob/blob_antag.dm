@@ -1,5 +1,5 @@
 /datum/antagonist/blob
-	name = "\improper Blob"
+	name = "\improper 团块"
 	roundend_category = "blobs"
 	antagpanel_category = ANTAG_GROUP_BIOHAZARDS
 	show_to_ghosts = TRUE
@@ -29,7 +29,7 @@
 	. = ..()
 	owner.announce_objectives()
 	if(!isovermind(owner.current))
-		to_chat(owner.current, span_notice("Use the pop ability to place your blob core! It is recommended you do this away from anyone else, as you'll be taking on the entire crew!"))
+		to_chat(owner.current, span_notice("使用弹出能力来放置你的团块核心！建议你远离其他人进行此操作，因为你将面对全体船员！"))
 	else
 		has_already_popped = TRUE
 
@@ -89,8 +89,8 @@
 
 //Non-overminds get this on blob antag assignment
 /datum/action/innate/blobpop
-	name = "Pop"
-	desc = "Unleash the blob!"
+	name = "弹出"
+	desc = "释放团块！"
 	button_icon = 'icons/mob/nonhuman-player/blob.dmi'
 	button_icon_state = "blob"
 
@@ -101,7 +101,7 @@
 	. = ..()
 	if(owner)
 		addtimer(CALLBACK(src, PROC_REF(Activate), TRUE), autoplace_time, TIMER_UNIQUE|TIMER_OVERRIDE)
-		to_chat(owner, span_bolddanger("You will automatically pop and place your blob core in [DisplayTimeText(autoplace_time)]."))
+		to_chat(owner, span_bolddanger("你将在[DisplayTimeText(autoplace_time)]后自动弹出并放置你的菌核核心。"))
 
 /datum/action/innate/blobpop/Activate(timer_activated = FALSE)
 	var/mob/living/old_body = owner
@@ -116,11 +116,11 @@
 	. = TRUE
 	var/turf/target_turf = get_turf(owner)
 	if(target_turf.density)
-		to_chat(owner, span_warning("This spot is too dense to place a blob core on!"))
+		to_chat(owner, span_warning("这个位置太密集，无法放置菌核核心！"))
 		. = FALSE
 	var/area/target_area = get_area(target_turf)
 	if(isspaceturf(target_turf) || !(target_area?.area_flags & BLOBS_ALLOWED) || !is_station_level(target_turf.z))
-		to_chat(owner, span_warning("You cannot place your core here!"))
+		to_chat(owner, span_warning("你不能在这里放置你的核心！"))
 		. = FALSE
 
 	var/placement_override = BLOB_FORCE_PLACEMENT
@@ -128,7 +128,7 @@
 		if(!timer_activated)
 			return
 		placement_override = BLOB_RANDOM_PLACEMENT
-		to_chat(owner, span_warning("Because your current location is an invalid starting spot and you need to pop, you've been moved to a random location!"))
+		to_chat(owner, span_warning("由于当前位置是无效的起始点且你必须弹出，你已被移动到随机位置！"))
 
 	var/mob/eye/blob/blob_cam = new /mob/eye/blob(get_turf(old_body), blobtag.starting_points_human_blob)
 	owner.mind.transfer_to(blob_cam)
@@ -154,7 +154,7 @@
 
 /// A subtype of blob meant to represent the infective version.
 /datum/antagonist/blob/infection
-	name = "\improper Blob Infection"
+	name = "\improper 菌核感染"
 	show_in_antagpanel = TRUE
 	pref_flag = ROLE_BLOB_INFECTION
 

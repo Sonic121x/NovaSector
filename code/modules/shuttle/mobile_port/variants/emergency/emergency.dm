@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/emergency
-	name = "emergency shuttle"
+	name = "紧急穿梭机"
 	shuttle_id = "emergency"
 	dir = EAST
 	port_direction = WEST
@@ -52,10 +52,10 @@
 		return
 	// NOVA EDIT ADDITION END
 	priority_announce(
-		text = "The emergency shuttle has been called. [red_alert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(60 SECONDS)] minute\s.[reason][SSshuttle.emergency_last_call_loc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ][SSshuttle.admin_emergency_no_recall ? "\n\nWarning: Shuttle recall subroutines disabled; Recall not possible." : ""]",
-		title = "Emergency Shuttle Dispatched",
+		text = "紧急穿梭机已被呼叫。[red_alert ? "红色警报状态已确认：正在调度优先穿梭机。" : "" ]它将在[timeLeft(60 SECONDS)]分钟后抵达。[reason][SSshuttle.emergency_last_call_loc ? "\n\n呼叫信号已追踪。可在任意通信控制台查看结果。" : "" ][SSshuttle.admin_emergency_no_recall ? "\n\n警告：穿梭机召回子程序已被禁用；无法召回。" : ""]",
+		title = "紧急穿梭机已派遣",
 		sound = ANNOUNCER_SHUTTLECALLED,
-		sender_override = "Emergency Shuttle Uplink Alert",
+		sender_override = "紧急穿梭机上行链路警报",
 		color_override = "orange",
 		)
 
@@ -74,10 +74,10 @@
 		SSshuttle.emergency_last_call_loc = null
 
 	priority_announce(
-		text = "The emergency shuttle has been recalled.[SSshuttle.emergency_last_call_loc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]",
-		title = "Emergency Shuttle Recalled",
+		text = "紧急穿梭机已被召回。[SSshuttle.emergency_last_call_loc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]",
+		title = "紧急穿梭机已召回",
 		sound = ANNOUNCER_SHUTTLERECALLED,
-		sender_override = "Emergency Shuttle Uplink Alert",
+		sender_override = "紧急穿梭机上行链路警报",
 		color_override = "orange",
 		)
 
@@ -169,10 +169,10 @@
 				setTimer(SSshuttle.emergency_dock_time)
 				send2adminchat("Server", "The Emergency Shuttle has docked with the station.")
 				priority_announce(
-					text = "[SSshuttle.emergency] has docked with the station. You have [DisplayTimeText(SSshuttle.emergency_dock_time)] to board the emergency shuttle.",
-					title = "Emergency Shuttle Arrival",
+					text = "[SSshuttle.emergency]已与空间站对接。你有[DisplayTimeText(SSshuttle.emergency_dock_time)]时间登上紧急穿梭机。",
+					title = "紧急穿梭机抵达",
 					sound = ANNOUNCER_SHUTTLEDOCK,
-					sender_override = "Emergency Shuttle Uplink Alert",
+					sender_override = "紧急穿梭机上行链路警报",
 					color_override = "orange",
 				)
 				ShuttleDBStuff()
@@ -233,9 +233,9 @@
 				bolt_all_doors() // NOVA EDIT ADDITION
 				setTimer(SSshuttle.emergency_escape_time * engine_coeff)
 				priority_announce(
-					text = "The emergency shuttle has left the station. Estimate [timeLeft(60 SECONDS)] minutes until the shuttle docks at [command_name()].",
-					title = "Emergency Shuttle Departure",
-					sender_override = "Emergency Shuttle Uplink Alert",
+					text = "紧急穿梭机已离开空间站。预计 [timeLeft(60 SECONDS)] 分钟后穿梭机将在 [command_name()] 停靠。",
+					title = "紧急穿梭机离站",
+					sender_override = "紧急穿梭机上行链路警报",
 					color_override = "orange",
 				)
 				INVOKE_ASYNC(SSticker, TYPE_PROC_REF(/datum/controller/subsystem/ticker, poll_hearts))
@@ -301,9 +301,9 @@
 	launch_status = ENDGAME_LAUNCHED
 	setTimer(SSshuttle.emergency_escape_time)
 	priority_announce(
-		text = "The emergency shuttle is preparing for direct jump. Estimate [timeLeft(60 SECONDS)] minutes until the shuttle docks at [command_name()].",
-		title = "Emergency Shuttle Transit Failure",
-		sender_override = "Emergency Shuttle Uplink Alert",
+		text = "紧急穿梭机正在准备直接跳跃。预计 [timeLeft(60 SECONDS)] 分钟后穿梭机将在 [command_name()] 停靠。",
+		title = "紧急穿梭机传送故障",
+		sender_override = "紧急穿梭机上行链路警报",
 		color_override = "orange",
 	)
 

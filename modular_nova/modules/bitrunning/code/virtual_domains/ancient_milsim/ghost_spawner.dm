@@ -1,12 +1,12 @@
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/ancient_milsim
-	name = "lagging asset"
-	desc = "A vaguely military humanoid shape with a static texture all over it. It's having some issues with compilation, give it some time."
-	prompt_name = "a weird compound operative"
+	name = "延迟加载的资产"
+	desc = "一个轮廓模糊的类军人形，全身覆盖着静态纹理。它在编译上遇到了一些问题，给它点时间。"
+	prompt_name = "一名奇怪的复合体特工"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "static"
 	outfit = /datum/outfit/cin_soldier_player
-	you_are_text = "You are a smart NPC guarding the exit of a simulated combat domain."
-	flavour_text = "You are a smart NPC loaded into the domain as a means of slowing down the bitrunning contestants' progression one way or another, be it combat or drawn out dialogues."
+	you_are_text = "你是一个守卫模拟战斗域出口的智能NPC。"
+	flavour_text = "你是一个被载入域中的智能NPC，目的是通过战斗或冗长的对话等方式，以某种方式减缓比特奔跑参赛者的进度。"
 	important_text = "Play fair. Humans are the only allowed species."
 	restricted_species = list(/datum/species/human)
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE

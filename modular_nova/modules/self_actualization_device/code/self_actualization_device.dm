@@ -11,7 +11,7 @@
 
 /datum/design/board/self_actualization_device
 	name = "Self-Actualization Device Board"
-	desc = "The circuit board for a Self-Actualization Device by Vey-Medical."
+	desc = "由Vey-Medical制造的自我实现装置的电路板。"
 	id = "self_actualization_device"
 	build_path = /obj/item/circuitboard/machine/self_actualization_device
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_MEDICAL)
@@ -24,8 +24,8 @@
 	req_components = list(/datum/stock_part/micro_laser = 1)
 
 /obj/machinery/self_actualization_device
-	name = "Self-Actualization Device"
-	desc = "A state of the art medical device that can restore someone's physical appearance to the last known DNA database backup."
+	name = "自我实现装置"
+	desc = "一台先进的医疗设备，可以将某人的外貌恢复到DNA数据库中最后一次已知的备份状态。"
 	icon = 'modular_nova/modules/self_actualization_device/icons/self_actualization_device.dmi'
 	icon_state = "sad_open"
 	circuit = /obj/item/circuitboard/machine/self_actualization_device
@@ -95,20 +95,20 @@
 		occupant.forceMove(drop_location())
 		set_occupant(null)
 		return FALSE
-	to_chat(occupant, span_notice("You enter [src]."))
+	to_chat(occupant, span_notice("你进入了[src]。"))
 	addtimer(CALLBACK(src, PROC_REF(get_consent)), 4 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE)
 	update_appearance()
 
 /obj/machinery/self_actualization_device/examine(mob/user)
 	. = ..()
-	. += span_info("The status panel indicates an average laser power consumption of <b>[display_power(active_power_usage)]</b> with an estimated total cycle time of <b>[DisplayTimeText(processing_time)]</b>.")
+	. += span_info("状态面板显示平均激光功耗为<b>[display_power(active_power_usage)]</b>，预计总循环时间为<b>[DisplayTimeText(processing_time)]</b>。")
 
 	if(processing)
-		. += span_notice("The status display indicates <b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, sad_processing_time), 2)]</b> remaining on the current cycle.")
+		. += span_notice("状态显示屏显示当前周期剩余<b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, sad_processing_time), 2)]</b>。")
 	else
-		. += span_notice("<b>Left-click</b> to <b>[state_open ? "close" : "open"]</b>.")
+		. += span_notice("<b>左键点击</b>以<b>[state_open ? "close" : "open"]</b>。")
 		if(!isnull(occupant) && !state_open)
-			. += span_notice("<b>Alt-click</b> to turn on.")
+			. += span_notice("<b>Alt-点击</b>以开启。")
 
 /obj/machinery/self_actualization_device/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(!processing)
@@ -131,7 +131,7 @@
 	if(!powered() || !occupant || state_open || processing)
 		return CLICK_ACTION_BLOCKING
 
-	user.visible_message(span_notice("[user] presses the start button of the [src]."), span_notice("You press the start button of the [src]."))
+	user.visible_message(span_notice("[user]按下了[src]的启动按钮。"), span_notice("你按下了[src]的启动按钮。"))
 	get_consent()
 	return CLICK_ACTION_SUCCESS
 
@@ -185,10 +185,10 @@
 	update_appearance()
 
 	// defaults to rejecting it unless specified otherwise
-	if(tgui_alert(occupant, "The SAD you are within is about to rejuvenate you, resetting your body to its default state (in character preferences). Do you consent?", "Rejuvenate", list("Yes", "No"), timeout = 10 SECONDS) == "Yes")
+	if(tgui_alert(occupant, "你所在的自我实现装置即将使你恢复青春，将你的身体重置为默认状态（角色偏好设置中）。你同意吗？", "恢复青春", list("Yes", "No"), timeout = 10 SECONDS) == "Yes")
 		player_consent = CONSENT_GRANTED
 		say("Starting procedure! Baking for a cycle time of [DisplayTimeText(processing_time)] at laser power [display_power(active_power_usage)].")
-		to_chat(occupant, span_warning("This will take [DisplayTimeText(processing_time)] to complete. To cancel the procedure, hit the RESIST button or hotkey."))
+		to_chat(occupant, span_warning("此过程将耗时[DisplayTimeText(processing_time)]完成。要取消该程序，请点击RESIST按钮或使用快捷键。"))
 		set_light(l_range = 1.5, l_power = 1.2, l_on = TRUE)
 		sound_loop.start()
 		COOLDOWN_START(src, sad_processing_time, processing_time)
@@ -269,7 +269,7 @@
 		victim_living.apply_damage(0.10 * damage, BURN, BODY_ZONE_R_LEG, wound_bonus = 14)
 		victim_living.apply_damage(0.10 * damage, BURN, BODY_ZONE_L_ARM, wound_bonus = 14)
 		victim_living.apply_damage(0.10 * damage, BURN, BODY_ZONE_R_ARM, wound_bonus = 14)
-		victim_living.visible_message(span_warning("[src] shuts down, forcefully ejecting [victim_living]!"), span_danger("The [src] shuts down mid-procedure! That can't be good..."))
+		victim_living.visible_message(span_warning("[src]关闭，强行将[victim_living]弹出！"), span_danger("[src]在程序中途关闭了！这可不妙……"))
 
 	open_machine()
 
@@ -279,34 +279,34 @@
 		return
 
 	if(COOLDOWN_TIMELEFT(src, sad_processing_time) < BREAKOUT_TIME)
-		to_chat(user, span_warning("The emergency release is not responding! You start pushing against the door, but you feel your body changing... It's too late!"))
+		to_chat(user, span_warning("紧急释放装置没有响应！你开始推门，但感觉到身体正在变化……太迟了！"))
 		return
 
-	to_chat(user, span_notice("The emergency release is not responding! You start pushing against the door!"))
+	to_chat(user, span_notice("紧急释放装置没有响应！你开始推门！"))
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(BREAKOUT_TIME)].)"), \
-		span_hear("You hear a metallic creaking from [src]."))
+	user.visible_message(span_notice("你看到[user]正在踢[src]的门！"), \
+		span_notice("你靠在[src]的背面，开始将门推开……（这大约需要[DisplayTimeText(BREAKOUT_TIME)]。）"), \
+		span_hear("你听到[src]传来金属的嘎吱声。"))
 	user.emote("scream")
 
 	if(do_after(user, BREAKOUT_TIME, target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
 			return
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user]成功从[src]中挣脱出来了！"), \
+			span_notice("你成功从[src]中挣脱出来了！"))
 		eject_old_you(damaged_goods = TRUE)
 
 /obj/machinery/self_actualization_device/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src]当前正被占用！"))
 		return NONE
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/self_actualization_device/crowbar_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src]当前正被占用！"))
 		return NONE
 
 	return default_deconstruction_crowbar(user, tool)

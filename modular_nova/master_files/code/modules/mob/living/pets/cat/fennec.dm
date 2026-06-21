@@ -1,6 +1,6 @@
 /mob/living/basic/pet/cat/fennec
-	name = "fennec fox"
-	desc = "Vulpes Zerda. Also known as a Goob or a Dingler."
+	name = "耳廓狐"
+	desc = "沙狐。也被称为古布或丁格勒。"
 	icon = 'modular_nova/master_files/icons/mob/pets.dmi'
 	icon_state = "fennec"
 	icon_living = "fennec"

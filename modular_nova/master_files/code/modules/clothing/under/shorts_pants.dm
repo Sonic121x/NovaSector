@@ -76,20 +76,20 @@
 
 /obj/item/clothing/under/pants/nova/chaps/click_ctrl_shift(mob/user)
 	if(attached_accessories) //Make sure they don't have any attachments first
-		balloon_alert(user, "remove attached accessories!")
+		balloon_alert(user, "移除附加配件！")
 		return
 	//Converts the Chaps into an attachment
 	//See accessories.dm for the accessory version
 	var/obj/item/clothing/accessory/chaps/chaps_accessory = new /obj/item/clothing/accessory/chaps(user.drop_location())
 	chaps_accessory.greyscale_colors = greyscale_colors
 	chaps_accessory.update_greyscale()
-	user.balloon_alert(user, "changed to accessory!")
+	user.balloon_alert(user, "已改为配饰！")
 	qdel(src)
 	user.put_in_hands(chaps_accessory)
 
 /obj/item/clothing/under/pants/nova/chaps/examine(mob/user)
 	. = ..()
-	. += span_notice("It can be [EXAMINE_HINT("ctrl+shift clicked")] to be worn as an accessory.")
+	. += span_notice("它可以被[EXAMINE_HINT("ctrl+shift clicked")]以作为配饰穿戴。")
 
 /obj/item/clothing/under/pants/nova/chaps/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()

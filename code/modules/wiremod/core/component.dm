@@ -114,7 +114,7 @@
 /obj/item/circuit_component/examine(mob/user)
 	. = ..()
 	if(circuit_flags & CIRCUIT_FLAG_REFUSE_MODULE)
-		. += span_notice("It's incompatible with module components.")
+		. += span_notice("它与模块组件不兼容。")
 
 /// updates the ui alerts in the given component. new_flag adds flags, remove_flag removes them
 /obj/item/circuit_component/proc/update_ui_alerts(new_flag, remove_flag)

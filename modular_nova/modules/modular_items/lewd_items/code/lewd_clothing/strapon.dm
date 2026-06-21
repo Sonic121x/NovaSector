@@ -1,6 +1,6 @@
 /obj/item/clothing/strapon
-	name = "strapon"
-	desc = "Sometimes you need a special way to humiliate someone."
+	name = "假阳具"
+	desc = "有时你需要一种特殊的方式来羞辱某人。"
 	icon_state = "strapon_human"
 	base_icon_state = "strapon"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -110,8 +110,8 @@
 
 // button stuff
 /datum/action/item_action/take_strapon
-	name = "Put strapon in hand"
-	desc = "Put the strapon in your hand in order to use it properly."
+	name = "将假阳具拿在手中"
+	desc = "将假阳具拿在手中以便正确使用。"
 
 /datum/action/item_action/take_strapon/Trigger(trigger_flags)
 	. = ..()
@@ -126,7 +126,7 @@
 	if(src == user.belt)
 		toggle(user)
 	else
-		to_chat(user, span_warning("You need to put the strapon around your waist before you can use it!"))
+		to_chat(user, span_warning("你需要先把假阳具系在腰上才能使用！"))
 
 /obj/item/clothing/strapon/proc/toggle(mob/living/carbon/human/user)
 	playsound_if_pref(user, 'modular_nova/modules/modular_items/lewd_items/sounds/latex.ogg', 40, TRUE)
@@ -135,8 +135,8 @@
 	if(strapon_item && user.is_holding(strapon_item))
 		strapon_item.forceMove(src)
 		user.visible_message(
-			span_notice("[user] puts the strapon back."),
-			span_notice("You put the strapon back."),
+			span_notice("[user] 把假阳具收起来了。"),
+			span_notice("你把假阳具收起来了。"),
 		)
 		return
 
@@ -148,13 +148,13 @@
 
 	if(user.put_in_hands(strapon_item))
 		user.visible_message(
-			span_notice("[user] holds the strapon in [user.p_their()] hand menacingly."),
-			span_notice("You hold the strapon in your hand menacingly."),
+			span_notice("[user] 将假阳具握在[user.p_their()]手中，气势汹汹。"),
+			span_notice("你将假阳具握在手中，气势汹汹。"),
 		)
 	else
 		user.visible_message(
-			span_notice("[user] tries to hold the strapon in [user.p_their()] hand, but [user.p_their()] hand isn't empty!"),
-			span_notice("You try to hold the strapon in one of your hands, but your hands are not empty!"),
+			span_notice("[user] 试图将假阳具握在[user.p_their()]手中，但[user.p_their()]手不是空的！"),
+			span_notice("你试图将假阳具握在一只手中，但你的手不是空的！"),
 		)
 
 /// Makes a new item within contents
@@ -172,8 +172,8 @@
 	strapon_item = null
 
 /obj/item/strapon_dildo
-	name = "strapon"
-	desc = "An item with which to be menacing and merciless."
+	name = "假阳具"
+	desc = "一件用来展现威慑与无情的物品。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	icon_state = "dildo_human"
 	base_icon_state = "dildo"
@@ -209,7 +209,7 @@
 		return
 
 	if(!target_mob.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[target_mob] doesn't want you to do that."))
+		to_chat(user, span_danger("[target_mob] 不想让你这么做。"))
 		return
 
 	var/message = ""
@@ -218,10 +218,10 @@
 	switch(user.zone_selected)
 		if(BODY_ZONE_PRECISE_GROIN)
 			if(!vagina)
-				to_chat(user, span_danger("[target_mob] doesn't have suitable genitalia for that!"))
+				to_chat(user, span_danger("[target_mob] 没有适合的生殖器！"))
 				return
 			if(!(target_mob.is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW))
-				to_chat(user, span_danger("[target_mob]'s groin is covered!"))
+				to_chat(user, span_danger("[target_mob] 的胯部被遮住了！"))
 				return
 			message = pick(
 				"delicately rubs [target_mob]'s vagina with [src]",
@@ -233,7 +233,7 @@
 			target_mob.adjust_pleasure(8)
 			if(prob(40))
 				target_mob.try_lewd_autoemote(pick("twitch_s", "moan"))
-			user.visible_message(span_purple("[user] [message]!"))
+			user.visible_message(span_purple("[user] [message]！"))
 			playsound_if_pref(loc, pick(
 				'modular_nova/modules/modular_items/lewd_items/sounds/bang1.ogg',
 				'modular_nova/modules/modular_items/lewd_items/sounds/bang2.ogg',
@@ -244,7 +244,7 @@
 
 		if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_EYES)
 			if(target_mob.is_mouth_covered())
-				to_chat(user, span_danger("[target_mob]'s mouth is covered!"))
+				to_chat(user, span_danger("[target_mob] 的嘴被遮住了！"))
 				return
 			message = pick(
 				"fucks [target_mob]'s mouth with [src]",
@@ -257,7 +257,7 @@
 			target_mob.adjust_oxy_loss(1.5)
 			if(prob(70))
 				target_mob.try_lewd_autoemote(pick("gasp", "moan"))
-			user.visible_message(span_purple("[user] [message]!"))
+			user.visible_message(span_purple("[user] [message]！"))
 			playsound_if_pref(loc, pick(
 				'modular_nova/modules/modular_items/lewd_items/sounds/bang1.ogg',
 				'modular_nova/modules/modular_items/lewd_items/sounds/bang2.ogg',
@@ -268,7 +268,7 @@
 
 		else
 			if(!target_mob.is_bottomless())
-				to_chat(user, span_danger("[target_mob]'s anus is covered!"))
+				to_chat(user, span_danger("[target_mob]的肛门被遮住了！"))
 				return
 			message = pick(
 				"fucks [target_mob]'s ass with [src]",
@@ -280,7 +280,7 @@
 			target_mob.adjust_pleasure(5)
 			if(prob(60))
 				target_mob.try_lewd_autoemote(pick("twitch_s", "moan", "shiver"))
-			user.visible_message(span_purple("[user] [message]!"))
+			user.visible_message(span_purple("[user] [message]！"))
 			playsound_if_pref(loc, pick(
 				'modular_nova/modules/modular_items/lewd_items/sounds/bang1.ogg',
 				'modular_nova/modules/modular_items/lewd_items/sounds/bang2.ogg',

@@ -1,6 +1,6 @@
 /obj/machinery/recharge_station
-	name = "recharging station"
-	desc = "This device recharges energy-dependent lifeforms, like cyborgs, ethereals, and MODsuit users."
+	name = "充电站"
+	desc = "该设备可为依赖能量的生命形式充电，例如赛博格、以太体以及MOD防护服使用者。"
 	icon = 'icons/obj/machines/borg_charger.dmi'
 	icon_state = "borgcharger0"
 	base_icon_state = "borgcharger"
@@ -83,11 +83,11 @@
 /obj/machinery/recharge_station/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Recharging: <b>[display_power(recharge_speed, convert = FALSE)]</b>.")
+		. += span_notice("状态显示屏显示：充电速率：<b>[display_power(recharge_speed, convert = FALSE)]</b>。")
 		if(materials.silo)
-			. += span_notice("The ore silo link indicator is lit, and cyborg restocking can be toggled by <b>Right-Clicking</b> [src].")
+			. += span_notice("矿石仓库链接指示灯亮起，赛博格补货功能可通过<b>右键点击</b>[src]切换。")
 		if(repairs)
-			. += span_notice("[src] has been upgraded to support automatic repairs.")
+			. += span_notice("[src]已升级支持自动维修。")
 
 /obj/machinery/recharge_station/on_set_is_operational(old_value)
 	if(old_value) //Turned off

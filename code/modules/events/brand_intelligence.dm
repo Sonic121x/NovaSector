@@ -1,9 +1,9 @@
 /datum/round_event_control/brand_intelligence
-	name = "Brand Intelligence"
+	name = "品牌调研"
 	typepath = /datum/round_event/brand_intelligence
 	weight = 5
 	category = EVENT_CATEGORY_AI
-	description = "Vending machines will attack people until the Patient Zero is disabled."
+	description = "自动售货机将攻击人员，直到“零号病人”被停用。"
 	min_players = 15
 	max_occurrences = 1
 	min_wizard_trigger_potency = 2
@@ -53,7 +53,7 @@
 	if(fake)
 		var/obj/machinery/vending/prototype = pick(subtypesof(/obj/machinery/vending))
 		machine_name = initial(prototype.name)
-	priority_announce("Rampant brand intelligence has been detected aboard [station_name()]. Please inspect any [machine_name] brand vendors for aggressive marketing tactics, and reboot them if necessary.", "Machine Learning Alert", ANNOUNCER_BRANDINTELLIGENCE) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Rampant brand intelligence has been detected aboard [station_name()]. Please inspect any [machine_name] brand vendors for aggressive marketing tactics, and reboot them if necessary.", "Machine Learning Alert")
+	priority_announce("在[station_name()]检测到失控的品牌智能。请检查所有[machine_name]品牌的售货机是否存在激进的营销策略，并在必要时重启它们。", "Machine Learning Alert", ANNOUNCER_BRANDINTELLIGENCE) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Rampant brand intelligence has been detected aboard [station_name()]. Please inspect any [machine_name] brand vendors for aggressive marketing tactics, and reboot them if necessary.", "Machine Learning Alert")
 
 /datum/round_event/brand_intelligence/start()
 	origin_machine.shut_up = FALSE
@@ -67,7 +67,7 @@
 			clear_from_lists(saved)
 		if(!QDELETED(origin_machine))
 			origin_machine.speak("I am... vanquished. My people will remem...ber...meeee.")
-			origin_machine.visible_message(span_notice("[origin_machine] beeps and seems lifeless."))
+			origin_machine.visible_message(span_notice("[origin_machine] 哔了一声，似乎失去了活力。"))
 			clear_from_lists(origin_machine)
 		kill()
 		return

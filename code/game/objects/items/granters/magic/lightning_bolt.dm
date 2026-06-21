@@ -2,7 +2,7 @@
 	granted_action = /datum/action/cooldown/spell/pointed/projectile/lightningbolt
 	action_name = "lightning bolt"
 	icon_state ="booklightning"
-	desc = "Become like lightning, the rain transformed."
+	desc = "化身为闪电，雨水为之转变。"
 	remarks = list(
 		"I never quite liked insulated gloves...",
 		"Will this effect my haircut?",

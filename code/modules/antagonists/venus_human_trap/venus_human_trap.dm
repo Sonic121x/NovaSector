@@ -1,5 +1,5 @@
 /datum/antagonist/venus_human_trap
-	name = "\improper Venus Human Trap"
+	name = "\improper 维纳斯人形陷阱"
 	antagpanel_category = ANTAG_GROUP_OVERGROWTH
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE

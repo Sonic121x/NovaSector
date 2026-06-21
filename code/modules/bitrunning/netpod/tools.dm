@@ -7,7 +7,7 @@
 
 /obj/machinery/netpod/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		balloon_alert(user, "in use!")
+		balloon_alert(user, "正在使用中！")
 		return ITEM_INTERACT_SUCCESS
 
 	if(state_open)

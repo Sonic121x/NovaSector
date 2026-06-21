@@ -1,5 +1,5 @@
 /datum/mafia_ability
-	var/name = "Mafia Ability"
+	var/name = "黑手党能力"
 	var/ability_action = "brutally murder"
 
 	///The priority level this action must be sent at. Setting this to null will prevent it from being triggered automatically.
@@ -59,26 +59,26 @@
 	if(host_role.mafia_game_controller.phase != valid_use_period)
 		return FALSE
 	if(host_role.role_flags & ROLE_ROLEBLOCKED)
-		host_role.send_message_to_player(span_warning("You were roleblocked!"))
+		host_role.send_message_to_player(span_warning("你被角色封锁了！"))
 		return FALSE
 
 	if(potential_target)
 		if(use_flags & CAN_USE_ON_DEAD)
 			if(potential_target.game_status != MAFIA_DEAD)
 				if(!silent)
-					host_role.send_message_to_player(span_notice("This can only be used on dead players."))
+					host_role.send_message_to_player(span_notice("这只能对死亡的玩家使用。"))
 				return FALSE
 		else if(potential_target.game_status == MAFIA_DEAD)
 			if(!silent)
-				host_role.send_message_to_player(span_notice("This can only be used on living players."))
+				host_role.send_message_to_player(span_notice("这只能对存活的玩家使用。"))
 			return FALSE
 		if(!(use_flags & CAN_USE_ON_SELF) && (potential_target == host_role))
 			if(!silent)
-				host_role.send_message_to_player(span_notice("This can only be used on others."))
+				host_role.send_message_to_player(span_notice("这只能对他人使用。"))
 			return FALSE
 		if(!(use_flags & CAN_USE_ON_OTHERS) && (potential_target != host_role))
 			if(!silent)
-				host_role.send_message_to_player(span_notice("This can only be used on yourself."))
+				host_role.send_message_to_player(span_notice("这只能对自己使用。"))
 			return FALSE
 	return TRUE
 
@@ -100,7 +100,7 @@
 
 	if(target_role)
 		if(SEND_SIGNAL(target_role, COMSIG_MAFIA_ON_VISIT, game, host_role) & MAFIA_VISIT_INTERRUPTED) //visited a warden. something that prevents you by visiting that person
-			host_role.send_message_to_player(span_danger("Your [name] was interrupted!"))
+			host_role.send_message_to_player(span_danger("你的[name]被打断了！"))
 			return FALSE
 
 	return TRUE

@@ -1,5 +1,5 @@
 /datum/outfit/faction_captain
-	name = "Faction - Captain"
+	name = "派系 - 舰长"
 	head = /obj/item/clothing/head/hats/hos/beret/faction
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
@@ -14,7 +14,7 @@
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,/obj/item/storage/box/faction_access_cards=1, /obj/item/storage/box/zipties,/obj/item/melee/baton/telescopic=1, /obj/item/ammo_box/magazine/m45=2, /obj/item/gun/ballistic/automatic/pistol/m1911=1, /obj/item/stack/spacecash/c10000=1)
 
 /datum/outfit/faction_goon
-	name = "Faction - Goon"
+	name = "派系 - 打手"
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	head = /obj/item/clothing/head/helmet/swat
 	uniform = /obj/item/clothing/under/syndicate
@@ -31,7 +31,7 @@
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,/obj/item/ammo_box/magazine/wt550m9=2, /obj/item/ammo_box/magazine/m45=2, /obj/item/melee/baton=1, /obj/item/gun/ballistic/automatic/pistol/m1911=1,/obj/item/stack/spacecash/c1000=1)
 
 /datum/outfit/faction_medic
-	name = "Faction - Medic"
+	name = "派系 - 医护兵"
 	head = /obj/item/clothing/head/hats/hos/beret/faction
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
@@ -47,7 +47,7 @@
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1, /obj/item/storage/medkit/tactical=1,/obj/item/storage/medkit/regular=1,/obj/item/storage/medkit/toxin=1, /obj/item/ammo_box/magazine/m45=2, /obj/item/gun/ballistic/automatic/pistol/m1911=1,/obj/item/healthanalyzer=1,/obj/item/stack/spacecash/c1000=1)
 
 /datum/outfit/faction_tech
-	name = "Faction - Tech"
+	name = "派系 - 技术员"
 	head = /obj/item/clothing/head/hats/hos/beret/faction
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
@@ -64,7 +64,7 @@
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1, /obj/item/stack/sheet/iron/fifty=1, /obj/item/stack/sheet/glass/fifty=1, /obj/item/construction/rcd/combat, /obj/item/ammo_box/magazine/m45=2, /obj/item/gun/ballistic/automatic/pistol/m1911=1,/obj/item/stack/spacecash/c1000=1)
 
 /datum/outfit/faction_crew
-	name = "Faction - Crew"
+	name = "派系 - 船员"
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated

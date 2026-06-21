@@ -1,7 +1,7 @@
 ///RPED. Allows installing & exchaging parts on machines
 /obj/item/storage/part_replacer
-	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	name = "快速部件更换装置"
+	desc = "用于存储、分类和应用标准机器部件的特殊机械模块。"
 	icon_state = "RPED"
 	inhand_icon_state = "RPED"
 	worn_icon_state = "RPED"
@@ -52,8 +52,8 @@
 
 ///Bluespace RPED. Allows exchanging parts from a distance & through cameras
 /obj/item/storage/part_replacer/bluespace
-	name = "bluespace rapid part exchange device"
-	desc = "A version of the RPED that allows for replacement of parts and scanning from a distance, along with higher capacity for parts."
+	name = "蓝空快速部件更换装置"
+	desc = "RPED的一个版本，允许从远处更换部件和扫描，并具有更高的部件容量。"
 	icon_state = "BS_RPED"
 	inhand_icon_state = "BS_RPED"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -101,7 +101,7 @@
 		if(target_holder.total_volume)
 			target_holder.force_stop_reacting()
 			target_holder.clear_reagents()
-			to_chat(usr, span_notice("[src] churns as [inserted_component] has its reagents emptied into bluespace."))
+			to_chat(usr, span_notice("[src] 运转着，[inserted_component] 的试剂被排入蓝空。"))
 		target_holder.flags = target_holder.flags << 5 //masks all flags upto DUNKABLE(1<<5) i.e. removes all methods of transfering reagents to/from the object
 /**
  * Signal handler for a part is removed from the BRPED.
@@ -177,8 +177,8 @@
 
 ///Cyborg variant
 /obj/item/storage/part_replacer/cyborg
-	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one has an extra large compartment for more parts."
+	name = "快速部件更换装置"
+	desc = "用于存储、分类和应用标准机器零件的特殊机械模块。这个型号有一个超大的隔间，可以容纳更多零件。"
 	icon_state = "borgrped"
 	inhand_icon_state = "RPED"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -186,6 +186,6 @@
 	storage_type = /datum/storage/rped/bluespace
 
 /obj/item/storage/part_replacer/cyborg/small
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one has as much space, as your regular RPED"
+	desc = "用于存储、分类和应用标准机器零件的特殊机械模块。其空间与你的常规零件更换器一样大"
 	icon_state = "RPED"
 	storage_type = /datum/storage/rped

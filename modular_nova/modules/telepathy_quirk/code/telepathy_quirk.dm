@@ -1,6 +1,6 @@
 /datum/quirk/telepathic
 	name = "Telepathic"
-	desc = "You are able to transmit your thoughts to other living creatures."
+	desc = "你能将自己的思想传递给其他生物。"
 	gain_text = span_purple("Your mind roils with psychic energy.")
 	lose_text = span_notice("Mundanity encroaches upon your thoughts once again.")
 	medical_record_text = "Patient has an unusually enlarged Broca's area visible in cerebral biology, and appears to be able to communicate via extrasensory means."

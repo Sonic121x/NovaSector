@@ -1,6 +1,6 @@
 /obj/item/clothing/sextoy/magic_wand
-	name = "magic wand"
-	desc = "Not sure where is magic in this thing, but if you press button - it makes funny vibrations"
+	name = "魔法棒"
+	desc = "不太确定这东西的魔法在哪里，但如果你按下按钮——它会产生有趣的振动"
 	icon_state = "magicwand_off"
 	base_icon_state = "magicwand"
 	worn_icon_state = "magicwand"
@@ -96,11 +96,11 @@
 
 	var/message = ""
 	if(vibration_mode == "off")
-		to_chat(user, span_warning("You must turn on the toy, to use it!"))
+		to_chat(user, span_warning("你必须打开玩具才能使用它！"))
 		return FALSE
 
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("Looks like [target] don't want you to do that."))
+		to_chat(user, span_danger("看起来[target]不想让你这么做。"))
 		return FALSE
 
 	var/first_adjective = ""
@@ -125,7 +125,7 @@
 
 			var/currently_bottomless = target.is_bottomless()
 			if(!currently_bottomless && !vagina?.visibility_preference && !penis?.visibility_preference)
-				to_chat(user, span_danger("Looks like [target]'s groin is covered!"))
+				to_chat(user, span_danger("看起来[target]的腹股沟被遮住了！"))
 				return FALSE
 
 			var/target_organs = list()
@@ -146,7 +146,7 @@
 		if(BODY_ZONE_CHEST)
 			var/obj/item/organ/genital/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 			if(!(target.is_topless() || breasts.visibility_preference == GENITAL_ALWAYS_SHOW))
-				to_chat(user, span_danger("Looks like [target]'s chest is covered!"))
+				to_chat(user, span_danger("看起来[target]的胸部被遮住了！"))
 				return FALSE
 
 			var/breasts_or_nipples = breasts ? ORGAN_SLOT_BREASTS : ORGAN_SLOT_NIPPLES
@@ -157,20 +157,20 @@
 	if(prob(30))
 		target.try_lewd_autoemote(pick("twitch_s", "moan"))
 
-	user.visible_message(span_purple("[user] [message]!"))
+	user.visible_message(span_purple("[user][message]！"))
 	playsound_if_pref(loc, 'modular_nova/modules/modular_items/lewd_items/sounds/vibrate.ogg', (vibration_mode == "low" ? 10 : (vibration_mode == "high" ? 30 : 20)), TRUE, pref_to_check = /datum/preference/toggle/erp/sex_toy_sounds)
 
 /obj/item/clothing/sextoy/magic_wand/attack_self(mob/user)
 	toggle_mode()
 	switch(vibration_mode)
 		if("low")
-			to_chat(user, span_notice("Vibration mode now is low. Bzzz..."))
+			to_chat(user, span_notice("振动模式现在是低档。嗡……"))
 		if("medium")
-			to_chat(user, span_notice("Vibration mode now is medium. Bzzzz!"))
+			to_chat(user, span_notice("振动模式现在是中档。嗡嗡嗡！"))
 		if("high")
-			to_chat(user, span_notice("Vibration mode now is high. Careful with that thing."))
+			to_chat(user, span_notice("振动模式现在是高档。小心使用这东西。"))
 		if("off")
-			to_chat(user, span_notice("[src] is now turned off. Fun time's over?"))
+			to_chat(user, span_notice("[src]现在关闭了。欢乐时光结束了？"))
 
 	update_icon()
 	update_icon_state()

@@ -72,81 +72,81 @@ GLOBAL_LIST_INIT_TYPED(light_types, /datum/light_template, generate_light_types(
 	spawn_type = path_to_read
 
 /datum/light_template/read_light/standard_bar
-	name = "Light Bar"
+	name = "灯条"
 	category = "Bar"
 	path_to_read = /obj/machinery/light
 
 /datum/light_template/read_light/warm_bar
-	name = "Warm Bar"
+	name = "暖光灯条"
 	category = "Bar"
 	path_to_read = /obj/machinery/light/warm
 
 /datum/light_template/read_light/dimwarm_bar
-	name = "Dim Warm Bar"
+	name = "暗暖光灯条"
 	category = "Bar"
 	path_to_read = /obj/machinery/light/warm/dim
 
 /datum/light_template/read_light/cold_bar
-	name = "Cold Bar"
+	name = "冷光灯条"
 	category = "Bar"
 	path_to_read = /obj/machinery/light/cold
 
 /datum/light_template/read_light/dimcold_bar
-	name = "Dim Cold Bar"
+	name = "暗冷光灯条"
 	category = "Bar"
 	path_to_read = /obj/machinery/light/cold/dim
 
 /datum/light_template/read_light/red_bar
-	name = "Red Bar"
+	name = "红灯条"
 	category = "Bar"
 	path_to_read = /obj/machinery/light/red
 
 /datum/light_template/read_light/dimred_bar
-	name = "Dim Red Bar"
+	name = "暗红灯条"
 	category = "Bar"
 	path_to_read = /obj/machinery/light/red/dim
 
 /datum/light_template/read_light/blacklight_bar
-	name = "Black Bar"
+	name = "黑光灯条"
 	category = "Bar"
 	path_to_read = /obj/machinery/light/blacklight
 
 /datum/light_template/read_light/dim_bar
-	name = "Dim Bar"
+	name = "昏暗吧台灯"
 	category = "Bar"
 	path_to_read = /obj/machinery/light/dim
 
 /datum/light_template/read_light/very_dim_bar
-	name = "Very Dim Bar"
+	name = "极暗吧台灯"
 	category = "Bar"
 	path_to_read = /obj/machinery/light/very_dim
 
 /datum/light_template/read_light/standard_bulb
-	name = "Light Bulb"
+	name = "灯泡"
 	category = "Bulb"
 	path_to_read = /obj/machinery/light/small
 
 /datum/light_template/read_light/dim_bulb
-	name = "Dim Bulb"
+	name = "昏暗灯泡"
 	category = "Bulb"
 	path_to_read = /obj/machinery/light/small/dim
 
 /datum/light_template/read_light/red_bulb
-	name = "Red Bulb"
+	name = "红色灯泡"
 	category = "Bulb"
 	path_to_read = /obj/machinery/light/small/red
 
 /datum/light_template/read_light/dimred_bulb
-	name = "Dim-Red Bulb"
+	name = "暗红灯泡"
 	category = "Bulb"
 	path_to_read = /obj/machinery/light/small/red/dim
 
 /datum/light_template/read_light/blacklight_bulb
-	name = "Black Bulb"
+	name = "黑色灯泡"
 	category = "Bulb"
 	path_to_read = /obj/machinery/light/small/blacklight
 
 /datum/light_template/read_light/standard_floor
-	name = "Floor Light"
+	name = "地板灯"
 	category = "Misc"
 	path_to_read = /obj/machinery/light/floor

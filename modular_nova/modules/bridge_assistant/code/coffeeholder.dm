@@ -1,6 +1,6 @@
 /obj/item/storage/box/coffee_tray
-	name = "coffee tray"
-	desc = "An intern's best friend."
+	name = "咖啡托盘"
+	desc = "实习生的最佳伙伴。"
 	icon = 'modular_nova/modules/bridge_assistant/icons/coffeeholder.dmi'
 	icon_state = "holder"
 	inhand_icon_state = "cawfeeinhand"
@@ -28,8 +28,8 @@
 	set_holdable(/obj/item/reagent_containers/cup/glass/coffee)
 
 /obj/item/storage/box/coffee_tray/full
-	name = "coffee 4-pack"
-	desc = "For the enterprising and suffering worker!"
+	name = "咖啡四件套"
+	desc = "献给那些进取且饱受折磨的员工！"
 
 /obj/item/storage/box/coffee_tray/full/PopulateContents()
 	for(var/i in 1 to 4)

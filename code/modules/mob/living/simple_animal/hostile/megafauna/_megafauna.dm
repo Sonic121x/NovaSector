@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/megafauna
-	name = "boss of this gym"
-	desc = "Attack the weak point for massive damage."
+	name = "这个道馆的馆主"
+	desc = "攻击弱点以造成巨大伤害。"
 	abstract_type = /mob/living/simple_animal/hostile/megafauna
 	health = 1000
 	maxHealth = 1000
@@ -155,8 +155,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/proc/celebrate_kill(mob/living/L)
 	visible_message(
-		span_danger("[src] disembowels [L]!"),
-		span_userdanger("You feast on [L]'s organs, restoring your health!"))
+		span_danger("[src] 将 [L] 开膛破肚了！"),
+		span_userdanger("你大快朵颐着[L]的器官，恢复了你的健康！"))
 
 /mob/living/simple_animal/hostile/megafauna/CanAttack(atom/the_target)
 	. = ..()
@@ -195,7 +195,7 @@
 		ranged_cooldown += cooldown_updates[COOLDOWN_UPDATE_ADD_RANGED]
 
 /datum/action/innate/megafauna_attack
-	name = "Megafauna Attack"
+	name = "巨型生物攻击"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = ""
 	var/chosen_message

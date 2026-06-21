@@ -1,5 +1,5 @@
 /datum/antagonist/domain_ghost_actor
-	name = "Virtual Domain Actor"
+	name = "虚拟域演员"
 	antagpanel_category = ANTAG_GROUP_GLITCH
 	pref_flag = ROLE_GLITCH
 	show_to_ghosts = TRUE

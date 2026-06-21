@@ -2,7 +2,7 @@
 
 // Reskinned soil to make it look like it's turf, but it's not!
 /obj/machinery/hydroponics/soil/fake_turf
-	desc = "A patch of fertile soil that you can plant stuff in."
+	desc = "一块可以种植东西的肥沃土壤。"
 	icon = 'icons/turf/floors.dmi' // This makes it look like the dirt floor
 	icon_state = "dirt"
 	layer = LOW_FLOOR_LAYER
@@ -11,7 +11,7 @@
 	pixel_z = 0
 
 /turf/open/floor/circuit/green/xenobio
-	desc = "The air about this floor seems.. different?"
+	desc = "这片地板周围的空气似乎……有些不同？"
 	initial_gas_mix = XENOBIO_BZ
 
 /turf/open/floor/grass/fairy/icemoon
@@ -23,7 +23,7 @@
 	baseturfs = /turf/open/misc/asteroid/snow/icemoon
 
 /turf/closed/indestructible/normal_wall
-	name = "wall"
+	name = "墙壁"
 	icon = 'modular_nova/modules/aesthetics/walls/icons/wall.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
@@ -38,7 +38,7 @@
 	icon_state = /obj/machinery/door/poddoor::icon_state
 
 /turf/open/skyline
-	name = "long way down"
+	name = "漫长的坠落"
 	icon = 'modular_nova/master_files/icons/obj/skyscraper/background.dmi'
 	base_icon_state = "0,34"
 

@@ -1,6 +1,6 @@
 ///Action for voice_actor quirk
 /datum/action/innate/alter_voice
-	name = "Swap Voice"
+	name = "切换声线"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "swap"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -103,11 +103,11 @@
 	active = !active
 	if(active)
 		set_secondary_voice()
-		to_chat(owner, span_green("You are now voice acting."))
+		to_chat(owner, span_green("你已开始进行配音。"))
 	else
 		set_primary_voice()
-		to_chat(owner, span_green("You have stopped voice acting."))
-	owner.balloon_alert(owner, "voice changed")
+		to_chat(owner, span_green("你已停止配音。"))
+	owner.balloon_alert(owner, "语音已更改")
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 ///Swaps to the Voice Actor quirk's secondary chat color, TTS voice, and blooper

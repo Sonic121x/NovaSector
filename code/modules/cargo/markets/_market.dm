@@ -88,7 +88,7 @@
 			item.stock += rand(1, item.stock_max - item.stock)
 
 /datum/market/blackmarket
-	name = "Black Market"
+	name = "黑市"
 	shipping = list(
 		SHIPPING_METHOD_LTSRBT = 40,
 		SHIPPING_METHOD_LAUNCH = 0,

@@ -21,7 +21,7 @@
 	return
 
 /datum/dynamic_ruleset/midround/spiders
-	name = "Spiders"
+	name = "蜘蛛"
 	config_tag = "Spiders"
 	midround_type = HEAVY_MIDROUND
 	false_alarm_able = TRUE
@@ -53,13 +53,13 @@
 	addtimer(CALLBACK(src, PROC_REF(announce_spiders)), rand(375, 600) SECONDS)
 
 /datum/dynamic_ruleset/midround/spiders/proc/announce_spiders()
-	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", ANNOUNCER_ALIENS)
+	priority_announce("检测到不明生命信号正在登临[station_name()]。请确保所有外部通道的安全，包括管道和通风系统。", "生命信号警报", ANNOUNCER_ALIENS)
 
 /datum/dynamic_ruleset/midround/spiders/false_alarm()
 	announce_spiders()
 
 /datum/dynamic_ruleset/midround/pirates
-	name = "Pirates"
+	name = "海盗"
 	config_tag = "Light Pirates"
 	midround_type = LIGHT_MIDROUND
 	jobban_flag = ROLE_TRAITOR
@@ -88,7 +88,7 @@
 	return GLOB.light_pirate_gangs
 
 /datum/dynamic_ruleset/midround/pirates/heavy
-	name = "Pirates"
+	name = "海盗"
 	config_tag = "Heavy Pirates"
 	midround_type = HEAVY_MIDROUND
 	jobban_flag = ROLE_TRAITOR
@@ -106,7 +106,7 @@
 	var/list/admin_pool = list("[RULESET_CONFIG_CANCEL]" = TRUE, "[RANDOM_PIRATE_POOL]" = TRUE)
 	for(var/datum/pirate_gang/gang as anything in default_pirate_pool())
 		admin_pool[gang.name] = gang
-	var/picked = tgui_input_list(admin, "Select a pirate gang", "Pirate Gang Selection", admin_pool)
+	var/picked = tgui_input_list(admin, "选择一个海盗帮派", "海盗帮派选择", admin_pool)
 	if(!picked || picked == RULESET_CONFIG_CANCEL)
 		return RULESET_CONFIG_CANCEL
 	if(picked == RANDOM_PIRATE_POOL)
@@ -134,7 +134,7 @@
 		payoff = max(PAYOFF_MIN, FLOOR(account.account_balance * 0.80, 1000))
 	var/datum/comm_message/threat = chosen_gang.generate_message(payoff)
 	//send message
-	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", SSstation.announcer.get_rand_report_sound())
+	priority_announce("收到子空间通讯。所有通讯控制台已开启安全频道。", "收到消息", SSstation.announcer.get_rand_report_sound())
 	threat.answer_callback = CALLBACK(src, PROC_REF(pirates_answered), threat, chosen_gang, payoff, world.time)
 	addtimer(CALLBACK(src, PROC_REF(spawn_pirates), threat, chosen_gang), RESPONSE_MAX_TIME)
 	GLOB.communications_controller.send_message(threat, unique = TRUE)
@@ -254,7 +254,7 @@
 
 	return SSpolling.poll_candidates(
 		group = trim_candidates(GLOB.dead_player_list | GLOB.current_observers_list),
-		question = "Looking for volunteers to become [span_notice(readable_poll_role)] for [span_danger(name)]",
+		question = "正在招募志愿者成为[span_notice(readable_poll_role)]，参与[span_danger(name)]",
 		// check_jobban = list(ROLE_SYNDICATE, jobban_flag || pref_flag), // Not necessary, handled in trim_candidates()
 		// role = pref_flag, // Not necessary, handled in trim_candidates()
 		poll_time = 1 MINUTES, // NOVA EDIT CHANGE - ORIGINAL: poll_time = 30 SECONDS,
@@ -263,7 +263,7 @@
 	)
 
 /datum/dynamic_ruleset/midround/from_ghosts/wizard
-	name = "Wizard"
+	name = "巫师"
 	config_tag = "Midround Wizard"
 	preview_antag_datum = /datum/antagonist/wizard
 	midround_type = HEAVY_MIDROUND
@@ -286,7 +286,7 @@
 	candidate.add_antag_datum(/datum/antagonist/wizard) // moves to lair for us
 
 /datum/dynamic_ruleset/midround/from_ghosts/nukies
-	name = "Nuclear Operatives"
+	name = "核弹特工"
 	config_tag = "Midround Nukeops"
 	preview_antag_datum = /datum/antagonist/nukeop
 	midround_type = HEAVY_MIDROUND
@@ -355,7 +355,7 @@
 			SSticker.news_report = OPERATIVE_SKIRMISH
 
 /datum/dynamic_ruleset/midround/from_ghosts/nukies/clown
-	name = "Clown Operatives"
+	name = "小丑特工"
 	config_tag = "Midround Clownops"
 	preview_antag_datum = /datum/antagonist/nukeop/clownop
 	candidate_role = "Operative"
@@ -371,7 +371,7 @@
 		candidate.add_antag_datum(/datum/antagonist/nukeop/clownop, nuke_team) // moves to nuke base for us
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob
-	name = "Blob"
+	name = "凝胶怪"
 	config_tag = "Blob"
 	preview_antag_datum = /datum/antagonist/blob
 	midround_type = HEAVY_MIDROUND
@@ -405,7 +405,7 @@
 	return pick(GLOB.blobstart)
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/false_alarm()
-	priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_OUTBREAK5)
+	priority_announce("确认在[station_name()]上爆发了5级生物危害。所有人员必须控制疫情。", "生物危害警报", ANNOUNCER_OUTBREAK5)
 
 	// Set status displays to biohazard alert even for false alarm
 	send_status_display_biohazard_alert()
@@ -442,7 +442,7 @@
 	addtimer(CALLBACK(src, PROC_REF(announce_xenos)), rand(375, 600) SECONDS)
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/proc/announce_xenos()
-	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", ANNOUNCER_ALIENS)
+	priority_announce("检测到不明生命信号正在登上[station_name()]。请确保所有外部通道的安全，包括管道和通风系统。", "生命信号警报", ANNOUNCER_ALIENS)
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/false_alarm()
 	announce_xenos()
@@ -459,7 +459,7 @@
 	candidate.current.move_into_vent(vent)
 
 /datum/dynamic_ruleset/midround/from_ghosts/blood_worms
-	name = "Blood Worm Infestation"
+	name = "血蠕虫侵扰"
 	config_tag = "Midround Blood Worm"
 	preview_antag_datum = /datum/antagonist/blood_worm/infestation
 	// Please set this to HEAVY_MIDROUND once dynamic has fine-grained handling for spawn times and doesn't restrict all heavy midrounds to spawning after 40 minutes.
@@ -495,13 +495,13 @@
 	candidate.current.move_into_vent(vent)
 
 /datum/dynamic_ruleset/midround/from_ghosts/blood_worms/proc/announce_worms()
-	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", ANNOUNCER_ALIENS)
+	priority_announce("检测到不明生命信号正在登上[station_name()]。请确保所有外部通道的安全，包括管道和通风系统。", "生命信号警报", ANNOUNCER_ALIENS)
 
 /datum/dynamic_ruleset/midround/from_ghosts/blood_worms/false_alarm()
 	announce_worms()
 
 /datum/dynamic_ruleset/midround/from_ghosts/nightmare
-	name = "Nightmare"
+	name = "梦魇"
 	config_tag = "Nightmare"
 	preview_antag_datum = /datum/antagonist/nightmare
 	midround_type = LIGHT_MIDROUND
@@ -522,7 +522,7 @@
 	playsound(candidate.current, 'sound/effects/magic/ethereal_exit.ogg', 50, TRUE, -1)
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_dragon
-	name = "Space Dragon"
+	name = "太空龙"
 	config_tag = "Space Dragon"
 	preview_antag_datum = /datum/antagonist/space_dragon
 	midround_type = HEAVY_MIDROUND
@@ -556,7 +556,7 @@
 	addtimer(CALLBACK(src, PROC_REF(announce_space_dragon)), rand(5, 10) SECONDS)
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_dragon/proc/announce_space_dragon()
-	priority_announce("A large organic energy flux has been recorded near of [station_name()], please stand-by.", "Lifesign Alert")
+	priority_announce("在[station_name()]附近记录到巨大的有机能量波动，请待命。", "生命信号警报")
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_dragon/false_alarm()
 	announce_space_dragon()
@@ -593,7 +593,7 @@
 		candidate.add_antag_datum(/datum/antagonist/abductor/agent, team) // sets species and moves to spawn point
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_ninja
-	name = "Space Ninja"
+	name = "太空忍者"
 	config_tag = "Space Ninja"
 	preview_antag_datum = /datum/antagonist/ninja
 	midround_type = HEAVY_MIDROUND
@@ -628,7 +628,7 @@
 	prompt_namechange(new_ninja, new_ninja.client) // NOVA EDIT ADDITION
 
 /datum/dynamic_ruleset/midround/from_ghosts/revenant
-	name = "Revenant"
+	name = "亡魂"
 	config_tag = "Revenant"
 	preview_antag_datum = /datum/antagonist/revenant
 	midround_type = LIGHT_MIDROUND
@@ -678,7 +678,7 @@
 	return spawn_locs
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_changeling
-	name = "Space Changeling"
+	name = "太空变形者"
 	config_tag = "Midround Changeling"
 	preview_antag_datum = /datum/antagonist/changeling/space
 	midround_type = LIGHT_MIDROUND
@@ -698,7 +698,7 @@
 	generate_changeling_meteor(candidate)
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_changeling/mass
-	name = "Mass Space Changelings"
+	name = "集群太空变形者"
 	config_tag = "Mass Changelings"
 	midround_type = HEAVY_MIDROUND
 	min_pop = 25
@@ -713,7 +713,7 @@
 	)
 
 /datum/dynamic_ruleset/midround/from_ghosts/paradox_clone
-	name = "Paradox Clone"
+	name = "悖论克隆体"
 	config_tag = "Paradox Clone"
 	preview_antag_datum = /datum/antagonist/paradox_clone
 	midround_type = LIGHT_MIDROUND
@@ -764,7 +764,7 @@
 	return null
 
 /datum/dynamic_ruleset/midround/from_ghosts/voidwalker
-	name = "Voidwalker"
+	name = "虚空行者"
 	config_tag = "Voidwalker"
 	preview_antag_datum = /datum/antagonist/voidwalker
 
@@ -790,7 +790,7 @@
 	playsound(candidate.current, 'sound/effects/magic/ethereal_exit.ogg', 50, TRUE, -1)
 
 /datum/dynamic_ruleset/midround/from_ghosts/fugitives
-	name = "Fugitive"
+	name = "逃亡者"
 	config_tag = "Fugitives"
 	preview_antag_datum = /datum/antagonist/fugitive
 	midround_type = LIGHT_MIDROUND
@@ -845,13 +845,13 @@
 		RULESET_CONFIG_CANCEL,
 	)
 
-	var/picked_fugitive_backstory = tgui_input_list(admin, "Select a fugitive backstory", "Fugitive Backstory", fugitive_backstories)
+	var/picked_fugitive_backstory = tgui_input_list(admin, "选择逃亡者背景故事", "逃亡者背景故事", fugitive_backstories)
 	if(!picked_fugitive_backstory || picked_fugitive_backstory == RULESET_CONFIG_CANCEL)
 		return RULESET_CONFIG_CANCEL
 	if(picked_fugitive_backstory != RANDOM_BACKSTORY)
 		fugitive_backstory = picked_fugitive_backstory
 
-	var/picked_hunter_backstory = tgui_input_list(admin, "Select a hunter backstory", "Hunter Backstory", hunter_backstories)
+	var/picked_hunter_backstory = tgui_input_list(admin, "选择猎人背景故事", "猎人背景故事", hunter_backstories)
 	if(!picked_hunter_backstory || picked_hunter_backstory == RULESET_CONFIG_CANCEL)
 		return RULESET_CONFIG_CANCEL
 	if(picked_hunter_backstory != RANDOM_BACKSTORY)
@@ -929,7 +929,7 @@
 	addtimer(CALLBACK(src, PROC_REF(check_spawn_hunters), remaining_time - 1 MINUTES), 1 MINUTES)
 
 /datum/dynamic_ruleset/midround/from_ghosts/fugitives/proc/spawn_hunters()
-	var/list/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for a group of [span_notice(hunter_backstory)]?", check_jobban = list(ROLE_FUGITIVE_HUNTER, ROLE_SYNDICATE), alert_pic = /obj/machinery/sleeper, role_name_text = hunter_backstory)
+	var/list/candidates = SSpolling.poll_ghost_candidates("你希望被考虑加入一个[span_notice(hunter_backstory)]小组吗？", check_jobban = list(ROLE_FUGITIVE_HUNTER, ROLE_SYNDICATE), alert_pic = /obj/machinery/sleeper, role_name_text = hunter_backstory)
 	shuffle_inplace(candidates)
 
 	var/datum/map_template/shuttle/hunter/ship
@@ -981,9 +981,9 @@
 			announcement_text_list += "We demand your cooperation in bringing this criminal to justice."
 			announcement_title += "Spacepol Command"
 		if(HUNTER_PACK_RUSSIAN)
-			announcement_text_list += "Zdraviya zhelaju, [station_name()] crew. We are coming to your station."
-			announcement_text_list += "There is a criminal aboard. We will arrest them and return them to the gulag. That's good, yes?"
-			announcement_title += "Russian Freighter"
+			announcement_text_list += "[station_name()]的船员们，向你们致意。我们正前往你们的空间站。"
+			announcement_text_list += "你们站上有一名罪犯。我们会逮捕他们，并把他们送回劳改营。这样很好，对吧？"
+			announcement_title += "俄罗斯货船"
 		if(HUNTER_PACK_BOUNTY)
 			announcement_text_list += "[station_name()]. One of our bounty marks has ended up on your station. We will be arriving to collect shortly."
 			announcement_text_list += "Let's make this quick. If you don't want trouble, stay the hell out of our way."
@@ -1008,7 +1008,7 @@
 	priority_announce(jointext(announcement_text_list, " "), announcement_title)
 
 /datum/dynamic_ruleset/midround/from_ghosts/morph
-	name = "Morph"
+	name = "变形怪"
 	config_tag = "Morph"
 	// preview_antag_datum = /datum/antagonist/morph // Doesn't actually have its own pref
 	midround_type = LIGHT_MIDROUND
@@ -1030,7 +1030,7 @@
 	candidate.add_antag_datum(/datum/antagonist/morph)
 
 /datum/dynamic_ruleset/midround/from_ghosts/slaughter_demon
-	name = "Slaughter Demon"
+	name = "屠杀恶魔"
 	config_tag = "Slaughter Demon"
 	candidate_role = "Slaughter Demon"
 	// preview_antag_datum = /datum/antagonist/slaughter // Doesn't actually have its own pref
@@ -1099,7 +1099,7 @@
 	return !candidate.is_antag()
 
 /datum/dynamic_ruleset/midround/from_living/traitor
-	name = "Traitor"
+	name = "叛徒"
 	config_tag = "Midround Traitor"
 	preview_antag_datum = /datum/antagonist/traitor
 	midround_type = LIGHT_MIDROUND
@@ -1118,12 +1118,12 @@
 
 /datum/dynamic_ruleset/midround/from_living/traitor/false_alarm()
 	priority_announce(
-		"Attention crew, it appears that someone on your station has hijacked your telecommunications and broadcasted an unknown signal.",
-		"[command_name()] High-Priority Update",
+		"全体船员请注意，似乎有人劫持了你们空间站的远程通信系统并广播了未知信号。",
+		"[command_name()] 高优先级更新",
 	)
 
 /datum/dynamic_ruleset/midround/from_living/traitor/mass
-	name = "Mass Traitors"
+	name = "集群叛徒"
 	config_tag = "Mass Traitors"
 	midround_type = HEAVY_MIDROUND
 	min_pop = 15
@@ -1168,7 +1168,7 @@
 	return ..() && !HAS_TRAIT(SSstation, STATION_TRAIT_HUMAN_AI)
 
 /datum/dynamic_ruleset/midround/from_living/blob
-	name = "Blob Infection"
+	name = "凝胶体感染"
 	config_tag = "Blob Infection"
 	preview_antag_datum = /datum/antagonist/blob/infection
 	midround_type = HEAVY_MIDROUND
@@ -1192,7 +1192,7 @@
 	)
 
 /datum/dynamic_ruleset/midround/from_living/obsesed
-	name = "Obsession"
+	name = "执念"
 	config_tag = "Midround Obsessed"
 	preview_antag_datum = /datum/antagonist/obsessed
 	midround_type = LIGHT_MIDROUND

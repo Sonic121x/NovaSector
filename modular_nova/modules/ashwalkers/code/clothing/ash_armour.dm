@@ -32,8 +32,8 @@
 	bio = 50
 
 /obj/item/clothing/head/ash_headdress
-	name = "ash headdress"
-	desc = "A headdress that shows the dominance of the walkers of ash."
+	name = "灰烬头饰"
+	desc = "彰显灰烬行者统治地位的头饰。"
 	icon = 'modular_nova/modules/ashwalkers/icons/ashwalker_clothing.dmi'
 	worn_icon = 'modular_nova/modules/ashwalkers/icons/ashwalker_clothing_mob.dmi'
 	icon_state = "headdress"
@@ -43,7 +43,7 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 /datum/crafting_recipe/ash_recipe/ash_headdress
-	name = "Ash Headdress"
+	name = "灰烬头饰"
 	result = /obj/item/clothing/head/ash_headdress
 	category = CAT_CLOTHING
 	//recipe given to ashwalkers as part of their spawner/team setting
@@ -54,18 +54,18 @@
 	AddComponent(/datum/component/armor_plate, 2, /obj/item/stack/sheet/animalhide/goliath_hide, list(MELEE = 5, BULLET = 2, LASER = 2))
 
 /obj/item/clothing/head/ash_headdress/winged
-	name = "winged ash headdress"
+	name = "带翼灰烬头饰"
 	icon_state = "wing_headdress"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 /datum/crafting_recipe/ash_recipe/ash_headdress/winged
-	name = "Winged Ash Headdress"
+	name = "带翼灰烬头饰"
 	result = /obj/item/clothing/head/ash_headdress/winged
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /obj/item/clothing/under/costume/gladiator/ash_walker/ash_robes
-	name = "ash robes"
-	desc = "A set of hand-made robes. The bones still seem to have some muscle still attached."
+	name = "灰烬长袍"
+	desc = "一套手工制作的长袍。骨头看起来还附着一些肌肉。"
 	icon = 'modular_nova/modules/ashwalkers/icons/ashwalker_clothing.dmi'
 	worn_icon = 'modular_nova/modules/ashwalkers/icons/ashwalker_clothing_mob.dmi'
 	icon_state = "robes"
@@ -74,7 +74,7 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 /datum/crafting_recipe/ash_recipe/ash_robes
-	name = "Ash Robes"
+	name = "灰烬长袍"
 	result = /obj/item/clothing/under/costume/gladiator/ash_walker/ash_robes
 	category = CAT_CLOTHING
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
@@ -84,8 +84,8 @@
 	AddComponent(/datum/component/armor_plate, 2, /obj/item/stack/sheet/animalhide/goliath_hide, list(MELEE = 5, BULLET = 2, LASER = 2))
 
 /obj/item/clothing/suit/ash_plates
-	name = "ash combat plates"
-	desc = "A combination of bones and hides, strung together by watcher sinew."
+	name = "灰烬战斗板甲"
+	desc = "由骨头和兽皮组合而成，用观察者肌腱串联。"
 	icon = 'modular_nova/modules/ashwalkers/icons/ashwalker_clothing.dmi'
 	worn_icon = 'modular_nova/modules/ashwalkers/icons/ashwalker_clothing_mob.dmi'
 	icon_state = "combat_plates"
@@ -95,7 +95,7 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 /datum/crafting_recipe/ash_recipe/ash_plates
-	name = "Ash Combat Plates"
+	name = "灰烬战斗板甲"
 	result = /obj/item/clothing/suit/ash_plates
 	category = CAT_CLOTHING
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
@@ -105,19 +105,19 @@
 	AddComponent(/datum/component/armor_plate, 2, /obj/item/stack/sheet/animalhide/goliath_hide, list(MELEE = 5, BULLET = 2, LASER = 2))
 
 /obj/item/clothing/suit/ash_plates/decorated
-	name = "decorated ash combat plates"
+	name = "装饰过的灰烬战斗板甲"
 	icon_state = "dec_breastplate"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 /datum/crafting_recipe/ash_recipe/ash_plates/decorated
-	name = "Decorated Ash Combat Plates"
+	name = "装饰过的灰烬战斗板甲"
 	result = /obj/item/clothing/suit/ash_plates/decorated
 	category = CAT_CLOTHING
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /obj/item/clothing/shoes/bone_greaves
-	name = "bone greaves"
-	desc = "For when you're expecting to step on spiky things. Offers modest protection to your feet."
+	name = "骨制胫甲"
+	desc = "用于当你预计会踩到尖刺物时。为你的脚部提供适度的保护。"
 	icon = 'modular_nova/modules/ashwalkers/icons/shoes.dmi'
 	worn_icon = 'modular_nova/modules/ashwalkers/icons/feet.dmi'
 	worn_icon_digi = 'modular_nova/modules/ashwalkers/icons/feet_digi.dmi'
@@ -129,7 +129,7 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/ash_recipe/bone_greaves
-	name = "Bone Greaves"
+	name = "骨制胫甲"
 	result = /obj/item/clothing/shoes/bone_greaves
 	reqs = list(
 		/obj/item/stack/sheet/bone = 2,

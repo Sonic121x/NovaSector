@@ -5,7 +5,7 @@
  * This is done before anything else.
  */
 /datum/mafia_ability/roleblock
-	name = "Advise"
+	name = "建议"
 	ability_action = "give legal counsel to"
 	action_priority = COMSIG_MAFIA_NIGHT_PRE_ACTION_PHASE
 

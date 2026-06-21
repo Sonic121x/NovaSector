@@ -27,7 +27,7 @@
 	if(ishuman(user) && !isskeleton(user)) //this weapon wasn't meant for mortals.
 		var/mob/living/carbon/human/human_user = user
 		if(rattle_bones(human_user, stam_dam_mult = stam_damage_mult * 2))
-			to_chat(human_user, span_userdanger("Your ears weren't meant for this spectral sound."))
+			to_chat(human_user, span_userdanger("你的耳朵本不该承受这种灵异之声。"))
 			INVOKE_ASYNC(src, PROC_REF(spectral_change), human_user, user, source)
 		return
 
@@ -69,13 +69,13 @@
 		return
 
 	if(single_use)
-		to_chat(user, span_warning("You feel like [source] has lost its spookiness..."))
+		to_chat(user, span_warning("你觉得[source]已经失去了它的灵异感..."))
 		Detach(source)
 
 	human.Paralyze(2 SECONDS)
 	human.set_species(/datum/species/skeleton)
-	human.visible_message(span_warning("[human] has given up on life as a mortal."))
-	to_chat(human, span_boldnotice("You are a spooky skeleton!"))
+	human.visible_message(span_warning("[human]已经放弃了作为凡人的生活。"))
+	to_chat(human, span_boldnotice("你是一个灵异骷髅！"))
 	to_chat(human,
 		span_boldnotice("A new life and identity has begun.\
 		[too_spooky ? "Help your fellow skeletons into bringing out the spooky-pocalypse." : ""] \
@@ -87,7 +87,7 @@
 		return
 	var/turf/turf = get_turf(human)
 	if(!prob(90))
-		to_chat(human, span_boldwarning("The spooky gods forgot to ship your instrument. Better luck next unlife."))
+		to_chat(human, span_boldwarning("灵异之神忘了给你配送乐器。下次亡灵生活祝你好运。"))
 		return
 	var/obj/item/instrument = pick(
 		/obj/item/instrument/saxophone/spectral,
@@ -97,7 +97,7 @@
 	new instrument(turf)
 
 /datum/element/spooky/proc/change_name(mob/living/carbon/human/spooked)
-	var/skeleton_name = spooked.client ? sanitize_name(tgui_input_text(spooked, "Enter your new skeleton name", "Spookifier", spooked.real_name, MAX_NAME_LEN)) : null
+	var/skeleton_name = spooked.client ? sanitize_name(tgui_input_text(spooked, "输入你的新骷髅名字", "骷髅化器", spooked.real_name, MAX_NAME_LEN)) : null
 	if(!skeleton_name)
 		skeleton_name = "\improper spooky skeleton"
 	spooked.fully_replace_character_name(null, skeleton_name)

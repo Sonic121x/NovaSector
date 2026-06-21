@@ -110,7 +110,7 @@
 		if(!has_trait)
 			return
 
-	attacker.visible_message(span_warning("[attacker] dispells the ghostly energy from [source]!"), span_warning("You dispel the ghostly energy from [source]!"))
+	attacker.visible_message(span_warning("[attacker] 驱散了 [source] 上的幽灵能量！"), span_warning("你驱散了[source]上的幽灵能量！"))
 	clear_haunting()
 	return COMPONENT_NO_AFTERATTACK
 
@@ -134,6 +134,6 @@
 			haunt_color = "#52336e", \
 			haunt_duration = duration, \
 			aggro_radius = range, \
-			spawn_message = span_revenwarning("[object_to_possess] slowly rises upward, hanging menacingly in the air..."), \
-			despawn_message = span_revenwarning("[object_to_possess] settles to the floor, lifeless and unmoving."), \
+			spawn_message = span_revenwarning("[object_to_possess] 缓缓升起，威胁性地悬浮在空中..."), \
+			despawn_message = span_revenwarning("[object_to_possess] 落在地板上，毫无生气，一动不动。"), \
 		)

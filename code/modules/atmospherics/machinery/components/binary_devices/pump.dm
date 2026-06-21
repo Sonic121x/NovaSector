@@ -12,8 +12,8 @@
 
 /obj/machinery/atmospherics/components/binary/pump
 	icon_state = "pump_map-3"
-	name = "gas pump"
-	desc = "A pump that moves gas by pressure."
+	name = "气泵"
+	desc = "靠压力使气体产生流动的泵体。"
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 	construction_type = /obj/item/pipe/directional
@@ -36,7 +36,7 @@
 /obj/machinery/atmospherics/components/binary/pump/click_ctrl(mob/user)
 	if(is_operational)
 		set_on(!on)
-		balloon_alert(user, "turned [on ? "on" : "off"]")
+		balloon_alert(user, "已[on ? "on" : "off"]")
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
@@ -47,7 +47,7 @@
 
 	target_pressure = MAX_OUTPUT_PRESSURE
 	investigate_log("was set to [target_pressure] kPa by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, "pressure output set to [target_pressure] kPa")
+	balloon_alert(user, "压力输出设置为[target_pressure] kPa")
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS
 
@@ -103,7 +103,7 @@
 /obj/machinery/atmospherics/components/binary/pump/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
+		to_chat(user, span_warning("你无法拆下[src]，请先关闭它！"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/binary/pump/layer2
@@ -132,7 +132,7 @@
 
 /obj/item/circuit_component/atmos_pump
 	display_name = "Atmospheric Binary Pump"
-	desc = "The interface for communicating with a pump."
+	desc = "与泵进行通信的接口。"
 
 	///Set the target pressure of the pump
 	var/datum/port/input/pressure_value

@@ -11,8 +11,8 @@
  * Owned as a pet both by the HoS (sometimes) and also the Nuclear Operatives.
  */
 /mob/living/basic/carp
-	name = "space carp"
-	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	name = "太空鲤鱼"
+	desc = "一种凶猛、长着尖牙、形似鱼类的生物。"
 	icon = 'icons/mob/simple/carp.dmi'
 	icon_state = "base"
 	icon_living = "base"
@@ -148,7 +148,7 @@
 	if (!feedback)
 		return
 	spin(spintime = 10, speed = 1)
-	visible_message("[src] spins in a circle as it seems to bond with [tamer].")
+	visible_message("[src] 转着圈，似乎正在与 [tamer] 建立联系。")
 
 /// Teleport when you right click away from you
 /mob/living/basic/carp/ranged_secondary_attack(atom/atom_target, modifiers)
@@ -217,9 +217,9 @@
  * Has a lot more health than a normal carp because she's meant to be a mildly more threatening pet to have to assassinate than an aging corgi.
  */
 /mob/living/basic/carp/pet/lia
-	name = "Lia"
+	name = "莉亚"
 	real_name = "Lia"
-	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as the Head of Security's pet."
+	desc = "纳米传讯公司试图创造武器化鲤鱼技术的失败实验品。这条不那么吓人的鲤鱼现在是安全主管的宠物。"
 	faction = list(FACTION_NEUTRAL)
 	maxHealth = 200
 	health = 200
@@ -238,9 +238,9 @@
  * Is very talented and also capable of holding the nuclear disk.
  */
 /mob/living/basic/carp/pet/cayenne
-	name = "Cayenne"
+	name = "卡宴"
 	real_name = "Cayenne"
-	desc = "A failed Syndicate experiment in weaponized space carp technology, it now serves as a lovable mascot."
+	desc = "辛迪加在武器化太空鲤鱼技术方面的一次失败实验，它现在充当着可爱的吉祥物。"
 	faction = list(ROLE_SYNDICATE)
 	/// Overlay to apply to display the disk
 	var/mutable_appearance/disk_overlay
@@ -286,9 +286,9 @@
 
 ///Carp-parasite from carpellosis disease
 /mob/living/basic/carp/ella
-	name = "Ella"
+	name = "艾拉"
 	real_name = "Ella"
-	desc = "It came out of someone."
+	desc = "它是从某人身体里出来的。"
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/carp/ella/Initialize(mapload)
@@ -297,8 +297,8 @@
 
 ///Wild carp that just vibe ya know
 /mob/living/basic/carp/passive
-	name = "false carp"
-	desc = "A close relative of the space carp which is entirely toothless and feeds by stealing its cousin's leftovers."
+	name = "假鲤鱼"
+	desc = "太空鲤鱼的近亲，完全没有牙齿，靠偷吃其表亲的残羹剩饭为生。"
 	icon_state = "base_friend"
 	icon_living = "base_friend"
 	icon_dead = "base_friend_dead"

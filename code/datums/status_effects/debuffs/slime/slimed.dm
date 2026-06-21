@@ -4,8 +4,8 @@
 #define MIN_HEALTH 10
 
 /atom/movable/screen/alert/status_effect/slimed
-	name = "Covered in Slime"
-	desc = "You are covered in slime and it's eating away at you! Click to start cleaning it off, or find a faster way to wash it away!"
+	name = "被史莱姆覆盖"
+	desc = "你被史莱姆覆盖，它正在侵蚀你！点击开始清理，或寻找更快的冲洗方法！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "slimed"
 	clickable_glow = TRUE
@@ -32,7 +32,7 @@
 
 /// Try to get rid of it
 /atom/movable/screen/alert/status_effect/slimed/proc/remove_slime()
-	owner.balloon_alert(owner, "cleaning off slime...")
+	owner.balloon_alert(owner, "正在清理史莱姆……")
 	var/datum/status_effect/slimed/slime_effect = owner.has_status_effect(/datum/status_effect/slimed)
 	while (!QDELETED(src) && !isnull(slime_effect))
 		if (!can_wash())
@@ -64,7 +64,7 @@
 /datum/status_effect/slimed/on_apply()
 	if(owner.get_organic_health() <= MIN_HEALTH)
 		return FALSE
-	to_chat(owner, span_userdanger("You have been covered in a thick layer of slime! Find a way to wash it off!"))
+	to_chat(owner, span_userdanger("你被一层厚厚的史莱姆覆盖了！想办法冲洗掉它！"))
 	return ..()
 
 /datum/status_effect/slimed/on_remove()
@@ -78,17 +78,17 @@
 /datum/status_effect/slimed/proc/remove_stacks(stacks_to_remove = 1)
 	slime_stacks -= stacks_to_remove // lose 1 stack per second
 	if(slime_stacks <= 0)
-		to_chat(owner, span_notice("You manage to wash off the layer of slime completely."))
+		to_chat(owner, span_notice("你设法完全冲洗掉了史莱姆层。"))
 		qdel(src)
 		return
 
 	if(prob(10))
-		to_chat(owner,span_warning("The layer of slime is slowly getting thinner."))
+		to_chat(owner,span_warning("史莱姆层正慢慢变薄。"))
 
 /datum/status_effect/slimed/tick(seconds_between_ticks)
 	// remove from the mob once we have dealt enough damage
 	if(owner.get_organic_health() <= MIN_HEALTH)
-		to_chat(owner, span_warning("You feel the layer of slime crawling off of your weakened body."))
+		to_chat(owner, span_warning("你感觉到史莱姆层正从你虚弱的身体上爬离。"))
 		qdel(src)
 		return
 
@@ -109,10 +109,10 @@
 			"Your skin feels like it's coming off",
 			"Your body feels like it's melting together"
 		))
-		to_chat(owner, span_userdanger("[feedback_text] as the layer of slime eats away at you!"))
+		to_chat(owner, span_userdanger("[feedback_text]，因为史莱姆层正在侵蚀你！"))
 
 /datum/status_effect/slimed/get_examine_text()
-	return span_warning("[owner.p_They()] [owner.p_are()] covered in bubbling slime!")
+	return span_warning("[owner.p_They()] [owner.p_are()] 覆盖着冒泡的史莱姆！")
 
 #undef MIN_HEALTH
 #undef MIN_WATER_STACKS

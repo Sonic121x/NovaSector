@@ -1,5 +1,5 @@
 /obj/item/stack/ammonia_crystals
-	name = "ammonia crystals"
+	name = "氨晶体"
 	singular_name = "ammonia crystal"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "ammonia_crystal"

@@ -4,8 +4,8 @@
 #define PROCESSED_ITEMS_PER_RATING 5
 
 /obj/machinery/biogenerator
-	name = "biogenerator"
-	desc = "Converts plants into biomass, which can be used to construct useful items."
+	name = "生物反应器"
+	desc = "将植物转化为生物质，这些生物质可用于制造有用的物品。"
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "biogenerator"
 	density = TRUE
@@ -58,7 +58,7 @@
 
 /obj/machinery/biogenerator/can_be_unfasten_wrench(mob/user, silent)
 	if(welded_down)
-		to_chat(user, span_warning("[src] is welded to the floor!"))
+		to_chat(user, span_warning("[src] 被焊在地板上了！"))
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -73,30 +73,30 @@
 		if(!tool.tool_start_check(user, amount=2))
 			return TRUE
 		user.visible_message(
-			span_notice("[user.name] starts to cut \the [src] free from the floor."),
-			span_notice("You start to cut [src] free from the floor..."),
-			span_hear("You hear welding."),
+			span_notice("[user.name] 开始将 \the [src] 从地板上切割下来。"),
+			span_notice("你开始将 [src] 从地板上切割下来..."),
+			span_hear("你听到了焊接声。"),
 		)
 		if(!tool.use_tool(src, user, 10 SECONDS, volume=100))
 			return FALSE
 		welded_down = FALSE
-		to_chat(user, span_notice("You cut [src] free from the floor."))
+		to_chat(user, span_notice("你将 [src] 从地板上切割了下来。"))
 		return TRUE
 	if(!anchored)
-		to_chat(user, span_warning("[src] needs to be wrenched to the floor!"))
+		to_chat(user, span_warning("[src] 需要先被扳手固定在地板上！"))
 		return TRUE
 	if(!tool.tool_start_check(user, amount=2))
 		return TRUE
 	user.visible_message(
 		span_notice("[user.name] starts to weld \the [src] to the floor."),
-		span_notice("You start to weld [src] to the floor..."),
-		span_hear("You hear welding."),
+		span_notice("你开始将 [src] 焊在地板上..."),
+		span_hear("你听到了焊接声。"),
 	)
 	if(!tool.use_tool(src, user, 10 SECONDS, volume=100))
-		balloon_alert(user, "cancelled!")
+		balloon_alert(user, "已取消！")
 		return FALSE
 	welded_down = TRUE
-	to_chat(user, span_notice("You weld [src] to the floor."))
+	to_chat(user, span_notice("你将[src]焊接到地板上。"))
 	return TRUE
 
 /obj/machinery/biogenerator/Destroy()
@@ -151,14 +151,14 @@
 	. = ..()
 
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:")
-		. += span_notice(" - Productivity at <b>[productivity * 100]%</b>.")
-		. += span_notice(" - Converting <b>[processed_items_per_cycle]</b> pieces of food per cycle.")
-		. += span_notice(" - Matter consumption at <b>[1 / efficiency * 100]</b>%.")
+		. += span_notice("状态显示屏显示：")
+		. += span_notice("- 生产效率为<b>[productivity * 100]%</b>。")
+		. += span_notice("- 每周期转换<b>[processed_items_per_cycle]</b>份食物。")
+		. += span_notice("- 物质消耗率为<b>[1 / efficiency * 100]</b>%。")
 		. += span_notice(" - Internal biomass converter capacity at <b>[max_items]</b> pieces of food, and currently holding <b>[get_content_count()] piece\s</b>.")
 
 	if(welded_down)
-		. += span_info("It's moored firmly to the floor. You can unsecure its moorings with a <b>welder</b>.")
+		. += span_info("它被牢固地系泊在地板上。你可以用<b>焊枪</b>解除其系泊。")
 
 /obj/machinery/biogenerator/update_appearance()
 	. = ..()
@@ -229,7 +229,7 @@
 
 	if(istype(tool, /obj/item/reagent_containers/cup))
 		if(panel_open)
-			to_chat(user, span_warning("Close the maintenance panel first!"))
+			to_chat(user, span_warning("请先关闭维护区面板！"))
 			return ITEM_INTERACT_BLOCKING
 
 		insert_beaker(user, tool)
@@ -413,11 +413,11 @@
 		return
 
 	if(beaker)
-		to_chat(user, span_notice("You swap out [beaker] in [src] for [inserted_beaker]."))
+		to_chat(user, span_notice("你将[src]中的[beaker]换成了[inserted_beaker]。"))
 		eject_beaker(user, silent = TRUE)
 
 	else
-		to_chat(user, span_notice("You add [inserted_beaker] to [src]."))
+		to_chat(user, span_notice("你将[inserted_beaker]添加到[src]中。"))
 
 	beaker = inserted_beaker
 	update_appearance(UPDATE_ICON)
@@ -440,11 +440,11 @@
 
 	if(user.put_in_hands(beaker))
 		if(!silent)
-			to_chat(user, span_notice("You eject [ejected_beaker] from [src]."))
+			to_chat(user, span_notice("你将[ejected_beaker]从[src]中弹出。"))
 
 	else
 		if(!silent)
-			to_chat(user, span_notice("You eject [ejected_beaker] from [src] onto the ground."))
+			to_chat(user, span_notice("你将[ejected_beaker]从[src]中弹出到地上。"))
 
 		ejected_beaker.forceMove(drop_location())
 

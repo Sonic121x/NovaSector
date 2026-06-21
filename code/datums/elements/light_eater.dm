@@ -61,9 +61,9 @@
 		return
 
 	food.visible_message(
-		span_danger("Something dark in [eater] lashes out at [food] and [food.p_their()] light goes out in an instant!"),
-		span_userdanger("You feel something dark in [eater] lash out and gnaw through your light in an instant! It recedes just as fast, but you can feel that [eater.p_theyve()] left something hungry behind."),
-		span_danger("You feel a gnawing pulse eat at your sight.")
+		span_danger("[eater]中的某种黑暗之物扑向[food]，[food.p_their()]的光芒瞬间熄灭！"),
+		span_userdanger("你感觉到[eater]中的某种黑暗之物扑出，瞬间啃噬了你的光芒！它退去得同样迅速，但你能感觉到[eater.p_theyve()]留下了某种饥饿的东西。"),
+		span_danger("你感觉到一阵啃噬的脉动在侵蚀你的视线。")
 	)
 
 /**

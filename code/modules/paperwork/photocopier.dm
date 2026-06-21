@@ -58,8 +58,8 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 	return parsed_blanks
 
 /obj/machinery/photocopier
-	name = "photocopier"
-	desc = "Used to copy important documents and anatomy studies."
+	name = "复印机"
+	desc = "过去常用于复制重要文件和进行解剖学研究。"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "photocopier"
 	base_icon_state = "photocopier"
@@ -199,8 +199,8 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 /obj/machinery/photocopier/examine(mob/user)
 	. = ..()
 	if(object_copy)
-		. += span_notice("There is something inside the scanner tray.")
-	. += span_notice("You can put any type of blank paper inside to print a form onto it or to copy something onto it.")
+		. += span_notice("扫描仪托盘内有东西。")
+	. += span_notice("你可以放入任何类型的空白纸张，以便将表格打印上去或将内容复印上去。")
 
 /obj/machinery/photocopier/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -287,9 +287,9 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 			if(ass)
 				if(ishuman(ass) && (ass.get_item_by_slot(ITEM_SLOT_ICLOTHING) || ass.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 					if(ass == usr)
-						to_chat(usr, span_notice("You feel kind of silly, copying your ass with your clothes on."))
+						to_chat(usr, span_notice("你穿着衣服复印自己的屁股，感觉有点傻。"))
 					else
-						to_chat(usr, span_notice("You feel kind of silly, copying [ass]\'s ass with [ass.p_their()] clothes on."))
+						to_chat(usr, span_notice("你穿着[ass.p_their()]衣服复印[ass]的屁股，感觉有点傻。"))
 					return FALSE
 				do_copies(CALLBACK(src, PROC_REF(make_ass_copy)), usr, ASS_PAPER_USE, ASS_TONER_USE, num_copies)
 				return TRUE
@@ -318,7 +318,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 				remove_photocopy(usr, object_copy)
 				object_copy = null
 			else if(check_ass())
-				to_chat(ass, span_notice("You feel a slight pressure on your ass."))
+				to_chat(ass, span_notice("你感觉屁股上有点轻微的压力。"))
 			return TRUE
 
 		// AI printing photos from their saved images.
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 				return FALSE
 			var/mob/living/silicon/ai/tempAI = usr
 			if(!length(tempAI.aicamera.stored))
-				balloon_alert(usr, "no images saved!")
+				balloon_alert(usr, "没有保存的图像！")
 				return FALSE
 			var/datum/picture/selection = tempAI.aicamera.selectpicture(usr)
 			do_copies(CALLBACK(src, PROC_REF(make_photo_copy), selection, PHOTO_COLOR), usr, PHOTO_PAPER_USE, PHOTO_TONER_USE, 1)
@@ -399,8 +399,8 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 	obj_flags |= EMAGGED
 
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	visible_message(span_warning("Sparks fly out of [src]!"))
-	balloon_alert(user, "payment system shorted")
+	visible_message(span_warning("火花从[src]中飞出！"))
+	balloon_alert(user, "支付系统短路")
 	return TRUE
 
 /**
@@ -423,7 +423,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 		error_message = span_warning("An error message flashes across \the [src]'s screen: \"Not enough toner to perform [copies_amount >= 1 ? "full " : ""]operation.\"")
 	if(get_paper_count(created_paper) < paper_use * copies_amount)
 		copies_amount = FLOOR(get_paper_count(created_paper) / paper_use, 1)
-		error_message = span_warning("An error message flashes across \the [src]'s screen: \"Not enough paper to perform [copies_amount >= 1 ? "full " : ""]operation.\"")
+		error_message = span_warning("一条错误信息在 \the [src] 的屏幕上闪过：\"纸张不足，无法执行 [copies_amount >= 1 ? "full " : ""]操作。\"")
 
 	copies_left = copies_amount
 
@@ -462,12 +462,12 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 	if(copies_made.len)
 		if(!(obj_flags & EMAGGED) && attempt_charge(src, user, (copies_made.len - 1) * usage_cost) & COMPONENT_OBJ_CANCEL_CHARGE)
 			visible_message(
-				span_warning("An error message flashes across \the [src]'s screen."), \
-				span_warning("Failed to charge bank account. Scrapping copies.") \
+				span_warning("一条错误信息在\the [src]的屏幕上闪过。"), \
+				span_warning("银行账户扣款失败。正在销毁副本。") \
 			)
 			QDEL_LIST(copies_made)
 	else
-		to_chat(user, span_warning("Failed to copy object!"))
+		to_chat(user, span_warning("复制对象失败！"))
 
 	copies_left = 0
 	reset_busy()
@@ -480,7 +480,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 /// Determines if the printer is currently busy, informs the user if it is.
 /obj/machinery/photocopier/proc/check_busy(mob/user)
 	if(busy)
-		balloon_alert(user, "printer is busy!")
+		balloon_alert(user, "打印机正忙！")
 		return TRUE
 	return FALSE
 
@@ -613,7 +613,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 	for(var/infoline in blank["info"])
 		printinfo += infoline
 
-	printblank.name = "paper - '[printname]'"
+	printblank.name = "纸张 - '[printname]'"
 	printblank.add_raw_text(printinfo, color = copy_colour)
 	printblank.update_appearance()
 	use_toner(PAPER_TONER_USE)
@@ -658,7 +658,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 	object.forceMove(user.loc)
 	user.put_in_hands(object)
 
-	to_chat(user, span_notice("You take [object] out of [src]. [busy ? "The [src] comes to a halt." : ""]"))
+	to_chat(user, span_notice("你从[object]中取出了[src]。[busy ? "The [src] comes to a halt." : ""]"))
 
 /obj/machinery/photocopier/update_icon_state()
 	. = ..()
@@ -678,43 +678,43 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 /obj/machinery/photocopier/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	// No infinite paper chain. You need the original paperwork to make more copies.
 	if(istype(tool, /obj/item/paperwork/photocopy))
-		balloon_alert(user, "too blurry!")
-		to_chat(user, span_warning("The [tool] is far too messy to produce a good copy!"))
+		balloon_alert(user, "太模糊了！")
+		to_chat(user, span_warning("这个[tool]太脏了，无法制作出清晰的副本！"))
 		return ITEM_INTERACT_FAILURE
 
 	if(istype(tool, /obj/item/paper/paperslip))
-		balloon_alert(user, "too small!")
+		balloon_alert(user, "太小了！")
 		return ITEM_INTERACT_FAILURE
 
 	if(istype(tool, /obj/item/blueprints))
-		balloon_alert(user, "too large!")
-		to_chat(user, span_warning("\The [tool] is too large to put into the copier. You need to find something else to record the document."))
+		balloon_alert(user, "太大了！")
+		to_chat(user, span_warning("\The [tool] 太大了，放不进复印机。你需要找别的东西来记录文件。"))
 		return ITEM_INTERACT_FAILURE
 
 	if(istype(tool, /obj/item/toner))
 		if(toner_cartridge)
-			balloon_alert(user, "another cartridge inside!")
+			balloon_alert(user, "里面已经有墨盒了！")
 			return ITEM_INTERACT_FAILURE
 
 		tool.forceMove(src)
 		toner_cartridge = tool
-		balloon_alert(user, "cartridge inserted")
+		balloon_alert(user, "墨盒已插入")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/paperplane))
-		balloon_alert(user, "flatten paper first!")
+		balloon_alert(user, "先把纸压平！")
 		return ITEM_INTERACT_FAILURE
 
 	if(istype(tool, /obj/item/paper))
 		var/obj/item/paper/paper = tool
 
 		if(paper.resistance_flags & ON_FIRE)
-			balloon_alert(user, "paper on fire!")
+			balloon_alert(user, "纸着火了！")
 			return ITEM_INTERACT_FAILURE
 
 		if(paper.is_empty()) // if not empty it gets inserted as an object to be copied
 			if(!has_room_for_paper())
-				balloon_alert(user, "cannot hold more paper!")
+				balloon_alert(user, "装不下更多纸了！")
 				return ITEM_INTERACT_FAILURE
 
 			insert_empty_paper(user, paper.type)
@@ -725,7 +725,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 		var/obj/item/paper_bin/paper_bin = tool
 
 		if(!paper_bin.total_paper)
-			balloon_alert(user, "paper bin empty!")
+			balloon_alert(user, "纸盒空了！")
 			return ITEM_INTERACT_FAILURE
 
 		var/paper_inserted = 0
@@ -750,12 +750,12 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 				paper_bin.total_paper -= (paper_to_take)
 
 		if(!paper_inserted && !has_room_for_paper()) // no paper was inserted because it was full
-			balloon_alert(user, "cannot hold more paper!")
+			balloon_alert(user, "装不下更多纸了！")
 			return ITEM_INTERACT_FAILURE
 
 		paper_bin.update_appearance()
 		// we use silent for insert_empty_paper() so that we don't spam balloon_alerts and instead condense them into one alert here
-		balloon_alert(user, "[paper_inserted] paper inserted")
+		balloon_alert(user, "[paper_inserted] 张纸已插入")
 		return ITEM_INTERACT_SUCCESS
 
 	if(is_type_in_typecache(tool, whitelist_scannable_objects))
@@ -774,17 +774,17 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 		paper_stack[paper_type] = 0
 	paper_stack[paper_type] += amount
 	if(!silent)
-		balloon_alert(user, "paper inserted")
+		balloon_alert(user, "纸张已插入")
 
 /obj/machinery/photocopier/proc/insert_copy_object(mob/user, obj/item/object)
 	if(!copier_empty())
-		balloon_alert(user, "scanner tray occupied!")
+		balloon_alert(user, "扫描托盘已占用！")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(object))
 		return
 	object_copy = object
 	object.forceMove(src)
-	balloon_alert(user, "copy object inserted")
+	balloon_alert(user, "复印对象已插入")
 	flick("photocopier1", src)
 
 /obj/machinery/photocopier/atom_break(damage_flag)
@@ -877,8 +877,8 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
  * Toner cartridge
  */
 /obj/item/toner
-	name = "toner cartridge"
-	desc = "A small, lightweight cartridge of Nanotrasen ValueBrand toner. Fits photocopiers and autopainters alike."
+	name = "墨盒"
+	desc = "一款小巧轻便的纳米传讯品牌墨粉，适用于各类复印机和自动喷漆机。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "tonercartridge"
 	w_class = WEIGHT_CLASS_SMALL
@@ -890,11 +890,11 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 
 /obj/item/toner/examine(mob/user)
 	. = ..()
-	. += span_notice("The ink level gauge on the side reads [round(charges / max_charges * 100)]%")
+	. += span_notice("侧面的墨量计显示为[round(charges / max_charges * 100)]%")
 
 /obj/item/toner/large
-	name = "large toner cartridge"
-	desc = "A hefty cartridge of Nanotrasen ValueBrand toner. Fits photocopiers and autopainters alike."
+	name = "大墨盒"
+	desc = "一盒容量很大的纳米传讯品牌墨粉。适用于各类复印机和自动喷漆机。"
 	charges = 25
 	max_charges = 25
 
@@ -902,14 +902,14 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 	return list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
 
 /obj/item/toner/extreme
-	name = "extremely large toner cartridge"
-	desc = "Why would ANYONE need THIS MUCH TONER?"
+	name = "超大墨盒"
+	desc = "谁会需要用到这么多墨呢？"
 	charges = 200
 	max_charges = 200
 
 /obj/item/toner/infinite
-	name = "infinite toner cartridge"
-	desc = "...are you satisfied now?"
+	name = "无限墨粉盒"
+	desc = "...你现在满意了吗？"
 	charges = INFINITY
 	max_charges = INFINITY
 

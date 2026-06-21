@@ -1,5 +1,5 @@
 /datum/antagonist/rev
-	name = "\improper Revolutionary"
+	name = "\improper 革命"
 	roundend_category = "revolutionaries" // if by some miracle revolutionaries without revolution happen
 	antagpanel_category = "Revolution"
 	pref_flag = ROLE_REV
@@ -25,7 +25,7 @@
 	if(!(locate(/datum/team/revolution) in GLOB.antagonist_teams))
 		var/confirm = tgui_alert(admin, "Notice: Revolutions do not function 100% when created via traitor panel instead of dynamic. \
 			The leaders will be able to convert as normal, but the shuttle will not be blocked and there will be no announcements when either side wins. \
-			Are you sure?", "Be Wary", list("Yes", "No"))
+			Are you sure?", "请谨慎操作", list("Yes", "No"))
 		if(QDELETED(src) || QDELETED(new_owner.current) || confirm != "Yes")
 			return
 
@@ -151,7 +151,7 @@
 	demote()
 
 /datum/antagonist/rev/head
-	name = "\improper Head Revolutionary"
+	name = "\improper 革命领袖"
 	antag_hud_name = "rev_head"
 	pref_flag = ROLE_REV_HEAD
 
@@ -347,9 +347,9 @@
 	if(give_flash)
 		var/where = carbon_owner.equip_conspicuous_item(new /obj/item/assembly/flash/handheld)
 		if (where)
-			to_chat(carbon_owner, "The flash in your [where] will help you to persuade the crew to join your cause.")
+			to_chat(carbon_owner, "你[where]里的闪光器将帮助你劝说船员加入你的事业。")
 		else
-			to_chat(carbon_owner, "The Syndicate were unfortunately unable to get you a flash.")
+			to_chat(carbon_owner, "辛迪加不幸未能为你提供闪光器。")
 
 	if(give_hud)
 		var/obj/item/organ/cyberimp/eyes/hud/security/syndicate/hud = new()
@@ -358,10 +358,10 @@
 			to_chat(carbon_owner, "Being a body purist, you would never accept cybernetic implants. Upon hearing this, your employers signed you up for a special program, which... for \
 			some odd reason, you just can't remember... either way, the program must have worked, because you have gained the ability to keep track of who is mindshield-implanted, and therefore unable to be recruited.")
 		else
-			to_chat(carbon_owner, "Your eyes have been implanted with a cybernetic security HUD which will help you keep track of who is mindshield-implanted, and therefore unable to be recruited.")
+			to_chat(carbon_owner, "你的眼睛已被植入一个赛博安保平视显示器，它将帮助你追踪谁植入了心智盾、因而无法被招募。")
 
 /datum/team/revolution
-	name = "\improper Revolution"
+	name = "\improper 革命"
 	/// Maximum number of headrevs
 	var/max_headrevs = 3
 
@@ -460,25 +460,25 @@
 
 	if(headrevs.len)
 		var/list/headrev_part = list()
-		headrev_part += span_header("The head revolutionaries were:")
+		headrev_part += span_header("革命领袖是：")
 		headrev_part += printplayerlist(headrevs, GLOB.revolution_handler.result != REVOLUTION_VICTORY)
 		result += headrev_part.Join("<br>")
 
 	if(revs.len)
 		var/list/rev_part = list()
-		rev_part += span_header("The revolutionaries were:")
+		rev_part += span_header("革命者是：")
 		rev_part += printplayerlist(revs, GLOB.revolution_handler.result != REVOLUTION_VICTORY)
 		result += rev_part.Join("<br>")
 
 	var/list/heads = SSjob.get_all_heads()
 	if(heads.len)
-		var/head_text = span_header("The heads of staff were:")
+		var/head_text = span_header("部门主管是：")
 		head_text += "<ul class='playerlist'>"
 		for(var/datum/mind/head in heads)
 			var/target = (head in targets)
 			head_text += "<li>"
 			if(target)
-				head_text += span_redtext("Target")
+				head_text += span_redtext("目标")
 			head_text += "[printplayer(head, 1)]</li>"
 		head_text += "</ul><br>"
 		result += head_text
@@ -518,7 +518,7 @@
 	return common_part + heads_report
 
 /datum/outfit/revolutionary
-	name = "Revolutionary (Preview only)"
+	name = "革命(预览)"
 
 	uniform = /obj/item/clothing/under/costume/soviet
 	head = /obj/item/clothing/head/costume/ushanka

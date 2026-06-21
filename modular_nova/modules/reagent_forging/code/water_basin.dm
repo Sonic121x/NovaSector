@@ -1,6 +1,6 @@
 /obj/structure/reagent_water_basin
-	name = "water basin"
-	desc = "A basin full of water, ready to quench the hot metal."
+	name = "水盆"
+	desc = "一个盛满水的水盆，随时准备为炽热的金属淬火。"
 	icon = 'modular_nova/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "water_basin"
 	anchored = TRUE
@@ -20,10 +20,10 @@
 /obj/structure/reagent_water_basin/examine(mob/user)
 	. = ..()
 	if(!fishable)
-		. += span_notice("[src] can be upgraded through a bluespace crystal or a journeyman smithy!")
+		. += span_notice("[src] 可以通过蓝空水晶或熟练铁匠进行升级！")
 
 	else
-		. += span_notice("[src] looks to be a bottomless basin of water... You can even see fish swimming around down there!")
+		. += span_notice("[src] 看起来像是一个深不见底的水盆……你甚至能看到鱼儿在下面游来游去！")
 
 /obj/structure/reagent_water_basin/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -31,7 +31,7 @@
 	if(smithing_skill < SKILL_LEVEL_JOURNEYMAN || fishable)
 		return
 
-	balloon_alert(user, "the water deepens!")
+	balloon_alert(user, "水位加深了！")
 	fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
 
 /obj/structure/reagent_water_basin/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
@@ -52,7 +52,7 @@
 		if(!bs_crystal.use(1))
 			return
 
-		balloon_alert(user, "the water deepens!")
+		balloon_alert(user, "水位加深了！")
 		fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
 		return
 
@@ -77,12 +77,12 @@
 	playsound(src, 'modular_nova/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
 
 	if(search_incomplete?.times_hit < search_incomplete.average_hits)
-		to_chat(user, span_warning("You cool down [search_incomplete], but it wasn't ready yet."))
+		to_chat(user, span_warning("你冷却了 [search_incomplete]，但它还没准备好。"))
 		COOLDOWN_RESET(search_incomplete, heating_remainder)
 		return ITEM_INTERACT_SUCCESS
 
 	if(search_incomplete?.times_hit >= search_incomplete.average_hits)
-		to_chat(user, span_notice("You cool down [search_incomplete] and it's ready."))
+		to_chat(user, span_notice("你冷却了 [search_incomplete]，它现在准备好了。"))
 		user.mind.adjust_experience(/datum/skill/smithing, 10) //using the water basin on a ready item gives decent experience.
 
 		var/obj/spawned_obj = new search_incomplete.spawn_item(get_turf(src))

@@ -1,9 +1,9 @@
 /datum/surgery_operation/organ/asthmatic_bypass
-	name = "force open windpipe"
+	name = "强制打开气管"
 	// google says the *actual* operation used to relieve asthma is called bronchial thermoplasty but this operation doesn't resemble that at all
 	// local doctors suggested "bronchial dilatation" instead
 	rnd_name = "Bronchial Dilatation (Asthmatic Bypass)"
-	desc = "Forcibly expand a patient's windpipe, relieving asthma symptoms."
+	desc = "强制扩张患者的气管，缓解哮喘症状。"
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP
 	implements = list(
 		TOOL_RETRACTOR = 1.25,
@@ -18,7 +18,7 @@
 	var/inflammation_reduction = 75
 
 /datum/surgery_operation/organ/asthmatic_bypass/all_required_strings()
-	return list("the patient must be asthmatic") + ..()
+	return list("患者必须患有哮喘") + ..()
 
 /datum/surgery_operation/organ/asthmatic_bypass/state_check(obj/item/organ/organ)
 	if(!organ.owner.has_quirk(/datum/quirk/item_quirk/asthma))

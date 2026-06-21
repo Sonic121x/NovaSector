@@ -1,6 +1,6 @@
 /obj/item/organ/zombie_infection
-	name = "festering ooze"
-	desc = "A black web of pus and viscera."
+	name = "溃烂肿瘤"
+	desc = "一团黑脓脏器"
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_ZOMBIE
 	icon_state = "blacktumor"

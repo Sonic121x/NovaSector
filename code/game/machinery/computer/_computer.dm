@@ -1,5 +1,5 @@
 /obj/machinery/computer
-	name = "computer"
+	name = "计算机"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
@@ -94,7 +94,7 @@
 	if(..())
 		return TRUE
 	if(circuit)
-		balloon_alert(user, "disconnecting monitor...")
+		balloon_alert(user, "正在断开显示器连接...")
 		if(I.use_tool(src, user, time_to_unscrew, volume=50))
 			deconstruct(TRUE)
 	return TRUE

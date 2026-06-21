@@ -3,7 +3,7 @@
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/emergency/bio
-	name = "Biological Emergency Crate"
+	name = "生物应急板条箱"
 	desc = "This crate includes 2 complete bio suits, along with a box containing sterile masks and latex gloves, providing effective protection against viruses."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/bio_hood/general = 2,
@@ -17,7 +17,7 @@
 	crate_name = "bio suit crate"
 
 /datum/supply_pack/emergency/equipment
-	name = "Emergency Bot/Internals Crate"
+	name = "应急机器人/呼吸配件板条箱"
 	desc = "Explosions got you down? These supplies are guaranteed to patch up holes, \
 		in stations and people alike! Comes with two floorbots, two medbots, five oxygen \
 		masks and five small oxygen tanks."
@@ -32,7 +32,7 @@
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/emergency/bomb
-	name = "Explosive Emergency Crate"
+	name = "爆炸应急板条箱"
 	desc = "Science gone bonkers? Beeping behind the airlock? Buy now and be the hero the station des... \
 		I mean needs! (time not included). Contains one bomb suit and hood, gas mask, and bomb defusal tools."
 	cost = CARGO_CRATE_VALUE * 2
@@ -60,7 +60,7 @@
 	crate_name = "firefighting crate"
 
 /datum/supply_pack/emergency/atmostank
-	name = "Firefighting Tank Backpack"
+	name = "消防水箱背包"
 	desc = "Mow down fires with this high-capacity fire fighting tank backpack."
 	cost = CARGO_CRATE_VALUE * 1.8
 	access = ACCESS_ATMOSPHERICS
@@ -83,13 +83,13 @@
 
 /datum/supply_pack/emergency/metalfoam
 	name = "Metal Foam Grenade Crate"
-	desc = "Seal up those pesky hull breaches with seven metal foam grenades."
+	desc = "用七枚金属泡沫手榴弹把那些讨厌的船体裂口封上。"
 	cost = CARGO_CRATE_VALUE * 2.4
 	contains = list(/obj/item/storage/box/metalfoam)
 	crate_name = "metal foam grenade crate"
 
 /datum/supply_pack/emergency/plasma_spacesuit
-	name = "Plasmaman Space Envirosuits"
+	name = "等离子人太空环境服"
 	desc = "Contains two space-worthy envirosuits for Plasmamen. \
 		Order now and we'll throw in two free helmets!"
 	cost = CARGO_CRATE_VALUE * 3.5
@@ -155,7 +155,7 @@
 	crate_type = /obj/structure/closet/crate/secure/hydroponics
 
 /datum/supply_pack/emergency/mothic_rations
-	name = "Surplus Mothic Rations Triple-Pak"
+	name = "蛾类盈余口粮三袋装"
 	desc = "Crew starving? Chef slacking off? Keep everyone fed on the barest minimum of what can be considered food \
 		with surplus ration packs, directly from the Mothic Fleet! Pack includes 3 packs of 3 bars each."
 	cost = CARGO_CRATE_VALUE * 3

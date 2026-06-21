@@ -1,6 +1,6 @@
 /obj/structure/life_candle
-	name = "life candle"
-	desc = "You are dead. Insert quarter to continue."
+	name = "命烛"
+	desc = "你死了。插入一枚25分硬币以继续游戏。"
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
 	light_system = OVERLAY_LIGHT
@@ -49,14 +49,14 @@
 	if(!user.mind)
 		return
 	if(user.mind in linked_minds)
-		user.visible_message(span_notice("[user] reaches out and pinches the flame of [src]."), span_warning("You sever the connection between yourself and [src]."))
+		user.visible_message(span_notice("[user]伸出手掐灭了[src]的火焰。"), span_warning("你切断了自身与[src]之间的联系。"))
 		linked_minds -= user.mind
 		if(!linked_minds.len)
 			REMOVE_TRAIT(src, TRAIT_MOVE_FLOATING, LIFECANDLE_TRAIT)
 	else
 		if(!linked_minds.len)
 			ADD_TRAIT(src, TRAIT_MOVE_FLOATING, LIFECANDLE_TRAIT)
-		user.visible_message(span_notice("[user] touches [src]. It seems to respond to [user.p_their()] presence!"), span_warning("You create a connection between you and [src]."))
+		user.visible_message(span_notice("[user]触摸了[src]。它似乎对[user.p_their()]的存在产生了反应！"), span_warning("你在自己和[src]之间建立了连接。"))
 		linked_minds |= user.mind
 
 	update_appearance()

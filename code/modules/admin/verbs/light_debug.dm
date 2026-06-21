@@ -141,8 +141,8 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 	animate(src, alpha = initial(alpha), time = 2)
 
 /atom/movable/screen/light_button/toggle
-	name = "Toggle Light"
-	desc = "Click to turn the light on/off"
+	name = "切换光源"
+	desc = "点击以打开/关闭灯光"
 	icon_state = "light_enable"
 
 /atom/movable/screen/light_button/toggle/attach_to(atom/new_owner)
@@ -173,8 +173,8 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 		icon_state = "light_disable"
 
 /atom/movable/screen/light_button/edit
-	name = "Edit Light"
-	desc = "Click to open an editing menu for the light"
+	name = "编辑光源"
+	desc = "点击打开光源的编辑菜单"
 	icon_state = "light_focus"
 
 /atom/movable/screen/light_button/edit/attach_to(atom/new_owner)
@@ -324,8 +324,8 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 		light_source.light_flags |= LIGHT_FROZEN
 
 /atom/movable/screen/light_button/move
-	name = "Move Light"
-	desc = "Drag to move the light around"
+	name = "移动光源"
+	desc = "拖动以移动光源"
 	icon_state = "light_move"
 	mouse_drag_pointer = 'icons/effects/mouse_pointers/light_drag.dmi'
 
@@ -336,8 +336,8 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 	movable_owner.forceMove(get_turf(over_object))
 
 /datum/action/spawn_light
-	name = "Spawn Light"
-	desc = "Create a light from a template"
+	name = "生成光源"
+	desc = "从模板创建一个光源"
 	button_icon = 'icons/mob/actions/actions_construction.dmi'
 	button_icon_state = "light_spawn"
 

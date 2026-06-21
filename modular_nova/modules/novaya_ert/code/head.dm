@@ -1,6 +1,6 @@
 /obj/item/clothing/head/beret/sec/nri
-	name = "commander's beret"
-	desc = "Za rodinu!!"
+	name = "指挥官贝雷帽"
+	desc = "为了祖国！！"
 	armor_type = /datum/armor/sec_nri
 
 /datum/armor/sec_nri

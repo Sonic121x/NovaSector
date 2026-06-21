@@ -1,13 +1,13 @@
 #define POWER_PER_USE 50
 
 /obj/structure/destructible/clockwork/gear_base/powered/prosperity_prism
-	name = "prosperity prism"
-	desc = "A prism that seems to somehow always have its gaze locked to you."
+	name = "繁荣棱镜"
+	desc = "一个棱镜，其视线似乎总能锁定在你身上。"
 	clockwork_desc = "A prism that will heal nearby servants of various damage types, along with purging poisons."
 	icon_state = "prolonging_prism"
 	base_icon_state = "prolonging_prism"
 	anchored = TRUE
-	break_message = span_warning("The prism falls apart, smoke leaking out into the air.")
+	break_message = span_warning("棱镜解体，烟雾泄漏到空气中。")
 	max_integrity = 150
 	minimum_power = POWER_PER_USE
 	passive_consumption = POWER_PER_USE / 2

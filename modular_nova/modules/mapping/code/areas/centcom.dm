@@ -5,45 +5,45 @@
  */
 
 /area/centcom/holding
-	name = "Holding Facility"
+	name = "拘留设施"
 	area_flags = parent_type::area_flags | UNLIMITED_FISHING | NO_DEATH_MESSAGE
 	mood_bonus = 25
 	mood_message = "I am taking a well deserved rest!"
 
 /area/centcom/holding/cafe
-	name = "Ghost Cafe"
+	name = "幽灵咖啡馆"
 
 /area/centcom/holding/cafevox
-	name = "Cafe Vox Box"
+	name = "咖啡馆语音盒"
 
 /area/centcom/holding/cafedorms
-	name = "Ghost Cafe Dorms"
+	name = "幽灵咖啡馆宿舍"
 
 /area/centcom/holding/cafepark
-	name = "Ghost Cafe Outdoors"
+	name = "幽灵咖啡馆户外区"
 
 /area/centcom/interlink
-	name = "The Interlink"
+	name = "互联枢纽"
 
 /area/centcom/interlink/dorm_rooms
-	name = "Interlink Dorm Rooms"
+	name = "互联枢纽宿舍房间"
 	mood_bonus = /area/centcom/holding::mood_bonus
 	mood_message = /area/centcom/holding::mood_message
 
 /area/centcom/interlink/dorm_rooms/room1
-	name = "Interlink Cabin 1"
+	name = "互联枢纽舱室 1"
 
 /area/centcom/interlink/dorm_rooms/room2
-	name = "Interlink Cabin 2"
+	name = "互联枢纽舱室 2"
 
 /area/centcom/interlink/dorm_rooms/room3
-	name = "Interlink Cabin 3"
+	name = "互联枢纽舱室 3"
 
 /area/centcom/interlink/dorm_rooms/room4
-	name = "Interlink Cabin 4"
+	name = "互联枢纽舱室 4"
 
 /area/centcom/interlink/dorm_rooms/room5
-	name = "Interlink Cabin 5"
+	name = "互联枢纽舱室 5"
 
 // UN-LIMITED WATERRRRRRR
 /obj/machinery/shower/infinite/process(seconds_per_tick)

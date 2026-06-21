@@ -3,7 +3,7 @@
 */
 
 /datum/design/strilka310_rubber
-	name = ".310 Rubber Bullet (Less Lethal)"
+	name = ".310 橡胶子弹（低致命性）"
 	id = "astrilka310_rubber"
 	build_type = AUTOLATHE
 	materials = list(

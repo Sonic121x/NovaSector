@@ -4,8 +4,8 @@
  */
 
 /mob/living/basic/spider/giant/webslinger
-	name = "webslinger dread spider"
-	desc = "Furry and white, it makes you shudder to look at it. Sharp green eyes are all that can be seen..."
+	name = "织网者恐怖蜘蛛"
+	desc = "毛茸茸的白色身躯，光是看着就让你不寒而栗。只能看到它锐利的绿色眼睛..."
 	icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	icon_state = "webslinger"
 	icon_living = "webslinger"
@@ -66,8 +66,8 @@
  * Far more squishier than all other types, it is an ambush predator meant to bite and run while the Teslium works its way into them.
  */
 /mob/living/basic/spider/giant/voltaic
-	name = "voltaic dread spider"
-	desc = "Chitinous and yellow with electrical arcs running across its carapace, it makes you shudder to look at it. This one has effervescent yellow eyes."
+	name = "伏打恐怖蜘蛛"
+	desc = "甲壳呈黄色，表面有电弧跃动，光是看着就让你不寒而栗。这只蜘蛛有着闪烁的黄色眼睛。"
 	icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	icon_state = "voltaic"
 	icon_living = "voltaic"
@@ -102,8 +102,8 @@
  * A behemoth of a spider, doing both high damage but mid-level health. Front line commander.
  */
 /mob/living/basic/spider/giant/pit
-	name = "pit dread spider"
-	desc = "Furry and brown with an orange top, its massive jaws strike fear in you and also sometimes into walls. This one has bright orange eyes."
+	name = "陷坑恐怖蜘蛛"
+	desc = "毛茸茸的棕色身躯，顶部呈橙色，它巨大的颚部让你感到恐惧，有时也会撞到墙上。这只蜘蛛有着明亮的橙色眼睛。"
 	icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	icon_state = "pit"
 	icon_living = "pit"
@@ -149,8 +149,8 @@
  * A fat armored cute spider, completely utility focused and to soak damage for the weaker variants.
  */
 /mob/living/basic/spider/giant/ogre
-	name = "ogre dread spider"
-	desc = "Furry, brown, and fat. While kind of cute its size horrifies you. This one has dark purple eyes and seems heavily armored."
+	name = "巨怪恐怖蜘蛛"
+	desc = "毛茸茸、棕色、胖乎乎的。虽然有点可爱，但它的体型让你感到恐惧。这只蜘蛛有着深紫色的眼睛，看起来装甲厚重。"
 	icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	icon_state = "ogre"
 	icon_living = "ogre"
@@ -201,7 +201,7 @@
 /// Prevents you from healing other spiders spiders, or from healing when on fire
 /mob/living/basic/spider/giant/ogre/proc/can_mend(mob/living/source)
 	if (on_fire)
-		balloon_alert(src, "can't heal while on fire!")
+		balloon_alert(src, "着火时无法治疗！")
 		return FALSE
 	return TRUE
 
@@ -211,8 +211,8 @@
  */
 
 /mob/living/basic/spider/giant/carrier
-	name = "carrier dread spider"
-	desc = "Chitinous with a sickly green and red carapace, it makes you shudder to look at it. This one has sharp neon eyes."
+	name = "运载者恐怖蜘蛛"
+	desc = "甲壳呈病态的绿色和红色，光是看着就让你不寒而栗。这只蜘蛛有着锐利的霓虹色眼睛。"
 	icon = 'modular_nova/modules/spider/icons/spider.dmi'
 	icon_state = "carrier"
 	icon_living = "carrier"
@@ -256,8 +256,8 @@
  */
 
 /mob/living/basic/spider/giant/baron
-	name = "baron dread spider"
-	desc = "This girthy spider seems to exist in a rage-filled state, if it moves its many eyes follow."
+	name = "男爵恐怖蜘蛛"
+	desc = "这只粗壮的蜘蛛似乎一直处于暴怒状态，只要它一动，它众多的眼睛就会随之转动。"
 	icon = 'modular_nova/modules/spider/icons/64x64_spider.dmi'
 	icon_state = "baron"
 	icon_living = "baron"
@@ -329,7 +329,7 @@
 
 /mob/living/basic/spider/giant/baron/proc/can_mend(mob/living/source)
 	if (on_fire)
-		balloon_alert(src, "can't heal while on fire!")
+		balloon_alert(src, "着火时无法治疗！")
 		return FALSE
 	return TRUE
 
@@ -339,8 +339,8 @@
  */
 
 /mob/living/basic/spider/giant/badnana_spider
-	name = "badnana spider"
-	desc = "WHY WOULD GOD ALLOW THIS?!"
+	name = "坏香蕉蜘蛛"
+	desc = "上帝怎么会允许这种东西存在？！"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "badnanaspider" // created by Coldstorm on the Skyrat Discord
 	icon_living = "badnanaspider"

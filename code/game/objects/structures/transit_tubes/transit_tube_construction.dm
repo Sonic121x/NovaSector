@@ -2,10 +2,10 @@
 
 // normal transit tubes
 /obj/structure/c_transit_tube
-	name = "unattached transit tube"
+	name = "未固定的运输管"
 	icon = 'icons/obj/pipes_n_cables/transit_tube.dmi'
 	icon_state = "straight"
-	desc = "An unattached segment of transit tube."
+	desc = "一段未连接的运输管"
 	density = FALSE
 	layer = LOW_ITEM_LAYER //same as the built tube
 	anchored = FALSE
@@ -54,7 +54,7 @@
 
 // transit tube station
 /obj/structure/c_transit_tube/station
-	name = "unattached through station"
+	name = "未连接的管道过路站"
 	icon_state = "closed_station0"
 	build_type = /obj/structure/transit_tube/station
 	flipped_build_type = /obj/structure/transit_tube/station/flipped
@@ -69,7 +69,7 @@
 
 // reverser station, used for the terminus
 /obj/structure/c_transit_tube/station/reverse
-	name = "unattached terminus station"
+	name = "未连接的终点管道站"
 	icon_state = "closed_terminus0"
 	build_type = /obj/structure/transit_tube/station/reverse
 	flipped_build_type = /obj/structure/transit_tube/station/reverse/flipped
@@ -85,7 +85,7 @@
 
 /obj/structure/c_transit_tube/station/dispenser
 	icon_state = "open_dispenser0"
-	name = "unattached dispenser station"
+	name = "未连接的管道分配站"
 	build_type = /obj/structure/transit_tube/station/dispenser
 	flipped_build_type = /obj/structure/transit_tube/station/dispenser/flipped
 	base_icon_state = "open_dispenser"
@@ -99,7 +99,7 @@
 //and the ones that reverse
 
 /obj/structure/c_transit_tube/station/dispenser/reverse
-	name = "unattached terminus dispenser station"
+	name = "未连接的终点管道分发站"
 	icon_state = "open_terminusdispenser0"
 	build_type = /obj/structure/transit_tube/station/dispenser/reverse
 	flipped_build_type = /obj/structure/transit_tube/station/dispenser/reverse/flipped
@@ -157,9 +157,9 @@
 //transit tube pod
 //see station.dm for the logic
 /obj/structure/c_transit_tube_pod
-	name = "unattached transit tube pod"
+	name = "未连接的运输管舱"
 	icon = 'icons/obj/pipes_n_cables/transit_tube.dmi'
 	icon_state = "pod"
-	desc = "Could probably be <b>dragged</b> into an open Transit Tube."
+	desc = "看起来能被 <b>拖拽</b> 进一个带进口的运输管里."
 	anchored = FALSE
 	density = FALSE

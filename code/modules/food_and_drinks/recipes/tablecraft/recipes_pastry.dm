@@ -5,7 +5,7 @@
 
 /datum/crafting_recipe/food/donut
 	time = 1.5 SECONDS
-	name = "Donut"
+	name = "Donut-甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/sugar = 1,
 		/obj/item/food/pastrybase = 1
@@ -16,7 +16,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/donut/chaos
-	name = "Chaos donut"
+	name = "Chaos donut-混乱甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/frostoil = 5,
 		/datum/reagent/consumable/capsaicin = 5,
@@ -27,7 +27,7 @@
 
 /datum/crafting_recipe/food/donut/meat
 	time = 1.5 SECONDS
-	name = "Meat donut"
+	name = "Meat donut-肉甜甜圈"
 	reqs = list(
 		/obj/item/food/meat/rawcutlet = 1,
 		/obj/item/food/pastrybase = 1
@@ -36,7 +36,7 @@
 	result = /obj/item/food/donut/meat
 
 /datum/crafting_recipe/food/donut/jelly
-	name = "Jelly donut"
+	name = "Jelly donut-果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/berryjuice = 5,
 		/obj/item/food/pastrybase = 1
@@ -45,7 +45,7 @@
 	result = /obj/item/food/donut/jelly/plain
 
 /datum/crafting_recipe/food/donut/slimejelly
-	name = "Slime jelly donut"
+	name = "Slime jelly donut-史莱姆果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/toxin/slimejelly = 5,
 		/obj/item/food/pastrybase = 1
@@ -55,7 +55,7 @@
 
 
 /datum/crafting_recipe/food/donut/berry
-	name = "Berry Donut"
+	name = "Berry Donut-浆果甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/berryjuice = 3,
 		/obj/item/food/donut/plain = 1
@@ -64,7 +64,7 @@
 	result = /obj/item/food/donut/berry
 
 /datum/crafting_recipe/food/donut/trumpet
-	name = "Spaceman's Donut"
+	name = "Spaceman's Donut-太空人甜甜圈"
 	reqs = list(
 		/datum/reagent/medicine/polypyr = 3,
 		/obj/item/food/donut/plain = 1
@@ -73,7 +73,7 @@
 	result = /obj/item/food/donut/trumpet
 
 /datum/crafting_recipe/food/donut/apple
-	name = "Apple Donut"
+	name = "Apple Donut-苹果甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/applejuice = 3,
 		/obj/item/food/donut/plain = 1
@@ -82,7 +82,7 @@
 	result = /obj/item/food/donut/apple
 
 /datum/crafting_recipe/food/donut/caramel
-	name = "Caramel Donut"
+	name = "Caramel Donut-焦糖甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/caramel = 3,
 		/obj/item/food/donut/plain = 1
@@ -90,7 +90,7 @@
 	result = /obj/item/food/donut/caramel
 
 /datum/crafting_recipe/food/donut/choco
-	name = "Chocolate Donut"
+	name = "Chocolate Donut-巧克力甜甜圈"
 	reqs = list(
 		/obj/item/food/chocolatebar = 1,
 		/obj/item/food/donut/plain = 1
@@ -98,7 +98,7 @@
 	result = /obj/item/food/donut/choco
 
 /datum/crafting_recipe/food/donut/blumpkin
-	name = "Blumpkin Donut"
+	name = "Blumpkin Donut-蓝瓜甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/blumpkinjuice = 3,
 		/obj/item/food/donut/plain = 1
@@ -107,7 +107,7 @@
 	result = /obj/item/food/donut/blumpkin
 
 /datum/crafting_recipe/food/donut/bungo
-	name = "Bungo Donut"
+	name = "Bungo Donut-夏威夷风情甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/bungojuice = 3,
 		/obj/item/food/donut/plain = 1
@@ -115,7 +115,7 @@
 	result = /obj/item/food/donut/bungo
 
 /datum/crafting_recipe/food/donut/matcha
-	name = "Matcha Donut"
+	name = "Matcha Donut-抹茶甜甜圈"
 	reqs = list(
 		/datum/reagent/toxin/teapowder = 3,
 		/obj/item/food/donut/plain = 1
@@ -123,7 +123,7 @@
 	result = /obj/item/food/donut/matcha
 
 /datum/crafting_recipe/food/donut/laugh
-	name = "Sweet Pea Donut"
+	name = "Sweet Pea Donut-香豌豆甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/laughsyrup = 3,
 		/obj/item/food/donut/plain = 1
@@ -133,7 +133,7 @@
 ////////////////////////////////////////////////////JELLY DONUTS///////////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/donut/jelly/berry
-	name = "Berry Jelly Donut"
+	name = "Berry Jelly Donut-浆果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/berryjuice = 3,
 		/obj/item/food/donut/jelly/plain = 1
@@ -141,7 +141,7 @@
 	result = /obj/item/food/donut/jelly/berry
 
 /datum/crafting_recipe/food/donut/jelly/trumpet
-	name = "Spaceman's Jelly Donut"
+	name = "Spaceman's Jelly Donut_太空人果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/medicine/polypyr = 3,
 		/obj/item/food/donut/jelly/plain = 1
@@ -150,7 +150,7 @@
 	result = /obj/item/food/donut/jelly/trumpet
 
 /datum/crafting_recipe/food/donut/jelly/apple
-	name = "Apple Jelly Donut"
+	name = "Apple Jelly Donut-苹果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/applejuice = 3,
 		/obj/item/food/donut/jelly/plain = 1
@@ -158,7 +158,7 @@
 	result = /obj/item/food/donut/jelly/apple
 
 /datum/crafting_recipe/food/donut/jelly/caramel
-	name = "Caramel Jelly Donut"
+	name = "Caramel Jelly Donut-焦糖果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/caramel = 3,
 		/obj/item/food/donut/jelly/plain = 1
@@ -166,7 +166,7 @@
 	result = /obj/item/food/donut/jelly/caramel
 
 /datum/crafting_recipe/food/donut/jelly/choco
-	name = "Chocolate Jelly Donut"
+	name = "Chocolate Jelly Donut-巧克力果冻甜甜圈"
 	reqs = list(
 		/obj/item/food/chocolatebar = 1,
 		/obj/item/food/donut/jelly/plain = 1
@@ -174,7 +174,7 @@
 	result = /obj/item/food/donut/jelly/choco
 
 /datum/crafting_recipe/food/donut/jelly/blumpkin
-	name = "Blumpkin Jelly Donut"
+	name = "Blumpkin Jelly Donut-蓝瓜果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/blumpkinjuice = 3,
 		/obj/item/food/donut/jelly/plain = 1
@@ -183,7 +183,7 @@
 	result = /obj/item/food/donut/jelly/blumpkin
 
 /datum/crafting_recipe/food/donut/jelly/bungo
-	name = "Bungo Jelly Donut"
+	name = "Bungo Jelly Donut-夏威夷果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/bungojuice = 3,
 		/obj/item/food/donut/jelly/plain = 1
@@ -191,7 +191,7 @@
 	result = /obj/item/food/donut/jelly/bungo
 
 /datum/crafting_recipe/food/donut/jelly/matcha
-	name = "Matcha Jelly Donut"
+	name = "Matcha Jelly Donut-抹茶果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/toxin/teapowder = 3,
 		/obj/item/food/donut/jelly/plain = 1
@@ -199,7 +199,7 @@
 	result = /obj/item/food/donut/jelly/matcha
 
 /datum/crafting_recipe/food/donut/jelly/laugh
-	name = "Sweet Pea Jelly Donut"
+	name = "Sweet Pea Jelly Donut-香豌豆果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/laughsyrup = 3,
 		/obj/item/food/donut/jelly/plain = 1
@@ -209,7 +209,7 @@
 ////////////////////////////////////////////////////SLIME  DONUTS///////////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/donut/slimejelly/berry
-	name = "Berry Slime Donut"
+	name = "Berry Slime Donut-浆果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/berryjuice = 3,
 		/obj/item/food/donut/jelly/slimejelly/plain = 1
@@ -218,7 +218,7 @@
 	result = /obj/item/food/donut/jelly/slimejelly/berry
 
 /datum/crafting_recipe/food/donut/slimejelly/trumpet
-	name = "Spaceman's Slime Donut"
+	name = "Spaceman's Slime Donut宇航员黏胶甜甜圈"
 	reqs = list(
 		/datum/reagent/medicine/polypyr = 3,
 		/obj/item/food/donut/jelly/slimejelly/plain = 1
@@ -227,7 +227,7 @@
 	result = /obj/item/food/donut/jelly/slimejelly/trumpet
 
 /datum/crafting_recipe/food/donut/slimejelly/apple
-	name = "Apple Slime Donut"
+	name = "Apple Slime Donut-苹果黏胶甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/applejuice = 3,
 		/obj/item/food/donut/jelly/slimejelly/plain = 1
@@ -236,7 +236,7 @@
 	result = /obj/item/food/donut/jelly/slimejelly/apple
 
 /datum/crafting_recipe/food/donut/slimejelly/caramel
-	name = "Caramel Slime Donut"
+	name = "Caramel Slime Donut-焦糖黏胶甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/caramel = 3,
 		/obj/item/food/donut/jelly/slimejelly/plain = 1
@@ -244,7 +244,7 @@
 	result = /obj/item/food/donut/jelly/slimejelly/caramel
 
 /datum/crafting_recipe/food/donut/slimejelly/choco
-	name = "Chocolate Slime Donut"
+	name = "巧克力史莱姆甜甜圈"
 	reqs = list(
 		/obj/item/food/chocolatebar = 1,
 		/obj/item/food/donut/jelly/slimejelly/plain = 1
@@ -252,7 +252,7 @@
 	result = /obj/item/food/donut/jelly/slimejelly/choco
 
 /datum/crafting_recipe/food/donut/slimejelly/blumpkin
-	name = "Blumpkin Slime Donut"
+	name = "蓝南瓜史莱姆甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/blumpkinjuice = 3,
 		/obj/item/food/donut/jelly/slimejelly/plain = 1
@@ -261,7 +261,7 @@
 	result = /obj/item/food/donut/jelly/slimejelly/blumpkin
 
 /datum/crafting_recipe/food/donut/slimejelly/bungo
-	name = "Bungo Slime Donut"
+	name = "邦戈果史莱姆甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/bungojuice = 3,
 		/obj/item/food/donut/jelly/slimejelly/plain = 1
@@ -269,7 +269,7 @@
 	result = /obj/item/food/donut/jelly/slimejelly/bungo
 
 /datum/crafting_recipe/food/donut/slimejelly/matcha
-	name = "Matcha Slime Donut"
+	name = "抹茶史莱姆甜甜圈"
 	reqs = list(
 		/datum/reagent/toxin/teapowder = 3,
 		/obj/item/food/donut/jelly/slimejelly/plain = 1
@@ -277,7 +277,7 @@
 	result = /obj/item/food/donut/jelly/slimejelly/matcha
 
 /datum/crafting_recipe/food/donut/slimejelly/laugh
-	name = "Sweet Pea Jelly Donut"
+	name = "Sweet Pea Jelly Donut-香豌豆果冻甜甜圈"
 	reqs = list(
 		/datum/reagent/consumable/laughsyrup = 3,
 		/obj/item/food/donut/jelly/slimejelly/plain = 1
@@ -288,7 +288,7 @@
 
 /datum/crafting_recipe/food/waffles
 	time = 1.5 SECONDS
-	name = "Waffles"
+	name = "Waffles-华夫饼"
 	reqs = list(
 		/obj/item/food/pastrybase = 2
 	)
@@ -298,7 +298,7 @@
 
 
 /datum/crafting_recipe/food/soylenviridians
-	name = "Soylent viridians"
+	name = "Soylent green-绿色食品"
 	reqs = list(
 		/obj/item/food/pastrybase = 2,
 		/obj/item/food/grown/soybeans = 1
@@ -307,7 +307,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/soylentgreen
-	name = "Soylent green"
+	name = "Soylent green-绿色食品"
 	reqs = list(
 		/obj/item/food/pastrybase = 2,
 		/obj/item/food/meat/slab/human = 2
@@ -318,7 +318,7 @@
 
 
 /datum/crafting_recipe/food/rofflewaffles
-	name = "Roffle waffles"
+	name = "Roffle waffles-罗夫华夫饼"
 	reqs = list(
 		/datum/reagent/drug/mushroomhallucinogen = 5,
 		/obj/item/food/pastrybase = 2
@@ -331,7 +331,7 @@
 
 /datum/crafting_recipe/food/donkpocket
 	time = 1.5 SECONDS
-	name = "Donk-pocket"
+	name = "Donk-pocket-口袋饼"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/meatball = 1
@@ -341,7 +341,7 @@
 
 /datum/crafting_recipe/food/dankpocket
 	time = 1.5 SECONDS
-	name = "Dank-pocket"
+	name = "Dank-pocket-哈草口袋饼"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/grown/cannabis = 1
@@ -351,7 +351,7 @@
 
 /datum/crafting_recipe/food/donkpocket/spicy
 	time = 1.5 SECONDS
-	name = "Spicy-pocket"
+	name = "Spicy-pocket-辣味口袋饼"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/meatball = 1,
@@ -362,7 +362,7 @@
 
 /datum/crafting_recipe/food/donkpocket/teriyaki
 	time = 1.5 SECONDS
-	name = "Teriyaki-pocket"
+	name = "Teriyaki-pocket-照烧口袋饼"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/meatball = 1,
@@ -373,7 +373,7 @@
 
 /datum/crafting_recipe/food/donkpocket/pizza
 	time = 1.5 SECONDS
-	name = "Pizza-pocket"
+	name = "Pizza-pocket-披萨口袋饼"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -384,7 +384,7 @@
 
 /datum/crafting_recipe/food/donkpocket/honk
 	time = 1.5 SECONDS
-	name = "Honk-Pocket"
+	name = "Honk-Pocket-喇叭口袋饼"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/grown/banana = 1,
@@ -396,7 +396,7 @@
 
 /datum/crafting_recipe/food/donkpocket/berry
 	time = 1.5 SECONDS
-	name = "Berry-pocket"
+	name = "Berry-pocket-浆果口袋饼"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/grown/berries = 1
@@ -407,7 +407,7 @@
 
 /datum/crafting_recipe/food/donkpocket/gondola
 	time = 1.5 SECONDS
-	name = "Gondola-pocket"
+	name = "Gondola-pocket-贡多拉口袋饼"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/meatball = 1,
@@ -418,7 +418,7 @@
 
 /datum/crafting_recipe/food/donkpocket/deluxe
 	time = 1.5 SECONDS
-	name = "Deluxe Donk-pocket"
+	name = "豪华咚咔包"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/meatball = 1,
@@ -432,7 +432,7 @@
 
 /datum/crafting_recipe/food/donkpocket/deluxe/nocarb
 	time = 1.5 SECONDS
-	name = "Deluxe Meat-pocket"
+	name = "豪华肉包"
 	reqs = list(
 		/obj/item/organ/heart = 1,
 		/obj/item/food/meatball = 1,
@@ -445,7 +445,7 @@
 
 /datum/crafting_recipe/food/donkpocket/deluxe/vegan
 	time = 1.5 SECONDS
-	name = "Deluxe Donk-roll"
+	name = "豪华咚咔卷"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/boiledrice = 1,
@@ -460,7 +460,7 @@
 
 /datum/crafting_recipe/food/muffin
 	time = 1.5 SECONDS
-	name = "Muffin"
+	name = "Muffin-松饼"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/pastrybase = 1
@@ -470,7 +470,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/berrymuffin
-	name = "Berry muffin"
+	name = "Berry muffin-浆果松饼"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/pastrybase = 1,
@@ -481,7 +481,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/booberrymuffin
-	name = "Booberry muffin"
+	name = "Booberry muffin-鬼莓松饼"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/pastrybase = 1,
@@ -496,7 +496,7 @@
 
 
 /datum/crafting_recipe/food/khachapuri
-	name = "Khachapuri"
+	name = "哈恰普里"
 	reqs = list(
 		/datum/reagent/consumable/eggyolk = 2,
 		/datum/reagent/consumable/eggwhite = 4,
@@ -509,7 +509,7 @@
 
 /datum/crafting_recipe/food/sugarcookie
 	time = 1.5 SECONDS
-	name = "Sugar cookie"
+	name = "Sugar cookie-糖心曲奇"
 	reqs = list(
 		/datum/reagent/consumable/sugar = 5,
 		/obj/item/food/pastrybase = 1
@@ -520,7 +520,7 @@
 
 /datum/crafting_recipe/food/spookyskull
 	time = 1.5 SECONDS
-	name = "Skull cookie"
+	name = "头骨饼干"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/datum/reagent/consumable/sugar = 5,
@@ -532,7 +532,7 @@
 
 /datum/crafting_recipe/food/spookycoffin
 	time = 1.5 SECONDS
-	name = "Coffin cookie"
+	name = "棺椁饼干"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/datum/reagent/consumable/sugar = 5,
@@ -544,7 +544,7 @@
 
 /datum/crafting_recipe/food/fortunecookie
 	time = 1.5 SECONDS
-	name = "Fortune cookie"
+	name = "Fortune cookie-幸运饼干"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/obj/item/paper = 1
@@ -559,7 +559,7 @@
 
 /datum/crafting_recipe/food/poppypretzel
 	time = 1.5 SECONDS
-	name = "Poppy pretzel"
+	name = "Poppy pretzel-罂粟椒盐卷饼"
 	reqs = list(
 		/obj/item/seeds/poppy = 1,
 		/obj/item/food/pastrybase = 1
@@ -570,7 +570,7 @@
 
 /datum/crafting_recipe/food/plumphelmetbiscuit
 	time = 1.5 SECONDS
-	name = "Plumphelmet biscuit"
+	name = "Plumphelmet biscuit-肉盔菇饼干"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/obj/item/food/grown/mushroom/plumphelmet = 1
@@ -580,7 +580,7 @@
 
 /datum/crafting_recipe/food/cracker
 	time = 1.5 SECONDS
-	name = "Cracker"
+	name = "Cracker-小饼干"
 	reqs = list(
 		/datum/reagent/consumable/salt = 1,
 		/obj/item/food/doughslice = 1,
@@ -589,7 +589,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/chococornet
-	name = "Choco cornet"
+	name = "Choco cornet-巧克力尖蛋卷"
 	reqs = list(
 		/datum/reagent/consumable/salt = 1,
 		/obj/item/food/pastrybase = 1,
@@ -599,7 +599,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/oatmealcookie
-	name = "Oatmeal cookie"
+	name = "Oatmeal cookie-燕麦饼干"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/obj/item/food/grown/oat = 1
@@ -608,7 +608,7 @@
 	dish_category = DISH_COOKIE
 
 /datum/crafting_recipe/food/raisincookie
-	name = "Raisin cookie"
+	name = "Raisin cookie-葡萄干饼干"
 	reqs = list(
 		/obj/item/food/no_raisin = 1,
 		/obj/item/food/pastrybase = 1,
@@ -619,7 +619,7 @@
 	dish_category = DISH_COOKIE
 
 /datum/crafting_recipe/food/cherrycupcake
-	name = "Cherry cupcake"
+	name = "Cherry cupcake-樱桃纸杯蛋糕"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/obj/item/food/grown/cherries = 1
@@ -629,7 +629,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/bluecherrycupcake
-	name = "Blue cherry cupcake"
+	name = "Blue cherry cupcake-蓝樱桃纸杯蛋糕"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/obj/item/food/grown/bluecherries = 1
@@ -639,7 +639,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/jupitercupcake
-	name = "Jupiter-cup-cake"
+	name = "木星杯蛋糕"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/obj/item/food/grown/mushroom/jupitercup = 1,
@@ -650,7 +650,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/honeybun
-	name = "Honey bun"
+	name = "Honey bun-蜂蜜圆面包"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/datum/reagent/consumable/honey = 5
@@ -660,7 +660,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/cannoli
-	name = "Cannoli"
+	name = "Cannoli-瑞可塔起司卷"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/datum/reagent/consumable/milk = 1,
@@ -671,7 +671,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/peanut_butter_cookie
-	name = "Peanut butter cookie"
+	name = "Peanut butter cookie-花生曲奇"
 	reqs = list(
 		/datum/reagent/consumable/peanut_butter = 5,
 		/obj/item/food/pastrybase = 1
@@ -681,7 +681,7 @@
 	dish_category = DISH_COOKIE
 
 /datum/crafting_recipe/food/raw_brownie_batter
-	name = "Raw brownie batter"
+	name = "Raw brownie batter-生巧克力蛋糕糊"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -695,7 +695,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/peanut_butter_brownie_batter
-	name = "Raw peanut butter brownie batter"
+	name = "生花生酱布朗尼面糊"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -710,7 +710,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/crunchy_peanut_butter_tart
-	name = "Crunchy peanut butter tart"
+	name = "脆皮花生酱挞"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/datum/reagent/consumable/peanut_butter = 5,
@@ -722,7 +722,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/chocolate_chip_cookie
-	name = "Chocolate chip cookie"
+	name = "巧克力曲奇"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -732,7 +732,7 @@
 	dish_category = DISH_COOKIE
 
 /datum/crafting_recipe/food/snickerdoodle
-	name = "Snickerdoodle"
+	name = "肉桂糖曲奇"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/datum/reagent/consumable/vanilla = 5,
@@ -742,7 +742,7 @@
 	dish_category = DISH_COOKIE
 
 /datum/crafting_recipe/food/thumbprint_cookie
-	name = "Thumbprint cookie"
+	name = "拇指印饼干"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/datum/reagent/consumable/cherryjelly = 5,
@@ -752,7 +752,7 @@
 	dish_category = DISH_COOKIE
 
 /datum/crafting_recipe/food/macaron
-	name = "Macaron"
+	name = "马卡龙"
 	reqs = list(
 		/datum/reagent/consumable/eggwhite = 2,
 		/datum/reagent/consumable/cream = 5,

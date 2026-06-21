@@ -61,7 +61,7 @@
 
 /// Special assassination objective to kill the cap, take their id, and become the new captain
 /datum/objective/assassinate/captain_replacement
-	name = "replace the captain"
+	name = "取代舰长"
 	admin_grantable = FALSE
 
 /datum/objective/assassinate/captain_replacement/update_explanation_text()
@@ -90,7 +90,7 @@
 	return null
 
 /datum/outfit/job/hop
-	name = "Head of Personnel"
+	name = "人事部长"
 	jobtype = /datum/job/head_of_personnel
 
 	id = /obj/item/card/id/advanced/platinum

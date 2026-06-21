@@ -1,7 +1,7 @@
 /// Watchers' ground-dwelling cousins, they shoot at you until they get into melee and absorb laser fire to power up.
 /mob/living/basic/mining/basilisk
-	name = "basilisk"
-	desc = "A territorial beast, covered in a diamond shell which absorbs heat. Its stare causes victims to freeze from the inside."
+	name = "石化蜥蜴"
+	desc = "一种领地性野兽，覆盖着能吸收热量的钻石外壳。它的凝视会使受害者从内部冻结。"
 	icon_state = "basilisk"
 	icon_living = "basilisk"
 	icon_dead = "basilisk_dead"

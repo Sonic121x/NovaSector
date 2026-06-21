@@ -23,8 +23,8 @@
 	new_icon_state = "cape_white"
 
 /obj/item/clothing/neck/security_cape
-	name = "security cape"
-	desc = "A fashionable cape worn by security officers."
+	name = "安保披风"
+	desc = "安保干员穿戴的时尚披风。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/neck.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "cape_black"
@@ -37,7 +37,7 @@
 
 /obj/item/clothing/neck/security_cape/click_alt(mob/user)
 	swapped = !swapped
-	to_chat(user, span_notice("You swap which arm [src] will lay over."))
+	to_chat(user, span_notice("你交换了[src]将要搭在哪只手臂上。"))
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
@@ -70,8 +70,8 @@
 	new_icon_state = "armplate"
 
 /obj/item/clothing/neck/security_cape/armplate
-	name = "security gauntlet"
-	desc = "A fashionable full-arm gauntlet worn by security officers. The gauntlet itself is made of plastic, and provides no protection, but it looks cool as hell."
+	name = "安保臂铠"
+	desc = "安保干员穿戴的时尚全臂护手。护手本身由塑料制成，不提供任何防护，但看起来酷毙了。"
 	icon_state = "armplate_black"
 
 /obj/item/clothing/neck/security_cape/armplate/setup_reskins()

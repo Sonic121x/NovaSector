@@ -11,8 +11,8 @@
 
 
 /obj/item/multitool
-	name = "multitool"
-	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors. You can activate it in-hand to locate the nearest APC."
+	name = "多功能工具"
+	desc = "用于脉冲电线以测试该剪断哪一根。医生不建议使用。你可以手持激活以定位最近的APC。"
 	icon = 'icons/obj/devices/tool.dmi' //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "multitool"
 	inhand_icon_state = "multitool"
@@ -73,7 +73,7 @@
 	var/area/local_area = get_area(src)
 	var/obj/machinery/power/apc/power_controller = local_area.apc
 	if(!power_controller)
-		user.balloon_alert(user, "couldn't find apc!")
+		user.balloon_alert(user, "找不到区域电力控制器！")
 		return
 
 	var/dist = get_dist(src, power_controller)
@@ -83,7 +83,7 @@
 
 	switch(dist)
 		if (0)
-			user.balloon_alert(user, "found apc!")
+			user.balloon_alert(user, "找到区域电力控制器了！")
 			return
 		if(1 to 5)
 			arrow_color = COLOR_GREEN
@@ -119,7 +119,7 @@
 		INVOKE_ASYNC(our_hud, TYPE_PROC_REF(/datum/hud, show_hud), our_hud.hud_version)
 
 /obj/item/multitool/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] puts the [src] to [user.p_their()] chest. It looks like [user.p_theyre()] trying to pulse [user.p_their()] heart off!"))
+	user.visible_message(span_suicide("[user]将[src]抵在[user.p_their()]胸口。看起来[user.p_theyre()]试图让[user.p_their()]心脏停止跳动！"))
 	return OXYLOSS//there's a reason it wasn't recommended by doctors
 
 /**
@@ -178,14 +178,14 @@
 	. = ..()
 	if(!hud_on)
 		return
-	. += span_notice("You can right-click to scan for nearby unseen spots. They will be shown for exactly 8 seconds due to battery limitations.")
+	. += span_notice("你可以右键点击扫描附近未被监视的区域。由于电池限制，它们将仅显示8秒。")
 	switch(detect_state)
 		if(PROXIMITY_NONE)
-			. += span_green("No AI should be currently looking at you. Keep on your clandestine activities.")
+			. += span_green("当前应该没有AI在注视你。请继续你的秘密活动。")
 		if(PROXIMITY_NEAR)
-			. += span_warning("An AI is getting uncomfortably close. Maybe time to drop what youre doing.")
+			. += span_warning("有个AI正令人不安地接近。也许是时候放下手头的事了。")
 		if(PROXIMITY_ON_SCREEN)
-			. += span_danger("An AI is (probably) looking at you. You should probably hide this.")
+			. += span_danger("有个AI（很可能）正在注视你。你最好把这东西藏起来。")
 
 /obj/item/multitool/ai_detect/Destroy()
 	if(hud_on && ismob(loc))
@@ -229,7 +229,7 @@
 /obj/item/multitool/ai_detect/proc/toggle_hud(mob/user)
 	hud_on = !hud_on
 	if(user)
-		to_chat(user, span_notice("You toggle the ai detection feature on [src] [hud_on ? "on" : "off"]."))
+		to_chat(user, span_notice("你将 [src] 的人工智能检测功能切换为 [hud_on ? "on" : "off"]。"))
 	if(hud_on)
 		START_PROCESSING(SSfastprocess, src)
 		show_hud(user)
@@ -274,7 +274,7 @@
 	if(isnull(user?.client)) // the monkey incident of 2564
 		return
 	if(!COOLDOWN_FINISHED(src, static_scan_cd))
-		balloon_alert(user, "recharging!")
+		balloon_alert(user, "正在充能！")
 		return
 	cleanup_static()
 	var/turf/our_turf = get_turf(src)
@@ -293,7 +293,7 @@
 			new_images += img
 	user.client.images |= new_images
 	static_viewer = WEAKREF(user.client)
-	balloon_alert(user, "nearby unseen spots shown")
+	balloon_alert(user, "已显示附近未监视区域")
 	static_disappear_timer = addtimer(CALLBACK(src, PROC_REF(cleanup_static)), 8 SECONDS, TIMER_STOPPABLE)
 	COOLDOWN_START(src, static_scan_cd, 4 SECONDS)
 
@@ -326,8 +326,8 @@
 	static_disappear_timer = null
 
 /obj/item/multitool/abductor
-	name = "alien multitool"
-	desc = "An omni-technological interface."
+	name = "外星多功能工具"
+	desc = "一个全技术接口。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "multitool"
 	inside_belt_icon_state = "multitool_alien"
@@ -335,8 +335,8 @@
 	toolspeed = 0.1
 
 /obj/item/multitool/cyborg
-	name = "electronic multitool"
-	desc = "Optimised version of a regular multitool. Streamlines processes handled by its internal microchip."
+	name = "电子多功能工具"
+	desc = "常规多功能工具的优化版本。通过其内部微芯片简化处理流程。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_multitool"
 	icon_angle = 0

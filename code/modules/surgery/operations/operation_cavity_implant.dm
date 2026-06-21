@@ -1,6 +1,6 @@
 /datum/surgery_operation/limb/prepare_cavity
-	name = "widen chest cavity"
-	desc = "Widen a patient's chest cavity to allow for implanting of larger items."
+	name = "扩大胸腔"
+	desc = "扩大患者的胸腔，以便植入更大的物品。"
 	implements = list(
 		TOOL_RETRACTOR = 1,
 		TOOL_CROWBAR = 1.5,
@@ -36,7 +36,7 @@
 
 /datum/surgery_operation/limb/cavity_implant
 	name = "cavity implant"
-	desc = "Implant an item into a patient's body cavity."
+	desc = "将物品植入患者的体腔。"
 	operation_flags = OPERATION_NOTABLE
 	implements = list(
 		/obj/item = 1,
@@ -120,8 +120,8 @@
 
 
 /datum/surgery_operation/limb/undo_cavity_implant
-	name = "remove cavity implant"
-	desc = "Remove an item from a body cavity."
+	name = "移除体腔植入物"
+	desc = "从体腔中取出物品。"
 	implements = list(
 		IMPLEMENT_HAND = 1,
 		TOOL_HEMOSTAT = 2,
@@ -135,7 +135,7 @@
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_CAVITY_WIDENED
 
 /datum/surgery_operation/limb/undo_cavity_implant/all_required_strings()
-	return list("operate on chest (target chest)") + ..()
+	return list("对胸部进行手术（目标胸部）") + ..()
 
 /datum/surgery_operation/limb/undo_cavity_implant/get_default_radial_image()
 	return image('icons/hud/screen_gen.dmi', "arrow_large_still")
@@ -144,7 +144,7 @@
 	// Not bothering to cache this as the chance of hitting the same cavity item in the same round is rather low
 	var/datum/radial_menu_choice/option = new()
 	option.name = "remove [limb.cavity_item]"
-	option.info = "Replace the [limb.cavity_item] embededd in the patient's chest cavity."
+	option.info = "替换嵌入患者胸腔的 [limb.cavity_item]。"
 	option.image = get_generic_limb_radial_image(BODY_ZONE_CHEST)
 	option.image.overlays += add_radial_overlays(limb.cavity_item)
 	return option

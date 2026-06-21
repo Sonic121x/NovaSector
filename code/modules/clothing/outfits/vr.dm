@@ -1,5 +1,5 @@
 /datum/outfit/vr
-	name = "Basic VR"
+	name = "基本的虚拟现实"
 
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/vr
@@ -11,7 +11,7 @@
 	H.dna.species.pre_equip_species_outfit(null, H)
 
 /datum/outfit/vr/syndicate
-	name = "Syndicate VR Operative - Basic"
+	name = "Syndicate VR 特工 - 基础"
 
 	id = /obj/item/card/id/advanced/chameleon/black
 	id_trim = /datum/id_trim/vr/operative
@@ -36,5 +36,5 @@
 	H.update_icons()
 
 /obj/item/paper/fluff/vr/fluke_ops
-	name = "Where is my uplink?"
-	default_raw_text = "Use the radio in your backpack."
+	name = "我的链路呢？"
+	default_raw_text = "使用你背包里的无线电。"

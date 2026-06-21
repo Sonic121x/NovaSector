@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/pointed/blood_siphon
-	name = "Blood Siphon"
+	name = "血之汲取"
 	desc = "A targeted spell that heals your wounds while damaging the enemy. \
 		It has a chance to transfer wounds between you and your enemy."
 	background_icon_state = "bg_heretic"
@@ -27,7 +27,7 @@
 	. = ..()
 	playsound(owner, 'sound/effects/magic/demon_attack1.ogg', 75, TRUE)
 	if(cast_on.can_block_magic())
-		owner.balloon_alert(owner, "spell blocked!")
+		owner.balloon_alert(owner, "法术被阻挡！")
 		cast_on.visible_message(
 			span_danger("The spell bounces off of [cast_on]!"),
 			span_danger("The spell bounces off of you!"),

@@ -12,7 +12,7 @@
 	cuisine_category = CUISINE_HEMOPHAGE
 
 /datum/crafting_recipe/food/hemophage/blood_curd
-	name = "Blood Curd"
+	name = "血凝块"
 	reqs = list(
 		/datum/reagent/blood = 20,
 	)
@@ -20,7 +20,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/hemophage/blood_noodles
-	name = "Raw Blood Noodles"
+	name = "生血面条"
 	reqs = list(
 		/obj/item/food/spaghetti/raw = 1,
 		/datum/reagent/blood = 20,
@@ -31,7 +31,7 @@
 	meal_category = MEAL_COMPONENT
 
 /datum/crafting_recipe/food/hemophage/boat_noodles
-	name = "Boat Noodles"
+	name = "船面"
 	reqs = list(
 		/obj/item/food/hemophage/blood_noodles = 1,
 		/obj/item/food/hemophage/blood_curd = 1,

@@ -1,7 +1,7 @@
 /obj/item/stack/medical/wrap/sticky_tape
-	name = "sticky tape"
+	name = "胶带"
 	singular_name = "sticky tape"
-	desc = "Used for sticking to things for sticking said things to people."
+	desc = "用于粘附物品，以便将这些物品粘到人身上。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/stack/medical/wrap/sticky_tape"
 	post_init_icon_state = "tape"
@@ -45,7 +45,7 @@
 		var/new_tape_gag = new tape_gag(src)
 		user.put_in_hands(new_tape_gag)
 		use(1)
-		to_chat(user, span_notice("You rip off a piece of tape."))
+		to_chat(user, span_notice("你撕下了一段胶带。"))
 		playsound(user, 'sound/items/duct_tape/duct_tape_snap.ogg', 50, TRUE)
 		return TRUE
 	return ..()
@@ -59,10 +59,10 @@
 		return NONE
 
 	if(target.get_embed()?.type == conferred_embed)
-		to_chat(user, span_warning("[target] is already coated in [src]!"))
+		to_chat(user, span_warning("[target] 已经涂有 [src] 了！"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] begins wrapping [target] with [src]."), span_notice("You begin wrapping [target] with [src]."))
+	user.visible_message(span_notice("[user] 开始用 [src] 包裹 [target]。"), span_notice("你开始用 [src] 包裹 [target]。"))
 	playsound(user, 'sound/items/duct_tape/duct_tape_rip.ogg', 50, TRUE)
 
 	if(!do_after(user, 3 SECONDS, target=target))
@@ -72,17 +72,17 @@
 	use(1)
 	if(istype(target, /obj/item/clothing/gloves/fingerless))
 		var/obj/item/clothing/gloves/tackler/offbrand/O = new /obj/item/clothing/gloves/tackler/offbrand
-		to_chat(user, span_notice("You turn [target] into [O] with [src]."))
+		to_chat(user, span_notice("你用[src]把[target]变成了[O]。"))
 		QDEL_NULL(target)
 		user.put_in_hands(O)
 		return ITEM_INTERACT_SUCCESS
 
 	if(target.get_embed()?.type == conferred_embed)
-		to_chat(user, span_warning("[target] is already coated in [src]!"))
+		to_chat(user, span_warning("[target] 已经涂有 [src] 了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	target.set_embed(conferred_embed)
-	to_chat(user, span_notice("You finish wrapping [target] with [src]."))
+	to_chat(user, span_notice("你用[src]完成了对[target]的包裹。"))
 	target.name = "[prefix] [target.name]"
 
 	if(isgrenade(target))
@@ -92,9 +92,9 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/medical/wrap/sticky_tape/super
-	name = "super sticky tape"
+	name = "超级粘性胶带"
 	singular_name = "super sticky tape"
-	desc = "Quite possibly the most mischievous substance in the galaxy. Use with extreme lack of caution."
+	desc = "这可能是银河系中最淘气的物质。使用时请极度缺乏谨慎。"
 	prefix = "super sticky"
 	conferred_embed = /datum/embedding/sticky_tape/super
 	splint_factor = 0.4
@@ -107,12 +107,12 @@
 	fall_chance = 0.1
 
 /obj/item/stack/medical/wrap/sticky_tape/pointy
-	name = "pointy tape"
+	name = "尖刺胶带"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/stack/medical/wrap/sticky_tape/pointy"
 	post_init_icon_state = "tape_spikes"
 	singular_name = "pointy tape"
-	desc = "Used for sticking to things for sticking said things inside people."
+	desc = "用于粘附物品，以便将这些物品刺入人体。"
 	prefix = "pointy"
 	conferred_embed = /datum/embedding/pointy_tape
 	merge_type = /obj/item/stack/medical/wrap/sticky_tape/pointy
@@ -124,9 +124,9 @@
 	ignore_throwspeed_threshold = TRUE
 
 /obj/item/stack/medical/wrap/sticky_tape/pointy/super
-	name = "super pointy tape"
+	name = "超级尖刺胶带"
 	singular_name = "super pointy tape"
-	desc = "You didn't know tape could look so sinister. Welcome to Space Station 13."
+	desc = "你从不知道胶带能看起来如此险恶。欢迎来到太空站13号。"
 	prefix = "super pointy"
 	conferred_embed = /datum/embedding/pointy_tape/super
 	merge_type = /obj/item/stack/medical/wrap/sticky_tape/pointy/super
@@ -137,9 +137,9 @@
 	embed_chance = 100
 
 /obj/item/stack/medical/wrap/sticky_tape/surgical
-	name = "surgical tape"
+	name = "外科胶带"
 	singular_name = "surgical tape"
-	desc = "Made for patching broken bones back together alongside bone gel, not for playing pranks."
+	desc = "专为配合骨凝胶将断骨粘合而设计，并非用于恶作剧。"
 	prefix = "surgical"
 	conferred_embed = /datum/embedding/sticky_tape/surgical
 	splint_factor = 0.5
@@ -155,9 +155,9 @@
 	return "tape" + (tray_extended ? "" : "_out")
 
 /obj/item/stack/medical/wrap/sticky_tape/duct
-	name = "duct tape"
+	name = "管道胶带"
 	singular_name = "duct tape"
-	desc = "Tape designed for sealing punctures, holes and breakages in objects. Engineers swear by this stuff for practically all kinds of repairs. Maybe a little TOO much..."
+	desc = "专为密封物体上的穿孔、破洞和断裂而设计的胶带。工程师们几乎在所有类型的维修中都信赖这东西。或许有点过于信赖了……"
 	prefix = "duct taped"
 	conferred_embed = /datum/embedding/sticky_tape/duct
 	merge_type = /obj/item/stack/medical/wrap/sticky_tape/duct
@@ -177,10 +177,10 @@
 		var/robot_is_damaged = robotic_pal.get_brute_loss()
 
 		if(!robot_is_damaged)
-			user.balloon_alert(user, "[robotic_pal] is not damaged!")
+			user.balloon_alert(user, "[robotic_pal]没有损坏！")
 			return ITEM_INTERACT_BLOCKING
 
-		user.visible_message(span_notice("[user] begins repairing [robotic_pal] with [src]."), span_notice("You begin repairing [robotic_pal] with [src]."))
+		user.visible_message(span_notice("[user]开始用[src]修理[robotic_pal]。"), span_notice("你开始用[src]修理[robotic_pal]。"))
 		playsound(user, 'sound/items/duct_tape/duct_tape_rip.ogg', 50, TRUE)
 
 		if(!do_after(user, 3 SECONDS, target = robotic_pal))
@@ -188,24 +188,24 @@
 
 		robotic_pal.adjust_brute_loss(-object_repair_value)
 		use(1)
-		to_chat(user, span_notice("You finish repairing [interacting_with] with [src]."))
+		to_chat(user, span_notice("你用[src]完成了对[interacting_with]的修理。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!isobj(interacting_with) || iseffect(interacting_with))
 		return NONE
 
 	if(HAS_TRAIT(interacting_with, TRAIT_DUCT_TAPE_UNREPAIRABLE))
-		user.balloon_alert(user, "cannot be repaired with duct tape!")
+		user.balloon_alert(user, "无法用胶带修复！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/object_to_repair = interacting_with
 	var/object_is_damaged = object_to_repair.get_integrity() < object_to_repair.max_integrity
 
 	if(!object_is_damaged)
-		user.balloon_alert(user, "[object_to_repair] is not damaged!")
+		user.balloon_alert(user, "[object_to_repair]没有损坏！")
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] begins repairing [object_to_repair] with [src]."), span_notice("You begin repairing [object_to_repair] with [src]."))
+	user.visible_message(span_notice("[user]开始用[src]修理[object_to_repair]。"), span_notice("你开始用[src]修理[object_to_repair]。"))
 	playsound(user, 'sound/items/duct_tape/duct_tape_rip.ogg', 50, TRUE)
 
 	if(!do_after(user, 3 SECONDS, target = object_to_repair))
@@ -218,5 +218,5 @@
 		object_to_repair.repair_damage(object_repair_value)
 
 	use(1)
-	to_chat(user, span_notice("You finish repairing [interacting_with] with [src]."))
+	to_chat(user, span_notice("你用[src]完成了对[interacting_with]的修理。"))
 	return ITEM_INTERACT_SUCCESS

@@ -1,8 +1,8 @@
 //Tools that are made using makeshift item crafting
 
 /obj/item/crowbar/makeshift
-	name = "makeshift crowbar"
-	desc = "A makeshift crowbar, flimsily constructed with miscellaneous parts. It's got a strong head that looks like it could be used for hammering."
+	name = "临时撬棍"
+	desc = "一把用各种零件粗制滥造拼凑而成的临时撬棍。它有一个结实的头部，看起来可以用来敲击。"
 	icon = 'modular_nova/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_crowbar"
 	worn_icon_state = "crowbar"
@@ -13,8 +13,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/screwdriver/makeshift
-	name = "makeshift screwdriver"
-	desc = "A makeshift screwdriver, flimsily made using cloth and some metal."
+	name = "临时螺丝刀"
+	desc = "一把用布料和一些金属粗制滥造而成的临时螺丝刀。"
 	icon = 'modular_nova/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_screwdriver"
 	random_color = FALSE
@@ -25,8 +25,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/weldingtool/makeshift
-	name = "makeshift welder"
-	desc = "A makeshift welder, flimsily constructed with miscellaneous parts."
+	name = "临时焊枪"
+	desc = "一把用各种零件粗制滥造拼凑而成的临时焊枪。"
 	icon = 'modular_nova/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_welder"
 	force = 1
@@ -38,8 +38,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6.5)
 
 /obj/item/wirecutters/makeshift
-	name = "makeshift wirecutters"
-	desc = "Makeshift wire cutters, flimsily constructed with miscellaneous parts."
+	name = "临时钢丝钳"
+	desc = "用各种零件粗制滥造拼凑而成的临时钢丝钳。"
 	icon = 'modular_nova/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_cutters"
 	random_color = FALSE
@@ -54,8 +54,8 @@
 	greyscale_colors = null
 
 /obj/item/wrench/makeshift
-	name = "makeshift wrench"
-	desc = "A makeshift wrench, flimsily constructed with miscellaneous parts."
+	name = "临时扳手"
+	desc = "一把用各种零件粗制滥造拼凑而成的临时扳手。"
 	icon = 'modular_nova/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_wrench"
 	force = 2

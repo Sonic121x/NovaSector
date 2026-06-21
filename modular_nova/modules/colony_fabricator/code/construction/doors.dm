@@ -1,7 +1,7 @@
 // Shutters
 
 /obj/machinery/door/poddoor/shutters/colony_fabricator
-	name = "prefab shutters"
+	name = "预制百叶窗"
 	icon = 'modular_nova/modules/colony_fabricator/icons/doors/shutter.dmi'
 
 /obj/machinery/door/poddoor/shutters/colony_fabricator/preopen
@@ -17,7 +17,7 @@
 			playsound(src, animation_sound, 30, TRUE)
 
 /obj/item/flatpacked_machine/shutter_kit
-	name = "prefab shutters parts kit"
+	name = "预制百叶窗零件套件"
 	desc = /obj/machinery/door/poddoor/shutters/colony_fabricator/preopen::desc
 	icon = 'modular_nova/modules/colony_fabricator/icons/doors/packed.dmi'
 	icon_state = "shutters_parts"
@@ -31,20 +31,20 @@
 // Airlocks
 
 /obj/machinery/door/airlock/colony_prefab
-	name = "prefab airlock"
+	name = "预制气闸门"
 	icon = 'modular_nova/modules/colony_fabricator/icons/doors/airlock.dmi'
 	overlays_file = 'modular_nova/modules/colony_fabricator/icons/doors/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_colony_prefab
 
 /obj/structure/door_assembly/door_assembly_colony_prefab
-	name = "prefab airlock assembly"
+	name = "预制气闸门组件"
 	icon = 'modular_nova/modules/colony_fabricator/icons/doors/airlock.dmi'
 	base_name = "prefab airlock"
 	airlock_type = /obj/machinery/door/airlock/colony_prefab
 	noglass = TRUE
 
 /obj/item/flatpacked_machine/airlock_kit
-	name = "prefab airlock parts kit"
+	name = "预制气闸门零件套件"
 	desc = /obj/machinery/door/airlock/colony_prefab::desc
 	icon = 'modular_nova/modules/colony_fabricator/icons/doors/packed.dmi'
 	icon_state = "airlock_parts"

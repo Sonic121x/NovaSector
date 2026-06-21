@@ -1,8 +1,8 @@
 #define REVERSE_BEAR_TRAP_COUNTDOWN (60 SECONDS)
 
 /obj/item/reverse_bear_trap
-	name = "reverse bear trap"
-	desc = "A horrifying set of shut metal jaws, rigged to a kitchen timer and secured by padlock to a head-mounted clamp. To apply, hit someone with it."
+	name = "反向捕熊夹"
+	desc = "一套骇人的闭合金属颚，连接着一个厨房计时器，并通过挂锁固定在一个头戴式夹具上。要使用它，请用它攻击某人。"
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	icon_state = "reverse_bear_trap"
@@ -50,7 +50,7 @@
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 	soundloop.stop()
 	soundloop2.stop()
-	to_chat(loc, span_userdanger("*ding*"))
+	to_chat(loc, span_userdanger("*叮*"))
 	addtimer(CALLBACK(src, PROC_REF(snap)), 0.2 SECONDS)
 	COOLDOWN_RESET(src, kill_countdown) // reset the countdown in case it wasn't finished
 
@@ -76,33 +76,33 @@
 		if(40 SECONDS to 50 SECONDS)
 			fear_string = "shakily"
 
-	carbon_user.visible_message(span_danger("[carbon_user] fiddles with and pulls at [src]..."), \
-		span_danger("You[isnull(fear_string) ? "" : " [fear_string]"] try to pull at [src]..."), "<i>You hear clicking and ticking.</i>")
+	carbon_user.visible_message(span_danger("[carbon_user] 摆弄并拉扯着 [src]..."), \
+		span_danger("你[isnull(fear_string) ? "" : " [fear_string]"]试图拉扯[src]..."), "<i>你听到咔哒声和滴答声。</i>")
 	if(!do_after(user, 2 SECONDS, target = src))
 		struggling = FALSE
 		return
 	if(!prob(escape_chance))
-		to_chat(user, span_warning("It doesn't budge!"))
+		to_chat(user, span_warning("它纹丝不动！"))
 		escape_chance++
 	else
-		user.visible_message(span_warning("The lock on [user]'s [name] pops open!"), \
-		span_userdanger("You force open the padlock!"), "<i>You hear a single, pronounced click!</i>")
+		user.visible_message(span_warning("[user]的[name]上的锁弹开了！"), \
+		span_userdanger("你强行打开了挂锁！"), "<i>你听到一声清晰而响亮的咔哒声！</i>")
 		REMOVE_TRAIT(src, TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT)
 	struggling = FALSE
 
 /obj/item/reverse_bear_trap/attack(mob/living/target, mob/living/user)
 	if(target.get_item_by_slot(ITEM_SLOT_HEAD))
-		to_chat(user, span_warning("Remove [target.p_their()] headgear first!"))
+		to_chat(user, span_warning("先取下[target.p_their()]的头部装备！"))
 		return
-	target.visible_message(span_warning("[user] starts forcing [src] onto [target]'s head!"), \
-		span_userdanger("[target] starts forcing [src] onto your head!"), "<i>You hear clanking.</i>")
-	to_chat(user, span_danger("You start forcing [src] onto [target]'s head..."))
+	target.visible_message(span_warning("[user]开始将[src]强行套到[target]头上！"), \
+		span_userdanger("[target]开始将[src]强行套到你头上！"), "<i>你听到金属碰撞声。</i>")
+	to_chat(user, span_danger("你开始将[src]强行套到[target]头上..."))
 
 	if(!do_after(user, 3 SECONDS, target = target) || target.get_item_by_slot(ITEM_SLOT_HEAD))
 		return
-	target.visible_message(span_warning("[user] forces and locks [src] onto [target]'s head!"), \
-		span_userdanger("[user] locks [src] onto your head!"), "<i>You hear a click, and then a timer ticking down.</i>")
-	to_chat(user, span_danger("You force [src] onto [target]'s head and click the padlock shut."))
+	target.visible_message(span_warning("[user]将[src]强行锁在了[target]头上！"), \
+		span_userdanger("[user]将[src]锁在了你头上！"), "<i>你听到一声咔哒，接着是倒计时的滴答声。</i>")
+	to_chat(user, span_danger("你将[src]强行套到[target]头上并咔哒一声锁上了挂锁。"))
 
 	user.dropItemToGround(src)
 	target.equip_to_slot_if_possible(src, ITEM_SLOT_HEAD)
@@ -120,11 +120,11 @@
 	reset()
 	var/mob/living/carbon/human/victim = loc
 	if(!istype(victim) || victim.get_item_by_slot(ITEM_SLOT_HEAD) != src)
-		visible_message(span_warning("[src]'s jaws snap open with an ear-piercing crack!"))
+		visible_message(span_warning("[src]的颚部伴随着刺耳的爆裂声猛然张开！"))
 		playsound(src, 'sound/effects/snap.ogg', 75, TRUE)
 	else
 		var/mob/living/carbon/human/jill = loc
-		jill.visible_message(span_boldwarning("[src] goes off in [jill]'s mouth, ripping [jill.p_their()] head apart!"), span_userdanger("[src] goes off!"))
+		jill.visible_message(span_boldwarning("[src]在[jill]口中爆炸，将[jill.p_their()]的脑袋撕成碎片！"), span_userdanger("[src]爆炸了！"))
 		jill.emote("scream")
 		playsound(src, 'sound/effects/snap.ogg', 75, TRUE, frequency = 0.5)
 		playsound(src, 'sound/effects/splat.ogg', 50, TRUE, frequency = 0.5)

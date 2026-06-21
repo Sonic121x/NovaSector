@@ -1,7 +1,7 @@
 //All bundles and telecrystals
 
 /datum/uplink_category/bundle
-	name = "Bundles"
+	name = "套装"
 	weight = 10
 
 /datum/uplink_item/bundles_tc
@@ -12,7 +12,7 @@
 
 /datum/uplink_item/bundles_tc/random
 	name = "Random Item"
-	desc = "Picking this will purchase a random item. Useful if you have some TC to spare or if you haven't decided on a strategy yet."
+	desc = "选择此项将购买随机物品，如果你有一些TC可用或没有确切的思路时会是个有用的选项"
 	item = ABSTRACT_UPLINK_ITEM
 	cost = 0
 	cost_override_string = "Varies"
@@ -34,7 +34,7 @@
 
 /datum/uplink_item/bundles_tc/telecrystal
 	name = "1 Raw Telecrystal"
-	desc = "A telecrystal in its rawest and purest form; can be utilized on active uplinks to increase their telecrystal count."
+	desc = "最原始与纯净的远输晶体-TC；可以植入至各种上行链路"
 	item = /obj/item/stack/telecrystal
 	cost = 1
 	// Don't add telecrystals to the purchase_log since

@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol
-	name = "\improper Makarov pistol"
-	desc = "A small, easily concealable 9mm handgun. Has a threaded barrel for suppressors."
+	name = "\improper 马卡洛夫手枪"
+	desc = "一把小而便于隐藏的9毫米手枪。配有可安装消音器的螺纹枪管。"
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_SMALL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm
@@ -53,8 +53,8 @@
 	install_suppressor(S)
 
 /obj/item/gun/ballistic/automatic/pistol/clandestine
-	name = "\improper Ansem pistol"
-	desc = "The spiritual successor of the Makarov, or maybe someone just dropped their gun in a bucket of paint. The gun is chambered in 10mm."
+	name = "\improper 安塞姆手枪"
+	desc = "这是马卡洛夫的精神继承者，或者可能只是有人把他们的枪掉进了一桶油漆里。这把枪使用的是10毫米口径。"
 	icon_state = "pistol_evil"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m10mm
 	empty_indicator = TRUE
@@ -128,7 +128,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/m1911
 	name = "\improper M1911"
-	desc = "A classic .45 handgun with a small magazine capacity."
+	desc = "一支经典的.45口径小弹容量手枪。"
 	icon_state = "m1911"
 	w_class = WEIGHT_CLASS_NORMAL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m45
@@ -169,7 +169,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/deagle
 	name = "\improper Desert Eagle"
-	desc = "A robust .50 AE handgun."
+	desc = "一把强力的.50 AE手枪。"
 	icon_state = "deagle"
 	force = 14
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m50
@@ -194,12 +194,12 @@
 	pin.pin_removable = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/gold
-	desc = "A gold plated Desert Eagle folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."
+	desc = "一把镀金的沙漠之鹰，由高级火星枪匠锻造超过一百万次。使用 .50 AE 弹药。"
 	icon_state = "deagleg"
 	inhand_icon_state = "deagleg"
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/camo
-	desc = "A Deagle brand Deagle for operators operating operationally. Uses .50 AE ammo."
+	desc = "德格雷品牌，专为特工设计，需要.50 AE 弹药.。"
 	icon_state = "deaglecamo"
 	inhand_icon_state = "deagleg"
 	// NOVA EDIT - We don't actually have the right icons for this. When you add the icons you can remove this line!
@@ -235,8 +235,8 @@
 	)
 
 /obj/item/gun/ballistic/automatic/pistol/aps
-	name = "\improper Stechkin APS machine pistol"
-	desc = "A modernized reproduction of an old Soviet machine pistol. It fires quickly, but kicks like a mule. Uses 9mm ammo. Has a threaded barrel for suppressors." //NOVA EDIT
+	name = "\improper 斯托金杰APS机械手枪"
+	desc = "一把旧苏联机枪的现代化复制品。它开火很快，但枪声听起来像驴叫。使用9mm弹药。有一个用于抑制器的螺纹枪管。" //NOVA EDIT
 	icon_state = "aps"
 	w_class = WEIGHT_CLASS_NORMAL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm_aps
@@ -248,8 +248,8 @@
 	suppressor_x_offset = 6
 
 /obj/item/gun/ballistic/automatic/pistol/stickman
-	name = "flat gun"
-	desc = "A 2 dimensional gun.. what?"
+	name = "平面枪"
+	desc = "一支二次元的枪……啥？"
 	icon_state = "flatgun"
 	mag_display = FALSE
 	show_bolt_icon = FALSE
@@ -289,10 +289,10 @@
 	if (forced)
 		return ..()
 
-	balloon_alert(user, "unscrewing the barrel...")
+	balloon_alert(user, "正在拧下枪管...")
 	playsound(user, 'sound/items/tools/screwdriver_operating.ogg', 75, FALSE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if (!do_after(user, 2 SECONDS, src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
 	. = ..()
 
@@ -301,12 +301,12 @@
 	if (!.)
 		return
 
-	balloon_alert(user, "screwing the barrel on...")
+	balloon_alert(user, "正在拧上枪管...")
 	playsound(user, 'sound/items/tools/screwdriver_operating.ogg', 75, FALSE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if (do_after(user, 2 SECONDS, src))
 		return TRUE
 
-	balloon_alert(user, "interrupted!")
+	balloon_alert(user, "被打断了！")
 	unload_ammo(user, forced = TRUE)
 	return FALSE
 
@@ -349,9 +349,9 @@
 	if (prob(damage_to_take - atom_integrity) && poor_sod)
 		shrapnel_bomb = TRUE
 
-	user.visible_message(span_danger("[src] explodes into small pieces[shrapnel_bomb ? ", chunk of it embedding in [user]'s [user.parse_zone_with_bodypart(poor_sod.body_zone)]" : ""]!"),
-		span_userdanger("[src] explodes into small pieces[shrapnel_bomb ? ", chunk of it embedding in your [poor_sod]!" : ""]!"),
-		span_hear("You can hear sound of plastic shattering."))
+	user.visible_message(span_danger("[src]炸成了碎片[shrapnel_bomb ? ", chunk of it embedding in [user]'s [user.parse_zone_with_bodypart(poor_sod.body_zone)]" : ""]！"),
+		span_userdanger("[src]炸成了碎片[shrapnel_bomb ? ", chunk of it embedding in your [poor_sod]!" : ""]！"),
+		span_hear("你能听到塑料碎裂的声音。"))
 
 	if (poor_sod)
 		poor_sod.receive_damage((damage_to_take - atom_integrity) * 0.5, wound_bonus = -10, exposed_wound_bonus = 20, sharpness = SHARP_EDGED, damage_source = src)
@@ -389,7 +389,7 @@
 	)
 
 /obj/item/disk/design_disk/liberator
-	name = "illegal 3D printer design disk"
+	name = "非法3D打印机设计磁盘"
 
 /obj/item/disk/design_disk/liberator/Initialize(mapload)
 	. = ..()

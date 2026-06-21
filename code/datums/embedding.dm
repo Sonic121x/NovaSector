@@ -192,8 +192,8 @@
 
 	chance -= armor
 	if (chance < 0)
-		victim.visible_message(span_danger("[parent] bounces off [victim]'s armor, unable to embed!"),
-			span_notice("[parent] bounces off your armor, unable to embed!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		victim.visible_message(span_danger("[parent] 弹开了 [victim] 的护甲，无法嵌入！"),
+			span_notice("[parent] 弹开了你的护甲，无法嵌入！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		return FALSE
 
 	return prob(chance)
@@ -222,8 +222,8 @@
 	parent.forceMove(owner)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(weapon_disappeared))
 	RegisterSignal(parent, COMSIG_MAGIC_RECALL, PROC_REF(magic_pull))
-	owner.visible_message(span_danger("[parent] [is_harmless() ? "sticks itself to" : "embeds itself in"] [owner]'s [owner_limb.plaintext_zone]!"),
-		span_userdanger("[parent] [is_harmless() ? "sticks itself to" : "embeds itself in"] your [owner_limb.plaintext_zone]!"))
+	owner.visible_message(span_danger("[parent] [is_harmless() ? "sticks itself to" : "embeds itself in"] [owner] 的 [owner_limb.plaintext_zone]！"),
+		span_userdanger("[parent] [is_harmless() ? "sticks itself to" : "embeds itself in"] 了你的 [owner_limb.plaintext_zone]！"))
 
 	var/damage = parent.throwforce
 	if (!is_harmless(consider_stamina = TRUE))
@@ -338,11 +338,11 @@
 		return
 
 	if (jack_the_ripper == owner)
-		owner.visible_message(span_notice("[owner] successfully rips [parent] [is_harmless() ? "off" : "out"] of [owner.p_their()] [owner_limb.plaintext_zone]!"),
-			span_notice("You successfully remove [parent] from your [owner_limb.plaintext_zone]."))
+		owner.visible_message(span_notice("[owner] 成功地将 [parent] 从 [is_harmless() ? "off" : "out"] 的 [owner.p_their()] [owner_limb.plaintext_zone]！"),
+			span_notice("你成功地从你的 [parent] 移除了 [owner_limb.plaintext_zone]。"))
 	else
-		owner.visible_message(span_notice("[jack_the_ripper] successfully rips [parent] [is_harmless() ? "off" : "out"] of [owner]'s [owner_limb.plaintext_zone]!"),
-			span_userdanger("[jack_the_ripper] removes [parent] from your [owner_limb.plaintext_zone]!"), ignored_mobs = jack_the_ripper)
+		owner.visible_message(span_notice("[jack_the_ripper] 成功地将 [parent] 从 [is_harmless() ? "off" : "out"] 的 [owner] [owner_limb.plaintext_zone]！"),
+			span_userdanger("[jack_the_ripper] 从你的 [parent] 移除了 [owner_limb.plaintext_zone]！"), ignored_mobs = jack_the_ripper)
 		to_chat(jack_the_ripper, span_notice("You successfully remove [parent] from [owner]'s [owner_limb.plaintext_zone]."))
 
 	if (!is_harmless())
@@ -475,9 +475,9 @@
 		damagetype = STAMINA,
 	)
 	if(stealthy_embed)
-		to_chat(owner, span_danger("Something in your [owner_limb.plaintext_zone] [pain_stam_pct < 1 ? "hurts!" : "weighs you down."]"))
+		to_chat(owner, span_danger("你[owner_limb.plaintext_zone]里的什么东西[pain_stam_pct < 1 ? "hurts!" : "weighs you down."]"))
 	else
-		to_chat(owner, span_userdanger("[parent] embedded in your [owner_limb.plaintext_zone] [pain_stam_pct < 1 ? "hurts!" : "weighs you down."]"))
+		to_chat(owner, span_userdanger("嵌入你[parent]的[owner_limb.plaintext_zone][pain_stam_pct < 1 ? "hurts!" : "weighs you down."]"))
 
 /// Called every process, return TRUE in order to abort further processing - if it falls out, etc
 /datum/embedding/proc/process_effect(seconds_per_tick)
@@ -499,7 +499,7 @@
 
 	if (self_pluck)
 		owner.visible_message(span_danger("[owner] begins plucking [parent] from [owner.p_their()] [owner_limb.plaintext_zone] with [tool]..."),
-			span_notice("You start plucking [parent] from your [owner_limb.plaintext_zone] with [tool]..."), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
+			span_notice("你开始用[parent]从你的[owner_limb.plaintext_zone]拔出[tool]..."), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
 	else
 		user.visible_message(span_danger("[user] begins plucking [parent] from [owner]'s [owner_limb.plaintext_zone] with [tool]..."),
 			span_notice("You start plucking [parent] from [owner]'s [owner_limb.plaintext_zone] with [tool]..."), ignored_mobs = owner)
@@ -514,7 +514,7 @@
 		return
 
 	if (self_pluck)
-		to_chat(span_notice("You pluck [parent] from your [owner_limb.plaintext_zone][safe_pluck ? "." : span_danger(", but it hurts like hell")]"))
+		to_chat(span_notice("你从你的[parent]拔出了[owner_limb.plaintext_zone][safe_pluck ? "." : span_danger(", but it hurts like hell")]"))
 
 	if(!safe_pluck)
 		damaging_removal_effect(min(self_pluck ? 1 : RIPPING_OUT_HELP_DAMAGE_MULTIPLIER, 0.4 * tool.w_class))
@@ -604,7 +604,7 @@
 
 	owner.throw_at(caster, get_dist(owner, caster) - 1, 1, caster)
 	owner.Paralyze(1 SECONDS)
-	owner.visible_message(span_alert("[owner] is sent flying towards [caster] as the [parent] tears out of them!"), span_alert("You are launched at [caster] as the [parent] tears from your body and towards their hand!"))
+	owner.visible_message(span_alert("[owner]被[caster]从体内撕裂出来，朝着[parent]飞了过去！"), span_alert("你被[caster]从体内撕裂出来，朝着[parent]的手飞了过去！"))
 
 /datum/embedding/proc/still_in()
 	if (parent.loc != owner)

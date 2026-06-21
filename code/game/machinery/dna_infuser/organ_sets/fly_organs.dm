@@ -29,12 +29,12 @@
 	// needs to be done before the species is set
 	UnregisterSignal(source, COMSIG_ORGAN_BODYPART_INSERTED)
 	// okay you NEED to be a fly
-	to_chat(new_fly, span_danger("Too much fly DNA! Your skin begins to discolor into a horrible black as you become more fly than person!"))
+	to_chat(new_fly, span_danger("苍蝇DNA太多了！你的皮肤开始变成可怕的黑色，你变得比人更像苍蝇了！"))
 	new_fly.set_species(/datum/species/fly)
 
 /obj/item/organ/eyes/fly
-	name = "fly eyes"
-	desc = "These eyes seem to stare back no matter the direction you look at it from."
+	name = "苍蝇眼睛"
+	desc = "这双眼睛似乎无论从哪个方向看都在回瞪着你。"
 	eye_icon_state = "flyeyes"
 	icon_state = "eyes_fly"
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
@@ -47,8 +47,8 @@
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/fly)
 
 /obj/item/organ/tongue/fly
-	name = "proboscis"
-	desc = "A freakish looking meat tube that apparently can take in liquids."
+	name = "口器"
+	desc = "一根看起来怪异的肉管，显然可以吸入液体。"
 	icon = 'icons/obj/medical/organs/fly_organs.dmi'
 	say_mod = "buzzes"
 	taste_sensitivity = 25 // you eat vomit, this is a mercy
@@ -130,8 +130,8 @@
 	body.vomit(vomit_flags = (MOB_VOMIT_MESSAGE | MOB_VOMIT_FORCE | MOB_VOMIT_HARM), lost_nutrition = 0, distance = 2, purge_ratio = 0.67)
 	playsound(get_turf(owner), 'sound/effects/splat.ogg', 50, TRUE)
 	body.visible_message(
-		span_danger("[body] vomits on the floor!"),
-		span_userdanger("You throw up on the floor!"),
+		span_danger("[body] 吐在了地板上！"),
+		span_userdanger("你吐在了地板上！"),
 	)
 	return ..()
 

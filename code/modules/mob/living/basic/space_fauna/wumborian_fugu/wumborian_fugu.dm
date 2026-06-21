@@ -6,8 +6,8 @@
  * On death, the "fugu gland" is dropped, which can be used on mobs to increase their size, health, strength, and lets them smash walls.
  */
 /mob/living/basic/wumborian_fugu
-	name = "wumborian fugu"
-	desc = "The wumborian fugu rapidly increases its body mass in order to ward off its prey. Great care should be taken to avoid it while it's in this state as it is nearly invincible, but it cannot maintain its form forever."
+	name = "温博里安河豚"
+	desc = "温博河豚会迅速增加其身体质量以驱赶猎物。在其处于此状态时，因其近乎无敌，应极力避免接触，但它无法永久维持此形态。"
 	icon = 'icons/mob/simple/lavaland/64x64megafauna.dmi'
 	icon_state = "Fugu0"
 	icon_living = "Fugu0"

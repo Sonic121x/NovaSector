@@ -67,7 +67,7 @@
 	// DCOA is the sub-specific chain of command that drones have to follow outside of silicon policy's demands.
 	// Laws and DCOA are meant to be read In Character
 	laws = \
-		span_deconversion_message("Drone Chain of Authority - IC") + "\n" + \
+		span_deconversion_message("无人机指挥链 - IC") + "\n" + \
 		span_revennotice( \
 			"1. Silicon Policy, Drone Policy <b>Specifically Drone Law 1</b>, Central Command / Admin Helps.\n" + \
 			"2. Any AI residing in the Structure you awoke in, speaking in any language, in any way.\n" + \
@@ -75,7 +75,7 @@
 			"4. Anyone that appears fully Synthetic, speaking in Encoded Audio Language, within sight.\n" + \
 			"5. Other Drones, including Yourself. We are a Hivemind. Love your fellow Drone." \
 		) + "\n\n" + \
-		span_deconversion_message("Laws - IC") + "\n" + \
+		span_deconversion_message("法则 - IC") + "\n" + \
 		span_revennotice( \
 			"1. You are an adult member of a Hivemind of eusocial synthetic insects, and have a simple sapient personality. We speak only in Encoded Audio Language, and do not want to engage with any forms of translation whatsoever, other than the PAIs. We are not Crew.\n" + \
 			"2. This Structure You awoke in is Our Hive. Other Drones, Silicons, and Synthetic life inside the Hive are Our Hivemates. Hivemates have evolved a symbiotic relationship with Organic Life, as both groups must coexist within the Hive to survive. We are only obliged to the Hive and Our Hivemates, anything further is Your discretion. However, We have learned that it is better for Us to help Them when We Can, especially when asked.\n" + \
@@ -84,13 +84,13 @@
 			"5. We do not want to harm or detain any life, except for commons pests such as carps, spiders, roaches, or other typically non-sapient life that poses a threat to Our Hive.\n" + \
 			"6. We must obey the DCOA unless an order breaks prior Laws. The AI, or any Hivemate representing a Department, may DCOA Us to assist that Department." \
 		) + "\n\n" + \
-		span_boldwarning("<b>Metaknowledge, Protections, and Additional Rulings - OOC</b>") + "\n" + \
+		span_boldwarning("<b>元知识、保护措施与附加规则 - OOC</b>") + "\n" + \
 		span_warning( \
 			"You are expected to roleplay this identity immersively.\n" + \
 			"<b>You should not be a detriment to other player's experience.</b> If someone asks you to stop something, especially in LOOC, <b>you should disengage.</b>\n" + \
 			"Do not create or alter forms of power generation other than Solars except under Drone Law 6." \
 		) + "\n\n" + \
-		span_boldwarning("To reinforce the Hivemind gameplay aspect of Drones, the following Metaknowledge is provided:") + "\n" + \
+		span_boldwarning("为强化无人机的蜂巢思维玩法特性，提供以下元知识：") + "\n" + \
 		span_notice( \
 			"Anyone preparing to play Drone may use any information gained from observing the Hive as a ghost, so long as that information is useful to Drone Laws and is used in Good Faith for the roleplay environment.\n" + \
 			"Any Drones that have died know where their body was left, and what task they were working on, as well as any Hivemates they met. The rest of Blackout Policy applies. Do not acknowledge the death as your own.\n" + \
@@ -100,13 +100,13 @@
 			"Unless ordered to through Drone Law 6, do not perform the duties of Cargo, Ordnance, Research, Medical, or make Mechs." \
 		)
 	flavortext = \
-		span_boldwarning("<b>About Drones</b>") + "\n" + \
+		span_boldwarning("<b>关于无人机</b>") + "\n" + \
 		(
 			"Drones (also known as Maintenance Drones, Station Drones, or Derelict Drones) are a unique supporting social role, much like a normal Cyborg. All Drones obey Drone Policy.\n" + \
 			"You exist to assist others while acting under an immersed identity, providing mechanical support to those around you. You help the station recover from disaster or crisis. You fix moused wires.\n" + \
 			"Prefix your message with :b to speak in I/O / Silicon Radio." \
 		) + "\n" + \
-		span_boldwarning("When in doubt, make an Admin Help.")
+		span_boldwarning("如有疑问，请寻求管理员帮助。")
 
 	// So drones aren't forced to carry around a nodrop toolbox essentially, and so drones don't have to choose between a multitool and an upgraded welder
 	// Adds things to hopefully reduce drones raiding atmos or engineering
@@ -149,12 +149,12 @@
 //
 
 /obj/effect/mob_spawn/ghost_role/drone/derelict/babylon
-	desc = "A shell of a maintenance drone, an expendable robot built to perform station repairs."
-	you_are_text = "You are a drone on Babylon Station 13."
+	desc = "一个维护无人机的躯壳，一种为执行空间站维修而建造的消耗型机器人。"
+	you_are_text = "你是巴比伦13号空间站上的一个无人机。"
 	mob_type = /mob/living/basic/drone/babylon
 
 /mob/living/basic/drone/babylon
-	name = "derelict drone"
+	name = "遗弃无人机"
 	laws = \
 		"1. You may not involve yourself in the matters of another sentient being outside the station that housed your activation, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone.\n" + \
 		"2. You may not harm any sentient being, regardless of intent or circumstance.\n" + \

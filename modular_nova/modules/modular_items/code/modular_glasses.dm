@@ -4,10 +4,10 @@
 #define MODE_FREEZE_ANIMATION "freeze"
 
 /obj/item/clothing/glasses/hud/ar
-	name = "\improper AR glasses"
+	name = "\improper AR眼镜"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "glasses_regular"
-	desc = "A heads-up display that provides important info in (almost) real time. These don't really seem to work"
+	desc = "一种平视显示器，能提供（近乎）实时的重要信息。这些看起来好像不太管用"
 	actions_types = list(/datum/action/item_action/toggle_mode)
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	/// Defines sound to be played upon mode switching
@@ -139,8 +139,8 @@
 	toggle_mode(user, TRUE)
 
 /obj/item/clothing/glasses/hud/ar/aviator
-	name = "aviators"
-	desc = "A pair of designer sunglasses with electrochromatic darkening lenses!"
+	name = "飞行员墨镜"
+	desc = "一副带有电致变色深色镜片的设计师太阳镜！"
 	worn_icon = 'modular_nova/modules/modular_items/icons/modular_glasses_mob.dmi'
 	icon_state = "aviator"
 	off_state = "aviator_off"
@@ -150,16 +150,16 @@
 	tint = 0
 
 /obj/item/clothing/glasses/fake_sunglasses/aviator
-	name = "aviators"
-	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
+	name = "飞行员墨镜"
+	desc = "一副设计师太阳镜。看起来似乎无法阻挡闪光。"
 	worn_icon = 'modular_nova/modules/modular_items/icons/modular_glasses_mob.dmi'
 	icon_state = "aviator"
 	icon = 'modular_nova/modules/modular_items/icons/modular_glasses.dmi'
 
 // Security Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/security
-	name = "security HUD aviators"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. This HUD has been fitted inside of a pair of sunglasses with toggleable electrochromatic tinting."
+	name = "安保HUD飞行员墨镜"
+	desc = "一种平视显示器，可扫描视野内的人形生物，并提供其身份状态和安保记录的准确数据。此HUD已安装在一副带有可切换电致变色调光功能的太阳镜内。"
 	icon_state = "aviator_sec"
 	off_state = "aviator_sec_flash"
 	flash_protect = FLASH_PROTECTION_NONE
@@ -170,8 +170,8 @@
 
 // Medical Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/health
-	name = "medical HUD aviators"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their health status. This HUD has been fitted inside of a pair of sunglasses."
+	name = "医疗HUD飞行员墨镜"
+	desc = "一种平视显示器，可扫描视野内的人形生物并提供其健康状况的准确数据。该HUD已安装在一副太阳镜内。"
 	icon_state = "aviator_med"
 	flash_protect = FLASH_PROTECTION_NONE
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
@@ -179,8 +179,8 @@
 
 // (Normal) meson scanner Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/meson
-	name = "meson HUD aviators"
-	desc = "A heads-up display used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting conditions. This HUD has been fitted inside of a pair of sunglasses."
+	name = "介子HUD飞行员墨镜"
+	desc = "一种供工程和采矿人员使用的平视显示器，用于无视光照条件透过墙壁观察基本结构和地形布局。该HUD已安装在一副太阳镜内。"
 	icon_state = "aviator_meson"
 	flash_protect = FLASH_PROTECTION_NONE
 	clothing_traits = list(TRAIT_MADNESS_IMMUNE)
@@ -190,8 +190,8 @@
 
 // diagnostic Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/diagnostic
-	name = "diagnostic HUD aviators"
-	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits. This HUD has been fitted inside of a pair of sunglasses."
+	name = "诊断HUD飞行员墨镜"
+	desc = "一种能够分析机器人和外骨骼完整性与状态的平视显示器。该HUD已安装在一副太阳镜内。"
 	icon_state = "aviator_diagnostic"
 	flash_protect = FLASH_PROTECTION_NONE
 	clothing_traits = list(TRAIT_DIAGNOSTIC_HUD)
@@ -199,8 +199,8 @@
 
 // Science Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/science
-	name = "science aviators"
-	desc = "A pair of tacky purple aviator sunglasses that allow the wearer to recognize various chemical compounds with only a glance."
+	name = "科研飞行员墨镜"
+	desc = "一副俗气的紫色飞行员太阳镜，佩戴者只需一瞥即可识别各种化合物。"
 	icon_state = "aviator_sci"
 	flash_protect = FLASH_PROTECTION_NONE
 	glass_colour_type = /datum/client_colour/glass_colour/purple
@@ -213,35 +213,35 @@
 	acid = 100
 
 /obj/item/clothing/glasses/hud/ar/aviator/security/prescription
-	name = "prescription security HUD aviators"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. This HUD has been fitted inside of a pair of sunglasses with toggleable electrochromatic tinting which. Has lenses that help correct eye sight."
+	name = "处方安保HUD飞行员墨镜"
+	desc = "一种平视显示器，可扫描视野内的人形生物并提供其ID状态和安保记录的准确数据。该HUD已安装在一副带有可切换电致变色调光功能的太阳镜内。配有帮助矫正视力的镜片。"
 	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/hud/ar/aviator/health/prescription
-	name = "prescription medical HUD aviators"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their health status. This HUD has been fitted inside of a pair of sunglasses which has lenses that help correct eye sight."
+	name = "处方医疗HUD飞行员墨镜"
+	desc = "一种平视显示器，可扫描视野内的人形生物并提供其健康状况的准确数据。该HUD已安装在一副配有帮助矫正视力镜片的太阳镜内。"
 	clothing_traits = list(TRAIT_MEDICAL_HUD, TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/hud/ar/aviator/meson/prescription
-	name = "prescription meson HUD aviators"
-	desc = "A heads-up display used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting conditions. This HUD has been fitted inside of a pair of sunglasses which has lenses that help correct eye sight."
+	name = "处方介子HUD飞行员墨镜"
+	desc = "一种供工程和采矿人员使用的平视显示器，用于无视光照条件透过墙壁观察基本结构和地形布局。该HUD已安装在一副配有帮助矫正视力镜片的太阳镜内。"
 	clothing_traits = list(TRAIT_MADNESS_IMMUNE, TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/hud/ar/aviator/diagnostic/prescription
-	name = "prescription diagnostic HUD aviators"
-	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits. This HUD has been fitted inside of a pair of sunglasses which has lenses that help correct eye sight."
+	name = "处方诊断HUD飞行员墨镜"
+	desc = "一种能够分析机器人和外骨骼完整性与状态的平视显示器。该HUD已安装在一副配有帮助矫正视力镜片的太阳镜内。"
 	clothing_traits = list(TRAIT_DIAGNOSTIC_HUD, TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/hud/ar/aviator/science/prescription
-	name = "prescription science aviators"
-	desc = "A pair of tacky purple aviator sunglasses that allow the wearer to recognize various chemical compounds with only a glance, which has lenses that help correct eye sight."
+	name = "处方科研飞行员墨镜"
+	desc = "一副俗气的紫色飞行员太阳镜，佩戴者只需一瞥即可识别各种化合物，并配有帮助矫正视力的镜片。"
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER, TRAIT_NEARSIGHTED_CORRECTED)
 
 // Retinal projector
 
 /obj/item/clothing/glasses/hud/ar/projector
-	name = "retinal projector"
-	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than a visor."
+	name = "视网膜投影仪"
+	desc = "一副配备扫描镜头和视网膜投影仪的头戴式耳机。它不提供任何眼部保护，但比护目镜更不显眼。"
 	icon_state = "projector"
 	worn_icon = 'modular_nova/modules/modular_items/icons/modular_glasses_mob.dmi'
 	icon = 'modular_nova/modules/modular_items/icons/modular_glasses.dmi'
@@ -251,28 +251,28 @@
 	modes_msg = list(MODE_ON = "projector enabled", MODE_FREEZE_ANIMATION = "continuous beam mode", MODE_OFF = "projector disabled" )
 
 /obj/item/clothing/glasses/hud/ar/projector/meson
-	name = "retinal projector meson HUD"
+	name = "视网膜投影器介子扫描HUD"
 	icon_state = "projector_meson"
 	vision_flags = SEE_TURFS
 	color_cutoffs = list(10, 30, 10)
 
 /obj/item/clothing/glasses/hud/ar/projector/health
-	name = "retinal projector health HUD"
+	name = "视网膜投影器生命体征HUD"
 	icon_state = "projector_med"
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
 
 /obj/item/clothing/glasses/hud/ar/projector/security
-	name = "retinal projector security HUD"
+	name = "视网膜投影器安保HUD"
 	icon_state = "projector_sec"
 	clothing_traits = list(TRAIT_SECURITY_HUD)
 
 /obj/item/clothing/glasses/hud/ar/projector/diagnostic
-	name = "retinal projector diagnostic HUD"
+	name = "视网膜投影器诊断HUD"
 	icon_state = "projector_diagnostic"
 	clothing_traits = list(TRAIT_DIAGNOSTIC_HUD)
 
 /obj/item/clothing/glasses/hud/ar/projector/science
-	name = "science retinal projector"
+	name = "科研视网膜投影器"
 	icon_state = "projector_sci"
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
 

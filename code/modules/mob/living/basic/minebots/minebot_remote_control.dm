@@ -1,7 +1,7 @@
 #define BOMB_COOLDOWN 20 SECONDS
 /obj/item/minebot_remote_control
-	name = "Remote Control"
-	desc = "Requesting stratagem!"
+	name = "遥控器"
+	desc = "请求战术部署！"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "minebot_bomb_control"
 	item_flags = NOBLUDGEON
@@ -31,7 +31,7 @@
 		return .
 
 	if(!COOLDOWN_FINISHED(src, bomb_timer))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "冷却中！")
 		return TRUE
 
 	prime_bomb(user)
@@ -50,11 +50,11 @@
 
 /obj/item/minebot_remote_control/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!primed)
-		user.balloon_alert(user, "not primed!")
+		user.balloon_alert(user, "未就绪！")
 		return ITEM_INTERACT_BLOCKING
 	var/turf/target_turf = get_turf(interacting_with)
 	if(isnull(target_turf) || isclosedturf(target_turf) || isgroundlessturf(target_turf))
-		user.balloon_alert(user, "invalid target!")
+		user.balloon_alert(user, "无效目标！")
 		return ITEM_INTERACT_BLOCKING
 	playsound(src, 'sound/machines/beep/beep.ogg', 30)
 	clear_priming()
@@ -63,7 +63,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/effect/temp_visual/minebot_target
-	name = "Rocket Target"
+	name = "火箭目标"
 	icon = 'icons/mob/actions/actions_items.dmi'
 	icon_state = "sniper_zoom"
 	layer = BELOW_MOB_LAYER

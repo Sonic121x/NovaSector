@@ -1,7 +1,7 @@
 
 /obj/item/honey_frame
-	name = "honey frame"
-	desc = "A scaffold for bees to build honeycomb on."
+	name = "蜂箱框架"
+	desc = "让蜜蜂在上面筑巢的架子."
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "honey_frame"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)

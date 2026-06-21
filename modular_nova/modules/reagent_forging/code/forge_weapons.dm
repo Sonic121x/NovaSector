@@ -22,12 +22,12 @@
 
 /obj/item/forging/reagent_weapon/examine(mob/user)
 	. = ..()
-	. += span_notice("Using a hammer on [src] will repair its damage!")
-	. += span_notice("This weapon seems twice as effective when used on beasts and monsters.")
+	. += span_notice("对 [src] 使用锤子可以修复其损伤！")
+	. += span_notice("此武器对野兽和怪物使用时似乎效果翻倍。")
 
 /obj/item/forging/reagent_weapon/sword
-	name = "forged sword"
-	desc = "A sharp, one-handed sword most adept at blocking opposing melee strikes."
+	name = "锻造长剑"
+	desc = "一把锋利的单手剑，最擅长格挡近战攻击。"
 	force = 20
 	armour_penetration = 20
 	icon_state = "sword"
@@ -51,8 +51,8 @@
 	)
 
 /obj/item/forging/reagent_weapon/katana
-	name = "forged katana"
-	desc = "A katana sharp enough to penetrate body armor, but not quite million-times-folded sharp."
+	name = "锻造武士刀"
+	desc = "一把锋利到足以穿透护甲的武士刀，但还达不到千锤百炼的锋利程度。"
 	force = 20
 	armour_penetration = 40
 	icon_state = "katana"
@@ -69,8 +69,8 @@
 	sharpness = SHARP_EDGED
 
 /obj/item/forging/reagent_weapon/dagger
-	name = "forged dagger"
-	desc = "A lightweight dagger that seems ideal for butchering and surviving!"
+	name = "锻造匕首"
+	desc = "一把轻巧的匕首，似乎是屠宰和生存的理想选择！"
 	force = 13
 	icon_state = "dagger"
 	inhand_icon_state = "dagger"
@@ -106,8 +106,8 @@
 	ignore_throwspeed_threshold = TRUE
 
 /obj/item/forging/reagent_weapon/staff
-	name = "forged staff"
-	desc = "A staff most notably capable of being imbued with reagents, especially useful alongside its otherwise harmless nature."
+	name = "锻造法杖"
+	desc = "一根法杖，最显著的特点是能够注入试剂，结合其本身无害的特性尤其有用。"
 	force = 0
 	icon_state = "staff"
 	inhand_icon_state = "staff"
@@ -124,8 +124,8 @@
 	AddComponent(/datum/component/jousting)
 
 /obj/item/forging/reagent_weapon/spear
-	name = "forged spear"
-	desc = "A long spear that can be wielded in two hands to boost damage at the cost of single-handed versatility."
+	name = "锻造长矛"
+	desc = "一把长矛，可以用双手持握以提升伤害，但会牺牲单手使用的灵活性。"
 	force = 13
 	armour_penetration = 15
 	demolition_mod = 0.75
@@ -152,8 +152,8 @@
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 
 /obj/item/forging/reagent_weapon/axe
-	name = "forged axe"
-	desc = "An axe especially balanced for throwing. Nonetheless useful as a traditional melee tool."
+	name = "锻造斧"
+	desc = "一把特别为投掷而平衡的斧头。尽管如此，作为传统的近战工具依然有用。"
 	force = 15
 	armour_penetration = 10
 	icon_state = "axe"
@@ -181,8 +181,8 @@
 	pain_mult = 2
 
 /obj/item/forging/reagent_weapon/hammer
-	name = "forged hammer"
-	desc = "A heavy, weighted hammer that packs an incredible punch but can prove to be unwieldy. Useful for forging!"
+	name = "锻造锤"
+	desc = "一把沉重、加重的锤子，能造成惊人的打击，但可能难以驾驭。对锻造很有用！"
 	force = 10
 	armour_penetration = 10
 	icon_state = "crush_hammer"
@@ -215,8 +215,8 @@
 		target.throw_at(throw_target, 2, whack_speed, user, gentle = TRUE)
 
 /obj/item/shield/buckler/reagent_weapon
-	name = "forged buckler shield"
-	desc = "A small, round shield best used in tandem with a melee weapon in close-quarters combat."
+	name = "锻造小圆盾"
+	desc = "一面小巧的圆盾，最好在近身格斗中与近战武器配合使用。"
 	icon = 'modular_nova/modules/reagent_forging/icons/obj/forge_items.dmi'
 	worn_icon = 'modular_nova/modules/reagent_forging/icons/mob/forge_weapon_worn.dmi'
 	icon_state = "buckler"
@@ -242,8 +242,8 @@
 
 /obj/item/shield/buckler/reagent_weapon/examine(mob/user)
 	. = ..()
-	. += span_notice("Using a hammer on [src] will repair its damage!")
-	. += span_notice("This weapon seems twice as effective when used on beasts and monsters.")
+	. += span_notice("用锤子敲击[src]可以修复它的损伤！")
+	. += span_notice("这把武器似乎对野兽和怪物使用时效果加倍。")
 
 /obj/item/shield/buckler/reagent_weapon/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(atom_integrity >= max_integrity)
@@ -257,13 +257,13 @@
 			var/fixing_amount = min(max_integrity - atom_integrity, 5)
 			atom_integrity += fixing_amount
 			user.mind.adjust_experience(/datum/skill/smithing, 5)
-			balloon_alert(user, "partially repaired!")
+			balloon_alert(user, "已部分修复！")
 		return
 	return ..()
 
 /obj/item/shield/buckler/reagent_weapon/pavise
-	name = "forged pavise shield"
-	desc = "An oblong shield used by ancient crossbowmen as cover while reloading. Probably just as useful with an actual gun. Can be wielded in both hands to cover yourself and clobber others more effectively."
+	name = "锻造鸢形盾"
+	desc = "古代弩手在重新装填时用作掩护的长形盾牌。用真枪时可能同样有用。可以双手持握以更有效地掩护自己并痛击他人。"
 	icon_state = "pavise"
 	inhand_icon_state = "pavise"
 	worn_icon_state = "pavise_back"
@@ -295,7 +295,7 @@
 	block_chance = unwielded_block_chance
 
 /obj/item/pickaxe/reagent_weapon
-	name = "forged pickaxe"
+	name = "锻造镐"
 	toolspeed = 0.75
 
 /obj/item/pickaxe/reagent_weapon/Initialize(mapload)
@@ -304,7 +304,7 @@
 	AddComponent(/datum/component/bane, affected_biotypes = (MOB_MINING | MOB_BEAST), damage_multiplier = FAUNA_MULTIPLIER)
 
 /obj/item/shovel/reagent_weapon
-	name = "forged shovel"
+	name = "锻造铲"
 	toolspeed = 0.60
 
 /obj/item/shovel/reagent_weapon/Initialize(mapload)
@@ -337,8 +337,8 @@
 	qdel(src)
 
 /obj/item/forging/reagent_weapon/bokken
-	name = "bokken"
-	desc = "A wooden sword that is capable of wielded in two hands. It seems to be made to prevent permanent injuries."
+	name = "木刀"
+	desc = "一把可以双手持握的木剑。它似乎是为了防止永久性伤害而制作的。"
 	force = 15
 	armour_penetration = 40
 	icon_state = "bokken"
@@ -377,7 +377,7 @@
 /obj/item/forging/reagent_weapon/bokken/attack(mob/living/carbon/target_mob, mob/living/user, params)
 	. = ..()
 	if(!iscarbon(target_mob))
-		user.visible_message(span_warning("The [src] seems to be ineffective against the [target_mob]!"))
+		user.visible_message(span_warning("这把[src]似乎对[target_mob]无效！"))
 		playsound(src, 'sound/items/weapons/genhit.ogg', 75, TRUE)
 		return
 	playsound(src, pick('sound/items/weapons/genhit1.ogg', 'sound/items/weapons/genhit2.ogg', 'sound/items/weapons/genhit3.ogg'), 100, TRUE)

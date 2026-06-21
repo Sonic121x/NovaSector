@@ -1,6 +1,6 @@
 /datum/martial_art
 	/// Player readable name of the martial art
-	var/name = "Martial Art"
+	var/name = "武术流派"
 	/// ID of the martial art
 	var/id = ""
 	/// The streak of attacks the user has performed
@@ -409,11 +409,11 @@
 	var/datum/martial_art/next = GET_NEXT_MARTIAL_ART(src)
 
 	if(current.locked_to_use)
-		to_chat(src, span_warning("You can't stop practicing [current]! It's too ingrained in your muscle memory."))
+		to_chat(src, span_warning("你无法停止练习[current]！它已深深烙印在你的肌肉记忆中。"))
 		return
 
 	switch_style(current, next)
-	to_chat(src, span_notice("You stop practicing [current] and start practicing [next]."))
+	to_chat(src, span_notice("你停止练习[current]，开始练习[next]。"))
 
 /// Deactivates the current martial art and activates the next one.
 /mob/living/proc/switch_style(datum/martial_art/current_martial, datum/martial_art/next_martial)

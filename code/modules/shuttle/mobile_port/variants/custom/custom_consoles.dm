@@ -1,5 +1,5 @@
 /obj/machinery/computer/shuttle/custom_shuttle
-	desc = "A shuttle control computer."
+	desc = "一台穿梭机控制计算机。"
 	shuttleId = ""
 	possible_destinations = "whiteship_home;"
 	circuit = /obj/item/circuitboard/computer/shuttle/flight_control
@@ -30,7 +30,7 @@
 		return
 	if(istype(custom_port))
 		custom_port.control_console = WEAKREF(src)
-	name = "[port.name] console"
+	name = "[port.name] 控制台"
 
 /obj/machinery/computer/shuttle/custom_shuttle/proc/linkShuttle(new_id)
 	if(shuttleId=="")
@@ -82,7 +82,7 @@
 	. = ..()
 	if(!.)
 		return
-	name = "[port.name] navigation computer"
+	name = "[port.name] 导航计算机"
 	if(istype(custom_port))
 		custom_port.navigation_console = WEAKREF(src)
 	RegisterSignal(port, COMSIG_SHUTTLE_EXPANDED, PROC_REF(on_shuttle_expanded))
@@ -129,7 +129,7 @@
 					my_port.unregister()
 					my_port.delete_after = TRUE
 					my_port.shuttle_id = null
-					my_port.name = "Old [my_port.name]"
+					my_port.name = "旧 [my_port.name]"
 					my_port = null
 				else
 					QDEL_NULL(my_port)

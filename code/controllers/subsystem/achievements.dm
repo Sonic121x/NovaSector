@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(achievements)
-	name = "Achievements"
+	name = "成就"
 	ss_flags = SS_NO_FIRE
 	var/achievements_enabled = FALSE
 

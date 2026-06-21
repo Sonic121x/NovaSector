@@ -1,5 +1,5 @@
 /datum/crafting_recipe/food/cubancarp
-	name = "Cuban carp"
+	name = "Cuban carp-古巴鲤鱼"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/obj/item/food/grown/chili = 1,
@@ -10,7 +10,7 @@
 	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/fishandchips
-	name = "Fish and chips"
+	name = "Fish and chips-炸鱼薯条"
 	reqs = list(
 		/obj/item/food/fries = 1,
 		/obj/item/food/fishmeat = 1
@@ -19,7 +19,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/fishfingers
-	name = "Fish fingers"
+	name = "Fish fingers-鱼条"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/obj/item/food/bun = 1,
@@ -30,7 +30,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/fishfry
-	name = "Fish fry"
+	name = "Fish fry-炸鱼"
 	reqs = list(
 		/obj/item/food/grown/corn = 1,
 		/obj/item/food/grown/peas = 1,
@@ -40,7 +40,7 @@
 	added_foodtypes = FRIED
 
 /datum/crafting_recipe/food/sashimi
-	name = "Spider Sashimi"
+	name = "蜘蛛刺身"
 	reqs = list(
 		/datum/reagent/consumable/soysauce = 5,
 		/obj/item/food/spidereggs = 1,
@@ -51,7 +51,7 @@
 	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/fishtaco
-	name = "Fish taco"
+	name = "鱼肉塔可"
 	reqs = list(
 		/obj/item/food/tortilla = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -63,7 +63,7 @@
 	dish_category = DISH_TACO
 
 /datum/crafting_recipe/food/vegetariansushiroll
-	name = "Vegetarian sushi roll"
+	name = "素食寿司卷"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -76,7 +76,7 @@
 	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/spicyfiletroll
-	name = "Spicy filet sushi roll"
+	name = "辣味鱼片寿司卷"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -90,7 +90,7 @@
 	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/nigiri_sushi
-	name = "Nigiri sushi"
+	name = "握寿司"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -103,7 +103,7 @@
 	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/meat_poke
-	name ="Meat poke"
+	name ="肉块波奇饭"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/seaweedsheet = 1,
@@ -119,7 +119,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/fish_poke
-	name ="Fish poke"
+	name ="鱼肉波奇饭"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/seaweedsheet = 1,
@@ -135,7 +135,7 @@
 	dish_category = DISH_SALAD
 
 /datum/crafting_recipe/food/futomaki_sushi_roll
-	name ="Futomaki sushi roll"
+	name ="太卷寿司卷"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -149,7 +149,7 @@
 	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/philadelphia_sushi_roll
-	name ="Philadelphia sushi roll"
+	name ="费城寿司卷"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,

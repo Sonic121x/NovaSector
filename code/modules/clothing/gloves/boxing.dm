@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/boxing
-	name = "boxing gloves"
-	desc = "Because you really needed another excuse to punch your crewmates."
+	name = "拳击手套"
+	desc = "因为你真的需要另一个借口来揍你的同事们。"
 	icon_state = "boxing"
 	greyscale_colors = "#f32110"
 	equip_delay_other = 6 SECONDS
@@ -36,8 +36,8 @@
 	return COMPONENT_TRAITOR_MAIL_HANDLED
 
 /obj/item/clothing/gloves/boxing/evil
-	name = "evil boxing gloves"
-	desc = "These strange gloves radiate an unusually evil aura."
+	name = "邪恶拳击手套"
+	desc = "这副奇怪的手套散发着异常邪恶的气息。"
 	greyscale_colors = "#21211f"
 	style_to_give = /datum/martial_art/boxing/evil
 	extrapower = TRUE
@@ -55,8 +55,8 @@
 	greyscale_colors = "#d2a800"
 
 /obj/item/clothing/gloves/boxing/golden
-	name = "golden gloves"
-	desc = "The reigning champ of the station!"
+	name = "金色拳击手套"
+	desc = "空间站的卫冕冠军！"
 	icon_state = "boxinggold"
 	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT*1)  //LITERALLY GOLD
 	material_flags = MATERIAL_EFFECTS | MATERIAL_AFFECT_STATISTICS

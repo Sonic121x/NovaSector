@@ -7,8 +7,8 @@
  * Bonus: Makes the mob lose hair.
 */
 /datum/symptom/shedding
-	name = "Alopecia"
-	desc = "The virus causes rapid shedding of head and body hair."
+	name = "脱毛症"
+	desc = "该病毒导致头部和体毛快速脱落。"
 	illness = "Thin Skinned"
 	stealth = 0
 	resistance = 1
@@ -35,14 +35,14 @@
 		switch(disease.stage)
 			if(3, 4)
 				if((affected_human.hairstyle == "Bald") && (affected_human.hairstyle != "Balding Hair"))
-					to_chat(affected_human, span_warning("Your hair starts to fall out in clumps..."))
+					to_chat(affected_human, span_warning("你的头发开始大把大把地脱落..."))
 					addtimer(CALLBACK(src, PROC_REF(baldify), affected_human, FALSE), 5 SECONDS)
 			if(5)
 				if((affected_human.facial_hairstyle != "Shaved") || (affected_human.hairstyle != "Bald"))
 					if(affected_human.hairstyle == "Balding Hair")
-						to_chat(affected_human, span_warning("The little hair you have left starts to fall out in clumps..."))
+						to_chat(affected_human, span_warning("你仅剩的头发开始一绺一绺地脱落..."))
 					else
-						to_chat(affected_human, span_warning("Your hair starts to fall out in clumps..."))
+						to_chat(affected_human, span_warning("你的头发开始大把大把地脱落..."))
 					addtimer(CALLBACK(src, PROC_REF(baldify), affected_human, TRUE), 3 SECONDS)
 
 /datum/symptom/shedding/proc/baldify(mob/living/carbon/human/baldie, fully_bald)

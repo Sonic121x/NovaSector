@@ -2,8 +2,8 @@
 #define LANGUAGE_TRANSLATOR "translator"
 
 /obj/item/clothing/neck/necklace/translator/
-	name = "ashen necklace"
-	desc = "A necklace crafted from ash, connected to the Necropolis through the core of a Legion. This imbues overdwellers with an unnatural understanding of Ashtongue, the native language of Lavaland, while worn."
+	name = "灰烬项链"
+	desc = "一条由灰烬制成的项链，通过军团核心与死城相连。佩戴时，它赋予地上居民对灰舌语（熔岩之地的本土语言）的非自然理解力。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/neck.dmi'
 	icon_state = "ashnecklace"
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/neck.dmi'

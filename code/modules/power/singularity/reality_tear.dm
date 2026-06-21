@@ -2,8 +2,8 @@
 // Typically spawned by placing two bags of holding into one another, collapsing into a wandering singularity after a brief period as a stationary singularity.
 
 /obj/reality_tear
-	name = "tear in the fabric of reality"
-	desc = "As you gaze into the abyss, the only thing you can think is... \"Should I really be this close to it?\""
+	name = "现实结构撕裂"
+	desc = "当你凝视深渊时，脑海中唯一的念头是……“我真的应该离它这么近吗？”"
 	anchored = TRUE
 	appearance_flags = LONG_GLIDE
 	density = TRUE
@@ -57,15 +57,15 @@
 	if(!isliving(user))
 		return
 	var/mob/living/jedi = user
-	to_chat(jedi, span_userdanger("You don't feel like you are real anymore."))
+	to_chat(jedi, span_userdanger("你感觉自己不再真实存在了。"))
 	jedi.dust(just_ash = TRUE)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 //The temporary tears in reality. Collapses into nothing, and has a significantly lower gravity pull range, but consumes more widely.
 
 /obj/reality_tear/temporary
-	name = "puncture in the fabric of reality"
-	desc = "Count your lucky stars that this wasn't anywhere near you."
+	name = "现实结构穿孔"
+	desc = "庆幸这玩意儿离你十万八千里吧。"
 	singularity_consume_range = 2
 	singularity_grav_pull = 3
 	collapse_spawn_time = 2 SECONDS

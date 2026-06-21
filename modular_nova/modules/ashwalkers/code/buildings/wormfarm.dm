@@ -1,6 +1,6 @@
 /obj/structure/wormfarm
-	name = "worm farm"
-	desc = "A wonderfully dirty barrel where worms can have a happy little life."
+	name = "蠕虫养殖场"
+	desc = "一个绝妙的脏污木桶，蠕虫们可以在里面过上幸福的小日子。"
 	icon = 'modular_nova/modules/ashwalkers/icons/structures.dmi'
 	icon_state = "wormbarrel"
 	density = TRUE
@@ -42,25 +42,25 @@
 
 /obj/structure/wormfarm/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>There are currently [current_worm]/[max_worm] worms in the barrel.")
+	. += span_notice("<br>桶里目前有[current_worm]/[max_worm]条蠕虫。")
 	if(current_worm < max_worm)
-		. += span_notice("You can place more worms in the barrel.")
+		. += span_notice("你可以往桶里放入更多蠕虫。")
 	if(current_worm > 0)
-		. += span_notice("You can get fertilizer by feeding the worms food.")
+		. += span_notice("你可以通过喂食蠕虫来获取肥料。")
 
 /obj/structure/wormfarm/attack_hand(mob/living/user, list/modifiers)
 	if(in_use)
-		balloon_alert(user, "currently in use")
+		balloon_alert(user, "当前使用中")
 		return ..()
 
-	balloon_alert(user, "digging up worms")
+	balloon_alert(user, "正在挖掘蠕虫")
 	if(!do_after(user, 2 SECONDS, src))
-		balloon_alert(user, "stopped digging")
+		balloon_alert(user, "已停止挖掘")
 		in_use = FALSE
 		return ..()
 
 	if(current_worm <= 0)
-		balloon_alert(user, "no worms available")
+		balloon_alert(user, "没有可用的蠕虫")
 		in_use = FALSE
 		return ..()
 
@@ -74,25 +74,25 @@
 	//we want to check for worms first because they are a type of food as well...
 	if(istype(tool, /obj/item/food/bait/worm))
 		if(current_worm >= max_worm)
-			balloon_alert(user, "too many worms in the barrel")
+			balloon_alert(user, "桶里的蠕虫太多了")
 			return ITEM_INTERACT_BLOCKING
 
 		qdel(tool)
-		balloon_alert(user, "worm released into barrel")
+		balloon_alert(user, "蠕虫已放入桶中")
 		current_worm++
 		return ITEM_INTERACT_BLOCKING
 
 	//if it aint a worm, lets check for any other food items
 	if(istype(tool, /obj/item/food))
 		if(in_use)
-			balloon_alert(user, "currently in use")
+			balloon_alert(user, "正在使用中")
 			return ITEM_INTERACT_BLOCKING
 		in_use = TRUE
 
-		balloon_alert(user, "feeding the worms")
+		balloon_alert(user, "正在喂食蠕虫")
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 1 SECONDS * skill_modifier, src))
-			balloon_alert(user, "stopped feeding the worms")
+			balloon_alert(user, "停止喂食蠕虫")
 			in_use = FALSE
 			return ITEM_INTERACT_BLOCKING
 
@@ -102,7 +102,7 @@
 			return ITEM_INTERACT_BLOCKING
 
 		qdel(tool)
-		balloon_alert(user, "feeding complete, check back later")
+		balloon_alert(user, "喂食完成，稍后再来查看")
 
 		current_food++
 		user.mind?.adjust_experience(/datum/skill/primitive, 2)
@@ -114,11 +114,11 @@
 
 	if(istype(tool, /obj/item/storage/bag/plants))
 		if(in_use)
-			balloon_alert(user, "currently in use")
+			balloon_alert(user, "正在使用中")
 			return ITEM_INTERACT_BLOCKING
 		in_use = TRUE
 
-		balloon_alert(user, "feeding the worms")
+		balloon_alert(user, "正在喂食蠕虫")
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		for(var/obj/item/food/selected_food in tool.contents)
 			if(!do_after(user, 1 SECONDS * skill_modifier, src))
@@ -139,8 +139,8 @@
 
 //produced by feeding worms food and can be ground up for plant nutriment or used directly on ash farming
 /obj/item/stack/worm_fertilizer
-	name = "worm fertilizer"
-	desc = "When you fed your worms, you should have expected this."
+	name = "蠕虫肥料"
+	desc = "当你喂养蠕虫时，就该料到这个结果。"
 	icon = 'modular_nova/modules/ashwalkers/icons/misc_tools.dmi'
 	icon_state = "fertilizer"
 	singular_name = "fertilizer"

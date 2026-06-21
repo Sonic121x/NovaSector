@@ -2,7 +2,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/disk/bitrunning/ability/tier0
-	name = "bitrunning program: cantrip"
+	name = "比特狂奔程序：戏法"
 	selectable_actions = list(
 		/datum/action/cooldown/spell/shapeshift/minor_illusion,
 		/datum/action/cooldown/spell/conjure_item/fire,
@@ -11,7 +11,7 @@
 	)
 
 /obj/item/disk/bitrunning/item/tier0
-	name = "bitrunning gear: trinket"
+	name = "比特狂奔装备：小饰品"
 	selectable_items = list(
 		/obj/item/binoculars,
 		/obj/item/stack/marker_beacon/thirty,
@@ -23,8 +23,8 @@
 	)
 
 /obj/item/disk/bitrunning/prefs
-	name = "\improper DeForest biological simulation disk"
-	desc = "A disk containing the biological simulation data necessary to load custom characters into bitrunning domains."
+	name = "\improper 德福雷斯特生物模拟磁盘"
+	desc = "一张包含生物模拟数据的磁盘，这些数据是将自定义角色加载到比特狂奔域中所必需的。"
 	icon = 'icons/obj/devices/floppy_disks.dmi'
 	base_icon_state = "datadisk"
 	icon_state = "datadisk0"
@@ -38,13 +38,13 @@
 	if(!isnull(loaded_preference))
 		var/name = loaded_preference.read_preference(/datum/preference/name/real_name)
 		. += "It currently has the character [name] loaded, with loadouts [(include_loadout ? "enabled" : "disabled")]"
-		. += span_notice("Alt-Click to change loadout loading")
+		. += span_notice("Alt-点击以更改装备加载设置")
 
 /obj/item/disk/bitrunning/prefs/click_alt(mob/user)
 	if(isnull(loaded_preference))
 		return CLICK_ACTION_BLOCKING
 	include_loadout = !include_loadout // We just switch this around. Elegant!
-	balloon_alert(user, include_loadout ? "Loadout enabled" : "Loadout disabled")
+	balloon_alert(user, include_loadout ? "装备已启用" : "装备已禁用")
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/disk/bitrunning/prefs/attack_self(mob/user, modifiers)
@@ -54,31 +54,31 @@
 	if(isnull(prefdata_names))
 		return
 
-	var/response = tgui_alert(user, message = "Change selected prefs?", title = "Prefchange", buttons = list("Yes", "No"))
+	var/response = tgui_alert(user, message = "更改所选偏好？", title = "偏好更改", buttons = list("Yes", "No"))
 	if(isnull(response) || response == "No")
 		return
-	var/choice = tgui_input_list(user, message = "Select a character",  title = "Character selection", items = prefdata_names)
+	var/choice = tgui_input_list(user, message = "选择一个角色",  title = "角色选择", items = prefdata_names)
 	if(isnull(choice) || !user.is_holding(src))
 		return
 
 	loaded_preference = new(user.client)
 	loaded_preference.load_character(prefdata_names.Find(choice))
 
-	balloon_alert(user, "character set!")
-	to_chat(user, span_notice("Character set to [choice] sucessfully!"))
+	balloon_alert(user, "角色已设置！")
+	to_chat(user, span_notice("角色已成功设定为 [choice]！"))
 
 /datum/orderable_item/bitrunning_tech/ability_tier0
 	cost_per_order = 350
 	purchase_path = /obj/item/disk/bitrunning/ability/tier0
-	desc = "This disk contains a program that lets you cast Minor Illusion, Summon Cheese, Produce Flame, or Produce Water."
+	desc = "这张磁盘包含一个程序，可让你施放次级幻象、召唤奶酪、产生火焰或产生水。"
 
 /datum/orderable_item/bitrunning_tech/item_tier0
 	cost_per_order = 350
 	purchase_path = /obj/item/disk/bitrunning/item/tier0
-	desc = "This disk contains a program that lets you equip a pair of binoculars, thirty marker beacons, a snack rig, a D20, a stabilizer pouch, a robotic repair kit, or an empty colonial first-aid pouch."
+	desc = "这张磁盘包含一个程序，可让你装备一副双筒望远镜、三十个标记信标、一个零食架、一个D20骰子、一个稳定剂袋、一个机器人维修套件或一个空的殖民地急救袋。"
 
 /obj/item/disk/bitrunning/item/tierrelax
-	name = "bitrunning gear: relaxation"
+	name = "比特狂奔装备：休闲"
 	selectable_items = list(
 		/obj/item/summon_beacon/relax,
 		/obj/item/storage/box/nif_ghost_box,
@@ -87,9 +87,9 @@
 	)
 
 /obj/item/summon_beacon/relax
-	name = "relaxation machine beacon"
+	name = "放松机信标"
 	icon_state = "sb_delivery"
-	desc = "Once a vending machine is selected, delivers it to the target location."
+	desc = "选定自动售货机后，将其传送到目标位置。"
 
 	allowed_areas = list(
 		/area/virtual_domain,
@@ -140,7 +140,7 @@
 /datum/orderable_item/bitrunning_tech/item_tierrelax
 	cost_per_order = 250
 	purchase_path = /obj/item/disk/bitrunning/item/tierrelax
-	desc = "This disk contains a program that lets you equip a delivery beacon of vending machines aimed to help to relax, a quick-booting NIF package, a luxury survival capsule, or a set of chameleon clothing."
+	desc = "这张磁盘包含一个程序，可让你装备一个旨在帮助放松的自动售货机传送信标、一个快速启动的NIF程序包、一个豪华生存胶囊或一套变色龙服装。"
 
 /obj/item/disk/bitrunning/item/tier1/Initialize(mapload)
 	. = ..()
@@ -171,7 +171,7 @@
 	)
 
 /obj/item/autosurgeon/syndicate/hackerman/bitrunning
-	name = "hacking arm implanter"
+	name = "黑客手臂植入器"
 
 /obj/item/disk/bitrunning/item/tier3/Initialize(mapload)
 	. = ..()
@@ -187,7 +187,7 @@
 	)
 
 /obj/item/autosurgeon/syndicate/nodrop/bitrunning
-	name = "anti-drop implanter"
+	name = "防掉落植入器"
 
 /obj/item/disk/bitrunning/ability/tier1/Initialize(mapload)
 	. = ..()
@@ -212,18 +212,18 @@
 	)
 
 /datum/action/cooldown/spell/tap/bitrunning
-	name = "Data Tap"
-	desc = "Resets all spell cooldowns but weakens your connection, lowering your avatar's max health when used."
+	name = "数据抽取"
+	desc = "重置所有法术冷却时间，但会削弱你的连接，使用时降低你化身的最大生命值。"
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
 /datum/action/cooldown/spell/teleport/radius_turf/blink/bitrunning
-	name = "Corrupt Position"
+	name = "位置腐化"
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 	invocation = "CEE'OCEE TEH-HALL!" // coc testinghall
-	desc = "Randomly teleports you a short distance. May prove unreliable in cramped areas or near domain limits."
+	desc = "将你随机传送到一小段距离外。在狭窄区域或靠近领域边界时可能不可靠。"
 
 /datum/action/cooldown/spell/chuuni_invocations/bitrunning
-	name = "Slice of Life Data Torrent"
+	name = "生活片段数据洪流"
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
 /obj/item/disk/bitrunning/ability/tier3/Initialize(mapload)
@@ -236,8 +236,8 @@
 	)
 
 /obj/item/storage/belt/holster/energy/nanite
-	name = "nanite pistol shoulder holsters"
-	desc = "A rather plain pair of shoulder holsters with a bit of padding inside. Meant to hold a twinned pair of nanite pistols, but can fit several kinds of energy handguns as well."
+	name = "纳米手枪肩挂枪套"
+	desc = "一副相当普通的肩挂枪套，内部有些衬垫。旨在容纳一对纳米手枪，但也能装下几种能量手枪。"
 
 /obj/item/storage/belt/holster/energy/nanite/PopulateContents()
 	generate_items_inside(list(
@@ -245,24 +245,24 @@
 	),src)
 
 /datum/orderable_item/bitrunning_tech/item_tier1
-	desc = "This disk contains a program that lets you equip a subcontracted assistance request beacon, medical beamgun, a C4 explosive, a box of infinite pizza, a tactical toolbox, a combat knife, or a military webbing."
+	desc = "这张磁盘包含一个程序，可让你装备一个分包协助请求信标、医疗光束枪、一个C4炸药、一盒无限披萨、一个战术工具箱、一把战斗刀或一件军用战术背心。"
 
 /datum/orderable_item/bitrunning_tech/item_tier2
-	desc = "This disk contains a program that lets you equip a luxury medipen, a pistol case, a rifle case, an armour vest, a helmet, an energy sword, a katana, a modular laser carbine, an expeditionary medkit, a ballistic shield, flashproof contacts, or a hacker implant."
+	desc = "这张磁盘包含一个程序，可让你装备一支豪华医疗笔、一个手枪箱、一个步枪箱、一件防弹背心、一顶头盔、一把能量剑、一把武士刀、一把模块化激光卡宾枪、一个远征医疗包、一面防弹盾牌、防闪光隐形眼镜或一个黑客植入体。"
 
 /datum/orderable_item/bitrunning_tech/item_tier3
-	desc = "This disk contains a program that lets you equip a domain connection anchor, Hyeseong laser rifle, a laser minigun pack, a nanite pistol holster, a dual bladed energy sword, a minibomb, or an anti-drop implanter."
+	desc = "这张磁盘包含一个程序，可让你装备一个领域连接锚、一把Hyeseong激光步枪、一个激光机枪背包、一个纳米手枪枪套、一把双刃能量剑、一个小型炸弹或一个防掉落植入器。"
 
 /datum/orderable_item/bitrunning_tech/ability_tier1
-	desc = "This disk contains a program that lets you cast Summon Light Source, Lesser Heal, or Mending Touch."
+	desc = "这张磁盘包含一个程序，可让你施放召唤光源、次级治疗或修复之触。"
 
 /datum/orderable_item/bitrunning_tech/ability_tier2
-	desc = "This disk contains a program that lets you cast Fireball, Lightning Bolt, Sanguine Strike, Forcewall, Adrenaline Rush, Dash, Blink, Data Tap, Instant Summons, or Charge Item."
+	desc = "这张磁盘包含一个程序，可让你施放火球术、闪电箭、嗜血打击、力场墙、肾上腺素爆发、冲刺、闪烁、数据抽取、即刻召唤或充能物品。"
 
 /datum/orderable_item/bitrunning_tech/ability_tier3
-	desc = "This disk contains a program that lets you shapeshift into a lesser ashdrake, a polar bear, a holy juggernaut, or a holy wraith; or learn Death Loop or Chuuni Invocations."
+	desc = "这张磁盘包含一个程序，可让你变身为次级灰烬龙、北极熊、神圣巨像或神圣幽灵；或学习死亡循环或中二召唤术。"
 
 /datum/orderable_item/bitrunning_tech/pref_item
 	cost_per_order = 500
 	purchase_path = /obj/item/disk/bitrunning/prefs
-	desc = "This disk contains a program that lets you load in custom characters."
+	desc = "这张磁盘包含一个程序，可让你载入自定义角色。"

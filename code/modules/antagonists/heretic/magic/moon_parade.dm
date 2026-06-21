@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/projectile/moon_parade
-	name = "Lunar parade"
-	desc = "This unleashes the parade, making everyone in its way join it and suffer hallucinations."
+	name = "月之巡游"
+	desc = "这将释放游行队伍，让沿途所有人都加入其中并遭受幻觉折磨。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -22,7 +22,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MOON
 
 /obj/projectile/moon_parade
-	name = "Lunar parade"
+	name = "月之巡游"
 	icon_state = "lunar_parade"
 	damage = 0
 	damage_type = BURN
@@ -64,7 +64,7 @@
 
 	// Anti-magic destroys the projectile for consistency and counterplay
 	if(victim.can_block_magic(MAGIC_RESISTANCE_MOON))
-		visible_message(span_warning("The parade hits [victim] and a sudden wave of clarity comes over you!"))
+		visible_message(span_warning("游行队伍击中了[victim]，一股突如其来的清明感笼罩了你！"))
 		return PROJECTILE_DELETE_WITHOUT_HITTING
 
 	return ..()

@@ -16,8 +16,8 @@
 )
 
 /obj/item/pizzavoucher
-	name = "pizza voucher"
-	desc = "A pocket-sized plastic slip with a button in the middle. The writing on it seems to have faded."
+	name = "披萨券"
+	desc = "一张口袋大小的塑料片，中间有个按钮。上面的字迹似乎已经褪色。"
 	icon = 'modular_nova/modules/pizza_voucher/icons/pizza_voucher.dmi'
 	icon_state = "pizza_voucher"
 	w_class = WEIGHT_CLASS_SMALL
@@ -32,7 +32,7 @@
 	. = ..()
 	var/list/descstrings = list(
 		"24/7 PIZZA PIE HEAVEN",
-		"WE ALWAYS DELIVER!",
+		"我们使命必达！",
 		"24-HOUR PIZZA PIE POWER!",
 		"TOMATO SAUCE, CHEESE, WE'VE BOTH BOTH OF THESE!",
 		"COOKED WITH LOVE INSIDE A BIG OVEN!",
@@ -41,11 +41,11 @@
 		"EVERY TIME YOU DREAM OF CIRCULAR CUISINE!",
 		"WE ALWAYS DELIVER! WE ALWAYS DELIVER! WE ALWAYS DELIVER!",
 		)
-	desc = "A pocket-sized plastic slip with a button in the middle. \"[pick(descstrings)]\" is written on the back."
+	desc = "一张口袋大小的塑料片，中间有个按钮。背面写着“[pick(descstrings)]”。"
 
 /obj/item/pizzavoucher/attack_self(mob/user)
 	. = ..()
-	user.visible_message(span_notice("[user] presses a button on [src]!"))
+	user.visible_message(span_notice("[user] 按下了 [src] 上的按钮！"))
 
 	// Build radial menu from all the pizzalikes
 	var/list/pizza_choices = list()
@@ -64,9 +64,9 @@
 		else
 			our_box = new /obj/item/pizzabox()
 
-		user.visible_message(span_notice("A small bluespace rift opens just above [user]'s head and spits out a pizza box!"),
-			span_notice("A small bluespace rift opens just above your head and spits out a pizza box!"),
-			span_notice("You hear a fwoosh followed by a thump."),
+		user.visible_message(span_notice("一个小小的蓝空裂隙在 [user] 头顶打开，吐出了一个披萨盒！"),
+			span_notice("一个小小的蓝空裂隙在你头顶打开，吐出了一个披萨盒！"),
+			span_notice("你听到一阵呼啸声，接着是砰的一声。"),
 		)
 		fill_pizza(user, our_box, pizza_choices[selection]) // Look up the path using the name key
 		podspawn(list(
@@ -97,7 +97,7 @@
 	our_box.update_appearance()
 
 /obj/item/pizzavoucher/free
-	name = "free pizza voucher"
+	name = "免费披萨券"
 
 /obj/item/pizzavoucher/free/Initialize(mapload)
 	. = ..()

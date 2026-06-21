@@ -1,7 +1,7 @@
 /// Big 3x3 car only available to admins which can run people over
 /obj/vehicle/sealed/car/speedwagon
-	name = "BM Speedwagon"
-	desc = "Push it to the limit, walk along the razor's edge."
+	name = "BM 飞车"
+	desc = "推向极限，行走在剃刀边缘。"
 	icon = 'icons/obj/toys/car.dmi'
 	icon_state = "speedwagon"
 	layer = LYING_MOB_LAYER
@@ -29,7 +29,7 @@
 		if(ismovable(bumped))
 			var/atom/movable/flying_debris = bumped
 			flying_debris.throw_at(get_edge_target_turf(bumped, dir), 4, 3)
-		visible_message(span_danger("[src] crashes into [bumped]!"))
+		visible_message(span_danger("[src] 撞上了 [bumped]！"))
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 	if(!ishuman(bumped))
 		return
@@ -39,7 +39,7 @@
 	rammed.apply_damage(rand(20,35), BRUTE)
 	if(!crash_all)
 		rammed.throw_at(get_edge_target_turf(bumped, dir), 4, 3)
-		visible_message(span_danger("[src] crashes into [rammed]!"))
+		visible_message(span_danger("[src] 撞上了 [rammed]！"))
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 
 /obj/vehicle/sealed/car/speedwagon/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)

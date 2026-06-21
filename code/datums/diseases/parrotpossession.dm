@@ -1,5 +1,5 @@
 /datum/disease/parrot_possession
-	name = "Parrot Possession"
+	name = "鹦鹉附身"
 	max_stages = 1
 	spread_text = "None"
 	spread_flags = DISEASE_SPREAD_SPECIAL
@@ -37,8 +37,8 @@
 		UnregisterSignal(inside_parrot, list(COMSIG_PREQDELETED, COMSIG_MOVABLE_MOVED))
 		inside_parrot.forceMove(affected_mob.drop_location())
 		affected_mob.visible_message(
-			span_danger("[inside_parrot] is violently driven out of [affected_mob]!"),
-			span_userdanger("[inside_parrot] bursts out of your chest!"),
+			span_danger("[inside_parrot]被猛烈地从[affected_mob]体内驱逐了出来！"),
+			span_userdanger("[inside_parrot]从你的胸口爆裂而出！"),
 		)
 	parrot_controller = null
 	return ..()

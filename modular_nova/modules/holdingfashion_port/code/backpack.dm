@@ -1,6 +1,6 @@
 /obj/item/satchel_of_holding_inert
-	name = "inert satchel of holding"
-	desc = "What is currently a just an unwieldly block of metal with a slot ready to accept a bluespace anomaly core."
+	name = "惰性次元挎包"
+	desc = "目前只是一个笨重的金属块，带有一个准备接收蓝空异常核心的插槽。"
 	icon = 'modular_nova/modules/holdingfashion_port/icons/storage.dmi'
 	icon_state = "inertsatchel"
 	w_class = WEIGHT_CLASS_BULKY
@@ -8,16 +8,16 @@
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/storage/backpack/holding/satchel
-	name = "satchel of holding"
-	desc = "A satchel that opens into a localized pocket of bluespace."
+	name = "次元挎包"
+	desc = "一个能打开通往局部蓝空口袋的挎包。"
 	icon = 'modular_nova/modules/holdingfashion_port/icons/storage.dmi'
 	icon_state = "holdingsatchel"
 	worn_icon = 'modular_nova/modules/holdingfashion_port/icons/back.dmi'
 	worn_icon_state = "holdingsatchel"
 
 /obj/item/duffel_of_holding_inert
-	name = "inert duffel bag of holding"
-	desc = "What is currently a just an unwieldly block of metal with a slot ready to accept a bluespace anomaly core."
+	name = "惰性次元旅行袋"
+	desc = "目前只是一个笨重的金属块，带有一个准备接收蓝空异常核心的插槽。"
 	icon = 'modular_nova/modules/holdingfashion_port/icons/storage.dmi'
 	icon_state = "inertduffel"
 	w_class = WEIGHT_CLASS_BULKY
@@ -25,8 +25,8 @@
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/storage/backpack/holding/duffel
-	name = "duffel bag of holding"
-	desc = "A duffel bag that opens into a localized pocket of bluespace."
+	name = "次元旅行袋"
+	desc = "一个能打开通往局部蓝空口袋的旅行袋。"
 	icon = 'modular_nova/modules/holdingfashion_port/icons/storage.dmi'
 	icon_state = "holdingduffel"
 	worn_icon = 'modular_nova/modules/holdingfashion_port/icons/back.dmi'

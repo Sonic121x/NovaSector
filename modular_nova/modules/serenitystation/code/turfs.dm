@@ -1,8 +1,8 @@
 
 /turf/open/misc/asteroid/forest
 	gender = PLURAL
-	name = "grass"
-	desc = "A patch of grass."
+	name = "草地"
+	desc = "一片草地。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grass"
 	base_icon_state = "grass"
@@ -46,8 +46,8 @@
 	AddComponent(/datum/component/simple_farm)
 
 /turf/open/misc/asteroid/forest/mushroom
-	name = "mushroom floor"
-	desc = "A patch of mushrooms."
+	name = "蘑菇地面"
+	desc = "一片蘑菇地。"
 	icon = 'modular_nova/master_files/icons/turf/floors/floor.dmi'
 	icon_state = "mushroom"
 	base_icon_state = "mushroom"
@@ -71,13 +71,13 @@
 	smooth_icon = 'modular_nova/modules/serenitystation/icons/turfs/floors/mushroom_green.dmi'
 
 /turf/open/openspace/forest
-	name = "open forest air"
+	name = "开阔的森林空气"
 	baseturfs = /turf/open/openspace/forest
 	initial_gas_mix = FOREST_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 
 /turf/open/misc/dirt/forest
-	desc = "Hard-packed dirt - much too hard to plant seeds in."
+	desc = "硬实的泥土——太硬了，无法播种。"
 	initial_gas_mix = FOREST_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 
@@ -86,7 +86,7 @@
 	planetary_atmos = TRUE
 
 /turf/closed/mineral/random/forest
-	name = "forest mountainside"
+	name = "森林山侧"
 	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
@@ -107,11 +107,11 @@
 		smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 
 /turf/open/floor/engine/hull/reinforced/planetary
-	desc = "Sturdy exterior hull plating that separates you from the outside world"
+	desc = "坚固的外部船体覆板，将你与外部世界隔开"
 	initial_gas_mix = FOREST_DEFAULT_ATMOS
 
 /turf/open/floor/engine/hull/planetary
-	desc = "Sturdy exterior hull plating that separates you from the outside world."
+	desc = "坚固的外部船体覆板，将你与外部世界隔开。"
 	initial_gas_mix = FOREST_DEFAULT_ATMOS
 
 /turf/open/water/forest_atmos

@@ -318,7 +318,7 @@
 	new_eyes = new new_eyes(user)
 	new_eyes.Insert(user)
 	playsound(user, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 50, TRUE)
-	user.visible_message("[user]'s [eyes ? eyes : "eye holes"] suddenly sprout stalks and turn into [new_eyes]!")
+	user.visible_message("[user]的[eyes ? eyes : "eye holes"]突然长出茎秆，变成了[new_eyes]！")
 	ASYNC
 		user.emote("scream")
 		eyes.throw_at(get_edge_target_turf(user, pick(GLOB.alldirs)), rand(1, 10), rand(1, 10))
@@ -581,7 +581,7 @@
 		return MANUAL_SUICIDE_NONLETHAL // in case they somehow break out
 
 	visible_message(span_suicide("[user] puts [src] against their lips! It looks like they're preparing to say something!"))
-	var/psychic_speech = tgui_input_text(user, message = "Say something!", title = "What are your last words?", timeout = 15 SECONDS)
+	var/psychic_speech = tgui_input_text(user, message = "说点什么！", title = "你的遗言是什么？", timeout = 15 SECONDS)
 	if(!psychic_speech || !locate(src) in user.get_contents())
 		user.say("Err, umm... uhh... erm...", forced = "blustering like a moron due to babbelfish suicide")
 		visible_message(span_suicide("[user] dies from shame!"))
@@ -750,15 +750,15 @@
 	. = ..()
 	var/obj/item/organ/ears/ears = target_mob.get_organ_slot(ORGAN_SLOT_EARS)
 	if(!ears)
-		to_chat(user, span_notice("[target_mob == user ? "You don't have" : target_mob + "has no"] ears to shove [src] into!"))
+		to_chat(user, span_notice("[target_mob == user ? "You don't have" : target_mob + "has no"] 耳朵来塞入[src]！"))
 		return
 
-	to_chat(user, span_danger("You start shoving [src] into [target_mob == user ? "your" : target_mob + "'s"] ears. Probably a bad idea."))
+	to_chat(user, span_danger("你开始把[src]塞进[target_mob == user ? "your" : target_mob + "'s"]耳朵里。可能是个坏主意。"))
 	if(!do_after(user, 2.5 SECONDS * (target_mob == user ? 1 : 3), src))
 		return
 
 	user.apply_damage(25, BRUTE, user.get_bodypart(ears.zone), attacking_item = src)
-	to_chat(user, span_notice("As you're shoving them in, the [src] take on a life of their own and brutishly crawl right into [target_mob == user ? "your" : target_mob + "'s"] ears, taking their place entirely while maiming [target_mob == user ? "your" : target_mob.p_their()]  [ears.zone]!"))
+	to_chat(user, span_notice("当你把它们塞进去时，[src]仿佛有了生命，粗暴地爬进了[target_mob == user ? "your" : target_mob + "'s"]耳朵，完全取代了原来的位置，同时严重伤害了[target_mob == user ? "your" : target_mob.p_their()] [ears.zone]！"))
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', vol = 100, falloff_exponent = 2, vary = TRUE)
 	// bad moodlet
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -789,18 +789,18 @@
 			organ_owner.remove_all_languages(source = LANGUAGE_ALL)
 			//but speak everything
 			organ_owner.grant_all_languages(language_flags = SPOKEN_LANGUAGE, grant_omnitongue = FALSE, source = LANGUAGE_BABEL)
-			to_chat(organ_owner, span_noticealien("You feel like you've been given the first half of a cosmic puzzle!"))
+			to_chat(organ_owner, span_noticealien("你感觉自己得到了一个宇宙谜题的前半部分！"))
 		if(46 to 90)
 			// Can speak nothing
 			organ_owner.remove_all_languages(source = LANGUAGE_ALL)
 			// but understand everything
 			organ_owner.grant_all_languages(language_flags = UNDERSTOOD_LANGUAGE, grant_omnitongue = FALSE, source = LANGUAGE_BABEL)
-			to_chat(organ_owner, span_noticealien("You feel like you've been given the second half of a cosmic puzzle!"))
+			to_chat(organ_owner, span_noticealien("你感觉自己得到了一个宇宙谜题的后半部分！"))
 		if(91 to 100)
 			// jackpot!
 			organ_owner.grant_all_languages(language_flags = ALL, grant_omnitongue = TRUE, source = LANGUAGE_BABEL)
-			to_chat(organ_owner, span_noticealien("You feel like you've been given both halves of a cosmic puzzle!"))
-			to_chat(organ_owner, span_boldnicegreen("So <i>that's</i> what they said to you that one time..."))
+			to_chat(organ_owner, span_noticealien("你感觉自己得到了一个宇宙谜题的两个部分！"))
+			to_chat(organ_owner, span_boldnicegreen("所以<i>原来</i>那次他们对你说的就是这个意思……"))
 
 	if(organ_owner.mind)
 		ADD_TRAIT(organ_owner.mind, TRAIT_TOWER_OF_BABEL, MAGIC_TRAIT) // only one roll per mind
@@ -811,14 +811,14 @@
 	// Reset
 	organ_owner.remove_all_languages(source = LANGUAGE_ALL)
 	organ_owner.copy_languages(removal_holder)
-	to_chat(organ_owner, span_notice("You feel significantly more mundane."))
+	to_chat(organ_owner, span_notice("你感觉平凡了许多。"))
 	QDEL_NULL(removal_holder)
 	QDEL_NULL(bound_component)
 
 /obj/item/organ/ears/babbelfish/proc/on_drain_magic(mob/user)
-	to_chat(user, span_noticealien("Your [src] pop as they protect your mind from psychic phenomena!"))
+	to_chat(user, span_noticealien("你的[src]爆裂开来，保护你的心智免受灵能现象侵扰！"))
 	adjust_temporary_deafness(40 SECONDS)
 
 /obj/item/organ/ears/babbelfish/proc/on_expire(mob/user)
-	to_chat(user, span_noticealien("Your [src] suddenly burst apart!"))
+	to_chat(user, span_noticealien("你的[src]突然爆裂开来！"))
 	apply_organ_damage(maxHealth, maxHealth)

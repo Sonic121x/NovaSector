@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/variable/setter
 	display_name = "Variable Setter"
-	desc = "A component that sets a variable globally on the circuit."
+	desc = "一种能在整个电路中全局设置变量的组件。"
 
 	/// The input to store
 	var/datum/port/input/input_port
@@ -14,7 +14,7 @@
 
 /obj/item/circuit_component/variable/setter/trigger
 	display_name = "Trigger Variable Setter"
-	desc = "A component that sets a variable globally on the circuit. This one requires input signals and also provides an output signal"
+	desc = "一种能在电路中全局设置变量的组件。此组件需要输入信号，并且还会提供输出信号。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 /obj/item/circuit_component/variable/setter/get_variable_list(obj/item/integrated_circuit/integrated_circuit)

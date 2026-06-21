@@ -1,7 +1,7 @@
 ///A simple circuit component compatible with stationary consoles, laptops and PDAs, independent from programs.
 /obj/item/circuit_component/modpc
 	display_name = "Modular Computer"
-	desc = "Circuit for basic functions of a modular computer."
+	desc = "用于模块化计算机基本功能的电路。"
 	var/obj/item/modular_computer/computer
 	///Turns the PC on/off
 	var/datum/port/input/on_off

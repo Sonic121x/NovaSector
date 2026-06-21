@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
  * Will NOT be added automatically to GLOB.gateway_destinations list.
  */
 /datum/gateway_destination
-	var/name = "Unknown Destination"
+	var/name = "未知目的地"
 	var/wait = 0 /// How long after roundstart this destination becomes active
 	var/enabled = TRUE /// If disabled, the destination won't be available
 	var/hidden = FALSE /// Will not show on gateway controls at all.
@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 
 /datum/gateway_destination/gateway/home/proc/check_exile_implant(mob/living/L)
 	for(var/obj/item/implant/exile/E in L.implants)//Checking that there is an exile implant
-		to_chat(L, span_userdanger("The station gate has detected your exile implant and is blocking your entry."))
+		to_chat(L, span_userdanger("空间站传送门检测到你的流放植入物，并阻止你进入。"))
 		return TRUE
 	return FALSE
 
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		for(var/atom/movable/content_item as anything in AM.get_all_contents())
 			if(!is_type_in_list(content_item, type_blacklist))
 				continue
-			to_chat(AM, span_warning("[content_item] seems to be blocking you from entering the gateway!"))
+			to_chat(AM, span_warning("[content_item]似乎正在阻止你进入传送门！"))
 			return
 	//NOVA EDIT ADDITION END
 	if(get_dir(src,AM) == gateway?.dir)
@@ -164,8 +164,8 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	gateway = null
 
 /obj/machinery/gateway
-	name = "gateway"
-	desc = "A mysterious gateway built by unknown hands, it allows for faster than light travel to far-flung locations."
+	name = "星门"
+	desc = "一个由未知之手建造的神秘星门，能够实现以超光速前往遥远的目的地."
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "portal_frame"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -321,7 +321,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		to_chat(user, span_warning("There's no active destination for the gateway... or it's broken. Maybe try again later?"))
 		return
 	if(is_secret_level(tar_turf.z) && !user.client?.holder)
-		to_chat(user, span_warning("The gateway destination is secret."))
+		to_chat(user, span_warning("传送门目的地是保密的。"))
 		return
 	Transfer(user)
 
@@ -342,7 +342,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 
 /obj/machinery/gateway/multitool_act(mob/living/user, obj/item/I)
 	if(calibrated)
-		to_chat(user, span_alert("The gate is already calibrated, there is no work for you to do here."))
+		to_chat(user, span_alert("传送门已经校准完毕，这里没有你需要做的工作。"))
 	else
 		playsound(src, 'sound/machines/gateway/gateway_calibrated.ogg', 80, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		to_chat(user, "[span_boldnotice("Recalibration successful!")]: \black This gate's systems have been fine tuned. Travel to this gate will now be on target.")
@@ -368,12 +368,12 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		for(var/atom/movable/content_item as anything in user.get_contents())
 			if(!is_type_in_list(content_item, type_blacklist))
 				continue
-			to_chat(user, span_warning("[content_item] seems to be blocking you from entering the gateway!"))
+			to_chat(user, span_warning("[content_item]似乎正在阻止你进入传送门！"))
 			return
 	//NOVA EDIT END
 	if(!target)
 		if(!GLOB.the_gateway)
-			to_chat(user,span_warning("Home gateway is not responding!"))
+			to_chat(user,span_warning("主站传送门没有响应！"))
 		if(GLOB.the_gateway.target)
 			GLOB.the_gateway.deactivate() //this will turn the home gateway off so that it's free for us to connect to
 		activate(GLOB.the_gateway.destination)
@@ -382,8 +382,8 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 
 /* Gateway control computer */
 /obj/machinery/computer/gateway_control
-	name = "Gateway Control"
-	desc = "Human friendly interface to the mysterious gate next to it."
+	name = "星门控制台"
+	desc = "控制台，连接旁边的神秘之门。"
 	var/obj/machinery/gateway/G
 
 /obj/machinery/computer/gateway_control/Initialize(mapload, obj/item/circuitboard/C)
@@ -444,8 +444,8 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	G.activate(D)
 
 /obj/item/paper/fluff/gateway
-	default_raw_text = "Congratulations,<br><br>Your station has been selected to carry out the Gateway Project.<br><br>The equipment will be shipped to you at the start of the next quarter.<br> You are to prepare a secure location to house the equipment as outlined in the attached documents.<br><br>--Nanotrasen Bluespace Research"
-	name = "Confidential Correspondence, Pg 1"
+	default_raw_text = "祝贺，<br><br>您的空间站已被选中执行传送门项目。<br><br>设备将在下一季度开始时运送给您。<br> 您需要按照随附文件中的说明，准备一个安全的位置来安置设备。<br><br>--纳特拉森超空间研究部"
+	name = "机密通信，第1页"
 
 /atom/movable/screen/map_view/gateway_port
 	var/datum/gateway_destination/our_destination

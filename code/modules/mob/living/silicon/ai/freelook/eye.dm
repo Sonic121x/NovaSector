@@ -1,5 +1,5 @@
 /mob/eye/camera/ai
-	name = "Inactive AI Eye"
+	name = "不活跃的人工智能眼睛"
 	icon_state = "ai_camera"
 
 	hud_possible = list(ANTAG_HUD, AI_DETECT_HUD = HUD_LIST_LIST)
@@ -185,7 +185,7 @@
 		ai_tracking_tool.reset_tracking()
 
 	if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
-		to_chat(src, "ERROR: Eyeobj not found. Creating new eye...")
+		to_chat(src, "错误：未找到眼对象。正在创建新眼...")
 		stack_trace("AI eye object wasn't found! Location: [loc] / Eyeobj: [eyeobj] / QDELETED: [QDELETED(eyeobj)] / Eye loc: [eyeobj?.loc]")
 		QDEL_NULL(eyeobj)
 		create_eye()
@@ -198,7 +198,7 @@
 	eyeobj = new /mob/eye/camera/ai()
 	all_eyes += eyeobj
 	eyeobj.ai = src
-	eyeobj.name = "[name] (AI Eye)"
+	eyeobj.name = "[name] (AI之眼)"
 	eyeobj.setLoc(loc, TRUE)
 	set_eyeobj_visible(TRUE)
 
@@ -218,7 +218,7 @@
 	if(incapacitated)
 		return
 	acceleration = !acceleration
-	to_chat(usr, "Camera acceleration has been toggled [acceleration ? "on" : "off"].")
+	to_chat(usr, "摄像头加速已切换为[acceleration ? "on" : "off"]。")
 
 /mob/eye/camera/ai/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()

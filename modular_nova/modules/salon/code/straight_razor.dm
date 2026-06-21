@@ -1,6 +1,6 @@
 /obj/item/straight_razor
-	name = "straight razor"
-	desc = "A very sharp blade, mostly used for shaving faces..."
+	name = "直剃刀"
+	desc = "一把非常锋利的刀片，主要用于刮脸..."
 	icon = 'modular_nova/modules/salon/icons/items.dmi'
 	icon_state = "straight_razor"
 	force = 12
@@ -26,30 +26,30 @@
 		var/mob/living/carbon/human/target_human = attacked_mob
 		var/location = user.zone_selected
 		if(!(location in list(BODY_ZONE_PRECISE_MOUTH)) && !user.combat_mode)
-			to_chat(user, span_warning("You stop, look down at what you're currently holding and ponder to yourself, \"This is probably to be used on their facial hair.\""))
+			to_chat(user, span_warning("你停下来，低头看了看手里拿的东西，心里琢磨着，“这大概是用来刮他们胡子的。”"))
 			return
 		if(location == BODY_ZONE_PRECISE_MOUTH && !target_human.get_bodypart(BODY_ZONE_HEAD))
-			to_chat(user, span_warning("[target_human] doesn't have a head!"))
+			to_chat(user, span_warning("[target_human] 没有头！"))
 			return
 		if(location == BODY_ZONE_PRECISE_MOUTH)
 			var/obj/item/bodypart/head/noggin = target_human.get_bodypart(BODY_ZONE_HEAD)
 			if(!(noggin.head_flags & HEAD_FACIAL_HAIR))
-				to_chat(user, span_warning("There is no facial hair to shave!"))
+				to_chat(user, span_warning("没有胡子可刮！"))
 				return
 			var/covering = target_human.is_mouth_covered()
 			if(covering)
-				to_chat(user, span_warning("[covering] is in the way!"))
+				to_chat(user, span_warning("[covering] 挡着呢！"))
 				return
 			if(target_human.facial_hairstyle == "Shaved")
-				to_chat(user, span_warning("Already clean-shaven!"))
+				to_chat(user, span_warning("已经刮干净了！"))
 				return
 
 			var/self_shaving = target_human == user // Shaving yourself?
-			user.visible_message(span_notice("[user] starts to shave [self_shaving ? user.p_their() : "[target_human]'s"] facial hair with [src]."), \
-				span_notice("You take a moment to shave [self_shaving ? "your" : "[target_human]'s" ] facial hair with [src]..."))
+			user.visible_message(span_notice("[user]开始用[self_shaving ? user.p_their() : "[target_human]'s"]刮[src]面部毛发。"), \
+				span_notice("你花了一点时间用[self_shaving ? "your" : "[target_human]'s" ]刮[src]面部毛发……"))
 			if(do_after(user, shaving_time, target = target_human))
-				user.visible_message(span_notice("[user] shaves [self_shaving ? user.p_their() : "[target_human]'s"] facial hair clean with [src]."), \
-					span_notice("You finish shaving[self_shaving ? "" : " [target_human]'s facial hair"] with [src]. Fast and clean!"))
+				user.visible_message(span_notice("[user] 用 [self_shaving ? user.p_their() : "[target_human]'s"] 将 [src] 的面部毛发刮得干干净净。"), \
+					span_notice("你用 [self_shaving ? "" : " [target_human]'s facial hair"] 刮完了[src]。又快又干净！"))
 				shave(target_human)
 
 		else

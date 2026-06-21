@@ -56,7 +56,7 @@
 
 	var/important = is_job_important(id_card)
 	if(important)
-		if(tgui_alert(usr, "You are a member of security and/or command, make sure that you ahelp before punching out! If you decide to punch back in later, you will need to go to the Head of Personnel or Head of Security. Do you wish to continue?", "[filedesc]", list("No", "Yes")) != "Yes")
+		if(tgui_alert(usr, "你是安保和/或指挥部的成员，请确保在打卡下班前先向管理员求助！如果你之后决定重新打卡上班，你需要去找人事主管或安全主管。你确定要继续吗？", "[filedesc]", list("No", "Yes")) != "Yes")
 			return FALSE
 
 	log_econ("[id_card.registered_name] clocked out from role [id_card.get_trim_assignment()]")
@@ -64,7 +64,7 @@
 	if(important)
 		timer_component.hop_locked = TRUE
 		log_econ("[id_card.registered_name] job slot [id_card.get_trim_assignment()] has been locked from clocking back in")
-		message_admins("[ADMIN_LOOKUPFLW(usr)] clocked out from [span_comradio("restricted role")]: [id_card.get_trim_assignment()].")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 从 [span_comradio("restricted role")] 打卡下班：[id_card.get_trim_assignment()]。")
 	else
 		message_admins("[ADMIN_LOOKUPFLW(usr)] clocked out from role: [id_card.get_trim_assignment()].")
 
@@ -212,8 +212,8 @@
 
 	shame_box.locked_contents = english_list(shamebox_items)
 	do_sparks(10, TRUE, human_user, spark_type = /datum/effect_system/basic/spark_spread/quantum)
-	to_chat(human_user, span_warning("You feel weight lifted off your shoulders as items are teleported off your body!"))
-	to_chat(human_user, span_notice("Items moved to lockbox: [shame_box.locked_contents]."))
+	to_chat(human_user, span_warning("你感觉肩上的重量一轻，物品从你身上传送走了！"))
+	to_chat(human_user, span_notice("物品已移至锁箱：[shame_box.locked_contents]。"))
 	computer.say(
 		message = "Nanotrasen contracts stipulate that company issued batons, masks, restraints, and other equipment are not to be used for recreational purposes. Your restricted items have been placed in a lockbox to be retrieved after punch in.",
 		forced = TRUE,
@@ -299,14 +299,14 @@
 	return data
 
 /datum/aas_config_entry/off_duty
-	name = "Departmental Alert: Off-duty Announcement"
+	name = "部门警报：非值班公告"
 	announcement_lines_map = list(
-		"Clock Out" = "%PERSON, %RANK has gone off-duty.",
-		"Clock In" = "%PERSON has returned to their assignment as %RANK",
+		"Clock Out" = "%PERSON, %RANK 已下班。",
+		"Clock In" = "%PERSON 已返回其 %RANK 岗位",
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with their name.",
-		"RANK" = "with their job."
+		"PERSON" = "将被替换为其姓名。",
+		"RANK" = "与其岗位。"
 	)
 
 #undef PUNCH_ID_INVALID

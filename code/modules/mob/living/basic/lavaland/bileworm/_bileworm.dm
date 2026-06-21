@@ -1,6 +1,6 @@
 /mob/living/basic/mining/bileworm
-	name = "bileworm"
-	desc = "Bileworms are dangerous detritivores that attack with the highly acidic bile they produce from consuming detritus."
+	name = "胆管虫"
+	desc = "胆管虫是一种危险的腐食性生物，它们会利用从分解有机物过程中产生的强酸性胆汁来进行攻击。"
 	icon = 'icons/mob/simple/lavaland/bileworm.dmi'
 	icon_state = "bileworm"
 	icon_living = "bileworm"
@@ -8,10 +8,10 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BUG|MOB_MINING
 	maxHealth = 110
 	health = 110
-	verb_say = "spittles"
-	verb_ask = "spittles questioningly"
-	verb_exclaim = "splutters and gurgles"
-	verb_yell = "splutters and gurgles"
+	verb_say = "吐唾沫"
+	verb_ask = "疑惑地吐唾沫"
+	verb_exclaim = "喷溅并发出咕噜声"
+	verb_yell = "喷溅并发出咕噜声"
 	crusher_loot = /obj/item/crusher_trophy/bileworm_spewlet
 	crusher_drop_chance = 15
 	butcher_results = list(/obj/item/food/meat/slab/bugmeat = 4)

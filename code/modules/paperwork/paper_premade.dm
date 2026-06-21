@@ -3,7 +3,7 @@
  */
 
 /obj/item/paper/fluff/sop
-	name = "paper- 'Standard Operating Procedure'"
+	name = "“paper” - “标准操作程序”"
 	default_raw_text = {"Alert Levels:
 	<br>Blue- Emergency
 	&emsp;1. Caused by fire
@@ -55,10 +55,10 @@
 	"}
 
 /obj/item/paper/fluff/shuttles/daniel
-	default_raw_text = "i love daniel<br>daniel is my best friend<br><br>you are tearing me apart elise"
+	default_raw_text = "我爱丹尼尔<br>丹尼尔是我最好的朋友<br><br>你让我心碎，艾莉丝"
 
 /obj/item/paper/fluff/jobs/prisoner/letter
-	name = "letter from home"
+	name = "家信"
 	default_raw_text = {"Dearest sweetheart,
 	<br>It is truly saddening you must spend your time locked up in an awful prison on that dangerous station. I have spoken to your lawyer who will attempt to appeal to the judge so your sentence may hopefully be reduced.
 	<br>Regardless, I just want you to understand that all of us out here still love you, and want to see you released safely some day! I know that prison can be a very vicious place, so please promise us you'll avoid getting into any fights or trouble, okay?
@@ -72,7 +72,7 @@
 //////////// Job guides n' fluff
 
 /obj/item/paper/guides/jobs/hydroponics
-	name = "paper- 'Greetings from Billy Bob'"
+	name = "纸张 - “来自比利·鲍勃的问候”"
 	default_raw_text = {"<B>Hey fellow botanist!</B>
 	<br>I didn't trust the station folk so I left
 	a couple of weeks ago. But here's some
@@ -99,7 +99,7 @@
 	<B>All other plants need both.</B>"}
 
 /obj/item/paper/guides/jobs/holopad_hydro
-	name = "paper- 'Holopad Notice'"
+	name = "文件 - “全息板通知”"
 	default_raw_text = "<B>Can't get any botanists at the table? Have you tried using the damn holopad?</B><BR>\n<BR>\nStep onto the pad, and interface with it<BR>\nthen make your dang ol' call!<BR>\n<BR>\nYou want to call \"Hydroponics\" to reach them."
 
 /obj/item/paper/guides/jobs/engineering/bsa
@@ -157,11 +157,11 @@
 		* Supply - 134.7"}
 
 /obj/item/paper/fluff/jobs/security/beepsky_mom
-	name = "Note from Beepsky's Mom"
+	name = "比普斯基母亲的留言"
 	default_raw_text = "01001001 00100000 01101000 01101111 01110000 01100101 00100000 01111001 01101111 01110101 00100000 01110011 01110100 01100001 01111001 00100000 01110011 01100001 01100110 01100101 00101110 00100000 01001100 01101111 01110110 01100101 00101100 00100000 01001101 01101111 01101101 00101110"
 
 /obj/item/paper/guides/jobs/security/courtroom
-	name = "paper- 'A Crash Course in Legal SOP on SS13'"
+	name = "文件：“SS13 中法律标准操作程序的速成指南”"
 	default_raw_text = {"<B>Roles:</B>
 	The Detective is basically the investigator and prosecutor.
 	The Staff Assistant can perform these functions with written authority from the Detective.
@@ -196,7 +196,7 @@
 	"}
 
 /obj/item/paper/guides/jobs/security/labor_camp
-	name = "Labor Camp Operating Guide"
+	name = "劳改营操作指南"
 	default_raw_text = {"<b>Labor Camp Facility Operation Guide</b>
 	<br>Hello there, proud operator of an NT-Sec Prisoner Rehabilitation Center.  A solution to rising crime rates and falling productivity, these facilities are specifically designed for the safe, productive imprisonment of your most dangerous criminals.
 	<br>To press a long-term prisoner into the service of the station, replace their equipment with prisoners' garb at one of the prison lockers, as per normal operating procedure.  Before assigning a prisoner their ID, insert the ID into a prisoner management console and assign the prisoner a quota, based on the severity of their crime.
@@ -205,19 +205,19 @@
 	<br>In the case of dangerous prisoners, surveillance may be needed. To that end, there is a prisoner monitoring room on the mining station, equipped with a remote flasher and a lockdown button.  The mine itself is patrolled by a securibot, so the nearby security records console can also be used to secure hostile prisoners on the mine."}
 
 /obj/item/paper/fluff/jobs/jobs
-	name = "paper- 'Job Information'"
+	name = "纸 - '工作信息'"
 	default_raw_text = "Information on all formal jobs that can be assigned on Space Station 13 can be found on this document.<BR>\nThe data will be in the following form.<BR>\nGenerally lower ranking positions come first in this list.<BR>\n<BR>\n<B>Job Name</B>   general access>lab access-engine access-systems access (atmosphere control)<BR>\n\tJob Description<BR>\nJob Duties (in no particular order)<BR>\nTips (where applicable)<BR>\n<BR>\n<B>Research Assistant</B> 1>1-0-0<BR>\n\tThis is probably the lowest level position. Anyone who enters the space station after the initial job\nassignment will automatically receive this position. Access with this is restricted. Head of Personnel should\nappropriate the correct level of assistance.<BR>\n1. Assist the researchers.<BR>\n2. Clean up the labs.<BR>\n3. Prepare materials.<BR>\n<BR>\n<B>Staff Assistant</B> 2>0-0-0<BR>\n\tThis position assists the security officer in their duties. The staff assistants should primarily br\npatrolling the ship, waiting until they are needed to maintain ship safety.\n(Addendum: Updated/Elevated Security Protocols admit issuing of low level weapons to security personnel)<BR>\n1. Patrol ship/Guard key areas<BR>\n2. Assist security officer<BR>\n3. Perform other security duties.<BR>\n<BR>\n<B>Technical Assistant</B> 1>0-0-1<BR>\n\tThis is yet another low level position. The technical assistant helps the engineer and the station\ntechnician with the upkeep and maintenance of the station. This job is very important because it usually\ngets to be a heavy workload on station technician and these helpers will alleviate that.<BR>\n1. Assist Station technician and Engineers.<BR>\n2. Perform general maintenance of station.<BR>\n3. Prepare materials.<BR>\n<BR>\n<B>Medical Assistant</B> 1>1-0-0<BR>\n\tThis is the fourth position yet it is slightly less common. This position doesn't have much power\noutside of the med bay. Consider this position like a nurse who helps to upkeep medical records and the\nmaterials (filling syringes and checking vitals)<BR>\n1. Assist the medical personnel.<BR>\n2. Update medical files.<BR>\n3. Prepare materials for medical operations.<BR>\n<BR>\n<B>Research Technician</B> 2>3-0-0<BR>\n\tThis job is primarily a step up from research assistant. These people generally do not get their own lab\nbut are more hands on in the experimentation process. At this level they are permitted to work as consultants to\nthe others formally.<BR>\n1. Inform superiors of research.<BR>\n2. Perform research alongside of official researchers.<BR>\n<BR>\n<B>Detective</B> 3>2-0-0<BR>\n\tThis job is in most cases slightly boring at best. Their sole duty is to\nperform investigations of crime scenes and analysis of the crime scene. This\nalleviates SOME of the burden from the security officer. This person's duty\nis to draw conclusions as to what happened and testify in court. Said person\nalso should store the evidence properly.<BR>\n1. Perform crime-scene investigations/draw conclusions.<BR>\n2. Store and catalogue evidence properly.<BR>\n3. Testify to superiors/inquiries on findings.<BR>\n<BR>\n<B>Station Technician</B> 2>0-2-3<BR>\n\tPeople assigned to this position must work to make sure all the systems aboard Space Station 13 are operable.\nThey should primarily work in the computer lab and repairing faulty equipment. They should work with the\natmospheric technician.<BR>\n1. Maintain SS13 systems.<BR>\n2. Repair equipment.<BR>\n<BR>\n<B>Atmospheric Technician</B> 3>0-0-4<BR>\n\tThese people should primarily work in the atmospheric control center and lab. They have the very important\njob of maintaining the delicate atmosphere on SS13.<BR>\n1. Maintain atmosphere on SS13.<BR>\n2. Research atmospheres on the space station. (safely please!)<BR>\n<BR>\n<B>Engineer</B> 2>1-3-0<BR>\n\tPeople working as this should generally have detailed knowledge as to how the propulsion systems on SS13\nwork. They are one of the few classes that have unrestricted access to the engine area.<BR>\n1. Upkeep the engine.<BR>\n2. Prevent fires in the engine.<BR>\n3. Maintain a safe orbit.<BR>\n<BR>\n<B>Medical Researcher</B> 2>5-0-0<BR>\n\tThis position may need a little clarification. Their duty is to make sure that all experiments are safe and\nto conduct experiments that may help to improve the station. They will be generally idle until a new laboratory\nis constructed.<BR>\n1. Make sure the station is kept safe.<BR>\n2. Research medical properties of materials studied of Space Station 13.<BR>\n<BR>\n<B>Scientist</B> 2>5-0-0<BR>\n\tThese people study the properties, particularly the toxic properties, of materials handled on SS13.\nTechnically they can also be called Plasma Technicians as plasma is the material they routinely handle.<BR>\n1. Research plasma.<BR>\n2. Make sure all plasma is properly handled.<BR>\n<BR>\n<B>Medical Doctor (Officer)</B> 2>0-0-0<BR>\n\tPeople working this job should primarily stay in the medical area. They should make sure everyone goes to\nthe medical bay for treatment and examination. Also they should make sure that medical supplies are kept in\norder.<BR>\n1. Heal wounded people.<BR>\n2. Perform examinations of all personnel.<BR>\n3. Monitor usage of medical equipment.<BR>\n<BR>\n<B>Security Officer</B> 3>0-0-0<BR>\n\tThese people should attempt to keep the peace inside the station and make sure the station is kept safe. One\nside duty is to assist in repairing the station. They also work like general maintenance personnel. They are not\ngiven a weapon and must use their own resources.<BR>\n(Addendum: Updated/Elevated Security Protocols admit issuing of weapons to security personnel)<BR>\n1. Maintain order.<BR>\n2. Assist others.<BR>\n3. Repair structural problems.<BR>\n<BR>\n<B>Head of Security</B> 4>5-2-2<BR>\n\tPeople assigned as Head of Security should issue orders to the security staff. They should\nalso carefully moderate the usage of all security equipment. All security matters should be reported to this person.<BR>\n1. Oversee security.<BR>\n2. Assign patrol duties.<BR>\n3. Protect the station and staff.<BR>\n<BR>\n<B>Head of Personnel</B> 4>4-2-2<BR>\n\tPeople assigned as head of personnel will find themselves moderating all actions done by personnel. \nAlso they have the ability to assign jobs and access levels.<BR>\n1. Assign duties.<BR>\n2. Moderate personnel.<BR>\n3. Moderate research. <BR>\n<BR>\n<B>Captain</B> 5>5-5-5 (unrestricted station wide access)<BR>\n\tThis is the highest position you can acquire on Space Station 13. They are allowed anywhere inside the\nspace station and therefore should protect their ID card. They also have the ability to assign positions\nand access levels. They should not abuse their power.<BR>\n1. Assign all positions on SS13.<BR>\n2. Inspect the station for any problems.<BR>\n3. Perform administrative duties.<BR>\n"
 
 /obj/item/paper/fluff/jobs/mining/smelter_notice
-	name = "paper- Smelting Operations Closed"
+	name = "文件 - 炼铁作业已停止"
 	default_raw_text = "<B>**NOTICE**</B><BR><BR>Smelting operations moved on-station.<BR><BR>Take your unrefined ore to the Redemption Machine in the Delivery Office to redeem points.<BR><BR>--SS13 Command"
 
 /obj/item/paper/fluff/jobs/security/court_judgement
 	name = "paper- 'Judgement'"
-	default_raw_text = "For crimes against the station, the offender is sentenced to:<BR>\n<BR>\n"
+	default_raw_text = "因对空间站犯下的罪行，罪犯被判处：<BR>\n<BR>\n"
 
 /obj/item/paper/fluff/jobs/ordnance/chemical_info
-	name = "paper- 'Chemical Information'"
+	name = "纸 - '化学信息'"
 	default_raw_text = {"Known Onboard Toxins:
 	&emsp;Grade A Semi-Liquid Plasma:
 	&emsp;&emsp;Highly poisonous. You cannot sustain concentrations above 15 units.
@@ -249,7 +249,7 @@
 	&emsp;&emsp;WARNING: It is a crime to use this without authorization."}
 
 /obj/item/paper/fluff/jobs/medical/hippocratic
-	name = "paper- 'Hippocratic Oath'"
+	name = "文件 - “希波克拉底誓言”"
 	default_raw_text = {"<i>I swear to fulfill, to the best of my ability and judgment, this covenant:
 	<br>
 	I will respect the hard-won scientific gains of those physicians in whose steps I walk,
@@ -450,14 +450,14 @@
 /////////// CentCom
 
 /obj/item/paper/fluff/stations/centcom/disk_memo
-	name = "memo"
+	name = "备忘录"
 	default_raw_text = "GET DAT FUKKEN DISK"
 
 /obj/item/paper/fluff/stations/centcom/broken_evac
 	default_raw_text = "Due to circumstances beyond our control, your Emergency Evacuation Shuttle is out of service.<br><br>We apologize for the inconvenience this may cause you.<br><br>Please enjoy the use of this complementary book.<br><br>Sincerely,<br>CentCom Operations Demolitions Examination Retribution Bugfixing Underlining Services"
 
 /obj/item/paper/fluff/stations/centcom/bulletin
-	name = "paper- 'Official Bulletin'"
+	name = "paper - “官方公报”"
 	default_raw_text = "<BR>CentCom Security<BR>Port Division<BR>Official Bulletin<BR><BR>Inspector,<BR>There is an emergency shuttle arriving today.<BR><BR>Approval is restricted to Nanotrasen employees only. Deny all other entrants.<BR><BR>CentCom Port Commissioner"
 
 
@@ -470,7 +470,7 @@
 /////////// Space Ruins
 
 /obj/item/paper/fluff/spaceruins/lizardsgas/memorandum
-	name = "A Memorandum"
+	name = "备忘录"
 	default_raw_text = {"To all employees:
 	<br> Hey there, it's me, Josh. You know who I am, I hired you! Anyways, you're probably wondering why this gas station is themed after lizards. I just think they're pretty neat! I wish I was a lizard.
 	<br>

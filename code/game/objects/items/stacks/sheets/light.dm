@@ -1,7 +1,7 @@
 /obj/item/stack/light_w
-	name = "wired glass tile"
+	name = "有线玻璃砖"
 	singular_name = "wired glass floor tile"
-	desc = "A glass tile, which is wired, somehow."
+	desc = "一块玻璃砖，不知怎么的，上面有电线。"
 	icon = 'icons/obj/tiles.dmi'
 	icon_state = "glass_wire"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -19,19 +19,19 @@
 
 /obj/item/stack/light_w/examine(mob/user)
 	. = ..()
-	. += span_warning("\The [src] looks unfinished, add <b>iron</b> to complete it.")
+	. += span_warning("\The [src]看起来未完成，添加<b>铁</b>来完成它。")
 
 /obj/item/stack/light_w/attackby(obj/item/O, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(O, /obj/item/stack/sheet/iron))
 		var/obj/item/stack/sheet/iron/M = O
 		if (M.use(1))
 			var/obj/item/L = new /obj/item/stack/tile/light(user.drop_location())
-			to_chat(user, span_notice("You make a light tile."))
+			to_chat(user, span_notice("你制作了一块照明砖。"))
 			if (!QDELETED(L))
 				L.add_fingerprint(user)
 			use(1)
 		else
-			to_chat(user, span_warning("You need one iron sheet to finish the light tile!"))
+			to_chat(user, span_warning("你需要一块铁片来完成照明砖！"))
 	else
 		return ..()
 

@@ -1,6 +1,6 @@
 /obj/vehicle/ridden/atv/snowmobile
-	name = "snowmobile"
-	desc = "A tracked vehicle designed for use in the snow, it looks like it would have difficulty moving elsewhere, however."
+	name = "雪地摩托"
+	desc = "一种为雪地使用设计的履带式载具，不过看起来它在其他地方移动会很困难。"
 	icon_state = "snowmobile"
 	icon = 'modular_nova/master_files/icons/obj/vehicles/vehicles.dmi'
 	var/static/list/snow_typecache = typecacheof(list(/turf/open/misc/asteroid/snow/icemoon, /turf/open/floor/plating/snowed/smoothed/icemoon))
@@ -16,8 +16,8 @@
 		riding_component.vehicle_move_delay = 2
 
 /obj/vehicle/ridden/atv/snowmobile/snowcurity
-	name = "security snowmobile"
-	desc = "For when you want to look like even more of a tool than riding a secway."
+	name = "安保雪地摩托"
+	desc = "当你觉得骑安保滑板车还不够像个工具人时，这玩意儿正合适。"
 	icon_state = "snowcurity"
 	icon = 'modular_nova/master_files/icons/obj/vehicles/vehicles.dmi'
 	key_type = /obj/item/key/security
@@ -37,8 +37,8 @@
 
 
 /obj/vehicle/ridden/atv/snowmobile/syndicate
-	name = "snowmobile"
-	desc = "A tracked vehicle designed for use in the snow, emblazened with Syndicate colors."
+	name = "雪地摩托"
+	desc = "一种为雪地使用设计的履带式载具，涂有辛迪加配色。"
 	icon_state = "syndimobile"
 	icon = 'modular_nova/master_files/icons/obj/vehicles/vehicles.dmi'
 

@@ -57,46 +57,46 @@
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/drake_bone
-	name = "Drake Bone"
+	name = "龙骸骨"
 	icon_state = "drakebone"
 	default_color = "#CCCCCC"
 	affected_bodyparts = CHEST | HAND_LEFT | HAND_RIGHT
 	gendered = FALSE
 
 /datum/body_marking/other/tonage
-	name = "Body Tonage"
+	name = "身体色调"
 	icon_state = "tonage"
 	default_color = "#555555"
 	affected_bodyparts = CHEST
 	gendered = FALSE
 
 /datum/body_marking/other/belly_slim_toned
-	name = "Belly Slim (Alt) + Tonage"
+	name = "纤腹（变体）+ 色调"
 	icon_state = "bellyslimtoned"
 	default_color = "#555555"
 	affected_bodyparts = CHEST
 	gendered = FALSE
 
 /datum/body_marking/other/flushed_cheeks
-	name = "Flushed Cheeks"
+	name = "红润脸颊"
 	icon_state = "flushed_cheeks"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/cyclops
-	name = "Cyclopean Eye"
+	name = "独眼巨人眼"
 	icon_state = "cyclops"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/blank_face
-	name = "Blank round face (use with monster mouth)"
+	name = "空白圆脸（与怪物嘴部搭配使用）"
 	icon_state = "blankface"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/blank_face2
-	name = "Blank Round Face, Alt"
+	name = "空白圆脸，变体"
 	icon_state = "blankface2"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
@@ -108,54 +108,54 @@
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/monster_mouth
-	name = "Monster Mouth"
+	name = "怪物嘴"
 	icon_state = "monster"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/monster_mouth_white
-	name = "Monster Mouth (White)"
+	name = "怪物嘴（白色）"
 	icon_state = "monster_white"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/monster_mouth_white2
-	name = "Monster Mouth (White, eye-compatible)"
+	name = "怪物嘴（白色，兼容眼部）"
 	icon_state = "monster_white2"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 //you're welcome -- iska
 
 /datum/body_marking/other/monster_mouth2
-	name = "Monster Mouth 2"
+	name = "怪物嘴 2"
 	icon_state = "monster2"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/nose_blemish
-	name = "Nose Blemish"
+	name = "鼻部瑕疵"
 	icon_state = "nose_blemish"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/brows
-	name = "Brows"
+	name = "眉部"
 	icon_state = "brows"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/ears
-	name = "Ears"
+	name = "耳部"
 	icon_state = "ears"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/insect_antennae
-	name = "Insect Antennae"
+	name = "昆虫触角"
 	icon_state = "insect_antennae"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/eyeliner
-	name = "Eyeliner"
+	name = "眼线"
 	icon_state = "eyeliner"
 	affected_bodyparts = HEAD
 
@@ -172,189 +172,189 @@
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/topscars
-	name = "Top Surgery Scars"
+	name = "胸部手术疤痕"
 	icon_state = "topscars"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/other/weight
-	name = "Body Weight"
+	name = "身体重量"
 	icon_state = "weight"
 	default_color = DEFAULT_PRIMARY
 	affected_bodyparts = CHEST
 
 /datum/body_marking/other/weight2
-	name = "Body Weight (Greyscale)"
+	name = "身体重量（灰阶）"
 	icon_state = "weight2"
 	default_color = DEFAULT_PRIMARY
 	affected_bodyparts = CHEST
 
 /datum/body_marking/other/pilot
-	name = "Pilot"
+	name = "飞行员"
 	icon_state = "pilot"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT
 
 /datum/body_marking/other/pilot_jaw
-	name = "Pilot Jaw"
+	name = "飞行员下颌"
 	icon_state = "pilot_jaw"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/drake_eyes
-	name = "Drake Eyes"
+	name = "龙眼"
 	icon_state = "drakeeyes"
 	default_color = "#FF0000"
 	affected_bodyparts = HEAD
 	always_color_customizable = TRUE
 
 /datum/body_marking/other/big_ol_eyes
-	name = "Large Eyes"
+	name = "大眼睛"
 	icon_state = "bigoleyes"
 	default_color = "#FF0000"
 	affected_bodyparts = HEAD
 	always_color_customizable = TRUE
 
 /datum/body_marking/other/three_eyes
-	name = "Three Eyes"
+	name = "三只眼"
 	icon_state = "3eyes"
 	default_color = "#FF0000"
 	affected_bodyparts = HEAD
 	always_color_customizable = TRUE
 
 /datum/body_marking/other/four_eyes
-	name = "Four Eyes"
+	name = "四只眼"
 	icon_state = "4eyes"
 	default_color = "#FF0000"
 	affected_bodyparts = HEAD
 	always_color_customizable = TRUE
 
 /datum/body_marking/other/sclera
-	name = "Sclera"
+	name = "巩膜"
 	icon_state = "sclera"
 	default_color = "#FF0000"
 	affected_bodyparts = HEAD
 	always_color_customizable = TRUE
 
 /datum/body_marking/other/anime_inner
-	name = "Anime Eyes (Inner)"
+	name = "动漫眼（内部）"
 	icon_state = "anime_inner"
 	default_color = "#FF0000"
 	affected_bodyparts = HEAD
 	always_color_customizable = TRUE
 
 /datum/body_marking/other/anime_outer
-	name = "Anime Eyes (Outer)"
+	name = "动漫眼（外圈）"
 	icon_state = "anime_outer"
 	default_color = "#FF0000"
 	affected_bodyparts = HEAD
 	always_color_customizable = TRUE
 
 /datum/body_marking/other/claws
-	name = "Claw Tips"
+	name = "爪尖"
 	icon_state = "claws"
 	affected_bodyparts = HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 	gendered = FALSE
 
 /datum/body_marking/other/harpy_upper
-	name = "Harpy Upper Legs"
+	name = "哈比鸟人上腿部"
 	icon_state = "harpy_upper"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 	gendered = FALSE
 
 /datum/body_marking/other/harpy_lower
-	name = "Harpy Lower Legs"
+	name = "哈比鸟人下腿部"
 	icon_state = "harpy_lower"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 	gendered = FALSE
 
 /datum/body_marking/other/harpy_claws
-	name = "Harpy Claws"
+	name = "哈比鸟人利爪"
 	icon_state = "harpy_claws"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 	gendered = FALSE
 
 /datum/body_marking/other/critter_legs
-	name = "Critter Legs"
+	name = "小动物腿部"
 	icon_state = "critterleg"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 	gendered = FALSE
 
 
 /datum/body_marking/other/splotches
-	name = "Splotches"
+	name = "色斑"
 	icon_state = "splotches"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/other/splotcheswap
-	name = "Splotches Swapped"
+	name = "色斑（交换）"
 	icon_state = "splotcheswap"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/other/bands
-	name = "Color Bands"
+	name = "色带"
 	icon_state = "bands"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/other/chitin
-	name = "Chitin"
+	name = "几丁质"
 	icon_state = "chitin"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/other/bands_foot
-	name = "Color Bands (Foot)"
+	name = "色带（足部）"
 	icon_state = "bands_foot"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/other/anklet
-	name = "Anklet"
+	name = "脚镯"
 	icon_state = "anklet"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/other/legband
-	name = "Leg Band"
+	name = "腿环"
 	icon_state = "legband"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/other/protogenlegs
-	name = "Protogen Leg - Digitigrade"
+	name = "原型机腿部 - 趾行式"
 	icon_state = "protogen"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/other/protogenarms
-	name = "Protogen Arm"
+	name = "原型机手臂"
 	icon_state = "protogen"
 	affected_bodyparts = ARM_RIGHT | ARM_LEFT
 
 /datum/body_marking/other/protogenchest
-	name = "Protogen Chest"
+	name = "原型机胸部"
 	icon_state = "protogen"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/other/jackal_fur
-	name = "Jackal Back Fur"
+	name = "豺狼背部皮毛"
 	icon_state = "jackalfur"
 	affected_bodyparts = CHEST | ARM_RIGHT | ARM_LEFT
 	gendered = FALSE
 
 /datum/body_marking/other/jackal_back
-	name = "Jackal Back Fur Accents"
+	name = "豺狼背部皮毛点缀"
 	icon_state = "jackalback"
 	affected_bodyparts = CHEST | ARM_RIGHT | ARM_LEFT
 	gendered = FALSE
 
 /datum/body_marking/other/sixnips
-	name = "Six Nips"
+	name = "六点乳首"
 	icon_state = "nips"
 	affected_bodyparts = CHEST
 	gendered = FALSE
 
 /datum/body_marking/other/chemlight
-	name = "Bands and Stripes"
+	name = "条带与条纹"
 	icon_state = "chemlight"
 	affected_bodyparts = ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/other/back_stripe
-	name = "Back Stripe"
+	name = "背部条纹"
 	icon_state = "backstripe"
 	affected_bodyparts = HEAD | CHEST
 
@@ -363,311 +363,311 @@
 	default_color = DEFAULT_SECONDARY
 
 /datum/body_marking/secondary/teshari
-	name = "Teshari"
+	name = "特莎瑞"
 	icon_state = "teshari"
 	recommended_species = list(SPECIES_TESHARI = 1)
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT
 
 /datum/body_marking/secondary/teshari_plain
-	name = "Teshari Plain"
+	name = "特莎瑞平原"
 	icon_state = "teshari_plain"
 	recommended_species = list(SPECIES_TESHARI = 1)
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/teshari_coat
-	name = "Teshari Coat"
+	name = "特莎瑞毛皮"
 	icon_state = "teshari_coat"
 	recommended_species = list(SPECIES_TESHARI = 1)
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/teshari_underfluff
-	name = "Teshari Underfluff"
+	name = "特莎瑞底绒"
 	icon_state = "teshari_underfluff"
 	recommended_species = list(SPECIES_TESHARI = 1)
 	affected_bodyparts = HEAD | CHEST | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/teshari_short
-	name = "Teshari Short"
+	name = "特莎瑞短毛"
 	icon_state = "teshari_short"
 	recommended_species = list(SPECIES_TESHARI = 1)
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/teshari_feathers_male
-	name = "Teshari Feathers (Male)"
+	name = "特莎瑞羽毛（雄性）"
 	icon_state = "teshari_feathers_male"
 	recommended_species = list(SPECIES_TESHARI = 1)
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/teshari_feathers_female
-	name = "Teshari Feathers (Female)"
+	name = "特莎瑞羽毛（雌性）"
 	icon_state = "teshari_feathers_female"
 	recommended_species = list(SPECIES_TESHARI = 1)
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/teshari_lashes
-	name = "Teshari Lashes"
+	name = "特莎瑞睫毛"
 	icon_state = "teshari_lashes"
 	recommended_species = list(SPECIES_TESHARI = 1)
 	affected_bodyparts = HEAD
 
 /datum/body_marking/secondary/tajaran
-	name = "Tajaran"
+	name = "塔亚兰"
 	icon_state = "tajaran"
 	affected_bodyparts = HEAD | CHEST //The legs were literally one pixel so I removed them
 
 /datum/body_marking/secondary/sergal
-	name = "Sergal"
+	name = "塞尔加尔"
 	icon_state = "sergal"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/secondary/husky
-	name = "Husky"
+	name = "哈士奇"
 	icon_state = "husky"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/fennec
-	name = "Fennec"
+	name = "耳廓狐"
 	icon_state = "fennec"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/redpanda
-	name = "Red Panda"
+	name = "小熊猫"
 	icon_state = "redpanda"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/dalmatian
-	name = "Dalmatian"
+	name = "斑点狗"
 	icon_state = "dalmation"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/shepherd
-	name = "Shepherd"
+	name = "牧羊犬"
 	icon_state = "shepherd"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/wolf
-	name = "Wolf"
+	name = "狼"
 	icon_state = "wolf"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/secondary/fox
-	name = "Fox"
+	name = "狐狸"
 	icon_state = "fox"
 	affected_bodyparts = HEAD | CHEST | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/raccoon
-	name = "Raccoon"
+	name = "浣熊"
 	icon_state = "raccoon"
 	affected_bodyparts = HEAD | CHEST | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/bovine
-	name = "Bovine"
+	name = "牛科"
 	icon_state = "bovine"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/possum
-	name = "Possum"
+	name = "负鼠"
 	icon_state = "possum"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/secondary/corgi
-	name = "Corgi"
+	name = "柯基"
 	icon_state = "corgi"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/leopard1
-	name = "Leopard"
+	name = "豹纹"
 	icon_state = "leopard1"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/leopard2
-	name = "Leopard (alt)"
+	name = "豹纹（变体）"
 	icon_state = "leopard2"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/secondary/skunk
-	name = "Skunk"
+	name = "臭鼬"
 	icon_state = "skunk"
 	affected_bodyparts = HEAD | CHEST | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/panther
-	name = "Panther"
+	name = "黑豹"
 	icon_state = "panther"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/tiger
-	name = "Tiger Spot"
+	name = "虎斑"
 	icon_state = "tiger"
 	affected_bodyparts = HEAD | CHEST | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/otter
-	name = "Otter"
+	name = "水獭"
 	icon_state = "otter"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/secondary/otie
-	name = "Otie"
+	name = "奥提"
 	icon_state = "otie"
 	affected_bodyparts = HEAD | CHEST | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/sabresune
-	name = "Sabresune"
+	name = "剑狲"
 	icon_state = "sabresune"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/orca
-	name = "Orca"
+	name = "虎鲸"
 	icon_state = "orca"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/secondary/hawk
-	name = "Hawk"
+	name = "鹰"
 	icon_state = "hawk"
 	affected_bodyparts = HEAD | CHEST | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/corvid
-	name = "Corvid"
+	name = "鸦科"
 	icon_state = "corvid"
 	affected_bodyparts = HEAD | CHEST | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/eevee
-	name = "Eevee"
+	name = "伊布"
 	icon_state = "eevee"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/secondary/shark
-	name = "Shark"
+	name = "鲨鱼"
 	icon_state = "shark"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/secondary/deer
-	name = "Deer"
+	name = "鹿"
 	icon_state = "deer"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/hyena
-	name = "Hyena"
+	name = "鬣狗"
 	icon_state = "hyena"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/dog
-	name = "Dog"
+	name = "犬"
 	icon_state = "dog"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/bat
-	name = "Bat"
+	name = "蝙蝠"
 	icon_state = "bat"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/secondary/floof
-	name = "Floof"
+	name = "绒毛"
 	icon_state = "floof"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/secondary/rat
-	name = "Rat Paw"
+	name = "鼠爪"
 	icon_state = "rat"
 	affected_bodyparts = ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/scolipede
-	name = "Scolipede"
+	name = "蜈蚣王"
 	icon_state = "scolipede"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/guilmon
-	name = "Guilmon"
+	name = "基尔兽"
 	icon_state = "guilmon"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/xeno
-	name = "Xeno"
+	name = "异形"
 	icon_state = "xeno"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 	recommended_species = list(SPECIES_XENO = 1)
 
 /datum/body_marking/secondary/datashark
-	name = "Datashark"
+	name = "数据鲨"
 	icon_state = "datashark"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/belly
-	name = "Belly"
+	name = "腹部"
 	icon_state = "belly"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/secondary/bellyslim
-	name = "Belly Slim"
+	name = "纤细腹部"
 	icon_state = "bellyslim"
 	affected_bodyparts = HEAD | CHEST | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/bellyslimalt
-	name = "Belly Slim Alternative"
+	name = "纤细腹部（变体）"
 	icon_state = "bellyslim_alt"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/secondary/bellyandbutt
-	name = "Belly and Butt"
+	name = "腹部与臀部"
 	icon_state = "bellyandbutt"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/secondary/butt
-	name = "Butt"
+	name = "臀部"
 	icon_state = "butt"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/secondary/handsfeet
-	name = "Hands Feet"
+	name = "手足"
 	icon_state = "handsfeet"
 	affected_bodyparts = HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/frog
-	name = "Frog"
+	name = "蛙类"
 	icon_state = "frog"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/bee
-	name = "Bee"
+	name = "蜂类"
 	icon_state = "bee"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/gradient
-	name = "Gradient"
+	name = "渐变"
 	icon_state = "gradient"
 	affected_bodyparts = ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/harlequin
-	name = "Harlequin"
+	name = "小丑"
 	icon_state = "harlequin"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | HAND_LEFT | LEG_LEFT
 
 /datum/body_marking/secondary/harlequin_reversed
-	name = "Harlequin Reversed"
+	name = "小丑（反向）"
 	icon_state = "harlequin_reversed"
 	affected_bodyparts = HEAD | CHEST | ARM_RIGHT | HAND_RIGHT | LEG_RIGHT
 
 /datum/body_marking/secondary/plain
-	name = "Plain"
+	name = "素色"
 	icon_state = "plain"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/upper_limb
-	name = "Upper Limb"
+	name = "上肢"
 	icon_state = "upper_limb"
 	affected_bodyparts = ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/lower_limb
-	name = "Lower Limb"
+	name = "下肢"
 	icon_state = "lower_limb"
 	affected_bodyparts = ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/insectoid
-	name = "Insectoid"
+	name = "昆虫型"
 	icon_state = "insect"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/secondary/bellyoutline
-	name = "Belly Outline"
+	name = "腹部轮廓"
 	icon_state = "chembelly_trim"
 	affected_bodyparts = CHEST
 
@@ -676,143 +676,143 @@
 	default_color = DEFAULT_TERTIARY
 
 /datum/body_marking/tertiary/redpanda
-	name = "Red Panda Head"
+	name = "小熊猫头部"
 	icon_state = "redpanda"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/tertiary/shepherd
-	name = "Shepherd Spot"
+	name = "牧羊犬斑点"
 	icon_state = "shepherd"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/tertiary/wolf
-	name = "Wolf Spot"
+	name = "狼斑点"
 	icon_state = "wolf"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/fox
-	name = "Fox Sock"
+	name = "狐狸袜套"
 	icon_state = "fox"
 	affected_bodyparts = ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/goat
-	name = "Goat Hoof"
+	name = "山羊蹄"
 	icon_state = "goat"
 	affected_bodyparts = HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/raccoon
-	name = "Raccoon Spot"
+	name = "浣熊斑点"
 	icon_state = "raccoon"
 	affected_bodyparts = HEAD | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/bovine
-	name = "Bovine Spot"
+	name = "牛斑点"
 	icon_state = "bovine"
 	affected_bodyparts = HEAD | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/possum
-	name = "Possum Sock"
+	name = "负鼠袜套"
 	icon_state = "possum"
 	affected_bodyparts = HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/tiger
-	name = "Tiger Stripe"
+	name = "虎纹"
 	icon_state = "tiger"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/otter
-	name = "Otter Head"
+	name = "水獭头部"
 	icon_state = "otter"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/tertiary/otie
-	name = "Otie Spot"
+	name = "奥提斑点"
 	icon_state = "otie"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/hawk
-	name = "Hawk Talon"
+	name = "鹰爪"
 	icon_state = "hawk"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/corvid
-	name = "Corvid Talon"
+	name = "鸦爪"
 	icon_state = "corvid"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/deer
-	name = "Deer Hoof"
+	name = "鹿蹄"
 	icon_state = "deer"
 	affected_bodyparts = HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/hyena
-	name = "Hyena Side"
+	name = "鬣狗侧纹"
 	icon_state = "hyena"
 	affected_bodyparts = HEAD | CHEST
 
 /datum/body_marking/tertiary/dog
-	name = "Dog Spot"
+	name = "狗斑点"
 	icon_state = "dog"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/bat
-	name = "Bat Mark"
+	name = "蝙蝠标记"
 	icon_state = "bat"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tertiary/floofer
-	name = "Floofer Sock"
+	name = "绒毛袜套"
 	icon_state = "floofer"
 	affected_bodyparts = ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT | HAND_LEFT | HAND_RIGHT
 
 /datum/body_marking/tertiary/rat
-	name = "Rat Spot"
+	name = "鼠斑点"
 	icon_state = "rat"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/sloth
-	name = "Sloth Head"
+	name = "树懒头部"
 	icon_state = "sloth"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/tertiary/scolipede
-	name = "Scolipede Spikes"
+	name = "蜈蚣王尖刺"
 	icon_state = "scolipede"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tertiary/guilmon
-	name = "Guilmon Mark"
+	name = "基尔兽印记"
 	icon_state = "guilmon"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tertiary/xeno
-	name = "Xeno Head"
+	name = "异形头部"
 	icon_state = "xeno"
 	affected_bodyparts = HEAD
 	recommended_species = list(SPECIES_XENO = 1)
 
 /datum/body_marking/tertiary/dtiger
-	name = "Dark Tiger Body"
+	name = "暗色虎纹身体"
 	icon_state = "dtiger"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tertiary/ltiger
-	name = "Light Tiger Body"
+	name = "亮色虎纹身体"
 	icon_state = "ltiger"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tertiary/lbelly
-	name = "Light Belly"
+	name = "浅色腹部"
 	icon_state = "lbelly"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tertiary/insectoid
-	name = "Insectoid Trim"
+	name = "昆虫状饰边"
 	icon_state = "insect_trim"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | LEG_LEFT | LEG_RIGHT
 
 /datum/body_marking/tertiary/chemlight
-	name = "Bands and Stripes (Alt)"
+	name = "环带与条纹（变体）"
 	icon_state = "chem_light"
 	affected_bodyparts = ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
@@ -824,58 +824,58 @@
 	gendered = FALSE
 
 /datum/body_marking/tattoo/heart
-	name = "Tattoo - Heart"
+	name = "纹身 - 心形"
 	icon_state = "tat_heart"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT
 
 /datum/body_marking/tattoo/heart_groin
-	name = "Tattoo - Heart (Groin)"
+	name = "纹身 - 心形（腹股沟）"
 	icon_state = "tat_heart_groin"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tattoo/hive
-	name = "Tattoo - Hive"
+	name = "纹身 - 蜂巢"
 	icon_state = "tat_hive"
 	affected_bodyparts = CHEST
 	gendered = TRUE
 
 /datum/body_marking/tattoo/nightling
-	name = "Tattoo - Nightling"
+	name = "纹身 - 夜灵"
 	icon_state = "tat_nightling"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tattoo/circuit
-	name = "Tattoo - Circuit"
+	name = "纹身 - 电路"
 	icon_state = "tat_campbell"
 	affected_bodyparts = ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tattoo/silverburgh //dunno what this is.
-	name = "Tattoo - Silverburgh"
+	name = "纹身 - 银堡"
 	icon_state = "tat_silverburgh"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tattoo/tiger
-	name = "Tattoo - Tiger"
+	name = "纹身 - 虎纹"
 	icon_state = "tat_tiger"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 	gendered = TRUE
 
 /datum/body_marking/tattoo/tiger_groin
-	name = "Tattoo - Tiger (Groin)"
+	name = "纹身 - 虎纹（腹股沟）"
 	icon_state = "tat_tiger_groin"
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tattoo/tiger_foot
-	name = "Tattoo - Tiger (Foot)"
+	name = "纹身 - 虎纹（足部）"
 	icon_state = "tat_tiger_foot"
 	affected_bodyparts = LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tattoo/infinity
-	name = "Tattoo - Infinity"
+	name = "纹身 - 无限"
 	icon_state = "tat_infinity"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/tattoo/butterfly
-	name = "Tattoo - Butterfly"
+	name = "纹身 - 蝴蝶"
 	icon_state = "tat_butterfly"
 	affected_bodyparts = CHEST

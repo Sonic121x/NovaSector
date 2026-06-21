@@ -3,7 +3,7 @@
 	abstract_path = /datum/market_item/clothing
 
 /datum/market_item/clothing/ninja_mask
-	name = "Space Ninja Mask"
+	name = "忍者面具"
 	desc = "Apart from being acid, lava, fireproof and being hard to take off someone it does nothing special on its own."
 	item = /obj/item/clothing/mask/gas/ninja
 
@@ -13,7 +13,7 @@
 	availability_prob = 40
 
 /datum/market_item/clothing/durathread_vest
-	name = "Durathread Vest"
+	name = "杜拉棉背心"
 	desc = "Don't let them tell you this stuff is \"Like asbestos\" or \"Pulled from the market for safety concerns\". It could be the difference between a robusting and a retaliation."
 	item = /obj/item/clothing/suit/armor/vest/durathread
 
@@ -23,8 +23,8 @@
 	availability_prob = 50
 
 /datum/market_item/clothing/durathread_helmet
-	name = "Durathread Helmet"
-	desc = "Customers ask why it's called a helmet when it's just made from armoured fabric and I always say the same thing: No refunds."
+	name = "杜拉棉头盔"
+	desc = "顾客们会问，既然它只是由防护布料制成，那为什么叫它头盔呢？而我总是这样回答他们：概不退款。"
 	item = /obj/item/clothing/head/helmet/durathread
 
 	price_min = CARGO_CRATE_VALUE * 0.5
@@ -43,8 +43,8 @@
 	availability_prob = 50
 
 /datum/market_item/clothing/full_spacesuit_set
-	name = "\improper Nanotrasen Branded Spacesuit Box"
-	desc = "A few boxes of \"Old Style\" space suits fell off the back of a space truck."
+	name = "\improper 纳米传讯牌太空服盒"
+	desc = "几箱“老式”太空服从一辆太空卡车的后面掉了下来。"
 	item = /obj/item/storage/box
 
 	price_min = CARGO_CRATE_VALUE * 1.875
@@ -54,15 +54,15 @@
 
 /datum/market_item/clothing/full_spacesuit_set/spawn_item(loc)
 	var/obj/item/storage/box/B = ..()
-	B.name = "Spacesuit Box"
-	B.desc = "It has an NT logo on it."
+	B.name = "太空服盒"
+	B.desc = "上面有个NT标志。"
 	new /obj/item/clothing/suit/space(B)
 	new /obj/item/clothing/head/helmet/space(B)
 	return B
 
 /datum/market_item/clothing/chameleon_hat
-	name = "Chameleon Hat"
-	desc = "Pick any hat you want with this Handy device. Not Quality Tested."
+	name = "变色龙帽"
+	desc = "用这个方便的装置挑选任何你想要的帽子。没有经过质量测试。"
 	item = /obj/item/clothing/head/chameleon/broken
 
 	price_min = CARGO_CRATE_VALUE * 0.5
@@ -71,7 +71,7 @@
 	availability_prob = 70
 
 /datum/market_item/clothing/rocket_boots
-	name = "Rocket Boots"
+	name = "火箭靴"
 	desc = "We found a pair of jump boots and overclocked the hell out of them. No liability for grievous harm to or with a body."
 	item = /obj/item/clothing/shoes/bhop/rocket
 

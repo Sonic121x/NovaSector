@@ -24,8 +24,8 @@
 
 //---- Mecha sleeper, medical subtype has the chemical functionality
 /obj/item/mecha_parts/mecha_equipment/sleeper
-	name = "mounted sleeper"
-	desc = "A mounted sleeper that stabilizes patients."
+	name = "机载休眠舱"
+	desc = "一个用于稳定病人的固定式休眠舱。"
 	icon_state = "mecha_sleeper_miner"
 	energy_drain = 20
 	range = MECHA_MELEE
@@ -50,7 +50,7 @@
 	if(!patient_insertion_check(target, source))
 		return
 	to_chat(source, "[icon2html(src, source)][span_notice("You start putting [target] into [src]...")]")
-	chassis.visible_message(span_warning("[chassis] starts putting [target] into \the [src]."))
+	chassis.visible_message(span_warning("[chassis] 开始将 [target] 放入 \the [src]。"))
 	if(!do_after(source, equip_cooldown, target, extra_checks=CALLBACK(src, PROC_REF(patient_insertion_check), target, source)))
 		return
 	if(!chassis || !(get_dir(chassis, target) & chassis.dir))
@@ -59,7 +59,7 @@
 	patient = target
 	START_PROCESSING(SSobj, src)
 	to_chat(source, "[icon2html(src, source)][span_notice("[target] successfully loaded into [src]. Life support functions engaged.")]")
-	chassis.visible_message(span_warning("[chassis] loads [target] into [src]."))
+	chassis.visible_message(span_warning("[chassis]将[target]载入[src]。"))
 	log_message("[target] loaded. Life support functions engaged.", LOG_MECHA)
 	return ..()
 
@@ -163,8 +163,8 @@
 
 //Medical subtype with the chems
 /obj/item/mecha_parts/mecha_equipment/sleeper/medical
-	name = "mounted sleeper"
-	desc = "Equipment for medical exosuits. A mounted sleeper that stabilizes patients and can inject reagents from a equipped exosuit syringe gun."
+	name = "机载休眠舱"
+	desc = "医疗外骨骼装备。一个安装式休眠舱，可稳定患者病情，并能从配备的外骨骼注射枪注入试剂。"
 	icon_state = "mecha_sleeper"
 	mech_flags = EXOSUIT_MODULE_MEDICAL
 	/// amount of chems to inject into patient from other hands syringe gun
@@ -207,8 +207,8 @@
 #define ANALYZE_SYRINGE_MODE 1
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun
-	name = "exosuit syringe gun"
-	desc = "Equipment for medical exosuits. A chem synthesizer with syringe gun. Reagents inside are held in stasis, so no reactions will occur."
+	name = "机甲注射枪"
+	desc = "医疗外骨骼装备组件：化学合成器连注射枪。其内部试剂将保持静态储存，因此不会发生任何化学反应。"
 	icon_state = "mecha_syringegun"
 	range = MECHA_MELEE|MECHA_RANGED
 	equip_cooldown = 10
@@ -309,7 +309,7 @@
 		to_chat(source, "[icon2html(src, source)]<span class='alert'>No available reagents to load syringe with.</span>")
 		return
 	if(HAS_TRAIT(source, TRAIT_PACIFISM))
-		to_chat(source, span_alert("The [src] might be lethally chambered! You don't want to risk harming anyone..."))
+		to_chat(source, span_alert("这个 [src] 可能装填了致命药剂！你不想冒险伤害任何人..."))
 		return
 	var/obj/item/ammo_casing/syringegun/chambered = new /obj/item/ammo_casing/syringegun(src)
 	log_message("Fired [chambered] from [src] by [source], targeting [target].", LOG_MECHA)
@@ -369,8 +369,8 @@
 ///////////////////////////////// Medical Beam ///////////////////////////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam
-	name = "exosuit medical beamgun"
-	desc = "Equipment for medical exosuits. Generates a focused beam of medical nanites."
+	name = "机甲医疗光线枪"
+	desc = "医疗外骨骼装备组件：发射一道医疗纳米机器人聚焦光束。"
 	icon_state = "mecha_medigun"
 	energy_drain = 10
 	range = MECHA_MELEE|MECHA_RANGED

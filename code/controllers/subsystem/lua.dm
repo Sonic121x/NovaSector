@@ -1,6 +1,6 @@
 #ifndef DISABLE_DREAMLUAU
 SUBSYSTEM_DEF(lua)
-	name = "Lua Scripting"
+	name = "Lua脚本系统"
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	wait = 0.1 SECONDS
 

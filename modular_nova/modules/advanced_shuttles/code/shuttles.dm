@@ -3,7 +3,7 @@
 #define CONSOLE_ANNOUNCE_COOLDOWN 5 SECONDS
 
 /obj/docking_port/mobile/arrivals_nova
-	name = "NTV Relay"
+	name = "NTV中继站"
 	shuttle_id = "arrivals_shuttle"
 	dir = WEST
 	port_direction = SOUTH
@@ -84,8 +84,8 @@
 	return FALSE
 
 /obj/machinery/computer/shuttle/arrivals
-	name = "arrivals shuttle control"
-	desc = "The terminal used to control the arrivals interlink shuttle."
+	name = "抵达穿梭机控制台"
+	desc = "用于控制抵达联运送穿梭机的终端。"
 	shuttleId = "arrivals_shuttle"
 	possible_destinations = "arrivals_stationary;arrivals_shuttle"
 	icon = 'modular_nova/modules/advanced_shuttles/icons/computer.dmi'
@@ -103,8 +103,8 @@
 	var/last_cancel_announce
 
 /obj/machinery/computer/shuttle/arrivals/recall
-	name = "arrivals shuttle recall terminal"
-	desc = "Use this if your friends left you behind."
+	name = "抵达穿梭机召回终端"
+	desc = "如果你的朋友把你落下了，就用这个。"
 	possible_destinations = "arrivals_stationary;arrivals_shuttle"
 
 /*
@@ -112,57 +112,57 @@
  */
 
 /datum/map_template/shuttle/ferry/nova
-	name = "NAV Monarch (Ferry)"
+	name = "NAV Monarch号（摆渡船）"
 	prefix = "_maps/shuttles/nova/"
 	port_id = "ferry"
 	suffix = "nova"
 	who_can_purchase = null
 
 /datum/map_template/shuttle/cargo/nova
-	name = "Supply Shuttle (Cargo)"
+	name = "补给穿梭机（货运）"
 	prefix = "_maps/shuttles/nova/"
 	port_id = "cargo"
 	suffix = "nova"
 
 /datum/map_template/shuttle/cargo/nova/delta
-	name = "Supply Shuttle (Delta)"
+	name = "补给穿梭机（德尔塔）"
 	prefix = "_maps/shuttles/nova/"
 	suffix = "nova_delta"	//I hate this. Delta station is one tile different docking-wise, which fucks it ALL up unless we either a) change the map (this would be nonmodular and also press the engine against disposals) or b) this (actually easy, just dumb)
 
 /datum/map_template/shuttle/whiteship/blueshift
-	name = "SFS Christian"
-	description = "A large corvette that seems to have come under attack by some kind of alien infestation. A true asset if it's cleared out and repaired."
+	name = "SFS 克里斯蒂安号"
+	description = "一艘似乎遭到某种外星生物袭击的大型护卫舰。如果清理并修复，它将是一笔真正的资产。"
 	prefix = "_maps/shuttles/nova/"
 	port_id = "whiteship"
 	suffix = "blueshift"
 
 /datum/map_template/shuttle/cargo/nova/ouroboros
-	name = "Supply Shuttle (Ouroboros)"
+	name = "补给穿梭机（衔尾蛇号）"
 	suffix = "ouroboros"
 
 /datum/map_template/shuttle/whiteship/ouroboros
-	name = "JN Chasse-Galerie"
-	description = "A small Jim Nortons shuttle meant to be a mobile cafe. No hostiles onboard, but multiple corpses of Jim Nortons employees."
+	name = "JN 猎舟号"
+	description = "一艘旨在作为移动咖啡馆的小型 Jim Nortons 穿梭机。船上没有敌对生物，但有多个 Jim Nortons 员工的尸体。"
 	prefix = "_maps/shuttles/nova/"
 	port_id = "whiteship"
 	suffix = "ouroboros"
 
 /datum/map_template/shuttle/arrivals_nova
-	name = "NTV Relay (Arrivals)"
+	name = "NTV 中继站（抵达）"
 	prefix = "_maps/shuttles/nova/"
 	port_id = "arrivals"
 	suffix = "nova"
 	who_can_purchase = null
 
 /datum/map_template/shuttle/emergency/default
-	name = "Standard Emergency Shuttle"
-	description = "Nanotrasen's standard issue emergency shuttle."
+	name = "标准应急穿梭机"
+	description = "纳米传讯的标准紧急穿梭机。"
 	occupancy_limit = 60
 	prefix = "_maps/shuttles/nova/"
 	suffix = "nova"
 
 /datum/map_template/shuttle/labour/nova
-	name = "NMC Drudge (Labour)"
+	name = "NMC 苦工号（劳工）"
 	prefix = "_maps/shuttles/nova/"
 	suffix = "nova"
 
@@ -173,7 +173,7 @@
 	roundstart_template = /datum/map_template/shuttle/labour/nova
 
 /datum/map_template/shuttle/mining_common/nova
-	name = "NMC Chimera (Mining)"
+	name = "NMC 奇美拉号（采矿）"
 	prefix = "_maps/shuttles/nova/"
 	suffix = "nova"
 
@@ -184,7 +184,7 @@
 	roundstart_template = /datum/map_template/shuttle/mining_common/nova
 
 /datum/map_template/shuttle/mining/nova
-	name = "NMC Phoenix (Mining)"
+	name = "NMC 凤凰号（采矿）"
 	prefix = "_maps/shuttles/nova/"
 	suffix = "nova"
 
@@ -192,7 +192,7 @@
 	roundstart_template = /datum/map_template/shuttle/mining/nova
 
 /datum/map_template/shuttle/mining/nova/large
-	name = "NMC Manticore (Mining)"
+	name = "NMC 蝎尾狮号（采矿）"
 	prefix = "_maps/shuttles/nova/"
 	suffix = "nova_large"
 

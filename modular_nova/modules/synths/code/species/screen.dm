@@ -1,5 +1,5 @@
 /datum/action/innate/monitor_change
-	name = "Screen Change"
+	name = "屏幕切换"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "drone_vision"
@@ -10,7 +10,7 @@
 	if(!istype(synth_species))
 		return
 
-	var/new_ipc_screen = tgui_input_list(usr, "Choose your character's screen:", "Monitor Display", SSaccessories.sprite_accessories[FEATURE_SYNTH_SCREEN])
+	var/new_ipc_screen = tgui_input_list(usr, "选择你角色的屏幕：", "显示器显示", SSaccessories.sprite_accessories[FEATURE_SYNTH_SCREEN])
 
 	if(!new_ipc_screen)
 		return

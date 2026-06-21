@@ -16,7 +16,7 @@
 	. = ..()
 	if(lore_blurb)
 		AddElement(/datum/element/examine_lore, \
-			lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+			lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 			lore = get_lore_blurb() \
 		)
 
@@ -39,7 +39,7 @@
 
 /datum/crafting_recipe/mosin_pro
 	name = "Sakhno to Xhihao 'Rengo' Conversion"
-	desc = "It's actually really easy to change the stock on your Sakhno. Anyone can do it. It takes roughly thirty seconds and a screwdriver."
+	desc = "实际上，更换你萨赫诺步枪的枪托真的很容易。任何人都能做到。大概需要三十秒和一把螺丝刀。"
 	result = /obj/item/gun/ballistic/rifle/sporterized/empty
 	reqs = list(
 		/obj/item/gun/ballistic/rifle/boltaction = 1,

@@ -1,6 +1,6 @@
 /obj/item/inducer
-	name = "inducer"
-	desc = "A tool for inductively charging internal power cells and batteries."
+	name = "感应充电器"
+	desc = "一种用于感应式充电内部电源单元和电池的工具。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "inducer-engi"
 	inhand_icon_state = "inducer-engi"
@@ -77,14 +77,14 @@
 
 	var/obj/item/stock_parts/power_store/our_cell = get_cell(src, user)
 	if(!QDELETED(our_cell))
-		. += span_notice("Its display shows: [display_energy(our_cell.charge)].")
+		. += span_notice("它的显示屏显示：[display_energy(our_cell.charge)]。")
 		if(opened)
-			. += span_notice("The cell can be removed with an empty hand.")
-			. += span_notice("Plasma sheets can be used to recharge the cell.")
+			. += span_notice("可以用空手取出电源单元。")
+			. += span_notice("可以使用等离子板材为电源单元充电。")
 	else
-		. += span_warning("It's missing a power cell.")
+		. += span_warning("它缺少一个电源单元。")
 
-	. += span_notice("Its battery compartment can be [EXAMINE_HINT("screwed")] [opened ? "shut" : "open"].")
+	. += span_notice("它的电池仓可以 [EXAMINE_HINT("screwed")] [opened ? "shut" : "open"]。")
 
 /obj/item/inducer/update_overlays()
 	. = ..()
@@ -107,7 +107,7 @@
 		return
 
 	opened = !opened
-	to_chat(user, span_notice("You [opened ? "open" : "close"] the battery compartment."))
+	to_chat(user, span_notice("你 [opened ? "open" : "close"] 了电池仓。"))
 	update_appearance(UPDATE_OVERLAYS)
 
 	return ITEM_INTERACT_SUCCESS
@@ -120,15 +120,15 @@
 
 	if(istype(tool, /obj/item/stock_parts/power_store))
 		if(!opened)
-			balloon_alert(user, "open first!")
+			balloon_alert(user, "先打开！")
 			return ITEM_INTERACT_FAILURE
 
 		if(!QDELETED(powerdevice))
-			balloon_alert(user, "cell already installed!")
+			balloon_alert(user, "已安装电池！")
 			return ITEM_INTERACT_FAILURE
 
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, "stuck in hand!")
+			balloon_alert(user, "卡在手里了！")
 			return ITEM_INTERACT_FAILURE
 
 		powerdevice = tool
@@ -136,12 +136,12 @@
 
 	else if(istype(tool, /obj/item/stack/sheet/mineral/plasma) && !QDELETED(powerdevice))
 		if(!powerdevice.used_charge())
-			balloon_alert(user, "fully charged!")
+			balloon_alert(user, "已充满电！")
 			return ITEM_INTERACT_FAILURE
 
 		tool.use(1)
 		powerdevice.give(1.5 * STANDARD_CELL_CHARGE)
-		balloon_alert(user, "cell recharged")
+		balloon_alert(user, "电池已充电")
 
 		return ITEM_INTERACT_SUCCESS
 
@@ -156,24 +156,24 @@
 
 	//basic checks
 	if(opened)
-		balloon_alert(user, "close first!")
+		balloon_alert(user, "先关上！")
 		return ITEM_INTERACT_FAILURE
 
 	if(recharging || (!isturf(interacting_with) && user.loc == interacting_with))
 		return ITEM_INTERACT_FAILURE
 
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to use [src]!"))
+		to_chat(user, span_warning("你没有足够的灵巧度来使用[src]！"))
 		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/stock_parts/power_store/our_cell = get_cell(src, user)
 
 	if(QDELETED(our_cell))
-		balloon_alert(user, "no cell installed!")
+		balloon_alert(user, "未安装电池！")
 		return ITEM_INTERACT_FAILURE
 
 	if(!our_cell.charge)
-		balloon_alert(user, "no charge!")
+		balloon_alert(user, "没有电量！")
 		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/stock_parts/power_store/target_cell = interacting_with.get_cell(src, user)
@@ -182,12 +182,12 @@
 		return ITEM_INTERACT_FAILURE
 
 	if(!target_cell.used_charge())
-		balloon_alert(user, "fully charged!")
+		balloon_alert(user, "已充满电！")
 		return ITEM_INTERACT_FAILURE
 
 	//begin recharging
 	recharging = TRUE
-	user.visible_message(span_notice("[user] starts recharging [interacting_with] with [src]."), span_notice("You start recharging [interacting_with] with [src]."))
+	user.visible_message(span_notice("[user]开始用[src]给[interacting_with]充电。"), span_notice("你开始用[src]给[interacting_with]充电。"))
 
 	var/done_any = FALSE
 	while(target_cell.used_charge())
@@ -213,13 +213,13 @@
 
 	// Only show a message if we succeeded at least once
 	if(done_any)
-		user.visible_message(span_notice("[user] recharges [interacting_with]!"), span_notice("You recharge [interacting_with]!"))
+		user.visible_message(span_notice("[user]给[interacting_with]充好了电！"), span_notice("你给[interacting_with]充好了电！"))
 
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/inducer/attack_self(mob/user)
 	if(opened && !QDELETED(powerdevice))
-		user.visible_message(span_notice("[user] removes [powerdevice] from [src]!"), span_notice("You remove [powerdevice]."))
+		user.visible_message(span_notice("[user]从[src]中取出了[powerdevice]！"), span_notice("你取出了[powerdevice]。"))
 		powerdevice.update_appearance()
 		user.put_in_hands(powerdevice)
 		update_appearance(UPDATE_OVERLAYS)
@@ -235,19 +235,19 @@
 /obj/item/inducer/sci
 	icon_state = "inducer-sci"
 	inhand_icon_state = "inducer-sci"
-	desc = "A tool for inductively charging internal power cells. This one has a science color scheme, and is less potent than its engineering counterpart."
+	desc = "一种用于感应式充电内部电池的工具。这款采用科学部配色方案，且效能低于其工程部对应型号。"
 	powerdevice = null
 	opened = TRUE
 
 /obj/item/inducer/syndicate
 	icon_state = "inducer-syndi"
 	inhand_icon_state = "inducer-syndi"
-	desc = "A tool for inductively charging internal power cells. This one has a suspicious colour scheme, and seems to be rigged to transfer charge at a much faster rate."
+	desc = "一种用于感应式充电内部电池的工具。这款配色可疑，且似乎经过改装，能以快得多的速率传输电荷。"
 	power_transfer_multiplier = 2 // 2x the base speed
 	powerdevice = /obj/item/stock_parts/power_store/battery/super
 
 /obj/item/inducer/cyborg
-	name = "modular inducer"
+	name = "模块化感应充电器"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "inducer-engi"
 
@@ -256,18 +256,18 @@
 
 	var/obj/item/stock_parts/power_store/our_cell = get_cell(src, user)
 	if(!QDELETED(our_cell))
-		. += span_notice("Its display shows: [display_energy(our_cell.charge)].")
+		. += span_notice("其显示屏显示：[display_energy(our_cell.charge)]。")
 		if(opened)
-			. += span_notice("Plasma sheets can be used to recharge the cell.")
+			. += span_notice("可用等离子体板材为电池充电。")
 	else
-		. += span_warning("It's missing a power cell.")
-	. += span_notice("Its battery compartment can be [EXAMINE_HINT("screwed")] [opened ? "shut" : "open"].")
+		. += span_warning("它缺少一个电源电池。")
+	. += span_notice("它的电池仓可以[EXAMINE_HINT("screwed")] [opened ? "shut" : "open"]。")
 
 /obj/item/inducer/cyborg/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	return NONE
 
 /obj/item/inducer/cyborg/interact_with_atom(atom/movable/interacting_with, mob/living/user, list/modifiers)
 	if(iscyborg(user) && iscyborg(interacting_with))
-		balloon_alert(user, "can't charge this!")
+		balloon_alert(user, "无法给这个充电！")
 		return ITEM_INTERACT_FAILURE
 	return ..()

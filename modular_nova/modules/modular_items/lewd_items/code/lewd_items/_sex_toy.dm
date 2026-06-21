@@ -1,5 +1,5 @@
 /obj/item/clothing/sextoy
-	name = "sextoy"
+	name = "性玩具"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_items/lewd_items.dmi'
 	equip_sound = 'modular_nova/modules/modular_items/lewd_items/sounds/bang1.ogg'

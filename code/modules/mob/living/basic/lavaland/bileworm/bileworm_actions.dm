@@ -1,6 +1,6 @@
 /datum/action/cooldown/mob_cooldown/resurface
-	name = "Resurface"
-	desc = "Burrow underground, and then move to a new location near your target. Must spew bile to refresh."
+	name = "重新露面"
+	desc = "先潜入地下，然后前往靠近目标的新地点。必须吐出胆汁来恢复体力。"
 	shared_cooldown = MOB_SHARED_COOLDOWN_1 | MOB_SHARED_COOLDOWN_2
 	/// Damage tracker var for bileworms
 	var/jump_damaged = FALSE
@@ -26,7 +26,7 @@
 /datum/action/cooldown/mob_cooldown/resurface/proc/burrow(mob/living/burrower, atom/target, force = FALSE)
 	var/turf/unburrow_turf = get_unburrow_turf(burrower, target)
 	if (!unburrow_turf) // means all the turfs nearby are station turfs or something, not lavaland
-		to_chat(burrower, span_warning("Couldn't burrow anywhere near the target!"))
+		to_chat(burrower, span_warning("无法在目标附近任何地方掘地！"))
 		if(burrower.ai_controller?.ai_status == AI_STATUS_ON)
 			//this is a valid reason to give up on a target
 			burrower.ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
@@ -99,7 +99,7 @@
 		return chosen_one
 
 /datum/action/cooldown/mob_cooldown/bileworm_spew
-	name = "Spew Bile"
+	name = "呕吐胆汁"
 	desc = "Spew a barrage of bile globs."
 	shared_cooldown = MOB_SHARED_COOLDOWN_1 | MOB_SHARED_COOLDOWN_2
 	cooldown_time = 3 SECONDS
@@ -150,7 +150,7 @@
 			playsound(firer, projectile_sound, 70)
 
 /obj/effect/bileworm_acid
-	name = "acidic bile"
+	name = "酸性胆汁"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "bile_glob"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -263,27 +263,27 @@
 	velocity = generator(GEN_BOX, list(-2, 2), list(2, 4), NORMAL_RAND)
 
 /datum/action/cooldown/mob_cooldown/devour
-	name = "Devour"
-	desc = "Burrow underground, and then move to your target to consume them. Short cooldown, but your target must be unconscious."
+	name = "吞噬"
+	desc = "先潜入地下，然后前往目标位置进行攻击。冷却时间较短，但目标必须处于昏迷状态。"
 	shared_cooldown = MOB_SHARED_COOLDOWN_2
 
 /datum/action/cooldown/mob_cooldown/devour/Activate(atom/target_atom)
 	if(target_atom == owner)
-		to_chat(owner, span_warning("You can't eat yourself!"))
+		to_chat(owner, span_warning("你不能吃自己！"))
 		return
 	if(!isliving(target_atom))
-		to_chat(owner, span_warning("That's not food!"))
+		to_chat(owner, span_warning("那不是食物！"))
 		return
 	var/mob/living/living_target = target_atom
 	if(living_target.stat < UNCONSCIOUS)
-		to_chat(owner, span_warning("No way you're eating that while it's still kicking! It should at least be unconscious first."))
+		to_chat(owner, span_warning("它还在动，你不可能吃掉它！至少得先让它失去意识。"))
 		return
 	burrow_and_devour(owner, living_target)
 
 /datum/action/cooldown/mob_cooldown/devour/proc/burrow_and_devour(mob/living/devourer, mob/living/target)
 	var/turf/devour_turf = get_turf(target)
 	if(!istype(devour_turf, /turf/open/misc)) // means all the turfs nearby are station turfs or something, not lavaland
-		to_chat(devourer, span_warning("Your target is on something you can't burrow through!"))
+		to_chat(devourer, span_warning("你的目标所在的位置你无法掘地通过！"))
 		return //this will give up on devouring the target which is fine by me
 	playsound(devourer, 'sound/effects/break_stone.ogg', 50, TRUE)
 	new /obj/effect/temp_visual/mook_dust(get_turf(devourer))
@@ -297,10 +297,10 @@
 	REMOVE_TRAIT(devourer, TRAIT_GODMODE, REF(src))
 	devourer.RemoveInvisibility(type)
 	if(!(target in devour_turf))
-		to_chat(devourer, span_warning("Someone stole your dinner!"))
+		to_chat(devourer, span_warning("有人偷了你的晚餐！"))
 		return
-	to_chat(target, span_userdanger("You are consumed by [devourer]!"))
-	devourer.visible_message(span_warning("[devourer] consumes [target]!"))
+	to_chat(target, span_userdanger("你被 [devourer] 吞噬了！"))
+	devourer.visible_message(span_warning("[devourer] 吞噬了 [target]！"))
 	devourer.fully_heal()
 	playsound(devourer, 'sound/effects/splat.ogg', 50, TRUE)
 	//to be received on death

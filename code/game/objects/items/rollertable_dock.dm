@@ -1,6 +1,6 @@
 /obj/item/rolling_table_dock
-	name = "rolling table dock"
-	desc = "A collapsed roller table that can be ejected for service on the go. Must be collected or replaced after use."
+	name = "折叠桌坞站"
+	desc = "一个可折叠的滚轮桌，可以弹出以便随时提供服务。使用后必须回收或更换。"
 	icon = 'icons/obj/smooth_structures/rollingtable.dmi'
 	icon_state = "rollingtable"
 	var/obj/structure/table/rolling/loaded = null
@@ -30,7 +30,7 @@
 /obj/item/rolling_table_dock/deploy_rolling_table(mob/user, atom/location)
 	if(loaded)
 		loaded.forceMove(location)
-		user.visible_message(span_notice("[user] deploys [loaded]."), balloon_alert(user, "you deploy the [loaded]."))
+		user.visible_message(span_notice("[user] 部署了 [loaded]。"), balloon_alert(user, "你部署了 [loaded]。"))
 		loaded = null
 	else
-		balloon_alert(user, "the dock is Empty!")
+		balloon_alert(user, "底座是空的！")

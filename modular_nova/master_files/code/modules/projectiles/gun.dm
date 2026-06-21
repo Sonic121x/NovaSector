@@ -9,7 +9,7 @@
 	. = ..()
 	if(lore_blurb)
 		AddElement(/datum/element/examine_lore, \
-			lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+			lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 			lore = get_lore_blurb() \
 		)
 

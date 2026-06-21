@@ -158,7 +158,7 @@
 		wound_bonus = knife_wound_bonus
 
 	name = "enhanced razor claws"
-	desc += span_warning("\n\nThese have undergone a special honing process; they'll kill people even faster than they used to.")
+	desc += span_warning("\n\nThese 经过了特殊的打磨工序；它们现在杀人比以前更快了。")
 	user.visible_message(span_warning("[user] sharpens [src], [attacking_item] disintegrating!"), span_warning("You sharpen [src], making it much more deadly than before, but [attacking_item] disintegrates under the stress."))
 	playsound(src, 'sound/items/unsheath.ogg', 25, TRUE)
 	qdel(attacking_item)

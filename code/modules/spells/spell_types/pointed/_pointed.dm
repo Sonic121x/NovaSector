@@ -50,7 +50,7 @@
 /datum/action/cooldown/spell/pointed/proc/on_activation(mob/on_who)
 	SHOULD_CALL_PARENT(TRUE)
 
-	to_chat(on_who, span_notice("[active_msg] <B>Left-click to cast the spell on a target!</B>"))
+	to_chat(on_who, span_notice("[active_msg] <B>左键点击对目标施放法术！</B>"))
 	build_all_button_icons()
 	return TRUE
 
@@ -79,7 +79,7 @@
 
 /datum/action/cooldown/spell/pointed/is_valid_target(atom/cast_on)
 	if(cast_on == owner)
-		to_chat(owner, span_warning("You cannot cast [src] on yourself!"))
+		to_chat(owner, span_warning("你不能对你自己施放[src]！"))
 		return FALSE
 
 	return TRUE
@@ -90,7 +90,7 @@
 		return
 
 	if(owner && get_dist(get_turf(owner), get_turf(cast_on)) > cast_range)
-		cast_on.balloon_alert(owner, "too far away!")
+		cast_on.balloon_alert(owner, "太远了！")
 		return . | SPELL_CANCEL_CAST
 
 /**

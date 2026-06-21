@@ -2,7 +2,7 @@
 
 ///Energy Shield - Gives you a rechargeable energy shield that nullifies attacks.
 /obj/item/mod/module/energy_shield
-	name = "MOD energy shield module"
+	name = "MOD能量护盾模块"
 	desc = "A personal, protective forcefield typically seen in military applications. \
 		This advanced deflector shield is essentially a scaled down version of those seen on starships, \
 		and the power cost can be an easy indicator of this. However, it is capable of blocking nearly any incoming attack, \
@@ -72,7 +72,7 @@
 	return NONE
 
 /obj/item/mod/module/energy_shield/wizard
-	name = "MOD battlemage shield module"
+	name = "MOD战斗巫师护盾模块"
 	desc = "The caster wielding this spell gains a visible barrier around them, channeling arcane power through \
 		specialized runes engraved onto the surface of the suit to generate a wall of force. \
 		This shield can perfectly nullify attacks ranging from high-caliber rifles to magic missiles, \
@@ -90,7 +90,7 @@
 
 ///Magic Nullifier - Protects you from magic.
 /obj/item/mod/module/anti_magic
-	name = "MOD magic nullifier module"
+	name = "MOD魔法零化器模块"
 	desc = "A series of obsidian rods installed into critical points around the suit, \
 		vibrated at a certain low frequency to enable them to resonate. \
 		This creates a low-range, yet strong, magic nullification field around the user, \
@@ -108,7 +108,7 @@
 	mod.wearer.remove_traits(list(TRAIT_ANTIMAGIC, TRAIT_HOLY), REF(src))
 
 /obj/item/mod/module/anti_magic/wizard
-	name = "MOD magic neutralizer module"
+	name = "MOD魔法中和器模块"
 	desc = "The caster wielding this spell gains an invisible barrier around them, channeling arcane power through \
 		specialized runes engraved onto the surface of the suit to generate anti-magic field. \
 		The field will neutralize all magic that comes into contact with the user. \
@@ -124,7 +124,7 @@
 
 ///Insignia - Gives you a skin specific stripe.
 /obj/item/mod/module/insignia
-	name = "MOD insignia module"
+	name = "MOD标记模块"
 	desc = "Despite the existence of IFF systems, radio communique, and modern methods of deductive reasoning involving \
 		the wearer's own eyes, colorful paint jobs remain a popular way for different factions in the galaxy to display who \
 		they are. This system utilizes a series of tiny moving paint sprayers to both apply and remove different \
@@ -167,7 +167,7 @@
 
 ///Anti Slip - Prevents you from slipping on water.
 /obj/item/mod/module/noslip
-	name = "MOD anti slip module"
+	name = "MOD防滑模块"
 	desc = "These are a modified variant of standard magnetic boots, utilizing piezoelectric crystals on the soles. \
 		The two plates on the bottom of the boots automatically extend and magnetize as the user steps; \
 		a pull that's too weak to offer them the ability to affix to a hull, but just strong enough to \
@@ -203,8 +203,8 @@
 
 ///Flamethrower - Launches fire across the area.
 /obj/item/mod/module/flamethrower
-	name = "MOD flamethrower module"
-	desc = "A custom-manufactured flamethrower, used to burn through your path. Burn well."
+	name = "MOD喷火器模块"
+	desc = "一种定制制造的喷火器，用于烧毁你的前进道路。好好燃烧吧。"
 	icon_state = "flamethrower"
 	module_type = MODULE_ACTIVE
 	complexity = 3
@@ -228,8 +228,8 @@
 
 ///Power kick - Lets the user launch themselves at someone to kick them.
 /obj/item/mod/module/power_kick
-	name = "MOD power kick module"
-	desc = "This module uses high-power myomer to generate an incredible amount of energy, transferred into the power of a kick."
+	name = "MOD动力踢模块"
+	desc = "该模块利用高功率的仿生肌肉纤维来产生巨大的能量，这些能量被转化为踢腿的动力。"
 	icon_state = "power_kick"
 	module_type = MODULE_ACTIVE
 	removable = FALSE
@@ -251,7 +251,7 @@
 	mod.wearer.visible_message(span_warning("[mod.wearer] starts charging a kick!"), \
 		blind_message = span_hear("You hear a charging sound."))
 	playsound(src, 'sound/items/modsuit/loader_charge.ogg', 75, TRUE)
-	balloon_alert(mod.wearer, "you start charging...")
+	balloon_alert(mod.wearer, "你开始蓄力...")
 	animate(mod.wearer, 0.3 SECONDS, pixel_z = 16, flags = ANIMATION_RELATIVE, easing = SINE_EASING|EASE_OUT)
 	addtimer(CALLBACK(mod.wearer, TYPE_PROC_REF(/atom, SpinAnimation), 3, 2), 0.3 SECONDS)
 	if(!do_after(mod.wearer, 1 SECONDS, target = mod))
@@ -289,8 +289,8 @@
 
 ///Chameleon - lets the suit disguise as any item that would fit on that slot.
 /obj/item/mod/module/chameleon
-	name = "MOD chameleon module"
-	desc = "A module using chameleon technology to disguise the suit as another object."
+	name = "MOD变色龙模块"
+	desc = "一个运用变色技术的模块，能够将这套装备伪装成其他物体的样子。"
 	icon_state = "chameleon"
 	module_type = MODULE_USABLE
 	complexity = 2
@@ -320,7 +320,7 @@
 
 /obj/item/mod/module/chameleon/used(mob/activator)
 	if(mod.active || mod.activating)
-		balloon_alert(activator, "unit active!")
+		balloon_alert(activator, "模块已激活！")
 		return FALSE
 	return ..()
 
@@ -328,7 +328,7 @@
 	if(current_disguise)
 		return_look()
 		return
-	var/picked_name = tgui_input_list(activator, "Select look to change into", "Chameleon Settings", possible_disguises)
+	var/picked_name = tgui_input_list(activator, "选择要变装成的外观", "变色龙设置", possible_disguises)
 	if(!possible_disguises[picked_name] || mod.active || mod.activating)
 		return
 	current_disguise = possible_disguises[picked_name]
@@ -365,7 +365,7 @@
 
 ///Plate Compression - Compresses the suit to normal size
 /obj/item/mod/module/plate_compression
-	name = "MOD plate compression module"
+	name = "MOD压缩模块"
 	desc = "A module that keeps the suit in a very tightly fit state, lowering the overall size. \
 		Due to the pressure on all the parts, typical storage modules do not fit."
 	icon_state = "plate_compression"
@@ -393,7 +393,7 @@
 	mod.forceMove(mod.drop_location())
 
 /obj/item/mod/module/demoralizer
-	name = "MOD psi-echo demoralizer module"
+	name = "MOD psi-回声消除器"
 	desc = "One incredibly morbid member of the RND team at Roseus Galactic posed a question to her colleagues. \
 	'I desire the power to scar my enemies mentally as I murder them. Who will stop me implementing this in our next project?' \
 	And thus the Psi-Echo Demoralizer Device was reluctantly invented. The future of psychological warfare, today!"
@@ -412,7 +412,7 @@
 	QDEL_NULL(demoralizer)
 
 /obj/item/mod/module/infiltrator
-	name = "MOD infiltration core programs module"
+	name = "MOD渗透堆芯程序模块"
 	desc = "The primary stealth systems operating within the suit. Utilizing electromagnetic signals, \
 		the wearer simply cannot be observed closely, or heard clearly by those around them.\
 		It also contains some dampening systems to help protect a user from blows to the head."
@@ -495,10 +495,10 @@
 	if(!. || target == mod.wearer)
 		return
 	if(get_dist(mod.wearer, target) > 6)
-		balloon_alert(mod.wearer, "can't reach that!")
+		balloon_alert(mod.wearer, "够不到那里！")
 		return
 	if(istype(target, /obj/machinery/power/apc)) //Bit too strong for a module so this is blacklisted
-		balloon_alert(mod.wearer, "can't disable apc!")
+		balloon_alert(mod.wearer, "无法禁用APC！")
 		return
 
 	var/list/things_to_disrupt = list(target)

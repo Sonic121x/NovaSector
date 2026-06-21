@@ -1,6 +1,6 @@
 /obj/item/bodypart
 	name = "limb"
-	desc = "Why is it detached..."
+	desc = "为什么这种东西会在这里..."
 	abstract_type = /obj/item/bodypart
 	force = 3
 	throwforce = 3
@@ -339,9 +339,9 @@
 
 	. = ..()
 	if(brute_dam > DAMAGE_PRECISION)
-		. += span_warning("This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.")
+		. += span_warning("这个肢体有[brute_dam > 30 ? "severe" : "minor"]瘀伤。")
 	if(burn_dam > DAMAGE_PRECISION)
-		. += span_warning("This limb has [burn_dam > 30 ? "severe" : "minor"] burns.")
+		. += span_warning("这个肢体有[burn_dam > 30 ? "severe" : "minor"]烧伤。")
 
 	for(var/datum/wound/wound as anything in wounds)
 		var/wound_desc = wound.get_limb_examine_description()
@@ -525,7 +525,7 @@
 
 	if(length(surgery_message))
 		return span_tooltip("Your limb is undergoing surgery. If no doctors are around, \
-			you could suture or cauterize yourself to cancel it.", span_smalldanger("Its [english_list(surgery_message)]!"))
+			you could suture or cauterize yourself to cancel it.", span_smalldanger("它的[english_list(surgery_message)]！"))
 	return ""
 
 /// Returns surgery examine information for this bodypart

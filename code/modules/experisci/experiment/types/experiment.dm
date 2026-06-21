@@ -8,9 +8,9 @@
  */
 /datum/experiment
 	/// Name that distinguishes the experiment
-	var/name = "Experiment"
+	var/name = "实验"
 	/// A brief description of the experiment to be shown as details
-	var/description = "Base experiment"
+	var/description = "基础实验"
 	/// A descriptive tag used on UI elements to denote 'types' of experiments
 	var/exp_tag = "Base"
 	/// A list of types that are allowed to experiment with this dastum

@@ -10,8 +10,8 @@
 //Resetting veins for ghost roles. Randomizes bouldersize, mineral breakdown, and potentially threats.
 
 /obj/structure/ore_vent/ghost_mining
-	name = "oxide nodule vent"
-	desc = "A vent full of rare oxide nodules, producing various minerals every time one is brought up. Scan with an advanced mining scanner to start extracting ore from it."
+	name = "氧化物结核喷口"
+	desc = "一个充满稀有氧化物结核的喷口，每次提取都会产生各种矿物。使用高级矿物扫描仪扫描以开始从中提取矿石。"
 	icon_state = "ore_vent"
 	base_icon_state = "ore_vent"
 	mineral_breakdown = list(
@@ -46,9 +46,9 @@
 	if(!boulder_infinite)
 		switch(tapped)
 			if(TRUE)
-				. += span_notice("The current nodule holds [boulder_bounty] chunks worth of ore.")
+				. += span_notice("当前结核含有价值[boulder_bounty]块的矿石。")
 			if(FALSE)
-				. += span_notice("The vent holds a nodule breakable into [boulder_bounty] ore chunks.")
+				. += span_notice("该喷口含有一个可破碎为[boulder_bounty]块矿石的结核。")
 	if(manual_reset)
 		. += span_notice("The ore gouger needs [reset_timer] more cycles to get new minerals")
 	if(clear_tally >= 1)
@@ -384,8 +384,8 @@
 /// Boss Vents. For the purpose of making bosses repeatable
 
 /obj/structure/ore_vent/ghost_mining/boss
-	name = "swirling oxide pool"
-	desc = "A deep mineral pool laden with massive oxide chunks. This one has an evil aura about it. Better be careful."
+	name = "翻腾的氧化物池"
+	desc = "一个富含巨大氧化物碎块的深层矿物池。这个散发着邪恶的气息。最好小心点。"
 	static_threat = TRUE
 	unique_vent = TRUE
 	spawn_drone_on_tap = FALSE
@@ -435,7 +435,7 @@
 			boss_string = "clear, a bonfire of bones burning beneath"
 		if(/mob/living/simple_animal/hostile/asteroid/elite/pandora) //Elite vent end
 			boss_string = "rippling calmly in odd geometric patterns"
-	. += span_notice("The surface of the mineral pool is [boss_string].")
+	. += span_notice("矿物池的表面[boss_string]。")
 
 /obj/structure/ore_vent/ghost_mining/boss/reset_vent()
 	. = ..()
@@ -470,7 +470,7 @@
 	)
 
 /obj/structure/ore_vent/ghost_mining/boss/elite
-	name = "rippling oxide pool"
+	name = "波光粼粼的氧化物池"
 	mineral_breakdown = list( // Basic stuff for lavaproofing stuff
 		/datum/material/iron = 1,
 		/datum/material/glass = 1,

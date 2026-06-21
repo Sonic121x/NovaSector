@@ -7,7 +7,7 @@
 	remove_verb(src, /client/proc/show_verbs)
 	add_admin_verbs()
 
-	to_chat(src, span_interface("All of your adminverbs are now visible."), confidential = TRUE)
+	to_chat(src, span_interface("你所有的管理员指令现在都可见了。"), confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Show Adminverbs")
 
 /client/proc/readmin()
@@ -30,7 +30,7 @@
 	if (!holder)
 		return //This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
 
-	to_chat(src, span_interface("You are now an admin."), confidential = TRUE)
+	to_chat(src, span_interface("你现在是管理员了。"), confidential = TRUE)
 	message_admins("[src] re-adminned themselves.")
 	log_admin("[src] re-adminned themselves.")
 	BLACKBOX_LOG_ADMIN_VERB("Readmin")

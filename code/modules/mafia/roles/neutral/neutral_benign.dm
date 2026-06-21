@@ -1,6 +1,6 @@
 /datum/mafia_role/fugitive
-	name = "Fugitive"
-	desc = "You're on the run. You can use a vest twice to become immune for a night, and you win by surviving to the end of the game with anyone."
+	name = "逃亡者"
+	desc = "你正在逃亡。你可以使用两次防弹背心以获得一夜的免疫，你的获胜条件是存活到游戏结束（与任何人一起）。"
 	win_condition = "survive to the end of the game, with anyone"
 	revealed_outfit = /datum/outfit/mafia/fugitive
 	team = MAFIA_TEAM_SOLO

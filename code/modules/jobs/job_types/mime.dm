@@ -41,7 +41,7 @@
 	return ..()
 
 /datum/outfit/job/mime
-	name = "Mime"
+	name = "默剧"
 	jobtype = /datum/job/mime
 
 	id_trim = /datum/id_trim/job/mime
@@ -79,8 +79,8 @@
 	ADD_TRAIT(H, TRAIT_MIME_FAN, INNATE_TRAIT)
 
 /obj/item/book/granter/action/spell/mime/mimery
-	name = "Guide to Dank Mimery"
-	desc = "Teaches one of three classic pantomime routines, allowing a practiced mime to conjure invisible objects into corporeal existence. One use only."
+	name = "缄默大师宝典"
+	desc = "教授三种经典默剧表演套路之一，熟练的默剧演员能够将无形之物幻化为有形之物。仅限一次使用。"
 	pages_to_mastery = 0
 	reading_time = 0
 
@@ -105,14 +105,14 @@
 		vow.Grant(user)
 	var/datum/action/new_action = new granted_action(user.mind || user)
 	new_action.Grant(user)
-	to_chat(user, span_warning("The book disappears into thin air."))
+	to_chat(user, span_warning("这本书凭空消失了。"))
 	qdel(src)
 
 /obj/item/book/granter/action/spell/mime/mimery/can_learn(mob/living/user)
 	for(var/type in list(/datum/action/cooldown/spell/conjure/invisible_wall, /datum/action/cooldown/spell/conjure/invisible_chair, /datum/action/cooldown/spell/conjure_item/invisible_box, /datum/action/cooldown/spell/touch/mime_grayscale)) // NOVA CHANGE - Mime Monochrome - Adds '/datum/action/cooldown/spell/touch/mime_grayscale' - ORIGINAL: for(var/type in list(/datum/action/cooldown/spell/conjure/invisible_wall, /datum/action/cooldown/spell/conjure/invisible_chair, /datum/action/cooldown/spell/conjure_item/invisible_box))
 		if(!(locate(type) in user.actions))
 			return TRUE
-	to_chat(user, span_warning("You already know the secrets of mimery!"))
+	to_chat(user, span_warning("你已经掌握了默剧艺术的奥秘！"))
 	return FALSE
 
 /**

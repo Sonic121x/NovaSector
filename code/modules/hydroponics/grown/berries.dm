@@ -1,7 +1,7 @@
 // Berries
 /obj/item/seeds/berry
-	name = "berry seed pack"
-	desc = "These seeds grow into berry bushes."
+	name = "浆果种子包"
+	desc = "能长成浆果树的种子。"
 	icon_state = "seed-berry"
 	species = "berry"
 	plantname = "Berry Bush"
@@ -20,8 +20,8 @@
 
 /obj/item/food/grown/berries
 	seed = /obj/item/seeds/berry
-	name = "bunch of berries"
-	desc = "Nutritious!"
+	name = "一串浆果"
+	desc = "营养超丰富！"
 	icon_state = "berrypile"
 	gender = PLURAL
 	foodtypes = FRUIT
@@ -33,8 +33,8 @@
 
 // Poison Berries
 /obj/item/seeds/berry/poison
-	name = "poison-berry seed pack"
-	desc = "These seeds grow into poison-berry bushes."
+	name = "毒莓种子包"
+	desc = "能长成毒浆果树的种子。"
 	icon_state = "seed-poisonberry"
 	species = "poisonberry"
 	plantname = "Poison-Berry Bush"
@@ -45,8 +45,8 @@
 
 /obj/item/food/grown/berries/poison
 	seed = /obj/item/seeds/berry/poison
-	name = "bunch of poison-berries"
-	desc = "Taste so good, you might die!"
+	name = "一串毒浆果"
+	desc = "味道超级好，但吃完之后，你可能会挂掉！"
 	icon_state = "poisonberrypile"
 	bite_consumption_mod = 3
 	foodtypes = FRUIT | TOXIC
@@ -59,8 +59,8 @@
 
 // Death Berries
 /obj/item/seeds/berry/death
-	name = "death-berry seed pack"
-	desc = "These seeds grow into death berries."
+	name = "死亡莓种子包"
+	desc = "能长成死亡浆果树的种子。"
 	icon_state = "seed-deathberry"
 	species = "deathberry"
 	plantname = "Death Berry Bush"
@@ -75,8 +75,8 @@
 
 /obj/item/food/grown/berries/death
 	seed = /obj/item/seeds/berry/death
-	name = "bunch of death-berries"
-	desc = "Taste so good, you will die!"
+	name = "一串死亡浆果"
+	desc = "味道超级好，但吃完之后，你肯定会死！"
 	icon_state = "deathberrypile"
 	bite_consumption_mod = 3
 	foodtypes = FRUIT | TOXIC
@@ -89,8 +89,8 @@
 
 // Glow Berries
 /obj/item/seeds/berry/glow
-	name = "glow-berry seed pack"
-	desc = "These seeds grow into glow-berry bushes."
+	name = "发光莓种子包"
+	desc = "能长成发光浆果树的种子。"
 	icon_state = "seed-glowberry"
 	species = "glowberry"
 	plantname = "Glow-Berry Bush"
@@ -105,7 +105,7 @@
 
 /obj/item/food/grown/berries/glow
 	seed = /obj/item/seeds/berry/glow
-	name = "bunch of glow-berries"
+	name = "一串发光浆果"
 	desc = "Nutritious!"
 	bite_consumption_mod = 3
 	icon_state = "glowberrypile"
@@ -116,8 +116,8 @@
 
 // Grapes
 /obj/item/seeds/grape
-	name = "grape seed pack"
-	desc = "These seeds grow into grape vines."
+	name = "葡萄种子包"
+	desc = "能长成葡萄藤的种子。"
 	icon_state = "seed-grapes"
 	species = "grape"
 	plantname = "Grape Vine"
@@ -137,8 +137,8 @@
 
 /obj/item/food/grown/grapes
 	seed = /obj/item/seeds/grape
-	name = "bunch of grapes"
-	desc = "Nutritious!"
+	name = "一串葡萄"
+	desc = "营养丰富！"
 	icon_state = "grapes"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -153,8 +153,8 @@
 
 // Green Grapes
 /obj/item/seeds/grape/green
-	name = "green grape seed pack"
-	desc = "These seeds grow into green-grape vines."
+	name = "绿葡萄种子包"
+	desc = "能长成青葡萄藤的种子。"
 	icon_state = "seed-greengrapes"
 	species = "greengrape"
 	plantname = "Green-Grape Vine"
@@ -164,7 +164,7 @@
 
 /obj/item/food/grown/grapes/green
 	seed = /obj/item/seeds/grape/green
-	name = "bunch of green grapes"
+	name = "一串青葡萄"
 	icon_state = "greengrapes"
 	bite_consumption_mod = 3
 	tastes = list("green grape" = 1)
@@ -172,8 +172,8 @@
 
 // Toechtauese Berries
 /obj/item/seeds/toechtauese
-	name = "töchtaüse berry seed pack"
-	desc = "These seeds grow into töchtaüse bushes."
+	name = "töchtaüse 莓种子包"
+	desc = "能长成托赫塔乌斯灌木的种子。"
 	icon_state = "seed-toechtauese"
 	species = "toechtauese"
 	plantname = "Töchtaüse Bush"
@@ -191,8 +191,8 @@
 
 /obj/item/food/grown/toechtauese
 	seed = /obj/item/seeds/toechtauese
-	name = "töchtaüse berries"
-	desc = "A branch with töchtaüse berries on it. They're a favourite on the Mothic Fleet, but not in this form."
+	name = "托赫塔乌斯浆果"
+	desc = "上面有托赫塔乌斯浆果的树枝，它们是蛾人舰队的宠儿，但不是这种形式。"
 	icon_state = "toechtauese_branch"
 	foodtypes = FRUIT
 	tastes = list("fiery itchy pain" = 1)
@@ -202,8 +202,8 @@
 	return /datum/reagent/consumable/toechtauese_juice
 
 /obj/item/seeds/lanternfruit
-	name = "lanternfruit seed pack"
-	desc = "These seeds grow into lanternfruit pods."
+	name = "灯笼果种子包"
+	desc = "这些种子会长成灯笼果荚。"
 	icon_state = "seed-lanternfruit"
 	species = "lanternfruit"
 	plantname = "Lanternfruit Pod"
@@ -225,8 +225,8 @@
 
 /obj/item/food/grown/lanternfruit
 	seed = /obj/item/seeds/lanternfruit
-	name = "lanternfruits"
-	desc = "A softly glowing fruit with a handle-shaped stem, an Ethereal favorite!"
+	name = "灯笼果"
+	desc = "一种散发着柔和光芒的水果，带有手柄状的茎，是以太族的挚爱！"
 	icon_state = "lanternfruit"
 	foodtypes = FRUIT
 	tastes = list("tv static" = 1, "sour pear" = 1, "grapefruit" = 1)

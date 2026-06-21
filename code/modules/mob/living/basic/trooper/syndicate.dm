@@ -1,13 +1,13 @@
 /// Syndicate troopers
 /mob/living/basic/trooper/syndicate
-	name = "Syndicate Operative"
-	desc = "Death to Nanotrasen."
+	name = "辛迪加特工"
+	desc = "纳米传讯去死。"
 	faction = list(ROLE_SYNDICATE)
 	corpse = /obj/effect/mob_spawn/corpse/human/syndicatesoldier
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatesoldier
 
 /mob/living/basic/trooper/syndicate/space
-	name = "Syndicate Commando"
+	name = "辛迪加突击队员"
 	maxHealth = 170
 	health = 170
 	corpse = /obj/effect/gibspawner/human
@@ -21,7 +21,7 @@
 	set_light(4)
 
 /mob/living/basic/trooper/syndicate/space/stormtrooper
-	name = "Syndicate Stormtrooper"
+	name = "辛迪加冲锋队员"
 	maxHealth = 250
 	health = 250
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatestormtrooper
@@ -39,12 +39,12 @@
 
 /mob/living/basic/trooper/syndicate/melee/projectile_hit(obj/projectile/hitting_projectile, def_zone, piercing_hit, blocked)
 	if(prob(projectile_deflect_chance))
-		visible_message(span_danger("[src] blocks [hitting_projectile] with its shield!"))
+		visible_message(span_danger("[src] 用它的盾牌挡住了 [hitting_projectile]！"))
 		return BULLET_ACT_BLOCK
 	return ..()
 
 /mob/living/basic/trooper/syndicate/melee/space
-	name = "Syndicate Commando"
+	name = "辛迪加突击队员"
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
@@ -57,7 +57,7 @@
 	set_light(4)
 
 /mob/living/basic/trooper/syndicate/melee/space/stormtrooper
-	name = "Syndicate Stormtrooper"
+	name = "辛迪加冲锋队员"
 	maxHealth = 250
 	health = 250
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatestormtrooper
@@ -77,7 +77,7 @@
 	l_hand = /obj/item/shield/energy
 
 /mob/living/basic/trooper/syndicate/melee/sword/space
-	name = "Syndicate Commando"
+	name = "辛迪加突击队员"
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
@@ -90,7 +90,7 @@
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
 
 /mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper
-	name = "Syndicate Stormtrooper"
+	name = "辛迪加冲锋队员"
 	maxHealth = 250
 	health = 250
 	projectile_deflect_chance = 50
@@ -128,7 +128,7 @@
 	corpse = /obj/effect/mob_spawn/corpse/human/syndicatesoldier
 
 /mob/living/basic/trooper/syndicate/ranged/space
-	name = "Syndicate Commando"
+	name = "辛迪加突击队员"
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
@@ -141,7 +141,7 @@
 	set_light(4)
 
 /mob/living/basic/trooper/syndicate/ranged/space/stormtrooper
-	name = "Syndicate Stormtrooper"
+	name = "辛迪加冲锋队员"
 	maxHealth = 250
 	health = 250
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatestormtrooper
@@ -156,18 +156,18 @@
 
 ///Spawns from an emagged orion trail machine set to kill the player.
 /mob/living/basic/trooper/syndicate/ranged/smg/orion
-	name = "spaceport security"
-	desc = "Premier corporate security forces for all spaceports found along the Orion Trail."
+	name = "太空港安保"
+	desc = "猎户座航线上所有太空港的顶级企业安保力量。"
 	faction = list(FACTION_ORION)
 	corpse = null
 
 /mob/living/basic/trooper/syndicate/ranged/smg/pilot //caravan ambush ruin
-	name = "Syndicate Salvage Pilot"
+	name = "辛迪加打捞飞行员"
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatepilot
 	corpse = /obj/effect/mob_spawn/corpse/human/syndicatepilot
 
 /mob/living/basic/trooper/syndicate/ranged/smg/space
-	name = "Syndicate Commando"
+	name = "辛迪加突击队员"
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
@@ -180,7 +180,7 @@
 	set_light(4)
 
 /mob/living/basic/trooper/syndicate/ranged/smg/space/stormtrooper
-	name = "Syndicate Stormtrooper"
+	name = "辛迪加冲锋队员"
 	maxHealth = 250
 	health = 250
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatestormtrooper
@@ -193,7 +193,7 @@
 	r_hand = /obj/item/gun/ballistic/shotgun/bulldog
 
 /mob/living/basic/trooper/syndicate/ranged/shotgun/space
-	name = "Syndicate Commando"
+	name = "辛迪加突击队员"
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
@@ -206,7 +206,7 @@
 	set_light(4)
 
 /mob/living/basic/trooper/syndicate/ranged/shotgun/space/stormtrooper
-	name = "Syndicate Stormtrooper"
+	name = "辛迪加冲锋队员"
 	maxHealth = 250
 	health = 250
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatestormtrooper
@@ -214,8 +214,8 @@
 ///////////////Misc////////////
 
 /mob/living/basic/viscerator
-	name = "viscerator"
-	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations."
+	name = "开膛手"
+	desc = "一种小型双刃机器，能造成极其致命的撕裂伤。"
 	icon_state = "viscerator_attack"
 	icon_living = "viscerator_attack"
 	density = FALSE

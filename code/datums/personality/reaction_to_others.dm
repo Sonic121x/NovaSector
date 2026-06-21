@@ -1,39 +1,39 @@
 /datum/personality/callous
 	savefile_key = "callous"
-	name = "Callous"
-	desc = "I don't care much about what happens to other people."
+	name = "冷漠型"
+	desc = "我不太关心别人身上会发生什么。"
 	pos_gameplay_desc = "Does not mind seeing death"
 	neg_gameplay_desc = "Prefers not to help people"
 	groups = list(PERSONALITY_GROUP_DEATH)
 
 /datum/personality/compassionate
 	savefile_key = "compassionate"
-	name = "Compassionate"
-	desc = "I like giving a hand to those in need."
+	name = "富有同情心"
+	desc = "我喜欢向需要帮助的人伸出援手。"
 	pos_gameplay_desc = "Likes helping people"
 	neg_gameplay_desc = "Seeing death affects your mood more"
 	groups = list(PERSONALITY_GROUP_DEATH, PERSONALITY_GROUP_MISANTHROPY)
 
 /datum/personality/empathetic
 	savefile_key = "empathetic"
-	name = "Empathetic" // according to google "empathic" means you understand other people, while "empathetic" means you feel what they feel
-	desc = "Other people's feelings are important to me."
+	name = "善解人意" // according to google "empathic" means you understand other people, while "empathetic" means you feel what they feel
+	desc = "他人的感受对我很重要。"
 	pos_gameplay_desc = "Likes seeing other people happy"
 	neg_gameplay_desc = "Dislikes seeing other people sad"
 	groups = list(PERSONALITY_GROUP_OTHERS)
 
 /datum/personality/misanthropic
 	savefile_key = "misanthropic"
-	name = "Misanthropic"
-	desc = "We should have never entered the stars."
+	name = "厌世"
+	desc = "我们本就不该踏入星空。"
 	pos_gameplay_desc = "Likes seeing other people sad"
 	neg_gameplay_desc = "Dislikes seeing other people happy"
 	groups = list(PERSONALITY_GROUP_OTHERS, PERSONALITY_GROUP_MISANTHROPY)
 
 /datum/personality/aloof
 	savefile_key = "aloof"
-	name = "Aloof"
-	desc = "Why is everyone so touchy? I'd rather be left alone."
+	name = "冷漠"
+	desc = "为什么大家都这么敏感？我更想一个人待着。"
 	neg_gameplay_desc = "Dislikes being grabbed, touched, or hugged"
 	personality_trait = TRAIT_BADTOUCH
 

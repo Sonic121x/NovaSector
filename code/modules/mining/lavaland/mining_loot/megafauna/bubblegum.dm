@@ -1,13 +1,13 @@
 // Mayhem in a bottle
 
 /obj/item/mayhem
-	name = "mayhem in a bottle"
-	desc = "A magically infused bottle of blood, the scent of which will drive anyone nearby into a murderous frenzy."
+	name = "瓶中浩劫"
+	desc = "一瓶魔法灌注的血液，其气味会使附近的任何人陷入嗜血狂暴。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "vial"
 
 /obj/item/mayhem/attack_self(mob/user)
-	if(tgui_alert(user, "Breaking the bottle will cause nearby crewmembers to go into a murderous frenzy. Be sure you know what you are doing...", "Break the bottle?", list("Break it!", "DON'T")) != "Break it!")
+	if(tgui_alert(user, "打破瓶子会使附近的船员陷入杀戮狂怒。请确保你知道自己在做什么...", "打碎瓶子？", list("Break it!", "DON'T")) != "Break it!")
 		return
 
 	if(QDELETED(src) || !user.is_holding(src) || user.incapacitated)
@@ -16,17 +16,17 @@
 	for(var/mob/living/carbon/human/target in range(7, user))
 		target.apply_status_effect(/datum/status_effect/mayhem)
 
-	to_chat(user, span_notice("You shatter the bottle!"))
+	to_chat(user, span_notice("你打碎了瓶子！"))
 	playsound(user.loc, 'sound/effects/glass/glassbr1.ogg', 100, TRUE)
-	message_admins(span_adminnotice("[ADMIN_LOOKUPFLW(user)] has activated a bottle of mayhem!"))
+	message_admins(span_adminnotice("[ADMIN_LOOKUPFLW(user)] 激活了一瓶浩劫！"))
 	user.log_message("activated a bottle of mayhem", LOG_ATTACK)
 	qdel(src)
 
 // H.E.C.K. Suit
 
 /obj/item/clothing/suit/hooded/hostile_environment
-	name = "H.E.C.K. suit"
-	desc = "Hostile Environment Cross-Kinetic Suit: A suit designed to withstand the wide variety of hazards from Lavaland. It wasn't enough for its last owner."
+	name = "H.E.C.K. 防护服"
+	desc = "恶劣环境交叉动能防护服：为抵御熔岩地带的多种危险而设计的防护服。但这并未能保护它的上一任主人。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/hooded/hostile_environment"
 	post_init_icon_state = "hostile_env"
@@ -74,8 +74,8 @@
 				to_chat(wearer, span_warning("[pick("You hear faint whispers.","You smell ash.","You feel hot.","You hear a roar in the distance.")]"))
 
 /obj/item/clothing/head/hooded/hostile_environment
-	name = "H.E.C.K. helmet"
-	desc = "Hostile Environment Cross-Kinetic Helmet: A helmet designed to withstand the wide variety of hazards from Lavaland. It wasn't enough for its last owner."
+	name = "H.E.C.K. 头盔"
+	desc = "恶劣环境交叉动能头盔：为抵御熔岩地带的多种危险而设计的头盔。但这并未能保护它的上一任主人。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/hooded/hostile_environment"
 	post_init_icon_state = "hostile_env"
@@ -114,18 +114,18 @@
 
 /obj/item/clothing/head/hooded/hostile_environment/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
-	to_chat(user, span_notice("You feel a bloodlust. You can now butcher corpses with your bare arms."))
+	to_chat(user, span_notice("你感到一股嗜血欲望。你现在可以用赤手空拳肢解尸体了。"))
 
 /obj/item/clothing/head/hooded/hostile_environment/dropped(mob/user, silent = FALSE)
 	. = ..()
-	to_chat(user, span_notice("You lose your bloodlust."))
+	to_chat(user, span_notice("你的嗜血欲望消失了。"))
 
 /obj/item/clothing/head/hooded/hostile_environment/proc/consume(mob/living/user, mob/living/butchered)
 	if(butchered.mob_biotypes & (MOB_ROBOTIC | MOB_SPIRIT))
 		return
 	var/health_consumed = butchered.maxHealth * 0.1
 	user.heal_ordered_damage(health_consumed, list(BRUTE, BURN, TOX))
-	to_chat(user, span_notice("You heal from the corpse of [butchered]."))
+	to_chat(user, span_notice("你从 [butchered] 的尸体中汲取了治疗。"))
 	var/datum/client_colour/color_effect = user.add_client_colour(/datum/client_colour/bloodlust, HELMET_TRAIT)
 	QDEL_IN(color_effect, 1 SECONDS)
 

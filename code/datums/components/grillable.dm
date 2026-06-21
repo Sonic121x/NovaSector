@@ -193,11 +193,11 @@
 
 	if(positive_result)
 		if(current_cook_time <= required_cook_time * 0.75)
-			examine_list += span_notice("[parent] probably needs to be cooked a bit longer!")
+			examine_list += span_notice("[parent] 可能还需要再烤一会儿！")
 		else if(current_cook_time <= required_cook_time)
-			examine_list += span_notice("[parent] seems to be almost finished cooking!")
+			examine_list += span_notice("[parent] 看起来快要烤好了！")
 	else
-		examine_list += span_danger("[parent] should probably not be put on the grill.")
+		examine_list += span_danger("[parent] 大概不应该放在烤架上。")
 
 /datum/component/grillable/proc/add_grilled_item_overlay(datum/source, list/overlays)
 	SIGNAL_HANDLER

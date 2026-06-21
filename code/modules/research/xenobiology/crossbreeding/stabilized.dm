@@ -7,8 +7,8 @@ Stabilized extracts:
 //Status effect will automatically be applied while held, and lost on drop.
 
 /obj/item/slimecross/stabilized
-	name = "stabilized extract"
-	desc = "It seems inert, but anything it touches glows softly..."
+	name = "稳定提取物"
+	desc = "它看起来毫无生气，但任何被它触碰的东西都会发出柔和的光芒……"
 	effect = "stabilized"
 	icon_state = "stabilized"
 	var/datum/status_effect/linked_effect
@@ -143,7 +143,7 @@ Stabilized extracts:
 	generate_mobtype()
 
 /obj/item/slimecross/stabilized/gold/attack_self(mob/user)
-	var/choice = tgui_input_list(user, "Which do you want to reset?", "Familiar Adjustment", sort_list(list("Familiar Location", "Familiar Species", "Familiar Sentience", "Familiar Name")))
+	var/choice = tgui_input_list(user, "你想要重置哪一项？", "使魔调整", sort_list(list("Familiar Location", "Familiar Species", "Familiar Sentience", "Familiar Name")))
 	if(isnull(choice))
 		return
 	if(!user.can_perform_action(src))
@@ -153,21 +153,21 @@ Stabilized extracts:
 		if(L.has_status_effect(/datum/status_effect/stabilized/gold))
 			L.remove_status_effect(/datum/status_effect/stabilized/gold)
 	if(choice == "Familiar Location")
-		to_chat(user, span_notice("You prod [src], and it shudders slightly."))
+		to_chat(user, span_notice("你戳了戳[src]，它轻微地颤抖了一下。"))
 		START_PROCESSING(SSobj, src)
 	if(choice == "Familiar Species")
-		to_chat(user, span_notice("You squeeze [src], and a shape seems to shift around inside."))
+		to_chat(user, span_notice("你捏了捏[src]，里面的形状似乎发生了变化。"))
 		generate_mobtype()
 		START_PROCESSING(SSobj, src)
 	if(choice == "Familiar Sentience")
-		to_chat(user, span_notice("You poke [src], and it lets out a glowing pulse."))
+		to_chat(user, span_notice("你戳了戳[src]，它发出了一阵发光的脉冲。"))
 		saved_mind = null
 		START_PROCESSING(SSobj, src)
 	if(choice == "Familiar Name")
-		var/newname = sanitize_name(tgui_input_text(user, "Would you like to change the name of [mob_name]", "Name change", mob_name, MAX_NAME_LEN))
+		var/newname = sanitize_name(tgui_input_text(user, "你想要更改[mob_name]的名字吗？", "名称更改", mob_name, MAX_NAME_LEN))
 		if(newname)
 			mob_name = newname
-		to_chat(user, span_notice("You speak softly into [src], and it shakes slightly in response."))
+		to_chat(user, span_notice("你对着[src]轻声细语，它随之轻微地晃动了一下。"))
 		START_PROCESSING(SSobj, src)
 
 /obj/item/slimecross/stabilized/oil

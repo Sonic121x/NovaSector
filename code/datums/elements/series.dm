@@ -31,5 +31,5 @@
 	SIGNAL_HANDLER
 
 	var/series_number = subtype_list.Find(target.type)
-	examine_list += span_boldnotice("[target] is part of the \"[series_name]\" series!")
-	examine_list += span_notice("Collect them all: [series_number]/[length(subtype_list)].")
+	examine_list += span_boldnotice("[target]属于\"[series_name]\"系列！")
+	examine_list += span_notice("收集进度：[series_number]/[length(subtype_list)]。")

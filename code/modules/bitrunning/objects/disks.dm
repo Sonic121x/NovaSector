@@ -5,8 +5,8 @@
  * Just make it fun and engaging, it's PvE content.
  */
 /obj/item/disk/bitrunning
-	name = "generic bitrunning program"
-	desc = "A disk containing source code."
+	name = "通用比特奔跑程序"
+	desc = "一张包含源代码的磁盘。"
 	base_icon_state = "datadisk"
 	icon_state = "datadisk0"
 	sticker_icon_state = "o_code"
@@ -28,21 +28,21 @@
 
 /obj/item/disk/bitrunning/examine(mob/user)
 	. = ..()
-	. += span_infoplain("This disk must be carried on your person into a netpod to be used.")
+	. += span_infoplain("此磁盘必须由你本人携带进入网络舱才能使用。")
 
 	if(isnull(choice_made))
-		. += span_notice("To make a selection, toggle the disk in hand.")
+		. += span_notice("要做出选择，请在手中切换磁盘。")
 		return
 
-	. += span_info("It has been used to select: <b>[choice_made]</b>.")
-	. += span_notice("It cannot make another selection.")
+	. += span_info("它已被用于选择：<b>[choice_made]</b>。")
+	. += span_notice("它无法再进行选择。")
 
 /// Handles loading our stuff onto avatars
 /obj/item/disk/bitrunning/proc/load_onto_avatar(mob/living/carbon/human/neo, mob/living/carbon/human/avatar, domain_flags)
 	return NONE
 
 /obj/item/disk/bitrunning/ability
-	desc = "A disk containing source code. It can be used to preload abilities into the virtual domain. Duplicate abilities will be ignored."
+	desc = "一张包含源代码的磁盘。可用于将能力预加载到虚拟域中。重复的能力将被忽略。"
 	/// The selected ability that this grants
 	var/datum/action/granted_action
 	/// The list of actions that this can grant
@@ -72,7 +72,7 @@
 	for(var/datum/action/thing as anything in selectable_actions)
 		names += initial(thing.name)
 
-	var/choice = tgui_input_list(user, message = "Select an ability",  title = "Bitrunning Program", items = names)
+	var/choice = tgui_input_list(user, message = "选择一个能力",  title = "比特奔跑程序", items = names)
 	if(isnull(choice) || !user.is_holding(src))
 		return
 
@@ -83,13 +83,13 @@
 	if(isnull(granted_action))
 		return
 
-	balloon_alert(user, "selected")
+	balloon_alert(user, "已选择")
 	playsound(user, 'sound/items/click.ogg', 50, TRUE)
 	choice_made = choice
 
 /// Tier 1 programs. Simple, funny, or helpful.
 /obj/item/disk/bitrunning/ability/tier1
-	name = "bitrunning program: basic"
+	name = "比特奔跑程序：基础"
 	selectable_actions = list(
 		/datum/action/cooldown/spell/conjure/cheese,
 		/datum/action/cooldown/spell/basic_heal,
@@ -97,7 +97,7 @@
 
 /// Tier 2 programs. More complex, powerful, or useful.
 /obj/item/disk/bitrunning/ability/tier2
-	name = "bitrunning program: complex"
+	name = "比特奔跑程序：复杂"
 	selectable_actions = list(
 		/datum/action/cooldown/spell/pointed/projectile/fireball,
 		/datum/action/cooldown/spell/pointed/projectile/lightningbolt,
@@ -106,7 +106,7 @@
 
 /// Tier 3 abilities. Very powerful, game breaking.
 /obj/item/disk/bitrunning/ability/tier3
-	name = "bitrunning program: elite"
+	name = "比特奔跑程序：精英"
 	selectable_actions = list(
 		/datum/action/cooldown/spell/shapeshift/dragon,
 		/datum/action/cooldown/spell/shapeshift/polar_bear,
@@ -114,7 +114,7 @@
 
 
 /obj/item/disk/bitrunning/item
-	desc = "A disk containing source code. It can be used to preload items into the virtual domain."
+	desc = "一张包含源代码的磁盘。可用于将物品预加载到虚拟域中。"
 	/// The selected item that this grants
 	var/obj/granted_item
 	/// The list of actions that this can grant
@@ -140,7 +140,7 @@
 	for(var/obj/thing as anything in selectable_items)
 		names += initial(thing.name)
 
-	var/choice = tgui_input_list(user, message = "Select an ability",  title = "Bitrunning Program", items = names)
+	var/choice = tgui_input_list(user, message = "选择一个能力",  title = "比特奔跑程序", items = names)
 	if(isnull(choice) || !user.is_holding(src))
 		return
 
@@ -148,13 +148,13 @@
 		if(initial(thing.name) == choice)
 			granted_item = thing
 
-	balloon_alert(user, "selected")
+	balloon_alert(user, "已选择")
 	playsound(user, 'sound/items/click.ogg', 50, TRUE)
 	choice_made = choice
 
 /// Tier 1 items. Simple, funny, or helpful.
 /obj/item/disk/bitrunning/item/tier1
-	name = "bitrunning gear: simple"
+	name = "比特奔跑装备：简易"
 	selectable_items = list(
 		/obj/item/pizzabox/infinite,
 		/obj/item/gun/medbeam,
@@ -163,7 +163,7 @@
 
 /// Tier 2 items. More complex, powerful, or useful.
 /obj/item/disk/bitrunning/item/tier2
-	name = "bitrunning gear: complex"
+	name = "比特奔跑装备：复杂"
 	selectable_items = list(
 		/obj/item/reagent_containers/hypospray/medipen/survival/luxury,
 		/obj/item/gun/ballistic/automatic/pistol,
@@ -172,7 +172,7 @@
 
 /// Tier 3 items. Very powerful, game breaking.
 /obj/item/disk/bitrunning/item/tier3
-	name = "bitrunning gear: advanced"
+	name = "比特奔跑装备：高级"
 	selectable_items = list(
 		/obj/item/gun/energy/e_gun/nuclear,
 		/obj/item/dualsaber/green,
@@ -181,7 +181,7 @@
 
 ///proto-kinetic accelerator mods, to be applied to pka's given inside domains
 /obj/item/disk/bitrunning/item/pka_mods
-	name = "bitrunning gear: proto-kinetic accelerator mods"
+	name = "位面疾走装备：原型动能加速器模组"
 	selectable_items = list(
 		/obj/item/borg/upgrade/modkit/range,
 		/obj/item/borg/upgrade/modkit/damage,
@@ -191,7 +191,7 @@
 	)
 
 /obj/item/disk/bitrunning/item/pka_mods/premium
-	name = "bitrunning gear: premium proto-kinetic accelerator mods"
+	name = "位面疾走装备：高级原型动能加速器模组"
 	selectable_items = list(
 		/obj/item/borg/upgrade/modkit/cooldown/repeater,
 		/obj/item/borg/upgrade/modkit/lifesteal,
@@ -202,7 +202,7 @@
 
 ///proto-kinetic crusher trophies, to be applied to pkc's given inside domains
 /obj/item/disk/bitrunning/item/pkc_mods
-	name = "bitrunning gear: proto-kinetic crusher mods"
+	name = "位面疾走装备：原型动能粉碎器模组"
 	selectable_items = list(
 		/obj/item/crusher_trophy/watcher_wing,
 		/obj/item/crusher_trophy/blaster_tubes/magma_wing,
@@ -211,7 +211,7 @@
 	)
 
 /obj/item/disk/bitrunning/item/pkc_mods/premium
-	name = "bitrunning gear: premium proto-kinetic crusher mods"
+	name = "位面疾走装备：高级原型动能粉碎器模组"
 	selectable_items = list(
 		/obj/item/crusher_trophy/watcher_wing/ice_wing,
 		/obj/item/crusher_trophy/blaster_tubes,
@@ -223,7 +223,7 @@
 	)
 
 /obj/item/disk/bitrunning/item/mini_uzi
-	name = "bitrunning gear: mini-uzi"
+	name = "位面疾走装备：迷你乌兹冲锋枪"
 	selectable_items = list(
 		/obj/item/gun/ballistic/automatic/mini_uzi,
 	)

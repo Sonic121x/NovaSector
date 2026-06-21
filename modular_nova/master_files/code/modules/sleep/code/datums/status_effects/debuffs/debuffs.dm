@@ -32,7 +32,7 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/asleep
-	desc = "You've fallen asleep. Wait a bit and you should wake up. Resist or click here to wake up from voluntary naps."
+	desc = "你睡着了。稍等片刻就会醒来。抵抗或点击此处可从自愿小睡中醒来。"
 
 // Wakes mob from sleep if the sleep verb was used
 /atom/movable/screen/alert/status_effect/asleep/Click()

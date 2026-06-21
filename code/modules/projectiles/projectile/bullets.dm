@@ -1,5 +1,5 @@
 /obj/projectile/bullet
-	name = "bullet"
+	name = "子弹"
 	icon_state = "bullet"
 	damage = 60
 	damage_type = BRUTE
@@ -14,7 +14,7 @@
 	embed_falloff_tile = -3
 
 /obj/projectile/bullet/smite
-	name = "divine retribution"
+	name = "天谴"
 	damage = 10
 
 /datum/embedding/bullet

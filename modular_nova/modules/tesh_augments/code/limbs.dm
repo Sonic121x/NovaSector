@@ -3,55 +3,55 @@ this goes into the augment preferences section. They do not use the appearance d
 */
 
 /datum/augment_item/limb/head/teshari_cyborg
-	name = "Raptoral cybernetic head"
+	name = "猛禽型赛博格头部"
 	path = /obj/item/bodypart/head/robot/teshari
 	species_whitelist = list(SPECIES_TESHARI = 1)
 
 /datum/augment_item/limb/chest/teshari_cyborg
-	name = "Raptoral cybernetic chest"
+	name = "猛禽型赛博格躯干"
 	path = /obj/item/bodypart/chest/robot/teshari
 	species_whitelist = list(SPECIES_TESHARI = 1)
 
 /datum/augment_item/limb/l_arm/teshari_prosthetic
-	name = "Raptoral prosthetic left forelimb"
+	name = "猛禽型义体左前肢"
 	path = /obj/item/bodypart/arm/left/robot/teshari_surplus
 	cost = -1
 	species_whitelist = list(SPECIES_TESHARI = 1)
 
 /datum/augment_item/limb/l_arm/teshari_cybernetic
-	name = "Raptoral cybernetic left forelimb"
+	name = "猛禽型赛博格左前肢"
 	path = /obj/item/bodypart/arm/left/robot/teshari
 	species_whitelist = list(SPECIES_TESHARI = 1)
 
 /datum/augment_item/limb/r_arm/teshari_prosthetic
-	name = "Raptoral prototype right forelimb"
+	name = "猛禽型原型右前肢"
 	path = /obj/item/bodypart/arm/right/robot/teshari_surplus
 	cost = -1
 	species_whitelist = list(SPECIES_TESHARI = 1)
 
 /datum/augment_item/limb/r_arm/teshari_cybernetic
-	name = "Raptoral cybernetic right forelimb"
+	name = "猛禽型赛博格右前肢"
 	path = /obj/item/bodypart/arm/right/robot/teshari
 	species_whitelist = list(SPECIES_TESHARI = 1)
 
 /datum/augment_item/limb/l_leg/teshari_prosthetic
-	name = "Raptoral prosthetic left hindlimb"
+	name = "猛禽型义体左后肢"
 	path = /obj/item/bodypart/leg/left/robot/teshari_surplus
 	cost = -1
 	species_whitelist = list(SPECIES_TESHARI = 1)
 
 /datum/augment_item/limb/l_leg/teshari_cybernetic
-	name = "Raptoral cybernetic left hindlimb"
+	name = "猛禽型赛博格左后肢"
 	path = /obj/item/bodypart/leg/left/robot/teshari
 	species_whitelist = list(SPECIES_TESHARI = 1)
 
 /datum/augment_item/limb/r_leg/teshari_prosthetic
-	name = "Raptoral prosthetic right hindlimb"
+	name = "猛禽型义体右后肢"
 	path = /obj/item/bodypart/leg/right/robot/teshari_surplus
 	cost = -1
 	species_whitelist = list(SPECIES_TESHARI = 1)
 
 /datum/augment_item/limb/r_leg/teshari_cybernetic
-	name = "Raptoral cybernetic right hindlimb"
+	name = "猛禽型赛博格右后肢"
 	path = /obj/item/bodypart/leg/right/robot/teshari
 	species_whitelist = list(SPECIES_TESHARI = 1)

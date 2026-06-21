@@ -1,7 +1,7 @@
 
 /obj/item/book/granter/crafting_recipe/cooking_sweets_101
-	name = "Cooking Desserts 101"
-	desc = "A cook book that teaches you some more of the newest desserts. AI approved, and a bestseller on Honkplanet."
+	name = "烹饪甜点101"
+	desc = "一本教你更多最新甜点制作的烹饪书。AI认可，并且在Honk星球上是畅销书。"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/food/mimetart,
 		/datum/crafting_recipe/food/berrytart,

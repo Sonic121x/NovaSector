@@ -1,14 +1,14 @@
 /mob/living/basic/frog
-	name = "frog"
-	desc = "They seem a little sad."
+	name = "青蛙"
+	desc = "它们看起来有点悲伤。"
 	icon_state = "frog"
 	icon_living = "frog"
 	icon_dead = "frog_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_AQUATIC
-	verb_say = "ribbits"
-	verb_ask = "ribbits inquisitively"
-	verb_exclaim = "croaks"
-	verb_yell = "croaks loudly"
+	verb_say = "呱呱叫"
+	verb_ask = "好奇地呱呱叫"
+	verb_exclaim = "呱呱"
+	verb_yell = "大声呱呱叫"
 	maxHealth = 15
 	health = 15
 	speed = 1.1
@@ -74,8 +74,8 @@
 		playsound(src, stepped_sound, vol = 50, vary = TRUE)
 
 /mob/living/basic/frog/rare
-	name = "rare frog"
-	desc = "They seem a little smug."
+	name = "稀有青蛙"
+	desc = "它们看起来有点得意。"
 	icon_state = "rare_frog"
 	icon_living = "rare_frog"
 	icon_dead = "rare_frog_dead"
@@ -86,8 +86,8 @@
 
 /// These frogs would REALLY rather like to get at your blood basically by any means possible
 /mob/living/basic/frog/crazy
-	name = "trash frog"
-	desc = "They seem a little mad."
+	name = "垃圾青蛙"
+	desc = "它们看起来有点疯狂。"
 	icon_state = "frog_trash"
 	icon_living = "frog_trash"
 	icon_dead = "frog_trash_dead"
@@ -101,8 +101,8 @@
 	ai_controller = /datum/ai_controller/basic_controller/frog/trash
 
 /mob/living/basic/frog/crazy/rare
-	name = "crazy frog"
-	desc = "They look hopping mad."
+	name = "疯狂青蛙"
+	desc = "它们看起来气得直跳脚。"
 	icon_state = "rare_frog_trash"
 	icon_living = "rare_frog_trash"
 	icon_dead = "rare_frog_trash_dead"
@@ -113,16 +113,16 @@
 
 /// The cold doesn't bother him
 /mob/living/basic/frog/icemoon_facility
-	name = "Peter Jr."
-	desc = "They seem a little cold."
+	name = "小彼得"
+	desc = "它们看起来有点冷。"
 	minimum_survivable_temperature = BODYTEMP_COLD_ICEBOX_SAFE
 	pressure_resistance = 200
 	habitable_atmos = null
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/frog/icemoon_facility/crazy
-	name = "Crazy Pete"
-	desc = "The cold is really getting to him."
+	name = "疯狂皮特"
+	desc = "寒冷真的让他受不了了。"
 	icon_state = "frog_trash"
 	icon_living = "frog_trash"
 	icon_dead = "frog_trash_dead"
@@ -131,8 +131,8 @@
 
 /// Frog spawned by leapers which explodes on attack
 /mob/living/basic/frog/suicide
-	name = "suicide frog"
-	desc = "Driven by sheer will."
+	name = "自杀蛙"
+	desc = "被纯粹的意志所驱使。"
 	icon_state = "frog_trash"
 	icon_living = "frog_trash"
 	icon_dead = "frog_trash_dead"

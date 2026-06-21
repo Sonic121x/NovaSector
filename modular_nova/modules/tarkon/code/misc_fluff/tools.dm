@@ -1,6 +1,6 @@
 /obj/item/construction/rcd/tarkon
-	name = "Tarkon Industries RCD"
-	desc = "An RCD of an improved design with a \"Tarkon Industries\" logo on it. Reload using metal, glass, or plasteel."
+	name = "塔康工业快速建造装置"
+	desc = "一款改进设计的快速建造装置，上面印有“塔康工业”的标识。可使用金属、玻璃或塑钢进行充能。"
 	icon = 'modular_nova/modules/tarkon/icons/misc/tools.dmi'
 	icon_state = "trcd"
 	righthand_file = 'modular_nova/modules/tarkon/icons/mob/inhands/righthand.dmi'

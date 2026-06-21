@@ -4,7 +4,7 @@
 /datum/action/item_action/chameleon
 
 /datum/action/item_action/chameleon/change
-	name = "Chameleon Change"
+	name = "变色龙变换"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED|AB_CHECK_HANDS_BLOCKED
 	/// Typecache of all item types we explicitly cannot pick
 	/// Note that abstract items are already excluded
@@ -31,7 +31,7 @@
 		qdel(src)
 		return
 
-	name = "Change [chameleon_name] Appearance"
+	name = "更改[chameleon_name]外观"
 	build_all_button_icons()
 
 	LAZYINITLIST(chameleon_blacklist)
@@ -117,7 +117,7 @@
 	chameleon_typecache |= new_items
 
 /datum/action/item_action/chameleon/change/proc/select_look(mob/user)
-	var/picked_name = tgui_input_list(user, "Select [chameleon_name] to change into", "Chameleon Settings", sort_list(chameleon_list, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/picked_name = tgui_input_list(user, "选择要变形的[chameleon_name]", "变色龙设置", sort_list(chameleon_list, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if(isnull(picked_name) || isnull(chameleon_list[picked_name]) || QDELETED(src) || QDELETED(user) || QDELETED(owner) || !IsAvailable(feedback = TRUE))
 		return
 	var/obj/item/picked_item = chameleon_list[picked_name]

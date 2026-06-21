@@ -2,8 +2,8 @@ GLOBAL_VAR_INIT(hhStorageTurf, null)
 GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 /obj/item/hilbertshotel
-	name = "Hilbert's Hotel"
-	desc = "A sphere of what appears to be an intricate network of bluespace. Observing it in detail seems to give you a headache as you try to comprehend the infinite amount of infinitesimally distinct points on its surface."
+	name = "希尔伯特的旅馆"
+	desc = "一个看似错综复杂的蓝空网络的球体。当你试图理解它表面上无数的无限小的不同点时，仔细观察它似乎会让你头疼。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "hilbertshotel"
 	w_class = WEIGHT_CLASS_SMALL
@@ -46,7 +46,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	promptAndCheckIn(user, user)
 
 /obj/item/hilbertshotel/attack_tk(mob/user)
-	to_chat(user, span_notice("\The [src] actively rejects your mind as the bluespace energies surrounding it disrupt your telekinesis."))
+	to_chat(user, span_notice("\The [src] 主动排斥你的意念，因为环绕它的蓝空能量干扰了你的心灵传动。"))
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /obj/item/hilbertshotel/proc/promptAndCheckIn(mob/user, mob/target)
@@ -54,9 +54,9 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 	// Input text changes depending on if you're using this in yourself or someone else.
 	if(user == target)
-		chosenRoomNumber = input(target, "What number room will you be checking into?", "Room Number") as null|num
+		chosenRoomNumber = input(target, "你要入住几号房间？", "房间号") as null|num
 	else
-		chosenRoomNumber = input(target, "[user] is inviting you to enter \the [src]. What number room will you be checking into?", "Room Number") as null|num
+		chosenRoomNumber = input(target, "[user] 邀请你进入\the [src]。你要入住几号房间？", "房间号") as null|num
 
 	if(!chosenRoomNumber)
 		return
@@ -64,23 +64,23 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		to_chat(target, span_warning("You have to check out the first [SHORT_REAL_LIMIT] rooms before you can go to a higher numbered one!"))
 		return
 	if((chosenRoomNumber < 1) || (chosenRoomNumber != round(chosenRoomNumber)))
-		to_chat(target, span_warning("That is not a valid room number!"))
+		to_chat(target, span_warning("这不是一个有效的房间号！"))
 		return
 
 	// Orb is not adjacent to the target. No teleporties.
 	if(!src.Adjacent(target))
-		to_chat(target, span_warning("You too far away from \the [src] to enter it!"))
+		to_chat(target, span_warning("你离\the [src]太远了，无法进入！"))
 
 	// If the target is incapacitated after selecting a room, they're not allowed to teleport.
 	if(target.incapacitated)
-		to_chat(target, span_warning("You aren't able to activate \the [src] anymore!"))
+		to_chat(target, span_warning("你无法再激活\the [src]了！"))
 
 	// Has the user thrown it away or otherwise disposed of it such that it's no longer in their hands or in some storage connected to them?
 	if(get_atom_on_turf(src, /mob) != user)
 		if(user == target)
-			to_chat(user, span_warning("\The [src] is no longer in your possession!"))
+			to_chat(user, span_warning("\The [src] 已不在你手中！"))
 		else
-			to_chat(target, span_warning("\The [src] is no longer in the possession of [user]!"))
+			to_chat(target, span_warning("\The [src] 已不在[user]手中！"))
 		return
 
 	// If the player is using it on themselves, we've got some logic to deal with.
@@ -92,7 +92,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 			to_chat(user, span_warning("You try to drop \the [src], but it's too late! It's no longer in your hands! Prepare for unforeseen consequences..."))
 		// Okay, so they HAVE to be holding it here, because it's in their hand from the above check. Try to drop the item and if it fails, oh dear...
 		else if(!user.dropItemToGround(src))
-			to_chat(user, span_warning("You can't seem to drop \the [src]! It must be stuck to your hand somehow! Prepare for unforeseen consequences..."))
+			to_chat(user, span_warning("你似乎无法放下 \the [src]！它一定是粘在你手上了！准备迎接无法预见的后果吧..."))
 
 	if(!storageTurf) //Blame subsystems for not allowing this to be in Initialize
 		if(!GLOB.hhStorageTurf)
@@ -201,7 +201,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 						if(ismob(A))
 							var/mob/M = A
 							if(M.mind)
-								to_chat(M, span_warning("As the sphere breaks apart, you're suddenly ejected into the depths of space!"))
+								to_chat(M, span_warning("随着球体破裂，你突然被弹射到了太空深处！"))
 						var/max = world.maxx-TRANSITIONEDGE
 						var/min = 1+TRANSITIONEDGE
 						var/list/possible_transtitons = list()
@@ -235,47 +235,47 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 //Template Stuff
 /datum/map_template/hilbertshotel
-	name = "Hilbert's Hotel Room"
+	name = "希尔伯特的旅馆房间"
 	mappath = "_maps/templates/hilbertshotel.dmm"
 	var/landingZoneRelativeX = 2
 	var/landingZoneRelativeY = 8
 
 /datum/map_template/hilbertshotel/empty
-	name = "Empty Hilbert's Hotel Room"
+	name = "希尔伯特的空房间"
 	mappath = "_maps/templates/hilbertshotelempty.dmm"
 
 /datum/map_template/hilbertshotel/lore
-	name = "Doctor Hilbert's Deathbed"
+	name = "希尔伯特医生临终前的场景"
 	mappath = "_maps/templates/hilbertshotellore.dmm"
 
 /datum/map_template/hilbertshotelstorage
-	name = "Hilbert's Hotel Storage"
+	name = "希尔伯特旅馆仓库"
 	mappath = "_maps/templates/hilbertshotelstorage.dmm"
 
 
 //Turfs and Areas
 /turf/closed/indestructible/hotelwall
-	name = "hotel wall"
-	desc = "A wall designed to protect the security of the hotel's guests."
+	name = "旅馆墙"
+	desc = "为保护旅馆客人安全而设计的一堵墙。"
 	icon_state = "hotelwall"
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_HOTEL_WALLS
 	canSmoothWith = SMOOTH_GROUP_HOTEL_WALLS
 	explosive_resistance = INFINITY
 
 /turf/open/indestructible/hotelwood
-	desc = "Stylish dark wood with extra reinforcement. Secured firmly to the floor to prevent tampering."
+	desc = "时尚的深色木材，额外加固。牢固地固定在地板上以防止破坏。"
 	icon_state = "wood"
 	footstep = FOOTSTEP_WOOD
 	tiled_turf = FALSE
 
 /turf/open/indestructible/hoteltile
-	desc = "Smooth tile with extra reinforcement. Secured firmly to the floor to prevent tampering."
+	desc = "光滑的瓷砖与额外的加固。牢固地固定在地板上以防止破坏。"
 	icon_state = "showroomfloor"
 	footstep = FOOTSTEP_FLOOR
 	tiled_turf = FALSE
 
 /turf/open/space/bluespace
-	name = "\proper bluespace hyperzone"
+	name = "\proper 蓝空区域"
 	icon_state = "bluespace"
 	base_icon_state = "bluespace"
 	baseturfs = /turf/open/space/bluespace
@@ -297,7 +297,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		do_sparks(3, FALSE, get_turf(arrived))
 
 /turf/closed/indestructible/hoteldoor
-	name = "Hotel Door"
+	name = "旅馆门"
 	icon_state = "hoteldoor"
 	explosive_resistance = INFINITY
 	var/obj/item/hilbertshotel/parentSphere
@@ -322,13 +322,13 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	if(!user.mind)
 		return
 	if(!parentSphere)
-		to_chat(user, span_warning("The door seems to be malfunctioning and refuses to operate!"))
+		to_chat(user, span_warning("这扇门似乎发生故障，拒绝操作！"))
 		return
 	/// NOVA EDIT CHANGE START - Condos
 	/* Original:
 	if(tgui_alert(user, "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. With that in mind, are you ready to leave?", "Exit", list("Leave", "Stay")) == "Leave")
 	*/
-	if(tgui_alert(user, leave_message, "Exit", list("Leave", "Stay")) == "Leave") // NOVA EDIT CHANGE - Moved blurb to leave_message variable
+	if(tgui_alert(user, leave_message, "离开", list("Leave", "Stay")) == "Leave") // NOVA EDIT CHANGE - Moved blurb to leave_message variable
 	/// NOVA EDIT CHANGE END
 		if(HAS_TRAIT(user, TRAIT_IMMOBILIZED) || (get_dist(get_turf(src), get_turf(user)) > 1)) //no teleporting around if they're dead or moved away during the prompt.
 			return
@@ -365,10 +365,10 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 /turf/closed/indestructible/hoteldoor/click_alt(mob/user)
 	if(user.is_blind())
-		to_chat(user, span_warning("Drats! Your vision is too poor to use this!"))
+		to_chat(user, span_warning("糟糕！你的视力太差，无法使用这个！"))
 		return CLICK_ACTION_BLOCKING
 
-	to_chat(user, span_notice("You peek through the door's bluespace peephole..."))
+	to_chat(user, span_notice("你透过门上的蓝空猫眼窥视着..."))
 	user.reset_perspective(parentSphere)
 	var/datum/action/peephole_cancel/PHC = new
 	user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)
@@ -384,15 +384,15 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		INVOKE_ASYNC(PHC, TYPE_PROC_REF(/datum/action/peephole_cancel, Trigger))
 
 /datum/action/peephole_cancel
-	name = "Cancel View"
-	desc = "Stop looking through the bluespace peephole."
+	name = "取消视图"
+	desc = "别再透过蓝空窥视孔往外看了。"
 	button_icon_state = "cancel_peephole"
 
 /datum/action/peephole_cancel/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
-	to_chat(owner, span_warning("You move away from the peephole."))
+	to_chat(owner, span_warning("你从猫眼前移开了。"))
 	owner.reset_perspective()
 	owner.clear_fullscreen("remote_view", 0)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
@@ -400,7 +400,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 // Despite using the ruins.dmi, hilbertshotel is not a ruin
 /area/misc/hilbertshotel
-	name = "Hilbert's Hotel Room"
+	name = "希尔伯特的旅馆房间"
 	icon = 'icons/area/areas_ruins.dmi'
 	icon_state = "hilbertshotel"
 	requires_power = FALSE
@@ -434,7 +434,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	// Turns out giving anyone who grabs a Hilbert's Hotel a free, complementary warp whistle is probably bad.
 	// Let's gib the last person to have selected a room number in it.
 	if(unforeseen_consequences)
-		to_chat(unforeseen_consequences, span_warning("\The [H] starts to resonate. Forcing it to enter itself induces a bluespace paradox, violently tearing your body apart."))
+		to_chat(unforeseen_consequences, span_warning("\The [H] 开始共振。强迫它进入自身引发了蓝空悖论，将你的身体猛烈地撕碎。"))
 		unforeseen_consequences.investigate_log("has been gibbed by using [H] while inside of it.", INVESTIGATE_DEATHS)
 		unforeseen_consequences.gib(DROP_ALL_REMAINS)
 
@@ -447,7 +447,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 	log_game("[H] entered itself. Moving it to [loc_name(targetturf)].")
 	message_admins("[H] entered itself. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
-	H.visible_message(span_danger("[H] almost implodes in upon itself, but quickly rebounds, shooting off into a random point in space!"))
+	H.visible_message(span_danger("[H] 几乎要向内坍缩，但迅速反弹，射向了太空中的某个随机点！"))
 	H.forceMove(targetturf)
 
 /area/misc/hilbertshotel/Exited(atom/movable/gone, direction)
@@ -491,7 +491,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	qdel(reservation)
 
 /area/misc/hilbertshotelstorage
-	name = "Hilbert's Hotel Storage Room"
+	name = "希尔伯特旅馆的储物间"
 	icon = 'icons/area/areas_ruins.dmi'
 	icon_state = "hilbertshotel"
 	requires_power = FALSE
@@ -527,14 +527,14 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 //Space Ruin stuff
 /area/ruin/space/has_grav/powered/hilbertresearchfacility
-	name = "Hilbert Research Facility"
+	name = "希尔伯特研究设施"
 
 /area/ruin/space/has_grav/powered/hilbertresearchfacility/secretroom
 	area_flags = NOTELEPORT | HIDDEN_AREA
 
 /obj/item/analyzer/hilbertsanalyzer
-	name = "custom rigged analyzer"
-	desc = "A hand-held environmental scanner which reports current gas levels. This one seems custom rigged to additionally be able to analyze some sort of bluespace device."
+	name = "定制气体分析仪"
+	desc = "一种手持式环境扫描仪，可以报告当前的气体水平。这个似乎是定制的，另外能够分析某种蓝空设备。"
 	icon_state = "hilbertsanalyzer"
 	worn_icon_state = "analyzer"
 
@@ -542,15 +542,15 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	if(!istype(interacting_with, /obj/item/hilbertshotel))
 		return ..()
 	if(!interacting_with.IsReachableBy(user))
-		to_chat(user, span_warning("It's to far away to scan!"))
+		to_chat(user, span_warning("它离得太远，无法扫描！"))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/hilbertshotel/sphere = interacting_with
 	if(sphere.activeRooms.len)
-		to_chat(user, "Currently Occupied Rooms:")
+		to_chat(user, "当前占用房间：")
 		for(var/roomnumber in sphere.activeRooms)
 			to_chat(user, roomnumber)
 	else
-		to_chat(user, "No currenty occupied rooms.")
+		to_chat(user, "当前没有占用房间。")
 	if(sphere.storedRooms.len)
 		to_chat(user, "Vacated Rooms:")
 		for(var/roomnumber in sphere.storedRooms)
@@ -585,17 +585,17 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	tgui_icons = list("Ordnance" = "bullseye", "Office" = "user", "Dormitories" = "bed")
 
 /obj/item/keycard/hilbert
-	name = "Hilbert's office keycard"
-	desc = "A keycard with an engraving on it. The engraving reads: \"Hilbert\"."
+	name = "希尔伯特办公室的钥匙卡"
+	desc = "一张带有雕刻图案的门禁卡。上面的雕刻文字写着：“希尔伯特”。"
 	color = "#aa00cc"
 	puzzle_id = "hilbert_office"
 
 /obj/machinery/door/puzzle/keycard/hilbert
-	name = "secure airlock"
+	name = "高安全气闸"
 	puzzle_id = "hilbert_office"
 
 /datum/outfit/doctorhilbert
-	name = "Doctor Hilbert"
+	name = "医生希尔伯特"
 	id = /obj/item/card/id/advanced/silver
 	uniform = /obj/item/clothing/under/rank/rnd/research_director/doctor_hilbert
 	shoes = /obj/item/clothing/shoes/sneakers/brown
@@ -610,7 +610,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		hilbert.update_body()
 
 /obj/item/paper/crumpled/ruins/note_institute
-	name = "note to the institute"
+	name = "给研究所的说明"
 
 /obj/item/paper/crumpled/ruins/note_institute/Initialize(mapload)
 	default_raw_text = {"Note to the Institute<br>
@@ -623,7 +623,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	return ..()
 
 /obj/item/paper/crumpled/ruins/postdocs_memo
-	name = "memo to the postdocs"
+	name = "给博士后的备忘录"
 	default_raw_text = {"Memo to the Postdocs
 	Remember, if you're going in to retrieve the prototype for any reason (not that you should be without my supervision), that the security systems are always live- they have no shutoff.<br>
 	Instead, remember: what you can't see can't hurt you.<br>
@@ -631,7 +631,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	- David"}
 
 /obj/item/paper/crumpled/ruins/hotel_note
-	name = "hotel note"
+	name = "酒店提示"
 	default_raw_text = {"Hotel Note<br>
 	Well, you figured out the puzzle. Looks like someone's done their homework on my research.<br>
 	I suppose you deserve to know some more about our situation. Our research has attracted some undue attention and so, for our own safety, we've taken to the Bluespace.<br>
@@ -642,7 +642,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	- David"}
 
 /obj/item/paper/fluff/ruins/docslabnotes
-	name = "lab notebook page"
+	name = "实验记录页"
 	default_raw_text = {"Laboratory Notebook<br>
 	PROPERTY OF DOCTOR D. HILBERT<br>
 	May 10th, 2555<br>

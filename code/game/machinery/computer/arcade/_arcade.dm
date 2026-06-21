@@ -17,11 +17,11 @@
 	if(istype(tool, /obj/item/stack/arcadeticket))
 		var/obj/item/stack/arcadeticket/tickets = tool
 		if(!tickets.use(2))
-			balloon_alert(user, "need 2 tickets!")
+			balloon_alert(user, "需要2张票券！")
 			return ITEM_INTERACT_BLOCKING
 
 		prizevend(user)
-		balloon_alert(user, "prize claimed")
+		balloon_alert(user, "奖品已领取")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/key/displaycase) || istype(tool, /obj/item/access_key))
@@ -37,7 +37,7 @@
 		playsound(loc, 'sound/items/rattling_keys.ogg', 25, TRUE)
 		if(!do_after(user, 10 SECONDS, src))
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "cabinet reset")
+		balloon_alert(user, "机柜已重置")
 		reset_cabinet(user)
 		return ITEM_INTERACT_SUCCESS
 
@@ -101,7 +101,7 @@
 
 /obj/machinery/computer/arcade/proc/victory_tickets(tickets, sound = TRUE)
 	SEND_SIGNAL(src, COMSIG_ARCADE_VICTORY)
-	visible_message(span_notice("[src] dispenses [tickets] ticket\s!"))
+	visible_message(span_notice("[src] 吐出了 [tickets] 张ticket\s ！"))
 	new /obj/item/stack/arcadeticket((get_turf(src)), tickets)
 	if(sound)
 		playsound(loc, 'sound/machines/arcade/win.ogg', 40)

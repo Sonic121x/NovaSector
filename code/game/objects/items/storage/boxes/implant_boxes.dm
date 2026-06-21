@@ -1,6 +1,6 @@
 /obj/item/storage/box/trackimp
-	name = "boxed tracking implant kit"
-	desc = "Box full of scum-bag tracking utensils."
+	name = "盒装追踪植入物套件"
+	desc = "装满人渣追踪工具的小盒子。"
 	icon_state = "secbox"
 	illustration = "implant"
 
@@ -14,8 +14,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/minertracker
-	name = "boxed tracking implant kit"
-	desc = "For finding those who have died on the accursed lavaworld."
+	name = "盒装追踪植入物套件"
+	desc = "用于在受诅咒的熔岩世界寻找逝者。"
 	illustration = "implant"
 
 /obj/item/storage/box/minertracker/PopulateContents()
@@ -29,7 +29,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/minerdeathrattle
-	name = "boxed expeditionary deathrattle implant kit"
+	name = "盒装远征死亡警报植入物套件"
 	desc = "For realizing that your coworkers are dead instead of actively ignoring comms. Requires manual setup. \
 		Only works for deaths in raw Lavaland or Icemoon wastelands."
 	illustration = "implant"

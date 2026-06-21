@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/greentext //Gotta have it!
-	name = "Greentext"
+	name = "绿色文本"
 	weight = 4
 	typepath = /datum/round_event/wizard/greentext
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "The Green Text appears on the station, tempting people to try and pick it up."
+	description = "绿文出现在空间站上，诱惑人们去捡起它。"
 	min_wizard_trigger_potency = 5
 	max_wizard_trigger_potency = 7
 
@@ -23,7 +23,7 @@
 
 
 /obj/item/greentext
-	name = "greentext"
+	name = "绿色文本"
 	desc = "No one knows what this massive tome does, but it feels <i><font color='green'>desirable</font></i> all the same..."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/mining_zones/artefacts.dmi'

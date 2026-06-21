@@ -1,7 +1,7 @@
 /datum/surgery_operation/organ/lobotomy
-	name = "lobotomize"
+	name = "脑叶切除术"
 	rnd_name = "Lobotomy (Lobotomy)"
-	desc = "Repair most of a patient's brain traumas, with the risk of causing new permanent traumas."
+	desc = "修复病人大部分脑部创伤，但有引发新的永久性创伤的风险。"
 	rnd_desc = "An invasive surgical procedure which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
 	operation_flags = OPERATION_MORBID | OPERATION_AFFECTS_MOOD | OPERATION_LOCKED | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
@@ -20,7 +20,7 @@
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
 
 /datum/surgery_operation/organ/lobotomy/get_any_tool()
-	return "Any sharp edged item"
+	return "任何锋利的物品"
 
 /datum/surgery_operation/organ/lobotomy/tool_check(obj/item/tool)
 	// Require edged sharpness OR a tool behavior match
@@ -88,7 +88,7 @@
 			organ.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_MAGIC)
 
 /datum/surgery_operation/organ/lobotomy/mechanic
-	name = "execute neural defragging"
+	name = "执行神经碎片整理"
 	rnd_name = "Wetware OS Destructive Defragmentation (Lobotomy)"
 	implements = list(
 		TOOL_MULTITOOL = 1.15,

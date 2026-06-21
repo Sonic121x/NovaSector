@@ -1,9 +1,9 @@
 /datum/round_event_control/communications_blackout
-	name = "Communications Blackout"
+	name = "通信中断"
 	typepath = /datum/round_event/communications_blackout
 	weight = 30
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Heavily EMPs all telecommunication machines, blocking all communication for a while."
+	description = "对所有电信设备施加强电磁脉冲，暂时阻断所有通信。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 3
 
@@ -21,10 +21,10 @@
 
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list) //AIs are always aware of communication blackouts.
 		to_chat(A, "<br>[span_warning("<b>[alert]</b>")]<br>")
-		to_chat(A, span_notice("Remember, you can transmit over holopads by right clicking on them, and can speak through them with \".[/datum/saymode/holopad::key]\"."))
+		to_chat(A, span_notice("记住，你可以通过右键点击全息板进行传输，并且可以使用\"\".[/datum/saymode/holopad::key]\"\"通过它们说话。"))
 
 	if(prob(30) || fake) //most of the time, we don't want an announcement, so as to allow AIs to fake blackouts.
-		priority_announce(alert, "Anomaly Alert", sound = ANNOUNCER_COMMSBLACKOUT) //NOVA EDIT CHANGE - ORIGINAL: priority_announce(alert, "Anomaly Alert")
+		priority_announce(alert, "异常警报", sound = ANNOUNCER_COMMSBLACKOUT) //NOVA EDIT CHANGE - ORIGINAL: priority_announce(alert, "Anomaly Alert")
 
 
 /datum/round_event/communications_blackout/start()

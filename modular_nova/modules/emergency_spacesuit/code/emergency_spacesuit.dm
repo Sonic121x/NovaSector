@@ -5,8 +5,8 @@
 
 // The suit
 /obj/item/clothing/suit/space/emergency
-	name = "emergency space suit"
-	desc = "A fragile looking emergency spacesuit for limited use in space."
+	name = "应急太空服"
+	desc = "一套看起来脆弱的应急太空服，供在太空中有限使用。"
 	icon_state = "syndicate-orange"
 	inhand_icon_state = "syndicate-orange"
 	heat_protection = NONE
@@ -46,18 +46,18 @@
 /obj/item/clothing/suit/space/emergency/update_name(updates)
 	. = ..()
 	if(torn)
-		name = "torn [src]"
+		name = "破损的[src]"
 
 /obj/item/clothing/suit/space/emergency/examine(mob/user)
 	. = ..()
 	if(torn)
-		. += span_danger("It looks torn and useless!")
+		. += span_danger("它看起来破损且无用了！")
 
 
 // The helmet
 /obj/item/clothing/head/helmet/space/emergency
-	name = "emergency space helmet"
-	desc = "A fragile looking emergency spacesuit helmet for limited use in space."
+	name = "应急太空头盔"
+	desc = "一个看起来脆弱的应急太空服头盔，供在太空中有限使用。"
 	icon_state = "syndicate-helm-orange"
 	inhand_icon_state = "syndicate-helm-orange"
 	heat_protection = NONE
@@ -75,8 +75,8 @@
 // Lil box to hold em in
 
 /obj/item/storage/box/emergency_spacesuit
-	name = "emergency space suit case"
-	desc =  "A small case containing an emergency space suit and helmet."
+	name = "应急太空服箱"
+	desc =  "一个小箱子，内含一套应急太空服和头盔。"
 	icon = 'modular_nova/modules/more_briefcases/icons/briefcases.dmi'
 	icon_state = "briefcase_suit"
 	illustration = null

@@ -1,8 +1,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 /obj/machinery/hydroponics/soil //Not actually hydroponics at all! Honk!
-	name = "soil"
-	desc = "A patch of dirt."
+	name = "土壤"
+	desc = "一块泥土。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "soil"
 	circuit = null
@@ -33,9 +33,9 @@
 /obj/machinery/hydroponics/soil/attackby_secondary(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	if(weapon.tool_behaviour != TOOL_SHOVEL) //Spades can still uproot plants on left click
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	balloon_alert(user, "digging up soil...")
+	balloon_alert(user, "正在挖掘土壤...")
 	if(weapon.use_tool(src, user, 3 SECONDS, volume=50))
-		balloon_alert(user, "bagged")
+		balloon_alert(user, "已装袋")
 		new sack_type(loc, src) //The bag handles sucking up the soil, stopping processing and setting relevants stats.
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -61,7 +61,7 @@
 /////////////// Advanced Soils //////////////
 
 /obj/machinery/hydroponics/soil/vermaculite
-	name = "vermaculite growing medium"
+	name = "蛭石生长基质"
 	desc = "A plant bed made of light, expanded mineral granules.\n\nThe plant health benefits from the high degree of soil aeration is especially useful for when propagating grafts."
 	icon_state = "soil_verm"
 	maxnutri = 20
@@ -70,7 +70,7 @@
 	sack_type = /obj/item/soil_sack/vermaculite
 
 /obj/machinery/hydroponics/soil/gel
-	name = "hydrogel beads"
+	name = "水凝胶珠"
 	desc = "A plant bed made of superabsorbent polymer beads.\n\nThese types of water gel beads can hold onto an incredible amount of water and reduces evaporative losses to almost nothing."
 	icon_state = "soil_gel"
 	gender = PLURAL
@@ -80,7 +80,7 @@
 	sack_type = /obj/item/soil_sack/gel
 
 /obj/machinery/hydroponics/soil/coir
-	name = "korta root coir"
+	name = "科塔根椰壳纤维"
 	desc = "A type of traditional growing medium from Tizira.\n\nUsed by the natives as a resourceful way to cultivate seraka mushrooms using waste korta roots.\nMushrooms of all kinds thrive due to the high organic content enabling them to mature faster."
 	icon_state = "soil_coir"
 	maxnutri = 20
@@ -88,7 +88,7 @@
 	sack_type = /obj/item/soil_sack/coir
 
 /obj/machinery/hydroponics/soil/worm
-	name = "worm castings"
+	name = "蚯蚓粪"
 	desc = "A type of compost created when the humble worm dutifully works the soil.\n\nIt is packed with nutrients unlocked by said creatures digestive system. Give thanks to the worm!"
 	icon_state = "soil_worm"
 	maxnutri = 35
@@ -102,8 +102,8 @@
 	flick("soil_worm_wiggle", src)
 
 /obj/machinery/hydroponics/soil/rich
-	name = "rich soil"
-	desc = "A rich patch of dirt, usually used in gardens."
+	name = "沃土"
+	desc = "一块肥沃的泥土，通常用于花园。"
 	icon_state = "rich_soil"
 	maxnutri = 20
 	sack_type = /obj/item/soil_sack/rich
@@ -111,8 +111,8 @@
 /////////////////// Soil Sacks ///////////////////////
 /// Holder items that store the soils until deployed.
 /obj/item/soil_sack
-	name = "soil sack"
-	desc = "A large plastic bag containing commercial garden soil. It is packed with sand, peat and manure. While you might not care much for such mixture, the plants have strange tastes."
+	name = "土壤袋"
+	desc = "一个装有商用园艺土壤的大型塑料袋。里面装满了沙子、泥炭和粪肥。虽然你可能不太在意这种混合物，但植物的口味就是这么奇怪。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "soil_sack"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
@@ -161,7 +161,7 @@
 		return ..()
 
 	if(locate(/obj/machinery/hydroponics/soil) in interacting_with)
-		to_chat(user, span_alert("There is already a bed of soil there!"))
+		to_chat(user, span_alert("那里已经有一块土壤种植床了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!do_after(user, 1 SECONDS, interacting_with))
@@ -213,7 +213,7 @@
 
 
 /obj/item/soil_sack/vermaculite
-	name = "NT vermaculite sack"
+	name = "纳米传讯蛭石袋"
 	desc = "A sack of expanded mineral granules that can be used as soilless growing medium.\n\nYou like to think of it a bag of rocky popcorn that lets the roots breathe."
 	icon_state = "soil_sack_verm"
 	base_icon_state = "soil_sack_verm"
@@ -222,8 +222,8 @@
 	slowdown = 0
 
 /obj/item/soil_sack/gel
-	name = "hydrogel bead sack"
-	desc = "A sack of space age superabsorbent gel beads! You wonder how shipping them prehydrated would ever make business sense..."
+	name = "水凝胶珠袋"
+	desc = "一袋太空时代的超吸收性凝胶珠！你很好奇把它们预水化后运输怎么还能有商业意义……"
 	icon_state = "soil_sack_gel"
 	base_icon_state = "soil_sack_gel"
 	custom_premium_price = PAYCHECK_CREW * 2
@@ -231,7 +231,7 @@
 	stored_soil = /obj/machinery/hydroponics/soil/gel
 
 /obj/item/soil_sack/coir
-	name = "#1™ korta coir sack"
+	name = "#1™ 科塔椰壳纤维袋"
 	desc = "A sack of Tiziran korta root coir. The fiberous roots are composted until they separate into individual fibres.\n\nProvides an excellent food source for saprotrophic mushrooms and helps hold onto water in the hot Tizirian climate."
 	icon_state = "soil_sack_coir"
 	base_icon_state = "soil_sack_coir"
@@ -239,7 +239,7 @@
 	stored_soil = /obj/machinery/hydroponics/soil/coir
 
 /obj/item/soil_sack/worm
-	name = "worm castings sack"
+	name = "蚯蚓粪袋"
 	desc = "A sack of vermicompost, also known as worm castings.\n\nThis invertebrate manure not only contains plant nutrients and undigested organic matter, it also harbours a rich flora of beneficial microorganisms."
 	icon_state = "soil_sack_worm"
 	base_icon_state = "soil_sack_worm"
@@ -247,7 +247,7 @@
 	stored_soil = /obj/machinery/hydroponics/soil/worm
 
 /obj/item/soil_sack/rich
-	name = "rich soil sack"
+	name = "沃土袋"
 	desc = "A sack of rich black soil.\nAs your gaze falls upon it, you feel a bit more connected to the land."
 	custom_premium_price = PAYCHECK_CREW * 1.5
 	stored_soil = /obj/machinery/hydroponics/soil/rich

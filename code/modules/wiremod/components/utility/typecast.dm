@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/typecast
 	display_name = "Typecast"
-	desc = "A component that casts a value to a type if it matches or outputs null."
+	desc = "一种组件，如果输入值与指定类型匹配，则将其转换为该类型；否则输出“null”。"
 	category = "Utility"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

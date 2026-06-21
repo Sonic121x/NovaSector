@@ -40,7 +40,7 @@
 	SIGNAL_HANDLER
 
 	if(parent in view(user.client?.view || world.view, user))
-		examine_list += span_notice("\The [hanging_support_atom] is currently supporting [span_bold("\the [parent]")]. Deconstruction or excessive damage would cause it to [span_bold("fall to the ground")].")
+		examine_list += span_notice("\The [hanging_support_atom] 目前正支撑着 [span_bold("\the [parent]")]。拆除或过度损坏会导致它 [span_bold("fall to the ground")]。")
 
 /// When the type of turf changes, if it is changing into a floor we should drop our contents
 /datum/component/atom_mounted/proc/on_turf_changing(turf/source, path, new_baseturfs, flags, post_change_callbacks)
@@ -101,7 +101,7 @@
 	PRIVATE_PROC(TRUE)
 
 	var/obj/hanging_parent = parent
-	hanging_parent.visible_message(message = span_warning("\The [hanging_parent] falls apart!"), vision_distance = 5)
+	hanging_parent.visible_message(message = span_warning("\The [hanging_parent]散架了！"), vision_distance = 5)
 	hanging_parent.deconstruct(FALSE)
 
 /// Returns a list of potential turfs to mount on. This should not check if those turfs are valid but only locate them

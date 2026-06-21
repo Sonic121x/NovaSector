@@ -1,5 +1,5 @@
 /obj/item/ammo_box/magazine/internal/cylinder
-	name = "revolver cylinder"
+	name = "左轮弹巢"
 	ammo_type = /obj/item/ammo_casing/c357
 	caliber = CALIBER_357
 	max_ammo = 7

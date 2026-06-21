@@ -5,7 +5,7 @@ Assistant
 */
 /datum/job/assistant
 	title = JOB_ASSISTANT
-	description = "Get your space legs, assist people, ask the HoP to give you a job."
+	description = "适应太空生活，协助他人，向人事主管申请一份工作。"
 	faction = FACTION_STATION
 	total_positions = 5
 	spawn_positions = 5
@@ -86,7 +86,7 @@ Assistant
 		uniform = GLOB.colored_assistant.jumpskirts[index]
 
 /datum/outfit/job/assistant/consistent
-	name = "Assistant - Consistent"
+	name = "助手 - 固定"
 
 /datum/outfit/job/assistant/consistent/give_holiday_hat(mob/living/carbon/human/target)
 	return
@@ -103,7 +103,7 @@ Assistant
 		H.update_worn_undersuit()
 
 /datum/outfit/job/assistant/preview
-	name = "Assistant - Preview"
+	name = "助手 - 预览"
 
 /datum/outfit/job/assistant/preview/give_jumpsuit(mob/living/carbon/human/target)
 	if (target.jumpsuit_style == PREF_SUIT)

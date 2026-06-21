@@ -1,8 +1,8 @@
 /obj/structure/blob/shield
-	name = "strong blob"
+	name = "强健孢子"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blob_shield"
-	desc = "A solid wall of slightly twitching tendrils."
+	desc = "一堵由微微抽动的卷须构成的坚实的墙。"
 	var/damaged_desc = "A wall of twitching tendrils."
 	max_integrity = BLOB_STRONG_MAX_HP
 	health_regen = BLOB_STRONG_HP_REGEN
@@ -48,8 +48,8 @@
 	return ..()
 
 /obj/structure/blob/shield/reflective
-	name = "reflective blob"
-	desc = "A solid wall of slightly twitching tendrils with a reflective glow."
+	name = "反射孢子"
+	desc = "一堵由微微抽动的卷须构成的坚实的墙，散发着反射的光晕。"
 	damaged_desc = "A wall of twitching tendrils with a reflective glow."
 	icon_state = "blob_glow"
 	flags_ricochet = RICOCHET_SHINY

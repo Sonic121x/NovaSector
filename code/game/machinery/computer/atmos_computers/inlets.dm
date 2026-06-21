@@ -11,78 +11,78 @@
 	icon_state = "inje_map-4"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/plasma_input
-	name = "plasma tank input injector"
+	name = "等离子气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/oxygen_input
-	name = "oxygen tank input injector"
+	name = "氧气气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/nitrogen_input
-	name = "nitrogen tank input injector"
+	name = "氮气气瓶气体传感器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/mix_input
-	name = "mix tank input injector"
+	name = "混合罐输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/nitrous_input
-	name = "nitrous oxide tank input injector"
+	name = "一氧化二氮罐输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/air_input
-	name = "air mix tank input injector"
+	name = "空气混合罐输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/carbon_input
-	name = "carbon dioxide tank input injector"
+	name = "二氧化碳罐输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/bz_input
-	name = "bz tank input injector"
+	name = "bz气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/freon_input
-	name = "freon tank input injector"
+	name = "氟利昂气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/halon_input
-	name = "halon tank input injector"
+	name = "哈龙气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/healium_input
-	name = "healium tank input injector"
+	name = "疗气气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/hydrogen_input
-	name = "hydrogen tank input injector"
+	name = "氢气气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/hypernoblium_input
-	name = "hypernoblium tank input injector"
+	name = "超铌气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/miasma_input
-	name = "miasma tank input injector"
+	name = "瘴气气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/nitrium_input
-	name = "nitrium tank input injector"
+	name = "亚硝基兴奋气气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/pluoxium_input
-	name = "pluoxium tank input injector"
+	name = "钚罗索仑气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/proto_nitrate_input
-	name = "proto-nitrate tank input injector"
+	name = "原硝酸气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/tritium_input
-	name = "tritium tank input injector"
+	name = "氚气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/water_vapor_input
-	name = "water vapor tank input injector"
+	name = "水蒸气罐输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/zauker_input
-	name = "zauker tank input injector"
+	name = "祖克气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/helium_input
-	name = "helium tank input injector"
+	name = "疗气气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/antinoblium_input
-	name = "antinoblium tank input injector"
+	name = "反铌气瓶输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/incinerator_input
-	name = "incinerator chamber input injector"
+	name = "焚烧室输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/ordnance_burn_chamber_input
 	on = FALSE
-	name = "ordnance burn chamber input injector"
+	name = "军械燃烧室输入喷注器"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/ordnance_freezer_chamber_input
 	on = FALSE
-	name = "ordnance freezer chamber input injector"
+	name = "军械冷冻室输入喷注器"

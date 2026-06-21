@@ -1,5 +1,5 @@
 /datum/station_trait/carp_infestation
-	name = "Carp infestation"
+	name = "鲤鱼侵扰"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -7,7 +7,7 @@
 	trait_to_give = STATION_TRAIT_CARP_INFESTATION
 
 /datum/station_trait/distant_supply_lines
-	name = "Distant supply lines"
+	name = "遥远补给线"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	show_in_report = TRUE
@@ -19,7 +19,7 @@
 
 ///A negative trait that stops mail from arriving (or the inverse if on holiday). It also enables a specific shuttle loan situation.
 /datum/station_trait/mail_blocked
-	name = "Postal workers strike"
+	name = "邮政工人罢工"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
@@ -28,7 +28,7 @@
 /datum/station_trait/mail_blocked/on_round_start()
 	//This is either a holiday or Sunday... well then, let's flip the situation.
 	if(SSeconomy.mail_blocked)
-		name = "Postal system overtime"
+		name = "邮政系统加班"
 		report_message = "Despite being a day off, the postal system is working overtime today. Mail will be delivered this shift."
 	else
 		var/datum/round_event_control/shuttle_loan/our_event = locate() in SSevents.control
@@ -42,7 +42,7 @@
 	return ..()
 
 /datum/station_trait/late_arrivals
-	name = "Late Arrivals"
+	name = "迟到抵达"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
@@ -51,7 +51,7 @@
 	blacklist = list(/datum/station_trait/random_spawns, /datum/station_trait/hangover)
 
 /datum/station_trait/random_spawns
-	name = "Drive-by landing"
+	name = "飞掠式着陆"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
@@ -60,7 +60,7 @@
 	blacklist = list(/datum/station_trait/late_arrivals, /datum/station_trait/hangover)
 
 /datum/station_trait/hangover
-	name = "Hangover"
+	name = "宿醉"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
@@ -97,7 +97,7 @@
 
 
 /datum/station_trait/blackout
-	name = "Blackout"
+	name = "停电"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	show_in_report = TRUE
@@ -110,7 +110,7 @@
 			apc.overload_lighting()
 
 /datum/station_trait/empty_maint
-	name = "Cleaned out maintenance"
+	name = "清空维护通道"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW //Most of maints is literal trash anyway
@@ -123,7 +123,7 @@
 	can_revert = FALSE
 
 /datum/station_trait/overflow_job_bureaucracy
-	name = "Overflow bureaucracy mistake"
+	name = "溢出官僚主义失误"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -144,7 +144,7 @@
 	UnregisterSignal(SSjob, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
 /datum/station_trait/slow_shuttle
-	name = "Slow Shuttle"
+	name = "慢速穿梭机"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -161,7 +161,7 @@
 	UnregisterSignal(SSshuttle, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
 /datum/station_trait/bot_languages
-	name = "Bot Language Matrix Malfunction"
+	name = "机器人语言矩阵故障"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 4
 	cost = STATION_TRAIT_COST_LOW
@@ -182,7 +182,7 @@
 		found_bot.randomize_language_if_on_station()
 
 /datum/station_trait/machine_languages
-	name = "Machine Language Matrix Malfunction"
+	name = "机器语言矩阵故障"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	cost = STATION_TRAIT_COST_FULL
@@ -198,7 +198,7 @@
 	report_message = "Your station's machinery have had their language matrix fried due to [event_source], resulting in some strange and unfamiliar speech patterns."
 
 /datum/station_trait/revenge_of_pun_pun
-	name = "Revenge of Pun Pun"
+	name = "Pun Pun的复仇"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	cost = STATION_TRAIT_COST_LOW
@@ -293,7 +293,7 @@
 
 // Abstract station trait used for traits that modify a random event in some way (their weight or max occurrences).
 /datum/station_trait/random_event_weight_modifier
-	name = "Random Event Modifier"
+	name = "随机事件修正器"
 	report_message = "A random event has been modified this shift! Someone forgot to set this!"
 	show_in_report = TRUE
 	abstract_type = /datum/station_trait/random_event_weight_modifier
@@ -316,7 +316,7 @@
 	modified_event.max_occurrences += max_occurrences_modifier
 
 /datum/station_trait/random_event_weight_modifier/ion_storms
-	name = "Ionic Stormfront"
+	name = "离子风暴前沿"
 	report_message = "An ionic stormfront is passing over your station's system. Expect an increased likelihood of ion storms afflicting your station's silicon units."
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
@@ -329,7 +329,7 @@
 	return advisory_string
 
 /datum/station_trait/random_event_weight_modifier/rad_storms
-	name = "Radiation Stormfront"
+	name = "辐射风暴前沿"
 	report_message = "A radioactive stormfront is passing through your station's system. Expect an increased likelihood of radiation storms passing over your station, as well the potential for multiple radiation storms to occur during your shift."
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
@@ -338,7 +338,7 @@
 	max_occurrences_modifier = 2
 
 /datum/station_trait/random_event_weight_modifier/dust_storms
-	name = "Dust Stormfront"
+	name = "尘暴锋面"
 	report_message = "The space around your station is clouded by heavy pockets of space dust. Expect an increased likelihood of space dust storms damaging the station hull."
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
@@ -348,7 +348,7 @@
 	max_occurrences_modifier = 3
 
 /datum/station_trait/cramped_escape_pods
-	name = "Cramped Escape Pods"
+	name = "拥挤的逃生舱"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -357,7 +357,7 @@
 	blacklist = list(/datum/station_trait/luxury_escape_pods)
 
 /datum/station_trait/revolutionary_trashing
-	name = "Post-Revolutionary Fervor"
+	name = "后革命狂热"
 	show_in_report = TRUE
 	report_message = "Your station was recently reclaimed from a revolutionary commune. We couldn't clean up after them in time."
 	trait_type = STATION_TRAIT_NEGATIVE
@@ -468,7 +468,7 @@
 
 ///Station traits that influence the space background and apply some unique effects!
 /datum/station_trait/nebula
-	name = "Nebula"
+	name = "星云"
 	abstract_type = /datum/station_trait/nebula
 	weight = 0
 
@@ -561,7 +561,7 @@
 
 ///The station will be inside a radioactive nebula! Space is radioactive and the station needs to start setting up nebula shielding
 /datum/station_trait/nebula/hostile/radiation
-	name = "Radioactive Nebula"
+	name = "放射性星云"
 	trait_type = STATION_TRAIT_NEGATIVE
 	trait_flags = STATION_TRAIT_SPACE_BOUND //maybe when we can LOOK UP
 	weight = 1
@@ -750,7 +750,7 @@
 
 /// Calls down an eternal storm on planetary stations
 /datum/station_trait/storm/foreverstorm
-	name = "Forever Storm"
+	name = "永恒风暴"
 	trait_type = STATION_TRAIT_NEGATIVE
 	trait_flags = STATION_TRAIT_PLANETARY
 	weight = 3
@@ -764,7 +764,7 @@
 	return advisory_string
 
 /datum/station_trait/spiked_drinks
-	name = "Spiked Drinks"
+	name = "加料饮品"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	cost = STATION_TRAIT_COST_LOW
@@ -773,7 +773,7 @@
 	trait_to_give = STATION_TRAIT_SPIKED_DRINKS
 
 /datum/station_trait/structural_weakness
-	name = "Structural Weaknesses"
+	name = "结构弱点"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE

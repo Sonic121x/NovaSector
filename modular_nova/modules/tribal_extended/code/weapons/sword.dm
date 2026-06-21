@@ -1,6 +1,6 @@
 /obj/item/claymore/bone
-	name = "bone sword"
-	desc = "Jagged pieces of bone are tied to what looks like a goliaths femur."
+	name = "骨剑"
+	desc = "锯齿状的骨片被绑在看起来像是歌利亚兽股骨的东西上。"
 	icon = 'modular_nova/modules/tribal_extended/icons/items_and_weapons.dmi'
 	lefthand_file = 'modular_nova/modules/tribal_extended/icons/swords_lefthand.dmi'
 	righthand_file = 'modular_nova/modules/tribal_extended/icons/swords_righthand.dmi'

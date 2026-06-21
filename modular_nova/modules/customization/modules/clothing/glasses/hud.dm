@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/hud/eyepatch
-	name = "HUD eyepatch"
-	desc = "A HUD designed to interface directly with optical nerves. This one is broken."
+	name = "HUD眼罩"
+	desc = "一种设计用于直接与视神经接口的HUD。这个是坏的。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/eyes.dmi'
 	icon_state = "hudpatch"
@@ -62,8 +62,8 @@ End of the copy-paste.
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/clothing/glasses/hud/eyepatch/med
-	name = "medical HUD eyepatch"
-	desc = "A HUD designed to interface directly with optical nerves. This one scans humanoids in view and provides accurate data about their health status."
+	name = "医疗HUD眼罩"
+	desc = "一种设计用于直接与视神经接口的HUD。这个会扫描视野内的人形生物，并提供关于其健康状况的准确数据。"
 	icon_state = "medpatch"
 	base_icon_state = "medpatch"
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
@@ -71,8 +71,8 @@ End of the copy-paste.
 
 
 /obj/item/clothing/glasses/hud/eyepatch/meson
-	name = "mesons HUD eyepatch"
-	desc = "A HUD designed to interface directly with optical nerves. This one displays basic structural and terrain layouts through walls, regardless of lighting conditions."
+	name = "介子扫描HUD眼罩"
+	desc = "一种设计用于直接与视神经接口的HUD。这一款能够无视光照条件，显示墙壁后方的基本结构和地形布局。"
 	icon_state = "mesonpatch"
 	base_icon_state = "mesonpatch"
 	clothing_traits = list(TRAIT_MADNESS_IMMUNE)
@@ -83,16 +83,16 @@ End of the copy-paste.
 	actions_types = list(/datum/action/item_action/flip)
 
 /obj/item/clothing/glasses/hud/eyepatch/diagnostic
-	name = "diagnostic HUD eyepatch"
-	desc = "A HUD designed to interface directly with optical nerves. This one analyzes the integrity and status of robotics and exosuits."
+	name = "诊断HUD眼罩"
+	desc = "一种设计用于直接与视神经接口的HUD。这一款用于分析机器人和外骨骼的完整性与状态。"
 	icon_state = "robopatch"
 	base_icon_state = "robopatch"
 	clothing_traits = list(TRAIT_DIAGNOSTIC_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
 
 /obj/item/clothing/glasses/hud/eyepatch/sci
-	name = "science HUD eyepatch"
-	desc = "A HUD designed to interface directly with optical nerves. This one is fitted with an analyzer for scanning items and reagents."
+	name = "科研HUD眼罩"
+	desc = "一种设计用于直接与视神经接口的HUD。这一款配备了用于扫描物品和试剂的分析仪。"
 	icon_state = "scipatch"
 	base_icon_state = "scipatch"
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
@@ -100,8 +100,8 @@ End of the copy-paste.
 
 /// BLINDFOLD HUD (Used with NIF upgrade)///
 /obj/item/clothing/glasses/trickblindfold/obsolete
-	name = "obsolete fake blindfold"
-	desc = "An ornate fake blindfold, devoid of any electronics. It's belived to be originally worn by members of bygone military force that sought to protect humanity."
+	name = "过时的假眼罩"
+	desc = "一个华丽的假眼罩，没有任何电子元件。据信最初是由一支致力于保护人类的昔日军事力量的成员佩戴的。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/eyes.dmi'
 	icon_state = "obsoletefold"

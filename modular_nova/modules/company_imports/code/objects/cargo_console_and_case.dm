@@ -5,6 +5,6 @@
 	var/datum/bank_account/department/department_account
 
 /obj/structure/closet/crate/large/import
-	name = "heavy-duty wooden crate"
+	name = "重型木箱"
 	icon = 'modular_nova/modules/company_imports/icons/import_crate.dmi'
 	material_drop_amount = 0

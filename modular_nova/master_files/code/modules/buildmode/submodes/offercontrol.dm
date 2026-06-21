@@ -14,7 +14,7 @@
 	var/mob/living/mob_to_offer = object
 
 	if(mob_to_offer.key)
-		var/response = tgui_alert(target_client, "This mob already has a ckey attached, continue?", "Mob already posessed!", list("Continue", "Cancel"))
+		var/response = tgui_alert(target_client, "这个生物已关联一个ckey，要继续吗？", "生物已被占据！", list("Continue", "Cancel"))
 		if(response != "Continue")
 			return
 

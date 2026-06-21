@@ -121,8 +121,8 @@
 
 /// Unlockable (or forced) skins
 /obj/item/crusher_trophy/retool_kit
-	name = "crusher retool kit"
-	desc = "A toolkit for changing the crusher's appearance without affecting the device's function."
+	name = "粉碎机改装工具包"
+	desc = "一套用于改变粉碎机外观而不影响其功能的工具包。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "retool_kit"
 	denied_type = /obj/item/crusher_trophy/retool_kit
@@ -145,8 +145,8 @@
 	return ..()
 
 /obj/item/crusher_trophy/retool_kit/ashenskull
-	name = "ashen skull"
-	desc = "It burns with the flame of the necropolis, whispering in your ear. It demands to be bound to a suitable weapon."
+	name = "灰烬颅骨"
+	desc = "它燃烧着死城的火焰，在你耳边低语。它要求被绑定到一件合适的武器上。"
 	icon_state = "retool_kit_skull"
 	forced_skin = /datum/atom_skin/crusher_skin/locked/ashen_skull
 

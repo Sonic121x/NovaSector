@@ -54,7 +54,7 @@
 
 	if(iscyborg(defibber))
 		if(defibber.flash_act(affect_silicon = TRUE))
-			to_chat(defibber, span_userdanger("[changeling] awakens suddenly, overloading your sensors!"))
+			to_chat(defibber, span_userdanger("[changeling] 突然苏醒，过载了你的传感器！"))
 			// run default visible message regardless, no overt indication of the cyborg being overloaded to watchers
 
 	else
@@ -77,13 +77,13 @@
 				defibber.emote("scream")
 
 				changeling.visible_message(
-					span_bolddanger("[changeling] awakens suddenly, snatching [defib] out of [defibber]'s hands while ripping off [removed_arms >= 2 ? "" : "one of "][defibber.p_their()] arms!"),
+					span_bolddanger("[changeling] 突然苏醒，从 [defib] 手中夺走 [defibber] 并扯下了 [removed_arms >= 2 ? "" : "one of "][defibber.p_their()] 手臂！"),
 					vision_distance = COMBAT_MESSAGE_RANGE,
 					ignored_mobs = list(changeling, defibber),
 				)
 				to_chat(changeling, span_changeling("The power of [defib] course through us, reviving us from our stasis! \
 					With this newfound energy, we snap [removed_arms >= 2 ? "" : "one of "][defibber]'s arms off!"))
-				to_chat(defibber, span_userdanger("[changeling] awakens suddenly, snapping [removed_arms >= 2 ? "" : "one of "]your arms off!"))
+				to_chat(defibber, span_userdanger("[changeling] 突然苏醒，扯断了 [removed_arms >= 2 ? "" : "one of "]你的手臂！"))
 				return // no default message if we got an arm
 
 	changeling.visible_message(
@@ -91,4 +91,4 @@
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		ignored_mobs = changeling,
 	)
-	to_chat(changeling, span_changeling("The power of [defib] course through us, reviving us from our stasis!"))
+	to_chat(changeling, span_changeling("[defib] 的力量流经我们，将我们从静滞中唤醒！"))

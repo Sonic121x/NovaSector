@@ -1,7 +1,7 @@
 
 /obj/item/melee/sickly_blade
 	name = "\improper sickly blade"
-	desc = "A sickly green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
+	desc = "一弯病态的绿色新月形刀刃，饰以一只眼睛。你感觉自己好像被人注视着……"
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "eldritch_blade"
 	inhand_icon_state = "eldritch_blade"
@@ -58,7 +58,7 @@
 	if(heretic_datum?.unlimited_blades)
 		return
 	if(HAS_TRAIT(user, TRAIT_ELDRITCH_ARENA_PARTICIPANT))
-		user.balloon_alert(user, "can't escape!")
+		user.balloon_alert(user, "无法逃脱！")
 		if(escape_attempts > 2)
 			to_chat(user, span_hypnophrase(span_big("Cowardly sheep will be slaughtered!")))
 			playsound(src, SFX_SHATTER, 70, TRUE)
@@ -71,7 +71,7 @@
 		escape_timer = addtimer(CALLBACK(src, PROC_REF(reset_attempts)), 2 SECONDS, TIMER_STOPPABLE)
 		return
 	if(HAS_TRAIT(user, TRAIT_NO_TELEPORT))
-		user.balloon_alert(user, "can't break!")
+		user.balloon_alert(user, "无法破坏！")
 		return
 	seek_safety(user)
 
@@ -154,7 +154,7 @@
 // Path of the Blade's... blade.
 // Opting for /dark instead of /blade to avoid "sickly_blade/blade".
 /obj/item/melee/sickly_blade/dark
-	name = "\improper sundered blade"
+	name = "\improper 割裂刀"
 	desc = "A galliant blade, sundered and torn. \
 		Furiously, the blade cuts. Silver scars bind it forever to its dark purpose."
 	icon_state = "dark_blade"
@@ -187,7 +187,7 @@
 	// We're officially behind them, apply effects
 	living_target.AdjustParalyzed(1.5 SECONDS)
 	living_target.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
-	living_target.balloon_alert(user, "backstab!")
+	living_target.balloon_alert(user, "背刺！")
 	playsound(living_target, 'sound/items/weapons/guillotine.ogg', 100, TRUE)
 
 /obj/item/melee/sickly_blade/dark/dropped(mob/user, silent)
@@ -311,7 +311,7 @@
 
 // Weaker blade variant given to people so they can participate in the heretic arena spell
 /obj/item/melee/sickly_blade/training
-	name = "\improper imperfect blade"
+	name = "\improper 不完美之刃"
 	desc = "A blade given to those who cannot accept the truth, out of pity. \
 		May it act as a blessing in the short time it remains alongside you."
 	force = 17

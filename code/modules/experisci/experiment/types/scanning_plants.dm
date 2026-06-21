@@ -1,6 +1,6 @@
 /datum/experiment/scanning/random/plants
-	name = "Botanical Scanning Experiment"
-	description = "Base experiment for scanning edible plant biomass."
+	name = "植物扫描实验"
+	description = "扫描可食用植物生物质的基础实验。"
 	exp_tag = "Plant Biomatter Scan"
 	total_requirement = 1
 	possible_types = list(/obj/item/food/grown)

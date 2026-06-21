@@ -1,7 +1,7 @@
 /// Base pouch type. Fits in pockets, as its main gimmick.
 /obj/item/storage/pouch
-	name = "storage pouch"
-	desc = "It's a nondescript pouch made with dark fabric. It has a clip, for fitting in pockets."
+	name = "储物袋"
+	desc = "这是一个用深色织物制成的普通小袋。它有一个夹子，可以固定在口袋里。"
 	icon = 'modular_nova/modules/modular_items/icons/storage.dmi'
 	icon_state = "survival"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -31,8 +31,8 @@
 	apply_to.create_storage(storage_type = /datum/storage/casing_pouch)
 
 /obj/item/storage/pouch/ammo
-	name = "ammo pouch"
-	desc = "A pouch for your ammo that goes in your pocket."
+	name = "弹药袋"
+	desc = "一个可以放进口袋的弹药袋。"
 	icon = 'modular_nova/modules/modular_items/icons/storage.dmi'
 	icon_state = "ammopouch"
 	w_class = WEIGHT_CLASS_BULKY
@@ -66,8 +66,8 @@
 	set_holdable(list(/obj/item/ammo_casing))
 
 /obj/item/storage/pouch/material
-	name = "material pouch"
-	desc = "A pouch for sheets and RCD ammunition that manages to hang where you would normally put things in your pocket."
+	name = "材料袋"
+	desc = "一个用于存放板材和RCD弹药的口袋袋，它能挂在您通常放东西的口袋位置。"
 	icon = 'modular_nova/modules/modular_items/icons/storage.dmi'
 	icon_state = "materialpouch"
 	w_class = WEIGHT_CLASS_BULKY
@@ -89,8 +89,8 @@
 
 /// It's a pocket medkit. Use sparingly?
 /obj/item/storage/pouch/medical
-	name = "medkit pouch"
-	desc = "A standard medkit pouch compartmentalized for field medical care. Comes with a set of pocket clips."
+	name = "医疗包袋"
+	desc = "一个为野战医疗护理而分隔的标准医疗包袋。配有一套口袋夹。"
 	resistance_flags = FIRE_PROOF
 	icon_state = "medkit"
 	storage_type = /datum/storage/pouch/medical
@@ -127,7 +127,7 @@
 	))
 
 /obj/item/storage/pouch/medical/loaded
-	desc = parent_type::desc + " Repackaged with station-standard medical supplies."
+	desc = parent_type::desc + "已重新包装了空间站标准医疗用品。"
 
 /obj/item/storage/pouch/medical/loaded/PopulateContents()
 	generate_items_inside(list(
@@ -140,8 +140,8 @@
 
 /// It's... not as egregious as a full pocket medkit.
 /obj/item/storage/pouch/medical/firstaid
-	name = "first aid pouch"
-	desc = "A standard nondescript first-aid pouch, compartmentalized for the bare essentials of field medical care. Comes with a pocket clip."
+	name = "急救袋"
+	desc = "一个标准的普通急救袋，为野战医疗护理的基本必需品进行了分隔。配有一个口袋夹。"
 	icon_state = "firstaid"
 	storage_type = /datum/storage/pouch/medical/small
 

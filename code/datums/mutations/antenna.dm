@@ -118,7 +118,7 @@
 	var/list/discovered_info = list("<i>You plunge into [cast_on]'s mind and discover...</i>")
 	if(prob(20))
 		// chance to alert the read-ee
-		to_chat(cast_on, span_danger("You feel something foreign enter your mind."))
+		to_chat(cast_on, span_danger("你感觉到有异物侵入了你的意识。"))
 		log_info += "Target alerted!"
 
 	var/list/recent_speech = cast_on.copy_recent_speech(copy_amount = 3, line_chance = 50)

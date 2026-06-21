@@ -1,7 +1,7 @@
 //Not a maid, yeah. I dont care, it's going with the other lewd stuff, and there WONT be a whole new file just for it.
 /obj/item/clothing/under/costume/bunnylewd
-	name = "bunny suit"
-	desc = "A pin-up staple."
+	name = "兔女郎装"
+	desc = "一款经典的性感装扮。"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi'
 	greyscale_colors = "#383840#FFFFFF"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
@@ -17,7 +17,7 @@
 
 
 /obj/item/clothing/under/costume/bunnylewd/white
-	name = "white bunny suit"
+	name = "白色兔女郎装"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_uniform.dmi'
 	icon_state = "whitebunnysuit"
 	can_adjust = FALSE

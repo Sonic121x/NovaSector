@@ -1,6 +1,6 @@
 /datum/language/vox
-	name = "Vox Standard"
-	desc = "A form of hybrid encoded language employed by the biomechanical Vox species, characterized by sounding extremely annoying and irritating to those who don't recognize it. It usually requires an implant to be spoken in its entirety."
+	name = "沃克斯标准语"
+	desc = "一种由生物机械沃克斯种族使用的混合编码语言，其特点是对不熟悉它的人来说听起来极其烦人和恼人。通常需要一个植入体才能完整地说出这种语言。"
 	key = "V"
 	flags = TONGUELESS_SPEECH
 	space_chance = 40

@@ -9,6 +9,6 @@
 /datum/market_item/stolen_good/New(atom/movable/thing, thing_price)
 	..()
 	set_item(thing)
-	name = "Stolen [thing.name]"
-	desc = "A [thing.name], stolen from somewhere on the station. Whoever owned it probably wouldn't be happy to see it here."
+	name = "失窃的[thing.name]"
+	desc = "一个[thing.name]，从空间站的某个地方偷来的。它的主人看到它在这里大概不会高兴。"
 	price = thing_price

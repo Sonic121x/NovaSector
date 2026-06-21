@@ -1,7 +1,7 @@
 /atom/proc/MatchedLinks(id, list/partners)
 
 SUBSYSTEM_DEF(queuelinks)
-	name = "Queue Links"
+	name = "队列链接"
 	ss_flags = SS_NO_FIRE | SS_NO_INIT
 	///assoc list of pending queues, id = /datum/queue_link
 	var/list/queues = list()

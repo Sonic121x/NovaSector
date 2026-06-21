@@ -1,6 +1,6 @@
 /obj/structure/musician
-	name = "Not A Piano"
-	desc = "Something broke, contact coderbus."
+	name = "坏掉的钢琴"
+	desc = "有东西坏了，联系程序员吧。"
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT | INTERACT_ATOM_REQUIRES_DEXTERITY
 	integrity_failure = 0.25
 	/// IF FALSE music stops when the piano is unanchored.
@@ -42,8 +42,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/musician/piano
-	name = "space piano"
-	desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
+	name = "太空钢琴"
+	desc = "这是一台太空钢琴，外形和普通钢琴相似，但始终能发出悦耳的音调！即便演奏者自身无法做到完美演奏也无妨。"
 	icon = 'icons/obj/art/musician.dmi'
 	icon_state = "piano"
 	anchored = TRUE
@@ -73,7 +73,7 @@
 	anchored = FALSE
 
 /obj/structure/musician/piano/minimoog
-	name = "space minimoog"
-	desc = "This is a minimoog, like a space piano, but more spacey!"
+	name = "小型太空合成器"
+	desc = "这是一款迷你型的摩根琴，就像一架太空钢琴，但更具太空感！"
 	icon_state = "minimoog"
 	broken_icon_state = "minimoogbroken"

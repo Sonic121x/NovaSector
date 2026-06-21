@@ -1,8 +1,8 @@
 /datum/action/cooldown/mob_cooldown/create_legion_turrets
-	name = "Create Sentinels"
+	name = "创造哨兵"
 	button_icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "legion_turret"
-	desc = "Create legion sentinels that fire at any enemies."
+	desc = "创造军团哨兵，它们会向任何敌人开火。"
 	cooldown_time = 2 SECONDS
 	/// Minimum number of turrets that can be spawned
 	var/minimum_turrets = 2
@@ -30,8 +30,8 @@
 
 /// A basic turret that shoots at nearby mobs. Intended to be used for the legion megafauna.
 /obj/structure/legionturret
-	name = "\improper Legion sentinel"
-	desc = "The eye pierces your soul."
+	name = "\improper 军团哨兵"
+	desc = "这只眼睛洞穿了你的灵魂。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion_turret"
 	light_power = 0.5
@@ -92,7 +92,7 @@
 
 /// Used for the legion turret.
 /obj/projectile/beam/legion
-	name = "blood pulse"
+	name = "血液脉冲"
 	icon_state = null
 	hitsound = 'sound/effects/magic/magic_missile.ogg'
 	damage = 19

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/justice
-	name = "justice hat"
-	desc = "Fight for what's righteous!"
+	name = "正义之帽"
+	desc = "为正义而战！"
 	icon_state = "justicered"
 	inhand_icon_state = null
 	clothing_flags = SNUG_FIT

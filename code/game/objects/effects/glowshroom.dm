@@ -2,8 +2,8 @@
 GLOBAL_VAR_INIT(glowshrooms, 0)
 
 /obj/structure/glowshroom
-	name = "glowshroom"
-	desc = "Mycena Bregprox, a species of mushroom that glows in the dark."
+	name = "荧光菇"
+	desc = "Mycena Bregprox，一种在黑暗中发光的蘑菇。"
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
@@ -39,14 +39,14 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	))
 
 /obj/structure/glowshroom/glowcap
-	name = "glowcap"
-	desc = "Mycena Ruthenia, a species of mushroom that, while it does glow in the dark, is not actually bioluminescent."
+	name = "发光帽"
+	desc = "Mycena Rusenia，一种蘑菇，虽然它会在黑暗中发光，但实际上不是生物发光。"
 	icon_state = "glowcap"
 	myseed = /obj/item/seeds/glowshroom/glowcap
 
 /obj/structure/glowshroom/shadowshroom
-	name = "shadowshroom"
-	desc = "Mycena Umbra, a species of mushroom that emits shadow instead of light."
+	name = "暗影菇"
+	desc = "Mycena Umbra，一种发出阴影而不是光的蘑菇。"
 	icon_state = "shadowshroom"
 	myseed = /obj/item/seeds/glowshroom/shadowshroom
 

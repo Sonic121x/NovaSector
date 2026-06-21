@@ -4,8 +4,8 @@
  * Not a spider subtype because it keeps getting hit by unrelated balance changes intended for the Giant Spiders gamemode.
  */
 /mob/living/basic/flesh_spider
-	name = "flesh spider"
-	desc = "A odd fleshy creature in the shape of a spider. Its eyes are pitch black and soulless."
+	name = "血肉蜘蛛"
+	desc = "一种形状像蜘蛛的奇怪肉质生物。它的眼睛漆黑无神。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "flesh"
 	icon_living = "flesh"

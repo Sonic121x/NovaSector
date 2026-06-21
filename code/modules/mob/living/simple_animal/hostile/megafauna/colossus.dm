@@ -21,8 +21,8 @@
  * Intended Difficulty: Very Hard
  */
 /mob/living/simple_animal/hostile/megafauna/colossus
-	name = "colossus"
-	desc = "A monstrous creature protected by heavy shielding."
+	name = "colossus-巨人"
+	desc = "一个被厚重防护罩保护着的庞然大物。"
 	health = 2500
 	maxHealth = 2500
 	attack_verb_continuous = "judges"
@@ -104,7 +104,7 @@
 
 	if(enrage(target))
 		if(move_to_delay == initial(move_to_delay))
-			visible_message(span_colossus("\"<b>You can't dodge.</b>\""))
+			visible_message(span_colossus("<b>你躲不掉的。</b>"))
 		ranged_cooldown = world.time + 3 SECONDS
 		telegraph()
 		dir_shots.fire_in_directions(src, target, GLOB.alldirs)
@@ -161,8 +161,8 @@
 	return istype(GET_ACTIVE_MARTIAL_ART(victim), /datum/martial_art/the_sleeping_carp)
 
 /obj/effect/temp_visual/at_shield
-	name = "anti-toolbox field"
-	desc = "A shimmering forcefield protecting the colossus."
+	name = "非工具箱区域"
+	desc = "一道闪耀的防护场环绕着这座庞然大物。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
@@ -180,7 +180,7 @@
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, orbit), target, 0, FALSE, 0, 0, FALSE, TRUE)
 
 /obj/projectile/colossus
-	name = "death bolt"
+	name = "死亡射线"
 	icon_state = "chronobolt"
 	damage = 25
 	armour_penetration = 100

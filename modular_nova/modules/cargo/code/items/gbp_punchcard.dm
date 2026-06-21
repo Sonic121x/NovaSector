@@ -23,10 +23,10 @@
 	if(!istype(tool, /obj/item/gbp_puncher))
 		return NONE
 	if(!COOLDOWN_FINISHED(src, gbp_punch_cooldown))
-		balloon_alert(user, "cooldown! [DisplayTimeText(COOLDOWN_TIMELEFT(src, gbp_punch_cooldown))]")
+		balloon_alert(user, "冷却中！ [DisplayTimeText(COOLDOWN_TIMELEFT(src, gbp_punch_cooldown))]")
 		return ITEM_INTERACT_BLOCKING
 	if(punches >= max_punches)
-		balloon_alert(user, "no room!")
+		balloon_alert(user, "没有空间了！")
 		return ITEM_INTERACT_BLOCKING
 
 	punches++
@@ -88,7 +88,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(!COOLDOWN_FINISHED(card_used, gbp_redeem_cooldown))
-		balloon_alert(user, "cooldown! [DisplayTimeText(COOLDOWN_TIMELEFT(card_used, gbp_redeem_cooldown))]")
+		balloon_alert(user, "冷却中！[DisplayTimeText(COOLDOWN_TIMELEFT(card_used, gbp_redeem_cooldown))]")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!card_used.registered_account || !istype(card_used.registered_account.account_job, /datum/job/assistant))
@@ -97,7 +97,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(punchcard.punches < punchcard.max_punches)
-		if(tgui_alert(user, "You haven't finished the punchcard! Are you sure you want to redeem, starting the 15 minute timer?", "A real goof effort right here", list("No", "Yes")) != "Yes")
+		if(tgui_alert(user, "你还没完成打卡卡！确定要兑换并开始15分钟计时器吗？", "真是摸鱼典范", list("No", "Yes")) != "Yes")
 			return
 
 	if(!punchcard.punches) // check to see if someone left the dialog open to redeem a card twice

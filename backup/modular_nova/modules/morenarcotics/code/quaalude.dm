@@ -1,0 +1,60 @@
+/datum/chemical_reaction/quaalude
+	results = list(/datum/reagent/drug/quaalude = 4)
+	required_reagents = list(/datum/reagent/consumable/lemonjuice = 2, /datum/reagent/hydrogen = 1, /datum/reagent/chlorine = 1)
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRUG
+
+/datum/reagent/drug/quaalude
+	name = "Quaalude"
+	description = "Relaxes the user, putting them in a hypnotic, drugged state. A favorite drug of kids from Brooklyn." //THAT WAS THE BEST FUCKIN DRUG EVER MADE
+	color = "#ffe669"
+	overdose_threshold = 20
+	ph = 8
+	taste_description = "lemons"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/drug/quaalude/on_mob_metabolize(mob/living/carbon/affected_carbon)
+	. = ..()
+	if(affected_carbon.hud_used)
+		var/atom/movable/plane_master_controller/game_plane_master_controller = affected_carbon.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
+		game_plane_master_controller.add_filter("quaalude_wave", 10, wave_filter(300, 300, 3, 0, WAVE_SIDEWAYS))
+
+/datum/reagent/drug/quaalude/on_mob_life(mob/living/carbon/affected_carbon, seconds_per_tick, metabolization_ratio)
+	. = ..()
+	if(SPT_PROB(2.5, seconds_per_tick))
+		var/high_message = pick("You feel relaxed.", "You feel like you're on the moon.", "You feel like you could walk 20 miles for a quaalude.")
+		to_chat(affected_carbon, span_notice(high_message))
+
+	affected_carbon.set_drugginess(1 MINUTES * seconds_per_tick * metabolization_ratio)
+	affected_carbon.adjust_slurring_up_to(30 SECONDS, 2 MINUTES)
+	affected_carbon.set_dizzy_if_lower(5 * seconds_per_tick * metabolization_ratio * 2 SECONDS)
+	if(affected_carbon.adjust_stamina_loss(-5 * seconds_per_tick * metabolization_ratio, updating_stamina = FALSE))
+		. = UPDATE_MOB_HEALTH
+
+	if(SPT_PROB(3.5, seconds_per_tick))
+		affected_carbon.emote(pick("laugh", "drool"))
+
+	if(SPT_PROB(1, seconds_per_tick) && !HAS_TRAIT(affected_carbon, TRAIT_FLOORED))
+		affected_carbon.visible_message(span_danger("[affected_carbon]'s legs become too weak to carry their own weight!"))
+		affected_carbon.Knockdown(90, TRUE)
+		affected_carbon.drop_all_held_items()
+
+/datum/reagent/drug/quaalude/on_mob_end_metabolize(mob/living/carbon/affected_carbon)
+	. = ..()
+	if(affected_carbon.hud_used != null)
+		var/atom/movable/plane_master_controller/game_plane_master_controller = affected_carbon.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
+		game_plane_master_controller.remove_filter("quaalude_wave")
+
+/datum/reagent/drug/quaalude/overdose_process(mob/living/affected_carbon, seconds_per_tick, metabolization_ratio)
+	var/kidfrombrooklyn_message = pick("BRING BACK THE FUCKING QUAALUDES!", "I'd walk 20 miles for a quaalude, let me tell ya'!", "There's nothing like a fuckin' quaalude!")
+
+	if(SPT_PROB(1.5, seconds_per_tick))
+		affected_carbon.say(kidfrombrooklyn_message)
+
+	affected_carbon.adjust_organ_loss(ORGAN_SLOT_BRAIN, 0.25 * seconds_per_tick * metabolization_ratio, required_organ_flag = affected_organ_flags)
+	affected_carbon.adjust_tox_loss(0.25 * seconds_per_tick * metabolization_ratio, updating_health = FALSE)
+	affected_carbon.adjust_drowsiness(0.5 SECONDS * normalise_creation_purity() * seconds_per_tick * metabolization_ratio)
+
+	if(SPT_PROB(3.5, seconds_per_tick))
+		affected_carbon.emote("twitch")
+
+	return TRUE

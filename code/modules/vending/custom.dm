@@ -2,7 +2,7 @@
 #define ITEM_HASH(item)(sanitize_css_class_name("[item.name][item.custom_price][item.type]"))
 
 /obj/machinery/vending/custom
-	name = "Custom Vendor"
+	name = "自定义贩卖机"
 	icon_state = "custom"
 	icon_deny = "custom-deny"
 	max_integrity = 400
@@ -61,7 +61,7 @@
 /obj/machinery/vending/custom/examine(mob/user)
 	. = ..()
 	if(linked_account)
-		. += span_warning("Machine is ID locked. Be sure to unlink before deconstructing the machine.")
+		. += span_warning("机器已锁定ID。在拆除机器前请务必解除链接。")
 
 /obj/machinery/vending/custom/Exited(obj/item/gone, direction)
 	. = ..()
@@ -108,7 +108,7 @@
 		return FALSE
 
 	if(!user.transferItemToLoc(inserted_item, src))
-		to_chat(user, span_warning("[inserted_item] is stuck in your hand!"))
+		to_chat(user, span_warning("[inserted_item]卡在你手里了！"))
 		return FALSE
 
 	//the hash key decides how items stack in the UI. We diffrentiate them based on name & price
@@ -163,16 +163,16 @@
 
 /obj/machinery/vending/custom/post_restock(mob/living/user, restocked)
 	if(!restocked)
-		to_chat(user, span_warning("There's nothing to restock!"))
+		to_chat(user, span_warning("没有东西需要补货！"))
 		return
 
-	to_chat(user, span_notice("You loaded [restocked] items in [src]"))
+	to_chat(user, span_notice("你在[restocked]中装载了[src]件物品"))
 
 /obj/machinery/vending/custom/crowbar_act(mob/living/user, obj/item/attack_item)
 	if(linked_account)
 		visible_message(
-			span_warning("Security warning"),
-			span_warning("Unauthorized deconstruction of vending machine is prohibited. Please read the warning alert")
+			span_warning("安保警告"),
+			span_warning("未经授权拆卸自动售货机是被禁止的。请阅读警告提示")
 		)
 		if(tgui_alert(user, "Vending machine is ID locked.\
 		Deconstruction will result in an catrostrophic self destruct.\
@@ -206,7 +206,7 @@
 				speak("account unlinked.")
 				return ITEM_INTERACT_SUCCESS
 			else
-				to_chat(user, "verification failed. unlinking process has been cancelled.")
+				to_chat(user, "验证失败。取消关联进程已取消。")
 		return ITEM_INTERACT_FAILURE
 	return ..()
 
@@ -320,7 +320,7 @@
 		. += products[key]
 
 /obj/machinery/vending/custom/unbreakable
-	name = "Indestructible Vendor"
+	name = "不可摧毁售货机"
 	resistance_flags = INDESTRUCTIBLE
 	allow_custom = FALSE
 
@@ -340,8 +340,8 @@
 	set_anchored(FALSE)
 	set_panel_open(TRUE)
 	//and references the deity
-	name = "[GLOB.deity]'s Consecrated Vendor"
-	desc = "A vending machine created by [GLOB.deity]."
+	name = "[GLOB.deity]的祝圣售货机"
+	desc = "一台由[GLOB.deity]创建的售货机。"
 	slogan_list = list("[GLOB.deity] says: It's your divine right to buy!")
 	add_filter("vending_outline", 9, list("type" = "outline", "color" = COLOR_VERY_SOFT_YELLOW))
 	add_filter("vending_rays", 10, list("type" = "rays", "size" = 35, "color" = COLOR_VIVID_YELLOW))

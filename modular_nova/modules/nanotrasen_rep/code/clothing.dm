@@ -2,8 +2,8 @@
 //Uniform items are in command.dm
 
 /obj/item/clothing/suit/armor/vest/nanotrasen_consultant
-	name = "nanotrasen officers coat"
-	desc = "A premium black coat with real fur round the neck, it seems to have some armor padding inside as well."
+	name = "纳米传讯军官大衣"
+	desc = "一件颈部带有真毛皮的高级黑色外套，里面似乎还有一些装甲衬垫。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "bladerunner"
@@ -26,8 +26,8 @@
 	icon_state = "centcom_coat"
 
 /obj/item/clothing/head/nanotrasen_consultant
-	name = "nanotrasen consultant's hat"
-	desc = "A cap made from durathread, it has an insignia on the front denoting the rank of \"Nanotrasen Consultant\"."
+	name = "纳米传讯顾问帽"
+	desc = "一顶由杜拉纤维制成的帽子，正面有一个徽章，标志着\"纳米传讯顾问\"的等级。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "nt_consultant_cap"
@@ -49,8 +49,8 @@
 	wound = 4
 
 /obj/item/clothing/head/nanotrasen_consultant/beret
-	name = "nanotrasen consultant's beret"
-	desc = "A beret made from durathread, it has an insignia on the front denoting the rank of \"Nanotrasen Consultant\"."
+	name = "纳米传讯顾问贝雷帽"
+	desc = "一顶由耐拉线制成的贝雷帽，正面有一个徽章，标志着\"纳米传讯顾问\"的军衔。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/nanotrasen_consultant/beret"
 	post_init_icon_state = "beret_badge"
@@ -98,11 +98,11 @@
 	wound = 10
 
 /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant
-	name = "\improper CentCom gloves"
-	desc = "A high quality pair of thick gloves covered in gold stitching."
+	name = "\improper 中央司令部手套"
+	desc = "一双高品质的厚手套，饰有金色缝线。"
 
 /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant/black
-	name = "\improper CentCom black gloves"
-	desc = "A high quality pair of thick black gloves with slick plastitanium scales."
+	name = "\improper 中央司令部黑色手套"
+	desc = "一双高品质的厚实黑色手套，带有光滑的塑钛鳞片。"
 	icon_state = "combat"
 	greyscale_colors = "#2f2e31"

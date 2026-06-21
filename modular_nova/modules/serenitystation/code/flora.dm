@@ -3,8 +3,8 @@
 	var/stump_type = /obj/structure/flora/tree/stump
 
 /obj/structure/flora/tree/mushroom
-	name = "mushroom tree"
-	desc = "A large branching mushroom that seems to thrive under the planet's surface."
+	name = "蘑菇树"
+	desc = "一种大型分枝蘑菇，似乎在这颗行星的地下茁壮成长。"
 	icon = 'modular_nova/modules/serenitystation/icons/mushroomtrees.dmi'
 	icon_state = "tree1"
 	base_icon_state = "tree_dead1"
@@ -40,7 +40,7 @@
 	icon_state = "tree2_dead"
 
 /obj/structure/flora/ash/tall_shroom/colored
-	desc = "A number of large mushrooms, covered in a faint layer of what can only be spores."
+	desc = "许多大型蘑菇，覆盖着一层薄薄的、只能是孢子的东西。"
 	icon = 'modular_nova/modules/serenitystation/icons/mushroom_flora.dmi'
 	icon_state = "l_mushroom_red1"
 	base_icon_state = "l_mushroom_red"
@@ -55,7 +55,7 @@
 	base_icon_state = "l_mushroom_green"
 
 /obj/structure/flora/ash/leaf_shroom/colored
-	desc = "A number of mushrooms, each of which surrounds a colorful sporangium with a number of leaf-like structures."
+	desc = "许多蘑菇，每一株都围绕着一个色彩鲜艳的孢子囊，孢子囊周围有许多叶状结构。"
 	icon = 'modular_nova/modules/serenitystation/icons/mushroom_flora.dmi'
 	icon_state = "s_mushroom_red1"
 	base_icon_state = "s_mushroom_red"
@@ -97,8 +97,8 @@
 	base_icon_state = "t_mushroom_green"
 
 /obj/structure/flora/mushroom
-	name = "mushroom"
-	desc = "Some type of large mushroom... It looks suspicious."
+	name = "蘑菇"
+	desc = "某种大型蘑菇……它看起来可疑。"
 	icon = 'modular_nova/modules/serenitystation/icons/mushroom_flora.dmi'
 	icon_state = "fake_stillcap_red"
 	flora_flags = FLORA_HERBAL
@@ -110,8 +110,8 @@
 	icon_state = "fake_stillcap_green"
 
 /obj/structure/flora/ash/lightshroom
-	name = "lightshroom"
-	desc = "An odd glowing mushroom that grows in areas with underground liquid plasma springs."
+	name = "光菇"
+	desc = "一种奇特的发光蘑菇，生长在有地下液态等离子泉的区域。"
 	icon = 'modular_nova/modules/serenitystation/icons/mushroom_flora.dmi'
 	icon_state = "red_mushroom1"
 	base_icon_state = "red_mushroom"
@@ -160,8 +160,8 @@
 	return list(/obj/item/food/grown/ash_flora/lightshroom/green = 1)
 
 /obj/item/food/grown/ash_flora/lightshroom
-	name = "red lightshroom"
-	desc = "A glowing mushroom."
+	name = "红色光菇"
+	desc = "一种发光的蘑菇。"
 	icon = 'modular_nova/modules/serenitystation/icons/mushroom_flora.dmi'
 	icon_state = "red_mushroom_grown"
 	seed = /obj/item/seeds/lavaland/lightshroom
@@ -171,18 +171,18 @@
 	special_desc = "This flora contains some healing properties, if you can filter out the radioactive toxins."
 
 /obj/item/food/grown/ash_flora/lightshroom/blue
-	name = "blue lightshroom"
+	name = "蓝色光菇"
 	icon_state = "blue_mushroom_grown"
 	seed = /obj/item/seeds/lavaland/lightshroom/blue
 
 /obj/item/food/grown/ash_flora/lightshroom/green
-	name = "green lightshroom"
+	name = "绿色光菇"
 	icon_state = "green_mushroom_grown"
 	seed = /obj/item/seeds/lavaland/lightshroom/green
 
 /obj/item/seeds/lavaland/lightshroom
-	name = "pack of red lightshroom mycelium"
-	desc = "These seeds grow into colorful lightshrooms."
+	name = "一包红色光菇菌丝体"
+	desc = "这些种子会长成色彩鲜艳的光菇。"
 	plantname = "Red Lightshroom"
 	icon = 'modular_nova/modules/serenitystation/icons/mushroom_flora.dmi'
 	icon_state = "mycelium_red_mushroom"
@@ -196,7 +196,7 @@
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
 
 /obj/item/seeds/lavaland/lightshroom/blue
-	name = "pack of blue lightshroom mycelium"
+	name = "一包蓝色光菇菌丝体"
 	plantname = "Blue Lightshroom"
 	icon_state = "mycelium_blue_mushroom"
 	species = "blue_mushroom"
@@ -205,7 +205,7 @@
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/glow/blue)
 
 /obj/item/seeds/lavaland/lightshroom/green
-	name = "pack of green lightshroom mycelium"
+	name = "一包绿色光菇菌丝体"
 	plantname = "Green Lightshroom"
 	icon_state = "mycelium_green_mushroom"
 	species = "green_mushroom"

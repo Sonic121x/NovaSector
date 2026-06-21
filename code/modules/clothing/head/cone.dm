@@ -1,6 +1,6 @@
 /obj/item/clothing/head/cone
-	desc = "This cone is trying to warn you of something!"
-	name = "warning cone"
+	desc = "这个圆锥体是在警告你！"
+	name = "警示锥桶"
 	icon = 'icons/obj/service/janitor.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	icon_state = "cone"

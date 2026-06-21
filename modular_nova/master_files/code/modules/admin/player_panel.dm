@@ -171,11 +171,11 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Subtly messages selected mob (requires target to have a headset)
 		if ("subtle_message")
 			var/list/subtle_message_options = list("Voice in head", RADIO_CHANNEL_CENTCOM, RADIO_CHANNEL_SYNDICATE)
-			var/sender = tgui_input_list(adminClient, "Choose the method of subtle messaging", "Subtle Message", subtle_message_options)
+			var/sender = tgui_input_list(adminClient, "选择隐秘消息的发送方式", "隐秘消息", subtle_message_options)
 			if (!sender)
 				return
 
-			var/msg = input("Contents of the message", text("Subtle PM to [targetMob.key]")) as text
+			var/msg = input("消息内容", text("发送给 [targetMob.key] 的隐秘消息")) as text
 			if (!msg)
 				return
 
@@ -324,7 +324,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			if(!check_if_greater_rights_than(targetClient))
 				to_chat(adminClient, span_danger("Error: They have more rights than you do."), confidential = TRUE)
 				return
-			if(tgui_alert(adminMob, "Kick [key_name(targetMob)]?", "Confirm", list("Yes", "No")) != "Yes")
+			if(tgui_alert(adminMob, "踢出 [key_name(targetMob)]？", "确认", list("Yes", "No")) != "Yes")
 				return
 			if(!targetMob)
 				to_chat(adminClient, span_danger("Error: [targetMob] no longer exists!"), confidential = TRUE)
@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			if(!targetClient)
 				to_chat(adminClient, span_danger("Error: [targetMob] no longer has a client!"), confidential = TRUE)
 				return
-			to_chat(targetMob, span_danger("You have been kicked from the server by [adminClient.holder.fakekey ? "an Administrator" : "[adminClient.key]"]."), confidential = TRUE)
+			to_chat(targetMob, span_danger("你已被 [adminClient.holder.fakekey ? "an Administrator" : "[adminClient.key]"] 从服务器踢出。"), confidential = TRUE)
 			log_admin("[key_name(adminClient)] kicked [key_name(targetMob)].")
 			message_admins(span_adminnotice("[key_name_admin(adminClient)] kicked [key_name_admin(targetMob)]."))
 			qdel(targetClient)
@@ -408,7 +408,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		if ("transform")
 			var/choice = params["newType"]
 			if (choice == "/mob/living")
-				choice = tgui_input_list(adminClient, "What should this mob transform into", "Mob Transform", subtypesof(choice))
+				choice = tgui_input_list(adminClient, "这个生物应该变成什么", "生物变形", subtypesof(choice))
 				if (!choice)
 					return
 
@@ -492,7 +492,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 					to_chat(Mob_individual, "<span style='[styles]'>[params["message"]]</span>")
 
 				log_admin("LocalNarrate: [key_name(adminClient)] at [AREACOORD(adminMob)]: [params["message"]]")
-				message_admins(span_adminnotice("<b> LocalNarrate: [key_name_admin(adminClient)] at [ADMIN_VERBOSEJMP(adminMob)]:</b> [params["message"]]<BR>"))
+				message_admins(span_adminnotice("<b> 本地旁白：[key_name_admin(adminClient)] 于 [ADMIN_VERBOSEJMP(adminMob)]:</b> [params["message"]]<BR>"))
 
 		/// Opens languages panel for the selected player/client
 		if ("languages")
@@ -513,7 +513,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 				to_chat(adminClient, span_warning("This mob either no longer exists or no longer is being controlled by someone!"))
 				return
 
-			switch(tgui_alert(adminMob, "Would you like the effects to apply immediately or at the end of the round? Applying them now will make it clear it was an admin commendation.", "<3?", list("Apply now", "Apply at round end", "Cancel")))
+			switch(tgui_alert(adminMob, "你希望效果立即生效还是在回合结束时生效？立即生效会明确表明这是一次管理员嘉奖。", "<3?", list("Apply now", "Apply at round end", "Cancel")))
 				if("Apply now")
 					targetMob.receive_heart(adminMob, instant = TRUE)
 				if("Apply at round end")
@@ -521,7 +521,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 		/// Plays a selected sound to target client
 		if ("play_sound_to")
-			var/soundFile = input("", "Select a sound file",) as null|sound
+			var/soundFile = input("", "选择音频文件",) as null|sound
 
 			if(soundFile && targetMob)
 				SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/play_direct_mob_sound, soundFile, targetMob)

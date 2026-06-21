@@ -300,9 +300,9 @@
 	var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(applied_items, LIMB_ITEM_GAUZE)
 	if(!LAZYLEN(wounds) && current_gauze && !replaced) // no more wounds = no need for the gauze anymore
 		if (owner)
-			owner.visible_message(span_notice("\The [current_gauze.name] on [owner]'s [name] falls away."), span_notice("\The [current_gauze] on your [plaintext_zone] falls away."))
+			owner.visible_message(span_notice("\The [current_gauze.name] 从 [owner] 的 [name] 上脱落了。"), span_notice("\The [current_gauze] on your [plaintext_zone] falls away."))
 		else
-			visible_message(span_notice("\The [current_gauze.name] on [name] falls away."))
+			visible_message(span_notice("\The [current_gauze.name] 从 [name] 上脱落。"))
 		qdel(current_gauze)
 
 	wound_damage_multiplier = dam_mul

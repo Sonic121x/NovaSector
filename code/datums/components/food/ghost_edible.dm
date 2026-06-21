@@ -58,7 +58,7 @@
 	playsound(atom_parent.loc,'sound/items/eatfood.ogg', vol = rand(10,50), vary = TRUE)
 	atom_parent.reagents.remove_all(bite_consumption)
 	if (atom_parent.reagents.total_volume <= 0)
-		atom_parent.visible_message(span_notice("[atom_parent] disappears completely!"))
+		atom_parent.visible_message(span_notice("[atom_parent] 完全消失了！"))
 		new /obj/item/ectoplasm(atom_parent.loc)
 		qdel(parent)
 		return

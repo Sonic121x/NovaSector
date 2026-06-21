@@ -11,8 +11,8 @@
  */
 /// Flower bud structure that ghost role spawns, actual spawn logic handled by /obj/effect/mob_spawn/ghost_role/venus_human_trap
 /obj/structure/alien/resin/flower_bud //inheriting basic attack/damage stuff from alien structures
-	name = "flower bud"
-	desc = "A large pulsating plant..."
+	name = "花苞"
+	desc = "一株巨大的脉动植物..."
 	icon = 'icons/mob/spacevines.dmi'
 	icon_state = "bud0"
 	layer = SPACEVINE_MOB_LAYER
@@ -79,7 +79,7 @@
 
 /// Tells the spawner that the venus human trap is ready
 /obj/structure/alien/resin/flower_bud/proc/bear_fruit()
-	visible_message(span_danger("The plant has borne fruit!"))
+	visible_message(span_danger("这株植物结出了果实！"))
 	if(spawner)
 		spawner.bear_fruit()
 
@@ -94,9 +94,9 @@
 	spawner.attack_ghost(user)
 
 /obj/effect/ebeam/vine
-	name = "thick vine"
+	name = "粗壮的藤蔓"
 	mouse_opacity = MOUSE_OPACITY_ICON
-	desc = "A thick vine, painful to the touch."
+	desc = "一根粗壮的藤蔓，触之即痛。"
 
 /obj/effect/ebeam/vine/Initialize(mapload)
 	. = ..()
@@ -111,7 +111,7 @@
 		var/mob/living/L = AM
 		if(!isvineimmune(L))
 			L.adjust_brute_loss(5)
-			to_chat(L, span_alert("You cut yourself on the thorny vines."))
+			to_chat(L, span_alert("你被带刺的藤蔓割伤了。"))
 
 /**
  * Venus Human Trap
@@ -127,8 +127,8 @@
  */
 
 /mob/living/basic/venus_human_trap
-	name = "venus human trap"
-	desc = "Now you know how the fly feels."
+	name = "捕人藤"
+	desc = "现在你知道苍蝇的感受了。"
 	icon = 'icons/mob/spacevines.dmi'
 	icon_state = "venus_human_trap"
 	health_doll_icon = "venus_human_trap"
@@ -193,17 +193,17 @@
 	var/vines_in_range = locate(/obj/structure/spacevine) in range(2, src)
 	if(!vines_in_range && !alert_shown)
 		alert_shown = TRUE
-		balloon_alert(src, "do not leave vines!")
+		balloon_alert(src, "不要离开藤蔓！")
 	else if(vines_in_range)
 		alert_shown = FALSE
 
 	adjust_brute_loss(vines_in_range ? -weed_heal : no_weed_damage) //every life tick take 20 damage if not near vines or heal 10 if near vines, 5 times out of weeds = u ded
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/vine_tangle
-	name = "Tangle"
+	name = "缠绕"
 	button_icon = 'icons/mob/spacevines.dmi'
 	button_icon_state = "Light1"
-	desc = "Grabs a target with a sticky vine, allowing you to pull it alongside you."
+	desc = "用一根粘性藤蔓抓住目标，允许你将其拖拽在身边。"
 	cooldown_time = 8 SECONDS
 	/// An assoc list of all the plant's vines (beam = leash)
 	var/list/datum/beam/vines = list()
@@ -220,15 +220,15 @@
 	if(!ismovable(target_atom) || istype(target_atom, /obj/structure/spacevine))
 		return
 	if(target_atom.anchored)
-		owner.balloon_alert(owner, "can't pull!")
+		owner.balloon_alert(owner, "无法拉动！")
 		return
 	if(get_dist(owner, target_atom) > vine_grab_distance)
-		owner.balloon_alert(owner, "too far!")
+		owner.balloon_alert(owner, "太远了！")
 		return
 	var/list/target_turfs = get_line(owner, target_atom) - list(get_turf(owner), get_turf(target_atom))
 	for(var/turf/blockage in target_turfs)
 		if(blockage.is_blocked_turf(exclude_mobs = TRUE))
-			owner.balloon_alert(owner, "path blocked!")
+			owner.balloon_alert(owner, "路径被阻挡！")
 			return
 
 	var/datum/beam/new_vine = owner.Beam(target_atom, icon_state = "vine", time = vine_duration * (ismob(target_atom) ? 1 : 2), beam_type = /obj/effect/ebeam/vine, emissive = FALSE)

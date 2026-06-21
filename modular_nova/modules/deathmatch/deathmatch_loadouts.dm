@@ -2,7 +2,7 @@
  * CYBERSUN SIM
  */
 /datum/outfit/deathmatch_loadout/cybersun_sim
-	name = "DM: Cybersun Grunt"
+	name = "DM: 赛博阳集团士兵"
 	display_name = "Cybersun Grunt"
 
 	uniform = /obj/item/clothing/under/syndicate/combat
@@ -16,9 +16,9 @@
  */
 //Azulean Pirate
 /datum/outfit/deathmatch_loadout/azulean
-	name = "DM: Azulean Boarder"
+	name = "DM：蔚蓝登舰者"
 	display_name = "Azulean Boarder"
-	desc = "The most feared pirates within the sector, engaging combat with them in space is nothing more than a deathwish."
+	desc = "星区中最令人畏惧的海盗，在太空中与他们交战无异于自寻死路。"
 
 	r_hand = /obj/item/knife/combat
 	uniform = /obj/item/clothing/under/skinsuit
@@ -64,7 +64,7 @@
 	//clear the rest of mutant parts
 	user.dna.mutant_bodyparts.Cut()
 	if(tail)
-		tail.name = "Akula"
+		tail.name = "阿库拉"
 		tail.set_colors(list(features[FEATURE_MUTANT_COLOR], features[FEATURE_MUTANT_COLOR_TWO], features[FEATURE_MUTANT_COLOR_THREE]))
 		user.dna.mutant_bodyparts[FEATURE_TAIL] = tail
 	//generate the species

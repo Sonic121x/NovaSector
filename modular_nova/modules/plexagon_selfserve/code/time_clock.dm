@@ -1,6 +1,6 @@
 /obj/machinery/modular_computer/preset/time_clock
-	name = "punch clock"
-	desc = "Allows employees to punch in and out of their jobs. Figuratively, not literally... I hope."
+	name = "打卡钟"
+	desc = "允许员工打卡上下班。比喻意义上的，不是字面意思……我希望如此。"
 	icon = 'modular_nova/modules/plexagon_selfserve/icons/time_clock.dmi'
 	density = FALSE
 	light_color = LIGHT_COLOR_DARK_BLUE

@@ -1,7 +1,7 @@
 /// The gravitational singularity
 /obj/singularity
-	name = "gravitational singularity"
-	desc = "A gravitational singularity."
+	name = "引力奇点"
+	desc = "一个引力奇点"
 	icon = 'icons/obj/machines/engine/singularity.dmi'
 	icon_state = "singularity_s1"
 	anchored = TRUE
@@ -97,9 +97,9 @@
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	var/mob/living/carbon/jedi = user
 	jedi.visible_message(
-		span_danger("[jedi]'s head begins to collapse in on itself!"),
-		span_userdanger("Your head feels like it's collapsing in on itself! This was really not a good idea!"),
-		span_hear("You hear something crack and explode in gore.")
+		span_danger("[jedi]的头部开始向内坍缩！"),
+		span_userdanger("你的脑袋感觉正在向内坍缩！这主意真是糟透了！"),
+		span_hear("你听到某物破裂并炸成肉酱的声音。")
 		)
 	jedi.Stun(3 SECONDS)
 	new /obj/effect/gibspawner/generic(get_turf(jedi), jedi)
@@ -322,18 +322,18 @@
 		supermatter_upgrade()
 
 /obj/singularity/proc/supermatter_upgrade()
-	name = "supermatter-charged [initial(name)]"
-	desc = "[initial(desc)] It glows fiercely with inner fire."
+	name = "超物质充能的[initial(name)]"
+	desc = "[initial(desc)] 散发着猛烈的内火"
 	consumed_supermatter = TRUE
 	set_light(10)
 
 /obj/singularity/proc/consume_boh(obj/boh)
 	collapsing = TRUE
-	name = "unstable [initial(name)]"
-	desc = "[initial(desc)] It seems to be collapsing in on itself."
+	name = "不稳定的[initial(name)]"
+	desc = "[initial(desc)] 它似乎正在向内坍缩。"
 	visible_message(
-		message = span_danger("As [src] consumes [boh], it begins to collapse in on itself!"),
-		blind_message = span_hear("You hear aggressive crackling!"),
+		message = span_danger("当[src]吞噬[boh]时，它开始向内坍缩！"),
+		blind_message = span_hear("你听到剧烈的噼啪声！"),
 		vision_distance = 15,
 	)
 	playsound(loc, 'sound/effects/clockcult_gateway_disrupted.ogg', 200, vary = TRUE, extrarange = 3, falloff_exponent = 1, frequency = -1, pressure_affected = FALSE, ignore_walls = TRUE, falloff_distance = 7)
@@ -434,8 +434,8 @@
 /obj/singularity/proc/combust_mobs()
 	for(var/mob/living/carbon/burned_mob in urange(20, src, 1))
 		burned_mob.visible_message(
-			span_warning("[burned_mob]'s skin bursts into flame!"),
-			span_userdanger("You feel an inner fire as your skin bursts into flames!")
+			span_warning("[burned_mob]的皮肤突然燃起火焰！"),
+			span_userdanger("你感到体内燃起烈火，皮肤瞬间化为火焰！")
 		)
 		burned_mob.adjust_fire_stacks(5)
 		burned_mob.ignite_mob()
@@ -454,7 +454,7 @@
 		if(istype(stunned_human.glasses, /obj/item/clothing/glasses/meson))
 			var/obj/item/clothing/glasses/meson/check_meson = stunned_human.glasses
 			if(check_meson.vision_flags & SEE_TURFS)
-				to_chat(stunned_human, span_notice("You look directly into \the [src], good thing you had your protective eyewear on!"))
+				to_chat(stunned_human, span_notice("你直视着\the [src]，幸好你戴着防护眼镜！"))
 				continue
 
 		apply_stun(stunned_mob)
@@ -462,8 +462,8 @@
 /obj/singularity/proc/apply_stun(mob/living/carbon/stunned_mob)
 	stunned_mob.apply_effect(60, EFFECT_STUN)
 	stunned_mob.visible_message(
-		span_danger("[stunned_mob] stares blankly at \the [src]!"),
-		span_userdanger("You look directly into \the [src] and feel weak.")
+		span_danger("[stunned_mob] 茫然地盯着\the [src]！"),
+		span_userdanger("你直视着\the [src]，感到一阵虚弱。")
 	)
 
 /obj/singularity/proc/emp_area()

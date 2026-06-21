@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/clock
 	display_name = "Clock"
-	desc = "A component that repeatedly fires."
+	desc = "一个频繁触发的组件。"
 	category = "Utility"
 
 	/// Whether the clock is on or not

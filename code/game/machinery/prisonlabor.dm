@@ -1,6 +1,6 @@
 /obj/machinery/plate_press
-	name = "license plate press"
-	desc = "You know, we're making a lot of license plates for a station with literally no cars in it."
+	name = "车牌压模机"
+	desc = "你知道，我们正在为一个实际上没有汽车的空间站制作大量车牌。"
 	icon = 'icons/obj/machines/prison.dmi'
 	icon_state = "offline"
 	use_power = IDLE_POWER_USE
@@ -28,10 +28,10 @@
 
 /obj/machinery/plate_press/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!is_operational)
-		to_chat(user, span_warning("[src] has to be on to do this!"))
+		to_chat(user, span_warning("[src] 需要打开才能继续!"))
 		return FALSE
 	if(current_plate)
-		to_chat(user, span_warning("[src] already has a plate in it!"))
+		to_chat(user, span_warning("[src] 已经含有盘子了！"))
 		return FALSE
 	if(istype(I, /obj/item/stack/license_plates/empty))
 		var/obj/item/stack/license_plates/empty/plate = I
@@ -51,7 +51,7 @@
 
 	pressing = TRUE
 	update_appearance()
-	to_chat(user, span_notice("You start pressing a new license plate!"))
+	to_chat(user, span_notice("你开始压新车牌！"))
 
 	if(!do_after(user, 4 SECONDS, target = src))
 		pressing = FALSE
@@ -59,7 +59,7 @@
 		return FALSE
 
 	use_energy(active_power_usage)
-	to_chat(user, span_notice("You finish pressing a new license plate!"))
+	to_chat(user, span_notice("你压完新车牌！"))
 
 	pressing = FALSE
 	QDEL_NULL(current_plate)

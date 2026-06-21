@@ -1,7 +1,7 @@
 /datum/supply_pack/medical/civil_defense
-	name = "Civil Defense Medical Kit Crate"
+	name = "民防医疗包板条箱"
 	crate_name = "civil defense medical kit crate"
-	desc = "Contains ten civil defense medical kits, small packs of injectors meant to be passed out to the public in case of emergency."
+	desc = "包含十个民防医疗包，这些小型注射器包旨在紧急情况下分发给公众。"
 	access = ACCESS_MEDICAL
 	cost = CARGO_CRATE_VALUE * 10 // 2000
 	contains = list(
@@ -9,9 +9,9 @@
 	)
 
 /datum/supply_pack/medical/civil_defense/comfort
-	name = "\improper Civil Defense Symptom Support Kit Crate"
+	name = "\improper 民防症状支持包板条箱"
 	crate_name = "civil defense symptom support kit crate"
-	desc = "Contains five civil defense symptom support kits stocked with three pens of psifinil and a tube containing 5 pills of alifil, two proprietary DeForest mixes designed to provide long-lasting relief from chronic disease and syndromes like gravity sickness."
+	desc = "包含五个民防症状支持包，配备三支psifinil笔和一支装有5片alifil药片的管剂，这是两种DeForest专有混合物，旨在为慢性疾病和重力病等综合征提供长效缓解。"
 	access = ACCESS_MEDICAL
 	cost = CARGO_CRATE_VALUE * 5 // 2000
 	contains = list(
@@ -19,9 +19,9 @@
 	)
 
 /datum/supply_pack/medical/frontier_first_aid
-	name = "Frontier First Aid Crate"
+	name = "边疆急救箱板条箱"
 	crate_name = "frontier first aid crate"
-	desc = "Contains two of each of frontier medical kits, and combat surgeon medical kits."
+	desc = "包含边疆医疗包和战地外科医生医疗包各两个。"
 	access = ACCESS_MEDICAL
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(
@@ -30,9 +30,9 @@
 	)
 
 /datum/supply_pack/medical/kit_technician
-	name = "Heavy Duty Medical Kit Crate - Technician"
+	name = "重型医疗包板条箱 - 技术员"
 	crate_name = "technician kit crate"
-	desc = "Contains a pink medical technician kit."
+	desc = "包含一个粉红色的医疗技术员包。"
 	access = ACCESS_MEDICAL
 	cost = CARGO_CRATE_VALUE * 5.5
 	contains = list(
@@ -40,9 +40,9 @@
 	)
 
 /datum/supply_pack/medical/kit_surgical
-	name = "Heavy Duty Medical Kit Crate - Surgical"
+	name = "重型医疗包板条箱 - 外科"
 	crate_name = "surgical kit crate"
-	desc = "Contains a grey first responder surgical kit."
+	desc = "包含一个灰色的急救外科包。"
 	access = ACCESS_MEDICAL
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
@@ -50,9 +50,9 @@
 	)
 
 /datum/supply_pack/medical/kit_medical
-	name = "Heavy Duty Medical Kit Crate - Medical"
+	name = "重型医疗包板条箱 - 医疗"
 	crate_name = "medical kit crate"
-	desc = "Contains an orange satchel medical kit."
+	desc = "包含一个橙色的挎包式医疗包。"
 	access = ACCESS_MEDICAL
 	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(
@@ -60,9 +60,9 @@
 	)
 
 /datum/supply_pack/medical/deforest_vendor_refill
-	name = "DeForest Med-Vend Resupply Crate"
+	name = "DeForest 医疗贩卖机补给箱"
 	crate_name = "\improper DeForest Med-Vend resupply crate"
-	desc = "Contains a restocking canister for DeForest Med-Vendors."
+	desc = "包含一个用于 DeForest 医疗贩卖机的补货罐。"
 	access = ACCESS_MEDICAL
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(

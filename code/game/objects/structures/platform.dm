@@ -2,8 +2,8 @@
 
 /// A raised platform you can stand on top of
 /obj/structure/platform
-	name = "platform"
-	desc = "A raised platform which can make you slightly taller."
+	name = "平台"
+	desc = "一个抬高的平台，能让你稍微变高一点。"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_normal.dmi'
 	icon_state = "window_frame_normal-0"
 	base_icon_state = "window_frame_normal"
@@ -68,13 +68,13 @@
 	return . || NONE
 
 /obj/structure/platform/screwdriver_act_secondary(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You start disassembling [src]..."))
+	to_chat(user, span_notice("你开始拆卸[src]..."))
 	if(tool.use_tool(src, user, 2 SECONDS, volume=50))
 		deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/platform/wrench_act_secondary(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You start deconstructing [src]..."))
+	to_chat(user, span_notice("你开始解构[src]..."))
 	if(tool.use_tool(src, user, 4 SECONDS, volume=50))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
@@ -137,7 +137,7 @@
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS_MATERIAL
 
 /obj/structure/platform/iron
-	name = "rough iron platform"
+	name = "粗糙铁制平台"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_iron.dmi'
 	frame_icon = 'icons/obj/smooth_structures/platform/frame_faces/window_frame_iron.dmi'
 	icon_state = "window_frame_iron-0"
@@ -148,7 +148,7 @@
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS_MATERIAL
 
 /obj/structure/platform/silver
-	name = "silver platform"
+	name = "银制平台"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_silver.dmi'
 	frame_icon = 'icons/obj/smooth_structures/platform/frame_faces/window_frame_silver.dmi'
 	icon_state = "window_frame_silver-0"
@@ -159,7 +159,7 @@
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS_MATERIAL
 
 /obj/structure/platform/gold
-	name = "golden platform"
+	name = "黄金平台"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_gold.dmi'
 	frame_icon = 'icons/obj/smooth_structures/platform/frame_faces/window_frame_gold.dmi'
 	icon_state = "window_frame_gold-0"
@@ -170,7 +170,7 @@
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS_MATERIAL
 
 /obj/structure/platform/bronze
-	name = "clockwork platform"
+	name = "发条平台"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_bronze.dmi'
 	frame_icon = 'icons/obj/smooth_structures/platform/frame_faces/window_frame_bronze.dmi'
 	icon_state = "window_frame_bronze-0"
@@ -181,8 +181,8 @@
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS_MATERIAL
 
 /obj/structure/platform/uranium
-	name = "depleted uranium platform"
-	desc = "A heavy duty platform, thankfully not radioactive."
+	name = "贫铀平台"
+	desc = "一个重型平台，幸好没有放射性。"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_uranium.dmi'
 	frame_icon = 'icons/obj/smooth_structures/platform/frame_faces/window_frame_uranium.dmi'
 	icon_state = "window_frame_uranium-0"
@@ -196,7 +196,7 @@
 // Wooden themed
 
 /obj/structure/platform/wood
-	name = "wooden platform"
+	name = "木质平台"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_wood.dmi'
 	frame_icon = null
 	icon_state = "window_frame_wood-0"
@@ -208,14 +208,14 @@
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS_WOOD
 
 /obj/structure/platform/wood/stage
-	name = "wooden stage"
-	desc = "A raised platform you can perform upon."
+	name = "木质舞台"
+	desc = "一个你可以进行表演的抬升平台。"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_hotel.dmi'
 	icon_state = "window_frame_hotel-0"
 	base_icon_state = "window_frame_hotel"
 
 /obj/structure/platform/bamboo
-	name = "bamboo platform"
+	name = "竹制平台"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_bamboo.dmi'
 	frame_icon = 'icons/obj/smooth_structures/platform/frame_faces/window_frame_bamboo.dmi'
 	icon_state = "window_frame_bamboo-0"
@@ -229,7 +229,7 @@
 // Misc
 
 /obj/structure/platform/sandstone
-	name = "stone platform"
+	name = "石制平台"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_sandstone.dmi'
 	frame_icon = 'icons/obj/smooth_structures/platform/frame_faces/window_frame_sandstone.dmi'
 	icon_state = "window_frame_sandstone-0"
@@ -240,7 +240,7 @@
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS_STONE
 
 /obj/structure/platform/cult
-	name = "runed stone platform"
+	name = "符文石平台"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_cult.dmi'
 	frame_icon = 'icons/obj/smooth_structures/platform/frame_faces/window_frame_cult.dmi'
 	icon_state = "window_frame_cult-0"
@@ -251,8 +251,8 @@
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS_STONE
 
 /obj/structure/platform/pizza
-	name = "huge pizza"
-	desc = "Big enough to stand on, although possibly you shouldn't eat it after that."
+	name = "巨型披萨"
+	desc = "大到足以站立其上，尽管之后你可能不应该再吃它了。"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_pizza.dmi'
 	frame_icon = null
 	icon_state = "window_frame_pizza-0"
@@ -263,7 +263,7 @@
 	footstep = FOOTSTEP_MEAT
 
 /obj/structure/platform/paper
-	name = "japanese platform"
+	name = "日式平台"
 	icon = 'icons/obj/smooth_structures/platform/window_frame_paperframe.dmi'
 	frame_icon = 'icons/obj/smooth_structures/platform/frame_faces/window_frame_paperframe.dmi'
 	icon_state = "window_frame_paperframe-0"

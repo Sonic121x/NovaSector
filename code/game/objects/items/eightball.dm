@@ -1,12 +1,12 @@
 /obj/item/toy/eightball
-	name = "magic eightball"
+	name = "魔法八号球"
 	desc = "A black ball with a stenciled number eight in white on the side. It seems full of dark liquid.\nThe instructions state that you should ask your question aloud, and then shake."
 
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "eightball"
 	w_class = WEIGHT_CLASS_TINY
 
-	verb_say = "rattles"
+	verb_say = "咔哒作响"
 
 	var/shaking = FALSE
 	var/on_cooldown = FALSE
@@ -63,10 +63,10 @@
 		return
 
 	if(on_cooldown)
-		to_chat(user, span_warning("[src] was shaken recently, it needs time to settle."))
+		to_chat(user, span_warning("[src] 最近刚被摇晃过，需要时间稳定下来。"))
 		return
 
-	user.visible_message(span_notice("[user] starts shaking [src]."), span_notice("You start shaking [src]."), span_hear("You hear shaking and sloshing."))
+	user.visible_message(span_notice("[user] 开始摇晃 [src]。"), span_notice("你开始摇晃 [src]。"), span_hear("你听到摇晃和晃荡的声音。"))
 
 	shaking = TRUE
 
@@ -96,8 +96,8 @@
 // A broken magic eightball, it only says "YOU SUCK" over and over again.
 
 /obj/item/toy/eightball/broken
-	name = "broken magic eightball"
-	desc = "A black ball with a stenciled number eight in white on the side. It is cracked and seems empty."
+	name = "坏掉的魔法八号球"
+	desc = "一个黑色的球，侧面用白色模板印着数字八。它裂开了，里面似乎是空的。"
 	var/fixed_answer
 
 /obj/item/toy/eightball/broken/Initialize(mapload)
@@ -130,7 +130,7 @@
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/item/toy/eightball/haunted/attack_ghost(mob/user)
 	if(!shaking)
-		to_chat(user, span_warning("[src] is not currently being shaken."))
+		to_chat(user, span_warning("[src] 目前没有被摇晃。"))
 		return
 	interact(user)
 	return ..()
@@ -138,7 +138,7 @@
 /obj/item/toy/eightball/haunted/start_shaking(mob/user)
 	// notify ghosts that someone's shaking a haunted eightball
 	// and inform them of the message, (hopefully a yes/no question)
-	selected_message = tgui_input_text(user, "What is your question?", "Eightball", max_length = CHAT_MESSAGE_MAX_LENGTH) || initial(selected_message)
+	selected_message = tgui_input_text(user, "你的问题是什么？", "八号球", max_length = CHAT_MESSAGE_MAX_LENGTH) || initial(selected_message)
 	if (!(src in user.held_items))
 		return FALSE
 	notify_ghosts(

@@ -43,4 +43,4 @@
 		ANNOUNCER_SHUTTLERECALLED = 'sound/announcer/intern/shuttlerecalled.ogg',
 		ANNOUNCER_SPANOMALIES = 'sound/announcer/intern/spanomalies.ogg')
 
-	custom_alert_message = span_alert("Please stand by for an important message from our new intern.<br>")
+	custom_alert_message = span_alert("请稍候，我们的新实习生有重要消息要宣布。<br>")

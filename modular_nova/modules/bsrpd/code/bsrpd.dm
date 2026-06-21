@@ -3,8 +3,8 @@
 #define BSRPD_CAPACITY_NEW 250
 
 /obj/item/pipe_dispenser/bluespace
-	name = "bluespace RPD"
-	desc = "State of the art technology being tested by NT scientists; this is their only working prototype."
+	name = "蓝空RPD"
+	desc = "纳米传讯科学家正在测试的尖端技术；这是他们唯一的工作原型机。"
 	icon = 'modular_nova/modules/bsrpd/icons/bsrpd.dmi'
 	icon_state = "bsrpd"
 	lefthand_file = 'modular_nova/modules/bsrpd/icons/bsrpd_left.dmi'
@@ -28,23 +28,23 @@
 /obj/item/pipe_dispenser/bluespace/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/sheet/bluespace_crystal))
 		if(BSRPD_CAPACITY_NEW > (BSRPD_CAPACITY_MAX - current_capacity) || ranged_use_cost == 0)
-			to_chat(user, span_warning("You cannot recharge [src] anymore!"))
+			to_chat(user, span_warning("你无法再为[src]充能了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		tool.use(1)
-		to_chat(user, span_notice("You recharge the bluespace capacitor inside of [src]"))
+		to_chat(user, span_notice("你为[src]内部的蓝空电容器充能"))
 		current_capacity += BSRPD_CAPACITY_NEW
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/assembly/signaler/anomaly/bluespace))
 		if(ranged_use_cost)
-			to_chat(user, span_notice("You slot [tool] into [src]; supercharging the bluespace capacitor!"))
+			to_chat(user, span_notice("你将[tool]插入[src]；蓝空电容器正在超载充能！"))
 			ranged_use_cost = 0
 			qdel(tool)
 			return ITEM_INTERACT_SUCCESS
 
 		else
-			to_chat(user, span_warning("You cannot improve the [src] further."))
+			to_chat(user, span_warning("你无法再改进[src]了。"))
 
 		return ITEM_INTERACT_BLOCKING
 
@@ -60,11 +60,11 @@
 	else
 		. += "You cannot see the charge capacity."
 
-	. += span_notice("<b>Alt-Click</b> to toggle remote piping.")
+	. += span_notice("<b>Alt-点击</b>以切换远程管道铺设模式。")
 
 /obj/item/pipe_dispenser/bluespace/click_alt(mob/user)
 	remote_piping_toggle = !remote_piping_toggle
-	balloon_alert(user, "remote piping [remote_piping_toggle ? "on" : "off"]")
+	balloon_alert(user, "远程管道 [remote_piping_toggle ? "on" : "off"]")
 	playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 	return CLICK_ACTION_SUCCESS
 
@@ -73,7 +73,7 @@
 		return NONE
 
 	if(current_capacity < ranged_use_cost)
-		to_chat(user, span_warning("The [src] lacks the charge to do that."))
+		to_chat(user, span_warning("[src] 缺乏足够的能量来执行此操作。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!in_use)

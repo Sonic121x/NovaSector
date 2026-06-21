@@ -2,7 +2,7 @@
 	granted_action = /datum/action/cooldown/spell/smoke
 	action_name = "smoke"
 	icon_state ="booksmoke"
-	desc = "This book is overflowing with the dank arts."
+	desc = "这本书充满了浓郁的技艺。"
 	remarks = list(
 		"Smoke Bomb! Heh...",
 		"Smoke bomb would do just fine too...",
@@ -15,7 +15,7 @@
 
 /obj/item/book/granter/action/spell/smoke/recoil(mob/living/user)
 	. = ..()
-	to_chat(user,span_warning("Your stomach rumbles..."))
+	to_chat(user,span_warning("你的肚子咕咕作响..."))
 	if(user.nutrition)
 		user.set_nutrition(200)
 		if(user.nutrition <= 0)

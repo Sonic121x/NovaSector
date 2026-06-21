@@ -41,13 +41,13 @@
 	new_icon_state = "c38rail_midnight_scope"
 
 /obj/item/gun/ballistic/revolver/c38/super
-	name = "\improper NT/E Laevateinn Revolver"
+	name = "\improper NT/E莱瓦汀左轮手枪"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_armories/ballistic.dmi'
 	icon_state = "c38rail"
 	base_icon_state = "c38rail"
 	w_class = WEIGHT_CLASS_NORMAL
 	obj_flags = UNIQUE_RENAME
-	desc = "A new spin on a classic. Uses .38 Special rounds, and features both a magnified sight and a magnetic charge-shot assembly built into the barrel for precision fire."
+	desc = "经典设计的新演绎。使用.38特种弹，并配备放大瞄准镜和集成在枪管中的磁力蓄力射击组件，以实现精准射击。"
 	desc_controls = "Use the action button to toggle charged shots, increasing projectile speed and damage in return for firerate."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38/super
 
@@ -100,22 +100,22 @@
 	if(amped)
 		fire_sound = amped_fire_sound
 		recoil = amped_recoil
-		balloon_alert(user, "barrel amped")
+		balloon_alert(user, "枪管已增压")
 	else
 		fire_sound = base_fire_sound
 		recoil = base_recoil
-		balloon_alert(user, "barrel de-amped")
+		balloon_alert(user, "枪管已减压")
 
 /datum/action/item_action/booster/c38super
 	button_icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_armories/ballistic.dmi'
 	button_icon_state = "revboost"
-	name = "Toggle Revolver Barrel Charger"
+	name = "切换左轮手枪枪管充能器"
 
 /obj/item/gun/ballistic/revolver/c38/super/empty
 	spawn_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38/super/empty
 
 /obj/item/ammo_box/magazine/internal/cylinder/rev38/super
-	name = "upgraded .38 revolver cylinder"
+	name = "升级版.38左轮手枪弹巢"
 	max_ammo = 8
 
 // Turns out cylinders really don't like it when they don't initialize ammo/start empty,

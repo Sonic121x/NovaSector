@@ -1,5 +1,5 @@
 /datum/antagonist/ashwalker
-	name = "\improper Ash Walker"
+	name = "\improper 灰烬行者"
 	pref_flag = ROLE_LAVALAND
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
@@ -43,7 +43,7 @@
 		owner.current.add_mood_event("oogabooga", /datum/mood_event/sacrifice_good)
 
 /datum/team/ashwalkers
-	name = "Ash Walker Tribe"
+	name = "灰烬行者部落"
 	member_name = "Ash Walker"
 	///A list of "worthy" (meat-bearing) sacrifices made to the Necropolis
 	var/sacrifices_made = 0
@@ -53,7 +53,7 @@
 /datum/team/ashwalkers/roundend_report()
 	var/list/report = list()
 
-	report += span_header("An Ash Walker Tribe inhabited the wastes...</span><br>")
+	report += span_header("一个灰烬行者部落栖息在废土中...</span><br>")
 	if(length(members)) //The team is generated alongside the tendril, and it's entirely possible that nobody takes the role.
 		report += "The [member_name]s were:"
 		report += printplayerlist(members)
@@ -64,12 +64,12 @@
 			objectives -= necropolis_objective //So we don't count it in the check for other objectives.
 			report += "<b>The [name] was tasked with defending the Necropolis:</b>"
 			if(necropolis_objective.check_completion())
-				report += span_greentext(span_header("The nest stands! Glory to the Necropolis!<br>"))
+				report += span_greentext(span_header("巢穴屹立不倒！荣耀归于死城！<br>"))
 			else
-				report += span_redtext(span_header("The Necropolis was destroyed, the tribe has fallen...<br>"))
+				report += span_redtext(span_header("死城已被摧毁，部落已经沦落...<br>"))
 
 		if(length(objectives))
-			report += span_header("The [name]'s other objectives were:")
+			report += span_header("[name]的其他目标是：")
 			printobjectives(objectives)
 
 		report += "The [name] managed to perform <b>[sacrifices_made]</b> sacrifices to the Necropolis. From this, the Necropolis produced <b>[eggs_created]</b> Ash Walker eggs."

@@ -24,8 +24,8 @@
 		return .
 	if(!was_already_seeing)
 		to_show.visible_message(
-			span_notice("[to_show] starts to look through the contents of [parent]!"),
-			span_notice("You begin looking into the contents of [parent]."),
+			span_notice("[to_show] 开始翻看 [parent] 的内容！"),
+			span_notice("你开始查看[parent]的内容。"),
 		)
 	return .
 
@@ -38,6 +38,6 @@
 	if(QDELING(src))
 		return .
 	if(was_actually_seeing)
-		real_location.visible_message(span_notice("[parent] is shuffled after looking through it."))
+		real_location.visible_message(span_notice("[parent] 在被翻看后洗牌了。"))
 		real_location.contents = shuffle(real_location.contents)
 	return .

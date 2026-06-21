@@ -1,6 +1,6 @@
 /datum/job/geneticist
 	title = JOB_GENETICIST
-	description = "Alter genomes, turn monkeys into humans (and vice-versa), and make DNA backups."
+	description = "改变基因组，将猴子变成人类（反之亦然），并进行DNA备份。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -32,7 +32,7 @@
 
 
 /datum/outfit/job/geneticist
-	name = "Geneticist"
+	name = "基因学家"
 	jobtype = /datum/job/geneticist
 
 	id_trim = /datum/id_trim/job/geneticist

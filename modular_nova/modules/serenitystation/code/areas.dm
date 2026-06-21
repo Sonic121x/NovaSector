@@ -1,5 +1,5 @@
 /area/forestplanet
-	name = "Forest Planet"
+	name = "森林行星"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "explored"
 	default_gravity = STANDARD_GRAVITY
@@ -17,7 +17,7 @@
 	max_ambience_cooldown = 220 SECONDS
 
 /area/forestplanet/outdoors // parent that defines if something is on the exterior of the station.
-	name = "Woodlands"
+	name = "林地"
 	outdoors = TRUE
 
 /area/forestplanet/outdoors/nospawn
@@ -28,7 +28,7 @@
 	map_generator = /datum/map_generator/cave_generator/forest
 
 /area/forestplanet/outdoors/unexplored/deep
-	name = "Mushroom Caves"
+	name = "蘑菇洞穴"
 	map_generator = /datum/map_generator/cave_generator/forest/mushroom
 	ambience_index = AMBIENCE_MUSHROOM
 	sound_environment = SOUND_AREA_MUSHROOM_CAVES

@@ -1,5 +1,5 @@
 /obj/loop_spawner
-	name = "testing loop spawner"
+	name = "测试循环生成器"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "unloader"
 	anchored = TRUE

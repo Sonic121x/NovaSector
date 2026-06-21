@@ -2,8 +2,8 @@
  * A floating fungus which turns people into zombies and explodes into reagent clouds upon death.
  */
 /mob/living/basic/blob_minion/spore
-	name = "blob spore"
-	desc = "A floating, fragile spore."
+	name = "凝胶孢子"
+	desc = "一个漂浮的、脆弱的孢子。"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blobpod"
 	base_icon_state = "blobpod"
@@ -11,10 +11,10 @@
 	health_doll_icon = "blobpod"
 	health = BLOBMOB_SPORE_HEALTH
 	maxHealth = BLOBMOB_SPORE_HEALTH
-	verb_say = "psychically pulses"
-	verb_ask = "psychically probes"
-	verb_exclaim = "psychically yells"
-	verb_yell = "psychically screams"
+	verb_say = "心灵脉动"
+	verb_ask = "心灵探查"
+	verb_exclaim = "心灵呼喊"
+	verb_yell = "心灵尖啸"
 	melee_damage_lower = BLOBMOB_SPORE_DMG_LOWER
 	melee_damage_upper = BLOBMOB_SPORE_DMG_UPPER
 	obj_damage = 10
@@ -50,7 +50,7 @@
 
 /// Become a zombie
 /mob/living/basic/blob_minion/spore/proc/zombify(mob/living/carbon/human/target)
-	visible_message(span_warning("The corpse of [target.name] suddenly rises!"))
+	visible_message(span_warning("[target.name]的尸体突然站了起来！"))
 	var/mob/living/basic/blob_minion/zombie/blombie = change_mob_type(zombie_type, loc, new_name = initial(zombie_type.name))
 	blombie.pass_flags |= PASSBLOB //No way to pass the blob_borne info through change_mob_type() to Initilize(), so we just circumvent it here.
 	APPLY_FACTION_AND_ALLIES_FROM(blombie, src) //inherit the spore's faction in case it was spawned with a different one (eg gold core)
@@ -104,7 +104,7 @@
 
 /// Weakened spore spawned by distributed neurons, can't zombify people and makes a teeny explosion
 /mob/living/basic/blob_minion/spore/minion/weak
-	name = "fragile blob spore"
+	name = "脆弱凝胶孢子"
 	health = BLOBMOB_SPORE_HEALTH / 2
 	maxHealth = BLOBMOB_SPORE_HEALTH / 2
 	melee_damage_lower = BLOBMOB_SPORE_DMG_LOWER / 2
@@ -139,5 +139,5 @@
 	)
 
 /mob/living/basic/blob_minion/spore/independent/proc/on_assumed_control()
-	to_chat(src, span_blobannounce("You are a spore born free from the shackles of an overmind.\n\nHowever this strange predicament has not muted the hostility you feel towards creatures that are not your kin, this base instinct appears to be a part of your true self."))
+	to_chat(src, span_blobannounce("你是一颗挣脱了主宰束缚的自由孢子。\n\nHowever这种奇特的处境并未消减你对非我族类生物的敌意，这种本能似乎是你真实自我的一部分。"))
 	SEND_SOUND(src, sound('sound/music/antag/blobalert.ogg', volume = 50))

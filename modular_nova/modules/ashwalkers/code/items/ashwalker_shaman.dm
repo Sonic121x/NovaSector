@@ -1,7 +1,7 @@
 //ASH STAFF
 /obj/item/ash_staff
-	name = "staff of the ashlands"
-	desc = "A gnarly and twisted branch that is imbued with some ancient power."
+	name = "灰烬之地法杖"
+	desc = "一根粗糙扭曲的树枝，注入了某种古老的力量。"
 
 	icon = 'icons/obj/weapons/guns/magic.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
@@ -24,21 +24,21 @@
 
 	var/turf/target_turf = interacting_with
 	if(istype(interacting_with, /turf/open/misc/asteroid/basalt/lava_land_surface))
-		to_chat(user, span_warning("You begin to corrupt the land even further..."))
+		to_chat(user, span_warning("你开始进一步腐化这片土地……"))
 		if(!do_after(user, 4 SECONDS, target = target_turf))
-			to_chat(user, span_warning("[src] had their casting cut short!"))
+			to_chat(user, span_warning("[src]的施法被打断了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		target_turf.ChangeTurf(/turf/open/lava/smooth/lava_land_surface)
-		to_chat(user, span_notice("[src] sparks, corrupting the area too far!"))
+		to_chat(user, span_notice("[src]迸出火花，腐化区域过远了！"))
 		return
 
 	if(world.time > staff_time)
-		to_chat(user, span_warning("[src] has had its permission expire from the necropolis!"))
+		to_chat(user, span_warning("[src] 从死灵之城的许可已过期！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!do_after(user, 2 SECONDS, target = target_turf))
-		to_chat(user, span_warning("[src] had their casting cut short!"))
+		to_chat(user, span_warning("[src]的施法被打断了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	target_turf.ChangeTurf(/turf/open/misc/asteroid/basalt/lava_land_surface)
@@ -49,7 +49,7 @@
 		var/obj/item/ash_staff/target_staff = attacking_item
 		target_staff.staff_time = world.time + 5 MINUTES
 		playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
-		to_chat(user, span_notice("The tendril permits you to have more time to corrupt the world with ashes."))
+		to_chat(user, span_notice("触须允许你有更多时间用灰烬腐化这个世界。"))
 		return
 
 	return ..()

@@ -1,5 +1,5 @@
 /datum/design/frontier_ration_flour
-	name = "Flour Sack"
+	name = "面粉袋"
 	id = "frontier_ration_flour_sack"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/frontier_ration_flour_korta
-	name = "Korta Flour Sack"
+	name = "科尔塔面粉袋"
 	id = "frontier_ration_flour_sack_korta"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -21,7 +21,7 @@
 	)
 
 /datum/design/frontier_ration_rice
-	name = "Rice Sack"
+	name = "米袋"
 	id = "frontier_ration_rice_sack"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/frontier_ration_sugar
-	name = "Sugar Sack"
+	name = "糖袋"
 	id = "frontier_ration_sugar_sack"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -43,7 +43,7 @@
 	)
 
 /datum/design/frontier_ration_soy_milk
-	name = "Soy Milk"
+	name = "豆奶"
 	id = "frontier_ration_soy_milk_cart"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -54,7 +54,7 @@
 	)
 
 /datum/design/frontier_ration_milk
-	name = "Milk"
+	name = "牛奶"
 	id = "frontier_ration_milk_cart"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)

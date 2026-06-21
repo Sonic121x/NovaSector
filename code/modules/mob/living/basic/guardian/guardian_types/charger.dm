@@ -7,7 +7,7 @@
 	melee_damage_upper = 15
 	speed = -0.5
 	damage_coeff = list(BRUTE = 0.75, BURN = 0.75, TOX = 0.75, STAMINA = 0, OXY = 0.75)
-	playstyle_string = span_holoparasite("As a <b>charger</b> type you do medium damage, have light damage resistance, move very fast, can be ridden, and can charge at a location, damaging any target hit and forcing them to drop any items they are holding.")
+	playstyle_string = span_holoparasite("作为<b>冲锋者</b>类型，你造成中等伤害，拥有轻度伤害抗性，移动速度极快，可以被骑乘，并且可以向一个位置发起冲锋，对击中的任何目标造成伤害并迫使其掉落持有的任何物品。")
 	creator_name = "Charger"
 	creator_desc = "Moves very fast, does medium damage on attack, can be ridden and can charge at targets, damaging the first target hit and forcing them to drop any items they are holding."
 	creator_icon = "charger"
@@ -19,7 +19,7 @@
 
 /// Guardian charger's charging attack, it knocks items out of people's hands
 /datum/action/cooldown/mob_cooldown/charge/basic_charge/guardian
-	name = "Charge!"
+	name = "冲锋！"
 	cooldown_time = 4 SECONDS
 	melee_cooldown_time = 0 SECONDS
 	button_icon = 'icons/effects/effects.dmi'

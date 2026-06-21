@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/animalhide
-	name = "animal hide spawner"
-	desc = "Fresh animal hide!"
+	name = "动物毛皮生成器"
+	desc = "新鲜的动物毛皮！"
 	icon_state = "animalhide"
 	loot = list(
 		/obj/item/stack/sheet/leather/five = 70,

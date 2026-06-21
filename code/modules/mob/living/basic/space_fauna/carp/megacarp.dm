@@ -7,8 +7,8 @@
  */
 /mob/living/basic/carp/mega
 	icon = 'icons/mob/simple/broadMobs.dmi'
-	name = "Mega Space Carp"
-	desc = "A ferocious, fang bearing creature that resembles a shark. This one seems especially ticked off."
+	name = "巨型太空鲤鱼"
+	desc = "一种凶猛、长着獠牙、形似鲨鱼的生物。这只看起来格外暴躁。"
 	icon_state = "megacarp_greyscale"
 	icon_living = "megacarp_greyscale"
 	icon_dead = "megacarp_dead_greyscale"

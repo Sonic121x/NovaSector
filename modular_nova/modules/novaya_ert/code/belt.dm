@@ -1,6 +1,6 @@
 /obj/item/storage/belt/military/nri
-	name = "green tactical belt"
-	desc = "A green tactical belt made for storing military grade hardware."
+	name = "绿色战术腰带"
+	desc = "一条用于存放军用级硬件的绿色战术腰带。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/belt.dmi'
 	worn_icon_teshari = 'modular_nova/master_files/icons/mob/clothing/species/teshari/belt.dmi'
@@ -9,20 +9,20 @@
 	worn_icon_state = "russian_green_belt"
 
 /obj/item/storage/belt/military/nri/captain
-	name = "black tactical belt"
-	desc = "A black tactical belt made for storing military grade hardware."
+	name = "黑色战术腰带"
+	desc = "一条用于存放军用级硬件的黑色战术腰带。"
 	icon_state = "russian_black_belt"
 	worn_icon_state = "russian_black_belt"
 
 /obj/item/storage/belt/military/nri/medic
-	name = "blue tactical belt"
-	desc = "A blue tactical belt made for storing military grade hardware."
+	name = "蓝色战术腰带"
+	desc = "一条用于存放军用级硬件的蓝色战术腰带。"
 	icon_state = "russian_white_belt"
 	worn_icon_state = "russian_white_belt"
 
 /obj/item/storage/belt/military/nri/engineer
-	name = "brown tactical belt"
-	desc = "A brown tactical belt made for storing military grade hardware."
+	name = "棕色战术腰带"
+	desc = "一条用于存放军用级硬件的棕色战术腰带。"
 	icon_state = "russian_brown_belt"
 	worn_icon_state = "russian_brown_belt"
 

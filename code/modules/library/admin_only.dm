@@ -241,7 +241,7 @@
 /obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/proc/unhide_book(id, reason, client/admin)
 	if(!SSdbcore.Connect())
 		can_connect = FALSE
-		to_chat(admin, span_danger("Failed to establish database connection."))
+		to_chat(admin, span_danger("无法建立数据库连接。"))
 		return
 	if(!check_rights_for(admin, R_BAN))
 		log_admin_private("[admin.ckey] tried to unhide a book without the required perms")

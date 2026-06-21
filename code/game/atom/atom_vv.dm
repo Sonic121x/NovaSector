@@ -34,7 +34,7 @@
 
 	if(href_list[VV_HK_ADD_REAGENT])
 		if(!reagents)
-			var/amount = tgui_input_number(usr, "Specify the reagent size of [src]", "Set Reagent Size", 50)
+			var/amount = tgui_input_number(usr, "指定[src]的试剂容量", "设置试剂容量", 50)
 			if(!amount)
 				return
 			create_reagents(amount)
@@ -43,11 +43,11 @@
 			return
 
 		var/chosen_id
-		switch(tgui_alert(usr, "Choose a method.", "Add Reagents", list("Search", "Choose from a list", "I'm feeling lucky")))
+		switch(tgui_alert(usr, "选择一种方法。", "添加试剂", list("Search", "Choose from a list", "I'm feeling lucky")))
 			if("Search")
 				var/valid_id
 				while(!valid_id)
-					chosen_id = tgui_input_text(usr, "Enter the ID of the reagent you want to add.", "Search reagents")
+					chosen_id = tgui_input_text(usr, "输入你想要添加的试剂ID。", "搜索试剂")
 					if(isnull(chosen_id)) //Get me out of here!
 						break
 					if (!ispath(text2path(chosen_id)))
@@ -57,20 +57,20 @@
 					else
 						valid_id = TRUE
 					if(!valid_id)
-						to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
+						to_chat(usr, span_warning("不存在该ID的试剂！"))
 			if("Choose from a list")
-				chosen_id = tgui_input_list(usr, "Choose a reagent to add.", "Choose a reagent.", sort_list(subtypesof(/datum/reagent), GLOBAL_PROC_REF(cmp_typepaths_asc)))
+				chosen_id = tgui_input_list(usr, "选择要添加的试剂。", "选择试剂。", sort_list(subtypesof(/datum/reagent), GLOBAL_PROC_REF(cmp_typepaths_asc)))
 			if("I'm feeling lucky")
 				chosen_id = pick(subtypesof(/datum/reagent))
 
 		if(!chosen_id)
 			return
-		var/amount = tgui_input_number(usr, "Choose the amount to add.", "Choose the amount.", reagents.maximum_volume - reagents.total_volume, reagents.maximum_volume)
+		var/amount = tgui_input_number(usr, "选择要添加的量。", "选择数量。", reagents.maximum_volume - reagents.total_volume, reagents.maximum_volume)
 		if(!amount)
 			return
 		reagents.add_reagent(chosen_id, amount)
 		log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [src]")
-		message_admins(span_notice("[key_name(usr)] has added [amount] units of [chosen_id] to [src]"))
+		message_admins(span_notice("[key_name(usr)]已向[src]中添加了[amount]单位的[chosen_id]"))
 
 	if(href_list[VV_HK_TRIGGER_EXPLOSION])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/admin_explosion, src)
@@ -110,53 +110,53 @@
 		message_admins(span_notice(message))
 
 	if(href_list[VV_HK_ADD_AI])
-		var/result = tgui_input_list(usr, "Choose the AI controller to apply to this atom WARNING: Not all AI works on all atoms.", "AI controller", sort_list(subtypesof(/datum/ai_controller), GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/result = tgui_input_list(usr, "选择要应用于此原子的AI控制器。警告：并非所有AI都适用于所有原子。", "AI控制器", sort_list(subtypesof(/datum/ai_controller), GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(result)
 			ai_controller = new result(src)
 
 	if(href_list[VV_HK_MODIFY_TRANSFORM])
-		var/result = input(usr, "Choose the transformation to apply","Transform Mod") as null|anything in list("Scale","Translate","Rotate","Shear")
+		var/result = input(usr, "选择要应用的变换","变换模式") as null|anything in list("缩放","平移","旋转","剪切")
 		var/matrix/M = transform
 		if(!result)
 			return
 		switch(result)
 			if("Scale")
-				var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-				var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+				var/x = input(usr, "选择 x 模量","变换模组") as null|num
+				var/y = input(usr, "选择 y 模量","变换模组") as null|num
 				if(isnull(x) || isnull(y))
 					return
 				transform = M.Scale(x,y)
 			if("Translate")
-				var/x = input(usr, "Choose x mod (negative = left, positive = right)","Transform Mod") as null|num
-				var/y = input(usr, "Choose y mod (negative = down, positive = up)","Transform Mod") as null|num
+				var/x = input(usr, "选择 x 模量（负值 = 左，正值 = 右）","变换模组") as null|num
+				var/y = input(usr, "选择 y 模量（负值 = 下，正值 = 上）","变换模组") as null|num
 				if(isnull(x) || isnull(y))
 					return
 				transform = M.Translate(x,y)
 			if("Shear")
-				var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-				var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+				var/x = input(usr, "选择 x 模量","变换模组") as null|num
+				var/y = input(usr, "选择 y 模量","变换模数") as null|num
 				if(isnull(x) || isnull(y))
 					return
 				transform = M.Shear(x,y)
 			if("Rotate")
-				var/angle = input(usr, "Choose angle to rotate","Transform Mod") as null|num
+				var/angle = input(usr, "选择旋转角度","变换模数") as null|num
 				if(isnull(angle))
 					return
 				transform = M.Turn(angle)
 		SEND_SIGNAL(src, COMSIG_ATOM_VV_MODIFY_TRANSFORM)
 
 	if(href_list[VV_HK_SPIN_ANIMATION])
-		var/num_spins = input(usr, "Do you want infinite spins?", "Spin Animation") in list("Yes", "No")
+		var/num_spins = input(usr, "你想要无限旋转吗？", "旋转动画") in list("Yes", "No")
 		if(num_spins == "No")
-			num_spins = input(usr, "How many spins?", "Spin Animation") as null|num
+			num_spins = input(usr, "旋转多少次？", "旋转动画") as null|num
 		else
 			num_spins = -1
 		if(!num_spins)
 			return
-		var/spins_per_sec = input(usr, "How many spins per second?", "Spin Animation") as null|num
+		var/spins_per_sec = input(usr, "每秒旋转多少次？", "旋转动画") as null|num
 		if(!spins_per_sec)
 			return
-		var/direction = input(usr, "Which direction?", "Spin Animation") in list("Clockwise", "Counter-clockwise")
+		var/direction = input(usr, "哪个方向？", "旋转动画") in list("Clockwise", "Counter-clockwise")
 		switch(direction)
 			if("Clockwise")
 				direction = 1
@@ -169,15 +169,15 @@
 	if(href_list[VV_HK_STOP_ALL_ANIMATIONS])
 		// Critical: Needs to be accessible in case of animation spam breaking shit
 		// Do not TGUIfy
-		var/result = input(usr, "Are you sure?", "Stop Animating") in list("Yes", "No")
+		var/result = input(usr, "你确定吗？", "停止动画") in list("Yes", "No")
 		if(result == "Yes")
 			animate(src, transform = null, flags = ANIMATION_END_NOW) // Literally just fucking stop animating entirely because admin said so
 		return
 
 	if(href_list[VV_HK_AUTO_RENAME])
-		var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
+		var/newname = input(usr, "你想将其重命名为什么？", "自动重命名") as null|text
 		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
-		if(newname && !(is_ic_filtered(newname) || is_soft_ic_filtered(newname) && tgui_alert(usr, "Your selected name contains words restricted by IC chat filters. Confirm this new name?", "IC Chat Filter Conflict", list("Confirm", "Cancel")) != "Confirm"))
+		if(newname && !(is_ic_filtered(newname) || is_soft_ic_filtered(newname) && tgui_alert(usr, "你选择的名称包含被IC聊天过滤器限制的词语。确认使用此新名称？", "IC聊天过滤器冲突", list("Confirm", "Cancel")) != "Confirm"))
 			vv_auto_rename(newname)
 
 	if(href_list[VV_HK_EDIT_FILTERS])

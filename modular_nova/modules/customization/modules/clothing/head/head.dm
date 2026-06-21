@@ -1,11 +1,11 @@
 /obj/item/clothing/head/hats/flakhelm	//Actually the M1 Helmet
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
-	name = "flak helmet"
+	name = "防弹头盔"
 	icon_state = "m1helm"
 	inhand_icon_state = "helmet"
 	armor_type = /datum/armor/hats_flakhelm
-	desc = "A dilapidated helmet used in ancient wars. This one is brittle and essentially useless. An ace of spades is tucked into the band around the outer shell."
+	desc = "古代战争中使用的破旧头盔。这个已经脆化，基本没用了。外壳的带子里塞着一张黑桃A。"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /datum/armor/hats_flakhelm
@@ -24,8 +24,8 @@
 
 //Cyberpunk PI Costume - Sprites from Eris
 /obj/item/clothing/head/fedora/det_hat/cybergoggles //Subset of detective fedora so that detectives dont have to sacrifice candycorns for style
-	name = "type-34P semi-enclosed headwear"
-	desc = "A popular helmet used by certain law enforcement agencies. It has minor armor plating and a neo-laminated fiber lining."
+	name = "34P型半封闭式头饰"
+	desc = "某些执法机构使用的流行头盔。它具有轻量装甲板和新型层压纤维衬里。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "cyberpunkgoggle"
@@ -33,8 +33,8 @@
 	hair_mask = "" //The shape of this hat is too tight to the head to not look insane with a mask
 
 /obj/item/clothing/head/fedora/det_hat/cybergoggles/civilian //Actually civilian with no armor for drip purposes only
-	name = "type-34C semi-enclosed headwear"
-	desc = "The civilian model of a popular helmet used by certain law enforcement agencies. It has no armor plating."
+	name = "34C型半封闭式头饰"
+	desc = "某些执法机构使用的流行头盔的民用型号。它没有装甲板。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "cyberpunkgoggle"
@@ -43,11 +43,11 @@
 	hair_mask = "" //The shape of this hat is too tight to the head to not look insane with a mask
 
 /obj/item/clothing/head/hats/intern/developer
-	name = "intern beancap"
+	name = "实习生豆帽"
 
 /obj/item/clothing/head/beret/sec/navywarden/syndicate
-	name = "master at arms' beret"
-	desc = "Surprisingly stylish, if you lived in a silent impressionist film."
+	name = "军械长贝雷帽"
+	desc = "出人意料地时髦，如果你生活在一部无声的印象派电影里的话。"
 	icon_state = "/obj/item/clothing/head/beret/sec/navywarden/syndicate"
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
@@ -68,8 +68,8 @@
 	wound = 6
 
 /obj/item/clothing/head/colourable_flatcap
-	name = "colourable flat cap"
-	desc = "You in the computers son? You work the computers?"
+	name = "可染色平顶帽"
+	desc = "你在搞电脑吗，小子？你搞电脑工作的？"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/colourable_flatcap"
 	post_init_icon_state = "flatcap"
@@ -80,8 +80,8 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/hats/imperial
-	name = "naval officer cap"
-	desc = "A naval cap with a signifying disk in the center."
+	name = "海军军官帽"
+	desc = "一顶中央带有标识圆盘的海军帽。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/hats/imperial"
 	post_init_icon_state = "navalcap"
@@ -92,82 +92,82 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/hats/imperial/cap
-	name = "captain's naval officer cap"
-	desc = "A white naval cap with a pin signifying captainship in the center."
+	name = "舰长的海军军官帽"
+	desc = "一顶白色的海军帽，中央别着象征舰长身份的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/cap"
 	greyscale_colors = "#FFFFFF#FFCE5B"
 	armor_type = /datum/armor/hats_caphat
 	flags_1 = null
 
 /obj/item/clothing/head/hats/imperial/nanotrasen_consultant
-	name = "nanotrasen consultant's naval cap"
-	desc = "A naval cap with a pin signifying a nanotrasen consultant in the center."
+	name = "纳米传讯顾问的海军帽"
+	desc = "一顶海军帽，中央别着象征纳米传讯顾问身份的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/nanotrasen_consultant"
 	greyscale_colors = "#54a57e#ffce5b"
 	flags_1 = null
 
 /obj/item/clothing/head/hats/imperial/blueshield
-	name = "blueshield's naval cap"
-	desc = "A naval cap with a pin signifying a blueshield in the center."
+	name = "蓝盾的海军帽"
+	desc = "一顶海军帽，中央别着象征蓝盾身份的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/blueshield"
 	greyscale_colors = "#3c485a#bbbbbb"
 	flags_1 = null
 	armor_type = /datum/armor/cosmetic_sec
 
 /obj/item/clothing/head/hats/imperial/bridge_officer
-	name = "bridge officer's naval cap"
-	desc = "A naval cap with a pin signifying a bridge officer in the center."
+	name = "舰桥军官的海军帽"
+	desc = "一顶海军帽，中央别着象征舰桥军官身份的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/bridge_officer"
 	greyscale_colors = "#41579a#ccced1"
 	flags_1 = null
 
 /obj/item/clothing/head/hats/imperial/hop
-	name = "head of personnel's naval officer cap"
-	desc = "An olive naval cap with a pin signifying a head of personnel in the center."
+	name = "人事主管的海军军官帽"
+	desc = "一顶橄榄绿色的海军帽，中央别着象征人事主管身份的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/hop"
 	greyscale_colors = "#829A8C#88242D"
 	flags_1 = null
 	armor_type = /datum/armor/hats_hopcap
 
 /obj/item/clothing/head/hats/imperial/hos
-	name = "head of security's naval officer cap"
-	desc = "A tar black naval cap with a pin signifying a head of security in the center."
+	name = "安全主管的海军军官帽"
+	desc = "一顶焦黑色的海军帽，中央别着象征安全主管身份的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/hos"
 	greyscale_colors = "#29252D#FFCE5B"
 	armor_type = /datum/armor/hats_hos
 	flags_1 = null
 
 /obj/item/clothing/head/hats/imperial/cmo
-	name = "chief medical officer's naval cap"
-	desc = "A teal naval cap with a pin signifying a chief medical officer in the center."
+	name = "首席医疗官的海军帽"
+	desc = "一顶青绿色的海军帽，中央别着象征首席医疗官身份的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/cmo"
 	greyscale_colors = "#5EB8B8#5FA4CC"
 	flags_1 = null
 
 /obj/item/clothing/head/hats/imperial/ce
-	name = "chief engineer's naval cap"
-	desc = "A naval cap with a pin signifying a chief engineer in the center."
+	name = "首席工程师的海军帽"
+	desc = "一顶海军帽，中央别着一枚代表首席工程师的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/ce"
 	greyscale_colors = "#404429#5c97e6"
 	flags_1 = null
 
 /obj/item/clothing/head/hats/imperial/rd
-	name = "research director's naval cap"
-	desc = "A naval cap with a pin signifying a research director in the center."
+	name = "研究主管的海军帽"
+	desc = "一顶海军帽，中央别着一枚代表研究主管的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/rd"
 	greyscale_colors = "#7e1980#fac719"
 	flags_1 = null
 
 /obj/item/clothing/head/hats/imperial/qm
-	name = "quartermaster's naval cap"
-	desc = "A naval cap with a pin signifying a quartermaster in the center."
+	name = "军需官的海军帽"
+	desc = "一顶海军帽，中央别着一枚代表军需官的徽章。"
 	icon_state = "/obj/item/clothing/head/hats/imperial/qm"
 	greyscale_colors = "#8B4C31#DEB63D"
 	flags_1 = null
 
 /obj/item/clothing/head/soft/yankee
-	name = "fashionable baseball cap"
-	desc = "Rimmed and brimmed."
+	name = "时尚棒球帽"
+	desc = "有帽檐，也有帽边。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "yankeesoft"
@@ -176,20 +176,20 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/soft/yankee/rimless
-	name = "rimless fashionable baseball cap"
-	desc = "Rimless for her pleasure."
+	name = "无檐时尚棒球帽"
+	desc = "无檐设计，只为取悦她。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "yankeenobrimsoft"
 	soft_type = "yankeenobrim"
 
 /obj/item/clothing/head/fedora/brown //Fedora without detective's candy corn gimmick
-	name = "brown fedora"
+	name = "棕色软呢帽"
 	icon_state = "detective"
 
 /obj/item/clothing/head/standalone_hood
-	name = "hood"
-	desc = "A hood with a bit of support around the neck so it actually stays in place, for all those times you want a hood without the coat."
+	name = "兜帽"
+	desc = "一个兜帽，颈部周围有支撑设计，能真正固定住，适用于所有你想要兜帽但不想穿外套的场合。"
 	worn_icon = 'modular_nova/modules/GAGS/icons/head/head.dmi'
 	worn_icon_teshari = 'modular_nova/modules/GAGS/icons/head/head_teshari.dmi'
 	body_parts_covered = HEAD
@@ -209,8 +209,8 @@
 	greyscale_config_worn_vox = /datum/greyscale_config/standalone_hood/worn/oldvox
 
 /obj/item/clothing/head/beret/badge
-	name = "badged beret"
-	desc = "A beret. With a badge. What do you want, a dissertation? It's a hat."
+	name = "带徽章贝雷帽"
+	desc = "一顶贝雷帽。带个徽章。你还想要什么，一篇论文吗？这就是顶帽子。"
 	icon_state = "/obj/item/clothing/head/beret/badge"
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
@@ -221,16 +221,16 @@
 /obj/item/clothing/head/costume/cowboyhat_old
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head.dmi'
-	name = "old cowboy hat"
-	desc = "An older cowboy hat, perfect for any outlaw, though lacking fancy colour magic."
+	name = "旧牛仔帽"
+	desc = "一顶老式牛仔帽，适合任何亡命之徒，只是缺少花哨的颜色魔法。"
 	icon_state = "cowboyhat_black"
 	inhand_icon_state = "cowboy_hat_black"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 //BOWS
 /obj/item/clothing/head/small_bow
-	name = "small bow"
-	desc = "A small compact bow that you can place on the side of your hair."
+	name = "小蝴蝶结"
+	desc = "一个可以别在头发一侧的小巧蝴蝶结。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/small_bow"
 	post_init_icon_state = "small_bow"
@@ -244,8 +244,8 @@
 	AddComponent(/datum/component/toggle_icon, "switch side")
 
 /obj/item/clothing/head/large_bow
-	name = "large bow"
-	desc = "A large bow that you can place on top of your head."
+	name = "大蝴蝶结"
+	desc = "一个可以戴在头顶的大蝴蝶结。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/large_bow"
 	post_init_icon_state = "large_bow"
@@ -255,23 +255,23 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/head/large_bow/back_bow
-	name = "back bow"
-	desc = "A large bow that you can place on the back of your head."
+	name = "后置蝴蝶结"
+	desc = "一个可以戴在脑后的蝴蝶结。"
 	greyscale_config = /datum/greyscale_config/back_bow
 	greyscale_config_worn = /datum/greyscale_config/back_bow/worn
 	flags_1 = IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/head/large_bow/sweet_bow
-	name = "sweet bow"
-	desc = "A sweet bow that you can place on the back of your head."
+	name = "甜美蝴蝶结"
+	desc = "一个可以戴在脑后的甜美蝴蝶结。"
 	greyscale_config = /datum/greyscale_config/sweet_bow
 	greyscale_config_worn = /datum/greyscale_config/sweet_bow/worn
 	flags_1 = IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 
 // Skrell chains
 /obj/item/clothing/head/skrell_chain
-	name = "gold skrellian head chain"
-	desc = "Traditional Skrellian chain"
+	name = "金色史奎利安头链"
+	desc = "传统的史奎利安头链"
 	icon = 'modular_nova/master_files/icons/obj/clothing/hats.dmi'
 	icon_state = "skrell_chain_gold"
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/skrell_chains.dmi'
@@ -288,15 +288,15 @@
 
 /obj/item/clothing/head/skrell_chain/examine(mob/user)
 	. = ..()
-	. += span_notice("<b>Use in hand</b> to pick a new style.")
+	. += span_notice("<b>在手中使用</b>以选择新样式。")
 
 /obj/item/clothing/head/skrell_chain/attack_self(mob/user)
-	var/style_name = tgui_input_list(user, "How does chain look when it's up?", "Pick!", chain_styles)
+	var/style_name = tgui_input_list(user, "链条立起来时是什么样子？", "选择！", chain_styles)
 	worn_icon_state = chain_styles[style_name]
-	balloon_alert(user, "style choiced!")
+	balloon_alert(user, "样式已选择！")
 
 /obj/item/clothing/head/skrell_chain/silver
-	name = "silver skrellian head chain"
+	name = "银色史奎利安头链"
 	icon_state = "skrell_chain_silver"
 	worn_icon_state = "chain_silver"
 	custom_price = PAYCHECK_CREW

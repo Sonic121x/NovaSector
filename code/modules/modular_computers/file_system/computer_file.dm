@@ -99,6 +99,6 @@
 /datum/computer_file/program/proc/event_networkfailure(background)
 	kill_program()
 	if(background)
-		computer.visible_message(span_danger("\The [computer]'s screen displays a \"Process [filename].[filetype] (PID [rand(100,999)]) terminated - Network Error\" error"))
+		computer.visible_message(span_danger("\The [computer]的屏幕显示一条\"进程 [filename].[filetype] (PID [rand(100,999)]) 已终止 - 网络错误\"的错误信息"))
 	else
-		computer.visible_message(span_danger("\The [computer]'s screen briefly freezes and then shows \"NETWORK ERROR - NTNet connection lost. Please retry. If problem persists contact your system administrator.\" error."))
+		computer.visible_message(span_danger("\The [computer]的屏幕短暂冻结，随后显示\"网络错误 - NTNet连接丢失。请重试。如果问题持续存在，请联系您的系统管理员。\"错误。"))

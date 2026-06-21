@@ -1,6 +1,6 @@
 /obj/item/implant/uplink
-	name = "uplink implant"
-	desc = "Sneeki breeki."
+	name = "上行链路植入物"
+	desc = "潜行与突袭。"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "radio"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -44,7 +44,7 @@
 		qdel(src)
 
 /obj/item/implanter/uplink
-	name = "implanter" // NOVA EDIT , original was implanter (uplink)
+	name = "植入器" // NOVA EDIT , original was implanter (uplink)
 	imp_type = /obj/item/implant/uplink
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // NOVA EDIT
 	special_desc = "A Syndicate implanter for an uplink" // NOVA EDIT
@@ -54,7 +54,7 @@
 	return ..()
 
 /obj/item/implanter/uplink/precharged
-	name = "implanter" // NOVA EDIT , original was implanter (precharged uplink)
+	name = "植入器" // NOVA EDIT , original was implanter (precharged uplink)
 	imp_type = /obj/item/implant/uplink/precharged
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // NOVA EDIT
 	special_desc = "A Syndicate implanter for a precharged uplink" // NOVA EDIT

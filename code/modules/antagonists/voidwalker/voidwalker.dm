@@ -1,6 +1,6 @@
 /// Space antagonist that harasses people near space and cursed them if they get the chance
 /datum/antagonist/voidwalker
-	name = "\improper Voidwalker"
+	name = "\improper 虚空行者"
 	antagpanel_category = ANTAG_GROUP_ABOMINATIONS
 	pref_flag = ROLE_VOIDWALKER
 

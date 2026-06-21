@@ -1,6 +1,6 @@
 /obj/structure/closet/syndicate
-	name = "armory closet"
-	desc = "Why is this here?"
+	name = "军械储藏柜"
+	desc = "为什么这个会在这里？"
 	icon_state = "syndicate"
 	armor_type = /datum/armor/closet_syndicate
 	paint_jobs = null
@@ -15,7 +15,7 @@
 	acid = 70
 
 /obj/structure/closet/syndicate/personal
-	desc = "It's a personal storage unit for operative gear."
+	desc = "这是个人储藏室，用来存放作战装备。"
 
 /obj/structure/closet/syndicate/personal/PopulateContents()
 	..()
@@ -34,7 +34,7 @@
 	new /obj/item/mod/module/plasma_stabilizer(src)
 
 /obj/structure/closet/syndicate/nuclear
-	desc = "It's a storage unit for a Syndicate boarding party."
+	desc = "这是一个辛迪加登机派对的储藏柜。"
 
 /obj/structure/closet/syndicate/nuclear/PopulateContents()
 	for(var/i in 1 to 5)
@@ -45,8 +45,8 @@
 	new /obj/item/modular_computer/pda/syndicate(src)
 
 /obj/structure/closet/syndicate/chemical
-	name = "chemical supplies closet"
-	desc = "full of omninous chemical supplies"
+	name = "化学品补给柜"
+	desc = "装满了不祥的化学品补给"
 	icon_state = "syndicate_chemical"
 
 /obj/structure/closet/syndicate/chemical/PopulateContents()
@@ -62,7 +62,7 @@
 	new /obj/item/reagent_containers/cup/bottle/acidic_buffer(src)
 
 /obj/structure/closet/syndicate/resources
-	desc = "An old, dusty locker."
+	desc = "一个又旧又脏的储物柜。"
 
 // A lot of this stuff is objective items, and it's also only used for debugging, so init times don't matter here.
 /obj/structure/closet/syndicate/resources/populate_contents_immediate()
@@ -78,7 +78,7 @@
 	//Sad trombone
 	if(pickednum == 1)
 		var/obj/item/paper/paper = new /obj/item/paper(src)
-		paper.name = "\improper IOU"
+		paper.name = "\improper 欠你的"
 		paper.add_raw_text("Sorry man, we needed the money so we sold your stash. It's ok, we'll double our money for sure this time!")
 		paper.update_appearance()
 
@@ -127,7 +127,7 @@
 		new /obj/item/tank/jetpack/carbondioxide(src)
 
 /obj/structure/closet/syndicate/resources/everything
-	desc = "It's an emergency storage closet for repairs."
+	desc = "这是一个用于维修的应急储藏。"
 	storage_capacity = 60 // This is gonna be used for debug.
 
 // A lot of this stuff is objective items, and it's also only used for debugging, so init times don't matter here.

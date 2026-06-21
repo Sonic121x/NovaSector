@@ -1,5 +1,5 @@
 /obj/item/shrapnel // frag grenades
-	name = "shrapnel shard"
+	name = "弹片碎片"
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 0.5)
 	weak_against_armour = TRUE
 	icon = 'icons/obj/debris.dmi'
@@ -10,25 +10,25 @@
 	sharpness = SHARP_EDGED
 
 /obj/item/shrapnel/stingball // stingbang grenades
-	name = "stingball"
+	name = "刺痛球"
 	icon_state = "tiny"
 	sharpness = NONE
 
 /obj/item/shrapnel/bullet // bullets
-	name = "bullet"
+	name = "子弹"
 	icon = 'icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "s-casing"
 	embed_type = null
 
 /obj/item/shrapnel/plastic
-	name = "plastic shard"
+	name = "塑料碎片"
 	custom_materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.5)
 	icon_state = "titaniummedium"
 	sharpness = SHARP_EDGED
 	embed_type = /datum/embedding/shrapnel
 
 /obj/projectile/bullet/shrapnel
-	name = "flying shrapnel shard"
+	name = "飞行的弹片碎片"
 	damage = 14
 	range = 20
 	weak_against_armour = TRUE
@@ -53,7 +53,7 @@
 	range = 5
 
 /obj/projectile/bullet/shrapnel/mega
-	name = "flying shrapnel hunk"
+	name = "飞行的弹片大块"
 	range = 45
 	dismemberment = 15
 	ricochets_max = 6
@@ -62,7 +62,7 @@
 	ricochet_decay_chance = 0.9
 
 /obj/projectile/bullet/shrapnel/ied
-	name = "flying glass shrapnel"
+	name = "飞行的玻璃弹片"
 	damage = 15
 	range = 6
 	ricochets_max = 1
@@ -71,7 +71,7 @@
 	ricochet_incidence_leeway = 60
 
 /obj/projectile/bullet/pellet/stingball
-	name = "stingball pellet"
+	name = "刺痛球弹丸"
 	damage = 3
 	stamina = 8
 	ricochets_max = 4
@@ -100,12 +100,12 @@
 	ignore_range_hit_prone_targets = TRUE
 
 /obj/projectile/bullet/pellet/stingball/mega
-	name = "megastingball pellet"
+	name = "巨型刺痛球弹丸"
 	ricochets_max = 6
 	ricochet_chance = 110
 
 /obj/projectile/bullet/pellet/capmine
-	name = "\improper AP shrapnel shard"
+	name = "\improper 穿甲弹片碎片"
 	range = 7
 	damage = 8
 	stamina = 8
@@ -130,6 +130,6 @@
 	rip_time = 1.5 SECONDS
 
 /obj/item/shrapnel/capmine
-	name = "\improper AP shrapnel shard"
+	name = "\improper 穿甲弹片碎片"
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 0.5)
 	weak_against_armour = TRUE

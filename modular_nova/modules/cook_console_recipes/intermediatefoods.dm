@@ -2,8 +2,8 @@
 // they should be fine to use as normal foods and as ingredients for recipes, don't be shy!
 
 /obj/item/food/dried_fish
-	name = "dried fish fillet"
-	desc = "Technically fish jerky?"
+	name = "鱼干片"
+	desc = "技术上算是鱼肉干？"
 	icon = 'modular_nova/modules/cook_console_recipes/icons.dmi'
 	icon_state = "driedfish"
 	food_reagents = list(
@@ -23,7 +23,7 @@
 	AddElement(/datum/element/dryable, /obj/item/food/dried_fish)
 
 /obj/item/food/dried_chili
-	name = "dried chili"
+	name = "干辣椒"
 	desc = "It's spicy! Wait... it's dry too."
 	icon = 'modular_nova/modules/cook_console_recipes/icons.dmi'
 	icon_state = "driedchili"
@@ -42,8 +42,8 @@
 	AddElement(/datum/element/dryable, /obj/item/food/dried_chili)
 
 /obj/item/food/dried_herbs
-	name = "bundle of dried herbs"
-	desc = "A bundle of various dried herbs. shouldn't be too hard to crumble up the one you want."
+	name = "干香草束"
+	desc = "一束各种干香草。应该不难把你想要的那种弄碎。"
 	icon = 'modular_nova/modules/cook_console_recipes/icons.dmi'
 	icon_state = "driedherbs"
 	food_reagents = list(
@@ -58,22 +58,22 @@
 	AddElement(/datum/element/dryable, /obj/item/food/dried_herbs)
 
 /datum/reagent/consumable/bonito
-	name = "bonito flakes"
-	description = "Also known as \"Katsuobushi\", apparently!"
+	name = "柴鱼片"
+	description = "也被称为\"鲣节\"，显然！"
 	color = "#fce2c7"
 	taste_description = "Umami"
 	taste_mult = 1.5
 
 /datum/reagent/consumable/chili_powder
-	name = "Chili Powder"
-	description = "\"No, no, chili p's my signature!\""
+	name = "辣椒粉"
+	description = "不，不，辣椒粉是我的招牌！"
 	color = "#88100a"
 	taste_description = "dry hot peppers"
 	taste_mult = 1.5
 
 /datum/reagent/consumable/onion_juice
-	name = "Onion Juice"
-	description = "Like tear juice but more palatable."
+	name = "洋葱汁"
+	description = "像眼泪汁但更可口。"
 	color = "#1bf5ea"
 	taste_description = "onion"
 

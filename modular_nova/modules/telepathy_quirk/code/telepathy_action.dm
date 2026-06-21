@@ -2,8 +2,8 @@
 	power_path = /datum/action/cooldown/spell/pointed/telepathy
 
 /datum/action/cooldown/spell/pointed/telepathy
-	name = "Telepathic Communication"
-	desc = "<b>Left click</b>: point target to project a thought to them. <b>Right click</b>: project to your last thought target, if in range."
+	name = "心灵感应通讯"
+	desc = "<b>左键点击</b>：指向目标以向其投射一个想法。<b>右键点击</b>：向你的上一个想法目标投射（如果在范围内）。"
 	button_icon = 'icons/mob/actions/actions_revenant.dmi'
 	button_icon_state = "r_transmit"
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
@@ -23,18 +23,18 @@
 		return FALSE
 
 	if (!isliving(cast_on))
-		to_chat(owner, span_warning("Inanimate objects can't hear your thoughts."))
-		owner.balloon_alert(owner, "not a thing with thoughts!")
+		to_chat(owner, span_warning("无生命的物体听不到你的想法。"))
+		owner.balloon_alert(owner, "不是有思想的物体！")
 		return FALSE
 
 	var/mob/living/living_target = cast_on
 	if (living_target.stat == DEAD)
-		to_chat(owner, span_warning("The disruptive noise of departed resonance inhibits your ability to communicate with the dead."))
-		owner.balloon_alert(owner, "can't transmit to the dead!")
+		to_chat(owner, span_warning("逝者共振的干扰噪音抑制了你与死者沟通的能力。"))
+		owner.balloon_alert(owner, "无法向死者发送信息！")
 		return FALSE
 
 	if (get_dist(living_target, owner) > cast_range)
-		owner.balloon_alert(owner, "too far away!")
+		owner.balloon_alert(owner, "太远了！")
 		return FALSE
 
 	return TRUE
@@ -44,12 +44,12 @@
 	if(. & SPELL_CANCEL_CAST || blocked)
 		return
 
-	message = autopunct_bare(capitalize(tgui_input_text(owner, "What do you wish to whisper to [cast_on]?", "[src]", max_length = MAX_MESSAGE_LEN)))
+	message = autopunct_bare(capitalize(tgui_input_text(owner, "你想对[cast_on]耳语什么？", "[src]", max_length = MAX_MESSAGE_LEN)))
 	if(QDELETED(src) || QDELETED(owner) || QDELETED(cast_on) || !can_cast_spell())
 		return . | SPELL_CANCEL_CAST
 
 	if(get_dist(cast_on, owner) > cast_range)
-		owner.balloon_alert(owner, "they're too far!")
+		owner.balloon_alert(owner, "他们太远了！")
 		return . | SPELL_CANCEL_CAST
 
 	if(!message || length(message) == 0)
@@ -62,15 +62,15 @@
 
 		if(isnull(last_target))
 			last_target_ref = null
-			owner.balloon_alert(owner, "last target is not available!")
+			owner.balloon_alert(owner, "上一个目标不可用！")
 			return
 		else if(get_dist(last_target, owner) > cast_range)
-			owner.balloon_alert(owner, "[last_target] is too far away!")
+			owner.balloon_alert(owner, "[last_target]太远了！")
 			return
 
 		blocked = TRUE
 
-		message = autopunct_bare(capitalize(tgui_input_text(owner, "What do you wish to whisper to [last_target]?", "[src]", null, max_length = MAX_MESSAGE_LEN, multiline = TRUE)))
+		message = autopunct_bare(capitalize(tgui_input_text(owner, "你想对[last_target]耳语什么？", "[src]", null, max_length = MAX_MESSAGE_LEN, multiline = TRUE)))
 		if(QDELETED(src) || QDELETED(owner) || QDELETED(last_target) || !can_cast_spell())
 			blocked = FALSE
 			return
@@ -84,7 +84,7 @@
 /datum/action/cooldown/spell/pointed/telepathy/cast(mob/living/cast_on)
 	. = ..()
 	owner.visible_message(
-		span_warning("[owner]'s attention locks onto [cast_on]."),
+		span_warning("[owner]的注意力锁定在了[cast_on]身上。"),
 		ignored_mobs = owner,
 	)
 	send_thought(owner, cast_on, message)
@@ -94,7 +94,7 @@
 
 	last_target_ref = WEAKREF(target)
 
-	to_chat(owner, span_boldnotice("You reach out and convey to [target]: \"[span_purple(message)]\""))
+	to_chat(owner, span_boldnotice("你伸出手，向[target]传达：\"[span_purple(message)]\""))
 	// flub a runechat chat message, do something with the language later
 	if(owner.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		owner.create_chat_message(owner, owner.get_selected_language(), message, list("italics"))
@@ -105,15 +105,15 @@
 			var/datum/mutation/telepathy/tele_mut = human_caster.dna.get_mutation(/datum/mutation/telepathy)
 
 			if (tele_mut)
-				to_chat(target, span_boldnotice("A psychic presence resounds in your mind: \"[span_purple(message)]\""))
+				to_chat(target, span_boldnotice("一个心灵感应在你脑海中回响：\"[span_purple(message)]\""))
 			else
-				to_chat(target, span_boldnotice("[caster]'s voice echoes in your head: \"[span_purple(message)]\""))
+				to_chat(target, span_boldnotice("[caster]的声音在你脑海中回响：\"[span_purple(message)]\""))
 
 		if(target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 			target.create_chat_message(target, target.get_selected_language(), message, list("italics")) // it appears over them since they hear it in their head
 	else
-		owner.balloon_alert(owner, "something blocks your thoughts!")
-		to_chat(owner, span_warning("Your mind encounters impassable resistance: the thought was blocked!"))
+		owner.balloon_alert(owner, "有什么东西阻挡了你的思绪！")
+		to_chat(owner, span_warning("你的思维遇到了无法逾越的阻力：这个想法被阻挡了！"))
 		return
 
 	// send to ghosts as well i guess
@@ -126,4 +126,4 @@
 		var/to_link = FOLLOW_LINK(ghost, target)
 		var/to_mob_name = span_name("[target]")
 
-		to_chat(ghost, "[from_link] " + span_purple("<b>\[Telepathy\]</b> [from_mob_name] transmits, \"[message]\"") + " to [to_mob_name] [to_link]")
+		to_chat(ghost, "[from_link] " + span_purple("<b>\[心灵感应\]</b> [from_mob_name] 传达，\"[message]\"") + "向 [to_mob_name] [to_link]")

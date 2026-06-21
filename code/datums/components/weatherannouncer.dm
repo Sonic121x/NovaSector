@@ -221,12 +221,12 @@
 	if(isnull(time_until_next))
 		return
 	if (time_until_next == 0)
-		examine_texts += span_warning("A storm is currently active, please seek shelter.")
+		examine_texts += span_warning("当前有风暴活动，请寻找庇护所。")
 	else
-		examine_texts += span_notice("The next storm is inbound in [DisplayTimeText(time_until_next)].")
+		examine_texts += span_notice("下一场风暴将在[DisplayTimeText(time_until_next)]后抵达。")
 
 	if(!check_accuracy())
-		examine_texts += span_smallnoticeital("Due to insufficient radar coverage, the timing of this forecast may be inaccurate.")
+		examine_texts += span_smallnoticeital("由于雷达覆盖不足，此预报的时间可能不准确。")
 
 /datum/component/weather_announcer/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
@@ -236,13 +236,13 @@
 	UnregisterSignal(parent, COMSIG_ATOM_EXAMINE)
 
 /datum/aas_config_entry/weather
-	name = "Cargo Alert: Weather Forecast"
-	general_tooltip = "Allows the radio to announce incoming weather."
+	name = "货舱警报：天气预报"
+	general_tooltip = "允许无线电播报即将到来的天气。"
 	announcement_lines_map = list(
-		"Clear" = "All clear, no weather alerts to report.",
-		"Incoming" = "Weather front incoming, begin to seek shelter.",
-		"Imminent or Active" = "Weather front imminent, find shelter immediately.",
-		"Safe" = "No risk expected from incoming weather front.",
+		"Clear" = "一切正常，无天气警报报告。",
+		"Incoming" = "天气锋面即将到来，请开始寻找庇护所。",
+		"Imminent or Active" = "天气锋面迫在眉睫，请立即寻找庇护所。",
+		"Safe" = "预计即将到来的天气锋面无风险。",
 	)
 
 /datum/aas_config_entry/weather/act_up()

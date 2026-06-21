@@ -4,26 +4,26 @@
 	if(!istype(requester))
 		return
 	if(QDELETED(door))
-		to_chat(src, span_warning("Connection lost! Unable to locate airlock on network."))
+		to_chat(src, span_warning("连接丢失！无法在网络中定位气闸门。"))
 		return
 	if(!istype(door))
 		return
 
 	if(!COOLDOWN_FINISHED(door, answer_cd))
-		to_chat(src, span_warning("Your processor is still cooling down."))
+		to_chat(src, span_warning("你的处理器仍在冷却中。"))
 		return
 
 	if(!requester.can_track(src))
-		to_chat(src, span_notice("Unable to track requester."))
+		to_chat(src, span_notice("无法追踪请求者。"))
 		return
 	if(!door.hasPower())
-		to_chat(src, span_warning("This airlock isn't powered."))
+		to_chat(src, span_warning("这个气闸门没有通电。"))
 		return
 	if(!door.canAIControl())
-		to_chat(src, span_notice("Unable to access airlock."))
+		to_chat(src, span_notice("无法访问气闸门。"))
 		return
 	if(door.obj_flags & EMAGGED)
-		to_chat(src, "Airlock is unresponsive.")
+		to_chat(src, "气闸门无响应。")
 		return
 
 	COOLDOWN_START(door, answer_cd, 10 SECONDS)
@@ -40,12 +40,12 @@
 		if("bolt")
 			if(!door.locked)
 				door.bolt()
-				door.visible_message(span_danger("Wow you really pissed [src] off, they bolted the door in your face!"), vision_distance = COMBAT_MESSAGE_RANGE)
+				door.visible_message(span_danger("哇，你真的把[src]惹毛了，他们当着你的面把门闩上了！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		if("shock")
 			door.set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME)
 			playsound(door, 'sound/machines/buzz/buzz-sigh.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE, ignore_walls = FALSE)
-			door.visible_message(span_notice("The door buzzes with electricity, [src] has denied your request!"), vision_distance = COMBAT_MESSAGE_RANGE)
+			door.visible_message(span_notice("门发出嗡嗡的电流声，[src]已拒绝了你的请求！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		if("deny")
 			playsound(door, 'sound/machines/buzz/buzz-sigh.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE, ignore_walls = FALSE)
-			door.visible_message(span_notice("The door buzzes, [src] has denied your request."), vision_distance = COMBAT_MESSAGE_RANGE)
-			to_chat(src, "You deny [requester]'s request.")
+			door.visible_message(span_notice("门嗡嗡作响，[src]已拒绝了你的请求。"), vision_distance = COMBAT_MESSAGE_RANGE)
+			to_chat(src, "你拒绝了[requester]的请求。")

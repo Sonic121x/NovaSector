@@ -1,6 +1,6 @@
 /turf/closed/wall
-	name = "wall"
-	desc = "A huge chunk of iron used to separate rooms."
+	name = "墙"
+	desc = "用来分隔房间的一大块铁。"
 	icon = 'icons/turf/walls/wall.dmi' //NOVA EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "wall-0"
 	base_icon_state = "wall"
@@ -81,11 +81,11 @@
 /turf/closed/wall/examine(mob/user)
 	. = ..()
 	if(initial(smoothing_flags) & SMOOTH_DIAGONAL_CORNERS)
-		. += span_notice("You could adjust its corners with a <b>wrench</b>.")
+		. += span_notice("你可以用<b>扳手</b>调整其边角。")
 	. += deconstruction_hints(user)
 
 /turf/closed/wall/proc/deconstruction_hints(mob/user)
-	return span_notice("The outer plating is <b>welded</b> firmly in place.")
+	return span_notice("外层板材已被<b>焊接</b>牢固。")
 
 /turf/closed/wall/attack_tk()
 	return
@@ -164,9 +164,9 @@
 	else
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 		add_dent(WALL_DENT_HIT)
-		user.visible_message(span_danger("[user] smashes \the [src]!"), \
+		user.visible_message(span_danger("[user] 砸碎了\the [src]！"), \
 					span_danger("You smash \the [src]!"), \
-					span_hear("You hear a booming smash!"))
+					span_hear("你听到一声轰隆的砸击声！"))
 	return TRUE
 
 /**
@@ -190,13 +190,13 @@
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	to_chat(user, span_notice("You push the wall but nothing happens!"))
+	to_chat(user, span_notice("你推了推墙壁，但什么也没发生！"))
 	playsound(src, 'sound/items/weapons/genhit.ogg', 25, TRUE)
 	add_fingerprint(user)
 
 /turf/closed/wall/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("你的手不够灵巧来做这件事！"))
 		return ITEM_INTERACT_BLOCKING
 
 	add_fingerprint(user)
@@ -215,10 +215,10 @@
 		if(!W.tool_start_check(user, amount=1))
 			return FALSE
 
-		to_chat(user, span_notice("You begin fixing dents on the wall..."))
+		to_chat(user, span_notice("你开始修复墙上的凹痕..."))
 		if(W.use_tool(src, user, 0, volume=100))
 			if(iswallturf(src) && LAZYLEN(dent_decals))
-				to_chat(user, span_notice("You fix some dents on the wall."))
+				to_chat(user, span_notice("你修复了墙上的一些凹痕。"))
 				cut_overlay(dent_decals)
 				dent_decals.Cut()
 			return TRUE
@@ -230,10 +230,10 @@
 		if(!I.tool_start_check(user, amount=round(slicing_duration / 50), heat_required = HIGH_TEMPERATURE_REQUIRED))
 			return FALSE
 
-		to_chat(user, span_notice("You begin slicing through the outer plating..."))
+		to_chat(user, span_notice("你开始切割外层护板..."))
 		if(I.use_tool(src, user, slicing_duration, volume=100))
 			if(iswallturf(src))
-				to_chat(user, span_notice("You remove the outer plating."))
+				to_chat(user, span_notice("你移除了外层护板。"))
 				dismantle_wall()
 			return TRUE
 
@@ -331,6 +331,6 @@
 	else
 		smoothing_flags |= SMOOTH_DIAGONAL_CORNERS
 	QUEUE_SMOOTH(src)
-	to_chat(user, span_notice("You adjust [src]."))
+	to_chat(user, span_notice("你调整了 [src]。"))
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS

@@ -1,6 +1,6 @@
 /obj/item/circuit_component/id_getter
 	display_name = "Get ID"
-	desc = "A component that returns the first available ID card on an organism."
+	desc = "一种能够返回生物体内首个可用身份证号码的组件。"
 	category = "ID"
 
 	/// The input port

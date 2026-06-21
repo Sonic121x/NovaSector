@@ -1,6 +1,6 @@
 /obj/item/banner
-	name = "banner"
-	desc = "A banner with Nanotrasen's logo on it."
+	name = "旗帜"
+	desc = "一面印有纳米传讯公司标志的旗帜。"
 	icon = 'icons/obj/banner.dmi'
 	icon_state = "banner"
 	inhand_icon_state = "banner"
@@ -23,16 +23,16 @@
 /obj/item/banner/examine(mob/user)
 	. = ..()
 	if(inspiration_available)
-		. += span_notice("Activate it in your hand to inspire nearby allies of this banner's allegiance!")
+		. += span_notice("在手中激活以鼓舞附近该旗帜阵营的盟友！")
 
 /obj/item/banner/attack_self(mob/living/carbon/human/user)
 	if(!inspiration_available || flags_1 & HOLOGRAM_1)
 		return
 	if(morale_time > world.time)
-		to_chat(user, span_warning("You aren't feeling inspired enough to flourish [src] again yet."))
+		to_chat(user, span_warning("你还没感到足够鼓舞，无法再次挥舞 [src]。"))
 		return
-	user.visible_message("<span class='big notice'>[user] flourishes [src]!</span>", \
-	span_notice("You raise [src] skywards, inspiring your allies!"))
+	user.visible_message("<span class='big notice'>[user] 挥舞着 [src]！</span>", \
+	span_notice("你将 [src] 高举向天，鼓舞了你的盟友！"))
 	playsound(src, SFX_RUSTLE, 100, FALSE)
 	if(warcry)
 		user.say("[warcry]", forced="banner")
@@ -59,7 +59,7 @@
 	for(var/V in inspired)
 		var/mob/living/carbon/human/H = V
 		if(H != user)
-			to_chat(H, span_notice("Your confidence surges as [user] flourishes [user.p_their()] [name]!"))
+			to_chat(H, span_notice("当 [user] 挥舞着 [user.p_their()] [name] 时，你的信心高涨！"))
 		inspiration(H)
 		special_inspiration(H)
 
@@ -83,8 +83,8 @@
 	return
 
 /obj/item/banner/security
-	name = "securistan banner"
-	desc = "The banner of Securistan, ruling the station with an iron fist."
+	name = "安全斯坦旗帜"
+	desc = "安全斯坦的旗帜，以铁腕统治着空间站。"
 	icon_state = "banner_security"
 	inhand_icon_state = "banner_security"
 	warcry = "EVERYONE DOWN ON THE GROUND!!"
@@ -97,7 +97,7 @@
 	inspiration_available = FALSE
 
 /datum/crafting_recipe/security_banner
-	name = "Securistan Banner"
+	name = "安全斯坦旗帜"
 	result = /obj/item/banner/security/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
@@ -105,8 +105,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/medical
-	name = "meditopia banner"
-	desc = "The banner of Meditopia, generous benefactors that cure wounds and shelter the weak."
+	name = "医疗托邦旗帜"
+	desc = "医疗托邦的旗帜，慷慨的恩主治愈创伤、庇护弱者。"
 	icon_state = "banner_medical"
 	inhand_icon_state = "banner_medical"
 	warcry = "No wounds cannot be healed!"
@@ -122,7 +122,7 @@
 	return H.stat //Meditopia is moved to help those in need
 
 /datum/crafting_recipe/medical_banner
-	name = "Meditopia Banner"
+	name = "医疗托邦旗帜"
 	result = /obj/item/banner/medical/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
@@ -138,8 +138,8 @@
 	inspired_human.reagents.add_reagent(/datum/reagent/medicine/inaprovaline, 5)
 
 /obj/item/banner/science
-	name = "sciencia banner"
-	desc = "The banner of Sciencia, bold and daring thaumaturges and researchers that take the path less traveled."
+	name = "科学西亚旗帜"
+	desc = "科学西亚的旗帜，大胆无畏的术士与研究者，选择少有人走的路。"
 	icon_state = "banner_science"
 	inhand_icon_state = "banner_science"
 	warcry = "For Cuban Pete!"
@@ -155,7 +155,7 @@
 	return H.on_fire //Sciencia is pleased by dedication to the art of Ordnance
 
 /datum/crafting_recipe/science_banner
-	name = "Sciencia Banner"
+	name = "科学西亚旗帜"
 	result = /obj/item/banner/science/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
@@ -163,8 +163,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/cargo
-	name = "cargonia banner"
-	desc = "The banner of the eternal Cargonia, with the mystical power of conjuring any object into existence."
+	name = "货运尼亚旗帜"
+	desc = "永恒货运尼亚的旗帜，拥有凭空召唤任何物品的神秘力量。"
 	icon_state = "banner_cargo"
 	inhand_icon_state = "banner_cargo"
 	warcry = "Hail Cargonia!"
@@ -177,7 +177,7 @@
 	inspiration_available = FALSE
 
 /datum/crafting_recipe/cargo_banner
-	name = "Cargonia Banner"
+	name = "货运尼亚旗帜"
 	result = /obj/item/banner/cargo/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
@@ -185,8 +185,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/engineering
-	name = "engitopia banner"
-	desc = "The banner of Engitopia, wielders of limitless power."
+	name = "工程乌托邦旗帜"
+	desc = "工程托邦的旗帜，无限力量的持有者。"
 	icon_state = "banner_engineering"
 	inhand_icon_state = "banner_engineering"
 	warcry = "All hail lord Singuloth!!"
@@ -202,7 +202,7 @@
 	qdel(H.GetComponent(/datum/component/irradiated))
 
 /datum/crafting_recipe/engineering_banner
-	name = "Engitopia Banner"
+	name = "工程乌托邦旗帜"
 	result = /obj/item/banner/engineering/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
@@ -210,8 +210,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/command
-	name = "command banner"
-	desc = "The banner of Command, a staunch and ancient line of bureaucratic kings and queens."
+	name = "指挥旗帜"
+	desc = "指挥部的旗帜，代表着官僚国王与女王们坚定而古老的世系。"
 	//No icon state here since the default one is the NT banner
 	warcry = "Hail Nanotrasen!"
 
@@ -226,7 +226,7 @@
 	return HAS_TRAIT(H, TRAIT_MINDSHIELD) //Command is stalwart but rewards their allies.
 
 /datum/crafting_recipe/command_banner
-	name = "Command Banner"
+	name = "指挥旗帜"
 	result = /obj/item/banner/command/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
@@ -234,19 +234,19 @@
 	category = CAT_MISC
 
 /obj/item/banner/red
-	name = "red banner"
+	name = "红色旗帜"
 	icon_state = "banner-red"
 	inhand_icon_state = "banner-red"
-	desc = "A banner with the logo of the red deity."
+	desc = "一面印有红色神祇徽记的旗帜。"
 
 /obj/item/banner/blue
-	name = "blue banner"
+	name = "蓝色旗帜"
 	icon_state = "banner-blue"
 	inhand_icon_state = "banner-blue"
-	desc = "A banner with the logo of the blue deity."
+	desc = "一面印有蓝色神明徽记的旗帜。"
 
 /obj/item/storage/backpack/bannerpack
-	name = "\improper Nanotrasen banner backpack"
+	name = "\improper 纳米传讯旗帜背包"
 	desc = "It's a backpack with lots of extra room.  A banner with Nanotrasen's logo is attached, that can't be removed."
 	icon_state = "backpack-banner"
 
@@ -255,20 +255,20 @@
 	atom_storage.max_total_storage = 27 //6 more then normal, for the tradeoff of declaring yourself an antag at all times.
 
 /obj/item/storage/backpack/bannerpack/red
-	name = "red banner backpack"
+	name = "红色旗帜背包"
 	desc = "It's a backpack with lots of extra room.  A red banner is attached, that can't be removed."
 	icon_state = "backpack-banner_red"
 
 /obj/item/storage/backpack/bannerpack/blue
-	name = "blue banner backpack"
+	name = "蓝色旗帜背包"
 	desc = "It's a backpack with lots of extra room.  A blue banner is attached, that can't be removed."
 	icon_state = "backpack-banner_blue"
 
 //this is all part of one item set
 
 /obj/item/clothing/head/helmet/plate/crusader
-	name = "Crusader's Hood"
-	desc = "A brownish hood."
+	name = "十字军兜帽"
+	desc = "一顶棕色的兜帽。"
 	icon = 'icons/obj/clothing/head/chaplain.dmi'
 	worn_icon = 'icons/mob/clothing/head/chaplain.dmi'
 	icon_state = "crusader"
@@ -296,8 +296,8 @@
 
 //Prophet helmet
 /obj/item/clothing/head/helmet/plate/crusader/prophet
-	name = "Prophet's Hat"
-	desc = "A religious-looking hat."
+	name = "先知帽"
+	desc = "一顶看起来很有宗教感的帽子。"
 	icon_state = null
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	inhand_icon_state = null
@@ -326,8 +326,8 @@
 
 //Structure conversion staff
 /obj/item/godstaff
-	name = "godstaff"
-	desc = "It's a stick..?"
+	name = "神杖"
+	desc = "这是根棍子..？"
 	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "godstaff-red"
 	icon_angle = -45
@@ -350,7 +350,7 @@
 	if(staffcooldown + staffwait > world.time)
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] chants deeply and waves [user.p_their()] staff!"))
+	user.visible_message(span_notice("[user] 深沉地吟唱并挥舞着[user.p_their()]法杖！"))
 	if(do_after(user, 2 SECONDS, interacting_with))
 		interacting_with.add_atom_colour(conversion_color, WASHABLE_COLOUR_PRIORITY) //wololo
 	staffcooldown = world.time
@@ -365,9 +365,9 @@
 	conversion_color = "#0000ff"
 
 /obj/item/clothing/gloves/plate
-	name = "plate gauntlets"
+	name = "板甲护手"
 	icon_state = "crusader"
-	desc = "They're like gloves, but made of metal."
+	desc = "它们就像手套，不过是金属做的。"
 	siemens_coefficient = 0
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
@@ -381,8 +381,8 @@
 	icon_state = "crusader-blue"
 
 /obj/item/clothing/shoes/plate
-	name = "plate boots"
-	desc = "Metal boots, they look heavy."
+	name = "板甲靴"
+	desc = "金属靴子，看起来挺重的。"
 	icon_state = "crusader"
 	w_class = WEIGHT_CLASS_NORMAL
 	armor_type = /datum/armor/shoes_plate
@@ -409,7 +409,7 @@
 	icon_state = "crusader-blue"
 
 /obj/item/claymore/weak
-	desc = "This one is rusted."
+	desc = "这把已经生锈了。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "claymore_old"
 	worn_icon = 'icons/mob/clothing/back.dmi'
@@ -421,7 +421,7 @@
 	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple, -9)
 
 /obj/item/claymore/weak/ceremonial
-	desc = "A rusted claymore, once at the heart of a powerful scottish clan struck down and oppressed by tyrants, it has been passed down the ages as a symbol of defiance."
+	desc = "一把生锈的阔剑，曾是一个被暴君镇压的强大苏格兰氏族的核心象征，它作为反抗的标志世代相传。"
 	force = 15
 	block_chance = 30
 	armour_penetration = 5

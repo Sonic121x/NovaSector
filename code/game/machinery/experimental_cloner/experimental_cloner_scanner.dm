@@ -1,7 +1,7 @@
 /// Machine that you put someone in to scan them for the experimental cloner
 /obj/machinery/experimental_cloner_scanner
-	name = "experimental cloning scanner"
-	desc = "An old prototype DNA scanner, compatible with an experimental cloning setup."
+	name = "实验性克隆扫描仪"
+	desc = "一台旧的原型DNA扫描仪，与实验性克隆装置兼容。"
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "scanner"
 	base_icon_state = "scanner"
@@ -103,26 +103,26 @@
 
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open..."), \
-		span_hear("You hear a metallic creaking from [src]."))
+	user.visible_message(span_notice("你看到[user]在踢[src]的门！"), \
+		span_notice("你靠在[src]的背面，开始把门推开……"), \
+		span_hear("你听到[src]传来金属的嘎吱声。"))
 
-	balloon_alert(user, "breaking out...")
+	balloon_alert(user, "正在挣脱...")
 	if (!do_after(user,(breakout_time), target = src))
 		return
 	if (!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked)
 		return
 
 	locked = FALSE
-	user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-		span_notice("You successfully break out of [src]!"))
+	user.visible_message(span_warning("[user] 成功从 [src] 中挣脱出来了！"), \
+		span_notice("你成功从 [src] 中挣脱出来了！"))
 	open_machine()
 
 /obj/machinery/experimental_cloner_scanner/relaymove(mob/living/user, direction)
 	if (user.stat || locked)
 		if (COOLDOWN_FINISHED(src, message_cooldown))
 			COOLDOWN_START(src, message_cooldown, breakout_time)
-			balloon_alert(user, "door locked!")
+			balloon_alert(user, "门锁住了！")
 			container_resist_act(user)
 		return
 	open_machine()
@@ -142,7 +142,7 @@
 		return
 
 	if (locked)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "它锁住了！")
 		return
 
 	open_machine()
@@ -162,5 +162,5 @@
 
 /obj/machinery/experimental_cloner_scanner/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.set_buffer(src)
-	balloon_alert(user, "frequency stored")
+	balloon_alert(user, "频率已存储")
 	return ITEM_INTERACT_SUCCESS

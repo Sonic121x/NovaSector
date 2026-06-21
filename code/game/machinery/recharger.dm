@@ -1,9 +1,9 @@
 /obj/machinery/recharger
-	name = "recharger"
+	name = "充电器"
 	icon = 'icons/obj/machines/sec.dmi'
 	icon_state = "recharger"
 	base_icon_state = "recharger"
-	desc = "A charging dock for energy based weaponry, PDAs, and other devices."
+	desc = "用于能量武器、PDA和其他设备的充电座。"
 	circuit = /obj/item/circuitboard/machine/recharger
 	pass_flags = PASSTABLE
 	/// The item currently inserted into the charger
@@ -29,7 +29,7 @@
 /obj/machinery/recharger/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += span_warning("You're too far away to examine [src]'s contents and display!")
+		. += span_warning("您距离太远，无法查看[src]的内容并显示!")
 		return
 
 	if(charging)
@@ -41,28 +41,28 @@
 	var/status_display_message_shown = FALSE
 	if(using_power)
 		status_display_message_shown = TRUE
-		. += span_notice("The status display reads:")
+		. += span_notice("状态显示如下：")
 		. += span_notice("- Recharging efficiency: <b>[recharge_coeff*100]%</b>.")
 
 	if(isnull(charging))
 		return
 	if(!status_display_message_shown)
-		. += span_notice("The status display reads:")
+		. += span_notice("状态显示如下：")
 
 	var/obj/item/stock_parts/power_store/charging_cell = charging.get_cell()
 	if(charging_cell)
-		. += span_notice("- \The [charging]'s cell is at <b>[charging_cell.percent()]%</b>.")
+		. += span_notice("- \The [charging] 的电池电量为 <b>[charging_cell.percent()]%</b>。")
 		return
 	if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 		var/obj/item/ammo_box/magazine/recharge/power_pack = charging
-		. += span_notice("- \The [charging]'s cell is at <b>[PERCENT(power_pack.stored_ammo.len/power_pack.max_ammo)]%</b>.")
+		. += span_notice("- \The [charging] 的电池电量为 <b>[PERCENT(power_pack.stored_ammo.len/power_pack.max_ammo)]%</b>。")
 		return
 	if(istype(charging, /obj/item/gun/ballistic/automatic/battle_rifle))
 		var/obj/item/gun/ballistic/automatic/battle_rifle/recalibrating_gun = charging
-		. += span_notice("- \The [charging]'s system degradation is at stage [recalibrating_gun.degradation_stage] of [recalibrating_gun.degradation_stage_max]</b>.")
-		. += span_notice("- \The [charging]'s degradation buffer is at <b>[PERCENT(recalibrating_gun.shots_before_degradation/recalibrating_gun.max_shots_before_degradation)]%</b>.")
+		. += span_notice("- \The [charging] 的系统退化处于第 [recalibrating_gun.degradation_stage] 阶段，共 [recalibrating_gun.degradation_stage_max] 阶段</b>。")
+		. += span_notice("- \The [charging] 的退化缓冲为 <b>[PERCENT(recalibrating_gun.shots_before_degradation/recalibrating_gun.max_shots_before_degradation)]%</b>。")
 		return
-	. += span_notice("- \The [charging] is not reporting a power level.")
+	. += span_notice("- \The [charging] 没有报告电量。")
 
 /obj/machinery/recharger/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	if(is_type_in_typecache(arrived, allowed_devices))
@@ -88,7 +88,7 @@
 		return NONE
 
 	if(!anchored)
-		to_chat(user, span_notice("[src] isn't connected to anything!"))
+		to_chat(user, span_notice("[src] 并未和任何东西相连!"))
 		return ITEM_INTERACT_BLOCKING
 	if(charging || panel_open)
 		return ITEM_INTERACT_BLOCKING
@@ -101,18 +101,18 @@
 	if(istype(tool, /obj/item/gun/energy))
 		var/obj/item/gun/energy/energy_gun = tool
 		if(!energy_gun.can_charge)
-			to_chat(user, span_notice("Your gun has no external power connector."))
+			to_chat(user, span_notice("您的枪没有外部电源接口."))
 			return ITEM_INTERACT_BLOCKING
 	user.transferItemToLoc(tool, src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/recharger/wrench_act(mob/living/user, obj/item/tool)
 	if(charging)
-		to_chat(user, span_notice("Remove the charging item first!"))
+		to_chat(user, span_notice("首先拿走充电项目!"))
 		return ITEM_INTERACT_BLOCKING
 	set_anchored(!anchored)
 	power_change()
-	to_chat(user, span_notice("You [anchored ? "attached" : "detached"] [src]."))
+	to_chat(user, span_notice("你 [anchored ? "attached" : "detached"] [src]."))
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS
 

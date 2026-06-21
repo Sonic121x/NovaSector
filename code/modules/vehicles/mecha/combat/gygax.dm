@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/gygax
-	desc = "A lightweight, security exosuit. Popular among private and corporate security."
-	name = "\improper Gygax"
+	desc = "一款轻便且具备安全防护功能的外骨骼装备。深受私人保安和企业保安人员的青睐。"
+	name = "\improper 吉加斯"
 	icon_state = "gygax"
 	base_icon_state = "gygax"
 	movedelay = 3
@@ -34,8 +34,8 @@
 	acid = 100
 
 /obj/vehicle/sealed/mecha/gygax/dark
-	desc = "A lightweight exosuit, painted in a dark scheme. This model's armor has been upgraded with a cutting-edge armor composite, resulting in greater protection and performance at the cost of modularity."
-	name = "\improper Dark Gygax"
+	desc = "一款涂装为深色方案的轻型外骨骼。该型号的装甲已升级为尖端复合装甲材料，以牺牲模块化为代价，获得了更强的防护和性能。"
+	name = "\improper 暗黑吉加斯"
 	ui_theme = "syndicate"
 	icon_state = "darkgygax"
 	base_icon_state = "darkgygax"

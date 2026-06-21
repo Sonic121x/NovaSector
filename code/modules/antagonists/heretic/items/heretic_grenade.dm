@@ -4,8 +4,8 @@
  */
 
 /obj/item/grenade/chem_grenade/rust_sower
-	name = "\improper Rust sower"
-	desc = "A nifty little thing that explodes into rust. Causes borgs and mechs to get utterly obliterated"
+	name = "\improper 锈蚀播种者"
+	desc = "一个会炸出锈蚀的小巧玩意儿。能让机器人和机甲彻底报废。"
 	possible_fuse_time = list("5")
 	stage = GRENADE_READY
 	base_icon_state = "rustgrenade"
@@ -48,8 +48,8 @@
 	return -1
 
 /datum/reagent/heretic_rust
-	name = "Eldritch Rust"
-	description = "A slurry of viscous, chunky brown liquid."
+	name = "诡秘锈蚀"
+	description = "一种粘稠、块状的棕色液体浆状物。"
 	color = COLOR_CARGO_BROWN // Rust color
 	taste_description = "rotten copper"
 	penetrates_skin = NONE

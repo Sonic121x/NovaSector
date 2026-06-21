@@ -1,8 +1,8 @@
 // Ported from Citadel Station
 
 /mob/living/basic/banana_spider
-	name = "banana spider"
-	desc = "What the fuck is this abomination?"
+	name = "香蕉蜘蛛"
+	desc = "这他妈是什么怪物？"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "bananaspider"
 	icon_dead = "bananaspider_peel"
@@ -13,10 +13,10 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	mob_size = MOB_SIZE_TINY
 	density = TRUE
-	verb_say = "chitters"
-	verb_ask = "chitters inquisitively"
-	verb_exclaim = "chitters loudly"
-	verb_yell = "chitters loudly"
+	verb_say = "吱吱叫"
+	verb_ask = "好奇地吱吱叫"
+	verb_exclaim = "大声吱吱叫"
+	verb_yell = "大声吱吱叫"
 	basic_mob_flags = DEL_ON_DEATH
 	ai_controller = /datum/ai_controller/basic_controller/cockroach/banana_spider
 
@@ -34,8 +34,8 @@
 	walk_chance = 10
 
 /obj/item/food/deadbanana_spider
-	name = "dead banana spider"
-	desc = "Thank god it's gone...but it does look slippery."
+	name = "香蕉蜘蛛尸体"
+	desc = "谢天谢地它总算死了……不过看起来滑溜溜的。"
 	icon = 'modular_nova/master_files/icons/mob/newmobs.dmi'
 	icon_state = "bananaspider_peel"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)

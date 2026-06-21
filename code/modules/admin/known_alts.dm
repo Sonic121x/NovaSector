@@ -9,7 +9,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 		return
 
 	if (!SSdbcore.Connect())
-		to_chat(usr, span_warning("Couldn't connect to the database."))
+		to_chat(usr, span_warning("无法连接到数据库。"))
 		return
 
 	var/datum/admins/holder = usr.client?.holder
@@ -21,11 +21,11 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 
 	switch (href_list["action"])
 		if ("add")
-			var/ckey1 = input(usr, "Put in the name of the main ckey") as null|text
+			var/ckey1 = input(usr, "输入主账号的ckey名称") as null|text
 			if (!ckey1)
 				return
 
-			var/ckey2 = input(usr, "Put in the name of their alt") as null|text
+			var/ckey2 = input(usr, "输入其小号的名称") as null|text
 			if (!ckey2)
 				return
 
@@ -51,7 +51,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			QDEL_NULL(query_already_exists)
 
 			if (already_exists_row)
-				alert(usr, "Those two are already in the list of known alts!")
+				alert(usr, "这两个已经在已知关联账号列表中了！")
 				return
 
 			var/datum/db_query/query_add_known_alt = SSdbcore.NewQuery({"
@@ -75,7 +75,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			show_panel(usr.client)
 
 			if (!is_banned_from(ckey2, "Server"))
-				var/ban_choice = alert("[ckey2] is not banned from the server. Do you want to open up the ban panel as well?",,"Yes", "No")
+				var/ban_choice = alert("[ckey2] 并未被服务器封禁。你是否也想打开封禁面板？",,"Yes", "No")
 				if (ban_choice == "Yes")
 					holder.ban_panel(ckey2, role = "Server", duration = BAN_PANEL_PERMANENT)
 		if ("delete")
@@ -96,14 +96,14 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 				return
 
 			if (!query_known_alt_info.NextRow())
-				alert("Couldn't find the known alt with the ID [id]")
+				alert("找不到 ID 为 [id] 的已知关联账号")
 				qdel(query_known_alt_info)
 				return
 
 			var/list/result = query_known_alt_info.item
 			QDEL_NULL(query_known_alt_info)
 
-			if (alert("Are you sure you want to delete the alt connection between [result[1]] and [result[2]]?",,"Yes", "No") != "Yes")
+			if (alert("你确定要删除 [result[1]] 和 [result[2]] 之间的关联账号连接吗？",,"Yes", "No") != "Yes")
 				return
 
 			var/datum/db_query/query_delete_known_alt = SSdbcore.NewQuery({"
@@ -162,7 +162,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 		return
 
 	if (!SSdbcore.Connect())
-		to_chat(usr, span_warning("Couldn't connect to the database."))
+		to_chat(usr, span_warning("无法连接到数据库。"))
 		return
 
 	var/list/known_alts_html = list()

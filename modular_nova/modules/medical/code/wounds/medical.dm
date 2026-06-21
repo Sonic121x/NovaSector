@@ -80,7 +80,7 @@
 	integrity--
 	if(integrity <= 0)
 		if(gauzed_bodypart.owner)
-			to_chat(gauzed_bodypart.owner, span_warning("The [name] on your [gauzed_bodypart.name] tears and falls off!"))
+			to_chat(gauzed_bodypart.owner, span_warning("你[name]上的[gauzed_bodypart.name]撕裂并脱落了！"))
 		qdel(src)
 
 /// Returns TRUE if we can generate an overlay, false otherwise.

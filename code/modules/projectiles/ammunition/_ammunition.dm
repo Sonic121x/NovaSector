@@ -1,6 +1,6 @@
 /obj/item/ammo_casing
-	name = "bullet casing"
-	desc = "A bullet casing."
+	name = "弹壳"
+	desc = "一颗弹壳。"
 	icon = 'icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "s-casing"
 	worn_icon_state = "bullet"
@@ -48,7 +48,7 @@
 	var/shot_timestamp = 0
 
 /obj/item/ammo_casing/spent
-	name = "spent bullet casing"
+	name = "废弹壳"
 	loaded_projectile = null
 
 /obj/item/ammo_casing/Initialize(mapload)
@@ -101,12 +101,12 @@
 		proj_damage_mult = our_gun.projectile_damage_multiplier
 	var/list/readout = list()
 	if(proj_damage_mult <= 0 || (initial_damage <= 0 && initial_stamina <= 0))
-		return "Our legal team has determined the offensive nature of these [span_warning(caliber)] rounds to be esoteric."
+		return "我们的法务团队已认定这些[span_warning(caliber)]子弹的攻击性质深奥难解。"
 	// No dividing by 0
 	if(initial_damage)
-		readout += "Most monkeys our legal team subjected to these [span_warning(caliber)] rounds succumbed to their wounds after [span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * proj_damage_mult) * pellets)] shot\s")] at point-blank, taking [span_warning("[pellets] shot\s")] per round."
+		readout += "我们法务团队测试的大多数猴子在承受了[span_warning(caliber)]发这种[span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * proj_damage_mult) * pellets)] shot\s")]子弹后，于近距离内因伤势过重而死亡，每轮承受[span_warning("[pellets] shot\s")]发。"
 	if(initial_stamina)
-		readout += "[!readout.len ? "Most monkeys" : "More fortunate monkeys"] collapsed from exhaustion after [span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * proj_damage_mult) * pellets)] impact\s")] of these [span_warning("[caliber]")] rounds."
+		readout += "[!readout.len ? "Most monkeys" : "More fortunate monkeys"]在承受了[span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * proj_damage_mult) * pellets)] impact\s")]发这种[span_warning("[caliber]")]子弹后因力竭而倒下。"
 	return readout.Join("\n") // Sending over a single string, rather than the whole list
 
 /obj/item/ammo_casing/update_icon_state()
@@ -149,9 +149,9 @@
 					continue
 			if (boolets > 0)
 				box.update_appearance()
-				to_chat(user, span_notice("You collect [boolets] [box.casing_phrasing]\s. [box] now contains [box.stored_ammo.len] [box.casing_phrasing]\s."))
+				to_chat(user, span_notice("你收集了[boolets]个[box.casing_phrasing]\s 。[box]现在装有[box.stored_ammo.len]个[box.casing_phrasing]\s 。"))
 			else
-				to_chat(user, span_warning("You fail to collect anything!"))
+				to_chat(user, span_warning("你什么都没收集到！"))
 	else
 		return ..()
 

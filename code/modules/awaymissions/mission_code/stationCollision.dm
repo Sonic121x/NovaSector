@@ -42,7 +42,7 @@
 /obj/item/gun/energy/laser/retro/sc_retro
 	name ="retro laser"
 	icon_state = "retro"
-	desc = "An older model of the basic lasergun, no longer used by Nanotrasen's security or military forces."
+	desc = "一种老式的基础激光枪，纳米传讯的安保部队或军事部队已经不再使用。"
 	clumsy_check = FALSE //No sense in having a harmless gun blow up in the clowns face
 
 //Syndicate sub-machine guns.
@@ -65,8 +65,8 @@
 
 //Lasers
 /obj/item/gun/energy/laser/practice/sc_laser
-	name = "Old laser"
-	desc = "A once potent weapon, years of dust have collected in the chamber and lens of this weapon, weakening the beam significantly."
+	name = "老式激光枪"
+	desc = "曾经是一把强大的武器。灰尘已经聚积在这个武器的枪膛和透镜多年，大大削弱了光束的威力。"
 	clumsy_check = FALSE
 
 /*
@@ -82,26 +82,26 @@ GLOBAL_VAR_INIT(sc_safecode5, "[rand(0,9)]")
 
 //Pieces of paper actually containing the hints
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_prison
-	name = "smudged paper"
+	name = "充满褶皱的纸"
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_prison/Initialize(mapload)
 	default_raw_text = "<i>The ink is smudged, you can only make out a couple numbers:</i> '[GLOB.sc_safecode1]**[GLOB.sc_safecode4]*'"
 	return ..()
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_hydro
-	name = "shredded paper"
+	name = "碎纸"
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_hydro/Initialize(mapload)
 	default_raw_text = "<i>Although the paper is shredded, you can clearly see the number:</i> '[GLOB.sc_safecode2]'"
 	return ..()
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_caf
-	name = "blood-soaked paper"
+	name = "沾满血液的纸"
 	//This does not have to be in New() because it is a constant. There are no variables in it i.e. [sc_safcode]
 	default_raw_text = "<font color=red><i>This paper is soaked in blood, it is impossible to read any text.</i></font>"
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_bible
-	name = "hidden paper"
+	name = "隐藏的纸"
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_bible/Initialize(mapload)
 	default_raw_text = {"<i>It would appear that the pen hidden with the paper had leaked ink over the paper.
@@ -127,7 +127,7 @@ GLOBAL_VAR_INIT(sc_safecode5, "[rand(0,9)]")
  * Captain's safe
  */
 /obj/structure/secure_safe/sc_ssafe
-	name = "Captain's secure safe"
+	name = "舰长安全保险箱"
 
 /obj/structure/secure_safe/sc_ssafe/Initialize(mapload)
 	. = ..()

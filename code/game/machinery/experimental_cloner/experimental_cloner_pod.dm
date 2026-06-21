@@ -3,8 +3,8 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 
 /// Machine which experimentally clones people you scanned with the experimental cloner scanner
 /obj/machinery/experimental_cloner
-	name = "experimental cloning pod"
-	desc = "An early prototype of the currently-outlawed cloning pods used by Nanotrasen executives. I wonder if it still works?"
+	name = "实验性克隆舱"
+	desc = "这是纳米传讯高管使用的、目前已被禁止的克隆舱的早期原型。不知道它还能不能用？"
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "pod_0"
 	base_icon_state = "pod"
@@ -39,7 +39,7 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 /obj/machinery/experimental_cloner/examine(mob/user)
 	. = ..()
 	if (running)
-		. += span_notice("You can see a shape forming in the murky liquid.")
+		. += span_notice("你能看到浑浊的液体中正在形成一个形状。")
 
 /obj/machinery/experimental_cloner/update_icon_state()
 	. = ..()
@@ -64,7 +64,7 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 
 /obj/machinery/experimental_cloner/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.set_buffer(src)
-	balloon_alert(user, "frequency stored")
+	balloon_alert(user, "频率已存储")
 	return ITEM_INTERACT_SUCCESS
 
 /// Start growing a guy
@@ -126,7 +126,7 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 
 	chosen_one.log_message("took control of experimental clone of [result].", LOG_GAME)
 	result.PossessByPlayer(chosen_one.ckey)
-	to_chat(chosen_one, span_boldnotice("You are [loaded_record.name]! You aren't quite sure where you are or how you got here, though."))
+	to_chat(chosen_one, span_boldnotice("你是[loaded_record.name]！不过你不太确定自己身在何处，也不知道是怎么来到这里的。"))
 	var/policy = get_policy(ROLE_EXPERIMENTAL_CLONER)
 	if (policy)
 		to_chat(chosen_one, span_notice(policy))

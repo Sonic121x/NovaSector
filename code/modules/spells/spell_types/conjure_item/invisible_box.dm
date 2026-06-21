@@ -1,8 +1,8 @@
 
 
 /datum/action/cooldown/spell/conjure_item/invisible_box
-	name = "Invisible Box"
-	desc = "The mime's performance transmutates a box into physical reality."
+	name = "隐形盒子"
+	desc = "这位哑剧演员的表演将一个盒子变成了实实在在的实物。"
 	background_icon_state = "bg_mime"
 	overlay_icon_state = "bg_mime_border"
 	button_icon = 'icons/mob/actions/actions_mime.dmi'
@@ -13,7 +13,7 @@
 	school = SCHOOL_MIME
 	cooldown_time = 30 SECONDS
 	invocation = span_notice("<b>%CASTER</b> moves %PRONOUN_their hands in the shape of a box, pressing a box out of the air.")
-	invocation_self_message = span_notice("You conjure up an invisible box, large enough to store a few things.")
+	invocation_self_message = span_notice("你召唤了一个隐形盒子，大小足以存放一些东西。")
 	invocation_type = INVOCATION_EMOTE
 
 	spell_requirements = SPELL_REQUIRES_HUMAN|SPELL_REQUIRES_MIME_VOW

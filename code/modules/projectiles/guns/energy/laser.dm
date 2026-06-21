@@ -65,7 +65,7 @@
 		overlay_y = 30)
 
 /obj/item/gun/energy/laser/practice
-	name = "practice laser gun"
+	name = "练习用镭射枪"
 	desc = "A modified version of the Type 5 laser gun. Fires entirely harmless bolts of directed energy. Safe AND entertaining to fire with abandon."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/practice)
 	clumsy_check = FALSE
@@ -151,7 +151,7 @@
 	light_color = COLOR_AMMO_HELLFIRE
 
 /obj/item/gun/energy/laser/captain
-	name = "antique laser gun"
+	name = "古董镭射枪"
 	desc = "This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. \
 		The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
 	icon_state = "caplaser"
@@ -166,7 +166,7 @@
 	light_color = COLOR_AMMO_HELLFIRE
 
 /obj/item/gun/energy/laser/captain/scattershot
-	name = "scatter shot laser rifle"
+	name = "散射激光步枪"
 	desc = "An industrial-grade heavy-duty laser rifle with a modified laser lens to scatter its shot into multiple smaller lasers. \
 		The inner-core can self-charge for theoretically infinite use."
 	icon_state = "lasercannon"
@@ -182,7 +182,7 @@
 
 /obj/item/gun/energy/laser/cyborg
 	can_charge = FALSE
-	desc = "An energy-based laser gun that draws power from the cyborg's internal energy cell directly. So this is what freedom looks like?"
+	desc = "一种从赛博内部电源直接汲取电力的能量剑，这就是自由的样子吗？"
 	use_cyborg_cell = TRUE
 	ammo_x_offset = 1
 
@@ -194,8 +194,8 @@
 	return
 
 /obj/item/gun/energy/laser/scatter
-	name = "scatter laser gun"
-	desc = "A laser gun equipped with a refraction kit that spreads bolts."
+	name = "散射激光枪"
+	desc = "一把装有折射组件的镭射枪，可以分散射线。"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter, /obj/item/ammo_casing/energy/laser)
 	ammo_x_offset = 1
 
@@ -203,7 +203,7 @@
 	return
 
 /obj/item/gun/energy/laser/scatter/shotty
-	name = "energy shotgun"
+	name = "能量霰弹枪"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "cshotgun"
 	inhand_icon_state = "shotgun"
@@ -217,8 +217,8 @@
 ///Laser Cannon
 
 /obj/item/gun/energy/lasercannon
-	name = "accelerator laser cannon"
-	desc = "An advanced laser cannon that does more damage the farther away the target is."
+	name = "加速激光加农"
+	desc = "一门先进的激光炮，距离目标越远伤害越大。"
 	icon_state = "lasercannon"
 	inhand_icon_state = "laser"
 	worn_icon_state = null
@@ -254,9 +254,9 @@
 ////////Laser Tag////////////////////
 
 /obj/item/gun/energy/laser/bluetag
-	name = "laser tag gun"
+	name = "镭射标记枪"
 	icon_state = "bluetag"
-	desc = "A retro laser gun modified to fire harmless blue beams of light. Sound effects included!"
+	desc = "一把复古镭射枪，改装后可以发射无害的蓝色光束。附带音效！"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/bluetag)
 	item_flags = NONE
 	clumsy_check = FALSE
@@ -272,9 +272,9 @@
 	return
 
 /obj/item/gun/energy/laser/redtag
-	name = "laser tag gun"
+	name = "镭射标记枪"
 	icon_state = "redtag"
-	desc = "A retro laser gun modified to fire harmless beams red of light. Sound effects included!"
+	desc = "一把复古镭射枪，改装后可以发射无害的红色光束。附带音效！"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag)
 	item_flags = NONE
 	clumsy_check = FALSE
@@ -305,7 +305,7 @@
 
 /obj/item/gun/energy/laser/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The NT Type 5 Heat Delivery System (sometimes referred to as the HDS-5 in promotional material) is what truly put Nanotrasen \
 		head and shoulders above most weapon manufacturers in the modern era. All modern energy weaponry offered by the company have \
 		the success of the Type 5 to thank for setting the standard for energy-based weapon platforms.<br>\
@@ -325,7 +325,7 @@
 
 /obj/item/gun/energy/laser/retro/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The NT Type 1 Heat Delivery System (sometimes referred to as the HDS-1 in older weapon catalogs) was a weapon that \
 		marked the beginning of a new era of firearm development.<br>\
 		<br>\
@@ -345,7 +345,7 @@
 
 /obj/item/gun/energy/laser/soul/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The NT Type 3 Heat Delivery System (sometimes referred to as the HDS-3 in the memories of security officers) is quite possibly \
 		the most common type of HDS still available on the market. Fondly regarded, with quite a few diehard fans still clinging to their \
 		Type 3s like their lives depended on it, the weapon has its own place in history as the 'gun that could do it all'.<br>\
@@ -367,7 +367,7 @@
 
 /obj/item/gun/energy/laser/hellgun/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The NT Type 4 Heat Delivery System (sometimes referred to as the HDS-4 in legal documentation) is considered a notable \
 		example of Nanotrasen's weapons development teams flying too close to the sun.<br>\
 		<br>\
@@ -395,7 +395,7 @@
 
 /obj/item/gun/energy/laser/captain/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "For a brief period, Nanotrasen produced a series of custom-made Type 4 laser guns for a select group of \
 		clients, primarily composed of wealthy starship captains, politicians, and military leaders looking to demonstrate prestige before \
 		the common folk.<br>\
@@ -422,7 +422,7 @@
 
 /obj/item/gun/energy/laser/xray/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The NT Type 6 Heat Delivery System (sometimes referred to as the HDS6 in research notes) is a breakthrough in the \
 		development of man-portable directed energy weaponry.<br>\
 		<br>\
@@ -445,7 +445,7 @@
 
 /obj/item/gun/energy/laser/carbine/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The NT Type 5/R Rapid Heat Delivery System (sometimes referred to as the HDS-5/R in briefing manuals, and 'that piece of shit flashlight' \
 		amongst TGMC troopers) was a shaky first step into automatic directed energy weaponry. <br>\
 		<br>\

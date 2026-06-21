@@ -1,6 +1,6 @@
 /obj/machinery/button
-	name = "button"
-	desc = "A remote control switch."
+	name = "按钮"
+	desc = "一个遥控开关"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	base_icon_state = "button"
 	icon_state = "button"
@@ -140,28 +140,28 @@
 
 /obj/machinery/button/proc/assembly_act(mob/living/user, obj/item/assembly/new_device)
 	if(device)
-		to_chat(user, span_warning("The button already contains a device!"))
+		to_chat(user, span_warning("按钮内已装有设备！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!(new_device.assembly_behavior & ASSEMBLY_FUNCTIONAL_OUTPUT))
-		to_chat(user, span_warning("\The [new_device] won't really do anything meaningful inside of the button..."))
+		to_chat(user, span_warning("\The [new_device] 在按钮内部不会起到什么实际作用..."))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(new_device, src, silent = FALSE))
-		to_chat(user, span_warning("\The [new_device] is stuck to you!"))
+		to_chat(user, span_warning("\The [new_device] 粘在你身上了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	device = new_device
 	SEND_SIGNAL(new_device, COMSIG_ASSEMBLY_ADDED_TO_BUTTON, src, user)
-	to_chat(user, span_notice("You add \the [new_device] to the button."))
+	to_chat(user, span_notice("你将 \the [new_device] 安装到按钮中。"))
 
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/button/proc/airlock_electronics_act(mob/living/user, obj/item/electronics/airlock/new_board)
 	if(board)
-		to_chat(user, span_warning("The button already contains a board!"))
+		to_chat(user, span_warning("按钮内已装有电路板！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(new_board, src, silent = FALSE))
-		to_chat(user, span_warning("\The [new_board] is stuck to you!"))
+		to_chat(user, span_warning("\The [new_board] 粘在你身上了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	board = new_board
@@ -169,7 +169,7 @@
 		req_one_access = board.accesses
 	else
 		req_access = board.accesses
-	to_chat(user, span_notice("You add \the [new_board] to the button."))
+	to_chat(user, span_notice("你将 \the [new_board] 安装到按钮中。"))
 
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -178,22 +178,22 @@
 	if(panel_open || allowed(user))
 		return default_deconstruction_screwdriver(user, tool)
 
-	balloon_alert(user, "access denied")
+	balloon_alert(user, "访问被拒绝")
 	flick_overlay_view("[base_icon_state]-overlay-error", 1 SECONDS)
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/button/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open button first!")
+		balloon_alert(user, "先打开按钮！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(device || board)
-		balloon_alert(user, "empty button first!")
+		balloon_alert(user, "先清空按钮！")
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You start unsecuring the button frame..."))
+	to_chat(user, span_notice("你开始拆下按钮框架..."))
 	if(tool.use_tool(src, user, 40, volume=50))
-		to_chat(user, span_notice("You unsecure the button frame."))
+		to_chat(user, span_notice("你拆下了按钮框架。"))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
 
@@ -220,7 +220,7 @@
 	// The device inside can be emagged by swiping the button
 	// returning TRUE will prevent feedback (so we can do our own)
 	if(!device?.emag_act(user, emag_card))
-		balloon_alert(user, "access overridden")
+		balloon_alert(user, "访问权限已覆盖")
 	return TRUE
 
 /obj/machinery/button/attack_ai(mob/user)
@@ -252,12 +252,12 @@
 	if(can_alter_skin)
 		if(skin == "")
 			skin = "-warning"
-			to_chat(user, span_notice("You change the button frame's front panel to warning lines."))
+			to_chat(user, span_notice("你将按钮框架的前面板换成了警告条纹样式。"))
 		else
 			skin = ""
-			to_chat(user, span_notice("You change the button frame's front panel to default."))
+			to_chat(user, span_notice("你将按钮框架的前面板恢复为默认样式。"))
 		update_appearance(UPDATE_ICON)
-		balloon_alert(user, "style swapped")
+		balloon_alert(user, "样式已切换")
 
 /obj/machinery/button/attack_hand_secondary(mob/user, list/modifiers)
 	if(!initialized_button)
@@ -285,7 +285,7 @@
 
 /obj/machinery/button/proc/remove_airlock_electronics(mob/user)
 	user.put_in_hands(board)
-	to_chat(user, span_notice("You remove the board from the button frame."))
+	to_chat(user, span_notice("你将电路板从按钮框架中取出。"))
 	req_access = list()
 	req_one_access = list()
 	board = null
@@ -299,7 +299,7 @@
 		return FALSE
 
 	if(!allowed(user))
-		balloon_alert(user, "access denied")
+		balloon_alert(user, "访问被拒绝")
 		flick_overlay_view("[base_icon_state]-overlay-error", 1 SECONDS)
 		return FALSE
 
@@ -387,8 +387,8 @@
  */
 
 /obj/machinery/button/door
-	name = "door button"
-	desc = "A door remote control switch."
+	name = "门开关"
+	desc = "一个遥控的门开关。"
 	var/normaldoorcontrol = FALSE
 	var/specialfunctions = OPEN // Bitflag, see assembly file
 	var/sync_doors = TRUE
@@ -411,43 +411,43 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/door, 24)
 	return ..()
 
 /obj/machinery/button/door/incinerator_vent_ordmix
-	name = "combustion chamber vent control"
+	name = "燃烧室通风控制"
 	id = INCINERATOR_ORDMIX_VENT
 	req_access = list(ACCESS_ORDNANCE)
 
 /obj/machinery/button/door/incinerator_vent_atmos_main
-	name = "turbine vent control"
+	name = "涡轮机通风控制"
 	id = INCINERATOR_ATMOS_MAINVENT
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
 
 /obj/machinery/button/door/incinerator_vent_atmos_aux
-	name = "combustion chamber vent control"
+	name = "燃烧室通风孔控制"
 	id = INCINERATOR_ATMOS_AUXVENT
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
 
 /obj/machinery/button/door/atmos_test_room_mainvent_1
-	name = "test chamber 1 vent control"
+	name = "1号试验室通风控制"
 	id = TEST_ROOM_ATMOS_MAINVENT_1
 	req_one_access = list(ACCESS_ATMOSPHERICS)
 
 /obj/machinery/button/door/atmos_test_room_mainvent_2
-	name = "test chamber 2 vent control"
+	name = "2号试验室通风控制"
 	id = TEST_ROOM_ATMOS_MAINVENT_2
 	req_one_access = list(ACCESS_ATMOSPHERICS)
 
 /obj/machinery/button/door/incinerator_vent_syndicatelava_main
-	name = "turbine vent control"
+	name = "涡轮机通风孔控制"
 	id = INCINERATOR_SYNDICATELAVA_MAINVENT
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/button/door/incinerator_vent_syndicatelava_aux
-	name = "combustion chamber vent control"
+	name = "燃烧室通风孔控制"
 	id = INCINERATOR_SYNDICATELAVA_AUXVENT
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/button/massdriver
-	name = "mass driver button"
-	desc = "A remote control switch for a mass driver."
+	name = "质量发射器启动按钮"
+	desc = "质量发射器的遥控开关。"
 	icon_state= "button-warning"
 	skin = "-warning"
 	device_type = /obj/item/assembly/control/massdriver
@@ -456,8 +456,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/door, 24)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/button/ignition
-	name = "ignition switch"
-	desc = "A remote control switch for a mounted igniter."
+	name = "点火开关"
+	desc = "用于控制壁挂式点火器的遥控开关。"
 	icon_state= "button-warning"
 	skin = "-warning"
 	device_type = /obj/item/assembly/control/igniter
@@ -466,8 +466,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/door, 24)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/button/ignition/incinerator
-	name = "combustion chamber ignition switch"
-	desc = "A remote control switch for the combustion chamber's igniter."
+	name = "燃烧室点火开关"
+	desc = "用于控制燃烧室点火器的遥控开关。"
 
 /obj/machinery/button/ignition/incinerator/ordmix
 	id = INCINERATOR_ORDMIX_IGNITER
@@ -479,8 +479,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/door, 24)
 	id = INCINERATOR_SYNDICATELAVA_IGNITER
 
 /obj/machinery/button/flasher
-	name = "flasher button"
-	desc = "A remote control switch for a mounted flasher."
+	name = "闪光灯按钮"
+	desc = "用于控制预置闪光灯的遥控开关。"
 	icon_state= "button-warning"
 	skin = "-warning"
 	device_type = /obj/item/assembly/control/flasher
@@ -489,8 +489,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/door, 24)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/button/curtain
-	name = "curtain button"
-	desc = "A remote control switch for a mechanical curtain."
+	name = "窗帘按钮"
+	desc = "控制机械驱动窗帘的遥控开关。"
 	icon_state= "button-warning"
 	skin = "-warning"
 	device_type = /obj/item/assembly/control/curtain
@@ -503,8 +503,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/door, 24)
 		curtain.sync_doors = sync_doors
 
 /obj/machinery/button/crematorium
-	name = "crematorium igniter"
-	desc = "Burn baby burn!"
+	name = "焚尸炉点火器"
+	desc = "烧吧，宝贝，烧吧！"
 	icon_state= "button-warning"
 	skin = "-warning"
 	device_type = /obj/item/assembly/control/crematorium
@@ -515,8 +515,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/door, 24)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/item/wallframe/button
-	name = "button frame"
-	desc = "Used for building buttons."
+	name = "按钮框架"
+	desc = "用于建造按钮"
 	icon_state = "button"
 	result_path = /obj/machinery/button
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)

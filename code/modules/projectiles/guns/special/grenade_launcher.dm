@@ -1,6 +1,6 @@
 /obj/item/gun/grenadelauncher
 	name = "pneumatic grenade launcher"
-	desc = "A terrible, terrible thing. It's really awful!"
+	desc = "一件极其糟糕的事情。真是太糟糕了！"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "riotgun"
 	inhand_icon_state = "riotgun"
@@ -34,16 +34,16 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			grenades += I
-			balloon_alert(user, "[grenades.len] / [max_grenades] grenades loaded")
+			balloon_alert(user, "已装载 [grenades.len] / [max_grenades] 枚榴弹")
 		else
-			balloon_alert(user, "it's already full!")
+			balloon_alert(user, "已经装满了！")
 
 /obj/item/gun/grenadelauncher/can_shoot()
 	return grenades.len
 
 /obj/item/gun/grenadelauncher/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	user.visible_message(span_danger("[user] fired a grenade!"), \
-						span_danger("You fire the grenade launcher!"))
+	user.visible_message(span_danger("[user]发射了一枚手榴弹！"), \
+						span_danger("你发射了榴弹发射器！"))
 	var/obj/item/grenade/F = grenades[1] //Now with less copypasta!
 	grenades -= F
 	F.forceMove(user.loc)

@@ -1,6 +1,6 @@
 /// A space dragon's fire breath, toasts lunch AND buffs your friends
 /datum/action/cooldown/mob_cooldown/fire_breath/carp
-	desc = "A Space Dragon's burning breath not only chars its foes, but invigorates Space Carp as well."
+	desc = "太空龙的灼热吐息不仅能烧焦敌人，还能为太空鲤鱼注入活力。"
 	fire_damage = 30
 	mech_damage = 50
 	fire_range = 20
@@ -10,7 +10,7 @@
 /datum/action/cooldown/mob_cooldown/fire_breath/carp/on_burn_mob(mob/living/barbecued, mob/living/source)
 	if (!source.faction_check_atom(barbecued))
 		return ..()
-	to_chat(barbecued, span_notice("[source]'s fiery breath fills you with energy!"))
+	to_chat(barbecued, span_notice("[source]的火焰吐息让你充满了能量！"))
 	barbecued.apply_status_effect(/datum/status_effect/carp_invigoration)
 
 /// Makes you run faster for the duration

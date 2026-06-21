@@ -3,8 +3,8 @@
 
 //Used by engineering cyborgs in place of generic circuits.
 /obj/item/electroadaptive_pseudocircuit
-	name = "electroadaptive pseudocircuit"
-	desc = "An all-in-one circuit imprinter, designer, synthesizer, outfitter, creator, and chef. It can be used in place of any generic circuit board during construction."
+	name = "电适应伪电路"
+	desc = "一个集电路印刷、设计、合成、装配、创造和烹饪于一体的全能设备。在建造过程中，它可以替代任何通用电路板使用。"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "boris"
 	w_class = WEIGHT_CLASS_TINY
@@ -27,22 +27,22 @@
 	if(iscyborg(user))
 		. += "[span_notice("It has material for <b>[circuits]</b> circuit[circuits == 1 ? "" : "s"]. Use the pseudocircuit on existing circuits to gain material.")]\n"+\
 		"[span_notice("Serves as a substitute for <b>fire/air alarm</b>, <b>firelock</b>, and <b>APC</b> electronics.")]\n"+\
-		span_notice("It can also be used on an APC with no power cell to <b>fabricate a low-capacity cell</b> at a high power cost.")
+		span_notice("它也可以在区域电力控制器没有电源单元时，以高功耗<b>制造一个低容量单元</b>。")
 
 /obj/item/electroadaptive_pseudocircuit/proc/adapt_circuit(mob/living/silicon/robot/R, circuit_cost = 0)
 	if(QDELETED(R) || !istype(R))
 		return
 	if(!R.cell)
-		to_chat(R, span_warning("You need a power cell installed for that."))
+		to_chat(R, span_warning("你需要安装一个电源单元才能进行此操作。"))
 		return
 	if(recharging)
-		to_chat(R, span_warning("[src] needs some time to recharge first."))
+		to_chat(R, span_warning("[src] 需要一些时间先充能。"))
 		return
 	if(!R.cell.use(circuit_cost))
-		to_chat(R, span_warning("You don't have the energy for that (you need [display_energy(circuit_cost)].)"))
+		to_chat(R, span_warning("你没有足够的能量进行此操作（需要[display_energy(circuit_cost)]。）"))
 		return
 	if(!circuits)
-		to_chat(R, span_warning("You need more material. Use [src] on existing simple circuits to break them down."))
+		to_chat(R, span_warning("你需要更多材料。使用[src]分解现有的简单电路板来获取材料。"))
 		return
 	playsound(R, 'sound/items/tools/rped.ogg', 50, TRUE)
 	recharging = TRUE
@@ -61,8 +61,8 @@
 	circuits++
 	maptext = MAPTEXT(circuits)
 	user.visible_message(
-		span_notice("User breaks down [interacting_with] with [src]."),
-		span_notice("You recycle [interacting_with] into [src]. It now has material for <b>[circuits]</b> circuits.")
+		span_notice("用户用[interacting_with]分解了[src]。"),
+		span_notice("你将[interacting_with]回收到[src]中。它现在有足够制造<b>[circuits]</b>个电路板的材料。")
 	)
 	playsound(user, 'sound/items/deconstruct.ogg', 50, TRUE)
 	qdel(interacting_with)

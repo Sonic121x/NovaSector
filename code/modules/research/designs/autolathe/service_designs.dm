@@ -1,5 +1,5 @@
 /datum/design/bucket
-	name = "Bucket"
+	name = "水桶"
 	id = "bucket"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2)
@@ -23,7 +23,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/watering_can
-	name = "Watering Can"
+	name = "洒水壶"
 	id = "watering_can"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2)
@@ -35,7 +35,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/mop
-	name = "Mop"
+	name = "拖把"
 	id = "mop"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT)
@@ -47,7 +47,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/broom
-	name = "Push Broom"
+	name = "推式扫帚"
 	id = "pushbroom"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
@@ -59,7 +59,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/camera
-	name = "Camera"
+	name = "相机"
 	id = "camera"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -71,7 +71,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/camera_film
-	name = "Camera Film Cartridge"
+	name = "相机胶卷盒"
 	id = "camera_film"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.1, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.1)
@@ -83,7 +83,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/kitchen_knife
-	name = "Kitchen Knife"
+	name = "厨房刀"
 	id = "kitchen_knife"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*6)
@@ -95,7 +95,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/plastic_knife
-	name = "Plastic Knife"
+	name = "塑料刀"
 	id = "plastic_knife"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT)
@@ -107,7 +107,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/fork
-	name = "Fork"
+	name = "叉子"
 	id = "fork"
 	build_type =  AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT)
@@ -119,7 +119,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/plastic_fork
-	name = "Plastic Fork"
+	name = "塑料叉"
 	id = "plastic_fork"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT)
@@ -131,7 +131,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/spoon
-	name = "Spoon"
+	name = "勺子"
 	id = "spoon"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.2)
@@ -143,7 +143,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/plastic_spoon
-	name = "Plastic Spoon"
+	name = "塑料勺"
 	id = "plastic_spoon"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT*1.2)
@@ -155,7 +155,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/tongs
-	name = "Tongs"
+	name = "夹子"
 	id = "tongs"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2)
@@ -167,7 +167,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/tray
-	name = "Serving Tray"
+	name = "餐盘"
 	id = "servingtray"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -179,7 +179,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/plate
-	name = "Plate"
+	name = "盘子"
 	id = "plate"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.5)
@@ -191,7 +191,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/cafeteria_tray
-	name = "Cafeteria Tray"
+	name = "食堂托盘"
 	id = "foodtray"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -203,7 +203,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/bowl
-	name = "Bowl"
+	name = "碗"
 	id = "bowl"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -215,7 +215,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/drinking_glass
-	name = "Drinking Glass"
+	name = "玻璃杯"
 	id = "drinking_glass"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -227,7 +227,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/shot_glass
-	name = "Shot Glass"
+	name = "烈酒杯"
 	id = "shot_glass"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -239,7 +239,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/shaker
-	name = "Shaker"
+	name = "摇酒器"
 	id = "shaker"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
@@ -251,7 +251,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/cultivator
-	name = "Cultivator"
+	name = "园艺铲"
 	id = "cultivator"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*0.5)
@@ -263,7 +263,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/plant_analyzer
-	name = "Plant Analyzer"
+	name = "植物分析仪"
 	id = "plant_analyzer"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.3, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.2)
@@ -275,7 +275,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/shovel
-	name = "Shovel"
+	name = "铁锹"
 	id = "shovel"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5)
@@ -287,7 +287,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/spade
-	name = "Spade"
+	name = "小铲"
 	id = "spade"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5)
@@ -299,7 +299,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/hatchet
-	name = "Hatchet"
+	name = "手斧"
 	id = "hatchet"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7.5)
@@ -311,7 +311,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/secateurs
-	name = "Secateurs"
+	name = "修枝剪"
 	id = "secateurs"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2)
@@ -323,7 +323,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/radio_headset
-	name = "Radio Headset"
+	name = "无线电耳机"
 	id = "radio_headset"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.75)
@@ -335,7 +335,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/bounced_radio
-	name = "Station Bounced Radio"
+	name = "空间站中继无线电"
 	id = "bounced_radio"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.75, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.25)
@@ -347,7 +347,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/handlabeler
-	name = "Hand Labeler"
+	name = "手动贴标机"
 	id = "handlabel"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT*1.25)
@@ -359,7 +359,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/pet_carrier
-	name = "Pet Carrier"
+	name = "宠物运输箱"
 	id = "pet_carrier"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*3.75, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -371,7 +371,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/toygun
-	name = "Cap Gun"
+	name = "玩具火帽枪"
 	id = "toygun"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -383,7 +383,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/capbox
-	name = "Box of Cap Gun Shots"
+	name = "玩具火帽枪子弹盒"
 	id = "capbox"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.2, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.1)
@@ -395,7 +395,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/toy_balloon
-	name = "Plastic Balloon"
+	name = "塑料气球"
 	id = "toy_balloon"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT*1.2)
@@ -407,7 +407,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/toy_armblade
-	name = "Plastic Armblade"
+	name = "塑料臂刃"
 	id = "toy_armblade"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SHEET_MATERIAL_AMOUNT)
@@ -419,7 +419,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/plastic_tree
-	name = "Plastic Potted Plant"
+	name = "塑料盆栽植物"
 	id = "plastic_trees"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT*4)
@@ -431,7 +431,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/beads
-	name = "Plastic Bead Necklace"
+	name = "塑料串珠项链"
 	id = "plastic_necklace"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT*5)
@@ -443,7 +443,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/plastic_ring
-	name = "Plastic Can Rings"
+	name = "塑料拉环"
 	id = "ring_holder"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT*1.2)
@@ -455,7 +455,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/plastic_box
-	name = "Plastic Box"
+	name = "塑料盒"
 	id = "plastic_box"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT)
@@ -467,7 +467,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/sticky_tape
-	name = "Sticky Tape"
+	name = "胶带"
 	id = "sticky_tape"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT*5)
@@ -479,7 +479,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/chisel
-	name = "Chisel"
+	name = "凿子"
 	id = "chisel"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.75)
@@ -491,7 +491,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/paperroll
-	name = "Hand Labeler Paper Roll"
+	name = "手持标签机纸卷"
 	id = "roll"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.25)
@@ -503,7 +503,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/toner
-	name = "Toner Cartridge"
+	name = "墨粉盒"
 	id = "toner"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.1, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.1)
@@ -515,7 +515,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/toner/large
-	name = "Toner Cartridge (Large)"
+	name = "墨粉盒（大容量）"
 	id = "toner_large"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.5)
@@ -527,7 +527,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/fishing_rod_basic
-	name = "Fishing Rod"
+	name = "钓鱼竿"
 	id = "fishing_rod"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
@@ -539,7 +539,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/fishing_rod_material
-	name = "Material Fishing Rod"
+	name = "材料钓鱼竿"
 	id = "fishing_rod_material"
 	build_type = AUTOLATHE
 	materials = list(/datum/material_requirement/solid_material = SMALL_MATERIAL_AMOUNT * 4)
@@ -550,7 +550,7 @@
 	)
 
 /datum/design/fish_case
-	name = "Stasis Fish Case"
+	name = "停滞鱼箱"
 	id = "fish_case"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/plastic = SMALL_MATERIAL_AMOUNT)
@@ -562,7 +562,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/aquarium_kit
-	name = "Aquarium Kit"
+	name = "水族箱套件"
 	id = "aquarium_kit"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
@@ -574,7 +574,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/ticket_machine
-	name = "Ticket Machine Frame"
+	name = "售票机框架"
 	id = "ticket_machine"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7, /datum/material/glass = SHEET_MATERIAL_AMOUNT*4)
@@ -586,7 +586,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/telescreen_bar
-	name = "Bar Telescreen"
+	name = "酒吧远程屏幕"
 	id = "telescreen_bar"
 	build_type = PROTOLATHE
 	materials = list(
@@ -601,7 +601,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/telescreen_entertainment
-	name = "Entertainment Telescreen"
+	name = "娱乐远程屏幕"
 	id = "telescreen_entertainment"
 	build_type =  AUTOLATHE | PROTOLATHE
 	materials = list(
@@ -616,7 +616,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/telescreen_monastery
-	name = "Monastery Telescreen"
+	name = "修道院远程屏幕"
 	id = "telescreen_monastery"
 	build_type = PROTOLATHE
 	materials = list(
@@ -637,7 +637,7 @@
 	return ..()
 
 /datum/design/entertainment_radio
-	name = "Entertainment Radio"
+	name = "娱乐收音机"
 	id = "radio_entertainment"
 	build_type =  AUTOLATHE | PROTOLATHE
 	materials = list(
@@ -652,7 +652,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/barcode_scanner
-	name = "Barcode Scanner"
+	name = "条形码扫描器"
 	id = "barcode_scanner"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)

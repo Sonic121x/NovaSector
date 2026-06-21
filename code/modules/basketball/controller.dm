@@ -202,13 +202,13 @@ GLOBAL_VAR(basketball_game)
 
 		SEND_SOUND(baller, sound('sound/items/whistle/whistle.ogg', volume=30))
 		if(is_player_referee)
-			to_chat(baller, span_notice("You are a referee. Make sure the teams play fair and use your whistle to call fouls appropriately."))
+			to_chat(baller, span_notice("你是一名裁判。确保队伍公平比赛，并适时使用你的哨子判罚犯规。"))
 		else
-			to_chat(baller, span_notice("You are a basketball player for the [team_name]. Score as much as you can before time runs out."))
-			to_chat(baller, span_info("LMB to pass the ball while on help intent (zero stamina cost/) - accuracy penalty when scoring)"))
-			to_chat(baller, span_info("RMB to shoot the ball ([STAMINA_COST_SHOOTING] stamina cost) - this goes over players heads"))
-			to_chat(baller, span_info("Click directly on hoop while adjacent to dunk ([STAMINA_COST_DUNKING] stamina cost)"))
-			to_chat(baller, span_info("Spinning decreases other players disarm chance against you but reduces shooting accuracy ([STAMINA_COST_SPINNING] stamina cost)"))
+			to_chat(baller, span_notice("你是[team_name]队的篮球运动员。在时间耗尽前尽可能多地得分。"))
+			to_chat(baller, span_info("左键在帮助意图下传球（零耐力消耗/） - 投篮时有精度惩罚）"))
+			to_chat(baller, span_info("右键投篮（消耗[STAMINA_COST_SHOOTING]点耐力） - 球会从玩家头顶飞过"))
+			to_chat(baller, span_info("紧邻篮筐时直接点击篮筐以扣篮（消耗[STAMINA_COST_DUNKING]点耐力）"))
+			to_chat(baller, span_info("旋转会降低其他玩家对你缴械的几率，但也会降低投篮精度（消耗[STAMINA_COST_SPINNING]点耐力）"))
 
 /**
  * Called after the game is finished. Sends end game notifications to teams and dusts the losers.
@@ -236,17 +236,17 @@ GLOBAL_VAR(basketball_game)
 		for(var/ckey in winner_team_ckeys)
 			var/mob/living/competitor = get_mob_by_ckey(ckey)
 			if(competitor in minigame_basketball_mobs)
-				to_chat(competitor, span_hypnophrase("The game resulted in a draw!"))
+				to_chat(competitor, span_hypnophrase("比赛以平局结束！"))
 	else
 		for(var/ckey in winner_team_ckeys)
 			var/mob/living/competitor = get_mob_by_ckey(ckey)
 			if(competitor in minigame_basketball_mobs)
-				to_chat(competitor, span_hypnophrase("[winner_team_name] team wins!"))
+				to_chat(competitor, span_hypnophrase("[winner_team_name]队获胜！"))
 
 		for(var/ckey in loser_team_ckeys)
 			var/mob/living/competitor = get_mob_by_ckey(ckey)
 			if(competitor in minigame_basketball_mobs)
-				to_chat(competitor, span_hypnophrase("[winner_team_name] team wins!"))
+				to_chat(competitor, span_hypnophrase("[winner_team_name]队获胜！"))
 				competitor.dust()
 
 	addtimer(CALLBACK(src, PROC_REF(end_game)), 20 SECONDS) // give winners time for a victory lap
@@ -306,8 +306,8 @@ GLOBAL_VAR(basketball_game)
 	//small message about not getting into this game for clarity on why they didn't get in
 	for(var/unpicked in possible_keys)
 		var/client/unpicked_client = GLOB.directory[unpicked]
-		to_chat(unpicked_client, span_danger("Sorry, the starting basketball game has too many players and you were not picked."))
-		to_chat(unpicked_client, span_warning("You're still signed up, getting messages from the current round, and have another chance to join when the one starting now finishes."))
+		to_chat(unpicked_client, span_danger("抱歉，开始的篮球比赛玩家过多，你未被选中。"))
+		to_chat(unpicked_client, span_warning("你仍在报名列表中，会收到当前回合的消息，并在本轮比赛结束后有另一次加入机会。"))
 
 	prepare_game(filtered_keys)
 
@@ -378,7 +378,7 @@ GLOBAL_VAR(basketball_game)
 
 	var/client/ghost_client = user.client
 	if(!SSticker.HasRoundStarted())
-		to_chat(ghost_client, span_warning("Wait for the round to start."))
+		to_chat(ghost_client, span_warning("等待回合开始。"))
 		return
 
 	switch(action)
@@ -386,19 +386,19 @@ GLOBAL_VAR(basketball_game)
 			if(GLOB.basketball_signup[ghost_client.ckey] || GLOB.basketball_bad_signup[ghost_client.ckey])
 				GLOB.basketball_signup -= ghost_client.ckey
 				GLOB.basketball_bad_signup -= ghost_client.ckey
-				to_chat(ghost_client, span_notice("You unregister from basketball."))
+				to_chat(ghost_client, span_notice("你已取消篮球比赛报名。"))
 			else
 				GLOB.basketball_signup[ghost_client.ckey] = TRUE
-				to_chat(ghost_client, span_notice("You sign up for basketball."))
+				to_chat(ghost_client, span_notice("你已报名参加篮球比赛。"))
 
 			check_signups()
 			return TRUE
 		if("basketball_start")
 			if(!GLOB.basketball_signup[ghost_client.ckey])
-				to_chat(ghost_client, span_notice("You must sign up to start the game."))
+				to_chat(ghost_client, span_notice("你必须先报名才能开始游戏。"))
 				return
 			if(current_map)
-				to_chat(ghost_client, span_notice("Wait for current basketball game to finish."))
+				to_chat(ghost_client, span_notice("等待当前篮球比赛结束。"))
 				return
 			try_autostart()
 			return TRUE

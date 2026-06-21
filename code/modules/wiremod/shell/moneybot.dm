@@ -4,7 +4,7 @@
  * Immobile (but not dense) shell that can receive and dispense money.
  */
 /obj/structure/money_bot
-	name = "money bot"
+	name = "猴机器人"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_large"
 
@@ -35,13 +35,13 @@
 		return
 	set_anchored(!anchored)
 	tool.play_tool_sound(src)
-	balloon_alert(user, anchored ? "secured" : "unsecured")
+	balloon_alert(user, anchored ? "已固定" : "未固定")
 	return TRUE
 
 
 /obj/item/circuit_component/money_dispenser
 	display_name = "Money Dispenser"
-	desc = "Used to dispense money from the money bot. Money is taken from the internal storage of money."
+	desc = "过去是通过货币机器人来发放货币的。货币是从内部的货币储存库中取出的。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// CD before next dispense
@@ -112,7 +112,7 @@
 /obj/item/circuit_component/money_bot
 	display_name = "Money Bot"
 	var/obj/structure/money_bot/attached_bot
-	desc = "Used to receive input signals when money is inserted into the money bot shell and also keep track of the total money in the shell."
+	desc = "过去，当将货币插入货币托盘外壳时，它会接收输入信号，并且还会记录托盘内货币的总额。"
 
 	/// Total money in the shell
 	var/datum/port/output/total_money
@@ -158,11 +158,11 @@
 
 	var/amount_to_insert = item.get_item_credit_value()
 	if(!amount_to_insert)
-		balloon_alert(attacker, "this has no value!")
+		balloon_alert(attacker, "这没有价值！")
 		return
 
 	attached_bot.add_money(amount_to_insert)
-	balloon_alert(attacker, "inserted [amount_to_insert] [MONEY_NAME].")
+	balloon_alert(attacker, "插入了 [amount_to_insert] [MONEY_NAME]。")
 	money_input.set_output(amount_to_insert)
 	entity.set_output(attacker)
 	money_trigger.set_output(COMPONENT_SIGNAL)

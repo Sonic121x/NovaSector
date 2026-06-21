@@ -1,6 +1,6 @@
 /obj/item/modular_computer/laptop
-	name = "laptop"
-	desc = "A portable laptop computer."
+	name = "平板"
+	desc = "一种便携式电脑。"
 
 	icon = 'icons/obj/devices/modular_laptop.dmi'
 	icon_state = "laptop-closed"
@@ -34,7 +34,7 @@
 /obj/item/modular_computer/laptop/examine(mob/user)
 	. = ..()
 	if(screen_on)
-		. += span_notice("Alt-click to close it.")
+		. += span_notice("Alt-点击以关闭它。")
 
 /obj/item/modular_computer/laptop/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
@@ -103,12 +103,12 @@
 
 /obj/item/modular_computer/laptop/proc/toggle_open(mob/living/user=null)
 	if(screen_on)
-		to_chat(user, span_notice("You close \the [src]."))
+		to_chat(user, span_notice("你合上了 \the [src]。"))
 		slowdown -= slowdown_open
 		update_weight_class(initial(w_class))
 		drag_slowdown = initial(drag_slowdown)
 	else
-		to_chat(user, span_notice("You open \the [src]."))
+		to_chat(user, span_notice("你打开了 \the [src]。"))
 		slowdown += slowdown_open
 		update_weight_class(w_class_open)
 		drag_slowdown = slowdown_open

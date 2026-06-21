@@ -1,8 +1,8 @@
 // Cleaving saw
 
 /obj/item/melee/cleaving_saw
-	name = "cleaving saw"
-	desc = "This saw, effective at drawing the blood of beasts, transforms into a long cleaver that makes use of centrifugal force."
+	name = "劈裂锯"
+	desc = "这把锯子能有效放血野兽，可变形为利用离心力的长劈刀。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -49,12 +49,12 @@
 
 /obj/item/melee/cleaving_saw/examine(mob/user)
 	. = ..()
-	. += span_notice("It is [HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "open, will cleave enemies in a wide arc and deal additional damage to fauna":"closed, and can be used for rapid consecutive attacks that cause fauna to bleed"].")
-	. += span_notice("Both modes will build up existing bleed effects, doing a burst of high damage if the bleed is built up high enough.")
-	. += span_notice("Transforming it immediately after an attack causes the next attack to come out faster.")
+	. += span_notice("它目前是[HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "open, will cleave enemies in a wide arc and deal additional damage to fauna":"closed, and can be used for rapid consecutive attacks that cause fauna to bleed"]。")
+	. += span_notice("两种模式都会叠加已有的流血效果，若叠加足够高，会造成一次高伤害爆发。")
+	. += span_notice("在攻击后立即变形会使下一次攻击更快出手。")
 
 /obj/item/melee/cleaving_saw/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is [HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "closing [src] on [user.p_their()] neck" : "opening [src] into [user.p_their()] chest"]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在[HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "closing [src] on [user.p_their()] neck" : "opening [src] into [user.p_their()] chest"]！看起来[user.p_theyre()]试图自杀！"))
 	attack_self(user)
 	return BRUTELOSS
 
@@ -119,8 +119,8 @@
 // Wildhunter's butchering knife
 
 /obj/item/knife/hunting/wildhunter
-	name = "wildhunter's butchering knife"
-	desc = "A magical knife made out of ashen stone. It was used to butcher local fauna by best hunters. Cuts everything to the simplest."
+	name = "荒野猎人的屠宰刀"
+	desc = "一把由灰烬石制成的魔法刀。曾被最优秀的猎人用来屠宰当地动物。能将一切切割至最简。"
 	icon = 'icons/obj/weapons/stabby_wide.dmi'
 	inhand_icon_state = "wildhuntingknife"
 	icon_state = "wildhuntingknife"
@@ -151,7 +151,7 @@
 	var/obj/item/crusher_trophy/trophy = interacting_with
 	if(isnull(trophy.wildhunter_drop))
 		return NONE
-	balloon_alert(user, "cutting trophy...")
+	balloon_alert(user, "正在切割战利品...")
 	if(!do_after(user, 4 SECONDS, trophy))
 		return ITEM_INTERACT_BLOCKING
 	new trophy.wildhunter_drop(trophy.drop_location())

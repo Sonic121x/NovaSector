@@ -92,8 +92,8 @@
 
 
 /datum/clockwork_research/start
-	name = "Starting Research"
-	desc = "All studies must begin somewhere. Studying His implements is no exception."
+	name = "起始研究"
+	desc = "一切研究皆有其始。研习祂的造物亦不例外。"
 	lore = "...And so, the last of the Justicar's faithful left after His demise, knowing that He would one day return."
 	tier = 0
 	starting = TRUE
@@ -103,8 +103,8 @@
 	)
 
 /datum/clockwork_research/gun
-	name = "Brass Rifle"
-	desc = "A powerful rifle capable of shooting through walls."
+	name = "黄铜步枪"
+	desc = "一把威力强大的步枪，能够射穿墙壁。"
 	lore = "With the power of his armament, he struck down the Nar'sian dogs. Blind, he was, but all the more he was seeing."
 	tier = 1
 	unlocked_recipes = list(

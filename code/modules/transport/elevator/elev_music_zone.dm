@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(elevator_music)
 
 /obj/effect/abstract/elevator_music_zone
-	name = "elevator music speaker"
-	desc = "You can't see this because it's mounted on the roof of the elevator."
+	name = "电梯音乐扬声器"
+	desc = "你看不到这个，因为它安装在电梯天花板上。"
 	anchored = TRUE
 	invisibility = INVISIBILITY_MAXIMUM // Setting this to ABSTRACT means it isn't moved by the lift
 	icon = 'icons/obj/art/musician.dmi'

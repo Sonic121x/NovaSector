@@ -1,6 +1,6 @@
 /obj/structure/closet/athletic_mixed
-	name = "athletic wardrobe"
-	desc = "It's a storage unit for athletic wear."
+	name = "运动员衣柜"
+	desc = "储存运动员衣物的单位。"
 	icon_door = "mixed"
 
 /obj/structure/closet/athletic_mixed/PopulateContents()
@@ -14,8 +14,8 @@
 	new /obj/item/clothing/under/costume/jabroni(src)
 
 /obj/structure/closet/boxinggloves
-	name = "boxing gloves closet"
-	desc = "It's a storage unit for gloves for use in the boxing ring."
+	name = "拳击手套柜"
+	desc = "一个专门用于存放拳击手套的存储单元。"
 	icon_door = "mixed"
 
 /obj/structure/closet/boxinggloves/PopulateContents()
@@ -26,8 +26,8 @@
 	new /obj/item/clothing/gloves/boxing(src)
 
 /obj/structure/closet/masks
-	name = "mask closet"
-	desc = "IT'S A STORAGE UNIT FOR FIGHTER MASKS OLE!"
+	name = "面具衣橱"
+	desc = "一个专门用于存放搏击面具的存储单元，嗷！"
 
 /obj/structure/closet/masks/PopulateContents()
 	..()
@@ -36,8 +36,8 @@
 	new /obj/item/clothing/mask/luchador/tecnicos(src)
 
 /obj/structure/closet/lasertag/red
-	name = "red laser tag equipment"
-	desc = "It's a storage unit for laser tag equipment."
+	name = "红色镭射标记设备"
+	desc = "一个专门用于存放镭射标记设备的存储单元。"
 	icon_door = "red"
 	icon_state = "rack"
 
@@ -51,8 +51,8 @@
 
 
 /obj/structure/closet/lasertag/blue
-	name = "blue laser tag equipment"
-	desc = "It's a storage unit for laser tag equipment."
+	name = "蓝色镭射标记设备"
+	desc = "一个专门用于存放镭射标记设备的存储单元。"
 	icon_door = "blue"
 	icon_state = "rack"
 

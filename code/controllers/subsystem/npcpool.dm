@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(npcpool)
-	name = "NPC Pool"
+	name = "NPC池"
 	ss_flags = SS_POST_FIRE_TIMING|SS_NO_INIT|SS_BACKGROUND
 	priority = FIRE_PRIORITY_NPC
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME

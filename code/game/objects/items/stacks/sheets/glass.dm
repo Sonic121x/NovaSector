@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 
 /obj/item/stack/sheet/glass
 	name = "glass"
-	desc = "HOLY SHEET! That is a lot of glass."
+	desc = "天哪！这玻璃可真不少。"
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
 	inhand_icon_state = "sheet-glass"
@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	acid = 100
 
 /obj/item/stack/sheet/glass/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to slice [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始用 [user.p_their()] \the 切割 [src] 的脖子！看起来 [user.p_theyre()] 想自杀！"))
 	return BRUTELOSS
 
 /obj/item/stack/sheet/glass/fifty
@@ -57,11 +57,11 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = W
 		if (get_amount() < 1 || CC.get_amount() < 5)
-			to_chat(user, span_warning("You need five lengths of coil and one sheet of glass to make wired glass!"))
+			to_chat(user, span_warning("你需要五段线圈和一张玻璃板来制作铁丝玻璃！"))
 			return
 		CC.use(5)
 		use(1)
-		to_chat(user, span_notice("You attach wire to \the [src]."))
+		to_chat(user, span_notice("你将电线连接到 \the [src] 上。"))
 		var/obj/item/stack/light_w/new_tile = new(user.loc)
 		if (!QDELETED(new_tile))
 			new_tile.add_fingerprint(user)
@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 			if(QDELETED(src) && replace && !QDELETED(RG))
 				user.put_in_hands(RG)
 		else
-			to_chat(user, span_warning("You need one rod and one sheet of glass to make reinforced glass!"))
+			to_chat(user, span_warning("你需要一根棒和一张玻璃板来制作强化玻璃！"))
 		return
 	return ..()
 
@@ -90,8 +90,8 @@ GLOBAL_LIST_INIT(pglass_recipes, list ( \
 ))
 
 /obj/item/stack/sheet/plasmaglass
-	name = "plasma glass"
-	desc = "A glass sheet made out of a plasma-silicate alloy. It looks extremely tough and heavily fire resistant."
+	name = "等离子玻璃"
+	desc = "由等离子体-硅酸盐合金制成的玻璃板。看起来极其坚固且高度耐火。"
 	singular_name = "plasma glass sheet"
 	icon_state = "sheet-pglass"
 	inhand_icon_state = "sheet-pglass"
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(pglass_recipes, list ( \
 			if(QDELETED(src) && replace)
 				user.put_in_hands(RG)
 		else
-			to_chat(user, span_warning("You need one rod and one sheet of plasma glass to make reinforced plasma glass!"))
+			to_chat(user, span_warning("你需要一根棒和一张等离子玻璃板来制作强化等离子玻璃！"))
 			return
 	else
 		return ..()
@@ -150,8 +150,8 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 
 
 /obj/item/stack/sheet/rglass
-	name = "reinforced glass"
-	desc = "Glass which seems to have rods or something stuck in them."
+	name = "强化玻璃"
+	desc = "看起来里面嵌入了棒状物或其他东西的玻璃。"
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
 	inhand_icon_state = "sheet-rglass"
@@ -190,8 +190,8 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 ))
 
 /obj/item/stack/sheet/plasmarglass
-	name = "reinforced plasma glass"
-	desc = "A glass sheet made out of a plasma-silicate alloy and a rod matrix. It looks hopelessly tough and nearly fire-proof!"
+	name = "强化等离子玻璃"
+	desc = "由等离子体-硅酸盐合金和棒状矩阵制成的玻璃板。看起来无比坚固且近乎防火！"
 	singular_name = "reinforced plasma glass sheet"
 	icon_state = "sheet-prglass"
 	inhand_icon_state = "sheet-prglass"
@@ -227,8 +227,8 @@ GLOBAL_LIST_INIT(titaniumglass_recipes, list(
 	))
 
 /obj/item/stack/sheet/titaniumglass
-	name = "titanium glass"
-	desc = "A glass sheet made out of a titanium-silicate alloy."
+	name = "钛玻璃"
+	desc = "由钛-硅酸盐合金制成的玻璃板。"
 	singular_name = "titanium glass sheet"
 	icon_state = "sheet-titaniumglass"
 	inhand_icon_state = "sheet-titaniumglass"
@@ -258,8 +258,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	))
 
 /obj/item/stack/sheet/plastitaniumglass
-	name = "plastitanium glass"
-	desc = "A glass sheet made out of a plasma-titanium-silicate alloy."
+	name = "等离子钛玻璃"
+	desc = "由等离子体-钛-硅酸盐合金制成的玻璃板。"
 	singular_name = "plastitanium glass sheet"
 	icon_state = "sheet-plastitaniumglass"
 	inhand_icon_state = "sheet-plastitaniumglass"
@@ -285,8 +285,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	. += GLOB.plastitaniumglass_recipes
 
 /obj/item/shard
-	name = "shard"
-	desc = "A nasty looking shard of glass."
+	name = "玻璃碎片"
+	desc = "一块看起来很不妙的玻璃碎片。"
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "large"
 	icon_angle = -45
@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	acid = 100
 
 /obj/item/shard/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is slitting [user.p_their()] [pick("wrists", "throat")] with the shard of glass! It looks like [user.p_theyre()] trying to commit suicide."))
+	user.visible_message(span_suicide("[user] 正用玻璃碎片割开[user.p_their()]的[pick("wrists", "throat")]！看起来[user.p_theyre()]想自杀。"))
 	return BRUTELOSS
 
 /obj/item/shard/Initialize(mapload)
@@ -367,7 +367,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	if(jab.get_all_covered_flags() & HANDS)
 		return
 
-	to_chat(user, span_warning("[src] cuts into your hand!"))
+	to_chat(user, span_warning("[src] 割伤了你的手！"))
 	jab.apply_damage(force * 0.5, BRUTE, user.get_active_hand(), attacking_item = src)
 
 /obj/item/shard/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
@@ -376,12 +376,12 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 		lightreplacer.attackby(src, user)
 	else if(istype(item, /obj/item/stack/sheet/cloth))
 		var/obj/item/stack/sheet/cloth/cloth = item
-		to_chat(user, span_notice("You begin to wrap the [cloth] around the [src]..."))
+		to_chat(user, span_notice("你开始将[cloth]缠绕在[src]上..."))
 		if(do_after(user, craft_time, target = src))
 			var/obj/item/knife/shiv/shiv = new shiv_type
 			shiv.set_custom_materials(custom_materials)
 			cloth.use(1)
-			to_chat(user, span_notice("You wrap the [cloth] around the [src], forming a makeshift weapon."))
+			to_chat(user, span_notice("你将[cloth]缠绕在[src]上，做成了一件临时武器。"))
 			remove_item_from_storage(src, user)
 			qdel(src)
 			user.put_in_hands(shiv)
@@ -392,7 +392,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 /obj/item/shard/welder_act(mob/living/user, obj/item/I)
 	if(I.use_tool(src, user, 0, volume=50))
 		var/obj/item/stack/sheet/new_glass = new weld_material
-		to_chat(user, span_notice("You melt [src] down into [new_glass.name]."))
+		to_chat(user, span_notice("你将[src]熔化成[new_glass.name]。"))
 		new_glass.forceMove((Adjacent(user) ? user.drop_location() : loc)) //stack merging is handled automatically.
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -405,8 +405,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 			playsound(src, 'sound/effects/footstep/glass_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
 
 /obj/item/shard/plasma
-	name = "purple shard"
-	desc = "A nasty looking shard of plasma glass."
+	name = "紫色碎片"
+	desc = "一块看起来很不祥的等离子玻璃碎片。"
 	force = 6
 	throwforce = 11
 	icon_state = "plasmalarge"
@@ -418,8 +418,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	craft_time = 7 SECONDS
 
 /obj/item/shard/titanium
-	name = "bright shard"
-	desc = "A nasty looking shard of titanium infused glass."
+	name = "明亮碎片"
+	desc = "一块难看的钛合金玻璃碎片。"
 	throwforce = 12
 	icon_state = "titaniumlarge"
 	inhand_icon_state = "shard-titanium"
@@ -430,8 +430,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	craft_time = 7 SECONDS
 
 /obj/item/shard/plastitanium
-	name = "dark shard"
-	desc = "A nasty looking shard of titanium infused plasma glass."
+	name = "暗色碎片"
+	desc = "一块难看的、注入钛的等离子玻璃碎片。"
 	force = 7
 	throwforce = 12
 	icon_state = "plastitaniumlarge"

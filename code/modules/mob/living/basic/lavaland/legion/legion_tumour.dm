@@ -1,7 +1,7 @@
 /// Left behind when a legion infects you, for medical enrichment
 /obj/item/organ/legion_tumour
-	name = "legion tumour"
-	desc = "A mass of pulsing flesh and dark tendrils, containing the power to regenerate flesh at a terrible cost."
+	name = "军团肿瘤"
+	desc = "一团脉动的血肉和黑暗触须，蕴含着以可怕代价再生血肉的力量。"
 	failing_desc = "pulses and writhes with horrible life, reaching towards you with its tendrils!"
 	icon = 'icons/obj/medical/organs/mining_organs.dmi'
 	icon_state = "legion_remains"
@@ -72,16 +72,16 @@
 		target.apply_status_effect(applied_status)
 
 		if (target != user)
-			target.visible_message(span_notice("[user] splatters [target] with [src]... Disgusting tendrils pull [target.p_their()] wounds shut!"))
+			target.visible_message(span_notice("[user] 将 [src] 泼洒在 [target] 身上……恶心的触须将 [target.p_their()] 的伤口拉拢闭合！"))
 		else
-			to_chat(user, span_notice("You smear [src] on yourself. Disgusting tendrils pull your wounds closed."))
+			to_chat(user, span_notice("你将 [src] 涂抹在自己身上。恶心的触须将你的伤口拉拢闭合。"))
 		return TRUE
 
 	if (!ishuman(target))
 		return FALSE
 
 	log_combat(user, target, "used a Legion Tumour on", src, "as they are in crit, this will turn them into a Legion.")
-	target.visible_message(span_boldwarning("[user] splatters [target] with [src]... and it springs into horrible life!"))
+	target.visible_message(span_boldwarning("[user] 将 [src] 泼洒在 [target] 身上……它突然活了过来，变得异常恐怖！"))
 	var/mob/living/basic/mining/legion_brood/skull = new(target.loc)
 	skull.melee_attack(target)
 	return TRUE
@@ -93,7 +93,7 @@
 
 	if (stage >= 2)
 		if(SPT_PROB(stage / 5, seconds_per_tick))
-			to_chat(owner, span_notice("You feel a bit better."))
+			to_chat(owner, span_notice("你感觉好一点了。"))
 			owner.apply_status_effect(applied_status) // It's not all bad!
 		if(SPT_PROB(1, seconds_per_tick))
 			owner.emote("twitch")
@@ -101,16 +101,16 @@
 	switch(stage)
 		if(2, 3)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(owner, span_danger("Your chest spasms!"))
+				to_chat(owner, span_danger("你的胸口一阵痉挛！"))
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(owner, span_danger("You feel weak."))
+				to_chat(owner, span_danger("你感到虚弱。"))
 			if(SPT_PROB(1, seconds_per_tick))
 				SEND_SOUND(owner, sound(pick(spooky_sounds)))
 			if(SPT_PROB(2, seconds_per_tick))
 				owner.vomit()
 		if(4, 5)
 			if(SPT_PROB(2, seconds_per_tick))
-				to_chat(owner, span_danger("Something flexes under your skin."))
+				to_chat(owner, span_danger("有什么东西在你皮肤下蠕动。"))
 			if(SPT_PROB(2, seconds_per_tick))
 				if (prob(40))
 					SEND_SOUND(owner, sound('sound/music/antag/bloodcult/ghost_whisper.ogg'))
@@ -125,7 +125,7 @@
 					child.assign_creator(owner, copy_full_faction = FALSE)
 
 			if(SPT_PROB(3, seconds_per_tick))
-				to_chat(owner, span_danger("Your muscles ache."))
+				to_chat(owner, span_danger("你的肌肉酸痛。"))
 				owner.take_bodypart_damage(3)
 
 	if (stage == 5)
@@ -139,25 +139,25 @@
 	stage++
 	elapsed_time = 0
 	if (stage == 5)
-		to_chat(owner, span_bolddanger("Something is moving under your skin!"))
+		to_chat(owner, span_bolddanger("有什么东西在你皮肤下移动！"))
 
 /// Consume our host
 /obj/item/organ/legion_tumour/proc/infest()
 	if (QDELETED(src) || QDELETED(owner))
 		return
 	owner.log_message("has been turned into a Legion by their tumour.", LOG_VICTIM)
-	owner.visible_message(span_boldwarning("Black tendrils burst from [owner]'s flesh, covering them in amorphous flesh!"))
+	owner.visible_message(span_boldwarning("黑色的触须从[owner]的血肉中迸发出来，将他们包裹在不定形的肉块中！"))
 	var/mob/living/basic/mining/legion/new_legion = new spawn_type(owner.loc)
 	new_legion.consume(owner)
 	qdel(src)
 
 /obj/item/organ/legion_tumour/on_find(mob/living/finder)
 	. = ..()
-	to_chat(finder, span_warning("There's an enormous tumour in [owner]'s [zone]!"))
+	to_chat(finder, span_warning("[owner]的[zone]里有一个巨大的肿瘤！"))
 	if(stage < 4)
-		to_chat(finder, span_notice("Its tendrils seem to twitch towards the light."))
+		to_chat(finder, span_notice("它的触须似乎朝着光线抽动。"))
 		return
-	to_chat(finder, span_notice("Its pulsing tendrils reach all throughout the body."))
+	to_chat(finder, span_notice("它搏动的触须遍布全身。"))
 	if(prob(stage * 2))
 		infest()
 

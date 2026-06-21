@@ -32,7 +32,7 @@
 /datum/fish_source/chasm/on_start_fishing(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
 	if(istype(rod.hook, /obj/item/fishing_hook/rescue))
-		to_chat(fisherman, span_notice("The rescue hook falls straight down the chasm! Hopefully it catches a corpse."))
+		to_chat(fisherman, span_notice("救援钩直直坠入深渊！希望能钩住一具尸体。"))
 		return
 	to_chat(fisherman, span_danger("Your fishing hook makes a soft 'thud' noise as it gets stuck on the wall of the chasm. It doesn't look like it's going to catch much of anything, except maybe some detritus."))
 

@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/ancient_milsim
-	name = "ancient milsim loot spawner"
-	desc = "If you see this, report to devs at (link_expired).com."
+	name = "古代军事模拟战利品生成器"
+	desc = "如果你看到这个，请向 (link_expired).com 的开发者报告。"
 	icon_state = "loot"
 	spawn_loot_count = 2
 	spawn_scatter_radius = 1

@@ -13,7 +13,7 @@
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	employee_name = new_employee_name
-	name = "paper- [employee_name] employment contract"
+	name = "纸 - [employee_name] 雇佣合同"
 	add_raw_text("<center>Conditions of Employment</center>\
 	<BR><BR><BR><BR>\
 	This Agreement is made and entered into as of the date of last signature below, by and between [employee_name] (hereafter referred to as SLAVE), \

@@ -1,6 +1,6 @@
 ///Simple animals 2.0, This time, let's really try to keep it simple. This basetype should purely be used as a base-level for implementing simplified behaviours for things such as damage and attacks. Everything else should be in components or AI behaviours.
 /mob/living/basic
-	name = "basic mob"
+	name = "基础生物"
 	icon = 'icons/mob/simple/animal.dmi'
 	abstract_type = /mob/living/basic
 	health = 20
@@ -229,7 +229,7 @@
 	. = ..()
 	if(stat != DEAD)
 		return
-	. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be [HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "asleep" : "dead"].")
+	. += span_deadsay("仔细一看，[p_they()]似乎[p_s()]是[HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "asleep" : "dead"]了。")
 
 /mob/living/basic/proc/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
 	var/early_melee_result = early_melee_attack(target, modifiers, ignore_cooldown)

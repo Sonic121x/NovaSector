@@ -20,12 +20,12 @@
 	item_path = /obj/item/clothing/suit/dagger_mantle
 
 /datum/loadout_item/suit/croptop
-	name = "Crop Top Turtleneck"
+	name = "露脐高领衫"
 	item_path = /obj/item/clothing/suit/jacket/croptop
 	reskin_datum = /datum/atom_skin/cableknit_sweater
 
 /datum/loadout_item/suit/czech
-	name = "Czech Coat"
+	name = "捷克大衣"
 	item_path = /obj/item/clothing/suit/modernwintercoatthing
 
 /datum/loadout_item/suit/henchcoat
@@ -34,68 +34,68 @@
 	group = "Jackets"
 
 /datum/loadout_item/suit/korea
-	name = "Eastern Coat"
+	name = "东方大衣"
 	item_path = /obj/item/clothing/suit/koreacoat
 
 /datum/loadout_item/suit/hawaiian_shirt
-	name = "Hawaiian Shirt"
+	name = "夏威夷衬衫"
 	item_path = /obj/item/clothing/suit/costume/hawaiian
 
 /datum/loadout_item/suit/overcoat
-	name = "Overcoat (Colorable)"
+	name = "大衣（可着色）"
 	item_path = /obj/item/clothing/suit/nova/overcoat
 	group = "Jackets"
 
 /datum/loadout_item/suit/wellwornshirt
-	name = "Oversized Shirt"
+	name = "超大号衬衫"
 	item_path = /obj/item/clothing/suit/costume/wellworn_shirt
 
 /datum/loadout_item/suit/wellworn_graphicshirt
-	name = "Oversized Shirt (Graphic)"
+	name = "超大号衬衫（印花）"
 	item_path = /obj/item/clothing/suit/costume/wellworn_shirt/graphic
 
 /datum/loadout_item/suit/ianshirt
-	name = "Oversized Shirt (Ian)"
+	name = "超大号衬衫（伊恩）"
 	item_path = /obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian
 
 /datum/loadout_item/suit/wornoutshirt
-	name = "Oversized Shirt - Worn-out"
+	name = "超大号衬衫 - 破旧款"
 	item_path = /obj/item/clothing/suit/costume/wellworn_shirt/wornout
 
 /datum/loadout_item/suit/wornout_graphicshirt
-	name = "Oversized Shirt - Worn-out (Graphic)"
+	name = "超大号衬衫 - 破旧款（印花）"
 	item_path = /obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic
 
 /datum/loadout_item/suit/wornout_ianshirt
-	name = "Oversized Shirt - Worn-out (Ian)"
+	name = "超大号衬衫 - 破旧款（伊恩）"
 	item_path = /obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic/ian
 
 /datum/loadout_item/suit/messyshirt
-	name = "Oversized Shirt - Messy"
+	name = "超大号衬衫 - 凌乱款"
 	item_path = /obj/item/clothing/suit/costume/wellworn_shirt/messy
 
 /datum/loadout_item/suit/messy_graphicshirt
-	name = "Oversized Shirt - Messy (Graphic)"
+	name = "超大号衬衫 - 凌乱款（印花）"
 	item_path = /obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic
 
 /datum/loadout_item/suit/messy_ianshirt
-	name = "Oversized Shirt - Messy (Ian)"
+	name = "超大号衬衫 - 凌乱款（伊恩）"
 	item_path = /obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic/ian
 
 /datum/loadout_item/suit/wornshirt
-	name = "Oversized Shirt - Wrinkled"
+	name = "超大号衬衫 - 褶皱款"
 	item_path = /obj/item/clothing/suit/wornshirt
 
 /datum/loadout_item/suit/suspenders
-	name = "Suspenders (Colorable)"
+	name = "背带裤（可着色）"
 	item_path = /obj/item/clothing/suit/toggle/suspenders
 
 /datum/loadout_item/suit/big_sweater
-	name = "Big Sweater With Bow (Colorable)"
+	name = "大号蝴蝶结毛衣（可着色）"
 	item_path = /obj/item/clothing/suit/nova/sweater/bow
 
 /datum/loadout_item/suit/big_sweater_bowless
-	name = "Big Sweater (Colorable)"
+	name = "大号毛衣（可着色）"
 	item_path = /obj/item/clothing/suit/nova/sweater
 
 /*
@@ -103,80 +103,80 @@
 */
 
 /datum/loadout_item/suit/winter_coat
-	name = "Winter Coat"
+	name = "冬季大衣"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat
 
 /datum/loadout_item/suit/gags_wintercoat
-	name = "Winter Coat (Colorable)"
+	name = "冬季大衣（可着色）"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/colourable
 
 /datum/loadout_item/suit/aformal
-	name = "Winter Coat - Assistant's Formal"
+	name = "冬季大衣 - 助手正装"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/nova
 
 /datum/loadout_item/suit/brass
-	name = "Winter Coat - Brass"
+	name = "冬季大衣 - 黄铜色"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/nova/ratvar
 
 /datum/loadout_item/suit/winter_coat/christmas
-	name = "Winter Coat - Christmas"
+	name = "冬季大衣 - 圣诞款"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/nova/christmas
 
 /datum/loadout_item/suit/winter_coat/christmas/green
-	name = "Winter Coat - Christmas (Green)"
+	name = "冬季大衣 - 圣诞款（绿色）"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/nova/christmas/green
 
 /datum/loadout_item/suit/runed
-	name = "Winter Coat - Runed"
+	name = "冬季大衣 - 符文款"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/nova/narsie
 
 /datum/loadout_item/suit/winter_coat_greyscale
-	name = "Winter Coat - Tailored (Colorable)"
+	name = "冬季大衣 - 定制款（可着色）"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/custom
 
 /datum/loadout_item/suit/winter_coat_fancy
-	name = "Winter Coat - Trenchcoat (Colorable)"
+	name = "冬季大衣 - 风衣款（可着色）"
 	item_path = /obj/item/clothing/suit/nova/furred_trenchcoat
 
 //Job Winter Coats (Don't want to alphabetize these mixed with the other wintercoats)
 /datum/loadout_item/suit/coat_atmos
-	name = "Winter Coat - Atmospherics"
+	name = "冬季大衣 - 大气处理部"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/engineering/atmos
 
 /datum/loadout_item/suit/coat_bar
-	name = "Winter Coat - Bartender"
+	name = "冬季大衣 - 调酒师"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/nova/bartender
 
 /datum/loadout_item/suit/coat_cargo
-	name = "Winter Coat - Cargo"
+	name = "冬季大衣 - 货运"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/cargo
 
 /datum/loadout_item/suit/coat_eng
-	name = "Winter Coat - Engineering"
+	name = "冬季大衣 - 工程"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/engineering
 
 /datum/loadout_item/suit/coat_hydro
-	name = "Winter Coat - Hydroponics"
+	name = "冬季大衣 - 水培"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/hydro
 
 /datum/loadout_item/suit/coat_med
-	name = "Winter Coat - Medical"
+	name = "冬季大衣 - 医疗"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/medical
 
 /datum/loadout_item/suit/coat_miner
-	name = "Winter Coat - Mining"
+	name = "冬季大衣 - 矿业"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/miner
 
 /datum/loadout_item/suit/coat_paramedic
-	name = "Winter Coat - Paramedic"
+	name = "冬季大衣 - 护理员"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/medical/paramedic
 
 /datum/loadout_item/suit/coat_robotics
-	name = "Winter Coat - Robotics"
+	name = "冬季大衣 - 机器人学"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/science/robotics
 
 /datum/loadout_item/suit/coat_sci
-	name = "Winter Coat - Science"
+	name = "冬季大衣 - 科研"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/science
 
 /*
@@ -189,27 +189,27 @@
 	group = "Jackets"
 
 /datum/loadout_item/suit/black_suit_jacket
-	name = "Suit Jacket (Black)"
+	name = "西装外套（黑色）"
 	item_path = /obj/item/clothing/suit/toggle/lawyer/black
 	group = "Jackets"
 
 /datum/loadout_item/suit/blue_suit_jacket
-	name = "Suit Jacket (Blue)"
+	name = "西装外套（蓝色）"
 	item_path = /obj/item/clothing/suit/toggle/lawyer
 	group = "Jackets"
 
 /datum/loadout_item/suit/purple_suit_jacket
-	name = "Suit Jacket (Purple)"
+	name = "西装外套（紫色）"
 	item_path = /obj/item/clothing/suit/toggle/lawyer/purple
 	group = "Jackets"
 
 /datum/loadout_item/suit/suitwhite
-	name = "Suit Jacket - Texan"
+	name = "西装外套 - 德克萨斯款"
 	item_path = /obj/item/clothing/suit/texas
 	group = "Jackets"
 
 /datum/loadout_item/suit/dutchjacket
-	name = "Suit Jacket - Western"
+	name = "西装外套 - 西部款"
 	item_path = /obj/item/clothing/suit/dutchjacketsr
 	group = "Jackets"
 
@@ -218,255 +218,255 @@
 */
 
 /datum/loadout_item/suit/big_jacket
-	name = "Alpha Atelier Pilot Jacket"
+	name = "阿尔法工坊飞行员夹克"
 	item_path = /obj/item/clothing/suit/big_jacket
 	group = "Jackets"
 
 /datum/loadout_item/suit/blazer_jacket
-	name = "Blazer (Colorable)"
+	name = "西装外套（可着色）"
 	item_path = /obj/item/clothing/suit/jacket/blazer
 	group = "Jackets"
 
 /datum/loadout_item/suit/discojacket
-	name = "Blazer - Disco"
+	name = "西装外套 - 迪斯科款"
 	item_path = /obj/item/clothing/suit/jacket/discoblazer
 	group = "Jackets"
 
 /datum/loadout_item/suit/bomber_jacket
-	name = "Bomber Jacket"
+	name = "轰炸机夹克"
 	item_path = /obj/item/clothing/suit/jacket/bomber
 	group = "Jackets"
 
 /datum/loadout_item/suit/jacketbomber_alt
-	name = "Bomber Jacket w/ Zipper"
+	name = "带拉链轰炸机夹克"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova
 	group = "Jackets"
 
 /datum/loadout_item/suit/kimjacket
-	name = "Bomber Jacket, Aerostatic"
+	name = "气动轰炸机夹克"
 	item_path = /obj/item/clothing/suit/kimjacket
 	group = "Jackets"
 
 /datum/loadout_item/suit/cardigan
-	name = "Cardigan"
+	name = "开襟羊毛衫"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/cardigan
 	group = "Jackets"
 
 /datum/loadout_item/suit/sports_jacket
-	name = "Customizable Jacket (Colorable)"
+	name = "可定制夹克（可着色）"
 	item_path = /obj/item/clothing/suit/crop_jacket/long
 	group = "Jackets"
 
 /datum/loadout_item/suit/shortsleeve_sports_jacket
-	name = "Customizable Jacket (Short-Sleeved, Colorable)"
+	name = "可定制夹克（短袖，可着色）"
 	item_path = /obj/item/clothing/suit/crop_jacket/shortsleeve/long
 	group = "Jackets"
 
 /datum/loadout_item/suit/sleeveless_sports_jacket
-	name = "Customizable Jacket (Sleeveless, Colorable)"
+	name = "可定制夹克（无袖，可着色）"
 	item_path = /obj/item/clothing/suit/crop_jacket/sleeveless/long
 	group = "Jackets"
 
 /datum/loadout_item/suit/crop_jacket
-	name = "Customizable Jacket - Crop Top (Colorable)"
+	name = "可定制夹克 - 露脐款（可着色）"
 	item_path = /obj/item/clothing/suit/crop_jacket
 	group = "Jackets"
 
 /datum/loadout_item/suit/shortsleeve_crop_jacket
-	name = "Customizable Jacket - Crop-Top (Short-Sleeved, Colorable)"
+	name = "可定制夹克 - 露脐款（短袖，可着色）"
 	item_path = /obj/item/clothing/suit/crop_jacket/shortsleeve
 	group = "Jackets"
 
 /datum/loadout_item/suit/sleeveless_crop_jacket
-	name = "Customizable Jacket - Crop-Top (Sleeveless, Colorable)"
+	name = "可定制夹克 - 露脐款（无袖，可着色）"
 	item_path = /obj/item/clothing/suit/crop_jacket/sleeveless
 	group = "Jackets"
 
 /datum/loadout_item/suit/colourable_leather_jacket
-	name = "Leather Jacket (Colorable)"
+	name = "皮夹克（可着色）"
 	item_path = /obj/item/clothing/suit/jacket/leather/colourable
 	group = "Jackets"
 
 /datum/loadout_item/suit/duster
-	name = "Duster (Colorable)"
+	name = "长风衣（可着色）"
 	item_path = /obj/item/clothing/suit/duster
 	group = "Jackets"
 
 /datum/loadout_item/suit/parka
-	name = "Falls Parka"
+	name = "瀑布派克大衣"
 	item_path = /obj/item/clothing/suit/fallsparka
 	group = "Jackets"
 
 /datum/loadout_item/suit/jacket_fancy
-	name = "Fancy Fur Coat  (Colorable)"
+	name = "奢华毛皮大衣（可着色）"
 	item_path = /obj/item/clothing/suit/jacket/fancy
 	group = "Jackets"
 
 /datum/loadout_item/suit/flannel_gags
-	name = "Flannel  (Colorable)"
+	name = "法兰绒衬衫（可着色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/flannel/gags
 
 /datum/loadout_item/suit/flannel_aqua
-	name = "Flannel (Aqua)"
+	name = "法兰绒衬衫（水绿色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/flannel/aqua
 
 /datum/loadout_item/suit/flannel_black
-	name = "Flannel (Black)"
+	name = "法兰绒衬衫（黑色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/flannel
 
 /datum/loadout_item/suit/flannel_brown
-	name = "Flannel (Brown)"
+	name = "法兰绒衬衫（棕色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/flannel/brown
 
 /datum/loadout_item/suit/flannel_red
-	name = "Flannel (Red)"
+	name = "法兰绒衬衫（红色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/flannel/red
 
 /datum/loadout_item/suit/frontierjacket
 	abstract_type = /datum/loadout_item/suit/frontierjacket
 
 /datum/loadout_item/suit/frontierjacket/short
-	name = "Frontier Jacket (Short)"
+	name = "边疆夹克（短款）"
 	item_path = /obj/item/clothing/suit/jacket/frontier_colonist/short
 	group = "Jackets"
 
 /datum/loadout_item/suit/maxson
-	name = "Furred Coat (Brown)"
+	name = "毛边大衣（棕色）"
 	item_path = /obj/item/clothing/suit/brownbattlecoat
 
 /datum/loadout_item/suit/bossu
-	name = "Furred Coat (Black)"
+	name = "毛边大衣（黑色）"
 	item_path = /obj/item/clothing/suit/blackfurrich
 
 /datum/loadout_item/suit/leather_jacket
-	name = "Leather Jacket"
+	name = "皮夹克"
 	item_path = /obj/item/clothing/suit/jacket/leather
 	group = "Jackets"
 
 /datum/loadout_item/suit/leather_jacket/hooded
-	name = "Leather Jacket with Hoodie"
+	name = "带兜帽皮夹克"
 	item_path = /obj/item/clothing/suit/hooded/leather
 	group = "Jackets"
 
 /datum/loadout_item/suit/leather_jacket/biker
-	name = "Leather Jacket with Zipper"
+	name = "带拉链皮夹克"
 	item_path = /obj/item/clothing/suit/jacket/leather/biker
 	group = "Jackets"
 
 /datum/loadout_item/suit/woolcoat
-	name = "Leather Overcoat"
+	name = "皮大衣"
 	item_path = /obj/item/clothing/suit/woolcoat
 
 /datum/loadout_item/suit/military_jacket
-	name = "Military Jacket"
+	name = "军用夹克"
 	item_path = /obj/item/clothing/suit/jacket/miljacket
 	group = "Jackets"
 
 /datum/loadout_item/suit/jacket_oversized
-	name = "Oversized Jacket (Colorable)"
+	name = "超大号夹克（可着色）"
 	item_path = /obj/item/clothing/suit/jacket/oversized
 
 /datum/loadout_item/suit/peacoat
-	name = "Peacoat (Colorable)"
+	name = "双排扣大衣（可着色）"
 	item_path = /obj/item/clothing/suit/toggle/peacoat
 	group = "Jackets"
 
 /datum/loadout_item/suit/puffer_jacket
-	name = "Puffer Jacket"
+	name = "羽绒夹克"
 	item_path = /obj/item/clothing/suit/jacket/puffer
 	group = "Jackets"
 
 /datum/loadout_item/suit/puffer_vest
-	name = "Puffer Vest"
+	name = "羽绒背心"
 	item_path = /obj/item/clothing/suit/jacket/puffer/vest
 	group = "Jackets"
 
 /datum/loadout_item/suit/jacket_sweater
-	name = "Sweater Jacket (Colorable)"
+	name = "毛衣夹克（可着色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/sweater
 	group = "Jackets"
 
 /datum/loadout_item/suit/tailored_jacket
-	name = "Tailored Jacket (Colorable)"
+	name = "定制夹克（可着色）"
 	item_path = /obj/item/clothing/suit/tailored_jacket
 	group = "Jackets"
 
 /datum/loadout_item/suit/tailored_short_jacket
-	name = "Tailored Jacket, Short (Colorable)"
+	name = "定制短夹克（可着色）"
 	item_path = /obj/item/clothing/suit/tailored_jacket/short
 	group = "Jackets"
 
 /datum/loadout_item/suit/trackjacket
-	name = "Track Jacket"
+	name = "运动夹克"
 	item_path = /obj/item/clothing/suit/toggle/trackjacket
 	group = "Jackets"
 
 /datum/loadout_item/suit/jacket_trenchcoat
-	name = "Trenchcoat  (Colorable)"
+	name = "风衣（可着色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/trenchcoat
 
 /datum/loadout_item/suit/bltrench
-	name = "Trenchcoat (Black)"
+	name = "风衣（黑色）"
 	item_path = /obj/item/clothing/suit/trenchblack
 
 /datum/loadout_item/suit/frenchtrench
-	name = "Trenchcoat (Blue)"
+	name = "风衣（蓝色）"
 	item_path = /obj/item/clothing/suit/frenchtrench
 
 /datum/loadout_item/suit/brtrench
-	name = "Trenchcoat (Brown)"
+	name = "风衣（棕色）"
 	item_path = /obj/item/clothing/suit/trenchbrown
 
 /datum/loadout_item/suit/frontiertrench
-	name = "Trenchcoat - Frontier"
+	name = "风衣 - 边疆款"
 	item_path = /obj/item/clothing/suit/jacket/frontier_colonist
 
 /datum/loadout_item/suit/cossak
-	name = "Ukrainian Coat"
+	name = "乌克兰大衣"
 	item_path = /obj/item/clothing/suit/cossack
 
 /datum/loadout_item/suit/urban
-	name = "Urban Coat"
+	name = "都市大衣"
 	item_path = /obj/item/clothing/suit/urban
 
 /datum/loadout_item/suit/warm_coat
-	name = "Warm Coat (Colorable)"
+	name = "保暖大衣（可着色）"
 	item_path = /obj/item/clothing/suit/warm_coat
 
 /datum/loadout_item/suit/warm_sweater
-	name = "Warm Sweater (Colorable)"
+	name = "保暖毛衣（可着色）"
 	item_path = /obj/item/clothing/suit/warm_sweater
 
 /datum/loadout_item/suit/heart_sweater
-	name = "Warm Sweater (Colorable, Heart)"
+	name = "保暖毛衣（可着色，心形图案）"
 	item_path = /obj/item/clothing/suit/heart_sweater
 
 /datum/loadout_item/suit/varsity
-	name = "Varsity Jacket"
+	name = "校队夹克"
 	item_path = /obj/item/clothing/suit/varsity
 
 /datum/loadout_item/suit/offdep_jacket
-	name = "Work Jacket - Off-Department"
+	name = "工作夹克 - 非本部门"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber
 	group = "Jackets"
 
 /datum/loadout_item/suit/engi_jacket
-	name = "Work Jacket - Engineering"
+	name = "工作夹克 - 工程"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/engi
 	group = "Jobs"
 
 /datum/loadout_item/suit/sci_jacket
-	name = "Work Jacket - Science"
+	name = "工作夹克 - 科研"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/sci
 	group = "Jobs"
 
 /datum/loadout_item/suit/med_jacket
-	name = "Work Jacket - Medbay"
+	name = "工作夹克 - 医疗部"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/med
 	group = "Jobs"
 
 /datum/loadout_item/suit/supply_jacket
-	name = "Work Jacket - Supply"
+	name = "工作夹克 - 补给部"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/colorable_bomber/supply
 	group = "Jobs"
 
@@ -490,165 +490,165 @@
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/trim
 
 /datum/loadout_item/suit/hoodie/black
-	name = "Hoodie (Black)"
+	name = "连帽衫（黑色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/black
 
 /datum/loadout_item/suit/hoodie/red
-	name = "Hoodie (Red)"
+	name = "连帽衫（红色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/red
 
 /datum/loadout_item/suit/hoodie/blue
-	name = "Hoodie (Blue)"
+	name = "连帽衫（蓝色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/blue
 
 /datum/loadout_item/suit/hoodie/green
-	name = "Hoodie (Green)"
+	name = "连帽衫（绿色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/green
 
 /datum/loadout_item/suit/hoodie/orange
-	name = "Hoodie (Orange)"
+	name = "连帽衫（橙色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/orange
 
 /datum/loadout_item/suit/hoodie/yellow
-	name = "Hoodie (Yellow)"
+	name = "连帽衫（黄色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/yellow
 
 /datum/loadout_item/suit/hoodie/grey
-	name = "Hoodie (Grey)"
+	name = "连帽衫（灰色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/grey
 
 /datum/loadout_item/suit/hoodie/nt
-	name = "Hoodie - NT"
+	name = "连帽衫 - NT"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/branded
 
 /datum/loadout_item/suit/hoodie/smw
-	name = "Hoodie - SMW"
+	name = "连帽衫 - SMW"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/branded/smw
 
 /datum/loadout_item/suit/hoodie/nrti
-	name = "Hoodie - NRTI"
+	name = "连帽衫 - NRTI"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/branded/nrti
 
 /datum/loadout_item/suit/hoodie/cti
-	name = "Hoodie - CTI"
+	name = "连帽衫 - CTI"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/branded/cti
 
 /datum/loadout_item/suit/hoodie/mu
-	name = "Hoodie - MU"
+	name = "连帽衫 - MU"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/hoodie/branded/mu
 
 /datum/loadout_item/suit/recolorable_apron
-	name = "Apron"
+	name = "围裙"
 	item_path = /obj/item/clothing/suit/apron/chef/colorable_apron
 	group = "Jobs"
 
 /datum/loadout_item/suit/gear_harness
-	name = "Gear Harness (Suit)"
+	name = "装备背带（外套）"
 	item_path = /obj/item/clothing/under/misc/nova/gear_harness/suit
 
 /datum/loadout_item/suit/frontierjacket/short/medical
-	name = "Frontier Jacket - Medical (Short)"
+	name = "边疆夹克 - 医疗（短款）"
 	item_path = /obj/item/clothing/suit/jacket/frontier_colonist/medical
 	group = "Jobs"
 
 /datum/loadout_item/suit/cargo_gorka_jacket
-	name = "Gorka Jacket - Cargo"
+	name = "戈尔卡夹克 - 货运"
 	item_path = /obj/item/clothing/suit/toggle/cargo_tech
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat_highvis
-	name = "High-Vis Jacket"
+	name = "高能见度夹克"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/nova/highvis
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat
-	name = "Labcoat"
+	name = "实验袍"
 	item_path = /obj/item/clothing/suit/toggle/labcoat
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat_custom
-	name = "Labcoat  (Colorable)"
+	name = "实验袍（可着色）"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/nova/custom
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat_green
-	name = "Labcoat (Green)"
+	name = "实验袍（绿色）"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/mad
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat_medical
-	name = "Labcoat -  Medical"
+	name = "实验袍 - 医疗"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/medical
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat_lalunevest
-	name = "Labcoat - Designer"
+	name = "实验袍 - 设计师款"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/nova/lalunevest
 	group = "Jobs"
 
 /datum/loadout_item/suit/fancy_labcoat
-	name = "Labcoat - Fancy (Colorable)"
+	name = "实验袍 - 华丽款（可着色）"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/nova/fancy
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat_regular
-	name = "Labcoat - Fancy, Research"
+	name = "实验袍 - 华丽款，研究部"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/nova/fancy/regular
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat_pharmacist
-	name = "Labcoat - Fancy, Pharmacy"
+	name = "实验袍 - 华丽款，药房"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/nova/fancy/pharmacist
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat_geneticist
-	name = "Labcoat - Fancy, Genetics"
+	name = "实验袍 - 华丽款，遗传学"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/nova/fancy/geneticist
 	group = "Jobs"
 
 /datum/loadout_item/suit/labcoat_roboticist
-	name = "Labcoat - Fancy, Robotics"
+	name = "实验袍 - 华丽款，机器人学"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/nova/fancy/roboticist
 	group = "Jobs"
 
 /datum/loadout_item/suit/overall
-	name = "Overalls (Recolorable)" // can't have both job palettes and player coloring, so we prefer player colors
+	name = "工装裤（可重着色）" // can't have both job palettes and player coloring, so we prefer player colors
 	loadout_flags = LOADOUT_FLAG_ALLOW_NAMING
 	group = "Jobs"
 
 /datum/loadout_item/suit/overalls_loneskirt
-	name = "Overalls Skirt"
+	name = "工装裙"
 	item_path = /obj/item/clothing/suit/apron/overalls_loneskirt
 	group = "Jobs"
 
 //Religious Clothing
 /datum/loadout_item/suit/chap_eastmonk
-	name = "Religious - Eastern Monk's Robe"
+	name = "宗教 - 东方僧侣袍"
 	item_path = /obj/item/clothing/suit/chaplainsuit/monkrobeeast
 	group = "Jobs"
 
 /datum/loadout_item/suit/chap_holiday
-	name = "Religious - Holiday Priest Robe"
+	name = "宗教 - 节日祭司袍"
 	item_path = /obj/item/clothing/suit/chaplainsuit/holidaypriest
 	group = "Jobs"
 
 /datum/loadout_item/suit/chap_brownmonk
-	name = "Religious - Monk's Habit"
+	name = "宗教 - 僧侣常服"
 	item_path = /obj/item/clothing/suit/hooded/chaplainsuit/monkhabit
 	group = "Jobs"
 
 /datum/loadout_item/suit/chap_nun
-	name = "Religious - Nun's Robe"
+	name = "宗教 - 修女袍"
 	item_path = /obj/item/clothing/suit/chaplainsuit/nun
 	group = "Jobs"
 
 /datum/loadout_item/suit/chap_shrinehand
-	name = "Religious - Shrinehand's Robe"
+	name = "宗教 - 神社侍者袍"
 	item_path = /obj/item/clothing/suit/chaplainsuit/shrinehand
 	group = "Jobs"
 
 /datum/loadout_item/suit/chap_blackmonk
-	name = "Religious - Tunic"
+	name = "宗教 - 束腰外衣"
 	item_path = /obj/item/clothing/suit/chaplainsuit/habit
 	group = "Jobs"
 
@@ -657,132 +657,132 @@
 */
 
 /datum/loadout_item/suit/syndi
-	name = "Black And Red Space Suit Replica"
+	name = "黑红太空服复制品"
 	item_path = /obj/item/clothing/suit/syndicatefake
 	group = "Costumes"
 
 /datum/loadout_item/suit/blastwave_suit
-	name = "Blastwave Trenchcoat"
+	name = "冲击波风衣"
 	item_path = /obj/item/clothing/suit/blastwave
 	group = "Costumes"
 
 /datum/loadout_item/suit/caretaker
-	name = "Caretaker Jacket"
+	name = "看护员夹克"
 	item_path = /obj/item/clothing/suit/victoriantailcoatbutler
 	group = "Costumes"
 
 /datum/loadout_item/suit/deckers
-	name = "Deckers Hoodie"
+	name = "甲板工连帽衫"
 	item_path = /obj/item/clothing/suit/costume/deckers
 	group = "Costumes"
 
 /datum/loadout_item/suit/flakjack
-	name = "Flak Jacket"
+	name = "防弹背心"
 	item_path = /obj/item/clothing/suit/flakjack
 	group = "Costumes"
 
 /datum/loadout_item/suit/plague_doctor
-	name = "Plague Doctor Robes"
+	name = "瘟疫医生长袍"
 	item_path = /obj/item/clothing/suit/bio_suit/plaguedoctorsuit
 	group = "Costumes"
 
 /datum/loadout_item/suit/pg
-	name = "PG Coat"
+	name = "PG大衣"
 	item_path = /obj/item/clothing/suit/costume/pg
 	group = "Costumes"
 
 /datum/loadout_item/suit/poncho
-	name = "Poncho"
+	name = "斗篷"
 	item_path = /obj/item/clothing/suit/costume/poncho
 	group = "Costumes"
 
 /datum/loadout_item/suit/poncho_green
-	name = "Poncho (Green)"
+	name = "斗篷（绿色）"
 	item_path = /obj/item/clothing/suit/costume/poncho/green
 	group = "Costumes"
 
 /datum/loadout_item/suit/poncho_red
-	name = "Poncho (Red)"
+	name = "斗篷（红色）"
 	item_path = /obj/item/clothing/suit/costume/poncho/red
 	group = "Costumes"
 
 /datum/loadout_item/suit/redhood
-	name = "Red Cloak"
+	name = "红色斗篷"
 	item_path = /obj/item/clothing/suit/hooded/cloak/david
 	group = "Costumes"
 
 /datum/loadout_item/suit/soviet
-	name = "Soviet Coat"
+	name = "苏维埃大衣"
 	item_path = /obj/item/clothing/suit/costume/soviet
 	group = "Costumes"
 
 /datum/loadout_item/suit/bee
-	name = "Suit - Bee"
+	name = "套装 - 蜜蜂"
 	item_path = /obj/item/clothing/suit/hooded/bee_costume
 	group = "Costumes"
 
 /datum/loadout_item/suit/cardborg
-	name = "Suit - Cardborg"
+	name = "套装 - 纸板机器人"
 	item_path = /obj/item/clothing/suit/costume/cardborg
 	group = "Costumes"
 
 /datum/loadout_item/suit/carp_costume
-	name = "Suit - Carp"
+	name = "套装 - 鲤鱼"
 	item_path = /obj/item/clothing/suit/hooded/carp_costume
 	group = "Costumes"
 
 /datum/loadout_item/suit/chicken
-	name = "Suit - Chicken"
+	name = "套装 - 小鸡"
 	item_path = /obj/item/clothing/suit/costume/chickensuit
 	group = "Costumes"
 
 /datum/loadout_item/suit/ian_costume
-	name = "Suit - Corgi"
+	name = "套装 - 柯基犬"
 	item_path = /obj/item/clothing/suit/hooded/ian_costume
 	group = "Costumes"
 
 /datum/loadout_item/suit/griffin
-	name = "Suit - Griffon"
+	name = "套装 - 狮鹫"
 	item_path = /obj/item/clothing/suit/toggle/owlwings/griffinwings
 	group = "Costumes"
 
 /datum/loadout_item/suit/monkey
-	name = "Suit - Monkey"
+	name = "套装 - 猴子"
 	item_path = /obj/item/clothing/suit/costume/monkeysuit
 	group = "Costumes"
 
 /datum/loadout_item/suit/owl
-	name = "Suit - Owl"
+	name = "套装 - 猫头鹰"
 	item_path = /obj/item/clothing/suit/toggle/owlwings
 	group = "Costumes"
 
 /datum/loadout_item/suit/shark_costume
-	name = "Suit - Shark"
+	name = "套装 - 鲨鱼"
 	item_path = /obj/item/clothing/suit/hooded/shark_costume
 	group = "Costumes"
 
 /datum/loadout_item/suit/shork_costume
-	name = "Suit - Shork"
+	name = "套装 - 短吻鲨"
 	item_path = /obj/item/clothing/suit/hooded/shork_costume
 	group = "Costumes"
 
 /datum/loadout_item/suit/snowman
-	name = "Suit - Snowman"
+	name = "套装 - 雪人"
 	item_path = /obj/item/clothing/suit/costume/snowman
 	group = "Costumes"
 
 /datum/loadout_item/suit/xenos
-	name = "Suit - Xenos"
+	name = "套装 - 异形"
 	item_path = /obj/item/clothing/suit/costume/xenos
 	group = "Costumes"
 
 /datum/loadout_item/suit/tmc
-	name = "TMC Coat"
+	name = "TMC大衣"
 	item_path = /obj/item/clothing/suit/costume/tmc
 	group = "Costumes"
 
 /datum/loadout_item/suit/white_dress
-	name = "White Dress"
+	name = "白色连衣裙"
 	item_path = /obj/item/clothing/suit/costume/whitedress
 	group = "Costumes"
 
@@ -938,29 +938,29 @@
 	group = "Tailcoats"
 
 /datum/loadout_item/suit/jacket/long_robe
-	name = "Long Robe"
+	name = "长袍"
 	item_path = /obj/item/clothing/suit/jacket/long_robe
 	reskin_datum = /datum/atom_skin/long_robe
 	group = "Costumes"
 
 /datum/loadout_item/suit/jacket/haori
-	name = "Haori"
+	name = "羽织"
 	item_path = /obj/item/clothing/suit/jacket/haori
 	reskin_datum = /datum/atom_skin/haori
 	group = "Costumes"
 
 /datum/loadout_item/suit/witch
-	name = "Witch Robe"
+	name = "女巫袍"
 	item_path = /obj/item/clothing/suit/wizrobe/marisa/fake
 	group = "Costumes"
 
 /datum/loadout_item/suit/wizard
-	name = "Wizard Robe"
+	name = "巫师袍"
 	item_path = /obj/item/clothing/suit/wizrobe/fake
 	group = "Costumes"
 
 /datum/loadout_item/suit/yuri
-	name = "Yuri Coat"
+	name = "尤里大衣"
 	item_path = /obj/item/clothing/suit/costume/yuri
 	group = "Costumes"
 
@@ -969,17 +969,17 @@
 */
 
 /datum/loadout_item/suit/mothcoat
-	name = "Mothic Flightsuit"
+	name = "飞蛾族飞行服"
 	item_path = /obj/item/clothing/suit/mothcoat
 	group = "Species-Unique"
 
 /datum/loadout_item/suit/mantella
-	name = "Mothic Mantella"
+	name = "飞蛾族曼特拉披风"
 	item_path = /obj/item/clothing/suit/mothcoat/winter
 	group = "Species-Unique"
 
 /datum/loadout_item/suit/ethereal_raincoat
-	name = "Ethereal Raincoat"
+	name = "虚灵雨衣"
 	item_path = /obj/item/clothing/suit/hooded/ethereal_raincoat
 	group = "Species-Unique"
 
@@ -1008,7 +1008,7 @@
 
 //CARGO
 /datum/loadout_item/suit/qm_jacket
-	name = "Quartermaster's Overcoat"
+	name = "军需官的大衣"
 	item_path = /obj/item/clothing/suit/jacket/quartermaster
 	restricted_roles = list(JOB_QUARTERMASTER)
 	group = "Jobs"
@@ -1055,7 +1055,7 @@
 
 //SEC
 /datum/loadout_item/suit/navybluejackethos
-	name = "Head of Security's Formal Jacket (Navy Blue)"
+	name = "安全主管正装夹克（海军蓝）"
 	item_path = /obj/item/clothing/suit/jacket/hos/blue
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 	group = "Jobs"
@@ -1067,7 +1067,7 @@
 	group = "Tailcoats"
 
 /datum/loadout_item/suit/navybluejacketwarden
-	name = "Warden's Formal Jacket (Navy Blue)"
+	name = "典狱长正装夹克（海军蓝）"
 	item_path = /obj/item/clothing/suit/jacket/warden/blue
 	restricted_roles = list(JOB_WARDEN)
 	group = "Jobs"
@@ -1079,43 +1079,43 @@
 	group = "Tailcoats"
 
 /datum/loadout_item/suit/british_jacket
-	name = "Security British Coat"
+	name = "安保英式大衣"
 	item_path = /obj/item/clothing/suit/british_officer
 	restricted_roles = list(ALL_JOBS_SEC)
 	group = "Jobs"
 
 /datum/loadout_item/suit/navybluejacketofficer
-	name = "Security Formal Jacket (Navy Blue)"
+	name = "安保正装夹克（海军蓝）"
 	item_path = /obj/item/clothing/suit/jacket/officer/blue
 	restricted_roles = list(ALL_JOBS_SEC)
 	group = "Jobs"
 
 /datum/loadout_item/suit/brit
-	name = "Security High Vis Armored Vest"
+	name = "安保高可见度防弹背心"
 	item_path = /obj/item/clothing/suit/armor/vest/brit
 	restricted_roles = list(ALL_JOBS_SEC)
 	group = "Jobs"
 
 /datum/loadout_item/suit/vested_jacket
-	name = "Vested Security Jacket"
+	name = "带背心安保夹克"
 	item_path = /obj/item/clothing/suit/armor/vest/vested_jacket
 	restricted_roles = list(ALL_JOBS_SEC)
 	group = "Jobs"
 
 /datum/loadout_item/suit/security_wintercoat
-	name = "Security Winter Jacket"
+	name = "安保冬季夹克"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security
 	restricted_roles = list(ALL_JOBS_SEC)
 	group = "Jobs"
 
 /datum/loadout_item/suit/security_wintercoat_blue
-	name = "Security Winter Coat (Blue)"
+	name = "安保冬季大衣（蓝色）"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/blue
 	restricted_roles = list(ALL_JOBS_SEC)
 	group = "Jobs"
 
 /datum/loadout_item/suit/security_jacket
-	name = "Security Work Jacket"
+	name = "安保工作夹克"
 	item_path = /obj/item/clothing/suit/toggle/jacket/nova/sec
 	restricted_roles = list(ALL_JOBS_SEC)
 	group = "Jobs"
@@ -1140,37 +1140,37 @@
 
 //Detective
 /datum/loadout_item/suit/deckard
-	name = "Detective Runner Coat"
+	name = "侦探跑者大衣"
 	item_path = /obj/item/clothing/suit/toggle/deckard
 	restricted_roles = list(JOB_DETECTIVE)
 	group = "Jobs"
 
 /datum/loadout_item/suit/detectivearmorvest
-	name = "Detective's Armor Vest"
+	name = "侦探防弹背心"
 	item_path = /obj/item/clothing/suit/armor/vest/det_suit
 	restricted_roles = list(JOB_DETECTIVE)
 	group = "Jobs"
 
 /datum/loadout_item/suit/detjacketbrown
-	name = "Detective's Jacket"
+	name = "侦探夹克"
 	item_path = /obj/item/clothing/suit/jacket/det_suit
 	restricted_roles = list(JOB_DETECTIVE)
 	group = "Jobs"
 
 /datum/loadout_item/suit/detjackenoir
-	name = "Detective's Jacket (Noir)"
+	name = "侦探夹克（黑色电影风格）"
 	item_path = /obj/item/clothing/suit/jacket/det_suit/noir
 	restricted_roles = list(JOB_DETECTIVE)
 	group = "Jobs"
 
 /datum/loadout_item/suit/detjacketplain
-	name = "Detective's Trenchcoat"
+	name = "侦探风衣"
 	item_path = /obj/item/clothing/suit/toggle/jacket/det_trench
 	restricted_roles = list(JOB_DETECTIVE)
 	group = "Jobs"
 
 /datum/loadout_item/suit/detjacket
-	name = "Detective's Trenchcoat (Dark)"
+	name = "侦探风衣（深色）"
 	item_path = /obj/item/clothing/suit/toggle/jacket/det_trench/noir
 	restricted_roles = list(JOB_DETECTIVE)
 	group = "Jobs"
@@ -1196,44 +1196,44 @@
 	donator_only = TRUE
 
 /datum/loadout_item/suit/donator/blondie
-	name = "Cowboy Vest"
+	name = "牛仔背心"
 	item_path = /obj/item/clothing/suit/cowboyvest
 
 /datum/loadout_item/suit/digicoat_glitched //Public donator reward for Razurath.
-	name = "Digicoat - Glitched"
+	name = "数码大衣 - 故障"
 	item_path = /obj/item/clothing/suit/toggle/digicoat/glitched
 
 /datum/loadout_item/suit/donator/digicoat
 	abstract_type = /datum/loadout_item/suit/donator/digicoat
 
 /datum/loadout_item/suit/donator/digicoat/interdyne
-	name = "Digicoat - Interdyne"
+	name = "数码大衣 - 因特戴恩"
 	item_path = /obj/item/clothing/suit/toggle/digicoat/interdyne
 
 /datum/loadout_item/suit/donator/digicoat/nanotrasen
-	name = "Digicoat - Nanotrasen"
+	name = "数码大衣 - 纳米传讯"
 	item_path = /obj/item/clothing/suit/toggle/digicoat/nanotrasen
 
 /datum/loadout_item/suit/donator/furredjacket
-	name = "Furred Jacket"
+	name = "毛皮夹克"
 	item_path = /obj/item/clothing/suit/brownfurrich/public
 
 /datum/loadout_item/suit/donator/whitefurredjacket
-	name = "Furred Jacket (White)"
+	name = "毛皮夹克（白色）"
 	item_path = /obj/item/clothing/suit/brownfurrich/white
 
 /datum/loadout_item/suit/donator/creamfurredjacket
-	name = "Furred Jacket (Cream)"
+	name = "毛皮夹克（奶油色）"
 	item_path = /obj/item/clothing/suit/brownfurrich/cream
 
 /datum/loadout_item/suit/donator/chokha //All-donators donator item for BlindPoet
-	name = "Iseurian Chokha"
+	name = "伊瑟里安乔卡"
 	item_path = /obj/item/clothing/suit/chokha
 
 /datum/loadout_item/suit/donator/modern_winter
-	name = "Modern Winter Coat"
+	name = "现代冬季大衣"
 	item_path = /obj/item/clothing/suit/modern_winter
 
 /datum/loadout_item/suit/donator/replica_parade_jacket
-	name = "Replica Parade Jacket"
+	name = "复制阅兵夹克"
 	item_path = /obj/item/clothing/suit/replica_parade_jacket

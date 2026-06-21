@@ -1,33 +1,33 @@
 // Nova Sector shuttle areas
 
 /area/shuttle/blackmarket_burst
-	name = "Blackmarket Burst"
+	name = "黑市爆裂号"
 
 /area/shuttle/interdyne_cargo
-	name = "Interdyne Cargo Shuttle"
+	name = "英特戴恩货运穿梭机"
 
 /area/shuttle/syndicate/slaver
-	name = "Slave Ship"
+	name = "奴隶船"
 	requires_power = TRUE
 
 /area/shuttle/tarkon_driver
-	name = "Tarkon Driver"
+	name = "塔肯驱动者号"
 	requires_power = TRUE
 
 /area/shuttle/trader/bridge
-	name = "Trader Ship Bridge"
+	name = "贸易船舰桥"
 
 /area/shuttle/trader/engine
-	name = "Trader Ship Engine"
+	name = "贸易船引擎室"
 
 /area/shuttle/trader/bar
-	name = "Trader Ship Bar"
+	name = "贸易船酒吧"
 
 /area/shuttle/trader/crew
-	name = "Trader Ship Crew Quarters"
+	name = "贸易船船员宿舍"
 
 /area/shuttle/trader/cargo
-	name = "Trader Ship Cargo Bay"
+	name = "贸易船货运舱"
 
 /area/shuttle/escape/no_light
 	area_flags = NONE
@@ -45,37 +45,37 @@
 	static_lighting = FALSE
 
 /area/shuttle/mining/advanced
-	name = "NMC Phoenix"
+	name = "NMC 凤凰号"
 
 /area/shuttle/mining/advanced/public
-	name = "NMC Chimera"
+	name = "NMC 奇美拉号"
 
 /area/shuttle/mining/large/advanced
-	name = "NMC Manticore"
+	name = "NMC 蝎狮号"
 
 /area/shuttle/labor/advanced
-	name = "NMC Drudge"
+	name = "NMC 苦工号"
 
 /area/shuttle/planetary_ferry
-	name = "Planetary Ferry"
+	name = "行星摆渡船"
 
 /area/shuttle/solfed
-	name = "SFTS-3329 Transport Shuttle"
+	name = "SFTS-3329 运输穿梭机"
 
 /area/shuttle/solfed/espatier
-	name = "EAS(I)-6224 Infantry Transport Shuttle"
+	name = "EAS(I)-6224 步兵运输穿梭机"
 
 /area/shuttle/solfed/espatier/trauma
-	name = "EAS(H)-8321 Medical Transport Shuttle"
+	name = "EAS(H)-8321 医疗运输穿梭机"
 
 /area/shuttle/solfed/espatier/engineer
-	name = "EAS(E)-4401 Engineering Transport Shuttle"
+	name = "EAS(E)-4401 工程运输穿梭机"
 
 /area/shuttle/solfed/espatier/assault
-	name = "EAS(L)-9921 Assault Transport Shuttle"
+	name = "EAS(L)-9921 突击运输穿梭机"
 
 /area/shuttle/solfed/espatier/defcon
-	name = "EAS(I)-2271 Infantry Transport Shuttle"
+	name = "EAS(I)-2271 步兵运输穿梭机"
 
 /area/shuttle/solfed/fancy
-	name = "SFTS-1221 Transport Shuttle"
+	name = "SFTS-1221 运输穿梭机"

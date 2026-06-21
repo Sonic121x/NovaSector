@@ -1,6 +1,6 @@
 /obj/item/market_uplink
-	name = "\improper Market Uplink"
-	desc = "A market uplink. Usable with markets. You probably shouldn't have this!"
+	name = "\improper 市场链路"
+	desc = "一个市场上行链路。可与市场一起使用。你大概不该拥有这个！"
 	icon = 'icons/obj/devices/blackmarket.dmi'
 	icon_state = "uplink"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.65, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3.3)
@@ -150,8 +150,8 @@
 			selected_item = null
 
 /obj/item/market_uplink/blackmarket
-	name = "\improper Black Market Uplink"
-	desc = "An illegal black market uplink. If command wanted you to have these, they wouldn't have made it so hard to get one."
+	name = "\improper 黑市上行链路"
+	desc = "非法黑市上行。如果指挥部想让你拥有这些，他们就不会让你这么难搞到一个。"
 	icon = 'icons/obj/devices/blackmarket.dmi'
 	icon_state = "uplink"
 	//The original black market uplink
@@ -163,7 +163,7 @@
 	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 
 /datum/crafting_recipe/radio_containing/blackmarket_uplink
-	name = "Black Market Uplink"
+	name = "黑市上行链路"
 	result = /obj/item/market_uplink/blackmarket
 	time = 3 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_MULTITOOL)

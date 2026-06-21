@@ -4,8 +4,8 @@
  *The assistant is bleeding. The assistant has a painful expression. The assistant is dead.
  */
 /obj/item/grenade/smokebomb
-	name = "smoke grenade"
-	desc = "Real bruh moment if you ever see this. Probably tell a c*der or something."
+	name = "烟雾弹"
+	desc = "如果你真看到这个，那可真是布鲁时刻。大概得告诉个码*员之类的。"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "smokewhite"
 	inhand_icon_state = "smoke"
@@ -33,7 +33,7 @@
 ///Here we generate the extremely insightful description.
 /obj/item/grenade/smokebomb/Initialize(mapload)
 	. = ..()
-	desc = "The word '[pick(bruh_moment)]' is scribbled on it in crayon."
+	desc = "上面用蜡笔潦草地写着'[pick(bruh_moment)]'这个词。"
 
 ///Here we generate some smoke and also damage blobs??? for some reason. Honestly not sure why we do that.
 /obj/item/grenade/smokebomb/detonate(mob/living/lanced_by)

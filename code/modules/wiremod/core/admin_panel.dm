@@ -14,7 +14,7 @@ ADMIN_VERB(view_all_circuits, R_ADMIN, "View All Circuits", "List all circuits i
 
 		data["circuits"] += list(list(
 			"ref" = REF(circuit),
-			"name" = "[circuit.name] in [loc_name(circuit)]",
+			"name" = "[circuit.name] 位于 [loc_name(circuit)]",
 			"creator" = circuit.get_creator(),
 			"has_inserter" = !isnull(inserter),
 		))
@@ -38,12 +38,12 @@ ADMIN_VERB(view_all_circuits, R_ADMIN, "View All Circuits", "List all circuits i
 
 	var/obj/item/integrated_circuit/circuit = locate(params["circuit"])
 	if (!istype(circuit))
-		to_chat(usr, span_warning("That circuit no longer exists."))
+		to_chat(usr, span_warning("该电路已不存在。"))
 		return FALSE
 
 	switch (action)
 		if ("duplicate_circuit")
-			if (alert(usr, "This will spawn the new circuit at where you are, are you sure?", "Confirm", "Yes", "No") != "Yes")
+			if (alert(usr, "这将在你所在位置生成新的电路，确定吗？", "确认", "Yes", "No") != "Yes")
 				return FALSE
 
 			var/list/errors = list()
@@ -52,7 +52,7 @@ ADMIN_VERB(view_all_circuits, R_ADMIN, "View All Circuits", "List all circuits i
 			new_circuit.load_circuit_data(circuit.convert_to_json(), errors)
 
 			if (length(errors))
-				to_chat(usr, span_warning("Somehow, duplicating the circuit failed:"))
+				to_chat(usr, span_warning("不知为何，复制电路失败了："))
 				for (var/error in errors)
 					to_chat(usr, span_warning(error))
 		if ("follow_circuit")

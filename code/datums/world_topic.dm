@@ -142,7 +142,7 @@
 
 		var/timer_id = href_list["reject_cross_comms_message"]
 		if (!(timer_id in timers))
-			to_chat(usr, span_warning("It's too late!"))
+			to_chat(usr, span_warning("太迟了！"))
 			return
 
 		deltimer(timer_id)
@@ -159,7 +159,7 @@
 
 	LAZYREMOVE(timers, timer_id)
 
-	minor_announce(input["message"], "Incoming message from [input["message_sender"]]")
+	minor_announce(input["message"], "来自 [input["message_sender"]] 的传入消息")
 	message_admins("Receiving a message from [input["sender_ckey"]] at [input["source"]]")
 	for(var/obj/machinery/computer/communications/communications_console in GLOB.shuttle_caller_list)
 		communications_console.override_cooldown()
@@ -169,7 +169,7 @@
 
 /datum/world_topic/news_report/Run(list/input)
 
-	priority_announce(input["message"], "Breaking Update From [input["message_sender"]]") //NOVA EDIT CHANGE
+	priority_announce(input["message"], "来自 [input["message_sender"]] 的突发更新") //NOVA EDIT CHANGE
 
 /datum/world_topic/adminmsg
 	keyword = "adminmsg"
@@ -281,7 +281,7 @@
 		return
 
 	if (!(timer_id in timers))
-		to_chat(usr, span_warning("It's too late!"))
+		to_chat(usr, span_warning("太迟了！"))
 		return
 
 	deltimer(timer_id)
@@ -309,5 +309,5 @@
 	if(isnull(chosen_channel)) // No channel with a matching name, abort
 		return
 
-	message_admins(span_adminnotice("Incoming cross-sector newscaster article by [author_key] in channel [channel_name]."))
+	message_admins(span_adminnotice("收到来自跨扇区新闻播报员 [author_key] 在频道 [channel_name] 发布的文章。"))
 	GLOB.news_network.submit_article(msg, author, channel_name)

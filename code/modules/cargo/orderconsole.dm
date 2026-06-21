@@ -1,6 +1,6 @@
 /obj/machinery/computer/cargo
-	name = "supply console"
-	desc = "Used to order supplies, approve requests, and control the shuttle."
+	name = "供应控制台"
+	desc = "用来订购物资，批准请求，控制穿梭机。"
 	icon_screen = "supply"
 	circuit = /obj/item/circuitboard/computer/cargo
 	light_color = COLOR_BRIGHT_ORANGE
@@ -36,8 +36,8 @@
 	var/interface_type = "Cargo"
 
 /obj/machinery/computer/cargo/request
-	name = "supply request console"
-	desc = "Used to request supplies from cargo."
+	name = "供应请求控制台"
+	desc = "用来向货舱请求物资。"
 	icon_screen = "request"
 	circuit = /obj/item/circuitboard/computer/cargo/request
 	can_send = FALSE
@@ -56,8 +56,8 @@
 		return FALSE
 	if(user)
 		if (emag_card)
-			user.visible_message(span_warning("[user] swipes [emag_card] through [src]!"))
-		to_chat(user, span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
+			user.visible_message(span_warning("[user] 用 [emag_card] 在 [src] 上刷了一下！"))
+		to_chat(user, span_notice("你调整了[src]的路由和接收频谱，解锁了特殊补给和违禁品。"))
 
 	obj_flags |= EMAGGED
 	contraband = TRUE
@@ -236,7 +236,7 @@
 	if(((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED)) || ((pack.order_flags & ORDER_CONTRABAND) && !contraband) || (pack.order_flags & ORDER_POD_ONLY) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED)))
 		return
 
-	var/name = "*None Provided*"
+	var/name = "*未提供*"
 	var/rank = "*None Provided*"
 	var/ckey = user.ckey
 	if(ishuman(user))
@@ -280,7 +280,7 @@
 	var/uses_cargo_budget = FALSE // NOVA EDIT ADDITION - boolean flag to check if we are using the cargo budget without doing excessive shenanigans.
 	if(requestonly && !self_paid && (!(pack.order_flags & ORDER_GOODY) || (pack.order_flags & ORDER_DEPARTMENTAL_GOODY))) // NOVA EDIT CHANGE - should never have a dept goodie thats not a goody. ORIGINAL: if(requestonly && !self_paid && !(pack.order_flags & ORDER_GOODY))
 		working_list = SSshuttle.request_list
-		reason = tgui_input_text(user, "Reason", name, max_length = MAX_MESSAGE_LEN)
+		reason = tgui_input_text(user, "理由", name, max_length = MAX_MESSAGE_LEN)
 		if(isnull(reason))
 			return
 
@@ -288,7 +288,7 @@
 		if(account?.account_job)
 			personal_department = SSeconomy.get_dep_account(account.account_job.paycheck_department)
 			if(!(personal_department.account_holder == "Cargo Budget"))
-				var/dept_choice = tgui_alert(user, "Which department are you requesting this for?", "Choose department to request from", list("Cargo Budget", "[personal_department.account_holder]"))
+				var/dept_choice = tgui_alert(user, "你为哪个部门申请这个？", "选择申请来源部门", list("Cargo Budget", "[personal_department.account_holder]"))
 				if(!dept_choice)
 					return
 				if(dept_choice == "Cargo Budget")
@@ -535,11 +535,11 @@
 	frequency.post_signal(src, status_signal)
 
 /datum/aas_config_entry/cargo_orders_announcement
-	name = "Cargo Alert: New Orders"
+	name = "货运警报：新订单"
 	announcement_lines_map = list(
-		"Single Order" = "A new order has been requested.",
-		"Multiple Orders" = "%AMOUNT orders have been requested.",
+		"Single Order" = "已请求一份新订单。",
+		"Multiple Orders" = "已请求%AMOUNT份订单。",
 	)
 	vars_and_tooltips_map = list(
-		"AMOUNT" = "will be replaced wuth number of orders.",
+		"AMOUNT" = "将被替换为订单数量。",
 	)

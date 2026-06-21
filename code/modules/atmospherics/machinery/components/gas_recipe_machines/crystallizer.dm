@@ -7,8 +7,8 @@
 	icon = 'icons/obj/machines/atmospherics/machines.dmi'
 	icon_state = "crystallizer-off"
 	base_icon_state = "crystallizer"
-	name = "crystallizer"
-	desc = "Used to crystallize or solidify gases."
+	name = "结晶器"
+	desc = "用于结晶或气体固化。"
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	max_integrity = 300
@@ -89,10 +89,10 @@
 	if(!is_operational)
 		return CLICK_ACTION_BLOCKING
 	if(panel_open)
-		balloon_alert(user, "close panel!")
+		balloon_alert(user, "关闭面板！")
 		return CLICK_ACTION_BLOCKING
 	set_on(!on)
-	balloon_alert(user, "turned [on ? "on" : "off"]")
+	balloon_alert(user, "已[on ? "on" : "off"]")
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 	return CLICK_ACTION_SUCCESS
 
@@ -239,7 +239,7 @@
 
 /obj/machinery/atmospherics/components/binary/crystallizer/ui_static_data()
 	var/data = list()
-	data["selected_recipes"] = list(list("name" = "Nothing", "id" = ""))
+	data["selected_recipes"] = list(list("name" = "Nothing-虚无", "id" = ""))
 	for(var/path in GLOB.gas_recipe_meta)
 		var/datum/gas_recipe/recipe = GLOB.gas_recipe_meta[path]
 		if(recipe.machine_type != "Crystallizer")

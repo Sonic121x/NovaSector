@@ -1,6 +1,6 @@
 /mob/living/basic/mining_drone
-	name = "\improper Nanotrasen minebot"
-	desc = "The instructions printed on the side read: This is a small robot used to support miners, can be set to search and collect loose ore, or to help fend off wildlife."
+	name = "\improper 纳米传讯矿用机器人"
+	desc = "侧面的使用说明写着：这是一种用于支援矿工的小型机器人，可以设置为搜索并收集散落的矿石，或帮助抵御野生动物。"
 	gender = NEUTER
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "mining_drone"
@@ -93,15 +93,15 @@
 /mob/living/basic/mining_drone/set_combat_mode(new_mode, silent = TRUE)
 	. = ..()
 	icon_state = combat_mode ? "mining_drone_offense" : "mining_drone"
-	balloon_alert(src, "now [combat_mode ? "attacking" : "collecting"]")
+	balloon_alert(src, "现在[combat_mode ? "attacking" : "collecting"]")
 
 /mob/living/basic/mining_drone/examine(mob/user)
 	. = ..()
 	if(health < maxHealth)
 		if(health >= maxHealth * 0.5)
-			. += span_warning("[p_They()] look slightly dented.")
+			. += span_warning("[p_They()]看起来有点凹陷。")
 		else
-			. += span_boldwarning("[p_They()] look severely dented!")
+			. += span_boldwarning("[p_They()] 看起来严重凹陷了！")
 
 	if(isnull(stored_gun) || !stored_gun.max_mod_capacity)
 		return
@@ -118,14 +118,14 @@
 	if(user.combat_mode)
 		return FALSE
 	if(combat_mode)
-		user.balloon_alert(user, "can't repair in attack mode!")
+		user.balloon_alert(user, "攻击模式下无法修复！")
 		return TRUE
 	if(maxHealth == health)
-		user.balloon_alert(user, "at full integrity!")
+		user.balloon_alert(user, "完整性已满！")
 		return TRUE
 	if(welder.use_tool(src, user, 0, volume=40))
 		adjust_brute_loss(-15)
-		user.balloon_alert(user, "successfully repaired!")
+		user.balloon_alert(user, "修复成功！")
 	return TRUE
 
 /mob/living/basic/mining_drone/attackby(obj/item/item_used, mob/user, list/modifiers, list/attack_modifiers)
@@ -215,7 +215,7 @@
 	if(user.combat_mode)
 		return CLICK_ACTION_BLOCKING
 	set_combat_mode(!combat_mode)
-	balloon_alert(user, "now [combat_mode ? "attacking wildlife" : "collecting loose ore"]")
+	balloon_alert(user, "现在[combat_mode ? "attacking wildlife" : "collecting loose ore"]")
 	return CLICK_ACTION_SUCCESS
 
 /mob/living/basic/mining_drone/RangedAttack(atom/target, list/modifiers)
@@ -234,7 +234,7 @@
 		target_ore.forceMove(src)
 
 /mob/living/basic/mining_drone/proc/drop_ore()
-	to_chat(src, span_notice("You dump your stored ore."))
+	to_chat(src, span_notice("你卸下了储存的矿石。"))
 	for(var/obj/item/stack/ore/dropped_item in contents)
 		dropped_item.forceMove(get_turf(src))
 

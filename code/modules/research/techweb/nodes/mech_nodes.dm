@@ -2,7 +2,7 @@
 	id = TECHWEB_NODE_MECH_ASSEMBLY
 	starting_node = TRUE
 	display_name = "Exosuit Assembly"
-	description = "Development of mechanical exosuits designed to contend with artificial gravity while transporting cargo."
+	description = "为对抗人工重力并运输货物而设计的机械外骨骼开发。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"mechapower",
@@ -21,7 +21,7 @@
 /datum/techweb_node/mech_equipment
 	id = TECHWEB_NODE_MECH_EQUIPMENT
 	display_name = "Expedition Equipment"
-	description = "Specialized exosuit gear tailored for navigating space and celestial bodies, ensuring durability and functionality in the harshest conditions."
+	description = "专为在太空和天体上航行而设计的特种外骨骼装备，确保在最恶劣条件下的耐用性和功能性。"
 	prereq_ids = list(TECHWEB_NODE_MECH_ASSEMBLY)
 	design_ids = list(
 		"mechacontrol",
@@ -41,7 +41,7 @@
 /datum/techweb_node/mech_clown
 	id = TECHWEB_NODE_MECH_CLOWN
 	display_name = "Funny Robots"
-	description = "Fueled by laughter."
+	description = "由欢笑驱动。"
 	prereq_ids = list(TECHWEB_NODE_MECH_ASSEMBLY)
 	design_ids = list(
 		"honk_chassis",
@@ -66,7 +66,7 @@
 /datum/techweb_node/mech_medical
 	id = TECHWEB_NODE_MECH_MEDICAL
 	display_name = "Medical Exosuit"
-	description = "Advanced robotic unit equipped with syringe guns and healing beams, revolutionizing medical assistance in hazardous environments."
+	description = "配备注射枪和治疗光束的先进机器人单元，彻底改变了危险环境中的医疗援助。"
 	prereq_ids = list(TECHWEB_NODE_MECH_ASSEMBLY, TECHWEB_NODE_CHEM_SYNTHESIS)
 	design_ids = list(
 		"odysseus_chassis",
@@ -86,7 +86,7 @@
 /datum/techweb_node/mech_mining
 	id = TECHWEB_NODE_MECH_MINING
 	display_name = "Mining Exosuit"
-	description = "Robust exosuit engineered to withstand lava and storms for continuous off-station mining operations."
+	description = "坚固的外骨骼，设计用于承受熔岩和风暴，以进行持续的空间站外采矿作业。"
 	prereq_ids = list(TECHWEB_NODE_MECH_EQUIPMENT, TECHWEB_NODE_MINING)
 	design_ids = list(
 		"clarke_chassis",
@@ -104,7 +104,7 @@
 /datum/techweb_node/mech_combat
 	id = TECHWEB_NODE_MECH_COMBAT
 	display_name = "Combat Exosuits"
-	description = "Modular armor upgrades and specialized equipment for security exosuits."
+	description = "用于安保外骨骼的模块化装甲升级和特种装备。"
 	prereq_ids = list(TECHWEB_NODE_MECH_EQUIPMENT)
 	design_ids = list(
 		"mech_ccw_armor",
@@ -122,7 +122,7 @@
 /datum/techweb_node/mech_assault
 	id = TECHWEB_NODE_MECH_ASSAULT
 	display_name = "Assault Exosuits"
-	description = "Heavy battle exosuits boasting robust armor but sacrificing speed for enhanced durability."
+	description = "重型战斗外骨骼，拥有坚固的装甲，但牺牲了速度以换取更强的耐久性。"
 	prereq_ids = list(TECHWEB_NODE_MECH_COMBAT)
 	design_ids = list(
 		"durand_armor",
@@ -143,7 +143,7 @@
 /datum/techweb_node/mech_light
 	id = TECHWEB_NODE_MECH_LIGHT
 	display_name = "Light Combat Exosuits"
-	description = "Agile combat exosuits equipped with overclocking capabilities for temporary speed boosts, prioritizing speed over durability on the battlefield."
+	description = "敏捷的战斗外骨骼，配备超频能力以获得临时速度提升，在战场上优先考虑速度而非耐久性。"
 	prereq_ids = list(TECHWEB_NODE_MECH_COMBAT)
 	design_ids = list(
 		"gygax_armor",
@@ -164,7 +164,7 @@
 /datum/techweb_node/mech_heavy
 	id = TECHWEB_NODE_MECH_HEAVY
 	display_name = "Heavy Exosuits"
-	description = "Advanced heavy mechanized unit with dual pilot capability, designed for robust battlefield performance and increased tactical versatility."
+	description = "先进的重型机械化单元，具备双驾驶员能力，专为强大的战场性能和更高的战术灵活性而设计。"
 	prereq_ids = list(TECHWEB_NODE_MECH_ASSAULT)
 	design_ids = list(
 		"savannah_ivanov_armor",
@@ -185,7 +185,7 @@
 /datum/techweb_node/mech_infiltrator
 	id = TECHWEB_NODE_MECH_INFILTRATOR
 	display_name = "Infiltration Exosuits"
-	description = "Advanced exosuit with phasing capabilities, allowing it to move through walls and obstacles, ideal for covert and special operations."
+	description = "具备相位能力的先进外骨骼，使其能够穿墙越障，是秘密行动和特种作战的理想选择。"
 	prereq_ids = list(TECHWEB_NODE_MECH_LIGHT, TECHWEB_NODE_ANOMALY_RESEARCH)
 	design_ids = list(
 		"phazon_armor",
@@ -206,7 +206,7 @@
 /datum/techweb_node/mech_energy_guns
 	id = TECHWEB_NODE_MECH_ENERGY_GUNS
 	display_name = "Exosuit Energy Guns"
-	description = "Scaled-up versions of electric weapons optimized for exosuit deployment."
+	description = "为外骨骼部署优化的放大版电击武器。"
 	prereq_ids = list(TECHWEB_NODE_MECH_COMBAT, TECHWEB_NODE_ELECTRIC_WEAPONS)
 	design_ids = list(
 		"mech_laser",
@@ -221,7 +221,7 @@
 /datum/techweb_node/mech_firearms
 	id = TECHWEB_NODE_MECH_FIREARMS
 	display_name = "Exosuit Firearms"
-	description = "Mounted ballistic weaponry, enhancing combat capabilities for mechanized units."
+	description = "架设式弹道武器，增强机械化单位的作战能力。"
 	prereq_ids = list(TECHWEB_NODE_MECH_ENERGY_GUNS, TECHWEB_NODE_EXOTIC_AMMO)
 	design_ids = list(
 		"mech_lmg",
@@ -237,7 +237,7 @@
 /datum/techweb_node/mech_heavy_arms
 	id = TECHWEB_NODE_MECH_HEAVY_ARMS
 	display_name = "Heavy Exosuit Firearms"
-	description = "High-impact weaponry integrated into mechs, optimized for maximum firepower."
+	description = "集成到机甲中的高冲击力武器，为最大火力而优化。"
 	prereq_ids = list(TECHWEB_NODE_MECH_HEAVY, TECHWEB_NODE_EXOTIC_AMMO)
 	design_ids = list(
 		"clusterbang_launcher",
@@ -253,7 +253,7 @@
 /datum/techweb_node/mech_equip_bluespace
 	id = TECHWEB_NODE_MECH_EQUIP_BLUESPACE
 	display_name = "Bluespace Exosuit Equipment"
-	description = "An array of equipment empowered by bluespace, providing unmatched mobility and utility."
+	description = "一系列由蓝空技术驱动的装备，提供无与伦比的机动性和实用性。"
 	prereq_ids = list(TECHWEB_NODE_MECH_INFILTRATOR, TECHWEB_NODE_BLUESPACE_TRAVEL)
 	design_ids = list(
 		"mech_gravcatapult",

@@ -1,6 +1,6 @@
 /obj/structure/window/green_glass_pane
-	name = "green glass window"
-	desc = "A handcrafted green glass window. At least you can still see through it."
+	name = "绿色玻璃窗"
+	desc = "一扇手工制作的绿色玻璃窗。至少你还能透过它看东西。"
 	icon = 'modular_nova/modules/primitive_structures/icons/windows.dmi'
 	icon_state = "green_glass"
 	flags_1 = NONE
@@ -10,7 +10,7 @@
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/green_glass_pane
-	name = "green glass window"
+	name = "绿色玻璃窗"
 	result = /obj/structure/window/green_glass_pane
 	time = 0.2 SECONDS
 	reqs = list(

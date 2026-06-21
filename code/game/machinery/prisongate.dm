@@ -4,8 +4,8 @@
 #define SKIP_EXIT null
 
 /obj/machinery/prisongate
-	name = "prison gate scanner"
-	desc = "A hardlight gate with an ID scanner attached to the side. Good at deterring even the most persistent temporarily embarrassed employee."
+	name = "监狱门扫描器"
+	desc = "侧面装有ID扫描仪的强光门。善于阻止最顽固的囊中羞涩的员工。"
 	icon = 'icons/obj/machines/sec.dmi'
 	icon_state = "prisongate_on"
 	/// roughly the same health/armor as an airlock
@@ -34,14 +34,14 @@
 /obj/machinery/prisongate/power_change()
 	. = ..()
 	if(!powered())
-		visible_message(span_notice("[src] momentarily flickers before the hardlight barrier loses cohesion and dissipates into thin air!"))
+		visible_message(span_notice("[src]  闪烁了一下，然后硬光屏障就不再形成，凭空消散了！"))
 		gate_active = FALSE
 		flick("prisongate_turningoff", src)
 		icon_state = "prisongate_off"
 		update_use_power(IDLE_POWER_USE)
 	else
 		gate_active = TRUE
-		visible_message(span_notice("[src] whirrs back to life as its hardlight barrier fills the space between it."))
+		visible_message(span_notice("[src] 随着硬光屏障填满了它之间的空间，它重新开始嗡嗡作响。"))
 		flick("prisongate_turningon", src)
 		icon_state = "prisongate_on"
 		update_use_power(ACTIVE_POWER_USE)
@@ -83,7 +83,7 @@
 				return FALSE
 
 	if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-		to_chat(the_toucher, span_warning("You try to push through the hardlight barrier with little effect."))
+		to_chat(the_toucher, span_warning("你试图突破强光屏障，但收效甚微."))
 		COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 	return FALSE
 

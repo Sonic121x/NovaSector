@@ -1,5 +1,5 @@
 /datum/outfit/solfed_bitrun
-	name = "Bitrunning SolFed Marine"
+	name = "比特跑者索联陆战队"
 
 	uniform = /obj/item/clothing/under/sol_peacekeeper
 	head = null
@@ -34,7 +34,7 @@
 	sechud_icon_state = SECHUD_SOLFED
 
 /datum/outfit/cin_soldier_corpse
-	name = "Coalition Operative Corpse"
+	name = "联盟特工尸体"
 	uniform = /obj/item/clothing/under/syndicate/rus_army/cin_surplus/forest
 	suit = /obj/item/clothing/suit/armor/vest/cin_surplus_vest
 	shoes = /obj/item/clothing/shoes/combat
@@ -48,7 +48,7 @@
 	id_trim = /datum/id_trim/nri/ancient_milsim
 
 /datum/outfit/cin_soldier_player
-	name = "Coalition Operative SNPC"
+	name = "联盟特工 SNPC"
 	uniform = /obj/item/clothing/under/syndicate/rus_army/cin_surplus/forest
 	suit = /obj/item/clothing/suit/armor/vest/cin_surplus_vest
 	shoes = /obj/item/clothing/shoes/combat

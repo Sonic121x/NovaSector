@@ -2,8 +2,8 @@
  * Do something nasty to everyone nearby if they're looking at us.
  */
 /datum/action/cooldown/mob_cooldown/watcher_gaze
-	name = "Disorienting Gaze"
-	desc = "After a delay, flash everyone looking at you."
+	name = "致盲凝视"
+	desc = "延迟后，致盲所有注视你的目标。"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "gaze"
 	background_icon_state = "bg_demon"
@@ -26,7 +26,7 @@
 	show_indicator_overlay("eye_open")
 	stage_timer = addtimer(CALLBACK(src, PROC_REF(show_indicator_overlay), "eye_pulse"), animation_time, TIMER_STOPPABLE)
 	StartCooldown(360 SECONDS, 360 SECONDS)
-	owner.visible_message(span_warning("[owner]'s eye glows ominously!"))
+	owner.visible_message(span_warning("[owner]的眼睛不祥地发光了！"))
 	if (do_after(owner, delay = wait_delay, target = owner, hidden = TRUE))
 		trigger_effect()
 	else
@@ -72,7 +72,7 @@
 	if (!viewer.flash_act(intensity = 4, affect_silicon = TRUE, visual = TRUE, length = 3 SECONDS))
 		return FALSE
 	viewer.set_confusion_if_lower(12 SECONDS)
-	to_chat(viewer, span_warning("You are blinded by [owner]'s piercing gaze!"))
+	to_chat(viewer, span_warning("你被[owner]的锐利目光致盲了！"))
 	return TRUE
 
 /// Animate our effect out
@@ -98,11 +98,11 @@
 
 /// Magmawing glare burns you
 /datum/action/cooldown/mob_cooldown/watcher_gaze/fire
-	name = "Searing Glare"
-	desc = "After a delay, burn and stun everyone looking at you."
+	name = "灼热凝视"
+	desc = "延迟后，灼烧并击晕所有注视你的目标。"
 
 /datum/action/cooldown/mob_cooldown/watcher_gaze/fire/apply_effect(mob/living/viewer)
-	to_chat(viewer, span_warning("[owner]'s searing glare forces you to the ground!"))
+	to_chat(viewer, span_warning("[owner]的灼热凝视将你击倒在地！"))
 	viewer.Paralyze(3 SECONDS)
 	viewer.adjust_fire_stacks(10)
 	viewer.ignite_mob()
@@ -110,15 +110,15 @@
 
 /// Icewing glare freezes you
 /datum/action/cooldown/mob_cooldown/watcher_gaze/ice
-	name = "Cold Stare"
-	desc = "After a delay, freeze and repulse everyone looking at you."
+	name = "寒冰凝视"
+	desc = "延迟后，冻结并击退所有注视你的目标。"
 	/// Max distance to throw people looking at us
 	var/max_throw = 3
 
 /datum/action/cooldown/mob_cooldown/watcher_gaze/ice/apply_effect(mob/living/viewer)
 	if(!HAS_TRAIT(viewer, TRAIT_RESISTCOLD))
 		return
-	to_chat(viewer, span_warning("You are repulsed by the force of [owner]'s cold stare!"))
+	to_chat(viewer, span_warning("你被[owner]寒冰凝视的力量击退了！"))
 	viewer.apply_status_effect(/datum/status_effect/freon/watcher/extended)
 	viewer.safe_throw_at(
 		target = get_edge_target_turf(owner, get_dir(owner, get_step_away(viewer, owner))),

@@ -3,7 +3,7 @@
 	antag_memory += "Precision is my weapon. Shadows are my armor. Without them, I am nothing."
 
 /datum/objective/assassinate/headhunter
-	name = "head-hunter"
+	name = "猎头者"
 
 /datum/objective/assassinate/headhunter/check_completion()
 	if(completed)
@@ -132,12 +132,12 @@
 
 /datum/antagonist/ninja/greet()
 	SEND_SOUND(owner.current, sound('sound/music/antag/ninja_greeting.ogg'))
-	to_chat(owner.current, span_danger("I am an elite operative executing a co-ordinated strike for the benefit of Cybersun Industries."))
-	to_chat(owner.current, span_warning("Precision is my weapon. Shadows are my armor. Without them, I am nothing."))
-	to_chat(owner.current, span_notice("The station is located to your [dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))]. A thrown ninja star will be a great way to get there."))
+	to_chat(owner.current, span_danger("我是一名精英特工，正为赛博太阳工业的利益执行协同打击。"))
+	to_chat(owner.current, span_warning("精准是我的武器。暗影是我的盔甲。没有它们，我什么都不是。"))
+	to_chat(owner.current, span_notice("空间站位于你的[dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))]方向。投掷一枚手里剑将是前往那里的绝佳方式。"))
 	owner.announce_objectives()
 
 /// removes ninja glove security records console interaction
 /obj/machinery/computer/records/security/ninjadrain_charge(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
-	balloon_alert(ninja, "nothing happens!")
+	balloon_alert(ninja, "无事发生！")
 

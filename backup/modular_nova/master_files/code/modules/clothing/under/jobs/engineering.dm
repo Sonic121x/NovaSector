@@ -1,0 +1,113 @@
+/obj/item/clothing/under/rank/engineering
+	worn_icon_digi = 'modular_nova/master_files/icons/mob/clothing/under/engineering_digi.dmi'
+
+/obj/item/clothing/under/rank/engineering/engineer/nova
+	icon = 'modular_nova/master_files/icons/obj/clothing/under/engineering.dmi'
+	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/engineering.dmi'
+
+/obj/item/clothing/under/rank/engineering/chief_engineer/nova
+	icon = 'modular_nova/master_files/icons/obj/clothing/under/engineering.dmi'
+	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/engineering.dmi'
+
+/obj/item/clothing/under/rank/engineering/atmospheric_technician/nova
+	icon = 'modular_nova/master_files/icons/obj/clothing/under/engineering.dmi'
+	worn_icon = 'modular_nova/master_files/icons/mob/clothing/under/engineering.dmi'
+
+/*
+*	ENGINEER
+*/
+
+/obj/item/clothing/under/rank/engineering/engineer/nova/utility
+	name = "engineering utility uniform"
+	desc = "A utility uniform worn by Engineering personnel."
+	icon_state = "util_eng"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_BIG_LEGS_MASK
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/engineering/engineer/nova/utility/syndicate
+	armor_type = /datum/armor/clothing_under/utility_syndicate
+	has_sensor = NO_SENSORS
+
+/obj/item/clothing/under/rank/engineering/engineer/nova/trouser
+	name = "engineering trousers"
+	desc = "An engineering-orange set of trousers. Their waistband proudly displays an 'anti-radiation' symbol, though the effectiveness of radiation-proof-pants-only is still up for debate."
+	icon_state = "workpants_orange"
+	body_parts_covered = GROIN|LEGS
+	can_adjust = FALSE
+	female_sprite_flags = FEMALE_UNIFORM_NO_BREASTS
+
+/obj/item/clothing/under/rank/engineering/engineer/nova/hazard_chem
+	name = "chemical hazard jumpsuit"
+	desc = "A high visibility jumpsuit with additional protection from gas and chemical hazards, at the cost of less fire-proofing."
+	icon_state = "hazard_green"
+	armor_type = /datum/armor/clothing_under/nova_hazard_chem
+	resistance_flags = ACID_PROOF
+	alt_covers_chest = TRUE
+
+/datum/armor/clothing_under/nova_hazard_chem
+	fire = 20
+	acid = 60
+
+/obj/item/clothing/under/rank/engineering/engineer/nova/hazard_chem/emt
+	name = "chemical hazard EMT jumpsuit"
+	desc = "An EMT jumpsuit used for first responders in situations involving gas and/or chemical hazards. The label reads, \"Not designed for prolonged exposure\"."
+	icon_state = "hazard_white"
+	armor_type = /datum/armor/clothing_under/hazard_chem_emt
+
+/datum/armor/clothing_under/hazard_chem_emt
+	fire = 10
+	acid = 50
+
+/*
+*	CHIEF ENGINEER
+*/
+/obj/item/clothing/under/imperial/ce
+	desc = "An olive drab naval suit with a rank badge denoting the Officer of the Internal Engineering Division. Doesn't come with a death machine building guide."
+	name = "chief engineer's naval jumpsuit"
+	icon_state = "/obj/item/clothing/under/imperial/ce"
+	greyscale_colors = "#404429#404429#43443f#373741#ffffff#f48600#5c97e6"
+	flags_1 = NONE
+	armor_type = /datum/armor/clothing_under/engineering_chief_engineer
+
+/obj/item/clothing/under/imperialskirt/ce
+	desc = "An olive drab naval skirt with a rank badge denoting the Officer of the Internal Engineering Division. Doesn't come with a death machine building guide."
+	name = "chief engineer's naval skirt"
+	icon_state = "/obj/item/clothing/under/imperialskirt/ce"
+	greyscale_colors = "#404429#43443f#373741#ffffff#f48600#5c97e6"
+	flags_1 = NONE
+	armor_type = /datum/armor/clothing_under/engineering_chief_engineer
+
+/*
+*	ATMOS TECH
+*/
+/datum/armor/clothing_under/atmos_adv
+	bio = 40
+	fire = 70
+	acid = 70
+
+/obj/item/clothing/under/rank/engineering/atmospheric_technician/nova/utility/advanced
+	name = "advanced atmospherics uniform"
+	desc = "A jumpsuit worn by advanced atmospherics crews."
+	icon_state = "util_atmos"
+	armor_type = /datum/armor/clothing_under/atmos_adv
+	icon_state = "util_eng"
+	can_adjust = FALSE
+
+/*
+*	TELECOMMS SPECIALIST
+*/
+
+/obj/item/clothing/under/rank/engineering/engineer/nova/utility/telecomm
+	desc = "It's a jumpsuit worn by telecomms specialists. Made from fire resistant materials."
+	name = "telecomm jumpsuit"
+	icon_state = "telecomm"
+	can_adjust = TRUE
+
+/obj/item/clothing/under/rank/engineering/engineer/nova/utility/telecomm/skirt
+	desc = "It's a jumpskirt worn by telecomms specialists. Made from fire resistant materials."
+	name = "telecomm jumpskirt"
+	icon_state = "telecomm_skirt"
+	can_adjust = TRUE
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	gets_cropped_on_taurs = FALSE

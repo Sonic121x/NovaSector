@@ -3,10 +3,10 @@
 #define TRANSIT_PIPEDISPENSER 2
 
 /obj/machinery/pipedispenser
-	name = "pipe dispenser"
+	name = "管道分配器"
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "pipe_d"
-	desc = "Dispenses countless types of pipes. Very useful if you need pipes."
+	desc = "分配各种类型的管道，如果需要管道，非常有用"
 	density = TRUE
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_OFFLINE
 	interaction_flags_mouse_drop = NEED_DEXTERITY
@@ -107,7 +107,7 @@
 
 						var/obj/structure/disposalconstruct/disposal_out = new (loc, p_type)
 						if(!disposal_out.can_place())
-							to_chat(usr, span_warning("There's not enough room to build that here!"))
+							to_chat(usr, span_warning("这里没有足够的空间建造那个！"))
 							qdel(disposal_out)
 							return
 
@@ -138,7 +138,7 @@
 			if (ISNOTSTUB(target_dir))
 				p_init_dir = target_dir
 			else
-				to_chat(usr, span_warning("\The [src]'s screen flashes a warning: Can't configure a pipe to only connect in one direction."))
+				to_chat(usr, span_warning("\The [src]的屏幕闪烁警告：无法将管道配置为仅单向连接。"))
 
 		if("init_reset")
 			p_init_dir = ALL_CARDINALS
@@ -154,7 +154,7 @@
 /obj/machinery/pipedispenser/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	add_fingerprint(user)
 	if (istype(W, /obj/item/pipe) || istype(W, /obj/item/pipe_meter))
-		to_chat(usr, span_notice("You put [W] back into [src]."))
+		to_chat(usr, span_notice("你将[W]放回[src]."))
 		qdel(W)
 		return
 	else
@@ -176,10 +176,10 @@
 
 
 /obj/machinery/pipedispenser/disposal
-	name = "disposal pipe dispenser"
+	name = "处理管道分配器"
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "pipe_d"
-	desc = "Dispenses pipes that will ultimately be used to move trash around."
+	desc = "分配最终将用于搬运垃圾的管道。"
 	density = TRUE
 	category = DISPOSAL_PIPEDISPENSER
 
@@ -199,11 +199,11 @@
 //transit tube dispenser
 //inherit disposal for the dragging proc
 /obj/machinery/pipedispenser/disposal/transit_tube
-	name = "transit tube dispenser"
+	name = "输送管分配器"
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "pipe_d"
 	density = TRUE
-	desc = "Dispenses pipes that will move beings around."
+	desc = "分配会移动生物的管道。"
 	category = TRANSIT_PIPEDISPENSER
 
 #undef ATMOS_PIPEDISPENSER

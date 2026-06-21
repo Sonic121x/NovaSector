@@ -1,6 +1,6 @@
 /datum/mafia_role/obsessed
-	name = "Obsessed"
-	desc = "Lynch your obsession before you get killed at all costs!"
+	name = "偏执狂"
+	desc = "不惜一切代价，在你被杀之前处决你的执念目标！"
 	win_condition = "lynch their obsession."
 	revealed_outfit = /datum/outfit/mafia/obsessed
 	team = MAFIA_TEAM_SOLO
@@ -15,7 +15,7 @@
 
 /datum/mafia_role/obsessed/New(datum/mafia_controller/game) //note: obsession is always a townie
 	. = ..()
-	desc = initial(desc) + " Obsessions are assigned on the first night."
+	desc = initial(desc) + "不惜一切代价，在你被杀之前处决你的执念目标！ 执念目标将在第一晚分配。"
 	RegisterSignal(game, COMSIG_MAFIA_SUNDOWN, PROC_REF(find_obsession))
 
 /datum/mafia_role/obsessed/proc/find_obsession(datum/mafia_controller/game)
@@ -28,13 +28,13 @@
 			break
 	if(!obsession)
 		obsession = pick(all_roles_shuffle) //okay no town just pick anyone here
-	desc = initial(desc) + " Target: [obsession.body.real_name]"
+	desc = initial(desc) + "不惜一切代价，在你被杀之前处决你的执念目标！ 目标：[obsession.body.real_name]"
 	var/obj/item/modular_computer/modpc = player_pda
 	if(modpc)
 		modpc.update_static_data_for_all_viewers()
 	else
 		game.update_static_data(body)
-	send_message_to_player(span_userdanger("Your obsession is [obsession.body.real_name]! Get them lynched to win!"))
+	send_message_to_player(span_userdanger("你的执念目标是[obsession.body.real_name]！让他们被处决以获胜！"))
 	RegisterSignal(obsession, COMSIG_MAFIA_ON_KILL, PROC_REF(check_victory))
 	UnregisterSignal(game, COMSIG_MAFIA_SUNDOWN)
 
@@ -49,11 +49,11 @@
 		game.award_role(winner_award, src)
 		reveal_role(game, FALSE)
 	else
-		to_chat(body, span_userdanger("You have failed your objective to lynch [obsession.body.real_name]!"))
+		to_chat(body, span_userdanger("你未能完成处决[obsession.body.real_name]的目标！"))
 
 /datum/mafia_role/clown
-	name = "Clown"
-	desc = "If you are lynched you take down one of your voters (guilty or abstain) with you and win. HONK!"
+	name = "小丑"
+	desc = "如果你被处决，你将带走一位投票者（有罪票或弃权票）并获胜。HONK！"
 	win_condition = "get themselves lynched!"
 	revealed_outfit = /datum/outfit/mafia/clown
 	team = MAFIA_TEAM_SOLO

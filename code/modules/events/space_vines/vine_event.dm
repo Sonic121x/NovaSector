@@ -1,11 +1,11 @@
 /datum/round_event_control/spacevine
-	name = "Space Vines"
+	name = "太空藤蔓"
 	typepath = /datum/round_event/spacevine
 	weight = 15
 	max_occurrences = 3
 	min_players = 10
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Kudzu begins to overtake the station. Might spawn man-traps."
+	description = "葛藤开始侵占空间站。可能会生成捕人陷阱。"
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 	admin_setup = list(
@@ -83,7 +83,7 @@
 	min_choices = 0
 
 /datum/event_admin_setup/multiple_choice/spacevine/prompt_admins()
-	var/customize_mutations = tgui_alert(usr, "Select mutations?", event_control.name, list("Custom", "Random", "Cancel"))
+	var/customize_mutations = tgui_alert(usr, "选择突变？", event_control.name, list("Custom", "Random", "Cancel"))
 	switch(customize_mutations)
 		if("Custom")
 			return ..()

@@ -1,6 +1,6 @@
 /obj/item/seeds/banana/spider_banana
-	name = "leggy banana seed pack"
-	desc = "They're seeds that grow into banana trees. However, those bananas might be alive."
+	name = "长腿香蕉种子包"
+	desc = "这些种子会长成香蕉树。不过，那些香蕉可能是活的。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-spibanana"
 	species = "spibanana"
@@ -13,8 +13,8 @@
 	genes = list(/datum/plant_gene/trait/slip)
 
 /obj/item/food/grown/banana/banana_spider_spawnable
-	name = "banana spider"
-	desc = "You do not know what it is, but you can bet the clown would love it."
+	name = "香蕉蜘蛛"
+	desc = "你不知道它是什么，但你可以肯定小丑会喜欢它。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "spibanana"
 	foodtypes = GORE | MEAT | RAW | FRUIT
@@ -23,13 +23,13 @@
 /obj/item/food/grown/banana/banana_spider_spawnable/attack_self(mob/user)
 	if(awakening || isspaceturf(user.loc))
 		return
-	to_chat(user, span_notice("You decide to wake up the banana spider..."))
+	to_chat(user, span_notice("你决定叫醒这只香蕉蜘蛛……"))
 	awakening = TRUE
 	addtimer(CALLBACK(src, PROC_REF(spawnspider)), 8 SECONDS)
 
 /obj/item/food/grown/banana/banana_spider_spawnable/proc/spawnspider()
 	if(!QDELETED(src))
 		var/mob/living/basic/banana_spider/banana_spider = new(get_turf(loc))
-		banana_spider.visible_message(span_notice("The banana spider chitters as it stretches its legs"))
+		banana_spider.visible_message(span_notice("香蕉蜘蛛伸展着腿，发出吱吱的叫声"))
 		qdel(src)
 

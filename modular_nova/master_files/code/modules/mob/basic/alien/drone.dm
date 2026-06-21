@@ -20,7 +20,7 @@
 /mob/living/basic/alien/drone/proc/set_drone_type(drone_type)
 	switch(drone_type)
 		if(ALIEN_DRONE)
-			name = "alien drone"
+			name = "异形工蜂"
 			icon_state = "aliendrone"
 			icon_living = "aliendrone"
 			icon_dead = "aliendrone_dead"
@@ -33,7 +33,7 @@
 			pixel_x = -16
 			base_pixel_x = -16
 		if(ALIEN_WARRIOR)
-			name = "alien warrior"
+			name = "异形战士"
 			icon_state = "alienwarrior"
 			icon_living = "alienwarrior"
 			icon_dead = "alienwarrior_dead"
@@ -45,7 +45,7 @@
 			pixel_x = -16
 			base_pixel_x = -16
 		if(ALIEN_RUNNER)
-			name = "alien runner"
+			name = "异形奔跑者"
 			icon_state = "alienrunner"
 			icon_living = "alienrunner"
 			icon_dead = "alienrunner_dead"
@@ -58,7 +58,7 @@
 			pixel_x = -16
 			base_pixel_x = -16
 		if(ALIEN_DEFENDER)
-			name = "alien defender"
+			name = "异形防御者"
 			icon_state = "aliendefender"
 			icon_living = "aliendefender"
 			icon_dead = "aliendefender_dead"
@@ -72,7 +72,7 @@
 			pixel_x = -16
 			base_pixel_x = -16
 		if(ALIEN_RAVAGER)
-			name = "alien ravager"
+			name = "异形掠夺者"
 			icon_state = "alienravager"
 			icon_living = "alienravager"
 			icon_dead = "alienravager_dead"

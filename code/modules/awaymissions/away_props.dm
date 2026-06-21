@@ -1,6 +1,6 @@
 /obj/effect/oneway
-	name = "one way effect"
-	desc = "Only lets things in from its dir."
+	name = "单向效应"
+	desc = "只允许从其方向进入。"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "field_dir"
 	invisibility = INVISIBILITY_MAXIMUM
@@ -12,8 +12,8 @@
 
 
 /obj/effect/wind
-	name = "wind effect"
-	desc = "Creates pressure effect in its direction. Use sparingly."
+	name = "风效应"
+	desc = "在其方向上产生压力效应。请谨慎使用。"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "field_dir"
 	invisibility = INVISIBILITY_MAXIMUM
@@ -30,8 +30,8 @@
 
 //Keep these rare due to cost of doing these checks
 /obj/effect/path_blocker
-	name = "magic barrier"
-	desc = "You shall not pass."
+	name = "魔法屏障"
+	desc = "你无法穿过去。"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "blocker" //todo make this actually look fine when visible
 	anchored = TRUE
@@ -53,7 +53,7 @@
 	return !reverse
 
 /obj/structure/pitgrate
-	name = "pit grate"
+	name = "坑格栅"
 	icon = 'icons/obj/smooth_structures/lattice.dmi'
 	icon_state = "lattice-255"
 	layer = BELOW_CATWALK_LAYER
@@ -117,15 +117,15 @@
 	. = ..()
 
 /obj/structure/pitgrate/hidden
-	name = "floor"
+	name = "地板"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 	hidden = TRUE
 
 /// only player mobs (has ckey) may pass, reverse for the opposite
 /obj/effect/playeronly_barrier
-	name = "player-only barrier"
-	desc = "You shall pass."
+	name = "仅玩家屏障"
+	desc = "你可以通过。"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "blocker"
 	anchored = TRUE
@@ -139,8 +139,8 @@
 	return isnull(mover.ckey) == reverse
 
 /obj/effect/invisible_wall // why didnt we have this already
-	name = "invisible wall"
-	desc = "You shall not pass"
+	name = "隐形墙"
+	desc = "汝不可通过"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "blocker"
 	color = COLOR_BLUE_LIGHT

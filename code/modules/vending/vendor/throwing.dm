@@ -27,7 +27,7 @@
 	pre_throw(thrown_item)
 
 	thrown_item.throw_at(target, 16, 3)
-	visible_message(span_danger("[src] launches [thrown_item] at [target]!"))
+	visible_message(span_danger("[src]向[target]发射了[thrown_item]！"))
 	return TRUE
 
 /**

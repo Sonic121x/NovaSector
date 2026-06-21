@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/research_director
-	name = "research director's locker"
+	name = "研究总监的储物柜"
 	req_access = list(ACCESS_RD)
 	icon_state = "rd"
 
@@ -27,7 +27,7 @@
 	new /obj/item/laser_pointer(src)
 
 /obj/structure/closet/secure_closet/cytology
-	name = "cytology equipment locker"
+	name = "细胞学设备储物柜"
 	icon_state = "science"
 	req_access = list(ACCESS_RESEARCH)
 

@@ -24,7 +24,7 @@
 
 /datum/buildmode_mode/boom/change_settings(client/c)
 	for (var/explosion_level in explosions)
-		explosions[explosion_level] = input(c, "Range of total [explosion_level]. 0 to none", "Input") as num|null
+		explosions[explosion_level] = input(c, "总[explosion_level]的范围。0 表示无", "输入") as num|null
 		if(explosions[explosion_level] == null || explosions[explosion_level] < 0)
 			explosions[explosion_level] = 0
 

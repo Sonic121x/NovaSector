@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(cargo_shuttle_flaps_landmarks)
 
 
 SUBSYSTEM_DEF(shuttle)
-	name = "Shuttle"
+	name = "穿梭机"
 	wait = 1 SECONDS
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
@@ -274,10 +274,10 @@ SUBSYSTEM_DEF(shuttle)
 		log_shuttle("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
 		emergency_no_recall = TRUE
 		priority_announce(
-			text = "Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.",
-			title = "Emergency Shuttle Dispatched",
+			text = "检测到灾难性伤亡：危机穿梭机协议已激活 - 正在全频段干扰召回信号。",
+			title = "紧急穿梭机已派遣",
 			sound = ANNOUNCER_SHUTTLECALLED,
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "orange",
 		)
 		if(EMERGENCY_IDLE_OR_RECALLED || emergency.timeLeft(1) > emergency_call_time * ALERT_COEFF_AUTOEVAC_CRITICAL)
@@ -288,10 +288,10 @@ SUBSYSTEM_DEF(shuttle)
 		CRASH("Emergency shuttle block was called, but missing a value for the lockout duration")
 	if(admin_emergency_no_recall)
 		priority_announce(
-			text = "Emergency shuttle uplink interference detected, shuttle call disabled while the system reinitializes. Estimated restore in [DisplayTimeText(lockout_timer, round_seconds_to = 60)].",
-			title = "Uplink Interference",
+			text = "检测到紧急穿梭机上行链路干扰，系统重新初始化期间穿梭机呼叫已禁用。预计恢复时间 [DisplayTimeText(lockout_timer, round_seconds_to = 60)]。",
+			title = "上行链路干扰",
 			sound = ANNOUNCER_SHUTTLE, // NOVA EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "grey",
 		)
 		addtimer(CALLBACK(src, PROC_REF(unblock_recall)), lockout_timer)
@@ -302,10 +302,10 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/unblock_recall()
 	if(admin_emergency_no_recall)
 		priority_announce(
-			text= "Emergency shuttle uplink services are now back online.",
-			title = "Uplink Restored",
+			text= "紧急穿梭机上行链路服务现已恢复在线。",
+			title = "上行链路已恢复",
 			sound = ANNOUNCER_SHUTTLE, // NOVA EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "green",
 		)
 		return
@@ -382,14 +382,14 @@ SUBSYSTEM_DEF(shuttle)
 		return
 
 	if(length(trim(call_reason)) < CALL_SHUTTLE_REASON_LENGTH && SSsecurity_level.get_current_level_as_number() > SEC_LEVEL_GREEN)
-		to_chat(user, span_alert("You must provide a reason."))
+		to_chat(user, span_alert("你必须提供一个理由。"))
 		return
 
 	var/area/signal_origin = get_area(user)
 	call_evac_shuttle(call_reason, signal_origin)
 
 	log_shuttle("[key_name(user)] has called the emergency shuttle.")
-	deadchat_broadcast(" has called the shuttle at [span_name("[signal_origin.name]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("已在 [span_name("[signal_origin.name]")] 呼叫了穿梭机。", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
 	if(call_reason)
 		SSblackbox.record_feedback("text", "shuttle_reason", 1, "[call_reason]")
 		log_shuttle("Shuttle call reason: [call_reason]")
@@ -464,7 +464,7 @@ SUBSYSTEM_DEF(shuttle)
 	log_shuttle("[key_name(user)] has recalled the shuttle.")
 	message_admins("[ADMIN_LOOKUPFLW(user)] has recalled the shuttle.")
 	if(!hide_origin)
-		deadchat_broadcast(" has recalled the shuttle from [span_name("[get_area_name(user, TRUE)]")].", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
+		deadchat_broadcast("已从 [span_name("[get_area_name(user, TRUE)]")] 召回了穿梭机。", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
 	return TRUE
 
 /// Can this user recall the emergency shuttle? Returns TRUE if they can, otherwise returns FALSE.
@@ -514,8 +514,8 @@ SUBSYSTEM_DEF(shuttle)
 	if(admin_emergency_no_recall)
 		var/admin_no_recall_alert = tgui_alert(
 			user,
-			"An administrator has disabled the emergency shuttle recall function, are you sure you want to proceed with the recall?",
-			"Admin Level Recall Confirmation",
+			"管理员已禁用紧急穿梭机召回功能，你确定要继续执行召回吗？",
+			"管理员级召回确认",
 			list("Yes", "No"),
 		)
 		if(admin_no_recall_alert == "Yes")
@@ -526,8 +526,8 @@ SUBSYSTEM_DEF(shuttle)
 	if(emergency_no_recall)
 		var/general_no_recall_alert = tgui_alert(
 			user,
-			"The emergency shuttle recall function is currently disabled by game code, are you sure you want to proceed with the recall?",
-			"Recall Confirmation",
+			"紧急穿梭机召回功能目前已被游戏代码禁用，你确定要继续执行召回吗？",
+			"召回确认",
 			list("Yes", "No"),
 		)
 		if(general_no_recall_alert == "Yes")
@@ -610,20 +610,20 @@ SUBSYSTEM_DEF(shuttle)
 		emergency.timer = null
 		emergency.sound_played = FALSE
 		priority_announce(
-			text = "Departure has been postponed indefinitely pending conflict resolution.",
-			title = "Hostile Environment Detected",
+			text = "出发已无限期推迟，等待冲突解决。",
+			title = "检测到敌对环境",
 			sound = 'sound/announcer/notice/notice1.ogg',
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "grey",
 		)
 	if(!emergency_no_escape && (emergency.mode == SHUTTLE_STRANDED || emergency.mode == SHUTTLE_DOCKED))
 		emergency.mode = SHUTTLE_DOCKED
 		emergency.setTimer(emergency_dock_time)
 		priority_announce(
-			text = "You have [DisplayTimeText(emergency_dock_time)] to board the emergency shuttle.",
-			title = "Hostile Environment Resolved",
+			text = "你有[DisplayTimeText(emergency_dock_time)]时间登上紧急穿梭机。",
+			title = "敌对环境已解除",
 			sound = ANNOUNCER_SHUTTLE, // NOVA EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "green",
 		)
 
@@ -765,7 +765,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/obj/docking_port/stationary/transit/new_transit_dock = new(midpoint)
 	new_transit_dock.reserved_area = proposal
-	new_transit_dock.name = "Transit for [M.shuttle_id]/[M.name]"
+	new_transit_dock.name = "[M.shuttle_id]/[M.name]的传送点"
 	new_transit_dock.owner = M
 	new_transit_dock.assigned_area = new_area
 
@@ -1213,7 +1213,7 @@ SUBSYSTEM_DEF(shuttle)
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
 				shuttle_loading = FALSE
 				if(emergency == mdp) //you just changed the emergency shuttle, there are events in game + captains that can change your snowflake choice.
-					var/set_purchase = tgui_alert(usr, "Do you want to also disable shuttle purchases/random events that would change the shuttle?", "Butthurt Admin Prevention", list("Yes, disable purchases/events", "No, I want to possibly get owned"))
+					var/set_purchase = tgui_alert(usr, "你是否还想禁用会改变穿梭机的购买/随机事件？", "防破防管理员", list("Yes, disable purchases/events", "No, I want to possibly get owned"))
 					if(set_purchase == "Yes, disable purchases/events")
 						SSshuttle.shuttle_purchased = SHUTTLEPURCHASE_FORCED
 

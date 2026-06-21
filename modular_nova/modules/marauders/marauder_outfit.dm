@@ -102,8 +102,8 @@
 ///
 /// Guaranteed mannequins
 /obj/structure/mannequin/operative_barracks/operative
-	name = "operative mannequin"
-	desc = "You've seen it a hundred times, but that's because it <b>works.</b>"
+	name = "特工人体模型"
+	desc = "你已经见过它一百次了，但那是因为它<b>确实管用。</b>"
 	starting_items = list(
 		/obj/item/clothing/mask/neck_gaiter,
 		/obj/item/clothing/glasses/meson/night,
@@ -116,8 +116,8 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/spy
-	name = "spy mannequin"
-	desc = "For a classic covert mission, when that chameleon gear is too much."
+	name = "间谍模特"
+	desc = "用于经典的秘密任务，当变色龙装备太过显眼时。"
 	starting_items = list(
 		/obj/item/clothing/mask/gas/syndicate/ds,
 		/obj/item/clothing/glasses/sunglasses/robohand,
@@ -130,8 +130,8 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/hacker
-	name = "hacker mannequin"
-	desc = "Don't have hard feelings after they call you a nerd."
+	name = "黑客模特"
+	desc = "别因为他们叫你书呆子就耿耿于怀。"
 	starting_items = list(
 		/obj/item/clothing/mask/gas/ninja,
 		/obj/item/clothing/glasses/hud/health/night,
@@ -144,8 +144,8 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/chameleon
-	name = "chameleon mannequin"
-	desc = "Completely clandestine, just don't get EMP'd."
+	name = "变色龙模特"
+	desc = "完全隐秘，只要别被电磁脉冲搞到就行。"
 	starting_items = list(
 		/obj/item/clothing/head/chameleon,
 		/obj/item/clothing/mask/chameleon,
@@ -160,8 +160,8 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/anarchist
-	name = "anarchist mannequin"
-	desc = "My name is not important."
+	name = "无政府主义者模特"
+	desc = "我的名字不重要。"
 	starting_items = list(
 		/obj/item/clothing/glasses/sunglasses/robohand,
 		/obj/item/clothing/under/pants/track/robohand,
@@ -171,8 +171,8 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/sol_militant
-	name = "\improper SolFed espatier mannequin"
-	desc = "They'll never know what hit 'em."
+	name = "\improper 太阳联邦太空陆战队员模特"
+	desc = "他们永远不会知道是什么击中了他们。"
 	starting_items = list(
 		/obj/item/clothing/head/helmet/sf_peacekeeper,
 		/obj/item/clothing/mask/gas/hecu,
@@ -188,7 +188,7 @@
 ///
 /// Wildcard mannequins
 /obj/structure/mannequin/operative_barracks/wildcard/maid
-	name = "maid mannequin"
+	name = "女仆模特"
 	body_type = FEMALE
 	starting_items = list(
 		/obj/item/clothing/head/costume/maid_headband/syndicate,
@@ -198,7 +198,7 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/wildcard/clown
-	name = "clown mannequin"
+	name = "小丑模特"
 	starting_items = list(
 		/obj/item/clothing/mask/gas/clown_hat,
 		/obj/item/clothing/under/rank/civilian/clown,
@@ -207,7 +207,7 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/wildcard/mime
-	name = "mime mannequin"
+	name = "默剧演员模特"
 	starting_items = list(
 		/obj/item/clothing/head/beret/frenchberet/armoured,
 		/obj/item/clothing/mask/gas/mime,
@@ -218,7 +218,7 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/wildcard/miner
-	name = "miner mannequin"
+	name = "矿工模特"
 	starting_items = list(
 		/obj/item/clothing/mask/gas/explorer,
 		/obj/item/clothing/glasses/meson,
@@ -230,7 +230,7 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/wildcard/intern
-	name = "centcom intern mannequin"
+	name = "中央司令部实习生模特"
 	starting_items = list(
 		/obj/item/clothing/glasses/sunglasses/robohand,
 		/obj/item/clothing/under/rank/centcom/officer,
@@ -239,7 +239,7 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/wildcard/wizard
-	name = "wizard mannequin"
+	name = "巫师模特"
 	starting_items = list(
 		/obj/item/clothing/head/wizard,
 		/obj/item/clothing/under/color/lightpurple,
@@ -248,7 +248,7 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/wildcard/cultie
-	name = "cultist mannequin"
+	name = "邪教徒模特"
 	starting_items = list(
 		/obj/item/clothing/under/rank/civilian/chaplain,
 		/obj/item/clothing/suit/hooded/cultrobes,
@@ -256,7 +256,7 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/wildcard/pirate
-	name = "pirate mannequin"
+	name = "海盗模特"
 	starting_items = list(
 		/obj/item/clothing/head/helmet/space/pirate/bandana,
 		/obj/item/clothing/glasses/eyepatch,
@@ -266,7 +266,7 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/wildcard/knight
-	name = "knight mannequin"
+	name = "骑士模特"
 	starting_items = list(
 		/obj/item/clothing/head/helmet/knight/red,
 		/obj/item/clothing/under/color/brown,
@@ -276,7 +276,7 @@
 	)
 
 /obj/structure/mannequin/operative_barracks/wildcard/pizza_guy
-	name = "pizza delivery mannequin"
+	name = "披萨配送员人体模型"
 	starting_items = list(
 		/obj/item/clothing/head/soft/red,
 		/obj/item/clothing/mask/fakemoustache/italian,

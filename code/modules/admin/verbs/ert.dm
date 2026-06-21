@@ -126,7 +126,7 @@
 
 	var/list/spawn_points = GLOB.emergencyresponseteamspawn
 
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [span_notice(ertemplate.polldesc)]?", check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/centcom/ert/commander, role_name_text = "emergency response team")
+	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("你希望被考虑加入 [span_notice(ertemplate.polldesc)] 吗？", check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/centcom/ert/commander, role_name_text = "紧急响应小组")
 
 	if(!length(candidates))
 		message_admins("[key_name_admin(owner)] tried to create a CentCom response team but [owner.p_they()] didn't find any candidates.")
@@ -139,7 +139,7 @@
 	var/turf/brief_spawn
 
 	if(ertemplate.use_custom_shuttle && ertemplate.ert_template)
-		to_chat(usr, span_boldnotice("Attempting to spawn ERT custom shuttle, this may take a few seconds..."))
+		to_chat(usr, span_boldnotice("正在尝试生成 ERT 自定义穿梭机，这可能需要几秒钟..."))
 		var/datum/map_template/shuttle/ship = new ertemplate.ert_template
 		var/x = rand(TRANSITIONEDGE, world.maxx - TRANSITIONEDGE - ship.width)
 		var/y = rand(TRANSITIONEDGE, world.maxy - TRANSITIONEDGE - ship.height)
@@ -178,7 +178,7 @@
 			admin_officer.PossessByPlayer(usr.key)
 
 		else
-			to_chat(usr, span_warning("Could not spawn you in as briefing officer as you are not a ghost!"))
+			to_chat(usr, span_warning("无法将你生成为简报官，因为你并非幽灵！"))
 
 	//Pick the (un)lucky players
 	var/numagents = min(ertemplate.teamsize, length(candidates))
@@ -265,7 +265,7 @@
 	message_admins("[capitalize(ertemplate.polldesc)] has spawned with the mission: [ertemplate.mission]")
 	// NOVA EDIT ADDITION BEGIN
 	if(ertemplate.notify_players)
-		priority_announce("Central command has responded to your request for a CODE [uppertext(ertemplate.code)] Emergency Response Team and have confirmed one to be enroute.", "ERT Request", ANNOUNCER_ERTYES)
+		priority_announce("中央司令部已响应您对 CODE [uppertext(ertemplate.code)] 紧急响应小组的请求，并确认有一支队伍正在赶来。", "ERT 请求", ANNOUNCER_ERTYES)
 	// NOVA EDIT END
 	return TRUE
 

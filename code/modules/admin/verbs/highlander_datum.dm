@@ -11,7 +11,7 @@ GLOBAL_DATUM(highlander_controller, /datum/highlander_controller)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(new_highlander))
 	sound_to_playing_players('sound/misc/highlander.ogg')
-	send_to_playing_players(span_bolddanger("<font size=6>THERE CAN BE ONLY ONE</font>"))
+	send_to_playing_players(span_bolddanger("<font size=6>唯我独尊</font>"))
 	for(var/obj/item/disk/nuclear/nuke_disk as anything in SSpoints_of_interest.real_nuclear_disks)
 		var/datum/component/stationloving/component = nuke_disk.GetComponent(/datum/component/stationloving)
 		component?.relocate() //Gets it out of bags and such
@@ -59,7 +59,7 @@ GLOBAL_DATUM(highlander_controller, /datum/highlander_controller)
 /datum/highlander_controller/proc/new_highlander(datum/source, mob/living/new_crewmember, rank)
 	SIGNAL_HANDLER
 
-	to_chat(new_crewmember, span_userdanger("<i>THERE CAN BE ONLY ONE!!!</i>"))
+	to_chat(new_crewmember, span_userdanger("<i>唯我独尊！！！</i>"))
 	new_crewmember.make_scottish()
 
 /**
@@ -72,21 +72,21 @@ GLOBAL_DATUM(highlander_controller, /datum/highlander_controller)
  */
 /client/proc/only_one(was_delayed = FALSE)
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr,"The game hasn't started yet!")
+		tgui_alert(usr,"游戏尚未开始！")
 		return
 
 	if(was_delayed) //sends more accurate logs
-		message_admins(span_adminnotice("[key_name_admin(usr)]'s delayed THERE CAN ONLY BE ONE started!"))
+		message_admins(span_adminnotice("[key_name_admin(usr)] 的延迟版唯我独尊已启动！"))
 		log_admin("[key_name(usr)] delayed THERE CAN ONLY BE ONE started.")
 	else
-		message_admins(span_adminnotice("[key_name_admin(usr)] used THERE CAN BE ONLY ONE!"))
+		message_admins(span_adminnotice("[key_name_admin(usr)] 使用了唯我独尊！"))
 		log_admin("[key_name(usr)] used THERE CAN BE ONLY ONE.")
 
 	GLOB.highlander_controller = new /datum/highlander_controller
 
 /client/proc/only_one_delayed()
-	send_to_playing_players(span_userdanger("Bagpipes begin to blare. You feel Scottish pride coming over you."))
-	message_admins(span_adminnotice("[key_name_admin(usr)] used (delayed) THERE CAN BE ONLY ONE!"))
+	send_to_playing_players(span_userdanger("风笛声开始响起。你感到一股苏格兰式的自豪感涌上心头。"))
+	message_admins(span_adminnotice("[key_name_admin(usr)] 使用了（延迟版）唯我独尊！"))
 	log_admin("[key_name(usr)] used delayed THERE CAN BE ONLY ONE.")
 	addtimer(CALLBACK(src, PROC_REF(only_one), TRUE), 42 SECONDS)
 

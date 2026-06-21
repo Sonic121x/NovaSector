@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/space/beret
 	name = "\improper CentCom officer's beret"
-	desc = "An armored beret commonly used by special operations officers. Uses advanced force field technology to protect the head from space."
+	desc = "一种常用于特种作战的军官贝雷帽，它采用了先进的立场防护技术。能够保护头部免受太空环境伤害。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/helmet/space/beret"
 	post_init_icon_state = "beret_badge"
@@ -32,7 +32,7 @@
 
 /obj/item/clothing/suit/space/officer
 	name = "\improper CentCom officer's coat"
-	desc = "An armored, space-proof coat used in special operations."
+	desc = "一种特种作战中使用的防弹衣"
 	icon_state = "centcom_coat"
 	icon = 'icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'

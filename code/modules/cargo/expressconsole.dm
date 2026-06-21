@@ -2,7 +2,7 @@
 #define BEACON_PRINT_COOLDOWN 10 SECONDS
 
 /obj/machinery/computer/cargo/express
-	name = "express supply console"
+	name = "特快供应控制台"
 	desc = "This console allows the user to purchase a package \
 		with 1/40th of the delivery time: made possible by Nanotrasen's new \"1500mm Orbital Railgun\".\
 		All sales are near instantaneous - please choose carefully"
@@ -43,17 +43,17 @@
 /obj/machinery/computer/cargo/express/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (tool.GetID() && allowed(user))
 		locked = !locked
-		to_chat(user, span_notice("You [locked ? "lock" : "unlock"] the interface."))
+		to_chat(user, span_notice("你[locked ? "lock" : "unlock"]了界面。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if (istype(tool, /obj/item/disk/cargo/bluespace_pod))
 		if (pod_type == /obj/structure/closet/supplypod/bluespacepod)
-			balloon_alert(user, "already upgraded!")
+			balloon_alert(user, "已经升级过了！")
 			return ITEM_INTERACT_FAILURE
 		if(!user.temporarilyRemoveItemFromInventory(tool))
 			return ITEM_INTERACT_FAILURE
 		pod_type = /obj/structure/closet/supplypod/bluespacepod // doesnt affect our circuit board, making reversal possible
-		to_chat(user, span_notice("You insert the disk into [src], allowing for advanced supply delivery vehicles."))
+		to_chat(user, span_notice("你将磁盘插入[src]，使其能够使用高级补给投送载具。"))
 		tool.forceMove(src)
 		return ITEM_INTERACT_SUCCESS
 
@@ -63,7 +63,7 @@
 			beacon.link_console(src, user)
 			return ITEM_INTERACT_SUCCESS
 
-		to_chat(user, span_alert("[src] is already linked to [beacon]."))
+		to_chat(user, span_alert("[src]已经链接到[beacon]了。"))
 		return ITEM_INTERACT_FAILURE
 
 	return NONE
@@ -73,8 +73,8 @@
 		return FALSE
 	if(user)
 		if (emag_card)
-			user.visible_message(span_warning("[user] swipes [emag_card] through [src]!"))
-		to_chat(user, span_notice("You change the routing protocols, allowing the Supply Pod to land anywhere on the station."))
+			user.visible_message(span_warning("[user]将[emag_card]在[src]上刷过！"))
+		to_chat(user, span_notice("你更改了路由协议，允许补给舱降落在空间站的任何地方。"))
 	obj_flags |= EMAGGED
 	contraband = TRUE
 	// This also sets this on the circuit board
@@ -139,7 +139,7 @@
 			var/obj/item/supplypod_beacon/new_beacon = new /obj/item/supplypod_beacon(drop_location())
 			new_beacon.link_console(src, user) //rather than in beacon's Initialize(), we can assign the computer to the beacon by reusing this proc)
 			printed_beacons++ //printed_beacons starts at 0, so the first one out will be called beacon # 1
-			beacon.name = "Supply Pod Beacon #[printed_beacons]"
+			beacon.name = "补给舱信标 #[printed_beacons]"
 
 		if("add")//Generate Supply Order first
 			if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_EXPRESSPOD_CONSOLE))
@@ -159,7 +159,7 @@
 				return
 			*/ // NOVA EDIT REMOVAL END
 
-			var/name = "*None Provided*"
+			var/name = "*未提供*"
 			var/rank = "*None Provided*"
 			var/ckey = user.ckey
 			if(ishuman(user))

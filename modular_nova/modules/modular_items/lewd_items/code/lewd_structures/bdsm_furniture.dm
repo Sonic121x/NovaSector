@@ -2,14 +2,14 @@
 #define X_STAND_CLOSED_STATE "close"
 
 /obj/structure/bed/bdsm_bed
-	name = "bdsm bed"
-	desc = "A latex bed with D-rings on the sides. Looks comfortable."
+	name = "BDSM床"
+	desc = "一张侧面带有D形环的乳胶床。看起来挺舒服的。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/bdsm_furniture.dmi'
 	icon_state = "bdsm_bed"
 	max_integrity = 50
 
 /obj/item/bdsm_bed_kit
-	name = "bdsm bed construction kit"
+	name = "BDSM床组装套件"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/bdsm_furniture.dmi'
 	throwforce = 0
 	icon_state = "bdsm_bed_kit"
@@ -24,12 +24,12 @@
 	if((item_flags & IN_INVENTORY) || (item_flags & IN_STORAGE))
 		return
 
-	to_chat(user, span_notice("You fasten the frame to the floor and begin to inflate the latex pillows..."))
+	to_chat(user, span_notice("你将框架固定在地板上，开始给乳胶枕头充气……"))
 	if(!do_after(user, 8 SECONDS, src))
-		to_chat(user, span_warning("You fail to assemble [src]."))
+		to_chat(user, span_warning("你未能组装好[src]。"))
 		return
 
-	to_chat(user, span_notice("You assemble [src]."))
+	to_chat(user, span_notice("你组装好了[src]。"))
 	var/obj/structure/bed/bdsm_bed/assembled_bed = new
 	assembled_bed.forceMove(loc)
 	qdel(src)
@@ -37,7 +37,7 @@
 
 /obj/item/bdsm_bed_kit/examine(mob/user)
 	. = ..()
-	. += span_purple("[src] can be assembled by using Ctrl+Shift+Click while [src] is on the floor.")
+	. += span_purple("[src] 可以通过在 [src] 位于地面上时使用 Ctrl+Shift+点击来组装。")
 
 /obj/structure/bed/bdsm_bed/post_buckle_mob(mob/living/affected_mob)
 	density = TRUE
@@ -51,12 +51,12 @@
 
 /obj/structure/bed/bdsm_bed/click_ctrl_shift(mob/user)
 	add_fingerprint(user)
-	to_chat(user, span_notice("You begin unfastening the frame of [src] and deflating the latex pillows..."))
+	to_chat(user, span_notice("你开始松开[src]的框架并给乳胶枕头放气……"))
 	if(!do_after(user, 8 SECONDS, src))
-		to_chat(user, span_warning("You fail to disassemble [src]."))
+		to_chat(user, span_warning("你未能拆解[src]。"))
 		return
 
-	to_chat(user, span_notice("You disassemble [src]."))
+	to_chat(user, span_notice("你拆解了[src]。"))
 	var/obj/item/construction_kit/bdsm/bed/created_kit = new
 	created_kit.forceMove(loc)
 	qdel(src)
@@ -68,15 +68,15 @@
 
 /obj/structure/bed/bdsm_bed/examine(mob/user)
 	. = ..()
-	. += span_purple("[src] can be disassembled by using Ctrl+Shift+Click")
+	. += span_purple("[src]可以通过使用Ctrl+Shift+点击来拆解")
 
 /*
 *	X-STAND
 */
 
 /obj/structure/chair/x_stand
-	name = "x stand"
-	desc = "A stand for buckling people in an X shape."
+	name = "X形支架"
+	desc = "一个用于将人束缚成X形的支架。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/bdsm_furniture.dmi'
 	icon_state = "xstand_open"
 	base_icon_state = "xstand"
@@ -143,20 +143,20 @@
 
 	if(buckled_mob != user)
 		if(!do_after(user, 5 SECONDS, buckled_mob)) // Timer for unbuckling one mob with another mob
-			to_chat(user, span_warning("You fail to unbuckle [buckled_mob] from [src]."))
+			to_chat(user, span_warning("你未能将[buckled_mob]从[src]上解开。"))
 			return FALSE
 
-		buckled_mob.visible_message(span_notice("[user] unbuckles [buckled_mob] from [src]."),\
-			span_notice("[user] unbuckles you from [src]."),\
-			span_hear("You hear metal clanking."))
+		buckled_mob.visible_message(span_notice("[user]将[buckled_mob]从[src]上解开了。"),\
+			span_notice("[user]将你从[src]上解开了。"),\
+			span_hear("你听到金属的哐当声。"))
 
 	else
 		if(!do_after(user, 10 SECONDS, buckled_mob)) // Timer for unbuckling one mob with another mob
-			to_chat(user, span_warning("You fail to unbuckle yourself from [src]."))
+			to_chat(user, span_warning("你无法将自己从[src]上解开。"))
 			return FALSE
 
-		user.visible_message(span_notice("You unbuckle yourself from [src]."),\
-			span_hear("You hear metal clanking."))
+		user.visible_message(span_notice("你将自己从[src]上解开了。"),\
+			span_hear("你听到金属的哐当声。"))
 
 	unbuckle_mob(buckled_mob)
 
@@ -181,41 +181,41 @@
 
 	if(affected_mob == user)
 		if(!do_after(user, 10 SECONDS, affected_mob)) // Timer to buckle the mob itself
-			to_chat(user, span_warning("You fail to buckle yourself to [src]!"))
+			to_chat(user, span_warning("你没能将自己扣到[src]上！"))
 			return FALSE
 
 		if(!is_user_buckle_possible(affected_mob, user, check_loc))
-			to_chat(user, span_warning("You are unable to buckle yourself to [src]!"))
+			to_chat(user, span_warning("你无法将自己扣到[src]上！"))
 			return FALSE
 
 		if(buckle_mob(affected_mob, check_loc = check_loc))
-			user.visible_message(span_warning("You buckle yourself to [src]!"),\
-				span_hear("You hear metal clanking."))
+			user.visible_message(span_warning("你将自己扣到了[src]上！"),\
+				span_hear("你听到金属的哐当声。"))
 
 		toggle_mode(user)
 		return TRUE
 
-	affected_mob.visible_message(span_warning("[user] starts buckling [affected_mob] to [src]!"),\
-		span_userdanger("[user] starts buckling you to [src]!"),\
-		span_hear("You hear metal clanking."))
+	affected_mob.visible_message(span_warning("[user]开始将[affected_mob]扣到[src]上！"),\
+		span_userdanger("[user]开始将你扣到[src]上！"),\
+		span_hear("你听到金属的哐当声。"))
 
 	if(!do_after(user, 5 SECONDS, affected_mob)) // Timer to buckle one mob by another
-		to_chat(user, span_warning("You fail to buckle [affected_mob] to [src]!"))
+		to_chat(user, span_warning("你没能将[affected_mob]扣到[src]上！"))
 		return FALSE
 
 	// Sanity check before we attempt to buckle. Is everything still in a kosher state for buckling after the 3 seconds have elapsed?
 	// Covers situations where, for example, the chair was moved or there's some other issue.
 	if(!is_user_buckle_possible(affected_mob, user, check_loc))
-		to_chat(user, span_warning("You are unable to buckle [affected_mob] to [src]!"))
+		to_chat(user, span_warning("你无法将[affected_mob]扣到[src]上！"))
 		return FALSE
 
 	// Place to insert a description of a successful attempt for a user mob
 	if(!buckle_mob(affected_mob, check_loc = check_loc))
 		return FALSE
 
-	affected_mob.visible_message(span_warning("[user] buckled [affected_mob] to [src]!"),\
-		span_userdanger("[user] buckled you to [src]!"),\
-		span_hear("You hear metal clanking."))
+	affected_mob.visible_message(span_warning("[user]将[affected_mob]扣到了[src]上！"),\
+		span_userdanger("[user]将你扣到了[src]上！"),\
+		span_hear("你听到金属的哐当声。"))
 
 	toggle_mode(user)
 	return TRUE
@@ -275,18 +275,18 @@
 
 /obj/structure/chair/x_stand/click_ctrl_shift(mob/user)
 	add_fingerprint(user)
-	to_chat(user, span_notice("You begin unfastening the frame of [src]..."))
+	to_chat(user, span_notice("你开始拆卸[src]的框架..."))
 	if(!do_after(user, 8 SECONDS, src))
 		return
 
-	to_chat(user, span_notice("You disassemble [src]."))
+	to_chat(user, span_notice("你拆解了[src]。"))
 	new /obj/item/construction_kit/bdsm/x_stand(loc)
 	unbuckle_all_mobs()
 	qdel(src)
 
 /obj/structure/chair/x_stand/examine(mob/user)
 	. = ..()
-	. += span_purple("[src] can be disassembled by using Ctrl+Shift+Click")
+	. += span_purple("[src]可以通过Ctrl+Shift+点击来拆解")
 
 #undef X_STAND_CLOSED_STATE
 #undef X_STAND_OPEN_STATE

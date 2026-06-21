@@ -32,8 +32,8 @@
 			user.add_mood_event("artbad", /datum/mood_event/artbad)
 			msg = "Wow, [source.p_they()] sucks."
 
-	user.visible_message(span_notice("[user] stops and looks intently at [source]."), \
-		span_notice("You appraise [source]... [msg]"))
+	user.visible_message(span_notice("[user] 停下来，专注地看着 [source]。"), \
+		span_notice("你评估着 [source]... [msg]"))
 
 /datum/element/art/proc/on_examine(atom/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
@@ -43,7 +43,7 @@
 		INVOKE_ASYNC(src, PROC_REF(appraise), source, user) //Do not sleep the proc.
 
 /datum/element/art/proc/appraise(atom/source, mob/user)
-	to_chat(user, span_notice("You start appraising [source]..."))
+	to_chat(user, span_notice("你开始评估 [source]..."))
 	if(!do_after(user, 2 SECONDS, target = source))
 		return
 	var/mult = 1
@@ -62,8 +62,8 @@
 		user.add_mood_event("artbad", /datum/mood_event/artbad)
 		msg = "Wow, [source.p_they()] sucks."
 
-	user.visible_message(span_notice("[user] stops to inspect [source]."), \
-		span_notice("You appraise [source], inspecting the fine craftsmanship of the proletariat... [msg]"))
+	user.visible_message(span_notice("[user] 停下来检查[source]。"), \
+		span_notice("你评估[source]，审视着无产阶级的精湛工艺……[msg]"))
 
 /datum/element/art/commoner
 
@@ -86,5 +86,5 @@
 		user.add_mood_event("artbad", /datum/mood_event/artbad)
 		msg = "Wow, [source.p_they()] sucks."
 
-	user.visible_message(span_notice("[user] stops to inspect [source]."), \
-		span_notice("You appraise [source], inspecting the fine craftsmanship of the proletariat... [msg]"))
+	user.visible_message(span_notice("[user] 停下来检查 [source]。"), \
+		span_notice("你评估着 [source]，审视着无产阶级的精湛工艺... [msg]"))

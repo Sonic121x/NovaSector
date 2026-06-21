@@ -1,6 +1,6 @@
 /obj/item/storage/bag/garment/hos/blue
-	name = "head of security's alternate garment bag"
-	desc = "An extra bag for storing alternative designs of their clothes and shoes. This one belongs to the head of security."
+	name = "安全主管的备用服装袋"
+	desc = "一个用于存放备用款式衣物和鞋子的额外袋子。这个属于安全主管。"
 	icon = 'modular_nova/modules/sec_haul/icons/garment.dmi'
 	icon_state = "garment_bag_blue"
 
@@ -18,8 +18,8 @@
 	new /obj/item/clothing/shoes/jackboots/sec/blue(src)
 
 /obj/item/storage/bag/garment/warden/blue
-	name = "warden's alternate garment bag"
-	desc = "A bag for storing alternative designs of their clothes and shoes. This one belongs to the warden."
+	name = "典狱长的备用服装袋"
+	desc = "一个用于存放备用款式衣物和鞋子的袋子。这个属于典狱长。"
 	icon = 'modular_nova/modules/sec_haul/icons/garment.dmi'
 	icon_state = "garment_bag_blue"
 

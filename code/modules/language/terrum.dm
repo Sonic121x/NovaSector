@@ -1,6 +1,6 @@
 /datum/language/terrum
-	name = "Terrum"
-	desc = "The language of the golems. Sounds similar to old-earth Hebrew."
+	name = "魔像语"
+	desc = "这些魔像所使用的语言。听起来与古老的地球时期的希伯来语颇为相似。"
 	key = "g"
 	space_chance = 20
 	sentence_chance = 0

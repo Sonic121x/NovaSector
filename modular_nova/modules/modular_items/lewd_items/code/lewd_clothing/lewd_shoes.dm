@@ -1,7 +1,7 @@
 /// Sprite doesn't visually represent the verticality correctly but the description at time of rewrite implied this was the 'intended' item?? idk. just going with it
 /obj/item/clothing/shoes/ballet_heels
-	name = "ballet heels"
-	desc = "Restrictive, knee-high heels. Unfathomably difficult to walk in."
+	name = "芭蕾舞高跟鞋"
+	desc = "限制性的及膝高跟鞋。行走起来极其困难。"
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes.dmi'
 	greyscale_colors = "#383840"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
@@ -18,8 +18,8 @@
 	AddComponent(/datum/component/squeak, list('modular_nova/master_files/sound/effects/footstep/highheel1.ogg' = 1, 'modular_nova/master_files/sound/effects/footstep/highheel2.ogg' = 1), 70)
 
 /obj/item/clothing/shoes/ballet_heels/domina_heels
-	name = "dominant heels"
-	desc = "A pair of aesthetically pleasing heels."
+	name = "支配者高跟鞋"
+	desc = "一双美观悦目的高跟鞋。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_shoes.dmi'
 	icon_state = "dominaheels"
 	greyscale_colors = null
@@ -33,8 +33,8 @@
 */
 
 /obj/item/clothing/shoes/latex_socks
-	name = "latex socks"
-	desc = "A pair of shiny, split-toe socks made of some strange material."
+	name = "乳胶袜"
+	desc = "一双由某种奇特材料制成的、闪亮的分趾袜。"
 	w_class = WEIGHT_CLASS_SMALL
 	worn_icon = 'modular_nova/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes.dmi'
 	greyscale_colors = "#383840"

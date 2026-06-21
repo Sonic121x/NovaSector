@@ -7,7 +7,7 @@
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
 
 	var/obj/item/testing_item = allocate(/obj/item/analyzer)
-	testing_item.name = "testing item"
+	testing_item.name = "测试物品"
 
 	// Standard situation: We're holding a normal item and get dismembered.
 	test_item(dummy, testing_item)

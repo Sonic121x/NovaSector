@@ -254,7 +254,7 @@
 
 /datum/emote/living/carbon/human/blink_r
 	key = "blink_r"
-	name = "blink (Rapid)"
+	name = "眨眼（快速）"
 	message = "blinks rapidly."
 
 /datum/emote/living/carbon/human/blink_r/can_run_emote(mob/living/carbon/human/user, status_check, intentional, params)

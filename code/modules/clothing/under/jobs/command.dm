@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/captain
-	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
-	name = "captain's jumpsuit"
+	desc = "那是件蓝色的连身衣，上面有一些金色的标记，代表着“上尉”的军衔。"
+	name = "舰长连身衣"
 	icon_state = "captain"
 	inhand_icon_state = "b_suit"
 	sensor_mode = SENSOR_COORDS
@@ -13,8 +13,8 @@
 	wound = 15
 
 /obj/item/clothing/under/rank/captain/skirt
-	name = "captain's jumpskirt"
-	desc = "It's a blue jumpskirt with some gold markings denoting the rank of \"Captain\"."
+	name = "舰长连身裙"
+	desc = "那是件蓝色的连身裙，上面有一些金色的标记，代表着“上尉”的军衔。"
 	icon_state = "captain_skirt"
 	inhand_icon_state = "b_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -23,8 +23,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/captain/parade
-	name = "captain's formal uniform"
-	desc = "A captain's luxury-wear, for special occasions."
+	name = "舰长的正装制服"
+	desc = "船长的豪华服装，在特殊场合穿上."
 	icon_state = "captain_parade"
 	inhand_icon_state = null
 	can_adjust = FALSE

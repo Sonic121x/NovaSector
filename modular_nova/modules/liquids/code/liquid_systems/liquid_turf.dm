@@ -341,7 +341,7 @@
 		if(current_turf && current_turf.turf_height - turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
 			if(COOLDOWN_FINISHED(living_mover, last_height_alert))
 				COOLDOWN_START(living_mover, last_height_alert, 1 SECONDS)
-				living_mover.balloon_alert(living_mover, "too high, climb out!")
+				living_mover.balloon_alert(living_mover, "太高了，爬出去！")
 			return FALSE
 	return ..()
 

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(pai)
-	name = "pAI"
+	name = "个人人工智能"
 	ss_flags = SS_NO_INIT|SS_NO_FIRE
 
 	/// List of pAI candidates, including those not submitted.
@@ -43,18 +43,18 @@ SUBSYSTEM_DEF(pai)
 	var/mob/user = ui.user
 	var/datum/pai_candidate/candidate = candidates[user.ckey]
 	if(is_banned_from(user.ckey, ROLE_PAI))
-		to_chat(user, span_warning("You are banned from playing pAI!"))
+		to_chat(user, span_warning("你被禁止扮演个人人工智能！"))
 		ui.close()
 		return FALSE
 	if(isnull(candidate))
-		to_chat(user, span_warning("There was an error. Please resubmit."))
+		to_chat(user, span_warning("出现错误。请重新提交。"))
 		ui.close()
 		return FALSE
 	switch(action)
 		if("submit")
 			candidate.comments = reject_bad_name(params["comments"], allow_numbers = TRUE, max_length = MAX_BROADCAST_LEN, strict = TRUE, cap_after_symbols = FALSE) || "Unknown"
-			candidate.description = reject_bad_name(params["description"], allow_numbers = TRUE, max_length = MAX_BROADCAST_LEN, strict = TRUE, cap_after_symbols = FALSE) || "Unknown"
-			candidate.name = reject_bad_name(params["name"], allow_numbers = TRUE, max_length = MAX_NAME_LEN, strict = TRUE, cap_after_symbols = FALSE) || "Unknown"
+			candidate.description = reject_bad_name(params["description"], allow_numbers = TRUE, max_length = MAX_BROADCAST_LEN, strict = TRUE, cap_after_symbols = FALSE) || "未知"
+			candidate.name = reject_bad_name(params["name"], allow_numbers = TRUE, max_length = MAX_NAME_LEN, strict = TRUE, cap_after_symbols = FALSE) || "未知"
 			candidate.ckey = user.ckey
 			candidate.ready = TRUE
 			ui.close()
@@ -62,8 +62,8 @@ SUBSYSTEM_DEF(pai)
 			return TRUE
 		if("save")
 			candidate.comments = reject_bad_name(params["comments"], allow_numbers = TRUE, max_length = MAX_BROADCAST_LEN, strict = TRUE, cap_after_symbols = FALSE) || "Unknown"
-			candidate.description = reject_bad_name(params["description"], allow_numbers = TRUE, max_length = MAX_BROADCAST_LEN, strict = TRUE, cap_after_symbols = FALSE) || "Unknown"
-			candidate.name = reject_bad_name(params["name"], allow_numbers = TRUE, max_length = MAX_NAME_LEN, strict = TRUE, cap_after_symbols = FALSE) || "Unknown"
+			candidate.description = reject_bad_name(params["description"], allow_numbers = TRUE, max_length = MAX_BROADCAST_LEN, strict = TRUE, cap_after_symbols = FALSE) || "未知"
+			candidate.name = reject_bad_name(params["name"], allow_numbers = TRUE, max_length = MAX_NAME_LEN, strict = TRUE, cap_after_symbols = FALSE) || "未知"
 			candidate.savefile_save(user)
 			return TRUE
 		if("load")
@@ -72,10 +72,10 @@ SUBSYSTEM_DEF(pai)
 			return TRUE
 		if("withdraw")
 			if(!candidate.ready)
-				to_chat(user, span_warning("You need to submit an application before you can withdraw one."))
+				to_chat(user, span_warning("你需要先提交申请才能撤回。"))
 				return FALSE
 			candidate.ready = FALSE
-			to_chat(user, span_notice("Your pAI candidacy has been withdrawn."))
+			to_chat(user, span_notice("你的个人人工智能候选资格已被撤回。"))
 			return TRUE
 	return FALSE
 
@@ -99,12 +99,12 @@ SUBSYSTEM_DEF(pai)
  */
 /datum/controller/subsystem/pai/proc/submit_alert(mob/user)
 	if(submit_spam)
-		to_chat(user, span_warning("Your candidacy has been submitted, but pAI cards have been alerted too recently."))
+		to_chat(user, span_warning("你的候选资格已提交，但个人人工智能卡片的警报触发过于频繁。"))
 		return FALSE
 	submit_spam = TRUE
 	for(var/obj/item/pai_card/pai_card as anything in pai_card_list)
 		if(!pai_card.pai)
 			pai_card.alert_update()
-	to_chat(user, span_notice("Your pAI candidacy has been submitted!"))
+	to_chat(user, span_notice("你的个人人工智能候选资格已提交！"))
 	addtimer(VARSET_CALLBACK(src, submit_spam, FALSE), PAI_SPAM_TIME, TIMER_UNIQUE|TIMER_DELETE_ME)
 	return TRUE

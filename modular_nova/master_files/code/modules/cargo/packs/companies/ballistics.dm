@@ -12,8 +12,8 @@
 	console_flag = CARGO_CONSOLE_NT | CARGO_CONSOLE_PDA // This is mostly for flavor, as NT ghost companies had been given a lot of absurdly powerful unique stuff and can still access to the station to get these.
 
 /datum/supply_pack/companies/ballistics/nt/mars_single
-	name = "Colt Detective Special"
-	desc = "The HoS took your gun and your badge? No problem! Just pay the absurd taxation fee and you too can be reunited with the lethal power of a .38!"
+	name = "柯尔特侦探特制型"
+	desc = "安保部长没收了你的枪和警徽？没问题！只要支付那荒谬的税费，你也能重新拥有.38口径的致命威力！"
 	cost = CARGO_CRATE_VALUE * 2.5
 	auto_name = FALSE
 	access = FALSE
@@ -23,8 +23,8 @@
 	contains = list(/obj/item/gun/ballistic/revolver/c38/detective)
 
 /datum/supply_pack/companies/ballistics/nt/double_barrel
-	name = "Double-Barreled Shotgun"
-	desc = "Lost your beloved bunny to a demonic invasion? Clown broke in and stole your beloved gun? No worries! Get a new gun as long as you can pay the absurd fees."
+	name = "双管霰弹枪"
+	desc = "你心爱的兔子在恶魔入侵中遇难了？小丑闯进来偷走了你心爱的枪？别担心！只要你能支付那荒谬的费用，就能获得一把新枪。"
 	cost = CARGO_CRATE_VALUE * 2
 	auto_name = FALSE
 	access = FALSE
@@ -38,8 +38,8 @@
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat)
 
 /datum/supply_pack/companies/ballistics/nt/c38_super_kit
-	name = "NT/E \"Laevateinn\" Revolver Conversion Kit"
-	desc = "A set of parts for converting a .38 revolver into Nanotrasen's latest foray into magnetically-accelerated sidearms. Includes a speedloader expansion toolset."
+	name = "纳米传讯/工程部 \"莱瓦汀\" 左轮手枪改装套件"
+	desc = "一套用于将.38左轮手枪改装为纳米传讯最新磁加速副武器的零件。包含快速装弹器扩展工具组。"
 	cost = CARGO_CRATE_VALUE * 1.5 // 300 cr at time of writing, 800 cr total
 	contains = list(
 		/obj/item/crafting_conversion_kit/c38_super,
@@ -105,8 +105,8 @@
 	cost = CARGO_CRATE_VALUE * 3
 
 /datum/supply_pack/companies/ballistics/sol_fed/longarm/renoster_super_kit
-	name = "Archon Systems \"KOLBEN/NACHTREIHER\" M64 Shotgun Conversion Kit"
-	desc = "A set of parts for converting an M64 shotgun into one of Archon Combat Systems's forays into improving the shotgun's end-user experience."
+	name = "阿肯系统 \"KOLBEN/NACHTREIHER\" M64霰弹枪改装套件"
+	desc = "一套用于将M64霰弹枪改装为阿肯战斗系统旨在提升霰弹枪终端用户体验的尝试性产品的零件。"
 	cost = CARGO_CRATE_VALUE * 3 // 600 cr at time of writing, 1200 cr total
 	contains = list(/obj/item/crafting_conversion_kit/riot_sol_super)
 	auto_name = FALSE
@@ -115,8 +115,8 @@
 	express_lock = FALSE
 
 /datum/supply_pack/companies/ballistics/sol_fed/longarm/doublebarrel_super_kit
-	name = "Archon Systems \"LAMMERGEIER\" Double-Barrel Shotgun Conversion Kit"
-	desc = "A set of parts for converting a double-barrel shotgun into one of Archon Combat Systems's forays into improving the shotgun's end-user experience."
+	name = "阿肯系统 \"胡兀鹫\" 双管霰弹枪改装套件"
+	desc = "一套用于将双管霰弹枪改装为阿肯战斗系统旨在提升霰弹枪终端用户体验的尝试性产品的零件。"
 	cost = CARGO_CRATE_VALUE * 3 // 600 cr at time of writing, 1000 cr total
 	contains = list(/obj/item/crafting_conversion_kit/doublebarrel_super)
 	auto_name = FALSE

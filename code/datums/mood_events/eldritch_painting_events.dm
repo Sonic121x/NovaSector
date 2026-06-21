@@ -3,46 +3,46 @@
 
 // Mood applied for ripping the painting
 /datum/mood_event/eldritch_painting
-	description = "I've been hearing weird laughter since cutting down that painting..."
+	description = "自从砍掉那幅画后，我就一直听到奇怪的笑声..."
 	mood_change = -6
 	timeout = 3 MINUTES
 
 /datum/mood_event/eldritch_painting/weeping
-	description = "He is here!"
+	description = "他来了！"
 	mood_change = -3
 	timeout = 11 SECONDS
 
 /datum/mood_event/eldritch_painting/weeping_heretic
-	description = "His suffering inspires me!"
+	description = "他的苦难激励着我！"
 	mood_change = 5
 	timeout = 3 MINUTES
 
 /datum/mood_event/eldritch_painting/weeping_withdrawal
-	description = "My mind is clear. He is not here."
+	description = "我的头脑很清醒。他不在这里。"
 	mood_change = 1
 	timeout = 3 MINUTES
 
 /datum/mood_event/eldritch_painting/desire_heretic
-	description = "The void screams."
+	description = "虚空在尖叫。"
 	mood_change = -2
 	timeout = 3 MINUTES
 
 /datum/mood_event/eldritch_painting/desire_examine
-	description = "The hunger has been fed, for now..."
+	description = "饥饿暂时得到了满足……"
 	mood_change = 3
 	timeout = 3 MINUTES
 
 /datum/mood_event/eldritch_painting/heretic_vines
-	description = "Oh what a lovely flower!"
+	description = "噢，多么可爱的花啊！"
 	mood_change = 3
 	timeout = 3 MINUTES
 
 /datum/mood_event/eldritch_painting/rust_examine
-	description = "That painting really creeped me out."
+	description = "那幅画真的让我毛骨悚然。"
 	mood_change = -2
 	timeout = 3 MINUTES
 
 /datum/mood_event/eldritch_painting/rust_heretic_examine
-	description = "Climb. Decay. Rust."
+	description = "攀爬。腐朽。锈蚀。"
 	mood_change = 6
 	timeout = 3 MINUTES

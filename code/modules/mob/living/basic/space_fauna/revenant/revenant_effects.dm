@@ -44,13 +44,13 @@
 	ADD_TRAIT(owner, TRAIT_REVENANT_INHIBITED, TRAIT_STATUS_EFFECT(id))
 	owner.update_appearance(UPDATE_ICON)
 
-	owner.balloon_alert(owner, "inhibited!")
+	owner.balloon_alert(owner, "被抑制了！")
 
 /datum/status_effect/revenant/inhibited/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_REVENANT_INHIBITED, TRAIT_STATUS_EFFECT(id))
 	owner.update_appearance(UPDATE_ICON)
 
-	owner.balloon_alert(owner, "uninhibited")
+	owner.balloon_alert(owner, "抑制解除")
 	return ..()
 
 /datum/status_effect/incapacitating/paralyzed/revenant
@@ -63,13 +63,13 @@
 	owner.orbiting?.end_orbit(src)
 
 	ADD_TRAIT(owner, TRAIT_NO_TRANSFORM, TRAIT_STATUS_EFFECT(id))
-	owner.balloon_alert(owner, "can't move!")
+	owner.balloon_alert(owner, "无法移动！")
 	owner.update_mob_action_buttons()
 	owner.update_appearance(UPDATE_ICON)
 
 /datum/status_effect/incapacitating/paralyzed/revenant/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_NO_TRANSFORM, TRAIT_STATUS_EFFECT(id))
 	owner.update_mob_action_buttons()
-	owner.balloon_alert(owner, "can move again")
+	owner.balloon_alert(owner, "可以移动了")
 
 	return ..()

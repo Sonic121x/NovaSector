@@ -182,7 +182,7 @@
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_FINISHED(src, transform_cooldown))
-		to_chat(user, span_warning("Wait a bit before trying to use [source] again!"))
+		to_chat(user, span_warning("稍等一会儿再尝试使用[source]！"))
 		return
 
 	if(SEND_SIGNAL(source, COMSIG_TRANSFORMING_PRE_TRANSFORM, user, active) & COMPONENT_BLOCK_TRANSFORM)
@@ -317,8 +317,8 @@
 		var/hurt_self_verb_simple = LAZYLEN(attack_verb_simple_on) ? pick(attack_verb_simple_on) : "hit"
 		var/hurt_self_verb_continuous = LAZYLEN(attack_verb_continuous_on) ? pick(attack_verb_continuous_on) : "hits"
 		user.visible_message(
-			span_warning("[user] triggers [parent] while holding it backwards and [hurt_self_verb_continuous] themself, like a doofus!"),
-			span_warning("You trigger [parent] while holding it backwards and [hurt_self_verb_simple] yourself, like a doofus!"),
+			span_warning("[user] 倒着拿[parent]时触发了它，像个傻瓜一样[hurt_self_verb_continuous]了自己！"),
+			span_warning("你倒着触发了[parent]，然后[hurt_self_verb_simple]了自己，像个傻瓜一样！"),
 		)
 		var/obj/item/item_parent = parent
 		switch(item_parent.damtype)

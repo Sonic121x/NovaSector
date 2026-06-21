@@ -1,6 +1,6 @@
 /obj/machinery/abductor/gland_dispenser
-	name = "replacement organ storage"
-	desc = "A tank filled with replacement organs."
+	name = "更换器官储存"
+	desc = "一个装满替换用器官的大罐。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "dispenser"
 	density = TRUE

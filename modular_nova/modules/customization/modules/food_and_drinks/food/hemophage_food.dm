@@ -4,14 +4,14 @@
 	return ..()
 
 /obj/item/food/hemophage
-	name = "bloody food"
-	desc = "If you see this, then something's gone very wrong and you should report it whenever you get the chance."
+	name = "血腥食物"
+	desc = "如果你看到这个，说明出了大问题，你应该一有机会就报告。"
 	icon = 'modular_nova/master_files/icons/obj/food/hemophage_food.dmi'
 	foodtypes = GORE | BLOODY
 
 /obj/item/food/hemophage/blood_rice_pearl
-	name = "kessen shinju"
-	desc = "A fun finger food. Little clumps of sticky rice with a bit of ground pork and green onion, all soaked and rolled in fresh blood; giving it a crimson hue. Recommended to serve hot!"
+	name = "血染珍珠米"
+	desc = "一种有趣的手指食物。一小团粘米饭，里面有一点猪肉末和青葱，全部浸泡并裹在新鲜血液中；使其呈现深红色。建议趁热食用！"
 	icon_state = "blood_rice_pearl"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -22,8 +22,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/hemophage/blood_rice_pearl/raw
-	name = "uncooked blood rice"
-	desc = "A clump of raw rice, drenched in blood."
+	name = "未煮的血米饭"
+	desc = "一团生米饭，浸透了血液。"
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "uncooked_rice"
 	food_reagents = list(
@@ -39,8 +39,8 @@
 	AddElement(/datum/element/microwavable, /obj/item/food/hemophage/blood_rice_pearl)
 
 /obj/item/food/hemophage/blood_noodles
-	name = "boiled blood noodles"
-	desc = "A plain dish of blood-soaked noodles, it would probably be better with more ingredients."
+	name = "水煮血面"
+	desc = "一道简单的血浸面条，如果加点别的配料可能会更好吃。"
 	icon = 'icons/obj/food/spaghetti.dmi'
 	icon_state = "spaghettiboiled"
 	color = "#810000"
@@ -53,8 +53,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/hemophage/blood_noodles/raw
-	name = "raw blood noodles"
-	desc = "Noodles thoroughly soaked in blood. Eating them raw doesn't sound appetizing. Nor does eating them at all, really."
+	name = "生血面"
+	desc = "彻底浸泡在血里的面条。生吃听起来就不开胃。说真的，怎么吃都不开胃。"
 	color = "#ad0000"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -68,8 +68,8 @@
 	AddElement(/datum/element/microwavable, /obj/item/food/hemophage/blood_noodles)
 
 /obj/item/food/hemophage/blood_noodles/boat_noodles
-	name = "boat noodles"
-	desc = "A dish with normally made with a very strong combination of pork and beef; the main attraction in this meatless version being the combination of blood curds and curly noodles, seasoned and immersed in fresh blood to the point they've turned crimson. It reeks of iron."
+	name = "船面"
+	desc = "这道菜通常由猪肉和牛肉的浓烈组合制成；而这个无肉版本的主要亮点在于血豆腐和卷曲面条的结合，经过调味并浸入新鲜血液，直至它们变成深红色。它散发着浓烈的铁锈味。"
 	icon_state = "meatballspaghetti"
 	color = "#d10000"
 	max_volume = 70
@@ -83,8 +83,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/hemophage/blood_curd
-	name = "blood curd"
-	desc = "Also known as 'blood tofu' or 'blood pudding,' this Yangyu delicacy looks to be made of congealed and cooked blood. It's soft and smooth, slightly chewy, and rich in riboflavin."
+	name = "血豆腐"
+	desc = "也被称为'血豆腐'或'血布丁'，这道羊鱼美食看起来是由凝结并煮熟的血制成的。它柔软光滑，略有嚼劲，富含核黄素。"
 	icon_state = "blood_curd"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 5,
@@ -95,7 +95,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_0
 
 /obj/item/food/hemophage/blood_cake
-	name = "ti hoeh koe"
+	name = "猪血糕"
 	desc = "Also known as 'pig's blood cake' or 'black cake', this is a variant of blood pudding normally served as street food in night markets. Created from steamed blood and sticky rice, it's been coated in peanut powder and coriander, and can be served with some dipping sauces. It seems the amount of blood in this meal has been turned up a lot, giving the all-too-familiar twinge of iron when it's tasted."
 	icon_state = "blood_cake"
 	food_reagents = list(
@@ -108,8 +108,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/soup/hemophage/blood_soup
-	name = "dinuguan"
-	desc = "A savory stew normally made of offal or freshly-simmered meat. This version features blood curds instead, while also featuring a rich, spicy and dark gravy made of fresh blood and vinegar. Chili and garlic were also added to enhance the savory flavor of the broth."
+	name = "血肠炖"
+	desc = "一种通常由内脏或新鲜炖肉制成的咸味炖菜。这个版本以血豆腐为特色，同时还有一种由新鲜血液和醋制成的浓郁、辛辣、深色的肉汁。还加入了辣椒和大蒜来增强肉汤的咸香味。"
 	icon = 'modular_nova/master_files/icons/obj/food/hemophage_food.dmi'
 	icon_state = "blood_soup"
 	max_volume = 90

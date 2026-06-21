@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(optin_forcing_on_spawn_antag_categories, list(
 		if (antag_level <= OPT_IN_NOT_TARGET)
 			return
 		var/stringified_level = GLOB.antag_opt_in_strings["[antag_level]"]
-		to_chat(our_client, span_boldnotice("Due to your antag preferences, your antag-optin status has been set to a minimum of [stringified_level]."))
+		to_chat(our_client, span_boldnotice("根据您的反派偏好，您的反派参与状态已被设置为最低[stringified_level]。"))
 
 /// Gets the actual opt-in level used for determining targets.
 /datum/mind/proc/get_effective_opt_in_level()

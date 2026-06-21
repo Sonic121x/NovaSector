@@ -77,7 +77,7 @@
 	if(!is_type_in_typecache(user, allowed_mobs))
 		return
 
-	examine_list += span_warning("Ctrl + Click [source] to slide under!\n")
+	examine_list += span_warning("Ctrl + 点击 [source] 来滑到下面！\n")
 
 // Loads our drone under door slide component dependency
 /obj/machinery/door/Initialize(mapload)

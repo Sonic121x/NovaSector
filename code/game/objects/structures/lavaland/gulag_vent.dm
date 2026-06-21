@@ -3,8 +3,8 @@
  * Prisoners can haul boulders up out of it in case the actual mining area is totally spent
  */
 /obj/structure/gulag_vent
-	name = "work pit"
-	desc = "A timeworn shaft, almost totally mined out. With a bit of effort you might be able to haul something up."
+	name = "工作坑"
+	desc = "一个年代久远的竖井，几乎已被开采殆尽。稍加努力，你或许能从里面拖出点东西来。"
 	icon = 'icons/obj/mining_zones/terrain.dmi'
 	icon_state = "ore_vent_active"
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG
@@ -25,7 +25,7 @@
 	if (!isliving(user))
 		return
 	if (occupied)
-		balloon_alert(user, "occupied!")
+		balloon_alert(user, "已占用！")
 		return
 	var/mob/living/living_user = user
 	occupied = TRUE
@@ -48,6 +48,6 @@
 	var/obj/item/boulder/gulag_boulder = new spawned_boulder(get_turf(living_user))
 	gulag_boulder.platform_lifespan = PLATFORM_LIFE_GULAG
 
-	living_user.visible_message(span_notice("[living_user] hauls a boulder out of [src]."))
+	living_user.visible_message(span_notice("[living_user]从[src]里拖出了一块巨石。"))
 	living_user.apply_damage(stamina_damage_to_inflict, STAMINA)
 	playsound(src, 'sound/items/weapons/genhit.ogg', vol = 50, vary = TRUE)

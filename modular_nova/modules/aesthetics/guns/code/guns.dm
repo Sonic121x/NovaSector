@@ -17,8 +17,8 @@
 // BALLISTICS, MOSTLY, PAST THIS POINT
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
-	name = "\improper Peacekeeper combat shotgun"
-	desc = "A semi-automatic Nanotrasen Peacekeeper shotgun with tactical furnishing and heavier internals meant for sustained fire. Lacks a threaded barrel."
+	name = "\improper 维和者战斗霰弹枪"
+	desc = "一把纳米传讯维和者半自动霰弹枪，配有战术配件和更重的内部结构，旨在持续射击。缺少螺纹枪管。"
 	icon = 'modular_nova/modules/aesthetics/guns/icons/guns.dmi'
 	worn_icon = 'modular_nova/modules/aesthetics/guns/icons/guns_back.dmi'
 	lefthand_file = 'modular_nova/modules/aesthetics/guns/icons/guns_lefthand.dmi'
@@ -66,11 +66,11 @@
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 
 /obj/item/gun/ballistic/automatic/pistol/deagle
-	desc = "A robust .454 Trucidator handgun."
+	desc = "一把坚固的.454 Trucidator手枪。"
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/regal
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
-	desc = "A gold plated Desert Eagle folded over a million times by superior martian gunsmiths. Uses .454 Trucidator ammo."
+	desc = "一把镀金的沙漠之鹰，由卓越的火星枪匠反复锻打百万次而成。使用.454 Trucidator弹药。"
 
 //BEAM SOUNDS
 /obj/item/ammo_casing/energy
@@ -89,8 +89,8 @@
 	fire_sound = 'modular_nova/modules/aesthetics/guns/sound/laser_cannon_fire.ogg'
 
 /obj/item/gun/ballistic/automatic/sniper_rifle
-	name = "sniper rifle"
-	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
+	name = "狙击步枪"
+	desc = "一种远程武器，能造成显著伤害。不，你不能瞬狙。"
 	icon = 'modular_nova/modules/aesthetics/guns/icons/guns_gubman2.dmi'
 	icon_state = "sniper"
 	w_class = WEIGHT_CLASS_BULKY
@@ -125,8 +125,8 @@
 		playsound(src, 'sound/machines/eject.ogg', 50, TRUE)
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
-	name = "syndicate sniper rifle"
-	desc = "An illegally modified .50 sniper rifle with suppressor compatibility. Quickscoping still doesn't work."
+	name = "辛迪加狙击步枪"
+	desc = "一把非法改装的.50狙击步枪，兼容消音器。瞬狙依然无效。"
 	icon = 'modular_nova/modules/aesthetics/guns/icons/guns_gubman2.dmi'
 	icon_state = "sniper2"
 	worn_icon_state = "sniper"
@@ -136,8 +136,8 @@
 	pin = /obj/item/firing_pin/implant/pindicate
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/modular
-	name = "AUS-107 anti-materiel rifle"
-	desc = "A devastating Aussec Armory heavy sniper rifle, fitted with a modern scope."
+	name = "AUS-107反器材步枪"
+	desc = "一把毁灭性的Aussec Armory重型狙击步枪，配备了现代瞄准镜。"
 	icon = 'modular_nova/modules/aesthetics/guns/icons/guns_gubman2.dmi'
 	icon_state = "sniper"
 	worn_icon_state = "sniper"
@@ -163,8 +163,8 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SCARBOROUGH)
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/modular/blackmarket  //Normal sniper but epic
-	name = "SA-107 anti-materiel rifle"
-	desc = "An illegal Scarborough Arms rendition of an Aussec Armory sniper rifle. This one has been fitted with a heavy duty scope, a sturdier stock, and has a removable muzzle brake that allows easy attachment of suppressors."
+	name = "SA-107反器材步枪"
+	desc = "一把Scarborough Arms非法仿制的Aussec Armory狙击步枪。这把配备了重型瞄准镜、更坚固的枪托，并有一个可拆卸的枪口制退器，便于安装消音器。"
 	icon_state = "sniper2"
 	fire_sound = 'modular_nova/modules/aesthetics/guns/sound/sniperrifle.ogg'
 	suppressed_sound = 'modular_nova/modules/aesthetics/guns/sound/sniperrifle_s.ogg'

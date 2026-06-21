@@ -1,6 +1,6 @@
 /obj/item/mecha_parts/mecha_equipment/kinetic_dampener
-	name = "Projectile Dampener Module"
-	desc = "An advanced electromagnetic field generator adapted from peaceborg technology. It weakens incoming projectiles within a short radius, reducing their kinetic impact."
+	name = "抛射体缓冲模块"
+	desc = "一种源自和平机器人技术的先进电磁场发生器。它能削弱短半径内来袭抛射体的动能冲击。"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "projectile_dampener"
 	equipment_slot = MECHA_UTILITY
@@ -42,8 +42,8 @@
 	return ..()
 
 /datum/action/vehicle/sealed/mecha/kinetic_dampener
-	name = "Projectile Dampener Module"
-	desc = "An advanced electromagnetic field generator adapted from peaceborg technology. It weakens incoming projectiles within a short radius, reducing their kinetic impact."
+	name = "抛射体缓冲模块"
+	desc = "一种源自和平机器人技术的先进电磁场发生器。它能在短半径内削弱来袭的抛射物，降低其动能冲击。"
 	button_icon_state = "mech_defense_mode_off"
 
 /datum/action/vehicle/sealed/mecha/kinetic_dampener/Trigger(mob/clicker, trigger_flags)
@@ -52,7 +52,7 @@
 		return
 	var/obj/item/mecha_parts/mecha_equipment/kinetic_dampener/dampener = locate(/obj/item/mecha_parts/mecha_equipment/kinetic_dampener) in chassis.contents
 	if(!dampener)
-		to_chat(clicker, span_warning("No dampener module found."))
+		to_chat(clicker, span_warning("未找到阻尼器模块。"))
 		return FALSE
 
 	var/desired_state = !dampener.active
@@ -61,7 +61,7 @@
 	if(success)
 		button_icon_state = dampener.active ? "mech_defense_mode_on" : "mech_defense_mode_off"
 		build_all_button_icons()
-		to_chat(clicker, span_notice("You toggle the projectile dampener [dampener.active ? "on" : "off"]."))
+		to_chat(clicker, span_notice("你切换了抛射物阻尼器[dampener.active ? "on" : "off"]。"))
 	else
 		// set_active() already printed the “no power” message
 		return FALSE
@@ -80,7 +80,7 @@
 	// Check if chassis exists and has enough energy to start
 	if(QDELETED(chassis) || !chassis.use_energy(energy_drain))
 		for(var/mob/living/pilot in chassis.return_controllers_with_flag(VEHICLE_CONTROL_DRIVE))
-			to_chat(pilot, span_warning("The projectile dampener fails to power on — insufficient energy."))
+			to_chat(pilot, span_warning("抛射物阻尼器启动失败——能量不足。"))
 		src.active = FALSE
 		return FALSE
 	// Clear any old field
@@ -103,5 +103,5 @@
 		// not enough power, shut down
 		set_active(FALSE)
 		for(var/mob/living/pilot in chassis.return_controllers_with_flag(VEHICLE_CONTROL_DRIVE))
-			to_chat(pilot, span_warning("The projectile dampener powers down — insufficient energy."))
+			to_chat(pilot, span_warning("抛射物阻尼器关闭——能量不足。"))
 		return PROCESS_KILL

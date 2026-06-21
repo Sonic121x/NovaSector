@@ -12,8 +12,8 @@
  * If you just want a random poster, see [/obj/item/poster/random_official] or [/obj/item/poster/random_contraband]
  */
 /obj/item/poster
-	name = "poorly coded poster"
-	desc = "You probably shouldn't be holding this."
+	name = "代码写得很烂的海报"
+	desc = "你大概不应该拿着这个。"
 	icon = 'icons/obj/poster.dmi'
 	force = 0
 	resistance_flags = FLAMMABLE
@@ -54,14 +54,14 @@
 
 /obj/item/poster/examine(mob/user)
 	. = ..()
-	. += span_notice("You can booby-trap the poster by using a glass shard on it before you put it up.")
+	. += span_notice("你可以在张贴海报前用玻璃碎片设置陷阱。")
 
 /obj/item/poster/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(!istype(I, /obj/item/shard))
 		return ..()
 
 	if (locate(/obj/item/shard) in (poster_structure?.contents || contents))
-		balloon_alert(user, "already trapped!")
+		balloon_alert(user, "已经设好陷阱了！")
 		return
 
 	if(!user.transferItemToLoc(I, src))
@@ -76,7 +76,7 @@
 	var/turf/user_turf = get_turf(user)
 	var/dir = get_dir(user_turf, wall_structure)
 	if(!(dir in GLOB.cardinals))
-		balloon_alert(user, "stand in line with wall!")
+		balloon_alert(user, "请与墙壁对齐！")
 		return ITEM_INTERACT_BLOCKING
 
 	// Deny placing posters on currently-diagonal walls, although the wall may change in the future.
@@ -84,20 +84,20 @@
 		for(var/overlay in wall_structure.overlays)
 			var/image/new_image = overlay
 			if(copytext(new_image.icon_state, 1, 3) == "d-") //3 == length("d-") + 1
-				to_chat(user, span_warning("Cannot place on diagonal wall!"))
+				to_chat(user, span_warning("无法放置在斜角墙上！"))
 				return ITEM_INTERACT_FAILURE
 
 	var/stuff_on_wall = 0
 	for(var/obj/contained_object in wall_structure.contents) //Let's see if it already has a poster on it or too much stuff
 		if(istype(contained_object, /obj/structure/sign/poster))
-			balloon_alert(user, "no room!")
+			balloon_alert(user, "没地方了！")
 			return ITEM_INTERACT_FAILURE
 		stuff_on_wall++
 		if(stuff_on_wall == 3)
-			balloon_alert(user, "no room!")
+			balloon_alert(user, "没地方了！")
 			return ITEM_INTERACT_FAILURE
 
-	balloon_alert(user, "hanging poster...")
+	balloon_alert(user, "正在张贴海报...")
 	var/obj/structure/sign/poster/placed_poster = poster_structure || new poster_type(src)
 	placed_poster.forceMove(user_turf)
 	placed_poster.setDir(dir)
@@ -136,9 +136,9 @@
  * For the item form that can be spawned for players, see [/obj/item/poster]
  */
 /obj/structure/sign/poster
-	name = "poster"
+	name = "海报"
 	var/original_name
-	desc = "A large piece of space-resistant printed paper."
+	desc = "一大张抗太空环境的印刷纸张。"
 	icon = 'icons/obj/poster.dmi'
 	anchored = TRUE
 	buildable_sign = FALSE //Cannot be unwrenched from a wall.
@@ -164,8 +164,8 @@
 		randomise(random_basetype)
 	if(!ruined)
 		original_name = name // can't use initial because of random posters
-		name = "poster - [name]"
-		desc = "A large piece of space-resistant printed paper. [desc]"
+		name = "海报 - [name]"
+		desc = "一大张抗太空环境的印刷纸张。[desc]"
 
 	AddElement(/datum/element/beauty, 300)
 
@@ -227,10 +227,10 @@
 /obj/structure/sign/poster/wirecutter_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 100)
 	if(ruined)
-		to_chat(user, span_notice("You remove the remnants of the poster."))
+		to_chat(user, span_notice("你移除了海报的残余部分。"))
 		qdel(src)
 	else
-		to_chat(user, span_notice("You carefully remove the poster from the wall."))
+		to_chat(user, span_notice("你小心地将海报从墙上取下。"))
 		roll_and_drop(Adjacent(user) ? get_turf(user) : loc, user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -243,7 +243,7 @@
 /// Check to see if this poster is tearable and gives the user feedback if it is not.
 /obj/structure/sign/poster/proc/check_tearability(mob/user)
 	if(ruined)
-		balloon_alert(user, "already ruined!")
+		balloon_alert(user, "已经撕坏了！")
 		return FALSE
 	return TRUE
 
@@ -253,9 +253,9 @@
 	if (!payload)
 		return
 
-	to_chat(user, span_warning("There's something sharp behind this! What the hell?"))
+	to_chat(user, span_warning("这后面有尖锐的东西！搞什么鬼？"))
 	if(!can_embed_trap(user) || !payload.force_embed(user, user.get_active_hand()))
-		visible_message(span_notice("A [payload.name] falls from behind the poster.") )
+		visible_message(span_notice("一个 [payload.name] 从海报后面掉了下来。") )
 		payload.forceMove(user.drop_location())
 
 /obj/structure/sign/poster/proc/can_embed_trap(mob/living/carbon/human/user)
@@ -282,10 +282,10 @@
 	return isclosedturf(hopefully_still_a_closed_turf)
 
 /obj/structure/sign/poster/proc/on_placed_poster(mob/user)
-	to_chat(user, span_notice("You place the poster!"))
+	to_chat(user, span_notice("你贴好了海报！"))
 
 /obj/structure/sign/poster/proc/tear_poster(mob/user)
-	visible_message(span_notice("[user] rips [src] in a single, decisive motion!") )
+	visible_message(span_notice("[user] 以一次果断的动作撕下了 [src]！") )
 	playsound(src.loc, 'sound/items/poster/poster_ripped.ogg', 100, TRUE)
 	spring_trap(user)
 
@@ -300,13 +300,13 @@
 /obj/structure/sign/poster/ripped
 	ruined = TRUE
 	icon_state = "poster_ripped"
-	name = "ripped poster"
-	desc = "You can't make out anything from the poster's original print. It's ruined."
+	name = "撕坏的海报"
+	desc = "你无法辨认出海报原本印刷的任何内容。它已经毁了。"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/ripped, 32)
 
 /obj/structure/sign/poster/random
-	name = "random poster" // could even be ripped
+	name = "随机海报" // could even be ripped
 	icon_state = "random_anything"
 	never_random = TRUE
 	random_basetype = /obj/structure/sign/poster
@@ -318,8 +318,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/ripped, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/random, 32)
 
 /obj/structure/sign/poster/greenscreen
-	name = "greenscreen"
-	desc = "Used to create a convincing illusion of a different background."
+	name = "绿幕"
+	desc = "用于创建不同背景的逼真幻象。"
 	icon_state = "greenscreen"
 	poster_item_name = "greenscreen"
 	poster_item_desc = "Used to create a convincing illusion of a different background."

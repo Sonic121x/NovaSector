@@ -1,6 +1,6 @@
 /mob/living/basic/cockroach
-	name = "cockroach"
-	desc = "This station is just crawling with bugs."
+	name = "蟑螂"
+	desc = "这空间站简直爬满了虫子。"
 	icon_state = "cockroach"
 	icon_dead = "cockroach_no_animation"
 	density = FALSE
@@ -14,10 +14,10 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 
-	verb_say = "chitters"
-	verb_ask = "chitters inquisitively"
-	verb_exclaim = "chitters loudly"
-	verb_yell = "chitters loudly"
+	verb_say = "吱吱叫"
+	verb_ask = "好奇地吱吱叫"
+	verb_exclaim = "大声吱吱叫"
+	verb_yell = "大声吱吱叫"
 	response_disarm_continuous = "shoos"
 	response_disarm_simple = "shoo"
 	response_harm_continuous = "splats"
@@ -42,7 +42,7 @@
 /mob/living/basic/cockroach/Initialize(mapload)
 	var/turf/our_turf = get_turf(src)
 	if(SSmapping.level_trait(our_turf.z, ZTRAIT_SNOWSTORM) || SSmapping.level_trait(our_turf.z, ZTRAIT_ICE_RUINS) || SSmapping.level_trait(our_turf.z, ZTRAIT_ICE_RUINS_UNDERGROUND))
-		name = "ice-[name]"
+		name = "冰-[name]"
 		real_name = name
 		desc += "<br>This one seems to have a blue tint and has adapted to the cold."
 		minimum_survivable_temperature = 140 // 40kelvin below icebox temp
@@ -77,9 +77,9 @@
 
 /// Roach which tries to ineffectually attack you
 /mob/living/basic/cockroach/sewer
-	name = "sewer roach"
+	name = "下水道蟑螂"
 	icon_state = "cockroach_sewer"
-	desc = "This bug has a really bad attitude."
+	desc = "这只虫子脾气真的很差。"
 	health = 2
 	maxHealth = 2 // Wow!
 	melee_damage_lower = 2
@@ -91,8 +91,8 @@
 	ai_controller = /datum/ai_controller/basic_controller/cockroach/aggro
 
 /mob/living/basic/cockroach/bloodroach
-	name = "bloodroach"
-	desc = "This cockroach has gorged itself on maintenance blood, and has a glistening red sheen to its fatty carapace. Incredibly disgusting."
+	name = "血蟑螂"
+	desc = "这只蟑螂饱食了维护区的血液，其肥厚的甲壳上闪烁着红色的光泽。极其恶心。"
 	icon_state = "bloodroach"
 	icon_dead = "bloodroach_no_animation"
 	health = 3
@@ -109,7 +109,7 @@
 	for(var/turf/messy_turf in view(src, 2))
 		new /obj/effect/decal/cleanable/blood(messy_turf)
 		for(var/mob/living/mob_in_turf in messy_turf)
-			mob_in_turf.visible_message(span_danger("[mob_in_turf] is splattered with blood!"), span_userdanger("You're splattered with blood!"))
+			mob_in_turf.visible_message(span_danger("[mob_in_turf] 被溅了一身血！"), span_userdanger("你被溅了一身血！"))
 			mob_in_turf.add_blood_DNA(list("Non-human DNA" = random_human_blood_type()))
 			mob_in_turf.add_mood_event("splattered_with_blood", /datum/mood_event/splattered_with_blood)
 			playsound(mob_in_turf, 'sound/effects/splat.ogg', 50, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE)
@@ -117,8 +117,8 @@
 
 /// Roach with a spiky hat, like a caltrop
 /mob/living/basic/cockroach/hauberoach
-	name = "hauberoach"
-	desc = "Is that cockroach wearing a tiny yet immaculate replica 19th century Prussian spiked helmet? ...Is that a bad thing?"
+	name = "尖盔蟑螂"
+	desc = "那只蟑螂是不是戴着一顶微小却完美复刻的19世纪普鲁士尖顶头盔？……这算坏事吗？"
 	icon_state = "hauberoach"
 	attack_verb_continuous = "rams its spike into"
 	attack_verb_simple = "ram your spike into"
@@ -151,15 +151,15 @@
 	if(!istype(living_target))
 		return FALSE //We failed to run the invoke. Might be because we're a structure. Let the squashable element handle it then!
 	if(!HAS_TRAIT(living_target, TRAIT_PIERCEIMMUNE))
-		living_target.visible_message(span_danger("[living_target] steps onto [cockroach]'s spike!"), span_userdanger("You step onto [cockroach]'s spike!"))
+		living_target.visible_message(span_danger("[living_target] 踩到了 [cockroach] 的尖刺上！"), span_userdanger("你踩到了 [cockroach] 的尖刺上！"))
 		return TRUE
-	living_target.visible_message(span_notice("[living_target] squashes [cockroach], not even noticing its spike."), span_notice("You squashed [cockroach], not even noticing its spike."))
+	living_target.visible_message(span_notice("[living_target] 踩扁了 [cockroach]，甚至没注意到它的尖刺。"), span_notice("你踩扁了 [cockroach]，甚至没注意到它的尖刺。"))
 	return FALSE
 
 /// Regal rat royal escort
 /mob/living/basic/cockroach/hauberoach/imperial
-	name = "imperial hauberoach"
-	desc = "This cockroach seems to have found employment as a professional royal guard."
+	name = "帝国尖盔蟑螂"
+	desc = "这只蟑螂似乎找到了一份职业皇家卫队的工作。"
 	health = 2
 	maxHealth = 2
 	melee_damage_lower = 3
@@ -170,8 +170,8 @@
 
 /// Roach with a gun
 /mob/living/basic/cockroach/glockroach
-	name = "glockroach"
-	desc = "HOLY SHIT, THAT COCKROACH HAS A GUN!"
+	name = "枪蟑螂"
+	desc = "我操，那只蟑螂有枪！"
 	icon_state = "glockroach"
 	melee_damage_lower = 2.5
 	melee_damage_upper = 10
@@ -208,8 +208,8 @@
 	minion_commands = glockroach_commands
 
 /mob/living/basic/cockroach/glockroach/gang
-	name = "gangroach"
-	desc = "This roach grew up on the wrong side of the streets and has fallen in with the wrong crowd."
+	name = "帮派蟑螂"
+	desc = "这只蟑螂在街头错误的环境中长大，并误入了歧途。"
 	icon_state = "glockroach_sewer"
 	health = 2
 	maxHealth = 2
@@ -221,14 +221,14 @@
 	damage_type = BRUTE
 
 /obj/item/ammo_casing/glockroach
-	name = "0.9mm bullet casing"
-	desc = "A... 0.9mm bullet casing? What?"
+	name = "0.9毫米弹壳"
+	desc = "一个……0.9毫米弹壳？什么鬼？"
 	projectile_type = /obj/projectile/glockroachbullet
 
 /// Roach with an SMG
 /mob/living/basic/cockroach/glockroach/mobroach
-	name = "mobroach"
-	desc = "WE'RE FUCKED, THAT COCKROACH HAS A TOMMYGUN!"
+	name = "暴徒蟑螂"
+	desc = "我们完蛋了，那只蟑螂有把汤普森冲锋枪！"
 	icon_state = "mobroach"
 	burst_shots = 4
 	ranged_cooldown = 2 SECONDS
@@ -237,8 +237,8 @@
 	ai_controller = /datum/ai_controller/basic_controller/cockroach/glockroach
 
 /mob/living/basic/cockroach/glockroach/mobroach/goon
-	name = "goonroach"
-	desc = "You got it, boss."
+	name = "打手蟑螂"
+	desc = "遵命，老大。"
 	icon_state = "mobroach_sewer"
 	health = 2
 	maxHealth = 2

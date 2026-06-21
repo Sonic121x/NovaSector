@@ -3,8 +3,8 @@
 /**********************Prisoners' Console**************************/
 
 /obj/machinery/mineral/labor_claim_console
-	name = "point claim console"
-	desc = "A stacking console with an electromagnetic writer, used to track ore mined by prisoners."
+	name = "劳动点数控制台"
+	desc = "一台带有电磁记录器的堆垛控制台，用于记录囚犯所开采的矿石数量。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = FALSE
@@ -175,8 +175,8 @@
 		return FALSE
 
 	obj_flags |= EMAGGED
-	balloon_alert(user, "id authenticator short-circuited")
-	visible_message(span_warning("[src] lets out a few sparks!"))
+	balloon_alert(user, "身份验证器短路")
+	visible_message(span_warning("[src] 冒出了一些火花！"))
 	do_sparks(2, TRUE, src)
 	return TRUE
 
@@ -214,8 +214,8 @@
 /**********************Point Lookup Console**************************/
 
 /obj/machinery/mineral/labor_points_checker
-	name = "points checking console"
-	desc = "A console used by prisoners to check the progress on their quotas. Simply swipe a prisoner ID."
+	name = "积分查询终端机"
+	desc = "囚犯们用来查看个人任务完成进度的控制台。只需刷一下囚犯的身份证即可。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = FALSE
@@ -238,12 +238,12 @@
 	say("Collect points by bringing smelted minerals to the Labor Shuttle stacking machine. Reach your quota to earn your release.")
 
 /datum/aas_config_entry/security_labor_stacker
-	name = "Security Alert: Labor Camp Release"
+	name = "安保警报：劳改营释放"
 	announcement_lines_map = list(
-		"Message" = "%PERSON returned to the station. Minerals and Prisoner ID card ready for retrieval."
+		"Message" = "%PERSON 已返回空间站。矿物和囚犯ID卡可供领取。"
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with the name of the prisoner."
+		"PERSON" = "将被替换为囚犯的名字。"
 	)
 
 #undef SHEET_POINT_VALUE

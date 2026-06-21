@@ -1,5 +1,5 @@
 /datum/design/biomeat
-	name = "Meat Product"
+	name = "肉类产品"
 	id = "meatp"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25) // Monkey Cube is more efficient, but this is easier on the chef.
@@ -8,7 +8,7 @@
 
 // Kobors
 /datum/design/kobold_cube
-	name = "Kobold Kube"
+	name = "狗头人方块"
 	id = "kcube"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)

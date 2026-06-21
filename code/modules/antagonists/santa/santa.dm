@@ -1,5 +1,5 @@
 /datum/antagonist/santa
-	name = "\improper Santa"
+	name = "\improper 圣诞老人"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
@@ -39,7 +39,7 @@
 
 /datum/antagonist/santa/greet()
 	. = ..()
-	to_chat(owner, span_bolddanger("Your objective is to bring joy to the people on this station. You have a magical bag, which generates presents as long as you have it! You can examine the presents to take a peek inside, to make sure that you give the right gift to the right person."))
+	to_chat(owner, span_bolddanger("你的目标是为这座空间站上的人们带来欢乐。你有一个魔法袋，只要拥有它就能不断生成礼物！你可以检查礼物来窥探内部，确保将合适的礼物送给合适的人。"))
 
 /datum/antagonist/santa/proc/give_equipment()
 	var/mob/living/carbon/human/H = owner.current

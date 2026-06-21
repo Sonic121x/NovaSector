@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/vow_of_silence
-	name = "Break Vow"
-	desc = "Break your vow of silence. Permanently."
+	name = "打破誓言"
+	desc = "打破你的沉默誓言。永久性地。"
 	background_icon_state = "bg_mime"
 	overlay_icon_state = "bg_mime_border"
 	button_icon = 'icons/mob/actions/actions_mime.dmi'
@@ -27,7 +27,7 @@
 
 /datum/action/cooldown/spell/vow_of_silence/cast(mob/living/carbon/human/cast_on)
 	. = ..()
-	to_chat(cast_on, span_notice("You break your vow of silence."))
+	to_chat(cast_on, span_notice("你打破了你的静默誓言。"))
 	cast_on.log_message("broke [cast_on.p_their()] vow of silence.", LOG_GAME)
 	cast_on.add_mood_event("vow", /datum/mood_event/broken_vow)
 	REMOVE_TRAIT(cast_on, TRAIT_MIMING, "[type]")

@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/pointed/swap
-	name = "Swap"
+	name = "换位术"
 	desc = "This spell allows you to swap locations with any living being. \
 		RMB: Mark a secondary swap target. This secondary swap target will be discarded once you swap, \
 		or else you can click yourself with the RMB to discard your secondary target."
@@ -31,7 +31,7 @@
 	if(!.)
 		return FALSE
 	if(!isliving(cast_on))
-		to_chat(owner, span_warning("You can only swap locations with living beings!"))
+		to_chat(owner, span_warning("你只能与活物交换位置！"))
 		return FALSE
 	return TRUE
 
@@ -47,24 +47,24 @@
 		// Find any living being in the list. We aren't picky, it's aim assist after all
 		target = locate(/mob/living) in target
 		if(!target)
-			to_chat(owner, span_warning("You can only select living beings as secondary target!"))
+			to_chat(owner, span_warning("你只能选择活物作为次要目标！"))
 			return FALSE
 	if(target == owner)
 		if(!isnull(second_target))
-			to_chat(owner, span_notice("You cancel your secondary swap target!"))
+			to_chat(owner, span_notice("你取消了次要交换目标！"))
 			second_target = null
 		else
-			to_chat(owner, span_warning("You have no secondary swap target!"))
+			to_chat(owner, span_warning("你没有次要交换目标！"))
 		return FALSE
 	second_target = target
-	to_chat(owner, span_notice("You select [target.name] as a secondary swap target!"))
+	to_chat(owner, span_notice("你选择[target.name]作为次要交换目标！"))
 	return FALSE
 
 /datum/action/cooldown/spell/pointed/swap/cast(mob/living/carbon/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(owner, span_warning("The spell had no effect!"))
-		to_chat(cast_on, span_warning("You feel space bending, but it rapidly dissipates."))
+		to_chat(owner, span_warning("法术没有效果！"))
+		to_chat(cast_on, span_warning("你感到空间正在弯曲，但它迅速消散了。"))
 		return FALSE
 
 	to_chat(cast_on, span_userdanger("You feel space bending."))

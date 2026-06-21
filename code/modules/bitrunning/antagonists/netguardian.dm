@@ -4,8 +4,8 @@
 	show_in_antagpanel = TRUE
 
 /mob/living/basic/netguardian
-	name = "netguardian prime"
-	desc = "The last line of defense against organic intrusion. It doesn't appear happy to see you."
+	name = "网络守护者首领"
+	desc = "抵御有机入侵的最后防线。它看起来并不乐意见到你。"
 	icon = 'icons/mob/nonhuman-player/netguardian.dmi'
 	icon_state = "netguardian"
 	icon_living = "netguardian"
@@ -24,10 +24,10 @@
 	attack_verb_simple = "drills"
 	attack_sound = 'sound/items/weapons/drill.ogg'
 	attack_vis_effect = ATTACK_EFFECT_MECHFIRE
-	verb_say = "states"
-	verb_ask = "queries"
-	verb_exclaim = "declares"
-	verb_yell = "alarms"
+	verb_say = "陈述"
+	verb_ask = "询问"
+	verb_exclaim = "宣告"
+	verb_yell = "警报"
 	bubble_icon = "machine"
 
 	faction = list(
@@ -81,7 +81,7 @@
 	. += emissive_appearance(icon, "netguardian_emissive", src)
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/netguardian
-	name = "2E Rocket Launcher"
+	name = "2E火箭发射器"
 	button_icon = 'icons/obj/weapons/guns/ammo.dmi'
 	button_icon_state = "rocketbundle"
 	cooldown_time = 30 SECONDS
@@ -103,7 +103,7 @@
 
 	StartCooldown()
 	if(!do_after(player, 1.5 SECONDS))
-		player.balloon_alert(player, "cancelled")
+		player.balloon_alert(player, "已取消")
 		StartCooldown(cooldown_time * 0.2)
 		player.cut_overlay(overlays)
 		return TRUE

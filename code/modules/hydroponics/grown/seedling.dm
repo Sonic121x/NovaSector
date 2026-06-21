@@ -1,6 +1,6 @@
 /obj/item/seeds/seedling
-	name = "seedling seed pack"
-	desc = "These seeds grow into a floral assistant which can help look after other plants!"
+	name = "幼苗种子包"
+	desc = "这些种子会长成一个花卉助手，可以帮助照料其他植物！"
 	icon_state = "seed-seedling"
 	growing_icon = 'icons/obj/service/hydroponics/growing_fruits.dmi'
 	species = "seedling"

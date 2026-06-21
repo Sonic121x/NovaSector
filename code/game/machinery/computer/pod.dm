@@ -1,6 +1,6 @@
 /obj/machinery/computer/pod
-	name = "mass driver launch control"
-	desc = "A combined blastdoor and mass driver control unit."
+	name = "质量发射器弹射控制器"
+	desc = "一个组合型防爆门和质量驱动器控制单元。"
 	processing_flags = START_PROCESSING_MANUALLY
 	/// Connected mass driver
 	var/obj/machinery/mass_driver/connected = null
@@ -83,7 +83,7 @@
 	if(.)
 		return
 	if(!allowed(usr))
-		to_chat(usr, span_warning("Access denied."))
+		to_chat(usr, span_warning("拒绝访问."))
 		return
 
 	switch(action)
@@ -132,13 +132,13 @@
 			return TRUE
 
 /obj/machinery/computer/pod/old
-	name = "\improper DoorMex control console"
+	name = "\improper DoorMex控制台"
 	icon_state = "oldcomp"
 	icon_screen = "library"
 	icon_keyboard = null
 
 /obj/machinery/computer/pod/old/mass_driver_controller
-	name = "\improper Mass Driver Controller"
+	name = "\improper 质量发射器控制器"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "airlock_control_standby"
 	icon_screen = null
@@ -162,9 +162,9 @@
 
 /obj/machinery/computer/pod/old/syndicate
 	name = "\improper ProComp Executive IIc"
-	desc = "The Syndicate operate on a tight budget. Operates external airlocks."
+	desc = "这个辛迪加在紧张的预算下运作。控制外部气闸。"
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/pod/old/swf
-	name = "\improper Magix System IV"
-	desc = "An arcane artifact that holds much magic. Running E-Knock 2.2: Sorcerer's Edition."
+	name = "\improper 魔力系统 IV"
+	desc = "一个蕴含强大魔力的神秘神器。运行 E-Knock 2.2：巫师版。"

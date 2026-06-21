@@ -1,6 +1,6 @@
 /obj/item/ammo_box/speedloader
-	name = "speed loader (base type)"
-	desc = "This shouldn't be here. Report this to a coder, thanks!"
+	name = "快速装弹器（基础类型）"
+	desc = "这东西不该出现在这里。请向程序员报告，谢谢！"
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	ammo_box_multiload = (AMMO_BOX_MULTILOAD_IN | AMMO_BOX_MULTILOAD_OUT_LOADED)
 	// You can feed ammo in from a box (assuming someone ever codes a relevant ammo box),
@@ -8,8 +8,8 @@
 	// but you can't use it to teleport six bullets into a detached rifle magazine.
 
 /obj/item/ammo_box/speedloader/c357
-	name = "speed loader (.357)"
-	desc = "Designed to quickly reload seven-chamber .357 revolvers."
+	name = "快速装弹器（.357）"
+	desc = "专为快速装填七发弹巢的.357左轮手枪而设计。"
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/c357
 	max_ammo = 7
@@ -19,19 +19,19 @@
 	ammo_band_color = null
 
 /obj/item/ammo_box/speedloader/c357/match
-	name = "speed loader (.357 Match)"
-	desc = parent_type::desc + " Match rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	name = "快速装弹器（.357 竞赛弹）"
+	desc = parent_type::desc + "竞赛弹的制造公差极其严格，使其易于展示特技射击。"
 	ammo_type = /obj/item/ammo_casing/c357/match
 	ammo_band_color = "#77828a"
 
 /obj/item/ammo_box/speedloader/c357/phasic
-	name = "speed loader (.357 Phasic)"
-	desc = parent_type::desc + " Phasic rounds, also known as 'Ghost Lead', are specially manufactured to pass through non-organic material. Somehow."
+	name = "快速装弹器（.357 相位弹）"
+	desc = parent_type::desc + "相位弹，也被称为‘幽灵铅弹’，是专门制造来穿透非有机材料的。不知怎么做到的。"
 	ammo_type = /obj/item/ammo_casing/c357/phasic
 	ammo_band_color = "#693a6a"
 
 /obj/item/ammo_box/speedloader/c357/heartseeker
-	name = "speed loader (.357 Heartseeker)"
+	name = "快速装弹器（.357 寻心弹）"
 	desc = parent_type::desc + " Heartseeker rounds veer into targets with exceptional precision using an unknown method. \
 		It apparently predicts movement using neural pulses in the brain, but that's less marketable. \
 		As seen in the hit NTFlik horror-space western film, Forget-Me-Not, brought to you by Roseus Galactic!"
@@ -39,8 +39,8 @@
 	ammo_band_color = "#a91e1e"
 
 /obj/item/ammo_box/speedloader/c38
-	name = "speed loader (.38)"
-	desc = "Designed to quickly reload six-chamber .38 Special revolvers."
+	name = "快速装弹器（.38）"
+	desc = "专为快速装填六发弹巢的.38特种左轮手枪而设计。"
 	icon_state = "38"
 	base_icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
@@ -63,19 +63,19 @@
 		. += "38-[boolet::lead_or_laser]-[inserted_ammo]"
 
 /obj/item/ammo_box/speedloader/c38/trac
-	name = "speed loader (.38 TRAC)"
-	desc = parent_type::desc + " TRAC bullets embed a tracking implant within the target's body."
+	name = "快速装弹器 (.38 TRAC)"
+	desc = parent_type::desc + "TRAC子弹会在目标体内植入一个追踪器。"
 	ammo_type = /obj/item/ammo_casing/c38/trac
 	ammo_band_color = COLOR_AMMO_TRACK
 
 /obj/item/ammo_box/speedloader/c38/match
-	name = "speed loader (.38 Match)"
-	desc = parent_type::desc + " Match bullets are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	name = "快速装弹器 (.38 竞赛弹)"
+	desc = parent_type::desc + "竞赛弹的制造公差极其严格，非常适合用来展示花式射击技巧。"
 	ammo_type = /obj/item/ammo_casing/c38/match
 	ammo_band_color = COLOR_AMMO_MATCH
 
 /obj/item/ammo_box/speedloader/c38/match/bouncy
-	name = "speed loader (.38 Rubber)"
+	name = "快速装弹器 (.38 橡胶弹)"
 	desc = parent_type::desc + " Rubber rounds are incredibly bouncy and MOSTLY less-lethal, making them great to show off trickshots with."
 	ammo_type = /obj/item/ammo_casing/c38/match/bouncy
 	ammo_band_color = COLOR_AMMO_RUBBER

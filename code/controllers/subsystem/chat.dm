@@ -4,7 +4,7 @@
  */
 
 SUBSYSTEM_DEF(chat)
-	name = "Chat"
+	name = "聊天"
 	ss_flags = SS_TICKER|SS_NO_INIT
 	wait = 1
 	priority = FIRE_PRIORITY_CHAT

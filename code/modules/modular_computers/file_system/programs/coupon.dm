@@ -93,7 +93,7 @@
 		return FALSE
 	var/obj/item/card/id/user_id = computer.stored_id
 	if(!(user_id?.registered_account))
-		computer.balloon_alert(user, "no bank account found!")
+		computer.balloon_alert(user, "未找到银行账户！")
 		return TRUE
 	var/obj/machinery/photocopier/copier = tapped_atom
 	if(copier.check_busy(user))
@@ -103,7 +103,7 @@
 		if(!coupon.printed)
 			num_coupons++
 	if(!num_coupons)
-		computer.balloon_alert(user, "no coupon available!")
+		computer.balloon_alert(user, "没有可用的优惠券！")
 		return TRUE
 	copier.do_copies(CALLBACK(src, PROC_REF(print_coupon), user_id.registered_account), user, COUPON_PAPER_USE, COUPON_TONER_USE, num_coupons)
 	return TRUE

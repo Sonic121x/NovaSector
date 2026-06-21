@@ -1,6 +1,6 @@
 /obj/structure/stripper_pole
-	name = "stripper pole"
-	desc = "A pole fastened to the ceiling and floor, used to show of one's goods to company."
+	name = "脱衣舞钢管"
+	desc = "一根固定在天花板和地板上的钢管，用于向同伴展示自己的‘商品’。"
 	icon = 'modular_nova/modules/modular_items/lewd_items/icons/obj/lewd_structures/dancing_pole.dmi'
 	icon_state = "pole_purple_off"
 	base_icon_state = "pole"
@@ -64,7 +64,7 @@
 // Alt-click to turn the lights on or off.
 /obj/structure/stripper_pole/click_alt(mob/user)
 	lights_enabled = !lights_enabled
-	balloon_alert(user, "lights [lights_enabled ? "on" : "off"]")
+	balloon_alert(user, "灯光 [lights_enabled ? "on" : "off"]")
 	playsound(user, lights_enabled ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_icon_state()
 	update_icon()
@@ -98,14 +98,14 @@
 	if(.)
 		return
 	if(pole_in_use)
-		balloon_alert(user, "already in use!")
+		balloon_alert(user, "已被占用！")
 		return
 	pole_in_use = TRUE
 	dancer = user
 	user.setDir(SOUTH)
 	user.Stun(10 SECONDS)
 	user.forceMove(loc)
-	user.visible_message(pick(span_purple("[user] dances on [src]!"), span_purple("[user] flexes their hip-moving skills on [src]!")))
+	user.visible_message(pick(span_purple("[user] 在 [src] 上跳舞！"), span_purple("[user] 在 [src] 上展示着他们的扭胯技巧！")))
 	dance_animate(user)
 	pole_in_use = FALSE
 	user.pixel_y = 0
@@ -154,16 +154,16 @@
 
 /obj/structure/stripper_pole/click_ctrl_shift(mob/user)
 	add_fingerprint(user)
-	balloon_alert(user, "disassembling...")
+	balloon_alert(user, "正在拆卸...")
 	if(!do_after(user, 8 SECONDS, src))
-		balloon_alert(user, "disassembly interrupted!")
+		balloon_alert(user, "拆卸中断！")
 		return
 
-	balloon_alert(user, "disassembled")
+	balloon_alert(user, "已拆卸")
 	new /obj/item/construction_kit/pole(get_turf(user))
 	qdel(src)
 	return TRUE
 
 /obj/structure/stripper_pole/examine(mob/user)
 	. = ..()
-	. += span_purple("[src] can be disassembled by using Ctrl+Shift+Click")
+	. += span_purple("[src] 可以通过使用 Ctrl+Shift+点击 来拆卸")

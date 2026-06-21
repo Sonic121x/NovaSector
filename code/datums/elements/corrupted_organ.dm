@@ -13,7 +13,7 @@
 	if(add_color)
 		atom_parent.add_atom_colour(COLOR_VOID_PURPLE, FIXED_COLOUR_PRIORITY)
 
-	atom_parent.add_filter(name = "ray", priority = 1, params = list(
+	atom_parent.add_filter(name = "射线", priority = 1, params = list(
 		type = "rays",
 		size = 12,
 		color = COLOR_VOID_PURPLE,
@@ -37,14 +37,14 @@
 			/datum/component/haunted_item,\
 			haunt_color = "#00000000", \
 			aggro_radius = 4, \
-			spawn_message = span_revenwarning("[organ] hovers ominously into the air, pulsating with unnatural vigour!"), \
-			despawn_message = span_revenwarning("[organ] falls motionless to the ground."), \
+			spawn_message = span_revenwarning("[organ]不详地悬浮到空中，以不自然的活力脉动着！"), \
+			despawn_message = span_revenwarning("[organ]一动不动地掉落到地上。"), \
 		)
 		return
 	var/turf/origin_turf = get_turf(organ)
 	playsound(organ, 'sound/effects/magic/forcewall.ogg', vol = 100)
 	new /obj/effect/temp_visual/curse_blast(origin_turf)
-	organ.visible_message(span_revenwarning("[organ] explodes in a burst of dark energy!"))
+	organ.visible_message(span_revenwarning("[organ]在黑暗能量的爆发中爆炸了！"))
 	for(var/mob/living/target in range(1, origin_turf))
 		var/armor = target.run_armor_check(attack_flag = BOMB)
 		target.apply_damage(30, damagetype = BURN, blocked = armor, spread_damage = TRUE)

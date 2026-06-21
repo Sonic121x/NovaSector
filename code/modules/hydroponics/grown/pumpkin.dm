@@ -1,7 +1,7 @@
 // Pumpkin
 /obj/item/seeds/pumpkin
-	name = "pumpkin seed pack"
-	desc = "These seeds grow into pumpkin vines."
+	name = "南瓜种子包"
+	desc = "能长成南瓜藤的种子。"
 	icon_state = "seed-pumpkin"
 	plant_icon_offset = 4
 	species = "pumpkin"
@@ -19,8 +19,8 @@
 
 /obj/item/food/grown/pumpkin
 	seed = /obj/item/seeds/pumpkin
-	name = "pumpkin"
-	desc = "It's large and scary."
+	name = "南瓜"
+	desc = "又大又吓人。"
 	icon_state = "pumpkin"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES
@@ -33,7 +33,7 @@
 
 /obj/item/food/grown/pumpkin/attackby(obj/item/W as obj, mob/user as mob, list/modifiers, list/attack_modifiers)
 	if(W.get_sharpness())
-		user.show_message(span_notice("You carve a face into [src]!"), MSG_VISUAL)
+		user.show_message(span_notice("你在[src]上刻了一张脸！"), MSG_VISUAL)
 		new carved_type(user.loc)
 		qdel(src)
 		return
@@ -42,8 +42,8 @@
 
 // Blumpkin
 /obj/item/seeds/pumpkin/blumpkin
-	name = "blumpkin seed pack"
-	desc = "These seeds grow into blumpkin vines."
+	name = "蓝南瓜种子包"
+	desc = "能长成蓝瓜藤的种子。"
 	icon_state = "seed-blumpkin"
 	species = "blumpkin"
 	plantname = "Blumpkin Vines"
@@ -54,8 +54,8 @@
 
 /obj/item/food/grown/pumpkin/blumpkin
 	seed = /obj/item/seeds/pumpkin/blumpkin
-	name = "blumpkin"
-	desc = "The pumpkin's toxic sibling."
+	name = "蓝瓜"
+	desc = "南瓜的近亲，但有毒。"
 	icon_state = "blumpkin"
 	bite_consumption_mod = 3
 	wine_power = 50

@@ -1,6 +1,6 @@
 /obj/item/clothing/under/plasmaman/security
-	name = "security plasma envirosuit"
-	desc = "A plasmaman containment suit designed for security officers, offering a limited amount of extra protection."
+	name = "安保等离子环境服"
+	desc = "一套为空间站安保人员而设计的等离子防护服，能提供有限的额外保护."
 	icon_state = "security_envirosuit"
 	inhand_icon_state = null
 	armor_type = /datum/armor/clothing_under/rank_security/plasmaman
@@ -13,13 +13,13 @@
 	acid = 95
 
 /obj/item/clothing/under/plasmaman/security/detective
-	name = "detective plasma envirosuit"
-	desc = "The pet project of a particularly posh plasmaman, this custom suit was modified by Nanotrasen for its detectives."
+	name = "侦探等离子环境防护服"
+	desc = "这是一位特别讲究的等离子人的个人项目，这套定制防护服由纳米特拉森公司为其侦探进行了改装。"
 	icon_state = "enviroslacks"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/plasmaman/security/warden
-	name = "warden plasma envirosuit"
-	desc = "A plasmaman containment suit designed for the warden, white stripes being added to differentiate them from other members of security."
+	name = "典狱长等离子环境服"
+	desc = "一套为典狱长而设计的等离子防护服，上面添有白色条纹以方便和其他安保人员区分开来。"
 	icon_state = "warden_envirosuit"
 	inhand_icon_state = null

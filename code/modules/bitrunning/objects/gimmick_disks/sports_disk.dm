@@ -4,7 +4,7 @@
  * Mostly for fun, have niche or little advantages.
  */
 /obj/item/disk/bitrunning/gimmick/sports
-	name = "bitrunning gimmick: sports"
+	name = "位面跑者噱头：运动"
 	selectable_loadouts = list(
 		/datum/bitrunning_gimmick/boxer,
 		/datum/bitrunning_gimmick/skater,
@@ -15,7 +15,7 @@
 
 
 /datum/bitrunning_gimmick/boxer
-	name = "Boxer"
+	name = "拳击手"
 
 	granted_items = list(
 		/obj/item/clothing/gloves/boxing/evil,
@@ -25,12 +25,12 @@
 	)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/protein_blend
-	name = "Protein Blend"
+	name = "蛋白混合饮"
 	list_reagents = list(/datum/reagent/consumable/ethanol/protein_blend = 50)
 
 
 /datum/bitrunning_gimmick/skater
-	name = "Skater"
+	name = "滑板手"
 
 	granted_items = list(
 		/obj/item/clothing/shoes/wheelys,
@@ -42,7 +42,7 @@
 	)
 
 /datum/bitrunning_gimmick/archer
-	name = "Archer"
+	name = "弓箭手"
 
 	granted_items = list(
 		/obj/item/clothing/under/costume/kimono,
@@ -53,7 +53,7 @@
 	)
 
 /datum/bitrunning_gimmick/fisher
-	name = "Fisher"
+	name = "渔夫"
 
 	granted_items = list(
 		/obj/item/clothing/under/misc/overalls,
@@ -69,7 +69,7 @@
 
 
 /datum/bitrunning_gimmick/gamer
-	name = "Gamer"
+	name = "玩家"
 
 	granted_items = list(
 		/obj/item/clothing/under/suit/black_really,
@@ -81,7 +81,7 @@
 	)
 
 /obj/item/modular_computer/laptop/gamer
-	desc = "A high-end laptop often used for metagaming."
+	desc = "一款常用于元游戏的高端笔记本电脑。"
 	device_theme = PDA_THEME_TERMINAL
 	starting_programs = list(
 		/datum/computer_file/program/themeify,

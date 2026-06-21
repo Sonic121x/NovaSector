@@ -32,14 +32,14 @@
 		return NONE
 
 	if (target.get_integrity() >= target.max_integrity)
-		target.balloon_alert(fixer, "not damaged!")
+		target.balloon_alert(fixer, "未损坏！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	target.repair_damage(heal_amount)
 	fixer.Beam(target, icon_state = "sendbeam", time = 0.4 SECONDS)
 	fixer.visible_message(
-		span_danger("[fixer] repairs [target]."),
-		span_danger("You repair [target], leaving it at <b>[round(target.get_integrity() * 100 / target.max_integrity)]%</b> stability."),
+		span_danger("[fixer] 修复了 [target]。"),
+		span_danger("你修复了 [target]，使其稳定性保持在 <b>[round(target.get_integrity() * 100 / target.max_integrity)]%</b>。"),
 	)
 
 	return COMPONENT_CANCEL_ATTACK_CHAIN

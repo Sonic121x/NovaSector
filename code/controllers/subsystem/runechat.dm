@@ -1,5 +1,5 @@
 TIMER_SUBSYSTEM_DEF(runechat)
-	name = "Runechat"
+	name = "符文聊天"
 	priority = FIRE_PRIORITY_RUNECHAT
 
 	var/list/datum/callback/message_queue = list()

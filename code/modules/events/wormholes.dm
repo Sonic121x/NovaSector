@@ -1,13 +1,13 @@
 GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 
 /datum/round_event_control/wormholes
-	name = "Wormholes"
+	name = "虫洞"
 	typepath = /datum/round_event/wormholes
 	max_occurrences = 3
 	weight = 2
 	min_players = 2
 	category = EVENT_CATEGORY_SPACE
-	description = "Space time anomalies appear on the station, randomly teleporting people who walk into them."
+	description = "空间站上出现时空异常，走入其中的人会被随机传送。"
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 
@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 		playsound(T, SFX_PORTAL_CREATED, 20, TRUE, SILENCED_SOUND_EXTRARANGE) // much much quieter
 
 /datum/round_event/wormholes/announce(fake)
-	priority_announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
+	priority_announce("空间站上检测到时空异常。暂无其他数据。", "异常警报", ANNOUNCER_SPANOMALIES)
 
 /datum/round_event/wormholes/tick()
 	if(activeFor % shift_frequency == 0)
@@ -49,8 +49,8 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 	wormholes = null
 
 /obj/effect/portal/wormhole
-	name = "wormhole"
-	desc = "It looks highly unstable; It could close at any moment."
+	name = "虫洞"
+	desc = "它看起来非常不稳定；它随时都可能关闭。"
 	icon = 'icons/obj/anomaly.dmi'
 	icon_state = "anom"
 	mech_sized = TRUE

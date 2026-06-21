@@ -1,18 +1,18 @@
 /obj/item/clothing/mask/whistle/minigame
-	name = "referee whistle"
-	desc = "A referee whistle used to call fouls against players."
+	name = "裁判哨"
+	desc = "用于对球员吹罚犯规的裁判哨。"
 	actions_types = list(/datum/action/innate/timeout)
 	action_slots = ALL
 
 // should be /datum/action/item_action but it doesn't support InterceptClickOn()
 /datum/action/innate/timeout
-	name = "Call foul"
-	desc = "Puts a person in a timeout for a few seconds."
+	name = "吹罚犯规"
+	desc = "将某人罚下场几秒钟。"
 	button_icon = 'icons/obj/clothing/masks.dmi'
 	button_icon_state = "whistle"
 	click_action = TRUE
-	enable_text = span_cult("You prepare to call a foul on someone...")
-	disable_text = span_cult("You decide it was a bad call...")
+	enable_text = span_cult("你准备对某人吹罚犯规...")
+	disable_text = span_cult("你判定这是一次误判...")
 	COOLDOWN_DECLARE(whistle_cooldown_minigame)
 
 /datum/action/innate/timeout/InterceptClickOn(mob/living/clicker, params, atom/clicked_on)
@@ -27,7 +27,7 @@
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, whistle_cooldown_minigame))
-		clicker.balloon_alert(clicker, "cant cast for [COOLDOWN_TIMELEFT(src, whistle_cooldown_minigame) *0.1] seconds!")
+		clicker.balloon_alert(clicker, "在 [COOLDOWN_TIMELEFT(src, whistle_cooldown_minigame) *0.1] 秒内无法吹哨！")
 		unset_ranged_ability(clicker)
 		return FALSE
 
@@ -42,6 +42,6 @@
 	COOLDOWN_START(src, whistle_cooldown_minigame, 1 MINUTES)
 	unset_ranged_ability(clicker)
 
-	to_chat(target, span_bold("[clicker] has given you a timeout for a foul!"))
-	to_chat(clicker, span_bold("You put [target] in a timeout!"))
+	to_chat(target, span_bold("[clicker] 因你犯规而将你罚下场！"))
+	to_chat(clicker, span_bold("你把[target]关禁闭了！"))
 	return TRUE

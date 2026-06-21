@@ -3,7 +3,7 @@
 /datum/techweb_node/light_apps
 	id = TECHWEB_NODE_LIGHT_APPS
 	display_name = "Illumination Applications"
-	description = "Applications of lighting and vision technology not originally thought to be commercially viable."
+	description = "照明与视觉技术的应用，最初被认为不具备商业可行性。"
 	design_ids = list(
 		"bright_helmet",
 		"rld_mini",
@@ -17,7 +17,7 @@
 /datum/techweb_node/extreme_office
 	id = TECHWEB_NODE_EXTREME_OFFICE
 	display_name = "Advanced Office Applications"
-	description = "Some of our smartest lab guys got together on a Friday and improved our office efficiency by 350%. Here's how."
+	description = "我们最聪明的实验室人员在某个周五聚在一起，将办公效率提高了350%。方法如下。"
 	design_ids = list(
 		"mauna_mug",
 		"rolling_table",
@@ -70,7 +70,7 @@
 /datum/techweb_node/sticky_advanced
 	id = TECHWEB_NODE_STICKY_ADVANCED
 	display_name = "Advanced Sticky Technology"
-	description = "Taking a good joke too far? Nonsense!"
+	description = "把一个好玩笑玩过头了？胡说！"
 	design_ids = list(
 		"pointy_tape",
 		"super_sticky_tape",
@@ -97,7 +97,7 @@
 /datum/techweb_node/mod_experimental
 	id = TECHWEB_NODE_MOD_EXPERIMENTAL
 	display_name = "Experimental Modular Suits"
-	description = "Applications of experimentality when creating MODsuits have created these..."
+	description = "在创建MOD防护服时应用实验性理念，创造了这些..."
 	design_ids = list(
 		"mod_disposal",
 		"mod_joint_torsion",
@@ -112,7 +112,7 @@
 /datum/techweb_node/posisphere
 	id = TECHWEB_NODE_POSITRONIC_SPHERE
 	display_name = "Experimental Spherical Positronic Brain"
-	description = "Recent developments on cost-cutting measures have allowed us to cut positronic brain cubes into twice-as-cheap spheres. Unfortunately, it also allows them to move around the lab via rolling maneuvers."
+	description = "近期在成本削减措施上的进展，使我们能够将正电子脑立方体切割成成本减半的球体。不幸的是，这也让它们能够通过滚动在实验室里移动。"
 	design_ids = list(
 		"posisphere",
 	)

@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/pointed/dominate
-	name = "Dominate"
+	name = "支配"
 	desc = "This spell dominates the mind of a lesser creature to the will of Nar'Sie, \
 		allying it only to her direct followers."
 	background_icon_state = "bg_demon"

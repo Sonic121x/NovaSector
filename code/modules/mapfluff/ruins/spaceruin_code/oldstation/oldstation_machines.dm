@@ -1,5 +1,5 @@
 /obj/machinery/computer/old
-	name = "old computer"
+	name = "旧电脑"
 	circuit = /obj/item/circuitboard/computer
 
 /obj/machinery/computer/old/Initialize(mapload)

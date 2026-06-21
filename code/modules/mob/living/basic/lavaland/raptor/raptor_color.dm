@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 	/// Color name used for raptor name and icon
 	var/color = "error"
 	/// RaptorDex description for the raptor
-	var/description = "Report this!"
+	var/description = "请报告此问题！"
 	/// Raptor's health
 	var/health = 220
 	/// Raptor's speed
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/purple
 	color = "purple"
-	description = "A small, nimble breed, these raptors have been bred as travel companions rather than mounts, capable of storing the owner's possessions and helping them escape from danger unscathed."
+	description = "一种体型小巧、行动敏捷的品种，这些迅猛龙被培育为旅行伴侣而非坐骑，能够储存主人的物品并帮助他们毫发无损地逃离危险。"
 	health = 140 // smol
 	rideable_component = /datum/component/riding/creature/raptor/small
 	guaranteed_crossbreeds = list(
@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 	var/mob/living/carbon/human/rider = potential_rider
 	if (rider.mob_height > HUMAN_HEIGHT_SHORTEST)
-		to_chat(rider, span_warning("Your tall stature will crush [source] were you attempt to ride [source.p_them()]!"))
+		to_chat(rider, span_warning("你高大的身躯会压垮[source]，如果你试图骑乘[source.p_them()]的话！"))
 		return COMPONENT_BLOCK_BUCKLE
 
 // Purple raptors never "fully" grow up, and remain usable as backpacks
@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 		return TRUE
 
 	if (!silent)
-		to_chat(user, span_warning("The atmosphere is too thin for you to fly!"))
+		to_chat(user, span_warning("大气太稀薄了，你无法飞行！"))
 	return FALSE
 
 /obj/item/mob_holder/purple_raptor/proc/check_flight()
@@ -281,7 +281,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 			user.add_movespeed_modifier(/datum/movespeed_modifier/jetpack/raptor)
 		user.AddElement(/datum/element/forced_gravity, 0)
 		passtable_on(user, REF(src))
-		to_chat(user, span_notice("You begin gently hovering above ground as [held_mob] on your back starts furiously flapping [held_mob.p_their()] wings[struggling ? ", struggling to keep you up in the air" : ""]!"))
+		to_chat(user, span_notice("你开始轻轻地悬浮在地面上方，因为背上的 [held_mob] 开始疯狂地拍打 [held_mob.p_their()] 翅膀[struggling ? ", struggling to keep you up in the air" : ""]！"))
 		user.set_resting(FALSE, TRUE)
 		user.refresh_gravity()
 		START_PROCESSING(SSprocessing, src)
@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 	return NONE
 
 /datum/action/innate/raptor_wings
-	name = "Toggle Flight"
+	name = "切换飞行"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_IMMOBILE | AB_CHECK_INCAPACITATED
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "raptor_wings"
@@ -363,7 +363,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/white
 	color = "white"
-	description = "A loving sort, it cares for it peers and rushes to their aid with reckless abandon. It is able to heal any raptors' ailments, and rescue its owner in case of an emergency."
+	description = "这是一种充满爱心的品种，它关心同伴，会不顾一切地冲去援助。它能治愈任何迅猛龙的疾病，并在紧急情况下营救其主人。"
 	rideable_component = /datum/component/riding/creature/raptor/healer
 	guaranteed_crossbreeds = list(
 		/datum/raptor_color/blue = /datum/raptor_color/green,
@@ -419,7 +419,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/blue
 	color = "blue"
-	description = "Covered in tough, lava-resistant feathers with thick insulated fur underneath, this breed is capable of marching through lava and fire alike."
+	description = "覆盖着坚韧、耐熔岩的羽毛，下面还有厚厚的隔热绒毛，这个品种能够在熔岩和火焰中穿行。"
 	health = 300
 	guaranteed_crossbreeds = list(
 		/datum/raptor_color/red = /datum/raptor_color/purple,
@@ -432,7 +432,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/black
 	color = "black"
-	description = "An ultra rare breed. Due to its sparse nature, not much is known about this sort. However it is said to possess many of its peers' abilities."
+	description = "一种极其稀有的品种。由于其数量稀少，人们对这类品种知之甚少。然而，据说它拥有许多同类的能力。"
 	health = 400
 	speed = 0
 	melee_damage_lower = 20

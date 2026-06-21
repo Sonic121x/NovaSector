@@ -8,8 +8,8 @@
 #define SCANGATE_GENDER "Gender" // NOVA EDIT ADDITION
 
 /obj/machinery/scanner_gate
-	name = "scanner gate"
-	desc = "A gate able to perform mid-depth scans on any organisms who pass under it."
+	name = "扫描门"
+	desc = "一种能够对从其下方经过的任何生物进行中等深度扫描的闸门。"
 	icon = 'icons/obj/machines/scangate.dmi'
 	icon_state = "scangate"
 	base_icon_state = "scangate"
@@ -111,11 +111,11 @@
 /obj/machinery/scanner_gate/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It's set to scan for [span_boldnotice(scangate_mode)].")
+	. += span_notice("它被设置为扫描[span_boldnotice(scangate_mode)]。")
 	if(locked)
-		. += span_notice("The control panel is ID-locked. Swipe a valid ID to unlock it.")
+		. += span_notice("控制面板已通过ID锁定。请刷入有效ID卡以解锁。")
 	else
-		. += span_notice("The control panel is unlocked. Swipe an ID to lock it.")
+		. += span_notice("控制面板已解锁。请刷入ID卡以锁定。")
 
 /obj/machinery/scanner_gate/proc/on_entered(datum/source, atom/movable/thing)
 	SIGNAL_HANDLER
@@ -190,7 +190,7 @@
 	locked = FALSE
 	req_access = list()
 	obj_flags |= EMAGGED
-	balloon_alert(user, "id checker disabled")
+	balloon_alert(user, "身份检查器已禁用")
 	return TRUE
 
 /obj/machinery/scanner_gate/proc/perform_scan(atom/movable/thing)

@@ -1,7 +1,7 @@
 ///ritual weapons. they're really bad, but they become normal weapons when sparring.
 /obj/item/ceremonial_blade
-	name = "ceremonial blade"
-	desc = "A blade created to spar with. It seems weak, but if you spar with it...?"
+	name = "礼仪用剑"
+	desc = "一把专为对战而打造的剑。它看起来很脆弱，但如果你与它进行对战……？"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/ceremonial_blade"
 	post_init_icon_state = "default"

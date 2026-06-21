@@ -1,6 +1,6 @@
 ///admin-only base consturctino console subtype for building anywhere!
 /obj/machinery/computer/camera_advanced/base_construction/centcom
-	name = "centcom base construction console"
+	name = "中央指挥部基地建设控制台"
 	circuit = /obj/item/circuitboard/computer/base_construction/centcom
 
 /obj/machinery/computer/camera_advanced/base_construction/centcom/Initialize(mapload)

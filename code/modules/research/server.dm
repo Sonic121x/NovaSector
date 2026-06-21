@@ -12,8 +12,8 @@
 #define SERVER_NOMINAL_TEXT "Nominal"
 
 /obj/machinery/rnd/server
-	name = "\improper R&D Server"
-	desc = "A computer system running a deep neural network that processes arbitrary information to produce data useable in the development of new technologies. In layman's terms, it makes research points."
+	name = "\improper R&D服务器"
+	desc = "一个运行着深度神经网络的计算机系统，能够处理各种信息，并生成可用于新技术开发的数据。通俗地说，它能为研究提供进度点。"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "RD-server-on"
 	base_icon_state = "RD-server"
@@ -111,7 +111,7 @@
 	if(!stored_research)
 		return
 	tool.set_buffer(stored_research)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return TRUE
 
 /// Master R&D server. As long as this still exists and still holds the HDD for the theft objective, research points generate at normal speed. Destroy it or an antag steals the HDD? Half research speed.
@@ -125,7 +125,7 @@
 
 /obj/machinery/rnd/server/master/Initialize(mapload)
 	. = ..()
-	name = "\improper Master " + name
+	name = "\improper 主" + name
 	desc += "\nIt looks incredibly resistant to damage!"
 	source_code_hdd = new(src)
 
@@ -163,7 +163,7 @@
 	if(!user.is_antag())
 		if(user.combat_mode)
 			return ITEM_INTERACT_SKIP_TO_ATTACK
-		balloon_alert(user, "you can't find an obvious maintenance hatch!")
+		balloon_alert(user, "你找不到明显的维护区舱口！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -172,15 +172,15 @@
 		return NONE
 	switch(deconstruction_state)
 		if(HDD_PANEL_CLOSED)
-			balloon_alert(user, "you can't find a place to insert it!")
+			balloon_alert(user, "你找不到可以插入它的地方！")
 		if(HDD_PANEL_OPEN)
-			balloon_alert(user, "you weren't trained to install this!")
+			balloon_alert(user, "你没受过安装这个的培训！")
 		if(HDD_PRIED)
-			balloon_alert(user, "the HDD housing is completely broken, it won't fit!")
+			balloon_alert(user, "硬盘槽完全损坏，装不进去了！")
 		if(HDD_CUT_LOOSE)
-			balloon_alert(user, "the HDD housing is completely broken and all the wires are cut!")
+			balloon_alert(user, "硬盘槽完全损坏，所有线路都被切断了！")
 		if(HDD_OVERLOADED)
-			balloon_alert(user, "the inside is scorched and all the wires are burned!")
+			balloon_alert(user, "内部被烧焦了，所有线路都烧毁了！")
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/rnd/server/master/screwdriver_act(mob/living/user, obj/item/tool)
@@ -191,10 +191,10 @@
 	while(tool.use_tool(src, user, 7.5 SECONDS, volume=100))
 		front_panel_screws--
 		if(front_panel_screws > 0)
-			to_chat(user, span_notice("The screw breaks as you remove it. Only [front_panel_screws] left..."))
+			to_chat(user, span_notice("螺丝在你卸下时断裂了。只剩下[front_panel_screws]颗了..."))
 			continue
 		deconstruction_state = HDD_PANEL_OPEN
-		to_chat(user, span_notice("You remove the last screw from [src]'s front panel."))
+		to_chat(user, span_notice("你从[src]的前面板上卸下了最后一颗螺丝。"))
 		add_overlay("RD-server-hdd-panel-open")
 		break
 	return ITEM_INTERACT_SUCCESS
@@ -203,9 +203,9 @@
 	if(deconstruction_state != HDD_PANEL_OPEN || user.combat_mode)
 		return FALSE
 
-	to_chat(user, span_notice("You can see [source_code_hdd] in a secure housing behind the front panel. You begin to pry it loose..."))
+	to_chat(user, span_notice("你看到[source_code_hdd]被安全地固定在前面板后面的支架里。你开始撬动它..."))
 	if(tool.use_tool(src, user, 15 SECONDS, volume=100))
-		to_chat(user, span_notice("You destroy the housing, prying [source_code_hdd] free."))
+		to_chat(user, span_notice("你破坏了支架，将[source_code_hdd]撬了出来。"))
 		deconstruction_state = HDD_PRIED
 	return TRUE
 
@@ -219,7 +219,7 @@
 
 		if(hdd_wires <= 0)
 			deconstruction_state = HDD_CUT_LOOSE
-			to_chat(user, span_notice("You cut the final wire and remove [source_code_hdd]."))
+			to_chat(user, span_notice("你剪断了最后一根电线，取出了[source_code_hdd]。"))
 			try_put_in_hand(source_code_hdd, user)
 			source_code_hdd = null
 			stored_research.income_modifier *= 0.5

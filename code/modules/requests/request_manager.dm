@@ -185,7 +185,7 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			return TRUE
 		if ("tp")
 			if(!SSticker.HasRoundStarted())
-				tgui_alert(usr,"The game hasn't started yet!")
+				tgui_alert(usr,"游戏尚未开始！")
 				return TRUE
 			var/mob/M = request.owner?.mob
 			if(!ismob(M))

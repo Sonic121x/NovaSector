@@ -3,8 +3,8 @@
 #define SIGNIFICANT_AMOUNT_OF_MOLES 10
 
 /obj/machinery/atmospherics/components/binary/tank_compressor
-	name = "Tank Compressor"
-	desc = "Heavy duty shielded air compressor designed to pressurize tanks above the safe limit."
+	name = "罐压缩机"
+	desc = "这款重型屏蔽式空气压缩机专为将压力升至超出安全限值的水平而设计。"
 	circuit = /obj/item/circuitboard/machine/tank_compressor
 	icon = 'icons/obj/machines/research.dmi'
 	base_icon_state = "tank_compressor"
@@ -49,7 +49,7 @@
 	if(istype(tool, /obj/item/disk/computer))
 		eject_disk(user)
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, "it's stuck to your hand!")
+			balloon_alert(user, "它粘在你手上了！")
 			return ITEM_INTERACT_BLOCKING
 		inserted_disk = tool
 		return ITEM_INTERACT_SUCCESS
@@ -59,11 +59,11 @@
 
 	if(inserted_tank)
 		if(!eject_tank(user))
-			balloon_alert(user, "it's stuck inside!")
+			balloon_alert(user, "它卡在里面了！")
 			return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
-		balloon_alert(user, "it's stuck to your hand!")
+		balloon_alert(user, "它粘在你手上了！")
 		return ITEM_INTERACT_BLOCKING
 
 	inserted_tank = tool
@@ -167,7 +167,7 @@
 /// This proc should be called whenever we want to store our buffer data.
 /obj/machinery/atmospherics/components/binary/tank_compressor/proc/record_data()
 	var/datum/data/compressor_record/new_record = new()
-	new_record.name = "Log Recording #[record_number]"
+	new_record.name = "日志记录 #[record_number]"
 	new_record.experiment_source = inserted_tank.name
 	new_record.timestamp = "[server_timestamp(ic_time = TRUE)] (PT: [round_timestamp()])"
 	for(var/gas_path in leaked_gas_buffer.gases)

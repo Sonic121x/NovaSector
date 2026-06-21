@@ -3,8 +3,8 @@
 
 /// A mob that gets mad at people at random and tries to eat nearby objects
 /mob/living/basic/goose
-	name = "goose"
-	desc = "It's loose."
+	name = "鹅"
+	desc = "它很松。"
 	icon_state = "goose"
 	icon_living = "goose"
 	icon_dead = "goose_dead"
@@ -67,7 +67,7 @@
 	if (!food.has_material_type(/datum/material/plastic))
 		return NONE
 
-	visible_message(span_boldwarning("[src] is choking on \the [food]!"))
+	visible_message(span_boldwarning("[src] 被 \the [food] 噎住了！"))
 	food.forceMove(src)
 	choke(food)
 
@@ -79,9 +79,9 @@
 
 /// A less grumpy but much grosser variant of the goose, who will decorate the halls in their own special way
 /mob/living/basic/goose/vomit
-	name = "Birdboat"
+	name = "鸟船"
 	real_name = "Birdboat"
-	desc = "It's a sick-looking goose, probably ate too much maintenance trash. Best not to move it around too much."
+	desc = "这是一只看起来病恹恹的鹅，可能吃了太多维护区的垃圾。最好不要过多移动它。"
 	gender = MALE
 	faction = list(FACTION_NEUTRAL, FACTION_MAINT_CREATURES)
 	gold_core_spawnable = NO_SPAWN
@@ -102,7 +102,7 @@
 	// 5% chance every round to have anarchy mode deadchat control on birdboat.
 	if (!prob(5))
 		return
-	desc = "[initial(desc)] It's waddling more than usual. It seems to be possessed."
+	desc = "[initial(desc)] 它比平时摇晃得更厉害。它似乎被附身了。"
 	deadchat_plays()
 
 /mob/living/basic/goose/vomit/Destroy()
@@ -117,13 +117,13 @@
 
 /mob/living/basic/goose/vomit/examine(mob/user)
 	. = ..()
-	. += span_notice("Somehow, it still looks hungry.")
+	. += span_notice("不知为何，它看起来仍然很饿。")
 
 /mob/living/basic/goose/vomit/on_gobbled(atom/source, obj/item/food, mob/feeder)
 	if (length(contents) > GOOSE_SATIATED)
 		if (COOLDOWN_FINISHED(src, eat_fail_feedback_cooldown))
 			if (feeder)
-				visible_message(span_notice("[src] looks too full to eat \the [food]!"))
+				visible_message(span_notice("[src]看起来吃得太饱，无法吞下\the [food]！"))
 			COOLDOWN_START(src, eat_fail_feedback_cooldown, 5 SECONDS)
 		return COMSIG_MOB_TERMINATE_EAT
 

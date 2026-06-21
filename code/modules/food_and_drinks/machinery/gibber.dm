@@ -1,6 +1,6 @@
 /obj/machinery/gibber
-	name = "gibber"
-	desc = "The name isn't descriptive enough?"
+	name = "绞肉机"
+	desc = "它的名字还不足以说明一切？"
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grinder"
 	base_icon_state = "grinder"
@@ -165,18 +165,18 @@
 		return
 
 	if(!occupant)
-		audible_message(span_hear("You hear a loud metallic grinding sound."))
+		audible_message(span_hear("你听到一阵响亮的金属研磨声。"))
 		return
 
 	if(occupant.flags_1 & HOLOGRAM_1)
-		audible_message(span_hear("You hear a very short metallic grinding sound."))
+		audible_message(span_hear("你听到一阵非常短暂的金属研磨声。"))
 		playsound(loc, 'sound/machines/hiss.ogg', 20, TRUE)
 		qdel(occupant)
 		set_occupant(null)
 		return
 
 	use_energy(active_power_usage)
-	audible_message(span_hear("You hear a loud squelchy grinding sound."))
+	audible_message(span_hear("你听到一阵响亮的湿漉漉的研磨声。"))
 	playsound(loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	operating = TRUE
 	update_appearance()
@@ -276,7 +276,7 @@
 
 /obj/machinery/gibber/proc/spawn_meat(mob/living/victim, meat_type = /obj/item/food/meat/slab, list/datum/disease/diseases)
 	var/obj/item/food/meat/meat = new meat_type(src, blood_dna_info)
-	meat.name = "[victim.real_name]'s [meat.name]"
+	meat.name = "[victim.real_name]的[meat.name]"
 	meat.set_custom_materials(list(SSmaterials.get_material(/datum/material/meat/mob_meat, victim) = 4 * SHEET_MATERIAL_AMOUNT))
 	if (!istype(meat))
 		return

@@ -1,7 +1,7 @@
 /datum/lazy_template/virtual_domain/fredingtonfastingbear
-	name = "Pizza Party"
+	name = "披萨派对"
 	cost = BITRUNNER_COST_MEDIUM
-	desc = "A famous pizzeria that got ruined by what it had to offer."
+	desc = "一家被其提供的食物所毁掉的著名披萨店。"
 	completion_loot = list(/obj/item/food/pizzaslice/meat/pizzeria = 1)
 	difficulty = BITRUNNER_DIFFICULTY_MEDIUM
 	help_text = "Pick up a flashlight and get going. Your favourite bear has been waiting for you..."

@@ -1,68 +1,68 @@
 /obj/effect/projectile/impact
-	name = "beam impact"
+	name = "光束冲击"
 	icon = 'icons/obj/weapons/guns/projectiles_impact.dmi'
 
 /obj/effect/projectile/impact/laser
-	name = "laser impact"
+	name = "激光冲击"
 	icon_state = "impact_laser"
 
 /obj/effect/projectile/impact/laser/blue
-	name = "laser impact"
+	name = "激光冲击"
 	icon_state = "impact_blue"
 
 /obj/effect/projectile/impact/disabler
-	name = "disabler impact"
+	name = "眩晕枪冲击"
 	icon_state = "impact_omni"
 
 /obj/effect/projectile/impact/xray
-	name = "\improper X-ray impact"
+	name = "\improper X射线冲击"
 	icon_state = "impact_xray"
 
 /obj/effect/projectile/impact/pulse
-	name = "pulse impact"
+	name = "脉冲冲击"
 	icon_state = "impact_u_laser"
 
 /obj/effect/projectile/impact/plasma_cutter
-	name = "plasma impact"
+	name = "等离子冲击"
 	icon_state = "impact_plasmacutter"
 
 /obj/effect/projectile/impact/stun
-	name = "stun impact"
+	name = "电击冲击"
 	icon_state = "impact_stun"
 
 /obj/effect/projectile/impact/heavy_laser
-	name = "heavy laser impact"
+	name = "重型激光冲击"
 	icon_state = "impact_beam_heavy"
 
 /obj/effect/projectile/impact/wormhole
 	icon_state = "wormhole_g"
 
 /obj/effect/projectile/impact/laser/emitter/psy
-	name = "psychosiphoning impact"
+	name = "精神虹吸冲击"
 	icon_state = "impact_greyscale"
 	color = COLOR_PINK
 
 /obj/effect/projectile/impact/laser/emitter/magnetic
-	name = "magnetogenerative impact"
+	name = "磁生冲击"
 	icon_state = "impact_greyscale"
 	color = COLOR_SILVER
 
 /obj/effect/projectile/impact/laser/emitter/quake
-	name = "seismodisintegrating impact"
+	name = "震解冲击"
 	icon_state = "impact_greyscale"
 	color = COLOR_BROWNER_BROWN
 
 /obj/effect/projectile/impact/laser/emitter/blast
-	name = "hyperconcussive impact"
+	name = "超震荡冲击"
 	icon_state = "impact_greyscale"
 	color = COLOR_ORANGE
 
 /obj/effect/projectile/impact/laser/emitter
-	name = "emitter impact"
+	name = "发射器冲击"
 	icon_state = "impact_emitter"
 
 /obj/effect/projectile/impact/solar
-	name = "solar impact"
+	name = "太阳能冲击"
 	icon_state = "impact_solar"
 
 /obj/effect/projectile/impact/sniper

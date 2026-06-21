@@ -5,8 +5,8 @@
 	icon_state = "manifold-3"
 	base_icon_state = "manifold"
 
-	name = "pipe manifold"
-	desc = "A manifold composed of regular pipes."
+	name = "管道集合"
+	desc = "由规则管道组成的歧管。"
 
 	dir = SOUTH
 	initialize_directions = EAST|NORTH|WEST

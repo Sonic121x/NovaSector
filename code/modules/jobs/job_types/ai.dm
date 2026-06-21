@@ -1,6 +1,6 @@
 /datum/job/ai
 	title = JOB_AI
-	description = "Assist the crew, follow your laws, coordinate your cyborgs."
+	description = "协助船员，遵守你的法则，协调你的机械人。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
 	faction = FACTION_STATION
 	total_positions = 1
@@ -52,7 +52,7 @@
 			sync_target.notify_ai(AI_NOTIFICATION_AI_SHELL)
 		else
 			sync_target.notify_ai(TRUE)
-		sync_target.visible_message(span_notice("[sync_target] gently chimes."), span_notice("LawSync protocol engaged."))
+		sync_target.visible_message(span_notice("[sync_target] 轻轻鸣响。"), span_notice("法律同步协议已启动。"))
 		log_combat(ai_spawn, sync_target, "forcibly synced cyborg laws via spawning in")
 		sync_target.lawsync()
 		sync_target.lawupdate = TRUE
@@ -102,7 +102,7 @@
 /datum/job/ai/announce_job(mob/living/joining_mob)
 	. = ..()
 	if(SSticker.HasRoundStarted())
-		minor_announce("[joining_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(joining_mob)].")
+		minor_announce("[joining_mob] 已被下载至位于 [AREACOORD(joining_mob)] 的空蓝空网络AI核心。")
 
 
 /datum/job/ai/config_check()

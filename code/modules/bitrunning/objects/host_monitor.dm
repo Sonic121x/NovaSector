@@ -1,8 +1,8 @@
 /obj/item/bitrunning_host_monitor
-	name = "host monitor"
+	name = "主机监视器"
 
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2)
-	desc = "A complex electronic that will analyze the connection health between host and avatar."
+	desc = "一种复杂的电子设备，用于分析主机与化身之间的连接健康状况。"
 	obj_flags = CONDUCTS_ELECTRICITY
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "host_monitor"
@@ -22,12 +22,12 @@
 
 	var/datum/component/avatar_connection/connection = user.GetComponent(/datum/component/avatar_connection)
 	if(isnull(connection))
-		balloon_alert(user, "data not recognized")
+		balloon_alert(user, "数据无法识别")
 		return
 
 	var/mob/living/pilot = connection.old_body_ref?.resolve()
 	if(isnull(pilot))
-		balloon_alert(user, "host not recognized")
+		balloon_alert(user, "主机无法识别")
 		return
 
-	to_chat(user, span_notice("Current host health: [pilot.health / pilot.maxHealth * 100]%"))
+	to_chat(user, span_notice("当前主机健康状况：[pilot.health / pilot.maxHealth * 100]%"))

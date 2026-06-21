@@ -1,6 +1,6 @@
 /turf/open/openspace
-	name = "open space"
-	desc = "Watch your step!"
+	name = "开放空间"
+	desc = "注意脚下！"
 	// We don't actually draw openspace, but it needs to have color
 	// In its icon state so we can count it as a "non black" tile
 	icon_state = MAP_SWITCH("pure_white", "invisible")
@@ -166,7 +166,7 @@
 	return HAS_TRAIT(crossing, TRAIT_MOVE_FLYING) || !crossing.can_z_move(DOWN, src, z_move_flags = ZMOVE_FALL_FLAGS)
 
 /turf/open/openspace/icemoon
-	name = "ice chasm"
+	name = "冰封裂谷"
 	baseturfs = /turf/open/openspace/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	planetary_atmos = TRUE
@@ -199,7 +199,7 @@
 	drill_below = FALSE
 
 /turf/open/openspace/xenobio
-	name = "xenobio bz air"
+	name = "异种生物学 BZ 空气"
 	initial_gas_mix = XENOBIO_BZ
 
 /turf/open/openspace/icemoon/ruins

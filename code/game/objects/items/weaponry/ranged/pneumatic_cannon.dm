@@ -12,8 +12,8 @@
 #define HIGH_PRESSURE 3
 
 /obj/item/pneumatic_cannon
-	name = "pneumatic cannon"
-	desc = "A gas-powered cannon that can fire any object loaded into it."
+	name = "气动炮"
+	desc = "一种气体动力炮，可以发射装入其中的任何物体。"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 8 //Very heavy
 	attack_verb_continuous = list("bludgeons", "smashes", "beats")
@@ -101,21 +101,21 @@
 	. = ..()
 	var/list/out = list()
 	if(!in_range(user, src))
-		out += span_notice("You'll need to get closer to see any more.")
+		out += span_notice("你需要靠近些才能看到更多信息。")
 		return
 	if(selfcharge)
 		if(length(loadedItems))
 			out += span_info("[icon2html(pick(loadedItems), user)] It has [length(loadedItems)] [charge_type::name] loaded.")
 	else
 		for(var/obj/item/I in loadedItems)
-			out += span_info("[icon2html(I, user)] It has \a [I] loaded.")
+			out += span_info("[icon2html(I, user)] 它已装填了\a [I]。")
 			CHECK_TICK
 	if(!length(loadedItems))
 		out += span_info("The chamber has nothing loaded.")
 	if(tank)
 		out += span_notice("[icon2html(tank, user)] It has \a [tank] mounted onto it. It could be removed with a <b>screwdriver</b>.")
 	if(needs_air == TRUE)
-		. += span_notice("Use a <b>wrench</b> to change the pressure level. Current output level is <b>[pressure_setting_to_text(pressure_setting)]</b>.")
+		. += span_notice("使用<b>扳手</b>来改变压力等级。当前输出等级为<b>[pressure_setting_to_text(pressure_setting)]</b>。")
 	. += out.Join("\n")
 
 /obj/item/pneumatic_cannon/screwdriver_act(mob/living/user, obj/item/tool)
@@ -129,7 +129,7 @@
 		return
 	playsound(src, 'sound/items/tools/ratchet.ogg', 50, TRUE)
 	pressure_setting = pressure_setting >= HIGH_PRESSURE ? LOW_PRESSURE : pressure_setting + 1
-	balloon_alert(user, "output level set to [pressure_setting_to_text(pressure_setting)]")
+	balloon_alert(user, "输出等级设置为[pressure_setting_to_text(pressure_setting)]")
 	return TRUE
 
 /obj/item/pneumatic_cannon/attackby(obj/item/W, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -141,13 +141,13 @@
 		if(!tank)
 			var/obj/item/tank/internals/IT = W
 			if(IT.volume <= 3)
-				to_chat(user, span_warning("\The [IT] is too small for \the [src]."))
+				to_chat(user, span_warning("\The [IT] 对于\the [src]来说太小了。"))
 				return
 			updateTank(W, 0, user)
 	else if(W.type == type)
-		to_chat(user, span_warning("You're fairly certain that putting a pneumatic cannon inside another pneumatic cannon would cause a spacetime disruption."))
+		to_chat(user, span_warning("你相当确定把一个气动炮放进另一个气动炮里会引起时空紊乱。"))
 	else if(loadedWeightClass >= maxWeightClass)
-		to_chat(user, span_warning("\The [src] can't hold any more items!"))
+		to_chat(user, span_warning("\The [src] 装不下更多物品了！"))
 	else if(isitem(W))
 		var/obj/item/IW = W
 		load_item(IW, user)
@@ -157,15 +157,15 @@
 		return TRUE
 	if(allowed_typecache && !is_type_in_typecache(I, allowed_typecache))
 		if(user)
-			to_chat(user, span_warning("[I] won't fit into [src]!"))
+			to_chat(user, span_warning("[I] 无法装入 [src]！"))
 		return
 	if((loadedWeightClass + I.w_class) > maxWeightClass) //Only make messages if there's a user
 		if(user)
-			to_chat(user, span_warning("\The [I] won't fit into \the [src]!"))
+			to_chat(user, span_warning("\The [I] 无法装入 \the [src]！"))
 		return FALSE
 	if(I.w_class > w_class)
 		if(user)
-			to_chat(user, span_warning("\The [I] is too large to fit into \the [src]!"))
+			to_chat(user, span_warning("\The [I] 太大了，无法装入 \the [src]！"))
 		return FALSE
 	return TRUE
 
@@ -175,7 +175,7 @@
 	if(user) //Only use transfer proc if there's a user, otherwise just set loc.
 		if(!user.transferItemToLoc(I, src))
 			return FALSE
-		to_chat(user, span_notice("You load \the [I] into \the [src]."))
+		to_chat(user, span_notice("你将 \the [I] 装入了 \the [src]。"))
 	else
 		I.forceMove(src)
 	loadedItems += I
@@ -213,20 +213,20 @@
 	if(!can_trigger_gun(user))
 		return
 	if(!loadedItems || !loadedWeightClass)
-		to_chat(user, span_warning("\The [src] has nothing loaded."))
+		to_chat(user, span_warning("\The [src] 没有装载任何物品。"))
 		return
 	if(!tank && needs_air)
-		to_chat(user, span_warning("\The [src] can't fire without a source of gas."))
+		to_chat(user, span_warning("\The [src] 没有气源无法发射。"))
 		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You can't bring yourself to fire \the [src]! You don't want to risk harming anyone...") )
 		return
 	if(tank && !tank.remove_air(gasPerThrow * pressure_setting))
-		to_chat(user, span_warning("\The [src] lets out a weak hiss and doesn't react!"))
+		to_chat(user, span_warning("\The [src] 发出一声微弱的气流声，没有反应！"))
 		return
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(75) && clumsyCheck && iscarbon(user))
 		var/mob/living/carbon/C = user
-		C.visible_message(span_warning("[C] loses [C.p_their()] grip on [src], causing it to go off!"), span_userdanger("[src] slips out of your hands and goes off!"))
+		C.visible_message(span_warning("[C] 失去了[C.p_their()]对 [src] 的抓握，导致它走火了！"), span_userdanger("[src] 从你手中滑脱并走火了！"))
 		C.dropItemToGround(src, TRUE)
 		if(prob(10))
 			target = get_turf(user)
@@ -235,15 +235,15 @@
 			target = pick(possible_targets)
 		discharge = 1
 	if(!discharge)
-		user.visible_message(span_danger("[user] fires \the [src]!"), \
-				    		 span_danger("You fire \the [src]!"))
+		user.visible_message(span_danger("[user] 发射了 \the [src]！"), \
+				    		 span_danger("你发射了 \the [src]！"))
 	log_combat(user, target, "fired at", src)
 	var/turf/T = get_target(target, get_turf(src))
 	playsound(src, fire_sound, 50, TRUE)
 	fire_items(T, user)
 	if(pressure_setting >= 3 && iscarbon(user))
 		var/mob/living/carbon/C = user
-		C.visible_message(span_warning("[C] is thrown down by the force of the cannon!"), span_userdanger("[src] slams into your shoulder, knocking you down!"))
+		C.visible_message(span_warning("[C] 被大炮的力量掀翻在地！"), span_userdanger("[src] 猛撞在你的肩膀上，把你击倒了！"))
 		C.Paralyze(60)
 
 /obj/item/pneumatic_cannon/proc/fire_items(turf/target, mob/user)
@@ -299,8 +299,8 @@
 		update_appearance()
 
 /obj/item/pneumatic_cannon/ghetto //Obtainable by improvised methods; more gas per use, less capacity
-	name = "improvised pneumatic cannon"
-	desc = "A gas-powered, object-firing cannon made out of common parts."
+	name = "简易气动炮"
+	desc = "一个由常见零件制成的、以气体为动力、可发射物体的炮。"
 	force = 5
 	maxWeightClass = 10
 	gasPerThrow = 5
@@ -309,17 +309,17 @@
 	if(removing)
 		if(!tank)
 			return
-		to_chat(user, span_notice("You detach \the [thetank] from \the [src]."))
+		to_chat(user, span_notice("你将 \the [thetank] 从 \the [src] 上拆下。"))
 		tank.forceMove(user.drop_location())
 		user.put_in_hands(tank)
 		tank = null
 	if(!removing)
 		if(tank)
-			to_chat(user, span_warning("\The [src] already has a tank."))
+			to_chat(user, span_warning("\The [src] 已经有一个气罐了。"))
 			return
 		if(!user.transferItemToLoc(thetank, src))
 			return
-		to_chat(user, span_notice("You hook \the [thetank] up to \the [src]."))
+		to_chat(user, span_notice("你将 \the [thetank] 连接到 \the [src] 上。"))
 		tank = thetank
 	update_appearance()
 
@@ -342,8 +342,8 @@
 		CHECK_TICK
 
 /obj/item/pneumatic_cannon/pie
-	name = "pie cannon"
-	desc = "Load cream pie for optimal results."
+	name = "派炮"
+	desc = "装载奶油派以获得最佳效果。"
 	force = 10
 	icon_state = "piecannon"
 	gasPerThrow = 0
@@ -365,7 +365,7 @@
 	maxWeightClass = (/obj/item/food/pie::w_class * 20) //20 pies.
 
 /obj/item/pneumatic_cannon/pie/selfcharge/cyborg
-	name = "low velocity pie cannon"
+	name = "低速派炮"
 	automatic = FALSE
 	charge_type = /obj/item/food/pie/cream/nostun
 	maxWeightClass = (/obj/item/food/pie::w_class * 2) //2 pies

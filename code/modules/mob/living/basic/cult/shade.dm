@@ -1,7 +1,7 @@
 /mob/living/basic/shade
-	name = "Shade"
+	name = "幽影"
 	real_name = "Shade"
-	desc = "A bound spirit."
+	desc = "一个被束缚的灵魂。"
 	gender = PLURAL
 	icon = 'icons/mob/nonhuman-player/cult.dmi'
 	icon_state = "shade_cult"

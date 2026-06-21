@@ -1,5 +1,5 @@
 PROCESSING_SUBSYSTEM_DEF(station)
-	name = "Station"
+	name = "空间站"
 	ss_flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME
 	wait = 5 SECONDS

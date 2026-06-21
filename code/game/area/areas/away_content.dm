@@ -5,7 +5,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 
 // Away Missions
 /area/awaymission
-	name = "Strange Location"
+	name = "奇异地点"
 	icon = 'icons/area/areas_away_missions.dmi'
 	icon_state = "away"
 	default_gravity = STANDARD_GRAVITY
@@ -14,7 +14,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	skip_minimap_rendering = TRUE
 
 /area/awaymission/museum
-	name = "Nanotrasen Museum"
+	name = "纳米传讯博物馆"
 	icon_state = "awaycontent28"
 	sound_environment = SOUND_ENVIRONMENT_CONCERT_HALL
 
@@ -26,11 +26,11 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	ambientsounds = list('sound/ambience/beach/shore.ogg', 'sound/ambience/misc/ambiodd.ogg','sound/ambience/medical/ambinice.ogg')
 
 /area/awaymission/museum/cafeteria
-	name = "Nanotrasen Museum Cafeteria"
+	name = "纳米传讯博物馆自助餐厅"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/awaymission/errorroom
-	name = "Super Secret Room"
+	name = "超级密室"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	area_flags = NOTELEPORT

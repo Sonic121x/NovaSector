@@ -4,7 +4,7 @@
 
 /datum/action/changeling
 	abstract_type = /datum/action/changeling
-	name = "Prototype Sting - Debug button, ahelp this"
+	name = "原型刺痛-调试按钮，请寻求管理员帮助。"
 	background_icon_state = "bg_changeling"
 	overlay_icon_state = "bg_changeling_border"
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
@@ -70,7 +70,7 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 	if(!can_sting(user, target))
 		return FALSE
 	if(disabled_by_fire && user.fire_stacks && user.on_fire)
-		user.balloon_alert(user, "on fire!")
+		user.balloon_alert(user, "着火了！")
 		return FALSE
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(sting_action(user, target))
@@ -94,19 +94,19 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 		return FALSE
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(changeling.chem_charges < chemical_cost)
-		user.balloon_alert(user, "needs [chemical_cost] chemicals!")
+		user.balloon_alert(user, "需要[chemical_cost]点化学物质！")
 		return FALSE
 	if(changeling.absorbed_count < req_dna)
-		user.balloon_alert(user, "needs [req_dna] dna sample\s!")
+		user.balloon_alert(user, "需要 [req_dna] 份DNA样本sample\s ！")
 		return FALSE
 	if(changeling.true_absorbs < req_absorbs)
-		user.balloon_alert(user, "needs [req_absorbs] absorption\s!")
+		user.balloon_alert(user, "需要 [req_absorbs] absorption\s ！")
 		return FALSE
 	if(req_stat < user.stat)
-		user.balloon_alert(user, "incapacitated!")
+		user.balloon_alert(user, "失去行动能力！")
 		return FALSE
 	if((HAS_TRAIT(user, TRAIT_DEATHCOMA)) && (!ignores_fakedeath))
-		user.balloon_alert(user, "playing dead!")
+		user.balloon_alert(user, "装死中！")
 		return FALSE
 	return TRUE
 
@@ -116,6 +116,6 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 	if(!ishuman(user))
 		return FALSE
 	if(req_human && ismonkey(user))
-		user.balloon_alert(user, "become human!")
+		user.balloon_alert(user, "变回人类！")
 		return FALSE
 	return TRUE

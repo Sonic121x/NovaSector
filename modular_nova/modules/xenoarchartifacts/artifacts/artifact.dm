@@ -17,8 +17,8 @@
 // Boulders - sometimes turn up after excavating turf - excavate further to try and find large xenoarch finds
 
 /obj/structure/boulder
-	name = "rocky debris"
-	desc = "Leftover rock from an excavation, it's been partially dug out already but there's still a lot to go."
+	name = "岩石碎屑"
+	desc = "挖掘后留下的岩石，它已经被部分挖出，但还有很多工作要做。"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/mining.dmi'
 	icon_state = "boulder1"
 	density = TRUE
@@ -51,7 +51,7 @@
 	. = ..()
 	. += span_notice("[holomark ? "This boulder has been scanned. Target Depth: [approximate_excavation_level] +- 15 cm." : "This boulder has not been scanned."]")
 	if(holomark_adv)
-		. += span_notice("The item depth is [target_excavation_level] cm.")
+		. += span_notice("物品深度为 [target_excavation_level] 厘米。")
 	. += span_notice("[measured ? "This boulder has been measured. Dug Depth: [excavation_level]." : "This boulder has not been measured."]")
 	var/datum/component/gps/our_gps = GetComponent(/datum/component/gps)
 	if(our_gps)
@@ -197,40 +197,40 @@
 		return TRUE
 	if(istype(attacking_item, /obj/item/pickaxe))
 		user.visible_message(
-			span_notice("[user] begins smashing the [src]..."),
-			span_notice("You begin smashing the [src]...."),
+			span_notice("[user] 开始砸碎 [src]..."),
+			span_notice("你开始砸碎 [src]...."),
 		)
 		if(!do_after(user, 2.5 SECONDS, target = src))
 			user.visible_message(
-				span_warning("[user] slips and smashes the boulder with extra force!"),
-				span_warning("You slip and smash the boulder with extra force!"),
-				blind_message = span_hear("You hear a smash!"),
+				span_warning("[user] 滑了一下，用额外的力量砸中了巨石！"),
+				span_warning("你滑了一下，用额外的力量砸中了巨石！"),
+				blind_message = span_hear("你听到一声砸击！"),
 			)
 			excavation_level += rand(10,50)
 			return
 		switch(try_dig(25))
 			if(DIG_DELETE)
 				user.visible_message(
-					span_warning("The [src] crumbles, leaving nothing behind."),
-					blind_message = span_hear("You hear rocks crumbling."),
+					span_warning("[src] 碎裂了，什么也没留下。"),
+					blind_message = span_hear("你听到岩石碎裂的声音。"),
 				)
 				return
 			if(DIG_ROCK)
 				user.visible_message(
-					span_notice("[user] successfully digs the [src]. The item inside seems to be still intact."),
-					span_notice("You successfully dig the [src]. The item inside seems to be still intact."),
-					blind_message = span_hear("You hear rocks crumbling."),
+					span_notice("[user] 成功挖掘了 [src]。里面的物品似乎仍然完好无损。"),
+					span_notice("你成功挖掘了 [src]。里面的物品似乎仍然完好无损。"),
+					blind_message = span_hear("你听到岩石碎裂的声音。"),
 				)
 
 	if(istype(attacking_item, /obj/item/xenoarch/hammer))
 		var/obj/item/xenoarch/hammer/hammer = attacking_item
 		user.visible_message(
-			span_notice("[user] begins carefully using their hammer..."),
-			span_notice("You begin carefully using your hammer..."),
-			blind_message = span_hear("You hear rhythmic knocking."),
+			span_notice("[user] 开始小心地使用他们的锤子..."),
+			span_notice("你开始小心地使用你的锤子..."),
+			blind_message = span_hear("你听到有节奏的敲击声。"),
 		)
 		if(!do_after(user, hammer.dig_speed, target = src))
-			to_chat(user, span_warning("You interrupt your careful planning, damaging the boulder in the process!"))
+			to_chat(user, span_warning("你中断了精心规划，在此过程中损坏了巨石！"))
 			excavation_level += rand(1,5)
 			return
 		switch(try_dig(hammer.dig_amount))
@@ -238,89 +238,89 @@
 				CRASH("[hammer] tried to call try_dig() with an invalid dig_amount! Must have a positive value.")
 			if(DIG_DELETE)
 				user.visible_message(
-					span_warning("The boulder crumbles, leaving nothing behind."),
-					blind_message = span_hear("You hear rock crumbling."),
+					span_warning("巨石碎裂，什么也没留下。"),
+					blind_message = span_hear("你听到岩石碎裂的声音。"),
 				)
 				return
 			if(DIG_ROCK)
-				to_chat(user, span_notice("You successfully dig around the item."))
+				to_chat(user, span_notice("你成功在物品周围挖掘。"))
 
 	if (istype(attacking_item, /obj/item/xenoarch/handheld_scanner))
 		var/obj/item/xenoarch/handheld_scanner/scanner = attacking_item
 		if (holomark_adv || (holomark && !istype(scanner, /obj/item/xenoarch/handheld_scanner/advanced)))
-			to_chat(user, span_notice("The boulder was already scanned. You can even see the holomark attached to it."))
+			to_chat(user, span_notice("这块巨石已经被扫描过了。你甚至能看到附着在上面的全息标记。"))
 			return
 		user.visible_message(
-			span_notice("[user] begins to scan [src] using [scanner]."),
-			span_notice("You begin to scan [src] using [scanner]."),
-			blind_message = span_hear("You hear some kind of machine silently winding up."),
+			span_notice("[user]开始使用[scanner]扫描[src]。"),
+			span_notice("你开始使用[scanner]扫描[src]。"),
+			blind_message = span_hear("你听到某种机器无声地启动。"),
 		)
 		if(!do_after(user, scanner.scanning_speed, target = src))
-			to_chat(user, span_warning("You interrupt your scanning, damaging the boulder in the process!"))
+			to_chat(user, span_warning("你中断了扫描，在此过程中损坏了巨石！"))
 			excavation_level += rand(1,5)
 			return
 		if(get_scanned(scanner.scan_advanced))
-			to_chat(user, (span_notice("You successfully scanned the boulder, attaching the holomark to it with some info!")))
+			to_chat(user, (span_notice("你成功扫描了巨石，将带有信息的全息标记附着在上面！")))
 			if(scanner.scan_advanced)
-				to_chat(user, span_notice("Thanks to the advanced scanner the holomark now also displays the exact depth needed!"))
+				to_chat(user, span_notice("得益于高级扫描仪，全息标记现在还能显示所需的确切深度！"))
 			return
 
 	if(attacking_item.type == /obj/item/xenoarch)
 		if (measured)
-			to_chat(user, span_notice("The boulder was already measured."))
+			to_chat(user, span_notice("这块巨石已经被测量过了。"))
 			return
 		user.visible_message(
-			span_notice("[user] begins measuring the [src]."),
-			span_notice("You begin carefully using your measuring tape."),
-			blind_message = span_hear("You hear the sound of a tape measure unwinding."),
+			span_notice("[user]开始测量[src]。"),
+			span_notice("你开始小心地使用卷尺。"),
+			blind_message = span_hear("你听到卷尺展开的声音。"),
 		)
 		if(!do_after(user, 4 SECONDS, target = src))
-			to_chat(user, span_warning("You interrupt your careful planning, damaging the boulder in the process!"))
+			to_chat(user, span_warning("你中断了精心规划，在此过程中损坏了巨石！"))
 			excavation_level += rand(1,5)
 			return
 		if(get_measured())
-			to_chat(user, span_notice("You successfully attach a holo measuring tape to the boulder. The boulder will now report its dug depth always!"))
+			to_chat(user, span_notice("你成功将全息卷尺附着在巨石上。巨石现在将始终报告其挖掘深度！"))
 			return
 
 	if(istype(attacking_item, /obj/item/xenoarch/brush))
 		var/obj/item/xenoarch/brush/brush = attacking_item
 		user.visible_message(
-			span_notice("[user] carefully brushes [src]."),
-			span_notice("You begin carefully using your brush."),
-			blind_message = span_hear("You hear rustling."),
+			span_notice("[user]小心地刷拭[src]。"),
+			span_notice("你开始小心地使用刷子。"),
+			blind_message = span_hear("你听到沙沙声。"),
 		)
 		if(!do_after(user, brush.dig_speed, target = src))
-			to_chat(user, span_warning("You interrupt your careful planning, damaging the boulder in the process!"))
+			to_chat(user, span_warning("你中断了精心规划，在此过程中损坏了巨石！"))
 			excavation_level += rand(1,5)
 			return
 		switch(try_uncover())
 			if(BRUSH_DELETE)
 				user.visible_message(
-					span_warning("The boulder crumbles, leaving nothing behind."),
-					blind_message = span_hear("You hear rock crumbling."),
+					span_warning("巨石碎裂，什么也没留下。"),
+					blind_message = span_hear("你听到岩石碎裂的声音。"),
 				)
 				return
 			if(BRUSH_UNCOVER)
-				to_chat(user, span_notice("You successfully brush around the item, fully revealing the item!"))
+				to_chat(user, span_notice("你成功刷开了物品周围的尘土，完全露出了这件物品！"))
 				return
 			if(BRUSH_NONE)
-				to_chat(user, span_notice("You brush around the item, but it wasn't revealed... hammer some more."))
+				to_chat(user, span_notice("你刷了刷物品周围，但它并没有显露出来……再多敲几下。"))
 
 	if(istype(attacking_item, /obj/item/xenoarch/handheld_radar))
-		to_chat(user, span_warning("The boulder must be stabilized using a different tool."))
+		to_chat(user, span_warning("这块巨石必须使用其他工具来稳定。"))
 
 	if(istype(attacking_item, /obj/item/xenoarch/core_sampler))
 		var/obj/item/xenoarch/core_sampler/sampler = attacking_item
 		if(sampler.used)
-			balloon_alert(user, "sampler already used!")
+			balloon_alert(user, "采样器已使用过！")
 			return
 		sampler.sample = src
 		sampler.used = TRUE
 		sampler.icon_state = "sampler"
 		user.visible_message(
-			span_notice("[user] takes sample of [src]."),
-			span_notice("You successfully took a sample of [src]. Now take it to the radiocarbon spectrometer."),
-			blind_message = span_hear("You hear a snap."),
+			span_notice("[user] 从 [src] 上采集了样本。"),
+			span_notice("你成功采集了[src]的样本。现在把它带到放射性碳光谱仪那里。"),
+			blind_message = span_hear("你听到一声脆响。"),
 		)
 
 #undef BRUSH_DELETE

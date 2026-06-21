@@ -104,7 +104,7 @@
 		return NONE
 
 	if (ismob(source) && !silent)
-		source.balloon_alert(source, "too far!")
+		source.balloon_alert(source, "太远了！")
 
 	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
@@ -181,7 +181,7 @@
 	if (ismob(movable_parent))
 		SSblackbox.record_feedback("tally", "leash_force_teleport_back", 1, reason)
 		if(!silent)
-			movable_parent.balloon_alert(movable_parent, "moved out of range!")
+			movable_parent.balloon_alert(movable_parent, "移动超出范围！")
 
 	SEND_SIGNAL(parent, COMSIG_LEASH_FORCE_TELEPORT)
 

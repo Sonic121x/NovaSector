@@ -10,7 +10,7 @@
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/platform as anything in SStransport.nav_beacons[specific_transport_id])
 		LAZYADD(available_platforms, platform.name)
 
-	var/selected_platform = tgui_input_list(user, "Set the platform ID", "Platform", available_platforms)
+	var/selected_platform = tgui_input_list(user, "设置站台ID", "站台", available_platforms)
 	var/obj/effect/landmark/transport/nav_beacon/tram/platform/change_platform
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/destination as anything in SStransport.nav_beacons[specific_transport_id])
 		if(destination.name == selected_platform)
@@ -21,16 +21,16 @@
 		return
 
 	if(get_dist(change_platform, src) > 15)
-		balloon_alert(user, "out of range!")
+		balloon_alert(user, "超出范围！")
 		return
 
 	id = change_platform.platform_code
-	balloon_alert(user, "platform changed")
-	to_chat(user, span_notice("You change the platform ID to [change_platform.name]."))
+	balloon_alert(user, "站台已更改")
+	to_chat(user, span_notice("你将月台ID更改为 [change_platform.name]。"))
 
 /obj/item/assembly/control/transport/call_button
-	name = "tram call button"
-	desc = "A small device used to bring trams to you."
+	name = "有轨电车呼叫按钮"
+	desc = "一种用于将有轨电车召唤到你身边的小型设备。"
 	///ID to link to allow us to link to one specific tram in the world
 	id = 0
 
@@ -81,8 +81,8 @@
 	SEND_SIGNAL(src, COMSIG_TRANSPORT_REQUEST, specific_transport_id, id)
 
 /obj/machinery/button/transport/tram
-	name = "tram request"
-	desc = "A button for calling the tram. It has a speakerbox in it with some internals."
+	name = "有轨电车请求"
+	desc = "用于呼叫有轨电车的按钮。里面有一个带内部结构的扬声器盒。"
 	base_icon_state = "tram"
 	icon_state = "tram"
 	light_color = COLOR_DISPLAY_BLUE
@@ -102,7 +102,7 @@
 	if(in_range(user, src))
 		return attack_hand(user)
 	else
-		to_chat(user, span_warning("You are too far away to activate the button!"))
+		to_chat(user, span_warning("你距离太远，无法激活按钮！"))
 
 /obj/machinery/button/transport/tram/setup_device()
 	. = ..()
@@ -112,7 +112,7 @@
 
 /obj/machinery/button/transport/tram/examine(mob/user)
 	. = ..()
-	. += span_notice("There's a small inscription on the button...")
-	. += span_notice("THIS CALLS THE TRAM! IT DOES NOT OPERATE IT! The console on the tram tells it where to go!")
+	. += span_notice("按钮上有一行小字...")
+	. += span_notice("这是呼叫有轨电车的！不是操作它的！有轨电车上的控制台决定它去哪里！")
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/transport/tram, 32)

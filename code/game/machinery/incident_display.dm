@@ -39,9 +39,9 @@ DEFINE_BITFIELD(sign_features, list(
 	icon = 'icons/obj/machines/incident_display.dmi'
 	icon_preview = "display_normal"
 	icon_state = "display_normal"
-	verb_say = "beeps"
+	verb_say = "哔哔作响"
 	verb_ask = "bloops"
-	verb_exclaim = "blares"
+	verb_exclaim = "发出刺耳声响"
 	idle_power_usage = 450
 	max_integrity = 150
 	integrity_failure = 0.75
@@ -147,14 +147,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		return FALSE
 
 	if(atom_integrity >= max_integrity && !(machine_stat & BROKEN))
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "它不需要修理！")
 		return TRUE
 
-	balloon_alert(user, "repairing display...")
+	balloon_alert(user, "正在修理显示屏...")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume = 50))
 		return TRUE
 
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修复")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -167,7 +167,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 
 	if(sign_features == DISPLAY_TRAM)
 		tool.play_tool_sound(src)
-		balloon_alert(user, "set to delam")
+		balloon_alert(user, "设置为堆芯熔毁")
 		name = NAME_DELAM
 		desc = DESC_DELAM
 		sign_features = DISPLAY_DELAM
@@ -176,7 +176,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		return TRUE
 	else
 		tool.play_tool_sound(src)
-		balloon_alert(user, "set to tram")
+		balloon_alert(user, "设置为电车")
 		name = NAME_TRAM
 		desc = DESC_TRAM
 		sign_features = DISPLAY_TRAM
@@ -371,39 +371,39 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		. += span_notice("It can be repaired with a [EXAMINE_HINT("welder")].")
 
 	if(sign_features & DISPLAY_DELAM)
-		. += span_notice("It can be changed to display tram hits with a [EXAMINE_HINT("multitool")].")
+		. += span_notice("可以用[EXAMINE_HINT("multitool")]将其更改为显示电车撞击事件。")
 		if(last_delam >= 0)
 			. += span_info("It has been [last_delam] shift\s since the last delamination event at this Nanotrasen facility.")
 			switch(last_delam)
 				if(0)
-					. += span_info("Let's do better today.<br/>")
+					. += span_info("今天要做得更好。<br/>")
 				if(1 to 5)
-					. += span_info("There's room for improvement.<br/>")
+					. += span_info("还有改进的空间。<br/>")
 				if(6 to 10)
-					. += span_info("Good work!<br/>")
+					. += span_info("干得好！<br/>")
 				if(69)
-					. += span_info("Nice.<br/>")
+					. += span_info("不错。<br/>")
 				else
-					. += span_info("Incredible!<br/>")
+					. += span_info("太棒了！<br/>")
 		else
-			. += span_info("The supermatter crystal has delaminated, in case you didn't notice.")
+			. += span_info("超物质晶体已经分层了，以防你没注意到。")
 
 	if(sign_features & DISPLAY_TRAM)
-		. += span_notice("It can be changed to display delam-free shifts with a [EXAMINE_HINT("multitool")].")
-		. += span_info("The station has had [hit_count] tram incident\s this shift.")
+		. += span_notice("可以用一个[EXAMINE_HINT("multitool")]将其切换为显示无熔毁班次。")
+		. += span_info("本班次空间站已发生 [hit_count] 次电车 incident\s 。")
 		switch(hit_count)
 			if(0)
-				. += span_info("Fantastic! Champions of safety.<br/>")
+				. += span_info("太棒了！安全冠军。<br/>")
 			if(1)
-				. += span_info("Let's do better tomorrow.<br/>")
+				. += span_info("明天再接再厉。<br/>")
 			if(2 to 5)
-				. += span_info("There's room for improvement.<br/>")
+				. += span_info("还有改进的空间。<br/>")
 			if(6 to 10)
-				. += span_info("Good work! Nanotrasen's finest!<br/>")
+				. += span_info("干得好！纳米传讯的精英！<br/>")
 			if(69)
-				. += span_info("Nice.<br/>")
+				. += span_info("不错。<br/>")
 			else
-				. += span_info("Incredible! You're probably reading this from medbay.<br/>")
+				. += span_info("不可思议！你大概正从医疗部读这条消息吧。<br/>")
 
 #undef DISPLAY_DELAM
 #undef DISPLAY_TRAM

@@ -1,7 +1,7 @@
 ///It's gross, gets the name of its owner, and is all kinds of fucked up
 /datum/material/meat
-	name = "meat"
-	desc = "Meat"
+	name = "肉"
+	desc = "肉"
 	id = /datum/material/meat // So the bespoke versions are categorized under this
 	color = rgb(214, 67, 67)
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_ORGANIC

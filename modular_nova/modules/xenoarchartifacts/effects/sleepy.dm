@@ -51,11 +51,11 @@
 		if(!weakness)
 			return
 		to_chat(human_mob, pick(
-			span_notice("You feel like taking a nap."),
-			span_notice("You feel a yawn coming on."),
-			span_notice("You feel a little tired."),
+			span_notice("你想小睡一会儿。"),
+			span_notice("你感觉要打哈欠了。"),
+			span_notice("你感觉有点累。"),
 		))
 		human_mob.adjust_dizzy_up_to(30 SECONDS, 120 SECONDS)
 		human_mob.Sleeping(power * weakness * 10)
 	if(issilicon(receiver))
-		to_chat(receiver, span_warning("SYSTEM ALERT: Anomalous process with PID [rand(0,9999)] slows down the CPU."))
+		to_chat(receiver, span_warning("系统警报：PID为[rand(0,9999)]的异常进程降低了CPU速度。"))

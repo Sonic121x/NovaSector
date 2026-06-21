@@ -125,13 +125,13 @@
 				playsound(get_turf(computer.ui_host()) , 'sound/machines/buzz/buzz-sigh.ogg', 25, FALSE)
 		if("changedroneaccess")
 			if(!computer || !computer.stored_id || !id_card)
-				to_chat(current_user, span_notice("No ID found, authorization failed."))
+				to_chat(current_user, span_notice("未找到ID，授权失败。"))
 				return
 			if(isdrone(current_user))
-				to_chat(current_user, span_notice("You can't free yourself."))
+				to_chat(current_user, span_notice("你不能解放自己。"))
 				return
 			if(!(ACCESS_CE in id_card.access))
-				to_chat(current_user, span_notice("Required access not found on ID."))
+				to_chat(current_user, span_notice("ID上未找到所需权限。"))
 				return
 			GLOB.drone_machine_blacklist_enabled = !GLOB.drone_machine_blacklist_enabled
 		if("ping_drones")
@@ -140,7 +140,7 @@
 			var/area/current_area = get_area(current_user)
 			if(!current_area || QDELETED(current_user))
 				return
-			var/msg = span_boldnotice("NON-DRONE PING: [current_user.name]: [params["ping_type"]] priority alert in [current_area.name]!")
+			var/msg = span_boldnotice("非无人机警报：[current_user.name]：[params["ping_type"]] 优先级警报位于 [current_area.name]！")
 			_alert_drones(msg, TRUE, current_user)
 			to_chat(current_user, msg)
 			playsound(src, 'sound/machines/terminal/terminal_success.ogg', 15, TRUE)

@@ -19,7 +19,7 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 	. = ..()
 	
 	if(!only_functional)
-		. += span_info("Ctrl + Shift + Left Click to swap between functional (suit) and non-functional (neck) mode, to allow for things such as wearing a (nonfunctional) jacket over a piece of armor for the visual effect.")
+		. += span_info("Ctrl + Shift + 左键点击可在功能（套装）模式与非功能（颈部）模式之间切换，以便实现诸如将（非功能性）夹克穿在护甲外面以获得视觉效果。")
 
 #define PREV_SLOT_FLAGS "fs_slots"
 #define PREV_COLD_PROTECTION "fs_cold"
@@ -34,10 +34,10 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 		return NONE
 	var/mob/living/carbon/char = user
 	if((char.get_item_by_slot(ITEM_SLOT_NECK) == src) || (char.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src))
-		to_chat(user, span_warning("You can't adjust [src] while wearing it!"))
+		to_chat(user, span_warning("穿戴时无法调整[src]！"))
 		return CLICK_ACTION_BLOCKING
 	if(!user.is_holding(src))
-		to_chat(user, span_warning("You must be holding [src] in order to adjust it!"))
+		to_chat(user, span_warning("你必须手持[src]才能调整它！"))
 		return CLICK_ACTION_BLOCKING
 	if(slot_flags & ITEM_SLOT_OCLOTHING)
 		functional_suit_values = list(
@@ -52,14 +52,14 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 		heat_protection = null
 		slowdown = 0
 		set_armor(/datum/armor/none)
-		user.visible_message(span_notice("[user] adjusts [user.p_their()] [src] for non-functional use."), span_notice("You adjust your [src] for non-functional use."))
+		user.visible_message(span_notice("[user]将[user.p_their()]的[src]调整为非功能使用模式。"), span_notice("你将你的[src]调整为非功能使用模式。"))
 	else
 		slot_flags = functional_suit_values[PREV_SLOT_FLAGS]
 		cold_protection = functional_suit_values[PREV_COLD_PROTECTION]
 		heat_protection = functional_suit_values[PREV_HEAT_PROTECTION]
 		slowdown = functional_suit_values[PREV_SLOWDOWN]
 		set_armor(functional_suit_values[PREV_ARMOR_DATUM])
-		user.visible_message(span_notice("[user] adjusts [user.p_their()] [src] for functional use."), span_notice("You adjust your [src] for functional use."))
+		user.visible_message(span_notice("[user]将[user.p_their()]的[src]调整为功能使用模式。"), span_notice("你将你的[src]调整为功能使用模式。"))
 	return CLICK_ACTION_SUCCESS
 
 #undef PREV_SLOT_FLAGS

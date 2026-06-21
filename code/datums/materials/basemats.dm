@@ -1,7 +1,7 @@
 ///Has no special properties.
 /datum/material/iron
 	name = "iron"
-	desc = "Common iron ore often found in sedimentary and igneous layers of the crust."
+	desc = "常见铁矿石，常发现于地壳的沉积层和火成岩层中。"
 	color = "#B6BEC2"
 	mat_flags = MATERIAL_SILO_STORED | MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -34,7 +34,7 @@
 ///Breaks extremely easily but is transparent.
 /datum/material/glass
 	name = "glass"
-	desc = "Glass forged by melting sand."
+	desc = "通过熔化沙子锻造而成的玻璃。"
 	color = "#6292AF"
 	alpha = 150
 	mat_flags = MATERIAL_SILO_STORED | MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_CRYSTAL | MATERIAL_CLASS_RIGID
@@ -205,7 +205,7 @@
 /// Adds firestacks on hit (Still needs support to turn into gas on destruction)
 /datum/material/plasma
 	name = "plasma"
-	desc = "Isn't plasma a state of matter? Oh whatever."
+	desc = "等离子体不是一种物质状态吗？哦，管他呢。"
 	color = "#BA3692"
 	mat_flags = MATERIAL_SILO_STORED | MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_CRYSTAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -354,7 +354,7 @@
 ///Mediocre force increase
 /datum/material/titanium
 	name = "titanium"
-	desc = "Titanium"
+	desc = "钛"
 	color = "#EFEFEF"
 	mat_properties = list(
 		MATERIAL_DENSITY = 5,
@@ -383,8 +383,8 @@
 		return TRUE
 
 /datum/material/runite
-	name = "runite"
-	desc = "Runite"
+	name = "符文矿"
+	desc = "符文矿"
 	color = "#526F77"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -421,7 +421,7 @@
 ///Force decrease
 /datum/material/plastic
 	name = "plastic"
-	desc = "Plastic"
+	desc = "塑料"
 	color = "#BFB9AC"
 	mat_flags = MATERIAL_SILO_STORED | MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_POLYMER | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -444,14 +444,14 @@
 
 /// Force decrease and mushy sound effect. (Not yet implemented)
 /datum/material/biomass
-	name = "biomass"
-	desc = "Organic matter."
+	name = "生物质"
+	desc = "有机物质。"
 	color = "#735b4d"
 	value_per_unit = 50 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/wood
-	name = "wood"
-	desc = "Flexible, durable, but flammable. Hard to come across in space."
+	name = "木材"
+	desc = "柔韧耐用，但易燃。在太空中很难获得。"
 	color = "#855932"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_ORGANIC | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -478,8 +478,8 @@
 
 /// Stronk force increase
 /datum/material/adamantine
-	name = "adamantine"
-	desc = "A powerful material made out of magic, I mean science!"
+	name = "精金"
+	desc = "一种由魔法——我是说科学——制成的强大材料！"
 	color = "#2B7A74"
 	mat_properties = list(
 		MATERIAL_DENSITY = 7,
@@ -515,8 +515,8 @@
 
 /// RPG Magic.
 /datum/material/mythril
-	name = "mythril"
-	desc = "How this even exists is byond me"
+	name = "秘银"
+	desc = "这东西怎么会存在，真是超乎我的想象"
 	color = "#f2d5d7"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -556,8 +556,8 @@
 
 //formed when freon react with o2, emits a lot of plasma when heated
 /datum/material/hot_ice
-	name = "hot ice"
-	desc = "A weird kind of ice, feels warm to the touch"
+	name = "热冰"
+	desc = "一种奇怪的冰，摸起来感觉温热"
 	color = "#88cdf1"
 	alpha = 150
 	starlight_color = COLOR_BLUE_LIGHT
@@ -587,8 +587,8 @@
 
 // It's basically adamantine, but it isn't!
 /datum/material/metalhydrogen
-	name = "Metal Hydrogen"
-	desc = "Solid metallic hydrogen. Some say it should be impossible"
+	name = "金属氢"
+	desc = "固态金属氢。有人说这应该是不可能的"
 	color = "#62708A"
 	starlight_color = COLOR_MODERATE_BLUE
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
@@ -614,7 +614,7 @@
 //I don't like sand. It's coarse, and rough, and irritating, and it gets everywhere.
 /datum/material/sand
 	name = "sand"
-	desc = "You know, it's amazing just how structurally sound sand can be."
+	desc = "你知道吗，沙子在结构上能如此坚固真是令人惊叹。"
 	color = "#EDC9AF"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_AMORPHOUS
 	mat_properties = list(
@@ -640,7 +640,7 @@
 
 //And now for our lavaland dwelling friends, sand, but in stone form! Truly revolutionary.
 /datum/material/sandstone
-	name = "sandstone"
+	name = "砂岩"
 	desc = "Bialtaakid 'ant taerif ma hdha."
 	color = "#ECD5A8"
 	mat_flags = MATERIAL_BASIC_RECIPES
@@ -661,8 +661,8 @@
 	mat_rust_resistance = RUST_RESISTANCE_BASIC
 
 /datum/material/snow
-	name = "snow"
-	desc = "There's no business like snow business."
+	name = "雪"
+	desc = "没有什么生意像雪生意一样。"
 	color = COLOR_WHITE
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_AMORPHOUS
 	mat_properties = list(
@@ -677,11 +677,11 @@
 	sheet_type = /obj/item/stack/sheet/mineral/snow
 	material_reagent = /datum/reagent/consumable/ice
 	turf_sound_override = FOOTSTEP_SAND
-	texture_layer_icon_state = "sand"
+	texture_layer_icon_state = "沙子"
 	mat_rust_resistance = RUST_RESISTANCE_ORGANIC
 
 /datum/material/runedmetal
-	name = "runed metal"
+	name = "符文金属"
 	desc = "Mir'ntrath barhah Nar'sie."
 	color = "#504742"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
@@ -706,8 +706,8 @@
 	return TRUE
 
 /datum/material/bronze
-	name = "bronze"
-	desc = "Clock Cult? Never heard of it."
+	name = "青铜"
+	desc = "钟表教派？从没听说过。"
 	color = "#876223"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -725,7 +725,7 @@
 
 /datum/material/paper
 	name = "paper"
-	desc = "Ten thousand folds of pure starchy power."
+	desc = "万层折叠，纯淀粉之力。"
 	color = "#E5DCD5"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_ORGANIC
 	mat_properties = list(
@@ -743,7 +743,7 @@
 	sheet_type = /obj/item/stack/sheet/paperframes
 	value_per_unit = 5 / SHEET_MATERIAL_AMOUNT
 	turf_sound_override = FOOTSTEP_SAND
-	texture_layer_icon_state = "paper"
+	texture_layer_icon_state = "纸"
 
 /datum/material/paper/on_main_applied(atom/source, mat_amount, multiplier)
 	. = ..()
@@ -769,8 +769,8 @@
 		UnregisterSignal(source, COMSIG_ROD_BEGIN_FISHING)
 
 /datum/material/cardboard
-	name = "cardboard"
-	desc = "They say cardboard is used by hobos to make incredible things."
+	name = "纸板"
+	desc = "据说流浪汉能用纸板做出不可思议的东西。"
 	color = "#5F625C"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_ORGANIC
 	mat_properties = list(
@@ -794,8 +794,8 @@
 		cardboard.obj_flags |= UNIQUE_RENAME
 
 /datum/material/bone
-	name = "bone"
-	desc = "Man, building with this will make you the coolest caveman on the block."
+	name = "骨头"
+	desc = "伙计，用这个建造会让你成为街区最酷的穴居人。"
 	color = "#e3dac9"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_ORGANIC | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -846,7 +846,7 @@
 
 /datum/material/bamboo
 	name = "bamboo"
-	desc = "If it's good enough for pandas, it's good enough for you."
+	desc = "如果它对熊猫来说足够好，那对你来说也足够好。"
 	color = "#87a852"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_ORGANIC | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -864,11 +864,11 @@
 	material_reagent = /datum/reagent/cellulose
 	value_per_unit = 5 / SHEET_MATERIAL_AMOUNT
 	turf_sound_override = FOOTSTEP_WOOD
-	texture_layer_icon_state = "bamboo"
+	texture_layer_icon_state = "竹子"
 
 /datum/material/zaukerite
 	name = "zaukerite"
-	desc = "A light absorbing crystal"
+	desc = "一种吸收光线的晶体"
 	color = COLOR_ALMOST_BLACK
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_CRYSTAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(

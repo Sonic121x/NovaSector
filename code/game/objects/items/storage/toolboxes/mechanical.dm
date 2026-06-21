@@ -1,5 +1,5 @@
 /obj/item/storage/toolbox/mechanical
-	name = "mechanical toolbox"
+	name = "机械工具箱"
 	icon_state = "blue"
 	inhand_icon_state = "toolbox_blue"
 	material_flags = NONE
@@ -15,14 +15,14 @@
 	new /obj/item/wirecutters(src)
 
 /obj/item/storage/toolbox/mechanical/old
-	name = "rusty blue toolbox"
+	name = "生锈的蓝色工具箱"
 	icon_state = "toolbox_blue_old"
 	has_latches = FALSE
 	has_soul = TRUE
 
 /obj/item/storage/toolbox/mechanical/old/heirloom
-	name = "toolbox" //this will be named "X family toolbox"
-	desc = "It's seen better days."
+	name = "工具箱" //this will be named "X family toolbox"
+	desc = "它见过更好的日子。"
 	force = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/toolbox/heirloom
@@ -32,13 +32,13 @@
 
 // version of below that isn't a traitor item
 /obj/item/storage/toolbox/mechanical/old/cleaner
-	name = "old blue toolbox"
+	name = "旧蓝色工具箱"
 	icon_state = "oldtoolboxclean"
 	icon_state = "toolbox_blue_old"
 
 /obj/item/storage/toolbox/mechanical/old/clean // the assistant traitor toolbox, damage scales with TC inside
-	name = "toolbox"
-	desc = "An old, blue toolbox, it looks robust."
+	name = "工具箱"
+	desc = "一个旧的蓝色工具箱，看起来挺结实的。"
 	icon_state = "oldtoolboxclean"
 	inhand_icon_state = "toolbox_blue"
 	has_latches = FALSE

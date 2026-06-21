@@ -5,7 +5,7 @@
  * The attacker will always be the first person in the list, killing them will go to the next.
  */
 /datum/mafia_ability/changeling_kill
-	name = "Kill Vote"
+	name = "处决投票"
 	ability_action = "attempt to absorb"
 	action_priority = COMSIG_MAFIA_NIGHT_KILL_PHASE
 	///Boolean on whether a Changeling has been sent to attack someone yet.
@@ -30,8 +30,8 @@
 
 	ling_sent = TRUE
 	if(target_role.kill(game, host_role, FALSE))
-		target_role.send_message_to_player(span_userdanger("You have been killed by a Changeling!"))
-	game.send_message(span_danger("[host_role.body.real_name] was selected to attack [target_role.body.real_name] tonight!"), MAFIA_TEAM_MAFIA)
+		target_role.send_message_to_player(span_userdanger("你被一只噬灵者杀死了！"))
+	game.send_message(span_danger("[host_role.body.real_name] 被选中今晚攻击 [target_role.body.real_name]！"), MAFIA_TEAM_MAFIA)
 	return TRUE
 
 /datum/mafia_ability/changeling_kill/set_target(datum/mafia_role/new_target)
@@ -52,7 +52,7 @@
 	if (host_role.mafia_game_controller.phase != MAFIA_PHASE_NIGHT)
 		return FALSE
 
-	var/message = span_changeling("<b>\[CHANGELING CHAT\] [source]</b>: [html_decode(speech_args[SPEECH_MESSAGE])]")
+	var/message = span_changeling("<b>\[异虫聊天\] [source]</b>: [html_decode(speech_args[SPEECH_MESSAGE])]")
 	host_role.mafia_game_controller.send_message(message, MAFIA_TEAM_MAFIA)
 	speech_args[SPEECH_MESSAGE] = ""
 	return TRUE

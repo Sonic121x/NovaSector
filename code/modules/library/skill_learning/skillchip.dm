@@ -1,6 +1,6 @@
 /obj/item/skillchip
-	name = "skillchip"
-	desc = "This biochip integrates with user's brain to enable mastery of specific skill. Consult certified Nanotrasen neurosurgeon before use."
+	name = "技能卡"
+	desc = "这种生物芯片与用户的大脑相结合，使用户能够掌握特定的技能。使用前请咨询经过认证的纳米传讯神经外科医生。"
 
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "skillchip"

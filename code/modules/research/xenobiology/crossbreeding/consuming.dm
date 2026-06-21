@@ -4,8 +4,8 @@ Consuming extracts:
 	After consuming enough, produces special cookies.
 */
 /obj/item/slimecross/consuming
-	name = "consuming extract"
-	desc = "It hungers... for <i>more</i>." //My slimecross has finally decided to eat... my buffet!
+	name = "消耗提取物"
+	desc = "它渴望……<i>更多</i>。" //My slimecross has finally decided to eat... my buffet!
 	icon_state = "consuming"
 	effect = "consuming"
 	var/nutriment_eaten = 0
@@ -20,12 +20,12 @@ Consuming extracts:
 		return NONE
 
 	if(last_produced + cooldown > world.time)
-		to_chat(user, span_warning("[src] is still digesting after its last meal!"))
+		to_chat(user, span_warning("[src] 还在消化上一餐！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/reagent/nutriments = tool.reagents.has_reagent(/datum/reagent/consumable/nutriment)
 	if(!nutriments)
-		to_chat(user, span_warning("[src] burbles unhappily at the offering."))
+		to_chat(user, span_warning("[src] 对这份祭品发出不满的咕噜声。"))
 		return ITEM_INTERACT_BLOCKING
 
 	nutriment_eaten += nutriments.volume
@@ -37,7 +37,7 @@ Consuming extracts:
 		return ITEM_INTERACT_SUCCESS
 
 	nutriment_eaten = 0
-	user.visible_message(span_notice("[src] swells up and produces a small pile of cookies!"))
+	user.visible_message(span_notice("[src] 膨胀起来，产出了一小堆饼干！"))
 	playsound(src, 'sound/effects/splat.ogg', 40, TRUE)
 	last_produced = world.time
 	for(var/i in 1 to cookies)
@@ -50,8 +50,8 @@ Consuming extracts:
 	return new cookietype(get_turf(src))
 
 /obj/item/slime_cookie //While this technically acts like food, it's so removed from it that I made it its own type.
-	name = "error cookie"
-	desc = "A weird slime cookie. You shouldn't see this."
+	name = "错误曲奇"
+	desc = "一块奇怪的黏液饼干。你不应该见到这样的东西。"
 	icon = 'icons/obj/food/slimecookies.dmi'
 	var/taste = "error"
 	var/nutrition = 5
@@ -71,16 +71,16 @@ Consuming extracts:
 	var/mob/living/living_mob = interacting_with
 	var/fed = FALSE
 	if(living_mob == user)
-		living_mob.visible_message(span_notice("[user] eats [src]!"), span_notice("You eat [src]."))
+		living_mob.visible_message(span_notice("[user] 吃掉了 [src]！"), span_notice("你吃掉了 [src]。"))
 		fed = TRUE
 	else
-		living_mob.visible_message(span_danger("[user] tries to force [living_mob] to eat [src]!"), span_userdanger("[user] tries to force you to eat [src]!"))
+		living_mob.visible_message(span_danger("[user] 试图强迫 [living_mob] 吃掉 [src]！"), span_userdanger("[user] 试图强迫你吃掉 [src]！"))
 		if(do_after(user, 2 SECONDS, target = living_mob))
 			fed = TRUE
-			living_mob.visible_message(span_danger("[user] forces [living_mob] to eat [src]!"), span_warning("[user] forces you to eat [src]."))
+			living_mob.visible_message(span_danger("[user] 强迫 [living_mob] 吃掉了 [src]！"), span_warning("[user] 强迫你吃掉了 [src]。"))
 	if(fed)
 		if(!HAS_TRAIT(living_mob, TRAIT_AGEUSIA))
-			to_chat(living_mob, span_notice("You can taste [taste]."))
+			to_chat(living_mob, span_notice("你能尝到 [taste] 的味道。"))
 		playsound(get_turf(living_mob), 'sound/items/eatfood.ogg', 20, TRUE)
 		if(nutrition)
 			living_mob.reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrition)
@@ -95,8 +95,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/grey
 
 /obj/item/slime_cookie/grey
-	name = "slime cookie"
-	desc = "A grey-ish transparent cookie. Nutritious, probably."
+	name = "史莱姆曲奇"
+	desc = "一个透明的灰色曲奇.含有营养，大概吧."
 	icon_state = "grey"
 	taste = "goo"
 	nutrition = 15
@@ -107,8 +107,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/orange
 
 /obj/item/slime_cookie/orange
-	name = "fiery cookie"
-	desc = "An orange cookie with a fiery pattern. Feels warm."
+	name = "火辣曲奇"
+	desc = "一块带有炽热图案的橙色曲奇。摸起来很温暖。"
 	icon_state = "orange"
 	taste = "cinnamon and burning"
 
@@ -121,8 +121,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/purple
 
 /obj/item/slime_cookie/purple
-	name = "health cookie"
-	desc = "A purple cookie with a cross pattern. Soothing."
+	name = "治愈曲奇"
+	desc = "一个带有十字图案的紫色曲奇，令人舒缓."
 	icon_state = "purple"
 	taste = "fruit jam and cough medicine"
 
@@ -142,8 +142,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/blue
 
 /obj/item/slime_cookie/blue
-	name = "water cookie"
-	desc = "A transparent blue cookie. Constantly dripping wet."
+	name = "水曲奇"
+	desc = "一个透明的蓝色曲奇，总是湿哒哒的."
 	icon_state = "blue"
 	taste = "water"
 
@@ -156,8 +156,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/metal
 
 /obj/item/slime_cookie/metal
-	name = "metallic cookie"
-	desc = "A shiny grey cookie. Hard to the touch."
+	name = "金属曲奇"
+	desc = "一个闪亮的灰色曲奇.摸起来很硬."
 	icon_state = "metal"
 	taste = "copper"
 
@@ -170,8 +170,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/yellow
 
 /obj/item/slime_cookie/yellow
-	name = "sparking cookie"
-	desc = "A yellow cookie with a lightning pattern. Has a rubbery texture."
+	name = "电花曲奇"
+	desc = "一块带有闪电图案的黄色曲奇。质地有点像橡胶。"
 	icon_state = "yellow"
 	taste = "lemon cake and rubber gloves"
 
@@ -184,8 +184,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/darkpurple
 
 /obj/item/slime_cookie/darkpurple
-	name = "toxic cookie"
-	desc = "A dark purple cookie, stinking of plasma."
+	name = "毒素曲奇"
+	desc = "一块深紫色的曲奇，散发着等离子体的气味。"
 	icon_state = "darkpurple"
 	taste = "slime jelly and toxins"
 
@@ -198,8 +198,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/darkblue
 
 /obj/item/slime_cookie/darkblue
-	name = "frosty cookie"
-	desc = "A dark blue cookie with a snowflake pattern. Feels cold."
+	name = "霜冻曲奇"
+	desc = "一块深蓝色的饼干，上面有雪花图案。摸起来很凉爽。"
 	icon_state = "darkblue"
 	taste = "mint and bitter cold"
 
@@ -213,8 +213,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/silver
 
 /obj/item/slime_cookie/silver
-	name = "waybread cookie"
-	desc = "A warm, crispy cookie, sparkling silver in the light. Smells wonderful."
+	name = "保健曲奇"
+	desc = "一块温暖酥脆的饼干，在光线下呈现出闪亮的银色。闻起来香气扑鼻。"
 	icon_state = "silver"
 	taste = "masterful elven baking"
 	nutrition = 0 //We don't want normal nutriment
@@ -228,8 +228,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/bluespace
 
 /obj/item/slime_cookie/bluespace
-	name = "space cookie"
-	desc = "A white cookie with green icing. Surprisingly hard to hold."
+	name = "太空曲奇"
+	desc = "一块白色的饼干，上面覆盖着绿色的糖霜。出奇地难握。"
 	icon_state = "bluespace"
 	taste = "sugar and starlight"
 
@@ -257,8 +257,8 @@ Consuming extracts:
 
 /obj/item/slime_cookie/bluespace/proc/fail_effect(mob/living/eater)
 	eater.visible_message(
-		message = span_warning("[eater] briefly vanishes... then slams forcefully into the ground"),
-		self_message = span_warning("You briefly vanish... and are returned forcefully to the ground.")
+		message = span_warning("[eater] 短暂地消失了……然后重重地摔在地上"),
+		self_message = span_warning("你短暂地消失了……然后被重重地摔回地面。")
 	)
 	eater.Knockdown(0.1 SECONDS)
 	new /obj/effect/particle_effect/sparks(get_turf(eater))
@@ -269,8 +269,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/sepia
 
 /obj/item/slime_cookie/sepia
-	name = "time cookie"
-	desc = "A light brown cookie with a clock pattern. Takes some time to chew."
+	name = "时间曲奇"
+	desc = "一块浅棕色的饼干，上面有钟形图案。咀嚼起来需要一些时间。"
 	icon_state = "sepia"
 	taste = "brown sugar and a metronome"
 
@@ -284,14 +284,14 @@ Consuming extracts:
 	cookies = 3 //You're gonna get more.
 
 /obj/item/slime_cookie/cerulean
-	name = "duplicookie"
-	desc = "A cerulean cookie with strange proportions. It feels like it could break apart easily."
+	name = "克隆曲奇"
+	desc = "一块湛蓝色的曲奇，其形状十分奇特。感觉它很容易就会碎掉。"
 	icon_state = "cerulean"
 	taste = "a sugar cookie"
 
 /obj/item/slime_cookie/cerulean/do_effect(mob/living/M, mob/user)
 	if(prob(50))
-		to_chat(M, span_notice("A piece of [src] breaks off while you chew, and falls to the ground."))
+		to_chat(M, span_notice("你咀嚼时，[src] 的一块碎片脱落，掉在了地上。"))
 		var/obj/item/slime_cookie/cerulean/C = new(get_turf(M))
 		C.taste = taste + " and a sugar cookie"
 
@@ -301,8 +301,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/pyrite
 
 /obj/item/slime_cookie/pyrite
-	name = "color cookie"
-	desc = "A yellow cookie with rainbow-colored icing. Reflects the light strangely."
+	name = "多彩曲奇"
+	desc = "有彩虹色外皮的黄色曲奇.奇异地反射着光线."
 	icon_state = "pyrite"
 	taste = "vanilla and " //Randomly selected color dye.
 	var/colour = COLOR_WHITE
@@ -343,8 +343,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/red
 
 /obj/item/slime_cookie/red
-	name = "blood cookie"
-	desc = "A red cookie, oozing a thick red fluid. Vampires might enjoy it."
+	name = "血曲奇"
+	desc = "一块红色的曲奇，上面渗出了粘稠的红色液体.吸血鬼可能会喜欢."
 	icon_state = "red"
 	taste = "red velvet and iron"
 
@@ -361,8 +361,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/green
 
 /obj/item/slime_cookie/green
-	name = "gross cookie"
-	desc = "A disgusting green cookie, seeping with pus. You kind of feel ill just looking at it."
+	name = "极臭曲奇"
+	desc = "一块散发着恶臭、满是脓液的绿色曲奇。光是看着它，你就会觉得不舒服。"
 	icon_state = "green"
 	taste = "the contents of your stomach"
 
@@ -378,8 +378,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/pink
 
 /obj/item/slime_cookie/pink
-	name = "love cookie"
-	desc = "A pink cookie with an icing heart. D'aww."
+	name = "爱心曲奇"
+	desc = "一块粉色的曲奇，上面还装饰着一个糖霜做成的心形图案。真可爱啊。"
 	icon_state = "pink"
 	taste = "love and hugs"
 
@@ -392,8 +392,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/gold
 
 /obj/item/slime_cookie/gold
-	name = "gilded cookie"
-	desc = "A buttery golden cookie, closer to a bread than anything. May good fortune find you."
+	name = "镀金曲奇"
+	desc = "一块金黄酥脆的曲奇，更像是一块面包而非其他什么。愿好运降临于你。"
 	icon_state = "gold"
 	taste = "sweet cornbread and wealth"
 
@@ -411,8 +411,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/oil
 
 /obj/item/slime_cookie/oil
-	name = "tar cookie"
-	desc = "An oily black cookie, which sticks to your hands. Smells like chocolate."
+	name = "焦油曲奇"
+	desc = "一块油腻的黑色曲奇，粘在你的手上。闻起来有巧克力的香味。"
 	icon_state = "oil"
 	taste = "rich molten chocolate and tar"
 
@@ -425,8 +425,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/black
 
 /obj/item/slime_cookie/black
-	name = "spooky cookie"
-	desc = "A pitch black cookie with an icing ghost on the front. Spooky!"
+	name = "恐怖曲奇"
+	desc = "一块漆黑的曲奇，正面有一个糖霜绘制的鬼魂图案。好恐怖啊！"
 	icon_state = "black"
 	taste = "ghosts and stuff"
 
@@ -439,8 +439,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/lightpink
 
 /obj/item/slime_cookie/lightpink
-	name = "peace cookie"
-	desc = "A light pink cookie with a peace symbol in the icing. Lovely!"
+	name = "平静曲奇"
+	desc = "一块浅粉色的曲奇，其表面的糖霜上有一个和平标志。真漂亮！"
 	icon_state = "lightpink"
 	taste = "strawberry icing and P.L.U.R" //Literal candy raver.
 
@@ -453,8 +453,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/adamantine
 
 /obj/item/slime_cookie/adamantine
-	name = "crystal cookie"
-	desc = "A translucent rock candy in the shape of a cookie. Surprisingly chewy."
+	name = "水晶曲奇"
+	desc = "一块半透明的糖霜状糖果，外形像一块曲奇。令人惊讶的是，它非常有嚼劲。"
 	icon_state = "adamantine"
 	taste = "crystalline sugar and metal"
 
@@ -468,7 +468,7 @@ Consuming extracts:
 /obj/item/slimecross/consuming/rainbow/spawncookie()
 	var/cookie_type = pick(subtypesof(/obj/item/slime_cookie))
 	var/obj/item/slime_cookie/S = new cookie_type(get_turf(src))
-	S.name = "rainbow cookie"
-	S.desc = "A beautiful rainbow cookie, constantly shifting colors in the light."
+	S.name = "彩虹曲奇"
+	S.desc = "一块色彩斑斓的彩虹曲奇，在光的照射下不断变换着颜色。"
 	S.icon_state = "rainbow"
 	return S

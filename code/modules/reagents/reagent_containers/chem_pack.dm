@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/chem_pack
-	name = "intravenous medicine bag"
-	desc = "A plastic pressure bag, or 'chem pack', for IV administration of drugs. It is fitted with a thermosealing strip."
+	name = "静脉注射医疗袋"
+	desc = "一个塑料压力袋，或“化学注射袋”，用于静脉给药。它配有热封条。"
 	icon = 'icons/obj/medical/bloodpack.dmi'
 	icon_state = "chempack"
 	volume = 100
@@ -13,21 +13,21 @@
 
 /obj/item/reagent_containers/chem_pack/click_alt(mob/living/user)
 	if(reagents.flags & SEALED_CONTAINER)
-		balloon_alert(user, "already sealed!")
+		balloon_alert(user, "已经密封好了！")
 		return CLICK_ACTION_BLOCKING
 
 	if(iscarbon(user) && (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50)))
-		to_chat(user, span_warning("Uh... whoops! You accidentally spill the content of the bag onto yourself."))
+		to_chat(user, span_warning("呃……糟糕！你不小心把袋子里的东西洒在了自己身上。"))
 		splash_reagents(user, user, allow_closed_splash = TRUE)
 		return CLICK_ACTION_BLOCKING
 
 	update_container_flags(SEALED_CONTAINER | DRAWABLE | INJECTABLE)
-	balloon_alert(user, "sealed")
+	balloon_alert(user, "已密封")
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/reagent_containers/chem_pack/examine()
 	. = ..()
 	if(reagents.flags & SEALED_CONTAINER)
-		. += span_notice("The bag is sealed shut.")
+		. += span_notice("袋子已被密封。")
 	else
-		. += span_notice("Alt-click to seal it.")
+		. += span_notice("按Alt键点击以密封它。")

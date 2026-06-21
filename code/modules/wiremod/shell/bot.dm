@@ -4,7 +4,7 @@
  * Immobile (but not dense) shells that can interact with world.
  */
 /obj/structure/bot
-	name = "bot"
+	name = "机器人"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_medium_box"
 
@@ -23,7 +23,7 @@
 
 /obj/item/circuit_component/bot
 	display_name = "Bot"
-	desc = "Triggers when someone interacts with the bot."
+	desc = "当有人与机器人互动时触发。"
 
 	/// Called when attack_hand is called on the shell.
 	var/datum/port/output/signal
@@ -42,7 +42,7 @@
 
 /obj/item/circuit_component/bot/proc/on_attack_hand(atom/source, mob/user)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, "pushed button")
+	source.balloon_alert(user, "按下了按钮")
 	playsound(source, SFX_TERMINAL_TYPE, 25, FALSE)
 	entity.set_output(user)
 	signal.set_output(COMPONENT_SIGNAL)

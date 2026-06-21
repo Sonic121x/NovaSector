@@ -6,8 +6,8 @@
 
 /// Advanced Surgery Tools
 /obj/item/borg/upgrade/surgerytools
-	name = "medical cyborg advanced surgery tools"
-	desc = "An upgrade to the Medical model cyborg's surgery loadout, replacing non-advanced tools with their advanced counterpart."
+	name = "医疗机械人高级手术工具"
+	desc = "对医疗型号机械人手术装备的升级，将非高级工具替换为其高级对应物。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical)
@@ -102,8 +102,8 @@
 		borg.model.add_module(HA, FALSE, TRUE)
 
 /obj/item/borg/upgrade/autopsy_scanner
-	name = "medical cyborg autopsy scanner"
-	desc = "An upgrade to the Medical model cyborg's surgery loadout, adding an autopsy scanner."
+	name = "医疗机械人尸检扫描仪"
+	desc = "对医疗型号机械人手术装备的升级，增加一个尸检扫描仪。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical)
@@ -111,8 +111,8 @@
 	items_to_add = list(/obj/item/autopsy_scanner)
 
 /obj/item/borg/upgrade/chemistrygripper
-	name = "medical cyborg chemistry gripper"
-	desc = "An upgrade to the Medical model cyborg's loadout, adding a material gripper to allow handling of materials related to advanced chemistry."
+	name = "医疗机械人化学夹持器"
+	desc = "对医疗型号机械人装备的升级，增加一个材料夹持器，以允许处理与高级化学相关的材料。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical)
@@ -127,12 +127,12 @@
 #define ENGINEERING_CYBORG_CHARGE_PER_STACK 1000
 
 /datum/robot_energy_storage/plasteel
-	name = "Plasteel Processor"
+	name = "塑钢处理器"
 	recharge_rate = 0
 	max_energy = ENGINEERING_CYBORG_CHARGE_PER_STACK * 50
 
 /datum/robot_energy_storage/titanium
-	name = "Titanium Processor"
+	name = "钛处理器"
 	recharge_rate = 0
 	max_energy = ENGINEERING_CYBORG_CHARGE_PER_STACK * 50
 
@@ -147,8 +147,8 @@
 	source = /datum/robot_energy_storage/titanium
 
 /obj/item/borg/upgrade/advanced_materials
-	name = "engineering advanced materials processor"
-	desc = "allows a cyborg to synthesize and store advanced materials"
+	name = "工程高级材料处理器"
+	desc = "允许机械人合成并储存高级材料"
 	icon_state = "module_engineer"
 	model_type = list(/obj/item/robot_model/engineering)
 	model_flags = BORG_MODEL_ENGINEERING
@@ -158,7 +158,7 @@
 	if(!.)
 		return
 	if(borgo.hasAdvanced)
-		to_chat(user, span_warning("This unit already has advanced materials installed!"))
+		to_chat(user, span_warning("该单位已安装高级材料！"))
 		return FALSE;
 
 	var/obj/item/stack/sheet/plasteel/cyborg/plasteel_holder = new(borgo.model)
@@ -185,8 +185,8 @@
 
 //Bluespace RPED
 /obj/item/borg/upgrade/brped
-	name = "cyborg rapid part exchange device upgrade"
-	desc = "An upgrade to the cyborg's standard RPED."
+	name = "机械人快速部件交换装置升级"
+	desc = "对机械人标准RPED的升级。"
 	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering)
@@ -196,8 +196,8 @@
 
 // Engiborg RLD
 /obj/item/borg/upgrade/rld
-	name = "engineering cyborg rapid lighting device upgrade"
-	desc = "An upgrade to allow a cyborg to use a Rapid Lighting Device."
+	name = "工程机械人快速照明装置升级"
+	desc = "允许机械人使用快速照明装置的升级。"
 	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering)
@@ -210,8 +210,8 @@
 
 /// Welder
 /obj/item/borg/upgrade/welder
-	name = "mining cyborg welder upgrade"
-	desc = "A normal welder with a larger tank for cyborgs."
+	name = "采矿机械人焊枪升级"
+	desc = "为机械人配备的、拥有更大燃料罐的普通焊枪。"
 	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
@@ -243,8 +243,8 @@
 
 /// Better Clamp
 /obj/item/borg/hydraulic_clamp/better
-	name = "improved integrated hydraulic clamp"
-	desc = "A neat way to lift and move around crates for quick and painless deliveries!"
+	name = "改进型集成液压夹具"
+	desc = "一种快速无痛地提起和移动板条箱进行交付的巧妙方法！"
 	storage_capacity = 4
 	whitelisted_item_types = list(/obj/structure/closet/crate, /obj/item/delivery/big, /obj/item/delivery, /obj/item/bounty_cube) // If they want to carry a small package or a bounty cube instead, so be it, honestly.
 	whitelisted_item_description = "wrapped packages"
@@ -257,8 +257,8 @@
 	. += "There is currently <b>[crate_count > 0 ? crate_count : "no"]</b> crate[crate_count > 1 ? "s" : ""] stored in the clamp's internal storage."
 
 /obj/item/borg/hydraulic_clamp/mail
-	name = "integrated rapid mail delivery device"
-	desc = "Allows you to carry around a lot of mail, to distribute it around the station like the good little mailbot you are!"
+	name = "集成式快速邮件投递装置"
+	desc = "允许你携带大量邮件，像优秀的小邮递员一样在空间站各处投递！"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "bookbag"
 	storage_capacity = 100
@@ -272,7 +272,7 @@
 	clamp_sound = 'sound/items/pshoom/pshoom.ogg'
 
 /datum/design/borg_upgrade_clamp
-	name = "improved Integrated Hydraulic Clamp Module"
+	name = "改进型集成液压夹具模块"
 	id = "borg_upgrade_clamp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/better_clamp
@@ -287,8 +287,8 @@
 	)
 
 /obj/item/borg/upgrade/better_clamp
-	name = "improved integrated hydraulic clamp"
-	desc = "An improved hydraulic clamp to allow for bigger packages to be picked up as well!"
+	name = "改进型集成液压夹具"
+	desc = "一种改进的液压夹具，同样允许拾取更大的包裹！"
 	icon = 'modular_nova/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_cargo"
 	require_model = TRUE
@@ -302,7 +302,7 @@
 		return
 	var/obj/item/borg/hydraulic_clamp/better/big_clamp = locate() in cyborg.model.modules
 	if(big_clamp)
-		to_chat(user, span_warning("This cyborg is already equipped with an improved integrated hydraulic clamp!"))
+		to_chat(user, span_warning("这个机械人已经装备了改进型集成液压夹具！"))
 		return FALSE
 
 	big_clamp = new(cyborg.model)
@@ -319,8 +319,8 @@
 		cyborg.model.remove_module(big_clamp)
 
 /obj/item/borg/upgrade/cargo_teleporter
-	name = "cargo teleporter upgrade module"
-	desc = "An upgrade to allow a cyborg to use a Cargo Teleporter."
+	name = "货运传送器升级模块"
+	desc = "允许机械人使用货运传送器的升级。"
 	icon = 'modular_nova/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_cargo"
 	require_model = TRUE
@@ -334,8 +334,8 @@
 
 /// ShapeShifter
 /obj/item/borg/upgrade/borg_shapeshifter
-	name = "Cyborg Shapeshifter Module"
-	desc = "An experimental device which allows a cyborg to disguise themself into another type of cyborg."
+	name = "机械人变形模块"
+	desc = "一种允许机械人伪装成另一种类型机械人的实验性装置。"
 	icon_state = "module_general"
 
 /obj/item/borg/upgrade/borg_shapeshifter/action(mob/living/silicon/robot/R, user = usr)
@@ -353,8 +353,8 @@
 
 /// Quadborg time
 /obj/item/borg/upgrade/affectionmodule
-	name = "borg affection module"
-	desc = "A module that upgrades the ability of borgs to display affection."
+	name = "机械人情感模块"
+	desc = "一个升级机械人表达情感能力的模块。"
 	icon_state = "module_peace"
 
 /obj/item/borg/upgrade/affectionmodule/action(mob/living/silicon/robot/borg)
@@ -362,10 +362,10 @@
 	if(!.)
 		return
 	if(borg.hasAffection)
-		to_chat(usr, span_warning("This unit already has a affection module installed!"))
+		to_chat(usr, span_warning("该单位已安装情感模块！"))
 		return FALSE
 	if(!(TRAIT_R_WIDE in borg.model.model_features))
-		to_chat(usr, span_warning("This unit's chassis does not support this module."))
+		to_chat(usr, span_warning("该单位的底盘不支持此模块。"))
 		return FALSE
 
 	var/obj/item/quadborg_tongue/quadtongue = new /obj/item/quadborg_tongue(borg.model)
@@ -388,12 +388,12 @@
 
 // Quadruped tongue - lick lick
 /obj/item/quadborg_tongue
-	name = "synthetic tongue"
-	desc = "Useful for slurping mess off the floor before affectionally licking the crew members in the face."
+	name = "合成舌头"
+	desc = "用于从地板上吸走污物，然后深情地舔舐船员的脸。"
 	icon = 'modular_nova/modules/borgs/icons/robot_items.dmi'
 	icon_state = "synthtongue"
 	hitsound = 'sound/effects/blob/attackblob.ogg'
-	desc = "For giving affectionate kisses."
+	desc = "用于给予深情的亲吻。"
 	item_flags = NOBLUDGEON
 
 /obj/item/quadborg_tongue/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -402,19 +402,19 @@
 	if(!istype(mob))
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(interacting_with, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
-		to_chat(user, span_warning("ERROR: [interacting_with] is on the Do Not Lick registry!"))
+		to_chat(user, span_warning("错误：[interacting_with] 在禁止舔舐登记表上！"))
 		return ITEM_INTERACT_BLOCKING
 	if(check_zone(borg.zone_selected) == "head")
 		borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]'s face!"), span_notice("You affectionally lick \the [mob]'s face!"))
 	else
-		borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]!"), span_notice("You affectionally lick \the [mob]!"))
+		borg.visible_message(span_warning("\the [borg] 深情地舔了舔 \the [mob]！"), span_notice("你深情地舔了舔 \the [mob]！"))
 	playsound(borg, 'sound/effects/blob/attackblob.ogg', 50, 1)
 	return ITEM_INTERACT_SUCCESS
 
 // Quadruped nose - Boop
 /obj/item/quadborg_nose
-	name = "boop module"
-	desc = "The BOOP module"
+	name = "轻触模块"
+	desc = "轻触模块"
 	icon = 'modular_nova/modules/borgs/icons/robot_items.dmi'
 	icon_state = "nose"
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -423,7 +423,7 @@
 
 /obj/item/quadborg_nose/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(HAS_TRAIT(interacting_with, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
-		to_chat(user, span_warning("ERROR: [interacting_with] is on the No Nosing registry!"))
+		to_chat(user, span_warning("错误：[interacting_with] 在禁止触碰登记表上！"))
 		return ITEM_INTERACT_BLOCKING
 
 	do_attack_animation(interacting_with, null, src)
@@ -437,8 +437,8 @@
 	var/hasAdvanced = FALSE
 
 /obj/item/borg/upgrade/shrink
-	name = "borg shrinker"
-	desc = "A cyborg resizer, it makes a cyborg small."
+	name = "机械人缩小器"
+	desc = "一个机械人尺寸调整器，它能让机械人变小。"
 	icon_state = "module_general"
 
 /obj/item/borg/upgrade/shrink/action(mob/living/silicon/robot/borg, user = usr)
@@ -446,10 +446,10 @@
 	if(.)
 
 		if(borg.hasShrunk)
-			to_chat(usr, span_warning("This unit already has a shrink module installed!"))
+			to_chat(usr, span_warning("该单位已安装缩小模块！"))
 			return FALSE
 		if(TRAIT_R_SMALL in borg.model.model_features)
-			to_chat(usr, span_warning("This unit's chassis cannot be shrunk any further."))
+			to_chat(usr, span_warning("该单位的底盘已无法进一步缩小。"))
 			return FALSE
 		borg.hasShrunk = TRUE
 		ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
@@ -476,8 +476,8 @@
 
 /// Syndijack
 /obj/item/borg/upgrade/transform/syndicatejack
-	name = "borg module picker (Syndicate)"
-	desc = "Allows you to to turn a cyborg into a experimental syndicate cyborg."
+	name = "机械人模块选择器（辛迪加）"
+	desc = "允许你将一个机械人转变为实验型辛迪加机械人。"
 	icon_state = "module_illegal"
 	new_model = /obj/item/robot_model/syndicatejack
 
@@ -486,8 +486,8 @@
 
 /// Dominatrix time
 /obj/item/borg/upgrade/dominatrixmodule
-	name = "borg dominatrix module"
-	desc = "A module that greatly upgrades the ability of borgs to display affection."
+	name = "机械人支配者模块"
+	desc = "一个能极大提升机械人表达情感能力的模块。"
 	icon = 'modular_nova/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_lust"
 	custom_price = 0
@@ -499,7 +499,7 @@
 		return
 	var/obj/item/kinky_shocker/cur_shocker = locate() in borg.model.modules
 	if(cur_shocker)
-		to_chat(usr, span_warning("This unit already has a dominatrix module installed!"))
+		to_chat(usr, span_warning("该单位已安装支配者模块！"))
 		return FALSE
 
 	var/obj/item/kinky_shocker/shocker = new /obj/item/kinky_shocker()
@@ -535,8 +535,8 @@
 		borg.model.remove_module(fleshlight)
 
 /obj/item/borg/upgrade/cargo_papermanipulator
-	name = "Cargo Cyborg Manipulator"
-	desc = "An upgrade to the cargo model cyborg, to help manipulate items like paper, belts, and even a piping device."
+	name = "货运机械人操纵器"
+	desc = "一种货运型号机械人的升级，用于帮助处理纸张、腰带甚至管道装置等物品。"
 	icon_state = "module_miner"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/cargo)
@@ -545,8 +545,8 @@
 	items_to_add = list(/obj/item/borg/apparatus/cargo_papermanipulator)
 
 /obj/item/borg/apparatus/cargo_papermanipulator
-	name = "Cargo apparatus"
-	desc = "A not so special apparatus designed for the handling of paper, belts, and even piping devices."
+	name = "货运装置"
+	desc = "一种专为处理纸张、腰带甚至管道装置而设计的、不那么特殊的装置。"
 	icon_state = "borg_service_apparatus"
 	storable = list(
 		/obj/item/paper,
@@ -581,6 +581,6 @@
 	. = ..()
 	if(stored)
 		. += "The apparatus currently has [stored] secured."
-	. += span_notice("<i>Alt-click</i> will drop the currently secured item.")
+	. += span_notice("<i>Alt-点击</i>将丢弃当前固定的物品。")
 
 #undef ENGINEERING_CYBORG_CHARGE_PER_STACK

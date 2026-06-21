@@ -5,32 +5,32 @@
 
 /datum/map_template/shuttle/pirate/default
 	suffix = "default"
-	name = "pirate ship (Default)"
+	name = "海盗船（默认）"
 
 /datum/map_template/shuttle/pirate/silverscale
 	suffix = "silverscale"
-	name = "pirate ship (Silver Scales)"
+	name = "海盗船（银鳞号）"
 
 /datum/map_template/shuttle/pirate/dutchman
 	suffix = "dutchman"
-	name = "pirate ship (Flying Dutchman)"
+	name = "海盗船（飞翔的荷兰人号）"
 
 /datum/map_template/shuttle/pirate/interdyne
 	suffix = "ex_interdyne"
-	name = "pirate ship (Pharmaceutics Biocraft)"
+	name = "海盗船（制药生物工艺号）"
 
 /datum/map_template/shuttle/pirate/grey
 	suffix = "grey"
-	name = "pirate ship (The Space Toolbox)"
+	name = "海盗船（太空工具箱号）"
 
 /datum/map_template/shuttle/pirate/irs
 	suffix = "irs"
-	name = "pirate ship (Space IRS)"
+	name = "海盗船（太空国税局号）"
 
 /datum/map_template/shuttle/pirate/geode
 	suffix = "geode"
-	name = "pirate ship (Lustrous Geode)"
+	name = "海盗船（璀璨晶洞号）"
 
 /datum/map_template/shuttle/pirate/medieval
 	suffix = "medieval"
-	name = "pirate ship (Siege Pod)"
+	name = "海盗船（攻城舱）"

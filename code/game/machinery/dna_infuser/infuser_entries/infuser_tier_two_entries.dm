@@ -8,9 +8,9 @@
  * - when completing a tier, add the bonus to an xp system for unlocking new tiers. so instead of getting/giving a tier 1 bonus and unlocking tier 2, tier 1 would add "1" to a total. when you have a total of say, 3, you get the next tier
 */
 /datum/infuser_entry/gondola
-	name = "Gondola"
+	name = "冈多拉"
 	infuse_mob_name = "gondolid"
-	desc = "Gondolas, rare creatures that choose to simply observe instead of act have quite a set of interesting qualities to take advantage of. You know. Zen, peace, happiness... shrugging off a raging plasma fire..."
+	desc = "冈多拉，这种选择观察而非行动的稀有生物，拥有一系列有趣的特性可供利用。你知道的，禅意、平静、幸福……以及无视熊熊等离子火焰的能力……"
 	threshold_desc = "you can shrug off most environmental conditions!"
 	qualities = list(
 		"pacify people with your hugs",

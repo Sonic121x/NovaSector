@@ -18,7 +18,7 @@
 	exposed_mob.adjust_arousal(arousal_adjust_amount)
 	exposed_mob.adjust_pleasure(pleasure_adjust_amount)
 	if(exposed_mob.arousal <= 0 && old_arousal > 0)
-		to_chat(exposed_mob, span_notice("You no longer feel aroused."))
+		to_chat(exposed_mob, span_notice("你不再感到兴奋了。"))
 
 /datum/reagent/drug/aphrodisiac/camphor/overdose_effects(mob/living/carbon/human/exposed_mob)
 	var/modified_genitals = FALSE
@@ -82,7 +82,7 @@
 
 // Notify the user that they're overdosing. Doesn't affect their mood.
 /datum/reagent/drug/aphrodisiac/camphor/overdose_start(mob/living/carbon/human/exposed_mob, metabolization_ratio)
-	to_chat(exposed_mob, span_userdanger("You feel like you took too much [name]!"))
+	to_chat(exposed_mob, span_userdanger("你感觉服用了过量的[name]！"))
 	exposed_mob.add_mood_event("[type]_overdose", /datum/mood_event/minor_overdose, name)
 
 /datum/chemical_reaction/camphor

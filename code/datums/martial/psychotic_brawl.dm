@@ -1,5 +1,5 @@
 /datum/martial_art/psychotic_brawling
-	name = "Psychotic Brawling"
+	name = "狂躁斗殴"
 	id = MARTIALART_PSYCHOBRAWL
 	pacifist_style = TRUE
 
@@ -40,13 +40,13 @@
 					if(grab_attack)
 						log_combat(attacker, defender, "grabbed", addition="aggressively")
 						defender.visible_message(
-							span_warning("[attacker] violently grabs [defender]!"),
-							span_userdanger("You're violently grabbed by [attacker]!"),
-							span_hear("You hear sounds of aggressive fondling!"),
+							span_warning("[attacker] 粗暴地抓住了 [defender]！"),
+							span_userdanger("你被 [attacker] 粗暴地抓住了！"),
+							span_hear("你听到一阵粗暴的抚摸声！"),
 							null,
 							attacker,
 						)
-						to_chat(attacker, span_danger("You violently grab [defender]!"))
+						to_chat(attacker, span_danger("你粗暴地抓住了 [defender]！"))
 						attacker.setGrabState(GRAB_AGGRESSIVE) //Instant aggressive grab
 					else
 						log_combat(attacker, defender, "grabbed", addition="passively")
@@ -60,13 +60,13 @@
 			attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 			attacker.emote("flip")
 			defender.visible_message(
-				span_danger("[attacker] [atk_verb]s [defender]!"),
-				span_userdanger("You're [atk_verb]ed by [attacker]!"),
-				span_hear("You hear a sickening sound of flesh hitting flesh!"),
+				span_danger("[attacker] [atk_verb]了 [defender]！"),
+				span_userdanger("你被 [attacker] [atk_verb]了！"),
+				span_hear("你听到一阵令人作呕的肉体撞击声！"),
 				null,
 				attacker,
 			)
-			to_chat(attacker, span_danger("You [atk_verb] [defender]!"))
+			to_chat(attacker, span_danger("你 [atk_verb] 了 [defender]！"))
 			playsound(defender, 'sound/items/weapons/punch1.ogg', 40, TRUE, -1)
 			defender.apply_damage(defender_damage, attacker.get_attack_type(), BODY_ZONE_HEAD)
 			attacker.apply_damage(rand(5, 10), attacker.get_attack_type(), BODY_ZONE_HEAD)
@@ -85,13 +85,13 @@
 
 			attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 			defender.visible_message(
-				span_danger("[attacker] [atk_verb]s [defender] with such inhuman strength that it sends [defender.p_them()] flying backwards!"),
-				span_userdanger("You're [atk_verb]ed by [attacker] with such inhuman strength that it sends you flying backwards!"),
-				span_hear("You hear a sickening sound of flesh hitting flesh!"),
+				span_danger("[attacker] 以非人的力量 [atk_verb] 了 [defender]，将 [defender.p_them()] 击飞出去！"),
+				span_userdanger("[attacker] 以非人的力量 [atk_verb] 了你，将你击飞出去！"),
+				span_hear("你听到一阵令人作呕的肉体撞击声！"),
 				null,
 				attacker,
 			)
-			to_chat(attacker, span_danger("You [atk_verb] [defender] with such inhuman strength that it sends [defender.p_them()] flying backwards!"))
+			to_chat(attacker, span_danger("你以非人的力量 [atk_verb] 了 [defender]，将 [defender.p_them()] 击飞出去！"))
 			defender.apply_damage(rand(15, 30), attacker.get_attack_type())
 			playsound(defender, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
 			var/throwtarget = get_edge_target_turf(attacker, get_dir(attacker, get_step_away(defender, attacker)))

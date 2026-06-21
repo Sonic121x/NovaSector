@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/crusher //todo make it work for other stuff
-	name = "manufacturing crusher"
-	desc = "Crushes any item put into it, boulders and such. Materials below a sheet are stored in the machine."
+	name = "制造用粉碎机"
+	desc = "粉碎放入其中的任何物品，如巨石等。低于单张的材料会存储在机器内。"
 	icon_state = "crusher"
 	circuit = /obj/item/circuitboard/machine/manucrusher
 	/// power used to crush

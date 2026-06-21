@@ -43,8 +43,8 @@
 		new /obj/item/food/bait/worm(source)
 
 	user.visible_message(
-		span_notice("[user] [action_text_third_person] [source]."),
-		span_notice("You [action_text] [source]."),
+		span_notice("[user] [action_text_third_person]了[source]。"),
+		span_notice("你[action_text]了[source]。"),
 	)
 
 	playsound(source, 'sound/effects/shovel_dig.ogg', 50, TRUE)

@@ -1,5 +1,5 @@
 /datum/crafting_recipe/curtain
-	name = "Curtains"
+	name = "窗帘"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 4,
 		/obj/item/stack/rods = 1,
@@ -8,7 +8,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/showercurtain
-	name = "Shower Curtains"
+	name = "淋浴帘"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 2,
 		/obj/item/stack/sheet/plastic = 2,
@@ -18,7 +18,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/aquarium
-	name = "Aquarium"
+	name = "水族箱"
 	result = /obj/structure/aquarium
 	time = 10 SECONDS
 	reqs = list(
@@ -29,7 +29,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/fish_tank
-	name = "Portable Fish Tank"
+	name = "便携式鱼缸"
 	result = /obj/item/fish_tank
 	time = 10 SECONDS
 	reqs = list(
@@ -39,7 +39,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/mirror
-	name = "Mirror"
+	name = "镜子"
 	result = /obj/item/wallframe/mirror
 	reqs = list(
 		/obj/item/stack/sheet/glass = 5,
@@ -48,7 +48,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/surgery_tray
-	name = "Surgery Tray"
+	name = "手术托盘"
 	reqs = list(
 		/obj/item/stack/sheet/mineral/silver = 1,
 		/obj/item/stack/rods = 2
@@ -59,7 +59,7 @@
 	time = 5 SECONDS
 
 /datum/crafting_recipe/defib_mobile
-	name = "Mobile Defibrillator Mount"
+	name = "移动除颤器支架"
 	reqs = list(
 		/obj/item/stack/sheet/mineral/silver = 1,
 		/obj/item/stack/sheet/iron = 5,
@@ -71,7 +71,7 @@
 	time = 7 SECONDS
 
 /datum/crafting_recipe/flatpack_cart
-	name = "Flatpack Cart"
+	name = "平板车"
 	reqs = list(
 		/obj/item/stack/sheet/iron = 4,
 		/obj/item/stack/sheet/plasteel = 1,
@@ -83,7 +83,7 @@
 	time = 10 SECONDS
 
 /datum/crafting_recipe/lamp
-	name = "Desk Lamp"
+	name = "台灯"
 	result = /obj/item/flashlight/lamp
 	reqs = list(
 		/obj/item/flashlight = 1,
@@ -99,11 +99,11 @@
 	LAZYADD(blacklist, subtypesof(/obj/item/flashlight))
 
 /datum/crafting_recipe/lamp/green
-	name = "Green Desk Lamp"
+	name = "绿色台灯"
 	result = /obj/item/flashlight/lamp/green
 
 /datum/crafting_recipe/banana_lamp
-	name = "Banana Lamp"
+	name = "香蕉灯"
 	result = /obj/item/flashlight/lamp/bananalamp
 	reqs = list(
 		/obj/item/flashlight/lamp = 1,

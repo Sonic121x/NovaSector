@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/aoe/area_conversion
-	name = "Area Conversion"
-	desc = "This spell instantly converts a small area around you."
+	name = "区域转换"
+	desc = "这个法术会瞬间将你周围的一小片区域笼罩起来。"
 	background_icon_state = "bg_cult"
 	overlay_icon_state = "bg_cult_border"
 

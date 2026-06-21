@@ -1,6 +1,6 @@
 /obj/item/seeds/gelthi
-	name = "gelthi seed pack"
-	desc = "These seeds grow into gelthi plants. Lauded by chefs for its unique ability to produce honey, and often hoarded for this very reason."
+	name = "盖尔西种子包"
+	desc = "这些种子会长成盖尔西植株。因其独特的产蜜能力而备受厨师赞誉，也常因此被囤积。"
 	icon = 'modular_nova/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "gelthi"
 	species = "gelthi"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/gelthi
 	seed = /obj/item/seeds/gelthi
-	name = "gelthi"
-	desc = "A cluster of gelthi pods. Each pod contains a different sweetener, and the pods can be juiced into raw sugar."
+	name = "盖尔西"
+	desc = "一簇盖尔西豆荚。每个豆荚含有不同的甜味剂，豆荚可以榨出粗糖。"
 	icon = 'modular_nova/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "gelthi"
 	filling_color = "#FF4500"

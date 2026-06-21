@@ -1,7 +1,7 @@
 
 /mob/living/basic/bot/repairbot
-	name = "\improper Repairbot"
-	desc = "I can fix it!"
+	name = "\improper 维修机器人"
+	desc = "我能修好它！"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "repairbot1"
 	base_icon_state = "repairbot"
@@ -112,19 +112,19 @@
 		var/obj/item/stack/our_sheet = locate(content) in src
 		if(isnull(our_sheet))
 			if(!user.transferItemToLoc(potential_stack, src))
-				user.balloon_alert(user, "stuck to your hand!")
+				user.balloon_alert(user, "粘在你手上了！")
 				return
-			balloon_alert(user, "inserted")
+			balloon_alert(user, "已插入")
 			return
 		if(our_sheet.amount >= our_sheet.max_amount)
-			user?.balloon_alert(user, "full!")
+			user?.balloon_alert(user, "满了！")
 			return
 		if(!our_sheet.can_merge(potential_stack))
-			user?.balloon_alert(user, "not suitable!")
+			user?.balloon_alert(user, "不合适！")
 			return
 		var/atom/movable/to_move = potential_stack.split_stack(min(our_sheet.max_amount - our_sheet.amount, potential_stack.amount))
 		to_move.forceMove(src)
-		balloon_alert(user, "inserted")
+		balloon_alert(user, "已插入")
 		return
 
 /mob/living/basic/bot/repairbot/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -208,7 +208,7 @@
 
 /mob/living/basic/bot/repairbot/proc/attempt_use_stack(obj/item/stack_to_use, atom/target)
 	if(!isdatum(stack_to_use))
-		to_chat(src, span_warning("You do not have anymore [stack_to_use]!"))
+		to_chat(src, span_warning("你没有更多的 [stack_to_use] 了！"))
 		return
 	stack_to_use.melee_attack_chain(src, target)
 
@@ -357,11 +357,11 @@
 	carried.set_bot(src)
 	if(carried.icon_state == "toolbox_default")
 		carried.add_atom_colour(toolbox_color, FIXED_COLOUR_PRIORITY)
-	user.visible_message(span_warning("[user] scoops up [src]!"))
+	user.visible_message(span_warning("[user] 一把抱起了 [src]！"))
 	user.put_in_hands(carried)
 
 /obj/item/carried_repairbot
-	desc = "A most robust bot!"
+	desc = "一个极其强健的机器人！"
 	attack_verb_continuous = list("robusts")
 	attack_verb_simple = list("robust")
 	hitsound = 'sound/items/weapons/smash.ogg'

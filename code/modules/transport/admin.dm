@@ -7,10 +7,10 @@ ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "Reset Tram", "Reset a tram controller o
 	)
 
 	var/datum/transport_controller/linear/tram/broken_controller
-	var/selected_transport_id = tgui_input_list(user, "Which tram?", "Off the rails", debug_tram_list)
+	var/selected_transport_id = tgui_input_list(user, "哪辆轨道车？", "脱轨", debug_tram_list)
 	if(isnull(selected_transport_id))
 		return
-	var/reset_type = tgui_input_list(user, "How hard of a reset?", "How bad is it screwed up", list("Clear Tram Contents", "Controller", "Controller and Contents", "Delete Datum", "Cancel"))
+	var/reset_type = tgui_input_list(user, "重置强度？", "问题有多严重", list("Clear Tram Contents", "Controller", "Controller and Contents", "Delete Datum", "Cancel"))
 
 	if(isnull(reset_type) || reset_type == "Cancel")
 		return
@@ -21,12 +21,12 @@ ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "Reset Tram", "Reset a tram controller o
 			break
 
 	if(isnull(broken_controller))
-		to_chat(user, span_warning("Couldn't find a transport controller datum with ID [selected_transport_id]!"))
+		to_chat(user, span_warning("找不到ID为[selected_transport_id]的运输控制器数据！"))
 		return
 
 	switch(reset_type)
 		if("Clear Tram Contents")
-			var/selection = tgui_alert(user, "Include player mobs in the clearing?", "Contents reset [selected_transport_id]", list("Contents", "Contents and Players", "Cancel"))
+			var/selection = tgui_alert(user, "清除时包含玩家角色吗？", "内容重置 [selected_transport_id]", list("Contents", "Contents and Players", "Cancel"))
 			switch(selection)
 				if("Contents")
 					broken_controller.reset_lift_contents(foreign_objects = TRUE, foreign_non_player_mobs = TRUE, consider_player_mobs = FALSE)
@@ -46,7 +46,7 @@ ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "Reset Tram", "Reset a tram controller o
 			broken_controller.reset_position()
 
 		if("Controller and Contents")
-			var/selection = tgui_alert(user, "Include player mobs in the clearing?", "Contents reset [selected_transport_id]", list("Contents", "Contents and Players", "Cancel"))
+			var/selection = tgui_alert(user, "清除时包含玩家角色吗？", "内容重置 [selected_transport_id]", list("Contents", "Contents and Players", "Cancel"))
 			switch(selection)
 				if("Contents")
 					message_admins("[key_name_admin(user)] performed a contents and controller reset of tram ID [selected_transport_id].")
@@ -63,7 +63,7 @@ ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "Reset Tram", "Reset a tram controller o
 			broken_controller.reset_position()
 
 		if("Delete Datum")
-			var/confirm = tgui_alert(user, "Deleting [selected_transport_id] will make it unrecoverable this round. Are you sure?", "Delete tram ID [selected_transport_id]", list("Yes", "Cancel"))
+			var/confirm = tgui_alert(user, "删除 [selected_transport_id] 将使其在本轮无法恢复。你确定吗？", "删除轨道车 ID [selected_transport_id]", list("Yes", "Cancel"))
 			if(confirm != "Yes")
 				return
 

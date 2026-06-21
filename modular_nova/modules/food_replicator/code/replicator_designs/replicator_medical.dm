@@ -1,5 +1,5 @@
 /datum/design/pocket_medkit
-	name = "Empty Pocket First Aid Kit"
+	name = "空便携急救包"
 	id = "slavic_cfap"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 250)
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/medipouch
-	name = "Empty Medipen Pouch"
+	name = "空医疗笔袋"
 	id = "slavic_medipouch"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 250)
@@ -21,7 +21,7 @@
 	)
 
 /datum/design/genpouch
-	name = "Empty General Purpose Pouch"
+	name = "空通用袋"
 	id = "slavic_genpouch"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 250)
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/sutures
-	name = "Hemostatic Sutures"
+	name = "止血缝合线"
 	id = "slavic_suture"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -43,7 +43,7 @@
 	)
 
 /datum/design/mesh
-	name = "Hemostatic Mesh"
+	name = "止血网"
 	id = "slavic_mesh"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -54,7 +54,7 @@
 	)
 
 /datum/design/bruise_patch
-	name = "Bruise Patch"
+	name = "瘀伤贴片"
 	id = "slavic_bruise"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 250)
@@ -65,7 +65,7 @@
 	)
 
 /datum/design/burn_patch
-	name = "Burn Patch"
+	name = "烧伤贴片"
 	id = "slavic_burn"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 250)
@@ -76,7 +76,7 @@
 	)
 
 /datum/design/gauze
-	name = "Medical Gauze"
+	name = "医疗纱布"
 	id = "slavic_gauze"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -87,7 +87,7 @@
 	)
 
 /datum/design/epi_pill
-	name = "Epinephrine Pill"
+	name = "肾上腺素药片"
 	id = "slavic_epi"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 75)
@@ -98,7 +98,7 @@
 	)
 
 /datum/design/conv_pill
-	name = "Convermol Pill"
+	name = "康沃莫药片"
 	id = "slavic_conv"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 75)
@@ -109,7 +109,7 @@
 	)
 
 /datum/design/multiver_pill
-	name = "Multiver Pill"
+	name = "多维尔药片"
 	id = "slavic_multiver"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 75)

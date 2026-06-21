@@ -40,7 +40,7 @@
 
 
 /datum/outfit/job/doctor
-	name = "Medical Doctor"
+	name = "医生"
 	jobtype = /datum/job/doctor
 
 	id_trim = /datum/id_trim/job/medical_doctor

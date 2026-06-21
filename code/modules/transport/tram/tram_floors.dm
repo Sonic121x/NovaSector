@@ -1,12 +1,12 @@
 /turf/open/floor/noslip/tram
-	name = "high-traction tram platform"
+	name = "高牵引力穿梭机站台"
 	icon = 'icons/turf/tram.dmi'
 	icon_state = "noslip_tram"
 	base_icon_state = "noslip_tram"
 	floor_tile = /obj/item/stack/tile/noslip/tram
 
 /turf/open/floor/tram
-	name = "tram guideway"
+	name = "穿梭机导轨"
 	icon = 'icons/turf/tram.dmi'
 	icon_state = "tram_platform"
 	base_icon_state = "tram_platform"
@@ -20,7 +20,7 @@
 
 /turf/open/floor/tram/examine(mob/user)
 	. += ..()
-	. += span_notice("The reinforcement bolts are [EXAMINE_HINT("wrenched")] firmly in place. Use a [EXAMINE_HINT("wrench")] to remove the plate.")
+	. += span_notice("加固螺栓[EXAMINE_HINT("wrenched")]牢牢固定。使用[EXAMINE_HINT("wrench")]来移除地板。")
 
 /turf/open/floor/tram/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/thermoplastic))
@@ -44,7 +44,7 @@
 
 /turf/open/floor/tram/wrench_act(mob/living/user, obj/item/item)
 	..()
-	to_chat(user, span_notice("You begin removing the plate..."))
+	to_chat(user, span_notice("你开始移除这块板..."))
 	if(item.use_tool(src, user, 30, volume=80))
 		if(!istype(src, /turf/open/floor/tram))
 			return TRUE
@@ -90,8 +90,8 @@
 	return list("tram_platform-scorched1","tram_platform-scorched2")
 
 /turf/open/floor/tram/plate
-	name = "linear induction plate"
-	desc = "The linear induction plate that powers the tram."
+	name = "线性感应板"
+	desc = "为穿梭机供电的线性感应板。"
 	icon = 'icons/turf/tram.dmi'
 	icon_state = "tram_plate"
 	base_icon_state = "tram_plate"
@@ -104,7 +104,7 @@
 	return list("tram_plate-scorched1","tram_plate-scorched2")
 
 /turf/open/floor/tram/plate/energized
-	desc = "The linear induction plate that powers the tram. It is currently energized."
+	desc = "为穿梭机供电的线性感应板。它目前处于通电状态。"
 	/// Inbound station
 	var/inbound
 	/// Outbound station
@@ -119,8 +119,8 @@
 /turf/open/floor/tram/plate/energized/examine(mob/user)
 	. = ..()
 	if(broken || burnt)
-		. += span_danger("It looks damaged and the electrical components exposed!")
-		. += span_notice("The plate can be repaired using a [EXAMINE_HINT("titanium sheet")].")
+		. += span_danger("它看起来损坏了，电气元件暴露在外！")
+		. += span_notice("可以使用[EXAMINE_HINT("titanium sheet")]来修复这块地板。")
 
 /turf/open/floor/tram/plate/energized/broken_states()
 	return list("energized_plate_damaged")
@@ -137,7 +137,7 @@
 		return ITEM_INTERACT_BLOCKING
 	broken = FALSE
 	update_appearance()
-	balloon_alert(user, "plate replaced")
+	balloon_alert(user, "面板已更换")
 	return ITEM_INTERACT_SUCCESS
 
 /turf/open/floor/tram/plate/energized/broken
@@ -145,7 +145,7 @@
 
 // Resetting the tram contents to its original state needs the turf to be there
 /turf/open/indestructible/tram
-	name = "tram guideway"
+	name = "穿梭机导轨"
 	icon = 'icons/turf/tram.dmi'
 	icon_state = "tram_platform"
 	base_icon_state = "tram_platform"
@@ -164,8 +164,8 @@
 	return NONE
 
 /turf/open/indestructible/tram/plate
-	name = "linear induction plate"
-	desc = "The linear induction plate that powers the tram."
+	name = "线性感应板"
+	desc = "为穿梭机供电的线性感应板。"
 	icon_state = "tram_plate"
 	base_icon_state = "tram_plate"
 	flags_1 = NONE
@@ -175,12 +175,12 @@
 	RemoveElement(/datum/element/atmos_sensitive, mapload)
 
 /turf/open/floor/glass/reinforced/tram
-	name = "tram bridge"
-	desc = "It shakes a bit when you step, but lets you cross between sides quickly!"
+	name = "电车桥"
+	desc = "踩上去会有点晃动，但能让你快速在两侧之间穿行！"
 
 /obj/structure/thermoplastic
-	name = "tram floor"
-	desc = "A lightweight thermoplastic flooring."
+	name = "电车地板"
+	desc = "一种轻质热塑性塑料地板。"
 	icon = 'icons/turf/tram.dmi'
 	icon_state = "tram_dark"
 	base_icon_state = "tram_dark"
@@ -219,10 +219,10 @@
 	. = ..()
 
 	if(secured)
-		. += span_notice("It is secured with a set of [EXAMINE_HINT("screws.")] To remove tile use a [EXAMINE_HINT("screwdriver.")]")
+		. += span_notice("它被一组[EXAMINE_HINT("screws.")]固定。要移除瓷砖，请使用[EXAMINE_HINT("screwdriver.")]")
 	else
-		. += span_notice("You can [EXAMINE_HINT("crowbar")] to remove the tile.")
-		. += span_notice("It can be re-secured using a [EXAMINE_HINT("screwdriver.")]")
+		. += span_notice("你可以[EXAMINE_HINT("crowbar")]来移除瓷砖。")
+		. += span_notice("可以使用[EXAMINE_HINT("screwdriver.")]重新固定它。")
 
 /obj/structure/thermoplastic/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
@@ -242,31 +242,31 @@
 /obj/structure/thermoplastic/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	if(secured)
-		user.visible_message(span_notice("[user] begins to unscrew the tile..."),
-		span_notice("You begin to unscrew the tile..."))
+		user.visible_message(span_notice("[user]开始拧松地砖的螺丝..."),
+		span_notice("你开始拧松地砖的螺丝..."))
 		if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
 			secured = FALSE
-			to_chat(user, span_notice("The screws come out, and a gap forms around the edge of the tile."))
+			to_chat(user, span_notice("螺丝被拧出，地砖边缘出现了一道缝隙。"))
 	else
-		user.visible_message(span_notice("[user] begins to fasten the tile..."),
-		span_notice("You begin to fasten the tile..."))
+		user.visible_message(span_notice("[user]开始拧紧地砖..."),
+		span_notice("你开始拧紧地砖..."))
 		if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
 			secured = TRUE
-			to_chat(user, span_notice("The tile is securely screwed in place."))
+			to_chat(user, span_notice("地砖已被牢固地拧紧到位。"))
 
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/thermoplastic/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	if(secured)
-		to_chat(user, span_warning("The security screws need to be removed first!"))
+		to_chat(user, span_warning("需要先移除安保螺丝！"))
 		return FALSE
 
 	else
-		user.visible_message(span_notice("[user] wedges \the [tool] into the tile's gap in the edge and starts prying..."),
-		span_notice("You wedge \the [tool] into the tram panel's gap in the frame and start prying..."))
+		user.visible_message(span_notice("[user]将\the [tool]楔入瓷砖边缘的缝隙并开始撬动..."),
+		span_notice("你将\the [tool]楔入有轨电车面板框架的缝隙并开始撬动..."))
 		if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
-			to_chat(user, span_notice("The panel pops out of the frame."))
+			to_chat(user, span_notice("面板从框架中弹了出来。"))
 			var/obj/item/stack/thermoplastic/pulled_tile = new floor_tile()
 			pulled_tile.update_integrity(atom_integrity)
 			user.put_in_hands(pulled_tile)
@@ -276,22 +276,22 @@
 
 /obj/structure/thermoplastic/welder_act(mob/living/user, obj/item/tool)
 	if(atom_integrity >= max_integrity)
-		to_chat(user, span_warning("[src] is already in good condition!"))
+		to_chat(user, span_warning("[src] 已经处于良好状态！"))
 		return ITEM_INTERACT_SUCCESS
 	if(!tool.tool_start_check(user, amount = 0, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return FALSE
-	to_chat(user, span_notice("You begin repairing [src]..."))
+	to_chat(user, span_notice("你开始修复 [src]..."))
 	var/integrity_to_repair = max_integrity - atom_integrity
 	if(tool.use_tool(src, user, integrity_to_repair * 0.5, volume = 50))
 		atom_integrity = max_integrity
-		to_chat(user, span_notice("You repair [src]."))
+		to_chat(user, span_notice("你修复了 [src]。"))
 		update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/thermoplastic
-	name = "thermoplastic tram tile"
+	name = "热塑性有轨电车地砖"
 	singular_name = "thermoplastic tram tile"
-	desc = "A high-traction floor tile. It sparkles in the light."
+	desc = "一种高牵引力的地砖。它在光线下闪闪发光。"
 	icon = 'icons/obj/tiles.dmi'
 	lefthand_file = 'icons/mob/inhands/items/tiles_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/tiles_righthand.dmi'
@@ -337,4 +337,4 @@
 				damage_value = "mediocre"
 		if(!damage_value)
 			return
-		. += span_notice("Those could work as a [damage_value] throwing weapon.")
+		. += span_notice("这些或许可以作为 [damage_value] 投掷武器使用。")

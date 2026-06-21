@@ -47,7 +47,7 @@
 		list(
 			LOCATION_HANDS,
 		),
-		flavour_text = "Looks tightly packed - you might not be able to put the pet back in once they're out.",
+		flavour_text = "看起来塞得很紧——宠物一旦放出来，你可能就放不回去了。",
 		notify_player = TRUE,
 	)
 	//Nanotrasen

@@ -1,17 +1,17 @@
 /// A shambling mob made out of a crew member
 /mob/living/basic/blob_minion/zombie
-	name = "blob zombie"
-	desc = "A shambling corpse animated by the blob."
+	name = "凝胶僵尸"
+	desc = "一具由凝胶驱动的蹒跚尸体。"
 	icon_state = "zombie"
 	icon_living = "zombie"
 	health_doll_icon = "blobpod"
 	mob_biotypes = MOB_ORGANIC | MOB_HUMANOID
 	health = 70
 	maxHealth = 70
-	verb_say = "gurgles"
-	verb_ask = "demands"
-	verb_exclaim = "roars"
-	verb_yell = "bellows"
+	verb_say = "咕噜着说"
+	verb_ask = "要求"
+	verb_exclaim = "咆哮"
+	verb_yell = "怒吼"
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	melee_attack_cooldown = CLICK_CD_MELEE
@@ -82,7 +82,7 @@
 /// Dynamic changeling reentry
 /mob/living/basic/blob_minion/zombie/proc/on_corpse_revived()
 	SIGNAL_HANDLER
-	visible_message(span_boldwarning("[src] bursts from the inside!"))
+	visible_message(span_boldwarning("[src] 从内部爆裂而出！"))
 	death()
 
 /// Blob-created zombies will ping for player control when they make a zombie

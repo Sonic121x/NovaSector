@@ -1,8 +1,8 @@
 // Staff of storms
 
 /obj/item/storm_staff
-	name = "staff of storms"
-	desc = "An ancient staff retrieved from the remains of Legion. The wind stirs as you move it."
+	name = "风暴权杖"
+	desc = "一件从军团残骸中取回的古老权杖。当你移动它时，风也随之搅动。"
 	icon_state = "staffofstorms"
 	inhand_icon_state = "staffofstorms"
 	icon_angle = -45
@@ -25,16 +25,16 @@
 
 /obj/item/storm_staff/examine(mob/user)
 	. = ..()
-	. += span_notice("It has [thunder_charges] charges remaining.")
-	. += span_notice("Use it in hand to dispel storms.")
-	. += span_notice("Use it on targets to summon thunderbolts from the sky.")
-	. += span_notice("The thunderbolts are boosted if in an area with weather effects.")
+	. += span_notice("它还剩下 [thunder_charges] 次充能。")
+	. += span_notice("在手中使用以驱散风暴。")
+	. += span_notice("对目标使用以从天空召唤雷电。")
+	. += span_notice("在具有天气效果的区域内，雷电会得到增强。")
 
 /obj/item/storm_staff/attack_self(mob/user)
 	var/area/user_area = get_area(user)
 	var/turf/user_turf = get_turf(user)
 	if(!user_area || !user_turf || (is_type_in_list(user_area, excluded_areas)))
-		to_chat(user, span_warning("Something is preventing you from using the staff here."))
+		to_chat(user, span_warning("有什么东西阻止你在这里使用权杖。"))
 		return
 	var/datum/weather/affected_weather
 	for(var/datum/weather/weather as anything in SSweather.processing)
@@ -44,17 +44,17 @@
 	if(!affected_weather)
 		return
 	if(affected_weather.stage == END_STAGE)
-		balloon_alert(user, "already ended!")
+		balloon_alert(user, "已经结束了！")
 		return
 	if(affected_weather.stage == WIND_DOWN_STAGE)
-		balloon_alert(user, "already ending!")
+		balloon_alert(user, "正在结束中！")
 		return
-	balloon_alert(user, "you hold the staff up...")
+	balloon_alert(user, "你将法杖举了起来...")
 	if(!do_after(user, 3 SECONDS, target = src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
-	user.visible_message(span_warning("[user] holds [src] skywards as an orange beam travels into the sky!"), \
-	span_notice("You hold [src] skyward, dispelling the storm!"))
+	user.visible_message(span_warning("[user] 将 [src] 举向天空，一道橙色光束射向天际！"), \
+	span_notice("你将 [src] 举向天空，驱散了风暴！"))
 	playsound(user, 'sound/effects/magic/staff_change.ogg', 200, FALSE)
 	var/old_color = user.color
 	user.color = list(340/255, 240/255, 0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
@@ -72,18 +72,18 @@
 
 /obj/item/storm_staff/proc/thunder_blast(atom/target, mob/user)
 	if(!thunder_charges)
-		balloon_alert(user, "needs to charge!")
+		balloon_alert(user, "需要充能！")
 		return FALSE
 	var/turf/target_turf = get_turf(target)
 	var/area/target_area = get_area(target)
 	if(!target_turf || !target_area || (is_type_in_list(target_area, excluded_areas)))
-		balloon_alert(user, "can't bolt here!")
+		balloon_alert(user, "不能在这里释放闪电！")
 		return FALSE
 	if(target_turf in targeted_turfs)
-		balloon_alert(user, "already targeted!")
+		balloon_alert(user, "已经瞄准了！")
 		return FALSE
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		balloon_alert(user, "you don't want to harm!")
+		balloon_alert(user, "你不想伤害！")
 		return FALSE
 	var/power_boosted = FALSE
 	for(var/datum/weather/weather as anything in SSweather.processing)
@@ -94,7 +94,7 @@
 			break
 	playsound(src, 'sound/effects/magic/lightningshock.ogg', 10, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0)
 	targeted_turfs += target_turf
-	balloon_alert(user, "you aim at [target_turf]...")
+	balloon_alert(user, "你瞄准了[target_turf]...")
 	new /obj/effect/temp_visual/telegraphing/thunderbolt(target_turf)
 	addtimer(CALLBACK(src, PROC_REF(throw_thunderbolt), target_turf, power_boosted), 1.5 SECONDS)
 	thunder_charges--
@@ -119,11 +119,11 @@
 	for(var/turf/turf as anything in affected_turfs)
 		new /obj/effect/temp_visual/electricity(turf)
 		for(var/mob/living/hit_mob in turf)
-			to_chat(hit_mob, span_userdanger("You've been struck by lightning!"))
+			to_chat(hit_mob, span_userdanger("你被闪电击中了！"))
 			hit_mob.electrocute_act(15 * (isanimal_or_basicmob(hit_mob) ? 3 : 1) * (turf == target ? 2 : 1) * (boosted ? 2 : 1), src, flags = SHOCK_TESLA|SHOCK_NOSTUN)
 
 		for(var/obj/hit_thing in turf)
 			hit_thing.take_damage(20, BURN, ENERGY, FALSE)
 	playsound(target, 'sound/effects/magic/lightningbolt.ogg', 100, TRUE)
-	target.visible_message(span_danger("A thunderbolt strikes [target]!"))
+	target.visible_message(span_danger("一道雷电击中了[target]！"))
 	explosion(target, light_impact_range = (boosted ? 1 : 0), flame_range = (boosted ? 2 : 1), silent = TRUE)

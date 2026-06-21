@@ -1,6 +1,6 @@
 /obj/machinery/cell_charger
-	name = "cell charger"
-	desc = "It charges power cells."
+	name = "电池充电器"
+	desc = "它为电池充电。"
 	icon = 'icons/obj/machines/cell_charger.dmi'
 	icon_state = "ccharger"
 	power_channel = AREA_USAGE_EQUIP
@@ -33,7 +33,7 @@ NOVA EDIT END */
 	if(charging)
 		. += "Current charge: [round(charging.percent(), 1)]%."
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Charging power: <b>[display_power(charge_rate, convert = FALSE)]</b>.")
+		. += span_notice("状态显示屏显示：充电功率：<b>[display_power(charge_rate, convert = FALSE)]</b>。")
 
 /obj/machinery/cell_charger/wrench_act(mob/living/user, obj/item/tool)
 	if(charging)
@@ -56,18 +56,18 @@ NOVA EDIT END */
 		return NONE
 
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning("[src] is broken!"))
+		to_chat(user, span_warning("[src]损坏了!"))
 		return ITEM_INTERACT_BLOCKING
 	if(!anchored)
-		to_chat(user, span_warning("[src] isn't attached to the ground!"))
+		to_chat(user, span_warning("[src]未被固定在地上!"))
 		return ITEM_INTERACT_BLOCKING
 	if(charging)
-		to_chat(user, span_warning("There is already a cell in the charger!"))
+		to_chat(user, span_warning("充电器内已经有了一块电池!"))
 		return ITEM_INTERACT_BLOCKING
 	// NOVA EDIT ADDITION START
 	var/obj/item/stock_parts/power_store/cell/inserting_cell = tool
 	if(inserting_cell.chargerate <= 0)
-		to_chat(user, span_warning("[inserting_cell] cannot be recharged!"))
+		to_chat(user, span_warning("[inserting_cell]无法被充能!"))
 		return
 	// NOVA EDIT ADDITION END
 
@@ -75,15 +75,15 @@ NOVA EDIT END */
 	if(!isarea(charge_area))
 		return ITEM_INTERACT_BLOCKING
 	if(!charge_area.power_equip) // There's no APC in this area, don't try to cheat power!
-		to_chat(user, span_warning("[src] blinks red as you try to insert the cell!"))
+		to_chat(user, span_warning("你尝试插入电池时[src]闪烁着红色!"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
 	charging = tool
 	user.visible_message(
-		span_notice("[user] inserts a cell into [src]."),
-		span_notice("You insert a cell into [src]."),
+		span_notice("[user]将一个电池插入[src]。"),
+		span_notice("你将一个电池插入[src]。"),
 	)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -113,14 +113,14 @@ NOVA EDIT END */
 		return
 
 	charging.add_fingerprint(user)
-	user.visible_message(span_notice("[user] removes [charging] from [src]."), span_notice("You remove [charging] from [src]."))
+	user.visible_message(span_notice("[user]从[src]中取出[charging]。"), span_notice("你从[src]中取出[charging]。"))
 	user.put_in_hands(removecell(drop_location()))
 
 /obj/machinery/cell_charger/attack_tk(mob/user)
 	if(!charging)
 		return
 
-	to_chat(user, span_notice("You telekinetically remove [charging] from [src]."))
+	to_chat(user, span_notice("你用心灵遥感从[src]中移除了[charging]."))
 	removecell(drop_location())
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 

@@ -6,8 +6,8 @@ GLOBAL_PROTECT(AdminProcCallHandler)
 /// Has to be a mob because IsAdminAdvancedProcCall() checks usr, which is a mob variable.
 /// So usr is set to this for any proccalls that don't have any usr mob/client to refer to.
 /mob/proccall_handler
-	name = "ProcCall Handler"
-	desc = "If you are seeing this, tell a coder."
+	name = "过程调用处理器"
+	desc = "如果你看到这个，去告诉程序员吧。"
 
 	var/list/callers = list()
 
@@ -103,7 +103,7 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "Advanced ProcCall", "Call a proc on any
 	var/targetselected = FALSE
 	var/returnval
 
-	switch(tgui_alert(usr,"Proc owned by something?",,list("Yes","No")))
+	switch(tgui_alert(usr,"过程由某物拥有？",,list("Yes","No")))
 		if("Yes")
 			targetselected = TRUE
 			var/list/value = vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_CLIENT, VV_MARKED_DATUM, VV_TEXT_LOCATE, VV_PROCCALL_RETVAL))
@@ -111,7 +111,7 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "Advanced ProcCall", "Call a proc on any
 				return
 			target = value["value"]
 			if(!istype(target))
-				to_chat(usr, span_danger("Invalid target."), confidential = TRUE)
+				to_chat(usr, span_danger("无效目标。"), confidential = TRUE)
 				return
 		if("No")
 			target = null
@@ -131,12 +131,12 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "Advanced ProcCall", "Call a proc on any
 
 	if(targetselected)
 		if(!hascall(target, procname))
-			to_chat(usr, span_warning("Error: callproc(): type [target.type] has no [proctype] named [procpath]."), confidential = TRUE)
+			to_chat(usr, span_warning("错误：callproc()：类型 [target.type] 没有名为 [procpath] 的 [proctype]。"), confidential = TRUE)
 			return
 	else
 		procpath = "/[proctype]/[procname]"
 		if(!text2path(procpath))
-			to_chat(usr, span_warning("Error: callproc(): [procpath] does not exist."), confidential = TRUE)
+			to_chat(usr, span_warning("错误：callproc()：[procpath] 不存在。"), confidential = TRUE)
 			return
 
 	var/list/lst = get_callproc_args()
@@ -181,11 +181,11 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 /// Wrapper for proccalls where the datum is flagged as vareditted
 /proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target && procname == "Del")
-		to_chat(usr, "Calling Del() is not allowed", confidential = TRUE)
+		to_chat(usr, "不允许调用 Del()", confidential = TRUE)
 		return
 
 	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
-		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!", confidential = TRUE)
+		to_chat(usr, "对 [target.type]/proc/[procname] 的过程调用被禁止！", confidential = TRUE)
 		return
 	var/current_caller = GLOB.AdminProcCaller
 	var/user_identifier = usr ? usr.client?.ckey : GLOB.AdminProcCaller
@@ -197,7 +197,7 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 		CRASH("WrapAdminProcCall with no ckey: [target] [procname] [english_list(arguments)]")
 
 	if(!is_remote_handler && current_caller && current_caller != user_identifier)
-		to_chat(usr, span_adminnotice("Another set of admin called procs are still running. Try again later."), confidential = TRUE)
+		to_chat(usr, span_adminnotice("另一组管理员调用的过程仍在运行。请稍后再试。"), confidential = TRUE)
 		return
 
 	GLOB.LastAdminCalledProc = procname
@@ -231,7 +231,7 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 #endif
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "Atom ProcCall", datum/thing as null|area|mob|obj|turf)
-	var/procname = input(user, "Proc name, eg: fake_blood","Proc:", null) as text|null
+	var/procname = input(user, "过程名称，例如：fake_blood","Proc:", null) as text|null
 	if(!procname)
 		return
 	if(!hascall(thing, procname))
@@ -242,7 +242,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "Atom ProcCall", datum/th
 		return
 
 	if(!thing || !is_valid_src(thing))
-		to_chat(user, span_warning("Error: callproc_datum(): owner of proc no longer exists."), confidential = TRUE)
+		to_chat(user, span_warning("错误：callproc_datum()：过程的拥有者已不存在。"), confidential = TRUE)
 		return
 	log_admin("[key_name(user)] called [thing]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 	var/msg = "[key_name(user)] called [thing]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
@@ -256,14 +256,14 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "Atom ProcCall", datum/th
 		to_chat(user, ., confidential = TRUE)
 
 /client/proc/get_callproc_args()
-	var/argnum = input("Number of arguments","Number:",0) as num|null
+	var/argnum = input("参数数量","Number:",0) as num|null
 	if(isnull(argnum))
 		return
 
 	. = list()
 	var/list/named_args = list()
 	while(argnum--)
-		var/named_arg = input("Leave blank for positional argument. Positional arguments will be considered as if they were added first.", "Named argument") as text|null
+		var/named_arg = input("留空表示位置参数。位置参数将被视为最先添加。", "命名参数") as text|null
 		var/value = vv_get_value(restricted_classes = list(VV_RESTORE_DEFAULT))
 		if (!value["class"])
 			return

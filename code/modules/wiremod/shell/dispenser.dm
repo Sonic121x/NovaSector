@@ -4,7 +4,7 @@
  * Immobile (but not dense) shell that can receive and dispense items.
  */
 /obj/structure/dispenser_bot
-	name = "dispenser"
+	name = "分配机"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_drone_arms"
 
@@ -28,7 +28,7 @@
 
 
 /obj/structure/dispenser_bot/proc/add_item(mob/user, obj/item/to_add)
-	balloon_alert(user, "inserted item")
+	balloon_alert(user, "已插入物品")
 	stored_items += to_add
 	to_add.forceMove(src)
 	RegisterSignal(to_add, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stored_item_moved))
@@ -65,11 +65,11 @@
 		return NONE
 
 	if (tool.w_class > max_weight && !istype(tool, /obj/item/storage/bag))
-		balloon_alert(user, "item too big!")
+		balloon_alert(user, "物品太大了！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(length(stored_items) >= capacity)
-		balloon_alert(user, "at maximum capacity!")
+		balloon_alert(user, "已达最大容量！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!istype(tool, /obj/item/storage/bag))
@@ -94,7 +94,7 @@
 
 /obj/item/circuit_component/dispenser_bot
 	display_name = "Dispenser"
-	desc = "A dispenser bot that can dispense items "
+	desc = "一个能够分发物品的分发机器人"
 
 	/// The list of items
 	var/datum/port/output/item_list
@@ -160,7 +160,7 @@
 	switch(action)
 		if("add_vend_component")
 			if(length(vendor_components) >= max_vendor_components)
-				balloon_alert(user, "you have hit vendor component limit!")
+				balloon_alert(user, "已达到售货机组件上限！")
 				return
 			var/obj/item/circuit_component/vendor_component/vendor_component = new(parent)
 			parent.add_component(vendor_component, user)
@@ -172,7 +172,7 @@
 
 /obj/item/circuit_component/vendor_component
 	display_name = "Vend"
-	desc = "A component used to vend out specific objects from the dispenser bot."
+	desc = "一种用于从分配器机器人中取出特定物件的组件。"
 
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL
 

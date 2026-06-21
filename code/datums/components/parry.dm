@@ -108,9 +108,9 @@
 			source.set_angle((source.angle + 180) % 360 + rand(-3, 3))
 		else
 			source.set_angle(dir2angle(user.dir) + rand(-3, 3))
-		user.visible_message(span_warning("[user] expertly parries [source] with [user.p_their()] bare hand!"), span_warning("You parry [source] with your hand!"))
+		user.visible_message(span_warning("[user]用[user.p_their()]空手熟练地格挡了[source]！"), span_warning("你用手格挡了[source]！"))
 	else
-		user.visible_message(span_warning("[user] boosts [source] with [user.p_their()] bare hand!"), span_warning("You boost [source] with your hand!"))
+		user.visible_message(span_warning("[user]用[user.p_their()]空手助推了[source]！"), span_warning("你用手助推了[source]！"))
 	source.firer = user
 	source.speed *= (source.firer == user) ? boost_speed_mult : parry_speed_mult
 	source.damage *= (source.firer == user) ? boost_damage_mult : parry_damage_mult

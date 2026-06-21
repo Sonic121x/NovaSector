@@ -9,7 +9,7 @@
 	hotkey_keys = list("1")
 	name = "module_one"
 	full_name = "Toggle module 1"
-	description = "Equips or unequips the first module"
+	description = "装备或卸下第一个模块"
 	keybind_signal = COMSIG_KB_SILICON_TOGGLEMODULEONE_DOWN
 
 /datum/keybinding/robot/moduleone/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -24,7 +24,7 @@
 	hotkey_keys = list("2")
 	name = "module_two"
 	full_name = "Toggle module 2"
-	description = "Equips or unequips the second module"
+	description = "装备或卸下第二个模块"
 	keybind_signal = COMSIG_KB_SILICON_TOGGLEMODULETWO_DOWN
 
 /datum/keybinding/robot/moduletwo/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -39,7 +39,7 @@
 	hotkey_keys = list("3")
 	name = "module_three"
 	full_name = "Toggle module 3"
-	description = "Equips or unequips the third module"
+	description = "装备或卸下第三个模块"
 	keybind_signal = COMSIG_KB_SILICON_TOGGLEMODULETHREE_DOWN
 
 /datum/keybinding/robot/modulethree/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -54,7 +54,7 @@
 	hotkey_keys = list("Q")
 	name = "unequip_module"
 	full_name = "Unequip module"
-	description = "Unequips the active module"
+	description = "卸下当前激活的模块"
 	keybind_signal = COMSIG_KB_SILICON_UNEQUIPMODULE_DOWN
 
 /datum/keybinding/robot/unequip_module/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -70,7 +70,7 @@
 	hotkey_keys = list("=")
 	name = "undeploy"
 	full_name = "Disconnect from shell"
-	description = "Returns you to your AI core"
+	description = "返回你的AI核心"
 	keybind_signal = COMSIG_KB_SILION_UNDEPLOY_DOWN
 
 /datum/keybinding/robot/undeploy/down(client/user, turf/target, mousepos_x, mousepos_y)

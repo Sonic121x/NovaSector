@@ -1,19 +1,19 @@
 /datum/crafting_recipe/papersack
-	name = "Paper Sack"
+	name = "纸袋"
 	result = /obj/item/storage/box/papersack
 	time = 1 SECONDS
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_CONTAINERS
 
 /datum/crafting_recipe/sillycup
-	name = "Paper Cup"
+	name = "纸杯"
 	result =  /obj/item/reagent_containers/cup/glass/sillycup
 	time = 1 SECONDS
 	reqs = list(/obj/item/paper = 2)
 	category = CAT_CONTAINERS
 
 /datum/crafting_recipe/boh
-	name = "Bag of Holding"
+	name = "次元储物袋"
 	reqs = list(
 		/obj/item/bag_of_holding_inert = 1,
 		/obj/item/assembly/signaler/anomaly/bluespace = 1,
@@ -22,7 +22,7 @@
 	category = CAT_CONTAINERS
 
 /datum/crafting_recipe/underwater_basket
-	name = "Underwater Basket (Bamboo)"
+	name = "水下编织篮（竹子）"
 	reqs = list(
 		/obj/item/stack/sheet/mineral/bamboo = 20
 	)
@@ -46,5 +46,5 @@
 
 //Same but with wheat
 /datum/crafting_recipe/underwater_basket/wheat
-	name = "Underwater Basket (Wheat)"
+	name = "水下编织篮（小麦）"
 	reqs = list(/obj/item/food/grown/wheat = 50)

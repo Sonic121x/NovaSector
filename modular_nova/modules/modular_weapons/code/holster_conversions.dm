@@ -1,5 +1,5 @@
 /datum/crafting_recipe/charge_holster
-	name = "Energy Shoulder Holster Conversion"
+	name = "能量肩挂式枪套改装"
 	desc = "Retool a regular shoulder holster into one that can't hold regular sidearms, but can recharge energy weapons."
 	result = /obj/item/storage/belt/holster/energy
 	reqs = list(

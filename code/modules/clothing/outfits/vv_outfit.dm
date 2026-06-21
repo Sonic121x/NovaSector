@@ -1,7 +1,7 @@
 // This outfit preserves varedits made on the items
 // Created from admin helpers.
 /datum/outfit/varedit
-	name = "Var Edited Outfit"
+	name = "Var 编辑款服装"
 	var/list/vv_values
 	var/list/stored_access
 	var/update_id_name = FALSE //If the name of the human is same as the name on the id they're wearing we'll update provided id when equipping
@@ -134,10 +134,10 @@
 	for(var/obj/item/implant/implant in implants)
 		outfit.implants |= implant.type
 	//Copy to outfit cache
-	var/outfit_name = stripped_input(usr,"Enter the outfit name")
+	var/outfit_name = stripped_input(usr,"输入套装名称")
 	outfit.name = outfit_name
 	GLOB.custom_outfits += outfit
-	to_chat(usr,"Outfit registered, use select equipment to equip it.")
+	to_chat(usr,"服装已注册，使用选择装备来穿戴它。")
 
 /datum/outfit/varedit/post_equip(mob/living/carbon/human/human, visuals_only)
 	. = ..()

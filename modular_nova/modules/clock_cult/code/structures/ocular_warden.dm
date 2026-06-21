@@ -6,10 +6,10 @@
 #define SHOOT_POWER_USE 5
 
 /obj/structure/destructible/clockwork/gear_base/powered/ocular_warden
-	name = "ocular warden"
-	desc = "A wide, open eye that stares intently into your soul. It seems resistant to energy based weapons."
+	name = "眼目守卫"
+	desc = "一只睁大的眼睛，专注地凝视着你的灵魂。它似乎对能量武器有抗性。"
 	clockwork_desc = "A defensive device that will fight any nearby intruders."
-	break_message = span_warning("A black ooze leaks from the ocular warden as it slowly sinks to the ground.")
+	break_message = span_warning("一股黑色黏液从眼目守卫中渗出，它缓缓沉向地面。")
 	icon_state = "ocular_warden"
 	base_icon_state = "ocular_warden"
 	max_integrity = 75

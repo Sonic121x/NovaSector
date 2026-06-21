@@ -5,13 +5,13 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/costume/nova/maid
-	name = "maid headband"
-	desc = "Maid for you."
+	name = "女仆头带"
+	desc = "为你而备。"
 	icon_state = "maid"
 
 /obj/item/clothing/head/costume/nova/papakha
-	name = "papakha"
-	desc = "A big wooly clump of fur designed to go on your head."
+	name = "帕帕克哈帽"
+	desc = "一大团毛茸茸的羊毛，设计用来戴在头上。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/costume/nova/papakha"
 	post_init_icon_state = "papakha"
@@ -23,8 +23,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/head/costume/nova/flowerpin
-	name = "flower pin"
-	desc = "A small, colourable flower pin"
+	name = "花朵发夹"
+	desc = "一个可染色的小花朵发夹"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/costume/nova/flowerpin"
 	post_init_icon_state = "flowerpin"
@@ -35,15 +35,15 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/head/costume/nova/christmas
-	name = "christmas hat"
-	desc = "How festive!"
+	name = "圣诞帽"
+	desc = "多么喜庆！"
 	icon_state = "christmas"
 
 /obj/item/clothing/head/costume/nova/christmas/green
 	icon_state = "christmas_g"
 
 /obj/item/clothing/head/costume/nova/en //One of the two parts of E-N's butchering
-	name = "E-N suit head"
+	name = "E-N 防护服头盔"
 	icon_state = "enhead"
 	supports_variations_flags = NONE
 
@@ -59,8 +59,8 @@
 /obj/item/clothing/head/pelt
 	icon = 'modular_nova/master_files/icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/costume.dmi'
-	name = "bear pelt"
-	desc = "A luxurious bear pelt, good to keep warm in winter. Or to sleep through it."
+	name = "熊皮"
+	desc = "一张奢华的熊皮，适合在冬天保暖。或者用来冬眠。"
 	icon_state = "bearpelt_brown"
 	inhand_icon_state = "cowboy_hat_brown"
 	cold_protection = CHEST|HEAD
@@ -75,26 +75,26 @@
 	inhand_icon_state = "cowboy_hat_white"
 
 /obj/item/clothing/head/pelt/tiger
-	name = "shiny tiger pelt"
-	desc = "A vibrant tiger pelt, particularly fabulous."
+	name = "闪亮虎皮"
+	desc = "一张色彩鲜艳的虎皮，格外华丽。"
 	icon_state = "tigerpelt_shiny"
 	inhand_icon_state = "cowboy_hat_grey"
 
 /obj/item/clothing/head/pelt/snow_tiger
-	name = "snow tiger pelt"
-	desc = "A pelt of a less vibrant tiger, but rather warm."
+	name = "雪虎皮"
+	desc = "一张色彩不那么鲜艳但相当暖和的虎皮。"
 	icon_state = "tigerpelt_snow"
 	inhand_icon_state = "cowboy_hat_white"
 
 /obj/item/clothing/head/pelt/pink_tiger
-	name = "pink tiger pelt"
-	desc = "A particularly vibrant tiger pelt, for those who want to be the most fabulous at parties."
+	name = "粉红虎皮"
+	desc = "一张格外鲜艳的虎皮，适合那些想在派对上成为最耀眼存在的人。"
 	icon_state = "tigerpelt_pink"
 	inhand_icon_state = "cowboy_hat_red"
 
 /obj/item/clothing/head/pelt/wolf
-	name = "wolf pelt"
-	desc = "A fuzzy wolf pelt that demands respect as a hunter... assuming it wasn't just purchased, that is, for all the glory but none of the credit."
+	name = "狼皮"
+	desc = "一张毛茸茸的狼皮，彰显着猎人的威严……前提是它不是买来的，那样的话，就是只有荣耀没有功劳了。"
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/head/pelt_big.dmi'
 	icon_state = "wolfpelt_brown"
 
@@ -108,8 +108,8 @@
 //End Pelts
 
 /obj/item/clothing/head/maid_headband
-	name = "maid headband"
-	desc = "Just like from one of those Chinese cartoons!"
+	name = "女仆发带"
+	desc = "就像那些中国动画片里的一样！"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/maid_headband"
 	post_init_icon_state = "maid_headband"

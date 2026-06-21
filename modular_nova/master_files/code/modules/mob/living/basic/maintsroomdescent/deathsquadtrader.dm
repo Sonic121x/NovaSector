@@ -1,6 +1,6 @@
 /mob/living/basic/trader/deathsquadtrader
-	name = "Asset protection officer"
-	desc = "holy SHIT is that a DEATHSQUAD OFFICER?"
+	name = "资产保护军官"
+	desc = "卧槽那是个死亡小队军官？"
 	unique_name = FALSE
 	icon = 'icons/mob/simple/simple_human.dmi'
 	maxHealth = 2000

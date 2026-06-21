@@ -5,8 +5,8 @@
  */
 
 /mob/living/basic/cat_butcherer
-	name = "Cat Surgeon"
-	desc = "A man with the quest of chasing endless feline tail."
+	name = "猫咪外科医生"
+	desc = "一个以追逐无尽猫尾为使命的男人。"
 	icon = 'icons/mob/simple/simple_human.dmi'
 	icon_state = "cat_butcher"
 	icon_living = "cat_butcher"
@@ -56,8 +56,8 @@
 		return
 
 	visible_message(
-		span_warning("[src] severs [attacked]'s tail off in one swift swipe!"),
-		span_warning("You sever [attacked]'s tail off."),
+		span_warning("[src] 以迅雷不及掩耳之势切下了 [attacked] 的尾巴！"),
+		span_warning("你切下了 [attacked] 的尾巴。"),
 	)
 	tail.Remove(attacked)
 	tail.forceMove(drop_location())

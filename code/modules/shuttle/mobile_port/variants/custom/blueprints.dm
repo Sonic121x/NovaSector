@@ -120,8 +120,8 @@
 	holder.regenerate_image()
 
 /obj/item/shuttle_blueprints
-	name = "shuttle blueprints"
-	desc = "A blank sheet of synthetic engineering-grade paper."
+	name = "穿梭机蓝图"
+	desc = "一张空白的合成工程级纸张。"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "shuttle_blueprints0"
 	base_icon_state = "shuttle_blueprints"
@@ -179,36 +179,36 @@
 		return
 	var/turf/user_turf = get_turf(user)
 	if(user_turf && isshuttleturf(user_turf))
-		to_chat(user, span_warning("You can't rechristen \the [shuttle] from inside of [shuttle.p_them()]!"))
+		to_chat(user, span_warning("你不能从 [shuttle] 内部重新命名 \the [shuttle.p_them()]！"))
 		return
 	if(!source.isGlass)
-		to_chat(user, span_warning("You can't break [source] against [attacked]!"))
+		to_chat(user, span_warning("你不能用[source]砸[attacked]！"))
 		return
 	if(source.reagents.total_volume < CHEMICAL_QUANTISATION_LEVEL)
-		to_chat(user, span_warning("You should put some christening fluid in [source]!"))
+		to_chat(user, span_warning("你应该在[source]里放些命名液！"))
 		return
 	INVOKE_ASYNC(src, PROC_REF(christen), user, shuttle, attacked, user.active_hand_index)
 
 /obj/item/shuttle_blueprints/proc/christen(mob/living/user, obj/docking_port/mobile/custom/shuttle, atom/attacked, hand)
 	var/trait_source = REF(shuttle)
 	ADD_TRAIT(user, TRAIT_ATTEMPTING_CHRISTENING, trait_source)
-	var/new_name = reject_bad_name(tgui_input_text(user, "What would you like to rechristen \the [shuttle] as?", "Shuttle Rechristening", max_length = 128), allow_numbers = TRUE, strict = TRUE, cap_after_symbols = FALSE)
+	var/new_name = reject_bad_name(tgui_input_text(user, "What would you like to rechristen \the [shuttle] as?", "穿梭机重新命名", max_length = 128), allow_numbers = TRUE, strict = TRUE, cap_after_symbols = FALSE)
 	if(QDELETED(user))
 		return
 	REMOVE_TRAIT(user, TRAIT_ATTEMPTING_CHRISTENING, trait_source)
 	if(!new_name)
-		user.balloon_alert(user, "cancelled")
+		user.balloon_alert(user, "已取消")
 		return
 	new_name = apply_text_macros(new_name)
 	var/obj/item/hitting_implement = (locate(/obj/item/reagent_containers/cup/glass/bottle) in user.held_items) || user.get_item_for_held_index(hand)
 	if(!attacked.IsReachableBy(user, hitting_implement.reach))
-		user.balloon_alert(user, "out of range!")
+		user.balloon_alert(user, "超出范围！")
 		return
 	var/obj/item/reagent_containers/cup/glass/bottle/bottle = hitting_implement
 	bottle = istype(bottle) && bottle.isGlass && bottle
 	var/shuttle_exists = !QDELETED(shuttle)
 	if(!shuttle_exists)
-		to_chat(user, span_warning("Wasn't there supposed to be a shuttle here?"))
+		to_chat(user, span_warning("这里不是应该有艘穿梭机吗？"))
 	var/has_blueprints = !QDELETED(src) && (src in user.gather_belongings())
 	var/turf/attacked_turf = attacked
 	var/is_closed_turf = isclosedturf(attacked_turf)
@@ -279,7 +279,7 @@
 		user.visible_message(
 			span_notice("[user] christens the shuttle as <b>\the [new_name]</b> with [hitting_implement.get_examine_name()]\
 			[(bottle.reagents.total_volume < 30) ? "" : ", though the dearth of christening fluid makes for an unimpressive display"]."),
-			span_notice("You christen the shuttle as <b>\the [new_name]</b> with [hitting_implement.get_examine_name()].")
+			span_notice("你用 [new_name] 将穿梭机命名为 <b>\the [hitting_implement.get_examine_name()]</b>。")
 		)
 		user.do_attack_animation(attacked, used_item = bottle)
 		bottle.smash(attacked, user)
@@ -428,15 +428,15 @@
 /obj/item/shuttle_blueprints/proc/get_shuttle_tip()
 	. = list()
 	if(!shuttle_ref)
-		. += span_notice("It can be used to construct a custom shuttle.")
+		. += span_notice("它可以用来建造一艘自定义穿梭机。")
 		return
 	var/obj/docking_port/mobile/custom/shuttle = shuttle_ref.resolve()
 	if(!shuttle)
-		. += span_notice("It has the plans for a shuttle that no longer exists. It can be reused to construct a new shuttle.")
+		. += span_notice("它包含一艘已不存在的穿梭机的设计图。它可以被重新用来建造一艘新的穿梭机。")
 	else
-		. += span_notice("It has the plans for \the [shuttle] on it, and can be used to expand [shuttle.p_them()] or modify [shuttle.p_their()] areas.")
+		. += span_notice("它上面有 \the [shuttle] 的设计图，可以用来扩展 [shuttle.p_them()] 或修改 [shuttle.p_their()] 的区域。")
 		if(shuttle.master_blueprint.resolve() == src)
-			. += span_notice("This is the master blueprint for \the [shuttle]. You can copy it to a blank set of blueprints, or to an engineering cyborg with a shuttle database module installed.")
+			. += span_notice("这是 \the [shuttle] 的主设计图。你可以将其复制到一套空白的设计图上，或者复制到安装了穿梭机数据库模块的工程机械人上。")
 
 /obj/item/shuttle_blueprints/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
@@ -450,12 +450,12 @@
 		var/obj/docking_port/mobile/other_shuttle = other_blueprints.shuttle_ref?.resolve()
 		if(istype(other_shuttle))
 			return
-		balloon_alert(user, "copying blueprints...")
+		balloon_alert(user, "正在复制设计图...")
 		if(!do_after(user, 5 SECONDS, other_blueprints))
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, "已中断！")
 			return ITEM_INTERACT_FAILURE
 		other_blueprints.link_to_shuttle(shuttle)
-		balloon_alert(user, "copied")
+		balloon_alert(user, "已复制")
 		return ITEM_INTERACT_SUCCESS
 	if(istype(interacting_with, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/borg = interacting_with
@@ -463,15 +463,15 @@
 		if(!other_blueprints)
 			return
 		if(other_blueprints.shuttles.Find(shuttle_ref))
-			balloon_alert(user, "already has these blueprints!")
-		balloon_alert(user, "copying blueprints...")
+			balloon_alert(user, "已经拥有这些设计图了！")
+		balloon_alert(user, "正在复制设计图...")
 		if(!do_after(user, 5 SECONDS, borg))
-			balloon_alert(user, "interrupted")
+			balloon_alert(user, "已中断")
 			return ITEM_INTERACT_FAILURE
 		if(QDELETED(other_blueprints))
 			return ITEM_INTERACT_FAILURE
 		other_blueprints.shuttles |= shuttle_ref
-		balloon_alert(user, "copied")
+		balloon_alert(user, "已复制")
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/shuttle_blueprints/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -494,22 +494,22 @@
 			var/turf/shuttle_origin = get_turf(usr)
 			var/check_status = shuttle_build_check(shuttle_origin, shuttle_turfs, shuttle_areas)
 			if(check_status & ORIGIN_NOT_ON_SHUTTLE)
-				balloon_alert(usr, "not on shuttle frame!")
+				balloon_alert(usr, "不在穿梭机框架上！")
 				return TRUE
 			if(check_status & TOO_MANY_SHUTTLES)
-				balloon_alert(usr, "too many shuttles exist!")
+				balloon_alert(usr, "穿梭机数量过多！")
 				return TRUE
 			if(check_status & ABOVE_MAX_SHUTTLE_SIZE)
-				balloon_alert(usr, "frame too big!")
+				balloon_alert(usr, "框架太大！")
 				return TRUE
 			if(check_status & CUSTOM_AREA_NOT_COMPLETELY_CONTAINED)
-				balloon_alert(usr, "frame must completely enclose custom areas!")
+				balloon_alert(usr, "框架必须完全包围自定义区域！")
 				return TRUE
 			if(check_status & INTERSECTS_NON_WHITELISTED_AREA)
-				balloon_alert(usr, "frame overlaps disallowed areas!")
+				balloon_alert(usr, "框架与禁止区域重叠！")
 				return TRUE
 			if(check_status & CONTAINS_APC_OF_NON_CUSTOM_AREA)
-				balloon_alert(usr, "frame contains apc of non-custom area!")
+				balloon_alert(usr, "框架包含非自定义区域的APC！")
 				return TRUE
 			var/obj/docking_port/mobile/custom/shuttle = create_shuttle(
 				usr,
@@ -524,49 +524,49 @@
 			return TRUE
 		if("tryLinkShuttle")
 			if(shuttle_ref?.resolve())
-				balloon_alert(usr, "already linked!")
+				balloon_alert(usr, "已链接！")
 				return TRUE
 			var/obj/docking_port/mobile/custom/shuttle = SSshuttle.get_containing_shuttle(usr)
 			if(!shuttle)
-				balloon_alert(usr, "not on shuttle!")
+				balloon_alert(usr, "不在穿梭机上！")
 				return TRUE
 			if(!istype(shuttle))
-				balloon_alert(usr, "incompatible shuttle type!")
+				balloon_alert(usr, "穿梭机类型不兼容！")
 				return TRUE
 			var/obj/item/shuttle_blueprints/master = shuttle.master_blueprint?.resolve()
 			if(master && (master != src))
-				balloon_alert(usr, "master blueprint already exists!")
+				balloon_alert(usr, "主蓝图已存在！")
 				return TRUE
 			link_to_shuttle(shuttle, TRUE)
 			return TRUE
 		if("promoteToMaster")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, "not linked!")
+				balloon_alert(usr, "未连接！")
 				return TRUE
 			var/obj/item/shuttle_blueprints/master = shuttle.master_blueprint?.resolve()
 			if(master)
-				balloon_alert(usr, "master blueprint already exists!")
+				balloon_alert(usr, "主蓝图已存在！")
 				return TRUE
 			shuttle.master_blueprint = WEAKREF(src)
 			return TRUE
 		if("createNewArea")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, "not linked!")
+				balloon_alert(usr, "未连接！")
 				return TRUE
 			var/area_name = params["name"]
 			if(!area_name)
-				balloon_alert(usr, "no name given!")
+				balloon_alert(usr, "未指定名称！")
 				return TRUE
 			var/area/current_area = get_area(usr)
 			var/area/default_area = shuttle.default_area
 			if(current_area != default_area)
-				balloon_alert(usr, "must be in default area!")
+				balloon_alert(usr, "必须在默认区域内！")
 				return TRUE
 			var/list/turfs = detect_room(get_turf(usr), max_size = CONFIG_GET(number/max_shuttle_size), extra_check = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(custom_shuttle_room_check), shuttle, null))
 			if(!length(turfs))
-				balloon_alert(usr, "invalid room!")
+				balloon_alert(usr, "无效的房间！")
 				return TRUE
 			var/area/shuttle/custom/new_area = new()
 			new_area.name = area_name
@@ -581,20 +581,20 @@
 		if("releaseArea")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, "not linked!")
+				balloon_alert(usr, "未连接！")
 				return TRUE
 			var/area/current_area = get_area(usr)
 			if(!shuttle.shuttle_areas[current_area])
-				balloon_alert(usr, "not on shuttle!")
+				balloon_alert(usr, "不在穿梭机上！")
 				return TRUE
 			var/area/default_area = shuttle.default_area
 			if(current_area == default_area)
-				balloon_alert(usr, "can't release default area!")
+				balloon_alert(usr, "无法释放默认区域！")
 				return TRUE
 			var/obj/machinery/power/apc/current_area_apc = current_area.apc
 			var/obj/machinery/power/apc/default_area_apc = default_area.apc
 			if(current_area_apc && default_area_apc)
-				balloon_alert(usr, "remove the apc first!")
+				balloon_alert(usr, "请先移除APC！")
 				return TRUE
 			var/list/turfs = current_area.get_turfs_by_zlevel(shuttle.z)
 			set_turfs_to_area(turfs, default_area)
@@ -606,12 +606,12 @@
 		if("mergeIntoArea")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, "not linked!")
+				balloon_alert(usr, "未连接！")
 				return TRUE
 			var/area/current_area = get_area(usr)
 			var/area/default_area = shuttle.default_area
 			if(current_area != default_area)
-				balloon_alert(usr, "must be in default area!")
+				balloon_alert(usr, "必须在默认区域内！")
 				return TRUE
 			var/area/merge_area = locate(params["area"])
 			if(!istype(merge_area))
@@ -623,13 +623,13 @@
 			var/list/actual_adjacent_areas = list()
 			var/list/turfs = detect_room(get_turf(usr), max_size = CONFIG_GET(number/max_shuttle_size), extra_check = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(custom_shuttle_room_check), shuttle, actual_adjacent_areas))
 			if(!length(turfs))
-				balloon_alert(usr, "invalid room!")
+				balloon_alert(usr, "无效的房间！")
 				return TRUE
 			if(!actual_adjacent_areas[merge_area])
-				balloon_alert(usr, "selected area not connected to room!")
+				balloon_alert(usr, "所选区域未连接到房间！")
 				return TRUE
 			if(merge_area.apc && default_area.apc && turfs[get_turf(default_area.apc)])
-				balloon_alert(usr, "remove the apc first!")
+				balloon_alert(usr, "请先移除APC！")
 				return TRUE
 			set_turfs_to_area(turfs, merge_area)
 			for(var/obj/machinery/door/firedoor/firelock as anything in merge_area.firedoors + default_area.firedoors)
@@ -638,59 +638,59 @@
 		if("renameArea")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, "not linked!")
+				balloon_alert(usr, "未链接！")
 				return TRUE
 			var/area/current_area = get_area(usr)
 			if(!shuttle.shuttle_areas[current_area])
-				balloon_alert(usr, "not on shuttle!")
+				balloon_alert(usr, "不在穿梭机上！")
 				return TRUE
 			var/area/default_area = shuttle.default_area
 			if(current_area == default_area)
-				balloon_alert(usr, "can't rename default area!")
+				balloon_alert(usr, "无法重命名默认区域！")
 				return TRUE
 			var/new_name = params["name"]
 			if(!new_name)
-				balloon_alert(usr, "no name given!")
+				balloon_alert(usr, "未提供名称！")
 				return TRUE
 			rename_area(current_area, new_name)
 			return TRUE
 		if("expandWithFrame")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, "not linked!")
+				balloon_alert(usr, "未链接！")
 				return TRUE
 			var/list/turfs = list()
 			var/list/areas = list()
 			var/turf/origin = get_turf(usr)
 			var/check_status = shuttle_expand_check(origin, shuttle, turfs, areas)
 			if(check_status & ORIGIN_NOT_ON_SHUTTLE)
-				balloon_alert(usr, "not on shuttle frame!")
+				balloon_alert(usr, "不在穿梭机框架上！")
 				return TRUE
 			if(check_status & FRAME_NOT_ADJACENT_TO_LINKED_SHUTTLE)
-				balloon_alert(usr, "not connected to linked shuttle!")
+				balloon_alert(usr, "未连接到已链接的穿梭机！")
 				return TRUE
 			if(check_status & ABOVE_MAX_SHUTTLE_SIZE)
-				balloon_alert(usr, "frame too big!")
+				balloon_alert(usr, "框架太大！")
 				return TRUE
 			if(check_status & CUSTOM_AREA_NOT_COMPLETELY_CONTAINED)
-				balloon_alert(usr, "frame must completely enclose custom areas!")
+				balloon_alert(usr, "框架必须完全包围自定义区域！")
 				return TRUE
 			if(check_status & INTERSECTS_NON_WHITELISTED_AREA)
-				balloon_alert(usr, "frame overlaps disallowed areas!")
+				balloon_alert(usr, "框架与禁止区域重叠！")
 				return TRUE
 			if(check_status & CONTAINS_APC_OF_NON_CUSTOM_AREA)
-				balloon_alert(usr, "frame includes apc of non-custom area!")
+				balloon_alert(usr, "框架包含了非自定义区域的APC！")
 				return TRUE
 			expand_shuttle(usr, shuttle, turfs, areas)
 			return TRUE
 		if("cleanupEmptyTurfs")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, "not linked!")
+				balloon_alert(usr, "未链接！")
 				return TRUE
 			var/obj/item/shuttle_blueprints/master = shuttle.master_blueprint?.resolve()
 			if(master && master != src)
-				balloon_alert(usr, "not master blueprints!")
+				balloon_alert(usr, "不是主蓝图！")
 			clear_empty_shuttle_turfs(shuttle)
 
 /obj/item/shuttle_blueprints/crude

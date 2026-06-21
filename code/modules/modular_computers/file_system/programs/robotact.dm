@@ -14,7 +14,7 @@
 
 /datum/computer_file/program/robotact/on_start(mob/living/user)
 	if(!istype(computer, /obj/item/modular_computer/pda/silicon))
-		to_chat(user, span_warning("A warning flashes across \the [computer]: Device Incompatible."))
+		to_chat(user, span_warning("一条警告闪烁在 \the [computer] 上：设备不兼容。"))
 		return FALSE
 	. = ..()
 	if(.)
@@ -153,7 +153,7 @@
 		if("alertPower")
 			if(cyborg.stat == CONSCIOUS)
 				if(!cyborg.cell || !cyborg.cell.charge)
-					cyborg.visible_message(span_notice("The power warning light on [span_name("[cyborg]")] flashes urgently."), \
+					cyborg.visible_message(span_notice("[span_name("[cyborg]")] 上的电源警告灯急促地闪烁。"), \
 						"You announce you are operating in low power mode.")
 					playsound(cyborg, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 
@@ -185,7 +185,7 @@
 	//NOVA EDIT ADDITION BEGIN - Adds in a Toggle for the Camera, blocking the AI from doing so
 		if("cameraToggle")
 			if(istype(cyborg, /mob/living/silicon/robot/shell))
-				to_chat(cyborg, span_warning("Disabling your own camera seems like a bad idea."))
+				to_chat(cyborg, span_warning("禁用你自己的摄像头似乎是个坏主意。"))
 				return
 			else
 				cyborg.builtInCamera.toggle_cam()

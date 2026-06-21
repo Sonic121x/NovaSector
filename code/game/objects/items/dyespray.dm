@@ -1,6 +1,6 @@
 /obj/item/dyespray
-	name = "hair dye spray"
-	desc = "A spray to dye your hair any gradients you'd like."
+	name = "染发喷雾"
+	desc = "一种可以为你头发染上任何渐变色的喷雾。"
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/cosmetic.dmi'
 	icon_state = "dyespray"
@@ -88,7 +88,7 @@
 			choices += choice_name
 	if(!length(choices))
 		return
-	var/what_to_dye = tgui_alert(user, "What do you want to dye?", "Character Preference", choices)
+	var/what_to_dye = tgui_alert(user, "你想染什么？", "角色偏好", choices)
 	if(!what_to_dye || !user.can_perform_action(src, NEED_DEXTERITY))
 		return
 
@@ -98,7 +98,7 @@
 
 	var/datum/bodypart_overlay/mutant/overlay = selected.bodypart_overlay
 	if(overlay.dye_color)
-		var/remove_dye = tgui_alert(user, "Do you want to un-dye [selected]?", "Character Preference", list("Yes", "No"))
+		var/remove_dye = tgui_alert(user, "你想去除[selected]的染色吗？", "角色偏好", list("Yes", "No"))
 		if(isnull(remove_dye) || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 		if(QDELETED(selected) || !(selected in target.organs))

@@ -6,8 +6,8 @@
 	initial_reagent_flags = REFILLABLE | DRAINABLE | DUNKABLE // no transparent (go ahead. get oneshot by the 50u ultrashot idiot)
 
 /obj/item/storage/box/syndieshotglasses
-	name = "box of shot glasses"
-	desc = "It has a picture of shot glasses on it."
+	name = "一盒烈酒杯"
+	desc = "盒子上印有烈酒杯的图案。"
 	illustration = "drinkglass"
 
 /obj/item/storage/box/syndieshotglasses/PopulateContents()

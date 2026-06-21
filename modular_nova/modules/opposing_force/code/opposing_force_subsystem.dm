@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(opposing_force)
-	name = "Opposing Force"
+	name = "对抗势力"
 	ss_flags = SS_NO_FIRE
 
 	/// A precompiled list of all equipment datums, processed on init

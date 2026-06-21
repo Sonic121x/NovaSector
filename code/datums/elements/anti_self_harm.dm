@@ -23,5 +23,5 @@
 		return
 
 	// A balloon alert would be too distracting mid-combat.
-	to_chat(parent_mob, span_warning("You decide against attacking yourself. <b>You can still do so with right-click.</b>"))
+	to_chat(parent_mob, span_warning("你决定不攻击自己。<b>你仍然可以通过右键点击这样做。</b>"))
 	return COMPONENT_HOSTILE_NO_ATTACK

@@ -1,7 +1,7 @@
 
 //Ears: currently only used for headsets and earmuffs
 /obj/item/clothing/ears
-	name = "ears"
+	name = "耳朵"
 	lefthand_file = 'icons/mob/inhands/clothing/ears_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/clothing/ears_righthand.dmi'
 	abstract_type = /obj/item/clothing/ears
@@ -11,8 +11,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/ears/earmuffs
-	name = "earmuffs"
-	desc = "Protects your hearing from loud noises, and quiet ones as well."
+	name = "耳罩"
+	desc = "既能够隔绝噪音，也能够隔绝微小的声响。"
 	icon = 'icons/obj/clothing/ears.dmi'
 	icon_state = "earmuffs"
 	inhand_icon_state = "earmuffs"
@@ -30,6 +30,6 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -2)
 
 /obj/item/clothing/ears/earmuffs/debug
-	name = "debug earmuffs"
-	desc = "Wearing these sends a chat message for every sound played. Walking to ignore footsteps is highly recommended."
+	name = "调试耳罩"
+	desc = "佩戴此物会为播放的每个声音发送聊天消息。强烈建议行走以忽略脚步声。"
 	clothing_traits = list(TRAIT_SOUND_DEBUGGED)

@@ -261,7 +261,7 @@
 		return NONE
 
 	user.do_attack_animation(interacting_with, used_item = src)
-	interacting_with.balloon_alert(user, "card attached")
+	interacting_with.balloon_alert(user, "卡片已附着")
 	interacting_with.AddComponent(/datum/component/sticker, src, get_dir(interacting_with, src), px, py)
 	return ITEM_INTERACT_SUCCESS
 

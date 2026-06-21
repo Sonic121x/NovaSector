@@ -1,5 +1,5 @@
 /datum/antagonist/ship_crew
-	name = "\improper Ship Crew"
+	name = "\improper 飞船船员"
 	roundend_category = "ship crew"
 	antagpanel_category = "Random Ship Crew"
 	show_in_antagpanel = FALSE
@@ -10,7 +10,7 @@
 
 /datum/antagonist/ship_crew/greet()
 	. = ..()
-	to_chat(owner, "<B>You are part of a ship crew. Follow your captain's orders and complete your mission.</B>")
+	to_chat(owner, "<B>你是飞船船员的一员。听从舰长的命令并完成你的任务。</B>")
 	owner.announce_objectives()
 
 /datum/antagonist/ship_crew/get_team()
@@ -39,7 +39,7 @@
 	return ..()
 
 /datum/team/ship_crew
-	name = "\improper Ship Crew"
+	name = "\improper 飞船船员"
 
 /// Creates and assigns the primary mission objective to all ship crew members.
 /datum/team/ship_crew/proc/forge_objectives()
@@ -61,7 +61,7 @@
 /datum/team/ship_crew/roundend_report()
 	var/list/report_parts = list()
 
-	report_parts += span_header("Ship Crew were:")
+	report_parts += span_header("飞船船员为：")
 
 	var/all_dead = TRUE
 	for(var/datum/mind/crew_member_mind in members)

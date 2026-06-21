@@ -197,9 +197,9 @@ SUBSYSTEM_DEF(ipintel)
 
 ADMIN_VERB(ipintel_allow, R_BAN, "Whitelist Player VPN", "Allow a player to connect even if they are using a VPN.", ADMIN_CATEGORY_IPINTEL, ckey as text)
 	if (!SSipintel.is_enabled())
-		to_chat(user, "The ipintel system is not currently enabled but you can still edit the whitelists")
+		to_chat(user, "IP情报系统当前未启用，但你仍然可以编辑白名单")
 	if(SSipintel.is_whitelisted(ckey))
-		to_chat(user, "Player is already whitelisted.")
+		to_chat(user, "玩家已在白名单中。")
 		return
 
 	var/datum/db_query/query = SSdbcore.NewQuery(
@@ -221,9 +221,9 @@ ADMIN_VERB(ipintel_allow, R_BAN, "Whitelist Player VPN", "Allow a player to conn
 
 ADMIN_VERB(ipintel_revoke, R_BAN, "Revoke Player VPN Whitelist", "Revoke a player's VPN whitelist.", ADMIN_CATEGORY_IPINTEL, ckey as text)
 	if (!SSipintel.is_enabled())
-		to_chat(user, "The ipintel system is not currently enabled but you can still edit the whitelists")
+		to_chat(user, "IP情报系统当前未启用，但你仍然可以编辑白名单")
 	if(!SSipintel.is_whitelisted(ckey))
-		to_chat(user, "Player is not whitelisted.")
+		to_chat(user, "玩家不在白名单中。")
 		return
 	var/datum/db_query/query = SSdbcore.NewQuery(
 		"DELETE FROM [format_table_name("ipintel_whitelist")] WHERE ckey = :ckey", list(
@@ -252,7 +252,7 @@ ADMIN_VERB(ipintel_revoke, R_BAN, "Revoke Player VPN Whitelist", "Revoke a playe
 		if(IPINTEL_BAD_IP)
 			log_access("IPINTEL: [ckey] was flagged as a VPN with [intel.result * 100]% likelihood.")
 			if(reject_bad_intel)
-				to_chat_immediate(src, span_boldnotice("Your connection has been detected as a VPN."))
+				to_chat_immediate(src, span_boldnotice("你的连接已被检测为VPN。"))
 				connection_rejected = TRUE
 			else
 				message_admins("IPINTEL: [key_name_admin(src)] has been flagged as a VPN with [intel.result * 100]% likelihood.")
@@ -260,7 +260,7 @@ ADMIN_VERB(ipintel_revoke, R_BAN, "Revoke Player VPN Whitelist", "Revoke a playe
 		if(IPINTEL_RATE_LIMITED_DAY, IPINTEL_RATE_LIMITED_MINUTE)
 			log_access("IPINTEL: [ckey] was unable to be checked due to the rate limit.")
 			if(reject_rate_limited)
-				to_chat_immediate(src, span_boldnotice("New connections are not being allowed at this time."))
+				to_chat_immediate(src, span_boldnotice("目前不允许新连接。"))
 				connection_rejected = TRUE
 			else
 				message_admins("IPINTEL: [key_name_admin(src)] was unable to be checked due to rate limiting.")
@@ -268,7 +268,7 @@ ADMIN_VERB(ipintel_revoke, R_BAN, "Revoke Player VPN Whitelist", "Revoke a playe
 		if(IPINTEL_UNKNOWN_INTERNAL_ERROR, IPINTEL_UNKNOWN_QUERY_ERROR)
 			log_access("IPINTEL: [ckey] unable to be checked due to an error.")
 			if(reject_unknown_intel)
-				to_chat_immediate(src, span_boldnotice("Your connection cannot be processed at this time."))
+				to_chat_immediate(src, span_boldnotice("你的连接目前无法处理。"))
 				connection_rejected = TRUE
 			else
 				message_admins("IPINTEL: [key_name_admin(src)] was unable to be checked due to an error.")

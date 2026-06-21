@@ -1,6 +1,6 @@
 /datum/mod_theme/contractor
 	name = "contractor"
-	desc = "A MODSuit developed as a joint venture of Cybersun Industries and the Gorlex Marauders; standard-issue for Syndicate contractors."
+	desc = "由赛博阳光工业与戈莱克斯掠夺者联合开发的MODSuit；辛迪加承包商的标配。"
 	extended_desc = "A rare departure from the Syndicate's usual color scheme, the Contractor MODsuit is produced and manufactured \
 		for specialty contractors, built for travelling and fighting light, providing no encumberance when deactivated, but slight encumberance otherwise. \
 		The external plating is composed of streamlined layers of shaped plastitanium and composite ceramic, \

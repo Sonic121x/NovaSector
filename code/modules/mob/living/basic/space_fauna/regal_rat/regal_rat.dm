@@ -2,8 +2,8 @@
 
 /// The cheesiest, most crowned rat of them all. Regent superior of all rats in maintenance... at least until someone else tries to encroach on their claim.
 /mob/living/basic/regal_rat
-	name = "feral regal rat"
-	desc = "An evolved rat, created through some strange science. They lead nearby rats with deadly efficiency to protect their kingdom."
+	name = "野性鼠王"
+	desc = "一种通过某种奇异科研进化而来的老鼠。它们以极高的效率领导着附近的老鼠，以保卫它们的王国。"
 	icon_state = "regalrat"
 	icon_living = "regalrat"
 	icon_dead = "regalrat_dead"
@@ -85,14 +85,14 @@
 		return
 
 	if(isregalrat(user))
-		. += span_warning("Who is this foolish false king? This will not stand!")
+		. += span_warning("这个愚蠢的伪王是谁？这绝不能容忍！")
 		return
 
 	if(ismouse(user))
 		if(user.faction_check_atom(src, exact_match = TRUE))
-			. += span_notice("This is your king. Long live [p_their()] majesty!")
+			. += span_notice("这是你的国王。愿[p_their()]陛下万岁！")
 		else
-			. += span_warning("This is a false king! Strike [p_them()] down!")
+			. += span_warning("这是个伪王！打倒[p_them()]！")
 		return
 
 	. += special_moniker
@@ -165,7 +165,7 @@
 	var/selected_title = pick(titles)
 	var/selected_kingdom = pick(kingdoms)
 
-	name = "[selected_title] [selected_kingdom], the [pick(descriptors)]" // ex "Tsar Maintenance, the Brute"
+	name = "[selected_title] [selected_kingdom]，[pick(descriptors)]" // ex "Tsar Maintenance, the Brute"
 	special_moniker = "You better not screw with [p_their()] [selected_kingdom]... How do you become a [selected_title] of that anyways?"
 
 /// Checks if we are able to attack this object, as well as send out the signal to see if we get any special regal rat interactions.
@@ -198,11 +198,11 @@
 
 	var/mob/living/living_target = the_target
 	if(HAS_TRAIT_NOT_FROM(living_target, TRAIT_FAKEDEATH, SPECIES_TRAIT) || living_target.stat == DEAD)
-		balloon_alert(src, "already dead!")
+		balloon_alert(src, "已经死了！")
 		return FALSE
 
 	if(living_target.faction_check_atom(src, exact_match = TRUE))
-		balloon_alert(src, "one of your soldiers!")
+		balloon_alert(src, "是你的一名士兵！")
 		return FALSE
 
 	return TRUE
@@ -220,16 +220,16 @@
 		return FALSE
 
 	visible_message(
-		span_warning("[src] starts licking [target] passionately!"),
-		span_notice("You start licking [target]..."),
-		span_warning("You hear a disgusting slurping sound..."),
+		span_warning("[src]开始热情地舔舐[target]！"),
+		span_notice("你开始舔舐[target]..."),
+		span_warning("你听到一阵令人作呕的吮吸声..."),
 	)
 
 	if (!do_after(src, 2 SECONDS, target, interaction_key = REGALRAT_INTERACTION))
 		return TRUE // don't return false here because they tried to lick and the do_after was interrupted, otherwise cancelling the do_after will make them hit the target.
 
 	target.reagents.add_reagent(/datum/reagent/rat_spit, rand(1,3), no_react = TRUE)
-	balloon_alert(src, "licked")
+	balloon_alert(src, "舔了")
 	return TRUE
 
 /**
@@ -242,7 +242,7 @@
  */
 /mob/living/basic/regal_rat/proc/cheese_heal(obj/item/target, amount, message)
 	if(health >= maxHealth)
-		balloon_alert(src, "you feel full!")
+		balloon_alert(src, "你感觉饱了！")
 		return
 
 	to_chat(src, message)

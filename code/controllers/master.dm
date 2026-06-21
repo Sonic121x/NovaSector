@@ -10,7 +10,7 @@
 // See initialization order in /code/game/world.dm
 GLOBAL_REAL(Master, /datum/controller/master)
 /datum/controller/master
-	name = "Master"
+	name = "主控制器"
 
 	/// Are we processing (higher values increase the processing delay by n ticks)
 	var/processing = TRUE
@@ -232,7 +232,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 			var/datum/controller/subsystem/subsystem = locate(params["ref"]) in subsystems
 			if(isnull(subsystem))
-				to_chat(ui.user, span_warning("Failed to locate subsystem."))
+				to_chat(ui.user, span_warning("无法定位子系统。"))
 				return
 
 			ui.user.client.debug_variables(subsystem)
@@ -317,7 +317,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)
 	else
-		to_chat(world, span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
+		to_chat(world, span_boldannounce("主控制器遇到了一些问题，我们需要重新初始化所有内容"))
 		Initialize(20, TRUE, FALSE)
 
 // Please don't stuff random bullshit here,
@@ -421,7 +421,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 		// Can't initialize them if they have circular dependencies, there's no real failsafe here.
 		stack_trace("ERROR: CRITICAL: MC: The following subsystems have circular dependencies: [jointext(debug_msg, " -> ")]")
-		to_chat(world, span_bolddanger("CRITICAL: Failed to initialize [jointext(usr_msg, ", ")]"), MESSAGE_TYPE_DEBUG)
+		to_chat(world, span_bolddanger("严重错误：初始化 [jointext(usr_msg, ", ")] 失败"), MESSAGE_TYPE_DEBUG)
 
 	for (var/datum/controller/subsystem/subsystem as anything in sorted_subsystems)
 		var/subsystem_init_stage = subsystem.init_stage

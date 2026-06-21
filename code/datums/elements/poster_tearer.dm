@@ -28,7 +28,7 @@
 		return NONE // don't care we move on
 
 	if(DOING_INTERACTION_WITH_TARGET(user, target) || (!isnull(interaction_key) && DOING_INTERACTION(user, interaction_key)))
-		user.balloon_alert(target, "busy!")
+		user.balloon_alert(target, "正忙！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	INVOKE_ASYNC(src, PROC_REF(tear_it_down), user, target)
@@ -39,7 +39,7 @@
 	if(!target.check_tearability(user)) // this proc will handle user feedback
 		return
 
-	target.balloon_alert(user, "tearing down the poster...")
+	target.balloon_alert(user, "正在撕下海报...")
 	if(!do_after(user, tear_time, target, interaction_key = interaction_key)) // just in case the user actually enjoys art
 		return
 	target.tear_poster(user)

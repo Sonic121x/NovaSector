@@ -1,6 +1,6 @@
 /obj/item/analyzer
-	desc = "A hand-held environmental scanner which reports current gas levels."
-	name = "gas analyzer"
+	desc = "一种手持式环境扫描仪，可报告当前气体水平。"
+	name = "气体分析仪"
 	custom_price = PAYCHECK_LOWER * 0.9
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "analyzer"
@@ -56,16 +56,16 @@
 
 /obj/item/analyzer/examine(mob/user)
 	. = ..()
-	. += span_notice("Right-click [src] to open the gas reference.")
-	. += span_notice("Alt-click [src] to activate the barometer function.")
+	. += span_notice("右键点击[src]以打开气体参考信息。")
+	. += span_notice("Alt+点击[src]以激活气压计功能。")
 
 /obj/item/analyzer/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
+	user.visible_message(span_suicide("[user]开始用[src]分析[user.p_them()]自己！显示屏显示[user.p_theyre()]已经死了！"))
 	return BRUTELOSS
 
 /obj/item/analyzer/click_alt(mob/user) //Barometer output for measuring when the next storm happens
 	if(cooldown)
-		to_chat(user, span_warning("[src]'s barometer function is preparing itself."))
+		to_chat(user, span_warning("[src]的气压计功能正在准备中。"))
 		return CLICK_ACTION_BLOCKING
 
 	var/turf/T = get_turf(user)
@@ -77,7 +77,7 @@
 	var/datum/weather/ongoing_weather = null
 
 	if(!user_area.outdoors)
-		to_chat(user, span_warning("[src]'s barometer function won't work indoors!"))
+		to_chat(user, span_warning("[src]的气压计功能在室内无法工作！"))
 		return CLICK_ACTION_BLOCKING
 
 	for(var/V in SSweather.processing)
@@ -91,16 +91,16 @@
 			to_chat(user, span_warning("[src]'s barometer function can't trace anything while the storm is [ongoing_weather.stage == MAIN_STAGE ? "already here!" : "winding down."]"))
 			return CLICK_ACTION_BLOCKING
 
-		to_chat(user, span_notice("The next [ongoing_weather] will hit in [butchertime(ongoing_weather.next_hit_time - world.time)]."))
+		to_chat(user, span_notice("下一次[ongoing_weather]将在[butchertime(ongoing_weather.next_hit_time - world.time)]后袭来。"))
 		if(!(ongoing_weather.weather_flags & FUNCTIONAL_WEATHER))
-			to_chat(user, span_warning("[src]'s barometer function says that the next storm will breeze on by."))
+			to_chat(user, span_warning("[src]的气压计功能显示下一场风暴将擦肩而过。"))
 	else
 		var/next_hit = SSweather.next_hit_by_zlevel["[T.z]"]
 		var/fixed = next_hit ? timeleft(next_hit) : -1
 		if(fixed < 0)
-			to_chat(user, span_warning("[src]'s barometer function was unable to trace any weather patterns."))
+			to_chat(user, span_warning("[src]的气压计功能无法追踪到任何天气模式。"))
 		else
-			to_chat(user, span_warning("[src]'s barometer function says a storm will land in approximately [butchertime(fixed)]."))
+			to_chat(user, span_warning("[src]的气压计功能显示一场风暴将在大约[butchertime(fixed)]后登陆。"))
 	cooldown = TRUE
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/analyzer, ping)), cooldown_time)
 	return CLICK_ACTION_SUCCESS
@@ -108,7 +108,7 @@
 /obj/item/analyzer/proc/ping()
 	if(isliving(loc))
 		var/mob/living/L = loc
-		to_chat(L, span_notice("[src]'s barometer function is ready!"))
+		to_chat(L, span_notice("[src]的气压计功能已就绪！"))
 	playsound(src, 'sound/machines/click.ogg', 100)
 	cooldown = FALSE
 
@@ -191,15 +191,15 @@
 	var/message = list()
 	if(!silent && isliving(user))
 		playsound(user, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
-		user.visible_message(span_notice("[user] uses the analyzer on [icon2html(icon, viewers(user))] [target]."), span_notice("You use the analyzer on [icon2html(icon, user)] [target]."))
-	message += span_boldnotice("Results of analysis of [icon2html(icon, user)] [target].")
+		user.visible_message(span_notice("[user]对[icon2html(icon, viewers(user))] [target]使用了分析仪。"), span_notice("你对[icon2html(icon, user)] [target]使用了分析仪。"))
+	message += span_boldnotice("[icon2html(icon, user)] [target]的分析结果。")
 
 	var/list/airs = islist(mixture) ? mixture : list(mixture)
 	for(var/datum/gas_mixture/air as anything in airs)
 		var/mix_name = capitalize(LOWER_TEXT(target.name))
 		if(airs.len > 1) //not a unary gas mixture
 			var/mix_number = airs.Find(air)
-			message += span_boldnotice("Node [mix_number]")
+			message += span_boldnotice("节点 [mix_number]")
 			mix_name += " - Node [mix_number]"
 
 		var/total_moles = air.total_moles()
@@ -210,28 +210,28 @@
 		var/thermal_energy = air.thermal_energy()
 
 		if(total_moles > 0)
-			message += span_notice("Moles: [round(total_moles, 0.01)] mol")
+			message += span_notice("摩尔数: [round(total_moles, 0.01)] mol")
 
 			var/list/cached_gases = air.gases
 			for(var/id in cached_gases)
 				var/gas_concentration = cached_gases[id][MOLES]/total_moles
 				message += span_notice("[cached_gases[id][GAS_META][META_GAS_NAME]]: [round(cached_gases[id][MOLES], 0.01)] mol ([round(gas_concentration*100, 0.01)] %)")
-			message += span_notice("Temperature: [round(temperature - T0C,0.01)] &deg;C ([round(temperature, 0.01)] K)")
-			message += span_notice("Volume: [volume] L")
-			message += span_notice("Pressure: [round(pressure, 0.01)] kPa")
-			message += span_notice("Heat Capacity: [display_energy(heat_capacity)] / K")
-			message += span_notice("Thermal Energy: [display_energy(thermal_energy)]")
+			message += span_notice("温度: [round(temperature - T0C,0.01)] &deg;C ([round(temperature, 0.01)] K)")
+			message += span_notice("体积: [volume] L")
+			message += span_notice("压强: [round(pressure, 0.01)] kPa")
+			message += span_notice("热容: [display_energy(heat_capacity)] / K")
+			message += span_notice("热能: [display_energy(thermal_energy)]")
 		else
-			message += airs.len > 1 ? span_notice("This node is empty!") : span_notice("[target] is empty!")
-			message += span_notice("Volume: [volume] L") // don't want to change the order volume appears in, suck it
+			message += airs.len > 1 ? span_notice("此节点为空！") : span_notice("[target] 为空！")
+			message += span_notice("体积: [volume] L") // don't want to change the order volume appears in, suck it
 
 	// we let the join apply newlines so we do need handholding
 	to_chat(user, boxed_message(jointext(message, "\n")), type = MESSAGE_TYPE_INFO)
 	return TRUE
 
 /obj/item/analyzer/ranged
-	desc = "A hand-held long-range environmental scanner which reports current gas levels."
-	name = "long-range gas analyzer"
+	desc = "一种手持式长程环境扫描仪，可报告当前气体水平。"
+	name = "长程气体分析仪"
 	icon_state = "analyzerranged"
 	worn_icon_state = "analyzer"
 	w_class = WEIGHT_CLASS_NORMAL

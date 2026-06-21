@@ -1,8 +1,8 @@
 #define CONFUSION_STACK_MAX_MULTIPLIER 2
 
 /obj/item/assembly/flash
-	name = "flash"
-	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production."
+	name = "闪光"
+	desc = "一种功能强大、用途广泛的闪光设备，应用范围从闪瞎攻击者到暂时瘫痪赛博机器人"
 	icon = 'icons/obj/devices/flash.dmi'
 	icon_state = "flash"
 	inhand_icon_state = "flashtool"
@@ -37,9 +37,9 @@
 		user.visible_message(span_suicide("[user] raises \the [src] up to [user.p_their()] eyes and activates it ... but it's burnt out!"))
 		return SHAME
 	else if(user.is_blind())
-		user.visible_message(span_suicide("[user] raises \the [src] up to [user.p_their()] eyes and activates it ... but [user.p_theyre()] blind!"))
+		user.visible_message(span_suicide("[user]将\the [src]举到[user.p_their()]眼前并启动了它……但[user.p_theyre()]是盲的！"))
 		return SHAME
-	user.visible_message(span_suicide("[user] raises \the [src] up to [user.p_their()] eyes and activates it! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]将\the [src]举到[user.p_their()]眼前并启动了它！看起来[user.p_theyre()]试图自杀！"))
 	attack(user,user)
 	return FIRELOSS
 
@@ -95,7 +95,7 @@
 	var/list/mob/targets = get_flash_targets(get_turf(src), range, FALSE)
 	if(user)
 		targets -= user
-		to_chat(user, span_danger("[src] emits a blinding light!"))
+		to_chat(user, span_danger("[src]发出了刺眼的光芒！"))
 	for(var/mob/living/nearby_living in targets)
 		flash_mob(nearby_living, user, confusion_duration, targeted = FALSE, generic_message = TRUE)
 	return TRUE
@@ -150,7 +150,7 @@
 		flashed.log_message("was [targeted? "flashed(targeted)" : "flashed(AOE)"] [extra_log]", LOG_ATTACK)
 
 	if(generic_message && flashed != user)
-		to_chat(flashed, span_danger("[src] emits a blinding light!"))
+		to_chat(flashed, span_danger("[src]发出了刺眼的光芒！"))
 
 	var/deviation = calculate_deviation(flashed, user || src)
 
@@ -174,9 +174,9 @@
 	if(!flash_result)
 		if(targeted)
 			if(user)
-				visible_message(span_warning("[user] fails to blind [flashed] with the flash!"), span_danger("[user] fails to blind you with the flash!"))
+				visible_message(span_warning("[user]没能用闪光弹闪瞎[flashed]！"), span_danger("[user]没能用闪光弹闪瞎你！"))
 			else
-				to_chat(flashed, span_danger("[src] fails to blind you!"))
+				to_chat(flashed, span_danger("[src]没能闪瞎你！"))
 		return FALSE
 
 	flashed.adjust_confusion_up_to(confusion_duration, confusion_duration * CONFUSION_STACK_MAX_MULTIPLIER)
@@ -191,21 +191,21 @@
 				flashed.Paralyze(flash_duration)
 				flashed.set_temp_blindness_if_lower(flash_duration)
 				if(user)
-					user.visible_message(span_warning("[user] overloads [flashed]'s sensors and computing with the flash!"), span_danger("You overload [flashed]'s sensors and computing with the flash!"))
+					user.visible_message(span_warning("[user]用闪光弹过载了[flashed]的传感器和计算系统！"), span_danger("你用闪光弹过载了[flashed]的传感器和计算系统！"))
 				else
-					to_chat(flashed, "[src] overloads your sensors and computing!")
+					to_chat(flashed, "[src]过载了你的传感器和计算系统！")
 			else
 				flashed.set_temp_blindness_if_lower( (rand(5,15) SECONDS))
 				if(user)
-					user.visible_message(span_warning("[user] blinds [flashed] with the flash!"), span_danger("You blind [flashed] with the flash!"))
+					user.visible_message(span_warning("[user]用闪光弹闪瞎了[flashed]！"), span_danger("你用闪光弹闪瞎了[flashed]！"))
 				else
-					to_chat(flashed, "You're blinded by [src]!")
+					to_chat(flashed, "你被[src]闪瞎了！")
 		else
 			//easy way to make sure that you can only long stun someone who is facing in your direction
 			flashed.adjust_stamina_loss(rand(80, 120) * (1 - (deviation * 0.5)))
 			flashed.Knockdown(rand(25, 50) * (1 - (deviation * 0.5)))
 			if(user)
-				visible_message(span_danger("[user] blinds [flashed] with the flash!"), span_userdanger("[user] blinds you with the flash!"))
+				visible_message(span_danger("[user] blinds [flashed] with the flash!"), span_userdanger("[user]用闪光弹闪瞎了你！"))
 			else
 				to_chat(flashed, "You're blinded by [src]!")
 
@@ -324,8 +324,8 @@
 	return
 
 /obj/item/assembly/flash/memorizer
-	name = "memorizer"
-	desc = "If you see this, you're not likely to remember it any time soon."
+	name = "记住"
+	desc = "如果你看到了这个，你可能很快就不会记得了。"
 	icon_state = "memorizer"
 	inhand_icon_state = "nullrod"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -334,8 +334,8 @@
 /obj/item/assembly/flash/handheld //this is now the regular pocket flashes
 
 /obj/item/assembly/flash/armimplant
-	name = "photon projector"
-	desc = "A high-powered photon projector implant normally used for lighting purposes, but also doubles as a flashbulb weapon. Self-repair protocols fix the flashbulb if it ever burns out."
+	name = "闪光器"
+	desc = "一种高功率闪光器植入装置，通常用于照明，但也可以作为闪光灯武器使用。如果闪光灯烧坏，自我修复协议会自动修复它。"
 	var/flashcd = 20
 	var/overheat = 0
 	//Wearef to our arm
@@ -344,7 +344,7 @@
 /obj/item/assembly/flash/armimplant/burn_out()
 	var/obj/item/organ/cyberimp/arm/toolkit/flash/real_arm = arm.resolve()
 	if(real_arm?.owner)
-		to_chat(real_arm.owner, span_warning("Your photon projector implant overheats and deactivates!"))
+		to_chat(real_arm.owner, span_warning("你的光子投射器植入物过热并停用了！"))
 		real_arm.Retract()
 	overheat = TRUE
 	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd * 2)
@@ -353,7 +353,7 @@
 	if(overheat)
 		var/obj/item/organ/cyberimp/arm/toolkit/flash/real_arm = arm.resolve()
 		if(real_arm?.owner)
-			to_chat(real_arm.owner, span_warning("Your photon projector is running too hot to be used again so quickly!"))
+			to_chat(real_arm.owner, span_warning("你的光子投射器运行过热，无法这么快再次使用！"))
 		return FALSE
 	overheat = TRUE
 	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd)
@@ -366,11 +366,11 @@
 	overheat = FALSE
 
 /obj/item/assembly/flash/armimplant/screwdriver_act(mob/living/user, obj/item/I)
-	to_chat(user, span_notice("\The [src] is an implant! It cannot be unsecured!"))
+	to_chat(user, span_notice("\The [src]是一个植入体！它无法被拆卸！"))
 	add_fingerprint(user)
 
 /obj/item/assembly/flash/hypnotic
-	desc = "A modified flash device, programmed to emit a sequence of subliminal flashes that can send a vulnerable target into a hypnotic trance."
+	desc = "一种经过改装的闪光装置，能够发出一系列潜意识闪光，使易受影响的目标进入催眠状态。"
 	flashing_overlay = "mindflash"
 	light_color = LIGHT_COLOR_PINK
 	cooldown = 20
@@ -385,18 +385,18 @@
 		flashed.log_message("was [targeted? "hypno-flashed(targeted)" : "hypno-flashed(AOE)"] [extra_log]", LOG_ATTACK)
 
 	if(generic_message && flashed != user)
-		to_chat(flashed, span_notice("[src] emits a soothing light..."))
+		to_chat(flashed, span_notice("[src]散发出令人舒缓的光芒..."))
 
 	if(!flashed.flash_act(1, override_blindness_check = targeted, affect_silicon = TRUE))
 		if(targeted)
 			if(user)
-				user.visible_message(span_warning("[user] fails to blind [flashed] with the flash!"), span_warning("You fail to hypno-flash [flashed]!"))
+				user.visible_message(span_warning("[user]未能用闪光弹闪瞎[flashed]！"), span_warning("你未能催眠闪光[flashed]！"))
 			else
-				to_chat(flashed, span_danger("[src] fails to blind you!"))
+				to_chat(flashed, span_danger("[src]未能闪瞎你！"))
 		return FALSE
 
 	if(!targeted)
-		to_chat(flashed, span_notice("Such a pretty light..."))
+		to_chat(flashed, span_notice("多么漂亮的光芒..."))
 		flashed.adjust_confusion_up_to(confusion_duration, confusion_duration * 2 * CONFUSION_STACK_MAX_MULTIPLIER)
 		flashed.adjust_dizzy_up_to(8 SECONDS, 40 SECONDS)
 		flashed.adjust_drowsiness_up_to(8 SECONDS, 40 SECONDS)
@@ -404,12 +404,12 @@
 		return TRUE
 
 	if(user)
-		user.visible_message(span_danger("[user] blinds [flashed] with the flash!"), span_danger("You hypno-flash [flashed]!"))
+		user.visible_message(span_danger("[user]用闪光弹闪瞎了[flashed]！"), span_danger("你催眠闪光了[flashed]！"))
 	else
-		to_chat(flashed, "You're blinded by [src]!")
+		to_chat(flashed, "你被[src]闪瞎了！")
 
 	if(!flashed.hypnosis_vulnerable())
-		to_chat(flashed, span_hypnophrase("The light makes you feel oddly relaxed..."))
+		to_chat(flashed, span_hypnophrase("这光芒让你感到出奇地放松..."))
 		flashed.adjust_confusion_up_to(confusion_duration * 2, confusion_duration * 2 * CONFUSION_STACK_MAX_MULTIPLIER)
 		flashed.adjust_dizzy_up_to(20 SECONDS, 40 SECONDS)
 		flashed.adjust_drowsiness_up_to(20 SECONDS, 40 SECONDS)

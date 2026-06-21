@@ -1,6 +1,6 @@
 /obj/structure/fluff/iced_abductor ///Unless more non-machine ayy structures made, it will stay in fluff.
-	name = "Mysterious Block of Ice"
-	desc = "A shadowy figure lies in this sturdy-looking block of ice. Who knows where it came from?"
+	name = "神秘的冰块"
+	desc = "一个人影躺在这块看起来很结实的冰块里。谁知道它是从哪里来的？"
 	icon = 'icons/effects/freeze.dmi'
 	icon_state = "ice_ayy"
 	density = TRUE

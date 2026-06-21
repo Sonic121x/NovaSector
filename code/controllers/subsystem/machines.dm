@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(machines)
-	name = "Machines"
+	name = "机器系统"
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
 	)

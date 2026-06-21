@@ -8,8 +8,8 @@
  * It is used to destroy hand-held objects and advance technological research.
  */
 /obj/machinery/rnd/destructive_analyzer
-	name = "destructive analyzer"
-	desc = "Learn science by destroying things!"
+	name = "破坏性分析仪"
+	desc = "通过破坏物质来研发科技！"
 	icon_state = "d_analyzer"
 	base_icon_state = "d_analyzer"
 	circuit = /obj/item/circuitboard/machine/destructive_analyzer
@@ -40,7 +40,7 @@
 	if(loaded_item)
 		. += span_notice("[EXAMINE_HINT("Left-Click")] to remove loaded item inside.")
 	else
-		. += span_notice("An item can be loaded inside via [EXAMINE_HINT("Left-Click")].")
+		. += span_notice("可以通过[EXAMINE_HINT("Left-Click")]将物品装入内部。")
 
 /obj/machinery/rnd/destructive_analyzer/base_item_interaction(mob/living/user, obj/item/weapon, list/modifiers)
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
@@ -50,7 +50,7 @@
 	if(!is_insertion_ready(user))
 		return ..()
 	if(!user.transferItemToLoc(weapon, src))
-		to_chat(user, span_warning("\The [weapon] is stuck to your hand, you cannot put it in \the [src]!"))
+		to_chat(user, span_warning("\The [weapon] 粘在了你手上，你无法将其放入\the [src]！"))
 		return ITEM_INTERACT_BLOCKING
 
 	busy = TRUE
@@ -115,7 +115,7 @@
 	switch(action)
 		if("eject_item")
 			if(busy)
-				balloon_alert(user, "already busy!")
+				balloon_alert(user, "正忙！")
 				return TRUE
 			if(loaded_item)
 				unload_item()

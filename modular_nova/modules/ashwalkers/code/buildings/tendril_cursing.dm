@@ -17,7 +17,7 @@
 			var/mob/living/living_user = user
 			living_user.adjust_fire_loss(100)
 
-		to_chat(user, span_warning("The knife sears your hand!"))
+		to_chat(user, span_warning("这把刀灼伤了你的手！"))
 		return
 
 	return ..()
@@ -34,7 +34,7 @@
 			if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 				continue
 
-			to_chat(select_mob, span_boldwarning("A cursed tendril has been broken! The target has been marked until they flee the lands!"))
+			to_chat(select_mob, span_boldwarning("一根被诅咒的触须已被破坏！目标已被标记，直到他们逃离这片土地！"))
 
 	. = ..()
 
@@ -65,7 +65,7 @@
 		if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 			continue
 
-		to_chat(select_mob, span_boldwarning("A target has died, the curse has been lifted!"))
+		to_chat(select_mob, span_boldwarning("目标已死亡，诅咒已被解除！"))
 
 	qdel(src)
 
@@ -78,7 +78,7 @@
 			if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 				continue
 
-			to_chat(select_mob, span_boldwarning("A target has fled from the land, breaking the curse!"))
+			to_chat(select_mob, span_boldwarning("目标已逃离这片土地，诅咒被打破了！"))
 		qdel(src)
 		return
 

@@ -17,7 +17,7 @@
 	return image('icons/hud/implants.dmi', "lighting_bolt")
 
 /datum/surgery_operation/limb/subsystem_upgrade/all_required_strings()
-	return list("operate on [parse_zone(required_zone)] (target [parse_zone(required_zone)])") + ..()
+	return list("对 [parse_zone(required_zone)] 进行手术（目标 [parse_zone(required_zone)]）") + ..()
 
 /datum/surgery_operation/limb/subsystem_upgrade/all_blocked_strings()
 	var/list/incompatible_surgeries = list()
@@ -28,7 +28,7 @@
 			continue
 		incompatible_surgeries += (other_subsystem_upgrade.rnd_name || other_subsystem_upgrade.name)
 
-	return ..() + list("the patient must not have undergone [english_list(incompatible_surgeries, and_text = " OR ")] prior")
+	return ..() + list("患者之前不得接受过 [english_list(incompatible_surgeries, and_text = " OR ")]")
 
 /datum/surgery_operation/limb/subsystem_upgrade/state_check(obj/item/bodypart/limb)
 	if(limb.body_zone != required_zone)
@@ -43,18 +43,18 @@
 		SSblackbox.record_feedback("tally", "subsystem_upgrade", 1, status_effect_gained)
 
 /datum/surgery_operation/limb/subsystem_upgrade/muscled_veins
-	name = "muscled veins"
+	name = "肌肉化血管"
 	rnd_name = "Hydraulics Redundancy Subroutine (Muscled Veins)"
-	desc = "Add redundancies to a robotic patient's hydraulic system, allowing it to pump fluids without an engine or pump."
+	desc = "为机械患者的液压系统增加冗余，使其无需引擎或泵即可泵送流体。"
 	status_effect_gained = /datum/status_effect/subsystem_upgrade/heart/muscled_veins
 
 /datum/surgery_operation/limb/subsystem_upgrade/muscled_veins/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start wrapping muscles around [limb.owner]'s blood vessels."),
-		span_notice("[surgeon] starts wrapping muscles around [limb.owner]'s blood vessels."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s blood vessels."),
+		span_notice("你开始将肌肉缠绕在 [limb.owner] 的血管周围。"),
+		span_notice("[surgeon] 开始将肌肉缠绕在 [limb.owner] 的血管周围。"),
+		span_notice("[surgeon] 开始操纵 [limb.owner] 的血管。"),
 	)
 	display_pain(limb.owner, "Your entire body burns in agony!")
 
@@ -63,16 +63,16 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You reshape [limb.owner]'s blood vessels, adding a muscled membrane!"),
-		span_notice("[surgeon] reshapes [limb.owner]'s blood vessels, adding a muscled membrane!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s blood vessels."),
+		span_notice("你重塑了 [limb.owner] 的血管，添加了一层肌肉膜！"),
+		span_notice("[surgeon] 重塑了 [limb.owner] 的血管，添加了一层肌肉膜！"),
+		span_notice("[surgeon] 完成了对 [limb.owner] 血管的操作。"),
 	)
 	display_pain(limb.owner, "You can feel your heartbeat's powerful pulses ripple through your body!")
 
 /datum/surgery_operation/limb/subsystem_upgrade/nerve_splicing
-	name = "splice nerves"
+	name = "神经接合"
 	rnd_name = "Reinforced Servos (Spliced Nerves)"
-	desc = "Upgrade a synthetic patient's movement servos, allowing it to better resist stuns."
+	desc = "升级合成人患者的运动伺服系统，使其能更好地抵抗眩晕。"
 	time = 15.5 SECONDS
 	status_effect_gained = /datum/status_effect/subsystem_upgrade/nerves/spliced
 
@@ -80,9 +80,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start splicing together [limb.owner]'s nerves."),
-		span_notice("[surgeon] starts splicing together [limb.owner]'s nerves."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s nervous system."),
+		span_notice("你开始接合 [limb.owner] 的神经。"),
+		span_notice("[surgeon] 开始接合 [limb.owner] 的神经。"),
+		span_notice("[surgeon] 开始操作 [limb.owner] 的神经系统。"),
 	)
 	display_pain(limb.owner, "Your entire body goes numb!")
 
@@ -91,16 +91,16 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully splice [limb.owner]'s nervous system!"),
-		span_notice("[surgeon] successfully splices [limb.owner]'s nervous system!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s nervous system."),
+		span_notice("你成功接合了 [limb.owner] 的神经系统！"),
+		span_notice("[surgeon] 成功接合了 [limb.owner] 的神经系统！"),
+		span_notice("[surgeon] 完成了对 [limb.owner] 神经系统的操作。"),
 	)
 	display_pain(limb.owner, "You regain feeling in your body; It feels like everything's happening around you in slow motion!")
 
 /datum/surgery_operation/limb/subsystem_upgrade/nerve_grounding
-	name = "ground nerves"
+	name = "神经接地"
 	rnd_name = "Reinforced Capacitors (Grounded Nerves)"
-	desc = "Install an additional capacitor bank designed to abdorb electrical shocks."
+	desc = "安装一个额外的电容器组，旨在吸收电击。"
 	time = 15.5 SECONDS
 	status_effect_gained = /datum/status_effect/subsystem_upgrade/nerves/grounded
 
@@ -108,9 +108,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start rerouting [limb.owner]'s nerves."),
-		span_notice("[surgeon] starts rerouting [limb.owner]'s nerves."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s nervous system."),
+		span_notice("你开始重新布线 [limb.owner] 的神经。"),
+		span_notice("[surgeon] 开始重新布线 [limb.owner] 的神经。"),
+		span_notice("[surgeon] 开始操控 [limb.owner] 的神经系统。"),
 	)
 	display_pain(limb.owner, "Your entire body goes numb!")
 
@@ -119,25 +119,25 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully reroute [limb.owner]'s nervous system!"),
-		span_notice("[surgeon] successfully reroutes [limb.owner]'s nervous system!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s nervous system."),
+		span_notice("你成功重新布线了 [limb.owner] 的神经系统！"),
+		span_notice("[surgeon] 成功重新布线了 [limb.owner] 的神经系统！"),
+		span_notice("[surgeon] 完成了对 [limb.owner] 神经系统的操控。"),
 	)
 	display_pain(limb.owner, "You regain feeling in your body! You feel energized!")
 
 /datum/surgery_operation/limb/subsystem_upgrade/ligament_reinforcement
-	name = "strengthen ligaments"
+	name = "强化韧带"
 	rnd_name = "Anchor Point Reinforcement (Ligament Reinforcement)"
-	desc = "Reinforce a robotic patient's limb joints to prevent dismemberment, at the cost of making nerve connections easier to interrupt."
+	desc = "加固机器人患者的肢体关节以防止截肢，代价是使神经连接更容易中断。"
 	status_effect_gained = /datum/status_effect/subsystem_upgrade/ligaments/reinforced
 
 /datum/surgery_operation/limb/subsystem_upgrade/ligament_reinforcement/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start reinforcing [limb.owner]'s ligaments."),
-		span_notice("[surgeon] starts reinforcing [limb.owner]'s ligaments."),
-		span_notice("[surgeon] starts manipulating [limb.owner]'s ligaments."),
+		span_notice("你开始加固 [limb.owner] 的韧带。"),
+		span_notice("[surgeon] 开始加固 [limb.owner] 的韧带。"),
+		span_notice("[surgeon] 开始操控 [limb.owner] 的韧带。"),
 	)
 	display_pain(limb.owner, "Your limbs burn with severe pain!")
 
@@ -146,16 +146,16 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You reinforce [limb.owner]'s ligaments!"),
-		span_notice("[surgeon] reinforces [limb.owner]'s ligaments!"),
-		span_notice("[surgeon] finishes manipulating [limb.owner]'s ligaments."),
+		span_notice("你加固了 [limb.owner] 的韧带！"),
+		span_notice("[surgeon] 加固了 [limb.owner] 的韧带！"),
+		span_notice("[surgeon] 完成了对[limb.owner]韧带的操作。"),
 	)
 	display_pain(limb.owner, "Your limbs feel more secure, but also more frail.")
 
 /datum/surgery_operation/limb/subsystem_upgrade/cortex_folding
-	name = "cortex folding"
+	name = "皮层折叠"
 	rnd_name = "Neuropathing Reinforcement (Cortex Folding)"
-	desc = "Reprogram a robotic patient's neural network in a downright eldritch programming language, giving space to non-standard neural patterns."
+	desc = "用一种极其诡异的编程语言重新编程机器人患者的神经网络，为非标准神经模式提供空间。"
 	operation_flags = OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_MORBID | OPERATION_LOCKED | OPERATION_NO_PATIENT_REQUIRED
 	status_effect_gained = /datum/status_effect/subsystem_upgrade/cortex // Not actually applied, simply for compatibility checks
 	required_zone = BODY_ZONE_CHEST
@@ -179,9 +179,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start folding [limb.owner]'s cerebral cortex."),
-		span_notice("[surgeon] starts folding [limb.owner]'s cerebral cortex."),
-		span_notice("[surgeon] starts performing surgery on [limb.owner]'s brain."),
+		span_notice("你开始折叠[limb.owner]的大脑皮层。"),
+		span_notice("[surgeon] 开始折叠[limb.owner]的大脑皮层。"),
+		span_notice("[surgeon] 开始对[limb.owner]的大脑进行手术。"),
 	)
 	display_pain(limb.owner, "Your head throbs with gruesome pain, it's nearly too much to handle!")
 
@@ -190,9 +190,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You fold [limb.owner]'s cerebral cortex into a fractal pattern!"),
-		span_notice("[surgeon] folds [limb.owner]'s cerebral cortex into a fractal pattern!"),
-		span_notice("[surgeon] completes the surgery on [limb.owner]'s brain."),
+		span_notice("你将[limb.owner]的大脑皮层折叠成了分形图案！"),
+		span_notice("[surgeon] 将[limb.owner]的大脑皮层折叠成了分形图案！"),
+		span_notice("[surgeon] 完成了对[limb.owner]大脑的手术。"),
 	)
 	display_pain(limb.owner, "Your brain feels stronger... and more flexible!")
 
@@ -203,16 +203,16 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_warning("You screw up, damaging the brain!"),
-		span_warning("[surgeon] screws up, damaging the brain!"),
-		span_notice("[surgeon] completes the surgery on [limb.owner]'s brain."),
+		span_warning("你搞砸了，损伤了大脑！"),
+		span_warning("[surgeon] 搞砸了，损伤了大脑！"),
+		span_notice("[surgeon] 完成了对[limb.owner]大脑的手术。"),
 	)
 	display_pain(limb.owner, "Your head throbs with excruciating pain!")
 	brain.apply_organ_damage(60)
 	brain.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 
 /datum/surgery_operation/limb/subsystem_upgrade/cortex_imprint
-	name = "cortex imprinting"
+	name = "皮层印记"
 	rnd_name = "Anti-Cascade 2.0 (Cortex Imprinting)"
 	desc = "Update a robotic patient's underlying operating system to a \"newer version\", improving overall performance and resilience. \
 		Shame about all the adware."
@@ -223,9 +223,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You start carving [limb.owner]'s outer cerebral cortex into a self-imprinting pattern."),
-		span_notice("[surgeon] starts carving [limb.owner]'s outer cerebral cortex into a self-imprinting pattern."),
-		span_notice("[surgeon] starts performing surgery on [limb.owner]'s brain."),
+		span_notice("你开始将[limb.owner]的外层大脑皮层雕刻成自印记模式。"),
+		span_notice("[surgeon]开始将[limb.owner]的外层大脑皮层雕刻成自印记模式。"),
+		span_notice("[surgeon]开始对[limb.owner]的大脑进行手术。"),
 	)
 	display_pain(limb.owner, "Your head throbs with gruesome pain, it's nearly too much to handle!")
 
@@ -234,9 +234,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You reshape [limb.owner]'s outer cerebral cortex into a self-imprinting pattern!"),
-		span_notice("[surgeon] reshapes [limb.owner]'s outer cerebral cortex into a self-imprinting pattern!"),
-		span_notice("[surgeon] completes the surgery on [limb.owner]'s brain."),
+		span_notice("你将[limb.owner]的外层大脑皮层重塑成了自印记模式！"),
+		span_notice("[surgeon]将[limb.owner]的外层大脑皮层重塑成了自印记模式！"),
+		span_notice("[surgeon]完成了对[limb.owner]大脑的手术。"),
 	)
 	display_pain(limb.owner, "Your brain feels stronger... and more resilient!")
 
@@ -246,9 +246,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_warning("You screw up, damaging the brain!"),
-		span_warning("[surgeon] screws up, damaging the brain!"),
-		span_notice("[surgeon] completes the surgery on [limb.owner]'s brain."),
+		span_warning("你搞砸了，损伤了大脑！"),
+		span_warning("[surgeon]搞砸了，损伤了大脑！"),
+		span_notice("[surgeon]完成了对[limb.owner]大脑的手术。"),
 	)
 	display_pain(limb.owner, "Your brain throbs with intense pain; Thinking hurts!")
 	limb.owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, 60)

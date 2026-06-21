@@ -2,8 +2,8 @@
 #define PLANT_ANALYZER_CHEM_TAB 2
 
 /obj/item/plant_analyzer
-	name = "plant analyzer"
-	desc = "A scanner used to evaluate a plant's various areas of growth, genetic traits and chemicals."
+	name = "植物分析仪"
+	desc = "一种用于评估植物各生长区域、遗传性状和化学物质的扫描仪。"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "hydro"
 	inhand_icon_state = "analyzer"
@@ -112,8 +112,8 @@
  */
 /obj/item/plant_analyzer/proc/plant_biotype_health_scan(mob/living/scanned_mob, mob/living/carbon/human/user)
 	user.visible_message(
-		span_notice("[user] analyzes [scanned_mob]'s vitals."),
-		span_notice("You analyze [scanned_mob]'s vitals.")
+		span_notice("[user]分析了[scanned_mob]的生命体征。"),
+		span_notice("你分析了[scanned_mob]的生命体征。")
 		)
 
 	healthscan(user, scanned_mob, advanced = TRUE)
@@ -127,8 +127,8 @@
  */
 /obj/item/plant_analyzer/proc/plant_biotype_chem_scan(mob/living/scanned_mob, mob/living/carbon/human/user)
 	user.visible_message(
-		span_notice("[user] analyzes [scanned_mob]'s bloodstream."),
-		span_notice("You analyze [scanned_mob]'s bloodstream.")
+		span_notice("[user]分析了[scanned_mob]的血液。"),
+		span_notice("你分析了[scanned_mob]的血液。")
 		)
 	chemscan(user, scanned_mob)
 	add_fingerprint(user)

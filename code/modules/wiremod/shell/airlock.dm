@@ -9,7 +9,7 @@
 	return ..()
 
 /obj/machinery/door/airlock/shell
-	name = "circuit airlock"
+	name = "电路气闸"
 	autoclose = FALSE
 
 /obj/machinery/door/airlock/shell/Initialize(mapload)
@@ -40,7 +40,7 @@
 
 /obj/item/circuit_component/airlock
 	display_name = "Airlock"
-	desc = "The general interface with an airlock. Includes general statuses of the airlock"
+	desc = "带有气闸的通用界面。包含气闸的通用状态信息。"
 
 	/// The shell, if it is an airlock.
 	var/obj/machinery/door/airlock/attached_airlock
@@ -136,7 +136,7 @@
 
 /obj/item/circuit_component/airlock_access_event
 	display_name = "Airlock Access Event"
-	desc = "An event that can be handled through circuit components to determine if the door should open or not for an entity that might be trying to access it."
+	desc = "一种可以通过电路组件来处理的事件，该事件用于判断某个可能试图进入该门的实体是否能够打开门。"
 	circuit_flags = CIRCUIT_FLAG_INSTANT
 
 	/// The shell, if it is an airlock.
@@ -191,7 +191,7 @@
 	var/list/result = SScircuit_component.execute_instant_run()
 
 	if(!result)
-		attached_airlock.visible_message(span_warning("[attached_airlock]'s circuitry overheats!"))
+		attached_airlock.visible_message(span_warning("[attached_airlock] 的电路过热了！"))
 		return
 
 	if(result["should_open"])

@@ -1,6 +1,6 @@
 /obj/structure/thing_boss_spike
-	name = "blades"
-	desc = "A sharp flurry of blades that have erupted from the ground."
+	name = "刀刃"
+	desc = "从地面爆发出的锋利刀刃风暴。"
 	icon_state = "thingspike"
 	density = FALSE //so ai considers it
 	anchored = TRUE
@@ -89,8 +89,8 @@
 /obj/effect/temp_visual/incoming_thing_acid
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "toxin"
-	name = "acid"
-	desc = "Get out of the way!"
+	name = "酸液"
+	desc = "快让开！"
 	layer = FLY_LAYER
 	plane = ABOVE_GAME_PLANE
 	randomdir = FALSE
@@ -107,7 +107,7 @@
 		new /obj/effect/thing_acid(open)
 
 /obj/effect/thing_acid
-	name = "stomach acid"
+	name = "胃酸"
 	icon = 'icons/effects/acid.dmi'
 	icon_state = "default"
 	layer = BELOW_MOB_LAYER
@@ -131,12 +131,12 @@
 	for(var/zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 		var/blocked = victim.run_armor_check(zone, ACID)
 		victim.apply_damage(25, BURN, def_zone = zone, blocked = blocked)
-	to_chat(victim, span_userdanger("You are burnt by the acid!"))
+	to_chat(victim, span_userdanger("你被酸液灼伤了！"))
 	playsound(victim, 'sound/effects/wounds/sizzle1.ogg', vol = 50, vary = TRUE)
 	qdel(src)
 
 /obj/item/keycard/thing_boss
-	name = "Storage Room 2 Keycard"
-	desc = "A fancy keycard for storage room 2."
+	name = "2号储藏室门禁卡"
+	desc = "一张用于2号储藏室的精美门禁卡。"
 	color = COLOR_PALE_GREEN
 	puzzle_id = "thingbosslootroom"

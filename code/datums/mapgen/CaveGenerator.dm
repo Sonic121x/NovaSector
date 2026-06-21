@@ -7,7 +7,7 @@
 #define CAVE_SPAWN_MEGAFAUNA "megafauna"
 
 /datum/map_generator/cave_generator
-	var/name = "Cave Generator"
+	var/name = "洞穴生成器"
 	///Weighted list of the types that spawns if the turf is open
 	var/weighted_open_turf_types = list(/turf/open/misc/asteroid/airless = 1)
 	///Expanded list of the types that spawns if the turf is open

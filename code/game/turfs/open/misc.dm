@@ -2,8 +2,8 @@
 /// I wish I could use components for turfs at scale
 /// Please do not bloat this. Love you <3
 /turf/open/misc
-	name = "coder/mapper fucked up"
-	desc = "report on GitHub please"
+	name = "程序员/地图绘制员搞砸了"
+	desc = "请在github上报告"
 
 	flags_1 = NO_SCREENTIPS_1 | CAN_BE_DIRTY_1
 	turf_flags = IS_SOLID | NO_RUST

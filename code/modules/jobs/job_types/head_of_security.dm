@@ -60,7 +60,7 @@
 		ham.butcher_drops = string_list(ham.butcher_drops)
 
 /datum/outfit/job/hos
-	name = "Head of Security"
+	name = "安保部长"
 	jobtype = /datum/job/head_of_security
 
 	id = /obj/item/card/id/advanced/silver
@@ -94,7 +94,7 @@
 	implants = list(/obj/item/implant/mindshield)
 
 /datum/outfit/job/hos/mod
-	name = "Head of Security (MODsuit)"
+	name = "安保部长 (模块服)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/safeguard

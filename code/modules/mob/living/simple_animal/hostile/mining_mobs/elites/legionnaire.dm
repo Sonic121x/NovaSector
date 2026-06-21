@@ -17,8 +17,8 @@
  */
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire
-	name = "legionnaire"
-	desc = "A towering skeleton, embodying the terrifying power of Legion."
+	name = "军团"
+	desc = "一个高耸的骨架，彰显着军团那令人畏惧的力量。"
 	icon_state = "legionnaire"
 	icon_living = "legionnaire"
 	icon_aggro = "legionnaire"
@@ -54,27 +54,27 @@
 	var/charging = FALSE
 
 /datum/action/innate/elite_attack/legionnaire_charge
-	name = "Legionnaire Charge"
+	name = "军团冲锋"
 	button_icon_state = "legionnaire_charge"
-	chosen_message = span_boldwarning("You will attempt to grab your opponent and throw them.")
+	chosen_message = span_boldwarning("你将尝试抓住你的对手并将其扔出去。")
 	chosen_attack_num = LEGIONNAIRE_CHARGE
 
 /datum/action/innate/elite_attack/head_detach
-	name = "Release Head"
+	name = "释放头"
 	button_icon_state = "head_detach"
-	chosen_message = span_boldwarning("You will now detach your head or kill it if it is already released.")
+	chosen_message = span_boldwarning("你现在将分离你的头颅，如果它已经释放则会将其杀死。")
 	chosen_attack_num = HEAD_DETACH
 
 /datum/action/innate/elite_attack/bonfire_teleport
-	name = "Bonfire Teleport"
+	name = "营火传送术"
 	button_icon_state = "bonfire_teleport"
-	chosen_message = span_boldwarning("You will leave a bonfire.  Second use will let you swap positions with it indefinitely.  Using this move on the same tile as your active bonfire removes it.")
+	chosen_message = span_boldwarning("你将留下一堆篝火。第二次使用将使你可以无限次地与它交换位置。在与你当前活跃篝火相同的格子上使用此技能会移除它。")
 	chosen_attack_num = BONFIRE_TELEPORT
 
 /datum/action/innate/elite_attack/spew_smoke
-	name = "Spew Smoke"
+	name = "喷烟"
 	button_icon_state = "spew_smoke"
-	chosen_message = span_boldwarning("Your head will spew smoke in an area, wherever it may be.")
+	chosen_message = span_boldwarning("你的头颅将在某个区域喷吐烟雾，无论它在哪里。")
 	chosen_attack_num = SPEW_SMOKE
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/OpenFire()
@@ -123,7 +123,7 @@
 		new /obj/effect/temp_visual/dragon_swoop/legionnaire(T)
 		T = get_step(T, dir_to_target)
 	playsound(src,'sound/effects/magic/demon_attack1.ogg', 200, 1)
-	visible_message(span_boldwarning("[src] prepares to charge!"))
+	visible_message(span_boldwarning("[src] 准备冲锋！"))
 	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_2), dir_to_target, 0), 0.4 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_2(move_dir, times_ran)
@@ -152,8 +152,8 @@
 		hit_things += trample_target
 		if(faction_check_atom(trample_target))
 			continue
-		visible_message(span_boldwarning("[src] tramples and kicks [trample_target]!"))
-		to_chat(trample_target, span_userdanger("[src] tramples you and kicks you away!"))
+		visible_message(span_boldwarning("[src] 践踏并踢飞了 [trample_target]！"))
+		to_chat(trample_target, span_userdanger("[src] 践踏了你并将你踢飞！"))
 		trample_target.safe_throw_at(throwtarget, 10, 1, src)
 		trample_target.Paralyze(20)
 		trample_target.adjust_brute_loss(melee_damage_upper)
@@ -169,7 +169,7 @@
 		icon_state = "legionnaire_headless"
 		icon_living = "legionnaire_headless"
 		icon_aggro = "legionnaire_headless"
-		visible_message(span_boldwarning("[src]'s head flies off!"))
+		visible_message(span_boldwarning("[src] 的头颅飞走了！"))
 		var/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/newhead = new /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead(loc)
 		newhead.GiveTarget(target)
 		SET_FACTION_AND_ALLIES_FROM(newhead, src)
@@ -193,7 +193,7 @@
 	icon_state = "legionnaire"
 	icon_living = "legionnaire"
 	icon_aggro = "legionnaire"
-	visible_message(span_boldwarning("The top of [src]'s spine leaks a black liquid, forming into a skull!"))
+	visible_message(span_boldwarning("[src] 的脊柱顶端渗出一股黑色液体，形成了一个骷髅头！"))
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/bonfire_teleport()
 	ranged_cooldown = world.time + 5
@@ -202,7 +202,7 @@
 		mypile = newpile
 		mypile.myowner = src
 		playsound(get_turf(src),'sound/items/fulton/fultext_deploy.ogg', 200, 1)
-		visible_message(span_boldwarning("[src] summons a bonfire on [get_turf(src)]!"))
+		visible_message(span_boldwarning("[src] 在 [get_turf(src)] 召唤了一堆篝火！"))
 		return
 	else
 		var/turf/legionturf = get_turf(src)
@@ -213,9 +213,9 @@
 			return
 		playsound(pileturf,'sound/items/fulton/fultext_deploy.ogg', 200, 1)
 		playsound(legionturf,'sound/items/fulton/fultext_deploy.ogg', 200, 1)
-		visible_message(span_boldwarning("[src] melts down into a burning pile of bones!"))
+		visible_message(span_boldwarning("[src] 融化成了一堆燃烧的骨头！"))
 		forceMove(pileturf)
-		visible_message(span_boldwarning("[src] forms from the bonfire!"))
+		visible_message(span_boldwarning("[src] 从篝火中成形！"))
 		mypile.forceMove(legionturf)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/spew_smoke()
@@ -226,16 +226,16 @@
 	else
 		smoke_location = get_turf(src)
 	if(myhead != null)
-		myhead.visible_message(span_boldwarning("[myhead] spews smoke from its maw!"))
+		myhead.visible_message(span_boldwarning("[myhead] 从它的口中喷出烟雾！"))
 	else if(!has_head)
-		visible_message(span_boldwarning("[src] spews smoke from the tip of their spine!"))
+		visible_message(span_boldwarning("[src] 从其脊柱末端喷出烟雾！"))
 	else
-		visible_message(span_boldwarning("[src] spews smoke from its maw!"))
+		visible_message(span_boldwarning("[src] 从它的口中喷出烟雾！"))
 	do_smoke(2, src, smoke_location)
 
 //The legionnaire's head.  Basically the same as any legion head, but we have to tell our creator when we die so they can generate another head.
 /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead
-	name = "legionnaire head"
+	name = "军团头"
 	desc = "The legionnaire's head floating by itself.  One shouldn't get too close, though once it sees you, you really don't have a choice."
 	icon_state = "legionnaire_head"
 	icon_living = "legionnaire_head"
@@ -266,8 +266,8 @@
 
 //The legionnaire's bonfire, which can be swapped positions with.  Also sets flammable living beings on fire when they walk over it.
 /obj/structure/legionnaire_bonfire
-	name = "bone pile"
-	desc = "A pile of bones which seems to occasionally move a little.  It's probably a good idea to smash them."
+	name = "骨堆"
+	desc = "一堆骨头，看上去偶尔会轻微晃动一下。或许最好把这些骨头砸碎。"
 	icon = 'icons/obj/mining_zones/legionnaire_bonfire.dmi'
 	icon_state = "bonfire"
 	max_integrity = 100

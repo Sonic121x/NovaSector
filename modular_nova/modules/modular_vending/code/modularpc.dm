@@ -1,5 +1,5 @@
 /obj/machinery/vending/modularpc
-	desc = "All the parts you need for custom modular computers, personal AIs, and neurocomputing programs!"
+	desc = "定制模块化计算机、个人AI和神经计算程序所需的所有部件！"
 	products_nova = list(
 		/obj/item/disk/neuroware/reset = 2,
 		/obj/item/disk/neuroware/brain = 2,

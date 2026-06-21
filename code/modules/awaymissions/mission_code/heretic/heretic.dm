@@ -1,5 +1,5 @@
 /area/awaymission/beach/heretic
-	name = "heretic beach"
+	name = "异端海滩"
 	icon_state = "away2"
 	requires_power = FALSE
 	static_lighting = TRUE
@@ -7,14 +7,14 @@
 	default_gravity = 1
 
 /area/awaymission/caves/heretic_laboratory
-	name = "heretic lab"
+	name = "异端实验室"
 	requires_power = FALSE
 	static_lighting = TRUE
 	area_flags = NOTELEPORT
 	default_gravity = 1
 
 /area/awaymission/caves/heretic_laboratory_clean
-	name = "heretic lab clean"
+	name = "洁净异端实验室"
 	icon_state = "away2"
 	requires_power = FALSE
 	static_lighting = TRUE

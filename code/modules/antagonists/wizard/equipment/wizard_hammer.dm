@@ -1,7 +1,7 @@
 /////////////////////////////////////////Singularity Hammer///////////////////
 /obj/item/singularityhammer
-	name = "singularity hammer"
-	desc = "The pinnacle of close combat technology, the hammer harnesses the power of a miniaturized singularity to deal crushing blows."
+	name = "奇点锤"
+	desc = "近战技术的巅峰之作，这把锤子利用微型奇点的力量来造成毁灭性打击。"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "singularity_hammer0"
 	base_icon_state = "singularity_hammer"
@@ -74,8 +74,8 @@
 
 /////////////////////////////////////////Mjollnir///////////////////
 /obj/item/mjollnir
-	name = "Mjollnir"
-	desc = "A weapon worthy of a god, able to strike with the force of a lightning bolt. It crackles with barely contained energy."
+	name = "雷神之锤"
+	desc = "一件配得上神祇的武器，能够以雷霆万钧之力进行打击。它噼啪作响，蕴含着几乎无法控制的能量。"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "mjollnir0"
 	base_icon_state = "mjollnir"
@@ -107,9 +107,9 @@
 	target.Knockdown(10 SECONDS)
 	var/datum/effect_system/basic/lightning_spread/lightning = new(target.loc, 5, TRUE)
 	lightning.start()
-	target.visible_message(span_danger("[target.name] is shocked by [src]!"), \
-		span_userdanger("You feel a powerful shock course through your body sending you flying!"), \
-		span_hear("You hear a heavy electrical crack!"))
+	target.visible_message(span_danger("[target.name]被[src]电击了！"), \
+		span_userdanger("你感到一股强大的电流穿过你的身体，将你击飞！"), \
+		span_hear("你听到一声沉重的电击爆裂声！"))
 	var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
 	target.throw_at(throw_target, 200, 4)
 

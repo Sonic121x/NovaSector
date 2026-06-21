@@ -1,6 +1,6 @@
 /datum/experiment/autopsy
-	name = "Autopsy Experiment"
-	description = "An experiment requiring a autopsy surgery to progress"
+	name = "尸检实验"
+	description = "一项需要完成尸检手术才能推进的实验"
 	exp_tag = "Autopsy"
 	performance_hint = "Perform a autopsy surgery while connected to an operating computer."
 
@@ -18,22 +18,22 @@
 	return TRUE
 
 /datum/experiment/autopsy/human
-	name = "Human Autopsy Experiment"
-	description = "We don't want to invest in a station that doesn't know their coccyx from their cochlea. Send us back data dissecting a human to receive more funding."
+	name = "人类尸检实验"
+	description = "我们不想投资一个连尾骨和耳蜗都分不清的空间站。给我们发回解剖人类的数据以获得更多资金。"
 
 /datum/experiment/autopsy/human/is_valid_autopsy(mob/target)
 	return ishumanbasic(target)
 
 /datum/experiment/autopsy/nonhuman
-	name = "Non-human Autopsy Experiment"
-	description = "When we asked for a tail bone, we didn't mean...look, just send us back data from something OTHER than a human. It could be a monkey for all we care, just send us research."
+	name = "非人类尸检实验"
+	description = "当我们要求尾骨时，我们指的不是……听着，只要给我们发回非人类的数据就行。哪怕是只猴子我们也无所谓，只要把研究发给我们。"
 
 /datum/experiment/autopsy/nonhuman/is_valid_autopsy(mob/target)
 	return ishuman(target) && !ishumanbasic(target)
 
 /datum/experiment/autopsy/xenomorph
-	name = "Xenomorph Autopsy Experiment"
-	description = "Our understanding of the xenomorph only scratches the surface. Send us research from dissecting a xenomorph."
+	name = "异形尸检实验"
+	description = "我们对异形的了解仅停留在表面。请发回解剖异形获得的研究数据。"
 
 /datum/experiment/autopsy/xenomorph/is_valid_autopsy(mob/target)
 	return isalien(target)

@@ -1,6 +1,6 @@
 /obj/machinery/transport/power_rectifier
-	name = "tram power rectifier"
-	desc = "An electrical device that converts alternating current (AC) to direct current (DC) for powering the tram."
+	name = "有轨电车功率整流器"
+	desc = "一种将交流电（AC）转换为直流电（DC）以为有轨电车供电的电气设备。"
 	icon = 'icons/obj/tram/tram_controllers.dmi'
 	icon_state = "rectifier"
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 11.4

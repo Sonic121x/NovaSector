@@ -29,7 +29,7 @@
 
 /datum/design/c38_hotshot
 	name = "Speed Loader (.38 Hot Shot) (Very Lethal)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
+	desc = "该枪设计用于快速装填左轮手枪。内装有燃烧性弹药。"
 	id = "c38_hotshot"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -44,7 +44,7 @@
 
 /datum/design/c38_iceblox
 	name = "Speed Loader (.38 Iceblox) (Lethal/Very Lethal (Lizardpeople))"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
+	desc = "设计用于快速装填左轮手枪.冰冻弹内填装了低温装药."
 	id = "c38_iceblox"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -59,7 +59,7 @@
 
 /datum/design/c38_rubber
 	name = "Speed Loader (.38 Rubber) (Less Lethal)"
-	desc = "Designed to quickly reload revolvers. Rubber bullets are bouncy and less-than-lethal."
+	desc = "设计用于快速装填左轮手枪。橡胶子弹具有弹跳性且致命性较低。"
 	id = "c38_rubber"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3)
@@ -286,8 +286,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/pin_testing
-	name = "Test-Range Firing Pin"
-	desc = "This safety firing pin allows firearms to be operated within proximity to a firing range."
+	name = "射击场撞针"
+	desc = "这种安全撞针使得枪支能够在靠近射击场的环境中正常使用。"
 	id = "pin_testing"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 3)
@@ -298,8 +298,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/pin_mindshield
-	name = "Mindshield Firing Pin"
-	desc = "This is a security firing pin which only authorizes users who are mindshield-implanted."
+	name = "心盾撞针"
+	desc = "这是一个安全撞针，只有那些体内植入了心灵护盾的用户才能使用"
 	id = "pin_loyalty"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/silver = SMALL_MATERIAL_AMOUNT * 6, /datum/material/diamond = SMALL_MATERIAL_AMOUNT * 6, /datum/material/uranium =SMALL_MATERIAL_AMOUNT * 2)
@@ -310,8 +310,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/pin_explorer
-	name = "Outback Firing Pin"
-	desc = "This firing pin only shoots while ya ain't on station, fair dinkum!"
+	name = "内地撞针"
+	desc = "这个撞针只有在你不在岗位上时才会启动，这可是千真万确的！"
 	id = "pin_explorer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
@@ -323,7 +323,7 @@
 
 /datum/design/stunrevolver
 	name = "Tesla Cannon Part Kit (Lethal)"
-	desc = "The kit for a high-tech cannon that fires internal, reusable bolt cartridges in a revolving cylinder. The cartridges can be recharged using conventional rechargers."
+	desc = "这是一种高科技大炮的配套装置，该大炮通过旋转圆筒内部可重复使用螺栓弹发射。可以通过常规的充电器进行充电。"
 	id = "stunrevolver"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 5)
@@ -336,7 +336,7 @@
 
 /datum/design/nuclear_gun
 	name = "Advanced Energy Gun Part Kit (Lethal/Nonlethal)"
-	desc = "The kit for an energy gun with an experimental miniaturized reactor."
+	desc = "配备实验性微型反应堆的能量枪套件。"
 	id = "nuclear_gun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/uranium =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT)
@@ -348,8 +348,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/tele_shield
-	name = "Telescopic Riot Shield"
-	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
+	name = "伸缩防暴盾牌"
+	desc = "一款由轻质材料制成的高级防暴盾牌，可折叠以方便存放。"
 	id = "tele_shield"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/silver =SMALL_MATERIAL_AMOUNT * 3, /datum/material/titanium =SMALL_MATERIAL_AMOUNT * 2)
@@ -387,8 +387,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/rapidsyringe
-	name = "Rapid Syringe Gun"
-	desc = "A gun that fires many syringes."
+	name = "快捷注射枪"
+	desc = "能发射多支注射器的枪。"
 	id = "rapidsyringe"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -400,7 +400,7 @@
 
 /datum/design/temp_gun
 	name = "Temperature Gun Part Kit (Less Lethal/Very Lethal (Lizardpeople))"
-	desc = "A gun that shoots temperature bullet energythings to change temperature."//Change it if you want
+	desc = "一种可以发射温度子弹的枪，用于改变温度。"//Change it if you want
 	id = "temp_gun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -412,8 +412,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/flora_gun
-	name = "Floral Somatoray"
-	desc = "A tool that discharges controlled radiation which induces mutation in plant cells. Harmless to other organic life."
+	name = "花卉特征射线枪"
+	desc = "一种能释放可控辐射的工具，这种辐射能够促使植物细胞发生变异。对其他有机生物无害。"
 	id = "flora_gun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
@@ -424,8 +424,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/large_grenade
-	name = "Large Grenade Casing"
-	desc = "A grenade that affects a larger area and use larger containers."
+	name = "大号手榴弹外壳"
+	desc = "一种爆炸威力更大的手榴弹，允许使用更大的容器来装填。"
 	id = "large_grenade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -436,8 +436,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/pyro_grenade
-	name = "Pyro Grenade Casing"
-	desc = "An advanced grenade that is able to self ignite its mixture."
+	name = "致热手榴弹外壳"
+	desc = "一种先进的手榴弹，其内部的混合物能够自行点燃。"
 	id = "pyro_grenade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/plasma =SMALL_MATERIAL_AMOUNT * 5)
@@ -448,8 +448,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cryo_grenade
-	name = "Cryo Grenade Casing"
-	desc = "An advanced grenade that rapidly cools its contents upon detonation."
+	name = "冷沉淀手榴弹外壳"
+	desc = "一种先进的手榴弹，其内部物质在释放时会迅速冷却。"
 	id = "cryo_grenade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 5)
@@ -460,8 +460,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/adv_grenade
-	name = "Advanced Release Grenade Casing"
-	desc = "An advanced grenade that can be detonated several times, best used with a repeating igniter."
+	name = "先进释放手榴弹外壳"
+	desc = "一种先进的手榴弹，可多次释放，与可重复使用的点火装置配合使用效果最佳。"
 	id = "adv_grenade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5)
@@ -473,7 +473,7 @@
 
 /datum/design/xray
 	name = "X-ray Laser Gun Part Kit (Lethal)"
-	desc = "Not quite as menacing as it sounds"
+	desc = "并不像听起来那么可怕"
 	id = "xray_laser"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/gold =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/titanium =SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT)
@@ -486,7 +486,7 @@
 
 /datum/design/ioncarbine
 	name = "Ion Carbine Part Kit (Nonlethal/Highly Destructive/Lethal (Silicons))"
-	desc = "How to Dismantle a Cyborg: The Gun."
+	desc = "如何拆解一个赛博:这把枪"
 	id = "ioncarbine"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT * 3, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 4, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
@@ -498,8 +498,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/wormhole_projector
-	name = "Bluespace Wormhole Projector"
-	desc = "A projector that emits high density quantum-coupled bluespace beams. Requires a bluespace anomaly core to function."
+	name = "蓝空虫洞投影仪"
+	desc = "一种能发射高密度量子耦合蓝空光束的投影仪。其运行需要一个蓝空异常核心。"
 	id = "wormholeprojector"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/silver =SHEET_MATERIAL_AMOUNT, /datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/diamond =SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -524,7 +524,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/techshell
-	name = "Unloaded Technological Shotshell"
+	name = "待装科技霰弹"
 	desc = "A high-tech shotgun shell which can be crafted into more advanced shells to produce unique effects. \
 		Does nothing on its own."
 	id = "techshotshell"
@@ -585,8 +585,8 @@
 	)
 
 /datum/design/suppressor
-	name = "Suppressor"
-	desc = "A reverse-engineered suppressor that fits on most small arms with threaded barrels."
+	name = "消音器"
+	desc = "一个逆向工程制成的消音器，可安装于大多数带螺纹枪管的小型枪械。"
 	id = "suppressor"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
@@ -597,8 +597,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/gravitygun
-	name = "One-point Gravitational Manipulator"
-	desc = "A multi-mode device that blasts one-point bluespace-gravitational bolts that locally distort gravity. Requires a gravitational anomaly core to function."
+	name = "单点重力控制器"
+	desc = "一种多模式装置，能够发射单点的蓝空螺栓，从而局部改变重力。该装置需配备重力异常核心才能运行。"
 	id = "gravitygun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT * 4, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 4, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 6, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 6, /datum/material/diamond =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -610,7 +610,7 @@
 
 /datum/design/largecrossbow
 	name = "Energy Crossbow Part Kit (Less Lethal/Contraband)"
-	desc = "A kit to reverse-engineer a proto-kinetic accelerator into an energy crossbow, favored by syndicate infiltration teams and carp hunters."
+	desc = "此工具包能将原动能加速器改装为能量十字弩，是辛迪加渗透组与鲤鱼猎人的首选。"
 	id = "largecrossbow"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/uranium =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
@@ -622,8 +622,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/cleric_mace
-	name = "Cleric Mace"
-	desc = "A mace fit for a cleric. Useful for bypassing plate armor, but too bulky for much else."
+	name = "牧师权杖"
+	desc = "一把专为牧师设计的战槌。它能轻易击穿铁甲，但体积过大，不太适合用于其他用途。"
 	id = "cleric_mace"
 	build_type = AUTOLATHE
 	materials = list(/datum/material_slot/weapon_head = SHEET_MATERIAL_AMOUNT * 4.5, /datum/material_slot/handle = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -640,8 +640,8 @@
 	category = list(RND_CATEGORY_IMPORTED)
 
 /datum/design/stun_boomerang
-	name = "OZtek Boomerang"
-	desc = "Uses reverse flow gravitodynamics to flip its personal gravity back to the thrower mid-flight. Also functions similar to a stun baton."
+	name = "奥兹泰克回旋镖"
+	desc = "利用反向流动重力动力学原理，在飞行途中将自身的重力逆转回投掷者手中。其功能与电击棒类似。"
 	id = "stun_boomerang"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 5, /datum/material/gold =SHEET_MATERIAL_AMOUNT)

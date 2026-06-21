@@ -38,31 +38,31 @@
 	blacklisted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/glasses/biker
-	name = "Biker Goggles"
+	name = "机车护目镜"
 	item_path = /obj/item/clothing/glasses/biker
 
 /datum/loadout_item/glasses/retinal_projector
-	name = "Civilian Retinal Projector"
+	name = "民用视网膜投影仪"
 	item_path = /obj/item/clothing/glasses/hud/ar/projector
 
 /datum/loadout_item/glasses/aviator_fake
-	name = "Fake Aviators"
+	name = "仿制飞行员墨镜"
 	item_path = /obj/item/clothing/glasses/fake_sunglasses/aviator
 
 /datum/loadout_item/glasses/geist_glasses
-	name = "Geist Gazers"
+	name = "幽魂凝视镜"
 	item_path = /obj/item/clothing/glasses/geist_gazers
 
 /datum/loadout_item/glasses/osi
-	name = "OSI Glasses"
+	name = "OSI眼镜"
 	item_path = /obj/item/clothing/glasses/osi
 
 /datum/loadout_item/glasses/phantom
-	name = "Phantom Glasses"
+	name = "幻影眼镜"
 	item_path = /obj/item/clothing/glasses/phantom
 
 /datum/loadout_item/glasses/psych_glasses
-	name = "Psych Glasses"
+	name = "精神眼镜"
 	item_path = /obj/item/clothing/glasses/psych
 
 /*
@@ -74,7 +74,7 @@
 	group = "Prescription"
 
 /datum/loadout_item/glasses/kim
-	name = "Binoclard Glasses"
+	name = "双筒望远镜式眼镜"
 	group = "Prescription"
 
 /datum/loadout_item/glasses/circle_glasses
@@ -90,13 +90,13 @@
 	group = "Prescription"
 
 /datum/loadout_item/glasses/better
-	name = "Modern Glasses"
+	name = "现代眼镜"
 	item_path = /obj/item/clothing/glasses/regular/modern
 	reskin_datum = /datum/atom_skin/modern_glasses
 	group = "Prescription"
 
 /datum/loadout_item/glasses/thin
-	name = "Thin-Framed Glasses"
+	name = "细框眼镜"
 	item_path = /obj/item/clothing/glasses/regular/thin
 	group = "Prescription"
 
@@ -105,31 +105,31 @@
 */
 
 /datum/loadout_item/glasses/white_eyepatch
-	name = "Eyepatch (White)"
+	name = "眼罩（白色）"
 	item_path = /obj/item/clothing/glasses/eyepatch/white
 
 /datum/loadout_item/glasses/medical_eyepatch
-	name = "Eyepatch - Medical"
+	name = "眼罩 - 医疗"
 	item_path = /obj/item/clothing/glasses/eyepatch/medical
 
 /datum/loadout_item/glasses/eyewrap
-	name = "Eyepatch - Wrap"
+	name = "眼罩 - 缠绕式"
 	item_path = /obj/item/clothing/glasses/eyepatch/wrap
 
 /datum/loadout_item/glasses/blindfold
-	name = "Blindfold"
+	name = "眼罩"
 	item_path = /obj/item/clothing/glasses/blindfold
 
 /datum/loadout_item/glasses/blindfold/color
-	name = "Blindfold - Blind Personnel"
+	name = "眼罩 - 致盲人员"
 	item_path = /obj/item/clothing/glasses/blindfold/color
 
 /datum/loadout_item/glasses/fakeblindfold
-	name = "Blindfold - Fake"
+	name = "眼罩 - 伪装"
 	item_path = /obj/item/clothing/glasses/trickblindfold
 
 /datum/loadout_item/glasses/obsoleteblindfold
-	name = "Blindfold - Obselete HUD"
+	name = "眼罩 - 过时HUD"
 	item_path = /obj/item/clothing/glasses/trickblindfold/obsolete
 
 /*
@@ -138,168 +138,168 @@
 
 //Diagnostic
 /datum/loadout_item/glasses/robopatch
-	name = "Diagnostic HUD - Eyepatch"
+	name = "诊断HUD - 眼罩式"
 	item_path = /obj/item/clothing/glasses/hud/eyepatch/diagnostic
 	restricted_roles = list(ALL_JOBS_SCI)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/diaghud_glasses
-	name = "Diagnostic HUD - Prescription"
+	name = "诊断HUD - 处方镜"
 	item_path = /obj/item/clothing/glasses/hud/diagnostic/prescription
 	restricted_roles = list(ALL_JOBS_SCI)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/prescription_aviator_diagnostic
-	name = "Diagnostic HUD - Prescription Sunglasses"
+	name = "诊断HUD - 处方太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/diagnostic/prescription
 	restricted_roles = list(ALL_JOBS_SCI)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/aviator_diagnostic
-	name = "Diagnostic HUD - Sunglasses"
+	name = "诊断HUD - 太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/diagnostic
 	restricted_roles = list(ALL_JOBS_SCI)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/retinal_projector_diagnostic
-	name = "Diagnostic HUD - Retinal Projector"
+	name = "诊断HUD - 视网膜投影仪"
 	item_path = /obj/item/clothing/glasses/hud/ar/projector/diagnostic
 	restricted_roles = list(ALL_JOBS_SCI)
 	group = "Job-Locked"
 
 //Medical
 /datum/loadout_item/glasses/medicpatch
-	name = "Medical HUD - Eyepatch"
+	name = "医疗HUD - 眼罩式"
 	item_path = /obj/item/clothing/glasses/hud/eyepatch/med
 	restricted_roles = list(ALL_JOBS_MED)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/medhud_glasses
-	name = "Medical HUD - Prescription"
+	name = "医疗HUD - 处方镜"
 	item_path = /obj/item/clothing/glasses/hud/health/prescription
 	restricted_roles = list(ALL_JOBS_MED)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/prescription_aviator_health
-	name = "Medical HUD - Prescription Sunglassess"
+	name = "医疗HUD - 处方太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/health/prescription
 	restricted_roles = list(ALL_JOBS_MED)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/aviator_health
-	name = "Medical HUD - Sunglasses"
+	name = "医疗HUD - 太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/health
 	restricted_roles = list(ALL_JOBS_MED)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/retinal_projector_health
-	name = "Medical HUD - Retinal Projector"
+	name = "医疗HUD - 视网膜投影仪"
 	item_path = /obj/item/clothing/glasses/hud/ar/projector/health
 	restricted_roles = list(ALL_JOBS_MED)
 	group = "Job-Locked"
 
 //Meson
 /datum/loadout_item/glasses/mesonpatch
-	name = "Meson HUD - Eyepatch"
+	name = "透视HUD - 眼罩"
 	item_path = /obj/item/clothing/glasses/hud/eyepatch/meson
 	restricted_roles = list(ALL_JOBS_CARGO, ALL_JOBS_ENGI)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/meson_prescription
-	name = "Meson HUD - Prescription"
+	name = "透视HUD - 处方镜"
 	item_path = /obj/item/clothing/glasses/meson/prescription
 	restricted_roles = list(ALL_JOBS_CARGO, ALL_JOBS_ENGI)
 	reskin_datum = /datum/atom_skin/meson
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/prescription_aviator_meson
-	name = "Meson HUD - Prescription Sunglasses"
+	name = "透视HUD - 处方太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/meson/prescription
 	restricted_roles = list(ALL_JOBS_CARGO, ALL_JOBS_ENGI)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/aviator_meson
-	name = "Meson HUD - Sunglasses"
+	name = "透视HUD - 太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/meson
 	restricted_roles = list(ALL_JOBS_CARGO, ALL_JOBS_ENGI)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/retinal_projector_meson
-	name = "Meson HUD - Retinal Projector"
+	name = "透视HUD - 视网膜投影仪"
 	item_path = /obj/item/clothing/glasses/hud/ar/projector/meson
 	restricted_roles = list(ALL_JOBS_CARGO, ALL_JOBS_ENGI)
 	group = "Job-Locked"
 
 //Science
 /datum/loadout_item/glasses/scipatch
-	name = "Science HUD - Eyepatch"
+	name = "科研HUD - 眼罩"
 	item_path = /obj/item/clothing/glasses/hud/eyepatch/sci
 	restricted_roles = list(ALL_JOBS_SCI, JOB_CHEMIST, JOB_VIROLOGIST)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/science_glasses
-	name = "Science HUD - Prescription"
+	name = "科研HUD - 处方镜"
 	item_path = /obj/item/clothing/glasses/science/prescription
 	restricted_roles = list(ALL_JOBS_SCI, JOB_CHEMIST, JOB_VIROLOGIST)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/prescription_aviator_science
-	name = "Science HUD - Prescription Sunglasses"
+	name = "科研HUD - 处方太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/science/prescription
 	restricted_roles = list(ALL_JOBS_SCI, JOB_CHEMIST, JOB_VIROLOGIST)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/aviator_science
-	name = "Science HUD - Sunglasses"
+	name = "科研HUD - 太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/science
 	restricted_roles = list(ALL_JOBS_SCI, JOB_CHEMIST, JOB_VIROLOGIST)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/retinal_projector_science
-	name = "Science HUD - Retinal Projector"
+	name = "科研HUD - 视网膜投影仪"
 	item_path = /obj/item/clothing/glasses/hud/ar/projector/science
 	restricted_roles = list(ALL_JOBS_SCI, JOB_CHEMIST, JOB_VIROLOGIST)
 	group = "Job-Locked"
 
 //Security
 /datum/loadout_item/glasses/sechud
-	name = "Security HUD"
+	name = "安保HUD"
 	item_path = /obj/item/clothing/glasses/hud/security
 	restricted_roles = list(ALL_JOBS_DEPTGUARD, ALL_JOBS_SEC)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/secpatch
-	name = "Security HUD - Eyepatch"
+	name = "安保HUD - 眼罩"
 	item_path = /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	restricted_roles = list(ALL_JOBS_DEPTGUARD, ALL_JOBS_SEC)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/sechud_glasses
-	name = "Security HUD - Prescription"
+	name = "安保HUD - 处方镜"
 	item_path = /obj/item/clothing/glasses/hud/security/prescription
 	restricted_roles = list(ALL_JOBS_DEPTGUARD, ALL_JOBS_SEC)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/prescription_aviator_security
-	name = "Security HUD - Prescription Sunglasses"
+	name = "安保HUD - 处方太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/security/prescription
 	restricted_roles = list(ALL_JOBS_DEPTGUARD, ALL_JOBS_SEC)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/aviator_security
-	name = "Security HUD - Sunglasses"
+	name = "安保HUD - 太阳镜"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/security
 	restricted_roles = list(ALL_JOBS_DEPTGUARD, ALL_JOBS_SEC)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/sechud_sunglasses_blue
-	name = "Security HUD - Sunglasses (Blue)"
+	name = "安保HUD - 太阳镜（蓝色）"
 	item_path = /obj/item/clothing/glasses/hud/security/sunglasses/blue
 	restricted_roles = list(ALL_JOBS_DEPTGUARD, ALL_JOBS_SEC)
 	group = "Job-Locked"
 
 /datum/loadout_item/glasses/retinal_projector_security
-	name = "Security HUD - Retinal Projector"
+	name = "安保HUD - 视网膜投影仪"
 	item_path = /obj/item/clothing/glasses/hud/ar/projector/security
 	restricted_roles = list(ALL_JOBS_DEPTGUARD, ALL_JOBS_SEC)
 	group = "Job-Locked"
@@ -313,5 +313,5 @@
 	donator_only = TRUE
 
 /datum/loadout_item/glasses/donator/fake_sunglasses
-	name = "Fake Sunglasses"
+	name = "假太阳镜"
 	item_path = /obj/item/clothing/glasses/fake_sunglasses

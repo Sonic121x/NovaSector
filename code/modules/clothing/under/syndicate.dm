@@ -1,5 +1,5 @@
 /obj/item/clothing/under/syndicate
-	name = "tactical turtleneck"
+	name = "战术高领毛衣"
 	desc = "A nondescript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
 	icon_state = "syndicate"
 	inhand_icon_state = "bl_suit"
@@ -16,7 +16,7 @@
 	wound = 10
 
 /obj/item/clothing/under/syndicate/skirt
-	name = "tactical skirtleneck"
+	name = "战术高领毛衣裙"
 	desc = "A nondescript and slightly suspicious looking skirtleneck."
 	icon_state = "syndicate_skirt"
 	inhand_icon_state = "bl_suit"
@@ -25,8 +25,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/syndicate/bloodred
-	name = "blood-red sneaksuit"
-	desc = "It still counts as stealth if there are no witnesses."
+	name = "血红紧身衣"
+	desc = "如果没有目击证人，也算秘密行动。"
 	icon_state = "bloodred_pajamas"
 	inhand_icon_state = "bl_suit"
 	armor_type = /datum/armor/clothing_under/syndicate_bloodred
@@ -48,8 +48,8 @@
 	wound = 10
 
 /obj/item/clothing/under/syndicate/bloodred/sleepytime
-	name = "blood-red pajamas"
-	desc = "Do operatives dream of nuclear sheep?"
+	name = "血红睡衣"
+	desc = "核特工会梦见核能羊吗"
 	icon_state = "bloodred_pajamas"
 	inhand_icon_state = "bl_suit"
 	armor_type = /datum/armor/clothing_under/bloodred_sleepytime
@@ -59,8 +59,8 @@
 	acid = 40
 
 /obj/item/clothing/under/syndicate/tacticool
-	name = "tacticool turtleneck"
-	desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-."
+	name = "战酷高领毛衣"
+	desc = "只是看着它，你就想买一个SKS，走进树林，然后——操作——。"
 	icon_state = "tactifool"
 	inhand_icon_state = "bl_suit"
 	has_sensor = HAS_SENSORS
@@ -90,7 +90,7 @@
 	new our_jumpsuit(loc)
 
 /obj/item/clothing/under/syndicate/tacticool/skirt
-	name = "tacticool skirtleneck"
+	name = "战酷高领毛衣裙"
 	desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-."
 	icon_state = "tactifool_skirt"
 	inhand_icon_state = "bl_suit"
@@ -99,7 +99,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/syndicate/sniper
-	name = "tactical turtleneck suit"
+	name = "战术高领毛衣套装"
 	desc = "A double seamed tactical turtleneck disguised as a civilian-grade silk suit. Intended for the most formal operator. The collar is really sharp."
 	icon_state = "tactical_suit"
 	inhand_icon_state = "bl_suit"
@@ -107,8 +107,8 @@
 	supports_variations_flags = NONE
 
 /obj/item/clothing/under/syndicate/camo
-	name = "camouflage fatigues"
-	desc = "A green military camouflage uniform."
+	name = "迷彩服"
+	desc = "绿色的军用迷彩服。"
 	icon_state = "camogreen"
 	inhand_icon_state = "g_suit"
 	can_adjust = FALSE
@@ -138,7 +138,7 @@
 
 /obj/item/clothing/under/syndicate/soviet
 	name = "Ratnik 5 tracksuit"
-	desc = "Badly translated labels tell you to clean this in Vodka. Great for squatting in."
+	desc = "翻译错误的标签告诉你要用伏特加清洗这件衣服。很适合斯拉夫蹲。"
 	icon_state = "trackpants"
 	can_adjust = FALSE
 	supports_variations_flags = NONE
@@ -149,15 +149,15 @@
 	melee = 10
 
 /obj/item/clothing/under/syndicate/combat
-	name = "combat uniform"
-	desc = "With a suit lined with this many pockets, you are ready to operate."
+	name = "战斗制服"
+	desc = "有了这么多口袋的制服，你就做好了行动的准备了。"
 	icon_state = "syndicate_combat"
 	can_adjust = FALSE
 	supports_variations_flags = NONE
 
 /obj/item/clothing/under/syndicate/rus_army
-	name = "advanced military tracksuit"
-	desc = "Military grade tracksuits for frontline squatting."
+	name = "高级军用运动服"
+	desc = "用于前线蹲姿训练的的军用级别运动服。"
 	icon_state = "rus_under"
 	can_adjust = FALSE
 	supports_variations_flags = NONE
@@ -168,8 +168,8 @@
 	melee = 5
 
 /obj/item/clothing/under/syndicate/scrubs
-	name = "tactical scrubs"
-	desc = "A deep burgundy set of scrubs, made tactically for tactical reasons."
+	name = "战术外科手术服"
+	desc = "一套深酒红色的医护服，出于战术原因而专门设计。"
 	icon = 'icons/obj/clothing/under/medical.dmi'
 	worn_icon = 'icons/mob/clothing/under/medical.dmi'
 	icon_state = "scrubswine"

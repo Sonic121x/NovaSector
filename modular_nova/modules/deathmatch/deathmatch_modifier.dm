@@ -1,6 +1,6 @@
 /datum/deathmatch_modifier/loadout_enabled
-	name = "Loadout Enabled"
-	description = "Apply loadout to all players"
+	name = "装备启用"
+	description = "为所有玩家应用装备配置"
 
 /datum/deathmatch_modifier/loadout_enabled/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	. = ..()
@@ -25,5 +25,5 @@
 	if (!length(briefcase.contents))
 		qdel(briefcase)
 	else
-		briefcase.name = "[preference_source.read_preference(/datum/preference/name/real_name)]'s travel suitcase"
+		briefcase.name = "[preference_source.read_preference(/datum/preference/name/real_name)]的旅行手提箱"
 		player.put_in_hands(briefcase)

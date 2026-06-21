@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 		return FALSE
 
 	if(!istype(equipping, /obj/item/clothing/neck/petcollar))
-		to_chat(user, span_warning("That's not a collar."))
+		to_chat(user, span_warning("那不是项圈。"))
 		return FALSE
 
 	return TRUE
@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 		return FALSE
 
 	if(!ispath(equipping.dog_fashion, /datum/dog_fashion/back))
-		to_chat(user, span_warning("You set [equipping] on [source]'s back, but it falls off!"))
+		to_chat(user, span_warning("你把[equipping]放在[source]的背上，但它掉了下来！"))
 		equipping.forceMove(source.drop_location())
 		if(prob(25))
 			step_rand(equipping)
@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 		return FALSE
 
 	if(!isidcard(equipping))
-		to_chat(user, span_warning("You can't pin [equipping] to [source]!"))
+		to_chat(user, span_warning("你无法将[equipping]别在[source]身上！"))
 		return FALSE
 
 	return TRUE

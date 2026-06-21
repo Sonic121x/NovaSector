@@ -1,5 +1,5 @@
 /obj/effect/spawner/random/structure/crate
-	name = "crate spawner"
+	name = "板条箱生成器"
 	icon_state = "crate"
 	loot = list(
 		/obj/effect/spawner/random/structure/crate_loot = 495,

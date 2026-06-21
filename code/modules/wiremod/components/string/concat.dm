@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/concat
 	display_name = "Concatenate"
-	desc = "A component that combines strings."
+	desc = "一种将字符串组合在一起的组件。"
 	category = "String"
 
 	var/list/datum/port/input/concat_ports = list()

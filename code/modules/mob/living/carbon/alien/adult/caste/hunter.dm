@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/adult/hunter
-	name = "alien hunter"
+	name = "异形猎手"
 	caste = "h"
 	maxHealth = 125
 	health = 125
@@ -29,7 +29,7 @@
 	leap_icon?.icon_state = "leap_[leap_on_click ? "on":"off"]"
 	update_icons()
 	if(message)
-		to_chat(src, span_noticealien("You will now [leap_on_click ? "leap at":"slash at"] enemies!"))
+		to_chat(src, span_noticealien("你现在将[leap_on_click ? "leap at":"slash at"]敌人！"))
 	else
 		return
 
@@ -47,11 +47,11 @@
 		return
 
 	if(pounce_cooldown > world.time)
-		to_chat(src, span_alertalien("You are too fatigued to pounce right now!"))
+		to_chat(src, span_alertalien("你现在太疲惫了，无法猛扑！"))
 		return
 
 	if(!has_gravity() || !A.has_gravity())
-		to_chat(src, span_alertalien("It is unsafe to leap without gravity!"))
+		to_chat(src, span_alertalien("在没有重力的环境下跳跃是不安全的！"))
 		//It's also extremely buggy visually, so it's balance+bugfix
 		return
 
@@ -84,7 +84,7 @@
 				if(H.check_block(src, 0, "\the [src]", attack_type = LEAP_ATTACK))
 					blocked = TRUE
 			if(!blocked)
-				L.visible_message(span_danger("[src] pounces on [L]!"), span_userdanger("[src] pounces on you!"))
+				L.visible_message(span_danger("[src] 猛扑到了 [L] 身上！"), span_userdanger("[src] 猛扑到了你身上！"))
 				L.Paralyze(5 SECONDS)
 				sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
 				step_towards(src,L)

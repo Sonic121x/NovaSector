@@ -7,8 +7,8 @@
  * Bonus: Makes the affected mob be confused for short periods of time.
  */
 /datum/symptom/confusion
-	name = "Confusion"
-	desc = "The virus interferes with the proper function of the neural system, leading to bouts of confusion and erratic movement."
+	name = "意识混乱"
+	desc = "该病毒干扰神经系统的正常功能，导致宿主间歇性意识混乱和动作失常。"
 	illness = "Shattered Reality"
 	stealth = 2
 	resistance = 1
@@ -55,7 +55,7 @@
 			if(prob(base_message_chance) && !suppress_warning)
 				to_chat(infected_mob, span_warning("[pick("Your head hurts.", "Your mind blanks for a moment.")]"))
 		else
-			to_chat(infected_mob, span_userdanger("You can't think straight!"))
+			to_chat(infected_mob, span_userdanger("你无法集中精神思考！"))
 			infected_mob.adjust_confusion_up_to(16 SECONDS * power, 30 SECONDS)
 			if(brain_damage)
 				infected_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 3 * power, 80)

@@ -1,7 +1,7 @@
 // Kiri
 /obj/item/seeds/kiri
-	name = "pack of kiri starters"
-	desc = "This bacterial colony forms into kiri fruits."
+	name = "一包基里果苗"
+	desc = "这种细菌菌落会形成基里果。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-kiri"
 	species = "kiri"
@@ -17,8 +17,8 @@
 
 /obj/item/food/grown/kiri
 	seed = /obj/item/seeds/kiri
-	name = "kiri fruit"
-	desc = "A bizarre egg-shaped fruit, striped with a vivid pink and yellow color. It feels somewhat firm, but the entire thing is edible. Contains an ultra-sweet jelly typically used in teshari cuisine, or it can be baked by itself for a delightful treat."
+	name = "基里果"
+	desc = "一种奇特的蛋形水果，带有鲜艳的粉黄条纹。手感略硬，但整体可食用。内含一种超甜果冻，常用于特莎莉料理，也可单独烘烤制成美味点心。"
 	icon = 'modular_nova/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "kiri"
 	foodtypes = FRUIT | SUGAR

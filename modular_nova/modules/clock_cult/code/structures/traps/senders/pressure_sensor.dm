@@ -1,14 +1,14 @@
 /obj/item/clockwork/trap_placer/pressure_sensor
-	name = "pressure plate"
-	desc = "I wonder what happens if you step on it."
+	name = "压力板"
+	desc = "我想知道踩上去会发生什么。"
 	icon_state = "pressure_sensor"
 	result_path = /obj/structure/destructible/clockwork/trap/pressure_sensor
 	clockwork_desc = "Allows you to send a signal to linked traps when a non-servant steps on the plate."
 
 
 /obj/structure/destructible/clockwork/trap/pressure_sensor
-	name = "pressure plate"
-	desc = "I wonder what happens if you step on it."
+	name = "压力板"
+	desc = "我想知道踩上去会发生什么。"
 	icon_state = "pressure_sensor"
 	unwrench_path = /obj/item/clockwork/trap_placer/pressure_sensor
 	component_datum = /datum/component/clockwork_trap/pressure_sensor

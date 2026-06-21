@@ -5,10 +5,10 @@
 
 	if(incapacitated)
 		return
-	switch(alert("Would you like to enter cryo? This will ghost you. Remember to AHELP before cryoing out of important roles, even with no admins online.",,"Yes.","No."))
+	switch(alert("你想要进入低温休眠吗？这会让你变成幽灵。请记住，在脱离重要职位前，即使没有管理员在线，也要先发送管理员求助（AHELP）。",,"Yes.","No."))
 		if("Yes.")
 			src.ghostize(FALSE)
-			minor_announce("Station AI has disconnected from system networks and moved to remote storage. Preparing for new AI personality upload.", "Station AI")
+			minor_announce("空间站AI已从系统网络断开连接并移至远程存储。正在准备新AI人格上传。", "空间站AI")
 			new /obj/structure/ai_core/latejoin_inactive(loc)
 			if(src.mind)
 				//Handle job slot/tater cleanup.

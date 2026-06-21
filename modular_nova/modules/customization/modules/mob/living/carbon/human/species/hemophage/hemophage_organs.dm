@@ -8,7 +8,7 @@
 
 
 /obj/item/organ/liver/hemophage
-	name = "liver" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
+	name = "肝脏" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
 	desc = GENERIC_CORRUPTED_ORGAN_DESC
 	icon = 'modular_nova/modules/organs/icons/hemophage_organs.dmi'
 	organ_flags = ORGAN_ORGANIC | ORGAN_EDIBLE | ORGAN_TUMOR_CORRUPTED
@@ -39,7 +39,7 @@
 		if(feedback_delivered || !helped)
 			continue
 
-		to_chat(affected_mob, span_notice("A euphoric feeling hits you as blood's warmth washes through your insides. Your body feels more alive, your wounds healthier."))
+		to_chat(affected_mob, span_notice("一股欣快感袭来，血液的暖流冲刷着你的内脏。你的身体感觉更有活力，伤口也愈合得更好了。"))
 		feedback_delivered = TRUE
 
 
@@ -68,7 +68,7 @@
 
 
 /obj/item/organ/stomach/hemophage
-	name = "stomach" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
+	name = "胃" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
 	desc = GENERIC_CORRUPTED_ORGAN_DESC
 	icon = 'modular_nova/modules/organs/icons/hemophage_organs.dmi'
 	organ_flags = ORGAN_ORGANIC | ORGAN_EDIBLE | ORGAN_TUMOR_CORRUPTED
@@ -90,7 +90,7 @@
 
 
 /obj/item/organ/tongue/hemophage
-	name = "tongue" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
+	name = "舌头" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
 	desc = GENERIC_CORRUPTED_ORGAN_DESC
 	icon = 'modular_nova/modules/organs/icons/hemophage_organs.dmi'
 	organ_flags = ORGAN_ORGANIC | ORGAN_EDIBLE | ORGAN_TUMOR_CORRUPTED

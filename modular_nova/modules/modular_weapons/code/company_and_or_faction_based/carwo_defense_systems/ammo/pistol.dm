@@ -2,8 +2,8 @@
 // Pistol caliber caseless round used almost exclusively by SolFed weapons
 
 /obj/item/ammo_casing/c35sol
-	name = ".35 Sol Short lethal bullet casing"
-	desc = "A SolFed standard caseless lethal pistol round."
+	name = ".35索尔短弹致命弹壳"
+	desc = "一款太阳联邦标准的无壳致命手枪弹。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "35sol"
@@ -20,7 +20,7 @@
 
 
 /obj/projectile/bullet/c35sol
-	name = ".35 Sol Short bullet"
+	name = ".35索尔短弹"
 	damage = 16
 
 	wound_bonus = 5 // Normal bullets are 20
@@ -28,8 +28,8 @@
 
 
 /obj/item/ammo_box/c35sol
-	name = "ammo box (.35 Sol Short lethal)"
-	desc = "A box of .35 Sol Short pistol rounds, holds twenty-four rounds."
+	name = "弹药盒（.35索尔短弹致命）"
+	desc = "一盒.35索尔短弹手枪弹，内装二十四发。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "35box"
@@ -46,8 +46,8 @@
 // .35 Sol's equivalent to a rubber bullet
 
 /obj/item/ammo_casing/c35sol/incapacitator
-	name = ".35 Sol Short incapacitator bullet casing"
-	desc = "A SolFed standard caseless less-lethal pistol round. Exhausts targets on hit, has a tendency to bounce off walls at shallow angles."
+	name = ".35索尔短弹失能弹壳"
+	desc = "一款太阳联邦标准的无壳低致命手枪弹。命中目标会使其力竭，在浅角度撞击墙壁时容易反弹。"
 
 	icon_state = "35sol_disabler"
 
@@ -57,7 +57,7 @@
 
 
 /obj/projectile/bullet/c35sol/incapacitator
-	name = ".35 Sol Short incapacitator bullet"
+	name = ".35索尔短弹失能弹"
 	damage = 3
 	stamina = 20
 
@@ -81,8 +81,8 @@
 
 
 /obj/item/ammo_box/c35sol/incapacitator
-	name = "ammo box (.35 Sol Short incapacitator)"
-	desc = "A box of .35 Sol Short pistol rounds, holds twenty-four rounds. The blue stripe indicates this should hold less-lethal ammunition."
+	name = "弹药盒（.35索尔短弹失能）"
+	desc = "一盒.35索尔短弹手枪弹，内装二十四发。蓝色条纹表明此盒应装有低致命弹药。"
 
 	icon_state = "35box_disabler"
 
@@ -92,8 +92,8 @@
 // .35 Sol ripper, similar to the detective revolver's dumdum rounds, causes slash wounds and is weak to armor
 
 /obj/item/ammo_casing/c35sol/ripper
-	name = ".35 Sol Short ripper bullet casing"
-	desc = "A SolFed standard caseless ripper pistol round. Causes slashing wounds on targets, but is weak to armor."
+	name = ".35索尔短弹撕裂弹壳"
+	desc = "一款太阳联邦标准的无壳撕裂手枪弹。对目标造成切割伤，但对护甲效果较弱。"
 
 	icon_state = "35sol_shrapnel"
 	projectile_type = /obj/projectile/bullet/c35sol/ripper
@@ -102,7 +102,7 @@
 	ammo_categories = AMMO_CLASS_PLUS
 
 /obj/projectile/bullet/c35sol/ripper
-	name = ".35 Sol ripper bullet"
+	name = ".35索尔撕裂弹"
 	damage = 10
 
 	weak_against_armour = TRUE
@@ -127,8 +127,8 @@
 	rip_time = 1 SECONDS
 
 /obj/item/ammo_box/c35sol/ripper
-	name = "ammo box (.35 Sol Short ripper)"
-	desc = "A box of .35 Sol Short pistol rounds, holds twenty-four rounds. The purple stripe indicates this should hold hollowpoint-like ammunition."
+	name = "弹药盒（.35索尔短弹撕裂）"
+	desc = "一盒.35索尔短弹手枪弹，内装二十四发。紫色条纹表明此盒应装有类似空尖弹的弹药。"
 
 	icon_state = "35box_shrapnel"
 
@@ -137,8 +137,8 @@
 // .35 Sol flash, similar to Polaris code flash ammo for pistols.
 
 /obj/item/ammo_casing/c35sol/flash
-	name = ".35 Sol Short flash bullet casing"
-	desc = "A SolFed standard caseless less-lethal pistol round. Creates a small, pyrotechnic flash on hit; insufficient to overload cyborgs."
+	name = ".35索尔短弹闪光弹壳"
+	desc = "一款太阳联邦标准的无壳低致命手枪弹。命中时产生小型烟火闪光；不足以使机械人过载。"
 
 	icon_state = "35sol_flash"
 
@@ -147,7 +147,7 @@
 	ammo_categories = AMMO_CLASS_NONE
 
 /obj/projectile/bullet/c35sol/flash
-	name = ".35 Sol Short flash bullet"
+	name = ".35索尔短弹闪光弹"
 	damage = 5
 
 	shrapnel_type = null
@@ -165,16 +165,16 @@
 			flashed_living.adjust_stamina_loss(rand(30, 35))
 
 /obj/item/ammo_box/c35sol/flash
-	name = "ammo box (.35 Sol Short flash)"
-	desc = "A box of .35 Sol Short pistol rounds, holds twenty-four rounds. The orange stripe indicates this should hold flash ammunition, which poses an incendiary risk."
+	name = "弹药盒（.35索尔短弹闪光）"
+	desc = "一盒.35索尔短弹手枪弹，内装二十四发。橙色条纹表明此盒应装有闪光弹药，存在引燃风险。"
 
 	icon_state = "35box_flash"
 
 	ammo_type = /obj/item/ammo_casing/c35sol/flash
 
 /obj/item/ammo_box/speedloader/c35sol
-	name = "speed loader (.35 Sol Short)"
-	desc = "Designed to quickly reload eight-chamber .35 Sol Short revolvers."
+	name = "快速装弹器（.35索尔短弹）"
+	desc = "专为快速装填八发弹巢的.35索尔短弹左轮手枪而设计。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "sl35sol"
 	ammo_type = /obj/item/ammo_casing/c35sol

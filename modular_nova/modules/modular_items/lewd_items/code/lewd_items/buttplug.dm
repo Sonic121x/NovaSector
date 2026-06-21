@@ -1,6 +1,6 @@
 /obj/item/clothing/sextoy/buttplug
-	name = "buttplug"
-	desc = "I'm meant to put that WHERE?!"
+	name = "肛塞"
+	desc = "我该把这玩意儿放哪儿？！"
 	icon_state = "buttplug_pink_small"
 	base_icon_state = "buttplug"
 	worn_icon_state = "buttplug_pink"

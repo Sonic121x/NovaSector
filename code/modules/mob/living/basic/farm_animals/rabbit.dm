@@ -7,8 +7,8 @@
  *
  */
 /mob/living/basic/rabbit
-	name = "rabbit"
-	desc = "The hippiest hop around."
+	name = "兔子"
+	desc = "蹦蹦跳跳，最是逍遥。"
 	icon = 'icons/mob/simple/rabbit.dmi'
 	icon_state = "rabbit_white"
 	icon_living = "rabbit_white"
@@ -56,7 +56,7 @@
 	AddElement(/datum/element/pet_bonus, "hop")
 	AddElement(/datum/element/animal_variety, icon_prefix, pick("brown", "black", "white"), TRUE)
 	if(prob(20)) // bunny
-		name = "bunny"
+		name = "小兔兔"
 
 /datum/ai_controller/basic_controller/rabbit
 	blackboard = list(

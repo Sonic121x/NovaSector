@@ -169,8 +169,8 @@
 	return span_notice("[owner.p_Their()] heart produces [beat_noise].")
 
 /obj/item/organ/heart/cursed
-	name = "cursed heart"
-	desc = "A heart that, when inserted, will force you to pump it manually."
+	name = "被诅咒的心脏"
+	desc = "一颗植入后会迫使你手动泵血的心脏。"
 	icon_state = "cursedheart-off"
 	base_icon_state = "cursedheart"
 	decay_factor = 0
@@ -203,8 +203,8 @@
 	return span_danger(beat_noise)
 
 /obj/item/organ/heart/cybernetic
-	name = "basic cybernetic heart"
-	desc = "A basic electronic device designed to mimic the functions of an organic human heart."
+	name = "基础赛博心脏"
+	desc = "一种旨在模拟有机人类心脏功能的基础电子设备。"
 	icon_state = "heart-c-on"
 	base_icon_state = "heart-c"
 	organ_flags = ORGAN_ROBOTIC
@@ -240,8 +240,8 @@
 		addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS)
 		if(owner_needs_us)
 			owner.visible_message(
-				span_danger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"),
-				span_userdanger("You feel a terrible pain in your chest, as if your heart has stopped!"),
+				span_danger("[owner] 紧抓着[owner.p_their()]胸口，仿佛[owner.p_their()]的心脏要停止跳动了！"),
+				span_userdanger("你感到胸口一阵剧痛，仿佛心脏已经停止跳动！"),
 			)
 
 /obj/item/organ/heart/cybernetic/on_life(seconds_per_tick)
@@ -277,7 +277,7 @@
 		REMOVE_TRAIT(heart_owner, TRAIT_NOSOFTCRIT, ORGAN_TRAIT)
 
 /obj/item/organ/heart/cybernetic/tier2
-	name = "cybernetic heart"
+	name = "赛博心脏"
 	desc = "An electronic device designed to mimic the functions of an organic human heart. In case of lacerations or haemorrhaging, the heart rapidly begins self-replicating \
 		artificial blood. However, this can cause toxins to build up in the bloodstream to the imperfect replication process."
 	icon_state = "heart-c-u-on"
@@ -288,7 +288,7 @@
 	blood_regeneration_multiplier = 9 // regenerates 2.25u of blood per tick (default is 0.25u)
 
 /obj/item/organ/heart/cybernetic/tier3
-	name = "upgraded cybernetic heart"
+	name = "升级版赛博心脏"
 	desc = "An electronic device designed to mimic the functions of an organic human heart. In case of physical trauma, the heart has temporary failsafes to maintain patient stability \
 		and mobility for a brief moment. In addition, the heart is able to safely self-replicate blood without risk of toxin buildup."
 	icon_state = "heart-c-u2-on"
@@ -300,7 +300,7 @@
 	emp_vulnerability = 20
 
 /obj/item/organ/heart/cybernetic/surplus
-	name = "surplus prosthetic heart"
+	name = "剩余义体心脏"
 	desc = "A fragile mockery of a human heart that resembles a water pump more than an actual heart. \
 		Offers no protection against EMPs."
 	icon_state = "heart-c-s-on"
@@ -315,11 +315,11 @@
 	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE)
 
 /obj/item/organ/heart/cybernetic/surplus/hear_beat_noise(mob/living/hearer)
-	return span_danger("[owner.p_Their()] heart produces [beat_noise].")
+	return span_danger("[owner.p_Their()]心脏发出[beat_noise]。")
 
 /obj/item/organ/heart/freedom
-	name = "heart of freedom"
-	desc = "This heart pumps with the passion to give... something freedom."
+	name = "自由之心"
+	desc = "这颗心脏跳动着给予……某物自由的激情。"
 	organ_flags = ORGAN_ROBOTIC  //the power of freedom prevents heart attacks
 	beat_noise = "<b>THE SOUND OF FREEDOM</b>"
 	/// The cooldown until the next time this heart can give the host an adrenaline boost.
@@ -329,22 +329,22 @@
 	. = ..()
 	if(owner.health < 5 && COOLDOWN_FINISHED(src, adrenaline_cooldown))
 		COOLDOWN_START(src, adrenaline_cooldown, rand(25 SECONDS, 1 MINUTES))
-		to_chat(owner, span_userdanger("You feel yourself dying, but you refuse to give up!"))
+		to_chat(owner, span_userdanger("你感到自己正在死去，但你拒绝放弃！"))
 		owner.heal_overall_damage(brute = 15, burn = 15, required_bodytype = BODYTYPE_ORGANIC)
 		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
 			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)
 
 /obj/item/organ/heart/pod
-	name = "pod mitochondria"
-	desc = "This plant-like organ is the powerhouse of the podperson." // deliberate wording here
+	name = "豆荚线粒体"
+	desc = "这个植物般的器官是豆荚人的动力核心。" // deliberate wording here
 	beat_noise = "the power of the podperson" // makes sense
 	foodtype_flags = PODPERSON_ORGAN_FOODTYPES
 	color = COLOR_LIME
 
 /// An improved version of the organic heart, with more health and more "keeping you alive" potential
 /obj/item/organ/heart/evolved
-	name = "evolved heart"
-	desc = "It beats ever strong."
+	name = "进化心脏"
+	desc = "它跳动得无比强劲。"
 	icon_state = "heart-evolved-on"
 	base_icon_state = "heart-evolved"
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 1.2
@@ -365,8 +365,8 @@
 
 /// A weaker evolved heart, but can block magic in exchange for our organs health!
 /obj/item/organ/heart/evolved/sacred
-	name = "sacred heart"
-	desc = "Your foul magics stand no chance against the power of LOVE!!!"
+	name = "神圣之心"
+	desc = "你邪恶的魔法在爱的力量面前毫无胜算！！！"
 
 	icon_state = "heart-sacred-on"
 	base_icon_state = "heart-sacred"

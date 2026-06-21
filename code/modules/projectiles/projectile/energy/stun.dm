@@ -1,5 +1,5 @@
 /obj/projectile/energy/electrode
-	name = "electrode"
+	name = "电极"
 	icon_state = "spark"
 	color = COLOR_YELLOW
 	hitsound = 'sound/items/weapons/taserhit.ogg'
@@ -43,8 +43,8 @@
 	// we need a "from", otherwise, where does the electricity come from?
 	if(isnull(fired_from))
 		target.visible_message(
-			span_warning("[src]\s collide with [target] harmlessly[isfloorturf(target.loc) ? ", before falling to [target.loc]" : ""]."),
-			span_notice("[src] collide with you harmlessly[isfloorturf(target.loc) ? ", before falling to [target.loc]" : ""]."),
+			span_warning("[src]\s 无害地撞上了 [target][isfloorturf(target.loc) ? ", before falling to [target.loc]" : ""]。"),
+			span_notice("[src] 无害地撞上了你[isfloorturf(target.loc) ? ", before falling to [target.loc]" : ""]。"),
 		)
 		return
 
@@ -163,7 +163,7 @@
 
 /datum/status_effect/tased/on_apply()
 	if(issilicon(owner) || isbot(owner) || isdrone(owner) || HAS_TRAIT(owner, TRAIT_PIERCEIMMUNE))
-		owner.visible_message(span_warning("[capitalize(electrode_name)] fail to catch [owner][isfloorturf(owner.loc) ? ", falling to [owner.loc]" : ""]!"))
+		owner.visible_message(span_warning("[capitalize(electrode_name)] 没能抓住 [owner][isfloorturf(owner.loc) ? ", falling to [owner.loc]" : ""]！"))
 		return FALSE
 
 	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(try_remove_taser))
@@ -186,11 +186,11 @@
 			), forced = "hulk")
 		// NOVA EDIT ADDITION START - addition of ability to remove taser electrode
 		if(HAS_TRAIT(owner, TRAIT_BATON_RESISTANCE)) // If you have baton resistance while being tased, significantly decreases the stamina damage.
-			to_chat(owner, span_notice("You feel a slight shock, and attempt to shrug it off."))
+			to_chat(owner, span_notice("你感到一阵轻微的震动，并试图将其摆脱。"))
 			stamina_per_second /= 4																 
 			owner.remove_movespeed_modifier(/datum/movespeed_modifier/being_tased)										 
 		if(HAS_TRAIT(owner, TRAIT_SHOCKIMMUNE)) // genetics mutation insulated protects from taser shock, as well as voltaic heart				 
-			to_chat(owner, span_notice("The electrode hits you, but it only tickles."))									 
+			to_chat(owner, span_notice("电极击中了您，但只是让您感到发痒。"))									 
 			stamina_per_second = 0																 
 			owner.remove_movespeed_modifier(/datum/movespeed_modifier/being_tased)
 		// NOVA EDIT ADDITION END
@@ -314,8 +314,8 @@
 	if(QDELING(src))
 		return
 	owner.visible_message(
-		span_warning("[capitalize(electrode_name)] stop shocking [owner][isfloorturf(owner.loc) ? ", falling to [owner.loc]" : ""]."),
-		span_notice("[capitalize(electrode_name)] stop shocking you[isfloorturf(owner.loc) ? ", falling to [owner.loc]" : ""]."),
+		span_warning("[capitalize(electrode_name)] 停止电击 [owner][isfloorturf(owner.loc) ? ", falling to [owner.loc]" : ""]。"),
+		span_notice("[capitalize(electrode_name)] 停止电击你[isfloorturf(owner.loc) ? ", falling to [owner.loc]" : ""]。"),
 	)
 	qdel(src)
 
@@ -334,15 +334,15 @@
 	owner.shake_up_animation()
 	playsound(owner, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	remover.visible_message(
-		span_warning("[owner] tries to remove [electrode_name][remover == owner ? "" : " from [owner]"]!"),
-		span_notice("You try to remove [electrode_name][remover == owner ? "" : " from [owner]"]!"),
+		span_warning("[owner] 试图移除 [electrode_name][remover == owner ? "" : " from [owner]"]！"),
+		span_notice("你试图移除 [electrode_name][remover == owner ? "" : " from [owner]"]！"),
 	)
 	// If embedding was less... difficult to work with, I would make tasers rely on an embedded object to handle this
 	if(!do_after(remover, 2 SECONDS, owner, extra_checks = CALLBACK(src, PROC_REF(try_remove_taser_checks)), interaction_key = id)) // NOVA EDIT CHANGE - Original: if(!do_after(remover, 5 SECONDS, owner, extra_checks = CALLBACK(src, PROC_REF(try_remove_taser_checks)), interaction_key = id))
 		return
 	remover.visible_message(
-		span_warning("[owner] removes [electrode_name] from [remover == owner ? "[owner.p_their()]" : "[owner]'s"] body!"),
-		span_notice("You remove [electrode_name][remover == owner ? "" : " from [owner]'s body"]!"),
+		span_warning("[owner] 从 [electrode_name] 身体上移除了 [remover == owner ? "[owner.p_their()]" : "[owner]'s"]！"),
+		span_notice("你移除了 [electrode_name][remover == owner ? "" : " from [owner]'s body"]！"),
 	)
 	end_tase()
 
@@ -368,8 +368,8 @@
 			if(disruptor.body_position == LYING_DOWN)
 				return
 	disruptor.visible_message(
-		span_warning("[disruptor] gets tangled in [electrode_name]!"),
-		span_warning("You get tangled in [electrode_name]!"),
+		span_warning("[disruptor]被[electrode_name]缠住了！"),
+		span_warning("你被[electrode_name]缠住了！"),
 	)
 	if(!disruptor.check_stun_immunity(CANSTUN|CANKNOCKDOWN))
 		disruptor.apply_damage(90, STAMINA)
@@ -379,8 +379,8 @@
 
 /// Screen alert for being tased, clicking does a resist
 /atom/movable/screen/alert/tazed
-	name = "Tased!"
-	desc = "You're being tased! You can click this or resist to attempt to stop it, assuming you've not already collapsed."
+	name = "被电击！"
+	desc = "你正被电击！你可以点击此提示或尝试抵抗来试图停止它，前提是你尚未倒下。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "stun"
 	clickable_glow = TRUE
@@ -393,11 +393,11 @@
 	clicker.resist()
 
 /obj/effect/ebeam/electrodes_nozap
-	name = "electrodes"
+	name = "电极"
 	alpha = 192
 
 /obj/effect/ebeam/reacting/electrodes
-	name = "electrodes"
+	name = "电极"
 	light_system = OVERLAY_LIGHT
 	light_on = TRUE
 	light_color = COLOR_YELLOW

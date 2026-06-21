@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/foilhat
-	name = "tinfoil hat"
-	desc = "Thought control rays, psychotronic scanning. Don't mind that, I'm protected cause I made this hat."
+	name = "锡纸帽"
+	desc = "脑控电波，wifi传染。别担心,因为我戴了这顶帽子所以有了防护。"
 	icon_state = "foilhat"
 	inhand_icon_state = null
 	armor_type = /datum/armor/costume_foilhat
@@ -42,14 +42,14 @@
 	RegisterSignal(user, COMSIG_HUMAN_SUICIDE_ACT, PROC_REF(call_suicide))
 
 	user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC)
-	to_chat(user, span_warning("As you don the foiled hat, an entire world of conspiracy theories and seemingly insane ideas suddenly rush into your mind. What you once thought unbelievable suddenly seems.. undeniable. Everything is connected and nothing happens just by accident. You know too much and now they're out to get you. "))
+	to_chat(user, span_warning("当你戴上这顶锡箔帽时，一个充斥着阴谋论和看似疯狂想法的世界突然涌入你的脑海。你曾经认为不可信的事情突然变得……无可辩驳。万物皆有联系，没有什么是偶然发生的。你知道得太多了，现在他们要来抓你了。"))
 
 /obj/item/clothing/head/costume/foilhat/mouse_drop_dragged(atom/over_object, mob/user)
 	//God Im sorry
 	if(!warped && iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(src == C.head)
-			to_chat(C, span_userdanger("Why would you want to take this off? Do you want them to get into your mind?!"))
+			to_chat(C, span_userdanger("你为什么要摘掉它？你想让他们侵入你的思想吗？！"))
 			return
 	return ..()
 
@@ -61,11 +61,11 @@
 
 /// When the foilhat is drained an anti-magic charge.
 /obj/item/clothing/head/costume/foilhat/proc/drain_antimagic(mob/user)
-	to_chat(user, span_warning("[src] crumples slightly. Something is trying to get inside your mind!"))
+	to_chat(user, span_warning("[src]微微皱缩。有什么东西正试图侵入你的思想！"))
 
 /obj/item/clothing/head/costume/foilhat/proc/warp_up()
-	name = "scorched tinfoil hat"
-	desc = "A badly warped up hat. Quite unlikely this will still work against any of the fictional or real dangers it used to."
+	name = "烧焦的锡纸帽"
+	desc = "一顶严重扭曲变形的帽子。它很可能已经无法再抵御任何它曾经防范过的虚构或真实的危险了。"
 	warped = TRUE
 	clothing_flags &= ~ANTI_TINFOIL_MANEUVER
 	if(!isliving(loc) || !paranoia)
@@ -76,13 +76,13 @@
 		return
 	QDEL_NULL(paranoia)
 	if(target.stat < UNCONSCIOUS)
-		to_chat(target, span_warning("Your zealous conspirationism rapidly dissipates as the donned hat warps up into a ruined mess. All those theories starting to sound like nothing but a ridicolous fanfare."))
+		to_chat(target, span_warning("当你戴着的帽子扭曲成一团糟时，你狂热的阴谋论思想迅速消散。所有那些理论开始听起来不过是一场可笑的喧嚣。"))
 
 /obj/item/clothing/head/costume/foilhat/attack_hand(mob/user, list/modifiers)
 	if(!warped && iscarbon(user))
 		var/mob/living/carbon/wearer = user
 		if(src == wearer.head)
-			to_chat(user, span_userdanger("Why would you want to take this off? Do you want them to get into your mind?!"))
+			to_chat(user, span_userdanger("你为什么要摘掉它？你想让他们侵入你的思想吗？！"))
 			return
 	return ..()
 

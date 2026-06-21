@@ -35,7 +35,7 @@
 	SSshuttle.registerTradeBlockade(src)
 	AddComponent(/datum/component/gps, "Nautical Signal")
 	active = TRUE
-	to_chat(user,span_notice("You toggle [src] [active ? "on":"off"]."))
+	to_chat(user,span_notice("你将[src] [active ? "on":"off"]了。"))
 	to_chat(user,span_warning("The scrambling signal can now be tracked by GPS."))
 	START_PROCESSING(SSobj,src)
 
@@ -43,7 +43,7 @@
 	if(active)
 		dump_loot(user)
 		return
-	var/scramble_response = tgui_alert(user, "Turning the scrambler on will make the shuttle trackable by GPS. Are you sure you want to do it?", "Scrambler", list("Yes", "Cancel"))
+	var/scramble_response = tgui_alert(user, "开启干扰器会使穿梭机可被GPS追踪。你确定要这样做吗？", "干扰器", list("Yes", "Cancel"))
 	if(scramble_response != "Yes")
 		return
 	if(active || !user.can_perform_action(src))
@@ -72,7 +72,7 @@
 
 /// Alerts the crew about the siphon
 /obj/machinery/shuttle_scrambler/proc/send_notification()
-	priority_announce("Data theft signal detected; source registered on local GPS units.")
+	priority_announce("检测到数据窃取信号；信号源已注册到本地GPS设备。")
 
 /// Switches off the siphon
 /obj/machinery/shuttle_scrambler/proc/toggle_off(mob/user)
@@ -185,7 +185,7 @@
 	. = ..()
 	if (istype(I))
 		I.set_buffer(src)
-		balloon_alert(user, "saved to multitool buffer")
+		balloon_alert(user, "已保存到多功能工具缓冲区")
 		return TRUE
 
 /obj/machinery/piratepad/screwdriver_act(mob/living/user, obj/item/tool)

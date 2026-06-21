@@ -30,7 +30,7 @@
 		return FALSE
 	if(DOING_INTERACTION(owner, DOAFTER_SOURCE_SPIDER))
 		if (feedback)
-			owner.balloon_alert(owner, "busy!")
+			owner.balloon_alert(owner, "正忙！")
 		return FALSE
 	return TRUE
 
@@ -39,7 +39,7 @@
 	if(!.)
 		return
 
-	on_who.balloon_alert(on_who, "prepared to wrap")
+	on_who.balloon_alert(on_who, "准备包裹")
 	button_icon_state = "wrap_1"
 	build_all_button_icons()
 
@@ -49,13 +49,13 @@
 		return
 
 	if (refund_cooldown)
-		on_who.balloon_alert(on_who, "wrap cancelled")
+		on_who.balloon_alert(on_who, "包裹已取消")
 	button_icon_state = "wrap_0"
 	build_all_button_icons()
 
 /datum/action/cooldown/mob_cooldown/wrap/Activate(atom/to_wrap)
 	if(!owner.Adjacent(to_wrap))
-		owner.balloon_alert(owner, "must be closer!")
+		owner.balloon_alert(owner, "必须更靠近！")
 		return FALSE
 
 	if(!ismovable(to_wrap) || to_wrap == owner)
@@ -63,13 +63,13 @@
 	if(isliving(to_wrap))
 		var/mob/living/living_target = to_wrap
 		if(living_target.mob_biotypes & MOB_SPECIAL)
-			owner.balloon_alert(owner, "can't wrap, too strong!")
+			owner.balloon_alert(owner, "无法包裹，太强了！")
 			return FALSE
 		if(living_target.mob_biotypes & MOB_SPIRIT)
-			owner.balloon_alert(owner, "can't wrap ghosts!")
+			owner.balloon_alert(owner, "无法包裹幽灵！")
 			return FALSE
 		if(isspider(living_target))
-			owner.balloon_alert(owner, "can't wrap spiders!")
+			owner.balloon_alert(owner, "无法包裹蜘蛛！")
 			return FALSE
 	var/atom/movable/target_movable = to_wrap
 	if(target_movable.anchored)
@@ -89,7 +89,7 @@
 	if(do_after(owner, wrap_time, target = to_wrap, interaction_key = DOAFTER_SOURCE_SPIDER))
 		wrap_target(to_wrap)
 	else
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 
 /datum/action/cooldown/mob_cooldown/wrap/proc/wrap_target(mob/living/to_wrap)
 	var/obj/structure/spider/cocoon/casing = new(to_wrap.loc)

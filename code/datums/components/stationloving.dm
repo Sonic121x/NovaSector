@@ -66,7 +66,7 @@
 
 	var/mob/holder = get(movable_parent, /mob)
 	if(holder)
-		to_chat(holder, span_danger("You can't help but feel that you just lost something back there..."))
+		to_chat(holder, span_danger("你不由得感到自己刚刚在那里失去了什么……"))
 		holder.temporarilyRemoveItemFromInventory(parent, TRUE) // prevents ghost diskie
 
 	movable_parent.forceMove(target_turf)

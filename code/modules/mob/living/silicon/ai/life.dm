@@ -14,7 +14,7 @@
 
 	// Handle power damage (oxy)
 	if (battery <= 0 && lacks_power())
-		to_chat(src, span_warning("Your backup battery's output drops below usable levels. It takes only a moment longer for your systems to fail, corrupted and unusable."))
+		to_chat(src, span_warning("您的备用电池输出已降至可用水平以下。只需片刻，您的系统就会因损坏而失效，无法使用。"))
 		adjust_oxy_loss(200)
 
 	if(aiRestorePowerRoutine)
@@ -83,7 +83,7 @@
 
 
 /mob/living/silicon/ai/proc/start_RestorePowerRoutine()
-	to_chat(src, span_notice("Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection."))
+	to_chat(src, span_notice("备用电池已上线。扫描仪、摄像头和无线电接口离线。开始故障检测。"))
 	end_multicam()
 	sleep(5 SECONDS)
 	var/turf/T = get_turf(src)
@@ -92,16 +92,16 @@
 		if(!isspaceturf(T))
 			ai_restore_power()
 			return
-	to_chat(src, span_notice("Fault confirmed: missing external power. Shutting down main control system to save power."))
+	to_chat(src, span_notice("故障确认：外部电源缺失。正在关闭主控制系统以节省电力。"))
 	sleep(2 SECONDS)
-	to_chat(src, span_notice("Emergency control system online. Verifying connection to power network."))
+	to_chat(src, span_notice("紧急控制系统已上线。正在验证与电力网络的连接。"))
 	sleep(5 SECONDS)
 	T = get_turf(src)
 	if(isspaceturf(T))
-		to_chat(src, span_alert("Unable to verify! No power connection detected!"))
+		to_chat(src, span_alert("无法验证！未检测到电源连接！"))
 		setAiRestorePowerRoutine(POWER_RESTORATION_SEARCH_APC)
 		return
-	to_chat(src, span_notice("Connection verified. Searching for APC in power network."))
+	to_chat(src, span_notice("连接已验证。正在电力网络中搜索APC。"))
 	sleep(5 SECONDS)
 	var/obj/machinery/power/apc/theAPC = null
 
@@ -114,9 +114,9 @@
 		if (!theAPC)
 			switch(PRP)
 				if(1)
-					to_chat(src, span_alert("Unable to locate APC!"))
+					to_chat(src, span_alert("无法定位APC！"))
 				else
-					to_chat(src, span_alert("Lost connection with the APC!"))
+					to_chat(src, span_alert("与APC的连接已断开！"))
 			setAiRestorePowerRoutine(POWER_RESTORATION_SEARCH_APC)
 			return
 		if(AIarea.power_equip)
@@ -125,17 +125,17 @@
 				return
 		switch(PRP)
 			if (1)
-				to_chat(src, span_notice("APC located. Optimizing route to APC to avoid needless power waste."))
+				to_chat(src, span_notice("APC已定位。正在优化通往APC的路线以避免不必要的电力浪费。"))
 			if (2)
-				to_chat(src, span_notice("Best route identified. Hacking offline APC power port."))
+				to_chat(src, span_notice("最佳路线已确定。正在入侵离线APC的电源端口。"))
 			if (3)
-				to_chat(src, span_notice("Power port upload access confirmed. Loading control program into APC power port software."))
+				to_chat(src, span_notice("电源端口上传访问已确认。正在将控制程序加载到APC电源端口软件中。"))
 			if (4)
-				to_chat(src, span_notice("Transfer complete. Forcing APC to execute program."))
+				to_chat(src, span_notice("传输完成。正在强制APC执行程序。"))
 				sleep(5 SECONDS)
-				to_chat(src, span_notice("Receiving control information from APC."))
+				to_chat(src, span_notice("正在从APC接收控制信息。"))
 				sleep(0.2 SECONDS)
-				to_chat(src, "<A href=byond://?src=[REF(src)];emergencyAPC=[TRUE]>APC ready for connection.</A>")
+				to_chat(src, "<A href=byond://?src=[REF(src)];emergencyAPC=[TRUE]>APC已准备就绪，可进行连接。</A>")
 				apc_override = theAPC
 				apc_override.ui_interact(src)
 				setAiRestorePowerRoutine(POWER_RESTORATION_APC_FOUND)
@@ -145,11 +145,11 @@
 /mob/living/silicon/ai/proc/ai_restore_power()
 	if(aiRestorePowerRoutine)
 		if(aiRestorePowerRoutine == POWER_RESTORATION_APC_FOUND)
-			to_chat(src, span_notice("Alert cancelled. Power has been restored."))
+			to_chat(src, span_notice("警报已取消。电力已恢复。"))
 			if(apc_override)
-				to_chat(src, span_notice("APC backdoor has been closed.")) //Fluff for why we have to hack every time.
+				to_chat(src, span_notice("APC后门已关闭。")) //Fluff for why we have to hack every time.
 		else
-			to_chat(src, span_notice("Alert cancelled. Power has been restored without our assistance."))
+			to_chat(src, span_notice("警报已取消。电力已在无需我们协助的情况下恢复。"))
 		setAiRestorePowerRoutine(POWER_RESTORATION_OFF)
 		remove_status_effect(/datum/status_effect/temporary_blindness)
 		apc_override = null
@@ -160,5 +160,5 @@
 	setAiRestorePowerRoutine(POWER_RESTORATION_START)
 	adjust_temp_blindness(2 SECONDS)
 	update_sight()
-	to_chat(src, span_alert("You've lost power!"))
+	to_chat(src, span_alert("你已失去电力！"))
 	addtimer(CALLBACK(src, PROC_REF(start_RestorePowerRoutine)), 2 SECONDS)

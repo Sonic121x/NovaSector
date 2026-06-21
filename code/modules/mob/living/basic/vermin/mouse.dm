@@ -218,7 +218,7 @@
 	if(prob(90) || health < maxHealth)
 		visible_message(
 			span_notice("[src] nibbles [cheese]."),
-			span_notice("You nibble [cheese][health < maxHealth ? ", restoring your health" : ""].")
+			span_notice("你小口啃食着[cheese][health < maxHealth ? ", restoring your health" : ""]。")
 		)
 		adjust_health(-maxHealth)
 
@@ -253,7 +253,7 @@
 /mob/living/basic/mouse/proc/try_bite_cable(obj/structure/cable/cable)
 	if(cable.avail() && !HAS_TRAIT(src, TRAIT_SHOCKIMMUNE) && prob(cable_zap_prob))
 		visible_message(
-			span_warning("[src] chews through \the [cable]. It's toast!"),
+			span_warning("[src] 咬穿了 \the [cable]。它完蛋了！"),
 			span_userdanger("As you bite deeply into [cable], you suddenly realize this may have been a bad idea."),
 			span_hear("You hear electricity crack."),
 		)
@@ -266,7 +266,7 @@
 
 	else
 		visible_message(
-			span_warning("[src] chews through \the [cable]."),
+			span_warning("[src] 咬穿了 \the [cable]。"),
 			span_notice("You chew through \the [cable]."),
 		)
 
@@ -372,7 +372,7 @@
 /obj/item/food/deadmouse/proc/use_lazarus(datum/source, obj/item/lazarus_injector/injector, mob/user)
 	SIGNAL_HANDLER
 	if(injector.revive_type != SENTIENCE_ORGANIC)
-		balloon_alert(user, "invalid creature!")
+		balloon_alert(user, "无效生物！")
 		return
 	var/mob/living/basic/mouse/revived_critter = new critter_type (drop_location(), FALSE, body_color)
 	revived_critter.name = name
@@ -385,12 +385,12 @@
 	var/mob/living/living_user = user
 	if(istype(living_user) && attacking_item.get_sharpness() && living_user.combat_mode)
 		if(!isturf(loc))
-			balloon_alert(user, "can't butcher here!")
+			balloon_alert(user, "无法在此处屠宰！")
 			return
 
-		balloon_alert(user, "butchering...")
+		balloon_alert(user, "正在屠宰...")
 		if(!do_after(user, 0.75 SECONDS, src))
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, "被打断了！")
 			return
 
 		loc.balloon_alert(user, "butchered")

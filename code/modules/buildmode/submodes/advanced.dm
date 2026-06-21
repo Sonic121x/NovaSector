@@ -13,16 +13,16 @@
 	)
 
 /datum/buildmode_mode/advanced/change_settings(client/c)
-	var/target_path = input(c, "Enter typepath:", "Typepath", "/obj/structure/closet")
+	var/target_path = input(c, "输入类型路径：", "类型路径", "/obj/structure/closet")
 	objholder = text2path(target_path)
 	if(!ispath(objholder))
 		objholder = pick_closest_path(target_path)
 		if(!objholder)
-			tgui_alert(usr,"No path was selected")
+			tgui_alert(usr,"未选择路径")
 			return
 		else if(ispath(objholder, /area))
 			objholder = null
-			tgui_alert(usr,"That path is not allowed.")
+			tgui_alert(usr,"该路径不被允许。")
 			return
 	BM.preview_selected_item(objholder)
 
@@ -35,10 +35,10 @@
 	if(left_click && alt_click)
 		if (istype(object, /turf) || isobj(object) || istype(object, /mob))
 			objholder = object.type
-			to_chat(c, span_notice("[initial(object.name)] ([object.type]) selected."))
+			to_chat(c, span_notice("[initial(object.name)] ([object.type]) 已选择。"))
 			BM.preview_selected_item(objholder)
 		else
-			to_chat(c, span_notice("[initial(object.name)] is not a turf, object, or mob! Please select again."))
+			to_chat(c, span_notice("[initial(object.name)] 不是瓷砖、物体或生物！请重新选择。"))
 	else if(left_click)
 		if(ispath(objholder,/turf))
 			var/turf/T = get_turf(object)
@@ -54,7 +54,7 @@
 			A.setDir(BM.build_dir)
 			log_admin("Build Mode: [key_name(c)] modified [A]'s [COORD(A)] dir to [BM.build_dir]")
 		else
-			to_chat(c, span_warning("Select object type first."))
+			to_chat(c, span_warning("请先选择对象类型。"))
 	else if(right_click)
 		if(isobj(object))
 			log_admin("Build Mode: [key_name(c)] deleted [object] at [AREACOORD(object)]")

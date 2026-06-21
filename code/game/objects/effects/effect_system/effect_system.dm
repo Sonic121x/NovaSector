@@ -9,7 +9,7 @@
 #define PER_SYSTEM_PARTICLE_CAP 20
 
 /obj/effect/particle_effect
-	name = "particle effect"
+	name = "粒子效果"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pass_flags = PASSTABLE | PASSGRILLE
 	anchored = TRUE

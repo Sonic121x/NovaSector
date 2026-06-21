@@ -1,6 +1,6 @@
 ///Oozes are slime-esque creatures, they are highly gluttonous creatures primarily intended for player controll.
 /mob/living/simple_animal/hostile/ooze
-	name = "Ooze"
+	name = "软泥怪"
 	icon = 'icons/mob/vatgrowing.dmi'
 	icon_state = "gelatinous"
 	icon_living = "gelatinous"
@@ -97,7 +97,7 @@
 		return TRUE
 	if(silent || !isitem(eat_target)) //Don't bother reporting it for everything
 		return FALSE
-	to_chat(src, span_warning("[eat_target] cannot be eaten!"))
+	to_chat(src, span_warning("[eat_target] 无法被吞食！"))
 	return FALSE
 
 ///* Gelatinious Ooze code below *\\\\
@@ -105,7 +105,7 @@
 
 ///Its good stats and high mobility makes this a good assasin type creature. It's vulnerabilites against cold, shotguns and
 /mob/living/simple_animal/hostile/ooze/gelatinous
-	name = "Gelatinous Cube"
+	name = "凝胶立方"
 	desc = "A cubic ooze native to Sholus VII.\nSince the advent of space travel this species has established itself in the waste treatment facilities of several space colonies.\nIt is often considered to be the third most infamous invasive species due to its highly aggressive and predatory nature."
 	speed = 1
 	damage_coeff = list(BRUTE = 1, BURN = 0.6, TOX = 0.5, STAMINA = 0, OXY = 1)
@@ -141,8 +141,8 @@
 
 ///This ability lets the gelatinious ooze speed up for a little bit
 /datum/action/cooldown/metabolicboost
-	name = "Metabolic boost"
-	desc = "Gain a temporary speed boost. Costs 10 nutrition and slowly raises your temperature"
+	name = "Metabolic Boost-快速新陈代谢"
+	desc = "获得暂时的加速度提升。消耗 10 个营养值，同时会缓慢提升你的体温。"
 	background_icon_state = "bg_hive"
 	overlay_icon_state = "bg_hive_border"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -176,7 +176,7 @@
 	ooze.add_movespeed_modifier(/datum/movespeed_modifier/metabolicboost)
 	var/timerid = addtimer(CALLBACK(src, PROC_REF(HeatUp)), 1 SECONDS, TIMER_STOPPABLE | TIMER_LOOP) //Heat up every second
 	addtimer(CALLBACK(src, PROC_REF(FinishSpeedup), timerid), 6 SECONDS)
-	to_chat(ooze, span_notice("You start feel a lot quicker."))
+	to_chat(ooze, span_notice("你开始感觉快多了。"))
 	active = TRUE
 	ooze.adjust_ooze_nutrition(-10)
 
@@ -189,7 +189,7 @@
 /datum/action/cooldown/metabolicboost/proc/FinishSpeedup(timerid)
 	var/mob/living/simple_animal/hostile/ooze/ooze = owner
 	ooze.remove_movespeed_modifier(/datum/movespeed_modifier/metabolicboost)
-	to_chat(ooze, span_notice("You start slowing down again."))
+	to_chat(ooze, span_notice("你开始再次减速。"))
 	deltimer(timerid)
 	active = FALSE
 	StartCooldown()
@@ -197,8 +197,8 @@
 
 ///This action lets you consume the mob you're currently pulling. I'M GONNA CONSUUUUUME (this is considered one of the funny memes in the 2019-2020 era)
 /datum/action/consume
-	name = "Consume"
-	desc = "Consume a mob that you are dragging to gain nutrition from them."
+	name = "吞噬"
+	desc = "吞食你正在拖拽的生物以从中获取营养。"
 	background_icon_state = "bg_hive"
 	overlay_icon_state = "bg_hive_border"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -226,15 +226,15 @@
 		stop_consuming()
 		return FALSE
 	if(!isliving(ooze.pulling))
-		to_chat(src, span_warning("You need to be pulling a creature for this to work!"))
+		to_chat(src, span_warning("你需要拖拽一个生物才能使用此能力！"))
 		return FALSE
 	var/mob/living/eat_target = ooze.pulling
-	owner.visible_message(span_warning("[ooze] starts attempting to [devour_verb] [eat_target]!"), span_notice("You start attempting to [devour_verb] [eat_target]."))
+	owner.visible_message(span_warning("[ooze] 开始试图 [devour_verb] [eat_target]！"), span_notice("你开始尝试[devour_verb][eat_target]。"))
 	if(!do_after(ooze, devour_time, eat_target))
 		return FALSE
 
 	if(!(eat_target.mob_biotypes & MOB_ORGANIC) || eat_target.stat == DEAD)
-		to_chat(src, span_warning("This creature isn't to my tastes!"))
+		to_chat(src, span_warning("这个生物不合我的口味！"))
 		return FALSE
 	start_consuming(eat_target)
 
@@ -244,7 +244,7 @@
 	vored_mob.forceMove(owner) ///AAAAAAAAAAAAAAAAAAAAAAHHH!!!
 	RegisterSignal(vored_mob, COMSIG_QDELETING, PROC_REF(stop_consuming))
 	playsound(owner,'sound/items/eatfood.ogg', rand(30,50), TRUE)
-	owner.visible_message(span_warning("[owner] [devour_verb]s [target]!"), span_notice("You [devour_verb] [target]."))
+	owner.visible_message(span_warning("[owner][devour_verb]了[target]！"), span_notice("你[devour_verb]了[target]。"))
 	START_PROCESSING(SSprocessing, src)
 	build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
 
@@ -256,7 +256,7 @@
 		return
 	vored_mob.forceMove(get_turf(owner))
 	playsound(get_turf(owner), 'sound/effects/splat.ogg', 50, TRUE)
-	owner.visible_message(span_warning("[owner] pukes out [vored_mob]!"), span_notice("You puke out [vored_mob]."))
+	owner.visible_message(span_warning("[owner]吐出了[vored_mob]！"), span_notice("你吐出了[vored_mob]。"))
 	UnregisterSignal(vored_mob, COMSIG_QDELETING)
 	vored_mob = null
 	build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
@@ -279,11 +279,11 @@
 
 /datum/action/consume/update_button_name(atom/movable/screen/movable/action_button/button, force)
 	if(vored_mob)
-		name = "Eject Mob"
-		desc = "Eject the mob you're currently consuming."
+		name = "排出生物"
+		desc = "排出你当前正在吞噬的生物。"
 	else
-		name = "Consume"
-		desc = "Consume a mob that you are dragging to gain nutrition from them."
+		name = "吞噬"
+		desc = "吞噬你正在拖拽的生物以从中获取营养。"
 	return ..()
 
 /datum/action/consume/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
@@ -294,7 +294,7 @@
 
 ///Child of the ooze mob which is orientated at being a healer type creature.
 /mob/living/simple_animal/hostile/ooze/grapes
-	name = "Sholean grapes"
+	name = "葡萄黏球"
 	desc = "A botryoidal ooze from Sholus VII.\nXenobiologists consider it to be one of the calmer and more agreeable species on the planet, but so far little is known about its behaviour in the wild.\nIt undulates in a comforting manner."
 	icon_state = "grapes"
 	icon_living = "grapes"
@@ -322,7 +322,7 @@
 
 ///Ability that allows the owner to fire healing globules at mobs, targeting specific limbs.
 /datum/action/cooldown/globules
-	name = "Fire Mending globule"
+	name = "发射修复球"
 	desc = "Fires a mending globule at someone, healing a specific limb of theirs. Costs 5 nutrition."
 	background_icon_state = "bg_hive"
 	overlay_icon_state = "bg_hive_border"
@@ -336,14 +336,14 @@
 	var/mob/living/simple_animal/hostile/ooze/oozy_owner = owner
 	if(istype(oozy_owner))
 		if(oozy_owner.ooze_nutrition < 5)
-			to_chat(oozy_owner, span_warning("You need at least 5 nutrition to launch a mending globule."))
+			to_chat(oozy_owner, span_warning("你需要至少5点营养值才能发射修复球。"))
 			return
 	. = ..()
 	if(!.)
 		return
 
 	oozy_owner.adjust_ooze_nutrition(-5)
-	to_chat(on_who, span_notice("You prepare to launch a mending globule. <B>Left-click to fire at a target!</B>"))
+	to_chat(on_who, span_notice("你准备发射一枚修复球。<B>左键点击以向目标开火！</B>"))
 
 /datum/action/cooldown/globules/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
 	. = ..()
@@ -353,7 +353,7 @@
 	if(refund_cooldown)
 		var/mob/living/simple_animal/hostile/ooze/oozy_owner = owner
 		oozy_owner.adjust_ooze_nutrition(5)
-		to_chat(on_who, span_notice("You stop preparing your mending globules."))
+		to_chat(on_who, span_notice("你停止了修复球的准备。"))
 
 /datum/action/cooldown/globules/InterceptClickOn(mob/living/clicker, params, atom/target)
 	. = ..()
@@ -365,8 +365,8 @@
 	// for passing into aim_projectile, so we'll handle it here instead.
 	// We just need to make sure Pre-activate and Activate return TRUE so we make it this far
 	clicker.visible_message(
-		span_nicegreen("[clicker] launches a mending globule!"),
-		span_notice("You launch a mending globule."),
+		span_nicegreen("[clicker]发射了一枚修复球！"),
+		span_notice("你发射了一枚修复球。"),
 	)
 
 	var/mob/living/simple_animal/hostile/ooze/oozy = clicker
@@ -389,7 +389,7 @@
 
 ///This projectile embeds into mobs and heals them over time.
 /obj/projectile/globule
-	name = "mending globule"
+	name = "修补球"
 	icon_state = "glob_projectile"
 	shrapnel_type = /obj/item/mending_globule
 	embed_type = /datum/embedding/mending_globule
@@ -397,8 +397,8 @@
 
 ///This item is what is embedded into the mob
 /obj/item/mending_globule
-	name = "mending globule"
-	desc = "It somehow heals those who touch it."
+	name = "修补球"
+	desc = "它似乎能治愈那些接触过它的人"
 	icon = 'icons/obj/science/vatgrowing.dmi'
 	icon_state = "globule"
 	var/heals_left = 35
@@ -426,7 +426,7 @@
 	. = ..()
 	for(var/obj/item/mending_globule/existing in target_limb.embedded_objects)
 		if ((existing != parent))
-			target.visible_message(span_warning("[parent] slides right off of [target]'s [target_limb.plaintext_zone], already having a globule attached there!"))
+			target.visible_message(span_warning("[parent]从[target]的[target_limb.plaintext_zone]滑落，那里已经附着了一个修复球！"))
 			qdel(parent)
 			return FALSE
 		else
@@ -444,7 +444,7 @@
 
 ///This action lets you put a mob inside of a cacoon that will inject it with some chemicals.
 /datum/action/cooldown/gel_cocoon
-	name = "Gel Cocoon"
+	name = "凝胶茧"
 	desc = "Puts a mob inside of a cocoon, allowing it to slowly heal. Costs 30 nutrition."
 	background_icon_state = "bg_hive"
 	overlay_icon_state = "bg_hive_border"
@@ -462,9 +462,9 @@
 /datum/action/cooldown/gel_cocoon/proc/gel_cocoon()
 	var/mob/living/simple_animal/hostile/ooze/grapes/ooze = owner
 	if(!iscarbon(ooze.pulling))
-		to_chat(src, span_warning("You need to be pulling an intelligent enough creature to assist it with a cocoon!"))
+		to_chat(src, span_warning("你需要拖拽一个足够智能的生物才能用凝胶茧协助它！"))
 		return FALSE
-	owner.visible_message(span_nicegreen("[ooze] starts attempting to put [target] into a gel cocoon!"), span_notice("You start attempting to put [target] into a gel cocoon."))
+	owner.visible_message(span_nicegreen("[ooze]开始尝试将[target]放入凝胶茧中！"), span_notice("你开始尝试将[target]放入凝胶茧中。"))
 	if(!do_after(ooze, 1.5 SECONDS, target = ooze.pulling))
 		return FALSE
 
@@ -483,11 +483,11 @@
 /datum/action/cooldown/gel_cocoon/proc/put_in_cocoon(mob/living/carbon/target)
 	var/obj/structure/gel_cocoon/cocoon = new /obj/structure/gel_cocoon(get_turf(target))
 	cocoon.insert_target(target)
-	owner.visible_message(span_nicegreen("[owner] has put [target] into a gel cocoon!"), span_notice("You put [target] into a gel cocoon."))
+	owner.visible_message(span_nicegreen("[owner]已将[target]放入凝胶茧中！"), span_notice("你将[target]放进了凝胶茧中。"))
 
 /obj/structure/gel_cocoon
-	name = "gel cocoon"
-	desc = "It looks gross, but helpful."
+	name = "凝胶茧"
+	desc = "它看起来有点恶心，但确实很有用。"
 	icon = 'icons/obj/science/vatgrowing.dmi'
 	icon_state = "gel_cocoon"
 	max_integrity = 50
@@ -500,8 +500,8 @@
 
 /obj/structure/gel_cocoon/container_resist_act(mob/living/user)
 	. = ..()
-	user.visible_message(span_notice("You see [user] breaking out of [src]!"), \
-		span_notice("You start tearing the soft tissue of the gel cocoon"))
+	user.visible_message(span_notice("你看见[user]正从[src]里挣脱出来！"), \
+		span_notice("你开始撕扯凝胶茧的柔软组织"))
 	if(!do_after(user, 1.5 SECONDS, target = src))
 		return FALSE
 	dump_inhabitant()
@@ -517,7 +517,7 @@
 	inhabitant.forceMove(get_turf(src))
 	playsound(get_turf(inhabitant), 'sound/effects/splat.ogg', 50, TRUE)
 	inhabitant.Paralyze(10)
-	inhabitant.visible_message(span_warning("[inhabitant] falls out of [src]!"), span_notice("You fall out of [src]."))
+	inhabitant.visible_message(span_warning("[inhabitant]从[src]里掉了出来！"), span_notice("你从[src]里掉了出来。"))
 	if(destroy_after)
 		qdel(src)
 

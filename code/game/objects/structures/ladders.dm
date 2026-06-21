@@ -1,7 +1,7 @@
 // Basic ladder. By default links to the z-level above/below.
 /obj/structure/ladder
-	name = "ladder"
-	desc = "A sturdy metal ladder."
+	name = "梯子"
+	desc = "一个结实的金属梯子。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder11"
 	base_icon_state = "ladder"
@@ -228,7 +228,7 @@
 
 /obj/structure/ladder/singularity_pull(atom/singularity, current_size)
 	if (!(resistance_flags & INDESTRUCTIBLE))
-		visible_message(span_danger("[src] is torn to pieces by the gravitational pull!"))
+		visible_message(span_danger("[src] 被引力撕成了碎片！"))
 		qdel(src)
 
 /obj/structure/ladder/proc/use(mob/user, going_up = TRUE)
@@ -239,10 +239,10 @@
 		balloon_alert(user, "doesn't lead anywhere!")
 		return
 	if(going_up ? !up : !down)
-		balloon_alert(user, "can't go any further [going_up ? "up" : "down"]")
+		balloon_alert(user, "无法再往[going_up ? "up" : "down"]走了")
 		return
 	if(user.buckled && user.buckled.anchored)
-		balloon_alert(user, "buckled to something anchored!")
+		balloon_alert(user, "被固定在某物上了！")
 		return
 	if(travel_time)
 		INVOKE_ASYNC(src, PROC_REF(start_travelling), user, going_up)
@@ -276,7 +276,7 @@
 /obj/structure/ladder/proc/travel(mob/user, going_up = TRUE, is_ghost = FALSE, grant_exp = FALSE)
 	var/obj/structure/ladder/ladder = going_up ? up : down
 	if(!ladder)
-		balloon_alert(user, "there's nothing that way!")
+		balloon_alert(user, "那边什么都没有！")
 		return
 	var/response = SEND_SIGNAL(user, COMSIG_LADDER_TRAVEL, src, ladder, going_up)
 	if(response & LADDER_TRAVEL_BLOCK)
@@ -303,7 +303,7 @@
 	var/up_down = going_up ? "up" : "down"
 
 	//POV of players around the source
-	visible_message(span_notice("[user] climbs [up_down] [src]."))
+	visible_message(span_notice("[user] 爬上了 [up_down] [src]。"))
 	//POV of players around the destination
 	user.balloon_alert_to_viewers("climbed [up_down]")
 
@@ -430,7 +430,7 @@
 ///Ghosts use the byond default popup menu function on right click, so this is going to work a little differently for them.
 /obj/structure/ladder/proc/ghost_use(mob/user)
 	if (!up && !down)
-		balloon_alert(user, "doesn't lead anywhere!")
+		balloon_alert(user, "哪里都去不了！")
 		return
 	if(!up) //only goes down
 		travel(user, going_up = FALSE, is_ghost = TRUE)
@@ -441,8 +441,8 @@
 
 // Indestructible away mission ladders which link based on a mapped ID and height value rather than X/Y/Z.
 /obj/structure/ladder/unbreakable
-	name = "sturdy ladder"
-	desc = "An extremely sturdy metal ladder."
+	name = "结实的梯子"
+	desc = "一个非常结实的金属梯子。"
 	resistance_flags = INDESTRUCTIBLE
 	var/id
 	var/height = 0  // higher numbers are considered physically higher

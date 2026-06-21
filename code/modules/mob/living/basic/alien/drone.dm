@@ -1,5 +1,5 @@
 /mob/living/basic/alien/drone
-	name = "alien drone"
+	name = "异形工蜂"
 	icon_state = "aliend"
 	icon_living = "aliend"
 	icon_dead = "aliend_dead"

@@ -336,22 +336,22 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/corporate_perks_
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/jim_nortons, 32)
 
 /obj/structure/sign/poster/official/twenty_four_seven
-	name = "24-Seven Supermarkets"
-	desc = "An advertisement for 24-Seven supermarkets, advertising their new 24-Stops as part of their partnership with Nanotrasen."
+	name = "24-Seven超市"
+	desc = "一则24-Seven超市的广告，宣传其与纳米传讯合作推出的新24-Stop便利店。"
 	icon_state = "twenty_four_seven"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/twenty_four_seven, 32)
 
 /obj/structure/sign/poster/official/tactical_game_cards
-	name = "Nanotrasen Tactical Game Cards"
-	desc = "An advertisement for Nanotrasen's TCG cards: BUY MORE CARDS."
+	name = "纳米传讯战术游戏卡牌"
+	desc = "一张为纳米传讯的TCG卡牌做的广告：购买更多卡牌。"
 	icon_state = "tactical_game_cards"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/tactical_game_cards, 32)
 
 /obj/structure/sign/poster/official/midtown_slice
-	name = "Midtown Slice Pizza"
-	desc = "An advertisement for Midtown Slice Pizza, the official pizzeria partner of Nanotrasen. Midtown Slice: like a slice of home, no matter where you are."
+	name = "市中心切片披萨"
+	desc = "一张为市中心切片披萨做的广告，它是纳米传讯的官方披萨店合作伙伴。市中心切片：无论身在何处，都像家的一片。"
 	icon_state = "midtown_slice"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/midtown_slice, 32)
@@ -359,8 +359,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/midtown_slice, 3
 //SafetyMoth Original PR at https://github.com/BeeStation/BeeStation-Hornet/pull/1747 (Also pull/1982)
 //SafetyMoth art credit goes to AspEv
 /obj/structure/sign/poster/official/moth_hardhat
-	name = "Safety Moth - Hardhats"
-	desc = "This informational poster uses Safety Moth™ to tell the viewer to wear hardhats in cautious areas. \"It's like a lamp for your head!\""
+	name = "安全飞蛾 - 安全帽"
+	desc = "这张信息海报使用安全飞蛾™来告诉观众在危险区域要戴安全帽。\"它就像你头上的灯！\""
 	icon_state = "aspev_hardhat"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/moth_hardhat, 32)

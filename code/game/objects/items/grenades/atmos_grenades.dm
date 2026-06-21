@@ -1,6 +1,6 @@
 /obj/item/grenade/gas_crystal
-	desc = "Some kind of crystal, this shouldn't spawn"
-	name = "Gas Crystal"
+	desc = "某种晶体，这不应该生成"
+	name = "气体晶体"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "bluefrag"
 	inhand_icon_state = "flashbang"
@@ -11,7 +11,7 @@
 	if(user)
 		add_fingerprint(user)
 		if(msg)
-			to_chat(user, span_warning("You crush the [src]! [capitalize(DisplayTimeText(det_time))]!"))
+			to_chat(user, span_warning("你捏碎了[src]！[capitalize(DisplayTimeText(det_time))]！"))
 	if(shrapnel_type && shrapnel_radius)
 		shrapnel_initialized = TRUE
 		AddComponent(/datum/component/pellet_cloud, projectile_type = shrapnel_type, magnitude = shrapnel_radius)
@@ -24,8 +24,8 @@
 	addtimer(CALLBACK(src, PROC_REF(detonate)), isnull(delayoverride)? det_time : delayoverride)
 
 /obj/item/grenade/gas_crystal/healium_crystal
-	name = "Healium crystal"
-	desc = "A crystal made from the Healium gas, it's cold to the touch."
+	name = "希利姆晶体"
+	desc = "由希利姆气体形成的晶体，触感冰凉。"
 	icon_state = "healium_crystal"
 	///Range of the grenade that will cool down and affect mobs
 	var/fix_range = 7
@@ -47,8 +47,8 @@
 	qdel(src)
 
 /obj/item/grenade/gas_crystal/proto_nitrate_crystal
-	name = "Proto Nitrate crystal"
-	desc = "A crystal made from the Proto Nitrate gas, you can see the liquid gases inside."
+	name = "原硝酸盐晶体"
+	desc = "由原硝酸盐气体形成的晶体，你能看到内部液态的气体。"
 	icon_state = "proto_nitrate_crystal"
 	///Range of the grenade air refilling
 	var/refill_range = 5
@@ -73,8 +73,8 @@
 	qdel(src)
 
 /obj/item/grenade/gas_crystal/nitrous_oxide_crystal
-	name = "N2O crystal"
-	desc = "A crystal made from the N2O gas, you can see the liquid gases inside."
+	name = "N2O晶体"
+	desc = "由N2O气体形成的晶体，你能看到内部液态的气体。"
 	icon_state = "n2o_crystal"
 	///Range of the grenade air refilling
 	var/fill_range = 1
@@ -97,8 +97,8 @@
 	qdel(src)
 
 /obj/item/grenade/gas_crystal/crystal_foam
-	name = "crystal foam"
-	desc = "A crystal with a foggy inside"
+	name = "晶体泡沫"
+	desc = "内部朦胧的晶体"
 	icon_state = "crystal_foam"
 	var/breach_range = 7
 

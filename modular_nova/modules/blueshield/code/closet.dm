@@ -1,6 +1,6 @@
 /obj/item/storage/bag/garment/blueshield
-	name = "blueshield's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the blueshield."
+	name = "蓝盾的衣物袋"
+	desc = "用于存放额外衣物和鞋子的袋子。这个属于蓝盾。"
 
 /obj/item/storage/bag/garment/blueshield/PopulateContents()
 	new /obj/item/clothing/suit/hooded/wintercoat/nova/blueshield(src)
@@ -22,7 +22,7 @@
 	new /obj/item/clothing/under/imperialvest/blueshield(src)
 
 /obj/structure/closet/secure_closet/blueshield
-	name = "blueshield's locker"
+	name = "蓝盾的储物柜"
 	icon_state = "bs"
 	icon = 'modular_nova/master_files/icons/obj/closet.dmi'
 	req_access = list(ACCESS_CAPTAIN)

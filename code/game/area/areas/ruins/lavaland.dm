@@ -4,50 +4,50 @@
 /area/ruin/powered/beach
 
 /area/ruin/powered/lavaland_phone_booth
-	name = "\improper Phone Booth"
+	name = "\improper 电话亭"
 
 /area/ruin/powered/clownplanet
-	name = "\improper Clown Biodome"
+	name = "\improper 小丑生物穹顶"
 	ambientsounds = list('sound/music/lobby_music/clown.ogg')
 
 /area/ruin/unpowered/gaia
-	name = "\improper Patch of Eden"
+	name = "\improper 伊甸园一角"
 
 /area/ruin/powered/snow_biodome
 
 /area/ruin/powered/gluttony
 
 /area/ruin/powered/golem_ship
-	name = "\improper Free Golem Ship"
+	name = "\improper 自由魔像飞船"
 
 /area/ruin/powered/greed
 
 /area/ruin/unpowered/hierophant
-	name = "\improper Hierophant's Arena"
+	name = "\improper 圣像竞技场"
 
 /area/ruin/powered/pride
 
 /area/ruin/powered/seedvault
 
 /area/ruin/unpowered/elephant_graveyard
-	name = "\improper Elephant Graveyard"
+	name = "\improper 大象坟场"
 
 /area/ruin/powered/graveyard_shuttle
-	name = "\improper Elephant Graveyard"
+	name = "\improper 大象坟场"
 
 /area/ruin/syndicate_lava_base
-	name = "\improper Secret Base"
+	name = "\improper 秘密基地"
 	ambience_index = AMBIENCE_DANGER
 	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
 
 /area/ruin/unpowered/cultaltar
-	name = "\improper Cult Altar"
+	name = "\improper 邪教祭坛"
 	area_flags = CULT_PERMITTED
 	area_flags_mapping = NONE
 	ambience_index = AMBIENCE_SPOOKY
 
 /area/ruin/thelizardsgas_lavaland
-	name = "\improper The Lizard's Gas"
+	name = "\improper 蜥蜴的加油站"
 	icon_state = "lizardgas"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
@@ -55,45 +55,45 @@
 //Syndicate lavaland base
 
 /area/ruin/syndicate_lava_base/engineering
-	name = "Syndicate Lavaland Engineering"
+	name = "辛迪加熔岩地工程部"
 
 /area/ruin/syndicate_lava_base/medbay
-	name = "Syndicate Lavaland Medbay"
+	name = "辛迪加熔岩地医疗舱"
 
 /area/ruin/syndicate_lava_base/arrivals
-	name = "Syndicate Lavaland Arrivals"
+	name = "辛迪加熔岩地抵达区"
 
 /area/ruin/syndicate_lava_base/bar
-	name = "\improper Syndicate Lavaland Bar"
+	name = "\improper 辛迪加熔岩地酒吧"
 
 /area/ruin/syndicate_lava_base/main
-	name = "\improper Syndicate Lavaland Primary Hallway"
+	name = "\improper 辛迪加熔岩地主走廊"
 
 /area/ruin/syndicate_lava_base/cargo
-	name = "\improper Syndicate Lavaland Cargo Bay"
+	name = "\improper 辛迪加熔岩地货物舱"
 
 /area/ruin/syndicate_lava_base/chemistry
-	name = "Syndicate Lavaland Chemistry"
+	name = "辛迪加熔岩地化学实验室"
 
 /area/ruin/syndicate_lava_base/virology
-	name = "Syndicate Lavaland Virology"
+	name = "辛迪加熔岩地病毒学实验室"
 
 /area/ruin/syndicate_lava_base/testlab
-	name = "\improper Syndicate Lavaland Experimentation Lab"
+	name = "\improper 辛迪加熔岩地实验实验室"
 
 /area/ruin/syndicate_lava_base/dormitories
-	name = "\improper Syndicate Lavaland Dormitories"
+	name = "\improper 辛迪加熔岩地宿舍区"
 
 /area/ruin/syndicate_lava_base/telecomms
-	name = "\improper Syndicate Lavaland Telecommunications"
+	name = "\improper 辛迪加熔岩地电信中心"
 
 /area/ruin/syndicate_lava_base/hydroponics
-	name = "\improper Syndicate Lavaland Hydroponics"
+	name = "\improper 辛迪加熔岩地水培区"
 
 //Xeno Nest
 
 /area/ruin/unpowered/xenonest
-	name = "The Hive"
+	name = "虫巢"
 	always_unpowered = TRUE
 	power_environ = FALSE
 	power_equip = FALSE

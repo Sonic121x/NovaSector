@@ -1,8 +1,8 @@
 #define FOAM_INTERVAL 5 SECONDS
 
 /mob/living/basic/bot/firebot
-	name = "\improper Firebot"
-	desc = "A little fire extinguishing bot. He looks rather anxious."
+	name = "\improper 消防机器人"
+	desc = "一个小小的灭火机器人。他看起来相当焦虑。"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "firebot1"
 	light_color = "#8cffc9"
@@ -90,9 +90,9 @@
 	if(!(bot_access_flags & BOT_COVER_EMAGGED))
 		return
 
-	to_chat(user, span_warning("You enable the very ironically named \"fighting with fire\" mode, and disable the targeting safeties.")) // heheehe. funny
+	to_chat(user, span_warning("你启用了极具讽刺意味的\"以火攻火\"模式，并关闭了目标安全限制。")) // heheehe. funny
 
-	audible_message(span_danger("[src] buzzes oddly!"))
+	audible_message(span_danger("[src] 发出奇怪的嗡嗡声！"))
 	playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 	internal_ext.chem = /datum/reagent/clf3 //Refill the internal extinguisher with liquid fire

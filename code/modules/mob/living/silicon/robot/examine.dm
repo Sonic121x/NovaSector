@@ -12,29 +12,29 @@
 	. += get_status_effect_examinations()
 	if (get_brute_loss())
 		if (get_brute_loss() < maxHealth*0.5)
-			. += span_warning("[p_They()] look[p_s()] slightly dented.")
+			. += span_warning("[p_They()] 看起来[p_s()]略有凹陷。")
 		else
-			. += span_boldwarning("[p_They()] look[p_s()] severely dented!")
+			. += span_boldwarning("[p_They()]看起来[p_s()]严重凹陷了！")
 	if (get_fire_loss() || get_tox_loss())
 		var/overall_fireloss = get_fire_loss() + get_tox_loss()
 		if (overall_fireloss < maxHealth * 0.5)
-			. += span_warning("[p_They()] look[p_s()] slightly charred.")
+			. += span_warning("[p_They()]看起来[p_s()]有点烧焦了。")
 		else
-			. += span_boldwarning("[p_They()] look[p_s()] severely burnt and heat-warped!")
+			. += span_boldwarning("[p_They()]看起来[p_s()]严重烧焦且因高温变形了！")
 	if (health < -maxHealth*0.5)
-		. += span_warning("[p_They()] look[p_s()] barely operational.")
+		. += span_warning("[p_They()]看起来[p_s()]勉强还能运作。")
 	if (fire_stacks < 0)
-		. += span_warning("[p_Theyre()] covered in water.")
+		. += span_warning("[p_Theyre()]浑身是水。")
 	else if (fire_stacks > 0)
-		. += span_warning("[p_Theyre()] coated in something flammable.")
+		. += span_warning("[p_Theyre()]表面覆盖着某种易燃物。")
 
 	if(opened)
-		. += span_warning("[p_Their()] cover is open and the power cell is [cell ? "installed" : "missing"].")
+		. += span_warning("[p_Their()] 外壳已打开，电源电池[cell ? "installed" : "missing"]。")
 	else
 		. += "[p_Their()] cover is closed[locked ? "" : ", and looks unlocked"]."
 
 	if(cell && cell.charge <= 0)
-		. += span_warning("[p_Their()] battery indicator is blinking red!")
+		. += span_warning("[p_Their()]电池指示灯正闪着红光！")
 
 	switch(stat)
 		if(CONSCIOUS)
@@ -43,9 +43,9 @@
 			else if(!client)
 				. += "[p_They()] appear[p_s()] to be in stand-by mode." //afk
 		if(SOFT_CRIT, UNCONSCIOUS, HARD_CRIT)
-			. += span_warning("[p_They()] do[p_es()]n't seem to be responding.")
+			. += span_warning("[p_They()]似乎[p_es()]没有反应。")
 		if(DEAD)
-			. += span_deadsay("[p_They()] look[p_s()] like its system is corrupted and requires a reset.")
+			. += span_deadsay("[p_They()]看起来[p_s()]像是系统损坏，需要重置。")
 	//NOVA EDIT ADDITION BEGIN - CUSTOMIZATION
 	. += get_silicon_flavortext(user)
 	//NOVA EDIT ADDITION END

@@ -1,11 +1,11 @@
 /obj/item/tape/ruins/ancient_milsim
 	icon_state = "tape_blue"
-	name = "Developer Commentary"
-	desc = "Tape recording made, presumably, somewhere around twenty third century - at least, that's what the smudged labels are saying. Why is it smudged? Presumably to be authentic."
+	name = "开发者评论"
+	desc = "据推测制作于二十三世纪左右的磁带录音——至少，模糊不清的标签上是这么说的。为什么模糊？大概是为了显得真实。"
 
 
 /obj/item/tape/ruins/ancient_milsim/devlog_one
-	name = "Developer Commentary, Log 1: Setting"
+	name = "开发者评论，日志1：设定"
 	used_capacity = 160
 
 	storedinfo = list(
@@ -31,7 +31,7 @@
 	)
 
 /obj/item/tape/ruins/ancient_milsim/devlog_two
-	name = "Developer Commentary, Log 2: Mechanics"
+	name = "开发者评论，日志2：机制"
 	used_capacity = 160
 
 	storedinfo = list(
@@ -56,7 +56,7 @@
 	)
 
 /obj/item/tape/ruins/ancient_milsim/devlog_three
-	name = "Developer Commentary, Log 3: SNPCs"
+	name = "开发者评论，日志3：静态非玩家角色"
 	used_capacity = 160
 
 	storedinfo = list(

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/matscanner
 	display_name = "Material Scanner"
-	desc = "Outputs the material composition of the inputted entity."
+	desc = "输出输入实体的材料成分。"
 	category = "Entity"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

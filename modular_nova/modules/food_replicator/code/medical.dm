@@ -1,6 +1,6 @@
 /obj/item/stack/medical/suture/bloody
-	name = "hemostatic suture"
-	desc = "Bloodclotting agent-infused sterile sutures used to seal up cuts and lacerations and reverse critical bleedings."
+	name = "止血缝合线"
+	desc = "注入凝血剂的灭菌缝合线，用于封闭伤口和撕裂伤，并逆转危重出血。"
 	icon = 'modular_nova/modules/food_replicator/icons/medicine.dmi'
 	icon_state = "hemo_suture"
 	heal_brute = 7
@@ -17,8 +17,8 @@
 		healed_mob.adjust_oxy_loss(-amount_healed)
 
 /obj/item/stack/medical/mesh/bloody
-	name = "hemostatic mesh"
-	desc = "A hemostatic mesh used to dress burns and stimulate hemopoiesis. Due to its blood-related purpose, it is worse at sanitizing infections."
+	name = "止血网"
+	desc = "一种用于包扎烧伤并刺激造血的止血网。由于其与血液相关的用途，它在消毒感染方面效果较差。"
 	icon = 'modular_nova/modules/food_replicator/icons/medicine.dmi'
 	icon_state = "hemo_mesh"
 	heal_burn = 7
@@ -43,8 +43,8 @@
 		healed_mob.adjust_oxy_loss(-amount_healed)
 
 /obj/item/reagent_containers/hypospray/medipen/glucose
-	name = "pressurised glucose medipen"
-	desc = "A medipen for keeping yourself going during prolonged EVA shifts, injects a dose of glucose into your bloodstream. Recommended for use in low-pressure environments."
+	name = "加压葡萄糖医疗笔"
+	desc = "一种用于在长时间的舱外活动轮班期间保持体力的医疗笔，将一剂葡萄糖注入你的血液。建议在低压环境下使用。"
 	icon = 'modular_nova/modules/food_replicator/icons/medicine.dmi'
 	icon_state = "glupen"
 	inhand_icon_state = "stimpen"
@@ -62,7 +62,7 @@
 		to_chat(user,span_notice("You are too busy to use \the [src]!"))
 		return
 
-	to_chat(user,span_notice("You start manually releasing the low-pressure gauge..."))
+	to_chat(user,span_notice("你开始手动释放低压表..."))
 	if(!do_after(user, 10 SECONDS, affected_mob, interaction_key = DOAFTER_SOURCE_SURVIVALPEN))
 		return
 

@@ -1,8 +1,8 @@
 ///objects can only have one particle on them at a time, so we use these abstract effects to hold and display the effects. You know, so multiple particle effects can exist at once.
 ///also because some objects do not display particles due to how their visuals are built
 /obj/effect/abstract/particle_holder
-	name = "particle holder"
-	desc = "How are you reading this? Please make a bug report :)"
+	name = "粒子持有器"
+	desc = "你怎么看到这个的？请提交一个错误报告 :)"
 	appearance_flags = KEEP_APART|KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE|RESET_COLOR //movable appearance_flags plus KEEP_APART and KEEP_TOGETHER
 	vis_flags = VIS_INHERIT_PLANE
 	layer = ABOVE_ALL_MOB_LAYER

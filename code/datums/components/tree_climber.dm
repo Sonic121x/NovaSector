@@ -33,7 +33,7 @@
 		return
 
 	if(!can_climb_tree(target)) //check if another animal is on the tree
-		to_chat(source, span_warning("[target] is blocked!"))
+		to_chat(source, span_warning("[target] 被挡住了！"))
 		return COMPONENT_HOSTILE_NO_ATTACK
 
 	handle_climb_tree(source, target)

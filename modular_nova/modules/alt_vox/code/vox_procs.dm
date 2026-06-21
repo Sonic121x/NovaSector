@@ -29,12 +29,12 @@
 
 	if(incapacitated)
 		return
-	var/selection = tgui_input_list(src, "Please select a new VOX voice:", "VOX VOICE", vox_voices)
+	var/selection = tgui_input_list(src, "请选择一个新的VOX语音：", "VOX语音", vox_voices)
 	if(selection == null)
 		return
 	vox_type = selection
 
-	to_chat(src, "Vox voice set to [vox_type]")
+	to_chat(src, "VOX语音已设置为[vox_type]")
 
 
 /mob/living/silicon/ai/verb/display_word_string()

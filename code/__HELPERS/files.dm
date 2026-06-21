@@ -21,7 +21,7 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
 			choices.Insert(1,"/")
 		choices = sort_list(choices) + "Download Folder"
 
-		var/choice = input(src,"Choose a file to access:","Download",null) as null|anything in choices
+		var/choice = input(src,"选择一个要访问的文件：","下载",null) as null|anything in choices
 		switch(choice)
 			if(null)
 				return
@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
 				continue
 			if("Download Folder")
 				var/list/comp_flist = flist(path)
-				var/confirmation = input(src, "Are you SURE you want to download all the files in this folder? (This will open [length(comp_flist)] prompt[length(comp_flist) == 1 ? "" : "s"])", "Confirmation") in list("Yes", "No")
+				var/confirmation = input(src, "你确定要下载此文件夹中的所有文件吗？（这将打开 [length(comp_flist)] 个提示[length(comp_flist) == 1 ? "" : "s"]）", "确认") in list("Yes", "No")
 				if(confirmation != "Yes")
 					continue
 				for(var/file in comp_flist)

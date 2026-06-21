@@ -6,7 +6,7 @@
 
 /obj/item/circuit_component/view_sensor
 	display_name = "View Sensor"
-	desc = "Outputs a list with all movable objects in it's view. Requires a shell. Max range of 5 tiles."
+	desc = "输出一个包含其视野内所有可移动对象的列表。需要外壳。最大范围为5格。"
 	category = "Sensor"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

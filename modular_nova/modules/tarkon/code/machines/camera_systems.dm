@@ -1,13 +1,13 @@
 /////////////////// Xenobio Cam + control ///////////////////
 
 /obj/machinery/computer/camera_advanced/xenobio/tarkon
-	name = "Tarkon Slime management console"
-	desc = "A computer used for remotely handling slimes. Safety First."
+	name = "塔康史莱姆管理控制台"
+	desc = "一台用于远程处理史莱姆的计算机。安全第一。"
 	networks = list("tarkon_xenob")
 	circuit = /obj/item/circuitboard/computer/xenobiology/tarkon
 
 /obj/item/circuitboard/computer/xenobiology/tarkon
-	name = "Tarkon Xenobiology Console"
+	name = "塔康异种生物学控制台"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/computer/camera_advanced/xenobio/tarkon
 
@@ -18,12 +18,12 @@
 /////////////////// Security Cam + control ///////////////////
 
 /obj/machinery/computer/camera_advanced/tarkon_cam
-	name = "Tarkon Camera Control Console"
+	name = "塔康摄像头控制台"
 	networks = list("tarkon")
 	circuit = /obj/item/circuitboard/computer/tarkon_cam
 
 /obj/item/circuitboard/computer/tarkon_cam
-	name = "Tarkon Camera Control Console"
+	name = "塔康摄像头控制台"
 	build_path = /obj/machinery/computer/camera_advanced/tarkon_cam
 
 /obj/machinery/camera/tarkon

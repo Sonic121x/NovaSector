@@ -69,7 +69,7 @@
 
 	var/obj/item/item_parent = parent
 	active = !active
-	item_parent.balloon_alert(user, active ? "callouts enabled" : "callouts disabled")
+	item_parent.balloon_alert(user, active ? "呼叫提示已启用" : "呼叫提示已禁用")
 
 /datum/component/callouts/proc/on_equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
@@ -106,7 +106,7 @@
 		return
 
 	if (!COOLDOWN_FINISHED(src, callout_cooldown))
-		clicked_atom.balloon_alert(user, "callout is on cooldown!")
+		clicked_atom.balloon_alert(user, "喊话正在冷却中！")
 		return COMSIG_MOB_CANCEL_CLICKON
 
 	INVOKE_ASYNC(src, PROC_REF(callout_picker), user, clicked_atom)
@@ -128,7 +128,7 @@
 		user.say((!isnull(radio_prefix) ? radio_prefix : "") + selection::voiceline, forced = src)
 
 /obj/effect/temp_visual/callout
-	name = "callout"
+	name = "呼叫标记"
 	icon = 'icons/effects/callouts.dmi'
 	icon_state = "point"
 	plane = ABOVE_LIGHTING_PLANE
@@ -145,37 +145,37 @@
 	animate(src, pixel_x = (target_loc.x - loc.x) * ICON_SIZE_X + target.pixel_x, pixel_y = (target_loc.y - loc.y) * ICON_SIZE_Y + target.pixel_y, time = 0.2 SECONDS, easing = SINE_EASING|EASE_OUT)
 
 /datum/callout_option
-	var/name = "ERROR"
+	var/name = "错误"
 	var/icon_state = "point"
 	var/voiceline = "Something has gone wrong!"
 
 /datum/callout_option/point
-	name = "Point"
+	name = "指向"
 	icon_state = "point"
 	voiceline = "Here!"
 
 /datum/callout_option/danger
-	name = "Danger"
+	name = "危险"
 	icon_state = "danger"
 	voiceline = "Danger there!"
 
 /datum/callout_option/guard
-	name = "Guard"
+	name = "警戒"
 	icon_state = "guard"
 	voiceline = "Hold this position!"
 
 /datum/callout_option/attack
-	name = "Attack"
+	name = "攻击"
 	icon_state = "attack"
 	voiceline = "Attack there!"
 
 /datum/callout_option/mine
-	name = "Mine"
+	name = "我的"
 	icon_state = "mine"
 	voiceline = "Dig here!"
 
 /datum/callout_option/move
-	name = "Move"
+	name = "移动"
 	icon_state = "move"
 	voiceline = "Reposition there!"
 

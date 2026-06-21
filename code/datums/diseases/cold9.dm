@@ -1,5 +1,5 @@
 /datum/disease/cold9
-	name = "The Cold"
+	name = "感冒"
 	max_stages = 3
 	spread_text = "Skin contact"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
@@ -31,11 +31,11 @@
 			if(SPT_PROB(0.5, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your throat feels sore."))
+				to_chat(affected_mob, span_danger("你的喉咙感到疼痛。"))
 			if(SPT_PROB(2.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel stiff."))
+				to_chat(affected_mob, span_danger("你感觉身体僵硬。"))
 			if(SPT_PROB(0.05, seconds_per_tick))
-				to_chat(affected_mob, span_notice("You feel better."))
+				to_chat(affected_mob, span_notice("你感觉好些了。"))
 				cure()
 				return FALSE
 		if(3)
@@ -45,6 +45,6 @@
 			if(SPT_PROB(0.5, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your throat feels sore."))
+				to_chat(affected_mob, span_danger("你的喉咙感到疼痛。"))
 			if(SPT_PROB(5, seconds_per_tick))
 				to_chat(affected_mob, span_danger("You feel stiff."))

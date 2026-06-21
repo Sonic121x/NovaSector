@@ -19,7 +19,7 @@
  * Clipboard
  */
 /obj/item/clipboard
-	name = "clipboard"
+	name = "文件板"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "clipboard"
 	inhand_icon_state = "clipboard"
@@ -45,7 +45,7 @@
 	var/obj/item/paper/top_paper
 
 /obj/item/clipboard/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins putting [user.p_their()] head into the clip of \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始把 [user.p_their()] 头塞进 \the [src] 的夹子里！看起来 [user.p_theyre()] 想自杀！"))
 	return BRUTELOSS //The clipboard's clip is very strong. Industrial duty. Can kill a man easily.
 
 /obj/item/clipboard/Initialize(mapload)
@@ -62,9 +62,9 @@
 /obj/item/clipboard/examine()
 	. = ..()
 	if(!integrated_pen && pen)
-		. += span_notice("Right-click to remove [pen].")
+		. += span_notice("右键点击取下[pen]。")
 	else if(top_paper)
-		. += span_notice("Right-click to remove [top_paper].")
+		. += span_notice("右键点击取下[top_paper]。")
 
 /// Take out the topmost paper
 /obj/item/clipboard/proc/remove_paper(obj/item/paper/paper, mob/user)
@@ -72,13 +72,13 @@
 		return
 	paper.forceMove(user.loc)
 	user.put_in_hands(paper)
-	to_chat(user, span_notice("You remove [paper] from [src]."))
+	to_chat(user, span_notice("你从[src]上取下了[paper]。"))
 
 /obj/item/clipboard/proc/remove_pen(mob/user)
 	var/obj/item/pen/pen = src.pen
 	pen.forceMove(user.loc)
 	user.put_in_hands(pen)
-	to_chat(user, span_notice("You remove [pen] from [src]."))
+	to_chat(user, span_notice("你从[src]上取下了[pen]。"))
 
 /obj/item/clipboard/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -130,13 +130,13 @@
 			UnregisterSignal(top_paper, COMSIG_ATOM_UPDATED_ICON)
 		RegisterSignal(weapon, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_top_paper_change))
 		top_paper = weapon
-		to_chat(user, span_notice("You clip [weapon] onto [src]."))
+		to_chat(user, span_notice("你把[weapon]夹到了[src]上。"))
 	else if(istype(weapon, /obj/item/pen) && !pen)
 		//Add a pen into the clipboard, attack (write) if there is already one
 		if(!usr.transferItemToLoc(weapon, src))
 			return
 		pen = weapon
-		to_chat(usr, span_notice("You slot [weapon] into [src]."))
+		to_chat(usr, span_notice("你把[weapon]插进了[src]。"))
 	else if(top_paper)
 		top_paper.attackby(user.get_active_held_item(), user)
 	update_appearance()
@@ -186,7 +186,7 @@
 				if(!integrated_pen)
 					remove_pen(usr)
 				else
-					to_chat(usr, span_warning("You can't seem to find a way to remove [src]'s [pen]."))
+					to_chat(usr, span_warning("你似乎找不到取下[src]的[pen]的方法。"))
 				. = TRUE
 		// Take paper out
 		if("remove_paper")
@@ -206,7 +206,7 @@
 			var/obj/item/paper/paper = locate(params["ref"]) in src
 			if(istype(paper))
 				top_paper = paper
-				to_chat(usr, span_notice("You move [paper] to the top."))
+				to_chat(usr, span_notice("你将[paper]移到了最上面。"))
 				update_icon()
 				. = TRUE
 		// Rename the paper (it's a verb)

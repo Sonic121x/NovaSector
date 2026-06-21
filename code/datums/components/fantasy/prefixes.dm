@@ -1,5 +1,5 @@
 /datum/fantasy_affix/cosmetic_prefixes
-	name = "purely cosmetic prefix"
+	name = "纯装饰性前缀"
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_GOOD | AFFIX_EVIL
 
@@ -40,7 +40,7 @@
 		return "[pick(badPrefixes)] [newName]"
 
 /datum/fantasy_affix/tactical
-	name = "tactical"
+	name = "战术型"
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_GOOD
 	weight = 1 // Very powerful, no one should have such power
@@ -51,7 +51,7 @@
 	return "tactical [newName]"
 
 /datum/fantasy_affix/pyromantic
-	name = "pyromantic"
+	name = "火焰魔法"
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_GOOD
 
@@ -61,7 +61,7 @@
 	return "pyromantic [newName]"
 
 /datum/fantasy_affix/vampiric
-	name = "vampiric"
+	name = "吸血"
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_GOOD
 	weight = 5
@@ -79,7 +79,7 @@
 	master.RemoveElement(/datum/element/lifesteal, comp.quality)
 
 /datum/fantasy_affix/beautiful
-	name = "beautiful"
+	name = "美丽"
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_GOOD
 
@@ -93,7 +93,7 @@
 	master.RemoveElement(/datum/element/beauty, max(comp.quality, 1) * 250)
 
 /datum/fantasy_affix/ugly
-	name = "ugly"
+	name = "丑陋"
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_EVIL
 
@@ -107,7 +107,7 @@
 	master.RemoveElement(/datum/element/beauty, min(comp.quality, -1) * 250)
 
 /datum/fantasy_affix/venomous
-	name = "<poisonname>-laced (picked from small pool of toxins)"
+	name = "<poisonname>浸渍（从少量毒素池中选取）"
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_GOOD
 
@@ -146,7 +146,7 @@
 	master.RemoveElement(/datum/element/venomous)
 
 /datum/fantasy_affix/soul_stealer
-	name = "soul-stealing"
+	name = "窃魂"
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_GOOD
 
@@ -164,7 +164,7 @@
 
 // On hitting a mob chain lightning will jump to another mob within 2 tiles of the original target
 /datum/fantasy_affix/thunderfury
-	name = "Thunderfury"
+	name = "雷霆之怒"
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_GOOD
 	weight = 3

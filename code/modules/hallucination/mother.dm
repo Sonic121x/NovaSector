@@ -62,7 +62,7 @@
 	qdel(src)
 
 /datum/outfit/yourmother
-	name = "Your Mother"
+	name = "你的母亲"
 
 	uniform = /obj/item/clothing/under/color/jumpskirt/red
 	neck = /obj/item/clothing/neck/beads
@@ -75,8 +75,8 @@
 /obj/effect/client_image_holder/hallucination/your_mother
 	gender = FEMALE
 	image_icon = 'icons/mob/simple/simple_human.dmi'
-	name = "Your mother"
-	desc = "She is not happy."
+	name = "你的母亲"
+	desc = "她很不高兴。"
 	image_state = ""
 
 /obj/effect/client_image_holder/hallucination/your_mother/Initialize(mapload, list/mobs_which_see_us, datum/hallucination/parent)
@@ -93,7 +93,7 @@
 
 	if (istype(hallucinator, /mob/living/basic/pet/dog/corgi/ian))
 		image_icon = getFlatIcon(get_dynamic_human_appearance(/datum/outfit/job/hop))
-		name = "Head of Personnel"
+		name = "人事主管"
 		return ..()
 
 	image_icon = hallucinator.icon

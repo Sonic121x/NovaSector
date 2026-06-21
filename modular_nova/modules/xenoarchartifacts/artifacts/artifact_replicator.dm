@@ -1,6 +1,6 @@
 /obj/machinery/replicator
-	name = "alien machine"
-	desc = "It's some kind of pod with strange wires and gadgets all over it."
+	name = "外星机器"
+	desc = "这是一个某种舱体，上面布满了奇怪的线路和小装置。"
 	icon = 'modular_nova/modules/xenoarchartifacts/icons/artifacts.dmi'
 	icon_state = "replicator"
 	density = TRUE
@@ -91,8 +91,8 @@
 		spawn_progress_time += world.time - last_process_time
 		if(spawn_progress_time > max_spawn_time)
 			visible_message(
-				span_warning("[src] pings!"),
-				blind_message = span_hear("You hear a ping!"),
+				span_warning("[src] 发出哔哔声！"),
+				blind_message = span_hear("你听到一声哔哔声！"),
 			)
 
 			var/obj/source_material = pop(stored_materials)
@@ -100,12 +100,12 @@
 			var/obj/spawned_obj = new spawn_type(get_turf(src))
 			if(source_material)
 				if(length_char(source_material.name) < MAX_MESSAGE_LEN)
-					spawned_obj.name = "[source_material] " +  spawned_obj.name
+					spawned_obj.name = "[source_material]" +  spawned_obj.name
 				if(length_char(source_material.desc) < MAX_MESSAGE_LEN * 2)
 					if(spawned_obj.desc)
 						spawned_obj.desc += "It is made of [source_material]."
 					else
-						spawned_obj.desc = "It is made of [source_material]."
+						spawned_obj.desc = "它由 [source_material] 制成。"
 				source_material.loc = null
 
 			spawn_progress_time = 0
@@ -119,7 +119,7 @@
 			var/sound_made = pick("clicks", "whizzes", "whirrs", "whooshes", "clanks", "clongs", "clonks", "bangs")
 			visible_message(
 				span_warning("[src] [sound_made]"),
-				blind_message = span_hear("Something [sound_made]!"),
+				blind_message = span_hear("有什么东西 [sound_made]！"),
 			)
 
 	last_process_time = world.time
@@ -137,17 +137,17 @@
 /obj/machinery/replicator/attackby(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(attacking_item.item_flags & (ABSTRACT | DROPDEL))
 		user.visible_message(
-			span_notice("[user] tries to insert [attacking_item] into [src], but the opening is too small."),
-			span_notice("[attacking_item] doesn't fit into [src]."),
+			span_notice("[user] 试图将 [attacking_item] 插入 [src]，但开口太小了。"),
+			span_notice("[attacking_item] 无法放入 [src]。"),
 		)
 		return
 	if(!user.transferItemToLoc(attacking_item, src))
-		to_chat(user, span_warning("\The [attacking_item] is stuck to your hand, you cannot put it in the machine!"))
+		to_chat(user, span_warning("\The [attacking_item] 粘在你手上，你无法把它放进机器里！"))
 		return TRUE
 	stored_materials.Add(attacking_item)
 	visible_message(
-		span_notice("[user] inserts [attacking_item] into [src]."),
-		span_notice("You insert [attacking_item] into [src]."),
+		span_notice("[user] 将 [attacking_item] 插入 [src]。"),
+		span_notice("你将 [attacking_item] 插入 [src]。"),
 	)
 
 /obj/machinery/replicator/Topic(href, href_list)
@@ -173,8 +173,8 @@
 					)
 				else
 					visible_message(
-						span_notice("[src]'s front compartment slides shut."),
-						blind_message = span_hear("You hear metal shuffling."),
+						span_notice("[src]的前部隔间滑上了。"),
+						blind_message = span_hear("你听到金属摩擦的声音。"),
 					)
 
 				// Queue next spawn type

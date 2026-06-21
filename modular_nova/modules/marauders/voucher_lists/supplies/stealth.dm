@@ -37,8 +37,8 @@
 	)
 
 /datum/voucher_set/traitor/supplies/stealth/announcer
-	name = "Fake announcement broadcaster"
-	description = "A device which allows you to create and broadcast your own announcement to the sector."
+	name = "虚假公告广播器"
+	description = "一个允许你创建并向星区广播自己通告的设备。"
 	icon = /obj/item/device/traitor_announcer::icon
 	icon_state = /obj/item/device/traitor_announcer::icon_state
 	set_items = list(
@@ -55,7 +55,7 @@
 	)
 
 /datum/voucher_set/traitor/supplies/stealth/jammer
-	name = "radio jammer"
+	name = "无线电干扰器"
 	description = /obj/item/jammer::desc
 	icon = /obj/item/jammer::icon
 	icon_state = /obj/item/jammer::icon_state
@@ -64,7 +64,7 @@
 	)
 
 /datum/voucher_set/traitor/supplies/stealth/forensic_spoofer
-	name = "forensic-scanner spoofer"
+	name = "法医扫描仪欺骗器"
 	description = /obj/item/forensics_spoofer::desc
 	icon = /obj/item/forensics_spoofer::icon
 	icon_state = /obj/item/forensics_spoofer::icon_state
@@ -91,7 +91,7 @@
 	)
 
 /datum/voucher_set/traitor/supplies/stealth/edagger
-	name = "Energy dagger"
+	name = "能量匕首"
 	description = /obj/item/pen/edagger::desc
 	icon = /obj/item/pen/edagger::icon
 	icon_state = /obj/item/pen/edagger::icon_state

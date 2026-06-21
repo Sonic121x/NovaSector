@@ -1,53 +1,53 @@
 #define SPELLBOOK_CATEGORY_MOBILITY "Mobility"
 // Wizard spells that aid mobiilty(or stealth?)
 /datum/spellbook_entry/mindswap
-	name = "Mindswap"
-	desc = "Allows you to switch bodies with a target next to you. You will both fall asleep when this happens, and it will be quite obvious that you are the target's body if someone watches you do it."
+	name = "思想互换"
+	desc = "允许你与邻近的目标交换身体。当这种情况发生时，你们都会入睡，如果有人看着你这么做，很容易看出你是目标的身体。"
 	spell_type = /datum/action/cooldown/spell/pointed/mind_transfer
 	category = SPELLBOOK_CATEGORY_MOBILITY
 
 /datum/spellbook_entry/knock
-	name = "Knock"
-	desc = "Opens nearby doors and closets."
+	name = "Knock-敲击术"
+	desc = "能打开附近的门和储物柜。"
 	spell_type = /datum/action/cooldown/spell/aoe/knock
 	category = SPELLBOOK_CATEGORY_MOBILITY
 	cost = 1
 
 /datum/spellbook_entry/blink
-	name = "Blink"
-	desc = "Randomly teleports you a short distance."
+	name = "Blink-闪烁"
+	desc = "随机将你传送一小段距离。"
 	spell_type = /datum/action/cooldown/spell/teleport/radius_turf/blink
 	category = SPELLBOOK_CATEGORY_MOBILITY
 
 /datum/spellbook_entry/teleport
-	name = "Teleport"
-	desc = "Teleports you to an area of your selection."
+	name = "Teleport-传送"
+	desc = "将你传送至已选定好的区域。"
 	spell_type = /datum/action/cooldown/spell/teleport/area_teleport/wizard
 	category = SPELLBOOK_CATEGORY_MOBILITY
 
 /datum/spellbook_entry/jaunt
-	name = "Ethereal Jaunt"
-	desc = "Turns your form ethereal, temporarily making you invisible and able to pass through walls."
+	name = "Ethereal Jaunt-空灵穿梭"
+	desc = "使你的形体变得虚无缥缈，能暂时隐身并能穿墙。"
 	spell_type = /datum/action/cooldown/spell/jaunt/ethereal_jaunt
 	category = SPELLBOOK_CATEGORY_MOBILITY
 
 /datum/spellbook_entry/swap
-	name = "Swap"
-	desc = "Switch places with any living target within nine tiles. Right click to mark a secondary target. You will always swap to your primary target."
+	name = "Swap-换位术"
+	desc = "在九格范围内与任意活着的目标交换位置。右键点击标记一个次要目标。你将始终与主要目标交换位置。"
 	spell_type = /datum/action/cooldown/spell/pointed/swap
 	category = SPELLBOOK_CATEGORY_MOBILITY
 	cost = 1
 
 /datum/spellbook_entry/item/warpwhistle
-	name = "Warp Whistle"
-	desc = "A strange whistle that will transport you to a distant safe place on the station. There is a window of vulnerability at the beginning of every use."
+	name = "Warp Whistle-奇异口哨"
+	desc = "一种奇怪的哨声，会将你传送到站上一个遥远而安全的地方。每次使用开始时都有一个脆弱窗口。"
 	item_path = /obj/item/warp_whistle
 	category = SPELLBOOK_CATEGORY_MOBILITY
 	cost = 1
 
 /datum/spellbook_entry/item/staffdoor
-	name = "Staff of Door Creation"
-	desc = "A particular staff that can mold solid walls into ornate doors. Useful for getting around in the absence of other transportation. Does not work on glass."
+	name = "造门法杖"
+	desc = "一根可以将坚固的墙壁变成华丽门的特殊法杖。在缺乏其他交通方式时非常有用。对玻璃无效。"
 	item_path = /obj/item/gun/magic/staff/door
 	cost = 1
 	category = SPELLBOOK_CATEGORY_MOBILITY

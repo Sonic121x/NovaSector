@@ -1,5 +1,5 @@
 /obj/machinery/portable_atmospherics/pump
-	name = "portable air pump"
+	name = "便携式气泵"
 	icon_state = "siphon"
 	density = TRUE
 	max_integrity = 250
@@ -172,14 +172,14 @@
 	return ..()
 
 /obj/machinery/portable_atmospherics/pump/lil_pump
-	name = "Lil' Pump"
+	name = "小泵"
 
 /obj/machinery/portable_atmospherics/pump/lil_pump/Initialize(mapload)
 	. = ..()
 	//25% chance to occur
 	if(prob(25))
-		name = "Liler' Pump"
-		desc = "When a Lil' Pump and a portable air pump love each other very much."
+		name = "更小泵"
+		desc = "当小泵和便携便携式气泵相匹配的时候"
 		var/matrix/lil_pump = matrix()
 		lil_pump.Scale(0.8)
 		src.transform = lil_pump

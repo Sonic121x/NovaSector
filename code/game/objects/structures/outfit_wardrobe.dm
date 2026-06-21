@@ -2,8 +2,8 @@
 #define TRAIT_WARDROBE_USED "wardrobe_used"
 
 /obj/structure/outfit_wardrobe
-	name = "outfit wardrobe"
-	desc = "Peek in and select one of several snazzy outfits. Narnia not included."
+	name = "服装衣柜"
+	desc = "往里瞧瞧，挑选一套时髦的服装。纳尼亚不包括在内。"
 	icon = 'icons/obj/storage/closet.dmi'
 	icon_state = "fullcabinet"
 	base_icon_state = "fullcabinet"
@@ -37,7 +37,7 @@
 		return
 
 	if(one_use && HAS_TRAIT_FROM(human_user, TRAIT_WARDROBE_USED, wardrobe_id))
-		to_chat(human_user, span_notice("You already picked an outfit!"))
+		to_chat(human_user, span_notice("你已经挑选过一套服装了！"))
 		return
 
 	var/list/display_classes = list()
@@ -57,7 +57,7 @@
 		display_classes[dressup] = option
 
 	if(!length(display_classes))
-		to_chat(human_user, span_warning("There are no available outfits!"))
+		to_chat(human_user, span_warning("没有可用的服装！"))
 		return
 
 	sort_list(display_classes)

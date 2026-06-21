@@ -4,8 +4,8 @@
 #define BARRAGE_ABILITY_TYPEPATH /datum/action/cooldown/spell/pointed/projectile/cybersun_barrage
 
 /mob/living/basic/cybersun_ai_core
-	name = "\improper Cybersun AI Core"
-	desc = "An evil looking computer."
+	name = "\improper 赛博太阳AI核心"
+	desc = "一台看起来邪恶的计算机。"
 	icon = 'icons/mob/silicon/ai.dmi'
 	icon_state = "ai-core"
 	icon_living = "ai-core"
@@ -129,8 +129,8 @@
 	finish_planning = FALSE
 
 /datum/action/cooldown/spell/pointed/lightning_strike
-	name = "lightning strike"
-	desc = "Electrocutes a target with a big lightning bolt. Has a small delay."
+	name = "闪电打击"
+	desc = "用一道巨大的闪电轰击目标。有短暂延迟。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "lightning"
 	cooldown_time = 4 SECONDS
@@ -149,8 +149,8 @@
 	playsound(owner, 'sound/effects/sparks/sparks1.ogg', vol = 120, vary = TRUE)
 
 /obj/effect/temp_visual/lightning_strike
-	name = "lightning strike"
-	desc = "A lightning bolt is about to hit this location. There's a handy hologram to warn people so they don't stand here."
+	name = "闪电打击"
+	desc = "一道闪电即将击中此处。有一个方便的警告全息图，提醒人们不要站在这里。"
 	icon = 'icons/mob/telegraphing/telegraph_holographic.dmi'
 	icon_state = "target_circle"
 	duration = 1 SECONDS
@@ -175,12 +175,12 @@
 	for(var/mob/living/victim in loc)
 		if (is_type_in_typecache(victim, damage_blacklist_typecache))
 			continue
-		to_chat(victim, span_warning("You are struck by a large bolt of electricity!"))
+		to_chat(victim, span_warning("你被一道巨大的闪电击中了！"))
 		victim.electrocute_act(zap_damage, src, flags = SHOCK_NOGLOVES | SHOCK_NOSTUN)
 
 /obj/effect/temp_visual/lightning_strike_zap
-	name = "lightning bolt"
-	desc = "Lightning bolt! Lightning bolt! Lightning bolt! Lightning bolt! Lightning bolt! Lightning bolt! Lightning bolt! Lightning bolt!"
+	name = "闪电束"
+	desc = "闪电束！闪电束！闪电束！闪电束！闪电束！闪电束！闪电束！闪电束！"
 	icon = 'icons/effects/32x96.dmi'
 	icon_state = "thunderbolt"
 	duration = 0.4 SECONDS
@@ -195,8 +195,8 @@
 	finish_planning = FALSE
 
 /datum/action/cooldown/spell/pointed/projectile/cybersun_barrage
-	name = "plasma beam barrage"
-	desc = "Charges up a cluster of lasers, then sends it towards a foe after a short delay."
+	name = "等离子光束齐射"
+	desc = "蓄能一簇激光，短暂延迟后射向敌人。"
 	button_icon = 'icons/obj/weapons/transforming_energy.dmi'
 	button_icon_state = "e_sword_on_red"
 	cooldown_time = 5.5 SECONDS

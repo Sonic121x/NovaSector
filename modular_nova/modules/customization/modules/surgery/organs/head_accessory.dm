@@ -1,6 +1,6 @@
 /obj/item/organ/head_accessory
-	name = "head accessory"
-	desc = "It goes on the head."
+	name = "头部饰品"
+	desc = "它戴在头上。"
 
 	mutantpart_key = FEATURE_HEAD_ACCESSORY
 

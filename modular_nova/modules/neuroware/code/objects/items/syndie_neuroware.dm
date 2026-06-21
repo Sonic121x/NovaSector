@@ -1,7 +1,7 @@
 // Synthetic humanoid equivalent of the sleepy pen
 /obj/item/disk/neuroware/sleepy
-	name = "suspicious neuroware"
-	desc = "A suspicious looking neuroware chip, it contains unknown programs..."
+	name = "可疑神经软件"
+	desc = "一块看起来可疑的神经软件芯片，内含未知程序……"
 	icon_state = "/obj/item/disk/neuroware/sleepy"
 	post_init_icon_state = "chip_syndie"
 	greyscale_colors = "#474747"

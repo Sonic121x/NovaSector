@@ -159,7 +159,7 @@
 		current_alerts -= remove_alert_from
 
 /atom/movable/screen/alert/aura_healing
-	name = "Aura Healing"
+	name = "光环治疗"
 	icon_state = "template"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	clickable_glow = TRUE
@@ -167,6 +167,6 @@
 
 /atom/movable/screen/alert/aura_healing/update_desc(updates)
 	. = ..()
-	desc = "You are being healed by [master_ref?.resolve()]."
+	desc = "你正在被[master_ref?.resolve()]治疗。"
 
 #undef HEAL_EFFECT_COOLDOWN

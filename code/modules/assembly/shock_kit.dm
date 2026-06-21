@@ -1,6 +1,6 @@
 /obj/item/assembly/shock_kit
-	name = "electrohelmet assembly"
-	desc = "This appears to be made from both an electropack and a helmet."
+	name = "电头盔组件"
+	desc = "这似乎是由电源包和头盔组成的。"
 	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "shock_kit"
 	var/obj/item/clothing/head/helmet/helmet_part = null
@@ -24,7 +24,7 @@
 
 /obj/item/assembly/shock_kit/wrench_act(mob/living/user, obj/item/I)
 	..()
-	to_chat(user, span_notice("You disassemble [src]."))
+	to_chat(user, span_notice("你拆解了[src]。"))
 	if(helmet_part)
 		helmet_part.forceMove(drop_location())
 		helmet_part.master = null

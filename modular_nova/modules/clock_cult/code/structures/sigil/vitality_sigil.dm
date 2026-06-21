@@ -1,6 +1,6 @@
 /obj/structure/destructible/clockwork/sigil/vitality
-	name = "vitality matrix"
-	desc = "A twisting, confusing artifact that drains the unenlightended on contact."
+	name = "活力矩阵"
+	desc = "一件扭曲、令人困惑的器物，接触时会吸取未启蒙者的生命。"
 	clockwork_desc = "A beautiful artifact that will drain the life of heretics placed on top of it."
 	icon_state = "sigilvitality"
 	effect_stand_time = 2.5 SECONDS // You can't permastun someone with this, so you'll need to keep them grabbed + cuffed
@@ -41,7 +41,7 @@
 	affected_mob.Paralyze(1 SECONDS)
 
 	if(!affected_mob.adjust_brute_loss(20, updating_health = TRUE, forced = TRUE))
-		visible_message(span_clockred("[src] fails to siphon [affected_mob]'s spirit!"))
+		visible_message(span_clockred("[src] 未能吸取 [affected_mob] 的灵魂！"))
 		return
 
 	playsound(loc, 'modular_nova/modules/clock_cult/sound/magic/ratvar_attack.ogg', 40)
@@ -49,12 +49,12 @@
 		affected_mob.do_jitter_animation()
 		affected_mob.death()
 		playsound(loc, 'sound/effects/magic/exit_blood.ogg', 60)
-		to_chat(affected_mob, span_clockred("The last of your life is drained away..."))
+		to_chat(affected_mob, span_clockred("你生命的最后一丝被吸干了……"))
 		check_special_role(affected_mob)
 		GLOB.clock_vitality += (affected_mob.client ? 30 : 10) // 100 (for clients) total in the ideal situation, since it'll take 7 pulses to go from full to crit
 		return
 
-	affected_mob.visible_message(span_clockred("[affected_mob] looks weak as the color fades from their body."), span_clockred("You feel your soul faltering..."))
+	affected_mob.visible_message(span_clockred("[affected_mob] 看起来虚弱不堪，身体的颜色正在褪去。"), span_clockred("你感到自己的灵魂正在动摇..."))
 	GLOB.clock_vitality += (affected_mob.client ? 10 : 0) // Monkey or whatever? You get jackshit
 
 

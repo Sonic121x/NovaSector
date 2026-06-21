@@ -1,5 +1,5 @@
 /obj/item/multitool/circuit
-	name = "circuit multitool"
+	name = "电路多功能工具"
 	desc = "A circuit multitool. Used to mark entities which can then be uploaded to components by pressing the upload button on a port. \
 	Acts as a normal multitool otherwise. Use in hand to clear marked entity so that you can mark another entity."
 	icon_state = "multitool_circuit"
@@ -14,7 +14,7 @@
 
 /obj/item/multitool/circuit/examine(mob/user)
 	. = ..()
-	. += span_notice("It has [marked_atom? "a" : "no"] marked entity registered.")
+	. += span_notice("它已注册了[marked_atom? "a" : "no"]个标记实体。")
 
 /obj/item/multitool/circuit/attack_self(mob/user, modifiers)
 	. = ..()
@@ -92,7 +92,7 @@
 	if(chosen == target || (chosen in (carbon_target ? carbon_target.get_visible_items() : target.get_equipped_items(INCLUDE_HELD))))
 		mark_target(chosen)
 	else
-		balloon_alert(user, "cannot mark entity")
+		balloon_alert(user, "无法标记实体")
 
 /obj/item/multitool/circuit/proc/check_menu(mob/user, mob/living/target)
 	return !marked_atom && user.is_holding(src) && user.Adjacent(target)

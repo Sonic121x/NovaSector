@@ -3,7 +3,7 @@
 	name = "girder"
 	base_icon_state = "girder"
 	icon_state = "girder-0"
-	desc = "A large structural assembly made out of metal; It requires a layer of iron before it can be considered a wall."
+	desc = "一种由金属制成的大型结构组件; 再铺一层铁才是墙。"
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 200
@@ -38,20 +38,20 @@
 	. = ..()
 	switch(state)
 		if(GIRDER_REINF)
-			. += span_notice("The support struts are <b>screwed</b> in place.")
+			. += span_notice("支撑杆已用<b>螺丝</b>固定到位。")
 		if(GIRDER_REINF_STRUTS)
-			. += span_notice("The support struts are <i>unscrewed</i> and the inner <b>grille</b> is intact.")
+			. += span_notice("支撑杆的螺丝已<i>拧松</i>，内部的<b>格栅</b>完好无损。")
 		if(GIRDER_NORMAL)
 			if(can_displace)
-				. += span_notice("The bolts are <b>wrenched</b> in place.")
+				. += span_notice("螺栓已用<b>扳手</b>拧紧到位。")
 		if(GIRDER_DISPLACED)
-			. += span_notice("The bolts are <i>loosened</i>, but the <b>screws</b> are holding [src] together.")
+			. += span_notice("螺栓已<i>松动</i>，但<b>螺丝</b>仍将[src]固定在一起。")
 		if(GIRDER_TRAM)
-			. += span_notice("[src] is designed for tram usage. Deconstructed with a screwdriver!")
+			. += span_notice("[src]专为有轨电车设计。用螺丝刀解构！")
 	if (can_weld_apart)
-		. += span_notice("The frame looks weak enough to be <b>welded</b> apart.")
+		. += span_notice("框架看起来足够脆弱，可以用<b>焊接</b>拆开。")
 	else
-		. += span_notice("The frame could be sliced apart with a <b>plasmacutter</b>.")
+		. += span_notice("框架可以用<b>等离子切割器</b>切开。")
 
 /obj/structure/girder/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (user.combat_mode)
@@ -92,7 +92,7 @@
 /obj/structure/girder/wrench_act(mob/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if (!can_displace)
-		balloon_alert(user, "no bolts!")
+		balloon_alert(user, "没有螺栓！")
 		return
 	switch (state)
 		if (GIRDER_NORMAL)
@@ -108,7 +108,7 @@
 	. = ITEM_INTERACT_BLOCKING
 	// Plasmacutters can always slice apart girders.
 	if (!can_weld_apart && !istype(tool, /obj/item/gun/energy/plasmacutter))
-		balloon_alert(user, "can't weld apart!")
+		balloon_alert(user, "无法焊开！")
 		return
 	if (try_construction_step(user, tool, 4 SECONDS, start_alert = "slicing apart..."))
 		deconstruct(disassembled = TRUE)
@@ -130,7 +130,7 @@
 	if (!isnull(req_state) && req_state != state)
 		return FALSE
 	if (req_floor && !isfloorturf(loc))
-		balloon_alert(user, "needs a floor!")
+		balloon_alert(user, "需要地板！")
 		return FALSE
 	return TRUE
 
@@ -166,7 +166,7 @@
 	replace_girder(/obj/structure/girder/cult)
 
 /obj/structure/girder/displaced
-	name = "displaced girder"
+	name = "未固定的结构梁"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "displaced"
 	anchored = FALSE
@@ -178,7 +178,7 @@
 	canSmoothWith = null
 
 /obj/structure/girder/reinforced
-	name = "reinforced girder"
+	name = "加固结构梁"
 	icon = 'icons/obj/smooth_structures/reinforced_girder.dmi'
 	icon_state = "reinforced-0"
 	base_icon_state = "reinforced"
@@ -187,8 +187,8 @@
 	max_integrity = 350
 
 /obj/structure/girder/tram
-	name = "tram girder"
-	desc = "Titanium framework to construct tram walls. Can be plated with <b>titanium glass</b> or other wall materials."
+	name = "电车结构梁"
+	desc = "用于建造有轨电车墙壁的钛合金框架。可以用<b>钛玻璃</b>或其他墙体材料覆板。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "tram"
 	state = GIRDER_TRAM
@@ -199,13 +199,13 @@
 	stack_type = /obj/item/stack/sheet/mineral/titanium
 
 /obj/structure/girder/tram/corner
-	name = "tram frame corner"
+	name = "有轨电车框架转角"
 
 //////////////////////////////////////////// cult girder //////////////////////////////////////////////
 
 /obj/structure/girder/cult
-	name = "runed girder"
-	desc = "Framework made of a strange and shockingly cold metal. It doesn't seem to have any bolts."
+	name = "符文结构梁"
+	desc = "这个框架由某种奇特且及其冰冷的金属构成。上面没有任何螺栓拼接的痕迹。"
 	icon = 'icons/obj/antags/cult/structures.dmi'
 	icon_state= "cultgirder"
 	can_displace = FALSE
@@ -251,8 +251,8 @@
 	return FALSE
 
 /obj/structure/girder/bronze
-	name = "wall gear"
-	desc = "A girder made out of sturdy bronze, made to resemble a gear."
+	name = "构墙齿轮"
+	desc = "用坚固的青铜制成的类似齿轮的结构梁。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "wall_gear"
 	can_displace = FALSE

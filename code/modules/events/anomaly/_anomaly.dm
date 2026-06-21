@@ -1,12 +1,12 @@
 /datum/round_event_control/anomaly
-	name = "Anomaly: Energetic Flux"
+	name = "异常:高能磁波"
 	typepath = /datum/round_event/anomaly
 
 	min_players = 1
 	max_occurrences = 0 //This one probably shouldn't occur! It'd work, but it wouldn't be very fun.
 	weight = 15
 	category = EVENT_CATEGORY_ANOMALIES
-	description = "This anomaly shocks and explodes. This is the base type."
+	description = "这种异常会电击并爆炸。这是基础类型。"
 	admin_setup = list(/datum/event_admin_setup/set_location/anomaly)
 
 /datum/round_event/anomaly
@@ -28,7 +28,7 @@
 /datum/round_event/anomaly/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("Energetic flux wave detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert", ANNOUNCER_ANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Energetic flux wave detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在 [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name] 检测到能量通量波。", "异常警报", ANNOUNCER_ANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Energetic flux wave detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert")
 
 /datum/round_event/anomaly/start()
 	var/turf/anomaly_turf

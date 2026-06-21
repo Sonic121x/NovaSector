@@ -38,7 +38,7 @@
 
 
 /datum/outfit/job/chemist
-	name = "Chemist"
+	name = "化学家"
 	jobtype = /datum/job/chemist
 
 	id_trim = /datum/id_trim/job/chemist

@@ -1,6 +1,6 @@
 /obj/machinery/computer/tram_controls
-	name = "tram controls"
-	desc = "An interface for the tram that lets you tell the tram where to go and hopefully it makes it there. I'm here to describe the controls to you, not to inspire confidence."
+	name = "有轨电车控制台"
+	desc = "一个有轨电车的操作界面，让你可以告诉电车去哪里，并希望它能顺利到达。我的职责是向你描述这些控制装置，而不是给你灌输信心。"
 	icon_state = "tram_controls"
 	base_icon_state = "tram"
 	icon_screen = TRAMSTATION_LINE_1

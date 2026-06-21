@@ -9,8 +9,8 @@
 // Powersink - used to drain station power
 
 /obj/item/powersink
-	name = "power sink"
-	desc = "A power sink which drains energy from electrical systems and converts it to heat. Ensure short workloads and ample time to cool down if used in high energy systems."
+	name = "电力沉载器"
+	desc = "一种能从电力系统汲取能量并将其转化为热量的电力沉载器。若用于高能系统，请确保工作时间短并有充足的冷却时间。"
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "powersink0"
 	inhand_icon_state = "electronic"
@@ -39,7 +39,7 @@
 	if(mode)
 		. += "\The [src] is bolted to the floor."
 	if((in_range(user, src) || isobserver(user)) && internal_heat > max_heat * 0.5)
-		. += span_danger("[src] is warping the air above it. It must be very hot.")
+		. += span_danger("[src]上方的空气正在扭曲。它一定非常烫。")
 
 /obj/item/powersink/set_anchored(anchorvalue)
 	. = ..()
@@ -81,21 +81,21 @@
 		if(isturf(T) && T.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE)
 			attached = locate() in T
 			if(!attached)
-				to_chat(user, span_warning("\The [src] must be placed over an exposed, powered cable node!"))
+				to_chat(user, span_warning("\The [src]必须放置在裸露的、通电的电缆节点上！"))
 			else
 				set_mode(CLAMPED_OFF)
 				user.visible_message( \
 					"[user] attaches \the [src] to the cable.", \
-					span_notice("You bolt \the [src] into the floor and connect it to the cable."),
-					span_hear("You hear some wires being connected to something."))
+					span_notice("你将\the [src]用螺栓固定在地板上，并将其连接到电缆。"),
+					span_hear("你听到一些电线被连接到某物上的声音。"))
 		else
-			to_chat(user, span_warning("\The [src] must be placed over an exposed, powered cable node!"))
+			to_chat(user, span_warning("\The [src]必须放置在裸露的、通电的电缆节点上！"))
 	else
 		set_mode(DISCONNECTED)
 		user.visible_message( \
 			"[user] detaches \the [src] from the cable.", \
-			span_notice("You unbolt \the [src] from the floor and detach it from the cable."),
-			span_hear("You hear some wires being disconnected from something."))
+			span_notice("你从地板上卸下\the [src]的螺栓，并将其与电缆断开连接。"),
+			span_hear("你听到一些电线从某物上断开的声音。"))
 
 /obj/item/powersink/screwdriver_act(mob/living/user, obj/item/tool)
 	user.visible_message( \
@@ -120,8 +120,8 @@
 		if(CLAMPED_OFF)
 			user.visible_message( \
 				"[user] activates \the [src]!", \
-				span_notice("You activate \the [src]."),
-				span_hear("You hear a click."))
+				span_notice("你激活了\the [src]。"),
+				span_hear("你听见一声咔哒声。"))
 			message_admins("Power sink activated by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(src)]")
 			user.log_message("activated a powersink", LOG_GAME)
 			notify_ghosts(
@@ -134,8 +134,8 @@
 		if(OPERATING)
 			user.visible_message( \
 				"[user] deactivates \the [src]!", \
-				span_notice("You deactivate \the [src]."),
-				span_hear("You hear a click."))
+				span_notice("你关闭了\the [src]。"),
+				span_hear("你听见一声咔哒声。"))
 			user.log_message("deactivated the powersink", LOG_GAME)
 			set_mode(CLAMPED_OFF)
 

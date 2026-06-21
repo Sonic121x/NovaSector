@@ -1,7 +1,7 @@
 /datum/surgery_operation/basic/core_removal
-	name = "extract core"
+	name = "提取核心"
 	rnd_name = "Corectomy (Extract Core)" // source: i made it up
-	desc = "Remove the core from a slime."
+	desc = "从史莱姆体内移除核心。"
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_CROWBAR = 1,
@@ -15,7 +15,7 @@
 	return image(/mob/living/basic/slime)
 
 /datum/surgery_operation/basic/core_removal/all_required_strings()
-	return list("operate on a deceased slime") + ..()
+	return list("对已死亡的史莱姆进行手术") + ..()
 
 /datum/surgery_operation/basic/core_removal/state_check(mob/living/patient)
 	return isslime(patient) && patient.stat == DEAD

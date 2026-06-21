@@ -1,7 +1,7 @@
 /datum/disease/anaphylaxis
 	form = "Condition"
-	name = "Anaphylaxis"
-	desc = "Patient is undergoing a life-threatening allergic reaction and will die if not treated."
+	name = "过敏性休克"
+	desc = "患者正经历危及生命的过敏反应，若不治疗将会死亡。"
 	max_stages = 3
 	cure_text = /datum/reagent/medicine/epinephrine::name
 	cures = list(/datum/reagent/medicine/epinephrine)
@@ -40,7 +40,7 @@
 			if(SPT_PROB(2, seconds_per_tick))
 				affected_mob.adjust_dizzy_up_to(5 SECONDS * seconds_per_tick, 1 MINUTES)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your throat itches."))
+				to_chat(affected_mob, span_danger("你的喉咙发痒。"))
 
 		// warning symptoms: violent shakes, dizziness, blurred vision, difficulty breathing
 		if(2)
@@ -58,11 +58,11 @@
 					affected_mob.adjust_stamina_loss(15)
 			if(affected_mob.get_organ_slot(ORGAN_SLOT_EYES) && SPT_PROB(4, seconds_per_tick))
 				affected_mob.adjust_eye_blur(4 SECONDS * seconds_per_tick)
-				to_chat(affected_mob, span_warning("It's getting harder to see clearly."))
+				to_chat(affected_mob, span_warning("视线越来越模糊了。"))
 			if(!HAS_TRAIT(affected_mob, TRAIT_NOBREATH) && SPT_PROB(4, seconds_per_tick))
 				affected_mob.apply_damage(2 * seconds_per_tick, OXY)
 				affected_mob.losebreath += (2 * seconds_per_tick)
-				to_chat(affected_mob, span_warning("It's getting harder to breathe."))
+				to_chat(affected_mob, span_warning("呼吸越来越困难了。"))
 			if(SPT_PROB(2, seconds_per_tick))
 				affected_mob.adjust_drowsiness_up_to(3 SECONDS * seconds_per_tick, 30 SECONDS)
 			if(SPT_PROB(2, seconds_per_tick))
@@ -74,7 +74,7 @@
 			if(SPT_PROB(1, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your throat feels sore."))
+				to_chat(affected_mob, span_danger("你的喉咙感到疼痛。"))
 
 		// "you are too late" symptoms: death.
 		if(3)

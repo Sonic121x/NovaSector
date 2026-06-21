@@ -8,43 +8,43 @@
 	cost = CARGO_CRATE_VALUE * 0.25
 
 /datum/supply_pack/companies/mags_and_ammo/nt/dumdum38
-	name = ".38 DumDum Speedloader Single-Pack"
-	desc = "Contains one speedloader of .38 DumDum ammunition, good for embedding in soft targets."
+	name = ".38达姆弹快速装弹器单包"
+	desc = "包含一个.38达姆弹快速装弹器，适合嵌入软目标。"
 	contains = list(/obj/item/ammo_box/speedloader/c38/dumdum)
 	access = ACCESS_WEAPONS
 	access_view = ACCESS_WEAPONS
 	auto_name = FALSE
 
 /datum/supply_pack/companies/mags_and_ammo/nt/match38
-	name = ".38 Match Grade Speedloader Single-Pack"
-	desc = "Contains one speedloader of match grade .38 ammunition, perfect for showing off trickshots."
+	name = ".38比赛级快速装弹器单包"
+	desc = "包含一个比赛级.38弹药快速装弹器，非常适合展示特技射击。"
 	contains = list(/obj/item/ammo_box/speedloader/c38/match)
 	auto_name = FALSE
 
 /datum/supply_pack/companies/mags_and_ammo/nt/rubber
-	name = ".38 Rubber Speedloader Single-Pack"
-	desc = "Contains one speedloader of bouncy rubber .38 ammunition, for when you want to bounce your shots off anything and everything."
+	name = ".38橡胶弹快速装弹器单包"
+	desc = "包含一个弹跳橡胶.38弹药快速装弹器，适用于你想让子弹弹射到任何东西上的场合。"
 	cost = CARGO_CRATE_VALUE * 0.2
 	auto_name = FALSE
 	contains = list(/obj/item/ammo_box/speedloader/c38/match/bouncy)
 
 /datum/supply_pack/companies/mags_and_ammo/nt/dumdum38br
-	name = ".38 DumDum Magazine Single-Pack"
-	desc = "Contains one magazine of .38 DumDum ammunition, good for embedding in soft targets."
+	name = ".38达姆弹弹匣单包"
+	desc = "包含一个.38达姆弹弹匣，适合嵌入软目标。"
 	access = ACCESS_WEAPONS
 	access_view = ACCESS_WEAPONS
 	auto_name = FALSE
 	contains = list(/obj/item/ammo_box/magazine/m38/dumdum)
 
 /datum/supply_pack/companies/mags_and_ammo/nt/match38br
-	name = ".38 Match Grade Magazine Single-Pack"
-	desc = "Contains one magazine of match grade .38 ammunition, perfect for showing off trickshots."
+	name = ".38比赛级弹匣单包"
+	desc = "包含一个比赛级.38弹药弹匣，非常适合展示特技射击。"
 	auto_name = FALSE
 	contains = list(/obj/item/ammo_box/magazine/m38/match)
 
 /datum/supply_pack/companies/mags_and_ammo/nt/m38rubber
-	name = ".38 Rubber Magazine Single-Pack"
-	desc = "Contains one magazine of bouncy rubber .38 ammunition, for when you want to bounce your shots off anything and everything."
+	name = ".38橡胶弹弹匣单包"
+	desc = "包含一个弹跳橡胶.38弹药弹匣，适用于你想让子弹弹射到任何东西上的场合。"
 	cost = CARGO_CRATE_VALUE * 0.2
 	auto_name = FALSE
 	contains = list(/obj/item/ammo_box/magazine/m38/match/bouncy)
@@ -356,8 +356,8 @@
 
 /datum/supply_pack/companies/mags_and_ammo/blacksteel/quiver
 	contains = list(/obj/item/storage/bag/quiver/full)
-	name = "Quiver"
-	desc = "Holds arrows for your bow. Good, because while pocketing arrows is possible, it surely can't be pleasant. Comes with 10 arrows!"
+	name = "箭袋"
+	desc = "为你的弓存放箭矢。很好，因为虽然把箭揣在口袋里是可能的，但那肯定不舒服。附赠10支箭！"
 	cost = CARGO_CRATE_VALUE * 1.5
 	auto_name = FALSE
 

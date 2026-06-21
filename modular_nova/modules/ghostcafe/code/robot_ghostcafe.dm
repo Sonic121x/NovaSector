@@ -31,13 +31,13 @@
 	return ..()
 
 /datum/ai_laws/roleplay
-	name = "Roleplay"
+	name = "角色扮演"
 	id = "roleplay"
 	zeroth = "Roleplay as you'd like!"
 	inherent = list()
 
 /obj/item/robot_model/roleplay
-	name = "Roleplay"
+	name = "角色扮演"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/extinguisher/mini,

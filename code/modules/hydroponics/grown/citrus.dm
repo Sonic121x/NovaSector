@@ -1,7 +1,7 @@
 // Citrus - base type
 /obj/item/food/grown/citrus
-	name = "citrus"
-	desc = "It's so sour, your face will twist."
+	name = "柑橘"
+	desc = "太酸了，你的脸会酸到扭曲的。"
 	icon_state = "lime"
 	abstract_type = /obj/item/food/grown/citrus
 	foodtypes = FRUIT
@@ -10,8 +10,8 @@
 
 // Lime
 /obj/item/seeds/lime
-	name = "lime seed pack"
-	desc = "These are very sour seeds."
+	name = "青柠种子包"
+	desc = "这些种子非常酸。"
 	icon_state = "seed-lime"
 	species = "lime"
 	plantname = "Lime Tree"
@@ -27,7 +27,7 @@
 
 /obj/item/food/grown/citrus/lime
 	seed = /obj/item/seeds/lime
-	name = "lime"
+	name = "酸橙"
 	desc = "It's so sour, your face will twist."
 	icon_state = "lime"
 
@@ -36,8 +36,8 @@
 
 // Orange
 /obj/item/seeds/orange
-	name = "orange seed pack"
-	desc = "Sour seeds."
+	name = "橙子种子包"
+	desc = "很酸的种子。"
 	icon_state = "seed-orange"
 	species = "orange"
 	plantname = "Orange Tree"
@@ -55,8 +55,8 @@
 
 /obj/item/food/grown/citrus/orange
 	seed = /obj/item/seeds/orange
-	name = "orange"
-	desc = "It's a tangy fruit."
+	name = "橘子"
+	desc = "味道很浓郁的水果。"
 	icon_state = "orange"
 	foodtypes = ORANGES | FRUIT
 	distill_reagent = /datum/reagent/consumable/ethanol/triple_sec
@@ -66,8 +66,8 @@
 
 // Lemon
 /obj/item/seeds/lemon
-	name = "lemon seed pack"
-	desc = "These are sour seeds."
+	name = "柠檬种子包"
+	desc = "这些种子很酸。"
 	icon_state = "seed-lemon"
 	species = "lemon"
 	plantname = "Lemon Tree"
@@ -84,8 +84,8 @@
 
 /obj/item/food/grown/citrus/lemon
 	seed = /obj/item/seeds/lemon
-	name = "lemon"
-	desc = "When life gives you lemons, make lemonade."
+	name = "柠檬"
+	desc = "当生活给了你一堆柠檬，你就可以用它们来榨柠檬汁。"
 	icon_state = "lemon"
 
 /obj/item/food/grown/citrus/lemon/juice_typepath()
@@ -93,7 +93,7 @@
 
 // Combustible lemon
 /obj/item/seeds/firelemon //combustible lemon is too long so firelemon
-	name = "combustible lemon seed pack"
+	name = "可燃柠檬种子包"
 	desc = "When life gives you lemons, don't make lemonade. Make life take the lemons back! Get mad! I don't want your damn lemons!"
 	icon_state = "seed-firelemon"
 	species = "firelemon"
@@ -110,8 +110,8 @@
 
 /obj/item/food/grown/firelemon
 	seed = /obj/item/seeds/firelemon
-	name = "Combustible Lemon"
-	desc = "Made for burning houses down."
+	name = "爆燃柠檬"
+	desc = "专为烧毁房屋而设计的。"
 	icon_state = "firelemon"
 	alt_icon = "firelemon_active"
 	foodtypes = FRUIT
@@ -119,8 +119,8 @@
 
 //3D Orange
 /obj/item/seeds/orange_3d
-	name = "extradimensional orange seed pack"
-	desc = "Polygonal seeds."
+	name = "超维橙子种子包"
+	desc = "多边形形状的种子。"
 	icon_state = "seed-orange"
 	species = "orange"
 	plantname = "Extradimensional Orange Tree"
@@ -138,8 +138,8 @@
 
 /obj/item/food/grown/citrus/orange_3d
 	seed = /obj/item/seeds/orange_3d
-	name = "extradimensional orange"
-	desc = "You can hardly wrap your head around this thing."
+	name = "超维橘子"
+	desc = "你简直无法理解这个东西。"
 	icon_state = "orang"
 	foodtypes = ORANGES
 	alt_icon = "orange"

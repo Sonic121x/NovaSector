@@ -1,6 +1,6 @@
 /// Throws a fireball down at the target
 /datum/smite/fireball
-	name = "Fireball"
+	name = "Fireball-火球"
 
 /datum/smite/fireball/effect(client/user, mob/living/target)
 	. = ..()

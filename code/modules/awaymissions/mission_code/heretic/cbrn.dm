@@ -1,5 +1,5 @@
 /obj/item/clothing/head/utility/radiation/cbrnhood
-	name = "\improper CBRN hood"
+	name = "\improper CBRN 防护头罩"
 	desc = "A hood with radiation protective properties along with acidic and biological protective properties. The label reads, 'Made with thin lead sheets, please do not consume.'"
 	armor_type = /datum/armor/utility_radiation/cbrn
 
@@ -15,7 +15,7 @@
 	wound = 25
 
 /obj/item/clothing/suit/utility/radiation/cbrnsuit
-	name = "\improper CBRN suit"
+	name = "\improper CBRN 防护服"
 	desc = "A hood with radiation protective properties along with acidic and biological protective properties. The label reads, 'Made with thin lead sheets, please do not consume.'"
 	allowed = null
 	slowdown = 0

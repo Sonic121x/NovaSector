@@ -18,7 +18,7 @@
 
 // Demoneye, a drug that makes you temporarily immune to fear and crit, in exchange for damaging all of your organs and making your veins explode
 /datum/reagent/drug/demoneye
-	name = "DemonEye"
+	name = "恶魔之眼"
 	description = "A performance enhancing drug originally developed on mars. \
 		A favorite among gangs and other outlaws on the planet, though overuse can cause terrible addiction and bodily damage."
 	color = "#af00be"
@@ -69,13 +69,13 @@
 
 	if(constant_dose_time < CONSTANT_DOSE_SAFE_LIMIT || !our_guy.get_blood_volume())
 		our_guy.visible_message(
-				span_danger("[our_guy]'s eyes fade from their evil looking red back to normal..."),
-				span_danger("Your vision slowly returns to normal as you lose your unnatural strength...")
+				span_danger("[our_guy] 的眼睛从邪恶的红色褪回正常颜色..."),
+				span_danger("你的视力慢慢恢复正常，同时失去了那股不自然的力量...")
 		)
 	else
 		our_guy.visible_message(
-			span_danger("[our_guy]'s veins violently explode, spraying blood everywhere!"),
-			span_danger("Your veins burst from the sheer stress put on them!")
+			span_danger("[our_guy] 的血管猛烈爆裂，鲜血四处喷溅！"),
+			span_danger("你的血管因承受的巨大压力而爆裂了！")
 		)
 
 		var/obj/item/bodypart/bodypart = pick(our_guy.bodyparts)
@@ -144,7 +144,7 @@
 
 // Mood event used by demoneye, because the normal one I just didn't vibe with
 /datum/mood_event/stimulant_heavy/sundowner
-	description = "I'M FUCKING INVINCIBLE!!!!"
+	description = "我他妈的无敌了！！！！"
 
 #undef CONSTANT_DOSE_SAFE_LIMIT
 #undef METABOLISM_END_LIMB_DAMAGE

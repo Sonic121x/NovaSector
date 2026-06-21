@@ -1,6 +1,6 @@
 /obj/machinery/computer/mechpad
-	name = "orbital mech pad console"
-	desc = "A computer designed to handle the calculations and routing required for sending and receiving mechs from orbit. Requires a link to a nearby Orbital Mech Pad to function."
+	name = "轨道机械发射控制台"
+	desc = "一台设计用于处理从轨道发送和接收机甲所需计算和路径规划的电脑。需要连接到附近的轨道机甲发射台才能运作。"
 	icon_screen = "mechpad"
 	icon_keyboard = "teleport_key"
 	circuit = /obj/item/circuitboard/computer/mechpad
@@ -51,10 +51,10 @@
 	if(user.combat_mode || machine_stat & (NOPOWER|BROKEN) || DOING_INTERACTION_WITH_TARGET(user, src))
 		return ..()
 	var/mech_dir = mecha_attacker.dir
-	balloon_alert(user, "carefully starting launch process...")
+	balloon_alert(user, "正在谨慎启动发射程序...")
 	INVOKE_ASYNC(src, PROC_REF(random_beeps), user, MECH_LAUNCH_TIME, 0.5 SECONDS, 1.5 SECONDS)
 	if(!do_after(user, MECH_LAUNCH_TIME, src, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), mecha_attacker, mech_dir)))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "已中断！")
 		return
 	var/obj/machinery/mechpad/current_pad = mechpads[selected_id]
 	try_launch(user, current_pad)
@@ -93,11 +93,11 @@
 
 	var/obj/machinery/mechpad/buffered_pad = multitool.buffer
 	if(!(mechpads.len < maximum_pads))
-		to_chat(user, span_warning("[src] cannot handle any more connections!"))
+		to_chat(user, span_warning("[src] 无法处理更多连接！"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(buffered_pad == connected_mechpad)
-		to_chat(user, span_warning("[src] cannot connect to its own mechpad!"))
+		to_chat(user, span_warning("[src] 无法连接到它自己的机甲发射台！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!connected_mechpad && buffered_pad == find_pad())
@@ -105,12 +105,12 @@
 			remove_pad(buffered_pad)
 		connect_launchpad(buffered_pad)
 		multitool.set_buffer(null)
-		to_chat(user, span_notice("You connect the console to the pad with data from \the [multitool]'s buffer."))
+		to_chat(user, span_notice("你使用 \the [multitool] 缓冲区中的数据将控制台连接到发射台。"))
 		return ITEM_INTERACT_SUCCESS
 
 	add_pad(buffered_pad)
 	multitool.set_buffer(null)
-	to_chat(user, span_notice("You upload the data from \the [multitool]'s buffer."))
+	to_chat(user, span_notice("你从 \the [multitool] 的缓冲区上传了数据。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/mechpad/proc/add_pad(obj/machinery/mechpad/pad)
@@ -145,28 +145,28 @@
 /obj/machinery/computer/mechpad/proc/can_launch(mob/user, obj/machinery/mechpad/where, silent = FALSE)
 	if(QDELETED(where))
 		if(!silent)
-			to_chat(user, span_warning("No destination!"))
+			to_chat(user, span_warning("没有目的地！"))
 		return FALSE
 	if(!connected_mechpad)
 		if(!silent)
-			to_chat(user, span_warning("[src] has no connected pad!"))
+			to_chat(user, span_warning("[src]没有连接的发射台！"))
 		return FALSE
 	if(connected_mechpad.machine_stat & (BROKEN|NOPOWER) || where.machine_stat & (BROKEN|NOPOWER))
 		if(!silent)
-			to_chat(user, span_warning("Pads are nonfunctional!"))
+			to_chat(user, span_warning("发射台无法运作！"))
 		return FALSE
 	if(connected_mechpad.panel_open || where.panel_open)
 		if(!silent)
-			to_chat(user, span_warning("Pads have open panels!"))
+			to_chat(user, span_warning("发射台的面板是打开的！"))
 		return FALSE
 	var/obj/vehicle/sealed/mecha/mech = locate() in get_turf(connected_mechpad)
 	if(!mech)
 		if(!silent)
-			to_chat(user, span_warning("[src] detects no mecha on the pad!"))
+			to_chat(user, span_warning("[src]检测到发射台上没有机甲！"))
 		return FALSE
 	if(where.mech_only && (locate(/mob/living) in mech.get_all_contents()))
 		if(!silent)
-			to_chat(user, span_warning("The target pad does not allow lifeforms!"))
+			to_chat(user, span_warning("目标发射台不允许生命体通过！"))
 		return FALSE
 	return TRUE
 
@@ -219,7 +219,7 @@
 				return
 			current_pad.display_name = new_name
 		if("remove")
-			if(usr && tgui_alert(usr, "Are you sure?", "Unlink Orbital Pad", list("I'm Sure", "Abort")) == "I'm Sure")
+			if(usr && tgui_alert(usr, "你确定吗？", "解除轨道发射台链接", list("I'm Sure", "Abort")) == "I'm Sure")
 				remove_pad(current_pad)
 				selected_id = null
 		if("launch")

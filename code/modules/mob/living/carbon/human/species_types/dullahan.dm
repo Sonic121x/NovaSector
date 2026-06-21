@@ -216,8 +216,8 @@
 	decay_factor = 0
 
 /obj/item/organ/eyes/dullahan
-	name = "head vision"
-	desc = "An abstraction."
+	name = "头部视觉"
+	desc = "一种抽象概念。"
 	actions_types = list(/datum/action/item_action/organ_action/dullahan)
 	zone = BODY_ZONE_CHEST
 	organ_flags = parent_type::organ_flags | ORGAN_UNREMOVABLE
@@ -225,8 +225,8 @@
 	tint = INFINITY // to switch the vision perspective to the head on species_gain() without issue.
 
 /datum/action/item_action/organ_action/dullahan
-	name = "Toggle Perspective"
-	desc = "Switch between seeing normally from your head, or blindly from your body."
+	name = "切换视角"
+	desc = "可以切换成从头部正常观察的状态，或者从身体部位盲视的状态。"
 
 /datum/action/item_action/organ_action/dullahan/do_effect(trigger_flags)
 	var/obj/item/organ/eyes/dullahan/dullahan_eyes = target
@@ -240,7 +240,7 @@
 
 
 /obj/item/dullahan_relay
-	name = "dullahan relay"
+	name = "无头骑士中继器"
 	/// The mob (a dullahan) that owns this relay.
 	var/mob/living/owner
 
@@ -274,7 +274,7 @@
 	detached_head.voice = headless.voice
 	detached_head.pitch = pitch
 	var/obj/item/organ/brain/brain = locate(/obj/item/organ/brain) in detached_head
-	brain.name = "[headless.name]'s brain"
+	brain.name = "[headless.name]的大脑"
 
 	detached_head.copy_appearance_from(headless, overwrite_eyes = TRUE)
 	detached_head.update_icon_dropped()

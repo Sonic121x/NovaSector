@@ -1,12 +1,12 @@
 
 /obj/item/skillchip/basketweaving
-	name = "Basketsoft 3000 skillchip"
-	desc = "Underwater edition."
+	name = "Basketsoft 3000 技术芯片"
+	desc = "水下版。"
 	skill_name = "Underwater Basketweaving"
 	skill_description = "Master intricate art of using twine to create perfect baskets while submerged."
 	skill_icon = "shopping-basket"
-	activate_message = span_notice("You're one with the twine and the sea.")
-	deactivate_message = span_notice("Higher mysteries of underwater basketweaving leave your mind.")
+	activate_message = span_notice("你与麻线和海洋融为一体。")
+	deactivate_message = span_notice("水下编篮术的更高奥秘离开了你的脑海。")
 
 /obj/item/skillchip/basketweaving/has_mob_incompatibility(mob/living/carbon/target)
 	. = ..()

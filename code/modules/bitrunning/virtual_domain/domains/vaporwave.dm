@@ -1,7 +1,7 @@
 /datum/lazy_template/virtual_domain/vaporwave
-	name = "Cosmic Vestige"
+	name = "宇宙遗痕"
 	cost = BITRUNNER_COST_EXTREME
-	desc = "Suspended in the silent void of space, the Neon Relic is a haunting echo of a retro-futuristic era. Hang out, enjoy the view."
+	desc = "悬浮于寂静的太空虚空中，霓虹遗物是复古未来主义时代令人不安的回响。放松一下，欣赏风景。"
 	difficulty = BITRUNNER_DIFFICULTY_NONE
 	completion_loot = list(/obj/item/stack/spacecash/c500 = 4)
 	key = "vaporwave"

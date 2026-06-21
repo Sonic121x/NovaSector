@@ -1,8 +1,8 @@
 // Sabres, including the cargo variety
 
 /obj/item/storage/belt/sheath/sabre/cargo
-	name = "authentic shamshir leather sheath"
-	desc = "A good-looking sheath that is advertised as being made of real Venusian black leather. It feels rather plastic-like to the touch, and it looks like it's made to fit a British cavalry sabre."
+	name = "正宗舍施尔弯刀皮鞘"
+	desc = "一个外观不错的刀鞘，广告宣称由真正的金星黑皮革制成。摸起来感觉相当像塑料，而且看起来是为英式骑兵军刀设计的。"
 	icon = 'modular_nova/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_nova/master_files/icons/mob/clothing/belt.dmi'
 	stored_blade = /obj/item/melee/sabre/cargo
@@ -13,8 +13,8 @@
 	exposed_wound_bonus = 20 // Original: 25 Both down slightly, to make up for the damage buff, since it'd get a bit wacky ontop of the armor pen.
 
 /obj/item/melee/sabre/cargo
-	name = "authentic shamshir sabre"
-	desc = "An expertly crafted historical human sword once used by the Persians which has recently gained traction due to Venusian historal recreation sports. One small flaw, the Taj-based company who produces these has mistaken them for British cavalry sabres akin to those used by high ranking Nanotrasen officials. Atleast it cuts the same way!"
+	name = "正宗舍施尔弯刀"
+	desc = "一把工艺精湛的历史人类刀剑，曾为波斯人所用，最近因金星历史重演运动而流行起来。有个小瑕疵，生产这些刀的塔吉公司误将它们认作是类似纳米传讯高层官员使用的英式骑兵军刀。至少砍起来效果一样！"
 	icon_state = "sabre"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/melee.dmi'
 	lefthand_file = 'modular_nova/modules/modular_weapons/icons/mob/inhands/weapons/swords_lefthand.dmi'

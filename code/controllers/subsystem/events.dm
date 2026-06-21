@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(events)
-	name = "Events"
+	name = "事件"
 	dependencies = list(
 		/datum/controller/subsystem/processing/station,
 	)

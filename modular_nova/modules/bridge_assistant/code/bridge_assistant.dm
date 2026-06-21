@@ -20,7 +20,7 @@
 
 //outfit datum
 /datum/outfit/job/bridge_assistant
-	name = "Bridge Officer"
+	name = "舰桥军官"
 
 	id = /obj/item/card/id/advanced/silver
 	uniform = /obj/item/clothing/under/rank/civilian/lawyer/greensuit
@@ -46,7 +46,7 @@
 	undersuit.attach_accessory(new /obj/item/clothing/accessory/waistcoat(user))
 
 /datum/outfit/job/bridge_assistant/plasmaman
-	name = "Bridge Officer (Plasmaman)"
+	name = "舰桥军官（等离子人）"
 	uniform = /obj/item/clothing/under/plasmaman
 	gloves = /obj/item/clothing/gloves/color/plasmaman/black
 	head = /obj/item/clothing/head/helmet/space/plasmaman
@@ -62,7 +62,7 @@
 
 //undersuit and skirt
 /obj/item/clothing/under/rank/civilian/lawyer/greensuit
-	name = "green buttondown suit"
+	name = "绿色纽扣西装"
 	worn_icon = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/rank/civilian/lawyer/greensuit"
@@ -75,7 +75,7 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/lawyer/greensuit/skirt
-	name = "green buttondown suitskirt"
+	name = "绿色纽扣西装裙"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/rank/civilian/lawyer/greensuit/skirt"
 	post_init_icon_state = "buttondown_skirt"
@@ -88,7 +88,7 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/neck/bowtie/green
-	name = "green bow tie"
+	name = "绿色领结"
 	greyscale_colors = "#70b46e"
 
 //trim
@@ -98,7 +98,7 @@
 
 //pda
 /obj/item/modular_computer/pda/bridge_assistant
-	name = "bridge officer PDA"
+	name = "舰桥军官PDA"
 	greyscale_colors = "#69E062#E26F41"
 	starting_programs = list(
 		/datum/computer_file/program/status,
@@ -106,7 +106,7 @@
 
 //headset radio
 /obj/item/radio/headset/bridge_officer
-	name = "\proper the bridge officer's headset"
+	name = "\proper 舰桥军官的耳机"
 	icon_state = "com_headset"
 	worn_icon_state = "com_headset"
 	keyslot = /obj/item/encryptionkey/headset_com

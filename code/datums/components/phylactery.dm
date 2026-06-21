@@ -47,7 +47,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(check_if_lich_died))
 
 	var/obj/obj_parent = parent
-	obj_parent.name = "ensouled [obj_parent.name]"
+	obj_parent.name = "附魂的[obj_parent.name]"
 	obj_parent.add_atom_colour(phylactery_color, ADMIN_COLOUR_PRIORITY)
 	obj_parent.AddComponent(/datum/component/stationloving, FALSE, TRUE)
 
@@ -84,13 +84,13 @@
 			examine_list += span_green("Your phylactery. The next time you meet an untimely demise, \
 				you will revive at this object in <b>[time_to_revive / 10 / 60] minute\s</b>.")
 		else
-			examine_list += span_green("A lich's phylactery. This one belongs to [lich_mind].")
+			examine_list += span_green("一个巫妖的命匣。这个属于[lich_mind]。")
 
 		if(num_resurrections > 0)
-			examine_list += span_green("<i>There's [num_resurrections] notches in the side of it.</i>")
+			examine_list += span_green("<i>它的侧面有[num_resurrections]道刻痕。</i>")
 
 	else
-		examine_list += span_green("A terrible aura surrounds this item. Its very existence is offensive to life itself...")
+		examine_list += span_green("一股可怕的气息笼罩着这件物品。它的存在本身就对生命充满冒犯...")
 
 /**
  * Signal proc for [COMSIG_QDELETING] registered on the lich's mind.
@@ -190,7 +190,7 @@
 	lich.set_species(/datum/species/skeleton)
 	lich.dna.generate_unique_enzymes()
 
-	to_chat(lich, span_green("Your bones clatter and shudder as you are pulled back into this world!"))
+	to_chat(lich, span_green("你的骨头咔哒作响，颤抖着被拉回这个世界！"))
 	num_resurrections++
 	lich.Paralyze(stun_per_resurrection * num_resurrections)
 
@@ -211,7 +211,7 @@
 		var/turf/body_turf = get_turf(corpse)
 		var/wheres_wizdo = dir2text(get_dir(body_turf, parent_turf))
 		if(wheres_wizdo)
-			corpse.visible_message(span_warning("Suddenly, [corpse.name]'s corpse falls to pieces! You see a strange energy rise from the remains, and speed off towards the [wheres_wizdo]!"))
+			corpse.visible_message(span_warning("突然，[corpse.name]的尸体碎裂成片！你看到一股奇异的能量从残骸中升起，朝着[wheres_wizdo]方向疾驰而去！"))
 			body_turf.Beam(parent_turf, icon_state = "lichbeam", time = 1 SECONDS * (num_resurrections + 1))
 
 		corpse.dust(drop_items = TRUE)

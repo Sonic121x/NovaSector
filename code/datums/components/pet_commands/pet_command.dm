@@ -218,5 +218,5 @@
 	parent.ai_controller.CancelActions()
 	if(!look_for_target(friend, potential_target) || !set_command_target(parent, potential_target))
 		return FALSE
-	parent.visible_message(span_warning("[parent] follows [friend]'s gesture towards [potential_target] [pointed_reaction]!"))
+	parent.visible_message(span_warning("[parent]跟随[friend]的手势指向[potential_target][pointed_reaction]！"))
 	return TRUE

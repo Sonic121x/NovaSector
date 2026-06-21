@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/aimodule
-	name = "AI module spawner"
-	desc = "State laws human."
+	name = "AI模块生成器"
+	desc = "陈述人类法律。"
 	icon_state = "circuit"
 	spawn_loot_double = FALSE
 	spawn_loot_count = 3
@@ -8,7 +8,7 @@
 
 /// AI uploads have the ai_module/reset , ai_module/supplied/freeform , ai_module/reset/purge , and ai_module/core/full/asimov directly mapped in
 /obj/effect/spawner/random/aimodule/harmless
-	name = "harmless AI module spawner"
+	name = "无害AI模块生成器"
 	loot = list( // These shouldn't allow the AI to start butchering people
 		/obj/item/ai_module/core/full/asimovpp,
 		/obj/item/ai_module/core/full/hippocratic,
@@ -26,7 +26,7 @@
 	)
 
 /obj/effect/spawner/random/aimodule/neutral
-	name = "neutral AI module spawner"
+	name = "中立AI模块生成器"
 	loot = list( // These shouldn't allow the AI to start butchering people without reason
 		/obj/item/ai_module/core/full/reporter,
 		/obj/item/ai_module/core/full/thinkermov,
@@ -45,7 +45,7 @@
 	)
 
 /obj/effect/spawner/random/aimodule/harmful
-	name = "harmful AI module spawner"
+	name = "有害AI模块生成器"
 	loot = list( // These will get the shuttle called
 		/obj/item/ai_module/core/full/antimov,
 		/obj/item/ai_module/core/full/balance,

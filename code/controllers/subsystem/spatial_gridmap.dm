@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(spatial_grid)
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
 	)
-	name = "Spatial Grid"
+	name = "空间网格"
 
 	///list of the spatial_grid_cell datums per z level, arranged in the order of y index then x index
 	var/list/grids_by_z_level = list()

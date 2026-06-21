@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday
 	///Name of the holiday itself. Visible to players.
-	var/name = "If you see this the holiday calendar code is broken"
+	var/name = "如果您看到此内容，则表示节日日历代码出现故障了。"
 
 	///What day of begin_month does the holiday begin on?
 	var/begin_day = 1
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 //Fleet Day is celebrated on Jan 19th, the date on which moths were merged (#34498)
 /datum/holiday/fleet_day
-	name = "Fleet Day"
+	name = "舰队日"
 	begin_month = JANUARY
 	begin_day = 19
 	holiday_hat = /obj/item/clothing/head/mothcap
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // FEBRUARY
 
 /datum/holiday/groundhog
-	name = "Groundhog Day"
+	name = "土拨鼠日"
 	begin_day = 2
 	begin_month = FEBRUARY
 
@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Deja Vu") //I have been to this place before
 
 /datum/holiday/nz
-	name = "Waitangi Day"
+	name = "新西兰国庆日"
 	timezones = list(TIMEZONE_NZDT, TIMEZONE_CHADT)
 	begin_day = 6
 	begin_month = FEBRUARY
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Love","Amore","Single","Smootch","Hug")
 
 /datum/holiday/birthday
-	name = "Birthday of Space Station 13"
+	name = "十三号空间站生日"
 	begin_day = 16
 	begin_month = FEBRUARY
 	holiday_hat = /obj/item/clothing/head/costume/festive
@@ -217,7 +217,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return "Say 'Happy Birthday' to Space Station 13, first publicly playable on February 16th, 2003![Fact]"
 
 /datum/holiday/random_kindness
-	name = "Random Acts of Kindness Day"
+	name = "随机善举日"
 	begin_day = 17
 	begin_month = FEBRUARY
 	poster_name = "act of kindness poster"
@@ -228,14 +228,14 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return "Go do some random acts of kindness for a stranger!" //haha yeah right
 
 /datum/holiday/leap
-	name = "Leap Day"
+	name = "闰日"
 	begin_day = 29
 	begin_month = FEBRUARY
 
 // MARCH
 
 /datum/holiday/pi
-	name = "Pi Day"
+	name = "圆周率日"
 	begin_day = 14
 	begin_month = MARCH
 	poster_name = "pi day poster"
@@ -259,7 +259,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Sine","Cosine","Tangent","Secant", "Cosecant", "Cotangent")
 
 /datum/holiday/no_this_is_patrick
-	name = "St. Patrick's Day"
+	name = "圣帕特里克节"
 	begin_day = 17
 	begin_month = MARCH
 	holiday_hat = /obj/item/clothing/head/soft/green
@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return "#[random_short_color()]"
 
 /datum/holiday/spess
-	name = "Cosmonautics Day"
+	name = "宇航日"
 	begin_day = 12
 	begin_month = APRIL
 	holiday_hat = /obj/item/clothing/head/syndicatefake
@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return "On this day over 600 years ago, Comrade Yuri Gagarin first ventured into space!"
 
 /datum/holiday/fourtwenty
-	name = "Four-Twenty"
+	name = "四二零"
 	begin_day = 20
 	begin_month = APRIL
 	holiday_hat = /obj/item/clothing/head/rasta
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Snoop","Blunt","Toke","Dank","Cheech","Chong")
 
 /datum/holiday/tea
-	name = "National Tea Day"
+	name = "国际茶日"
 	begin_day = 21
 	begin_month = APRIL
 	holiday_mail = list(/obj/item/reagent_containers/cup/glass/mug/tea)
@@ -336,12 +336,12 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Crumpet","Assam","Oolong","Pu-erh","Sweet Tea","Green","Black")
 
 /datum/holiday/earth
-	name = "Earth Day"
+	name = "地球日"
 	begin_day = 22
 	begin_month = APRIL
 
 /datum/holiday/anz
-	name = "ANZAC Day"
+	name = "澳新军团日"
 	timezones = list(TIMEZONE_TKT, TIMEZONE_TOT, TIMEZONE_NZST, TIMEZONE_NFT, TIMEZONE_LHST, TIMEZONE_AEST, TIMEZONE_ACST, TIMEZONE_ACWST, TIMEZONE_AWST, TIMEZONE_CXT, TIMEZONE_CCT, TIMEZONE_CKT, TIMEZONE_NUT)
 	begin_day = 25
 	begin_month = APRIL
@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // MAY
 
 /datum/holiday/labor
-	name = "Labor Day"
+	name = "劳动节"
 	begin_day = 1
 	begin_month = MAY
 	holiday_hat = /obj/item/clothing/head/utility/hardhat
@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 //Draconic Day is celebrated on May 3rd, the date on which the Draconic language was merged (#26780)
 /datum/holiday/draconic_day
-	name = "Draconic Language Day"
+	name = "龙语日"
 	begin_month = MAY
 	begin_day = 3
 
@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Draconic", "Literature", "Reading")
 
 /datum/holiday/firefighter
-	name = "Firefighter's Day"
+	name = "消防日"
 	begin_day = 4
 	begin_month = MAY
 	holiday_hat = /obj/item/clothing/head/utility/hardhat/red
@@ -397,7 +397,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Burning","Blazing","Plasma","Fire")
 
 /datum/holiday/bee
-	name = "Bee Day"
+	name = "蜜蜂日"
 	begin_day = 20
 	begin_month = MAY
 	holiday_mail = list(
@@ -411,7 +411,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Bee","Honey","Hive","Africanized","Mead","Buzz")
 
 /datum/holiday/goth
-	name = "Goth Day"
+	name = "哥特日"
 	begin_day = 22
 	begin_month = MAY
 	holiday_mail = list(
@@ -431,7 +431,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 //The Festival of Atrakor's Might (Tizira's Moon) is celebrated on June 15th, the date on which the lizard visual revamp was merged (#9808)
 /datum/holiday/atrakor_festival
-	name = "Festival of Atrakor's Might"
+	name = "阿特拉科尔强力节"
 	begin_month = JUNE
 	begin_day = 15
 
@@ -456,7 +456,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/summersolstice
-	name = "Summer Solstice"
+	name = "夏至"
 	begin_day = 21
 	begin_month = JUNE
 	holiday_hat = /obj/item/clothing/head/costume/garland
@@ -493,7 +493,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // JULY
 
 /datum/holiday/doctor
-	name = "Doctor's Day"
+	name = "医师节"
 	begin_day = 1
 	begin_month = JULY
 	holiday_hat = /obj/item/clothing/head/costume/nursehat
@@ -504,7 +504,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/ufo
-	name = "UFO Day"
+	name = "UFO日"
 	begin_day = 2
 	begin_month = JULY
 	holiday_hat = /obj/item/clothing/head/collectable/xenom
@@ -519,7 +519,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Ayy","Truth","Tsoukalos","Mulder","Scully") //Yes it is!
 
 /datum/holiday/usa
-	name = "US Independence Day"
+	name = "美国独立节"
 	timezones = list(TIMEZONE_EDT, TIMEZONE_CDT, TIMEZONE_MDT, TIMEZONE_MST, TIMEZONE_PDT, TIMEZONE_AKDT, TIMEZONE_HDT, TIMEZONE_HST)
 	begin_day = 4
 	begin_month = JULY
@@ -538,13 +538,13 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
 
 /datum/holiday/writer
-	name = "Writer's Day"
+	name = "作家节"
 	begin_day = 8
 	begin_month = JULY
 	holiday_mail = list(/obj/item/pen/fountain)
 
 /datum/holiday/france
-	name = "Bastille Day"
+	name = "巴士底日"
 	timezones = list(TIMEZONE_CEST)
 	begin_day = 14
 	begin_month = JULY
@@ -574,7 +574,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 //Gary Gygax's birthday, a fitting day for Wizard's Day
 /datum/holiday/wizards_day
-	name = "Wizard's Day"
+	name = "巫师日"
 	begin_month = JULY
 	begin_day = 27
 	holiday_hat = /obj/item/clothing/head/wizard
@@ -583,7 +583,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Dungeon", "Elf", "Magic", "D20", "Edition")
 
 /datum/holiday/friendship
-	name = "Friendship Day"
+	name = "友谊日"
 	begin_day = 30
 	begin_month = JULY
 	holiday_mail = list(/obj/item/food/grown/apple)
@@ -594,7 +594,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // AUGUST
 
 /datum/holiday/indigenous //Indigenous Peoples' Day from Earth!
-	name = "International Day of the World's Indigenous Peoples"
+	name = "世界土著人民国际日"
 	begin_month = AUGUST
 	begin_day = 9
 
@@ -604,7 +604,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // AUGUST
 
 /datum/holiday/ukraine
-	name = "Independence Day of Ukraine"
+	name = "乌克兰独立日"
 	begin_month = AUGUST
 	begin_day = 24
 	holiday_colors = list(COLOR_TRUE_BLUE, COLOR_TANGERINE_YELLOW)
@@ -616,7 +616,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 //Tiziran Unification Day is celebrated on Sept 1st, the day on which lizards were made a roundstart race
 /datum/holiday/tiziran_unification
-	name = "Tiziran Unification Day"
+	name = "泰泽拉统一日"
 	begin_month = SEPTEMBER
 	begin_day = 1
 	holiday_hat = /obj/item/clothing/head/costume/lizard
@@ -651,7 +651,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Ian", "Corgi", "Erro")
 
 /datum/holiday/pirate
-	name = "Talk-Like-a-Pirate Day"
+	name = "像海盗一样交谈日"
 	begin_day = 19
 	begin_month = SEPTEMBER
 	holiday_hat = /obj/item/clothing/head/costume/pirate
@@ -664,7 +664,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Yarr","Scurvy","Yo-ho-ho")
 
 /datum/holiday/questions
-	name = "Stupid-Questions Day"
+	name = "愚蠢问题日"
 	begin_day = 28
 	begin_month = SEPTEMBER
 
@@ -674,7 +674,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // OCTOBER
 
 /datum/holiday/animal
-	name = "Animal's Day"
+	name = "动物日"
 	begin_day = 4
 	begin_month = OCTOBER
 
@@ -682,20 +682,20 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Parrot","Corgi","Cat","Pug","Goat","Fox")
 
 /datum/holiday/smile
-	name = "Smiling Day"
+	name = "微笑日"
 	begin_day = 7
 	begin_month = OCTOBER
 	holiday_hat = /obj/item/clothing/head/costume/papersack/smiley
 	holiday_mail = list(/obj/item/sticker/smile)
 
 /datum/holiday/boss
-	name = "Boss' Day"
+	name = "资本家日"
 	begin_day = 16
 	begin_month = OCTOBER
 	holiday_hat = /obj/item/clothing/head/hats/tophat
 
 /datum/holiday/un_day
-	name = "Anniversary of the Foundation of the United Nations"
+	name = "联合国成立周年纪念日"
 	begin_month = OCTOBER
 	begin_day = 24
 
@@ -726,7 +726,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // NOVEMBER
 
 /datum/holiday/vegan
-	name = "Vegan Day"
+	name = "纯素食日"
 	begin_day = 1
 	begin_month = NOVEMBER
 	holiday_mail = list(/obj/item/food/tofu)
@@ -735,7 +735,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Tofu", "Tempeh", "Seitan", "Tofurkey")
 
 /datum/holiday/october_revolution
-	name = "October Revolution"
+	name = "十月革命纪念日"
 	begin_day = 6
 	begin_month = NOVEMBER
 	end_day = 7
@@ -749,7 +749,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Communist", "Soviet", "Bolshevik", "Socialist", "Red", "Workers'")
 
 /datum/holiday/remembrance_day
-	name = "Remembrance Day"
+	name = "纪念日"
 	begin_month = NOVEMBER
 	begin_day = 11
 	holiday_hat = /obj/item/food/grown/poppy
@@ -766,7 +766,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Peace", "Armistice", "Poppy")
 
 /datum/holiday/lifeday
-	name = "Life Day"
+	name = "生命日"
 	begin_day = 17
 	begin_month = NOVEMBER
 
@@ -774,12 +774,12 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Itchy", "Lumpy", "Malla", "Kazook") //he really pronounced it "Kazook", I wish I was making shit up
 
 /datum/holiday/kindness
-	name = "Kindness Day"
+	name = "慈善日"
 	begin_day = 13
 	begin_month = NOVEMBER
 
 /datum/holiday/flowers
-	name = "Flowers Day"
+	name = "鲜花日"
 	begin_day = 19
 	begin_month = NOVEMBER
 	holiday_hat = /obj/item/food/grown/moonflower
@@ -806,7 +806,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 //The Festival of Holy Lights is celebrated on Nov 28th, the date on which ethereals were merged (#40995)
 /datum/holiday/holy_lights
-	name = "Festival of Holy Lights"
+	name = "圣光节"
 	begin_month = NOVEMBER
 	begin_day = 28
 	/// If there's more of them I forgot
@@ -834,7 +834,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return "Have a nice festive season!"
 
 /datum/holiday/human_rights
-	name = "Human-Rights Day"
+	name = "人权日"
 	begin_day = 10
 	begin_month = DECEMBER
 
@@ -848,7 +848,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	SSstation.setup_trait(/datum/station_trait/job/pun_pun)
 
 /datum/holiday/doomsday
-	name = "Mayan Doomsday Anniversary"
+	name = "玛雅末日纪念日"
 	begin_day = 21
 	begin_month = DECEMBER
 
@@ -915,7 +915,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	pack.order_flags |= ORDER_SPECIAL_ENABLED
 
 /datum/holiday/boxing
-	name = "Boxing Day"
+	name = "盒日"
 	begin_day = 26
 	begin_month = DECEMBER
 	holiday_mail = list(
@@ -940,7 +940,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // MOVING DATES
 
 /datum/holiday/friday_thirteenth
-	name = "Friday the 13th"
+	name = "13号星期五"
 
 /datum/holiday/friday_thirteenth/shouldCelebrate(dd, mm, yyyy, ddd)
 	if(dd == 13 && ddd == FRIDAY)
@@ -951,7 +951,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")
 
 /datum/holiday/programmers
-	name = "Programmers' Day"
+	name = "程序员日"
 	holiday_mail = list(/obj/item/sticker/robot)
 
 /datum/holiday/programmers/shouldCelebrate(dd, mm, yyyy, ddd) //Programmer's day falls on the 2^8th day of the year
@@ -970,14 +970,14 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // ISLAMIC
 
 /datum/holiday/islamic
-	name = "Islamic calendar code broken"
+	name = "伊斯兰历编码故障"
 
 /datum/holiday/islamic/shouldCelebrate(dd, mm, yyyy, ddd)
 	var/datum/foreign_calendar/islamic/cal = new(yyyy, mm, dd)
 	return ..(cal.dd, cal.mm, cal.yyyy, ddd)
 
 /datum/holiday/islamic/ramadan
-	name = "Start of Ramadan"
+	name = "斋月初"
 	begin_month = 9
 	begin_day = 1
 	end_day = 3
@@ -986,7 +986,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Haram","Halaal","Jihad","Muslim", "Al", "Mohammad", "Rashidun", "Umayyad", "Abbasid", "Abdul", "Fatimid", "Ayyubid", "Almohad", "Abu")
 
 /datum/holiday/islamic/ramadan/end
-	name = "End of Ramadan"
+	name = "斋月末"
 	end_month = 10
 	begin_day = 28
 	end_day = 1
@@ -994,14 +994,14 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 // HEBREW
 
 /datum/holiday/hebrew
-	name = "If you see this the Hebrew holiday calendar code is broken"
+	name = "如果您看到此内容，则意味着希伯来历的日期编码出现了错误。"
 
 /datum/holiday/hebrew/shouldCelebrate(dd, mm, yyyy, ddd)
 	var/datum/foreign_calendar/hebrew/cal = new(yyyy, mm, dd)
 	return ..(cal.dd, cal.mm, cal.yyyy, ddd)
 
 /datum/holiday/hebrew/hanukkah
-	name = "Hanukkah"
+	name = "光明节"
 	begin_day = 25
 	begin_month = 9
 	end_day = 2
@@ -1014,7 +1014,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return pick("Dreidel", "Menorah", "Latkes", "Gelt")
 
 /datum/holiday/hebrew/passover
-	name = "Passover"
+	name = "逾越节"
 	begin_day = 15
 	begin_month = 1
 	end_day = 22

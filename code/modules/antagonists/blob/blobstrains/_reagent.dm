@@ -34,10 +34,10 @@
 /datum/reagent/blob/New()
 	..()
 
-	if(name == "Unknown")
-		description = "shouldn't exist and you should adminhelp immediately."
+	if(name == "未知")
+		description = "不应该存在，你应该立即请求管理员帮助。"
 	else if(description == "")
-		description = "[name] is the reagent created by that type of blob."
+		description = "[name] 是由那种胞质产生的试剂。"
 
 /// Used by blob reagents to calculate the reaction volume they should use when exposing mobs.
 /datum/reagent/blob/proc/return_mob_expose_reac_volume(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message, touch_protection, mob/eye/blob/overmind)

@@ -10,8 +10,8 @@
 	new_icon_state = "armplate"
 
 /obj/item/clothing/neck/security_cape/tarkon
-	name = "tarkon protection gauntlet"
-	desc = "A full-arm gauntlet used by Tarkon Industries to protect the main tool-arm of its employee's. Not that useful in a real fight, however."
+	name = "塔康防护臂铠"
+	desc = "塔康工业用于保护员工主要工具臂的全臂铠。然而，在真正的战斗中用处不大。"
 	worn_icon = 'modular_nova/modules/tarkon/icons/mob/clothing/neck.dmi'
 	icon = 'modular_nova/modules/tarkon/icons/obj/clothing/neck.dmi'
 	icon_state = "armplate_shemaugh"

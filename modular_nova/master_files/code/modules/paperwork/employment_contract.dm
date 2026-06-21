@@ -13,7 +13,7 @@
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	employee_name = new_employee_name
-	name = "paper- [employee_name] employment contract"
+	name = "纸张- [employee_name] 雇佣合同"
 	add_raw_text("\
 	<center><font size=3>Conditions of Employment</center><font size=2>\
 	<br><hr><br>\

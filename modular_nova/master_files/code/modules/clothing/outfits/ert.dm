@@ -4,7 +4,7 @@
 */
 
 /datum/outfit/centcom/asset_protection
-	name = "Asset Protection"
+	name = "资产保护"
 
 	uniform = /obj/item/clothing/under/rank/centcom/commander
 	back = /obj/item/mod/control/pre_equipped/apocryphal
@@ -41,13 +41,13 @@
 	..()
 
 /datum/outfit/centcom/asset_protection/leader
-	name = "Asset Protection Officer"
+	name = "资产保护官"
 	head = /obj/item/clothing/head/helmet/space/beret
 
 
 /// HIGH ALERT SOLFED RERSPONSE
 /datum/outfit/solfed/grand_espatier
-	name = "SolFed Espatier Rifleman (GRAND RESPONSE)"
+	name = "太阳联邦太空步兵步枪手（盛大响应）"
 
 	uniform = /obj/item/clothing/under/solfed/marines
 	head = /obj/item/clothing/head/helmet/solfed/mk2
@@ -77,7 +77,7 @@
 	id_trim = /datum/id_trim/solfed/espatier
 
 /datum/outfit/solfed/grand_espatier/engineer
-	name = "SolFed Espatier Engineer (GRAND RESPONSE)"
+	name = "太阳联邦太空步兵工程师（盛大响应）"
 	head = /obj/item/clothing/head/helmet/solfed/mk2/engineer
 	belt = /obj/item/storage/belt/utility/full/powertools
 	mask = /obj/item/clothing/mask/gas/welding/up
@@ -100,7 +100,7 @@
 	..()
 
 /datum/outfit/solfed/grand_espatier/corpsman
-	name = "SolFed Espatier Corpsman (GRAND RESPONSE)"
+	name = "太阳联邦太空陆战队员医护兵（盛大响应）"
 	head = /obj/item/clothing/head/helmet/solfed/mk2/corpsman
 	ears = /obj/item/radio/headset/headset_solfed/espatier/corpsman
 	backpack_contents = list(
@@ -119,7 +119,7 @@
 	..()
 
 /datum/outfit/solfed/grand_espatier/squadleader
-	name = "SolFed Espatier Squad Leader (GRAND RESPONSE)"
+	name = "太阳联邦太空陆战队员小队长（盛大响应）"
 	head = /obj/item/clothing/head/helmet/solfed/mk2/squadlead
 	ears = /obj/item/radio/headset/headset_solfed/espatier/squadleader
 
@@ -142,7 +142,7 @@
 
 /// REGULAR ALERT SOLFED RESPONSE (Used for events/admin shenanagins for lesser threats instead of kill everything)
 /datum/outfit/solfed/espatier
-	name = "SolFed Espatier Rifleman"
+	name = "太阳联邦太空陆战队员步枪手"
 
 	uniform = /obj/item/clothing/under/solfed/marines
 	head = /obj/item/clothing/head/helmet/solfed
@@ -172,7 +172,7 @@
 	id_trim = /datum/id_trim/solfed/espatier
 
 /datum/outfit/solfed/espatier/engineer
-	name = "SolFed Espatier Engineer"
+	name = "太阳联邦太空陆战队员工程师"
 	head = /obj/item/clothing/head/helmet/solfed/engineer
 	belt = /obj/item/storage/belt/utility/full/powertools
 	mask = /obj/item/clothing/mask/gas/welding/up
@@ -195,7 +195,7 @@
 	..()
 
 /datum/outfit/solfed/espatier/corpsman
-	name = "SolFed Espatier Corpsman"
+	name = "太阳联邦太空陆战队员医护兵"
 	head = /obj/item/clothing/head/helmet/solfed/corpsman
 	ears = /obj/item/radio/headset/headset_solfed/espatier/corpsman
 	backpack_contents = list(
@@ -214,7 +214,7 @@
 	..()
 
 /datum/outfit/solfed/espatier/squadleader
-	name = "SolFed Espatier Squad Leader"
+	name = "太阳联邦太空陆战队员小队长"
 	head = /obj/item/clothing/head/helmet/solfed/squadlead
 	ears = /obj/item/radio/headset/headset_solfed/espatier/squadleader
 

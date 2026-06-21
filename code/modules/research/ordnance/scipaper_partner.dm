@@ -1,5 +1,5 @@
 /datum/scientific_partner/mining
-	name = "Mining Corps"
+	name = "采矿队"
 	flufftext = "A local group of miners are looking for ways to improve their mining output. They are interested in smaller scale explosives and plasma research."
 	accepted_experiments = list(
 		/datum/experiment/ordnance/gaseous/plasma,
@@ -16,7 +16,7 @@
 	)
 
 /datum/scientific_partner/baron
-	name = "Ghost Writing"
+	name = "代写"
 	flufftext = "A nearby research station ran by a very wealthy captain seems to be struggling with their scientific output. They might reward us handsomely if we ghostwrite for them."
 	multipliers = list(SCIPAPER_COOPERATION_INDEX = 0.25, SCIPAPER_FUNDING_INDEX = 2)
 	boostable_nodes = list(
@@ -27,7 +27,7 @@
 	)
 
 /datum/scientific_partner/defense
-	name = "Defense Partnership"
+	name = "防御合作"
 	flufftext = "We can work directly for Nanotrasen's \[REDACTED\] division, potentially providing us access with advanced offensive and defensive gadgets."
 	accepted_experiments = list(
 		/datum/experiment/ordnance/explosive/lowyieldbomb,
@@ -44,7 +44,7 @@
 	)
 
 /datum/scientific_partner/medical
-	name = "Biological Research Division"
+	name = "生物研究部"
 	flufftext = "A collegiate of the best medical researchers Nanotrasen employs. They seem to be interested in the biological effects of some more exotic gases. Especially stimulants and neurosupressants."
 	accepted_experiments = list(
 		/datum/experiment/ordnance/gaseous/nitrous_oxide,
@@ -60,7 +60,7 @@
 	)
 
 /datum/scientific_partner/physics
-	name = "NT Physics Quarterly"
+	name = "NT 物理学季刊"
 	flufftext = "A prestigious physics journal managed by Nanotrasen. The main journal for publishing cutting-edge physics research conducted by Nanotrasen, given that they aren't classified."
 	accepted_experiments = list(
 		/datum/experiment/ordnance/gaseous/bz,

@@ -7,9 +7,9 @@
  * Store a maximum of `MAX_LOG_ENTRIES` (400) log entries and then deletes them.
  */
 /obj/machinery/telecomms/server
-	name = "telecommunication server"
+	name = "通信服务器"
 	icon_state = "comm_server"
-	desc = "A machine used to store data and network statistics."
+	desc = "用于存储数据和网络统计信息的机器"
 	telecomms_type = /obj/machinery/telecomms/server
 	density = TRUE
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.01
@@ -61,7 +61,7 @@
 
 		// Give the log a name and store it
 		var/identifier = num2text(rand(-1000, 1000) + world.time)
-		log.name = "data packet ([md5(identifier)])"
+		log.name = "数据包装([md5(identifier)])"
 		log_entries.Add(log)
 
 	var/can_send = relay_information(signal, /obj/machinery/telecomms/hub)
@@ -77,7 +77,7 @@
 	/// Type of entry.
 	var/input_type = "Speech File"
 	/// Name of the entry.
-	var/name = "data packet (#)"
+	var/name = "数据包 (#)"
 	/// Parameters extracted from the signal.
 	var/parameters = list()
 

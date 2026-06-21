@@ -1,6 +1,6 @@
 /datum/scripture/create_structure/prosperity_prism
-	name = "Prosperity Prism"
-	desc = "Creates a prism that will remove all forms of damage from nearby servants over time, along with purging poisons. Requires power from a sigil of transmission."
+	name = "繁荣棱镜"
+	desc = "创造一个棱镜，会随时间移除附近仆从的所有伤害类型，并净化毒素。需要从传输印记获取能量。"
 	tip = "Create a prosperity prism to heal servants while defending your base."
 	button_icon_state = "Prolonging Prism"
 	power_cost = 300
@@ -17,7 +17,7 @@
 		return FALSE
 
 	if(locate(/obj/structure/destructible/clockwork/gear_base/powered/prosperity_prism) in range(3)) // No stacking heals for you
-		user.balloon_alert(user, "too close to another prism!")
+		user.balloon_alert(user, "距离另一座棱镜太近！")
 		return FALSE
 
 	return TRUE

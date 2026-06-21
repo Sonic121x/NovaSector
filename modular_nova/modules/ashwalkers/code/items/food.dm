@@ -1,21 +1,21 @@
 /datum/reagent/consumable/sap
-	name = "Sap"
-	description = "The lifeblood of trees. Full of sugar that was meant for the tree, you monster."
+	name = "树液"
+	description = "树木的生命之血。充满了本该属于树木的糖分，你这个怪物。"
 	color = "#c9a030b6"
 	taste_description = "sugary"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	evaporates = TRUE
 
 /datum/reagent/consumable/syrup
-	name = "Syrup"
-	description = "A starchy, thick, and sugary liquid that was extracted and processed from a tree."
+	name = "糖浆"
+	description = "一种从树木中提取并加工而成的粘稠、富含淀粉和糖分的液体。"
 	color = "#3a1d05b6"
 	taste_description = "sugary"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	evaporates = TRUE
 
 /datum/crafting_recipe/food/bacon_syrup
-	name = "Syrup Bacon"
+	name = "糖浆培根"
 	reqs = list(
 		/obj/item/food/meat/bacon = 1,
 		/datum/reagent/consumable/syrup = 2,
@@ -27,8 +27,8 @@
 	meal_category = MEAL_SNACK
 
 /obj/item/food/meat/bacon/syrup
-	name = "piece of syrup bacon"
-	desc = "A delicious piece of bacon that has been coated with some syrup, sugar, and salt."
+	name = "一块糖浆培根"
+	desc = "一块美味的培根，表面涂有糖浆、糖和盐。"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/consumable/syrup = 1,

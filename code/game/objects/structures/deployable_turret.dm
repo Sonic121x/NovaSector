@@ -2,8 +2,8 @@
 //All of this file is five year old shitcode, and I'm too scared to touch more than I have to
 
 /obj/machinery/deployable_turret
-	name = "machine gun turret"
-	desc = "While the trigger is held down, this gun will redistribute recoil to allow its user to easily shift targets."
+	name = "机枪炮塔"
+	desc = "当扳机被按住时，这把枪将重新分配后坐力，让它的使用者可以轻松地转火目标。"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "machinegun"
 	can_buckle = TRUE
@@ -56,7 +56,7 @@
 	if(!ishuman(user))
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 	used_wrench.play_tool_sound(user)
-	user.balloon_alert(user, "undeploying...")
+	user.balloon_alert(user, "正在收起...")
 	if(!do_after(user, undeploy_time, src))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/undeployed_object = new spawned_on_undeploy()
@@ -201,7 +201,7 @@
 	projectile_to_fire.fire()
 
 /obj/machinery/deployable_turret/ultimate  // Admin-only proof of concept for autoclicker automatics
-	name = "Infinity Gun"
+	name = "无限枪"
 	view_range = 12
 
 /obj/machinery/deployable_turret/ultimate/checkfire(atom/targeted_atom, mob/user)
@@ -212,8 +212,8 @@
 	fire_helper(user)
 
 /obj/machinery/deployable_turret/hmg
-	name = "heavy machine gun turret"
-	desc = "A heavy caliber machine gun commonly used by Nanotrasen forces, famed for its ability to give people on the receiving end more holes than normal."
+	name = "重机枪炮塔"
+	desc = "一种纳米特拉森部队常用的重型口径机枪，以其能让目标身上比平常多出几个洞而闻名。"
 	icon_state = "hmg"
 	max_integrity = 250
 	projectile_type = /obj/projectile/bullet/manned_turret/hmg
@@ -227,7 +227,7 @@
 	spawned_on_undeploy = /obj/item/deployable_turret_folded
 
 /obj/item/gun_control
-	name = "turret controls"
+	name = "炮塔控制装置"
 	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE

@@ -1,7 +1,7 @@
 /datum/lazy_template/virtual_domain/stairs_and_cliffs
-	name = "Glacier Grind"
+	name = "冰川研磨"
 	cost = BITRUNNER_COST_LOW
-	desc = "A treacherous climb few calves can survive. Great cardio though."
+	desc = "一次险峻的攀登，少有腿肚子能幸存。不过对心肺功能大有裨益。"
 	help_text = "Ever heard of 'Snakes and Ladders'? It's like that, but with \
 	instead of ladders its stairs and instead of snakes its a steep drop down a \
 	cliff into rough rocks or liquid plasma."
@@ -15,15 +15,15 @@
 	domain_flags = DOMAIN_NO_NOHIT_BONUS
 
 /turf/open/cliff/snowrock/virtual_domain
-	name = "icy cliff"
+	name = "冰崖"
 	initial_gas_mix = FROZEN_ATMOS
 
 /turf/open/lava/plasma/virtual_domain
-	name = "plasma lake"
+	name = "等离子湖"
 	initial_gas_mix = FROZEN_ATMOS
 
 /datum/outfit/job/virtual_domain_iceclimber
-	name = "Ice Climber"
+	name = "攀冰者"
 
 	uniform = /obj/item/clothing/under/color/grey
 	backpack = /obj/item/storage/backpack/duffelbag

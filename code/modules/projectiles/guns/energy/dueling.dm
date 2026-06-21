@@ -35,7 +35,7 @@
 	var/mob/living/A = get_duelist(gun_A)
 	var/mob/living/B = get_duelist(gun_B)
 	if(!A || !B)
-		message_duelists(span_warning("To begin the duel, both participants need to be holding paired dueling pistols."))
+		message_duelists(span_warning("要开始决斗，双方参与者都需要持有配对的决斗手枪。"))
 		return
 	begin()
 
@@ -45,7 +45,7 @@
 	fired.Cut()
 	countdown_step = countdown_length
 
-	message_duelists(span_notice("Set your gun setting and move [required_distance] steps away from your opponent."))
+	message_duelists(span_notice("设置好你的枪械模式，并远离你的对手 [required_distance] 步。"))
 
 	START_PROCESSING(SSobj,src)
 
@@ -67,7 +67,7 @@
 	return G == gun_A ? gun_B : gun_A
 
 /datum/duel/proc/end()
-	message_duelists(span_notice("Duel finished. Re-engaging safety."))
+	message_duelists(span_notice("决斗结束。重新启用安全装置。"))
 	STOP_PROCESSING(SSobj,src)
 	state = DUEL_IDLE
 
@@ -94,26 +94,26 @@
 
 
 /datum/duel/proc/back_to_prep()
-	message_duelists(span_notice("Positions invalid. Please move to valid positions exactly [required_distance] steps away from each other to continue."))
+	message_duelists(span_notice("位置无效。请移动到彼此相距恰好[required_distance]步的有效位置以继续。"))
 	state = DUEL_PREPARATION
 	confirmations.Cut()
 	countdown_step = countdown_length
 
 /datum/duel/proc/confirm_positioning()
-	message_duelists(span_notice("Position confirmed. Confirm readiness by pulling the trigger once."))
+	message_duelists(span_notice("位置已确认。扣动扳机一次以确认准备就绪。"))
 	state = DUEL_READY
 
 /datum/duel/proc/confirm_ready()
-	message_duelists(span_notice("Readiness confirmed. Starting countdown. Commence firing at zero mark."))
+	message_duelists(span_notice("就绪状态已确认。开始倒计时。在零标记时开始射击。"))
 	state = DUEL_COUNTDOWN
 
 /datum/duel/proc/countdown_step()
 	countdown_step--
 	if(countdown_step == 0)
 		state = DUEL_FIRING
-		message_duelists(span_userdanger("Fire!"))
+		message_duelists(span_userdanger("开火！"))
 	else
-		message_duelists(span_userdanger("[countdown_step]!"))
+		message_duelists(span_userdanger("[countdown_step]！"))
 
 /datum/duel/proc/check_fired()
 	if(fired.len == 2)
@@ -146,8 +146,8 @@
 	qdel(src)
 
 /obj/item/gun/energy/dueling
-	name = "dueling pistol"
-	desc = "High-tech dueling pistol. Launches chaff and projectile according to preset settings."
+	name = "决斗手枪"
+	desc = "高科技对决手枪。可根据预设程序发射箔条和弹丸。"
 	icon_state = "dueling_pistol"
 	inhand_icon_state = "gun"
 	ammo_x_offset = 2
@@ -171,7 +171,7 @@
 
 		if(!check_valid_duel(user, FALSE) && !other_gun.check_valid_duel(user, FALSE))
 			var/datum/duel/D = new(src, other_gun)
-			to_chat(user,span_notice("Pairing established. Pairing code: [D.pairing_code]"))
+			to_chat(user,span_notice("配对已建立。配对码：[D.pairing_code]"))
 			return
 
 	return ..()
@@ -211,7 +211,7 @@
 			setting = DUEL_SETTING_C
 		if(DUEL_SETTING_C)
 			setting = DUEL_SETTING_A
-	to_chat(user,span_notice("You switch [src] setting to [setting] mode."))
+	to_chat(user,span_notice("你将[src]设置切换到[setting]模式。"))
 	update_appearance()
 
 /obj/item/gun/energy/dueling/update_overlays()
@@ -237,7 +237,7 @@
 		if(DUEL_READY)
 			return .
 		else
-			to_chat(user,span_warning("[src] is locked. Wait for FIRE signal before shooting."))
+			to_chat(user,span_warning("[src] 已锁定。请等待开火信号再射击。"))
 			return FALSE
 
 /obj/item/gun/energy/dueling/proc/is_duelist(mob/living/L)
@@ -252,10 +252,10 @@
 		return
 	if(duel.state == DUEL_READY)
 		duel.confirmations[src] = TRUE
-		to_chat(user,span_notice("You confirm your readiness."))
+		to_chat(user,span_notice("你确认准备就绪。"))
 		return
 	else if(!is_duelist(target)) //I kinda want to leave this out just to see someone shoot a bystander or missing.
-		to_chat(user,span_warning("[src] safety system prevents shooting anyone but your designated opponent."))
+		to_chat(user,span_warning("[src] 的安全系统阻止你射击指定对手以外的任何人。"))
 		return
 	else
 		duel.fired[src] = TRUE
@@ -269,7 +269,7 @@
 /obj/item/gun/energy/dueling/proc/check_valid_duel(mob/living/user, do_warn)
 	if(!duel)
 		if(do_warn)
-			to_chat(user,span_warning("[src] is currently unpaired."))
+			to_chat(user,span_warning("[src] 目前未配对。"))
 		return FALSE
 	return TRUE
 
@@ -313,7 +313,7 @@
 //Projectile
 
 /obj/projectile/energy/duel
-	name = "dueling beam"
+	name = "决斗光束"
 	icon_state = "declone"
 	reflectable = FALSE
 	var/setting

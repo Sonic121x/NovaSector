@@ -15,8 +15,8 @@
 #define APC_CHANNEL_ALARM_TRESHOLD 75
 
 /obj/machinery/power/apc
-	name = "area power controller"
-	desc = "A control terminal for the area's electrical systems."
+	name = "区域电力控制器"
+	desc = "该区域电力系统的控制终端。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "apc0"
 	use_power = NO_POWER_USE
@@ -372,7 +372,7 @@
 	if(opened != APC_COVER_REMOVED)
 		opened = APC_COVER_REMOVED
 		coverlocked = FALSE
-		visible_message(span_warning("The APC cover is knocked down!"))
+		visible_message(span_warning("APC的盖板被击落了！"))
 		update_appearance()
 
 /obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui)
@@ -442,7 +442,7 @@
 	ui_interact(remote_user)
 	remote_user.log_message("remotely accessed [src].", LOG_GAME)
 	say("Remote access detected.[locked ? " Interface unlocked." : ""]")
-	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] Connected to [src]."))
+	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] 已连接到 [src]。"))
 	if(locked)
 		playsound(src, 'sound/machines/terminal/terminal_on.ogg', 25, FALSE)
 		locked = FALSE
@@ -459,7 +459,7 @@
 	if(isnull(remote_control_user))
 		return
 	locked = TRUE
-	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] Disconnected from [src]."))
+	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] 已从 [src] 断开连接。"))
 	if(!mute)
 		say("Remote access canceled. Interface locked.")
 		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 25, FALSE)
@@ -482,7 +482,7 @@
 		if("lock")
 			if(HAS_SILICON_ACCESS(user))
 				if((obj_flags & EMAGGED) || (machine_stat & (BROKEN|MAINT)) || remote_control_user)
-					to_chat(user, span_warning("The APC does not respond to the command!"))
+					to_chat(user, span_warning("APC没有响应指令！"))
 				else
 					locked = !locked
 					update_appearance()
@@ -814,9 +814,9 @@
 
 /*Power module, used for APC construction*/
 /obj/item/electronics/apc
-	name = "power control module"
+	name = "电力控制模块"
 	icon_state = "power_mod"
-	desc = "Heavy-duty switching circuits for power control."
+	desc = "用于电力控制的开关电路。"
 
 /// Returns the amount of time it will take the APC at its current trickle charge rate to reach a charge level. If the APC is functionally not charging, returns null.
 /obj/machinery/power/apc/proc/time_to_charge(joules)

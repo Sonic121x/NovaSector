@@ -1,6 +1,6 @@
 /// Subsystem to handle falling of off cliffs
 MOVEMENT_SUBSYSTEM_DEF(cliff_falling)
-	name = "Cliff Falling"
+	name = "悬崖坠落"
 	priority = FIRE_PRIORITY_CLIFF_FALLING
 	ss_flags = SS_NO_INIT|SS_TICKER
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME

@@ -40,7 +40,7 @@
 // Solar panel deployable item
 
 /obj/item/flatpacked_machine/solar
-	name = "flat-packed solar panel"
+	name = "扁平包装太阳能板"
 	desc = /obj/machinery/power/solar/deployable::desc
 	icon_state = "solar_panel_packed"
 	type_to_deploy = /obj/machinery/power/solar/deployable
@@ -54,7 +54,7 @@
 // Solar Panel Deployable Sub-types
 
 /obj/item/flatpacked_machine/solar/titaniumglass
-	name = "titanium flat-packed solar panel"
+	name = "钛制扁平包装太阳能板"
 	type_to_deploy = /obj/machinery/power/solar/deployable/titaniumglass
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
@@ -63,7 +63,7 @@
 	)
 
 /obj/item/flatpacked_machine/solar/plasmaglass
-	name = "plasma flat-packed solar panel"
+	name = "等离子体制扁平包装太阳能板"
 	type_to_deploy = /obj/machinery/power/solar/deployable/plasmaglass
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
@@ -72,7 +72,7 @@
 	)
 
 /obj/item/flatpacked_machine/solar/plastitaniumglass
-	name = "plastitanium flat-packed solar panel"
+	name = "塑钛制扁平包装太阳能板"
 	type_to_deploy = /obj/machinery/power/solar/deployable/plastitaniumglass
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
@@ -104,7 +104,7 @@
 // Solar tracker deployable item
 
 /obj/item/flatpacked_machine/solar_tracker
-	name = "flat-packed solar tracker"
+	name = "扁平包装太阳能追踪器"
 	desc = /obj/machinery/power/tracker/deployable::desc
 	icon_state = "solar_tracker_packed"
 	type_to_deploy = /obj/machinery/power/tracker/deployable

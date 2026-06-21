@@ -1,8 +1,8 @@
 // It is a gizmo that flashes a small area
 
 /obj/machinery/flasher
-	name = "mounted flash"
-	desc = "A wall-mounted flashbulb device."
+	name = "安装式闪光灯"
+	desc = "壁挂式闪光灯设备"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "mflash1"
 	base_icon_state = "mflash"
@@ -68,7 +68,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 		if (bulb)
 			user.visible_message(span_notice("[user] begins to disconnect [src]'s flashbulb."), span_notice("You begin to disconnect [src]'s flashbulb..."))
 			if(attacking_item.use_tool(src, user, 30, volume=50) && bulb)
-				user.visible_message(span_notice("[user] disconnects [src]'s flashbulb!"), span_notice("You disconnect [src]'s flashbulb."))
+				user.visible_message(span_notice("[user]断开了[src]的闪光灯泡！"), span_notice("你断开了[src]的闪光灯泡。"))
 				bulb.forceMove(loc)
 				power_change()
 
@@ -76,19 +76,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 		if (!bulb)
 			if(!user.transferItemToLoc(attacking_item, src))
 				return
-			user.visible_message(span_notice("[user] installs [attacking_item] into [src]."), span_notice("You install [attacking_item] into [src]."))
+			user.visible_message(span_notice("[user]将[attacking_item]安装到[src]中。"), span_notice("你将[attacking_item]安装到[src]中。"))
 			power_change()
 		else
-			to_chat(user, span_warning("A flashbulb is already installed in [src]!"))
+			to_chat(user, span_warning("[src]里已经安装了一个闪光灯！"))
 
 	else if (attacking_item.tool_behaviour == TOOL_WRENCH)
 		if(!bulb)
-			to_chat(user, span_notice("You start unsecuring the flasher frame..."))
+			to_chat(user, span_notice("你开始取消固定闪光灯框架..."))
 			if(attacking_item.use_tool(src, user, 40, volume=50))
-				to_chat(user, span_notice("You unsecure the flasher frame."))
+				to_chat(user, span_notice("你解除固定了闪光灯框架。"))
 				deconstruct(TRUE)
 		else
-			to_chat(user, span_warning("Remove a flashbulb from [src] first!"))
+			to_chat(user, span_warning("需要先移除[src]的闪光！"))
 	else
 		return ..()
 
@@ -155,8 +155,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 		new /obj/item/stack/sheet/iron (loc, 2)
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
-	name = "portable flasher"
-	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
+	name = "便携式闪光灯"
+	desc = "便携式闪光装置。用扳手来启动和停用。无法检测到缓慢移动。"
 	icon = 'icons/obj/machines/sec.dmi'
 	icon_state = "pflash1-p"
 	base_icon_state = "pflash"
@@ -194,13 +194,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 		attacking_item.play_tool_sound(src, 100)
 
 		if (!anchored && !isinspace())
-			to_chat(user, span_notice("[src] is now secured."))
+			to_chat(user, span_notice("[src]现在被固定了."))
 			add_overlay("[base_icon_state]-s")
 			set_anchored(TRUE)
 			power_change()
 			proximity_monitor.set_range(flash_range)
 		else
-			to_chat(user, span_notice("[src] can now be moved."))
+			to_chat(user, span_notice("[src]现在可以被移动了."))
 			cut_overlays()
 			set_anchored(FALSE)
 			power_change()
@@ -210,8 +210,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 		return ..()
 
 /obj/item/wallframe/flasher
-	name = "mounted flash frame"
-	desc = "Used for building wall-mounted flashers."
+	name = "安装式闪光灯框架"
+	desc = "用于建造壁挂式闪光灯。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "mflash_frame"
 	result_path = /obj/machinery/flasher
@@ -220,7 +220,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 
 /obj/item/wallframe/flasher/examine(mob/user)
 	. = ..()
-	. += span_notice("Its channel ID is '[id]'.")
+	. += span_notice("其频道 ID 为 '[id]”。")
 
 /obj/item/wallframe/flasher/after_attach(obj/attached_to)
 	..()

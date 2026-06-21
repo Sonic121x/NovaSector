@@ -59,14 +59,14 @@
 	crate_name = "forensics crate"
 
 /datum/supply_pack/security/helmets
-	name = "Helmets Crate"
+	name = "头盔板条箱"
 	desc = "Contains three standard-issue brain buckets."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/clothing/head/helmet/sec = 3)
 	crate_name = "helmet crate"
 
 /datum/supply_pack/security/securitybarriers
-	name = "Security Barrier Grenades"
+	name = "安保屏障手榴弹"
 	desc = "Stem the tide with four Security Barrier grenades."
 	access_view = ACCESS_BRIG
 	contains = list(/obj/item/grenade/barrier = 4)
@@ -93,7 +93,7 @@
 	crate_name = "security clothing crate"
 
 /datum/supply_pack/security/stingpack
-	name = "Stingbang Grenade Pack"
+	name = "毒刺手榴包"
 	desc = "Contains five \"stingbang\" grenades, perfect for stopping \
 		riots and playing morally unthinkable pranks."
 	cost = CARGO_CRATE_VALUE * 5
@@ -102,7 +102,7 @@
 	crate_name = "stingbang grenade pack crate"
 
 /datum/supply_pack/security/supplies
-	name = "Security Supplies Crate"
+	name = "安保用品板条箱"
 	desc = "Contains seven flashbangs, seven teargas grenades, six flashes, and seven handcuffs."
 	cost = CARGO_CRATE_VALUE * 3.5
 	access_view = ACCESS_ARMORY
@@ -122,7 +122,7 @@
 	crate_name = "gun maintenance kit crate"
 
 /datum/supply_pack/security/firingpins
-	name = "Standard Firing Pins Crate"
+	name = "标准撞针板条箱"
 	desc = "Upgrade your arsenal with 10 standard firing pins."
 	cost = CARGO_CRATE_VALUE * 4
 	access_view = ACCESS_ARMORY
@@ -138,7 +138,7 @@
 	crate_name = "paywall firing pins crate"
 
 /datum/supply_pack/security/justiceinbound
-	name = "Standard Justice Enforcer Crate"
+	name = "标准执法者板条箱"
 	desc = "This is it. The Bee's Knees. The Creme of the Crop. The Pick of the Litter. \
 		The best of the best of the best. The Crown Jewel of Nanotrasen. \
 		The Alpha and the Omega of security headwear. Guaranteed to strike fear into the hearts \
@@ -152,7 +152,7 @@
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/security/baton
-	name = "Stun Batons Crate"
+	name = "电棍板条箱"
 	desc = "Arm the Civil Protection Forces with three stun batons. Batteries included."
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_SECURITY
@@ -167,7 +167,7 @@
 	crate_name = "wall-mounted flash crate"
 
 /datum/supply_pack/security/constable
-	name = "Traditional Equipment Crate"
+	name = "传统装备板条箱"
 	desc = "Spare equipment found in a warehouse. Contains a constable's outfit, \
 		whistle, and conversion kit."
 	cost = CARGO_CRATE_VALUE * 2.2
@@ -205,7 +205,7 @@
 	crate_name = "bulletproof helmets crate"
 
 /datum/supply_pack/security/armory/chemimp
-	name = "Chemical Implants Crate"
+	name = "'遥控化合物'植入物板条箱"
 	desc = "Contains five Remote Chemical implants."
 	cost = CARGO_CRATE_VALUE * 3.5
 	contains = list(/obj/item/storage/box/chemimp)
@@ -232,7 +232,7 @@
 	crate_name = "\improper DRAGnet crate"
 
 /datum/supply_pack/security/armory/energy
-	name = "Energy Guns Crate"
+	name = "能量枪板条箱"
 	desc = "Contains three Energy Guns, capable of firing both nonlethal and lethal \
 		blasts of light."
 	cost = CARGO_CRATE_VALUE * 18
@@ -290,7 +290,7 @@
 	crate_name = ".38 magazine crate"
 
 /datum/supply_pack/security/armory/exileimp
-	name = "Exile Implants Crate"
+	name = "'放逐'植入物板条箱"
 	desc = "Contains five Exile implants."
 	cost = CARGO_CRATE_VALUE * 3.5
 	contains = list(/obj/item/storage/box/exileimp)
@@ -311,14 +311,14 @@
 	order_flags = ORDER_DANGEROUS
 
 /datum/supply_pack/security/armory/mindshield
-	name = "Mindshield Implants Crate"
+	name = "心灵护盾植入物板条箱"
 	desc = "Prevent against radical thoughts with three Mindshield implants."
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/storage/lockbox/loyalty)
 	crate_name = "mindshield implant crate"
 
 /datum/supply_pack/security/armory/trackingimp
-	name = "Tracking Implants Crate"
+	name = "'跟踪'植入物板条箱"
 	desc = "Contains four tracking implants and three tracking speedloaders of tracing .38 ammo."
 	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(/obj/item/storage/box/trackimp,

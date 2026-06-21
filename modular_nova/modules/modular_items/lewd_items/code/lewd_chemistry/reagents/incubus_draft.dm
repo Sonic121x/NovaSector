@@ -7,8 +7,8 @@
 */
 
 /datum/reagent/drug/aphrodisiac/incubus_draft
-	name = "incubus draft"
-	description = "A volatile collodial mixture derived from various masculine solutions that encourages a larger gentleman's package via a potent testosterone mix."
+	name = "梦魇魔药"
+	description = "一种源自多种雄性溶液的挥发性胶体混合物，通过强效的睾酮混合物来促进男性生殖器的增大。"
 	color = "#888888"
 	taste_description = "chinese dragon powder"
 	overdose_threshold = 20 // ODing makes you male and shrinks female genitals if gender change prefs are enabled. Otherwise, grows a cock.
@@ -129,20 +129,20 @@
 		if(mob_penis.genital_size >= (penis_max_length - 2))
 			if(exposed_mob.dna.features["penis_sheath"] == SHEATH_SLIT)
 				if(mob_penis.aroused != AROUSAL_FULL)
-					to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger_cock)] [pick(bigger_cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
-			exposed_mob.visible_message(span_notice("[exposed_mob]'s [pick(words_for_bigger_cock)] [pick(bigger_cock_text_list)] [pick(public_cock_action_text_list)]"))
-			to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger_cock)] [pick(bigger_cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
+					to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger_cock)][pick(bigger_cock_text_list)][pick(cock_action_text_list)]大约[mob_penis.genital_size]英寸长，周长[mob_penis.girth]英寸。"))
+			exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(words_for_bigger_cock)][pick(bigger_cock_text_list)][pick(public_cock_action_text_list)]"))
+			to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger_cock)][pick(bigger_cock_text_list)][pick(cock_action_text_list)]大约长[mob_penis.genital_size]英寸，周长[mob_penis.girth]英寸。"))
 		else
 			if(exposed_mob.dna.features["penis_sheath"] == SHEATH_SLIT)
 				if(mob_penis.aroused != AROUSAL_FULL)
-					to_chat(exposed_mob, span_purple("Your [pick(cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
-			exposed_mob.visible_message(span_notice("[exposed_mob]'s [pick(cock_text_list)] [pick(public_cock_action_text_list)]"))
-			to_chat(exposed_mob, span_purple("Your [pick(cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
+					to_chat(exposed_mob, span_purple("你的[pick(cock_text_list)][pick(cock_action_text_list)]大约长[mob_penis.genital_size]英寸，周长[mob_penis.girth]英寸。"))
+			exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(cock_text_list)][pick(public_cock_action_text_list)]"))
+			to_chat(exposed_mob, span_purple("你的[pick(cock_text_list)][pick(cock_action_text_list)]大约长[mob_penis.genital_size]英寸，周长[mob_penis.girth]英寸。"))
 	else
 		if(mob_penis.genital_size >= (penis_max_length - 2))
-			to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger_cock)] [pick(bigger_cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
+			to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger_cock)][pick(bigger_cock_text_list)][pick(cock_action_text_list)]大约[mob_penis.genital_size]英寸长，周长[mob_penis.girth]英寸。"))
 		else
-			to_chat(exposed_mob, span_purple("Your [pick(cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
+			to_chat(exposed_mob, span_purple("你的[pick(cock_text_list)][pick(cock_action_text_list)]大约长[mob_penis.genital_size]英寸，周长[mob_penis.girth]英寸。"))
 
 /**
 * Helper function for the helper function used to display the messages that appear in chat while the testicles growth is occurring
@@ -161,13 +161,13 @@
 
 	// Display a different message when they reach 'enormous'
 	if(mob_testicles.genital_size <= balls_big_size)
-		to_chat(exposed_mob, span_purple("Your balls [pick(ball_action_text_list)]. They are now [mob_testicles.balls_size_to_description(mob_testicles.genital_size)]."))
+		to_chat(exposed_mob, span_purple("你的蛋蛋[pick(ball_action_text_list)]。它们现在[mob_testicles.balls_size_to_description(mob_testicles.genital_size)]。"))
 	else if(mob_testicles.genital_size == balls_max_size)
-		to_chat(exposed_mob, span_purple("You can feel your heavy balls churn as they swell to enormous proportions!"))
+		to_chat(exposed_mob, span_purple("你能感觉到沉重的蛋蛋翻腾着，膨胀到巨大的尺寸！"))
 
 // Notify the user that they're overdosing. Doesn't affect their mood.
 /datum/reagent/drug/aphrodisiac/incubus_draft/overdose_start(mob/living/carbon/human/exposed_mob, metabolization_ratio)
-	to_chat(exposed_mob, span_userdanger("You feel like you took too much [name]!"))
+	to_chat(exposed_mob, span_userdanger("你感觉服用了过量的[name]！"))
 	exposed_mob.add_mood_event("[type]_overdose", /datum/mood_event/minor_overdose, name)
 
 /datum/chemical_reaction/incubus_draft

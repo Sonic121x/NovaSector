@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/tinypakb
-	name = "storage belt"
-	desc = "A small belt coated from front to back in pouches."
+	name = "储物腰带"
+	desc = "一条从正面到背面都布满小袋的小腰带。"
 	icon_state = "tinypakb"
 	inhand_icon_state = "messenger"
 	icon = 'modular_nova/modules/clothing_improvements/icons/clothing.dmi'
@@ -10,8 +10,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 
 /obj/item/storage/backpack/tinypaka
-	name = "waistpack"
-	desc = "A small, waist-mounted pack for... well, storing stuff!"
+	name = "腰包"
+	desc = "一个系在腰上的小包，用来……嗯，存放东西！"
 	icon_state = "tinypaka"
 	inhand_icon_state = "messenger"
 	icon = 'modular_nova/modules/clothing_improvements/icons/clothing.dmi'
@@ -21,8 +21,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 
 /obj/item/storage/backpack/tinypakc
-	name = "chest pouch"
-	desc = "Like a fannypack, but for your chest! ...Seems to hold alot more, though."
+	name = "胸袋"
+	desc = "就像腰包，不过是戴在胸前的！……不过看起来能装更多东西。"
 	icon_state = "tinypakc"
 	inhand_icon_state = "messenger"
 	icon = 'modular_nova/modules/clothing_improvements/icons/clothing.dmi'

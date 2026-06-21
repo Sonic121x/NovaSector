@@ -1,7 +1,7 @@
 /// The heretic's rune, which they use to complete transmutation rituals.
 /obj/effect/heretic_rune
-	name = "transmutation rune"
-	desc = "A flowing circle of shapes and runes is etched into the floor, filled with a thick black tar-like fluid. This one looks pretty small."
+	name = "嬗变符文"
+	desc = "一个由形状和符文构成的流动圆圈蚀刻在地板上，里面填满了浓稠的黑色焦油状液体。这个看起来相当小。"
 	icon = 'icons/obj/antags/cult/rune.dmi'
 	icon_state = "main1"
 	anchored = TRUE
@@ -24,8 +24,8 @@
 	if(!IS_HERETIC(user))
 		return
 
-	. += span_notice("Allows you to transmute objects by invoking the rune after collecting the prerequisites overhead.")
-	. += span_notice("You can use your <i>Mansus Grasp</i> on the rune to remove it.")
+	. += span_notice("允许你在收集完头顶的先决条件后，通过调用符文来嬗变物体。")
+	. += span_notice("你可以使用你的<i>曼苏斯之握</i>来移除符文。")
 
 /obj/effect/heretic_rune/attack_paw(mob/living/user, list/modifiers)
 	return attack_hand(user, modifiers)
@@ -55,11 +55,11 @@
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	var/list/rituals = heretic_datum.get_rituals()
 	if(!length(rituals))
-		loc.balloon_alert(user, "no rituals available!")
+		loc.balloon_alert(user, "没有可用的仪式！")
 		is_in_use = FALSE
 		return
 
-	var/chosen = tgui_input_list(user, "Chose a ritual to attempt.", "Chose a Ritual", rituals)
+	var/chosen = tgui_input_list(user, "选择一个要尝试的仪式。", "选择仪式", rituals)
 	if(!chosen || !istype(rituals[chosen], /datum/heretic_knowledge) || QDELETED(src) || QDELETED(user) || QDELETED(heretic_datum))
 		is_in_use = FALSE
 		return
@@ -166,9 +166,9 @@
 
 	if(length(what_are_we_missing))
 		// Let them know it screwed up
-		loc.balloon_alert(user, "ritual failed, missing components!")
+		loc.balloon_alert(user, "仪式失败，缺少组件！")
 		// Then let them know what they're missing
-		to_chat(user, span_hierophant_warning("You are missing [english_list(what_are_we_missing)] in order to complete the ritual \"[ritual.name]\"."))
+		to_chat(user, span_hierophant_warning("你缺少[english_list(what_are_we_missing)]来完成仪式\"[ritual.name]\"。"))
 		return FALSE
 
 	//Everything's good, proceed and collect from the available stacks what's needed if needed.
@@ -222,7 +222,7 @@
 	// No feedback is given on failure here -
 	// the ritual itself should handle it (providing specifics as to why it failed)
 	if(ritual_result)
-		loc.balloon_alert(user, "ritual complete")
+		loc.balloon_alert(user, "仪式完成")
 
 	return ritual_result
 

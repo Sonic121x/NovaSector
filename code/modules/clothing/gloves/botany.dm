@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/botanic_leather
-	name = "botanist's leather gloves"
-	desc = "These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin.  They're also quite warm."
+	name = "植物学家的皮手套"
+	desc = "这副皮手套可以抵挡茎刺、倒刺、尖刺和其他有害的植物部位.它们穿起来也很暖和."
 	icon_state = "leather"
 	inhand_icon_state = null
 	greyscale_colors = null

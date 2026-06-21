@@ -1,7 +1,7 @@
 
 /obj/item/melee/energy/sword/saber/covenant
-	name = "elite energy sword"
-	desc = "A blade like this requires great skill and bravery to use, and inspires fear in those who face its elegant energy blade."
+	name = "精英能量剑"
+	desc = "使用这样的刀刃需要高超的技巧和勇气，其优雅的能量剑刃会让面对它的人心生恐惧。"
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/melee.dmi'
 	icon_state = "covenant"
 	inhand_icon_state = "covenant"
@@ -16,7 +16,7 @@
 /obj/item/melee/energy/sword/saber/covenant/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore_hint = span_notice("你可以[EXAMINE_HINT("look closer")]来了解更多关于[src]的信息。"), \
 		lore = "The Pattern III/C \"Covenant\" charged plasma blade, colloquially known as the \"elite\" energy sword, is a variant of the \
 			energy sword infamously used by Syndicate operatives, noteworthy for its unusual twin-bladed design.<br>\
 			<br>\
@@ -41,7 +41,7 @@
 		return ITEM_INTERACT_BLOCKING
 	sword_color_icon = LOWER_TEXT(pick_result)
 	set_light_color(possible_sword_colors[sword_color_icon])
-	to_chat(user, span_info("You modify [src]'s blade modulator to be [sword_color_icon]."))
+	to_chat(user, span_info("你将[src]的刀刃调制器修改为[sword_color_icon]。"))
 	update_appearance(UPDATE_ICON_STATE)
 	return ITEM_INTERACT_SUCCESS
 

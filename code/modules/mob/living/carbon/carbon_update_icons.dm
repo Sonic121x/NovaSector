@@ -378,14 +378,14 @@
 
 /mob/living/carbon/update_worn_legcuffs()
 	remove_overlay(LEGCUFF_LAYER)
-	clear_alert("legcuffed")
+	clear_alert("腿铐")
 	if(!legcuffed)
 		return
 	if(astype(legcuffed, /obj/item/restraints/legcuffs)?.legcuff_state)
 		var/obj/item/restraints/legcuffs/cuffs = legcuffed
 		overlays_standing[LEGCUFF_LAYER] = mutable_appearance('icons/mob/simple/mob.dmi', cuffs.legcuff_state, -LEGCUFF_LAYER)
 	apply_overlay(LEGCUFF_LAYER)
-	throw_alert("legcuffed", /atom/movable/screen/alert/restrained/legcuffed, new_master = src.legcuffed)
+	throw_alert("腿铐", /atom/movable/screen/alert/restrained/legcuffed, new_master = src.legcuffed)
 
 /mob/living/carbon/update_worn_head()
 	remove_overlay(HEAD_LAYER)

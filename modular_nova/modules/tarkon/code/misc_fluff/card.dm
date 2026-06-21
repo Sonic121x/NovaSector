@@ -8,8 +8,8 @@
 	trim_state = "trim_unknown"
 
 /obj/item/card/id/advanced/tarkon
-	name = "Tarkon deck access pass"
-	desc = "A dust-collected visitors pass, A small tagline reading \"Port Tarkon, The first step to Civilian Partnership in Space Homesteading\"."
+	name = "塔康甲板访问通行证"
+	desc = "一张积满灰尘的访客通行证，上面有一行小字写着“塔康港，太空家园民用合作的第一步”。"
 	icon = 'modular_nova/modules/tarkon/icons/misc/card.dmi'
 	icon_state = "tarkon"
 	trim = /datum/id_trim/away/tarkon
@@ -24,7 +24,7 @@
 	trim_state = "trim_cargotechnician"
 
 /obj/item/card/id/advanced/tarkon/cargo
-	name = "P-T cargo hauler's access card"
+	name = "P-T 货运搬运工门禁卡"
 	desc = "An access card designated for \"cargo's finest\". You're also a part time space miner, when cargonia is quiet."
 	trim = /datum/id_trim/away/tarkon/cargo
 
@@ -43,8 +43,8 @@
 	trim_state = "trim_medicaldoctor"
 
 /obj/item/card/id/advanced/tarkon/med
-	name = "P-T trauma medic's access card"
-	desc = "An access card designated for \"medical staff\". You provide the medic bags."
+	name = "P-T 创伤急救员门禁卡"
+	desc = "一张指定给“医疗人员”的门禁卡。你负责提供医疗包。"
 	trim = /datum/id_trim/away/tarkon/med
 
 /datum/id_trim/away/tarkon/eng
@@ -54,8 +54,8 @@
 	trim_state = "trim_stationengineer"
 
 /obj/item/card/id/advanced/tarkon/engi
-	name = "P-T maintenance engineer's access card"
-	desc = "An access card designated for \"engineering staff\". You're going to be the one everyone points at to fix stuff, let's be honest."
+	name = "P-T 维护区工程师门禁卡"
+	desc = "一张指定给“工程部人员”的门禁卡。老实说，你会是那个被所有人指着去修东西的人。"
 	trim = /datum/id_trim/away/tarkon/eng
 
 /datum/id_trim/away/tarkon/sci
@@ -66,16 +66,16 @@
 	trim_state = "trim_scientist"
 
 /obj/item/card/id/advanced/tarkon/sci
-	name = "P-T field researcher's access card"
-	desc = "An access card designated for \"the science team\". You are forgotten basically immediately when it comes to the lab."
+	name = "P-T 实地研究员门禁卡"
+	desc = "一张指定给“科研团队”的门禁卡。说到实验室，你基本上立刻就被遗忘了。"
 	trim = /datum/id_trim/away/tarkon/sci
 
 /datum/id_trim/away/tarkon/robo
 	access = list(ACCESS_ROBOTICS)
 
 /obj/item/card/id/away/tarkonrobo
-	name = "Tarkon Robotics Card"
-	desc = "An access card designed to access robot's access ports, provided by Tarkon Industries."
+	name = "塔康机器人门禁卡"
+	desc = "一张设计用于访问机器人接入端口的门禁卡，由塔康工业提供。"
 	icon = 'modular_nova/modules/tarkon/icons/misc/card.dmi'
 	icon_state = "robotics"
 	trim = /datum/id_trim/away/tarkon/robo
@@ -89,14 +89,14 @@
 	trim_state = "trim_blueshield"
 
 /obj/item/card/id/advanced/tarkon/sec
-	name = "P-T resident deputy's access card"
-	desc = "An access card designated for \"security members\". Everyone wants your guns, partner. Yee-haw."
+	name = "P-T 驻地副警长门禁卡"
+	desc = "一张指定给“安保成员”的门禁卡。每个人都想要你的枪，搭档。耶哈。"
 	trim = /datum/id_trim/away/tarkon/sec
 
 
 /obj/item/card/id/advanced/tarkon/ensign
-	name = "Tarkon ensign's access card"
-	desc = "An access card designated for \"Tarkon ensign\". No one has to listen to you... But you're the closest thing there is to command around here."
+	name = "塔康少尉门禁卡"
+	desc = "一张指定给“塔康少尉”的门禁卡。没人必须听你的……但你是这里最接近指挥的人了。"
 	trim = /datum/id_trim/away/tarkon/ensign
 
 /datum/id_trim/away/tarkon/director
@@ -107,6 +107,6 @@
 	trim_state = "trim_captain"
 
 /obj/item/card/id/advanced/tarkon/director
-	name = "Tarkon port director's access card"
-	desc = "An access card designated for \"Tarkon Port Director\". It's no longer hesitation, only consideration."
+	name = "塔康港口主管门禁卡"
+	desc = "一张指定给“塔康港口主管”的门禁卡。不再有犹豫，只有考量。"
 	trim = /datum/id_trim/away/tarkon/director

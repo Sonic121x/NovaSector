@@ -105,18 +105,18 @@
 	if (!istype(attacking_item, /obj/item/goliath_saddle))
 		return ..()
 	if (!tameable)
-		balloon_alert(user, "doesn't fit!")
+		balloon_alert(user, "不合适！")
 		return
 	if (saddled)
-		balloon_alert(user, "already saddled!")
+		balloon_alert(user, "已经装上鞍具了！")
 		return
 	if (!HAS_TRAIT(src, TRAIT_TAMED))
-		balloon_alert(user, "too rowdy!")
+		balloon_alert(user, "太闹腾了！")
 		return
-	balloon_alert(user, "affixing saddle...")
+	balloon_alert(user, "正在安装鞍座...")
 	if (!do_after(user, delay = 5.5 SECONDS, target = src))
 		return
-	balloon_alert(user, "ready to ride")
+	balloon_alert(user, "可以骑乘了")
 	qdel(attacking_item)
 	make_rideable()
 

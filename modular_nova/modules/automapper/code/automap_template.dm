@@ -1,5 +1,5 @@
 /datum/map_template/automap_template
-	name = "Automap Template"
+	name = "自动地图模板"
 	should_place_on_top = FALSE
 	keep_cached_map = FALSE
 

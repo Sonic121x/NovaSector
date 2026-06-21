@@ -1,7 +1,7 @@
 /// Short stairs you can use to climb tables quickly
 /obj/structure/steps
-	name = "steps"
-	desc = "A small set of steps you can use to reach high shelves or climb onto platforms, just watch your ankles."
+	name = "台阶"
+	desc = "一小段台阶，可以用来够到高处的架子或爬上平台，小心别崴了脚踝。"
 	icon = 'icons/obj/small_stairs.dmi'
 	icon_state = "iron"
 	anchored = TRUE
@@ -38,7 +38,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/steps/screwdriver_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You start disassembling [src]..."))
+	to_chat(user, span_notice("你开始拆卸[src]..."))
 	if(tool.use_tool(src, user, 2 SECONDS, volume=50))
 		deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -54,6 +54,6 @@
 	var/entered_dir = get_dir(our_turf, old_loc)
 	if (entered_dir == dir)
 		arrived.Knockdown(1 SECONDS)
-		to_chat(arrived, span_warning("You tripped over \the [src]!"))
+		to_chat(arrived, span_warning("你被\the [src]绊倒了！"))
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/steps, 0)

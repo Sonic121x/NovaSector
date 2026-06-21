@@ -1,8 +1,8 @@
 // Base Sol SMG
 
 /obj/item/gun/ballistic/automatic/sol_smg
-	name = "\improper Sindano Submachine Gun"
-	desc = "A small submachine gun firing .35 Sol Short. Commonly seen in the hands of PMCs and other unsavory corpos. Accepts any standard Sol pistol magazine."
+	name = "\improper 辛达诺冲锋枪"
+	desc = "一款发射.35索尔短弹的小型冲锋枪。常见于私人军事公司和其他声名狼藉的企业人员手中。可接受任何标准的索尔手枪弹匣。"
 
 	icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns32x.dmi'
 	icon_state = "sindano"
@@ -53,7 +53,7 @@
 // Sindano (evil)
 
 /obj/item/gun/ballistic/automatic/sol_smg/evil
-	desc = parent_type::desc + " This one is painted in a tacticool black."
+	desc = parent_type::desc + "这把涂装了战术黑色。"
 
 	icon_state = "sindano_evil"
 	inhand_icon_state = "sindano_evil"

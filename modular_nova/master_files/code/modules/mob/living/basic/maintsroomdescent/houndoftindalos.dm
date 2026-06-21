@@ -1,7 +1,7 @@
 ///this could cause serious trouble if this thing ever got station side, thankfully i dont think we have anybody psychotic or stupid enough to try something like that.
 /mob/living/basic/mining/legion/houndoftindalos
-	name = "Hound of Tindalos"
-	desc = "It looks vaguely like a dog- if said was put through a wood chipper then what was left was made into fine strands and then re-assembled in the vague shape of the dog while having the color of a rainbow."
+	name = "廷达洛斯之猎犬"
+	desc = "它看起来隐约像条狗——如果这条狗被送进碎木机，剩下的部分被做成细丝，然后以彩虹的颜色重新组装成狗的模糊形状。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion" ///these are just placeholder sprites until i can get a real sprite made or ported from CDDA
 	icon_living = "legion"

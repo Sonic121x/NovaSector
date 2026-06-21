@@ -8,13 +8,13 @@
  */
 
 /datum/round_event_control/sandstorm
-	name = "Sandstorm: Directional"
+	name = "沙暴：定向型"
 	typepath = /datum/round_event/sandstorm
 	max_occurrences = 3
 	min_players = 35
 	earliest_start = 35 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "A wave of space dust continually grinds down a side of the station."
+	description = "一波太空尘埃持续侵蚀空间站的一侧。"
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 	admin_setup = list(/datum/event_admin_setup/listed_options/sandstorm)
@@ -51,7 +51,7 @@
 			return
 
 	priority_announce("A large wave of space dust is approaching from the [start_side_text] side of the station. \
-		Impact is expected in the next two minutes. All employees are encouraged to assist in repairs and damage mitigation if possible.", "Collision Emergency Alert")
+		Impact is expected in the next two minutes. All employees are encouraged to assist in repairs and damage mitigation if possible.", "碰撞紧急警报")
 
 /datum/round_event/sandstorm/tick()
 	spawn_meteors(15, GLOB.meteors_sandstorm, start_side)
@@ -65,13 +65,13 @@
  */
 
 /datum/round_event_control/sandstorm_classic
-	name = "Sandstorm: Classic"
+	name = "沙暴：经典"
 	typepath = /datum/round_event/sandstorm_classic
 	weight = 0
 	max_occurrences = 0
 	earliest_start = 0 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "The station is pelted by an extreme amount of dust, from all sides, for several minutes. Very destructive and likely to cause lag. Use at own risk."
+	description = "空间站被来自四面八方的极端数量的尘埃轰击数分钟。极具破坏性且可能导致延迟。使用风险自负。"
 	map_flags = EVENT_SPACE_ONLY
 
 /datum/round_event/sandstorm_classic

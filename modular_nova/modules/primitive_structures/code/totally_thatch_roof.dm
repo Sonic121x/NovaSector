@@ -1,6 +1,6 @@
 /turf/open/misc/grass/roofing
-	name = "thatched roof"
-	desc = "A collection of various dried greens, not so green anymore, that makes a passable roof material."
+	name = "茅草屋顶"
+	desc = "一堆各种干枯的植物，已经不那么绿了，可以做成凑合的屋顶材料。"
 	baseturfs = /turf/open/openspace/icemoon
 	initial_gas_mix = "ICEMOON_ATMOS"
 	icon_state = "grass-255"
@@ -9,8 +9,8 @@
 
 
 /turf/open/floor/grass/thatch
-	name = "thatch patch"
-	desc = "A collection of various dried greens, not so green anymore, that makes a passable floor material"
+	name = "茅草补丁"
+	desc = "一堆各种干枯的植物，已经不那么绿了，可以做成凑合的地板材料"
 	icon_state = "grass-255"
 	base_icon_state = "grass"
 	icon = 'modular_nova/modules/primitive_structures/icons/thatch.dmi'
@@ -43,9 +43,9 @@
 
 
 /obj/item/stack/tile/grass/thatch
-	name = "thatch tile"
+	name = "茅草瓦片"
 	singular_name = "thatch floor tile"
-	desc = "A patch of thatch like in those old-school barns."
+	desc = "一块茅草，就像那些老式谷仓里用的那种。"
 	icon_state = "tile_thatch"
 	inhand_icon_state = "tile-thatch"
 	icon = 'modular_nova/modules/primitive_structures/icons/thatch_obj.dmi'
@@ -57,8 +57,8 @@
 
 
 /obj/item/food/grown/grass/thatch
-	name = "thatch"
-	desc = "Yellow and dry."
+	name = "茅草"
+	desc = "又黄又干。"
 	icon = 'modular_nova/modules/primitive_structures/icons/thatch_obj.dmi'
 	icon_state = "thatch_clump"
 	stacktype = /obj/item/stack/tile/grass/thatch

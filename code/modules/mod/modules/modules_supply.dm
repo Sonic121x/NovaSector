@@ -2,7 +2,7 @@
 
 ///Internal GPS - Extends a GPS you can use.
 /obj/item/mod/module/gps
-	name = "MOD internal GPS module"
+	name = "MOD内置GPS模块"
 	desc = "This module uses common Nanotrasen technology to calculate the user's position anywhere in space, \
 		down to the exact coordinates. This information is fed to a central database viewable from the device itself, \
 		though using it to help people is up to you."
@@ -23,7 +23,7 @@
 
 ///Hydraulic Clamp - Lets you pick up and drop crates.
 /obj/item/mod/module/clamp
-	name = "MOD hydraulic clamp module"
+	name = "MOD液动压板模块"
 	desc = "A series of actuators installed into both arms of the suit, boasting a lifting capacity of almost a ton. \
 		However, this design has been locked by Nanotrasen to be primarily utilized for lifting various crates. \
 		A lot of people would say that loading cargo is a dull job, but you could not disagree more."
@@ -66,13 +66,13 @@
 			return
 		playsound(src, 'sound/vehicles/mecha/hydraulic.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, load_time, target = target))
-			balloon_alert(mod.wearer, "interrupted!")
+			balloon_alert(mod.wearer, "被打断了！")
 			return
 		if(!check_crate_pickup(picked_crate))
 			return
 		stored_crates += picked_crate
 		picked_crate.forceMove(src)
-		balloon_alert(mod.wearer, "picked up crate")
+		balloon_alert(mod.wearer, "拾起了板条箱")
 		drain_power(use_energy_cost)
 	else if(length(stored_crates))
 		var/turf/target_turf = get_turf(target)
@@ -80,16 +80,16 @@
 			return
 		playsound(src, 'sound/vehicles/mecha/hydraulic.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, load_time, target = target))
-			balloon_alert(mod.wearer, "interrupted!")
+			balloon_alert(mod.wearer, "被打断了！")
 			return
 		if(target_turf.is_blocked_turf())
 			return
 		var/atom/movable/dropped_crate = pop(stored_crates)
 		dropped_crate.forceMove(target_turf)
-		balloon_alert(mod.wearer, "dropped [dropped_crate]")
+		balloon_alert(mod.wearer, "放下了 [dropped_crate]")
 		drain_power(use_energy_cost)
 	else
-		balloon_alert(mod.wearer, "invalid target!")
+		balloon_alert(mod.wearer, "无效目标！")
 
 /obj/item/mod/module/clamp/on_part_deactivation(deleting = FALSE)
 	if(deleting)
@@ -100,17 +100,17 @@
 
 /obj/item/mod/module/clamp/proc/check_crate_pickup(atom/movable/target)
 	if(length(stored_crates) >= max_crates)
-		balloon_alert(mod.wearer, "too many crates!")
+		balloon_alert(mod.wearer, "板条箱太多了！")
 		return FALSE
 	for(var/mob/living/mob in target.get_all_contents())
 		if(mob.mob_size <= max_mob_size)
 			continue
-		balloon_alert(mod.wearer, "crate too heavy!")
+		balloon_alert(mod.wearer, "板条箱太重了！")
 		return FALSE
 	return TRUE
 
 /obj/item/mod/module/clamp/loader
-	name = "MOD loader hydraulic clamp module"
+	name = "MOD装载式液动压板模块"
 	icon_state = "clamp_loader"
 	complexity = 0
 	removable = FALSE
@@ -123,7 +123,7 @@
 
 ///Drill - Lets you dig through rock and basalt.
 /obj/item/mod/module/drill
-	name = "MOD drill module"
+	name = "MOD钻机模块"
 	desc = "An arm-mounted drill, typically extending over the user's hand. While useful for drilling through rock, \
 		your drill is surely the one that both pierces and creates the heavens. Integrates with mining MODs' sphere \
 		transformation module, changing it from a mere traversal tool to high-powered excavation unit."
@@ -238,7 +238,7 @@
 
 /// Ore Bag - Lets you pick up ores and drop them from the suit.
 /obj/item/mod/module/orebag
-	name = "MOD ore bag module"
+	name = "MOD矿袋模块"
 	desc = "An integrated ore storage system installed into the suit, \
 		this utilizes precise electromagnets and storage compartments to automatically collect and deposit ore. \
 		It's recommended by Nakamura Engineering to actually deposit that ore at local refineries."
@@ -310,8 +310,8 @@
 		playsound(mod.wearer, SFX_RUSTLE, 50, TRUE)
 
 /obj/item/mod/module/hydraulic
-	name = "MOD loader hydraulic arms module"
-	desc = "A pair of powerful hydraulic arms installed in a MODsuit."
+	name = "MOD装载式液压臂模块"
+	desc = "一套强大的液压臂安装在模块服内。"
 	icon_state = "launch_loader"
 	module_type = MODULE_ACTIVE
 	removable = FALSE
@@ -341,7 +341,7 @@
 	playsound(src, 'sound/items/modsuit/loader_charge.ogg', 75, TRUE)
 	lightning = mutable_appearance('icons/effects/effects.dmi', "electricity3", layer = LOW_MOB_LAYER)
 	mod.wearer.add_overlay(lightning)
-	balloon_alert(mod.wearer, "you start charging...")
+	balloon_alert(mod.wearer, "你开始蓄力...")
 	var/power = launch_time
 	if(!do_after(mod.wearer, launch_time, target = mod))
 		power = world.time - current_time
@@ -363,7 +363,7 @@
 	user.transform = user.transform.Turn(angle)
 
 /obj/item/mod/module/disposal_connector
-	name = "MOD disposal selector module"
+	name = "MOD处理器选择模块"
 	desc = "A module that connects to the disposal pipeline, causing the user to go into their config selected disposal. \
 		Only seems to work when the suit is on."
 	icon_state = "disposal"
@@ -400,8 +400,8 @@
 	disposal_holder.destinationTag = disposal_tag
 
 /obj/item/mod/module/magnet
-	name = "MOD loader hydraulic magnet module"
-	desc = "A powerful hydraulic electromagnet able to launch crates and lockers towards the user, and keep 'em attached."
+	name = "MOD装载式液压磁模块"
+	desc = "一个强大的液压电磁铁，能够将箱子和储物柜吸向使用者，并将其固定住。"
 	icon_state = "magnet_loader"
 	module_type = MODULE_ACTIVE
 	removable = FALSE
@@ -423,11 +423,11 @@
 		locker.throw_at(target, range = 7, speed = 4, thrower = mod.wearer)
 		return
 	if(!istype(target, /obj/structure/closet) || !(target in view(mod.wearer)))
-		balloon_alert(mod.wearer, "invalid target!")
+		balloon_alert(mod.wearer, "无效目标！")
 		return
 	var/obj/structure/closet/locker = target
 	if(locker.anchored || locker.move_resist >= MOVE_FORCE_OVERPOWERING)
-		balloon_alert(mod.wearer, "target anchored!")
+		balloon_alert(mod.wearer, "目标已固定！")
 		return
 	new /obj/effect/temp_visual/mook_dust(get_turf(locker))
 	playsound(locker, 'sound/effects/gravhit.ogg', 75, TRUE)
@@ -454,7 +454,7 @@
 	UnregisterSignal(locker, COMSIG_ATOM_NO_LONGER_PULLED)
 
 /obj/item/mod/module/ash_accretion
-	name = "MOD ash accretion module"
+	name = "MOD灰烬聚集模块"
 	desc = "A module that collects ash from the terrain, covering the suit in a protective layer, this layer is \
 		lost when moving across standard terrain."
 	icon_state = "ash_accretion"
@@ -547,7 +547,7 @@
 		if(traveled_tiles < max_traveled_tiles)
 			return
 
-		balloon_alert(mod.wearer, "fully ash covered")
+		balloon_alert(mod.wearer, "灰烬覆盖完成")
 		var/cur_color = mod.wearer.color
 		mod.wearer.color = list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,3) // Make them super light
 		animate(mod.wearer, 1 SECONDS, color = cur_color, flags = ANIMATION_PARALLEL)
@@ -572,10 +572,10 @@
 		part.set_armor(part.get_armor().subtract_other_armor(armor_mod))
 
 	if(traveled_tiles <= 0)
-		balloon_alert(mod.wearer, "ran out of ash!")
+		balloon_alert(mod.wearer, "灰烬用完了！")
 
 /obj/item/mod/module/sphere_transform
-	name = "MOD sphere transform module"
+	name = "MOD球形态模块"
 	desc = "A module able to move the suit's parts around, turning it and the user into a sphere. If the modsuit is insulated with bileworm skin, the user will be protected from lava while active. \
 		The sphere can move quickly, even through lava, and launch mining micromissiles to decimate terrain and fauna alike."
 	icon_state = "sphere"
@@ -633,7 +633,7 @@
 	hide_upgrade = TRUE
 	overlay_state_inactive = "module_bileworm_bracing"
 	user_traits += TRAIT_LAVA_IMMUNE
-	mod.balloon_alert(user, "plating reinforced!")
+	mod.balloon_alert(user, "装甲板已加固！")
 	if (active)
 		ADD_TRAIT(mod.wearer, TRAIT_LAVA_IMMUNE, REF(src))
 	update_clothing_slots()
@@ -641,7 +641,7 @@
 
 /obj/item/mod/module/sphere_transform/activate(mob/activator)
 	if(!mod.wearer.has_gravity())
-		balloon_alert(activator, "no gravity!")
+		balloon_alert(activator, "无重力！")
 		return FALSE
 	return ..()
 
@@ -678,7 +678,7 @@
 
 /obj/item/mod/module/sphere_transform/used(mob/activator)
 	if(!lavaland_equipment_pressure_check(get_turf(src)))
-		balloon_alert(activator, "too much pressure!")
+		balloon_alert(activator, "压力过大！")
 		playsound(src, 'sound/items/weapons/gun/general/dry_fire.ogg', 25, TRUE)
 		return FALSE
 	return ..()

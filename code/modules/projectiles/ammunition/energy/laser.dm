@@ -175,8 +175,8 @@
 
 ///not exactly an energy ammo casing, but it's used by the laser gatling.
 /obj/item/ammo_casing/laser
-	name = "laser casing"
-	desc = "You shouldn't be seeing this."
+	name = "激光弹壳"
+	desc = "你不应该看到这个。"
 	caliber = CALIBER_LASER
 	icon_state = "s-casing-live"
 	base_icon_state = "s-casing-live"

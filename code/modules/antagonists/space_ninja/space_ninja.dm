@@ -1,5 +1,5 @@
 /datum/antagonist/ninja
-	name = "\improper Space Ninja"
+	name = "\improper 太空忍者"
 	antagpanel_category = ANTAG_GROUP_NINJAS
 	pref_flag = ROLE_NINJA
 	antag_hud_name = "ninja"
@@ -103,9 +103,9 @@
 /datum/antagonist/ninja/greet()
 	. = ..()
 	SEND_SOUND(owner.current, sound('sound/music/antag/ninja_greeting.ogg'))
-	to_chat(owner.current, span_danger("I am an elite mercenary of the mighty Spider Clan!"))
-	to_chat(owner.current, span_warning("Surprise is my weapon. Shadows are my armor. Without them, I am nothing."))
-	to_chat(owner.current, span_notice("The station is located to your [dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))]. A thrown ninja star will be a great way to get there."))
+	to_chat(owner.current, span_danger("我是强大的蜘蛛氏族麾下的精英雇佣兵！"))
+	to_chat(owner.current, span_warning("突袭是我的武器，暗影是我的护甲。失去它们，我便一无是处。"))
+	to_chat(owner.current, span_notice("空间站位于你的[dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))]方向。投掷一枚忍者镖将是前往那里的绝佳方式。"))
 	owner.announce_objectives()
 
 /datum/antagonist/ninja/on_gain()
