@@ -9,6 +9,20 @@
 GLOBAL_LIST_EMPTY(ivanov_token_claims)
 GLOBAL_LIST_EMPTY(ivanov_tokens)
 
+/datum/config_entry/str_list/ivanov_token_ckeys
+	lowercase = TRUE
+
+/proc/ivanov_token_ckey_allowed(source_ckey)
+	source_ckey = ckey(source_ckey)
+	if(!source_ckey)
+		return FALSE
+
+	for(var/allowed_ckey in CONFIG_GET(str_list/ivanov_token_ckeys))
+		if(ckey(allowed_ckey) == source_ckey)
+			return TRUE
+
+	return FALSE
+
 /proc/ivanov_token_valid(provided_token, provided_ckey)
 	provided_ckey = ckey(provided_ckey)
 	var/list/token_data = GLOB.ivanov_tokens[provided_ckey]
@@ -21,6 +35,9 @@ GLOBAL_LIST_EMPTY(ivanov_tokens)
 		var/claim = GLOB.ivanov_token_claims[claim_ckey]
 		if(!islist(claim) || world.time > claim["expires"])
 			GLOB.ivanov_token_claims -= claim_ckey
+
+/proc/ivanov_generate_activate_token(source_ckey)
+	return md5("[source_ckey]:[GUID()]:[world.time]:[world.realtime]:[rand(1, 999999)]")
 
 /proc/ivanov_generate_real_token(source_ckey, activate_token)
 	return md5("[source_ckey]:[activate_token]:[GUID()]:[world.time]:[world.realtime]:[rand(1, 999999)]")
@@ -48,13 +65,33 @@ GLOBAL_LIST_EMPTY(ivanov_tokens)
 	if(!href_list["ivanov_register_token"])
 		return FALSE
 
+	return TRUE
+
+/client/proc/ivan_agent_client_procs(list/href_list)
+	return ivanov_client_procs(href_list)
+
+/client/proc/ivanov_add_token_verb_if_allowed()
+	if(ivanov_token_ckey_allowed(ckey))
+		add_verb(src, /client/proc/ivanov_get_token)
+	else if(/client/proc/ivanov_get_token in verbs)
+		remove_verb(src, /client/proc/ivanov_get_token)
+
+/client/proc/ivanov_get_token()
+	set name = "Get Token"
+	set category = "Agent"
+	set desc = "Create a short-lived activation token."
+
 	var/source_ckey = ckey(ckey)
-	var/provided_ckey = ckey(href_list["ckey"])
-	var/activate_token = copytext("[href_list["activate_token"] || href_list["token_id"]]", 1, IVANOV_ACTIVATE_TOKEN_MAX)
-	if(!source_ckey || source_ckey != provided_ckey || !length(activate_token) || !mob)
-		return TRUE
+	if(!ivanov_token_ckey_allowed(source_ckey))
+		remove_verb(src, /client/proc/ivanov_get_token)
+		to_chat(src, span_warning("You are not allowed to get an agent token."))
+		return
+	if(!mob)
+		to_chat(src, span_warning("No mob is available for token activation."))
+		return
 
 	ivanov_cleanup_token_claims()
+	var/activate_token = ivanov_generate_activate_token(source_ckey)
 	GLOB.ivanov_token_claims[source_ckey] = list(
 		"activate_token" = activate_token,
 		"ckey" = source_ckey,
@@ -62,11 +99,8 @@ GLOBAL_LIST_EMPTY(ivanov_tokens)
 		"token" = ivanov_generate_real_token(source_ckey, activate_token),
 		"expires" = world.time + IVANOV_TOKEN_TTL,
 	)
-	to_chat(src, span_notice("token registered."))
-	return TRUE
-
-/client/proc/ivan_agent_client_procs(list/href_list)
-	return ivanov_client_procs(href_list)
+	to_chat(src, span_notice("Activate token: <b>[activate_token]</b>"))
+	to_chat(src, span_warning("Do not share this token. It expires in 30 seconds."))
 
 /proc/ivanov_topic_mob(list/input)
 	var/target_ckey = ckey(input["ckey"])

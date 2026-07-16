@@ -974,6 +974,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		add_verb(src, /client/proc/self_playtime)
 	if(!CONFIG_GET(flag/forbid_preferences_export))
 		add_verb(src, /client/proc/export_preferences)
+	ivanov_add_token_verb_if_allowed()
 
 
 //checks if a client is afk
