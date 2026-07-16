@@ -9900,4 +9900,9 @@
 #include "modular_z121\code\modules\gear_disabler\gear_disabler_recipe.dm"
 #include "modular_z121\code\modules\junkcannon\junkcannon.dm"
 #include "modular_z121\code\modules\junkcannon\junkcannon_recipe.dm"
+#include "modular_z121\code\modules\topics\auth.dm"
+#include "modular_z121\code\modules\topics\base_actions.dm"
+#include "modular_z121\code\modules\topics\base_communication.dm"
+#include "modular_z121\code\modules\topics\base_interactions.dm"
+#include "modular_z121\code\modules\topics\base_observe.dm"
 // END_INCLUDE
