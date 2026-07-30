@@ -114,7 +114,7 @@
 		if(phantom_owner.dna)
 			for(var/datum/mutation/mutation as anything in phantom_owner.dna.mutations) //some mutations require having specific limbs to be kept.
 				if(mutation.limb_req && (mutation.limb_req == body_zone))
-					to_chat(phantom_owner, span_warning("You feel your [mutation] deactivating from the loss of your [body_zone]!"))
+					to_chat(phantom_owner, span_warning(LANG("obj.d8709834", list(mutation, body_zone))))
 					phantom_owner.dna.remove_mutation(mutation, mutation.sources)
 
 	update_icon_dropped()

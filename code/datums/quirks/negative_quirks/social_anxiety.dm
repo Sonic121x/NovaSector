@@ -58,7 +58,7 @@
 				new_message += pick("uh,","erm,","um,")
 				if(prob(min(5, moodmod))) //Max 1 in 20 chance of cutoff after a successful filler roll, for 50% odds in a 15 word sentence
 					quirk_holder.set_silence_if_lower(6 SECONDS)
-					to_chat(quirk_holder, span_danger("You feel self-conscious and stop talking. You need a moment to recover!"))
+					to_chat(quirk_holder, span_danger(LANG("datum.5dfc3a01", null)))
 					break
 			new_message += word
 		message = jointext(new_message, " ")

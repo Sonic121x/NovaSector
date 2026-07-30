@@ -295,11 +295,11 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "配置/发射补给舱", "Configure an
 			var/list/expNames = list("Devastation", "Heavy Damage", "Light Damage", "Flame", "Flash") //Explosions have a range of different types of damage
 			var/list/boomInput = list()
 			for (var/i=1 to length(expNames)) //Gather input from the user for the value of each type of damage
-				boomInput.Add(input("Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", "[expNames[i]] Range",  0) as null|num)
+				boomInput.Add(input(LANG("datum.eb7bcfe6", list(expNames[i])), LANG("datum.dcc80ff4", list(expNames[i])),  0) as null|num)
 				if (isnull(boomInput[i]))
 					return
 				if (!isnum(boomInput[i])) //If the user doesn't input a number, set that specific explosion value to zero
-					tgui_alert(usr, "That wasn't a number! Value set to default (zero) instead.")
+					tgui_alert(usr, LANG("datum.044c3c7f", null))
 					boomInput[i] = 0
 			explosionChoice = 1
 			temp_pod.explosionSize = boomInput

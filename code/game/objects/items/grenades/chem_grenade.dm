@@ -58,7 +58,7 @@
 			return
 
 		for (var/obj/item/beaker as anything in beakers)
-			. += span_notice("You see a [beaker.name] inside the grenade.")
+			. += span_notice(LANG("obj.7debf7cd", list(beaker.name)))
 
 	if (!length(beakers))
 		. += span_notice(LANG("obj.5f87e07a", null))
@@ -68,7 +68,7 @@
 
 	for (var/obj/item/beaker as anything in beakers)
 		for (var/datum/reagent/reagent in beaker.reagents.reagent_list)
-			. += span_notice("[reagent.volume] units of [reagent.name] in \the [beaker].")
+			. += span_notice(LANG("obj.69aabddc", list(reagent.volume, reagent.name, beaker)))
 
 	if (length(beakers) == 1)
 		. += span_notice(LANG("obj.84f355fc", null))

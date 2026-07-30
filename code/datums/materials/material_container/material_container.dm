@@ -466,28 +466,28 @@
 							var/obj/item/stack/stack = item
 							var/sheets = min(count, amount) //minimum between sheets inserted vs sheets consumed(values differ for alloys)
 							if (sheets > 1)
-								to_chat(user, span_notice("[sheets] [stack.singular_name][plural_s(stack.singular_name)] were added to [parent]."))
+								to_chat(user, span_notice(LANG("datum.bd690f92", list(sheets, stack.singular_name, plural_s(stack.singular_name), parent))))
 							else
-								to_chat(user, span_notice("The [stack.singular_name] was added to [parent]."))
+								to_chat(user, span_notice(LANG("datum.d4dede73", list(stack.singular_name, parent))))
 						else
 							if (count > 1)
-								to_chat(user, span_notice("[count] [item.name][plural_s(item.name)], worth [amount] sheet\s, were added to [parent]."))
+								to_chat(user, span_notice(LANG("datum.020ce697", list(count, item.name, plural_s(item.name), amount, parent))))
 							else
-								to_chat(user, span_notice("\The [item], worth [amount] sheet\s, [item.p_were()] added to [parent]."))
+								to_chat(user, span_notice(LANG("datum.34d4764b", list(item, amount, item.p_were(), parent))))
 					if(MATERIAL_INSERT_ITEM_NO_SPACE) //no space
-						to_chat(user, span_warning("[parent] has no space to accept \the [item]!"))
+						to_chat(user, span_warning(LANG("datum.ce03c8e9", list(parent, item))))
 					if(MATERIAL_INSERT_ITEM_NO_MATS) //no materials inside these items
 						if(isstack(item))
 							var/obj/item/stack/stack = item
-							to_chat(user, span_warning("The [stack.singular_name] has no materials that can be accepted by [parent]!"))
+							to_chat(user, span_warning(LANG("datum.a3f625b6", list(stack.singular_name, parent))))
 						else
-							to_chat(user, span_warning("\The [item][count > 1 ? "[plural_s(item.name)] have" : " [item.p_have()]"] no materials that can be accepted by [parent]!"))
+							to_chat(user, span_warning(LANG("datum.fddeb939", list(item, count > 1 ? "[plural_s(item.name)] have" : " [item.p_have()]", parent))))
 					if(MATERIAL_INSERT_ITEM_FAILURE) //could be because the material type was not accepted or other stuff
 						if (isstack(item))
 							var/obj/item/stack/stack = item
-							to_chat(user, span_warning("The [stack.singular_name] was rejected by [parent]!"))
+							to_chat(user, span_warning(LANG("datum.666df7fc", list(stack.singular_name, parent))))
 						else
-							to_chat(user, span_warning("\The [item][count > 1 ? "[plural_s(item.name)] were" : " [item.p_were()]"] rejected by [parent]!"))
+							to_chat(user, span_warning(LANG("datum.60abd556", list(item, count > 1 ? "[plural_s(item.name)] were" : " [item.p_were()]", parent))))
 
 	//finally delete the items
 	for(var/obj/item/deleting as anything in to_delete)

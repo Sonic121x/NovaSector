@@ -46,7 +46,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 /obj/item/mmi/posibrain/proc/ping_ghosts(msg, newlymade)
 	if(newlymade || GLOB.posibrain_notify_cooldown <= world.time)
 		notify_ghosts(
-			"[name] [msg] in [get_area(src)]! [ask_role ? "Personality requested: \[[ask_role]\]" : ""]",
+			LANG("obj.c80b0da1", list(name, msg, get_area(src), ask_role ? "Personality requested: \[[ask_role]\]" : "")),
 			source = src,
 			header = "Ghost in the Machine",
 			click_interact = TRUE,

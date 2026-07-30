@@ -49,7 +49,7 @@ ADMIN_VERB(play_local_sound, R_SOUND, "播放本地音效", "Plays a sound only 
 
 ADMIN_VERB(play_direct_mob_sound, R_SOUND, "直接播放生物音效", "Play a sound directly to a mob.", ADMIN_CATEGORY_FUN, sound as sound, mob/target)
 	if(!target)
-		target = input(user, LANG("datum.65a0ea09", null), "Play Mob Sound") as null|anything in sort_names(GLOB.player_list)
+		target = input(user, LANG("datum.65a0ea09", null), LANG("datum.dfea01ae", null)) as null|anything in sort_names(GLOB.player_list)
 	if(QDELETED(target))
 		return
 	log_admin("[key_name(user)] played a direct mob sound [sound] to [key_name_admin(target)].")
@@ -89,7 +89,7 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 		try
 			data = json_decode(stdout)
 		catch(var/exception/e)
-			to_chat(user, span_boldwarning("yt-dlp JSON parsing FAILED:"), confidential = TRUE)
+			to_chat(user, span_boldwarning(LANG("_root.30a27b33", null)), confidential = TRUE)
 			to_chat(user, span_warning("[e]: [stdout]"), confidential = TRUE)
 			return
 		if (data["url"])

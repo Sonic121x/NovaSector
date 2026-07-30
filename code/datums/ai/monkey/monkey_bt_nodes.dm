@@ -67,14 +67,14 @@
 	if(do_after(living_pawn, MONKEY_ITEM_SNATCH_DELAY, victim) && target && victim.IsReachableBy(living_pawn))
 		for(var/obj/item/I in victim.held_items)
 			if(I == target)
-				victim.visible_message(span_danger("[living_pawn] snatches [target] from [victim]."), span_userdanger("[living_pawn] snatched [target]!"))
+				victim.visible_message(span_danger(LANG("datum.61694db5", list(living_pawn, target, victim))), span_userdanger(LANG("datum.ef984e8a", list(living_pawn, target))))
 				if(victim.temporarilyRemoveItemFromInventory(target))
 					if(!QDELETED(target) && !equip_item(controller))
 						target.forceMove(living_pawn.drop_location())
 						success = TRUE
 						break
 				else
-					victim.visible_message(span_danger("[living_pawn] tried to snatch [target] from [victim], but failed!"), span_userdanger("[living_pawn] tried to grab [target]!"))
+					victim.visible_message(span_danger(LANG("datum.99c53414", list(living_pawn, target, victim))), span_userdanger(LANG("datum.0782927d", list(living_pawn, target))))
 
 	finish_action(controller, success)
 

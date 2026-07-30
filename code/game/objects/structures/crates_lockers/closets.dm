@@ -487,7 +487,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
 			if(user)
-				to_chat(user, span_danger("There's something large on top of [src], preventing it from opening."))
+				to_chat(user, span_danger(LANG("obj.25b5a9f8", list(src))))
 			return FALSE
 	return TRUE
 
@@ -496,12 +496,12 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	for(var/obj/structure/closet/closet in T)
 		if(closet != src && !closet.wall_mounted)
 			if(user)
-				balloon_alert(user, "[closet.name] is in the way!")
+				balloon_alert(user, LANG("obj.f4935eb9", list(closet.name)))
 			return FALSE
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
 			if(user)
-				to_chat(user, span_danger("There's something too large in [src], preventing it from closing."))
+				to_chat(user, span_danger(LANG("obj.e1f04d6b", list(src))))
 			return FALSE
 	return TRUE
 

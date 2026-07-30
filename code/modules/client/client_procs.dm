@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 
 	// TGUIless adminhelp
 	if(href_list["tguiless_adminhelp"])
-		no_tgui_adminhelp(input(src, LANG("client.fe16a79e", null), "Ahelp") as null|message)
+		no_tgui_adminhelp(input(src, LANG("client.fe16a79e", null), LANG("client.5506e907", null)) as null|message)
 		return
 
 	if(href_list["commandbar_typing"])

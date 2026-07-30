@@ -77,7 +77,7 @@
 
 	for(var/trait_check in traits_prevent_checks)
 		if(HAS_TRAIT(source, trait_check))
-			source.balloon_alert(attacker, "not possible right now!")
+			source.balloon_alert(attacker, LANG("datum.075ee128", null))
 			return COMPONENT_NO_AFTERATTACK
 
 	INVOKE_ASYNC(src, PROC_REF(place_hat), source, item, attacker)

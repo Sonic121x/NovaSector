@@ -31,7 +31,7 @@
 	var/area/init_area = get_area(src)
 	if(!mapload && init_area)
 		notify_ghosts(
-			"\A golem shell has been completed in \the [init_area.name].",
+			LANG("obj.53b7eb3e", list(init_area.name)),
 			source = src,
 			header = "Golem Shell",
 			click_interact = TRUE,

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/preference/loadout
 	savefile_key = "loadout_list"
 	savefile_identifier = PREFERENCE_CHARACTER
@@ -39,18 +40,12 @@
 		var/obj/item/real_path = istext(path) ? text2path(path) : path
 		if(!ispath(real_path, /obj/item))
 			if(optional_loadout_owner)
-				to_chat(optional_loadout_owner, span_boldnotice("The following invalid item path was found \
-					in your character loadout: [real_path || "null"]. \
-					It has been removed, renamed, or is otherwise missing - \
-					You may want to check your loadout settings."))
+				to_chat(optional_loadout_owner, span_boldnotice(LANG("datum.68da2daa", list(real_path || "null"))))
 			continue
 
 		else if(!istype(GLOB.all_loadout_datums[real_path], /datum/loadout_item))
 			if(optional_loadout_owner)
-				to_chat(optional_loadout_owner, span_boldnotice("The following invalid loadout item was found \
-					in your character loadout: [real_path || "null"]. \
-					It has been removed, renamed, or is otherwise missing - \
-					You may want to check your loadout settings."))
+				to_chat(optional_loadout_owner, span_boldnotice(LANG("datum.265384fe", list(real_path || "null"))))
 			continue
 
 		var/datum/loadout_item/loadout_item = GLOB.all_loadout_datums[real_path]

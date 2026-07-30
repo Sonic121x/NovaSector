@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * A fluid which spreads through the air affecting every mob it engulfs.
  */
@@ -312,7 +313,7 @@
 			if(!isnull(comp.welded) && !comp.welded) //must be an unwelded vent pump or vent scrubber.
 				comp.welded = TRUE
 				comp.update_appearance()
-				comp.visible_message(span_danger("[comp] is frozen shut!"))
+				comp.visible_message(span_danger(LANG("datum.33a75987", list(comp))))
 
 	// Extinguishes everything in the turf
 	for(var/mob/living/potential_tinder in chilly)

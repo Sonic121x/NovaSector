@@ -128,7 +128,7 @@
 			if(!held_item)
 				continue
 			stored_items += held_item
-			to_chat(owner, span_notice("Your [owner.get_held_index_name(owner.get_held_index_of_item(held_item))]'s grip tightens."))
+			to_chat(owner, span_notice(LANG("obj.7ce37900", list(owner.get_held_index_name(owner.get_held_index_of_item(held_item))))))
 			ADD_TRAIT(held_item, TRAIT_NODROP, IMPLANT_TRAIT)
 			RegisterSignal(held_item, COMSIG_ITEM_DROPPED, PROC_REF(on_held_item_dropped))
 	else
@@ -147,7 +147,7 @@
 	for(var/obj/item/stored_item as anything in stored_items)
 		throw_target = pick(oview(range))
 		stored_item.throw_at(throw_target, range, 2)
-		to_chat(owner, span_warning("Your [owner.get_held_index_name(owner.get_held_index_of_item(stored_item))] spasms and throws \the [stored_item]!"))
+		to_chat(owner, span_warning(LANG("obj.77cb4abe", list(owner.get_held_index_name(owner.get_held_index_of_item(stored_item)), stored_item))))
 	stored_items = list()
 
 
@@ -324,8 +324,8 @@
 		loops = 2
 	for(var/i in 1 to loops)
 		// you either lose a chip or a bit of your brain
-		owner.visible_message(span_warning("Something falls to the ground from behind [owner]'s head."),\
-			span_boldwarning("You feel something fall off from behind your head."))
+		owner.visible_message(span_warning(LANG("obj.ccbee4df", list(owner))),\
+			span_boldwarning(LANG("obj.af177029", null)))
 		var/obj/item/organ/brain/chippy_brain = owner.get_organ_by_type(ORGAN_SLOT_BRAIN)
 		var/obj/item/skillchip/skillchip = chippy_brain?.skillchips[1]
 		if(skillchip)
@@ -379,7 +379,7 @@
 			// for simplicitly, filters out mechanical subtypes of normal surgeries
 			if((downloaded_surgery.operation_flags & OPERATION_MECHANIC) && (downloaded_surgery.parent_type in loaded_surgeries))
 				continue
-			. += span_info("&bull; [capitalize(downloaded_surgery.rnd_name || downloaded_surgery.name)]")
+			. += span_info(LANG("obj.56ec4dc4", list(capitalize(downloaded_surgery.rnd_name || downloaded_surgery.name))))
 
 	else
 		. += span_info(LANG("obj.54cc383c", null))

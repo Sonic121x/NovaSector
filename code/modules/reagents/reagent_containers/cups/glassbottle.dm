@@ -161,8 +161,8 @@
 
 	else
 		user.visible_message(
-			span_warning("[user] smashes [src] [head_hitter ? "over [target]'s head" : "against [target]"]!"),
-			span_warning("You smash [src] [head_hitter ? "over [target]'s head" : "against [target]"]!"),
+			span_warning(LANG("obj.4c2fb061", list(user, src, head_hitter ? "over [target]'s head" : "against [target]"))),
+			span_warning(LANG("obj.6010cb59", list(src, head_hitter ? "over [target]'s head" : "against [target]"))),
 		)
 
 	// Finally, smash the bottle. This kills (del) the bottle and also does all the logging for us
@@ -1022,7 +1022,7 @@
 	icon_state = "trashbag1" // pruno releases air as it ferments, we don't want to simulate this in atmos, but we can make it look like it did
 	for (var/mob/living/M in view(2, get_turf(src))) // letting people and/or narcs know when the pruno is done
 		if(HAS_TRAIT(M, TRAIT_ANOSMIA))
-			to_chat(M, span_info("A pungent smell emanates from [src], like fruit puking out its guts."))
+			to_chat(M, span_info(LANG("obj.645bfc03", list(src))))
 		playsound(get_turf(src), 'sound/effects/bubbles/bubbles2.ogg', 25, TRUE)
 
 /**

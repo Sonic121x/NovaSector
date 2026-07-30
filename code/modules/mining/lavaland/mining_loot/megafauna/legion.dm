@@ -120,7 +120,7 @@
 	for(var/turf/turf as anything in affected_turfs)
 		new /obj/effect/temp_visual/electricity(turf)
 		for(var/mob/living/hit_mob in turf)
-			to_chat(hit_mob, span_userdanger("You've been struck by lightning!"))
+			to_chat(hit_mob, span_userdanger(LANG("obj.d028d146", null)))
 			hit_mob.electrocute_act(15 * (isanimal_or_basicmob(hit_mob) ? 3 : 1) * (turf == target ? 2 : 1) * (boosted ? 2 : 1), src, flags = SHOCK_TESLA|SHOCK_NOSTUN)
 
 		for(var/obj/hit_thing in turf)

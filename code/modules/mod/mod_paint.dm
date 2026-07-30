@@ -100,10 +100,10 @@
 			for(var/color_value in total_colors)
 				total_color_value += color_value
 				if(color_value > MODPAINT_MAX_COLOR_VALUE)
-					balloon_alert(usr, "one of colors too high! ([color_value*100]%/[MODPAINT_MAX_COLOR_VALUE*100]%")
+					balloon_alert(usr, LANG("obj.4e96163f", list(color_value*100, MODPAINT_MAX_COLOR_VALUE*100)))
 					return
 				else if(color_value < MODPAINT_MIN_COLOR_VALUE)
-					balloon_alert(usr, "one of colors too low! ([color_value*100]%/[MODPAINT_MIN_COLOR_VALUE*100]%")
+					balloon_alert(usr, LANG("obj.8c969074", list(color_value*100, MODPAINT_MIN_COLOR_VALUE*100)))
 					return
 			if(total_color_value > MODPAINT_MAX_OVERALL_COLORS)
 				balloon_alert(usr, LANG("obj.12331105", list(total_color_value*100, MODPAINT_MAX_OVERALL_COLORS*100)))

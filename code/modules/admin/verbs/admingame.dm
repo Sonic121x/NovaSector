@@ -270,7 +270,7 @@ Works kind of like entering the game with a new character. Character receives a 
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
 ADMIN_VERB(respawn_character, R_ADMIN, "重生角色", "Respawn a player that has been round removed in some manner. They must be a ghost.", ADMIN_CATEGORY_GAME)
-	var/input = ckey(input(user, LANG("datum.f7b5022e", null), "Key", ""))
+	var/input = ckey(input(user, LANG("datum.f7b5022e", null), LANG("datum.6a14fe8b", null), ""))
 	if(!input)
 		return
 
@@ -417,7 +417,7 @@ ADMIN_VERB(manage_job_slots, R_ADMIN, "管理职位名额", "Manage the number o
 
 ADMIN_VERB(toggle_view_range, R_ADMIN, "更改视野范围", "Switch between 1x and custom views.", ADMIN_CATEGORY_GAME)
 	if(user.view_size.getView() == user.view_size.default)
-		user.view_size.setTo(input(user, LANG("datum.f07cd114", null), "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,37) - 7)
+		user.view_size.setTo(input(user, LANG("datum.f07cd114", null), LANG("datum.ce11e80b", null), 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,37) - 7)
 	else
 		user.view_size.resetToDefault()
 

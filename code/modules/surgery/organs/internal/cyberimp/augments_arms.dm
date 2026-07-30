@@ -197,7 +197,7 @@
 			if(!owner.dropItemToGround(hand_item))
 				failure_message += span_warning("Your [hand_item] interferes with [src]!")
 				continue
-			to_chat(owner, span_notice("You drop [hand_item] to activate [src]!"))
+			to_chat(owner, span_notice(LANG("obj.6c0d424a", list(hand_item, src))))
 			success = owner.put_in_hand(active_item, owner.get_empty_held_index_for_side(side))
 			break
 		if(!success)

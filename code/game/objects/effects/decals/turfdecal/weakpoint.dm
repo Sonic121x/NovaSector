@@ -178,7 +178,7 @@
 		active_count++
 
 	notify_ghosts(
-		"A new crack has been spawned in [get_area(src)].",
+		LANG("turf.1165d1e0", list(get_area(src))),
 		source = pick(new_cracks),
 		header = "Weakpoint created",
 		ghost_sound = 'sound/effects/hit_kick.ogg',

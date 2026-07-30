@@ -84,7 +84,7 @@
 	for(var/mob/living/carbon/human/potential_victim in range(1, get_turf(src)))
 		var/datum/antagonist/fugitive/fug_antag = potential_victim.mind.has_antag_datum(/datum/antagonist/fugitive)
 		if(fug_antag)
-			potential_victim.visible_message(span_alert("[potential_victim] is violently sucked into the [src]!"))
+			potential_victim.visible_message(span_alert(LANG("obj.b2cb1b95", list(potential_victim, src))))
 			add_prisoner(potential_victim, fug_antag)
 
 /// Psyker gear

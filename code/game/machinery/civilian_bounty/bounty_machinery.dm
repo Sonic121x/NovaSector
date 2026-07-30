@@ -163,7 +163,7 @@
 				for(var/datum/bank_account/helper in stack_item.contribution)
 					if(istype(helper?.civilian_bounty, stack_item.type))
 						helper.reset_bounty(inserted_scan_id)
-						helper.bank_card_talk("Your [stack_item.name] bounty has been completed for matching the completed station bounty!")
+						helper.bank_card_talk(LANG("obj.0c37355e", list(stack_item.name)))
 			else
 				id_account.reset_bounty(inserted_scan_id)
 

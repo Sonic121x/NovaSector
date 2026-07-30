@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/round_event_control/wizard/race //Lizard Wizard? Lizard Wizard.
 	name = "Race Swap"
 	weight = 0 //NOVA EDIT CHANGE - WIZARD CHANGE - ORIGINAL weight = 2
@@ -25,6 +26,6 @@
 		var/mob/living/carbon/human/H = i
 		H.set_species(new_species)
 		H.dna.unique_enzymes = H.dna.generate_unique_enzymes()
-		to_chat(H, span_notice("You feel somehow... different?"))
+		to_chat(H, span_notice(LANG("datum.d632b804", null)))
 		if(!all_the_same)
 			new_species = pick(all_species)

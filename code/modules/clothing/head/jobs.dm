@@ -306,7 +306,7 @@
 	for(var/found_regex in phrases_by_regex)
 		var/found_phrase = phrases_by_regex[found_regex]
 		var/obj/item/found_item = items_by_regex[found_regex]
-		. += span_notice("[icon2html(found_item, user)] You can remove [found_item] by saying <b>\"[prefix] [found_phrase]\"</b>!")
+		. += span_notice(LANG("obj.9644e18e", list(icon2html(found_item, user), found_item, prefix, found_phrase)))
 
 /obj/item/clothing/head/fedora/inspector_hat/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()
@@ -321,10 +321,10 @@
 			continue
 		var/obj/item/found_item = items_by_regex[found_regex]
 		if(wearer.put_in_hands(found_item))
-			wearer.visible_message(span_warning("[src] drops [found_item] into the hands of [wearer]!"))
+			wearer.visible_message(span_warning(LANG("obj.3ee51243", list(src, found_item, wearer))))
 			. = HEAR_HEARD | HEAR_UNDERSTOOD
 		else
-			balloon_alert(wearer, "can't put in hands!")
+			balloon_alert(wearer, LANG("obj.5e23cba6", null))
 			break
 
 	return .

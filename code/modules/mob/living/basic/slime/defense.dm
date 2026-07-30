@@ -87,7 +87,7 @@
 			applied_crossbreed_amount++
 			has_found = TRUE
 		if(applied_crossbreed_amount >= SLIME_EXTRACT_CROSSING_REQUIRED)
-			to_chat(user, span_notice("You feed the slime as many of the extracts from the bag as you can, and it mutates!"))
+			to_chat(user, span_notice(LANG("mob.d9978070", null)))
 			playsound(src, 'sound/effects/blob/attackblob.ogg', 50, TRUE)
 			spawn_corecross()
 			has_output = TRUE

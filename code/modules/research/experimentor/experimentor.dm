@@ -295,7 +295,7 @@
 		if(36 to 50)
 			visible_message(span_warning(LANG("obj.e157b44c", null)))
 			for(var/mob/living/m in view(4,src))
-				to_chat(m, span_danger("You feel your flesh being torn from you, mists of blood drifting to [src]!"))
+				to_chat(m, span_danger(LANG("obj.95fc1a00", list(src))))
 				playsound(src, pick('sound/effects/curse/curse1.ogg', 'sound/effects/curse/curse2.ogg', 'sound/effects/curse/curse3.ogg'), 30)
 				m.apply_damage(50, BRUTE, BODY_ZONE_CHEST)
 				investigate_log("Experimentor has taken 50 brute a blood sacrifice from [m]", INVESTIGATE_EXPERIMENTOR)

@@ -200,7 +200,7 @@
 				accept_check(mail) \
 			)
 				if (length(mail_list) + 1 > MAIL_CAPACITY )
-					to_chat(user, span_warning("There is no space for more mail in [src]!"))
+					to_chat(user, span_warning(LANG("obj.9f7179a1", list(src))))
 					return FALSE
 				else if (load(mail, user))
 					loaded++

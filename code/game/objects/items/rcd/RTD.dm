@@ -278,7 +278,7 @@
 					design_category = sub_category
 					selected_design = design_info["datum"]
 					selected_direction = floor.dir
-					balloon_alert(user, "tile changed to [selected_design.name]")
+					balloon_alert(user, LANG("obj.9ca7cc3f", list(selected_design.name)))
 
 					return ITEM_INTERACT_SUCCESS
 

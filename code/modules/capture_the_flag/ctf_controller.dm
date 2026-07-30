@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define CTF_DEFAULT_RESPAWN 15 SECONDS
 #define CTF_INSTAGIB_RESPAWN 5 SECONDS
 
@@ -48,7 +49,7 @@
 	for(var/team in teams)
 		var/obj/machinery/ctf/spawner/spawner = teams[team].spawner
 		notify_ghosts(
-			"[spawner.name] has been activated!",
+			LANG("datum.78bac1c4", list(spawner.name)),
 			source = spawner,
 			header = "CTF has been activated",
 		)
@@ -117,10 +118,10 @@
 			continue
 		var/list/enemy_team_members = get_players(team)
 		if(user.ckey in enemy_team_members)
-			to_chat(user, span_warning("No switching teams while the round is going!"))
+			to_chat(user, span_warning(LANG("datum.f6182fc9", null)))
 			return FALSE
 		else if(friendly_team_members.len > enemy_team_members.len)
-			to_chat(user, span_warning("[team_color] has more team members than [team]! Try joining [team] team to even things up."))
+			to_chat(user, span_warning(LANG("datum.1c81b1e0", list(team_color, team, team))))
 			return FALSE
 	return TRUE
 

@@ -22,7 +22,7 @@
 	for(var/obj/structure/carp_rift/rift as anything in dragon.rift_list)
 		var/area/used_location = get_area(rift)
 		if(used_location == rift_location)
-			owner.balloon_alert(owner, "already summoned a rift here!")
+			owner.balloon_alert(owner, LANG("datum.65adc34b", null))
 			return
 
 	if(!(rift_location in dragon.chosen_rift_areas))
@@ -53,7 +53,7 @@
 	// NOVA EDIT ADDITION END
 	to_chat(owner, span_boldwarning(LANG("datum.4ad66ba5", null)))
 	notify_ghosts(
-		"The Space Dragon has opened a rift!",
+		LANG("datum.ddff340d", null),
 		source = new_rift,
 		header = "Carp Rift Opened",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -254,7 +254,7 @@
 			set_light_color(LIGHT_COLOR_PURPLE)
 			update_light()
 		notify_ghosts(
-			"The carp rift can summon an additional carp!",
+			LANG("obj.35340ae1", null),
 			source = src,
 			header = "Carp Spawn Available",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,

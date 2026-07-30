@@ -134,7 +134,7 @@
 		if(is_type_in_list(dish, collectable_items) && dish.loc != src && (!dish.reagents || !dish.reagents.total_volume) && (dish.contents.len < 1))
 			if(dish.Adjacent(src))
 				LAZYADD(dish_drive_contents, dish)
-				visible_message(span_notice("[src] beams up [dish]!"))
+				visible_message(span_notice(LANG("obj.52c367cc", list(src, dish))))
 				dish.forceMove(src)
 				playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 				flick("synthesizer_beam", src)
@@ -166,7 +166,7 @@
 	for(var/obj/item/dish in dish_drive_contents)
 		if(is_type_in_list(dish, disposable_items))
 			if(!use_energy(active_power_usage, force = FALSE))
-				say("Not enough energy to continue!")
+				say(LANG("obj.78165de7", null))
 				break
 			LAZYREMOVE(dish_drive_contents, dish)
 			dish.forceMove(bin)

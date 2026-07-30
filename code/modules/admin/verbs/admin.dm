@@ -1,6 +1,6 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB(show_tip, R_ADMIN, "显示提示", "Sends a tip to all players.", ADMIN_CATEGORY_MAIN)
-	var/input = input(user, LANG("datum.766cc272", null), "Tip", "") as message|null
+	var/input = input(user, LANG("datum.766cc272", null), LANG("datum.56212106", null), "") as message|null
 	if(!input)
 		return
 
@@ -18,7 +18,7 @@ ADMIN_VERB(show_tip, R_ADMIN, "显示提示", "Sends a tip to all players.", ADM
 	BLACKBOX_LOG_ADMIN_VERB("Show Tip")
 
 ADMIN_VERB(announce, R_ADMIN, "公告", "Announce your desires to the world.", ADMIN_CATEGORY_MAIN)
-	var/message = input(user, LANG("datum.5d9a880a", null), "Admin Announce")  as message|null
+	var/message = input(user, LANG("datum.5d9a880a", null), LANG("datum.80d9e104", null))  as message|null
 	if(!message)
 		return
 

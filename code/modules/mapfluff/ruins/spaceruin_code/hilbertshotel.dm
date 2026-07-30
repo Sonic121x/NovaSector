@@ -209,7 +209,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 						if(ismob(atom))
 							var/mob/mob_atom = atom
 							if(mob_atom.mind)
-								to_chat(mob_atom, span_warning("As the sphere breaks apart, you're suddenly ejected into the depths of space!"))
+								to_chat(mob_atom, span_warning(LANG("obj.69fff46a", null)))
 						var/max = world.maxx-TRANSITIONEDGE
 						var/min = 1+TRANSITIONEDGE
 						var/list/possible_transtitons = list()

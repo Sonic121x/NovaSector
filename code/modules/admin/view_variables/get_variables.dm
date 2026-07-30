@@ -156,7 +156,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input("Enter type:[error]", "Type", type) as null|text
+				type = input(LANG("client.fb9808c4", list(error)), LANG("client.18446660", null), type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
@@ -280,7 +280,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input("Enter type:[error]", "Type", type) as null|text
+				type = input(LANG("client.fb9808c4", list(error)), LANG("client.18446660", null), type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
@@ -317,15 +317,15 @@
 		if(VV_TEXT_LOCATE)
 			var/datum/D
 			do
-				var/ref = input("Enter reference:", "Reference") as null|text
+				var/ref = input(LANG("client.f8e65f57", null), LANG("client.1b04a393", null)) as null|text
 				if(!ref)
 					break
 				D = locate(ref)
 				if(!D)
-					tgui_alert(usr,"Invalid ref!")
+					tgui_alert(usr,LANG("client.7f91cfb9", null))
 					continue
 				if(!D.can_vv_mark())
-					tgui_alert(usr,"Datum can not be marked!")
+					tgui_alert(usr,LANG("client.8606c6d9", null))
 					continue
 			while(!D)
 			.["type"] = D.type

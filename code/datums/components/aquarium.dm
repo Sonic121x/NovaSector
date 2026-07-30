@@ -320,7 +320,7 @@
 			if(content == item)
 				continue
 			if(content.type == item.type)
-				source.balloon_alert(user, "cannot add to aquarium!")
+				source.balloon_alert(user, LANG("datum.f6d9e3eb", null))
 				return FALSE
 	return TRUE
 

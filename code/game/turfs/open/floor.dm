@@ -308,7 +308,7 @@
 				for(var/obj/machinery/door/door in src)
 					if(istype(door, /obj/machinery/door/window))
 						continue
-					balloon_alert(user, "there's already a door!")
+					balloon_alert(user, LANG("turf.0d522e36", null))
 					return FALSE
 				//create the assembly and let it finish itself
 				var/obj/structure/windoor_assembly/assembly = new (src, user.dir)
@@ -320,7 +320,7 @@
 			for(var/obj/machinery/door/door in src)
 				if(door.sub_door)
 					continue
-				balloon_alert(user, "there's already a door!")
+				balloon_alert(user, LANG("turf.0d522e36", null))
 				return FALSE
 			//create the assembly and let it finish itself
 			var/obj/structure/door_assembly/assembly = new (src)

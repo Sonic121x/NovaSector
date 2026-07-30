@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // Various events that directly aid the wizard.
 // This is the "lets entice the wizard to use summon events!" file.
 
@@ -25,7 +26,7 @@
 				spell_improved = TRUE
 
 		if(spell_improved)
-			to_chat(caster, span_notice("You suddenly feel like you never needed those garish robes in the first place..."))
+			to_chat(caster, span_notice(LANG("datum.e30f3a84", null)))
 
 //--//
 
@@ -52,4 +53,4 @@
 			upgraded_a_spell = spell.level_spell(TRUE)
 
 		if(upgraded_a_spell)
-			to_chat(caster, span_notice("You suddenly feel more competent with your casting!"))
+			to_chat(caster, span_notice(LANG("datum.54e61a32", null)))

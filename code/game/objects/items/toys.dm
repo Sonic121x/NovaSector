@@ -184,9 +184,9 @@
 		to_chat(user, span_warning(LANG("obj.6d8bf663", null)))
 		return ITEM_INTERACT_BLOCKING
 	user.visible_message(
-		span_notice("[user.name] starts contorting up a balloon animal!"),
-		span_notice("You start twisting together a balloon animal!"),
-		span_hear("You hear balloons being contorted."),
+		span_notice(LANG("obj.b068d552", list(user.name))),
+		span_notice(LANG("obj.abdd617f", null)),
+		span_hear(LANG("obj.4c62c293", null)),
 		vision_distance = 3,
 		ignored_mobs = user,
 	)

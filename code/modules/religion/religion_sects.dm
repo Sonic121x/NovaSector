@@ -116,7 +116,7 @@
 	var/mob/living/carbon/human/blessed = target
 	for(var/obj/item/bodypart/bodypart as anything in blessed.get_bodyparts())
 		if(IS_ROBOTIC_LIMB(bodypart))
-			to_chat(chap, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
+			to_chat(chap, span_warning(LANG("datum.faa64d6d", list(GLOB.deity))))
 			return BLESSING_IGNORED
 
 	return standard_bless_healing(blessed, chap)
@@ -293,7 +293,7 @@
 	var/mob/living/carbon/human/blessed = blessed_living
 	for(var/obj/item/bodypart/robolimb as anything in blessed.get_bodyparts())
 		if(IS_ROBOTIC_LIMB(robolimb))
-			to_chat(chap, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
+			to_chat(chap, span_warning(LANG("datum.faa64d6d", list(GLOB.deity))))
 			return BLESSING_IGNORED
 
 	account.adjust_money(-GREEDY_HEAL_COST, "Church Donation: Treatment")

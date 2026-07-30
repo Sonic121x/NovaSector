@@ -35,7 +35,7 @@
 	for(var/mob/living/living_mob in pickup_zone)
 		if(!(obj_flags & EMAGGED) && ishuman(living_mob)) //Can only kill humans when emagged.
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25)
-			say("Cannot scan with humans inside.")
+			say(LANG("obj.f9e2d167", null))
 			return
 		aggressive = TRUE
 	start_closing(aggressive)

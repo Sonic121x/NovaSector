@@ -68,7 +68,7 @@
 	if(occupants.len)
 		for(var/V in occupants)
 			var/mob/living/L = V
-			. += span_notice("It has [L] inside.")
+			. += span_notice(LANG("obj.d4be8cd2", list(L)))
 	else
 		. += span_notice(LANG("obj.77fc42cd", null))
 

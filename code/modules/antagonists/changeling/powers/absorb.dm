@@ -153,18 +153,18 @@
 	for(var/absorbing_iteration in 1 to 3)
 		switch(absorbing_iteration)
 			if(1)
-				to_chat(owner, span_notice("This creature is compatible. We must hold still..."))
+				to_chat(owner, span_notice(LANG("datum.efc89d3e", null)))
 			if(2)
-				owner.visible_message(span_warning("[owner] extends a proboscis!"), span_notice("We extend a proboscis."))
+				owner.visible_message(span_warning(LANG("datum.81e0a6f8", list(owner))), span_notice(LANG("datum.0e04c1d3", null)))
 			if(3)
 				absorbing_loop = new(owner, start_immediately = TRUE)
-				owner.visible_message(span_danger("[owner] stabs [target] with the proboscis!"), span_notice("We stab [target] with the proboscis."))
-				to_chat(target, span_userdanger("You feel a sharp stabbing pain!"))
+				owner.visible_message(span_danger(LANG("datum.6fe7f6bf", list(owner, target))), span_notice(LANG("datum.b0b54953", list(target))))
+				to_chat(target, span_userdanger(LANG("datum.c05e1a38", null)))
 				target.take_overall_damage(40)
 
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[absorbing_iteration]"))
 		if(!do_after(owner, 15 SECONDS, target, cog_icon = null))
-			owner.balloon_alert(owner, "interrupted!")
+			owner.balloon_alert(owner, LANG("datum.c67b5d27", null))
 			qdel(absorbing_loop)
 			is_absorbing = FALSE
 			return FALSE

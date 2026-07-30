@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/uplink_category/badassery
 	name = "(Pointless) Badassery"
 	weight = 0
@@ -23,7 +24,7 @@
 		return
 
 	notify_ghosts(
-		"[user.real_name] has purchased a BADASS Syndicate Balloon!",
+		LANG("datum.a4d793a5", list(user.real_name)),
 		source = .,
 		header = "What are they THINKING?",
 	)

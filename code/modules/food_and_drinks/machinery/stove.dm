@@ -84,7 +84,7 @@
 			ingredient_amounts[ingredient.type] += 1
 
 		for(var/obj/item/ingredient_type as anything in ingredient_amounts)
-			examine_list += "&bull; [ingredient_amounts[ingredient_type]] [initial(ingredient_type.name)]\s"
+			examine_list += LANG("obj.8102b6d1", list(ingredient_amounts[ingredient_type], initial(ingredient_type.name)))
 
 		var/unknown_volume = 0
 		for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
@@ -92,7 +92,7 @@
 				|| istype(current_reagent, /datum/reagent/water) \
 				|| istype(current_reagent, /datum/reagent/consumable) \
 			)
-				examine_list += "&bull; [round(current_reagent.volume, 0.01)] units of [current_reagent.name]"
+				examine_list += LANG("obj.5b87b0e6", list(round(current_reagent.volume, 0.01), current_reagent.name))
 			else
 				unknown_volume += current_reagent.volume
 
@@ -135,7 +135,7 @@
 		if(!can_add_ingredient(tray_item))
 			continue
 		if(LAZYLEN(added_ingredients) >= max_ingredients)
-			balloon_alert(user, "it's full!")
+			balloon_alert(user, LANG("obj.2cb7d354", null))
 			return TRUE
 		if(tray.atom_storage.attempt_remove(tray_item, src))
 			loaded++

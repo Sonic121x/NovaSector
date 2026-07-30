@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///Earthquake random event.
 ///Draws a curve of turfs between a high and low point. These turfs will shake and eventually "collapse", forming a cut in the station that drops to the z-level below.
 ///Much of the actual structural damage is done through the explosions subsystem. Objects, machines, and especially people
@@ -99,7 +100,7 @@
 
 /datum/round_event/earthquake/start()
 	notify_ghosts(
-		"The earthquake's epicenter has been located: [get_area_name(epicenter)]!",
+		LANG("datum.b66054cb", list(get_area_name(epicenter))),
 		source = epicenter,
 		header = "Rumble Rumble Rumble!",
 	)
@@ -134,12 +135,12 @@
 			for(var/mob/living/quake_victim in turf_to_quake)
 				quake_victim.Knockdown(7 SECONDS)
 				quake_victim.Paralyze(5 SECONDS)
-				to_chat(quake_victim, span_warning("The ground quakes violently beneath you, throwing you off your feet!"))
+				to_chat(quake_victim, span_warning(LANG("datum.8dad94d6", null)))
 
 		for(var/turf/turf_to_quake in underbelly)
 			turf_to_quake.Shake(pixelshiftx = 0.5, pixelshifty = 0.5, duration = 1 SECONDS)
 			for(var/mob/living/carbon/quake_victim in turf_to_quake)
-				to_chat(quake_victim, span_warning("Damn, I wonder what that rumbling noise is?")) ///You're about to find out
+				to_chat(quake_victim, span_warning(LANG("datum.e3d02ebf", null))) ///You're about to find out
 
 	// Step one of the destruction, which clears natural tiles out from the underbelly and does a bit of initial damage to the topside.
 	if(activeFor == end_when - 1)

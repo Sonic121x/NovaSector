@@ -299,7 +299,7 @@ Behavior that's still missing from this component that original food items had t
 	if(GLOB.debugging_enabled)
 		examine_list += span_notice(LANG("datum.43ba72ff", null))
 		for(var/datum/reagent/reagent as anything in owner.reagents.reagent_list)
-			examine_list += span_notice("- [reagent.name] [reagent.volume]u: [round(reagent.purity * 100)]% pure")
+			examine_list += span_notice(LANG("datum.1dbfe65a", list(reagent.name, reagent.volume, round(reagent.purity * 100))))
 
 	if(!HAS_TRAIT(user, TRAIT_REMOTE_TASTING))
 		return

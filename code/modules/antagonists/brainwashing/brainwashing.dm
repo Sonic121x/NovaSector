@@ -62,10 +62,10 @@
 		return
 	var/list/objectives = list()
 	do
-		var/objective = tgui_input_text(admin, "Add an objective", "Brainwashing", max_length = MAX_MESSAGE_LEN)
+		var/objective = tgui_input_text(admin, LANG("datum.88d7defe", null), LANG("datum.442e449c", null), max_length = MAX_MESSAGE_LEN)
 		if(objective)
 			objectives += objective
-	while(tgui_alert(admin, "Add another objective?", "More Brainwashing", list("Yes","No")) == "Yes")
+	while(tgui_alert(admin, LANG("datum.a77cc496", null), LANG("datum.a1f3aeb9", null), list("Yes","No")) == "Yes")
 
 	if(tgui_alert(admin,LANG("datum.e77519bb", null),LANG("datum.77344162", null),list("Yes","No")) == "No")
 		return

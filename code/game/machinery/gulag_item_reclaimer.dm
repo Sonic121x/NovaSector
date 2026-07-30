@@ -70,7 +70,7 @@
 	for(var/i in stored_items)
 		var/mob/thismob = i
 		if(QDELETED(thismob))
-			say("Alert! Unable to locate vital signals of a previously processed prisoner. Ejecting equipment!")
+			say(LANG("obj.c49cc120", null))
 			drop_items(thismob)
 			continue
 		var/list/mob_info = list()

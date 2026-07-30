@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/machinery/mass_driver
 	name = "mass driver"
 	desc = "The finest in spring-loaded piston toy technology, now on a space station near you."
@@ -49,7 +50,7 @@
 				continue
 			O_limit++
 			if(O_limit >= 20)
-				audible_message(span_notice("[src] lets out a screech, it doesn't seem to be able to handle the load."))
+				audible_message(span_notice(LANG("obj.8569ebcd", list(src))))
 				break
 			use_energy(power_per_obj)
 			O.throw_at(target, drive_range * power, power)

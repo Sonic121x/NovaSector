@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/machinery/abductor/pad
 	name = "Alien Telepad"
 	desc = "Use this to transport to and from the humans' habitat."
@@ -23,7 +24,7 @@
 	for(var/mob/living/target in loc)
 		target.forceMove(teleport_target)
 		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(target), target.dir)
-		to_chat(target, span_warning("The instability of the warp leaves you disoriented!"))
+		to_chat(target, span_warning(LANG("obj.c47c8314", null)))
 		target.Stun(60)
 
 /obj/machinery/abductor/pad/proc/Retrieve(mob/living/target)

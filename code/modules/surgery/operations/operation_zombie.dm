@@ -27,7 +27,7 @@
 /datum/surgery_operation/limb/bionecrosis/any_required_strings()
 	. = ..()
 	for(var/datum/reagent/chem as anything in zombie_chems)
-		. += "the patient or tool must contain >1u [chem::name]"
+		. += LANG("datum.73dd224d", list(chem::name))
 
 /datum/surgery_operation/limb/bionecrosis/all_blocked_strings()
 	. = ..()

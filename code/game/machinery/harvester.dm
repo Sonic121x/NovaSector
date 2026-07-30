@@ -79,7 +79,7 @@
 	if(!allow_clothing)
 		for(var/obj/item/abiotic_item in carbon_occupant.held_items + carbon_occupant.get_equipped_items())
 			if(!(HAS_TRAIT(abiotic_item, TRAIT_NODROP)))
-				say("Subject may not have abiotic items on.")
+				say(LANG("obj.be964350", null))
 				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 				return
 	if(!(carbon_occupant.mob_biotypes & MOB_ORGANIC))
@@ -100,7 +100,7 @@
 
 	if(carbon_occupant.client && carbon_occupant.stat <= HARD_CRIT)
 		notify_ghosts(
-			"[carbon_occupant.real_name] is about to be ground up by a malfunctioning organ harvester!",
+			LANG("obj.281fe5b2", list(carbon_occupant.real_name)),
 			source = src,
 			header = "Gruesome!",
 		)

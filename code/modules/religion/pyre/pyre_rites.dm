@@ -66,14 +66,14 @@
 		return FALSE
 	for(var/corpse in movable_reltool.buckled_mobs)
 		if(!iscarbon(corpse))// only works with carbon corpse since most normal mobs can't be set on fire.
-			to_chat(user, span_warning("Only carbon lifeforms can be properly burned for the sacrifice!"))
+			to_chat(user, span_warning(LANG("datum.8cabb78d", null)))
 			return FALSE
 		chosen_sacrifice = corpse
 		if(chosen_sacrifice.stat != DEAD)
-			to_chat(user, span_warning("You can only sacrifice dead bodies, this one is still alive!"))
+			to_chat(user, span_warning(LANG("datum.30fc41e6", null)))
 			return FALSE
 		if(!chosen_sacrifice.on_fire && !HAS_TRAIT_FROM(chosen_sacrifice, TRAIT_HUSK, BURN))
-			to_chat(user, span_warning("This corpse needs to be on fire or husked to be sacrificed!"))
+			to_chat(user, span_warning(LANG("datum.a07380b8", null)))
 			return FALSE
 		return ..()
 

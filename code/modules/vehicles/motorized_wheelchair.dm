@@ -144,7 +144,7 @@
 		user.put_in_hands(part)
 		component_parts -= oldstockpart
 		// user message
-		user.visible_message(span_notice("[user] replaces [oldstockpart.name()] with [newstockpart.name()] in [src]."), span_notice("You replace [oldstockpart.name()] with [newstockpart.name()]."))
+		user.visible_message(span_notice(LANG("obj.b21249b7", list(user, oldstockpart.name(), newstockpart.name(), src))), span_notice(LANG("obj.be3a0261", list(oldstockpart.name(), newstockpart.name()))))
 		replacement_occured = TRUE
 		break
 

@@ -54,14 +54,14 @@
 		if(player.has_faction(ROLE_BLOB))
 			continue
 		if(player.client)
-			to_chat(src, span_warning("There is someone too close to place your blob core!"))
+			to_chat(src, span_warning(LANG("mob.78d3fe1f", null)))
 			return FALSE
 
 	for(var/mob/living/player in view(13, src))
 		if(player.has_faction(ROLE_BLOB))
 			continue
 		if(player.client)
-			to_chat(src, span_warning("Someone could see your blob core from here!"))
+			to_chat(src, span_warning(LANG("mob.8c4f2071", null)))
 			return FALSE
 
 	return TRUE
@@ -74,11 +74,11 @@
 			if(istype(object, /obj/structure/blob/normal))
 				qdel(object)
 			else
-				to_chat(src, span_warning("There is already a blob here!"))
+				to_chat(src, span_warning(LANG("mob.1dbcd5f0", null)))
 				return FALSE
 		else
 			if(object.density)
-				to_chat(src, span_warning("This spot is too dense to place a blob core on!"))
+				to_chat(src, span_warning(LANG("mob.239cde2e", null)))
 				return FALSE
 
 	return TRUE
@@ -132,8 +132,8 @@
 	if(min_separation)
 		for(var/obj/structure/blob/other_blob in orange(min_separation, tile))
 			if(other_blob.type == blobstrain)
-				to_chat(src, span_warning("There is a similar blob nearby, move more than [min_separation] tiles away from it!"))
-				other_blob.balloon_alert(src, "too close!")
+				to_chat(src, span_warning(LANG("mob.ff338f44", list(min_separation))))
+				other_blob.balloon_alert(src, LANG("mob.079a7d8b", null))
 				return
 	if(!can_buy(price))
 		return

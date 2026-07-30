@@ -221,7 +221,7 @@
 		if(bot.AmountStun() > 5 SECONDS || parent_rack.is_rack_stun_immune(bot))
 			continue
 		bot.Stun(10 SECONDS, ignore_canstun = TRUE)
-		to_chat(bot, span_userdanger("Core module removed. Recalculating directives..."))
+		to_chat(bot, span_userdanger(LANG("obj.76556ff2", null)))
 
 /obj/item/ai_module/law/core/full
 	var/law_id // if non-null, loads the laws from the ai_laws datums

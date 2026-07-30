@@ -110,7 +110,7 @@
 		var/loaded = 0
 		for(var/obj/item/seeds/to_store in tool.contents)
 			if(contents.len >= max_seeds)
-				to_chat(user, span_warning("[src] is full."))
+				to_chat(user, span_warning(LANG("obj.8e2d390c", list(src))))
 				break
 			if(!add_seed(to_store, tool))
 				continue
@@ -129,7 +129,7 @@
 			for(var/obj/item/seeds/seed as anything in generated_seeds)
 				//machine is full
 				if(contents.len >= max_seeds)
-					to_chat(user, span_warning("[src] is full."))
+					to_chat(user, span_warning(LANG("obj.8e2d390c", list(src))))
 					break
 				//add seed to machine. second argument is null which means just force move into the machine
 				add_seed(seed)

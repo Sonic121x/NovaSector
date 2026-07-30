@@ -63,7 +63,7 @@
 
 	for(var/existing_outfit in custom_outfits)
 		if(custom_outfits[existing_outfit] ~= saved_paths)
-			owner.balloon_alert(user, "outfit already saved!")
+			owner.balloon_alert(user, LANG("datum.02704b99", null))
 			return
 
 	if(next_custom_outfit > max_custom_oufits)

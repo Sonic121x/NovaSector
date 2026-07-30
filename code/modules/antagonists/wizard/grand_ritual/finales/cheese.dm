@@ -19,10 +19,8 @@
 		if (crewmate == invoker) //everyone but the wizard is royally fucked, no matter who they are
 			continue
 		if (crewmate.has_trauma_type(/datum/brain_trauma/mild/hallucinations)) //for an already insane person, this is retribution
-			to_chat(crewmate, span_boldwarning("Your surroundings suddenly fill with a cacophony of manic laughter and psychobabble..."))
-			to_chat(crewmate, span_nicegreen("...but as the moment passes, you realise that whatever eldritch power behind the event happened to affect you \
-				has resonated within the ruins of your already shattered mind, creating a singularity of mental instability! \
-				As it collapses unto itself, you feel... at peace, finally."))
+			to_chat(crewmate, span_boldwarning(LANG("datum.eeb46b2a", null)))
+			to_chat(crewmate, span_nicegreen(LANG("datum.e9cf9bf7", null)))
 			if(crewmate.has_quirk(/datum/quirk/insanity))
 				crewmate.remove_quirk(/datum/quirk/insanity)
 			else
@@ -31,11 +29,7 @@
 			//everyone else gets to relish in madness
 			//yes killing their mood will also trigger mood hallucinations
 			create_vendetta(crewmate.mind, invoker.mind)
-			to_chat(crewmate, span_boldwarning("Your surroundings suddenly fill with a cacophony of manic laughter and psychobabble. \n\
-				You feel your inner psyche shatter into a myriad pieces of jagged glass of colors unknown to the universe, \
-				infinitely reflecting a blinding, maddening light coming from the innermost sanctums of your destroyed mind. \n\
-				After a brief pause which felt like a millenia, one phrase rebounds ceaselessly in your head, imbued with the false hope of absolution... \n\
-				<b>[invoker] must die.</b>"))
+			to_chat(crewmate, span_boldwarning(LANG("datum.24739b23", list(invoker))))
 			var/datum/brain_trauma/mild/hallucinations/added_trauma = new()
 			added_trauma.resilience = TRAUMA_RESILIENCE_ABSOLUTE
 			crewmate.adjust_organ_loss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH - 25, BRAIN_DAMAGE_DEATH - 25) //you'd better hope chap didn't pick a hypertool

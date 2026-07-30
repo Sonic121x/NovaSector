@@ -136,7 +136,7 @@
 		if(creator)
 			log_combat(creator, attacked_living, "used a resonator field on", "resonator")
 			SEND_SIGNAL(creator, COMSIG_LIVING_RESONATOR_BURST, creator, attacked_living)
-		to_chat(attacked_living, span_userdanger("[src] ruptured with you in it!"))
+		to_chat(attacked_living, span_userdanger(LANG("obj.483f61e0", list(src))))
 		attacked_living.apply_damage(resonance_damage, BRUTE)
 		if(!QDELETED(attacked_living))
 			attacked_living.add_movespeed_modifier(/datum/movespeed_modifier/resonance)

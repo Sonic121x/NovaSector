@@ -58,7 +58,7 @@
 	. += span_notice(LANG("obj.788bb106", list(reagents.maximum_volume)))
 	if(reagents.total_volume)
 		for(var/datum/reagent/reg as anything in reagents.reagent_list)
-			. += span_notice("[round(reg.volume, CHEMICAL_VOLUME_ROUNDING)]u of [reg.name]")
+			. += span_notice(LANG("obj.d353620d", list(round(reg.volume, CHEMICAL_VOLUME_ROUNDING), reg.name)))
 	else
 		. += span_notice(LANG("obj.aa75d156", null))
 

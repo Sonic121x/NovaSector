@@ -27,13 +27,13 @@
 				continue
 			if(nearby_mob.can_block_magic(MAGIC_RESISTANCE))
 				nearby_mob.visible_message(
-					span_danger("A swirling, cold void wraps around [nearby_mob], but they burst free in a wave of heat!"),
-					span_userdanger("A yawning void begins to open before you, but a great wave of heat bursts it apart! You are protected!!")
+					span_danger(LANG("obj.82a4ce33", list(nearby_mob))),
+					span_userdanger(LANG("obj.8e768904", null))
 				)
 				continue
 			nearby_mob.visible_message(
-				span_danger("A swirling, cold void wraps around [nearby_mob]!"),
-				span_userdanger("A yawning void opens before you! You are swallowed by the darkness, and find yourself in complete nothingness..."),
+				span_danger(LANG("obj.3d43da39", list(nearby_mob))),
+				span_userdanger(LANG("obj.692af578", null)),
 			)
 			nearby_mob.apply_status_effect(/datum/status_effect/void_prison)
 
@@ -47,8 +47,8 @@
 	else
 		to_chat(user, span_hypnophrase(LANG("obj.be75ef07", list(src))))
 		user.visible_message(
-			span_danger("A swirling, cold void wraps around [user]!"),
-			span_userdanger("A yawning void opens before you! You are swallowed by the darkness, and find yourself in complete nothingness..."),
+			span_danger(LANG("obj.3d43da39", list(user))),
+			span_userdanger(LANG("obj.692af578", null)),
 		)
 		user.apply_status_effect(/datum/status_effect/void_prison)
 

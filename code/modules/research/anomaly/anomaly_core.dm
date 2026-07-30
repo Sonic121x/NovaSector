@@ -227,7 +227,7 @@
 	new /obj/effect/temp_visual/thunderbolt(target)
 
 	for(var/mob/living/hit_mob in target)
-		to_chat(hit_mob, span_userdanger("You've been struck by lightning!"))
+		to_chat(hit_mob, span_userdanger(LANG("obj.d028d146", null)))
 		hit_mob.electrocute_act(20, src, flags = SHOCK_TESLA|SHOCK_NOSTUN)
 
 	for(var/obj/hit_thing in target)

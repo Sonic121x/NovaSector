@@ -210,7 +210,7 @@
 		if(food_conversion)
 			living_host.adjust_nutrition(0.3 * food)
 		if(prob(2))
-			to_chat(living_host, span_notice("You feel a mild warmth as your blood purifies itself."))
+			to_chat(living_host, span_notice(LANG("datum.6a82e68f", null)))
 	return TRUE
 
 

@@ -220,7 +220,7 @@
 
 		hit_something = TRUE
 		victim.apply_damage(damage, BURN, null, blocked, wound_bonus = CANT_WOUND)
-		to_chat(victim, span_userdanger("You're hit by [src]!"))
+		to_chat(victim, span_userdanger(LANG("obj.33f28339", list(src))))
 
 	for (var/obj/thing in target)
 		if (!thing.uses_integrity || !thing.density)

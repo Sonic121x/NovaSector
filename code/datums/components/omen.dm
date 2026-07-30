@@ -218,8 +218,8 @@
 		return FALSE
 
 	target.visible_message(
-		span_danger("[target] suddenly bursts into flames!"),
-		span_userdanger("You suddenly burst into flames!"),
+		span_danger(LANG("datum.d795ed13", list(target))),
+		span_userdanger(LANG("datum.6ba34e89", null)),
 	)
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
 	consume_omen()
@@ -312,8 +312,8 @@
 
 	playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 	our_guy.visible_message(
-		span_danger("[our_guy] hits [our_guy.p_their()] head really badly falling down!"),
-		span_userdanger("You hit your head really badly falling down!"),
+		span_danger(LANG("datum.2ffb47ee", list(our_guy, our_guy.p_their()))),
+		span_userdanger(LANG("datum.56c37791", null)),
 	)
 	our_guy.apply_damage(75 * damage_mod, BRUTE, BODY_ZONE_HEAD, attacking_item = "slipping")
 	our_guy.apply_damage(100 * damage_mod, BRAIN)

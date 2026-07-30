@@ -513,7 +513,7 @@ GLOBAL_PROTECT(poll_options)
 	var/vote_count = 0
 	for(var/h in href_list)
 		if(vote_count == poll.options_allowed)
-			to_chat(src, span_danger("Allowed option count exceeded, only the first [poll.options_allowed] selected options have been saved."))
+			to_chat(src, span_danger(LANG("mob.38ff06b4", list(poll.options_allowed))))
 			break
 		vote_count++
 		var/datum/poll_option/option = locate(h) in poll.options
@@ -560,7 +560,7 @@ GLOBAL_PROTECT(poll_options)
 	for(var/o in votelist)
 		var/datum/poll_option/option = locate(o) in option_copy
 		if (!option)
-			to_chat(src, span_warning("invalid votes were trimmed from your ballot, please revote ."))
+			to_chat(src, span_warning(LANG("mob.b7a2fa5d", null)))
 		sql_votes += list(list(
 			"pollid" = sql_poll_id,
 			"optionid" = option.option_id,

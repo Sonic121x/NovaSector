@@ -50,10 +50,14 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         // 提示/对话框（玩家可见）。只取消息+标题；按钮/选项列表/返回值不动，
         // 以免破坏 `if(alert(...) == "Yes")` 之类的比较。alert 取 [0,1,2] 同时覆盖
         // `alert("msg")` 与 `alert(user, msg, title)` 两种写法（非字符串实参会被安全跳过）。
-        // 原生 alert/input 的按钮/默认值是位置实参（无 usr 时 [2]=按钮），故只取 [0,1]=消息+标题
-        // （含 usr 写法 alert(usr,msg,..) 则 [1]=消息；标题在 [2] 会漏译，但绝不误改按钮）。
-        "alert" => Some(&[0, 1]),
-        "input" => Some(&[0, 1]),
+        // 原生 alert/input 的位置实参随「有没有 usr」整体平移一位：
+        //   有 usr：alert(Usr, Message, Title, Button1…) / input(Usr, Message, Title, Default)  → [2]=标题，该译
+        //   无 usr：alert(Message, Title, Button1…)      / input(Message, Title, Default)       → [2]=按钮/默认值，**绝不能译**
+        //           （按钮是 `if(alert(...)=="Yes")` 的比较值；Default 是 input 的返回值）
+        // 判据在 try_rewrite_call 里：[0] 是字符串字面量 ⇒ 无 usr 形式 ⇒ 跳过 [2]。此前一律不取 [2]，
+        // 代价是所有对话框标题漏译（Tip/Admin Announce/Sort Type/Observe… 一大批）。
+        "alert" => Some(&[0, 1, 2]),
+        "input" => Some(&[0, 1, 2]),
         "tgui_alert" => Some(&[1, 2]),
         "tgui_input_list" => Some(&[1, 2]),
         "tgui_input_text" => Some(&[1, 2]),
@@ -497,6 +501,42 @@ impl<'a> Rewriter<'a> {
                 }
             }
             Statement::Setting { value, .. } => self.visit_expr(value, ns),
+            // 以下分支此前全落进 `_ => {}`：**for-in / for-in-range / do-while / try-catch / 带标签块
+            // 的整个循环体一处都没被改写过**（extract.rs 早已补齐同样的分支，rewrite 漏修至今）。
+            // `for(var/mob/M in viewers)` 里的 to_chat/visible_message 是最常见的形态之一。
+            Statement::DoWhile { block, condition } => {
+                self.visit_block(block, ns);
+                self.visit_expr(&condition.elem, ns);
+            }
+            Statement::ForList(f) => {
+                if let Some(e) = &f.in_list {
+                    self.visit_expr(e, ns);
+                }
+                self.visit_block(&f.block, ns);
+            }
+            Statement::ForKeyValue(f) => {
+                if let Some(e) = &f.in_list {
+                    self.visit_expr(e, ns);
+                }
+                self.visit_block(&f.block, ns);
+            }
+            Statement::ForRange(f) => {
+                self.visit_expr(&f.start, ns);
+                self.visit_expr(&f.end, ns);
+                if let Some(e) = &f.step {
+                    self.visit_expr(e, ns);
+                }
+                self.visit_block(&f.block, ns);
+            }
+            Statement::TryCatch {
+                try_block,
+                catch_block,
+                ..
+            } => {
+                self.visit_block(try_block, ns);
+                self.visit_block(catch_block, ns);
+            }
+            Statement::Label { block, .. } => self.visit_block(block, ns),
             _ => {}
         }
     }
@@ -505,14 +545,14 @@ impl<'a> Rewriter<'a> {
         if let Expression::Base { term, follow } = expr {
             if let Term::Call(name, args) = &term.elem {
                 if let Some(indices) = sink_message_args(name.as_str()) {
-                    self.try_rewrite_call(term.location, args, indices, ns, is_announce_sink(name.as_str()));
+                    self.try_rewrite_call(term.location, args, indices, ns, is_announce_sink(name.as_str()), name.as_str());
                 }
             }
             // input() 是 dreammaker 的专用 Term::Input（因 `as type in list` 语法），不是 Call。
             // 复用同一套实参定位（term.location 指向 input 关键字，find_open_paren 找其 `(`）。
             if let Term::Input { args, .. } = &term.elem {
                 if let Some(indices) = sink_message_args("input") {
-                    self.try_rewrite_call(term.location, args, indices, ns, false);
+                    self.try_rewrite_call(term.location, args, indices, ns, false, "input");
                 }
             }
             self.recurse_term(&term.elem, ns);
@@ -521,7 +561,7 @@ impl<'a> Rewriter<'a> {
                 // 改写消息参数。裸调用走上面的 Term::Call 分支；方法调用是 Follow::Call，此前完全漏改。
                 if let Follow::Call(_, name, fargs) = &f.elem {
                     if let Some(indices) = sink_message_args(name.as_str()) {
-                        self.try_rewrite_call(f.location, fargs, indices, ns, is_announce_sink(name.as_str()));
+                        self.try_rewrite_call(f.location, fargs, indices, ns, is_announce_sink(name.as_str()), name.as_str());
                     }
                 }
                 self.recurse_follow(&f.elem, ns);
@@ -587,10 +627,24 @@ impl<'a> Rewriter<'a> {
         indices: &[usize],
         ns: &str,
         interp_only: bool,
+        sink: &str,
     ) {
+        // 原生 alert/input 的 [2]：有 usr 时是标题（该译），无 usr 时是按钮/默认值（绝不能译）。
+        // 判据是 [0] 到底是不是字符串字面量（是 ⇒ [0] 就是 Message ⇒ 无 usr 形式）。见 sink_message_args。
+        let native_dialog = matches!(sink, "alert" | "input");
+        let no_usr_form = native_dialog && {
+            let mut n0: Vec<&Spanned<Term>> = Vec::new();
+            if let Some(a0) = args.first() {
+                collect_text_nodes(a0, &mut n0);
+            }
+            !n0.is_empty()
+        };
         // 1) 用 AST 判定每个消息参数是否「恰好一个可翻译文本节点」，并取其模板/占位符数/key。
         let mut targets: Vec<(usize, String, usize)> = Vec::new();
         for &i in indices {
+            if no_usr_form && i == 2 {
+                continue;
+            }
             let Some(arg) = args.get(i) else { continue };
             // 门槛：源码里恰好一个可翻译字符串字面量（保证后面切片定位无歧义）。
             let mut nodes: Vec<&Spanned<Term>> = Vec::new();
@@ -635,10 +689,20 @@ impl<'a> Rewriter<'a> {
             return;
         };
         let Some(lparen) = find_open_paren(src, name_start) else { return };
-        let Some(arg_ranges) = split_call_args(src, lparen) else { return };
+        let Some(mut arg_ranges) = split_call_args(src, lparen) else { return };
+        // **尾逗号**（多行调用的 `f(\n\ta,\n\tb,\n)` 收尾风格，上游 tgstation 大量使用）：源码切分会在
+        // 最后一个逗号与 `)` 之间多切出一个空范围，而 AST 里没有它。它在**末尾**，不会让前面任何实参的
+        // 下标错位 —— 直接丢弃即可。不丢的话会被下面的空实参守卫当成 `f(a,,b)` 而整调用跳过，这正是
+        // 2026-07-30 上游同步后 40 余处 visible_message/to_chat 再也改写不回来的原因（rewrite 全仓 0 处）。
+        if arg_ranges
+            .last()
+            .is_some_and(|&(s, e)| src[s..e].trim().is_empty())
+        {
+            arg_ranges.pop();
+        }
         // 空实参守卫：dreammaker 的 AST **丢弃** `f(a,,b)` 里的空实参，但按源码逗号切分会**保留**空范围
         // → AST 下标与源码范围下标错位，目标会套用到相邻的错误实参（典型：alert 空标题 `,,` 致按钮被当
-        // 消息改写，重跑还层层套 LANG）。有空实参即整调用跳过——宁可不译也不改坏（这类多为 admin alert）。
+        // 消息改写，重跑还层层套 LANG）。**中间**的空实参才会错位，仍整调用跳过——宁可不译也不改坏。
         if arg_ranges.iter().any(|&(s, e)| src[s..e].trim().is_empty()) {
             return;
         }
@@ -965,7 +1029,7 @@ fn is_dialog_button(template: &str) -> bool {
     )
 }
 
-fn collect_text_nodes<'b>(expr: &'b Expression, out: &mut Vec<&'b Spanned<Term>>) {
+pub(crate) fn collect_text_nodes<'b>(expr: &'b Expression, out: &mut Vec<&'b Spanned<Term>>) {
     match expr {
         Expression::Base { term, follow } if follow.is_empty() => match &term.elem {
             Term::String(_) | Term::InterpString(_, _) => {

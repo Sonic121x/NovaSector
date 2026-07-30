@@ -30,7 +30,7 @@
 		var/mob/mob_parent = parent
 		parent_name = "[mob_parent.real_name]"
 	notify_ghosts(
-		"[parent_name] is edible by ghosts!",
+		LANG("datum.7c76187d", list(parent_name)),
 		source = parent,
 		header = "Something Tasty!",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,

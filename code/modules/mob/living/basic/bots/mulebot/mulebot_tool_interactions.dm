@@ -11,8 +11,8 @@
 		return ITEM_INTERACT_BLOCKING
 	cell.add_fingerprint(user)
 	user.visible_message(
-		span_notice("[user] crowbars [cell] out from [src]."),
-		span_notice("You pry [cell] out of [src]."),
+		span_notice(LANG("mob.bc70803f", list(user, cell, src))),
+		span_notice(LANG("mob.63cad190", list(cell, src))),
 	)
 	if(Adjacent(user) && !issilicon(user))
 		user.put_in_hands(cell)
@@ -28,8 +28,8 @@
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		user.visible_message(
-			span_notice("[user] inserts \a [cell] into [src]."),
-			span_notice("You insert [cell] into [src]."),
+			span_notice(LANG("mob.55c3143d", list(user, cell, src))),
+			span_notice(LANG("mob.8ce99939", list(cell, src))),
 		)
 		return ITEM_INTERACT_SUCCESS
 	if(is_wire_tool(tool) && (bot_access_flags & BOT_COVER_MAINTS_OPEN))

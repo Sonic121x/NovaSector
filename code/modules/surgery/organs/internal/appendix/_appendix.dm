@@ -55,7 +55,7 @@
 	if(isnull(owner.client))
 		return
 	notify_ghosts(
-		"[owner.real_name] has developed spontaneous appendicitis!",
+		LANG("obj.6a3bce7f", list(owner.real_name)),
 		source = owner,
 		header = "Whoa, Sick!",
 	)

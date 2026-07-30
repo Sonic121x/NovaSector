@@ -92,8 +92,8 @@
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_warning("[user] captures [src]!"),
-		span_userdanger("You've got the disk! Defend it with your life!"),
+		span_warning(LANG("obj.36873670", list(user, src))),
+		span_userdanger(LANG("obj.5561b4c4", null)),
 	)
 	forceMove(claymore)
 	claymore.nuke_disk = src

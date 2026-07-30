@@ -254,7 +254,7 @@
 		playsound(get_turf(atom_source), 'sound/effects/supermatter.ogg', 50, TRUE)
 		poor_target.visible_message(!CONFIG_GET(flag/disable_sm_dusting) ? span_danger("\The [atom_source] slams into \the [poor_target] out of nowhere inducing a resonance... [poor_target.p_their()] body starts to glow and burst into flames before flashing into dust!") : span_danger("\The [atom_source] slams into \the [poor_target] out of nowhere inducing a resonance... [poor_target.p_their()] body starts to glow white-hot before the blast hurls [poor_target.p_them()] away!"), // NOVA EDIT CHANGE - ORIGINAL: poor_target.visible_message(span_danger("\The [atom_source] slams into \the [poor_target] out of nowhere inducing a resonance... [poor_target.p_their()] body starts to glow and burst into flames before flashing into dust!"),
 			span_userdanger("\The [atom_source] slams into you out of nowhere as your ears are filled with unearthly ringing. Your last thought is \"The fuck.\""),
-			span_hear("You hear an unearthly noise as a wave of heat washes over you."))
+			span_hear(LANG("datum.eaf42640", null)))
 
 	for(var/atom/movable/hit_object as anything in impacted_turf)
 		if(parent == hit_object)
@@ -265,8 +265,8 @@
 
 		consume(atom_source, hit_object)
 		playsound(get_turf(atom_source), 'sound/effects/supermatter.ogg', 50, TRUE)
-		atom_source.visible_message(span_danger("\The [atom_source], smacks into the plating out of nowhere, reducing everything below to ash."), null,
-			span_hear("You hear a loud crack as you are washed with a wave of heat."))
+		atom_source.visible_message(span_danger(LANG("datum.8a4c2ed7", list(atom_source))), null,
+			span_hear(LANG("datum.e2bdcbdd", null)))
 
 /datum/component/supermatter_crystal/proc/dust_mob(datum/source, mob/living/nom, vis_msg, mob_msg, cause)
 	if(nom.incorporeal_move || HAS_TRAIT(nom, TRAIT_GODMODE)) //try to keep supermatter sliver's + hemostat's dust conditions in sync with this too
@@ -309,7 +309,7 @@
 		if(istype(consumed_mob, /mob/living/basic/parrot/poly)) // Dusting Poly creates a power surge
 			force_event(/datum/round_event_control/supermatter_surge/poly, "Poly's revenge")
 			notify_ghosts(
-				"[consumed_mob.real_name] has been dusted by [atom_source]!",
+				LANG("datum.460691ed", list(consumed_mob.real_name, atom_source)),
 				source = atom_source,
 				header = "Polytechnical Difficulties",
 			)

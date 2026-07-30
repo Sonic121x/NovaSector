@@ -77,8 +77,8 @@
 		layer = MOB_ABOVE_PIGGYBACK_LAYER //appear above the target mob
 		target_mob.apply_status_effect(/datum/status_effect/slime_leech, src)
 		target_mob.visible_message(
-			span_danger("[name] latches onto [target_mob]!"),
-			span_userdanger("[name] latches onto [target_mob]!"),
+			span_danger(LANG("mob.cf705fa4", list(name, target_mob))),
+			span_userdanger(LANG("mob.cf705fa4", list(name, target_mob))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		to_chat(src, span_notice(LANG("mob.d919efd5", list(target_mob))))

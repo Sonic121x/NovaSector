@@ -22,7 +22,7 @@
 	if(!.)
 		return
 	notify_ghosts(
-		"Someone just woke up on Charlie Station! Why not join them and help out?",
+		LANG("obj.7ea6ddf5", null),
 		source = ., //the spawned mob
 		header = "Join in, help out!",
 		click_interact = TRUE,

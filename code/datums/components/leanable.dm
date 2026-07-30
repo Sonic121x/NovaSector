@@ -39,7 +39,7 @@
 	for (var/mob/living/leaner as anything in leaning_mobs)
 		leaner.stop_leaning()
 		if(fall)
-			to_chat(leaner, span_danger("You lose balance!"))
+			to_chat(leaner, span_danger(LANG("datum.d7e81dc8", null)))
 			leaner.Paralyze(0.5 SECONDS)
 	leaning_mobs.Cut()
 

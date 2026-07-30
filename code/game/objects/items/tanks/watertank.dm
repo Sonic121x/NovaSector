@@ -316,7 +316,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 			return ITEM_INTERACT_BLOCKING
 		for(var/thing in interacting_with)
 			if(istype(thing, /obj/effect/particle_effect/fluid/foam/metal/resin) || istype(thing, /obj/structure/foamedmetal/resin))
-				balloon_alert(user, "already has resin!")
+				balloon_alert(user, LANG("obj.e0df0d35", null))
 				return ITEM_INTERACT_BLOCKING
 		if(metal_synthesis_cooldown < 5)
 			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(interacting_with))

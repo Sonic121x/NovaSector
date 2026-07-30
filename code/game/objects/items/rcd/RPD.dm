@@ -540,7 +540,7 @@
 		if(!do_after(user, atmos_build_speed, target = atom_to_target))
 			return FALSE
 		if(!recipe.all_layers && (layer_to_build == 1 || layer_to_build == MAX_PIPE_LAYERS))
-			balloon_alert(user, "can't build on layer [layer_to_build]!")
+			balloon_alert(user, LANG("obj.f2f68727", list(layer_to_build)))
 			if(multi_layer)
 				continue
 			return FALSE

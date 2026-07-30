@@ -110,18 +110,18 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	else
 		for(var/mob/living/L in AM.contents)
 			if(check_exile_implant(L))
-				target_gateway.say("Rejecting [AM]: Exile implant detected in contained lifeform.")
+				target_gateway.say(LANG("datum.6467585d", list(AM)))
 				return FALSE
 	if(AM.has_buckled_mobs())
 		for(var/mob/living/L in AM.buckled_mobs)
 			if(check_exile_implant(L))
-				target_gateway.say("Rejecting [AM]: Exile implant detected in close proximity lifeform.")
+				target_gateway.say(LANG("datum.dd2abe39", list(AM)))
 				return FALSE
 	return TRUE
 
 /datum/gateway_destination/gateway/home/proc/check_exile_implant(mob/living/L)
 	for(var/obj/item/implant/exile/E in L.implants)//Checking that there is an exile implant
-		to_chat(L, span_userdanger("The station gate has detected your exile implant and is blocking your entry."))
+		to_chat(L, span_userdanger(LANG("datum.4d74dcae", null)))
 		return TRUE
 	return FALSE
 
@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		for(var/atom/movable/content_item as anything in AM.get_all_contents())
 			if(!is_type_in_list(content_item, type_blacklist))
 				continue
-			to_chat(AM, span_warning("[content_item] seems to be blocking you from entering the gateway!"))
+			to_chat(AM, span_warning(LANG("obj.dbee9075", list(content_item))))
 			return
 	//NOVA EDIT ADDITION END
 	if(get_dir(src,AM) == gateway?.dir)
@@ -369,7 +369,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		for(var/atom/movable/content_item as anything in user.get_contents())
 			if(!is_type_in_list(content_item, type_blacklist))
 				continue
-			to_chat(user, span_warning("[content_item] seems to be blocking you from entering the gateway!"))
+			to_chat(user, span_warning(LANG("obj.dbee9075", list(content_item))))
 			return
 	//NOVA EDIT END
 	if(!target)

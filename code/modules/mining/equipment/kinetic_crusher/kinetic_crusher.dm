@@ -122,7 +122,7 @@
 	. += span_notice(LANG("obj.1cb50b13", list(force_wielded + detonation_damage)))
 	. += span_notice(LANG("obj.11e00515", list(force_wielded + detonation_damage + backstab_bonus, force_wielded + detonation_damage)))
 	for(var/obj/item/crusher_trophy/crusher_trophy as anything in trophies)
-		. += span_notice("It has \a [crusher_trophy] attached, which causes [crusher_trophy.effect_desc()].")
+		. += span_notice(LANG("obj.52fd13ba", list(crusher_trophy, crusher_trophy.effect_desc())))
 
 /obj/item/kinetic_crusher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/crusher_trophy))

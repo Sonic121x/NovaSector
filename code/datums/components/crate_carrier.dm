@@ -60,7 +60,7 @@
 		for(var/mob/living/inside_mob in movable_target.get_all_contents())
 			if(inside_mob.mob_size < MOB_SIZE_HUMAN)
 				continue
-			source.balloon_alert(source, "crate too heavy!")
+			source.balloon_alert(source, LANG("datum.ec1b7b19", null))
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 		LAZYADD(crates_in_hand, target)

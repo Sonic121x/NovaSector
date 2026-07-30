@@ -137,7 +137,7 @@
 		var/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/new_child = new /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child(loc)
 		new_child.GiveTarget(target)
 		SET_FACTION_AND_ALLIES_FROM(new_child, src)
-		visible_message(span_boldwarning("[new_child] appears below [src]!"))
+		visible_message(span_boldwarning(LANG("mob.25cf655e", list(new_child, src))))
 		register_child(new_child)
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/register_child(atom/child)

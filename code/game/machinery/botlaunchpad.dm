@@ -42,10 +42,10 @@
 	var/atom/possible_bot
 	for(var/mob/living/robot in get_turf(src))
 		if(!isbot(robot))
-			user.balloon_alert(user, "unidentified life form on the pad!")
+			user.balloon_alert(user, LANG("obj.5f208fb8", null))
 			return
 		if(!isnull(possible_bot))
-			user.balloon_alert(user, "too many bots on the pad!")
+			user.balloon_alert(user, LANG("obj.e7f89750", null))
 			return
 		possible_bot = robot  // We don't change the launched_bot var here because we are not sure if there is another bot on the pad.
 

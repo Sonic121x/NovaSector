@@ -470,7 +470,7 @@
 		if(!thing.density || thing.CanPass(src, get_dir(current, src)))
 			continue
 		if(!silent)
-			to_chat(src, span_revenwarning("You cannot use abilities inside of a dense object."))
+			to_chat(src, span_revenwarning(LANG("mob.0a549c0b", null)))
 		return TRUE
 	return FALSE
 

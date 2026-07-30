@@ -574,7 +574,7 @@ GLOBAL_VAR(station_nuke_source)
 	countdown.start()
 	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	notify_ghosts(
-		"A nuclear device has been armed in [get_area_name(src)]!",
+		LANG("obj.83140544", list(get_area_name(src))),
 		source = src,
 		header = "Nuke Armed",
 	)

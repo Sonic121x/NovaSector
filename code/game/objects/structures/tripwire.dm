@@ -130,13 +130,13 @@
 		if(iterating_turf == end_point_turf)
 			connect_to_post(connecting_post, direction_to_extend)
 			connecting_post.connect_to_post(src, REVERSE_DIR(direction_to_extend))
-			to_chat(user, span_notice("You successfully wire together the two posts."))
+			to_chat(user, span_notice(LANG("obj.42bb1494", null)))
 			qdel(irrelevant_cable)
 			return ITEM_INTERACT_SUCCESS
 
 		if(iterating_turf.is_blocked_turf(TRUE))
 			clear_wire()
-			to_chat(user, span_notice("You can't feed the cable through solid objects."))
+			to_chat(user, span_notice(LANG("obj.0da364af", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/structure/tripwire/cable/new_wire = new(iterating_turf)

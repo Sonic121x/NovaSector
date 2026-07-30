@@ -340,7 +340,7 @@
 		return .
 
 	for(var/mob/living/fallen_mob in falling_movables)
-		visible_message(span_danger("[src] flattens like a pancake as [fallen_mob] lands on top of it!"))
+		visible_message(span_danger(LANG("obj.79d27056", list(src, fallen_mob))))
 		damage_fish(max_integrity * integrity_failure * 0.9) // very "durable"
 		AddElement(/datum/element/squish, 15 SECONDS)
 		fallen_mob.Paralyze(0.5 SECONDS)
@@ -634,7 +634,7 @@
 	var/list/mob/living/mobs_in_range = get_hearers_in_range(7, src)
 	for(var/mob/living/screeched in mobs_in_range)
 		if(screeched.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 1))
-			to_chat(screeched, span_notice("You resist the psychic wail!"))
+			to_chat(screeched, span_notice(LANG("obj.00a6ad84", null)))
 			continue
 		var/power = 1
 		if(HAS_TRAIT(screeched, TRAIT_DEAF)) // bit weaker if deaf. but its still psychic

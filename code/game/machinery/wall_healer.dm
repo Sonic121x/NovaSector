@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define WALL_HEALER_OFFSET 32
 
 /// A wall mounted machine that heals chip damage for a price
@@ -254,18 +255,18 @@
 		clear_using_mob()
 		if(user.get_active_hand() == current_hand)
 			user.visible_message(
-				span_notice("[user] removes [user.p_their()] hand from [src]."),
-				span_notice("You remove your hand from [src]."),
-				span_hear("You hear a click."),
+				span_notice(LANG("obj.6f44d3a6", list(user, user.p_their(), src))),
+				span_notice(LANG("obj.0db4b854", list(src))),
+				span_hear(LANG("obj.0f830183", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				vision_distance = 5,
 			)
 		else
 			add_fingerprint(user)
 			user.visible_message(
-				span_notice("[user] removes [user.p_their()] hand from [src] and puts it in [user.p_their()] other hand."),
-				span_notice("You remove your hand from [src] and put it in your other hand."),
-				span_hear("You hear a click."),
+				span_notice(LANG("obj.559c71b1", list(user, user.p_their(), src, user.p_their()))),
+				span_notice(LANG("obj.1f9fc2f7", list(src))),
+				span_hear(LANG("obj.0f830183", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				vision_distance = 5,
 			)
@@ -273,8 +274,8 @@
 		return
 	else if(current_user)
 		user.visible_message(
-			span_notice("[user] tries to put [user.p_their()] hand in [src], but [current_user] is already using it."),
-			span_notice("You try to put your hand in [src], but [current_user] is already using it."),
+			span_notice(LANG("obj.d03eb21b", list(user, user.p_their(), src, current_user))),
+			span_notice(LANG("obj.e796f7bd", list(src, current_user))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 		)
@@ -283,16 +284,16 @@
 	add_fingerprint(user)
 	if(is_operational)
 		user.visible_message(
-			span_notice("[user] puts [user.p_their()] hand in [src], and immediately some kind of sensor scans [user.p_their()] arm."),
-			span_notice("You put your hand in [src], and immediately some kind of sensor scans your arm."),
-			span_hear("You hear a click."),
+			span_notice(LANG("obj.cd2adffc", list(user, user.p_their(), src, user.p_their()))),
+			span_notice(LANG("obj.985bc9a9", list(src))),
+			span_hear(LANG("obj.0f830183", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 		)
 	else
 		user.visible_message(
-			span_notice("[user] puts [user.p_their()] hand in [src], but it doesn't respond. Seems to be out of order."),
-			span_notice("You put your hand in [src], but it doesn't respond."),
+			span_notice(LANG("obj.81961ecb", list(user, user.p_their(), src))),
+			span_notice(LANG("obj.595af87e", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 		)
@@ -307,9 +308,9 @@
 		if(user.get_active_hand() == current_hand)
 			to_chat(who_put_user_in, span_notice(LANG("obj.b05cf4c3", list(user, src))))
 			user.visible_message(
-				span_notice("[who_put_user_in] removes [user]'s hand from [src]."),
-				span_notice("[who_put_user_in] remove your hand from [src]."),
-				span_hear("You hear a click."),
+				span_notice(LANG("obj.6ae897a6", list(who_put_user_in, user, src))),
+				span_notice(LANG("obj.8ca39ab5", list(who_put_user_in, src))),
+				span_hear(LANG("obj.0f830183", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				vision_distance = 5,
 				ignored_mobs = who_put_user_in,
@@ -317,9 +318,9 @@
 		else
 			to_chat(who_put_user_in, span_notice(LANG("obj.9eb0170d", list(user, src, user.p_their()))))
 			user.visible_message(
-				span_notice("[who_put_user_in] removes [user.p_their()] hand from [src] and puts it in [user.p_their()] other hand."),
-				span_notice("[who_put_user_in] removes your hand from [src] and puts it in your other hand."),
-				span_hear("You hear a click."),
+				span_notice(LANG("obj.559c71b1", list(who_put_user_in, user.p_their(), src, user.p_their()))),
+				span_notice(LANG("obj.8296fd6c", list(who_put_user_in, src))),
+				span_hear(LANG("obj.0f830183", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				vision_distance = 5,
 				ignored_mobs = who_put_user_in,
@@ -331,8 +332,8 @@
 	if(current_user)
 		to_chat(who_put_user_in, span_notice(LANG("obj.ea7b8ba2", list(user, src, current_user))))
 		user.visible_message(
-			span_notice("[who_put_user_in] tries to put [user]'s hand in [src], but [current_user] is already using it."),
-			span_notice("[who_put_user_in] tries to put your hand in [src], but [current_user] is already using it."),
+			span_notice(LANG("obj.bf4f023a", list(who_put_user_in, user, src, current_user))),
+			span_notice(LANG("obj.9e181238", list(who_put_user_in, src, current_user))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 			ignored_mobs = who_put_user_in,
@@ -343,9 +344,9 @@
 	if(is_operational)
 		to_chat(who_put_user_in, span_notice(LANG("obj.85c0c60f", list(user, src, user.p_their()))))
 		user.visible_message(
-			span_notice("[who_put_user_in] puts [user.p_their()] hand in [src], and immediately some kind of sensor scans [user.p_their()] arm."),
-			span_notice("[who_put_user_in] puts your hand in [src], and immediately some kind of sensor scans your arm."),
-			span_hear("You hear a click."),
+			span_notice(LANG("obj.cd2adffc", list(who_put_user_in, user.p_their(), src, user.p_their()))),
+			span_notice(LANG("obj.5b6ad3d2", list(who_put_user_in, src))),
+			span_hear(LANG("obj.0f830183", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 			ignored_mobs = who_put_user_in,
@@ -353,8 +354,8 @@
 	else
 		to_chat(who_put_user_in, span_notice(LANG("obj.b130b877", list(user, src))))
 		user.visible_message(
-			span_notice("[who_put_user_in] puts [user.p_their()] hand in [src], but it doesn't respond. Seems to be out of order."),
-			span_notice("[who_put_user_in] puts your hand in [src], but it doesn't respond."),
+			span_notice(LANG("obj.81961ecb", list(who_put_user_in, user.p_their(), src))),
+			span_notice(LANG("obj.e85d80c1", list(who_put_user_in, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 			ignored_mobs = who_put_user_in,
@@ -386,9 +387,9 @@
 		bandage = new(user.drop_location(), 1)
 	user.put_in_hands(bandage)
 	user.visible_message(
-		span_notice("[user] retrieves [bandage] from [src]."),
-		span_notice("You retrieve [bandage] from [src]."),
-		span_hear("You hear a click."),
+		span_notice(LANG("obj.02714569", list(user, bandage, src))),
+		span_notice(LANG("obj.8527f6f3", list(bandage, src))),
+		span_hear(LANG("obj.0f830183", null)),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = 5,
 	)
@@ -409,9 +410,9 @@
 		to_chat(user, span_warning(LANG("obj.3a35fea1", list(src, tool))))
 		return ITEM_INTERACT_BLOCKING
 	user.visible_message(
-		span_notice("[user] restocks [src] with [tool]."),
-		span_notice("You restock [src] with [tool]."),
-		span_hear("You hear a click."),
+		span_notice(LANG("obj.82f2706f", list(user, src, tool))),
+		span_notice(LANG("obj.17c664b8", list(src, tool))),
+		span_hear(LANG("obj.0f830183", null)),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = 5,
 	)
@@ -461,9 +462,9 @@
 		return
 	if(!QDELING(current_user))
 		current_user.visible_message(
-			span_notice("[current_user] removes [current_user.p_their()] hand from [src]."),
-			span_notice("You remove your hand from [src]."),
-			span_hear("You hear a click."),
+			span_notice(LANG("obj.6f44d3a6", list(current_user, current_user.p_their(), src))),
+			span_notice(LANG("obj.0db4b854", list(src))),
+			span_hear(LANG("obj.0f830183", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 		)

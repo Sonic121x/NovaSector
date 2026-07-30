@@ -272,8 +272,7 @@
 	playsound(source, 'sound/effects/cloth_rip.ogg', 50, TRUE) // funny thing is, can't hear sound in a vacuum
 	to_chat(source, span_mansus(LANG("datum.e9bf0f46", list(sword, affected_turf))))
 	source.visible_message(
-		span_hypnophrase("[source] plunges [source.p_their()] [sword.name] into [affected_turf] - \
-			[isspaceturf(affected_turf) ? "but instead of nothing happening" : "contrary to what you expected"], a dark energy begins to flow from the site!"),
+		span_hypnophrase(LANG("datum.a20adfbc", list(source, source.p_their(), sword.name, affected_turf, isspaceturf(affected_turf) ? "but instead of nothing happening" : "contrary to what you expected"))),
 		ignored_mobs = source,
 	)
 	var/obj/effect/temp_visual/void_conduit_opening/animation = new(affected_turf)
@@ -283,7 +282,7 @@
 		return
 	to_chat(source, span_mansus(LANG("datum.afd0f226", list(sword))))
 	source.visible_message(
-		span_hypnophrase("A conduit to the void opens, releasing a storm of void energy!"),
+		span_hypnophrase(LANG("datum.6408b72d", null)),
 		ignored_mobs = source,
 	)
 	new /obj/structure/void_conduit(affected_turf)

@@ -599,7 +599,7 @@ ADMIN_VERB(spawn_debug_full_crew, R_DEBUG, "生成调试用完整船员", "Creat
 		// Assign the rank to the new player dummy.
 		if(!SSjob.assign_role(new_guy, job, do_eligibility_checks = FALSE))
 			qdel(new_guy)
-			to_chat(user, "[rank] wasn't able to be spawned.")
+			to_chat(user, LANG("datum.9cfc94fa", list(rank)))
 			continue
 
 		// It's got a job, spawn in a human and shove it in the human.

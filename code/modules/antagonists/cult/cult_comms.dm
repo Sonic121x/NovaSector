@@ -176,7 +176,7 @@
 			if(!T.is_blocked_turf(TRUE))
 				destinations += T
 		if(!LAZYLEN(destinations))
-			to_chat(owner, span_warning("You need more space to summon your cult!"))
+			to_chat(owner, span_warning(LANG("datum.1d68c4f9", null)))
 			return
 		if(do_after(owner, 3 SECONDS, target = owner))
 			for(var/datum/mind/B in antag.cult_team.members)

@@ -8,7 +8,7 @@ ADMIN_VERB(makepAI, R_FUN, "制作 pAI", "Specify a location to spawn a pAI devi
 	if(isnull(choice))
 		return
 
-	var/chosen_name = input(choice, LANG("datum.cbd93c97", null), "pAI Name", "Personal AI") as text|null
+	var/chosen_name = input(choice, LANG("datum.cbd93c97", null), LANG("datum.cbfd823f", null), "Personal AI") as text|null
 	if (isnull(chosen_name))
 		return
 

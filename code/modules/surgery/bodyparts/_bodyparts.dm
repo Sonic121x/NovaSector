@@ -452,12 +452,12 @@
 			continue
 		var/feeling = organ.feel_for_damage(adept_organ_feeler)
 		if(feeling)
-			check_list += "\t[feeling]"
+			check_list += LANG("obj.294efb1f", list(feeling))
 
 	for(var/datum/wound/wound as anything in wounds)
 		var/wound_desc = wound.get_self_check_description(adept_organ_feeler)
 		if(wound_desc)
-			check_list += "\t[wound_desc]"
+			check_list += LANG("obj.294efb1f", list(wound_desc))
 
 	var/surgery_check = get_surgery_self_check()
 	if(surgery_check)
@@ -672,7 +672,7 @@
 		operation_zone = body_zone
 	for(var/datum/surgery_operation/operation as anything in operations)
 		if ((operation.operation_flags & OPERATION_NO_PATIENT_REQUIRED) && operation.show_as_next_step(src, operation_zone))
-			. += span_notice("You could perform [operation] on [src] with \a [operation.get_recommended_tool()]...")
+			. += span_notice(LANG("obj.26e26c14", list(operation, src, operation.get_recommended_tool())))
 
 //empties the bodypart from its organs and other things inside it
 /obj/item/bodypart/proc/drop_organs(mob/user, violent_removal)

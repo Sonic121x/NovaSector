@@ -117,7 +117,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 					continue
 				COOLDOWN_START(src, access_grant_cooldown, ACCESS_GRANTING_COOLDOWN)
 				SEND_GLOBAL_SIGNAL(COMSIG_ON_DEPARTMENT_ACCESS, info["regions"])
-				balloon_alert(usr, "key access sent")
+				balloon_alert(usr, LANG("obj.bcfb9147", null))
 				return
 
 /obj/machinery/keycard_auth/update_appearance(updates)

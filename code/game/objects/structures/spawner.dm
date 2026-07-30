@@ -227,7 +227,7 @@
 			var/mob/living/basic/blankbody/newmob = new(loc)
 			newmob.name = "[living_mob]"
 			newmob.desc = "It's [living_mob], but [living_mob.p_their()] flesh has an ashy texture, and [living_mob.p_their()] face is featureless save an eerie smile."
-			src.visible_message(span_warning("[living_mob] reemerges from the link!"))
+			src.visible_message(span_warning(LANG("obj.c2292f43", list(living_mob))))
 			qdel(living_mob)
 
 /obj/structure/spawner/sentient
@@ -237,7 +237,7 @@
 /obj/structure/spawner/sentient/Initialize(mapload)
 	. = ..()
 	notify_ghosts(
-		"A [name] has been created in \the [get_area(src)]!",
+		LANG("obj.6148cca5", list(name, get_area(src))),
 		source = src,
 		header = "Sentient Spawner Created",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,

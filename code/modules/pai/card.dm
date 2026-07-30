@@ -250,7 +250,7 @@
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/aicards.dmi', "pai")
 
 	notify_ghosts(
-		"[user.real_name] is requesting a pAI companion! Use the pAI button to submit yourself as one.",
+		LANG("obj.c603f497", list(user.real_name)),
 		source = user,
 		header = "pAI Request!",
 		alert_overlay = alert_overlay,

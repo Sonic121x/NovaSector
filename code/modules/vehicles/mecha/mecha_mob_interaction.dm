@@ -37,7 +37,7 @@
 
 	for(var/obj/item/thing in M.held_items)
 		if(!(thing.item_flags & (ABSTRACT|HAND_ITEM)))
-			to_chat(M, span_warning("You can't enter the exosuit while your hands are occupied!"))
+			to_chat(M, span_warning(LANG("obj.e9d1f0f3", null)))
 			return FALSE
 
 	return ..()

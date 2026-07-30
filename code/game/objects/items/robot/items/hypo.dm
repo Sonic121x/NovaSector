@@ -251,7 +251,7 @@
 				var/obj/item/robot_model/container_model = loc
 				cyborg = container_model.robot
 			playsound(cyborg, 'sound/effects/pop.ogg', 50, FALSE)
-			balloon_alert(cyborg, "dispensing [selected_reagent.name]")
+			balloon_alert(cyborg, LANG("obj.ff481801", list(selected_reagent.name)))
 			break
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)

@@ -345,7 +345,7 @@
 		var/obj/item/coupon/applied_coupon
 		for(var/obj/item/coupon/coupon_check in loaded_coupons)
 			if(pack.type == coupon_check.discounted_pack)
-				say("Coupon found! [round(coupon_check.discount_pct_off * 100)]% off applied!")
+				say(LANG("obj.2ad02099", list(round(coupon_check.discount_pct_off * 100))))
 				coupon_check.moveToNullspace()
 				applied_coupon = coupon_check
 				break
@@ -377,10 +377,10 @@
 		if(order.id != id)
 			continue
 		if(order.department_destination)
-			say("Only the department that ordered this item may cancel it.")
+			say(LANG("obj.666c9c11", null))
 			return FALSE
 		if(order.applied_coupon)
-			say("Coupon refunded.")
+			say(LANG("obj.93e2806e", null))
 			order.applied_coupon.forceMove(get_turf(src))
 		SSshuttle.shopping_list -= order
 		qdel(order)

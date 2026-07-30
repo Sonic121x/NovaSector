@@ -130,14 +130,14 @@
 		if(locate(/datum/reagent/toxin) in food.reagents.reagent_list)
 			var/sick_word = pick("queasy", "sick", "iffy", "unwell")
 			cursed.visible_message(
-				span_notice("[cursed_item] eats something from [cursed], and looks [sick_word] afterwards!"),
-				span_notice("[cursed_item] eats your [food.name] to sate [cursed_item.p_their()] hunger, and looks [sick_word] afterwards!"),
+				span_notice(LANG("datum.78b729df", list(cursed_item, cursed, sick_word))),
+				span_notice(LANG("datum.54fe783f", list(cursed_item, food.name, cursed_item.p_their(), sick_word))),
 			)
 			current_health--
 		else
 			cursed.visible_message(
-				span_warning("[cursed_item] eats something from [cursed] to sate [cursed_item.p_their()] hunger."),
-				span_warning("[cursed_item] eats your [food.name] to sate [cursed_item.p_their()] hunger."),
+				span_warning(LANG("datum.ed15bc7a", list(cursed_item, cursed, cursed_item.p_their()))),
+				span_warning(LANG("datum.20499d05", list(cursed_item, food.name, cursed_item.p_their()))),
 			)
 		cursed.temporarilyRemoveItemFromInventory(food, force = TRUE)
 		qdel(food)

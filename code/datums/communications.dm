@@ -141,9 +141,7 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 	print_command_report(., LANG("datum.1aee94d7", list(command_name())), announce = FALSE, contains_advanced_html = TRUE)
 	if(greenshift)
 		priority_announce(
-			"Thanks to the tireless efforts of our security and intelligence divisions, \
-				there are currently no credible threats to [station_name()]. \
-				All station construction projects have been authorized. Have a secure shift!",
+			LANG("datum.18e0eb7d", list(station_name())),
 			"Security Report",
 			SSstation.announcer.get_rand_report_sound(),
 			color_override = "green",

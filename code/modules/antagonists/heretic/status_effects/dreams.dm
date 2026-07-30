@@ -103,7 +103,7 @@
 		var/list/filtered_objects = typecache_filter_list(all_objects, allowed_typecaches_by_root_type[object_type])
 		if(filtered_objects.len)
 			if (!something_found)
-				. += "its waters reflect"
+				. += LANG("datum.fead6b09", null)
 				something_found = TRUE
 			var/obj/found_object = pick(filtered_objects)
 			. += initial(found_object.name)

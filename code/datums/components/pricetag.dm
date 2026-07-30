@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /*
  * Pricetag component.
  *
@@ -107,7 +108,7 @@
 		overall_item_price = max(0, overall_item_price - payee_cut)
 
 		payee.adjust_money(payee_cut, "Pricetag: [capitalize(format_text(source.name))] Sale")
-		payee.bank_card_talk("Sale of [source] recorded. [payee_cut] [MONEY_NAME] added to account.")
+		payee.bank_card_talk(LANG("datum.dfccd630", list(source, payee_cut, MONEY_NAME)))
 		running_tally += payee_cut
 	// Update the report with the modified final price
 	report.total_value[export] += overall_item_price

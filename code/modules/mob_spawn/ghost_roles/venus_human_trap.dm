@@ -40,7 +40,7 @@
 /obj/effect/mob_spawn/ghost_role/venus_human_trap/proc/bear_fruit()
 	ready = TRUE
 	notify_ghosts(
-		"[src] has borne fruit!",
+		LANG("obj.5dd73092", list(src)),
 		source = src,
 		header = "Venus Human Trap",
 		click_interact = TRUE,

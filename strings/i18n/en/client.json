@@ -214,6 +214,7 @@
   "client.35cc1a5f": "Toggles the safety lock on trying to contact the medal hub.",
   "client.361e3fc9": "Sends a tip to all players.",
   "client.37ceef84": "Toggle Combo HUD",
+  "client.37f70b12": "Download",
   "client.37fc02c8": "Mass Zombie Infection",
   "client.384eafcb": "Failed to send your OOC message. You attempted to send the following message:\\n{0}",
   "client.39520bd5": "The rules URL is not set in the server configuration.",

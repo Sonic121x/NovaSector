@@ -127,7 +127,7 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "丢下", null)
 		. += LANG("obj.f7a54f73", list(reagent_container))
 		if(length(reagent_container.reagents.reagent_list))
 			for(var/datum/reagent/reagent in reagent_container.reagents.reagent_list)
-				. += "[reagent.volume] units of [reagent.name]"
+				. += LANG("obj.bcff57a8", list(reagent.volume, reagent.name))
 		else
 			. += LANG("obj.aa75d156", null)
 

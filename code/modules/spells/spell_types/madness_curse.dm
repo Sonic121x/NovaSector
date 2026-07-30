@@ -18,7 +18,7 @@ GLOBAL_VAR_INIT(curse_of_madness_triggered, FALSE)
 		if(curse_turf && !is_station_level(curse_turf.z))
 			continue
 		if(to_curse.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND))
-			to_chat(to_curse, span_notice("You have a strange feeling for a moment, but then it passes."))
+			to_chat(to_curse, span_notice(LANG("_root.ee899aba", null)))
 			continue
 		give_madness(to_curse, message)
 

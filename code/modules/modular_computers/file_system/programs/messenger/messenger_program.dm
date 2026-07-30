@@ -511,21 +511,21 @@
 
 			if(!target_chat.can_reply)
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient has receiving disabled."))
+					to_chat(sender, span_notice(LANG("datum.d09ba16f", null)))
 				continue
 
 			target_messenger = target_chat.recipient?.resolve()
 
 			if(!istype(target_messenger))
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient no longer exists."))
+					to_chat(sender, span_notice(LANG("datum.63815360", null)))
 				target_chat.can_reply = FALSE
 				target_chat.recipient = null
 				continue
 
 			if(!target_messenger.sending_and_receiving)
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient has receiving disabled."))
+					to_chat(sender, span_notice(LANG("datum.d09ba16f", null)))
 				continue
 
 		else if(istype(target, /datum/computer_file/program/messenger))
@@ -533,7 +533,7 @@
 
 			if(!target_messenger.sending_and_receiving)
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient has receiving disabled."))
+					to_chat(sender, span_notice(LANG("datum.d09ba16f", null)))
 				continue
 
 			target_chat = find_chat_by_recipient(REF(target))
@@ -749,7 +749,7 @@
 		var/inbound_message = "[signal.format_message()]"
 
 		var/photo_message = signal.data["photo"] ? " (<a href='byond://?src=[REF(src)];choice=[photo_href];skiprefresh=1;target=[REF(chat)]'>Photo Attached</a>)" : ""
-		to_chat(messaged_mob, span_infoplain("[icon2html(computer, messaged_mob)] <b>PDA message from [sender_title], </b>\"[inbound_message]\"[photo_message] [reply]"))
+		to_chat(messaged_mob, span_infoplain(LANG("datum.443f01c8", list(icon2html(computer, messaged_mob), sender_title, inbound_message, photo_message, reply))))
 
 		SEND_SIGNAL(computer, COMSIG_COMPUTER_RECEIVED_MESSAGE, sender_title, inbound_message, photo_message)
 

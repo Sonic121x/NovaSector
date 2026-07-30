@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * # Virtual Domains
  * Create your own: Read the readme file in the '_maps/virtual_domains' folder.
@@ -129,7 +130,7 @@
 		LAZYADD(ghost_mobs, new_mob)
 
 		var/ghostname = lucky_ghost.name
-		notify_ghosts("[ghostname] has been selected to be a [ghost_spawner.prompt_name]!", source = new_mob, header = "001010110")
+		notify_ghosts(LANG("datum.add1fc5b", list(ghostname, ghost_spawner.prompt_name)), source = new_mob, header = "001010110")
 
 /// Overridable proc to be called after the map is loaded.
 /datum/lazy_template/virtual_domain/proc/setup_domain(list/created_atoms)

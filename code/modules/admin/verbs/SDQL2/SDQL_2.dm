@@ -272,7 +272,7 @@ ADMIN_VERB(sdql2_query, R_DEBUG, "SDQL2 查询", "Run a SDQL2 query.", ADMIN_CAT
 				finished = FALSE
 				if(query.state == SDQL2_STATE_ERROR)
 					if(usr)
-						to_chat(usr, span_admin("SDQL query [query.get_query_text()] errored. It will NOT be automatically garbage collected. Please remove manually."), confidential = TRUE)
+						to_chat(usr, span_admin(LANG("world.94c586e2", list(query.get_query_text()))), confidential = TRUE)
 					running -= query
 			else
 				if(query.finished)
@@ -294,7 +294,7 @@ ADMIN_VERB(sdql2_query, R_DEBUG, "SDQL2 查询", "Run a SDQL2 query.", ADMIN_CAT
 						next_query.ARun()
 				else
 					if(usr)
-						to_chat(usr, span_admin("SDQL query [query.get_query_text()] was halted. It will NOT be automatically garbage collected. Please remove manually."), confidential = TRUE)
+						to_chat(usr, span_admin(LANG("world.049d9d2d", list(query.get_query_text()))), confidential = TRUE)
 					running -= query
 	while(!finished)
 
@@ -969,7 +969,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 				querys[querys_pos] = parsed_tree
 				querys_pos++
 			else //There was an error so don't run anything, and tell the user which query has errored.
-				to_chat(usr, span_danger("Parsing error on [querys_pos]\th query. Nothing was executed."), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("_root.2eec371b", list(querys_pos))), confidential = TRUE)
 				return list()
 			query_tree = list()
 			do_parse = 0

@@ -419,7 +419,7 @@
 	radio.talk_into(src, speaking, common_channel)
 
 	notify_ghosts(
-		"The [src] has begun melting down!",
+		LANG("obj.1db25549", list(src)),
 		source = src,
 		header = "Meltdown Incoming",
 		ghost_sound = 'sound/machines/warning-buzzer.ogg',

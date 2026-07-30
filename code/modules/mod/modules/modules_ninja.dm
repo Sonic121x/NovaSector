@@ -518,7 +518,7 @@
 		"Medical" = "/obj/item/robot_model/ninja/ninja_medical",
 		"Saboteur" = "/obj/item/robot_model/ninja_saboteur",
 	)
-	var/choice = input(src,LANG("mob.5fca178d", null),"Select Role") in sort_list(modelselected)
+	var/choice = input(src,LANG("mob.5fca178d", null),LANG("mob.a1b9dfd8", null)) in sort_list(modelselected)
 	model.transform_to(modelselected[choice])
 	// NOVA EDIT ADDITION END
 
@@ -943,7 +943,7 @@
 
 /obj/structure/energy_net/atom_destruction(damage_flag)
 	for(var/mob/recovered_mob as anything in buckled_mobs)
-		recovered_mob.visible_message(span_notice("[recovered_mob] is recovered from the energy net!"), span_notice("You are recovered from the energy net!"), span_hear("You hear a grunt."))
+		recovered_mob.visible_message(span_notice(LANG("obj.a753fc88", list(recovered_mob))), span_notice(LANG("obj.0eec0cbd", null)), span_hear(LANG("obj.32db2b33", null)))
 	return ..()
 
 /obj/structure/energy_net/attack_paw(mob/user, list/modifiers)

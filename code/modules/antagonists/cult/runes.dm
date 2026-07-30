@@ -169,7 +169,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	//This proc contains the effects of the rune as well as things that happen afterwards. If you want it to spawn an object and then delete itself, have both here.
 	for(var/atom/invoker in invokers)
 		if(istype(invoker, /obj/item/toy/plush/narplush))
-			invoker.visible_message(span_cult_italic("[src] squeaks_loudly!"))
+			invoker.visible_message(span_cult_italic(LANG("obj.9372f6f5", list(src))))
 			continue
 		if(!isliving(invoker))
 			continue
@@ -178,7 +178,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			living_invoker.say(invocation, language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")
 		if(invoke_damage)
 			living_invoker.apply_damage(invoke_damage, BRUTE)
-			to_chat(living_invoker,  span_cult_italic("[src] saps your strength!"))
+			to_chat(living_invoker,  span_cult_italic(LANG("obj.e843b380", list(src))))
 
 	do_invoke_glow()
 
@@ -283,12 +283,12 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 	if(length(invokers) < 2)
 		for(var/invoker in invokers)
-			to_chat(invoker, span_warning("You need at least two invokers to convert [convertee]!"))
+			to_chat(invoker, span_warning(LANG("obj.aa544521", list(convertee))))
 		return FALSE
 
 	if(convertee.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY, charge_cost = 0)) //No charge_cost because it can be spammed
 		for(var/invoker in invokers)
-			to_chat(invoker, span_warning("Something is shielding [convertee]'s mind!"))
+			to_chat(invoker, span_warning(LANG("obj.0b4a141e", list(convertee))))
 		return FALSE
 
 	var/brutedamage = convertee.get_brute_loss()
@@ -335,7 +335,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/target_sac = FALSE
 	if((((ishuman(sacrificial) || iscyborg(sacrificial)) && sacrificial.stat != DEAD) || cult_team.is_sacrifice_target(sacrificial.mind)) && length(invokers) < 3)
 		for(var/invoker in invokers)
-			to_chat(invoker, span_cult_italic("[sacrificial] is too greatly linked to the world! You need three acolytes!"))
+			to_chat(invoker, span_cult_italic(LANG("obj.76a8b461", list(sacrificial))))
 		return FALSE
 
 	if(sacrificial.mind)
@@ -362,12 +362,12 @@ structure_check() searches for nearby cultist structures required for the invoca
 	if(do_message)
 		for(var/invoker in invokers)
 			if(target_sac)
-				to_chat(invoker, span_cult_large("\"Yes! This is the one I desire! You have done well.\""))
+				to_chat(invoker, span_cult_large(LANG("obj.b1a4de90", null)))
 				continue
 			if(ishuman(sacrificial) || iscyborg(sacrificial))
-				to_chat(invoker, span_cult_large("\"I accept this sacrifice.\""))
+				to_chat(invoker, span_cult_large(LANG("obj.e629bac2", null)))
 			else
-				to_chat(invoker, span_cult_large("\"I accept this meager sacrifice.\""))
+				to_chat(invoker, span_cult_large(LANG("obj.c2188d4e", null)))
 
 	// post-message
 	if(signal_result & STOP_SACRIFICE)
@@ -669,7 +669,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		return
 	if(locate(/obj/narsie) in SSpoints_of_interest.narsies)
 		for(var/invoker in invokers)
-			to_chat(invoker, span_warning("Nar'Sie is already on this plane!"))
+			to_chat(invoker, span_warning(LANG("obj.8fc7ea43", null)))
 		log_game("Nar'Sie rune activated by [user] at [COORD(src)] failed - already summoned.")
 		return
 
@@ -783,7 +783,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	rune_in_use = FALSE
 	for(var/mob/living/cultist in loc)
 		if(IS_CULTIST(cultist) && cultist.stat == DEAD)
-			cultist.visible_message(span_warning("[cultist] twitches."))
+			cultist.visible_message(span_warning(LANG("obj.06fe42f3", list(cultist))))
 
 //Rite of the Corporeal Shield: When invoked, becomes solid and cannot be passed. Invoke again to undo.
 /obj/effect/rune/wall
@@ -912,7 +912,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		if(!IS_CULTIST(target) && CAN_HAVE_BLOOD(target))
 			if(target.can_block_magic(charge_cost = 0))
 				continue
-			to_chat(target, span_cult_large("Your blood boils in your veins!"))
+			to_chat(target, span_cult_large(LANG("obj.4af99b2e", null)))
 	animate(src, color = "#FCB56D", time = 4)
 	sleep(0.4 SECONDS)
 	if(QDELETED(src))
@@ -980,7 +980,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 			log_game("Manifest rune failed - too many summoned ghosts")
 			return list()
 		notify_ghosts(
-			"Manifest rune invoked in [get_area(src)].",
+			LANG("obj.3b83f82e", list(get_area(src))),
 			source = src,
 			header = "Manifest rune",
 			ghost_sound = 'sound/effects/ghost2.ogg',
@@ -1156,7 +1156,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 				addtimer(CALLBACK(M, TYPE_PROC_REF(/atom/, remove_alt_appearance),"cult_apoc",TRUE), duration)
 				images += C
 		else
-			to_chat(M, span_cult_large("An Apocalypse Rune was invoked in \the [place], it is no longer available as a summoning site!"))
+			to_chat(M, span_cult_large(LANG("obj.affa229b", list(place))))
 			SEND_SOUND(M, 'sound/effects/pope_entry.ogg')
 	image_handler(images, duration)
 	if(intensity >= 285) // Based on the prior formula, this means the cult makes up <15% of current players

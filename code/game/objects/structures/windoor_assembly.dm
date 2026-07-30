@@ -219,7 +219,7 @@
 	if(!anchored)
 		for(var/obj/machinery/door/window/competitor in loc)
 			if(competitor.dir == dir)
-				to_chat(user, span_warning("There is already a windoor in that location!"))
+				to_chat(user, span_warning(LANG("obj.b9e2eb2c", null)))
 				return ITEM_INTERACT_BLOCKING
 
 		user.visible_message(span_notice(LANG("obj.49b00f4e", list(user))),
@@ -232,7 +232,7 @@
 
 		for(var/obj/machinery/door/window/competitor in loc)
 			if(competitor.dir == dir)
-				to_chat(user, span_warning("There is already a windoor in that location!"))
+				to_chat(user, span_warning(LANG("obj.b9e2eb2c", null)))
 				return ITEM_INTERACT_BLOCKING
 
 		to_chat(user, span_notice(LANG("obj.feaf53d7", null)))

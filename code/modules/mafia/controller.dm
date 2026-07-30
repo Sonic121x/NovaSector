@@ -816,8 +816,8 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 		if(!(unpicked in GLOB.mafia_signup))
 			continue
 		var/client/unpicked_client = GLOB.directory[unpicked]
-		to_chat(unpicked_client, span_danger("Sorry, the starting mafia game has too many players and you were not picked."))
-		to_chat(unpicked_client, span_warning("You're still signed up, getting messages from the current round, and have another chance to join when the one starting now finishes."))
+		to_chat(unpicked_client, span_danger(LANG("datum.dce9f04e", null)))
+		to_chat(unpicked_client, span_warning(LANG("datum.21ddf196", null)))
 
 	return filtered_keys_and_pdas
 

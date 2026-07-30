@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///uhm...sus?
 /datum/bt_node/subtree/consider_venting
 	behavior_tree_json = "code/datums/ai/basic_mobs/basic_ai_behaviors/consider_venting.bt.json"
@@ -23,8 +24,8 @@
 		controller.set_blackboard_key(BB_VENT_ENTRY_TIME, world.time)
 		if(prob(50))
 			cached_pawn.visible_message(
-				span_warning("[cached_pawn] scrambles into the ventilation ducts!"),
-				span_hear("You hear something scampering through the ventilation ducts."),
+				span_warning(LANG("datum.77cf54fb", list(cached_pawn))),
+				span_hear(LANG("datum.6df1df54", null)),
 			)
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 

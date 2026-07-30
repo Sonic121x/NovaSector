@@ -646,7 +646,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			return "INVALID, CALL A CODER"
 
 /datum/admin_help/proc/Retitle()
-	var/new_title = input(usr, LANG("datum.f207f8c4", null), "Rename Ticket", name) as text|null
+	var/new_title = input(usr, LANG("datum.f207f8c4", null), LANG("datum.97c58878", null), name) as text|null
 	if(new_title)
 		name = new_title
 		//not saying the original name cause it could be a long ass message

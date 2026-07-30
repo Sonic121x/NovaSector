@@ -84,16 +84,16 @@
 			continue
 
 		if(product_datum.amount == product_datum.max_amount)
-			to_chat(user, span_warning("[src] can't accept any more [inserted_item.name][inserted_item.p_s()]!"))
+			to_chat(user, span_warning(LANG("obj.82312b6f", list(src, inserted_item.name, inserted_item.p_s()))))
 			return FALSE
 
 		if(!user.transferItemToLoc(inserted_item, src))
-			to_chat(user, span_warning("[inserted_item] is stuck in your hand!"))
+			to_chat(user, span_warning(LANG("obj.015edaf0", list(inserted_item))))
 			return FALSE
 
 		product_datum.amount++
 		LAZYADD(product_datum.returned_products, inserted_item)
-		to_chat(user, span_notice("You insert [inserted_item] into [src]'s input compartment."))
+		to_chat(user, span_notice(LANG("obj.8f8341e3", list(inserted_item, src))))
 		break
 
 /obj/machinery/vending/item_interaction(mob/living/user, obj/item/attack_item, list/modifiers)

@@ -211,16 +211,16 @@
 
 			var/href_string = is_computer ? "show_tablet_note=1" : "show_paper_note=[REF(last_shown_paper)]"
 			if(user.name == "Unknown")
-				to_chat(ai, "[span_name("[user]")] holds <a href='byond://?_src_=usr;[href_string];'>\a [title]</a> up to one of your cameras...")
+				to_chat(ai, LANG("obj.1a6f01a2", list(span_name("[user]"), href_string, title)))
 			else
-				to_chat(ai, "[span_name("<a href='byond://?src=[REF(ai)];track=[html_encode(user.name)]'>[user]</a>")] holds <a href='byond://?_src_=usr;[href_string];'>\a [title]</a> up to one of your cameras...")
+				to_chat(ai, LANG("obj.1a6f01a2", list(span_name("<a href='byond://?src=[REF(ai)];track=[html_encode(user.name)]'>[user]</a>"), href_string, title)))
 
 		// If it's not an AI, eye if the client's eye is set to the camera. I wonder if this even works anymore with tgui camera apps and stuff?
 		else if(potential_viewer.client?.eye == src)
 			potential_viewer.log_talk(title, LOG_VICTIM, "Pressed to camera from [key_name(user)]", FALSE)
 			if(!is_computer)
 				log_paper("[key_name(user)] held [last_shown_paper] up to [src], and [key_name(potential_viewer)] may read it.")
-				to_chat(potential_viewer, "[span_name("[user]")] holds <a href='byond://?_src_=usr;show_paper_note=[REF(last_shown_paper)];'>\a [title]</a> up to your camera...")
+				to_chat(potential_viewer, LANG("obj.611c6596", list(span_name("[user]"), REF(last_shown_paper), title)))
 			else
 				potential_viewer << browse("<HTML><HEAD><TITLE>[title]</TITLE></HEAD><BODY><TT>[text]</TT></BODY></HTML>", "window=[title]")
 

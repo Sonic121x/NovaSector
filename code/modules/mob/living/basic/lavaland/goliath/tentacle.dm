@@ -69,8 +69,8 @@
 		var/obj/item/restraints/legcuffs/goliath_tentacle/trap = new trap_type(loc, victim, src)
 		if (QDELETED(trap))
 			continue
-		balloon_alert(victim, "grabbed")
-		visible_message(span_danger("[src] grabs hold of [victim]!"))
+		balloon_alert(victim, LANG("obj.bb1cd695", null))
+		visible_message(span_danger(LANG("obj.599446dc", list(src, victim))))
 		victim.apply_damage(rand(min_damage, max_damage), BRUTE, pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG), wound_bonus = CANT_WOUND)
 		trapped_mobs = TRUE
 

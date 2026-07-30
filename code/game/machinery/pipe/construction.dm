@@ -280,7 +280,7 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 	for(var/obj/machinery/atmospherics/machine in loc)
 		// Only one dense/requires density object per tile, eg connectors/cryo/heater/coolers.
 		if(machine.pipe_flags & flags & PIPING_ONE_PER_TURF)
-			to_chat(user, span_warning("Something is hogging the tile!"))
+			to_chat(user, span_warning(LANG("obj.6801c9e6", null)))
 			return TRUE
 		// skip checks if we don't overlap layers, either by being on the same layer or by something being on all layers
 		if(machine.piping_layer != piping_layer && !((machine.pipe_flags | flags) & PIPING_ALL_LAYER))
@@ -295,7 +295,7 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 			// We have a conflict!
 			if (length(potentially_conflicting_machines) != 1 || !try_smart_reconfiguration(machine, our_init_dirs, user))
 				// No solutions found
-				to_chat(user, span_warning("There is already a pipe at that location!"))
+				to_chat(user, span_warning(LANG("obj.18f032d8", null)))
 				return TRUE
 	// no conflicts found
 

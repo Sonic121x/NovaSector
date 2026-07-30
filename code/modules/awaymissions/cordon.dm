@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Turf type that appears to be a world border, completely impassable and non-interactable to all physical (alive) entities.
 /turf/cordon
 	name = "cordon"
@@ -64,7 +65,7 @@
 /area/misc/cordon/Entered(atom/movable/arrived, area/old_area)
 	. = ..()
 	for(var/mob/living/enterer as anything in arrived.get_all_contents_type(/mob/living))
-		to_chat(enterer, span_userdanger("This was a bad idea..."))
+		to_chat(enterer, span_userdanger(LANG("area.3e8f270e", null)))
 		enterer.dust(just_ash = TRUE, drop_items = FALSE, force = TRUE)
 
 /// This type of cordon will block ghosts from passing through it. Useful for stuff like Away Missions, where you feasibly want to block ghosts from entering to keep a certain map section a secret.

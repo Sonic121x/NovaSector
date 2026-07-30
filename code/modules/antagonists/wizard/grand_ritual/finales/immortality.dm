@@ -25,7 +25,7 @@
 		new /obj/effect/temp_visual/immortality_pulse(get_turf(alive_guy))
 		if (!alive_guy.mind)
 			continue
-		to_chat(alive_guy, span_notice("You feel <b>extremely</b> healthy."))
+		to_chat(alive_guy, span_notice(LANG("datum.37e30dfc", null)))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(something_died))
 
 /// Called when something passes into the great beyond, make it not do that

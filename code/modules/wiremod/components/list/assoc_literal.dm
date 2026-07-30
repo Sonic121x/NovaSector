@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * # Assoc List Literal Component
  *
@@ -65,7 +66,7 @@
 	for(var/index in 1 to length(entry_ports))
 		// To prevent people from infinitely making lists to crash the server
 		if(islist(entry_ports[index].value) && get_list_count(entry_ports[index].value, max_list_count) >= max_list_count)
-			visible_message("[src] begins to overheat!")
+			visible_message(LANG("obj.2c3653f6", list(src)))
 			return
 		var/value_to_add = value_handler.convert_value(port, entry_ports[index].value)
 		if(isdatum(value_to_add))

@@ -30,7 +30,7 @@
 	log_game("A pulse rifle prize has been created at [AREACOORD(T)]")
 
 	notify_ghosts(
-		"Someone won a pulse rifle as a prize!",
+		LANG("obj.09353cfe", null),
 		source = src,
 		header = "Pulse rifle prize",
 	)

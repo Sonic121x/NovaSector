@@ -80,12 +80,12 @@
 				return TRUE
 			for(var/datum/station_request/i in GLOB.request_list)
 				if("[i.req_number]" == "[current_user.account_id]")
-					computer.say("Account already has active bounty.")
+					computer.say(LANG("datum.c9c211c4", null))
 					return TRUE
 			var/datum/station_request/curr_request = new /datum/station_request(current_user.account_holder, bounty_value,bounty_text,current_user.account_id, current_user)
 			GLOB.request_list += list(curr_request)
 			for(var/obj/i in GLOB.allbountyboards)
-				i.say("New bounty has been added!")
+				i.say(LANG("datum.ed69b7bd", null))
 				playsound(i.loc, 'sound/effects/cashregister.ogg', 30, TRUE)
 			return TRUE
 		if("apply")

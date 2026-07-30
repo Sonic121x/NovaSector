@@ -40,9 +40,8 @@
 		return FALSE
 
 	user.visible_message(
-		span_notice("[user] holds [emag_card] to [src], getting the two cards stuck together!"),
-		span_notice("As you hold [emag_card] to [src], their magnets attract to one another, \
-			and they become stuck together!"),
+		span_notice(LANG("obj.2ca12615", list(user, emag_card, src))),
+		span_notice(LANG("obj.f9021cee", list(emag_card, src))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	playsound(src, 'sound/effects/bang.ogg', 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
@@ -163,7 +162,7 @@
 /obj/item/card/emag/proc/can_emag(atom/target, mob/user)
 	for (var/subtypelist in type_blacklist)
 		if (target.type in subtypelist)
-			to_chat(user, span_warning("The [target] cannot be affected by the [src]! A more specialized hacking device is required."))
+			to_chat(user, span_warning(LANG("obj.c656b180", list(target, src))))
 			return FALSE
 	return TRUE
 
@@ -209,7 +208,7 @@
 	for (var/i in 1 to length(charge_timers))
 		var/timeleft = timeleft(charge_timers[i])
 		var/loadingbar = num2loadingbar(timeleft/charge_time)
-		. += span_notice("<b>CHARGE #[i]: [loadingbar] ([DisplayTimeText(timeleft)])</b>")
+		. += span_notice(LANG("obj.00674b3f", list(i, loadingbar, DisplayTimeText(timeleft))))
 
 /obj/item/card/emag/doorjack/can_emag(atom/target, mob/user)
 	if (charges <= 0)

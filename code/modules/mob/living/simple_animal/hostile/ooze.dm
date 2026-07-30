@@ -427,7 +427,7 @@
 	. = ..()
 	for(var/obj/item/mending_globule/existing in target_limb.embedded_objects)
 		if ((existing != parent))
-			target.visible_message(span_warning("[parent] slides right off of [target]'s [target_limb.plaintext_zone], already having a globule attached there!"))
+			target.visible_message(span_warning(LANG("datum.8f7756d0", list(parent, target, target_limb.plaintext_zone))))
 			qdel(parent)
 			return FALSE
 		else

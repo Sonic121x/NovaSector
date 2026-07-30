@@ -225,9 +225,9 @@
 			continue
 		victim.adjust_fire_loss(10)
 		if(can_transform_turf)
-			to_chat(victim, span_userdanger("You fall directly into the pool of lava!"))
+			to_chat(victim, span_userdanger(LANG("obj.fb5f38e6", null)))
 		else
-			to_chat(victim, span_userdanger("You are set ablaze by a fireball from above!"))
+			to_chat(victim, span_userdanger(LANG("obj.938e7332", null)))
 
 	// deals damage to mechs
 	for(var/obj/vehicle/sealed/mecha/mech in our_turf)
@@ -305,7 +305,7 @@
 			continue
 		if(islist(flame_hit) && !flame_hit[L])
 			L.adjust_fire_loss(40)
-			to_chat(L, span_userdanger("You're hit by the drake's fire breath!"))
+			to_chat(L, span_userdanger(LANG("obj.508f9ea4", null)))
 			flame_hit[L] = TRUE
 		else
 			L.adjust_fire_loss(10) //if we've already hit them, do way less damage

@@ -413,12 +413,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/auxiliary_base, 32)
 	for(var/i in 1 to landing_turfs.len) //You land NEAR the base, not IN it.
 		var/turf/L = landing_turfs[i]
 		if(!L) //This happens at map edges
-			to_chat(user, span_warning("Unable to secure a valid docking zone. Please try again in an open area near, but not within the auxiliary mining base."))
+			to_chat(user, span_warning(LANG("obj.091e74d7", null)))
 			SSshuttle.stationary_docking_ports.Remove(Mport)
 			qdel(Mport)
 			return
 		if(istype(get_area(L), /area/shuttle/auxiliary_base))
-			to_chat(user, span_warning("The mining shuttle must not land within the mining base itself."))
+			to_chat(user, span_warning(LANG("obj.3497eb54", null)))
 			SSshuttle.stationary_docking_ports.Remove(Mport)
 			qdel(Mport)
 			return

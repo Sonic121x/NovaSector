@@ -155,7 +155,7 @@
 		for(var/mob/living/additional_target in turf)
 			if(user.Adjacent(additional_target) && additional_target.density)
 				additional_target.apply_damage(damage = 15, sharpness = SHARP_EDGED, exposed_wound_bonus = 10)
-				to_chat(additional_target, span_userdanger("You've been sliced by [user]!"))
+				to_chat(additional_target, span_userdanger(LANG("obj.ef635d2f", list(user))))
 	target.apply_damage(damage = 5, sharpness = SHARP_EDGED, wound_bonus = 10)
 
 /obj/item/cursed_katana/proc/cloak(mob/living/target, mob/user)

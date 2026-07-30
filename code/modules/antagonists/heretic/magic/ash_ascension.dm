@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Creates a constant Ring of Fire around the caster for a set duration of time, which follows them.
 /datum/action/cooldown/spell/fire_sworn
 	name = "Oath of Flame"
@@ -149,13 +150,13 @@
 
 		for(var/mob/living/L in T.contents)
 			if(L.can_block_magic())
-				L.visible_message(span_danger("The spell bounces off of [L]!"), span_danger("The spell bounces off of you!"))
+				L.visible_message(span_danger(LANG("datum.44d911f3", list(L))), span_danger(LANG("datum.f092e989", null)))
 				continue
 			if((L in hit_list) || L == source)
 				continue
 			hit_list += L
 			L.adjust_fire_loss(20)
-			to_chat(L, span_userdanger("You're hit by [source]'s eldritch flames!"))
+			to_chat(L, span_userdanger(LANG("datum.6a9ea3c2", list(source))))
 
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)

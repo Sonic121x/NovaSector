@@ -90,7 +90,7 @@
 		return
 	for(var/content_thing in contents)
 		if(istype(content_thing, /mob) || isobj(content_thing))
-			to_chat(the_folder, span_warning("There are too many things inside of [src] to fold it up!"))
+			to_chat(the_folder, span_warning(LANG("obj.53cb9145", list(src))))
 			return
 	// toto we made it!
 	return TRUE
@@ -147,7 +147,7 @@
 		return
 
 	for(var/obj/item/bodybag/bluespace/B in src)
-		to_chat(the_folder, span_warning("You can't recursively fold bluespace body bags!") )
+		to_chat(the_folder, span_warning(LANG("obj.2a6bf06e", null)) )
 		return
 	return TRUE
 
@@ -159,7 +159,7 @@
 		var/atom/movable/content = am
 		content.forceMove(folding_bodybag)
 		if(isliving(content))
-			to_chat(content, span_userdanger("You're suddenly forced into a tiny, compressed space!"))
+			to_chat(content, span_userdanger(LANG("obj.e4c3012e", null)))
 		if(HAS_TRAIT(content, TRAIT_DWARF))
 			max_weight_of_contents = max(WEIGHT_CLASS_NORMAL, max_weight_of_contents)
 			continue
@@ -288,7 +288,7 @@
 /obj/structure/closet/body_bag/environmental/togglelock(mob/living/user, silent)
 	. = ..()
 	for(var/mob/living/target in contents)
-		to_chat(target, span_warning("You hear a faint hiss, and a white mist fills your vision..."))
+		to_chat(target, span_warning(LANG("obj.6592accd", null)))
 
 /obj/structure/closet/body_bag/environmental/proc/refresh_air()
 	air_contents = null
@@ -396,7 +396,7 @@
 		add_fingerprint(user)
 	if(!cinched)
 		for(var/mob/living/target in contents)
-			to_chat(target, span_userdanger("You feel the lining of [src] tighten around you! Soon, you won't be able to escape!"))
+			to_chat(target, span_userdanger(LANG("obj.bcaefec8", list(src))))
 		user.visible_message(span_notice(LANG("obj.f71d7235", list(user, src))))
 		if(!(do_after(user,(cinch_time),target = src)))
 			return
@@ -625,14 +625,14 @@
 	user.changeNext_move(6 SECONDS)
 	user.last_special = world.time + 6 SECONDS
 	user.visible_message(
-		span_warning("Something in [src] begins to wriggle!"),
-		span_notice("You start wriggling, attempting to climb out of [src]... (This will take about [DisplayTimeText(breakout_time)].)"),
-		span_hear("You hear straining cloth from [src]."),
+		span_warning(LANG("obj.96af6461", list(src))),
+		span_notice(LANG("obj.147319cc", list(src, DisplayTimeText(breakout_time)))),
+		span_hear(LANG("obj.e8a08630", list(src))),
 	)
 	if(do_after(user, breakout_time, src, timed_action_flags = IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(breakout_checks), user)))
 		user.visible_message(
-			span_danger("[user] climbs out of [src]!"),
-			span_notice("You successfully climb out of [src]!"),
+			span_danger(LANG("obj.dc5ea840", list(user, src))),
+			span_notice(LANG("obj.303818af", list(src))),
 		)
 		open(user, force = TRUE, special_effects = FALSE)
 

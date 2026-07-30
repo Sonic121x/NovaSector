@@ -64,9 +64,9 @@
 			// WITNESS THE GORE
 			for(var/mob/living/splashed in view(2, bozo))
 				if(bozo.has_status_effect(/datum/status_effect/grouped/blindness))
-					to_chat(splashed, span_userdanger("You're splashed with something"))
+					to_chat(splashed, span_userdanger(LANG("obj.2e42840d", null)))
 				else
-					to_chat(splashed, span_userdanger("You are blinded by a shower of blood!"))
+					to_chat(splashed, span_userdanger(LANG("obj.5ea32e6c", null)))
 				splashed.Stun(1 SECONDS)
 				splashed.Knockdown(2 SECONDS)
 				splashed.set_eye_blur_if_lower(15 SECONDS)

@@ -70,7 +70,7 @@
 		for(var/datum/weakref/ghostrole_weakref as anything in our_server.spawned_threat_refs)
 			var/mob/living/ghostrole = ghostrole_weakref.resolve()
 			if(ghostrole?.stat == STABLE && ghostrole.client && ghostrole.mind.has_antag_datum(/datum/antagonist/bitrunning_glitch))
-				to_chat(user, span_danger("A being in the simulation is preventing your retreat. You must either complete your mission or remove the obstacle before safe exit will be possible."))
+				to_chat(user, span_danger(LANG("obj.3f0203ba", null)))
 				return
 
 	if(!HAS_TRAIT(user, TRAIT_TEMPORARY_BODY))

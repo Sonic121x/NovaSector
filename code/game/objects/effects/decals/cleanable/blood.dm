@@ -777,13 +777,13 @@
 	for(var/species in species_types)
 		switch(species)
 			if("unknown")
-				. += "&bull; Some <B>creature's feet</B>."
+				. += LANG("obj.eb53a644", null)
 			if(SPECIES_MONKEY)
-				. += "&bull; Some <B>monkey feet</B>."
+				. += LANG("obj.8b05c893", null)
 			if(SPECIES_HUMAN)
-				. += "&bull; Some <B>human feet</B>."
+				. += LANG("obj.a0d92689", null)
 			else
-				. += "&bull; Some <B>[species] feet</B>."
+				. += LANG("obj.41a63db0", list(species))
 
 /obj/effect/decal/cleanable/blood/hitsplatter
 	name = "blood splatter"

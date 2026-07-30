@@ -67,7 +67,7 @@
 		if(heart_contender == src)
 			continue
 
-		switch(tgui_alert(src, "Is this the person: [heart_contender.real_name]?", "<3?", list("Yes!", "Nope", "Cancel"), timeout = 15 SECONDS))
+		switch(tgui_alert(src, LANG("mob.5dacd527", list(heart_contender.real_name)), "<3?", list("Yes!", "Nope", "Cancel"), timeout = 15 SECONDS))
 			if("Yes!")
 				heart_contender.receive_heart(src)
 				return

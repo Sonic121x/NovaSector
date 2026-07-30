@@ -548,14 +548,14 @@
 	for(var/mob/living/hit_mob in target)
 		if(hit_mob == loc) // avoid hitting the wearer
 			continue
-		to_chat(hit_mob, span_userdanger("You've been struck by lightning!"))
+		to_chat(hit_mob, span_userdanger(LANG("obj.d028d146", null)))
 		hit_mob.electrocute_act(30, src, flags = SHOCK_TESLA|SHOCK_NOSTUN)
 		hit_mob.Knockdown(2.5 SECONDS, 10 SECONDS)
 
 	for(var/mob/living/nearby_target in oview(1, target))
 		if(nearby_target == loc) // avoid hitting the wearer
 			continue
-		to_chat(nearby_target, span_userdanger("You've been struck by an arc of lightning!"))
+		to_chat(nearby_target, span_userdanger(LANG("obj.08156a69", null)))
 		nearby_target.electrocute_act(10, src, flags = SHOCK_TESLA|SHOCK_NOSTUN)
 
 	for(var/obj/hit_thing in target)

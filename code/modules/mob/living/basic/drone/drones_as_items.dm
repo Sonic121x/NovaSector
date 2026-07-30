@@ -28,7 +28,7 @@
 	var/area/area = get_area(src)
 	if(area)
 		notify_ghosts(
-			"A drone shell has been created in \the [area.name].",
+			LANG("obj.29f7c73a", list(area.name)),
 			source = src,
 			header = "Drone Shell Created",
 			click_interact = TRUE,

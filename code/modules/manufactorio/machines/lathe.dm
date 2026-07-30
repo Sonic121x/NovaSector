@@ -65,7 +65,7 @@
 	for(var/valid_type, amount in design.materials)
 		var/atom/ingredient = valid_type
 
-		. += "[amount / SHEET_MATERIAL_AMOUNT] sheets of [initial(ingredient.name)]"
+		. += LANG("obj.4e0d6e3e", list(amount / SHEET_MATERIAL_AMOUNT, initial(ingredient.name)))
 
 /obj/machinery/power/manufacturing/lathe/update_overlays()
 	. = ..()

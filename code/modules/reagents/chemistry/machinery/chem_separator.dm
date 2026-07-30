@@ -134,7 +134,7 @@
 
 	. += span_notice(LANG("obj.c0ca331e", null))
 	for(var/datum/reagent/reg as anything in reagents.reagent_list)
-		. += span_notice("[reg.name] [get_boiling_point(reg)]K")
+		. += span_notice(LANG("obj.c3d9c523", list(reg.name, get_boiling_point(reg))))
 
 /obj/structure/chem_separator/update_overlays()
 	. = ..()

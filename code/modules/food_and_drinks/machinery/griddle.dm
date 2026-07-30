@@ -215,7 +215,7 @@
 			continue
 		griddled_item.fire_act(1000) //Hot hot hot!
 		if(prob(10))
-			visible_message(span_danger("[griddled_item] doesn't seem to be doing too great on the [src]!"))
+			visible_message(span_danger(LANG("obj.9b9bd71a", list(griddled_item, src))))
 
 		use_energy(active_power_usage)
 

@@ -131,7 +131,7 @@
 	target_icon.Blend(icon(icon, icon_state), ICON_OVERLAY)
 	var/mutable_appearance/bomb_target_image = mutable_appearance(target_icon)
 	notify_ghosts(
-		"[user.real_name] has planted \a [src] on [target] with a [det_time] second fuse!",
+		LANG("obj.095de9d1", list(user.real_name, src, target, det_time)),
 		source = bomb_target,
 		header = "Explosive Planted",
 		alert_overlay = bomb_target_image,

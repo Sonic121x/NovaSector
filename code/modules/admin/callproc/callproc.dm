@@ -285,12 +285,12 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "原子 ProcCall", datum/
 			if(istext(assoc_check) && (returnedlist[assoc_check] != null))
 				. += LANG("client.5bf232fa", list(procname))
 				for(var/key in returnedlist)
-					. += "\n[key] = [returnedlist[key]]"
+					. += LANG("client.9dc78a5a", list(key, returnedlist[key]))
 
 			else
 				. += LANG("client.df1bd9d4", list(procname))
 				for(var/elem in returnedlist)
-					. += "\n[elem]"
+					. += LANG("client.65aac1b5", list(elem))
 		else
 			. = "[procname] returned an empty list"
 		. += "</font>"

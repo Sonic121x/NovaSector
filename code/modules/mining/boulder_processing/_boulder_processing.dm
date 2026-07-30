@@ -108,7 +108,7 @@
 	if(length(booster_list))
 		. += span_notice(LANG("obj.eeee6107", null))
 		for(var/datum/reagent/increment as anything in booster_list)
-			. += span_info("&bull; [increment::name]: Provides [booster_list[increment] * 10]% Boost")
+			. += span_info(LANG("obj.a67ce4a7", list(increment::name, booster_list[increment] * 10)))
 		. += span_notice(LANG("obj.bcb905eb", list(src, EXAMINE_HINT("[waste_chemical.name]"))))
 
 /obj/machinery/bouldertech/update_icon_state()

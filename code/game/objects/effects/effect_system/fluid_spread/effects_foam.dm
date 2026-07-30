@@ -463,7 +463,7 @@
 		if(!comp.welded)
 			comp.welded = TRUE
 			comp.update_appearance()
-			comp.visible_message(span_danger("[comp] sealed shut!"))
+			comp.visible_message(span_danger(LANG("obj.9c6a5f79", list(comp))))
 
 	for(var/mob/living/potential_tinder in location)
 		potential_tinder.extinguish_mob()

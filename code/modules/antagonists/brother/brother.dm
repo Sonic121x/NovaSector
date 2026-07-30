@@ -91,7 +91,7 @@
 	for(var/datum/objective/brother_objective in source.mind.get_all_objectives())
 		// If the objective has a target, are we flashing them?
 		if(flashed == brother_objective.target?.current)
-			flashed.balloon_alert(source, "that's your target!")
+			flashed.balloon_alert(source, LANG("datum.945d2802", null))
 			return
 
 	if (flashed.mind.has_antag_datum(/datum/antagonist/brother))
@@ -239,7 +239,7 @@
 	if (isnull(member.current))
 		return
 	for (var/datum/mind/brother_mind as anything in members)
-		to_chat(brother_mind, span_warning("[span_bold("[member.current.real_name]")] is no longer your brother!"))
+		to_chat(brother_mind, span_warning(LANG("datum.ce70b71a", list(span_bold("[member.current.real_name]")))))
 	update_name()
 
 /// Adds a new brother to the team
@@ -259,9 +259,9 @@
 		if (brother_mind == new_brother.mind)
 			continue
 
-		to_chat(brother_mind, span_notice("[span_bold("[new_brother.real_name]")] has been converted to aid you as your brother!"))
+		to_chat(brother_mind, span_notice(LANG("datum.dba90d09", list(span_bold("[new_brother.real_name]")))))
 		if (brothers_left <= 0)
-			to_chat(brother_mind, span_notice("You cannot recruit any more brothers."))
+			to_chat(brother_mind, span_notice(LANG("datum.34d8ae94", null)))
 
 	return TRUE
 

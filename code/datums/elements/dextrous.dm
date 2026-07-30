@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * Sets up the attachee to have hands and manages things like dropping items on death and displaying them on examine
  * Actual hand performance is managed by code on /living/ and not encapsulated here, we just enable it
@@ -75,5 +76,4 @@
 	for(var/obj/item/held_item in examined.held_items)
 		if((held_item.item_flags & (ABSTRACT|HAND_ITEM)) || HAS_TRAIT(held_item, TRAIT_EXAMINE_SKIP))
 			continue
-		examine_list += span_info("[examined.p_They()] [examined.p_have()] [held_item.examine_title(user)] in [examined.p_their()] \
-			[examined.get_held_index_name(examined.get_held_index_of_item(held_item))].")
+		examine_list += span_info(LANG("datum.8df029aa", list(examined.p_They(), examined.p_have(), held_item.examine_title(user), examined.p_their(), examined.get_held_index_name(examined.get_held_index_of_item(held_item)))))

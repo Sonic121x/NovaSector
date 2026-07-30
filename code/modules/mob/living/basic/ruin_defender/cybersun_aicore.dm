@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Boss for the hauntedtradingpost space ruin
 /// It's a stationary AI core that casts spells
 #define LIGHTNING_ABILITY_TYPEPATH /datum/action/cooldown/spell/pointed/lightning_strike
@@ -166,7 +167,7 @@
 	for(var/mob/living/victim in loc)
 		if (is_type_in_typecache(victim, damage_blacklist_typecache))
 			continue
-		to_chat(victim, span_warning("You are struck by a large bolt of electricity!"))
+		to_chat(victim, span_warning(LANG("obj.be4a5a34", null)))
 		victim.electrocute_act(zap_damage, src, flags = SHOCK_NOGLOVES | SHOCK_NOSTUN)
 
 /obj/effect/temp_visual/lightning_strike_zap

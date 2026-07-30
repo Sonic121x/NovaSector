@@ -177,11 +177,11 @@ If you make a derivative work from this code, you must include this notification
 		if (attacker && defender)
 
 			if (get_dist(attacker, defender) > 1)
-				to_chat(attacker, span_warning("[defender] is too far away!"))
+				to_chat(attacker, span_warning(LANG("datum.d8fecc16", list(defender))))
 				return
 
 			if (!isturf(attacker.loc) || !isturf(defender.loc))
-				to_chat(attacker, span_warning("You can't throw [defender] from here!"))
+				to_chat(attacker, span_warning(LANG("datum.4a32c09e", list(defender))))
 				return
 
 			attacker.setDir(turn(attacker.dir, 90))
@@ -263,7 +263,7 @@ If you make a derivative work from this code, you must include this notification
 					defender.pixel_x = attacker.pixel_x + 8
 
 			if (get_dist(attacker, defender) > 1)
-				to_chat(attacker, span_warning("[defender] is too far away!"))
+				to_chat(attacker, span_warning(LANG("datum.d8fecc16", list(defender))))
 				attacker.pixel_x = attacker.base_pixel_x
 				attacker.pixel_y = attacker.base_pixel_y
 				defender.pixel_x = defender.base_pixel_x
@@ -271,7 +271,7 @@ If you make a derivative work from this code, you must include this notification
 				return
 
 			if (!isturf(attacker.loc) || !isturf(defender.loc))
-				to_chat(attacker, span_warning("You can't slam [defender] here!"))
+				to_chat(attacker, span_warning(LANG("datum.f7115f20", list(defender))))
 				attacker.pixel_x = attacker.base_pixel_x
 				attacker.pixel_y = attacker.base_pixel_y
 				defender.pixel_x = defender.base_pixel_x

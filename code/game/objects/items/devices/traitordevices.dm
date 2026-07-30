@@ -47,10 +47,10 @@ effective or pretty fucking useless.
 		if(prob(50))
 
 			M.Paralyze(rand(200,400))
-			to_chat(M, span_userdanger("You feel a tremendous, paralyzing wave flood your mind."))
+			to_chat(M, span_userdanger(LANG("obj.dadc049d", null)))
 
 		else
-			to_chat(M, span_userdanger("You feel a sudden, electric jolt travel through your head."))
+			to_chat(M, span_userdanger(LANG("obj.cd7689dc", null)))
 
 	playsound(src.loc, 'sound/misc/interference.ogg', 50, TRUE)
 	to_chat(user, span_notice(LANG("obj.df02bfee", list(src))))

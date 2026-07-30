@@ -209,7 +209,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	to_chat(parent, LANG("datum.16cadbf3", list(REF(src))))
 	for(var/item in notadded)
 		var/datum/keybinding/conflicted = item
-		to_chat(parent, span_danger("[conflicted.category]: [conflicted.full_name] needs updating"))
+		to_chat(parent, span_danger(LANG("datum.3baf3d70", list(conflicted.category, conflicted.full_name))))
 
 /datum/preferences/proc/load_path(ckey, filename="preferences.json")
 	if(!ckey || !load_and_save)

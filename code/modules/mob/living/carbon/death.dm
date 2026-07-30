@@ -25,7 +25,7 @@
 	var/atom/Tsec = drop_location()
 	for(var/mob/M in src)
 		M.forceMove(Tsec)
-		visible_message(span_danger("[M] bursts out of [src]!"))
+		visible_message(span_danger(LANG("mob.be53b945", list(M, src))))
 	return ..()
 
 /mob/living/carbon/get_gibs_type(drop_bitflags = NONE)

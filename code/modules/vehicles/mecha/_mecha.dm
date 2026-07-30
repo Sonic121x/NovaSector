@@ -450,7 +450,7 @@
 	for(var/occupant in occupants)
 		var/mob/mob_occupant = occupant
 		SEND_SOUND(mob_occupant, sound('sound/items/timer.ogg', volume=50))
-		to_chat(mob_occupant, span_notice("Equipment control unit has been rebooted successfully."))
+		to_chat(mob_occupant, span_notice(LANG("obj.b00d7f30", null)))
 	set_mouse_pointer()
 
 /// Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
@@ -469,7 +469,7 @@
 		for(var/obj/item/mecha_parts/mecha_equipment/ME as anything in flat_equipment)
 			if(istype(ME, /obj/item/mecha_parts/mecha_equipment/concealed_weapon_bay))
 				continue
-			. += span_notice("[icon2html(ME, user)] \A [ME].")
+			. += span_notice(LANG("obj.1bbb086a", list(icon2html(ME, user), ME)))
 	if(mecha_flags & PANEL_OPEN)
 		if(servo)
 			. += span_notice(LANG("obj.6d1f4840", list(100 - round(100 / servo.rating))))
@@ -486,13 +486,13 @@
 			. += span_notice(LANG("obj.333aa9af", list(src)))
 		else
 			for(var/occupante in occupants)
-				. += span_notice("You can see [occupante] inside.")
+				. += span_notice(LANG("obj.0b83b9b4", list(occupante)))
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				for(var/held_item in H.held_items)
 					if(!isgun(held_item))
 						continue
-					. += span_warning("It looks like you can hit the pilot directly if you target the center or above.")
+					. += span_warning(LANG("obj.0fb6832d", null))
 					break //in case user is holding two guns
 	. += span_notice(LANG("obj.12c144f9", list(REF(src))))
 
@@ -852,7 +852,7 @@
 			action.button_icon_state = "mech_cabin_[cabin_sealed ? "closed" : "open"]"
 			action.build_all_button_icons()
 
-		balloon_alert(occupant, "cabin [cabin_sealed ? "sealed" : "unsealed"]")
+		balloon_alert(occupant, LANG("obj.4222f762", list(cabin_sealed ? "sealed" : "unsealed")))
 	log_message("Cabin [cabin_sealed ? "sealed" : "unsealed"].", LOG_MECHA)
 	playsound(src, 'sound/machines/airlock/airlock.ogg', 50, TRUE)
 
@@ -947,7 +947,7 @@
 			act.button_icon_state = "mech_lights_on"
 		else
 			act.button_icon_state = "mech_lights_off"
-		balloon_alert(occupant, "lights [mecha_flags & LIGHTS_ON ? "on":"off"]")
+		balloon_alert(occupant, LANG("obj.099ca9f3", list(mecha_flags & LIGHTS_ON ? "on":"off")))
 		act.build_all_button_icons()
 
 /obj/vehicle/sealed/mecha/proc/melee_attack_effect(mob/living/victim, heavy)

@@ -293,9 +293,9 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	if(..())
 		visible_message(
-			span_notice("[src] grabs [target]!"),
-			span_notice("You grab [target]!"),
-			span_hear("You hear the sounds of wings flapping furiously."),
+			span_notice(LANG("mob.9184ba94", list(src, target))),
+			span_notice(LANG("mob.20106d47", list(target))),
+			span_hear(LANG("mob.1286748a", null)),
 		)
 	return TRUE
 

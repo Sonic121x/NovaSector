@@ -119,7 +119,7 @@
 		for(var/thing in sort_names(contents))
 			if(thing in held_signs)
 				continue //we'll do this after.
-			. += "\t[icon2html(thing, user)] \a [thing]"
+			. += LANG("obj.6dcfac0e", list(icon2html(thing, user), thing))
 		if(held_signs.len)
 			var/obj/item/clothing/suit/caution/sign_obj = held_signs[1]
 			if(held_signs.len > 1)

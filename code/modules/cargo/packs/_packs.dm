@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/supply_pack
 	/// The name of the supply pack, as listed on th cargo purchasing UI.
 	var/name = "Crate"
@@ -161,7 +162,7 @@
 			var/message = "[possible_stack::singular_name]: requested=[available_quantity] sheets, available=[market_quantity] sheets, adjusted=[market_quantity - available_quantity] sheets."
 			available_quantity = market_quantity
 			if(!available_quantity)
-				. += "[possible_stack::singular_name]: order cancelled due to insufficient sheets in the market."
+				. += LANG("datum.845e9fa4", list(possible_stack::singular_name))
 				contains -= possible_stack
 				continue
 			. += message

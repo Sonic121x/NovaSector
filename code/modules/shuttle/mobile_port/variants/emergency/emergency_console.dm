@@ -138,7 +138,7 @@
 		var/remaining = max(0, auth_need - new_len)
 		if(new_len && remaining)
 			priority_announce(
-				"[remaining] authorization\s needed until shuttle is launched early.",
+				LANG("obj.657b9e6f", list(remaining)),
 				"Emergency Shuttle Status",
 				sound = 'sound/announcer/notice/notice1.ogg',
 				type = ANNOUNCEMENT_TYPE_PRIORITY,
@@ -147,7 +147,7 @@
 			)
 		if(repeal)
 			priority_announce(
-				"Early launch authorization revoked, [remaining] authorization\s needed.",
+				LANG("obj.1f5d144d", list(remaining)),
 				"Emergency Shuttle Status",
 				sound = 'sound/announcer/notice/notice2.ogg',
 				type = ANNOUNCEMENT_TYPE_PRIORITY,

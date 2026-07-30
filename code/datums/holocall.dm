@@ -50,12 +50,12 @@
 			dialed_holopads += connected_holopad
 			if(head_call)
 				if(connected_holopad.secure)
-					calling_pad.say("Auto-connection refused, falling back to call mode.")
-					connected_holopad.say("Incoming call.")
+					calling_pad.say(LANG("datum.45dd80c4", null))
+					connected_holopad.say(LANG("datum.70eed6e9", null))
 				else
-					connected_holopad.say("Incoming connection.")
+					connected_holopad.say(LANG("datum.762c9061", null))
 			else
-				connected_holopad.say("Incoming call.")
+				connected_holopad.say(LANG("datum.70eed6e9", null))
 			connected_holopad.set_holocall(src)
 
 	if(!dialed_holopads.len)

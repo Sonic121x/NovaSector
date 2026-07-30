@@ -180,7 +180,7 @@
 		if (has_buckled_mobs())
 			for (var/mob/living/carbon/carbon_sitter in buckled_mobs)
 				if (carbon_sitter.body_position == LYING_DOWN)
-					balloon_alert_to_viewers("blocked!")
+					balloon_alert_to_viewers(LANG("obj.62d831a3", null))
 					return
 		var/mob/living/dropped_liver = dropped
 		if (dropped_liver.has_buckled_mobs())
@@ -363,11 +363,11 @@
 		return ..()
 	for (var/mob/blocker in buckled_mobs)
 		if (!isliving(blocker))
-			balloon_alert_to_viewers("blocked!")
+			balloon_alert_to_viewers(LANG("obj.62d831a3", null))
 			return FALSE
 		var/mob/living/living_blocker = blocker
 		if (living_blocker.body_position != STANDING_UP)
-			balloon_alert_to_viewers("blocked!")
+			balloon_alert_to_viewers(LANG("obj.62d831a3", null))
 			return FALSE
 	return ..()
 

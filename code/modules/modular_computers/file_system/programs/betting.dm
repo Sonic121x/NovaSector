@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 		//they only made their money back, don't tell them they won anything.
 		if((money_won - text2num(winner[2])) == 0)
 			continue
-		winner_account.bank_card_talk("You won [money_won][MONEY_SYMBOL] from having a correct guess on [name]!")
+		winner_account.bank_card_talk(LANG("datum.b711123e", list(money_won, MONEY_SYMBOL, name)))
 
 ///Puts a bank account's money bet on a given option.
 /datum/active_bet/proc/bet_money(datum/bank_account/better, money_betting, option_betting)
@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 						if(!better.adjust_money(-money_adding_in, "Gambling on [name]."))
 							return
 						total_amount_bet += money_adding_in
-						better.bank_card_talk("Additional [money_adding_in][MONEY_SYMBOL] deducted for your bet on [name].")
+						better.bank_card_talk(LANG("datum.fa03b881", list(money_adding_in, MONEY_SYMBOL, name)))
 						existing_bets[2] = "[money_betting]"
 						return
 					//taking it all out, we remove them from the list so they aren't a winner with bets of 0.
@@ -272,7 +272,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 							return
 						var/money_taking_out = text2num(existing_bets[2]) - money_betting
 						total_amount_bet -= money_taking_out
-						better.bank_card_talk("Refunded [money_taking_out][MONEY_SYMBOL] for taking money out of your bet on [name].")
+						better.bank_card_talk(LANG("datum.aa2b6c1d", list(money_taking_out, MONEY_SYMBOL, name)))
 						better.adjust_money(money_taking_out, "Refund from gambling on [name].")
 						existing_bets[2] = "[money_betting]"
 						return
@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 			if(existing_bets[1] == better)
 				var/money_refunding = text2num(existing_bets[2])
 				total_amount_bet -= money_refunding
-				better.bank_card_talk("Refunded [money_refunding][MONEY_SYMBOL] for cancelling your bet on [name].")
+				better.bank_card_talk(LANG("datum.0d3475bd", list(money_refunding, MONEY_SYMBOL, name)))
 				better.adjust_money(money_refunding, "Refunded: changed bet for [name].")
 				options[option] -= list(existing_bets)
 

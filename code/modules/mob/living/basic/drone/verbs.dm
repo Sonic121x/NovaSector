@@ -22,7 +22,7 @@ GAME_VERB(/mob/living/basic/drone, check_laws, "查看法则", "Drone")
  */
 GAME_VERB(/mob/living/basic/drone, drone_ping, "无人机警报", "Drone")
 
-	var/alert_s = input(src,LANG("mob.5b32bc9b", null),"Drone ping",null) as null|anything in list("Low","Medium","High","Critical")
+	var/alert_s = input(src,LANG("mob.5b32bc9b", null),LANG("mob.4a2934c5", null),null) as null|anything in list("Low","Medium","High","Critical")
 
 	var/area/A = get_area(loc)
 

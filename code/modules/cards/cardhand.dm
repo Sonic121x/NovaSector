@@ -24,14 +24,14 @@
 	var/broadcast_check = FALSE
 	for(var/obj/item/toy/singlecard/card in fetch_card_atoms())
 		if(user.is_holding(src) || card.flipped)
-			. += span_notice("The hand contains a: [card.cardname]")
+			. += span_notice(LANG("obj.7f6bcefa", list(card.cardname)))
 			if(!card.flipped)
 				broadcast_check = TRUE
 		else if(HAS_TRAIT(user, TRAIT_XRAY_VISION))
-			. += span_notice("You scan the cardhand with your x-ray vision and there is a: [card.cardname]")
+			. += span_notice(LANG("obj.aeb881ce", list(card.cardname)))
 		var/marked_color = card.getMarkedColor(user)
 		if(marked_color)
-			. += span_notice("There is a [marked_color] mark on the corner of a card in the cardhand!")
+			. += span_notice(LANG("obj.1d2e33b5", list(marked_color)))
 	if(broadcast_check)
 		user.visible_message(span_notice(LANG("obj.dcbb3edd", list(user, user.p_their()))))
 

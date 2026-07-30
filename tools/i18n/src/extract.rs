@@ -626,10 +626,11 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         "say" => Some(&[0]),
         "manual_emote" => Some(&[0]),
         // 提示/对话框（玩家可见）。只取消息+标题；按钮/选项列表/返回值不动，
-        // 以免破坏 `if(alert(...) == "Yes")` 之类的比较。原生 alert/input 的按钮/默认值是位置实参
-        // （无 usr 时 [2]=按钮），故只取 [0,1]=消息+标题；[2] 不抽，避免按钮误入目录/被改写。
-        "alert" => Some(&[0, 1]),
-        "input" => Some(&[0, 1]),
+        // 以免破坏 `if(alert(...) == "Yes")` 之类的比较。原生 alert/input 的位置实参随「有没有 usr」
+        // 整体平移一位（有 usr 时 [2]=标题、该抽；无 usr 时 [2]=按钮/默认值、绝不能抽），判据见
+        // native_dialog_no_usr。**必须与 rewrite.rs 同表**，否则 rewrite 会生成目录里没有的 key。
+        "alert" => Some(&[0, 1, 2]),
+        "input" => Some(&[0, 1, 2]),
         "tgui_alert" => Some(&[1, 2]),
         "tgui_input_list" => Some(&[1, 2]),
         "tgui_input_text" => Some(&[1, 2]),
@@ -647,6 +648,19 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         "notify_ghosts" => Some(&[0]),
         _ => None,
     }
+}
+
+/// 原生 alert/input 的「无 usr」写法判别：`alert(Message, Title, Button1…)` / `input(Message, Title, Default)`
+/// 时 [0] 就是消息字符串字面量，此时 [2] 是按钮/默认值而非标题，**不得抽取**（会污染目录并诱使
+/// rewrite 改写返回值/比较值）。与 rewrite.rs 的同名判据保持一致。
+fn native_dialog_no_usr(name: &str, args: &[Expression]) -> bool {
+    if !matches!(name, "alert" | "input") {
+        return false;
+    }
+    let Some(a0) = args.first() else { return false };
+    let mut nodes: Vec<&dm::ast::Spanned<Term>> = Vec::new();
+    crate::rewrite::collect_text_nodes(a0, &mut nodes);
+    !nodes.is_empty()
 }
 
 pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
@@ -1081,7 +1095,11 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             // 汇聚点调用检测。
             if let Term::Call(name, args) = &term.elem {
                 if let Some(indices) = sink_message_args(name.as_str()) {
+                    let skip_two = native_dialog_no_usr(name.as_str(), args);
                     for &i in indices {
+                        if skip_two && i == 2 {
+                            continue;
+                        }
                         if let Some(arg) = args.get(i) {
                             if let Some(template) = build_template(arg) {
                                 emit(catalog, ns, &template);
@@ -1093,7 +1111,11 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             // input() 是专用 Term::Input（非 Call），与 rewrite 保持一致地抽取其消息/标题。
             if let Term::Input { args, .. } = &term.elem {
                 if let Some(indices) = sink_message_args("input") {
+                    let skip_two = native_dialog_no_usr("input", args);
                     for &i in indices {
+                        if skip_two && i == 2 {
+                            continue;
+                        }
                         if let Some(arg) = args.get(i) {
                             if let Some(template) = build_template(arg) {
                                 emit(catalog, ns, &template);
@@ -1292,7 +1314,11 @@ fn recurse_follow(follow: &Follow, ns: &str, catalog: &mut Catalog, suppress: bo
             // 方法调用形式的汇聚点（`user.visible_message(...)`/`src.say(...)`/`M.balloon_alert(...)` 等）。
             // 此前只检测裸调用 `Term::Call`，漏掉了大量 `X.sink(...)` 形式（战斗/交互可见消息多为此形）。
             if let Some(indices) = sink_message_args(name.as_str()) {
+                let skip_two = native_dialog_no_usr(name.as_str(), args);
                 for &i in indices {
+                    if skip_two && i == 2 {
+                        continue;
+                    }
                     if let Some(arg) = args.get(i) {
                         if let Some(template) = build_template(arg) {
                             emit(catalog, ns, &template);

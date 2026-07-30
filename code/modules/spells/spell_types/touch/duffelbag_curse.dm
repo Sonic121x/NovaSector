@@ -50,8 +50,8 @@
 	// However if they're uncursed, they're fresh for getting a cursed bag
 	var/obj/item/storage/backpack/duffelbag/cursed/conjured_duffel = new get_turf(victim)
 	victim.visible_message(
-		span_danger("A growling duffel bag appears on [victim]!"),
-		span_danger("You feel something attaching itself to you, and a strong desire to discuss your [pick(elaborate_backstory)] at length!"),
+		span_danger(LANG("datum.994bc05b", list(victim))),
+		span_danger(LANG("datum.5aabd19c", list(pick(elaborate_backstory)))),
 	)
 
 	conjured_duffel.pickup(victim)

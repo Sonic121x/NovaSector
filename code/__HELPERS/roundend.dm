@@ -629,7 +629,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	. += LANG("datum.095babc2", null)
 	. += "<ul class='playerlist'>"
 	for(var/mob/living/carbon/human/human_player in hardcores)
-		. += "<li>[printplayer(human_player.mind)] with a hardcore random score of [round(human_player.hardcore_survival_score)]</li>"
+		. += LANG("datum.a04c8408", list(printplayer(human_player.mind), round(human_player.hardcore_survival_score)))
 	. += "</ul></div>"
 
 /datum/controller/subsystem/ticker/proc/antag_report()

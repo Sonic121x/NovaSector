@@ -73,7 +73,7 @@
 		. += LANG("obj.15082120", list(get_remaining_mod_capacity()))
 		. += span_info(LANG("obj.2abed7d3", null))
 		for(var/obj/item/borg/upgrade/modkit/modkit_upgrade as anything in modkits)
-			. += span_notice("There is \a [modkit_upgrade] installed, using <b>[modkit_upgrade.cost]%</b> capacity.")
+			. += span_notice(LANG("obj.ae0e0db4", list(modkit_upgrade, modkit_upgrade.cost)))
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/crowbar_act(mob/living/user, obj/item/I)
 	. = TRUE
@@ -290,7 +290,7 @@
 			continue
 		var/armor = living_mob.run_armor_check(def_zone, armor_flag, armour_penetration = armour_penetration)
 		living_mob.apply_damage(damage, damage_type, def_zone, armor)
-		to_chat(living_mob, span_userdanger("You're struck by a [name]!"))
+		to_chat(living_mob, span_userdanger(LANG("obj.91bf91e6", list(name))))
 
 //Modkits
 /obj/item/borg/upgrade/modkit
@@ -355,7 +355,7 @@
 				number_of_denied++
 			if(maximum_of_type && number_of_denied >= maximum_of_type || !maximum_of_type && number_of_denied) //if we denied a type, or we have a maximum to reach, break
 				if (user)
-					to_chat(user, span_notice("The modkit you're trying to install would conflict with an already installed modkit. Remove existing modkits first."))
+					to_chat(user, span_notice(LANG("obj.b2eb340e", null)))
 				return FALSE
 
 	if(KA.get_remaining_mod_capacity() < cost)
@@ -508,7 +508,7 @@
 			continue
 		var/armor = living_mob.run_armor_check(kinetic_blast.def_zone, kinetic_blast.armor_flag, armour_penetration = kinetic_blast.armour_penetration)
 		living_mob.apply_damage(kinetic_blast.damage * damage_modifier, kinetic_blast.damage_type, kinetic_blast.def_zone, armor)
-		to_chat(living_mob, span_userdanger("You're struck by a [kinetic_blast.name]!"))
+		to_chat(living_mob, span_userdanger(LANG("obj.91bf91e6", list(kinetic_blast.name))))
 
 /obj/item/borg/upgrade/modkit/cooldown/aoe/turfs
 	name = "mining explosion"

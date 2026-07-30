@@ -101,8 +101,8 @@
 	for(var/mob/living/victim in range(ability_range, caster))
 		if(victim.has_faction(immune_factions) && victim.IsReachableBy(owner))
 			continue
-		to_chat(caster, span_warning("You slice [victim]!"))
-		to_chat(victim, span_warning("You are cut by [caster]'s blades!"))
+		to_chat(caster, span_warning(LANG("datum.554afff8", list(victim))))
+		to_chat(victim, span_warning(LANG("datum.c7b46266", list(caster))))
 		victim.apply_damage(damage = damage_dealt, damagetype = BRUTE, def_zone = pick(valid_targets), sharpness = SHARP_EDGED)
 
 #undef SPIN_SLASH_ABILITY_TYPEPATH

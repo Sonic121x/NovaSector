@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define PING_BUFFER_TIME 25
 
 SUBSYSTEM_DEF(server_maint)
@@ -72,7 +73,7 @@ SUBSYSTEM_DEF(server_maint)
 			var/cmob = C.mob
 			if (!isnewplayer(cmob) || !SSticker.queued_players.Find(cmob))
 				log_access("AFK: [key_name(C)]")
-				to_chat(C, span_userdanger("You have been inactive for more than [DisplayTimeText(afk_period)] and have been disconnected.</span><br><span class='danger'>You may reconnect via the button in the file menu or by <b><u><a href='byond://winset?command=.reconnect'>clicking here to reconnect</a></u></b>."))
+				to_chat(C, span_userdanger(LANG("datum.e89c8e68", list(DisplayTimeText(afk_period)))))
 				QDEL_IN(C, 1) //to ensure they get our message before getting disconnected
 				continue
 

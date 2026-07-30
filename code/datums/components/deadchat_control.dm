@@ -49,7 +49,7 @@
 		var/mob/mob_parent = parent
 		parent_name = "[mob_parent.real_name]"
 	notify_ghosts(
-		"[parent_name] is now deadchat controllable!",
+		LANG("datum.84d119ca", list(parent_name)),
 		source = parent,
 		header = "Ghost Possession!",
 	)

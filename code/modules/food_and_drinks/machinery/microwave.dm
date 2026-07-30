@@ -166,7 +166,7 @@
 	for(var/datum/stock_part/capacitor/capacitor in component_parts)
 		if(capacitor.tier >= 2)
 			vampire_charging_capable = TRUE
-			visible_message(span_notice("The [EXAMINE_HINT("Charge Ready")] light on \the [src] flickers to life."))
+			visible_message(span_notice(LANG("obj.bd5376d3", list(EXAMINE_HINT("Charge Ready"), src))))
 			break
 
 /obj/machinery/microwave/examine(mob/user)
@@ -205,7 +205,7 @@
 				var/atom/movable/single_item = i
 				items_counts[single_item.name]++
 		for(var/item in items_counts)
-			. += span_notice("- [items_counts[item]]x [item].")
+			. += span_notice(LANG("obj.f2bf9e2b", list(items_counts[item], item)))
 	else
 		. += span_notice(LANG("obj.c8ad1ee9", list(src)))
 
@@ -458,7 +458,7 @@
 		if(!IS_EDIBLE(tray_item))
 			continue
 		if(ingredients.len >= max_n_of_items)
-			balloon_alert(user, "it's full!")
+			balloon_alert(user, LANG("obj.2cb7d354", null))
 			return
 		if(tool.atom_storage.attempt_remove(tray_item, src))
 			loaded++
@@ -613,7 +613,7 @@
 		if(istype(potential_fooditem, /obj/item/modular_computer) && prob(75))
 			pda_failure = TRUE
 			notify_ghosts(
-				"[cooker.real_name] has overheated their PDA!",
+				LANG("obj.1589f318", list(cooker.real_name)),
 				source = src,
 				notify_flags = NOTIFY_CATEGORY_NOFLASH,
 				header = "Hunger Games: Catching Fire",
@@ -835,7 +835,7 @@
 	// We should only be charging PDAs
 	for(var/atom/movable/potential_item as anything in ingredients)
 		if(!istype(potential_item, /obj/item/modular_computer))
-			balloon_alert(cooker, "pda only!")
+			balloon_alert(cooker, LANG("obj.b2023d4f", null))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 			eject()
 			return

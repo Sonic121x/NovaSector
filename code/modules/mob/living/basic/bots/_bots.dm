@@ -463,8 +463,8 @@ GLOBAL_LIST_INIT(command_strings, list(
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] uses [tool] to pull [paicard] out of [initial(src.name)]!"),
-		span_notice("You pull [paicard] out of [initial(src.name)] with [tool]."),
+		span_notice(LANG("mob.2b39da6b", list(user, tool, paicard, initial(src.name)))),
+		span_notice(LANG("mob.9361d23b", list(paicard, initial(src.name), tool))),
 	)
 
 	ejectpai(user)

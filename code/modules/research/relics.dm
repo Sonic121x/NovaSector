@@ -327,7 +327,7 @@
 		nearby.bioscramble(name)
 		playsound(nearby, SFX_SPARKS, rand(25,50), TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		throw_smoke(get_turf(nearby))
-		to_chat(nearby, span_notice("You feel weird."))
+		to_chat(nearby, span_notice(LANG("obj.38e6c625", null)))
 	if(prob(33))
 		relic_message(span_warning("[src] falls apart!"))
 		deconstruct(FALSE)
@@ -542,7 +542,7 @@
 			within_rock.Paralyze(1 SECONDS)
 			within_rock.Knockdown(3 SECONDS)
 			within_rock.apply_damage(10, BRUTE, BODY_ZONE_CHEST, blocked = within_rock.getarmor(BODY_ZONE_CHEST, MELEE), wound_bonus = 10, exposed_wound_bonus = 10)
-			to_chat(within_rock, span_danger("You are smashed by [rock]!"))
+			to_chat(within_rock, span_danger(LANG("obj.c3ab88cc", list(rock))))
 	warn_admins(user, "Rocks", FALSE)
 	if(prob(20))
 		relic_message(span_warning("[src] crumbles into dust!"))
@@ -606,7 +606,7 @@
 			if(nearby == user || !CAN_HAVE_BLOOD(nearby) || nearby.can_block_magic(MAGIC_RESISTANCE_HOLY, 1))
 				continue
 			nearby.transfer_blood_to(user, rand(6, 10), ignore_low_blood = TRUE, ignore_incompatibility = TRUE, transfer_viruses = FALSE)
-			to_chat(nearby, span_danger("You feel a sudden weakness as blood is drawn out of you [nearby.is_blind() ? "" : " and into [user]"]!"))
+			to_chat(nearby, span_danger(LANG("obj.875a8a10", list(nearby.is_blind() ? "" : " and into [user]"))))
 			any_affected = TRUE
 			nearby.Beam(user, icon_state = "blood", time = 1 SECONDS)
 			new /obj/effect/temp_visual/cult/sparks(nearby.loc)

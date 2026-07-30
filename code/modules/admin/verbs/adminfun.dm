@@ -1,18 +1,18 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "爆炸", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
-	var/devastation = input(user, LANG("datum.539bbd89", null), "Input")  as num|null
+	var/devastation = input(user, LANG("datum.539bbd89", null), LANG("datum.8c7e56a2", null))  as num|null
 	if(devastation == null)
 		return
-	var/heavy = input(user, LANG("datum.a5b19a22", null), "Input")  as num|null
+	var/heavy = input(user, LANG("datum.a5b19a22", null), LANG("datum.8c7e56a2", null))  as num|null
 	if(heavy == null)
 		return
-	var/light = input(user, LANG("datum.c54ab0a6", null), "Input")  as num|null
+	var/light = input(user, LANG("datum.c54ab0a6", null), LANG("datum.8c7e56a2", null))  as num|null
 	if(light == null)
 		return
-	var/flash = input(user, LANG("datum.6090762c", null), "Input")  as num|null
+	var/flash = input(user, LANG("datum.6090762c", null), LANG("datum.8c7e56a2", null))  as num|null
 	if(flash == null)
 		return
-	var/flames = input(user, LANG("datum.9ebdf290", null), "Input")  as num|null
+	var/flames = input(user, LANG("datum.9ebdf290", null), LANG("datum.8c7e56a2", null))  as num|null
 	if(flames == null)
 		return
 
@@ -27,10 +27,10 @@ ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "爆炸", ADMIN_VERB_NO_DESCRIPTION, 
 		BLACKBOX_LOG_ADMIN_VERB("Explosion")
 
 ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "电磁脉冲", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
-	var/heavy = input(user, LANG("datum.722572ed", null), "Input")  as num|null
+	var/heavy = input(user, LANG("datum.722572ed", null), LANG("datum.8c7e56a2", null))  as num|null
 	if(heavy == null)
 		return
-	var/light = input(user, LANG("datum.41554af3", null), "Input")  as num|null
+	var/light = input(user, LANG("datum.41554af3", null), LANG("datum.8c7e56a2", null))  as num|null
 	if(light == null)
 		return
 
@@ -159,7 +159,7 @@ ADMIN_VERB(polymorph_all, R_ADMIN, "全体变形", "Applies the effects of the b
 		if(!M)
 			continue
 
-		M.audible_message(span_hear("...wabbajack...wabbajack..."))
+		M.audible_message(span_hear(LANG("datum.f507a8a3", null)))
 		playsound(M.loc, 'sound/effects/magic/staff_change.ogg', 50, TRUE, -1)
 
 		M.wabbajack()

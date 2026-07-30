@@ -97,7 +97,7 @@
 				var/atom/singulo = singulo_component.parent
 				if(singulo.z == z)
 					singulo_component.target = src
-					say("[singulo] is now [get_dist(src,singulo)] standard lengths away to the [dir2text(get_dir(src,singulo))]")
+					say(LANG("obj.d03b764c", list(singulo, get_dist(src,singulo), dir2text(get_dir(src,singulo)))))
 	else
 		Deactivate()
 		say(LANG("obj.3c4a4c39", null))

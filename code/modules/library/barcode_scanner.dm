@@ -61,7 +61,7 @@
 					continue
 				checkouts -= checkout_ref
 				linked_computer.checkout_update()
-				balloon_alert(user, "checked in")
+				balloon_alert(user, LANG("obj.da86fec3", null))
 				playsound(src, 'sound/items/barcodebeep.ogg', 20, FALSE)
 				return ITEM_INTERACT_SUCCESS
 
@@ -73,13 +73,13 @@
 			for(var/checkout_ref in checkouts)
 				var/datum/borrowbook/maybe_ours = checkouts[checkout_ref]
 				if(target_book.book_data.compare(maybe_ours.book_data))
-					user.balloon_alert(user, "already checked out!")
+					user.balloon_alert(user, LANG("obj.ea567610", null))
 					return ITEM_INTERACT_BLOCKING
 			for(var/copy_ref in linked_computer.inventory)
 				if(!target_book.book_data.compare(linked_computer.inventory[copy_ref]))
 					continue
 				linked_computer.checking_out_book = target_book.book_data
-				balloon_alert(user, "set for check out")
+				balloon_alert(user, LANG("obj.06a7f87b", null))
 				playsound(src, 'sound/items/barcodebeep.ogg', 20, FALSE)
 				return ITEM_INTERACT_SUCCESS
 			user.balloon_alert(user, LANG("obj.d82f1725", null))

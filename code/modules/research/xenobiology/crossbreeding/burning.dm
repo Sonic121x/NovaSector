@@ -69,7 +69,7 @@ Burning extracts:
 	for(var/mob/living/carbon/M in range(5, get_turf(user)))
 		if(M != user)
 			M.bodytemperature = BODYTEMP_COLD_DAMAGE_LIMIT + 10 //Not quite cold enough to hurt.
-			to_chat(M, span_danger("You feel a chill run down your spine, and the floor feels a bit slippery with frost..."))
+			to_chat(M, span_danger(LANG("obj.18a351ff", null)))
 	..()
 
 /obj/item/slimecross/burning/metal
@@ -97,7 +97,7 @@ Burning extracts:
 				C.electrocute_act(25,src)
 			else
 				M.adjust_fire_loss(25)
-			to_chat(M, span_danger("You feel a sharp electrical pulse!"))
+			to_chat(M, span_danger(LANG("obj.56317eac", null)))
 	..()
 
 /obj/item/slimecross/burning/darkpurple
@@ -195,7 +195,7 @@ Burning extracts:
 		for(var/list/mob/living/ex_friend in friends)
 			slime_in_view.unfriend(ex_friend)
 		slime_in_view.set_enraged_behaviour()
-		slime_in_view.visible_message(span_danger("The [slime_in_view] is driven into a dangerous frenzy!"))
+		slime_in_view.visible_message(span_danger(LANG("obj.b378101a", list(slime_in_view))))
 	..()
 
 /obj/item/slimecross/burning/green

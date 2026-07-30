@@ -763,9 +763,9 @@
 		for(var/datum/job/job as anything in SSjob.joinable_occupations)
 			if(job.title == Add)
 				var/newslots = null
-				newslots = input(usr, "How many job slots do you want?", "Add job slots", "[newslots]") as num|null
+				newslots = input(usr, LANG("datum.87730f12", null), LANG("datum.829e48c5", null), "[newslots]") as num|null
 				if(!isnull(newslots))
-					to_chat(src.owner, "Job slots for [job.title] set to [newslots]" , confidential = TRUE)
+					to_chat(src.owner, LANG("datum.a312843b", list(job.title, newslots)) , confidential = TRUE)
 					job.total_positions = newslots
 					log_job_debug("[key_name(usr)] set the job cap for [job.title] to [newslots]")
 					break

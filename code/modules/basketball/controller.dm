@@ -116,7 +116,7 @@ GLOBAL_VAR(basketball_game)
 /datum/basketball_controller/proc/start_game(ready_players)
 	message_admins("The players have spoken! Voting has enabled the basketball minigame!")
 	notify_ghosts(
-		"Basketball minigame is about to start!",
+		LANG("datum.2536f137", null),
 		source = home_hoop,
 		header = "Basketball Minigame",
 		ghost_sound = 'sound/effects/ghost2.ogg',
@@ -203,13 +203,13 @@ GLOBAL_VAR(basketball_game)
 
 		SEND_SOUND(baller, sound('sound/items/whistle/whistle.ogg', volume=30))
 		if(is_player_referee)
-			to_chat(baller, span_notice("You are a referee. Make sure the teams play fair and use your whistle to call fouls appropriately."))
+			to_chat(baller, span_notice(LANG("datum.012023bf", null)))
 		else
-			to_chat(baller, span_notice("You are a basketball player for the [team_name]. Score as much as you can before time runs out."))
-			to_chat(baller, span_info("LMB to pass the ball while on help intent (zero stamina cost/) - accuracy penalty when scoring)"))
-			to_chat(baller, span_info("RMB to shoot the ball ([STAMINA_COST_SHOOTING] stamina cost) - this goes over players heads"))
-			to_chat(baller, span_info("Click directly on hoop while adjacent to dunk ([STAMINA_COST_DUNKING] stamina cost)"))
-			to_chat(baller, span_info("Spinning decreases other players disarm chance against you but reduces shooting accuracy ([STAMINA_COST_SPINNING] stamina cost)"))
+			to_chat(baller, span_notice(LANG("datum.56e4f0b5", list(team_name))))
+			to_chat(baller, span_info(LANG("datum.3b4cc788", null)))
+			to_chat(baller, span_info(LANG("datum.e75fcc5a", list(STAMINA_COST_SHOOTING))))
+			to_chat(baller, span_info(LANG("datum.29ee0a47", list(STAMINA_COST_DUNKING))))
+			to_chat(baller, span_info(LANG("datum.c566ef79", list(STAMINA_COST_SPINNING))))
 
 /**
  * Called after the game is finished. Sends end game notifications to teams and dusts the losers.
@@ -237,17 +237,17 @@ GLOBAL_VAR(basketball_game)
 		for(var/ckey in winner_team_ckeys)
 			var/mob/living/competitor = get_mob_by_ckey(ckey)
 			if(competitor in minigame_basketball_mobs)
-				to_chat(competitor, span_hypnophrase("The game resulted in a draw!"))
+				to_chat(competitor, span_hypnophrase(LANG("datum.1a8c54b1", null)))
 	else
 		for(var/ckey in winner_team_ckeys)
 			var/mob/living/competitor = get_mob_by_ckey(ckey)
 			if(competitor in minigame_basketball_mobs)
-				to_chat(competitor, span_hypnophrase("[winner_team_name] team wins!"))
+				to_chat(competitor, span_hypnophrase(LANG("datum.8a7f4a43", list(winner_team_name))))
 
 		for(var/ckey in loser_team_ckeys)
 			var/mob/living/competitor = get_mob_by_ckey(ckey)
 			if(competitor in minigame_basketball_mobs)
-				to_chat(competitor, span_hypnophrase("[winner_team_name] team wins!"))
+				to_chat(competitor, span_hypnophrase(LANG("datum.8a7f4a43", list(winner_team_name))))
 				competitor.dust()
 
 	addtimer(CALLBACK(src, PROC_REF(end_game)), 20 SECONDS) // give winners time for a victory lap
@@ -307,8 +307,8 @@ GLOBAL_VAR(basketball_game)
 	//small message about not getting into this game for clarity on why they didn't get in
 	for(var/unpicked in possible_keys)
 		var/client/unpicked_client = GLOB.directory[unpicked]
-		to_chat(unpicked_client, span_danger("Sorry, the starting basketball game has too many players and you were not picked."))
-		to_chat(unpicked_client, span_warning("You're still signed up, getting messages from the current round, and have another chance to join when the one starting now finishes."))
+		to_chat(unpicked_client, span_danger(LANG("datum.6d5f6a76", null)))
+		to_chat(unpicked_client, span_warning(LANG("datum.21ddf196", null)))
 
 	prepare_game(filtered_keys)
 

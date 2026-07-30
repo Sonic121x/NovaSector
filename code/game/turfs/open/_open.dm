@@ -144,7 +144,7 @@
 
 		for(var/species in footprint_species_types)
 			var/datum/species/species_type = GLOB.species_list[species]
-			. += "&bull; Some <b>[species_type ? format_text(species_type::plural_form) : "unknown"] feet</b>."
+			. += LANG("turf.b99cc5e1", list(species_type ? format_text(species_type::plural_form) : "unknown"))
 
 //direction is direction of travel of A
 /turf/open/zPassIn(direction)

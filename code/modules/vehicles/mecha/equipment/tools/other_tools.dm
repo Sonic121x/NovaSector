@@ -422,7 +422,7 @@
 /obj/item/mecha_parts/mecha_equipment/thrusters/try_attach_part(mob/user, obj/vehicle/sealed/mecha/mecha, attach_right)
 	for(var/obj/item/part in mecha.equip_by_category[MECHA_UTILITY])
 		if(istype(part, src))
-			to_chat(user, span_warning("[mecha] already has this thruster package!"))
+			to_chat(user, span_warning(LANG("obj.a2abb12f", list(mecha))))
 			return ITEM_INTERACT_BLOCKING
 	return ..()
 

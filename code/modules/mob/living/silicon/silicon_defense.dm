@@ -35,11 +35,11 @@
 			buckled.Paralyze(2 SECONDS)
 			unbuckle_mob(buckled)
 			buckled.visible_message(
-				span_danger("[buckled] is knocked off of [src] by [user]!"),
-				span_userdanger("You're knocked off of [src] by [user]!"),
+				span_danger(LANG("mob.42ea79bc", list(buckled, src, user))),
+				span_userdanger(LANG("mob.71391d0e", list(src, user))),
 				ignored_mobs = user,
 			)
-			to_chat(user, span_danger("You knock [buckled] off of [src]!"))
+			to_chat(user, span_danger(LANG("mob.46c6cf9d", list(buckled, src))))
 
 /mob/living/silicon/attack_paw(mob/living/user, list/modifiers)
 	return attack_hand(user, modifiers)
@@ -123,7 +123,7 @@
 		if(prob(severity*50))
 			unbuckle_mob(M)
 			M.Paralyze(40)
-			M.visible_message(span_boldwarning("[M] is thrown off of [src]!"))
+			M.visible_message(span_boldwarning(LANG("mob.809681a7", list(M, src))))
 	flash_act(affect_silicon = 1)
 
 /mob/living/silicon/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
@@ -141,7 +141,7 @@
 
 	if(prob(prob_of_knocking_dudes_off))
 		for(var/mob/living/buckled in buckled_mobs)
-			buckled.visible_message(span_boldwarning("[buckled] is knocked off of [src] by [hitting_projectile]!"))
+			buckled.visible_message(span_boldwarning(LANG("mob.42ea79bc", list(buckled, src, hitting_projectile))))
 			unbuckle_mob(buckled)
 			buckled.Paralyze(4 SECONDS)
 

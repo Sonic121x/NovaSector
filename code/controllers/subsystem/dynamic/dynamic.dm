@@ -124,10 +124,7 @@ SUBSYSTEM_DEF(dynamic)
 		for(var/job in job_prefs)
 			var/priority = job_prefs[job]
 			job_data += "[job]: [SSjob.job_priority_level_to_string(priority)]"
-		to_chat(player, span_danger("You were unable to qualify for any roundstart antagonist role this round \
-			because your job preferences presented a high chance of all of your selected jobs being unavailable, \
-			along with 'return to lobby if job is unavailable' enabled. \
-			Increase the number of roles set to medium or low priority to reduce the chances of this happening."))
+		to_chat(player, span_danger(LANG("datum.ec24b7ae", null)))
 		log_admin("[player.ckey] failed to qualify for any roundstart antagonist role \
 			because their job preferences presented a high chance of all of their selected jobs being unavailable, \
 			along with 'return to lobby if job is unavailable' enabled and has [player.client.prefs.be_special.len] antag preferences enabled. \
@@ -381,7 +378,7 @@ SUBSYSTEM_DEF(dynamic)
 	for(var/datum/mind/selected as anything in picked_ruleset.selected_minds)
 		message_admins("Midround ([range]): [ADMIN_LOOKUPFLW(selected.current)] has been selected for [picked_ruleset.config_tag].")
 		log_dynamic("Midround ([range]): [key_name(selected.current)] has been selected for [picked_ruleset.config_tag].")
-		notify_ghosts("[selected.name] has been picked for [picked_ruleset.config_tag]!", source = selected.current)
+		notify_ghosts(LANG("datum.818defe4", list(selected.name, picked_ruleset.config_tag)), source = selected.current)
 	// Clean up unused rulesets
 	QDEL_LIST(rulesets_weighted)
 	rulesets_to_spawn[range] -= 1
@@ -443,7 +440,7 @@ SUBSYSTEM_DEF(dynamic)
 	for(var/datum/mind/selected as anything in running.selected_minds)
 		message_admins("Midround (forced): [ADMIN_LOOKUPFLW(selected.current)] has been selected for [running.config_tag].")
 		log_dynamic("Midround (forced): [key_name(selected.current)] has been selected for [running.config_tag].")
-		notify_ghosts("[selected.name] has been picked for [running.config_tag]!", source = selected.current)
+		notify_ghosts(LANG("datum.818defe4", list(selected.name, running.config_tag)), source = selected.current)
 	return TRUE
 
 /**

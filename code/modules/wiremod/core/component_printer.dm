@@ -494,7 +494,7 @@
 
 	for(var/list/component_data as anything in scanned_designs)
 		if(component_data["name"] == data["name"])
-			balloon_alert(user, "name already exists!")
+			balloon_alert(user, LANG("obj.40cb67d4", null))
 			return ITEM_INTERACT_BLOCKING
 
 	flick("module-fab-scan", src)

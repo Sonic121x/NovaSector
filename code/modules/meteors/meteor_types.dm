@@ -105,7 +105,7 @@
 /obj/effect/meteor/proc/ram_turf(turf/T)
 	//first yell at mobs about them dying horribly
 	for(var/mob/living/thing in T)
-		thing.visible_message(span_warning("[src] slams into [thing]."), span_userdanger("[src] slams into you!."))
+		thing.visible_message(span_warning(LANG("obj.8d79f97c", list(src, thing))), span_userdanger(LANG("obj.a16b7996", list(src))))
 
 	//then, ram the turf
 	switch(hitpwr)
@@ -370,7 +370,7 @@
 /obj/effect/meteor/banana/ram_turf(turf/bumped)
 	for(var/mob/living/slipped in get_turf(bumped))
 		slipped.slip(100, slipped.loc,- GALOSHES_DONT_HELP|SLIDE)
-		slipped.visible_message(span_warning("[src] honks [slipped] to the floor!"), span_userdanger("[src] harmlessly passes through you, knocking you over."))
+		slipped.visible_message(span_warning(LANG("obj.16da3e4c", list(src, slipped))), span_userdanger(LANG("obj.9b8444cf", list(src))))
 	get_hit()
 
 /obj/effect/meteor/emp

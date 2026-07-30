@@ -536,7 +536,7 @@
 			continue
 		if(target.get_eye_protection() && !ignore_eyes)
 			continue
-		to_chat(target, "The [holder.my_atom.name] launches some of [holder.p_their()] contents at you!")
+		to_chat(target, LANG("datum.6262de88", list(holder.my_atom.name, holder.p_their())))
 		target.reagents.add_reagent(reagent, vol)
 
 

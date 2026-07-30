@@ -126,7 +126,7 @@
 			message_admins("Power sink activated by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(src)]")
 			user.log_message("activated a powersink", LOG_GAME)
 			notify_ghosts(
-				"[user.real_name] has activated a power sink!",
+				LANG("obj.bec61c37", list(user.real_name)),
 				source = src,
 				header = "Shocking News!",
 			)
@@ -191,7 +191,7 @@
 			warning_given = TRUE
 			message_admins("Power sink at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>) has reached [ALERT]% of max heat. Explosion imminent.")
 			notify_ghosts(
-				"[src] is about to reach critical heat capacity!",
+				LANG("obj.4012c191", list(src)),
 				source = src,
 				header = "Power Sunk",
 			)

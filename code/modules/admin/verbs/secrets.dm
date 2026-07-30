@@ -541,7 +541,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Braindamage"))
 			for(var/mob/living/carbon/human/human_mob in GLOB.player_list)
-				to_chat(human_mob, span_bolddanger("You suddenly feel stupid."), confidential = TRUE)
+				to_chat(human_mob, span_bolddanger(LANG("datum.b417f675", null)), confidential = TRUE)
 				human_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 60, 80)
 			message_admins("[key_name_admin(holder)] made everybody brain damaged")
 		if("floorlava")
@@ -584,7 +584,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 						if(droptype == "Yes")
 							ADD_TRAIT(anime_uniform, TRAIT_NODROP, ADMIN_TRAIT)
 				else
-					to_chat(human_mob, span_warning("You're not kawaii enough for this!"), confidential = TRUE)
+					to_chat(human_mob, span_warning(LANG("datum.5796c9e5", null)), confidential = TRUE)
 		if("masspurrbation")
 			if(!is_funmin)
 				return

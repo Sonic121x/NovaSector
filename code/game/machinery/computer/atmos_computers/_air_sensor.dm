@@ -235,7 +235,7 @@
 
 		//make real air sensor in its place
 		var/obj/machinery/air_sensor/new_sensor = new sensor(get_turf(src))
-		new_sensor.balloon_alert(user, "sensor turned on")
+		new_sensor.balloon_alert(user, LANG("obj.5087a0fb", null))
 		qdel(src)
 
 		break

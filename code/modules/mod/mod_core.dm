@@ -547,7 +547,7 @@
 	set_theme(stone.theme)
 	for(var/mob/living/basic/shade/shade in stone)
 		shade.forceMove(get_turf(src))
-		shade.visible_message(span_warning("[shade] is ejected from [stone] as it is inserted into [src]!"), span_warning("You are ejected from [stone] as it is inserted into [src]!"))
+		shade.visible_message(span_warning(LANG("obj.38425edd", list(shade, stone, src))), span_warning(LANG("obj.ea1f0f51", list(stone, src))))
 	return ..()
 
 /obj/item/mod/core/soul/proc/set_theme(new_theme)

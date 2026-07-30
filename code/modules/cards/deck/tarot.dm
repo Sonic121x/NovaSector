@@ -70,7 +70,7 @@
 
 	COOLDOWN_START(src, ghost_alert_cooldown, TAROT_GHOST_TIMER)
 	notify_ghosts(
-		"Someone has begun playing with a [name] in [get_area(src)]!",
+		LANG("obj.f1060c69", list(name, get_area(src))),
 		source = src,
 		header = "Haunted Tarot Deck",
 		ghost_sound = 'sound/effects/ghost2.ogg',

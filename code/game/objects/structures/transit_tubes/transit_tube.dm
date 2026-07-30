@@ -38,7 +38,7 @@
 		return NONE
 
 	for(var/obj/structure/transit_tube_pod/pod in loc)
-		to_chat(user, span_warning("Remove the pod first!"))
+		to_chat(user, span_warning(LANG("obj.0b6b632e", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(span_notice(LANG("obj.0e82a036", list(user, src))), \

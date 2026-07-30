@@ -69,7 +69,7 @@
 		if(object.pass_flags & PASSTABLE)
 			continue
 		if((object.density && !(object.obj_flags & IGNORE_DENSITY)) || object.obj_flags & BLOCKS_CONSTRUCTION)
-			balloon_alert(user, "[object.name] is in the way!")
+			balloon_alert(user, LANG("obj.f4935eb9", list(object.name)))
 			return ITEM_INTERACT_BLOCKING
 
 	balloon_alert(user, LANG("obj.47414101", null))
@@ -81,7 +81,7 @@
 		if(object.pass_flags & PASSTABLE)
 			continue
 		if((object.density && !(object.obj_flags & IGNORE_DENSITY)) || object.obj_flags & BLOCKS_CONSTRUCTION)
-			balloon_alert(user, "[object.name] is in the way!")
+			balloon_alert(user, LANG("obj.f4935eb9", list(object.name)))
 			return ITEM_INTERACT_BLOCKING
 
 	if(!our_stack.use(1))

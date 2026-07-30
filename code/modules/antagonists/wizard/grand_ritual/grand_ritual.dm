@@ -145,7 +145,7 @@
 	for (var/turf/nearby_turf as anything in RANGE_TURFS(1, target_turf))
 		if (!is_type_in_typecache(nearby_turf, blacklisted_rune_turfs))
 			continue
-		owner.balloon_alert(owner, "invalid floor!")
+		owner.balloon_alert(owner, LANG("datum.52636c12", null))
 		return
 
 	if (locate(/obj/effect/grand_rune) in range(3, target_turf))

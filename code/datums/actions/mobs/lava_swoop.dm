@@ -105,7 +105,7 @@
 				throw_dir = pick(GLOB.alldirs)
 			var/throwtarget = get_edge_target_turf(owner, throw_dir)
 			victim.throw_at(throwtarget, 3)
-			owner.visible_message(span_warning("[victim] is thrown clear of [owner]!"))
+			owner.visible_message(span_warning(LANG("datum.65b13390", list(victim, owner))))
 	for(var/obj/vehicle/sealed/mecha/mech in orange(1, owner))
 		mech.take_damage(75, BRUTE, MELEE, 1)
 

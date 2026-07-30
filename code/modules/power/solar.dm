@@ -381,15 +381,15 @@
 		if(stuff_in_the_way == src)
 			continue
 		if(istype(stuff_in_the_way, /obj/item/solar_assembly) && stuff_in_the_way.anchored)
-			balloon_alert(user, "secured assembly in the way!")
+			balloon_alert(user, LANG("obj.73cf5aa4", null))
 			return ITEM_INTERACT_BLOCKING
 		if((stuff_in_the_way.density) && !(stuff_in_the_way.flags_1 & ON_BORDER_1))
-			balloon_alert(user, "something in the way!")
+			balloon_alert(user, LANG("obj.7dd60dd8", null))
 			return ITEM_INTERACT_BLOCKING
 	set_anchored(!anchored)
 	user.visible_message(
-		span_notice("[user] [anchored ? null : "un"]wrenches the solar assembly[anchored ? " into place" : null]."),
-		span_notice("You [anchored ? null : "un"]wrench the solar assembly[anchored ? " into place" : null]."),
+		span_notice(LANG("obj.7f4a0e52", list(user, anchored ? null : "un", anchored ? " into place" : null))),
+		span_notice(LANG("obj.ddbfc3b2", list(anchored ? null : "un", anchored ? " into place" : null))),
 	)
 	tool.play_tool_sound(src, 75)
 	return ITEM_INTERACT_SUCCESS

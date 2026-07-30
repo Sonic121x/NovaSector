@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 	for(var/obj/structure/decoration/existing in target_turf.contents)
 		decoration_count++
 		if(decoration_count >= 3)
-			balloon_alert(user, "too many decorations here!")
+			balloon_alert(user, LANG("obj.8e325503", null))
 			return ITEM_INTERACT_BLOCKING
 
 	var/cost = RDD_COST_MULTIPLIER

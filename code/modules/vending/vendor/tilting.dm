@@ -96,7 +96,7 @@
 				flags_to_return |= SUCCESSFULLY_CRUSHED_ATOM
 
 			if (crushed)
-				atom_target.visible_message(span_danger("[atom_target] is crushed by [src]!"), span_userdanger("You are crushed by [src]!"))
+				atom_target.visible_message(span_danger(LANG("atom.3b10c608", list(atom_target, src))), span_userdanger(LANG("atom.872dcdba", list(src))))
 				SEND_SIGNAL(atom_target, COMSIG_POST_TILT_AND_CRUSH, src)
 
 		var/matrix/to_turn = turn(transform, rotation)

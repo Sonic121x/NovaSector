@@ -101,6 +101,7 @@ Disarm
 Discharged
 Disease
 Do
+Download
 Drone
 Drop
 ERROR
@@ -314,7 +315,6 @@ Sun
 Supply
 Supply Pod
 Suspected
-Swap
 Syndicate
 Syndicate Assault Cyborg
 Syndicate Medical Cyborg
@@ -432,6 +432,7 @@ cat
 cautery
 chemicals
 chest
+claw
 clear
 climbable
 close
@@ -441,6 +442,7 @@ coin
 cold
 component
 conductive
+config
 connectable
 contractor
 core
@@ -696,6 +698,7 @@ storage
 string
 subtle
 success
+suicide
 suit
 surgical
 syndicate
@@ -726,6 +729,7 @@ tongue
 tools
 tourniquet
 toxic
+track
 tram_1
 transparent
 tree

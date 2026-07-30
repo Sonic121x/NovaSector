@@ -218,7 +218,7 @@
 		var/throw_dir = victim.loc == owner.loc ? get_dir(owner, victim) : pick(GLOB.alldirs)
 		var/throwtarget = get_edge_target_turf(victim, throw_dir)
 		victim.throw_at(target = throwtarget, range = 3, speed = 1)
-		victim.visible_message(span_warning("[victim] is thrown clear of [owner]!"))
+		victim.visible_message(span_warning(LANG("datum.65b13390", list(victim, owner))))
 
 // flop ability effects
 /obj/effect/temp_visual/leaper_crush

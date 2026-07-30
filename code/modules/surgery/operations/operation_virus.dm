@@ -28,7 +28,7 @@
 	. = ..()
 	. += LANG("datum.ed18c39b", null)
 	for(var/datum/reagent/chem as anything in required_chems)
-		. += "the patient must be dosed with >=1u [chem::name]"
+		. += LANG("datum.21c3cfb7", list(chem::name))
 
 /datum/surgery_operation/basic/viral_bonding/get_default_radial_image()
 	return image(/obj/item/clothing/mask/surgical)

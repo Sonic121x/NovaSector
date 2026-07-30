@@ -127,7 +127,7 @@
 
 		// When we regenerate, we want to make sure commented stuff stays commented, but we also want to migrate information that remains uncommented. So, let's make sure we keep that pattern.
 		if(!job_config[job_key])
-			to_chat(user, span_notice("New job [occupation.title] (using key [job_key]) detected! Adding to jobconfig.toml using default codebase values..."))
+			to_chat(user, span_notice(LANG("datum.0d2d8a47", list(occupation.title, job_key))))
 			file_data[job_key] = generate_blank_job_config(occupation)
 			continue
 

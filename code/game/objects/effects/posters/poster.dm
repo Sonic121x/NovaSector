@@ -86,17 +86,17 @@
 		for(var/overlay in wall_structure.overlays)
 			var/image/new_image = overlay
 			if(copytext(new_image.icon_state, 1, 3) == "d-") //3 == length("d-") + 1
-				to_chat(user, span_warning("Cannot place on diagonal wall!"))
+				to_chat(user, span_warning(LANG("obj.b1690fe8", null)))
 				return ITEM_INTERACT_FAILURE
 
 	var/stuff_on_wall = 0
 	for(var/obj/contained_object in wall_structure.contents) //Let's see if it already has a poster on it or too much stuff
 		if(istype(contained_object, /obj/structure/sign/poster))
-			balloon_alert(user, "no room!")
+			balloon_alert(user, LANG("obj.ad6c6384", null))
 			return ITEM_INTERACT_FAILURE
 		stuff_on_wall++
 		if(stuff_on_wall == 3)
-			balloon_alert(user, "no room!")
+			balloon_alert(user, LANG("obj.ad6c6384", null))
 			return ITEM_INTERACT_FAILURE
 
 	balloon_alert(user, LANG("obj.2331daf5", null))

@@ -22,7 +22,7 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
 			choices.Insert(1,"/")
 		choices = sort_list(choices) + "Download Folder"
 
-		var/choice = input(src,"Choose a file to access:","Download",null) as null|anything in choices
+		var/choice = input(src,LANG("client.72a8bb63", null),LANG("client.37f70b12", null),null) as null|anything in choices
 		switch(choice)
 			if(null)
 				return
@@ -31,7 +31,7 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
 				continue
 			if("Download Folder")
 				var/list/comp_flist = flist(path)
-				var/confirmation = input(src, "Are you SURE you want to download all the files in this folder? (This will open [length(comp_flist)] prompt[length(comp_flist) == 1 ? "" : "s"])", "Confirmation") in list("Yes", "No")
+				var/confirmation = input(src, LANG("client.863237ac", list(length(comp_flist), length(comp_flist) == 1 ? "" : "s")), LANG("client.15bc27b6", null)) in list("Yes", "No")
 				if(confirmation != "Yes")
 					continue
 				for(var/file in comp_flist)

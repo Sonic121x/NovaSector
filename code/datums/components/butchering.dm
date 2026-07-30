@@ -170,7 +170,7 @@
 		// Cannot butcher the chest until we hack off all the other limbs
 		for (var/obj/item/bodypart/limb as anything in target.owner.get_bodyparts())
 			if (limb != target && limb.butcher_drops && limb.butcher_replacement)
-				to_chat(user, span_warning("You need to butcher all other limbs first!"))
+				to_chat(user, span_warning(LANG("datum.1d14c47e", null)))
 				return
 
 	user.visible_message(span_warning(LANG("datum.2b07cd8a", list(user, limb_descriptor))), span_notice(LANG("datum.4d769be6", list(limb_descriptor))), ignored_mobs = target.owner)

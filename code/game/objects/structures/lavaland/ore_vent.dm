@@ -137,7 +137,7 @@
 		*/ // NOVA EDIT REMOVAL END
 		// NOVA EDIT ADDITION START
 		if(!do_after(user, boulder_size * 1 SECONDS, src))
-			user.balloon_alert(user, "stay still!")
+			user.balloon_alert(user, LANG("obj.ba531013", null))
 			return
 		user.balloon_alert(user, i > 2 ? "got one!" : "digging around...")
 		user.apply_damage(20, STAMINA)
@@ -375,7 +375,7 @@
 		var/point_reward_val = (MINER_POINT_MULTIPLIER * (boulder_size + 2)) - MINER_POINT_MULTIPLIER // We remove the base value of discovering the vent
 		if(user_id_card.registered_account)
 			user_id_card.registered_account.mining_points += point_reward_val
-			user_id_card.registered_account.bank_card_talk("You have been awarded [point_reward_val] mining points for your efforts.")
+			user_id_card.registered_account.bank_card_talk(LANG("obj.a6dd1fb0", list(point_reward_val)))
 
 /obj/structure/ore_vent/proc/add_tapped_visual()
 	if (vent_visual)

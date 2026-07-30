@@ -326,7 +326,7 @@ GAME_VERB(/obj/item/taperecorder, print_transcript, "打印录音文字稿", nul
 
 		// Very unexpected. Better abort non-gracefully.
 		if(excerpt_length > MAX_PAPER_LENGTH)
-			balloon_alert(usr, "data corrupted, can't print!")
+			balloon_alert(usr, LANG("obj.41081a75", null))
 			CRASH("Transcript entry has more than [MAX_PAPER_LENGTH] chars: [excerpt_length] chars")
 
 		// If we're going to overflow the paper's length, print the current transcribed text out first and reset to prevent us

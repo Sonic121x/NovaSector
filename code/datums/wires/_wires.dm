@@ -325,10 +325,9 @@
 
 		var/study_length = 1 SECONDS * floor(min(photo.picture.psize_x, photo.picture.psize_y) / 32)
 		if(study_length >= 4 SECONDS)
-			to_chat(user, span_notice("<i>You squint [photo]... Hey, there's blueprints in the frame! Really wish the photo was zoomed in, though. \
-				It's rather difficult to make out the wires.</i>"))
+			to_chat(user, span_notice(LANG("datum.07f8eadd", list(photo))))
 		else
-			to_chat(user, span_notice("<i>You glance at [photo], looking for wires in the pictured blueprints.</i>"))
+			to_chat(user, span_notice(LANG("datum.986e8d8a", list(photo))))
 
 		if(do_after(user, study_length, holder, interaction_key = STUDY_INTERACTION_KEY, cog_icon = null))
 			LAZYSET(studied_photos, REF(user.mind), REF(photo))

@@ -79,7 +79,7 @@
 		if(!isashwalker(potential_friend) || living_pawn.has_ally(REF(potential_friend)))
 			continue
 		living_pawn.befriend(potential_friend)
-		to_chat(potential_friend, span_nicegreen("[living_pawn] looks at you with endearing eyes!"))
+		to_chat(potential_friend, span_nicegreen(LANG("datum.84765660", list(living_pawn))))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 

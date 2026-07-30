@@ -40,7 +40,7 @@
 	for(var/area/station/service/kitchen/affected_area in GLOB.areas)
 		var/obj/machinery/oven/roast_ruiner = locate() in affected_area
 		if(roast_ruiner)
-			roast_ruiner.balloon_alert_to_viewers("oh egads!")
+			roast_ruiner.balloon_alert_to_viewers(LANG("datum.7234d85f", null))
 			var/turf/ruined_roast = get_turf(roast_ruiner)
 			ruined_roast.atmos_spawn_air("[GAS_PLASMA]=100;[TURF_TEMPERATURE(1000)]")
 			message_admins("Aurora Caelus event caused an oven to ignite at [ADMIN_VERBOSEJMP(ruined_roast)].")
@@ -51,7 +51,7 @@
 					continue
 				human_blacklist += seymour
 				if(seymour.mind && istype(seymour.mind.assigned_role, /datum/job/cook))
-					seymour.say("My roast is ruined!!!", forced = "ruined roast")
+					seymour.say(LANG("datum.4e7dabad", null), forced = "ruined roast")
 					seymour.emote("scream")
 
 /datum/round_event/aurora_caelus/tick()

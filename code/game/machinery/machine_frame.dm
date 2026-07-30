@@ -243,7 +243,7 @@
 					continue
 				req_components[path] -= used_amt
 				// No balloon alert here so they can look back and see what they added
-				to_chat(user, span_notice("You add [used_amt] [stack_name] to [src]."))
+				to_chat(user, span_notice(LANG("obj.7ca12250", list(used_amt, stack_name, src))))
 				play_sound = TRUE
 			else if(replacer.atom_storage.attempt_remove(part, src))
 				var/stock_part_datum = GLOB.stock_part_datums_per_object[part.type]
@@ -255,7 +255,7 @@
 					part.forceMove(src)
 				req_components[path]--
 				// No balloon alert here so they can look back and see what they added
-				to_chat(user, span_notice("You add [part] to [src]."))
+				to_chat(user, span_notice(LANG("obj.0c27fe26", list(part, src))))
 				play_sound = TRUE
 
 	if(play_sound && !no_sound)
@@ -352,7 +352,7 @@
 			if(used_amt && S.use(used_amt))
 				req_components[stock_part_path] -= used_amt
 				// No balloon alert here so they can look back and see what they added
-				to_chat(user, span_notice("You add [tool] to [src]."))
+				to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
 			return
 
 		// We might end up qdel'ing the part if it's a stock part datum.
@@ -381,7 +381,7 @@
 			break
 
 		// No balloon alert here so they can look back and see what they added
-		to_chat(user, span_notice("You add [part_name] to [src]."))
+		to_chat(user, span_notice(LANG("obj.0c27fe26", list(part_name, src))))
 		req_components[stock_part_base]--
 		return TRUE
 
@@ -443,7 +443,7 @@
 		return FALSE
 	for(var/component in req_components)
 		if(req_components[component] > 0)
-			user.balloon_alert(user, "missing components!")
+			user.balloon_alert(user, LANG("obj.444f3b7e", null))
 			return FALSE
 
 	if(!circuit.completion_requirements(src, user))

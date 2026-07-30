@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///Unleashes a honkerblast similar to the honkmech weapon, but with more granular control.
 /proc/honkerblast(atom/origin, light_range = 1, medium_range = 0, heavy_range = 0)
 	var/origin_turf = get_turf(origin)
@@ -24,7 +25,7 @@
 		victim.adjust_stutter(30 SECONDS)
 		victim.set_jitter_if_lower(1000 SECONDS)
 		victim.sound_damage(10, 30 SECONDS)
-		to_chat(victim, "<font color='red' size='8'>HONK</font>")
+		to_chat(victim, LANG("_root.e96ea543", null))
 		var/obj/item/clothing/shoes/victim_shoes = victim.get_item_by_slot(ITEM_SLOT_FEET)
 		if(!victim_shoes || victim_shoes.fastening_type == SHOES_SLIPON)
 			continue
@@ -35,10 +36,10 @@
 		victim.Stun(50)
 		victim.set_jitter_if_lower(500 SECONDS)
 		victim.sound_damage(7, 20 SECONDS)
-		to_chat(victim, "<font color='red' size='5'>HONK</font>")
+		to_chat(victim, LANG("_root.fa169faa", null))
 
 	for(var/mob/living/carbon/victim in lightly_honked)
 		victim.Knockdown(20)
 		victim.set_jitter_if_lower(200 SECONDS)
 		victim.sound_damage(4, 10 SECONDS)
-		to_chat(victim, "<font color='red' size='2'>HONK</font>")
+		to_chat(victim, LANG("_root.7fd15502", null))

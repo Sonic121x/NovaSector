@@ -43,7 +43,7 @@
 		return
 	for(var/obj/object in local_turf)
 		if(object.density && !(object.obj_flags & IGNORE_DENSITY) || object.obj_flags & BLOCKS_CONSTRUCTION)
-			balloon_alert(user, "something is in the way!")
+			balloon_alert(user, LANG("obj.ae97e927", null))
 			return
 	if(local_turf.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		balloon_alert(user, LANG("obj.0d1f39e9", null))

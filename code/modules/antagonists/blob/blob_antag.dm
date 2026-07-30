@@ -139,7 +139,7 @@
 	blobtag.has_already_popped = TRUE
 
 	notify_ghosts(
-		"A Blob host has burst in [get_area_name(blob_cam.blob_core)]",
+		LANG("datum.7248a099", list(get_area_name(blob_cam.blob_core))),
 		source = blob_cam.blob_core,
 		ghost_sound = 'sound/music/antag/blobalert.ogg',
 		header = "Blob Awakening!",

@@ -168,5 +168,5 @@ SUBSYSTEM_DEF(market)
 		initialize_item(path, market_whitelist)
 
 	for(var/obj/machinery/ltsrbt/pad as anything in telepads)
-		pad.say("[market_name] restocked!")
+		pad.say(LANG("datum.68864820", list(market_name)))
 		playsound(src, 'sound/effects/cashregister.ogg', 40, FALSE)

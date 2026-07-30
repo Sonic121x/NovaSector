@@ -932,7 +932,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		return
 	for(var/datum/admin_rank/R in GLOB.admin_ranks)
 		if(R.name == admin_rank && ((R.rights & usr.client.holder.can_edit_rights_flags()) != R.rights))
-			to_chat(usr, span_adminprefix("You don't have edit rights to all the rights this rank has, rank deletion not permitted."), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.d6ddacf0", null)), confidential = TRUE)
 			return
 
 	var/list/datum/admin_rank/target_ranks = ranks_from_rank_name(admin_rank)
@@ -978,7 +978,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	for(var/admin_name in GLOB.admin_datums)
 		var/datum/admins/existing_min = GLOB.admin_datums[admin_name]
 		if(target_rank in existing_min.ranks)
-			to_chat(usr, span_danger("Error: Rank deletion attempted while rank still used; Tell a coder, this shouldn't happen."), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("datum.7ee93fff", null)), confidential = TRUE)
 			return
 
 	if(tgui_alert(usr,LANG("datum.097dd57a", list(admin_rank)), LANG("datum.ce9910aa", null), list("Do it","Cancel")) != "Do it")

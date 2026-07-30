@@ -12,8 +12,8 @@
 /datum/smite/supply_pod_quick/configure(client/user)
 	var/attempted_target_path = input(
 		user,
-		"Enter typepath of an atom you'd like to send with the pod (type \"empty\" to send an empty pod):",
-		"Typepath",
+		LANG("datum.325b0384", null),
+		LANG("datum.1a01b0f5", null),
 		"/obj/item/food/grown/flower/harebell",
 	) as null|text
 

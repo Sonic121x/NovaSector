@@ -52,7 +52,7 @@
 	if(sortTypes.len)
 		. += LANG("obj.831ec6a5", null)
 		for(var/t in sortTypes)
-			. += "\t[GLOB.TAGGERLOCATIONS[t]]."
+			. += LANG("obj.5aa6f726", list(GLOB.TAGGERLOCATIONS[t]))
 	else
 		. += LANG("obj.66467605", null)
 

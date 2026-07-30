@@ -226,12 +226,12 @@
 			if(crushed_victim in chassis.occupants)
 				continue
 			if(!(crushed_victim in landed_on))
-				to_chat(crushed_victim, span_userdanger("The tremors from [chassis] landing sends you flying!"))
+				to_chat(crushed_victim, span_userdanger(LANG("datum.507dcff0", list(chassis))))
 				var/fly_away_direction = get_dir(chassis, crushed_victim)
 				crushed_victim.throw_at(get_edge_target_turf(crushed_victim, fly_away_direction), 4, 3)
 				crushed_victim.adjust_brute_loss(15)
 				continue
-			to_chat(crushed_victim, span_userdanger("[chassis] crashes down on you from above!"))
+			to_chat(crushed_victim, span_userdanger(LANG("datum.4d5679c4", list(chassis))))
 			if(IS_UNCONSCIOUS_OR_CRIT(crushed_victim))
 				crushed_victim.investigate_log("has been gibbed by a falling Savannah Ivanov mech.", INVESTIGATE_DEATHS)
 				crushed_victim.gib(DROP_ALL_REMAINS)

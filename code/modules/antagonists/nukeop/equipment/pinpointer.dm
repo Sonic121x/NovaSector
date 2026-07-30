@@ -22,7 +22,7 @@
 	. += msg
 	for(var/obj/machinery/nuclearbomb/bomb as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb))
 		if(bomb.timing)
-			. += "Extreme danger. Arming signal detected. Time remaining: [bomb.get_time_left()]."
+			. += LANG("obj.bd76de8e", list(bomb.get_time_left()))
 
 /obj/item/pinpointer/nuke/process(seconds_per_tick)
 	..()
@@ -35,7 +35,7 @@
 		playsound(src, 'sound/items/nuke_toy_lowpower.ogg', 50, FALSE)
 		if(isliving(loc))
 			var/mob/living/alerted_holder = loc
-			to_chat(alerted_holder, span_userdanger("Your [name] vibrates and lets out an ominous alarm. Uh oh."))
+			to_chat(alerted_holder, span_userdanger(LANG("obj.60b954c6", list(name))))
 		return
 
 /obj/item/pinpointer/nuke/scan_for_target()

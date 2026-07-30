@@ -36,7 +36,7 @@
 		var/datum/reagent/reagent_ingredient = valid_type
 		if(istype(reagent_ingredient))
 			var/amount = recipe.reqs[reagent_ingredient]
-			. += "[amount] unit[amount > 1 ? "s" : ""] of [initial(reagent_ingredient.name)]"
+			. += LANG("obj.d2b3cbea", list(amount, amount > 1 ? "s" : "", initial(reagent_ingredient.name)))
 
 		var/atom/ingredient = valid_type
 		var/amount = recipe.reqs[ingredient]

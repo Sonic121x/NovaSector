@@ -214,7 +214,7 @@
 							status = "sustained major trauma!"
 							span = "userdanger"
 						if(brutedamage)
-							to_chat(human_user, "<span class='[span]'>[BP] appears to have [status]</span>")
+							to_chat(human_user, LANG("mob.62eef672", list(span, BP, status)))
 				if(get_fire_loss())
 					to_chat(human_user, LANG("mob.b9dc97a6", null))
 					for(var/obj/item/bodypart/BP as anything in get_bodyparts())
@@ -229,7 +229,7 @@
 							status = "major burns!"
 							span = "userdanger"
 						if(burndamage)
-							to_chat(human_user, "<span class='[span]'>[BP] appears to have [status]</span>")
+							to_chat(human_user, LANG("mob.62eef672", list(span, BP, status)))
 				if(get_oxy_loss())
 					to_chat(human_user, span_danger(LANG("mob.e4ed1ff1", null)))
 				if(get_tox_loss() > 20)
@@ -553,7 +553,7 @@
 		for(var/obj/item/hand in held_items)
 			if(prob(current_size * 5) && hand.w_class >= ((11-current_size)/2)  && dropItemToGround(hand))
 				step_towards(hand, src)
-				to_chat(src, span_warning("\The [singularity] pulls \the [hand] from your grip!"))
+				to_chat(src, span_warning(LANG("mob.d8912a05", list(singularity, hand))))
 
 #define CPR_PANIC_SPEED (0.8 SECONDS)
 
@@ -571,19 +571,19 @@
 			return FALSE
 
 		if (IS_DEAD_OR_FAKING(target))
-			balloon_alert(src, "[target.p_they()] [target.p_are()] dead!")
+			balloon_alert(src, LANG("mob.abe74371", list(target.p_they(), target.p_are())))
 			return FALSE
 
 		if (is_mouth_covered())
-			balloon_alert(src, "remove your mask first!")
+			balloon_alert(src, LANG("mob.f47b9d27", null))
 			return FALSE
 
 		if (target.is_mouth_covered())
-			balloon_alert(src, "remove [target.p_their()] mask first!")
+			balloon_alert(src, LANG("mob.77a71e56", list(target.p_their())))
 			return FALSE
 
 		if(HAS_TRAIT_FROM(src, TRAIT_NOBREATH, DISEASE_TRAIT))
-			to_chat(src, span_warning("you can't breathe!"))
+			to_chat(src, span_warning(LANG("mob.ecb83a88", null)))
 			return FALSE
 
 		var/obj/item/organ/lungs/human_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
@@ -596,17 +596,17 @@
 			return FALSE
 		*/// NOVA EDIT REMOVAL END
 
-		visible_message(span_notice("[src] is trying to perform CPR on [target.name]!"), \
-						span_notice("You try to perform CPR on [target.name]... Hold still!"))
+		visible_message(span_notice(LANG("mob.b2f4d17f", list(src, target.name))), \
+						span_notice(LANG("mob.033b2298", list(target.name))))
 
 		if (!do_after(src, delay = panicking ? CPR_PANIC_SPEED : (3 SECONDS), target = target))
-			balloon_alert(src, "you fail to perform CPR!")
+			balloon_alert(src, LANG("mob.f6939eed", null))
 			return FALSE
 
 		if (target.health > target.crit_threshold)
 			return FALSE
 
-		visible_message(span_notice("[src] performs CPR on [target.name]!"), span_notice("You perform CPR on [target.name]."))
+		visible_message(span_notice(LANG("mob.1cff402d", list(src, target.name))), span_notice(LANG("mob.7092e734", list(target.name))))
 		if(HAS_MIND_TRAIT(src, TRAIT_MORBID))
 			add_mood_event("morbid_saved_life", /datum/mood_event/morbid_saved_life)
 		else
@@ -624,18 +624,18 @@
 		if(isnull(human_lungs) || istype(human_lungs, /obj/item/organ/lungs/synth) || (human_lungs.organ_flags & ORGAN_FAILING))
 			can_breathe = FALSE
 		if(issynthetic(target)) // Synthetic humanoids don't benefit from CPR
-			to_chat(target, span_unconscious("You feel someone pushing down onto your chest, but you don't feel any better..."))
+			to_chat(target, span_unconscious(LANG("mob.6a24bc46", null)))
 		else if(!can_breathe || (HAS_TRAIT(target, TRAIT_NOBREATH) || !target.get_organ_slot(ORGAN_SLOT_LUNGS)))
-			to_chat(target, span_unconscious("You feel someone pushing down onto your chest..."))
+			to_chat(target, span_unconscious(LANG("mob.b00b31d7", null)))
 			target.adjust_oxy_loss(-min(target.get_oxy_loss(), 5))
 		// NOVA EDIT ADDITION END
 		else
 			target.adjust_oxy_loss(-min(target.get_oxy_loss(), 7))
-			to_chat(target, span_unconscious("You feel someone pushing on your chest, and fresh air inside your lungs... It feels good...")) // NOVA EDIT CHANGE - Original: to_chat(target, span_unconscious("You feel a breath of fresh air enter your lungs... It feels good..."))
+			to_chat(target, span_unconscious(LANG("mob.eb0e9c29", null))) // NOVA EDIT CHANGE - Original: to_chat(target, span_unconscious("You feel a breath of fresh air enter your lungs... It feels good..."))
 
 		if (target.health <= target.crit_threshold)
 			if (!panicking)
-				to_chat(src, span_warning("[target] still isn't up! You try harder!"))
+				to_chat(src, span_warning(LANG("mob.57145868", list(target))))
 			panicking = TRUE
 		else
 			panicking = FALSE
@@ -926,7 +926,7 @@
 		if(!check_rights(R_DEBUG))
 			return
 
-		var/result = input(usr, LANG("mob.02ac63fa", null), "Turn into MMI") in list("Yes", "No")
+		var/result = input(usr, LANG("mob.02ac63fa", null), LANG("mob.852300b3", null)) in list("Yes", "No")
 		if(result != "Yes")
 			return
 

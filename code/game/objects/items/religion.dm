@@ -60,7 +60,7 @@
 	for(var/V in inspired)
 		var/mob/living/carbon/human/H = V
 		if(H != user)
-			to_chat(H, span_notice("Your confidence surges as [user] flourishes [user.p_their()] [name]!"))
+			to_chat(H, span_notice(LANG("obj.423c1176", list(user, user.p_their(), name))))
 		inspiration(H)
 		special_inspiration(H)
 

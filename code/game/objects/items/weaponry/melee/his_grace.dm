@@ -197,7 +197,7 @@
 	adjust_bloodthirst(1)
 	force_bonus = HIS_GRACE_FORCE_BONUS * LAZYLEN(contents)
 	notify_ghosts(
-		"[user.real_name] has awoken [src]!",
+		LANG("obj.75154e0f", list(user.real_name, src)),
 		source = src,
 		header = "All Hail [src]!",
 	)

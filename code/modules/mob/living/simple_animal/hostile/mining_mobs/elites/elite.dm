@@ -211,7 +211,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		mychild.PossessByPlayer(elitemind.key)
 		mychild.sentience_act()
 		notify_ghosts(
-			"\A [mychild] has been awakened in \the [get_area(src)]!",
+			LANG("obj.f32ace39", list(mychild, get_area(src))),
 			source = mychild,
 			header = "Lavaland Elite awakened",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -230,7 +230,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		mychild.maxHealth *= 1 / ELITE_POST_BATTLE_HEALTH_MULTIPLIER //we multiply it back to its original value
 		mychild.health = mychild.maxHealth
 		notify_ghosts(
-			"\A [mychild] has been challenged in \the [get_area(src)]!",
+			LANG("obj.d9091c2c", list(mychild, get_area(src))),
 			source = mychild,
 			header = "Lavaland Elite challenged",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,

@@ -150,7 +150,7 @@
 			if(DOING_INTERACTION_WITH_TARGET(user, user))
 				return ITEM_INTERACT_BLOCKING
 			user.visible_message(
-				span_notice("[user] attempts to drink from [src]."),
+				span_notice(LANG("obj.4de62e04", list(user, src))),
 				ignored_mobs = list(user),
 			)
 			to_chat(user, span_notice(LANG("obj.d3904c62", list(src))))
@@ -159,7 +159,7 @@
 			if(!reagents || !reagents.total_volume)
 				return ITEM_INTERACT_BLOCKING
 			user.visible_message(
-				span_notice("[user] drinks from [src]."),
+				span_notice(LANG("obj.2221cda6", list(user, src))),
 				ignored_mobs = list(user),
 			)
 		to_chat(user, span_notice(LANG("obj.d0158148", list(src))))

@@ -73,7 +73,7 @@ ADMIN_VERB(reload_admins, R_NONE, "重新加载管理员", "Reloads all admins f
 
 ADMIN_VERB(toggle_cdn, R_SERVER|R_DEBUG, "切换 CDN", "Toggles the CDN for the server.", ADMIN_CATEGORY_SERVER)
 	var/static/admin_disabled_cdn_transport = null
-	if (alert(user, LANG("datum.cdf219d7", null), "Confirm", "Yes", "No") != "Yes")
+	if (alert(user, LANG("datum.cdf219d7", null), LANG("datum.3c1da715", null), "Yes", "No") != "Yes")
 		return
 	var/current_transport = CONFIG_GET(string/asset_transport)
 	if (!current_transport || current_transport == "simple")

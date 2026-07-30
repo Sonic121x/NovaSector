@@ -90,13 +90,13 @@
 		if(body.stat != DEAD)
 			continue
 		if(!IS_VALID_GHOUL_MOB(body) || HAS_TRAIT(body, TRAIT_HUSK))
-			to_chat(user, span_hierophant_warning("[body] is not in a valid state to be made into a ghoul."))
+			to_chat(user, span_hierophant_warning(LANG("datum.f668aac7", list(body))))
 			continue
 		if(!body.mind)
-			to_chat(user, span_hierophant_warning("[body] is mindless and cannot be made into a ghoul."))
+			to_chat(user, span_hierophant_warning(LANG("datum.e3653a8e", list(body))))
 			continue
 		if(!body.client && !body.mind.get_ghost(ghosts_with_clients = TRUE))
-			to_chat(user, span_hierophant_warning("[body] is soulless and cannot be made into a ghoul."))
+			to_chat(user, span_hierophant_warning(LANG("datum.1a39c6be", list(body))))
 			continue
 
 		// We will only accept valid bodies with a mind, or with a ghost connected that used to control the body
@@ -289,7 +289,7 @@
 	for(var/mob/living/entering in sending_through.get_all_contents())
 		if(!consents_to_entry(entering))
 			if(isliving(sending_through))
-				locker.balloon_alert(sending_through, "the door refuses you!")
+				locker.balloon_alert(sending_through, LANG("datum.2c59f777", null))
 			return CLOSET_TELEPORT_BLOCKED
 
 	return CLOSET_TELEPORT_FORCED

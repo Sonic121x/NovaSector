@@ -98,12 +98,12 @@ FLOOR SAFES
 
 	var/list/new_tumblers = list()
 	for(var/tumbler_index in 1 to number_of_tumblers)
-		var/input_value = tgui_input_number(user, "Set tumbler #[tumbler_index] (0-99):", "Set Lock", 0, 99, 0)
+		var/input_value = tgui_input_number(user, LANG("obj.dd01363d", list(tumbler_index)), LANG("obj.4ac4ff18", null), 0, 99, 0)
 		if(isnull(input_value))
-			balloon_alert(user, "reset cancelled!")
+			balloon_alert(user, LANG("obj.a5b0dfb7", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.can_perform_action(src))
-			balloon_alert(user, "reset interrupted!")
+			balloon_alert(user, LANG("obj.0c726d07", null))
 			return ITEM_INTERACT_BLOCKING
 		new_tumblers.Add(input_value)
 

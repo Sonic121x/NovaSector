@@ -1335,8 +1335,8 @@ GAME_VERB_PROC(/mob/living, mob_sleep, "Sleep", null)
 
 		adjust_stamina_loss(damage_on_resist_fail) //Do some stamina damage if we fail to resist
 		visible_message(
-			span_danger("[src] struggles as they fail to break free of [pulledby]'s grip!"),
-			span_warning("You struggle as you fail to break free of [pulledby]'s grip!"),
+			span_danger(LANG("mob.997aa6ba", list(src, pulledby))),
+			span_warning(LANG("mob.b8ee116b", list(pulledby))),
 			null,
 			null,
 			pulledby,
@@ -2793,8 +2793,8 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		smashed_plating.ScrapeAway(1, CHANGETURF_INHERIT_AIR)
 
 	for(var/obj/structure/lattice/lattice in loc)
-		visible_message(span_danger("[src] is thrown violently into [lattice], smashing through it and punching straight through!"),
-			span_userdanger("You're thrown violently into [lattice], smashing through it and punching straight through!"))
+		visible_message(span_danger(LANG("mob.e66265c6", list(src, lattice))),
+			span_userdanger(LANG("mob.e39b918d", list(lattice))))
 		apply_damage(rand(5,10), BRUTE, BODY_ZONE_CHEST)
 		lattice.deconstruct(FALSE)
 

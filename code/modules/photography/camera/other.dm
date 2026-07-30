@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/camera/spooky
 	name = "camera obscura"
 	desc = "A polaroid camera, some say it can see ghosts!"
@@ -15,8 +16,8 @@
 			peek_a_boo.apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 
 		target.visible_message(
-			span_warning("[target] violently flinches!"),
-			span_revendanger("You feel your essence draining away from having your picture taken!"),
+			span_warning(LANG("obj.0948d002", list(target))),
+			span_revendanger(LANG("obj.7d22a087", null)),
 		)
 		target.apply_damage(rand(10, 15))
 

@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
 		if(board.challenge_start_time)
-			tgui_alert(usr, "War has already been declared!", "War Was Declared")
+			tgui_alert(usr, LANG("obj.28fee420", null), LANG("obj.2584dda6", null))
 			return
 
 	war_was_declared(memo = war_declaration)
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 	for (var/mob/living/L in orphans)
 		var/TC = new /obj/item/stack/telecrystal(L.drop_location(), tc_per_nukie)
-		to_chat(L, span_warning("Your uplink could not be found so your share of the team's bonus telecrystals has been bluespaced to your [L.put_in_hands(TC) ? "hands" : "feet"]."))
+		to_chat(L, span_warning(LANG("obj.8594b184", list(L.put_in_hands(TC) ? "hands" : "feet"))))
 		tc_to_distribute -= tc_per_nukie
 
 	if (tc_to_distribute > 0) // What shall we do with the remainder...
@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			if (C.stat != DEAD)
 				var/obj/item/stack/telecrystal/TC = new(C.drop_location(), tc_to_distribute)
 				TC.throw_at(get_step(C, C.dir), 3, 3)
-				C.visible_message(span_notice("[C] coughs up a half-digested telecrystal"),span_notice("You cough up a half-digested telecrystal!"))
+				C.visible_message(span_notice(LANG("obj.82db1b3a", list(C))),span_notice(LANG("obj.5423e3ac", null)))
 				break
 
 
@@ -158,10 +158,10 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		return FALSE
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
 		if(board.moved)
-			to_chat(user, span_boldwarning("The shuttle has already been moved! You have forfeit the right to declare war."))
+			to_chat(user, span_boldwarning(LANG("obj.a331c45a", null)))
 			return FALSE
 		if(board.challenge_start_time)
-			to_chat(user, span_boldwarning("War has already been declared!"))
+			to_chat(user, span_boldwarning(LANG("obj.28fee420", null)))
 			return FALSE
 	return TRUE
 

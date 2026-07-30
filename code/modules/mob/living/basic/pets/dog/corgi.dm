@@ -126,9 +126,9 @@
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] starts to shave [src] using \the [tool]."),
-		span_notice("You start to shave [src] using \the [tool]..."),
-		span_hear("You hear electric buzzing."),
+		span_notice(LANG("mob.215295a5", list(user, src, tool))),
+		span_notice(LANG("mob.490e22db", list(src, tool))),
+		span_hear(LANG("mob.bc0b5d56", null)),
 	)
 
 	if(!do_after(user, 5 SECONDS, target = src))
@@ -259,9 +259,9 @@
 			to_chat(user, span_notice(LANG("mob.65cc710d", list(real_name, item_to_add, p_them()))))
 		else
 			user.visible_message(
-				span_notice("[user] puts [item_to_add] on [real_name]'s head. [src] looks at [user] and barks once."),
-				span_notice("You put [item_to_add] on [real_name]'s head. [src] gives you a peculiar look, then wags [p_their()] tail once and barks."),
-				span_hear("You hear a friendly-sounding bark."),
+				span_notice(LANG("mob.62d82673", list(user, item_to_add, real_name, src, user))),
+				span_notice(LANG("mob.5447687d", list(item_to_add, real_name, src, p_their()))),
+				span_hear(LANG("mob.2f0583aa", null)),
 			)
 
 	item_to_add.forceMove(src)

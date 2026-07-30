@@ -28,7 +28,7 @@ GAME_VERB_PROC(/client, grant_dna_infusion, "应用 DNA 灌注", "Debug", mob/li
 		var/obj/item/organ/new_organ = new infusion_organ()
 		new_organ.replace_into(target)
 		if(new_organ.owner != target)
-			to_chat(usr, span_notice("[target] is unable to carry [new_organ]!"))
+			to_chat(usr, span_notice(LANG("client.41edee27", list(target, new_organ))))
 			qdel(new_organ)
 			. = FALSE
 			continue

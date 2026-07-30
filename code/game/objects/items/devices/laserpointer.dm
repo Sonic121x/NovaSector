@@ -287,9 +287,9 @@
 				log_combat(user, target_felinid, "moved with a laser pointer", src)
 			else
 			NOVA EDIT REMOVAL END */
-			target_felinid.visible_message(span_notice("[target_felinid] looks briefly distracted by the light."), span_warning("You're briefly tempted by the shiny light...")) //NOVA EDIT CHANGE : indent this block if re-enabling above
+			target_felinid.visible_message(span_notice(LANG("obj.89766f76", list(target_felinid))), span_warning(LANG("obj.958edba3", null))) //NOVA EDIT CHANGE : indent this block if re-enabling above
 		else
-			target_felinid.visible_message(span_notice("[target_felinid] stares at the light."), span_warning("You stare at the light..."))
+			target_felinid.visible_message(span_notice(LANG("obj.22e5e7c7", list(target_felinid))), span_warning(LANG("obj.dda3d809", null)))
 	//The pointer is shining, change its sprite to show
 	icon_state = "pointer_[pointer_icon_state]"
 

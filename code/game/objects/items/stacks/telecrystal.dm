@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/stack/telecrystal
 	name = "telecrystal"
 	desc = "Covered in a web of finely engraved geometrical patterns, pulsing with suspiciously enticing energies."
@@ -26,7 +27,7 @@
 			continue
 		hidden_uplink.uplink_handler.add_telecrystals(amount)
 		use(amount)
-		to_chat(user, span_notice("You press [src] onto yourself and charge your hidden uplink."))
+		to_chat(user, span_notice(LANG("obj.b24279db", list(src))))
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 

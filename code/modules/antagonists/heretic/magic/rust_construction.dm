@@ -90,13 +90,13 @@
 		message_shown = TRUE
 		if(IS_HERETIC_OR_MONSTER(living_mob) || living_mob == owner)
 			living_mob.visible_message(
-				span_warning("\A [new_wall] [rises_message] and pushes along [living_mob]!"),
-				span_notice("\A [new_wall] [rises_message] beneath your feet and pushes you along!"),
+				span_warning(LANG("datum.ae71175b", list(new_wall, rises_message, living_mob))),
+				span_notice(LANG("datum.d34234ba", list(new_wall, rises_message))),
 			)
 		else
 			living_mob.visible_message(
-				span_warning("\A [new_wall] [rises_message] and slams into [living_mob]!"),
-				span_userdanger("\A [new_wall] [rises_message] beneath your feet and slams into you!"),
+				span_warning(LANG("datum.a92c9281", list(new_wall, rises_message, living_mob))),
+				span_userdanger(LANG("datum.b0cab291", list(new_wall, rises_message))),
 			)
 			living_mob.apply_damage(10, BRUTE, wound_bonus = 10)
 			living_mob.Knockdown(5 SECONDS)

@@ -169,7 +169,7 @@
 				use_energy(active_power_usage * seconds_per_tick)
 				if(power_pack.stored_ammo.len >= power_pack.max_ammo)
 					playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-					say("[charging] has finished recharging!")
+					say(LANG("obj.53fdf44c", list(charging)))
 				else
 					using_power = TRUE
 		update_appearance()

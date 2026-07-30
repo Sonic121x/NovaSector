@@ -82,7 +82,7 @@ ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特质", "Modify the sta
 				var/datum/station_trait/station_trait_path = text2path(station_trait_text)
 				if (!ispath(station_trait_path, /datum/station_trait) || station_trait_path == /datum/station_trait)
 					log_admin("[key_name(usr)] tried to set an invalid future station trait: [station_trait_text]")
-					to_chat(usr, span_warning("Invalid future station trait: [station_trait_text]"))
+					to_chat(usr, span_warning(LANG("datum.935f8c62", list(station_trait_text))))
 					return TRUE
 
 				station_trait_names += initial(station_trait_path.name)

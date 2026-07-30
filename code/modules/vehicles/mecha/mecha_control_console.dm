@@ -128,7 +128,7 @@
 
 	for(var/obj/item/mecha_parts/mecha_tracking/tracker as anything in mecha_to_attach.trackers)
 		if(tracker.flag_to_check == flag_to_check)
-			to_chat(user, span_notice("There already exists a version of [src] attached to [mecha_to_attach]."))
+			to_chat(user, span_notice(LANG("obj.d6cdee85", list(src, mecha_to_attach))))
 			return
 
 	if(!..())

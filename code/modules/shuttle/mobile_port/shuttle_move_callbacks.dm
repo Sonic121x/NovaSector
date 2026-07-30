@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /*
 All ShuttleMove procs go here
 */
@@ -32,7 +33,7 @@ All ShuttleMove procs go here
 			living_thing.buckled?.unbuckle_mob(living_thing, force = TRUE)
 			living_thing.pulledby?.stop_pulling()
 			living_thing.stop_pulling()
-			living_thing.visible_message(span_warning("[shuttle] slams into [living_thing]!"))
+			living_thing.visible_message(span_warning(LANG("turf.83e05307", list(shuttle, living_thing))))
 			SSblackbox.record_feedback("tally", "shuttle_gib", 1, living_thing.type)
 			log_shuttle("[key_name(living_thing)] was shuttle gibbed by [shuttle].")
 			living_thing.investigate_log("has been gibbed by [shuttle].", INVESTIGATE_DEATHS)

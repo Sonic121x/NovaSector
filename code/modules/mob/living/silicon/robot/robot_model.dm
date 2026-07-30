@@ -224,7 +224,7 @@
 			continue
 
 		storage_datum.energy += charger.materials.use_materials(list(SSmaterials.get_material(storage_datum.mat_type) = to_stock), action = "restocked", name = "units", user_data = ID_DATA(robot))
-		charger.balloon_alert(robot, "+ [to_stock]u [initial(storage_datum.mat_type.name)]")
+		charger.balloon_alert(robot, LANG("obj.3c47112a", list(to_stock, initial(storage_datum.mat_type.name))))
 		playsound(charger, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 50, vary = FALSE)
 		return
 	charger.balloon_alert(robot, LANG("obj.ebd3d28c", null))

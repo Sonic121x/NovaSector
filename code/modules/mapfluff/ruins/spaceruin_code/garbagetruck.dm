@@ -73,7 +73,7 @@
 	eyeballies.Remove(target)
 	eyeballies.forceMove(get_turf(target))
 	notify_ghosts(
-		"[target.real_name] has just had their eyes snatched!",
+		LANG("obj.3322fd0b", list(target.real_name)),
 		source = target,
 		header = "Ouch!",
 	)

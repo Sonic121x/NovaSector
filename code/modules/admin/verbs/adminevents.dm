@@ -3,7 +3,7 @@
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_ADMIN, "私密消息", mob/target)
 	message_admins("[key_name_admin(user)] has started answering [ADMIN_LOOKUPFLW(target)]'s prayer.")
-	var/msg = input(user, LANG("datum.008d3052", null), "Subtle PM to [target.key]") as text|null
+	var/msg = input(user, LANG("datum.008d3052", null), LANG("datum.03de8cc3", list(target.key))) as text|null
 
 	if(!msg)
 		message_admins("[key_name_admin(user)] decided not to answer [ADMIN_LOOKUPFLW(target)]'s prayer")
@@ -66,7 +66,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_headset_message, R_ADMIN, "耳机消息",
 	BLACKBOX_LOG_ADMIN_VERB("Headset Message")
 
 ADMIN_VERB(cmd_admin_world_narrate, R_ADMIN, "全局旁白", "Send a direct narration to all connected players.", ADMIN_CATEGORY_EVENTS)
-	var/msg = input(user, LANG("datum.008d3052", null), "Enter the text you wish to appear to everyone:") as text|null
+	var/msg = input(user, LANG("datum.008d3052", null), LANG("datum.7c26d5bd", null)) as text|null
 	if (!msg)
 		return
 	msg = user.reformat_narration(msg)
@@ -76,10 +76,10 @@ ADMIN_VERB(cmd_admin_world_narrate, R_ADMIN, "全局旁白", "Send a direct narr
 	BLACKBOX_LOG_ADMIN_VERB("Global Narrate")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_local_narrate, R_ADMIN, "本地旁白", atom/locale)
-	var/range = input(user, LANG("datum.c5d1936b", null), "Narrate to mobs within how many tiles:", 7) as num|null
+	var/range = input(user, LANG("datum.c5d1936b", null), LANG("datum.520ed99b", null), 7) as num|null
 	if(!range)
 		return
-	var/msg = input(user, LANG("datum.008d3052", null), "Enter the text you wish to appear to everyone within view:") as text|null
+	var/msg = input(user, LANG("datum.008d3052", null), LANG("datum.4d8da095", null)) as text|null
 	if (!msg)
 		return
 	msg = user.reformat_narration(msg)
@@ -91,7 +91,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_local_narrate, R_ADMIN, "本地旁白", a
 	BLACKBOX_LOG_ADMIN_VERB("Local Narrate")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_direct_narrate, R_ADMIN, "直接旁白", mob/target)
-	var/msg = input(user, LANG("datum.008d3052", null), "Enter the text you wish to appear to your target:") as text|null
+	var/msg = input(user, LANG("datum.008d3052", null), LANG("datum.5d97ad04", null)) as text|null
 
 	if( !msg )
 		return
@@ -106,7 +106,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_direct_narrate, R_ADMIN, "直接旁白", 
 	BLACKBOX_LOG_ADMIN_VERB("Direct Narrate")
 
 ADMIN_VERB(cmd_admin_add_freeform_ai_law, R_ADMIN, "添加自定义 AI 法则", "Add a custom law to the Silicons.", ADMIN_CATEGORY_EVENTS)
-	var/input = input(user, LANG("datum.d01816bc", null), "What?", "") as text|null
+	var/input = input(user, LANG("datum.d01816bc", null), LANG("datum.29297405", null), "") as text|null
 	if(!input)
 		return
 

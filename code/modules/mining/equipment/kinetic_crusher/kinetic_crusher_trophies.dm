@@ -30,7 +30,7 @@
 /obj/item/crusher_trophy/proc/add_to(obj/item/kinetic_crusher/crusher, mob/living/user)
 	for(var/obj/item/crusher_trophy/trophy as anything in crusher.trophies)
 		if(istype(trophy, denied_type) || istype(src, trophy.denied_type))
-			to_chat(user, span_warning("You can't seem to attach [src] to [crusher]. Maybe remove a few trophies?"))
+			to_chat(user, span_warning(LANG("obj.e6071d24", list(src, crusher))))
 			return FALSE
 	if(!user.transferItemToLoc(src, crusher))
 		return FALSE

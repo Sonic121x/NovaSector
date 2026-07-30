@@ -153,8 +153,8 @@
 		hit_things += trample_target
 		if(faction_check_atom(trample_target))
 			continue
-		visible_message(span_boldwarning("[src] tramples and kicks [trample_target]!"))
-		to_chat(trample_target, span_userdanger("[src] tramples you and kicks you away!"))
+		visible_message(span_boldwarning(LANG("mob.839ad776", list(src, trample_target))))
+		to_chat(trample_target, span_userdanger(LANG("mob.ecb3e412", list(src))))
 		trample_target.safe_throw_at(throwtarget, 10, 1, src)
 		trample_target.Paralyze(20)
 		trample_target.adjust_brute_loss(melee_damage_upper)

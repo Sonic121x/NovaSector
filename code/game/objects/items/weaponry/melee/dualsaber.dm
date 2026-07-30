@@ -105,7 +105,7 @@
 					myhead.drop_limb()
 				sleep(0.3 SECONDS)
 			else
-				user.visible_message(span_suicide("[user] panics and starts choking to death!"))
+				user.visible_message(span_suicide(LANG("obj.dec784f1", list(user))))
 				return OXYLOSS
 
 	else

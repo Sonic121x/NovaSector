@@ -148,7 +148,7 @@
 					qdel(barrier)
 
 			for(var/mob/contestant in area_turf)
-				to_chat(contestant, span_userdanger("FIGHT!"))
+				to_chat(contestant, span_userdanger(LANG("obj.935e8525", null)))
 
 /obj/machinery/conveyor/holodeck
 

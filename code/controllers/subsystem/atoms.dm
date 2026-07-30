@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 SUBSYSTEM_DEF(atoms)
 	name = "Atoms"
 	dependencies = list(
@@ -200,16 +201,16 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""
 	for(var/path in BadInitializeCalls)
-		. += "Path : [path] \n"
+		. += LANG("datum.ffc8cf7d", list(path))
 		var/fails = BadInitializeCalls[path]
 		if(fails & BAD_INIT_DIDNT_INIT)
-			. += "- Didn't call atom/Initialize(mapload)\n"
+			. += LANG("datum.da73789a", null)
 		if(fails & BAD_INIT_NO_HINT)
-			. += "- Didn't return an Initialize hint\n"
+			. += LANG("datum.6db7867c", null)
 		if(fails & BAD_INIT_QDEL_BEFORE)
-			. += "- Qdel'd before Initialize proc ran\n"
+			. += LANG("datum.5ac3b224", null)
 		if(fails & BAD_INIT_SLEPT)
-			. += "- Slept during Initialize()\n"
+			. += LANG("datum.6d5eb86c", null)
 
 /// Prepares an atom to be deleted once the atoms SS is initialized.
 /datum/controller/subsystem/atoms/proc/prepare_deletion(atom/target)

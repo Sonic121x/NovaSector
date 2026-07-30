@@ -258,7 +258,7 @@
 			return ITEM_INTERACT_BLOCKING
 
 		for(var/obj/structure/window/competitor in loc)
-			to_chat(user, span_warning("There is already a window there!"))
+			to_chat(user, span_warning(LANG("obj.a3c6a7b7", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!clear_tile(user))

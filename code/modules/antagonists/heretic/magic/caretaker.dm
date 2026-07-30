@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/action/cooldown/spell/caretaker
 	name = "Caretaker’s Last Refuge"
 	desc = "Shifts you into the Caretaker's Refuge, rendering you translucent and intangible. \
@@ -31,7 +32,7 @@
 
 	for(var/mob/living/alive in orange(5, owner))
 		if(alive.stat != DEAD && alive.client && (owner in view(alive)))
-			owner.balloon_alert(owner, "other minds nearby!")
+			owner.balloon_alert(owner, LANG("datum.6a0684a7", null))
 			return . | SPELL_CANCEL_CAST
 
 	if(!cast_on.has_status_effect(/datum/status_effect/caretaker_refuge))

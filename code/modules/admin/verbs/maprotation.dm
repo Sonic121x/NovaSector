@@ -83,11 +83,11 @@ ADMIN_VERB(admin_change_map, R_SERVER, "更换地图", "Set the next map.", ADMI
 			var/shuttles = tgui_alert(user,LANG("datum.40d4a6e7", null), LANG("datum.effa4eab", null), list("Yes", "No"))
 			if(shuttles == "Yes")
 				for(var/s in virtual_map.shuttles)
-					var/shuttle = input(user, s, "Map Shuttles") as null|text
+					var/shuttle = input(user, s, LANG("datum.effa4eab", null)) as null|text
 					if(!shuttle)
 						continue
 					if(!SSmapping.shuttle_templates[shuttle])
-						to_chat(user, span_warning("No such shuttle as '[shuttle]' exists, using default."))
+						to_chat(user, span_warning(LANG("datum.bbdd700a", list(shuttle))))
 						continue
 					virtual_map.shuttles[s] = shuttle
 

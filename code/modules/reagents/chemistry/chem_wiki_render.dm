@@ -25,13 +25,13 @@ ADMIN_VERB(generate_wikichem_list, R_DEBUG, "解析维基化学", "Parse and gen
 	for(var/name in names)
 		var/datum/reagent/reagent = GLOB.chemical_reagents_list[get_chem_id(name)]
 		if(!reagent)
-			to_chat(user, "Could not find [name]. Skipping.")
+			to_chat(user, LANG("datum.f1b32696", list(name)))
 			continue
 		//Get reaction
 		var/list/reactions = GLOB.chemical_reactions_list_product_index[reagent.type]
 
 		if(!length(reactions))
-			to_chat(user, "Could not find [name] reaction! Continuing anyways.")
+			to_chat(user, LANG("datum.9d254392", list(name)))
 			var/single_parse = generate_chemwiki_line(reagent, null)
 			text2file(single_parse, "[GLOB.log_directory]/chem_parse.txt")
 			continue

@@ -395,7 +395,7 @@
 			continue
 
 		// Sucks, but that's just how it is sometimes.
-		to_chat(candidate, span_warning("The blood worm cocoon you rolled a hatchling spot for was canceled. Sorry."))
+		to_chat(candidate, span_warning(LANG("datum.d454c120", null)))
 
 /obj/structure/blood_worm_cocoon/adult
 	name = "large blood cocoon"

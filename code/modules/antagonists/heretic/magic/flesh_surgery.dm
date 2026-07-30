@@ -169,8 +169,8 @@
 	new /obj/effect/temp_visual/cult/sparks(get_turf(to_heal))
 	var/condition = (to_heal.damage > 0) ? "better" : "perfect"
 	caster.visible_message(
-		span_warning("[caster]'s hand glows a brilliant red as [caster.p_they()] restore[caster.p_s()] \the [to_heal] to [condition] condition!"),
-		span_notice("Your hand glows a brilliant red as you restore \the [to_heal] to [condition] condition!"),
+		span_warning(LANG("datum.65e3a4cb", list(caster, caster.p_they(), caster.p_s(), to_heal, condition))),
+		span_notice(LANG("datum.7c3a3093", list(to_heal, condition))),
 	)
 
 	return TRUE

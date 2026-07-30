@@ -86,7 +86,7 @@
 		start_broadcasting_network(BITRUNNER_CAMERA_NET)
 
 	if(generated_domain.announce_to_ghosts)
-		notify_ghosts("Bitrunners have loaded a domain that offers ghost interactions. Check the spawners menu for more information.",
+		notify_ghosts(LANG("obj.add68644", null),
 			src,
 			"Matrix Glitch",
 		)

@@ -108,7 +108,7 @@
 	for(var/mob/living/mob in target.get_all_contents())
 		if(mob.mob_size <= max_mob_size)
 			continue
-		balloon_alert(mod.wearer, "crate too heavy!")
+		balloon_alert(mod.wearer, LANG("obj.ec1b7b19", null))
 		return FALSE
 	return TRUE
 

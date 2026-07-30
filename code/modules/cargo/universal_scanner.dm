@@ -241,7 +241,7 @@
 
 				for(var/datum/bank_account/shareholder in cube.bounty_holder_accounts)
 					if(shareholder != cube.bounty_handler_account) //No need to send a tracking update to the person scanning it
-						shareholder.bank_card_talk("<b>[cube]</b> was scanned in \the <b>[get_area(cube)]</b> by <b>[scan_human] ([scan_human.job])</b>.")
+						shareholder.bank_card_talk(LANG("obj.6bef883c", list(cube, get_area(cube), scan_human, scan_human.job)))
 
 			else
 				to_chat(user, span_warning(LANG("obj.7431fd1a", null)))

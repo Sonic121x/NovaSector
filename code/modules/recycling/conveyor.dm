@@ -301,7 +301,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		if(!target_turf || isclosedturf(target_turf))
 			return ITEM_INTERACT_BLOCKING
 		for(var/obj/machinery/conveyor/belt in target_turf)
-			to_chat(user, span_warning("You cannot place a conveyor belt on top of another conveyor belt."))
+			to_chat(user, span_warning(LANG("obj.977cdec6", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/conveyor/belt_item = tool

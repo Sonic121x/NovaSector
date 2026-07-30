@@ -205,14 +205,14 @@
 		log_combat(the_hulk, yeeted_person, "has smacked this person into someone while tail swinging") // i have no idea how to better word this
 
 		if(collateral_mob == the_hulk) // if the hulk moves wrong and crosses himself
-			the_hulk.visible_message(span_warning("[the_hulk] smacks [the_hulk.p_them()]self with [yeeted_person]!"), span_userdanger("You end up smacking [yeeted_person] into yourself!"), ignored_mobs = yeeted_person)
-			to_chat(yeeted_person, span_userdanger("[the_hulk] smacks you into [the_hulk.p_them()]self, turning you free!"))
+			the_hulk.visible_message(span_warning(LANG("datum.8c560e08", list(the_hulk, the_hulk.p_them(), yeeted_person))), span_userdanger(LANG("datum.a559f48f", list(yeeted_person))), ignored_mobs = yeeted_person)
+			to_chat(yeeted_person, span_userdanger(LANG("datum.783766fa", list(the_hulk, the_hulk.p_them()))))
 			the_hulk.adjust_brute_loss(step)
 			return
 
-		yeeted_person.visible_message(span_warning("[the_hulk] swings [yeeted_person] directly into [collateral_mob], sending [collateral_mob.p_them()] flying!"), \
-			span_userdanger("You're smacked into [collateral_mob]!"), ignored_mobs = collateral_mob)
-		to_chat(collateral_mob, span_userdanger("[the_hulk] swings [yeeted_person] directly into you, sending you flying!"))
+		yeeted_person.visible_message(span_warning(LANG("datum.10184e16", list(the_hulk, yeeted_person, collateral_mob, collateral_mob.p_them()))), \
+			span_userdanger(LANG("datum.7661fba6", list(collateral_mob))), ignored_mobs = collateral_mob)
+		to_chat(collateral_mob, span_userdanger(LANG("datum.f5fb0ff6", list(the_hulk, yeeted_person))))
 
 		collateral_mob.adjust_brute_loss(step*0.5)
 		collateral_mob.throw_at(collat_throw_target, round(step * 0.25) + 1, round(step * 0.25) + 1)

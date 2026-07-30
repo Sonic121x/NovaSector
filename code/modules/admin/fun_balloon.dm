@@ -140,7 +140,7 @@
 		var/turf/drop_off = find_safe_turf(z)
 		new /obj/effect/temp_visual/gravpush(get_turf(dispersed_mob))
 		dispersed_mob.forceMove(drop_off)
-		dispersed_mob.balloon_alert(dispersed_mob, "pop!")
+		dispersed_mob.balloon_alert(dispersed_mob, LANG("obj.01729c70", null))
 
 // ----------- Station Crash
 // Can't think of anywhere better to put it right now

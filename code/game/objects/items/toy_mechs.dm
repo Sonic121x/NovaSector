@@ -238,7 +238,7 @@
 				user.adjust_stamina_loss(25)
 
 		if(!combat_sleep(1 SECONDS, null, user))
-			say("PATHETIC.")
+			say(LANG("obj.dee92bb2", null))
 			combat_health = max_combat_health
 			in_combat = FALSE
 			return SHAME

@@ -50,7 +50,7 @@
 
 	if(good_kind_of_healing && !reaping && SPT_PROB(0.005, seconds_per_tick)) //janken with the grim reaper!
 		notify_ghosts(
-			"[affected_mob.real_name] has entered a game of rock-paper-scissors with death!",
+			LANG("datum.64518392", list(affected_mob.real_name)),
 			source = affected_mob,
 			header = "Who Will Win?",
 		)

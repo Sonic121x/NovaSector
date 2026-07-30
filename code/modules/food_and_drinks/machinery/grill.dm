@@ -150,7 +150,7 @@
 			if(!istype(stored, target_type))
 				continue
 			if(stored.amount == MAX_STACK_SIZE)
-				balloon_alert(user, "no space!")
+				balloon_alert(user, LANG("obj.a5ca1017", null))
 				return ITEM_INTERACT_BLOCKING
 			target.merge(stored)
 			merged = TRUE

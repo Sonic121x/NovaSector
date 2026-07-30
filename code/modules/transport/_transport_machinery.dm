@@ -102,7 +102,7 @@
 	. = ..()
 	if(methods_to_fix)
 		for(var/tool_method in methods_to_fix)
-			. += span_warning("It needs someone to [EXAMINE_HINT(tool_method)].")
+			. += span_warning(LANG("obj.cbc18ed6", list(EXAMINE_HINT(tool_method))))
 	if(panel_open)
 		. += span_notice(LANG("obj.d8fd396d", list(EXAMINE_HINT("crowbar."))))
 

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /mob/living/basic/heretic_summon/star_gazer
 	name = "\improper Star Gazer"
 	desc = "A creature that has been tasked to watch over the stars."
@@ -135,7 +136,7 @@
 			continue
 		nearby_mob.apply_status_effect(/datum/status_effect/star_mark)
 		nearby_mob.apply_damage(10)
-		to_chat(nearby_mob, span_userdanger("\The [src] [attack_verb_continuous] you!"))
+		to_chat(nearby_mob, span_userdanger(LANG("mob.40d62be1", list(src, attack_verb_continuous))))
 		do_attack_animation(nearby_mob, ATTACK_EFFECT_SLASH)
 		log_combat(src, nearby_mob, "slashed")
 
@@ -367,12 +368,8 @@
 				if(living_victim.stat != STABLE)
 					playsound(living_victim, 'sound/effects/supermatter.ogg', 80, TRUE)
 					living_victim.visible_message(
-						span_danger("You see [living_victim] engulfed in the scorching wrath of the cosmos. \
-							For a moment, you see their silhouette flail in agony before fading to mere atoms."),
-						span_boldbig(span_hypnophrase("THE POWER OF THE COSMOS ITSELF POURS OUT OVER YOUR FORM. \
-							WAVES OF HEAT LATCH ONTO YOUR BODY, PULLING IT APART AT THE SEAMS. \
-							YOUR TOTAL ANNIHILATION TAKES ONLY A MOMENT BEFORE YOU ARE REDUCED BACK TO WHAT YOU ALWAYS WERE. \
-							MOTES OF MERE DUST..."))
+						span_danger(LANG("datum.6c97cdb8", list(living_victim))),
+						span_boldbig(span_hypnophrase(LANG("datum.a7d5b1ab", null)))
 						)
 					living_victim.dust()
 				living_victim.emote("scream")

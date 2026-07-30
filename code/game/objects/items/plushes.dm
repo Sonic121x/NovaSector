@@ -446,7 +446,7 @@
 			clash_target = null
 			return
 		if(!Adjacent(P))
-			visible_message(span_warning("The two plushies angrily flail at each other before giving up."))
+			visible_message(span_warning(LANG("obj.33dd4a45", null)))
 			clash_target = null
 			P.clashing = FALSE
 			return

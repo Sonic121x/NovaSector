@@ -24,11 +24,11 @@ GLOBAL_DATUM_INIT(closet_teleport_controller, /datum/closet_teleport_controller,
 			continue
 		if(length(eigen_targets[already_linked]) > 1) //Eigenstates are notorious for having cliques!
 			if(!subtle)
-				target.visible_message("[target] fizzes, it's already linked to something else!")
+				target.visible_message(LANG("datum.7a96195c", list(target)))
 			targets -= target
 			continue
 		if(!subtle)
-			target.visible_message("[target] fizzes, collapsing its unique wavefunction into the others!") //If we're in a eigenlink all on our own and are open to new friends
+			target.visible_message(LANG("datum.c4532063", list(target))) //If we're in a eigenlink all on our own and are open to new friends
 		remove_eigen_entry(target) //clearup for new stuff
 	//Do we still have targets?
 	if(!length(targets))

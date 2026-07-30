@@ -50,10 +50,10 @@
 
 	for(var/datum/status_effect/cuffed_item/effect in user.status_effects)
 		if(effect.cuffed == source)
-			to_chat(user, span_warning("[source] is already cuffed to your wrist!"))
+			to_chat(user, span_warning(LANG("datum.b8be3198", list(source))))
 			return
 		if(effect.cuffed_to == user.get_inactive_hand())
-			to_chat(user, span_warning("You already have something cuffed to your opposite wrist!"))
+			to_chat(user, span_warning(LANG("datum.f8f88059", null)))
 			return
 
 	if(!user.get_inactive_hand())

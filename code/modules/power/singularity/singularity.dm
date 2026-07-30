@@ -435,8 +435,8 @@
 /obj/singularity/proc/combust_mobs()
 	for(var/mob/living/carbon/burned_mob in urange(20, src, 1))
 		burned_mob.visible_message(
-			span_warning("[burned_mob]'s skin bursts into flame!"),
-			span_userdanger("You feel an inner fire as your skin bursts into flames!")
+			span_warning(LANG("obj.9effc9a8", list(burned_mob))),
+			span_userdanger(LANG("obj.16720060", null))
 		)
 		burned_mob.adjust_fire_stacks(5)
 		burned_mob.ignite_mob()
@@ -455,7 +455,7 @@
 		if(istype(stunned_human.glasses, /obj/item/clothing/glasses/meson))
 			var/obj/item/clothing/glasses/meson/check_meson = stunned_human.glasses
 			if(check_meson.vision_flags & SEE_TURFS)
-				to_chat(stunned_human, span_notice("You look directly into \the [src], good thing you had your protective eyewear on!"))
+				to_chat(stunned_human, span_notice(LANG("obj.5337ad63", list(src))))
 				continue
 
 		apply_stun(stunned_mob)

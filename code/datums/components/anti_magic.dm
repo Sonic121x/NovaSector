@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// This provides different types of magic resistance on an object
 /datum/component/anti_magic
 	/// A bitflag with the types of magic resistance on the object
@@ -128,7 +129,7 @@
 		if(!(antimagic_flags & magic_spell.antimagic_flags))
 			continue
 
-		to_chat(equipper, span_warning("[parent] is interfering with your ability to cast magic!"))
+		to_chat(equipper, span_warning(LANG("datum.beadf132", list(parent))))
 		alert_caster_on_equip = FALSE
 		break
 

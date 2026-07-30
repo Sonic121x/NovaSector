@@ -53,7 +53,7 @@
 					. += LANG("atom.e9f1f44b", list(reagents.total_volume, user_sees_reagents ? ":" : "."))
 					if(user_sees_reagents || (reagent_sigreturn & ALLOW_GENERIC_REAGENT_EXAMINE)) //Show each individual reagent for detailed examination
 						for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
-							. += "&bull; [round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING)] units of [current_reagent.name]"
+							. += LANG("atom.5b87b0e6", list(round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING), current_reagent.name))
 						if(reagents.is_reacting)
 							. += span_warning(LANG("atom.b103a790", null))
 						. += span_notice(LANG("atom.e0cf0e9e", list(round(reagents.ph, 0.01), reagents.chem_temp)))
@@ -190,7 +190,7 @@
 				material_string += span_tooltip("[property]: [tooltip_hint]", descriptor)
 
 		if (length(material_string))
-			. += span_info("[capitalize(material.name)] is [english_list(material_string)].")
+			. += span_info(LANG("atom.120458d2", list(capitalize(material.name), english_list(material_string))))
 
 /**
  * Get the name of this object for examine

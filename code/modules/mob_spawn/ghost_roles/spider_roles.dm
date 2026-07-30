@@ -113,7 +113,7 @@
 		if(flash_window)
 			notify_flags_to_pass &= GHOST_NOTIFY_FLASH_WINDOW
 		notify_ghosts(
-			"[src] is ready to hatch!",
+			LANG("obj.6b8ec072", list(src)),
 			source = src,
 			header = "Spider Infestation",
 			click_interact = TRUE,

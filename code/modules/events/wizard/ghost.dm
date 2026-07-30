@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/round_event_control/wizard/ghost //The spook is real
 	name = "G-G-G-Ghosts!"
 	weight = 3
@@ -26,4 +27,4 @@
 /datum/round_event/wizard/possession/start()
 	for(var/mob/dead/observer/ghost_player in GLOB.player_list)
 		ghost_player.fun_verbs = TRUE
-		to_chat(ghost_player, span_hypnophrase("You suddenly feel a welling of new spooky powers..."))
+		to_chat(ghost_player, span_hypnophrase(LANG("datum.9aa1fa68", null)))

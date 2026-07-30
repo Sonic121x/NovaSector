@@ -522,7 +522,7 @@
 			else
 				gun.projectiles_cache = gun.projectiles_cache + ammo_needed
 			playsound(get_turf(user), ammo.load_audio, 50, TRUE)
-			to_chat(user, span_notice("You add [ammo_needed] [ammo.ammo_type][ammo_needed > 1 ? "s" : ""] to \the [gun]"))
+			to_chat(user, span_notice(LANG("obj.3ed6c3bf", list(ammo_needed, ammo.ammo_type, ammo_needed > 1 ? "s" : "", gun))))
 			ammo.rounds = ammo.rounds - ammo_needed
 			if(ammo.custom_materials)	//Change material content of the ammo box according to the amount of ammo deposited into the weapon
 				/// list of materials contained in the ammo box after we put it through the equation so we can stick this list into set_custom_materials()
@@ -542,7 +542,7 @@
 			gun.projectiles_cache = gun.projectiles_cache + ammo.rounds
 
 		playsound(get_turf(user),ammo.load_audio,50,TRUE)
-		to_chat(user, span_notice("You add [ammo.rounds] [ammo.ammo_type][ammo.rounds > 1 ? "s" : ""] to \the [gun]"))
+		to_chat(user, span_notice(LANG("obj.3ed6c3bf", list(ammo.rounds, ammo.ammo_type, ammo.rounds > 1 ? "s" : "", gun))))
 		if(ammo.qdel_on_empty)
 			qdel(ammo)
 			return TRUE

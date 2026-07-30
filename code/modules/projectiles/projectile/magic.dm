@@ -378,7 +378,7 @@
 			return BULLET_ACT_HIT
 		for(var/x in target.get_traumas())//checks to see if the victim is already going through possession
 			if(istype(x, /datum/brain_trauma/special/imaginary_friend/trapped_owner))
-				target.visible_message(span_warning("[src] vanishes on contact with [target]!"))
+				target.visible_message(span_warning(LANG("obj.4ef98e44", list(src, target))))
 				return BULLET_ACT_BLOCK
 		to_chat(target, span_warning(LANG("obj.b923311f", null)))
 		possession_test(target)

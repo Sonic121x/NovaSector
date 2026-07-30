@@ -263,8 +263,8 @@
 
 	//player is attempting to open/close the grave with a shovel
 	user.visible_message(
-			span_notice("[user] Is attempting to [opened ? "close" : "dig open"] [src]."),
-			span_notice("You start [opened ? "closing" : "digging open"] [src]."),
+			span_notice(LANG("obj.e5f15a33", list(user, opened ? "close" : "dig open", src))),
+			span_notice(LANG("obj.0f8e8d4a", list(opened ? "closing" : "digging open", src))),
 	)
 	if(!tool.use_tool(src, user, delay = 1.5 SECONDS, volume = 40))
 		return ITEM_INTERACT_BLOCKING

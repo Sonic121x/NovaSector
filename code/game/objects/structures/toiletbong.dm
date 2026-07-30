@@ -24,7 +24,7 @@
 	if(toilet)
 		for(var/obj/item/cistern_item in toilet.contents)
 			cistern_item.forceMove(crafter.drop_location())
-			to_chat(crafter, span_warning("[cistern_item] falls out of the toilet!"))
+			to_chat(crafter, span_warning(LANG("obj.0faaa105", list(cistern_item))))
 		setDir(toilet.dir)
 		forceMove(toilet.loc)
 
@@ -54,7 +54,7 @@
 	toiletbong_location.hotspot_expose(1000, 5)
 	for (var/obj/item/item in contents)
 		if (item.resistance_flags & INDESTRUCTIBLE)
-			user.balloon_alert(user, "[item.name] is blocking the pipes!")
+			user.balloon_alert(user, LANG("obj.a1919659", list(item.name)))
 			continue
 		playsound(src, 'sound/items/modsuit/flamethrower.ogg', 50)
 
@@ -62,11 +62,11 @@
 		do_chem_smoke(amount = smoke_amount, holder = src, location = loc, carry = item.reagents, carry_limit = 20, smoke_type = /datum/effect_system/fluid_spread/smoke/chem/smoke_machine)
 		if (prob(5) && !(obj_flags & EMAGGED))
 			if(user.get_liked_foodtypes() & GORE)
-				user.balloon_alert(user, "a hidden treat!")
-				user.visible_message(span_danger("[user] fishes a mouse out of the pipes."))
+				user.balloon_alert(user, LANG("obj.3f5fa41f", null))
+				user.visible_message(span_danger(LANG("obj.75c206b4", list(user))))
 			else
-				to_chat(user, span_userdanger("There was something disgusting in the pipes!"))
-				user.visible_message(span_danger("[user] spits out a mouse."))
+				to_chat(user, span_userdanger(LANG("obj.836dffd7", null)))
+				user.visible_message(span_danger(LANG("obj.e83468cd", list(user))))
 				user.adjust_disgust(50)
 				user.vomit(VOMIT_CATEGORY_DEFAULT)
 			var/mob/living/spawned_mob = new /mob/living/basic/mouse(get_turf(user))

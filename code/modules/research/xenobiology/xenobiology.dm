@@ -355,7 +355,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			user.visible_message(span_warning(LANG("obj.98e1c4fd", list(user))), span_warning(LANG("obj.c38edd12", null)))
 			for(var/mob/living/basic/slime/slime in viewers(get_turf(user), null))
 				slime.ai_controller?.set_blackboard_key(BB_SLIME_RABID, TRUE)
-				slime.visible_message(span_danger("The [slime] is driven into a frenzy!"))
+				slime.visible_message(span_danger(LANG("obj.f05e3bad", list(slime))))
 			return 600
 
 /obj/item/slime_extract/blue

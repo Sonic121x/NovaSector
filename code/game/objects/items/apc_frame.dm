@@ -17,7 +17,7 @@
 		return FALSE //can't place apcs in areas with no power requirement
 	for(var/obj/machinery/power/terminal/E in T)
 		if(E.master)
-			to_chat(user, span_warning("There is another network terminal here!"))
+			to_chat(user, span_warning(LANG("obj.3ca3c075", null)))
 			return FALSE
 	return ..()
 

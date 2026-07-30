@@ -115,7 +115,7 @@
 	COOLDOWN_START(src, summon_cooldown, 60 SECONDS)
 	to_chat(user, span_notice(LANG("obj.7d5120b1", null)))
 	notify_ghosts(
-		"[user.real_name] is raising [user.p_their()] [name], calling for your help!",
+		LANG("obj.022bc66f", list(user.real_name, user.p_their(), name)),
 		source = user,
 		ignore_key = POLL_IGNORE_SPECTRAL_BLADE,
 		header = "Spectral blade",

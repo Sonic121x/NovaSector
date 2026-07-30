@@ -389,7 +389,7 @@
 
 	for(var/obj/item/weapon in user.held_items)
 		if(weapon.get_sharpness())
-			victim.visible_message(span_danger("[user] impales [victim] with [user.p_their()] [weapon.name]!"), span_userdanger("[user] impales you with [user.p_their()] [weapon.name]!"))
+			victim.visible_message(span_danger(LANG("obj.f05c9e14", list(user, victim, user.p_their(), weapon.name))), span_userdanger(LANG("obj.a97bb9a3", list(user, user.p_their(), weapon.name))))
 			victim.apply_damage(weapon.force, BRUTE, BODY_ZONE_CHEST, attacking_item = weapon)
 			user.do_item_attack_animation(victim, used_item = weapon, animation_type = ATTACK_ANIMATION_PIERCE)
 			user.add_blood_DNA_to_items(victim.get_blood_dna_list(), ITEM_SLOT_ICLOTHING|ITEM_SLOT_OCLOTHING)
@@ -432,8 +432,8 @@
 
 	if(!iscarbon(victim) || !ishuman(ling) || !ling.combat_mode)
 		victim.visible_message(
-			span_danger("[victim] is grabbed by [ling]'s [src]]!"),
-			span_userdanger("\A [src] grabs you and pulls you towards [ling]!"),
+			span_danger(LANG("obj.7f5eac5b", list(victim, ling, src))),
+			span_userdanger(LANG("obj.1377e1d0", list(src, ling))),
 		)
 		victim.throw_at(
 			target = get_step_towards(ling, victim),
@@ -450,8 +450,8 @@
 		if(!isnull(stealing))
 			if(victim.dropItemToGround(stealing))
 				victim.visible_message(
-					span_danger("[stealing] is yanked off [victim]'s hand by [src]!"),
-					span_userdanger("\A [src] pulls [stealing] away from you!"),
+					span_danger(LANG("obj.0eb8a523", list(stealing, victim, src))),
+					span_userdanger(LANG("obj.2a71e8ab", list(src, stealing))),
 				)
 				return on_hit(stealing) //grab the item as if you had hit it directly with the tentacle
 
@@ -463,8 +463,8 @@
 
 	if(ling.combat_mode)
 		victim.visible_message(
-			span_danger("[victim] is thrown towards [ling] by \a [src]!"),
-			span_userdanger("\A [src] grabs you and throws you towards [ling]!"),
+			span_danger(LANG("obj.27b77bea", list(victim, ling, src))),
+			span_userdanger(LANG("obj.520cb41f", list(src, ling))),
 		)
 		victim.throw_at(
 			target = get_step_towards(ling, victim),

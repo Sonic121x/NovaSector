@@ -131,7 +131,7 @@
 					if(istype(CP, /obj/structure/disposalpipe/broken))
 						qdel(CP)
 					else
-						to_chat(user, span_warning("There is already a disposal pipe at that location!"))
+						to_chat(user, span_warning(LANG("obj.eb43afe5", null)))
 						return TRUE
 
 		else // Disposal or outlet

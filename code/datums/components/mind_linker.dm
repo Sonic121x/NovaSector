@@ -232,7 +232,7 @@
 	to_chat(to_link, span_notice(link_message))
 	to_chat(owner, span_notice(LANG("datum.1e4f0052", list(to_link, network_name))))
 	for(var/mob/living/other_link as anything in linked_mobs)
-		to_chat(other_link, span_notice("You feel a new presence within [owner.real_name]'s [network_name]."))
+		to_chat(other_link, span_notice(LANG("datum.55d4fc87", list(owner.real_name, network_name))))
 
 /datum/component/mind_linker/active_linking/unlink_mob(mob/living/to_unlink)
 	. = ..()
@@ -244,7 +244,7 @@
 	to_chat(to_unlink, span_warning(unlink_message))
 	to_chat(owner, span_warning(LANG("datum.402cb6b6", list(network_name))))
 	for(var/mob/living/other_link as anything in linked_mobs)
-		to_chat(other_link, span_warning("You feel a pressence disappear from [owner.real_name]'s [network_name]."))
+		to_chat(other_link, span_warning(LANG("datum.224e1bf8", list(owner.real_name, network_name))))
 
 // Used in mind linker to talk to everyone in the network.
 /datum/action/innate/linked_speech
@@ -293,7 +293,7 @@
 		var/avoid_highlighting = (recipient == owner) || (recipient == linker_parent)
 		to_chat(recipient, formatted_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = avoid_highlighting)
 		if(linker.show_balloon_alert && recipient != owner)
-			recipient.balloon_alert(recipient, "you hear a voice from your [linker.network_name]")
+			recipient.balloon_alert(recipient, LANG("datum.a046cc1b", list(linker.network_name)))
 
 	for(var/mob/recipient as anything in GLOB.dead_mob_list)
 		to_chat(recipient, "[FOLLOW_LINK(recipient, owner)] [formatted_message]", type = MESSAGE_TYPE_RADIO)

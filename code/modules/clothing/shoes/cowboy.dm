@@ -35,7 +35,7 @@
 			if(!target_zone) //we broke their legs right on off!
 				break
 			occupant.forceMove(user.drop_location())
-			user.visible_message(span_warning("[user] recoils as something slithers out of [src]."), span_userdanger("You feel a sudden stabbing pain in your [pick("foot", "toe", "ankle")]!"))
+			user.visible_message(span_warning(LANG("obj.05d89de9", list(user, src))), span_userdanger(LANG("obj.884c980a", list(pick("foot", "toe", "ankle")))))
 			user.Knockdown(20) //Is one second paralyze better here? I feel you would fall on your ass in some fashion.
 			occupant.UnarmedAttack(user, proximity_flag = TRUE)
 

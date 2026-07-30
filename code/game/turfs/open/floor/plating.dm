@@ -78,7 +78,7 @@
 
 		for(var/obj/blocker in src)
 			for(var/mob/sitter as anything in blocker.buckled_mobs)
-				to_chat(user, span_warning("Someone is buckled to \the [blocker]! Unbuckle [sitter] to move [sitter.p_them()] out of the way."))
+				to_chat(user, span_warning(LANG("turf.e3137a94", list(blocker, sitter, sitter.p_them()))))
 				return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/tile/tile = tool

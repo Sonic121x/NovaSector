@@ -360,7 +360,7 @@
 					removed_any = TRUE
 					qdel(BS)
 				if(removed_any)
-					to_chat(affected_mob, span_cult_large("Your blood rites falter as holy water scours your body!"))
+					to_chat(affected_mob, span_cult_large(LANG("datum.9e5484f2", null)))
 					COOLDOWN_START(src, spell_clear_cd, 3 SECONDS)
 
 		if(IS_HERETIC(affected_mob))

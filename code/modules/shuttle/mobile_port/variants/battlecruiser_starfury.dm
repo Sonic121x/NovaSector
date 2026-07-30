@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 /// The Starfury map template itself.
 /datum/map_template/battlecruiser_starfury
@@ -169,12 +170,12 @@
 				spawner.antag_team.players_spawned += (our_candidate.ckey)
 				candidates.Splice(1, 2)
 				notify_ghosts(
-					"The battlecruiser has an object of interest: [our_candidate]!",
+					LANG("_root.1d537442", list(our_candidate)),
 					source = our_candidate,
 				)
 			else
 				notify_ghosts(
-					"The battlecruiser has an object of interest: [spawner]!",
+					LANG("_root.1d537442", list(spawner)),
 					source = spawner,
 				)
 

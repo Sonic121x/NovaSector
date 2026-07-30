@@ -131,7 +131,7 @@
 	for(human_target in view(2,targloc))
 		if(human_target == user)
 			continue
-		to_chat(user, span_notice("You silence [human_target]'s radio devices."))
+		to_chat(user, span_notice(LANG("obj.0a9d7727", list(human_target))))
 		radio_off_mob(human_target)
 
 /obj/item/abductor/silencer/proc/radio_off_mob(mob/living/carbon/human/target)

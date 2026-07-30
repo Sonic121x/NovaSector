@@ -571,8 +571,8 @@
 		log_combat(src, pulled_mob, "grabbed", addition = "passive grab")
 		if(!supress_message)
 			pulled_mob.visible_message(
-				span_warning("[src] grabs [pulled_mob] passively."),
-				span_danger("[src] grabs you passively."),
+				span_warning(LANG("atom.d559fa95", list(src, pulled_mob))),
+				span_danger(LANG("atom.87ceb956", list(src))),
 			)
 
 

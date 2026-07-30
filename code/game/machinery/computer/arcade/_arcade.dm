@@ -87,7 +87,7 @@
 		user.add_mood_event("arcade", /datum/mood_event/arcade)
 		if(prob(0.0001)) //1 in a million
 			new /obj/item/gun/energy/pulse/prize(get_turf(src))
-			visible_message(span_notice("[src] dispenses.. woah, a gun! Way past cool."), span_notice("You hear a chime and a shot."))
+			visible_message(span_notice(LANG("obj.dfc0f949", list(src))), span_notice(LANG("obj.0c42547d", null)))
 			user.client.give_award(/datum/award/achievement/misc/pulse, user)
 			continue
 
@@ -98,7 +98,7 @@
 			prizeselect = pick_weight(GLOB.arcade_prize_pool)
 		var/atom/movable/the_prize = new prizeselect(get_turf(src))
 		playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
-		visible_message(span_notice("[src] dispenses [the_prize]!"), span_notice("You hear a chime and a clunk."))
+		visible_message(span_notice(LANG("obj.c66de72d", list(src, the_prize))), span_notice(LANG("obj.90afbe5b", null)))
 
 /obj/machinery/computer/arcade/proc/victory_tickets(tickets, sound = TRUE)
 	SEND_SIGNAL(src, COMSIG_ARCADE_VICTORY)

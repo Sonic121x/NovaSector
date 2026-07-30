@@ -286,14 +286,14 @@
 		rider.Paralyze(1 SECONDS)
 		rider.Knockdown(4 SECONDS)
 		human_parent.visible_message(
-			span_danger("[rider] topples off of [human_parent] as they both fall to the ground!"),
-			span_warning("You fall to the ground, bringing [rider] with you!"),
-			span_hear("You hear two consecutive thuds."),
+			span_danger(LANG("datum.1f8088a8", list(rider, human_parent))),
+			span_warning(LANG("datum.6ee3b357", list(rider))),
+			span_hear(LANG("datum.20172aeb", null)),
 			COMBAT_MESSAGE_RANGE,
 			ignored_mobs = rider,
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
-		to_chat(rider, span_danger("[human_parent] falls to the ground, bringing you with [human_parent.p_them()]!"))
+		to_chat(rider, span_danger(LANG("datum.0cadbc49", list(human_parent, human_parent.p_them()))))
 
 /datum/component/riding/creature/human/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	var/mob/living/carbon/human/seat = parent

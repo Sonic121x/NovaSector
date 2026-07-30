@@ -55,7 +55,7 @@
 		var/obj/structure/cargobay = gate_toucher
 		for(var/mob/living/stowaway in cargobay.contents) //nice try bub
 			if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-				say("Stowaway detected in internal contents. Access denied.")
+				say(LANG("obj.510eca71", null))
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 				COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 			return FALSE

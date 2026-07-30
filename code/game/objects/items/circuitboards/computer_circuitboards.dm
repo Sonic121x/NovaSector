@@ -509,9 +509,9 @@
 	locked = !locked
 	balloon_alert(user, locked ? "locked" : "unlocked")
 	user.visible_message(
-		span_notice("\The [user] unlock[user.p_s()] \the [src] with \the [tool]."),
-		span_notice("You unlock \the [src] with \the [tool]."),
-		span_hear("You hear a soft beep."),
+		span_notice(LANG("obj.2d106050", list(user, user.p_s(), src, tool))),
+		span_notice(LANG("obj.7b91cd02", list(src, tool))),
+		span_hear(LANG("obj.fc511428", null)),
 	)
 	return ITEM_INTERACT_SUCCESS
 

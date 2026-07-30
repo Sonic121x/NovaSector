@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 /obj/effect/meteor/meaty/changeling
 	name = "unsettlingly meaty meteor"
@@ -41,7 +42,7 @@
 	for(var/atom/movable/changeling in contents)
 		changeling.forceMove(get_turf(src))
 		changeling.throw_at(landing_target, 2, 2)
-		changeling.visible_message(span_warning("[changeling] is launched out from inside of \the [src]!"), span_changeling("Sensing that something is terribly wrong, we forcibly eject ourselves from \the [src]!"))
+		changeling.visible_message(span_warning(LANG("obj.f1a67d4e", list(changeling, src))), span_changeling(LANG("obj.937829c4", list(src))))
 		playsound(changeling, 'sound/effects/splat.ogg', 50, pressure_affected = FALSE)
 
 //If the meteor misses the station and deletes itself, we make absolutely sure the changeling reaches the station.

@@ -244,7 +244,7 @@
 /obj/machinery/icecream_vat/proc/make_cone(mob/user, make_type, list/ingredients)
 	for(var/reagents_needed in ingredients)
 		if(!reagents.has_reagent(reagents_needed, CONE_REAGENT_NEEDED))
-			balloon_alert(user, "not enough ingredients!")
+			balloon_alert(user, LANG("obj.98a239cb", null))
 			return
 	var/cone_type = cone_prototypes[make_type].type
 	if(!cone_type)
@@ -264,7 +264,7 @@
 
 	for(var/reagents_needed in flavor.ingredients)
 		if(!reagents.has_reagent(reagents_needed, CONE_REAGENT_NEEDED))
-			balloon_alert(user, "not enough ingredients!")
+			balloon_alert(user, LANG("obj.98a239cb", null))
 			return
 
 	var/should_use_custom_ingredients = (flavor.takes_custom_ingredients && custom_ice_cream_beaker && custom_ice_cream_beaker.reagents.total_volume)

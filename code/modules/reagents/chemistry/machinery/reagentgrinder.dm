@@ -106,7 +106,7 @@
 		. += span_notice(LANG("obj.18a7d35a", list(beaker.reagents.maximum_volume)))
 		if(beaker.reagents.total_volume)
 			for(var/datum/reagent/reg as anything in beaker.reagents.reagent_list)
-				. += span_notice("[round(reg.volume, CHEMICAL_VOLUME_ROUNDING)]u of [reg.name]")
+				. += span_notice(LANG("obj.d353620d", list(round(reg.volume, CHEMICAL_VOLUME_ROUNDING), reg.name)))
 		else
 			. += span_notice(LANG("obj.aa75d156", null))
 		. += span_notice(LANG("obj.fb87c264", list(EXAMINE_HINT("Right click"))))
@@ -184,7 +184,7 @@
 
 		// Nothing would come from grinding or juicing
 		if(!length(ingredient.grind_results()) && !ingredient.reagents.total_volume)
-			to_chat(user, span_warning("You cannot grind/juice [ingredient] into reagents!"))
+			to_chat(user, span_warning(LANG("obj.3d7498ae", list(ingredient))))
 			continue
 
 		// Error messages should be in the objects' definitions
@@ -207,7 +207,7 @@
 	var/items_transfered = 0
 	for(var/obj/item/weapon as anything in filtered_list)
 		if(weapon.w_class + total_weight > maximum_weight)
-			to_chat(user, span_warning("[weapon] is too big to fit into [src]."))
+			to_chat(user, span_warning(LANG("obj.34864f48", list(weapon, src))))
 			continue
 
 		//try to remove the right way
@@ -216,7 +216,7 @@
 
 		total_weight += weapon.w_class
 		items_transfered += 1
-		to_chat(user, span_notice("[weapon] was loaded into [src]."))
+		to_chat(user, span_notice(LANG("obj.e8da3f67", list(weapon, src))))
 
 	return items_transfered
 
@@ -432,13 +432,13 @@
 
 		if(juicing)
 			if(!ingredient.juice(beaker.reagents, user))
-				to_chat(user, span_danger("[src] shorts out as it tries to juice up [ingredient], and transfers it back to storage."))
+				to_chat(user, span_danger(LANG("obj.45e1c97b", list(src, ingredient))))
 				continue
 		else if(!ingredient.grind(beaker.reagents, user))
 			if(isstack(ingredient))
-				to_chat(user, span_notice("[src] attempts to grind as many pieces of [ingredient] as possible."))
+				to_chat(user, span_notice(LANG("obj.10d463a7", list(src, ingredient))))
 			else
-				to_chat(user, span_danger("[src] shorts out as it tries to grind up [ingredient], and transfers it back to storage."))
+				to_chat(user, span_danger(LANG("obj.dae12876", list(src, ingredient))))
 			continue
 
 		//happens only for stacks where some of the sheets were grinded so we roughly compute the weight grinded

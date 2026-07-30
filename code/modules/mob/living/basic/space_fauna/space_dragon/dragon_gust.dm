@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Default additional time to spend stunned per usage of ability
 #define DEFAULT_ACTIVATED_ENDLAG 3 DECISECONDS
 
@@ -73,8 +74,8 @@
 	for (var/mob/living/candidate in view(gust_distance, owner))
 		if(candidate == owner || candidate.faction_check_atom(owner))
 			continue
-		owner.visible_message(span_boldwarning("[candidate] is knocked back by the gust!"))
-		to_chat(candidate, span_userdanger("You're knocked back by the gust!"))
+		owner.visible_message(span_boldwarning(LANG("datum.2d0417ef", list(candidate))))
+		to_chat(candidate, span_userdanger(LANG("datum.3f16c9d8", null)))
 		var/dir_to_target = get_dir(get_turf(owner), get_turf(candidate))
 		var/throwtarget = get_edge_target_turf(target, dir_to_target)
 		candidate.safe_throw_at(throwtarget, range = 10, speed = 1, thrower = owner)

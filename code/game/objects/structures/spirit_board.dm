@@ -58,7 +58,7 @@
 	if(virgin)
 		virgin = FALSE
 		notify_ghosts(
-			"Someone has begun playing with \a [src] in [get_area(src)]!",
+			LANG("obj.c255aec9", list(src, get_area(src))),
 			source = src,
 			header = "Spirit board",
 		)
@@ -96,7 +96,7 @@
 				continue
 
 			if(player.client?.is_afk() || HAS_TRAIT(player, TRAIT_HANDS_BLOCKED))//no playing with braindeads or corpses or handcuffed dudes.
-				to_chat(ghost, span_warning("[player] doesn't seem to be paying attention..."))
+				to_chat(ghost, span_warning(LANG("obj.84624388", list(player))))
 				continue
 
 			users_in_range++

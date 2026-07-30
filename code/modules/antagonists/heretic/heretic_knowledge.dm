@@ -703,7 +703,7 @@
 	to_chat(user, span_mansus(LANG("datum.6a274d9b", list(name))))
 	for(var/obj/item/path as anything in required_atoms)
 		var/amount_needed = required_atoms[path]
-		to_chat(user, span_hypnophrase("[amount_needed] [initial(path.name)]\s..."))
+		to_chat(user, span_hypnophrase(LANG("datum.091a8f1d", list(amount_needed, initial(path.name)))))
 		requirements_string += "[amount_needed == 1 ? "":"[amount_needed] "][initial(path.name)]\s"
 
 	to_chat(user, span_mansus(LANG("datum.9260ae25", list(KNOWLEDGE_RITUAL_POINTS))))
@@ -808,7 +808,7 @@
 	SSblackbox.record_feedback("tally", "heretic_ascended", 1, heretic_datum.heretic_path.route)
 	log_heretic_knowledge("[key_name(user)] completed their final ritual at [round_timestamp()].")
 	notify_ghosts(
-		"[user.real_name] has completed an ascension ritual!",
+		LANG("datum.15931db3", list(user.real_name)),
 		source = user,
 		header = "A Heretic is Ascending!",
 	)

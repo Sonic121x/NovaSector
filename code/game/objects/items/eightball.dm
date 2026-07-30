@@ -143,7 +143,7 @@
 	if (!(src in user.held_items))
 		return FALSE
 	notify_ghosts(
-		"[user.real_name] is shaking [src], hoping to get an answer to \"[selected_message]\"",
+		LANG("obj.db850740", list(user.real_name, src, selected_message)),
 		source = src,
 		header = "Magic eightball",
 		click_interact = TRUE,

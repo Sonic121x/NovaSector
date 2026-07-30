@@ -109,7 +109,7 @@
 	target.equip_to_slot_if_possible(src, ITEM_SLOT_HEAD)
 	arm()
 	notify_ghosts(
-		"[user.real_name] put a reverse bear trap on [target.real_name]!",
+		LANG("obj.b54135c1", list(user.real_name, target.real_name)),
 		source = src,
 		header = "Reverse bear trap armed",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,

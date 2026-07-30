@@ -67,7 +67,7 @@
 	for(var/mob/living/blinded in view(LAST_RESORT_BLIND_RANGE, user))
 		if(blinded == user)
 			continue
-		blinded.visible_message(span_danger("[blinded] is splattered with blood!"), span_userdanger("You're splattered with blood!"))
+		blinded.visible_message(span_danger(LANG("datum.d8e0e6e4", list(blinded))), span_userdanger(LANG("datum.2e1e9a3c", null)))
 		blinded.add_blood_DNA(user_DNA)
 		blinded.add_mood_event("splattered_with_blood", /datum/mood_event/splattered_with_blood)
 		playsound(blinded, 'sound/effects/splat.ogg', 50, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE)
@@ -77,13 +77,13 @@
 			var/obj/item/organ/eyes/eyes = blinded_human.get_organ_slot(ORGAN_SLOT_EYES)
 			if(!eyes || blinded_human.is_blind())
 				continue
-			to_chat(blinded_human, span_userdanger("You are blinded by a shower of blood!"))
+			to_chat(blinded_human, span_userdanger(LANG("datum.5ea32e6c", null)))
 			blinded_human.Stun(4 SECONDS)
 			blinded_human.set_eye_blur_if_lower(40 SECONDS)
 			blinded_human.adjust_confusion(12 SECONDS)
 		if(issilicon(blinded))
 			var/mob/living/silicon/blinded_silicon = blinded
-			to_chat(blinded_silicon, span_userdanger("Your sensors are disabled by a shower of blood!"))
+			to_chat(blinded_silicon, span_userdanger(LANG("datum.e8f9a9e8", null)))
 			blinded_silicon.Paralyze(6 SECONDS)
 
 /// Creates the headrab to occupy

@@ -708,7 +708,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 
 	for(var/obj/structure/cable/old_cable in target_turf)
 		if(old_cable.cable_layer & target_layer)
-			to_chat(user, span_warning("There's already a cable at that position!"))
+			to_chat(user, span_warning(LANG("obj.99890162", null)))
 			return
 
 	var/obj/structure/cable/new_cable = new target_type(target_turf)

@@ -139,7 +139,7 @@
 		var/atom/drop_loc = user.drop_location()
 		for(var/atom/movable/stored_implant as anything in src)
 			stored_implant.forceMove(drop_loc)
-			to_chat(user, span_notice("You remove the [stored_organ] from [src]."))
+			to_chat(user, span_notice(LANG("obj.01339089", list(stored_organ, src))))
 			stored_organ = null
 
 		screwtool.play_tool_sound(src)

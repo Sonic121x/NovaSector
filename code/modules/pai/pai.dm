@@ -399,8 +399,8 @@
 		return FALSE
 	var/new_laws = tgui_input_text(
 		user,
-		"Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.",
-		"pAI Directive Configuration",
+		LANG("mob.9c7f6dc5", null),
+		LANG("mob.50ed9f0f", null),
 		laws.inherent[1],
 		max_length = 300,
 	)
@@ -463,7 +463,7 @@
 	SIGNAL_HANDLER
 
 	for(var/mob/living/cultist as anything in invokers)
-		to_chat(cultist, span_cult_italic("You don't think this is what Nar'Sie had in mind when She asked for blood sacrifices..."))
+		to_chat(cultist, span_cult_italic(LANG("mob.e06dff9e", null)))
 	return STOP_SACRIFICE|SILENCE_SACRIFICE_MESSAGE
 
 /// Updates the distance we can be from our pai card

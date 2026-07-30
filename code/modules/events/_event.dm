@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (3 MINUTES) // NOVA EDIT CHANGE - ORIGINAL: #define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (20 SECONDS)
 
 //this singleton datum is used by the events controller to dictate how it selects events
@@ -244,7 +245,7 @@ Runs the event
 	if(control.alert_observers)
 		if (atom_of_interest)
 			notify_ghosts(
-				"[control.name] has an object of interest: [atom_of_interest]!",
+				LANG("datum.f1f8dce9", list(control.name, atom_of_interest)),
 				source = atom_of_interest,
 			)
 	return

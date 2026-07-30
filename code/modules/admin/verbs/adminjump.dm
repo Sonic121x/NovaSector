@@ -47,7 +47,7 @@ ADMIN_VERB(jump_to_key, R_ADMIN, "跳转到 Key", "Jump to a specific player.", 
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = input(user, LANG("datum.49fce9a4", null), "Admin Jumping") as null|anything in sort_key(keys)
+	var/client/selection = input(user, LANG("datum.49fce9a4", null), LANG("datum.a34d9875", null)) as null|anything in sort_key(keys)
 	if(!selection)
 		to_chat(user, LANG("datum.aadcdcc6", null), confidential = TRUE)
 		return
@@ -98,7 +98,7 @@ ADMIN_VERB(get_key, R_ADMIN, "抓取 Key", "Teleport the player with the provide
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = input(user, LANG("datum.49fce9a4", null), "Admin Jumping") as null|anything in sort_key(keys)
+	var/client/selection = input(user, LANG("datum.49fce9a4", null), LANG("datum.a34d9875", null)) as null|anything in sort_key(keys)
 	if(!selection)
 		return
 	var/mob/M = selection.mob

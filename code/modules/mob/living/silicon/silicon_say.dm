@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /mob/living/proc/robot_talk(message, list/spans = list(), list/message_mods = list())
 	log_sayverb_talk(message, message_mods, tag="binary")
 
@@ -36,21 +37,14 @@
 			if(isAI(hearing_mob))
 				to_chat(
 					hearing_mob,
-					span_binarysay("\
-						Robotic Talk, \
-						<a href='byond://?src=[REF(hearing_mob)];track=[html_encode(namepart)]'>[span_name("[namepart] ([designation])")]</a> \
-						<span class='message'>[messagepart]</span>\
-					"),
+					span_binarysay(LANG("mob.13e4d550", list(REF(hearing_mob), html_encode(namepart), span_name("[namepart] ([designation])"), messagepart))),
 					type = MESSAGE_TYPE_RADIO,
 					avoid_highlighting = (src == hearing_mob)
 				)
 			else
 				to_chat(
 					hearing_mob,
-					span_binarysay("\
-						Robotic Talk, \
-						[span_name("[namepart]")] <span class='message'>[messagepart]</span>\
-					"),
+					span_binarysay(LANG("mob.338e2f96", list(span_name("[namepart]"), messagepart))),
 					type = MESSAGE_TYPE_RADIO,
 					avoid_highlighting = (src == hearing_mob)
 				)
@@ -69,11 +63,7 @@
 
 			to_chat(
 				hearing_mob,
-				span_binarysay("\
-					[follow_link] \
-					Robotic Talk, \
-					[span_name("[namepart]")] <span class='message'>[messagepart]</span>\
-				"),
+				span_binarysay(LANG("mob.3e904dce", list(follow_link, span_name("[namepart]"), messagepart))),
 				type = MESSAGE_TYPE_RADIO,
 				avoid_highlighting = (src == hearing_mob)
 			)

@@ -82,8 +82,8 @@
 	if (!display_statistics)
 		var/set_print_result = tgui_alert(
 			vote_creator,
-			"Should the vote tally be public after the vote is concluded?",
-			"Print vote tally after vote?",
+			LANG("datum.52aba783", null),
+			LANG("datum.136c1bae", null),
 			list("Yes", "No"),
 		)
 
@@ -98,7 +98,7 @@
 
 	default_choices = list()
 	for(var/i in 1 to MAX_CUSTOM_VOTE_OPTIONS)
-		var/option = tgui_input_text(vote_creator, "Please enter an option, or hit cancel to finish. [MAX_CUSTOM_VOTE_OPTIONS] max.", "Options", max_length = MAX_NAME_LEN)
+		var/option = tgui_input_text(vote_creator, LANG("datum.f2cced25", list(MAX_CUSTOM_VOTE_OPTIONS)), LANG("datum.9cb8b820", null), max_length = MAX_NAME_LEN)
 		if(!vote_creator?.client)
 			return FALSE
 		if(!option)

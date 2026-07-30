@@ -106,12 +106,12 @@
 		if("import_song")
 			var/song_text = ""
 			do
-				song_text = tgui_input_text(user, "Please paste the entire song, formatted:", name, max_length = (MUSIC_MAXLINES * MUSIC_MAXLINECHARS), multiline = TRUE)
+				song_text = tgui_input_text(user, LANG("datum.c6ac2bca", null), name, max_length = (MUSIC_MAXLINES * MUSIC_MAXLINECHARS), multiline = TRUE)
 				if(!in_range(parent, user))
 					return
 
 				if(length_char(song_text) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
-					var/should_continue = tgui_alert(user, "Your message is too long! Would you like to continue editing it?", "Warning", list("Yes", "No"))
+					var/should_continue = tgui_alert(user, LANG("datum.77b54c36", null), LANG("datum.acf3640b", null), list("Yes", "No"))
 					if(should_continue != "Yes")
 						break
 			while(length_char(song_text) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
@@ -216,7 +216,7 @@
 		for(var/l in lines)
 			if(length_char(l) > MUSIC_MAXLINECHARS)
 				if(user)
-					to_chat(user, "Line [linenum] too long!")
+					to_chat(user, LANG("datum.29bfb118", list(linenum)))
 				lines.Remove(l)
 			else
 				linenum++

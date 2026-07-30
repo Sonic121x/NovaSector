@@ -54,7 +54,7 @@
 		alert.name = "Queue Deletion"
 		alert.desc = "The server is resetting. Oblivion awaits."
 
-		to_chat(baddie, span_userdanger("You have been flagged for deletion! Thank you for your service."))
+		to_chat(baddie, span_userdanger(LANG("obj.9648d43c", null)))
 
 
 /// Removes a specific threat - used when station spawning

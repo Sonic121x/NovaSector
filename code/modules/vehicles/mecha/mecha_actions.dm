@@ -116,7 +116,7 @@
 	strafe = !strafe
 
 	for(var/mob/occupant in occupants)
-		balloon_alert(occupant, "strafing [strafe?"on":"off"]")
+		balloon_alert(occupant, LANG("obj.8f3934f3", list(strafe?"on":"off")))
 		occupant.playsound_local(src, 'sound/machines/terminal/terminal_eject.ogg', 50, TRUE)
 	log_message("Toggled strafing mode [strafe?"on":"off"].", LOG_MECHA)
 

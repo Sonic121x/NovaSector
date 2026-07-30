@@ -52,7 +52,7 @@
 			itemUser.say(oath_line, forced = "hippocratic oath")
 			continue
 
-		balloon_alert(itemUser, "interrupted!")
+		balloon_alert(itemUser, LANG("obj.c67b5d27", null))
 		to_chat(itemUser, failText)
 		return
 

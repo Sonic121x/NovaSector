@@ -43,8 +43,8 @@
 
 	log_combat(src, crushed, "run over", addition = "(DAMTYPE: [uppertext(BRUTE)])")
 	crushed.visible_message(
-		span_danger("[src] drives over [crushed]!"),
-		span_userdanger("[src] drives over you!"),
+		span_danger(LANG("mob.bb65eec4", list(src, crushed))),
+		span_userdanger(LANG("mob.8300e9d1", list(src))),
 	)
 
 	playsound(src, 'sound/effects/splat.ogg', 50, TRUE)

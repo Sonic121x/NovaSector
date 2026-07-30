@@ -107,7 +107,7 @@
 	for(var/i in found - sleepers)
 		var/mob/living/L = i
 		L.add_atom_colour(COLOR_PURPLE, TEMPORARY_COLOUR_PRIORITY)
-		L.visible_message(span_revennotice("A strange purple glow wraps itself around [L] as [L.p_they()] suddenly fall[L.p_s()] unconscious."),
+		L.visible_message(span_revennotice(LANG("obj.0eba5697", list(L, L.p_they(), L.p_s()))),
 			span_revendanger("[desc]"))
 		// Don't let them sit suround unconscious forever
 		addtimer(CALLBACK(src, PROC_REF(sleeper_dreams), L), 10 SECONDS)
@@ -121,8 +121,7 @@
 	for(var/i in sleepers - found)
 		var/mob/living/L = i
 		L.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_PURPLE)
-		L.visible_message("<span class='revennotice'>The glow from [L] fades \
-			away.</span>")
+		L.visible_message(LANG("obj.a7e3e79e", list(L)))
 		L.grab_ghost()
 
 	sleepers = found
@@ -231,7 +230,7 @@
 			var/obj/vehicle/vehicle = mover
 			for(var/mob/living/rat in vehicle.occupants)
 				if(!(rat in approved_passengers))
-					say("Stowaway detected. Please exit the vehicle first.")
+					say(LANG("obj.2f904ea0", null))
 					return FALSE
 		return TRUE
 	if(isitem(mover))
@@ -239,7 +238,7 @@
 	if(isstructure(mover))
 		var/obj/structure/struct = mover
 		for(var/mob/living/rat in struct.contents)
-			say("Stowaway detected. Please exit the structure first.")
+			say(LANG("obj.66cc9917", null))
 			return FALSE
 		return TRUE
 

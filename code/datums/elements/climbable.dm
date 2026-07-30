@@ -56,7 +56,7 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(climbed_thing)
 		structure_climber.Paralyze(40)
-		structure_climber.visible_message(span_warning("[structure_climber] is knocked off [climbed_thing]."), span_warning("You're knocked off [climbed_thing]!"), span_hear("You hear a cry from [structure_climber], followed by a slam."))
+		structure_climber.visible_message(span_warning(LANG("datum.e1072e08", list(structure_climber, climbed_thing))), span_warning(LANG("datum.a148e446", list(climbed_thing))), span_hear(LANG("datum.1a82c789", list(structure_climber))))
 
 
 /datum/element/climbable/proc/climb_structure(atom/climbed_thing, mob/living/user, params)

@@ -122,7 +122,7 @@
 			break
 		var/before_age = victim.age
 		victim.age = round((victim.age * 1.5),1)
-		to_chat(victim, span_danger("You age [(victim.age - before_age)] years!"))
+		to_chat(victim, span_danger(LANG("obj.45faeb0d", list((victim.age - before_age)))))
 
 	to_chat(victim, span_danger(LANG("obj.4f1e2837", list(victim.age))))
 	victim.dust(TRUE, TRUE, TRUE)

@@ -453,10 +453,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 	for(var/obj/object in turf)
 		if(istype(object, /obj/structure/chair))
-			to_chat(user, span_warning("There is already a chair here!"))
+			to_chat(user, span_warning(LANG("obj.6c8ecb3d", null)))
 			return
 		if(object.density && !(object.flags_1 & ON_BORDER_1))
-			to_chat(user, span_warning("There is already something here!"))
+			to_chat(user, span_warning(LANG("obj.9a588ecb", null)))
 			return
 
 	user.visible_message(span_notice(LANG("obj.89422f52", list(user, src.name))), span_notice(LANG("obj.484f791c", list(name))))

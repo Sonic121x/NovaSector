@@ -699,7 +699,7 @@ Striking a noncultist, however, will tear their flesh."}
 
 	for(var/turf/hole_candidate as anything in turfs_to_scan)
 		if(locate(/obj/structure/spawner/sentient/proteon_spawner) in hole_candidate)
-			to_chat(user, span_cult_bold("There's a gateway too close nearby. The veil is not yet weak enough to allow such close rips in its fabric."))
+			to_chat(user, span_cult_bold(LANG("obj.db87e796", null)))
 			return
 	to_chat(user, span_cult_bold_italic(LANG("obj.ea89891a", list(src))))
 

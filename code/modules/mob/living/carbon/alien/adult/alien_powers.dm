@@ -321,7 +321,7 @@ Doesn't work on other aliens/AI.*/
 	for(var/blocker_name in structures)
 		var/obj/structure/blocker_type = structures[blocker_name]
 		if(locate(blocker_type) in owner.loc)
-			to_chat(owner, span_warning("There is already a resin structure there!"))
+			to_chat(owner, span_warning(LANG("datum.902ebd16", null)))
 			return FALSE
 
 	return TRUE

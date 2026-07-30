@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define WENDIGO_ENRAGED (health <= maxHealth*0.5)
 
 /*
@@ -155,7 +156,7 @@ Difficulty: Hard
 	animate(pixel_z = -pixel_shift, time = 1, flags = ANIMATION_RELATIVE)
 	for(var/mob/living/dizzy_target in get_hearers_in_view(7, owner) - owner)
 		dizzy_target.set_dizzy_if_lower(12 SECONDS)
-		to_chat(dizzy_target, span_danger("[owner] screams loudly!"))
+		to_chat(dizzy_target, span_danger(LANG("_root.9e633999", list(owner))))
 	SLEEP_CHECK_DEATH(1 SECONDS, owner)
 
 /proc/wendigo_slam(mob/owner, range, delay, throw_range)
@@ -172,7 +173,7 @@ Difficulty: Hard
 			for(var/mob/living/hit_mob in stomp_turf)
 				if(hit_mob == owner || hit_mob.throwing)
 					continue
-				to_chat(hit_mob, span_userdanger("[owner]'s ground slam shockwave sends you flying!"))
+				to_chat(hit_mob, span_userdanger(LANG("_root.f138f919", list(owner))))
 				var/turf/thrownat = get_ranged_target_turf_direct(owner, hit_mob, throw_range, rand(-10, 10))
 				hit_mob.throw_at(thrownat, 8, 2, null, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 				hit_mob.apply_damage(20, BRUTE, wound_bonus=CANT_WOUND)

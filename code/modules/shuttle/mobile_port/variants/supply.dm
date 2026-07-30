@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/mob/living,
 		/obj/docking_port,
@@ -184,12 +185,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			if(orders_adjusted.len)
 				var/datum/bank_account/paying_for_this = spawning_order.paying_account || SSeconomy.get_dep_account(ACCOUNT_CAR)
 				if(!sheets.contains.len) //no sheets in the market at all
-					paying_for_this.bank_card_talk("Order #[spawning_order.id] ([spawning_order.pack.name]) was cancelled due to insufficient materials in the market!.")
+					paying_for_this.bank_card_talk(LANG("obj.16e29f44", list(spawning_order.id, spawning_order.pack.name)))
 					SSshuttle.shopping_list -= spawning_order
 					clean_up_orders += spawning_order
 					continue
 				//some of the orders were adjusted(quantity changed or cancelled) according to the market
-				paying_for_this.bank_card_talk("Order #[spawning_order.id] ([spawning_order.pack.name]) had the following orders adjusted<br>[orders_adjusted.Join("<br>")]<br>.")
+				paying_for_this.bank_card_talk(LANG("obj.e1494024", list(spawning_order.id, spawning_order.pack.name, orders_adjusted.Join("<br>"))))
 
 		price = spawning_order.get_final_cost()
 
@@ -203,14 +204,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					var/list/current_buyer_orders = goodies_by_buyer[spawning_order.paying_account]
 					if(LAZYLEN(current_buyer_orders) == GOODY_FREE_SHIPPING_MAX)
 						price = round(price + CRATE_TAX)
-						paying_for_this.bank_card_talk("Goody order size exceeds free shipping limit: Assessing [CRATE_TAX] [MONEY_NAME_SINGULAR] S&H fee.")
+						paying_for_this.bank_card_talk(LANG("obj.69d21491", list(CRATE_TAX, MONEY_NAME_SINGULAR)))
 			else
 				paying_for_this = SSeconomy.get_dep_account(ACCOUNT_CAR)
 
 			if(paying_for_this)
 				if(!paying_for_this.adjust_money(-price, "Cargo: [spawning_order.pack.name]"))
 					if(spawning_order.paying_account)
-						paying_for_this.bank_card_talk("Cargo order #[spawning_order.id] rejected due to lack of funds. [MONEY_NAME_CAPITALIZED] required: [price]")
+						paying_for_this.bank_card_talk(LANG("obj.d8f51cfd", list(spawning_order.id, MONEY_NAME_CAPITALIZED, price)))
 					if(!spawning_order.can_be_cancelled) //only if it absolutly cannot be canceled by the player do we cancel it for them
 						SSshuttle.shopping_list -= spawning_order
 						clean_up_orders += spawning_order

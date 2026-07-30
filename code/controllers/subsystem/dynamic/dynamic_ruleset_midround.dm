@@ -192,13 +192,13 @@
 			var/mob/spawned_mob = spawner.create_from_ghost(our_candidate)
 			candidates -= our_candidate
 			notify_ghosts(
-				"The [chosen_gang.ship_name] has an object of interest: [spawned_mob]!",
+				LANG("datum.48d5a6bb", list(chosen_gang.ship_name, spawned_mob)),
 				source = spawned_mob,
 				header = "Pirates!",
 			)
 		else
 			notify_ghosts(
-				"The [chosen_gang.ship_name] has an object of interest: [spawner]!",
+				LANG("datum.48d5a6bb", list(chosen_gang.ship_name, spawner)),
 				source = spawner,
 				header = "Pirate Spawn Here!",
 			)
@@ -1020,13 +1020,13 @@
 				var/mob/spawned_mob = spawner.create_from_ghost(our_candidate)
 				candidates -= our_candidate
 				notify_ghosts(
-					"[spawner.prompt_name] has awoken: [spawned_mob]!",
+					LANG("datum.a28ace14", list(spawner.prompt_name, spawned_mob)),
 					source = spawned_mob,
 					header = "Come look!",
 				)
 			else
 				notify_ghosts(
-					"[spawner.prompt_name] spawner has been created!",
+					LANG("datum.1fa06707", list(spawner.prompt_name)),
 					source = spawner,
 					header = "Spawn Here!",
 				)
@@ -1178,7 +1178,7 @@
 /datum/dynamic_ruleset/midround/from_living/traitor/false_alarm()
 	priority_announce(
 		"Attention crew, it appears that someone on your station has hijacked your telecommunications and broadcasted an unknown signal.",
-		"[command_name()] High-Priority Update",
+		LANG("datum.34bd7ec6", list(command_name())),
 	)
 
 /datum/dynamic_ruleset/midround/from_living/traitor/mass
@@ -1255,7 +1255,7 @@
 /datum/dynamic_ruleset/midround/from_living/blob/assign_role(datum/mind/candidate)
 	candidate.add_antag_datum(/datum/antagonist/blob/infection)
 	notify_ghosts(
-		"[candidate.current.real_name] has become a blob host!",
+		LANG("datum.6c19b4fd", list(candidate.current.real_name)),
 		source = candidate.current,
 		header = "So Bulbous...",
 	)
@@ -1286,7 +1286,7 @@
 	var/obj/item/organ/brain/brain = candidate.current.get_organ_by_type(__IMPLIED_TYPE__)
 	brain.brain_gain_trauma(/datum/brain_trauma/special/obsessed)
 	notify_ghosts(
-		"[candidate.current.real_name] has developed an obsession with someone!",
+		LANG("datum.8b4eb665", list(candidate.current.real_name)),
 		source = candidate.current,
 		header = "Love Can Bloom",
 	)

@@ -310,7 +310,7 @@
 		SSpoints_of_interest.make_point_of_interest(src)
 		ready_to_deploy = TRUE
 		notify_ghosts(
-			"An anomalous crystal has been activated in [get_area(src)]! This crystal can always be used by ghosts hereafter.",
+			LANG("obj.eefb7b76", list(get_area(src))),
 			source = src,
 			header = "Anomalous crystal activated",
 			click_interact = TRUE,

@@ -571,7 +571,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(is_main_engine) // NOVA EDIT ADDITION - DELAM_SCRAM
 		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, final_countdown) // NOVA EDIT ADDITION - DELAM_SCRAM
 	notify_ghosts(
-		"[src] has begun the delamination process!",
+		LANG("obj.9bd96828", list(src)),
 		source = src,
 		header = "Meltdown Incoming",
 	)

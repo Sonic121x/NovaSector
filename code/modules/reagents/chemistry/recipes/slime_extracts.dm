@@ -335,12 +335,12 @@
 /datum/chemical_reaction/slime/slimebloodlust/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
 	for(var/mob/living/basic/slime/slime in viewers(get_turf(holder.my_atom), null))
 		if(slime.hunger_disabled) //Undoes docility, but doesn't make rabid.
-			slime.visible_message(span_danger("[slime] forgets its training, becoming wild once again!"))
+			slime.visible_message(span_danger(LANG("datum.c0415275", list(slime))))
 			slime.set_default_behaviour()
 			slime.update_name()
 			continue
 		slime.set_enraged_behaviour()
-		slime.visible_message(span_danger("The [slime] is driven into a frenzy!"))
+		slime.visible_message(span_danger(LANG("datum.f05e3bad", list(slime))))
 	..()
 
 /datum/chemical_reaction/slime/slimespeed

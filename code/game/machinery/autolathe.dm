@@ -305,13 +305,13 @@
 				choices[valid_candidate.name] = valid_candidate
 
 		if(!length(choices))
-			say("No valid materials with applicable amounts detected for design.")
+			say(LANG("obj.bc9df0c8", null))
 			return
 
 		var/chosen = tgui_input_list(
 			ui.user,
-			"Select the material to use[slot ? " for [LOWER_TEXT(slot.name)]" : ""]",
-			"Material Selection",
+			LANG("obj.0475a2d8", list(slot ? " for [LOWER_TEXT(slot.name)]" : "")),
+			LANG("obj.725e3756", null),
 			sort_list(choices),
 		)
 		if(isnull(chosen))

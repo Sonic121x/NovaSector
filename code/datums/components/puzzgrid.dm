@@ -292,14 +292,14 @@ ADMIN_VERB(validate_puzzgrids, R_DEBUG, "验证 Puzzgrid 配置", "Validate the 
 
 		var/line_json_decoded = safe_json_decode(line)
 		if (isnull(line_json_decoded))
-			to_chat(user, span_warning("Line [line_number] in puzzgrids.txt is not a JSON: [line]"))
+			to_chat(user, span_warning(LANG("datum.326dc9be", list(line_number, line))))
 			continue
 
 		var/datum/puzzgrid/puzzgrid = new
 		var/populate_result = puzzgrid.populate(line_json_decoded)
 
 		if (populate_result != TRUE)
-			to_chat(user, span_warning("Line [line_number] in puzzgrids.txt is not formatted correctly: [populate_result]"))
+			to_chat(user, span_warning(LANG("datum.a800f772", list(line_number, populate_result))))
 
 	to_chat(user, span_notice(LANG("datum.7f466809", null)))
 

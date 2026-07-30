@@ -286,7 +286,7 @@
 		return
 
 	notify_ghosts(
-		"\A [src] has been activated at [get_area(src)]!",
+		LANG("obj.0e6b4ca6", list(src, get_area(src))),
 		source = src,
 		header = "Bomb Planted",
 	)

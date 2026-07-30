@@ -248,13 +248,13 @@
 
 			var/obj/machinery/machine_target = interacting_with
 			if(machine_target.anchored)
-				balloon_alert(user, "unanchor first!")
+				balloon_alert(user, LANG("obj.3e939160", null))
 				return ITEM_INTERACT_BLOCKING
 			if(do_after(user, 2 SECONDS, target = interacting_with))
 				var/design_cost = designs[machine_target.type]
 				var/to_return = min(design_cost, max_matter - matter) // Give back matter was used to create smth
 				if(to_return < design_cost)
-					balloon_alert(user, "storage full!")
+					balloon_alert(user, LANG("obj.1205d2c0", null))
 				matter += to_return
 				machine_target.deconstruct()
 				playsound(src, 'sound/machines/click.ogg', 50, TRUE) //this is just such a great sound effect

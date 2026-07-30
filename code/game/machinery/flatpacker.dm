@@ -340,7 +340,7 @@
 				return
 			for(var/obj/item/component as anything in inserted_board.flatpack_components)
 				if(inserted_board.req_components[component] != get_flatpack_component_count(component))
-					say("Not enough [get_flatpack_component_name(component)].")
+					say(LANG("obj.14e00f6d", list(get_flatpack_component_name(component))))
 					return
 			if(!materials.has_materials(needed_mats, creation_efficiency))
 				say(LANG("obj.f818a085", null))

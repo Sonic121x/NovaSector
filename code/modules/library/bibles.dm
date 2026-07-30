@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	var/mob/living/carbon/human/built_in_his_image = blessed
 	for(var/obj/item/bodypart/bodypart as anything in built_in_his_image.get_bodyparts())
 		if(!IS_ORGANIC_LIMB(bodypart))
-			balloon_alert(user, "can't heal inorganic!")
+			balloon_alert(user, LANG("obj.27719f62", null))
 			return BLESSING_IGNORED
 
 	var/heal_amt = 10

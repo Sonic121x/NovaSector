@@ -215,8 +215,7 @@
 
 	for(var/datum/mind/cult_mind as anything in cult_team.members)
 		if (cult_mind != owner)
-			to_chat(cult_mind.current, span_cult_large("[owner.current] is your cult's Master! \
-				Follow [owner.current.p_their()] orders to the best of your ability!"))
+			to_chat(cult_mind.current, span_cult_large(LANG("datum.8c82bdb1", list(owner.current, owner.current.p_their()))))
 
 	to_chat(owner.current, span_cult_large(LANG("datum.b82b3e27", null)))
 
@@ -262,7 +261,7 @@
 	var/area/current_area = get_area(owner.current)
 	for(var/datum/mind/cult_mind as anything in cult_team.members)
 		SEND_SOUND(cult_mind, sound('sound/effects/hallucinations/veryfar_noise.ogg'))
-		to_chat(cult_mind, span_cult_large("The Cult's Master, [owner.current.name], has fallen in \the [current_area]!"))
+		to_chat(cult_mind, span_cult_large(LANG("datum.0c406eaa", list(owner.current.name, current_area))))
 
 /datum/antagonist/cult/get_preview_icon()
 	var/datum/universal_icon/icon = render_preview_outfit(preview_outfit)

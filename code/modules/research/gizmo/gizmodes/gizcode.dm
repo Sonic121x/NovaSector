@@ -245,13 +245,13 @@
 	for(var/i in 1 to code_length)
 		if(code_input[i] < solution[i])
 			playsound(holder, "sound/machines/defib/defib_saftyOff.ogg", 100)
-			holder.visible_message(span_notice("[holder] pings low."))
+			holder.visible_message(span_notice(LANG("datum.52d82d9c", list(holder))))
 		else if(code_input[i] > solution[i])
 			playsound(holder, "sound/machines/defib/defib_saftyOn.ogg", 100)
-			holder.visible_message(span_notice("[holder] pings high."))
+			holder.visible_message(span_notice(LANG("datum.ab7227ec", list(holder))))
 		else
 			playsound(holder, "sound/machines/defib/defib_ready.ogg", 100)
-			holder.visible_message(span_notice("[holder] pings affirmatively."))
+			holder.visible_message(span_notice(LANG("datum.8e9e0102", list(holder))))
 		sleep(0.5 SECONDS)
 	..()
 

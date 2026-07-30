@@ -884,7 +884,7 @@
 		if(!can_link_to(linked) || is_rack_stun_immune(linked))
 			continue
 		linked.Stun(10 SECONDS, ignore_canstun = TRUE)
-		to_chat(linked, span_userdanger("Rack connection lost. Recalculating directives..."))
+		to_chat(linked, span_userdanger(LANG("obj.a4a5d1a5", null)))
 		unlink_silicon(linked)
 
 /obj/machinery/ai_law_rack/base/proc/link_silicon(mob/living/silicon/new_bot, announce = TRUE)
@@ -943,7 +943,7 @@
 		if(bot.AmountStun() > 5 SECONDS || is_rack_stun_immune(bot))
 			continue
 		bot.Stun(10 SECONDS, ignore_canstun = TRUE)
-		to_chat(bot, span_userdanger("Rack connection lost. Recalculating directives..."))
+		to_chat(bot, span_userdanger(LANG("obj.a4a5d1a5", null)))
 		unlink_silicon(bot)
 
 /// Checks if the passed bot is immune to the stun from major lawset changes
@@ -960,7 +960,7 @@
 		return
 	for(var/link_name, link_mob in linked_mobs)
 		if(link_mob == user)
-			. += span_notice("This is <b>your</b> module rack.")
+			. += span_notice(LANG("obj.d626b068", null))
 
 /// Refreshes the combined lawset with all the modules currently installed and syncs it to all linked silicons
 /obj/machinery/ai_law_rack/base/proc/update_lawset()

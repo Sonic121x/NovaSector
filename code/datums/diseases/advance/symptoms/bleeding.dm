@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /*Anticoagulant
  * Increases stealth
  * No change to resistance
@@ -42,9 +43,9 @@
 	for(var/datum/wound/possible_bleeding_wound as anything in carbon_host.all_wounds)
 		if(possible_bleeding_wound.blood_flow && !hidden)
 			if(4 > A.stage >= 2)
-				to_chat(carbon_host, span_warning("Your bleeding wounds start to itch."))
+				to_chat(carbon_host, span_warning(LANG("datum.a171b546", null)))
 			if(A.stage >= 4)
-				to_chat(carbon_host, span_warning("Your bleeding wounds itch like crazy as more blood leaves your body."))
+				to_chat(carbon_host, span_warning(LANG("datum.9b861a05", null)))
 			return
 
 /datum/symptom/bleeding/on_stage_change(datum/disease/advance/A)

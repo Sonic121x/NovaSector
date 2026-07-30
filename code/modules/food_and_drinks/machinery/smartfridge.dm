@@ -287,8 +287,8 @@
 	if(can_load_item(tool))
 		load(tool, user)
 		user.visible_message(
-			span_notice("[user] adds \the [tool] to \the [src]."),
-			span_notice("You add \the [tool] to \the [src]."),
+			span_notice(LANG("obj.5d1bd1e3", list(user, tool, src))),
+			span_notice(LANG("obj.b948ff9a", list(tool, src))),
 		)
 		SStgui.update_uis(src)
 		if(visible_contents)
@@ -315,8 +315,8 @@
 
 		var/filled = loaded_count >= max_n_of_items
 		user.visible_message(
-			span_notice("[user] loads \the [src] with \the [tool]."),
-			span_notice("You [filled ? "fill" : "load"] \the [src] with \the [tool]."),
+			span_notice(LANG("obj.d8b0a4dd", list(user, src, tool))),
+			span_notice(LANG("obj.4cf04b7a", list(filled ? "fill" : "load", src, tool))),
 		)
 		if(length(tool.contents))
 			to_chat(user, span_warning(LANG("obj.94d8d593", null)))

@@ -101,7 +101,7 @@
 		span_notice("- Brewing coffee at <b>[speed*100]%</b>.")
 		if(coffeepot)
 			for(var/datum/reagent/consumable/cawfee as anything in coffeepot.reagents.reagent_list)
-				. += span_notice("- [cawfee.volume] units of coffee in pot.")
+				. += span_notice(LANG("obj.0da63f34", list(cawfee.volume)))
 		if(cartridge)
 			if(cartridge.charges < 1)
 				. += span_notice(LANG("obj.2dcb5650", null))

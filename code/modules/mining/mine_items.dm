@@ -113,7 +113,7 @@
 	if(isliving(user))
 		var/mob/living/living_user = user
 		for(var/obj/item/implant/exile/exile_implant in living_user.implants)
-			to_chat(living_user, span_warning("A warning flashes across the screen, and the shuttle controls lock in response to your exile implant."))
+			to_chat(living_user, span_warning(LANG("obj.1a88f091", null)))
 			return
 
 	return ..()
