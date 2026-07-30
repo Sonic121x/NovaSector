@@ -26,6 +26,9 @@ type AbductorConsoleData = {
 };
 
 type ConsoleItem = {
+  // NOVA EDIT ADDITION - I18N: English identifier for act('buy'); `name` is the localized
+  // display text. Falls back to `name` if the server didn't send an id.
+  id?: string;
   name: string;
   cost: number;
   desc: string;
@@ -85,7 +88,7 @@ const Abductsoft = (props) => {
     for (let itemIndex = 0; itemIndex < category.items.length; itemIndex++) {
       const item = category.items[itemIndex];
       items.push({
-        id: item.name,
+        id: item.id ?? item.name, // NOVA EDIT CHANGE - I18N - ORIGINAL: id: item.name,
         name: item.name,
         category: category.name,
         cost: `${item.cost} Credits`,
@@ -112,7 +115,8 @@ const Abductsoft = (props) => {
         currency={`${credits} Credits`}
         categories={categoriesList}
         items={items}
-        handleBuy={(item) => act('buy', { name: item.name })}
+        // NOVA EDIT CHANGE - I18N: 回传英文 id（item.name 现在是译名）- ORIGINAL: { name: item.name }
+        handleBuy={(item) => act('buy', { name: item.id })}
       />
     </>
   );
