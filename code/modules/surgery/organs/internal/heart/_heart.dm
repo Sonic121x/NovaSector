@@ -66,8 +66,8 @@
 
 	if(!beating)
 		user.visible_message(
-			span_notice("[user] squeezes [src] to make it beat again!"),
-			span_notice("You squeeze [src] to make it beat again!"),
+			span_notice(LANG("obj.fdb4487f", list(user, src))),
+			span_notice(LANG("obj.c52b0915", list(src))),
 		)
 		Restart()
 		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 8 SECONDS)
@@ -242,8 +242,8 @@
 		addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS)
 		if(owner_needs_us)
 			owner.visible_message(
-				span_danger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"),
-				span_userdanger("You feel a terrible pain in your chest, as if your heart has stopped!"),
+				span_danger(LANG("obj.32fa6902", list(owner, owner.p_their(), owner.p_their()))),
+				span_userdanger(LANG("obj.ba4fe027", null)),
 			)
 
 /obj/item/organ/heart/cybernetic/on_life(seconds_per_tick)

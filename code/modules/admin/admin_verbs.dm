@@ -275,7 +275,7 @@ ADMIN_VERB(drop_bomb, R_FUN, "投放炸弹", "Cause an explosion of varying stre
 			if(range_flash == null)
 				return
 			if(range_devastation > GLOB.MAX_EX_DEVESTATION_RANGE || range_heavy > GLOB.MAX_EX_HEAVY_RANGE || range_light > GLOB.MAX_EX_LIGHT_RANGE || range_flash > GLOB.MAX_EX_FLASH_RANGE)
-				if(tgui_alert(user, "Bomb is bigger than the maxcap. Continue?",,list("Yes","No")) != "Yes")
+				if(tgui_alert(user, LANG("datum.6e916adb", null),,list("Yes","No")) != "Yes")
 					return
 			epicenter = get_turf(user.mob) //We need to reupdate as they may have moved again
 			explosion(epicenter, devastation_range = range_devastation, heavy_impact_range = range_heavy, light_impact_range = range_light, flash_range = range_flash, adminlog = TRUE, ignorecap = TRUE, explosion_cause = user.mob)
@@ -511,8 +511,8 @@ ADMIN_VERB(manage_sect, R_ADMIN, "管理宗教教派", "Manages the chaplain's r
 	if (!isnull(GLOB.religious_sect))
 		var/you_sure = tgui_alert(
 			user,
-			"The Chaplain has already chosen [GLOB.religious_sect.name], override their selection?",
-			"Replace God?",
+			LANG("datum.04a00f60", list(GLOB.religious_sect.name)),
+			LANG("datum.ee32b53b", null),
 			list("Yes", "Cancel"),
 		)
 		if (you_sure != "Yes")
@@ -698,8 +698,8 @@ ADMIN_VERB(create_mob_worm, R_FUN, "创建 Mob 蠕虫", "Attach a linked list of
 
 	var/attempted_target_path = tgui_input_text(
 		user,
-		"Enter typepath of a mob you'd like to make your chain from.",
-		"Typepath",
+		LANG("datum.cb1c65e7", null),
+		LANG("datum.1a01b0f5", null),
 		"[/mob/living/basic/pet/dog/corgi/ian]",
 	)
 

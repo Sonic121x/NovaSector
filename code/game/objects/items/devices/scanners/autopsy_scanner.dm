@@ -179,7 +179,7 @@
 		var/datum/species/targetspecies = humantarget.dna.species
 		var/disguised = !ishumanbasic(humantarget) && istype(humantarget.head, /obj/item/clothing/head/hooded/human_head) && istype(humantarget.wear_suit, /obj/item/clothing/suit/hooded/bloated_human)
 		var/species_name = "[disguised ? "\"[/datum/species/human::name]\"" : targetspecies.name][mutant ? "-derived mutant" : ""]"
-		autopsy_information += "<b>Species:</b> [species_name]</br>"
+		autopsy_information += "<b>Species:</b> [lang_reverse_text(species_name)]</br>" // NOVA EDIT CHANGE - i18n: reverse-localize species name (label handled by lang_localize_autopsy) - ORIGINAL: autopsy_information += "<b>Species:</b> [species_name]</br>"
 		autopsy_information += "<b>Core temperature:</b> [round(humantarget.coretemperature-T0C, 0.1)] &deg;C ([round(humantarget.coretemperature*1.8-459.67,0.1)] &deg;F)</br>"
 	// (End of humanoid-only information)
 	autopsy_information += "<b>Body temperature:</b> [round(scanned.bodytemperature-T0C, 0.1)] &deg;C ([round(scanned.bodytemperature*1.8-459.67,0.1)] &deg;F)</br>"

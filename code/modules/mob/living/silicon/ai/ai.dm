@@ -310,8 +310,8 @@ GAME_VERB_DESC(/mob/living/silicon/ai, pick_status_display, "设置 AI 状态显
 
 	var/reason = tgui_input_text(
 		src,
-		"What is the nature of your emergency? ([CALL_SHUTTLE_REASON_LENGTH] characters required.)",
-		"Confirm Shuttle Call",
+		LANG("mob.1426d190", list(CALL_SHUTTLE_REASON_LENGTH)),
+		LANG("mob.843a84ea", null),
 		max_length = MAX_MESSAGE_LEN,
 		encode = FALSE,
 	)

@@ -35,8 +35,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 		balloon_alert(user, LANG("mob.ca562ada", null))
 		user.visible_message(
-			span_notice("[user] fixes some of the burnt wires on [src]."),
-			span_notice("You fix some of the burnt wires on [src]."),
+			span_notice(LANG("mob.c9492a0a", list(user, src))),
+			span_notice(LANG("mob.7dfaf6a1", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		user.changeNext_move(CLICK_CD_MELEE)
@@ -69,8 +69,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 			return ITEM_INTERACT_BLOCKING
 		balloon_alert(user, LANG("mob.589d880f", null))
 		user.visible_message(
-			span_notice("[user] begins to place [tool] on [src]'s head..."),
-			span_notice("You begin to place [tool] on [src]'s head..."),
+			span_notice(LANG("mob.78c9d4c5", list(user, tool, src))),
+			span_notice(LANG("mob.98caad4a", list(tool, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		if(!do_after(user, 3 SECONDS, target = src))
@@ -322,8 +322,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	add_fingerprint(user)
 	balloon_alert(user, LANG("mob.7a6cbe1f", null))
 	user.visible_message(
-		span_notice("[user] fixes some of the dents on [src]."),
-		span_notice("You fix some of the dents on [src]."),
+		span_notice(LANG("mob.a1eec76e", list(user, src))),
+		span_notice(LANG("mob.4b121f44", list(src))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	return ITEM_INTERACT_SUCCESS
@@ -372,8 +372,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		return ITEM_INTERACT_BLOCKING
 	loc.balloon_alert(user, LANG("mob.80451b1c", null))
 	user.visible_message(
-		span_notice("[user] deconstructs [src]!"),
-		span_notice("You unfasten the securing bolts, and [src] falls to pieces!"),
+		span_notice(LANG("mob.2ced132f", list(user, src))),
+		span_notice(LANG("mob.d0894daa", list(src))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	cyborg_deconstruct()

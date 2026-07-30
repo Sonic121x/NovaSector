@@ -787,8 +787,8 @@
 
 	if(vomit_flags & MOB_VOMIT_MESSAGE)
 		visible_message(
-			span_warning("[src] dry heaves!"),
-			span_userdanger("You try to throw up, but there's nothing in your stomach!"),
+			span_warning(LANG("mob.8d6963f8", list(src))),
+			span_userdanger(LANG("mob.a5048e5e", null)),
 		)
 	if(vomit_flags & MOB_VOMIT_STUN)
 		Stun(20 SECONDS)

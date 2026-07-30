@@ -747,9 +747,9 @@
 			hit_with_what_noun += plural_s(hit_with_what_noun) // hit with "their hands"
 
 	user.visible_message(
-		span_danger("[user] smashes [src] with [user.p_their()] [hit_with_what_noun][damage ? "." : ", [no_damage_feedback]!"]"),
-		span_danger("You smash [src] with your [hit_with_what_noun][damage ? "." : ", [no_damage_feedback]!"]"),
-		span_hear("You hear a [damage ? "smash" : "thud"]."),
+		span_danger(LANG("obj.3d4bf711", list(user, src, user.p_their(), hit_with_what_noun, damage ? "." : ", [no_damage_feedback]!"))),
+		span_danger(LANG("obj.12903554", list(src, hit_with_what_noun, damage ? "." : ", [no_damage_feedback]!"))),
+		span_hear(LANG("obj.cb4c165c", list(damage ? "smash" : "thud"))),
 		COMBAT_MESSAGE_RANGE,
 	)
 	return TRUE
@@ -1217,7 +1217,7 @@
 				part_count[component] = board.req_components[component]
 
 
-	var/text = span_notice("It contains the following parts:")
+	var/text = span_notice(LANG("_machine.contains_parts", null)) // NOVA EDIT - I18N: header (colon-ended, not caught by extraction)
 	for(var/component_part in part_count)
 		var/part_name
 		var/icon/html_icon
@@ -1234,7 +1234,13 @@
 			html_icon = part.icon
 			icon_state = part.icon_state
 		//merge icon & name into text
-		text += span_notice("[icon2html(html_icon, user, icon_state)] [part_count[component_part]] [part_name]\s.")
+		// NOVA EDIT START - I18N: reverse part name; drop \s plural suffix once localized (中文无复数; avoids "物质箱s")
+		var/disp_name = lang_reverse_text(part_name)
+		if(disp_name == part_name)
+			text += span_notice("[icon2html(html_icon, user, icon_state)] [part_count[component_part]] [part_name]\s.")
+		else
+			text += span_notice("[icon2html(html_icon, user, icon_state)] [part_count[component_part]] [disp_name].")
+		// NOVA EDIT END
 
 	return text
 

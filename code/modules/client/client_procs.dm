@@ -481,11 +481,12 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 			return
 	else if (byond_version < warn_version || (byond_version == warn_version && byond_build < warn_build)) //We have words for this client.
 		if(CONFIG_GET(flag/client_warn_popup))
-			var/msg = "<b>Your version of byond may be getting out of date:</b><br>"
+			// NOVA EDIT - i18n: 旧 browse 弹窗 raw browse 不过 /datum/browser 的 AC 钩子，直接复用下方 else 分支同款 LANG key 拼装（精确、含占位符/链接）
+			var/msg = "[LANG("client.832182db", null)]<br>"
 			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
-			msg += "Your version: [byond_version].[byond_build]<br>"
-			msg += "Required version to remove this message: [warn_version].[warn_build] or later<br>"
-			msg += "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.<br>"
+			msg += "[LANG("client.2becbdd0", list(byond_version, byond_build))]<br>"
+			msg += "[LANG("client.7dad8d5b", list(warn_version, warn_build))]<br>"
+			msg += "[LANG("client.b16bec0e", null)]<br>"
 			src << browse(HTML_SKELETON(msg), "window=warning_popup")
 		else
 			to_chat(src, span_danger(LANG("client.832182db", null)))
@@ -817,6 +818,10 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	. = player_age
 
 /client/proc/findJoinDate()
+	// NOVA EDIT ADDITION START - BYOND_ACCOUNT_AGE_CHECK - allow operators to avoid external member page lookups
+	if(CONFIG_GET(flag/disable_byond_account_age_check))
+		return
+	// NOVA EDIT ADDITION END
 	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
 	if(!http)
 		log_world("Failed to connect to byond member page to age check [ckey]")
@@ -1144,7 +1149,9 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 			continue
 		panel_tabs |= verb_to_init.category
 		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
-	src.stat_panel.send_message("init_verbs", list(panel_tabs = panel_tabs, verblist = verblist))
+	// NOVA EDIT CHANGE - i18n: 附带页签显示译名表（locale==en 时为空 list，JS 侧回落原名）
+	// - ORIGINAL: src.stat_panel.send_message("init_verbs", list(panel_tabs = panel_tabs, verblist = verblist))
+	src.stat_panel.send_message("init_verbs", list(panel_tabs = panel_tabs, verblist = verblist, tab_labels = lang_statpanel_tab_labels()))
 
 /client/proc/check_panel_loaded()
 	if(stat_panel.is_ready())

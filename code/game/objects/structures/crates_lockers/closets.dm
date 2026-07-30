@@ -1197,7 +1197,7 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "打开/关闭", 
 	play_closet_lock_sound()
 	user.visible_message(
 		span_notice("[user] [locked ? "locks" : "unlocks"] [src]."),
-		span_notice("You [locked ? "locked" : "unlocked"] [src]."),
+		span_notice(LANG("obj.d6171b71", list(locked ? "locked" : "unlocked", src))),
 	)
 	update_appearance()
 	return TRUE
@@ -1326,8 +1326,8 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "打开/关闭", 
 		HIDE_ATTACK_MESSAGES(attack_modifiers)
 		MODIFY_ATTACK_FORCE_MULTIPLIER(attack_modifiers, 2)
 		user.visible_message(
-			span_danger("[user] stabs with precision [src]'s electronics with [attacking_item]!"),
-			span_danger("You stab with precision [src]'s electronics with [attacking_item]!"),
+			span_danger(LANG("obj.7f82c43d", list(user, src, attacking_item))),
+			span_danger(LANG("obj.8b2dac21", list(src, attacking_item))),
 			null,
 			COMBAT_MESSAGE_RANGE,
 		)

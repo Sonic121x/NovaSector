@@ -164,8 +164,8 @@ ADMIN_VERB(command_report_footnote, R_FUN, "指挥部报告脚注", "Adds a foot
 
 	command_report_footnote.message = tgui_input_text(
 		user,
-		"This message will be attached to the bottom of the roundstart threat report.",
-		"P.S.",
+		LANG("datum.0c3ef29f", null),
+		LANG("datum.394670e9", null),
 	)
 	if(!command_report_footnote.message)
 		GLOB.communications_controller.block_command_report -= 1
@@ -174,8 +174,8 @@ ADMIN_VERB(command_report_footnote, R_FUN, "指挥部报告脚注", "Adds a foot
 
 	command_report_footnote.signature = tgui_input_text(
 		user,
-		"Whose signature will appear on this footnote?",
-		"Also sign here, here, aaand here.",
+		LANG("datum.a004306f", null),
+		LANG("datum.6221e12f", null),
 	)
 
 	if(!command_report_footnote.signature)
@@ -194,8 +194,8 @@ ADMIN_VERB(command_report_content, R_FUN, "指挥部报告内容", "Sets the mai
 	GLOB.communications_controller.block_command_report += 1
 	GLOB.communications_controller.command_report_main_content = tgui_input_text(
 		user,
-		"This message will be the main content of the roundstart command report, above the threat report (if enabled).",
-		"To Whom It May Concern",
+		LANG("datum.f7b6bce3", null),
+		LANG("datum.57bd42d3", null),
 	)
 	GLOB.communications_controller.block_command_report -= 1
 	message_admins("[key_name_admin(user)] has [GLOB.communications_controller.command_report_main_content ? "set" : "cleared"] the main content of the roundstart command report.")

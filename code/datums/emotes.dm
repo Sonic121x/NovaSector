@@ -110,6 +110,8 @@
 		else
 			msg = params
 
+	// NOVA EDIT ADDITION - i18n: 留一份**代词替换前**的原串，反查要用它（见下方 lang_reverse_text）
+	var/pre_pronoun_msg = msg
 	msg = replace_pronoun(user, msg)
 	if(!msg)
 		return
@@ -119,6 +121,18 @@
 
 	if(user.client)
 		user.log_message(msg, LOG_EMOTE)
+
+	// NOVA EDIT ADDITION START - I18N - emote 消息在下游拼成「[user] [msg]」整句动态、无法命中目录；
+	// 在日志之后（日志保英文）对 msg 整串反查（含单词条目；miss 原样返回，locale==en 时 no-op）。
+	//
+	// **必须用代词替换前的原串查**：目录键是源码里的 "their" 形态（"stretches their arms."），而
+	// replace_pronoun 已按 mob 代词把它改成了 its/his/her，拿替换后的串去查必然 miss。这正是
+	// 「clears its throat.」「twitches its ears!」「flaps its wings ANGRILY!」这批含代词的表情
+	// 整句漏翻、其余表情却正常的原因。命中就用译文（中文无需再做代词替换）；未命中再退回按
+	// 替换后的串查一次，兼容那些译文本身带代词占位的条目。
+	var/localized_msg = lang_reverse_text(pre_pronoun_msg)
+	msg = (localized_msg != pre_pronoun_msg) ? localized_msg : lang_reverse_text(msg)
+	// NOVA EDIT ADDITION END
 
 	var/tmp_sound = get_sound(user)
 	if(tmp_sound && should_play_sound(user, intentional))

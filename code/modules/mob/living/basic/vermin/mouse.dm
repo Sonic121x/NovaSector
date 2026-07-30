@@ -206,8 +206,8 @@
 	// Royal cheese will evolve us into a regal rat
 	if(istype(cheese, /obj/item/food/cheese/royal))
 		visible_message(
-			span_warning("[src] devours [cheese]! They morph into something... greater!"),
-			span_notice("You devour [cheese], and start morphing into something... greater!"),
+			span_warning(LANG("mob.5053436d", list(src, cheese))),
+			span_notice(LANG("mob.49a5e2d8", list(cheese))),
 		)
 		evolve_into_regal_rat()
 		qdel(cheese)
@@ -253,9 +253,9 @@
 /mob/living/basic/mouse/proc/try_bite_cable(obj/structure/cable/cable)
 	if(cable.avail() && !HAS_TRAIT(src, TRAIT_SHOCKIMMUNE) && prob(cable_zap_prob))
 		visible_message(
-			span_warning("[src] chews through \the [cable]. It's toast!"),
-			span_userdanger("As you bite deeply into [cable], you suddenly realize this may have been a bad idea."),
-			span_hear("You hear electricity crack."),
+			span_warning(LANG("mob.82786ff9", list(src, cable))),
+			span_userdanger(LANG("mob.bef9236c", list(cable))),
+			span_hear(LANG("mob.a1b757b9", null)),
 		)
 		// Finely toasted
 		ADD_TRAIT(src, TRAIT_BEING_SHOCKED, TRAIT_GENERIC)
@@ -266,8 +266,8 @@
 
 	else
 		visible_message(
-			span_warning("[src] chews through \the [cable]."),
-			span_notice("You chew through \the [cable]."),
+			span_warning(LANG("mob.02b2e21a", list(src, cable))),
+			span_notice(LANG("mob.ed9e7127", list(cable))),
 		)
 
 	playsound(cable, 'sound/effects/sparks/sparks2.ogg', 100, TRUE)

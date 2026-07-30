@@ -287,7 +287,7 @@ ADMIN_VERB(respawn_character, R_ADMIN, "重生角色", "Respawn a player that ha
 	if(G_found.mind && !G_found.mind.active) //mind isn't currently in use by someone/something
 		//check if they were a monkey
 		if(findtext(G_found.real_name,"monkey"))
-			if(tgui_alert(user,"This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No")) == "Yes")
+			if(tgui_alert(user,LANG("datum.d521e840", null),,list("Yes","No")) == "Yes")
 				var/mob/living/carbon/human/species/monkey/new_monkey = new
 				SSjob.send_to_late_join(new_monkey)
 				G_found.mind.transfer_to(new_monkey) //be careful when doing stuff like this! I've already checked the mind isn't in use
@@ -356,10 +356,10 @@ ADMIN_VERB(respawn_character, R_ADMIN, "重生角色", "Respawn a player that ha
 	//Announces the character on all the systems, based on the record.
 	if(!record_found && (new_character.mind.assigned_role.job_flags & JOB_CREW_MEMBER))
 		//Power to the user!
-		if(tgui_alert(new_character,"Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?",,list("No","Yes")) == "Yes")
+		if(tgui_alert(new_character,LANG("datum.a42902dc", null),,list("No","Yes")) == "Yes")
 			GLOB.manifest.inject(new_character, person_client = src) // NOVA EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: GLOB.manifest.inject(new_character)
 
-		if(tgui_alert(new_character,"Would you like an active AI to announce this character?",,list("No","Yes")) == "Yes")
+		if(tgui_alert(new_character,LANG("datum.30eaaea9", null),,list("No","Yes")) == "Yes")
 			announce_arrival(new_character, new_character.mind.assigned_role.title)
 
 	var/msg = span_adminnotice("[admin] has respawned [player_key] as [new_character.real_name].")

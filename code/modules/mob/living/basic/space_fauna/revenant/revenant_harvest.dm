@@ -106,8 +106,8 @@
 	if(target.can_block_magic(MAGIC_RESISTANCE_HOLY))
 		to_chat(src, span_revenminor(LANG("mob.c9211b98", list(target))))
 		target.visible_message(
-			span_warning("[target] slumps onto the ground."),
-			span_revenwarning("Violet lights, dancing in your vision, receding--"),
+			span_warning(LANG("mob.ca7c6bf1", list(target))),
+			span_revenwarning(LANG("mob.4b327eec", null)),
 		)
 		return FALSE
 
@@ -116,8 +116,8 @@
 		to_chat(src, span_revenwarning(LANG("mob.dc233f8f", list(target ? "[target]'s soul has" : "[target_They_have]"))))
 		if(target)
 			target.visible_message(
-				span_warning("[target] slumps onto the ground."),
-				span_revenwarning("Violet lights, dancing in your vision, receding--"),
+				span_warning(LANG("mob.ca7c6bf1", list(target))),
+				span_revenwarning(LANG("mob.4b327eec", null)),
 			)
 		qdel(draining_beam)
 		return FALSE
@@ -135,8 +135,8 @@
 
 	to_chat(src, span_revennotice(LANG("mob.2816985d", list(target))))
 	target.visible_message(
-		span_warning("[target] slumps onto the ground."),
-		span_revenwarning("Violet lights, dancing in your vision, getting clo--"),
+		span_warning(LANG("mob.ca7c6bf1", list(target))),
+		span_revenwarning(LANG("mob.979ffd67", null)),
 	)
 
 	LAZYADD(drained_mobs, REF(target))

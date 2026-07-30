@@ -264,20 +264,22 @@
 	var/list/trauma_text
 	for(var/datum/brain_trauma/trauma as anything in traumas)
 		var/trauma_desc = ""
+		// NOVA EDIT - I18N - reverse-localize the severity prefix + scan_desc (both listed in strings/i18n/*/_brain_traumas.json);
+		// lang_reverse_text is locale-gated (no-op on english / en locale) so english output is unchanged.
 		switch(trauma.resilience)
 			if(TRAUMA_RESILIENCE_BASIC)
-				trauma_desc = conditional_tooltip("Mild ", "Repair via brain surgery or medication such as [/datum/reagent/medicine/neurine::name].", add_tooltips)
+				trauma_desc = conditional_tooltip(lang_reverse_text("Mild "), "Repair via brain surgery or medication such as [/datum/reagent/medicine/neurine::name].", add_tooltips)
 			if(TRAUMA_RESILIENCE_SURGERY)
-				trauma_desc = conditional_tooltip("Severe ", "Repair via brain surgery.", add_tooltips)
+				trauma_desc = conditional_tooltip(lang_reverse_text("Severe "), "Repair via brain surgery.", add_tooltips)
 			if(TRAUMA_RESILIENCE_LOBOTOMY)
-				trauma_desc = conditional_tooltip("Deep-rooted ", "Repair via Lobotomy.", add_tooltips)
+				trauma_desc = conditional_tooltip(lang_reverse_text("Deep-rooted "), "Repair via Lobotomy.", add_tooltips)
 			if(TRAUMA_RESILIENCE_WOUND)
-				trauma_desc = conditional_tooltip("Fracture-derived ", "Repair via treatment of wounds afflicting the head.", add_tooltips)
+				trauma_desc = conditional_tooltip(lang_reverse_text("Fracture-derived "), "Repair via treatment of wounds afflicting the head.", add_tooltips)
 			if(TRAUMA_RESILIENCE_MAGIC)
-				trauma_desc = conditional_tooltip("Persistent ", "Only repairable via magic.", add_tooltips)
+				trauma_desc = conditional_tooltip(lang_reverse_text("Persistent "), "Only repairable via magic.", add_tooltips)
 			if(TRAUMA_RESILIENCE_ABSOLUTE)
-				trauma_desc = conditional_tooltip("Permanent ", "Irreparable under normal circumstances.", add_tooltips)
-		trauma_desc += capitalize(trauma.scan_desc)
+				trauma_desc = conditional_tooltip(lang_reverse_text("Permanent "), "Irreparable under normal circumstances.", add_tooltips)
+		trauma_desc += lang_reverse_text(capitalize(trauma.scan_desc))
 		LAZYADD(trauma_text, trauma_desc)
 	if(LAZYLEN(trauma_text))
 		return "Mental trauma: [english_list(trauma_text, and_text = ", and ")]."

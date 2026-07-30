@@ -112,8 +112,8 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 			message_verb_continuous = "ineffectively " + message_verb_continuous
 
 		user.visible_message(
-			span_danger("[user] [message_verb_continuous] [src] with [attacking_item][damage ? "." : ", [no_damage_feedback]!"]"),
-			span_danger("You [message_verb_simple] [src] with [attacking_item][damage ? "." : ", [no_damage_feedback]!"]"),
+			span_danger(LANG("obj.deff8f6f", list(user, message_verb_continuous, src, attacking_item, damage ? "." : ", [no_damage_feedback]!"))),
+			span_danger(LANG("obj.93c74fc1", list(message_verb_simple, src, attacking_item, damage ? "." : ", [no_damage_feedback]!"))),
 			null,
 			COMBAT_MESSAGE_RANGE,
 		)
@@ -187,12 +187,12 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(!check_rights(R_DEBUG|R_SERVER))
 			return
-		var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
+		var/action_type = tgui_alert(usr, LANG("obj.68e254d3", list(type)),,list("Strict type","Type and subtypes","Cancel"))
 		if(action_type == "Cancel" || !action_type)
 			return
-		if(tgui_alert(usr, "Are you really sure you want to delete all objects of type [type]?",,list("Yes","No")) != "Yes")
+		if(tgui_alert(usr, LANG("obj.c71c8697", list(type)),,list("Yes","No")) != "Yes")
 			return
-		if(tgui_alert(usr, "Second confirmation required. Delete?",,list("Yes","No")) != "Yes")
+		if(tgui_alert(usr, LANG("obj.bd025aa5", null),,list("Yes","No")) != "Yes")
 			return
 		var/O_type = type
 		switch(action_type)
@@ -224,7 +224,7 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 /obj/examine(mob/user)
 	. = ..()
 	if(desc_controls)
-		. += span_notice(desc_controls)
+		. += span_notice(lang_reverse_text(desc_controls)) // NOVA EDIT - i18n: 反查操作说明（desc_controls 已进 SINK_VARS）。ORIGINAL: . += span_notice(desc_controls)
 
 /obj/examine_tags(mob/user)
 	. = ..()

@@ -375,18 +375,18 @@
 						if(CASING_CATCH_FAILED_SPICY)
 							hitting_ground = TRUE
 							wielder.visible_message(
-								span_warning("[wielder] reaches out for \the [casing] as it ejects from [src], and catches it... before fumbling it because it's a hot casing. Uncool!"),
-								span_warning("You reach out and catch \the [casing] as it ejects from [src]... before dropping it, because it's a hot casing! Ouch! Uncool!"),
-								span_notice("You hear someone reaching for something before a hiss of pain and the sound of something clattering."),
+								span_warning(LANG("obj.cb40721b", list(wielder, casing, src))),
+								span_warning(LANG("obj.d6283691", list(casing, src))),
+								span_notice(LANG("obj.d6ad5650", null)),
 							)
 							var/obj/item/bodypart/affecting = wielder.get_inactive_hand()
 							wielder.apply_damage(2, BURN, affecting, wound_bonus = CANT_WOUND)
 						if(CASING_CATCH_FAILED_CLUMSY)
 							hitting_ground = TRUE
 							wielder.visible_message(
-								span_warning("[wielder] reaches out for \the [casing] as it ejects from [src]... before fumbling it in an incredibly unlikely, comical manner! Uncool!"),
-								span_warning("You reach out and catch \the [casing] as it ejects from [src]... before fumbling it in an incredibly unlikely, comical manner! Uncool!"),
-								span_notice("You hear someone reaching for something, shortly followed by an embarassingly loud, comedic clattering."),
+								span_warning(LANG("obj.c53ed8dd", list(wielder, casing, src))),
+								span_warning(LANG("obj.d672a7e6", list(casing, src))),
+								span_notice(LANG("obj.8b5721d0", null)),
 							)
 							if(!(world.time >= casing.shot_timestamp + CASING_HOT_DELAY))
 								var/obj/item/bodypart/affecting = wielder.get_inactive_hand()
@@ -395,9 +395,9 @@
 						if(CASING_CATCH_FAILED_PLACEMENT)
 							hitting_ground = TRUE
 							wielder.visible_message(
-								span_warning("[wielder] reaches out for \the [casing] as it ejects from [src] and fumbles it due to [wielder.p_their()] full hands. Uncool!"),
-								span_warning("You try and reach out for \the [casing] as it ejects from [src], and fumble it because your hands are full. Uncool!"),
-								span_notice("You hear someone reaching for something, before a metallic clattering."),
+								span_warning(LANG("obj.bdaf75fb", list(wielder, casing, src, wielder.p_their()))),
+								span_warning(LANG("obj.f7625527", list(casing, src))),
+								span_notice(LANG("obj.c43b3172", null)),
 							)
 						if(CASING_CATCH_SUCCESSFUL)
 							hitting_ground = FALSE

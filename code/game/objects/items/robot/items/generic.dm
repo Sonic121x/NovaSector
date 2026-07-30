@@ -47,13 +47,13 @@
 	if(issilicon(attacked_mob))
 		attacked_mob.emp_act(EMP_HEAVY)
 		attacked_mob.visible_message(
-			span_danger("[user] shocks [attacked_mob] with [src]!"),
-			span_userdanger("[user] shocks you with [src]!"),
+			span_danger(LANG("obj.d656a7da", list(user, attacked_mob, src))),
+			span_userdanger(LANG("obj.f3d4edd4", list(user, src))),
 		)
 	else
 		attacked_mob.visible_message(
-			span_danger("[user] prods [attacked_mob] with [src]!"),
-			span_userdanger("[user] prods you with [src]!"),
+			span_danger(LANG("obj.238f0c6a", list(user, attacked_mob, src))),
+			span_userdanger(LANG("obj.6825a6bb", list(user, src))),
 		)
 
 	SEND_SIGNAL(attacked_mob, COMSIG_LIVING_MINOR_SHOCK) // NOVA EDIT ADDITION
@@ -112,28 +112,28 @@
 				return
 			if(user.zone_selected == BODY_ZONE_HEAD)
 				user.visible_message(
-					span_notice("[user] playfully boops [attacked_mob] on the head!"),
-					span_notice("You playfully boop [attacked_mob] on the head!"),
+					span_notice(LANG("obj.92bbbd71", list(user, attacked_mob))),
+					span_notice(LANG("obj.5b22fd59", list(attacked_mob))),
 				)
 				user.do_attack_animation(attacked_mob, ATTACK_EFFECT_BOOP)
 				playsound(loc, 'sound/items/weapons/tap.ogg', 50, TRUE, -1)
 			else if(ishuman(attacked_mob))
 				if(user.body_position == LYING_DOWN)
 					user.visible_message(
-						span_notice("[user] shakes [attacked_mob] trying to get [attacked_mob.p_them()] up!"),
-						span_notice("You shake [attacked_mob] trying to get [attacked_mob.p_them()] up!"),
+						span_notice(LANG("obj.b37c53ea", list(user, attacked_mob, attacked_mob.p_them()))),
+						span_notice(LANG("obj.8abc44ac", list(attacked_mob, attacked_mob.p_them()))),
 					)
 				else
 					user.visible_message(
-						span_notice("[user] hugs [attacked_mob] to make [attacked_mob.p_them()] feel better!"),
-						span_notice("You hug [attacked_mob] to make [attacked_mob.p_them()] feel better!"),
+						span_notice(LANG("obj.dde9bc77", list(user, attacked_mob, attacked_mob.p_them()))),
+						span_notice(LANG("obj.04eb052a", list(attacked_mob, attacked_mob.p_them()))),
 					)
 				if(attacked_mob.resting)
 					attacked_mob.set_resting(FALSE, TRUE)
 			else
 				user.visible_message(
-					span_notice("[user] pets [attacked_mob]!"),
-					span_notice("You pet [attacked_mob]!"),
+					span_notice(LANG("obj.0239e2cd", list(user, attacked_mob))),
+					span_notice(LANG("obj.3ced569c", list(attacked_mob))),
 				)
 			playsound(loc, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		if(HUG_MODE_HUG)
@@ -141,26 +141,26 @@
 				attacked_mob.adjust_status_effects_on_shake_up()
 				if(attacked_mob.body_position == LYING_DOWN)
 					user.visible_message(
-						span_notice("[user] shakes [attacked_mob] trying to get [attacked_mob.p_them()] up!"),
-						span_notice("You shake [attacked_mob] trying to get [attacked_mob.p_them()] up!"),
+						span_notice(LANG("obj.b37c53ea", list(user, attacked_mob, attacked_mob.p_them()))),
+						span_notice(LANG("obj.8abc44ac", list(attacked_mob, attacked_mob.p_them()))),
 					)
 				else if(user.zone_selected == BODY_ZONE_HEAD)
-					user.visible_message(span_warning("[user] bops [attacked_mob] on the head!"),
-						span_warning("You bop [attacked_mob] on the head!"),
+					user.visible_message(span_warning(LANG("obj.8b26e949", list(user, attacked_mob))),
+						span_warning(LANG("obj.f08745e9", list(attacked_mob))),
 					)
 					user.do_attack_animation(attacked_mob, ATTACK_EFFECT_PUNCH)
 				else
 					if(!(SEND_SIGNAL(attacked_mob, COMSIG_BORG_HUG_MOB, user) & COMSIG_BORG_HUG_HANDLED))
 						user.visible_message(
-							span_warning("[user] hugs [attacked_mob] in a firm bear-hug! [attacked_mob] looks uncomfortable..."),
-							span_warning("You hug [attacked_mob] firmly to make [attacked_mob.p_them()] feel better! [attacked_mob] looks uncomfortable..."),
+							span_warning(LANG("obj.2c384008", list(user, attacked_mob, attacked_mob))),
+							span_warning(LANG("obj.430162c7", list(attacked_mob, attacked_mob.p_them(), attacked_mob))),
 						)
 				if(attacked_mob.resting)
 					attacked_mob.set_resting(FALSE, TRUE)
 			else
 				user.visible_message(
-					span_warning("[user] bops [attacked_mob] on the head!"),
-					span_warning("You bop [attacked_mob] on the head!"),
+					span_warning(LANG("obj.8b26e949", list(user, attacked_mob))),
+					span_warning(LANG("obj.f08745e9", list(attacked_mob))),
 				)
 			playsound(loc, 'sound/items/weapons/tap.ogg', 50, TRUE, -1)
 		if(HUG_MODE_SHOCK)
@@ -171,20 +171,20 @@
 				attacked_mob.dropItemToGround(attacked_mob.get_active_held_item())
 				attacked_mob.dropItemToGround(attacked_mob.get_inactive_held_item())
 				user.visible_message(
-					span_userdanger("[user] electrocutes [attacked_mob] with [user.p_their()] touch!"),
-					span_danger("You electrocute [attacked_mob] with your touch!"),
+					span_userdanger(LANG("obj.e7ae6904", list(user, attacked_mob, user.p_their()))),
+					span_danger(LANG("obj.fe2b3f85", list(attacked_mob))),
 				)
 			else
 				if(!iscyborg(attacked_mob))
 					attacked_mob.adjust_fire_loss(10)
 					user.visible_message(
-						span_userdanger("[user] shocks [attacked_mob]!"),
-						span_danger("You shock [attacked_mob]!"),
+						span_userdanger(LANG("obj.d016fc16", list(user, attacked_mob))),
+						span_danger(LANG("obj.ac5b962b", list(attacked_mob))),
 					)
 				else
 					user.visible_message(
-						span_userdanger("[user] shocks [attacked_mob]. It does not seem to have an effect"),
-						span_danger("You shock [attacked_mob] to no effect."),
+						span_userdanger(LANG("obj.814568fc", list(user, attacked_mob))),
+						span_danger(LANG("obj.92056e5e", list(attacked_mob))),
 					)
 			playsound(loc, 'sound/effects/sparks/sparks2.ogg', 50, TRUE, -1)
 			user.cell.use(0.5 * STANDARD_CELL_CHARGE, force = TRUE)
@@ -194,13 +194,13 @@
 				return
 			if(ishuman(attacked_mob))
 				user.visible_message(
-					span_userdanger("[user] crushes [attacked_mob] in [user.p_their()] grip!"),
-					span_danger("You crush [attacked_mob] in your grip!"),
+					span_userdanger(LANG("obj.73c68314", list(user, attacked_mob, user.p_their()))),
+					span_danger(LANG("obj.298e1261", list(attacked_mob))),
 				)
 			else
 				user.visible_message(
-					span_userdanger("[user] crushes [attacked_mob]!"),
-						span_danger("You crush [attacked_mob]!"),
+					span_userdanger(LANG("obj.a1d666d4", list(user, attacked_mob))),
+						span_danger(LANG("obj.e79ecc98", list(attacked_mob))),
 				)
 			playsound(loc, 'sound/items/weapons/smash.ogg', 50, TRUE, -1)
 			attacked_mob.adjust_brute_loss(15)
@@ -370,9 +370,9 @@
 
 	if(safety == TRUE)
 		user.visible_message(
-			"<font color='red' size='2'>[user] blares out a near-deafening siren from its speakers!</font>",
-			span_userdanger("Your siren blares around [iscyborg(user) ? "you" : "and confuses you"]!"),
-			span_danger("The siren pierces your hearing!"),
+			LANG("obj.e54f5ded", list(user)),
+			span_userdanger(LANG("obj.e12a98a6", list(iscyborg(user) ? "you" : "and confuses you"))),
+			span_danger(LANG("obj.b3d71be9", null)),
 		)
 		for(var/mob/living/carbon/carbon in get_hearers_in_view(9, user))
 			if(carbon.get_ear_protection() > 0)

@@ -557,7 +557,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 
 	if(HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISH) || HAS_TRAIT(loc, TRAIT_EXAMINE_FISH))
 		. += span_notice(LANG("obj.c3aed59e", list(p_Theyre(), size)))
-		. += span_notice(LANG("obj.c066a1a1", list(p_They(), p_s(), weight, span_tooltip("the standard unit of measurement for space age fish", "kiloclam"))))
+		. += span_notice(LANG("obj.c066a1a1", list(p_They(), p_s(), weight, span_tooltip(lang_reverse_text("the standard unit of measurement for space age fish"), lang_reverse_text("kiloclam"))))) // NOVA EDIT - I18N: span 包裹的单位词反查（"kiloclam"→千蛤币 在目录，但 span 壳让整 arg 反查 miss，故在此显式反查内层）
 
 		if(HAS_TRAIT(src, TRAIT_FISH_GENEGUNNED))
 			. += span_warning(LANG("obj.326136be", list(p_Theyve(), p_They())))
@@ -1593,14 +1593,14 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	if((/datum/fish_trait/predator in fish_traits) && prob(50))
 		if(in_aquarium)
 			user.visible_message(
-				span_warning("[src] dances around before biting [user]!"),
-				span_warning("[src] dances around before biting you!"),
+				span_warning(LANG("obj.85e99c29", list(src, user))),
+				span_warning(LANG("obj.17922d22", list(src))),
 				vision_distance = DEFAULT_MESSAGE_RANGE - 3,
 			)
 		else
 			user.visible_message(
-				span_warning("[src] bites [user]'s hand!"),
-				span_warning("You pet [src] as you hold [p_they()], only for [p_them()] to happily bite back!"),
+				span_warning(LANG("obj.c1e96533", list(src, user))),
+				span_warning(LANG("obj.6014fe51", list(src, p_they(), p_them()))),
 				vision_distance = DEFAULT_MESSAGE_RANGE - 3,
 			)
 		var/body_zone = pick(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)

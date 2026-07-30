@@ -428,8 +428,8 @@
 
 		if("deploy", "undeploy")
 			owner.visible_message(
-				span_warning("[user] tries to [action_key] [owner]'s [src]..."),
-				span_userdanger("[user] is trying to [action_key] your [src]!"),
+				span_warning(LANG("obj.40ac4005", list(user, action_key, owner, src))),
+				span_userdanger(LANG("obj.44eaa2ad", list(user, action_key, src))),
 				blind_message = span_hear("You hear rustling."),
 				ignored_mobs = user,
 			)
@@ -438,8 +438,8 @@
 
 		if("activate_mod", "deactivate_mod")
 			owner.visible_message(
-				span_warning("[user] tries to press [owner]'s [src]'s power button..."),
-				span_userdanger("[user] is trying to press your [src]'s power button!"),
+				span_warning(LANG("obj.ecd0c7e4", list(user, owner, src))),
+				span_userdanger(LANG("obj.78a4ee9c", list(user, src))),
 				blind_message = span_hear("You hear rustling."),
 				ignored_mobs = user,
 			)
@@ -453,8 +453,8 @@
 	if(!do_after(user, strip_delay, owner))
 		return
 	owner.visible_message(
-		span_warning("[user] [message]s [owner]'s [src]."),
-		span_userdanger("[user] [message]s your [src]!"),
+		span_warning(LANG("obj.499782c1", list(user, message, owner, src))),
+		span_userdanger(LANG("obj.d299baf6", list(user, message, src))),
 		ignored_mobs = user,
 	)
 	quick_deploy(user)
@@ -463,8 +463,8 @@
 	if(!do_after(user, strip_delay, owner))
 		return
 	owner.visible_message(
-		span_warning("[user] presses [owner]'s [src]'s power button."),
-		span_userdanger("[user] presses your [src]'s power button!"),
+		span_warning(LANG("obj.fd01df32", list(user, owner, src))),
+		span_userdanger(LANG("obj.1354cae7", list(user, src))),
 		ignored_mobs = user,
 	)
 	toggle_activate(user)

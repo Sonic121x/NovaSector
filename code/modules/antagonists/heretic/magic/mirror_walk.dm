@@ -71,8 +71,8 @@
 
 	playsound(jaunter, 'sound/effects/magic/ethereal_enter.ogg', 50, TRUE, -1)
 	jaunter.visible_message(
-		span_boldwarning("[jaunter] phases out of reality, vanishing before your very eyes!"),
-		span_notice("You jump into the reflection coming off of [nearby_reflection], entering the mirror's realm."),
+		span_boldwarning(LANG("datum.2416af78", list(jaunter))),
+		span_notice(LANG("datum.e72bbad5", list(nearby_reflection))),
 	)
 
 	// Pass the turf of the nearby reflection to the parent call
@@ -120,8 +120,8 @@
 	if (!nearby_reflection) // Should only be true if you're forced out somehow, like by having the spell removed
 		return
 	unjaunter.visible_message(
-		span_boldwarning("[unjaunter] phases into reality before your very eyes!"),
-		span_notice("You jump out of the reflection coming off of [nearby_reflection], exiting the mirror's realm."),
+		span_boldwarning(LANG("datum.9223d186", list(unjaunter))),
+		span_notice(LANG("datum.2fda469e", list(nearby_reflection))),
 	)
 
 /**

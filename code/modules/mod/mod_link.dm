@@ -224,7 +224,7 @@
 
 /obj/item/clothing/neck/link_scryer/update_name(updates)
 	. = ..()
-	name = "[initial(name)][label ? " - [label]" : ""]"
+	name = "[lang_reverse_text(initial(name))][label ? " - [label]" : ""]"  // NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)][label ? " - [label]" : ""]"
 
 /obj/item/clothing/neck/link_scryer/Exited(atom/movable/gone, direction)
 	. = ..()

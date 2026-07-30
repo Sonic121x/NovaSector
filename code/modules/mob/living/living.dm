@@ -109,8 +109,8 @@
 				emote("spin")
 
 			visible_message(
-				span_notice("[src] makes a hard landing on [impacted_turf] but remains unharmed from the fall[graceful_landing ? " and stays on [p_their()] feet" : " by tucking in rolling into the landing"]."),
-				span_notice("You brace for the fall. You make a hard landing on [impacted_turf], but remain unharmed[graceful_landing ? " while landing on your feet" : " by tucking in and rolling into the landing"]."),
+				span_notice(LANG("mob.cbd5b420", list(src, impacted_turf, graceful_landing ? " and stays on [p_their()] feet" : " by tucking in rolling into the landing"))),
+				span_notice(LANG("mob.719434d0", list(impacted_turf, graceful_landing ? " while landing on your feet" : " by tucking in and rolling into the landing"))),
 			)
 			return . | ZIMPACT_NO_MESSAGE
 
@@ -123,8 +123,8 @@
 		skip_knockdown = TRUE
 		if(small_surface_area || (isfelinid(src) || istajaran(src))) // NOVA EDIT CHANGE - ORIGINAL: if(small_surface_area)
 			visible_message(
-				span_notice("[src] makes a hard landing on [impacted_turf], but lands safely on [p_their()] feet!"),
-				span_notice("You make a hard landing on [impacted_turf], but land safely on your feet!"),
+				span_notice(LANG("mob.2d691e89", list(src, impacted_turf, p_their()))),
+				span_notice(LANG("mob.3f3dc8cf", list(impacted_turf))),
 			)
 			new /obj/effect/temp_visual/mook_dust/small(impacted_turf)
 			return .
@@ -133,8 +133,8 @@
 		add_movespeed_modifier(/datum/movespeed_modifier/landed_on_feet)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/landed_on_feet), levels * 2 SECONDS)
 		visible_message(
-			span_danger("[src] makes a hard landing on [impacted_turf], landing on [p_their()] feet painfully!"),
-			span_userdanger("You make a hard landing on [impacted_turf], and instinctively land on your feet - painfully!"),
+			span_danger(LANG("mob.42891350", list(src, impacted_turf, p_their()))),
+			span_userdanger(LANG("mob.01673d25", list(impacted_turf))),
 		)
 		new /obj/effect/temp_visual/mook_dust(impacted_turf)
 

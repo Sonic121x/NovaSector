@@ -118,30 +118,31 @@
 	return TRUE
 
 /proc/get_job_unavailable_error_message(retval, jobtitle)
+	jobtitle = lang_reverse_text(jobtitle) // NOVA EDIT - i18n: 职业名整词反查，使下面 LANG 模板里的 [jobtitle] 插值在中文句中也中文（locale==en 时 no-op）
 	switch(retval)
 		if(JOB_AVAILABLE)
-			return "[jobtitle] is available."
+			return LANG("_root.66f779c8", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is available."
 		if(JOB_UNAVAILABLE_GENERIC)
-			return "[jobtitle] is unavailable."
+			return LANG("_root.9baf6ed8", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is unavailable."
 		if(JOB_UNAVAILABLE_BANNED)
-			return "You are currently banned from [jobtitle]."
+			return LANG("_root.b8b337fb", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "You are currently banned from [jobtitle]."
 		if(JOB_UNAVAILABLE_PLAYTIME)
-			return "You do not have enough relevant playtime for [jobtitle]."
+			return LANG("_root.4261eb64", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "You do not have enough relevant playtime for [jobtitle]."
 		if(JOB_UNAVAILABLE_ACCOUNTAGE)
-			return "Your account is not old enough for [jobtitle]."
+			return LANG("_root.f31a300a", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "Your account is not old enough for [jobtitle]."
 		if(JOB_UNAVAILABLE_SLOTFULL)
-			return "[jobtitle] is already filled to capacity."
+			return LANG("_root.c0df588f", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is already filled to capacity."
 		//NOVA EDIT ADDITION
 		if(JOB_NOT_NOVA_STAR)
-			return "You need to be Nova star to join as [jobtitle]."
+			return LANG("_root.c986f9da", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "You need to be Nova star to join as [jobtitle]."
 		if(JOB_UNAVAILABLE_QUIRK)
-			return "[jobtitle] is restricted due to your selected quirks."
+			return LANG("_root.18edf263", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is restricted due to your selected quirks."
 		if(JOB_UNAVAILABLE_LANGUAGE)
-			return "[jobtitle] is restricted due to your selected languages."
+			return LANG("_root.9d71bf5e", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is restricted due to your selected languages."
 		if(JOB_UNAVAILABLE_SPECIES)
-			return "[jobtitle] is restricted due to your selected species."
+			return LANG("_root.ac4f17ee", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is restricted due to your selected species."
 		if(JOB_UNAVAILABLE_FLAVOUR)
-			return "[jobtitle] requires you to have flavour text for your character."
+			return LANG("_root.98013e2c", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] requires you to have flavour text for your character."
 		if(JOB_UNAVAILABLE_AUGMENT)
 			return "[jobtitle] is restricted due to your selected body augments."
 		if(JOB_UNAVAILABLE_MEDREC)
@@ -150,9 +151,9 @@
 			return "[jobtitle] requires you to have security records text for your character."
 		//NOVA EDIT END
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
-			return "[jobtitle] is not compatible with some antagonist role assigned to you."
+			return LANG("_root.4d3e09db", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is not compatible with some antagonist role assigned to you."
 		if(JOB_UNAVAILABLE_AGE)
-			return "Your character is not old enough for [jobtitle]."
+			return LANG("_root.5d71d9b3", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "Your character is not old enough for [jobtitle]."
 
 	return GENERIC_JOB_UNAVAILABLE_ERROR
 

@@ -271,10 +271,18 @@
 		var/list/split_name = splittext(team_minds.name," ")
 		last_names += split_name[split_name.len]
 
+	// NOVA EDIT CHANGE START - i18n: 队伍名走**整句模板**而非逐词反查 —— 中文语序与英文相反
+	// （"血亲兄弟 of 张三 & 李四" 逐词译出来是病句），模板在 _name_suffixes.json 里用 {0}/{1}
+	// 重排。刻意用 replacetext 而不是 lang_interpolate：后者会对实参跑本地化链，玩家姓氏里出现
+	// Cook / Baker 这类词会被当职业名译掉。locale==en 时取到的就是英文模板，输出逐字不变。
+	// ORIGINAL: name = "[last_names[1]]'s Isolated Intifada" / name = "[initial(name)] of " + last_names.Join(" & ")
 	if (last_names.len == 1)
-		name = "[last_names[1]]'s Isolated Intifada"
+		var/solo_template = lang_template("nametmpl_brother_team_solo", GLOB.i18n_server_locale) || "{0}'s Isolated Intifada"
+		name = replacetext(solo_template, "{0}", last_names[1])
 	else
-		name = "[initial(name)] of " + last_names.Join(" & ")
+		var/team_template = lang_template("nametmpl_brother_team", GLOB.i18n_server_locale) || "{0} of {1}"
+		name = replacetext(replacetext(team_template, "{0}", lang_reverse_text(initial(name))), "{1}", last_names.Join(" & "))
+	// NOVA EDIT CHANGE END
 
 /datum/team/brother_team/proc/forge_brother_objectives()
 	objectives = list()

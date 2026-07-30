@@ -293,8 +293,8 @@
 		return
 	CHECK_DNA_AND_SPECIES(H)
 	H.visible_message(
-		span_notice("[owner] gains a look of concentration while standing perfectly still."),
-		span_notice("You focus intently on moving your body while standing perfectly still..."),
+		span_notice(LANG("datum.30ed0bfa", list(owner))),
+		span_notice(LANG("datum.03d94680", null)),
 	)
 
 	ADD_TRAIT(src, TRAIT_NO_TRANSFORM, REF(src))
@@ -336,8 +336,8 @@
 	H.transfer_quirk_datums(spare)
 	H.mind.transfer_to(spare)
 	spare.visible_message(
-		span_warning("[H] distorts as a new body \"steps out\" of [H.p_them()]."),
-		span_notice("...and after a moment of disorentation, you're besides yourself!"),
+		span_warning(LANG("datum.1ce48dc3", list(H, H.p_them()))),
+		span_notice(LANG("datum.a726ca69", null)),
 	)
 
 

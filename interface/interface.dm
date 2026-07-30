@@ -8,8 +8,8 @@ GAME_VERB_HIDDEN(/client, wiki, "wiki")
 		return
 
 	var/query = tgui_input_text(src,
-		"Type what you want to know about. This will open the wiki in your web browser. Type nothing to go to the main page.",
-		"Wiki",
+		LANG("client.cddc2d48", null),
+		LANG("client.668f1cff", null),
 		max_length = MAX_MESSAGE_LEN,
 	)
 	if(isnull(query)) //cancelled out

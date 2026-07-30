@@ -199,9 +199,9 @@
 			/*
 			if(!objective.check_completion())
 				malf_ai_won = FALSE
-			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
+			objectives_text += "<br><B>[lang_reverse_text("Objective")] #[count]</B>: [lang_reverse_text(objective.explanation_text)] [objective.get_roundend_success_suffix()]" // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
 			*/
-			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text]"
+			objectives_text += "<br><B>[lang_reverse_text("Objective")] #[count]</B>: [lang_reverse_text(objective.explanation_text)]" // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
 			// NOVA EDIT END - No greentext
 			count++
 

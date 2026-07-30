@@ -468,8 +468,8 @@ GAME_VERB_SRC(/obj/item/paper, rename, usr, "重命名纸张", null)
 
 	add_stamp(writing_stats["stamp_class"], rand(1, 300), rand(1, 400), stamp_icon_state = writing_stats["stamp_icon_state"], stamp_icon = writing_stats["stamp_icon"])
 	user.visible_message(
-		span_notice("[user] quickly stamps [src] with [tool] without looking."),
-		span_notice("You quickly stamp [src] with [tool] without looking."),
+		span_notice(LANG("obj.2d57ef6f", list(user, src, tool))),
+		span_notice(LANG("obj.5cfaacee", list(src, tool))),
 	)
 	playsound(src, 'sound/items/handling/standard_stamp.ogg', 50, vary = TRUE)
 

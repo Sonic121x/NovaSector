@@ -232,8 +232,8 @@
 
 	defender.visible_message(
 		span_danger("[attacker] [current_atk_verb] [defender]!"),
-		span_userdanger("You're [current_atk_verbed] by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_userdanger(LANG("datum.c61afe56", list(current_atk_verbed, attacker))),
+		span_hear(LANG("datum.6c7f8149", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
@@ -279,9 +279,9 @@
 /datum/martial_art/boxing/proc/crit_effect(mob/living/attacker, mob/living/defender, armor_block = 0, damage_type = STAMINA, damage = 0)
 	if(defender.get_timed_status_effect_duration(/datum/status_effect/staggered))
 		defender.visible_message(
-			span_danger("[attacker] knocks [defender] out with a haymaker!"),
-			span_userdanger("You're knocked unconscious by [attacker]!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_danger(LANG("datum.454b0e16", list(attacker, defender))),
+			span_userdanger(LANG("datum.1ace6279", list(attacker))),
+			span_hear(LANG("datum.6c7f8149", null)),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
@@ -291,9 +291,9 @@
 		log_combat(attacker, defender, "knocked out (boxing) ")
 	else
 		defender.visible_message(
-			span_danger("[attacker] staggers [defender] with a haymaker!"),
-			span_userdanger("You're nearly knocked off your feet by [attacker]!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_danger(LANG("datum.962ddadc", list(attacker, defender))),
+			span_userdanger(LANG("datum.706ff840", list(attacker))),
+			span_hear(LANG("datum.6c7f8149", null)),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
@@ -367,8 +367,8 @@
 		perform_extra_effect(boxer, attacker)
 
 	boxer.visible_message(
-		span_danger("[boxer] [block_text]s [attack_text]!"),
-		span_userdanger("You [block_text] [attack_text]!"),
+		span_danger(LANG("datum.73829518", list(boxer, block_text, attack_text))),
+		span_userdanger(LANG("datum.22d557f3", list(block_text, attack_text))),
 	)
 	if(block_text == "evade")
 		playsound(boxer.loc, active_arm.unarmed_miss_sound, 25, TRUE, -1)
@@ -479,9 +479,9 @@
 	var/second_word_pick = pick(second_word_strike)
 
 	defender.visible_message(
-		span_danger("[attacker] knocks the absolute bajeezus out of [defender] utilizing the terrifying [first_word_pick][second_word_pick]!!!"),
-		span_userdanger("You have the absolute bajeezus knocked out of you by [attacker]!!!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger(LANG("datum.844bdfdc", list(attacker, defender, first_word_pick, second_word_pick))),
+		span_userdanger(LANG("datum.f1bd5e9e", list(attacker))),
+		span_hear(LANG("datum.6c7f8149", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)

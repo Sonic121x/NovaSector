@@ -225,7 +225,7 @@ GAME_VERB_PROC(/mob, Cell, "电池", "Admin")
 /**
  * Show a message to this mob (visual or audible)
  */
-/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlighting = FALSE)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlighting = FALSE, skip_i18n_fallback = FALSE)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2). NOVA EDIT: skip_i18n_fallback opts player speech out of the chat AC fallback.
 	if(!client)
 		return FALSE
 
@@ -256,7 +256,7 @@ GAME_VERB_PROC(/mob, Cell, "电池", "Admin")
 		if(type & MSG_AUDIBLE) //audio
 			to_chat(src, LANG("mob.2919bfef", null))
 		return FALSE
-	to_chat(src, msg, avoid_highlighting = avoid_highlighting)
+	to_chat(src, msg, avoid_highlighting = avoid_highlighting, skip_i18n_fallback = (skip_i18n_fallback && .)) // NOVA EDIT - i18n - only skip the AC for the original (player-speech) msg, not the deaf/blind alt fallback (. is FALSE when we swapped to alt_msg)
 	return .
 
 /**
@@ -595,7 +595,7 @@ GAME_VERB(/mob, examinate, "检查", null, atom/examinify as mob|obj|turf) //It 
 		if(force_examinate_more || (examine_time && (world.time - examine_time < EXAMINE_MORE_WINDOW) && !removes_double_click))
 			var/list/result = examinify.examine_more(src)
 			if(!length(result))
-				result += span_notice("<i>You examine [examinify] closer, but find nothing of interest...</i>")
+				result += span_notice(LANG("mob.exm_nothing", list(examinify))) // NOVA EDIT - i18n - ORIGINAL: result += span_notice("<i>You examine [examinify] closer, but find nothing of interest...</i>")
 			result_combined = boxed_message(jointext(result, "<br>"))
 			result_combined = replacetext(result_combined, "<hr><br>", "<hr>") // NOVA EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers
 
@@ -613,7 +613,7 @@ GAME_VERB(/mob, examinate, "检查", null, atom/examinify as mob|obj|turf) //It 
 		if (length(overrides))
 			result = overrides[max(overrides)]
 		if(removes_double_click)
-			result += span_notice("<i>You can <a href=byond://?src=[REF(src)];run_examinate=[REF(examinify)]>examine</a> [examinify] closer...</i>")
+			result += span_notice(LANG("mob.exm_closer", list(REF(src), REF(examinify), examinify))) // NOVA EDIT - i18n - ORIGINAL: result += span_notice("<i>You can <a href=byond://?src=[REF(src)];run_examinate=[REF(examinify)]>examine</a> [examinify] closer...</i>")
 		result_combined = (atom_title ? fieldset_block("[atom_title][ismob(examinify) ? "!" :"."]", jointext(result, "<br>"), "boxed_message") : boxed_message(jointext(result, "<br>"))) // NOVA EDIT CHANGE - ORIGINAL: result_combined = (atom_title ? fieldset_block("[atom_title].", jointext(result, "<br>"), "boxed_message") : boxed_message(jointext(result, "<br>")))
 		result_combined = replacetext(result_combined, "<hr><br>", "<hr>") // NOVA EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers
 
@@ -1063,8 +1063,8 @@ GAME_VERB_HIDDEN(/mob, DisDblClick, ".dblclick", argu = null as anything, sec = 
 
 	if(magic_flags & MAGIC_RESISTANCE)
 		visible_message(
-			span_warning("[src] pulses red as [ismob(antimagic_source) ? p_they() : antimagic_source] absorbs magic energy!"),
-			span_userdanger("An intense magical aura pulses around [ismob(antimagic_source) ? "you" : antimagic_source] as it dissipates into the air!"),
+			span_warning(LANG("mob.f97030cf", list(src, ismob(antimagic_source) ? p_they() : antimagic_source))),
+			span_userdanger(LANG("mob.6fbd53ce", list(ismob(antimagic_source) ? "you" : antimagic_source))),
 		)
 		antimagic_effect = mutable_appearance('icons/effects/effects.dmi', "shield-red", MOB_SHIELD_LAYER)
 		antimagic_color = LIGHT_COLOR_BLOOD_MAGIC
@@ -1072,8 +1072,8 @@ GAME_VERB_HIDDEN(/mob, DisDblClick, ".dblclick", argu = null as anything, sec = 
 
 	else if(magic_flags & MAGIC_RESISTANCE_HOLY)
 		visible_message(
-			span_warning("[src] starts to glow as [ismob(antimagic_source) ? p_they() : antimagic_source] emits a halo of light!"),
-			span_userdanger("A feeling of warmth washes over [ismob(antimagic_source) ? "you" : antimagic_source] as rays of light surround your body and protect you!"),
+			span_warning(LANG("mob.99326fe1", list(src, ismob(antimagic_source) ? p_they() : antimagic_source))),
+			span_userdanger(LANG("mob.0d3e2a29", list(ismob(antimagic_source) ? "you" : antimagic_source))),
 		)
 		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 		antimagic_color = LIGHT_COLOR_HOLY_MAGIC
@@ -1081,8 +1081,8 @@ GAME_VERB_HIDDEN(/mob, DisDblClick, ".dblclick", argu = null as anything, sec = 
 
 	else if(magic_flags & MAGIC_RESISTANCE_MIND)
 		visible_message(
-			span_warning("[src] forehead shines as [ismob(antimagic_source) ? p_they() : antimagic_source] repulses magic from their mind!"),
-			span_userdanger("A feeling of cold splashes on [ismob(antimagic_source) ? "you" : antimagic_source] as your forehead reflects magic usering your mind!"),
+			span_warning(LANG("mob.16521a8e", list(src, ismob(antimagic_source) ? p_they() : antimagic_source))),
+			span_userdanger(LANG("mob.1ef155d3", list(ismob(antimagic_source) ? "you" : antimagic_source))),
 		)
 		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "telekinesishead", MOB_SHIELD_LAYER)
 		antimagic_color = LIGHT_COLOR_DARK_BLUE

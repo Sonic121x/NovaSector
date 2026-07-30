@@ -986,8 +986,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			INVOKE_ASYNC(src, PROC_REF(put_in_hands_async), to_show, to_remove)
 			if(!silent)
 				to_show.visible_message(
-					span_warning("[to_show] draws [to_remove] from [parent]!"),
-					span_notice("You draw [to_remove] from [parent]."),
+					span_warning(LANG("datum.e20111a7", list(to_show, to_remove, parent))),
+					span_notice(LANG("datum.c1811110", list(to_remove, parent))),
 				)
 			return TRUE
 

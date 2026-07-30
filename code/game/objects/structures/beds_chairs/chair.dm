@@ -36,14 +36,14 @@
 
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice("[buckler] sits down on [src]."),
-			span_notice("You sit down on [src]."),
+			span_notice(LANG("obj.85309f7b", list(buckler, src))),
+			span_notice(LANG("obj.d0af88a6", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice("[buckler] sits [being_buckled] down on [src]."),
-			span_notice("[buckler] sits you down on [src]."),
+			span_notice(LANG("obj.0dca1482", list(buckler, being_buckled, src))),
+			span_notice(LANG("obj.83fa8dc3", list(buckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -53,14 +53,14 @@
 
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] stands up from [src]."),
-			span_notice("You stand up from [src]."),
+			span_notice(LANG("obj.fadd2c44", list(unbuckler, src))),
+			span_notice(LANG("obj.bc2d43fc", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] stands [being_unbuckled] up from [src]."),
-			span_notice("[unbuckler] stands you up from [src]."),
+			span_notice(LANG("obj.ba63b455", list(unbuckler, being_unbuckled, src))),
+			span_notice(LANG("obj.8516925d", list(unbuckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -257,28 +257,28 @@
 /obj/structure/chair/comfy/shuttle/buckle_feedback(mob/living/being_buckled, mob/buckler)
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice("[buckler] sits down on [src], pulling the overhead restraint down to secure [buckler.p_them()]self."),
-			span_notice("You sit down on [src], pulling the overhead restraint down to secure yourself."),
+			span_notice(LANG("obj.fe9b25bf", list(buckler, src, buckler.p_them()))),
+			span_notice(LANG("obj.416f98d3", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice("[buckler] sits [being_buckled] down on [src], pulling the overhead restraint down to secure [buckler.p_them()]."),
-			span_notice("[buckler] sits you down on [src], pulling the overhead restraint down to secure you."),
+			span_notice(LANG("obj.2f43e760", list(buckler, being_buckled, src, buckler.p_them()))),
+			span_notice(LANG("obj.9b9d2a62", list(buckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
 /obj/structure/chair/comfy/shuttle/unbuckle_feedback(mob/living/being_unbuckled, mob/unbuckler)
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] flips the overhead restraint up, standing up from [src]."),
-			span_notice("You flip the overhead restraint up, standing up from [src]."),
+			span_notice(LANG("obj.ab9ab4fa", list(unbuckler, src))),
+			span_notice(LANG("obj.f7d914d1", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] flips the overhead restraint up, standing [being_unbuckled] up from [src]."),
-			span_notice("[unbuckler] flips the overhead restraint up, standing you up from [src]."),
+			span_notice(LANG("obj.58d70c01", list(unbuckler, being_unbuckled, src))),
+			span_notice(LANG("obj.03cabe7b", list(unbuckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -739,8 +739,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/structure/handrail/proc/stop_buckle(mob/living/source, ...)
 	SIGNAL_HANDLER
 	source.visible_message(
-		span_warning("[source] loses [source.p_their()] grip on [src]!"),
-		span_warning("You lose your grip on [src]!"),
+		span_warning(LANG("obj.830a2f0e", list(source, source.p_their(), src))),
+		span_warning(LANG("obj.e8ba9f01", list(src))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
@@ -748,8 +748,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 /obj/structure/handrail/buckle_feedback(mob/living/being_buckled, mob/buckler)
 	buckler.visible_message(
-		span_notice("[buckler] grabs [src] tight, keeping [buckler.p_them()]self upright."),
-		span_notice("You grab [src] tight, keeping yourself upright."),
+		span_notice(LANG("obj.f6b05cb8", list(buckler, src, buckler.p_them()))),
+		span_notice(LANG("obj.90e89038", list(src))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
@@ -757,15 +757,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/structure/handrail/unbuckle_feedback(mob/living/being_unbuckled, mob/unbuckler)
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] lets go of [src]."),
-			span_notice("You let go of [src]."),
+			span_notice(LANG("obj.d977c187", list(unbuckler, src))),
+			span_notice(LANG("obj.0a116260", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = COMBAT_MESSAGE_RANGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_warning("[unbuckler] forces [being_unbuckled] to let go of [src]!"),
-			span_warning("[unbuckler] forces you to let go of [src]!"),
+			span_warning(LANG("obj.46538d36", list(unbuckler, being_unbuckled, src))),
+			span_warning(LANG("obj.fa1d8857", list(unbuckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = COMBAT_MESSAGE_RANGE,
 		)

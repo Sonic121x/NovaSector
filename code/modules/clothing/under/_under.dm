@@ -439,7 +439,7 @@
 			if(SENSOR_COORDS)
 				. += LANG("obj.7b9f0004", null)
 	else
-		. += span_tooltip("You can always get new suit sensors to install from a lathe.", "It isn't equipped with medical sensors.")
+		. += span_tooltip(lang_reverse_text("You can always get new suit sensors to install from a lathe."), lang_reverse_text("It isn't equipped with medical sensors.")) // NOVA EDIT - I18N: span_tooltip args reversed (codemod mangles both args into one key)
 
 	if(LAZYLEN(attached_accessories))
 		var/list/accessories = list_accessories_with_icon(user)

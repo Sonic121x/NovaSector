@@ -817,8 +817,8 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 		var/obj/item/I = H.get_active_held_item()
 		if(I && H.dropItemToGround(I))
 			H.visible_message(
-				span_notice("[H]'s hand convulses, and they drop their [I.name]!"),
-				span_userdanger("Your hand convulses violently, and you drop what you were holding!"),
+				span_notice(LANG("datum.98cb0284", list(H, I.name))),
+				span_userdanger(LANG("datum.d4cd2f78", null)),
 			)
 			H.adjust_jitter(10 SECONDS)
 

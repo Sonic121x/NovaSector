@@ -235,9 +235,9 @@
 	var/datum/status_effect/offering/kiss_check = slapped.has_status_effect(/datum/status_effect/offering)
 	if(kiss_check && istype(kiss_check.offered_item, /obj/item/hand_item/kisser) && (user in kiss_check.possible_takers))
 		user.visible_message(
-			span_danger("[user] scoffs at [slapped]'s advance, winds up, and smacks [slapped.p_them()] hard to the ground!"),
-			span_notice("The nerve! You wind back your hand and smack [slapped] hard enough to knock [slapped.p_them()] over!"),
-			span_hear("You hear someone get the everloving shit smacked out of them!"),
+			span_danger(LANG("obj.47e3e38d", list(user, slapped, slapped.p_them()))),
+			span_notice(LANG("obj.f17f1155", list(slapped, slapped.p_them()))),
+			span_hear(LANG("obj.a80f171a", null)),
 			ignored_mobs = slapped,
 		)
 		to_chat(slapped, span_userdanger(LANG("obj.d8a237eb", list(user, user.p_their()))))
@@ -250,17 +250,17 @@
 	else if(user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		if(user == slapped)
 			user.visible_message(
-				span_notice("[user] facepalms!"),
-				span_notice("You facepalm."),
-				span_hear("You hear a slap."),
+				span_notice(LANG("obj.eb95d5cd", list(user))),
+				span_notice(LANG("obj.ef0aad1b", null)),
+				span_hear(LANG("obj.977bc069", null)),
 			)
 
 		else
 			if(IS_UNCONSCIOUS(slapped))
 				user.visible_message(
-					span_notice("[user] slaps [slapped] in the face, trying to wake [slapped.p_them()] up!"),
-					span_notice("You slap [slapped] in the face, trying to wake [slapped.p_them()] up!"),
-					span_hear("You hear a slap."),
+					span_notice(LANG("obj.202fd898", list(user, slapped, slapped.p_them()))),
+					span_notice(LANG("obj.30d35b1c", list(slapped, slapped.p_them()))),
+					span_hear(LANG("obj.977bc069", null)),
 				)
 
 				// Worse than just help intenting people.
@@ -269,21 +269,21 @@
 
 			else
 				user.visible_message(
-					span_danger("[user] slaps [slapped] in the face!"),
-					span_notice("You slap [slapped] in the face!"),
-					span_hear("You hear a slap."),
+					span_danger(LANG("obj.7ee34fb4", list(user, slapped))),
+					span_notice(LANG("obj.e31a9ad4", list(slapped))),
+					span_hear(LANG("obj.977bc069", null)),
 				)
 	else if(user.zone_selected == BODY_ZONE_L_ARM || user.zone_selected == BODY_ZONE_R_ARM)
 		user.visible_message(
-			span_danger("[user] gives [slapped] a slap on the wrist!"),
-			span_notice("You give [slapped] a slap on the wrist!"),
-			span_hear("You hear a slap."),
+			span_danger(LANG("obj.3232d6c1", list(user, slapped))),
+			span_notice(LANG("obj.45de1fdf", list(slapped))),
+			span_hear(LANG("obj.977bc069", null)),
 		)
 	else
 		user.visible_message(
-			span_danger("[user] slaps [slapped]!"),
-			span_notice("You slap [slapped]!"),
-			span_hear("You hear a slap."),
+			span_danger(LANG("obj.9a0534a3", list(user, slapped))),
+			span_notice(LANG("obj.877fbdf7", list(slapped))),
+			span_hear(LANG("obj.977bc069", null)),
 		)
 	playsound(slapped, 'sound/items/weapons/slap.ogg', slap_volume, TRUE, -1)
 	return

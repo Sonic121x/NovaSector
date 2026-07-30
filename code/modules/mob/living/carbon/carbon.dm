@@ -327,8 +327,8 @@
 	if(!force && !blood && (nutrition < 100))
 		if(message)
 			visible_message(
-				span_warning("[src] dry heaves!"),
-				span_userdanger("You try to throw up, but there's nothing in your stomach!"),
+				span_warning(LANG("mob.8d6963f8", list(src))),
+				span_userdanger(LANG("mob.a5048e5e", null)),
 			)
 		if(stun)
 			var/stun_time = 20 SECONDS
@@ -342,16 +342,16 @@
 	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
 		if(message)
 			visible_message(
-				span_danger("[src] throws up all over [p_them()]self!"),
-				span_userdanger("You throw up all over yourself!"),
+				span_danger(LANG("mob.560d95a6", list(src, p_them()))),
+				span_userdanger(LANG("mob.e3f2e26d", null)),
 			)
 			add_mood_event("vomit", /datum/mood_event/vomitself)
 		distance = 0
 	else
 		if(message)
 			visible_message(
-				span_danger("[src] throws up!"),
-				span_userdanger("You throw up!"),
+				span_danger(LANG("mob.c7a485c5", list(src))),
+				span_userdanger(LANG("mob.f5b2717a", null)),
 			)
 			if(!isflyperson(src))
 				add_mood_event("vomit", /datum/mood_event/vomit)

@@ -72,7 +72,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	manualplace_min_time += world.time
 	autoplace_max_time += world.time
 	GLOB.overminds += src
-	var/new_name = "[initial(name)] ([rand(1, 999)])"
+	// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
+	var/new_name = "[lang_reverse_text(initial(name))] ([rand(1, 999)])"
 	name = new_name
 	real_name = new_name
 	last_attack = world.time

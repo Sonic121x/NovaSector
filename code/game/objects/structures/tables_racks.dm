@@ -635,7 +635,7 @@
 	if(QDELETED(src) || prob(66))
 		return
 	visible_message(
-		span_warning("[src] smashes into bits!"),
+		span_warning(LANG("obj.3d41ee16", list(src))),
 		blind_message = span_hear("You hear the loud cracking of wood being split."),
 	)
 
@@ -953,14 +953,14 @@
 
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice("[buckler] lays down on [src]."),
-			span_notice("You lay down on [src]."),
+			span_notice(LANG("obj.b8becc1b", list(buckler, src))),
+			span_notice(LANG("obj.c0f9142e", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice("[buckler] lays [being_buckled] down on [src]."),
-			span_notice("[buckler] lays you down on [src]."),
+			span_notice(LANG("obj.61013276", list(buckler, being_buckled, src))),
+			span_notice(LANG("obj.66f8b7fd", list(buckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -970,14 +970,14 @@
 
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] gets up from [src]."),
-			span_notice("You get up from [src]."),
+			span_notice(LANG("obj.08b0e968", list(unbuckler, src))),
+			span_notice(LANG("obj.e8acb4b6", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] pulls [being_unbuckled] up from [src]."),
-			span_notice("[unbuckler] pulls you up from [src]."),
+			span_notice(LANG("obj.7c44b748", list(unbuckler, being_unbuckled, src))),
+			span_notice(LANG("obj.dc9bfda3", list(unbuckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 

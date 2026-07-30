@@ -184,9 +184,12 @@
 /// Returns a text display of the laws for the module.
 /obj/item/ai_module/law/proc/display_laws()
 	var/assembled_laws = ""
+	var/translate = (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) // NOVA EDIT - i18n
 
+	// NOVA EDIT - i18n: 表头 "Programmed Laws:" 进 _fallback（examine→to_chat 经 AC 翻）；各法则文本反查（lawset 法则已抽进目录）。
 	for(var/law in laws)
-		assembled_laws += "\"[law]\"<br>"
+		var/show_law = translate ? lang_reverse_text(law) : law // NOVA EDIT - i18n: ORIGINAL used [law]
+		assembled_laws += "\"[show_law]\"<br>"
 
 	if(assembled_laws)
 		return "<b>Programmed Law[(length(laws) > 1) ? "s" : ""]:</b><br>[assembled_laws]"

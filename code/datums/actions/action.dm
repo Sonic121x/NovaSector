@@ -60,6 +60,11 @@
 
 /datum/action/New(Target)
 	link_to(Target)
+	// NOVA EDIT ADDITION START - i18n - 全服中文时反查技能/法术 name/desc
+	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+		name = lang_reverse_text(name)
+		desc = lang_reverse_text(desc)
+	// NOVA EDIT ADDITION END
 
 /// Links the passed target to our action, registering any relevant signals
 /datum/action/proc/link_to(Target)

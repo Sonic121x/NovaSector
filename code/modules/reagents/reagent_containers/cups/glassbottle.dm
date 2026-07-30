@@ -155,8 +155,8 @@
 	// Displays a custom message which follows the attack
 	if(target == user)
 		user.visible_message(
-			span_warning("[user] smashes [src] [head_hitter ? "over [user.p_their()] head" : "against [user.p_them()]selves"]!"),
-			span_warning("You smash [src] [head_hitter ? "over your head" : "against yourself"]!"),
+			span_warning(LANG("obj.4c2fb061", list(user, src, head_hitter ? "over [user.p_their()] head" : "against [user.p_them()]selves"))),
+			span_warning(LANG("obj.6010cb59", list(src, head_hitter ? "over your head" : "against yourself"))),
 		)
 
 	else
@@ -712,8 +712,8 @@
 		return pop_cork(user, sabrage = TRUE, froth_severity = severity_to_pass) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_danger("[user] fumbles the sabrage and cuts [src] in half, spilling it over themselves!"),
-		span_danger("You fail your stunt and cut [src] in half, spilling it over you!"),
+		span_danger(LANG("obj.fa14f871", list(user, src))),
+		span_danger(LANG("obj.e031ba4f", list(src))),
 		)
 	user.add_mood_event("sabrage_fail", /datum/mood_event/sabrage_fail)
 	return smash(target = user, break_top = TRUE) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
@@ -731,14 +731,14 @@
 /obj/item/reagent_containers/cup/glass/bottle/champagne/proc/pop_cork(mob/living/user, sabrage, froth_severity)
 	if(!sabrage)
 		user.visible_message(
-			span_danger("[user] loosens the cork of [src], causing it to pop out of the bottle with great force."),
-			span_nicegreen("You elegantly loosen the cork of [src], causing it to pop out of the bottle with great force."),
+			span_danger(LANG("obj.370ed29f", list(user, src))),
+			span_nicegreen(LANG("obj.3e893a3a", list(src))),
 			)
 	else
 		sabraged = TRUE
 		user.visible_message(
-			span_danger("[user] cleanly slices off the cork of [src], causing it to fly off the bottle with great force."),
-			span_nicegreen("You elegantly slice the cork off of [src], causing it to fly off the bottle with great force."),
+			span_danger(LANG("obj.fd2c7578", list(user, src))),
+			span_nicegreen(LANG("obj.60dc3f81", list(src))),
 			)
 		for(var/mob/living/carbon/stunt_witness in view(7, user))
 			stunt_witness.clear_mood_event("sabrage_success")

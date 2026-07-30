@@ -77,8 +77,8 @@
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
 		var/turf/scan_turf = get_turf(user)
 		user.visible_message(
-			span_warning("[user] analyzes [scan_turf]'s vitals!"),
-			span_notice("You stupidly try to analyze [scan_turf]'s vitals!"),
+			span_warning(LANG("obj.2316cc3b", list(user, scan_turf))),
+			span_notice(LANG("obj.f9872b0a", list(scan_turf))),
 		)
 
 		var/floor_text = "<span class='info'>Analyzing results for <b>[scan_turf]</b> ([round_timestamp()]):</span><br>"
@@ -290,7 +290,8 @@
 							dmgreport += "<tr><td colspan=6><span class='alert ml-2'>&rdsh; Foreign object(s): [conditional_tooltip(displayed, "Use a hemostat to remove.", tochat)]</span></td></tr>"
 					if(has_any_wounds)
 						for(var/datum/wound/wound as anything in limb.wounds)
-							dmgreport += "<tr><td colspan=6><span class='alert ml-2'>&rdsh; Physical trauma: [conditional_tooltip("[wound.name] ([wound.severity_text()])", wound.treat_text_short, tochat)]</span></td></tr>"
+							// NOVA EDIT CHANGE - i18n: reverse-localize the treat-text tooltip (whole-string; bypasses sink/AC) - ORIGINAL: wound.treat_text_short
+							dmgreport += "<tr><td colspan=6><span class='alert ml-2'>&rdsh; Physical trauma: [conditional_tooltip("[wound.name] ([wound.severity_text()])", lang_reverse_text(wound.treat_text_short), tochat)]</span></td></tr>"
 
 			dmgreport += "</table></font>"
 			render_list += dmgreport // tables do not need extra linebreak
@@ -316,7 +317,8 @@
 			if(isnull(organ))
 				if(missing_organs[sorted_slot])
 					render = TRUE
-					toReport += "<tr><td><font color='#cc3333'>[missing_organs[sorted_slot]]:</font></td>\
+					// NOVA EDIT CHANGE - i18n: reverse-localize the missing-organ name - ORIGINAL: [missing_organs[sorted_slot]]
+					toReport += "<tr><td><font color='#cc3333'>[lang_reverse_text(missing_organs[sorted_slot])]:</font></td>\
 						[scanpower >= SCANPOWER_ADVANCED ? "<td><font color='#ff3333'>-</font></td>" : ""]\
 						<td><font color='#cc3333'>Missing</font></td></tr>"
 				continue
@@ -327,8 +329,10 @@
 			if(status || appendix)
 				status ||= "<font color='#ffcc33'>OK</font>" // otherwise flawless organs have no status reported by default
 				render = TRUE
+				// NOVA EDIT CHANGE - i18n: reverse-localize organ name at the display point — some organ names miss the
+				// Initialize name-reverse (post-Initialize renames) - ORIGINAL: <td>…[capitalize(organ.name)]:</font></td>
 				toReport += "<tr>\
-					<td><font color='#cc3333'>[capitalize(organ.name)]:</font></td>\
+					<td><font color='#cc3333'>[capitalize(lang_reverse_text(organ.name))]:</font></td>\
 					[scanpower >= SCANPOWER_ADVANCED ? "<td><font color='#ff3333'>[organ.damage > 0 ? ceil(organ.damage) : "0"]</font></td>" : ""]\
 					<td>[status]</td>\
 					</tr>"
@@ -364,7 +368,7 @@
 		var/disguised = !ishumanbasic(humantarget) && istype(humantarget.head, /obj/item/clothing/head/hooded/human_head) && istype(humantarget.wear_suit, /obj/item/clothing/suit/hooded/bloated_human)
 		var/species_name = "[disguised ? "\"[/datum/species/human::name]\"" : targetspecies.name][mutant ? "-derived mutant" : ""]"
 
-		render_list += "<span class='info ml-1'>Species: [species_name]</span><br>"
+		render_list += "<span class='info ml-1'>Species: [lang_reverse_text(species_name)]</span><br>" // NOVA EDIT CHANGE - i18n: reverse-localize species name (exact; label handled by lang_localize_health_scan) - ORIGINAL: render_list += "<span class='info ml-1'>Species: [species_name]</span><br>"
 		var/core_temperature_message = "Core temperature: [round(humantarget.coretemperature-T0C, 0.1)] &deg;C ([round(humantarget.coretemperature*1.8-459.67,0.1)] &deg;F)"
 		if(humantarget.coretemperature >= humantarget.get_body_temp_heat_damage_limit())
 			render_list += "<span class='alert ml-1'>☼ [core_temperature_message] ☼</span><br>"
@@ -492,7 +496,7 @@
 		render_list += "<span class='info ml-1'>Time of Death: [target.station_timestamp_timeofdeath]</span><br>"
 		render_list += "<span class='alert ml-1'><b>Subject died [DisplayTimeText(round(world.time - target.timeofdeath))] ago.</b></span><br>"
 
-	. = jointext(render_list, "")
+	. = lang_localize_health_scan(jointext(render_list, "")) // NOVA EDIT CHANGE - i18n: localize composed scan-report structural labels (bypasses sink/P1) - ORIGINAL: . = jointext(render_list, "")
 	if(tochat)
 		to_chat(user, custom_boxed_message("blue_box", .), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 	return .
@@ -763,8 +767,8 @@
 
 	add_fingerprint(user)
 	user.visible_message(
-		span_notice("[user] scans [interacting_with] for [scan_for_what]."),
-		span_notice("You scan [interacting_with] for [scan_for_what]."),
+		span_notice(LANG("obj.2369a909", list(user, interacting_with, scan_for_what))),
+		span_notice(LANG("obj.3ff3ac73", list(interacting_with, scan_for_what))),
 	)
 
 	if(!iscarbon(interacting_with))

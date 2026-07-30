@@ -279,8 +279,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 		shoot_with_empty_chamber(user)
 		spun = FALSE
 		user.visible_message(
-			span_danger("[user] tries to fire \the [src] aimed at something else, but only succeeds at looking like an idiot."),
-			span_danger("\The [src]'s anti-combat mechanism prevents you from firing it at anyone but yourself!"),
+			span_danger(LANG("obj.e95dedf3", list(user, src))),
+			span_danger(LANG("obj.90852171", list(src))),
 		)
 		return TRUE // no melee attack
 	if(!spun)
@@ -303,8 +303,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 	if(aim_time <= 0)
 		return FALSE
 	user.visible_message(
-		span_danger("[user] aims \the [src] at [user.p_their()] [parse_zone(user.zone_selected)]..."),
-		span_userdanger("You aim \the [src] at your [parse_zone(user.zone_selected)]..."),
+		span_danger(LANG("obj.381a74d9", list(user, src, user.p_their(), parse_zone(user.zone_selected)))),
+		span_userdanger(LANG("obj.f1efe36d", list(src, parse_zone(user.zone_selected)))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	if(prob(10) && !HAS_TRAIT(user, TRAIT_FEARLESS))
@@ -312,8 +312,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 	if(!do_after(user, aim_time, target))
 		if(!user.incapacitated)
 			user.visible_message(
-				span_danger("[user] loses [user.p_their()] nerve and puts \the [src] down."),
-				span_userdanger("You lose your nerve and put \the [src] down."),
+				span_danger(LANG("obj.f83820b0", list(user, user.p_their(), src))),
+				span_userdanger(LANG("obj.eb0ac5dc", list(src))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		return TRUE
@@ -350,9 +350,9 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 		if(loaded_rounds && is_target_face)
 			user.add_mood_event("russian_roulette_win", /datum/mood_event/russian_roulette_win, loaded_rounds)
 		user.visible_message(
-			span_danger("[user][is_target_face ? "": " cowardly"] points \the [src] at [user.p_their()] [aimed_at_readable], pulls the trigger, and... nothing happens!"),
-			span_danger("You[is_target_face ? "": " cowardly"] point \the [src] at your [aimed_at_readable], pull the trigger, and... nothing happens!"),
-			span_hear("You hear a click!"),
+			span_danger(LANG("obj.e7e64728", list(user, is_target_face ? "": " cowardly", src, user.p_their(), aimed_at_readable))),
+			span_danger(LANG("obj.3dbfa656", list(is_target_face ? "": " cowardly", src, aimed_at_readable))),
+			span_hear(LANG("obj.dc441496", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
@@ -392,15 +392,15 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 			qdel(stone)
 			return
 		user.visible_message(
-			span_danger("[user]'s soul is captured by \the [src]!"),
-			span_userdanger("You've lost the gamble! Your soul is forfeit!"),
+			span_danger(LANG("obj.4e14d537", list(user, src))),
+			span_userdanger(LANG("obj.2bd83ab4", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		return
 
 	user.visible_message(
-		span_danger("[user] is punished for trying to cheat the game!"),
-		span_userdanger("You've lost the gamble! Not only is your soul forfeit, but it is whisked away for attempting to cheat death!"),
+		span_danger(LANG("obj.9a26ddce", list(user))),
+		span_userdanger(LANG("obj.4f50106a", null)),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	user.dust(drop_items = TRUE)

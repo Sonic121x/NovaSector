@@ -233,7 +233,7 @@
 	return !user.contains(src)
 
 /obj/item/gun/proc/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	balloon_alert_to_hearers("*click*")
+	balloon_alert_to_hearers(LANG("obj.8fb6d55f", null))
 	playsound(src, dry_fire_sound, dry_fire_sound_volume, TRUE)
 
 /obj/item/gun/proc/fire_sounds()
@@ -269,17 +269,17 @@
 	else if(pointblank)
 		if(user == pbtarget)
 			user.visible_message(
-				span_danger("[user] fires [src] point blank at [user.p_them()]self!"),
-				span_userdanger("You fire [src] point blank at yourself!"),
-				span_hear("You hear a gunshot!"),
+				span_danger(LANG("obj.43a50ef1", list(user, src, user.p_them()))),
+				span_userdanger(LANG("obj.29cb2a67", list(src))),
+				span_hear(LANG("obj.89ccf80f", null)),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		else
 			user.visible_message(
-				span_danger("[user] fires [src] point blank at [pbtarget]!"),
-				span_danger("You fire [src] point blank at [pbtarget]!"),
-				span_hear("You hear a gunshot!"),
+				span_danger(LANG("obj.c4baaa4b", list(user, src, pbtarget))),
+				span_danger(LANG("obj.96126c9a", list(src, pbtarget))),
+				span_hear(LANG("obj.89ccf80f", null)),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 				ignored_mobs = pbtarget,
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
@@ -291,9 +291,9 @@
 			PBT.throw_at(throw_target, pb_knockback, 2)
 	else if(!tk_firing(user))
 		user.visible_message(
-			span_danger("[user] fires [src]!"),
-			span_danger("You fire [src]!"),
-			span_hear("You hear a gunshot!"),
+			span_danger(LANG("obj.84c8fb6b", list(user, src))),
+			span_danger(LANG("obj.86b40dae", list(src))),
+			span_hear(LANG("obj.89ccf80f", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user,
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
@@ -338,15 +338,15 @@
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(40))
 		// yes this will sound silly for bows and wands, but that's a "gun" moment for you
 		user.visible_message(
-			span_danger("While trying to flip [src] [user] pulls the trigger accidentally!"),
-			span_userdanger("While trying to flip [src] you pull the trigger accidentally!"),
+			span_danger(LANG("obj.09734df9", list(src, user))),
+			span_userdanger(LANG("obj.d54c4d9c", list(src))),
 		)
 		process_fire(user, user, FALSE, user.get_random_valid_zone(even_weights = TRUE))
 		user.dropItemToGround(src, TRUE)
 	else
 		user.visible_message(
-			span_notice("[user] spins [src] around [user.p_their()] finger by the trigger. That's pretty badass."),
-			span_notice("You spin [src] around your finger by the trigger. That's pretty badass."),
+			span_notice(LANG("obj.f57a5fa3", list(user, src, user.p_their()))),
+			span_notice(LANG("obj.0b65d18c", list(src))),
 		)
 		playsound(src, 'sound/items/handling/ammobox_pickup.ogg', 20, FALSE)
 

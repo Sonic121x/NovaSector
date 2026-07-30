@@ -236,9 +236,9 @@
 
 	playsound(get_turf(source), 'sound/items/weapons/parry.ogg', 100, TRUE)
 	source.visible_message(
-		span_warning("[to_remove] orbiting [source] snaps in front of [attack_text], blocking it before vanishing!"),
-		span_warning("[to_remove] orbiting you snaps in front of [attack_text], blocking it before vanishing!"),
-		span_hear("You hear a clink."),
+		span_warning(LANG("datum.e2a17443", list(to_remove, source, attack_text))),
+		span_warning(LANG("datum.eceba002", list(to_remove, attack_text))),
+		span_hear(LANG("datum.9d4e541d", null)),
 	)
 
 	qdel(to_remove)
@@ -314,8 +314,8 @@
 	UnregisterSignal(owner, COMSIG_CARBON_CUFF_ATTEMPTED)
 	UnregisterSignal(owner, COMSIG_BEING_STRIPPED)
 	owner.visible_message(
-		span_warning("The haze around [owner] disappears, leaving them materialized!"),
-		span_notice("You exit the refuge."),
+		span_warning(LANG("datum.b9d79320", list(owner))),
+		span_notice(LANG("datum.55cc845d", null)),
 	)
 
 /datum/status_effect/caretaker_refuge/get_examine_text()

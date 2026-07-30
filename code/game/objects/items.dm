@@ -1172,10 +1172,14 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 /obj/item/proc/openTip(location, control, params, user)
 	if(last_force_string_check != force && !(item_flags & FORCE_STRING_OVERRIDE))
 		set_force_string()
+	// NOVA EDIT CHANGE - i18n: 反查 "Force" 标签与力量描述词(very low/robust… 进目录；locale==en 为 no-op）
+	// desc 也在此单独反查：content 是拼接串，openToolTip 那道整串反查对它必然落空。
+	var/localized_desc = lang_reverse_text(desc) // NOVA EDIT ADDITION - i18n
 	if(!(item_flags & FORCE_STRING_OVERRIDE))
-		openToolTip(user,src,params,title = name,content = "[desc]<br>[force ? "<b>Force:</b> [force_string]" : ""]",theme = "")
+		openToolTip(user,src,params,title = name,content = "[localized_desc]<br>[force ? "<b>[lang_reverse_text("Force")]:</b> [lang_reverse_text(force_string)]" : ""]",theme = "")
 	else
-		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
+		openToolTip(user,src,params,title = name,content = "[localized_desc]<br><b>[lang_reverse_text("Force")]:</b> [lang_reverse_text(force_string)]",theme = "")
+	// NOVA EDIT CHANGE END - ORIGINAL: content = "[desc]<br>[force ? "<b>Force:</b> [force_string]" : ""]" / content = "[desc]<br><b>Force:</b> [force_string]"
 
 /obj/item/MouseEntered(location, control, params)
 	. = ..()
@@ -1852,15 +1856,15 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 	if(show_visible_message)
 		if(HAS_TRAIT(equipping, TRAIT_DANGEROUS_OBJECT))
 			target.visible_message(
-				span_danger("[user] tries to put [equipping] on [target]."),
-				span_userdanger("[user] tries to put [equipping] on you."),
+				span_danger(LANG("obj.4e36be0d", list(user, equipping, target))),
+				span_userdanger(LANG("obj.8d22214d", list(user, equipping))),
 				ignored_mobs = user,
 			)
 
 		else
 			target.visible_message(
-				span_notice("[user] tries to put [equipping] on [target]."),
-				span_notice("[user] tries to put [equipping] on you."),
+				span_notice(LANG("obj.4e36be0d", list(user, equipping, target))),
+				span_notice(LANG("obj.8d22214d", list(user, equipping))),
 				ignored_mobs = user,
 			)
 

@@ -338,8 +338,8 @@
 	update_ability_status()
 
 	visible_message(
-		span_warning("[src] lets out a waning screech as violet mist swirls around its dissolving body!"),
-		span_revendanger("NO! No... it's too late, you can feel your essence [pick("breaking apart", "drifting away")]..."),
+		span_warning(LANG("mob.57274ae9", list(src))),
+		span_revendanger(LANG("mob.d1d7ccbd", list(pick("breaking apart", "drifting away")))),
 	)
 
 	SetInvisibility(INVISIBILITY_NONE, id=type)
@@ -395,8 +395,8 @@
 /mob/living/basic/revenant/proc/on_baned(obj/item/weapon, mob/living/user)
 	SIGNAL_HANDLER
 	visible_message(
-		span_warning("[src] violently flinches!"),
-		span_revendanger("As [weapon] passes through you, you feel your essence draining away!"),
+		span_warning(LANG("mob.0948d002", list(src))),
+		span_revendanger(LANG("mob.1e3b9aef", list(weapon))),
 	)
 	apply_status_effect(/datum/status_effect/revenant/inhibited, 3 SECONDS)
 

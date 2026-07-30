@@ -86,7 +86,8 @@
 		user.visible_message(span_notice(LANG("obj.48eff2d6", list(user, newbrain, src))), span_notice(LANG("obj.c1b7c3b5", list(src, newbrain))))
 		brain = newbrain
 		brain.organ_flags |= ORGAN_FROZEN
-		name = "[initial(name)]: [copytext(newbrain.name, 1, -8)]"
+		// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
+		name = "[lang_reverse_text(initial(name))]: [copytext(newbrain.name, 1, -8)]"
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -116,7 +117,8 @@
 	brain = newbrain
 	brain.organ_flags |= ORGAN_FROZEN
 
-	name = "[initial(name)]: [brainmob.real_name]"
+	// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
+	name = "[lang_reverse_text(initial(name))]: [brainmob.real_name]"
 	update_appearance()
 	if(istype(brain, /obj/item/organ/brain/alien))
 		braintype = "Xenoborg" //HISS....Beep.
@@ -154,7 +156,8 @@
 		new_brain.forceMove(src)
 		brain = new_brain
 		brain.organ_flags |= ORGAN_FROZEN
-		name = "[initial(name)]: [copytext(new_brain.name, 1, -8)]"
+		// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
+		name = "[lang_reverse_text(initial(name))]: [copytext(new_brain.name, 1, -8)]"
 		update_appearance()
 		return TRUE
 
@@ -177,7 +180,8 @@
 	brain = new_brain
 	brain.organ_flags |= ORGAN_FROZEN
 
-	name = "[initial(name)]: [brainmob.real_name]"
+	// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
+	name = "[lang_reverse_text(initial(name))]: [brainmob.real_name]"
 
 	update_appearance()
 	if(istype(brain, /obj/item/organ/brain/alien))
@@ -238,7 +242,8 @@
 		brain.name = "[L.real_name]'s brain"
 	brain.organ_flags |= ORGAN_FROZEN
 
-	name = "[initial(name)]: [brainmob.real_name]"
+	// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
+	name = "[lang_reverse_text(initial(name))]: [brainmob.real_name]"
 	update_appearance()
 	if(istype(brain, /obj/item/organ/brain/alien))
 		braintype = "Xenoborg" //HISS....Beep.

@@ -47,8 +47,8 @@
 		return ..()
 
 	visible_message(
-		span_danger("\The [hitting_projectile] gets reflected by [src]!"),
-		span_userdanger("\The [hitting_projectile] gets reflected by [src]!"),
+		span_danger(LANG("mob.9cc76f17", list(hitting_projectile, src))),
+		span_userdanger(LANG("mob.9cc76f17", list(hitting_projectile, src))),
 	)
 	// Finds and plays the block_sound of item which reflected
 	for(var/obj/item/held_item in held_items)
@@ -551,7 +551,7 @@
 		return
 	var/list/combined_msg = list()
 
-	visible_message(span_notice(LANG("mob.ad166e55", list(src, p_them()))))
+	visible_message(span_notice(LANG("mob.ad166e55", list(src, lang_pronoun(p_them()))))) // NOVA EDIT - i18n: 代词专用反查(him→他)
 
 	combined_msg += span_notice(LANG("mob.0ef72352", null))
 

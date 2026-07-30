@@ -133,8 +133,8 @@
 	var/datum/food_processor_process/recipe = PROCESSOR_SELECT_RECIPE(tool)
 	if(recipe && user.transferItemToLoc(tool, src))
 		user.visible_message(
-			span_notice("[user] put [tool] into [src]."),
-			span_notice("You put [tool] into [src]."),
+			span_notice(LANG("obj.7f48475c", list(user, tool, src))),
+			span_notice(LANG("obj.6635fb59", list(tool, src))),
 		)
 		LAZYADD(processor_contents, tool)
 		return ITEM_INTERACT_SUCCESS

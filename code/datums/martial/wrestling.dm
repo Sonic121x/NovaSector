@@ -473,9 +473,9 @@ If you make a derivative work from this code, you must include this notification
 		return MARTIAL_ATTACK_FAIL
 	attacker.start_pulling(defender)
 	defender.visible_message(
-		span_danger("[attacker] gets [defender] in a cinch!"),
-		span_userdanger("You're put into a cinch by [attacker]!"),
-		span_hear("You hear aggressive shuffling!"),
+		span_danger(LANG("datum.aa03d242", list(attacker, defender))),
+		span_userdanger(LANG("datum.b58efd66", list(attacker))),
+		span_hear(LANG("datum.7314bbd1", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)

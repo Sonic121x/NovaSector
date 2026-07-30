@@ -158,7 +158,7 @@ ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "授予全部权限", "Grant full
 
 ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "直接接管控制", "Assume direct control of a mob.", ADMIN_CATEGORY_DEBUG, mob/M)
 	if(M.ckey)
-		if(tgui_alert(user,"This mob is being controlled by [M.key]. Are you sure you wish to assume control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
+		if(tgui_alert(user,LANG("datum.cc755301", list(M.key, M.key)),,list("Yes","No")) != "Yes")
 			return
 	if(!M || QDELETED(M))
 		to_chat(user, span_warning(LANG("datum.fee9fdaf", null)))
@@ -180,7 +180,7 @@ ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "授予直接控制", "Give direct 
 	if(!M)
 		return
 	if(M.ckey)
-		if(tgui_alert(user,"This mob is being controlled by [M.key]. Are you sure you wish to give someone else control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
+		if(tgui_alert(user,LANG("datum.eecd032f", list(M.key, M.key)),,list("Yes","No")) != "Yes")
 			return
 	var/client/newkey = tgui_input_list(user, LANG("datum.eb214719", null), LANG("datum.fdeacb81", null), sort_list(GLOB.clients))
 	if(isnull(newkey))
@@ -669,8 +669,8 @@ ADMIN_VERB(test_pathfinding, R_DEBUG, "切换寻路测试", "Enables/Disables pa
 ADMIN_VERB(clear_turf_reservations, R_DEBUG, "清除动态地块预留", "Deallocates all reserved space, restoring it to round start conditions.", ADMIN_CATEGORY_DEBUG)
 	var/answer = tgui_alert(
 		user,
-		"WARNING: THIS WILL WIPE ALL RESERVED SPACE TO A CLEAN SLATE! ANY MOVING SHUTTLES, ELEVATORS, OR IN-PROGRESS PHOTOGRAPHY WILL BE DELETED!",
-		"Really wipe dynamic turfs?",
+		LANG("datum.ef8c440a", null),
+		LANG("datum.9c54956e", null),
 		list("YES", "NO"),
 	)
 	if(answer != "YES")
