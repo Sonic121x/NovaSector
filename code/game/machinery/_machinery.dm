@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * Machines in the world, such as computers, pipes, and airlocks.
  *
@@ -682,7 +683,7 @@
 
 
 	if((interaction_flags_machine & INTERACT_MACHINE_REQUIRES_SIGHT) && user.is_blind())
-		to_chat(user, span_warning("This machine requires sight to use."))
+		to_chat(user, span_warning(LANG("obj.b52b5035", null)))
 		return FALSE
 
 	// machines have their own lit up display screens and LED buttons so we don't need to check for light
@@ -714,7 +715,7 @@
 	add_fingerprint(user)
 	update_last_used(user)
 	if(isAI(user) && !SScameras.is_visible_by_cameras(get_turf(src))) //We check if they're an AI specifically here, so borgs/adminghosts/human wand can still access off-camera stuff.
-		to_chat(user, span_warning("You can no longer connect to this device!"))
+		to_chat(user, span_warning(LANG("obj.c65faf23", null)))
 		return FALSE
 	return ..()
 
@@ -771,7 +772,7 @@
 		if(user_unbuckle_mob(buckled_mobs[1],user))
 			return TRUE
 
-	var/unbuckled = tgui_input_list(user, "Who do you wish to unbuckle?", "Unbuckle", sort_names(buckled_mobs))
+	var/unbuckled = tgui_input_list(user, LANG("obj.15d59dc6", null), LANG("obj.768fd2d4", null), sort_names(buckled_mobs))
 	if(isnull(unbuckled))
 		return FALSE
 	if(user_unbuckle_mob(unbuckled,user))
@@ -886,7 +887,7 @@
 		return deconstruct_on_fail ? default_deconstruction_crowbar(user, crowbar) : ITEM_INTERACT_BLOCKING
 
 	crowbar.play_tool_sound(src, 50)
-	user.visible_message(span_notice("[user] pries open [src]."), span_notice("You pry open [src]."))
+	user.visible_message(span_notice(LANG("obj.13d2a45b", list(user, src))), span_notice(LANG("obj.f68d6a77", list(src))))
 	open_machine(density_to_set = open_density)
 	if (close_after_pry) //Should it immediately close after prying? (If not, it must be closed elsewhere)
 		close_machine(density_to_set = closed_density)
@@ -1053,7 +1054,7 @@
 
 	screwdriver.play_tool_sound(src, 50)
 	toggle_panel_open()
-	balloon_alert(user, "maintenance hatch [panel_open ? "opened" : "closed"]")
+	balloon_alert(user, LANG("obj.a6462958", list(panel_open ? "opened" : "closed")))
 	return ITEM_INTERACT_SUCCESS
 
 /**
@@ -1073,7 +1074,7 @@
 
 	wrench.play_tool_sound(src, 50)
 	setDir(turn(dir,-90))
-	to_chat(user, span_notice("You rotate [src]."))
+	to_chat(user, span_notice(LANG("obj.21b2b6d1", list(src))))
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DEFAULT_ROTATE_WRENCH, user, wrench)
 	return ITEM_INTERACT_SUCCESS
 
@@ -1240,16 +1241,16 @@
 /obj/machinery/examine(mob/user)
 	. = ..()
 	if(machine_stat & BROKEN)
-		. += span_notice("It looks broken and non-functional.")
+		. += span_notice(LANG("obj.4bd4ac5e", null))
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		var/healthpercent = (atom_integrity/max_integrity) * 100
 		switch(healthpercent)
 			if(50 to 99)
-				. += "It looks slightly damaged."
+				. += LANG("obj.bc3c8a23", null)
 			if(25 to 50)
-				. += "It appears heavily damaged."
+				. += LANG("obj.27d47c4b", null)
 			if(0 to 25)
-				. += span_warning("It's falling apart!")
+				. += span_warning(LANG("obj.ad6c0cee", null))
 
 /obj/machinery/examine_descriptor(mob/user)
 	return "machine"

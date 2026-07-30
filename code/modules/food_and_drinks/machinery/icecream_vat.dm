@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///How many units of a reagent is needed to make a cone.
 #define CONE_REAGENT_NEEDED 1
 
@@ -112,7 +113,7 @@
 
 /obj/machinery/icecream_vat/examine(mob/user)
 	. = ..()
-	. += "You can use a [EXAMINE_HINT("spoon")] or [EXAMINE_HINT("soup ladle")] to spill reagents."
+	. += LANG("obj.bc0dbcba", list(EXAMINE_HINT("spoon"), EXAMINE_HINT("soup ladle")))
 
 /obj/machinery/icecream_vat/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/kitchen/spoon) || istype(tool, /obj/item/kitchen/spoon/soup_ladle))
@@ -125,18 +126,18 @@
 
 	if(custom_ice_cream_beaker)
 		if(!user.transferItemToLoc(beaker, src))
-			balloon_alert(user, "beaker slot full!")
+			balloon_alert(user, LANG("obj.503f8056", null))
 			return ITEM_INTERACT_BLOCKING
 
 		try_put_in_hand(custom_ice_cream_beaker, user)
-		balloon_alert(user, "beakers swapped")
+		balloon_alert(user, LANG("obj.562db0b2", null))
 		custom_ice_cream_beaker = beaker
 		return ITEM_INTERACT_SUCCESS
 
 	if(!user.transferItemToLoc(beaker, src))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "beaker inserted")
+	balloon_alert(user, LANG("obj.eb9dfdb5", null))
 	custom_ice_cream_beaker = beaker
 	return ITEM_INTERACT_SUCCESS
 
@@ -152,10 +153,10 @@
 			beaker.reagents.trans_to(src, beaker_reagents.volume, target_id = beaker_reagents.type)
 
 	if(!added_reagents)
-		balloon_alert(user, "no reagents to transfer!")
+		balloon_alert(user, LANG("obj.fd7754ea", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "refilling reagents")
+	balloon_alert(user, LANG("obj.73656716", null))
 	playsound(src, 'sound/items/drink.ogg', 25, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -172,7 +173,7 @@
 /obj/machinery/icecream_vat/click_alt(mob/user)
 	if(!custom_ice_cream_beaker)
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, "removed beaker")
+	balloon_alert(user, LANG("obj.3825ea19", null))
 	try_put_in_hand(custom_ice_cream_beaker, user)
 	return CLICK_ACTION_SUCCESS
 
@@ -213,17 +214,17 @@
 	var/datum/ice_cream_flavour/flavor = GLOB.ice_cream_flavours[choice]
 	if(flavor)
 		selected_flavour = flavor.name
-		balloon_alert(user, "making [selected_flavour]")
+		balloon_alert(user, LANG("obj.1b6c7fc4", list(selected_flavour)))
 	var/obj/item/food/icecream/cone = cone_prototypes[choice]
 	if(cone)
 		make_cone(user, choice, cone.ingredients)
 
 ///Lets the user select a reagent in the vat to spill out.
 /obj/machinery/icecream_vat/proc/spill_reagents(mob/living/user)
-	var/datum/reagent/reagent_to_remove = tgui_input_list(user, "Select a reagent to purge from the vat.", "Remove reagent", reagents.reagent_list, ui_state = GLOB.conscious_state)
+	var/datum/reagent/reagent_to_remove = tgui_input_list(user, LANG("obj.8148244b", null), LANG("obj.723af3f7", null), reagents.reagent_list, ui_state = GLOB.conscious_state)
 	if(isnull(reagent_to_remove) || !user.can_perform_action(src, action_bitflags = ALLOW_RESTING))
 		return
-	balloon_alert(user, "spilled [reagent_to_remove.name]")
+	balloon_alert(user, LANG("obj.0b3f7d72", list(reagent_to_remove.name)))
 	reagents.remove_reagent(reagent_to_remove.type, reagent_to_remove.volume)
 
 /obj/machinery/icecream_vat/proc/make_ice_cream_color(datum/ice_cream_flavour/flavor)
@@ -252,7 +253,7 @@
 
 	for(var/reagents_used in ingredients)
 		reagents.remove_reagent(reagents_used, CONE_REAGENT_NEEDED)
-	balloon_alert_to_viewers("cooks up [cone.name]", "cooks up [cone.name]")
+	balloon_alert_to_viewers(LANG("obj.5ba3f0cf", list(cone.name)), LANG("obj.5ba3f0cf", list(cone.name)))
 	try_put_in_hand(cone, user)
 
 ///Makes ice cream if it can, then puts it in the ice cream cone we're being attacked with.
@@ -270,7 +271,7 @@
 	if(flavor.add_flavour(source, should_use_custom_ingredients ? custom_ice_cream_beaker.reagents : null))
 		for(var/reagents_used in flavor.ingredients)
 			reagents.remove_reagent(reagents_used, CONE_REAGENT_NEEDED)
-		balloon_alert_to_viewers("scoops [selected_flavour]", "scoops [selected_flavour]")
+		balloon_alert_to_viewers(LANG("obj.3088bf92", list(selected_flavour)), LANG("obj.3088bf92", list(selected_flavour)))
 
 	if(istype(cone))
 		if(isnull(cone.crafted_food_buff))
@@ -287,7 +288,7 @@
 			vat_mode = VAT_MODE_CONES
 		if(VAT_MODE_CONES)
 			vat_mode = VAT_MODE_ICECREAM
-	balloon_alert(user, "dispensing [vat_mode]")
+	balloon_alert(user, LANG("obj.ff481801", list(vat_mode)))
 	return TRUE
 
 ///Allows any user to see what reagents are in the ice cream vat regardless of special gear.

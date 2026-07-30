@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/seeds/tower
 	name = "tower-cap mycelium pack"
 	desc = "This mycelium grows into tower-cap mushrooms."
@@ -86,7 +87,7 @@
 
 /obj/item/grown/log/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.get_sharpness())
-		user.balloon_alert(user, "made [plank_count] [plank_name]")
+		user.balloon_alert(user, LANG("obj.dac102ae", list(plank_count, plank_name)))
 		new plank_type(user.loc, plank_count)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -94,10 +95,10 @@
 	if(CheckAccepted(tool))
 		var/obj/item/food/grown/leaf = tool
 		if(!HAS_TRAIT(leaf, TRAIT_DRIED))
-			balloon_alert(user, "dry it first!")
+			balloon_alert(user, LANG("obj.a6ee2a30", null))
 			return ITEM_INTERACT_BLOCKING
 
-		user.balloon_alert(user, "torch crafted")
+		user.balloon_alert(user, LANG("obj.d1ec31a1", null))
 		var/obj/item/flashlight/flare/torch/new_torch = new /obj/item/flashlight/flare/torch(user.loc)
 		user.dropItemToGround(tool)
 		user.put_in_active_hand(new_torch)
@@ -186,10 +187,10 @@
 /obj/structure/punji_sticks/unbuckle_mob(mob/living/buckled_mob, force, can_fall)
 	if(force)
 		return ..()
-	to_chat(buckled_mob, span_warning("You begin climbing out of [src]."))
+	to_chat(buckled_mob, span_warning(LANG("obj.2fa6d181", list(src))))
 	buckled_mob.apply_damage(5, BRUTE, sharpness = SHARP_POINTY)
 	if(!do_after(buckled_mob, 5 SECONDS, target = src))
-		to_chat(buckled_mob, span_userdanger("You fail to detach yourself from [src]."))
+		to_chat(buckled_mob, span_userdanger(LANG("obj.4bbdcf02", list(src))))
 		return
 	return ..()
 

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
@@ -43,7 +44,7 @@
 	alternate_worn_layer = (alternate_worn_layer == UNDER_UNIFORM_LAYER) ? NONE : UNDER_UNIFORM_LAYER
 
 	update_slot_icon()
-	balloon_alert(user, "wearing [alternate_worn_layer == UNDER_UNIFORM_LAYER ? "under" : "over"] uniforms")
+	balloon_alert(user, LANG("obj.7343a42f", list(alternate_worn_layer == UNDER_UNIFORM_LAYER ? "under" : "over")))
 	return CLICK_ACTION_SUCCESS
 
 /datum/armor/clothing_shoes
@@ -51,7 +52,7 @@
 
 /obj/item/clothing/shoes/suicide_act(mob/living/user)
 	if(prob(50))
-		user.visible_message(span_suicide("[user] begins fastening \the [src] up waaay too tightly! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide(LANG("obj.724703b3", list(user, src, user.p_theyre()))))
 		var/obj/item/bodypart/leg/left = user.get_bodypart(BODY_ZONE_L_LEG)
 		var/obj/item/bodypart/leg/right = user.get_bodypart(BODY_ZONE_R_LEG)
 		if(left)
@@ -61,7 +62,7 @@
 		playsound(user, SFX_DESECRATION, 50, TRUE, -1)
 		return BRUTELOSS
 	else//didnt realize this suicide act existed (was in miscellaneous.dm) and didnt want to remove it, so made it a 50/50 chance. Why not!
-		user.visible_message(span_suicide("[user] is bashing [user.p_their()] own head in with [src]! Ain't that a kick in the head?"))
+		user.visible_message(span_suicide(LANG("obj.da1c6b1c", list(user, user.p_their(), src))))
 		for(var/i in 1 to 3)
 			sleep(0.3 SECONDS)
 			playsound(user, 'sound/items/weapons/genhit2.ogg', 50, TRUE)
@@ -89,9 +90,9 @@
 		return
 
 	if(tied == SHOES_UNTIED)
-		. += "The [fastening_type] are [untied_adjective()]."
+		. += LANG("obj.2d5779db", list(fastening_type, untied_adjective()))
 	else if(tied == SHOES_KNOTTED)
-		. += "The [fastening_type] are all knotted together."
+		. += LANG("obj.8a5b63c4", list(fastening_type))
 
 /obj/item/clothing/shoes/visual_equipped(mob/user, slot)
 	. = ..()
@@ -179,14 +180,14 @@
 		return
 
 	if(!in_range(user, our_guy))
-		to_chat(user, span_warning("You aren't close enough to interact with [src]'s [fastening_type]!"))
+		to_chat(user, span_warning(LANG("obj.ff9b544e", list(src, fastening_type))))
 		return
 
 	if(user == loc && tied != SHOES_TIED) // if they're our own shoes, go tie-wards
 		if(DOING_INTERACTION_WITH_TARGET(user, our_guy))
-			to_chat(user, span_warning("You're already interacting with [src]!"))
+			to_chat(user, span_warning(LANG("obj.87048759", list(src))))
 			return
-		user.visible_message(span_notice("[user] begins [tied ? "unknotting" : "[fastening_verb()]"] the [fastening_type] of [user.p_their()] [src.name]."), span_notice("You begin [tied ? "unknotting" : "[fastening_verb()]"] the [fastening_type] of your [src.name]..."))
+		user.visible_message(span_notice(LANG("obj.054c6435", list(user, tied ? "unknotting" : "[fastening_verb()]", fastening_type, user.p_their(), src.name))), span_notice(LANG("obj.d6986752", list(tied ? "unknotting" : "[fastening_verb()]", fastening_type, src.name))))
 		// NOVA EDIT ADDITION START
 		var/lace_time = src.lace_time
 		if(HAS_TRAIT(user, TRAIT_STICKY_FINGERS))
@@ -194,7 +195,7 @@
 		// NOVA EDIT ADDITION END
 
 		if(do_after(user, lace_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy)))
-			to_chat(user, span_notice("You [tied ? "unknot" : "[fasten_verb()]"] the [fastening_type] of your [src.name]."))
+			to_chat(user, span_notice(LANG("obj.d19b2ca2", list(tied ? "unknot" : "[fasten_verb()]", fastening_type, src.name))))
 			if(tied == SHOES_UNTIED)
 				adjust_laces(SHOES_TIED, user)
 			else
@@ -202,17 +203,17 @@
 
 	else // if they're someone else's shoes, go knot-wards
 		if(user.body_position == STANDING_UP)
-			to_chat(user, span_warning("You must be on the floor to interact with [src]!"))
+			to_chat(user, span_warning(LANG("obj.5c4519eb", list(src))))
 			return
 		if(tied == SHOES_KNOTTED)
-			to_chat(user, span_warning("The [fastening_type] on [loc]'s [src.name] are already a hopelessly tangled mess!"))
+			to_chat(user, span_warning(LANG("obj.013dc17a", list(fastening_type, loc, src.name))))
 			return
 		if(DOING_INTERACTION_WITH_TARGET(user, our_guy))
-			to_chat(user, span_warning("You're already interacting with [src]!"))
+			to_chat(user, span_warning(LANG("obj.87048759", list(src))))
 			return
 
 		var/mod_time = lace_time
-		to_chat(user, span_notice("You quietly set to work [tied ? "un[fastening_verb()]" : "knotting"] [loc]'s [src.name]..."))
+		to_chat(user, span_notice(LANG("obj.90a62deb", list(tied ? "un[fastening_verb()]" : "knotting", loc, src.name))))
 		if(HAS_TRAIT(user, TRAIT_CLUMSY)) // based clowns trained their whole lives for this
 			mod_time *= 0.75
 		// NOVA EDIT ADDITION START
@@ -221,14 +222,14 @@
 		// NOVA EDIT ADDITION END
 
 		if(do_after(user, mod_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy), cog_icon = null))
-			to_chat(user, span_notice("You [tied ? "un[fasten_verb()]" : "knot"] the [fastening_type] on [loc]'s [src.name]."))
+			to_chat(user, span_notice(LANG("obj.edb8a458", list(tied ? "un[fasten_verb()]" : "knot", fastening_type, loc, src.name))))
 			if(tied == SHOES_UNTIED)
 				adjust_laces(SHOES_KNOTTED, user)
 			else
 				adjust_laces(SHOES_UNTIED, user)
 		else // if one of us moved
-			user.visible_message(span_danger("[our_guy] stamps on [user]'s hand, mid-[tied ? "knotting" : "un[fastening_verb()]"]!"), span_userdanger("Ow! [our_guy] stamps on your hand!"), list(our_guy))
-			to_chat(our_guy, span_userdanger("You stamp on [user]'s hand! What the- [user.p_they()] [user.p_were()] [tied ? "knotting" : "un[fastening_verb()]"] your [fastening_type]!"))
+			user.visible_message(span_danger(LANG("obj.434f5608", list(our_guy, user, tied ? "knotting" : "un[fastening_verb()]"))), span_userdanger(LANG("obj.59f95b71", list(our_guy))), list(our_guy))
+			to_chat(our_guy, span_userdanger(LANG("obj.e6f1cafd", list(user, user.p_they(), user.p_were(), tied ? "knotting" : "un[fastening_verb()]", fastening_type))))
 			user.emote("scream")
 			user.apply_damage(10, BRUTE, user.get_active_hand(), wound_bonus = CANT_WOUND)
 			user.apply_damage(40, STAMINA)
@@ -248,7 +249,7 @@
 	if(tied == SHOES_KNOTTED)
 		our_guy.Paralyze(5)
 		our_guy.Knockdown(10)
-		our_guy.visible_message(span_danger("[our_guy] trips on [our_guy.p_their()] knotted [fastening_type] and falls! What a klutz!"), span_userdanger("You trip on your knotted [fastening_type] and fall over!"))
+		our_guy.visible_message(span_danger(LANG("obj.9ce51e69", list(our_guy, our_guy.p_their(), fastening_type))), span_userdanger(LANG("obj.26d3eeb0", list(fastening_type))))
 		our_guy.add_mood_event("trip", /datum/mood_event/tripped) // well we realized they're knotted now!
 		our_alert_ref = WEAKREF(our_guy.throw_alert(ALERT_SHOES_KNOT, /atom/movable/screen/alert/shoes/knotted))
 
@@ -259,21 +260,21 @@
 				our_guy.Paralyze(5)
 				our_guy.Knockdown(10)
 				our_guy.add_mood_event("trip", /datum/mood_event/tripped) // well we realized they're knotted now!
-				our_guy.visible_message(span_danger("[our_guy] trips on [our_guy.p_their()] [untied_adjective()] [fastening_type] and falls! What a klutz!"), span_userdanger("You trip on your [untied_adjective()] [fastening_type] and fall over!"))
+				our_guy.visible_message(span_danger(LANG("obj.10af9c65", list(our_guy, our_guy.p_their(), untied_adjective(), fastening_type))), span_userdanger(LANG("obj.271e1c16", list(untied_adjective(), fastening_type))))
 
 			if(2 to 5) // .4% chance to stumble and lurch forward
 				our_guy.throw_at(get_step(our_guy, our_guy.dir), 3, 2)
-				to_chat(our_guy, span_danger("You stumble on your [untied_adjective()] [fastening_type] and lurch forward!"))
+				to_chat(our_guy, span_danger(LANG("obj.66472685", list(untied_adjective(), fastening_type))))
 
 			if(6 to 13) // .7% chance to stumble and fling what we're holding
 				var/have_anything = FALSE
 				for(var/obj/item/I in our_guy.held_items)
 					have_anything = TRUE
 					our_guy.accident(I)
-				to_chat(our_guy, span_danger("You trip on your [fastening_type] a bit[have_anything ? ", flinging what you were holding" : ""]!"))
+				to_chat(our_guy, span_danger(LANG("obj.54252380", list(fastening_type, have_anything ? ", flinging what you were holding" : ""))))
 
 			if(14 to 25) // 1.3ish% chance to stumble and be a bit off balance (like being disarmed)
-				to_chat(our_guy, span_danger("You stumble a bit on your [untied_adjective()] [fastening_type]!"))
+				to_chat(our_guy, span_danger(LANG("obj.2a31d479", list(untied_adjective(), fastening_type))))
 				our_guy.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
 
 			if(26 to 1000)
@@ -298,10 +299,10 @@
 		return
 
 	if(DOING_INTERACTION_WITH_TARGET(user, src))
-		to_chat(user, span_warning("You're already interacting with [src]!"))
+		to_chat(user, span_warning(LANG("obj.87048759", list(src))))
 		return
 
-	to_chat(user, span_notice("You begin [tied ? "un" : ""][fastening_verb()] the [fastening_type] on [src]..."))
+	to_chat(user, span_notice(LANG("obj.0844a9b7", list(tied ? "un" : "", fastening_verb(), fastening_type, src))))
 	// NOVA EDIT ADDITION START
 	var/lace_time = src.lace_time
 	if(HAS_TRAIT(user, TRAIT_STICKY_FINGERS))
@@ -309,7 +310,7 @@
 	// NOVA EDIT ADDITION END
 
 	if(do_after(user, lace_time, target = src,extra_checks = CALLBACK(src, PROC_REF(still_shoed), user)))
-		to_chat(user, span_notice("You [tied ? "un" : ""][fasten_verb()] the [fastening_type] on [src]."))
+		to_chat(user, span_notice(LANG("obj.5728a7d8", list(tied ? "un" : "", fasten_verb(), fastening_type, src))))
 		adjust_laces(tied ? SHOES_UNTIED : SHOES_TIED, user)
 
 /obj/item/clothing/shoes/apply_fantasy_bonuses(bonus)

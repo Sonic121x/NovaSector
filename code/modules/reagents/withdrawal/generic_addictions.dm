@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///Opioids
 /datum/addiction/opioids
 	name = "opioid"
@@ -119,7 +120,7 @@
 		return
 	var/mob/living/carbon/human/affected_human = affected_carbon
 	if(affected_human.gender == MALE)
-		to_chat(affected_human, span_warning("Your chin itches."))
+		to_chat(affected_human, span_warning(LANG("datum.e48dfea5", null)))
 		affected_human.set_facial_hairstyle("Beard (Full)", update = TRUE)
 	//Only like gross food
 	var/obj/item/organ/tongue/tongue = affected_carbon.get_organ_slot(ORGAN_SLOT_TONGUE)
@@ -133,7 +134,7 @@
 	. = ..()
 	if(!ishuman(affected_carbon))
 		return
-	to_chat(affected_carbon, span_warning("You feel yourself adapt to the darkness."))
+	to_chat(affected_carbon, span_warning(LANG("datum.e1d13ff9", null)))
 	ADD_TRAIT(affected_carbon, TRAIT_NIGHT_VISION, type)
 
 /datum/addiction/maintenance_drugs/withdrawal_stage_3_process(mob/living/carbon/affected_carbon, seconds_per_tick)
@@ -266,7 +267,7 @@
 		to_chat(affected_carbon, organ.high_threshold_passed)
 		return
 
-	to_chat(affected_carbon, span_warning("You feel a dull pain in your [organ.name]."))
+	to_chat(affected_carbon, span_warning(LANG("datum.35f18f54", list(organ.name))))
 
 /datum/addiction/medicine/end_withdrawal(mob/living/carbon/affected_carbon)
 	. = ..()

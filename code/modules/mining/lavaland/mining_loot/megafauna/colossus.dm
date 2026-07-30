@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // Divine vocal cords
 
 /obj/item/organ/vocal_cords/colossus
@@ -23,32 +24,32 @@
 		return FALSE
 	if(world.time < cords.next_command)
 		if (feedback)
-			owner.balloon_alert(owner, "wait [DisplayTimeText(cords.next_command - world.time)]!")
+			owner.balloon_alert(owner, LANG("datum.3eb6e0ba", list(DisplayTimeText(cords.next_command - world.time))))
 		return FALSE
 	if(isliving(owner))
 		var/mob/living/living = owner
 		if(!living.can_speak())
 			if (feedback)
-				owner.balloon_alert(owner, "can't speak!")
+				owner.balloon_alert(owner, LANG("datum.b9e9408a", null))
 			return FALSE
 	if((check_flags & AB_CHECK_CONSCIOUS) && IS_UNCONSCIOUS_OR_CRIT(owner))
 		if (feedback)
 			if(owner.stat == DEAD)
-				owner.balloon_alert(owner, "dead!")
+				owner.balloon_alert(owner, LANG("datum.1bf49ad4", null))
 			else if(IS_UNCONSCIOUS(owner))
-				owner.balloon_alert(owner, "unconscious!")
+				owner.balloon_alert(owner, LANG("datum.dc8b5a42", null))
 			else
-				owner.balloon_alert(owner, "in critical!")
+				owner.balloon_alert(owner, LANG("datum.b49fe510", null))
 		return FALSE
 	return TRUE
 
 /datum/action/item_action/organ_action/colossus/do_effect(trigger_flags)
-	var/command = tgui_input_text(owner, "Speak with the Voice of God", "Command", max_length = MAX_MESSAGE_LEN)
+	var/command = tgui_input_text(owner, LANG("datum.9a10733a", null), LANG("datum.a4e844da", null), max_length = MAX_MESSAGE_LEN)
 	if(!command)
 		return FALSE
 	if(QDELETED(src) || QDELETED(owner))
 		return FALSE
-	owner.say(".x[command]")
+	owner.say(LANG("datum.4744c02d", list(command)))
 	return TRUE
 
 /obj/item/organ/vocal_cords/colossus/can_speak_with()
@@ -56,7 +57,7 @@
 		return FALSE
 
 	if(world.time < next_command)
-		to_chat(owner, span_notice("You must wait [DisplayTimeText(next_command - world.time)] before Speaking again."))
+		to_chat(owner, span_notice(LANG("obj.b8571108", list(DisplayTimeText(next_command - world.time)))))
 		return FALSE
 
 	return owner.can_speak()
@@ -114,7 +115,7 @@
 	. = ..()
 	if(isobserver(user))
 		. += observer_desc
-		. += "It is activated by [activation_method]."
+		. += LANG("obj.d44c7a15", list(activation_method))
 
 /obj/machinery/anomalous_crystal/Hear(atom/movable/speaker, message_langs, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, list/message_mods = list(), message_range)
 	. = ..()
@@ -161,7 +162,7 @@
 	icon_state = "anomaly_crystal_charging"
 	active = TRUE
 	set_anchored(TRUE)
-	balloon_alert_to_viewers("charging...")
+	balloon_alert_to_viewers(LANG("obj.b766a769", null))
 	playsound(src, 'sound/effects/magic/disable_tech.ogg', 50, TRUE)
 	sleep(use_time)
 	icon_state = initial(icon_state)
@@ -321,7 +322,7 @@
 	if(.)
 		return
 	if(ready_to_deploy)
-		var/be_helper = tgui_alert(usr, "Become a Lightgeist? (Warning, You can no longer be revived!)", "Lightgeist Deployment", list("Yes", "No"))
+		var/be_helper = tgui_alert(usr, LANG("obj.7eab3a13", null), LANG("obj.a83f6f28", null), list("Yes", "No"))
 		if((be_helper == "Yes") && !QDELETED(src) && isobserver(user))
 			var/mob/living/basic/lightgeist/deployable = new(get_turf(loc))
 			deployable.PossessByPlayer(user.key)

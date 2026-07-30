@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**********************Prisoners' Console**************************/
 
 /obj/machinery/mineral/labor_claim_console
@@ -99,39 +100,39 @@
 				var/obj/item/card/id/advanced/prisoner/worn_prisoner_id = worn_id
 				worn_prisoner_id.points += stacking_machine.points
 				stacking_machine.points = 0
-				say("Points transferred.")
+				say(LANG("obj.8bb19476", null))
 				return TRUE
 			else
 				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say("No valid id for point transfer detected.")
+					say(LANG("obj.02480055", null))
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 
 		if("move_shuttle")
 			if(isnull(SSshuttle.getShuttle("laborcamp")))
 				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say("Shuttle not found.")
+					say(LANG("obj.20fb4291", null))
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				return
 
 			var/list/labor_shuttle_mobs = find_labor_shuttle_mobs()
 			if(length(labor_shuttle_mobs) > 1 || labor_shuttle_mobs[1] != user_mob)
 				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say("Prisoners may only be released one at a time.")
+					say(LANG("obj.9d8fb001", null))
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				return
 
 			switch(SSshuttle.moveShuttle("laborcamp", "laborcamp_home", TRUE))
 				if(1)
 					if(COOLDOWN_FINISHED(src, say_cooldown))
-						say("Shuttle not found.")
+						say(LANG("obj.20fb4291", null))
 						COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				if(2)
 					if(COOLDOWN_FINISHED(src, say_cooldown))
-						say("Shuttle already at station.")
+						say(LANG("obj.58de3a65", null))
 						COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				if(3)
 					if(COOLDOWN_FINISHED(src, say_cooldown))
-						say("No permission to dock could be granted.")
+						say(LANG("obj.8f4dc87d", null))
 						COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				else
 					if(!(obj_flags & EMAGGED))
@@ -140,7 +141,7 @@
 
 						aas_config_announce(/datum/aas_config_entry/security_labor_stacker, list("PERSON" = user_mob.real_name), src, list(RADIO_CHANNEL_SECURITY))
 					user_mob.log_message("has completed their labor points goal and is now sending the gulag shuttle back to the station.", LOG_GAME)
-					say("Labor sentence finished, shuttle returning.")
+					say(LANG("obj.b670bfe4", null))
 					initiated_launch = TRUE
 					return TRUE
 
@@ -160,7 +161,7 @@
 
 	if(initiated_launch && length(find_labor_shuttle_mobs()) > 1)
 		initiated_launch = FALSE
-		say("Takeoff aborted. Prisoners may only be released one at a time.")
+		say(LANG("obj.b5368c2e", null))
 		return BLOCK_SHUTTLE_MOVE
 
 /obj/machinery/mineral/labor_claim_console/proc/locate_stacking_machine()
@@ -173,8 +174,8 @@
 		return FALSE
 
 	obj_flags |= EMAGGED
-	balloon_alert(user, "id authenticator short-circuited")
-	visible_message(span_warning("[src] lets out a few sparks!"))
+	balloon_alert(user, LANG("obj.06aa6451", null))
+	visible_message(span_warning(LANG("obj.acc77098", list(src))))
 	do_sparks(2, TRUE, src)
 	return TRUE
 
@@ -230,12 +231,12 @@
 
 	var/obj/item/card/id/advanced/prisoner/prisoner_id = tool
 	if(!prisoner_id.goal) //no goal to reach
-		say("No goal required for this ID.")
+		say(LANG("obj.ebe1f050", null))
 		return ITEM_INTERACT_BLOCKING
 
-	say("ID: [prisoner_id.registered_name].")
-	say("Points Collected: [prisoner_id.points] / [prisoner_id.goal].")
-	say("Collect points by bringing smelted minerals to the Labor Shuttle stacking machine. Reach your quota to earn your release.")
+	say(LANG("obj.2f62b694", list(prisoner_id.registered_name)))
+	say(LANG("obj.907c6c5c", list(prisoner_id.points, prisoner_id.goal)))
+	say(LANG("obj.ea9f3d09", null))
 	return ITEM_INTERACT_SUCCESS
 
 /datum/aas_config_entry/security_labor_stacker

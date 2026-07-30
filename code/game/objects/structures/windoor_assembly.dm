@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define WINDOOR_LEFT "l"
 #define WINDOOR_RIGHT "r"
 
@@ -109,10 +110,10 @@
 		if(istype(tool, /obj/item/stack/sheet/plasteel) && !secure)
 			var/obj/item/stack/sheet/plasteel/reinforcement = tool
 			if(reinforcement.get_amount() < 2)
-				to_chat(user, span_warning("You need more plasteel to do this!"))
+				to_chat(user, span_warning(LANG("obj.d0ad9de3", null)))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice("You start to reinforce the windoor with plasteel..."))
+			to_chat(user, span_notice(LANG("obj.8042a31e", null)))
 
 			if(!do_after(user, 4 SECONDS, target = src))
 				return ITEM_INTERACT_BLOCKING
@@ -121,7 +122,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			reinforcement.use(2)
-			to_chat(user, span_notice("You reinforce the windoor."))
+			to_chat(user, span_notice(LANG("obj.ba48339d", null)))
 			secure = TRUE
 			if(anchored)
 				name = "secure anchored windoor assembly"
@@ -132,7 +133,7 @@
 
 		//Adding cable to the assembly. Step 5 complete.
 		if(istype(tool, /obj/item/stack/cable_coil) && anchored)
-			user.visible_message(span_notice("[user] wires the windoor assembly."), span_notice("You start to wire the windoor assembly..."))
+			user.visible_message(span_notice(LANG("obj.2bd6d785", list(user))), span_notice(LANG("obj.e8308e6d", null)))
 
 			if(!do_after(user, 4 SECONDS, target = src))
 				return ITEM_INTERACT_BLOCKING
@@ -142,10 +143,10 @@
 
 			var/obj/item/stack/cable_coil/wiring = tool
 			if(!wiring.use(1))
-				to_chat(user, span_warning("You need more cable to do this!"))
+				to_chat(user, span_warning(LANG("obj.bc76c590", null)))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice("You wire the windoor."))
+			to_chat(user, span_notice(LANG("obj.d99b42df", null)))
 			cables_added = TRUE
 			if(secure)
 				name = "secure wired windoor assembly"
@@ -162,8 +163,8 @@
 	if(istype(tool, /obj/item/electronics/airlock))
 
 		tool.play_tool_sound(src, 100)
-		user.visible_message(span_notice("[user] installs the electronics into the airlock assembly."),
-							span_notice("You start to install electronics into the airlock assembly..."))
+		user.visible_message(span_notice(LANG("obj.1dc6640c", list(user))),
+							span_notice(LANG("obj.fb1066e6", null)))
 
 		if(!do_after(user, 4 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
@@ -175,7 +176,7 @@
 			tool.forceMove(drop_location())
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You install the airlock electronics."))
+		to_chat(user, span_notice(LANG("obj.2b65dc12", null)))
 		name = "near finished windoor assembly"
 		electronics = tool
 		return ITEM_INTERACT_SUCCESS
@@ -193,13 +194,13 @@
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] disassembles the windoor assembly."),
-						span_notice("You start to disassemble the windoor assembly..."))
+	user.visible_message(span_notice(LANG("obj.191a3904", list(user))),
+						span_notice(LANG("obj.88c5f1a0", null)))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You disassemble the windoor assembly."))
+	to_chat(user, span_notice(LANG("obj.e5955219", null)))
 	var/obj/item/stack/sheet/rglass/dropped_glass = new (get_turf(src), 5)
 	if(!QDELETED(dropped_glass))
 		dropped_glass.add_fingerprint(user)
@@ -221,8 +222,8 @@
 				to_chat(user, span_warning("There is already a windoor in that location!"))
 				return ITEM_INTERACT_BLOCKING
 
-		user.visible_message(span_notice("[user] secures the windoor assembly to the floor."),
-							span_notice("You start to secure the windoor assembly to the floor..."))
+		user.visible_message(span_notice(LANG("obj.49b00f4e", list(user))),
+							span_notice(LANG("obj.b5c22584", null)))
 		if(!tool.use_tool(src, user, 4 SECONDS, volume=100))
 			return ITEM_INTERACT_BLOCKING
 
@@ -234,7 +235,7 @@
 				to_chat(user, span_warning("There is already a windoor in that location!"))
 				return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You secure the windoor assembly."))
+		to_chat(user, span_notice(LANG("obj.feaf53d7", null)))
 		set_anchored(TRUE)
 		if(secure)
 			name = "secure anchored windoor assembly"
@@ -243,14 +244,14 @@
 		return ITEM_INTERACT_SUCCESS
 
 	//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
-	user.visible_message(span_notice("[user] unsecures the windoor assembly to the floor."),
-						span_notice("You start to unsecure the windoor assembly to the floor..."))
+	user.visible_message(span_notice(LANG("obj.b8259a4a", list(user))),
+						span_notice(LANG("obj.b3d125da", null)))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=100))
 		return ITEM_INTERACT_BLOCKING
 	if(!anchored)
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You unsecure the windoor assembly."))
+	to_chat(user, span_notice(LANG("obj.f8d3bc8f", null)))
 	set_anchored(FALSE)
 	if(secure)
 		name = "secure windoor assembly"
@@ -263,11 +264,11 @@
 	if(anchored)
 		return NONE
 	if(facing == WINDOOR_LEFT)
-		to_chat(usr, span_notice("The windoor will now slide to the right."))
+		to_chat(usr, span_notice(LANG("obj.450e75fd", null)))
 		facing = WINDOOR_RIGHT
 	else
 		facing = WINDOOR_LEFT
-		to_chat(usr, span_notice("The windoor will now slide to the left."))
+		to_chat(usr, span_notice(LANG("obj.a3cf90b7", null)))
 
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -277,15 +278,15 @@
 	if(!cables_added)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
-	user.visible_message(span_notice("[user] cuts the wires from the airlock assembly."), \
-						span_notice("You start to cut the wires from airlock assembly..."))
+	user.visible_message(span_notice(LANG("obj.bf1d728f", list(user))), \
+						span_notice(LANG("obj.345e8759", null)))
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=100))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!cables_added)
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You cut the windoor wires."))
+	to_chat(user, span_notice(LANG("obj.048e7ef7", null)))
 	new/obj/item/stack/cable_coil(get_turf(user), 1)
 	cables_added = FALSE
 	if(secure)
@@ -303,12 +304,12 @@
 	if(!electronics)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
-	user.visible_message(span_notice("[user] removes the electronics from the airlock assembly."),
-						span_notice("You start to uninstall electronics from the airlock assembly..."))
+	user.visible_message(span_notice(LANG("obj.a05c355a", list(user))),
+						span_notice(LANG("obj.e494d3b2", null)))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=100) && electronics)
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You remove the airlock electronics."))
+	to_chat(user, span_notice(LANG("obj.a5dac4b8", null)))
 	name = "wired windoor assembly"
 	var/obj/item/electronics/airlock/scrap
 	scrap = electronics
@@ -322,35 +323,35 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(!electronics)
-		to_chat(usr, span_warning("The assembly is missing electronics!"))
+		to_chat(usr, span_warning(LANG("obj.0098cf03", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] pries the windoor into the frame."),
-						span_notice("You start prying the windoor into the frame..."))
+	user.visible_message(span_notice(LANG("obj.a78577a6", list(user))),
+						span_notice(LANG("obj.84e887db", null)))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=100) || !electronics)
 		return ITEM_INTERACT_BLOCKING
 	set_density(TRUE) //Shouldn't matter but just incase <-- in case what?
-	to_chat(user, span_notice("You finish the windoor."))
+	to_chat(user, span_notice(LANG("obj.640bb6ba", null)))
 	finish_door()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/windoor_assembly/examine(mob/user)
 	. = ..()
 	if(!anchored)
-		. += span_notice("\The [src] can be [span_boldnotice("wrenched")] down.")
-		. += span_notice("\The [src] could also be [span_boldnotice("cut apart")] with a [span_boldnotice("welder")].")
+		. += span_notice(LANG("obj.a7438b4a", list(src, span_boldnotice("wrenched"))))
+		. += span_notice(LANG("obj.df3132c2", list(src, span_boldnotice("cut apart"), span_boldnotice("welder"))))
 		return .
 
 	if(!cables_added)
-		. += span_notice("\The [src] needs [span_boldnotice("wiring")], or could be [span_boldnotice("un-wrenched")] from the floor.")
+		. += span_notice(LANG("obj.c884d56a", list(src, span_boldnotice("wiring"), span_boldnotice("un-wrenched"))))
 		return .
 
 	if(!electronics)
-		. += span_notice("\The [src] needs [span_boldnotice("airlock electronics")] to continue installation, or [span_boldnotice("wirecutters")] to take apart.")
+		. += span_notice(LANG("obj.8a016b75", list(src, span_boldnotice("airlock electronics"), span_boldnotice("wirecutters"))))
 		return .
 
-	. += span_notice("\The [src] is ready to be [span_boldnotice("levered")] into place with a [span_boldnotice("crowbar")].")
+	. += span_notice(LANG("obj.8289058c", list(src, span_boldnotice("levered"), span_boldnotice("crowbar"))))
 
 /obj/structure/windoor_assembly/proc/finish_door()
 	var/obj/machinery/door/window/windoor
@@ -402,7 +403,7 @@
 
 
 //Flips the windoor assembly, determines whather the door opens to the left or the right
-GAME_VERB_SRC(/obj/structure/windoor_assembly, flip, oview(1), "Flip Windoor Assembly", null)
+GAME_VERB_SRC(/obj/structure/windoor_assembly, flip, oview(1), "翻转窗门组件", null)
 
 	if(IS_UNCONSCIOUS_OR_CRIT(usr) || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
 		return
@@ -413,11 +414,11 @@ GAME_VERB_SRC(/obj/structure/windoor_assembly, flip, oview(1), "Flip Windoor Ass
 			return
 
 	if(facing == "l")
-		to_chat(usr, span_notice("The windoor will now slide to the right."))
+		to_chat(usr, span_notice(LANG("obj.450e75fd", null)))
 		facing = "r"
 	else
 		facing = "l"
-		to_chat(usr, span_notice("The windoor will now slide to the left."))
+		to_chat(usr, span_notice(LANG("obj.a3cf90b7", null)))
 
 	update_appearance()
 	return

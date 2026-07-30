@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Moves the item at target_key onto the pawn and records it in storage_key. Does not use hands  storage_key is the virtual carry slot. Clears target_key on finish.
 /datum/bt_node/ai_behavior/pick_up_item_virtual
 	/// Blackboard key holding the item to pick up.
@@ -26,10 +27,10 @@
 	var/atom/pawn = controller.pawn
 	var/obj/item/held = controller.blackboard[storage_key]
 	if(held?.loc == pawn)
-		pawn.visible_message(span_notice("[pawn] drops [held]."))
+		pawn.visible_message(span_notice(LANG("datum.2ee8f499", list(pawn, held))))
 		held.forceMove(get_turf(pawn))
 		controller.clear_blackboard_key(storage_key)
-	pawn.visible_message(span_notice("[pawn] picks up [target]."))
+	pawn.visible_message(span_notice(LANG("datum.6147eb56", list(pawn, target))))
 	target.forceMove(pawn)
 	controller.set_blackboard_key(storage_key, target)
 
@@ -51,9 +52,9 @@
 	var/mob/pawn = controller.pawn
 	var/obj/item/item = controller.blackboard[storage_key]
 	if(QDELETED(item) || item.loc != pawn)
-		pawn.visible_message(span_notice("[pawn] looks around as if [pawn.p_they()] [pawn.p_have()] lost something."))
+		pawn.visible_message(span_notice(LANG("datum.be662e40", list(pawn, pawn.p_they(), pawn.p_have()))))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	pawn.visible_message(span_notice("[pawn] delivers [item] to [target]."))
+	pawn.visible_message(span_notice(LANG("datum.e55ffe23", list(pawn, item, target))))
 	item.forceMove(get_turf(target))
 	controller.clear_blackboard_key(storage_key)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED

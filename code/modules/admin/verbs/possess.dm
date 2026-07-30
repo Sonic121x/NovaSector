@@ -1,5 +1,6 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
-ADMIN_VERB_AND_CONTEXT_MENU(possess, R_POSSESS, "Possess Obj", "Possess an object.", ADMIN_CATEGORY_FUN, obj/target)
+ADMIN_VERB_AND_CONTEXT_MENU(possess, R_POSSESS, "附身物体", "Possess an object.", ADMIN_CATEGORY_FUN, obj/target)
 	if(isnull(target.loc))
 		return
 
@@ -16,7 +17,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(possess, R_POSSESS, "Possess Obj", "Possess an objec
 
 	BLACKBOX_LOG_ADMIN_VERB("Possess Object")
 
-ADMIN_VERB(release, R_POSSESS, "Release Object", "Stop possessing an object.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(release, R_POSSESS, "解除附身", "Stop possessing an object.", ADMIN_CATEGORY_FUN)
 	var/possess_component = user.mob.GetComponent(/datum/component/object_possession)
 	if(!isnull(possess_component))
 		qdel(possess_component)

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Faces a nearby scary atom and holds still for a while.
 /datum/bt_node/ai_behavior/stop_and_stare
 	/// Blackboard key holding the atom we're staring at.
@@ -19,7 +20,7 @@
 
 	var/mob/pawn_mob = controller.pawn
 	pawn_mob.face_atom(target)
-	pawn_mob.balloon_alert_to_viewers("stops and stares...")
+	pawn_mob.balloon_alert_to_viewers(LANG("datum.4d8b7577", null))
 	// Returning a long cooldown keeps this leaf RUNNING (and thus the mob standing still) for the stare.
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

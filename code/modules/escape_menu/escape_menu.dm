@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 GLOBAL_VAR(escape_menu_suicide_icon_base64)
 
 /proc/generate_escape_menu_suicide_icon()
@@ -25,7 +26,7 @@ GLOBAL_LIST_EMPTY(escape_menus)
 	generate_escape_menu_suicide_icon()
 	escape_menu = new(src)
 
-GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "Reset Held Keys")
+GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "重置按住按键")
 	reset_held_keys()
 
 /datum/escape_menu
@@ -203,7 +204,7 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "Reset Held Keys")
 	switch(action)
 		if("opened")
 			if(!version_warned && client.byond_build < 1680)
-				to_chat(client, span_warning("Your BYOND version is not up-to-date enough to render the escape menu, please update to 516.1680 or higher."))
+				to_chat(client, span_warning(LANG("datum.c24a320a", null)))
 				version_warned = TRUE
 
 			START_PROCESSING(SSescape_menu, src)
@@ -228,7 +229,7 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "Reset Held Keys")
 			pray_verb.down(client)
 		if("see_notes")
 			if(!CONFIG_GET(flag/see_own_notes))
-				to_chat(client.mob, span_notice("Seeing notes has been disabled on this server."))
+				to_chat(client.mob, span_notice(LANG("datum.89cbf921", null)))
 				return TRUE
 			browse_messages(null, client.ckey, null, TRUE)
 		if("ghost")
@@ -272,6 +273,6 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "Reset Held Keys")
 			else
 				LAZYADD(client.prefs.ignoring, ckey)
 			client.prefs.save_preferences()
-			to_chat(client, span_notice("[ckey] has been [(ckey in client.prefs.ignoring) ? "" : "un"]ignored in OOC."))
+			to_chat(client, span_notice(LANG("datum.e25fe072", list(ckey, (ckey in client.prefs.ignoring) ? "" : "un"))))
 
 	return TRUE

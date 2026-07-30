@@ -22,24 +22,24 @@
 			return GLOB.vox_sounds_mil
 	return GLOB.vox_sounds
 
-GAME_VERB_DESC(/mob/living/silicon/ai, switch_vox, "Switch Vox Voice", "Switch your VOX announcement voice!", "AI Commands")
+GAME_VERB_DESC(/mob/living/silicon/ai, switch_vox, "切换沃克斯语音", "Switch your VOX announcement voice!", "AI Commands")
 	if(incapacitated)
 		return
-	var/selection = tgui_input_list(src, "Please select a new VOX voice:", "VOX VOICE", vox_voices)
+	var/selection = tgui_input_list(src, LANG("mob.9a2655f5", null), LANG("mob.e1b6c58d", null), vox_voices)
 	if(selection == null)
 		return
 	vox_type = selection
 
-	to_chat(src, "Vox voice set to [vox_type]")
+	to_chat(src, LANG("mob.403e8ab9", list(vox_type)))
 
 
-GAME_VERB_DESC(/mob/living/silicon/ai, display_word_string, "Display Word String", "Display the list of recently pressed vox lines.", "AI Commands")
+GAME_VERB_DESC(/mob/living/silicon/ai, display_word_string, "显示词串", "Display the list of recently pressed vox lines.", "AI Commands")
 	if(incapacitated)
 		return
 
 	to_chat(src, vox_word_string)
 
-GAME_VERB_DESC(/mob/living/silicon/ai, clear_word_string, "Clear Word String", "Clear recent vox words.", "AI Commands")
+GAME_VERB_DESC(/mob/living/silicon/ai, clear_word_string, "清除词串", "Clear recent vox words.", "AI Commands")
 	vox_word_string = ""
 
 #endif

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /client/proc/tag_datum(datum/target_datum)
 	if(!holder || QDELETED(target_datum))
 		return
@@ -12,5 +13,5 @@
 	else
 		holder.add_tagged_datum(target_datum)
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(tag_datum, R_NONE, "Tag Datum", datum/target_datum as anything)
+ADMIN_VERB_ONLY_CONTEXT_MENU(tag_datum, R_NONE, "标记 Datum", datum/target_datum as anything)
 	user.tag_datum(target_datum)

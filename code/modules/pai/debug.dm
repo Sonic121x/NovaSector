@@ -1,18 +1,19 @@
-ADMIN_VERB(makepAI, R_FUN, "Make pAI", "Specify a location to spawn a pAI device, then specify a key to play that pAI", ADMIN_CATEGORY_FUN, turf/target)
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+ADMIN_VERB(makepAI, R_FUN, "制作 pAI", "Specify a location to spawn a pAI device, then specify a key to play that pAI", ADMIN_CATEGORY_FUN, turf/target)
 	var/list/available = list()
 	for(var/mob/player as anything in GLOB.player_list)
 		if(player.client && player.key)
 			available.Add(player)
-	var/mob/choice = tgui_input_list(user, "Choose a player to play the pAI", "Spawn pAI", sort_names(available))
+	var/mob/choice = tgui_input_list(user, LANG("datum.9693a445", null), LANG("datum.39711a9b", null), sort_names(available))
 	if(isnull(choice))
 		return
 
-	var/chosen_name = input(choice, "Enter your pAI name:", "pAI Name", "Personal AI") as text|null
+	var/chosen_name = input(choice, LANG("datum.cbd93c97", null), "pAI Name", "Personal AI") as text|null
 	if (isnull(chosen_name))
 		return
 
 	if(!isobserver(choice))
-		var/confirm = tgui_alert(user, "[choice.key] isn't ghosting right now. Are you sure you want to yank them out of their body and place them in this pAI?", "Spawn pAI Confirmation", list("Yes", "No"))
+		var/confirm = tgui_alert(user, LANG("datum.ae34e922", list(choice.key)), LANG("datum.a84188a3", null), list("Yes", "No"))
 		if(confirm != "Yes")
 			return
 	var/obj/item/pai_card/card = new(target)

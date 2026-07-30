@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Returns TRUE if the vending machine pawn is currently tilted.
 /datum/bt_node/decorator/vending_is_tilted/check_condition(datum/ai_controller/controller)
 	var/obj/machinery/vending/vendor_pawn = controller.pawn
@@ -67,7 +68,7 @@
 
 /datum/bt_node/ai_behavior/vendor_rise_up/perform(seconds_per_tick, datum/ai_controller/controller)
 	var/obj/machinery/vending/vendor_pawn = controller.pawn
-	vendor_pawn.visible_message(span_warning("[vendor_pawn] untilts itself!"))
+	vendor_pawn.visible_message(span_warning(LANG("datum.2b4d68e8", list(vendor_pawn))))
 	if(controller.blackboard[BB_VENDING_LAST_HIT_SUCCESSFUL])
 		controller.set_blackboard_key(BB_VENDING_TILT_COOLDOWN, world.time + success_tilt_cooldown)
 	vendor_pawn.untilt()

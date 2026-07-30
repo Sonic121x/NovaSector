@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/modular_computer/laptop
 	name = "laptop"
 	desc = "A portable laptop computer."
@@ -35,7 +36,7 @@
 /obj/item/modular_computer/laptop/examine(mob/user)
 	. = ..()
 	if(screen_on)
-		. += span_notice("Alt-click to close it.")
+		. += span_notice(LANG("obj.9e98fdd4", null))
 
 /obj/item/modular_computer/laptop/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
@@ -71,7 +72,7 @@
 	else
 		return ..()
 
-GAME_VERB_SRC(/obj/item/modular_computer/laptop, open_computer, view(1), "Toggle Open", null)
+GAME_VERB_SRC(/obj/item/modular_computer/laptop, open_computer, view(1), "打开/关闭", null)
 
 	try_toggle_open(usr)
 
@@ -102,12 +103,12 @@ GAME_VERB_SRC(/obj/item/modular_computer/laptop, open_computer, view(1), "Toggle
 
 /obj/item/modular_computer/laptop/proc/toggle_open(mob/living/user=null)
 	if(screen_on)
-		to_chat(user, span_notice("You close \the [src]."))
+		to_chat(user, span_notice(LANG("obj.134320dc", list(src))))
 		slowdown -= slowdown_open
 		update_weight_class(initial(w_class))
 		drag_slowdown = initial(drag_slowdown)
 	else
-		to_chat(user, span_notice("You open \the [src]."))
+		to_chat(user, span_notice(LANG("obj.66ffeaa4", list(src))))
 		slowdown += slowdown_open
 		update_weight_class(w_class_open)
 		drag_slowdown = slowdown_open

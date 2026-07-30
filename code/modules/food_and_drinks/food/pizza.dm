@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // Pizza (Whole)
 /obj/item/food/pizza
 	name = "bugged pizza"
@@ -48,7 +49,7 @@
 	. = ..()
 	if(isnull(slice_type) || !sliced)
 		return
-	. += span_notice("You can slice this to make it possible to take out slices with an empty hand!")
+	. += span_notice(LANG("obj.291c155e", null))
 
 /obj/item/food/pizza/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = NONE
@@ -57,7 +58,7 @@
 	if(!sliced)
 		slice(user, tool)
 		return ITEM_INTERACT_SUCCESS
-	user.visible_message(span_notice("[user] seperates [src] into individual slices with [tool]."))
+	user.visible_message(span_notice(LANG("obj.388bcfdc", list(user, src, tool))))
 	cut_apart()
 	return ITEM_INTERACT_SUCCESS
 
@@ -65,7 +66,7 @@
 	. = NONE
 	if(isnull(slice_type) || !(tool.tool_behaviour in cutting_tools))
 		return
-	visible_message(span_notice("[user] seperates [src] into individual slices with [tool]."))
+	visible_message(span_notice(LANG("obj.388bcfdc", list(user, src, tool))))
 	cut_apart()
 	return ITEM_INTERACT_SUCCESS
 
@@ -73,7 +74,7 @@
 	. = ..()
 	if(!sliced)
 		return
-	user.visible_message(span_notice("[user] takes a slice of [src]."), span_notice("You take a slice of [src]."))
+	user.visible_message(span_notice(LANG("obj.3fc50ba7", list(user, src))), span_notice(LANG("obj.352221ee", list(src))))
 	produce_slice(user)
 
 /obj/item/food/pizza/proc/get_slices_filter() //to not repeat code
@@ -85,7 +86,7 @@
 		return
 	tool?.play_tool_sound(src)
 	sliced = TRUE
-	user?.visible_message(span_notice("[user] cuts [src] into 6 slices with [tool]."))
+	user?.visible_message(span_notice(LANG("obj.d7c0b051", list(user, src, tool))))
 	interaction_flags_item &= ~INTERACT_ITEM_ATTACK_HAND_PICKUP
 
 /obj/item/food/pizza/proc/cut_apart()
@@ -494,19 +495,19 @@
 	var/did_the_thing = (left?.dismember() || right?.dismember()) //not all limbs can be removed, so important to check that we did. the. thing.
 	if(!did_the_thing)
 		return
-	to_chat(user, span_userdanger("Maybe I'll give you a pizza, maybe I'll break off your arm.")) //makes the reference more obvious
-	user.visible_message(span_warning("\The [src] breaks off [user]'s arm!"), span_warning("\The [src] breaks off your arm!"))
+	to_chat(user, span_userdanger(LANG("obj.051a811d", null))) //makes the reference more obvious
+	user.visible_message(span_warning(LANG("obj.cd35d899", list(src, user))), span_warning(LANG("obj.fd6197af", list(src))))
 	playsound(user, SFX_DESECRATION, 50, TRUE, -1)
 
 /obj/item/food/proc/i_kill_you(obj/item/item, mob/living/user)
 	if(istype(item, /obj/item/food/pineappleslice))
-		to_chat(user, "<font color='red' size='7'>If you want something crazy like pineapple, I'll kill you.</font>") //this is in bigger text because it's hard to spam something that gibs you, and so that you're perfectly aware of the reason why you died
+		to_chat(user, LANG("obj.6d01fc36", null)) //this is in bigger text because it's hard to spam something that gibs you, and so that you're perfectly aware of the reason why you died
 		user.investigate_log("has been gibbed by putting pineapple on an arnold pizza.", INVESTIGATE_DEATHS)
 		user.gib(DROP_ALL_REMAINS) //if you want something crazy like pineapple, i'll kill you
 		return TRUE
 
 	if(istype(item, /obj/item/food/grown/mushroom) && iscarbon(user))
-		to_chat(user, span_userdanger("So, if you want mushroom, shut up.")) //not as large as the pineapple text, because you could in theory spam it
+		to_chat(user, span_userdanger(LANG("obj.2af34a32", null))) //not as large as the pineapple text, because you could in theory spam it
 		var/mob/living/carbon/shutup = user
 		shutup.gain_trauma(/datum/brain_trauma/severe/mute)
 		return TRUE

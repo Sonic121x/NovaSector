@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define SHAKE_ANIMATION_OFFSET 4
 
 /mob/living/carbon/get_eye_protection()
@@ -287,7 +288,7 @@
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/helper, force_friendly)
 	var/nosound = FALSE //NOVA EDIT ADDITION - EMOTES
 	if(on_fire)
-		to_chat(helper, span_warning("You can't put [p_them()] out with just your bare hands!"))
+		to_chat(helper, span_warning(LANG("mob.7185f4a1", list(p_them()))))
 		return
 
 	if(SEND_SIGNAL(src, COMSIG_CARBON_PRE_MISC_HELP, helper) & COMPONENT_BLOCK_MISC_HELP)
@@ -299,21 +300,21 @@
 
 	if(body_position == LYING_DOWN)
 		if(buckled)
-			to_chat(helper, span_warning("You need to unbuckle [src] first to do that!"))
+			to_chat(helper, span_warning(LANG("mob.3c8ae24b", list(src))))
 			return
-		helper.visible_message(span_notice("[helper] shakes [src] trying to get [p_them()] up!"), \
-						null, span_hear("You hear the rustling of clothes."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_notice("You shake [src] trying to pick [p_them()] up!"))
-		to_chat(src, span_notice("[helper] shakes you to get you up!"))
+		helper.visible_message(span_notice(LANG("mob.b37c53ea", list(helper, src, p_them()))), \
+						null, span_hear(LANG("mob.953bef4f", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_notice(LANG("mob.21148bad", list(src, p_them()))))
+		to_chat(src, span_notice(LANG("mob.7c76f215", list(helper))))
 	//NOVA EDIT ADDITION BEGIN - EMOTES -- SENSITIVE SNOUT TRAIT ADDITION
 	else if(helper.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		nosound = TRUE
 		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && !IS_UNCONSCIOUS(src) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-			visible_message(span_warning("[helper] tries to boop [src] on the nose, but [p_they()] move[p_s()] out of the way."))
+			visible_message(span_warning(LANG("mob.bc3e033a", list(helper, src, p_they(), p_s()))))
 			return
 		else
 			playsound(src, 'modular_nova/modules/emotes/sound/emotes/Nose_boop.ogg', 50, 0)
-			helper.visible_message(span_notice("[helper] boops [src]'s nose."), span_notice("You boop [src] on the nose."))
+			helper.visible_message(span_notice(LANG("mob.f42ec18e", list(helper, src))), span_notice(LANG("mob.2d29e889", list(src))))
 			if(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && is_location_accessible(BODY_ZONE_PRECISE_MOUTH))
 				var/datum/quirk/sensitivesnout/poor_snout = src.get_quirk(/datum/quirk/sensitivesnout)
 				poor_snout?.get_booped(helper)
@@ -322,20 +323,20 @@
 	else if(check_zone(helper.zone_selected) == BODY_ZONE_HEAD && get_bodypart(BODY_ZONE_HEAD)) //Headpats!
 		//NOVA EDIT ADDITION BEGIN - OVERSIZED & DISALLOWED HEADPATS
 		if(HAS_TRAIT(src, TRAIT_OVERSIZED) && !HAS_TRAIT(helper, TRAIT_OVERSIZED))
-			visible_message(span_warning("[helper] tries to pat [src] on the head, but can't reach!"))
+			visible_message(span_warning(LANG("mob.a1e348e5", list(helper, src))))
 			return
 		else if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && !IS_UNCONSCIOUS(src) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-			visible_message(span_warning("[helper] tries to pat [src] on the head, but [p_they()] move[p_s()] out of the way."))
+			visible_message(span_warning(LANG("mob.d5b951cc", list(helper, src, p_they(), p_s()))))
 			return
 		//NOVA EDIT ADDITION END
-		helper.visible_message(span_notice("[helper] gives [src] a pat on the head to make [p_them()] feel better!"), \
-					null, span_hear("You hear a soft patter."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_notice("You give [src] a pat on the head to make [p_them()] feel better!"))
-		to_chat(src, span_notice("[helper] gives you a pat on the head to make you feel better! "))
+		helper.visible_message(span_notice(LANG("mob.b35d589d", list(helper, src, p_them()))), \
+					null, span_hear(LANG("mob.f82cf905", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_notice(LANG("mob.9a3446d2", list(src, p_them()))))
+		to_chat(src, span_notice(LANG("mob.a06f5c12", list(helper))))
 
 		share_blood_on_touch(helper, ITEM_SLOT_HEAD|ITEM_SLOT_MASK)
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
-			to_chat(helper, span_warning("[src] looks visibly upset as you pat [p_them()] on the head."))
+			to_chat(helper, span_warning(LANG("mob.1c3fab4d", list(src, p_them()))))
 		//NOVA EDIT ADDITION BEGIN - EMOTES
 		if(HAS_TRAIT(src, TRAIT_EXCITABLE))
 			var/obj/item/organ/tail/src_tail = get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
@@ -344,21 +345,21 @@
 		//NOVA EDIT ADDITION END
 
 	else if ((helper.zone_selected == BODY_ZONE_PRECISE_GROIN) && !isnull(src.get_organ_by_type(/obj/item/organ/tail)))
-		helper.visible_message(span_notice("[helper] pulls on [src]'s tail!"), \
-					null, span_hear("You hear a soft patter."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_notice("You pull on [src]'s tail!"))
-		to_chat(src, span_notice("[helper] pulls on your tail!"))
+		helper.visible_message(span_notice(LANG("mob.b3db66bb", list(helper, src))), \
+					null, span_hear(LANG("mob.f82cf905", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_notice(LANG("mob.2c8aad2d", list(src))))
+		to_chat(src, span_notice(LANG("mob.853f2c72", list(helper))))
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH)) //How dare they!
-			to_chat(helper, span_warning("[src] makes a grumbling noise as you pull on [p_their()] tail."))
+			to_chat(helper, span_warning(LANG("mob.d2fb0e99", list(src, p_their()))))
 		else
 			add_mood_event("tailpulled", /datum/mood_event/tailpulled)
 
 	else if ((helper.zone_selected == BODY_ZONE_PRECISE_GROIN) && (istype(get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/costume/kitty) || istype(get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/collectable/kitty)))
 		var/obj/item/clothing/head/faketail = get_item_by_slot(ITEM_SLOT_HEAD) // Should probably be COMSIG_CARBON_PRE_MISC_HELP
-		helper.visible_message(span_danger("[helper] pulls on [src]'s tail... and it rips off!"), \
-					null, span_hear("You hear a ripping sound."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_danger("You pull on [src]'s tail... and it rips off!"))
-		to_chat(src, span_userdanger("[helper] pulls on your tail... and it rips off!"))
+		helper.visible_message(span_danger(LANG("mob.e440773a", list(helper, src))), \
+					null, span_hear(LANG("mob.bd2aabe4", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_danger(LANG("mob.4fd5dfbc", list(src))))
+		to_chat(src, span_userdanger(LANG("mob.f704dd8e", list(helper))))
 		playsound(loc, 'sound/effects/cloth_rip.ogg', 75, TRUE)
 		dropItemToGround(faketail)
 		helper.put_in_hands(faketail)
@@ -366,20 +367,20 @@
 
 	else
 		if (helper.grab_state >= GRAB_AGGRESSIVE)
-			helper.visible_message(span_notice("[helper] embraces [src] in a tight bear hug!"), \
-						null, span_hear("You hear the rustling of clothes."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-			to_chat(helper, span_notice("You wrap [src] into a tight bear hug!"))
-			to_chat(src, span_notice("[helper] squeezes you super tightly in a firm bear hug!"))
+			helper.visible_message(span_notice(LANG("mob.e1a3c908", list(helper, src))), \
+						null, span_hear(LANG("mob.953bef4f", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+			to_chat(helper, span_notice(LANG("mob.ed79a9e9", list(src))))
+			to_chat(src, span_notice(LANG("mob.1b43e6c2", list(helper))))
 		else
 			// NOVA EDIT ADDITION START
 			if (HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && !IS_UNCONSCIOUS(src) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-				visible_message(span_warning("[helper] tries to hug [src], but [p_they()] move[p_s()] out of the way."))
+				visible_message(span_warning(LANG("mob.a9294da7", list(helper, src, p_they(), p_s()))))
 				return
 			// NOVA EDIT ADDITION END
-			helper.visible_message(span_notice("[helper] hugs [src] to make [p_them()] feel better!"), \
-						null, span_hear("You hear the rustling of clothes."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-			to_chat(helper, span_notice("You hug [src] to make [p_them()] feel better!"))
-			to_chat(src, span_notice("[helper] hugs you to make you feel better!"))
+			helper.visible_message(span_notice(LANG("mob.dde9bc77", list(helper, src, p_them()))), \
+						null, span_hear(LANG("mob.953bef4f", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+			to_chat(helper, span_notice(LANG("mob.04eb052a", list(src, p_them()))))
+			to_chat(src, span_notice(LANG("mob.98d5d27f", list(helper))))
 
 		share_blood_on_touch(helper, ITEM_SLOT_HEAD|ITEM_SLOT_MASK|ITEM_SLOT_GLOVES)
 		// Warm them up with hugs
@@ -402,14 +403,14 @@
 
 		// Let people know if they hugged someone really warm or really cold
 		if(helper.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
-			to_chat(src, span_warning("It feels like [helper] is over heating as [helper.p_they()] hug[helper.p_s()] you."))
+			to_chat(src, span_warning(LANG("mob.3cebaa1e", list(helper, helper.p_they(), helper.p_s()))))
 		else if(helper.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
-			to_chat(src, span_warning("It feels like [helper] is freezing as [helper.p_they()] hug[helper.p_s()] you."))
+			to_chat(src, span_warning(LANG("mob.baf24455", list(helper, helper.p_they(), helper.p_s()))))
 
 		if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
-			to_chat(helper, span_warning("It feels like [src] is over heating as you hug [p_them()]."))
+			to_chat(helper, span_warning(LANG("mob.b9032925", list(src, p_them()))))
 		else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
-			to_chat(helper, span_warning("It feels like [src] is freezing as you hug [p_them()]."))
+			to_chat(helper, span_warning(LANG("mob.97691d2a", list(src, p_them()))))
 
 		if(HAS_TRAIT(helper, TRAIT_FRIENDLY) || force_friendly)
 			if (helper.mob_mood.sanity >= SANITY_GREAT)
@@ -419,7 +420,7 @@
 				add_mood_event("friendly_hug", /datum/mood_event/betterhug, helper)
 
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
-			to_chat(helper, span_warning("[src] looks visibly upset as you hug [p_them()]."))
+			to_chat(helper, span_warning(LANG("mob.b7b6138d", list(src, p_them()))))
 
 	SEND_SIGNAL(src, COMSIG_CARBON_HELP_ACT, helper)
 	SEND_SIGNAL(helper, COMSIG_CARBON_HELPED, src)
@@ -481,16 +482,16 @@
 
 		switch(damage)
 			if(1)
-				to_chat(src, span_warning("Your eyes sting a little."))
+				to_chat(src, span_warning(LANG("mob.6b19b638", null)))
 				if(prob(40))
 					eyes.apply_organ_damage(1)
 
 			if(2)
-				to_chat(src, span_warning("Your eyes burn."))
+				to_chat(src, span_warning(LANG("mob.f9e0ed1a", null)))
 				eyes.apply_organ_damage(rand(2, 4))
 
 			if(3 to INFINITY)
-				to_chat(src, span_warning("Your eyes itch and burn severely!"))
+				to_chat(src, span_warning(LANG("mob.19ed56ae", null)))
 				eyes.apply_organ_damage(rand(12, 16))
 
 		if(eyes.damage > 10)
@@ -499,19 +500,19 @@
 
 			if(eyes.damage > eyes.low_threshold)
 				if(!is_nearsighted_from(EYE_DAMAGE) && prob(eyes.damage - eyes.low_threshold))
-					to_chat(src, span_warning("Your eyes start to burn badly!"))
+					to_chat(src, span_warning(LANG("mob.f67e9ffb", null)))
 					eyes.apply_organ_damage(eyes.low_threshold)
 
 				else if(!is_blind() && prob(eyes.damage - eyes.high_threshold))
-					to_chat(src, span_warning("You can't see anything!"))
+					to_chat(src, span_warning(LANG("mob.d97376ae", null)))
 					eyes.apply_organ_damage(eyes.maxHealth)
 
 			else
-				to_chat(src, span_warning("Your eyes are really starting to hurt. This can't be good for you!"))
+				to_chat(src, span_warning(LANG("mob.d4589b29", null)))
 		return TRUE
 
 	else if(damage == 0 && prob(20)) // just enough protection
-		to_chat(src, span_notice("Something bright flashes in the corner of your vision!"))
+		to_chat(src, span_notice(LANG("mob.e00616b7", null)))
 
 /mob/living/carbon/adjust_oxy_loss(amount, updating_health = TRUE, forced, required_biotype)
 	if(!forced && HAS_TRAIT(src, TRAIT_NOBREATH))
@@ -559,19 +560,19 @@
 		return
 	var/starting_hand_index = active_hand_index
 	if(starting_hand_index == grasped_part.held_index)
-		to_chat(src, span_danger("You can't grasp your [grasped_part.name] with itself!"))
+		to_chat(src, span_danger(LANG("mob.51d4713e", list(grasped_part.name))))
 		return
 
 	var/bleed_rate = grasped_part.cached_bleed_rate
 	var/bleeding_text = (bleed_rate ? ", trying to stop the bleeding" : "")
-	to_chat(src, span_warning("You try grasping at your [grasped_part.name][bleeding_text]..."))
+	to_chat(src, span_warning(LANG("mob.6a1f96e4", list(grasped_part.name, bleeding_text))))
 	if(!do_after(src, 0.75 SECONDS))
-		to_chat(src, span_danger("You fail to grasp your [grasped_part.name]."))
+		to_chat(src, span_danger(LANG("mob.6d01e73b", list(grasped_part.name))))
 		return
 
 	var/obj/item/hand_item/self_grasp/grasp = new
 	if(starting_hand_index != active_hand_index || !put_in_active_hand(grasp))
-		to_chat(src, span_danger("You fail to grasp your [grasped_part.name]."))
+		to_chat(src, span_danger(LANG("mob.6d01e73b", list(grasped_part.name))))
 		QDEL_NULL(grasp)
 		return
 	grasp.grasp_limb(grasped_part)
@@ -602,7 +603,7 @@
 
 /obj/item/hand_item/self_grasp/Destroy()
 	if(user)
-		to_chat(user, span_warning("You stop holding onto your[grasped_part ? " [grasped_part.name]" : "self"]."))
+		to_chat(user, span_warning(LANG("obj.711801a9", list(grasped_part ? " [grasped_part.name]" : "self"))))
 		UnregisterSignal(user, COMSIG_QDELETING)
 	if(grasped_part)
 		UnregisterSignal(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_QDELETING))
@@ -633,7 +634,7 @@
 
 	var/bleed_rate = grasped_part.cached_bleed_rate
 	var/bleeding_text = (bleed_rate ? ", trying to stop the bleeding" : "")
-	user.visible_message(span_danger("[user] grasps at [user.p_their()] [grasped_part.name][bleeding_text]."), span_notice("You grab hold of your [grasped_part.name] tightly."), vision_distance=COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_danger(LANG("obj.90cd19d3", list(user, user.p_their(), grasped_part.name, bleeding_text))), span_notice(LANG("obj.262a8aae", list(grasped_part.name))), vision_distance=COMBAT_MESSAGE_RANGE)
 	playsound(get_turf(src), 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -649,7 +650,7 @@
 		return FALSE
 
 	if (run_armor_check(attack_flag = BIO, silent = TRUE) >= 100)
-		to_chat(src, span_warning("Your armor shields you from [scramble_source]!"))
+		to_chat(src, span_warning(LANG("mob.dcfe9701", list(scramble_source))))
 		return FALSE
 
 	if (!length(GLOB.bioscrambler_valid_organs) || !length(GLOB.bioscrambler_valid_parts))
@@ -675,10 +676,10 @@
 				qdel(picked_user_part)
 
 	if (!changed_something)
-		to_chat(src, span_notice("Your augmented body protects you from [scramble_source]!"))
+		to_chat(src, span_notice(LANG("mob.b372b915", list(scramble_source))))
 		return FALSE
 	update_body(TRUE)
-	balloon_alert(src, "something has changed about you")
+	balloon_alert(src, LANG("mob.72bc8cc6", null))
 	return TRUE
 
 /// Fill in the lists of things we can bioscramble into people

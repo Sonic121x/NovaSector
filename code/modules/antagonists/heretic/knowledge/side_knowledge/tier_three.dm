@@ -283,7 +283,7 @@
 		return CLOSET_TELEPORT_FORCED
 
 	if(isliving(sending_through) && !consents_to_entry(sending_through))
-		locker.balloon_alert(sending_through, "the door refuses you!")
+		locker.balloon_alert(sending_through, LANG("datum.2c59f777", null))
 		return CLOSET_TELEPORT_BLOCKED
 
 	for(var/mob/living/entering in sending_through.get_all_contents())
@@ -343,7 +343,7 @@
 /area/centcom/heretic_backdoor/proc/greet_message(mob/living/arrived_mob)
 	if(QDELETED(arrived_mob) || get_area(arrived_mob) != src)
 		return
-	to_chat(arrived_mob, span_mansus("A hollow sun shines down from above."))
+	to_chat(arrived_mob, span_mansus(LANG("area.90ad0e7e", null)))
 
 /datum/movespeed_modifier/heretic_backdoor_slowdown
 	multiplicative_slowdown = 0.5

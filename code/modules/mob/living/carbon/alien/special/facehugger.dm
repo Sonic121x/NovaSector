@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 
 //TODO: Make these basic mobs
@@ -81,11 +82,11 @@
 		return
 	switch(facehugger_state)
 		if(FACEHUGGER_DEAD, FACEHUGGER_ASLEEP)
-			. += span_bolddanger("[src] is not moving.")
+			. += span_bolddanger(LANG("obj.8cd79fd7", list(src)))
 		if(FACEHUGGER_AWAKE)
-			. += span_bolddanger("[src] seems to be active!")
+			. += span_bolddanger(LANG("obj.dbd4aad2", list(src)))
 	if (sterile)
-		. += span_bolddanger("It looks like the proboscis has been removed.")
+		. += span_bolddanger(LANG("obj.f6fdd2f1", null))
 
 /obj/item/clothing/mask/facehugger/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
 	return (exposed_temperature > 300)
@@ -154,21 +155,21 @@
 	if(istype(target.wear_mask, /obj/item/clothing/mask/facehugger))
 		return FALSE
 	// passed initial checks - time to leap!
-	target.visible_message(span_danger("[src] leaps at [target]'s face!"), \
-						span_userdanger("[src] leaps at your face!"))
+	target.visible_message(span_danger(LANG("obj.600b344b", list(src, target))), \
+						span_userdanger(LANG("obj.2a8f5e69", list(src))))
 
 	// probiscis-blocker handling
 	if(target.is_mouth_covered(ITEM_SLOT_HEAD))
-		target.visible_message(span_danger("[src] smashes against [target]'s [target.head]!"), \
-							span_userdanger("[src] smashes against your [target.head]!"))
+		target.visible_message(span_danger(LANG("obj.146a4222", list(src, target, target.head))), \
+							span_userdanger(LANG("obj.8a15e21c", list(src, target.head))))
 		die()
 		return FALSE
 
 	if(target.wear_mask)
 		var/obj/item/worn_mask = target.wear_mask
 		if(target.dropItemToGround(worn_mask))
-			target.visible_message(span_danger("[src] tears [worn_mask] off of [target]'s face!"), \
-								span_userdanger("[src] tears [worn_mask] off of your face!"))
+			target.visible_message(span_danger(LANG("obj.b1cc4058", list(src, worn_mask, target))), \
+								span_userdanger(LANG("obj.c050f6c9", list(src, worn_mask))))
 
 	if(!target.equip_to_slot_if_possible(src, ITEM_SLOT_MASK, 0, 1, 1))
 		log_combat(target, src, "failed facehugged by")
@@ -181,7 +182,7 @@
 		return
 
 	if(!IS_UNCONSCIOUS(victim)) //sorry bro you gotta be awake
-		victim.say("AAAA!!") //triggers muffled speech and also visual feedback i guess
+		victim.say(LANG("obj.3ad0d09e", null)) //triggers muffled speech and also visual feedback i guess
 	// early returns and validity checks done: attach.
 	attached++
 	//ensure we detach once we no longer need to be attached
@@ -206,8 +207,8 @@
 		return
 
 	if(!sterile)
-		target.visible_message(span_danger("[src] falls limp after violating [target]'s face!"), \
-								span_userdanger("[src] falls limp after violating your face!"))
+		target.visible_message(span_danger(LANG("obj.e0b1bb1e", list(src, target))), \
+								span_userdanger(LANG("obj.b14b7e54", list(src))))
 
 		die()
 		icon_state = "[base_icon_state]_impregnated"
@@ -222,8 +223,8 @@
 				target.apply_status_effect(/datum/status_effect/nest_sustenance)
 
 	else
-		target.visible_message(span_danger("[src] violates [target]'s face!"), \
-								span_userdanger("[src] violates your face!"))
+		target.visible_message(span_danger(LANG("obj.f220041b", list(src, target))), \
+								span_userdanger(LANG("obj.9427ea7b", list(src))))
 
 /obj/item/clothing/mask/facehugger/proc/go_active()
 	if(facehugger_state == FACEHUGGER_DEAD || facehugger_state == FACEHUGGER_AWAKE)
@@ -252,7 +253,7 @@
 	inhand_icon_state = "facehugger_inactive"
 	facehugger_state = FACEHUGGER_DEAD
 
-	visible_message(span_danger("[src] curls up into a ball!"))
+	visible_message(span_danger(LANG("obj.af792067", list(src))))
 
 	// chest maybe because getting slammed in the chest would knock it off your face while dead
 	AddComponent(/datum/component/knockoff, knockoff_chance = 40, target_zones = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST), slots_knockoffable = slot_flags)
@@ -261,7 +262,7 @@
 	if(!real || sterile || facehugger_state == FACEHUGGER_DEAD || user.get_organ_by_type(/obj/item/organ/body_egg/alien_embryo))
 		return ..()
 	if(user.get_item_by_slot(slot_flags) == src)
-		to_chat(user, span_userdanger("[src] is latched on too tight! Get help or wait for it to let go!"))
+		to_chat(user, span_userdanger(LANG("obj.f8ef074c", list(src))))
 		return FALSE
 	return ..()
 
@@ -272,7 +273,7 @@
 	if(!real || sterile || user.get_organ_by_type(/obj/item/organ/body_egg/alien_embryo))
 		return ..()
 	if(wearer.get_item_by_slot(slot_flags) == src && facehugger_state != FACEHUGGER_DEAD)
-		to_chat(user, span_userdanger("[src] is latched on too tight! Get help or wait for it to let go!"))
+		to_chat(user, span_userdanger(LANG("obj.f8ef074c", list(src))))
 		return
 	return ..()
 
@@ -295,7 +296,7 @@
 	SIGNAL_HANDLER
 	if(facehugger_state != FACEHUGGER_AWAKE)
 		return NONE
-	to_chat(user, span_danger("There's something moving inside of \the [letter]!"))
+	to_chat(user, span_danger(LANG("obj.7b344986", list(letter))))
 	leap_to(user)
 	return COMPONENT_TRAITOR_MAIL_HANDLED
 

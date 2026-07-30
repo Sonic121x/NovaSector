@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/ammo_box/magazine/recharge
 	name = "power pack"
 	desc = "A rechargeable, detachable battery that serves as a magazine for laser rifles."
@@ -9,7 +10,7 @@
 
 /obj/item/ammo_box/magazine/recharge/update_desc()
 	. = ..()
-	desc = "[initial(desc)] It has [length(stored_ammo)] shot\s left."
+	desc = LANG("obj.5f6c1b67", list(initial(desc), length(stored_ammo)))
 
 /obj/item/ammo_box/magazine/recharge/update_icon_state()
 	. = ..()

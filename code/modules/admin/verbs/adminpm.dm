@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define EXTERNALREPLYCOUNT 2
 #define EXTERNAL_PM_USER "IRCKEY"
 
@@ -13,7 +14,7 @@
 // We also make SURE to fail loud, IE: if something stops the message from reaching the recipient, the sender HAS to know
 // If you "refactor" this to make it "cleaner" I will send you to hell
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_pm_context, R_NONE, "Admin PM Mob", mob/target)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_pm_context, R_NONE, "私信生物", mob/target)
 	if(!ismob(target))
 		to_chat(
 			src,
@@ -25,7 +26,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_pm_context, R_NONE, "Admin PM Mob", mob/t
 	user.cmd_admin_pm(target.client, null)
 	BLACKBOX_LOG_ADMIN_VERB("Admin PM Mob")
 
-ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "管理员私信", "Show a list of clients to PM", ADMIN_CATEGORY_MAIN)
 	var/list/targets = list()
 	for(var/client/client in GLOB.clients)
 		var/nametag = ""
@@ -42,7 +43,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 			nametag = "[real_mob_name](as [mob_name])"
 		targets["[nametag] - [client]"] = client
 
-	var/target = input(src,"To whom shall we send a message?", "Admin PM", null) as null|anything in sort_list(targets)
+	var/target = input(src,LANG("datum.ff86bcc5", null), "Admin PM", null) as null|anything in sort_list(targets)
 	if (isnull(target))
 		return
 	user.cmd_admin_pm(targets[target], null)
@@ -198,7 +199,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		if(existing_message)
 			msg = existing_message
 		else
-			msg = input(src,"Message:", "Private message to Administrator") as message|null
+			msg = input(src,LANG("client.008d3052", null), "Private message to Administrator") as message|null
 
 		if(!msg)
 			to_chat(src,
@@ -247,7 +248,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		else
 			request = "[request] [recipient_print_key]."
 		//get message text, limit its length.and clean/escape html
-		msg = input(src,"Message:", request) as message|null
+		msg = input(src,LANG("client.008d3052", null), request) as message|null
 		msg = trim(msg)
 
 	if(!msg)

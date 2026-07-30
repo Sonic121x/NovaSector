@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define SOURCE_PORTAL 1
 #define DESTINATION_PORTAL 2
 
@@ -114,7 +115,7 @@
 ///Checks if the targeted portal was created by us, then causes it to expire, removing it
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
 	if(is_parent_of_portal(target))
-		to_chat(user, span_notice("You dispel [target] with [src]!"))
+		to_chat(user, span_notice(LANG("obj.68de5563", list(target, src))))
 		var/obj/effect/portal/portal = target
 		portal.expire()
 		return TRUE
@@ -136,7 +137,7 @@
 		portal_location = last_portal_location_ref.resolve()
 
 	if (isnull(portal_location))
-		to_chat(user, span_warning("[src] flashes briefly. No target is locked in."))
+		to_chat(user, span_warning(LANG("obj.8190e22e", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	try_create_portal_to(user, portal_location)
@@ -151,7 +152,7 @@
 	//NOVA EDIT BEGIN
 	var/turf/my_turf = get_turf(src)
 	if(is_away_level(my_turf.z))
-		to_chat(user, "<span class='warning'>[src] cannot be used here!</span>")
+		to_chat(user, LANG("obj.cd44f8b6", list(src)))
 		return
 	//NOVA EDIT END
 	var/list/locations = list()
@@ -179,7 +180,7 @@
 
 	locations["None (Dangerous)"] = PORTAL_LOCATION_DANGEROUS
 
-	var/teleport_location_key = tgui_input_list(user, "Teleporter to lock on", "Hand Teleporter", sort_list(locations))
+	var/teleport_location_key = tgui_input_list(user, LANG("obj.46030f63", null), LANG("obj.40db05ec", null), sort_list(locations))
 	if (isnull(teleport_location_key))
 		return
 	if(user.get_active_held_item() != src || user.incapacitated)
@@ -231,11 +232,11 @@
 		teleport_target = target
 
 	if (teleport_target == null)
-		to_chat(user, span_notice("[src] vibrates, then stops. Maybe you should try something else."))
+		to_chat(user, span_notice(LANG("obj.29f93e16", list(src))))
 		return
 
 	if(!check_teleport_valid(src, teleport_target))
-		to_chat(user, span_notice("[src] is malfunctioning."))
+		to_chat(user, span_notice(LANG("obj.654883d6", list(src))))
 		return
 
 	if (!can_teleport_notifies(user))
@@ -253,7 +254,7 @@
 
 	try_move_adjacent(portal1, user.dir)
 	if(QDELETED(portal1) || QDELETED(portal2)) //in the event that something managed to delete the portal objects, i.e. something teleported them
-		to_chat(user, span_notice("[src] vibrates, but no portal seems to appear. Maybe you should try something else."))
+		to_chat(user, span_notice(LANG("obj.617436a9", list(src))))
 		return
 	active_portal_pairs[portal1] = portal2
 
@@ -270,7 +271,7 @@
 /obj/item/hand_tele/proc/can_teleport_notifies(mob/user)
 	var/turf/current_location = get_turf(user)
 	if (!current_location || !check_teleport_valid(src, current_location) || !isturf(user.loc) || (away_restricted && is_away_level(current_location.z)))
-		to_chat(user, span_notice("[src] is malfunctioning."))
+		to_chat(user, span_notice(LANG("obj.654883d6", list(src))))
 		return FALSE
 
 	return TRUE
@@ -301,16 +302,16 @@
 
 /obj/item/hand_tele/suicide_act(mob/living/user)
 	if(iscarbon(user))
-		user.visible_message(span_suicide("[user] is creating a weak portal and sticking [user.p_their()] head through! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide(LANG("obj.01a413fb", list(user, user.p_their(), user.p_theyre()))))
 		var/mob/living/carbon/itemUser = user
 		var/obj/item/bodypart/head/head = itemUser.get_bodypart(BODY_ZONE_HEAD)
 		if(head)
 			head.drop_limb()
 			var/list/safeLevels = SSmapping.levels_by_any_trait(list(ZTRAIT_SPACE_RUINS, ZTRAIT_LAVA_RUINS, ZTRAIT_STATION, ZTRAIT_MINING))
 			head.forceMove(locate(rand(1, world.maxx), rand(1, world.maxy), pick(safeLevels)))
-			itemUser.visible_message(span_suicide("The portal snaps closed taking [user]'s head with it!"))
+			itemUser.visible_message(span_suicide(LANG("obj.27851e33", list(user))))
 		else
-			itemUser.visible_message(span_suicide("[user] looks even further depressed as they realize they do not have a head...and suddenly dies of shame!"))
+			itemUser.visible_message(span_suicide(LANG("obj.e6aad8b5", list(user))))
 		return BRUTELOSS
 
 /obj/item/syndicate_teleporter
@@ -349,7 +350,7 @@
 
 /obj/item/syndicate_teleporter/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] has <b>[charges]</b> out of [max_charges] charges left.")
+	. += span_notice(LANG("obj.13be2784", list(src, charges, max_charges)))
 
 /obj/item/syndicate_teleporter/attack_self(mob/user)
 	. = ..()
@@ -363,7 +364,7 @@
 		charges++
 		if(ishuman(loc))
 			var/mob/living/carbon/human/holder = loc
-			balloon_alert(holder, "teleporter beeps")
+			balloon_alert(holder, LANG("obj.4f21efa7", null))
 		playsound(src, 'sound/machines/beep/twobeep.ogg', 10, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0)
 
 /obj/item/syndicate_teleporter/emp_act(severity)
@@ -373,7 +374,7 @@
 	var/teleported_something = FALSE
 	if(ishuman(loc))
 		var/mob/living/carbon/human/holder = loc
-		balloon_alert(holder, "teleporter buzzes!")
+		balloon_alert(holder, LANG("obj.30cbfdbc", null))
 		attempt_teleport(user = holder, triggered_by_emp = TRUE)
 	else
 		var/turf/teleport_turf = get_turf(src)
@@ -382,7 +383,7 @@
 				teleported_something = TRUE
 			attempt_teleport(user = mob_on_same_tile, triggered_by_emp = TRUE, not_holding_tele = TRUE)
 		if(!teleported_something)
-			visible_message(span_danger("[src] blinks out of existence!"))
+			visible_message(span_danger(LANG("obj.9c76d0df", list(src))))
 			do_sparks(2, 1, src)
 			qdel(src)
 
@@ -394,7 +395,7 @@
  **/
 /obj/item/syndicate_teleporter/proc/attempt_teleport(mob/user, triggered_by_emp = FALSE, not_holding_tele = FALSE)
 	if(!charges && !triggered_by_emp)
-		balloon_alert(user, "recharging!")
+		balloon_alert(user, LANG("obj.ba1fd79a", null))
 		return
 
 	var/turf/current_location = get_turf(user)
@@ -402,7 +403,7 @@
 	if(malfunctioning(user, current_location))
 		if(not_holding_tele)
 			return
-		balloon_alert(user, "malfunctioning!")
+		balloon_alert(user, LANG("obj.4156ec52", null))
 		return
 
 	var/teleport_distance = rand(minimum_teleport_distance, maximum_teleport_distance)
@@ -416,7 +417,7 @@
 			panic_teleport(user, destination) //We're in a wall, engage emergency parallel teleport.
 		else
 			if(bagholdingcheck && !not_holding_tele)
-				to_chat(user, span_warning("The bluespace interface on your bag of holding interferes with the teleport!"))
+				to_chat(user, span_warning(LANG("obj.7393b481", null)))
 			get_fragged(user, destination, not_holding_tele) //EMP teleported you into a wall? Wearing a BoH? You're dead.
 	else
 		telefrag(destination, user)
@@ -461,7 +462,7 @@
 		charges = max(charges - 1, 0)
 		new /obj/effect/temp_visual/teleport_abductor/syndi_teleporter(mobloc)
 		new /obj/effect/temp_visual/teleport_abductor/syndi_teleporter(emergency_destination)
-		balloon_alert(user, "emergency teleport triggered!")
+		balloon_alert(user, LANG("obj.a0e5bd22", null))
 		if(make_bloods(destination, emergency_destination, user))
 			new /obj/effect/temp_visual/circle_wave/syndi_teleporter/bloody(destination)
 		else
@@ -483,9 +484,9 @@
 	playsound(destination, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	playsound(destination, 'sound/effects/magic/disintegrate.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	if(!not_holding_tele)
-		to_chat(victim, span_userdanger("You teleport into [destination], [src] tries to save you, but..."))
+		to_chat(victim, span_userdanger(LANG("obj.e5873e5c", list(destination, src))))
 	else
-		to_chat(victim, span_userdanger("You teleport into [destination]."))
+		to_chat(victim, span_userdanger(LANG("obj.eab3be64", list(destination))))
 	destination.ex_act(EXPLODE_HEAVY)
 	victim.unequip_everything()
 	victim.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
@@ -515,8 +516,8 @@
 	// average evens out to 10 per teleport, but the randomness spices things up
 	if(prob(25) && bleed_amount)
 		playsound(src, 'sound/effects/wounds/pierce1.ogg', 40, vary = TRUE)
-		visible_message(span_warning("Blood visibly spurts out of [user] as [src] fails to teleport [user.p_their()] body properly!"), \
-			span_boldwarning("Blood visibly spurts out of you as [src] fails to teleport your body properly!"))
+		visible_message(span_warning(LANG("obj.da731dc0", list(user, src, user.p_their()))), \
+			span_boldwarning(LANG("obj.ce932b8b", list(src))))
 		carbon_user.bleed(bleed_amount * 0.75)
 		carbon_user.spray_blood(pick(GLOB.alldirs), rand(1, 3))
 		return TRUE

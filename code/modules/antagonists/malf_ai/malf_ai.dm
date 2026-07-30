@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Chance the malf AI gets a single special objective that isn't assassinate.
 #define PROB_SPECIAL 30
 
@@ -156,7 +157,7 @@
 	malf_ai.set_syndie_radio()
 	malf_ai.try_sync_laws()
 
-	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(malf_ai, LANG("datum.29e4eb3b", null))
 
 	if(malf_ai.malf_picker)
 		return
@@ -265,7 +266,7 @@
 	malf_ai.laws.protected_zeroth = TRUE
 
 	malf_ai.set_syndie_radio()
-	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(malf_ai, LANG("datum.29e4eb3b", null))
 
 	malf_ai.add_malf_picker()
 

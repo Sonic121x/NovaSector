@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/clothing/under
 	name = "under"
 	icon = 'icons/obj/clothing/under/default.dmi'
@@ -129,7 +130,7 @@
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/cable_coil/cabling = tool
 		cabling.use(1)
-		cabling.visible_message(span_notice("[user] repairs the suit sensors on [src] with [cabling]."))
+		cabling.visible_message(span_notice(LANG("obj.547ee95c", list(user, src, cabling))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/clothing/accessory))
@@ -137,9 +138,9 @@
 
 	if(istype(tool, /obj/item/suit_sensor))
 		if(has_sensor != NO_SENSORS)
-			balloon_alert(user, "already has sensors!")
+			balloon_alert(user, LANG("obj.f822c56b", null))
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "installing sensors...")
+		balloon_alert(user, LANG("obj.c646dd3e", null))
 		if(!do_after(user, 5 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/suit_sensor/sensor = tool
@@ -149,7 +150,7 @@
 			set_has_sensor(HAS_SENSORS)
 			set_sensor_mode(sensor.sensor_mode)
 		qdel(tool)
-		balloon_alert(user, "sensors installed")
+		balloon_alert(user, LANG("obj.efa03e7a", null))
 		playsound(source = src, soundin = 'sound/effects/sparks/sparks4.ogg', vol = 50, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -157,9 +158,9 @@
 
 /obj/item/clothing/under/wirecutter_act(mob/living/user, obj/item/tool)
 	if(has_sensor == NO_SENSORS)
-		balloon_alert(user, "doesn't have sensors!")
+		balloon_alert(user, LANG("obj.b576791e", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "cutting out sensors...")
+	balloon_alert(user, LANG("obj.17ea51bc", null))
 	if(!do_after(user, 5 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/suit_sensor/sensor = new (drop_location())
@@ -244,7 +245,7 @@
 	if(has_sensor == BROKEN_SENSORS || has_sensor == NO_SENSORS)
 		return
 
-	visible_message(span_warning("[src]'s medical sensors short out!"), blind_message = span_warning("The [src] makes an electronic sizzling sound!"), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_warning(LANG("obj.ad98f318", list(src))), blind_message = span_warning("The [src] makes an electronic sizzling sound!"), vision_distance = COMBAT_MESSAGE_RANGE)
 	set_has_sensor(BROKEN_SENSORS)
 	set_sensor_mode(SENSOR_LIVING) // NOVA EDIT ADDITION
 	sensor_malfunction()
@@ -256,7 +257,7 @@
 /obj/item/clothing/under/proc/repair_sensors(mob/user)
 	if(has_sensor != BROKEN_SENSORS)
 		if(user)
-			balloon_alert(user, "sensors [has_sensor == NO_SENSORS ? "missing" : "not broken"]!")
+			balloon_alert(user, LANG("obj.58a92383", list(has_sensor == NO_SENSORS ? "missing" : "not broken")))
 		return FALSE
 
 	playsound(source = src, soundin = 'sound/effects/sparks/sparks4.ogg', vol = 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
@@ -325,7 +326,7 @@
 
 	set_sensor_mode(clamp(sensor_mode + pick(-1,1), SENSOR_OFF, SENSOR_COORDS)) // NOVA EDIT CHANGE ORIGINAL: set_sensor_mode(pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS))
 	playsound(source = src, soundin = 'sound/effects/sparks/sparks3.ogg', vol = 75, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
-	visible_message(span_warning("The [src]'s medical sensors flash and change rapidly!"), blind_message = span_warning("The [src] makes an electronic sizzling sound!"), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_warning(LANG("obj.617a6797", list(src))), blind_message = span_warning("The [src] makes an electronic sizzling sound!"), vision_distance = COMBAT_MESSAGE_RANGE)
 
 /**
  * Called by medical scanners a simple summary of the status
@@ -367,7 +368,7 @@
 	accessory.attach(src)
 
 	if(user && attach_message)
-		balloon_alert(user, "accessory attached")
+		balloon_alert(user, LANG("obj.f671f64d", null))
 
 	update_appearance()
 	return TRUE
@@ -382,7 +383,7 @@
 
 	user.put_in_hands(popped_accessory)
 	if(attach_message)
-		popped_accessory.balloon_alert(user, "accessory removed")
+		popped_accessory.balloon_alert(user, LANG("obj.de016798", null))
 
 /// Removes the passed accesory from our accessories list
 /obj/item/clothing/under/proc/remove_accessory(obj/item/clothing/accessory/removed, update = TRUE)
@@ -424,26 +425,26 @@
 /obj/item/clothing/under/examine(mob/user)
 	. = ..()
 	if(can_adjust)
-		. += "Alt-click on [src] to wear it [adjusted == ALT_STYLE ? "normally" : "casually"]."
+		. += LANG("obj.617841c5", list(src, adjusted == ALT_STYLE ? "normally" : "casually"))
 	if(has_sensor == BROKEN_SENSORS)
-		. += span_warning("The medical sensors appear to be shorted out. You could repair it with some cabling.")
+		. += span_warning(LANG("obj.56fd7bc0", null))
 	else if(has_sensor > NO_SENSORS)
 		switch(sensor_mode)
 			if(SENSOR_OFF)
-				. += "Its sensors appear to be disabled."
+				. += LANG("obj.cb8daeb7", null)
 			if(SENSOR_LIVING)
-				. += "Its binary life sensors appear to be enabled."
+				. += LANG("obj.22584281", null)
 			if(SENSOR_VITALS)
-				. += "Its vital tracker appears to be enabled."
+				. += LANG("obj.52237525", null)
 			if(SENSOR_COORDS)
-				. += "Its vital tracker and tracking beacon appear to be enabled."
+				. += LANG("obj.7b9f0004", null)
 	else
 		. += span_tooltip("You can always get new suit sensors to install from a lathe.", "It isn't equipped with medical sensors.")
 
 	if(LAZYLEN(attached_accessories))
 		var/list/accessories = list_accessories_with_icon(user)
-		. += "It has [english_list(accessories)] attached."
-		. += "Alt-Right-Click to remove [attached_accessories[1]]."
+		. += LANG("obj.da83e7bd", list(english_list(accessories)))
+		. += LANG("obj.fa3a64e1", list(attached_accessories[1]))
 
 /// Helper to list out all accessories with an icon besides it, for use in examine
 /obj/item/clothing/under/proc/list_accessories_with_icon(mob/user)
@@ -453,13 +454,13 @@
 
 	return all_accessories
 
-GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "Adjust Suit Sensors", null)
+GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "调整制服传感器", null)
 	var/mob/user_mob = usr
 	if(!can_toggle_sensors(user_mob))
 		return
 
 	var/current_mode_text = GLOB.suit_sensor_mode_to_defines[sensor_mode + 1]
-	var/new_mode = tgui_input_list(user_mob, "Select a sensor mode", "Suit Sensors", GLOB.suit_sensor_mode_to_defines, current_mode_text)
+	var/new_mode = tgui_input_list(user_mob, LANG("obj.24e97e1e", null), LANG("obj.e765235b", null), GLOB.suit_sensor_mode_to_defines, current_mode_text)
 	if(isnull(new_mode))
 		return
 	if(!can_toggle_sensors(user_mob))
@@ -469,20 +470,20 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "Adjust Suit Sensors", null
 	if (loc == user_mob)
 		switch(sensor_mode)
 			if(SENSOR_OFF)
-				to_chat(user_mob, span_notice("You disable your suit's remote sensing equipment."))
+				to_chat(user_mob, span_notice(LANG("obj.37ff0635", null)))
 			if(SENSOR_LIVING)
-				to_chat(user_mob, span_notice("Your suit will now only report whether you are alive or dead."))
+				to_chat(user_mob, span_notice(LANG("obj.4d6371ab", null)))
 			if(SENSOR_VITALS)
-				to_chat(user_mob, span_notice("Your suit will now only report your exact vital lifesigns."))
+				to_chat(user_mob, span_notice(LANG("obj.67d31d55", null)))
 			if(SENSOR_COORDS)
-				to_chat(user_mob, span_notice("Your suit will now report your exact vital lifesigns as well as your coordinate position."))
+				to_chat(user_mob, span_notice(LANG("obj.03395326", null)))
 
 /obj/item/clothing/under/item_ctrl_click(mob/user)
 	if(!can_toggle_sensors(user))
 		return CLICK_ACTION_BLOCKING
 
 	set_sensor_mode(SENSOR_COORDS)
-	balloon_alert(user, "set to tracking")
+	balloon_alert(user, LANG("obj.0d33f568", null))
 	return CLICK_ACTION_SUCCESS
 
 /// Checks if the toggler is allowed to toggle suit sensors currently
@@ -490,25 +491,25 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "Adjust Suit Sensors", null
 	if(!can_use(toggler) || toggler.stat == DEAD) //make sure they didn't hold the window open.
 		return FALSE
 	if(get_dist(toggler, src) > 1)
-		balloon_alert(toggler, "too far!")
+		balloon_alert(toggler, LANG("obj.f5e75781", null))
 		return FALSE
 
 	switch(has_sensor)
 		if(LOCKED_SENSORS)
-			balloon_alert(toggler, "sensor controls locked!")
+			balloon_alert(toggler, LANG("obj.cf083aaf", null))
 			return FALSE
 		if(BROKEN_SENSORS)
-			balloon_alert(toggler, "sensors shorted!")
+			balloon_alert(toggler, LANG("obj.e4cf865a", null))
 			return FALSE
 		if(NO_SENSORS)
-			balloon_alert(toggler, "no sensors to adjust!")
+			balloon_alert(toggler, LANG("obj.ab31e8cc", null))
 			return FALSE
 
 	return TRUE
 
 /obj/item/clothing/under/click_alt(mob/user)
 	if(!can_adjust)
-		balloon_alert(user, "can't be adjusted!")
+		balloon_alert(user, LANG("obj.7c1df17e", null))
 		return CLICK_ACTION_BLOCKING
 	if(!can_use(user))
 		return NONE
@@ -517,14 +518,14 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "Adjust Suit Sensors", null
 
 /obj/item/clothing/under/click_alt_secondary(mob/user)
 	if(!LAZYLEN(attached_accessories))
-		balloon_alert(user, "no accessories to remove!")
+		balloon_alert(user, LANG("obj.f9e59eb4", null))
 		return
 	pop_accessory(user)
 
-GAME_VERB_SRC(/obj/item/clothing/under, jumpsuit_adjust, usr, "Adjust Jumpsuit Style", null)
+GAME_VERB_SRC(/obj/item/clothing/under, jumpsuit_adjust, usr, "调整连体服样式", null)
 
 	if(!can_adjust)
-		balloon_alert(usr, "can't be adjusted!")
+		balloon_alert(usr, LANG("obj.7c1df17e", null))
 		return
 	if(!can_use(usr))
 		return
@@ -532,9 +533,9 @@ GAME_VERB_SRC(/obj/item/clothing/under, jumpsuit_adjust, usr, "Adjust Jumpsuit S
 
 /obj/item/clothing/under/proc/rolldown()
 	if(toggle_jumpsuit_adjust())
-		to_chat(usr, span_notice("You adjust the suit to wear it more casually."))
+		to_chat(usr, span_notice(LANG("obj.df390365", null)))
 	else
-		to_chat(usr, span_notice("You adjust the suit back to normal."))
+		to_chat(usr, span_notice(LANG("obj.8e1ff3ac", null)))
 
 	update_appearance()
 

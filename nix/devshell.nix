@@ -15,6 +15,8 @@
   openssl,
   unzip,
   curl,
+  zlib,
+  libjpeg,
   byond,
   rust-g,
 }:
@@ -41,6 +43,15 @@ mkShell {
     unzip
     curl
     byond
+  ];
+
+  # 上游 2026-07 新增的 behavior-tree-compiler target 走 tools/bootstrap/python，会在 venv 里
+  # 用 pip **从源码编译** requirements.txt 的 Pillow（无 manylinux wheel 可用时）——那需要
+  # zlib / libjpeg 的头文件。放 buildInputs（而非 packages）才会带上 NIX_CFLAGS_COMPILE，
+  # 否则 pip 报 "The headers or library files could not be found for jpeg"。
+  buildInputs = [
+    zlib
+    libjpeg
   ];
 
   # tools/build/lib/byond.ts 在 Linux 上回退到 PATH 上的裸命令即可；这里再显式指一份

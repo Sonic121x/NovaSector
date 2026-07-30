@@ -69,7 +69,7 @@
 	heretic_datum.update_data_for_all_viewers()
 
 /datum/status_effect/heretic_passive/proc/recharge_spells()
-	owner.balloon_alert(owner, "spells recharged")
+	owner.balloon_alert(owner, LANG("datum.3f87cef2", null))
 	var/list/main_path_knowledge = heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_TREE) \
 		+ heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_START)
 	var/list/side_path_knowledge = heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_DRAFT) \

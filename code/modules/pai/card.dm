@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/pai_card
 	custom_premium_price = PAYCHECK_COMMAND * 1.25
 	desc = "Downloads personal AI assistants to accompany its owner or others."
@@ -37,11 +38,11 @@
 		return NONE
 
 	if(!pai.encrypt_mod)
-		to_chat(user, span_alert("Encryption Key ports not configured."))
+		to_chat(user, span_alert(LANG("obj.3a580da9", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	pai.radio.attackby(tool, user, modifiers)
-	to_chat(user, span_notice("You insert [tool] into the [src]."))
+	to_chat(user, span_notice(LANG("obj.c0c2c8e9", list(tool, src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/pai_card/attack_self(mob/user)
@@ -82,7 +83,7 @@
 		return pai.on_saboteur(source, disrupt_duration)
 
 /obj/item/pai_card/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is staring sadly at [src]! [user.p_They()] can't keep living without real human intimacy!"))
+	user.visible_message(span_suicide(LANG("obj.07c14856", list(user, src, user.p_They()))))
 	return OXYLOSS
 
 /obj/item/pai_card/update_overlays()
@@ -203,7 +204,7 @@
 	add_alert()
 	addtimer(CALLBACK(src, PROC_REF(remove_alert)), 5 SECONDS)
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-	visible_message(span_notice("[src] flashes a message across its screen: New personalities available for download!"), blind_message = span_notice("[src] vibrates with an alert."))
+	visible_message(span_notice(LANG("obj.2ab2f3e8", list(src))), blind_message = span_notice("[src] vibrates with an alert."))
 
 /**
  * Downloads a candidate from the list and removes them from SSpai.candidates
@@ -217,7 +218,7 @@
 		return FALSE
 	var/datum/pai_candidate/candidate = SSpai.candidates[ckey]
 	if(!candidate?.check_ready())
-		balloon_alert(user, "download interrupted")
+		balloon_alert(user, LANG("obj.a7b3e428", null))
 		return FALSE
 	var/mob/living/silicon/pai/new_pai = new(src)
 	new_pai.name = candidate.name || pick(GLOB.ninja_names)
@@ -238,14 +239,14 @@
 	if(pai)
 		return FALSE
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SILICONS))
-		balloon_alert(user, "unavailable: NT blacklisted")
+		balloon_alert(user, LANG("obj.eae662b2", null))
 		return FALSE
 	if(request_spam)
-		balloon_alert(user, "request sent too recently")
+		balloon_alert(user, LANG("obj.9216f01d", null))
 		return FALSE
 	request_spam = TRUE
 	playsound(src, 'sound/machines/ping.ogg', 20, TRUE)
-	balloon_alert(user, "pAI assistance requested")
+	balloon_alert(user, LANG("obj.2d85ea25", null))
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/aicards.dmi', "pai")
 
 	notify_ghosts(
@@ -296,5 +297,5 @@
 	screen_image = /datum/pai_screen_image/neutral
 	update_appearance()
 	playsound(src, 'sound/effects/pai_boot.ogg', 50, TRUE, -1)
-	audible_message("[src] plays a cheerful startup noise!")
+	audible_message(LANG("obj.dd8ce8c9", list(src)))
 	return TRUE

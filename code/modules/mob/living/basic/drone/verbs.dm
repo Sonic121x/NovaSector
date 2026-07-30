@@ -1,11 +1,12 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * Echoes drone laws to the user
  *
  * See [/mob/living/basic/drone/var/laws]
  */
-GAME_VERB(/mob/living/basic/drone, check_laws, "Check Laws", "Drone")
+GAME_VERB(/mob/living/basic/drone, check_laws, "查看法则", "Drone")
 
-	to_chat(src, "<b>Drone Laws</b>")
+	to_chat(src, LANG("mob.24a048ba", null))
 	to_chat(src, laws)
 
 /**
@@ -19,9 +20,9 @@ GAME_VERB(/mob/living/basic/drone, check_laws, "Check Laws", "Drone")
  *
  * Attaches area name to message
  */
-GAME_VERB(/mob/living/basic/drone, drone_ping, "Drone ping", "Drone")
+GAME_VERB(/mob/living/basic/drone, drone_ping, "无人机警报", "Drone")
 
-	var/alert_s = input(src,"Alert severity level","Drone ping",null) as null|anything in list("Low","Medium","High","Critical")
+	var/alert_s = input(src,LANG("mob.5b32bc9b", null),"Drone ping",null) as null|anything in list("Low","Medium","High","Critical")
 
 	var/area/A = get_area(loc)
 

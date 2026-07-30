@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/organ/heart/gland/quantum
 	abductor_hint = "quantic de-observation matrix. Periodically links with a random person in view, then the abductee later swaps positions with that person."
 	cooldown_low = 150
@@ -25,15 +26,15 @@
 	var/turf/T = get_turf(owner)
 	do_teleport(owner, get_turf(entangled_mob), null, channel = TELEPORT_CHANNEL_QUANTUM)
 	do_teleport(entangled_mob, T, null, channel = TELEPORT_CHANNEL_QUANTUM)
-	to_chat(owner, span_warning("You suddenly find yourself somewhere else!"))
-	to_chat(entangled_mob, span_warning("You suddenly find yourself somewhere else!"))
+	to_chat(owner, span_warning(LANG("obj.38e4b89c", null)))
+	to_chat(entangled_mob, span_warning(LANG("obj.38e4b89c", null)))
 	if(!active_mind_control) //Do not reset entangled mob while mind control is active
 		entangled_mob = null
 
 /obj/item/organ/heart/gland/quantum/mind_control(command, mob/living/user)
 	if(..())
 		if(entangled_mob && ishuman(entangled_mob) && (entangled_mob.stat != DEAD))
-			to_chat(entangled_mob, span_userdanger("You suddenly feel an irresistible compulsion to follow an order..."))
+			to_chat(entangled_mob, span_userdanger(LANG("obj.221865e7", null)))
 			to_chat(entangled_mob, span_mind_control("[command]"))
 			var/atom/movable/screen/alert/mind_control/mind_alert = entangled_mob.throw_alert(ALERT_MIND_CONTROL, /atom/movable/screen/alert/mind_control)
 			mind_alert.command = command
@@ -43,6 +44,6 @@
 
 /obj/item/organ/heart/gland/quantum/clear_mind_control()
 	if(active_mind_control)
-		to_chat(entangled_mob, span_userdanger("You feel the compulsion fade, and you completely forget about your previous orders."))
+		to_chat(entangled_mob, span_userdanger(LANG("obj.1e1d8f2f", null)))
 		entangled_mob.clear_alert(ALERT_MIND_CONTROL)
 	..()

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /proc/make_link_visual_generic(datum/mod_link/mod_link, proc_path)
 	var/mob/living/user = mod_link.get_user_callback.Invoke()
 	var/obj/effect/overlay/link_visual = new()
@@ -82,27 +83,27 @@
 	if(istype(tool.buffer, /datum/mod_link))
 		var/datum/mod_link/buffer_link = tool.buffer
 		tool_frequency = buffer_link.frequency
-		balloon_alert(user, "frequency set")
+		balloon_alert(user, LANG("obj.83368858", null))
 		. = ITEM_INTERACT_SUCCESS
 	if(!tool_frequency && mod_link.frequency)
 		tool.set_buffer(mod_link)
-		balloon_alert(user, "frequency copied")
+		balloon_alert(user, LANG("obj.06579ce3", null))
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && !mod_link.frequency)
 		mod_link.frequency = tool_frequency
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && mod_link.frequency)
-		var/response = tgui_alert(user, "Would you like to copy or imprint the frequency?", "MODlink Frequency", list("Copy", "Imprint"))
+		var/response = tgui_alert(user, LANG("obj.b3cc9f4c", null), LANG("obj.df842ebb", null), list("Copy", "Imprint"))
 		if(!user.is_holding(tool))
 			return ITEM_INTERACT_BLOCKING
 		switch(response)
 			if("Copy")
 				tool.set_buffer(mod_link)
-				balloon_alert(user, "frequency copied")
+				balloon_alert(user, LANG("obj.06579ce3", null))
 				. = ITEM_INTERACT_SUCCESS
 			if("Imprint")
 				mod_link.frequency = tool_frequency
-				balloon_alert(user, "frequency set")
+				balloon_alert(user, LANG("obj.83368858", null))
 				. = ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/control/proc/can_call()
@@ -179,11 +180,11 @@
 		return
 	// NOVA EDIT NIFSOFT SCRYERS - END
 	if(cell)
-		. += span_notice("The battery charge reads [cell.percent()]%. <b>Right-click</b> with an empty hand to remove it.")
+		. += span_notice(LANG("obj.8e2fbf86", list(cell.percent())))
 	else
-		. += span_notice("It is missing a battery, one can be installed by clicking with a power cell on it.")
-	. += span_notice("The MODlink ID is [mod_link.id], frequency is [mod_link.frequency || "unset"]. <b>Right-click</b> with multitool to copy/imprint frequency.")
-	. += span_notice("Use in hand to set name.")
+		. += span_notice(LANG("obj.0230913a", null))
+	. += span_notice(LANG("obj.dcfa328e", list(mod_link.id, mod_link.frequency || "unset")))
+	. += span_notice(LANG("obj.659f3245", null))
 
 /obj/item/clothing/neck/link_scryer/equipped(mob/living/user, slot)
 	. = ..()
@@ -195,14 +196,14 @@
 	mod_link?.end_call()
 
 /obj/item/clothing/neck/link_scryer/attack_self(mob/user, modifiers)
-	var/new_label = reject_bad_text(tgui_input_text(user, "Change the visible name", "Set Name", label, MAX_NAME_LEN))
+	var/new_label = reject_bad_text(tgui_input_text(user, LANG("obj.ef858bfd", null), LANG("obj.043408e2", null), label, MAX_NAME_LEN))
 	if(!user.is_holding(src))
 		return
 	if(!new_label)
-		balloon_alert(user, "invalid name!")
+		balloon_alert(user, LANG("obj.b3c641ad", null))
 		return
 	label = new_label
-	balloon_alert(user, "name set")
+	balloon_alert(user, LANG("obj.37935628", null))
 	update_name()
 
 /obj/item/clothing/neck/link_scryer/process(seconds_per_tick)
@@ -218,7 +219,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	cell = tool
-	balloon_alert(user, "cell installed")
+	balloon_alert(user, LANG("obj.0e9b65ee", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/neck/link_scryer/update_name(updates)
@@ -233,7 +234,7 @@
 /obj/item/clothing/neck/link_scryer/attack_hand_secondary(mob/user, list/modifiers)
 	if(!cell)
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
-	balloon_alert(user, "cell removed")
+	balloon_alert(user, LANG("obj.0dfdca6e", null))
 	user.put_in_hands(cell)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -244,27 +245,27 @@
 	if(istype(tool.buffer, /datum/mod_link))
 		var/datum/mod_link/buffer_link = tool.buffer
 		tool_frequency = buffer_link.frequency
-		balloon_alert(user, "frequency set")
+		balloon_alert(user, LANG("obj.83368858", null))
 		. = ITEM_INTERACT_SUCCESS
 	if(!tool_frequency && mod_link.frequency)
 		tool.set_buffer(mod_link)
-		balloon_alert(user, "frequency copied")
+		balloon_alert(user, LANG("obj.06579ce3", null))
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && !mod_link.frequency)
 		mod_link.frequency = tool_frequency
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && mod_link.frequency)
-		var/response = tgui_alert(user, "Would you like to copy or imprint the frequency?", "MODlink Frequency", list("Copy", "Imprint"))
+		var/response = tgui_alert(user, LANG("obj.b3cc9f4c", null), LANG("obj.df842ebb", null), list("Copy", "Imprint"))
 		if(!user.is_holding(tool))
 			return ITEM_INTERACT_BLOCKING
 		switch(response)
 			if("Copy")
 				tool.set_buffer(mod_link)
-				balloon_alert(user, "frequency copied")
+				balloon_alert(user, LANG("obj.06579ce3", null))
 				. = ITEM_INTERACT_SUCCESS
 			if("Imprint")
 				mod_link.frequency = tool_frequency
-				balloon_alert(user, "frequency set")
+				balloon_alert(user, LANG("obj.83368858", null))
 				. = ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/neck/link_scryer/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
@@ -276,9 +277,9 @@
 	if(mod_link.link_call)
 		mod_link.end_call()
 	else if(QDELETED(cell))
-		user.balloon_alert(user, "no cell installed!")
+		user.balloon_alert(user, LANG("obj.48299e41", null))
 	else if(!cell.charge)
-		user.balloon_alert(user, "no charge!")
+		user.balloon_alert(user, LANG("obj.c0d39a14", null))
 	else
 		call_link(user, mod_link)
 
@@ -414,23 +415,23 @@
 	if(!frequency)
 		return
 	if(!istype(called))
-		holder.balloon_alert(user, "invalid target!")
+		holder.balloon_alert(user, LANG("datum.5c77b90d", null))
 		return
 	var/mob/living/link_user = get_user_callback.Invoke()
 	if(!link_user)
 		return
 	if(HAS_TRAIT(link_user, TRAIT_IN_CALL))
-		holder.balloon_alert(user, "already calling!")
+		holder.balloon_alert(user, LANG("datum.e6b1f483", null))
 		return
 	var/mob/living/link_target = called.get_user_callback.Invoke()
 	if(!link_target)
-		holder.balloon_alert(user, "invalid target!")
+		holder.balloon_alert(user, LANG("datum.5c77b90d", null))
 		return
 	if(HAS_TRAIT(link_target, TRAIT_IN_CALL))
-		holder.balloon_alert(user, "target already in call!")
+		holder.balloon_alert(user, LANG("datum.2d5a23eb", null))
 		return
 	if(!can_call_callback.Invoke() || !called.can_call_callback.Invoke())
-		holder.balloon_alert(user, "can't call!")
+		holder.balloon_alert(user, LANG("datum.a929923b", null))
 		return
 	link_target.playsound_local(get_turf(called.holder), 'sound/items/weapons/ring.ogg', 15, vary = TRUE)
 	var/atom/movable/screen/alert/modlink_call/alert = link_target.throw_alert("[REF(src)]_modlink", /atom/movable/screen/alert/modlink_call)
@@ -508,9 +509,9 @@
 			continue
 		callers["[link.holder] ([id])"] = id
 	if(!length(callers))
-		calling_link.holder.balloon_alert(user, "no targets on freq [calling_link.frequency]!")
+		calling_link.holder.balloon_alert(user, LANG("_root.84e5a500", list(calling_link.frequency)))
 		return
-	var/chosen_link = tgui_input_list(user, "Choose ID to call from [calling_link.frequency] frequency", "MODlink", callers)
+	var/chosen_link = tgui_input_list(user, LANG("_root.9e56910d", list(calling_link.frequency)), LANG("_root.0e8e3aef", null), callers)
 	if(!chosen_link)
 		return
 	calling_link.call_link(GLOB.mod_link_ids[callers[chosen_link]], user)

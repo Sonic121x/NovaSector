@@ -40,22 +40,22 @@
 
 /obj/item/multitool/fock/proc/hack_door(obj/machinery/door/door, mob/living/user) //stolen from Pai hacking
 	playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 50, TRUE)
-	balloon_alert(user, "overriding...")
+	balloon_alert(user, LANG("obj.e3f1440c", null))
 	do_sparks(4, TRUE, door)
-	visible_message(span_warning("Sparks fly out of [door]!"))
+	visible_message(span_warning(LANG("obj.b7523a48", list(door))))
 	if(door.locked)
-		to_chat(user, span_warning("The [door]'s bolts prevent it from being forced!"))
-		balloon_alert(user, "failed!")
+		to_chat(user, span_warning(LANG("obj.9b76b9b1", list(door))))
+		balloon_alert(user, LANG("obj.31bf8acd", null))
 		return FALSE
 	if(door.welded)
-		to_chat(user, span_warning("It's welded, it won't budge!"))
-		balloon_alert(user, "failed!")
+		to_chat(user, span_warning(LANG("obj.b53c71e2", null)))
+		balloon_alert(user, LANG("obj.31bf8acd", null))
 		return FALSE
 	if(!do_after(user, rand(FOCK_JACKING_SPEED_LOWER, FOCK_JACKING_SPEED_UPPER) SECONDS, door, timed_action_flags = NONE, show_progress = TRUE))
-		balloon_alert(user, "failed!")
+		balloon_alert(user, LANG("obj.31bf8acd", null))
 		do_sparks(2, TRUE, door)
 		return FALSE
-	balloon_alert(user, "success")
+	balloon_alert(user, LANG("obj.75090415", null))
 	door.open()
 	door.take_damage(rand(FOCK_DOOR_DAMAGE_LOWER, FOCK_DOOR_DAMAGE_UPPER), BRUTE)
 	do_sparks(4, FALSE, door)
@@ -63,14 +63,14 @@
 
 /obj/item/multitool/fock/proc/hack_air_alarm(obj/machinery/airalarm/airalarm, mob/living/user)
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "overriding...")
+	balloon_alert(user, LANG("obj.e3f1440c", null))
 	do_sparks(2, TRUE, airalarm)
-	visible_message(span_warning("Sparks fly out of [airalarm]!"))
+	visible_message(span_warning(LANG("obj.b7523a48", list(airalarm))))
 	if(!do_after(user, rand(FOCK_JACKING_SPEED_LOWER, FOCK_JACKING_SPEED_UPPER) SECONDS, airalarm, timed_action_flags = NONE, show_progress = TRUE))
-		balloon_alert(user, "failed!")
+		balloon_alert(user, LANG("obj.31bf8acd", null))
 		do_sparks(1, TRUE, airalarm)
 		return FALSE
-	balloon_alert(user, "success")
+	balloon_alert(user, LANG("obj.75090415", null))
 	airalarm.locked = !airalarm.locked
 	airalarm.update_appearance()
 	if(!airalarm.locked)
@@ -81,14 +81,14 @@
 
 /obj/item/multitool/fock/proc/hack_apc(obj/machinery/power/apc/apc, mob/living/user)
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "overriding...")
+	balloon_alert(user, LANG("obj.e3f1440c", null))
 	do_sparks(2, TRUE, apc)
-	visible_message(span_warning("Sparks fly out of [apc]!"))
+	visible_message(span_warning(LANG("obj.b7523a48", list(apc))))
 	if(!do_after(user, rand(FOCK_JACKING_SPEED_LOWER, FOCK_JACKING_SPEED_UPPER) SECONDS, apc, timed_action_flags = NONE, show_progress = TRUE))
-		balloon_alert(user, "failed!")
+		balloon_alert(user, LANG("obj.31bf8acd", null))
 		do_sparks(1, TRUE, apc)
 		return FALSE
-	balloon_alert(user, "success")
+	balloon_alert(user, LANG("obj.75090415", null))
 	apc.locked = !apc.locked
 	apc.update_appearance()
 	if(!apc.locked)

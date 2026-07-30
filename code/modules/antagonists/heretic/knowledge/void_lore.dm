@@ -265,12 +265,12 @@
 		INVOKE_ASYNC(src, PROC_REF(create_conduit), affected_turf, source, sword)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
-	to_chat(source, span_mansus("[sword] hums with power, but [target] is not cold enough to create a conduit!"))
+	to_chat(source, span_mansus(LANG("datum.ec934de4", list(sword, target))))
 	return NONE
 
 /datum/heretic_knowledge/void_conduit/proc/create_conduit(turf/open/affected_turf, mob/living/source, obj/item/sword)
 	playsound(source, 'sound/effects/cloth_rip.ogg', 50, TRUE) // funny thing is, can't hear sound in a vacuum
-	to_chat(source, span_mansus("You plunge [sword] deep into [affected_turf], trying to rip open a conduit to the void!"))
+	to_chat(source, span_mansus(LANG("datum.e9bf0f46", list(sword, affected_turf))))
 	source.visible_message(
 		span_hypnophrase("[source] plunges [source.p_their()] [sword.name] into [affected_turf] - \
 			[isspaceturf(affected_turf) ? "but instead of nothing happening" : "contrary to what you expected"], a dark energy begins to flow from the site!"),
@@ -281,7 +281,7 @@
 		animate(animation, alpha = 0, time = 1 SECONDS)
 		QDEL_IN(animation, 1 SECONDS)
 		return
-	to_chat(source, span_mansus("The conduit opens, releasing a storm of void energy! [sword] shatters into a million tiny shards!"))
+	to_chat(source, span_mansus(LANG("datum.afd0f226", list(sword))))
 	source.visible_message(
 		span_hypnophrase("A conduit to the void opens, releasing a storm of void energy!"),
 		ignored_mobs = source,

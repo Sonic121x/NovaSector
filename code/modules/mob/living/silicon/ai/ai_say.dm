@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 //the following 2 procs are staying here because its for AI and its shells (also AI controlled)
 /mob/living/silicon/compose_track_href(atom/movable/speaker, namepart)
 	if(!HAS_TRAIT(src, TRAIT_CAN_GET_AI_TRACKING_MESSAGE))
@@ -17,7 +18,7 @@
 	// AIs cannot speak if silent AI is on.
 	// Unless forced is set, as that's probably stating laws or something.
 	if(!forced && CONFIG_GET(flag/silent_ai))
-		to_chat(src, span_danger("The ability for AIs to speak is currently disabled via server config."))
+		to_chat(src, span_danger(LANG("mob.72d4e1fa", null)))
 		return FALSE
 
 	return ..()
@@ -26,7 +27,7 @@
 	if(incapacitated)
 		return FALSE
 	if(!radio_enabled) //AI cannot speak if radio is disabled (via intellicard) or depowered.
-		to_chat(src, span_danger("Your radio transmitter is offline!"))
+		to_chat(src, span_danger(LANG("mob.ee7eb432", null)))
 		return FALSE
 	. = ..()
 	if(.)
@@ -54,7 +55,7 @@
 	var/obj/machinery/holopad/active_pad = current
 	// Only continue if there is a hologram and its master is the user.
 	if(!istype(active_pad) || !active_pad.masters[src])
-		to_chat(src, span_alert("No holopad connected."))
+		to_chat(src, span_alert(LANG("mob.91a0a164", null)))
 		return
 
 	var/obj/effect/overlay/holo_pad_hologram/ai_holo = active_pad.masters[src]
@@ -67,7 +68,7 @@
 // Make sure that the code compiles with AI_VOX undefined
 #ifdef AI_VOX
 #define VOX_DELAY 300 // NOVA EDIT CHANGE - ORIGINAL: #define VOX_DELAY 600
-GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "Announcement Help", "Display a list of vocal words to announce to the crew.", "AI Commands")
+GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "公告帮助", "Display a list of vocal words to announce to the crew.", "AI Commands")
 
 	if(incapacitated)
 		return
@@ -98,7 +99,7 @@ GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "Announcement Help", "
 /mob/living/silicon/ai/proc/announcement()
 	var/static/announcing_vox = 0 // Stores the time of the last announcement
 	if(announcing_vox > world.time)
-		to_chat(src, span_notice("Please wait [DisplayTimeText(announcing_vox - world.time)]."))
+		to_chat(src, span_notice(LANG("mob.fa4aec51", list(DisplayTimeText(announcing_vox - world.time)))))
 		return
 
 	var/message = tgui_input_text(
@@ -118,7 +119,7 @@ GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "Announcement Help", "
 		return
 
 	if(control_disabled)
-		to_chat(src, span_warning("Wireless interface disabled, unable to interact with announcement PA."))
+		to_chat(src, span_warning(LANG("mob.24013b93", null)))
 		return
 
 	var/list/words = splittext(trim(message), " ")
@@ -136,7 +137,7 @@ GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "Announcement Help", "
 			incorrect_words += word
 
 	if(incorrect_words.len)
-		to_chat(src, span_notice("These words are not available on the announcement system: [english_list(incorrect_words)]."))
+		to_chat(src, span_notice(LANG("mob.5d25ab4d", list(english_list(incorrect_words)))))
 		return
 
 	announcing_vox = world.time + VOX_DELAY
@@ -150,7 +151,7 @@ GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "Announcement Help", "
 		var/turf/player_turf = get_turf(player_mob)
 		if(is_valid_z_level(ai_turf, player_turf))
 			players += player_mob
-	minor_announce(capitalize(message), "[name] announces:", players = players, should_play_sound = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(does_target_have_vox_off)))
+	minor_announce(capitalize(message), LANG("mob.c7600a37", list(name)), players = players, should_play_sound = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(does_target_have_vox_off)))
 
 	for(var/word in words)
 		play_vox_word(word, ai_turf, null)

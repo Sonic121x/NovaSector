@@ -1,10 +1,11 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB_VISIBILITY(debug_air_status, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(debug_air_status, R_DEBUG, "Debug Air Status" , ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, turf/target)
+ADMIN_VERB(debug_air_status, R_DEBUG, "调试空气状态" , ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, turf/target)
 	atmos_scan(user.mob, target, silent = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Show Air Status")
 
 ADMIN_VERB_VISIBILITY(fix_next_move, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(fix_next_move, R_DEBUG, "Fix Next Move", "Unfreezes all frozen mobs.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(fix_next_move, R_DEBUG, "解冻卡住的生物", "Unfreezes all frozen mobs.", ADMIN_CATEGORY_DEBUG)
 	var/largest_move_time = 0
 	var/largest_click_time = 0
 	var/mob/largest_move_mob = null
@@ -31,7 +32,7 @@ ADMIN_VERB(fix_next_move, R_DEBUG, "Fix Next Move", "Unfreezes all frozen mobs."
 	BLACKBOX_LOG_ADMIN_VERB("Unfreeze Everyone")
 
 ADMIN_VERB_VISIBILITY(radio_report, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(radio_report, R_DEBUG, "Radio Report", "Shows a report of all radio devices and their filters.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(radio_report, R_DEBUG, "无线电报告", "Shows a report of all radio devices and their filters.", ADMIN_CATEGORY_DEBUG)
 	var/output = "<b>Radio Report</b><hr>"
 	for (var/fq in SSradio.frequencies)
 		output += "<b>Freq: [fq]</b><br>"
@@ -61,8 +62,8 @@ ADMIN_VERB(radio_report, R_DEBUG, "Radio Report", "Shows a report of all radio d
 	browser.open()
 	BLACKBOX_LOG_ADMIN_VERB("Show Radio Report")
 
-ADMIN_VERB(reload_admins, R_NONE, "Reload Admins", "Reloads all admins from the database.", ADMIN_CATEGORY_MAIN)
-	var/confirm = tgui_alert(user, "Are you sure you want to reload all admins?", "Confirm", list("Yes", "No"))
+ADMIN_VERB(reload_admins, R_NONE, "重新加载管理员", "Reloads all admins from the database.", ADMIN_CATEGORY_MAIN)
+	var/confirm = tgui_alert(user, LANG("datum.69fe2405", null), LANG("datum.3c1da715", null), list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -70,9 +71,9 @@ ADMIN_VERB(reload_admins, R_NONE, "Reload Admins", "Reloads all admins from the 
 	BLACKBOX_LOG_ADMIN_VERB("Reload All Admins")
 	message_admins("[key_name_admin(user)] manually reloaded admins")
 
-ADMIN_VERB(toggle_cdn, R_SERVER|R_DEBUG, "Toggle CDN", "Toggles the CDN for the server.", ADMIN_CATEGORY_SERVER)
+ADMIN_VERB(toggle_cdn, R_SERVER|R_DEBUG, "切换 CDN", "Toggles the CDN for the server.", ADMIN_CATEGORY_SERVER)
 	var/static/admin_disabled_cdn_transport = null
-	if (alert(user, "Are you sure you want to toggle the CDN asset transport?", "Confirm", "Yes", "No") != "Yes")
+	if (alert(user, LANG("datum.cdf219d7", null), "Confirm", "Yes", "No") != "Yes")
 		return
 	var/current_transport = CONFIG_GET(string/asset_transport)
 	if (!current_transport || current_transport == "simple")
@@ -83,8 +84,8 @@ ADMIN_VERB(toggle_cdn, R_SERVER|R_DEBUG, "Toggle CDN", "Toggles the CDN for the 
 			message_admins("[key_name_admin(user)] re-enabled the CDN asset transport")
 			log_admin("[key_name(user)] re-enabled the CDN asset transport")
 		else
-			to_chat(user, span_adminnotice("The CDN is not enabled!"))
-			if (tgui_alert(user, "The CDN asset transport is not enabled! If you having issues with assets you can also try disabling filename mutations.", "The CDN asset transport is not enabled!", list("Try disabling filename mutations", "Nevermind")) == "Try disabling filename mutations")
+			to_chat(user, span_adminnotice(LANG("datum.7abb8f81", null)))
+			if (tgui_alert(user, LANG("datum.9c6a6599", null), LANG("datum.54829cac", null), list("Try disabling filename mutations", "Nevermind")) == "Try disabling filename mutations")
 				SSassets.transport.dont_mutate_filenames = !SSassets.transport.dont_mutate_filenames
 				message_admins("[key_name_admin(user)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")
 				log_admin("[key_name(user)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")

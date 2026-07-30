@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /mob/living/silicon/robot/deadchat_lawchange()
 	if(lawupdate)
 		return
@@ -8,25 +9,25 @@
 	if(lawupdate)
 		if (!QDELETED(connected_ai))
 			if(IS_UNCONSCIOUS_OR_CRIT(connected_ai) || connected_ai.control_disabled)
-				to_chat(src, span_bold("AI signal lost, unable to sync laws."))
+				to_chat(src, span_bold(LANG("mob.071cb7d2", null)))
 
 			else
 				lawsync()
-				to_chat(src, span_bold("Laws synced with AI, be sure to note any changes."))
+				to_chat(src, span_bold(LANG("mob.52797192", null)))
 		else
-			to_chat(src, span_bold("No AI selected to sync laws with, disabling lawsync protocol."))
+			to_chat(src, span_bold(LANG("mob.df28a464", null)))
 			lawupdate = FALSE
 
 	. = ..()
 
 	if (shell) //AI shell
-		to_chat(src, span_bold("Remember, you are an AI remotely controlling your shell, other AIs can be ignored."))
+		to_chat(src, span_bold(LANG("mob.3a6d7464", null)))
 	else if (connected_ai)
-		to_chat(src, span_bold("Remember, [connected_ai.name] is your master, other AIs can be ignored."))
+		to_chat(src, span_bold(LANG("mob.4fbc989a", list(connected_ai.name))))
 	else if (emagged)
-		to_chat(src, span_bold("Remember, you are not required to listen to the AI."))
+		to_chat(src, span_bold(LANG("mob.99a4268f", null)))
 	else
-		to_chat(src, span_bold("Remember, you are not bound to any AI, you are not required to listen to them."))
+		to_chat(src, span_bold(LANG("mob.d96772c0", null)))
 
 /**
  * For AIs, iterates over connected cyborg and calls try_sync_laws

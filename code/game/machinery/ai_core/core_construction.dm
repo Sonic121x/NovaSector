@@ -1,10 +1,11 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define AI_CORE_BRAIN(X) X.braintype == "Android" ? "brain" : "MMI"
 #define UPDATE_STATE(new_state) state = new_state; update_appearance(UPDATE_ICON_STATE)
 #define CHECK_STATE_CALLBACK(maintained_state) CALLBACK(src, PROC_REF(check_state), maintained_state)
 
 /obj/structure/ai_core/welder_act(mob/living/user, obj/item/tool)
 	if(state != CORE_STATE_EMPTY)
-		balloon_alert(user, "frame has to be empty!")
+		balloon_alert(user, LANG("obj.1bcdbedc", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, 1))
@@ -19,7 +20,7 @@
 /obj/structure/ai_core/can_be_unfasten_wrench(mob/user, silent)
 	if(state >= CORE_STATE_FINISHED)
 		if(!silent)
-			balloon_alert(user, "can't be unanchored while operational!")
+			balloon_alert(user, LANG("obj.3cf01833", null))
 		return FAILED_UNFASTEN
 
 	return ..()
@@ -36,31 +37,31 @@
 /obj/structure/ai_core/screwdriver_act(mob/living/user, obj/item/tool)
 	switch(state)
 		if(CORE_STATE_EMPTY)
-			balloon_alert(user, "nothing to screw in there!")
+			balloon_alert(user, LANG("obj.cc83c63c", null))
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_CIRCUIT)
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_CIRCUIT)))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, "board secured")
+			balloon_alert(user, LANG("obj.e9892414", null))
 			UPDATE_STATE(CORE_STATE_SCREWED)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_SCREWED)
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_SCREWED)))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, "board unsecured")
+			balloon_alert(user, LANG("obj.8b7c5fd2", null))
 			UPDATE_STATE(CORE_STATE_CIRCUIT)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_CABLED)
-			balloon_alert(user, "can't reach the board!")
+			balloon_alert(user, LANG("obj.33852620", null))
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_GLASSED)
 			if(!anchored)
-				balloon_alert(user, "isn't anchored!")
+				balloon_alert(user, LANG("obj.25a662c1", null))
 				return ITEM_INTERACT_BLOCKING
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_GLASSED)))
 				return ITEM_INTERACT_BLOCKING
 			if(suicide_check())
-				balloon_alert(user, "processor is completely useless!")
+				balloon_alert(user, LANG("obj.469f0767", null))
 				return ITEM_INTERACT_BLOCKING
 
 			var/atom/movable/alert_source = src
@@ -68,33 +69,33 @@
 				alert_source = ai_structure_to_mob() || alert_source
 			else
 				UPDATE_STATE(CORE_STATE_FINISHED)
-			alert_source.balloon_alert(user, "connected monitor[core_mmi?.brainmob?.mind ? " and neural network" : ""]")
+			alert_source.balloon_alert(user, LANG("obj.a783a38a", list(core_mmi?.brainmob?.mind ? " and neural network" : "")))
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_FINISHED)
 			if(!core_mmi?.brainmob?.mind || suicide_check())
-				balloon_alert(user, "processor is inactive!")
+				balloon_alert(user, LANG("obj.1a71685b", null))
 				return ITEM_INTERACT_BLOCKING
 
 			if(!anchored)
-				balloon_alert(user, "anchor it first!")
+				balloon_alert(user, LANG("obj.c16d48e2", null))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "connecting neural network...")
+			balloon_alert(user, LANG("obj.f1bc28cc", null))
 			if(!tool.use_tool(src, user, 10 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_FINISHED)))
 				return ITEM_INTERACT_BLOCKING
 
 			var/atom/movable/alert_source = ai_structure_to_mob()
 			if(!alert_source)
-				balloon_alert(user, "processor is inactive!")
+				balloon_alert(user, LANG("obj.1a71685b", null))
 				return ITEM_INTERACT_BLOCKING
 
-			alert_source.balloon_alert(user, "connected neural network")
+			alert_source.balloon_alert(user, LANG("obj.af254d10", null))
 			return ITEM_INTERACT_SUCCESS
 
 /obj/structure/ai_core/crowbar_act(mob/living/user, obj/item/tool)
 	switch(state)
 		if(CORE_STATE_EMPTY)
-			balloon_alert(user, "nothing to pry out!")
+			balloon_alert(user, LANG("obj.2fa9bc29", null))
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_CIRCUIT)
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_CIRCUIT)))
@@ -104,11 +105,11 @@
 			UPDATE_STATE(CORE_STATE_EMPTY)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_SCREWED)
-			balloon_alert(user, "won't budge!")
+			balloon_alert(user, LANG("obj.13d01237", null))
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_CABLED)
 			if(!core_mmi)
-				balloon_alert(user, "nothing to pry out!")
+				balloon_alert(user, LANG("obj.2fa9bc29", null))
 				return ITEM_INTERACT_BLOCKING
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_CABLED)) || !core_mmi)
 				return ITEM_INTERACT_BLOCKING
@@ -124,17 +125,17 @@
 			UPDATE_STATE(CORE_STATE_CABLED)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_FINISHED)
-			balloon_alert(user, "display is on!")
+			balloon_alert(user, LANG("obj.1f67c891", null))
 			return ITEM_INTERACT_SUCCESS
 
 /obj/structure/ai_core/wirecutter_act(mob/living/user, obj/item/tool)
 	switch(state)
 		if(CORE_STATE_EMPTY to CORE_STATE_CIRCUIT)
-			balloon_alert(user, "nothing to cut!")
+			balloon_alert(user, LANG("obj.89358e90", null))
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_CABLED)
 			if(core_mmi)
-				balloon_alert(user, "[AI_CORE_BRAIN(core_mmi)] in the way!")
+				balloon_alert(user, LANG("obj.84ae9144", list(AI_CORE_BRAIN(core_mmi))))
 				return ITEM_INTERACT_BLOCKING
 
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_CABLED)) || core_mmi)
@@ -144,7 +145,7 @@
 			UPDATE_STATE(CORE_STATE_SCREWED)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_GLASSED)
-			balloon_alert(user, "nothing left to cut!")
+			balloon_alert(user, LANG("obj.ea8b2b38", null))
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_FINISHED)
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_FINISHED)))
@@ -184,10 +185,10 @@
 		return FALSE
 
 	if(cable.get_amount() < 5)
-		balloon_alert(user, "not enough [cable::name]!")
+		balloon_alert(user, LANG("obj.98d23e06", list(cable::name)))
 		return FALSE
 
-	balloon_alert(user, "adding cable...")
+	balloon_alert(user, LANG("obj.8b4be38e", null))
 	if(!cable.use_tool(src, user, 2 SECONDS, 5, 50, CHECK_STATE_CALLBACK(CORE_STATE_SCREWED)))
 		return FALSE
 
@@ -199,19 +200,19 @@
 		return FALSE
 
 	if(!mmi.brain_check(user))
-		var/wants_install = (tgui_alert(user, "This [AI_CORE_BRAIN(mmi)] is inactive, would you like to make an inactive AI?", "Installing AI [AI_CORE_BRAIN(mmi)]", list("Yes", "No")) == "Yes")
+		var/wants_install = (tgui_alert(user, LANG("obj.ea321598", list(AI_CORE_BRAIN(mmi))), LANG("obj.a7fbb8a2", list(AI_CORE_BRAIN(mmi))), list("Yes", "No")) == "Yes")
 		if(!wants_install)
 			return FALSE
 		if(QDELETED(src) || QDELETED(user) || QDELETED(mmi) || !user.is_holding(mmi) || !Adjacent(user))
 			return FALSE
 		if(mmi.brainmob && HAS_TRAIT(mmi.brainmob, TRAIT_SUICIDED))
-			balloon_alert(user, "[AI_CORE_BRAIN(mmi)] is useless!")
+			balloon_alert(user, LANG("obj.9b12d35a", list(AI_CORE_BRAIN(mmi))))
 			return FALSE
 	else
 		var/mob/living/brain/mmi_brainmob = mmi.brainmob
 		if(!CONFIG_GET(flag/allow_ai) || (mmi_brainmob && is_banned_from(mmi_brainmob.ckey, JOB_AI)))
 			if(!QDELETED(src) && !QDELETED(user) && !QDELETED(mmi) && user.is_holding(mmi) && Adjacent(user))
-				balloon_alert(user, "[mmi] won't fit!")
+				balloon_alert(user, LANG("obj.adfcc7ca", list(mmi)))
 			return FALSE
 
 	if(state != CORE_STATE_CABLED)
@@ -228,10 +229,10 @@
 		return FALSE
 
 	if(!core_mmi)
-		balloon_alert(user, "needs a processor!")
+		balloon_alert(user, LANG("obj.ce48e05b", null))
 		return FALSE
 	if(glass.get_amount() < 2)
-		balloon_alert(user, "not enough [glass::name]!")
+		balloon_alert(user, LANG("obj.98d23e06", list(glass::name)))
 		return FALSE
 
 	if(!glass.use_tool(src, user, 2 SECONDS, 2, 50, CHECK_STATE_CALLBACK(CORE_STATE_CABLED)) || !core_mmi)

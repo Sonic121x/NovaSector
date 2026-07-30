@@ -78,14 +78,14 @@
 		human.adjust_fire_loss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
 		human.adjust_bodytemperature(13) //We're overheating!!
 		if(prob(10))
-			to_chat(human, span_warning("Alert: Critical damage taken! Cooling systems failing!"))
+			to_chat(human, span_warning(LANG("datum.c8d8f006", null)))
 			do_sparks(3, TRUE, human)
 
 /datum/species/synthetic/spec_revival(mob/living/carbon/human/transformer)
 	switch_to_screen(transformer, "Console")
 	addtimer(CALLBACK(src, PROC_REF(switch_to_screen), transformer, saved_screen), 5 SECONDS)
 	playsound(transformer.loc, 'sound/machines/chime.ogg', 50, TRUE)
-	transformer.visible_message(span_notice("[transformer]'s [screen ? "monitor lights up" : "eyes flicker to life"]!"), span_notice("All systems nominal. You're back online!"))
+	transformer.visible_message(span_notice(LANG("datum.d3da1d8f", list(transformer, screen ? "monitor lights up" : "eyes flicker to life"))), span_notice(LANG("datum.241670af", null)))
 
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/transformer, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
@@ -178,7 +178,7 @@
 	oversized_quirk.old_organs += list(old_stomach)
 
 	new_synth_stomach.Insert(human_holder, special = TRUE)
-	to_chat(human_holder, span_warning("You feel your massive engine rumble!"))
+	to_chat(human_holder, span_warning(LANG("datum.55519864", null)))
 	if(old_stomach)
 		old_stomach.moveToNullspace()
 		STOP_PROCESSING(SSobj, old_stomach)
@@ -186,17 +186,17 @@
 /datum/species/synthetic/proc/on_emag_act(mob/living/carbon/human/source, mob/user)
 	SIGNAL_HANDLER
 	if(source == user)
-		to_chat(source, span_warning("Personality protocols deny your motion, are you stupid?"))
+		to_chat(source, span_warning(LANG("datum.9beb1c1e", null)))
 		return FALSE
 	if(emag_effect)
 		return
 	emag_effect = TRUE
 	playsound(source.loc, 'sound/misc/interference.ogg', 50)
-	to_chat(source, span_warning("Alert: Security breach detected in central processing unit. Error Code: 540-EXO"))
+	to_chat(source, span_warning(LANG("datum.d3bcbb5d", null)))
 	if(IS_UNCONSCIOUS_OR_CRIT(source))
-		to_chat(user, span_warning("The cryptographic sequencer would probably not do anything to [source] in their current state..."))
+		to_chat(user, span_warning(LANG("datum.69d48dc1", list(source))))
 		return
-	source.visible_message(span_danger("[user] slides the cryptographic sequencer across [source]'s head[forced_speech == 0 ? "!" : " yet nothing happens..?"]"), span_userdanger("[user] slides the cryptographic sequencer across your head!"))
+	source.visible_message(span_danger(LANG("datum.e8ad7350", list(user, source, forced_speech == 0 ? "!" : " yet nothing happens..?"))), span_userdanger(LANG("datum.8dc8c1d5", list(user))))
 	if(!forced_speech)
 		if(prob(40))
 			forced_speech = rand(3, 5)
@@ -276,32 +276,29 @@
 	perk_descriptions += list(list( //tryin to keep traits minimal since synths will get a lot of traits when my upstream traits pr is merged
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "robot",
-		SPECIES_PERK_NAME = "Synthetic Benefits",
-		SPECIES_PERK_DESC = "Unlike organics, you DON'T explode when faced with a vacuum! Additionally, your chassis is built with such strength as to \
-		grant you immunity to OVERpressure! Just make sure that the extreme cold or heat doesn't fry your circuitry."
+		SPECIES_PERK_NAME = LANG("datum.961b3412", null),
+		SPECIES_PERK_DESC = LANG("datum.bbf8c074", null)
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "star-of-life",
-		SPECIES_PERK_NAME = "Unhuskable",
-		SPECIES_PERK_DESC = "[plural_form] can't be husked, disappointing changelings galaxy-wide.",
+		SPECIES_PERK_NAME = LANG("datum.8d371daf", null),
+		SPECIES_PERK_DESC = LANG("datum.c271e17d", list(plural_form)),
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "music",
-		SPECIES_PERK_NAME = "Tone Synthesizer",
-		SPECIES_PERK_DESC = "[plural_form] can sing musical tones using an internal synthesizer.",
+		SPECIES_PERK_NAME = LANG("datum.0029bd24", null),
+		SPECIES_PERK_DESC = LANG("datum.cc772e06", list(plural_form)),
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "robot",
-		SPECIES_PERK_NAME = "Synthetic Oddities",
-		SPECIES_PERK_DESC = "[plural_form] are unable to gain nutrition from traditional foods. Instead, you must either consume welding fuel or extend a \
-		wire from your arm to draw power from an APC. In addition to this, welders and wires are your sutures and mesh and only specific chemicals even metabolize inside \
-		of you. This ranges from whiskey, to synthanol, to various obscure medicines. Finally, you suffer from a set of wounds exclusive to synthetics."
+		SPECIES_PERK_NAME = LANG("datum.45e4f320", null),
+		SPECIES_PERK_DESC = LANG("datum.e5d203a3", list(plural_form))
 	))
 
 	return perk_descriptions

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/armor/shoes_magboots
 	bio = 90
 
@@ -46,7 +47,7 @@
 			AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier)
 	magpulse_fishing_modifier = fishing_modifier
 
-GAME_VERB_SRC(/obj/item/clothing/shoes/magboots, toggle, usr, "Toggle Magboots", null)
+GAME_VERB_SRC(/obj/item/clothing/shoes/magboots, toggle, usr, "切换磁力靴", null)
 
 	if(!can_use(usr))
 		return
@@ -70,13 +71,13 @@ GAME_VERB_SRC(/obj/item/clothing/shoes/magboots, toggle, usr, "Toggle Magboots",
 		slowdown -= slowdown_active
 
 	update_appearance()
-	balloon_alert(user, "mag-pulse [magpulse ? "enabled" : "disabled"]")
+	balloon_alert(user, LANG("obj.4a78a629", list(magpulse ? "enabled" : "disabled")))
 	//we want to update our speed so we arent running at max speed in regular magboots
 	user.update_equipment_speed_mods()
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
 	. = ..()
-	. += "Its mag-pulse traction system appears to be [magpulse ? "enabled" : "disabled"]."
+	. += LANG("obj.1fee68ed", list(magpulse ? "enabled" : "disabled"))
 
 /obj/item/clothing/shoes/magboots/update_icon_state()
 	. = ..()

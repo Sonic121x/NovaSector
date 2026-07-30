@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Cowardly mob with a charging attack
 /mob/living/basic/mining/lobstrosity
 	name = "arctic lobstrosity"
@@ -276,7 +277,7 @@
 		return FALSE
 	var/datum/targeting_strategy/targeter = GET_TARGETING_STRATEGY(parent.ai_controller.blackboard[targeting_strategy_key])
 	if(!targeter?.is_valid_target(parent, target))
-		parent.balloon_alert_to_viewers("shakes head!")
+		parent.balloon_alert_to_viewers(LANG("datum.04da7f9f", null))
 		return FALSE
 	return ..()
 

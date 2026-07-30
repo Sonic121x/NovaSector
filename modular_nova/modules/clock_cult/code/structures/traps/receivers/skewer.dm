@@ -69,10 +69,10 @@
 	if(force)
 		return ..()
 
-	balloon_alert(buckled_mob, "climbing off of [src]...")
+	balloon_alert(buckled_mob, LANG("obj.4e7f3258", list(src)))
 
 	if(!do_after(buckled_mob, 5 SECONDS, target = src))
-		balloon_alert(buckled_mob, "failed to climb off [src]")
+		balloon_alert(buckled_mob, LANG("obj.1c11617d", list(src)))
 		return
 
 	return ..()

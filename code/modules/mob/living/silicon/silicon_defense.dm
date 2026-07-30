@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 /mob/living/silicon/grippedby(mob/living/carbon/user, instant = FALSE)
 	return //can't upgrade a simple pull into a more aggressive grab.
@@ -12,18 +13,18 @@
 	var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
 	if (prob(90))
 		playsound(loc, 'sound/items/weapons/slash.ogg', 25, TRUE, -1)
-		visible_message(span_danger("[user] slashes at [src]!"), \
-						span_userdanger("[user] slashes at you!"), null, null, user)
-		to_chat(user, span_danger("You slash at [src]!"))
+		visible_message(span_danger(LANG("mob.f6263099", list(user, src))), \
+						span_userdanger(LANG("mob.69901f7d", list(user))), null, null, user)
+		to_chat(user, span_danger(LANG("mob.131938c9", list(src))))
 		if(prob(8))
 			flash_act(affect_silicon = 1)
 		adjust_brute_loss(damage)
 		log_combat(user, src, "attacked")
 	else
 		playsound(loc, 'sound/items/weapons/slashmiss.ogg', 25, TRUE, -1)
-		visible_message(span_danger("[user]'s swipe misses [src]!"),
-						span_danger("You avoid [user]'s swipe!"), null, null, user)
-		to_chat(user, span_warning("Your swipe misses [src]!"))
+		visible_message(span_danger(LANG("mob.571c02c1", list(user, src))),
+						span_danger(LANG("mob.9066c7ee", list(user))), null, null, user)
+		to_chat(user, span_warning(LANG("mob.25dce995", list(src))))
 		log_combat(user, src, "attacked and missed")
 
 /mob/living/silicon/attack_animal(mob/living/simple_animal/user, list/modifiers)
@@ -45,7 +46,7 @@
 
 /mob/living/silicon/attack_larva(mob/living/carbon/alien/larva/L, list/modifiers)
 	if(!L.combat_mode)
-		visible_message(span_notice("[L.name] rubs its head against [src]."))
+		visible_message(span_notice(LANG("mob.4eac7c41", list(L.name, src))))
 
 /mob/living/silicon/attack_hulk(mob/living/carbon/human/user)
 	. = ..()
@@ -53,9 +54,9 @@
 		return
 	adjust_brute_loss(rand(10, 15))
 	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
-	visible_message(span_danger("[user] punches [src]!"), \
-					span_userdanger("[user] punches you!"), null, COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_danger("You punch [src]!"))
+	visible_message(span_danger(LANG("mob.b9f421c8", list(user, src))), \
+					span_userdanger(LANG("mob.f2fc802c", list(user))), null, COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger(LANG("mob.51733a65", list(src))))
 
 /mob/living/silicon/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	. = ..()
@@ -72,18 +73,18 @@
 	if(user.combat_mode)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 		playsound(src.loc, 'sound/effects/bang.ogg', 10, TRUE)
-		visible_message(span_danger("[user] punches [src], but doesn't leave a dent!"), \
-						span_warning("[user] punches you, but doesn't leave a dent!"), null, COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger("You punch [src], but don't leave a dent!"))
+		visible_message(span_danger(LANG("mob.0f5e5e91", list(user, src))), \
+						span_warning(LANG("mob.9b399474", list(user))), null, COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger(LANG("mob.5a1dcecf", list(src))))
 		return TRUE
 	else
 		// NOVA EDIT ADDITION START
 		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && !IS_UNCONSCIOUS(src) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-			visible_message(span_warning("[user] tries to pet [src], but it moves out of the way."))
+			visible_message(span_warning(LANG("mob.c8cbe6a3", list(user, src))))
 			return TRUE
 		// NOVA EDIT ADDITION END
-		visible_message(span_notice("[user] pets [src]."), span_notice("[user] pets you."), null, null, user)
-		to_chat(user, span_notice("You pet [src]."))
+		visible_message(span_notice(LANG("mob.d1411f1b", list(user, src))), span_notice(LANG("mob.f7b31bed", list(user))), null, null, user)
+		to_chat(user, span_notice(LANG("mob.1e046c19", list(src))))
 		SEND_SIGNAL(user, COMSIG_MOB_PAT_BORG)
 		return TRUE
 
@@ -93,7 +94,7 @@
 		return SUCCESSFUL_BLOCK
 	if(damage_type == BRUTE && attack_type == UNARMED_ATTACK && attack_flag == MELEE && damage <= 10)
 		playsound(src, 'sound/effects/bang.ogg', 10, TRUE)
-		visible_message(span_danger("[attack_text] doesn't leave a dent on [src]!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		visible_message(span_danger(LANG("mob.f5f482d8", list(attack_text, src))), vision_distance = COMBAT_MESSAGE_RANGE)
 		return SUCCESSFUL_BLOCK
 	return FAILED_BLOCK
 
@@ -109,7 +110,7 @@
 
 /mob/living/silicon/emp_act(severity)
 	. = ..()
-	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
+	to_chat(src, span_danger(LANG("mob.4bc10898", null)))
 	if(. & EMP_PROTECT_SELF || QDELETED(src))
 		return
 	switch(severity)

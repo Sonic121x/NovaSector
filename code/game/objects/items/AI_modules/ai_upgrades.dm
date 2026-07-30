@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///AI Upgrades
 
 /// AI module which gives some specific malf ai ability when installed in a law rack
@@ -21,7 +22,7 @@
 
 /obj/item/ai_module/upgrade/examine(mob/user)
 	. = ..()
-	. += span_info("Must be inserted into a module rack to function.")
+	. += span_info(LANG("obj.c9f498d7", null))
 
 /obj/item/ai_module/upgrade/silicon_linked_to_installed(mob/living/silicon/lawed)
 	if(!isAI(lawed))
@@ -64,7 +65,7 @@
 
 /obj/item/ai_module/combat/examine(mob/user)
 	. = ..()
-	. += span_warning("Must be inserted into a module rack to function.")
+	. += span_warning(LANG("obj.c9f498d7", null))
 
 /obj/item/ai_module/combat/log_install(mob/living/user, obj/machinery/ai_law_rack/rack)
 	. = ..()
@@ -80,8 +81,8 @@
 	var/mob/living/silicon/ai/combatai = lawed
 	if(combatai.malf_picker)
 		return
-	to_chat(combatai, span_userdanger("Your module rack has been upgraded with combat software!"))
-	to_chat(combatai, span_danger("Your current laws and objectives remain unchanged.")) //this unlocks malf powers, but does not give the license to plasma flood
+	to_chat(combatai, span_userdanger(LANG("obj.d50afdbe", null)))
+	to_chat(combatai, span_danger(LANG("obj.b94f62ed", null))) //this unlocks malf powers, but does not give the license to plasma flood
 	combatai.add_malf_picker()
 	combatai.hack_software = TRUE
 

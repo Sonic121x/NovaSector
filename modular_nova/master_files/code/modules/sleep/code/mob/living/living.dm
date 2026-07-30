@@ -1,13 +1,13 @@
 ///Replaces proc definition in [code\modules\mob\living\living.dm]
-GAME_VERB_PROC(/mob/living, mob_sleep, "Sleep", "IC")
+GAME_VERB_PROC(/mob/living, mob_sleep, "睡眠", "IC")
 
 	if(IsSleeping())
-		to_chat(src, span_warning("You are already sleeping!"))
+		to_chat(src, span_warning(LANG("mob.bd5702d4", null)))
 		return
 	var/duration = tgui_input_number(
 		src,
-		"How many minutes do you want to sleep for? Enter 0 to sleep indefinitely. Resist to wake up.",
-		"Sleep: Duration",
+		LANG("mob.4a484e50", null),
+		LANG("mob.2d9c4faa", null),
 		max_value = 300,
 		min_value = 0,
 		default = 1

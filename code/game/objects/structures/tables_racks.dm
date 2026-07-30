@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /* Tables and Racks
  * Contains:
  * Tables
@@ -206,7 +207,7 @@
 /obj/structure/table/examine(mob/user)
 	. = ..()
 	if(is_flipped)
-		. += span_notice("It's been flipped on its side!")
+		. += span_notice(LANG("obj.66eba25e", null))
 	. += deconstruction_hints(user)
 
 /obj/structure/table/proc/deconstruction_hints(mob/user)
@@ -288,13 +289,13 @@
 	var/interaction_key = "table_flip_[REF(src)]"
 	if(!is_flipped)
 		if(!LAZYACCESS(user.do_afters, interaction_key)) // To avoid balloon alert spam
-			user.balloon_alert_to_viewers("flipping table...")
+			user.balloon_alert_to_viewers(LANG("obj.31844d17", null))
 		if(do_after(user, max_integrity * 0.25, src, interaction_key = interaction_key))
 			flip_table(get_dir(user, src))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(!LAZYACCESS(user.do_afters, interaction_key)) // To avoid balloon alert spam
-		user.balloon_alert_to_viewers("flipping table upright...")
+		user.balloon_alert_to_viewers(LANG("obj.512be0e0", null))
 	if(do_after(user, max_integrity * 0.25, src, interaction_key = interaction_key))
 		unflip_table()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -324,7 +325,7 @@
 /obj/structure/table/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	if(!deconstruction_ready)
 		return NONE
-	to_chat(user, span_notice("You start disassembling [src]..."))
+	to_chat(user, span_notice(LANG("obj.f0ab830f", list(src))))
 	if(tool.use_tool(src, user, 2 SECONDS, volume=50))
 		deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -332,7 +333,7 @@
 /obj/structure/table/wrench_act_secondary(mob/living/user, obj/item/tool)
 	if(!deconstruction_ready)
 		return NONE
-	to_chat(user, span_notice("You start deconstructing [src]..."))
+	to_chat(user, span_notice(LANG("obj.08e1925c", list(src))))
 	if(tool.use_tool(src, user, 4 SECONDS, volume=50))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 		frame = null
@@ -369,7 +370,7 @@
 	for(var/obj/item/thing in used_tray.contents)
 		AfterPutItemOnTable(thing, user)
 	used_tray.atom_storage.remove_all(drop_location())
-	user.visible_message(span_notice("[user] empties [used_tray] on [src]."))
+	user.visible_message(span_notice(LANG("obj.0256c0ac", list(user, used_tray, src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/table/proc/deck_act(mob/living/user, obj/item/toy/cards/deck/dealer_deck, list/modifiers, flip)
@@ -443,7 +444,7 @@
 /obj/structure/table/greyscale/finalize_material_effects(list/materials)
 	. = ..()
 	var/english_list = get_material_english_list(materials)
-	desc = "A square [(length(materials) > 1) ? "amalgamation" : "piece"] of [english_list] on four legs. It can not move."
+	desc = LANG("obj.0b06f230", list((length(materials) > 1) ? "amalgamation" : "piece", english_list))
 
 ///Table on wheels
 /obj/structure/table/rolling
@@ -476,16 +477,16 @@
 		return
 
 	if(rable.loaded)
-		to_chat(user, span_warning("You already have \a [rable.loaded] docked!"))
+		to_chat(user, span_warning(LANG("obj.9870be8a", list(rable.loaded))))
 		return ITEM_INTERACT_FAILURE
 
 	if(locate(/mob/living) in loc.get_all_contents())
-		to_chat(user, span_warning("You can't collect \the [src] with that much on top!"))
+		to_chat(user, span_warning(LANG("obj.5fa8c8c0", list(src))))
 		return ITEM_INTERACT_FAILURE
 
 	rable.loaded = src
 	forceMove(rable)
-	user.visible_message(span_notice("[user] collects \the [src]."), span_notice("You collect \the [src]."))
+	user.visible_message(span_notice(LANG("obj.37a40a4d", list(user, src))), span_notice(LANG("obj.5e4d6939", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/table/rolling/AfterPutItemOnTable(obj/item/thing, mob/living/user)
@@ -573,8 +574,8 @@
 		table_shatter(M)
 
 /obj/structure/table/glass/proc/table_shatter(mob/living/victim)
-	visible_message(span_warning("[src] breaks!"),
-		span_danger("You hear breaking glass."))
+	visible_message(span_warning(LANG("obj.c06254ea", list(src))),
+		span_danger(LANG("obj.2eecce6c", null)))
 
 	playsound(loc, SFX_SHATTER, 50, TRUE)
 
@@ -787,15 +788,15 @@
 			return ITEM_INTERACT_BLOCKING
 
 		if(deconstruction_ready)
-			to_chat(user, span_notice("You start strengthening the reinforced table..."))
+			to_chat(user, span_notice(LANG("obj.73836f3c", null)))
 			if (tool.use_tool(src, user, 50, volume = 50))
-				to_chat(user, span_notice("You strengthen the table."))
+				to_chat(user, span_notice(LANG("obj.3b332edc", null)))
 				deconstruction_ready = FALSE
 				return ITEM_INTERACT_SUCCESS
 		else
-			to_chat(user, span_notice("You start weakening the reinforced table..."))
+			to_chat(user, span_notice(LANG("obj.042b7069", null)))
 			if (tool.use_tool(src, user, 50, volume = 50))
-				to_chat(user, span_notice("You weaken the table."))
+				to_chat(user, span_notice(LANG("obj.c2ffd267", null)))
 				deconstruction_ready = TRUE
 				return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
@@ -1134,7 +1135,7 @@
 /obj/structure/table/optable/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (istype(tool, /obj/item/clothing/mask/breath))
 		if (breath_mask && breath_mask != tool)
-			balloon_alert(user, "mask already attached!")
+			balloon_alert(user, LANG("obj.a643dc36", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if (!user.transferItemToLoc(tool, src))
@@ -1144,7 +1145,7 @@
 			breath_mask = tool
 			RegisterSignal(breath_mask, COMSIG_MOVABLE_MOVED, PROC_REF(on_mask_moved))
 
-		balloon_alert(user, "mask attached")
+		balloon_alert(user, LANG("obj.345e9382", null))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -1153,19 +1154,19 @@
 		return NONE
 
 	if (air_tank)
-		balloon_alert(user, "tank already attached!")
+		balloon_alert(user, LANG("obj.1c6c2c1b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/tank/as_tank = tool
 	if (!as_tank.tank_holder_icon_state)
-		balloon_alert(user, "does not fit!")
+		balloon_alert(user, LANG("obj.b4eb1886", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
 	air_tank = as_tank
-	balloon_alert(user, "tank attached")
+	balloon_alert(user, LANG("obj.8845f1e6", null))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -1179,7 +1180,7 @@
 
 	breath_mask.forceMove(drop_location())
 	tool.play_tool_sound(src, 50)
-	balloon_alert(user, "mask detached")
+	balloon_alert(user, LANG("obj.5016baf9", null))
 	UnregisterSignal(breath_mask, list(COMSIG_MOVABLE_MOVED, COMSIG_ITEM_DROPPED))
 	if (breath_mask.IsReachableBy(user))
 		user.put_in_hands(breath_mask)
@@ -1190,12 +1191,12 @@
 /obj/structure/table/optable/wrench_act(mob/living/user, obj/item/tool)
 	if (!air_tank)
 		return NONE
-	balloon_alert(user, "detaching the tank...")
+	balloon_alert(user, LANG("obj.6ff5a9eb", null))
 	if (!tool.use_tool(src, user, 3 SECONDS))
 		return ITEM_INTERACT_BLOCKING
 	air_tank.forceMove(drop_location())
 	tool.play_tool_sound(src, 50)
-	balloon_alert(user, "tank detached")
+	balloon_alert(user, LANG("obj.dc3dc3ce", null))
 	if (air_tank.IsReachableBy(user))
 		user.put_in_hands(air_tank)
 
@@ -1217,31 +1218,31 @@
 /obj/structure/table/optable/examine(mob/user)
 	. = ..()
 	if (air_tank)
-		. += span_notice("It has \a [air_tank] secured to it with a couple of [EXAMINE_HINT("bolts")].")
+		. += span_notice(LANG("obj.95e368ee", list(air_tank, EXAMINE_HINT("bolts"))))
 		if (patient)
-			. += span_info("You can connect [patient]'s internals to \the [air_tank] by dragging \the [src] onto them.")
+			. += span_info(LANG("obj.59a866c6", list(patient, air_tank, src)))
 	else
-		. += span_notice("It has an attachment slot for an air tank underneath.")
+		. += span_notice(LANG("obj.9627ce21", null))
 	if (breath_mask)
-		. += span_notice("It has \a [breath_mask] attached to its side, the tube secured with a single [EXAMINE_HINT("screw")].")
+		. += span_notice(LANG("obj.009111fa", list(breath_mask, EXAMINE_HINT("screw"))))
 		if (breath_mask.loc == src)
-			. += span_info("You can detach the mask by right-clicking \the [src] with an empty hand.")
+			. += span_info(LANG("obj.b543ffe7", list(src)))
 	else
-		. += span_notice("There's a port for a breathing mask tube on its side.")
+		. += span_notice(LANG("obj.782db675", null))
 
 /obj/structure/table/optable/proc/detach_mask(mob/living/user)
 	if (!istype(user) || !IsReachableBy(user) || !user.can_interact_with(src))
 		return FALSE
 
 	if (!breath_mask)
-		balloon_alert(user, "no mask attached!")
+		balloon_alert(user, LANG("obj.d2e4644d", null))
 		return TRUE
 
 	if (!user.put_in_hands(breath_mask))
-		balloon_alert(user, "hands busy!")
+		balloon_alert(user, LANG("obj.07680e10", null))
 		return TRUE
 
-	to_chat(user, span_notice("You pull out \the [breath_mask] from \the [src]."))
+	to_chat(user, span_notice(LANG("obj.d43f1b46", list(breath_mask, src))))
 	update_appearance()
 	return TRUE
 
@@ -1251,21 +1252,21 @@
 		return
 
 	if(!iscarbon(patient))
-		balloon_alert(user, "no internals connector!")
+		balloon_alert(user, LANG("obj.cc3756c6", null))
 		return
 
 	if (!air_tank)
-		balloon_alert(user, "no tank attached!")
+		balloon_alert(user, LANG("obj.8eda4581", null))
 		return
 
 	var/mob/living/carbon/carbon_patient = patient
 	var/internals = carbon_patient.can_breathe_internals()
 	if (!internals)
-		balloon_alert(user, "no internals connector!")
+		balloon_alert(user, LANG("obj.cc3756c6", null))
 		return
 
-	user.visible_message(span_notice("[user] begins connecting [src]'s [air_tank] to [patient]'s [internals]."), span_notice("You begin connecting [src]'s [air_tank] to [patient]'s [internals]..."), ignored_mobs = patient)
-	to_chat(patient, span_userdanger("[user] begins connecting [src]'s [air_tank] to your [internals]!"))
+	user.visible_message(span_notice(LANG("obj.bbc9e886", list(user, src, air_tank, patient, internals))), span_notice(LANG("obj.8812aeaf", list(src, air_tank, patient, internals))), ignored_mobs = patient)
+	to_chat(patient, span_userdanger(LANG("obj.490c8301", list(user, src, air_tank, internals))))
 
 	if (!do_after(user, 4 SECONDS, patient))
 		return
@@ -1274,8 +1275,8 @@
 		return
 
 	carbon_patient.open_internals(air_tank, is_external = TRUE)
-	to_chat(user, span_notice("You connect [src]'s [air_tank] to [patient]'s [internals]."))
-	to_chat(patient, span_userdanger("[user] connects [src]'s [air_tank] to your [internals]!"))
+	to_chat(user, span_notice(LANG("obj.9bb92581", list(src, air_tank, patient, internals))))
+	to_chat(patient, span_userdanger(LANG("obj.46c5db37", list(user, src, air_tank, internals))))
 
 /obj/structure/table/optable/proc/on_mask_moved(datum/source, atom/oldloc, direction)
 	SIGNAL_HANDLER
@@ -1299,9 +1300,9 @@
 
 	if(isliving(loc))
 		var/mob/living/user = loc
-		to_chat(user, span_warning("[breath_mask]'s tube overextends and it comes out of your hands!"))
+		to_chat(user, span_warning(LANG("obj.caad70cc", list(breath_mask))))
 	else
-		visible_message(span_notice("[breath_mask] snaps back into \the [src]."))
+		visible_message(span_notice(LANG("obj.aa0ccdf3", list(breath_mask, src))))
 	snap_mask_back()
 
 /obj/structure/table/optable/proc/snap_mask_back()
@@ -1365,7 +1366,7 @@
 
 /obj/structure/rack/examine(mob/user)
 	. = ..()
-	. += span_notice("It's held together by a couple of <b>bolts</b>.")
+	. += span_notice(LANG("obj.c0bf1b5b", null))
 
 /obj/structure/rack/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
@@ -1400,7 +1401,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-	user.visible_message(span_danger("[user] kicks [src]."), null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_danger(LANG("obj.c2085da6", list(user, src))), null, null, COMBAT_MESSAGE_RANGE)
 	take_damage(rand(4,8), BRUTE, MELEE, 1)
 
 /obj/structure/rack/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
@@ -1467,12 +1468,12 @@
 	if(building)
 		return
 	building = TRUE
-	to_chat(user, span_notice("You start constructing a rack..."))
+	to_chat(user, span_notice(LANG("obj.857cf939", null)))
 	if(do_after(user, 5 SECONDS, target = user))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/rack/R = new /obj/structure/rack(get_turf(src))
-		user.visible_message(span_notice("[user] assembles \a [R]."), span_notice("You assemble \a [R]."))
+		user.visible_message(span_notice(LANG("obj.3dc1a1cd", list(user, R))), span_notice(LANG("obj.e671a056", list(R))))
 		R.add_fingerprint(user)
 		qdel(src)
 	building = FALSE

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /*!
  * Tier 4 knowledge: Combat related knowledge
  */
@@ -154,7 +155,7 @@
 
 /datum/heretic_knowledge/rifle_ammo/pre_research(mob/user, datum/antagonist/heretic/our_heretic)
 	if(!our_heretic.get_knowledge(/datum/heretic_knowledge/rifle))
-		tgui_alert(user, "You must research the Lionhunter's Rifle knowledge before you can research its ammunition.")
+		tgui_alert(user, LANG("datum.96269547", null))
 		return FALSE
 
 	return TRUE

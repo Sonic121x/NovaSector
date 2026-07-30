@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Applies full-body brute damage to a target while pulling them. Used with a move_to_target sequence.
 /datum/bt_node/ai_behavior/break_spine
 	var/target_key
@@ -15,7 +16,7 @@
 
 	INVOKE_ASYNC(big_guy, TYPE_PROC_REF(/atom/movable, start_pulling), batman)
 	big_guy.face_atom(batman)
-	batman.visible_message(span_warning("[batman] gets a slightly too tight hug from [big_guy]!"), span_userdanger("You feel your body break as [big_guy] embraces you!"))
+	batman.visible_message(span_warning(LANG("datum.cda80619", list(batman, big_guy))), span_userdanger(LANG("datum.3aca6d23", list(big_guy))))
 	for(var/zone in GLOB.all_body_zones - BODY_ZONE_HEAD)
 		batman.apply_damage(15, BRUTE, zone, wound_bonus = 35)
 

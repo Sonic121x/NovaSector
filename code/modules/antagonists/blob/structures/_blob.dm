@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 //I will need to recode parts of this but I am way too tired atm //I don't know who left this comment but they never did come back
 /obj/structure/blob
 	name = "blob"
@@ -164,7 +165,7 @@
 		return TRUE
 	// If it's not supposed to end the round and it's at the win count, don't make more. (400 tiles is still a lot to fight through...)
 	if(!controller.end_round_on_victory && (controller.blobs_legit.len >= controller.blobwincount))
-		balloon_alert(controller, "max tiles reached!")
+		balloon_alert(controller, LANG("obj.36d11fd6", null))
 		return FALSE
 	// Otherwise, it's probably fine.
 	return TRUE
@@ -190,7 +191,7 @@
 	if(isspaceturf(T) && !(locate(/obj/structure/lattice) in T) && prob(80))
 		make_blob = FALSE
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, TRUE) //Let's give some feedback that we DID try to spawn in space, since players are used to it
-		balloon_alert(controller, "failed to expand!")
+		balloon_alert(controller, LANG("obj.fe20941b", null))
 
 	ConsumeTile() //hit the tile we're in, making sure there are no border objects blocking us
 	if(!T.CanPass(src, get_dir(T, src))) //is the target turf impassable
@@ -216,7 +217,7 @@
 			if(Ablob.area_flags & BLOBS_ALLOWED) //Is this area allowed for winning as blob?
 				overmind.blobs_legit += B
 			else if(controller)
-				B.balloon_alert(overmind, "off-station, won't count!")
+				B.balloon_alert(overmind, LANG("obj.7ec8b723", null))
 			B.update_appearance()
 			if(B.overmind && expand_reaction)
 				B.overmind.blobstrain.expand_reaction(src, B, T, controller)
@@ -259,13 +260,13 @@
 
 /obj/structure/blob/analyzer_act(mob/living/user, obj/item/analyzer/tool)
 	user.changeNext_move(CLICK_CD_MELEE)
-	to_chat(user, "<b>The analyzer beeps once, then reports:</b><br>")
+	to_chat(user, LANG("obj.f3678620", null))
 	SEND_SOUND(user, sound('sound/machines/ping.ogg'))
 	if(overmind)
-		to_chat(user, "<b>Progress to Critical Mass:</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
+		to_chat(user, LANG("obj.f1e6051c", list(span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount]."))))
 		to_chat(user, chemeffectreport(user).Join("\n"))
 	else
-		to_chat(user, "<b>Blob core neutralized. Critical mass no longer attainable.</b>")
+		to_chat(user, LANG("obj.5df59b6b", null))
 	to_chat(user, typereport(user).Join("\n"))
 	return ITEM_INTERACT_SUCCESS
 
@@ -277,7 +278,7 @@
 		"<b>Material Effects:</b> [span_notice("[overmind.blobstrain.analyzerdescdamage]")]",
 		"<b>Material Properties:</b> [span_notice("[overmind.blobstrain.analyzerdesceffect || "N/A"]")]")
 	else
-		. += "<b>No Material Detected!</b>"
+		. += LANG("obj.036ad2ed", null)
 
 /obj/structure/blob/proc/typereport(mob/user)
 	RETURN_TYPE(/list)
@@ -341,17 +342,17 @@
 	. = ..()
 	var/datum/atom_hud/hud_to_check = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	if(HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER) || hud_to_check.hud_users[user])
-		. += "<b>Your HUD displays an extensive report...</b><br>"
+		. += LANG("obj.c9320b45", null)
 		if(overmind)
 			. += overmind.blobstrain.examine(user)
 		else
-			. += "<b>Core neutralized. Critical mass no longer attainable.</b>"
+			. += LANG("obj.e3832e90", null)
 		. += chemeffectreport(user)
 		. += typereport(user)
 	else
 		if((user == overmind || isobserver(user)) && overmind)
 			. += overmind.blobstrain.examine(user)
-		. += "It seems to be made of [get_chem_name()]."
+		. += LANG("obj.83aa5c88", list(get_chem_name()))
 
 /obj/structure/blob/proc/scannerreport()
 	return "A generic blob. Looks like someone forgot to override this proc, adminhelp this."
@@ -386,11 +387,11 @@
 /obj/structure/blob/normal/update_desc()
 	. = ..()
 	if(atom_integrity <= 15)
-		desc = "A thin lattice of slightly twitching tendrils."
+		desc = LANG("obj.e9aa5d2f", null)
 	else if(overmind)
-		desc = "A thick wall of writhing tendrils."
+		desc = LANG("obj.db032807", null)
 	else
-		desc = "A thick wall of lifeless tendrils."
+		desc = LANG("obj.8e91bf24", null)
 
 /obj/structure/blob/normal/update_icon_state()
 	icon_state = "blob[(atom_integrity <= 15) ? "_damaged" : null]"

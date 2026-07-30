@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/assembly/signaler
 	name = "remote signaling device"
 	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another."
@@ -30,7 +31,7 @@
 	var/range = 0 //Everywhere
 
 /obj/item/assembly/signaler/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] eats \the [src]! If it is signaled, [user.p_they()] will die!"))
+	user.visible_message(span_suicide(LANG("obj.ff0940e6", list(user, src, user.p_they()))))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	moveToNullspace()
 	suicider = user.mind
@@ -43,7 +44,7 @@
 		return
 	if(suicide_mob != REF(user))
 		return
-	user.visible_message(span_suicide("[user]'s [src] receives a signal, killing [user.p_them()] instantly!"))
+	user.visible_message(span_suicide(LANG("obj.f446cfb9", list(user, src, user.p_them()))))
 	user.set_suicide(TRUE)
 	user.adjust_oxy_loss(200)//it sends an electrical pulse to their heart, killing them. or something.
 	user.death(FALSE)
@@ -99,11 +100,11 @@
 		if("signal")
 			if(cooldown_length > 0)
 				if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SIGNALLER_SEND))
-					balloon_alert(ui.user, "recharging!")
+					balloon_alert(ui.user, LANG("obj.ba1fd79a", null))
 					return
 				TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, cooldown_length)
 			INVOKE_ASYNC(src, PROC_REF(signal))
-			balloon_alert(ui.user, "signaled")
+			balloon_alert(ui.user, LANG("obj.619d443f", null))
 			. = TRUE
 		if("freq")
 			var/new_frequency = sanitize_frequency(unformat_frequency(params["freq"]), TRUE)
@@ -132,7 +133,7 @@
 
 	code = sister_signaler.code
 	set_frequency(sister_signaler.frequency)
-	to_chat(user, "You transfer the frequency and code of \the [sister_signaler.name] to \the [name]")
+	to_chat(user, LANG("obj.d95b4f91", list(sister_signaler.name, name)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/assembly/signaler/attack_self_secondary(mob/user, modifiers)
@@ -142,7 +143,7 @@
 	if(!ishuman(user))
 		return
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SIGNALLER_SEND))
-		balloon_alert(user, "still recharging...")
+		balloon_alert(user, LANG("obj.e1700ee9", null))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
 	INVOKE_ASYNC(src, PROC_REF(signal))
@@ -175,7 +176,7 @@
 	last_receive_signal_log = istype(holder, /obj/item/transfer_valve) ? signal.logging_data : null
 
 	pulse()
-	audible_message(span_infoplain("[icon2html(src, hearers(src))] *beep* *beep* *beep*"), null, hearing_range)
+	audible_message(span_infoplain(LANG("obj.a31e2378", list(icon2html(src, hearers(src))))), null, hearing_range)
 	for(var/mob/hearing_mob in get_hearers_in_view(hearing_range, src))
 		hearing_mob.playsound_local(get_turf(src), 'sound/machines/beep/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 	return TRUE
@@ -188,7 +189,7 @@
 
 /obj/item/assembly/signaler/proc/on_mail_unwrap(atom/source, mob/user, obj/item/mail/traitor/letter)
 	SIGNAL_HANDLER
-	to_chat(user, span_danger("As you open [letter], you accidentally press a button on [src]!"))
+	to_chat(user, span_danger(LANG("obj.7595c084", list(letter, src))))
 	INVOKE_ASYNC(src, PROC_REF(signal)) // No need to check for cooldown, the cooldown is shorter than the do_after for opening mail
 	return NONE //don't return handled, we want in hands and open ui
 

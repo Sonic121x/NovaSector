@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * # Emote
  *
@@ -305,7 +306,7 @@
 	if(user.nextsoundemote > world.time) // NOVA EDIT CHANGE - ORIGINAL: if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
 		var/datum/emote/default_emote = /datum/emote
 		if(cooldown > initial(default_emote.cooldown)) // only worry about longer-than-normal emotes
-			to_chat(user, span_danger("You must wait another [DisplayTimeText(user.nextsoundemote - world.time)] before using that emote."))
+			to_chat(user, span_danger(LANG("datum.ec9895bb", list(DisplayTimeText(user.nextsoundemote - world.time)))))
 		return FALSE
 	//if(!user.emotes_used)
 	//	user.emotes_used = list()
@@ -424,28 +425,28 @@
 	if(status_check && !is_type_in_typecache(user, mob_type_ignore_stat_typecache))
 		if(IS_UNCONSCIOUS(user) && !(can_use_flags & EMOTE_CANUSE_UNCONSCIOUS))
 			if(intentional)
-				to_chat(user, span_warning("You cannot [key] while unconscious!"))
+				to_chat(user, span_warning(LANG("datum.b0df7fb7", list(key))))
 			return FALSE
 		if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) && (can_use_flags & EMOTE_CANUSE_REQUIRE_HANDS))
 			if(intentional)
-				to_chat(user, span_warning("You cannot use your hands to [key] right now!"))
+				to_chat(user, span_warning(LANG("datum.a6c43807", list(key))))
 			return FALSE
 
 		switch(user.stat)
 			if(SOFT_CRIT)
 				if(!(can_use_flags & EMOTE_CANUSE_SOFTCRIT))
 					if(intentional)
-						to_chat(user, span_warning("You cannot [key] while in a critical condition!"))
+						to_chat(user, span_warning(LANG("datum.06026301", list(key))))
 					return FALSE
 			if(HARD_CRIT)
 				if(!(can_use_flags & EMOTE_CANUSE_HARDCRIT))
 					if(intentional)
-						to_chat(user, span_warning("You cannot [key] while in a critical condition!"))
+						to_chat(user, span_warning(LANG("datum.06026301", list(key))))
 					return FALSE
 			if(DEAD)
 				if(!(can_use_flags & EMOTE_CANUSE_DEAD))
 					if(intentional)
-						to_chat(user, span_warning("You cannot [key] while dead!"))
+						to_chat(user, span_warning(LANG("datum.9cfbc2db", list(key))))
 					return FALSE
 
 	if(HAS_TRAIT(user, TRAIT_EMOTEMUTE))

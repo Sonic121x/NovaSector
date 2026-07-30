@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///defined truthy result for `handle_unique_ai()`, which makes initialize return INITIALIZE_HINT_QDEL
 #define SHOULD_QDEL_MODULE 1
 
@@ -91,7 +92,7 @@
 /obj/item/ai_module/law/examine(mob/user)
 	. = ..()
 	if(ioned)
-		. += "This module has been damaged and should be repaired with a [EXAMINE_HINT("multitool")]."
+		. += LANG("obj.b488f6c8", list(EXAMINE_HINT("multitool")))
 
 	var/examine_laws = display_laws()
 	if(examine_laws)
@@ -100,10 +101,10 @@
 /obj/item/ai_module/law/multitool_act(mob/living/user, obj/item/tool)
 	if(!ioned)
 		return NONE
-	balloon_alert(user, "repairing ion damage...")
+	balloon_alert(user, LANG("obj.a6d19be6", null))
 	if(!tool.use_tool(ismachinery(loc) ? loc : src, user, 4 SECONDS, volume = 25, extra_checks = CALLBACK(src, PROC_REF(multitool_cb), loc, user, tool)))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "module repaired")
+	balloon_alert(user, LANG("obj.ad5198a8", null))
 	set_ioned(FALSE)
 	set_laws(saved_laws)
 	saved_laws = null

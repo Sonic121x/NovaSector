@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///Subtype for any kind of ballistic gun
 ///This has a shitload of vars on it, and I'm sorry for that, but it does make making new subtypes really easy
 /obj/item/gun/ballistic
@@ -323,11 +324,11 @@
 	if(!burst_fire_selection)
 		burst_size = 1
 		fire_delay = 0 SECONDS
-		balloon_alert(user, "switched to semi-automatic")
+		balloon_alert(user, LANG("obj.6edf2c32", null))
 	else
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
-		balloon_alert(user, "switched to [burst_size]-round burst")
+		balloon_alert(user, LANG("obj.9d22547c", list(burst_size)))
 
 	if(burst_select_sound)
 		playsound(user, burst_select_sound, 50, TRUE)
@@ -389,7 +390,7 @@
 							)
 							if(!(world.time >= casing.shot_timestamp + CASING_HOT_DELAY))
 								var/obj/item/bodypart/affecting = wielder.get_inactive_hand()
-								to_chat(wielder, span_warning("As if to add insult to injury, \the [casing] lands in the perfect way... to burn your [affecting.plaintext_zone]."))
+								to_chat(wielder, span_warning(LANG("obj.1e5c9eec", list(casing, affecting.plaintext_zone))))
 								wielder.apply_damage(5, BURN, affecting, wound_bonus = CANT_WOUND)
 						if(CASING_CATCH_FAILED_PLACEMENT)
 							hitting_ground = TRUE
@@ -401,12 +402,12 @@
 						if(CASING_CATCH_SUCCESSFUL)
 							hitting_ground = FALSE
 							casing.update_appearance()
-							to_chat(wielder, span_notice("You reach out and catch \the [casing] as it ejects from [src]. Awesome."))
+							to_chat(wielder, span_notice(LANG("obj.0ce5d4b6", list(casing, src))))
 						if(CASING_CATCH_SUCCESSFUL_OUCH)
 							hitting_ground = FALSE
 							casing.update_appearance()
 							var/obj/item/bodypart/affecting = wielder.get_inactive_hand()
-							to_chat(wielder, span_notice("You reach out and catch \the [casing] as it ejects from [src]. Awesome. Your [affecting.plaintext_zone] hurts, though."))
+							to_chat(wielder, span_notice(LANG("obj.fef96297", list(casing, src, affecting.plaintext_zone))))
 							wielder.apply_damage(4, BURN, affecting, wound_bonus = CANT_WOUND)
 				if(hitting_ground)
 					casing.bounce_away(TRUE)
@@ -472,11 +473,11 @@
 	if (bolt_type == BOLT_TYPE_OPEN)
 		if(!bolt_locked) //If it's an open bolt, racking again would do nothing
 			if (user)
-				balloon_alert(user, "[bolt_wording] already cocked!")
+				balloon_alert(user, LANG("obj.a1ea28f2", list(bolt_wording)))
 			return
 		bolt_locked = FALSE
 	if (user)
-		balloon_alert(user, "[bolt_wording] racked")
+		balloon_alert(user, LANG("obj.e5340452", list(bolt_wording)))
 	process_chamber(!chambered, FALSE)
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
 		bolt_locked = TRUE
@@ -489,7 +490,7 @@
 /obj/item/gun/ballistic/proc/drop_bolt(mob/user = null)
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
 	if (user)
-		balloon_alert(user, "[bolt_wording] dropped")
+		balloon_alert(user, LANG("obj.00ddfc66", list(bolt_wording)))
 	chamber_round()
 	bolt_locked = FALSE
 	update_appearance()
@@ -497,12 +498,12 @@
 ///Handles all the logic needed for magazine insertion
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
 	if(!istype(AM, accepted_magazine_type))
-		balloon_alert(user, "[AM.name] doesn't fit!")
+		balloon_alert(user, LANG("obj.337bbdec", list(AM.name)))
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
 		magazine = AM
 		if (display_message)
-			balloon_alert(user, "[magazine_wording] loaded")
+			balloon_alert(user, LANG("obj.8255044f", list(magazine_wording)))
 		if (magazine.ammo_count())
 			playsound(src, load_sound, load_sound_volume, load_sound_vary)
 		else
@@ -512,7 +513,7 @@
 		update_appearance()
 		return TRUE
 	else
-		to_chat(user, span_warning("You cannot seem to get [src] out of your hands!"))
+		to_chat(user, span_warning(LANG("obj.33f0a28c", list(src))))
 		return FALSE
 
 ///Handles all the logic of magazine ejection, if tac_load is set that magazine will be tacloaded in the place of the old eject
@@ -527,12 +528,12 @@
 	magazine.forceMove(drop_location())
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
-			balloon_alert(user, "[magazine_wording] swapped")
+			balloon_alert(user, LANG("obj.43586bcc", list(magazine_wording)))
 		else
-			to_chat(user, span_warning("You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing."))
+			to_chat(user, span_warning(LANG("obj.2d613976", list(magazine_wording))))
 	user.put_in_hands(old_mag)
 	if (display_message)
-		balloon_alert(user, "[magazine_wording] unloaded")
+		balloon_alert(user, LANG("obj.faef9ffa", list(magazine_wording)))
 
 
 /obj/item/gun/ballistic/can_shoot()
@@ -552,7 +553,7 @@
 			eject_magazine(user, FALSE, tool)
 			return ITEM_INTERACT_SUCCESS
 
-		balloon_alert(user, "already loaded!")
+		balloon_alert(user, LANG("obj.e79a422e", null))
 		return ITEM_INTERACT_FAILURE
 
 	if (isammocasing(tool) || istype(tool, /obj/item/ammo_box))
@@ -566,22 +567,22 @@
 
 	if(istype(tool, /obj/item/suppressor))
 		if(!can_suppress)
-			balloon_alert(user, "[tool.name] doesn't fit!")
+			balloon_alert(user, LANG("obj.337bbdec", list(tool.name)))
 			return ITEM_INTERACT_FAILURE
 
 		if(!user.is_holding(src))
-			balloon_alert(user, "not in hand!")
+			balloon_alert(user, LANG("obj.1d87cabf", null))
 			return ITEM_INTERACT_FAILURE
 
 		if(suppressed)
-			balloon_alert(user, "already has a suppressor!")
+			balloon_alert(user, LANG("obj.fb772f9c", null))
 			return ITEM_INTERACT_FAILURE
 
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, "cannot attach!")
+			balloon_alert(user, LANG("obj.95bfb107", null))
 			return ITEM_INTERACT_FAILURE
 
-		balloon_alert(user, "[tool.name] attached")
+		balloon_alert(user, LANG("obj.c7ee947c", list(tool.name)))
 		install_suppressor(tool)
 		return ITEM_INTERACT_SUCCESS
 
@@ -615,7 +616,7 @@
 /obj/item/gun/ballistic/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	var/could_it_misfire = can_misfire || chambered.can_misfire
 	if(target != user && chambered.loaded_projectile && could_it_misfire && prob(misfire_probability) && blow_up(user))
-		to_chat(user, span_userdanger("[src] misfires!"))
+		to_chat(user, span_userdanger(LANG("obj.9963c7b3", list(src))))
 		return
 
 	if (sawn_off)
@@ -655,7 +656,7 @@
 		return CLICK_ACTION_BLOCKING
 	if(!user.is_holding(src))
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, "[suppressor.name] removed")
+	balloon_alert(user, LANG("obj.2a4235b4", list(suppressor.name)))
 	user.put_in_hands(suppressor)
 	clear_suppressor()
 	return CLICK_ACTION_SUCCESS
@@ -719,33 +720,33 @@
 
 	if (!num_unloaded)
 		if (!forced)
-			balloon_alert(user, "it's empty!")
+			balloon_alert(user, LANG("obj.76a90f7c", null))
 		return
 	SEND_SIGNAL(src, COMSIG_UPDATE_AMMO_HUD) // NOVA EDIT ADDITION - this is normally handled by eject_magazine() but internal magazines are a special case
 
 	if (!forced)
-		balloon_alert(user, "[num_unloaded] [cartridge_wording]\s unloaded")
+		balloon_alert(user, LANG("obj.0f281264", list(num_unloaded, cartridge_wording)))
 	playsound(user, eject_sound, eject_sound_volume, eject_sound_vary)
 	update_appearance()
 
 /obj/item/gun/ballistic/examine(mob/user)
 	. = ..()
 	var/count_chambered = !(bolt_type == BOLT_TYPE_NO_BOLT || bolt_type == BOLT_TYPE_OPEN)
-	. += "It has <b>[get_ammo(count_chambered)]</b> round\s remaining."
+	. += LANG("obj.39a607b8", list(get_ammo(count_chambered)))
 
 	if (!chambered && !hidden_chambered)
-		. += "It does not seem to have a round chambered."
+		. += LANG("obj.7c1e0be7", null)
 	if (bolt_locked)
-		. += "The [bolt_wording] is locked back and needs to be released before firing or de-fouling."
+		. += LANG("obj.433966e9", list(bolt_wording))
 	if (suppressor)
-		. += "It has a suppressor [can_unsuppress ? "attached that can be removed with <b>alt+click</b>." : "that is integral or can't otherwise be removed."]"
+		. += LANG("obj.9997e48d", list(can_unsuppress ? "attached that can be removed with <b>alt+click</b>." : "that is integral or can't otherwise be removed."))
 	if(can_misfire)
-		. += span_danger("You get the feeling this might explode if you fire it...")
+		. += span_danger(LANG("obj.f236f5ca", null))
 		if(misfire_probability > 0)
-			. += span_danger("Given the state of the gun, there is a [misfire_probability]% chance it'll misfire.")
+			. += span_danger(LANG("obj.9f1d4fd4", list(misfire_probability)))
 	else if(misfire_probability > 0)
-		. += span_warning("You get a feeling this might explode if you fire it with the wrong ammunitions...")
-		. += span_warning("Given the state of the gun, there is a [EXAMINE_HINT("[misfire_probability]%")] chance it'll misfire.")
+		. += span_warning(LANG("obj.7e2d60e9", null))
+		. += span_warning(LANG("obj.8dbf4dcf", list(EXAMINE_HINT("[misfire_probability]%"))))
 
 ///Gets the number of bullets in the gun
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
@@ -771,12 +772,12 @@
 /obj/item/gun/ballistic/suicide_act(mob/living/user)
 	var/obj/item/organ/brain/B = user.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if (B && chambered && chambered.loaded_projectile && can_trigger_gun(user) && chambered.loaded_projectile.damage > 0)
-		user.visible_message(span_suicide("[user] is putting the barrel of [src] in [user.p_their()] mouth. It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide(LANG("obj.575e922c", list(user, src, user.p_their(), user.p_theyre()))))
 		sleep(2.5 SECONDS)
 		if(user.is_holding(src))
 			var/turf/T = get_turf(user)
 			process_fire(user, user, FALSE, null, BODY_ZONE_HEAD)
-			user.visible_message(span_suicide("[user] blows [user.p_their()] brain[user.p_s()] out with [src]!"))
+			user.visible_message(span_suicide(LANG("obj.67ff55be", list(user, user.p_their(), user.p_s(), src))))
 			var/turf/target = get_ranged_target_turf(user, REVERSE_DIR(user.dir), BRAINS_BLOWN_THROW_RANGE)
 			B.Remove(user)
 			B.forceMove(T)
@@ -784,10 +785,10 @@
 			B.throw_at(target, BRAINS_BLOWN_THROW_RANGE, BRAINS_BLOWN_THROW_SPEED, callback=gibspawner)
 			return BRUTELOSS
 		else
-			user.visible_message(span_suicide("[user] panics and starts choking to death!"))
+			user.visible_message(span_suicide(LANG("obj.dec784f1", list(user))))
 			return OXYLOSS
 	else
-		user.visible_message(span_suicide("[user] is pretending to blow [user.p_their()] brain[user.p_s()] out with [src]! It looks like [user.p_theyre()] trying to commit suicide!</b>"))
+		user.visible_message(span_suicide(LANG("obj.939a6892", list(user, user.p_their(), user.p_s(), src, user.p_theyre()))))
 		playsound(src, dry_fire_sound, 30, TRUE)
 		return OXYLOSS
 
@@ -805,23 +806,23 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	if(!saw.get_sharpness() || (!is_type_in_typecache(saw, GLOB.gun_saw_types) && saw.tool_behaviour != TOOL_SAW)) //needs to be sharp. Otherwise turned off eswords can cut this.
 		return
 	if(sawn_off)
-		balloon_alert(user, "it's already shortened!")
+		balloon_alert(user, LANG("obj.205de80a", null))
 		return
 	if (SEND_SIGNAL(src, COMSIG_GUN_BEING_SAWNOFF, user) & COMPONENT_CANCEL_SAWING_OFF)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message(span_notice("[user] begins to shorten [src]."), span_notice("You begin to shorten [src]..."))
+	user.visible_message(span_notice(LANG("obj.db862648", list(user, src))), span_notice(LANG("obj.567c061e", list(src))))
 
 	//if there's any live ammo inside the gun, makes it go off
 	if(blow_up(user))
-		user.visible_message(span_danger("[src] goes off!"), span_danger("[src] goes off in your face!"))
+		user.visible_message(span_danger(LANG("obj.6588413c", list(src))), span_danger(LANG("obj.21e3a05a", list(src))))
 		return
 
 	if(!do_after(user, 3 SECONDS, target = src))
 		return
 	if(sawn_off)
 		return
-	user.visible_message(span_notice("[user] shortens [src]!"), span_notice("You shorten [src]."))
+	user.visible_message(span_notice(LANG("obj.18cf6eb4", list(user, src))), span_notice(LANG("obj.efa85dab", list(src))))
 	sawn_off = TRUE
 	SEND_SIGNAL(src, COMSIG_GUN_SAWN_OFF)
 	if(!handle_modifications)
@@ -847,18 +848,18 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		return
 
 	if(!user.is_holding(src))
-		balloon_alert(user, "hold to modify!")
+		balloon_alert(user, LANG("obj.0be2eeb5", null))
 		return TRUE
 
 	if(get_ammo())
-		balloon_alert(user, "can't modify while loaded!")
+		balloon_alert(user, LANG("obj.1cc1685f", null))
 		return
 
 	if(!bolt_locked && bolt_type == BOLT_TYPE_LOCKING)
-		balloon_alert(user, "the bolt is in the way!")
+		balloon_alert(user, LANG("obj.869bac60", null))
 		return
 
-	balloon_alert(user, "tinkering...")
+	balloon_alert(user, LANG("obj.dc35a5f3", null))
 	I.play_tool_sound(src)
 	if(!I.use_tool(src, user, 3 SECONDS))
 		return TRUE
@@ -868,13 +869,13 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		if(alternative_ammo_misfires)
 			can_misfire = TRUE
 		fire_sound = alternative_fire_sound
-		to_chat(user, span_notice("You modify [src]. Now it will fire [alternative_caliber] rounds."))
+		to_chat(user, span_notice(LANG("obj.116558cc", list(src, alternative_caliber))))
 	else
 		magazine.caliber = initial_caliber
 		if(alternative_ammo_misfires)
 			can_misfire = FALSE
 		fire_sound = initial_fire_sound
-		to_chat(user, span_notice("You reset [src]. Now it will fire [initial_caliber] rounds."))
+		to_chat(user, span_notice(LANG("obj.86bfab70", list(src, initial_caliber))))
 
 ///used for sawing guns, causes the gun to fire without the input of the user
 /obj/item/gun/ballistic/proc/blow_up(mob/user)

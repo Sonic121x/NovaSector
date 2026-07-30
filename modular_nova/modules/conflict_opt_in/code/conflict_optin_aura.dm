@@ -23,15 +23,15 @@
 
 /mob/living/proc/show_conflict_opt_in()
 	if(CONFIG_GET(flag/disable_conflict_opt_in_preferences))
-		balloon_alert(src, "conflict opt-in disabled in config")
+		balloon_alert(src, LANG("mob.9a3f0310", null))
 		return FALSE
 	if(!client)
 		return FALSE
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
-		balloon_alert(src, "can't show statuses")
+		balloon_alert(src, LANG("mob.c2ec14c4", null))
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, conflict_opt_in_aura_cooldown))
-		balloon_alert(src, "cooldown! [DisplayTimeText(COOLDOWN_TIMELEFT(src, conflict_opt_in_aura_cooldown))]")
+		balloon_alert(src, LANG("mob.ca72a73e", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, conflict_opt_in_aura_cooldown)))))
 		return FALSE
 
 	clear_conflict_opt_in_auras()
@@ -52,16 +52,16 @@
 			LAZYSET(conflict_opt_in_aura_targets, scanned_mob, aura_key)
 
 	if(!LAZYLEN(conflict_opt_in_aura_targets))
-		balloon_alert(src, "no people in sight.")
+		balloon_alert(src, LANG("mob.b318bcbd", null))
 		return FALSE
 
 	COOLDOWN_START(src, conflict_opt_in_aura_cooldown, CONFLICT_OPT_IN_AURA_COOLDOWN)
 	conflict_opt_in_aura_timer = addtimer(CALLBACK(src, PROC_REF(clear_conflict_opt_in_auras), FALSE), CONFLICT_OPT_IN_AURA_DURATION, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-	balloon_alert(src, "conflict statuses shown")
-	to_chat(src, span_notice("The conflict opt-in is visible now."))
+	balloon_alert(src, LANG("mob.3984f468", null))
+	to_chat(src, span_notice(LANG("mob.29dcdba7", null)))
 	return TRUE
 
-GAME_VERB_DESC(/mob/living, show_conflict_opt_in_verb, "Show Conflict Opt-In", "Display nearby conflict opt-in statuses.", "IC")
+GAME_VERB_DESC(/mob/living, show_conflict_opt_in_verb, "显示冲突加入意向", "Display nearby conflict opt-in statuses.", "IC")
 	show_conflict_opt_in()
 
 /datum/keybinding/living/conflict_opt_in

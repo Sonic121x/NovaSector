@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Halves the basic mob's melee attack cooldown while its health is at or below a threshold, and restores it once recovered.
 /datum/bt_node/ai_behavior/enrage
 	/// Fraction of max health at or below which the mob becomes enraged.
@@ -18,9 +19,9 @@
 		basic_pawn.melee_attack_cooldown = current_cooldown / 2
 
 		if(controller.blackboard_key_exists(BB_CURRENT_TARGET))
-			basic_pawn.visible_message(span_danger("\The [basic_pawn] gets an enraged look at [controller.blackboard[BB_CURRENT_TARGET]]!"))
+			basic_pawn.visible_message(span_danger(LANG("datum.d0016a6e", list(basic_pawn, controller.blackboard[BB_CURRENT_TARGET]))))
 		else
-			basic_pawn.visible_message(span_danger("\The [basic_pawn] gets an enraged look!"))
+			basic_pawn.visible_message(span_danger(LANG("datum.db98787e", list(basic_pawn))))
 		return AI_BEHAVIOR_SUCCEEDED
 
 	if(!low_health && is_enraged)

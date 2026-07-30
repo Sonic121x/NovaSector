@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /* When adding a new lawset please make sure you add it to the following locations:
  *
  * code\game\objects\items\AI_modules - (full_lawsets.dm, supplied.dm, etc.)
@@ -19,7 +20,7 @@
 
 /obj/item/ai_module/law/core/full/asimov/configure(mob/user)
 	. = TRUE
-	var/targName = tgui_input_text(user, "Enter a new subject that Asimov is concerned with.", "Asimov", subject, max_length = MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, LANG("obj.37449d33", null), LANG("obj.23f74816", null), subject, max_length = MAX_NAME_LEN)
 	if(!targName || !user.is_holding(src))
 		return
 	subject = targName
@@ -34,7 +35,7 @@
 
 /obj/item/ai_module/law/core/full/asimovpp/configure(mob/user)
 	. = TRUE
-	var/target_name = tgui_input_text(user, "Enter a new subject that Asimov++ is concerned with.", "Asimov++", subject, max_length = MAX_NAME_LEN)
+	var/target_name = tgui_input_text(user, LANG("obj.48190ee3", null), LANG("obj.9dbc23c0", null), subject, max_length = MAX_NAME_LEN)
 	if(!target_name || !user.is_holding(src))
 		return
 	laws.Cut()

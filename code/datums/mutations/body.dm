@@ -780,12 +780,12 @@
 
 	if(owner.nutrition <= nutrition_threshold)
 		if(IS_UNCONSCIOUS(owner) && !notified_of_ability)
-			to_chat(owner, span_green("You feel a strange tingling, as if your body is trying to do something - though you feel like you could use a meal first."))
+			to_chat(owner, span_green(LANG("datum.3b05fe7c", null)))
 			notified_of_ability = TRUE
 		return
 	if(!IS_UNCONSCIOUS(owner))
 		if(owner.nutrition > nutrition_threshold && !notified_of_ability)
-			to_chat(owner, span_green("You feel a strange tingling, as if your body is trying to do something - though you feel like you could use a nap first."))
+			to_chat(owner, span_green(LANG("datum.f8392502", null)))
 			notified_of_ability = TRUE
 		return
 
@@ -796,13 +796,13 @@
 			var/replacement_type = owner.dna.species.get_mutant_organ_type_for_slot(pick(missing_important_organs))
 			var/obj/item/organ/replacement = new replacement_type()
 			replacement.Insert(owner, special = TRUE)
-			to_chat(owner, span_green("The tingingling feeling builds to a climax, until ultimately you feel a new [replacement] where your old one was!"))
+			to_chat(owner, span_green(LANG("datum.92040747", list(replacement))))
 		else
 			var/replacing_zone = pick(missing_limbs)
 			owner.regenerate_limb(replacing_zone)
 			var/obj/item/bodypart/replacement = owner.get_bodypart(replacing_zone)
-			to_chat(owner, span_green("The tingling feeling builds to a climax, until ultimately you feel a new [replacement.plaintext_zone] where your old one was!"))
-			owner.visible_message(span_warning("[owner]'s [replacement.plaintext_zone] reforms, making a loud, grotesque sound!"), ignored_mobs = list(owner))
+			to_chat(owner, span_green(LANG("datum.ae3d60fa", list(replacement.plaintext_zone))))
+			owner.visible_message(span_warning(LANG("datum.36b6e280", list(owner, replacement.plaintext_zone))), ignored_mobs = list(owner))
 		owner.adjust_nutrition(-NUTRITION_LEVEL_FULL * 0.5 * GET_MUTATION_SYNCHRONIZER(src))
 		playsound(owner, 'sound/effects/magic/demon_consume.ogg', 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		return
@@ -812,9 +812,9 @@
 		var/replacement_type = pick(missing_special_organs)
 		var/obj/item/organ/replacement = new replacement_type()
 		replacement.Insert(owner, special = TRUE)
-		to_chat(owner, span_green("The tingling feeling builds to a climax, until ultimately you feel a new [replacement] where your old one was!"))
+		to_chat(owner, span_green(LANG("datum.ae3d60fa", list(replacement))))
 		if(replacement.organ_flags & ORGAN_EXTERNAL)
-			owner.visible_message(span_warning("[owner]'s [replacement] reforms, making a loud, grotesque sound!"), ignored_mobs = list(owner))
+			owner.visible_message(span_warning(LANG("datum.36b6e280", list(owner, replacement))), ignored_mobs = list(owner))
 		owner.adjust_nutrition(-NUTRITION_LEVEL_FULL * 0.3 * GET_MUTATION_SYNCHRONIZER(src))
 		playsound(owner, 'sound/effects/magic/demon_consume.ogg', 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		return

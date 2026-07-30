@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /*
 Slimecrossing Potions
 	Potions added by the slimecrossing system.
@@ -15,18 +16,18 @@ Slimecrossing Potions
 	if(. & ITEM_INTERACT_ANY_BLOCKER)
 		return .
 	if(istype(interacting_with, /obj/item/slimecross))
-		to_chat(user, span_warning("[interacting_with] is too complex for the potion to clone!"))
+		to_chat(user, span_warning(LANG("obj.478d3464", list(interacting_with))))
 		return ITEM_INTERACT_BLOCKING
 	if(!istype(interacting_with, /obj/item/slime_extract))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/slime_extract/S = interacting_with
 	if(S.recurring)
-		to_chat(user, span_warning("[interacting_with] is too complex for the potion to clone!"))
+		to_chat(user, span_warning(LANG("obj.478d3464", list(interacting_with))))
 		return ITEM_INTERACT_BLOCKING
 	var/path = S.type
 	var/obj/item/slime_extract/C = new path(get_turf(interacting_with))
 	C.extract_uses = S.extract_uses
-	to_chat(user, span_notice("You pour the potion onto [interacting_with], and the fluid solidifies into a copy of it!"))
+	to_chat(user, span_notice(LANG("obj.3292d3af", list(interacting_with))))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -42,24 +43,24 @@ Slimecrossing Potions
 		return .
 	var/mob/living/peace_target = interacting_with
 	if(!isliving(peace_target) || peace_target.stat == DEAD)
-		to_chat(user, span_warning("[src] only works on the living."))
+		to_chat(user, span_warning(LANG("obj.4f4e6667", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(ismegafauna(peace_target))
-		to_chat(user, span_warning("[src] does not work on beings of pure evil!"))
+		to_chat(user, span_warning(LANG("obj.45e49c00", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(peace_target != user)
-		peace_target.visible_message(span_danger("[user] starts to feed [peace_target] [src]!"),
-			span_userdanger("[user] starts to feed you [src]!"))
+		peace_target.visible_message(span_danger(LANG("obj.20a8029d", list(user, peace_target, src))),
+			span_userdanger(LANG("obj.d34eedb4", list(user, src))))
 	else
-		peace_target.visible_message(span_danger("[user] starts to drink [src]!"),
-			span_danger("You start to drink [src]!"))
+		peace_target.visible_message(span_danger(LANG("obj.5d249f52", list(user, src))),
+			span_danger(LANG("obj.0be85a3b", list(src))))
 
 	if(!do_after(user, 10 SECONDS, target = peace_target))
 		return ITEM_INTERACT_BLOCKING
 	if(peace_target != user)
-		to_chat(user, span_notice("You feed [peace_target] [src]!"))
+		to_chat(user, span_notice(LANG("obj.bf92cde6", list(peace_target, src))))
 	else
-		to_chat(user, span_warning("You drink [src]!"))
+		to_chat(user, span_warning(LANG("obj.36fa520a", list(src))))
 	if(isanimal_or_basicmob(peace_target))
 		ADD_TRAIT(peace_target, TRAIT_PACIFISM, MAGIC_TRAIT)
 	else if(iscarbon(peace_target))
@@ -80,25 +81,25 @@ Slimecrossing Potions
 		return .
 	var/mob/living/love_target = interacting_with
 	if(!isliving(love_target) || love_target.stat == DEAD)
-		to_chat(user, span_warning("The love potion only works on living things, sicko!"))
+		to_chat(user, span_warning(LANG("obj.eba29c4a", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(ismegafauna(love_target))
-		to_chat(user, span_warning("The love potion does not work on beings of pure evil!"))
+		to_chat(user, span_warning(LANG("obj.e1b9e7cb", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(user == love_target)
-		to_chat(user, span_warning("You can't drink the love potion. What are you, a narcissist?"))
+		to_chat(user, span_warning(LANG("obj.ab5cb1cc", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(love_target.has_status_effect(/datum/status_effect/in_love))
-		to_chat(user, span_warning("[love_target] is already lovestruck!"))
+		to_chat(user, span_warning(LANG("obj.1339ea17", list(love_target))))
 		return ITEM_INTERACT_BLOCKING
 
-	love_target.visible_message(span_danger("[user] starts to feed [love_target] a love potion!"),
-		span_userdanger("[user] starts to feed you a love potion!"))
+	love_target.visible_message(span_danger(LANG("obj.61a936f4", list(user, love_target))),
+		span_userdanger(LANG("obj.c8572f3a", list(user))))
 
 	if(!do_after(user, 5 SECONDS, target = love_target))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You feed [love_target] the love potion!"))
-	to_chat(love_target, span_notice("You develop feelings for [user], and anyone [user.p_they()] like[user.p_s()]."))
+	to_chat(user, span_notice(LANG("obj.6aa52c23", list(love_target))))
+	to_chat(love_target, span_notice(LANG("obj.9d4040aa", list(user, user.p_they(), user.p_s()))))
 	love_target.add_ally(user)
 	love_target.apply_status_effect(/datum/status_effect/in_love, user)
 	qdel(src)
@@ -120,15 +121,15 @@ Slimecrossing Potions
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/clothing/clothing = interacting_with
 	if(!istype(clothing))
-		to_chat(user, span_warning("The potion can only be used on clothing!"))
+		to_chat(user, span_warning(LANG("obj.a29bdeb8", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(istype(clothing, /obj/item/clothing/suit/space))
-		to_chat(user, span_warning("The [interacting_with] is already pressure-resistant!"))
+		to_chat(user, span_warning(LANG("obj.4e50bdaa", list(interacting_with))))
 		return ITEM_INTERACT_BLOCKING
 	if(clothing.min_cold_protection_temperature == SPACE_SUIT_MIN_TEMP_PROTECT && (clothing.clothing_flags & STOPSPRESSUREDAMAGE))
-		to_chat(user, span_warning("The [interacting_with] is already pressure-resistant!"))
+		to_chat(user, span_warning(LANG("obj.4e50bdaa", list(interacting_with))))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You slather the blue gunk over the [clothing], making it airtight."))
+	to_chat(user, span_notice(LANG("obj.7f9d572a", list(clothing))))
 	clothing.name = "pressure-resistant [clothing.name]"
 	clothing.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	clothing.add_atom_colour(color_transition_filter(COLOR_NAVY, SATURATION_OVERRIDE), FIXED_COLOUR_PRIORITY)
@@ -162,11 +163,11 @@ Slimecrossing Potions
 		qdel(src)
 		return ITEM_INTERACT_BLOCKING
 	if(!isitem(interacting_with))
-		to_chat(user, span_warning("You can't coat this with lavaproofing fluid!"))
+		to_chat(user, span_warning(LANG("obj.5e40a3d7", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/clothing = interacting_with
-	to_chat(user, span_notice("You slather the red gunk over the [clothing], making it lavaproof."))
+	to_chat(user, span_notice(LANG("obj.e3b2b4ee", list(clothing))))
 	clothing.name = "lavaproof [clothing.name]"
 	clothing.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	clothing.add_atom_colour(color_transition_filter(COLOR_MAROON, SATURATION_OVERRIDE), FIXED_COLOUR_PRIORITY)
@@ -192,17 +193,17 @@ Slimecrossing Potions
 		return .
 	var/mob/living/basic/slime/revive_target = interacting_with
 	if(!isslime(revive_target))
-		to_chat(user, span_warning("The potion only works on slimes!"))
+		to_chat(user, span_warning(LANG("obj.c5a061c0", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(revive_target.stat != DEAD)
-		to_chat(user, span_warning("The slime is still alive!"))
+		to_chat(user, span_warning(LANG("obj.ebe8d7b1", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(revive_target.maxHealth <= 0)
-		to_chat(user, span_warning("The slime is too unstable to return!"))
+		to_chat(user, span_warning(LANG("obj.b11bebe8", null)))
 		return ITEM_INTERACT_BLOCKING
 	user.do_attack_animation(interacting_with)
 	revive_target.revive(HEAL_ALL)
-	revive_target.visible_message(span_notice("[revive_target] is filled with renewed vigor and blinks awake!"))
+	revive_target.visible_message(span_notice(LANG("obj.099b92cd", list(revive_target))))
 	revive_target.maxHealth -= 10 //Revival isn't healthy.
 	revive_target.health -= 10
 	revive_target.regenerate_icons()
@@ -217,13 +218,13 @@ Slimecrossing Potions
 
 /obj/item/slimepotion/slime/chargedstabilizer/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
 	if(IS_UNCONSCIOUS_OR_CRIT(interacting_slime))
-		to_chat(user, span_warning("The slime is dead!"))
+		to_chat(user, span_warning(LANG("obj.8820e387", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_slime.mutation_chance == 0)
-		to_chat(user, span_warning("The slime already has no chance of mutating!"))
+		to_chat(user, span_warning(LANG("obj.8bb933d2", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You feed the slime the omnistabilizer. It will not mutate this cycle!"))
+	to_chat(user, span_notice(LANG("obj.79155b64", null)))
 	interacting_slime.mutation_chance = 0
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

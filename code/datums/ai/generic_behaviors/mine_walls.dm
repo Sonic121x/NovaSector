@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Searches for a nearby mineral wall the pawn can mine and sets the target key.
 /datum/bt_node/ai_behavior/find_mineral_wall
 	time_between_perform = 2 SECONDS
@@ -45,7 +46,7 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	INVOKE_ASYNC(controller, TYPE_PROC_REF(/datum/ai_controller, ai_interact), target)
 	if(istype(target, /turf/closed/mineral/gibtonite))
-		living_pawn.manual_emote("sighs...")
+		living_pawn.manual_emote(LANG("datum.141bbf32", null))
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/bt_node/ai_behavior/mine_wall/finish_action(datum/ai_controller/controller, succeeded)

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/toy/xmas_cracker
 	name = "xmas cracker"
 	icon = 'icons/obj/holiday/christmas.dmi'
@@ -9,7 +10,7 @@
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
 	if( !cracked && ishuman(target) && (!IS_UNCONSCIOUS_OR_CRIT(target)) && !target.get_active_held_item() )
-		target.visible_message(span_notice("[user] and [target] pop \an [src]! *pop*"), span_notice("You pull \an [src] with [target]! *pop*"), span_hear("You hear a pop."))
+		target.visible_message(span_notice(LANG("obj.5246022f", list(user, target, src))), span_notice(LANG("obj.0a192efd", list(src, target))), span_hear(LANG("obj.445a50ea", null)))
 		var/obj/item/paper/joke_paper = new /obj/item/paper(user.loc)
 		joke_paper.name = "[pick("awful","terrible","unfunny")] joke"
 		joke_paper.add_raw_text(pick("What did one snowman say to the other?\n\n<i>'Is it me or can you smell carrots?'</i>",

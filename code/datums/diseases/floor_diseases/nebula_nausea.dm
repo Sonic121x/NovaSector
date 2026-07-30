@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Caused by dirty food. Makes you vomit stars.
 /datum/disease/nebula_nausea
 	name = "Nebula Nausea"
@@ -21,15 +22,15 @@
 	switch(stage)
 		if(2)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				to_chat(affected_mob, span_warning("The colorful beauty of the cosmos seems to have taken a toll on your equilibrium."))
+				to_chat(affected_mob, span_warning(LANG("datum.70ef4301", null)))
 		if(3)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				to_chat(affected_mob, span_warning("Your stomach swirls with colors unseen by human eyes."))
+				to_chat(affected_mob, span_warning(LANG("datum.9b18ac77", null)))
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				to_chat(affected_mob, span_warning("It feels like you're floating through a maelstrom of celestial colors."))
+				to_chat(affected_mob, span_warning(LANG("datum.424bbd67", null)))
 		if(5)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				to_chat(affected_mob, span_warning("Your stomach has become a turbulent nebula, swirling with kaleidoscopic patterns."))
+				to_chat(affected_mob, span_warning(LANG("datum.439ead15", null)))
 			else
 				affected_mob.vomit(vomit_flags = (MOB_VOMIT_MESSAGE | MOB_VOMIT_HARM), vomit_type = /obj/effect/decal/cleanable/vomit/nebula, lost_nutrition = 10, distance = 2)

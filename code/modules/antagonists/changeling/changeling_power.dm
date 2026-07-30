@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /*
  * Don't use the apostrophe in name or desc. Causes script errors.//probably no longer true
  */
@@ -70,7 +71,7 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 	if(!can_sting(user, target))
 		return FALSE
 	if(disabled_by_fire && user.fire_stacks && user.on_fire)
-		user.balloon_alert(user, "on fire!")
+		user.balloon_alert(user, LANG("datum.30bf3724", null))
 		return FALSE
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(sting_action(user, target))
@@ -94,19 +95,19 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 		return FALSE
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(changeling.chem_charges < chemical_cost)
-		user.balloon_alert(user, "needs [chemical_cost] chemicals!")
+		user.balloon_alert(user, LANG("datum.a9531cb9", list(chemical_cost)))
 		return FALSE
 	if(changeling.absorbed_count < req_dna)
-		user.balloon_alert(user, "needs [req_dna] dna sample\s!")
+		user.balloon_alert(user, LANG("datum.7c03fca3", list(req_dna)))
 		return FALSE
 	if(changeling.true_absorbs < req_absorbs)
-		user.balloon_alert(user, "needs [req_absorbs] absorption\s!")
+		user.balloon_alert(user, LANG("datum.0f38abe9", list(req_absorbs)))
 		return FALSE
 	if(req_stat < IS_UNCONSCIOUS_OR_CRIT(user) || (req_stat == STABLE && IS_UNCONSCIOUS(user)))
-		user.balloon_alert(user, "incapacitated!")
+		user.balloon_alert(user, LANG("datum.7ac2788b", null))
 		return FALSE
 	if((HAS_TRAIT(user, TRAIT_DEATHCOMA)) && (!ignores_fakedeath))
-		user.balloon_alert(user, "playing dead!")
+		user.balloon_alert(user, LANG("datum.aee0285f", null))
 		return FALSE
 	return TRUE
 
@@ -116,6 +117,6 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 	if(!ishuman(user))
 		return FALSE
 	if(req_human && ismonkey(user))
-		user.balloon_alert(user, "become human!")
+		user.balloon_alert(user, LANG("datum.aa92d828", null))
 		return FALSE
 	return TRUE

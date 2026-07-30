@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/borg/apparatus
 	name = "unknown storage apparatus"
 	desc = "This device seems nonfunctional."
@@ -32,7 +33,7 @@
 	return ..()
 
 ///A right-click verb, for those not using hotkey mode.
-GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
+GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "丢下", null)
 
 	if(usr != loc || !stored)
 		return
@@ -123,14 +124,14 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 	. = ..()
 	if(stored)
 		var/obj/item/reagent_containers/reagent_container = stored
-		. += "The apparatus currently has [reagent_container] secured, which contains:"
+		. += LANG("obj.f7a54f73", list(reagent_container))
 		if(length(reagent_container.reagents.reagent_list))
 			for(var/datum/reagent/reagent in reagent_container.reagents.reagent_list)
 				. += "[reagent.volume] units of [reagent.name]"
 		else
-			. += "Nothing."
+			. += LANG("obj.aa75d156", null)
 
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored beaker. ")
+	. += span_notice(LANG("obj.e9890590", null))
 
 /obj/item/borg/apparatus/beaker/update_overlays()
 	. = ..()
@@ -227,21 +228,21 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 
 /obj/item/borg/apparatus/organ_storage/examine()
 	. = ..()
-	. += "The organ bag currently contains:"
+	. += LANG("obj.a905d5d1", null)
 	if(stored)
 		var/obj/item/organ = stored
 		. += organ.name
 	else
-		. += "Nothing."
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored organ. ")
+		. += LANG("obj.aa75d156", null)
+	. += span_notice(LANG("obj.847f9513", null))
 
 /obj/item/borg/apparatus/organ_storage/click_alt(mob/living/silicon/robot/user)
 	if(!stored)
-		to_chat(user, span_notice("[src] is empty."))
+		to_chat(user, span_notice(LANG("obj.ab993876", list(src))))
 		return CLICK_ACTION_BLOCKING
 
 	var/obj/item/organ = stored
-	user.visible_message(span_notice("[user] dumps [organ] from [src]."), span_notice("You dump [organ] from [src]."))
+	user.visible_message(span_notice(LANG("obj.9933dc27", list(user, organ, src))), span_notice(LANG("obj.9d3802a3", list(organ, src))))
 	organ.forceMove(drop_location())
 	return CLICK_ACTION_SUCCESS
 
@@ -278,8 +279,8 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 /obj/item/borg/apparatus/sheet_manipulator/examine()
 	. = ..()
 	if(stored)
-		. += "The apparatus currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored sheets. ")
+		. += LANG("obj.929ca228", list(stored))
+	. += span_notice(LANG("obj.9b0c73e2", null))
 
 ///Apparatus allowing Engineer/Sabo borgs to manipulate circuit boards and more
 /obj/item/borg/apparatus/engineering
@@ -328,19 +329,19 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 /obj/item/borg/apparatus/engineering/examine()
 	. = ..()
 	if(stored)
-		. += "The apparatus currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored item. ")
+		. += LANG("obj.929ca228", list(stored))
+	. += span_notice(LANG("obj.a9c007ab", null))
 
 /obj/item/borg/apparatus/engineering/pre_attack(atom/atom, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(atom, /obj/item/ai_module/law) && !stored) //If an admin wants a borg to upload laws, who am I to stop them? Otherwise, we can hint that it fails
-		to_chat(user, span_warning("This circuit board doesn't seem to have standard robot apparatus pin holes. You're unable to pick it up."))
+		to_chat(user, span_warning(LANG("obj.d3e4aec4", null)))
 		return TRUE
 	return ..()
 
 // stops them from cell interactions with other borgos
 /obj/item/borg/apparatus/engineering/interact_with_atom(atom/movable/interacting_with, mob/living/user, list/modifiers)
 	if(iscyborg(user) && iscyborg(interacting_with))
-		balloon_alert(user, "your manipulator isn't dexterous enough to interact with this properly.")
+		balloon_alert(user, LANG("obj.8b21d685", null))
 		return ITEM_INTERACT_FAILURE
 
 /obj/item/borg/apparatus/service
@@ -379,5 +380,5 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 /obj/item/borg/apparatus/service/examine()
 	. = ..()
 	if(stored)
-		. += "The apparatus currently has [stored] secured."
-	. += span_notice("<i>Alt-click</i> will drop the currently secured item.")
+		. += LANG("obj.929ca228", list(stored))
+	. += span_notice(LANG("obj.47397b29", null))

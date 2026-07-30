@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 //His Grace is a very special weapon granted only to traitor chaplains.
 //When awakened, He thirsts for blood and begins ticking a "bloodthirst" counter.
 //The wielder of His Grace is immune to stuns and gradually heals.
@@ -40,19 +41,19 @@
 			if(awakened)
 				name = "Her Grace"
 			else if (!ascended)
-				desc = "A toolbox painted bright pink. Looking at it makes you feel uneasy."
+				desc = LANG("obj.36a54b3f", null)
 			icon_state = "pink"
 			inhand_icon_state = "toolbox_pink"
-			T.visible_message(span_boldwarning("[src] starts to look a little... girly?"))
+			T.visible_message(span_boldwarning(LANG("obj.24ae95a0", list(src))))
 		else if(gender == FEMALE)
 			gender = MALE
 			if(awakened)
 				name = "His Grace"
 			else if (!ascended)
-				desc = "A toolbox painted bright green. Looking at it makes you feel uneasy."
+				desc = LANG("obj.1968daf1", null)
 			icon_state = "green"
 			inhand_icon_state = "toolbox_green"
-			T.visible_message(span_boldwarning("[src] begins to look a little more... manly?"))
+			T.visible_message(span_boldwarning(LANG("obj.c61f1291", list(src))))
 		if(holder)
 			holder.remove_status_effect(/datum/status_effect/his_grace)
 		qdel(tool)
@@ -120,24 +121,24 @@
 	if(awakened)
 		switch(bloodthirst)
 			if(HIS_GRACE_SATIATED to HIS_GRACE_PECKISH)
-				. += span_his_grace("[src] isn't very hungry. Not yet.")
+				. += span_his_grace(LANG("obj.018c139b", list(src)))
 			if(HIS_GRACE_PECKISH to HIS_GRACE_HUNGRY)
-				. += span_his_grace("[src] would like a snack.")
+				. += span_his_grace(LANG("obj.f9c249d0", list(src)))
 			if(HIS_GRACE_HUNGRY to HIS_GRACE_FAMISHED)
-				. += span_his_grace("[src] is quite hungry now.")
+				. += span_his_grace(LANG("obj.b53a7cf5", list(src)))
 			if(HIS_GRACE_FAMISHED to HIS_GRACE_STARVING)
-				. += span_his_grace("[src] is openly salivating at the sight of you. Be careful.")
+				. += span_his_grace(LANG("obj.d6f1bcb8", list(src)))
 			if(HIS_GRACE_STARVING to HIS_GRACE_CONSUME_OWNER)
-				. += "<span class='his_grace bold'>You walk a fine line. [src] is very close to devouring you.</span>"
+				. += LANG("obj.c21e081d", list(src))
 			if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
-				. += "<span class='his_grace bold'>[src] is shaking violently and staring directly at you.</span>"
+				. += LANG("obj.cdbff527", list(src))
 	else
-		. += span_his_grace("[src] is latched closed.")
+		. += span_his_grace(LANG("obj.bdd6ec7b", list(src)))
 
 /obj/item/his_grace/relaymove(mob/living/user, direction) //Allows changelings, etc. to climb out of Him after they revive, provided He isn't active
 	if(!awakened)
 		user.forceMove(get_turf(src))
-		user.visible_message(span_warning("[user] scrambles out of [src]!"), span_notice("You climb out of [src]!"))
+		user.visible_message(span_warning(LANG("obj.8c86eea4", list(user, src))), span_notice(LANG("obj.adaf0a2d", list(src))))
 
 /obj/item/his_grace/process(seconds_per_tick)
 	if(!bloodthirst)
@@ -151,7 +152,7 @@
 	if(!isnull(master) && (src in master.held_items))
 		switch(bloodthirst)
 			if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
-				master.visible_message(span_boldwarning("[src] turns on [master]!"), "<span class='his_grace big bold'>[src] turns on you!</span>")
+				master.visible_message(span_boldwarning(LANG("obj.be178b4d", list(src, master))), LANG("obj.8e61e701", list(src)))
 				do_attack_animation(master, null, src)
 				master.emote("scream")
 				master.remove_status_effect(/datum/status_effect/his_grace)
@@ -177,7 +178,7 @@
 	step_to(src, L)
 	if(Adjacent(L))
 		if(!IS_UNCONSCIOUS_OR_CRIT(L))
-			L.visible_message(span_warning("[src] lunges at [L]!"), "<span class='his_grace big bold'>[src] lunges at you!</span>")
+			L.visible_message(span_warning(LANG("obj.7e03b2e8", list(src, L))), LANG("obj.cefb8df6", list(src)))
 			do_attack_animation(L, null, src)
 			playsound(L, 'sound/items/weapons/smash.ogg', 50, TRUE)
 			playsound(L, 'sound/effects/desecration/desecration-01.ogg', 50, TRUE)
@@ -190,9 +191,9 @@
 	if(awakened)
 		return
 	awakened = TRUE
-	user.visible_message(span_boldwarning("[src] begins to rattle. [p_They()] thirsts."), span_his_grace("You flick [src]'s latch up. You hope this is a good idea."))
+	user.visible_message(span_boldwarning(LANG("obj.9d5533d9", list(src, p_They()))), span_his_grace(LANG("obj.86ae4a09", list(src))))
 	name = p_Their() + " Grace"
-	desc = "A bloodthirsty artifact created by a profane rite."
+	desc = LANG("obj.c46609ef", null)
 	adjust_bloodthirst(1)
 	force_bonus = HIS_GRACE_FORCE_BONUS * LAZYLEN(contents)
 	notify_ghosts(
@@ -216,13 +217,13 @@
 	if(!awakened || ascended)
 		return
 	var/turf/T = get_turf(src)
-	T.visible_message(span_boldwarning("[src] slowly stops rattling and falls still, [p_Their()] latch snapping shut."))
+	T.visible_message(span_boldwarning(LANG("obj.f57f688d", list(src, p_Their()))))
 	playsound(loc, 'sound/items/weapons/batonextend.ogg', 100, TRUE)
 	name = initial(name)
 	if(gender == MALE)
-		desc = "A toolbox painted bright green. Looking at it makes you feel uneasy."
+		desc = LANG("obj.1968daf1", null)
 	else if (gender == FEMALE)
-		desc = "A toolbox painted bright pink. Looking at it makes you feel uneasy."
+		desc = LANG("obj.36a54b3f", null)
 	animate(src, transform=matrix())
 	force = initial(force)
 	force_bonus = initial(force_bonus)
@@ -234,7 +235,7 @@
 	if(!meal)
 		return
 	var/victims = 0
-	meal.visible_message(span_warning("[src] swings open and devours [meal]!"), "<span class='his_grace big bold'>[src] consumes you!</span>")
+	meal.visible_message(span_warning(LANG("obj.df2b90f8", list(src, meal))), LANG("obj.296e7c78", list(src)))
 	meal.adjust_brute_loss(200)
 	playsound(meal, 'sound/effects/desecration/desecration-02.ogg', 75, TRUE)
 	playsound(src, 'sound/items/eatfood.ogg', 100, TRUE)
@@ -268,36 +269,33 @@
 	switch(bloodthirst)
 		if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
 			if(HIS_GRACE_CONSUME_OWNER > prev_bloodthirst)
-				master.visible_message(span_userdanger("[src] enters a frenzy!"))
+				master.visible_message(span_userdanger(LANG("obj.c0a57895", list(src))))
 		if(HIS_GRACE_STARVING to HIS_GRACE_CONSUME_OWNER)
 			ADD_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 			if(HIS_GRACE_STARVING > prev_bloodthirst)
-				master.visible_message(span_boldwarning("[src] is starving!"), "<span class='his_grace big'>[src]'s bloodlust overcomes you. [src] must be fed, or you will become [p_Their()] meal.\
-				[force_bonus < 15 ? " And still, [p_Their()] power grows.":""]</span>")
+				master.visible_message(span_boldwarning(LANG("obj.769e0058", list(src))), LANG("obj.fd635dbb", list(src, src, p_Their(), force_bonus < 15 ? " And still, [p_Their()] power grows.":"")))
 				force_bonus = max(force_bonus, 15)
 		if(HIS_GRACE_FAMISHED to HIS_GRACE_STARVING)
 			ADD_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 			if(HIS_GRACE_FAMISHED > prev_bloodthirst)
-				master.visible_message(span_warning("[src] is very hungry!"), "<span class='his_grace big'>Spines sink into your hand. [src] must feed immediately.\
-				[force_bonus < 10 ? " [p_Their()] power grows.":""]</span>")
+				master.visible_message(span_warning(LANG("obj.3d356258", list(src))), LANG("obj.27773287", list(src, force_bonus < 10 ? " [p_Their()] power grows.":"")))
 				force_bonus = max(force_bonus, 10)
 			if(prev_bloodthirst >= HIS_GRACE_STARVING)
-				master.visible_message(span_warning("[src] is now only very hungry!"), "<span class='his_grace big'>Your bloodlust recedes.</span>")
+				master.visible_message(span_warning(LANG("obj.6ef817e2", list(src))), LANG("obj.3a0ccdaf", null))
 		if(HIS_GRACE_HUNGRY to HIS_GRACE_FAMISHED)
 			if(HIS_GRACE_HUNGRY > prev_bloodthirst)
-				master.visible_message(span_warning("[src] is getting hungry."), "<span class='his_grace big'>You feel [src]'s hunger within you.\
-				[force_bonus < 5 ? " [p_Their()] power grows.":""]</span>")
+				master.visible_message(span_warning(LANG("obj.15e37d5d", list(src))), LANG("obj.92d55e4d", list(src, force_bonus < 5 ? " [p_Their()] power grows.":"")))
 				force_bonus = max(force_bonus, 5)
 			if(prev_bloodthirst >= HIS_GRACE_FAMISHED)
-				master.visible_message(span_warning("[src] is now only somewhat hungry."), span_his_grace("[src]'s hunger recedes a little..."))
+				master.visible_message(span_warning(LANG("obj.2673a1b3", list(src))), span_his_grace(LANG("obj.32aefbe1", list(src))))
 		if(HIS_GRACE_PECKISH to HIS_GRACE_HUNGRY)
 			if(HIS_GRACE_PECKISH > prev_bloodthirst)
-				master.visible_message(span_warning("[src] is feeling snackish."), span_his_grace("[src] begins to hunger."))
+				master.visible_message(span_warning(LANG("obj.8860bbd3", list(src))), span_his_grace(LANG("obj.08a2a2ef", list(src))))
 			if(prev_bloodthirst >= HIS_GRACE_HUNGRY)
-				master.visible_message(span_warning("[src] is now only a little peckish."), "<span class='his_grace big'>[src]'s hunger recedes somewhat...</span>")
+				master.visible_message(span_warning(LANG("obj.84eeaac9", list(src))), LANG("obj.c3e81d3e", list(src)))
 		if(HIS_GRACE_SATIATED to HIS_GRACE_PECKISH)
 			if(prev_bloodthirst >= HIS_GRACE_PECKISH)
-				master.visible_message(span_warning("[src] is satiated."), "<span class='his_grace big'>[src]'s hunger recedes...</span>")
+				master.visible_message(span_warning(LANG("obj.a3c2548e", list(src))), LANG("obj.b36dd6f9", list(src)))
 	force = initial(force) + force_bonus
 
 /obj/item/his_grace/proc/ascend()
@@ -305,12 +303,12 @@
 		return
 	var/mob/living/carbon/human/master = loc
 	force_bonus += ascend_bonus
-	desc = "A legendary toolbox and a distant artifact from The Age of Three Powers. On its three latches engraved are the words \"The Sun\", \"The Moon\", and \"The Stars\". The entire toolbox has the words \"The World\" engraved into its sides."
+	desc = LANG("obj.19ac9e28", null)
 	ascended = TRUE
 	update_appearance()
 	playsound(src, 'sound/effects/his_grace/his_grace_ascend.ogg', 100)
 	if(istype(master))
 		master.update_held_items()
-		master.visible_message("<span class='his_grace big bold'>Gods will be watching.</span>")
+		master.visible_message(LANG("obj.52de973b", null))
 		name = "[master]'s mythical toolbox of three powers"
 		master.client?.give_award(/datum/award/achievement/misc/ascension, master)

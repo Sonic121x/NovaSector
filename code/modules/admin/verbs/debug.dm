@@ -1,4 +1,5 @@
-ADMIN_VERB(toggle_game_debug, R_DEBUG, "Debug-Game", "Toggles game debugging.", ADMIN_CATEGORY_DEBUG)
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+ADMIN_VERB(toggle_game_debug, R_DEBUG, "调试-游戏", "Toggles game debugging.", ADMIN_CATEGORY_DEBUG)
 	GLOB.debugging_enabled = !GLOB.debugging_enabled
 	var/message = "toggled debugging [(GLOB.debugging_enabled ? "ON" : "OFF")]"
 	message_admins("[key_name_admin(user)] [message].")
@@ -6,19 +7,19 @@ ADMIN_VERB(toggle_game_debug, R_DEBUG, "Debug-Game", "Toggles game debugging.", 
 	BLACKBOX_LOG_ADMIN_VERB("Toggle Debug Two")
 
 ADMIN_VERB_VISIBILITY(air_status, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(air_status, R_DEBUG, "Air Status In Location", "Gets the air status for your current turf.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(air_status, R_DEBUG, "所在位置空气状态", "Gets the air status for your current turf.", ADMIN_CATEGORY_DEBUG)
 	var/turf/user_turf = get_turf(user.mob)
 	if(!isturf(user_turf))
 		return
 	atmos_scan(user.mob, user_turf, silent = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Air Status In Location")
 
-ADMIN_VERB(cmd_admin_robotize, R_FUN, "Make Cyborg", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/target)
+ADMIN_VERB(cmd_admin_robotize, R_FUN, "制造赛博格", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/target)
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(user, "Wait until the game starts")
+		tgui_alert(user, LANG("datum.f838a6c3", null))
 		return
 	if(issilicon(target))
-		tgui_alert(user, "They are already a cyborg.")
+		tgui_alert(user, LANG("datum.bef9f2e8", null))
 		return
 	log_admin("[key_name(user)] has robotized [target.key].")
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, Robotize))
@@ -31,13 +32,13 @@ ADMIN_VERB(cmd_admin_robotize, R_FUN, "Make Cyborg", ADMIN_VERB_NO_DESCRIPTION, 
 	if(!length(types))
 		return
 
-	var/key = input(usr, "Choose an object to delete.", "Delete:") as null|anything in sort_list(types)
+	var/key = input(usr, LANG("client.794af202", null), "Delete:") as null|anything in sort_list(types)
 
 	if(!key)
 		return
 	return types[key]
 
-ADMIN_VERB(cmd_del_all, R_DEBUG|R_SPAWN, "Del-All", "Delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(cmd_del_all, R_DEBUG|R_SPAWN, "删除全部", "Delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG, object as text)
 	var/type_to_del = user.poll_type_to_del(object)
 	if(!type_to_del)
 		return
@@ -52,7 +53,7 @@ ADMIN_VERB(cmd_del_all, R_DEBUG|R_SPAWN, "Del-All", "Delete all datums with the 
 	message_admins("[key_name_admin(user)] has deleted all ([counter]) instances of [type_to_del].")
 	BLACKBOX_LOG_ADMIN_VERB("Delete All")
 
-ADMIN_VERB(cmd_del_all_force, R_DEBUG|R_SPAWN, "Force-Del-All", "Forcibly delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(cmd_del_all_force, R_DEBUG|R_SPAWN, "强制删除全部", "Forcibly delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG, object as text)
 	var/type_to_del = user.poll_type_to_del(object)
 	if(!type_to_del)
 		return
@@ -67,21 +68,21 @@ ADMIN_VERB(cmd_del_all_force, R_DEBUG|R_SPAWN, "Force-Del-All", "Forcibly delete
 	message_admins("[key_name_admin(user)] has force-deleted all ([counter]) instances of [type_to_del].")
 	BLACKBOX_LOG_ADMIN_VERB("Force-Delete All")
 
-ADMIN_VERB(cmd_del_all_hard, R_DEBUG|R_SPAWN, "Hard-Del-All", "Hard delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(cmd_del_all_hard, R_DEBUG|R_SPAWN, "硬删除全部", "Hard delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG, object as text)
 	var/type_to_del = user.poll_type_to_del(object)
 	if(!type_to_del)
 		return
 
-	var/choice = alert(user, "ARE YOU SURE that you want to hard delete this type? It will cause MASSIVE lag.", "Hoooo lad what happen?", "Yes", "No")
+	var/choice = alert(user, LANG("datum.010bcc1f", null), "Hoooo lad what happen?", "Yes", "No")
 	if(choice != "Yes")
 		return
 
-	choice = alert(user, "Do you want to pre qdelete the atom? This will speed things up significantly, but may break depending on your level of fuckup.", "How do you even get it that bad", "Yes", "No")
+	choice = alert(user, LANG("datum.9913e52e", null), "How do you even get it that bad", "Yes", "No")
 	var/should_pre_qdel = TRUE
 	if(choice == "No")
 		should_pre_qdel = FALSE
 
-	choice = alert(user, "Ok one last thing, do you want to yield to the game? or do it all at once. These are hard deletes remember.", "Jesus christ man", "Yield", "Ignore the server")
+	choice = alert(user, LANG("datum.feda24f1", null), "Jesus christ man", "Yield", "Ignore the server")
 	var/should_check_tick = TRUE
 	if(choice == "Ignore the server")
 		should_check_tick = FALSE
@@ -107,16 +108,16 @@ ADMIN_VERB(cmd_del_all_hard, R_DEBUG|R_SPAWN, "Hard-Del-All", "Hard delete all d
 	message_admins("[key_name_admin(user)] has hard deleted all ([counter]) instances of [type_to_del].")
 	BLACKBOX_LOG_ADMIN_VERB("Hard Delete All")
 
-ADMIN_VERB(cmd_debug_make_powernets, R_DEBUG|R_SERVER, "Make Powernets", "Regenerates all powernets for all cables.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(cmd_debug_make_powernets, R_DEBUG|R_SERVER, "生成电网", "Regenerates all powernets for all cables.", ADMIN_CATEGORY_DEBUG)
 	SSmachines.makepowernets()
 	log_admin("[key_name(user)] has remade the powernet. makepowernets() called.")
 	message_admins("[key_name_admin(user)] has remade the powernets. makepowernets() called.")
 	BLACKBOX_LOG_ADMIN_VERB("Make Powernets")
 
 ADMIN_VERB_VISIBILITY(cmd_admin_grantfullaccess, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "Grant Full Access", "Grant full access to a mob.", ADMIN_CATEGORY_DEBUG, mob/M)
+ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "授予全部权限", "Grant full access to a mob.", ADMIN_CATEGORY_DEBUG, mob/M)
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(user, "Wait until the game starts")
+		tgui_alert(user, LANG("datum.f838a6c3", null))
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -150,17 +151,17 @@ ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "Grant Full Access", "Grant full 
 			H.equip_to_slot(id, ITEM_SLOT_ID)
 
 	else
-		tgui_alert(user,"Invalid mob")
+		tgui_alert(user,LANG("datum.0342d1be", null))
 	BLACKBOX_LOG_ADMIN_VERB("Grant Full Access")
 	log_admin("[key_name(user)] has granted [M.key] full access.")
 	message_admins(span_adminnotice("[key_name_admin(user)] has granted [M.key] full access."))
 
-ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "Assume Direct Control", "Assume direct control of a mob.", ADMIN_CATEGORY_DEBUG, mob/M)
+ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "直接接管控制", "Assume direct control of a mob.", ADMIN_CATEGORY_DEBUG, mob/M)
 	if(M.ckey)
 		if(tgui_alert(user,"This mob is being controlled by [M.key]. Are you sure you wish to assume control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
 			return
 	if(!M || QDELETED(M))
-		to_chat(user, span_warning("The target mob no longer exists."))
+		to_chat(user, span_warning(LANG("datum.fee9fdaf", null)))
 		return
 	message_admins(span_adminnotice("[key_name_admin(user)] assumed direct control of [M]."))
 	log_admin("[key_name(user)] assumed direct control of [M].")
@@ -175,21 +176,21 @@ ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "Assume Direct Control", "Assume 
 		qdel(adminmob)
 	BLACKBOX_LOG_ADMIN_VERB("Assume Direct Control")
 
-ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "Give Direct Control", "Give direct control of a mob to another player.", ADMIN_CATEGORY_GAME, mob/M)
+ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "授予直接控制", "Give direct control of a mob to another player.", ADMIN_CATEGORY_GAME, mob/M)
 	if(!M)
 		return
 	if(M.ckey)
 		if(tgui_alert(user,"This mob is being controlled by [M.key]. Are you sure you wish to give someone else control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
 			return
-	var/client/newkey = tgui_input_list(user, "Pick the player to put in control.", "New player", sort_list(GLOB.clients))
+	var/client/newkey = tgui_input_list(user, LANG("datum.eb214719", null), LANG("datum.fdeacb81", null), sort_list(GLOB.clients))
 	if(isnull(newkey))
 		return
 	var/mob/oldmob = newkey.mob
 	var/delmob = FALSE
-	if((isobserver(oldmob) || tgui_alert(user,"Do you want to delete [newkey]'s old mob?","Delete?",list("Yes","No")) != "No"))
+	if((isobserver(oldmob) || tgui_alert(user,LANG("datum.ac29935c", list(newkey)),LANG("datum.ec2ba959", null),list("Yes","No")) != "No"))
 		delmob = TRUE
 	if(!M || QDELETED(M))
-		to_chat(user, span_warning("The target mob no longer exists, aborting."))
+		to_chat(user, span_warning(LANG("datum.ecf8d7a0", null)))
 		return
 	if(M.ckey)
 		M.ghostize(FALSE)
@@ -203,7 +204,7 @@ ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "Give Direct Control", "Give direct
 	BLACKBOX_LOG_ADMIN_VERB("Give Direct Control")
 
 ADMIN_VERB_VISIBILITY(cmd_admin_areatest, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test Areas", "Tests the areas for various machinery.", ADMIN_CATEGORY_MAPPING, on_station as num, filter_maint as num)
+ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "测试区域", "Tests the areas for various machinery.", ADMIN_CATEGORY_MAPPING, on_station as num, filter_maint as num)
 	var/list/dat = list()
 	var/list/areas_all = list()
 	var/list/areas_with_APC = list()
@@ -234,7 +235,7 @@ ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test Areas", "Tests the areas for vario
 	))
 
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		to_chat(user, "Game still loading, please hold!", confidential = TRUE)
+		to_chat(user, LANG("datum.9c2aff87", null), confidential = TRUE)
 		return
 
 	var/log_message
@@ -394,15 +395,15 @@ ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test Areas", "Tests the areas for vario
 	popup.open()
 
 ADMIN_VERB_VISIBILITY(cmd_admin_areatest_station, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(cmd_admin_areatest_station, R_DEBUG, "Test Areas (STATION ONLY)", "Tests the areas for various machinery on station z-levels.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(cmd_admin_areatest_station, R_DEBUG, "测试区域（仅空间站）", "Tests the areas for various machinery on station z-levels.", ADMIN_CATEGORY_MAPPING)
 	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/cmd_admin_areatest, /* on_station = */ TRUE)
 
 ADMIN_VERB_VISIBILITY(cmd_admin_areatest_station_no_maintenance, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(cmd_admin_areatest_station_no_maintenance, R_DEBUG, "Test Areas (STATION - NO MAINT)", "Tests the areas for various machinery on station z-levels, excluding maintenance areas.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(cmd_admin_areatest_station_no_maintenance, R_DEBUG, "测试区域（空间站 - 无维护区）", "Tests the areas for various machinery on station z-levels, excluding maintenance areas.", ADMIN_CATEGORY_MAPPING)
 	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/cmd_admin_areatest, /* on_station = */ TRUE, /* filter_maint = */ TRUE)
 
 ADMIN_VERB_VISIBILITY(cmd_admin_areatest_all, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas for various machinery on all z-levels.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "测试区域（全部）", "Tests the areas for various machinery on all z-levels.", ADMIN_CATEGORY_MAPPING)
 	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/cmd_admin_areatest)
 
 /client/proc/robust_dress_shop()
@@ -414,7 +415,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas
 		var/datum/outfit/O = path //not much to initalize here but whatever
 		outfits[initial(O.name)] = path
 
-	var/dresscode = tgui_input_list(usr, "Select outfit", "Robust quick dress shop", baseoutfits + sort_list(outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/dresscode = tgui_input_list(usr, LANG("client.05436964", null), LANG("client.0287867f", null), baseoutfits + sort_list(outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if (isnull(dresscode))
 		return
 
@@ -428,7 +429,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas
 			var/datum/outfit/O = path
 			job_outfits[initial(O.name)] = path
 
-		dresscode = tgui_input_list(usr, "Select job equipment", "Robust quick dress shop", sort_list(job_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		dresscode = tgui_input_list(usr, LANG("client.5d3c14c3", null), LANG("client.0287867f", null), sort_list(job_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -440,7 +441,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas
 			var/datum/outfit/O = path
 			plasmaman_outfits[initial(O.name)] = path
 
-		dresscode = tgui_input_list(usr, "Select plasmeme equipment", "Robust quick dress shop", sort_list(plasmaman_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		dresscode = tgui_input_list(usr, LANG("client.2d3ee6f2", null), LANG("client.0287867f", null), sort_list(plasmaman_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = plasmaman_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -449,16 +450,16 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "Test Areas (ALL)", "Tests the areas
 		var/list/custom_names = list()
 		for(var/datum/outfit/D in GLOB.custom_outfits)
 			custom_names[D.name] = D
-		var/selected_name = tgui_input_list(usr, "Select outfit", "Robust quick dress shop", sort_list(custom_names, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/selected_name = tgui_input_list(usr, LANG("client.05436964", null), LANG("client.0287867f", null), sort_list(custom_names, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return
 
 	return dresscode
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN, "Rejuvenate", mob/living/M)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN, "复苏", mob/living/M)
 	if(!istype(M))
-		tgui_alert(user,"Cannot revive a ghost")
+		tgui_alert(user,LANG("datum.df33f692", null))
 		return
 	M.revive(ADMIN_HEAL_ALL)
 
@@ -468,16 +469,16 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN, "Rejuvenate", mob/li
 	admin_ticket_log(M, msg)
 	BLACKBOX_LOG_ADMIN_VERB("Rejuvenate")
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_delete, R_DEBUG|R_SPAWN, "Delete", atom/target as obj|mob|turf)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_delete, R_DEBUG|R_SPAWN, "删除", atom/target as obj|mob|turf)
 	user.admin_delete(target)
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_check_contents, R_ADMIN, "Check Contents", mob/living/mob)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_check_contents, R_ADMIN, "检查内容物", mob/living/mob)
 	var/list/mob_contents = mob.get_contents()
 	for(var/content in mob_contents)
 		to_chat(user, "[content] [ADMIN_VV(content)] [ADMIN_TAG(content)]", confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Check Contents")
 
-ADMIN_VERB(modify_goals, R_ADMIN, "Modify Goals", "Modify the station goals for the shift.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(modify_goals, R_ADMIN, "修改目标", "Modify the station goals for the shift.", ADMIN_CATEGORY_DEBUG)
 	user.holder.modify_goals()
 
 /datum/admins/proc/modify_goals()
@@ -489,8 +490,8 @@ ADMIN_VERB(modify_goals, R_ADMIN, "Modify Goals", "Modify the station goals for 
 	browser.set_content(dat)
 	browser.open()
 
-ADMIN_VERB(debug_mob_lists, R_DEBUG, "Debug Mob Lists", "For when you just gotta know.", ADMIN_CATEGORY_DEBUG)
-	var/chosen_list = tgui_input_list(user, "Which list?", "Select List", list("Players","Admins","Mobs","Living Mobs","Dead Mobs","Clients","Joined Clients"))
+ADMIN_VERB(debug_mob_lists, R_DEBUG, "调试生物列表", "For when you just gotta know.", ADMIN_CATEGORY_DEBUG)
+	var/chosen_list = tgui_input_list(user, LANG("datum.4b0a08c9", null), LANG("datum.4212d113", null), list("Players","Admins","Mobs","Living Mobs","Dead Mobs","Clients","Joined Clients"))
 	if(isnull(chosen_list))
 		return
 	switch(chosen_list)
@@ -509,7 +510,7 @@ ADMIN_VERB(debug_mob_lists, R_DEBUG, "Debug Mob Lists", "For when you just gotta
 		if("Joined Clients")
 			to_chat(user, jointext(GLOB.joined_player_list,","), confidential = TRUE)
 
-ADMIN_VERB(del_log, R_DEBUG, "Display del() Log", "Display del's log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(del_log, R_DEBUG, "显示 del() 日志", "Display del's log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG)
 	var/list/dellog = list("<B>List of things that have gone through qdel this round</B><BR><BR><ol>")
 	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
 	for(var/path in SSgarbage.items)
@@ -544,20 +545,20 @@ ADMIN_VERB(del_log, R_DEBUG, "Display del() Log", "Display del's log of everythi
 	browser.set_content(dellog.Join())
 	browser.open()
 
-ADMIN_VERB(display_overlay_log, R_DEBUG, "Display Overlay Log", "Display SSoverlays log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(display_overlay_log, R_DEBUG, "显示叠加层日志", "Display SSoverlays log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG)
 	render_stats(SSoverlays.stats, user)
 
-ADMIN_VERB(init_log, R_DEBUG, "Display Initialize() Log", "Displays a list of things that didn't handle Initialize() properly.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(init_log, R_DEBUG, "显示 Initialize() 日志", "Displays a list of things that didn't handle Initialize() properly.", ADMIN_CATEGORY_DEBUG)
 	var/datum/browser/browser = new(user, "initlog", "Initialize Log", 500, 500)
 	browser.set_content(replacetext(SSatoms.InitLog(), "\n", "<br>"))
 	browser.open()
 
-ADMIN_VERB(debug_color_test, R_DEBUG, "Colorblind Testing", "Change your view to a budget version of colorblindness to test for usability.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(debug_color_test, R_DEBUG, "色盲测试", "Change your view to a budget version of colorblindness to test for usability.", ADMIN_CATEGORY_DEBUG)
 	if(!user.holder.color_test)
 		user.holder.color_test = new()
 	user.holder.color_test.ui_interact(user.mob)
 
-ADMIN_VERB(debug_plane_masters, R_DEBUG, "Edit/Debug Planes", "Edit and visualize plane masters and their connections (relays).", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(debug_plane_masters, R_DEBUG, "编辑/调试渲染平面", "Edit and visualize plane masters and their connections (relays).", ADMIN_CATEGORY_DEBUG)
 	user.edit_plane_masters()
 
 /client/proc/edit_plane_masters(mob/debug_on)
@@ -570,10 +571,10 @@ ADMIN_VERB(debug_plane_masters, R_DEBUG, "Edit/Debug Planes", "Edit and visualiz
 		holder.plane_debug.set_mirroring(FALSE)
 	holder.plane_debug.ui_interact(mob)
 
-ADMIN_VERB(debug_huds, R_DEBUG, "Debug HUDs", "Debug the data or antag HUDs.", ADMIN_CATEGORY_DEBUG, i as num)
+ADMIN_VERB(debug_huds, R_DEBUG, "调试 HUD", "Debug the data or antag HUDs.", ADMIN_CATEGORY_DEBUG, i as num)
 	user.debug_variables(GLOB.huds[i])
 
-ADMIN_VERB(jump_to_ruin, R_DEBUG, "Jump to Ruin", "Displays a list of all placed ruins to teleport to.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(jump_to_ruin, R_DEBUG, "跳转到废墟", "Displays a list of all placed ruins to teleport to.", ADMIN_CATEGORY_DEBUG)
 	var/list/names = list()
 	for(var/obj/effect/landmark/ruin/ruin_landmark as anything in GLOB.ruin_landmarks)
 		var/datum/map_template/ruin/template = ruin_landmark.ruin_template
@@ -588,7 +589,7 @@ ADMIN_VERB(jump_to_ruin, R_DEBUG, "Jump to Ruin", "Displays a list of all placed
 
 		names[name] = ruin_landmark
 
-	var/ruinname = tgui_input_list(user, "Select ruin", "Jump to Ruin", sort_list(names))
+	var/ruinname = tgui_input_list(user, LANG("datum.8df54e6e", null), LANG("datum.56815530", null), sort_list(names))
 	var/obj/effect/landmark/ruin/landmark = names[ruinname]
 	if(!istype(landmark))
 		return
@@ -598,7 +599,7 @@ ADMIN_VERB(jump_to_ruin, R_DEBUG, "Jump to Ruin", "Displays a list of all placed
 	to_chat(user, span_italics(template.description), confidential = TRUE)
 
 ADMIN_VERB_VISIBILITY(place_ruin, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(place_ruin, R_DEBUG, "Spawn Ruin", "Attempt to randomly place a specific ruin.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(place_ruin, R_DEBUG, "生成废墟", "Attempt to randomly place a specific ruin.", ADMIN_CATEGORY_MAPPING)
 	var/list/exists = list()
 	for(var/landmark in GLOB.ruin_landmarks)
 		var/obj/effect/landmark/ruin/L = landmark
@@ -616,13 +617,13 @@ ADMIN_VERB(place_ruin, R_DEBUG, "Spawn Ruin", "Attempt to randomly place a speci
 			themed_names[name] = list(ruin, theme, list(ruin.default_area))
 		names += sort_list(themed_names)
 
-	var/ruinname = tgui_input_list(user, "Select ruin", "Spawn Ruin", names)
+	var/ruinname = tgui_input_list(user, LANG("datum.8df54e6e", null), LANG("datum.0849f1d2", null), names)
 	var/data = names[ruinname]
 	if (!data)
 		return
 	var/datum/map_template/ruin/template = data[1]
 	if (exists[template])
-		var/response = tgui_alert(user,"There is already a [template] in existence.", "Spawn Ruin", list("Jump", "Place Another"))
+		var/response = tgui_alert(user,LANG("datum.48f9044e", list(template)), LANG("datum.0849f1d2", null), list("Jump", "Place Another"))
 		if (!response)
 			return
 		if (response == "Jump")
@@ -638,12 +639,12 @@ ADMIN_VERB(place_ruin, R_DEBUG, "Spawn Ruin", "Attempt to randomly place a speci
 		to_chat(user, span_name("[template.name]"), confidential = TRUE)
 		to_chat(user, span_italics("[template.description]"), confidential = TRUE)
 	else
-		to_chat(user, span_warning("Failed to place [template.name]."), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.27dc7eef", list(template.name))), confidential = TRUE)
 
-ADMIN_VERB(unload_ctf, R_DEBUG, "Unload CTF", "Despawns the majority of CTF.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(unload_ctf, R_DEBUG, "卸载 CTF", "Despawns the majority of CTF.", ADMIN_CATEGORY_DEBUG)
 	toggle_id_ctf(user, CTF_GHOST_CTF_GAME_ID, unload=TRUE)
 
-ADMIN_VERB(run_empty_query, R_DEBUG, "Run Empty Query", "Runs a specified number of empty queries.", ADMIN_CATEGORY_DEBUG, val as num)
+ADMIN_VERB(run_empty_query, R_DEBUG, "运行空查询", "Runs a specified number of empty queries.", ADMIN_CATEGORY_DEBUG, val as num)
 	var/list/queries = list()
 	for(var/i in 1 to val)
 		var/datum/db_query/query = SSdbcore.NewQuery("NULL")
@@ -657,7 +658,7 @@ ADMIN_VERB(run_empty_query, R_DEBUG, "Run Empty Query", "Runs a specified number
 
 	message_admins("[key_name_admin(user)] ran [val] empty queries.")
 
-ADMIN_VERB(test_pathfinding, R_DEBUG, "Toggle Pathfind Testing", "Enables/Disables pathfinding testing action buttons", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(test_pathfinding, R_DEBUG, "切换寻路测试", "Enables/Disables pathfinding testing action buttons", ADMIN_CATEGORY_DEBUG)
 	BLACKBOX_LOG_ADMIN_VERB("Toggle Pathfind Testing")
 	log_admin("[key_name(user)] [user.holder.path_debug ? "disabled" : "enabled"] their pathfinding debug tools")
 	if(!user.holder.path_debug)
@@ -665,7 +666,7 @@ ADMIN_VERB(test_pathfinding, R_DEBUG, "Toggle Pathfind Testing", "Enables/Disabl
 	else
 		QDEL_NULL(user.holder.path_debug)
 
-ADMIN_VERB(clear_turf_reservations, R_DEBUG, "Clear Dynamic Turf Reservations", "Deallocates all reserved space, restoring it to round start conditions.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(clear_turf_reservations, R_DEBUG, "清除动态地块预留", "Deallocates all reserved space, restoring it to round start conditions.", ADMIN_CATEGORY_DEBUG)
 	var/answer = tgui_alert(
 		user,
 		"WARNING: THIS WILL WIPE ALL RESERVED SPACE TO A CLEAN SLATE! ANY MOVING SHUTTLES, ELEVATORS, OR IN-PROGRESS PHOTOGRAPHY WILL BE DELETED!",
@@ -679,14 +680,14 @@ ADMIN_VERB(clear_turf_reservations, R_DEBUG, "Clear Dynamic Turf Reservations", 
 	log_admin("[key_name(user)] cleared dynamic turf reservations.")
 	SSmapping.wipe_reservations() //this goes after it's logged, incase something horrible happens.
 
-ADMIN_VERB(toggle_medal_disable, R_DEBUG, "Toggle Medal Disable", "Toggles the safety lock on trying to contact the medal hub.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(toggle_medal_disable, R_DEBUG, "切换勋章禁用", "Toggles the safety lock on trying to contact the medal hub.", ADMIN_CATEGORY_DEBUG)
 	SSachievements.achievements_enabled = !SSachievements.achievements_enabled
 
 	message_admins(span_adminnotice("[key_name_admin(user)] [SSachievements.achievements_enabled ? "disabled" : "enabled"] the medal hub lockout."))
 	BLACKBOX_LOG_ADMIN_VERB("Toggle Medal Disable")
 	log_admin("[key_name(user)] [SSachievements.achievements_enabled ? "disabled" : "enabled"] the medal hub lockout.")
 
-ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(view_runtimes, R_DEBUG, "查看运行时错误", "Opens the runtime viewer.", ADMIN_CATEGORY_DEBUG)
 	GLOB.error_cache.show_to(user)
 
 	// The runtime viewer has the potential to crash the server if there's a LOT of runtimes
@@ -696,9 +697,9 @@ ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.",
 		if(GLOB.total_runtimes >= 100000)
 			warning = "There are a TON of runtimes, clicking any button (especially \"linear\") WILL LIKELY crash the server"
 		// Not using TGUI alert, because it's view runtimes, stuff is probably broken
-		alert(user, "[warning]. Proceed with caution. If you really need to see the runtimes, download the runtime log and view it in a text editor.", "HEED THIS WARNING CAREFULLY MORTAL")
+		alert(user, LANG("datum.dea2126e", list(warning)), "HEED THIS WARNING CAREFULLY MORTAL")
 
-ADMIN_VERB(pump_random_event, R_DEBUG, "Pump Random Event", "Schedules the event subsystem to fire a new random event immediately. Some events may fire without notification.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(pump_random_event, R_DEBUG, "抽取随机事件", "Schedules the event subsystem to fire a new random event immediately. Some events may fire without notification.", ADMIN_CATEGORY_DEBUG)
 	SSevents.scheduled = world.time
 
 	message_admins(span_adminnotice("[key_name_admin(user)] pumped a random event."))
@@ -706,7 +707,7 @@ ADMIN_VERB(pump_random_event, R_DEBUG, "Pump Random Event", "Schedules the event
 	log_admin("[key_name(user)] pumped a random event.")
 
 ADMIN_VERB_VISIBILITY(start_line_profiling, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(start_line_profiling, R_DEBUG, "Start Line Profiling", "Starts tracking line by line profiling for code lines that support it.", ADMIN_CATEGORY_PROFILE)
+ADMIN_VERB(start_line_profiling, R_DEBUG, "开始行性能分析", "Starts tracking line by line profiling for code lines that support it.", ADMIN_CATEGORY_PROFILE)
 	LINE_PROFILE_START
 
 	message_admins(span_adminnotice("[key_name_admin(user)] started line by line profiling."))
@@ -714,7 +715,7 @@ ADMIN_VERB(start_line_profiling, R_DEBUG, "Start Line Profiling", "Starts tracki
 	log_admin("[key_name(user)] started line by line profiling.")
 
 ADMIN_VERB_VISIBILITY(stop_line_profiling, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(stop_line_profiling, R_DEBUG, "Stop Line Profiling", "Stops tracking line by line profiling for code lines that support it.", ADMIN_CATEGORY_PROFILE)
+ADMIN_VERB(stop_line_profiling, R_DEBUG, "停止行性能分析", "Stops tracking line by line profiling for code lines that support it.", ADMIN_CATEGORY_PROFILE)
 	LINE_PROFILE_STOP
 
 	message_admins(span_adminnotice("[key_name_admin(user)] stopped line by line profiling."))
@@ -722,24 +723,24 @@ ADMIN_VERB(stop_line_profiling, R_DEBUG, "Stop Line Profiling", "Stops tracking 
 	log_admin("[key_name(user)] stopped line by line profiling.")
 
 ADMIN_VERB_VISIBILITY(show_line_profiling, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(show_line_profiling, R_DEBUG, "Show Line Profiling", "Shows tracked profiling info from code lines that support it.", ADMIN_CATEGORY_PROFILE)
+ADMIN_VERB(show_line_profiling, R_DEBUG, "显示行性能分析", "Shows tracked profiling info from code lines that support it.", ADMIN_CATEGORY_PROFILE)
 	var/list/sortlist = list(
 		"Avg time" = GLOBAL_PROC_REF(cmp_profile_avg_time_dsc),
 		"Total Time" = GLOBAL_PROC_REF(cmp_profile_time_dsc),
 		"Call Count" = GLOBAL_PROC_REF(cmp_profile_count_dsc),
 	)
-	var/sort = input(user, "Sort type?", "Sort Type", "Avg time") as null|anything in sortlist
+	var/sort = input(user, LANG("datum.d1c54494", null), "Sort Type", "Avg time") as null|anything in sortlist
 	if (!sort)
 		return
 	sort = sortlist[sort]
 	profile_show(user, sort)
 
-ADMIN_VERB(reload_configuration, R_DEBUG, "Reload Configuration", "Reloads the configuration from the default path on the disk, wiping any in-round modifications.", ADMIN_CATEGORY_DEBUG)
-	if(tgui_alert(user, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modifications?", "Really reset?", list("No", "Yes")) != "Yes")
+ADMIN_VERB(reload_configuration, R_DEBUG, "重新加载配置", "Reloads the configuration from the default path on the disk, wiping any in-round modifications.", ADMIN_CATEGORY_DEBUG)
+	if(tgui_alert(user, LANG("datum.b48abfc1", null), LANG("datum.a0c5403c", null), list("No", "Yes")) != "Yes")
 		return
 	config.admin_reload()
 
-ADMIN_VERB(check_timer_sources, R_DEBUG, "Check Timer Sources", "Checks the sources of running timers.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(check_timer_sources, R_DEBUG, "检查计时器来源", "Checks the sources of running timers.", ADMIN_CATEGORY_DEBUG)
 	var/bucket_list_output = generate_timer_source_output(SStimer.bucket_list)
 	var/second_queue = generate_timer_source_output(SStimer.second_queue)
 
@@ -753,7 +754,7 @@ ADMIN_VERB(check_timer_sources, R_DEBUG, "Check Timer Sources", "Checks the sour
 	"})
 	browser.open()
 
-ADMIN_VERB(reestablish_tts_connection, R_DEBUG, "Re-establish Connection To TTS", "Re-establishes connection to the TTS server if possible", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(reestablish_tts_connection, R_DEBUG, "重新连接 TTS", "Re-establishes connection to the TTS server if possible", ADMIN_CATEGORY_DEBUG)
 	message_admins("[key_name_admin(user)] attempted to re-establish connection to the TTS HTTP server.")
 	log_admin("[key_name(user)] attempted to re-establish connection to the TTS HTTP server.")
 	var/success = SStts.establish_connection_to_tts()
@@ -764,12 +765,12 @@ ADMIN_VERB(reestablish_tts_connection, R_DEBUG, "Re-establish Connection To TTS"
 	message_admins("[key_name_admin(user)] successfully re-established the connection to the TTS HTTP server.")
 	log_admin("[key_name(user)] successfully re-established the connection to the TTS HTTP server.")
 
-ADMIN_VERB(allow_browser_inspect, R_DEBUG, "Allow Browser Inspect", "Allow browser debugging via inspect", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(allow_browser_inspect, R_DEBUG, "允许浏览器检查", "Allow browser debugging via inspect", ADMIN_CATEGORY_DEBUG)
 	if(user.byond_version < 516)
-		to_chat(user, span_warning("You can only use this on 516!"))
+		to_chat(user, span_warning(LANG("datum.f2915ec6", null)))
 		return
 
-	to_chat(user, span_notice("You can now right click to use inspect on browsers."))
+	to_chat(user, span_notice(LANG("datum.2b331da3", null)))
 	winset(user, null, list("browser-options" = "+devtools"))
 
 /proc/generate_timer_source_output(list/datum/timedevent/events)
@@ -821,7 +822,7 @@ ADMIN_VERB_CUSTOM_EXIST_CHECK(check_missing_sprites)
 	return FALSE
 #endif
 
-ADMIN_VERB(check_missing_sprites, R_DEBUG, "Debug Worn Item Sprites", "We're cancelling the Spritemageddon. (This will create a LOT of runtimes! Don't use on a live server!)", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(check_missing_sprites, R_DEBUG, "调试已穿戴物品精灵", "We're cancelling the Spritemageddon. (This will create a LOT of runtimes! Don't use on a live server!)", ADMIN_CATEGORY_DEBUG)
 	var/actual_file_name
 	for(var/test_obj in subtypesof(/obj/item))
 		var/obj/item/sprite = new test_obj
@@ -883,22 +884,22 @@ ADMIN_VERB(check_missing_sprites, R_DEBUG, "Debug Worn Item Sprites", "We're can
 					to_chat(user, span_warning("ERROR sprites for [sprite.type]. Suit Storage slot."), confidential = TRUE)
 
 #ifndef OPENDREAM_REAL
-ADMIN_VERB(start_tracy, R_DEBUG, "Run Tracy Now", "Start running the byond-tracy profiler immediately", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(start_tracy, R_DEBUG, "立即运行 Tracy", "Start running the byond-tracy profiler immediately", ADMIN_CATEGORY_DEBUG)
 	if(Tracy.enabled)
-		to_chat(user, span_warning("byond-tracy is already running!"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.109dc2d5", null)), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 		return
 	else if(Tracy.error)
-		to_chat(user, span_danger("byond-tracy failed to initialize during an earlier attempt: [Tracy.error]"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+		to_chat(user, span_danger(LANG("datum.dd043f8d", list(Tracy.error))), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 		return
 	message_admins(span_adminnotice("[key_name_admin(user)] is trying to start the byond-tracy profiler."))
 	log_admin("[key_name(user)] is trying to start the byond-tracy profiler.")
 	if(!Tracy.enable("[user.ckey]"))
 		var/error = Tracy.error || "N/A"
-		to_chat(user, span_danger("byond-tracy failed to initialize: [error]"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+		to_chat(user, span_danger(LANG("datum.b719a155", list(error))), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 		message_admins(span_adminnotice("[key_name_admin(user)] tried to start the byond-tracy profiler, but it failed to initialize ([error])"))
 		log_admin("[key_name(user)] tried to start the byond-tracy profiler, but it failed to initialize ([error])")
 		return
-	to_chat(user, span_notice("byond-tracy successfully started!"), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+	to_chat(user, span_notice(LANG("datum.8df7fb52", null)), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 	message_admins(span_adminnotice("[key_name_admin(user)] started the byond-tracy profiler."))
 	log_admin("[key_name(user)] started the byond-tracy profiler.")
 	if(Tracy.trace_path)
@@ -907,7 +908,7 @@ ADMIN_VERB(start_tracy, R_DEBUG, "Run Tracy Now", "Start running the byond-tracy
 ADMIN_VERB_CUSTOM_EXIST_CHECK(start_tracy)
 	return CONFIG_GET(flag/allow_tracy_start) && fexists(TRACY_DLL_PATH)
 
-ADMIN_VERB(queue_tracy, R_DEBUG, "Toggle Tracy Next Round", "Toggle running the byond-tracy profiler next round", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(queue_tracy, R_DEBUG, "切换下回合 Tracy", "Toggle running the byond-tracy profiler next round", ADMIN_CATEGORY_DEBUG)
 	if(fexists(TRACY_ENABLE_PATH))
 		fdel(TRACY_ENABLE_PATH)
 	else
@@ -953,11 +954,11 @@ ADMIN_VERB_CUSTOM_EXIST_CHECK(queue_tracy)
 /datum/mc_dependency_ui/ui_assets(mob/user)
 	return list(get_asset_datum(/datum/asset/simple/plane_background))
 
-ADMIN_VERB(debug_mc_dependencies, R_DEBUG, "Debug MC Dependencies", "Debug MC dependencies.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(debug_mc_dependencies, R_DEBUG, "调试 MC 依赖", "Debug MC dependencies.", ADMIN_CATEGORY_DEBUG)
 	var/datum/mc_dependency_ui/data = new /datum/mc_dependency_ui()
 	data.ui_interact(usr)
 
-ADMIN_VERB(show_powernets, R_DEBUG, "Color Powernet Runs", "Colors every node and cable of every powernet in a different color.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(show_powernets, R_DEBUG, "为电网线路上色", "Colors every node and cable of every powernet in a different color.", ADMIN_CATEGORY_DEBUG)
 	var/removing = FALSE
 	for(var/obj/effect/abstract/marker/powernet/marker in GLOB.all_abstract_markers)
 		qdel(marker)
@@ -990,12 +991,12 @@ ADMIN_VERB(show_powernets, R_DEBUG, "Color Powernet Runs", "Colors every node an
 			marker.color = selected_color
 			marker.powernet_owner = REF(net)
 
-ADMIN_VERB(count_instances, R_DEBUG, "Count Atoms/Datums", "Count how many atom or datum instances there are of each type, then output it to a JSON to download.", ADMIN_CATEGORY_DEBUG)
-	var/option = tgui_alert(user, "What type of instances do you wish to count?", "Instance Count", list("Atoms", "Datums"))
+ADMIN_VERB(count_instances, R_DEBUG, "统计原子/数据体", "Count how many atom or datum instances there are of each type, then output it to a JSON to download.", ADMIN_CATEGORY_DEBUG)
+	var/option = tgui_alert(user, LANG("datum.0e991529", null), LANG("datum.b7b8d5c4", null), list("Atoms", "Datums"))
 	if(!option)
 		return
 	var/list/result
-	to_chat(user, span_notice("Beginning instance count ([option])"), type = MESSAGE_TYPE_DEBUG)
+	to_chat(user, span_notice(LANG("datum.e96235c9", list(option))), type = MESSAGE_TYPE_DEBUG)
 	switch(option)
 		if("Atoms")
 			result = count_atoms()
@@ -1003,7 +1004,7 @@ ADMIN_VERB(count_instances, R_DEBUG, "Count Atoms/Datums", "Count how many atom 
 			result = count_datums()
 
 	if(result)
-		to_chat(user, span_adminnotice("Counted [length(result)] instances, sending compiled JSON file now."), type = MESSAGE_TYPE_DEBUG)
+		to_chat(user, span_adminnotice(LANG("datum.1a7725e9", list(length(result)))), type = MESSAGE_TYPE_DEBUG)
 		var/tmp_path = "tmp/instance_count_[user.ckey].json"
 		fdel(tmp_path)
 		rustg_file_write(json_encode(result, JSON_PRETTY_PRINT), tmp_path)
@@ -1034,19 +1035,18 @@ ADMIN_VERB(count_instances, R_DEBUG, "Count Atoms/Datums", "Count how many atom 
 #endif
 
 ADMIN_VERB_VISIBILITY(export_save_to_dev_preference, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
-ADMIN_VERB(export_save_to_dev_preference, R_DEBUG, "Export Save as Dev Preferences", "Exports your savefile to be used by any guests that connect to your localost.", ADMIN_CATEGORY_SERVER)
+ADMIN_VERB(export_save_to_dev_preference, R_DEBUG, "将存档导出为开发者偏好设置", "Exports your savefile to be used by any guests that connect to your localost.", ADMIN_CATEGORY_SERVER)
 	if(!user.is_localhost())
-		tgui_alert(user, "You shouldn't be using this right now!", "Export Failed", list("OK"))
+		tgui_alert(user, LANG("datum.03700606", null), LANG("datum.08903686", null), list("OK"))
 		log_admin("[key_name(user)] attempted to export preferences to [DEV_PREFS_PATH] - this is normally locked to localhost only!")
 		stack_trace("Export Save as Dev Preferences was called by a non-localhost user!")
 		return
 	if(is_guest_key(user.key))
-		tgui_alert(user, "Guests don't have preferences to export.", "Export Failed", list("OK"))
+		tgui_alert(user, LANG("datum.c457cc05", null), LANG("datum.08903686", null), list("OK"))
 		return
 	var/datum/preferences/user_prefs = user.prefs
 	var/datum/json_savefile/dev_save = new(DEV_PREFS_PATH)
 	user_prefs.save_preferences()
 	user_prefs.savefile.copy_to_savefile(dev_save)
 	dev_save.save()
-	tgui_alert(user, "Exported preferences to [DEV_PREFS_PATH]. \
-		Next time you localhost as a guest it will use this savefile as-is.", "Export Complete", list("OK thanks"))
+	tgui_alert(user, LANG("datum.59d2fe22", list(DEV_PREFS_PATH)), LANG("datum.072ec1dc", null), list("OK thanks"))

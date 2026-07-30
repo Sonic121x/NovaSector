@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define ELECTROLYZER_MODE_STANDBY "standby"
 #define ELECTROLYZER_MODE_WORKING "working"
 
@@ -65,16 +66,16 @@
 
 /obj/machinery/electrolyzer/examine(mob/user)
 	. = ..()
-	. += "\The [src] is [on ? "on" : "off"], and the panel is [panel_open ? "open" : "closed"]."
+	. += LANG("obj.2bcd08b6", list(src, on ? "on" : "off", panel_open ? "open" : "closed"))
 
 	if(cell)
-		. += "The charge meter reads [cell ? round(cell.percent(), 1) : 0]%."
+		. += LANG("obj.00f8f6f7", list(cell ? round(cell.percent(), 1) : 0))
 	else
-		. += "There is no power cell installed."
+		. += LANG("obj.b21d2f5d", null)
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("<b>Alt-click</b> to toggle [on ? "off" : "on"].")
-		. += span_notice("<b>Anchor</b> to drain power from APC instead of cell")
-	. += span_notice("It will drain power from the [anchored ? "area's APC" : "internal power cell"].")
+		. += span_notice(LANG("obj.033fe9f5", list(on ? "off" : "on")))
+		. += span_notice(LANG("obj.63861cf1", null))
+	. += span_notice(LANG("obj.f5cfd6d4", list(anchored ? "area's APC" : "internal power cell")))
 
 
 /obj/machinery/electrolyzer/update_icon_state()
@@ -148,7 +149,7 @@
 /obj/machinery/electrolyzer/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	toggle_panel_open()
-	balloon_alert(user, "[panel_open ? "opened" : "closed"] panel")
+	balloon_alert(user, LANG("obj.45725a89", list(panel_open ? "opened" : "closed")))
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
@@ -166,11 +167,11 @@
 		return NONE
 
 	if(!panel_open)
-		balloon_alert(user, "open panel!")
+		balloon_alert(user, LANG("obj.de78deee", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(cell)
-		balloon_alert(user, "cell inside!")
+		balloon_alert(user, LANG("obj.11f17346", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
@@ -178,25 +179,25 @@
 
 	cell = tool
 	tool.add_fingerprint(usr)
-	balloon_alert(user, "inserted cell")
+	balloon_alert(user, LANG("obj.15df949b", null))
 	SStgui.update_uis(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/electrolyzer/click_alt(mob/user)
 	if(panel_open)
-		balloon_alert(user, "close panel!")
+		balloon_alert(user, LANG("obj.4337ae3e", null))
 		return CLICK_ACTION_BLOCKING
 	toggle_power(user)
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/electrolyzer/proc/toggle_power(mob/user)
 	if(!anchored && !cell)
-		balloon_alert(user, "insert cell or anchor!")
+		balloon_alert(user, LANG("obj.e362d48b", null))
 		return
 	on = !on
 	mode = ELECTROLYZER_MODE_STANDBY
 	update_appearance(UPDATE_ICON)
-	balloon_alert(user, "turned [on ? "on" : "off"]")
+	balloon_alert(user, LANG("obj.8fcfde3c", list(on ? "on" : "off")))
 	if(on)
 		SSair.start_processing_machine(src)
 

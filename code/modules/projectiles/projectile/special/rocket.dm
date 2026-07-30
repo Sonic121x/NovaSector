@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/projectile/bullet/gyro
 	name ="explosive bolt"
 	icon_state= "bolter"
@@ -30,7 +31,7 @@
 	if(isliving(target) && prob(1) && random_crits_enabled)
 		var/mob/living/gibbed_dude = target
 		if(!IS_UNCONSCIOUS_OR_CRIT(gibbed_dude))
-			gibbed_dude.say("Is that a fucking ro-", forced = "hit by rocket")
+			gibbed_dude.say(LANG("obj.31e40fdc", null), forced = "hit by rocket")
 			random_crit_gib = TRUE
 	..()
 
@@ -135,5 +136,5 @@ among other potential differences. This granularity is helpful for things like t
 /obj/projectile/bullet/rocket/reverse/fire(angle, atom/direct_target)
 	..()
 	if(firer) //troll
-		firer.visible_message(span_danger("[src] blows up as soon as [firer] fires it!"))
+		firer.visible_message(span_danger(LANG("obj.458c11f4", list(src, firer))))
 		on_hit(firer)

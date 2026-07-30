@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// one reason for declaring guilty is specifically checked for, keeping it as a define to avoid future mistakes
 #define GUILT_REASON_DECLARATION "from your declaration."
 
@@ -141,8 +142,8 @@
 		var/datum/job/job = guilty_conscience.assigned_role
 		if(job.departments_bitflags & (DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SECURITY))
 			return
-	to_chat(owner, span_notice("[user] is now considered guilty by [GLOB.deity] [reason]"))
-	to_chat(user, span_danger("[GLOB.deity] no longer considers you innocent!"))
+	to_chat(owner, span_notice(LANG("datum.4f739df0", list(user, GLOB.deity, reason))))
+	to_chat(user, span_danger(LANG("datum.73e3bbe0", list(GLOB.deity))))
 	guilty += user
 
 ///Signal sent by the relay_attackers element. It makes the attacker guilty unless the damage was stamina or it was a shove.
@@ -165,7 +166,7 @@
 	if(honorbound_human == target_creature)
 		return TRUE //oh come on now
 	if(IS_UNCONSCIOUS(target_creature) || HAS_TRAIT(target_creature, TRAIT_RESTRAINED))
-		to_chat(honorbound_human, span_warning("There is no honor in attacking the <b>unready</b>."))
+		to_chat(honorbound_human, span_warning(LANG("datum.bb87e550", null)))
 		return FALSE
 	//THE JUST (Applies over guilt except for med, so you best be careful!)
 	if(is_human)
@@ -173,14 +174,14 @@
 		var/datum/job/job = target_human.mind?.assigned_role
 		var/is_holy = target_human.mind?.holy_role
 		if(is_holy || (job?.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY))
-			to_chat(honorbound_human, span_warning("There is nothing righteous in attacking the <b>just</b>."))
+			to_chat(honorbound_human, span_warning(LANG("datum.1ba63d77", null)))
 			return FALSE
 		if(job?.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL && !is_guilty)
-			to_chat(honorbound_human, span_warning("If you truly think this healer is not <b>innocent</b>, declare them guilty."))
+			to_chat(honorbound_human, span_warning(LANG("datum.f9de008e", null)))
 			return FALSE
 	//THE INNOCENT (human and borg exclusive)
 	if(!is_guilty && (is_human || issilicon(target_creature)))
-		to_chat(target_creature, span_warning("There is nothing righteous in attacking the <b>innocent</b>."))
+		to_chat(target_creature, span_warning(LANG("datum.02383e4a", null)))
 		return FALSE
 	return TRUE
 
@@ -208,14 +209,14 @@
 		if(SCHOOL_HOLY, SCHOOL_MIME, SCHOOL_RESTORATION, SCHOOL_PSYCHIC)
 			return
 		if(SCHOOL_NECROMANCY, SCHOOL_FORBIDDEN, SCHOOL_SANGUINE)
-			to_chat(user, span_userdanger("[GLOB.deity] is enraged by your use of forbidden magic!"))
+			to_chat(user, span_userdanger(LANG("datum.476840f2", list(GLOB.deity))))
 			lightningbolt(user)
 			user.mind.set_holy_role(NONE)
 			qdel(src)
 			owner.add_mood_event("honorbound", /datum/mood_event/banished) //add mood event after we already cleared our events
-			to_chat(user, span_userdanger("You have been excommunicated! You are no longer holy!"))
+			to_chat(user, span_userdanger(LANG("datum.6d078d97", null)))
 		else
-			to_chat(user, span_userdanger("[GLOB.deity] is angered by your use of [school == SCHOOL_UNSET ? "strange" : school] magic!"))
+			to_chat(user, span_userdanger(LANG("datum.45e82239", list(GLOB.deity, school == SCHOOL_UNSET ? "strange" : school))))
 			lightningbolt(user)
 			owner.add_mood_event("honorbound", /datum/mood_event/holy_smite)//permanently lose your moodlet after this
 
@@ -277,12 +278,12 @@
 
 	if(!GLOB.religious_sect)
 		if(feedback)
-			to_chat(owner, span_warning("There are no deities around to approve your declaration!"))
+			to_chat(owner, span_warning(LANG("datum.b9e63dfd", null)))
 		return FALSE
 
 	if(GLOB.religious_sect.favor < required_favor)
 		if(feedback)
-			to_chat(owner, span_warning("You need at least 150 favor to declare someone evil!"))
+			to_chat(owner, span_warning(LANG("datum.c87a435d", null)))
 		return FALSE
 
 	return TRUE
@@ -292,28 +293,28 @@
 	if(!.)
 		return FALSE
 	if(!isliving(cast_on))
-		to_chat(owner, span_warning("You can only declare living beings evil!"))
+		to_chat(owner, span_warning(LANG("datum.df5dff65", null)))
 		return FALSE
 
 	var/mob/living/living_cast_on = cast_on
 	if(living_cast_on.stat == DEAD)
-		to_chat(owner, span_warning("Declaration on the dead? Really?"))
+		to_chat(owner, span_warning(LANG("datum.fcb3ce29", null)))
 		return FALSE
 
 	// sec and medical are immune to becoming guilty through attack
 	// (we don't check holy, because holy shouldn't be able to attack eachother anyways)
 	if(!living_cast_on.key || !living_cast_on.mind)
-		to_chat(owner, span_warning("There is no evil a vacant mind can do."))
+		to_chat(owner, span_warning(LANG("datum.09471b26", null)))
 		return FALSE
 
 	// also handles any kind of issues with self declarations
 	if(living_cast_on.mind.holy_role)
-		to_chat(owner, span_warning("Followers of [GLOB.deity] cannot be evil!"))
+		to_chat(owner, span_warning(LANG("datum.2d30529b", list(GLOB.deity))))
 		return FALSE
 
 	// cannot declare security as evil
 	if(living_cast_on.mind.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
-		to_chat(owner, span_warning("Members of security are uncorruptable! You cannot declare one evil!"))
+		to_chat(owner, span_warning(LANG("datum.8e47b0c4", null)))
 		return FALSE
 
 	return TRUE

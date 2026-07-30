@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 ///global reference to the current theme, if there is one.
 GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
@@ -7,10 +8,10 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 
 	this is the setup, it handles announcing crew and other settings for the mode and then creating the datum singleton
 */
-GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
+GAME_VERB_PROC(/client, anon_names, "设置匿名名称", "Admin.Events")
 
 	if(GLOB.current_anonymous_theme)
-		var/response = tgui_alert(usr, "Anon mode is currently enabled. Disable?", "cold feet", list("Disable Anon Names", "Keep it Enabled"))
+		var/response = tgui_alert(usr, LANG("client.17d87780", null), LANG("client.d4252aef", null), list("Disable Anon Names", "Keep it Enabled"))
 		if(response != "Disable Anon Names")
 			return
 		message_admins(span_adminnotice("[key_name_admin(usr)] has disabled anonymous names."))
@@ -20,7 +21,7 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
 	for(var/_theme in typesof(/datum/anonymous_theme))
 		var/datum/anonymous_theme/theme = _theme
 		input_list[initial(theme.name)] = theme
-	var/result = input(usr, "Choose an anonymous theme","going dark") as null|anything in input_list
+	var/result = input(usr, LANG("client.5e9ec89b", null),"going dark") as null|anything in input_list
 	if(!usr || !result || result == "Cancel")
 		return
 	var/datum/anonymous_theme/chosen_theme = input_list[result]
@@ -28,8 +29,8 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
 	var/alert_players = "No"
 	if(SSticker.current_state > GAME_STATE_PREGAME) //before anonnames is done, for asking a sleep
 		if(initial(chosen_theme.extras_enabled))
-			extras_enabled = tgui_alert(usr, extras_enabled, "extras", list("Yes", "No"))
-		alert_players = tgui_alert(usr, "Alert crew? These are IC Themed FROM centcom.", "announcement", list("Yes", "No"))
+			extras_enabled = tgui_alert(usr, extras_enabled, LANG("client.e433b7ef", null), list("Yes", "No"))
+		alert_players = tgui_alert(usr, LANG("client.773cce17", null), LANG("client.1c3eb6ba", null), list("Yes", "No"))
 	//turns "Yes" and "No" into TRUE and FALSE
 	extras_enabled = extras_enabled == "Yes"
 	alert_players = alert_players == "Yes"
@@ -218,7 +219,7 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
 	set_station_name("[pick(GLOB.first_names)] [pick(GLOB.last_names)]")
 
 /datum/anonymous_theme/station/announce_to_all_players()
-	priority_announce("Confirmed level 9 reality error event near [station_name()]. All personnel must try their best to carry on, as to not trigger more reality events by accident.", "Central Command Higher Dimensional Affairs", 'sound/announcer/notice/notice1.ogg')
+	priority_announce(LANG("datum.e1c11f85", list(station_name())), "Central Command Higher Dimensional Affairs", 'sound/announcer/notice/notice1.ogg')
 
 /datum/anonymous_theme/station/anonymous_name(mob/target)
 	return new_station_name()

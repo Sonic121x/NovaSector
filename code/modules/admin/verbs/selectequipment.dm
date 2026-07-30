@@ -1,4 +1,5 @@
-ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/target)
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "选择装备", mob/target)
 	var/datum/select_equipment/ui = new(user, target)
 	ui.ui_interact(user.mob)
 
@@ -37,7 +38,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/ta
 	user = CLIENT_FROM_VAR(_user)
 
 	if(!ishuman(target) && !isobserver(target))
-		tgui_alert(usr,"Invalid mob")
+		tgui_alert(usr,LANG("datum.0342d1be", null))
 		return
 	target_mob = target
 
@@ -202,7 +203,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/ta
 
 /client/proc/admin_apply_outfit(mob/target, dresscode)
 	if(!ishuman(target) && !isobserver(target))
-		tgui_alert(usr,"Invalid mob")
+		tgui_alert(usr,LANG("client.0342d1be", null))
 		return
 
 	if(!dresscode)
@@ -215,7 +216,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/ta
 	else
 		human_target = target
 		if(human_target.l_store || human_target.r_store || human_target.s_store) //saves a lot of time for admins and coders alike
-			if(tgui_alert(usr,"Do you need the items in your pockets?", "Pocket Items", list("Delete Them", "Drop Them")) == "Delete Them")
+			if(tgui_alert(usr,LANG("client.d5f970f6", null), LANG("client.c500167d", null), list("Delete Them", "Drop Them")) == "Delete Them")
 				delete_pocket = TRUE
 
 	BLACKBOX_LOG_ADMIN_VERB("Select Equipment")

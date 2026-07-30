@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Wander between water and land, splashing about now and then.
 /datum/bt_node/subtree/go_for_swim
 	behavior_tree_json = "code/datums/ai/basic_mobs/basic_subtrees/go_for_swim.bt.json"
@@ -11,5 +12,5 @@
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
 	if(!SPT_PROB(5, seconds_per_tick))
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
-	living_pawn.manual_emote("splashes water all around!")
+	living_pawn.manual_emote(LANG("datum.e46918c7", null))
 	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED

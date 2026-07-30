@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// This controls the delay for the sculpt rock breaking sound
 /// Every 4th iterator while sculpting will emit a sound (rougly every couple of seconds)
 #define SCULPT_SOUND_INCREMENT 4
@@ -44,7 +45,7 @@
 	if(!tool.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert(user, "slicing apart...")
+	user.balloon_alert(user, LANG("obj.44521d54", null))
 	if(!tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
@@ -71,7 +72,7 @@
 	. = ..()
 	if (prob(25))
 		icon_state = "drake_headless"
-		desc = "Statue of a lesser drake. Time has not been kind."
+		desc = LANG("obj.513400b4", null)
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/structure/statue/drake/update_overlays()
@@ -386,7 +387,7 @@ Moving interrupts
 
 /// Starts or continues the sculpting action on the carving block material
 /obj/item/chisel/proc/start_sculpting(mob/living/user)
-	user.balloon_alert(user, "sculpting block...")
+	user.balloon_alert(user, LANG("obj.e8c0e116", null))
 	playsound(src, pick(usesound), 75, TRUE)
 	sculpting = TRUE
 	//How long whole process takes
@@ -410,7 +411,7 @@ Moving interrupts
 	total_progress_bar.end_progress()
 	if(!interrupted && !QDELETED(prepared_block))
 		prepared_block.create_statue()
-		user.balloon_alert(user, "statue finished")
+		user.balloon_alert(user, LANG("obj.0599ddba", null))
 		if(HAS_PERSONALITY(user, /datum/personality/creative))
 			user.add_mood_event("creative_sculpting", /datum/mood_event/creative_sculpting)
 		if(HAS_PERSONALITY(user, /datum/personality/unimaginative))
@@ -423,7 +424,7 @@ Moving interrupts
 	tracked_user = user
 	RegisterSignal(tracked_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	if(!silent)
-		user.balloon_alert(user, "select sculpt target")
+		user.balloon_alert(user, LANG("obj.ae54a749", null))
 
 /obj/item/chisel/dropped(mob/user, silent)
 	. = ..()
@@ -437,7 +438,7 @@ Moving interrupts
 	prepared_block = null
 
 	if(!silent && tracked_user)
-		tracked_user.balloon_alert(tracked_user, "sculpting cancelled!")
+		tracked_user.balloon_alert(tracked_user, LANG("obj.54ae282c", null))
 
 	if(tracked_user)
 		UnregisterSignal(tracked_user, COMSIG_MOVABLE_MOVED)
@@ -455,14 +456,14 @@ Moving interrupts
 		choices[statue_path] = image(icon = initial(abstract_statue.icon), icon_state = initial(abstract_statue.icon_state))
 
 	if(!choices.len)
-		user.balloon_alert(user, "no statues for material!")
+		user.balloon_alert(user, LANG("obj.fb0b652a", null))
 
 	var/choice = show_radial_menu(user, prepared_block, choices, require_near = TRUE)
 	if(choice)
 		prepared_block.current_preset_type = choice
 		var/image/chosen_looks = choices[choice]
 		prepared_block.current_target = chosen_looks.appearance
-		user.balloon_alert(user, "statue selected")
+		user.balloon_alert(user, LANG("obj.7351695a", null))
 
 /obj/structure/carving_block
 	name = "block"
@@ -500,7 +501,7 @@ Moving interrupts
 	else
 		current_target = target.appearance
 	var/mutable_appearance/ma = current_target
-	user.balloon_alert(user, "sculpt target is [ma.name]")
+	user.balloon_alert(user, LANG("obj.c8823d1a", list(ma.name)))
 
 /obj/structure/carving_block/proc/reset_target()
 	current_target = null
@@ -518,12 +519,12 @@ Moving interrupts
 /obj/structure/carving_block/proc/is_viable_target(mob/living/user, atom/movable/target)
 	//Only things on turfs
 	if(!isturf(target.loc))
-		user.balloon_alert(user, "no sculpt target!")
+		user.balloon_alert(user, LANG("obj.c2449704", null))
 		return FALSE
 	//No big icon things
 	var/list/icon_dimensions = get_icon_dimensions(target.icon)
 	if(icon_dimensions["width"] != ICON_SIZE_X || icon_dimensions["height"] != ICON_SIZE_Y)
-		user.balloon_alert(user, "sculpt target is too big!")
+		user.balloon_alert(user, LANG("obj.0828b950", null))
 		return FALSE
 	return TRUE
 

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * Represents a new-player interview form
  *
@@ -91,7 +92,7 @@
 /**
  * Verb for opening the existing interview, or if relevant creating a new interview if possible.
  */
-GAME_VERB_PROC(/mob/dead/new_player, open_interview, "Open Interview", "Interview")
+GAME_VERB_PROC(/mob/dead/new_player, open_interview, "打开面试面板", "Interview")
 	var/mob/dead/new_player/M = usr
 	if (M?.client?.interviewee)
 		var/datum/interview/I = GLOB.interviews.interview_for_client(M.client)

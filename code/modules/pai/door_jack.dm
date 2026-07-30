@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define CABLE_LENGTH 2
 
 /**
@@ -19,7 +20,7 @@
 			return TRUE
 		if(PAI_DOOR_JACK_CANCEL)
 			QDEL_NULL(hacking_cable)
-			visible_message(span_notice("The cable retracts into the pAI."))
+			visible_message(span_notice(LANG("mob.35396c1c", null)))
 			return TRUE
 	return FALSE
 
@@ -38,7 +39,7 @@
 	RegisterSignal(hacking_cable, COMSIG_QDELETING, PROC_REF(on_hacking_cable_del))
 	var/mob/living/carbon/hacker = get_holder()
 	if(hacker?.put_in_hands(hacking_cable)) //important to double check since get_holder can return non-null values that aren't carbons.
-		hacker.visible_message(span_notice("A port on [src] opens to reveal a cable, which [hacker] quickly grabs."), span_notice("A port on [src] opens to reveal a cable, which you quickly grab."), span_hear("You hear the soft click of a plastic component and manage to catch the falling cable."))
+		hacker.visible_message(span_notice(LANG("mob.c636f2cf", list(src, hacker))), span_notice(LANG("mob.38ce0258", list(src))), span_hear(LANG("mob.64889041", null)))
 		track_pai()
 		track_thing(hacking_cable)
 		return TRUE
@@ -89,7 +90,7 @@
  * Handles deleting the hacking cable and notifying the user.
  */
 /mob/living/silicon/pai/proc/retract_cable()
-	balloon_alert(src, "cable retracted")
+	balloon_alert(src, LANG("mob.5ac64d45", null))
 	QDEL_NULL(hacking_cable)
 	return TRUE
 
@@ -105,19 +106,19 @@
 	if(!hacking_cable)
 		return FALSE
 	if(!hacking_cable.hacking_machine)
-		balloon_alert(src, "nothing connected")
+		balloon_alert(src, LANG("mob.86101246", null))
 		return FALSE
 	playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 50, TRUE)
-	balloon_alert(src, "overriding...")
+	balloon_alert(src, LANG("mob.e3f1440c", null))
 	// Now begin hacking
 	if(!do_after(src, 15 SECONDS, hacking_cable.hacking_machine, timed_action_flags = NONE))
-		balloon_alert(src, "failed! retracting...")
+		balloon_alert(src, LANG("mob.e3cf22b4", null))
 		QDEL_NULL(hacking_cable)
 		return FALSE
 	if(!hacking_cable?.hacking_machine)
 		return FALSE
 	var/obj/machinery/door/door = hacking_cable.hacking_machine
-	balloon_alert(src, "success")
+	balloon_alert(src, LANG("mob.75090415", null))
 	door.open()
 	QDEL_NULL(hacking_cable)
 	return TRUE

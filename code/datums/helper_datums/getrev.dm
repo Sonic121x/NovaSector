@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/getrev
 	var/commit  // git rev-parse HEAD
 	var/date
@@ -71,7 +72,7 @@
 		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
 		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
 
-GAME_VERB_DESC(/client, showrevinfo, "Show Server Revision", "Check the current server code revision", "OOC")
+GAME_VERB_DESC(/client, showrevinfo, "显示服务器版本", "Check the current server code revision", "OOC")
 
 	var/list/msg = list()
 	// Round ID

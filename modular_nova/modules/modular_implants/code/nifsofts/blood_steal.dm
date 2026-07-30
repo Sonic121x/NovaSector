@@ -35,15 +35,15 @@
 	. = ..()
 	if(active)
 		if(!issynthetic(linked_mob))
-			to_chat(linked_mob, span_warning("Organic tissue detected! Augmentation might result in:"))
-			to_chat(linked_mob, span_warning("Tissue necrosis, post-application open fractures and avulsions, acute hemolytic transfusion reaction, spontaneous outbursts of pain, and severe psychosis."))
-			to_chat(linked_mob, span_warning("Advised program uninstallation. Have a secure day."))
+			to_chat(linked_mob, span_warning(LANG("datum.35c1d1b5", null)))
+			to_chat(linked_mob, span_warning(LANG("datum.1bb20653", null)))
+			to_chat(linked_mob, span_warning(LANG("datum.d322fd07", null)))
 		martial_to_learn.teach(linked_mob)
 		linked_mob.log_message("learned the martial art [martial_to_learn]", LOG_ATTACK, color = "orange")
-		to_chat(linked_mob, span_danger("SEVMTE8gV09STEQ="))
-		to_chat(linked_mob, span_danger("QkxPT0QgSVMgRlVFTA=="))
-		to_chat(linked_mob, span_danger("TWFkZSBieTo="))
-		to_chat(linked_mob, span_danger("SEMgU3ludGhldGljIEVuaGFuY2VtZW50IEJ1cmVhdQ=="))
+		to_chat(linked_mob, span_danger(LANG("datum.7dcae8f7", null)))
+		to_chat(linked_mob, span_danger(LANG("datum.fc3d2fb8", null)))
+		to_chat(linked_mob, span_danger(LANG("datum.385de8e2", null)))
+		to_chat(linked_mob, span_danger(LANG("datum.1e774a96", null)))
 		return
 	martial_to_learn.unlearn(linked_mob)
 
@@ -108,9 +108,9 @@
 	// Similar to a normal punch, should we have a value of 0 for our lower force, we simply miss outright.
 	if(!lower_force)
 		playsound(defender.loc, active_arm.unarmed_miss_sound, 25, TRUE, -1)
-		defender.visible_message(span_warning("[attacker]'s crush misses [defender]!"), \
-			span_danger("You avoid [attacker]'s crush!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, attacker)
-		to_chat(attacker, span_warning("Your crush misses [defender]!"))
+		defender.visible_message(span_warning(LANG("datum.a12205d1", list(attacker, defender))), \
+			span_danger(LANG("datum.db4abd6b", list(attacker))), span_hear(LANG("datum.b8189c1e", null)), COMBAT_MESSAGE_RANGE, attacker)
+		to_chat(attacker, span_warning(LANG("datum.426d14b5", list(defender))))
 		log_combat(attacker, defender, "attempted to hit", "crush")
 		return FALSE
 
@@ -127,7 +127,7 @@
 		attacker,
 	)
 
-	to_chat(attacker, span_danger("You've crushed [defender]!"))
+	to_chat(attacker, span_danger(LANG("datum.b4da0e59", list(defender))))
 
 	defender.apply_damage(damage, damage_type, affecting, armor_block)
 
@@ -186,7 +186,7 @@
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You blast [defender] back!"))
+	to_chat(attacker, span_danger(LANG("datum.a7f070e8", list(defender))))
 	playsound(attacker, 'sound/effects/pop_expl.ogg', 50, TRUE)
 	var/atom/throw_target = get_edge_target_turf(defender, attacker.dir)
 	new /obj/effect/temp_visual/explosion/fast(get_turf(defender))
@@ -242,14 +242,14 @@
 	if(isbodypart(affecting) && !IS_ROBOTIC_LIMB(affecting))
 		var/new_def_zone = affecting.body_zone
 		hitting_projectile.def_zone = new_def_zone
-		attacker.visible_message(span_warning("[attacker] attempts parrying [hitting_projectile] with [attacker.p_their()] bare hand... and cloves it asunder!"))
+		attacker.visible_message(span_warning(LANG("datum.1f8ec8b2", list(attacker, hitting_projectile, attacker.p_their()))))
 		COOLDOWN_START(src, parry_cooldown_timer, 5 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(parry_availability), attacker), 5 SECONDS)
 		attacker.projectile_hit(hitting_projectile, new_def_zone)
 		return COMPONENT_BULLET_ACTED
 
 	hitting_projectile.set_angle((hitting_projectile.angle + 180) % 360 + rand(-3, 3))
-	hitting_projectile.visible_message(span_warning("[attacker] expertly parries [hitting_projectile] with [attacker.p_their()] bare hand!"))
+	hitting_projectile.visible_message(span_warning(LANG("datum.0b95cb4e", list(attacker, hitting_projectile, attacker.p_their()))))
 	hitting_projectile.firer = attacker
 	hitting_projectile.speed *= 1.25
 	hitting_projectile.damage *= 1.25
@@ -268,18 +268,18 @@
 /// * attacker - The mob to notify about parry availability
 /datum/martial_art/blood_steal/proc/parry_availability(mob/living/attacker)
 	if(COOLDOWN_FINISHED(src, parry_cooldown_timer))
-		attacker.balloon_alert(holder, "parry refreshed!")
+		attacker.balloon_alert(holder, LANG("datum.29e44720", null))
 
 /// Displays help information about the Blood Steal martial art abilities
 /// This verb shows the user information about the Feedbacker and Knuckleblaster attacks,
 /// as well as the active defense mode for parrying projectiles
 /datum/martial_art/blood_steal/get_style_help()
 	. = list()
-	. += "<b><i>You try to remember core Blood Steal protocols.</i></b>"
+	. += LANG("datum.b92b9945", null)
 
-	. += "[span_notice("Feedbacker")]: Punch. Deal extra damage and steal blood, converting some damage dealt as health."
-	. += "[span_notice("Knuckleblaster")]: Shove. Knocks opponent away. Deals negligible brute and stamina damage."
+	. += LANG("datum.12a75e2d", list(span_notice("Feedbacker")))
+	. += LANG("datum.a71f8b82", list(span_notice("Knuckleblaster")))
 
-	. += "<b><i>In addition, by having your throw mode on when being shot at, you enter an active defense mode where you have a perfect, yet single-projectile parry with a moderately long refresh cooldown.</i></b>"
+	. += LANG("datum.e55f7ae2", null)
 
 #undef MARTIALART_BLOODSTEAL

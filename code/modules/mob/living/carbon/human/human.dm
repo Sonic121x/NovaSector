@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /mob/living/carbon/human/Initialize(mapload, datum/species/species)
 	ASSIGN_GAME_VERB(src, /mob/living, mob_sleep)
 	add_verb(src, /mob/living/proc/toggle_resting)
@@ -107,18 +108,18 @@
 		var/obj/item/card/id/id = wear_id?.GetID()
 		var/same_id = id && (href_list["id_ref"] == REF(id) || href_list["id_name"] == id.registered_name)
 		if(!same_id && can_see_still)
-			to_chat(viewer, span_notice("[p_They()] [p_are()] no longer wearing that ID card."))
+			to_chat(viewer, span_notice(LANG("mob.00ec5966", list(p_They(), p_are()))))
 			return
 
 		var/viable_time = can_see_still ? 3 MINUTES : 1 MINUTES // assuming 3min is the length of a hop line visit - give some leeway if they're still in sight
 		if(!same_id || (text2num(href_list["examine_time"]) + viable_time) < world.time)
-			to_chat(viewer, span_notice("You don't have that good of a memory. Examine [p_them()] again."))
+			to_chat(viewer, span_notice(LANG("mob.c02d4c27", list(p_them()))))
 			return
 		if(!isobserver(viewer) && HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE))
-			to_chat(viewer, span_notice("You can't make out that ID anymore."))
+			to_chat(viewer, span_notice(LANG("mob.f3f9dfd8", null)))
 			return
 		if(!isobserver(viewer) && get_dist(viewer, src) > ID_EXAMINE_DISTANCE + 1) // leeway, ignored if the viewer is a ghost
-			to_chat(viewer, span_notice("You can't make out that ID from here."))
+			to_chat(viewer, span_notice(LANG("mob.57c93509", null)))
 			return
 
 		var/id_name = id.registered_name
@@ -168,7 +169,7 @@
 		if(!HAS_TRAIT(human_or_ghost_user, TRAIT_SECURITY_HUD) && !HAS_TRAIT(human_or_ghost_user, TRAIT_MEDICAL_HUD))
 			return
 		if((text2num(href_list["examine_time"]) + 1 MINUTES) < world.time)
-			to_chat(human_or_ghost_user, span_notice("It's too late to use this now!"))
+			to_chat(human_or_ghost_user, span_notice(LANG("mob.1f7e456e", null)))
 			return
 		var/datum/record/crew/target_record = find_record(perpname)
 		if(href_list["photo_front"] || href_list["photo_side"])
@@ -200,7 +201,7 @@
 				var/span = "notice"
 				var/status = ""
 				if(get_brute_loss())
-					to_chat(human_user, "<b>Physical trauma analysis:</b>")
+					to_chat(human_user, LANG("mob.0c67ef39", null))
 					for(var/obj/item/bodypart/BP as anything in get_bodyparts())
 						var/brutedamage = BP.brute_dam
 						if(brutedamage > 0)
@@ -215,7 +216,7 @@
 						if(brutedamage)
 							to_chat(human_user, "<span class='[span]'>[BP] appears to have [status]</span>")
 				if(get_fire_loss())
-					to_chat(human_user, "<b>Analysis of skin burns:</b>")
+					to_chat(human_user, LANG("mob.b9dc97a6", null))
 					for(var/obj/item/bodypart/BP as anything in get_bodyparts())
 						var/burndamage = BP.burn_dam
 						if(burndamage > 0)
@@ -230,19 +231,19 @@
 						if(burndamage)
 							to_chat(human_user, "<span class='[span]'>[BP] appears to have [status]</span>")
 				if(get_oxy_loss())
-					to_chat(human_user, span_danger("Patient has signs of suffocation, emergency treatment may be required!"))
+					to_chat(human_user, span_danger(LANG("mob.e4ed1ff1", null)))
 				if(get_tox_loss() > 20)
-					to_chat(human_user, span_danger("Gathered data is inconsistent with the analysis, possible cause: poisoning."))
+					to_chat(human_user, span_danger(LANG("mob.e5ad3d0b", null)))
 			if(!human_user.wear_id) //You require access from here on out.
-				to_chat(human_user, span_warning("ERROR: Invalid access"))
+				to_chat(human_user, span_warning(LANG("mob.48c3c048", null)))
 				return
 			var/list/access = human_user.wear_id.GetAccess()
 			if(!(ACCESS_MEDICAL in access))
-				to_chat(human_user, span_warning("ERROR: Invalid access"))
+				to_chat(human_user, span_warning(LANG("mob.48c3c048", null)))
 				return
 
 			if(href_list["physical_status"])
-				var/health_status = tgui_input_list(human_user, "Specify a new physical status for this person.", "Medical HUD", PHYSICAL_STATUSES, target_record.physical_status)
+				var/health_status = tgui_input_list(human_user, LANG("mob.dd014c79", null), LANG("mob.45a266f7", null), PHYSICAL_STATUSES, target_record.physical_status)
 				if(!health_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_MEDICAL_HUD))
 					return
 
@@ -250,7 +251,7 @@
 				return
 
 			if(href_list["mental_status"])
-				var/health_status = tgui_input_list(human_user, "Specify a new mental status for this person.", "Medical HUD", MENTAL_STATUSES, target_record.mental_status)
+				var/health_status = tgui_input_list(human_user, LANG("mob.bedf90bd", null), LANG("mob.45a266f7", null), MENTAL_STATUSES, target_record.mental_status)
 				if(!health_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_MEDICAL_HUD))
 					return
 
@@ -260,9 +261,9 @@
 			if(href_list["quirk"])
 				var/quirkstring = get_quirk_string(TRUE, CAT_QUIRK_ALL, from_scan = TRUE)
 				if(quirkstring)
-					to_chat(human_user,  "<span class='notice ml-1'>Detected physiological traits:</span>\n<span class='notice ml-2'>[quirkstring]</span>")
+					to_chat(human_user,  LANG("mob.f56d5178", list(quirkstring)))
 				else
-					to_chat(usr,  "<span class='notice ml-1'>No physiological traits found.</span>")
+					to_chat(usr,  LANG("mob.9fe52e3e", null))
 			//NOVA EDIT ADDITION BEGIN - EXAMINE RECORDS
 			if(href_list["medrecords"])
 				to_chat(usr, fieldset_block("Medical Record", span_info(target_record.past_medical_records), "boxed_message"), type = MESSAGE_TYPE_INFO)
@@ -290,19 +291,19 @@
 							allowed_access = human_user.get_authentification_name()
 
 				if(!allowed_access)
-					to_chat(human_user, span_warning("ERROR: Invalid access."))
+					to_chat(human_user, span_warning(LANG("mob.74941754", null)))
 					return
 
 			if(!perpname)
-				to_chat(human_or_ghost_user, span_warning("ERROR: Can not identify target."))
+				to_chat(human_or_ghost_user, span_warning(LANG("mob.af71be19", null)))
 				return
 			target_record = find_record(perpname)
 			if(!target_record)
-				to_chat(human_or_ghost_user, span_warning("ERROR: Unable to locate data core entry for target."))
+				to_chat(human_or_ghost_user, span_warning(LANG("mob.19bb954d", null)))
 				return
 			if(ishuman(human_or_ghost_user) && href_list["status"])
 				var/mob/living/carbon/human/human_user = human_or_ghost_user
-				var/new_status = tgui_input_list(human_user, "Specify a new criminal status for this person.", "Security HUD", WANTED_STATUSES(), target_record.wanted_status)
+				var/new_status = tgui_input_list(human_user, LANG("mob.35dee82b", null), LANG("mob.3397c83f", null), WANTED_STATUSES(), target_record.wanted_status)
 				if(!new_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 					return
 
@@ -366,8 +367,8 @@
 				var/mob/living/carbon/human/human_user = human_or_ghost_user
 				if(href_list["add_citation"])
 					var/max_fine = CONFIG_GET(number/maxfine)
-					var/citation_name = tgui_input_text(human_user, "Citation crime", "Security HUD", max_length = MAX_MESSAGE_LEN)
-					var/fine = tgui_input_number(human_user, "Citation fine", "Security HUD", 50, max_fine, 5)
+					var/citation_name = tgui_input_text(human_user, LANG("mob.f7fd721f", null), LANG("mob.3397c83f", null), max_length = MAX_MESSAGE_LEN)
+					var/fine = tgui_input_number(human_user, LANG("mob.cecaeff2", null), LANG("mob.3397c83f", null), 50, max_fine, 5)
 					if(!fine || !target_record || !citation_name || !allowed_access || !isnum(fine) || fine > max_fine || fine <= 0 || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 						return
 
@@ -381,7 +382,7 @@
 					return
 
 				if(href_list["add_crime"])
-					var/crime_name = tgui_input_text(human_user, "Crime name", "Security HUD", max_length = MAX_MESSAGE_LEN)
+					var/crime_name = tgui_input_text(human_user, LANG("mob.2c695e96", null), LANG("mob.3397c83f", null), max_length = MAX_MESSAGE_LEN)
 					if(!target_record || !crime_name || !allowed_access || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 						return
 
@@ -390,12 +391,12 @@
 					target_record.crimes += new_crime
 					investigate_log("New Crime: <strong>[crime_name]</strong> | Added to [target_record.name] by [key_name(human_user)]", INVESTIGATE_RECORDS)
 					SSblackbox.ReportCitation(REF(new_crime), human_user.ckey, human_user.real_name, target_record.name, crime_name, null)
-					to_chat(human_user, span_notice("Successfully added a crime."))
+					to_chat(human_user, span_notice(LANG("mob.5aef81e7", null)))
 
 					return
 
 				if(href_list["add_note"])
-					var/new_note = tgui_input_text(human_user, "Security note", "Security Records", max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+					var/new_note = tgui_input_text(human_user, LANG("mob.311406a2", null), LANG("mob.ec55346e", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 					if(!target_record || !new_note || !allowed_access || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 						return
 
@@ -450,7 +451,7 @@
 /mob/living/carbon/human/try_inject(mob/user, target_zone, injection_flags)
 	. = ..()
 	if(!. && (injection_flags & INJECT_TRY_SHOW_ERROR_MESSAGE) && user)
-		balloon_alert(user, "no exposed skin on [parse_zone(target_zone || check_zone(user.zone_selected))]!")
+		balloon_alert(user, LANG("mob.cb2889b9", list(parse_zone(target_zone || check_zone(user.zone_selected)))))
 
 /mob/living/carbon/human/get_butt_sprite()
 	var/obj/item/bodypart/chest/chest = get_bodypart(BODY_ZONE_CHEST)
@@ -739,13 +740,13 @@
 	if(!I.loc || buckled)
 		return FALSE
 	if(I == wear_suit)
-		visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [I]!"))
-		to_chat(src, span_notice("You successfully [cuff_break ? "break" : "remove"] [I]."))
+		visible_message(span_danger(LANG("mob.73932c95", list(src, cuff_break ? "break" : "remove", I))))
+		to_chat(src, span_notice(LANG("mob.5e680a27", list(cuff_break ? "break" : "remove", I))))
 		return TRUE
 	// NOVA EDIT ADDITION: NOW GLOVES CAN RESTRAIN PLAYERS
 	if(I == gloves)
-		visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [I]!"))
-		to_chat(src, span_notice("You successfully [cuff_break ? "break" : "remove"] [I]."))
+		visible_message(span_danger(LANG("mob.73932c95", list(src, cuff_break ? "break" : "remove", I))))
+		to_chat(src, span_notice(LANG("mob.5e680a27", list(cuff_break ? "break" : "remove", I))))
 		return TRUE
 	// NOVA EDIT ADDITION END
 
@@ -837,7 +838,7 @@
 			var/name = initial(mut.name)
 			options[dna.check_mutation(mut) ? "[name] (Remove)" : "[name] (Add)"] = mut
 
-		var/result = tgui_input_list(usr, "Choose mutation to add/remove", "Mutation Mod", options)
+		var/result = tgui_input_list(usr, LANG("mob.6ce09b81", null), LANG("mob.16c79387", null), options)
 		if(!result)
 			return
 
@@ -866,7 +867,7 @@
 			var/qname = initial(quirk_type.name)
 			options[has_quirk(quirk_type) ? "[qname] (Remove)" : "[qname] (Add)"] = quirk_type
 
-		var/result = tgui_input_list(usr, "Choose quirk to add/remove", "Quirk Mod", options)
+		var/result = tgui_input_list(usr, LANG("mob.b1be79e5", null), LANG("mob.a87fa01b", null), options)
 		if(!result)
 			return
 
@@ -884,7 +885,7 @@
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))
 			return
-		var/result = tgui_input_list(usr, "Please choose a new species", "Species", sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc)))
+		var/result = tgui_input_list(usr, LANG("mob.04cfe579", null), LANG("mob.85a5d525", null), sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc)))
 		if(result)
 			var/newtype = GLOB.species_list[result]
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
@@ -895,13 +896,13 @@
 			return
 		var/success = purrbation_toggle(src)
 		if(success)
-			to_chat(usr, "Put [src] on purrbation.")
+			to_chat(usr, LANG("mob.dc17bece", list(src)))
 			log_admin("[key_name(usr)] has put [key_name(src)] on purrbation.")
 			var/msg = span_notice("[key_name_admin(usr)] has put [key_name(src)] on purrbation.")
 			message_admins(msg)
 			admin_ticket_log(src, msg)
 		else
-			to_chat(usr, "Removed [src] from purrbation.")
+			to_chat(usr, LANG("mob.26c57bdd", list(src)))
 			log_admin("[key_name(usr)] has removed [key_name(src)] from purrbation.")
 			var/msg = span_notice("[key_name_admin(usr)] has removed [key_name(src)] from purrbation.")
 			message_admins(msg)
@@ -911,28 +912,28 @@
 		if(!check_rights(R_SPAWN))
 			return
 		if(!ishuman(src))
-			to_chat(usr, "This can only be done to human species.")
+			to_chat(usr, LANG("mob.28d0a89e", null))
 			return
 		var/result = usr.client.grant_dna_infusion(src)
 		if(result)
-			to_chat(usr, "Successfully applied DNA Infusion [result] to [src].")
+			to_chat(usr, LANG("mob.5113f057", list(result, src)))
 			log_admin("[key_name(usr)] has applied DNA Infusion [result] to [key_name(src)].")
 		else
-			to_chat(usr, "Failed to apply DNA Infusion to [src].")
+			to_chat(usr, LANG("mob.c125af28", list(src)))
 			log_admin("[key_name(usr)] failed to apply a DNA Infusion to [key_name(src)].")
 
 	if(href_list[VV_HK_TURN_INTO_MMI])
 		if(!check_rights(R_DEBUG))
 			return
 
-		var/result = input(usr, "This will delete the mob, are you sure?", "Turn into MMI") in list("Yes", "No")
+		var/result = input(usr, LANG("mob.02ac63fa", null), "Turn into MMI") in list("Yes", "No")
 		if(result != "Yes")
 			return
 
 		var/obj/item/organ/brain/target_brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 
 		if(isnull(target_brain))
-			to_chat(usr, "This mob has no brain to insert into an MMI.")
+			to_chat(usr, LANG("mob.1f20f3d3", null))
 			return
 
 		var/obj/item/mmi/new_mmi = new(get_turf(src))
@@ -940,7 +941,7 @@
 		target_brain.Remove(src)
 		new_mmi.force_brain_into(target_brain)
 
-		to_chat(usr, "Turned [src] into an MMI.")
+		to_chat(usr, LANG("mob.5a0137a6", list(src)))
 		log_admin("[key_name(usr)] turned [key_name_and_tag(src)] into an MMI.")
 
 		qdel(src)
@@ -976,7 +977,7 @@
 
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
 	if(!can_be_firemanned(target) || INCAPACITATED_IGNORING(src, INCAPABLE_GRAB))
-		to_chat(src, span_warning("You can't fireman carry [target] while [target.p_they()] [target.p_are()] standing!"))
+		to_chat(src, span_warning(LANG("mob.4cad4f03", list(target, target.p_they(), target.p_are()))))
 		return
 
 	var/carrydelay = 5 SECONDS //if you have latex you are faster at grabbing
@@ -1004,24 +1005,24 @@
 		skills_space = " quickly"
 	// NOVA EDIT ADDITION START
 	if((HAS_TRAIT(target, TRAIT_OVERSIZED) && !HAS_TRAIT(src, TRAIT_OVERSIZED)) && !istype(potential_spine))
-		visible_message(span_warning("[src] tries to carry [target], but they are too heavy!"))
+		visible_message(span_warning(LANG("mob.8607e51c", list(src, target))))
 		return
 	else if(HAS_TRAIT(target, TRAIT_HEAVYSET))
 		if((fitness_level < SKILL_LEVEL_MASTER - 1) && !istype(potential_spine)) // fitness_level has 1 subtracted from it
-			visible_message(span_warning("[src] tries to carry [target], but can't make them budge!"))
+			visible_message(span_warning(LANG("mob.aeb76fcf", list(src, target))))
 			return
 		carrydelay = 5 SECONDS
 		skills_space = " strenuously"
 	// NOVA EDIT ADDITION END
-	visible_message(span_notice("[src] starts[skills_space] lifting [target] onto [p_their()] back..."),
-		span_notice("You[skills_space] start to lift [target] onto your back..."))
+	visible_message(span_notice(LANG("mob.4bcde1ab", list(src, skills_space, target, p_their()))),
+		span_notice(LANG("mob.e648f572", list(skills_space, target))))
 	if(!do_after(src, carrydelay, target))
-		visible_message(span_warning("[src] fails to fireman carry [target]!"))
+		visible_message(span_warning(LANG("mob.25e2f6f6", list(src, target))))
 		return
 
 	//Second check to make sure they're still valid to be carried
 	if(!can_be_firemanned(target) || INCAPACITATED_IGNORING(src, INCAPABLE_GRAB) || target.buckled)
-		visible_message(span_warning("[src] fails to fireman carry [target]!"))
+		visible_message(span_warning(LANG("mob.25e2f6f6", list(src, target))))
 		return
 
 	mind?.adjust_experience(/datum/skill/athletics, round(experience_reward/(fitness_level || 1), 1)) //Get a bit fitter every time we fireman carry successfully. Deadlift your friends for gains!
@@ -1030,21 +1031,21 @@
 
 /mob/living/carbon/human/proc/piggyback(mob/living/carbon/target)
 	if(!can_piggyback(target))
-		to_chat(target, span_warning("You can't piggyback ride [src] right now!"))
+		to_chat(target, span_warning(LANG("mob.5c815dbd", list(src))))
 		return
 
-	visible_message(span_notice("[target] starts to climb onto [src]..."))
+	visible_message(span_notice(LANG("mob.ca9493f8", list(target, src))))
 	if(!do_after(target, 1.5 SECONDS, target = src) || !can_piggyback(target))
-		visible_message(span_warning("[target] fails to climb onto [src]!"))
+		visible_message(span_warning(LANG("mob.26465141", list(target, src))))
 		return
 
 	if(INCAPACITATED_IGNORING(target, INCAPABLE_GRAB) || INCAPACITATED_IGNORING(src, INCAPABLE_GRAB))
-		target.visible_message(span_warning("[target] can't hang onto [src]!"))
+		target.visible_message(span_warning(LANG("mob.fbabef4e", list(target, src))))
 		return
 	// NOVA EDIT ADDITION START
 	var/obj/item/organ/cyberimp/chest/spine/atlas/potential_spine = get_organ_slot(ORGAN_SLOT_SPINE) // Only those with a gravity core spine implant can do the holy heavy piggyback while being smoll and light
 	if(((HAS_TRAIT(target, TRAIT_OVERSIZED) && !HAS_TRAIT(src, TRAIT_OVERSIZED)) && !istype(potential_spine)) || ((HAS_TRAIT(target, TRAIT_HEAVYSET) && !HAS_TRAIT(src, TRAIT_HEAVYSET)) && !istype(potential_spine)))
-		target.visible_message(span_warning("[target] is too heavy for [src] to carry!"))
+		target.visible_message(span_warning(LANG("mob.a44e8ac1", list(target, src))))
 		var/dam_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 		var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
 		var/wound_bon = 0
@@ -1052,10 +1053,10 @@
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		if(prob(oversized_piggywound_chance	))
 			wound_bon = 100
-			to_chat(src, span_danger("You are crushed under the weight of [target]!"))
-			to_chat(target, span_danger("You accidentally crush [src]!"))
+			to_chat(src, span_danger(LANG("mob.983bec08", list(target))))
+			to_chat(target, span_danger(LANG("mob.39ad91a9", list(src))))
 		else
-			to_chat(src, span_danger("You hurt your [affecting.name] while trying to endure the weight of [target]!"))
+			to_chat(src, span_danger(LANG("mob.a3bc3f01", list(affecting.name, target))))
 		apply_damage(oversized_piggydam, BRUTE, affecting, wound_bonus=wound_bon)
 		playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
 		AddElement(/datum/element/squish, 20 SECONDS) // Totally not stolen from a vending machine code
@@ -1070,7 +1071,7 @@
 
 /mob/living/carbon/human/is_buckle_possible(mob/living/target, force, check_loc)
 	if(!HAS_TRAIT(target, TRAIT_CAN_MOUNT_HUMANS))
-		target.visible_message(span_warning("[target] really can't seem to mount [src]..."))
+		target.visible_message(span_warning(LANG("mob.d388ba33", list(target, src))))
 		return FALSE
 	// if you don't invoke it with forced, IE via piggyback / fireman, always fail
 	if(!force)

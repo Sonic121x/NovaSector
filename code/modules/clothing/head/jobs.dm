@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 //defines the drill hat's yelling setting
 #define DRILL_DEFAULT "default"
 #define DRILL_SHOUTING "shouting"
@@ -88,11 +89,11 @@
 	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /obj/item/clothing/head/utility/chefhat/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is donning [src]! It looks like [user.p_theyre()] trying to become a chef."))
-	user.say("Bork Bork Bork!", forced = "chef hat suicide")
+	user.visible_message(span_suicide(LANG("obj.2c8686e5", list(user, src, user.p_theyre()))))
+	user.say(LANG("obj.901f91a4", null), forced = "chef hat suicide")
 	sleep(2 SECONDS)
-	user.visible_message(span_suicide("[user] climbs into an imaginary oven!"))
-	user.say("BOOORK!", forced = "chef hat suicide")
+	user.visible_message(span_suicide(LANG("obj.36e784ac", list(user))))
+	user.say(LANG("obj.db6c7f0e", null), forced = "chef hat suicide")
 	playsound(user, 'sound/machines/ding.ogg', 50, TRUE)
 	return FIRELOSS
 
@@ -215,7 +216,7 @@
 
 /obj/item/clothing/head/fedora/det_hat/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to take a candy corn.")
+	. += span_notice(LANG("obj.8b135d8e", null))
 
 
 /obj/item/clothing/head/fedora/det_hat/add_context(atom/source, list/context, obj/item/held_item, mob/user)
@@ -229,12 +230,12 @@
 /// Now to solve where all these keep coming from
 /obj/item/clothing/head/fedora/det_hat/click_alt(mob/user)
 	if(!COOLDOWN_FINISHED(src, candy_cooldown))
-		to_chat(user, span_warning("A candy corn was just taken! You should wait a couple minutes, lest you burn through the stash."))
+		to_chat(user, span_warning(LANG("obj.ab3176d0", null)))
 		return CLICK_ACTION_BLOCKING
 
 	var/obj/item/food/candy_corn/sweets = new /obj/item/food/candy_corn(src)
 	user.put_in_hands(sweets)
-	to_chat(user, span_notice("You slip a candy corn from \the [src]."))
+	to_chat(user, span_notice(LANG("obj.2d1eb4d8", list(src))))
 	COOLDOWN_START(src, candy_cooldown, CANDY_CD_TIME)
 
 	return CLICK_ACTION_SUCCESS
@@ -300,8 +301,8 @@
 
 /obj/item/clothing/head/fedora/inspector_hat/examine(mob/user)
 	. = ..()
-	. += span_notice("You can put items inside, and get them out by saying a phrase, or using it in-hand!")
-	. += span_notice("The prefix is <b>[prefix]</b>, and you can change it with alt-click!\n")
+	. += span_notice(LANG("obj.b9efedb2", null))
+	. += span_notice(LANG("obj.7f15ac65", list(prefix)))
 	for(var/found_regex in phrases_by_regex)
 		var/found_phrase = phrases_by_regex[found_regex]
 		var/obj/item/found_item = items_by_regex[found_regex]
@@ -334,21 +335,21 @@
 		return .
 
 	if(LAZYLEN(contents) >= max_items)
-		balloon_alert(user, "full!")
+		balloon_alert(user, LANG("obj.8abfbb3d", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.w_class > max_weight)
-		balloon_alert(user, "too big!")
+		balloon_alert(user, LANG("obj.a5e64cbb", null))
 		return ITEM_INTERACT_BLOCKING
 
-	var/desired_phrase = tgui_input_text(user, "What is the activation phrase?", "Activation phrase", "gadget", max_length = 26)
+	var/desired_phrase = tgui_input_text(user, LANG("obj.411d96e2", null), LANG("obj.40c2df28", null), "gadget", max_length = 26)
 	if(!desired_phrase || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.loc != user || !user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You install [tool] into the [thtotext(contents.len)] slot of [src]."))
+	to_chat(user, span_notice(LANG("obj.19130491", list(tool, thtotext(contents.len), src))))
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	set_phrase(desired_phrase, tool)
 
@@ -361,13 +362,13 @@
 	var/list/found_items = list()
 	for(var/found_regex in items_by_regex)
 		found_items += items_by_regex[found_regex]
-	var/obj/found_item = tgui_input_list(user, "What item do you want to remove?", "Item Removal", found_items)
+	var/obj/found_item = tgui_input_list(user, LANG("obj.27c63961", null), LANG("obj.5d644c43", null), found_items)
 	if(!found_item || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return CLICK_ACTION_BLOCKING
 	user.put_in_inactive_hand(found_item)
 
 /obj/item/clothing/head/fedora/inspector_hat/click_alt(mob/user)
-	var/new_prefix = tgui_input_text(user, "What should be the new prefix?", "Activation prefix", prefix, max_length = 24)
+	var/new_prefix = tgui_input_text(user, LANG("obj.3654701a", null), LANG("obj.63cc3135", null), prefix, max_length = 24)
 	if(!new_prefix || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return CLICK_ACTION_BLOCKING
 	set_prefix(new_prefix)
@@ -523,22 +524,22 @@
 		return TRUE
 	switch(mode)
 		if(DRILL_DEFAULT)
-			to_chat(user, span_notice("You set the voice circuit to the middle position."))
+			to_chat(user, span_notice(LANG("obj.53a9183e", null)))
 			mode = DRILL_SHOUTING
 		if(DRILL_SHOUTING)
-			to_chat(user, span_notice("You set the voice circuit to the last position."))
+			to_chat(user, span_notice(LANG("obj.15ddb2d8", null)))
 			mode = DRILL_YELLING
 		if(DRILL_YELLING)
-			to_chat(user, span_notice("You set the voice circuit to the first position."))
+			to_chat(user, span_notice(LANG("obj.a1725d07", null)))
 			mode = DRILL_DEFAULT
 		if(DRILL_CANADIAN)
-			to_chat(user, span_danger("You adjust voice circuit but nothing happens, probably because it's broken."))
+			to_chat(user, span_danger(LANG("obj.b43081fa", null)))
 	return TRUE
 
 /obj/item/clothing/head/hats/warden/drill/wirecutter_act(mob/living/user, obj/item/I)
 	..()
 	if(mode != DRILL_CANADIAN)
-		to_chat(user, span_danger("You broke the voice circuit!"))
+		to_chat(user, span_danger(LANG("obj.06558b7b", null)))
 		mode = DRILL_CANADIAN
 	return TRUE
 
@@ -668,16 +669,16 @@
 	. = ..()
 	if(.)
 		return
-	balloon_alert(user, "[flags_inv & HIDEHAIR ? "loosening" : "tightening"] strings...")
+	balloon_alert(user, LANG("obj.c90dae9a", list(flags_inv & HIDEHAIR ? "loosening" : "tightening")))
 	if(!do_after(user, 3 SECONDS, src))
 		return
 	flags_inv ^= HIDEHAIR
-	balloon_alert(user, "[flags_inv & HIDEHAIR ? "tightened" : "loosened "] strings")
+	balloon_alert(user, LANG("obj.e45cf7d0", list(flags_inv & HIDEHAIR ? "tightened" : "loosened ")))
 	return TRUE
 
 /obj/item/clothing/head/utility/surgerycap/examine(mob/user)
 	. = ..()
-	. += span_notice("Use in hand to [flags_inv & HIDEHAIR ? "loosen" : "tighten"] the strings.")
+	. += span_notice(LANG("obj.f19616b4", list(flags_inv & HIDEHAIR ? "loosen" : "tighten")))
 
 /obj/item/clothing/head/utility/surgerycap/purple
 	name = "burgundy surgery cap"
@@ -715,7 +716,7 @@
 
 /obj/item/clothing/head/utility/head_mirror/examine(mob/user)
 	. = ..()
-	. += span_notice("In a properly lit room, you can use this to examine people's eyes, ears, and mouth <i>closer</i>.")
+	. += span_notice(LANG("obj.247ef9a0", null))
 
 /obj/item/clothing/head/utility/head_mirror/equipped(mob/living/user, slot)
 	. = ..()
@@ -736,10 +737,10 @@
 	if(!human_examined.get_bodypart(BODY_ZONE_HEAD))
 		return
 	if(!examiner.has_light_nearby())
-		examine_list += span_warning("You attempt to use your [name] to examine [examining]'s head better... but it's too dark. Should've invested in a head lamp.")
+		examine_list += span_warning(LANG("obj.e911115c", list(name, examining)))
 		return
 	if(examiner.dir == examining.dir) // disallow examine from behind - every other dir is OK
-		examine_list += span_warning("You attempt to use your [name] to examine [examining]'s head better... but [examining.p_theyre()] facing the wrong way.")
+		examine_list += span_warning(LANG("obj.ece6965d", list(name, examining, examining.p_theyre())))
 		return
 
 	var/list/final_message = list("You examine [examining]'s head closer with your [name], you notice [examining.p_they()] [examining.p_have()]...")

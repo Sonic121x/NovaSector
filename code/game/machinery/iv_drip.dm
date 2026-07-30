@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///What the transfer rate value is rounded to
 #define IV_TRANSFER_RATE_STEP 0.01
 ///Minimum possible IV drip transfer rate in units per second
@@ -171,19 +172,19 @@
 
 /obj/machinery/iv_drip/mouse_drop_dragged(atom/target, mob/user)
 	if(!isliving(user))
-		to_chat(user, span_warning("You can't do that!"))
+		to_chat(user, span_warning(LANG("obj.56e41a3d", null)))
 		return
 	if(!get_reagents())
-		to_chat(user, span_warning("There's nothing attached to the IV drip!"))
+		to_chat(user, span_warning(LANG("obj.47e24f6f", null)))
 		return
 	if(!target.is_injectable(user))
-		to_chat(user, span_warning("Can't inject into this!"))
+		to_chat(user, span_warning(LANG("obj.41440123", null)))
 		return
 	if(attachment)
-		visible_message(span_warning("[attachment.attached_to] is detached from [src]."))
+		visible_message(span_warning(LANG("obj.3c240d2b", list(attachment.attached_to, src))))
 		QDEL_NULL(attachment)
 		update_appearance(UPDATE_ICON)
-	user.visible_message(span_warning("[user] attaches [src] to [target]."), span_notice("You attach [src] to [target]."))
+	user.visible_message(span_warning(LANG("obj.c24be4ca", list(user, src, target))), span_notice(LANG("obj.c1fbc99d", list(src, target))))
 	attach_iv(target, user)
 
 /obj/machinery/iv_drip/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -192,13 +193,13 @@
 	if(!is_type_in_typecache(tool, drip_containers) && !IS_EDIBLE(tool))
 		return NONE
 	if(reagent_container)
-		balloon_alert(user, "not empty!")
+		balloon_alert(user, LANG("obj.27d657cd", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
 	reagent_container = tool
-	balloon_alert(user, "attached")
+	balloon_alert(user, LANG("obj.b0ad167d", null))
 	user.log_message("attached a [tool] to [src] at [AREACOORD(src)] containing ([reagent_container.reagents.get_reagent_log_string()])", LOG_ATTACK)
 	add_fingerprint(user)
 	update_appearance(UPDATE_ICON)
@@ -206,10 +207,10 @@
 
 /obj/machinery/iv_drip/click_alt(mob/user)
 	if(transfer_rate > MIN_IV_TRANSFER_RATE)
-		balloon_alert(user, "flow minimized")
+		balloon_alert(user, LANG("obj.72f1b9d7", null))
 		set_transfer_rate(MIN_IV_TRANSFER_RATE)
 	else
-		balloon_alert(user, "flow maximized")
+		balloon_alert(user, LANG("obj.9494971b", null))
 		set_transfer_rate(MAX_IV_TRANSFER_RATE)
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	return CLICK_ACTION_SUCCESS
@@ -226,13 +227,13 @@
 	if(!(get_dist(src, attached_to) <= 1 && isturf(attached_to.loc)))
 		if(isliving(attached_to))
 			var/mob/living/carbon/attached_mob = attached_to
-			to_chat(attached_to, span_userdanger("The IV drip needle is ripped out of you, leaving an open bleeding wound!"))
+			to_chat(attached_to, span_userdanger(LANG("obj.53273a2d", null)))
 			var/list/arm_zones = shuffle(list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM))
 			var/obj/item/bodypart/chosen_limb = attached_mob.get_bodypart(arm_zones[1]) || attached_mob.get_bodypart(arm_zones[2]) || attached_mob.get_bodypart(BODY_ZONE_CHEST)
 			attached_mob.apply_damage(3, BRUTE, chosen_limb, wound_bonus = CANT_WOUND)
 			attached_mob.cause_wound_of_type_and_severity(WOUND_PIERCE, chosen_limb, WOUND_SEVERITY_MODERATE, wound_source = "IV needle")
 		else
-			visible_message(span_warning("[attached_to] is detached from [src]."))
+			visible_message(span_warning(LANG("obj.3c240d2b", list(attached_to, src))))
 		detach_iv()
 		return PROCESS_KILL
 
@@ -256,12 +257,12 @@
 		// If the beaker is full, ping
 		if(!amount)
 			set_transfer_rate(MIN_IV_TRANSFER_RATE)
-			audible_message(span_hear("[src] pings."))
+			audible_message(span_hear(LANG("obj.d24ad8cb", list(src))))
 			return
 
 		// If the human is losing too much blood, beep.
 		if(attached_mob.get_blood_volume(apply_modifiers = TRUE) < BLOOD_VOLUME_SAFE && prob(5))
-			audible_message(span_hear("[src] beeps loudly."))
+			audible_message(span_hear(LANG("obj.5a0bbe9a", list(src))))
 			playsound(loc, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 		var/atom/movable/target = use_internal_storage ? src : reagent_container
 		attached_mob.transfer_blood_to(target, amount)
@@ -276,7 +277,7 @@
 
 /obj/machinery/iv_drip/proc/quick_toggle(mob/user)
 	if(attachment)
-		visible_message(span_notice("[attachment.attached_to] is detached from [src]."))
+		visible_message(span_notice(LANG("obj.3c240d2b", list(attachment.attached_to, src))))
 		detach_iv()
 	else if(reagent_container)
 		eject_beaker(user)
@@ -287,12 +288,12 @@
 ///called when an IV is attached
 /obj/machinery/iv_drip/proc/attach_iv(atom/target, mob/user)
 	if(isliving(target))
-		user.visible_message(span_warning("[usr] begins attaching [src] to [target]..."), span_warning("You begin attaching [src] to [target]."))
+		user.visible_message(span_warning(LANG("obj.78b07588", list(usr, src, target))), span_warning(LANG("obj.3a966352", list(src, target))))
 		if(!do_after(usr, 1 SECONDS, target))
 			return
 	else
 		mode = IV_INJECTING
-	usr.visible_message(span_warning("[usr] attaches [src] to [target]."), span_notice("You attach [src] to [target]."))
+	usr.visible_message(span_warning(LANG("obj.c24be4ca", list(usr, src, target))), span_notice(LANG("obj.c1fbc99d", list(src, target))))
 	var/datum/reagents/container = get_reagents()
 	log_combat(usr, target, "attached", src, "containing: ([container.get_reagent_log_string()])")
 	add_fingerprint(usr)
@@ -311,7 +312,7 @@
 ///Called when an iv is detached. doesnt include chat stuff because there's multiple options and its better handled by the caller
 /obj/machinery/iv_drip/proc/detach_iv()
 	if(attachment)
-		visible_message(span_notice("[attachment.attached_to] is detached from [src]."))
+		visible_message(span_notice(LANG("obj.3c240d2b", list(attachment.attached_to, src))))
 		if(isliving(attachment.attached_to))
 			var/mob/living/attached_mob = attachment.attached_to
 			attached_mob.clear_alert(ALERT_IV_CONNECTED, /atom/movable/screen/alert/iv_connected)
@@ -323,10 +324,10 @@
 /obj/machinery/iv_drip/proc/get_reagents()
 	return use_internal_storage ? reagents : reagent_container?.reagents
 
-GAME_VERB_SRC(/obj/machinery/iv_drip, eject_beaker, view(1), "Remove IV Container", null)
+GAME_VERB_SRC(/obj/machinery/iv_drip, eject_beaker, view(1), "移除静脉注射容器", null)
 
 	if(!isliving(usr))
-		to_chat(usr, span_warning("You can't do that!"))
+		to_chat(usr, span_warning(LANG("obj.56e41a3d", null)))
 		return
 	if(!usr.can_perform_action(src))
 		return
@@ -334,16 +335,16 @@ GAME_VERB_SRC(/obj/machinery/iv_drip, eject_beaker, view(1), "Remove IV Containe
 		return
 	if(reagent_container)
 		if(attachment)
-			visible_message(span_warning("[attachment?.attached_to] is detached from [src]."))
+			visible_message(span_warning(LANG("obj.3c240d2b", list(attachment?.attached_to, src))))
 			detach_iv()
 		reagent_container.forceMove(drop_location())
 		reagent_container = null
 		update_appearance(UPDATE_ICON)
 
-GAME_VERB_SRC(/obj/machinery/iv_drip, toggle_mode, view(1), "Toggle Mode", null)
+GAME_VERB_SRC(/obj/machinery/iv_drip, toggle_mode, view(1), "切换模式", null)
 
 	if(!isliving(usr))
-		to_chat(usr, span_warning("You can't do that!"))
+		to_chat(usr, span_warning(LANG("obj.56e41a3d", null)))
 		return
 	if(!usr.can_perform_action(src) || usr.incapacitated)
 		return
@@ -356,23 +357,23 @@ GAME_VERB_SRC(/obj/machinery/iv_drip, toggle_mode, view(1), "Toggle Mode", null)
 		return
 	mode = !mode
 	update_appearance(UPDATE_ICON)
-	to_chat(usr, span_notice("The IV drip is now [mode ? "injecting" : "taking blood"]."))
+	to_chat(usr, span_notice(LANG("obj.850b48bd", list(mode ? "injecting" : "taking blood"))))
 
 /obj/machinery/iv_drip/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) > 2)
 		return
-	. += "[src] is [mode ? "injecting" : "taking blood"]."
+	. += LANG("obj.120458d2", list(src, mode ? "injecting" : "taking blood"))
 	if(reagent_container)
 		if(reagent_container.reagents && reagent_container.reagents.reagent_list.len)
-			. += span_notice("Attached is \a [reagent_container] with [reagent_container.reagents.total_volume] units of liquid.")
+			. += span_notice(LANG("obj.6bd9d525", list(reagent_container, reagent_container.reagents.total_volume)))
 		else
-			. += span_notice("Attached is an empty [reagent_container.name].")
+			. += span_notice(LANG("obj.8f819cbd", list(reagent_container.name)))
 	else if(use_internal_storage)
-		. += span_notice("It has an internal chemical storage.")
+		. += span_notice(LANG("obj.e4d8b370", null))
 	else
-		. += span_notice("No chemicals are attached.")
-	. += span_notice("[attachment ? attachment.attached_to : "Nothing"] is connected.")
+		. += span_notice(LANG("obj.74d88d8c", null))
+	. += span_notice(LANG("obj.4e2c2826", list(attachment ? attachment.attached_to : "Nothing")))
 
 /// Information and effects about where an IV drip is attached to
 // Lifetime is managed by the iv_drip, which will delete the iv_drip_attachment after

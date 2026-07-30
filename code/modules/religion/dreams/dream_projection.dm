@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/religion_rites/dream_projection
 	name = "Dream Projection"
 	desc = "Astrally project your dream consciousness into the mind of one of your followers. \
@@ -23,7 +24,7 @@
 			followers += follower
 
 	if(!length(followers))
-		to_chat(user, span_warning("You have no followers to project into!"))
+		to_chat(user, span_warning(LANG("datum.6728056c", null)))
 		return FALSE
 
 	return ..()
@@ -39,13 +40,13 @@
 		refund(0.8)
 		return
 
-	var/mob/living/carbon/human/target = tgui_input_list(user, "Choose a follower to project into:", "Dream Projection", followers)
+	var/mob/living/carbon/human/target = tgui_input_list(user, LANG("datum.e806b2e6", null), LANG("datum.57a2a9a3", null), followers)
 	if(QDELETED(target) || target.stat == DEAD || isnull(target.mind?.holy_role))
 		refund(0.8)
 		return
 
 	if(!user.apply_status_effect(/datum/status_effect/dream_projection, target))
-		to_chat(user, span_warning("You fail to fall asleep."))
+		to_chat(user, span_warning(LANG("datum.b6f72b4d", null)))
 		refund(0.8)
 		return
 
@@ -74,7 +75,7 @@
 
 /datum/status_effect/dream_projection/on_apply()
 	if(!owner.SetSleeping(20 SECONDS))
-		to_chat(owner, span_warning("You fail to fall asleep."))
+		to_chat(owner, span_warning(LANG("datum.b6f72b4d", null)))
 		return FALSE
 
 	. = ..()
@@ -134,20 +135,20 @@
 
 /datum/status_effect/dream_projection/proc/end_projection()
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning("Your dream projection ends as your target is no longer valid."))
+	to_chat(owner, span_warning(LANG("datum.df48d4d2", null)))
 	owner.SetSleeping(10 SECONDS)
 	qdel(src)
 
 /datum/status_effect/dream_projection/proc/interrupt_projection()
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning("Your dream projection is interrupted!"))
+	to_chat(owner, span_warning(LANG("datum.8903cc72", null)))
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "gasp")
-	owner.visible_message(span_notice("[owner]'s eyes snap open as they are jolted awake!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = owner)
+	owner.visible_message(span_notice(LANG("datum.73c980c4", list(owner))), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = owner)
 	qdel(src)
 
 /datum/status_effect/dream_projection/proc/stop_projection()
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning("You end your dream projection and return to your body."))
+	to_chat(owner, span_warning(LANG("datum.7cd07e36", null)))
 	owner.SetSleeping(10 SECONDS)
 	qdel(src)
 
@@ -168,7 +169,7 @@
 	return
 
 // The IC tab was removed recently as of commenting. This should probably be adjusted.
-GAME_VERB_DESC(/mob/eye/imaginary_friend/dream_projection, stop_projection, "Stop Projection", "Stop astrally projecting and return to your body.", "IC")
+GAME_VERB_DESC(/mob/eye/imaginary_friend/dream_projection, stop_projection, "停止投影", "Stop astrally projecting and return to your body.", "IC")
 
 	qdel(src)
 

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define HUG_MODE_NICE 0
 #define HUG_MODE_HUG 1
 #define HUG_MODE_SHOCK 2
@@ -26,7 +27,7 @@
 
 /obj/item/borg/stun/attack(mob/living/attacked_mob, mob/living/user)
 	if(cooldown_check > world.time)
-		user.balloon_alert(user, "still recharging!")
+		user.balloon_alert(user, LANG("obj.26defd6f", null))
 		return
 	if(ishuman(attacked_mob))
 		var/mob/living/carbon/human/human = attacked_mob
@@ -90,13 +91,13 @@
 			mode = HUG_MODE_NICE
 	switch(mode)
 		if(HUG_MODE_NICE)
-			to_chat(user, span_infoplain("Power reset. Hugs!"))
+			to_chat(user, span_infoplain(LANG("obj.60f99919", null)))
 		if(HUG_MODE_HUG)
-			to_chat(user, span_infoplain("Power increased!"))
+			to_chat(user, span_infoplain(LANG("obj.66c0e486", null)))
 		if(HUG_MODE_SHOCK)
-			to_chat(user, "<span class='warningplain'>BZZT. Electrifying arms...</span>")
+			to_chat(user, LANG("obj.1aaf7f88", null))
 		if(HUG_MODE_CRUSH)
-			to_chat(user, "<span class='warningplain'>ERROR: ARM ACTUATORS OVERLOADED.</span>")
+			to_chat(user, LANG("obj.0a022aa3", null))
 
 /obj/item/borg/cyborghug/attack(mob/living/attacked_mob, mob/living/silicon/robot/user, list/modifiers, list/attack_modifiers)
 	if(attacked_mob == user)
@@ -232,7 +233,7 @@
 		mode = "charge"
 	else
 		mode = "draw"
-	to_chat(user, span_notice("You toggle [src] to \"[mode]\" mode."))
+	to_chat(user, span_notice(LANG("obj.2d716125", list(src, mode))))
 	update_appearance()
 
 /obj/item/borg/charger/interact_with_atom(atom/target, mob/living/silicon/robot/user, list/modifiers)
@@ -244,10 +245,10 @@
 		if(is_type_in_list(target, charge_machines))
 			var/obj/machinery/target_machine = target
 			if((target_machine.machine_stat & (NOPOWER|BROKEN)) || !target_machine.anchored)
-				to_chat(user, span_warning("[target_machine] is unpowered!"))
+				to_chat(user, span_warning(LANG("obj.5c3745ea", list(target_machine))))
 				return
 
-			to_chat(user, span_notice("You connect to [target_machine]'s power line..."))
+			to_chat(user, span_notice(LANG("obj.5807fb0d", list(target_machine))))
 			while(do_after(user, 1.5 SECONDS, target = target_machine, show_progress = FALSE))
 				if(!user || !user.cell || mode != "draw")
 					return
@@ -257,27 +258,27 @@
 
 				target_machine.charge_cell(0.15 * STANDARD_CELL_CHARGE, user.cell)
 
-			to_chat(user, span_notice("You stop charging yourself."))
+			to_chat(user, span_notice(LANG("obj.26c09d1c", null)))
 
 		else if(is_type_in_list(target, charge_items))
 			var/obj/item/stock_parts/power_store/cell = target
 			if(!istype(cell))
 				cell = locate(/obj/item/stock_parts/power_store) in target
 			if(!cell)
-				to_chat(user, span_warning("[target] has no power cell!"))
+				to_chat(user, span_warning(LANG("obj.c6df9dc9", list(target))))
 				return
 
 			if(istype(target, /obj/item/gun/energy))
 				var/obj/item/gun/energy/energy_gun = target
 				if(!energy_gun.can_charge)
-					to_chat(user, span_warning("[target] has no power port!"))
+					to_chat(user, span_warning(LANG("obj.bb3e56b7", list(target))))
 					return
 
 			if(!cell.charge)
-				to_chat(user, span_warning("[target] has no power!"))
+				to_chat(user, span_warning(LANG("obj.84948dc2", list(target))))
 
 
-			to_chat(user, span_notice("You connect to [target]'s power port..."))
+			to_chat(user, span_notice(LANG("obj.72b279e1", list(target))))
 
 			while(do_after(user, 1.5 SECONDS, target = target, show_progress = FALSE))
 				if(!user || !user.cell || mode != "draw")
@@ -296,26 +297,26 @@
 					break
 				target.update_appearance()
 
-			to_chat(user, span_notice("You stop charging yourself."))
+			to_chat(user, span_notice(LANG("obj.26c09d1c", null)))
 
 	else if(is_type_in_list(target, charge_items))
 		var/obj/item/stock_parts/power_store/cell = target
 		if(!istype(cell))
 			cell = locate(/obj/item/stock_parts/power_store) in target
 		if(!cell)
-			to_chat(user, span_warning("[target] has no power cell!"))
+			to_chat(user, span_warning(LANG("obj.c6df9dc9", list(target))))
 			return
 
 		if(istype(target, /obj/item/gun/energy))
 			var/obj/item/gun/energy/energy_gun = target
 			if(!energy_gun.can_charge)
-				to_chat(user, span_warning("[target] has no power port!"))
+				to_chat(user, span_warning(LANG("obj.bb3e56b7", list(target))))
 				return
 
 		if(cell.charge >= cell.maxcharge)
-			to_chat(user, span_warning("[target] is already charged!"))
+			to_chat(user, span_warning(LANG("obj.d228da44", list(target))))
 
-		to_chat(user, span_notice("You connect to [target]'s power port..."))
+		to_chat(user, span_notice(LANG("obj.72b279e1", list(target))))
 
 		while(do_after(user, 1.5 SECONDS, target = target, show_progress = FALSE))
 			if(!user || !user.cell || mode != "charge")
@@ -334,7 +335,7 @@
 				break
 			target.update_appearance()
 
-		to_chat(user, span_notice("You stop charging [target]."))
+		to_chat(user, span_notice(LANG("obj.d02d54e8", list(target))))
 
 /obj/item/harmalarm
 	name = "\improper Sonic Harm Prevention Tool"
@@ -347,21 +348,21 @@
 /obj/item/harmalarm/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "safeties shorted")
+		balloon_alert(user, LANG("obj.9f2c2e26", null))
 	else
-		balloon_alert(user, "safeties reset")
+		balloon_alert(user, LANG("obj.fc8c1c99", null))
 	return TRUE
 
 /obj/item/harmalarm/attack_self(mob/user)
 	var/safety = !(obj_flags & EMAGGED)
 	if (!COOLDOWN_FINISHED(src, alarm_cooldown))
-		to_chat(user, "<font color='red'>The device is still recharging!</font>")
+		to_chat(user, LANG("obj.9306fd19", null))
 		return
 
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/robot_user = user
 		if(!robot_user.cell || robot_user.cell.charge < 1200)
-			to_chat(user, span_warning("You don't have enough charge to do this!"))
+			to_chat(user, span_warning(LANG("obj.949e51ce", null)))
 			return
 		robot_user.cell.charge -= 1000
 		if(robot_user.emagged)
@@ -378,7 +379,7 @@
 				continue
 			carbon.adjust_confusion(6 SECONDS)
 
-		audible_message("<font color='red' size='7'>HUMAN HARM</font>")
+		audible_message(LANG("obj.b60d5fa4", null))
 		playsound(get_turf(src), 'sound/mobs/non-humanoids/cyborg/harmalarm.ogg', 70, 3)
 		COOLDOWN_START(src, alarm_cooldown, HARM_ALARM_SAFETY_COOLDOWN)
 		user.log_message("used a Cyborg Harm Alarm", LOG_ATTACK)
@@ -386,7 +387,7 @@
 			var/mob/living/silicon/robot/robot_user = user
 			to_chat(robot_user.connected_ai, "<br>[span_notice("NOTICE - Peacekeeping 'HARM ALARM' used by: [user]")]<br>")
 	else
-		user.audible_message("<font color='red' size='7'>BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZT</font>")
+		user.audible_message(LANG("obj.ce8d743c", null))
 		for(var/mob/living/living in get_hearers_in_view(9, user))
 			var/bang_effect = living.soundbang_act(SOUNDBANG_STRONG, 0, 0, 5)
 			switch(bang_effect)

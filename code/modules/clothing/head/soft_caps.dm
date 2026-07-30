@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/clothing/head/soft
 	name = "cargo cap"
 	desc = "It's a baseball hat in a tasteful brown colour."
@@ -20,7 +21,7 @@
 	flipped = FALSE
 	..()
 
-GAME_VERB(/obj/item/clothing/head/soft, flipcap, "Flip cap", null)
+GAME_VERB(/obj/item/clothing/head/soft, flipcap, "翻转盖子", null)
 
 	flip(usr)
 
@@ -35,16 +36,16 @@ GAME_VERB(/obj/item/clothing/head/soft, flipcap, "Flip cap", null)
 		flipped = !flipped
 		if(flipped)
 			icon_state = "[soft_type][soft_suffix]_flipped"
-			to_chat(user, span_notice("You flip the hat backwards."))
+			to_chat(user, span_notice(LANG("obj.58789018", null)))
 		else
 			icon_state = "[soft_type][soft_suffix]"
-			to_chat(user, span_notice("You flip the hat back in normal position."))
+			to_chat(user, span_notice(LANG("obj.68c3bc81", null)))
 		update_icon()
 		usr.update_worn_head() //so our mob-overlays update
 
 /obj/item/clothing/head/soft/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click the cap to flip it [flipped ? "forwards" : "backwards"].")
+	. += span_notice(LANG("obj.dcf87301", list(flipped ? "forwards" : "backwards")))
 
 /obj/item/clothing/head/soft/red
 	name = "red cap"

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/mod/construction
 	desc = "A part used in MOD construction."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
@@ -10,7 +11,7 @@
 
 /obj/item/mod/construction/helmet/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert it into a <b>MOD shell</b>...")
+	. += span_notice(LANG("obj.2167c56c", null))
 
 /obj/item/mod/construction/chestplate
 	name = "MOD chestplate"
@@ -19,7 +20,7 @@
 
 /obj/item/mod/construction/chestplate/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert it into a <b>MOD shell</b>...")
+	. += span_notice(LANG("obj.2167c56c", null))
 
 /obj/item/mod/construction/gauntlets
 	name = "MOD gauntlets"
@@ -28,7 +29,7 @@
 
 /obj/item/mod/construction/gauntlets/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert these into a <b>MOD shell</b>...")
+	. += span_notice(LANG("obj.9db100df", null))
 
 /obj/item/mod/construction/boots
 	name = "MOD boots"
@@ -37,7 +38,7 @@
 
 /obj/item/mod/construction/boots/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert these into a <b>MOD shell</b>...")
+	. += span_notice(LANG("obj.9db100df", null))
 
 /obj/item/mod/construction/broken_core
 	name = "broken MOD core"
@@ -46,13 +47,13 @@
 
 /obj/item/mod/construction/broken_core/examine(mob/user)
 	. = ..()
-	. += span_notice("You could repair it with a <b>screwdriver</b>...")
+	. += span_notice(LANG("obj.f81088c7", null))
 
 /obj/item/mod/construction/broken_core/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, LANG("obj.b52342a8", null))
 	if(!tool.use_tool(src, user, 5 SECONDS, volume = 30))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, LANG("obj.c67b5d27", null))
 		return
 	new /obj/item/mod/core/standard(drop_location())
 	qdel(src)
@@ -69,7 +70,7 @@
 
 /obj/item/mod/construction/lavalandcore/examine(mob/user)
 	. = ..()
-	. += span_notice("You could probably attach some <b>wires</b> to it...")
+	. += span_notice(LANG("obj.558de421", null))
 
 /obj/item/mod/construction/lavalandcore/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stack/cable_coil))
@@ -78,9 +79,9 @@
 	if(!tool.tool_start_check(user, amount=2))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "installing wires...")
+	balloon_alert(user, LANG("obj.f547a475", null))
 	if(!tool.use_tool(src, user, 5 SECONDS, amount = 2, volume = 30))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, LANG("obj.c67b5d27", null))
 		return ITEM_INTERACT_BLOCKING
 
 	new /obj/item/mod/core/plasma/lavaland(drop_location())
@@ -181,11 +182,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, LANG("obj.ee463177", null))
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "core inserted")
+			balloon_alert(user, LANG("obj.de575d7b", null))
 			core = tool
 			step = CORE_STEP
 			update_icon_state()
@@ -196,11 +197,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, LANG("obj.ee463177", null))
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "helmet added")
+			balloon_alert(user, LANG("obj.95fcc204", null))
 			helmet = tool
 			step = HELMET_STEP
 			update_icon_state()
@@ -211,11 +212,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, LANG("obj.ee463177", null))
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "chestplate added")
+			balloon_alert(user, LANG("obj.6f263f01", null))
 			chestplate = tool
 			step = CHESTPLATE_STEP
 			update_icon_state()
@@ -226,11 +227,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, LANG("obj.ee463177", null))
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "gauntlets added")
+			balloon_alert(user, LANG("obj.9df0f806", null))
 			gauntlets = tool
 			step = GAUNTLETS_STEP
 			update_icon_state()
@@ -241,11 +242,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, LANG("obj.ee463177", null))
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "boots added")
+			balloon_alert(user, LANG("obj.61bb5191", null))
 			boots = tool
 			step = BOOTS_STEP
 			update_icon_state()
@@ -257,7 +258,7 @@
 
 			var/obj/item/mod/construction/plating/external_plating = tool
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, LANG("obj.ee463177", null))
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
@@ -265,7 +266,7 @@
 			core = null
 			qdel(src)
 			user.put_in_hands(mod)
-			mod.balloon_alert(user, "unit finished")
+			mod.balloon_alert(user, LANG("obj.33113ef2", null))
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
 
@@ -278,7 +279,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "core screwed")
+			balloon_alert(user, LANG("obj.a5967dfa", null))
 			step = SCREWED_CORE_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -287,7 +288,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "core unscrewed")
+			balloon_alert(user, LANG("obj.4e25acf7", null))
 			step = CORE_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -296,7 +297,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "assembly screwed")
+			balloon_alert(user, LANG("obj.8284d713", null))
 			step = SCREWED_ASSEMBLY_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -305,7 +306,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "assembly unscrewed")
+			balloon_alert(user, LANG("obj.b5142f35", null))
 			step = WRENCHED_ASSEMBLY_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -319,7 +320,7 @@
 				return ITEM_INTERACT_SUCCESS
 
 			core.forceMove(drop_location())
-			balloon_alert(user, "core taken out")
+			balloon_alert(user, LANG("obj.17bf120a", null))
 			step = START_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -329,7 +330,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			helmet.forceMove(drop_location())
-			balloon_alert(user, "helmet removed")
+			balloon_alert(user, LANG("obj.b42b2433", null))
 			helmet = null
 			step = SCREWED_CORE_STEP
 			update_icon_state()
@@ -340,7 +341,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			chestplate.forceMove(drop_location())
-			balloon_alert(user, "chestplate removed")
+			balloon_alert(user, LANG("obj.1d2b3d3b", null))
 			chestplate = null
 			step = HELMET_STEP
 			update_icon_state()
@@ -351,7 +352,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			gauntlets.forceMove(drop_location())
-			balloon_alert(user, "gauntlets removed")
+			balloon_alert(user, LANG("obj.cb7f46ae", null))
 			gauntlets = null
 			step = CHESTPLATE_STEP
 			update_icon_state()
@@ -362,7 +363,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			boots.forceMove(drop_location())
-			balloon_alert(user, "boots removed")
+			balloon_alert(user, LANG("obj.1bbfd35b", null))
 			boots = null
 			step = GAUNTLETS_STEP
 			update_icon_state()
@@ -376,7 +377,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "assembly secured")
+			balloon_alert(user, LANG("obj.40e42e49", null))
 			step = WRENCHED_ASSEMBLY_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -385,7 +386,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "assembly unsecured")
+			balloon_alert(user, LANG("obj.213e899a", null))
 			step = BOOTS_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS

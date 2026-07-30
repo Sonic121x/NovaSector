@@ -1,7 +1,8 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define ICON_STATE_CHECKED 1 /// this dmi is checked. We don't check this one anymore.
 #define ICON_STATE_NULL 2 /// this dmi has null-named icon_state, allowing it to show a sprite on vv editor.
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "View Variables", datum/thing as anything)
+ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "查看变量", datum/thing as anything)
 	user.debug_variables(thing)
 // This is kept as a separate proc because admins are able to show VV to non-admins
 
@@ -9,7 +10,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "View Variables", datum/th
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
 	if(!usr.client || !usr.client.holder) //This is usr because admins can call the proc on other clients, even if they're not admins, to show them VVs.
-		to_chat(usr, span_danger("You need to be an administrator to access this."), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("client.e2f0bb8e", null)), confidential = TRUE)
 		return
 
 	if(!thing)

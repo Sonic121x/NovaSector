@@ -1,7 +1,8 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define DEFAULT_WHO_CELLS_PER_ROW 4
 #define NO_ADMINS_ONLINE_MESSAGE "Adminhelps are also sent through TGS to services like IRC and Discord. If no admins are available in game, sending an adminhelp might still be noticed and responded to."
 
-GAME_VERB(/client, who, "Who", "OOC")
+GAME_VERB(/client, who, "玩家列表", "OOC")
 
 	var/msg = ""
 
@@ -67,7 +68,7 @@ GAME_VERB(/client, who, "Who", "OOC")
 	msg += "<b>Total Players: [length(Lines)]</b>"
 	to_chat(src, fieldset_block(span_bold("Current Players"), span_infoplain(msg), "boxed_message"), type = MESSAGE_TYPE_INFO)
 
-GAME_VERB(/client, adminwho, "Adminwho", "Admin")
+GAME_VERB(/client, adminwho, "管理员在线", "Admin")
 
 	var/list/lines = list()
 	var/payload_string = generate_adminwho_string()

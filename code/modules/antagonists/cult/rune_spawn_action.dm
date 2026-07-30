@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 //after a delay, creates a rune below you. for constructs creating runes.
 /datum/action/innate/cult/create_rune
 	name = "Summon Rune"
@@ -25,13 +26,13 @@
 	if(!T)
 		return FALSE
 	if(isspaceturf(T))
-		to_chat(owner, span_warning("You cannot scribe runes in space!"))
+		to_chat(owner, span_warning(LANG("datum.c9d99de1", null)))
 		return FALSE
 	if(locate(/obj/effect/rune) in T)
-		to_chat(owner, span_cult("There is already a rune here."))
+		to_chat(owner, span_cult(LANG("datum.99666d98", null)))
 		return FALSE
 	if(!is_station_level(T.z) && !is_mining_level(T.z))
-		to_chat(owner, span_warning("The veil is not weak enough here."))
+		to_chat(owner, span_warning(LANG("datum.44b6eb55", null)))
 		return FALSE
 	return TRUE
 
@@ -42,7 +43,7 @@
 		return
 	var/chosen_keyword
 	if(initial(rune_type.req_keyword))
-		chosen_keyword = tgui_input_text(owner, "Enter a keyword for the new rune.", "Words of Power", max_length = MAX_NAME_LEN)
+		chosen_keyword = tgui_input_text(owner, LANG("datum.1f47d530", null), LANG("datum.bf4a41cd", null), max_length = MAX_NAME_LEN)
 		if(!chosen_keyword || !turf_check(T))
 			return
 //the outer ring is always the same across all runes

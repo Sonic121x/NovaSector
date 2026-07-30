@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Charge per tick consumed by the thermal regulator
 #define THERMAL_REGULATOR_COST (0.018 * STANDARD_CELL_CHARGE)
 
@@ -175,7 +176,7 @@
 	if(!cell.use(THERMAL_REGULATOR_COST))
 		toggle_spacesuit(user, FALSE)
 		update_hud_icon(user)
-		to_chat(user, span_warning("The thermal regulator cuts off as [cell] runs out of charge."))
+		to_chat(user, span_warning(LANG("obj.26f668d5", list(cell))))
 		return
 
 	// If we got here, it means thermals are on, the cell is in and the cell has
@@ -205,7 +206,7 @@
 // support for items that interact with the cell
 /obj/item/clothing/suit/space/get_cell(atom/movable/interface, mob/user)
 	if(istype(interface, /obj/item/inducer))
-		to_chat(user, span_alert("Error: unable to interface with [interface]."))
+		to_chat(user, span_alert(LANG("obj.9034fa56", list(interface))))
 		return null
 	return cell
 
@@ -213,15 +214,14 @@
 /obj/item/clothing/suit/space/examine(mob/user)
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
-		. += "The thermal regulator is [thermal_on ? "on" : "off"] and the temperature is set to \
-			[round(temperature_setting-T0C,0.1)] &deg;C ([round(temperature_setting*1.8-459.67,0.1)] &deg;F)"
-		. += "The power meter shows [cell ? "[round(cell.percent(), 0.1)]%" : "!invalid!"] charge remaining."
+		. += LANG("obj.65e07705", list(thermal_on ? "on" : "off", round(temperature_setting-T0C,0.1), round(temperature_setting*1.8-459.67,0.1)))
+		. += LANG("obj.27ef0b50", list(cell ? "[round(cell.percent(), 0.1)]%" : "!invalid!"))
 		if(cell_cover_open)
-			. += "The cell cover is open exposing the cell and setting knobs."
+			. += LANG("obj.8dfaf6ca", null)
 			if(!cell)
-				. += "The slot for a cell is empty."
+				. += LANG("obj.e4ac54e1", null)
 			else
-				. += "\The [cell] is firmly in place."
+				. += LANG("obj.5b7e5f42", list(cell))
 
 /obj/item/clothing/suit/space/crowbar_act(mob/living/user, obj/item/tool)
 	toggle_spacesuit_cell(user)
@@ -234,11 +234,10 @@
 		range_low = -20 // emagged min temp c
 		range_high = 120 // emagged max temp c
 
-	var/deg_c = input(user, "What temperature would you like to set the thermal regulator to? \
-		([range_low]-[range_high] degrees celcius)") as null|num
+	var/deg_c = input(user, LANG("obj.30fa3a87", list(range_low, range_high))) as null|num
 	if(deg_c && deg_c >= range_low && deg_c <= range_high)
 		temperature_setting = round(T0C + deg_c, 0.1)
-		to_chat(user, span_notice("You see the readout change to [deg_c] c."))
+		to_chat(user, span_notice(LANG("obj.0bfcae78", list(deg_c))))
 	return ITEM_INTERACT_SUCCESS
 
 // object handling for accessing features of the suit
@@ -247,13 +246,13 @@
 		return ..()
 
 	if(cell)
-		to_chat(user, span_warning("[src] already has a cell installed."))
+		to_chat(user, span_warning(LANG("obj.3d7d4031", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	cell = tool
-	to_chat(user, span_notice("You successfully install \the [cell] into [src]."))
+	to_chat(user, span_notice(LANG("obj.b9a8027e", list(cell, src))))
 	update_hud_icon(user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -277,8 +276,8 @@
 /obj/item/clothing/suit/space/proc/remove_cell(mob/user)
 	if(!cell_cover_open || isnull(cell))
 		return
-	user.visible_message(span_notice("[user] removes \the [cell] from [src]!"), \
-		span_notice("You remove [cell]."))
+	user.visible_message(span_notice(LANG("obj.ea367116", list(user, cell, src))), \
+		span_notice(LANG("obj.1973523e", list(cell))))
 	cell.add_fingerprint(user)
 	user.put_in_hands(cell)
 	cell = null
@@ -287,7 +286,7 @@
 /// Toggle the space suit's cell cover
 /obj/item/clothing/suit/space/proc/toggle_spacesuit_cell(mob/user)
 	cell_cover_open = !cell_cover_open
-	to_chat(user, span_notice("You [cell_cover_open ? "open" : "close"] the cell cover on \the [src]."))
+	to_chat(user, span_notice(LANG("obj.c78fe1c1", list(cell_cover_open ? "open" : "close", src))))
 
 /**
  * Toggle the space suit's thermal regulator status
@@ -304,7 +303,7 @@
 	// thermal protection value and should just return out early.
 	if(!thermal_on && (!cell || cell.charge < THERMAL_REGULATOR_COST))
 		if(toggler)
-			to_chat(toggler, span_warning("The thermal regulator on [src] has no charge."))
+			to_chat(toggler, span_warning(LANG("obj.cca32537", list(src))))
 		return
 
 	thermal_on = !thermal_on
@@ -317,9 +316,9 @@
 	if(!toggler)
 		return
 	if(manual_toggle)
-		to_chat(toggler, span_notice("You turn [thermal_on ? "on" : "off"] [src]'s thermal regulator."))
+		to_chat(toggler, span_notice(LANG("obj.9f3a8cd1", list(thermal_on ? "on" : "off", src))))
 	else
-		to_chat(toggler, span_danger("You feel [src]'s thermal regulator switch [thermal_on ? "on" : "off"] by itself!"))
+		to_chat(toggler, span_danger(LANG("obj.be261234", list(src, thermal_on ? "on" : "off"))))
 
 /obj/item/clothing/suit/space/ui_action_click(mob/user, actiontype)
 	toggle_spacesuit(user)
@@ -330,7 +329,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	if (user)
-		balloon_alert(user, "thermal regulator restrictions overridden")
+		balloon_alert(user, LANG("obj.57904fc8", null))
 		user.log_message("emagged [src], overwriting thermal regulator restrictions.", LOG_GAME)
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -377,10 +376,10 @@
 /obj/item/clothing/head/helmet/space/suicide_act(mob/living/user)
 	var/datum/gas_mixture/environment = user.loc.return_air()
 	if(HAS_TRAIT(user, TRAIT_RESISTCOLD) || !environment || environment.return_temperature() >= user.get_body_temp_cold_damage_limit())
-		user.visible_message(span_suicide("[user] is beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide(LANG("obj.f98873ca", list(user, user.p_them(), src, user.p_theyre()))))
 		return BRUTELOSS
-	user.say("You want proof? I'll give you proof! Here's proof of what'll happen to you if you stay here with your stuff!", forced = "space helmet suicide")
-	user.visible_message(span_suicide("[user] is removing [user.p_their()] helmet to make a point! Yo, holy shit, [user.p_they()] dead!")) //the use of p_they() instead of p_their() here is intentional
+	user.say(LANG("obj.1f541ec4", null), forced = "space helmet suicide")
+	user.visible_message(span_suicide(LANG("obj.1b82bf94", list(user, user.p_their(), user.p_they())))) //the use of p_they() instead of p_their() here is intentional
 	user.adjust_bodytemperature(-300)
 	user.apply_status_effect(/datum/status_effect/freon)
 	if(!ishuman(user))

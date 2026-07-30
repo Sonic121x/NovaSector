@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 GLOBAL_LIST_EMPTY(ghost_images_default) //this is a list of the default (non-accessorized, non-dir) images of the ghosts themselves
 GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as the simple white ghost
 
@@ -306,7 +307,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /*
 This is the proc mobs get to turn into a ghost. Forked from ghostize due to compatibility issues.
 */
-GAME_VERB_DESC(/mob/living, ghost, "Ghost", "Relinquish your life and enter the land of the dead.", "OOC")
+GAME_VERB_DESC(/mob/living, ghost, "幽灵", "Relinquish your life and enter the land of the dead.", "OOC")
 
 	if(stat != STABLE && stat != DEAD)
 		succumb()
@@ -319,15 +320,15 @@ GAME_VERB_DESC(/mob/living, ghost, "Ghost", "Relinquish your life and enter the 
 		ghostize(TRUE) // Can return with TRUE
 		return TRUE
 	// NOVA EDIT ADDITION END
-	var/response = tgui_alert(usr, "Are you sure you want to ghost? If you ghost whilst still alive you cannot re-enter your body!", "Confirm Ghost Observe", list("Ghost", "Stay in Body"))
+	var/response = tgui_alert(usr, LANG("mob.6b44eb18", null), LANG("mob.34dcf73a", null), list("Ghost", "Stay in Body"))
 	if(response != "Ghost")
 		return FALSE//didn't want to ghost after-all
 	ghostize(FALSE) // FALSE parameter is so we can never re-enter our body. U ded.
 	return TRUE
 
-GAME_VERB_DESC(/mob/eye, ghost, "Ghost", "Relinquish your life and enter the land of the dead.", "OOC")
+GAME_VERB_DESC(/mob/eye, ghost, "幽灵", "Relinquish your life and enter the land of the dead.", "OOC")
 
-	var/response = tgui_alert(usr, "Are you sure you want to ghost? If you ghost whilst still alive you cannot re-enter your body!", "Confirm Ghost Observe", list("Ghost", "Stay in Body"))
+	var/response = tgui_alert(usr, LANG("mob.6b44eb18", null), LANG("mob.34dcf73a", null), list("Ghost", "Stay in Body"))
 	if(response != "Ghost")
 		return
 	ghostize(FALSE)
@@ -367,40 +368,40 @@ GAME_VERB_DESC(/mob/eye, ghost, "Ghost", "Relinquish your life and enter the lan
 	if(new_area != ambience_tracked_area)
 		update_ambience_area(new_area)
 
-GAME_VERB(/mob/dead/observer, reenter_corpse, "Re-enter Corpse", null)
+GAME_VERB(/mob/dead/observer, reenter_corpse, "重新进入尸体", null)
 
 	if(!client)
 		return
 	if(!mind || QDELETED(mind.current))
-		to_chat(src, span_warning("You have no body."))
+		to_chat(src, span_warning(LANG("mob.b760aaa5", null)))
 		return
 	if(!can_reenter_corpse && !mind.has_antag_datum(/datum/antagonist/changeling)) //NOVA EDIT
-		to_chat(src, span_warning("You cannot re-enter your body."))
+		to_chat(src, span_warning(LANG("mob.bbdb9b10", null)))
 		return
 	if(mind.current.key && !IS_FAKE_KEY(mind.current.key)) //makes sure we don't accidentally kick any clients
-		to_chat(usr, span_warning("Another consciousness is in your body...It is resisting you."))
+		to_chat(usr, span_warning(LANG("mob.52af4c22", null)))
 		return
 	client.view_size.resetToDefault()//Let's reset so people can't become allseeing gods
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	if(mind.current.stat == DEAD && SSlag_switch.measures[DISABLE_DEAD_KEYLOOP] && !client.holder)
-		to_chat(src, span_warning("To leave your body again use the 'Ghost verb' (in the command bar)."))
+		to_chat(src, span_warning(LANG("mob.cfa3d68d", null)))
 	mind.current.PossessByPlayer(key)
 	mind.current.client.init_verbs()
 	return TRUE
 
-GAME_VERB(/mob/dead/observer, do_not_resuscitate, "Do Not Resuscitate", null)
+GAME_VERB(/mob/dead/observer, do_not_resuscitate, "拒绝复苏", null)
 
 	if(!can_reenter_corpse)
-		to_chat(usr, span_warning("You're already stuck out of your body!"))
+		to_chat(usr, span_warning(LANG("mob.855d6efc", null)))
 		return FALSE
 
-	var/response = tgui_alert(usr, "Are you sure you want to prevent (almost) all means of resuscitation? This cannot be undone.", "Are you sure you want to stay dead?", list("DNR","Save Me"))
+	var/response = tgui_alert(usr, LANG("mob.a2d1577c", null), LANG("mob.c2e89b71", null), list("DNR","Save Me"))
 	if(response == "DNR")
 		stay_dead()
 
 /mob/dead/observer/proc/stay_dead()
 	if(!can_reenter_corpse)
-		to_chat(usr, span_warning("You're already stuck out of your body!"))
+		to_chat(usr, span_warning(LANG("mob.855d6efc", null)))
 		return FALSE
 
 	can_reenter_corpse = FALSE
@@ -423,7 +424,7 @@ GAME_VERB(/mob/dead/observer, do_not_resuscitate, "Do Not Resuscitate", null)
 	// Disassociates observer mind from the body mind
 	mind = null
 
-	to_chat(src, span_boldnotice("You can no longer be brought back into your body."))
+	to_chat(src, span_boldnotice(LANG("mob.34958f7a", null)))
 	return TRUE
 
 /mob/dead/observer/proc/send_revival_notification(message, sound, atom/source, flashwindow)
@@ -447,25 +448,25 @@ GAME_VERB(/mob/dead/observer, do_not_resuscitate, "Do Not Resuscitate", null)
 				A.add_overlay(source)
 				source.layer = old_layer
 				source.plane = old_plane
-	to_chat(src, span_ghostalert("<a href=byond://?src=[REF(src)];reenter=1>(Click to re-enter)</a>"))
+	to_chat(src, span_ghostalert(LANG("mob.4aa7fae8", list(REF(src)))))
 	if(sound)
 		SEND_SOUND(src, sound(sound))
 
-GAME_VERB(/mob/dead/observer, dead_tele, "Teleport", null)
+GAME_VERB(/mob/dead/observer, dead_tele, "传送", null)
 
 	if(!isobserver(usr))
-		to_chat(usr, span_warning("Not when you're not dead!"))
+		to_chat(usr, span_warning(LANG("mob.51e9f3c5", null)))
 		return
 	var/list/filtered = list()
 	for(var/area/A as anything in get_sorted_areas())
 		if(!(A.area_flags & HIDDEN_AREA))
 			filtered += A
-	var/area/thearea = tgui_input_list(usr, "Area to jump to", "BOOYEA", filtered)
+	var/area/thearea = tgui_input_list(usr, LANG("mob.6a7d6e97", null), LANG("mob.d3501f61", null), filtered)
 
 	if(isnull(thearea))
 		return
 	if(!isobserver(usr))
-		to_chat(usr, span_warning("Not when you're not dead!"))
+		to_chat(usr, span_warning(LANG("mob.51e9f3c5", null)))
 		return
 
 	var/list/L = list()
@@ -473,16 +474,16 @@ GAME_VERB(/mob/dead/observer, dead_tele, "Teleport", null)
 		L+=T
 
 	if(!L || !length(L))
-		to_chat(usr, span_warning("No area available."))
+		to_chat(usr, span_warning(LANG("mob.f36d30bd", null)))
 		return
 
 	usr.abstract_move(pick(L))
 
-GAME_VERB(/mob/dead/observer, follow, "Orbit", null)
+GAME_VERB(/mob/dead/observer, follow, "环绕", null)
 
 	GLOB.orbit_menu.show(src)
 
-GAME_VERB(/mob/dead/observer, jumptomob, "Jump to Mob", null) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
+GAME_VERB(/mob/dead/observer, jumptomob, "跳转到生物", null) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 
 	if(!isobserver(usr)) //Make sure they're an observer!
 		return
@@ -490,7 +491,7 @@ GAME_VERB(/mob/dead/observer, jumptomob, "Jump to Mob", null) //Moves the ghost 
 	var/list/possible_destinations = SSpoints_of_interest.get_mob_pois()
 	var/target = null
 
-	target = tgui_input_list(usr, "Please, select a player!", "Jump to Mob", possible_destinations)
+	target = tgui_input_list(usr, LANG("mob.49fce9a4", null), LANG("mob.311f1d41", null), possible_destinations)
 	if(isnull(target))
 		return
 	if (!isobserver(usr))
@@ -508,12 +509,12 @@ GAME_VERB(/mob/dead/observer, jumptomob, "Jump to Mob", null) //Moves the ghost 
 	if(isturf(destination_turf))
 		source_mob.abstract_move(destination_turf)
 	else
-		to_chat(source_mob, span_danger("This mob is not located in the game world."))
+		to_chat(source_mob, span_danger(LANG("mob.20231aec", null)))
 
-GAME_VERB(/mob/dead/observer, change_view_range, "View Range", null)
+GAME_VERB(/mob/dead/observer, change_view_range, "视野范围", null)
 
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder)
-		to_chat(usr, span_notice("That verb is currently globally disabled."))
+		to_chat(usr, span_notice(LANG("mob.a5704d22", null)))
 		return
 
 	var/max_view = client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
@@ -521,19 +522,19 @@ GAME_VERB(/mob/dead/observer, change_view_range, "View Range", null)
 		var/list/views = list()
 		for(var/i in 7 to max_view)
 			views |= i
-		var/new_view = tgui_input_list(usr, "New view", "Modify view range", views)
+		var/new_view = tgui_input_list(usr, LANG("mob.5136f3cf", null), LANG("mob.a48cf5f2", null), views)
 		if(new_view)
 			client.view_size.setTo(clamp(new_view, 7, max_view) - 7)
 	else
 		client.view_size.resetToDefault()
 
-GAME_VERB(/mob/dead/observer, toggle_ghostsee, "Toggle Ghost Vision", null)
+GAME_VERB(/mob/dead/observer, toggle_ghostsee, "切换幽灵视觉", null)
 
 	toggle_ghost_hud_flag(GHOST_VISION)
 	update_sight()
-	to_chat(usr, span_boldnotice("You [(ghost_hud_flags & GHOST_VISION) ? "now" : "no longer"] have ghost vision."))
+	to_chat(usr, span_boldnotice(LANG("mob.10328c5a", list((ghost_hud_flags & GHOST_VISION) ? "now" : "no longer"))))
 
-GAME_VERB(/mob/dead/observer, toggle_darkness, "Toggle Darkness", null)
+GAME_VERB(/mob/dead/observer, toggle_darkness, "切换黑暗", null)
 
 	switch(lighting_cutoff)
 		if (LIGHTING_CUTOFF_VISIBLE)
@@ -547,11 +548,11 @@ GAME_VERB(/mob/dead/observer, toggle_darkness, "Toggle Darkness", null)
 
 	update_sight()
 
-GAME_VERB(/mob/dead/observer, view_manifest, "View Crew Manifest", null)
+GAME_VERB(/mob/dead/observer, view_manifest, "查看船员名单", null)
 
 	GLOB.manifest.ui_interact(src)
 
-GAME_VERB(/mob/dead/observer, observe, "Observe", null)
+GAME_VERB(/mob/dead/observer, observe, "观察", null)
 
 	if(!isobserver(usr) || HAS_TRAIT(src, TRAIT_NO_OBSERVE)) //Make sure they're an observer!
 		return
@@ -561,7 +562,7 @@ GAME_VERB(/mob/dead/observer, observe, "Observe", null)
 	var/list/possible_destinations = SSpoints_of_interest.get_mob_pois()
 	var/target = null
 
-	target = tgui_input_list(usr, "Please, select a player!", "Jump to Mob", possible_destinations)
+	target = tgui_input_list(usr, LANG("mob.49fce9a4", null), LANG("mob.311f1d41", null), possible_destinations)
 	if(isnull(target))
 		return
 	if (!isobserver(usr))
@@ -580,47 +581,47 @@ GAME_VERB(/mob/dead/observer, observe, "Observe", null)
 
 	do_observe(chosen_target)
 
-GAME_VERB(/mob/dead/observer, tray_view, "T-ray scan", null)
+GAME_VERB(/mob/dead/observer, tray_view, "T 射线扫描", null)
 
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder)
-		to_chat(usr, span_notice("That verb is currently globally disabled."))
+		to_chat(usr, span_notice(LANG("mob.a5704d22", null)))
 		return
 
 	t_ray_scan(src)
 
-GAME_VERB(/mob/dead/observer, toggle_data_huds, "Toggle Sec/Med/Diag HUD", null)
+GAME_VERB(/mob/dead/observer, toggle_data_huds, "切换安保/医疗/诊断 HUD", null)
 
 	toggle_ghost_hud_flag(GHOST_DATA_HUDS)
 	if(ghost_hud_flags & GHOST_DATA_HUDS)
-		to_chat(src, span_notice("Data HUDs enabled."))
+		to_chat(src, span_notice(LANG("mob.69af8d49", null)))
 	else
-		to_chat(src, span_notice("Data HUDs disabled."))
+		to_chat(src, span_notice(LANG("mob.dd6914ad", null)))
 
-GAME_VERB(/mob/dead/observer, toggle_health_scan, "Toggle Health Scan", null)
+GAME_VERB(/mob/dead/observer, toggle_health_scan, "切换健康扫描", null)
 
 	toggle_ghost_hud_flag(GHOST_HEALTH)
 	if(ghost_hud_flags & GHOST_HEALTH)
-		to_chat(src, span_notice("Health scan enabled."))
+		to_chat(src, span_notice(LANG("mob.cf464ecf", null)))
 	else
-		to_chat(src, span_notice("Health scan disabled."))
+		to_chat(src, span_notice(LANG("mob.17620b99", null)))
 
-GAME_VERB(/mob/dead/observer, toggle_chem_scan, "Toggle Chem Scan", null)
+GAME_VERB(/mob/dead/observer, toggle_chem_scan, "切换化学扫描", null)
 
 	toggle_ghost_hud_flag(GHOST_CHEM)
 	if(ghost_hud_flags & GHOST_CHEM)
-		to_chat(src, span_notice("Chem scan enabled."))
+		to_chat(src, span_notice(LANG("mob.d0b2efb7", null)))
 	else
-		to_chat(src, span_notice("Chem scan disabled."))
+		to_chat(src, span_notice(LANG("mob.60a443e3", null)))
 
-GAME_VERB(/mob/dead/observer, toggle_gas_scan, "Toggle Gas Scan", null)
+GAME_VERB(/mob/dead/observer, toggle_gas_scan, "切换气体扫描", null)
 
 	toggle_ghost_hud_flag(GHOST_GAS)
 	if(ghost_hud_flags & GHOST_GAS)
-		to_chat(src, span_notice("Gas scan enabled."))
+		to_chat(src, span_notice(LANG("mob.34d138b5", null)))
 	else
-		to_chat(src, span_notice("Gas scan disabled."))
+		to_chat(src, span_notice(LANG("mob.d05b2747", null)))
 
-GAME_VERB(/mob/dead/observer, restore_ghost_appearance, "Restore Ghost Character", null)
+GAME_VERB(/mob/dead/observer, restore_ghost_appearance, "恢复幽灵角色", null)
 
 	set_ghost_appearance()
 	if(client?.prefs)
@@ -680,10 +681,10 @@ GAME_VERB(/mob/dead/observer, restore_ghost_appearance, "Restore Ghost Character
 	if (!isnull(client) && !isnull(client.eye))
 		reset_perspective(null)
 
-GAME_VERB_HIDDEN(/mob/dead/observer, add_view_range, "Add View Range", input as num)
+GAME_VERB_HIDDEN(/mob/dead/observer, add_view_range, "增加视野范围", input as num)
 
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder)
-		to_chat(usr, span_notice("That verb is currently globally disabled."))
+		to_chat(usr, span_notice(LANG("mob.a5704d22", null)))
 		return
 
 	var/max_view = client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
@@ -745,20 +746,20 @@ GAME_VERB_HIDDEN(/mob/dead/observer, add_view_range, "Add View Range", input as 
 		if(!(L in GLOB.player_list) && !L.mind)
 			possessible += L
 
-	var/mob/living/target = tgui_input_list(usr, "Your new life begins today!", "Possess Mob", sort_names(possessible))
+	var/mob/living/target = tgui_input_list(usr, LANG("mob.fd5afff2", null), LANG("mob.7e143c1b", null), sort_names(possessible))
 
 	if(!target)
 		return FALSE
 
 	if(ismegafauna(target))
-		to_chat(src, span_warning("This creature is too powerful for you to possess!"))
+		to_chat(src, span_warning(LANG("mob.063acebf", null)))
 		return FALSE
 
 	if(can_reenter_corpse && mind?.current)
-		if(tgui_alert(usr, "Your soul is still tied to your former life as [mind.current.name], if you go forward there is no going back to that life. Are you sure you wish to continue?", "Move On", list("Yes", "No")) == "No")
+		if(tgui_alert(usr, LANG("mob.aecc5c43", list(mind.current.name)), LANG("mob.55cc6be3", null), list("Yes", "No")) == "No")
 			return FALSE
 	if(target.key)
-		to_chat(src, span_warning("Someone has taken this body while you were choosing!"))
+		to_chat(src, span_warning(LANG("mob.8c29cd8b", null)))
 		return FALSE
 
 	target.PossessByPlayer(key)
@@ -769,7 +770,7 @@ GAME_VERB_HIDDEN(/mob/dead/observer, add_view_range, "Add View Range", input as 
 	if(!..())
 		return FALSE
 
-	visible_message(span_deadsay("<b>[src]</b> points to [pointed_at]."))
+	visible_message(span_deadsay(LANG("mob.127a4615", list(src, pointed_at))))
 
 //this is called when a ghost is drag clicked to something.
 /mob/dead/observer/mouse_drop_dragged(atom/over, mob/user)
@@ -954,7 +955,7 @@ GAME_VERB_HIDDEN(/mob/dead/observer, add_view_range, "Add View Range", input as 
 /mob/dead/observer/examine(mob/user)
 	. = ..()
 	if(!invisibility)
-		. += "It seems extremely obvious."
+		. += LANG("mob.cce52049", null)
 
 /mob/dead/observer/examine_more(mob/user)
 	if(!isAdminObserver(user))
@@ -979,17 +980,17 @@ GAME_VERB_HIDDEN(/mob/dead/observer, add_view_range, "Add View Range", input as 
 			to_chat(G, message)
 	GLOB.observer_default_invisibility = amount
 
-GAME_VERB_PROC(/mob/dead/observer, open_spawners_menu, "Spawners Menu", null)
+GAME_VERB_PROC(/mob/dead/observer, open_spawners_menu, "生成器菜单", null)
 	if(!spawners_menu)
 		spawners_menu = new(src)
 
 	spawners_menu.ui_interact(src)
 
-GAME_VERB_PROC(/mob/dead/observer, open_minigames_menu, "Minigames Menu", null)
+GAME_VERB_PROC(/mob/dead/observer, open_minigames_menu, "小游戏菜单", null)
 	if(!client)
 		return
 	if(!isobserver(src))
-		to_chat(usr, span_warning("You must be a ghost to play minigames!"))
+		to_chat(usr, span_warning(LANG("mob.35de8126", null)))
 		return
 	if(!minigames_menu)
 		minigames_menu = new(src)

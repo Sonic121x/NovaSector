@@ -118,7 +118,7 @@
 		desc = initial(desc)
 	else
 		name = "Mermaid Transform"
-		desc = "Return to your mermaid form."
+		desc = LANG("datum.45e09b35", null)
 	return ..()
 
 /datum/action/cooldown/spell/mermaid_toggle/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force = FALSE)
@@ -406,7 +406,7 @@
 // Only works if the owner is a human with a valid taur body organ. This also can only be triggered if the taur body overlay supports laying down.
 // This prevents laying down if the owner is already resting, IE: Prone. Manages the mob's density and adds in a specific sound if laying within gravity.
 
-GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "(Taur) Toggle Laying Down", "IC")
+GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "（半人马）切换趴卧", "IC")
 	var/mob/living/carbon/human/owner = src
 	if(!istype(owner))
 		return
@@ -420,10 +420,10 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "(Taur) Toggle Laying D
 	if(!overlay.can_lay_down)
 		return
 	if(owner.resting)
-		to_chat(owner, span_notice("You have to be standing up in order to lay down properly!"))
+		to_chat(owner, span_notice(LANG("obj.4e342753", null)))
 	if(overlay.laying_down)
 		// Rising up
-		to_chat(owner, span_notice("You start lifting your body up."))
+		to_chat(owner, span_notice(LANG("obj.37e7b54a", null)))
 		if(!do_after(owner, LAYDOWN_COOLDOWN))
 			return
 		if(!overlay.laying_down) // Prevent multiple standups at once
@@ -435,7 +435,7 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "(Taur) Toggle Laying D
 
 		owner.SetImmobilized(0, TRUE)
 		REMOVE_TRAIT(owner, TRAIT_UNDENSE, TRAIT_TAUR_LOAF)
-		to_chat(owner, span_notice("You stand up."))
+		to_chat(owner, span_notice(LANG("obj.0f313ebe", null)))
 	else
 		// And laying back down
 		overlay.laying_down = TRUE
@@ -445,7 +445,7 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "(Taur) Toggle Laying D
 
 		owner.Immobilize(INFINITY, TRUE)
 		ADD_TRAIT(owner, TRAIT_UNDENSE, TRAIT_TAUR_LOAF)
-		to_chat(owner, span_notice("You lay down."))
+		to_chat(owner, span_notice(LANG("obj.69b6e0d0", null)))
 		if(owner.has_gravity())
 			playsound(owner, "bodyfall", 50, TRUE)
 

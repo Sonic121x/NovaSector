@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// List of medicine reagents that we generally always want to be usable for a mob
 GLOBAL_LIST_INIT(allergy_reagent_blacklist, typecacheof(list(
 	/datum/reagent/medicine/adminordrazine,
@@ -62,7 +63,7 @@ GLOBAL_LIST_INIT(allergy_reagent_blacklist, typecacheof(list(
 
 /datum/quirk/item_quirk/allergic/post_add()
 	quirk_holder.add_mob_memory(/datum/memory/key/quirk_allergy, allergy_string = allergy_string)
-	to_chat(quirk_holder, span_boldnotice("You are allergic to <i>[allergy_string]</i> - make sure not to consume any of these!"))
+	to_chat(quirk_holder, span_boldnotice(LANG("datum.3cbc5dab", list(allergy_string))))
 
 /datum/quirk/item_quirk/allergic/proc/block_metab(mob/living/carbon/source, datum/reagent/chem, seconds_per_tick)
 	SIGNAL_HANDLER

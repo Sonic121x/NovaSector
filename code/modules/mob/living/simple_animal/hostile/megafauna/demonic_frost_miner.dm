@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define FROST_MINER_SHOULD_ENRAGE (health <= maxHealth*0.25 && !enraged)
 GLOBAL_LIST_EMPTY(frost_miner_prisms)
 
@@ -159,7 +160,7 @@ Difficulty: Extremely Hard
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/ex_act(severity, target)
 	adjust_brute_loss(-30 * severity)
-	visible_message(span_danger("[src] absorbs the explosion!"), span_userdanger("You absorb the explosion!"))
+	visible_message(span_danger(LANG("mob.5bb8d3b5", list(src))), span_userdanger(LANG("mob.de870c0f", null)))
 	return TRUE
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Goto(target, delay, minimum_distance)
@@ -253,7 +254,7 @@ Difficulty: Extremely Hard
 /datum/status_effect/ice_block_talisman/on_apply()
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(owner_moved))
 	if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_userdanger("You become frozen in a cube!"))
+		to_chat(owner, span_userdanger(LANG("datum.f018dcbb", null)))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
 	var/list/icon_dimensions = get_icon_dimensions(owner.icon)
 	cube.Scale(icon_dimensions["width"], icon_dimensions["height"])
@@ -272,7 +273,7 @@ Difficulty: Extremely Hard
 
 /datum/status_effect/ice_block_talisman/on_remove()
 	if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_notice("The cube melts!"))
+		to_chat(owner, span_notice(LANG("datum.94b17e7a", null)))
 	owner.cut_overlay(cube)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 

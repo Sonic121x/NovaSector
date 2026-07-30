@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/organ/heart
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
@@ -129,8 +130,8 @@
 	if(!beating || (organ_flags & ORGAN_FAILING))
 		if(owner.can_heartattack() && Stop())
 			if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-				owner.visible_message(span_danger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
-			to_chat(owner, span_userdanger("You feel a terrible pain in your chest, as if your heart has stopped!"))
+				owner.visible_message(span_danger(LANG("obj.32fa6902", list(owner, owner.p_their(), owner.p_their()))))
+			to_chat(owner, span_userdanger(LANG("obj.ba4fe027", null)))
 		return
 
 	// Beyond deals with sound effects, so nothing needs to be done if no client
@@ -140,7 +141,7 @@
 	if(owner.stat == SOFT_CRIT)
 		if(beat != BEAT_SLOW)
 			beat = BEAT_SLOW
-			to_chat(owner, span_notice("You feel your heart slow down..."))
+			to_chat(owner, span_notice(LANG("obj.49d50bba", null)))
 			SEND_SOUND(owner, sound('sound/effects/health/slowbeat.ogg', repeat = TRUE, channel = CHANNEL_HEARTBEAT, volume = 40))
 
 	else if(owner.stat == HARD_CRIT)
@@ -331,7 +332,7 @@
 	. = ..()
 	if(owner.health < 5 && COOLDOWN_FINISHED(src, adrenaline_cooldown))
 		COOLDOWN_START(src, adrenaline_cooldown, rand(25 SECONDS, 1 MINUTES))
-		to_chat(owner, span_userdanger("You feel yourself dying, but you refuse to give up!"))
+		to_chat(owner, span_userdanger(LANG("obj.ffaaec57", null)))
 		owner.heal_overall_damage(brute = 15, burn = 15, required_bodytype = BODYTYPE_ORGANIC)
 		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
 			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)

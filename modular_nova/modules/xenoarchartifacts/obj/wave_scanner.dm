@@ -19,7 +19,7 @@
 	toggle_searcher()
 
 // Tries to put searcher in hand
-GAME_VERB(/obj/item/xenoarch/wave_scanner_backpack, toggle_searcher, "Toggle Searcher", null)
+GAME_VERB(/obj/item/xenoarch/wave_scanner_backpack, toggle_searcher, "切换搜索器", null)
 	if(!usr)
 		return
 
@@ -28,13 +28,13 @@ GAME_VERB(/obj/item/xenoarch/wave_scanner_backpack, toggle_searcher, "Toggle Sea
 
 	var/mob/user = usr
 	if(!user.get_item_by_slot(ITEM_SLOT_BACK) == src)
-		to_chat(usr, span_warning("The [src] must be worn properly to use!"))
+		to_chat(usr, span_warning(LANG("obj.e0837cee", list(src))))
 		return
 
 	if(processor.loc == src)
 		// Detach the searcher into the user's hands
 		if(!user.put_in_hands(processor))
-			to_chat(user, span_warning("You need a free hand to hold the [processor]!"))
+			to_chat(user, span_warning(LANG("obj.6d0262b9", list(processor))))
 			return
 		playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 50, FALSE)
 	else
@@ -56,7 +56,7 @@ GAME_VERB(/obj/item/xenoarch/wave_scanner_backpack, toggle_searcher, "Toggle Sea
 	if(ismob(processor.loc))
 		var/mob/mob_loc = processor.loc
 		if(mob_loc.dropItemToGround(processor))
-			to_chat(mob_loc, span_notice("The [processor] snaps back into the [src]."))
+			to_chat(mob_loc, span_notice(LANG("obj.9f1e60cb", list(processor, src))))
 			playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 50, FALSE)
 	else
 		processor.forceMove(src)

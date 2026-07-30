@@ -5,7 +5,7 @@
 	QDEL_NULL(opposing_force)
 	return ..()
 
-GAME_VERB_DESC(/mob, opposing_force, "Opposing Force", "View your opposing force panel, or request one.", "OOC")
+GAME_VERB_DESC(/mob, opposing_force, "敌对行动申请", "View your opposing force panel, or request one.", "OOC")
 	// Mind checks
 	if(!mind)
 		var/fail_message = "You have no mind!"
@@ -15,11 +15,11 @@ GAME_VERB_DESC(/mob, opposing_force, "Opposing Force", "View your opposing force
 		return
 
 	if(is_banned_from(ckey, BAN_ANTAGONIST))
-		to_chat(src, span_warning("You are antagonist banned!"))
+		to_chat(src, span_warning(LANG("mob.e652f911", null)))
 		return
 
 	if(is_banned_from(ckey, BAN_OPFOR))
-		to_chat(src, span_warning("You are OPFOR banned!"))
+		to_chat(src, span_warning(LANG("mob.e0c3bbd2", null)))
 		return
 
 	if(!mind.opposing_force)

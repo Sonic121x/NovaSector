@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 /obj/item/bodypart/chest
 	name = BODY_ZONE_CHEST
@@ -201,7 +202,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
 			if(!IS_UNCONSCIOUS(owner))
-				to_chat(owner, span_userdanger("You lose control of your [plaintext_zone]!"))
+				to_chat(owner, span_userdanger(LANG("obj.a0373598", list(plaintext_zone))))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	else if(!bodypart_disabled)
@@ -428,7 +429,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_legs(owner.usable_legs - 1)
 			if(!IS_UNCONSCIOUS(owner))
-				to_chat(owner, span_userdanger("You lose control of your [plaintext_zone]!"))
+				to_chat(owner, span_userdanger(LANG("obj.a0373598", list(plaintext_zone))))
 	else if(!bodypart_disabled)
 		owner.set_usable_legs(owner.usable_legs + 1)
 

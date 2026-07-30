@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * Do something nasty to everyone nearby if they're looking at us.
  */
@@ -36,7 +37,7 @@
 	show_indicator_overlay("eye_open")
 	stage_timer = addtimer(CALLBACK(src, PROC_REF(show_indicator_overlay), "eye_pulse"), animation_time, TIMER_STOPPABLE)
 	StartCooldown(360 SECONDS, 360 SECONDS)
-	owner.visible_message(span_warning("[owner]'s eye glows ominously!"))
+	owner.visible_message(span_warning(LANG("datum.74759e38", list(owner))))
 	if (do_after(owner, delay = wait_delay, target = owner, cog_icon = null))
 		trigger_effect()
 		proxmon_cleanup()
@@ -103,7 +104,7 @@
 	if (!viewer.flash_act(intensity = 4, affect_silicon = TRUE, visual = TRUE, length = 3 SECONDS))
 		return FALSE
 	viewer.set_confusion_if_lower(12 SECONDS)
-	to_chat(viewer, span_warning("You are blinded by [owner]'s piercing gaze!"))
+	to_chat(viewer, span_warning(LANG("datum.bfe7ee0d", list(owner))))
 	return TRUE
 
 /// Animate our effect out
@@ -204,7 +205,7 @@
 	desc = "After a delay, burn and stun everyone looking at you."
 
 /datum/action/cooldown/mob_cooldown/watcher_gaze/fire/apply_effect(mob/living/viewer)
-	to_chat(viewer, span_warning("[owner]'s searing glare forces you to the ground!"))
+	to_chat(viewer, span_warning(LANG("datum.05a1ba61", list(owner))))
 	viewer.Paralyze(3 SECONDS)
 	viewer.adjust_fire_stacks(10)
 	viewer.ignite_mob()
@@ -220,7 +221,7 @@
 /datum/action/cooldown/mob_cooldown/watcher_gaze/ice/apply_effect(mob/living/viewer)
 	if(!HAS_TRAIT(viewer, TRAIT_RESISTCOLD))
 		return
-	to_chat(viewer, span_warning("You are repulsed by the force of [owner]'s cold stare!"))
+	to_chat(viewer, span_warning(LANG("datum.5e64601b", list(owner))))
 	viewer.apply_status_effect(/datum/status_effect/freon/watcher/extended)
 	viewer.safe_throw_at(
 		target = get_edge_target_turf(owner, get_dir(owner, get_step_away(viewer, owner))),

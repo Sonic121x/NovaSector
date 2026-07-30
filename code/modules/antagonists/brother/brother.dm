@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/antagonist/brother
 	name = "\improper Brother"
 	antagpanel_category = "Brother"
@@ -40,7 +41,7 @@
 
 	var/is_first_brother = team.members.len == 1
 	if (!is_first_brother)
-		to_chat(carbon_owner, span_boldwarning("The Syndicate have higher expectations from you than others. They have granted you an extra flash to convert one other person."))
+		to_chat(carbon_owner, span_boldwarning(LANG("datum.f59bc4b2", null)))
 
 	return ..()
 
@@ -71,11 +72,11 @@
 		return
 
 	if (flashed.stat != STABLE)
-		flashed.balloon_alert(source, "in critical!")
+		flashed.balloon_alert(source, LANG("datum.b49fe510", null))
 		return
 
 	if (IS_UNCONSCIOUS(flashed))
-		flashed.balloon_alert(source, "unconscious!")
+		flashed.balloon_alert(source, LANG("datum.dc8b5a42", null))
 		return
 
 #ifdef TESTING
@@ -83,7 +84,7 @@
 		flashed.mind_initialize()
 #else
 	if (isnull(flashed.mind) || !GET_CLIENT(flashed))
-		flashed.balloon_alert(source, "[flashed.p_their()] mind is vacant!")
+		flashed.balloon_alert(source, LANG("datum.96a90739", list(flashed.p_their())))
 		return
 #endif
 
@@ -94,15 +95,15 @@
 			return
 
 	if (flashed.mind.has_antag_datum(/datum/antagonist/brother))
-		flashed.balloon_alert(source, "[flashed.p_theyre()] loyal to someone else!")
+		flashed.balloon_alert(source, LANG("datum.9e06faa2", list(flashed.p_theyre())))
 		return
 
 	if (HAS_MIND_TRAIT(flashed, TRAIT_UNCONVERTABLE))
-		flashed.balloon_alert(source, "[flashed.p_they()] resist[flashed.p_s()]!")
+		flashed.balloon_alert(source, LANG("datum.5b91a8f9", list(flashed.p_they(), flashed.p_s())))
 		return
 
 	if (!team.add_brother(flashed, key_name(source))) // Shouldn't happen given the former, more specific checks but just in case
-		flashed.balloon_alert(source, "failed!")
+		flashed.balloon_alert(source, LANG("datum.31bf8acd", null))
 		return
 
 	source.log_message("converted [key_name(flashed)] to blood brother", LOG_ATTACK)
@@ -117,7 +118,7 @@
 		protagonist = flashed, \
 		antagonist = owner.current, \
 	)
-	flashed.balloon_alert(source, "converted")
+	flashed.balloon_alert(source, LANG("datum.72ad5488", null))
 
 /datum/antagonist/brother/antag_panel_data()
 	return "Conspirators : [get_brother_names()] | Remaining: [team.brothers_left]"
@@ -128,7 +129,7 @@
 
 /// Add or remove the potential to put more bros in here
 /datum/antagonist/brother/proc/update_recruitments_remaining(mob/admin)
-	var/new_count = tgui_input_number(admin, "How many more people should be able to be recruited?", "Adjust Conversions Remaining", default = 1, min_value = 0)
+	var/new_count = tgui_input_number(admin, LANG("datum.dcd666e6", null), LANG("datum.4f1d1b63", null), default = 1, min_value = 0)
 	if (isnull(new_count))
 		return
 	team.set_brothers_left(new_count)
@@ -183,7 +184,7 @@
 	return brother_text
 
 /datum/antagonist/brother/greet()
-	to_chat(owner.current, span_alertsyndie("You are a Blood Brother."))
+	to_chat(owner.current, span_alertsyndie(LANG("datum.aef74aab", null)))
 	owner.announce_objectives()
 
 /datum/antagonist/brother/proc/finalize_brother()

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Define to mimic a span macro but for the purple font that vote specifically uses.
 #define vote_font(text) ("<font color='purple'>" + text + "</font>")
 
@@ -203,7 +204,7 @@ SUBSYSTEM_DEF(vote)
 	// No valid vote found? No vote
 	if(!istype(to_vote))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("Invalid voting choice."))
+			to_chat(vote_initiator, span_warning(LANG("datum.818b68c0", null)))
 		return FALSE
 
 	// Vote can't be initiated in our circumstances? No vote
@@ -258,7 +259,7 @@ SUBSYSTEM_DEF(vote)
 	// Even if it's forced we can't vote before we're set up
 	if(!MC_RUNNING(init_stage))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("You cannot start a vote now, the server is not done initializing."))
+			to_chat(vote_initiator, span_warning(LANG("datum.628b797e", null)))
 		return FALSE
 
 	if(forced)
@@ -267,12 +268,12 @@ SUBSYSTEM_DEF(vote)
 	var/next_allowed_time = last_vote_time + CONFIG_GET(number/vote_delay)
 	if(next_allowed_time > world.time)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("A vote was initiated recently. You must wait [DisplayTimeText(next_allowed_time - world.time)] before a new vote can be started!"))
+			to_chat(vote_initiator, span_warning(LANG("datum.1a8fd54d", list(DisplayTimeText(next_allowed_time - world.time)))))
 		return FALSE
 
 	if(current_vote)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("There is already a vote in progress! Please wait for it to finish."))
+			to_chat(vote_initiator, span_warning(LANG("datum.206e6de2", null)))
 		return FALSE
 
 	return TRUE
@@ -441,10 +442,10 @@ SUBSYSTEM_DEF(vote)
 	voting -= user.client?.ckey
 
 /// Mob level verb that allows players to vote on the current vote.
-GAME_VERB(/mob, vote, "Vote", "OOC")
+GAME_VERB(/mob, vote, "投票", "OOC")
 
 	if(!SSvote.initialized)
-		to_chat(usr, span_notice("<i>Voting is not set up yet!</i>"))
+		to_chat(usr, span_notice(LANG("mob.cb7a09b7", null)))
 		return
 
 	SSvote.ui_interact(usr)

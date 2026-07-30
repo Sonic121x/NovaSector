@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 GLOBAL_LIST_EMPTY(monkey_recyclers)
 
 /obj/machinery/monkey_recycler
@@ -35,7 +36,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 /obj/machinery/monkey_recycler/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Producing <b>[cube_production]</b> cubes for every monkey inserted.")
+		. += span_notice(LANG("obj.4064aaf6", list(cube_production)))
 
 /obj/machinery/monkey_recycler/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -63,13 +64,13 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	if(!istype(target))
 		return
 	if(!IS_UNCONSCIOUS_OR_CRIT(target))
-		to_chat(user, span_warning("The monkey is struggling far too much to put it in the recycler."))
+		to_chat(user, span_warning(LANG("obj.c6df7627", null)))
 		return
 	if(target.buckled || target.has_buckled_mobs())
-		to_chat(user, span_warning("The monkey is attached to something."))
+		to_chat(user, span_warning(LANG("obj.16188804", null)))
 		return
 	qdel(target)
-	to_chat(user, span_notice("You stuff the monkey into the machine."))
+	to_chat(user, span_notice(LANG("obj.ea5bd3b8", null)))
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	var/offset = prob(50) ? -2 : 2
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
@@ -80,18 +81,18 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 
 /obj/machinery/monkey_recycler/interact(mob/user)
 	if(stored_matter >= 1)
-		to_chat(user, span_notice("The machine hisses loudly as it condenses the ground monkey meat. After a moment, it dispenses a brand new monkey cube."))
+		to_chat(user, span_notice(LANG("obj.a4338b3c", null)))
 		playsound(src.loc, 'sound/machines/hiss.ogg', 50, TRUE)
 		for(var/i in 1 to floor(stored_matter))
 			new /obj/item/food/monkeycube(src.loc)
 			stored_matter--
-		to_chat(user, span_notice("The machine's display flashes that it has [stored_matter] monkeys worth of material left."))
+		to_chat(user, span_notice(LANG("obj.dfe2ad41", list(stored_matter))))
 	else
-		to_chat(user, span_danger("The machine needs at least 1 monkey worth of material to produce a monkey cube. It currently has [stored_matter]."))
+		to_chat(user, span_danger(LANG("obj.ccb51ad4", list(stored_matter))))
 
 /obj/machinery/monkey_recycler/multitool_act(mob/living/user, obj/item/multitool/I)
 	. = ..()
 	if(istype(I))
 		I.set_buffer(src)
-		balloon_alert(user, "saved to multitool buffer")
+		balloon_alert(user, LANG("obj.84afb909", null))
 		return TRUE

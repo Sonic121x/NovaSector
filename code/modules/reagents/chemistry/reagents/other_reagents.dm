@@ -370,7 +370,7 @@
 				if(spell.remove_charges(ceil(spell.max_charges * spell.holywater_drain_amount)))
 					removed_any = TRUE
 			if(removed_any)
-				to_chat(affected_mob, span_mansus("Your intricate rituals are distrupted by the holy water scouring your body!"))
+				to_chat(affected_mob, span_mansus(LANG("datum.e0377bfb", null)))
 				COOLDOWN_START(src, spell_clear_cd, 3 SECONDS)
 
 	if(data["deciseconds_metabolized"] >= (25 SECONDS)) // 10 units

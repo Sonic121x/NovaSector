@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///yeet yourself at a thing
 /datum/bt_node/ai_behavior/throw_attack
 	/// Sound played on each throw.
@@ -16,7 +17,7 @@
 		controller.clear_blackboard_key(target_key)
 		controller.set_blackboard_key(throw_count_key, 0)
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
-	item_pawn.visible_message(span_warning("[item_pawn] hurls towards [throw_target]!"))
+	item_pawn.visible_message(span_warning(LANG("datum.22d4c2a9", list(item_pawn, throw_target))))
 	item_pawn.throw_at(throw_target, rand(4, 5), 9)
 	playsound(item_pawn.loc, attack_sound, 100, TRUE)
 	controller.add_blackboard_key(throw_count_key, 1)

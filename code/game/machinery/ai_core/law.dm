@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define MODULE_UNSECURED 0
 #define MODULE_SCREWED 1
 #define MODULE_WELDED 2
@@ -130,17 +131,17 @@
 
 /obj/machinery/ai_law_rack/proc/can_secure_check(mob/living/user)
 	if(!anchored)
-		balloon_alert(user, "fasten it first!")
+		balloon_alert(user, LANG("obj.194835d1", null))
 		return FALSE
 	if(!is_anchorable_floor(loc))
-		balloon_alert(user, "nothing to secure to!")
+		balloon_alert(user, LANG("obj.54e6e7dd", null))
 		return FALSE
 	return TRUE
 
 /obj/machinery/ai_law_rack/can_be_unfasten_wrench(mob/living/user, silent)
 	if(secured)
 		if(!silent)
-			balloon_alert(user, "unsecure it first!")
+			balloon_alert(user, LANG("obj.20d1ed9d", null))
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -153,7 +154,7 @@
 		if(FAILED_UNFASTEN)
 			return ITEM_INTERACT_BLOCKING
 		if(SUCCESSFUL_UNFASTEN)
-			balloon_alert_to_viewers("[anchored ? "":"un"]fastened")
+			balloon_alert_to_viewers(LANG("obj.3fdba163", list(anchored ? "":"un")))
 			return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -166,11 +167,11 @@
 		return ITEM_INTERACT_BLOCKING
 	if(!can_secure_check(user))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert_to_viewers("[secured ? "un":""]securing to floor...")
+	balloon_alert_to_viewers(LANG("obj.4fb5a494", list(secured ? "un":"")))
 	if(!tool.use_tool(src, user, 6 SECONDS, volume = 50, extra_checks = CALLBACK(src, PROC_REF(can_secure_check), user)))
 		return ITEM_INTERACT_BLOCKING
 	secured = !secured
-	balloon_alert_to_viewers("[secured ? "":"un"]secured")
+	balloon_alert_to_viewers(LANG("obj.97c34052", list(secured ? "":"un")))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/ai_law_rack/wirecutter_act_secondary(mob/living/user, obj/item/tool)
@@ -192,7 +193,7 @@
 	var/obj/structure/ai_core/to_link = tool.buffer
 	to_link.default_link_ref = WEAKREF(src)
 	tool.play_tool_sound(src, 20)
-	balloon_alert(user, "linked core to rack")
+	balloon_alert(user, LANG("obj.4d563ce7", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/ai_law_rack/vv_edit_var(var_name, var_value)
@@ -217,24 +218,24 @@
 		return
 
 	if(!isobserver(user) && get_dist(user, src) > LAW_EXAMINE_RANGE)
-		. += span_notice("If you got a bit closer, you could probably [EXAMINE_HINT("examine closer")] to see what modules are installed.")
+		. += span_notice(LANG("obj.778f428f", list(EXAMINE_HINT("examine closer"))))
 	else
-		. += span_notice("[EXAMINE_HINT("Examine closer")] to see what modules are installed.")
+		. += span_notice(LANG("obj.ce770c60", list(EXAMINE_HINT("Examine closer"))))
 	var/filled = 0
 	for(var/obj/item/ai_module/module in ai_modules)
 		filled++
-	. += span_info("Otherwise, you can see that [filled] out of [length(ai_modules)] slots are filled.")
+	. += span_info(LANG("obj.bbec6182", list(filled, length(ai_modules))))
 	if(has_core_slot && isnull(get_core_module()))
-		. += span_warning("You also note that the core slot is empty!")
+		. += span_warning(LANG("obj.76a9404f", null))
 	if(anchored)
-		. += span_notice("It is [EXAMINE_HINT("anchored")] to the floor[secured ? " and [EXAMINE_HINT("secured with metal cables")]" : ", but not [EXAMINE_HINT("secured by metal cables")]"].")
+		. += span_notice(LANG("obj.c60fa18f", list(EXAMINE_HINT("anchored"), secured ? " and [EXAMINE_HINT("secured with metal cables")]" : ", but not [EXAMINE_HINT("secured by metal cables")]")))
 
 /obj/machinery/ai_law_rack/examine_more(mob/user)
 	. = ..()
 	if(isAI(user))
 		return
 	if(!isobserver(user) && get_dist(user, src) > LAW_EXAMINE_RANGE)
-		. += span_warning("You can't quite make out which modules are installed in [src] from here.")
+		. += span_warning(LANG("obj.1d97f724", list(src)))
 		return
 	for(var/i in 1 to length(ai_modules))
 		. += get_slot_examine(i)
@@ -312,7 +313,7 @@
 
 /obj/machinery/ai_law_rack/ui_interact(mob/user, datum/tgui/ui)
 	if(issilicon(user))
-		to_chat(user, span_warning("Your programming forbids you from using this."))
+		to_chat(user, span_warning(LANG("obj.475c82d1", null)))
 		return
 	if(COOLDOWN_FINISHED(src, refresh_cooldown))
 		refresh_linkable_lists()
@@ -359,25 +360,25 @@
 			var/index = clamp(text2num(params["slot"]), 1, length(ai_modules))
 			var/obj/item/ai_module/module = user.get_active_held_item()
 			if(!istype(module))
-				to_chat(user, span_warning("You need to hold an AI module to insert it!"))
+				to_chat(user, span_warning(LANG("obj.17d8ec48", null)))
 				return TRUE
 			if(!module.can_install_to_rack(user, src))
 				return TRUE
 			if(istype(module, /obj/item/ai_module/law/core))
 				if(!has_core_slot)
-					to_chat(user, span_warning("[src] has no slots for core modules!"))
+					to_chat(user, span_warning(LANG("obj.b44155b0", list(src))))
 					return TRUE
 				if(index != 1)
-					to_chat(user, span_warning("You can't install a core module in a non-core slot!"))
+					to_chat(user, span_warning(LANG("obj.60c9ef8e", null)))
 					return TRUE
 			else if(has_core_slot)
 				if(index == 1)
-					to_chat(user, span_warning("You can only install core modules in the core slot!"))
+					to_chat(user, span_warning(LANG("obj.d61d8b6d", null)))
 					return TRUE
 			if(!user.transferItemToLoc(module, src))
-				to_chat(user, span_warning("You can't seem to insert [module.name] into [src]!"))
+				to_chat(user, span_warning(LANG("obj.1b295ca7", list(module.name, src))))
 				return TRUE
-			balloon_alert_to_viewers("inserted slot [index]")
+			balloon_alert_to_viewers(LANG("obj.539766f1", list(index)))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			module.pre_user_install_to_rack(user, src)
 			module.log_install(user, src)
@@ -393,7 +394,7 @@
 			module.log_uninstall(user, src)
 			// calls exited which handles updating laws and such
 			try_put_in_hand(module, user)
-			balloon_alert_to_viewers("removed slot [index]")
+			balloon_alert_to_viewers(LANG("obj.81858ac3", list(index)))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			return TRUE
 
@@ -408,7 +409,7 @@
 				return TRUE
 			if(!screwer.tool_start_check(user))
 				return TRUE
-			balloon_alert_to_viewers("[ai_modules[module] == MODULE_SCREWED ? "un":""]screwing slot [index]...")
+			balloon_alert_to_viewers(LANG("obj.84c44a38", list(ai_modules[module] == MODULE_SCREWED ? "un":"", index)))
 			if(!screwer.use_tool(src, user, 3 SECONDS, volume = 25))
 				return TRUE
 			module = ai_modules[index]
@@ -431,7 +432,7 @@
 				return TRUE
 			if(!welder.tool_start_check(user, amount = 1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 				return TRUE
-			balloon_alert_to_viewers("[ai_modules[module] == MODULE_WELDED ? "un":""]welding slot [index]...")
+			balloon_alert_to_viewers(LANG("obj.25b20094", list(ai_modules[module] == MODULE_WELDED ? "un":"", index)))
 			if(!welder.use_tool(src, user, 3 SECONDS, volume = 25, amount = 1))
 				return TRUE
 			module = ai_modules[index]
@@ -647,10 +648,10 @@
 			if(isnull(parent_rack))
 				return TRUE
 			if(!parent_rack.is_operational)
-				balloon_alert(user, "failed to unlink!")
+				balloon_alert(user, LANG("obj.4b054f21", null))
 				return TRUE
 			parent_rack.unlink_child_law_rack(src)
-			balloon_alert_to_viewers("unlinked from [parent_rack.name]")
+			balloon_alert_to_viewers(LANG("obj.3ae5c1e9", list(parent_rack.name)))
 			playsound(src, 'sound/machines/terminal/terminal_off.ogg', 50, TRUE)
 			return TRUE
 
@@ -661,10 +662,10 @@
 			if(isnull(parent_rack))
 				return TRUE
 			if(!parent_rack.is_operational)
-				balloon_alert(user, "failed to link!")
+				balloon_alert(user, LANG("obj.21de9f07", null))
 				return TRUE
 			parent_rack.link_child_law_rack(src)
-			balloon_alert_to_viewers("linked to [parent_rack.name]")
+			balloon_alert_to_viewers(LANG("obj.ab0bd2ad", list(parent_rack.name)))
 			playsound(src, 'sound/machines/terminal/terminal_on.ogg', 50, TRUE)
 			return TRUE
 
@@ -815,7 +816,7 @@
 			if(removed_bot)
 				unlink_silicon(removed_bot)
 			linked_mobs -= removed_name
-			balloon_alert_to_viewers("unlinked silicon", "unlinked [removed_name]")
+			balloon_alert_to_viewers(LANG("obj.8d499f52", null), LANG("obj.2624beb9", list(removed_name)))
 			playsound(src, 'sound/machines/terminal/terminal_off.ogg', 50, TRUE)
 			return TRUE
 		if("link_silicon")
@@ -831,7 +832,7 @@
 			// Otherwise we can just verify can_link_to (this was already ran in ui data)
 			else if(can_link_to(new_bot))
 				link_silicon(new_bot)
-				balloon_alert_to_viewers("linked silicon", "linked to [new_bot.name]")
+				balloon_alert_to_viewers(LANG("obj.9424c7e0", null), LANG("obj.ab0bd2ad", list(new_bot.name)))
 				playsound(src, 'sound/machines/terminal/terminal_on.ogg', 50, TRUE)
 			return TRUE
 

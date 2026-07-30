@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 //lavaland_surface_syndicate_base1.dmm and it's modules
 /obj/modular_map_root/syndicatebase
 	config_file = "strings/modular_maps/syndicatebase.toml"
@@ -30,7 +31,7 @@
 
 /obj/machinery/power/supermatter_crystal/shard/syndicate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/scalpel/supermatter)) //You can already yoink the docs as a free objective win, another would be just gross
-		to_chat(user, span_danger("This shard's already in Syndicate custody, taking it again could cause more harm than good."))
+		to_chat(user, span_danger(LANG("obj.432c81aa", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE

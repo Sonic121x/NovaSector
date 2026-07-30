@@ -23,7 +23,7 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 	target.blooper_pitch_range = 0.2
 
 /// Admin verb to globally toggle vocal barks
-ADMIN_VERB(toggleblooper, R_ADMIN, "Toggle Vocal Barks", "Toggle the annoying voices", ADMIN_CATEGORY_SERVER)
+ADMIN_VERB(toggleblooper, R_ADMIN, "切换发声音效", "Toggle the annoying voices", ADMIN_CATEGORY_SERVER)
 	toggle_blooper()
 	log_admin("[key_name(usr)] toggled Voice Barks.")
 	message_admins("[key_name_admin(usr)] toggled Voice Barks.")
@@ -38,7 +38,7 @@ ADMIN_VERB(toggleblooper, R_ADMIN, "Toggle Vocal Barks", "Toggle the annoying vo
 			return
 	else
 		GLOB.blooper_allowed = !GLOB.blooper_allowed
-	to_chat(world, span_oocplain("<B>Vocal barks have been globally [GLOB.blooper_allowed ? "enabled" : "disabled"].</B>"))
+	to_chat(world, span_oocplain(LANG("_root.1339902d", list(GLOB.blooper_allowed ? "enabled" : "disabled"))))
 
 /// It's was stoolen from Splurt build >:3 and from fluffySTG!! nyeehehehheee!~
 /datum/blooper

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * A mob which acts as a guardian angel to another mob, sharing health but protecting them using special powers.
  * Usually either obtained in magical form by a wizard, or technological form by a traitor. Sometimes found by miners.
@@ -130,12 +131,12 @@
 	if (!. || isnull(client))
 		return FALSE
 	if (isnull(summoner))
-		to_chat(src, span_boldholoparasite("For some reason, somehow, you have no summoner. Please report this bug immediately."))
+		to_chat(src, span_boldholoparasite(LANG("mob.79eda127", null)))
 		stack_trace("Guardian created with client but no summoner.")
 	else
-		to_chat(src, span_holoparasite("You are a <b>[theme.name]</b>, bound to serve [summoner.real_name]."))
-		to_chat(src, span_holoparasite("You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.p_them()] privately there."))
-		to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself."))
+		to_chat(src, span_holoparasite(LANG("mob.5c631bd9", list(theme.name, summoner.real_name))))
+		to_chat(src, span_holoparasite(LANG("mob.b984413c", list(summoner.p_them()))))
+		to_chat(src, span_holoparasite(LANG("mob.10c2dcc2", list(summoner.real_name, summoner.p_them(), summoner.p_them()))))
 	to_chat(src, playstyle_string)
 	if (!isnull(guardian_colour))
 		return // Already set up so we don't need to do it again
@@ -147,7 +148,7 @@
 /mob/living/basic/guardian/mind_initialize()
 	. = ..()
 	if (isnull(summoner))
-		to_chat(src, span_boldholoparasite("For some reason, somehow, you have no summoner. Please report this bug immediately."))
+		to_chat(src, span_boldholoparasite(LANG("mob.79eda127", null)))
 		return
 	mind.enslave_mind_to_creator(summoner) // Once our mind is created, we become enslaved to our summoner. cant be done in the first run of set_summoner, because by then we dont have a mind yet.
 
@@ -157,7 +158,7 @@
 		return
 	var/chosen_guardian_colour = tgui_color_picker(src, "What would you like your colour to be?", "Choose Your Colour", COLOR_WHITE)
 	if (isnull(chosen_guardian_colour)) //redo proc until we get a color
-		to_chat(src, span_warning("Invalid colour, please try again."))
+		to_chat(src, span_warning(LANG("mob.9e0eb39a", null)))
 		return guardian_recolour()
 	set_guardian_colour(chosen_guardian_colour)
 
@@ -172,11 +173,11 @@
 	if (isnull(client))
 		return
 
-	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "What would you like your name to be?", "Choose Your Name", generate_random_name(), MAX_NAME_LEN)))
+	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, LANG("mob.53566b0f", null), LANG("mob.628ceef3", null), generate_random_name(), MAX_NAME_LEN)))
 	if (!new_name) //redo proc until we get a good name
-		to_chat(src, span_warning("Invalid name, please try again."))
+		to_chat(src, span_warning(LANG("mob.facf268a", null)))
 		return guardian_rename()
-	to_chat(src, span_notice("Your new name [span_name(new_name)] anchors itself in your mind."))
+	to_chat(src, span_notice(LANG("mob.6903f312", list(span_name(new_name)))))
 	fully_replace_character_name(null, new_name, log_new_name = TRUE)
 
 /// Picks a random name as a suggestion
@@ -192,13 +193,13 @@
 
 /mob/living/basic/guardian/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	if (!is_deployed())
-		balloon_alert(src, "not tangible!")
+		balloon_alert(src, LANG("mob.2cac7a99", null))
 		return FALSE
 	return ..()
 
 /mob/living/basic/guardian/death(gibbed)
 	if (!QDELETED(summoner))
-		to_chat(summoner, span_bolddanger("Your [name] died somehow!"))
+		to_chat(summoner, span_bolddanger(LANG("mob.b1b1a1c2", list(name))))
 		summoner.dust()
 	return ..()
 
@@ -300,26 +301,26 @@
 	cut_summoner()
 	if (!isnull(former_owner.loc))
 		forceMove(former_owner.loc)
-	to_chat(src, span_danger("Your summoner has died!"))
-	visible_message(span_bolddanger("\The [src] dies along with its user!"))
-	former_owner.visible_message(span_bolddanger("[former_owner]'s body is completely consumed by the strain of sustaining [src]!"))
+	to_chat(src, span_danger(LANG("mob.7c22baf2", null)))
+	visible_message(span_bolddanger(LANG("mob.865beffd", list(src))))
+	former_owner.visible_message(span_bolddanger(LANG("mob.8d2eb57e", list(former_owner, src))))
 	former_owner.dust(drop_items = TRUE)
 
 /// Called when our health changes, inform our owner of why they are getting hurt (if they are)
 /mob/living/basic/guardian/proc/on_harm(mob/living/source, mob/living/summoner, amount)
 	if (QDELETED(src) || QDELETED(summoner) || amount <= 2)
 		return
-	to_chat(summoner, span_bolddanger("[name] is under attack! You take damage!"))
-	summoner.visible_message(span_bolddanger("Blood sprays from [summoner] as [src] takes damage!"))
+	to_chat(summoner, span_bolddanger(LANG("mob.1abc4198", list(name))))
+	summoner.visible_message(span_bolddanger(LANG("mob.141a7ced", list(summoner, src))))
 	if(summoner.stat >= HARD_CRIT)
-		to_chat(summoner, span_bolddanger("Your head pounds, you can't take the strain of sustaining [src] in this condition!"))
+		to_chat(summoner, span_bolddanger(LANG("mob.6b5369cb", list(src))))
 		summoner.adjust_organ_loss(ORGAN_SLOT_BRAIN, amount * 0.5)
 
 /// When our owner is deleted, we go too.
 /mob/living/basic/guardian/proc/on_summoner_deletion(mob/living/source)
 	SIGNAL_HANDLER
 	cut_summoner()
-	to_chat(src, span_danger("Your summoner is gone, you feel yourself fading!"))
+	to_chat(src, span_danger(LANG("mob.704cfc0c", null)))
 	ghostize(FALSE)
 	qdel(src)
 
@@ -327,22 +328,22 @@
 /mob/living/basic/guardian/proc/on_summoner_wabbajacked(mob/living/source, mob/living/new_mob)
 	SIGNAL_HANDLER
 	set_summoner(new_mob)
-	to_chat(src, span_holoparasite("Your summoner has changed form!"))
+	to_chat(src, span_holoparasite(LANG("mob.34c718e8", null)))
 
 /// Signal proc for [COMSIG_LIVING_SHAPESHIFTED], when our summoner is shapeshifted we should change to the new mob
 /mob/living/basic/guardian/proc/on_summoner_shapeshifted(mob/living/source, mob/living/new_shape)
 	SIGNAL_HANDLER
 	set_summoner(new_shape)
-	to_chat(src, span_holoparasite("Your summoner has shapeshifted into that of a [new_shape]!"))
+	to_chat(src, span_holoparasite(LANG("mob.46c2d3db", list(new_shape))))
 
 /// Signal proc for [COMSIG_LIVING_UNSHAPESHIFTED], when our summoner unshapeshifts go back to that mob
 /mob/living/basic/guardian/proc/on_summoner_unshapeshifted(mob/living/source, mob/living/old_summoner)
 	SIGNAL_HANDLER
 	set_summoner(old_summoner)
-	to_chat(src, span_holoparasite("Your summoner has shapeshifted back into their normal form!"))
+	to_chat(src, span_holoparasite(LANG("mob.dd4cf4eb", null)))
 
 /mob/living/basic/guardian/wabbajack(what_to_randomize, change_flags = WABBAJACK)
-	visible_message(span_warning("[src] resists the polymorph!")) // Ha, no
+	visible_message(span_warning(LANG("mob.f4be07a5", list(src)))) // Ha, no
 
 /mob/living/basic/guardian/can_suicide()
 	return FALSE // You gotta persuade your boss to end it instead, sorry

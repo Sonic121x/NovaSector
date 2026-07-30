@@ -54,7 +54,7 @@
 		return
 	listener.allowed_z_levels = SSmapping.levels_by_trait(ZTRAIT_STATION)
 
-GAME_VERB_PROC(/mob/living/silicon/robot, toggle_smoke, "Toggle smoke", "AI Commands")
+GAME_VERB_PROC(/mob/living/silicon/robot, toggle_smoke, "切换烟雾", "AI Commands")
 	if(particles)
 		dissipate()
 	else if (!stat && !robot_resting)

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/status_effect/freon
 	id = "frozen"
 	duration = 10 SECONDS
@@ -23,7 +24,7 @@
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
 	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(owner_resist))
 	if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_userdanger("You become frozen in a cube!"))
+		to_chat(owner, span_userdanger(LANG("datum.f018dcbb", null)))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
 	owner.add_overlay(cube)
 
@@ -36,14 +37,14 @@
 	INVOKE_ASYNC(src, PROC_REF(do_resist))
 
 /datum/status_effect/freon/proc/do_resist()
-	to_chat(owner, span_notice("You start breaking out of the ice cube..."))
+	to_chat(owner, span_notice(LANG("datum.d6bbe173", null)))
 	if(do_after(owner, 4 SECONDS, target = owner))
-		to_chat(owner, span_notice("You break out of the ice cube!"))
+		to_chat(owner, span_notice(LANG("datum.e6a8a1e7", null)))
 		qdel(src)
 
 /datum/status_effect/freon/on_remove()
 	if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_notice("The cube melts!"))
+		to_chat(owner, span_notice(LANG("datum.94b17e7a", null)))
 	owner.cut_overlay(cube)
 	owner.adjust_bodytemperature(100)
 	UnregisterSignal(owner, COMSIG_LIVING_RESIST)

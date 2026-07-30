@@ -1,6 +1,7 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 GAME_VERB(/mob, pray, VERB_PRAY, null, message as text)
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(src, span_danger("Speech is currently admin-disabled."), confidential = TRUE)
+		to_chat(src, span_danger(LANG("mob.b79ad8a3", null)), confidential = TRUE)
 		return
 
 	message = copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN)
@@ -9,7 +10,7 @@ GAME_VERB(/mob, pray, VERB_PRAY, null, message as text)
 	log_prayer("[src.key]/([src.name]): [message]")
 	if(src.client)
 		if(src.client.prefs.muted & MUTE_PRAY)
-			to_chat(src, span_danger("You cannot pray (muted)."), confidential = TRUE)
+			to_chat(src, span_danger(LANG("mob.356830a3", null)), confidential = TRUE)
 			return
 		if(src.client.handle_spam_prevention(message, MUTE_PRAY))
 			return
@@ -44,7 +45,7 @@ GAME_VERB(/mob, pray, VERB_PRAY, null, message as text)
 	for(var/client/C in GLOB.admins)
 		if(get_chat_toggles(C) & CHAT_PRAYER)
 			to_chat(C, message, type = MESSAGE_TYPE_PRAYER, confidential = TRUE)
-	to_chat(src, span_info("You pray to the gods: \"[msg_tmp]\""), confidential = TRUE)
+	to_chat(src, span_info(LANG("mob.d514f1cf", list(msg_tmp))), confidential = TRUE)
 
 	BLACKBOX_LOG_ADMIN_VERB("Prayer")
 

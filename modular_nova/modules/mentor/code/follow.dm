@@ -6,19 +6,19 @@
 		mentor_datum.following = M
 		usr.reset_perspective(M)
 		ASSIGN_GAME_VERB(src, /client, mentor_unfollow)
-		to_chat(usr, span_info("Click the <a href='byond://?_src_=mentor;mentor_unfollow=1;[MentorHrefToken(TRUE)]'>\"Stop Following\"</a> button here or in the Mentor tab to stop following [key_name(M)]."))
+		to_chat(usr, span_info(LANG("client.18ceac38", list(MentorHrefToken(TRUE), key_name(M)))))
 		orbiting = FALSE
 	else
 		var/mob/dead/observer/O = usr
 		O.ManualFollow(M)
-	to_chat(GLOB.admins, span_mentor(span_prefix("MENTOR:</span> <EM>[key_name(usr)]</EM> is now [orbiting ? "orbiting" : "following"] <EM>[key_name(M)][key_name(M)][orbiting ? " as a ghost" : ""].")))
+	to_chat(GLOB.admins, span_mentor(span_prefix(LANG("client.84aab3b1", list(key_name(usr), orbiting ? "orbiting" : "following", key_name(M), key_name(M), orbiting ? " as a ghost" : "")))))
 	log_mentor("[key_name(usr)] [orbiting ? "is now orbiting" : "began following"][key_name(M)][orbiting ? " as a ghost" : ""].")
 
-GAME_VERB_PROC_DESC(/client, mentor_unfollow, "Stop Following", "Stop following the followed.", "Mentor")
+GAME_VERB_PROC_DESC(/client, mentor_unfollow, "停止跟随", "Stop following the followed.", "Mentor")
 	if(!is_mentor())
 		return
 	usr.reset_perspective()
 	UNASSIGN_GAME_VERB(src, /client, mentor_unfollow)
-	to_chat(GLOB.admins, span_mentor(span_prefix("MENTOR:</span> <EM>[key_name(usr)]</EM> is no longer following <EM>[key_name(mentor_datum.following)].")))
+	to_chat(GLOB.admins, span_mentor(span_prefix(LANG("client.f5713477", list(key_name(usr), key_name(mentor_datum.following))))))
 	log_mentor("[key_name(usr)] stopped following [key_name(mentor_datum.following)].")
 	mentor_datum.following = null

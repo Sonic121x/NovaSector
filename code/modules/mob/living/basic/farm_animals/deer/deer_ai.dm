@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/ai_controller/basic_controller/deer
 	behavior_tree_json = "code/modules/mob/living/basic/farm_animals/deer/deer.bt.json"
 	blackboard = list(
@@ -39,7 +40,7 @@
 	hunt_cooldown = 15 SECONDS
 
 /datum/bt_node/ai_behavior/hunt_target/deer_mark/target_caught(mob/living/hunter, atom/hunted)
-	hunter.manual_emote("marks [hunted] with its hooves!")
+	hunter.manual_emote(LANG("datum.99629078", list(hunted)))
 	hunter.ai_controller?.set_blackboard_key(BB_DEER_TREEHOME, hunted)
 
 

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/clothing/head/costume/foilhat
 	name = "tinfoil hat"
 	desc = "Thought control rays, psychotronic scanning. Don't mind that, I'm protected cause I made this hat."
@@ -43,12 +44,12 @@
 	RegisterSignal(user, COMSIG_LIVING_SUICIDE_ACT, PROC_REF(call_suicide))
 
 	user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC)
-	to_chat(user, span_warning("As you don the foiled hat, an entire world of conspiracy theories and seemingly insane ideas suddenly rush into your mind. What you once thought unbelievable suddenly seems.. undeniable. Everything is connected and nothing happens just by accident. You know too much and now they're out to get you. "))
+	to_chat(user, span_warning(LANG("obj.ed5d5eb4", null)))
 
 /obj/item/clothing/head/costume/foilhat/mouse_drop_dragged(atom/over_object, mob/user)
 	//God Im sorry
 	if(!warped && user.get_item_by_slot(ITEM_SLOT_HEAD) == src)
-		to_chat(user, span_userdanger("Why would you want to take this off? Do you want them to get into your mind?!"))
+		to_chat(user, span_userdanger(LANG("obj.edf807fb", null)))
 		return
 	return ..()
 
@@ -60,11 +61,11 @@
 
 /// When the foilhat is drained an anti-magic charge.
 /obj/item/clothing/head/costume/foilhat/proc/drain_antimagic(mob/user)
-	to_chat(user, span_warning("[src] crumples slightly. Something is trying to get inside your mind!"))
+	to_chat(user, span_warning(LANG("obj.d08593ec", list(src))))
 
 /obj/item/clothing/head/costume/foilhat/proc/warp_up()
 	name = "scorched tinfoil hat"
-	desc = "A badly warped up hat. Quite unlikely this will still work against any of the fictional or real dangers it used to."
+	desc = LANG("obj.57315a13", null)
 	warped = TRUE
 	clothing_flags &= ~ANTI_TINFOIL_MANEUVER
 	if(!isliving(loc) || !paranoia)
@@ -75,11 +76,11 @@
 		return
 	QDEL_NULL(paranoia)
 	if(!IS_UNCONSCIOUS(target))
-		to_chat(target, span_warning("Your zealous conspirationism rapidly dissipates as the donned hat warps up into a ruined mess. All those theories starting to sound like nothing but a ridicolous fanfare."))
+		to_chat(target, span_warning(LANG("obj.9c2e15af", null)))
 
 /obj/item/clothing/head/costume/foilhat/attack_hand(mob/user, list/modifiers)
 	if(!warped && user.get_item_by_slot(ITEM_SLOT_HEAD) == src)
-		to_chat(user, span_userdanger("Why would you want to take this off? Do you want them to get into your mind?!"))
+		to_chat(user, span_userdanger(LANG("obj.edf807fb", null)))
 		return
 	return ..()
 
@@ -97,7 +98,7 @@
 	return OXYLOSS
 
 /obj/item/clothing/head/costume/foilhat/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] gets a crazed look in [user.p_their()] eyes! [capitalize(user.p_they())] [user.p_have()] witnessed the truth, and try to commit suicide!"))
+	user.visible_message(span_suicide(LANG("obj.d2001b0f", list(user, user.p_their(), capitalize(user.p_they()), user.p_have()))))
 	var/static/list/conspiracy_line = list(
 		";THEY'RE HIDING CAMERAS IN THE CEILINGS! THEY WITNESS EVERYTHING WE DO!!",
 		";HOW CAN I LIVE IN A WORLD WHERE MY FATE AND EXISTENCE IS DECIDED BY A GROUP OF INDIVIDUALS?!!",

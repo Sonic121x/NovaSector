@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/machinery/fat_sucker
 	name = "lipid extractor"
 	desc = "Safely and efficiently extracts excess fat from a subject."
@@ -52,7 +53,7 @@
 
 /obj/machinery/fat_sucker/close_machine(mob/user, density_to_set = TRUE)
 	if(panel_open)
-		to_chat(user, span_warning("You need to close the maintenance hatch first!"))
+		to_chat(user, span_warning(LANG("obj.99a22073", null)))
 		return
 	..()
 	playsound(src, 'sound/machines/click.ogg', 50)
@@ -61,7 +62,7 @@
 			occupant.forceMove(drop_location())
 			set_occupant(null)
 			return
-		to_chat(occupant, span_notice("You enter [src]."))
+		to_chat(occupant, span_notice(LANG("obj.1d4849e6", list(src))))
 		addtimer(CALLBACK(src, PROC_REF(start_extracting)), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
 		update_appearance()
 
@@ -74,18 +75,18 @@
 
 /obj/machinery/fat_sucker/container_resist_act(mob/living/user)
 	if(!free_exit || state_open)
-		to_chat(user, span_notice("The emergency release is not responding! You start pushing against the hull!"))
+		to_chat(user, span_notice(LANG("obj.84b863bd", null)))
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
-		user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
-			span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
-			span_hear("You hear a metallic creaking from [src]."))
+		user.visible_message(span_notice(LANG("obj.485787b2", list(user, src))), \
+			span_notice(LANG("obj.43ad33b1", list(src, DisplayTimeText(breakout_time)))), \
+			span_hear(LANG("obj.a1d9c573", list(src))))
 		if(do_after(user, breakout_time, target = src, cog_icon = null))
 			if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open)
 				return
 			free_exit = TRUE
-			user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-				span_notice("You successfully break out of [src]!"))
+			user.visible_message(span_warning(LANG("obj.37696909", list(user, src))), \
+				span_notice(LANG("obj.81c31f6b", list(src))))
 			open_machine()
 		return
 	open_machine()
@@ -96,17 +97,17 @@
 	else if(!processing || free_exit)
 		open_machine()
 	else
-		to_chat(user, span_warning("The safety hatch has been disabled!"))
+		to_chat(user, span_warning(LANG("obj.891d1b15", null)))
 
 /obj/machinery/fat_sucker/click_alt(mob/living/user)
 	if(user == occupant)
-		to_chat(user, span_warning("You can't reach the controls from inside!"))
+		to_chat(user, span_warning(LANG("obj.62b1d2b7", null)))
 		return CLICK_ACTION_BLOCKING
 	if(!(obj_flags & EMAGGED) && !allowed(user))
-		to_chat(user, span_warning("You lack the required access."))
+		to_chat(user, span_warning(LANG("obj.5f30df62", null)))
 		return CLICK_ACTION_BLOCKING
 	free_exit = !free_exit
-	to_chat(user, span_notice("Safety hatch [free_exit ? "unlocked" : "locked"]."))
+	to_chat(user, span_notice(LANG("obj.bc511e42", list(free_exit ? "unlocked" : "locked"))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/fat_sucker/update_overlays()
@@ -165,7 +166,7 @@
 			update_appearance()
 			set_light(2, 1, "#ff0000")
 		else
-			say("Subject not fat enough.")
+			say(LANG("obj.8cb00a4a", null))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			overlays += "[icon_state]_red" //throw a red light icon over it, to show that it won't work
 
@@ -192,10 +193,10 @@
 
 /obj/machinery/fat_sucker/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning(LANG("obj.29741746", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(state_open)
-		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
+		to_chat(user, span_warning(LANG("obj.2bc99427", list(src, panel_open ? "close" : "open"))))
 		return ITEM_INTERACT_BLOCKING
 	return default_deconstruction_screwdriver(user, tool)
 
@@ -207,6 +208,6 @@
 		return FALSE
 	start_at = 100
 	stop_at = 0
-	to_chat(user, span_notice("You remove the access restrictions and lower the automatic ejection threshold!"))
+	to_chat(user, span_notice(LANG("obj.e0940361", null)))
 	obj_flags |= EMAGGED
 	return TRUE

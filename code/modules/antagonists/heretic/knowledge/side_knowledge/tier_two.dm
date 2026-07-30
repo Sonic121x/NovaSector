@@ -214,7 +214,7 @@
 			has_written_text = TRUE
 
 	if(!has_written_text && has_paper)
-		loc.balloon_alert(user, "write your hypnosis on the paper!")
+		loc.balloon_alert(user, LANG("datum.357d9489", null))
 		return FALSE
 
 	return ..()

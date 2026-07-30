@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 //If you're looking for spawners like ash walker eggs, check ghost_role_spawners.dm
 
 ///Wizard tower item
@@ -48,18 +49,18 @@
 	var/obj/item/stack/stack_food = tool
 	var/stack_type = stack_food.merge_type
 	if (!is_path_in_list(stack_type, GLOB.golem_stack_food_directory))
-		balloon_alert(user, "incompatible mineral!")
+		balloon_alert(user, LANG("obj.7dd03480", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(stack_food.amount < required_stacks)
-		balloon_alert(user, "not enough minerals!")
+		balloon_alert(user, LANG("obj.2a12f334", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!do_after(user, delay = 4 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!stack_food.use(required_stacks))
-		balloon_alert(user, "not enough minerals!")
+		balloon_alert(user, LANG("obj.2a12f334", null))
 		return ITEM_INTERACT_BLOCKING
 
 	new shell_type(get_turf(src), /* creator = */ user, /* made_of = */ stack_type)
@@ -69,14 +70,14 @@
 /obj/item/golem_shell/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
 
-	to_chat(user, span_notice("You begin dislodging structurally integral chunks."))
+	to_chat(user, span_notice(LANG("obj.3deec6dd", null)))
 	playsound(src, 'sound/items/tools/crowbar.ogg',  70)
 	if(!do_after(user, delay = 1 SECONDS, target = src))
 		return
 	if(QDELETED(src))
 		return
 	new /obj/item/stack/sheet/mineral/adamantine(get_turf(src), 1) //Return less than was used to construct the shell
-	to_chat(user, span_notice("The shell collapses in on itself!"))
+	to_chat(user, span_notice(LANG("obj.4896d1fe", null)))
 	playsound(src, 'sound/effects/rock/rock_break.ogg', 40)
 	qdel(src)
 	return

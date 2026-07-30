@@ -64,15 +64,15 @@
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/examine(mob/user)
 	. = ..()
-	. += span_notice("The targeting safety is [turret_safety ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"].")
-	. += span_notice("The turret is [flags_on ? "<font color='#00ff15'>OBEYING LAWS</font>" : "<font color='#ff0000'>FREE TARGETING</font>"].")
+	. += span_notice(LANG("obj.3c4792d0", list(turret_safety ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>")))
+	. += span_notice(LANG("obj.946c53d9", list(flags_on ? "<font color='#00ff15'>OBEYING LAWS</font>" : "<font color='#ff0000'>FREE TARGETING</font>")))
 	if(!easy_deploy)
-		. += span_notice("You can deploy this by clicking in <b>combat mode</b> with a <b>wrenching tool.</b>")
+		. += span_notice(LANG("obj.60a06731", null))
 	else
-		. += span_notice("You can deploy this by <b>using it</b> or using a <b>wrenching tool</b> in <b>combat mode</b>")
+		. += span_notice(LANG("obj.6c48bde0", null))
 	if(setting_change)
-		. += span_notice("You can toggle the targeting safety with a <b>screwdriving bit.</b>")
-		. += span_notice("You can change if the turret obeys flags with a <b>multitool.</b>")
+		. += span_notice(LANG("obj.701ed59b", null))
+		. += span_notice(LANG("obj.bcebed61", null))
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/PopulateContents()
 
@@ -113,11 +113,11 @@
 			return NONE
 		if(!tool.toolspeed)
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "constructing...")
+		balloon_alert(user, LANG("obj.6d69dc2b", null))
 		if(!tool.use_tool(src, user, 2 SECONDS, volume = 20))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "constructed!")
+		balloon_alert(user, LANG("obj.ddc1329a", null))
 		user.visible_message(
 			span_danger("[user] bashes [src] with [tool]!"),
 			span_danger("You bash [src] with [tool]!"),
@@ -135,9 +135,9 @@
 		return
 	var/turf/chosen_spot = get_step(user, user.dir) //find spot infront of person and places it there
 	if(chosen_spot.is_blocked_turf(TRUE, src))
-		balloon_alert(user, "area is unfit for deployment.")
+		balloon_alert(user, LANG("obj.df641915", null))
 		return
-	balloon_alert(user, "deploying...")
+	balloon_alert(user, LANG("obj.617d0336", null))
 	playsound(src, 'sound/items/tools/ratchet.ogg', 50, TRUE)
 	if(!do_after(user, easy_deploy_timer))
 		return
@@ -148,7 +148,7 @@
 	if(!chosen_spot)
 		target_area = loc
 	if(target_area.is_blocked_turf(TRUE, src))
-		balloon_alert(user, "deployment area is unfit for deploying.")
+		balloon_alert(user, LANG("obj.743bf7fb", null))
 		return
 	playsound(src, 'sound/items/tools/drill_use.ogg', 80, TRUE, -1)
 	var/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/turret = new turret_type(target_area)
@@ -168,7 +168,7 @@
 /obj/item/storage/toolbox/emergency/turret/mag_fed/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(quick_deployable)
-		balloon_alert_to_viewers("deploying...")
+		balloon_alert_to_viewers(LANG("obj.617d0336", null))
 		addtimer(CALLBACK(src, PROC_REF(deploy_turret), throwingdatum.thrower?.resolve()), quick_deploy_timer, TIMER_STOPPABLE)
 
 ////// Targeting Device handling //////
@@ -208,13 +208,13 @@
 
 /obj/item/target_designator/examine(mob/user)
 	. = ..()
-	. += span_notice("<b>[length(linked_turrets)]/[turret_limit]</b> turrets linked.")
-	. += span_notice("<b>Right click</b> an entity to designate it as an ally.")
-	. += span_notice("<b>Left click</b> a spot or entity to designate it as a target.")
-	. += span_notice("<b>Use</b> this item to toggle human targeting.")
-	. += span_notice("Targeting of non-authorized personnel is [target_all ? "<font color='#ff0000'>ENABLED</font>" : "<font color='#00ff15'>DISABLED</font>"].")
-	. += span_notice("<b>Shift-click</b> this item to toggle flag following.")
-	. += span_notice("Turrets are [follow_flags ? "<font color='#00ff15'>OBEYING LAWS</font>" : "<font color='#ff0000'>FREE TARGETING</font>"].")
+	. += span_notice(LANG("obj.f73273f4", list(length(linked_turrets), turret_limit)))
+	. += span_notice(LANG("obj.e09e61c8", null))
+	. += span_notice(LANG("obj.3373d868", null))
+	. += span_notice(LANG("obj.9853d09b", null))
+	. += span_notice(LANG("obj.466f093a", list(target_all ? "<font color='#ff0000'>ENABLED</font>" : "<font color='#00ff15'>DISABLED</font>")))
+	. += span_notice(LANG("obj.55512a3d", null))
+	. += span_notice(LANG("obj.86783d43", list(follow_flags ? "<font color='#00ff15'>OBEYING LAWS</font>" : "<font color='#ff0000'>FREE TARGETING</font>")))
 
 /obj/item/target_designator/attack_self(mob/user, modifiers)
 	. = ..()
@@ -425,18 +425,18 @@
 	. -= span_notice("You can repair it by <b>left-clicking</b> with a combat wrench.")
 	. -= span_notice("You can fold it by <b>right-clicking</b> with a combat wrench.")
 	if(FAST_FACTION_CHECK(faction, user.get_faction(), null, null, FALSE) || has_ally(user))
-		. += span_notice("Turret integrity is [atom_integrity]/[max_integrity]")
-		. += span_notice("You can unlock it by <b>left-clicking</b> with an <b>id card.</b>")
-		. += span_notice("You can repair it by <b>left-clicking</b> with a <b>wrench.</b>")
-		. += span_notice("You can fold it by <b>right-clicking</b> with a <b>wrench.</b>")
-		. += span_notice("You can feed it by <b>left-clicking</b> with a <b>magazine.</b>")
-		. += span_notice("You can link it by <b>left-clicking</b> with a <b>target designator.</b>")
-		. += span_notice("You can unlink it by <b>right-clicking</b> with a <b>target designator.</b>")
-		. += span_notice("You can force it to load a cartridge by <b>right-clicking</b> with an empty hand")
+		. += span_notice(LANG("obj.39514540", list(atom_integrity, max_integrity)))
+		. += span_notice(LANG("obj.715fc85f", null))
+		. += span_notice(LANG("obj.7ddeed03", null))
+		. += span_notice(LANG("obj.dcb58e58", null))
+		. += span_notice(LANG("obj.4be347bd", null))
+		. += span_notice(LANG("obj.72eb51b4", null))
+		. += span_notice(LANG("obj.ded26699", null))
+		. += span_notice(LANG("obj.5fa00071", null))
 		if(quick_retract)
-			. += span_notice ("You can retract it manually with <b>alt + right-click</b>!")
+			. += span_notice (LANG("obj.59acde45", null))
 		if(linkage)
-			. += span_notice("<b><i>This turret is currently linked!</i></b>")
+			. += span_notice(LANG("obj.38306681", null))
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/on_deconstruction(disassembled, mob/user) // Full re-write, to stop the toolbox var from being a runtimer
 	var/obj/item/ammo_box/magazine/mag = magazine_ref?.resolve()
@@ -520,7 +520,7 @@
 		return
 	if (mag.ammo_count())
 		if(!claptrap_moment)
-			balloon_alert_to_viewers("loading cartridge...")
+			balloon_alert_to_viewers(LANG("obj.331be1b0", null))
 		chambered = WEAKREF(mag.get_round())
 		var/obj/item/ammo_casing/casing = chambered?.resolve()
 		if(isnull(casing))
@@ -551,7 +551,7 @@
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/proc/load_mag()
 	var/obj/item/storage/toolbox/emergency/turret/mag_fed/auto_loader = mag_box?.resolve()
 	if(!auto_loader.get_mag())
-		balloon_alert_to_viewers("magazine well empty!") // hey, this is actually important info to convey.
+		balloon_alert_to_viewers(LANG("obj.859e7193", null)) // hey, this is actually important info to convey.
 		toggle_on(FALSE) // I know i added the shupt-up toggle after adding this, This is just to prevent rapid proccing
 		return
 	magazine_ref = WEAKREF(auto_loader.get_mag(FALSE))
@@ -560,7 +560,7 @@
 		magazine_ref = null
 	get_that_mag.forceMove(src)
 	if(!claptrap_moment)
-		balloon_alert_to_viewers("loading magazine...")
+		balloon_alert_to_viewers(LANG("obj.2bc942a4", null))
 	return
 
 /// ejects cartridge and calls if issues arrive.
@@ -571,7 +571,7 @@
 	if(istype(casing)) //there's a chambered round
 		if(casing_ejector) //To handle casing ejection (Previous version didn't account for caseless ammo and threw runtimes with new system)
 			if(!claptrap_moment)
-				balloon_alert_to_viewers("ejecting cartridge") // will proc even on caseless cartridges, but it's a debug message.
+				balloon_alert_to_viewers(LANG("obj.695e564e", null)) // will proc even on caseless cartridges, but it's a debug message.
 			casing.forceMove(drop_location()) //Eject casing onto ground.
 			chambered = null
 			casing.bounce_away(TRUE)
@@ -583,9 +583,9 @@
 	if(isnull(auto_loader))
 		mag_box = null
 	if(!(magaroni.type in auto_loader.atom_storage.can_hold))
-		balloon_alert(guy_with_mag, "can't fit!")
+		balloon_alert(guy_with_mag, LANG("obj.dccfcc57", null))
 		return
-	balloon_alert(guy_with_mag, "magazine inserted!")
+	balloon_alert(guy_with_mag, LANG("obj.700a9f25", null))
 	auto_loader?.atom_storage.attempt_insert(magaroni, guy_with_mag, TRUE)
 	toggle_on(TRUE)
 	return
@@ -668,11 +668,11 @@
 /// toggles between whether things are inside the ally system
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/proc/toggle_ally(mob/living/target) //leave these since it's kinda important to know which is being done.
 	if(remove_ally(target))
-		balloon_alert_to_viewers("ally removed!")
+		balloon_alert_to_viewers(LANG("obj.b421ea7b", null))
 		return
 	else
 		if(add_ally(target))
-			balloon_alert_to_viewers("ally designated!")
+			balloon_alert_to_viewers(LANG("obj.f0698dc8", null))
 		return
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/target(atom/movable/target)
@@ -705,7 +705,7 @@
 	if(!target)
 		return
 	target_override = WEAKREF(target)
-	balloon_alert_to_viewers("target acquired!") // So you know whats causing it to fire
+	balloon_alert_to_viewers(LANG("obj.9364ba44", null)) // So you know whats causing it to fire
 	shot_delay = (initial(shot_delay) / 2) //No need to scan for targets so faster work
 	burst_delay = (initial(burst_delay) / 2)
 
@@ -810,30 +810,30 @@
 	if(isnull(auto_loader))
 		mag_box = null
 	if(tool.type in auto_loader.atom_storage.can_hold)
-		balloon_alert(user, "attempting to load...")
+		balloon_alert(user, LANG("obj.c55c621b", null))
 		if(!do_after(user, 1 SECONDS, src))
-			balloon_alert(user, "failed to load!")
+			balloon_alert(user, LANG("obj.57787c73", null))
 		insert_mag(tool, user)
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/card/id))
 		if(!in_faction(user))
-			balloon_alert(user, "access denied!")
+			balloon_alert(user, LANG("obj.1bd3ceeb", null))
 			return ITEM_INTERACT_BLOCKING
 
 	if(in_faction(user))
 		if(istype(tool, /obj/item/target_designator))
 			var/obj/item/target_designator/controller = tool
 			if(length(controller.linked_turrets) >= controller.turret_limit)
-				balloon_alert(user, "turret limit reached!")
+				balloon_alert(user, LANG("obj.959a0132", null))
 				return ITEM_INTERACT_BLOCKING
 			if(linkage) //should help both preventing dual-controlling AND double-linking causing odd issues with ally system
-				balloon_alert(user, "turret already linked!")
+				balloon_alert(user, LANG("obj.966002f4", null))
 				return ITEM_INTERACT_BLOCKING
 			linkage = WEAKREF(controller)
 			controller.linked_turrets += src
 			RegisterSignal(controller, COMSIG_QDELETING, PROC_REF(on_qdeleted), TRUE) //True otherwise it causes a runtime for overwriting parent qdeling. Dont know where to go elsewise.
-			balloon_alert(user, "turret linked!")
+			balloon_alert(user, LANG("obj.18851703", null))
 			return ITEM_INTERACT_SUCCESS
 
 	return ITEM_INTERACT_BLOCKING
@@ -841,11 +841,11 @@
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/wrench_act(mob/living/user, obj/item/attacking_item)
 	if(atom_integrity == max_integrity)
 		if(!claptrap_moment)
-			balloon_alert(user, "already repaired!")
+			balloon_alert(user, LANG("obj.88cc0c7c", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!claptrap_moment)
-		balloon_alert(user, "repairing...")
+		balloon_alert(user, LANG("obj.b52342a8", null))
 	while(atom_integrity != max_integrity)
 		if(!attacking_item.use_tool(src, user, 2 SECONDS, volume = 20))
 			return ITEM_INTERACT_FAILURE
@@ -853,7 +853,7 @@
 		repair_damage(25)
 
 	if(!claptrap_moment)
-		balloon_alert(user, "repaired!")
+		balloon_alert(user, LANG("obj.ac33e326", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
@@ -861,12 +861,12 @@
 		if(istype(tool, /obj/item/target_designator))
 			var/obj/item/target_designator/owner_check = linkage?.resolve()
 			if(tool != owner_check) //cant unlink if not the same one
-				balloon_alert(user, "turret not linked!")
+				balloon_alert(user, LANG("obj.1bfde4cb", null))
 				return ITEM_INTERACT_BLOCKING
 			var/obj/item/target_designator/controller = tool
 			linkage = null
 			controller.linked_turrets -= src
-			balloon_alert(user, "turret unlinked!")
+			balloon_alert(user, LANG("obj.b69401fb", null))
 			return ITEM_INTERACT_SUCCESS
 
 	if(tool.tool_behaviour != TOOL_WRENCH)
@@ -876,7 +876,7 @@
 		return NONE
 
 	if(!claptrap_moment)
-		balloon_alert(user, "deconstructing...")
+		balloon_alert(user, LANG("obj.44f0e678", null))
 	if(!tool.use_tool(src, user, 5 SECONDS, volume = 20))
 		return ITEM_INTERACT_BLOCKING
 

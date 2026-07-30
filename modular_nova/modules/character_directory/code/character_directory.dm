@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(name_to_appearance)
 	COOLDOWN_DECLARE(char_directory_cooldown)
 
 /// Opens character directory UI for a specific user
-GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows a listing of all active characters, along with their associated OOC notes, flavor text, and more.", "OOC", specific_ad as text|null)
+GAME_VERB_DESC(/client, show_character_directory, "角色目录", "Shows a listing of all active characters, along with their associated OOC notes, flavor text, and more.", "OOC", specific_ad as text|null)
 	if(is_character_directory_on_cooldown())
 		return
 
@@ -109,7 +109,7 @@ GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows 
 /client/proc/is_character_directory_on_cooldown()
 	// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 	if(!COOLDOWN_FINISHED(src, char_directory_cooldown))
-		to_chat(src, span_alert("Hold your horses! It's still refreshing!"))
+		to_chat(src, span_alert(LANG("client.8c437e3b", null)))
 		return TRUE
 	COOLDOWN_START(src, char_directory_cooldown, 10)
 	return FALSE
@@ -318,7 +318,7 @@ GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows 
 		if("refresh")
 			// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 			if(!COOLDOWN_FINISHED(user.client, char_directory_cooldown))
-				to_chat(user, span_warning("Please wait before refreshing the directory again."))
+				to_chat(user, span_warning(LANG("datum.f6085a38", null)))
 				return
 			COOLDOWN_START(user.client, char_directory_cooldown, 10)
 			update_static_data(user, ui)

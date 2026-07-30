@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///A pinata that has a chance to drop candy items when struck with a melee weapon that deals at least 10 damage
 /obj/structure/pinata
 	name = "corgi pinata"
@@ -57,11 +58,11 @@
 	var/turf/player_turf = get_turf(user)
 	if(player_turf?.is_blocked_turf(TRUE))
 		return FALSE
-	balloon_alert_to_viewers("setting up pinata...")
+	balloon_alert_to_viewers(LANG("obj.8b383ad8", null))
 	if(!do_after(user, 4 SECONDS, target = get_turf(user)))
-		balloon_alert(user, "cancelled!")
+		balloon_alert(user, LANG("obj.bcb4be71", null))
 	new pinata_type(get_turf(user))
-	balloon_alert(user, "pinata setup")
+	balloon_alert(user, LANG("obj.a58c1faa", null))
 	qdel(src)
 
 /obj/structure/pinata/syndie

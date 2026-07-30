@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /*!
  * Copyright (c) 2020 Aleksej Komarov
  * SPDX-License-Identifier: MIT
@@ -8,7 +9,7 @@
 /**
  * tgui panel / chat troubleshooting verb
  */
-GAME_VERB(/client, fix_tgui_panel, "Fix chat", "OOC")
+GAME_VERB(/client, fix_tgui_panel, "修复聊天", "OOC")
 	var/action
 	log_tgui(src, "Started fixing.", context = "verb/fix_tgui_panel")
 
@@ -31,7 +32,7 @@ GAME_VERB(/client, fix_tgui_panel, "Fix chat", "OOC")
 	// Force show the panel to see if there are any errors
 	winset(src, OUTPUT_SELECTOR_LEGACY_OUTPUT_SELECTOR, "left=output_browser")
 
-GAME_VERB(/client, refresh_tgui, "Refresh TGUI", "OOC")
+GAME_VERB(/client, refresh_tgui, "刷新 TGUI", "OOC")
 
 	for(var/window_id in tgui_windows)
 		var/datum/tgui_window/window = tgui_windows[window_id]

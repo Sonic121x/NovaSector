@@ -47,14 +47,14 @@
 	if(model && model.model_features && (TRAIT_R_TALL in model.model_features))
 		maptext_height = 48 //Offset value of tallborgs
 
-GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "Switch Rest Style", "Select your resting pose.", "AI Commands")
+GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "切换休息姿势", "Select your resting pose.", "AI Commands")
 	if(!can_rest())
-		to_chat(src, span_warning("You can't do that!"))
+		to_chat(src, span_warning(LANG("mob.56e41a3d", null)))
 		return
 	var/list/choices = list("Resting", "Sitting", "Belly up")
 	if(model && model.model_features && (TRAIT_RESTING_ALTS in model.model_features))
 		choices = list("Resting", "Sitting", "Belly up", "Sleep", "Rest Wagging", "Sit Wagging")
-	var/choice = tgui_input_list(src, "Select resting pose", "", choices)
+	var/choice = tgui_input_list(src, LANG("mob.7284295a", null), "", choices)
 	switch(choice)
 		if("Resting")
 			robot_rest_style = ROBOT_REST_NORMAL
@@ -73,21 +73,21 @@ GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "Switch Rest Style", 
 		on_lying_down()
 	update_icons()
 
-GAME_VERB_PROC(/mob/living/silicon/robot, robot_lay_down, "Lay down", "AI Commands")
+GAME_VERB_PROC(/mob/living/silicon/robot, robot_lay_down, "躺下", "AI Commands")
 	if(!can_rest())
-		to_chat(src, span_warning("You can't do that!"))
+		to_chat(src, span_warning(LANG("mob.56e41a3d", null)))
 		return
 	if(IS_UNCONSCIOUS_OR_CRIT(src)) //Make sure we don't enable movement when not concious
 		return
 	if(robot_resting)
 		if(GetComponent(/datum/component/robot_smoke))
 			dissipate()
-		to_chat(src, span_notice("You are now getting up."))
+		to_chat(src, span_notice(LANG("mob.63c0a69c", null)))
 		robot_resting = FALSE
 		mobility_flags = MOBILITY_FLAGS_DEFAULT
 		on_standing_up()
 	else
-		to_chat(src, span_notice("You are now laying down."))
+		to_chat(src, span_notice(LANG("mob.3f3898b9", null)))
 		robot_resting = robot_rest_style
 		on_lying_down()
 	update_icons()

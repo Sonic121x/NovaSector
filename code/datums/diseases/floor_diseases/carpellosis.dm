@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define GNASHING_RANGE 7
 
 /// Caused by dirty food. Makes you growl at people and bite them spontaneously.
@@ -33,25 +34,25 @@
 	switch(stage)
 		if(2)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob) && affected_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL))
-				to_chat(affected_mob, span_warning("You want to wag your tail..."))
+				to_chat(affected_mob, span_warning(LANG("datum.01bdcf39", null)))
 				affected_mob.emote("wag")
 		if(3)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				to_chat(affected_mob, span_warning("You suddenly feel like swimming in space..."))
+				to_chat(affected_mob, span_warning(LANG("datum.84d5c396", null)))
 			else if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				affected_mob.visible_message("gnashes.", visible_message_flags = EMOTE_MESSAGE)
+				affected_mob.visible_message(LANG("datum.f6af129e", null), visible_message_flags = EMOTE_MESSAGE)
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
 				gnash_someone()
 			else if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				affected_mob.visible_message("gnashes.", visible_message_flags = EMOTE_MESSAGE)
+				affected_mob.visible_message(LANG("datum.f6af129e", null), visible_message_flags = EMOTE_MESSAGE)
 		if(5)
 			max_stage_reached = TRUE
 			grant_ability()
 			if(SPT_PROB(2, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
 				gnash_someone()
 			else if(SPT_PROB(2, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				affected_mob.visible_message("gnashes.", visible_message_flags = EMOTE_MESSAGE)
+				affected_mob.visible_message(LANG("datum.f6af129e", null), visible_message_flags = EMOTE_MESSAGE)
 
 /datum/disease/carpellosis/Destroy()
 	if(ability_granted)
@@ -62,7 +63,7 @@
 	if(ability_granted)
 		rift_ability.Remove(affected_mob)
 	if(max_stage_reached && prob(ella_spawn_chance))
-		to_chat(affected_mob, span_warning("Something comes out of you!"))
+		to_chat(affected_mob, span_warning(LANG("datum.5942ad42", null)))
 		new /mob/living/basic/carp/ella(affected_mob.loc)
 	return ..()
 
@@ -83,9 +84,9 @@
 /datum/disease/carpellosis/proc/gnash_someone()
 	var/mob/living/carbon/human/target = find_nearby_human()
 	if(isnull(target) || !affected_mob.get_bodypart(BODY_ZONE_HEAD)) // Need mouth to gnash
-		to_chat(affected_mob, span_warning("You want to gnash at someone..."))
+		to_chat(affected_mob, span_warning(LANG("datum.017f9e47", null)))
 		return
-	to_chat(affected_mob, span_warning("[target.name] makes you angry for some reason..."))
+	to_chat(affected_mob, span_warning(LANG("datum.e4eb463f", list(target.name))))
 	if(ability_granted && !affected_mob.Adjacent(target))
 		rift_ability.Trigger(target = target)
 	affected_mob.face_atom(target)
@@ -93,6 +94,6 @@
 		affected_mob.set_combat_mode(TRUE)
 		target.attack_paw(affected_mob)
 	else
-		affected_mob.visible_message("gnashes at [target.name].", visible_message_flags = EMOTE_MESSAGE)
+		affected_mob.visible_message(LANG("datum.43513639", list(target.name)), visible_message_flags = EMOTE_MESSAGE)
 
 #undef GNASHING_RANGE

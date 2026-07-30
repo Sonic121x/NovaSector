@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/melee/energy
 	icon = 'icons/obj/weapons/transforming_energy.dmi'
 	abstract_type = /obj/item/melee/energy
@@ -75,7 +76,7 @@
 /obj/item/melee/energy/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		attack_self(user)
-	user.visible_message(span_suicide("[user] is [pick("slitting [user.p_their()] stomach open with", "falling on")] [src]! It looks like [user.p_theyre()] trying to commit seppuku!"))
+	user.visible_message(span_suicide(LANG("obj.57e0562e", list(user, pick("slitting [user.p_their()] stomach open with", "falling on"), src, user.p_theyre()))))
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/melee/energy/process(seconds_per_tick)
@@ -170,7 +171,7 @@
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
 /obj/item/melee/energy/axe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swings [src] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide(LANG("obj.564e0568", list(user, src, user.p_their(), user.p_theyre()))))
 	return (BRUTELOSS|FIRELOSS)
 
 /// Energy swords.
@@ -273,11 +274,11 @@
 
 /obj/item/melee/energy/sword/saber/multitool_act(mob/living/user, obj/item/tool)
 	if(hacked)
-		to_chat(user, span_warning("It's already fabulous!"))
+		to_chat(user, span_warning(LANG("obj.82f87bea", null)))
 		return
 	hacked = TRUE
 	sword_color_icon = "rainbow"
-	to_chat(user, span_warning("RNBW_ENGAGE"))
+	to_chat(user, span_warning(LANG("obj.6710b2e4", null)))
 	update_appearance(UPDATE_ICON_STATE)
 
 /obj/item/melee/energy/sword/saber/cyborg
@@ -298,7 +299,7 @@
 	var/obj/item/stock_parts/power_store/our_cell = user.cell
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) && !(our_cell.use(hitcost)))
 		attack_self(user)
-		to_chat(user, span_notice("It's out of charge!"))
+		to_chat(user, span_notice(LANG("obj.c57f8413", null)))
 		return
 	return ..()
 
@@ -438,11 +439,11 @@
 /obj/item/melee/energy/sword/surplus/examine(mob/user)
 	. = ..()
 	if(charge)
-		. += span_notice("[src] has [charge] hits left before it must be recharged.")
+		. += span_notice(LANG("obj.62e156af", list(src, charge)))
 	else
-		. += span_warning("[src] needs to be recharged.")
+		. += span_warning(LANG("obj.8f7b4028", list(src)))
 
-	. += span_info("You get the sense that this weapon isn't very effective unless you hit someone while they are exposed in some way, like attacking from behind or while they're staggered.")
+	. += span_info(LANG("obj.8d5f8fc0", null))
 
 /obj/item/melee/energy/sword/surplus/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -490,16 +491,16 @@
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	if(DOING_INTERACTION(user, DOAFTER_SOURCE_CHARGING_ESWORD))
-		user.balloon_alert(user, "busy!")
+		user.balloon_alert(user, LANG("obj.8df72942", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(charge <= max_charge)
-		user.balloon_alert(user, "attempting recharge...")
+		user.balloon_alert(user, LANG("obj.fe4c2687", null))
 		if(!do_after(user, charge_time, target = src, extra_checks = CALLBACK(src, PROC_REF(do_jiggle), user), interaction_key = DOAFTER_SOURCE_CHARGING_ESWORD, cog_iconstate = "beat_the_heat"))
-			user.balloon_alert(user, "interrupted!")
+			user.balloon_alert(user, LANG("obj.c67b5d27", null))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	charge = max_charge
-	user.balloon_alert(user, "recharge successful")
+	user.balloon_alert(user, LANG("obj.b1075549", null))
 	playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -529,14 +530,14 @@
 
 	charge--
 	if(charge <= 0)
-		user.balloon_alert(user, "out of charge!")
+		user.balloon_alert(user, LANG("obj.6428cbcd", null))
 		attack_self(user)
 
 /obj/item/melee/energy/sword/surplus/proc/check_power(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 
 	if(charge <= 0 && !HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		balloon_alert(user, "no charge!")
+		balloon_alert(user, LANG("obj.c0d39a14", null))
 		return COMPONENT_BLOCK_TRANSFORM
 
 /obj/item/melee/energy/sword/surplus/proc/do_jiggle(mob/user)

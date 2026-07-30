@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define PANCAKE_MAX_STACK 10
 
 /obj/item/food/pancakes
@@ -51,14 +52,14 @@
 		return ..()
 
 	qdel(tool)
-	to_chat(user, span_notice("You add [tool] to [src]."))
+	to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
 	AddComponent(/datum/component/grillable, cook_result = newresult)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/food/pancakes/raw/examine(mob/user)
 	. = ..()
 	if(name == initial(name))
-		. += span_notice("You can modify the pancake by adding <b>blueberries</b> or <b>chocolate</b> before finishing the griddle.")
+		. += span_notice(LANG("obj.14bb14ef", null))
 
 /obj/item/food/pancakes/blueberry
 	name = "blueberry pancake"
@@ -110,30 +111,30 @@
 		if(0)
 			desc = initial(desc)
 		if(1 to 2)
-			desc = "A stack of fluffy pancakes."
+			desc = LANG("obj.fd8d7811", null)
 		if(3 to 6)
-			desc = "A fat stack of fluffy pancakes!"
+			desc = LANG("obj.8c4e6273", null)
 		if(7 to 9)
-			desc = "A grand tower of fluffy, delicious pancakes!"
+			desc = LANG("obj.5130d994", null)
 		if(PANCAKE_MAX_STACK to INFINITY)
-			desc = "A massive towering spire of fluffy, delicious pancakes. It looks like it could tumble over!"
+			desc = LANG("obj.26b2bb44", null)
 	. = ..()
 	if (pancakeCount)
 		for(var/obj/item/food/pancakes/ING in contents)
 			ingredients_listed += "[ING.name], "
-		. += "It contains [contents.len?"[ingredients_listed]":"no ingredient, "]on top of a [initial(name)]."
+		. += LANG("obj.accf60d7", list(contents.len?"[ingredients_listed]":"no ingredient, ", initial(name)))
 
 /obj/item/food/pancakes/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/food/pancakes))
 		var/obj/item/food/pancakes/pancake = tool
 		if((contents.len >= PANCAKE_MAX_STACK) || ((pancake.contents.len + contents.len) > PANCAKE_MAX_STACK))
-			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
+			to_chat(user, span_warning(LANG("obj.64a8d357", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(pancake, src))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You add the [pancake] to the [src]."))
+		to_chat(user, span_notice(LANG("obj.d1633fb2", list(pancake, src))))
 		pancake.name = initial(pancake.name)
 		contents += pancake
 		update_snack_overlays(pancake)

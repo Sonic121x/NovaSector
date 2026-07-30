@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define BOTTLE_KNOCKDOWN_DEFAULT_DURATION (1.3 SECONDS)
 
 ///////////////////////////////////////////////Alchohol bottles! -Agouri //////////////////////////
@@ -71,9 +72,9 @@
 /obj/item/reagent_containers/cup/glass/bottle/examine(mob/user)
 	. = ..()
 	if(message_in_a_bottle)
-		. += span_info("there's \a [message_in_a_bottle] inside it. Break it to take it out, or find a beach or ocean and toss it with [EXAMINE_HINT("right-click")].")
+		. += span_info(LANG("obj.ac377ac2", list(message_in_a_bottle, EXAMINE_HINT("right-click"))))
 	else if(isGlass)
-		. += span_tinynoticeital("you could place a paper, photo or space cash inside it...")
+		. += span_tinynoticeital(LANG("obj.eedde387", null))
 
 /obj/item/reagent_containers/cup/glass/bottle/update_overlays()
 	. = ..()
@@ -86,9 +87,9 @@
 	if(user.combat_mode || !HAS_TRAIT(target, TRAIT_MESSAGE_IN_A_BOTTLE_LOCATION))
 		return ..()
 	if(!user.temporarilyRemoveItemFromInventory(src))
-		balloon_alert(user, "it's stuck to your hand!")
+		balloon_alert(user, LANG("obj.f84f0f5d", null))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] tosses [src] in [target]"), span_notice("You toss [src] in [target]"), span_notice("you hear a splash."))
+	user.visible_message(span_notice(LANG("obj.6e74c56c", list(user, src, target))), span_notice(LANG("obj.9f9d4e0f", list(src, target))), span_notice(LANG("obj.6d257f0d", null)))
 	SSpersistence.save_message_bottle(message_in_a_bottle, type)
 	playsound(target, 'sound/effects/bigsplash.ogg', 70)
 	qdel(src)
@@ -100,12 +101,12 @@
 	if(!istype(item, /obj/item/paper) && !istype(item, /obj/item/stack/spacecash) && !istype(item, /obj/item/photo))
 		return NONE
 	if(message_in_a_bottle)
-		balloon_alert(user, "has a message already!")
+		balloon_alert(user, LANG("obj.231ba649", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(item, src))
-		balloon_alert(user, "it's stuck to your hand!")
+		balloon_alert(user, LANG("obj.f84f0f5d", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "message inserted")
+	balloon_alert(user, LANG("obj.d7be5f28", null))
 	message_in_a_bottle = item
 	update_icon(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS
@@ -184,7 +185,7 @@
 	var/amount_lost = intensity * 5
 	reagents.remove_all(amount_lost)
 
-	visible_message(span_warning("Some of [name]'s contents are let loose!"))
+	visible_message(span_warning(LANG("obj.a594cbac", list(name))))
 	var/intensity_state = null
 	switch(intensity)
 		if(1)
@@ -239,7 +240,7 @@
 	icon_state = to_mimic.icon_state
 	var/icon/drink_icon = new(to_mimic.icon, icon_state)
 	if(break_top) //if the bottle breaks its top off instead of the bottom
-		desc = "A bottle with its neck smashed off."
+		desc = LANG("obj.f9321147", null)
 		drink_icon.Blend(flipped_broken_outline, ICON_OVERLAY, rand(5), 0)
 	else
 		drink_icon.Blend(broken_outline, ICON_OVERLAY, rand(5), 1)
@@ -249,7 +250,7 @@
 	if(istype(to_mimic, /obj/item/reagent_containers/cup/glass/bottle/juice))
 		force = 0
 		throwforce = 0
-		desc = "A carton with the bottom half burst open. Might give you a papercut."
+		desc = LANG("obj.abc0de43", null)
 	else
 		if(prob(33))
 			new /obj/item/shard(to_mimic.drop_location())
@@ -513,7 +514,7 @@
 
 	// Actually finally setting the new name and desc
 	name = "[shortname] [name]"
-	desc = "[desc] [fullname] Inc."
+	desc = LANG("obj.af4db4eb", list(desc, fullname))
 
 
 /obj/item/reagent_containers/cup/glass/bottle/absinthe/premium
@@ -659,7 +660,7 @@
 /obj/item/reagent_containers/cup/glass/bottle/champagne/attack_self(mob/user)
 	if(is_open_container())
 		return ..()
-	balloon_alert(user, "fiddling with cork...")
+	balloon_alert(user, LANG("obj.6f9e031c", null))
 	if(do_after(user, 1 SECONDS, src))
 		return pop_cork(user, sabrage = FALSE, froth_severity = pick(0, 1))
 
@@ -674,15 +675,15 @@
 		return NONE
 
 	if(tool != user.get_active_held_item()) //no TK allowed
-		to_chat(user, span_userdanger("Such a feat is beyond your skills of telekinesis!"))
+		to_chat(user, span_userdanger(LANG("obj.6ced2928", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.force < 5)
-		balloon_alert(user, "not strong enough!")
+		balloon_alert(user, LANG("obj.332ed454", null))
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(user, 'sound/items/unsheath.ogg', 25, TRUE)
-	balloon_alert(user, "preparing to swing...")
+	balloon_alert(user, LANG("obj.9f4e6fd8", null))
 	if(!do_after(user, 2 SECONDS, src)) //takes longer because you are supposed to take the foil off the bottle first
 		return ITEM_INTERACT_BLOCKING
 
@@ -939,7 +940,7 @@
 	active = TRUE
 	log_bomber(user, "has primed a", src, "for detonation")
 
-	to_chat(user, span_info("You light [src] on fire."))
+	to_chat(user, span_info(LANG("obj.ac475cd8", list(src))))
 	add_overlay(custom_fire_overlay() || GLOB.fire_overlay)
 	if(!isGlass)
 		addtimer(CALLBACK(src, PROC_REF(explode)), 5 SECONDS)
@@ -960,9 +961,9 @@
 /obj/item/reagent_containers/cup/glass/bottle/molotov/attack_self(mob/user)
 	if(active)
 		if(!isGlass)
-			to_chat(user, span_danger("The flame's spread too far on it!"))
+			to_chat(user, span_danger(LANG("obj.c855d1e3", null)))
 			return
-		to_chat(user, span_info("You snuff out the flame on [src]."))
+		to_chat(user, span_info(LANG("obj.b2f557aa", list(src))))
 		cut_overlay(custom_fire_overlay() || GLOB.fire_overlay)
 		active = FALSE
 		return
@@ -1017,7 +1018,7 @@
 	else
 		reagents.add_reagent(/datum/reagent/consumable/ethanol/pruno, 50)
 	name = "bag of pruno"
-	desc = "Fermented prison wine made from fruit, sugar, and despair. You probably shouldn't drink this around Security."
+	desc = LANG("obj.70701d1f", null)
 	icon_state = "trashbag1" // pruno releases air as it ferments, we don't want to simulate this in atmos, but we can make it look like it did
 	for (var/mob/living/M in view(2, get_turf(src))) // letting people and/or narcs know when the pruno is done
 		if(HAS_TRAIT(M, TRAIT_ANOSMIA))

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 /obj
 	abstract_type = /obj
@@ -203,7 +204,7 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No objects of this type exist")
+					to_chat(usr, LANG("obj.d6c5da78", null))
 					return
 				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
 				message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
@@ -215,7 +216,7 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No objects of this type exist")
+					to_chat(usr, LANG("obj.d6c5da78", null))
 					return
 				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
 				message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
@@ -279,7 +280,7 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 /obj/proc/can_be_unfasten_wrench(mob/user, silent)
 	if(!is_anchorable_floor(loc) && !anchored)
 		if(!silent)
-			to_chat(user, span_warning("[src] needs to be on the floor to be secured!"))
+			to_chat(user, span_warning(LANG("obj.ec1e0974", list(src))))
 		return FAILED_UNFASTEN
 	return SUCCESSFUL_UNFASTEN
 
@@ -290,22 +291,22 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 
 	var/turf/ground = get_turf(src)
 	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		to_chat(user, span_notice("You fail to secure [src]."))
+		to_chat(user, span_notice(LANG("obj.8588de2d", list(src))))
 		return CANT_UNFASTEN
 	var/can_be_unfasten = can_be_unfasten_wrench(user)
 	if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
 		return can_be_unfasten
 	if(time)
-		to_chat(user, span_notice("You begin [anchored ? "un" : ""]securing [src]..."))
+		to_chat(user, span_notice(LANG("obj.da583a84", list(anchored ? "un" : "", src))))
 	wrench.play_tool_sound(src, 50)
 	var/prev_anchored = anchored
 	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
 	if(!wrench.use_tool(src, user, time, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
 		return FAILED_UNFASTEN
 	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		to_chat(user, span_notice("You fail to secure [src]."))
+		to_chat(user, span_notice(LANG("obj.8588de2d", list(src))))
 		return CANT_UNFASTEN
-	to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
+	to_chat(user, span_notice(LANG("obj.df2fad01", list(anchored ? "un" : "", src))))
 	set_anchored(!anchored)
 	check_on_table()
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)

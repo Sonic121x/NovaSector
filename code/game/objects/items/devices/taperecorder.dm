@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/taperecorder
 	name = "universal recorder"
 	desc = "A device that can record to cassette tapes, and play them. It automatically translates the content in playback."
@@ -56,7 +57,7 @@
 /obj/item/taperecorder/examine(mob/user)
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
-		. += span_notice("The display reads:")
+		. += span_notice(LANG("obj.05628925", null))
 		. += "[readout()]"
 
 /obj/item/taperecorder/click_alt(mob/user)
@@ -90,20 +91,20 @@
 	if(!user.transferItemToLoc(tool,src))
 		return ITEM_INTERACT_BLOCKING
 	mytape = tool
-	balloon_alert(user, "inserted [mytape]")
+	balloon_alert(user, LANG("obj.94d2a5ff", list(mytape)))
 	playsound(src, 'sound/items/taperecorder/taperecorder_close.ogg', 50, FALSE)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/taperecorder/proc/eject(mob/user)
 	if(!mytape)
-		balloon_alert(user, "no tape!")
+		balloon_alert(user, LANG("obj.d4c59c85", null))
 		return
 	if(playing)
-		balloon_alert(user, "stop the tape first!")
+		balloon_alert(user, LANG("obj.8b5e941a", null))
 		return
 	playsound(src, 'sound/items/taperecorder/taperecorder_open.ogg', 50, FALSE)
-	balloon_alert(user, "ejected [mytape]")
+	balloon_alert(user, LANG("obj.404ac9b2", list(mytape)))
 	stop()
 	user.put_in_hands(mytape)
 	mytape = null
@@ -126,13 +127,13 @@
 	return FALSE
 
 
-GAME_VERB(/obj/item/taperecorder, ejectverb, "Eject Tape", null)
+GAME_VERB(/obj/item/taperecorder, ejectverb, "弹出磁带", null)
 
 	if(!can_use(usr))
-		balloon_alert(usr, "can't use!")
+		balloon_alert(usr, LANG("obj.3d241116", null))
 		return
 	if(!mytape)
-		balloon_alert(usr, "no tape!")
+		balloon_alert(usr, LANG("obj.d4c59c85", null))
 		return
 	eject(usr)
 
@@ -160,19 +161,19 @@ GAME_VERB(/obj/item/taperecorder, ejectverb, "Eject Tape", null)
 	mytape.storedinfo += "\[[time2text(mytape.used_capacity,"mm:ss", NO_TIMEZONE)]\] [speaker.get_voice()]: [raw_message]"
 
 
-GAME_VERB(/obj/item/taperecorder, record, "Start Recording", null)
+GAME_VERB(/obj/item/taperecorder, record, "开始录制", null)
 
 	if(!can_use(usr))
-		balloon_alert(usr, "can't use!")
+		balloon_alert(usr, LANG("obj.3d241116", null))
 		return
 	if(!mytape || mytape.unspooled)
-		balloon_alert(usr, "no spooled tape!")
+		balloon_alert(usr, LANG("obj.58df68bd", null))
 		return
 	if(recording)
-		balloon_alert(usr, "stop recording first!")
+		balloon_alert(usr, LANG("obj.b22e34af", null))
 		return
 	if(playing)
-		balloon_alert(usr, "already playing!")
+		balloon_alert(usr, LANG("obj.b4a2ae00", null))
 		return
 
 	playsound(src, 'sound/items/taperecorder/taperecorder_play.ogg', 50, FALSE)
@@ -180,7 +181,7 @@ GAME_VERB(/obj/item/taperecorder, record, "Start Recording", null)
 	if(mytape.used_capacity < mytape.max_capacity)
 		recording = TRUE
 		become_hearing_sensitive()
-		balloon_alert(usr, "started recording")
+		balloon_alert(usr, LANG("obj.d9efdbea", null))
 		update_sound()
 		update_appearance()
 		var/used = mytape.used_capacity //to stop runtimes when you eject the tape
@@ -190,58 +191,58 @@ GAME_VERB(/obj/item/taperecorder, record, "Start Recording", null)
 			used += 1 SECONDS
 			if(max - used < time_left_warning && !time_warned)
 				time_warned = TRUE
-				balloon_alert(usr, "[(max - used) / 10] second\s left")
+				balloon_alert(usr, LANG("obj.b3ce223c", list((max - used) / 10)))
 			sleep(1 SECONDS)
 		if(used >= max)
-			balloon_alert(usr, "tape full!")
+			balloon_alert(usr, LANG("obj.a8f20a52", null))
 			sleep(1 SECONDS) //prevent balloon alerts layering over the top of each other
 		stop()
 	else
-		balloon_alert(usr, "tape full!")
+		balloon_alert(usr, LANG("obj.a8f20a52", null))
 		playsound(src, 'sound/items/taperecorder/taperecorder_stop.ogg', 50, FALSE)
 
 
-GAME_VERB(/obj/item/taperecorder, stop, "Stop", null)
+GAME_VERB(/obj/item/taperecorder, stop, "停止", null)
 
 	if(!can_use(usr))
-		balloon_alert(usr, "can't use!")
+		balloon_alert(usr, LANG("obj.3d241116", null))
 		return
 
 	if(recording)
 		playsound(src, 'sound/items/taperecorder/taperecorder_stop.ogg', 50, FALSE)
-		balloon_alert(usr, "stopped recording")
+		balloon_alert(usr, LANG("obj.c17a1f19", null))
 		recording = FALSE
 		lose_hearing_sensitivity()
 	else if(playing)
 		playsound(src, 'sound/items/taperecorder/taperecorder_stop.ogg', 50, FALSE)
-		balloon_alert(usr, "stopped playing")
+		balloon_alert(usr, LANG("obj.36c52e64", null))
 		playing = FALSE
 	time_warned = FALSE
 	update_appearance()
 	update_sound()
 
-GAME_VERB(/obj/item/taperecorder, play, "Play Tape", null)
+GAME_VERB(/obj/item/taperecorder, play, "播放磁带", null)
 
 	if(!can_use(usr))
-		balloon_alert(usr, "can't use!")
+		balloon_alert(usr, LANG("obj.3d241116", null))
 		return
 	if(!mytape || mytape.unspooled)
-		balloon_alert(usr, "no spooled tape!")
+		balloon_alert(usr, LANG("obj.58df68bd", null))
 		return
 	if(recording)
-		balloon_alert(usr, "stop recording first!")
+		balloon_alert(usr, LANG("obj.b22e34af", null))
 		return
 	if(playing)
-		balloon_alert(usr, "already playing!")
+		balloon_alert(usr, LANG("obj.b4a2ae00", null))
 		return
 	if(mytape.storedinfo?.len <= 0)
-		balloon_alert(usr, "[mytape] is empty!")
+		balloon_alert(usr, LANG("obj.02d482cc", list(mytape)))
 		return
 
 	playing = TRUE
 	update_appearance()
 	update_sound()
-	balloon_alert(usr, "started playing")
+	balloon_alert(usr, LANG("obj.b7274291", null))
 	playsound(src, 'sound/items/taperecorder/taperecorder_play.ogg', 50, FALSE)
 	var/used = mytape.used_capacity //to stop runtimes when you eject the tape
 	var/max = mytape.max_capacity
@@ -251,7 +252,7 @@ GAME_VERB(/obj/item/taperecorder, play, "Play Tape", null)
 		if(playing == FALSE)
 			break
 		if(mytape.storedinfo.len < i)
-			balloon_alert(usr, "recording ended")
+			balloon_alert(usr, LANG("obj.1a8a7f3f", null))
 			stoplag(1 SECONDS) //prevents multiple balloon alerts covering each other
 			break
 		say("[mytape.storedinfo[i]]", sanitize=FALSE, message_mods = list(MODE_SEQUENTIAL = TRUE))//We want to display this properly, don't double encode
@@ -262,7 +263,7 @@ GAME_VERB(/obj/item/taperecorder, play, "Play Tape", null)
 			playsleepseconds = max(mytape.timestamp[i + 1] - mytape.timestamp[i], 1 SECONDS)
 		if(playsleepseconds > 14 SECONDS)
 			sleep(1 SECONDS)
-			say("Skipping [playsleepseconds/10] seconds of silence.", message_mods = list(MODE_SEQUENTIAL = TRUE))
+			say(LANG("obj.10528175", list(playsleepseconds/10)), message_mods = list(MODE_SEQUENTIAL = TRUE))
 			playsleepseconds = 1 SECONDS
 		i++
 
@@ -271,7 +272,7 @@ GAME_VERB(/obj/item/taperecorder, play, "Play Tape", null)
 
 /obj/item/taperecorder/attack_self(mob/user)
 	if(!mytape)
-		balloon_alert(user, "it's empty!")
+		balloon_alert(user, LANG("obj.76a90f7c", null))
 		return
 
 	update_available_icons()
@@ -291,26 +292,26 @@ GAME_VERB(/obj/item/taperecorder, play, "Play Tape", null)
 			if("Eject")
 				eject(user)
 
-GAME_VERB(/obj/item/taperecorder, print_transcript, "Print Transcript", null)
+GAME_VERB(/obj/item/taperecorder, print_transcript, "打印录音文字稿", null)
 
 	var/list/transcribed_info = mytape.storedinfo
 	if(!length(transcribed_info))
-		balloon_alert(usr, "tape is empty!")
+		balloon_alert(usr, LANG("obj.a6ff3edd", null))
 		return
 	if(!canprint)
-		balloon_alert(usr, "can't print that fast!")
+		balloon_alert(usr, LANG("obj.5732f68f", null))
 		return
 	if(!can_use(usr))
-		balloon_alert(usr, "can't use!")
+		balloon_alert(usr, LANG("obj.3d241116", null))
 		return
 	if(!mytape || mytape.unspooled)
-		balloon_alert(usr, "no spooled tape!")
+		balloon_alert(usr, LANG("obj.58df68bd", null))
 		return
 	if(recording)
-		balloon_alert(usr, "stop recording first!")
+		balloon_alert(usr, LANG("obj.b22e34af", null))
 		return
 	if(playing)
-		balloon_alert(usr, "already playing!")
+		balloon_alert(usr, LANG("obj.b4a2ae00", null))
 		return
 
 	var/transcribed_text = "<b>Transcript:</b><br><br>"
@@ -345,7 +346,7 @@ GAME_VERB(/obj/item/taperecorder, print_transcript, "Print Transcript", null)
 	transcript_paper.name = "[paper_name] page [page_count]"
 	transcript_paper.update_appearance()
 
-	balloon_alert(usr, "transcript printed\n[page_count] page\s")
+	balloon_alert(usr, LANG("obj.9ec8d7ff", list(page_count)))
 	playsound(src, 'sound/items/taperecorder/taperecorder_print.ogg', 50, FALSE)
 
 	// Can't put the entire stack into their hands if there's multple pages, but hey we can at least put one page in.
@@ -402,7 +403,7 @@ GAME_VERB(/obj/item/taperecorder, print_transcript, "Print Transcript", null)
 /obj/item/tape/examine(mob/user)
 	. = ..()
 	if(unspooled)
-		. += span_notice("It looks like the tape is unspooled. A screwdriver might fix this.")
+		. += span_notice(LANG("obj.79df9bd0", null))
 
 /obj/item/tape/fire_act(exposed_temperature, exposed_volume)
 	unspool()
@@ -426,13 +427,13 @@ GAME_VERB(/obj/item/taperecorder, print_transcript, "Print Transcript", null)
 				if(loc != user)
 					return
 				tapeflip()
-				balloon_alert(user, "flipped tape")
+				balloon_alert(user, LANG("obj.2cfdfd3a", null))
 				playsound(src, 'sound/items/taperecorder/tape_flip.ogg', 70, FALSE)
 			if("Unwind tape")
 				if(loc != user)
 					return
 				unspool()
-				balloon_alert(user, "unspooled tape")
+				balloon_alert(user, LANG("obj.d8137fec", null))
 
 /obj/item/tape/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(prob(50))
@@ -471,11 +472,11 @@ GAME_VERB(/obj/item/taperecorder, print_transcript, "Print Transcript", null)
 /obj/item/tape/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!unspooled)
 		return FALSE
-	balloon_alert(user, "respooling tape...")
+	balloon_alert(user, LANG("obj.c42b1508", null))
 	if(!tool.use_tool(src, user, 12 SECONDS))
-		balloon_alert(user, "respooling failed!")
+		balloon_alert(user, LANG("obj.98f1dd32", null))
 		return FALSE
-	balloon_alert(user, "tape respooled")
+	balloon_alert(user, LANG("obj.ef706919", null))
 	respool()
 
 //Random colour tapes

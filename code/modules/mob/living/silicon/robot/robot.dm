@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * Init args
  * * innate_laws: If set, the cyborg will use this lawset and will not linked to an ai. Make sure you're passing a copy of the lawset
@@ -174,11 +175,11 @@
 		return
 
 	if(wires.is_cut(WIRE_RESET_MODEL))
-		to_chat(src,span_userdanger("ERROR: Model installer reply timeout. Please check internal connections."))
+		to_chat(src,span_userdanger(LANG("mob.ebe078e6", null)))
 		return
 
 	if(lockcharge == TRUE)
-		to_chat(src,span_userdanger("ERROR: Lockdown is engaged. Please disengage lockdown to pick module."))
+		to_chat(src,span_userdanger(LANG("mob.fb386521", null)))
 		return
 
 	// NOVA EDIT START - Making the cyborg model list static to reduce how many times it's generated.
@@ -265,14 +266,14 @@
 
 /mob/living/silicon/robot/proc/toggle_ionpulse()
 	if(!ionpulse)
-		to_chat(src, span_notice("No thrusters are installed!"))
+		to_chat(src, span_notice(LANG("mob.149d67a8", null)))
 		return
 
 	if(!ion_trail)
 		ion_trail = new(src)
 
 	ionpulse_on = !ionpulse_on
-	to_chat(src, span_notice("You [ionpulse_on ? null :"de"]activate your ion thrusters."))
+	to_chat(src, span_notice(LANG("mob.d1e9603e", list(ionpulse_on ? null :"de"))))
 	if(ionpulse_on)
 		ion_trail.start()
 	else
@@ -281,12 +282,12 @@
 /mob/living/silicon/robot/get_status_tab_items()
 	. = ..()
 	if(cell)
-		. += "Charge Left: [display_energy(cell.charge)]/[display_energy(cell.maxcharge)]"
+		. += LANG("mob.b1a7b653", list(display_energy(cell.charge), display_energy(cell.maxcharge)))
 	else
-		. += "No Cell Inserted!"
+		. += LANG("mob.36c17f5e", null)
 
 	if(connected_ai)
-		. += "Master AI: [connected_ai.name]"
+		. += LANG("mob.575291cf", list(connected_ai.name))
 
 /mob/living/silicon/robot/proc/alarm_triggered(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
@@ -489,7 +490,7 @@
 	. = ..()
 	if(lamp_enabled)
 		toggle_headlamp(TRUE)
-		balloon_alert(src, "headlamp off!")
+		balloon_alert(src, LANG("mob.a68aa180", null))
 	COOLDOWN_START(src, disabled_time, disrupt_duration)
 	return TRUE
 
@@ -506,7 +507,7 @@
 	lamp_functional = FALSE
 	playsound(src, 'sound/effects/footstep/glass_step.ogg', 50)
 	toggle_headlamp(TRUE)
-	to_chat(src, span_danger("Your headlamp is broken! You'll need a human to help replace it."))
+	to_chat(src, span_danger(LANG("mob.be4a660a", null)))
 
 /**
  * Handles headlamp toggling, disabling, and color setting.
@@ -524,7 +525,7 @@
 /mob/living/silicon/robot/proc/toggle_headlamp(turn_off = FALSE, update_color = FALSE)
 	//if both lamp is enabled AND the update_color flag is on, keep the lamp on. Otherwise, if anything listed is true, disable the lamp.
 	if(!COOLDOWN_FINISHED(src, disabled_time))
-		balloon_alert(src, "disrupted!")
+		balloon_alert(src, LANG("mob.492a03fe", null))
 		return FALSE
 
 	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || IS_UNCONSCIOUS_OR_CRIT(src) || low_power_mode))
@@ -597,8 +598,7 @@
 		removing.update_appearance()
 
 	else
-		to_chat(src, span_bolddanger("Oops! Something went very wrong, your MMI was unable to receive your mind. \
-			You have been ghosted. Please make a bug report so we can fix this bug."))
+		to_chat(src, span_bolddanger(LANG("mob.4f95f26d", null)))
 		ghostize()
 		stack_trace("Borg MMI lacked a brainmob")
 
@@ -621,7 +621,7 @@
 
 /mob/living/silicon/robot/can_perform_action(atom/target, action_bitflags)
 	if(lockcharge || low_power_mode)
-		to_chat(src, span_warning("You can't do that right now!"))
+		to_chat(src, span_warning(LANG("mob.93b3c965", null)))
 		return FALSE
 	return ..()
 
@@ -828,15 +828,15 @@
 	if(!user.temporarilyRemoveItemFromInventory(new_upgrade)) //calling the upgrade's dropped() proc /before/ we add action buttons
 		return FALSE
 	if(!new_upgrade.action(src, user))
-		to_chat(user, span_danger("Upgrade error."))
+		to_chat(user, span_danger(LANG("mob.b68282e0", null)))
 		new_upgrade.forceMove(loc) //gets lost otherwise
 		return FALSE
-	to_chat(user, span_notice("You apply the upgrade to [src]."))
+	to_chat(user, span_notice(LANG("mob.23c68f5b", list(src))))
 	add_to_upgrades(new_upgrade)
 
 ///Moves the upgrade inside the robot and registers relevant signals.
 /mob/living/silicon/robot/proc/add_to_upgrades(obj/item/borg/upgrade/new_upgrade)
-	to_chat(src, "----------------\nNew hardware detected...Identified as \"<b>[new_upgrade]</b>\"...Setup complete.\n----------------")
+	to_chat(src, LANG("mob.1e8630b8", list(new_upgrade)))
 	if(new_upgrade.one_use)
 		logevent("Firmware [new_upgrade] run successfully.")
 		qdel(new_upgrade)
@@ -985,10 +985,10 @@
 	if(incapacitated)
 		return FALSE
 	if(!HAS_TRAIT(target, TRAIT_CAN_MOUNT_CYBORGS))
-		target.visible_message(span_warning("[target] really can't seem to mount [src]..."))
+		target.visible_message(span_warning(LANG("mob.d388ba33", list(target, src))))
 		return FALSE
 	if(model && !model.allow_riding)
-		target.visible_message(span_boldwarning("Unfortunately, [target] just can't seem to hold onto [src]!"))
+		target.visible_message(span_boldwarning(LANG("mob.d241b7c5", list(target, src))))
 		return FALSE
 
 	return ..()
@@ -1003,7 +1003,7 @@
 
 /mob/living/silicon/robot/can_resist()
 	if(lockcharge)
-		balloon_alert(src, "locked down!")
+		balloon_alert(src, LANG("mob.024f9f0d", null))
 		return FALSE
 	return ..()
 
@@ -1064,7 +1064,7 @@
 	.[/datum/job/cyborg::title] = minutes
 
 /mob/living/silicon/robot/proc/untip_roleplay()
-	to_chat(src, span_notice("Your frustration has empowered you! You can now right yourself faster!"))
+	to_chat(src, span_notice(LANG("mob.e76b35b7", null)))
 
 /mob/living/silicon/robot/get_fire_overlay(stacks, on_fire)
 	return make_generic_fire_overlay()

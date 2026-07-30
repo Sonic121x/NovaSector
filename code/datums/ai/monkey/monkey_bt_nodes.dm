@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 /// Monkey's battle screech variant  louder and on a 5 second cooldown
 /datum/bt_node/ai_behavior/battle_screech/monkey
@@ -58,7 +59,7 @@
 		finish_action(controller, FALSE)
 		return
 
-	victim.visible_message(span_warning("[living_pawn] starts trying to take [target] from [victim]!"), span_danger("[living_pawn] tries to take [target]!"))
+	victim.visible_message(span_warning(LANG("datum.4c436cd8", list(living_pawn, target, victim))), span_danger(LANG("datum.67d81504", list(living_pawn, target))))
 	controller.set_blackboard_key(BB_MONKEY_PICKPOCKETING, TRUE)
 
 	var/success = FALSE

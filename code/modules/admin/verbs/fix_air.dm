@@ -1,5 +1,6 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // Proc taken from yogstation, credit to nichlas0010 for the original
-ADMIN_VERB_AND_CONTEXT_MENU(fix_air, R_ADMIN, "Fix Air", "Fixes air in a specified radius.", ADMIN_CATEGORY_GAME, turf/open/locale, range = 2 as num)
+ADMIN_VERB_AND_CONTEXT_MENU(fix_air, R_ADMIN, "修复空气", "Fixes air in a specified radius.", ADMIN_CATEGORY_GAME, turf/open/locale, range = 2 as num)
 	message_admins("[key_name_admin(user)] fixed air with range [range] in area [locale.loc.name]")
 	user.mob.log_message("fixed air with range [range] in area [locale.loc.name]", LOG_ADMIN)
 

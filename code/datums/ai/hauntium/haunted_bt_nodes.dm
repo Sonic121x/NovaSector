@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Gates on whether the haunted item pawn is currently inside a mob's inventory.
 /datum/bt_node/decaorator/item_being_held
 
@@ -24,7 +25,7 @@
 	var/mob/item_holder = item_pawn.loc
 	if(!ismob(item_holder))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	item_pawn.visible_message(span_warning("[item_pawn] slips out of the hands of [item_holder]!"))
+	item_pawn.visible_message(span_warning(LANG("datum.3cb1cf7f", list(item_pawn, item_holder))))
 	item_holder.dropItemToGround(item_pawn, TRUE)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

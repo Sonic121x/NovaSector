@@ -450,14 +450,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	new /obj/item/shard(loc) // never gives the frame back
 
 /obj/structure/mirror/magic/lesser/heretic/welder_act(mob/living/user, obj/item/I)
-	to_chat(user, span_alert("Trying to find where to start fixing [src] proves nigh impossible."))
+	to_chat(user, span_alert(LANG("obj.5535e2df", list(src))))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/mirror/magic/lesser/heretic/pre_change(mob/living/carbon/human/user, picked)
 	if(IS_HERETIC(user))
 		return TRUE
 
-	to_chat(user, span_hypnophrase("You find yourself gazing at [src], unable to look away..."))
+	to_chat(user, span_hypnophrase(LANG("obj.c5875af2", list(src))))
 	user.Immobilize(5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(change_something), user, picked), 5 SECONDS)
 	return FALSE
@@ -467,34 +467,34 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 		return
 
 	if(!user.Adjacent(src))
-		to_chat(user, span_warning("Pulled away from [src], you snap out of your trance."))
+		to_chat(user, span_warning(LANG("obj.d19761b4", list(src))))
 		return
 	if(broken)
-		to_chat(user, span_warning("With the shattering of [src], you snap out of your trance."))
+		to_chat(user, span_warning(LANG("obj.7a829ebc", list(src))))
 		return
 
 	// randomizes your stuff, doesn't affect DNA though so you could easily get genetics to fix you
 	switch(picked)
 		if(CHANGE_HAIR, CHANGE_BEARD)
-			to_chat(user, span_hypnophrase("The hair - yes, the hair is wrong - [pick("it can be improved", "it needs to be changed", "it must be different")]..."))
+			to_chat(user, span_hypnophrase(LANG("obj.8f4e4371", list(pick("it can be improved", "it needs to be changed", "it must be different")))))
 			user.set_hairstyle(random_hairstyle(user.gender))
 			user.set_facial_hairstyle(random_facial_hairstyle(user.gender))
 		if(CHANGE_RACE)
-			to_chat(user, span_hypnophrase("The body - no, the body is all wrong - [pick("I must become anew", "I need to be different", "I want to be something else")]..."))
+			to_chat(user, span_hypnophrase(LANG("obj.f408e7ef", list(pick("I must become anew", "I need to be different", "I want to be something else")))))
 			var/list/options = selectable_races.Copy() - user.dna.species.type
 			var/datum/species/newrace = GLOB.species_prototypes[pick(options)]
 			on_species_change(user, newrace)
 			user.set_species(newrace.type, icon_update = FALSE)
 		if(CHANGE_SEX)
-			to_chat(user, span_hypnophrase("My form - yes, the form is all wrong - I  need to change it...")) // the wording used here needs to be very deliberate...
+			to_chat(user, span_hypnophrase(LANG("obj.c2d773c2", null))) // the wording used here needs to be very deliberate...
 			var/list/options = list(MALE, FEMALE, PLURAL, NEUTER) - user.gender
 			user.gender = pick(options)
 			user.physique = user.gender
 		if(CHANGE_EYES)
-			to_chat(user, span_hypnophrase("My eyes - I cannot see clearly - [pick("They're simply not right", "they must be replaced", "they are both wrong")]..."))
+			to_chat(user, span_hypnophrase(LANG("obj.8e60a070", list(pick("They're simply not right", "they must be replaced", "they are both wrong")))))
 			user.set_eye_color(random_eye_color())
 		if(CHANGE_NAME) // not enabled by default but for badmin support
-			to_chat(user, span_hypnophrase("My name - it doesn't fit me - [pick("Something else would be better", "it must be changed", "Something more appropriate would be good")]..."))
+			to_chat(user, span_hypnophrase(LANG("obj.62d2d797", list(pick("Something else would be better", "it must be changed", "Something more appropriate would be good")))))
 			user.real_name = user.generate_random_mob_name()
 			user.update_visible_name()
 

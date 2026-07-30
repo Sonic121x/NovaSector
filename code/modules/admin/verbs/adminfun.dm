@@ -1,23 +1,24 @@
-ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "Explosion", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
-	var/devastation = input(user, "Range of total devastation. -1 to none", "Input")  as num|null
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "爆炸", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
+	var/devastation = input(user, LANG("datum.539bbd89", null), "Input")  as num|null
 	if(devastation == null)
 		return
-	var/heavy = input(user, "Range of heavy impact. -1 to none", "Input")  as num|null
+	var/heavy = input(user, LANG("datum.a5b19a22", null), "Input")  as num|null
 	if(heavy == null)
 		return
-	var/light = input(user, "Range of light impact. -1 to none", "Input")  as num|null
+	var/light = input(user, LANG("datum.c54ab0a6", null), "Input")  as num|null
 	if(light == null)
 		return
-	var/flash = input(user, "Range of flash. -1 to none", "Input")  as num|null
+	var/flash = input(user, LANG("datum.6090762c", null), "Input")  as num|null
 	if(flash == null)
 		return
-	var/flames = input(user, "Range of flames. -1 to none", "Input")  as num|null
+	var/flames = input(user, LANG("datum.9ebdf290", null), "Input")  as num|null
 	if(flames == null)
 		return
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1) || (flames != -1))
 		if ((devastation > 20) || (heavy > 20) || (light > 20) || (flames > 20))
-			if (tgui_alert(user, "Are you sure you want to do this? It will laaag.", "Confirmation", list("Yes", "No")) == "No")
+			if (tgui_alert(user, LANG("datum.3e871e8e", null), LANG("datum.15bc27b6", null), list("Yes", "No")) == "No")
 				return
 
 		explosion(orignator, devastation, heavy, light, flames, flash, explosion_cause = user.mob)
@@ -25,11 +26,11 @@ ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "Explosion", ADMIN_VERB_NO_DESCRIPTIO
 		message_admins("[key_name_admin(user)] created an explosion ([devastation],[heavy],[light],[flames]) at [AREACOORD(orignator)]")
 		BLACKBOX_LOG_ADMIN_VERB("Explosion")
 
-ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "EM Pulse", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
-	var/heavy = input(user, "Range of heavy pulse.", "Input")  as num|null
+ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "电磁脉冲", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
+	var/heavy = input(user, LANG("datum.722572ed", null), "Input")  as num|null
 	if(heavy == null)
 		return
-	var/light = input(user, "Range of light pulse.", "Input")  as num|null
+	var/light = input(user, LANG("datum.41554af3", null), "Input")  as num|null
 	if(light == null)
 		return
 
@@ -39,8 +40,8 @@ ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "EM Pulse", ADMIN_VERB_NO_DESCRIPTION, ADMI
 		message_admins("[key_name_admin(user)] created an EM Pulse ([heavy],[light]) at [AREACOORD(orignator)]")
 		BLACKBOX_LOG_ADMIN_VERB("EM Pulse")
 
-ADMIN_VERB(gib_them, R_ADMIN, "Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/victim)
-	var/confirm = tgui_alert(user, "Drop a brain?", "Confirm", list("Yes", "No","Cancel")) || "Cancel"
+ADMIN_VERB(gib_them, R_ADMIN, "碎尸", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/victim)
+	var/confirm = tgui_alert(user, LANG("datum.716b3c04", null), LANG("datum.3c1da715", null), list("Yes", "No","Cancel")) || "Cancel"
 	if(confirm == "Cancel")
 		return
 	//Due to the delay here its easy for something to have happened to the mob
@@ -64,8 +65,8 @@ ADMIN_VERB(gib_them, R_ADMIN, "Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_H
 
 	BLACKBOX_LOG_ADMIN_VERB("Gib")
 
-ADMIN_VERB(gib_self, R_ADMIN, "Gibself", "Give yourself the same treatment you give others.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
+ADMIN_VERB(gib_self, R_ADMIN, "自我碎尸", "Give yourself the same treatment you give others.", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, LANG("datum.be968efe", null), LANG("datum.3c1da715", null), list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 	log_admin("[key_name(user)] used gibself.")
@@ -76,8 +77,8 @@ ADMIN_VERB(gib_self, R_ADMIN, "Gibself", "Give yourself the same treatment you g
 	if (istype(ourself))
 		ourself.gib()
 
-ADMIN_VERB(dust_self, R_ADMIN, "Dustself", "Give yourself the same treatment you give others.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
+ADMIN_VERB(dust_self, R_ADMIN, "自我化尘", "Give yourself the same treatment you give others.", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, LANG("datum.be968efe", null), LANG("datum.3c1da715", null), list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 	log_admin("[key_name(user)] used dustself.")
@@ -88,19 +89,19 @@ ADMIN_VERB(dust_self, R_ADMIN, "Dustself", "Give yourself the same treatment you
 	if (istype(ourself))
 		ourself.dust(just_ash = FALSE, drop_items = FALSE, force = TRUE)
 
-ADMIN_VERB(everyone_random, R_SERVER, "Make Everyone Random", "Make everyone have a random appearance.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(everyone_random, R_SERVER, "随机化所有人", "Make everyone have a random appearance.", ADMIN_CATEGORY_FUN)
 	if(SSticker.HasRoundStarted())
-		to_chat(user, "Nope you can't do this, the game's already started. This only works before rounds!", confidential = TRUE)
+		to_chat(user, LANG("datum.a664b0ea", null), confidential = TRUE)
 		return
 
 	var/frn = CONFIG_GET(flag/force_random_names)
 	if(frn)
 		CONFIG_SET(flag/force_random_names, FALSE)
 		message_admins("Admin [key_name_admin(user)] has disabled \"Everyone is Special\" mode.")
-		to_chat(user, "Disabled.", confidential = TRUE)
+		to_chat(user, LANG("datum.84c2128f", null), confidential = TRUE)
 		return
 
-	var/notifyplayers = tgui_alert(user, "Do you want to notify the players?", "Options", list("Yes", "No", "Cancel")) || "Cancel"
+	var/notifyplayers = tgui_alert(user, LANG("datum.e17f07cf", null), LANG("datum.9cb8b820", null), list("Yes", "No", "Cancel")) || "Cancel"
 	if(notifyplayers == "Cancel")
 		return
 
@@ -108,15 +109,15 @@ ADMIN_VERB(everyone_random, R_SERVER, "Make Everyone Random", "Make everyone hav
 	message_admins("Admin [key_name_admin(user)] has forced the players to have random appearances.")
 
 	if(notifyplayers == "Yes")
-		to_chat(world, span_adminnotice("Admin [user.key] has forced the players to have completely random identities!"), confidential = TRUE)
+		to_chat(world, span_adminnotice(LANG("datum.0d6bc22a", list(user.key))), confidential = TRUE)
 
-	to_chat(user, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.", confidential = TRUE)
+	to_chat(user, LANG("datum.dd5a22eb", null), confidential = TRUE)
 
 	CONFIG_SET(flag/force_random_names, TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Make Everyone Random")
 
-ADMIN_VERB(mass_zombie_infection, R_ADMIN, "Mass Zombie Infection", "Infects all humans with a latent organ that will zombify them on death.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "Please confirm you want to add latent zombie organs in all humans?", "Confirm Zombies", list("Yes", "No"))
+ADMIN_VERB(mass_zombie_infection, R_ADMIN, "大规模僵尸感染", "Infects all humans with a latent organ that will zombify them on death.", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, LANG("datum.89c2830d", null), LANG("datum.05c2b009", null), list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -128,8 +129,8 @@ ADMIN_VERB(mass_zombie_infection, R_ADMIN, "Mass Zombie Infection", "Infects all
 	log_admin("[key_name(user)] added a latent zombie infection to all humans.")
 	BLACKBOX_LOG_ADMIN_VERB("Mass Zombie Infection")
 
-ADMIN_VERB(mass_zombie_cure, R_ADMIN, "Mass Zombie Cure", "Removes the zombie infection from all humans, returning them to normal.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "Please confirm you want to cure all zombies?", "Confirm Zombie Cure", list("Yes", "No"))
+ADMIN_VERB(mass_zombie_cure, R_ADMIN, "大规模僵尸解药", "Removes the zombie infection from all humans, returning them to normal.", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, LANG("datum.aad26d25", null), LANG("datum.24acebd6", null), list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -140,8 +141,8 @@ ADMIN_VERB(mass_zombie_cure, R_ADMIN, "Mass Zombie Cure", "Removes the zombie in
 	log_admin("[key_name(user)] cured all zombies.")
 	BLACKBOX_LOG_ADMIN_VERB("Mass Zombie Cure")
 
-ADMIN_VERB(polymorph_all, R_ADMIN, "Polymorph All", "Applies the effects of the bolt of change to every single mob.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "Please confirm you want polymorph all mobs?", "Confirm Polymorph", list("Yes", "No"))
+ADMIN_VERB(polymorph_all, R_ADMIN, "全体变形", "Applies the effects of the bolt of change to every single mob.", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, LANG("datum.38e59b16", null), LANG("datum.8dd47e18", null), list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -166,9 +167,9 @@ ADMIN_VERB(polymorph_all, R_ADMIN, "Polymorph All", "Applies the effects of the 
 	message_admins("Mass polymorph started by [who_did_it] is complete.")
 
 /// Allow admin to mass add or remove a trait across all mobs
-ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a trait from every mob.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(mass_modify_traits, R_FUN, "批量修改特质", "Adds or removes a trait from every mob.", ADMIN_CATEGORY_FUN)
 
-	var/choice = tgui_alert(user, "Add or Remove Trait?", "Mass Add/Remove Trait", list("Add", "Remove"))
+	var/choice = tgui_alert(user, LANG("datum.f96d316f", null), LANG("datum.271c7b93", null), list("Add", "Remove"))
 	if(isnull(choice))
 		return
 	var/is_add = (choice == "Add")
@@ -184,12 +185,12 @@ ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a t
 
 	available_traits = sort_list(available_traits, GLOBAL_PROC_REF(cmp_typepaths_asc)) // sort alphabetically
 
-	var/mob_trait = tgui_input_list(user, "Select a trait to [lower_choice].", "Mass [choice] Trait", available_traits)
+	var/mob_trait = tgui_input_list(user, LANG("datum.327cf921", list(lower_choice)), LANG("datum.e4888064", list(choice)), available_traits)
 	if(isnull(mob_trait))
 		return
 	mob_trait = available_traits[mob_trait]
 
-	var/target_scope = tgui_alert(user, "[choice] [lower_choice == "add" ? "to" : "from"] all mobs, or only cliented ones?", "Scope", list("All", "Cliented"))
+	var/target_scope = tgui_alert(user, LANG("datum.71815cab", list(choice, lower_choice == "add" ? "to" : "from")), LANG("datum.4947bf34", null), list("All", "Cliented"))
 	if(!target_scope)
 		return
 	var/cliented_only = (target_scope == "Cliented")
@@ -203,8 +204,8 @@ ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a t
 	var/action_word = is_add ? "to" : "from"
 	var/confirm = tgui_alert(
 		user,
-		"Please confirm you want to [lower_choice] [trait_name] [action_word] every [cliented_only ? "cliented" : ""] mob?",
-		"Confirm Mass [choice] Trait",
+		LANG("datum.51eff0b4", list(lower_choice, trait_name, action_word, cliented_only ? "cliented" : "")),
+		LANG("datum.3c150c7e", list(choice)),
 		list("Yes", "No")
 	)
 	if(confirm != "Yes")
@@ -224,7 +225,7 @@ ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a t
 
 	else // Removing trait
 		var/source = null
-		var/remove_mode = tgui_alert(user, "Remove from specific source?", "Mass Remove Trait", list("All", "Admin-Granted Traits", "Specific"))
+		var/remove_mode = tgui_alert(user, LANG("datum.f0dd0e6d", null), LANG("datum.233d7511", null), list("All", "Admin-Granted Traits", "Specific"))
 		if(isnull(remove_mode))
 			return
 
@@ -255,8 +256,8 @@ ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a t
 			out += GLOB.admin_visible_traits[key]
 	return out
 
-ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "Smite", "Smite a player with divine power.", ADMIN_CATEGORY_FUN, mob/living/target)
-	var/punishment = tgui_input_list(user, "Choose a punishment", "DIVINE SMITING", GLOB.smites)
+ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "惩戒", "Smite a player with divine power.", ADMIN_CATEGORY_FUN, mob/living/target)
+	var/punishment = tgui_input_list(user, LANG("datum.60db9e8f", null), LANG("datum.9d9602b1", null), GLOB.smites)
 
 	if(QDELETED(target) || !punishment)
 		return

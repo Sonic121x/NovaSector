@@ -1,45 +1,46 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/mod/control/transfer_ai(interaction, mob/user, mob/living/silicon/ai/intAI, obj/item/aicard/card)
 	. = ..()
 	if(!.)
 		return
 	if(!open) //mod must be open
-		balloon_alert(user, "panel closed!")
+		balloon_alert(user, LANG("obj.3feda34e", null))
 		return
 	switch(interaction)
 		if(AI_TRANS_TO_CARD)
 			if(!ai_assistant)
-				balloon_alert(user, "no ai in unit!")
+				balloon_alert(user, LANG("obj.5acaeb8d", null))
 				return
-			balloon_alert(user, "transferring to card...")
+			balloon_alert(user, LANG("obj.495368c1", null))
 			if(!do_after(user, 5 SECONDS, target = src))
-				balloon_alert(user, "interrupted!")
+				balloon_alert(user, LANG("obj.c67b5d27", null))
 				return
 			if(!ai_assistant)
-				balloon_alert(user, "no ai in unit!")
+				balloon_alert(user, LANG("obj.5acaeb8d", null))
 				return
-			balloon_alert(user, "ai transferred to card")
+			balloon_alert(user, LANG("obj.4343266d", null))
 			ai_exit_mod(card)
 
 		if(AI_TRANS_FROM_CARD) //Using an AI card to upload to the suit.
 			intAI = card.AI
 			if(!intAI)
-				balloon_alert(user, "no ai in card!")
+				balloon_alert(user, LANG("obj.2439cc2e", null))
 				return
 			if(ai_assistant)
-				balloon_alert(user, "already has ai!")
+				balloon_alert(user, LANG("obj.f4745b10", null))
 				return
 			if(intAI.deployed_shell) //Recall AI if shelled so it can be checked for a client
 				intAI.disconnect_shell()
 			if(IS_UNCONSCIOUS_OR_CRIT(intAI) || !intAI.client)
-				balloon_alert(user, "ai unresponsive!")
+				balloon_alert(user, LANG("obj.5f76f1b5", null))
 				return
-			balloon_alert(user, "transferring to unit...")
+			balloon_alert(user, LANG("obj.1db976b4", null))
 			if(!do_after(user, 5 SECONDS, target = src))
-				balloon_alert(user, "interrupted!")
+				balloon_alert(user, LANG("obj.c67b5d27", null))
 				return
 			if(ai_assistant)
 				return
-			balloon_alert(user, "ai transferred to unit")
+			balloon_alert(user, LANG("obj.305eeca4", null))
 			ai_enter_mod(intAI)
 			card.AI = null
 
@@ -69,19 +70,19 @@
 /// Place a pAI in control of your suit functions
 /obj/item/mod/control/proc/insert_pai(mob/user, obj/item/pai_card/card)
 	if (!isnull(ai_assistant))
-		balloon_alert(user, "slot occupied!")
+		balloon_alert(user, LANG("obj.1f80dacd", null))
 		return FALSE
 	if (isnull(card.pai?.mind))
-		balloon_alert(user, "pAI unresponsive!")
+		balloon_alert(user, LANG("obj.67678199", null))
 		return FALSE
-	balloon_alert(user, "transferring to unit...")
+	balloon_alert(user, LANG("obj.1db976b4", null))
 	if (!do_after(user, 5 SECONDS, target = src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, LANG("obj.c67b5d27", null))
 		return FALSE
 	if (!user.transferItemToLoc(card, src))
-		balloon_alert(user, "transfer failed!")
+		balloon_alert(user, LANG("obj.30e73ab8", null))
 		return FALSE
-	balloon_alert(user, "pAI transferred to unit")
+	balloon_alert(user, LANG("obj.9d41d8da", null))
 	var/mob/living/silicon/pai/pai_assistant = card.pai
 	pai_assistant.can_transmit = TRUE
 	pai_assistant.can_receive = TRUE
@@ -99,18 +100,18 @@
 /// Removes pAI control from a modsuit
 /obj/item/mod/control/proc/remove_pai(mob/user, forced = FALSE)
 	if (isnull(ai_assistant))
-		balloon_alert(user, "no pAI!")
+		balloon_alert(user, LANG("obj.0d64162b", null))
 		return FALSE
 	if (!forced)
 		if (!open)
-			balloon_alert(user, "panel closed!")
+			balloon_alert(user, LANG("obj.3feda34e", null))
 			return FALSE
-		balloon_alert(user, "uninstalling card...")
+		balloon_alert(user, LANG("obj.5ce1c1f2", null))
 		if (!do_after(user, 5 SECONDS, target = src))
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, LANG("obj.c67b5d27", null))
 			return FALSE
 
-	balloon_alert(user, "pAI removed")
+	balloon_alert(user, LANG("obj.0b48e9c8", null))
 	var/mob/living/silicon/pai/pai_helper = ai_assistant
 	//pai_helper.can_holo = TRUE //NOVA EDIT REMOVAL - pAI in modsuits can Holoform
 	pai_helper.card.forceMove(get_turf(src))
@@ -119,7 +120,7 @@
 /// Called when a new ai assistant is inserted
 /obj/item/mod/control/proc/on_gained_assistant(mob/living/silicon/new_helper)
 	ai_assistant = new_helper
-	balloon_alert(new_helper, "transferred to a mod unit")
+	balloon_alert(new_helper, LANG("obj.c46d3f51", null))
 	for(var/datum/action/action as anything in actions)
 		action.Grant(new_helper)
 
@@ -128,7 +129,7 @@
 	for(var/datum/action/action as anything in actions)
 		action.Remove(ai_assistant)
 	ai_assistant.remote_control = null
-	balloon_alert(ai_assistant, "transferred to a card")
+	balloon_alert(ai_assistant, LANG("obj.76fc296e", null))
 	ai_assistant = null
 
 #define MOVE_DELAY 2
@@ -198,7 +199,7 @@
 
 /obj/item/mod/ai_minicard/examine(mob/user)
 	. = ..()
-	. += span_notice("You see [stored_ai.resolve() || "no AI"] stored inside.")
+	. += span_notice(LANG("obj.da8903ee", list(stored_ai.resolve() || "no AI")))
 
 /obj/item/mod/ai_minicard/transfer_ai(interaction, mob/user, mob/living/silicon/ai/intAI, obj/item/aicard/card)
 	. = ..()
@@ -208,16 +209,16 @@
 		return
 	var/mob/living/silicon/ai/ai = stored_ai.resolve()
 	if(!ai)
-		balloon_alert(user, "no ai!")
+		balloon_alert(user, LANG("obj.d5277ff0", null))
 		return
-	balloon_alert(user, "transferring to card...")
+	balloon_alert(user, LANG("obj.495368c1", null))
 	if(!do_after(user, 5 SECONDS, target = src) || !ai)
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, LANG("obj.c67b5d27", null))
 		return
 	icon_state = "minicard"
 	ai.forceMove(card)
 	card.AI = ai
 	ai.notify_revival("You have been recovered from the wreckage!", source = card)
-	balloon_alert(user, "ai transferred to card")
+	balloon_alert(user, LANG("obj.4343266d", null))
 	stored_ai = null
 	#undef AI_FALL_TIME

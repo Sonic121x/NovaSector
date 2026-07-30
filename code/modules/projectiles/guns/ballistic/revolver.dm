@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/gun/ballistic/revolver
 	name = "\improper .357 revolver"
 	desc = "A suspicious revolver. Uses .357 ammo."
@@ -57,7 +58,7 @@
 		if(play_click)
 			playsound(src, 'sound/items/weapons/gun/general/ballistic_click.ogg', fire_sound_volume, vary_fire_sound, frequency = click_frequency_to_use)
 
-GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
+GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 	spin_chamber(usr)
 
 /obj/item/gun/ballistic/revolver/proc/spin_chamber(mob/living/user)
@@ -71,8 +72,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 
 	if(do_spin())
 		playsound(usr, SFX_REVOLVER_SPIN, 30, FALSE)
-		visible_message(span_notice("[user] spins [src]'s chamber."), span_notice("You spin [src]'s chamber."))
-		balloon_alert(user, "chamber spun")
+		visible_message(span_notice(LANG("obj.2bcb73d6", list(user, src))), span_notice(LANG("obj.b2483544", list(src))))
+		balloon_alert(user, LANG("obj.400a3b38", null))
 	else
 		verbs -= /obj/item/gun/ballistic/revolver/verb/spin
 
@@ -94,8 +95,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 /obj/item/gun/ballistic/revolver/examine(mob/user)
 	. = ..()
 	var/live_ammo = get_ammo(FALSE, FALSE)
-	. += "[live_ammo ? live_ammo : "None"] of those are live rounds."
-	. += span_notice("It can be spun with [EXAMINE_HINT("alt-click")].")
+	. += LANG("obj.88488fc4", list(live_ammo ? live_ammo : "None"))
+	. += span_notice(LANG("obj.53ced635", list(EXAMINE_HINT("alt-click"))))
 
 /obj/item/gun/ballistic/revolver/ignition_effect(atom/A, mob/user)
 	if(last_fire && last_fire + 15 SECONDS > world.time)
@@ -225,17 +226,17 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 
 /obj/item/gun/ballistic/revolver/russian/examine(mob/user)
 	. = ..()
-	. += span_notice("You can change length of your pause before pulling the trigger with [EXAMINE_HINT("alt-right-click")].")
+	. += span_notice(LANG("obj.9ea2df3d", list(EXAMINE_HINT("alt-right-click"))))
 
 /obj/item/gun/ballistic/revolver/russian/click_alt_secondary(mob/user)
 	if(loc != user)
-		to_chat(user, span_warning("You need to be holding the gun to determine how long you are going to pause!"))
+		to_chat(user, span_warning(LANG("obj.88d11d27", null)))
 		return CLICK_ACTION_BLOCKING
-	var/new_aim_time = tgui_input_number(user, "How long will you pause before pulling the trigger (seconds)?", "Do you feel lucky?", (aim_time / (1 SECONDS)), 10, 0)
+	var/new_aim_time = tgui_input_number(user, LANG("obj.7cb8fcd1", null), LANG("obj.fb0ce01c", null), (aim_time / (1 SECONDS)), 10, 0)
 	if(loc != user || user.incapacitated)
 		return CLICK_ACTION_BLOCKING
 	aim_time = new_aim_time * (1 SECONDS)
-	to_chat(user, span_warning("You're going to pause [aim_time] second\s before pulling the trigger[aim_time == 0 ? "... Good luck" : ""]."))
+	to_chat(user, span_warning(LANG("obj.907ed761", list(aim_time, aim_time == 0 ? "... Good luck" : ""))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/gun/ballistic/revolver/russian/dropped(mob/user, silent)
@@ -283,16 +284,16 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 		)
 		return TRUE // no melee attack
 	if(!spun)
-		to_chat(user, span_warning("You need to spin \the [src]'s chamber first!"))
+		to_chat(user, span_warning(LANG("obj.02973238", list(src))))
 		return TRUE // no melee attack
 	if(HAS_TRAIT(user, TRAIT_CURSED)) // I cannot live, I cannot die, trapped in myself, body my holding cell.
-		to_chat(user, span_warning("What a horrible night... To have a curse!"))
+		to_chat(user, span_warning(LANG("obj.89afa55a", null)))
 		return TRUE // no melee attack
 	if(loc != user)
 		if(tk_firing(user))
-			to_chat(user, span_warning("Russian roulette is stressful enough without trying to focus on telekinesis!"))
+			to_chat(user, span_warning(LANG("obj.59c428ee", null)))
 		else
-			to_chat(user, span_warning("You need to be holding the gun to fire it!"))
+			to_chat(user, span_warning(LANG("obj.b953bec6", null)))
 		return TRUE // no melee attack
 
 	return ..() // try to shoot the gun
@@ -413,7 +414,7 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) || is_clown_job(user.mind?.assigned_role))
 		return ..()
 	if(process_fire(user, user, FALSE, null, BODY_ZONE_HEAD))
-		user.visible_message(span_warning("[user] somehow manages to shoot [user.p_them()]self in the face!"), span_userdanger("You somehow shoot yourself in the face! How the hell?!"))
+		user.visible_message(span_warning(LANG("obj.8e788618", list(user, user.p_them()))), span_userdanger(LANG("obj.2cb5408d", null)))
 		user.emote("scream")
 		user.drop_all_held_items()
 		user.Paralyze(80)

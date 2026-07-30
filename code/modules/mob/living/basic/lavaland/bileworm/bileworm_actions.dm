@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/action/cooldown/mob_cooldown/resurface
 	name = "Resurface"
 	desc = "Burrow underground, and then move to a new location near your target. Must spew bile to refresh."
@@ -26,7 +27,7 @@
 /datum/action/cooldown/mob_cooldown/resurface/proc/burrow(mob/living/burrower, atom/target, force = FALSE)
 	var/turf/unburrow_turf = get_unburrow_turf(burrower, target)
 	if (!unburrow_turf) // means all the turfs nearby are station turfs or something, not lavaland
-		to_chat(burrower, span_warning("Couldn't burrow anywhere near the target!"))
+		to_chat(burrower, span_warning(LANG("datum.3503e05c", null)))
 		if(burrower.ai_controller?.ai_status == AI_STATUS_ON)
 			//this is a valid reason to give up on a target
 			burrower.ai_controller.clear_blackboard_key(BB_CURRENT_TARGET)
@@ -269,21 +270,21 @@
 
 /datum/action/cooldown/mob_cooldown/devour/Activate(atom/target_atom)
 	if(target_atom == owner)
-		to_chat(owner, span_warning("You can't eat yourself!"))
+		to_chat(owner, span_warning(LANG("datum.ba014ab7", null)))
 		return
 	if(!isliving(target_atom))
-		to_chat(owner, span_warning("That's not food!"))
+		to_chat(owner, span_warning(LANG("datum.6fb636e1", null)))
 		return
 	var/mob/living/living_target = target_atom
 	if(!IS_UNCONSCIOUS(living_target))
-		to_chat(owner, span_warning("No way you're eating that while it's still kicking! It should at least be unconscious first."))
+		to_chat(owner, span_warning(LANG("datum.c04e4681", null)))
 		return
 	burrow_and_devour(owner, living_target)
 
 /datum/action/cooldown/mob_cooldown/devour/proc/burrow_and_devour(mob/living/devourer, mob/living/target)
 	var/turf/devour_turf = get_turf(target)
 	if(!istype(devour_turf, /turf/open/misc)) // means all the turfs nearby are station turfs or something, not lavaland
-		to_chat(devourer, span_warning("Your target is on something you can't burrow through!"))
+		to_chat(devourer, span_warning(LANG("datum.11169ac9", null)))
 		return //this will give up on devouring the target which is fine by me
 	playsound(devourer, 'sound/effects/break_stone.ogg', 50, TRUE)
 	new /obj/effect/temp_visual/mook_dust(get_turf(devourer))
@@ -297,10 +298,10 @@
 	REMOVE_TRAIT(devourer, TRAIT_GODMODE, REF(src))
 	devourer.RemoveInvisibility(type)
 	if(!(target in devour_turf))
-		to_chat(devourer, span_warning("Someone stole your dinner!"))
+		to_chat(devourer, span_warning(LANG("datum.b7811aa5", null)))
 		return
-	to_chat(target, span_userdanger("You are consumed by [devourer]!"))
-	devourer.visible_message(span_warning("[devourer] consumes [target]!"))
+	to_chat(target, span_userdanger(LANG("datum.b17b4d8a", list(devourer))))
+	devourer.visible_message(span_warning(LANG("datum.5b0a8f33", list(devourer, target))))
 	devourer.fully_heal()
 	playsound(devourer, 'sound/effects/splat.ogg', 50, TRUE)
 	//to be received on death

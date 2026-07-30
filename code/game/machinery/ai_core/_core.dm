@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define AI_CORE_BRAIN(X) X.braintype == "Android" ? "brain" : "MMI"
 
 /obj/structure/ai_core
@@ -88,26 +89,25 @@
 
 /obj/structure/ai_core/examine(mob/user)
 	. = ..()
-	. += span_notice("It has some <b>bolts</b> that look [anchored ? "tightened" : "loosened"].")
-	. += span_notice("Save this core to a multitool's buffer and upload it to a module rack to automatically link it on first boot. \
-		Otherwise, it will link[is_station_level(z) ? " to the station's core rack or" : ""] to the first rack found.")
+	. += span_notice(LANG("obj.95981e5e", list(anchored ? "tightened" : "loosened")))
+	. += span_notice(LANG("obj.bce36251", list(is_station_level(z) ? " to the station's core rack or" : "")))
 
 	switch(state)
 		if(CORE_STATE_EMPTY)
-			. += span_notice("There is a <b>slot</b> for a circuit board, the frame can be <b>melted</b> down.")
+			. += span_notice(LANG("obj.154d655e", null))
 		if(CORE_STATE_CIRCUIT)
-			. += span_notice("The circuit board can be <b>screwed</b> into place or <b>pried</b> out.")
+			. += span_notice(LANG("obj.d8fef889", null))
 		if(CORE_STATE_SCREWED)
-			. += span_notice("The frame can be <b>wired</b>, the circuit board can be <b>unfastened</b>.")
+			. += span_notice(LANG("obj.3b22edee", null))
 		if(CORE_STATE_CABLED)
 			if(core_mmi)
-				. += span_notice("There is a <b>slot</b> for a reinforced glass panel, the [AI_CORE_BRAIN(core_mmi)] could be <b>pried</b> out.")
+				. += span_notice(LANG("obj.4a4946f0", list(AI_CORE_BRAIN(core_mmi))))
 			else
-				. += span_notice("There are wires which could be hooked up to an <b>MMI or positronic brain</b>, or <b>cut</b>.")
+				. += span_notice(LANG("obj.ff6f3985", null))
 		if(CORE_STATE_GLASSED)
-			. += span_notice("The monitor [(core_mmi?.brainmob?.mind && !suicide_check()) ? "and neural interface " : ""]can be <b>screwed</b> in, the panel can be <b>pried</b> out.")
+			. += span_notice(LANG("obj.55a19de7", list((core_mmi?.brainmob?.mind && !suicide_check()) ? "and neural interface " : "")))
 		if(CORE_STATE_FINISHED)
-			. += span_notice("The monitor's connection can be <b>cut</b>[(core_mmi?.brainmob?.mind && !suicide_check()) ? " the neural interface can be <b>screwed</b> in." : "."]")
+			. += span_notice(LANG("obj.47ea0a83", list((core_mmi?.brainmob?.mind && !suicide_check()) ? " the neural interface can be <b>screwed</b> in." : ".")))
 
 /obj/structure/ai_core/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(state < CORE_STATE_FINISHED)
@@ -138,8 +138,8 @@
 
 /obj/structure/ai_core/latejoin_inactive/examine(mob/user)
 	. = ..()
-	. += span_info("Its transmitter seems to be <b>[active? "on" : "off"]</b>.")
-	. += span_notice("You could [active ? "deactivate" : "activate"] it by [EXAMINE_HINT("right clicking")] with a multitool.")
+	. += span_info(LANG("obj.28e0223c", list(active? "on" : "off")))
+	. += span_notice(LANG("obj.d9bac254", list(active ? "deactivate" : "activate", EXAMINE_HINT("right clicking"))))
 
 /obj/structure/ai_core/latejoin_inactive/proc/is_available() //If people still manage to use this feature to spawn-kill AI latejoins ahelp them.
 	if(!available)
@@ -165,13 +165,13 @@
 		return ITEM_INTERACT_BLOCKING
 
 	active = !active
-	balloon_alert(user, "[active ? "activated" : "deactivated"] transmitters")
+	balloon_alert(user, LANG("obj.31e077e1", list(active ? "activated" : "deactivated")))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/ai_core/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.play_tool_sound(src, 50)
 	tool.set_buffer(src)
-	balloon_alert(user, "core saved to buffer")
+	balloon_alert(user, LANG("obj.2ea8f2e7", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/ai_core/proc/ai_structure_to_mob()
@@ -209,7 +209,7 @@ That prevents a few funky behaviors.
 	SHOULD_CALL_PARENT(TRUE)
 	if(istype(card))
 		if(card.flush)
-			to_chat(user, span_alert("ERROR: AI flush is in progress, cannot execute transfer protocol."))
+			to_chat(user, span_alert(LANG("atom.5bbe6ecb", null)))
 			return FALSE
 	return TRUE
 
@@ -218,24 +218,24 @@ That prevents a few funky behaviors.
 		return
 	if(core_mmi && core_mmi.brainmob)
 		if(core_mmi.brainmob.mind)
-			to_chat(user, span_warning("[src] already contains an active mind!"))
+			to_chat(user, span_warning(LANG("obj.af9523b6", list(src))))
 			return
 		else if(suicide_check())
-			to_chat(user, span_warning("[AI_CORE_BRAIN(core_mmi)] installed in [src] is completely useless!"))
+			to_chat(user, span_warning(LANG("obj.34a308f7", list(AI_CORE_BRAIN(core_mmi), src))))
 			return
 	//Transferring a carded AI to a core.
 	if(interaction == AI_TRANS_FROM_CARD)
 		AI.set_control_disabled(FALSE)
 		AI.radio_enabled = TRUE
 		AI.forceMove(loc) // to replace the terminal.
-		to_chat(AI, span_notice("You have been uploaded to a stationary terminal. Remote device connection restored."))
-		to_chat(user, "[span_boldnotice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
+		to_chat(AI, span_notice(LANG("obj.e2359246", null)))
+		to_chat(user, LANG("obj.8779c42c", list(span_boldnotice("Transfer successful"), AI.name, rand(1000,9999))))
 		card.AI = null
 		AI.battery = circuit.battery
 		AI.posibrain_inside = isnull(core_mmi) || core_mmi.braintype == "Android"
 		qdel(src)
 	else //If for some reason you use an empty card on an empty AI terminal.
-		to_chat(user, span_alert("There is no AI loaded on this terminal."))
+		to_chat(user, span_alert(LANG("obj.8cd86912", null)))
 
 /obj/item/circuitboard/aicore
 	name = "AI Core"

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Item you use on a mob to make it bigger and stronger
 /obj/item/fugu_gland
 	name = "wumborian fugu gland"
@@ -24,10 +25,10 @@
 	var/mob/living/animal = interacting_with
 
 	if(IS_DEAD_OR_FAKING(animal))
-		balloon_alert(user, "it's dead!")
+		balloon_alert(user, LANG("obj.5f159f3d", null))
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(animal, TRAIT_FUGU_GLANDED))
-		balloon_alert(user, "already large!")
+		balloon_alert(user, LANG("obj.b924ae17", null))
 		return ITEM_INTERACT_BLOCKING
 
 	ADD_TRAIT(animal, TRAIT_FUGU_GLANDED, type)
@@ -38,6 +39,6 @@
 	animal.melee_damage_upper = max((animal.melee_damage_upper * 2), 10)
 	animal.update_transform(2)
 	animal.AddElement(/datum/element/wall_tearer)
-	to_chat(user, span_info("You increase the size of [animal], giving [animal.p_them()] a surge of strength!"))
+	to_chat(user, span_info(LANG("obj.34c9d211", list(animal, animal.p_them()))))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

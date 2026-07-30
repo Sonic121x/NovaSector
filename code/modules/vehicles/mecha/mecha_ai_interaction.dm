@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/vehicle/sealed/mecha/attack_ai(mob/living/silicon/ai/user)
 	if(!isAI(user))
 		return
@@ -15,7 +16,7 @@
 		break
 
 	if(!data_tracker && !user.can_dominate_mechs)
-		to_chat(user, span_warning("You cannot interface this exosuit without tracking beacons installed."))
+		to_chat(user, span_warning(LANG("obj.2212c588", null)))
 		return
 
 	if(data_tracker || user.can_dominate_mechs)
@@ -46,16 +47,16 @@
 	switch(interaction)
 		if(AI_TRANS_TO_CARD) //Upload AI from mech to AI card.
 			if(!(mecha_flags & PANEL_OPEN)) //Mech must be in maint mode to allow carding.
-				to_chat(user, span_warning("[name] must have maintenance protocols active in order to allow a transfer."))
+				to_chat(user, span_warning(LANG("obj.ce33693d", list(name))))
 				return
 			var/list/ai_pilots = list()
 			for(var/mob/living/silicon/ai/aipilot in occupants)
 				ai_pilots += aipilot
 			if(!length(ai_pilots)) //Mech does not have an AI for a pilot
-				to_chat(user, span_warning("No AI detected in \the [src]'s onboard computer."))
+				to_chat(user, span_warning(LANG("obj.ade81fab", list(src))))
 				return
 			if(length(ai_pilots) > 1) //Input box for multiple AIs, but if there's only one we'll default to them.
-				AI = tgui_input_list(user, "Which AI do you wish to card?", "AI Selection", sort_list(ai_pilots))
+				AI = tgui_input_list(user, LANG("obj.5cd216c6", null), LANG("obj.a67d88fd", null), sort_list(ai_pilots))
 			else
 				AI = ai_pilots[1]
 			if(isnull(AI))
@@ -73,37 +74,37 @@
 			card.AI = AI
 			AI.controlled_equipment = null
 			AI.remote_control = null
-			to_chat(AI, span_notice("You have been downloaded to a mobile storage device. Wireless connection offline."))
-			to_chat(user, "[span_boldnotice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) removed from [name] and stored within local memory.")
+			to_chat(AI, span_notice(LANG("obj.71ac6ae9", null)))
+			to_chat(user, LANG("obj.af961da8", list(span_boldnotice("Transfer successful"), AI.name, rand(1000,9999), name)))
 			return
 
 		if(AI_MECH_HACK) //Called by AIs on the mech
 			AI.create_core_link(new /obj/structure/ai_core(AI.loc, CORE_STATE_FINISHED, AI.make_mmi()))
 			if(AI.can_dominate_mechs && LAZYLEN(occupants)) //Oh, I am sorry, were you using that?
-				to_chat(AI, span_warning("Occupants detected! Forced ejection initiated!"))
-				to_chat(occupants, span_danger("You have been forcibly ejected!"))
+				to_chat(AI, span_warning(LANG("obj.9b0cf2ab", null)))
+				to_chat(occupants, span_danger(LANG("obj.d184ef99", null)))
 				for(var/ejectee in occupants)
 					mob_exit(ejectee, silent = TRUE, randomstep = TRUE, forced = TRUE) //IT IS MINE, NOW. SUCK IT, RD!
 
 		if(AI_TRANS_FROM_CARD) //Using an AI card to upload to a mech.
 			AI = card.AI
 			if(!AI)
-				to_chat(user, span_warning("There is no AI currently installed on this device."))
+				to_chat(user, span_warning(LANG("obj.be7325e2", null)))
 				return
 			if(!(mecha_flags & AI_COMPATIBLE)) //If the mech isn't compatible with an AI transfer, early return.
-				to_chat(user, span_warning("An AI cannot be installed into [src]."))
+				to_chat(user, span_warning(LANG("obj.b40d1bd9", list(src))))
 				return
 			if(AI.deployed_shell) //Recall AI if shelled so it can be checked for a client
 				AI.disconnect_shell()
 			if(IS_UNCONSCIOUS_OR_CRIT(AI) || !AI.client)
-				to_chat(user, span_warning("[AI.name] is currently unresponsive, and cannot be uploaded."))
+				to_chat(user, span_warning(LANG("obj.a4b587e5", list(AI.name))))
 				return
 			if((LAZYLEN(occupants) >= max_occupants) || dna_lock) //Normal AIs cannot steal mechs!
-				to_chat(user, span_warning("Access denied. [name] is [LAZYLEN(occupants) >= max_occupants ? "currently fully occupied" : "secured with a DNA lock"]."))
+				to_chat(user, span_warning(LANG("obj.c8b09913", list(name, LAZYLEN(occupants) >= max_occupants ? "currently fully occupied" : "secured with a DNA lock"))))
 				return
 			AI.set_control_disabled(FALSE)
 			AI.radio_enabled = TRUE
-			to_chat(user, "[span_boldnotice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
+			to_chat(user, LANG("obj.8779c42c", list(span_boldnotice("Transfer successful"), AI.name, rand(1000,9999))))
 			card.AI = null
 	ai_enter_mech(AI)
 

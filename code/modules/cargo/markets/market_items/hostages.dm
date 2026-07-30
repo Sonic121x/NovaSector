@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///A special category for mobs captured by pirates, tots and contractors, should someone ever want to get them back in advance.
 /datum/market_item/hostage
 	category = "Hostages"
@@ -48,7 +49,7 @@
 	signaler.set_frequency(sanitize_frequency(rand(MIN_FREE_FREQ, MAX_FREE_FREQ)))
 	signaler.code = rand(1, 100)
 	buyer.put_in_hands(signaler)
-	to_chat(buyer, span_notice("A [signaler] appears [buyer.is_holding(signaler) ? "in your hands" : "at your feet"]!"))
+	to_chat(buyer, span_notice(LANG("datum.6fb603cd", list(signaler, buyer.is_holding(signaler) ? "in your hands" : "at your feet"))))
 
 /datum/market_item/hostage/proc/clear_signaler_ref(datum/source)
 	SIGNAL_HANDLER
@@ -58,7 +59,7 @@
 	var/mob/living/mob = item
 	UnregisterSignal(mob, COMSIG_LIVING_RETURN_FROM_CAPTURE)
 	if(!IS_UNCONSCIOUS(mob))
-		to_chat(mob, span_boldnicegreen("You have been <u>bought</u> back to the station. Be grateful to whoever got you out of the holding facility early."))
+		to_chat(mob, span_boldnicegreen(LANG("datum.ffdc37fe", null)))
 	if(!ishuman(item))
 		return ..()
 	var/mob/living/carbon/human/humie = item

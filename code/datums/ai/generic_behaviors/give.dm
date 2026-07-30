@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// gives the pawn's active held item to a blackboard-keyed target.
 /datum/bt_node/ai_behavior/give
 	/// Blackboard key holding the mob to give the held item to.
@@ -30,8 +31,8 @@
 	if(!can_give_item(living_target, held_item))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	living_target.visible_message(
-		span_info("[pawn] starts trying to give [held_item] to [living_target]!"),
-		span_warning("[pawn] tries to give you [held_item]!")
+		span_info(LANG("datum.41a1e794", list(pawn, held_item, living_target))),
+		span_warning(LANG("datum.8d1d6d8b", list(pawn, held_item)))
 	)
 	give_target = living_target
 	give_held_item = held_item

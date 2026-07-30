@@ -1,22 +1,23 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // Verb to toggle restart notifications
-GAME_VERB_DESC(/client, notify_restart, "Notify Restart", "Notifies you on Discord when the server restarts.", "OOC")
+GAME_VERB_DESC(/client, notify_restart, "通知重启", "Notifies you on Discord when the server restarts.", "OOC")
 
 	// Safety checks
 	if(!CONFIG_GET(flag/sql_enabled))
-		to_chat(src, span_warning("This feature requires the SQL backend to be running."))
+		to_chat(src, span_warning(LANG("client.8256b159", null)))
 		return
 
 	if(!SSdiscord) // SS is still starting
-		to_chat(src, span_notice("The server is still starting up. Please wait before attempting to link your account "))
+		to_chat(src, span_notice(LANG("client.81e9f40e", null)))
 		return
 
 	if(!SSdiscord.enabled)
-		to_chat(src, span_warning("This feature requires the server is running on the TGS toolkit"))
+		to_chat(src, span_warning(LANG("client.a9d4495d", null)))
 		return
 
 	var/stored_id = SSdiscord.lookup_id(usr.ckey)
 	if(!stored_id) // Account is not linked
-		to_chat(src, span_warning("This requires you to link your Discord account with the \"Link Discord Account\" verb."))
+		to_chat(src, span_warning(LANG("client.a2b9f347", null)))
 		return
 
 	var/stored_mention = "<@[stored_id]>"
@@ -27,5 +28,5 @@ GAME_VERB_DESC(/client, notify_restart, "Notify Restart", "Notifies you on Disco
 			return // This is necassary so it doesnt get added again, as it relies on the for loop being unsuccessful to tell us if they are in the list or not
 
 	// If we got here, they arent in the list. Chuck 'em in!
-	to_chat(src, span_notice("You will now be notified when the server restarts"))
+	to_chat(src, span_notice(LANG("client.7996482f", null)))
 	SSdiscord.notify_members += "[stored_mention]" 

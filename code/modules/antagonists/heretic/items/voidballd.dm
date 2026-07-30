@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/void_prison
 	name = "void prison"
 	desc = "A small glass orb of swirling darkness. It feels cold to the touch, and consumes all light around it."
@@ -18,7 +19,7 @@
 	playsound(src, SFX_SHATTER, 50, TRUE)
 	playsound(src, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	if(IS_HERETIC_OR_MONSTER(user))
-		to_chat(user, span_mansus("You smash [src], releasing its power around you!"))
+		to_chat(user, span_mansus(LANG("obj.8f719e0a", list(src))))
 		for(var/mob/living/nearby_mob in view(3, user))
 			if(IS_HERETIC_OR_MONSTER(nearby_mob))
 				continue
@@ -37,14 +38,14 @@
 			nearby_mob.apply_status_effect(/datum/status_effect/void_prison)
 
 	else if(user.can_block_magic(MAGIC_RESISTANCE))
-		to_chat(user, span_hypnophrase("You smash [src], but its power begins to encompass you!"))
+		to_chat(user, span_hypnophrase(LANG("obj.be75ef07", list(src))))
 		user.visible_message(
-			span_danger("A swirling, cold void wraps around [user], but they burst free in a wave of heat!"),
-			span_userdanger("A yawning void begins to open before you, but a great wave of heat bursts it apart! You are protected!!")
+			span_danger(LANG("obj.82a4ce33", list(user))),
+			span_userdanger(LANG("obj.8e768904", null))
 		)
 
 	else
-		to_chat(user, span_hypnophrase("You smash [src], but its power begins to encompass you!"))
+		to_chat(user, span_hypnophrase(LANG("obj.be75ef07", list(src))))
 		user.visible_message(
 			span_danger("A swirling, cold void wraps around [user]!"),
 			span_userdanger("A yawning void opens before you! You are swallowed by the darkness, and find yourself in complete nothingness..."),

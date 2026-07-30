@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///The rate at which slimes regenerate their jelly normally
 #define JELLY_REGEN_RATE 1.5
 ///The rate at which slimes regenerate their jelly when they completely run out of it and start taking damage, usually after having cannibalized all their limbs already
@@ -70,7 +71,7 @@
 	if(slime.get_blood_volume() <= 0)
 		slime.adjust_blood_volume(JELLY_REGEN_RATE_EMPTY * slime.physiology.blood_regen_mod * seconds_per_tick)
 		slime.adjust_brute_loss(2.5 * seconds_per_tick)
-		to_chat(slime, span_danger("You feel empty!"))
+		to_chat(slime, span_danger(LANG("datum.cc505a62", null)))
 
 	// Same logic applies here.
 	if(slime.get_blood_volume() < BLOOD_VOLUME_NORMAL)
@@ -82,7 +83,7 @@
 	// If you're on saline, you don't feel the effects of bloodloss.
 	if(slime.get_blood_volume(apply_modifiers = TRUE) < BLOOD_VOLUME_OKAY)
 		if(SPT_PROB(2.5, seconds_per_tick))
-			to_chat(slime, span_danger("You feel drained!"))
+			to_chat(slime, span_danger(LANG("datum.47f21517", null)))
 
 	// Saline can prevent you from cannibalizing yourself.
 	if(slime.get_blood_volume(apply_modifiers = TRUE) < BLOOD_VOLUME_BAD)
@@ -101,7 +102,7 @@
 		limbs_to_consume -= list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
 	consumed_limb = H.get_bodypart(pick(limbs_to_consume))
 	consumed_limb.drop_limb()
-	to_chat(H, span_userdanger("Your [consumed_limb] is drawn back into your body, unable to maintain its shape!"))
+	to_chat(H, span_userdanger(LANG("datum.66645a3a", list(consumed_limb))))
 	qdel(consumed_limb)
 	H.adjust_blood_volume(65 * H.physiology.blood_regen_mod) //NOVA EDIT CHANGE - This is because losing a limb now costs them 60 blood, so this refunds it with a pinch extra so it doesn't. Y'know. Kill you. - ORIGINAL: H.adjust_blood_volume(20 * H.physiology.blood_regen_mod)
 
@@ -128,9 +129,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "tint",
-		SPECIES_PERK_NAME = "Jelly Blood",
-		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(blood_type.reagent_type.name)]! \
-			Jelly is extremely important, as losing it will cause you to lose limbs. Having low jelly will make medical treatment very difficult.",
+		SPECIES_PERK_NAME = LANG("datum.0a45e45b", null),
+		SPECIES_PERK_DESC = LANG("datum.23ede26d", list(plural_form, initial(blood_type.reagent_type.name))),
 	))
 
 	return to_add
@@ -160,13 +160,13 @@
 	var/mob/living/carbon/human/H = owner
 	var/list/limbs_to_heal = H.get_missing_limbs()
 	if(!length(limbs_to_heal))
-		to_chat(H, span_notice("You feel intact enough as it is."))
+		to_chat(H, span_notice(LANG("datum.11b683c4", null)))
 		return
-	to_chat(H, span_notice("You focus intently on your missing [length(limbs_to_heal) >= 2 ? "limbs" : "limb"]..."))
+	to_chat(H, span_notice(LANG("datum.098e14c5", list(length(limbs_to_heal) >= 2 ? "limbs" : "limb"))))
 	if(H.get_blood_volume() >= blood_per_limb * length(limbs_to_heal) + BLOOD_VOLUME_OKAY)
 		H.regenerate_limbs()
 		H.adjust_blood_volume(-blood_per_limb * length(limbs_to_heal))
-		to_chat(H, span_notice("...and after a moment you finish reforming!"))
+		to_chat(H, span_notice(LANG("datum.2e6fd382", null)))
 		return
 	else if(H.get_blood_volume() >= blood_per_limb)//We can partially heal some limbs
 		while(H.get_blood_volume() >= BLOOD_VOLUME_OKAY + blood_per_limb)
@@ -174,9 +174,9 @@
 			H.regenerate_limb(healed_limb)
 			limbs_to_heal -= healed_limb
 			H.adjust_blood_volume(-blood_per_limb)
-		to_chat(H, span_warning("...but there is not enough of you to fix everything! You must attain more mass to heal completely!"))
+		to_chat(H, span_warning(LANG("datum.bb8b9fa3", null)))
 		return
-	to_chat(H, span_warning("...but there is not enough of you to go around! You must attain more mass to heal!"))
+	to_chat(H, span_warning(LANG("datum.f6ff03b3", null)))
 
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
@@ -263,7 +263,7 @@
 	. = ..() // NOVA EDIT CHANGE - ORIGINAL: SIGNAL_HANDLER
 	if(source.get_blood_volume() >= BLOOD_VOLUME_SLIME_SPLIT)
 		if(SPT_PROB(2.5, seconds_per_tick))
-			to_chat(source, span_notice("You feel very bloated!"))
+			to_chat(source, span_notice(LANG("datum.787a311d", null)))
 
 	else if(source.nutrition >= NUTRITION_LEVEL_WELL_FED)
 		source.adjust_blood_volume(1.5 * seconds_per_tick)
@@ -303,9 +303,9 @@
 		if(H.get_blood_volume() >= BLOOD_VOLUME_SLIME_SPLIT)
 			make_dupe()
 		else
-			to_chat(H, span_warning("...but there is not enough of you to go around! You must attain more mass to split!"))
+			to_chat(H, span_warning(LANG("datum.a15b9c5a", null)))
 	else
-		to_chat(H, span_warning("...but fail to stand perfectly still!"))
+		to_chat(H, span_warning(LANG("datum.d87a7cde", null)))
 
 	REMOVE_TRAIT(src, TRAIT_NO_TRANSFORM, REF(src))
 
@@ -351,7 +351,7 @@
 
 /datum/action/innate/swap_body/Activate()
 	if(!isslimeperson(owner))
-		to_chat(owner, span_warning("You are not a slimeperson."))
+		to_chat(owner, span_warning(LANG("datum.c9a90912", null)))
 		Remove(owner)
 	else
 		ui_interact(owner)
@@ -474,13 +474,13 @@
 	if(!can_swap(dupe)) //sanity check
 		return
 	if(!IS_UNCONSCIOUS_OR_CRIT(M.current))
-		M.current.visible_message(span_notice("[M.current] stops moving and starts staring vacantly into space."),
-			span_notice("You stop moving this body..."))
+		M.current.visible_message(span_notice(LANG("datum.437c2d3c", list(M.current))),
+			span_notice(LANG("datum.97f627b5", null)))
 	else
-		to_chat(M.current, span_notice("You abandon this body..."))
+		to_chat(M.current, span_notice(LANG("datum.2442314d", null)))
 	M.current.transfer_quirk_datums(dupe)
 	M.transfer_to(dupe)
-	dupe.visible_message(span_notice("[dupe] blinks and looks around."), span_notice("...and move this one instead."))
+	dupe.visible_message(span_notice(LANG("datum.f0b7f66c", list(dupe))), span_notice(LANG("datum.026e037a", null)))
 
 
 ///////////////////////////////////LUMINESCENTS//////////////////////////////////////////
@@ -581,10 +581,10 @@
 	var/datum/species/jelly/luminescent/species = target
 	if(!istype(species) || !species.current_extract)
 		name = "Integrate Extract"
-		desc = "Eat a slime extract to use its properties."
+		desc = LANG("datum.afe54029", null)
 	else
 		name = "Eject Extract"
-		desc = "Eject your current slime extract."
+		desc = LANG("datum.5daacb39", null)
 
 	return ..()
 
@@ -609,18 +609,18 @@
 			to_remove.forceMove(human_owner.drop_location())
 
 		species.current_extract = null
-		human_owner.balloon_alert(human_owner, "[to_remove.name] ejected")
+		human_owner.balloon_alert(human_owner, LANG("datum.2dcc5387", list(to_remove.name)))
 
 	else
 		var/obj/item/slime_extract/to_integrate = human_owner.get_active_held_item()
 		if(!istype(to_integrate) || to_integrate.extract_uses <= 0)
-			human_owner.balloon_alert(human_owner, "need an unused slime extract!")
+			human_owner.balloon_alert(human_owner, LANG("datum.735806fb", null))
 			return
 		if(!human_owner.temporarilyRemoveItemFromInventory(to_integrate))
 			return
 		to_integrate.forceMove(human_owner)
 		species.current_extract = to_integrate
-		human_owner.balloon_alert(human_owner, "[to_integrate.name] consumed")
+		human_owner.balloon_alert(human_owner, LANG("datum.ca199e48", list(to_integrate.name)))
 
 	for(var/datum/action/to_update as anything in species.luminescent_actions)
 		to_update.build_all_button_icons()
@@ -729,28 +729,28 @@
 	for(var/mob/living/recipient in oview(telepath))
 		recipient_options.Add(recipient)
 	if(!length(recipient_options))
-		to_chat(telepath, span_warning("You don't see anyone to send your thought to."))
+		to_chat(telepath, span_warning(LANG("datum.f20e11b6", null)))
 		return
-	var/mob/living/recipient = tgui_input_list(telepath, "Choose a telepathic message recipient", "Telepathy", sort_names(recipient_options))
+	var/mob/living/recipient = tgui_input_list(telepath, LANG("datum.2a466622", null), LANG("datum.ecb4d278", null), sort_names(recipient_options))
 	if(isnull(recipient) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
 	var/msg = tgui_input_text(telepath, title = "Telepathy", max_length = MAX_MESSAGE_LEN)
 	if(isnull(msg) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
 	if(!(recipient in oview(telepath)))
-		to_chat(telepath, span_warning("You can't see [recipient] anymore!"))
+		to_chat(telepath, span_warning(LANG("datum.b2ad0aa0", list(recipient))))
 		return
 	if(recipient.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-		to_chat(telepath, span_warning("As you reach into [recipient]'s mind, you are stopped by a mental blockage. It seems you've been foiled."))
+		to_chat(telepath, span_warning(LANG("datum.c9f0817e", list(recipient))))
 		return
 	//NOVA EDIT ADDITION START -  Telepathy Block Quirk
 	if(HAS_TRAIT(recipient, TRAIT_PSIONIC_DAMPENER))
-		to_chat(telepath, span_warning("As you reach into [recipient]'s mind, you are stopped by a mental blockage."))
+		to_chat(telepath, span_warning(LANG("datum.d5208656", list(recipient))))
 		return
 	//NOVA EDIT ADDITION END
 	log_directed_talk(telepath, recipient, msg, LOG_SAY, "slime telepathy")
 	to_chat(recipient, "[span_notice("You hear an alien voice in your head... ")]<font color=#008CA2>[msg]</font>")
-	to_chat(telepath, span_notice("You telepathically said: \"[msg]\" to [recipient]"))
+	to_chat(telepath, span_notice(LANG("datum.9348c95c", list(msg, recipient))))
 	for(var/dead in GLOB.dead_mob_list)
 		if(!isobserver(dead))
 			continue
@@ -789,21 +789,21 @@
 
 /datum/action/innate/link_minds/Activate()
 	if(!isliving(owner.pulling) || owner.grab_state < GRAB_AGGRESSIVE)
-		to_chat(owner, span_warning("You need to aggressively grab someone to link minds!"))
+		to_chat(owner, span_warning(LANG("datum.c49c4879", null)))
 		return
 
 	var/mob/living/living_target = owner.pulling
 	if(living_target.stat == DEAD)
-		to_chat(owner, span_warning("They're dead!"))
+		to_chat(owner, span_warning(LANG("datum.43a298a5", null)))
 		return
 
-	to_chat(owner, span_notice("You begin linking [living_target]'s mind to yours..."))
-	to_chat(living_target, span_warning("You feel a foreign presence within your mind..."))
+	to_chat(owner, span_notice(LANG("datum.d639c400", list(living_target))))
+	to_chat(living_target, span_warning(LANG("datum.9655f8d1", null)))
 	currently_linking = TRUE
 
 	if(!do_after(owner, 6 SECONDS, target = living_target, extra_checks = CALLBACK(src, PROC_REF(while_link_callback), living_target)))
-		to_chat(owner, span_warning("You can't seem to link [living_target]'s mind."))
-		to_chat(living_target, span_warning("The foreign presence leaves your mind."))
+		to_chat(owner, span_warning(LANG("datum.1769a18c", list(living_target))))
+		to_chat(living_target, span_warning(LANG("datum.87466815", null)))
 		currently_linking = FALSE
 		return
 
@@ -813,8 +813,8 @@
 
 	var/datum/component/mind_linker/linker = target
 	if(!linker.link_mob(living_target))
-		to_chat(owner, span_warning("You can't seem to link [living_target]'s mind."))
-		to_chat(living_target, span_warning("The foreign presence leaves your mind."))
+		to_chat(owner, span_warning(LANG("datum.1769a18c", list(living_target))))
+		to_chat(living_target, span_warning(LANG("datum.87466815", null)))
 
 
 /// Callback ran during the do_after of Activate() to see if we can keep linking with someone.

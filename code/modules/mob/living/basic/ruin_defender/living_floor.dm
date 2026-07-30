@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/ai_controller/basic_controller/living_floor
 	max_target_distance = 2
 	behavior_tree_json = "code/modules/mob/living/basic/ruin_defender/living_floor.bt.json"
@@ -70,7 +71,7 @@
 	return
 
 /mob/living/basic/living_floor/crowbar_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "prying...")
+	balloon_alert(user, LANG("mob.1c42ba09", null))
 	playsound(src, 'sound/items/tools/crowbar.ogg', 45, TRUE)
 	if(!do_after(user, 5 SECONDS, src))
 		return ITEM_INTERACT_BLOCKING

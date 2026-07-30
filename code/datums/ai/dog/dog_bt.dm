@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 /**
  * BT version of basic_melee_attack/dog.
@@ -33,7 +34,7 @@
 		return
 	living_pawn.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 	playsound(target, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
-	target.visible_message(span_danger("[living_pawn] paws ineffectually at [target]!"), span_danger("[living_pawn] paws ineffectually at you!"))
+	target.visible_message(span_danger(LANG("datum.e1cea82b", list(living_pawn, target))), span_danger(LANG("datum.526fb6fb", list(living_pawn))))
 
 
 /**
@@ -84,7 +85,7 @@
 
 	var/obj/item/carry_item = controller.blackboard[BB_SIMPLE_CARRY_ITEM]
 	if(carry_item && SPT_PROB(5, seconds_per_tick))
-		living_pawn.visible_message(span_notice("[living_pawn] gently teethes on \the [carry_item] in [living_pawn.p_their()] mouth."), vision_distance = COMBAT_MESSAGE_RANGE)
+		living_pawn.visible_message(span_notice(LANG("datum.bb3ac531", list(living_pawn, carry_item, living_pawn.p_their()))), vision_distance = COMBAT_MESSAGE_RANGE)
 
 	var/move_chance = controller.blackboard[BB_DOG_IS_SLOW] ? 2.5 : 5
 	if(isturf(living_pawn.loc) && !living_pawn.pulledby)

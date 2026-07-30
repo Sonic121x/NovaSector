@@ -38,12 +38,12 @@
 
 /obj/structure/cargo_shelf/examine(mob/user)
 	. = ..()
-	. += span_notice("There are some <b>bolts</b> holding [src] together.")
+	. += span_notice(LANG("obj.cbaba876", list(src)))
 	if(crate_count() < capacity) // If there's an empty space in the shelf, let the examiner know.
-		. += span_notice("You could <b>drag and drop</b> a crate into [src].")
+		. += span_notice(LANG("obj.7b54145c", list(src)))
 	if(crate_count()) // If there are any crates in the shelf, let the examiner know.
-		. += span_notice("You could <b>drag and drop</b> a crate out of [src].")
-		. += span_notice("[src] contains:")
+		. += span_notice(LANG("obj.602498c3", list(src)))
+		. += span_notice(LANG("obj.1c59f63b", list(src)))
 		for(var/obj/structure/closet/crate/crate in contents)
 			. += span_notice("[icon2html(crate, user)] \A [crate]")
 
@@ -53,13 +53,13 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/cargo_shelf/relay_container_resist_act(mob/living/user, obj/structure/closet/crate)
-	to_chat(user, span_notice("You begin attempting to knock [crate] out of [src]"))
+	to_chat(user, span_notice(LANG("obj.131cb2d0", list(crate, src))))
 	if(do_after(user, 30 SECONDS, target = crate))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != crate || crate.loc != src)
 			return // If the user is in a strange condition, return early.
-		visible_message(span_warning("[crate] falls off of [src]!"),
-			span_notice("You manage to knock [crate] free of [src]"),
-			span_notice("You hear a thud."))
+		visible_message(span_warning(LANG("obj.73a87d59", list(crate, src))),
+			span_notice(LANG("obj.5415abf5", list(crate, src))),
+			span_notice(LANG("obj.34acf327", null)))
 		crate.forceMove(get_spill_location()) // Try to push it somewhere
 
 /// Spits out how many crates are currently stored, counting the non nulls
@@ -73,19 +73,19 @@
 /// Returns if this crate can actually be loaded
 /obj/structure/cargo_shelf/proc/can_load(obj/structure/closet/crate/crate, mob/user, y_offset)
 	if(crate_count() >= capacity) // If we don't find an empty slot, return early.
-		balloon_alert(user, "shelf full!")
+		balloon_alert(user, LANG("obj.2f9c3550", null))
 		return FALSE
 	if (y_offset <= 12)
 		if(crates_stored[1])
-			balloon_alert(user, "shelf occupied!")
+			balloon_alert(user, LANG("obj.c2d5cd66", null))
 			return FALSE
 	else if (y_offset <= 21)
 		if(crates_stored[2])
-			balloon_alert(user, "shelf occupied!")
+			balloon_alert(user, LANG("obj.c2d5cd66", null))
 			return FALSE
 	else
 		if(crates_stored[3])
-			balloon_alert(user, "shelf occupied!")
+			balloon_alert(user, LANG("obj.c2d5cd66", null))
 			return FALSE
 	return TRUE
 
@@ -103,12 +103,12 @@
 /obj/structure/cargo_shelf/proc/unload(obj/structure/closet/crate/crate, mob/user, turf/unload_turf)
 	var/unloading_to_turf = istype(unload_turf)
 	if(unloading_to_turf && unload_turf.is_blocked_turf(exclude_mobs = TRUE)) // Shelf to shelf
-		unload_turf.balloon_alert(user, "no room!")
+		unload_turf.balloon_alert(user, LANG("obj.ad6c6384", null))
 		return FALSE
 	if(!do_after(user, use_delay, target = crate))
 		return FALSE
 	if(unloading_to_turf && unload_turf.is_blocked_turf(exclude_mobs = TRUE)) // make sure we still are able to put it here
-		unload_turf.balloon_alert(user, "no room!")
+		unload_turf.balloon_alert(user, LANG("obj.ad6c6384", null))
 		return FALSE
 	if(!locate(crate) in src)
 		return FALSE // If something has happened to the crate while we were waiting, abort!
@@ -174,7 +174,7 @@
 	// -----------------------------------------
 	if (istype(over, /turf/open) && istype(loc, /obj/structure/cargo_shelf))
 		if(get_dist(user, over_location) > 1)
-			balloon_alert(user, "too far!")
+			balloon_alert(user, LANG("obj.f5e75781", null))
 			return
 		var/obj/structure/cargo_shelf/shelf = loc
 		shelf.unload(src, user, over)
@@ -257,7 +257,7 @@
 	if(building)
 		return
 	building = TRUE
-	to_chat(user, span_notice("You start constructing [src]..."))
+	to_chat(user, span_notice(LANG("obj.11bacef4", list(src))))
 	if(do_after(user, 5 SECONDS, target = user, show_progress = TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			building = FALSE

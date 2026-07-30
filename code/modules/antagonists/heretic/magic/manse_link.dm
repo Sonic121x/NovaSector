@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/action/cooldown/spell/pointed/manse_link
 	name = "Manse Link"
 	desc = "This spell allows you to pierce through reality and connect minds to one another \
@@ -49,23 +50,23 @@
 /datum/action/cooldown/spell/pointed/manse_link/proc/do_linking(mob/living/linkee)
 	var/datum/component/mind_linker/linker = target
 	if(linkee.stat == DEAD)
-		to_chat(owner, span_warning("They're dead!"))
+		to_chat(owner, span_warning(LANG("datum.43a298a5", null)))
 		return FALSE
 
-	to_chat(owner, span_notice("You begin linking [linkee]'s mind to yours..."))
-	to_chat(linkee, span_warning("You feel your mind being pulled somewhere... connected... intertwined with the very fabric of reality..."))
+	to_chat(owner, span_notice(LANG("datum.d639c400", list(linkee))))
+	to_chat(linkee, span_warning(LANG("datum.1efea42c", null)))
 
 	if(!do_after(owner, link_time, linkee, cog_icon = null))
-		to_chat(owner, span_warning("You fail to link to [linkee]'s mind."))
-		to_chat(linkee, span_warning("The foreign presence leaves your mind."))
+		to_chat(owner, span_warning(LANG("datum.d2945102", list(linkee))))
+		to_chat(linkee, span_warning(LANG("datum.87466815", null)))
 		return FALSE
 
 	if(QDELETED(src) || QDELETED(owner) || QDELETED(linkee))
 		return FALSE
 
 	if(!linker.link_mob(linkee))
-		to_chat(owner, span_warning("You can't seem to link to [linkee]'s mind."))
-		to_chat(linkee, span_warning("The foreign presence leaves your mind."))
+		to_chat(owner, span_warning(LANG("datum.386f9098", list(linkee))))
+		to_chat(linkee, span_warning(LANG("datum.87466815", null)))
 		return FALSE
 
 	return TRUE

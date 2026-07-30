@@ -305,5 +305,5 @@
 		return ..()
 
 	if(feedback)
-		to_chat(the_spell.owner, span_mansus("You need a Living Heart to cast [the_spell]!"))
+		to_chat(the_spell.owner, span_mansus(LANG("datum.4794c0a3", list(the_spell))))
 	return SPELL_CANCEL_CAST
