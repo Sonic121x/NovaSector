@@ -130,6 +130,9 @@ type TermMismatch = {
 };
 type GlossaryTerm = TermMismatch & {
   sourcePattern: RegExp;
+  /** 首选 + alts；命中任意一个都算一致。 */
+  accepted: string[];
+  note?: string;
 };
 type TermReportEntry = {
   en: string;
@@ -138,13 +141,38 @@ type TermReportEntry = {
 };
 type TermReport = Record<string, Record<string, TermReportEntry>>;
 
-const glossary: Record<string, string> = fs.existsSync(GLOSSARY_PATH)
+/**
+ * 术语表条目。两种写法并存（旧的纯字符串仍然合法，不必一次性迁移）：
+ *   "Nanotrasen": "纳米传讯"
+ *   "multitool":  { "zh": "多功能工具", "alts": ["万用工具"], "note": "工程物品；泛指「多用途的工具」时不适用" }
+ * - zh   = 首选译文（喂给模型的那个、自动一致性检查的目标）
+ * - alts = 同样可接受的译法（一个英文对多个译文）。只用于**不判为不一致**，模型仍只被告知首选。
+ * - note = 消歧注释，会随术语一起进提示词。专名 vs 普通名词用法的区分全靠它
+ *          （multitool 那个物品 → 多功能工具；描述挎包「是个多用途的工具」→ 不该套术语）。
+ */
+type GlossaryValue = string | { zh: string; alts?: string[]; note?: string };
+
+const glossary: Record<string, GlossaryValue> = fs.existsSync(GLOSSARY_PATH)
   ? JSON.parse(fs.readFileSync(GLOSSARY_PATH, 'utf8'))
   : {};
-// 术语表里「保持英文」的词（value === key，如 datum/Nanotrasen 缩写），允许留在译文里。
+
+/** 首选译文（旧格式就是它本身）。 */
+function glossaryZh(v: GlossaryValue): string {
+  return typeof v === 'string' ? v : v.zh;
+}
+/** 全部可接受译文：首选 + alts。 */
+function glossaryAccepted(v: GlossaryValue): string[] {
+  if (typeof v === 'string') return [v];
+  return [v.zh, ...(v.alts ?? [])].filter((x) => x && x.length > 0);
+}
+function glossaryNote(v: GlossaryValue): string | undefined {
+  return typeof v === 'string' ? undefined : v.note;
+}
+
+// 术语表里「保持英文」的词（首选译文 === key，如 datum/Nanotrasen 缩写），允许留在译文里。
 function keepEnglishTerms(): string[] {
   return Object.entries(glossary)
-    .filter(([k, v]) => k === v)
+    .filter(([k, v]) => k === glossaryZh(v))
     .map(([k]) => k)
     .sort((a, b) => b.length - a.length);
 }
@@ -163,11 +191,13 @@ function sourceTermPattern(term: string): RegExp {
 
 function glossaryTerms(): GlossaryTerm[] {
   return Object.entries(glossary)
-    .filter(([term, expected]) => term.length >= 2 && expected.length > 0)
+    .filter(([term, v]) => term.length >= 2 && glossaryZh(v).length > 0)
     .sort((a, b) => b[0].length - a[0].length)
-    .map(([term, expected]) => ({
+    .map(([term, v]) => ({
       term,
-      expected,
+      expected: glossaryZh(v),
+      accepted: glossaryAccepted(v),
+      note: glossaryNote(v),
       sourcePattern: sourceTermPattern(term),
     }));
 }
@@ -456,7 +486,8 @@ function isGenericPhrase(term: string): boolean {
 }
 
 function saveGlossary() {
-  const sorted: Record<string, string> = {};
+  // 值原样保留（字符串或 {zh,alts,note} 对象），只重排 key。
+  const sorted: Record<string, GlossaryValue> = {};
   for (const k of Object.keys(glossary).sort()) sorted[k] = glossary[k];
   fs.writeFileSync(GLOSSARY_PATH, `${JSON.stringify(sorted, null, 2)}\n`);
 }
@@ -776,8 +807,9 @@ function termMismatches(
   }
 
   const missing: TermMismatch[] = [];
-  for (const { term, expected, sourcePattern } of termsByLength) {
-    if (!sourcePattern.test(enVal) || zhVal.includes(expected)) {
+  for (const { term, expected, accepted, sourcePattern } of termsByLength) {
+    // alts 命中也算一致——一个英文允许多个译法（见 GlossaryValue 注释）。
+    if (!sourcePattern.test(enVal) || accepted.some((a) => zhVal.includes(a))) {
       continue;
     }
     missing.push({ term, expected });
@@ -862,20 +894,24 @@ function cmdTerms(args: string[]) {
   console.log(`详情：${path.relative(ROOT, outPath)}`);
 }
 
-function batchGlossaryEntries(batch: Catalog): [string, string][] {
+function batchGlossaryEntries(batch: Catalog): [string, string, string?][] {
   if (FULL_GLOSSARY) {
-    return Object.entries(glossary);
+    return Object.entries(glossary).map(([en, v]) => [
+      en,
+      glossaryZh(v),
+      glossaryNote(v),
+    ]);
   }
 
-  const selected = new Map<string, string>();
+  const selected = new Map<string, [string, string | undefined]>();
   for (const value of Object.values(batch)) {
-    for (const { term, expected, sourcePattern } of termsByLength) {
+    for (const { term, expected, note, sourcePattern } of termsByLength) {
       if (sourcePattern.test(value)) {
-        selected.set(term, expected);
+        selected.set(term, [expected, note]);
       }
     }
   }
-  return [...selected.entries()];
+  return [...selected.entries()].map(([en, [zh, note]]) => [en, zh, note]);
 }
 
 function glossaryHint(batch: Catalog): string {
@@ -883,7 +919,9 @@ function glossaryHint(batch: Catalog): string {
   if (entries.length === 0) {
     return '- （本批没有命中术语表；仍需保留 {0}/{1} 占位符、HTML/DM 宏和大写缩写）';
   }
-  return entries.map(([en, zh]) => `- ${en} => ${zh}`).join('\n');
+  return entries
+    .map(([en, zh, note]) => `- ${en} => ${zh}${note ? `（${note}）` : ''}`)
+    .join('\n');
 }
 
 // 每批喂给模型的条数（大文件如 obj.json 必须分批，否则超上下文）。openai 是单次请求、可吃更大批，

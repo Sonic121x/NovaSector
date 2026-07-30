@@ -2516,12 +2516,24 @@
   "mindbreaker toxin": "碎心者毒素",
   "minebot": "采矿机器人",
   "mothroach": "飞蛾蟑螂",
+  "multitool": {
+    "zh": "多功能工具",
+    "note": "工程物品 multitool。勿与 omnitool（万用工具）混用；句中泛指「多用途的工具」时不套用本条"
+  },
   "neuroware": "神经软件",
   "nitrium": "氮晶",
   "nizaya": "尼扎亚",
   "nobido-xtreme.exe": "nobido-xtreme.exe",
   "ntnetsys.robot-antivirus.exe": "ntnetsys.robot-antivirus.exe",
   "ntnetsys.robot-diag.exe": "ntnetsys.robot-diag.exe",
+  "omni-tool": {
+    "zh": "万用工具",
+    "note": "omnitool 的连字符写法，同一物品"
+  },
+  "omnitool": {
+    "zh": "万用工具",
+    "note": "赛博格模块 omnitool，与 multitool（多功能工具）是不同物品"
+  },
   "persistent_client": "persistent_client",
   "persocom": "个人终端",
   "piledriver": "打桩机",

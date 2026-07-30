@@ -70,6 +70,11 @@ rm -rf data/logs/ci
 # 「单测失败 0 个」，是**假绿**。
 mkdir -p data
 cp _maps/runtimestation_minimal.json data/next_map.json
+# 清掉上一轮的 CI 日志。**不清就是假红**：下面的门禁用 `grep -c "runtime error" data/logs/ci/runtime.log`
+# 计数，而这个日志是**追加**的、跨运行累积 —— 只要历史上出过一次 runtime，之后每次都会被算进来，
+# 门禁从此永远失败，且报的行还带着几天前的时间戳。2026-07-31 实测：本轮零 runtime，却因为 07-30
+# 留下的 21 条历史记录（20 条地图图标噪音 + 1 条 GAGS 图标配置）而判失败。
+rm -rf data/logs/ci
 DreamDaemon tgstation.test.dmb -close -trusted -verbose -params "log-directory=ci"
 
 if [[ -f data/logs/ci/clean_run.lk ]]; then

@@ -6,6 +6,11 @@
 
 /mob/living/basic/slime
 	name = "grey baby slime (123)"
+	// NOVA EDIT ADDITION START - i18n: 上一次由 update_name() 自动生成的名字。用它判断「这是自动名
+	// 还是玩家改的名」，取代原来「正则解析显示名」的做法——理由见 update_name() 的注释。
+	/// The last name update_name() generated for us. Empty means "never auto-named yet".
+	VAR_PRIVATE/last_auto_name
+	// NOVA EDIT ADDITION END
 	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "grey-baby"
 	pass_flags = PASSTABLE | PASSGRILLE
@@ -185,19 +190,21 @@
 
 
 /mob/living/basic/slime/update_name()
-	///Checks if the slime has a generic name, in the format of baby/adult slime (123)
-	// NOVA EDIT CHANGE - i18n: the name is reverse-localized at atom/Initialize AND rebuilt in a localized form below, so
-	// the plain english regex failed → EVERY slime kept the reversed default name. Strip the trailing "(id)", un-reverse
-	// the base to english, and match the base pattern (works for the reversed default AND a previously-localized name on
-	// evolve); then rebuild + reverse-localize "[colour] [stage] slime" for display (strings/i18n/*/_slime.json). no-op on
-	// en. - ORIGINAL: regex "\w+ (baby|adult) slime \(\d+\)"; if(Find(name)); name = "[slime_type.colour] [life_stage] slime ([slime_id])"
-	var/static/regex/slime_name_regex = new("\\w+ (baby|adult) slime$") // end-anchored; \w+ won't span the hyphen in dark-blue/light-pink, so match the last colour word
-	var/static/regex/slime_id_suffix = new(" ?(\\(\\d+\\)|（\\d+）)$") // 半角/全角括号都认（用整串择一、不用字符类：字符类里放多字节字符在 BYOND 正则里不可靠）。译文若把 "(123)" 翻成全角 "（123）"，只认半角就剥不掉后缀 → 每只史莱姆都停在类型默认名（表现为「全是灰色幼年史莱姆」）
-	var/base_name = slime_id_suffix.Replace(name, "")
-	if(base_name != name && slime_name_regex.Find(lang_unreverse_text(base_name))) // base_name != name → had the "(id)" suffix (i.e. an auto-name, not a player rename)
-		var/slime_id = rand(1, 1000)
-		name = "[lang_reverse_text("[slime_type.colour] [life_stage] slime")] ([slime_id])"
-		real_name = name
+	// NOVA EDIT CHANGE START - i18n: 原实现靠**正则解析显示名**来判断「这是自动名，可以按新颜色/阶段重建」
+	// 还是「玩家改过的名，必须保留」。显示名是本地化过的，任何译文差异都会让解析失效——已经踩过两次：
+	//   ① 译文把 "(123)" 写成全角「（123）」→ 后缀剥不掉 → 条件短路 → 全站史莱姆停在类型默认名
+	//      （线上表现「全是灰色幼年史莱姆」）；
+	//   ② 伪 locale 把整串包成 ⟦…⟧ → 末尾锚定的正则同样失配（单测 slime_naming 在 qps-ploc 下必挂）。
+	// 只要还靠解析显示名，就会有第三次。改为**记住上一次自己生成的名字**来判断：与 locale 完全无关，
+	// 不需要任何正则，也不再依赖译文里的括号形态。id 后缀拼在本地化部分**之外**，永远是半角。
+	// ORIGINAL: regex "\w+ (baby|adult) slime \(\d+\)"; if(Find(name)); name = "[slime_type.colour] [life_stage] slime ([slime_id])"
+	if(!isnull(last_auto_name) && name != last_auto_name)
+		return ..() // 玩家/管理员改过名 —— 保留，不重建
+	var/slime_id = rand(1, 1000)
+	name = "[lang_reverse_text("[slime_type.colour] [life_stage] slime")] ([slime_id])"
+	real_name = name
+	last_auto_name = name
+	// NOVA EDIT CHANGE END
 	return ..()
 
 /mob/living/basic/slime/regenerate_icons()
