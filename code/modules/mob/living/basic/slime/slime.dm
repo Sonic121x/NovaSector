@@ -192,7 +192,7 @@
 	// evolve); then rebuild + reverse-localize "[colour] [stage] slime" for display (strings/i18n/*/_slime.json). no-op on
 	// en. - ORIGINAL: regex "\w+ (baby|adult) slime \(\d+\)"; if(Find(name)); name = "[slime_type.colour] [life_stage] slime ([slime_id])"
 	var/static/regex/slime_name_regex = new("\\w+ (baby|adult) slime$") // end-anchored; \w+ won't span the hyphen in dark-blue/light-pink, so match the last colour word
-	var/static/regex/slime_id_suffix = new(" ?\\(\\d+\\)$")
+	var/static/regex/slime_id_suffix = new(" ?(\\(\\d+\\)|（\\d+）)$") // 半角/全角括号都认（用整串择一、不用字符类：字符类里放多字节字符在 BYOND 正则里不可靠）。译文若把 "(123)" 翻成全角 "（123）"，只认半角就剥不掉后缀 → 每只史莱姆都停在类型默认名（表现为「全是灰色幼年史莱姆」）
 	var/base_name = slime_id_suffix.Replace(name, "")
 	if(base_name != name && slime_name_regex.Find(lang_unreverse_text(base_name))) // base_name != name → had the "(id)" suffix (i.e. an auto-name, not a player rename)
 		var/slime_id = rand(1, 1000)
