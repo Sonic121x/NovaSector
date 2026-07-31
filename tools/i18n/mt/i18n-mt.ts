@@ -1012,7 +1012,42 @@ function cmdPending(args: string[]) {
   console.log(`合计待译 ${total} 条（locale=${LOCALE}）`);
 }
 
+/**
+ * 术语表**自相矛盾**检测：归一化（小写 + 去连字符/空格）后同一个词却有多条不同译文。
+ *
+ * 这类条目会凭空制造「不一致」——`maintenance`→维修通道 与 `Maintenance`→维护区 并存时，
+ * 无论译文写哪个都必然违反另一条，实测一次贡献了 706 条假违规（占当时总量的 16%）。
+ * 匹配已是大小写不敏感（见 sourceTermPattern），所以这种并存本身就是 bug，不是配置。
+ * 修法：并成一条，最常用的译文作 zh，其余作 alts。
+ */
+function glossaryConflicts(): string[][] {
+  const groups = new Map<string, Map<string, string>>();
+  for (const [term, v] of Object.entries(glossary)) {
+    const norm = term.toLowerCase().replace(/[-_\s]/g, '');
+    if (!groups.has(norm)) groups.set(norm, new Map());
+    groups.get(norm)?.set(term, glossaryZh(v));
+  }
+  const out: string[][] = [];
+  for (const variants of groups.values()) {
+    if (variants.size < 2) continue;
+    const translated = [...variants].filter(([k, zh]) => k !== zh);
+    if (new Set(translated.map(([, zh]) => zh)).size < 2) continue;
+    out.push([...variants].map(([k, zh]) => `${k} -> ${zh}`));
+  }
+  return out;
+}
+
 function cmdTerms(args: string[]) {
+  const conflicts = glossaryConflicts();
+  if (conflicts.length) {
+    console.log(
+      `⚠ 术语表自相矛盾 ${conflicts.length} 组（归一化后同词、译文不同）——` +
+        `这些会凭空制造「不一致」，先并成一条（最常用的作 zh，其余作 alts）：`,
+    );
+    for (const group of conflicts.slice(0, 10)) {
+      console.log(`   ${group.join('  |  ')}`);
+    }
+  }
   let total = 0;
   const fullReport: TermReport = {};
   for (const file of namespaceFiles(args)) {
