@@ -128,11 +128,20 @@ type TermMismatch = {
   term: string;
   expected: string;
 };
-type GlossaryTerm = TermMismatch & {
-  sourcePattern: RegExp;
+/** 一个义项。scope 为空 = 兜底义项（没有任何限定义项命中时用它）。 */
+type GlossarySense = {
+  expected: string;
   /** 首选 + alts；命中任意一个都算一致。 */
   accepted: string[];
   note?: string;
+  /** DM 类型路径前缀，如 "/datum/reagent"。命中即选中该义项。 */
+  scope?: string[];
+};
+type GlossaryTerm = {
+  term: string;
+  sourcePattern: RegExp;
+  /** 按 scope 由具体到兜底排好序。 */
+  senses: GlossarySense[];
 };
 type TermReportEntry = {
   en: string;
@@ -150,23 +159,56 @@ type TermReport = Record<string, Record<string, TermReportEntry>>;
  * - note = 消歧注释，会随术语一起进提示词。专名 vs 普通名词用法的区分全靠它
  *          （multitool 那个物品 → 多功能工具；描述挎包「是个多用途的工具」→ 不该套术语）。
  */
-type GlossaryValue = string | { zh: string; alts?: string[]; note?: string };
+type GlossarySenseSpec = {
+  zh: string;
+  alts?: string[];
+  note?: string;
+  /**
+   * 限定该义项只在这些 DM 类型路径前缀下生效（可给字符串或数组）。
+   * 语境来自 strings/i18n/scopes.json（nova-i18n extract 产出的 key -> 类型路径）。
+   *
+   *   "Base": [
+   *     { "scope": "/datum/reagent", "zh": "碱" },
+   *     { "scope": ["/area", "/turf"], "zh": "基地" },
+   *     { "zh": "基础" }                              // 无 scope = 兜底
+   *   ]
+   *
+   * 一词多义只能靠这个解决：从前同一个 `Base` 在化学和区域名下共用一条译文，
+   * 检查器不是误报就是漏报，MT 也只能猜。
+   */
+  scope?: string | string[];
+};
+type GlossaryValue = string | GlossarySenseSpec | GlossarySenseSpec[];
 
 const glossary: Record<string, GlossaryValue> = fs.existsSync(GLOSSARY_PATH)
   ? JSON.parse(fs.readFileSync(GLOSSARY_PATH, 'utf8'))
   : {};
 
-/** 首选译文（旧格式就是它本身）。 */
+/** 归一成义项数组：具体（有 scope）在前、兜底在后。 */
+function glossarySenses(v: GlossaryValue): GlossarySense[] {
+  const specs: GlossarySenseSpec[] =
+    typeof v === 'string' ? [{ zh: v }] : Array.isArray(v) ? v : [v];
+  return specs
+    .map((s) => {
+      const scope =
+        s.scope == null
+          ? undefined
+          : (Array.isArray(s.scope) ? s.scope : [s.scope]).map((p) =>
+              p.replace(/\/+$/, ''),
+            );
+      return {
+        expected: s.zh,
+        accepted: [s.zh, ...(s.alts ?? [])].filter((x) => x && x.length > 0),
+        note: s.note,
+        scope,
+      };
+    })
+    .sort((a, b) => (b.scope ? 1 : 0) - (a.scope ? 1 : 0));
+}
+
+/** 首选译文（多义时取第一个义项——仅用于「保持英文」判定这类不看语境的场合）。 */
 function glossaryZh(v: GlossaryValue): string {
-  return typeof v === 'string' ? v : v.zh;
-}
-/** 全部可接受译文：首选 + alts。 */
-function glossaryAccepted(v: GlossaryValue): string[] {
-  if (typeof v === 'string') return [v];
-  return [v.zh, ...(v.alts ?? [])].filter((x) => x && x.length > 0);
-}
-function glossaryNote(v: GlossaryValue): string | undefined {
-  return typeof v === 'string' ? undefined : v.note;
+  return glossarySenses(v)[0]?.expected ?? '';
 }
 
 // 术语表里「保持英文」的词（首选译文 === key，如 datum/Nanotrasen 缩写），允许留在译文里。
@@ -235,15 +277,50 @@ function sourceTermPattern(term: string): RegExp {
   return new RegExp(`${prefix}${escapeRegExp(term)}${suffix}`, flags);
 }
 
+/**
+ * key -> 该英文串出现过的 DM 类型路径（nova-i18n extract 产出）。
+ * 缺文件不报错，只是退化成「所有义项都按兜底处理」——老仓库/未重跑 extract 时仍能工作。
+ */
+const SCOPES_PATH = path.join(ROOT, 'strings/i18n/scopes.json');
+const scopesByKey: Record<string, string[]> = fs.existsSync(SCOPES_PATH)
+  ? JSON.parse(fs.readFileSync(SCOPES_PATH, 'utf8'))
+  : {};
+
+/**
+ * 给定条目 key，选出该术语适用的义项。
+ * 规则：**最长前缀命中优先**（`/datum/reagent/medicine` 比 `/datum` 更具体），
+ * 都不命中则用兜底义项；连兜底都没有就返回 null = 该语境下不检查这个词。
+ */
+function pickSense(term: GlossaryTerm, key: string): GlossarySense | null {
+  const paths = scopesByKey[key];
+  let best: GlossarySense | null = null;
+  let bestLen = -1;
+  for (const sense of term.senses) {
+    if (!sense.scope) {
+      if (best === null) best = sense; // 兜底：只在没有限定义项命中时生效
+      continue;
+    }
+    if (!paths) continue;
+    for (const prefix of sense.scope) {
+      const hit = paths.some(
+        (p) => p === prefix || p.startsWith(`${prefix}/`),
+      );
+      if (hit && prefix.length > bestLen) {
+        best = sense;
+        bestLen = prefix.length;
+      }
+    }
+  }
+  return best;
+}
+
 function glossaryTerms(): GlossaryTerm[] {
   return Object.entries(glossary)
     .filter(([term, v]) => term.length >= 2 && glossaryZh(v).length > 0)
     .sort((a, b) => b[0].length - a[0].length)
     .map(([term, v]) => ({
       term,
-      expected: glossaryZh(v),
-      accepted: glossaryAccepted(v),
-      note: glossaryNote(v),
+      senses: glossarySenses(v),
       sourcePattern: sourceTermPattern(term),
     }));
 }
@@ -847,18 +924,21 @@ function buildGlobalReverse(): Map<string, string> {
 function termMismatches(
   enVal: string,
   zhVal: string | undefined,
+  key: string,
 ): TermMismatch[] {
   if (zhVal == null || zhVal === '' || zhVal === enVal) {
     return [];
   }
 
   const missing: TermMismatch[] = [];
-  for (const { term, expected, accepted, sourcePattern } of termsByLength) {
+  for (const entry of termsByLength) {
+    if (!entry.sourcePattern.test(enVal)) continue;
+    // 按条目所属的 DM 类型路径挑义项；该语境下没有适用义项就不检查这个词。
+    const sense = pickSense(entry, key);
+    if (!sense) continue;
     // alts 命中也算一致——一个英文允许多个译法（见 GlossaryValue 注释）。
-    if (!sourcePattern.test(enVal) || accepted.some((a) => zhVal.includes(a))) {
-      continue;
-    }
-    missing.push({ term, expected });
+    if (sense.accepted.some((a) => zhVal.includes(a))) continue;
+    missing.push({ term: entry.term, expected: sense.expected });
   }
   return missing;
 }
@@ -872,7 +952,7 @@ function computeTermReport(file: string): Record<string, TermReportEntry> {
   for (const key of Object.keys(en)) {
     if (allow && !allow.has(key)) continue;
     const zhVal = zh[key];
-    const missing = termMismatches(en[key], zhVal);
+    const missing = termMismatches(en[key], zhVal, key);
     if (missing.length) {
       report[key] = {
         en: en[key],
@@ -942,22 +1022,37 @@ function cmdTerms(args: string[]) {
 
 function batchGlossaryEntries(batch: Catalog): [string, string, string?][] {
   if (FULL_GLOSSARY) {
-    return Object.entries(glossary).map(([en, v]) => [
-      en,
-      glossaryZh(v),
-      glossaryNote(v),
-    ]);
+    return Object.entries(glossary).flatMap(([en, v]) =>
+      glossarySenses(v).map(
+        (s) =>
+          [en, s.expected, senseNote(s)] as [string, string, string | undefined],
+      ),
+    );
   }
 
-  const selected = new Map<string, [string, string | undefined]>();
-  for (const value of Object.values(batch)) {
-    for (const { term, expected, note, sourcePattern } of termsByLength) {
-      if (sourcePattern.test(value)) {
-        selected.set(term, [expected, note]);
-      }
+  // 按 (术语, 义项) 去重：同一批里 `Base` 可能既有 /datum/reagent 的「碱」又有兜底的
+  // 「基础」，两条都得进提示词，否则模型只看到一个义项、另一半必然翻错。
+  const selected = new Map<string, [string, string, string | undefined]>();
+  for (const [key, value] of Object.entries(batch)) {
+    for (const entry of termsByLength) {
+      if (!entry.sourcePattern.test(value)) continue;
+      const sense = pickSense(entry, key);
+      if (!sense) continue;
+      selected.set(`${entry.term} ${sense.expected}`, [
+        entry.term,
+        sense.expected,
+        senseNote(sense),
+      ]);
     }
   }
-  return [...selected.entries()].map(([en, [zh, note]]) => [en, zh, note]);
+  return [...selected.values()];
+}
+
+/** 提示词里的注释：把 scope 一并说出来，模型才知道这条为什么只在某些语境成立。 */
+function senseNote(sense: GlossarySense): string | undefined {
+  if (!sense.scope) return sense.note;
+  const scopeText = `仅 ${sense.scope.join(' / ')} 语境`;
+  return sense.note ? `${scopeText}；${sense.note}` : scopeText;
 }
 
 function glossaryHint(batch: Catalog): string {

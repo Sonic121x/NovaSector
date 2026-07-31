@@ -693,7 +693,11 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
 
     let mut catalog = Catalog::new();
     for ty in tree.iter_types() {
-        let namespace = namespace_for(&ty.path);
+        // **完整类型路径**往下传（不是压扁后的命名空间）：命名空间由 Catalog::insert 推导，
+        // 完整路径同时被记进 scopes.json 供术语表按语境消歧（`Base` 在 /datum/reagent 下是
+        // 「碱」，在 /area 下是「基地」）。从前这里就地压成 "obj"/"datum"，语境信号在下一行
+        // 就丢了 —— 一个词多个义项只能靠 MT 猜。
+        let namespace = ty.path.clone();
         // 单元测试类型只在 UNIT_TESTS 编译期存在，断言消息玩家永不可见 → 不进激进抽取
         // （既有 sink 路径不变，避免目录 churn）。
         let suppress_aggressive = ty.path.starts_with("/datum/unit_test");
@@ -941,6 +945,17 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             out.display(),
             catalog.entry_count()
         );
+        // key -> 类型路径 sidecar。放 locale 目录的**上一级**（见 write_scopes 注释）。
+        let scopes_path = out
+            .parent()
+            .unwrap_or(out)
+            .join("scopes.json");
+        catalog.write_scopes(&scopes_path)?;
+        eprintln!(
+            "已写入语境 sidecar: {}（本次 {} 个 key 带类型路径）",
+            scopes_path.display(),
+            catalog.scope_count()
+        );
     }
     Ok(())
 }
@@ -952,12 +967,14 @@ fn block_is_pure(block: &[dm::ast::Spanned<Statement>]) -> bool {
     })
 }
 
-pub(crate) fn emit(catalog: &mut Catalog, namespace: &str, template: &str) {
+/// `type_path` = 完整 DM 类型路径（flavor.rs 等无类型来源传裸命名空间名，见 Catalog::insert）。
+pub(crate) fn emit(catalog: &mut Catalog, type_path: &str, template: &str) {
     if !template.chars().any(|c| c.is_alphabetic()) {
         return;
     }
-    let key = make_key(namespace, template);
-    catalog.insert(namespace, &key, template);
+    // key 必须仍按**命名空间**算（`<ns>.<hash>`），否则全目录 key 变更 = 丢光全部译文。
+    let key = make_key(&namespace_for(type_path), template);
+    catalog.insert(type_path, &key, template);
 }
 
 // ---- 语句/表达式遍历：找到汇聚点调用 ----
@@ -1093,6 +1110,26 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                 }
             }
             // 汇聚点调用检测。
+            // 已被 rewrite 改写的字符串，源码里只剩 `LANG("obj.abc123")` —— 字面量没了，
+            // 常规抽取产不出它，key 靠 Catalog::load_dir 从旧目录续命。语境同理会丢：
+            // 全目录约 28% 的 key（而且恰恰是玩家最常见的 sink 串）会没有类型路径。
+            // 这里从 **LANG() 调用点本身**回收 scope —— 比原字面量的定义处更准，
+            // 因为它记的是这句话实际被用在哪个类型里。
+            if let Term::Call(name, args) = &term.elem {
+                // 注意匹配的是**宏展开后**的名字：LANG/LANGU 是 `#define`
+                // （code/__DEFINES/~nova_defines/i18n.dm），SpacemanDMM 的预处理器在建 AST
+                // 之前就把它们展开成 lang_format/lang_format_for 了，AST 里根本没有 "LANG"。
+                let key_arg = match name.as_str() {
+                    "lang_format" => Some(0),
+                    "lang_format_for" => Some(1), // LANGU(user, key, args)
+                    _ => None,
+                };
+                if let Some(idx) = key_arg {
+                    if let Some(key) = args.get(idx).and_then(plain_string) {
+                        catalog.note_scope(&key, ns);
+                    }
+                }
+            }
             if let Term::Call(name, args) = &term.elem {
                 if let Some(indices) = sink_message_args(name.as_str()) {
                     let skip_two = native_dialog_no_usr(name.as_str(), args);
