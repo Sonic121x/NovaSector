@@ -1081,7 +1081,10 @@
     ],
     "note": "大小写/连字符变体已并入本条（原有 4 条：Hyper-Noblium, Hyper-noblium, Hypernoblium, hyper-noblium）"
   },
-  "Hypertorus Fusion Reactor": "Hypertorus聚变反应堆",
+  "Hypertorus Fusion Reactor": {
+    "zh": "超环面聚变反应堆",
+    "note": "原条目写作「Hypertorus聚变反应堆」，中英混排；目录里 超环面 与 Hypertorus 几乎持平，取全中文"
+  },
   "I.C.E(tm)": "I.C.E(tm)",
   "I.C.R.A.": "I.C.R.A.",
   "ICES": "ICES",
@@ -1274,6 +1277,7 @@
   "Loneop Plasmaman": "孤狼等离子人",
   "Looks-At-Explosions": "观爆者",
   "Loopy McLoopface": "Loopy McLoopface",
+  "Lord Singuloth": "辛古洛斯之主",
   "Lost M.C.": "迷失摩托俱乐部",
   "Lost MC": "Lost MC",
   "Lucky Jackpot Casino Shuttle": "Lucky Jackpot Casino Shuttle",
