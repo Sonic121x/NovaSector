@@ -33,7 +33,6 @@
   "AI name": "AI 名称",
   "AK-105": "AK-105",
   "ALPHA COMPLEX": "阿尔法复合体",
-  "ALPU MK-I Ripley": "ALPU MK-I 里普利",
   "AMD": "AMD",
   "AMPS": "异常材料防护系统",
   "AMR": "AMR",
@@ -158,13 +157,14 @@
   "BAHAMA MAMAS": "巴哈马妈妈",
   "BBQ": "BBQ",
   "BCI": "BCI",
-  "BEEPSKY": "哔哔斯基",
   "BEPIS": "BEPIS",
   "BLEND_MULTIPLY": "BLEND_MULTIPLY",
   "BLF": "BLF",
   "BLOOD RAGE": "血怒",
-  "BLUESPACE ARTILLERY": "蓝空火炮",
-  "BLUMPKIN": "布兰普金",
+  "BLUESPACE ARTILLERY": {
+    "zh": "蓝空间火炮",
+    "note": "原条目与目录主流写法不符（符合率<25%），按目录实际用法修正"
+  },
   "BMG": "BMG",
   "BODY SLAM": "BODY SLAM",
   "BR-38": "BR-38",
@@ -308,7 +308,6 @@
   "CDK Station": "CDK Station",
   "CF Corsair": "CF Corsair",
   "CH-DS": "CH-DS",
-  "CH-DS \"Peacemaker\" Disabler": "CH-DS \"和平使者\" Disabler",
   "CH-DS Disabler": "CH-DS 失能枪",
   "CH-LC Laser Cannon": "CH-LC 激光炮",
   "CH-PS": "CH-PS",
@@ -403,10 +402,6 @@
     "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
   },
   "Chitinclick": "甲壳咔哒语",
-  "Chunko Fop": {
-    "zh": "楚恩科花哨",
-    "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
-  },
   "Chuuni Invocations": "中二祷文",
   "Chuunibyou": "中二病",
   "Cindi Kate": "Cindi Kate",
@@ -455,7 +450,6 @@
   "Colt M1911": "柯尔特M1911",
   "Colt Peacemaker": "Colt Peacemaker",
   "Combat Holodeck": "战斗全息甲板",
-  "Comfort Specialist Gordon": "舒适专员 Gordon",
   "CommDrobe": "CommDrobe",
   "CommanDrobe": "指挥衣橱",
   "Commander Jackson": "Jackson 指挥官",
@@ -936,7 +930,6 @@
   "Gorlex Securities": "戈莱克斯安保",
   "Grand Nomad Fleet": "大游牧舰队",
   "Grand Ritual": "大仪式",
-  "Grand9K Pixel": "Grand9K 像素",
   "GrandArk": "GrandArk",
   "Granibitaluri": "格兰尼比塔卢里",
   "Gravity Generator": "重力发生器",
@@ -1199,10 +1192,12 @@
   "Konococo Rumtini": "可诺可可朗姆提尼",
   "Kor'Yesh": "Kor'Yesh",
   "Korta Brittle": "科塔脆糖",
-  "Korta Flour": "Korta 面粉",
+  "Korta Flour": {
+    "zh": "科尔塔面粉",
+    "note": "原条目与目录主流写法不符（符合率<25%），按目录实际用法修正"
+  },
   "Kosmicheskaya Stantsiya 13": "Kosmicheskaya Stantsiya 13",
   "Krav Maga": "马伽术",
-  "Krijgspaard-Elite": "Krijgspaard-精英型",
   "Kronkus Extract": "Kronkus 提取物",
   "Kudzu": "葛藤",
   "Kwik-Kwak": "快呱",
@@ -1504,7 +1499,10 @@
   "Mr. Tiggles": "Mr. Tiggles",
   "Mr.Stoned": "Mr.Stoned",
   "MrStoned.exe": "MrStoned.exe",
-  "Muli Pod": "Muli 豆荚",
+  "Muli Pod": {
+    "zh": "穆利豆荚",
+    "note": "原条目与目录主流写法不符（符合率<25%），按目录实际用法修正"
+  },
   "Multiver": {
     "zh": "多功能解毒剂",
     "note": "试剂名；obj 侧小写 multiver 同此译名，勿写「多效解毒剂/多元维/多韦」"
@@ -1629,7 +1627,6 @@
     "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
   },
   "Novaya Rossiyskaya Imperia": "新俄罗斯帝国",
-  "NtNet": "纳网",
   "NtOS": "NtOS",
   "Nuka Cola": "核子可乐",
   "Nuke Disk": "核弹磁盘",
@@ -1698,7 +1695,6 @@
   "PSYKER": "灵能者",
   "PTech": "PTech",
   "PWR GAME": "PWR GAME",
-  "PYLON": "水晶塔",
   "Paddy": "帕迪",
   "Painter": "画家",
   "Paladin Devotion": "圣骑士奉献",
@@ -1826,15 +1822,10 @@
   "Pun Pun": "Pun Pun",
   "Pun-Pun": "Pun-Pun",
   "Pussy Wagon": "Pussy Wagon",
-  "Pwr Game": {
-    "zh": "能量游戏",
-    "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
-  },
   "Pwr Haze": "劲霾",
   "QDEL": "QDEL",
   "QDELING": "QDELING",
   "Qani-Laaca": "Qani-Laaca",
-  "Qarad Light Machine Gun": "Qarad 轻机枪",
   "Qevax Jryy": "Qevax Jryy",
   "Quantum Console": "量子控制台",
   "Quantum Keycard": "量子钥匙卡",
@@ -1968,7 +1959,10 @@
   "S.O.K.O.": "S.O.K.O.",
   "S.W.A.T.": "S.W.A.T.",
   "SAAS": "SAAS",
-  "SBC Starfury": "SBC 星怒",
+  "SBC Starfury": {
+    "zh": "SBC 星之怒",
+    "note": "原条目与目录主流写法不符（符合率<25%），按目录实际用法修正"
+  },
   "SC-1": "SC-1",
   "SC-1R": "SC-1R",
   "SC-H": "SC-H",
@@ -2026,7 +2020,10 @@
   "Sanguine Apostate": "Sanguine Apostate",
   "Sansufentanyl": "三氟芬太尼",
   "Sapienza Ophioglossoides": "Sapienza Ophioglossoides",
-  "Satchel of Holding": "持有挎包",
+  "Satchel of Holding": {
+    "zh": "储物挎包",
+    "note": "原条目与目录主流写法不符（符合率<25%），按目录实际用法修正"
+  },
   "Saturn-X": {
     "zh": "土星-X",
     "note": "大小写/连字符变体已并入本条（原有 2 条：Saturn-X, saturnX）"
@@ -2159,7 +2156,6 @@
   },
   "Soda Water": "苏打水",
   "Soft Mark": "软马克",
-  "Sol": "太阳联邦通用语",
   "Sol Common": "太阳通用语",
   "Sol Dry": "索尔干饮",
   "Sol Federation": "太阳联邦",
@@ -2290,7 +2286,10 @@
   "Stardress": "星装",
   "Starforge": "星锻",
   "Starfruit": "星果",
-  "Starfury": "星怒",
+  "Starfury": {
+    "zh": "星之怒",
+    "note": "原条目与目录主流写法不符（符合率<25%），按目录实际用法修正"
+  },
   "Stasis Body Bag": "静滞裹尸袋",
   "Station 12": "Station 12",
   "Station 23": "23 号站",
@@ -2312,7 +2311,6 @@
   "Stingbang": "刺爆弹",
   "Stockpile Sammy": "Stockpile Sammy",
   "Stows-Away": "Stows-Away",
-  "Straight": "异性恋",
   "Strange Reagent": "奇异试剂",
   "Strawberry Daiquiri": "草莓代基里",
   "Strilka": "Strilka",
@@ -2805,7 +2803,10 @@
   "meteorslug": "流星弹",
   "mindbreaker toxin": "碎心者毒素",
   "minebot": "采矿机器人",
-  "mothroach": "飞蛾蟑螂",
+  "mothroach": {
+    "zh": "蛾蟑",
+    "note": "原条目与目录主流写法不符（符合率<25%），按目录实际用法修正"
+  },
   "multitool": {
     "zh": "多功能工具",
     "note": "工程物品 multitool。勿与 omnitool（万用工具）混用；句中泛指「多用途的工具」时不套用本条"
