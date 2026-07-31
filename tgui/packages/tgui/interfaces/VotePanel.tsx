@@ -29,10 +29,11 @@ type Vote = {
 };
 
 type Option = {
+  // NOVA EDIT ADDITION - i18n: `id` 是英文原键，**act 回传/选中比较一律用它**（"id" 在
+  // payload_skip_keys 里，P1 绝不会译它）。`name` 现在是显示名（地图投票为「三角洲站-Delta
+  // Station」）。老服务端没有 id 时回落 name，行为与从前一致。
+  id?: string;
   name: string;
-  // NOVA EDIT ADDITION - i18n: 显示名（如地图名「蓝移-Blueshift」）。act 仍回传 name（英文键），
-  // 只有标签用 displayName。缺省时回落 name。
-  displayName?: string;
   votes: number;
 };
 
@@ -227,9 +228,9 @@ const ChoicesPanel = (props) => {
       currentVote.countMethod === VoteSystem.VOTE_SINGLE ? (
         <LabeledList>
           {currentVote.choices.map((choice) => (
-            <Box key={choice.name}>
+            <Box key={choice.id ?? choice.name}>
               <LabeledList.Item
-                label={(choice.displayName ?? choice.name).replace(/^\w/, (c) => c.toUpperCase())}
+                label={choice.name.replace(/^\w/, (c) => c.toUpperCase())}
                 textAlign="right"
                 buttons={
                   <Button
@@ -237,10 +238,12 @@ const ChoicesPanel = (props) => {
                       user.isGhost && 'Ghost voting was disabled by an admin.'
                     }
                     disabled={
-                      user.singleSelection === choice.name || user.isGhost
+                      user.singleSelection === (choice.id ?? choice.name) ||
+                      user.isGhost
                     }
                     onClick={() => {
-                      act('voteSingle', { voteOption: choice.name });
+                      // NOVA EDIT CHANGE - i18n: 回传英文键 - ORIGINAL: { voteOption: choice.name }
+                      act('voteSingle', { voteOption: choice.id ?? choice.name });
                     }}
                   >
                     Vote
@@ -248,7 +251,7 @@ const ChoicesPanel = (props) => {
                 }
               >
                 {user.singleSelection &&
-                  choice.name === user.singleSelection && (
+                  (choice.id ?? choice.name) === user.singleSelection && (
                     <Icon align="right" mr={2} color="green" name="vote-yea" />
                   )}
                 {(currentVote.displayStatistics || user.isLowerAdmin) ? `${choice.votes} Votes` : null}
@@ -266,9 +269,9 @@ const ChoicesPanel = (props) => {
       currentVote.countMethod === VoteSystem.VOTE_MULTI ? (
         <LabeledList>
           {currentVote.choices.map((choice) => (
-            <Box key={choice.name}>
+            <Box key={choice.id ?? choice.name}>
               <LabeledList.Item
-                label={(choice.displayName ?? choice.name).replace(/^\w/, (c) => c.toUpperCase())}
+                label={choice.name.replace(/^\w/, (c) => c.toUpperCase())}
                 textAlign="right"
                 buttons={
                   <Button
@@ -277,7 +280,8 @@ const ChoicesPanel = (props) => {
                     }
                     disabled={user.isGhost}
                     onClick={() => {
-                      act('voteMulti', { voteOption: choice.name });
+                      // NOVA EDIT CHANGE - i18n: 回传英文键 - ORIGINAL: { voteOption: choice.name }
+                      act('voteMulti', { voteOption: choice.id ?? choice.name });
                     }}
                   >
                     Vote
@@ -285,7 +289,9 @@ const ChoicesPanel = (props) => {
                 }
               >
                 {user.multiSelection &&
-                user.multiSelection[user.ckey.concat(choice.name)] === 1 ? (
+                user.multiSelection[
+                  user.ckey.concat(choice.id ?? choice.name)
+                ] === 1 ? (
                   <Icon align="right" mr={2} color="blue" name="vote-yea" />
                 ) : null}
                 {/* // NOVA EDIT REMOVAL choice.votes} Votes */ }

@@ -135,6 +135,16 @@ SUBSYSTEM_DEF(vote)
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
 
+	// NOVA EDIT ADDITION START - I18N: 老客户端（或任何残留 P1 翻译）可能回传译名。译名不在 choices
+	// 里，直接 ++ 会建出幽灵条目、真键永远 0 票。先反查回英文键；反查不出来的按未知选项丢弃，
+	// 不再污染计票表。
+	if(!(their_vote in current_vote.choices))
+		var/unreversed = lang_unreverse_text(their_vote)
+		if(!(unreversed in current_vote.choices))
+			return
+		their_vote = unreversed
+	// NOVA EDIT ADDITION END
+
 	// If user has already voted, remove their specific vote
 	if(voter.ckey in current_vote.choices_by_ckey)
 		var/their_old_vote = current_vote.choices_by_ckey[voter.ckey]
@@ -161,6 +171,16 @@ SUBSYSTEM_DEF(vote)
 
 	else
 		voted += voter.ckey
+
+	// NOVA EDIT ADDITION START - I18N: 老客户端（或任何残留 P1 翻译）可能回传译名。译名不在 choices
+	// 里，直接 ++ 会建出幽灵条目、真键永远 0 票。先反查回英文键；反查不出来的按未知选项丢弃，
+	// 不再污染计票表。
+	if(!(their_vote in current_vote.choices))
+		var/unreversed = lang_unreverse_text(their_vote)
+		if(!(unreversed in current_vote.choices))
+			return
+		their_vote = unreversed
+	// NOVA EDIT ADDITION END
 
 	if(current_vote.choices_by_ckey[voter.ckey + their_vote] == 1)
 		current_vote.choices_by_ckey[voter.ckey + their_vote] = 0
@@ -332,7 +352,15 @@ SUBSYSTEM_DEF(vote)
 			var/list/choices = list()
 			for(var/key in current_vote.choices)
 				choices += list(list(
-					"name" = key,
+					// NOVA EDIT CHANGE START - I18N: 键必须原样回传（choices[key]++ 按它计数），但 "name" 不在
+					// payload_skip_keys 里 → P1 会把**多词**选项译成中文（地图名 "Delta Station"/"Ice Box Station"
+					// 进了 _map_names.json 之后就是这样），前端 act 回传中文 → choices[中文]++ 建出幽灵条目，
+					// 真键永远 0 票 → 投票无效、结束时换不了图。改用 "id" 承载键（"id" 已在 payload_skip_keys），
+					// "name" 让给显示名（get_choice_display_name：基类原样返回，地图投票返回「译名-英文」）。
+					// ORIGINAL: "name" = key,
+					"id" = key,
+					"name" = current_vote.get_choice_display_name(key),
+					// NOVA EDIT CHANGE END
 					"votes" = current_vote.choices[key],
 				))
 
