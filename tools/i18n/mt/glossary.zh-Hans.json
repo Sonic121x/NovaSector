@@ -1367,7 +1367,10 @@
   "Mr.Stoned": "Mr.Stoned",
   "MrStoned.exe": "MrStoned.exe",
   "Muli Pod": "Muli 豆荚",
-  "Multiver": "多功能解毒剂",
+  "Multiver": {
+    "zh": "多功能解毒剂",
+    "note": "试剂名；obj 侧小写 multiver 同此译名，勿写「多效解毒剂/多元维/多韦」"
+  },
   "Murder-Mittens": "谋杀手套",
   "Murid II": "Murid II",
   "Museum": "博物馆",
@@ -2136,7 +2139,10 @@
   "SynthOrange": "SynthOrange",
   "Synthignon": "合成菇",
   "Synthman Co.": "Synthman Co.",
-  "Syriniver": "温辐疗",
+  "Syriniver": {
+    "zh": "木泰尔",
+    "note": "试剂名；obj 侧小写 syriniver 同此译名，勿另创音译"
+  },
   "Szot Dynamica": "索特动力",
   "SŻD": "SŻD",
   "T-Borg": "T-Borg",

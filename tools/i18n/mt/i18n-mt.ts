@@ -183,10 +183,56 @@ function escapeRegExp(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+/**
+ * 术语表里**换个大小写就是另一个普通英文词**的条目，匹配时保持大小写敏感
+ * （见 sourceTermPattern 的大小写不敏感说明）。
+ *
+ * 判据只有一条：把该词的小写形式放进普通句子里，它是不是一个意思完全不同的日常词。
+ * 是 → 进这张表。举例（都是实测出来的误报）：
+ *   Straight（异性恋）  命中 "walk straight ahead"
+ *   Cream  （奶油）    命中 "ice cream"（冰淇淋是对的，不该改）
+ *   Cook   （厨师）    命中 "cook meat" 这个动词
+ *   Criminal（罪犯）   命中 "criminal mind"（犯罪心理是对的）
+ *   robust （硬核）    命中 "Robust Industries, LLC" 这个公司名
+ *   byond  （BYOND）   命中 "byond://" 协议头
+ *
+ * 反例（**不该**进这张表）：captain / chemist / curator / uplink / plushie —— 它们的
+ * 小写形式就是同一个东西，正是靠大小写不敏感才能覆盖 obj 的小写 name/desc。
+ */
+const CASE_SENSITIVE_TERMS = new Set([
+  'alpha',
+  'byond',
+  'cook',
+  'cream',
+  'criminal',
+  'fluff',
+  'honk',
+  'journey',
+  'law',
+  'meta',
+  'noir',
+  'robust',
+  'shade',
+  'sprout',
+  'straight',
+]);
+
 function sourceTermPattern(term: string): RegExp {
   const prefix = /^[A-Za-z0-9]/.test(term) ? '(^|[^A-Za-z0-9])' : '';
   const suffix = /[A-Za-z0-9]$/.test(term) ? '(?=$|[^A-Za-z0-9])' : '';
-  return new RegExp(`${prefix}${escapeRegExp(term)}${suffix}`, 'u');
+  // **大小写不敏感**——DM 里同一个专名有两套写法：datum 显示名是首字母大写的
+  // （"Multiver"、"Syriniver"），而 obj 的 name/desc 按 SS13 惯例全小写
+  // （"multiver bottle"、"A small bottle of syriniver."）。术语表只收得到其中一种，
+  // 大小写敏感匹配就让另一半**永远命中不了术语提示**，MT 每次现编译名 →
+  // 多元维瓶 / 多效解毒剂 / 多功能解毒剂 三种叫法并存。这不是个别词的问题，是整类。
+  //
+  // 例外：**全大写缩写**（AI / ID / NT / ERT）保持大小写敏感。它们的小写形式往往是
+  // 另一个普通词（id、it…），放开会把噪音灌进不一致报告。CASE_SENSITIVE_TERMS 同理。
+  const flags =
+    /[a-z]/.test(term) && !CASE_SENSITIVE_TERMS.has(term.toLowerCase())
+      ? 'iu'
+      : 'u';
+  return new RegExp(`${prefix}${escapeRegExp(term)}${suffix}`, flags);
 }
 
 function glossaryTerms(): GlossaryTerm[] {
