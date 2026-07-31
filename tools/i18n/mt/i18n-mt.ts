@@ -253,6 +253,21 @@ function escapeRegExp(s: string): string {
  * 反例（**不该**进这张表）：captain / chemist / curator / uplink / plushie —— 它们的
  * 小写形式就是同一个东西，正是靠大小写不敏感才能覆盖 obj 的小写 name/desc。
  */
+/**
+ * **拟声词/感叹词绝不能进术语表。**
+ *
+ * 它们的中文写法本来就随语法角色变，强行统一必错。`honk` 踩过：目录里有六种渲染，
+ * 各自都对——
+ *   纯 meme 大写 `<font size=8>HONK</font>` → 必须留 HONK
+ *   拟声 `Honk.` / `a silly bike horn! Honk!` → 叭。/ 叭！
+ *   拟声（另一派）`banana ice cream. Honk!`  → 呱呱！
+ *   动词 `honking clown`                     → 鸣笛小丑
+ *   专名 `El Honker's Mask` / `HONKITUDE`    → 鸣笛者 / 喇叭度
+ * 当时按「目录里 Honk 出现 32 次 > 鸣叫 17 次」判它保持英文，结果把动词义项也变成
+ * 「会让你满嘴 Honk」。**那个频次是整目录子串计数，把专名、meme、拟声全算作一类了**——
+ * 对多语法角色的词是垃圾判据。这类词直接不收，让它随语境走。
+ */
+
 const CASE_SENSITIVE_TERMS = new Set([
   'alpha',
   'byond',
@@ -1892,8 +1907,28 @@ async function cmdTranslate(
         // 同步合并落盘（read→apply→write 无 await，并发安全；断点续译：重跑会重算待译）。
         const merged = readCatalog(dstFile);
         let applied = 0;
+        let refused = 0;
         for (const key of Object.keys(translatedBatch.catalog)) {
           if (key in item.batch) {
+            // **绝不用更违规的译文覆盖更合规的**。
+            // 强制回环最多重试 N 轮，仍不合规的条目照样会被写回去 —— 而它覆盖的
+            // 旧译文可能本来是**对的**。实测：blanks.json 的「纳米传讯」被重翻成
+            // 「纳米特兰森」，两轮重试没救回来，于是一条合规译文被违规译文顶掉了。
+            // 术语违规数只许降不许升；持平才看新译文（那是正常的润色）。
+            const before = termMismatches(
+              item.batch[key],
+              merged[key],
+              key,
+            ).length;
+            const after = termMismatches(
+              item.batch[key],
+              translatedBatch.catalog[key],
+              key,
+            ).length;
+            if (merged[key] != null && after > before) {
+              refused++;
+              continue;
+            }
             merged[key] = translatedBatch.catalog[key];
             applied++;
             if (REUSE) globalReverse.set(item.batch[key], translatedBatch.catalog[key]);
@@ -1912,6 +1947,7 @@ async function cmdTranslate(
           (translatedBatch.reused
             ? `批 ${batchNo}/${batches} 复用 .pending 输出，合并 ${applied}`
             : `批 ${batchNo}/${batches} 合并 ${applied}`) +
+            (refused ? `，拒收更违规的 ${refused}` : '') +
             (translatedBatch.termFixed
               ? `，术语强制修正 ${translatedBatch.termFixed}`
               : '') +
