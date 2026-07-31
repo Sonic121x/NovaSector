@@ -130,6 +130,15 @@ type TranslatedBatch = {
 type TermMismatch = {
   term: string;
   expected: string;
+  /**
+   * 该术语是「保持英文」条目（expected === term）。
+   *
+   * 这类"违规"的含义是「译文里没保留英文原词」，**绝不能拿去 repair**：重翻会把英文
+   * 塞回本来好好的中文里（实测 太空润滑剂 -> Space Lube、泡沫力量 SWAT 面具 ->
+   * Foam Force SWAT 面罩）。术语表里 43% 是这类条目（多为 mark-english 种下的），
+   * 与译文冲突时通常是**术语表该改**，不是译文该改。所以只报告、不修。
+   */
+  keepEnglish?: boolean;
 };
 /** 一个义项。scope 为空 = 兜底义项（没有任何限定义项命中时用它）。 */
 type GlossarySense = {
@@ -678,12 +687,24 @@ function isGlossaryAdditionCandidate(en: string): boolean {
 }
 
 /** 把 Codex 这批新发现的固定词合并进术语表（仅新增，不覆盖已有人工译名），并落盘。 */
+/** 术语表查重用的归一化形式：与 sourceTermPattern 的大小写不敏感、以及并条规则保持一致。 */
+function glossaryNormKey(term: string): string {
+  return term.toLowerCase().replace(/[-_\s]/g, '');
+}
+
 function mergeGlossaryAdditions(additions: Record<string, string>): number {
+  // **按归一化形式查重**，不能用 `en in glossary` 的精确匹配。
+  // 精确匹配下，模型返回的 "Nanotrasen" 在表里只有 "NANOTRASEN" 时会被当成新词加进去
+  // （译名还不一样：纳诺特雷森 vs 纳米传讯），于是刚并好的变体组当场又裂开——实测一次
+  // MT 运行就把上一轮合并的 40 组重新污染了。匹配已是大小写/连字符不敏感的，
+  // 所以只要归一化后撞上就不算新词。
+  const known = new Set(Object.keys(glossary).map(glossaryNormKey));
   let added = 0;
   for (const [en, zh] of Object.entries(additions)) {
-    if (!en || !zh || en in glossary) continue;
+    if (!en || !zh || known.has(glossaryNormKey(en))) continue;
     if (!isGlossaryAdditionCandidate(en)) continue;
     glossary[en] = zh;
+    known.add(glossaryNormKey(en));
     added++;
   }
   if (added) {
@@ -956,7 +977,11 @@ function termMismatches(
     if (!sense) continue;
     // alts 命中也算一致——一个英文允许多个译法（见 GlossaryValue 注释）。
     if (sense.accepted.some((a) => zhVal.includes(a))) continue;
-    missing.push({ term: entry.term, expected: sense.expected });
+    missing.push({
+      term: entry.term,
+      expected: sense.expected,
+      ...(sense.expected === entry.term ? { keepEnglish: true } : {}),
+    });
   }
   return missing;
 }
@@ -982,10 +1007,15 @@ function computeTermReport(file: string): Record<string, TermReportEntry> {
   return report;
 }
 
+/**
+ * 送去重翻的条目。**只收「真·译名不一致」**：至少有一条违规不是「保持英文」类
+ * （见 TermMismatch.keepEnglish）。纯保持英文的条目重翻只会把英文塞回中文，是净劣化。
+ */
 function computeTermPending(file: string): Catalog {
   const report = computeTermReport(file);
   const pending: Catalog = {};
   for (const [key, entry] of Object.entries(report)) {
+    if (!entry.missing.some((m) => !m.keepEnglish)) continue;
     pending[key] = entry.en;
   }
   return pending;
@@ -1118,10 +1148,14 @@ function glossaryHint(batch: Catalog): string {
     .join('\n');
 }
 
-// 每批喂给模型的条数（大文件如 obj.json 必须分批，否则超上下文）。openai 是单次请求、可吃更大批，
-// 默认调大以减少调用次数/开销；agent 后端保持 200。可用 I18N_CHUNK 覆盖。
+// 每批喂给模型的条数（大文件如 obj.json 必须分批，否则超上下文）。可用 I18N_CHUNK 覆盖。
+//
+// openai 从 400 降到 150：真正的天花板不是**输入**上下文而是**输出** token 上限——
+// 400 条长 desc 的中文译文会把回复截断，JSON 半截结束，报
+// `openai error: JSON Parse error: Unterminated string`，整批白跑（实测 obj.json 第 0 批）。
+// 中文条目普遍比英文原文长，repair-terms 尤其（改的多是长描述），所以宁可小批多跑。
 const CHUNK = Number(
-  process.env.I18N_CHUNK ?? (BACKEND === 'openai' ? 400 : 200),
+  process.env.I18N_CHUNK ?? (BACKEND === 'openai' ? 150 : 200),
 );
 // 并发批数。agent（codex/claude）重、默认串行(1)；openai 是 API，可并行加速（受额度/限流约束）。
 const CONCURRENCY = Math.max(
