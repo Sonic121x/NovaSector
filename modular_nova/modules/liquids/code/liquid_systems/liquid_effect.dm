@@ -415,7 +415,7 @@
 							if(!(shoes && shoes.clothing_flags))
 								step(carbon, dir)
 								if(prob(60) && carbon.body_position != LYING_DOWN)
-									to_chat(carbon, span_userdanger("The current knocks you down!"))
+									to_chat(carbon, span_userdanger(LANG("obj.3eb7591a", null)))
 									carbon.Knockdown(1 SECONDS)
 						else
 							step(AM, dir)
@@ -580,7 +580,7 @@
 			for(var/datum/reagent/reagent_type as anything in reagent_list)
 				var/reagent_name = initial(reagent_type.name)
 				var/volume = round(reagent_list[reagent_type], 0.01)
-				examine_list += "&bull; [volume] units of [reagent_name]"
+				examine_list += LANG("obj.5b87b0e6", list(volume, reagent_name))
 
 		examine_list += span_notice(LANG("obj.03a68d29", list(temp, EXAMINE_SECTION_BREAK)))
 		return

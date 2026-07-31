@@ -81,10 +81,10 @@ GAME_VERB_DESC(/client, looc_wallpierce, "LOOC(Wallpierce)", "Local OOC, seen by
 		if (is_holder)
 			continue //admins are handled afterwards
 
-		to_chat(hearing_client, span_looc(span_prefix("LOOC[wall_pierce ? " (WALL PIERCE)" : ""]:</span> <EM>[src.mob.name]:</EM> <span class='message'>[msg]")), avoid_highlighting = (hearing_client == src))
+		to_chat(hearing_client, span_looc(span_prefix(LANG("client.a8a84979", list(wall_pierce ? " (WALL PIERCE)" : "", src.mob.name, msg)))), avoid_highlighting = (hearing_client == src))
 
 	for(var/client/cli_client as anything in GLOB.admins)
 		if (admin_seen[cli_client])
-			to_chat(cli_client, span_looc("[ADMIN_FLW(usr)] <span class='prefix'>LOOC[wall_pierce ? " (WALL PIERCE)" : ""]:</span> <EM>[src.key]/[src.mob.name]:</EM> <span class='message'>[msg]</span>"), avoid_highlighting = (cli_client == src))
+			to_chat(cli_client, span_looc(LANG("client.ddee0ba1", list(ADMIN_FLW(usr), wall_pierce ? " (WALL PIERCE)" : "", src.key, src.mob.name, msg))), avoid_highlighting = (cli_client == src))
 		else if (cli_client.prefs.read_preference(/datum/preference/toggle/admin/see_looc))
-			to_chat(cli_client, span_rlooc("[ADMIN_FLW(usr)] <span class='prefix'>(R)LOOC[wall_pierce ? " (WALL PIERCE)" : ""]:</span> <EM>[src.key]/[src.mob.name]:</EM> <span class='message'>[msg]</span>"), avoid_highlighting = (cli_client == src))
+			to_chat(cli_client, span_rlooc(LANG("client.a21ff7fd", list(ADMIN_FLW(usr), wall_pierce ? " (WALL PIERCE)" : "", src.key, src.mob.name, msg))), avoid_highlighting = (cli_client == src))

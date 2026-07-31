@@ -43,8 +43,8 @@
 	ADD_TRAIT(partner, TRAIT_KNOTTED, REF(src))
 
 	knotter.visible_message(
-		span_purple("[knotter]'s knot swells inside [partner][partner_slot ? "'s [partner_slot]" : ""], locking them together!"),
-		span_userlove("Your knot swells inside [partner][partner_slot ? "'s [partner_slot]" : ""], locking you together!"),
+		span_purple(LANG("datum.e7bb9ac5", list(knotter, partner, partner_slot ? "'s [partner_slot]" : ""))),
+		span_userlove(LANG("datum.50a985b4", list(partner, partner_slot ? "'s [partner_slot]" : ""))),
 	)
 	to_chat(partner, span_userlove(LANG("datum.8873c384", list(knotter, knotter.p_them()))))
 
@@ -90,8 +90,8 @@
 	var/mob/living/knotter = parent
 	if(!silent && knotter && !QDELETED(knotter) && partner && !QDELETED(partner))
 		knotter.visible_message(
-			span_purple("[knotter]'s knot slips free of [partner]."),
-			span_purple("Your knot slips free of [partner]."),
+			span_purple(LANG("datum.735cf54f", list(knotter, partner))),
+			span_purple(LANG("datum.ab251705", list(partner))),
 		)
 		to_chat(partner, span_purple(LANG("datum.fb8424d0", list(knotter))))
 

@@ -145,7 +145,7 @@
 			if("Juice")
 				for(var/obj/item/target_item as anything in contents)
 					if (reagents.total_volume >= reagents.maximum_volume)
-						balloon_alert(user, "overflowing!")
+						balloon_alert(user, LANG("obj.509afd4b", null))
 						break
 
 					if(target_item.juice_typepath())
@@ -157,7 +157,7 @@
 			if("Grind")
 				for(var/obj/item/target_item as anything in contents)
 					if (reagents.total_volume >= reagents.maximum_volume)
-						balloon_alert(user, "overflowing!")
+						balloon_alert(user, LANG("obj.509afd4b", null))
 						break
 
 					if(target_item.grind_results() || target_item.reagents?.total_volume)

@@ -1447,7 +1447,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/pen) || istype(tool, /obj/item/toy/crayon))
-		var/choice = input(user, LANG("obj.8a06c968", null), "License Type Selection") as null|anything in possible_types
+		var/choice = input(user, LANG("obj.8a06c968", null), LANG("obj.1ae692ef", null)) as null|anything in possible_types
 		if(!isnull(choice))
 			name = "license to [choice]"
 			return ITEM_INTERACT_SUCCESS

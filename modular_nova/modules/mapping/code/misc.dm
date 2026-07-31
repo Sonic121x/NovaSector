@@ -35,7 +35,7 @@
 	. += span_notice(LANG("obj.9c0a6a7e", null))
 	for(var/found_fragment in fragments)
 		var/obj/item/luna_fragment/fragment = found_fragment
-		. += span_notice("\a [fragment] has been attached, allowing for Luna to [fragment.effect_desc]")
+		. += span_notice(LANG("obj.7676b82f", list(fragment, fragment.effect_desc)))
 
 /obj/item/claymore/cutlass/luna/Destroy()
 	QDEL_LIST(fragments)
@@ -114,7 +114,7 @@
 	var/obj/item/claymore/cutlass/luna/upgrade_appliable = our_sord
 	for(var/obj/item/luna_fragment/found_fragment as anything in upgrade_appliable.fragments)
 		if(istype(src, found_fragment))
-			to_chat(user, span_warning("You can't seem to attach [src] to [upgrade_appliable]."))
+			to_chat(user, span_warning(LANG("obj.b4fa9882", list(src, upgrade_appliable))))
 			return FALSE
 	if(!user.transferItemToLoc(src, upgrade_appliable))
 		return

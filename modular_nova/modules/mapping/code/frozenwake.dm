@@ -163,7 +163,7 @@
 	if (frozenwake_area.frozenwake_stasis_target)
 		var/turf/reward_loc = get_turf(frozenwake_area.frozenwake_stasis_target)
 		for (var/mob/emoted in view(7, reward_loc))
-			to_chat(emoted, span_notice("The ice cracks with a deep groan... and shatters!"))
+			to_chat(emoted, span_notice(LANG("datum.3af077c5", null)))
 		qdel(frozenwake_area.frozenwake_stasis_target)
 		new /obj/item/kinetic_crusher/runic_greatsword/vidrhefjandi(reward_loc)
 

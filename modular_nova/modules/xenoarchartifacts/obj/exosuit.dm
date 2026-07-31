@@ -82,7 +82,7 @@
 		var/turf/turf_check = get_turf(carbon_mob)
 		if(isspaceturf(turf_check) && !turf_check.Adjacent(src)) //in space nobody can hear you scream.
 			continue
-		to_chat(carbon_mob, "<font color='red' size='7'>AAAAAAH</font>")
+		to_chat(carbon_mob, LANG("obj.882f3127", null))
 		carbon_mob.SetSleeping(0)
 		carbon_mob.adjust_stutter(40 SECONDS)
 		var/obj/item/organ/ears/ears = carbon_mob.get_organ_slot(ORGAN_SLOT_EARS)

@@ -43,7 +43,7 @@
 				continue
 			ghost.playsound_local(ghost, 'sound/effects/ghost2.ogg', 75, FALSE)
 			var/turf_link = TURF_LINK(ghost, spawn_loc)
-			to_chat(ghost, "[turf_link] <span class='ghostalert'>Event spawner that you can enter has been created. The role is [CES.job_name]. [turf_link]")
+			to_chat(ghost, LANG("datum.8f95c4c5", list(turf_link, CES.job_name, turf_link)))
 
 /datum/event_spawner_instance/proc/GetExport()
 	var/list/blocks = list()

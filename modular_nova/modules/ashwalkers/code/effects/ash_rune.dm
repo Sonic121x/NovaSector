@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(ash_rituals)
 	for(var/direction in current_ritual.required_components)
 		var/atom/component_type = current_ritual.required_components[direction]
 		var/component_name = ispath(component_type, /mob/living/carbon/human) ? "a humanoid corpse" : component_type::name
-		. += span_warning("[direction] component is [component_name]")
+		. += span_warning(LANG("obj.52ddc6aa", list(direction, component_name)))
 
 /obj/effect/ash_rune/Initialize(mapload)
 	. = ..()

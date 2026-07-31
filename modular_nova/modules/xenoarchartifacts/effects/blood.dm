@@ -35,7 +35,7 @@
 	for(var/mob/living/receiver in range(range, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_notice("Your chest feels warm."))
+		to_chat(receiver, span_notice(LANG("datum.2be7b733", null)))
 		regen_target(receiver, 5 * seconds_per_tick)
 
 /datum/artifact_effect/blood_regen/do_effect_pulse(seconds_per_tick)
@@ -46,7 +46,7 @@
 	for(var/mob/living/receiver in range(range, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_notice("Your chest feels warm."))
+		to_chat(receiver, span_notice(LANG("datum.2be7b733", null)))
 		regen_target(receiver, 25 * seconds_per_tick)
 
 /datum/artifact_effect/blood_regen/do_effect_destroy()
@@ -54,7 +54,7 @@
 	for(var/mob/living/receiver in range(7, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_notice("Your chest feels warm."))
+		to_chat(receiver, span_notice(LANG("datum.2be7b733", null)))
 		regen_target(receiver, 100)
 
 /datum/artifact_effect/blood_drain
@@ -93,7 +93,7 @@
 	for(var/mob/living/receiver in range(range, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_warning("Your nose bleeds."))
+		to_chat(receiver, span_warning(LANG("datum.52c80af3", null)))
 		suck(receiver, 5 * seconds_per_tick)
 
 /datum/artifact_effect/blood_drain/do_effect_pulse(seconds_per_tick)
@@ -115,5 +115,5 @@
 	for(var/mob/living/receiver in range(7, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_warning("You feel empty."))
+		to_chat(receiver, span_warning(LANG("datum.35f8411a", null)))
 		suck(receiver, 75)

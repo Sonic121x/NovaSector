@@ -21,7 +21,7 @@
 		. += span_info(LANG("obj.27cf5b98", null))
 
 		for(var/cell in installedcells)
-			. += span_notice("There is \a [cell] loaded in the chamber.") //Shows what cells are currently inside of the gun
+			. += span_notice(LANG("obj.310931af", list(cell))) //Shows what cells are currently inside of the gun
 
 /// Handles insertion of weapon cells
 /obj/item/gun/energy/cell_loaded/item_interaction(mob/living/user, obj/item/tool, list/modifiers)

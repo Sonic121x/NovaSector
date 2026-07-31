@@ -209,7 +209,7 @@
 */
 
 /mob/living/proc/subtle_keybind()
-	var/message = input(src, "", "subtle") as text|null
+	var/message = input(src, "", LANG("mob.0bc1d054", null)) as text|null
 	if(!length(message))
 		return
 	return subtle(message)

@@ -329,11 +329,11 @@
 		if(!isashwalker(living_ashwalker))
 			continue
 
-		to_chat(living_ashwalker, span_rose("<b>Ashen Hivemind: [owner] sings, \"[inserted_message]\"</b>"))
+		to_chat(living_ashwalker, span_rose(LANG("datum.deb3c2c3", list(owner, inserted_message))))
 
 	for(var/mob/dead_mob in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(dead_mob, src)
-		to_chat(dead_mob, span_rose("[link] <b>Ashen Hivemind: [owner] sings, \"[inserted_message]\"</b>"))
+		to_chat(dead_mob, span_rose(LANG("datum.7ab889f0", list(link, owner, inserted_message))))
 
 	var/logging_text = "[key_name(owner)] spoke into the hivemind: [inserted_message]"
 	log_say(logging_text)

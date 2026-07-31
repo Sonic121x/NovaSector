@@ -74,4 +74,4 @@
 	for(var/it in GLOB.mentors)
 		var/client/mentor = it
 		if(mentor?.key != key && mentor?.key != target.key)	//check client/mentor is an Mentor and isn't the sender or recipient
-			to_chat(mentor, span_mentor("<B>Mentor PM: [key_name_mentor(src, mentor, FALSE, FALSE, show_char_sender)]-&gt;[key_name_mentor(target, mentor, FALSE, FALSE, show_char_recip)]:</B> [span_blue(msg)]")) //inform mentor
+			to_chat(mentor, span_mentor(LANG("client.db628e7b", list(key_name_mentor(src, mentor, FALSE, FALSE, show_char_sender), key_name_mentor(target, mentor, FALSE, FALSE, show_char_recip), span_blue(msg))))) //inform mentor

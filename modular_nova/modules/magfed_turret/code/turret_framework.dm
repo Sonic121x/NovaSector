@@ -119,8 +119,8 @@
 
 		balloon_alert(user, LANG("obj.ddc1329a", null))
 		user.visible_message(
-			span_danger("[user] bashes [src] with [tool]!"),
-			span_danger("You bash [src] with [tool]!"),
+			span_danger(LANG("obj.2a0f4de0", list(user, src, tool))),
+			span_danger(LANG("obj.acf5f95a", list(src, tool))),
 			null,
 			COMBAT_MESSAGE_RANGE,
 		)
@@ -259,7 +259,7 @@
 	for(var/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/turret in linked_turrets)
 		for(var/turret_to_control in 1 to length(linked_turrets))
 			turret.override_target(acquired_target?.resolve())
-		balloon_alert(user, "target designated!")
+		balloon_alert(user, LANG("obj.1d6ad100", null))
 
 /// clears manual target acquisition
 /obj/item/target_designator/proc/clear_target(user)
@@ -267,7 +267,7 @@
 	for(var/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/turret in linked_turrets)
 		for(var/turret_to_control in 1 to length(linked_turrets))
 			turret.clear_override()
-		balloon_alert(user, "designation cleared!")
+		balloon_alert(user, LANG("obj.0a3f5035", null))
 
 /// Sets all turrets to the same state as the controller.
 /obj/item/target_designator/proc/sync_turrets()
@@ -275,15 +275,15 @@
 		if(target_all == TRUE && follow_flags == FALSE)
 			if(!(turret.target_assessment == TURRET_FLAG_SHOOT_EVERYONE))
 				turret.target_assessment = TURRET_FLAG_SHOOT_EVERYONE
-				turret.balloon_alert_to_viewers("unrestricting targeting!")
+				turret.balloon_alert_to_viewers(LANG("obj.5e7a5938", null))
 		if(follow_flags == TRUE)
 			if(!(turret.target_assessment == TURRET_FLAG_OBEY_FLAGS))
 				turret.target_assessment = TURRET_FLAG_OBEY_FLAGS
-				turret.balloon_alert_to_viewers("obeying laws!")
+				turret.balloon_alert_to_viewers(LANG("obj.7bcfac8e", null))
 		if(follow_flags == FALSE && target_all == FALSE)
 			if(!(turret.target_assessment == TURRET_FLAG_SHOOT_NOONE))
 				turret.target_assessment = TURRET_FLAG_SHOOT_NOONE
-				turret.balloon_alert_to_viewers("restricting targeting!")
+				turret.balloon_alert_to_viewers(LANG("obj.ca236d6c", null))
 		turret.setState(TRUE) //So they'll update properly
 
 ////// Turret handling //////

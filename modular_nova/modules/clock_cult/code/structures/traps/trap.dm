@@ -32,7 +32,7 @@
 		if(!istype(trap, result_path))
 			continue
 
-		user.balloon_alert(user, "space occupied!")
+		user.balloon_alert(user, LANG("obj.fc2d6d6d", null))
 		return
 
 	to_chat(user, span_brass(LANG("obj.9da76c9d", list(src))))

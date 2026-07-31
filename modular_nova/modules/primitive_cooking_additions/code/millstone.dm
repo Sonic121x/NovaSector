@@ -32,7 +32,7 @@
 			stuff_inside[thing.type] += 1
 
 		for(var/obj/thing as anything in stuff_inside)
-			. += span_notice("&bull; [stuff_inside[thing]] [initial(thing.name)]\s")
+			. += span_notice(LANG("obj.8102b6d1", list(stuff_inside[thing], initial(thing.name))))
 
 		. += span_notice(LANG("obj.507ea0f0", list(maximum_contained_items - length(contents))))
 

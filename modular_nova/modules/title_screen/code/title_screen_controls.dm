@@ -29,7 +29,7 @@ ADMIN_VERB(change_title_screen_notice, R_FUN, "标题画面：设置公告", "Se
 	if(!new_notice)
 		return
 	for(var/mob/dead/new_player/new_player in GLOB.new_player_list)
-		to_chat(new_player, span_boldannounce("TITLE NOTICE UPDATED: [new_notice]"))
+		to_chat(new_player, span_boldannounce(LANG("datum.e918a8a8", list(new_notice))))
 		SEND_SOUND(new_player,  sound('modular_nova/modules/admin/sound/duckhonk.ogg'))
 
 /**

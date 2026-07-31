@@ -206,7 +206,7 @@
 				. += span_notice(LANG("obj.d2f9425d", null))
 
 			for(var/obj/item/graft/grafted_item in graft_list)
-				. += span_notice("A sample of [grafted_item.plant_dna.plantname] is grafted on.")
+				. += span_notice(LANG("obj.12c84ef4", list(grafted_item.plant_dna.plantname)))
 
 			if(tree_bee)
 				. += span_notice(LANG("obj.7dff0128", null))
@@ -454,7 +454,7 @@
 			continue
 
 		if(prob(20))
-			balloon_alert_to_viewers("feeling stiffed...")
+			balloon_alert_to_viewers(LANG("obj.5003c0e8", null))
 			return
 
 	fertilizer_amount = 0

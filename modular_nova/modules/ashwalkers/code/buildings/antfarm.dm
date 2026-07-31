@@ -40,7 +40,7 @@
 		if(found_farm == src)
 			continue
 
-		src_turf.balloon_alert_to_viewers("too close to another farm")
+		src_turf.balloon_alert_to_viewers(LANG("obj.9a5e582c", null))
 		return INITIALIZE_HINT_QDEL
 
 	START_PROCESSING(SSobj, src)

@@ -67,7 +67,7 @@
 	. = ..()
 
 	for(var/obj/item/reagent_containers/syringe/dart as anything in syringes)
-		. += "There is a [dart] loaded."
+		. += LANG("obj.56ffcb66", list(dart))
 
 //Smartdart projectiles
 /obj/item/ammo_casing/syringegun/dart

@@ -57,7 +57,7 @@
 	else
 		. += LANG("obj.894e8427", list(LAZYLEN(charging_batteries), src))
 		for(var/obj/item/stock_parts/power_store/cell/charging in charging_batteries)
-			. += "There's [charging] cell in the charger, current charge: [round(charging.percent(), 1)]%."
+			. += LANG("obj.ef59e67c", list(charging, round(charging.percent(), 1)))
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice(LANG("obj.950628d2", list(display_power(charge_rate, convert = FALSE))))
 	. += span_notice(LANG("obj.6b876f29", null))

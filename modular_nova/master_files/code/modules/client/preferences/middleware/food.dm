@@ -91,7 +91,7 @@ GLOBAL_DATUM_INIT(food_prefs_menu, /datum/food_prefs_menu, new)
 					if(liked_food_length > MAXIMUM_LIKES)
 						preferences.food_preferences.Remove(food_entry)
 				if(liked_food_length > MAXIMUM_LIKES || (food_preference == FOOD_PREFERENCE_LIKED && liked_food_length == MAXIMUM_LIKES) && !(food_name in GLOB.obscure_food_types)) // Equals as well, if we're setting a liked food!
-					tgui_alert(ui, "You can't have more than [MAXIMUM_LIKES] liked foods!")
+					tgui_alert(ui, LANG("datum.45c856cf", list(MAXIMUM_LIKES)))
 					return TRUE
 
 			preferences.food_preferences[food_name] = food_preference

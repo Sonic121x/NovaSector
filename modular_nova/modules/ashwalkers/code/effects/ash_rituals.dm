@@ -63,10 +63,10 @@
 				return FALSE
 		if(is_type_in_list(atom_check, consumed_components))
 			qdel(atom_check)
-			checked_rune.balloon_alert_to_viewers("[checked_component] component has been consumed...")
+			checked_rune.balloon_alert_to_viewers(LANG("datum.bf43ca1d", list(checked_component)))
 
 		else
-			checked_rune.balloon_alert_to_viewers("[checked_component] component has been checked...")
+			checked_rune.balloon_alert_to_viewers(LANG("datum.0d7d872d", list(checked_component)))
 
 		new ritual_effect(checked_rune.loc)
 		sleep(ritual_time)
@@ -207,7 +207,7 @@
 		if(select_mob.z != success_rune.z)
 			continue
 
-		to_chat(select_mob, span_userdanger("The planet stirs... another monster has arrived!"))
+		to_chat(select_mob, span_userdanger(LANG("datum.3f14073a", null)))
 		playsound(get_turf(select_mob), 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
 		flash_color(select_mob, flash_color = "#FF0000", flash_time = 3 SECONDS)
 

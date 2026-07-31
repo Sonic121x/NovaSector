@@ -65,7 +65,7 @@
 		primary_researcher = FALSE
 		log_game("A research ritual of [selected_research] was cancelled by deconstruction of [src].")
 		send_clock_message(null, "A research ritual has been disrupted in [get_area(src)]! All research data has been lost.", msg_ghosts = FALSE)
-		notify_ghosts("A research ritual was disrupted in [get_area(src)]",
+		notify_ghosts(LANG("obj.fbf7c0f0", list(get_area(src))),
 			source = get_turf(src),
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
 			header = "Research ritual cancelled",
@@ -275,7 +275,7 @@
 		if(istype(nearby_turf, /turf/open/floor))
 			continue
 
-		owner.balloon_alert(owner, "not enough room!")
+		owner.balloon_alert(owner, LANG("obj.0289e33d", null))
 		return
 
 	if(researching)
@@ -344,7 +344,7 @@
 		return
 
 	send_clock_message(null, "The research ritual in [get_area(src)] has completed, rejoice!", msg_ghosts = FALSE)
-	notify_ghosts("A research ritual in [get_area(src)] has been completed",
+	notify_ghosts(LANG("obj.b9014433", list(get_area(src))),
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "Research ritual completed",
@@ -445,9 +445,9 @@
 					continue
 
 				if(IS_CLOCK(living_mob))
-					to_chat(living_mob, span_brass("You feel as if something powerful is watching over you, as you feel the power in your Clockwork Slab increase."))
+					to_chat(living_mob, span_brass(LANG("obj.b24d7c0a", null)))
 				else
-					to_chat(living_mob, span_brass("You feel as if something powerful is watching over you as a low hum of machinery fills your mind."))
+					to_chat(living_mob, span_brass(LANG("obj.92ffe424", null)))
 
 
 		if(31 to 40) // Fuck up the power, but in the other way instead

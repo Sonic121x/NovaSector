@@ -94,7 +94,7 @@
 		var/throw_dir = victim.loc == owner.loc ? get_dir(owner, victim) : pick(GLOB.alldirs)
 		var/throwtarget = get_edge_target_turf(victim, throw_dir)
 		victim.throw_at(target = throwtarget, range = 1, speed = 1)
-		victim.visible_message(span_warning("[victim] is thrown clear of [owner]!"))
+		victim.visible_message(span_warning(LANG("datum.65b13390", list(victim, owner))))
 
 // Baron's snare
 /datum/action/cooldown/spell/pointed/projectile/web_restraints/baron
@@ -222,9 +222,9 @@
 	for(var/mob/living/carbon/carbon_target in view(2,src))
 		if(carbon_target.soundbang_act(intensity = 1, stun_pwr = 0, damage_pwr = 5, deafen_pwr = 5)) // if you don't have earpro you get brain damage
 			carbon_target.gain_trauma(/datum/brain_trauma/magic/spider)
-			visible_message(span_userdanger("The spider totem screeches as it breaks, piercing your mind! You can't trust your mind!"))
+			visible_message(span_userdanger(LANG("obj.739f7b1f", null)))
 		else
-			visible_message(span_notice("The spider totem screeches as it breaks, but it's not enough to unsettle you."))
+			visible_message(span_notice(LANG("obj.de3858fb", null)))
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 

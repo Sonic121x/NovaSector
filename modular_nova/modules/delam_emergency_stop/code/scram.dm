@@ -151,7 +151,7 @@
 	if(trigger_reason == DIVINE_INTERVENTION)
 		investigate_log("Delam SCRAM was activated by admin intervention", INVESTIGATE_ATMOS)
 		notify_ghosts(
-			"[src] has been activated!",
+			LANG("obj.78bac1c4", list(src)),
 			source = src,
 			header = "Divine Intervention",
 			ghost_sound = 'sound/machines/warning-buzzer.ogg',
@@ -168,7 +168,7 @@
 		investigate_log("Delam SCRAM was activated by [reason]", INVESTIGATE_ATMOS)
 		// They're probably already deadchat engineering discussing what you did wrong
 		notify_ghosts(
-			"[src] has been activated!",
+			LANG("obj.78bac1c4", list(src)),
 			source = src,
 			header = "Mistakes Were Made",
 			ghost_sound = 'sound/machines/warning-buzzer.ogg',

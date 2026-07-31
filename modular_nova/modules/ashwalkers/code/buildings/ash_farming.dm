@@ -293,7 +293,7 @@
 
 			plant_bag?.atom_storage?.attempt_insert(created_special, user, TRUE)
 
-			balloon_alert_to_viewers("something special drops!")
+			balloon_alert_to_viewers(LANG("obj.63205a5c", null))
 			continue
 
 		creating_obj = planted_seed.product

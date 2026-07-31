@@ -88,7 +88,7 @@
 /obj/structure/trash_pile/proc/do_dive(mob/user)
 	if(contents.len)
 		for(var/mob/hidden_mob in contents)
-			balloon_alert(user, "already someone inside!")
+			balloon_alert(user, LANG("obj.211eaf51", null))
 			eject_mob(hidden_mob)
 			return FALSE
 	return TRUE

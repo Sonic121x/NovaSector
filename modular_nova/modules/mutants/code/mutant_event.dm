@@ -43,6 +43,6 @@
 /datum/dynamic_ruleset/midround/mutant_infestation/assign_role(datum/mind/candidate)
 	candidate.add_antag_datum(/datum/antagonist/mutant)
 	try_to_mutant_infect(candidate.current, TRUE)
-	notify_ghosts("[candidate.current.real_name] has been infected by the HNZ-1 pathogen!",
+	notify_ghosts(LANG("datum.3550299e", list(candidate.current.real_name)),
 		source = candidate.current,
 	)

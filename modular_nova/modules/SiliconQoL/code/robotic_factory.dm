@@ -83,7 +83,7 @@
 		return
 
 	stored_cyborgs++
-	notify_ghosts("A new cyborg shell has been created at the [src]",
+	notify_ghosts(LANG("obj.2447c0e8", list(src)),
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "New malfunctioning cyborg created!",

@@ -65,9 +65,9 @@
 		else
 			our_box = new /obj/item/pizzabox()
 
-		user.visible_message(span_notice("A small bluespace rift opens just above [user]'s head and spits out a pizza box!"),
-			span_notice("A small bluespace rift opens just above your head and spits out a pizza box!"),
-			span_notice("You hear a fwoosh followed by a thump."),
+		user.visible_message(span_notice(LANG("obj.8e028098", list(user))),
+			span_notice(LANG("obj.c6351aac", null)),
+			span_notice(LANG("obj.c339c692", null)),
 		)
 		fill_pizza(user, our_box, pizza_choices[selection]) // Look up the path using the name key
 		podspawn(list(

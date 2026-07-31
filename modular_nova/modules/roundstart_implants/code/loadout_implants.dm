@@ -200,8 +200,8 @@
 				spilled_items = TRUE
 			if(spilled_items)
 				owner.visible_message(
-					span_danger("[owner]'s serving tray violently ejects its contents!"),
-					span_warning("Your serving tray implant malfunctions, spilling everything!")
+					span_danger(LANG("obj.f2d40d7d", list(owner))),
+					span_warning(LANG("obj.730c09ae", null))
 				)
 				do_sparks(2, TRUE, owner)
 				playsound(owner, 'sound/items/trayhit/trayhit1.ogg', 50, TRUE)
@@ -289,8 +289,8 @@
 			papers_spat_out++
 		if(papers_spat_out > 0)
 			owner.visible_message(
-				span_warning("[owner]'s arm suddenly spews out paper in all directions!"),
-				span_warning("Your bureaucracy implant malfunctions, spewing papers everywhere!")
+				span_warning(LANG("obj.51d0d780", list(owner))),
+				span_warning(LANG("obj.5a34d6ee", null))
 			)
 			playsound(owner, 'sound/items/poster/poster_ripped.ogg', 50, TRUE)
 		break

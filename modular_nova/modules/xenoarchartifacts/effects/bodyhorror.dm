@@ -62,8 +62,8 @@
 				part_type = /obj/item/bodypart/leg/right/flesh
 
 		carbon_mob.visible_message(
-			span_danger("[carbon_mob][carbon_mob.p_s()] limb suddenly swells and rips apart, revealing brand new red bloody flesh!"),
-			span_bolddanger("Your limb suddenly swells and rips apart, revealing brand new red bloody flesh!"),
+			span_danger(LANG("datum.6aab42a1", list(carbon_mob, carbon_mob.p_s()))),
+			span_bolddanger(LANG("datum.060f0102", null)),
 			blind_message = span_hear("You hear gore sounds, like someone is tearing up flesh and breaking bones."),
 		)
 		var/obj/item/bodypart/new_bodypart = new part_type()

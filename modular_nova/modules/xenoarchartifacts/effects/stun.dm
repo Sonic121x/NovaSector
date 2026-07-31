@@ -21,7 +21,7 @@
 		if(!SPT_PROB(10, seconds_per_tick))
 			continue
 		if(apply_stun(living_mob, 12.5, seconds_per_tick))
-			to_chat(living_mob, span_warning("Your body goes numb for a moment."))
+			to_chat(living_mob, span_warning(LANG("datum.c3e09d8e", null)))
 
 /datum/artifact_effect/stun/do_effect_pulse(seconds_per_tick)
 	. = ..()
@@ -33,13 +33,13 @@
 		if(!SPT_PROB(25, seconds_per_tick))
 			continue
 		if(apply_stun(living_mob, 5 * used_power, seconds_per_tick))
-			to_chat(living_mob, span_warning("A wave of energy overwhelms your senses!"))
+			to_chat(living_mob, span_warning(LANG("datum.4efca1f3", null)))
 
 /datum/artifact_effect/stun/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/living_mob in range(range+3, curr_turf))
 		if(apply_stun(living_mob, 200, 2))
-			to_chat(living_mob, span_warning("A <b>massive</b> wave of energy overwhelms your senses!"))
+			to_chat(living_mob, span_warning(LANG("datum.a343508e", null)))
 
 /**
  * Tries to stun receiver, obviously

@@ -530,7 +530,7 @@
 				show_message = TRUE
 			else
 				if(!spam_protection)
-					to_chat(user, span_warning("Your [name] is full and can't hold any more!"))
+					to_chat(user, span_warning(LANG("obj.852c4a22", list(name))))
 					spam_protection = TRUE
 					continue
 	if(show_message)

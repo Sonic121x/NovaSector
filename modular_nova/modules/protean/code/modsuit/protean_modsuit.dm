@@ -284,7 +284,7 @@
 			var/obj/item/mod/module/storage/existing_storage = locate() in modules
 			if(existing_storage)
 				LAZYADD(cached_modules, existing_storage)
-				to_chat(user, span_notice("[existing_storage] has been pushed aside!"))
+				to_chat(user, span_notice(LANG("obj.5ab48dfa", list(existing_storage))))
 				uninstall(existing_storage)
 		to_assimilate.uninstall(module)
 		install(module)
@@ -296,7 +296,7 @@
 		var/turf/drop_turf = get_turf(src)
 		if(drop_turf)
 			module.forceMove(drop_turf)
-			to_chat(user, span_warning("[module] has dropped onto the floor!"))
+			to_chat(user, span_warning(LANG("obj.d7b15030", list(module))))
 		else
 			qdel(module)
 	// Re-install the protean servo on the new configuration
@@ -327,7 +327,7 @@
 		if(drop_turf)
 			over.forceMove(drop_turf)
 			if(user)
-				to_chat(user, span_warning("[over] no longer fits and falls to the floor!"))
+				to_chat(user, span_warning(LANG("obj.23a3ce5b", list(over))))
 		else
 			qdel(over)
 
@@ -365,7 +365,7 @@
 		stored_modsuit.install(module)
 		if(module in stored_modsuit.modules)
 			continue
-		to_chat(user, span_notice("[module] has fallen to the floor!"))
+		to_chat(user, span_notice(LANG("obj.505699e9", list(module))))
 		module.forceMove(get_turf(src))
 
 	var/list/cached_to_restore = LAZYLISTDUPLICATE(cached_modules)
@@ -374,7 +374,7 @@
 		if(cached in modules)
 			LAZYREMOVE(cached_modules, cached)
 			continue
-		to_chat(user, span_warning("[cached] failed to return to its original place! REPORT THIS"))
+		to_chat(user, span_warning(LANG("obj.6ba9c130", list(cached))))
 		stack_trace("Modsuit Unassimilate: cached module [cached] failed to return to original modsuit! [src]")
 		LAZYREMOVE(cached_modules, cached)
 

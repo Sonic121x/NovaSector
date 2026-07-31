@@ -28,7 +28,7 @@
 
 	for(var/mob/target as anything in GLOB.player_list)
 		if(!isnewplayer(target) && !HAS_TRAIT(target, TRAIT_DEAF) && is_station_level(target.z))
-			to_chat(target, span_brass("You hear a distant, faint clanking of cogs..."))
+			to_chat(target, span_brass(LANG("_root.e1ac942c", null)))
 
 	sleep(7 SECONDS)
 
@@ -43,7 +43,7 @@
 		atom_area = get_area(atom_turf)
 
 	send_clock_message(null, "A portal has been opened at [atom_area] to our holy city, it is a glorious day in the name of Ratvar.", "<span class='bigbrass'>", msg_ghosts = FALSE)
-	notify_ghosts("A portal has been opened at [atom_area] to our holy city, it is a glorious day in the name of Ratvar.",
+	notify_ghosts(LANG("_root.7f5b95e4", list(atom_area)),
 		source = atom_area,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "Portal to Reebe",

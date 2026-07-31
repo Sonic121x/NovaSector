@@ -58,7 +58,7 @@ ADMIN_VERB(import_preferences, R_ADMIN, "导入偏好设置", "Upload a characte
 	catch(var/exception/err)
 		log_admin("Failed to parse json savefile: [err]")
 		log_runtime("Failed to parse json savefile: [err]")
-		to_chat(user, span_warning("Failed to parse json savefile: [err]"))
+		to_chat(user, span_warning(LANG("datum.0a568ea7", list(err))))
 		return
 
 	if(isnull(json_tree) || !islist(json_tree) || !length(json_tree))

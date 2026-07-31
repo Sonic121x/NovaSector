@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 		if(istype(clockwork_struct, /obj/structure/destructible/clockwork/trap))
 			continue
 
-		invoker.balloon_alert(invoker, "structure already on tile!")
+		invoker.balloon_alert(invoker, LANG("datum.a559c1ea", null))
 		return FALSE
 
 	return TRUE

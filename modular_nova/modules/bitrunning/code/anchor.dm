@@ -12,7 +12,7 @@
 /obj/item/domain_anchor/attack_self(mob/user, modifiers)
 	for(var/obj/machinery/quantum_server/server in SSmachines.get_machines_by_type(/obj/machinery/quantum_server))
 		if(server.current_anchors >= server.max_anchors)
-			user.balloon_alert(user, "bandwidth limit reached!")
+			user.balloon_alert(user, LANG("obj.399ab61a", null))
 			return FALSE
 		server.exit_turfs += get_turf(src)
 		server.retries_spent -= 1

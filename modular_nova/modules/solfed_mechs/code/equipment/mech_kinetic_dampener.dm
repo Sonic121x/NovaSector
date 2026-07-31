@@ -80,7 +80,7 @@
 	// Check if chassis exists and has enough energy to start
 	if(QDELETED(chassis) || !chassis.use_energy(energy_drain))
 		for(var/mob/living/pilot in chassis.return_controllers_with_flag(VEHICLE_CONTROL_DRIVE))
-			to_chat(pilot, span_warning("The projectile dampener fails to power on — insufficient energy."))
+			to_chat(pilot, span_warning(LANG("obj.e3c832d2", null)))
 		src.active = FALSE
 		return FALSE
 	// Clear any old field
@@ -103,5 +103,5 @@
 		// not enough power, shut down
 		set_active(FALSE)
 		for(var/mob/living/pilot in chassis.return_controllers_with_flag(VEHICLE_CONTROL_DRIVE))
-			to_chat(pilot, span_warning("The projectile dampener powers down — insufficient energy."))
+			to_chat(pilot, span_warning(LANG("obj.9e3efa99", null)))
 		return PROCESS_KILL

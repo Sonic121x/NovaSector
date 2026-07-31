@@ -71,7 +71,7 @@ GAME_VERB(/client, aooc, "反派 OOC", "OOC", msg as text)
 		var/mode = listeners[iterated_client]
 		var/color = (!anon && CONFIG_GET(flag/allow_admin_ooccolor) && iterated_client?.prefs?.read_preference(/datum/preference/color/ooc_color)) ? iterated_client?.prefs?.read_preference(/datum/preference/color/ooc_color) : GLOB.AOOC_COLOR
 		var/name = (mode == AOOC_LISTEN_ADMIN && anon) ? "([key])[keyname]" : keyname
-		to_chat(iterated_client, span_oocplain("<font color='[color]'><b><span class='prefix'>AOOC:</span> <EM>[name]:</EM> <span class='message linkify'>[msg]</span></b></font>"), avoid_highlighting = (iterated_client == src))
+		to_chat(iterated_client, span_oocplain(LANG("client.0600bf7a", list(color, name, msg))), avoid_highlighting = (iterated_client == src))
 
 #undef AOOC_LISTEN_PLAYER
 #undef AOOC_LISTEN_ADMIN
@@ -96,7 +96,7 @@ GAME_VERB(/client, aooc, "反派 OOC", "OOC", msg as text)
 			listeners[iterated_mob.client] = TRUE
 	for(var/iterated_listener in listeners)
 		var/client/iterated_client = iterated_listener
-		to_chat(iterated_client, span_oocplain("<B>The AOOC channel has been globally [GLOB.aooc_allowed ? "enabled" : "disabled"].</B>"))
+		to_chat(iterated_client, span_oocplain(LANG("_root.9dcf1da5", list(GLOB.aooc_allowed ? "enabled" : "disabled"))))
 
 ADMIN_VERB(toggleaooc, R_ADMIN, "切换反派 OOC", "Toggles Antag OOC.", ADMIN_CATEGORY_SERVER)
 	toggle_aooc()

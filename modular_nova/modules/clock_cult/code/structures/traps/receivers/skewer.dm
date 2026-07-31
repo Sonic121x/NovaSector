@@ -49,7 +49,7 @@
 			continue
 
 		target_stabbed = TRUE
-		to_chat(stabbed_mob, span_userdanger("You are impaled by [src]!"))
+		to_chat(stabbed_mob, span_userdanger(LANG("obj.1af7f6dd", list(src))))
 		stabbed_mob.emote("scream")
 		playsound(src, 'sound/machines/clockcult/brass_skewer.ogg')
 		stabbed_mob.apply_damage(SKEWER_DAMAGE, BRUTE, BODY_ZONE_CHEST)

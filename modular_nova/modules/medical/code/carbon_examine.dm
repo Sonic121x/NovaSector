@@ -33,20 +33,20 @@
 
 		if(status)
 			any_bodypart_damage = TRUE
-			. += "\t<span class='warning'>[t_His] [LB.name] is [status].</span>"
+			. += LANG("mob.32521617", list(t_His, LB.name, status))
 
 		for(var/thing in LB.wounds)
 			any_bodypart_damage = TRUE
 			var/datum/wound/W = thing
 			switch(W.severity)
 				if(WOUND_SEVERITY_TRIVIAL)
-					. += "\t<span class='warning'>[t_His] [LB.name] is suffering [W.a_or_from] [W.get_topic_name(user)].</span>"
+					. += LANG("mob.d2ac56ce", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
 				if(WOUND_SEVERITY_MODERATE)
-					. += "\t<span class='warning'>[t_His] [LB.name] is suffering [W.a_or_from] [W.get_topic_name(user)]!</span>"
+					. += LANG("mob.faf36cc6", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
 				if(WOUND_SEVERITY_SEVERE)
-					. += "\t<span class='warning'><b>[t_His] [LB.name] is suffering [W.a_or_from] [W.get_topic_name(user)]!</b></span>"
+					. += LANG("mob.a29cd597", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
 				if(WOUND_SEVERITY_CRITICAL)
-					. += "\t<span class='warning'><b>[t_His] [LB.name] is suffering [W.a_or_from] [W.get_topic_name(user)]!!</b></span>"
+					. += LANG("mob.b2137071", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
 
 	if(!any_bodypart_damage)
 		. += LANG("mob.d4aac760", list(t_He, t_Has))

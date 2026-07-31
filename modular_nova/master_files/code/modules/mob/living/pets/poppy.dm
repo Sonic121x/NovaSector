@@ -128,7 +128,7 @@
 	do_jitter_animation(60)
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, manual_emote), "'s fur stands up, [src.p_their()] body trembling...")
 
-	notify_ghosts("[src] was startled by the supermatter!",
+	notify_ghosts(LANG("mob.74ac00af", list(src)),
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "Safety Inspection!",

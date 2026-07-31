@@ -762,8 +762,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			administrative action against your account."
 	)
 	for(var/question in list_of_questions)
-		if(tgui_input_list(user, question, "Treason Reporter", list("Yes", "No")) != "Yes")
-			to_chat(user, "You decide not to declare the station as treasonous.")
+		if(tgui_input_list(user, question, LANG("obj.b95441a8", null), list("Yes", "No")) != "Yes")
+			to_chat(user, LANG("obj.29a9cfe7", null))
 			return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the consequences of a false claim of Treason administratively, \
 		and has voted that the station is engaging in Treason.")

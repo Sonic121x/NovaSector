@@ -1182,8 +1182,8 @@
 				return
 			var/new_sheath = tgui_input_list(
 				alterer,
-				"Choose your penis sheath",
-				"DNA Alteration",
+				LANG("datum.a6d8073a", null),
+				LANG("datum.a351df4f", null),
 				assoc_to_keys(SSaccessories.sprite_accessories[FEATURE_SHEATH]),
 			)
 			if(!new_sheath)

@@ -21,8 +21,8 @@
 	for(var/mob/living/living_mob in range(range, curr_turf))
 		if(teleport_around(living_mob, 20))
 			living_mob.visible_message(
-				span_warning("[living_mob] is displaced by a strange force!"),
-				span_warning("You are displaced by a strange force!"),
+				span_warning(LANG("datum.fc07fa9a", list(living_mob))),
+				span_warning(LANG("datum.325c879e", null)),
 				blind_message = span_hear("You hear zap nearby."),
 			)
 
@@ -35,8 +35,8 @@
 	for(var/mob/living/living_mob in range(range, curr_turf))
 		if(teleport_around(living_mob, round(1 * used_power)))
 			living_mob.visible_message(
-				span_warning("[living_mob] is displaced by a strange force!"),
-				span_warning("You are displaced by a strange force!"),
+				span_warning(LANG("datum.fc07fa9a", list(living_mob))),
+				span_warning(LANG("datum.325c879e", null)),
 				blind_message = span_hear("You hear zap nearby."),
 			)
 
@@ -45,8 +45,8 @@
 	for(var/mob/living/living_mob in range(7, curr_turf))
 		if(teleport_around(living_mob, 50))
 			living_mob.visible_message(
-				span_warning("[living_mob] is displaced by a strange force!"),
-				span_warning("You are displaced by a strange force!"),
+				span_warning(LANG("datum.fc07fa9a", list(living_mob))),
+				span_warning(LANG("datum.325c879e", null)),
 				blind_message = span_hear("You hear zap nearby."),
 			)
 

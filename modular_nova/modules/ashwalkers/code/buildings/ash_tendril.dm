@@ -116,7 +116,7 @@
 
 		//there is a 40% chance that the Lava Lizard unlocks their respawn with each sacrifice
 		if(delivery_mob && (delivery_mob.mind?.has_antag_datum(/datum/antagonist/ashwalker)) && (delivery_key in ashies.players_spawned) && prob(40))
-			to_chat(delivery_mob, span_boldwarning("The Necropolis is pleased with your sacrifice. You feel confident your existence after death is secure."))
+			to_chat(delivery_mob, span_boldwarning(LANG("obj.1b842a37", null)))
 			ashies.players_spawned -= delivery_key
 
 		viewable_living.investigate_log("has been gibbed via ashwalker sacrifice.", INVESTIGATE_DEATHS)

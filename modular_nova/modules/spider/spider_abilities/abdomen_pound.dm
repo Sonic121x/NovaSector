@@ -65,7 +65,7 @@
 	for (var/mob/living/candidate in view(pound_distance, owner))
 		if(candidate == owner || candidate.faction_check_atom(owner))
 			continue
-		owner.balloon_alert_to_viewers("Raises their abdomen high up into the air!")
+		owner.balloon_alert_to_viewers(LANG("datum.66d84dcf", null))
 
 /// Slam it into the ground
 /datum/action/cooldown/mob_cooldown/abdomen_pound/proc/ground_pound()
@@ -76,8 +76,8 @@
 	for (var/mob/living/candidate in view(pound_distance, owner))
 		if(candidate == owner || candidate.faction_check_atom(owner))
 			continue
-		owner.visible_message(span_boldwarning("[candidate] is knocked back by the sudden slam on the tiles!"))
-		to_chat(candidate, span_userdanger("You're knocked back by the spiders impact on the floor!"))
+		owner.visible_message(span_boldwarning(LANG("datum.2e853f8d", list(candidate))))
+		to_chat(candidate, span_userdanger(LANG("datum.2b80a689", null)))
 		var/dir_to_target = get_dir(get_turf(owner), get_turf(candidate))
 		var/throwtarget = get_edge_target_turf(target, dir_to_target)
 		candidate.safe_throw_at(throwtarget, range = 7, speed = 1, thrower = owner)

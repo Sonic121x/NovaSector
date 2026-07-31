@@ -314,7 +314,7 @@
 			for(var/mob/cannot_smell in asomnia_havers)
 				if(!HAS_TRAIT(cannot_smell, TRAIT_ANOSMIA))
 					asomnia_havers -= cannot_smell
-			visible_message(span_danger("You smell a burnt smell coming from [src]!"), ignored_mobs = asomnia_havers)
+			visible_message(span_danger(LANG("obj.6d67c4b6", list(src))), ignored_mobs = asomnia_havers)
 			// Give indication that something is burning in the oven
 	set_smoke_state(worst_cooked_food_state)
 
@@ -606,7 +606,7 @@
 			continue
 
 		if(is_type_in_typecache(weapon_reagent, disallowed_reagents))
-			balloon_alert(user, "cannot imbue with [weapon_reagent.name]")
+			balloon_alert(user, LANG("obj.15cbef25", list(weapon_reagent.name)))
 			attacking_weapon.reagents.remove_reagent(weapon_reagent.type, include_subtypes = TRUE)
 			continue
 
@@ -656,7 +656,7 @@
 			continue
 
 		if(is_type_in_typecache(clothing_reagent, disallowed_reagents))
-			balloon_alert(user, "cannot imbue with [clothing_reagent.name]")
+			balloon_alert(user, LANG("obj.15cbef25", list(clothing_reagent.name)))
 			attacking_clothing.reagents.remove_reagent(clothing_reagent.type, include_subtypes = TRUE)
 			continue
 

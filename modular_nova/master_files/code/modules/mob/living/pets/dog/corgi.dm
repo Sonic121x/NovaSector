@@ -188,7 +188,7 @@
 	investigate_log("has been gibbed due to being emagged by [user].", INVESTIGATE_DEATHS)
 	visible_message(span_boldwarning(LANG("mob.aa4faa1b", list(user, target))), span_notice(LANG("mob.3ff70b47", list(target))))
 
-	notify_ghosts("[user.real_name] has shortcircuited [target] to explode in 60 seconds!",
+	notify_ghosts(LANG("mob.b8d62116", list(user.real_name, target)),
 		source = target,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "Borgi Emagged",

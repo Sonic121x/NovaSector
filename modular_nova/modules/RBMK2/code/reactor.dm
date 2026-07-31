@@ -320,7 +320,7 @@
 	for(var/obj/machinery/power/rbmk2/reactor in get_turf(src))
 		if(reactor != src)
 			reactor.deconstruct(FALSE) // To prevent stacking reactors on top of each other.
-			balloon_alert_to_viewers("[reactor] tears itself apart!")
+			balloon_alert_to_viewers(LANG("obj.d2e890a9", list(reactor)))
 			return
 
 	if(active == desired_state)

@@ -54,12 +54,12 @@
 		return
 	for(var/obj/item/I in view(2 + suck_distance, src))
 		if(istype(I, /obj/machinery/dish_drive/bullet))
-			visible_message(span_userdanger("[src] has detected another bullet drive nearby, and is sad!"))
+			visible_message(span_userdanger(LANG("obj.5ce1d582", list(src))))
 			break
 		if(is_type_in_list(I, collectable_items) && I.loc != src && (!I.reagents || !I.reagents.total_volume))
 			if(I.Adjacent(src))
 				LAZYADD(dish_drive_contents, I)
-				visible_message(span_notice("[src] beams up [I]!"))
+				visible_message(span_notice(LANG("obj.52c367cc", list(src, I))))
 				I.moveToNullspace()
 				playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 				flick("synthesizer_beam", src)

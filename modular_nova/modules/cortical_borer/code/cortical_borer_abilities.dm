@@ -754,7 +754,7 @@
 		return
 	for(var/ckey_check in GLOB.willing_hosts)
 		if(ckey_check == cortical_owner.human_host.ckey)
-			owner.balloon_alert(owner, "host already willing")
+			owner.balloon_alert(owner, LANG("datum.2a143117", null))
 			return
 	owner.balloon_alert(owner, LANG("datum.c2e7027c", null))
 	cortical_owner.chemical_storage -= chemical_cost

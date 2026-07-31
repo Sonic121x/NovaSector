@@ -56,8 +56,8 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 		hivemind.linked_mobs -= linked_mob
 		var/mob/living/hivemind_owner = hivemind.parent
 
-		to_chat(hivemind_owner, span_abductor("[linked_mob] has left your Hivemind."))
-		to_chat(linked_mob, span_abductor("You have left [hivemind_owner]'s Hivemind."))
+		to_chat(hivemind_owner, span_abductor(LANG("datum.29163827", list(linked_mob))))
+		to_chat(linked_mob, span_abductor(LANG("datum.d897134b", list(hivemind_owner))))
 
 	QDEL_NULL(user_network)
 	return ..()

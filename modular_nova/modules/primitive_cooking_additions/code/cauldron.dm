@@ -74,7 +74,7 @@
 				items_counts[single_item.name]++
 
 		for(var/item in items_counts)
-			. += span_notice("- [items_counts[item]]x [item].")
+			. += span_notice(LANG("obj.f2bf9e2b", list(items_counts[item], item)))
 
 	else
 		. += span_notice(LANG("obj.c8ad1ee9", list(src)))
@@ -210,7 +210,7 @@
 				continue
 
 			if(ingredients.len >= max_n_of_items)
-				balloon_alert(user, "it's full!")
+				balloon_alert(user, LANG("obj.2cb7d354", null))
 				return ITEM_INTERACT_BLOCKING
 
 			if(tray.atom_storage.attempt_remove(tray_item, src))

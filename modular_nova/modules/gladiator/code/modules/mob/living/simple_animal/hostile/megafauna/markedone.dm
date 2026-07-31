@@ -345,9 +345,9 @@
 			if(!FAST_FACTION_CHECK(faction, slapped.faction, null, null, FALSE) && !(slapped in hit_things))
 				playsound(src, 'modular_nova/modules/gladiator/Clang_cut.ogg', 75, 0)
 				if(slapped.apply_damage(40, BRUTE, BODY_ZONE_CHEST, slapped.run_armor_check(BODY_ZONE_CHEST), wound_bonus = CANT_WOUND))
-					visible_message(span_danger("[src] slashes through [slapped] with his spinning blade!"))
+					visible_message(span_danger(LANG("mob.3af77145", list(src, slapped))))
 				else
-					visible_message(span_danger("[src]'s spinning blade is stopped by [slapped]!"))
+					visible_message(span_danger(LANG("mob.ffb76b34", list(src, slapped))))
 					spinning = FALSE
 				hit_things |= slapped
 		if(!spinning)
@@ -445,7 +445,7 @@
 			for(var/mob/living/target in stomp_turf)
 				if(target == src || target.throwing)
 					continue
-				to_chat(target, span_userdanger("[src]'s ground slam shockwave sends you flying!"))
+				to_chat(target, span_userdanger(LANG("mob.f138f919", list(src))))
 				var/turf/thrownat = get_ranged_target_turf_direct(src, target, throw_range, rand(-10, 10))
 				target.throw_at(thrownat, 8, 2, null, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 				target.apply_damage(20, BRUTE, wound_bonus=CANT_WOUND)

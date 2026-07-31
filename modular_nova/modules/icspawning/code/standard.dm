@@ -236,7 +236,7 @@
 
 		// If it's not a /datum/stock_part subtype either, something has gone wrong and devs should probably be alerted.
 		if(found_matching < parts_amount_required)
-			to_chat(user, span_notice("Something went wrong manufacturing [req_component]. Alert the devs, and let them know what machine it was!"))
+			to_chat(user, span_notice(LANG("obj.d0d5efc6", list(req_component))))
 
 /// BSTs' special Bluespace RPED can manufacture parts on Alt-RMB, either cables, glass, machine boards, or stock parts.
 /obj/item/storage/part_replacer/bluespace/tier4/bst/click_alt_secondary(mob/user)

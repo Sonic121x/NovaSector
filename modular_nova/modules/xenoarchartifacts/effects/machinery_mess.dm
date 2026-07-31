@@ -33,7 +33,7 @@
 				return FALSE
 
 			playsound(holder, 'sound/misc/interference.ogg', 50, ignore_walls = TRUE)
-			chosen_machine.audible_message(span_userdanger("You hear a loud electrical buzzing sound coming from [chosen_machine]!"))
+			chosen_machine.audible_message(span_userdanger(LANG("datum.4aa7a19c", list(chosen_machine))))
 			if(QDELETED(chosen_machine))
 				return
 

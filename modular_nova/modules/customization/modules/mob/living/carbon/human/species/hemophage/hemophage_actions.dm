@@ -188,7 +188,7 @@
 				list_entry -= list(quadruplet)
 				if(!length(list_entry))
 					previous_wounds -= limb_name
-				to_chat(our_mob, span_warning("The [iter_wound] comes unclotted upon taking damage!"))
+				to_chat(our_mob, span_warning(LANG("datum.15c1a9d0", list(iter_wound))))
 
 	UnregisterSignal(our_mob, COMSIG_CARBON_LIMB_DAMAGED)
 

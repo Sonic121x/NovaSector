@@ -120,9 +120,9 @@
 	playsound(defender, attack_sound, 25, TRUE, -1)
 
 	defender.visible_message(
-		span_danger("[attacker] crushed [defender]!"),
-		span_userdanger("You're crushed by [attacker]!"),
-		span_hear("You hear a sickening sound of metal hitting flesh!"),
+		span_danger(LANG("datum.42adf5cd", list(attacker, defender))),
+		span_userdanger(LANG("datum.74372ae1", list(attacker))),
+		span_hear(LANG("datum.d91738b7", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
@@ -180,9 +180,9 @@
 
 	attacker.do_attack_animation(defender)
 	defender.visible_message(
-		span_danger("[attacker] blasts [defender] back!"),
-		span_userdanger("You're blasted back by [attacker]!"),
-		span_hear("You hear a sickening sound of metal hitting flesh!"),
+		span_danger(LANG("datum.ed2e91e6", list(attacker, defender))),
+		span_userdanger(LANG("datum.ab02e6c5", list(attacker))),
+		span_hear(LANG("datum.d91738b7", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)

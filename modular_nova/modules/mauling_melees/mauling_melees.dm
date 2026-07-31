@@ -98,7 +98,7 @@
 
 /obj/item/storage/belt/machete/click_alt(mob/user)
 	for(var/obj/item/machete/machete in contents)
-		user.visible_message(span_notice("[user] takes [machete] out of [src]."), span_notice("You take [machete] out of [src]."))
+		user.visible_message(span_notice(LANG("obj.1f34f194", list(user, machete, src))), span_notice(LANG("obj.604c7b94", list(machete, src))))
 		machete.remove_item_from_storage(user)
 		user.put_in_hands(machete)
 		update_appearance()

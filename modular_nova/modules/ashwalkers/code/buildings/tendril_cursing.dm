@@ -34,7 +34,7 @@
 			if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 				continue
 
-			to_chat(select_mob, span_boldwarning("A cursed tendril has been broken! The target has been marked until they flee the lands!"))
+			to_chat(select_mob, span_boldwarning(LANG("mob.b4feab5b", null)))
 
 	. = ..()
 
@@ -65,7 +65,7 @@
 		if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 			continue
 
-		to_chat(select_mob, span_boldwarning("A target has died, the curse has been lifted!"))
+		to_chat(select_mob, span_boldwarning(LANG("datum.6dcd6da4", null)))
 
 	qdel(src)
 
@@ -78,7 +78,7 @@
 			if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 				continue
 
-			to_chat(select_mob, span_boldwarning("A target has fled from the land, breaking the curse!"))
+			to_chat(select_mob, span_boldwarning(LANG("datum.9e661497", null)))
 		qdel(src)
 		return
 

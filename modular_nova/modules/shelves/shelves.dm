@@ -45,7 +45,7 @@
 		. += span_notice(LANG("obj.602498c3", list(src)))
 		. += span_notice(LANG("obj.1c59f63b", list(src)))
 		for(var/obj/structure/closet/crate/crate in contents)
-			. += span_notice("[icon2html(crate, user)] \A [crate]")
+			. += span_notice(LANG("obj.d58b175e", list(icon2html(crate, user), crate)))
 
 /obj/structure/cargo_shelf/wrench_act_secondary(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
@@ -140,7 +140,7 @@
 			if(crate.welded || crate.locked)
 				continue
 			crate.open(force = TRUE) // Break some open, cause a little chaos.
-			crate.visible_message(span_warning("[crate]'s lid falls open!"))
+			crate.visible_message(span_warning(LANG("obj.5a918971", list(crate))))
 
 // Returns a valid open turf to scatter crates
 /obj/structure/cargo_shelf/proc/get_spill_location(radius = 2)
@@ -264,8 +264,8 @@
 			return
 		var/obj/structure/cargo_shelf/rack = new /obj/structure/cargo_shelf(get_turf(src))
 		user.visible_message(
-			span_notice("[user] assembles \a [rack]."),
-			span_notice("You assemble \a [rack]."),
+			span_notice(LANG("obj.3dc1a1cd", list(user, rack))),
+			span_notice(LANG("obj.e671a056", list(rack))),
 		)
 		rack.add_fingerprint(user)
 		qdel(src)

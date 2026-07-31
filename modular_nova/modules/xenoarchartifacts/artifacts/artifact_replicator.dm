@@ -137,8 +137,8 @@
 /obj/machinery/replicator/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.item_flags & (ABSTRACT | DROPDEL))
 		user.visible_message(
-			span_notice("[user] tries to insert [tool] into [src], but the opening is too small."),
-			span_notice("[tool] doesn't fit into [src]."),
+			span_notice(LANG("obj.41238d7e", list(user, tool, src))),
+			span_notice(LANG("obj.a9758700", list(tool, src))),
 		)
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
@@ -146,8 +146,8 @@
 		return ITEM_INTERACT_BLOCKING
 	stored_materials.Add(tool)
 	visible_message(
-		span_notice("[user] inserts [tool] into [src]."),
-		span_notice("You insert [tool] into [src]."),
+		span_notice(LANG("obj.05c6f8ca", list(user, tool, src))),
+		span_notice(LANG("obj.8ce99939", list(tool, src))),
 	)
 	return ITEM_INTERACT_SUCCESS
 

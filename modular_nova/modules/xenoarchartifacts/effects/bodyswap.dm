@@ -38,9 +38,7 @@
 			original_minds -= original_mind_ref
 			if(original_mind.current)
 				to_chat(original_mind.current, span_boldwarning(
-					"You feel dizzy for a moment, feeling like your mind wants to be transported, but it has nowhere to go. \
-					Suddenly you return to the foreign body. A tremendous fear crawls into your soul. Seems like you are \
-					stuck like this..." \
+					LANG("datum.5a080e9e", null) \
 				))
 
 			continue

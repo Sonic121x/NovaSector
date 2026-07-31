@@ -37,11 +37,11 @@
 		if(AI.deployed_shell)
 			if(!is_station_level(AI.deployed_shell.registered_z))
 				continue
-			to_chat(AI.deployed_shell, "<b><a href='byond://?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK].")
+			to_chat(AI.deployed_shell, LANG("obj.d5834809", list(REF(AI), html_encode(user.name), user, src, LINK_DENY, LINK_OPEN, LINK_BOLT, LINK_SHOCK)))
 			continue
 		if(!is_station_level(AI.registered_z))
 			continue
-		to_chat(AI, "<b><a href='byond://?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK].")
+		to_chat(AI, LANG("obj.d5834809", list(REF(AI), html_encode(user.name), user, src, LINK_DENY, LINK_OPEN, LINK_BOLT, LINK_SHOCK)))
 	requesters[request_key] = world.time
 	addtimer(CALLBACK(src, PROC_REF(clear_stale_requester), request_key, world.time), DOOR_AI_REQUEST_COOLDOWN)
 

@@ -52,7 +52,7 @@
 
 	for(var/player_key in spam_queue)
 		if(player_key == user.ckey)
-			balloon_alert(user, "spam protection active!")
+			balloon_alert(user, LANG("obj.6f07ac27", null))
 			return
 	ghost_mark(user)
 

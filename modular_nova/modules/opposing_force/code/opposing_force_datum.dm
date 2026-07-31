@@ -308,11 +308,11 @@
 				return
 			for(var/datum/opposing_force_objective/objective as anything in objectives)
 				if(objective.status == OPFOR_OBJECTIVE_STATUS_NOT_REVIEWED)
-					to_chat(usr, boxed_message(span_command_headset(span_pink("OPFOR: ERROR, some objectives have not been reviewed. Please approve/deny all objectives."))))
+					to_chat(usr, boxed_message(span_command_headset(span_pink(LANG("datum.cbedb888", null)))))
 					return
 			for(var/datum/opposing_force_selected_equipment/equipment as anything in selected_equipment)
 				if(equipment.status == OPFOR_EQUIPMENT_STATUS_NOT_REVIEWED)
-					to_chat(usr, boxed_message(span_command_headset(span_pink("OPFOR: ERROR, some equipment requests have not been reviewed. Please approve/deny all equipment requests."))))
+					to_chat(usr, boxed_message(span_command_headset(span_pink(LANG("datum.c91ec825", null)))))
 					return
 			SSopposing_force.approve(src, usr)
 		if("approve_all")
@@ -953,7 +953,7 @@
 		QDEL_LIST(objectives)
 		QDEL_LIST(selected_equipment)
 		set_backstory = null
-		to_chat(importer, span_warning("JSON file is corrupted in some form. Please correct and reupload."))
+		to_chat(importer, span_warning(LANG("datum.f23c7777", null)))
 		add_log(importer.ckey, "Attempted to upload a corrupted JSON, purging leftover data...")
 
 

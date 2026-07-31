@@ -69,8 +69,8 @@
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] inserts battery into the utilizer."),
-		span_notice("You insert the battery into the utilizer."),
+		span_notice(LANG("obj.4263d56a", list(user))),
+		span_notice(LANG("obj.2f43105d", null)),
 		blind_message = span_notice("You hear click nearby."),
 	)
 	playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 25, FALSE)

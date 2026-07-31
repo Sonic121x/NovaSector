@@ -173,7 +173,7 @@
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
 			var/mode = istype(target_ears)
-			living_mob.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "transmission heard...")
+			living_mob.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", LANG("obj.e67bb6f2", null))
 
 	for(var/mob/dead_mob as anything in GLOB.dead_mob_list)
 		if(isnull(dead_mob.client) || isnewplayer(dead_mob))
