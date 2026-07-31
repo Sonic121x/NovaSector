@@ -85,7 +85,11 @@
 
 	///If the announcer overrides alert messages, use that message.
 	if(SSstation.announcer.custom_alert_message && !has_important_message)
-		announcement_strings += MAJOR_ANNOUNCEMENT_TEXT(SSstation.announcer.custom_alert_message)
+		// NOVA EDIT CHANGE - I18N: 播音员的自定义提示语是**编译期 span_alert() 包裹**的类型变量，
+		// 目录里存的是里层裸串 → 整串直接发出去必然 miss 反查，只剩 AC 子串兜底把 "important" 单词
+		// 替换成「重要」，其余留英文（表现：「Please stand by for an 重要message from our new intern.」）。
+		// lang_reverse_text 本身会剥单层 span 再查内层，这里补上调用即可。ORIGINAL: MAJOR_ANNOUNCEMENT_TEXT(SSstation.announcer.custom_alert_message)
+		announcement_strings += MAJOR_ANNOUNCEMENT_TEXT(lang_reverse_text(SSstation.announcer.custom_alert_message))
 	else
 		announcement_strings += MAJOR_ANNOUNCEMENT_TEXT(text)
 

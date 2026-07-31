@@ -1,4 +1,4 @@
-GAME_VERB_PROC(/client, cmd_mentor_dementor, "摄魂怪", "Mentor")
+GAME_VERB_PROC(/client, cmd_mentor_dementor, "卸任导师", "Mentor")
 	if(!is_mentor())
 		return
 	remove_mentor_verbs()
@@ -9,7 +9,7 @@ GAME_VERB_PROC(/client, cmd_mentor_dementor, "摄魂怪", "Mentor")
 	log_mentor("MENTOR: [src] dementored.")
 	ASSIGN_GAME_VERB(src, /client, cmd_mentor_rementor)
 
-GAME_VERB_PROC(/client, cmd_mentor_rementor, "复魂怪", "Mentor")
+GAME_VERB_PROC(/client, cmd_mentor_rementor, "恢复导师", "Mentor")
 	if(!is_mentor())
 		return
 	add_mentor_verbs()

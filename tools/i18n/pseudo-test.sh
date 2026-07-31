@@ -70,11 +70,11 @@ rm -rf data/logs/ci
 # 「单测失败 0 个」，是**假绿**。
 mkdir -p data
 cp _maps/runtimestation_minimal.json data/next_map.json
-# 清掉上一轮的 CI 日志。**不清就是假红**：下面的门禁用 `grep -c "runtime error" data/logs/ci/runtime.log`
-# 计数，而这个日志是**追加**的、跨运行累积 —— 只要历史上出过一次 runtime，之后每次都会被算进来，
-# 门禁从此永远失败，且报的行还带着几天前的时间戳。2026-07-31 实测：本轮零 runtime，却因为 07-30
-# 留下的 21 条历史记录（20 条地图图标噪音 + 1 条 GAGS 图标配置）而判失败。
-rm -rf data/logs/ci
+# 清掉上一轮的单测结果。**不清就是假红/假绿**：下面的门禁直接读 data/unit_tests.json，而这个文件
+# 只在单测跑完时才被覆盖 —— 本轮若因任何原因没写出它，门禁就会**拿上一轮的结果当本轮的**。
+# 2026-07-31 实测：本轮 i18n_ac_longest / i18n_template_match 在日志里都是 PASS，门禁却报这两条
+# 失败，因为读到的是 10 分钟前那次失败运行留下的 json。
+rm -f data/unit_tests.json
 DreamDaemon tgstation.test.dmb -close -trusted -verbose -params "log-directory=ci"
 
 if [[ -f data/logs/ci/clean_run.lk ]]; then
@@ -96,6 +96,11 @@ KNOWN = {
     # 上游此测试意在防「id label 逻辑改名」，与本地化无关；en 构建照常通过。
     '/datum/unit_test/spare_id_name',
 }
+import os, sys
+if not os.path.exists('data/unit_tests.json'):
+    print('data/unit_tests.json 不存在——单测没跑完/没写出结果，判失败（绝不沿用上一轮结果）', file=sys.stderr)
+    print('999')
+    raise SystemExit(0)
 d = json.load(open('data/unit_tests.json'))
 fails = sorted(k for k, v in d.items() if v.get('status') == 1)
 unknown = [k for k in fails if k not in KNOWN]

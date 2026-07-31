@@ -50,8 +50,15 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 					single_patterns += english
 					single_replacements += manual[english]
 
+	// **匹配模式必须是 LeftmostLongest**（默认 Standard = 一命中就替换，即最短匹配）。
+	// 目录里大量存在「一个词是另一个词前缀」的情况，最短匹配会把长词切坏：
+	//   "Security Officer"（安保官）里先命中 "Security Office"（安保办公室，区域名）
+	//   → 输出「安保办公室r」，末尾那个 r 就是被切剩的。
+	// LeftmostLongest 在同一起点取最长匹配，长词优先，这类前缀冲突全部消失。
+	var/static/list/ac_options = list("match_kind" = "LeftmostLongest")
+
 	if(length(single_patterns))
-		rustg_setup_acreplace("i18n_single_[locale]", single_patterns, single_replacements)
+		rustg_setup_acreplace_with_options("i18n_single_[locale]", ac_options, single_patterns, single_replacements)
 		GLOB.i18n_fallback_single_state[locale] = "ready"
 	else
 		GLOB.i18n_fallback_single_state[locale] = "none"
@@ -66,7 +73,7 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 		patterns += english
 		replacements += dict[english]
 
-	rustg_setup_acreplace("i18n_[locale]", patterns, replacements)
+	rustg_setup_acreplace_with_options("i18n_[locale]", ac_options, patterns, replacements)
 	GLOB.i18n_fallback_state[locale] = "ready"
 	return TRUE
 

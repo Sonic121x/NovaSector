@@ -550,6 +550,10 @@
   "Del-All": "Del-All",
   "Delta Station": "德尔塔站",
   "Deluxe Silicate Selections": "Deluxe Silicate Selections",
+  "Dementor": {
+    "zh": "卸任导师",
+    "note": "mentor 模块的 de-mentor（卸下导师身份），**不是**《哈利波特》的摄魂怪"
+  },
   "Demi Galgan": "Demi Galgan",
   "DemonEye": "DemonEye",
   "Dentata": "登塔塔",
@@ -1712,6 +1716,10 @@
   "Regenerative Materia": "Regenerative Materia",
   "Religion name": "宗教名称",
   "Relocation Medicell": "迁移医疗信标",
+  "Rementor": {
+    "zh": "恢复导师",
+    "note": "与 Dementor 相对，重新获得导师身份"
+  },
   "Rengo Precision Rifle": "Rengo Precision Rifle",
   "Renpaard-Infanterie": "Renpaard-Infanterie",
   "Replica Fabricator": "Replica Fabricator",
@@ -2585,6 +2593,14 @@
   "töchtaüse": "特赫陶瑟",
   "vend-a-tray": "售货托盘",
   "voltvine": "伏特藤",
+  "wooden barrel": {
+    "zh": "木桶",
+    "note": "发酵/酿造桶（fermenting_barrel）。勿与 wooden bucket（木水桶）同名——堆叠合成菜单按显示名做键，同名会吃掉配方"
+  },
+  "wooden bucket": {
+    "zh": "木水桶",
+    "note": "提水用的桶。**不能**也译作「木桶」，会与 wooden barrel 撞车"
+  },
   "youtube-dl": "youtube-dl",
   "z-level": "z-level",
   "zaukerite": "佐克石",

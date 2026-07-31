@@ -322,6 +322,24 @@ GLOBAL_VAR_INIT(i18n_armor_classes_loaded, FALSE)
 						GLOB.i18n_armor_classes[class_name] = for_locale[class_name]
 	return GLOB.i18n_armor_classes[name] || name
 
+/// 反查后的文本要当**关联列表的 key**（= 显示标签）时的防撞车包装。
+///
+/// 不同英文标题完全可能译成同一个中文——`wooden barrel` 和 `wooden bucket` 都是「木桶」——
+/// 而 assoc list 同 key 会**互相覆盖**，后写的顶掉先写的，于是配方从菜单里凭空消失（没有任何报错）。
+/// 撞车时附上英文原名消歧，既保证唯一、又仍是可读的显示文本。locale==en 时 lang_reverse_text 是
+/// no-op，label 恒等于原标题，行为与从前完全一致。
+/proc/lang_unique_display_key(list/target, text)
+	var/label = lang_reverse_text("[text]")
+	if(!(label in target))
+		return label
+	// 译名已被占用：加英文原名区分。极端情况下（同一英文标题在同一层出现两次）再补序号。
+	var/candidate = "[label]（[text]）"
+	var/index = 2
+	while(candidate in target)
+		candidate = "[label]（[text] [index]）"
+		index++
+	return candidate
+
 /// 状态栏页签名/分组标题的显示译名表（英文标识符 -> 译名），发给 statbrowser.js 只用于渲染文字。
 /// 同 lang_vog_triggers 放顶层 JSON：键是 Admin/Game/Object 这类裸单词，进全局反查表会造成标识符碰撞。
 /// **页签名本身绝不本地化**——它是 button.id、SendTabToByond 回传值、statpanel.dm `stat_tab ==` 比较的
