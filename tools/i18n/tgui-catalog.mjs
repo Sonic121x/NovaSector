@@ -528,10 +528,35 @@ function stripGrammarMacros(text) {
   return typeof text === 'string' ? text.replace(/\\(improper|proper)\s*/g, '') : text;
 }
 
+/**
+ * 当前正在扫的来源标识（`tgui:ChemReactionChamber` / `dm:code/…/food.dm`）。
+ *
+ * 用模块级变量而不是给 addText 加参数：addText/addDisplayExpr 有十几处调用点、还嵌在
+ * 递归 visit 里，逐个穿参数改动面大且容易漏。脚本是单线程顺序扫描，扫每个文件前设一次即可。
+ */
+let currentScope = null;
+
+/**
+ * 英文串 -> 出现过的来源集合。与 DM 侧的 strings/i18n/scopes.json 同一用途（语境消歧），
+ * 但**分开落盘**：那个文件归 nova-i18n extract（Rust）写，两个写者共用一个文件迟早互相覆盖。
+ *
+ * 注意 TGUI 目录的 key **就是英文原文**，所以一个 key 可能同时属于多个界面
+ * （`"Basic"` 在 Crayon 里是「基础」色系分组，在化学界面里该是「碱性」）。
+ * scope 能**报出**这种冲突，但解决不了——同一个 key 只能有一个译文。真要分开译，
+ * 得让前端按界面取不同译文，那是另一套改动。
+ */
+const textScopes = {};
+
+function noteScope(normalized) {
+  if (!currentScope || !normalized) return;
+  (textScopes[normalized] ??= new Set()).add(currentScope);
+}
+
 function addText(catalog, text) {
   const normalized = normalizeText(stripGrammarMacros(text));
   if (normalized) {
     catalog[normalized] = normalized;
+    noteScope(normalized);
   }
 }
 
@@ -874,10 +899,16 @@ function extractAntagonistLabels(catalog) {
 
 function extractCatalog() {
   const catalog = {};
+  // 这三个来源不是界面文件，语境按来源种类记（够用来把它们和界面串区分开）。
+  currentScope = 'dm:labels';
   extractDmLabels(catalog);
+  currentScope = 'dm:antagonists';
   extractAntagonistLabels(catalog);
+  currentScope = 'dm:interactions';
   extractInteractionLabels(catalog);
   for (const filePath of walk(TGUI_SOURCE_DIR)) {
+    // 界面名即语境。`interfaces/ChemReactionChamber.tsx` -> `tgui:ChemReactionChamber`。
+    currentScope = `tgui:${path.basename(filePath).replace(/\.(tsx|jsx|ts|js)$/, '')}`;
     const source = fs.readFileSync(filePath, 'utf8');
     const sourceFile = ts.createSourceFile(
       filePath,
@@ -1005,7 +1036,34 @@ function extract() {
 
   writeJson(stringsCatalogPath('en'), enCatalog);
   writeJson(stringsCatalogPath('zh-Hans'), zhCatalog);
+  writeTguiScopes(enCatalog);
   sync();
+}
+
+/**
+ * 落盘 TGUI 语境 sidecar，并报出**跨界面共用**的 key。
+ *
+ * 放 strings/i18n/tgui-scopes.json（locale 目录之外——build_i18n_cache 会把 locale 目录里
+ * 每个 .json 全量并进反查表，见 DM 侧 scopes.json 的同款注意事项）。
+ */
+function writeTguiScopes(enCatalog) {
+  const out = {};
+  for (const key of Object.keys(enCatalog).sort()) {
+    const scopes = textScopes[key];
+    if (scopes && scopes.size) out[key] = [...scopes].sort();
+  }
+  const outPath = path.join(STRINGS_I18N_DIR, 'tgui-scopes.json');
+  fs.writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
+  const shared = Object.entries(out).filter(
+    ([key, s]) => s.length > 1 && key.split(/\s+/).length <= 2,
+  );
+  console.log(
+    `tgui 语境 sidecar: ${Object.keys(out).length} 条 -> ${path.relative(ROOT, outPath)}`,
+  );
+  console.log(
+    `  其中 ${shared.length} 条**短串跨多个界面共用**——这些 key 只能有一个译文，` +
+      `若各界面语义不同就必然有一边是错的（如 "Basic"：色系分组 vs 化学碱性）。`,
+  );
 }
 
 function sync() {

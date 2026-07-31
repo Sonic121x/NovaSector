@@ -123,6 +123,9 @@ type TranslatedBatch = {
   catalog: Catalog;
   glossaryAdded: number;
   reused?: boolean;
+  /** 术语强制修好的条数 / 强制后仍违规的条数（见 enforceGlossary）。 */
+  termFixed?: number;
+  termLeft?: number;
 };
 type TermMismatch = {
   term: string;
@@ -282,9 +285,19 @@ function sourceTermPattern(term: string): RegExp {
  * 缺文件不报错，只是退化成「所有义项都按兜底处理」——老仓库/未重跑 extract 时仍能工作。
  */
 const SCOPES_PATH = path.join(ROOT, 'strings/i18n/scopes.json');
-const scopesByKey: Record<string, string[]> = fs.existsSync(SCOPES_PATH)
-  ? JSON.parse(fs.readFileSync(SCOPES_PATH, 'utf8'))
-  : {};
+/**
+ * TGUI 侧同名 sidecar（tgui-catalog.mjs 产出），来源写作 `tgui:ChemReactionChamber`。
+ * 分两个文件是因为两个写者（Rust extract / node tgui-catalog）共用一个文件必然互相覆盖。
+ * 两边 key 空间不重叠——DM 是 `obj.abc12345`，TGUI 直接拿英文原文当 key——所以合并安全。
+ */
+const TGUI_SCOPES_PATH = path.join(ROOT, 'strings/i18n/tgui-scopes.json');
+function loadScopes(p: string): Record<string, string[]> {
+  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : {};
+}
+const scopesByKey: Record<string, string[]> = {
+  ...loadScopes(SCOPES_PATH),
+  ...loadScopes(TGUI_SCOPES_PATH),
+};
 
 /**
  * 给定条目 key，选出该术语适用的义项。
@@ -302,8 +315,13 @@ function pickSense(term: GlossaryTerm, key: string): GlossarySense | null {
     }
     if (!paths) continue;
     for (const prefix of sense.scope) {
+      // `/datum/reagent` 命中 `/datum/reagent/medicine/multiver`；
+      // `tgui:` 这种以冒号收尾的写法命中该来源下全部界面（`tgui:ChemHeater`）。
       const hit = paths.some(
-        (p) => p === prefix || p.startsWith(`${prefix}/`),
+        (p) =>
+          p === prefix ||
+          p.startsWith(`${prefix}/`) ||
+          (prefix.endsWith(':') && p.startsWith(prefix)),
       );
       if (hit && prefix.length > bestLen) {
         best = sense;
@@ -1494,11 +1512,68 @@ function reusableTranslatedBatch(
   return { catalog, glossaryAdded, reused: true };
 }
 
+/**
+ * 术语强制回合数。术语表从前只是塞进提示词的**建议**，模型爱听不听 —— 于是同一个
+ * 试剂能在目录里攒出七种叫法。这里把它变成**保证**：每批翻完立刻自查，违规条目
+ * 单独重发（只发违规的那几条，便宜），最多 N 轮；仍不合规就留给 `terms` 报告和人工。
+ * 0 = 关闭（回到纯建议模式）。
+ */
+const TERM_ENFORCE_ROUNDS = Math.max(0, envInt('I18N_TERM_ROUNDS', 2));
+
+/** 本批里译文违反术语表的 key。 */
+function batchTermViolations(batch: Catalog, catalog: Catalog): string[] {
+  const bad: string[] = [];
+  for (const key of Object.keys(catalog)) {
+    const en = batch[key];
+    if (en == null) continue;
+    if (termMismatches(en, catalog[key], key).length > 0) bad.push(key);
+  }
+  return bad;
+}
+
+/**
+ * 就地修正 catalog 里违反术语表的条目。
+ *
+ * 只在**确实变好**时才采纳重翻结果（违规数下降）：重翻是整条重来，可能修好术语却
+ * 把句子别处翻坏。宁可留着旧的进 `terms` 报告等人工，也不要静默变差。
+ */
+async function enforceGlossary(
+  file: string,
+  idx: number | string,
+  batch: Catalog,
+  catalog: Catalog,
+): Promise<{ fixed: number; left: number }> {
+  let fixed = 0;
+  let left = 0;
+  for (let round = 1; round <= TERM_ENFORCE_ROUNDS; round++) {
+    const bad = batchTermViolations(batch, catalog);
+    left = bad.length;
+    if (left === 0) break;
+    const sub: Catalog = {};
+    for (const key of bad) sub[key] = batch[key];
+    // enforce=false：重试自身不再触发强制，避免无限递归。
+    const retry = await translateBatch(file, `${idx}f${round}`, sub, 'terms', false);
+    if (!retry) break;
+    for (const [key, value] of Object.entries(retry.catalog)) {
+      if (batch[key] == null) continue;
+      const before = termMismatches(batch[key], catalog[key], key).length;
+      const after = termMismatches(batch[key], value, key).length;
+      if (after < before) {
+        catalog[key] = value;
+        if (after === 0) fixed++;
+      }
+    }
+    left = batchTermViolations(batch, catalog).length;
+  }
+  return { fixed, left };
+}
+
 async function translateBatch(
   file: string,
-  idx: number,
+  idx: number | string,
   batch: Catalog,
   mode: WorkMode,
+  enforce = true,
 ): Promise<TranslatedBatch | null> {
   const inPath = path.join(
     PENDING_DIR,
@@ -1604,9 +1679,20 @@ async function translateBatch(
     );
     return null;
   }
+  // 术语强制：翻完立刻自查违规并定点重发（见 enforceGlossary）。
+  let termFixed = 0;
+  let termLeft = 0;
+  if (enforce && TERM_ENFORCE_ROUNDS > 0) {
+    const res = await enforceGlossary(file, idx, batch, catalog);
+    termFixed = res.fixed;
+    termLeft = res.left;
+  }
+
   return {
     catalog,
     glossaryAdded,
+    termFixed,
+    termLeft,
   };
 }
 
@@ -1754,9 +1840,15 @@ async function cmdTranslate(
           file,
           batchNo,
           batches,
-          translatedBatch.reused
+          (translatedBatch.reused
             ? `批 ${batchNo}/${batches} 复用 .pending 输出，合并 ${applied}`
-            : `批 ${batchNo}/${batches} 合并 ${applied}`,
+            : `批 ${batchNo}/${batches} 合并 ${applied}`) +
+            (translatedBatch.termFixed
+              ? `，术语强制修正 ${translatedBatch.termFixed}`
+              : '') +
+            (translatedBatch.termLeft
+              ? `，仍违规 ${translatedBatch.termLeft}（留待 terms 报告）`
+              : ''),
         );
         if (translatedBatch.glossaryAdded) {
           console.log(
