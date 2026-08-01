@@ -1006,13 +1006,17 @@ function termMismatches(
   }
 
   const missing: TermMismatch[] = [];
+  // `[UPLINK_IMPLANT_TELECRYSTAL_COST]` 这类**宏占位符**里的词不是玩家可见文本，
+  // 译文里当然不会出现对应中文 —— 大小写不敏感匹配之后它会稳定误报（Uplink->上行终端）。
+  // 等长空格替换：保留偏移量，下面的 claimed 区间逻辑照常成立。
+  const scanVal = enVal.replace(/\[[A-Z0-9_]{2,}\]/g, (m) => ' '.repeat(m.length));
   // 已被更长术语占用的字符区间。termsByLength 已按长度降序，所以长词先登记区间。
   // 不做这一步就会自相矛盾：`Rear Admiral`->海军少将 与 `Admiral`->海军上将 并存时，
   // 把 "Rear Admiral" 正确译成「海军少将」反而违反了 `Admiral`，且**永远修不好**——
   // 强制回环会一遍遍重译它，这正是 obj.json 那批「仍违规 37/50」的来源。
   const claimed: [number, number][] = [];
   for (const entry of termsByLength) {
-    const m = entry.sourcePattern.exec(enVal);
+    const m = entry.sourcePattern.exec(scanVal);
     if (!m) continue;
     const start = m.index;
     const end = start + m[0].length;
@@ -1113,7 +1117,44 @@ function glossaryConflicts(): string[][] {
   return out;
 }
 
+/// 子词冲突：短语条目 B 里含独立单词 A，但 B 的译文没沿用 A 的译名。
+/// 这是 glossaryConflicts 的盲区——它只按归一化 key 找同词异译，`Reaper` 与 `.45 Reaper`
+/// 归一化后是两个不同的 key，于是「Reaper->收割者」和「.45 Reaper->.45死神」能长期并存，
+/// 而 MT 每次都照最长匹配那条渲染，玩家看到的就是同一发子弹两个名字。
+/// 有大量合理反例（Rear Admiral vs Admiral、Hong Kong vs Kong），所以只报告、不做门禁。
+function glossarySubTermConflicts(): string[] {
+  const terms = Object.keys(glossary);
+  const out: string[] = [];
+  for (const b of terms) {
+    if (!/\s/.test(b)) continue;
+    for (const a of terms) {
+      if (a === b) continue;
+      const re = new RegExp(
+        `(^|[^A-Za-z])${escapeRegExp(a)}($|[^A-Za-z])`,
+        'i',
+      );
+      if (!re.test(b)) continue;
+      const za = glossaryZh(glossary[a]);
+      const zb = glossaryZh(glossary[b]);
+      if (!za || !zb) continue;
+      if (za === a) continue; // 子词本身保英文，长条目译不译都说得通
+      const alts = glossarySenses(glossary[a]).flatMap((s) => s.accepted);
+      if (alts.some((x) => zb.includes(x))) continue;
+      out.push(`${b} -> ${zb}   ⊃   ${a} -> ${za}`);
+    }
+  }
+  return out;
+}
+
 function cmdTerms(args: string[]) {
+  const subs = glossarySubTermConflicts();
+  if (subs.length) {
+    console.log(
+      `⚠ 术语表子词冲突 ${subs.length} 组（长条目没沿用子词译名）——` +
+        `多数是合理的（Rear Admiral≠Admiral），但同一专名的分歧藏在这里，请人工过一遍：`,
+    );
+    for (const line of subs.slice(0, 10)) console.log(`   ${line}`);
+  }
   const conflicts = glossaryConflicts();
   if (conflicts.length) {
     console.log(

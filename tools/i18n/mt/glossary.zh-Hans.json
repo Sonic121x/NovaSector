@@ -4,7 +4,6 @@
   "+ptank": "+ptank",
   "...瓦巴杰克...瓦巴杰克...": "...瓦巴杰克...瓦巴杰克...",
   ".40 Sagittarian": ".40 Sagittarian",
-  ".45 Reaper": ".45死神",
   ".585 Trappiste": ".585 Trappiste",
   "/tg/ Station 13": "/tg/ Station 13",
   "/vg/station": "/vg/station",
@@ -84,6 +83,7 @@
   "Altspace Coven": "Altspace Coven",
   "Amanita Muscaria": "毒蝇伞",
   "Amber Focus": "琥珀焦点",
+  "Ambrosia Gaia": "盖亚神馔",
   "American-Felinid Homeworld": "美利坚-菲林尼德母星",
   "Amundsen-Scott": "Amundsen-Scott",
   "AnaSynthic": "AnaSynthic",
@@ -276,6 +276,7 @@
     "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
   },
   "Bluespace Optimized Remote Intelligence Synchronization": "蓝空间优化远程智能同步",
+  "Blutigen Wraps": "血染裹布",
   "Boa Ben": "博阿·本",
   "Boarder-40": "Boarder-40",
   "Boarder-980": "Boarder-980",
@@ -978,6 +979,7 @@
   "Galpha 5": "Galpha 5",
   "Gamer": "玩家",
   "Geiger counter": "盖革计数器",
+  "Geist Gazers": "幽灵凝视者",
   "Gelatinous Cube": "凝胶立方体",
   "GeneClean": "基因清洁",
   "GeneDrobe": "GeneDrobe",
@@ -1006,6 +1008,7 @@
   "Glowcaps": "发光菇",
   "God Co.": "God Co.",
   "God Mode": "God Mode",
+  "Godslayer Armour": "弑神者盔甲",
   "Gol Glider": "戈尔滑翔翼",
   "Golden Grog": "黄金格罗格",
   "Golem": "魔像",
@@ -1108,6 +1111,7 @@
   "HealthPRO": "HealthPRO",
   "Healy Stabby": "希利·斯塔比",
   "Heck Brewzone": "Heck Brewzone",
+  "Heckin Bnuuy": "萌兔兔",
   "Helbital": "赫比妥",
   "Helen Weinstein": "Helen Weinstein",
   "Heliostatic Coalition": "日衡联盟",
@@ -1115,6 +1119,7 @@
   "Hell Water": "Hell Water",
   "Helmsman": "舵手",
   "Hemokinetic Regen": "血动力再生",
+  "Hephaestus Industries": "赫菲斯托斯工业",
   "Hercules": "赫拉克勒斯",
   "Hereditary Manifold Sickness": "遗传性多重症",
   "Heretic Blade": "异端之刃",
@@ -1134,6 +1139,7 @@
   "HoP Identification": "HoP Identification",
   "HoS": "安保主管",
   "Hold Fast": "坚守",
+  "Hollow Weave": "镂空编织",
   "Holo Pay": "Holo Pay",
   "Holobarrier Projector": "全息屏障投射器",
   "Holodeck": "全息甲板",
@@ -1192,6 +1198,7 @@
   },
   "IDEDBBQ": "IDEDBBQ",
   "IHDF": "IHDF",
+  "INCOMING HONKS": "喇叭来袭",
   "IPC": "IPC",
   "IPMV-113": "IPMV-113",
   "IPMV-2201": "IPMV-2201",
@@ -1242,6 +1249,7 @@
     "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
   },
   "Irish Cream": "爱尔兰奶油",
+  "Iseurian Chokha": "伊苏里亚长袍",
   "It/Its": "它/它的",
   "Ivan Volodin": "伊万·沃洛金",
   "Ivanov Strike": "伊万诺夫打击",
@@ -1299,6 +1307,7 @@
   "Killer Cluck": "杀手鸡",
   "Kilo": "基洛",
   "Kinaris": "基纳里斯",
+  "Kindle Kicks": "燃火鞋",
   "Kinetic Accelerator": "动能加速器",
   "Kiri": "基里",
   "Kit-Kat Jr.": "Kit-Kat Jr.",
@@ -1316,6 +1325,8 @@
     "zh": "科尔塔面粉",
     "note": "原条目与目录主流写法不符（符合率<25%），按目录实际用法修正"
   },
+  "Korta Nectar": "科尔塔花蜜",
+  "Korta Wellington": "科尔塔惠灵顿",
   "Kosmicheskaya Stantsiya 13": "Kosmicheskaya Stantsiya 13",
   "Krav Maga": "马伽术",
   "Kronkus Extract": "Kronkus 提取物",
@@ -2066,6 +2077,7 @@
   "Recreation Holodeck": "休闲全息甲板",
   "Redfield Castle": "雷德菲尔德城堡",
   "RegEx": "RegEx",
+  "Regal Condor": "帝王秃鹰",
   "Regenerative Materia": {
     "zh": "再生材料",
     "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
@@ -2606,6 +2618,7 @@
   "THC": "THC",
   "THE ARM Breweries": "THE ARM Breweries",
   "THE GULAG": "古拉格",
+  "THE LAW": "法律",
   "THE LORD OF THE NIGHT": "THE LORD OF THE NIGHT",
   "THUNDERCATS": "雷霆猫",
   "TID": "TID",
@@ -2638,6 +2651,7 @@
   "Te Velu Akko": "Te Velu Akko",
   "Tea Astra": "茶阿斯特拉",
   "Teachstache Grenade": "Teachstache Grenade",
+  "Tearstache Grenade": "催泪胡须手榴弹",
   "Techpriest Robes": "Techpriest 长袍",
   "Tegu-rrarium": "泰古蜥饲养室",
   "Telecrystals": "传送晶体",
@@ -2728,6 +2742,7 @@
   "Time of Valor 4": "勇气时刻4",
   "Tinea Luxor": "Tinea Luxor",
   "Tinkers Gloves": "Tinkers 手套",
+  "Tiny Overwatch": "迷你守望者",
   "TinyUnicode": "TinyUnicode",
   "TinyUnicode 12pt": "TinyUnicode 12pt",
   "Tirizene": "蒂利嗪",
@@ -3185,5 +3200,21 @@
   "Žaibas-A": "扎伊巴斯-A",
   "Žaibas-Aštrus": "扎伊巴斯-阿什特鲁斯",
   "邦妮短型2": "邦妮短型2",
-  "鸦鸣3号": "鸦鸣3号"
+  "鸦鸣3号": "鸦鸣3号",
+  "Basic": [
+    {
+      "scope": "tgui:ChemHeater",
+      "zh": "碱性",
+      "note": "化学加热器的酸/碱缓冲液标签，与 Acidic 成对"
+    },
+    {
+      "scope": "/datum/reagent/reaction_agent",
+      "zh": "碱性",
+      "note": "basic buffer = 碱性缓冲液，非「基础」"
+    }
+  ],
+  "Reaper": {
+    "zh": "收割者",
+    "note": "弹药/ID 卡上的代号，勿译成「死神」"
+  }
 }
