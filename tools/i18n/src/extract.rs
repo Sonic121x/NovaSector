@@ -275,8 +275,20 @@ fn is_loose_sentence(template: &str) -> bool {
     if lit.len() < 10 || !lit.contains(' ') {
         return false;
     }
+    // 「必须含小写」原本是排标识符/枚举/define 值的粗闸，但它连坐掉了**整整一类**玩家可见文本：
+    // SS13 的控制台状态行、广播警报、广告词、喊话全是全大写
+    // （`OPERATION FAILED: CANNOT PROBE WHEN BUFFER FULL.` / `BLUESPACE ARTILLERY MALFUNCTION!`
+    // / `24-HOUR PIZZA PIE POWER!`）——实测 154 条一条没抽到，玩家报的电信控制台漏译就是这么来的。
+    // 全大写放行的额外闸：至少 3 个「词」（≥2 字母），标识符/枚举名不会长成这样，且句末标点
+    // 那道闸仍在下面把 SQL/路径/define 值挡在外面。
     if !lit.chars().any(|c| c.is_ascii_lowercase()) {
-        return false;
+        let words = lit
+            .split_whitespace()
+            .filter(|w| w.chars().filter(|c| c.is_ascii_alphabetic()).count() >= 2)
+            .count();
+        if words < 3 {
+            return false;
+        }
     }
     let end = lit.trim_end_matches(['"', '\'', ')', ']', '*']);
     if !(end.ends_with(['.', '!', '?', '…']) || end.ends_with("...")) {
@@ -646,6 +658,8 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         "bank_card_talk" => Some(&[0]),
         // 幽灵招募/事件通知（"An X is ready to hatch in …" 等）：notify_ghosts(message, source, …)。与 rewrite.rs 同表。
         "notify_ghosts" => Some(&[0]),
+        // 机器打印到纸上的正文（字面量实参必是作者写的印刷体；玩家书写永远是变量）。与 rewrite.rs 同表。
+        "add_raw_text" => Some(&[0]),
         _ => None,
     }
 }

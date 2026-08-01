@@ -87,9 +87,9 @@
 		return
 
 	owner.visible_message(
-		message = span_danger("\The [owner] spit[owner.p_s()] corrosive blood!"),
-		self_message = span_danger("You spit corrosive blood!"),
-		blind_message = span_hear("You hear spitting.")
+		message = span_danger(LANG("datum.779bf5ca", list(owner, owner.p_s()))),
+		self_message = span_danger(LANG("datum.a87536b2", null)),
+		blind_message = span_hear(LANG("datum.d458d707", null))
 	)
 
 	spit(target, modifiers, projectile_type)
@@ -108,9 +108,9 @@
 		return
 
 	owner.visible_message(
-		message = span_danger("\The [owner] spit[owner.p_s()] a burst of corrosive blood!"),
-		self_message = span_danger("You spit a burst of corrosive blood!"),
-		blind_message = span_hear("You hear spitting.")
+		message = span_danger(LANG("datum.2743656d", list(owner, owner.p_s()))),
+		self_message = span_danger(LANG("datum.15be93be", null)),
+		blind_message = span_hear(LANG("datum.d458d707", null))
 	)
 
 	spit(target, modifiers, burst_projectile_type, count = burst_count, spread = 10)
@@ -177,9 +177,9 @@
 		return FALSE
 
 	host.visible_message(
-		message = span_danger("\The [host] spit[host.p_s()] corrosive blood all over \the [restraints]!"),
-		self_message = span_danger("You spit corrosive blood all over \the [restraints]!"),
-		blind_message = span_hear("You hear sizzling.")
+		message = span_danger(LANG("datum.5be5dbb6", list(host, host.p_s(), restraints))),
+		self_message = span_danger(LANG("datum.b80100cb", list(restraints))),
+		blind_message = span_hear(LANG("datum.412380fd", null))
 	)
 
 	log_combat(host, restraints, "melted", addition = "(Spit Blood)")
@@ -198,8 +198,8 @@
 		return FALSE
 
 	closet.visible_message(
-		message = span_danger("\The [closet]'s hinges overflow with corrosive blood and begin to melt!"),
-		blind_message = span_hear("You hear sizzling."),
+		message = span_danger(LANG("datum.f45b2377", list(closet))),
+		blind_message = span_hear(LANG("datum.412380fd", null)),
 		ignored_mobs = host
 	)
 
@@ -225,8 +225,8 @@
 		return FALSE
 
 	cocoon.visible_message(
-		message = span_danger("\The [cocoon]'s threads begin to fall apart!"),
-		blind_message = span_hear("You hear sizzling."),
+		message = span_danger(LANG("datum.52ef92a3", list(cocoon))),
+		blind_message = span_hear(LANG("datum.412380fd", null)),
 		ignored_mobs = host
 	)
 

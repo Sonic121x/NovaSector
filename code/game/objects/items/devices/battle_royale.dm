@@ -233,11 +233,7 @@ GLOBAL_DATUM_INIT(battle_royale_master, /datum/battle_royale_master, new)
 		return FALSE // Well there's not much point is there
 
 	priority_announce(
-		text = "Congratulations [station_name()], you have been chosen as the next site of the Rumble Royale! \n\
-			Viewers across the sector will watch our [convert_integer_to_words(length(contestant_implants))] lucky contestants battle their way into your [chosen_area] and fight until only one is left standing! \n\
-			If they don't make it in five minutes, they'll be disqualified. If you see one of our players struggling to get in, do lend them a hand... or don't, if you can live with the consequences!  \n\
-			As a gesture of gratitude, we will be providing our premium broadcast to your entertainment monitors at no cost so that you can watch the excitement. \n\
-			Bystanders are advised not to intervene... but if you do, make it look good for the camera!",
+		text = LANG("datum.19e62bc6", list(station_name(), convert_integer_to_words(length(contestant_implants)), chosen_area)),
 		title = "Rumble Royale Beginning",
 		sound = 'sound/announcer/alarm/nuke_alarm.ogg',
 		has_important_message = TRUE,
@@ -316,7 +312,7 @@ GLOBAL_DATUM_INIT(battle_royale_master, /datum/battle_royale_master, new)
 /// Called halfway through the battle, if you've not made it to the designated battle zone we kill you
 /datum/battle_royale_controller/proc/limit_area()
 	priority_announce(
-		text = "We're halfway done folks! And bad news to anyone who hasn't made it to the [chosen_area]... you're out!",
+		text = LANG("datum.561fbdf8", list(chosen_area)),
 		title = "Rumble Royale Update",
 		sound = 'sound/announcer/notice/notice1.ogg',
 		has_important_message = TRUE,

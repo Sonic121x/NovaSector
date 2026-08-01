@@ -333,8 +333,8 @@
 	name = "unstable [initial(name)]"
 	desc = LANG("obj.089b3021", list(initial(desc)))
 	visible_message(
-		message = span_danger("As [src] consumes [boh], it begins to collapse in on itself!"),
-		blind_message = span_hear("You hear aggressive crackling!"),
+		message = span_danger(LANG("obj.0e9f95f2", list(src, boh))),
+		blind_message = span_hear(LANG("obj.a8785341", null)),
 		vision_distance = 15,
 	)
 	playsound(loc, 'sound/effects/clockcult_gateway_disrupted.ogg', 200, vary = TRUE, extrarange = 3, falloff_exponent = 1, frequency = -1, pressure_affected = FALSE, ignore_walls = TRUE, falloff_distance = 7)

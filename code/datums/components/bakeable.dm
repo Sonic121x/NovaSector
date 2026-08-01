@@ -116,14 +116,14 @@
 	if(positive_result)
 		used_oven.visible_message(
 			span_notice(LANG("datum.b7d9eb79", list(used_oven))),
-			blind_message = span_notice("You smell something great..."),
+			blind_message = span_notice(LANG("datum.ff62879a", null)),
 			ignored_mobs = asomnia_hadders,
 		)
 		BLACKBOX_LOG_FOOD_MADE(baked_result.type)
 	else
 		used_oven.visible_message(
 			span_warning(LANG("datum.2ecfbade", list(used_oven))),
-			blind_message = span_warning("You smell a burnt smell..."),
+			blind_message = span_warning(LANG("datum.1808004c", null)),
 			ignored_mobs = asomnia_hadders,
 		)
 	SEND_SIGNAL(parent, COMSIG_ITEM_BAKED, baked_result)

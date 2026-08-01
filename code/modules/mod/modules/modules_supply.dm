@@ -342,7 +342,7 @@
 	animate(game_renderer, launch_time, transform = render_matrix)
 	var/current_time = world.time
 	mod.wearer.visible_message(span_warning(LANG("obj.21b8d8e3", list(mod.wearer))), \
-		blind_message = span_hear("You hear a whirring sound."))
+		blind_message = span_hear(LANG("obj.09dec412", null)))
 	playsound(src, 'sound/items/modsuit/loader_charge.ogg', 75, TRUE)
 	lightning = mutable_appearance('icons/effects/effects.dmi', "electricity3", layer = LOW_MOB_LAYER)
 	mod.wearer.add_overlay(lightning)

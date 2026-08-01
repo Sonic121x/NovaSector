@@ -263,7 +263,7 @@
 		return
 	priority_announce(
 		text = "An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 60 SECONDS.",
-		title = "[command_name()] Higher Dimensional Affairs",
+		title = LANG("_root.92d186ed", list(command_name())),
 		sound = 'sound/announcer/alarm/airraid.ogg',
 	)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(narsie_end_second_check)), 50 SECONDS)

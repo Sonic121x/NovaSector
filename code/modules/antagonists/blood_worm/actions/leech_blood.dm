@@ -65,8 +65,8 @@
 		return
 
 	leech.visible_message(
-		message = span_danger("\The [leech] start[leech.p_s()] trying to bite into \the [target]!"),
-		self_message = span_danger("You start trying to bite into \the [target]!"),
+		message = span_danger(LANG("datum.2cd38261", list(leech, leech.p_s(), target))),
+		self_message = span_danger(LANG("datum.66a3d06e", list(target))),
 		ignored_mobs = list(target)
 	)
 
@@ -100,9 +100,9 @@
 	RegisterSignal(target, COMSIG_MOB_LOGOUT, PROC_REF(incapacitate_leech_living_target))
 
 	leech.visible_message(
-		message = span_danger("\The [leech] bite[leech.p_s()] into \the [target]!"),
-		self_message = span_danger("You bite into \the [target]!"),
-		blind_message = span_hear("You hear a bite, followed by a sickening crunch!"),
+		message = span_danger(LANG("datum.8cd4b13e", list(leech, leech.p_s(), target))),
+		self_message = span_danger(LANG("datum.e8feef79", list(target))),
+		blind_message = span_hear(LANG("datum.d2345f69", null)),
 		ignored_mobs = list(target)
 	)
 
@@ -176,8 +176,8 @@
 		return
 
 	leech.visible_message(
-		message = span_danger("\The [leech] start[leech.p_s()] trying to bite into \the [target]!"),
-		self_message = span_danger("You start trying to bite into \the [target]!")
+		message = span_danger(LANG("datum.2cd38261", list(leech, leech.p_s(), target))),
+		self_message = span_danger(LANG("datum.66a3d06e", list(target)))
 	)
 
 	leech.changeNext_move(CLICK_CD_CLICK_ABILITY)
@@ -186,9 +186,9 @@
 		return
 
 	leech.visible_message(
-		message = span_danger("\The [leech] bite[leech.p_s()] into \the [target]!"),
-		self_message = span_danger("You bite into \the [target]!"),
-		blind_message = span_hear("You hear a bite!"),
+		message = span_danger(LANG("datum.8cd4b13e", list(leech, leech.p_s(), target))),
+		self_message = span_danger(LANG("datum.e8feef79", list(target))),
+		blind_message = span_hear(LANG("datum.a7744b97", null)),
 		ignored_mobs = list(target)
 	)
 

@@ -1224,7 +1224,7 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "打开/关闭", 
 
 /obj/structure/closet/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(secure && !broken)
-		visible_message(span_warning(LANG("obj.4ebe3de5", list(src))), blind_message = span_hear("You hear a faint electrical spark."))
+		visible_message(span_warning(LANG("obj.4ebe3de5", list(src))), blind_message = span_hear(LANG("obj.e9bee9b3", null)))
 		balloon_alert(user, LANG("obj.8808ba88", null))
 		playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		broken = TRUE

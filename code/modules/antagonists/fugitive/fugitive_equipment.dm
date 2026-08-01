@@ -8,7 +8,7 @@
 	. = ..()
 
 	if(prob(15 * severity))
-		visible_message(span_warning(LANG("obj.08a49fe6", null)), blind_message = span_hear("You hear a fizzle, and the snapping of sparks."))
+		visible_message(span_warning(LANG("obj.08a49fe6", null)), blind_message = span_hear(LANG("obj.e05f9532", null)))
 		for(var/datum/action/item_action/camouflage/cloaking_ability in actions)
 			cloaking_ability.remove_cloaking()
 

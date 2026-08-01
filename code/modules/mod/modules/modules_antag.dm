@@ -250,7 +250,7 @@
 	if(!.)
 		return
 	mod.wearer.visible_message(span_warning(LANG("obj.d1adb849", list(mod.wearer))), \
-		blind_message = span_hear("You hear a charging sound."))
+		blind_message = span_hear(LANG("obj.cc2e7fe1", null)))
 	playsound(src, 'sound/items/modsuit/loader_charge.ogg', 75, TRUE)
 	balloon_alert(mod.wearer, LANG("obj.9dc8c02a", null))
 	animate(mod.wearer, 0.3 SECONDS, pixel_z = 16, flags = ANIMATION_RELATIVE, easing = SINE_EASING|EASE_OUT)
@@ -350,8 +350,8 @@
 	RegisterSignal(mod, COMSIG_MOD_ACTIVATE, PROC_REF(return_look))
 
 /obj/item/mod/module/chameleon/proc/return_look()
-	mod.name = "[mod.theme.name] [initial(mod.name)]"
-	mod.desc = "[initial(mod.desc)] [mod.theme.desc]"
+	mod.name = "[lang_reverse_text(mod.theme.name)] [initial(mod.name)]" // NOVA EDIT CHANGE - I18N - ORIGINAL: mod.name = "[mod.theme.name] [initial(mod.name)]"
+	mod.desc = "[initial(mod.desc)] [lang_reverse_text(mod.theme.desc)]" // NOVA EDIT CHANGE - I18N - ORIGINAL: mod.desc = "[initial(mod.desc)] [mod.theme.desc]"
 	mod.icon_state = "[mod.skin]-[initial(mod.icon_state)]"
 	var/list/mod_skin = mod.theme.variants[mod.skin]
 	mod.icon = mod_skin[MOD_ICON_OVERRIDE] || 'icons/obj/clothing/modsuit/mod_clothing.dmi'

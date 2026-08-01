@@ -210,6 +210,18 @@
   "Baron Web Restraint": "Baron Web Restraint",
   "Barrelmelon Berserk": "Barrelmelon Berserk",
   "Bartender": "酒保",
+  "Basic": [
+    {
+      "scope": "tgui:ChemHeater",
+      "zh": "碱性",
+      "note": "化学加热器的酸/碱缓冲液标签，与 Acidic 成对"
+    },
+    {
+      "scope": "/datum/reagent/reaction_agent",
+      "zh": "碱性",
+      "note": "basic buffer = 碱性缓冲液，非「基础」"
+    }
+  ],
   "Basketball Ass Blast USA": "Basketball Ass Blast USA",
   "Bastion Bourbon": "堡垒波本",
   "Baystation 12": "Baystation 12",
@@ -442,6 +454,7 @@
   "Chappy": "Chappy",
   "Charles Morlbaro": "查尔斯·莫尔巴罗",
   "Charlie Station": "查理站",
+  "Cheese-O-Rama": "芝士狂欢",
   "Cheesie Honker OG Kush": "Cheesie Honker OG Kush",
   "Cheesie Honkers": "芝士喇叭",
   "Chef Gibb": "Chef Gibb",
@@ -2073,6 +2086,10 @@
   "Razorfeather": "刃羽",
   "Razorfeather 8E short-range cruiser": "刃羽8E短程巡洋舰",
   "Ready-Donk": "即食当克",
+  "Reaper": {
+    "zh": "收割者",
+    "note": "弹药/ID 卡上的代号，勿译成「死神」"
+  },
   "Rear Admiral": "海军少将",
   "Recreation Holodeck": "休闲全息甲板",
   "Redfield Castle": "雷德菲尔德城堡",
@@ -3200,21 +3217,5 @@
   "Žaibas-A": "扎伊巴斯-A",
   "Žaibas-Aštrus": "扎伊巴斯-阿什特鲁斯",
   "邦妮短型2": "邦妮短型2",
-  "鸦鸣3号": "鸦鸣3号",
-  "Basic": [
-    {
-      "scope": "tgui:ChemHeater",
-      "zh": "碱性",
-      "note": "化学加热器的酸/碱缓冲液标签，与 Acidic 成对"
-    },
-    {
-      "scope": "/datum/reagent/reaction_agent",
-      "zh": "碱性",
-      "note": "basic buffer = 碱性缓冲液，非「基础」"
-    }
-  ],
-  "Reaper": {
-    "zh": "收割者",
-    "note": "弹药/ID 卡上的代号，勿译成「死神」"
-  }
+  "鸦鸣3号": "鸦鸣3号"
 }

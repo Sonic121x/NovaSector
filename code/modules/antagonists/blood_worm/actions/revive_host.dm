@@ -59,7 +59,7 @@
 		animate(transform = original_transform, time = 0.2 SECONDS, easing = CUBIC_EASING | EASE_IN, flags = ANIMATION_PARALLEL)
 
 		host.visible_message(
-			message = span_danger("\The [host] shake[host.p_s()] violently!"),
+			message = span_danger(LANG("datum.024bc760", list(host, host.p_s()))),
 			ignored_mobs = owner
 		)
 
@@ -68,7 +68,7 @@
 		return FALSE
 
 	host.visible_message(
-		message = span_danger("\The [host] rise[host.p_s()] from the dead!"),
+		message = span_danger(LANG("datum.8bb70931", list(host, host.p_s()))),
 		ignored_mobs = owner
 	)
 

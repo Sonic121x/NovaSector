@@ -94,8 +94,8 @@
 		return
 	going_kaboom = TRUE
 	visible_message(
-		message = span_danger("[src] lets out a shower of sparks as it starts to lose stability!"),
-		blind_message = span_hear("You hear a loud electrical crack!"),
+		message = span_danger(LANG("obj.26a18f4a", list(src))),
+		blind_message = span_hear(LANG("obj.92ec041a", null)),
 	)
 	playsound(src, 'sound/effects/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
 	tesla_zap(source = src, zap_range = 5, power = power_gen * 20)

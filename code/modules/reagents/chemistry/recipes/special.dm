@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define RNGCHEM_INPUT "input"
 #define RNGCHEM_CATALYSTS "catalysts"
 
@@ -257,7 +258,7 @@
 
 	var/datum/chemical_reaction/recipe = GLOB.chemical_reactions_list[pick(possible_recipes)]
 	if(!recipe)
-		add_raw_text("This recipe is illegible.")
+		add_raw_text(LANG("obj.4a51d9cf", null))
 		update_appearance()
 		return
 	var/list/dat = list("<ul>")

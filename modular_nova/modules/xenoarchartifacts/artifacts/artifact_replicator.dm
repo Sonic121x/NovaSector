@@ -92,7 +92,7 @@
 		if(spawn_progress_time > max_spawn_time)
 			visible_message(
 				span_warning(LANG("obj.8978c8c2", list(src))),
-				blind_message = span_hear("You hear a ping!"),
+				blind_message = span_hear(LANG("obj.eaead7c9", null)),
 			)
 
 			var/obj/source_material = pop(stored_materials)
@@ -119,7 +119,7 @@
 			var/sound_made = pick("clicks", "whizzes", "whirrs", "whooshes", "clanks", "clongs", "clonks", "bangs")
 			visible_message(
 				span_warning("[src] [sound_made]"),
-				blind_message = span_hear("Something [sound_made]!"),
+				blind_message = span_hear(LANG("obj.52e199c8", list(sound_made))),
 			)
 
 	last_process_time = world.time
@@ -175,7 +175,7 @@
 				else
 					visible_message(
 						span_notice(LANG("obj.c5677de7", list(src))),
-						blind_message = span_hear("You hear metal shuffling."),
+						blind_message = span_hear(LANG("obj.5b8a2deb", null)),
 					)
 
 				// Queue next spawn type

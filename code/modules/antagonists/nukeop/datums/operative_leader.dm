@@ -12,7 +12,7 @@
 /datum/antagonist/nukeop/leader/memorize_code()
 	. = ..()
 	var/obj/item/paper/nuke_code_paper = new(get_turf(owner.current))
-	nuke_code_paper.add_raw_text("The nuclear authorization code is: <b>[nuke_team.memorized_code]</b>")
+	nuke_code_paper.add_raw_text(LANG("datum.80679267", list(nuke_team.memorized_code)))
 	nuke_code_paper.name = "nuclear bomb code"
 	nuke_code_paper.update_appearance()
 	owner.current.put_in_hands(nuke_code_paper)

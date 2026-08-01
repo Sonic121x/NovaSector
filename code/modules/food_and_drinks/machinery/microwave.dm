@@ -492,7 +492,7 @@
 	balloon_alert(user, LANG("obj.28f94138", list(vampire_charging_enabled ? "charge" : "cook")))
 	playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, FALSE)
 	if(HAS_SILICON_ACCESS(user))
-		visible_message(span_notice(LANG("obj.184c0790", list(user, src, vampire_charging_enabled ? "charge" : "cook"))), blind_message = span_notice("You hear \the [src] make an informative beep!"))
+		visible_message(span_notice(LANG("obj.184c0790", list(user, src, vampire_charging_enabled ? "charge" : "cook"))), blind_message = span_notice(LANG("obj.0d2afbf4", list(src))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/microwave/click_ctrl(mob/user)

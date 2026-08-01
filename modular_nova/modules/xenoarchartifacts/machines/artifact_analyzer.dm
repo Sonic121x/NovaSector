@@ -102,7 +102,7 @@
 		say(LANG("obj.89cc9b10", null))
 		var/obj/item/paper/artifact_info/artifact_report = new(get_turf(src))
 		artifact_report.name = "[src] report #[++report_num]"
-		artifact_report.add_raw_text("<b>[src] analysis report #[report_num]</b><br>")
+		artifact_report.add_raw_text(LANG("obj.9900af23", list(src, report_num)))
 		artifact_report.add_raw_text("<br>")
 		artifact_report.add_raw_text("[scanned_object] -- [results]")
 		artifact_report.update_icon()

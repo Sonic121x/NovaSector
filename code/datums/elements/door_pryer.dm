@@ -60,8 +60,8 @@
 		return
 
 	attacker.visible_message(\
-		message = span_warning("[attacker] starts forcing the [airlock_target] open!"),
-		blind_message = span_hear("You hear a metal screeching sound."),
+		message = span_warning(LANG("datum.2592a9f8", list(attacker, airlock_target))),
+		blind_message = span_hear(LANG("datum.4e2b5bed", null)),
 	)
 	attacker.log_message("Started prying open [src], located at [loc_name(src)].", LOG_GAME)
 

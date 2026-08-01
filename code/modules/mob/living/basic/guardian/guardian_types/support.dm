@@ -42,8 +42,8 @@
 /mob/living/basic/guardian/support/proc/after_healed(mob/living/healed)
 	do_attack_animation(healed, ATTACK_EFFECT_PUNCH)
 	healed.visible_message(
-		message = span_notice("[src] heals [healed]!"),
-		self_message = span_userdanger("[src] heals you!"),
+		message = span_notice(LANG("mob.56552669", list(src, healed))),
+		self_message = span_userdanger(LANG("mob.cffdc7ae", list(src))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		ignored_mobs = src,
 	)

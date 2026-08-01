@@ -45,7 +45,7 @@
 	var/obj/item/paper/paper = new papertype
 	if(check_holidays(APRIL_FOOLS))
 		if(prob(30))
-			paper.add_raw_text("<font face=\"[CRAYON_FONT]\" color=\"red\"><b>HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</b></font>")
+			paper.add_raw_text(LANG("obj.2d72732d", list(CRAYON_FONT)))
 			paper.AddElement(/datum/element/honkspam)
 			paper.update_appearance()
 	return paper

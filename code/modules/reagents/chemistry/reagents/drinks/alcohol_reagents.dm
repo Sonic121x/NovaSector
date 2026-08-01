@@ -1049,7 +1049,7 @@
 	var/turf/jaunt_turf = get_turf(jaunter)
 	jaunt_turf.visible_message(
 		span_warning(LANG("datum.fb10f4ba", list(source, blood))),
-		blind_message = span_notice("You hear a splash and a thud.")
+		blind_message = span_notice(LANG("datum.6db08b72", null))
 	)
 	to_chat(jaunter, span_warning(LANG("datum.d84e8da0", list(source))))
 

@@ -96,7 +96,7 @@
 	do_destroy_effects()
 	loc.visible_message(
 		span_danger(LANG("obj.fb56a19e", list(src))),
-		blind_message = span_hear("You hear something break into pieces!"),
+		blind_message = span_hear(LANG("obj.3ec21fb8", null)),
 	)
 	if(!QDELETED(first_effect))
 		QDEL_NULL(first_effect)
@@ -341,7 +341,7 @@
 	user.visible_message(
 		span_notice(LANG("obj.f18b5d8d", list(user, src, scanner))),
 		span_notice(LANG("obj.c6c68360", list(src, scanner))),
-		blind_message = span_hear("You hear some kind of machine silently winding up."),
+		blind_message = span_hear(LANG("obj.b2408de5", null)),
 	)
 	if(!do_after(user, scanner.scanning_speed * 5, target = src))
 		to_chat(user, span_warning(LANG("obj.611dd1f5", null)))

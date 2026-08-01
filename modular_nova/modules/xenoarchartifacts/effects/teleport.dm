@@ -10,7 +10,7 @@
 		user.visible_message(
 			span_warning(LANG("datum.d8c54a6a", list(user))),
 			span_warning(LANG("datum.fc17dd20", null)),
-			blind_message = span_hear("You hear zap nearby."),
+			blind_message = span_hear(LANG("datum.f3571fe9", null)),
 		)
 
 /datum/artifact_effect/teleport/do_effect_aura(seconds_per_tick)
@@ -23,7 +23,7 @@
 			living_mob.visible_message(
 				span_warning(LANG("datum.fc07fa9a", list(living_mob))),
 				span_warning(LANG("datum.325c879e", null)),
-				blind_message = span_hear("You hear zap nearby."),
+				blind_message = span_hear(LANG("datum.f3571fe9", null)),
 			)
 
 /datum/artifact_effect/teleport/do_effect_pulse(seconds_per_tick)
@@ -37,7 +37,7 @@
 			living_mob.visible_message(
 				span_warning(LANG("datum.fc07fa9a", list(living_mob))),
 				span_warning(LANG("datum.325c879e", null)),
-				blind_message = span_hear("You hear zap nearby."),
+				blind_message = span_hear(LANG("datum.f3571fe9", null)),
 			)
 
 /datum/artifact_effect/teleport/do_effect_destroy()
@@ -47,7 +47,7 @@
 			living_mob.visible_message(
 				span_warning(LANG("datum.fc07fa9a", list(living_mob))),
 				span_warning(LANG("datum.325c879e", null)),
-				blind_message = span_hear("You hear zap nearby."),
+				blind_message = span_hear(LANG("datum.f3571fe9", null)),
 			)
 
 /**

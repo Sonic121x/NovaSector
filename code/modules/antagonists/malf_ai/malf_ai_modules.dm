@@ -650,7 +650,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 		if(is_type_in_typecache(intercom_area, protected_areas))
 			continue
 		// NOVA EDIT ADDITION END
-		found_intercom.audible_message(message = "[found_intercom] crackles for a split second.", hearing_distance = 3)
+		found_intercom.audible_message(message = LANG("datum.87b04b87", list(found_intercom)), hearing_distance = 3)
 		playsound(found_intercom, 'sound/items/airhorn/airhorn.ogg', 100, TRUE)
 		for(var/mob/living/honk_victim in ohearers(6, found_intercom))
 			if(issilicon(honk_victim))

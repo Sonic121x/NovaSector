@@ -161,7 +161,7 @@
 	if(source.obj_flags & EMAGGED)
 		return FALSE
 
-	source.visible_message(span_warning(LANG("datum.4ebe3de5", list(source))), blind_message = span_hear("You hear a faint electrical spark."))
+	source.visible_message(span_warning(LANG("datum.4ebe3de5", list(source))), blind_message = span_hear(LANG("datum.e9bee9b3", null)))
 	source.balloon_alert(user, LANG("datum.c20bce4a", null))
 	playsound(source, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	break_lock()

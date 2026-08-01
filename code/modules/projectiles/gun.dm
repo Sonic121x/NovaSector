@@ -263,7 +263,7 @@
 	if(tk_firing(user))
 		visible_message(
 			span_danger(LANG("obj.087c6e3b", list(src, pointblank ? " point blank at [pbtarget]!" : "!"))),
-			blind_message = span_hear("You hear a gunshot!"),
+			blind_message = span_hear(LANG("obj.89ccf80f", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE
 		)
 	else if(pointblank)

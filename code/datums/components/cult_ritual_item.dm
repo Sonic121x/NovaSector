@@ -375,7 +375,7 @@
 	var/area/summon_location = get_area(cultist)
 	var/static/cult_music_played = FALSE
 	priority_announce(
-		text = "Figments from an eldritch god are being summoned by [cultist.real_name] into [summon_location.get_original_area_name()] from an unknown dimension. Disrupt the ritual at all costs!",
+		text = LANG("datum.683a137c", list(cultist.real_name, summon_location.get_original_area_name())),
 		sound = cult_music_played ? 'sound/announcer/notice/notice3.ogg' : 'sound/music/antag/bloodcult/bloodcult_scribe.ogg',
 		sender_override = "[command_name()] Higher Dimensional Affairs",
 		has_important_message = TRUE,

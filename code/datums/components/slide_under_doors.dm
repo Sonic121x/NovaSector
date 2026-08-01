@@ -60,9 +60,9 @@
 		return
 
 	user.visible_message(
-		message = span_danger("\The [user] start[user.p_s()] sliding under \the [door]!"),
-		self_message = span_notice("You start sliding under \the [door]."),
-		blind_message = span_hear("You hear squeezing."),
+		message = span_danger(LANG("datum.3276f89a", list(user, user.p_s(), door))),
+		self_message = span_notice(LANG("datum.6365202c", list(door))),
+		blind_message = span_hear(LANG("datum.da94412c", null)),
 	)
 
 	playsound(user, 'sound/effects/footstep/gib_step.ogg', vol = 50, vary = TRUE, ignore_walls = FALSE)
@@ -96,9 +96,9 @@
 
 /datum/component/slide_under_doors/proc/slide_under_door(mob/living/user, obj/machinery/door/door)
 	user.visible_message(
-		message = span_danger("\The [user] slide[user.p_s()] under \the [door] with a pop!"),
-		self_message = span_notice("You slide under \the [door] with a pop!"),
-		blind_message = span_hear("You hear a pop."),
+		message = span_danger(LANG("datum.fc1e7bf4", list(user, user.p_s(), door))),
+		self_message = span_notice(LANG("datum.3a1d7d38", list(door))),
+		blind_message = span_hear(LANG("datum.445a50ea", null)),
 	)
 
 	playsound(user, 'sound/effects/meatslap.ogg', vol = 50, vary = TRUE, ignore_walls = FALSE)
@@ -115,8 +115,8 @@
 
 	if (visible_turf)
 		visible_turf.visible_message(
-			message = span_danger("Something starts sliding out from under \the [current_door]!"),
-			blind_message = span_hear("You hear squeezing."),
+			message = span_danger(LANG("datum.ccf90ca4", list(current_door))),
+			blind_message = span_hear(LANG("datum.da94412c", null)),
 			ignored_mobs = current_user,
 		)
 
@@ -142,9 +142,9 @@
 		user.Move(get_step(user, move_dir), move_dir)
 
 	user.visible_message(
-		message = span_danger("\The [user] slide[user.p_s()] out from under \the [door] with a pop!"),
-		self_message = span_notice("You slide out from under \the [door] with a pop!"),
-		blind_message = span_hear("You hear a pop."),
+		message = span_danger(LANG("datum.68295efc", list(user, user.p_s(), door))),
+		self_message = span_notice(LANG("datum.1499402c", list(door))),
+		blind_message = span_hear(LANG("datum.445a50ea", null)),
 	)
 
 	playsound(user, 'sound/effects/meatslap.ogg', vol = 50, vary = TRUE, ignore_walls = FALSE)

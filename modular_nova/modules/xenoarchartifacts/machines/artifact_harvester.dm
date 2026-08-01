@@ -49,7 +49,7 @@
 		user.visible_message(
 			span_notice(LANG("obj.05c6f8ca", list(user, tool, src))),
 			span_notice(LANG("obj.8ce99939", list(tool, src))),
-			blind_message = span_hear("You hear click."),
+			blind_message = span_hear(LANG("obj.6be63bf9", null)),
 		)
 		playsound(src, 'sound/machines/crate/crate_open.ogg', 30, 10)
 		src.inserted_battery = tool

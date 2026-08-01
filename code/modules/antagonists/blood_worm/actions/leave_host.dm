@@ -22,7 +22,7 @@
 	var/mob/living/carbon/human/host = worm.host
 
 	host.visible_message(
-		message = span_danger("\The [host] collapse[host.p_s()] and start[host.p_s()] shaking violently!"),
+		message = span_danger(LANG("datum.2aecc8d1", list(host, host.p_s(), host.p_s()))),
 		ignored_mobs = owner
 	)
 

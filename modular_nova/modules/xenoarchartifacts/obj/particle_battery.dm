@@ -71,7 +71,7 @@
 	user.visible_message(
 		span_notice(LANG("obj.4263d56a", list(user))),
 		span_notice(LANG("obj.2f43105d", null)),
-		blind_message = span_notice("You hear click nearby."),
+		blind_message = span_notice(LANG("obj.0e0002b3", null)),
 	)
 	playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 25, FALSE)
 	inserted_battery = tool
@@ -144,7 +144,7 @@
 			cooldown = 0
 			visible_message(
 				span_notice(LANG("obj.340c6f12", list(src))),
-				blind_message = span_notice("You hear something chime."),
+				blind_message = span_notice(LANG("obj.f01d59b1", null)),
 			)
 	else if(activated && inserted_battery.battery_effect)
 		// make sure the effect is active
@@ -175,7 +175,7 @@
 	if(activated)
 		activated = FALSE
 		timing = FALSE
-		visible_message(span_notice(LANG("obj.9f1f2989", list(src))), blind_message = span_notice("You hear something buzz."))
+		visible_message(span_notice(LANG("obj.9f1f2989", list(src))), blind_message = span_notice(LANG("obj.917adee9", null)))
 		cooldown = COOLDOWN_TIME
 
 	if(inserted_battery?.battery_effect)
@@ -287,7 +287,7 @@
 		user.visible_message(
 			span_notice(LANG("obj.f6f39e24", list(user, target_mob, src))),
 			span_notice(LANG("obj.7254c8f8", list(target_mob, src))),
-			blind_message = span_hear("You hear silent zapping sounds."),
+			blind_message = span_hear(LANG("obj.03e62373", null)),
 		)
 	else
 		user.visible_message(

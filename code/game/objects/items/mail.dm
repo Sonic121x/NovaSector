@@ -368,13 +368,13 @@
 /obj/item/paper/fluff/junkmail_redpill/Initialize(mapload)
 	var/obj/machinery/nuclearbomb/selfdestruct/self_destruct = locate() in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/selfdestruct)
 	if(!self_destruct || !prob(nuclear_option_odds)) // 1 in 1000 chance of getting 2 random nuke code characters.
-		add_raw_text("<i>You need to escape the simulation. Don't forget the numbers, they help you remember:</i> '[rand(0,9)][rand(0,9)][rand(0,9)]...'")
+		add_raw_text(LANG("obj.511a69ef", list(rand(0,9), rand(0,9), rand(0,9))))
 		return ..()
 
 	if(self_destruct.r_code == NUKE_CODE_UNSET)
 		self_destruct.r_code = random_nukecode()
 		message_admins("Through junkmail, the self-destruct code was set to \"[self_destruct.r_code]\".")
-	add_raw_text("<i>You need to escape the simulation. Don't forget the numbers, they help you remember:</i> '[self_destruct.r_code[rand(1,5)]][self_destruct.r_code[rand(1,5)]]...'")
+	add_raw_text(LANG("obj.8dccdc6e", list(self_destruct.r_code[rand(1,5)], self_destruct.r_code[rand(1,5)])))
 	return ..()
 
 /obj/item/paper/fluff/junkmail_redpill/true //admin letter enabling players to brute force their way through the nuke code if they're so inclined.

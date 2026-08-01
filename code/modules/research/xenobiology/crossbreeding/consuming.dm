@@ -258,8 +258,8 @@ Consuming extracts:
 
 /obj/item/slime_cookie/bluespace/proc/fail_effect(mob/living/eater)
 	eater.visible_message(
-		message = span_warning("[eater] briefly vanishes... then slams forcefully into the ground"),
-		self_message = span_warning("You briefly vanish... and are returned forcefully to the ground.")
+		message = span_warning(LANG("obj.9983f9f3", list(eater))),
+		self_message = span_warning(LANG("obj.95600d95", null))
 	)
 	eater.Knockdown(0.1 SECONDS)
 	new /obj/effect/particle_effect/sparks(get_turf(eater))

@@ -295,7 +295,7 @@
 	var/drivers = falling_down.return_drivers()
 
 	visible_message(span_danger(LANG("obj.dbded334", list(falling_down, src))), \
-		blind_message = span_danger("You hear a deafening CRASH!"), \
+		blind_message = span_danger(LANG("obj.114824d9", null)), \
 		ignored_mobs = drivers)
 
 	for(var/mob/living/driver as anything in drivers) // can any mechs have two drivers? No. Could they? yes.

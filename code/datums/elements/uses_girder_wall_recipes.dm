@@ -75,9 +75,9 @@
 		return
 
 	user.visible_message(
-		message = span_notice("\The [user] start[user.p_s()] building a wall on \the [structure]."),
-		self_message = span_notice("You start building a wall on \the [structure]."),
-		blind_message = span_hear("You hear a series of clangs."),
+		message = span_notice(LANG("datum.38aa75d0", list(user, user.p_s(), structure))),
+		self_message = span_notice(LANG("datum.f48237e6", list(structure))),
+		blind_message = span_hear(LANG("datum.6bba0e33", null)),
 	)
 
 	structure.add_fingerprint(user)
@@ -98,8 +98,8 @@
 		CRASH("Attempted a girder wall recipe with an invalid wall type ([recipe.wall_type])")
 
 	user.visible_message(
-		message = span_notice("\The [user] finish[user.p_es()] building \a [wall] on \the [structure]."),
-		self_message = span_notice("You finish building \a [wall] on \the [structure]."),
+		message = span_notice(LANG("datum.b4810c15", list(user, user.p_es(), wall, structure))),
+		self_message = span_notice(LANG("datum.2fcdbcf5", list(wall, structure))),
 	)
 
 	structure.transfer_fingerprints_to(wall)

@@ -243,7 +243,7 @@
 	if(prob(25))
 		play_from.audible_message(span_warning(LANG("obj.681b4f5b", list(stomach_text))), \
 			span_warning(LANG("obj.2305b96c", null)), 4,\
-			self_message = span_userdanger("Something is rumbling inside your stomach!"))
+			self_message = span_userdanger(LANG("obj.182a31c5", null)))
 
 	if(user.client)
 		user.client.move_delay = world.time + 1.5 SECONDS

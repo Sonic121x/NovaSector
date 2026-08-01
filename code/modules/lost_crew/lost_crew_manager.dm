@@ -60,7 +60,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 
 	if(!HAS_TRAIT(new_body, TRAIT_HUSK))
 		paper.name = "DO NOT REMOVE BRAIN"
-		paper.add_raw_text("Body swapping is not covered by medical insurance for unhusked bodies. Chemical brain explosives have been administered to enforce stipend.")
+		paper.add_raw_text(LANG("datum.40c57a71", null))
 		var/obj/item/organ/brain/boombrain = new_body.get_organ_by_type(/obj/item/organ/brain)
 		//I swear to fuck I will explode you. you're not clever
 		//everyone thought of this, but I am the fool for having any faith
@@ -70,7 +70,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 		boombrain.AddElement(/datum/element/dangerous_organ_removal)
 	else
 		paper.name = "BODYSWAPPING PERMITTED"
-		paper.add_raw_text("Body swapping is covered by medical insurance in case of husking and a lack of skill in the practictioner.")
+		paper.add_raw_text(LANG("datum.3c3d51fa", null))
 
 	var/obj/item/organ/brain/hersens = new_body.get_organ_by_type(/obj/item/organ/brain)
 	hersens.AddComponent(

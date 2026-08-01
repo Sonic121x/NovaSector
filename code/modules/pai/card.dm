@@ -204,7 +204,7 @@
 	add_alert()
 	addtimer(CALLBACK(src, PROC_REF(remove_alert)), 5 SECONDS)
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-	visible_message(span_notice(LANG("obj.2ab2f3e8", list(src))), blind_message = span_notice("[src] vibrates with an alert."))
+	visible_message(span_notice(LANG("obj.2ab2f3e8", list(src))), blind_message = span_notice(LANG("obj.b3b344dc", list(src))))
 
 /**
  * Downloads a candidate from the list and removes them from SSpai.candidates

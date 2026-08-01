@@ -191,7 +191,7 @@
 	if(!IS_UNCONSCIOUS_OR_CRIT(victim))
 		jaunt_turf.visible_message(
 			span_warning(LANG("datum.c264e304", list(victim, blood))),
-			blind_message = span_notice("You hear splashing and struggling."),
+			blind_message = span_notice(LANG("datum.d6a59c7d", null)),
 		)
 		return FALSE
 
@@ -202,7 +202,7 @@
 	victim.emote("scream")
 	jaunt_turf.visible_message(
 		span_boldwarning(LANG("datum.04233d8e", list(jaunter, victim, blood))),
-		blind_message = span_notice("You hear a splash."),
+		blind_message = span_notice(LANG("datum.0b1a6e8f", null)),
 	)
 
 	ADD_TRAIT(jaunter, TRAIT_NO_TRANSFORM, REF(src))

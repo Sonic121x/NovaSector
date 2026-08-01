@@ -53,18 +53,18 @@
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/Activate(atom/target)
 	owner.visible_message(
-		message = span_danger("\The [owner] start[owner.p_s()] growing a cocoon!"),
-		self_message = span_notice("You start growing a cocoon."),
-		blind_message = span_hear("You start hearing fleshy knitting!")
+		message = span_danger(LANG("datum.229c7680", list(owner, owner.p_s()))),
+		self_message = span_notice(LANG("datum.b0afd33e", null)),
+		blind_message = span_hear(LANG("datum.283ac16e", null))
 	)
 
 	if (!do_after(owner, 5 SECONDS, extra_checks = CALLBACK(src, PROC_REF(check_consumed_blood))))
 		return FALSE
 
 	owner.visible_message(
-		message = span_danger("\The [owner] enter[owner.p_s()] a cocoon!"),
-		self_message = span_green("You enter your freshly grown cocoon!"),
-		blind_message = span_hear("You stop hearing fleshy knitting!")
+		message = span_danger(LANG("datum.96f3dc08", list(owner, owner.p_s()))),
+		self_message = span_green(LANG("datum.c130aa54", null)),
+		blind_message = span_hear(LANG("datum.be4bff85", null))
 	)
 
 	cocoon = new cocoon_type(get_turf(owner))
@@ -99,9 +99,9 @@
 			continue // Harms potential hosts.
 
 		unfortunate_observer.visible_message(
-			message = span_danger("\The [unfortunate_observer] is splashed with a wave of corrosive blood!"),
-			self_message = span_userdanger("You're splashed with a wave of corrosive blood! YEOWCH!"),
-			blind_message = span_hear("You hear sizzling!")
+			message = span_danger(LANG("datum.bbb15cbb", list(unfortunate_observer))),
+			self_message = span_userdanger(LANG("datum.362061e9", null)),
+			blind_message = span_hear(LANG("datum.86226ff1", null))
 		)
 
 		unfortunate_observer.Knockdown(3 SECONDS)
@@ -148,8 +148,8 @@
 /// Cancels the incubation process, destroying the cocoon early.
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/proc/cancel()
 	cocoon.visible_message(
-		message = span_danger("\The [cocoon] fall[cocoon.p_s()] apart, expelling \the [owner] within."),
-		blind_message = span_danger("You hear a splat!"),
+		message = span_danger(LANG("datum.0724b48d", list(cocoon, cocoon.p_s(), owner))),
+		blind_message = span_danger(LANG("datum.b20f4309", null)),
 		ignored_mobs = owner
 	)
 

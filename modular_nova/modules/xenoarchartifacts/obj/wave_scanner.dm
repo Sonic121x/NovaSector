@@ -166,5 +166,5 @@ GAME_VERB(/obj/item/xenoarch/wave_scanner_backpack, toggle_searcher, "切换搜�
 				nearest_artifact_distance = cur_dist + rand() * 2 - 1
 	visible_message(
 		span_info(LANG("obj.b6d4f399", list(src))),
-		blind_message = span_notice("You hear click nearby."),
+		blind_message = span_notice(LANG("obj.0e0002b3", null)),
 	)

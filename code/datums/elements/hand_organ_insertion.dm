@@ -36,9 +36,9 @@
 	var/zone_name = user.parse_zone_with_bodypart(organ.zone)
 
 	user.visible_message(
-		message = span_danger("\The [user] begin[user.p_s()] inserting \the [organ] into [user.p_their()] [zone_name]!"),
-		self_message = span_danger("You begin inserting \the [organ] into your [zone_name]!"),
-		blind_message = span_hear("You hear squelching!")
+		message = span_danger(LANG("datum.53c5139a", list(user, user.p_s(), organ, user.p_their(), zone_name))),
+		self_message = span_danger(LANG("datum.102ce385", list(organ, zone_name))),
+		blind_message = span_hear(LANG("datum.cb2a47b8", null))
 	)
 
 	user.balloon_alert(user, LANG("datum.14b48e79", null))
@@ -52,9 +52,9 @@
 	zone_name = user.parse_zone_with_bodypart(organ.zone)
 
 	user.visible_message(
-		message = span_danger("\The [user] insert[user.p_s()] \the [organ] into [user.p_their()] [zone_name]!"),
-		self_message = span_danger("You insert \the [organ] into your [zone_name]!"),
-		blind_message = span_hear("You hear a loud, final squelch!")
+		message = span_danger(LANG("datum.4aa2fdf5", list(user, user.p_s(), organ, user.p_their(), zone_name))),
+		self_message = span_danger(LANG("datum.0d7a9e3b", list(organ, zone_name))),
+		blind_message = span_hear(LANG("datum.bdc0f1a5", null))
 	)
 
 	user.balloon_alert(user, LANG("datum.863baa0b", null))

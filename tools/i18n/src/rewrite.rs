@@ -73,6 +73,49 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         // 幽灵招募/事件通知（"An X is ready to hatch in …" 等，72+ 处）：notify_ghosts(message, source, …)。
         // 只改位置实参 [0]=消息字面量（header 是关键字实参、改写器够不着，作残留）。与 extract.rs 同表。
         "notify_ghosts" => Some(&[0]),
+        // 机器打印/预置到纸上的正文（21 处：每日密钥重置、核弹授权码、雇佣条款、扫描报告…）。
+        // 纸张**玩家书写**的内容不该译，但 add_raw_text 的字符串**字面量**实参全是作者写的印刷体，
+        // 玩家输入永远是变量。纸张渲染路径不过反查（见 i18n readme），所以只能靠 LANG 改写。
+        "add_raw_text" => Some(&[0]),
+        _ => None,
+    }
+}
+
+/// sink 的消息实参下标 -> 形参名。用于**关键字实参**调用（`priority_announce(text = "…", title = "…")`，
+/// 上游 46 处这么写）：改写器原本只按位置取实参，关键字写法下 AST 里那一项是 `text = "…"` 整个
+/// 赋值表达式 —— build_template 拿它算出的 key 与目录对不上，于是整类调用**一处都改不到**
+/// （玩家报的「紧急穿梭机公告半中半英」就是这么来的：AC 兜底只译得动 emergency shuttle 这种词组，
+/// 整句带插值、反查和 AC 都够不着）。有了名字表就能按名对齐，顺带防住 `f(text=…, sound=…, title=…)`
+/// 这种乱序写法把 title 套到 sound 上。
+fn sink_arg_name(sink: &str, idx: usize) -> Option<&'static str> {
+    let names: &[(usize, &'static str)] = match sink {
+        "priority_announce" => &[(0, "text"), (1, "title")],
+        "minor_announce" => &[(0, "message"), (1, "title")],
+        "print_command_report" => &[(0, "text"), (1, "title")],
+        "to_chat" => &[(1, "message")],
+        "balloon_alert" => &[(1, "text")],
+        "visible_message" => &[(0, "message"), (1, "self_message"), (2, "blind_message")],
+        "audible_message" => &[(0, "message"), (1, "self_message"), (3, "deaf_message")],
+        "notify_ghosts" => &[(0, "title")],
+        _ => return None,
+    };
+    names.iter().find(|(i, _)| *i == idx).map(|(_, n)| *n)
+}
+
+/// 关键字实参 `name = expr` 的名字（不是关键字实参就返回 None）。
+fn keyword_arg_name(arg: &Expression) -> Option<String> {
+    let Expression::AssignOp { op: AssignOp::Assign, lhs, rhs: _ } = arg else {
+        return None;
+    };
+    // 形参名在 AST 里是裸标识符项；build_template 只认字符串表达式，拿它取名会一律返回 None。
+    let Expression::Base { term, follow } = lhs.as_ref() else {
+        return None;
+    };
+    if !follow.is_empty() {
+        return None;
+    }
+    match &term.elem {
+        Term::Ident(name) => Some(name.clone()),
         _ => None,
     }
 }
@@ -645,7 +688,31 @@ impl<'a> Rewriter<'a> {
             if no_usr_form && i == 2 {
                 continue;
             }
-            let Some(arg) = args.get(i) else { continue };
+            // 关键字实参写法：按形参名找到它实际所在的位置槽；找不到就退回按位置取，
+            // 但**位置上那一项若本身是关键字实参**说明对齐已不可信 → 跳过，宁可漏译不改错。
+            let kw_slot = sink_arg_name(sink, i).and_then(|want| {
+                args.iter()
+                    .position(|a| keyword_arg_name(a).as_deref() == Some(want))
+            });
+            let slot = match kw_slot {
+                Some(s) => s,
+                None => {
+                    if args.get(i).is_some_and(|a| keyword_arg_name(a).is_some()) {
+                        continue;
+                    }
+                    i
+                }
+            };
+            let Some(raw_arg) = args.get(slot) else { continue };
+            // 关键字实参取右值做模板；`text = "…"` 整体算 key 会与目录对不上。
+            let arg = match raw_arg {
+                Expression::AssignOp { op: AssignOp::Assign, rhs, .. }
+                    if keyword_arg_name(raw_arg).is_some() =>
+                {
+                    rhs.as_ref()
+                }
+                other => other,
+            };
             // 门槛：源码里恰好一个可翻译字符串字面量（保证后面切片定位无歧义）。
             let mut nodes: Vec<&Spanned<Term>> = Vec::new();
             collect_text_nodes(arg, &mut nodes);
@@ -671,7 +738,7 @@ impl<'a> Rewriter<'a> {
             if interp_only && ph == 0 {
                 continue;
             }
-            targets.push((i, make_key(ns, &template), ph));
+            targets.push((slot, make_key(ns, &template), ph));
         }
         if targets.is_empty() {
             return;

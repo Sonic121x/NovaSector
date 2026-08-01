@@ -300,7 +300,7 @@ SUBSYSTEM_DEF(shuttle)
 		CRASH("Emergency shuttle block was called, but missing a value for the lockout duration")
 	if(admin_emergency_no_recall)
 		priority_announce(
-			text = "Emergency shuttle uplink interference detected, shuttle call disabled while the system reinitializes. Estimated restore in [DisplayTimeText(lockout_timer, round_seconds_to = 60)].",
+			text = LANG("datum.514b17c2", list(DisplayTimeText(lockout_timer, round_seconds_to = 60))),
 			title = "Uplink Interference",
 			sound = ANNOUNCER_SHUTTLE, // NOVA EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
 			sender_override = "Emergency Shuttle Uplink Alert",
@@ -632,7 +632,7 @@ SUBSYSTEM_DEF(shuttle)
 		emergency.mode = SHUTTLE_DOCKED
 		emergency.setTimer(emergency_dock_time)
 		priority_announce(
-			text = "You have [DisplayTimeText(emergency_dock_time)] to board the emergency shuttle.",
+			text = LANG("datum.3625392e", list(DisplayTimeText(emergency_dock_time))),
 			title = "Hostile Environment Resolved",
 			sound = ANNOUNCER_SHUTTLE, // NOVA EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
 			sender_override = "Emergency Shuttle Uplink Alert",

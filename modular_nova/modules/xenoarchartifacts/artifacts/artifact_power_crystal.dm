@@ -34,13 +34,13 @@
 			user.visible_message(
 				span_notice(LANG("obj.65c1bf91", list(user, src))),
 				span_notice(LANG("obj.54162c5a", list(src))),
-				blind_message = span_hear("You hear cutting nearby."),
+				blind_message = span_hear(LANG("obj.3896dd23", null)),
 			)
 			if(tool.use_tool(src, user, 20, volume = 50))
 				user.visible_message(
 					span_notice(LANG("obj.d74e74ba", list(user, src))),
 					span_notice(LANG("obj.cfaf99e0", list(src))),
-					blind_message = span_notice("Cutting sound stops."),
+					blind_message = span_notice(LANG("obj.e30c3394", null)),
 				)
 				wired = FALSE
 				update_crystal()
@@ -90,7 +90,7 @@
 		QDEL_NULL(first_effect)
 	visible_message(
 		span_warning(LANG("obj.d0641e15", list(src))),
-		blind_message = span_hear("You hear glass breaking nearby."),
+		blind_message = span_hear(LANG("obj.e76a0c0c", null)),
 	)
 	var/turf/mainloc = get_turf(src)
 	var/count_crystal_bs = rand(1,3)

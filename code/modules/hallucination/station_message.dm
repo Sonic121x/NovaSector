@@ -31,7 +31,7 @@
 
 /datum/hallucination/station_message/shuttle_dock/do_fake_alert()
 	priority_announce(
-		text = "[SSshuttle.emergency] has docked with the station. You have [DisplayTimeText(SSshuttle.emergency_dock_time)] to board the emergency shuttle.",
+		text = LANG("datum.a215ab15", list(SSshuttle.emergency, DisplayTimeText(SSshuttle.emergency_dock_time))),
 		title = "Emergency Shuttle Arrival",
 		sound = ANNOUNCER_SHUTTLEDOCK,
 		sender_override = "Emergency Shuttle Uplink Alert",
@@ -107,8 +107,8 @@
 	var/area/fake_summon_area = GLOB.areas_by_type[fake_summon_area_type]
 
 	priority_announce(
-		text = "Figments from an eldritch god are being summoned by [totally_real_cult_leader.real_name] into [fake_summon_area] from an unknown dimension. Disrupt the ritual at all costs!",
-		title = "[command_name()] Higher Dimensional Affairs",
+		text = LANG("datum.683a137c", list(totally_real_cult_leader.real_name, fake_summon_area)),
+		title = LANG("datum.92d186ed", list(command_name())),
 		sound = 'sound/music/antag/bloodcult/bloodcult_scribe.ogg',
 		has_important_message = TRUE,
 		players = list(hallucinator),

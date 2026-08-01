@@ -64,7 +64,7 @@
 		carbon_mob.visible_message(
 			span_danger(LANG("datum.6aab42a1", list(carbon_mob, carbon_mob.p_s()))),
 			span_bolddanger(LANG("datum.060f0102", null)),
-			blind_message = span_hear("You hear gore sounds, like someone is tearing up flesh and breaking bones."),
+			blind_message = span_hear(LANG("datum.3efeb9b1", null)),
 		)
 		var/obj/item/bodypart/new_bodypart = new part_type()
 		var/mob/living/basic/living_limb_flesh/parasite = new /mob/living/basic/living_limb_flesh

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/structure/closet/syndicate
 	name = "armory closet"
 	desc = "Why is this here?"
@@ -79,7 +80,7 @@
 	if(pickednum == 1)
 		var/obj/item/paper/paper = new /obj/item/paper(src)
 		paper.name = "\improper IOU"
-		paper.add_raw_text("Sorry man, we needed the money so we sold your stash. It's ok, we'll double our money for sure this time!")
+		paper.add_raw_text(LANG("obj.53cac500", null))
 		paper.update_appearance()
 
 	//Iron (common ore)

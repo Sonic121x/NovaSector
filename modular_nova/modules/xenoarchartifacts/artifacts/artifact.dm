@@ -203,7 +203,7 @@
 			user.visible_message(
 				span_warning(LANG("obj.1a44b09b", list(user))),
 				span_warning(LANG("obj.84b6068e", null)),
-				blind_message = span_hear("You hear a smash!"),
+				blind_message = span_hear(LANG("obj.3ec752af", null)),
 			)
 			excavation_level += rand(10,50)
 			return ITEM_INTERACT_BLOCKING
@@ -211,14 +211,14 @@
 			if(DIG_DELETE)
 				user.visible_message(
 					span_warning(LANG("obj.6db9ab42", list(src))),
-					blind_message = span_hear("You hear rocks crumbling."),
+					blind_message = span_hear(LANG("obj.9c90ffa7", null)),
 				)
 				return ITEM_INTERACT_SUCCESS
 			if(DIG_ROCK)
 				user.visible_message(
 					span_notice(LANG("obj.f37b4dcd", list(user, src))),
 					span_notice(LANG("obj.b996ea2a", list(src))),
-					blind_message = span_hear("You hear rocks crumbling."),
+					blind_message = span_hear(LANG("obj.9c90ffa7", null)),
 				)
 		return ITEM_INTERACT_SUCCESS
 
@@ -227,7 +227,7 @@
 		user.visible_message(
 			span_notice(LANG("obj.3f8240a0", list(user))),
 			span_notice(LANG("obj.04bcd84c", null)),
-			blind_message = span_hear("You hear rhythmic knocking."),
+			blind_message = span_hear(LANG("obj.2afa996e", null)),
 		)
 		if(!do_after(user, hammer.dig_speed, target = src))
 			to_chat(user, span_warning(LANG("obj.9d6b236c", null)))
@@ -239,7 +239,7 @@
 			if(DIG_DELETE)
 				user.visible_message(
 					span_warning(LANG("obj.b150c4e6", null)),
-					blind_message = span_hear("You hear rock crumbling."),
+					blind_message = span_hear(LANG("obj.691e6a73", null)),
 				)
 				return ITEM_INTERACT_SUCCESS
 			if(DIG_ROCK)
@@ -254,7 +254,7 @@
 		user.visible_message(
 			span_notice(LANG("obj.f18b5d8d", list(user, src, scanner))),
 			span_notice(LANG("obj.c849e69f", list(src, scanner))),
-			blind_message = span_hear("You hear some kind of machine silently winding up."),
+			blind_message = span_hear(LANG("obj.b2408de5", null)),
 		)
 		if(!do_after(user, scanner.scanning_speed, target = src))
 			to_chat(user, span_warning(LANG("obj.3f48dec0", null)))
@@ -273,7 +273,7 @@
 		user.visible_message(
 			span_notice(LANG("obj.caad5216", list(user, src))),
 			span_notice(LANG("obj.cfbbc627", null)),
-			blind_message = span_hear("You hear the sound of a tape measure unwinding."),
+			blind_message = span_hear(LANG("obj.187faf2f", null)),
 		)
 		if(!do_after(user, 4 SECONDS, target = src))
 			to_chat(user, span_warning(LANG("obj.9d6b236c", null)))
@@ -288,7 +288,7 @@
 		user.visible_message(
 			span_notice(LANG("obj.f2fa9edc", list(user, src))),
 			span_notice(LANG("obj.f49f7bc1", null)),
-			blind_message = span_hear("You hear rustling."),
+			blind_message = span_hear(LANG("obj.845a0660", null)),
 		)
 		if(!do_after(user, brush.dig_speed, target = src))
 			to_chat(user, span_warning(LANG("obj.9d6b236c", null)))
@@ -298,7 +298,7 @@
 			if(BRUSH_DELETE)
 				user.visible_message(
 					span_warning(LANG("obj.b150c4e6", null)),
-					blind_message = span_hear("You hear rock crumbling."),
+					blind_message = span_hear(LANG("obj.691e6a73", null)),
 				)
 				return ITEM_INTERACT_SUCCESS
 			if(BRUSH_UNCOVER)
@@ -323,7 +323,7 @@
 		user.visible_message(
 			span_notice(LANG("obj.e0d4d8b3", list(user, src))),
 			span_notice(LANG("obj.c2615fa0", list(src))),
-			blind_message = span_hear("You hear a snap."),
+			blind_message = span_hear(LANG("obj.19e74f40", null)),
 		)
 		return ITEM_INTERACT_SUCCESS
 

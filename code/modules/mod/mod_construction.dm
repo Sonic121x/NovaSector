@@ -98,8 +98,8 @@
 /obj/item/mod/construction/plating/Initialize(mapload)
 	. = ..()
 	var/datum/mod_theme/used_theme = GLOB.mod_themes[theme]
-	name = "MOD [used_theme.name] external plating"
-	desc = "[desc] [used_theme.desc]"
+	name = "MOD [lang_reverse_text(used_theme.name)] external plating" // NOVA EDIT CHANGE - I18N - ORIGINAL: name = "MOD [used_theme.name] external plating"
+	desc = "[desc] [lang_reverse_text(used_theme.desc)]" // NOVA EDIT CHANGE - I18N - ORIGINAL: desc = "[desc] [used_theme.desc]"
 	icon_state = "[used_theme.default_skin]-plating"
 
 /obj/item/mod/construction/plating/civilian

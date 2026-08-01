@@ -166,7 +166,7 @@
 
 	pulse()
 	audible_message(
-		message = span_infoplain("[icon2html(src, hearers(holder || src))] *beep* *beep* *beep*"),
+		message = span_infoplain(LANG("obj.a31e2378", list(icon2html(src, hearers(holder || src))))),
 		hearing_distance = hearing_range,
 	)
 	playsound(src, 'sound/machines/beep/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE, extrarange = hearing_range - SOUND_RANGE + 1, falloff_distance = hearing_range)

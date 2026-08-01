@@ -245,7 +245,7 @@
 	if(has_sensor == BROKEN_SENSORS || has_sensor == NO_SENSORS)
 		return
 
-	visible_message(span_warning(LANG("obj.ad98f318", list(src))), blind_message = span_warning("The [src] makes an electronic sizzling sound!"), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_warning(LANG("obj.ad98f318", list(src))), blind_message = span_warning(LANG("obj.3b20ae44", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
 	set_has_sensor(BROKEN_SENSORS)
 	set_sensor_mode(SENSOR_LIVING) // NOVA EDIT ADDITION
 	sensor_malfunction()
@@ -326,7 +326,7 @@
 
 	set_sensor_mode(clamp(sensor_mode + pick(-1,1), SENSOR_OFF, SENSOR_COORDS)) // NOVA EDIT CHANGE ORIGINAL: set_sensor_mode(pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS))
 	playsound(source = src, soundin = 'sound/effects/sparks/sparks3.ogg', vol = 75, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
-	visible_message(span_warning(LANG("obj.617a6797", list(src))), blind_message = span_warning("The [src] makes an electronic sizzling sound!"), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_warning(LANG("obj.617a6797", list(src))), blind_message = span_warning(LANG("obj.3b20ae44", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
 
 /**
  * Called by medical scanners a simple summary of the status

@@ -92,14 +92,14 @@
 			icon_state = "autocloner_on"
 			visible_message(
 				span_notice(LANG("obj.23d8959e", list(src))),
-				blind_message = span_hear("You can hear fluid sloshing nearby."),
+				blind_message = span_hear(LANG("obj.d61da387", null)),
 			)
 
 		// slowly grow a mob
 		if(SPT_PROB(2.5, seconds_per_tick))
 			visible_message(
 				span_notice("[src] [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]."),
-				blind_message = span_hear("Something nearby [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]."),
+				blind_message = span_hear(LANG("obj.8f953243", list(pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")))),
 			)
 
 		// if we've finished growing...
@@ -108,7 +108,7 @@
 			update_use_power(IDLE_POWER_USE)
 			visible_message(
 				span_notice(LANG("obj.8978c8c2", list(src))),
-				blind_message = span_hear("You hear ping."),
+				blind_message = span_hear(LANG("obj.31354520", null)),
 			)
 			icon_state = "autocloner_on"
 			desc = LANG("obj.236b9e99", null)
@@ -132,7 +132,7 @@
 			icon_state = "autocloner_off"
 			visible_message(
 				span_notice(LANG("obj.3c51a444", list(src))),
-				blind_message = span_hear("Something nearby shuts down and stops making noise."),
+				blind_message = span_hear(LANG("obj.f3669972", null)),
 			)
 
 		// cloned mob slowly breaks down

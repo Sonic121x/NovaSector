@@ -222,7 +222,7 @@
 	else if(is_visual && is_audible)
 		user.audible_message(
 			message = msg,
-			deaf_message = span_emote("You see how <b>[user]</b> [msg]"),
+			deaf_message = span_emote(LANG("datum.925c6790", list(user, msg))),
 			self_message = msg,
 			audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE|additional_message_flags,
 			separation = space, // NOVA EDIT ADDITION
@@ -260,7 +260,7 @@
 		else if(is_visual && is_audible)
 			hologram.audible_message(
 				message = msg,
-				deaf_message = "<span class='emote'>You see how <b>[user]</b> [msg]</span>",
+				deaf_message = LANG("datum.3b266acd", list(user, msg)),
 				self_message = msg,
 				audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE,
 				separation = space,

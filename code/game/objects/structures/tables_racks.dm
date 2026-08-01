@@ -636,7 +636,7 @@
 		return
 	visible_message(
 		span_warning(LANG("obj.3d41ee16", list(src))),
-		blind_message = span_hear("You hear the loud cracking of wood being split."),
+		blind_message = span_hear(LANG("obj.d0001956", null)),
 	)
 
 	playsound(src, 'sound/effects/wounds/crack2.ogg', 50, TRUE)

@@ -42,7 +42,7 @@
 		return FALSE
 
 	obj_flags |= EMAGGED
-	visible_message(span_warning(LANG("obj.4ebe3de5", list(src))), blind_message = span_hear("You hear a faint electrical spark."))
+	visible_message(span_warning(LANG("obj.4ebe3de5", list(src))), blind_message = span_hear(LANG("obj.e9bee9b3", null)))
 	balloon_alert(user, LANG("obj.c20bce4a", null))
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	stored_lock_code = null

@@ -73,8 +73,8 @@
 	COOLDOWN_START(src, next_use, rand(3 SECONDS, 5 SECONDS))
 	lastuser = ghost.ckey
 	visible_message(
-		message = span_notice("The planchette slowly moves... and stops at the letter \"[planchette]\"."),
-		blind_message = span_hear("You hear a scraping sound..."),
+		message = span_notice(LANG("obj.90ebd152", list(planchette))),
+		blind_message = span_hear(LANG("obj.9d42739e", null)),
 		vision_distance = 2,
 	)
 

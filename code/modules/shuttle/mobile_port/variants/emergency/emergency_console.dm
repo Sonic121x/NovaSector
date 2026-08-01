@@ -266,7 +266,7 @@
 		to_chat(user, span_notice(LANG("obj.0ac91401", list(src, hijack_stage_cooldown/10))))
 		visible_message(
 			span_warning(LANG("obj.0e254c11", list(user.name, src))),
-			blind_message = span_hear("You hear someone tapping computer keys."),
+			blind_message = span_hear(LANG("obj.cbb8daa4", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)

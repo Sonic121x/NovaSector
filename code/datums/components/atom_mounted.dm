@@ -102,7 +102,7 @@
 	PRIVATE_PROC(TRUE)
 
 	var/obj/hanging_parent = parent
-	hanging_parent.visible_message(message = span_warning("\The [hanging_parent] falls apart!"), vision_distance = 5)
+	hanging_parent.visible_message(message = span_warning(LANG("datum.7e48e931", list(hanging_parent))), vision_distance = 5)
 	hanging_parent.deconstruct(FALSE)
 
 /// Returns a list of potential turfs to mount on. This should not check if those turfs are valid but only locate them

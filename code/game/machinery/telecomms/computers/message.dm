@@ -325,7 +325,7 @@
  * Handles printing the monitor key for a given server onto this piece of paper.
  */
 /obj/item/paper/monitorkey/proc/print(obj/machinery/telecomms/message_server/server)
-	add_raw_text("<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is <b>[server.decryptkey]</b>.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one.")
+	add_raw_text(LANG("obj.8d35bdca", list(server.decryptkey)))
 	add_overlay("paper_words")
 	update_appearance()
 

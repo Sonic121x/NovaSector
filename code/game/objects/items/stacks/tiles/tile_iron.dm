@@ -116,7 +116,7 @@
 		var/obj/item/stack/sheet/iron/new_item = new(user.loc)
 		user.visible_message(
 			span_notice(LANG("obj.88395aa2", list(user.name, src, tool))),
-			blind_message = span_hear("You hear welding."),
+			blind_message = span_hear(LANG("obj.1aa82fa3", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -132,7 +132,7 @@
 		var/obj/item/stack/rods/new_item = new(user.loc)
 		user.visible_message(
 			span_notice(LANG("obj.de51624c", list(user.name, src, tool))),
-			blind_message = span_hear("You hear welding."),
+			blind_message = span_hear(LANG("obj.1aa82fa3", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)

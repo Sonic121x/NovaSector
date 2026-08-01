@@ -54,7 +54,7 @@
 	user.visible_message(
 		span_notice(LANG("obj.05c6f8ca", list(user, sampler, src))),
 		span_notice(LANG("obj.8ce99939", list(sampler, src))),
-		blind_message = span_notice("You hear click nearby."),
+		blind_message = span_notice(LANG("obj.0e0002b3", null)),
 	)
 	process_sample()
 	return ITEM_INTERACT_SUCCESS
@@ -110,5 +110,5 @@
 	update_use_power(IDLE_POWER_USE)
 	visible_message(
 		span_warning(LANG("obj.87273db5", list(src))),
-		blind_message = span_warning("You hear machine whirling."),
+		blind_message = span_warning(LANG("obj.b29110a7", null)),
 	)

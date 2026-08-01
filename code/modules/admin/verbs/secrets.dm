@@ -763,7 +763,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 		return
 	if (make_announcement != "No")
 		priority_announce(
-			text = "[SSshuttle.emergency] has returned to the station.",
+			text = LANG("_root.4128ea27", list(SSshuttle.emergency)),
 			title = "Emergency Shuttle Override",
 			sound = ANNOUNCER_SHUTTLEDOCK,
 			sender_override = "Emergency Shuttle Uplink Alert",

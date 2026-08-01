@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 		var/obj/item/stack/sheet/iron/new_item = new(user.loc)
 		user.visible_message(
 			span_notice(LANG("obj.768d01f5", list(user.name, src, tool))),
-			blind_message = span_hear("You hear welding."),
+			blind_message = span_hear(LANG("obj.1aa82fa3", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 		var/obj/item/stack/tile/iron/two/new_item = new(user.loc)
 		user.visible_message(
 			span_notice(LANG("obj.f0b0e648", list(user.name, src, tool))),
-			blind_message = span_hear("You hear welding."),
+			blind_message = span_hear(LANG("obj.1aa82fa3", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)

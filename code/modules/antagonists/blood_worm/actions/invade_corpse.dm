@@ -53,9 +53,9 @@
 		return TRUE // Don't bite the victim.
 
 	worm.visible_message(
-		message = span_danger("\The [worm] starts entering \the [victim]!"),
-		self_message = span_notice("You start entering \the [victim]."),
-		blind_message = span_hear("You hear squeezing.")
+		message = span_danger(LANG("datum.7b10e1eb", list(worm, victim))),
+		self_message = span_notice(LANG("datum.279af548", list(victim))),
+		blind_message = span_hear(LANG("datum.da94412c", null))
 	)
 
 	if (!do_after(worm, 5 SECONDS, victim, extra_checks = CALLBACK(src, PROC_REF(invade_check), worm, victim)))

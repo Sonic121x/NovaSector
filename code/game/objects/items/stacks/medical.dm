@@ -545,7 +545,7 @@
 				span_hear(LANG("obj.cbfa7730", null)))
 		else //telekinesis
 			visible_message(span_notice(LANG("obj.18743a6a", list(tool, src))), \
-				blind_message = span_hear("You hear cutting."))
+				blind_message = span_hear(LANG("obj.cbfa7730", null)))
 		use(2)
 		return ITEM_INTERACT_SUCCESS
 

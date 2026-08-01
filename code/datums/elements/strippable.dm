@@ -152,7 +152,7 @@
 		source.visible_message(
 			span_warning(LANG("datum.358cb361", list(user, source, item.name))),
 			span_userdanger(LANG("datum.c7f04489", list(user, item.name))),
-			blind_message = span_hear("You hear rustling."),
+			blind_message = span_hear(LANG("datum.845a0660", null)),
 			ignored_mobs = user,
 		)
 	//NOVA EDIT CHANGE END

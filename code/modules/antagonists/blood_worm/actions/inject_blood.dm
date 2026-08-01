@@ -47,7 +47,7 @@
 	host.apply_status_effect(status_effect_type, worm)
 
 	host.visible_message(
-		message = span_danger("[host]'s wounds start healing unnaturally quickly!"),
+		message = span_danger(LANG("datum.b73f70f6", list(host))),
 		ignored_mobs = owner
 	)
 

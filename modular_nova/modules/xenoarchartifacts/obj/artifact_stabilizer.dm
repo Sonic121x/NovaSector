@@ -41,13 +41,13 @@
 		user.visible_message(
 			span_notice(LANG("obj.b1fd8b0c", list(user, current, src))),
 			span_notice(LANG("obj.feb5fc7e", list(current, src))),
-			blind_message = span_hear("You hear buzzing nearby."),
+			blind_message = span_hear(LANG("obj.8dbea1c9", null)),
 		)
 		if(!do_after(user, stabilizing_speed * skill_modifier, target = current))
 			user.visible_message(
 				span_notice(LANG("obj.19c6e6e8", list(user, current))),
 				span_notice(LANG("obj.3ed07c7b", null)),
-				blind_message = span_hear("You hear rock crumbling nearby."),
+				blind_message = span_hear(LANG("obj.f98a0d06", null)),
 			)
 			current.excavation_level += rand(10,50)
 			return

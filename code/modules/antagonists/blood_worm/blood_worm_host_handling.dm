@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // Any proc that handles host logic and doesn't fit in a more specific file goes here.
 // There are a ton of these and they are pretty tightly coupled to each other.
 
@@ -6,9 +7,9 @@
 		playsound(src, 'sound/effects/magic/enter_blood.ogg', vol = 60, vary = TRUE, ignore_walls = FALSE)
 
 		visible_message(
-			message = span_bolddanger("\The [src] enter[p_s()] \the [new_host]!"),
-			self_message = span_notice("You enter \the [new_host]."),
-			blind_message = span_hear("You hear a squelch.")
+			message = span_bolddanger(LANG("mob.9ea628cf", list(src, p_s(), new_host))),
+			self_message = span_notice(LANG("mob.79d5582c", list(new_host))),
+			blind_message = span_hear(LANG("mob.45a3102a", null))
 		)
 
 		new /obj/effect/temp_visual/blood_worm_invade_host(get_turf(new_host), effect_name)
@@ -83,8 +84,8 @@
 		return
 
 	visible_message(
-		message = span_bolddanger("\The [src] emerge[p_s()] from \the [host]!"),
-		blind_message = span_hear("You hear a squelch."),
+		message = span_bolddanger(LANG("mob.dacadcd0", list(src, p_s(), host))),
+		blind_message = span_hear(LANG("mob.45a3102a", null)),
 		ignored_mobs = list(host, src)
 	)
 

@@ -1000,7 +1000,7 @@
 /obj/item/toy/nuke/attack_self(mob/user)
 	if (obj_flags & EMAGGED && cooldown < world.time)
 		cooldown = world.time + 600
-		user.audible_message(span_hear(LANG("obj.1aa1d4c6", null)), self_message = span_notice("You activate [src], it plays a loud noise!"))
+		user.audible_message(span_hear(LANG("obj.1aa1d4c6", null)), self_message = span_notice(LANG("obj.fa610d47", list(src))))
 		sleep(0.5 SECONDS)
 		playsound(src, 'sound/announcer/alarm/nuke_alarm.ogg', 20, FALSE)
 		sleep(14 SECONDS)

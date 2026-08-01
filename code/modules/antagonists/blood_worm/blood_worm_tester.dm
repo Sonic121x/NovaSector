@@ -43,8 +43,8 @@
 
 	if (target_mob != user)
 		user.visible_message(
-			message = span_danger("\The [user] jab[user.p_s()] \the [target_mob] with \the [src]!"),
-			self_message = span_danger("You jab \the [target_mob] with \the [src]!"),
+			message = span_danger(LANG("obj.6c674550", list(user, user.p_s(), target_mob, src))),
+			self_message = span_danger(LANG("obj.ac1ef747", list(target_mob, src))),
 			ignored_mobs = target_mob,
 		)
 
@@ -54,8 +54,8 @@
 		)
 	else
 		user.visible_message(
-			message = span_notice("\The [user] jab[user.p_s()] [user.p_themselves()] with \the [src]."),
-			self_message = span_notice("You jab yourself with \the [src]."),
+			message = span_notice(LANG("obj.7c83c01c", list(user, user.p_s(), user.p_themselves(), src))),
+			self_message = span_notice(LANG("obj.6d58d5b3", list(src))),
 		)
 
 	log_combat(user, target_mob, "tested", src)

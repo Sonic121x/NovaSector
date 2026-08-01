@@ -430,7 +430,7 @@
 			owner.visible_message(
 				span_warning(LANG("obj.40ac4005", list(user, action_key, owner, src))),
 				span_userdanger(LANG("obj.44eaa2ad", list(user, action_key, src))),
-				blind_message = span_hear("You hear rustling."),
+				blind_message = span_hear(LANG("obj.845a0660", null)),
 				ignored_mobs = user,
 			)
 			INVOKE_ASYNC(src, PROC_REF(attempt_strip_deploy), owner, user, action_key)
@@ -440,7 +440,7 @@
 			owner.visible_message(
 				span_warning(LANG("obj.ecd0c7e4", list(user, owner, src))),
 				span_userdanger(LANG("obj.78a4ee9c", list(user, src))),
-				blind_message = span_hear("You hear rustling."),
+				blind_message = span_hear(LANG("obj.845a0660", null)),
 				ignored_mobs = user,
 			)
 			INVOKE_ASYNC(src, PROC_REF(attempt_strip_activate), owner, user)
