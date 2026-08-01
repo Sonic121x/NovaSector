@@ -380,7 +380,21 @@
   "Castro XXVII": "Castro XXVII",
   "Catwalk Station": "Catwalk Station",
   "Cautery": "电烙器",
-  "CentCom": "中央指挥部",
+  "CentCom": [
+    {
+      "scope": [
+        "/area",
+        "/turf"
+      ],
+      "zh": "中央指挥部"
+    },
+    {
+      "zh": "中央指挥部",
+      "alts": [
+        "centcom"
+      ]
+    }
+  ],
   "CentCom Raven Cruiser": "中央指挥部“渡鸦”巡洋舰",
   "CentDrobe": "CentDrobe",
   "Centcom": "中央指挥部",
@@ -559,7 +573,10 @@
   "Cyborg": "赛博格",
   "Cyborg Mothership": "赛博格母舰",
   "Cyborg name": "赛博格名称",
-  "Cycler Shotgun": "Cycler 霰弹枪",
+  "Cycler Shotgun": {
+    "zh": "轮转霰弹枪",
+    "note": "原条目中英混排/与目录主流写法不符，按目录修正"
+  },
   "CytoMaster 3001": "CytoMaster 3001",
   "CytoMaster 5000": "CytoMaster 5000",
   "CytoPro": "CytoPro",
@@ -704,9 +721,10 @@
   "Drone": {
     "zh": "无人机",
     "alts": [
-      "无人机"
+      "无人机",
+      "机器人"
     ],
-    "note": "；同义写法计入 alts，避免把对的译文判成违规"
+    "note": "同义写法计入 alts，避免把对的译文判成违规"
   },
   "Drone Name": "无人机名称",
   "Drudge": "苦工",
@@ -1132,6 +1150,10 @@
   "I.C.E(tm)": "I.C.E(tm)",
   "I.C.R.A.": "I.C.R.A.",
   "ICES": "ICES",
+  "ID Painter": {
+    "zh": "证件涂装器",
+    "note": "原条目中英混排/与目录主流写法不符，按目录修正"
+  },
   "IDEDBBQ": "IDEDBBQ",
   "IHDF": "IHDF",
   "IPC": "IPC",
@@ -1281,6 +1303,7 @@
   "Lava-Ruin": "熔岩废墟",
   "Lavaland": "熔岩地",
   "Lavaland Caves": "熔岩地洞穴",
+  "Lavaland Elite": "熔岩地精英",
   "Lavaland Wastes": "熔岩地荒原",
   "LawDrobe": "LawDrobe",
   "LawSync": "LawSync",
@@ -1295,7 +1318,10 @@
   "Legion": "军团",
   "Lensdump": "Lensdump",
   "Liberation Station": "Liberation Station",
-  "Libidine Contract": "Libidine 契约",
+  "Libidine Contract": {
+    "zh": "利比丁契约",
+    "note": "原条目中英混排/与目录主流写法不符，按目录修正"
+  },
   "Libidine Eye": "Libidine 之眼",
   "Libital": "利比特",
   "Lightning Lanternfruit": "闪电灯笼果",
@@ -1370,7 +1396,14 @@
   "MO19": "MO19",
   "MOD": "MOD",
   "MODlink": "MOD链路",
-  "MODsuit": "MOD套装",
+  "MODsuit": {
+    "zh": "MOD套装",
+    "alts": [
+      "MOD服",
+      "模组服"
+    ],
+    "note": "同义写法计入 alts，避免把对的译文判成违规"
+  },
   "MORTIS": "MORTIS",
   "MRLD": "MRLD",
   "MULE": "MULE",
@@ -1510,7 +1543,18 @@
   "MiniSat": "迷你卫星",
   "MiniVix": "MiniVix",
   "Mining Crawler": "采矿履带车",
-  "Mining Equipment": "采矿设备区",
+  "Mining Equipment": [
+    {
+      "scope": [
+        "/area",
+        "/turf"
+      ],
+      "zh": "采矿设备区"
+    },
+    {
+      "zh": "采矿设备"
+    }
+  ],
   "Mining Rewards Vendor": "采矿奖励售货机",
   "Mining Station": "采矿站",
   "Mir'ntrath barhah Nar'sie.": "Mir'ntrath barhah Nar'sie.",
@@ -1649,7 +1693,10 @@
   "Nakamura": "中村",
   "Nakamura Engineering": "中村工程",
   "Nakamura Industries": "中村工业",
-  "Nakati Spice": "Nakati 香料",
+  "Nakati Spice": {
+    "zh": "纳卡蒂香料",
+    "note": "原条目中英混排/与目录主流写法不符，按目录修正"
+  },
   "Nanite Implant Framework": "纳米植入体框架",
   "Nano Picket Sign": "Nano Picket Sign",
   "NanoDrug Plus": "NanoDrug Plus",
@@ -1725,7 +1772,10 @@
   "Odysseus": "奥德修斯",
   "Offensive Mining Explosion Mod": "攻击性采矿爆炸模组",
   "Officer Beats-The-Kobold": "打狗头人警官",
-  "Officer Beepsky": "Beepsky警官",
+  "Officer Beepsky": {
+    "zh": "哔斯基警官",
+    "note": "原条目中英混排/与目录主流写法不符，按目录修正"
+  },
   "Officer McCuff": "麦卡夫警官",
   "Offixer Tilesky": "泰尔斯基警官",
   "Oingo Boingo Punch-face": "Oingo Boingo 拳脸",
@@ -1792,7 +1842,10 @@
   },
   "Passes-The-Checks(PLEASE)": "总是过检(求你了)",
   "Path of Rust": "锈蚀之道",
-  "Pathfinder Module": "Pathfinder 模块",
+  "Pathfinder Module": {
+    "zh": "寻路者模块",
+    "note": "原条目中英混排/与目录主流写法不符，按目录修正"
+  },
   "Pathological Bow Collar": "病理蝴蝶领",
   "Patrol Corvette": "巡逻轻型护卫舰",
   "Paul": "保罗",
@@ -1820,6 +1873,7 @@
   "Pipe Bow": "管道舰艏弓",
   "Pipe Organ Gun": "管风琴枪",
   "Pirate Cutter": "海盗切割者",
+  "Piru Bread": "皮鲁面包",
   "Pixellari": "像素拉里",
   "Pizza Imperator": "Pizza Imperator",
   "Plant-B-Gone": "Plant-B-Gone",
@@ -1882,7 +1936,10 @@
   },
   "Protocol CRAB-17": "Protocol CRAB-17",
   "Protogen": "原型兽",
-  "Protolathe": "原型机",
+  "Protolathe": {
+    "zh": "原型车床",
+    "note": "原条目中英混排/与目录主流写法不符，按目录修正"
+  },
   "Proxima Centauri": "比邻星",
   "Psi-Echo Demoralizer Device": "Psi-Echo Demoralizer Device",
   "Psicodine": "赛可定",
@@ -2177,6 +2234,7 @@
   "Shell-Shock": "弹震症",
   "Shellguard Munitions": "Shellguard Munitions",
   "Shelter Beta": "Beta 庇护所",
+  "Shelter Capsule": "庇护舱胶囊",
   "Shibari": "缚绳",
   "Shifting Guise": "易变伪装",
   "Shipbreaker": "拆船工",
@@ -2608,7 +2666,10 @@
   "Tizira Imports": "提兹拉进口公司",
   "Tiziran": {
     "zh": "提兹兰",
-    "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
+    "alts": [
+      "提兹拉"
+    ],
+    "note": "同义写法计入 alts，避免把对的译文判成违规"
   },
   "Tizirian": "提兹里人",
   "Tizirian Sour": "提兹里酸饮",
@@ -2836,11 +2897,13 @@
   "chest": {
     "zh": "胸部",
     "alts": [
+      "宝箱",
+      "箱子",
       "胸前",
       "胸口",
       "胸腔"
     ],
-    "note": "；同义写法计入 alts，避免把对的译文判成违规"
+    "note": "同义写法计入 alts，避免把对的译文判成违规"
   },
   "ckey": "ckey",
   "clf3": "clf3",
@@ -2857,7 +2920,14 @@
     ],
     "note": "大小写/连字符变体已并入本条（原有 2 条：Digi, digi）"
   },
-  "disabler": "失能枪",
+  "disabler": {
+    "zh": "失能枪",
+    "alts": [
+      "缴械冲锋枪",
+      "缴械枪"
+    ],
+    "note": "同义写法计入 alts，避免把对的译文判成违规"
+  },
   "dragon's breath": "龙息弹",
   "eigenstate": "本征态",
   "elektro_3b.exe": "elektro_3b.exe",
@@ -2969,7 +3039,6 @@
   "set_faction": "set_faction",
   "shakiri": "沙基里",
   "shark-corgi": "shark-corgi",
-  "slot available": "个可用名额",
   "slots available": "个可用名额",
   "smart-SMG": "smart-SMG",
   "space drugs": "太空毒品",

@@ -1430,6 +1430,12 @@ async function runCodex(
 /// translations 写 outPath、glossary_additions 写 addPath（与 agent 后端一致，自动扩术语表；
 /// mergeGlossaryAdditions 之后还会再过滤一遍）。用 OPENAI_API_KEY + OPENAI_MODEL（可配 base_url
 /// 走兼容 OpenAI 协议的服务，如 DeepSeek/通义/本地 vLLM）。
+/**
+ * 单次 API 请求超时（毫秒）。超时后该批按失败处理、留在 terms 报告里，重跑自然捡回来——
+ * 比无限等下去强得多。CHUNK 调大时可用 I18N_OPENAI_TIMEOUT_MS 放宽。
+ */
+const OPENAI_TIMEOUT_MS = envInt('I18N_OPENAI_TIMEOUT_MS', 180_000);
+
 /** 全程累计的缓存命中统计（结束时打印，验证静态前缀是否生效）。 */
 let cacheHitTokens = 0;
 let cachePromptTokens = 0;
@@ -1476,8 +1482,12 @@ async function runOpenAI(
     `\n\n待翻译 JSON：\n${JSON.stringify(batch)}`;
   fs.mkdirSync(path.dirname(logPath), { recursive: true });
   try {
+    // **必须带超时**。fetch 默认永不超时：连接被中间设备静默丢弃后，promise 既不 resolve
+    // 也不 reject，worker 就永久卡在这里——表现是「跑得极慢」，实际是并发池被逐个挂死，
+    // 最后进程还活着但零连接、零输出。实测卡了 6 分钟无任何动静才发现。
     const res = await fetch(`${OPENAI_BASE_URL}/chat/completions`, {
       method: 'POST',
+      signal: AbortSignal.timeout(OPENAI_TIMEOUT_MS),
       headers: {
         'content-type': 'application/json',
         authorization: `Bearer ${OPENAI_API_KEY}`,
