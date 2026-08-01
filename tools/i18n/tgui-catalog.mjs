@@ -1054,16 +1054,19 @@ function writeTguiScopes(enCatalog) {
   }
   const outPath = path.join(STRINGS_I18N_DIR, 'tgui-scopes.json');
   fs.writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
+  // 这个函数跑在**每次 tgui 构建**里，所以默认只出一行。
+  // 跨界面共用的短 key（如 "Basic"：Crayon 的色系分组 vs 化学的碱性）只能有一个译文，
+  // 各界面语义不同时必然有一边错——但那是需要专门排查的事，不该每次构建都刷屏。
+  // 要看明细：I18N_SCOPE_REPORT=1 node tools/i18n/tgui-catalog.mjs extract
   const shared = Object.entries(out).filter(
-    ([key, s]) => s.length > 1 && key.split(/\s+/).length <= 2,
+    ([key, sc]) => sc.length > 1 && key.split(/\s+/).length <= 2,
   );
   console.log(
-    `tgui 语境 sidecar: ${Object.keys(out).length} 条 -> ${path.relative(ROOT, outPath)}`,
+    `tgui 语境 sidecar: ${Object.keys(out).length} 条（跨界面共用短 key ${shared.length}）`,
   );
-  console.log(
-    `  其中 ${shared.length} 条**短串跨多个界面共用**——这些 key 只能有一个译文，` +
-      `若各界面语义不同就必然有一边是错的（如 "Basic"：色系分组 vs 化学碱性）。`,
-  );
+  if (process.env.I18N_SCOPE_REPORT) {
+    for (const [key, sc] of shared) console.log(`   ${JSON.stringify(key)} ${sc.join(', ')}`);
+  }
 }
 
 function sync() {
