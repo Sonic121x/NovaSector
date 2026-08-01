@@ -140,6 +140,14 @@
 	if(!SSmapping.initialized)
 		return
 
+	// NOVA EDIT ADDITION START - 上游 bug：z_changed 不看「精美（粒子）天气」偏好设置。
+	// update_state 是唯一读偏好的地方，关掉时它清空 vis_contents 并把自己移出 particle_planemasters；
+	// 但只要之后跨一次 z 层（坐穿梭机、下矿场…），这里就无条件把天气 holder 重新塞回 vis_contents，
+	// 粒子又冒出来。用 particle_planemasters 成员资格当闸——它的增减完全由偏好决定。
+	if(!(src in SSweather.particle_planemasters))
+		vis_contents.Cut()
+		return
+	// NOVA EDIT ADDITION END
 	var/list/stack_levels = SSmapping.get_connected_levels(new_z)
 	for (var/holder_offset, holder_list in SSweather.particle_holders)
 		for (var/obj/effect/abstract/weather_holder/holder as anything in holder_list)

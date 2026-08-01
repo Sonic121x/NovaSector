@@ -57,6 +57,7 @@
 
 				data["machines"] += list(list(
 					"id" = machine.id,
+					"label" = lang_reverse_text(machine.id), // NOVA EDIT ADDITION - I18N - id 是 act('view') 的回传键，必须保持英文；显示另发一份
 					"name" = machine.name,
 					"icon" = initial(machine.icon_state),
 				))
@@ -68,12 +69,14 @@
 				for(var/obj/machinery/telecomms/machine as anything in selected.links)
 					linked_machines += list(list(
 						"id" = machine.id,
+						"label" = lang_reverse_text(machine.id), // NOVA EDIT ADDITION - I18N
 						"name" = machine.name,
 						"icon" = initial(machine.icon_state),
 					))
 
 				data["machine"] = list(
 					"id" = selected.id,
+					"label" = lang_reverse_text(selected.id), // NOVA EDIT ADDITION - I18N
 					"name" = selected.name,
 					"network" = selected.network,
 					"linkedMachines" = linked_machines,

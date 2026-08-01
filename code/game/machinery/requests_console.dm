@@ -240,11 +240,11 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 				switch(emergency_type)
 					if(REQ_EMERGENCY_SECURITY)
-						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = department, "CALLER" = caller_info, "RETARESPONDERS" = granted_count), src, list(RADIO_CHANNEL_SECURITY), "Security")
+						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = lang_reverse_text(department), "CALLER" = caller_info, "RETARESPONDERS" = granted_count), src, list(RADIO_CHANNEL_SECURITY), "Security") // NOVA EDIT CHANGE - I18N - LOCATION 只用于公告显示；console.department 的路由比较不受影响 - ORIGINAL: "LOCATION" = department
 					if(REQ_EMERGENCY_ENGINEERING)
-						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = department, "CALLER" = caller_info, "RETARESPONDERS" = granted_count), src, list(RADIO_CHANNEL_ENGINEERING), "Engineering")
+						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = lang_reverse_text(department), "CALLER" = caller_info, "RETARESPONDERS" = granted_count), src, list(RADIO_CHANNEL_ENGINEERING), "Engineering") // NOVA EDIT CHANGE - I18N - LOCATION 只用于公告显示；console.department 的路由比较不受影响 - ORIGINAL: "LOCATION" = department
 					if(REQ_EMERGENCY_MEDICAL)
-						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = department, "CALLER" = caller_info, "RETARESPONDERS" = granted_count), src, list(RADIO_CHANNEL_MEDICAL), "Medical")
+						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = lang_reverse_text(department), "CALLER" = caller_info, "RETARESPONDERS" = granted_count), src, list(RADIO_CHANNEL_MEDICAL), "Medical") // NOVA EDIT CHANGE - I18N - LOCATION 只用于公告显示；console.department 的路由比较不受影响 - ORIGINAL: "LOCATION" = department
 
 				// Send confirmation to the calling department about the RETA activation
 				var/list/target_channels = list()
@@ -280,11 +280,11 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 				// Normal emergency call without RETA
 				switch(emergency_type)
 					if(REQ_EMERGENCY_SECURITY)
-						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = department, "CALLER" = caller_info), null, list(RADIO_CHANNEL_SECURITY), "Security")
+						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = lang_reverse_text(department), "CALLER" = caller_info), null, list(RADIO_CHANNEL_SECURITY), "Security") // NOVA EDIT CHANGE - I18N - LOCATION 只用于公告显示；console.department 的路由比较不受影响 - ORIGINAL: "LOCATION" = department
 					if(REQ_EMERGENCY_ENGINEERING)
-						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = department, "CALLER" = caller_info), null, list(RADIO_CHANNEL_ENGINEERING), "Engineering")
+						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = lang_reverse_text(department), "CALLER" = caller_info), null, list(RADIO_CHANNEL_ENGINEERING), "Engineering") // NOVA EDIT CHANGE - I18N - LOCATION 只用于公告显示；console.department 的路由比较不受影响 - ORIGINAL: "LOCATION" = department
 					if(REQ_EMERGENCY_MEDICAL)
-						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = department, "CALLER" = caller_info), null, list(RADIO_CHANNEL_MEDICAL), "Medical")
+						aas_config_announce(/datum/aas_config_entry/rc_emergency, list("LOCATION" = lang_reverse_text(department), "CALLER" = caller_info), null, list(RADIO_CHANNEL_MEDICAL), "Medical") // NOVA EDIT CHANGE - I18N - LOCATION 只用于公告显示；console.department 的路由比较不受影响 - ORIGINAL: "LOCATION" = department
 				addtimer(CALLBACK(src, PROC_REF(clear_emergency)), 5 MINUTES)
 
 			update_appearance()

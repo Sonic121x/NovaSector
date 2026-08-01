@@ -32,11 +32,16 @@
 		return !isnull(brain) && brain_check(brain)
 	return mob_check(patient)
 
+// 合成人复活要求「脑是机械的 / 生物型是机械的」，直接写正向条件。
+// 原来的写法是在**同一个类型**上先 `/proc/brain_check` 声明反向判据、再 `/brain_check` 覆盖成 `!..()`
+// ——上游那对 `/basic/revival` 与子类型 `/basic/revival/mechanic` 才是「父声明、子取反」，
+// 同类型自我覆盖时 `..()` 没有父实现可调，判据落到哪个版本要看编译器脾气，
+// 结果就是玩家用万用表到位却看不到「重启神经网络」选项。
 /datum/surgery_operation/basic/revive_synth/proc/brain_check(obj/item/organ/brain/brain)
-	return !IS_ROBOTIC_ORGAN(brain)
+	return IS_ROBOTIC_ORGAN(brain)
 
 /datum/surgery_operation/basic/revive_synth/proc/mob_check(mob/living/patient)
-	return !(patient.mob_biotypes & MOB_ROBOTIC)
+	return !!(patient.mob_biotypes & MOB_ROBOTIC)
 
 /datum/surgery_operation/basic/revive_synth/tool_check(obj/item/tool)
 	if(istype(tool, /obj/item/shockpaddles))
@@ -116,8 +121,3 @@
 		span_warning("[surgeon] shocks [patient]'s [brain_type] with [tool], but [patient.p_they()] don't react."),
 		span_warning("[surgeon] shocks [patient]'s [brain_type] with [tool], but [patient.p_they()] don't react."),
 	)
-/datum/surgery_operation/basic/revive_synth/brain_check(obj/item/organ/brain/synth/brain)
-	return !..()
-
-/datum/surgery_operation/basic/revive_synth/mob_check(mob/living/patient)
-	return !..()
