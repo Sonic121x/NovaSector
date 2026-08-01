@@ -338,10 +338,12 @@ function pickSense(term: GlossaryTerm, key: string): GlossarySense | null {
       continue;
     }
     if (!paths) continue;
+    // 剥掉 `#name` / `#proc()` 后缀再比前缀——scope 写的是类型路径，不含变量名。
+    const bare = paths.map((p) => p.split('#')[0]);
     for (const prefix of sense.scope) {
       // `/datum/reagent` 命中 `/datum/reagent/medicine/multiver`；
       // `tgui:` 这种以冒号收尾的写法命中该来源下全部界面（`tgui:ChemHeater`）。
-      const hit = paths.some(
+      const hit = bare.some(
         (p) =>
           p === prefix ||
           p.startsWith(`${prefix}/`) ||
@@ -707,6 +709,24 @@ function glossaryNormKey(term: string): string {
   return term.toLowerCase().replace(/[-_\s]/g, '');
 }
 
+/**
+ * **人工判定「不该作为术语」的词**，MT 不得再自动加回来。
+ *
+ * 归一化查重只挡得住「表里已有的变体」，挡不住**被故意删掉的词**：Sol 因为一词多义
+ * （恒星系/语言/前缀）被删，下一轮 MT 就把它当新专名重新收录（Sol -> 太阳联邦），
+ * 61 条假违规立刻回来。删除必须是**有记忆的**，否则每跑一轮就得重删一次。
+ */
+const BLOCKLIST_PATH = path.join(
+  import.meta.dir,
+  `glossary-blocklist.${LOCALE}.json`,
+);
+const glossaryBlocklist = new Set<string>(
+  (fs.existsSync(BLOCKLIST_PATH)
+    ? (JSON.parse(fs.readFileSync(BLOCKLIST_PATH, 'utf8')) as string[])
+    : []
+  ).map(glossaryNormKey),
+);
+
 function mergeGlossaryAdditions(additions: Record<string, string>): number {
   // **按归一化形式查重**，不能用 `en in glossary` 的精确匹配。
   // 精确匹配下，模型返回的 "Nanotrasen" 在表里只有 "NANOTRASEN" 时会被当成新词加进去
@@ -717,6 +737,7 @@ function mergeGlossaryAdditions(additions: Record<string, string>): number {
   let added = 0;
   for (const [en, zh] of Object.entries(additions)) {
     if (!en || !zh || known.has(glossaryNormKey(en))) continue;
+    if (glossaryBlocklist.has(glossaryNormKey(en))) continue;
     if (!isGlossaryAdditionCandidate(en)) continue;
     glossary[en] = zh;
     known.add(glossaryNormKey(en));
@@ -985,8 +1006,18 @@ function termMismatches(
   }
 
   const missing: TermMismatch[] = [];
+  // 已被更长术语占用的字符区间。termsByLength 已按长度降序，所以长词先登记区间。
+  // 不做这一步就会自相矛盾：`Rear Admiral`->海军少将 与 `Admiral`->海军上将 并存时，
+  // 把 "Rear Admiral" 正确译成「海军少将」反而违反了 `Admiral`，且**永远修不好**——
+  // 强制回环会一遍遍重译它，这正是 obj.json 那批「仍违规 37/50」的来源。
+  const claimed: [number, number][] = [];
   for (const entry of termsByLength) {
-    if (!entry.sourcePattern.test(enVal)) continue;
+    const m = entry.sourcePattern.exec(enVal);
+    if (!m) continue;
+    const start = m.index;
+    const end = start + m[0].length;
+    if (claimed.some(([a, b]) => start >= a && end <= b)) continue;
+    claimed.push([start, end]);
     // 按条目所属的 DM 类型路径挑义项；该语境下没有适用义项就不检查这个词。
     const sense = pickSense(entry, key);
     if (!sense) continue;
@@ -1399,6 +1430,10 @@ async function runCodex(
 /// translations 写 outPath、glossary_additions 写 addPath（与 agent 后端一致，自动扩术语表；
 /// mergeGlossaryAdditions 之后还会再过滤一遍）。用 OPENAI_API_KEY + OPENAI_MODEL（可配 base_url
 /// 走兼容 OpenAI 协议的服务，如 DeepSeek/通义/本地 vLLM）。
+/** 全程累计的缓存命中统计（结束时打印，验证静态前缀是否生效）。 */
+let cacheHitTokens = 0;
+let cachePromptTokens = 0;
+
 async function runOpenAI(
   batch: Catalog,
   mode: WorkMode,
@@ -1415,6 +1450,11 @@ async function runOpenAI(
     mode === 'terms'
       ? '这些条目的现有译文与术语表不一致；请重新给出自然中文译文，并严格套用术语表。'
       : '把每个值翻译为目标语言。';
+  // **静态前缀，逐字节固定** —— DeepSeek 的上下文缓存按前缀匹配命中，缓存命中的
+  // 输入 token 便宜一个数量级。所以随批变化的内容（术语表命中、语境段落、批体本身）
+  // 一律放进 user 消息，system 只留不变的指令。
+  // 从前把 glossaryHint/scopeSection 拼进 system，等于每次请求前缀都不同 —— 命中率恒为 0。
+  // 注意 ${task} 只有两种取值（pending / terms），各自形成一条稳定前缀，不影响命中。
   const system =
     `你是 Space Station 13 游戏文本的专业本地化译者，目标语言：${LOCALE}。${task}` +
     `输入是紧凑 JSON：键 -> 唯一英文源。规则：` +
@@ -1428,8 +1468,12 @@ async function runOpenAI(
     `唯一装备/武器/药剂/材料、型号、缩写、必须保留英文的命令或程序名；` +
     `不要收普通单词、多义词、颜色、大小、方向、形容词、泛称名词、可随语境翻译的词` +
     `（如 white/black/large/small/left/right/agent/vendor/crate）。不确定就不收。没有就写 {}。` +
+    `术语表与语境随每批附在用户消息里。`;
+  // 随批变化的部分：全部放 user，前缀才稳得住。
+  const variable =
     `术语表（仅本批命中）：\n${glossaryHint(batch)}` +
-    scopeSection(idToScope);
+    scopeSection(idToScope) +
+    `\n\n待翻译 JSON：\n${JSON.stringify(batch)}`;
   fs.mkdirSync(path.dirname(logPath), { recursive: true });
   try {
     const res = await fetch(`${OPENAI_BASE_URL}/chat/completions`, {
@@ -1444,7 +1488,7 @@ async function runOpenAI(
         response_format: { type: 'json_object' },
         messages: [
           { role: 'system', content: system },
-          { role: 'user', content: JSON.stringify(batch) },
+          { role: 'user', content: variable },
         ],
       }),
     });
@@ -1457,7 +1501,26 @@ async function runOpenAI(
     }
     const data = (await res.json()) as {
       choices?: { message?: { content?: string } }[];
+      usage?: {
+        prompt_tokens?: number;
+        prompt_cache_hit_tokens?: number;
+        prompt_cache_miss_tokens?: number;
+        completion_tokens?: number;
+      };
     };
+    // 记缓存命中，用来验证「system 静态前缀」确实被 DeepSeek 缓存了。
+    // 命中恒为 0 就说明前缀又被写活了（有人把随批内容拼回了 system）。
+    const u = data?.usage;
+    if (u) {
+      const hit = u.prompt_cache_hit_tokens ?? 0;
+      const total = u.prompt_tokens ?? 0;
+      cacheHitTokens += hit;
+      cachePromptTokens += total;
+      fs.appendFileSync(
+        logPath,
+        `\n=== usage: prompt ${total}（缓存命中 ${hit}）, completion ${u.completion_tokens ?? 0} ===\n`,
+      );
+    }
     const content = data?.choices?.[0]?.message?.content;
     if (typeof content !== 'string') {
       fs.appendFileSync(logPath, `\n=== openai 无 content ===\n`);
@@ -1499,7 +1562,11 @@ function scopeHint(key: string): string | null {
   if (!paths?.length) return null;
   const p = paths[0];
   if (!p.startsWith('/')) return p; // tgui:XXX
-  return p.split('/').slice(0, 5).join('/');
+  // 保留 `#name` / `#desc` / `#proc()` —— 它告诉模型这是**短名词短语**还是**整句**，
+  // 很多「物品名被翻成一句话」就是缺这个信号。
+  const [typePath, member] = p.split('#');
+  const short = typePath.split('/').slice(0, 5).join('/');
+  return member ? `${short}#${member}` : short;
 }
 
 function shortIdBatch(batch: Catalog): {
@@ -1543,7 +1610,9 @@ function scopeSection(idToScope: Record<string, string>): string {
   return (
     '\n各条目在游戏源码里的所属类型（**只用来判断语境，绝不要翻译或写进译文**）。' +
     'DM 类型路径能直接消歧：/datum/reagent 下的 Base 是「碱」，/area 下的是「基地」；' +
-    `/obj/item 下的短语多为物品名（名词短语，别翻成句子）：\n${lines.join('\n')}`
+    '路径后的 `#name` 是物品/显示名（**译成简短名词短语，绝不要译成一句话**），' +
+    '`#desc` 是描述（可以是整句），`#proc()` 是运行时发给玩家的消息：' +
+    `\n${lines.join('\n')}`
   );
 }
 
@@ -2018,6 +2087,13 @@ async function cmdTranslate(
       );
       return false;
     }
+  }
+  if (cachePromptTokens > 0) {
+    const pct = Math.round((100 * cacheHitTokens) / cachePromptTokens);
+    console.log(
+      `提示词缓存命中 ${cacheHitTokens}/${cachePromptTokens} tokens（${pct}%）。` +
+        `若为 0%，说明 system 静态前缀被写活了（随批内容混进了 system）。`,
+    );
   }
   console.log(`完成。请抽检后提交 strings/i18n/${LOCALE}。`);
   return true;

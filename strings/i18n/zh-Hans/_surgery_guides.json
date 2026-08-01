@@ -1,4 +1,6 @@
 {
+	"surgery_81108": "开始手术时，请先为患者铺好手术洞巾，或用约束带将患者固定在手术台上。",
+	"surgery_86263": "准备手术",
 	"surgery_guide_00": "皮肤必须被切开",
 	"surgery_guide_01": "皮肤不得被切开",
 	"surgery_guide_02": "皮肤必须被打开",
@@ -17,8 +19,8 @@
 	"surgery_guide_15": "不得敷上塑料",
 	"surgery_guide_16": "义体必须未固定",
 	"surgery_guide_17": "义体不得未固定",
-	"surgery_guide_18": "胸腔必须被大幅打开",
-	"surgery_guide_19": "胸腔不得被大幅打开",
+	"surgery_guide_18": "胸部空腔必须被大范围打开",
+	"surgery_guide_19": "胸部空腔不得被大范围打开",
 	"surgery_guide_complex_anatomy": "患者不得具有复杂解剖结构",
 	"surgery_once_per_organ": "此手术每个器官只能进行一次。",
 	"surgery_req_0164ef30": "肢体必须脱臼",
@@ -44,7 +46,5 @@
 	"surgery_req_dd550a99": "肢体必须有皮肤",
 	"surgery_req_denting_lc": "患者必须有凹陷或热损伤",
 	"surgery_req_e69b88a9": "大脑或任何胸部器官，不包括心脏",
-	"surgery_req_ec24aaec": "患者不得为干尸状态",
-	"surgery_86263": "准备手术",
-	"surgery_81108": "通过为患者铺上手术铺巾、或将患者固定在手术台上来开始手术。"
+	"surgery_req_ec24aaec": "患者不得为干尸状态"
 }

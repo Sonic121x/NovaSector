@@ -1,13 +1,13 @@
 {
-  "reason_moon_sun": "月亮与太阳的连珠",
-  "reason_housing": "一些高风险的房地产市场走势",
+  "reason_badluck": "呃，运气不好吧，大概",
   "reason_bepis": "B.E.P.I.S. 团队的突然垮台",
-  "reason_solfed": "投机性的 SolFed 拨款适得其反",
+  "reason_housing": "一些高风险的房地产市场走势",
   "reason_layoffs": "关于纳米传讯会计人员被\"裁员\"的严重夸大报道",
+  "reason_moon_sun": "月亮与太阳的连珠",
   "reason_nft": "某个\"蠢货\"对\"非同质化代币\"的一笔\"伟大投资\"",
-  "reason_tiger": "虎牌合作社特工的数次突袭",
-  "reason_supply": "供应链短缺",
   "reason_ntplus_downfall": "\"纳米传讯+\"社交媒体网络的突然垮台",
   "reason_ntplus_success": "\"纳米传讯+\"社交媒体网络的意外走红",
-  "reason_badluck": "呃，运气不好吧，大概"
+  "reason_solfed": "太阳联邦的投机性拨款适得其反",
+  "reason_supply": "供应链短缺",
+  "reason_tiger": "虎牌合作社特工的数次突袭"
 }

@@ -681,6 +681,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
     let mut pure_procs: HashSet<String> = HashSet::new();
     for ty in tree.iter_types() {
         for (proc_name, type_proc) in ty.procs.iter() {
+            let proc_scope = format!("{}#{}()", ty.path, proc_name);
             for proc_value in type_proc.value.iter() {
                 if let Some(block) = &proc_value.code {
                     if block_is_pure(block) {
@@ -704,6 +705,11 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
 
         // 1) 变量初始化（name/desc 等）。
         for (var_name, type_var) in ty.vars.iter() {
+            // 语境再细一层：**变量名**。`#name` 是物品名（短名词短语），`#desc` 是描述
+            // （整句），`#message` 是发给玩家的话。模型光看类型路径分不出这个，于是
+            // 常把物品名翻成一句话。`#` 不影响命名空间推导（namespace_for 按 `/` 取首段），
+            // 所以目录 key 不变。
+            let var_scope = format!("{}#{}", ty.path, var_name);
             let mut is_sink = SINK_VARS.contains(&var_name.as_str());
             // ADMIN_VERB 宏展开成 `/datum/admin_verb/xxx { name = ##verb_name; … }`，所以管理员
             // 命令的显示名同时是**类型变量**，会绕开 `set name` 那条路上的 is_safe_verb_name 闸
@@ -738,7 +744,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             // 自定义 examine 文本变量（dry_desc 类）、pick 表、未列入 SINK_VARS 的长尾自动入目录
             // （句末标点闸门挡住标识符/枚举名）；显示靠反查表/字面 AC/模板逆匹配引擎。
             if let Some(expr) = &type_var.value.expression {
-                visit_expr(expr, &namespace, &mut catalog, suppress_aggressive, false);
+                visit_expr(expr, &var_scope, &mut catalog, suppress_aggressive, false);
             }
             if !is_sink && !is_config_default && !is_aas_template && !is_law_list && !is_slogan
                 && !is_speech_pool && !is_steps_list
@@ -747,15 +753,15 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             }
             if let Some(expr) = &type_var.value.expression {
                 if is_aas_template {
-                    emit_message_list(expr, &namespace, &mut catalog);
+                    emit_message_list(expr, &var_scope, &mut catalog);
                     continue;
                 }
                 if is_steps_list {
-                    emit_list_strings(expr, &namespace, &mut catalog);
+                    emit_list_strings(expr, &var_scope, &mut catalog);
                     continue;
                 }
                 if is_law_list || is_speech_pool {
-                    emit_list_strings(expr, &namespace, &mut catalog);
+                    emit_list_strings(expr, &var_scope, &mut catalog);
                     if is_law_list {
                         continue;
                     }
@@ -768,7 +774,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                         for part in template.split(';') {
                             let s = part.trim();
                             if !s.is_empty() && !s.contains('{') {
-                                emit(&mut catalog, &namespace, s);
+                                emit(&mut catalog, &var_scope, s);
                             }
                         }
                     }
@@ -778,7 +784,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                     if is_config_default && !is_sentence_like(&template) {
                         continue;
                     }
-                    emit(&mut catalog, &namespace, &template);
+                    emit(&mut catalog, &var_scope, &template);
                 }
             }
         }
@@ -788,10 +794,11 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             if pure_procs.contains(proc_name) {
                 continue;
             }
+            let proc_scope = format!("{}#{}()", ty.path, proc_name);
             for proc_value in type_proc.value.iter() {
                 if let Some(block) = &proc_value.code {
                     let ident_proc = is_identifier_dot_proc(proc_name);
-                    visit_block(block, &namespace, &mut catalog, suppress_aggressive, ident_proc);
+                    visit_block(block, &proc_scope, &mut catalog, suppress_aggressive, ident_proc);
                     // verb 命令面板显示名：`set name = "X"`（Statement::Setting）。非 sink、非类型变量，
                     // 单独抽。仅安全显示名（is_safe_verb_name 排除 .click/body-chest 等 keybind 标识符）。
                     // 编译期由 rewrite::run_verbs 注入译文（verb 名无法运行时本地化）。

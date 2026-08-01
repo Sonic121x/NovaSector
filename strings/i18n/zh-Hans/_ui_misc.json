@@ -1,9 +1,9 @@
 {
-	"Job Whitelist:": "职业白名单：",
-	"Job Blacklist:": "职业黑名单：",
-	"Species Whitelist:": "物种白名单：",
-	"Species Blacklist:": "物种黑名单：",
 	"CKEY Whitelist:": "CKEY 白名单：",
-	"Nova Star-Only": "仅限 Nova Star",
-	"Donator-Only": "仅限捐赠者"
+	"Donator-Only": "仅限捐赠者",
+	"Job Blacklist:": "职业黑名单：",
+	"Job Whitelist:": "职业白名单：",
+	"Nova Star-Only": "诺瓦星限定",
+	"Species Blacklist:": "物种黑名单：",
+	"Species Whitelist:": "物种白名单："
 }
