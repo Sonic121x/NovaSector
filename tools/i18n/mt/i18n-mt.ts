@@ -1434,7 +1434,16 @@ async function runCodex(
  * 单次 API 请求超时（毫秒）。超时后该批按失败处理、留在 terms 报告里，重跑自然捡回来——
  * 比无限等下去强得多。CHUNK 调大时可用 I18N_OPENAI_TIMEOUT_MS 放宽。
  */
-const OPENAI_TIMEOUT_MS = envInt('I18N_OPENAI_TIMEOUT_MS', 180_000);
+/**
+ * 思考强度。空字符串 = 关闭思考模式（回到纯输出）。默认 max。
+ * 开了之后单批耗时明显变长，所以超时默认也跟着放宽。
+ */
+const REASONING_EFFORT = process.env.I18N_REASONING_EFFORT ?? 'max';
+
+const OPENAI_TIMEOUT_MS = envInt(
+  'I18N_OPENAI_TIMEOUT_MS',
+  REASONING_EFFORT ? 600_000 : 180_000,
+);
 
 /** 全程累计的缓存命中统计（结束时打印，验证静态前缀是否生效）。 */
 let cacheHitTokens = 0;
@@ -1496,6 +1505,15 @@ async function runOpenAI(
         model: OPENAI_MODEL,
         temperature: 0,
         response_format: { type: 'json_object' },
+        // DeepSeek 思考模式：翻译是判断密集型（一词多义、术语该不该套、名词短语还是整句），
+        // 开思考明显值。effort 取值 high/max（low/medium 会被映射成 high，xhigh 映射成 max）。
+        // 思考内容走 reasoning_content 字段，不影响我们解析 content。
+        ...(REASONING_EFFORT
+          ? {
+              thinking: { type: 'enabled' },
+              reasoning_effort: REASONING_EFFORT,
+            }
+          : {}),
         messages: [
           { role: 'system', content: system },
           { role: 'user', content: variable },
