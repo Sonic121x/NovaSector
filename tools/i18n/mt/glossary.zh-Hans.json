@@ -1327,13 +1327,28 @@
     "zh": "马格南",
     "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
   },
-  "Maintenance": {
-    "zh": "维护区",
-    "alts": [
-      "维修通道"
-    ],
-    "note": "大小写/连字符变体已并入本条（原有 2 条：Maintenance, maintenance）"
-  },
+  "Maintenance": [
+    {
+      "scope": [
+        "/area",
+        "/turf"
+      ],
+      "zh": "维护区",
+      "alts": [
+        "维修通道"
+      ],
+      "note": "区域名义项：站内那片维护通道"
+    },
+    {
+      "zh": "维修",
+      "alts": [
+        "维护",
+        "维修通道",
+        "维护区"
+      ],
+      "note": "其余语境是形容词/名词「维修」：maintenance drone=维修无人机，不是维护区无人机"
+    }
+  ],
   "Maintenance Adaptation": "维护区适应",
   "Makarov": "马卡洛夫",
   "Make Static": "使静默",

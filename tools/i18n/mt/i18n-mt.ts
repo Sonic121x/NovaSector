@@ -1405,6 +1405,7 @@ async function runOpenAI(
   outPath: string,
   addPath: string,
   logPath: string,
+  idToScope: Record<string, string> = {},
 ): Promise<boolean> {
   if (!OPENAI_API_KEY) {
     console.error('  ⚠ 未设置 OPENAI_API_KEY（或 I18N_OPENAI_API_KEY）');
@@ -1427,7 +1428,8 @@ async function runOpenAI(
     `唯一装备/武器/药剂/材料、型号、缩写、必须保留英文的命令或程序名；` +
     `不要收普通单词、多义词、颜色、大小、方向、形容词、泛称名词、可随语境翻译的词` +
     `（如 white/black/large/small/left/right/agent/vendor/crate）。不确定就不收。没有就写 {}。` +
-    `术语表（仅本批命中）：\n${glossaryHint(batch)}`;
+    `术语表（仅本批命中）：\n${glossaryHint(batch)}` +
+    scopeSection(idToScope);
   fs.mkdirSync(path.dirname(logPath), { recursive: true });
   try {
     const res = await fetch(`${OPENAI_BASE_URL}/chat/completions`, {
@@ -1487,12 +1489,27 @@ async function runOpenAI(
   }
 }
 
+/**
+ * 条目的语境提示 = 它所属 DM 类型路径的前 4 段（`/datum/reagent/medicine/c2/multiver`
+ * -> `/datum/reagent/medicine`）。前缀比叶子有用：要判的是「这是试剂还是区域名」，
+ * 不是具体哪个试剂。TGUI 条目直接给界面名（`tgui:ChemReactionChamber`）。
+ */
+function scopeHint(key: string): string | null {
+  const paths = scopesByKey[key];
+  if (!paths?.length) return null;
+  const p = paths[0];
+  if (!p.startsWith('/')) return p; // tgui:XXX
+  return p.split('/').slice(0, 5).join('/');
+}
+
 function shortIdBatch(batch: Catalog): {
   codexBatch: Catalog;
   idToKeys: string[][];
+  idToScope: Record<string, string>;
 } {
   const codexBatch: Catalog = {};
   const idToKeys: string[][] = [];
+  const idToScope: Record<string, string> = {};
   const valueToId = new Map<string, number>();
   for (const key of Object.keys(batch)) {
     const value = batch[key];
@@ -1506,8 +1523,28 @@ function shortIdBatch(batch: Catalog): {
     valueToId.set(value, numericId);
     idToKeys.push([key]);
     codexBatch[id] = value;
+    const scope = scopeHint(key);
+    if (scope) idToScope[id] = scope;
   }
-  return { codexBatch, idToKeys };
+  return { codexBatch, idToKeys, idToScope };
+}
+
+/** 语境段落。同一路径下的 id 合并成一行，避免逐条重复长路径。 */
+function scopeSection(idToScope: Record<string, string>): string {
+  const byScope = new Map<string, string[]>();
+  for (const [id, scope] of Object.entries(idToScope)) {
+    if (!byScope.has(scope)) byScope.set(scope, []);
+    byScope.get(scope)?.push(id);
+  }
+  if (byScope.size === 0) return '';
+  const lines = [...byScope.entries()].map(
+    ([scope, ids]) => `- ${scope}: ${ids.join(',')}`,
+  );
+  return (
+    '\n各条目在游戏源码里的所属类型（**只用来判断语境，绝不要翻译或写进译文**）。' +
+    'DM 类型路径能直接消歧：/datum/reagent 下的 Base 是「碱」，/area 下的是「基地」；' +
+    `/obj/item 下的短语多为物品名（名词短语，别翻成句子）：\n${lines.join('\n')}`
+  );
 }
 
 function mapTranslatedBatch(
@@ -1679,7 +1716,7 @@ async function translateBatch(
     PENDING_DIR,
     file.replace(/\.json$/, `.${idx}.codex.log`),
   );
-  const { codexBatch, idToKeys } = shortIdBatch(batch);
+  const { codexBatch, idToKeys, idToScope } = shortIdBatch(batch);
 
   const reusable = reusableTranslatedBatch(
     inPath,
@@ -1716,11 +1753,12 @@ async function translateBatch(
     `只包括品牌、阵营/组织、物种、舰船/站点/地图名、唯一装备/武器/药剂/材料、型号、缩写、必须保留英文的命令或程序名。` +
     `不要追加普通单词、多义词、颜色、大小、方向、形容词、泛称名词、可随语境翻译的词（例如 white/black/large/small/left/right/agent/vendor/crate 等）。` +
     `不确定是否固定，就不要加入术语表。本批没有合格新增术语就写 {}。` +
-    `以下术语表只列本批命中的术语；若需要完整术语表可用 I18N_FULL_GLOSSARY=1 运行。术语表：\n${glossaryHint(batch)}`;
+    `以下术语表只列本批命中的术语；若需要完整术语表可用 I18N_FULL_GLOSSARY=1 运行。术语表：\n${glossaryHint(batch)}` +
+    scopeSection(idToScope);
 
   const ok =
     BACKEND === 'openai'
-      ? await runOpenAI(codexBatch, mode, outPath, addPath, logPath)
+      ? await runOpenAI(codexBatch, mode, outPath, addPath, logPath, idToScope)
       : await runCodex(prompt, logPath, () =>
           Boolean(
             reusableCatalog(
@@ -1861,6 +1899,14 @@ async function cmdTranslate(
     console.log(
       `${file}: ${mode === 'terms' ? '术语不一致' : '待译'} ${keys.length}，分 ${batches} 批（每批 ${CHUNK}，并发 ${CONCURRENCY}，后端 ${BACKEND_LABEL}）`,
     );
+    // **按 DM 类型路径排序后再切批**：同一类型的条目落进同一批，模型能看到成组的
+    // 上下文（"multiver bottle" 与 "A small bottle of multiver." 一起翻），
+    // 语境段落也能按路径合并、少占 token。次键用 key 保证切批稳定可复现。
+    keys.sort((a, b) => {
+      const sa = scopeHint(a) ?? '~';
+      const sb = scopeHint(b) ?? '~';
+      return sa === sb ? a.localeCompare(b) : sa.localeCompare(sb);
+    });
     // 预切批。
     const batchItems: { idx: number; batch: Catalog }[] = [];
     for (let start = 0, idx = 0; start < keys.length; start += CHUNK, idx++) {
