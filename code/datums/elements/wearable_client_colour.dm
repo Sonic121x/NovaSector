@@ -122,4 +122,4 @@
 
 /datum/element/wearable_client_colour/proc/on_examine(obj/item/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
-	examine_texts += span_info("While holding or wearing it, [key_info] to toggle on/off the screen color from glasses and such.")
+	examine_texts += span_info(LANG("datum.2affc795", list(key_info)))

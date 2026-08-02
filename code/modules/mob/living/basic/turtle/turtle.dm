@@ -142,13 +142,13 @@
 	var/text_to_display = "Its tree seems to be exuding "
 	switch(destined_path)
 		if(PATH_PEST_KILLER)
-			text_to_display += "pest killing"
+			text_to_display += LANG("mob.61a5f621", null)
 		if(PATH_PLANT_HEALER)
-			text_to_display += "plant healing"
+			text_to_display += LANG("mob.6338c7d3", null)
 		if(PATH_PLANT_MUTATOR)
-			text_to_display += "plant mutating"
+			text_to_display += LANG("mob.708edb4e", null)
 
-	text_to_display += " properties... which [current_max_growth >= REQUIRED_TREE_GROWTH ? "seems to be fully grown" : "is yet to develop"]."
+	text_to_display += LANG("mob.9ce9a8ee", list(current_max_growth >= REQUIRED_TREE_GROWTH ? "seems to be fully grown" : "is yet to develop"))
 	. += span_notice(text_to_display)
 
 

@@ -101,9 +101,9 @@
 /datum/component/hat_stabilizer/proc/on_examine(datum/source, mob/user, list/base_examine)
 	SIGNAL_HANDLER
 	if(attached_hat)
-		base_examine += span_notice("There's \a [attached_hat] [loose_hat ? "loosely" : ""] placed on [parent].")
+		base_examine += span_notice(LANG("datum.81911b04", list(attached_hat, loose_hat ? "loosely" : "", parent)))
 	else
-		base_examine += span_notice("There's nothing placed on [parent]. Yet.")
+		base_examine += span_notice(LANG("datum.5c99b731", list(parent)))
 
 /datum/component/hat_stabilizer/proc/get_worn_overlays(atom/movable/source, list/overlays, mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	SIGNAL_HANDLER

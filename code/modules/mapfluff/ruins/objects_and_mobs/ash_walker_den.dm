@@ -154,9 +154,9 @@
 	var/list/examine_messages = ..()
 	if(isliving(user))
 		if(has_collected(user))
-			examine_messages += span_boldnotice("You've grabbed what you can, now get out!")
+			examine_messages += span_boldnotice(LANG("obj.86ccae07", null))
 		else
-			examine_messages += span_boldnotice("You might have some time to grab some goodies with an open hand before it collapses!")
+			examine_messages += span_boldnotice(LANG("obj.a654af9e", null))
 	return examine_messages
 
 /obj/effect/collapse/attack_hand(mob/living/collector, list/modifiers)

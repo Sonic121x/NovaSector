@@ -153,6 +153,7 @@ pub fn run(dme: &Path, filter: Option<&str>, dry_run: bool) -> Result<()> {
         edits: HashMap::new(),
         cache: HashMap::new(),
         ident_proc: false,
+        examine_proc: false,
     };
 
     // pass 1：收集所有「纯函数」proc 名（SpacemanDMM_should_be_pure）。纯度沿继承传播，
@@ -179,6 +180,7 @@ pub fn run(dme: &Path, filter: Option<&str>, dry_run: bool) -> Result<()> {
             for proc_value in type_proc.value.iter() {
                 if let Some(block) = &proc_value.code {
                     rw.ident_proc = crate::extract::is_identifier_dot_proc(proc_name);
+                    rw.examine_proc = crate::extract::is_examine_proc(proc_name);
                     rw.visit_block(block, &ns);
                     // 物种特征(perk) proc：额外把 list 里 SPECIES_PERK_NAME/DESC 的字符串值改写为 LANG，
                     // 让插值描述（[name] livers are…[pct]%）的模板可译（占位符运行时填值；与抽取同名门槛）。
@@ -454,6 +456,9 @@ struct Rewriter<'a> {
     /// 当前 proc 是否为「标识符构建 proc」（update_overlays 等，见 extract::is_identifier_dot_proc）：
     /// 其 bare-`.` 累加是 icon_state/日志串而非玩家文本，禁止改写为 LANG。
     ident_proc: bool,
+    /// 当前 proc 是否为 examine 家族（见 extract::is_examine_proc）：体内**任何**具名累加器
+    /// 收到的字面量都是 examine 输出，与白名单累加器同等改写为 LANG。
+    examine_proc: bool,
 }
 
 impl<'a> Rewriter<'a> {
@@ -619,7 +624,13 @@ impl<'a> Rewriter<'a> {
                     if let Expression::Base { term, follow } = lhs.as_ref() {
                         if follow.is_empty() {
                             if let Term::Ident(id) = &term.elem {
-                                if (id == "." && !self.ident_proc) || crate::extract::is_examine_accumulator(id) {
+                                if (id == "." && !self.ident_proc)
+                                    || crate::extract::is_examine_accumulator(id)
+                                    || self.examine_proc
+                                {
+                                    // examine proc 的具名累加器：抽取侧只收整句（见
+                                    // extract::is_examine_sentence），改写侧不必再判——
+                                    // try_rewrite_examine 查不到目录 key 就不动。
                                     self.try_rewrite_examine(term.location, id, rhs, ns);
                                 }
                             }

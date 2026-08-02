@@ -61,9 +61,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	// construction of frequency description
 	var/list/available_channels = list()
-	available_channels += "<li><b>[span_radio(RADIO_KEY_COMMON)]</b> for the currently tuned frequency</li>"
+	available_channels += LANG("obj.b045da9c", list(span_radio(RADIO_KEY_COMMON)))
 	if(special_channels & RADIO_SPECIAL_BINARY)
-		available_channels += "<li><b>[span_binarysay(MODE_TOKEN_BINARY)] for [span_binarysay(capitalize(MODE_BINARY))]</b></li>"
+		available_channels += LANG("obj.2f69410b", list(span_binarysay(MODE_TOKEN_BINARY), span_binarysay(capitalize(MODE_BINARY))))
 
 	for(var/i in 1 to length(channels))
 		var/channel_name = channels[i]
@@ -71,9 +71,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		var/channel_span_class = get_radio_span(GLOB.default_radio_channels[channel_name])
 
 		if(i == 1)
-			available_channels += "<li><b>[span_class(channel_span_class, MODE_TOKEN_DEPARTMENT)]</b> or <b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
+			available_channels += LANG("obj.e8e0d0e1", list(span_class(channel_span_class, MODE_TOKEN_DEPARTMENT), span_class(channel_span_class, channel_token), span_class(channel_span_class, channel_name)))
 		else
-			available_channels += "<li><b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
+			available_channels += LANG("obj.156520a1", list(span_class(channel_span_class, channel_token), span_class(channel_span_class, channel_name)))
 
 	. += span_notice(LANG("obj.8aedb50d", null))
 	. += span_notice("<ul style='display:inline-block; margin: 0; list-style: square;'>[available_channels.Join()]</ul>")

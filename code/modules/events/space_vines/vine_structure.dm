@@ -49,7 +49,7 @@
 	var/text = "This vine has the following mutations:\n"
 	for(var/datum/spacevine_mutation/mutation as anything in mutations)
 		if(mutation.name == "transparent") /// Transparent has no hue
-			text += "<font color='#346751'>Transparent</font> "
+			text += LANG("obj.b7b57e66", null)
 		else
 			text += "<font color='[mutation.hue]'>[mutation.name]</font> "
 	. += text

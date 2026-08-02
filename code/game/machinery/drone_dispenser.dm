@@ -173,13 +173,13 @@
 	. = ..()
 	var/material_requirement_string = "It needs "
 	if (iron_cost > 0)
-		material_requirement_string += "[iron_cost / SHEET_MATERIAL_AMOUNT] iron sheets "
+		material_requirement_string += LANG("obj.ba974162", list(iron_cost / SHEET_MATERIAL_AMOUNT))
 		if (glass_cost > 0)
-			material_requirement_string += "and "
+			material_requirement_string += LANG("obj.2162713f", null)
 	if (glass_cost > 0)
-		material_requirement_string += "[glass_cost / SHEET_MATERIAL_AMOUNT] glass sheets "
+		material_requirement_string += LANG("obj.a420eab2", list(glass_cost / SHEET_MATERIAL_AMOUNT))
 	if (iron_cost > 0 || glass_cost > 0)
-		material_requirement_string += "to produce one drone shell."
+		material_requirement_string += LANG("obj.17773f3d", null)
 		. += span_notice(material_requirement_string)
 	if((mode == DRONE_RECHARGING) && !machine_stat && recharging_text)
 		. += span_warning("[recharging_text]")

@@ -189,18 +189,18 @@
 			var/bleed_text = "<b>"
 			if(appears_dead)
 				bleed_text += "<span class='deadsay'>"
-				bleed_text += "Blood is visible in [t_his] open "
+				bleed_text += LANG("mob.665d1eb2", list(t_his))
 			else
 				bleed_text += "<span class='warning'>"
-				bleed_text += "[t_He] [t_is] bleeding from [t_his] "
+				bleed_text += LANG("mob.84cca7d2", list(t_He, t_is, t_his))
 
 			bleed_text += english_list(bleeding_limbs, and_text = " and ")
 
 			if(appears_dead)
-				bleed_text += ", but it has pooled and is not flowing."
+				bleed_text += LANG("mob.f14c43ef", null)
 			else
 				if(HAS_TRAIT(src, TRAIT_BLOOD_FOUNTAIN))
-					bleed_text += " incredibly quickly"
+					bleed_text += LANG("mob.79bd4a64", null)
 				bleed_text += "!"
 
 			if(appears_dead)

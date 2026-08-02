@@ -36,11 +36,11 @@
 		var/langstring = "[GLOB.language_datum_instances[lang].name]"
 		switch(language_data[lang])
 			if(25 to 50)
-				langstring += " (poor)"
+				langstring += LANG("obj.93356086", null)
 			if(50 to 75)
-				langstring += " (average)"
+				langstring += LANG("obj.6c7660aa", null)
 			if(75 to 100)
-				langstring += " (good)"
+				langstring += LANG("obj.1ba65d7f", null)
 		language_text_list += langstring
 
 	if(length(language_text_list))

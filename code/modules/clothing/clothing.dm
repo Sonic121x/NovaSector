@@ -343,17 +343,17 @@
 	if(atom_storage)
 		var/list/how_cool_are_your_threads = list("<span class='notice'>")
 		if(atom_storage.attack_hand_interact)
-			how_cool_are_your_threads += "[src]'s storage opens when clicked.\n"
+			how_cool_are_your_threads += LANG("obj.d9b14bb5", list(src))
 		else
-			how_cool_are_your_threads += "[src]'s storage opens when dragged to yourself.\n"
+			how_cool_are_your_threads += LANG("obj.c603422a", list(src))
 		if (atom_storage.can_hold?.len) // If pocket type can hold anything, vs only specific items
-			how_cool_are_your_threads += "[src] can store [atom_storage.max_slots] <a href='byond://?src=[REF(src)];show_valid_pocket_items=1'>item\s</a>.\n"
+			how_cool_are_your_threads += LANG("obj.51cdfce1", list(src, atom_storage.max_slots, REF(src)))
 		else
-			how_cool_are_your_threads += "[src] can store [atom_storage.max_slots] item\s that are [weight_class_to_text(atom_storage.max_specific_storage)] or smaller.\n"
+			how_cool_are_your_threads += LANG("obj.05648428", list(src, atom_storage.max_slots, weight_class_to_text(atom_storage.max_specific_storage)))
 		if(atom_storage.quickdraw)
-			how_cool_are_your_threads += "You can quickly remove an item from [src] using Right-Click.\n"
+			how_cool_are_your_threads += LANG("obj.f72ef392", list(src))
 		if(atom_storage.silent)
-			how_cool_are_your_threads += "Adding or removing items from [src] makes no noise.\n"
+			how_cool_are_your_threads += LANG("obj.08b5e10e", list(src))
 		how_cool_are_your_threads += "</span>"
 		. += how_cool_are_your_threads.Join()
 

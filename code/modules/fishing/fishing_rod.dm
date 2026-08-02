@@ -149,7 +149,7 @@
 
 	var/list/block = list()
 	var/get_percent = HAS_MIND_TRAIT(user, TRAIT_EXAMINE_DEEPER_FISH)
-	block += span_info("You think you can cast it up to [get_cast_range()] tiles away.")
+	block += span_info(LANG("obj.78f96eed", list(get_cast_range())))
 	block += get_stat_info(get_percent, difficulty_modifier * 0.01, "Fishing will be", "easier", "harder", "with this fishing rod")
 	block += get_stat_info(get_percent, experience_multiplier - 1, "You will gain experience", "faster", "slower")
 	block += get_stat_info(get_percent, completion_speed_mult - 1, "The minigame completion speed is", "faster", "slower")
@@ -163,11 +163,11 @@
 
 	block = list()
 	if(HAS_TRAIT(src, TRAIT_ROD_IGNORE_ENVIRONMENT))
-		block += span_info("Environment and light shouldn't be an issue with this rod.")
+		block += span_info(LANG("obj.9e215080", null))
 	if(HAS_TRAIT_NOT_FROM(src, TRAIT_ROD_REMOVE_FISHING_DUD, INNATE_TRAIT)) // Duds are innately removed by baits, we all know that.
-		block += span_info("You won't catch duds with this rod.")
+		block += span_info(LANG("obj.05732498", null))
 	if(HAS_TRAIT(src, TRAIT_ROD_LAVA_USABLE))
-		block += span_info("This fishing rod can be used to fish on lava.")
+		block += span_info(LANG("obj.83664179", null))
 	if(length(block))
 		. += boxed_message(block.Join("\n"))
 

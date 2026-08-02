@@ -39,7 +39,7 @@
 		var/list/type_initial_names = list()
 		for(var/type in insertable_items_hint)
 			var/obj/item/type_item = type
-			type_initial_names += "\a [initial(type_item.name)]"
+			type_initial_names += LANG("obj.fd966258", list(initial(type_item.name)))
 		. += span_notice(LANG("obj.4a7ad516", list(modified ? "You can" : "If you removed the safety cap with a screwdriver, you could", length(type_initial_names) ? ", such as [english_list(type_initial_names, and_text = "or ", final_comma_text = ", ")]" : "")))
 
 /obj/item/ammo_casing/foam_dart/screwdriver_act(mob/living/user, obj/item/tool)

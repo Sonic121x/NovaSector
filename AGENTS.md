@@ -115,3 +115,7 @@ Known trap classes:
 
 - **Catalog entry exists but the UI still shows English** — compare the key byte-for-byte with what the runtime actually looks up. TGUI keys must be the *post-JSX-transform* string: `tgui-catalog.mjs` decodes HTML entities (`&apos;` `&nbsp;` `&ensp;` …) because `JsxText.text` keeps them raw while React does not. An entity in a catalog key is a dead key; an entity in a translation renders literally to the player. `tgui-catalog.mjs extract` warns on both.
 - The TGUI English catalog is `new ∪ historical` and never prunes, so a bad-key class survives every re-extract until it is migrated explicitly.
+- **按 proc 语义界定，不要按变量名穷举** — examine/`. +=` 类累加器原先靠一张手写变量名白名单，任何局部名（`how_cool_are_your_threads += "…"`）都会漏。`extract::ProcCtx` 改为按 proc 名判定 examine 家族；放宽准入时配一道整句闸门（`is_examine_sentence`），否则拼句碎片（`" and "`、`" (good)"`）会各自入目录，被 AC 层在半句处替换成语序错乱的中文。
+- `. += span_notice("A") + "\n" + span_notice("B")` 这类**拼接链**，整条 `build_template` 会把兄弟片段变成 `{0}/{1}`，抽出改写侧永远跳过的废键（一行多个字面量无从定位）。按操作数拆开逐段抽。
+- 英式/美式拼写会让 SINK_VARS 看着已覆盖实则全漏：`flavor_text` 在表里、`flavour_text`（幽灵角色入场文字）整类没抽到。
+- 译文里的 DM 复数宏 `\s` 要**去掉**——中文名词后会渲染出多余的 "s"。目录既有约定即如此。

@@ -8,14 +8,14 @@
 	var/msg = "Its tracking indicator reads "
 	switch(mode)
 		if(TRACK_NUKE_DISK)
-			msg += "\"nuclear_disk\"."
+			msg += LANG("obj.154f86ea", null)
 		if(TRACK_MALF_AI)
 			msg += "\"01000001 01001001\"."
 		if(TRACK_INFILTRATOR)
-			msg += "\"vasvygengbefuvc\"."
+			msg += LANG("obj.ba6e5a83", null)
 		/// NOVA EDIT BEGIN
 		if(TRACK_GOLDENEYE)
-			msg += "\"goldeneye_key\"."
+			msg += LANG("obj.5260cc04", null)
 		/// NOVA EDIT END
 		else
 			msg = "Its tracking indicator is blank."

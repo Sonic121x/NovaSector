@@ -64,7 +64,7 @@
 /// Let people know something is up
 /datum/component/direct_explosive_trap/proc/on_examined(datum/source, mob/user, text)
 	SIGNAL_HANDLER
-	text += span_holoparasite("It glows with a strange <font color=\"[glow_colour]\">light</font>...")
+	text += span_holoparasite(LANG("datum.852e9ab2", list(glow_colour)))
 
 /// Blow up
 /datum/component/direct_explosive_trap/proc/explode(atom/source, mob/living/victim)

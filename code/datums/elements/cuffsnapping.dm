@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * cuffsnapping element replaces the item's secondary attack with an aimed attack at the kneecaps under certain circumstances.
  *
@@ -74,7 +75,7 @@
 	examine_string = "It looks like it could be used to cut zipties or cable restraints off someone in [snap_time_weak] seconds"
 
 	if(!isnull(snap_time_strong))
-		examine_string += ", and handcuffs in [snap_time_strong] seconds."
+		examine_string += LANG("datum.9adf8967", list(snap_time_strong))
 	else
 		examine_string += "."
 

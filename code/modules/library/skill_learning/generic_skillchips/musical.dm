@@ -76,17 +76,17 @@
 /obj/item/skillchip/musical/examine_more(mob/user)
 	. = ..()
 	var/list/songs = list()
-	songs += "&bull; \"The Ballad of Space Station 13\""
-	songs += "&bull; \"The Captain's Call\""
-	songs += "&bull; \"A Mime's Lament\""
-	songs += "&bull; \"Banned from Cargo\""
-	songs += "&bull; \"Botany Blues\""
-	songs += "&bull; \"Clown Song\""
-	songs += "&bull; \"Elegy to an Engineer\""
-	songs += "&bull; \"Medical Malpractitioner\""
-	songs += "&bull; \"Security Strike\""
-	songs += "&bull; \"Send for the Shuttle\""
-	songs += "&bull;  And one song scratched out..."
+	songs += LANG("obj.c68db468", null)
+	songs += LANG("obj.6bb3af7d", null)
+	songs += LANG("obj.b3e7bf32", null)
+	songs += LANG("obj.a55638f1", null)
+	songs += LANG("obj.4f816f3b", null)
+	songs += LANG("obj.dd0d5c6c", null)
+	songs += LANG("obj.410d13b2", null)
+	songs += LANG("obj.bce9bd0c", null)
+	songs += LANG("obj.6f8d8691", null)
+	songs += LANG("obj.e73474cb", null)
+	songs += LANG("obj.4d4da916", null)
 
 	. += span_notice(LANG("obj.dd15f825", null))
 	. += span_smallnotice("<i>[jointext(songs, "<br>")]</i>")

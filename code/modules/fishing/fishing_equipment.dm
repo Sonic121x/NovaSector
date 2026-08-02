@@ -743,9 +743,9 @@
 		return
 	var/info =  span_info("It's currently loaded with [loaded_injector]. Use it to ")
 	if(istype(loaded_injector, /obj/item/reagent_containers/syringe))
-		info += span_info("[EXAMINE_HINT("extract")] a gene from a fish or aquatic lifeform.")
+		info += span_info(LANG("obj.142271a4", list(EXAMINE_HINT("extract"))))
 	else
-		info += span_info("[EXAMINE_HINT("inject")] the gene in a fish or aquatic lifeform.")
+		info += span_info(LANG("obj.67415287", list(EXAMINE_HINT("inject"))))
 	. += info
 
 /obj/item/fish_genegun/update_icon_state()
