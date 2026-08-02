@@ -62406,6 +62406,7 @@
   "obj.4745250e": ["/obj/item/storage/medkit/robotic_repair#name"],
   "obj.474544b3": ["/obj/item/food/cake/empty/vegan#name"],
   "obj.47462a37": ["/obj/item/ammo_casing/c35sol/incapacitator#name"],
+  "obj.47495ce9": ["/obj/machinery/computer/cargo#add_item()"],
   "obj.4749a484": ["/obj/item/xenoarch/strange_rock#item_interaction()"],
   "obj.474bf33b": ["/obj/machinery/rnd/destructive_analyzer#examine()"],
   "obj.474deacb": ["/obj/item/autosurgeon#use_autosurgeon()"],

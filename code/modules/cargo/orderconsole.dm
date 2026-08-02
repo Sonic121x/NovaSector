@@ -320,9 +320,13 @@
 				say(LANG("obj.13fe6ebe", null))
 				return
 
-	if(((pack.order_flags & ORDER_GOODY) && (!(pack.order_flags & ORDER_DEPARTMENTAL_GOODY) || uses_cargo_budget)) && (!self_paid || !requestonly))
+	if(((pack.order_flags & ORDER_GOODY) && (!(pack.order_flags & ORDER_DEPARTMENTAL_GOODY) || uses_cargo_budget)) && (!self_paid || !requestonly)) // NOVA EDIT CHANGE - ORIGINAL: if((pack.order_flags & ORDER_GOODY) && !self_paid)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-		say(LANG("obj.90374cfb", null))
+		// NOVA EDIT CHANGE - ORIGINAL: say("ERROR: Small crates may only be purchased by private accounts.")
+		// 上游只在「非私人购买」时拦，那句文案是准的。Nova 这条额外加了 `|| !requestonly`，
+		// 于是主控台上无论开不开私人购买都会被拦——照抄上游文案就成了自相矛盾的提示
+		// （玩家开了私人购买，机器还说「只能由私人账户购买」）。改成说清真正的限制。
+		say(LANG("obj.47495ce9", null))
 		return
 
 	var/similar_count = SSshuttle.supply.get_order_count(pack)
