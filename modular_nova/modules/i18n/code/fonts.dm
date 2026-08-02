@@ -17,6 +17,13 @@
 //   - The earlier 8px variant was crisp only at 6pt, but 8px CJK is too few pixels (rough);
 //     12px@9pt gives clear, legible CJK.
 //
+// LINE-HEIGHT (skin.dmf): upstream sets `.subcontext { line-height: 0.75 }` for the screentip
+// action-hints, which is safe for TinyUnicode — its glyphs are far shorter than its em box, so a
+// 0.75 line box still clears them. CJK glyphs fill the **whole** em, so 0.75 makes consecutive
+// hint lines bite into each other (玩家看到的「快捷键提示挤在一起」). Any class that can render
+// Chinese needs line-height >= 1.0. Keep it an integer multiple of the design grid too — pixel
+// fonts blur on fractional line boxes.
+//
 // NOTE: BYOND maptext does NOT do per-glyph fallback across a comma-separated font-family
 // list — it renders glyphs from the FIRST font and substitutes a hardcoded system font for
 // any the first font lacks (the 2nd+ entries are ignored). So this font must be FIRST; since
