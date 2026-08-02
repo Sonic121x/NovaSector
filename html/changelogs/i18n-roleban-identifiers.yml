@@ -1,0 +1,4 @@
+author: "Sernseek"
+delete-after: True
+changes:
+  - bugfix: "修复中文服职业封禁岗位名被翻译后无法阻止玩家选择对应职业的问题。"

@@ -132,5 +132,76 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 		lang_log_miss_scan(text, "fallback")
 	return lang_fallback_cache_store(locale, source_text, text)
 
+/// Finds the closing `>` for an HTML tag without treating a quoted `>` as the end of the tag.
+/proc/lang_html_tag_end(html, tag_start)
+	var/quote
+	for(var/index in tag_start + 1 to length(html))
+		var/character = copytext(html, index, index + 1)
+		if(quote)
+			if(character == quote)
+				quote = null
+			continue
+		if(character == "'" || character == "\"")
+			quote = character
+		else if(character == ">")
+			return index
+
+/// Returns the name of an HTML raw-text element whose body must never be localized.
+/proc/lang_html_raw_text_tag_name(tag)
+	var/index = 2
+	while(index <= length(tag) && findtext(" \t\n", copytext(tag, index, index + 1)))
+		index++
+	var/first_character = copytext(tag, index, index + 1)
+	if(first_character == "/" || first_character == "!" || first_character == "?")
+		return
+	var/name_end = index
+	while(name_end <= length(tag))
+		var/character = copytext(tag, name_end, name_end + 1)
+		if(!findtext("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", character))
+			break
+		name_end++
+	var/tag_name = LOWER_TEXT(copytext(tag, index, name_end))
+	switch(tag_name)
+		if("script", "style", "textarea")
+			return tag_name
+
+/// Localizes visible HTML text while preserving tags, attributes, scripts, styles, and form values.
+/proc/lang_fallback_apply_html(html, locale)
+	if(!istext(html) || !length(html))
+		return html
+	var/list/output = list()
+	var/cursor = 1
+	var/html_length = length(html)
+	while(cursor <= html_length)
+		var/tag_start = findtext(html, "<", cursor)
+		if(!tag_start)
+			output += lang_fallback_apply(copytext(html, cursor), locale)
+			break
+		if(tag_start > cursor)
+			output += lang_fallback_apply(copytext(html, cursor, tag_start), locale)
+		var/tag_end = lang_html_tag_end(html, tag_start)
+		if(!tag_end)
+			output += lang_fallback_apply(copytext(html, tag_start), locale)
+			break
+		var/tag = copytext(html, tag_start, tag_end + 1)
+		output += tag
+		cursor = tag_end + 1
+
+		var/raw_text_tag = lang_html_raw_text_tag_name(tag)
+		if(!raw_text_tag)
+			continue
+		var/closing_tag_start = findtext(html, "</[raw_text_tag]", cursor)
+		if(!closing_tag_start)
+			output += copytext(html, cursor)
+			break
+		output += copytext(html, cursor, closing_tag_start)
+		var/closing_tag_end = lang_html_tag_end(html, closing_tag_start)
+		if(!closing_tag_end)
+			output += copytext(html, closing_tag_start)
+			break
+		output += copytext(html, closing_tag_start, closing_tag_end + 1)
+		cursor = closing_tag_end + 1
+	return output.Join()
+
 #undef I18N_FALLBACK_CACHE_MAX
 #undef I18N_FALLBACK_CACHE_MAX_LENGTH

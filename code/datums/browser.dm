@@ -119,7 +119,7 @@
 		[get_footer()]
 	"}
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
-		return lang_fallback_apply(full_content)
+		return lang_fallback_apply_html(full_content)
 	return full_content
 	// NOVA EDIT ADDITION END
 

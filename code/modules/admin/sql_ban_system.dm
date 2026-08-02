@@ -4,6 +4,105 @@
 
 #define MAX_REASON_LENGTH 600
 
+// NOVA EDIT ADDITION START - I18N - Keep localized labels separate from canonical role-ban identifiers.
+#define ROLEBAN_FIELD_PREFIX "ban_role_"
+#define ROLEBAN_GROUP_PREFIX "ban_group_"
+
+GLOBAL_LIST_INIT(roleban_other_job_lists, list(
+	"Abstract" = list("Appearance", "Emote", "Deadchat", "OOC", "Urgent Adminhelp"),
+))
+
+GLOBAL_LIST_INIT(roleban_long_job_lists, list(
+	"Ghost and Other Roles" = list(
+		ROLE_PAI,
+		ROLE_BOT,
+		ROLE_BRAINWASHED,
+		ROLE_DEATHSQUAD,
+		ROLE_DRONE,
+		ROLE_LAVALAND,
+		ROLE_MIND_TRANSFER,
+		ROLE_POSIBRAIN,
+		ROLE_SENTIENCE,
+		ROLE_RECOVERED_CREW,
+	),
+	"Antagonist Positions" = list(
+		ROLE_ABDUCTOR,
+		ROLE_ALIEN,
+		ROLE_BLOB,
+		ROLE_BLOOD_WORM,
+		ROLE_BROTHER,
+		ROLE_CHANGELING,
+		ROLE_CULTIST,
+		ROLE_FUGITIVE,
+		ROLE_FUGITIVE_HUNTER,
+		ROLE_GLITCH,
+		ROLE_HERETIC,
+		ROLE_HIVE,
+		ROLE_MALF,
+		ROLE_NINJA,
+		ROLE_OPERATIVE,
+		ROLE_CLOWN_OPERATIVE,
+		ROLE_OVERTHROW,
+		ROLE_PARADOX_CLONE,
+		ROLE_REV,
+		ROLE_REVENANT,
+		ROLE_REV_HEAD,
+		ROLE_SPACE_DRAGON,
+		ROLE_SPIDER,
+		ROLE_SPY,
+		ROLE_SYNDICATE,
+		ROLE_TRAITOR,
+		ROLE_VOIDWALKER,
+		ROLE_WIZARD,
+		ROLE_BORER,
+		ROLE_ASSAULT_OPERATIVE,
+	),
+	"Nova Ban Options" = list(
+		BAN_PACIFICATION,
+		BAN_DONOTREVIVE,
+		BAN_RESPAWN,
+		BAN_MOB_CONTROL,
+		BAN_GHOST_ROLE_SPAWNER,
+		BAN_GHOST_TAKEOVER,
+		BAN_EORG,
+		BAN_ANTAGONIST,
+		BAN_OPFOR,
+		BAN_LOOC,
+	),
+))
+
+/proc/roleban_field_name(role)
+	return "[ROLEBAN_FIELD_PREFIX][url_encode(role)]"
+
+/proc/roleban_group_field_name(group)
+	return "[ROLEBAN_GROUP_PREFIX][md5(group)]"
+
+/// Decodes a submitted role-ban field and rejects values that were not offered by the server.
+/proc/roleban_role_from_field(field_name, allow_server = FALSE)
+	if(!istext(field_name) || copytext(field_name, 1, length(ROLEBAN_FIELD_PREFIX) + 1) != ROLEBAN_FIELD_PREFIX)
+		return
+	var/role = url_decode(copytext(field_name, length(ROLEBAN_FIELD_PREFIX) + 1))
+	if(allow_server && role == "Server")
+		return role
+	for(var/datum/job_department/department as anything in SSjob.joinable_departments)
+		for(var/datum/job/job_datum as anything in department.get_jobban_jobs())
+			if(job_datum.title == role)
+				return role
+	for(var/group in GLOB.roleban_other_job_lists)
+		if(role in GLOB.roleban_other_job_lists[group])
+			return role
+	for(var/group in GLOB.roleban_long_job_lists)
+		if(role in GLOB.roleban_long_job_lists[group])
+			return role
+// NOVA EDIT ADDITION END
+
+// NOVA EDIT ADDITION START - I18N - Test hook for recognizing forged role fields without decoding them.
+/proc/is_roleban_field_name(field_name)
+	return istext(field_name) && copytext(field_name, 1, length(ROLEBAN_FIELD_PREFIX) + 1) == ROLEBAN_FIELD_PREFIX
+// NOVA EDIT ADDITION END
+
+
+
 /**
  * Checks client ban cache or, if it doesn't exist, queries the DB ban table to see if the player's
  * ckey is banned from at least one of the provided roles.
@@ -293,7 +392,7 @@
 		<input type='hidden' name='oldreason' value='[reason]'>
 		<input type='hidden' name='page' value='[page]'>
 		<input type='hidden' name='adminkey' value='[admin_key]'>
-		<input type='hidden' name='role' value='[role]'>
+		<input type='hidden' name='role' value='[roleban_field_name(role)]'>
 		<br>
 		When ticked, edits here will also affect bans created with matching ckey, IP, CID and time. Use this to edit all role bans which were made at the same time.
 		"}
@@ -320,124 +419,69 @@
 		var/break_counter = 0
 		output += "<div class='row'>"
 
+		// NOVA EDIT ADDITION START - I18N - Machine identifiers are encoded separately from localized labels.
 		for(var/datum/job_department/department as anything in SSjob.joinable_departments)
 			var/label_class = department.get_label_class()
 			var/department_name = department.department_name
-			output += "<div class='column'><label class='rolegroup [label_class]' style='background-color: [department.ui_color];'><input type='checkbox' name='[label_class]' class='hidden' onClick='header_click_all_checkboxes(this)'> \
+			var/department_field = roleban_group_field_name(label_class)
+			output += "<div class='column'><label class='rolegroup [label_class]' style='background-color: [department.ui_color];'><input type='checkbox' name='[department_field]' class='hidden' onClick='header_click_all_checkboxes(this)'> \
 			[department_name]</label><div class='content'>"
 			for(var/datum/job/job_datum as anything in department.get_jobban_jobs())
 				if(break_counter > 0 && (break_counter % 3 == 0))
 					output += "<br>"
 				break_counter++
 				var/job_name = job_datum.title
+				var/job_field = roleban_field_name(job_name)
 				if(length(job_datum.departments_list) > 1) //This job is in multiple departments, so we need to check all the boxes.
 					// Clicking this will also toggle all the other boxes, minus this one.
 					var/department_index = job_datum.departments_list.Find(department.type)
 					if(!department_index)
 						stack_trace("Failed to find a department index for [department.type] in the departments_list of [job_datum.type]")
 					output += {"<label class='inputlabel checkbox'>[job_name]
-						<input type='checkbox' id='[job_name]_[department_index]' name='[job_name]' class='[label_class]' value='1'
+						<input type='checkbox' id='[job_field]_[department_index]' name='[job_field]' class='[department_field]' value='1'
 						onClick='toggle_other_checkboxes(this, \"[length(job_datum.departments_list)]\", \"[department_index]\")'">
 						<div class='inputbox[(job_name in banned_from) ? " banned" : ""]'></div></label>
 						"}
 				else
 					output += {"<label class='inputlabel checkbox'>[job_name]
-							<input type='checkbox' name='[job_name]' class='[label_class]' value='1'>
+							<input type='checkbox' name='[job_field]' class='[department_field]' value='1'>
 							<div class='inputbox[(job_name in banned_from) ? " banned" : ""]'></div></label>
 							"}
 			output += "</div></div>"
 			break_counter = 0
+		// NOVA EDIT ADDITION END
 
-		var/list/other_job_lists = list(
-			"Abstract" = list("Appearance", "Emote", "Deadchat", "OOC", "Urgent Adminhelp"),
-			)
-		for(var/department in other_job_lists)
-			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' onClick='header_click_all_checkboxes(this)'>[department]</label><div class='content'>"
+		// NOVA EDIT ADDITION START - I18N - Reuse the same canonical option lists for rendering and validation.
+		for(var/department in GLOB.roleban_other_job_lists)
+			var/other_group_field = roleban_group_field_name(department)
+			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[other_group_field]' class='hidden' onClick='header_click_all_checkboxes(this)'>[department]</label><div class='content'>"
 			break_counter = 0
-			for(var/job in other_job_lists[department])
+			for(var/job in GLOB.roleban_other_job_lists[department])
 				if(break_counter > 0 && (break_counter % 3 == 0))
 					output += "<br>"
+				var/other_role_field = roleban_field_name(job)
 				output += {"<label class='inputlabel checkbox'>[job]
-							<input type='checkbox' name='[job]' class='[department]' value='1'>
+							<input type='checkbox' name='[other_role_field]' class='[other_group_field]' value='1'>
 							<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
 				"}
 				break_counter++
 			output += "</div></div>"
-		var/list/long_job_lists = list(
-			"Ghost and Other Roles" = list(
-				ROLE_PAI,
-				ROLE_BOT,
-				ROLE_BRAINWASHED,
-				ROLE_DEATHSQUAD,
-				ROLE_DRONE,
-				ROLE_LAVALAND,
-				ROLE_MIND_TRANSFER,
-				ROLE_POSIBRAIN,
-				ROLE_SENTIENCE,
-				ROLE_RECOVERED_CREW,
-			),
-			"Antagonist Positions" = list(
-				ROLE_ABDUCTOR,
-				ROLE_ALIEN,
-				ROLE_BLOB,
-				ROLE_BLOOD_WORM,
-				ROLE_BROTHER,
-				ROLE_CHANGELING,
-				ROLE_CULTIST,
-				ROLE_FUGITIVE,
-				ROLE_FUGITIVE_HUNTER,
-				ROLE_GLITCH,
-				ROLE_HERETIC,
-				ROLE_HIVE,
-				ROLE_MALF,
-				ROLE_NINJA,
-				ROLE_OPERATIVE,
-				ROLE_CLOWN_OPERATIVE,
-				ROLE_OVERTHROW,
-				ROLE_PARADOX_CLONE,
-				ROLE_REV,
-				ROLE_REVENANT,
-				ROLE_REV_HEAD,
-				ROLE_SPACE_DRAGON,
-				ROLE_SPIDER,
-				ROLE_SPY,
-				ROLE_SYNDICATE,
-				ROLE_TRAITOR,
-				ROLE_VOIDWALKER,
-				ROLE_WIZARD,
-				// NOVA EDIT ADDITION START
-				ROLE_BORER,
-				ROLE_ASSAULT_OPERATIVE,
-				// NOVA EDIT ADDITION END
-			),
-			// NOVA EDIT ADDITION START - EXTRA_BANS
-			"Nova Ban Options" = list(
-				BAN_PACIFICATION,
-				BAN_DONOTREVIVE,
-				BAN_RESPAWN,
-				BAN_MOB_CONTROL,
-				BAN_GHOST_ROLE_SPAWNER,
-				BAN_GHOST_TAKEOVER,
-				BAN_EORG,
-				BAN_ANTAGONIST,
-				BAN_OPFOR,
-				BAN_LOOC,
-			),
-			// NOVA EDIT ADDITION END - EXTRA_BANS
-		)
-		for(var/department in long_job_lists)
-			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' onClick='header_click_all_checkboxes(this)'>[department]</label><div class='content'>"
+		for(var/department in GLOB.roleban_long_job_lists)
+			var/long_group_field = roleban_group_field_name(department)
+			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[long_group_field]' class='hidden' onClick='header_click_all_checkboxes(this)'>[department]</label><div class='content'>"
 			break_counter = 0
-			for(var/job in long_job_lists[department])
+			for(var/job in GLOB.roleban_long_job_lists[department])
 				if(break_counter > 0 && (break_counter % 10 == 0))
 					output += "<br>"
+				var/long_role_field = roleban_field_name(job)
 				output += {"<label class='inputlabel checkbox'>[job]
-							<input type='checkbox' name='[job]' class='[department]' value='1'>
+							<input type='checkbox' name='[long_role_field]' class='[long_group_field]' value='1'>
 							<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
 				"}
 				break_counter++
 			output += "</div></div>"
 		output += "</div>"
+		// NOVA EDIT ADDITION END
 	output += "</form>"
 	panel.set_content(output.Join())
 	panel.open()
@@ -536,7 +580,11 @@
 			changes += list("Reason" = "[href_list["oldreason"]]<br>to<br>[reason]")
 		if(!changes.len)
 			error_state += "No changes were detected."
-		roles_to_ban += href_list["role"]
+		var/edit_role = roleban_role_from_field(href_list["role"], allow_server = TRUE) // NOVA EDIT CHANGE - I18N - decode and validate canonical role
+		if(edit_role)
+			roles_to_ban += edit_role
+		else
+			error_state += "Invalid role ban option."
 	else
 		severity = href_list["radioseverity"]
 		if(!severity)
@@ -545,16 +593,23 @@
 			if("server")
 				roles_to_ban += "Server"
 			if("role")
-				href_list.Remove("Command", "Security", "Engineering", "Medical", "Science", "Supply", "Silicon", "Abstract", "Service", "Ghost and Other Roles", "Antagonist Positions") //remove the role banner hidden input values
+				// NOVA EDIT ADDITION START - I18N - Ignore group controls; decode and validate only stable role fields.
 				var/delimiter_pos = href_list.Find("roleban_delimiter")
-				if(href_list.len == delimiter_pos)
-					error_state += "Role ban was selected but no roles to ban were selected."
-				else if(delimiter_pos == 0)
+				if(delimiter_pos == 0)
 					error_state += "roleban_delimiter not found in href. Report this to coders."
 				else
-					href_list.Cut(1, delimiter_pos+1)//remove every list element before and including roleban_delimiter so we have a list of only the roles to ban
-					for(var/key in href_list) //flatten into a list of only unique keys
-						roles_to_ban |= key
+					href_list.Cut(1, delimiter_pos + 1)
+					for(var/key in href_list)
+						if(!is_roleban_field_name(key))
+							continue
+						var/canonical_role = roleban_role_from_field(key)
+						if(!canonical_role)
+							error_state += "Invalid role ban option."
+							continue
+						roles_to_ban |= canonical_role
+					if(!roles_to_ban.len)
+						error_state += "Role ban was selected but no roles to ban were selected."
+				// NOVA EDIT ADDITION END
 			else
 				error_state += "No ban type was selected."
 	if(error_state.len)
@@ -1128,3 +1183,5 @@
 #undef MAX_ADMINBANS_PER_ADMIN
 #undef MAX_ADMINBANS_PER_HEADMIN
 #undef MAX_REASON_LENGTH
+#undef ROLEBAN_FIELD_PREFIX
+#undef ROLEBAN_GROUP_PREFIX
