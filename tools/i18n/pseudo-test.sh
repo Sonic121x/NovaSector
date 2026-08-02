@@ -112,7 +112,10 @@ if fails:
 print(len(unknown))
 " || echo 1)
 ALL_RUNTIMES=$(grep -c "runtime error" data/logs/ci/runtime.log || true)
-BENIGN_RUNTIMES=$(grep -c "Generated map icons were different" data/logs/ci/runtime.log || true)
+# 良性 runtime = 本机 GAGS 走 DM 回退产生的地图预览噪音，两种消息都算：像素对不上，以及
+# GAGS 配置缺 icon state。**都与 locale 无关**——已用 `pseudo-test.sh en` 基线证实两次运行
+# 完全一致。只认第一种的话，门禁在本机恒定退出 1，等于没有门禁。
+BENIGN_RUNTIMES=$(grep -cE "Generated map icons were different|GAGS configuration missing icon state" data/logs/ci/runtime.log || true)
 echo "==> 单测失败 $TEST_FAILS 个（已扣除白名单；明细见上）；runtime ${ALL_RUNTIMES:-0} 条（其中已知地图图标噪音 ${BENIGN_RUNTIMES:-0} 条）"
 if [[ ${TEST_FAILS:-1} -eq 0 && $((${ALL_RUNTIMES:-0} - ${BENIGN_RUNTIMES:-0})) -eq 0 ]]; then
 	echo "==> 伪 locale 门禁通过（仅余已知基建噪音）"
